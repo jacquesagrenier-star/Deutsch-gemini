@@ -351,6 +351,17 @@ button{font-family:inherit}
     gap:13px;
 }
 
+.theme-icon{
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    background:rgba(255,255,255,.06);
+    border-radius:10px;
+}
+
 .theme-name{font-weight:800}
 
 .theme-count{
@@ -387,7 +398,7 @@ button{font-family:inherit}
 
 .flashcard{
     width:100%;
-    min-height:330px;
+    min-height:340px;
     position:relative;
     cursor:pointer;
     transform-style:preserve-3d;
@@ -401,7 +412,7 @@ button{font-family:inherit}
 .flashcard-face{
     position:absolute;
     inset:0;
-    min-height:330px;
+    min-height:340px;
     border-radius:28px;
     display:flex;
     flex-direction:column;
@@ -454,27 +465,37 @@ button{font-family:inherit}
 }
 
 .plural{
-    margin-top:18px;
+    margin-top:14px;
     color:#c1ccdb;
-    font-size:16px;
+    font-size:15px;
 }
 
 .translation{
-    margin-top:18px;
+    margin-top:14px;
     color:#fff;
     font-size:20px;
     font-weight:600;
 }
 
 .audio-btn{
-    margin-top:15px;
-    background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.2);
+    margin-top:18px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
     border-radius:20px;
-    padding:6px 16px;
-    color:#fff;
+    padding:8px 18px;
+    color:#9bdcff;
     cursor:pointer;
-    font-size:13px;
+    font-size:14px;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:.2s;
+}
+
+.audio-btn:hover{
+    background:rgba(255,255,255,.20);
+    transform:scale(1.03);
 }
 
 .flashcard-info{
@@ -537,7 +558,7 @@ button{font-family:inherit}
     h1{font-size:36px}
     .grid{gap:10px}
     .subcategories{grid-template-columns:1fr}
-    .flashcard,.flashcard-face{min-height:300px}
+    .flashcard,.flashcard-face{min-height:310px}
     .flashcard-front .word{font-size:42px}
 }
 </style>
@@ -738,7 +759,9 @@ button{font-family:inherit}
                 <div id="flashBackWord" class="back-word">Tisch</div>
                 <div id="flashPlural" class="plural">Pluriel : die Tische</div>
                 <div id="flashTranslation" class="translation">Table</div>
-                <button class="audio-btn" onclick="event.stopPropagation(); speakWord();">Écouter</button>
+                <button class="audio-btn" onclick="event.stopPropagation(); speakWord();">
+                    🔊 Écouter
+                </button>
             </div>
         </div>
     </div>
@@ -847,37 +870,37 @@ button{font-family:inherit}
 
 <script>
 /* =========================================================
-   DONNÉES DES 27 THÈMES DE VOCABULAIRE (DONNÉES COMPLÈTES)
+   DONNÉES DES 27 THÈMES DE VOCABULAIRE (AVEC ICÔNES)
 ========================================================= */
 
 const themes = [
-  { id:"haus", name:"Maison", words:[["Tisch","der","die Tische","Table"],["Stuhl","der","die Stühle","Chaise"],["Lampe","die","die Lampen","Lampe"],["Fenster","das","die Fenster","Fenêtre"],["Tür","die","die Türen","Porte"],["Schrank","der","die Schränke","Armoire"],["Sofa","das","die Sofas","Canapé"],["Bett","das","die Betten","Lit"]] },
-  { id:"wohnung", name:"Appartement", words:[["Wohnung","die","die Wohnungen","Appartement"],["Zimmer","das","die Zimmer","Pièce"],["Küche","die","die Küchen","Cuisine"],["Bad","das","die Bäder","Salle de bain"],["Balkon","der","die Balkone","Balcon"],["Flur","der","die Flure","Couloir"],["Wand","die","die Wände","Mur"],["Boden","der","die Böden","Sol"]] },
-  { id:"familie", name:"Famille", words:[["Mutter","die","die Mütter","Mère"],["Vater","der","die Väter","Père"],["Bruder","der","die Brüder","Frère"],["Schwester","die","die Schwestern","Sœur"],["Kind","das","die Kinder","Enfant"],["Sohn","der","die Söhne","Fils"],["Tochter","die","die Töchter","Fille"],["Familie","die","die Familien","Famille"]] },
-  { id:"essen", name:"Nourriture", words:[["Apfel","der","die Äpfel","Pomme"],["Brot","das","die Brote","Pain"],["Käse","der","die Käse","Fromage"],["Ei","das","die Eier","Œuf"],["Obst","das","—","Fruits"],["Gemüse","das","—","Légumes"],["Fleisch","das","—","Viande"],["Fisch","der","die Fische","Poisson"]] },
-  { id:"getraenke", name:"Boissons", words:[["Wasser","das","die Wässer","Eau"],["Kaffee","der","die Kaffees","Café"],["Tee","der","die Tees","Thé"],["Milch","die","—","Lait"],["Saft","der","die Säfte","Jus"],["Bier","das","die Biere","Bière"],["Wein","der","die Weine","Vin"],["Flasche","die","die Flaschen","Bouteille"]] },
-  { id:"kleidung", name:"Vêtements", words:[["Hose","die","die Hosen","Pantalon"],["Hemd","das","die Hemden","Chemise"],["T-Shirt","das","die T-Shirts","T-shirt"],["Rock","der","die Röcke","Jupe"],["Kleid","das","die Kleider","Robe"],["Schuh","der","die Schuhe","Chaussure"],["Jacke","die","die Jacken","Veste"],["Mantel","der","die Mäntel","Manteau"]] },
-  { id:"stadt", name:"Ville", words:[["Stadt","die","die Städte","Ville"],["Straße","die","die Straßen","Rue"],["Platz","der","die Plätze","Place"],["Park","der","die Parks","Parc"],["Brücke","die","die Brücken","Pont"],["Gebäude","das","die Gebäude","Bâtiment"],["Bahnhof","der","die Bahnhöfe","Gare"],["Kirche","die","die Kirchen","Église"]] },
-  { id:"einkaufen", name:"Achats & Magasins", words:[["Supermarkt","der","die Supermärkte","Supermarché"],["Geschäft","das","die Geschäfte","Magasin"],["Bäckerei","die","die Bäckereien","Boulangerie"],["Kasse","die","die Kassen","Caisse"],["Preis","der","die Preise","Prix"],["Geld","das","—","Argent"],["Einkaufswagen","der","die Einkaufswagen","Caddie"],["Kunde","der","die Kunden","Client"]] },
-  { id:"arbeit", name:"Travail & Bureau", words:[["Arbeit","die","—","Travail"],["Büro","das","die Büros","Bureau"],["Chef","der","die Chefs","Chef"],["Kollege","der","die Kollegen","Collègue"],["Computer","der","die Computer","Ordinateur"],["E-Mail","die","die E-Mails","E-mail"],["Termin","der","die Termine","Rendez-vous"],["Projekt","das","die Projekte","Projet"]] },
-  { id:"freizeit", name:"Loisirs & Hobbies", words:[["Sport","der","—","Sport"],["Musik","die","—","Musique"],["Buch","das","die Bücher","Livre"],["Spiel","das","die Spiele","Jeu"],["Kino","das","die Kinos","Cinéma"],["Hobby","das","die Hobbys","Loisir"],["Gitarre","die","die Gitarren","Guitare"],["Museum","das","die Museen","Musée"]] },
-  { id:"zeit", name:"Temps & Calendrier", words:[["Tag","der","die Tage","Jour"],["Nacht","die","die Nächte","Nuit"],["Woche","die","die Wochen","Semaine"],["Monat","der","die Monate","Mois"],["Jahr","das","die Jahre","Année"],["Uhr","die","die Uhren","Horloge/Heure"],["Morgen","der","die Morgen","Matin"],["Abend","der","die Abende","Soir"]] },
-  { id:"wetter", name:"Météo & Saisons", words:[["Sonne","die","—","Soleil"],["Regen","der","—","Pluie"],["Wind","der","die Winde","Vent"],["Schnee","der","—","Neige"],["Sommer","der","die Sommer","Été"],["Winter","der","die Winter","Hiver"],["Wolke","die","die Wolken","Nuage"],["Grad","das","die Grade","Degré"]] },
-  { id:"koerper", name:"Corps humain", words:[["Kopf","der","die Köpfe","Tête"],["Hand","die","die Hände","Main"],["Fuß","der","die Füße","Pied"],["Auge","das","die Augen","Œil"],["Ohr","das","die Ohren","Oreille"],["Mund","der","die Münder","Bouche"],["Nase","die","die Nasen","Nez"],["Arm","der","die Arme","Bras"]] },
-  { id:"gesundheit", name:"Santé & Médecine", words:[["Arzt","der","die Ärzte","Médecin"],["Krankenhaus","das","die Krankenhäuser","Hôpital"],["Apotheke","die","die Apotheken","Pharmacie"],["Medizin","die","die Medizin","Médicament"],["Schmerz","der","die Schmerzen","Douleur"],["Fieber","das","—","Fièvre"],["Rezept","das","die Rezepte","Ordonnance"],["Pflaster","das","die Pflaster","Pansement"]] },
-  { id:"tiere", name:"Animaux", words:[["Hund","der","die Hunde","Chien"],["Katze","die","die Katzen","Chat"],["Vogel","der","die Vögel","Oiseau"],["Pferd","das","die Pferde","Cheval"],["Kuh","die","die Kühe","Vache"],["Maus","die","die Mäuse","Souris"],["Fisch","der","die Fische","Poisson"],["Bär","der","die Bären","Ours"]] },
-  { id:"verkehr", name:"Transports", words:[["Auto","das","die Autos","Voiture"],["Bus","der","die Busse","Bus"],["Zug","der","die Züge","Train"],["Fahrrad","das","die Fahrräder","Vélo"],["Flugzeug","das","die Flugzeuge","Avion"],["Straßenbahn","die","die Straßenbahnen","Tramway"],["U-Bahn","die","die U-Bahnen","Métro"],["Ampel","die","die Ampeln","Feu de circulation"]] },
-  { id:"reisen", name:"Voyages & Hôtel", words:[["Reise","die","die Reisen","Voyage"],["Hotel","das","die Hotels","Hôtel"],["Pass","der","die Pässe","Passeport"],["Koffer","der","die Koffer","Valise"],["Ticket","das","die Tickets","Billet"],["Flughafen","der","die Flughäfen","Aéroport"],["Strand","der","die Strände","Plage"],["Urlaub","der","die Urlaube","Vacances"]] },
-  { id:"schule", name:"Éducation & Études", words:[["Schule","die","die Schulen","École"],["Schüler","der","die Schüler","Élève"],["Lehrer","der","die Lehrer","Enseignant"],["Klasse","die","die Klassen","Classe"],["Test","der","die Tests","Test"],["Universität","die","die Universitäten","Université"],["Stift","der","die Stifte","Stylo"],["Heft","das","die Hefte","Cahier"]] },
-  { id:"natur", name:"Nature & Environnement", words:[["Baum","der","die Bäume","Arbre"],["Blume","die","die Blumen","Fleur"],["Wald","der","die Wälder","Forêt"],["Berg","der","die Berge","Montagne"],["Fluss","der","die Flüsse","Rivière"],["See","der","die Seen","Lac"],["Meer","das","die Meere","Mer"],["Pflanze","die","die Pflanzen","Plante"]] },
-  { id:"medien", name:"Médias & Tech", words:[["Handy","das","die Handys","Téléphone portable"],["Internet","das","—","Internet"],["Fernseher","der","die Fernseher","Téléviseur"],["Radio","das","die Radios","Radio"],["Bildschirm","der","die Bildschirme","Écran"],["Tastatur","die","die Tastaturen","Clavier"],["Nachricht","die","die Nachrichten","Message/Nouvelle"],["App","die","die Apps","Application"]] },
-  { id:"restaurant", name:"Restaurant & Café", words:[["Restaurant","das","die Restaurants","Restaurant"],["Karte","die","die Karten","Carte/Menu"],["Rechnung","die","die Rechnungen","Addition"],["Kellner","der","die Kellner","Serveur"],["Trinkgeld","das","die Trinkgelder","Pourboire"],["Gabel","die","die Gabeln","Fourchette"],["Messer","das","die Messer","Couteau"],["Löffel","der","die Löffel","Cuillère"]] },
-  { id:"charakter", name:"Personnes & Description", words:[["Mann","der","die Männer","Homme"],["Frau","die","die Frauen","Femme"],["Freund","der","die Freunde","Ami"],["Nachbar","der","die Nachbarn","Voisin"],["Person","die","die Personen","Personne"],["Junge","der","die Jungen","Garçon"],["Mädchen","das","die Mädchen","Fille"],["Gast","der","die Gäste","Invité"]] },
-  { id:"gefuehle", name:"Émotions & Sentiments", words:[["Freude","die","—","Joie"],["Angst","die","die Ängste","Peur"],["Glück","das","—","Chance/Bonheur"],["Liebe","die","—","Amour"],["Wut","die","—","Colère"],["Trauer","die","—","Tristesse"],["Lachen","das","—","Rire"],["Lächeln","das","—","Sourire"]] },
-  { id:"post", name:"Poste & Administration", words:[["Brief","der","die Briefe","Lettre"],["Paket","das","die Pakete","Colis"],["Formular","das","die Formulare","Formulaire"],["Amt","das","die Ämter","Bureau administratif"],["Stempel","der","die Stempel","Tampon"],["Adresse","die","die Adressen","Adresse"],["Unterschrift","die","die Unterschriften","Signature"],["Passwort","das","die Passwörter","Mot de passe"]] },
-  { id:"zahlen", name:"Nombres & Quantités", words:[["Zahl","die","die Zahlen","Nombre"],["Menge","die","die Mengen","Quantité"],["Hälfte","die","die Hälften","Moitié"],["Stück","das","die Stücke","Morceau/Pièce"],["Dutzend","das","die Dutzende","Douzaine"],["Teil","der","die Teile","Partie"],["Prozent","das","die Prozente","Pourcentage"],["Summe","die","die Summen","Somme"]] },
-  { id:"farben", name:"Couleurs & Formes", words:[["Farbe","die","die Farben","Couleur"],["Kreis","der","die Kreise","Cercle"],["Form","die","die Formen","Forme"],["Linie","die","die Linien","Ligne"],["Muster","das","die Muster","Motif"],["Quadrat","das","die Quadrate","Carré"],["Schatten","der","die Schatten","Ombre"],["Licht","das","die Lichter","Lumière"]] },
-  { id:"gesellschaft", name:"Société & Culture", words:[["Kultur","die","die Kulturen","Culture"],["Sprache","die","die Sprachen","Langue"],["Land","das","die Länder","Pays"],["Welt","die","die Welten","Monde"],["Politik","die","—","Politique"],["Geschichte","die","die Geschichten","Histoire"],["Gesetz","das","die Gesetze","Loi"],["Volk","das","die Völker","Peuple"]] }
+  { id:"haus", name:"Maison", icon:"🏠", words:[["Tisch","der","die Tische","Table"],["Stuhl","der","die Stühle","Chaise"],["Lampe","die","die Lampen","Lampe"],["Fenster","das","die Fenster","Fenêtre"],["Tür","die","die Türen","Porte"],["Schrank","der","die Schränke","Armoire"],["Sofa","das","die Sofas","Canapé"],["Bett","das","die Betten","Lit"]] },
+  { id:"wohnung", name:"Appartement", icon:"🏢", words:[["Wohnung","die","die Wohnungen","Appartement"],["Zimmer","das","die Zimmer","Pièce"],["Küche","die","die Küchen","Cuisine"],["Bad","das","die Bäder","Salle de bain"],["Balkon","der","die Balkone","Balcon"],["Flur","der","die Flure","Couloir"],["Wand","die","die Wände","Mur"],["Boden","der","die Böden","Sol"]] },
+  { id:"familie", name:"Famille", icon:"👨‍👩‍👧", words:[["Mutter","die","die Mütter","Mère"],["Vater","der","die Väter","Père"],["Bruder","der","die Brüder","Frère"],["Schwester","die","die Schwestern","Sœur"],["Kind","das","die Kinder","Enfant"],["Sohn","der","die Söhne","Fils"],["Tochter","die","die Töchter","Fille"],["Familie","die","die Familien","Famille"]] },
+  { id:"essen", name:"Nourriture", icon:"🍎", words:[["Apfel","der","die Äpfel","Pomme"],["Brot","das","die Brote","Pain"],["Käse","der","die Käse","Fromage"],["Ei","das","die Eier","Œuf"],["Obst","das","—","Fruits"],["Gemüse","das","—","Légumes"],["Fleisch","das","—","Viande"],["Fisch","der","die Fische","Poisson"]] },
+  { id:"getraenke", name:"Boissons", icon:"☕", words:[["Wasser","das","die Wässer","Eau"],["Kaffee","der","die Kaffees","Café"],["Tee","der","die Tees","Thé"],["Milch","die","—","Lait"],["Saft","der","die Säfte","Jus"],["Bier","das","die Biere","Bière"],["Wein","der","die Weine","Vin"],["Flasche","die","die Flaschen","Bouteille"]] },
+  { id:"kleidung", name:"Vêtements", icon:"👕", words:[["Hose","die","die Hosen","Pantalon"],["Hemd","das","die Hemden","Chemise"],["T-Shirt","das","die T-Shirts","T-shirt"],["Rock","der","die Röcke","Jupe"],["Kleid","das","die Kleider","Robe"],["Schuh","der","die Schuhe","Chaussure"],["Jacke","die","die Jacken","Veste"],["Mantel","der","die Mäntel","Manteau"]] },
+  { id:"stadt", name:"Ville", icon:"🏙️", words:[["Stadt","die","die Städte","Ville"],["Straße","die","die Straßen","Rue"],["Platz","der","die Plätze","Place"],["Park","der","die Parks","Parc"],["Brücke","die","die Brücken","Pont"],["Gebäude","das","die Gebäude","Bâtiment"],["Bahnhof","der","die Bahnhöfe","Gare"],["Kirche","die","die Kirchen","Église"]] },
+  { id:"einkaufen", name:"Achats & Magasins", icon:"🛒", words:[["Supermarkt","der","die Supermärkte","Supermarché"],["Geschäft","das","die Geschäfte","Magasin"],["Bäckerei","die","die Bäckereien","Boulangerie"],["Kasse","die","die Kassen","Caisse"],["Preis","der","die Preise","Prix"],["Geld","das","—","Argent"],["Einkaufswagen","der","die Einkaufswagen","Caddie"],["Kunde","der","die Kunden","Client"]] },
+  { id:"arbeit", name:"Travail & Bureau", icon:"💼", words:[["Arbeit","die","—","Travail"],["Büro","das","die Büros","Bureau"],["Chef","der","die Chefs","Chef"],["Kollege","der","die Kollegen","Collègue"],["Computer","der","die Computer","Ordinateur"],["E-Mail","die","die E-Mails","E-mail"],["Termin","der","die Termine","Rendez-vous"],["Projekt","das","die Projekte","Projet"]] },
+  { id:"freizeit", name:"Loisirs & Hobbies", icon:"⚽", words:[["Sport","der","—","Sport"],["Musik","die","—","Musique"],["Buch","das","die Bücher","Livre"],["Spiel","das","die Spiele","Jeu"],["Kino","das","die Kinos","Cinéma"],["Hobby","das","die Hobbys","Loisir"],["Gitarre","die","die Gitarren","Guitare"],["Museum","das","die Museen","Musée"]] },
+  { id:"zeit", name:"Temps & Calendrier", icon:"⏰", words:[["Tag","der","die Tage","Jour"],["Nacht","die","die Nächte","Nuit"],["Woche","die","die Wochen","Semaine"],["Monat","der","die Monate","Mois"],["Jahr","das","die Jahre","Année"],["Uhr","die","die Uhren","Horloge/Heure"],["Morgen","der","die Morgen","Matin"],["Abend","der","die Abende","Soir"]] },
+  { id:"wetter", name:"Météo & Saisons", icon:"☀️", words:[["Sonne","die","—","Soleil"],["Regen","der","—","Pluie"],["Wind","der","die Winde","Vent"],["Schnee","der","—","Neige"],["Sommer","der","die Sommer","Été"],["Winter","der","die Winter","Hiver"],["Wolke","die","die Wolken","Nuage"],["Grad","das","die Grade","Degré"]] },
+  { id:"koerper", name:"Corps humain", icon:"🖐️", words:[["Kopf","der","die Köpfe","Tête"],["Hand","die","die Hände","Main"],["Fuß","der","die Füße","Pied"],["Auge","das","die Augen","Œil"],["Ohr","das","die Ohren","Oreille"],["Mund","der","die Münder","Bouche"],["Nase","die","die Nasen","Nez"],["Arm","der","die Arme","Bras"]] },
+  { id:"gesundheit", name:"Santé & Médecine", icon:"🏥", words:[["Arzt","der","die Ärzte","Médecin"],["Krankenhaus","das","die Krankenhäuser","Hôpital"],["Apotheke","die","die Apotheken","Pharmacie"],["Medizin","die","die Medizin","Médicament"],["Schmerz","der","die Schmerzen","Douleur"],["Fieber","das","—","Fièvre"],["Rezept","das","die Rezepte","Ordonnance"],["Pflaster","das","die Pflaster","Pansement"]] },
+  { id:"tiere", name:"Animaux", icon:"🐶", words:[["Hund","der","die Hunde","Chien"],["Katze","die","die Katzen","Chat"],["Vogel","der","die Vögel","Oiseau"],["Pferd","das","die Pferde","Cheval"],["Kuh","die","die Kühe","Vache"],["Maus","die","die Mäuse","Souris"],["Fisch","der","die Fische","Poisson"],["Bär","der","die Bären","Ours"]] },
+  { id:"verkehr", name:"Transports", icon:"🚗", words:[["Auto","das","die Autos","Voiture"],["Bus","der","die Busse","Bus"],["Zug","der","die Züge","Train"],["Fahrrad","das","die Fahrräder","Vélo"],["Flugzeug","das","die Flugzeuge","Avion"],["Straßenbahn","die","die Straßenbahnen","Tramway"],["U-Bahn","die","die U-Bahnen","Métro"],["Ampel","die","die Ampeln","Feu de circulation"]] },
+  { id:"reisen", name:"Voyages & Hôtel", icon:"✈️", words:[["Reise","die","die Reisen","Voyage"],["Hotel","das","die Hotels","Hôtel"],["Pass","der","die Pässe","Passeport"],["Koffer","der","die Koffer","Valise"],["Ticket","das","die Tickets","Billet"],["Flughafen","der","die Flughäfen","Aéroport"],["Strand","der","die Strände","Plage"],["Urlaub","der","die Urlaube","Vacances"]] },
+  { id:"schule", name:"Éducation & Études", icon:"🎓", words:[["Schule","die","die Schulen","École"],["Schüler","der","die Schüler","Élève"],["Lehrer","der","die Lehrer","Enseignant"],["Klasse","die","die Klassen","Classe"],["Test","der","die Tests","Test"],["Universität","die","die Universitäten","Université"],["Stift","der","die Stifte","Stylo"],["Heft","das","die Hefte","Cahier"]] },
+  { id:"natur", name:"Nature & Environnement", icon:"🌲", words:[["Baum","der","die Bäume","Arbre"],["Blume","die","die Blumen","Fleur"],["Wald","der","die Wälder","Forêt"],["Berg","der","die Berge","Montagne"],["Fluss","der","die Flüsse","Rivière"],["See","der","die Seen","Lac"],["Meer","das","die Meere","Mer"],["Pflanze","die","die Pflanzen","Plante"]] },
+  { id:"medien", name:"Médias & Tech", icon:"📱", words:[["Handy","das","die Handys","Téléphone portable"],["Internet","das","—","Internet"],["Fernseher","der","die Fernseher","Téléviseur"],["Radio","das","die Radios","Radio"],["Bildschirm","der","die Bildschirme","Écran"],["Tastatur","die","die Tastaturen","Clavier"],["Nachricht","die","die Nachrichten","Message/Nouvelle"],["App","die","die Apps","Application"]] },
+  { id:"restaurant", name:"Restaurant & Café", icon:"🍽️", words:[["Restaurant","das","die Restaurants","Restaurant"],["Karte","die","die Karten","Carte/Menu"],["Rechnung","die","die Rechnungen","Addition"],["Kellner","der","die Kellner","Serveur"],["Trinkgeld","das","die Trinkgelder","Pourboire"],["Gabel","die","die Gabeln","Fourchette"],["Messer","das","die Messer","Couteau"],["Löffel","der","die Löffel","Cuillère"]] },
+  { id:"charakter", name:"Personnes & Description", icon:"👤", words:[["Mann","der","die Männer","Homme"],["Frau","die","die Frauen","Femme"],["Freund","der","die Freunde","Ami"],["Nachbar","der","die Nachbarn","Voisin"],["Person","die","die Personen","Personne"],["Junge","der","die Jungen","Garçon"],["Mädchen","das","die Mädchen","Fille"],["Gast","der","die Gäste","Invité"]] },
+  { id:"gefuehle", name:"Émotions & Sentiments", icon:"❤️", words:[["Freude","die","—","Joie"],["Angst","die","die Ängste","Peur"],["Glück","das","—","Chance/Bonheur"],["Liebe","die","—","Amour"],["Wut","die","—","Colère"],["Trauer","die","—","Tristesse"],["Lachen","das","—","Rire"],["Lächeln","das","—","Sourire"]] },
+  { id:"post", name:"Poste & Administration", icon:"✉️", words:[["Brief","der","die Briefe","Lettre"],["Paket","das","die Pakete","Colis"],["Formular","das","die Formulare","Formulaire"],["Amt","das","die Ämter","Bureau administratif"],["Stempel","der","die Stempel","Tampon"],["Adresse","die","die Adressen","Adresse"],["Unterschrift","die","die Unterschriften","Signature"],["Passwort","das","die Passwörter","Mot de passe"]] },
+  { id:"zahlen", name:"Nombres & Quantités", icon:"🔢", words:[["Zahl","die","die Zahlen","Nombre"],["Menge","die","die Mengen","Quantité"],["Hälfte","die","die Hälften","Moitié"],["Stück","das","die Stücke","Morceau/Pièce"],["Dutzend","das","die Dutzende","Douzaine"],["Teil","der","die Teile","Partie"],["Prozent","das","die Prozente","Pourcentage"],["Summe","die","die Summen","Somme"]] },
+  { id:"farben", name:"Couleurs & Formes", icon:"🎨", words:[["Farbe","die","die Farben","Couleur"],["Kreis","der","die Kreise","Cercle"],["Form","die","die Formen","Forme"],["Linie","die","die Linien","Ligne"],["Muster","das","die Muster","Motif"],["Quadrat","das","die Quadrate","Carré"],["Schatten","der","die Schatten","Ombre"],["Licht","das","die Lichter","Lumière"]] },
+  { id:"gesellschaft", name:"Société & Culture", icon:"🌍", words:[["Kultur","die","die Kulturen","Culture"],["Sprache","die","die Sprachen","Langue"],["Land","das","die Länder","Pays"],["Welt","die","die Welten","Monde"],["Politik","die","—","Politique"],["Geschichte","die","die Geschichten","Histoire"],["Gesetz","das","die Gesetze","Loi"],["Volk","das","die Völker","Peuple"]] }
 ];
 
 /* =========================================================
@@ -998,6 +1021,7 @@ function renderThemes(){
         item.innerHTML = `
             <div class="theme-header">
                 <div class="theme-left">
+                    <div class="theme-icon">${theme.icon || '📌'}</div>
                     <div class="theme-name">${theme.name}</div>
                 </div>
                 <div class="theme-count">${stats.mastered}/${stats.total}</div>
@@ -1071,9 +1095,17 @@ function flipCard(){
 
 function speakWord(){
     if(!currentCards.length) return;
+    if(!('speechSynthesis' in window)){
+        alert("La synthèse vocale n'est pas supportée par votre navigateur.");
+        return;
+    }
     const item = currentCards[currentFlashcard];
-    const utterance = new SpeechSynthesisUtterance(`${item.word[1]} ${item.word[0]}`);
+    const textToSpeak = `${item.word[1]} ${item.word[0]}`;
+    
+    window.speechSynthesis.cancel(); // Arrete la lecture en cours si besoin
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'de-DE';
+    utterance.rate = 0.9; // Vitesse légèrement ajustée pour la clarté
     window.speechSynthesis.speak(utterance);
 }
 
