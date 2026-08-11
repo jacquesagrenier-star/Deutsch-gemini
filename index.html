@@ -1,1 +1,2528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050812">
+
+<title>DeutschAI</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 15% 10%,#18345c 0%,transparent 32%),
+        radial-gradient(circle at 85% 15%,#382052 0%,transparent 30%),
+        #050812;
+    color:#f1f6ff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.app{
+    width:100%;
+    max-width:620px;
+    margin:auto;
+    padding:20px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo span{color:#9bdcff}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+
+.screen{display:none}
+.screen.active{display:block}
+
+.kicker{
+    color:#91d5ff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+h1{
+    font-size:42px;
+    line-height:1.05;
+    letter-spacing:-2px;
+    margin:10px 0 15px;
+}
+
+.gradient{
+    background:linear-gradient(110deg,#e8fbff,#9bd4ff,#d5b0ff,#9fffe5);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.subtitle{
+    color:#8b99ad;
+    line-height:1.5;
+}
+
+.card{
+    margin-top:25px;
+    padding:22px;
+    border-radius:24px;
+    background:rgba(18,27,45,.70);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+}
+
+.progress-container{margin-top:12px}
+
+.progress-bar{
+    height:7px;
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#8feaff,#d3a9ff);
+    border-radius:20px;
+    transition:width .3s ease;
+}
+
+.progress-text{
+    color:#8290a5;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:20px;
+}
+
+.orb{
+    aspect-ratio:1;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    cursor:pointer;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),transparent 15%),
+        rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:
+        inset -15px -15px 30px rgba(0,0,0,.30),
+        0 15px 40px rgba(0,0,0,.25);
+    transition:.2s;
+}
+
+.orb:hover{transform:translateY(-4px)}
+
+.orb-icon{
+    font-size:28px;
+    margin-bottom:7px;
+}
+
+.orb strong{
+    display:block;
+    font-size:13px;
+}
+
+.orb small{
+    display:block;
+    margin-top:5px;
+    color:#8190a6;
+    font-size:9px;
+}
+
+.back{
+    background:none;
+    border:none;
+    color:#8b99ad;
+    font-size:15px;
+    padding:0;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+h2{
+    margin:5px 0 0;
+    font-size:30px;
+}
+
+.pill{
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:7px 12px;
+    color:#9aa8bc;
+    font-size:12px;
+}
+
+.subcategories{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:20px;
+}
+
+.subcategory{
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    cursor:pointer;
+}
+
+.subcategory strong{
+    display:block;
+    margin-bottom:8px;
+}
+
+.subcategory span{
+    color:#8290a5;
+    font-size:12px;
+}
+
+button{font-family:inherit}
+
+.primary{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(100deg,#a5edff,#cbb0ff);
+    color:#07111c;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.secondary{
+    width:100%;
+    padding:15px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.secondary:hover,
+.primary:hover{opacity:.9}
+
+.question{
+    font-size:25px;
+    line-height:1.45;
+    margin:25px 0 10px;
+}
+
+.translation-example{
+    color:#9aa8bc;
+    font-size:15px;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+.answer{
+    width:100%;
+    padding:17px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(0,0,0,.25);
+    color:white;
+    font-size:18px;
+    outline:none;
+}
+
+.answer:focus{border-color:#8ddcff}
+
+.feedback{
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    border-radius:17px;
+    line-height:1.5;
+}
+
+.feedback.show{display:block}
+
+.feedback.correct{
+    background:rgba(80,220,170,.10);
+    border:1px solid rgba(80,220,170,.25);
+}
+
+.feedback.wrong{
+    background:rgba(255,100,130,.10);
+    border:1px solid rgba(255,100,130,.25);
+}
+
+.feedback-title{
+    font-weight:800;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.explanation{color:#bac7d9}
+
+.score{
+    font-size:64px;
+    font-weight:900;
+    letter-spacing:-4px;
+    margin:20px 0;
+}
+
+.stat{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    color:#b8c4d5;
+}
+
+.revision{
+    margin-top:20px;
+    padding:17px;
+    border-radius:17px;
+    background:rgba(155,220,255,.07);
+    border:1px solid rgba(155,220,255,.15);
+}
+
+.hidden{display:none!important}
+.spacer{height:14px}
+
+/* THEMES */
+
+.theme-list{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+
+.theme-item{
+    padding:17px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.theme-item:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.08);
+}
+
+.theme-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.theme-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.theme-icon{
+    font-size:27px;
+    width:38px;
+    text-align:center;
+}
+
+.theme-name{font-weight:800}
+
+.theme-count{
+    color:#8290a5;
+    font-size:11px;
+}
+
+.theme-progress{margin-top:12px}
+
+.theme-progress-bar{
+    height:5px;
+    background:rgba(255,255,255,.08);
+    border-radius:10px;
+}
+
+.theme-progress-fill{
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#8feaff,#d3a9ff);
+}
+
+.theme-percent{
+    margin-top:6px;
+    color:#8290a5;
+    font-size:11px;
+}
+
+/* FLASHCARDS ENHANCED */
+
+.flashcard-wrapper{
+    perspective:1000px;
+    margin-top:25px;
+}
+
+.flashcard{
+    width:100%;
+    min-height:330px;
+    position:relative;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform .55s ease;
+}
+
+.flashcard.flipped{
+    transform:rotateY(180deg);
+}
+
+.flashcard-face{
+    position:absolute;
+    inset:0;
+    min-height:330px;
+    border-radius:28px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.22),transparent 18%),
+        rgba(18,27,45,.85);
+    border:2px solid rgba(255,255,255,.16);
+    box-shadow:
+        inset -20px -20px 40px rgba(0,0,0,.25),
+        0 20px 60px rgba(0,0,0,.35);
+    transition: border-color .3s ease;
+}
+
+/* Code couleur par genre sur la carte */
+.flashcard-face.der-border { border-color: rgba(99, 184, 255, 0.5); }
+.flashcard-face.die-border { border-color: rgba(255, 107, 134, 0.5); }
+.flashcard-face.das-border { border-color: rgba(97, 223, 157, 0.5); }
+
+.audio-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+    z-index: 10;
+}
+
+.audio-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.flashcard-front{padding:30px}
+
+.flashcard-front .word{
+    font-size:48px;
+    font-weight:800;
+    letter-spacing:-2px;
+}
+
+.tap-hint{
+    margin-top:35px;
+    color:#8290a5;
+    font-size:12px;
+}
+
+.flashcard-back{
+    transform:rotateY(180deg);
+    padding:30px;
+}
+
+.article{
+    font-size:42px;
+    font-weight:900;
+}
+
+.article.der{color:#63b8ff}
+.article.die{color:#ff6b86}
+.article.das{color:#61df9d}
+
+.back-word{
+    font-size:30px;
+    font-weight:800;
+    margin-top:3px;
+}
+
+.plural{
+    margin-top:18px;
+    color:#c1ccdb;
+    font-size:16px;
+}
+
+.translation{
+    margin-top:18px;
+    color:#fff;
+    font-size:20px;
+    font-weight:600;
+}
+
+.translation::before{content:"🇫🇷 "}
+
+.flashcard-info{
+    text-align:center;
+    margin:18px 0;
+    color:#8290a5;
+    font-size:13px;
+}
+
+.review-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.review-button{
+    padding:14px 8px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.review-button:hover{
+    background:rgba(255,255,255,.10);
+}
+
+.review-button.hard {
+    border-color: rgba(255, 100, 130, 0.3);
+    color: #ff8ca0;
+}
+
+.review-button.warning{
+    border-color:rgba(255,180,100,.30);
+    color:#ffc27d;
+}
+
+.review-button.mastered{
+    border-color:rgba(80,220,170,.30);
+    color:#79e6bd;
+}
+
+/* SETTINGS & MISC */
+
+.danger{
+    border-color:rgba(255,100,130,.25);
+    color:#ff8ca0;
+}
+
+.info-box{
+    margin-top:15px;
+    padding:15px;
+    border-radius:16px;
+    background:rgba(255,255,255,.04);
+    color:#9aa8bc;
+    font-size:13px;
+    line-height:1.5;
+}
+
+@media(max-width:390px){
+
+    h1{font-size:36px}
+
+    .grid{gap:10px}
+
+    .subcategories{
+        grid-template-columns:1fr;
+    }
+
+    .flashcard,
+    .flashcard-face{
+        min-height:300px;
+    }
+
+    .flashcard-front .word{
+        font-size:42px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+    <div class="logo">Deutsch<span>AI</span></div>
+    <div class="avatar">JG</div>
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="screen active">
+
+    <div class="kicker">Tuteur d'allemand adaptatif</div>
+
+    <h1>
+        <span class="gradient">
+            Apprends l'allemand.<br>
+            Plus intelligemment.
+        </span>
+    </h1>
+
+    <p class="subtitle">
+        Ton tuteur personnel pour la grammaire allemande
+        et le vocabulaire.
+    </p>
+
+    <div class="card">
+
+        <strong>Ta progression globale</strong>
+
+        <div id="globalProgressText" class="progress-text">
+            0 mot maîtrisé
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div id="globalProgress"
+                     class="progress-fill"
+                     style="width:0%">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="orb" onclick="openVerben()">
+            <div>
+                <div class="orb-icon">🔤</div>
+                <strong>Verbes</strong>
+                <small>Präsens · Perfekt</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="openNomen()">
+            <div>
+                <div class="orb-icon">📚</div>
+                <strong>Noms</strong>
+                <small>25 thèmes</small>
+            </div>
+        </div>
+
+        <div class="orb">
+            <div>
+                <div class="orb-icon">⚖️</div>
+                <strong>Cas</strong>
+                <small>Nominativ · Akkusativ</small>
+            </div>
+        </div>
+
+        <div class="orb">
+            <div>
+                <div class="orb-icon">🎨</div>
+                <strong>Adjectifs</strong>
+                <small>Endungen</small>
+            </div>
+        </div>
+
+        <div class="orb">
+            <div>
+                <div class="orb-icon">🔗</div>
+                <strong>Prépositions</strong>
+                <small>Dativ · Akkusativ</small>
+            </div>
+        </div>
+
+        <div class="orb">
+            <div>
+                <div class="orb-icon">🧩</div>
+                <strong>Structure</strong>
+                <small>Satzbau</small>
+            </div>
+        </div>
+
+        <div class="orb">
+            <div>
+                <div class="orb-icon">👤</div>
+                <strong>Possessifs</strong>
+                <small>mein · dein</small>
+            </div>
+        </div>
+
+        <div class="orb">
+            <div>
+                <div class="orb-icon">💬</div>
+                <strong>Particules</strong>
+                <small>doch · ja · mal</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="openSettings()">
+            <div>
+                <div class="orb-icon">🔄</div>
+                <strong>Révision</strong>
+                <small>Progression · Reset</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VERBEN ================= -->
+
+<section id="verben" class="screen">
+
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+
+        <div>
+            <div class="kicker">Grammaire</div>
+            <h2>Verbes</h2>
+        </div>
+
+        <div class="pill">A2</div>
+
+    </div>
+
+    <div class="subcategories">
+
+        <div class="subcategory" onclick="startExercises()">
+            <strong>Präsens</strong>
+            <span>
+                Réguliers · irréguliers · changement de voyelle
+            </span>
+        </div>
+
+        <div class="subcategory">
+            <strong>Präteritum</strong>
+            <span>Passé</span>
+        </div>
+
+        <div class="subcategory">
+            <strong>Perfekt</strong>
+            <span>haben · sein</span>
+        </div>
+
+        <div class="subcategory">
+            <strong>Verbes séparables</strong>
+            <span>aufstehen · einkaufen</span>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <strong>Exercice recommandé</strong>
+
+        <p style="color:#8290a5">
+            Präsens · 5 exercices · explications en français
+        </p>
+
+        <button class="primary" onclick="startExercises()">
+            COMMENCER →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NOMEN ================= -->
+
+<section id="nomen" class="screen">
+
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+
+        <div>
+            <div class="kicker">Vocabulaire</div>
+            <h2>Noms</h2>
+        </div>
+
+        <div class="pill">25 thèmes</div>
+
+    </div>
+
+    <div class="card">
+
+        <strong>Vocabulaire par thème</strong>
+
+        <p style="color:#8290a5">
+            Article · pluriel · traduction · progression
+        </p>
+
+        <div class="theme-list" id="themeList"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FLASHCARDS ================= -->
+
+<section id="flashcards" class="screen">
+
+    <button class="back" onclick="openNomen()">
+        ‹ Noms
+    </button>
+
+    <div class="title-row">
+
+        <div>
+            <div class="kicker">Noms · Flashcards</div>
+            <h2 id="flashThemeTitle">Article</h2>
+        </div>
+
+        <div class="pill" id="flashCounter">
+            1 / 10
+        </div>
+
+    </div>
+
+    <div class="flashcard-wrapper">
+
+        <div id="flashcard"
+             class="flashcard"
+             onclick="flipCard()">
+
+            <div id="frontFace" class="flashcard-face flashcard-front">
+                
+                <button class="audio-btn" onclick="speakCurrentWord(event)" title="Écouter la prononciation">🔊</button>
+
+                <div id="flashWord" class="word">
+                    Tisch
+                </div>
+
+                <div class="tap-hint">
+                    Touche la carte pour voir la réponse
+                </div>
+
+            </div>
+
+            <div id="backFace" class="flashcard-face flashcard-back">
+
+                <button class="audio-btn" onclick="speakCurrentWordWithArticle(event)" title="Écouter avec l'article">🔊</button>
+
+                <div id="flashArticle"
+                     class="article der">
+                    der
+                </div>
+
+                <div id="flashBackWord"
+                     class="back-word">
+                    Tisch
+                </div>
+
+                <div id="flashPlural"
+                     class="plural">
+                    Pluriel : die Tische
+                </div>
+
+                <div id="flashTranslation"
+                     class="translation">
+                    Table
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="flashcard-info" id="flashcardInfo">
+        Touche la carte pour voir la réponse.
+    </div>
+
+    <div class="review-options">
+
+        <button class="review-button hard"
+                onclick="scheduleReview(2)">
+            ❌ À revoir
+        </button>
+
+        <button class="review-button warning"
+                onclick="scheduleReview(10)">
+            🤔 Difficile
+        </button>
+
+        <button class="review-button mastered"
+                onclick="markMastered()">
+            ✓ Maîtrisé
+        </button>
+
+    </div>
+
+    <div class="spacer"></div>
+
+    <button class="secondary"
+            onclick="retryUnmastered()">
+        🔄 RÉESSAYER LES MOTS NON MAÎTRISÉS
+    </button>
+
+</section>
+
+
+<!-- ================= EXERCISE ================= -->
+
+<section id="exercise" class="screen">
+
+    <button class="back" onclick="openVerben()">
+        ‹ Verbes
+    </button>
+
+    <div class="title-row">
+
+        <div>
+            <div class="kicker">Verbes · Präsens</div>
+            <h2 id="exerciseTitle">Exercice 1</h2>
+        </div>
+
+        <div class="pill" id="counter">
+            1 / 5
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="question" id="question"></div>
+
+        <div class="translation-example"
+             id="questionTranslation">
+        </div>
+
+        <div id="hint"
+             style="color:#8290a5;margin-bottom:15px">
+        </div>
+
+        <input id="answer"
+               class="answer"
+               type="text"
+               placeholder="Ta réponse…">
+
+        <div class="spacer"></div>
+
+        <button id="checkButton"
+                class="primary"
+                onclick="checkAnswer()">
+            VÉRIFIER
+        </button>
+
+        <div id="feedback"
+             class="feedback">
+        </div>
+
+        <div class="spacer"></div>
+
+        <button id="nextButton"
+                class="secondary hidden"
+                onclick="nextExercise()">
+            EXERCICE SUIVANT →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= RESULT ================= -->
+
+<section id="result" class="screen">
+
+    <div class="kicker">Session terminée</div>
+
+    <h1>
+        <span class="gradient">
+            Très bien !
+        </span>
+    </h1>
+
+    <div class="card">
+
+        <div class="score" id="score">0%</div>
+
+        <p id="scoreText"
+           style="color:#8290a5">
+        </p>
+
+        <div class="stat">
+            <span>Verbes réguliers</span>
+            <strong>✓</strong>
+        </div>
+
+        <div class="stat">
+            <span>Verbes irréguliers</span>
+            <strong>✓</strong>
+        </div>
+
+        <div class="stat">
+            <span>Changement de voyelle</span>
+            <strong>✓</strong>
+        </div>
+
+        <div class="stat">
+            <span>Verbes séparables</span>
+            <strong>✓</strong>
+        </div>
+
+        <div class="revision">
+
+            <strong>🔄 À revoir</strong>
+
+            <p id="revisionText">—</p>
+
+            <small style="color:#79e6bd">
+                Révision basée sur tes erreurs.
+            </small>
+
+        </div>
+
+        <div class="spacer"></div>
+
+        <button class="primary"
+                onclick="startExercises()">
+            RECOMMENCER
+        </button>
+
+        <div class="spacer"></div>
+
+        <button class="secondary"
+                onclick="goHome()">
+            TABLEAU DE BORD
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="screen">
+
+    <button class="back" onclick="goHome()">
+        ‹ Retour
+    </button>
+
+    <div class="title-row">
+
+        <div>
+            <div class="kicker">Progression</div>
+            <h2>Révision</h2>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <strong>Progression globale</strong>
+
+        <div id="settingsProgress"
+             class="info-box">
+            0 mot maîtrisé.
+        </div>
+
+        <div class="spacer"></div>
+
+        <button class="secondary"
+                onclick="openNomen()">
+            VOIR LES THÈMES
+        </button>
+
+        <div class="spacer"></div>
+
+        <button class="secondary danger"
+                onclick="resetCurrentThemeConfirm()">
+            RESET DU THÈME ACTUEL
+        </button>
+
+        <div class="spacer"></div>
+
+        <button class="secondary danger"
+                onclick="resetAllConfirm()">
+            RESET DE TOUTE LA PROGRESSION
+        </button>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DONNÉES DES 25 THÈMES
+========================================================= */
+
+const themes = [
+
+{
+id:"haus",
+name:"Maison",
+icon:"🏠",
+words:[
+["Tisch","der","die Tische","Table"],
+["Stuhl","der","die Stühle","Chaise"],
+["Lampe","die","die Lampen","Lampe"],
+["Fenster","das","die Fenster","Fenêtre"],
+["Tür","die","die Türen","Porte"],
+["Schrank","der","die Schränke","Armoire"],
+["Sofa","das","die Sofas","Canapé"],
+["Bett","das","die Betten","Lit"]
+]},
+
+{
+id:"wohnung",
+name:"Appartement",
+icon:"🏢",
+words:[
+["Wohnung","die","die Wohnungen","Appartement"],
+["Zimmer","das","die Zimmer","Pièce"],
+["Küche","die","die Küchen","Cuisine"],
+["Bad","das","die Bäder","Salle de bain"],
+["Balkon","der","die Balkone","Balcon"],
+["Flur","der","die Flure","Couloir"],
+["Wand","die","die Wände","Mur"],
+["Boden","der","die Böden","Sol"]
+]},
+
+{
+id:"familie",
+name:"Famille",
+icon:"👨‍👩‍👧‍👦",
+words:[
+["Mutter","die","die Mütter","Mère"],
+["Vater","der","die Väter","Père"],
+["Bruder","der","die Brüder","Frère"],
+["Schwester","die","die Schwestern","Sœur"],
+["Kind","das","die Kinder","Enfant"],
+["Sohn","der","die Söhne","Fils"],
+["Tochter","die","die Töchter","Fille"],
+["Familie","die","die Familien","Famille"]
+]},
+
+{
+id:"arbeit",
+name:"Travail",
+icon:"💼",
+words:[
+["Arbeit","die","die Arbeiten","Travail"],
+["Beruf","der","die Berufe","Profession"],
+["Kollege","der","die Kollegen","Collègue"],
+["Kollegin","die","die Kolleginnen","Collègue"],
+["Chef","der","die Chefs","Patron"],
+["Firma","die","die Firmen","Entreprise"],
+["Büro","das","die Büros","Bureau"],
+["Projekt","das","die Projekte","Projet"]
+]},
+
+{
+id:"ausbildung",
+name:"Études et formation",
+icon:"🎓",
+words:[
+["Schule","die","die Schulen","École"],
+["Universität","die","die Universitäten","Université"],
+["Kurs","der","die Kurse","Cours"],
+["Prüfung","die","die Prüfungen","Examen"],
+["Aufgabe","die","die Aufgaben","Exercice"],
+["Lehrer","der","die Lehrer","Professeur"],
+["Student","der","die Studenten","Étudiant"],
+["Sprache","die","die Sprachen","Langue"]
+]},
+
+{
+id:"essen",
+name:"Alimentation",
+icon:"🍎",
+words:[
+["Brot","das","die Brote","Pain"],
+["Käse","der","die Käse","Fromage"],
+["Apfel","der","die Äpfel","Pomme"],
+["Banane","die","die Bananen","Banane"],
+["Fleisch","das","die Fleischsorten","Viande"],
+["Fisch","der","die Fische","Poisson"],
+["Gemüse","das","—","Légumes"],
+["Frühstück","das","die Frühstücke","Petit-déjeuner"]
+]},
+
+{
+id:"restaurant",
+name:"Restaurant",
+icon:"🍽️",
+words:[
+["Restaurant","das","die Restaurants","Restaurant"],
+["Speisekarte","die","die Speisekarten","Menu"],
+["Teller","der","die Teller","Assiette"],
+["Glas","das","die Gläser","Verre"],
+["Gabel","die","die Gabeln","Fourchette"],
+["Messer","das","die Messer","Couteau"],
+["Rechnung","die","die Rechnungen","Addition"],
+["Kellner","der","die Kellner","Serveur"]
+]},
+
+{
+id:"einkaufen",
+name:"Achats",
+icon:"🛒",
+words:[
+["Geschäft","das","die Geschäfte","Magasin"],
+["Supermarkt","der","die Supermärkte","Supermarché"],
+["Preis","der","die Preise","Prix"],
+["Geld","das","—","Argent"],
+["Kasse","die","die Kassen","Caisse"],
+["Einkauf","der","die Einkäufe","Achat"],
+["Tasche","die","die Taschen","Sac"],
+["Markt","der","die Märkte","Marché"]
+]},
+
+{
+id:"kleidung",
+name:"Vêtements",
+icon:"👕",
+words:[
+["Hose","die","die Hosen","Pantalon"],
+["Hemd","das","die Hemden","Chemise"],
+["Jacke","die","die Jacken","Veste"],
+["Schuh","der","die Schuhe","Chaussure"],
+["Kleid","das","die Kleider","Robe"],
+["Mantel","der","die Mäntel","Manteau"],
+["Mütze","die","die Mützen","Bonnet"],
+["Socke","die","die Socken","Chaussette"]
+]},
+
+{
+id:"koerper",
+name:"Corps",
+icon:"🧍",
+words:[
+["Kopf","der","die Köpfe","Tête"],
+["Hand","die","die Hände","Main"],
+["Arm","der","die Arme","Bras"],
+["Bein","das","die Beine","Jambe"],
+["Fuß","der","die Füße","Pied"],
+["Auge","das","die Augen","Œil"],
+["Ohr","das","die Ohren","Oreille"],
+["Mund","der","die Münder","Bouche"]
+]},
+
+{
+id:"gesundheit",
+name:"Santé",
+icon:"🏥",
+words:[
+["Arzt","der","die Ärzte","Médecin"],
+["Krankenhaus","das","die Krankenhäuser","Hôpital"],
+["Apotheke","die","die Apotheken","Pharmacie"],
+["Medikament","das","die Medikamente","Médicament"],
+["Krankheit","die","die Krankheiten","Maladie"],
+["Schmerz","der","die Schmerzen","Douleur"],
+["Termin","der","die Termine","Rendez-vous"],
+["Gesundheit","die","—","Santé"]
+]},
+
+{
+id:"verkehr",
+name:"Transports",
+icon:"🚆",
+words:[
+["Auto","das","die Autos","Voiture"],
+["Bus","der","die Busse","Autobus"],
+["Zug","der","die Züge","Train"],
+["Bahnhof","der","die Bahnhöfe","Gare"],
+["Flughafen","der","die Flughäfen","Aéroport"],
+["Fahrrad","das","die Fahrräder","Vélo"],
+["Straße","die","die Straßen","Rue"],
+["Haltestelle","die","die Haltestellen","Arrêt"]
+]},
+
+{
+id:"reisen",
+name:"Voyage",
+icon:"✈️",
+words:[
+["Reise","die","die Reisen","Voyage"],
+["Hotel","das","die Hotels","Hôtel"],
+["Zimmer","das","die Zimmer","Chambre"],
+["Koffer","der","die Koffer","Valise"],
+["Pass","der","die Pässe","Passeport"],
+["Flug","der","die Flüge","Vol"],
+["Urlaub","der","die Urlaube","Vacances"],
+["Reisepass","der","die Reisepässe","Passeport"]
+]},
+
+{
+id:"stadt",
+name:"Ville",
+icon:"🏙️",
+words:[
+["Stadt","die","die Städte","Ville"],
+["Straße","die","die Straßen","Rue"],
+["Platz","der","die Plätze","Place"],
+["Park","der","die Parks","Parc"],
+["Brücke","die","die Brücken","Pont"],
+["Gebäude","das","die Gebäude","Bâtiment"],
+["Museum","das","die Museen","Musée"],
+["Kirche","die","die Kirchen","Église"]
+]},
+
+{
+id:"natur",
+name:"Nature",
+icon:"🌲",
+words:[
+["Berg","der","die Berge","Montagne"],
+["See","der","die Seen","Lac"],
+["Fluss","der","die Flüsse","Rivière"],
+["Wald","der","die Wälder","Forêt"],
+["Baum","der","die Bäume","Arbre"],
+["Blume","die","die Blumen","Fleur"],
+["Wiese","die","die Wiesen","Prairie"],
+["Natur","die","—","Nature"]
+]},
+
+{
+id:"wetter",
+name:"Météo",
+icon:"☀️",
+words:[
+["Wetter","das","—","Temps"],
+["Regen","der","—","Pluie"],
+["Schnee","der","—","Neige"],
+["Wind","der","die Winde","Vent"],
+["Sonne","die","die Sonnen","Soleil"],
+["Wolke","die","die Wolken","Nuage"],
+["Temperatur","die","die Temperaturen","Température"],
+["Sommer","der","die Sommer","Été"]
+]},
+
+{
+id:"freizeit",
+name:"Loisirs",
+icon:"🎵",
+words:[
+["Freizeit","die","—","Temps libre"],
+["Sport","der","die Sportarten","Sport"],
+["Musik","die","—","Musique"],
+["Film","der","die Filme","Film"],
+["Spiel","das","die Spiele","Jeu"],
+["Buch","das","die Bücher","Livre"],
+["Hobby","das","die Hobbys","Passe-temps"],
+["Konzert","das","die Konzerte","Concert"]
+]},
+
+{
+id:"gefuehle",
+name:"Sentiments",
+icon:"❤️",
+words:[
+["Freude","die","die Freuden","Joie"],
+["Angst","die","die Ängste","Peur"],
+["Liebe","die","die Lieben","Amour"],
+["Traurigkeit","die","die Traurigkeiten","Tristesse"],
+["Wut","die","—","Colère"],
+["Hoffnung","die","die Hoffnungen","Espoir"],
+["Gefühl","das","die Gefühle","Sentiment"],
+["Glück","das","—","Bonheur"]
+]},
+
+{
+id:"persoenlichkeit",
+name:"Personnalité",
+icon:"🧠",
+words:[
+["Mensch","der","die Menschen","Person"],
+["Freund","der","die Freunde","Ami"],
+["Freundin","die","die Freundinnen","Amie"],
+["Nachbar","der","die Nachbarn","Voisin"],
+["Nachbarin","die","die Nachbarinnen","Voisine"],
+["Person","die","die Personen","Personne"],
+["Charakter","der","die Charaktere","Caractère"],
+["Persönlichkeit","die","die Persönlichkeiten","Personnalité"]
+]},
+
+{
+id:"kommunikation",
+name:"Communication",
+icon:"💬",
+words:[
+["Gespräch","das","die Gespräche","Conversation"],
+["Frage","die","die Fragen","Question"],
+["Antwort","die","die Antworten","Réponse"],
+["Wort","das","die Wörter","Mot"],
+["Satz","der","die Sätze","Phrase"],
+["Nachricht","die","die Nachrichten","Message"],
+["Telefon","das","die Telefone","Téléphone"],
+["E-Mail","die","die E-Mails","E-mail"]
+]},
+
+{
+id:"technik",
+name:"Technologie",
+icon:"💻",
+words:[
+["Computer","der","die Computer","Ordinateur"],
+["Handy","das","die Handys","Téléphone portable"],
+["Bildschirm","der","die Bildschirme","Écran"],
+["Tastatur","die","die Tastaturen","Clavier"],
+["Datei","die","die Dateien","Fichier"],
+["Programm","das","die Programme","Programme"],
+["Internet","das","—","Internet"],
+["Passwort","das","die Passwörter","Mot de passe"]
+]},
+
+{
+id:"zeit",
+name:"Temps et calendrier",
+icon:"🕐",
+words:[
+["Tag","der","die Tage","Jour"],
+["Woche","die","die Wochen","Semaine"],
+["Monat","der","die Monate","Mois"],
+["Jahr","das","die Jahre","Année"],
+["Stunde","die","die Stunden","Heure"],
+["Minute","die","die Minuten","Minute"],
+["Morgen","der","die Morgen","Matin"],
+["Abend","der","die Abende","Soir"]
+]},
+
+{
+id:"alltag",
+name:"Vie quotidienne",
+icon:"🏡",
+words:[
+["Morgen","der","die Morgen","Matin"],
+["Abend","der","die Abende","Soir"],
+["Frühstück","das","die Frühstücke","Petit-déjeuner"],
+["Dusche","die","die Duschen","Douche"],
+["Arbeit","die","die Arbeiten","Travail"],
+["Pause","die","die Pausen","Pause"],
+["Einkauf","der","die Einkäufe","Courses"],
+["Schlaf","der","—","Sommeil"]
+]},
+
+{
+id:"gesellschaft",
+name:"Société",
+icon:"🏛️",
+words:[
+["Gesellschaft","die","die Gesellschaften","Société"],
+["Land","das","die Länder","Pays"],
+["Staat","der","die Staaten","État"],
+["Regierung","die","die Regierungen","Gouvernement"],
+["Gesetz","das","die Gesetze","Loi"],
+["Bürger","der","die Bürger","Citoyen"],
+["Recht","das","die Rechte","Droit"],
+["Sprache","die","die Sprachen","Langue"]
+]},
+
+{
+id:"geld",
+name:"Argent et finances",
+icon:"💶",
+words:[
+["Geld","das","—","Argent"],
+["Bank","die","die Banken","Banque"],
+["Konto","das","die Konten","Compte"],
+["Karte","die","die Karten","Carte"],
+["Preis","der","die Preise","Prix"],
+["Kosten","die","—","Coûts"],
+["Gehalt","das","die Gehälter","Salaire"],
+["Rechnung","die","die Rechnungen","Facture"]
+]},
+
+{
+id:"dienstleistungen",
+name:"Services et objets",
+icon:"🛠️",
+words:[
+["Post","die","—","Poste"],
+["Bank","die","die Banken","Banque"],
+["Friseur","der","die Friseure","Coiffeur"],
+["Polizei","die","—","Police"],
+["Feuerwehr","die","—","Pompiers"],
+["Behörde","die","die Behörden","Administration"],
+["Service","der","die Services","Service"],
+["Termin","der","die Termine","Rendez-vous"],
+["Tasche","die","die Taschen","Sac"],
+["Schlüssel","der","die Schlüssel","Clé"],
+["Brille","die","die Brillen","Lunettes"],
+["Flasche","die","die Flaschen","Bouteille"],
+["Stift","der","die Stifte","Stylo"],
+["Papier","das","die Papiere","Papier"],
+["Uhr","die","die Uhren","Montre"],
+["Regenschirm","der","die Regenschirme","Parapluie"]
+]}
+
+];
+
+
+/* =========================================================
+   EXERCICES
+========================================================= */
+
+const exercises=[
+
+{
+question:"Ich ___ jeden Tag Deutsch.",
+translation:"Je fais de l'allemand tous les jours.",
+hint:"(lernen)",
+answers:["lerne"],
+correct:"lerne",
+explanation:
+"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne."
+},
+
+{
+question:"Du ___ jeden Morgen Kaffee.",
+translation:"Tu bois du café chaque matin.",
+hint:"(trinken)",
+answers:["trinkst"],
+correct:"trinkst",
+explanation:
+"« trinken » est un verbe régulier. À la deuxième personne du singulier : du trinkst."
+},
+
+{
+question:"Er ___ jeden Sonntag nach Berlin.",
+translation:"Il va à Berlin tous les dimanches.",
+hint:"(fahren)",
+answers:["fährt"],
+correct:"fährt",
+explanation:
+"Avec « er », « fahren » subit un changement de voyelle : a devient ä → er fährt."
+},
+
+{
+question:"Ich ___ um 7 Uhr ___.",
+translation:"Je me lève à 7 heures.",
+hint:"(aufstehen)",
+answers:["stehe auf"],
+correct:"stehe ... auf",
+explanation:
+"« aufstehen » est un verbe à particule séparable. Dans une phrase principale, « auf » est placé à la fin."
+},
+
+{
+question:"Wir ___ heute zusammen Deutsch.",
+translation:"Nous faisons de l'allemand ensemble aujourd'hui.",
+hint:"(lernen)",
+answers:["lernen"],
+correct:"lernen",
+explanation:
+"Avec « wir », on utilise la forme en -en : wir lernen."
+}
+
+];
+
+
+/* =========================================================
+   ÉTAT
+========================================================= */
+
+let currentTheme=null;
+let currentCards=[];
+let currentFlashcard=0;
+
+let currentExercise=0;
+let scoreValue=0;
+let answered=false;
+
+const STORAGE_KEY="deutschAI_progress_v2";
+
+
+/* =========================================================
+   SYNTHÈSE VOCALE (AUDIO)
+========================================================= */
+
+function speakGerman(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Annule la lecture en cours s'il y en a une
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.9; // Vitesse légèrement ralentie pour la pédagogie
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function speakCurrentWord(event) {
+    event.stopPropagation(); // Évite de tourner la carte
+    const item = currentCards[currentFlashcard];
+    if (item) {
+        speakGerman(item.word[0]);
+    }
+}
+
+function speakCurrentWordWithArticle(event) {
+    event.stopPropagation();
+    const item = currentCards[currentFlashcard];
+    if (item) {
+        speakGerman(`${item.word[1]} ${item.word[0]}`);
+    }
+}
+
+
+/* =========================================================
+   STOCKAGE
+========================================================= */
+
+function getProgress(){
+
+    try{
+        const data=localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
+    }catch(error){
+        console.warn("Erreur localStorage",error);
+        return {};
+    }
+}
+
+function saveProgress(progress){
+
+    try{
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(progress)
+        );
+    }catch(error){
+        console.warn("Impossible de sauvegarder",error);
+    }
+}
+
+
+/* =========================================================
+   ÉTAT D'UN MOT
+========================================================= */
+
+function getWordState(themeId,index){
+
+    const progress=getProgress();
+
+    if(!progress[themeId]){
+        progress[themeId]={};
+    }
+
+    if(!progress[themeId][index]){
+        progress[themeId][index]={
+            mastered:false,
+            due:0,
+            reviews:0
+        };
+
+        saveProgress(progress);
+    }
+
+    return progress[themeId][index];
+}
+
+
+function setWordState(themeId,index,state){
+
+    const progress=getProgress();
+
+    if(!progress[themeId]){
+        progress[themeId]={};
+    }
+
+    progress[themeId][index]=state;
+
+    saveProgress(progress);
+}
+
+
+/* =========================================================
+   PROGRESSION
+========================================================= */
+
+function getThemeStats(theme){
+
+    let mastered=0;
+
+    theme.words.forEach((word,index)=>{
+
+        const state=getWordState(theme.id,index);
+
+        if(state.mastered){
+            mastered++;
+        }
+
+    });
+
+    return{
+        total:theme.words.length,
+        mastered,
+        percentage:
+            theme.words.length
+            ? Math.round(
+                mastered/theme.words.length*100
+              )
+            : 0
+    };
+}
+
+
+function updateGlobalProgress(){
+
+    let total=0;
+    let mastered=0;
+
+    themes.forEach(theme=>{
+
+        total+=theme.words.length;
+
+        theme.words.forEach((word,index)=>{
+
+            const state=getWordState(
+                theme.id,
+                index
+            );
+
+            if(state.mastered){
+                mastered++;
+            }
+
+        });
+
+    });
+
+    const percentage=
+        total
+        ? Math.round(mastered/total*100)
+        : 0;
+
+    const progressBar=
+        document.getElementById("globalProgress");
+
+    const progressText=
+        document.getElementById("globalProgressText");
+
+    const settingsProgress=
+        document.getElementById("settingsProgress");
+
+    if(progressBar){
+        progressBar.style.width=percentage+"%";
+    }
+
+    if(progressText){
+
+        progressText.textContent=
+            mastered+
+            " mot"+
+            (mastered!==1?"s":"")+
+            " maîtrisé"+
+            (mastered!==1?"s":"")+
+            " sur "+
+            total+
+            " · "+
+            percentage+
+            "%";
+
+    }
+
+    if(settingsProgress){
+
+        settingsProgress.textContent=
+            mastered+
+            " mot"+
+            (mastered!==1?"s":"")+
+            " maîtrisé"+
+            (mastered!==1?"s":"")+
+            " sur "+
+            total+
+            " ("+
+            percentage+
+            "%).";
+
+    }
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showScreen(id){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.remove("active");
+        });
+
+    const target=document.getElementById(id);
+
+    if(target){
+        target.classList.add("active");
+    }
+
+    window.scrollTo(0,0);
+
+    updateGlobalProgress();
+}
+
+
+function goHome(){
+    showScreen("home");
+}
+
+function openVerben(){
+    showScreen("verben");
+}
+
+function openNomen(){
+
+    renderThemes();
+    showScreen("nomen");
+
+}
+
+function openSettings(){
+
+    updateGlobalProgress();
+    showScreen("settings");
+
+}
+
+
+/* =========================================================
+   THÈMES
+========================================================= */
+
+function renderThemes(){
+
+    const container=
+        document.getElementById("themeList");
+
+    if(!container)return;
+
+    container.innerHTML="";
+
+    themes.forEach(theme=>{
+
+        const stats=getThemeStats(theme);
+
+        const item=
+            document.createElement("div");
+
+        item.className="theme-item";
+
+        item.innerHTML=`
+
+            <div class="theme-header">
+
+                <div class="theme-left">
+
+                    <div class="theme-icon">
+                        ${theme.icon}
+                    </div>
+
+                    <div class="theme-name">
+                        ${theme.name}
+                    </div>
+
+                </div>
+
+                <div class="theme-count">
+                    ${stats.mastered}/${stats.total}
+                </div>
+
+            </div>
+
+            <div class="theme-progress">
+
+                <div class="theme-progress-bar">
+
+                    <div
+                        class="theme-progress-fill"
+                        style="width:${stats.percentage}%">
+                    </div>
+
+                </div>
+
+                <div class="theme-percent">
+                    ${stats.percentage}% maîtrisé
+                </div>
+
+            </div>
+
+        `;
+
+        item.addEventListener(
+            "click",
+            ()=>startTheme(theme.id)
+        );
+
+        container.appendChild(item);
+
+    });
+}
+
+
+/* =========================================================
+   FLASHCARDS
+========================================================= */
+
+function startTheme(themeId){
+
+    currentTheme=
+        themes.find(
+            theme=>theme.id===themeId
+        );
+
+    if(!currentTheme)return;
+
+    const now=Date.now();
+
+    currentCards=
+        currentTheme.words
+            .map((word,index)=>({
+                word,
+                index
+            }))
+            .filter(item=>{
+
+                const state=
+                    getWordState(
+                        currentTheme.id,
+                        item.index
+                    );
+
+                return(
+                    !state.mastered &&
+                    (!state.due ||
+                     state.due<=now)
+                );
+
+            });
+
+
+    if(currentCards.length===0){
+
+        currentCards=
+            currentTheme.words
+                .map((word,index)=>({
+                    word,
+                    index
+                }))
+                .filter(item=>{
+
+                    const state=
+                        getWordState(
+                            currentTheme.id,
+                            item.index
+                        );
+
+                    return !state.mastered;
+
+                });
+
+    }
+
+
+    if(currentCards.length===0){
+
+        alert(
+            "Tous les mots de ce thème sont maîtrisés !"
+        );
+
+        return;
+    }
+
+    currentFlashcard=0;
+
+    document
+        .getElementById("flashThemeTitle")
+        .textContent=
+        currentTheme.name;
+
+    showScreen("flashcards");
+
+    loadFlashcard();
+}
+
+
+function loadFlashcard(){
+
+    const item=
+        currentCards[currentFlashcard];
+
+    if(!item){
+        openNomen();
+        return;
+    }
+
+    const card=item.word;
+
+    const flashcard=
+        document.getElementById("flashcard");
+
+    flashcard.classList.remove("flipped");
+
+    // Code couleur par genre appliqué sur la bordure de la carte
+    const frontFace = document.getElementById("frontFace");
+    const backFace = document.getElementById("backFace");
+    
+    frontFace.className = `flashcard-face flashcard-front ${card[1]}-border`;
+    backFace.className = `flashcard-face flashcard-back ${card[1]}-border`;
+
+    document
+        .getElementById("flashCounter")
+        .textContent=
+        (currentFlashcard+1)+
+        " / "+
+        currentCards.length;
+
+    document
+        .getElementById("flashWord")
+        .textContent=card[0];
+
+    const article=
+        document.getElementById("flashArticle");
+
+    article.textContent=card[1];
+
+    article.className=
+        "article "+card[1];
+
+    document
+        .getElementById("flashBackWord")
+        .textContent=card[0];
+
+    document
+        .getElementById("flashPlural")
+        .textContent=
+        "Pluriel : "+card[2];
+
+    document
+        .getElementById("flashTranslation")
+        .textContent=card[3];
+
+    document
+        .getElementById("flashcardInfo")
+        .textContent=
+        "Touche la carte pour voir la réponse.";
+}
+
+
+function flipCard(){
+
+    document
+        .getElementById("flashcard")
+        .classList.toggle("flipped");
+
+}
+
+
+/* =========================================================
+   RÉVISION ESPACÉE
+========================================================= */
+
+function scheduleReview(minutes){
+
+    if(!currentTheme || !currentCards.length){
+        return;
+    }
+
+    const item=
+        currentCards[currentFlashcard];
+
+    if(!item)return;
+
+    const state=
+        getWordState(
+            currentTheme.id,
+            item.index
+        );
+
+    state.mastered=false;
+
+    state.due=
+        Date.now()+
+        minutes*60*1000;
+
+    state.reviews=
+        (state.reviews||0)+1;
+
+    setWordState(
+        currentTheme.id,
+        item.index,
+        state
+    );
+
+    nextFlashcard();
+}
+
+
+function markMastered(){
+
+    if(!currentTheme || !currentCards.length){
+        return;
+    }
+
+    const item=
+        currentCards[currentFlashcard];
+
+    if(!item)return;
+
+    const state=
+        getWordState(
+            currentTheme.id,
+            item.index
+        );
+
+    state.mastered=true;
+    state.due=0;
+
+    state.reviews=
+        (state.reviews||0)+1;
+
+    setWordState(
+        currentTheme.id,
+        item.index,
+        state
+    );
+
+    nextFlashcard();
+}
+
+
+function nextFlashcard(){
+
+    currentFlashcard++;
+
+    if(
+        currentFlashcard>=
+        currentCards.length
+    ){
+
+        alert(
+            "Session terminée ! Ta progression a été enregistrée."
+        );
+
+        openNomen();
+
+        return;
+    }
+
+    loadFlashcard();
+}
+
+
+function retryUnmastered(){
+
+    if(!currentTheme)return;
+
+    currentCards=
+        currentTheme.words
+            .map((word,index)=>({
+                word,
+                index
+            }))
+            .filter(item=>{
+
+                const state=
+                    getWordState(
+                        currentTheme.id,
+                        item.index
+                    );
+
+                return !state.mastered;
+
+            });
+
+    if(currentCards.length===0){
+
+        alert(
+            "Tous les mots de ce thème sont maîtrisés !"
+        );
+
+        return;
+    }
+
+    currentFlashcard=0;
+
+    loadFlashcard();
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetCurrentThemeConfirm(){
+
+    if(!currentTheme){
+
+        alert(
+            "Ouvre d'abord un thème de vocabulaire."
+        );
+
+        return;
+    }
+
+    const confirmation=
+        confirm(
+            "Réinitialiser la progression du thème « "+
+            currentTheme.name+
+            " » ?"
+        );
+
+    if(!confirmation)return;
+
+    const progress=getProgress();
+
+    delete progress[currentTheme.id];
+
+    saveProgress(progress);
+
+    renderThemes();
+    updateGlobalProgress();
+
+    alert("Le thème a été réinitialisé.");
+}
+
+
+function resetAllConfirm(){
+
+    const confirmation=
+        confirm(
+            "ATTENTION : toute ta progression sera supprimée. Continuer ?"
+        );
+
+    if(!confirmation)return;
+
+    localStorage.removeItem(STORAGE_KEY);
+
+    updateGlobalProgress();
+    renderThemes();
+
+    alert(
+        "Toute la progression a été réinitialisée."
+    );
+}
+
+
+/* =========================================================
+   VERBES
+========================================================= */
+
+function startExercises(){
+
+    currentExercise=0;
+    scoreValue=0;
+
+    showScreen("exercise");
+    loadExercise();
+}
+
+
+function loadExercise(){
+
+    const exercise=
+        exercises[currentExercise];
+
+    if(!exercise)return;
+
+    answered=false;
+
+    document
+        .getElementById("exerciseTitle")
+        .textContent=
+        "Exercice "+
+        (currentExercise+1);
+
+    document
+        .getElementById("counter")
+        .textContent=
+        (currentExercise+1)+
+        " / "+
+        exercises.length;
+
+    document
+        .getElementById("question")
+        .textContent=
+        exercise.question;
+
+    document
+        .getElementById("questionTranslation")
+        .textContent=
+        "🇫🇷 "+exercise.translation;
+
+    document
+        .getElementById("hint")
+        .textContent=
+        exercise.hint;
+
+    const input=
+        document.getElementById("answer");
+
+    input.value="";
+    input.disabled=false;
+
+    document
+        .getElementById("checkButton")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("nextButton")
+        .classList.add("hidden");
+
+    const feedback=
+        document.getElementById("feedback");
+
+    feedback.className="feedback";
+    feedback.innerHTML="";
+
+    setTimeout(
+        ()=>input.focus(),
+        50
+    );
+}
+
+
+function checkAnswer(){
+
+    if(answered)return;
+
+    const input=
+        document.getElementById("answer");
+
+    const userAnswer=
+        input.value
+            .trim()
+            .toLowerCase();
+
+    if(!userAnswer){
+
+        input.focus();
+        return;
+    }
+
+    const exercise=
+        exercises[currentExercise];
+
+    answered=true;
+
+    const isCorrect=
+        exercise.answers.some(
+            answer=>
+                answer.toLowerCase()===userAnswer
+        );
+
+    const feedback=
+        document.getElementById("feedback");
+
+    if(isCorrect){
+
+        scoreValue++;
+
+        feedback.className=
+            "feedback show correct";
+
+        feedback.innerHTML=`
+
+            <div class="feedback-title">
+                ✓ Correct !
+            </div>
+
+            <div class="explanation">
+
+                ${exercise.explanation}
+
+                <br><br>
+
+                <strong>Traduction :</strong>
+                ${exercise.translation}
+
+            </div>
+        `;
+
+    }else{
+
+        feedback.className=
+            "feedback show wrong";
+
+        feedback.innerHTML=`
+
+            <div class="feedback-title">
+                ✗ Pas tout à fait
+            </div>
+
+            <div class="explanation">
+
+                <strong>Bonne réponse :</strong>
+                ${exercise.correct}
+
+                <br><br>
+
+                ${exercise.explanation}
+
+                <br><br>
+
+                <strong>Traduction :</strong>
+                ${exercise.translation}
+
+            </div>
+        `;
+    }
+
+    input.disabled=true;
+
+    document
+        .getElementById("checkButton")
+        .classList.add("hidden");
+
+    document
+        .getElementById("nextButton")
+        .classList.remove("hidden");
+}
+
+
+function nextExercise(){
+
+    currentExercise++;
+
+    if(
+        currentExercise>=
+        exercises.length
+    ){
+
+        showResults();
+        return;
+    }
+
+    loadExercise();
+}
+
+
+/* =========================================================
+   RÉSULTATS
+========================================================= */
+
+function showResults(){
+
+    const percentage=
+        Math.round(
+            scoreValue/
+            exercises.length*
+            100
+        );
+
+    document
+        .getElementById("score")
+        .textContent=
+        percentage+"%";
+
+    document
+        .getElementById("scoreText")
+        .textContent=
+        scoreValue+
+        " exercice"+
+        (scoreValue!==1?"s":"")+
+        " sur "+
+        exercises.length+
+        " réussi"+
+        (scoreValue!==1?"s":"")+
+        ".";
+
+    document
+        .getElementById("revisionText")
+        .textContent=
+        scoreValue<exercises.length
+            ? "Les notions faisant l'objet d'erreurs seront à revoir."
+            : "Excellent. Aucune révision immédiate nécessaire.";
+
+    showScreen("result");
+}
+
+
+/* =========================================================
+   TOUCHE ENTER
+========================================================= */
+
+document
+    .getElementById("answer")
+    .addEventListener(
+        "keydown",
+        event=>{
+
+            if(event.key!=="Enter")return;
+
+            if(!answered){
+                checkAnswer();
+            }else{
+                nextExercise();
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   INITIALISATION LÉGÈRE
+========================================================= */
+
+renderThemes();
+updateGlobalProgress();
+
+</script>
+
+</body>
+</html>
 
