@@ -888,7 +888,7 @@ button{font-family:inherit}
 const themes = [
   // Le thème "haus" sera chargé dynamiquement depuis data/haus.json
   { id:"wohnung", name:"Appartement", svg:'<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>', words:[["Wohnung","die","die Wohnungen","Appartement"],["Zimmer","das","die Zimmer","Pièce"],["Küche","die","die Küchen","Cuisine"],["Bad","das","die Bäder","Salle de bain"],["Balkon","der","die Balkone","Balcon"],["Flur","der","die Flure","Couloir"],["Wand","die","die Wände","Mur"],["Boden","der","die Böden","Sol"]] },
-  { id:"familie", name:"Famille", svg:'<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>', words:[["Mutter","die","die Mütter","Mère"],["Vater","der","die Väter","Père"],["Bruder","der","die Brüder","Frère"],["Schwester","die","die Schwestern","Sœur"],["Kind","das","die Kinder","Enfant"],["Sohn","der","die Söhne","Fils"],["Tochter","die","die Töchter","Fille"],["Familie","die","die Familien","Famille"]] },
+  // Le thème "familie" sera chargé dynamiquement depuis data/familie.json
   { id:"essen", name:"Nourriture", svg:'<svg viewBox="0 0 24 24"><path d="M18.06 22.99h-1.66c-.66 0-1.21-.51-1.28-1.17l-.44-4.14H9.32l-.44 4.14c-.07.66-.62 1.17-1.28 1.17H5.94c-.79 0-1.42-.7-1.32-1.48l1.45-12.01C6.26 8.35 7.15 7.5 8.21 7.5h7.58c1.06 0 1.95.85 2.14 1.99l1.45 12.01c.1 .78-.53 1.48-1.32 1.48zM12 2C9.24 2 7 4.24 7 7h2c0-1.66 1.34-3 3-3s3 1.34 3 3h2c0-2.76-2.24-5-5-5z"/></svg>', words:[["Apfel","der","die Äpfel","Pomme"],["Brot","das","die Brote","Pain"],["Käse","der","die Käse","Fromage"],["Ei","das","die Eier","Œuf"],["Obst","das","—","Fruits"],["Gemüse","das","—","Légumes"],["Fleisch","das","—","Viande"],["Fisch","der","die Fische","Poisson"]] },
   { id:"getraenke", name:"Boissons", svg:'<svg viewBox="0 0 24 24"><path d="M2 21h20v-2H2v2zm2-4h16V5H4v12zm2-10h12v8H6V7z"/></svg>', words:[["Wasser","das","die Wässer","Eau"],["Kaffee","der","die Kaffees","Café"],["Tee","der","die Tees","Thé"],["Milch","die","—","Lait"],["Saft","der","die Säfte","Jus"],["Bier","das","die Biere","Bière"],["Wein","der","die Weine","Vin"],["Flasche","die","die Flaschen","Bouteille"]] },
   { id:"kleidung", name:"Vêtements", svg:'<svg viewBox="0 0 24 24"><path d="M20 6h-3.14c-.45-.89-1.35-1.5-2.36-1.5h-5c-1.01 0-1.91.61-2.36 1.5H4c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm10 9h-2v5h-2v-7h4v2zm-16-2H4V8h4.14C7.54 8.5 7 9.4 7 10.4V11H4v-2h2z"/></svg>', words:[["Hose","die","die Hosen","Pantalon"],["Hemd","das","die Hemden","Chemise"],["T-Shirt","das","die T-Shirts","T-shirt"],["Rock","der","die Röcke","Jupe"],["Kleid","das","die Kleider","Robe"],["Schuh","der","die Schuhe","Chaussure"],["Jacke","die","die Jacken","Veste"],["Mantel","der","die Mäntel","Manteau"]] },
@@ -938,8 +938,14 @@ let currentExercise = 0;
 let scoreValue = 0;
 let answered = false;
 let exerciseResults = []; // { topic, correct }
-let hausThemeLoaded = false;
-let hausThemeLoading = null;
+// Liste des thèmes chargés depuis des fichiers JSON externes (dossier data/)
+// Pour ajouter un nouveau thème externe : ajoute simplement une ligne ici.
+const externalThemes = [
+    { id: "haus", path: "data/haus.json", svg: '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>' },
+    { id: "familie", path: "data/familie.json", svg: '<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>' }
+];
+let externalThemesLoaded = false;
+let externalThemesLoading = null;
 
 const STORAGE_KEY = "deutschAI_progress_v3";
 
@@ -1030,10 +1036,10 @@ function comingSoon(label){
 
 // Convertit un thème JSON externe (quel que soit son format) vers le format
 // interne attendu par l'app : { id, name, svg, words: [[word,article,plural,translation], ...] }
-function normalizeThemeData(raw){
-    const id = raw.id || raw.themeId || "haus";
+function normalizeThemeData(raw, fallbackId, fallbackSvg){
+    const id = raw.id || raw.themeId || fallbackId || "theme";
     const name = raw.name || raw.themeName || "Thème";
-    const svg = raw.svg || '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
+    const svg = raw.svg || fallbackSvg || '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
 
     const rawWords = raw.words || [];
     const words = rawWords.map(w => {
@@ -1051,37 +1057,47 @@ function normalizeThemeData(raw){
     return { id, name, svg, words };
 }
 
-// Chargement dynamique du fichier haus.json — une seule fois, mise en cache
-function loadHausTheme(){
-    if(hausThemeLoaded) return Promise.resolve();
-    if(hausThemeLoading) return hausThemeLoading;
-
-    hausThemeLoading = fetch("data/haus.json")
+// Charge un unique thème externe et le fusionne dans le tableau `themes`
+// (remplace le thème existant si son id correspond, sinon l'ajoute en tête)
+function loadExternalTheme(config){
+    return fetch(config.path)
         .then(response => {
-            if(!response.ok) throw new Error("Erreur de chargement de haus.json (" + response.status + ")");
+            if(!response.ok) throw new Error(`Erreur de chargement de ${config.path} (${response.status})`);
             return response.json();
         })
         .then(raw => {
             if(!raw || typeof raw !== "object"){
-                throw new Error("haus.json ne contient pas un objet de thème valide");
+                throw new Error(`${config.path} ne contient pas un objet de thème valide`);
             }
-            const hausData = normalizeThemeData(raw);
-
-            const existingIndex = themes.findIndex(t => t.id === hausData.id);
+            const themeData = normalizeThemeData(raw, config.id, config.svg);
+            const existingIndex = themes.findIndex(t => t.id === themeData.id);
             if(existingIndex !== -1){
-                themes[existingIndex] = hausData;
+                themes[existingIndex] = themeData;
             }else{
-                themes.unshift(hausData);
+                themes.unshift(themeData);
             }
-            hausThemeLoaded = true;
         })
         .catch(error => {
-            console.warn("Impossible de charger data/haus.json :", error);
-            // On ne bloque pas le reste de l'app ; on retentera au prochain appel
-            hausThemeLoading = null;
+            // Un thème externe manquant/invalide ne doit pas bloquer les autres
+            console.warn(`Impossible de charger ${config.path} :`, error);
+        });
+}
+
+// Chargement dynamique de tous les thèmes externes (data/*.json) — une seule fois, mise en cache
+function loadHausTheme(){
+    if(externalThemesLoaded) return Promise.resolve();
+    if(externalThemesLoading) return externalThemesLoading;
+
+    externalThemesLoading = Promise.all(externalThemes.map(loadExternalTheme))
+        .then(() => {
+            externalThemesLoaded = true;
+        })
+        .finally(() => {
+            // Si tout a échoué (aucun thème marqué comme chargé), on autorisera un nouvel essai
+            if(!externalThemesLoaded) externalThemesLoading = null;
         });
 
-    return hausThemeLoading;
+    return externalThemesLoading;
 }
 
 async function renderThemes(){
