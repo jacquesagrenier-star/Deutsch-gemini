@@ -738,7 +738,7 @@ button{font-family:inherit}
             <div class="kicker">Vocabulaire</div>
             <h2>Noms</h2>
         </div>
-        <div class="pill">27 thèmes</div>
+        <div class="pill">Thèmes</div>
     </div>
 
     <div class="card">
@@ -885,11 +885,11 @@ button{font-family:inherit}
 
 <script>
 /* =========================================================
-   DONNÉES DES 27 THÈMES DE VOCABULAIRE
+   DONNÉES DES THÈMES DE VOCABULAIRE (Chargement dynamique + statique)
 ========================================================= */
 
 const themes = [
-  { id:"haus", name:"Maison", svg:'<svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>', words:[["Tisch","der","die Tische","Table"],["Stuhl","der","die Stühle","Chaise"],["Lampe","die","die Lampen","Lampe"],["Fenster","das","die Fenster","Fenêtre"],["Tür","die","die Türen","Porte"],["Schrank","der","die Schränke","Armoire"],["Sofa","das","die Sofas","Canapé"],["Bett","das","die Betten","Lit"]] },
+  // Le thème "haus" sera chargé dynamiquement depuis data/haus.json
   { id:"wohnung", name:"Appartement", svg:'<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>', words:[["Wohnung","die","die Wohnungen","Appartement"],["Zimmer","das","die Zimmer","Pièce"],["Küche","die","die Küchen","Cuisine"],["Bad","das","die Bäder","Salle de bain"],["Balkon","der","die Balkone","Balcon"],["Flur","der","die Flure","Couloir"],["Wand","die","die Wände","Mur"],["Boden","der","die Böden","Sol"]] },
   { id:"familie", name:"Famille", svg:'<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>', words:[["Mutter","die","die Mütter","Mère"],["Vater","der","die Väter","Père"],["Bruder","der","die Brüder","Frère"],["Schwester","die","die Schwestern","Sœur"],["Kind","das","die Kinder","Enfant"],["Sohn","der","die Söhne","Fils"],["Tochter","die","die Töchter","Fille"],["Familie","die","die Familien","Famille"]] },
   { id:"essen", name:"Nourriture", svg:'<svg viewBox="0 0 24 24"><path d="M18.06 22.99h-1.66c-.66 0-1.21-.51-1.28-1.17l-.44-4.14H9.32l-.44 4.14c-.07.66-.62 1.17-1.28 1.17H5.94c-.79 0-1.42-.7-1.32-1.48l1.45-12.01C6.26 8.35 7.15 7.5 8.21 7.5h7.58c1.06 0 1.95.85 2.14 1.99l1.45 12.01c.1 .78-.53 1.48-1.32 1.48zM12 2C9.24 2 7 4.24 7 7h2c0-1.66 1.34-3 3-3s3 1.34 3 3h2c0-2.76-2.24-5-5-5z"/></svg>', words:[["Apfel","der","die Äpfel","Pomme"],["Brot","das","die Brote","Pain"],["Käse","der","die Käse","Fromage"],["Ei","das","die Eier","Œuf"],["Obst","das","—","Fruits"],["Gemüse","das","—","Légumes"],["Fleisch","das","—","Viande"],["Fisch","der","die Fische","Poisson"]] },
@@ -1008,7 +1008,7 @@ function updateGlobalProgress(){
 }
 
 /* =========================================================
-   NAVIGATION & THÈMES
+   NAVIGATION & CHARGEMENT DES DONNÉES (HAUS.JSON)
 ========================================================= */
 
 function showScreen(id){
@@ -1024,7 +1024,29 @@ function openVerben(){ showScreen("verben"); }
 function openNomen(){ renderThemes(); showScreen("nomen"); }
 function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
 
-function renderThemes(){
+// Chargement dynamique du fichier haus.json
+async function loadHausTheme() {
+    try {
+        const response = await fetch("data/haus.json");
+        if (!response.ok) throw new Error("Erreur de chargement de haus.json");
+        const hausData = await response.json();
+        
+        // Vérifie si le thème "haus" est déjà présent dans le tableau, sinon on l'insère au début
+        const existingIndex = themes.findIndex(t => t.id === "haus");
+        if (existingIndex !== -1) {
+            themes[existingIndex] = hausData;
+        } else {
+            themes.unshift(hausData);
+        }
+    } catch (error) {
+        console.warn("Impossible de charger data/haus.json :", error);
+    }
+}
+
+async function renderThemes(){
+    // On s'assure de charger le fichier JSON avant d'afficher la liste
+    await loadHausTheme();
+
     const container = document.getElementById("themeList");
     if(!container) return;
     container.innerHTML = "";
@@ -1057,7 +1079,10 @@ function renderThemes(){
    FLASHCARDS & SYNTHÈSE VOCALE
 ========================================================= */
 
-function startTheme(themeId){
+async function startTheme(themeId){
+    // S'assure que les données sont à jour (notamment haus.json)
+    await loadHausTheme();
+
     currentTheme = themes.find(t => t.id === themeId);
     if(!currentTheme) return;
 
@@ -1278,8 +1303,11 @@ document.getElementById("answer").addEventListener("keydown", e => {
    INITIALISATION
 ========================================================= */
 
-renderThemes();
-updateGlobalProgress();
+(async () => {
+    await loadHausTheme();
+    renderThemes();
+    updateGlobalProgress();
+})();
 </script>
 
 </body>
