@@ -438,7 +438,6 @@ button{font-family:inherit}
         0 20px 60px rgba(0,0,0,.35);
 }
 
-/* RECTO : TOUJOURS NEUTRE (SUPPRESSION DES COULEURS ICI) */
 .flashcard-front{
     border:1px solid rgba(255,255,255,.16);
     padding:30px;
@@ -463,21 +462,13 @@ button{font-family:inherit}
     justify-content:flex-start;
     overflow-y:auto;
     text-align:left;
-    border:1px solid rgba(255,255,255,.16); /* Par défaut */
+    border:1px solid rgba(255,255,255,.16);
 }
 
-/* COULEURS DE CONTOUR VERSO SELON LE GENRE */
-.flashcard.border-der .flashcard-back {
-    border: 2px solid #3b82f6; /* Bleu pour der */
-}
-.flashcard.border-die .flashcard-back {
-    border: 2px solid #ef4444; /* Rouge pour die */
-}
-.flashcard.border-das .flashcard-back {
-    border: 2px solid #10b981; /* Vert pour das */
-}
+.flashcard.border-der .flashcard-back { border: 2px solid #3b82f6; }
+.flashcard.border-die .flashcard-back { border: 2px solid #ef4444; }
+.flashcard.border-das .flashcard-back { border: 2px solid #10b981; }
 
-/* ARTICLE AU-DESSUS DU NOM AU VERSO AVEC COULEUR DÉDIÉE */
 .article {
     font-size: 15px;
     font-weight: 700;
@@ -485,9 +476,9 @@ button{font-family:inherit}
     letter-spacing: 1px;
     margin-bottom: 6px;
 }
-.article.der { color: #3b82f6; } /* Bleu */
-.article.die { color: #ef4444; } /* Rouge */
-.article.das { color: #10b981; } /* Vert */
+.article.der { color: #3b82f6; }
+.article.die { color: #ef4444; }
+.article.das { color: #10b981; }
 
 .back-word{
     font-size:26px;
@@ -615,8 +606,38 @@ button{font-family:inherit}
 
 <header>
     <div class="logo">Deutsch<span>AI</span></div>
-    <div class="avatar">CM</div>
+    <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Connexion">CM</div>
 </header>
+
+<!-- ================= AUTH ================= -->
+
+<section id="auth" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Compte Firebase</div>
+            <h2>Connexion</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div id="authContent">
+            <p style="color:#8290a5">Connecte-toi pour synchroniser ta progression d'apprentissage.</p>
+            <div class="spacer"></div>
+            <input id="authEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;">
+            <input id="authPassword" class="answer" type="password" placeholder="Mot de passe" style="margin-bottom:20px;">
+            <button class="primary" onclick="handleEmailLogin()">SE CONNECTER</button>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="handleEmailSignup()">CRÉER UN COMPTE</button>
+        </div>
+        <div id="userAccountInfo" class="hidden">
+            <p style="color:#9aa8bc">Connecté en tant que : <strong id="userEmailDisplay" style="color:#fff;"></strong></p>
+            <div class="spacer"></div>
+            <button class="secondary danger" onclick="handleLogout()">SE DÉCONNECTER</button>
+        </div>
+    </div>
+</section>
 
 <!-- ================= HOME ================= -->
 
@@ -912,7 +933,94 @@ button{font-family:inherit}
 
 </div>
 
+<!-- Firebase SDKs (Compat ou Modules ESM - Utilisation des modules ESM natifs ici) -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDK9aTVTxDWWrGSIuydHtjSvUTaEguu45U",
+  authDomain: "deutschai-b6fbb.firebaseapp.com",
+  projectId: "deutschai-b6fbb",
+  storageBucket: "deutschai-b6fbb.firebasestorage.app",
+  messagingSenderId: "915434419015",
+  appId: "1:915434419015:web:bfd33c9e8ba5948af99262",
+  measurementId: "G-826Y6PS0J9"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+// Exposer auth et méthodes globalement pour l'interface
+window.firebaseAuth = auth;
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+window.signOut = signOut;
+
+onAuthStateChanged(auth, (user) => {
+    const userProfile = document.getElementById("userProfile");
+    const authContent = document.getElementById("authContent");
+    const userAccountInfo = document.getElementById("userAccountInfo");
+    const userEmailDisplay = document.getElementById("userEmailDisplay");
+
+    if (user) {
+        userProfile.textContent = user.email ? user.email.substring(0, 2).toUpperCase() : "CM";
+        authContent.classList.add("hidden");
+        userAccountInfo.classList.remove("hidden");
+        userEmailDisplay.textContent = user.email;
+    } else {
+        userProfile.textContent = "CM";
+        authContent.classList.remove("hidden");
+        userAccountInfo.classList.add("hidden");
+        userEmailDisplay.textContent = "";
+    }
+});
+</script>
+
 <script>
+/* =========================================================
+   GESTION UI AUTHENTIFICATION
+========================================================= */
+function openAuth() {
+    showScreen("auth");
+}
+
+async function handleEmailLogin() {
+    const email = document.getElementById("authEmail").value;
+    const password = document.getElementById("authPassword").value;
+    try {
+        await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
+        alert("Connexion réussie !");
+        goHome();
+    } catch (error) {
+        alert("Erreur de connexion : " + error.message);
+    }
+}
+
+async function handleEmailSignup() {
+    const email = document.getElementById("authEmail").value;
+    const password = document.getElementById("authPassword").value;
+    try {
+        await window.createUserWithEmailAndPassword(window.firebaseAuth, email, password);
+        alert("Compte créé avec succès !");
+        goHome();
+    } catch (error) {
+        alert("Erreur d'inscription : " + error.message);
+    }
+}
+
+async function handleLogout() {
+    try {
+        await window.signOut(window.firebaseAuth);
+        alert("Déconnecté avec succès.");
+        goHome();
+    } catch (error) {
+        alert("Erreur lors de la déconnexion.");
+    }
+}
+
 /* =========================================================
    DONNÉES DES THÈMES DE VOCABULAIRE & VERBES
 ========================================================= */
@@ -992,10 +1100,6 @@ const themes = [
   { id:"gesellschaft", name:"Société & Culture", svg:'<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>', words:[["Kultur","die","die Kulturen","Culture"],["Sprache","die","die Sprachen","Langue"],["Land","das","die Länder","Pays"],["Welt","die","die Welten","Monde"],["Politik","die","—","Politique"],["Geschichte","die","die Geschichten","Histoire"],["Gesetz","das","die Gesetze","Loi"],["Volk","das","die Völker","Peuple"]] }
 ];
 
-/* =========================================================
-   EXERCICES DE GRAMMAIRE
-========================================================= */
-
 const exercises = [
   { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." },
   { topic:"Verbes réguliers", question:"Du ___ jeden Morgen Kaffee.", translation:"Tu bois du café chaque matin.", hint:"(trinken)", answers:["trinkst"], correct:"trinkst", explanation:"« trinken » est un verbe régulier. À la deuxième personne du singulier : du trinkst." },
@@ -1003,10 +1107,6 @@ const exercises = [
   { topic:"Verbes séparables", question:"Ich stehe um 7 Uhr ___.", translation:"Je me lève à 7 heures.", hint:"(aufstehen)", answers:["auf"], correct:"auf", explanation:"« aufstehen » est un verbe à particule séparable. Dans une phrase principale, « auf » est placé à la fin." },
   { topic:"Verbes réguliers", question:"Wir ___ heute zusammen Deutsch.", translation:"Nous faisons de l'allemand ensemble aujourd'hui.", hint:"(lernen)", answers:["lernen"], correct:"lernen", explanation:"Avec « wir », on utilise la forme en -en : wir lernen." }
 ];
-
-/* =========================================================
-   GESTION DE L'ÉTAT ET DU STOCKAGE
-========================================================= */
 
 let currentTheme = null;
 let currentCards = [];
@@ -1094,10 +1194,6 @@ function updateGlobalProgress(){
     if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
 }
 
-/* =========================================================
-   NAVIGATION & CHARGEMENT DES DONNÉES
-========================================================= */
-
 function showScreen(id){
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
@@ -1119,7 +1215,6 @@ function normalizeThemeData(raw, fallbackId, fallbackSvg){
     const id = raw.id || raw.themeId || fallbackId || "theme";
     const name = raw.name || raw.themeName || "Thème";
     const svg = raw.svg || fallbackSvg || '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
-
     const rawWords = raw.words || [];
     const words = rawWords.map(w => {
         if(Array.isArray(w)) return w;
@@ -1130,51 +1225,33 @@ function normalizeThemeData(raw, fallbackId, fallbackSvg){
             w.translation || w.fr || ""
         ];
     });
-
     return { id, name, svg, words };
 }
 
 function loadExternalTheme(config){
     return fetch(config.path)
         .then(response => {
-            if(!response.ok) throw new Error(`Erreur de chargement de ${config.path} (${response.status})`);
+            if(!response.ok) throw new Error(`Erreur de chargement de ${config.path}`);
             return response.json();
         })
         .then(raw => {
-            if(!raw || typeof raw !== "object"){
-                throw new Error(`${config.path} ne contient pas un objet de thème valide`);
-            }
             const themeData = normalizeThemeData(raw, config.id, config.svg);
             const existingIndex = themes.findIndex(t => t.id === themeData.id);
-            if(existingIndex !== -1){
-                themes[existingIndex] = themeData;
-            }else{
-                themes.unshift(themeData);
-            }
+            if(existingIndex !== -1) themes[existingIndex] = themeData;
+            else themes.unshift(themeData);
         })
-        .catch(error => {
-            console.warn(`Impossible de charger ${config.path} :`, error);
-        });
+        .catch(error => { console.warn(`Impossible de charger ${config.path} :`, error); });
 }
 
 function loadHausTheme(){
     if(externalThemesLoaded) return Promise.resolve();
     if(externalThemesLoading) return externalThemesLoading;
-
-    externalThemesLoading = Promise.all(externalThemes.map(loadExternalTheme))
-        .then(() => {
-            externalThemesLoaded = true;
-        })
-        .finally(() => {
-            if(!externalThemesLoaded) externalThemesLoading = null;
-        });
-
+    externalThemesLoading = Promise.all(externalThemes.map(loadExternalTheme)).then(() => { externalThemesLoaded = true; });
     return externalThemesLoading;
 }
 
 async function renderThemes(){
     await loadHausTheme();
-
     const container = document.getElementById("themeList");
     if(!container) return;
     container.innerHTML = "";
@@ -1205,32 +1282,16 @@ async function renderThemes(){
     });
 }
 
-/* =========================================================
-   FLASHCARDS & SYNTHÈSE VOCALE
-========================================================= */
-
 function startVerbFlashcards(){
     flashcardMode = 'verben';
     currentTheme = verbTheme;
-
     const now = Date.now();
-    currentCards = currentTheme.words
-        .map((word, index) => ({ word, index }))
-        .filter(item => {
-            const state = getWordState(currentTheme.id, item.index);
-            return !state.mastered && (!state.due || state.due <= now);
-        });
-
-    if(currentCards.length === 0){
-        currentCards = currentTheme.words
-            .map((word, index) => ({ word, index }))
-            .filter(item => !getWordState(currentTheme.id, item.index).mastered);
-    }
-
-    if(currentCards.length === 0){
-        currentCards = currentTheme.words.map((word, index) => ({ word, index }));
-    }
-
+    currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => {
+        const state = getWordState(currentTheme.id, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => !getWordState(currentTheme.id, item.index).mastered);
+    if(currentCards.length === 0) currentCards = currentTheme.words.map((word, index) => ({ word, index }));
     currentFlashcard = 0;
     document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
     document.getElementById("flashThemeTitle").textContent = currentTheme.name;
@@ -1240,30 +1301,19 @@ function startVerbFlashcards(){
 
 async function startTheme(themeId){
     await loadHausTheme();
-
     flashcardMode = 'nomen';
     currentTheme = themes.find(t => t.id === themeId);
     if(!currentTheme) return;
-
     const now = Date.now();
-    currentCards = currentTheme.words
-        .map((word, index) => ({ word, index }))
-        .filter(item => {
-            const state = getWordState(currentTheme.id, item.index);
-            return !state.mastered && (!state.due || state.due <= now);
-        });
-
-    if(currentCards.length === 0){
-        currentCards = currentTheme.words
-            .map((word, index) => ({ word, index }))
-            .filter(item => !getWordState(currentTheme.id, item.index).mastered);
-    }
-
+    currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => {
+        const state = getWordState(currentTheme.id, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => !getWordState(currentTheme.id, item.index).mastered);
     if(currentCards.length === 0){
         alert("Tous les mots de ce thème sont actuellement maîtrisés !");
         return;
     }
-
     currentFlashcard = 0;
     document.getElementById("flashKicker").textContent = "Noms · Flashcards";
     document.getElementById("flashThemeTitle").textContent = currentTheme.name;
@@ -1272,17 +1322,13 @@ async function startTheme(themeId){
 }
 
 function handleFlashcardBack(){
-    if(flashcardMode === 'verben'){
-        openVerben();
-    } else {
-        openNomen();
-    }
+    if(flashcardMode === 'verben') openVerben();
+    else openNomen();
 }
 
 function loadFlashcard(){
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
-
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
@@ -1296,7 +1342,6 @@ function loadFlashcard(){
         document.getElementById("flashWord").textContent = card[0];
         document.getElementById("flashBackWord").textContent = card[0];
         document.getElementById("flashTranslation").textContent = card[1];
-        
         verbDetailsEl.textContent = card[2];
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
@@ -1305,41 +1350,27 @@ function loadFlashcard(){
         document.getElementById("flashWord").textContent = card[0];
         document.getElementById("flashBackWord").textContent = card[0];
         document.getElementById("flashTranslation").textContent = card[3];
-
         const articleText = (card[1] || "").toLowerCase().trim();
-        if(articleText === "der"){
-            flashcardEl.classList.add("border-der");
-        } else if(articleText === "die"){
-            flashcardEl.classList.add("border-die");
-        } else if(articleText === "das"){
-            flashcardEl.classList.add("border-das");
-        }
+        if(articleText === "der") flashcardEl.classList.add("border-der");
+        else if(articleText === "die") flashcardEl.classList.add("border-die");
+        else if(articleText === "das") flashcardEl.classList.add("border-das");
 
         articleEl.textContent = card[1];
         articleEl.className = `article ${articleText}`;
         articleEl.classList.remove("hidden");
-
         pluralEl.textContent = `Pluriel : ${card[2]}`;
         pluralEl.classList.remove("hidden");
-
         verbDetailsEl.classList.add("hidden");
     }
 }
 
-function flipCard(){
-    document.getElementById("flashcard").classList.toggle("flipped");
-}
+function flipCard(){ document.getElementById("flashcard").classList.toggle("flipped"); }
 
 function speakWord(){
-    if(!currentCards.length) return;
-    if(!('speechSynthesis' in window)){
-        alert("La synthèse vocale n'est pas supportée par votre navigateur.");
-        return;
-    }
+    if(!currentCards.length || !('speechSynthesis' in window)) return;
     const item = currentCards[currentFlashcard];
     const card = item.word;
     const textToSpeak = flashcardMode === 'verben' ? card[0] : `${card[1]} ${card[0]}`;
-
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'de-DE';
@@ -1381,21 +1412,11 @@ function nextFlashcard(){
 
 function retryUnmastered(){
     if(!currentTheme) return;
-    currentCards = currentTheme.words
-        .map((word, index) => ({ word, index }))
-        .filter(item => !getWordState(currentTheme.id, item.index).mastered);
-
-    if(currentCards.length === 0){
-        alert("Tous les éléments de cette série sont maîtrisés !");
-        return;
-    }
+    currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => !getWordState(currentTheme.id, item.index).mastered);
+    if(currentCards.length === 0){ alert("Tous les éléments de cette série sont maîtrisés !"); return; }
     currentFlashcard = 0;
     loadFlashcard();
 }
-
-/* =========================================================
-   RÉINITIALISATION
-========================================================= */
 
 function resetCurrentThemeConfirm(){
     if(!currentTheme){ alert("Ouvre d'abord un thème ou une série."); return; }
@@ -1416,18 +1437,8 @@ function resetAllConfirm(){
     alert("Toute la progression a été réinitialisée.");
 }
 
-/* =========================================================
-   EXERCICES ET RÉSULTATS
-========================================================= */
-
 function normalizeAnswer(value){
-    return value
-        .trim()
-        .toLowerCase()
-        .replace(/ae/g, "ä")
-        .replace(/oe/g, "ö")
-        .replace(/ue/g, "ü")
-        .replace(/ss/g, "ß");
+    return value.trim().toLowerCase().replace(/ae/g, "ä").replace(/oe/g, "ö").replace(/ue/g, "ü").replace(/ss/g, "ß");
 }
 
 function startExercises(){
@@ -1442,24 +1453,19 @@ function loadExercise(){
     const ex = exercises[currentExercise];
     if(!ex) return;
     answered = false;
-
     document.getElementById("exerciseTitle").textContent = `Exercice ${currentExercise + 1}`;
     document.getElementById("counter").textContent = `${currentExercise + 1} / ${exercises.length}`;
     document.getElementById("question").textContent = ex.question;
     document.getElementById("questionTranslation").textContent = `Traduction : ${ex.translation}`;
     document.getElementById("hint").textContent = ex.hint;
-
     const input = document.getElementById("answer");
     input.value = "";
     input.disabled = false;
-
     document.getElementById("checkButton").classList.remove("hidden");
     document.getElementById("nextButton").classList.add("hidden");
-
     const feedback = document.getElementById("feedback");
     feedback.className = "feedback";
     feedback.innerHTML = "";
-
     setTimeout(() => input.focus(), 50);
 }
 
@@ -1468,21 +1474,16 @@ function checkAnswer(){
     const input = document.getElementById("answer");
     const rawVal = input.value.trim();
     if(!rawVal){ input.focus(); return; }
-
     const ex = exercises[currentExercise];
     answered = true;
-
     const val = rawVal.toLowerCase();
     const normalizedVal = normalizeAnswer(rawVal);
     const isCorrect = ex.answers.some(a => {
         const answerLower = a.toLowerCase();
         return answerLower === val || answerLower === normalizedVal;
     });
-
     exerciseResults.push({ topic: ex.topic, correct: isCorrect });
-
     const feedback = document.getElementById("feedback");
-
     if(isCorrect){
         scoreValue++;
         feedback.className = "feedback show correct";
@@ -1491,7 +1492,6 @@ function checkAnswer(){
         feedback.className = "feedback show wrong";
         feedback.innerHTML = `<div class="feedback-title">✗ Pas tout à fait</div><div class="explanation"><strong>Bonne réponse :</strong> ${ex.correct}<br><br>${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
     }
-
     input.disabled = true;
     document.getElementById("checkButton").classList.add("hidden");
     document.getElementById("nextButton").classList.remove("hidden");
@@ -1508,14 +1508,12 @@ function showResults(){
     document.getElementById("score").textContent = percentage + "%";
     document.getElementById("scoreText").textContent = `${scoreValue} exercice${scoreValue !== 1 ? 's' : ''} sur ${exercises.length} réussi${scoreValue !== 1 ? 's' : ''}.`;
     document.getElementById("resultTitle").textContent = percentage >= 60 ? "Très bien !" : "Continue comme ça !";
-
     const byTopic = {};
     exerciseResults.forEach(r => {
         if(!byTopic[r.topic]) byTopic[r.topic] = { correct: 0, total: 0 };
         byTopic[r.topic].total++;
         if(r.correct) byTopic[r.topic].correct++;
     });
-
     const statsList = document.getElementById("statsList");
     statsList.innerHTML = "";
     Object.keys(byTopic).forEach(topic => {
@@ -1526,12 +1524,8 @@ function showResults(){
         row.innerHTML = `<span>${topic}</span><strong>${allCorrect ? "✓" : `${stat.correct}/${stat.total}`}</strong>`;
         statsList.appendChild(row);
     });
-
     const missedTopics = Object.keys(byTopic).filter(t => byTopic[t].correct < byTopic[t].total);
-    document.getElementById("revisionText").textContent = missedTopics.length
-        ? `À revoir : ${missedTopics.join(", ")}.`
-        : "Excellent. Aucune révision immédiate nécessaire.";
-
+    document.getElementById("revisionText").textContent = missedTopics.length ? `À revoir : ${missedTopics.join(", ")}.` : "Excellent. Aucune révision immédiate nécessaire.";
     showScreen("result");
 }
 
@@ -1540,10 +1534,6 @@ document.getElementById("answer").addEventListener("keydown", e => {
     if(!answered) checkAnswer();
     else nextExercise();
 });
-
-/* =========================================================
-   INITIALISATION
-========================================================= */
 
 (async () => {
     await loadHausTheme();
