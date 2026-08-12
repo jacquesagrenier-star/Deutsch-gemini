@@ -611,7 +611,7 @@ button{font-family:inherit}
 
 <!-- ================= AUTH ================= -->
 
-<section id="auth" class="screen">
+<section id="auth" class="screen active">
     <div class="title-row" style="margin-top: 10px;">
         <div>
             <div class="kicker">Accès restreint</div>
@@ -967,7 +967,7 @@ onAuthStateChanged(auth, (user) => {
         authContent.classList.add("hidden");
         userAccountInfo.classList.remove("hidden");
         userEmailDisplay.textContent = user.email;
-        // Rediriger vers l'accueil si connecté
+        // Si on était sur l'écran d'auth, on renvoie vers l'accueil
         if(document.getElementById("auth").classList.contains("active")) {
             goHome();
         }
@@ -976,7 +976,7 @@ onAuthStateChanged(auth, (user) => {
         authContent.classList.remove("hidden");
         userAccountInfo.classList.add("hidden");
         userEmailDisplay.textContent = "";
-        // Bloquer et forcer l'affichage de l'écran d'authentification
+        // Forcer l'affichage de l'écran d'authentification et bloquer le reste
         showScreen("auth");
     }
 });
