@@ -363,11 +363,11 @@ button{font-family:inherit}
     border-radius:10px;
 }
 
-.theme-icon svg{
-    width:18px;
-    height:18px;
-    fill:currentColor;
-    color:#9bdcff;
+.theme-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    color: #9bdcff;
 }
 
 .theme-name{font-weight:800}
@@ -487,26 +487,6 @@ button{font-family:inherit}
     white-space:pre-line;
 }
 
-.article,
-.plural{
-    width:100%;
-    font-size:14px;
-    color:#bac7d9;
-    padding:10px 12px;
-    margin-bottom:8px;
-    border-radius:12px;
-    background:rgba(0,0,0,.20);
-}
-
-.article{
-    font-weight:800;
-    font-size:18px;
-}
-
-.article.der{color:#9bdcff}
-.article.die{color:#ffb6d9}
-.article.das{color:#b9a8ff}
-
 .audio-btn{
     margin-top:12px;
     background:rgba(255,255,255,.12);
@@ -524,10 +504,10 @@ button{font-family:inherit}
     align-self:center;
 }
 
-.audio-btn svg{
-    width:14px;
-    height:14px;
-    fill:currentColor;
+.audio-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
 }
 
 .audio-btn:hover{
@@ -646,7 +626,6 @@ button{font-family:inherit}
     </div>
 
     <div class="grid">
-
         <div class="orb" onclick="openVerben()">
             <div>
                 <strong>Verbes</strong>
@@ -709,7 +688,6 @@ button{font-family:inherit}
                 <small>Progression · Reset</small>
             </div>
         </div>
-
     </div>
 
 </section>
@@ -717,7 +695,6 @@ button{font-family:inherit}
 <!-- ================= VERBEN ================= -->
 
 <section id="verben" class="screen">
-
     <button class="back" onclick="goHome()">‹ Retour</button>
 
     <div class="title-row">
@@ -725,68 +702,38 @@ button{font-family:inherit}
             <div class="kicker">Grammaire & Vocabulaire</div>
             <h2>Verbes</h2>
         </div>
-        <div class="pill">A1–A2</div>
+        <div class="pill">A2</div>
     </div>
 
     <div class="subcategories">
-
         <div class="subcategory" onclick="startVerbFlashcards()">
             <strong>Flashcards Verbes</strong>
             <span>Présent, Prétérit, Perfekt & Exemples</span>
         </div>
-
-        <!-- NOUVELLE SECTION -->
-        <div class="subcategory" onclick="startA1A2VerbFlashcards()">
-            <strong>Verbes A1–A2</strong>
-            <span>Vocabulaire essentiel · Flashcards</span>
-        </div>
-
         <div class="subcategory" onclick="startExercises()">
             <strong>Exercices Präsens</strong>
             <span>Réguliers · irréguliers</span>
         </div>
-
         <div class="subcategory" onclick="comingSoon('Präteritum')">
             <strong>Präteritum</strong>
             <span>Passé simple</span>
         </div>
-
         <div class="subcategory" onclick="comingSoon('Perfekt')">
             <strong>Perfekt</strong>
             <span>haben · sein</span>
         </div>
-
-    </div>
-
-    <div class="card">
-        <strong>Verbes A1–A2</strong>
-        <p style="color:#8290a5">
-            Une série complète de verbes essentiels chargée depuis
-            <strong>verba1a2.json</strong>.
-        </p>
-
-        <button class="primary" onclick="startA1A2VerbFlashcards()">
-            LANCER LES VERBES A1–A2 →
-        </button>
     </div>
 
     <div class="card">
         <strong>Flashcards recommandées</strong>
-        <p style="color:#8290a5">
-            Révise les verbes essentiels avec conjugaisons et exemples complets.
-        </p>
-
-        <button class="secondary" onclick="startVerbFlashcards()">
-            FLASHCARDS VERBES →
-        </button>
+        <p style="color:#8290a5">Révise les verbes essentiels avec conjugaisons et exemples complets.</p>
+        <button class="primary" onclick="startVerbFlashcards()">LANCER LES FLASHCARDS →</button>
     </div>
-
 </section>
 
 <!-- ================= NOMEN ================= -->
 
 <section id="nomen" class="screen">
-
     <button class="back" onclick="goHome()">‹ Retour</button>
 
     <div class="title-row">
@@ -798,2573 +745,772 @@ button{font-family:inherit}
     </div>
 
     <div class="card">
-
         <strong>Vocabulaire par thème</strong>
-
-        <p style="color:#8290a5">
-            Article · pluriel · traduction · progression
-        </p>
-
+        <p style="color:#8290a5">Article · pluriel · traduction · progression</p>
         <div class="theme-list" id="themeList"></div>
-
     </div>
-
 </section>
 
 <!-- ================= FLASHCARDS ================= -->
 
 <section id="flashcards" class="screen">
-
-    <button class="back" onclick="handleFlashcardBack()">
-        ‹ Retour
-    </button>
+    <button class="back" onclick="handleFlashcardBack()">‹ Retour</button>
 
     <div class="title-row">
-
         <div>
-            <div class="kicker" id="flashKicker">
-                Flashcards
-            </div>
-
-            <h2 id="flashThemeTitle">
-                Cartes
-            </h2>
+            <div class="kicker" id="flashKicker">Flashcards</div>
+            <h2 id="flashThemeTitle">Cartes</h2>
         </div>
-
-        <div class="pill" id="flashCounter">
-            1 / 10
-        </div>
-
+        <div class="pill" id="flashCounter">1 / 10</div>
     </div>
 
     <div class="flashcard-wrapper">
-
-        <div id="flashcard"
-             class="flashcard"
-             onclick="flipCard()">
-
+        <div id="flashcard" class="flashcard" onclick="flipCard()">
             <div class="flashcard-face flashcard-front">
-
-                <div id="flashWord" class="word">
-                    Tisch
-                </div>
-
-                <div class="tap-hint">
-                    Touche la carte pour voir la réponse
-                </div>
-
+                <div id="flashWord" class="word">Tisch</div>
+                <div class="tap-hint">Touche la carte pour voir la réponse</div>
             </div>
 
             <div class="flashcard-face flashcard-back">
-
-                <div id="flashBackWord"
-                     class="back-word">
-                    Tisch
-                </div>
-
-                <div id="flashTranslation"
-                     class="translation">
-                    Table
-                </div>
-
-                <div id="flashVerbDetails"
-                     class="verb-details hidden">
-                </div>
-
-                <div id="flashArticle"
-                     class="article hidden">
-                </div>
-
-                <div id="flashPlural"
-                     class="plural hidden">
-                </div>
-
-                <button id="audioBtn"
-                        class="audio-btn"
-                        onclick="event.stopPropagation(); speakWord();">
-
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                    </svg>
-
+                <div id="flashBackWord" class="back-word">Tisch</div>
+                <div id="flashTranslation" class="translation">Table</div>
+                <div id="flashVerbDetails" class="verb-details hidden"></div>
+                <div id="flashArticle" class="article hidden"></div>
+                <div id="flashPlural" class="plural hidden"></div>
+                <button id="audioBtn" class="audio-btn" onclick="event.stopPropagation(); speakWord();">
+                    <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
                     Écouter
-
                 </button>
-
             </div>
-
         </div>
-
     </div>
 
-    <div class="flashcard-info"
-         id="flashcardInfo">
+    <div class="flashcard-info" id="flashcardInfo">
         Touche la carte pour voir la réponse.
     </div>
 
     <div class="review-options">
-
-        <button class="review-button"
-                onclick="scheduleReview(2)">
-            Revoir dans 2 min
-        </button>
-
-        <button class="review-button"
-                onclick="scheduleReview(10)">
-            Revoir dans 10 min
-        </button>
-
-        <button class="review-button warning"
-                onclick="scheduleReview(1440)">
-            Revoir demain
-        </button>
-
-        <button class="review-button mastered"
-                onclick="markMastered()">
-            ✓ Maîtrisé
-        </button>
-
+        <button class="review-button" onclick="scheduleReview(2)">Revoir dans 2 min</button>
+        <button class="review-button" onclick="scheduleReview(10)">Revoir dans 10 min</button>
+        <button class="review-button warning" onclick="scheduleReview(1440)">Revoir demain</button>
+        <button class="review-button mastered" onclick="markMastered()">✓ Maîtrisé</button>
     </div>
 
     <div class="spacer"></div>
-
-    <button class="secondary"
-            onclick="nextFlashcard()">
-        CARTE SUIVANTE →
-    </button>
-
+    <button class="secondary" onclick="nextFlashcard()">CARTE SUIVANTE →</button>
     <div class="spacer"></div>
-
-    <button class="secondary"
-            onclick="retryUnmastered()">
-        RÉESSAYER LES ÉLÉMENTS NON MAÎTRISÉS
-    </button>
-
+    <button class="secondary" onclick="retryUnmastered()">RÉESSAYER LES ÉLÉMENTS NON MAÎTRISÉS</button>
 </section>
 
 <!-- ================= EXERCISE ================= -->
 
 <section id="exercise" class="screen">
-
-    <button class="back"
-            onclick="openVerben()">
-        ‹ Verbes
-    </button>
+    <button class="back" onclick="openVerben()">‹ Verbes</button>
 
     <div class="title-row">
-
         <div>
-            <div class="kicker">
-                Verbes · Präsens
-            </div>
-
-            <h2 id="exerciseTitle">
-                Exercice 1
-            </h2>
+            <div class="kicker">Verbes · Präsens</div>
+            <h2 id="exerciseTitle">Exercice 1</h2>
         </div>
-
-        <div class="pill"
-             id="counter">
-            1 / 5
-        </div>
-
+        <div class="pill" id="counter">1 / 5</div>
     </div>
 
     <div class="card">
+        <div class="question" id="question"></div>
+        <div class="translation-example" id="questionTranslation"></div>
+        <div id="hint" style="color:#8290a5;margin-bottom:15px"></div>
 
-        <div class="question"
-             id="question">
-        </div>
-
-        <div class="translation-example"
-             id="questionTranslation">
-        </div>
-
-        <div id="hint"
-             style="color:#8290a5;margin-bottom:15px">
-        </div>
-
-        <input id="answer"
-               class="answer"
-               type="text"
-               placeholder="Ta réponse…">
+        <input id="answer" class="answer" type="text" placeholder="Ta réponse…">
 
         <div class="spacer"></div>
-
-        <button id="checkButton"
-                class="primary"
-                onclick="checkAnswer()">
-            VÉRIFIER
-        </button>
-
-        <div id="feedback"
-             class="feedback">
-        </div>
+        <button id="checkButton" class="primary" onclick="checkAnswer()">VÉRIFIER</button>
+        <div id="feedback" class="feedback"></div>
 
         <div class="spacer"></div>
-
-        <button id="nextButton"
-                class="secondary hidden"
-                onclick="nextExercise()">
-            EXERCICE SUIVANT →
-        </button>
-
+        <button id="nextButton" class="secondary hidden" onclick="nextExercise()">EXERCICE SUIVANT →</button>
     </div>
-
 </section>
 
 <!-- ================= RESULT ================= -->
 
 <section id="result" class="screen">
+    <div class="kicker">Session terminée</div>
 
-    <div class="kicker">
-        Session terminée
-    </div>
-
-    <h1>
-        <span class="gradient"
-              id="resultTitle">
-            Très bien !
-        </span>
-    </h1>
+    <h1><span class="gradient" id="resultTitle">Très bien !</span></h1>
 
     <div class="card">
-
-        <div class="score"
-             id="score">
-            0%
-        </div>
-
-        <p id="scoreText"
-           style="color:#8290a5">
-        </p>
+        <div class="score" id="score">0%</div>
+        <p id="scoreText" style="color:#8290a5"></p>
 
         <div id="statsList"></div>
 
         <div class="revision">
-
             <strong>À revoir</strong>
-
-            <p id="revisionText">
-                —
-            </p>
-
-            <small style="color:#79e6bd">
-                Révision basée sur tes erreurs.
-            </small>
-
+            <p id="revisionText">—</p>
+            <small style="color:#79e6bd">Révision basée sur tes erreurs.</small>
         </div>
 
         <div class="spacer"></div>
-
-        <button class="primary"
-                onclick="startExercises()">
-            RECOMMENCER
-        </button>
-
+        <button class="primary" onclick="startExercises()">RECOMMENCER</button>
         <div class="spacer"></div>
-
-        <button class="secondary"
-                onclick="goHome()">
-            TABLEAU DE BORD
-        </button>
-
+        <button class="secondary" onclick="goHome()">TABLEAU DE BORD</button>
     </div>
-
 </section>
 
 <!-- ================= SETTINGS ================= -->
 
 <section id="settings" class="screen">
-
-    <button class="back"
-            onclick="goHome()">
-        ‹ Retour
-    </button>
+    <button class="back" onclick="goHome()">‹ Retour</button>
 
     <div class="title-row">
-
         <div>
-            <div class="kicker">
-                Progression
-            </div>
-
-            <h2>
-                Révision
-            </h2>
+            <div class="kicker">Progression</div>
+            <h2>Révision</h2>
         </div>
-
     </div>
 
     <div class="card">
-
-        <strong>
-            Progression globale
-        </strong>
-
-        <div id="settingsProgress"
-             class="info-box">
-            0 élément maîtrisé.
-        </div>
+        <strong>Progression globale</strong>
+        <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
 
         <div class="spacer"></div>
-
-        <button class="secondary"
-                onclick="openNomen()">
-            VOIR LES THÈMES
-        </button>
-
+        <button class="secondary" onclick="openNomen()">VOIR LES THÈMES</button>
         <div class="spacer"></div>
-
-        <button class="secondary danger"
-                onclick="resetCurrentThemeConfirm()">
-            RESET DU THÈME ACTUEL
-        </button>
-
+        <button class="secondary danger" onclick="resetCurrentThemeConfirm()">RESET DU THÈME ACTUEL</button>
         <div class="spacer"></div>
-
-        <button class="secondary danger"
-                onclick="resetAllConfirm()">
-            RESET DE TOUTE LA PROGRESSION
-        </button>
-
+        <button class="secondary danger" onclick="resetAllConfirm()">RESET DE TOUTE LA PROGRESSION</button>
     </div>
-
 </section>
 
 </div>
 
 <script>
-
 /* =========================================================
    DONNÉES DES THÈMES DE VOCABULAIRE & VERBES
 ========================================================= */
 
 const verbTheme = {
-    id: "verben",
-    name: "Verbes allemands",
-
-    svg:
-    '<svg viewBox="0 0 24 24">' +
-    '<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>' +
-    '</svg>',
-
-    words: [
-
-        [
-            "haben",
-            "avoir",
-            "Präsens: ich habe, du hast, er hat\nPräteritum: ich hatte\nPerfekt: ich habe gehabt\n\nBeispiel (Präsens): Ich habe ein neues Fahrrad.\nBeispiel (Präteritum): Ich hatte gestern keine Zeit.\nBeispiel (Perfekt): Ich habe das Buch gelesen.\n\nTraduction : J'ai un nouveau vélo / J'avais du temps hier / J'ai lu le livre."
-        ],
-
-        [
-            "sein",
-            "être",
-            "Präsens: ich bin, du bist, er ist\nPräteritum: ich war\nPerfekt: ich bin gewesen\n\nBeispiel (Präsens): Ich bin heute in Berlin.\nBeispiel (Präteritum): Du warst gestern zu Hause.\nBeispiel (Perfekt): Wir sind nach Budapest gereist.\n\nTraduction : Je suis à Berlin aujourd'hui / Tu étais chez toi hier / Nous avons voyagé à Budapest."
-        ],
-
-        [
-            "machen",
-            "faire",
-            "Präsens: ich mache, du machst, er macht\nPräteritum: ich machte\nPerfekt: ich habe gemacht\n\nBeispiel (Präsens): Ich mache meine Hausaufgaben.\nBeispiel (Präteritum): Er machte eine Radtour in der Stadt.\nBeispiel (Perfekt): Sie hat das Frühstück gemacht.\n\nTraduction : Je fais mes devoirs / Il a fait une balade à vélo en ville / Elle a préparé le petit-déjeuner."
-        ],
-
-        [
-            "gehen",
-            "aller",
-            "Präsens: ich gehe, du gehst, er geht\nPräteritum: ich ging\nPerfekt: ich bin gegangen\n\nBeispiel (Präsens): Ich gehe nach der Schule zum Fitnessclub.\nBeispiel (Präteritum): Wir gingen im Park spazieren.\nBeispiel (Perfekt): Er ist gestern ins Kino gegangen.\n\nTraduction : Je vais au club de fitness après l'école / Nous sommes allés nous promener dans le parc / Il est allé au cinéma hier."
-        ],
-
-        [
-            "sprechen",
-            "parler",
-            "Präsens: ich spreche, du sprichst, er spricht\nPräteritum: ich sprach\nPerfekt: ich habe gesprochen\n\nBeispiel (Präsens): Ich spreche ein bisschen Deutsch auf Niveau A2.\nBeispiel (Präteritum): Sie sprach sehr gut Englisch.\nBeispiel (Perfekt): Wir haben über das Projekt gesprochen.\n\nTraduction : Je parle un peu allemand au niveau A2 / Elle parlait très bien anglais / Nous avons parlé du projet."
-        ],
-
-        [
-            "fahren",
-            "conduire, aller (en véhicule)",
-            "Präsens: ich fahre, du fährst, er fährt\nPräteritum: ich fuhr\nPerfekt: ich bin gefahren\n\nBeispiel (Präsens): Ich fahre jeden Tag mit dem Fahrrad in Berlin.\nBeispiel (Präteritum): Sie fuhren im Sommer nach Québec.\nBeispiel (Perfekt): Er ist mit dem Zug gefahren.\n\nTraduction : Je vais à vélo tous les jours à Berlin / Ils sont allés au Québec en été / Il est parti en train."
-        ],
-
-        [
-            "lesen",
-            "lire",
-            "Präsens: ich lese, du liest, er liest\nPräteritum: ich las\nPerfekt: ich habe gelesen\n\nBeispiel (Präsens): Ich lese gerne Bücher ohne Präteritum.\nBeispiel (Präteritum): Gestern las ich eine wichtige Nachricht.\nBeispiel (Perfekt): Er hat das Dokument gelesen.\n\nTraduction : J'aime lire des livres sans prétérit / Hier, j'ai lu un message important / Il a lu le document."
-        ],
-
-        [
-            "lernen",
-            "apprendre",
-            "Präsens: ich lerne, du lernst, er lernt\nPräteritum: ich lernte\nPerfekt: ich habe gelernt\n\nBeispiel (Präsens): Ich lerne deutsche Grammatik mit einer App.\nBeispiel (Präteritum): Sie lernte Python für die Datenanalyse.\nBeispiel (Perfekt): Wir haben viel gelernt.\n\nTraduction : J'apprends la grammaire allemande avec une application / Elle a appris Python pour l'analyse de données / Nous avons beaucoup appris."
-        ]
-
+  id: "verben",
+  name: "Verbes allemands",
+  svg: '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>',
+  words: [
+    [
+      "haben",
+      "avoir",
+      "Präsens: ich habe, du hast, er hat\nPräteritum: ich hatte\nPerfekt: ich habe gehabt\n\nBeispiel (Präsens): Ich habe ein neues Fahrrad.\nBeispiel (Präteritum): Ich hatte gestern keine Zeit.\nBeispiel (Perfekt): Ich habe das Buch gelesen.\n\nTraduction : J'ai un nouveau vélo / J'avais du temps hier / J'ai lu le livre."
+    ],
+    [
+      "sein",
+      "être",
+      "Präsens: ich bin, du bist, er ist\nPräteritum: ich war\nPerfekt: ich bin gewesen\n\nBeispiel (Präsens): Ich bin heute in Berlin.\nBeispiel (Präteritum): Du warst gestern zu Hause.\nBeispiel (Perfekt): Wir sind nach Budapest gereist.\n\nTraduction : Je suis à Berlin aujourd'hui / Tu étais chez toi hier / Nous avons voyagé à Budapest."
+    ],
+    [
+      "machen",
+      "faire",
+      "Präsens: ich mache, du machst, er macht\nPräteritum: ich machte\nPerfekt: ich habe gemacht\n\nBeispiel (Präsens): Ich mache meine Hausaufgaben.\nBeispiel (Präteritum): Er machte eine Radtour in der Stadt.\nBeispiel (Perfekt): Sie hat das Frühstück gemacht.\n\nTraduction : Je fais mes devoirs / Il a fait une balade à vélo en ville / Elle a préparé le petit-déjeuner."
+    ],
+    [
+      "gehen",
+      "aller",
+      "Präsens: ich gehe, du gehst, er geht\nPräteritum: ich ging\nPerfekt: ich bin gegangen\n\nBeispiel (Präsens): Ich gehe nach der Schule zum Fitnessclub.\nBeispiel (Präteritum): Wir gingen im Park spazieren.\nBeispiel (Perfekt): Er ist gestern ins Kino gegangen.\n\nTraduction : Je vais au club de fitness après l'école / Nous sommes allés nous promener dans le parc / Il est allé au cinéma hier."
+    ],
+    [
+      "sprechen",
+      "parler",
+      "Präsens: ich spreche, du sprichst, er spricht\nPräteritum: ich sprach\nPerfekt: ich habe gesprochen\n\nBeispiel (Präsens): Ich spreche ein bisschen Deutsch auf Niveau A2.\nBeispiel (Präteritum): Sie sprach sehr gut Englisch.\nBeispiel (Perfekt): Wir haben über das Projekt gesprochen.\n\nTraduction : Je parle un peu allemand au niveau A2 / Elle parlait très bien anglais / Nous avons parlé du projet."
+    ],
+    [
+      "fahren",
+      "conduire, aller (en véhicule)",
+      "Präsens: ich fahre, du fährst, er fährt\nPräteritum: ich fuhr\nPerfekt: ich bin gefahren\n\nBeispiel (Präsens): Ich fahre jeden Tag mit dem Fahrrad in Berlin.\nBeispiel (Präteritum): Sie fuhren im Sommer nach Québec.\nBeispiel (Perfekt): Er ist mit dem Zug gefahren.\n\nTraduction : Je vais à vélo tous les jours à Berlin / Ils sont allés au Québec en été / Il est parti en train."
+    ],
+    [
+      "lesen",
+      "lire",
+      "Präsens: ich lese, du liest, er liest\nPräteritum: ich las\nPerfekt: ich habe gelesen\n\nBeispiel (Präsens): Ich lese gerne Bücher ohne Präteritum.\nBeispiel (Präteritum): Gestern las ich eine wichtige Nachricht.\nBeispiel (Perfekt): Er hat das Dokument gelesen.\n\nTraduction : J'aime lire des livres sans prétérit / Hier, j'ai lu un message important / Il a lu le document."
+    ],
+    [
+      "lernen",
+      "apprendre",
+      "Präsens: ich lerne, du lernst, er lernt\nPräteritum: ich lernte\nPerfekt: ich habe gelernt\n\nBeispiel (Präsens): Ich lerne deutsche Grammatik mit einer App.\nBeispiel (Präteritum): Sie lernte Python für die Datenanalyse.\nBeispiel (Perfekt): Wir haben viel gelernt.\n\nTraduction : J'apprends la grammaire allemande avec une application / Elle a appris Python pour l'analyse de données / Nous avons beaucoup appris."
     ]
+  ]
 };
-
-
-/* =========================================================
-   THÈMES DE NOMS
-========================================================= */
 
 const themes = [
   { id:"wohnung", name:"Appartement", svg:'<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>', words:[["Wohnung","die","die Wohnungen","Appartement"],["Zimmer","das","die Zimmer","Pièce"],["Küche","die","die Küchen","Cuisine"],["Bad","das","die Bäder","Salle de bain"],["Balkon","der","die Balkone","Balcon"],["Flur","der","die Flure","Couloir"],["Wand","die","die Wände","Mur"],["Boden","der","die Böden","Sol"]] },
-
   { id:"getraenke", name:"Boissons", svg:'<svg viewBox="0 0 24 24"><path d="M2 21h20v-2H2v2zm2-4h16V5H4v12zm2-10h12v8H6V7z"/></svg>', words:[["Wasser","das","die Wässer","Eau"],["Kaffee","der","die Kaffees","Café"],["Tee","der","die Tees","Thé"],["Milch","die","—","Lait"],["Saft","der","die Säfte","Jus"],["Bier","das","die Biere","Bière"],["Wein","der","die Weine","Vin"],["Flasche","die","die Flaschen","Bouteille"]] },
-
   { id:"kleidung", name:"Vêtements", svg:'<svg viewBox="0 0 24 24"><path d="M20 6h-3.14c-.45-.89-1.35-1.5-2.36-1.5h-5c-1.01 0-1.91.61-2.36 1.5H4c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm10 9h-2v5h-2v-7h4v2zm-16-2H4V8h4.14C7.54 8.5 7 9.4 7 10.4V11H4v-2h2z"/></svg>', words:[["Hose","die","die Hosen","Pantalon"],["Hemd","das","die Hemden","Chemise"],["T-Shirt","das","die T-Shirts","T-shirt"],["Rock","der","die Röcke","Jupe"],["Kleid","das","die Kleider","Robe"],["Schuh","der","die Schuhe","Chaussure"],["Jacke","die","die Jacken","Veste"],["Mantel","der","die Mäntel","Manteau"]] },
-
   { id:"stadt", name:"Ville", svg:'<svg viewBox="0 0 24 24"><path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>', words:[["Stadt","die","die Städte","Ville"],["Straße","die","die Straßen","Rue"],["Platz","der","die Plätze","Place"],["Park","der","die Parks","Parc"],["Brücke","die","die Brücken","Pont"],["Gebäude","das","die Gebäude","Bâtiment"],["Bahnhof","der","die Bahnhöfe","Gare"],["Kirche","die","die Kirchen","Église"]] },
-
   { id:"einkaufen", name:"Achats & Magasins", svg:'<svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>', words:[["Supermarkt","der","die Supermärkte","Supermarché"],["Geschäft","das","die Geschäfte","Magasin"],["Bäckerei","die","die Bäckereien","Boulangerie"],["Kasse","die","die Kassen","Caisse"],["Preis","der","die Preise","Prix"],["Geld","das","—","Argent"],["Einkaufswagen","der","die Einkaufswagen","Caddie"],["Kunde","der","die Kunden","Client"]] },
-
   { id:"arbeit", name:"Travail & Bureau", svg:'<svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 15H4V8h16v11z"/></svg>', words:[["Arbeit","die","—","Travail"],["Büro","das","die Büros","Bureau"],["Chef","der","die Chefs","Chef"],["Kollege","der","die Kollegen","Collègue"],["Computer","der","die Computer","Ordinateur"],["E-Mail","die","die E-Mails","E-mail"],["Termin","der","die Termine","Rendez-vous"],["Projekt","das","die Projekte","Projet"]] },
-
   { id:"freizeit", name:"Loisirs & Hobbies", svg:'<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>', words:[["Sport","der","—","Sport"],["Musik","die","—","Musique"],["Buch","das","die Bücher","Livre"],["Spiel","das","die Spiele","Jeu"],["Kino","das","die Kinos","Cinéma"],["Hobby","das","die Hobbys","Loisir"],["Gitarre","die","die Gitarren","Guitare"],["Museum","das","die Museen","Musée"]] },
-
   { id:"zeit", name:"Temps & Calendrier", svg:'<svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.47 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>', words:[["Tag","der","die Tage","Jour"],["Nacht","die","die Nächte","Nuit"],["Woche","die","die Wochen","Semaine"],["Monat","der","die Monate","Mois"],["Jahr","das","die Jahre","Année"],["Uhr","die","die Uhren","Horloge/Heure"],["Morgen","der","die Morgen","Matin"],["Abend","der","die Abende","Soir"]] },
-
   { id:"wetter", name:"Météo & Saisons", svg:'<svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.5h-2V4h2V1zm5.05 3.05l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm-1 4h2v3h-2v-3zm7.45-3.05l1.79 1.79 1.41-1.41-1.79-1.79-1.41 1.41zM20 10.5v2h3v-2h-3z"/></svg>', words:[["Sonne","die","—","Soleil"],["Regen","der","—","Pluie"],["Wind","der","die Winde","Vent"],["Schnee","der","—","Neige"],["Sommer","der","die Sommer","Été"],["Winter","der","die Winter","Hiver"],["Wolke","die","die Wolken","Nuage"],["Grad","das","die Grade","Degré"]] },
-
   { id:"koerper", name:"Corps humain", svg:'<svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>', words:[["Kopf","der","die Köpfe","Tête"],["Hand","die","die Hände","Main"],["Fuß","der","die Füße","Pied"],["Auge","das","die Augen","Œil"],["Ohr","das","die Ohren","Oreille"],["Mund","der","die Münder","Bouche"],["Nase","die","die Nasen","Nez"],["Arm","der","die Arme","Bras"]] },
-
   { id:"gesundheit", name:"Santé & Médecine", svg:'<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>', words:[["Arzt","der","die Ärzte","Médecin"],["Krankenhaus","das","die Krankenhäuser","Hôpital"],["Apotheke","die","die Apotheken","Pharmacie"],["Medizin","die","die Medizin","Médicament"],["Schmerz","der","die Schmerzen","Douleur"],["Fieber","das","—","Fièvre"],["Rezept","das","die Rezepte","Ordonnance"],["Pflaster","das","die Pflaster","Pansement"]] },
-
   { id:"tiere", name:"Animaux", svg:'<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19h2.35l1.09-1.09C9.17 18.57 10.54 19 12 19c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>', words:[["Hund","der","die Hunde","Chien"],["Katze","die","die Katzen","Chat"],["Vogel","der","die Vögel","Oiseau"],["Pferd","das","die Pferde","Cheval"],["Kuh","die","die Kühe","Vache"],["Maus","die","die Mäuse","Souris"],["Fisch","der","die Fische","Poisson"],["Bär","der","die Bären","Ours"]] },
-
   { id:"verkehr", name:"Transports", svg:'<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.76l.12.34V17z"/></svg>', words:[["Auto","das","die Autos","Voiture"],["Bus","der","die Busse","Bus"],["Zug","der","die Züge","Train"],["Fahrrad","das","die Fahrräder","Vélo"],["Flugzeug","das","die Flugzeuge","Avion"],["Straßenbahn","die","die Straßenbahnen","Tramway"],["U-Bahn","die","die U-Bahnen","Métro"],["Ampel","die","die Ampeln","Feu de circulation"]] },
-
   { id:"reisen", name:"Voyages & Hôtel", svg:'<svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>', words:[["Reise","die","die Reisen","Voyage"],["Hotel","das","die Hotels","Hôtel"],["Pass","der","die Pässe","Passeport"],["Koffer","der","die Koffer","Valise"],["Ticket","das","die Tickets","Billet"],["Flughafen","der","die Flughäfen","Aéroport"],["Strand","der","die Strände","Plage"],["Urlaub","der","die Urlaube","Vacances"]] },
-
   { id:"schule", name:"Éducation & Études", svg:'<svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>', words:[["Schule","die","die Schulen","École"],["Schüler","der","die Schüler","Élève"],["Lehrer","der","die Lehrer","Enseignant"],["Klasse","die","die Klassen","Classe"],["Test","der","die Tests","Test"],["Universität","die","die Universitäten","Université"],["Stift","der","die Stifte","Stylo"],["Heft","das","die Hefte","Cahier"]] },
-
   { id:"natur", name:"Nature & Environnement", svg:'<svg viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.8 14.8 7 11 7 11l-5 7h20l-8-12z"/></svg>', words:[["Baum","der","die Bäume","Arbre"],["Blume","die","die Blumen","Fleur"],["Wald","der","die Wälder","Forêt"],["Berg","der","die Berge","Montagne"],["Fluss","der","die Flüsse","Rivière"],["See","der","die Seen","Lac"],["Meer","das","die Meere","Mer"],["Pflanze","die","die Pflanzen","Plante"]] },
-
   { id:"medien", name:"Médias & Tech", svg:'<svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>', words:[["Handy","das","die Handys","Téléphone portable"],["Internet","das","—","Internet"],["Fernseher","der","die Fernseher","Téléviseur"],["Radio","das","die Radios","Radio"],["Bildschirm","der","die Bildschirme","Écran"],["Tastatur","der","die Tastaturen","Clavier"],["Nachricht","die","die Nachrichten","Message/Nouvelle"],["App","die","die Apps","Application"]] },
-
-  { id:"restaurant", name:"Restaurant & Café", svg:'<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 6z"/></svg>', words:[["Restaurant","das","die Restaurants","Restaurant"],["Karte","die","die Karten","Carte/Menu"],["Rechnung","die","die Rechnungen","Addition"],["Kellner","der","die Kellner","Serveur"],["Trinkgeld","das","die Trinkgelder","Pourboire"],["Gabel","die","die Gabeln","Fourchette"],["Messer","das","die Messer","Couteau"],["Löffel","der","die Löffel","Cuillère"]] },
-
+  { id:"restaurant", name:"Restaurant & Café", svg:'<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>', words:[["Restaurant","das","die Restaurants","Restaurant"],["Karte","die","die Karten","Carte/Menu"],["Rechnung","die","die Rechnungen","Addition"],["Kellner","der","die Kellner","Serveur"],["Trinkgeld","das","die Trinkgelder","Pourboire"],["Gabel","die","die Gabeln","Fourchette"],["Messer","das","die Messer","Couteau"],["Löffel","der","die Löffel","Cuillère"]] },
   { id:"charakter", name:"Personnes & Description", svg:'<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>', words:[["Mann","der","die Männer","Homme"],["Frau","die","die Frauen","Femme"],["Freund","der","die Freunde","Ami"],["Nachbar","der","die Nachbarn","Voisin"],["Person","die","die Personen","Personne"],["Junge","der","die Jungen","Garçon"],["Mädchen","das","die Mädchen","Fille"],["Gast","der","die Gäste","Invité"]] },
-
   { id:"gefuehle", name:"Émotions & Sentiments", svg:'<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>', words:[["Freude","die","—","Joie"],["Angst","die","die Ängste","Peur"],["Glück","das","—","Chance/Bonheur"],["Liebe","die","—","Amour"],["Wut","die","—","Colère"],["Trauer","die","—","Tristesse"],["Lachen","das","—","Rire"],["Lächeln","das","—","Sourire"]] },
-
   { id:"post", name:"Poste & Administration", svg:'<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>', words:[["Brief","der","die Briefe","Lettre"],["Paket","das","die Pakete","Colis"],["Formular","das","die Formulare","Formulaire"],["Amt","das","die Ämter","Bureau administratif"],["Stempel","der","die Stempel","Tampon"],["Adresse","die","die Adressen","Adresse"],["Unterschrift","die","die Unterschriften","Signature"],["Passwort","das","die Passwörter","Mot de passe"]] },
-
   { id:"zahlen", name:"Nombres & Quantités", svg:'<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>', words:[["Zahl","die","die Zahlen","Nombre"],["Menge","die","die Mengen","Quantité"],["Hälfte","die","die Hälften","Moitié"],["Stück","das","die Stücke","Morceau/Pièce"],["Dutzend","das","die Dutzende","Douzaine"],["Teil","der","die Teile","Partie"],["Prozent","das","die Prozente","Pourcentage"],["Summe","das","die Summen","Somme"]] },
-
   { id:"farben", name:"Couleurs & Formes", svg:'<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19h2.35l1.09-1.09C9.17 18.57 10.54 19 12 19c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6 z"/></svg>', words:[["Farbe","die","die Farben","Couleur"],["Kreis","der","die Kreise","Cercle"],["Form","die","die Formen","Forme"],["Linie","die","die Linien","Ligne"],["Muster","das","die Muster","Motif"],["Quadrat","das","die Quadrate","Carré"],["Schatten","der","die Schatten","Ombre"],["Licht","das","die Lichter","Lumière"]] },
-
   { id:"gesellschaft", name:"Société & Culture", svg:'<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>', words:[["Kultur","die","die Kulturen","Culture"],["Sprache","die","die Sprachen","Langue"],["Land","das","die Länder","Pays"],["Welt","die","die Welten","Monde"],["Politik","die","—","Politique"],["Geschichte","die","die Geschichten","Histoire"],["Gesetz","das","die Gesetze","Loi"],["Volk","das","die Völker","Peuple"]] }
 ];
-
 
 /* =========================================================
    EXERCICES DE GRAMMAIRE
 ========================================================= */
 
 const exercises = [
-
-    {
-        topic:"Verbes réguliers",
-        question:"Ich ___ jeden Tag Deutsch.",
-        translation:"Je fais de l'allemand tous les jours.",
-        hint:"(lernen)",
-        answers:["lerne"],
-        correct:"lerne",
-        explanation:
-        "Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne."
-    },
-
-    {
-        topic:"Verbes réguliers",
-        question:"Du ___ jeden Morgen Kaffee.",
-        translation:"Tu bois du café chaque matin.",
-        hint:"(trinken)",
-        answers:["trinkst"],
-        correct:"trinkst",
-        explanation:
-        "« trinken » est un verbe régulier. À la deuxième personne du singulier : du trinkst."
-    },
-
-    {
-        topic:"Changement de voyelle",
-        question:"Er ___ jeden Sonntag nach Berlin.",
-        translation:"Il va à Berlin tous les dimanches.",
-        hint:"(fahren)",
-        answers:["fährt"],
-        correct:"fährt",
-        explanation:
-        "Avec « er », « fahren » subit un changement de voyelle : a devient ä → er fährt."
-    },
-
-    {
-        topic:"Verbes séparables",
-        question:"Ich stehe um 7 Uhr ___.",
-        translation:"Je me lève à 7 heures.",
-        hint:"(aufstehen)",
-        answers:["auf"],
-        correct:"auf",
-        explanation:
-        "« aufstehen » est un verbe à particule séparable. Dans une phrase principale, « auf » est placé à la fin."
-    },
-
-    {
-        topic:"Verbes réguliers",
-        question:"Wir ___ heute zusammen Deutsch.",
-        translation:"Nous faisons de l'allemand ensemble aujourd'hui.",
-        hint:"(lernen)",
-        answers:["lernen"],
-        correct:"lernen",
-        explanation:
-        "Avec « wir », on utilise la forme en -en : wir lernen."
-    }
-
+  { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." },
+  { topic:"Verbes réguliers", question:"Du ___ jeden Morgen Kaffee.", translation:"Tu bois du café chaque matin.", hint:"(trinken)", answers:["trinkst"], correct:"trinkst", explanation:"« trinken » est un verbe régulier. À la deuxième personne du singulier : du trinkst." },
+  { topic:"Changement de voyelle", question:"Er ___ jeden Sonntag nach Berlin.", translation:"Il va à Berlin tous les dimanches.", hint:"(fahren)", answers:["fährt"], correct:"fährt", explanation:"Avec « er », « fahren » subit un changement de voyelle : a devient ä → er fährt." },
+  { topic:"Verbes séparables", question:"Ich stehe um 7 Uhr ___.", translation:"Je me lève à 7 heures.", hint:"(aufstehen)", answers:["auf"], correct:"auf", explanation:"« aufstehen » est un verbe à particule séparable. Dans une phrase principale, « auf » est placé à la fin." },
+  { topic:"Verbes réguliers", question:"Wir ___ heute zusammen Deutsch.", translation:"Nous faisons de l'allemand ensemble aujourd'hui.", hint:"(lernen)", answers:["lernen"], correct:"lernen", explanation:"Avec « wir », on utilise la forme en -en : wir lernen." }
 ];
 
-
 /* =========================================================
-   GESTION DE L'ÉTAT
+   GESTION DE L'ÉTAT ET DU STOCKAGE
 ========================================================= */
 
 let currentTheme = null;
 let currentCards = [];
 let currentFlashcard = 0;
-
 let currentExercise = 0;
 let scoreValue = 0;
 let answered = false;
 let exerciseResults = [];
-
-let flashcardMode = 'nomen';
-
-
-/* =========================================================
-   THÈMES EXTERNES DES NOMS
-========================================================= */
-
+let flashcardMode = 'nomen'; // 'nomen' ou 'verben'
 const externalThemes = [
-
-    {
-        id:"haus",
-        path:"data/haus.json",
-        svg:'<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>'
-    },
-
-    {
-        id:"familie",
-        path:"data/familie.json",
-        svg:'<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>'
-    },
-
-    {
-        id:"essen",
-        path:"data/essen.json",
-        svg:'<svg viewBox="0 0 24 24"><path d="M18.06 22.99h-1.66c-.66 0-1.21-.51-1.28-1.17l-.44-4.14H9.32l-.44 4.14c-.07.66-.62 1.17-1.28 1.17H5.94c-.79 0-1.42-.7-1.32-1.48l1.45-12.01C6.26 8.35 7.15 7.5 8.21 7.5h7.58c1.06 0 1.95.85 2.14 1.99l1.45 12.01c.1 .78-.53 1.48-1.32 1.48zM12 2C9.24 2 7 4.24 7 7h2c0-1.66 1.34-3 3-3s3 1.34 3 3h2c0-2.76-2.24-5-5-5z"/></svg>'
-    }
-
+    { id: "haus", path: "data/haus.json", svg: '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>' },
+    { id: "familie", path: "data/familie.json", svg: '<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5 z"/></svg>' },
+    { id: "essen", path: "data/essen.json", svg: '<svg viewBox="0 0 24 24"><path d="M18.06 22.99h-1.66c-.66 0-1.21-.51-1.28-1.17l-.44-4.14H9.32l-.44 4.14c-.07.66-.62 1.17-1.28 1.17H5.94c-.79 0-1.42-.7-1.32-1.48l1.45-12.01C6.26 8.35 7.15 7.5 8.21 7.5h7.58c1.06 0 1.95.85 2.14 1.99l1.45 12.01c.1 .78-.53 1.48-1.32 1.48zM12 2C9.24 2 7 4.24 7 7h2c0-1.66 1.34-3 3-3s3 1.34 3 3h2c0-2.76-2.24-5-5-5 z"/></svg>' }
 ];
-
 let externalThemesLoaded = false;
 let externalThemesLoading = null;
-
-
-/* =========================================================
-   NOUVEAU : THÈME VERBES A1-A2
-========================================================= */
-
-const externalVerbThemes = [
-
-    {
-        id:"verba1a2",
-        name:"Verbes A1–A2",
-        path:"verba1a2.json",
-
-        svg:
-        '<svg viewBox="0 0 24 24">' +
-        '<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>' +
-        '</svg>'
-    }
-
-];
-
-let externalVerbThemesLoaded = false;
-let externalVerbThemesLoading = null;
-let verbA1A2Theme = null;
-
-
-/* =========================================================
-   STOCKAGE
-========================================================= */
 
 const STORAGE_KEY = "deutschAI_progress_v4";
 
 function getProgress(){
-
     try{
-
-        const data =
-            localStorage.getItem(STORAGE_KEY);
-
-        return data
-            ? JSON.parse(data)
-            : {};
-
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
     }catch(e){
-
         return {};
-
     }
-
 }
 
 function saveProgress(progress){
-
     try{
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(progress)
-        );
-
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }catch(e){}
-
 }
 
-function getWordState(themeId,index){
-
+function getWordState(themeId, index){
     const progress = getProgress();
-
-    if(!progress[themeId]){
-        progress[themeId] = {};
-    }
-
+    if(!progress[themeId]) progress[themeId] = {};
     if(!progress[themeId][index]){
-
-        progress[themeId][index] = {
-            mastered:false,
-            due:0,
-            reviews:0
-        };
-
+        progress[themeId][index] = { mastered: false, due: 0, reviews: 0 };
         saveProgress(progress);
     }
-
     return progress[themeId][index];
 }
 
-function setWordState(themeId,index,state){
-
+function setWordState(themeId, index, state){
     const progress = getProgress();
-
-    if(!progress[themeId]){
-        progress[themeId] = {};
-    }
-
+    if(!progress[themeId]) progress[themeId] = {};
     progress[themeId][index] = state;
-
     saveProgress(progress);
 }
 
-
-/* =========================================================
-   STATISTIQUES
-========================================================= */
-
 function getThemeStats(theme){
-
     let mastered = 0;
-
-    theme.words.forEach((w,i)=>{
-
-        if(
-            getWordState(theme.id,i).mastered
-        ){
-            mastered++;
-        }
-
+    theme.words.forEach((w, i) => {
+        if(getWordState(theme.id, i).mastered) mastered++;
     });
-
     return {
-
-        total:theme.words.length,
-
-        mastered:mastered,
-
-        percentage:
-        theme.words.length
-        ? Math.round(
-            mastered /
-            theme.words.length *
-            100
-        )
-        : 0
-
+        total: theme.words.length,
+        mastered,
+        percentage: theme.words.length ? Math.round(mastered / theme.words.length * 100) : 0
     };
-
 }
-
 
 function updateGlobalProgress(){
-
     let total = verbTheme.words.length;
     let mastered = 0;
-
-
-    /* Verbes intégrés */
-
-    verbTheme.words.forEach((w,i)=>{
-
-        if(
-            getWordState(
-                verbTheme.id,
-                i
-            ).mastered
-        ){
-            mastered++;
-        }
-
+    verbTheme.words.forEach((w, i) => {
+        if(getWordState(verbTheme.id, i).mastered) mastered++;
     });
 
-
-    /* Verbes A1-A2 */
-
-    if(
-        verbA1A2Theme &&
-        Array.isArray(verbA1A2Theme.words)
-    ){
-
-        total += verbA1A2Theme.words.length;
-
-        verbA1A2Theme.words.forEach((w,i)=>{
-
-            if(
-                getWordState(
-                    verbA1A2Theme.id,
-                    i
-                ).mastered
-            ){
-                mastered++;
-            }
-
-        });
-
-    }
-
-
-    /* Noms */
-
-    themes.forEach(t=>{
-
+    themes.forEach(t => {
         total += t.words.length;
-
-        t.words.forEach((w,i)=>{
-
-            if(
-                getWordState(
-                    t.id,
-                    i
-                ).mastered
-            ){
-                mastered++;
-            }
-
+        t.words.forEach((w, i) => {
+            if(getWordState(t.id, i).mastered) mastered++;
         });
-
     });
+    const percentage = total ? Math.round(mastered / total * 100) : 0;
 
+    const pBar = document.getElementById("globalProgress");
+    const pText = document.getElementById("globalProgressText");
+    const sText = document.getElementById("settingsProgress");
 
-    const percentage =
-        total
-        ? Math.round(
-            mastered /
-            total *
-            100
-        )
-        : 0;
-
-
-    const pBar =
-        document.getElementById(
-            "globalProgress"
-        );
-
-    const pText =
-        document.getElementById(
-            "globalProgressText"
-        );
-
-    const sText =
-        document.getElementById(
-            "settingsProgress"
-        );
-
-
-    if(pBar){
-        pBar.style.width =
-            percentage + "%";
-    }
-
-    if(pText){
-
-        pText.textContent =
-            `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} · ${percentage}%`;
-
-    }
-
-    if(sText){
-
-        sText.textContent =
-            `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
-
-    }
-
+    if(pBar) pBar.style.width = percentage + "%";
+    if(pText) pText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} · ${percentage}%`;
+    if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
 }
 
-
 /* =========================================================
-   NAVIGATION
+   NAVIGATION & CHARGEMENT DES DONNÉES
 ========================================================= */
 
 function showScreen(id){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(
-            s => s.classList.remove("active")
-        );
-
-    const target =
-        document.getElementById(id);
-
-    if(target){
-        target.classList.add("active");
-    }
-
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    const target = document.getElementById(id);
+    if(target) target.classList.add("active");
     window.scrollTo(0,0);
-
     updateGlobalProgress();
-
 }
 
-function goHome(){
-    showScreen("home");
-}
-
-function openVerben(){
-    showScreen("verben");
-}
-
-function openNomen(){
-
-    renderThemes();
-
-    showScreen("nomen");
-
-}
-
-function openSettings(){
-
-    updateGlobalProgress();
-
-    showScreen("settings");
-
-}
+function goHome(){ showScreen("home"); }
+function openVerben(){ showScreen("verben"); }
+function openNomen(){ renderThemes(); showScreen("nomen"); }
+function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
 
 function comingSoon(label){
-
-    alert(
-        `« ${label} » arrive bientôt !`
-    );
-
+    alert(`« ${label} » arrive bientôt !`);
 }
 
+function normalizeThemeData(raw, fallbackId, fallbackSvg){
+    const id = raw.id || raw.themeId || fallbackId || "theme";
+    const name = raw.name || raw.themeName || "Thème";
+    const svg = raw.svg || fallbackSvg || '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
 
-/* =========================================================
-   CHARGEMENT DES THÈMES NOMS
-========================================================= */
+    const rawWords = raw.words || [];
+    const words = rawWords.map(w => {
+        if(Array.isArray(w)) return w;
+        return [
+            w.word || w.name || "",
+            w.article || w.gender || "der",
+            w.plural || "—",
+            w.translation || w.fr || ""
+        ];
+    });
 
-function normalizeThemeData(
-    raw,
-    fallbackId,
-    fallbackSvg
-){
-
-    const id =
-        raw.id ||
-        raw.themeId ||
-        fallbackId ||
-        "theme";
-
-    const name =
-        raw.name ||
-        raw.themeName ||
-        "Thème";
-
-    const svg =
-        raw.svg ||
-        fallbackSvg ||
-        '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5z"/></svg>';
-
-    const rawWords =
-        raw.words || [];
-
-    const words =
-        rawWords.map(w=>{
-
-            if(Array.isArray(w)){
-                return w;
-            }
-
-            return [
-
-                w.word ||
-                w.name ||
-                "",
-
-                w.article ||
-                w.gender ||
-                "der",
-
-                w.plural ||
-                "—",
-
-                w.translation ||
-                w.fr ||
-                ""
-
-            ];
-
-        });
-
-    return {
-        id,
-        name,
-        svg,
-        words
-    };
-
+    return { id, name, svg, words };
 }
-
 
 function loadExternalTheme(config){
-
     return fetch(config.path)
-
-        .then(response=>{
-
-            if(!response.ok){
-
-                throw new Error(
-                    `Erreur de chargement de ${config.path} (${response.status})`
-                );
-
-            }
-
+        .then(response => {
+            if(!response.ok) throw new Error(`Erreur de chargement de ${config.path} (${response.status})`);
             return response.json();
-
         })
-
-        .then(raw=>{
-
-            if(
-                !raw ||
-                typeof raw !== "object"
-            ){
-
-                throw new Error(
-                    `${config.path} ne contient pas un objet de thème valide`
-                );
-
+        .then(raw => {
+            if(!raw || typeof raw !== "object"){
+                throw new Error(`${config.path} ne contient pas un objet de thème valide`);
             }
-
-            const themeData =
-                normalizeThemeData(
-                    raw,
-                    config.id,
-                    config.svg
-                );
-
-            const existingIndex =
-                themes.findIndex(
-                    t => t.id === themeData.id
-                );
-
+            const themeData = normalizeThemeData(raw, config.id, config.svg);
+            const existingIndex = themes.findIndex(t => t.id === themeData.id);
             if(existingIndex !== -1){
-
-                themes[existingIndex] =
-                    themeData;
-
+                themes[existingIndex] = themeData;
             }else{
-
-                themes.unshift(
-                    themeData
-                );
-
+                themes.unshift(themeData);
             }
-
         })
-
-        .catch(error=>{
-
-            console.warn(
-                `Impossible de charger ${config.path} :`,
-                error
-            );
-
+        .catch(error => {
+            console.warn(`Impossible de charger ${config.path} :`, error);
         });
-
 }
 
-
 function loadHausTheme(){
+    if(externalThemesLoaded) return Promise.resolve();
+    if(externalThemesLoading) return externalThemesLoading;
 
-    if(externalThemesLoaded){
-        return Promise.resolve();
-    }
-
-    if(externalThemesLoading){
-        return externalThemesLoading;
-    }
-
-    externalThemesLoading =
-        Promise.all(
-            externalThemes.map(
-                loadExternalTheme
-            )
-        )
-
-        .then(()=>{
-
+    externalThemesLoading = Promise.all(externalThemes.map(loadExternalTheme))
+        .then(() => {
             externalThemesLoaded = true;
-
         })
-
-        .finally(()=>{
-
-            if(!externalThemesLoaded){
-
-                externalThemesLoading =
-                    null;
-
-            }
-
+        .finally(() => {
+            if(!externalThemesLoaded) externalThemesLoading = null;
         });
 
     return externalThemesLoading;
-
 }
-
 
 async function renderThemes(){
-
     await loadHausTheme();
 
-    const container =
-        document.getElementById(
-            "themeList"
-        );
-
-    if(!container){
-        return;
-    }
-
+    const container = document.getElementById("themeList");
+    if(!container) return;
     container.innerHTML = "";
 
-    themes.forEach(theme=>{
+    themes.forEach(theme => {
+        const themeName = theme && theme.name ? theme.name : "Thème inconnu";
+        const stats = getThemeStats(theme);
 
-        const themeName =
-            theme && theme.name
-            ? theme.name
-            : "Thème inconnu";
-
-        const stats =
-            getThemeStats(theme);
-
-        const item =
-            document.createElement("div");
-
-        item.className =
-            "theme-item";
-
+        const item = document.createElement("div");
+        item.className = "theme-item";
         item.innerHTML = `
-
             <div class="theme-header">
-
                 <div class="theme-left">
-
-                    <div class="theme-icon">
-                        ${theme.svg || ''}
-                    </div>
-
-                    <div class="theme-name">
-                        ${themeName}
-                    </div>
-
+                    <div class="theme-icon">${theme.svg || ''}</div>
+                    <div class="theme-name">${themeName}</div>
                 </div>
-
-                <div class="theme-count">
-                    ${stats.mastered}/${stats.total}
-                </div>
-
+                <div class="theme-count">${stats.mastered}/${stats.total}</div>
             </div>
-
             <div class="theme-progress">
-
                 <div class="theme-progress-bar">
-
-                    <div
-                        class="theme-progress-fill"
-                        style="width:${stats.percentage}%">
-                    </div>
-
+                    <div class="theme-progress-fill" style="width:${stats.percentage}%"></div>
                 </div>
-
-                <div class="theme-percent">
-                    ${stats.percentage}% maîtrisé
-                </div>
-
+                <div class="theme-percent">${stats.percentage}% maîtrisé</div>
             </div>
-
         `;
-
-        item.onclick =
-            () => startTheme(theme.id);
-
+        item.onclick = () => startTheme(theme.id);
         container.appendChild(item);
-
     });
-
 }
-
 
 /* =========================================================
-   NOUVEAU : CHARGEMENT DE verba1a2.json
-========================================================= */
-
-function loadExternalVerbTheme(config){
-
-    return fetch(config.path)
-
-        .then(response=>{
-
-            if(!response.ok){
-
-                throw new Error(
-                    `Erreur de chargement de ${config.path} (${response.status})`
-                );
-
-            }
-
-            return response.json();
-
-        })
-
-        .then(raw=>{
-
-            if(
-                !raw ||
-                typeof raw !== "object"
-            ){
-
-                throw new Error(
-                    `${config.path} ne contient pas un objet JSON valide`
-                );
-
-            }
-
-
-            /*
-             * Compatibilité avec plusieurs formats :
-             *
-             * {
-             *   "id": "verba1a2",
-             *   "name": "Verbes A1-A2",
-             *   "words": [...]
-             * }
-             *
-             * ou :
-             *
-             * {
-             *   "verbs": [...]
-             * }
-             *
-             * ou :
-             *
-             * {
-             *   "verben": [...]
-             * }
-             */
-
-            const words =
-                raw.words ||
-                raw.verbs ||
-                raw.verben ||
-                [];
-
-
-            if(!Array.isArray(words)){
-
-                throw new Error(
-                    `${config.path} : le tableau des verbes est invalide`
-                );
-
-            }
-
-
-            verbA1A2Theme = {
-
-                id:
-                    raw.id ||
-                    config.id,
-
-                name:
-                    raw.name ||
-                    raw.themeName ||
-                    config.name,
-
-                svg:
-                    raw.svg ||
-                    config.svg,
-
-                words:words
-
-            };
-
-
-            externalVerbThemesLoaded =
-                true;
-
-        })
-
-        .catch(error=>{
-
-            console.error(
-                "Erreur chargement Verbes A1-A2 :",
-                error
-            );
-
-            alert(
-                "Impossible de charger verba1a2.json.\n\n" +
-                "Vérifie que le fichier est bien placé au même niveau que index.html."
-            );
-
-        });
-
-}
-
-
-function loadA1A2VerbTheme(){
-
-    if(externalVerbThemesLoaded){
-
-        return Promise.resolve();
-
-    }
-
-    if(externalVerbThemesLoading){
-
-        return externalVerbThemesLoading;
-
-    }
-
-    externalVerbThemesLoading =
-        loadExternalVerbTheme(
-            externalVerbThemes[0]
-        )
-
-        .finally(()=>{
-
-            if(!externalVerbThemesLoaded){
-
-                externalVerbThemesLoading =
-                    null;
-
-            }
-
-        });
-
-    return externalVerbThemesLoading;
-
-}
-
-
-/* =========================================================
-   FLASHCARDS VERBES EXISTANTES
+   FLASHCARDS & SYNTHÈSE VOCALE
 ========================================================= */
 
 function startVerbFlashcards(){
-
     flashcardMode = 'verben';
-
     currentTheme = verbTheme;
 
     const now = Date.now();
-
-
-    currentCards =
-        currentTheme.words
-
-        .map(
-            (word,index)=>({
-                word,
-                index
-            })
-        )
-
-        .filter(item=>{
-
-            const state =
-                getWordState(
-                    currentTheme.id,
-                    item.index
-                );
-
-            return !state.mastered &&
-                (
-                    !state.due ||
-                    state.due <= now
-                );
-
+    currentCards = currentTheme.words
+        .map((word, index) => ({ word, index }))
+        .filter(item => {
+            const state = getWordState(currentTheme.id, item.index);
+            return !state.mastered && (!state.due || state.due <= now);
         });
 
-
     if(currentCards.length === 0){
-
-        currentCards =
-            currentTheme.words
-
-            .map(
-                (word,index)=>({
-                    word,
-                    index
-                })
-            )
-
-            .filter(item=>
-                !getWordState(
-                    currentTheme.id,
-                    item.index
-                ).mastered
-            );
-
+        currentCards = currentTheme.words
+            .map((word, index) => ({ word, index }))
+            .filter(item => !getWordState(currentTheme.id, item.index).mastered);
     }
 
-
     if(currentCards.length === 0){
-
-        currentCards =
-            currentTheme.words.map(
-                (word,index)=>({
-                    word,
-                    index
-                })
-            );
-
+        currentCards = currentTheme.words.map((word, index) => ({ word, index }));
     }
-
 
     currentFlashcard = 0;
-
-    document.getElementById(
-        "flashKicker"
-    ).textContent =
-        "Verbes · Flashcards";
-
-    document.getElementById(
-        "flashThemeTitle"
-    ).textContent =
-        currentTheme.name;
-
+    document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
     showScreen("flashcards");
-
     loadFlashcard();
-
 }
-
-
-/* =========================================================
-   NOUVEAU : VERBES A1-A2
-========================================================= */
-
-async function startA1A2VerbFlashcards(){
-
-    await loadA1A2VerbTheme();
-
-
-    if(
-        !verbA1A2Theme ||
-        !verbA1A2Theme.words ||
-        !verbA1A2Theme.words.length
-    ){
-
-        alert(
-            "Aucun verbe A1-A2 n'a été trouvé dans verba1a2.json."
-        );
-
-        return;
-
-    }
-
-
-    flashcardMode = 'verben';
-
-    currentTheme =
-        verbA1A2Theme;
-
-
-    const now = Date.now();
-
-
-    /*
-     * Priorité aux cartes qui doivent être
-     * révisées maintenant.
-     */
-
-    currentCards =
-        currentTheme.words
-
-        .map(
-            (word,index)=>({
-                word,
-                index
-            })
-        )
-
-        .filter(item=>{
-
-            const state =
-                getWordState(
-                    currentTheme.id,
-                    item.index
-                );
-
-            return !state.mastered &&
-                (
-                    !state.due ||
-                    state.due <= now
-                );
-
-        });
-
-
-    /*
-     * S'il n'y a aucune carte due,
-     * afficher les cartes non maîtrisées.
-     */
-
-    if(currentCards.length === 0){
-
-        currentCards =
-            currentTheme.words
-
-            .map(
-                (word,index)=>({
-                    word,
-                    index
-                })
-            )
-
-            .filter(item=>
-                !getWordState(
-                    currentTheme.id,
-                    item.index
-                ).mastered
-            );
-
-    }
-
-
-    /*
-     * Si tout est maîtrisé,
-     * afficher la série complète.
-     */
-
-    if(currentCards.length === 0){
-
-        currentCards =
-            currentTheme.words
-
-            .map(
-                (word,index)=>({
-                    word,
-                    index
-                })
-            );
-
-        alert(
-            "Tous les verbes A1-A2 sont maîtrisés ! " +
-            "La série complète va être révisée."
-        );
-
-    }
-
-
-    currentFlashcard = 0;
-
-
-    document.getElementById(
-        "flashKicker"
-    ).textContent =
-        "Verbes · A1–A2";
-
-
-    document.getElementById(
-        "flashThemeTitle"
-    ).textContent =
-        currentTheme.name;
-
-
-    showScreen("flashcards");
-
-    loadFlashcard();
-
-}
-
-
-/* =========================================================
-   FLASHCARDS NOMS
-========================================================= */
 
 async function startTheme(themeId){
-
     await loadHausTheme();
 
     flashcardMode = 'nomen';
-
-    currentTheme =
-        themes.find(
-            t => t.id === themeId
-        );
-
-    if(!currentTheme){
-        return;
-    }
-
+    currentTheme = themes.find(t => t.id === themeId);
+    if(!currentTheme) return;
 
     const now = Date.now();
-
-
-    currentCards =
-        currentTheme.words
-
-        .map(
-            (word,index)=>({
-                word,
-                index
-            })
-        )
-
-        .filter(item=>{
-
-            const state =
-                getWordState(
-                    currentTheme.id,
-                    item.index
-                );
-
-            return !state.mastered &&
-                (
-                    !state.due ||
-                    state.due <= now
-                );
-
+    currentCards = currentTheme.words
+        .map((word, index) => ({ word, index }))
+        .filter(item => {
+            const state = getWordState(currentTheme.id, item.index);
+            return !state.mastered && (!state.due || state.due <= now);
         });
 
-
     if(currentCards.length === 0){
-
-        currentCards =
-            currentTheme.words
-
-            .map(
-                (word,index)=>({
-                    word,
-                    index
-                })
-            )
-
-            .filter(item=>
-                !getWordState(
-                    currentTheme.id,
-                    item.index
-                ).mastered
-            );
-
+        currentCards = currentTheme.words
+            .map((word, index) => ({ word, index }))
+            .filter(item => !getWordState(currentTheme.id, item.index).mastered);
     }
 
-
     if(currentCards.length === 0){
-
-        alert(
-            "Tous les mots de ce thème sont actuellement maîtrisés !"
-        );
-
+        alert("Tous les mots de ce thème sont actuellement maîtrisés !");
         return;
-
     }
-
 
     currentFlashcard = 0;
-
-    document.getElementById(
-        "flashKicker"
-    ).textContent =
-        "Noms · Flashcards";
-
-    document.getElementById(
-        "flashThemeTitle"
-    ).textContent =
-        currentTheme.name;
-
+    document.getElementById("flashKicker").textContent = "Noms · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
     showScreen("flashcards");
-
     loadFlashcard();
-
 }
-
-
-/* =========================================================
-   RETOUR FLASHCARDS
-========================================================= */
 
 function handleFlashcardBack(){
-
-    if(
-        flashcardMode === 'verben'
-    ){
-
+    if(flashcardMode === 'verben'){
         openVerben();
-
-    }else{
-
+    } else {
         openNomen();
-
     }
-
 }
-
-
-/* =========================================================
-   CHARGEMENT D'UNE CARTE
-========================================================= */
 
 function loadFlashcard(){
+    const item = currentCards[currentFlashcard];
+    if(!item){ handleFlashcardBack(); return; }
 
-    const item =
-        currentCards[currentFlashcard];
+    const card = item.word;
+    document.getElementById("flashcard").classList.remove("flipped");
+    document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
 
-    if(!item){
+    const verbDetailsEl = document.getElementById("flashVerbDetails");
+    const articleEl = document.getElementById("flashArticle");
+    const pluralEl = document.getElementById("flashPlural");
 
-        handleFlashcardBack();
+    if(flashcardMode === 'verben'){
+        document.getElementById("flashWord").textContent = card[0];
+        document.getElementById("flashBackWord").textContent = card[0];
+        document.getElementById("flashTranslation").textContent = card[1];
+        
+        verbDetailsEl.textContent = card[2];
+        verbDetailsEl.classList.remove("hidden");
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+    } else {
+        document.getElementById("flashWord").textContent = card[0];
+        document.getElementById("flashBackWord").textContent = card[0];
+        document.getElementById("flashTranslation").textContent = card[3];
 
-        return;
+        articleEl.textContent = card[1];
+        articleEl.className = `article ${card[1]}`;
+        articleEl.classList.remove("hidden");
 
+        pluralEl.textContent = `Pluriel : ${card[2]}`;
+        pluralEl.classList.remove("hidden");
+
+        verbDetailsEl.classList.add("hidden");
     }
-
-
-    const card =
-        item.word;
-
-
-    document
-        .getElementById("flashcard")
-        .classList
-        .remove("flipped");
-
-
-    document.getElementById(
-        "flashCounter"
-    ).textContent =
-        `${currentFlashcard + 1} / ${currentCards.length}`;
-
-
-    const verbDetailsEl =
-        document.getElementById(
-            "flashVerbDetails"
-        );
-
-    const articleEl =
-        document.getElementById(
-            "flashArticle"
-        );
-
-    const pluralEl =
-        document.getElementById(
-            "flashPlural"
-        );
-
-
-    if(
-        flashcardMode === 'verben'
-    ){
-
-        document.getElementById(
-            "flashWord"
-        ).textContent =
-            card[0];
-
-        document.getElementById(
-            "flashBackWord"
-        ).textContent =
-            card[0];
-
-        document.getElementById(
-            "flashTranslation"
-        ).textContent =
-            card[1];
-
-
-        verbDetailsEl.textContent =
-            card[2] || "";
-
-        verbDetailsEl
-            .classList
-            .remove("hidden");
-
-
-        articleEl
-            .classList
-            .add("hidden");
-
-        pluralEl
-            .classList
-            .add("hidden");
-
-
-    }else{
-
-        document.getElementById(
-            "flashWord"
-        ).textContent =
-            card[0];
-
-        document.getElementById(
-            "flashBackWord"
-        ).textContent =
-            card[0];
-
-        document.getElementById(
-            "flashTranslation"
-        ).textContent =
-            card[3];
-
-
-        articleEl.textContent =
-            card[1];
-
-        articleEl.className =
-            `article ${card[1]}`;
-
-        articleEl
-            .classList
-            .remove("hidden");
-
-
-        pluralEl.textContent =
-            `Pluriel : ${card[2]}`;
-
-        pluralEl
-            .classList
-            .remove("hidden");
-
-
-        verbDetailsEl
-            .classList
-            .add("hidden");
-
-    }
-
 }
-
-
-/* =========================================================
-   FLIP
-========================================================= */
 
 function flipCard(){
-
-    document
-        .getElementById("flashcard")
-        .classList
-        .toggle("flipped");
-
+    document.getElementById("flashcard").classList.toggle("flipped");
 }
-
-
-/* =========================================================
-   AUDIO
-========================================================= */
 
 function speakWord(){
-
-    if(!currentCards.length){
+    if(!currentCards.length) return;
+    if(!('speechSynthesis' in window)){
+        alert("La synthèse vocale n'est pas supportée par votre navigateur.");
         return;
     }
-
-
-    if(!("speechSynthesis" in window)){
-
-        alert(
-            "La synthèse vocale n'est pas supportée par votre navigateur."
-        );
-
-        return;
-
-    }
-
-
-    const item =
-        currentCards[currentFlashcard];
-
-    const card =
-        item.word;
-
-
-    const textToSpeak =
-        flashcardMode === 'verben'
-        ? card[0]
-        : `${card[1]} ${card[0]}`;
-
+    const item = currentCards[currentFlashcard];
+    const card = item.word;
+    const textToSpeak = flashcardMode === 'verben' ? card[0] : `${card[1]} ${card[0]}`;
 
     window.speechSynthesis.cancel();
-
-
-    const utterance =
-        new SpeechSynthesisUtterance(
-            textToSpeak
-        );
-
-    utterance.lang =
-        "de-DE";
-
-    utterance.rate =
-        0.9;
-
-
-    window.speechSynthesis.speak(
-        utterance
-    );
-
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
 }
-
-
-/* =========================================================
-   RÉVISION ESPACÉE
-========================================================= */
 
 function scheduleReview(minutes){
-
-    if(
-        !currentTheme ||
-        !currentCards.length
-    ){
-        return;
-    }
-
-
-    const item =
-        currentCards[currentFlashcard];
-
-
-    const state =
-        getWordState(
-            currentTheme.id,
-            item.index
-        );
-
-
+    if(!currentTheme || !currentCards.length) return;
+    const item = currentCards[currentFlashcard];
+    const state = getWordState(currentTheme.id, item.index);
     state.mastered = false;
-
-    state.due =
-        Date.now() +
-        minutes * 60 * 1000;
-
-    state.reviews =
-        (state.reviews || 0) + 1;
-
-
-    setWordState(
-        currentTheme.id,
-        item.index,
-        state
-    );
-
-
+    state.due = Date.now() + (minutes * 60 * 1000);
+    state.reviews = (state.reviews || 0) + 1;
+    setWordState(currentTheme.id, item.index, state);
     nextFlashcard();
-
 }
-
 
 function markMastered(){
-
-    if(
-        !currentTheme ||
-        !currentCards.length
-    ){
-        return;
-    }
-
-
-    const item =
-        currentCards[currentFlashcard];
-
-
-    const state =
-        getWordState(
-            currentTheme.id,
-            item.index
-        );
-
-
+    if(!currentTheme || !currentCards.length) return;
+    const item = currentCards[currentFlashcard];
+    const state = getWordState(currentTheme.id, item.index);
     state.mastered = true;
-
     state.due = 0;
-
-    state.reviews =
-        (state.reviews || 0) + 1;
-
-
-    setWordState(
-        currentTheme.id,
-        item.index,
-        state
-    );
-
-
+    state.reviews = (state.reviews || 0) + 1;
+    setWordState(currentTheme.id, item.index, state);
     nextFlashcard();
-
 }
-
-
-/* =========================================================
-   CARTE SUIVANTE
-========================================================= */
 
 function nextFlashcard(){
-
     currentFlashcard++;
-
-
-    if(
-        currentFlashcard >=
-        currentCards.length
-    ){
-
-        alert(
-            "Session terminée ! Ta progression a été enregistrée."
-        );
-
+    if(currentFlashcard >= currentCards.length){
+        alert("Session terminée ! Ta progression a été enregistrée.");
         handleFlashcardBack();
-
         return;
-
     }
-
-
     loadFlashcard();
-
 }
-
-
-/* =========================================================
-   RÉESSAYER
-========================================================= */
 
 function retryUnmastered(){
-
-    if(!currentTheme){
-        return;
-    }
-
-
-    currentCards =
-        currentTheme.words
-
-        .map(
-            (word,index)=>({
-                word,
-                index
-            })
-        )
-
-        .filter(item=>
-            !getWordState(
-                currentTheme.id,
-                item.index
-            ).mastered
-        );
-
+    if(!currentTheme) return;
+    currentCards = currentTheme.words
+        .map((word, index) => ({ word, index }))
+        .filter(item => !getWordState(currentTheme.id, item.index).mastered);
 
     if(currentCards.length === 0){
-
-        alert(
-            "Tous les éléments de cette série sont maîtrisés !"
-        );
-
+        alert("Tous les éléments de cette série sont maîtrisés !");
         return;
-
     }
-
-
     currentFlashcard = 0;
-
     loadFlashcard();
-
 }
 
-
 /* =========================================================
-   RESET
+   RÉINITIALISATION
 ========================================================= */
 
 function resetCurrentThemeConfirm(){
-
-    if(!currentTheme){
-
-        alert(
-            "Ouvre d'abord un thème ou une série."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        !confirm(
-            `Réinitialiser la progression de « ${currentTheme.name} » ?`
-        )
-    ){
-        return;
-    }
-
-
-    const progress =
-        getProgress();
-
-
-    delete progress[
-        currentTheme.id
-    ];
-
-
+    if(!currentTheme){ alert("Ouvre d'abord un thème ou une série."); return; }
+    if(!confirm(`Réinitialiser la progression de « ${currentTheme.name} » ?`)) return;
+    const progress = getProgress();
+    delete progress[currentTheme.id];
     saveProgress(progress);
-
-
     renderThemes();
-
     updateGlobalProgress();
-
-
-    alert(
-        "La série a été réinitialisée."
-    );
-
+    alert("La série a été réinitialisée.");
 }
-
 
 function resetAllConfirm(){
-
-    if(
-        !confirm(
-            "ATTENTION : toute ta progression sera supprimée. Continuer ?"
-        )
-    ){
-        return;
-    }
-
-
-    localStorage.removeItem(
-        STORAGE_KEY
-    );
-
-
+    if(!confirm("ATTENTION : toute ta progression sera supprimée. Continuer ?")) return;
+    localStorage.removeItem(STORAGE_KEY);
     updateGlobalProgress();
-
     renderThemes();
-
-
-    alert(
-        "Toute la progression a été réinitialisée."
-    );
-
+    alert("Toute la progression a été réinitialisée.");
 }
 
-
 /* =========================================================
-   EXERCICES
+   EXERCICES ET RÉSULTATS
 ========================================================= */
 
 function normalizeAnswer(value){
-
     return value
-
         .trim()
-
         .toLowerCase()
-
-        .replace(
-            /ae/g,
-            "ä"
-        )
-
-        .replace(
-            /oe/g,
-            "ö"
-        )
-
-        .replace(
-            /ue/g,
-            "ü"
-        )
-
-        .replace(
-            /ss/g,
-            "ß"
-        );
-
+        .replace(/ae/g, "ä")
+        .replace(/oe/g, "ö")
+        .replace(/ue/g, "ü")
+        .replace(/ss/g, "ß");
 }
-
 
 function startExercises(){
-
     currentExercise = 0;
-
     scoreValue = 0;
-
     exerciseResults = [];
-
     showScreen("exercise");
-
     loadExercise();
-
 }
-
 
 function loadExercise(){
-
-    const ex =
-        exercises[currentExercise];
-
-    if(!ex){
-        return;
-    }
-
-
+    const ex = exercises[currentExercise];
+    if(!ex) return;
     answered = false;
 
+    document.getElementById("exerciseTitle").textContent = `Exercice ${currentExercise + 1}`;
+    document.getElementById("counter").textContent = `${currentExercise + 1} / ${exercises.length}`;
+    document.getElementById("question").textContent = ex.question;
+    document.getElementById("questionTranslation").textContent = `Traduction : ${ex.translation}`;
+    document.getElementById("hint").textContent = ex.hint;
 
-    document.getElementById(
-        "exerciseTitle"
-    ).textContent =
-        `Exercice ${currentExercise + 1}`;
-
-
-    document.getElementById(
-        "counter"
-    ).textContent =
-        `${currentExercise + 1} / ${exercises.length}`;
-
-
-    document.getElementById(
-        "question"
-    ).textContent =
-        ex.question;
-
-
-    document.getElementById(
-        "questionTranslation"
-    ).textContent =
-        `Traduction : ${ex.translation}`;
-
-
-    document.getElementById(
-        "hint"
-    ).textContent =
-        ex.hint;
-
-
-    const input =
-        document.getElementById(
-            "answer"
-        );
-
-
+    const input = document.getElementById("answer");
     input.value = "";
-
     input.disabled = false;
 
+    document.getElementById("checkButton").classList.remove("hidden");
+    document.getElementById("nextButton").classList.add("hidden");
 
-    document.getElementById(
-        "checkButton"
-    ).classList.remove(
-        "hidden"
-    );
+    const feedback = document.getElementById("feedback");
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
 
-
-    document.getElementById(
-        "nextButton"
-    ).classList.add(
-        "hidden"
-    );
-
-
-    const feedback =
-        document.getElementById(
-            "feedback"
-        );
-
-
-    feedback.className =
-        "feedback";
-
-    feedback.innerHTML =
-        "";
-
-
-    setTimeout(
-        ()=>input.focus(),
-        50
-    );
-
+    setTimeout(() => input.focus(), 50);
 }
-
 
 function checkAnswer(){
+    if(answered) return;
+    const input = document.getElementById("answer");
+    const rawVal = input.value.trim();
+    if(!rawVal){ input.focus(); return; }
 
-    if(answered){
-        return;
-    }
-
-
-    const input =
-        document.getElementById(
-            "answer"
-        );
-
-
-    const rawVal =
-        input.value.trim();
-
-
-    if(!rawVal){
-
-        input.focus();
-
-        return;
-
-    }
-
-
-    const ex =
-        exercises[currentExercise];
-
-
+    const ex = exercises[currentExercise];
     answered = true;
 
-
-    const val =
-        rawVal.toLowerCase();
-
-
-    const normalizedVal =
-        normalizeAnswer(
-            rawVal
-        );
-
-
-    const isCorrect =
-        ex.answers.some(a=>{
-
-            const answerLower =
-                a.toLowerCase();
-
-            return (
-                answerLower === val ||
-                answerLower === normalizedVal
-            );
-
-        });
-
-
-    exerciseResults.push({
-        topic:ex.topic,
-        correct:isCorrect
+    const val = rawVal.toLowerCase();
+    const normalizedVal = normalizeAnswer(rawVal);
+    const isCorrect = ex.answers.some(a => {
+        const answerLower = a.toLowerCase();
+        return answerLower === val || answerLower === normalizedVal;
     });
 
+    exerciseResults.push({ topic: ex.topic, correct: isCorrect });
 
-    const feedback =
-        document.getElementById(
-            "feedback"
-        );
-
+    const feedback = document.getElementById("feedback");
 
     if(isCorrect){
-
         scoreValue++;
-
-
-        feedback.className =
-            "feedback show correct";
-
-
-        feedback.innerHTML =
-            `<div class="feedback-title">✓ Correct !</div>
-             <div class="explanation">
-                ${ex.explanation}
-                <br><br>
-                <strong>Traduction :</strong>
-                ${ex.translation}
-             </div>`;
-
+        feedback.className = "feedback show correct";
+        feedback.innerHTML = `<div class="feedback-title">✓ Correct !</div><div class="explanation">${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
     }else{
-
-        feedback.className =
-            "feedback show wrong";
-
-
-        feedback.innerHTML =
-            `<div class="feedback-title">✗ Pas tout à fait</div>
-             <div class="explanation">
-                <strong>Bonne réponse :</strong>
-                ${ex.correct}
-                <br><br>
-                ${ex.explanation}
-                <br><br>
-                <strong>Traduction :</strong>
-                ${ex.translation}
-             </div>`;
-
+        feedback.className = "feedback show wrong";
+        feedback.innerHTML = `<div class="feedback-title">✗ Pas tout à fait</div><div class="explanation"><strong>Bonne réponse :</strong> ${ex.correct}<br><br>${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
     }
-
 
     input.disabled = true;
-
-
-    document.getElementById(
-        "checkButton"
-    ).classList.add(
-        "hidden"
-    );
-
-
-    document.getElementById(
-        "nextButton"
-    ).classList.remove(
-        "hidden"
-    );
-
+    document.getElementById("checkButton").classList.add("hidden");
+    document.getElementById("nextButton").classList.remove("hidden");
 }
-
 
 function nextExercise(){
-
     currentExercise++;
-
-
-    if(
-        currentExercise >=
-        exercises.length
-    ){
-
-        showResults();
-
-        return;
-
-    }
-
-
+    if(currentExercise >= exercises.length){ showResults(); return; }
     loadExercise();
-
 }
 
-
-/* =========================================================
-   RÉSULTATS
-========================================================= */
-
 function showResults(){
-
-    const percentage =
-        Math.round(
-            scoreValue /
-            exercises.length *
-            100
-        );
-
-
-    document.getElementById(
-        "score"
-    ).textContent =
-        percentage + "%";
-
-
-    document.getElementById(
-        "scoreText"
-    ).textContent =
-        `${scoreValue} exercice${scoreValue !== 1 ? 's' : ''} sur ${exercises.length} réussi${scoreValue !== 1 ? 's' : ''}.`;
-
-
-    document.getElementById(
-        "resultTitle"
-    ).textContent =
-        percentage >= 60
-        ? "Très bien !"
-        : "Continue comme ça !";
-
+    const percentage = Math.round(scoreValue / exercises.length * 100);
+    document.getElementById("score").textContent = percentage + "%";
+    document.getElementById("scoreText").textContent = `${scoreValue} exercice${scoreValue !== 1 ? 's' : ''} sur ${exercises.length} réussi${scoreValue !== 1 ? 's' : ''}.`;
+    document.getElementById("resultTitle").textContent = percentage >= 60 ? "Très bien !" : "Continue comme ça !";
 
     const byTopic = {};
-
-
-    exerciseResults.forEach(r=>{
-
-        if(!byTopic[r.topic]){
-
-            byTopic[r.topic] = {
-                correct:0,
-                total:0
-            };
-
-        }
-
-
+    exerciseResults.forEach(r => {
+        if(!byTopic[r.topic]) byTopic[r.topic] = { correct: 0, total: 0 };
         byTopic[r.topic].total++;
-
-
-        if(r.correct){
-
-            byTopic[
-                r.topic
-            ].correct++;
-
-        }
-
+        if(r.correct) byTopic[r.topic].correct++;
     });
 
-
-    const statsList =
-        document.getElementById(
-            "statsList"
-        );
-
-
+    const statsList = document.getElementById("statsList");
     statsList.innerHTML = "";
+    Object.keys(byTopic).forEach(topic => {
+        const stat = byTopic[topic];
+        const allCorrect = stat.correct === stat.total;
+        const row = document.createElement("div");
+        row.className = "stat";
+        row.innerHTML = `<span>${topic}</span><strong>${allCorrect ? "✓" : `${stat.correct}/${stat.total}`}</strong>`;
+        statsList.appendChild(row);
+    });
 
-
-    Object.keys(byTopic)
-        .forEach(topic=>{
-
-            const stat =
-                byTopic[topic];
-
-
-            const allCorrect =
-                stat.correct ===
-                stat.total;
-
-
-            const row =
-                document.createElement(
-                    "div"
-                );
-
-
-            row.className =
-                "stat";
-
-
-            row.innerHTML =
-                `<span>${topic}</span>
-                 <strong>
-                    ${
-                        allCorrect
-                        ? "✓"
-                        : `${stat.correct}/${stat.total}`
-                    }
-                 </strong>`;
-
-
-            statsList.appendChild(
-                row
-            );
-
-        });
-
-
-    const missedTopics =
-        Object.keys(byTopic)
-        .filter(
-            t =>
-                byTopic[t].correct <
-                byTopic[t].total
-        );
-
-
-    document.getElementById(
-        "revisionText"
-    ).textContent =
-        missedTopics.length
+    const missedTopics = Object.keys(byTopic).filter(t => byTopic[t].correct < byTopic[t].total);
+    document.getElementById("revisionText").textContent = missedTopics.length
         ? `À revoir : ${missedTopics.join(", ")}.`
         : "Excellent. Aucune révision immédiate nécessaire.";
 
-
     showScreen("result");
-
 }
 
-
-/* =========================================================
-   ENTER DANS LES EXERCICES
-========================================================= */
-
-document
-    .getElementById("answer")
-    .addEventListener(
-        "keydown",
-        e=>{
-
-            if(e.key !== "Enter"){
-                return;
-            }
-
-            if(!answered){
-                checkAnswer();
-            }else{
-                nextExercise();
-            }
-
-        }
-    );
-
+document.getElementById("answer").addEventListener("keydown", e => {
+    if(e.key !== "Enter") return;
+    if(!answered) checkAnswer();
+    else nextExercise();
+});
 
 /* =========================================================
    INITIALISATION
 ========================================================= */
 
-(async()=>{
-
-    /*
-     * Chargement des thèmes Noms.
-     */
-
+(async () => {
     await loadHausTheme();
-
-
-    /*
-     * Chargement de verba1a2.json
-     * dès le démarrage.
-     *
-     * Cela permet également d'intégrer
-     * les verbes A1-A2 à la progression globale.
-     */
-
-    await loadA1A2VerbTheme();
-
-
     renderThemes();
-
     updateGlobalProgress();
-
 })();
 </script>
 
