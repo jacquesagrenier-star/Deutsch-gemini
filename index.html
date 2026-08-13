@@ -990,25 +990,47 @@ function openAuth() {
     showScreen("auth");
 }
 
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function getFriendlyAuthError(error) {
+    const messages = {
+        "auth/invalid-email": "L'adresse e-mail n'est pas valide.",
+        "auth/missing-password": "Merci d'indiquer un mot de passe.",
+        "auth/weak-password": "Le mot de passe doit contenir au moins 6 caractères.",
+        "auth/email-already-in-use": "Un compte existe déjà avec cet e-mail.",
+        "auth/user-not-found": "Aucun compte ne correspond à cet e-mail.",
+        "auth/wrong-password": "Mot de passe incorrect.",
+        "auth/invalid-credential": "E-mail ou mot de passe incorrect.",
+        "auth/too-many-requests": "Trop de tentatives. Réessaie plus tard."
+    };
+    return messages[error.code] || "Une erreur est survenue. Réessaie.";
+}
+
 async function handleEmailLogin() {
-    const email = document.getElementById("authEmail").value;
+    const email = document.getElementById("authEmail").value.trim();
     const password = document.getElementById("authPassword").value;
+    if (!isValidEmail(email)) { alert("Merci d'entrer une adresse e-mail valide."); return; }
+    if (!password) { alert("Merci d'entrer un mot de passe."); return; }
     try {
         await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
         goHome();
     } catch (error) {
-        alert("Erreur de connexion : " + error.message);
+        alert("Erreur de connexion : " + getFriendlyAuthError(error));
     }
 }
 
 async function handleEmailSignup() {
-    const email = document.getElementById("authEmail").value;
+    const email = document.getElementById("authEmail").value.trim();
     const password = document.getElementById("authPassword").value;
+    if (!isValidEmail(email)) { alert("Merci d'entrer une adresse e-mail valide."); return; }
+    if (password.length < 6) { alert("Le mot de passe doit contenir au moins 6 caractères."); return; }
     try {
         await window.createUserWithEmailAndPassword(window.firebaseAuth, email, password);
         goHome();
     } catch (error) {
-        alert("Erreur d'inscription : " + error.message);
+        alert("Erreur d'inscription : " + getFriendlyAuthError(error));
     }
 }
 
@@ -1533,6 +1555,12 @@ document.getElementById("answer").addEventListener("keydown", e => {
     if(e.key !== "Enter") return;
     if(!answered) checkAnswer();
     else nextExercise();
+});
+
+["authEmail","authPassword"].forEach(id => {
+    document.getElementById(id).addEventListener("keydown", e => {
+        if (e.key === "Enter") handleEmailLogin();
+    });
 });
 
 (async () => {
