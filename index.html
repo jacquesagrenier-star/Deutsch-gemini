@@ -1295,7 +1295,7 @@ async function loadThemesJson() {
     if (themesLoaded) return Promise.resolve();
     if (themesLoading) return themesLoading;
 
-    themesLoading = fetch('themes.json')
+    themesLoading = fetch('data/themes.json')
         .then(response => {
             if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
             return response.json();
