@@ -419,6 +419,45 @@ button{font-family:inherit}
     font-size:11px;
 }
 
+.level-pills{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:14px;
+}
+
+.level-pill{
+    padding:10px 6px;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.level-pill:hover{
+    background:rgba(255,255,255,.10);
+    transform:translateY(-2px);
+}
+
+.level-pill.done{
+    border-color:rgba(80,220,170,.35);
+    background:rgba(80,220,170,.08);
+}
+
+.level-pill-label{
+    font-weight:800;
+    font-size:12px;
+    color:#e8f2ff;
+}
+
+.level-pill-stat{
+    margin-top:3px;
+    font-size:10px;
+    color:#8290a5;
+}
+
 /* FLASHCARDS */
 
 .flashcard-wrapper{
@@ -618,6 +657,7 @@ button{font-family:inherit}
     .subcategories{grid-template-columns:1fr}
     .flashcard,.flashcard-face{min-height:360px}
     .flashcard-front .word{font-size:42px}
+    .level-pills{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -1182,15 +1222,25 @@ function setWordState(themeId, index, state){
     saveProgress(progress);
 }
 
-function getThemeStats(theme){
-    let mastered = 0;
-    theme.words.forEach((w, i) => {
-        if(getWordState(theme.id, i).mastered) mastered++;
+const LEVELS = ["A1", "A2", "B1", "B2"];
+
+// theme = objet groupé { id, name, svg, levels: { A1:{id,words}, A2:{...}, ... } }
+// level = "A1"/"A2"/"B1"/"B2" pour un seul niveau, ou omis/"ALL" pour agréger les 4
+function getThemeStats(theme, level){
+    const levelsToCount = (level && level !== "ALL") ? [level] : LEVELS;
+    let total = 0, mastered = 0;
+    levelsToCount.forEach(lvl => {
+        const levelData = theme.levels[lvl];
+        if(!levelData) return;
+        total += levelData.words.length;
+        levelData.words.forEach((w, i) => {
+            if(getWordState(levelData.id, i).mastered) mastered++;
+        });
     });
     return {
-        total: theme.words.length,
+        total,
         mastered,
-        percentage: theme.words.length ? Math.round(mastered / theme.words.length * 100) : 0
+        percentage: total ? Math.round(mastered / total * 100) : 0
     };
 }
 
@@ -1202,9 +1252,13 @@ function updateGlobalProgress(){
     });
 
     themes.forEach(t => {
-        total += t.words.length;
-        t.words.forEach((w, i) => {
-            if(getWordState(t.id, i).mastered) mastered++;
+        LEVELS.forEach(lvl => {
+            const levelData = t.levels[lvl];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
         });
     });
     const percentage = total ? Math.round(mastered / total * 100) : 0;
@@ -1247,14 +1301,24 @@ async function loadThemesJson() {
         })
         .then(data => {
             // Supporte un format { themes: [...] } ou directement un tableau [...]
+            // Chaque entrée du JSON représente UN thème pour UN seul niveau
+            // (ex: "familie_a1", "familie_a2", ...). On les regroupe ici par
+            // thème pour n'afficher qu'une seule carte par thème, avec les
+            // 4 niveaux (A1-B2) disponibles à l'intérieur.
             const rawThemes = Array.isArray(data) ? data : (data.themes || []);
-            themes = rawThemes.map((t, idx) => {
-                const id = t.id || t.nom_theme || `theme_${idx}`;
+            const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
+            const grouped = {};
+            const order = [];
+
+            rawThemes.forEach((t, idx) => {
                 const name = t.name || t.nom_theme || `Thème ${idx + 1}`;
-                const niveau = t.niveau || "A1";
-                const svg = t.svg || '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
-                
-                // Normalise les mots (gère les structures { mot, genre, traduction, pluriel, niveau })
+                const niveau = (t.niveau || "A1").toUpperCase();
+                const svg = t.svg || DEFAULT_SVG;
+                const entryId = t.id || `theme_${idx}`;
+                // id de base = id de l'entrée sans le suffixe de niveau (_a1, _a2, _b1, _b2)
+                const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
+
+                // Normalise les mots (gère les structures { mot, genre, traduction, pluriel })
                 const rawWords = t.words || t.mots || [];
                 const words = rawWords.map(w => {
                     if (Array.isArray(w)) return w;
@@ -1265,8 +1329,15 @@ async function loadThemesJson() {
                         w.traduction || w.fr || ""
                     ];
                 });
-                return { id, name, niveau, svg, words };
+
+                if (!grouped[baseId]) {
+                    grouped[baseId] = { id: baseId, name, svg, levels: {} };
+                    order.push(baseId);
+                }
+                grouped[baseId].levels[niveau] = { id: entryId, words };
             });
+
+            themes = order.map(id => grouped[id]);
             themesLoaded = true;
         })
         .catch(error => {
@@ -1286,14 +1357,13 @@ function filterAndRenderThemes(){
     const container = document.getElementById("themeList");
     if(!container) return;
 
-    const selectedLevel = document.getElementById("levelFilter").value;
+    const selectedLevel = document.getElementById("levelFilter").value; // "ALL" | "A1" | "A2" | "B1" | "B2"
     const searchText = document.getElementById("themeSearch").value.toLowerCase().trim();
 
-    const filtered = themes.filter(theme => {
-        const matchLevel = (selectedLevel === "ALL" || theme.niveau === selectedLevel);
-        const matchSearch = theme.name.toLowerCase().includes(searchText);
-        return matchLevel && matchSearch;
-    });
+    // Chaque thème possède désormais les 4 niveaux : le filtre de niveau ne
+    // masque plus des thèmes entiers, il détermine quels niveaux sont
+    // affichés/comptés à l'intérieur de chaque carte.
+    const filtered = themes.filter(theme => theme.name.toLowerCase().includes(searchText));
 
     const pill = document.getElementById("themeCountPill");
     if(pill) pill.textContent = `${filtered.length} thème${filtered.length > 1 ? 's' : ''}`;
@@ -1303,9 +1373,24 @@ function filterAndRenderThemes(){
         return;
     }
 
+    const levelsToShow = (selectedLevel === "ALL") ? LEVELS : [selectedLevel];
+
     container.innerHTML = "";
     filtered.forEach(theme => {
-        const stats = getThemeStats(theme);
+        const stats = getThemeStats(theme, selectedLevel);
+
+        const pillsHtml = levelsToShow.map(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return "";
+            const levelStats = getThemeStats(theme, lvl);
+            const done = levelStats.total > 0 && levelStats.mastered === levelStats.total;
+            return `
+                <div class="level-pill${done ? ' done' : ''}" data-theme="${theme.id}" data-level="${lvl}">
+                    <div class="level-pill-label">${lvl}</div>
+                    <div class="level-pill-stat">${levelStats.mastered}/${levelStats.total}</div>
+                </div>
+            `;
+        }).join("");
 
         const item = document.createElement("div");
         item.className = "theme-item";
@@ -1315,7 +1400,7 @@ function filterAndRenderThemes(){
                     <div class="theme-icon">${theme.svg || ''}</div>
                     <div>
                         <div class="theme-name">${theme.name}</div>
-                        <div style="font-size:11px; color:#9bdcff; margin-top:2px;">Niveau ${theme.niveau || 'A1'}</div>
+                        <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${levelsToShow.join(' · ')}</div>
                     </div>
                 </div>
                 <div class="theme-count">${stats.mastered}/${stats.total}</div>
@@ -1326,8 +1411,14 @@ function filterAndRenderThemes(){
                 </div>
                 <div class="theme-percent">${stats.percentage}% maîtrisé</div>
             </div>
+            <div class="level-pills">${pillsHtml}</div>
         `;
-        item.onclick = () => startTheme(theme.id);
+        item.querySelectorAll(".level-pill").forEach(pillEl => {
+            pillEl.addEventListener("click", (e) => {
+                e.stopPropagation();
+                startTheme(pillEl.dataset.theme, pillEl.dataset.level);
+            });
+        });
         container.appendChild(item);
     });
 }
@@ -1349,11 +1440,19 @@ function startVerbFlashcards(){
     loadFlashcard();
 }
 
-async function startTheme(themeId){
+async function startTheme(themeId, level){
     await loadThemesJson();
     flashcardMode = 'nomen';
-    currentTheme = themes.find(t => t.id === themeId);
-    if(!currentTheme) return;
+    const theme = themes.find(t => t.id === themeId);
+    if(!theme) return;
+    const levelData = theme.levels[level];
+    if(!levelData){ alert("Ce niveau n'est pas encore disponible pour ce thème."); return; }
+
+    // currentTheme.id correspond à l'id de l'entrée JSON pour CE niveau
+    // (ex: "familie_a1"), ce qui garde la progression enregistrée séparément
+    // par thème ET par niveau.
+    currentTheme = { id: levelData.id, name: `${theme.name} · ${level}`, words: levelData.words };
+
     const now = Date.now();
     currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => {
         const state = getWordState(currentTheme.id, item.index);
@@ -1361,7 +1460,7 @@ async function startTheme(themeId){
     });
     if(currentCards.length === 0) currentCards = currentTheme.words.map((word, index) => ({ word, index })).filter(item => !getWordState(currentTheme.id, item.index).mastered);
     if(currentCards.length === 0){
-        alert("Tous les mots de ce thème sont actuellement maîtrisés !");
+        alert("Tous les mots de ce thème/niveau sont actuellement maîtrisés !");
         return;
     }
     currentFlashcard = 0;
