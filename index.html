@@ -1170,6 +1170,7 @@ const verbTheme = {
 let themes = [];
 let themesLoaded = false;
 let themesLoading = null;
+let themesLoadError = false;
 
 const exercises = [
   { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." },
@@ -1339,10 +1340,13 @@ async function loadThemesJson() {
 
             themes = order.map(id => grouped[id]);
             themesLoaded = true;
+            themesLoadError = false;
         })
         .catch(error => {
             console.warn("Impossible de charger themes.json :", error);
-            document.getElementById("themeList").innerHTML = `<p style="text-align:center; color:#ff8ca0;">Erreur lors du chargement de themes.json. Vérifiez que le fichier est présent.</p>`;
+            themesLoadError = true;
+            themesLoaded = false;
+            themesLoading = null; // permet de retenter le chargement au prochain appel
         });
 
     return themesLoading;
@@ -1353,9 +1357,31 @@ async function renderThemes(){
     filterAndRenderThemes();
 }
 
+async function retryLoadThemes(){
+    themesLoadError = false;
+    themesLoaded = false;
+    themesLoading = null;
+    const container = document.getElementById("themeList");
+    if(container) container.innerHTML = `<p style="color:#8290a5; text-align:center;">Chargement de themes.json...</p>`;
+    await renderThemes();
+}
+
 function filterAndRenderThemes(){
     const container = document.getElementById("themeList");
     if(!container) return;
+
+    if(themesLoadError){
+        container.innerHTML = `
+            <p style="text-align:center; color:#ff8ca0; padding:10px 0;">
+                Erreur : impossible de charger <code>themes.json</code>.<br>
+                Vérifie qu'il est bien déposé au même endroit que <code>index.html</code>.
+            </p>
+            <button class="secondary" onclick="retryLoadThemes()">RÉESSAYER</button>
+        `;
+        const pillErr = document.getElementById("themeCountPill");
+        if(pillErr) pillErr.textContent = "Erreur";
+        return;
+    }
 
     const selectedLevel = document.getElementById("levelFilter").value; // "ALL" | "A1" | "A2" | "B1" | "B2"
     const searchText = document.getElementById("themeSearch").value.toLowerCase().trim();
