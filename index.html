@@ -1176,20 +1176,24 @@ async function loadThemesJson() {
     try {
         const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json');
         if (!response.ok) throw new Error("Erreur de chargement du fichier themes.json");
-        const rawThemesData = await response.json();
-        
+        const rawJson = await response.json();
+        // FIX: le JSON est un objet { "themes": [...] }, pas un tableau brut.
+        const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
+
         const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
         const grouped = {};
         const order = [];
 
         rawThemesData.forEach((t, idx) => {
-            const name = t.name || `Thème ${idx + 1}`;
+            // FIX: fallback vers les noms de champs français réellement utilisés
+            // dans themes.json (nom_theme / mots), en plus des noms anglais.
+            const name = t.name || t.nom_theme || `Thème ${idx + 1}`;
             const niveau = (t.niveau || "A1").toUpperCase();
             const svg = t.svg || DEFAULT_SVG;
             const entryId = t.id || `theme_${idx}`;
             const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
 
-            const rawWords = t.words || [];
+            const rawWords = t.words || t.mots || [];
             const words = rawWords.map(w => {
                 if (Array.isArray(w)) return w;
                 return [
