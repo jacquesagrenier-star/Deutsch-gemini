@@ -1115,7 +1115,7 @@ async function handleLogout() {
 }
 
 /* =========================================================
-   DONNÉES INTÉGRÉES DIRECTEMENT (Évite les erreurs CORS / fetch locaux)
+   CHARGEMENT DES THÈMES VIA FETCH (themes.json)
 ========================================================= */
 
 const verbTheme = {
@@ -1167,49 +1167,106 @@ const verbTheme = {
   ]
 };
 
-const rawThemesData = [
-  {
-    id: "maison_a1",
-    name: "Maison & Quotidien",
-    niveau: "A1",
-    svg: '<svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
-    words: [
-      ["Tisch", "der", "Tische", "table"],
-      ["Stuhl", "der", "Stühle", "chaise"],
-      ["Haus", "das", "Häuser", "maison"],
-      ["Tür", "die", "Türen", "porte"],
-      ["Fenster", "das", "Fenster", "fenêtre"]
-    ]
-  },
-  {
-    id: "nourriture_a1",
-    name: "Nourriture & Boissons",
-    niveau: "A1",
-    svg: '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.21 1.79 4 4 4v9h2v-9c2.21 0 4-1.79 4-4V2h-2v7zm4-7v12h2v7h2v-7h2V2h-6z"/></svg>',
-    words: [
-      ["Apfel", "der", "Äpfel", "pomme"],
-      ["Brot", "das", "Brote", "pain"],
-      ["Wasser", "das", "Wässer", "eau"],
-      ["Milch", "die", "Milchen", "lait"],
-      ["Kaffee", "der", "Kaffees", "café"]
-    ]
-  },
-  {
-    id: "voyage_a2",
-    name: "Voyage & Transport",
-    niveau: "A2",
-    svg: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>',
-    words: [
-      ["Zug", "der", "Züge", "train"],
-      ["Fahrkarte", "die", "Fahrkarten", "billet"],
-      ["Flugzeug", "das", "Flugzeuge", "avion"],
-      ["Reise", "die", "Reisen", "voyage"]
-    ]
-  }
-];
-
 let themes = [];
 let themesLoaded = false;
+
+async function loadThemesJson() {
+    if (themesLoaded) return;
+    try {
+        const response = await fetch('themes.json');
+        if (!response.ok) throw new Error("Erreur de chargement du fichier themes.json");
+        const rawThemesData = await response.json();
+        
+        const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
+        const grouped = {};
+        const order = [];
+
+        rawThemesData.forEach((t, idx) => {
+            const name = t.name || `Thème ${idx + 1}`;
+            const niveau = (t.niveau || "A1").toUpperCase();
+            const svg = t.svg || DEFAULT_SVG;
+            const entryId = t.id || `theme_${idx}`;
+            const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
+
+            const rawWords = t.words || [];
+            const words = rawWords.map(w => {
+                if (Array.isArray(w)) return w;
+                return [
+                    w.mot || w.word || "",
+                    w.genre || w.article || "der",
+                    w.pluriel || w.plural || "—",
+                    w.traduction || w.fr || ""
+                ];
+            });
+
+            if (!grouped[baseId]) {
+                grouped[baseId] = { id: baseId, name, svg, levels: {} };
+                order.push(baseId);
+            }
+            grouped[baseId].levels[niveau] = { id: entryId, words };
+        });
+
+        themes = order.map(id => grouped[id]);
+        themesLoaded = true;
+        renderThemes();
+    } catch (error) {
+        console.warn("Impossible de charger themes.json via fetch, passage au mode secours intégré :", error);
+        // Données de secours intégrées si aucun serveur local n'est actif
+        const rawThemesDataFallback = [
+          {
+            id: "maison_a1",
+            name: "Maison & Quotidien",
+            niveau: "A1",
+            svg: '<svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
+            words: [
+              ["Tisch", "der", "Tische", "table"],
+              ["Stuhl", "der", "Stühle", "chaise"],
+              ["Haus", "das", "Häuser", "maison"],
+              ["Tür", "die", "Türen", "porte"],
+              ["Fenster", "das", "Fenster", "fenêtre"]
+            ]
+          },
+          {
+            id: "nourriture_a1",
+            name: "Nourriture & Boissons",
+            niveau: "A1",
+            svg: '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.21 1.79 4 4 4v9h2v-9c2.21 0 4-1.79 4-4V2h-2v7zm4-7v12h2v7h2v-7h2V2h-6z"/></svg>',
+            words: [
+              ["Apfel", "der", "Äpfel", "pomme"],
+              ["Brot", "das", "Brote", "pain"],
+              ["Wasser", "das", "Wässer", "eau"],
+              ["Milch", "die", "Milchen", "lait"],
+              ["Kaffee", "der", "Kaffees", "café"]
+            ]
+          },
+          {
+            id: "voyage_a2",
+            name: "Voyage & Transport",
+            niveau: "A2",
+            svg: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>',
+            words: [
+              ["Zug", "der", "Züge", "train"],
+              ["Fahrkarte", "die", "Fahrkarten", "billet"],
+              ["Flugzeug", "das", "Flugzeuge", "avion"],
+              ["Reise", "die", "Reisen", "voyage"]
+            ]
+          }
+        ];
+        const grouped = {};
+        const order = [];
+        rawThemesDataFallback.forEach((t, idx) => {
+            const baseId = t.id.replace(/_(a1|a2|b1|b2)$/i, "");
+            if (!grouped[baseId]) {
+                grouped[baseId] = { id: baseId, name: t.name, svg: t.svg, levels: {} };
+                order.push(baseId);
+            }
+            grouped[baseId].levels[t.niveau.toUpperCase()] = { id: t.id, words: t.words };
+        });
+        themes = order.map(id => grouped[id]);
+        themesLoaded = true;
+        renderThemes();
+    }
+}
 
 const exercises = [
   { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." },
@@ -1320,50 +1377,14 @@ function showScreen(id){
 
 function goHome(){ showScreen("home"); }
 function openVerben(){ showScreen("verben"); }
-function openNomen(){ renderThemes(); showScreen("nomen"); }
+function openNomen(){ loadThemesJson(); renderThemes(); showScreen("nomen"); }
 function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
 
 function comingSoon(label){
     alert(`« ${label} » arrive bientôt !`);
 }
 
-function loadThemesJson() {
-    if (themesLoaded) return;
-    const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
-    const grouped = {};
-    const order = [];
-
-    rawThemesData.forEach((t, idx) => {
-        const name = t.name || `Thème ${idx + 1}`;
-        const niveau = (t.niveau || "A1").toUpperCase();
-        const svg = t.svg || DEFAULT_SVG;
-        const entryId = t.id || `theme_${idx}`;
-        const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
-
-        const rawWords = t.words || [];
-        const words = rawWords.map(w => {
-            if (Array.isArray(w)) return w;
-            return [
-                w.mot || w.word || "",
-                w.genre || w.article || "der",
-                w.pluriel || w.plural || "—",
-                w.traduction || w.fr || ""
-            ];
-        });
-
-        if (!grouped[baseId]) {
-            grouped[baseId] = { id: baseId, name, svg, levels: {} };
-            order.push(baseId);
-        }
-        grouped[baseId].levels[niveau] = { id: entryId, words };
-    });
-
-    themes = order.map(id => grouped[id]);
-    themesLoaded = true;
-}
-
 function renderThemes(){
-    loadThemesJson();
     filterAndRenderThemes();
 }
 
@@ -1452,7 +1473,6 @@ function startVerbFlashcards(){
 }
 
 function startTheme(themeId, level){
-    loadThemesJson();
     flashcardMode = 'nomen';
     const theme = themes.find(t => t.id === themeId);
     if(!theme) return;
@@ -1699,7 +1719,7 @@ document.getElementById("answer").addEventListener("keydown", e => {
 });
 
 (() => {
-    renderThemes();
+    loadThemesJson();
     updateGlobalProgress();
 })();
 </script>
