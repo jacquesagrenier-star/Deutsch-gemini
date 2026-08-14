@@ -467,11 +467,11 @@ button{font-family:inherit}
 
 .flashcard{
     width:100%;
-    min-height:380px;
+    min-height:200px;
     position:relative;
     cursor:pointer;
     transform-style:preserve-3d;
-    transition:transform .55s ease;
+    transition:transform .55s ease, height .3s ease;
 }
 
 .flashcard.flipped{
@@ -480,8 +480,10 @@ button{font-family:inherit}
 
 .flashcard-face{
     position:absolute;
-    inset:0;
-    min-height:380px;
+    top:0;
+    left:0;
+    width:100%;
+    box-sizing:border-box;
     border-radius:28px;
     display:flex;
     flex-direction:column;
@@ -656,7 +658,6 @@ button{font-family:inherit}
     h1{font-size:36px}
     .grid{gap:10px}
     .subcategories{grid-template-columns:1fr}
-    .flashcard,.flashcard-face{min-height:360px}
     .flashcard-front .word{font-size:42px}
     .level-pills{grid-template-columns:repeat(2,1fr)}
 }
@@ -1507,6 +1508,15 @@ function handleFlashcardBack(){
     else openNomen();
 }
 
+function resizeFlashcard(){
+    const flashcardEl = document.getElementById("flashcard");
+    const front = document.querySelector(".flashcard-front");
+    const back = document.querySelector(".flashcard-back");
+    if(!flashcardEl || !front || !back) return;
+    const targetHeight = Math.max(front.scrollHeight, back.scrollHeight, 200);
+    flashcardEl.style.height = targetHeight + "px";
+}
+
 function loadFlashcard(){
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
@@ -1543,9 +1553,14 @@ function loadFlashcard(){
         pluralEl.classList.remove("hidden");
         verbDetailsEl.classList.add("hidden");
     }
+
+    resizeFlashcard();
 }
 
-function flipCard(){ document.getElementById("flashcard").classList.toggle("flipped"); }
+function flipCard(){
+    document.getElementById("flashcard").classList.toggle("flipped");
+    resizeFlashcard();
+}
 
 function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
