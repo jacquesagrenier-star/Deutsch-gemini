@@ -526,9 +526,10 @@ button{font-family:inherit}
     border:1px solid rgba(255,255,255,.16);
 }
 
-.flashcard.border-der .flashcard-back { border: 2px solid #3b82f6; }
-.flashcard.border-die .flashcard-back { border: 2px solid #ef4444; }
-.flashcard.border-das .flashcard-back { border: 2px solid #10b981; }
+/* Couleurs dynamiques uniquement au verso */
+.flashcard.border-der.flipped .flashcard-back { border: 2px solid #3b82f6; }
+.flashcard.border-die.flipped .flashcard-back { border: 2px solid #ef4444; }
+.flashcard.border-das.flipped .flashcard-back { border: 2px solid #10b981; }
 
 .article {
     font-size: 15px;
@@ -1173,7 +1174,7 @@ let themesLoaded = false;
 async function loadThemesJson() {
     if (themesLoaded) return;
     try {
-        const response = await fetch('themes.json');
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json');
         if (!response.ok) throw new Error("Erreur de chargement du fichier themes.json");
         const rawThemesData = await response.json();
         
@@ -1211,7 +1212,6 @@ async function loadThemesJson() {
         renderThemes();
     } catch (error) {
         console.warn("Impossible de charger themes.json via fetch, passage au mode secours intégré :", error);
-        // Données de secours intégrées si aucun serveur local n'est actif
         const rawThemesDataFallback = [
           {
             id: "maison_a1",
