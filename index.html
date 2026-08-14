@@ -1225,8 +1225,6 @@ function setWordState(themeId, index, state){
 
 const LEVELS = ["A1", "A2", "B1", "B2"];
 
-// theme = objet groupé { id, name, svg, levels: { A1:{id,words}, A2:{...}, ... } }
-// level = "A1"/"A2"/"B1"/"B2" pour un seul niveau, ou omis/"ALL" pour agréger les 4
 function getThemeStats(theme, level){
     const levelsToCount = (level && level !== "ALL") ? [level] : LEVELS;
     let total = 0, mastered = 0;
@@ -1290,22 +1288,17 @@ function comingSoon(label){
     alert(`« ${label} » arrive bientôt !`);
 }
 
-// Fonction de chargement fetch de themes.json
 async function loadThemesJson() {
     if (themesLoaded) return Promise.resolve();
     if (themesLoading) return themesLoading;
 
-    themesLoading = fetch('data/themes.json')
+    // Utilisation d'un chemin relatif robuste (themes.json à la racine)
+    themesLoading = fetch('themes.json')
         .then(response => {
             if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
             return response.json();
         })
         .then(data => {
-            // Supporte un format { themes: [...] } ou directement un tableau [...]
-            // Chaque entrée du JSON représente UN thème pour UN seul niveau
-            // (ex: "familie_a1", "familie_a2", ...). On les regroupe ici par
-            // thème pour n'afficher qu'une seule carte par thème, avec les
-            // 4 niveaux (A1-B2) disponibles à l'intérieur.
             const rawThemes = Array.isArray(data) ? data : (data.themes || []);
             const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
             const grouped = {};
@@ -1316,10 +1309,8 @@ async function loadThemesJson() {
                 const niveau = (t.niveau || "A1").toUpperCase();
                 const svg = t.svg || DEFAULT_SVG;
                 const entryId = t.id || `theme_${idx}`;
-                // id de base = id de l'entrée sans le suffixe de niveau (_a1, _a2, _b1, _b2)
                 const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
 
-                // Normalise les mots (gère les structures { mot, genre, traduction, pluriel })
                 const rawWords = t.words || t.mots || [];
                 const words = rawWords.map(w => {
                     if (Array.isArray(w)) return w;
@@ -1346,7 +1337,7 @@ async function loadThemesJson() {
             console.warn("Impossible de charger themes.json :", error);
             themesLoadError = true;
             themesLoaded = false;
-            themesLoading = null; // permet de retenter le chargement au prochain appel
+            themesLoading = null;
         });
 
     return themesLoading;
@@ -1383,12 +1374,9 @@ function filterAndRenderThemes(){
         return;
     }
 
-    const selectedLevel = document.getElementById("levelFilter").value; // "ALL" | "A1" | "A2" | "B1" | "B2"
+    const selectedLevel = document.getElementById("levelFilter").value;
     const searchText = document.getElementById("themeSearch").value.toLowerCase().trim();
 
-    // Chaque thème possède désormais les 4 niveaux : le filtre de niveau ne
-    // masque plus des thèmes entiers, il détermine quels niveaux sont
-    // affichés/comptés à l'intérieur de chaque carte.
     const filtered = themes.filter(theme => theme.name.toLowerCase().includes(searchText));
 
     const pill = document.getElementById("themeCountPill");
@@ -1474,9 +1462,6 @@ async function startTheme(themeId, level){
     const levelData = theme.levels[level];
     if(!levelData){ alert("Ce niveau n'est pas encore disponible pour ce thème."); return; }
 
-    // currentTheme.id correspond à l'id de l'entrée JSON pour CE niveau
-    // (ex: "familie_a1"), ce qui garde la progression enregistrée séparément
-    // par thème ET par niveau.
     currentTheme = { id: levelData.id, name: `${theme.name} · ${level}`, words: levelData.words };
 
     const now = Date.now();
