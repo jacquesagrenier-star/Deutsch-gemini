@@ -1,5 +1,1863 @@
 <!DOCTYPE html>
+<html lang="<!DOCTYPE html>
 <html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050812">
+
+<title>DeutschAI</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 15% 10%,#18345c 0%,transparent 32%),
+        radial-gradient(circle at 85% 15%,#382052 0%,transparent 30%),
+        #050812;
+    color:#f1f6ff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.app{
+    width:100%;
+    max-width:620px;
+    margin:auto;
+    padding:20px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo span{color:#9bdcff}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+
+.screen{display:none}
+.screen.active{display:block}
+
+.kicker{
+    color:#91d5ff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+h1{
+    font-size:42px;
+    line-height:1.05;
+    letter-spacing:-2px;
+    margin:10px 0 15px;
+}
+
+.gradient{
+    background:linear-gradient(110deg,#e8fbff,#9bd4ff,#d5b0ff,#9fffe5);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.subtitle{
+    color:#8b99ad;
+    line-height:1.5;
+}
+
+.card{
+    margin-top:25px;
+    padding:22px;
+    border-radius:24px;
+    background:rgba(18,27,45,.70);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+}
+
+.progress-container{margin-top:12px}
+
+.progress-bar{
+    height:7px;
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#8feaff,#d3a9ff);
+    border-radius:20px;
+    transition:width .3s ease;
+}
+
+.progress-text{
+    color:#8290a5;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:20px;
+}
+
+.orb{
+    aspect-ratio:1;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    cursor:pointer;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),transparent 15%),
+        rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:
+        inset -15px -15px 30px rgba(0,0,0,.30),
+        0 15px 40px rgba(0,0,0,.25);
+    transition:.2s;
+}
+
+.orb:hover{transform:translateY(-4px)}
+
+.orb strong{
+    display:block;
+    font-size:13px;
+}
+
+.orb small{
+    display:block;
+    margin-top:5px;
+    color:#8190a6;
+    font-size:9px;
+}
+
+.back{
+    background:none;
+    border:none;
+    color:#8b99ad;
+    font-size:15px;
+    padding:0;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+h2{
+    margin:5px 0 0;
+    font-size:30px;
+}
+
+.pill{
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:7px 12px;
+    color:#9aa8bc;
+    font-size:12px;
+}
+
+.filters-bar {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.filters-bar select, .filters-bar input {
+    flex: 1;
+    min-width: 140px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(0,0,0,.25);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+}
+
+.subcategories{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:20px;
+}
+
+.subcategory{
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    cursor:pointer;
+}
+
+.subcategory strong{
+    display:block;
+    margin-bottom:8px;
+}
+
+.subcategory span{
+    color:#8290a5;
+    font-size:12px;
+}
+
+button{font-family:inherit}
+
+.primary{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(100deg,#a5edff,#cbb0ff);
+    color:#07111c;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.secondary{
+    width:100%;
+    padding:15px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.secondary:hover,
+.primary:hover{opacity:.9}
+
+.question{
+    font-size:25px;
+    line-height:1.45;
+    margin:25px 0 10px;
+}
+
+.translation-example{
+    color:#9aa8bc;
+    font-size:15px;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+.answer{
+    width:100%;
+    padding:17px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(0,0,0,.25);
+    color:white;
+    font-size:18px;
+    outline:none;
+}
+
+.answer:focus{border-color:#8ddcff}
+
+.feedback{
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    border-radius:17px;
+    line-height:1.5;
+}
+
+.feedback.show{display:block}
+
+.feedback.correct{
+    background:rgba(80,220,170,.10);
+    border:1px solid rgba(80,220,170,.25);
+}
+
+.feedback.wrong{
+    background:rgba(255,100,130,.10);
+    border:1px solid rgba(255,100,130,.25);
+}
+
+.feedback-title{
+    font-weight:800;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.explanation{color:#bac7d9}
+
+.score{
+    font-size:64px;
+    font-weight:900;
+    letter-spacing:-4px;
+    margin:20px 0;
+}
+
+.stat{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    color:#b8c4d5;
+}
+
+.revision{
+    margin-top:20px;
+    padding:17px;
+    border-radius:17px;
+    background:rgba(155,220,255,.07);
+    border:1px solid rgba(155,220,255,.15);
+}
+
+.hidden{display:none!important}
+.spacer{height:14px}
+
+/* THEMES */
+
+.theme-list{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+
+.theme-item{
+    padding:17px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.theme-item:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.08);
+}
+
+.theme-item.random-item{
+    background:linear-gradient(120deg,rgba(165,237,255,.10),rgba(203,176,255,.10));
+    border:1px solid rgba(165,237,255,.25);
+}
+
+.theme-item.random-item:hover{
+    background:linear-gradient(120deg,rgba(165,237,255,.16),rgba(203,176,255,.16));
+}
+
+.theme-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.theme-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.theme-icon{
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+}
+
+.theme-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    color: #9bdcff;
+}
+
+.theme-name{font-weight:800}
+
+.theme-count{
+    color:#8290a5;
+    font-size:11px;
+}
+
+.theme-progress{margin-top:12px}
+
+.theme-progress-bar{
+    height:5px;
+    background:rgba(255,255,255,.08);
+    border-radius:10px;
+}
+
+.theme-progress-fill{
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#8feaff,#d3a9ff);
+}
+
+.theme-percent{
+    margin-top:6px;
+    color:#8290a5;
+    font-size:11px;
+}
+
+.level-pills{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:14px;
+}
+
+.level-pill{
+    padding:10px 6px;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.level-pill:hover{
+    background:rgba(255,255,255,.10);
+    transform:translateY(-2px);
+}
+
+.level-pill.done{
+    border-color:rgba(80,220,170,.35);
+    background:rgba(80,220,170,.08);
+}
+
+.level-pill-label{
+    font-weight:800;
+    font-size:12px;
+    color:#e8f2ff;
+}
+
+.level-pill-stat{
+    margin-top:3px;
+    font-size:10px;
+    color:#8290a5;
+}
+
+/* FLASHCARDS */
+
+.flashcard-wrapper{
+    perspective:1000px;
+    margin-top:25px;
+}
+
+.flashcard{
+    width:100%;
+    min-height:200px;
+    position:relative;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform .55s ease, height .3s ease;
+}
+
+.flashcard.flipped{
+    transform:rotateY(180deg);
+}
+
+.flashcard-face{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    box-sizing:border-box;
+    border-radius:28px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.22),transparent 18%),
+        rgba(18,27,45,.85);
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:
+        inset -20px -20px 40px rgba(0,0,0,.25),
+        0 20px 60px rgba(0,0,0,.35);
+}
+
+.flashcard-front{
+    border:1px solid rgba(255,255,255,.16);
+    padding:30px;
+}
+
+.flashcard-front .word{
+    font-size:48px;
+    font-weight:800;
+    letter-spacing:-2px;
+    color:#9bdcff;
+}
+
+.tap-hint{
+    margin-top:35px;
+    color:#8290a5;
+    font-size:12px;
+}
+
+.flashcard-back{
+    transform:rotateY(180deg);
+    padding:25px;
+    justify-content:flex-start;
+    overflow-y:auto;
+    text-align:left;
+    border:1px solid rgba(255,255,255,.16);
+}
+
+/* Couleurs dynamiques uniquement au verso */
+.flashcard.border-der.flipped .flashcard-back { border: 2px solid #3b82f6; }
+.flashcard.border-die.flipped .flashcard-back { border: 2px solid #ef4444; }
+.flashcard.border-das.flipped .flashcard-back { border: 2px solid #10b981; }
+
+.article {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+.article.der { color: #3b82f6; }
+.article.die { color: #ef4444; }
+.article.das { color: #10b981; }
+
+.back-word{
+    font-size:26px;
+    font-weight:800;
+    color:#9bdcff;
+    margin-bottom:4px;
+}
+
+.translation{
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:14px;
+}
+
+.verb-details{
+    width:100%;
+    font-size:13px;
+    color:#bac7d9;
+    line-height:1.45;
+    background:rgba(0,0,0,.25);
+    padding:12px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    white-space:pre-line;
+}
+
+.audio-btn{
+    margin-top:12px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:20px;
+    padding:6px 14px;
+    color:#9bdcff;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:.2s;
+    align-self:center;
+}
+
+.audio-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.audio-btn:hover{
+    background:rgba(255,255,255,.20);
+    transform:scale(1.03);
+}
+
+.flashcard-info{
+    text-align:center;
+    margin:18px 0;
+    color:#8290a5;
+    font-size:13px;
+}
+
+.review-options{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.review-button{
+    padding:13px 8px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+}
+
+.review-button:hover{
+    background:rgba(255,255,255,.10);
+}
+
+.review-button.mastered{
+    border-color:rgba(80,220,170,.30);
+    color:#79e6bd;
+}
+
+.review-button.warning{
+    border-color:rgba(255,180,100,.30);
+    color:#ffc27d;
+}
+
+/* SETTINGS */
+
+.danger{
+    border-color:rgba(255,100,130,.25);
+    color:#ff8ca0;
+}
+
+.info-box{
+    margin-top:15px;
+    padding:15px;
+    border-radius:16px;
+    background:rgba(255,255,254,.04);
+    color:#9aa8bc;
+    font-size:13px;
+    line-height:1.5;
+}
+
+@media(max-width:390px){
+    h1{font-size:36px}
+    .grid{gap:10px}
+    .subcategories{grid-template-columns:1fr}
+    .flashcard-front .word{font-size:42px}
+    .level-pills{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+    <div class="logo">Deutsch<span>AI</span></div>
+    <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
+</header>
+
+<!-- ================= AUTH ================= -->
+
+<section id="auth" class="screen active">
+    <div class="title-row" style="margin-top: 10px;">
+        <div>
+            <div class="kicker">Accès restreint</div>
+            <h2>Connexion obligatoire</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div id="authContent">
+            <p style="color:#8290a5">Veuillez vous connecter ou créer un compte pour utiliser DeutschAI.</p>
+            <div class="spacer"></div>
+            <input id="authEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;">
+            <input id="authPassword" class="answer" type="password" placeholder="Mot de passe" style="margin-bottom:20px;">
+            <button class="primary" onclick="handleEmailLogin()">SE CONNECTER</button>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="handleEmailSignup()">CRÉER UN COMPTE</button>
+        </div>
+        <div id="userAccountInfo" class="hidden">
+            <p style="color:#9aa8bc">Connecté en tant que : <strong id="userEmailDisplay" style="color:#fff;"></strong></p>
+            <div class="spacer"></div>
+            <button class="secondary danger" onclick="handleLogout()">SE DÉCONNECTER</button>
+        </div>
+    </div>
+</section>
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="screen">
+
+    <div class="kicker">Tuteur d'allemand adaptatif</div>
+
+    <h1>
+        <span class="gradient">
+            Apprends l'allemand.<br>
+            Plus intelligemment.
+        </span>
+    </h1>
+
+    <p class="subtitle">
+        Ton tuteur personnel pour la grammaire allemande
+        et le vocabulaire.
+    </p>
+
+    <div class="card">
+        <strong>Ta progression globale</strong>
+
+        <div id="globalProgressText" class="progress-text">
+            0 élément maîtrisé
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div id="globalProgress"
+                     class="progress-fill"
+                     style="width:0%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="orb" onclick="openVerben()">
+            <div>
+                <strong>Verbes</strong>
+                <small>Flashcards & Grammaire</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="openNomen()">
+            <div>
+                <strong>Noms</strong>
+                <small>Thèmes & Vocabulaire</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="comingSoon('Cas')">
+            <div>
+                <strong>Cas</strong>
+                <small>Nominativ · Akkusativ</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="comingSoon('Adjectifs')">
+            <div>
+                <strong>Adjectifs</strong>
+                <small>Endungen</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="comingSoon('Prépositions')">
+            <div>
+                <strong>Prépositions</strong>
+                <small>Dativ · Akkusativ</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="comingSoon('Structure')">
+            <div>
+                <strong>Structure</strong>
+                <small>Satzbau</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="comingSoon('Possessifs')">
+            <div>
+                <strong>Possessifs</strong>
+                <small>mein · dein</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="comingSoon('Particules')">
+            <div>
+                <strong>Particules</strong>
+                <small>doch · ja · mal</small>
+            </div>
+        </div>
+
+        <div class="orb" onclick="openSettings()">
+            <div>
+                <strong>Révision</strong>
+                <small>Progression · Reset</small>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ================= VERBEN ================= -->
+
+<section id="verben" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Grammaire & Vocabulaire</div>
+            <h2>Verbes</h2>
+        </div>
+        <div class="pill">A2</div>
+    </div>
+
+    <div class="subcategories">
+        <div class="subcategory" onclick="startVerbFlashcards()">
+            <strong>Flashcards Verbes</strong>
+            <span>Présent, Prétérit, Perfekt & Exemples</span>
+        </div>
+        <div class="subcategory" onclick="startExercises()">
+            <strong>Exercices Präsens</strong>
+            <span>Réguliers · irréguliers</span>
+        </div>
+        <div class="subcategory" onclick="comingSoon('Präteritum')">
+            <strong>Präteritum</strong>
+            <span>Passé simple</span>
+        </div>
+        <div class="subcategory" onclick="comingSoon('Perfekt')">
+            <strong>Perfekt</strong>
+            <span>haben · sein</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Flashcards recommandées</strong>
+        <p style="color:#8290a5">Révise les verbes essentiels avec conjugaisons et exemples complets.</p>
+        <button class="primary" onclick="startVerbFlashcards()">LANCER LES FLASHCARDS →</button>
+        <div class="spacer"></div>
+        <button class="secondary flip-toggle-btn" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
+    </div>
+</section>
+
+<!-- ================= NOMEN ================= -->
+
+<section id="nomen" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Vocabulaire Intégré</div>
+            <h2>Noms & Thèmes</h2>
+        </div>
+        <div class="pill" id="themeCountPill">Chargement...</div>
+    </div>
+
+    <div class="filters-bar">
+        <select id="levelFilter" onchange="filterAndRenderThemes()">
+            <option value="ALL">Tous les niveaux</option>
+            <option value="A1">Niveau A1</option>
+            <option value="A2">Niveau A2</option>
+            <option value="B1">Niveau B1</option>
+            <option value="B2">Niveau B2</option>
+        </select>
+        <input type="text" id="themeSearch" placeholder="Rechercher un thème..." oninput="filterAndRenderThemes()">
+    </div>
+    <div class="filters-bar">
+        <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+        <div class="theme-list" id="themeList">
+            <p style="color:#8290a5; text-align:center;">Chargement des thèmes...</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FLASHCARDS ================= -->
+
+<section id="flashcards" class="screen">
+    <button class="back" onclick="handleFlashcardBack()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="flashKicker">Flashcards</div>
+            <h2 id="flashThemeTitle">Cartes</h2>
+        </div>
+        <div class="pill" id="flashCounter">1 / 10</div>
+    </div>
+
+    <div class="flashcard-wrapper">
+        <div id="flashcard" class="flashcard" onclick="flipCard()">
+            <div class="flashcard-face flashcard-front">
+                <div id="flashWord" class="word">Tisch</div>
+                <div class="tap-hint">Touche la carte pour voir la réponse</div>
+            </div>
+
+            <div class="flashcard-face flashcard-back">
+                <div id="flashArticle" class="article hidden"></div>
+                <div id="flashBackWord" class="back-word">Tisch</div>
+                <div id="flashTranslation" class="translation">Table</div>
+                <div id="flashVerbDetails" class="verb-details hidden"></div>
+                <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
+                <button id="audioBtn" class="audio-btn" onclick="event.stopPropagation(); speakWord();">
+                    <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    Écouter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flashcard-info" id="flashcardInfo">
+        Touche la carte pour voir la réponse.
+    </div>
+
+    <div class="review-options">
+        <button class="review-button" onclick="scheduleReview(2)">Revoir dans 2 min</button>
+        <button class="review-button" onclick="scheduleReview(10)">Revoir dans 10 min</button>
+        <button class="review-button warning" onclick="scheduleReview(1440)">Revoir demain</button>
+        <button class="review-button mastered" onclick="markMastered()">✓ Maîtrisé</button>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="nextFlashcard()">CARTE SUIVANTE →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="retryUnmastered()">RÉESSAYER LES ÉLÉMENTS NON MAÎTRISÉS</button>
+</section>
+
+<!-- ================= EXERCISE ================= -->
+
+<section id="exercise" class="screen">
+    <button class="back" onclick="openVerben()">‹ Verbes</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Verbes · Präsens</div>
+            <h2 id="exerciseTitle">Exercice 1</h2>
+        </div>
+        <div class="pill" id="counter">1 / 5</div>
+    </div>
+
+    <div class="card">
+        <div class="question" id="question"></div>
+        <div class="translation-example" id="questionTranslation"></div>
+        <div id="hint" style="color:#8290a5;margin-bottom:15px"></div>
+
+        <input id="answer" class="answer" type="text" placeholder="Ta réponse…">
+
+        <div class="spacer"></div>
+        <button id="checkButton" class="primary" onclick="checkAnswer()">VÉRIFIER</button>
+        <div id="feedback" class="feedback"></div>
+
+        <div class="spacer"></div>
+        <button id="nextButton" class="secondary hidden" onclick="nextExercise()">EXERCICE SUIVANT →</button>
+    </div>
+</section>
+
+<!-- ================= RESULT ================= -->
+
+<section id="result" class="screen">
+    <div class="kicker">Session terminée</div>
+
+    <h1><span class="gradient" id="resultTitle">Très bien !</span></h1>
+
+    <div class="card">
+        <div class="score" id="score">0%</div>
+        <p id="scoreText" style="color:#8290a5"></p>
+
+        <div id="statsList"></div>
+
+        <div class="revision">
+            <strong>À revoir</strong>
+            <p id="revisionText">—</p>
+            <small style="color:#79e6bd">Révision basée sur tes erreurs.</small>
+        </div>
+
+        <div class="spacer"></div>
+        <button class="primary" onclick="startExercises()">RECOMMENCER</button>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="goHome()">TABLEAU DE BORD</button>
+    </div>
+</section>
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Progression</div>
+            <h2>Révision</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Progression globale</strong>
+        <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
+
+        <div class="spacer"></div>
+        <button class="secondary" onclick="openNomen()">VOIR LES THÈMES</button>
+        <div class="spacer"></div>
+        <button class="secondary danger" onclick="resetCurrentThemeConfirm()">RESET DU THÈME ACTUEL</button>
+        <div class="spacer"></div>
+        <button class="secondary danger" onclick="resetAllConfirm()">RESET DE TOUTE LA PROGRESSION</button>
+    </div>
+</section>
+
+</div>
+
+<!-- Firebase SDKs -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDK9aTVTxDWWrGSIuydHtjSvUTaEguu45U",
+  authDomain: "deutschai-b6fbb.firebaseapp.com",
+  projectId: "deutschai-b6fbb",
+  storageBucket: "deutschai-b6fbb.firebasestorage.app",
+  messagingSenderId: "915434419015",
+  appId: "1:915434419015:web:bfd33c9e8ba5948af99262",
+  measurementId: "G-826Y6PS0J9"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+window.firebaseAuth = auth;
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+window.signOut = signOut;
+
+onAuthStateChanged(auth, (user) => {
+    const userProfile = document.getElementById("userProfile");
+    const authContent = document.getElementById("authContent");
+    const userAccountInfo = document.getElementById("userAccountInfo");
+    const userEmailDisplay = document.getElementById("userEmailDisplay");
+
+    if (user) {
+        userProfile.textContent = user.email ? user.email.substring(0, 2).toUpperCase() : "CM";
+        authContent.classList.add("hidden");
+        userAccountInfo.classList.remove("hidden");
+        userEmailDisplay.textContent = user.email;
+        if(document.getElementById("auth").classList.contains("active")) {
+            goHome();
+        }
+    } else {
+        userProfile.textContent = "CM";
+        authContent.classList.remove("hidden");
+        userAccountInfo.classList.add("hidden");
+        userEmailDisplay.textContent = "";
+        showScreen("auth");
+    }
+});
+</script>
+
+<script>
+/* =========================================================
+   GESTION UI AUTHENTIFICATION
+========================================================= */
+function openAuth() {
+    showScreen("auth");
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function getFriendlyAuthError(error) {
+    const messages = {
+        "auth/invalid-email": "L'adresse e-mail n'est pas valide.",
+        "auth/missing-password": "Merci d'indiquer un mot de passe.",
+        "auth/weak-password": "Le mot de passe doit contenir au moins 6 caractères.",
+        "auth/email-already-in-use": "Un compte existe déjà avec cet e-mail.",
+        "auth/user-not-found": "Aucun compte ne correspond à cet e-mail.",
+        "auth/wrong-password": "Mot de passe incorrect.",
+        "auth/invalid-credential": "E-mail ou mot de passe incorrect.",
+        "auth/too-many-requests": "Trop de tentatives. Réessaie plus tard."
+    };
+    return messages[error.code] || "Une erreur est survenue. Réessaie.";
+}
+
+async function handleEmailLogin() {
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+    if (!isValidEmail(email)) { alert("Merci d'entrer une adresse e-mail valide."); return; }
+    if (!password) { alert("Merci d'entrer un mot de passe."); return; }
+    try {
+        await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
+        goHome();
+    } catch (error) {
+        alert("Erreur de connexion : " + getFriendlyAuthError(error));
+    }
+}
+
+async function handleEmailSignup() {
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+    if (!isValidEmail(email)) { alert("Merci d'entrer une adresse e-mail valide."); return; }
+    if (password.length < 6) { alert("Le mot de passe doit contenir au moins 6 caractères."); return; }
+    try {
+        await window.createUserWithEmailAndPassword(window.firebaseAuth, email, password);
+        goHome();
+    } catch (error) {
+        alert("Erreur d'inscription : " + getFriendlyAuthError(error));
+    }
+}
+
+async function handleLogout() {
+    try {
+        await window.signOut(window.firebaseAuth);
+        showScreen("auth");
+    } catch (error) {
+        alert("Erreur lors de la déconnexion.");
+    }
+}
+
+/* =========================================================
+   CHARGEMENT DES THÈMES VIA FETCH (themes.json)
+========================================================= */
+
+const verbTheme = {
+  id: "verben",
+  name: "Verbes allemands",
+  niveau: "A2",
+  svg: '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>',
+  words: [
+    [
+      "haben",
+      "avoir",
+      "Präsens: ich habe, du hast, er hat\nPräteritum: ich hatte\nPerfekt: ich habe gehabt\n\nBeispiel (Präsens): Ich habe ein neues Fahrrad.\nBeispiel (Präteritum): Ich hatte gestern keine Zeit.\nBeispiel (Perfekt): Ich habe das Buch gelesen.\n\nTraduction : J'ai un nouveau vélo / J'avais du temps hier / J'ai lu le livre."
+    ],
+    [
+      "sein",
+      "être",
+      "Präsens: ich bin, du bist, er ist\nPräteritum: ich war\nPerfekt: ich bin gewesen\n\nBeispiel (Präsens): Ich bin heute in Berlin.\nBeispiel (Präteritum): Du warst gestern zu Hause.\nBeispiel (Perfekt): Wir sind nach Budapest gereist.\n\nTraduction : Je suis à Berlin aujourd'hui / Tu étais chez toi hier / Nous avons voyagé à Budapest."
+    ],
+    [
+      "machen",
+      "faire",
+      "Präsens: ich mache, du machst, er macht\nPräteritum: ich machte\nPerfekt: ich habe gemacht\n\nBeispiel (Präsens): Ich mache meine Hausaufgaben.\nBeispiel (Präteritum): Er machte eine Radtour in der Stadt.\nBeispiel (Perfekt): Sie hat das Frühstück gemacht.\n\nTraduction : Je fais mes devoirs / Il a fait une balade à vélo en ville / Elle a préparé le petit-déjeuner."
+    ],
+    [
+      "gehen",
+      "aller",
+      "Präsens: ich gehe, du gehst, er geht\nPräteritum: ich ging\nPerfekt: ich bin gegangen\n\nBeispiel (Präsens): Ich gehe nach der Schule zum Fitnessclub.\nBeispiel (Präteritum): Wir gingen im Park spazieren.\nBeispiel (Perfekt): Er ist gestern ins Kino gegangen.\n\nTraduction : Je vais au club de fitness après l'école / Nous sommes allés nous promener dans le parc / Il est allé au cinéma hier."
+    ],
+    [
+      "sprechen",
+      "parler",
+      "Präsens: ich spreche, du sprichst, er spricht\nPräteritum: ich sprach\nPerfekt: ich habe gesprochen\n\nBeispiel (Präsens): Ich spreche ein bisschen Deutsch auf Niveau A2.\nBeispiel (Präteritum): Sie sprach sehr gut Englisch.\nBeispiel (Perfekt): Wir haben über das Projekt gesprochen.\n\nTraduction : Je parle un peu allemand au niveau A2 / Elle parlait très bien anglais / Nous avons parlé du projet."
+    ],
+    [
+      "fahren",
+      "conduire, aller (en véhicule)",
+      "Präsens: ich fahre, du fährst, er fährt\nPräteritum: ich fuhr\nPerfekt: ich bin gefahren\n\nBeispiel (Präsens): Ich fahre jeden Tag mit dem Fahrrad in Berlin.\nBeispiel (Präteritum): Sie fuhren im Sommer nach Québec.\nBeispiel (Perfekt): Er ist mit dem Zug gefahren.\n\nTraduction : Je vais à vélo tous les jours à Berlin / Ils sont allés au Québec en été / Il est parti en train."
+    ],
+    [
+      "lesen",
+      "lire",
+      "Präsens: ich lese, du liest, er liest\nPräteritum: ich las\nPerfekt: ich habe gelesen\n\nBeispiel (Präsens): Ich lese gerne Bücher ohne Präteritum.\nBeispiel (Präteritum): Gestern las ich eine wichtige Nachricht.\nBeispiel (Perfekt): Er hat das Dokument gelesen.\n\nTraduction : J'aime lire des livres sans prétérit / Hier, j'ai lu un message important / Il a lu le document."
+    ],
+    [
+      "lernen",
+      "apprendre",
+      "Präsens: ich lerne, du lernst, er lernt\nPräteritum: ich lernte\nPerfekt: ich habe gelernt\n\nBeispiel (Präsens): Ich lerne deutsche Grammatik mit einer App.\nBeispiel (Präteritum): Sie lernte Python für die Datenanalyse.\nBeispiel (Perfekt): Wir haben viel gelernt.\n\nTraduction : J'apprends la grammaire allemande avec une application / Elle a appris Python pour l'analyse de données / Nous avons beaucoup appris."
+    ]
+  ]
+};
+
+let themes = [];
+let themesLoaded = false;
+
+async function loadThemesJson() {
+    if (themesLoaded) return;
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json');
+        if (!response.ok) throw new Error("Erreur de chargement du fichier themes.json");
+        const rawJson = await response.json();
+        // FIX: le JSON est un objet { "themes": [...] }, pas un tableau brut.
+        const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
+
+        const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
+        const grouped = {};
+        const order = [];
+
+        rawThemesData.forEach((t, idx) => {
+            // FIX: fallback vers les noms de champs français réellement utilisés
+            // dans themes.json (nom_theme / mots), en plus des noms anglais.
+            const name = t.name || t.nom_theme || `Thème ${idx + 1}`;
+            const niveau = (t.niveau || "A1").toUpperCase();
+            const svg = t.svg || DEFAULT_SVG;
+            const entryId = t.id || `theme_${idx}`;
+            const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
+
+            const rawWords = t.words || t.mots || [];
+            const words = rawWords.map(w => {
+                if (Array.isArray(w)) return w;
+                return [
+                    w.mot || w.word || "",
+                    w.genre || w.article || "der",
+                    w.pluriel || w.plural || "—",
+                    w.traduction || w.fr || ""
+                ];
+            });
+
+            if (!grouped[baseId]) {
+                grouped[baseId] = { id: baseId, name, svg, levels: {} };
+                order.push(baseId);
+            }
+            grouped[baseId].levels[niveau] = { id: entryId, words };
+        });
+
+        themes = order.map(id => grouped[id]);
+        themesLoaded = true;
+        renderThemes();
+    } catch (error) {
+        console.warn("Impossible de charger themes.json via fetch, passage au mode secours intégré :", error);
+        const rawThemesDataFallback = [
+          {
+            id: "maison_a1",
+            name: "Maison & Quotidien",
+            niveau: "A1",
+            svg: '<svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
+            words: [
+              ["Tisch", "der", "Tische", "table"],
+              ["Stuhl", "der", "Stühle", "chaise"],
+              ["Haus", "das", "Häuser", "maison"],
+              ["Tür", "die", "Türen", "porte"],
+              ["Fenster", "das", "Fenster", "fenêtre"]
+            ]
+          },
+          {
+            id: "nourriture_a1",
+            name: "Nourriture & Boissons",
+            niveau: "A1",
+            svg: '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.21 1.79 4 4 4v9h2v-9c2.21 0 4-1.79 4-4V2h-2v7zm4-7v12h2v7h2v-7h2V2h-6z"/></svg>',
+            words: [
+              ["Apfel", "der", "Äpfel", "pomme"],
+              ["Brot", "das", "Brote", "pain"],
+              ["Wasser", "das", "Wässer", "eau"],
+              ["Milch", "die", "Milchen", "lait"],
+              ["Kaffee", "der", "Kaffees", "café"]
+            ]
+          },
+          {
+            id: "voyage_a2",
+            name: "Voyage & Transport",
+            niveau: "A2",
+            svg: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>',
+            words: [
+              ["Zug", "der", "Züge", "train"],
+              ["Fahrkarte", "die", "Fahrkarten", "billet"],
+              ["Flugzeug", "das", "Flugzeuge", "avion"],
+              ["Reise", "die", "Reisen", "voyage"]
+            ]
+          }
+        ];
+        const grouped = {};
+        const order = [];
+        rawThemesDataFallback.forEach((t, idx) => {
+            const baseId = t.id.replace(/_(a1|a2|b1|b2)$/i, "");
+            if (!grouped[baseId]) {
+                grouped[baseId] = { id: baseId, name: t.name, svg: t.svg, levels: {} };
+                order.push(baseId);
+            }
+            grouped[baseId].levels[t.niveau.toUpperCase()] = { id: t.id, words: t.words };
+        });
+        themes = order.map(id => grouped[id]);
+        themesLoaded = true;
+        renderThemes();
+    }
+}
+
+const exercises = [
+  { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." },
+  { topic:"Verbes réguliers", question:"Du ___ jeden Morgen Kaffee.", translation:"Tu bois du café chaque matin.", hint:"(trinken)", answers:["trinkst"], correct:"trinkst", explanation:"« trinken » est un verbe régulier. À la deuxième personne du singulier : du trinkst." },
+  { topic:"Changement de voyelle", question:"Er ___ jeden Sonntag nach Berlin.", translation:"Il va à Berlin tous les dimanches.", hint:"(fahren)", answers:["fährt"], correct:"fährt", explanation:"Avec « er », « fahren » subit un changement de voyelle : a devient ä → er fährt." },
+  { topic:"Verbes séparables", question:"Ich stehe um 7 Uhr ___.", translation:"Je me lève à 7 heures.", hint:"(aufstehen)", answers:["auf"], correct:"auf", explanation:"« aufstehen » est un verbe à particule séparable. Dans une phrase principale, « auf » est placé à la fin." },
+  { topic:"Verbes réguliers", question:"Wir ___ heute zusammen Deutsch.", translation:"Nous faisons de l'allemand ensemble aujourd'hui.", hint:"(lernen)", answers:["lernen"], correct:"lernen", explanation:"Avec « wir », on utilise la forme en -en : wir lernen." }
+];
+
+let currentTheme = null;
+let currentCards = [];
+let currentCardsFull = [];
+let currentFlashcard = 0;
+let currentExercise = 0;
+let scoreValue = 0;
+let answered = false;
+let exerciseResults = [];
+let flashcardMode = 'nomen';
+let frontIsFrench = true;
+
+function toggleFlipDirection(){
+    frontIsFrench = !frontIsFrench;
+    document.querySelectorAll(".flip-toggle-btn").forEach(btn => {
+        btn.textContent = frontIsFrench ? "🔁 Sens : FR → DE" : "🔁 Sens : DE → FR";
+    });
+    if(currentCards.length) loadFlashcard();
+}
+
+function shuffleArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+const STORAGE_KEY = "deutschAI_progress_v4";
+
+function getProgress(){
+    try{
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
+    }catch(e){
+        return {};
+    }
+}
+
+function saveProgress(progress){
+    try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    }catch(e){}
+}
+
+function getWordState(themeId, index){
+    const progress = getProgress();
+    if(!progress[themeId]) progress[themeId] = {};
+    if(!progress[themeId][index]){
+        progress[themeId][index] = { mastered: false, due: 0, reviews: 0 };
+        saveProgress(progress);
+    }
+    return progress[themeId][index];
+}
+
+function setWordState(themeId, index, state){
+    const progress = getProgress();
+    if(!progress[themeId]) progress[themeId] = {};
+    progress[themeId][index] = state;
+    saveProgress(progress);
+}
+
+const LEVELS = ["A1", "A2", "B1", "B2"];
+
+function getThemeStats(theme, level){
+    const levelsToCount = (level && level !== "ALL") ? [level] : LEVELS;
+    let total = 0, mastered = 0;
+    levelsToCount.forEach(lvl => {
+        const levelData = theme.levels[lvl];
+        if(!levelData) return;
+        total += levelData.words.length;
+        levelData.words.forEach((w, i) => {
+            if(getWordState(levelData.id, i).mastered) mastered++;
+        });
+    });
+    return {
+        total,
+        mastered,
+        percentage: total ? Math.round(mastered / total * 100) : 0
+    };
+}
+
+function updateGlobalProgress(){
+    let total = verbTheme.words.length;
+    let mastered = 0;
+    verbTheme.words.forEach((w, i) => {
+        if(getWordState(verbTheme.id, i).mastered) mastered++;
+    });
+
+    themes.forEach(t => {
+        LEVELS.forEach(lvl => {
+            const levelData = t.levels[lvl];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
+        });
+    });
+    const percentage = total ? Math.round(mastered / total * 100) : 0;
+
+    const pBar = document.getElementById("globalProgress");
+    const pText = document.getElementById("globalProgressText");
+    const sText = document.getElementById("settingsProgress");
+
+    if(pBar) pBar.style.width = percentage + "%";
+    if(pText) pText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} · ${percentage}%`;
+    if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
+}
+
+function showScreen(id){
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    const target = document.getElementById(id);
+    if(target) target.classList.add("active");
+    window.scrollTo(0,0);
+    updateGlobalProgress();
+}
+
+function goHome(){ showScreen("home"); }
+function openVerben(){ showScreen("verben"); }
+function openNomen(){ loadThemesJson(); renderThemes(); showScreen("nomen"); }
+function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
+
+function comingSoon(label){
+    alert(`« ${label} » arrive bientôt !`);
+}
+
+function renderThemes(){
+    filterAndRenderThemes();
+}
+
+function filterAndRenderThemes(){
+    const container = document.getElementById("themeList");
+    if(!container) return;
+
+    const selectedLevel = document.getElementById("levelFilter").value;
+    const searchText = document.getElementById("themeSearch").value.toLowerCase().trim();
+
+    const filtered = themes.filter(theme => theme.name.toLowerCase().includes(searchText));
+
+    const pill = document.getElementById("themeCountPill");
+    if(pill) pill.textContent = `${filtered.length} thème${filtered.length > 1 ? 's' : ''}`;
+
+    if(filtered.length === 0){
+        container.innerHTML = `<p style="text-align:center; color:#8290a5; padding:20px;">Aucun thème trouvé pour ces critères.</p>`;
+        return;
+    }
+
+    const levelsToShow = (selectedLevel === "ALL") ? LEVELS : [selectedLevel];
+
+    container.innerHTML = "";
+
+    const randomItem = document.createElement("div");
+    randomItem.className = "theme-item random-item";
+    randomItem.innerHTML = `
+        <div class="theme-header">
+            <div class="theme-left">
+                <div class="theme-icon">🎲</div>
+                <div>
+                    <div class="theme-name">Mots aléatoires</div>
+                    <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${selectedLevel === "ALL" ? "Tous niveaux" : selectedLevel}</div>
+                </div>
+            </div>
+        </div>
+        <div style="color:#8290a5; font-size:12px; margin-top:10px;">Mélange des mots de tous les thèmes du niveau sélectionné.</div>
+    `;
+    randomItem.addEventListener("click", () => startRandomMix(selectedLevel));
+    container.appendChild(randomItem);
+
+    filtered.forEach(theme => {
+        const stats = getThemeStats(theme, selectedLevel);
+
+        const pillsHtml = levelsToShow.map(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return "";
+            const levelStats = getThemeStats(theme, lvl);
+            const done = levelStats.total > 0 && levelStats.mastered === levelStats.total;
+            return `
+                <div class="level-pill${done ? ' done' : ''}" data-theme="${theme.id}" data-level="${lvl}">
+                    <div class="level-pill-label">${lvl}</div>
+                    <div class="level-pill-stat">${levelStats.mastered}/${levelStats.total}</div>
+                </div>
+            `;
+        }).join("");
+
+        const item = document.createElement("div");
+        item.className = "theme-item";
+        item.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">${theme.svg || ''}</div>
+                    <div>
+                        <div class="theme-name">${theme.name}</div>
+                        <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${levelsToShow.join(' · ')}</div>
+                    </div>
+                </div>
+                <div class="theme-count">${stats.mastered}/${stats.total}</div>
+            </div>
+            <div class="theme-progress">
+                <div class="theme-progress-bar">
+                    <div class="theme-progress-fill" style="width:${stats.percentage}%"></div>
+                </div>
+                <div class="theme-percent">${stats.percentage}% maîtrisé</div>
+            </div>
+            <div class="level-pills">${pillsHtml}</div>
+        `;
+        item.querySelectorAll(".level-pill").forEach(pillEl => {
+            pillEl.addEventListener("click", (e) => {
+                e.stopPropagation();
+                startTheme(pillEl.dataset.theme, pillEl.dataset.level);
+            });
+        });
+        container.appendChild(item);
+    });
+}
+
+function startVerbFlashcards(){
+    flashcardMode = 'verben';
+    currentTheme = verbTheme;
+    const now = Date.now();
+    const allItems = currentTheme.words.map((word, index) => ({ word, index, themeId: verbTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startTheme(themeId, level){
+    flashcardMode = 'nomen';
+    const theme = themes.find(t => t.id === themeId);
+    if(!theme) return;
+    const levelData = theme.levels[level];
+    if(!levelData){ alert("Ce niveau n'est pas encore disponible pour ce thème."); return; }
+
+    currentTheme = { id: levelData.id, name: `${theme.name} · ${level}` };
+
+    const now = Date.now();
+    const allItems = levelData.words.map((word, index) => ({ word, index, themeId: levelData.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){
+        alert("Tous les mots de ce thème/niveau sont actuellement maîtrisés !");
+        return;
+    }
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Noms · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startRandomMix(level){
+    flashcardMode = 'nomen';
+    const levelsToUse = (level === "ALL") ? LEVELS : [level];
+    let pool = [];
+    themes.forEach(theme => {
+        levelsToUse.forEach(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return;
+            levelData.words.forEach((word, index) => {
+                pool.push({ word, index, themeId: levelData.id });
+            });
+        });
+    });
+    if(pool.length === 0){ alert("Aucun mot disponible pour ce niveau."); return; }
+    shuffleArray(pool);
+
+    const now = Date.now();
+    let unmastered = pool.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(unmastered.length === 0) unmastered = pool.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(unmastered.length === 0) unmastered = pool;
+
+    currentCardsFull = pool;
+    currentCards = unmastered;
+    currentTheme = { id: `random_${level}`, name: `Mots aléatoires · ${level === "ALL" ? "Tous niveaux" : level}` };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Noms · Aléatoire";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function handleFlashcardBack(){
+    if(flashcardMode === 'verben') openVerben();
+    else openNomen();
+}
+
+function resizeFlashcard(){
+    const flashcardEl = document.getElementById("flashcard");
+    const front = document.querySelector(".flashcard-front");
+    const back = document.querySelector(".flashcard-back");
+    if(!flashcardEl || !front || !back) return;
+    const targetHeight = Math.max(front.scrollHeight, back.scrollHeight, 200);
+    flashcardEl.style.height = targetHeight + "px";
+}
+
+function loadFlashcard(){
+    const item = currentCards[currentFlashcard];
+    if(!item){ handleFlashcardBack(); return; }
+    const card = item.word;
+    const flashcardEl = document.getElementById("flashcard");
+    flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
+    document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
+
+    const verbDetailsEl = document.getElementById("flashVerbDetails");
+    const articleEl = document.getElementById("flashArticle");
+    const pluralEl = document.getElementById("flashPlural");
+    const translationEl = document.getElementById("flashTranslation");
+
+    if(flashcardMode === 'verben'){
+        const germanWord = card[0];
+        const frenchWord = card[1];
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
+        verbDetailsEl.textContent = card[2];
+        verbDetailsEl.classList.remove("hidden");
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+    } else {
+        const germanWord = card[0];
+        const frenchWord = card[3];
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
+        const articleText = (card[1] || "").toLowerCase().trim();
+        if(articleText === "der") flashcardEl.classList.add("border-der");
+        else if(articleText === "die") flashcardEl.classList.add("border-die");
+        else if(articleText === "das") flashcardEl.classList.add("border-das");
+
+        articleEl.textContent = card[1];
+        articleEl.className = `article ${articleText}`;
+        articleEl.classList.remove("hidden");
+        pluralEl.textContent = `Pluriel : ${card[2]}`;
+        pluralEl.classList.remove("hidden");
+        verbDetailsEl.classList.add("hidden");
+    }
+
+    resizeFlashcard();
+}
+
+function flipCard(){
+    document.getElementById("flashcard").classList.toggle("flipped");
+    resizeFlashcard();
+}
+
+function speakWord(){
+    if(!currentCards.length || !('speechSynthesis' in window)) return;
+    const item = currentCards[currentFlashcard];
+    const card = item.word;
+    const textToSpeak = flashcardMode === 'verben' ? card[0] : `${card[1]} ${card[0]}`;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+}
+
+function scheduleReview(minutes){
+    if(!currentCards.length) return;
+    const item = currentCards[currentFlashcard];
+    const state = getWordState(item.themeId, item.index);
+    state.mastered = false;
+    state.due = Date.now() + (minutes * 60 * 1000);
+    state.reviews = (state.reviews || 0) + 1;
+    setWordState(item.themeId, item.index, state);
+    nextFlashcard();
+}
+
+function markMastered(){
+    if(!currentCards.length) return;
+    const item = currentCards[currentFlashcard];
+    const state = getWordState(item.themeId, item.index);
+    state.mastered = true;
+    state.due = 0;
+    state.reviews = (state.reviews || 0) + 1;
+    setWordState(item.themeId, item.index, state);
+    nextFlashcard();
+}
+
+function nextFlashcard(){
+    currentFlashcard++;
+    if(currentFlashcard >= currentCards.length){
+        alert("Session terminée ! Ta progression a été enregistrée.");
+        handleFlashcardBack();
+        return;
+    }
+    loadFlashcard();
+}
+
+function retryUnmastered(){
+    if(!currentCardsFull.length) return;
+    currentCards = currentCardsFull.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){ alert("Tous les éléments de cette série sont maîtrisés !"); return; }
+    currentFlashcard = 0;
+    loadFlashcard();
+}
+
+function resetCurrentThemeConfirm(){
+    if(!currentTheme){ alert("Ouvre d'abord un thème ou une série."); return; }
+    if(currentTheme.id.startsWith('random_')){
+        alert("Le mode aléatoire mélange plusieurs thèmes distincts : réinitialise chaque thème individuellement depuis « Noms & Thèmes », ou utilise « Reset de toute la progression ».");
+        return;
+    }
+    if(!confirm(`Réinitialiser la progression de « ${currentTheme.name} » ?`)) return;
+    const progress = getProgress();
+    delete progress[currentTheme.id];
+    saveProgress(progress);
+    renderThemes();
+    updateGlobalProgress();
+    alert("La série a été réinitialisée.");
+}
+
+function resetAllConfirm(){
+    if(!confirm("ATTENTION : toute ta progression sera supprimée. Continuer ?")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    updateGlobalProgress();
+    renderThemes();
+    alert("Toute la progression a été réinitialisée.");
+}
+
+function normalizeAnswer(value){
+    return value.trim().toLowerCase().replace(/ae/g, "ä").replace(/oe/g, "ö").replace(/ue/g, "ü").replace(/ss/g, "ß");
+}
+
+function startExercises(){
+    currentExercise = 0;
+    scoreValue = 0;
+    exerciseResults = [];
+    showScreen("exercise");
+    loadExercise();
+}
+
+function loadExercise(){
+    const ex = exercises[currentExercise];
+    if(!ex) return;
+    answered = false;
+    document.getElementById("exerciseTitle").textContent = `Exercice ${currentExercise + 1}`;
+    document.getElementById("counter").textContent = `${currentExercise + 1} / ${exercises.length}`;
+    document.getElementById("question").textContent = ex.question;
+    document.getElementById("questionTranslation").textContent = `Traduction : ${ex.translation}`;
+    document.getElementById("hint").textContent = ex.hint;
+    const input = document.getElementById("answer");
+    input.value = "";
+    input.disabled = false;
+    document.getElementById("checkButton").classList.remove("hidden");
+    document.getElementById("nextButton").classList.add("hidden");
+    const feedback = document.getElementById("feedback");
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
+    setTimeout(() => input.focus(), 50);
+}
+
+function checkAnswer(){
+    if(answered) return;
+    const input = document.getElementById("answer");
+    const rawVal = input.value.trim();
+    if(!rawVal){ input.focus(); return; }
+    const ex = exercises[currentExercise];
+    answered = true;
+    const val = rawVal.toLowerCase();
+    const normalizedVal = normalizeAnswer(rawVal);
+    const isCorrect = ex.answers.some(a => {
+        const answerLower = a.toLowerCase();
+        return answerLower === val || answerLower === normalizedVal;
+    });
+    exerciseResults.push({ topic: ex.topic, correct: isCorrect });
+    const feedback = document.getElementById("feedback");
+    if(isCorrect){
+        scoreValue++;
+        feedback.className = "feedback show correct";
+        feedback.innerHTML = `<div class="feedback-title">✓ Correct !</div><div class="explanation">${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
+    }else{
+        feedback.className = "feedback show wrong";
+        feedback.innerHTML = `<div class="feedback-title">✗ Pas tout à fait</div><div class="explanation"><strong>Bonne réponse :</strong> ${ex.correct}<br><br>${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
+    }
+    input.disabled = true;
+    document.getElementById("checkButton").classList.add("hidden");
+    document.getElementById("nextButton").classList.remove("hidden");
+}
+
+function nextExercise(){
+    currentExercise++;
+    if(currentExercise >= exercises.length){ showResults(); return; }
+    loadExercise();
+}
+
+function showResults(){
+    const percentage = Math.round(scoreValue / exercises.length * 100);
+    document.getElementById("score").textContent = percentage + "%";
+    document.getElementById("scoreText").textContent = `${scoreValue} exercice${scoreValue !== 1 ? 's' : ''} sur ${exercises.length} réussi${scoreValue !== 1 ? 's' : ''}.`;
+    document.getElementById("resultTitle").textContent = percentage >= 60 ? "Très bien !" : "Continue comme ça !";
+    const byTopic = {};
+    exerciseResults.forEach(r => {
+        if(!byTopic[r.topic]) byTopic[r.topic] = { correct: 0, total: 0 };
+        byTopic[r.topic].total++;
+        if(r.correct) byTopic[r.topic].correct++;
+    });
+    const statsList = document.getElementById("statsList");
+    statsList.innerHTML = "";
+    Object.keys(byTopic).forEach(topic => {
+        const stat = byTopic[topic];
+        const allCorrect = stat.correct === stat.total;
+        const row = document.createElement("div");
+        row.className = "stat";
+        row.innerHTML = `<span>${topic}</span><strong>${allCorrect ? "✓" : `${stat.correct}/${stat.total}`}</strong>`;
+        statsList.appendChild(row);
+    });
+    const missedTopics = Object.keys(byTopic).filter(t => byTopic[t].correct < byTopic[t].total);
+    document.getElementById("revisionText").textContent = missedTopics.length ? `À revoir : ${missedTopics.join(", ")}.` : "Excellent. Aucune révision immédiate nécessaire.";
+    showScreen("result");
+}
+
+document.getElementById("answer").addEventListener("keydown", e => {
+    if(e.key !== "Enter") return;
+    if(!answered) checkAnswer();
+    else nextExercise();
+});
+
+["authEmail","authPassword"].forEach(id => {
+    document.getElementById(id).addEventListener("keydown", e => {
+        if (e.key === "Enter") handleEmailLogin();
+    });
+});
+
+(() => {
+    loadThemesJson();
+    updateGlobalProgress();
+})();
+</script>
+
+</body>
+</html>
+fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
