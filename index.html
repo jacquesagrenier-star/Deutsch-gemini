@@ -123,9 +123,11 @@ h1{
 }
 
 .orb{
+    position:relative;
     aspect-ratio:1;
     border-radius:50%;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
@@ -142,6 +144,25 @@ h1{
 
 .orb:hover{transform:translateY(-4px)}
 
+.orb-icon{
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:6px;
+}
+
+.orb-icon svg{
+    width:18px;
+    height:18px;
+    fill:none;
+    stroke:#9bdcff;
+    stroke-width:1.7;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
 .orb strong{
     display:block;
     font-size:13px;
@@ -152,6 +173,26 @@ h1{
     margin-top:5px;
     color:#8190a6;
     font-size:9px;
+}
+
+/* Badge de mots/verbes dus — taille fixe, une seule couleur, coin sup. droit */
+.orb-badge{
+    position:absolute;
+    top:2px;
+    right:2px;
+    min-width:34px;
+    height:18px;
+    padding:0 6px;
+    border-radius:9px;
+    background:#9bdcff;
+    color:#07111c;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 2px 6px rgba(155,220,255,.35);
 }
 
 .back{
@@ -791,6 +832,8 @@ button{font-family:inherit}
 
     <div class="grid">
         <div class="orb" onclick="openVerben()">
+            <div id="badge-verben" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
             <div>
                 <strong>Verbes</strong>
                 <small>Flashcards & Grammaire</small>
@@ -798,6 +841,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="openNomen()">
+            <div id="badge-nomen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
             <div>
                 <strong>Noms</strong>
                 <small>Thèmes & Vocabulaire</small>
@@ -805,6 +850,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="comingSoon('Cas')">
+            <div id="badge-kasus" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
             <div>
                 <strong>Cas</strong>
                 <small>Nominativ · Akkusativ</small>
@@ -812,6 +859,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="comingSoon('Adjectifs')">
+            <div id="badge-adjektive" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
             <div>
                 <strong>Adjectifs</strong>
                 <small>Endungen</small>
@@ -819,6 +868,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="comingSoon('Prépositions')">
+            <div id="badge-praepositionen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
             <div>
                 <strong>Prépositions</strong>
                 <small>Dativ · Akkusativ</small>
@@ -826,6 +877,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="comingSoon('Structure')">
+            <div id="badge-wortstellung" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
                 <strong>Structure</strong>
                 <small>Satzbau</small>
@@ -833,6 +886,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="comingSoon('Possessifs')">
+            <div id="badge-possessiv" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M8 12v6"/><path d="M5 21v-2a3 3 0 013-3h0a3 3 0 013 3v2"/><path d="M15 8h6"/></svg></div>
             <div>
                 <strong>Possessifs</strong>
                 <small>mein · dein</small>
@@ -840,6 +895,8 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="comingSoon('Particules')">
+            <div id="badge-partikeln" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
             <div>
                 <strong>Particules</strong>
                 <small>doch · ja · mal</small>
@@ -847,6 +904,7 @@ button{font-family:inherit}
         </div>
 
         <div class="orb" onclick="openSettings()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
             <div>
                 <strong>Révision</strong>
                 <small>Progression · Reset</small>
@@ -1286,6 +1344,7 @@ async function loadThemesJson() {
         themesLoaded = true;
         renderThemes();
         updateDueBanner();
+        updateOrbBadges();
     } catch (error) {
         console.warn("Impossible de charger themes.json via fetch, passage au mode secours intégré :", error);
         const rawThemesDataFallback = [
@@ -1342,6 +1401,7 @@ async function loadThemesJson() {
         themesLoaded = true;
         renderThemes();
         updateDueBanner();
+        updateOrbBadges();
     }
 }
 
@@ -1462,12 +1522,54 @@ function updateGlobalProgress(){
     if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
 }
 
+/* =========================================================
+   BADGES DE RÉVISION SUR LA GRILLE D'ACCUEIL
+   Pilule à taille fixe, une seule couleur accent, jusqu'à "30+"
+========================================================= */
+
+const ORB_BADGE_CAP = 30;
+
+function formatBadgeCount(count){
+    if(count > ORB_BADGE_CAP) return `${ORB_BADGE_CAP}+`;
+    return String(count);
+}
+
+function setOrbBadge(elId, count){
+    const el = document.getElementById(elId);
+    if(!el) return;
+    if(count > 0){
+        el.textContent = formatBadgeCount(count);
+        el.classList.remove("hidden");
+    } else {
+        el.classList.add("hidden");
+        el.textContent = "";
+    }
+}
+
+function getVerbenDueCount(){
+    const now = Date.now();
+    let count = 0;
+    verbTheme.words.forEach((w, i) => {
+        const state = getWordState(verbTheme.id, i);
+        if(!state.mastered && (!state.due || state.due <= now)) count++;
+    });
+    return count;
+}
+
+function updateOrbBadges(){
+    setOrbBadge("badge-verben", getVerbenDueCount());
+    setOrbBadge("badge-nomen", getDueItems().length);
+    // Cas, Adjectifs, Prépositions, Structure, Possessifs, Particules :
+    // pas encore de contenu/spaced-repetition -> pas de badge pour l'instant.
+}
+
 function showScreen(id){
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
     window.scrollTo(0,0);
     updateGlobalProgress();
+    updateOrbBadges();
 }
 
 function goHome(){ showScreen("home"); }
@@ -1812,6 +1914,7 @@ function markMastered(){
 function nextFlashcard(){
     currentFlashcard++;
     updateDueBanner();
+    updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         alert("Session terminée ! Ta progression a été enregistrée.");
         handleFlashcardBack();
@@ -1841,6 +1944,7 @@ function resetCurrentThemeConfirm(){
     renderThemes();
     updateGlobalProgress();
     updateDueBanner();
+    updateOrbBadges();
     alert("La série a été réinitialisée.");
 }
 
@@ -1850,6 +1954,7 @@ function resetAllConfirm(){
     updateGlobalProgress();
     renderThemes();
     updateDueBanner();
+    updateOrbBadges();
     alert("Toute la progression a été réinitialisée.");
 }
 
@@ -1960,6 +2065,7 @@ document.getElementById("answer").addEventListener("keydown", e => {
 (() => {
     loadThemesJson();
     updateGlobalProgress();
+    updateOrbBadges();
 })();
 </script>
 
