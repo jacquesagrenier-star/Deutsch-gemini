@@ -728,7 +728,7 @@ button{font-family:inherit}
 
 <!-- ================= AUTH ================= -->
 
-<section id="auth" class="screen active">
+<section id="auth" class="screen">
     <div class="title-row" style="margin-top: 10px;">
         <div>
             <div class="kicker">Accès restreint</div>
@@ -756,7 +756,7 @@ button{font-family:inherit}
 
 <!-- ================= HOME ================= -->
 
-<section id="home" class="screen">
+<section id="home" class="screen active">
 
     <div class="kicker">Tuteur d'allemand adaptatif</div>
 
@@ -1099,6 +1099,8 @@ window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
 window.signOut = signOut;
 
+const AUTH_REQUIRED = false; // Mis à false temporairement : la connexion ne bloque plus l'accès à l'app.
+
 onAuthStateChanged(auth, (user) => {
     const userProfile = document.getElementById("userProfile");
     const authContent = document.getElementById("authContent");
@@ -1118,7 +1120,7 @@ onAuthStateChanged(auth, (user) => {
         authContent.classList.remove("hidden");
         userAccountInfo.classList.add("hidden");
         userEmailDisplay.textContent = "";
-        showScreen("auth");
+        if(AUTH_REQUIRED) showScreen("auth");
     }
 });
 </script>
