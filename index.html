@@ -1041,34 +1041,40 @@ button{font-family:inherit}
 
 <!-- ================= VERBEN ================= -->
 
-<section id="verben" class="screen">
+<section id="verbenNiveau" class="screen">
     <button class="back" onclick="goHome()">‹ Retour</button>
 
     <div class="title-row">
         <div>
             <div class="kicker">Grammaire & Vocabulaire</div>
-            <h2>Verbes</h2>
+            <h2>Verbes par niveau</h2>
         </div>
-        <div class="pill">A2</div>
+        <div class="pill" id="verbLevelCountPill">Niveaux</div>
     </div>
 
-    <div class="subcategories">
-        <div class="subcategory" onclick="startVerbFlashcards()">
-            <strong>Flashcards Verbes</strong>
-            <span>Présent, Prétérit, Perfekt & Exemples</span>
+    <div class="due-banner" id="verbDueBanner" onclick="startVerbeDueReview()">
+        <div class="due-banner-left">
+            <div class="due-banner-icon">🕐</div>
+            <div>
+                <div class="due-banner-title" id="verbDueBannerCount">Chargement…</div>
+                <div class="due-banner-sub">à réviser aujourd'hui</div>
+            </div>
         </div>
-        <div class="subcategory" onclick="startExercises()">
-            <strong>Exercices Präsens</strong>
-            <span>Réguliers · irréguliers</span>
-        </div>
+        <div class="due-banner-arrow">→</div>
+    </div>
+
+    <div class="filters-bar">
+        <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+        <div class="theme-list" id="verbLevelList"></div>
     </div>
 
     <div class="card">
-        <strong>Flashcards recommandées</strong>
-        <p style="color:#8290a5">Révise les verbes essentiels avec conjugaisons et exemples complets.</p>
-        <button class="primary" onclick="startVerbFlashcards()">LANCER LES FLASHCARDS →</button>
-        <div class="spacer"></div>
-        <button class="secondary flip-toggle-btn" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
+        <strong>Exercices de grammaire</strong>
+        <p style="color:#8290a5">Exercices ciblés sur la conjugaison au présent.</p>
+        <button class="secondary" onclick="startExercises()">EXERCICES PRÄSENS →</button>
     </div>
 </section>
 
@@ -1203,7 +1209,7 @@ button{font-family:inherit}
 <!-- ================= EXERCISE ================= -->
 
 <section id="exercise" class="screen">
-    <button class="back" onclick="openVerben()">‹ Verbes</button>
+    <button class="back" onclick="openVerbenNiveau()">‹ Verbes</button>
 
     <div class="title-row">
         <div>
@@ -1391,16 +1397,56 @@ async function handleLogout() {
     }
 }
 
-const verbTheme = {
+// Intégration de la catégorie verbe liée à verbe.json (structure par niveau A1/A2/B1/B2 ; niveaux ajoutés au fur et à mesure)
+let verbeTheme = {
   id: "verben",
   name: "Verbes allemands",
-  niveau: "A2",
   svg: '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>',
-  words: [
-    ["haben", "avoir", "Präsens: ich habe, du hast, er hat\nPräteritum: ich hatte\nPerfekt: ich habe gehabt"],
-    ["sein", "être", "Präsens: ich bin, du bist, er ist\nPräteritum: ich war\nPerfekt: ich bin gewesen"]
-  ]
+  words: []
 };
+
+async function loadVerbeJson() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/verbe.json');
+        if (!response.ok) throw new Error("Fichier verbe.json introuvable");
+        const data = await response.json();
+        let words = [];
+        Object.keys(data).forEach(lvl => {
+            const arr = data[lvl] || [];
+            arr.forEach(v => {
+                words.push({
+                    infinitif: v.infinitif || "",
+                    traduction: v.traduction || "",
+                    praesens: v.praesens || {},
+                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "",
+                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "",
+                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "",
+                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "",
+                    niveau: lvl
+                });
+            });
+        });
+        verbeTheme.words = words;
+    } catch (e) {
+        console.warn("Chargement de secours pour verbe.json", e);
+        verbeTheme.words = [
+            { infinitif:"haben", traduction:"avoir",
+              praesens:{ich:"habe",du:"hast",er_sie_es:"hat",wir:"haben",ihr:"habt",sie_Sie:"haben"},
+              exemple:"Ich habe einen Bruder.", exemple_fr:"J'ai un frère.",
+              praeteritum:"Ich hatte gestern keine Zeit.", praeteritum_fr:"Je n'avais pas de temps hier.",
+              perfekt:"Ich habe schon zwei Kaffees gehabt.", perfekt_fr:"J'ai déjà eu deux cafés.",
+              konjunktiv2:"Wenn ich mehr Zeit hätte, würde ich öfter kochen.", konjunktiv2_fr:"Si j'avais plus de temps, je cuisinerais plus souvent.",
+              niveau:"A1" },
+            { infinitif:"sein", traduction:"être",
+              praesens:{ich:"bin",du:"bist",er_sie_es:"ist",wir:"sind",ihr:"seid",sie_Sie:"sind"},
+              exemple:"Ich bin heute zu Hause.", exemple_fr:"Je suis chez moi aujourd'hui.",
+              praeteritum:"Ich war gestern krank.", praeteritum_fr:"J'étais malade hier.",
+              perfekt:"Ich bin oft in Berlin gewesen.", perfekt_fr:"J'ai souvent été à Berlin.",
+              konjunktiv2:"Wenn ich reich wäre, würde ich ein Haus kaufen.", konjunktiv2_fr:"Si j'étais riche, j'achèterais une maison.",
+              niveau:"A1" }
+        ];
+    }
+}
 
 // Intégration de la catégorie adjectif liée à adjectif.json (structure par niveau A1/A2/B1/B2)
 let adjektiveTheme = {
@@ -1447,6 +1493,7 @@ let themesLoaded = false;
 async function loadThemesJson() {
     if (themesLoaded) return;
     await loadAdjektiveJson();
+    await loadVerbeJson();
     try {
         const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json');
         if (!response.ok) throw new Error("Erreur themes.json");
@@ -1563,11 +1610,11 @@ function setWordState(themeId, index, state){
 const LEVELS = ["A1", "A2", "B1", "B2"];
 
 function updateGlobalProgress(){
-    let total = verbTheme.words.length + adjektiveTheme.words.length;
+    let total = verbeTheme.words.length + adjektiveTheme.words.length;
     let mastered = 0;
     
-    verbTheme.words.forEach((w, i) => {
-        if(getWordState(verbTheme.id, i).mastered) mastered++;
+    verbeTheme.words.forEach((w, i) => {
+        if(getWordState(verbeTheme.id, i).mastered) mastered++;
     });
     adjektiveTheme.words.forEach((w, i) => {
         if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
@@ -1613,14 +1660,164 @@ function setOrbBadge(elId, count){
     }
 }
 
-function getVerbenDueCount(){
+function getVerbeDueItemsAll(){
     const now = Date.now();
-    let count = 0;
-    verbTheme.words.forEach((w, i) => {
-        const state = getWordState(verbTheme.id, i);
-        if(!state.mastered && (!state.due || state.due <= now)) count++;
+    return verbeTheme.words
+        .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
+        .filter(item => {
+            const state = getWordState(item.themeId, item.index);
+            return !state.mastered && (!state.due || state.due <= now);
+        });
+}
+
+function getVerbenDueCount(){
+    return getVerbeDueItemsAll().length;
+}
+
+function updateVerbDueBanner(){
+    const el = document.getElementById("verbDueBannerCount");
+    if(!el) return;
+    const count = getVerbeDueItemsAll().length;
+    if(count === 0) el.textContent = "Tout est à jour !";
+    else if(count > DUE_SESSION_CAP) el.textContent = `${DUE_SESSION_CAP}+ verbes`;
+    else el.textContent = `${count} verbe${count !== 1 ? 's' : ''}`;
+}
+
+function getVerbeLevelsPresent(){
+    const present = new Set(verbeTheme.words.map(w => w.niveau));
+    return LEVELS.filter(lvl => present.has(lvl));
+}
+
+function openVerbenNiveau(){
+    renderVerbeLevels();
+    updateVerbDueBanner();
+    showScreen("verbenNiveau");
+}
+
+function renderVerbeLevels(){
+    const container = document.getElementById("verbLevelList");
+    const pill = document.getElementById("verbLevelCountPill");
+    if(!container) return;
+    container.innerHTML = "";
+
+    const levelsPresent = getVerbeLevelsPresent();
+    if(pill) pill.textContent = `${levelsPresent.length} niveau${levelsPresent.length !== 1 ? 'x' : ''}`;
+
+    const randomItem = document.createElement("div");
+    randomItem.className = "theme-item random-item";
+    randomItem.innerHTML = `
+        <div class="theme-header">
+            <div class="theme-left">
+                <div class="theme-icon">🎲</div>
+                <div>
+                    <div class="theme-name">Verbes aléatoires</div>
+                    <div style="font-size:11px; color:#9bdcff; margin-top:2px;">Tous niveaux</div>
+                </div>
+            </div>
+        </div>
+        <div style="color:#8290a5; font-size:12px; margin-top:10px;">Mélange des verbes de tous les niveaux disponibles.</div>
+    `;
+    randomItem.addEventListener("click", () => startVerbeRandomMix());
+    container.appendChild(randomItem);
+
+    levelsPresent.forEach(lvl => {
+        const items = verbeTheme.words
+            .map((word, index) => ({ word, index }))
+            .filter(it => it.word.niveau === lvl);
+        const total = items.length;
+        let mastered = 0;
+        items.forEach(it => {
+            if(getWordState(verbeTheme.id, it.index).mastered) mastered++;
+        });
+        const percentage = total ? Math.round(mastered / total * 100) : 0;
+
+        const item = document.createElement("div");
+        item.className = "theme-item";
+        item.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">${verbeTheme.svg}</div>
+                    <div>
+                        <div class="theme-name">Niveau ${lvl}</div>
+                        <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${lvl}</div>
+                    </div>
+                </div>
+                <div class="theme-count">${mastered}/${total}</div>
+            </div>
+            <div class="theme-progress">
+                <div class="theme-progress-bar">
+                    <div class="theme-progress-fill" style="width:${percentage}%"></div>
+                </div>
+                <div class="theme-percent">${percentage}% maîtrisé</div>
+            </div>
+        `;
+        item.addEventListener("click", () => startVerbeLevel(lvl));
+        container.appendChild(item);
     });
-    return count;
+}
+
+function startVerbeDueReview(){
+    flashcardMode = 'verben';
+    let dueItems = getVerbeDueItemsAll();
+    if(dueItems.length === 0){ alert("Aucun verbe à réviser pour l'instant. Continue comme ça !"); return; }
+    shuffleArray(dueItems);
+    if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
+    currentCardsFull = dueItems;
+    currentCards = dueItems;
+    currentTheme = { id: `verb_due_review`, name: "Révision du jour · Verbes" };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Verbes · Révision";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startVerbeLevel(level){
+    flashcardMode = 'verben';
+    const now = Date.now();
+    const allItems = verbeTheme.words
+        .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
+        .filter(it => it.word.niveau === level);
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){
+        alert("Tous les verbes de ce niveau sont maîtrisés !");
+        return;
+    }
+    currentTheme = { id: `verb_${level}`, name: `Verbes · ${level}` };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startVerbeRandomMix(){
+    flashcardMode = 'verben';
+    let pool = verbeTheme.words.map((word, index) => ({ word, index, themeId: verbeTheme.id }));
+    if(pool.length === 0){ alert("Aucun verbe disponible."); return; }
+    shuffleArray(pool);
+
+    const now = Date.now();
+    let unmastered = pool.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(unmastered.length === 0) unmastered = pool.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(unmastered.length === 0) unmastered = pool;
+
+    currentCardsFull = pool;
+    currentCards = unmastered;
+    currentTheme = { id: `verb_random`, name: "Verbes · Aléatoire" };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Verbes · Aléatoire";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
 }
 
 function getAdjektiveDueItemsAll(){
@@ -1795,8 +1992,9 @@ function orbPanelData(id){
         return {
             icon:"reviser", title:"Verbes", sub:"Conjugaison & usage",
             options:[
-                { icon:"reviser", title:"Réviser mes verbes dus", desc:"Verbes à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startVerbFlashcards" },
-                { icon:"carte", title:"Toutes les flashcards", desc:"Présent, Prétérit, Perfekt & exemples", action:"startAllVerbFlashcards" },
+                { icon:"reviser", title:"Réviser mes verbes dus", desc:"Verbes à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startVerbeDueReview" },
+                { icon:"dossier", title:"Parcourir par niveau", desc:"A1 · A2 (B1 · B2 à venir)", action:"openVerbenNiveau" },
+                { icon:"ale", title:"Verbes aléatoires", desc:"Mélange de tous les niveaux", action:"startVerbeRandomMix" },
                 { icon:"exercice", title:"Exercices Präsens", desc:"Réguliers · irréguliers", action:"startExercises" }
             ]
         };
@@ -1878,19 +2076,6 @@ function renderOrbPanel(){
     `).join("");
 }
 
-function startAllVerbFlashcards(){
-    flashcardMode = 'verben';
-    currentTheme = verbTheme;
-    const allItems = verbTheme.words.map((word, index) => ({ word, index, themeId: verbTheme.id }));
-    currentCardsFull = allItems;
-    currentCards = allItems;
-    currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
-    document.getElementById("flashThemeTitle").textContent = "Verbes allemands";
-    showScreen("flashcards");
-    loadFlashcard();
-}
-
 function startAdjektiveFlashcards(){
     flashcardMode = 'adjektive';
     currentTheme = adjektiveTheme;
@@ -1937,7 +2122,6 @@ function showScreen(id){
 }
 
 function goHome(){ showScreen("home"); }
-function openVerben(){ showScreen("verben"); }
 function openNomen(){ loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen"); }
 function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
 
@@ -2093,25 +2277,6 @@ function filterAndRenderThemes(){
     });
 }
 
-function startVerbFlashcards(){
-    flashcardMode = 'verben';
-    currentTheme = verbTheme;
-    const now = Date.now();
-    const allItems = currentTheme.words.map((word, index) => ({ word, index, themeId: verbTheme.id }));
-    currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
-    if(currentCards.length === 0) currentCards = allItems;
-    currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
-    showScreen("flashcards");
-    loadFlashcard();
-}
-
 function startTheme(themeId, level){
     flashcardMode = 'nomen';
     const theme = themes.find(t => t.id === themeId);
@@ -2175,7 +2340,7 @@ function startRandomMix(level){
 }
 
 function handleFlashcardBack(){
-    if(flashcardMode === 'verben') openVerben();
+    if(flashcardMode === 'verben') openVerbenNiveau();
     else if(flashcardMode === 'adjektive') openAdjektive();
     else openNomen();
 }
@@ -2203,8 +2368,8 @@ function loadFlashcard(){
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben'){
-        const germanWord = card[0];
-        const frenchWord = card[1];
+        const germanWord = card.infinitif;
+        const frenchWord = card.traduction;
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
@@ -2215,7 +2380,19 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        verbDetailsEl.textContent = card[2];
+        const p = card.praesens || {};
+        const conjLines = [
+            `ich ${p.ich || ""}`, `du ${p.du || ""}`, `er/sie/es ${p.er_sie_es || ""}`,
+            `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
+        ].join(" · ");
+        const detailParts = [
+            `PRÄSENS : ${conjLines}`,
+            `\nExemple : ${card.exemple || ""}\n(${card.exemple_fr || ""})`,
+            `\nPrätéritum : ${card.praeteritum || ""}\n(${card.praeteritum_fr || ""})`,
+            `\nPerfekt : ${card.perfekt || ""}\n(${card.perfekt_fr || ""})`,
+            `\nKonjunktiv II : ${card.konjunktiv2 || ""}\n(${card.konjunktiv2_fr || ""})`
+        ];
+        verbDetailsEl.textContent = detailParts.join("\n");
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
@@ -2276,7 +2453,7 @@ function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
     const item = currentCards[currentFlashcard];
     const card = item.word;
-    const textToSpeak = flashcardMode === 'verben' ? card[0] : card[0];
+    const textToSpeak = flashcardMode === 'verben' ? card.infinitif : card[0];
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'de-DE';
@@ -2310,6 +2487,7 @@ function nextFlashcard(){
     currentFlashcard++;
     updateDueBanner();
     updateAdjDueBanner();
+    updateVerbDueBanner();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         alert("Session terminée ! Ta progression a été enregistrée.");
@@ -2335,9 +2513,11 @@ function resetCurrentThemeConfirm(){
     saveProgress(progress);
     renderThemes();
     renderAdjektiveLevels();
+    renderVerbeLevels();
     updateGlobalProgress();
     updateDueBanner();
     updateAdjDueBanner();
+    updateVerbDueBanner();
     updateOrbBadges();
     alert("La série a été réinitialisée.");
 }
@@ -2348,8 +2528,10 @@ function resetAllConfirm(){
     updateGlobalProgress();
     renderThemes();
     renderAdjektiveLevels();
+    renderVerbeLevels();
     updateDueBanner();
     updateAdjDueBanner();
+    updateVerbDueBanner();
     updateOrbBadges();
     alert("Toute la progression a été réinitialisée.");
 }
