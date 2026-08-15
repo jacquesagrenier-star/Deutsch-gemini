@@ -175,9 +175,6 @@ h1{
     font-size:9px;
 }
 
-/* Badge de mots/verbes dus — taille fixe, une seule couleur, coin sup. droit.
-   La pastille étant désormais rectangulaire (coins arrondis), un positionnement
-   classique dans le coin fonctionne directement, sans calcul géométrique. */
 .orb-badge{
     position:absolute;
     top:-7px;
@@ -202,7 +199,6 @@ h1{
     box-shadow:0 0 0 1px #9bdcff, 0 15px 40px rgba(0,0,0,.25);
 }
 
-/* Panneau de sous-options qui se déplie au clic sur une pastille */
 .orb-panel{
     margin-top:16px;
     padding:20px;
@@ -738,7 +734,6 @@ button{font-family:inherit}
     border:1px solid rgba(255,255,255,.16);
 }
 
-/* Couleurs dynamiques uniquement au verso */
 .flashcard.border-der.flipped .flashcard-back { border: 2px solid #3b82f6; }
 .flashcard.border-die.flipped .flashcard-back { border: 2px solid #ef4444; }
 .flashcard.border-das.flipped .flashcard-back { border: 2px solid #10b981; }
@@ -846,8 +841,6 @@ button{font-family:inherit}
     border-color:rgba(255,180,100,.30);
     color:#ffc27d;
 }
-
-/* SETTINGS */
 
 .danger{
     border-color:rgba(255,100,130,.25);
@@ -1067,14 +1060,6 @@ button{font-family:inherit}
             <strong>Exercices Präsens</strong>
             <span>Réguliers · irréguliers</span>
         </div>
-        <div class="subcategory" onclick="comingSoon('Präteritum')">
-            <strong>Präteritum</strong>
-            <span>Passé simple</span>
-        </div>
-        <div class="subcategory" onclick="comingSoon('Perfekt')">
-            <strong>Perfekt</strong>
-            <span>haben · sein</span>
-        </div>
     </div>
 
     <div class="card">
@@ -1288,7 +1273,7 @@ window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
 window.signOut = signOut;
 
-const AUTH_REQUIRED = false; // Mis à false temporairement : la connexion ne bloque plus l'accès à l'app.
+const AUTH_REQUIRED = false;
 
 onAuthStateChanged(auth, (user) => {
     const userProfile = document.getElementById("userProfile");
@@ -1315,9 +1300,6 @@ onAuthStateChanged(auth, (user) => {
 </script>
 
 <script>
-/* =========================================================
-   GESTION UI AUTHENTIFICATION
-========================================================= */
 function openAuth() {
     showScreen("auth");
 }
@@ -1375,78 +1357,68 @@ async function handleLogout() {
     }
 }
 
-/* =========================================================
-   CHARGEMENT DES THÈMES VIA FETCH (themes.json)
-========================================================= */
-
 const verbTheme = {
   id: "verben",
   name: "Verbes allemands",
   niveau: "A2",
   svg: '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>',
   words: [
-    [
-      "haben",
-      "avoir",
-      "Präsens: ich habe, du hast, er hat\nPräteritum: ich hatte\nPerfekt: ich habe gehabt\n\nBeispiel (Präsens): Ich habe ein neues Fahrrad.\nBeispiel (Präteritum): Ich hatte gestern keine Zeit.\nBeispiel (Perfekt): Ich habe das Buch gelesen.\n\nTraduction : J'ai un nouveau vélo / J'avais du temps hier / J'ai lu le livre."
-    ],
-    [
-      "sein",
-      "être",
-      "Präsens: ich bin, du bist, er ist\nPräteritum: ich war\nPerfekt: ich bin gewesen\n\nBeispiel (Präsens): Ich bin heute in Berlin.\nBeispiel (Präteritum): Du warst gestern zu Hause.\nBeispiel (Perfekt): Wir sind nach Budapest gereist.\n\nTraduction : Je suis à Berlin aujourd'hui / Tu étais chez toi hier / Nous avons voyagé à Budapest."
-    ],
-    [
-      "machen",
-      "faire",
-      "Präsens: ich mache, du machst, er macht\nPräteritum: ich machte\nPerfekt: ich habe gemacht\n\nBeispiel (Präsens): Ich mache meine Hausaufgaben.\nBeispiel (Präteritum): Er machte eine Radtour in der Stadt.\nBeispiel (Perfekt): Sie hat das Frühstück gemacht.\n\nTraduction : Je fais mes devoirs / Il a fait une balade à vélo en ville / Elle a préparé le petit-déjeuner."
-    ],
-    [
-      "gehen",
-      "aller",
-      "Präsens: ich gehe, du gehst, er geht\nPräteritum: ich ging\nPerfekt: ich bin gegangen\n\nBeispiel (Präsens): Ich gehe nach der Schule zum Fitnessclub.\nBeispiel (Präteritum): Wir gingen im Park spazieren.\nBeispiel (Perfekt): Er ist gestern ins Kino gegangen.\n\nTraduction : Je vais au club de fitness après l'école / Nous sommes allés nous promener dans le parc / Il est allé au cinéma hier."
-    ],
-    [
-      "sprechen",
-      "parler",
-      "Präsens: ich spreche, du sprichst, er spricht\nPräteritum: ich sprach\nPerfekt: ich habe gesprochen\n\nBeispiel (Präsens): Ich spreche ein bisschen Deutsch auf Niveau A2.\nBeispiel (Präteritum): Sie sprach sehr gut Englisch.\nBeispiel (Perfekt): Wir haben über das Projekt gesprochen.\n\nTraduction : Je parle un peu allemand au niveau A2 / Elle parlait très bien anglais / Nous avons parlé du projet."
-    ],
-    [
-      "fahren",
-      "conduire, aller (en véhicule)",
-      "Präsens: ich fahre, du fährst, er fährt\nPräteritum: ich fuhr\nPerfekt: ich bin gefahren\n\nBeispiel (Präsens): Ich fahre jeden Tag mit dem Fahrrad in Berlin.\nBeispiel (Präteritum): Sie fuhren im Sommer nach Québec.\nBeispiel (Perfekt): Er ist mit dem Zug gefahren.\n\nTraduction : Je vais à vélo tous les jours à Berlin / Ils sont allés au Québec en été / Il est parti en train."
-    ],
-    [
-      "lesen",
-      "lire",
-      "Präsens: ich lese, du liest, er liest\nPräteritum: ich las\nPerfekt: ich habe gelesen\n\nBeispiel (Präsens): Ich lese gerne Bücher ohne Präteritum.\nBeispiel (Präteritum): Gestern las ich eine wichtige Nachricht.\nBeispiel (Perfekt): Er hat das Dokument gelesen.\n\nTraduction : J'aime lire des livres sans prétérit / Hier, j'ai lu un message important / Il a lu le document."
-    ],
-    [
-      "lernen",
-      "apprendre",
-      "Präsens: ich lerne, du lernst, er lernt\nPräteritum: ich lernte\nPerfekt: ich habe gelernt\n\nBeispiel (Präsens): Ich lerne deutsche Grammatik mit einer App.\nBeispiel (Präteritum): Sie lernte Python für die Datenanalyse.\nBeispiel (Perfekt): Wir haben viel gelernt.\n\nTraduction : J'apprends la grammaire allemande avec une application / Elle a appris Python pour l'analyse de données / Nous avons beaucoup appris."
-    ]
+    ["haben", "avoir", "Präsens: ich habe, du hast, er hat\nPräteritum: ich hatte\nPerfekt: ich habe gehabt"],
+    ["sein", "être", "Präsens: ich bin, du bist, er ist\nPräteritum: ich war\nPerfekt: ich bin gewesen"]
   ]
 };
+
+// Intégration de la catégorie adjectif liée à adjectif.json
+let adjektiveTheme = {
+  id: "adjektive",
+  name: "Adjectifs allemands",
+  niveau: "A2",
+  svg: '<svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg>',
+  words: []
+};
+
+async function loadAdjektiveJson() {
+    try {
+        const response = await fetch('adjectif.json');
+        if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
+        const data = await response.json();
+        const rawWords = Array.isArray(data) ? data : (data.words || data.mots || []);
+        adjektiveTheme.words = rawWords.map(w => {
+            if (Array.isArray(w)) return w;
+            return [
+                w.mot || w.word || "",
+                w.genre || w.article || "—",
+                w.pluriel || w.plural || "—",
+                w.traduction || w.fr || ""
+            ];
+        });
+    } catch (e) {
+        console.warn("Chargement de secours pour adjectif.json", e);
+        adjektiveTheme.words = [
+            ["gut", "—", "—", "bon"],
+            ["groß", "—", "—", "grand"],
+            ["klein", "—", "—", "petit"]
+        ];
+    }
+}
 
 let themes = [];
 let themesLoaded = false;
 
 async function loadThemesJson() {
     if (themesLoaded) return;
+    await loadAdjektiveJson();
     try {
         const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json');
-        if (!response.ok) throw new Error("Erreur de chargement du fichier themes.json");
+        if (!response.ok) throw new Error("Erreur themes.json");
         const rawJson = await response.json();
-        // FIX: le JSON est un objet { "themes": [...] }, pas un tableau brut.
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
-
+        
         const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
         const grouped = {};
         const order = [];
 
         rawThemesData.forEach((t, idx) => {
-            // FIX: fallback vers les noms de champs français réellement utilisés
-            // dans themes.json (nom_theme / mots), en plus des noms anglais.
             const name = t.name || t.nom_theme || `Thème ${idx + 1}`;
             const niveau = (t.niveau || "A1").toUpperCase();
             const svg = t.svg || DEFAULT_SVG;
@@ -1477,58 +1449,6 @@ async function loadThemesJson() {
         updateDueBanner();
         updateOrbBadges();
     } catch (error) {
-        console.warn("Impossible de charger themes.json via fetch, passage au mode secours intégré :", error);
-        const rawThemesDataFallback = [
-          {
-            id: "maison_a1",
-            name: "Maison & Quotidien",
-            niveau: "A1",
-            svg: '<svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>',
-            words: [
-              ["Tisch", "der", "Tische", "table"],
-              ["Stuhl", "der", "Stühle", "chaise"],
-              ["Haus", "das", "Häuser", "maison"],
-              ["Tür", "die", "Türen", "porte"],
-              ["Fenster", "das", "Fenster", "fenêtre"]
-            ]
-          },
-          {
-            id: "nourriture_a1",
-            name: "Nourriture & Boissons",
-            niveau: "A1",
-            svg: '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.21 1.79 4 4 4v9h2v-9c2.21 0 4-1.79 4-4V2h-2v7zm4-7v12h2v7h2v-7h2V2h-6z"/></svg>',
-            words: [
-              ["Apfel", "der", "Äpfel", "pomme"],
-              ["Brot", "das", "Brote", "pain"],
-              ["Wasser", "das", "Wässer", "eau"],
-              ["Milch", "die", "Milchen", "lait"],
-              ["Kaffee", "der", "Kaffees", "café"]
-            ]
-          },
-          {
-            id: "voyage_a2",
-            name: "Voyage & Transport",
-            niveau: "A2",
-            svg: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>',
-            words: [
-              ["Zug", "der", "Züge", "train"],
-              ["Fahrkarte", "die", "Fahrkarten", "billet"],
-              ["Flugzeug", "das", "Flugzeuge", "avion"],
-              ["Reise", "die", "Reisen", "voyage"]
-            ]
-          }
-        ];
-        const grouped = {};
-        const order = [];
-        rawThemesDataFallback.forEach((t, idx) => {
-            const baseId = t.id.replace(/_(a1|a2|b1|b2)$/i, "");
-            if (!grouped[baseId]) {
-                grouped[baseId] = { id: baseId, name: t.name, svg: t.svg, levels: {} };
-                order.push(baseId);
-            }
-            grouped[baseId].levels[t.niveau.toUpperCase()] = { id: t.id, words: t.words };
-        });
-        themes = order.map(id => grouped[id]);
         themesLoaded = true;
         renderThemes();
         updateDueBanner();
@@ -1537,11 +1457,7 @@ async function loadThemesJson() {
 }
 
 const exercises = [
-  { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." },
-  { topic:"Verbes réguliers", question:"Du ___ jeden Morgen Kaffee.", translation:"Tu bois du café chaque matin.", hint:"(trinken)", answers:["trinkst"], correct:"trinkst", explanation:"« trinken » est un verbe régulier. À la deuxième personne du singulier : du trinkst." },
-  { topic:"Changement de voyelle", question:"Er ___ jeden Sonntag nach Berlin.", translation:"Il va à Berlin tous les dimanches.", hint:"(fahren)", answers:["fährt"], correct:"fährt", explanation:"Avec « er », « fahren » subit un changement de voyelle : a devient ä → er fährt." },
-  { topic:"Verbes séparables", question:"Ich stehe um 7 Uhr ___.", translation:"Je me lève à 7 heures.", hint:"(aufstehen)", answers:["auf"], correct:"auf", explanation:"« aufstehen » est un verbe à particule séparable. Dans une phrase principale, « auf » est placé à la fin." },
-  { topic:"Verbes réguliers", question:"Wir ___ heute zusammen Deutsch.", translation:"Nous faisons de l'allemand ensemble aujourd'hui.", hint:"(lernen)", answers:["lernen"], correct:"lernen", explanation:"Avec « wir », on utilise la forme en -en : wir lernen." }
+  { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." }
 ];
 
 let currentTheme = null;
@@ -1607,29 +1523,15 @@ function setWordState(themeId, index, state){
 
 const LEVELS = ["A1", "A2", "B1", "B2"];
 
-function getThemeStats(theme, level){
-    const levelsToCount = (level && level !== "ALL") ? [level] : LEVELS;
-    let total = 0, mastered = 0;
-    levelsToCount.forEach(lvl => {
-        const levelData = theme.levels[lvl];
-        if(!levelData) return;
-        total += levelData.words.length;
-        levelData.words.forEach((w, i) => {
-            if(getWordState(levelData.id, i).mastered) mastered++;
-        });
-    });
-    return {
-        total,
-        mastered,
-        percentage: total ? Math.round(mastered / total * 100) : 0
-    };
-}
-
 function updateGlobalProgress(){
-    let total = verbTheme.words.length;
+    let total = verbTheme.words.length + adjektiveTheme.words.length;
     let mastered = 0;
+    
     verbTheme.words.forEach((w, i) => {
         if(getWordState(verbTheme.id, i).mastered) mastered++;
+    });
+    adjektiveTheme.words.forEach((w, i) => {
+        if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
     });
 
     themes.forEach(t => {
@@ -1652,11 +1554,6 @@ function updateGlobalProgress(){
     if(pText) pText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} · ${percentage}%`;
     if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
 }
-
-/* =========================================================
-   BADGES DE RÉVISION SUR LA GRILLE D'ACCUEIL
-   Pilule à taille fixe, une seule couleur accent, jusqu'à "30+"
-========================================================= */
 
 const ORB_BADGE_CAP = 30;
 
@@ -1687,18 +1584,21 @@ function getVerbenDueCount(){
     return count;
 }
 
+function getAdjektiveDueCount(){
+    const now = Date.now();
+    let count = 0;
+    adjektiveTheme.words.forEach((w, i) => {
+        const state = getWordState(adjektiveTheme.id, i);
+        if(!state.mastered && (!state.due || state.due <= now)) count++;
+    });
+    return count;
+}
+
 function updateOrbBadges(){
     setOrbBadge("badge-verben", getVerbenDueCount());
     setOrbBadge("badge-nomen", getDueItems().length);
-    // Cas, Adjectifs, Prépositions, Structure, Possessifs, Particules :
-    // pas encore de contenu/spaced-repetition -> pas de badge pour l'instant.
+    setOrbBadge("badge-adjektive", getAdjektiveDueCount());
 }
-
-/* =========================================================
-   SOUS-MENU PAR PASTILLE
-   Clic sur une pastille -> déplie ses options juste en dessous
-   de la grille, plutôt que de naviguer directement vers un écran.
-========================================================= */
 
 const ORB_ICONS = {
     reviser: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
@@ -1732,8 +1632,18 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "adjektive"){
+        const due = getAdjektiveDueCount();
+        return {
+            icon:"carte", title:"Adjectifs", sub:"Endungen & vocabulaire",
+            options:[
+                { icon:"reviser", title:"Réviser mes adjectifs dus", desc:"Adjectifs à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startAdjektiveFlashcards" },
+                { icon:"carte", title:"Toutes les flashcards adjectifs", desc:"Liste complète depuis adjectif.json", action:"startAllAdjektiveFlashcards" }
+            ]
+        };
+    }
     const labels = {
-        kasus:"Cas", adjektive:"Adjectifs", praep:"Prépositions",
+        kasus:"Cas", praep:"Prépositions",
         wortstellung:"Structure", possessiv:"Possessifs", partikeln:"Particules"
     };
     return {
@@ -1796,6 +1706,38 @@ function startAllVerbFlashcards(){
     currentFlashcard = 0;
     document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
     document.getElementById("flashThemeTitle").textContent = "Verbes allemands";
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startAdjektiveFlashcards(){
+    flashcardMode = 'adjektive';
+    currentTheme = adjektiveTheme;
+    const now = Date.now();
+    const allItems = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Adjectifs · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = "Adjectifs allemands";
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startAllAdjektiveFlashcards(){
+    flashcardMode = 'adjektive';
+    currentTheme = adjektiveTheme;
+    const allItems = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Adjectifs · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = "Adjectifs allemands";
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -1880,7 +1822,6 @@ function filterAndRenderThemes(){
     if(!container) return;
 
     const selectedLevel = document.getElementById("levelFilter").value;
-
     const filtered = themes;
 
     const pill = document.getElementById("themeCountPill");
@@ -1892,7 +1833,6 @@ function filterAndRenderThemes(){
     }
 
     const levelsToShow = (selectedLevel === "ALL") ? LEVELS : [selectedLevel];
-
     container.innerHTML = "";
 
     const randomItem = document.createElement("div");
@@ -1913,17 +1853,30 @@ function filterAndRenderThemes(){
     container.appendChild(randomItem);
 
     filtered.forEach(theme => {
-        const stats = getThemeStats(theme, selectedLevel);
+        let total = 0, mastered = 0;
+        levelsToShow.forEach(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
+        });
+        const percentage = total ? Math.round(mastered / total * 100) : 0;
 
         const pillsHtml = levelsToShow.map(lvl => {
             const levelData = theme.levels[lvl];
             if(!levelData) return "";
-            const levelStats = getThemeStats(theme, lvl);
-            const done = levelStats.total > 0 && levelStats.mastered === levelStats.total;
+            let lTotal = levelData.words.length;
+            let lMastered = 0;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) lMastered++;
+            });
+            const done = lTotal > 0 && lMastered === lTotal;
             return `
                 <div class="level-pill${done ? ' done' : ''}" data-theme="${theme.id}" data-level="${lvl}">
                     <div class="level-pill-label">${lvl}</div>
-                    <div class="level-pill-stat">${levelStats.mastered}/${levelStats.total}</div>
+                    <div class="level-pill-stat">${lMastered}/${lTotal}</div>
                 </div>
             `;
         }).join("");
@@ -1939,13 +1892,13 @@ function filterAndRenderThemes(){
                         <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${levelsToShow.join(' · ')}</div>
                     </div>
                 </div>
-                <div class="theme-count">${stats.mastered}/${stats.total}</div>
+                <div class="theme-count">${mastered}/${total}</div>
             </div>
             <div class="theme-progress">
                 <div class="theme-progress-bar">
-                    <div class="theme-progress-fill" style="width:${stats.percentage}%"></div>
+                    <div class="theme-progress-fill" style="width:${percentage}%"></div>
                 </div>
-                <div class="theme-percent">${stats.percentage}% maîtrisé</div>
+                <div class="theme-percent">${percentage}% maîtrisé</div>
             </div>
             <div class="level-pills">${pillsHtml}</div>
         `;
@@ -1983,7 +1936,7 @@ function startTheme(themeId, level){
     const theme = themes.find(t => t.id === themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
-    if(!levelData){ alert("Ce niveau n'est pas encore disponible pour ce thème."); return; }
+    if(!levelData){ alert("Ce niveau n'est pas disponible."); return; }
 
     currentTheme = { id: levelData.id, name: `${theme.name} · ${level}` };
 
@@ -1996,7 +1949,7 @@ function startTheme(themeId, level){
     });
     if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){
-        alert("Tous les mots de ce thème/niveau sont actuellement maîtrisés !");
+        alert("Tous les mots de ce thème/niveau sont maîtrisés !");
         return;
     }
     currentFlashcard = 0;
@@ -2019,7 +1972,7 @@ function startRandomMix(level){
             });
         });
     });
-    if(pool.length === 0){ alert("Aucun mot disponible pour ce niveau."); return; }
+    if(pool.length === 0){ alert("Aucun mot disponible."); return; }
     shuffleArray(pool);
 
     const now = Date.now();
@@ -2042,6 +1995,7 @@ function startRandomMix(level){
 
 function handleFlashcardBack(){
     if(flashcardMode === 'verben') openVerben();
+    else if(flashcardMode === 'adjektive') goHome();
     else openNomen();
 }
 
@@ -2084,6 +2038,22 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
+    } else if(flashcardMode === 'adjektive'){
+        const germanWord = card[0];
+        const frenchWord = card[3];
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+        verbDetailsEl.classList.add("hidden");
     } else {
         const germanWord = card[0];
         const frenchWord = card[3];
@@ -2122,7 +2092,7 @@ function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
     const item = currentCards[currentFlashcard];
     const card = item.word;
-    const textToSpeak = flashcardMode === 'verben' ? card[0] : `${card[1]} ${card[0]}`;
+    const textToSpeak = flashcardMode === 'verben' ? card[0] : card[0];
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'de-DE';
@@ -2173,11 +2143,7 @@ function retryUnmastered(){
 }
 
 function resetCurrentThemeConfirm(){
-    if(!currentTheme){ alert("Ouvre d'abord un thème ou une série."); return; }
-    if(currentTheme.id.startsWith('random_') || currentTheme.id === 'due_review'){
-        alert("Ce mode mélange plusieurs thèmes distincts : réinitialise chaque thème individuellement depuis « Noms & Thèmes », ou utilise « Reset de toute la progression ».");
-        return;
-    }
+    if(!currentTheme){ alert("Ouvre d'abord une série."); return; }
     if(!confirm(`Réinitialiser la progression de « ${currentTheme.name} » ?`)) return;
     const progress = getProgress();
     delete progress[currentTheme.id];
@@ -2197,10 +2163,6 @@ function resetAllConfirm(){
     updateDueBanner();
     updateOrbBadges();
     alert("Toute la progression a été réinitialisée.");
-}
-
-function normalizeAnswer(value){
-    return value.trim().toLowerCase().replace(/ae/g, "ä").replace(/oe/g, "ö").replace(/ue/g, "ü").replace(/ss/g, "ß");
 }
 
 function startExercises(){
@@ -2239,20 +2201,16 @@ function checkAnswer(){
     const ex = exercises[currentExercise];
     answered = true;
     const val = rawVal.toLowerCase();
-    const normalizedVal = normalizeAnswer(rawVal);
-    const isCorrect = ex.answers.some(a => {
-        const answerLower = a.toLowerCase();
-        return answerLower === val || answerLower === normalizedVal;
-    });
+    const isCorrect = ex.answers.some(a => a.toLowerCase() === val);
     exerciseResults.push({ topic: ex.topic, correct: isCorrect });
     const feedback = document.getElementById("feedback");
     if(isCorrect){
         scoreValue++;
         feedback.className = "feedback show correct";
-        feedback.innerHTML = `<div class="feedback-title">✓ Correct !</div><div class="explanation">${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
+        feedback.innerHTML = `<div class="feedback-title">✓ Correct !</div><div class="explanation">${ex.explanation}</div>`;
     }else{
         feedback.className = "feedback show wrong";
-        feedback.innerHTML = `<div class="feedback-title">✗ Pas tout à fait</div><div class="explanation"><strong>Bonne réponse :</strong> ${ex.correct}<br><br>${ex.explanation}<br><br><strong>Traduction :</strong> ${ex.translation}</div>`;
+        feedback.innerHTML = `<div class="feedback-title">✗ Pas tout à fait</div><div class="explanation"><strong>Bonne réponse :</strong> ${ex.correct}</div>`;
     }
     input.disabled = true;
     document.getElementById("checkButton").classList.add("hidden");
@@ -2268,40 +2226,9 @@ function nextExercise(){
 function showResults(){
     const percentage = Math.round(scoreValue / exercises.length * 100);
     document.getElementById("score").textContent = percentage + "%";
-    document.getElementById("scoreText").textContent = `${scoreValue} exercice${scoreValue !== 1 ? 's' : ''} sur ${exercises.length} réussi${scoreValue !== 1 ? 's' : ''}.`;
-    document.getElementById("resultTitle").textContent = percentage >= 60 ? "Très bien !" : "Continue comme ça !";
-    const byTopic = {};
-    exerciseResults.forEach(r => {
-        if(!byTopic[r.topic]) byTopic[r.topic] = { correct: 0, total: 0 };
-        byTopic[r.topic].total++;
-        if(r.correct) byTopic[r.topic].correct++;
-    });
-    const statsList = document.getElementById("statsList");
-    statsList.innerHTML = "";
-    Object.keys(byTopic).forEach(topic => {
-        const stat = byTopic[topic];
-        const allCorrect = stat.correct === stat.total;
-        const row = document.createElement("div");
-        row.className = "stat";
-        row.innerHTML = `<span>${topic}</span><strong>${allCorrect ? "✓" : `${stat.correct}/${stat.total}`}</strong>`;
-        statsList.appendChild(row);
-    });
-    const missedTopics = Object.keys(byTopic).filter(t => byTopic[t].correct < byTopic[t].total);
-    document.getElementById("revisionText").textContent = missedTopics.length ? `À revoir : ${missedTopics.join(", ")}.` : "Excellent. Aucune révision immédiate nécessaire.";
+    document.getElementById("scoreText").textContent = `${scoreValue} exercice(s) réussi(s).`;
     showScreen("result");
 }
-
-document.getElementById("answer").addEventListener("keydown", e => {
-    if(e.key !== "Enter") return;
-    if(!answered) checkAnswer();
-    else nextExercise();
-});
-
-["authEmail","authPassword"].forEach(id => {
-    document.getElementById(id).addEventListener("keydown", e => {
-        if (e.key === "Enter") handleEmailLogin();
-    });
-});
 
 (() => {
     loadThemesJson();
