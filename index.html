@@ -1493,6 +1493,8 @@ function getAllNomenItems(){
     return pool;
 }
 
+const DUE_SESSION_CAP = 30;
+
 function getDueItems(){
     const now = Date.now();
     return getAllNomenItems().filter(item => {
@@ -1505,14 +1507,17 @@ function updateDueBanner(){
     const el = document.getElementById("dueBannerCount");
     if(!el) return;
     const count = getDueItems().length;
-    el.textContent = count === 0 ? "Tout est à jour !" : `${count} mot${count !== 1 ? 's' : ''}`;
+    if(count === 0) el.textContent = "Tout est à jour !";
+    else if(count > DUE_SESSION_CAP) el.textContent = `${DUE_SESSION_CAP}+ mots`;
+    else el.textContent = `${count} mot${count !== 1 ? 's' : ''}`;
 }
 
 function startDueReview(){
     flashcardMode = 'nomen';
-    const dueItems = getDueItems();
+    let dueItems = getDueItems();
     if(dueItems.length === 0){ alert("Aucun mot à réviser pour l'instant. Continue comme ça !"); return; }
     shuffleArray(dueItems);
+    if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
     currentCards = dueItems;
     currentTheme = { id: `due_review`, name: "Révision du jour" };
