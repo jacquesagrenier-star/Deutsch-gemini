@@ -202,6 +202,120 @@ h1{
     z-index:2;
 }
 
+.orb.active{
+    border-color:#9bdcff;
+    box-shadow:0 0 0 1px #9bdcff, 0 15px 40px rgba(0,0,0,.25);
+}
+
+/* Panneau de sous-options qui se déplie au clic sur une pastille */
+.orb-panel{
+    margin-top:16px;
+    padding:20px;
+    border-radius:22px;
+    background:rgba(18,27,45,.80);
+    border:1px solid rgba(155,220,255,.35);
+    backdrop-filter:blur(20px);
+    animation:orbPanelReveal .2s ease;
+}
+@keyframes orbPanelReveal{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);}}
+
+.orb-panel-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.orb-panel-icon{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.orb-panel-icon svg{
+    width:19px;
+    height:19px;
+    fill:none;
+    stroke:#9bdcff;
+    stroke-width:1.7;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.orb-panel-title{
+    font-weight:800;
+    font-size:17px;
+}
+
+.orb-panel-sub{
+    color:#9aa8bc;
+    font-size:12px;
+    margin-top:2px;
+}
+
+.orb-opt{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px 14px;
+    border-radius:14px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.10);
+    cursor:pointer;
+    margin-bottom:8px;
+    transition:.2s;
+}
+.orb-opt:last-child{margin-bottom:0}
+.orb-opt:hover{background:rgba(255,255,255,.08)}
+
+.orb-opt.primary{
+    border-color:rgba(155,220,255,.40);
+    background:rgba(155,220,255,.08);
+}
+
+.orb-opt-left{display:flex; align-items:center; gap:12px;}
+
+.orb-opt-icon{
+    width:32px;
+    height:32px;
+    border-radius:10px;
+    background:rgba(155,220,255,.10);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+.orb-opt-icon svg{
+    width:16px;
+    height:16px;
+    fill:none;
+    stroke:#9bdcff;
+    stroke-width:1.7;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.orb-opt-title{font-size:13.5px; font-weight:700;}
+.orb-opt-desc{font-size:11.5px; color:#8290a5; margin-top:1px;}
+.orb-opt-arrow{color:#8290a5; font-size:15px;}
+
+.orb-opt-count{
+    font-size:11px;
+    font-weight:700;
+    color:#9bdcff;
+    background:rgba(155,220,255,.14);
+    padding:3px 9px;
+    border-radius:8px;
+    flex-shrink:0;
+}
+
 .back{
     background:none;
     border:none;
@@ -837,8 +951,8 @@ button{font-family:inherit}
         </div>
     </div>
 
-    <div class="grid">
-        <div class="orb" onclick="openVerben()">
+    <div class="grid" id="orbGrid">
+        <div class="orb" data-orbid="verben" onclick="toggleOrbPanel('verben')">
             <div id="badge-verben" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
             <div>
@@ -847,7 +961,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="openNomen()">
+        <div class="orb" data-orbid="nomen" onclick="toggleOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
             <div>
@@ -856,7 +970,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="comingSoon('Cas')">
+        <div class="orb" data-orbid="kasus" onclick="toggleOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
             <div>
@@ -865,7 +979,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="comingSoon('Adjectifs')">
+        <div class="orb" data-orbid="adjektive" onclick="toggleOrbPanel('adjektive')">
             <div id="badge-adjektive" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
             <div>
@@ -874,7 +988,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="comingSoon('Prépositions')">
+        <div class="orb" data-orbid="praep" onclick="toggleOrbPanel('praep')">
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
             <div>
@@ -883,7 +997,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="comingSoon('Structure')">
+        <div class="orb" data-orbid="wortstellung" onclick="toggleOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
@@ -892,7 +1006,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="comingSoon('Possessifs')">
+        <div class="orb" data-orbid="possessiv" onclick="toggleOrbPanel('possessiv')">
             <div id="badge-possessiv" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M8 12v6"/><path d="M5 21v-2a3 3 0 013-3h0a3 3 0 013 3v2"/><path d="M15 8h6"/></svg></div>
             <div>
@@ -901,7 +1015,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" onclick="comingSoon('Particules')">
+        <div class="orb" data-orbid="partikeln" onclick="toggleOrbPanel('partikeln')">
             <div id="badge-partikeln" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
             <div>
@@ -918,6 +1032,8 @@ button{font-family:inherit}
             </div>
         </div>
     </div>
+
+    <div id="orbPanelZone"></div>
 
 </section>
 
@@ -1570,7 +1686,132 @@ function updateOrbBadges(){
     // pas encore de contenu/spaced-repetition -> pas de badge pour l'instant.
 }
 
+/* =========================================================
+   SOUS-MENU PAR PASTILLE
+   Clic sur une pastille -> déplie ses options juste en dessous
+   de la grille, plutôt que de naviguer directement vers un écran.
+========================================================= */
+
+const ORB_ICONS = {
+    reviser: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
+    dossier: '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>',
+    ale: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="#9bdcff" stroke="none"/><circle cx="15" cy="9" r="1" fill="#9bdcff" stroke="none"/><circle cx="9" cy="15" r="1" fill="#9bdcff" stroke="none"/><circle cx="15" cy="15" r="1" fill="#9bdcff" stroke="none"/><circle cx="12" cy="12" r="1" fill="#9bdcff" stroke="none"/></svg>',
+    exercice: '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>',
+    carte: '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>',
+    bientot: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>'
+};
+
+function orbPanelData(id){
+    if(id === "verben"){
+        const due = getVerbenDueCount();
+        return {
+            icon:"reviser", title:"Verbes", sub:"Conjugaison & usage",
+            options:[
+                { icon:"reviser", title:"Réviser mes verbes dus", desc:"Verbes à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startVerbFlashcards" },
+                { icon:"carte", title:"Toutes les flashcards", desc:"Présent, Prétérit, Perfekt & exemples", action:"startAllVerbFlashcards" },
+                { icon:"exercice", title:"Exercices Präsens", desc:"Réguliers · irréguliers", action:"startExercises" }
+            ]
+        };
+    }
+    if(id === "nomen"){
+        const due = getDueItems().length;
+        return {
+            icon:"dossier", title:"Noms", sub:"Noms & thèmes",
+            options:[
+                { icon:"reviser", title:"Réviser mes mots dus", desc:"Mots à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startDueReview" },
+                { icon:"dossier", title:"Parcourir par thème", desc:"Voir tous les thèmes disponibles", action:"openNomen" },
+                { icon:"ale", title:"Mots aléatoires", desc:"Mélange de tous les thèmes", action:"startRandomMixAll" }
+            ]
+        };
+    }
+    const labels = {
+        kasus:"Cas", adjektive:"Adjectifs", praep:"Prépositions",
+        wortstellung:"Structure", possessiv:"Possessifs", partikeln:"Particules"
+    };
+    return {
+        icon:"bientot", title: labels[id] || "Bientôt disponible", sub:"",
+        options:[
+            { icon:"bientot", title:"En construction", desc:"Cette catégorie arrive prochainement", action: `comingSoonPanel|${labels[id] || id}` }
+        ]
+    };
+}
+
+let openOrbId = null;
+
+function toggleOrbPanel(id){
+    openOrbId = (openOrbId === id) ? null : id;
+    renderOrbPanel();
+}
+
+function closeOrbPanel(){
+    openOrbId = null;
+    renderOrbPanel();
+}
+
+function orbAction(action){
+    closeOrbPanel();
+    if(action.startsWith("comingSoonPanel|")){
+        comingSoon(action.split("|")[1]);
+        return;
+    }
+    if(typeof window[action] === "function") window[action]();
+}
+
+function renderOrbPanel(){
+    const zone = document.getElementById("orbPanelZone");
+    if(!zone) return;
+
+    document.querySelectorAll(".orb[data-orbid]").forEach(el => {
+        el.classList.toggle("active", el.dataset.orbid === openOrbId);
+    });
+
+    if(!openOrbId){ zone.innerHTML = ""; return; }
+
+    const data = orbPanelData(openOrbId);
+    zone.innerHTML = `
+        <div class="orb-panel">
+            <div class="orb-panel-head">
+                <div class="orb-panel-icon">${ORB_ICONS[data.icon]}</div>
+                <div>
+                    <div class="orb-panel-title">${data.title}</div>
+                    ${data.sub ? `<div class="orb-panel-sub">${data.sub}</div>` : ""}
+                </div>
+            </div>
+            ${data.options.map(o => `
+                <div class="orb-opt ${o.primary ? "primary" : ""}" onclick="orbAction('${o.action}')">
+                    <div class="orb-opt-left">
+                        <div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>
+                        <div>
+                            <div class="orb-opt-title">${o.title}</div>
+                            <div class="orb-opt-desc">${o.desc}</div>
+                        </div>
+                    </div>
+                    ${o.count ? `<div class="orb-opt-count">${o.count}</div>` : `<div class="orb-opt-arrow">›</div>`}
+                </div>
+            `).join("")}
+        </div>
+    `;
+}
+
+function startAllVerbFlashcards(){
+    flashcardMode = 'verben';
+    currentTheme = verbTheme;
+    const allItems = verbTheme.words.map((word, index) => ({ word, index, themeId: verbTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Verbes · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = "Verbes allemands";
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startRandomMixAll(){
+    startRandomMix("ALL");
+}
+
 function showScreen(id){
+    if(id !== "home") closeOrbPanel();
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
