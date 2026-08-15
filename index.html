@@ -125,7 +125,7 @@ h1{
 .orb{
     position:relative;
     aspect-ratio:1;
-    border-radius:50%;
+    border-radius:22px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -133,7 +133,7 @@ h1{
     text-align:center;
     cursor:pointer;
     background:
-        radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),transparent 15%),
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),transparent 45%),
         rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.18);
     box-shadow:
@@ -175,18 +175,13 @@ h1{
     font-size:9px;
 }
 
-/* Badge de mots/verbes dus — taille fixe, une seule couleur.
-   L'orbe est un cercle inscrit dans un carré : un positionnement "coin sup. droit"
-   classique (top/right en px) place le badge dans le coin du carré invisible,
-   loin du bord réel du cercle, ce qui le fait flotter à côté de la pastille.
-   On centre donc le badge exactement sur le point à 45° du cercle (top/right
-   à 14.6%, calculé pour un cercle inscrit, + translate(50%,-50%) pour centrer
-   le badge lui-même sur ce point), afin qu'il repose visuellement sur l'anneau. */
+/* Badge de mots/verbes dus — taille fixe, une seule couleur, coin sup. droit.
+   La pastille étant désormais rectangulaire (coins arrondis), un positionnement
+   classique dans le coin fonctionne directement, sans calcul géométrique. */
 .orb-badge{
     position:absolute;
-    top:14.6%;
-    right:14.6%;
-    transform:translate(50%,-50%);
+    top:-7px;
+    right:-7px;
     width:34px;
     height:18px;
     border-radius:9px;
@@ -952,7 +947,7 @@ button{font-family:inherit}
     </div>
 
     <div class="grid" id="orbGrid">
-        <div class="orb" data-orbid="verben" onclick="toggleOrbPanel('verben')">
+        <div class="orb" data-orbid="verben" onclick="openOrbPanel('verben')">
             <div id="badge-verben" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
             <div>
@@ -961,7 +956,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="nomen" onclick="toggleOrbPanel('nomen')">
+        <div class="orb" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
             <div>
@@ -970,7 +965,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="kasus" onclick="toggleOrbPanel('kasus')">
+        <div class="orb" data-orbid="kasus" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
             <div>
@@ -979,7 +974,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="adjektive" onclick="toggleOrbPanel('adjektive')">
+        <div class="orb" data-orbid="adjektive" onclick="openOrbPanel('adjektive')">
             <div id="badge-adjektive" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
             <div>
@@ -988,7 +983,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="praep" onclick="toggleOrbPanel('praep')">
+        <div class="orb" data-orbid="praep" onclick="openOrbPanel('praep')">
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
             <div>
@@ -997,7 +992,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="wortstellung" onclick="toggleOrbPanel('wortstellung')">
+        <div class="orb" data-orbid="wortstellung" onclick="openOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
@@ -1006,7 +1001,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="possessiv" onclick="toggleOrbPanel('possessiv')">
+        <div class="orb" data-orbid="possessiv" onclick="openOrbPanel('possessiv')">
             <div id="badge-possessiv" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M8 12v6"/><path d="M5 21v-2a3 3 0 013-3h0a3 3 0 013 3v2"/><path d="M15 8h6"/></svg></div>
             <div>
@@ -1015,7 +1010,7 @@ button{font-family:inherit}
             </div>
         </div>
 
-        <div class="orb" data-orbid="partikeln" onclick="toggleOrbPanel('partikeln')">
+        <div class="orb" data-orbid="partikeln" onclick="openOrbPanel('partikeln')">
             <div id="badge-partikeln" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
             <div>
@@ -1033,8 +1028,21 @@ button{font-family:inherit}
         </div>
     </div>
 
-    <div id="orbPanelZone"></div>
+</section>
 
+<!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
+
+<section id="orbPanel" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="orbPanelKicker">Catégorie</div>
+            <h2 id="orbPanelTitle">Titre</h2>
+        </div>
+    </div>
+
+    <div class="card" id="orbPanelBody" style="margin-top:20px;"></div>
 </section>
 
 <!-- ================= VERBEN ================= -->
@@ -1738,59 +1746,45 @@ function orbPanelData(id){
 
 let openOrbId = null;
 
-function toggleOrbPanel(id){
-    openOrbId = (openOrbId === id) ? null : id;
+function openOrbPanel(id){
+    openOrbId = id;
     renderOrbPanel();
-}
-
-function closeOrbPanel(){
-    openOrbId = null;
-    renderOrbPanel();
+    showScreen("orbPanel");
 }
 
 function orbAction(action){
-    closeOrbPanel();
     if(action.startsWith("comingSoonPanel|")){
         comingSoon(action.split("|")[1]);
+        goHome();
         return;
     }
     if(typeof window[action] === "function") window[action]();
 }
 
 function renderOrbPanel(){
-    const zone = document.getElementById("orbPanelZone");
-    if(!zone) return;
-
-    document.querySelectorAll(".orb[data-orbid]").forEach(el => {
-        el.classList.toggle("active", el.dataset.orbid === openOrbId);
-    });
-
-    if(!openOrbId){ zone.innerHTML = ""; return; }
-
+    if(!openOrbId) return;
     const data = orbPanelData(openOrbId);
-    zone.innerHTML = `
-        <div class="orb-panel">
-            <div class="orb-panel-head">
-                <div class="orb-panel-icon">${ORB_ICONS[data.icon]}</div>
+
+    const kickerEl = document.getElementById("orbPanelKicker");
+    const titleEl = document.getElementById("orbPanelTitle");
+    const bodyEl = document.getElementById("orbPanelBody");
+    if(!kickerEl || !titleEl || !bodyEl) return;
+
+    kickerEl.textContent = data.sub || "Catégorie";
+    titleEl.textContent = data.title;
+
+    bodyEl.innerHTML = data.options.map(o => `
+        <div class="orb-opt ${o.primary ? "primary" : ""}" onclick="orbAction('${o.action}')">
+            <div class="orb-opt-left">
+                <div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>
                 <div>
-                    <div class="orb-panel-title">${data.title}</div>
-                    ${data.sub ? `<div class="orb-panel-sub">${data.sub}</div>` : ""}
+                    <div class="orb-opt-title">${o.title}</div>
+                    <div class="orb-opt-desc">${o.desc}</div>
                 </div>
             </div>
-            ${data.options.map(o => `
-                <div class="orb-opt ${o.primary ? "primary" : ""}" onclick="orbAction('${o.action}')">
-                    <div class="orb-opt-left">
-                        <div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>
-                        <div>
-                            <div class="orb-opt-title">${o.title}</div>
-                            <div class="orb-opt-desc">${o.desc}</div>
-                        </div>
-                    </div>
-                    ${o.count ? `<div class="orb-opt-count">${o.count}</div>` : `<div class="orb-opt-arrow">›</div>`}
-                </div>
-            `).join("")}
+            ${o.count ? `<div class="orb-opt-count">${o.count}</div>` : `<div class="orb-opt-arrow">›</div>`}
         </div>
-    `;
+    `).join("");
 }
 
 function startAllVerbFlashcards(){
@@ -1811,7 +1805,6 @@ function startRandomMixAll(){
 }
 
 function showScreen(id){
-    if(id !== "home") closeOrbPanel();
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
