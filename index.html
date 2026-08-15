@@ -1,4 +1,4 @@
-<!DOCTYPE html> a
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -190,6 +190,50 @@ h2{
     gap: 10px;
     margin-top: 15px;
     flex-wrap: wrap;
+}
+
+.due-banner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px;
+    padding:18px 20px;
+    border-radius:20px;
+    cursor:pointer;
+    background:linear-gradient(100deg,rgba(165,237,255,.16),rgba(203,176,255,.16));
+    border:1px solid rgba(165,237,255,.30);
+    transition:.2s;
+}
+
+.due-banner:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(100deg,rgba(165,237,255,.22),rgba(203,176,255,.22));
+}
+
+.due-banner-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.due-banner-icon{
+    font-size:22px;
+}
+
+.due-banner-title{
+    font-weight:800;
+    font-size:16px;
+}
+
+.due-banner-sub{
+    color:#9aa8bc;
+    font-size:12px;
+    margin-top:2px;
+}
+
+.due-banner-arrow{
+    font-size:20px;
+    color:#9bdcff;
 }
 
 .filters-bar select, .filters-bar input {
@@ -866,6 +910,17 @@ button{font-family:inherit}
         <div class="pill" id="themeCountPill">Chargement...</div>
     </div>
 
+    <div class="due-banner" id="dueBanner" onclick="startDueReview()">
+        <div class="due-banner-left">
+            <div class="due-banner-icon">🕐</div>
+            <div>
+                <div class="due-banner-title" id="dueBannerCount">Chargement…</div>
+                <div class="due-banner-sub">à réviser aujourd'hui</div>
+            </div>
+        </div>
+        <div class="due-banner-arrow">→</div>
+    </div>
+
     <div class="filters-bar">
         <select id="levelFilter" onchange="filterAndRenderThemes()">
             <option value="ALL">Tous les niveaux</option>
@@ -874,7 +929,6 @@ button{font-family:inherit}
             <option value="B1">Niveau B1</option>
             <option value="B2">Niveau B2</option>
         </select>
-        <input type="text" id="themeSearch" placeholder="Rechercher un thème..." oninput="filterAndRenderThemes()">
     </div>
     <div class="filters-bar">
         <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
@@ -1229,7 +1283,7 @@ async function loadThemesJson() {
         themes = order.map(id => grouped[id]);
         themesLoaded = true;
         renderThemes();
-    } catch (error) {
+        updateDueBanner();
         console.warn("Impossible de charger themes.json via fetch, passage au mode secours intégré :", error);
         const rawThemesDataFallback = [
           {
@@ -1284,6 +1338,7 @@ async function loadThemesJson() {
         themes = order.map(id => grouped[id]);
         themesLoaded = true;
         renderThemes();
+        updateDueBanner();
     }
 }
 
@@ -1414,11 +1469,55 @@ function showScreen(id){
 
 function goHome(){ showScreen("home"); }
 function openVerben(){ showScreen("verben"); }
-function openNomen(){ loadThemesJson(); renderThemes(); showScreen("nomen"); }
+function openNomen(){ loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen"); }
 function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
 
 function comingSoon(label){
     alert(`« ${label} » arrive bientôt !`);
+}
+
+function getAllNomenItems(){
+    let pool = [];
+    themes.forEach(theme => {
+        LEVELS.forEach(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return;
+            levelData.words.forEach((word, index) => {
+                pool.push({ word, index, themeId: levelData.id });
+            });
+        });
+    });
+    return pool;
+}
+
+function getDueItems(){
+    const now = Date.now();
+    return getAllNomenItems().filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+}
+
+function updateDueBanner(){
+    const el = document.getElementById("dueBannerCount");
+    if(!el) return;
+    const count = getDueItems().length;
+    el.textContent = count === 0 ? "Tout est à jour !" : `${count} mot${count !== 1 ? 's' : ''}`;
+}
+
+function startDueReview(){
+    flashcardMode = 'nomen';
+    const dueItems = getDueItems();
+    if(dueItems.length === 0){ alert("Aucun mot à réviser pour l'instant. Continue comme ça !"); return; }
+    shuffleArray(dueItems);
+    currentCardsFull = dueItems;
+    currentCards = dueItems;
+    currentTheme = { id: `due_review`, name: "Révision du jour" };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Noms · Révision";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
 }
 
 function renderThemes(){
@@ -1430,9 +1529,8 @@ function filterAndRenderThemes(){
     if(!container) return;
 
     const selectedLevel = document.getElementById("levelFilter").value;
-    const searchText = document.getElementById("themeSearch").value.toLowerCase().trim();
 
-    const filtered = themes.filter(theme => theme.name.toLowerCase().includes(searchText));
+    const filtered = themes;
 
     const pill = document.getElementById("themeCountPill");
     if(pill) pill.textContent = `${filtered.length} thème${filtered.length > 1 ? 's' : ''}`;
@@ -1705,6 +1803,7 @@ function markMastered(){
 
 function nextFlashcard(){
     currentFlashcard++;
+    updateDueBanner();
     if(currentFlashcard >= currentCards.length){
         alert("Session terminée ! Ta progression a été enregistrée.");
         handleFlashcardBack();
@@ -1723,8 +1822,8 @@ function retryUnmastered(){
 
 function resetCurrentThemeConfirm(){
     if(!currentTheme){ alert("Ouvre d'abord un thème ou une série."); return; }
-    if(currentTheme.id.startsWith('random_')){
-        alert("Le mode aléatoire mélange plusieurs thèmes distincts : réinitialise chaque thème individuellement depuis « Noms & Thèmes », ou utilise « Reset de toute la progression ».");
+    if(currentTheme.id.startsWith('random_') || currentTheme.id === 'due_review'){
+        alert("Ce mode mélange plusieurs thèmes distincts : réinitialise chaque thème individuellement depuis « Noms & Thèmes », ou utilise « Reset de toute la progression ».");
         return;
     }
     if(!confirm(`Réinitialiser la progression de « ${currentTheme.name} » ?`)) return;
@@ -1733,6 +1832,7 @@ function resetCurrentThemeConfirm(){
     saveProgress(progress);
     renderThemes();
     updateGlobalProgress();
+    updateDueBanner();
     alert("La série a été réinitialisée.");
 }
 
@@ -1741,6 +1841,7 @@ function resetAllConfirm(){
     localStorage.removeItem(STORAGE_KEY);
     updateGlobalProgress();
     renderThemes();
+    updateDueBanner();
     alert("Toute la progression a été réinitialisée.");
 }
 
