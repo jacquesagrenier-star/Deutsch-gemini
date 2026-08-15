@@ -1528,19 +1528,23 @@ function loadFlashcard(){
     const verbDetailsEl = document.getElementById("flashVerbDetails");
     const articleEl = document.getElementById("flashArticle");
     const pluralEl = document.getElementById("flashPlural");
+    const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben'){
         document.getElementById("flashWord").textContent = card[0];
         document.getElementById("flashBackWord").textContent = card[0];
-        document.getElementById("flashTranslation").textContent = card[1];
+        translationEl.textContent = card[1];
+        translationEl.classList.remove("hidden");
         verbDetailsEl.textContent = card[2];
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
     } else {
-        document.getElementById("flashWord").textContent = card[0];
+        // Recto : mot français (à deviner en allemand)
+        // Verso : mot allemand + article + pluriel
+        document.getElementById("flashWord").textContent = card[3];
         document.getElementById("flashBackWord").textContent = card[0];
-        document.getElementById("flashTranslation").textContent = card[3];
+        translationEl.classList.add("hidden");
         const articleText = (card[1] || "").toLowerCase().trim();
         if(articleText === "der") flashcardEl.classList.add("border-der");
         else if(articleText === "die") flashcardEl.classList.add("border-die");
