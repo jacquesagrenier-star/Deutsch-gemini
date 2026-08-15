@@ -1116,6 +1116,39 @@ button{font-family:inherit}
     </div>
 </section>
 
+<!-- ================= ADJEKTIVE ================= -->
+
+<section id="adjektive" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Vocabulaire Intégré</div>
+            <h2>Adjectifs par niveau</h2>
+        </div>
+        <div class="pill">4 niveaux</div>
+    </div>
+
+    <div class="due-banner" id="adjDueBanner" onclick="startAdjektiveDueReview()">
+        <div class="due-banner-left">
+            <div class="due-banner-icon">🕐</div>
+            <div>
+                <div class="due-banner-title" id="adjDueBannerCount">Chargement…</div>
+                <div class="due-banner-sub">à réviser aujourd'hui</div>
+            </div>
+        </div>
+        <div class="due-banner-arrow">→</div>
+    </div>
+
+    <div class="filters-bar">
+        <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+        <div class="theme-list" id="adjLevelList"></div>
+    </div>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 
 <section id="flashcards" class="screen">
@@ -1590,14 +1623,155 @@ function getVerbenDueCount(){
     return count;
 }
 
-function getAdjektiveDueCount(){
+function getAdjektiveDueItemsAll(){
     const now = Date.now();
-    let count = 0;
-    adjektiveTheme.words.forEach((w, i) => {
-        const state = getWordState(adjektiveTheme.id, i);
-        if(!state.mastered && (!state.due || state.due <= now)) count++;
+    return adjektiveTheme.words
+        .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
+        .filter(item => {
+            const state = getWordState(item.themeId, item.index);
+            return !state.mastered && (!state.due || state.due <= now);
+        });
+}
+
+function getAdjektiveDueCount(){
+    return getAdjektiveDueItemsAll().length;
+}
+
+function updateAdjDueBanner(){
+    const el = document.getElementById("adjDueBannerCount");
+    if(!el) return;
+    const count = getAdjektiveDueItemsAll().length;
+    if(count === 0) el.textContent = "Tout est à jour !";
+    else if(count > DUE_SESSION_CAP) el.textContent = `${DUE_SESSION_CAP}+ mots`;
+    else el.textContent = `${count} mot${count !== 1 ? 's' : ''}`;
+}
+
+function openAdjektive(){
+    renderAdjektiveLevels();
+    updateAdjDueBanner();
+    showScreen("adjektive");
+}
+
+function renderAdjektiveLevels(){
+    const container = document.getElementById("adjLevelList");
+    if(!container) return;
+    container.innerHTML = "";
+
+    const randomItem = document.createElement("div");
+    randomItem.className = "theme-item random-item";
+    randomItem.innerHTML = `
+        <div class="theme-header">
+            <div class="theme-left">
+                <div class="theme-icon">🎲</div>
+                <div>
+                    <div class="theme-name">Mots aléatoires</div>
+                    <div style="font-size:11px; color:#9bdcff; margin-top:2px;">Tous niveaux</div>
+                </div>
+            </div>
+        </div>
+        <div style="color:#8290a5; font-size:12px; margin-top:10px;">Mélange des adjectifs de tous les niveaux.</div>
+    `;
+    randomItem.addEventListener("click", () => startAdjektiveRandomMix());
+    container.appendChild(randomItem);
+
+    LEVELS.forEach(lvl => {
+        const items = adjektiveTheme.words
+            .map((word, index) => ({ word, index }))
+            .filter(it => it.word[3] === lvl);
+        const total = items.length;
+        let mastered = 0;
+        items.forEach(it => {
+            if(getWordState(adjektiveTheme.id, it.index).mastered) mastered++;
+        });
+        const percentage = total ? Math.round(mastered / total * 100) : 0;
+
+        const item = document.createElement("div");
+        item.className = "theme-item";
+        item.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">${adjektiveTheme.svg}</div>
+                    <div>
+                        <div class="theme-name">Niveau ${lvl}</div>
+                        <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${lvl}</div>
+                    </div>
+                </div>
+                <div class="theme-count">${mastered}/${total}</div>
+            </div>
+            <div class="theme-progress">
+                <div class="theme-progress-bar">
+                    <div class="theme-progress-fill" style="width:${percentage}%"></div>
+                </div>
+                <div class="theme-percent">${percentage}% maîtrisé</div>
+            </div>
+        `;
+        item.addEventListener("click", () => startAdjektiveLevel(lvl));
+        container.appendChild(item);
     });
-    return count;
+}
+
+function startAdjektiveDueReview(){
+    flashcardMode = 'adjektive';
+    let dueItems = getAdjektiveDueItemsAll();
+    if(dueItems.length === 0){ alert("Aucun adjectif à réviser pour l'instant. Continue comme ça !"); return; }
+    shuffleArray(dueItems);
+    if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
+    currentCardsFull = dueItems;
+    currentCards = dueItems;
+    currentTheme = { id: `adj_due_review`, name: "Révision du jour · Adjectifs" };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Adjectifs · Révision";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startAdjektiveLevel(level){
+    flashcardMode = 'adjektive';
+    const now = Date.now();
+    const allItems = adjektiveTheme.words
+        .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
+        .filter(it => it.word[3] === level);
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){
+        alert("Tous les adjectifs de ce niveau sont maîtrisés !");
+        return;
+    }
+    currentTheme = { id: `adj_${level}`, name: `Adjectifs · ${level}` };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Adjectifs · Flashcards";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startAdjektiveRandomMix(){
+    flashcardMode = 'adjektive';
+    let pool = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
+    if(pool.length === 0){ alert("Aucun adjectif disponible."); return; }
+    shuffleArray(pool);
+
+    const now = Date.now();
+    let unmastered = pool.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(unmastered.length === 0) unmastered = pool.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(unmastered.length === 0) unmastered = pool;
+
+    currentCardsFull = pool;
+    currentCards = unmastered;
+    currentTheme = { id: `adj_random`, name: "Adjectifs · Aléatoire" };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Adjectifs · Aléatoire";
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
 }
 
 function updateOrbBadges(){
@@ -1643,8 +1817,9 @@ function orbPanelData(id){
         return {
             icon:"carte", title:"Adjectifs", sub:"Endungen & vocabulaire",
             options:[
-                { icon:"reviser", title:"Réviser mes adjectifs dus", desc:"Adjectifs à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startAdjektiveFlashcards" },
-                { icon:"carte", title:"Toutes les flashcards adjectifs", desc:"Liste complète depuis adjectif.json", action:"startAllAdjektiveFlashcards" }
+                { icon:"reviser", title:"Réviser mes adjectifs dus", desc:"Adjectifs à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startAdjektiveDueReview" },
+                { icon:"dossier", title:"Parcourir par niveau", desc:"A1 · A2 · B1 · B2", action:"openAdjektive" },
+                { icon:"ale", title:"Mots aléatoires", desc:"Mélange de tous les niveaux", action:"startAdjektiveRandomMix" }
             ]
         };
     }
@@ -2001,7 +2176,7 @@ function startRandomMix(level){
 
 function handleFlashcardBack(){
     if(flashcardMode === 'verben') openVerben();
-    else if(flashcardMode === 'adjektive') goHome();
+    else if(flashcardMode === 'adjektive') openAdjektive();
     else openNomen();
 }
 
@@ -2134,6 +2309,7 @@ function markMastered(){
 function nextFlashcard(){
     currentFlashcard++;
     updateDueBanner();
+    updateAdjDueBanner();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         alert("Session terminée ! Ta progression a été enregistrée.");
@@ -2158,8 +2334,10 @@ function resetCurrentThemeConfirm(){
     delete progress[currentTheme.id];
     saveProgress(progress);
     renderThemes();
+    renderAdjektiveLevels();
     updateGlobalProgress();
     updateDueBanner();
+    updateAdjDueBanner();
     updateOrbBadges();
     alert("La série a été réinitialisée.");
 }
@@ -2169,7 +2347,9 @@ function resetAllConfirm(){
     localStorage.removeItem(STORAGE_KEY);
     updateGlobalProgress();
     renderThemes();
+    renderAdjektiveLevels();
     updateDueBanner();
+    updateAdjDueBanner();
     updateOrbBadges();
     alert("Toute la progression a été réinitialisée.");
 }
