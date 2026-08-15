@@ -1368,7 +1368,7 @@ const verbTheme = {
   ]
 };
 
-// Intégration de la catégorie adjectif liée à adjectif.json
+// Intégration de la catégorie adjectif liée à adjectif.json (structure par niveau A1/A2/B1/B2)
 let adjektiveTheme = {
   id: "adjektive",
   name: "Adjectifs allemands",
@@ -1379,25 +1379,29 @@ let adjektiveTheme = {
 
 async function loadAdjektiveJson() {
     try {
-        const response = await fetch('adjectif.json');
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json');
         if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
         const data = await response.json();
-        const rawWords = Array.isArray(data) ? data : (data.words || data.mots || []);
-        adjektiveTheme.words = rawWords.map(w => {
-            if (Array.isArray(w)) return w;
-            return [
-                w.mot || w.word || "",
-                w.genre || w.article || "—",
-                w.pluriel || w.plural || "—",
-                w.traduction || w.fr || ""
-            ];
+        const levels = ["A1", "A2", "B1", "B2"];
+        let words = [];
+        levels.forEach(lvl => {
+            const arr = data[lvl] || [];
+            arr.forEach(w => {
+                words.push([
+                    w.mot || w.word || "",
+                    w.traduction || w.fr || "",
+                    w.exemple || w.example || "",
+                    lvl
+                ]);
+            });
         });
+        adjektiveTheme.words = words;
     } catch (e) {
         console.warn("Chargement de secours pour adjectif.json", e);
         adjektiveTheme.words = [
-            ["gut", "—", "—", "bon"],
-            ["groß", "—", "—", "grand"],
-            ["klein", "—", "—", "petit"]
+            ["gut", "bon, bien", "Der Kuchen schmeckt sehr gut.", "A1"],
+            ["groß", "grand", "Mein Bruder ist sehr groß.", "A1"],
+            ["klein", "petit", "Das Baby hat kleine Hände.", "A1"]
         ];
     }
 }
@@ -2040,7 +2044,8 @@ function loadFlashcard(){
         pluralEl.classList.add("hidden");
     } else if(flashcardMode === 'adjektive'){
         const germanWord = card[0];
-        const frenchWord = card[3];
+        const frenchWord = card[1];
+        const exampleSentence = card[2];
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
@@ -2051,9 +2056,10 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
+        verbDetailsEl.textContent = exampleSentence;
+        verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-        verbDetailsEl.classList.add("hidden");
     } else {
         const germanWord = card[0];
         const frenchWord = card[3];
