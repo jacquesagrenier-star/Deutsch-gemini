@@ -293,8 +293,9 @@ h1{
     stroke-linejoin:round;
 }
 
-.orb-opt-title{font-size:13.5px; font-weight:700;}
+.orb-opt-title{font-size:13.5px; font-weight:700; color:#ffffff;}
 .orb-opt-desc{font-size:11.5px; color:#8290a5; margin-top:1px;}
+.orb-opt.primary .orb-opt-title{color:#ffffff; font-weight:800;}
 .orb-opt-arrow{color:#8290a5; font-size:15px;}
 
 .orb-opt-count{
@@ -1391,7 +1392,8 @@ async function loadAdjektiveJson() {
                     w.mot || w.word || "",
                     w.traduction || w.fr || "",
                     w.exemple || w.example || "",
-                    lvl
+                    lvl,
+                    w.exemple_fr || ""
                 ]);
             });
         });
@@ -2046,6 +2048,7 @@ function loadFlashcard(){
         const germanWord = card[0];
         const frenchWord = card[1];
         const exampleSentence = card[2];
+        const exampleSentenceFr = card[4] || "";
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
@@ -2056,7 +2059,7 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        verbDetailsEl.textContent = exampleSentence;
+        verbDetailsEl.textContent = exampleSentenceFr ? `${exampleSentence}\n${exampleSentenceFr}` : exampleSentence;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
