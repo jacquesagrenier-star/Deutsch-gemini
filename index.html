@@ -839,6 +839,8 @@ button{font-family:inherit}
         <strong>Flashcards recommandées</strong>
         <p style="color:#8290a5">Révise les verbes essentiels avec conjugaisons et exemples complets.</p>
         <button class="primary" onclick="startVerbFlashcards()">LANCER LES FLASHCARDS →</button>
+        <div class="spacer"></div>
+        <button class="secondary flip-toggle-btn" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
     </div>
 </section>
 
@@ -857,13 +859,16 @@ button{font-family:inherit}
 
     <div class="filters-bar">
         <select id="levelFilter" onchange="filterAndRenderThemes()">
-            <option value="ALL">Tous les niveaux (A1-B2)</option>
+            <option value="ALL">Tous les niveaux</option>
             <option value="A1">Niveau A1</option>
             <option value="A2">Niveau A2</option>
             <option value="B1">Niveau B1</option>
             <option value="B2">Niveau B2</option>
         </select>
         <input type="text" id="themeSearch" placeholder="Rechercher un thème..." oninput="filterAndRenderThemes()">
+    </div>
+    <div class="filters-bar">
+        <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
     </div>
 
     <div class="card" style="margin-top:15px;">
@@ -1289,6 +1294,15 @@ let scoreValue = 0;
 let answered = false;
 let exerciseResults = [];
 let flashcardMode = 'nomen';
+let frontIsFrench = true;
+
+function toggleFlipDirection(){
+    frontIsFrench = !frontIsFrench;
+    document.querySelectorAll(".flip-toggle-btn").forEach(btn => {
+        btn.textContent = frontIsFrench ? "🔁 Sens : FR → DE" : "🔁 Sens : DE → FR";
+    });
+    if(currentCards.length) loadFlashcard();
+}
 
 const STORAGE_KEY = "deutschAI_progress_v4";
 
@@ -1531,20 +1545,35 @@ function loadFlashcard(){
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben'){
-        document.getElementById("flashWord").textContent = card[0];
-        document.getElementById("flashBackWord").textContent = card[0];
-        translationEl.textContent = card[1];
-        translationEl.classList.remove("hidden");
+        const germanWord = card[0];
+        const frenchWord = card[1];
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
         verbDetailsEl.textContent = card[2];
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
     } else {
-        // Recto : mot français (à deviner en allemand)
-        // Verso : mot allemand + article + pluriel
-        document.getElementById("flashWord").textContent = card[3];
-        document.getElementById("flashBackWord").textContent = card[0];
-        translationEl.classList.add("hidden");
+        const germanWord = card[0];
+        const frenchWord = card[3];
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
         const articleText = (card[1] || "").toLowerCase().trim();
         if(articleText === "der") flashcardEl.classList.add("border-der");
         else if(articleText === "die") flashcardEl.classList.add("border-die");
