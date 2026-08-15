@@ -175,14 +175,20 @@ h1{
     font-size:9px;
 }
 
-/* Badge de mots/verbes dus — taille fixe, une seule couleur, coin sup. droit */
+/* Badge de mots/verbes dus — taille fixe, une seule couleur.
+   L'orbe est un cercle inscrit dans un carré : un positionnement "coin sup. droit"
+   classique (top/right en px) place le badge dans le coin du carré invisible,
+   loin du bord réel du cercle, ce qui le fait flotter à côté de la pastille.
+   On centre donc le badge exactement sur le point à 45° du cercle (top/right
+   à 14.6%, calculé pour un cercle inscrit, + translate(50%,-50%) pour centrer
+   le badge lui-même sur ce point), afin qu'il repose visuellement sur l'anneau. */
 .orb-badge{
     position:absolute;
-    top:2px;
-    right:2px;
-    min-width:34px;
+    top:14.6%;
+    right:14.6%;
+    transform:translate(50%,-50%);
+    width:34px;
     height:18px;
-    padding:0 6px;
     border-radius:9px;
     background:#9bdcff;
     color:#07111c;
@@ -193,6 +199,7 @@ h1{
     align-items:center;
     justify-content:center;
     box-shadow:0 2px 6px rgba(155,220,255,.35);
+    z-index:2;
 }
 
 .back{
