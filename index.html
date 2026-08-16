@@ -863,20 +863,33 @@ button{font-family:inherit}
     transform:scale(1.03);
 }
 
-.swipe-hint{
+.card-nav-btn{
     position:absolute;
     top:50%;
-    right:-6px;
     transform:translateY(-50%);
-    color:rgba(155,220,255,.32);
-    font-size:26px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(18,27,45,.85);
+    border:1px solid rgba(255,255,255,.20);
+    color:#9bdcff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
     font-weight:800;
-    pointer-events:none;
-    transition:opacity .25s ease;
-    z-index:1;
+    cursor:pointer;
+    z-index:3;
+    transition:.2s;
+    padding:0;
 }
 
-.swipe-hint.faded{opacity:0}
+.card-nav-btn:hover{background:rgba(255,255,255,.12)}
+
+.card-nav-left{left:2px}
+.card-nav-right{right:2px}
+
+.card-nav-btn.hidden{display:none!important}
 
 .review-options{
     display:grid;
@@ -1255,7 +1268,8 @@ button{font-family:inherit}
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
             </div>
         </div>
-        <div class="swipe-hint" id="swipeHint">›</div>
+        <button class="card-nav-btn card-nav-left hidden" id="navLeftBtn" onclick="event.stopPropagation(); handleCardNavLeft();" aria-label="Retour au recto">‹</button>
+        <button class="card-nav-btn card-nav-right hidden" id="navRightBtn" onclick="event.stopPropagation(); handleCardNavRight();" aria-label="Suivant">›</button>
     </div>
 
     <div class="review-options">
@@ -2424,8 +2438,11 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
-    const infoEl = document.getElementById("swipeHint");
-    if(infoEl) infoEl.classList.remove("faded");
+    const navLeftBtn = document.getElementById("navLeftBtn");
+    const navRightBtn = document.getElementById("navRightBtn");
+    const isFirstCard = currentFlashcard === 0;
+    if(navLeftBtn) navLeftBtn.classList.toggle("hidden", isFirstCard);
+    if(navRightBtn) navRightBtn.classList.toggle("hidden", isFirstCard);
     document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
 
     const verbDetailsEl = document.getElementById("flashVerbDetails");
@@ -2518,12 +2535,25 @@ function loadFlashcard(){
 function flipCard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.toggle("flipped");
-    const info = document.getElementById("swipeHint");
-    if(info){
-        if(flashcardEl.classList.contains("flipped")) info.classList.add("faded");
-        else info.classList.remove("faded");
-    }
     resizeFlashcard();
+}
+
+function handleCardNavLeft(){
+    // Ramène au recto (mot en français) si on est au verso ; sinon ne fait rien.
+    const flashcardEl = document.getElementById("flashcard");
+    if(flashcardEl && flashcardEl.classList.contains("flipped")){
+        flipCard();
+    }
+}
+
+function handleCardNavRight(){
+    // Au recto : révèle la réponse (comme un tap). Au verso : passe à la carte suivante.
+    const flashcardEl = document.getElementById("flashcard");
+    if(flashcardEl && flashcardEl.classList.contains("flipped")){
+        skipFlashcard();
+    } else {
+        flipCard();
+    }
 }
 
 function toggleVerbExtra(){
