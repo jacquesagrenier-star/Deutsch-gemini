@@ -877,7 +877,7 @@ button{font-family:inherit}
 
 .review-options{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr;
     gap:10px;
     margin-top:15px;
 }
@@ -937,7 +937,7 @@ button{font-family:inherit}
 <div class="app">
 
 <header>
-    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-13</span></div>
+    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-15</span></div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
 </header>
 
@@ -1254,15 +1254,6 @@ button{font-family:inherit}
         </div>
     </div>
 
-    <div class="review-options">
-        <button class="review-button" onclick="scheduleReview(2)">Revoir dans 2 min</button>
-        <button class="review-button" onclick="scheduleReview(10)">Revoir dans 10 min</button>
-        <button class="review-button warning" onclick="scheduleReview(1440)">Revoir demain</button>
-        <button class="review-button mastered" onclick="markMastered()">✓ Maîtrisé</button>
-    </div>
-
-    <div class="spacer"></div>
-    <button class="secondary" onclick="retryUnmastered()">RÉESSAYER LES ÉLÉMENTS NON MAÎTRISÉS</button>
 </section>
 
 <!-- ================= EXERCISE ================= -->
