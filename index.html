@@ -679,7 +679,7 @@ button{font-family:inherit}
     position:relative;
     cursor:pointer;
     transform-style:preserve-3d;
-    transition:transform .55s ease, height .3s ease;
+    transition:transform .55s ease, height .55s ease;
     touch-action:pan-y;
 }
 
@@ -2419,6 +2419,8 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
+    const infoEl = document.getElementById("flashcardInfo");
+    if(infoEl) infoEl.classList.remove("hidden");
     document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
 
     const verbDetailsEl = document.getElementById("flashVerbDetails");
@@ -2509,7 +2511,13 @@ function loadFlashcard(){
 }
 
 function flipCard(){
-    document.getElementById("flashcard").classList.toggle("flipped");
+    const flashcardEl = document.getElementById("flashcard");
+    flashcardEl.classList.toggle("flipped");
+    const info = document.getElementById("flashcardInfo");
+    if(info){
+        if(flashcardEl.classList.contains("flipped")) info.classList.add("hidden");
+        else info.classList.remove("hidden");
+    }
     resizeFlashcard();
 }
 
