@@ -3526,6 +3526,7 @@ function launchConfetti(){
         piece.style.width = (5 + Math.random() * 5) + "px";
         piece.style.height = (8 + Math.random() * 8) + "px";
         piece.style.animationDuration = (0.8 + Math.random() * 0.6) + "s";
+        piece.style.zIndex = "9999";
         container.appendChild(piece);
         piece.addEventListener("animationend", () => piece.remove());
     }
