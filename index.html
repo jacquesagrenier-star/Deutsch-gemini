@@ -2534,8 +2534,14 @@ function slideToNextCard(flashcardEl){
     flashcardEl.style.transition = "opacity .22s ease";
     flashcardEl.style.opacity = "0";
     setTimeout(() => {
+        // Désactive la transition le temps de charger la carte suivante : le retour
+        // à plat (retrait de "flipped") doit être instantané, pas une rotation cachée
+        // qui abîmerait la prochaine rotation visible.
+        flashcardEl.style.transition = "none";
         skipFlashcard();
+        void flashcardEl.offsetHeight; // force le navigateur à appliquer le changement avant de réactiver la transition
         requestAnimationFrame(() => {
+            flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .22s ease";
             flashcardEl.style.opacity = "1";
         });
     }, 220);
