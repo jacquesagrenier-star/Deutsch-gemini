@@ -741,6 +741,13 @@ button{font-family:inherit}
     border:1px solid rgba(255,255,255,.16);
 }
 
+.flashcard.answer-accent.flipped .flashcard-back{
+    border:1.5px solid rgba(155,220,255,.45);
+    background:
+        radial-gradient(circle at 30% 15%,rgba(155,220,255,.14),transparent 22%),
+        rgba(14,22,38,.90);
+}
+
 .flashcard.border-der.flipped .flashcard-back { border: 2px solid #3b82f6; }
 .flashcard.border-die.flipped .flashcard-back { border: 2px solid #ef4444; }
 .flashcard.border-das.flipped .flashcard-back { border: 2px solid #10b981; }
@@ -2409,7 +2416,10 @@ function loadFlashcard(){
     if(!item){ handleFlashcardBack(); return; }
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
-    flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
+    flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive'){
+        flashcardEl.classList.add("answer-accent");
+    }
 
     document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
 
@@ -2517,18 +2527,14 @@ function handleCardTap(){
 }
 
 function slideToNextCard(flashcardEl){
-    flashcardEl.style.transition = "transform .32s ease, opacity .28s ease";
-    flashcardEl.style.transform = "translateX(-130%) rotateY(180deg)";
+    flashcardEl.style.transition = "opacity .22s ease";
     flashcardEl.style.opacity = "0";
     setTimeout(() => {
-        flashcardEl.style.transition = "none";
-        flashcardEl.style.transform = "";
-        flashcardEl.style.opacity = "1";
         skipFlashcard();
         requestAnimationFrame(() => {
-            flashcardEl.style.transition = "";
+            flashcardEl.style.opacity = "1";
         });
-    }, 260);
+    }, 220);
 }
 
 function toggleVerbExtra(){
