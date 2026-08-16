@@ -2537,13 +2537,16 @@ function slideToNextCard(flashcardEl){
         if(done) return;
         done = true;
         flashcardEl.removeEventListener("transitionend", onTransitionEnd);
-        // Désactive la transition le temps de charger la carte suivante : le retour
-        // à plat (retrait de "flipped") doit être instantané, invisible, jamais animé.
+        // Désactive la transition et masque complètement (visibility, pas seulement
+        // opacity) le temps de charger la carte suivante : garantit qu'aucun état
+        // intermédiaire de la rotation 3D ne puisse être aperçu sur mobile.
         flashcardEl.style.transition = "none";
+        flashcardEl.style.visibility = "hidden";
         skipFlashcard();
         void flashcardEl.offsetHeight; // force le navigateur à appliquer le changement avant de réactiver la transition
         requestAnimationFrame(() => {
             flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .22s ease";
+            flashcardEl.style.visibility = "visible";
             flashcardEl.style.opacity = "1";
         });
     }
