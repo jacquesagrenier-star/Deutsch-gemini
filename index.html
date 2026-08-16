@@ -863,12 +863,20 @@ button{font-family:inherit}
     transform:scale(1.03);
 }
 
-.flashcard-info{
-    text-align:center;
-    margin:14px 0;
-    color:#8290a5;
-    font-size:13px;
+.swipe-hint{
+    position:absolute;
+    top:50%;
+    right:-6px;
+    transform:translateY(-50%);
+    color:rgba(155,220,255,.32);
+    font-size:26px;
+    font-weight:800;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:1;
 }
+
+.swipe-hint.faded{opacity:0}
 
 .review-options{
     display:grid;
@@ -1228,7 +1236,7 @@ button{font-family:inherit}
     </div>
 
     <div class="flashcard-wrapper">
-        <div id="flashcard" class="flashcard" onclick="flipCard()">
+        <div id="flashcard" class="flashcard">
             <div class="flashcard-face flashcard-front">
                 <div id="flashWord" class="word">Tisch</div>
                 <div class="tap-hint">Touche la carte pour voir la réponse</div>
@@ -1247,10 +1255,7 @@ button{font-family:inherit}
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
             </div>
         </div>
-    </div>
-
-    <div class="flashcard-info" id="flashcardInfo">
-        Glisse la carte pour passer à la suivante.
+        <div class="swipe-hint" id="swipeHint">›</div>
     </div>
 
     <div class="review-options">
@@ -2419,8 +2424,8 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
-    const infoEl = document.getElementById("flashcardInfo");
-    if(infoEl) infoEl.classList.remove("hidden");
+    const infoEl = document.getElementById("swipeHint");
+    if(infoEl) infoEl.classList.remove("faded");
     document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
 
     const verbDetailsEl = document.getElementById("flashVerbDetails");
@@ -2513,10 +2518,10 @@ function loadFlashcard(){
 function flipCard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.toggle("flipped");
-    const info = document.getElementById("flashcardInfo");
+    const info = document.getElementById("swipeHint");
     if(info){
-        if(flashcardEl.classList.contains("flipped")) info.classList.add("hidden");
-        else info.classList.remove("hidden");
+        if(flashcardEl.classList.contains("flipped")) info.classList.add("faded");
+        else info.classList.remove("faded");
     }
     resizeFlashcard();
 }
@@ -2723,9 +2728,10 @@ function showResults(){
     function onEnd(){
         if(!dragging) return;
         dragging = false;
-        flashcardEl.style.transition = "transform .55s ease, height .3s ease, opacity .3s ease";
+        flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .3s ease";
 
         if(!isTap && Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)){
+            // Swipe suffisant : on passe à la carte suivante, sans flip
             const direction = deltaX > 0 ? 1 : -1;
             const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
             flashcardEl.style.transform = `translateX(${direction * 500}px) rotateY(${flippedOffset}deg)`;
@@ -2736,10 +2742,16 @@ function showResults(){
                 flashcardEl.style.opacity = "1";
                 skipFlashcard();
                 requestAnimationFrame(() => {
-                    flashcardEl.style.transition = "transform .55s ease, height .3s ease, opacity .3s ease";
+                    flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .3s ease";
                 });
             }, 220);
+        } else if(isTap){
+            // Simple tap : on retourne la carte
+            flashcardEl.style.transform = "";
+            flashcardEl.style.opacity = "1";
+            flipCard();
         } else {
+            // Glissement trop court pour compter comme swipe : on annule, retour en place
             const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
             flashcardEl.style.transform = `translateX(0px) rotateY(${flippedOffset}deg)`;
             flashcardEl.style.opacity = "1";
@@ -2747,38 +2759,25 @@ function showResults(){
         deltaX = 0; deltaY = 0;
     }
 
-    // Touch events
-    wrapper.addEventListener("touchstart", (e) => {
-        const t = e.touches[0];
-        onStart(t.clientX, t.clientY);
-    }, { passive:true });
+    // Un seul flux d'événements (Pointer Events) : évite le double-déclenchement
+    // tactile + souris "fantôme" qui causait le flip suivi d'un retour immédiat.
+    wrapper.addEventListener("pointerdown", (e) => {
+        if(e.target.closest && e.target.closest("button")) return; // laisse les boutons (audio, ▾) agir seuls
+        try{ wrapper.setPointerCapture(e.pointerId); }catch(err){}
+        onStart(e.clientX, e.clientY);
+    });
 
-    wrapper.addEventListener("touchmove", (e) => {
-        const t = e.touches[0];
-        onMove(t.clientX, t.clientY);
-    }, { passive:true });
+    wrapper.addEventListener("pointermove", (e) => {
+        if(dragging) onMove(e.clientX, e.clientY);
+    });
 
-    wrapper.addEventListener("touchend", () => {
+    wrapper.addEventListener("pointerup", () => {
         onEnd();
     });
 
-    // Mouse events (desktop)
-    wrapper.addEventListener("mousedown", (e) => {
-        onStart(e.clientX, e.clientY);
+    wrapper.addEventListener("pointercancel", () => {
+        dragging = false;
     });
-    window.addEventListener("mousemove", (e) => {
-        if(dragging) onMove(e.clientX, e.clientY);
-    });
-    window.addEventListener("mouseup", () => {
-        if(dragging) onEnd();
-    });
-
-    // Empêche le flip au clic si c'était un swipe
-    flashcardEl.addEventListener("click", (e) => {
-        if(!isTap){
-            e.stopImmediatePropagation();
-        }
-    }, true);
 })();
 
 (() => {
