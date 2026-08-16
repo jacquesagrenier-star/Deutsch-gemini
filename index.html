@@ -883,17 +883,16 @@ button{font-family:inherit}
     width:100%;
 }
 
-.review-divider{
+.flashcard-actions{
     margin-top:16px;
-    padding-top:14px;
-    border-top:1px solid rgba(255,255,255,.08);
 }
 
 .skip-hint{
     text-align:center;
     color:#8290a5;
     font-size:11px;
-    margin-top:12px;
+    margin-top:auto;
+    padding-top:14px;
     line-height:1.4;
 }
 
@@ -1265,17 +1264,19 @@ button{font-family:inherit}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
-
-                <div id="flashReviewOptions" class="review-options review-divider">
-                    <button class="review-button" onclick="event.stopPropagation(); scheduleReview(2)">Revoir dans 2 min</button>
-                    <button class="review-button" onclick="event.stopPropagation(); scheduleReview(10)">Revoir dans 10 min</button>
-                    <button class="review-button" onclick="event.stopPropagation(); scheduleReview(1440)">Revoir demain</button>
-                    <button class="review-button mastered" onclick="event.stopPropagation(); markMastered()">Maîtrisé ✓</button>
-                </div>
-                <div class="skip-hint">Toucher la carte ailleurs qu'un bouton fait passer à la carte suivante, sans enregistrer ta progression.</div>
-                <button class="secondary" style="margin-top:10px;" onclick="event.stopPropagation(); retryUnmastered()">Revoir les cartes non maîtrisées</button>
+                <div class="skip-hint">Toucher la carte fait passer à la carte suivante, sans conserver ta progression.</div>
             </div>
         </div>
+    </div>
+
+    <div id="flashcardActions" class="flashcard-actions hidden">
+        <div id="flashReviewOptions" class="review-options">
+            <button class="review-button" onclick="scheduleReview(2)">Revoir dans 2 min</button>
+            <button class="review-button" onclick="scheduleReview(10)">Revoir dans 10 min</button>
+            <button class="review-button" onclick="scheduleReview(1440)">Revoir demain</button>
+            <button class="review-button mastered" onclick="markMastered()">Maîtrisé ✓</button>
+        </div>
+        <button class="secondary" style="margin-top:10px;" onclick="retryUnmastered()">Revoir les cartes non maîtrisées</button>
     </div>
 
 </section>
@@ -2436,6 +2437,7 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
+    document.getElementById("flashcardActions").classList.add("hidden");
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive'){
         flashcardEl.classList.add("answer-accent");
     }
@@ -2528,6 +2530,7 @@ function loadFlashcard(){
 function flipCard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.add("flipped");
+    document.getElementById("flashcardActions").classList.remove("hidden");
     resizeFlashcard();
 }
 
