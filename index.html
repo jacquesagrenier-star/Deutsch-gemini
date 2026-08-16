@@ -770,40 +770,31 @@ button{font-family:inherit}
     color:#bac7d9;
     line-height:1.4;
     background:rgba(0,0,0,.25);
-    padding:12px 12px 10px 12px;
+    padding:12px;
     border-radius:14px;
     border:1px solid rgba(255,255,255,.08);
     white-space:pre-line;
-    position:relative;
 }
 
 .verb-sep{height:8px}
 
 .verb-toggle-btn{
-    position:absolute;
-    left:50%;
-    bottom:-18px;
-    transform:translateX(-50%);
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.22);
-    border-radius:50%;
-    width:56px;
-    height:56px;
+    display:block;
+    margin:2px auto 0;
+    background:none;
+    border:none;
     color:#9bdcff;
     cursor:pointer;
-    font-size:26px;
-    font-weight:700;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    font-size:24px;
+    font-weight:800;
     line-height:1;
-    box-shadow:0 4px 12px rgba(0,0,0,.35);
+    padding:4px 14px;
 }
 
-.verb-toggle-btn:hover{background:rgba(255,255,255,.18)}
+.verb-toggle-btn:hover{color:#c9ecff}
 
 .verb-extra{
-    margin-top:30px;
+    margin-top:6px;
     padding-top:10px;
     border-top:1px solid rgba(255,255,255,.08);
 }
@@ -2056,7 +2047,7 @@ function orbPanelData(id){
             icon:"reviser", title:"Verbes", sub:"Conjugaison & usage",
             options:[
                 { icon:"reviser", title:"Réviser mes verbes dus", desc:"Verbes à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startVerbeDueReview" },
-                { icon:"dossier", title:"Parcourir par niveau", desc:"A1 · A2 (B1 · B2 à venir)", action:"openVerbenNiveau" },
+                { icon:"dossier", title:"Parcourir par niveau", desc:"A1 · A2 · B1 (B2 à venir)", action:"openVerbenNiveau" },
                 { icon:"ale", title:"Verbes aléatoires", desc:"Mélange de tous les niveaux", action:"startVerbeRandomMix" },
                 { icon:"exercice", title:"Exercices Präsens", desc:"Réguliers · irréguliers", action:"startExercises" }
             ]
@@ -2413,7 +2404,8 @@ function resizeFlashcard(){
     const front = document.querySelector(".flashcard-front");
     const back = document.querySelector(".flashcard-back");
     if(!flashcardEl || !front || !back) return;
-    const targetHeight = Math.max(front.scrollHeight, back.scrollHeight, 200);
+    const isFlipped = flashcardEl.classList.contains("flipped");
+    const targetHeight = Math.max(isFlipped ? back.scrollHeight : front.scrollHeight, 200);
     flashcardEl.style.height = targetHeight + "px";
 }
 
