@@ -805,7 +805,7 @@ button{font-family:inherit}
     font-size:22px;
     font-weight:800;
     line-height:1;
-    padding:2px 14px;
+    padding:0 14px;
 }
 
 .verb-toggle-btn:hover{color:#c9ecff}
@@ -938,7 +938,7 @@ button{font-family:inherit}
 <div class="app">
 
 <header>
-    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-10</span></div>
+    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-11</span></div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
 </header>
 
@@ -2458,11 +2458,7 @@ function loadFlashcard(){
         const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${card.praeteritum_fr || ""})` +
             `<div class="verb-sep"></div>` +
             `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${card.konjunktiv2_fr || ""})`;
-        verbDetailsEl.innerHTML = `
-            <div class="verb-core">${coreHtml}</div>
-            <button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button>
-            <div class="verb-extra hidden">${extraHtml}</div>
-        `;
+        verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
