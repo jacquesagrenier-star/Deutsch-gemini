@@ -163,6 +163,67 @@ h1{
     stroke-linejoin:round;
 }
 
+.orb-icon-wrap{
+    position:relative;
+    width:44px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:6px;
+}
+
+.orb-icon-wrap .orb-icon{
+    margin-bottom:0;
+}
+
+.orb-ring{
+    position:absolute;
+    top:0;
+    left:0;
+    width:44px;
+    height:44px;
+    transform:rotate(-90deg);
+    pointer-events:none;
+}
+
+.orb-ring circle{
+    fill:none;
+    stroke-width:3;
+}
+
+.orb-ring .ring-bg{
+    stroke:rgba(255,255,255,.08);
+}
+
+.orb-ring .ring-fill{
+    stroke:url(#ringGradient);
+    stroke-linecap:round;
+    transition:stroke-dashoffset .5s ease;
+}
+
+.radar-grid{
+    fill:none;
+    stroke:rgba(255,255,255,.10);
+    stroke-width:1;
+}
+
+.radar-axis{
+    stroke:rgba(255,255,255,.10);
+    stroke-width:1;
+}
+
+.radar-data{
+    fill:rgba(155,220,255,.22);
+    stroke:#9bdcff;
+    stroke-width:2;
+}
+
+.radar-label{
+    fill:#9aa8bc;
+    font-size:9px;
+}
+
 .orb strong{
     display:block;
     font-size:13px;
@@ -948,6 +1009,15 @@ button{font-family:inherit}
 
 <body>
 
+<svg width="0" height="0" style="position:absolute;">
+    <defs>
+        <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8feaff"/>
+            <stop offset="100%" stop-color="#d3a9ff"/>
+        </linearGradient>
+    </defs>
+</svg>
+
 <div class="app">
 
 <header>
@@ -1021,7 +1091,10 @@ button{font-family:inherit}
     <div class="grid" id="orbGrid">
         <div class="orb" data-orbid="verben" onclick="openOrbPanel('verben')">
             <div id="badge-verben" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
+            </div>
             <div>
                 <strong>Verbes</strong>
                 <small>Flashcards & Grammaire</small>
@@ -1030,7 +1103,10 @@ button{font-family:inherit}
 
         <div class="orb" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
+            </div>
             <div>
                 <strong>Noms</strong>
                 <small>Thèmes & Vocabulaire</small>
@@ -1039,7 +1115,10 @@ button{font-family:inherit}
 
         <div class="orb" data-orbid="kasus" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-kasus" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
+            </div>
             <div>
                 <strong>Cas</strong>
                 <small>Nominativ · Akkusativ, etc.</small>
@@ -1048,7 +1127,10 @@ button{font-family:inherit}
 
         <div class="orb" data-orbid="adjektive" onclick="openOrbPanel('adjektive')">
             <div id="badge-adjektive" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-adjektive" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
+            </div>
             <div>
                 <strong>Adjectifs</strong>
                 <small>Endungen</small>
@@ -1057,7 +1139,10 @@ button{font-family:inherit}
 
         <div class="orb" data-orbid="praep" onclick="openOrbPanel('praep')">
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-praep" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#9bdcff" stroke="none"/></svg></div>
+            </div>
             <div>
                 <strong>Prépositions</strong>
                 <small>Dativ · Akkusativ</small>
@@ -1084,7 +1169,10 @@ button{font-family:inherit}
 
         <div class="orb" data-orbid="partikeln" onclick="openOrbPanel('partikeln')">
             <div id="badge-partikeln" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-partikeln" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
+            </div>
             <div>
                 <strong>Particules</strong>
                 <small>doch · ja · mal</small>
@@ -1648,6 +1736,11 @@ button{font-family:inherit}
         <div class="spacer"></div>
         <button class="secondary danger" onclick="resetAllConfirm()">RESET DE TOUTE LA PROGRESSION</button>
     </div>
+
+    <div class="card">
+        <strong>Progression par catégorie</strong>
+        <svg id="progressRadar" viewBox="0 0 220 220" style="width:100%; max-width:280px; display:block; margin:14px auto 0;"></svg>
+    </div>
 </section>
 
 </div>
@@ -2161,6 +2254,97 @@ function updateGlobalProgress(){
     if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
 }
 
+function masteryPercentForList(themeId, words){
+    if(!words.length) return 0;
+    let mastered = 0;
+    words.forEach((w, i) => {
+        if(getWordState(themeId, i).mastered) mastered++;
+    });
+    return Math.round(mastered / words.length * 100);
+}
+
+function getVerbenMasteryPercent(){ return masteryPercentForList(verbeTheme.id, verbeTheme.words); }
+function getAdjektiveMasteryPercent(){ return masteryPercentForList(adjektiveTheme.id, adjektiveTheme.words); }
+function getKasusMasteryPercent(){ return masteryPercentForList(kasusVerbTheme.id, kasusVerbTheme.words); }
+function getPraepMasteryPercent(){ return masteryPercentForList(praepTheme.id, praepTheme.words); }
+function getPartikelnMasteryPercent(){ return masteryPercentForList(partikelnTheme.id, partikelnTheme.words); }
+
+function getNomenMasteryPercent(){
+    let total = 0, mastered = 0;
+    themes.forEach(t => {
+        LEVELS.forEach(lvl => {
+            const levelData = t.levels[lvl];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
+        });
+    });
+    return total ? Math.round(mastered / total * 100) : 0;
+}
+
+const RING_CIRCUMFERENCE = 2 * Math.PI * 19;
+
+function setRingPercent(id, percent){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.style.strokeDasharray = RING_CIRCUMFERENCE;
+    el.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - percent / 100);
+}
+
+function updateOrbRings(){
+    setRingPercent("ring-verben", getVerbenMasteryPercent());
+    setRingPercent("ring-nomen", getNomenMasteryPercent());
+    setRingPercent("ring-kasus", getKasusMasteryPercent());
+    setRingPercent("ring-adjektive", getAdjektiveMasteryPercent());
+    setRingPercent("ring-praep", getPraepMasteryPercent());
+    setRingPercent("ring-partikeln", getPartikelnMasteryPercent());
+}
+
+function renderProgressRadar(){
+    const svg = document.getElementById("progressRadar");
+    if(!svg) return;
+
+    const categories = [
+        { label: "Noms", percent: getNomenMasteryPercent() },
+        { label: "Verbes", percent: getVerbenMasteryPercent() },
+        { label: "Adjectifs", percent: getAdjektiveMasteryPercent() },
+        { label: "Cas", percent: getKasusMasteryPercent() },
+        { label: "Préps.", percent: getPraepMasteryPercent() },
+        { label: "Particules", percent: getPartikelnMasteryPercent() }
+    ];
+    const n = categories.length;
+    const cx = 110, cy = 110, maxR = 75;
+    const angleFor = i => -Math.PI / 2 + i * (2 * Math.PI / n);
+    const pointAt = (i, r) => {
+        const a = angleFor(i);
+        return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    };
+
+    let gridHtml = "";
+    [0.25, 0.5, 0.75, 1].forEach(frac => {
+        const pts = categories.map((c, i) => pointAt(i, maxR * frac).join(",")).join(" ");
+        gridHtml += `<polygon points="${pts}" class="radar-grid"/>`;
+    });
+
+    let axisHtml = "";
+    categories.forEach((c, i) => {
+        const [x, y] = pointAt(i, maxR);
+        axisHtml += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" class="radar-axis"/>`;
+    });
+
+    const dataPts = categories.map((c, i) => pointAt(i, maxR * (c.percent / 100)).join(",")).join(" ");
+
+    let labelHtml = "";
+    categories.forEach((c, i) => {
+        const [x, y] = pointAt(i, maxR + 20);
+        labelHtml += `<text x="${x}" y="${y}" class="radar-label" text-anchor="middle" dominant-baseline="middle">${c.label}</text>`;
+    });
+
+    svg.innerHTML = gridHtml + axisHtml + `<polygon points="${dataPts}" class="radar-data"/>` + labelHtml;
+}
+
 const ORB_BADGE_CAP = 30;
 
 function formatBadgeCount(count){
@@ -2495,6 +2679,7 @@ function updateOrbBadges(){
     setOrbBadge("badge-verben", getVerbenDueCount());
     setOrbBadge("badge-nomen", getDueItems().length);
     setOrbBadge("badge-adjektive", getAdjektiveDueCount());
+    updateOrbRings();
 }
 
 const ORB_ICONS = {
@@ -2677,7 +2862,7 @@ function showScreen(id){
 
 function goHome(){ showScreen("home"); }
 function openNomen(){ loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen"); }
-function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
+function openSettings(){ updateGlobalProgress(); renderProgressRadar(); showScreen("settings"); }
 
 function openKasusInfo(){
     showScreen("kasusInfo");
@@ -3327,6 +3512,7 @@ function resetCurrentThemeConfirm(){
     updateAdjDueBanner();
     updateVerbDueBanner();
     updateOrbBadges();
+    renderProgressRadar();
     alert("La série a été réinitialisée.");
 }
 
@@ -3342,6 +3528,7 @@ function resetAllConfirm(){
     updateAdjDueBanner();
     updateVerbDueBanner();
     updateOrbBadges();
+    renderProgressRadar();
     alert("Toute la progression a été réinitialisée.");
 }
 
