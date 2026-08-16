@@ -670,6 +670,7 @@ button{font-family:inherit}
 .flashcard-wrapper{
     perspective:1000px;
     margin-top:25px;
+    position:relative;
 }
 
 .flashcard{
@@ -679,10 +680,15 @@ button{font-family:inherit}
     cursor:pointer;
     transform-style:preserve-3d;
     transition:transform .55s ease, height .3s ease;
+    touch-action:pan-y;
 }
 
 .flashcard.flipped{
     transform:rotateY(180deg);
+}
+
+.flashcard.swiping{
+    transition:transform .55s ease, height .3s ease;
 }
 
 .flashcard-face{
@@ -728,7 +734,7 @@ button{font-family:inherit}
 
 .flashcard-back{
     transform:rotateY(180deg);
-    padding:25px;
+    padding:22px;
     justify-content:flex-start;
     overflow-y:auto;
     text-align:left;
@@ -761,7 +767,7 @@ button{font-family:inherit}
     color:#fff;
     font-size:16px;
     font-weight:600;
-    margin-bottom:14px;
+    margin-bottom:12px;
 }
 
 .verb-details{
@@ -780,22 +786,22 @@ button{font-family:inherit}
 
 .verb-toggle-btn{
     display:block;
-    margin:2px auto 0;
+    margin:0 auto;
     background:none;
     border:none;
     color:#9bdcff;
     cursor:pointer;
-    font-size:24px;
+    font-size:22px;
     font-weight:800;
     line-height:1;
-    padding:4px 14px;
+    padding:2px 14px;
 }
 
 .verb-toggle-btn:hover{color:#c9ecff}
 
 .verb-extra{
-    margin-top:6px;
-    padding-top:10px;
+    margin-top:2px;
+    padding-top:8px;
     border-top:1px solid rgba(255,255,255,.08);
 }
 
@@ -859,7 +865,7 @@ button{font-family:inherit}
 
 .flashcard-info{
     text-align:center;
-    margin:18px 0;
+    margin:14px 0;
     color:#8290a5;
     font-size:13px;
 }
@@ -1244,7 +1250,7 @@ button{font-family:inherit}
     </div>
 
     <div class="flashcard-info" id="flashcardInfo">
-        Touche la carte pour voir la réponse.
+        Glisse la carte pour passer à la suivante.
     </div>
 
     <div class="review-options">
@@ -1254,8 +1260,6 @@ button{font-family:inherit}
         <button class="review-button mastered" onclick="markMastered()">✓ Maîtrisé</button>
     </div>
 
-    <div class="spacer"></div>
-    <button class="secondary" onclick="nextFlashcard()">CARTE SUIVANTE →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="retryUnmastered()">RÉESSAYER LES ÉLÉMENTS NON MAÎTRISÉS</button>
 </section>
@@ -2566,6 +2570,17 @@ function nextFlashcard(){
     loadFlashcard();
 }
 
+function skipFlashcard(){
+    // Passe à la carte suivante sans enregistrer d'évaluation (utilisé par le swipe)
+    currentFlashcard++;
+    if(currentFlashcard >= currentCards.length){
+        alert("Session terminée !");
+        handleFlashcardBack();
+        return;
+    }
+    loadFlashcard();
+}
+
 function retryUnmastered(){
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => !getWordState(item.themeId, item.index).mastered);
@@ -2669,6 +2684,94 @@ function showResults(){
     document.getElementById("scoreText").textContent = `${scoreValue} exercice(s) réussi(s).`;
     showScreen("result");
 }
+
+// ===== SWIPE pour passer à la carte suivante sans noter =====
+(() => {
+    const wrapper = document.querySelector(".flashcard-wrapper");
+    const flashcardEl = document.getElementById("flashcard");
+    if(!wrapper || !flashcardEl) return;
+
+    let startX = 0, startY = 0, deltaX = 0, deltaY = 0, dragging = false, isTap = true;
+    const SWIPE_THRESHOLD = 70;
+
+    function onStart(x, y){
+        startX = x; startY = y; deltaX = 0; deltaY = 0;
+        dragging = true; isTap = true;
+        flashcardEl.style.transition = "none";
+    }
+
+    function onMove(x, y){
+        if(!dragging) return;
+        deltaX = x - startX;
+        deltaY = y - startY;
+        if(Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) isTap = false;
+        if(Math.abs(deltaX) > Math.abs(deltaY)){
+            const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
+            flashcardEl.style.transform = `translateX(${deltaX}px) rotateY(${flippedOffset}deg)`;
+            flashcardEl.style.opacity = String(Math.max(1 - Math.abs(deltaX) / 300, 0.4));
+        }
+    }
+
+    function onEnd(){
+        if(!dragging) return;
+        dragging = false;
+        flashcardEl.style.transition = "transform .55s ease, height .3s ease, opacity .3s ease";
+
+        if(!isTap && Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)){
+            const direction = deltaX > 0 ? 1 : -1;
+            const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
+            flashcardEl.style.transform = `translateX(${direction * 500}px) rotateY(${flippedOffset}deg)`;
+            flashcardEl.style.opacity = "0";
+            setTimeout(() => {
+                flashcardEl.style.transition = "none";
+                flashcardEl.style.transform = "";
+                flashcardEl.style.opacity = "1";
+                skipFlashcard();
+                requestAnimationFrame(() => {
+                    flashcardEl.style.transition = "transform .55s ease, height .3s ease, opacity .3s ease";
+                });
+            }, 220);
+        } else {
+            const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
+            flashcardEl.style.transform = `translateX(0px) rotateY(${flippedOffset}deg)`;
+            flashcardEl.style.opacity = "1";
+        }
+        deltaX = 0; deltaY = 0;
+    }
+
+    // Touch events
+    wrapper.addEventListener("touchstart", (e) => {
+        const t = e.touches[0];
+        onStart(t.clientX, t.clientY);
+    }, { passive:true });
+
+    wrapper.addEventListener("touchmove", (e) => {
+        const t = e.touches[0];
+        onMove(t.clientX, t.clientY);
+    }, { passive:true });
+
+    wrapper.addEventListener("touchend", () => {
+        onEnd();
+    });
+
+    // Mouse events (desktop)
+    wrapper.addEventListener("mousedown", (e) => {
+        onStart(e.clientX, e.clientY);
+    });
+    window.addEventListener("mousemove", (e) => {
+        if(dragging) onMove(e.clientX, e.clientY);
+    });
+    window.addEventListener("mouseup", () => {
+        if(dragging) onEnd();
+    });
+
+    // Empêche le flip au clic si c'était un swipe
+    flashcardEl.addEventListener("click", (e) => {
+        if(!isTap){
+            e.stopImmediatePropagation();
+        }
+    }, true);
+})();
 
 (() => {
     loadThemesJson();
