@@ -938,7 +938,7 @@ button{font-family:inherit}
 <div class="app">
 
 <header>
-    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-11</span></div>
+    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-12</span></div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
 </header>
 
@@ -2411,7 +2411,8 @@ function resizeFlashcard(){
     const back = document.querySelector(".flashcard-back");
     if(!flashcardEl || !front || !back) return;
     const isFlipped = flashcardEl.classList.contains("flipped");
-    const targetHeight = Math.max(isFlipped ? back.scrollHeight : front.scrollHeight, 200);
+    const FRONT_HEIGHT = 190; // hauteur fixe du recto, toujours la même peu importe la longueur du mot
+    const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200) : FRONT_HEIGHT;
     flashcardEl.style.height = targetHeight + "px";
 }
 
