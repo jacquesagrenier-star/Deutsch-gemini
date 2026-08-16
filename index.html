@@ -863,33 +863,7 @@ button{font-family:inherit}
     transform:scale(1.03);
 }
 
-.card-nav-btn{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:rgba(18,27,45,.85);
-    border:1px solid rgba(255,255,255,.20);
-    color:#9bdcff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-    font-weight:800;
-    cursor:pointer;
-    z-index:3;
-    transition:.2s;
-    padding:0;
-}
 
-.card-nav-btn:hover{background:rgba(255,255,255,.12)}
-
-.card-nav-left{left:2px}
-.card-nav-right{right:2px}
-
-.card-nav-btn.hidden{display:none!important}
 
 .review-options{
     display:grid;
@@ -1249,7 +1223,7 @@ button{font-family:inherit}
     </div>
 
     <div class="flashcard-wrapper">
-        <div id="flashcard" class="flashcard">
+        <div id="flashcard" class="flashcard" onclick="handleCardTap()">
             <div class="flashcard-face flashcard-front">
                 <div id="flashWord" class="word">Tisch</div>
                 <div class="tap-hint">Touche la carte pour voir la réponse</div>
@@ -1268,8 +1242,6 @@ button{font-family:inherit}
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
             </div>
         </div>
-        <button class="card-nav-btn card-nav-left hidden" id="navLeftBtn" onclick="event.stopPropagation(); handleCardNavLeft();" aria-label="Retour au recto">‹</button>
-        <button class="card-nav-btn card-nav-right hidden" id="navRightBtn" onclick="event.stopPropagation(); handleCardNavRight();" aria-label="Suivant">›</button>
     </div>
 
     <div class="review-options">
@@ -2438,11 +2410,7 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das");
-    const navLeftBtn = document.getElementById("navLeftBtn");
-    const navRightBtn = document.getElementById("navRightBtn");
-    const isFirstCard = currentFlashcard === 0;
-    if(navLeftBtn) navLeftBtn.classList.toggle("hidden", isFirstCard);
-    if(navRightBtn) navRightBtn.classList.toggle("hidden", isFirstCard);
+
     document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
 
     const verbDetailsEl = document.getElementById("flashVerbDetails");
@@ -2534,22 +2502,14 @@ function loadFlashcard(){
 
 function flipCard(){
     const flashcardEl = document.getElementById("flashcard");
-    flashcardEl.classList.toggle("flipped");
+    flashcardEl.classList.add("flipped");
     resizeFlashcard();
 }
 
-function handleCardNavLeft(){
-    // Ramène au recto (mot en français) si on est au verso ; sinon ne fait rien.
+function handleCardTap(){
     const flashcardEl = document.getElementById("flashcard");
-    if(flashcardEl && flashcardEl.classList.contains("flipped")){
-        flipCard();
-    }
-}
-
-function handleCardNavRight(){
-    // Au recto : révèle la réponse (comme un tap). Au verso : passe à la carte suivante.
-    const flashcardEl = document.getElementById("flashcard");
-    if(flashcardEl && flashcardEl.classList.contains("flipped")){
+    if(!flashcardEl) return;
+    if(flashcardEl.classList.contains("flipped")){
         skipFlashcard();
     } else {
         flipCard();
@@ -2727,88 +2687,6 @@ function showResults(){
     document.getElementById("scoreText").textContent = `${scoreValue} exercice(s) réussi(s).`;
     showScreen("result");
 }
-
-// ===== SWIPE pour passer à la carte suivante sans noter =====
-(() => {
-    const wrapper = document.querySelector(".flashcard-wrapper");
-    const flashcardEl = document.getElementById("flashcard");
-    if(!wrapper || !flashcardEl) return;
-
-    let startX = 0, startY = 0, deltaX = 0, deltaY = 0, dragging = false, isTap = true;
-    const SWIPE_THRESHOLD = 70;
-
-    function onStart(x, y){
-        startX = x; startY = y; deltaX = 0; deltaY = 0;
-        dragging = true; isTap = true;
-        flashcardEl.style.transition = "none";
-    }
-
-    function onMove(x, y){
-        if(!dragging) return;
-        deltaX = x - startX;
-        deltaY = y - startY;
-        if(Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) isTap = false;
-        if(Math.abs(deltaX) > Math.abs(deltaY)){
-            const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
-            flashcardEl.style.transform = `translateX(${deltaX}px) rotateY(${flippedOffset}deg)`;
-            flashcardEl.style.opacity = String(Math.max(1 - Math.abs(deltaX) / 300, 0.4));
-        }
-    }
-
-    function onEnd(){
-        if(!dragging) return;
-        dragging = false;
-        flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .3s ease";
-
-        if(!isTap && Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)){
-            // Swipe suffisant : on passe à la carte suivante, sans flip
-            const direction = deltaX > 0 ? 1 : -1;
-            const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
-            flashcardEl.style.transform = `translateX(${direction * 500}px) rotateY(${flippedOffset}deg)`;
-            flashcardEl.style.opacity = "0";
-            setTimeout(() => {
-                flashcardEl.style.transition = "none";
-                flashcardEl.style.transform = "";
-                flashcardEl.style.opacity = "1";
-                skipFlashcard();
-                requestAnimationFrame(() => {
-                    flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .3s ease";
-                });
-            }, 220);
-        } else if(isTap){
-            // Simple tap : on retourne la carte
-            flashcardEl.style.transform = "";
-            flashcardEl.style.opacity = "1";
-            flipCard();
-        } else {
-            // Glissement trop court pour compter comme swipe : on annule, retour en place
-            const flippedOffset = flashcardEl.classList.contains("flipped") ? 180 : 0;
-            flashcardEl.style.transform = `translateX(0px) rotateY(${flippedOffset}deg)`;
-            flashcardEl.style.opacity = "1";
-        }
-        deltaX = 0; deltaY = 0;
-    }
-
-    // Un seul flux d'événements (Pointer Events) : évite le double-déclenchement
-    // tactile + souris "fantôme" qui causait le flip suivi d'un retour immédiat.
-    wrapper.addEventListener("pointerdown", (e) => {
-        if(e.target.closest && e.target.closest("button")) return; // laisse les boutons (audio, ▾) agir seuls
-        try{ wrapper.setPointerCapture(e.pointerId); }catch(err){}
-        onStart(e.clientX, e.clientY);
-    });
-
-    wrapper.addEventListener("pointermove", (e) => {
-        if(dragging) onMove(e.clientX, e.clientY);
-    });
-
-    wrapper.addEventListener("pointerup", () => {
-        onEnd();
-    });
-
-    wrapper.addEventListener("pointercancel", () => {
-        dragging = false;
-    });
-})();
 
 (() => {
     loadThemesJson();
