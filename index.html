@@ -2632,7 +2632,7 @@ function retryUnmastered(){
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){ alert("Tous les éléments de cette série sont maîtrisés !"); return; }
-    currentFlashcard = 0;
+    ghy = 0;
     loadFlashcard();
 }
 
