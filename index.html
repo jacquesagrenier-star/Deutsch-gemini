@@ -1255,6 +1255,64 @@ button{font-family:inherit}
     </div>
 </section>
 
+<!-- ================= KASUS : COMPRENDRE ================= -->
+
+<section id="kasusInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('kasus')">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Grammaire</div>
+            <h2>Comprendre les cas</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Les 4 fonctions</strong>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Nominativ</strong> — le sujet, qui fait l'action.<br>
+            <em>Der Mann liest.</em> (L'homme lit.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Akkusativ</strong> — l'objet direct, qui subit l'action.<br>
+            <em>Ich sehe den Mann.</em> (Je vois l'homme.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Dativ</strong> — l'objet indirect, à qui/pour qui.<br>
+            <em>Ich gebe dem Mann das Buch.</em> (Je donne le livre à l'homme.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Genitiv</strong> — la possession, à qui appartient.<br>
+            <em>Das Buch des Mannes.</em> (Le livre de l'homme.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Tableau de déclinaison (articles définis)</strong>
+        <div class="info-box" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:13px;">
+                <tr style="color:#9bdcff; font-weight:800;">
+                    <td style="padding:8px 4px;"></td>
+                    <td style="padding:8px 4px;">masc.</td>
+                    <td style="padding:8px 4px;">fém.</td>
+                    <td style="padding:8px 4px;">neutre</td>
+                    <td style="padding:8px 4px;">pluriel</td>
+                </tr>
+                <tr style="border-top:1px solid rgba(255,255,255,.08);"><td style="padding:8px 4px; font-weight:700; color:#9bdcff;">Nom.</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
+                <tr style="border-top:1px solid rgba(255,255,255,.08);"><td style="padding:8px 4px; font-weight:700; color:#9bdcff;">Akk.</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>
+                <tr style="border-top:1px solid rgba(255,255,255,.08);"><td style="padding:8px 4px; font-weight:700; color:#9bdcff;">Dat.</td><td>dem</td><td>der</td><td>dem</td><td>den</td></tr>
+                <tr style="border-top:1px solid rgba(255,255,255,.08);"><td style="padding:8px 4px; font-weight:700; color:#9bdcff;">Gen.</td><td>des</td><td>der</td><td>des</td><td>der</td></tr>
+            </table>
+        </div>
+        <small style="color:#8290a5;">Astuce : seul le masculin change au Nominativ/Akkusativ (der → den). Le Dativ pluriel ajoute toujours -n au nom (den Kindern).</small>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKasusReconnaissance()">M'ENTRAÎNER : RECONNAÎTRE LE CAS →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKasusArticle()">M'ENTRAÎNER : COMPLÉTER L'ARTICLE →</button>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 
 <section id="flashcards" class="screen">
@@ -1307,11 +1365,11 @@ button{font-family:inherit}
 <!-- ================= EXERCISE ================= -->
 
 <section id="exercise" class="screen">
-    <button class="back" onclick="openVerbenNiveau()">‹ Verbes</button>
+    <button id="exerciseBackBtn" class="back" onclick="exerciseGoBack()">‹ Retour</button>
 
     <div class="title-row">
         <div>
-            <div class="kicker">Verbes · Präsens</div>
+            <div class="kicker" id="exerciseKicker">Verbes · Präsens</div>
             <h2 id="exerciseTitle">Exercice 1</h2>
         </div>
         <div class="pill" id="counter">1 / 5</div>
@@ -1353,7 +1411,7 @@ button{font-family:inherit}
         </div>
 
         <div class="spacer"></div>
-        <button class="primary" onclick="startExercises()">RECOMMENCER</button>
+        <button class="primary" onclick="restartActiveExerciseSet()">RECOMMENCER</button>
         <div class="spacer"></div>
         <button class="secondary" onclick="goHome()">TABLEAU DE BORD</button>
     </div>
@@ -1646,6 +1704,34 @@ const exercises = [
   { topic:"Verbes réguliers", question:"Ich ___ jeden Tag Deutsch.", translation:"Je fais de l'allemand tous les jours.", hint:"(lernen)", answers:["lerne"], correct:"lerne", explanation:"Avec « ich », le verbe régulier « lernen » prend la terminaison -e : ich lerne." }
 ];
 
+const kasusReconnaissanceExercises = [
+  { topic:"Reconnaître le cas", question:"Der Lehrer erklärt den Schülern die Aufgabe. Quel cas est « den Schülern » ?", translation:"Le professeur explique l'exercice aux élèves.", hint:"(à qui ? objet indirect)", answers:["dativ","datif"], correct:"Dativ", explanation:"« den Schülern » répond à « à qui ? » — c'est l'objet indirect, donc le Dativ." },
+  { topic:"Reconnaître le cas", question:"Ich sehe den Hund im Garten. Quel cas est « den Hund » ?", translation:"Je vois le chien dans le jardin.", hint:"(qui/quoi subit l'action ?)", answers:["akkusativ","accusatif"], correct:"Akkusativ", explanation:"« den Hund » est l'objet direct de « sehen » — Akkusativ." },
+  { topic:"Reconnaître le cas", question:"Die Farbe des Autos gefällt mir. Quel cas est « des Autos » ?", translation:"La couleur de la voiture me plaît.", hint:"(à qui appartient ?)", answers:["genitiv","genitif"], correct:"Genitiv", explanation:"« des Autos » marque la possession (la couleur DE la voiture) — Genitiv." },
+  { topic:"Reconnaître le cas", question:"Der Hund läuft schnell. Quel cas est « der Hund » ?", translation:"Le chien court vite.", hint:"(qui fait l'action ?)", answers:["nominativ","nominatif"], correct:"Nominativ", explanation:"« der Hund » est le sujet de la phrase — Nominativ." }
+];
+
+const kasusArticleExercises = [
+  { topic:"Compléter l'article", question:"Ich sehe ___ Mann. (der Mann, Akkusativ)", translation:"Je vois l'homme.", hint:"(masculin, Akkusativ)", answers:["den"], correct:"den", explanation:"Au masculin Akkusativ, « der » devient « den »." },
+  { topic:"Compléter l'article", question:"Ich gebe ___ Frau das Buch. (die Frau, Dativ)", translation:"Je donne le livre à la femme.", hint:"(féminin, Dativ)", answers:["der"], correct:"der", explanation:"Au féminin Dativ, « die » devient « der »." },
+  { topic:"Compléter l'article", question:"Das ist das Haus ___ Kindes. (das Kind, Genitiv)", translation:"C'est la maison de l'enfant.", hint:"(neutre, Genitiv)", answers:["des"], correct:"des", explanation:"Au neutre Genitiv, « das » devient « des » (et le nom prend souvent -s/-es : Kindes)." },
+  { topic:"Compléter l'article", question:"___ Buch liegt auf dem Tisch. (das Buch, Nominativ)", translation:"Le livre est sur la table.", hint:"(neutre, Nominativ)", answers:["das"], correct:"das", explanation:"Au Nominativ, l'article neutre ne change pas : das Buch." }
+];
+
+const kasusVerbTheme = {
+  id: "kasus_verben",
+  name: "Verbes à cas fixe",
+  svg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>',
+  words: [
+    ["helfen", "aider", "Dativ", "Ich helfe meiner Mutter.", "J'aide ma mère."],
+    ["danken", "remercier", "Dativ", "Ich danke dir für das Geschenk.", "Je te remercie pour le cadeau."],
+    ["gefallen", "plaire", "Dativ", "Das Kleid gefällt mir sehr.", "La robe me plaît beaucoup."],
+    ["brauchen", "avoir besoin de", "Akkusativ", "Ich brauche einen Stift.", "J'ai besoin d'un stylo."],
+    ["kaufen", "acheter", "Akkusativ", "Er kauft einen Apfel.", "Il achète une pomme."],
+    ["suchen", "chercher", "Akkusativ", "Wir suchen den Bahnhof.", "Nous cherchons la gare."]
+  ]
+};
+
 let currentTheme = null;
 let currentCards = [];
 let currentCardsFull = [];
@@ -1656,6 +1742,9 @@ let answered = false;
 let exerciseResults = [];
 let flashcardMode = 'nomen';
 let nomenReturnScreen = 'nomen';
+let activeExercises = exercises;
+let exerciseBackHandler = openVerbenNiveau;
+let exerciseRestartHandler = startExercises;
 let frontIsFrench = true;
 
 function toggleFlipDirection(){
@@ -1711,7 +1800,7 @@ function setWordState(themeId, index, state){
 const LEVELS = ["A1", "A2", "B1", "B2"];
 
 function updateGlobalProgress(){
-    let total = verbeTheme.words.length + adjektiveTheme.words.length;
+    let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length;
     let mastered = 0;
     
     verbeTheme.words.forEach((w, i) => {
@@ -1719,6 +1808,9 @@ function updateGlobalProgress(){
     });
     adjektiveTheme.words.forEach((w, i) => {
         if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
+    });
+    kasusVerbTheme.words.forEach((w, i) => {
+        if(getWordState(kasusVerbTheme.id, i).mastered) mastered++;
     });
 
     themes.forEach(t => {
@@ -2123,6 +2215,17 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "kasus"){
+        return {
+            icon:"dossier", title:"Cas", sub:"Nominativ · Akkusativ · Dativ · Genitiv",
+            options:[
+                { icon:"dossier", title:"Comprendre les cas", desc:"Fonctions & tableau de déclinaison", primary:true, action:"openKasusInfo" },
+                { icon:"exercice", title:"Reconnaître le cas", desc:"Identifier le cas dans une phrase", action:"startKasusReconnaissance" },
+                { icon:"exercice", title:"Compléter l'article", desc:"Choisir le bon article/terminaison", action:"startKasusArticle" },
+                { icon:"carte", title:"Verbes à cas fixe", desc:"helfen, danken, brauchen…", action:"startKasusVerben" }
+            ]
+        };
+    }
     const labels = {
         kasus:"Cas", praep:"Prépositions",
         wortstellung:"Structure", possessiv:"Possessifs", partikeln:"Particules"
@@ -2227,6 +2330,24 @@ function showScreen(id){
 function goHome(){ showScreen("home"); }
 function openNomen(){ loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen"); }
 function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
+
+function openKasusInfo(){
+    showScreen("kasusInfo");
+}
+
+function startKasusVerben(){
+    flashcardMode = 'kasusverben';
+    currentTheme = kasusVerbTheme;
+    const allItems = kasusVerbTheme.words.map((word, index) => ({ word, index, themeId: kasusVerbTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Cas · Verbes à cas fixe";
+    document.getElementById("flashThemeTitle").textContent = "Verbes à cas fixe";
+    showScreen("flashcards");
+    loadFlashcard();
+}
 
 const NOMEN_SVG = '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg>';
 
@@ -2518,6 +2639,7 @@ function startRandomMix(level){
 function handleFlashcardBack(){
     if(flashcardMode === 'verben') openVerbenNiveau();
     else if(flashcardMode === 'adjektive') openAdjektive();
+    else if(flashcardMode === 'kasusverben') openKasusInfo();
     else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
     else openNomen();
 }
@@ -2540,7 +2662,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -2597,6 +2719,26 @@ function loadFlashcard(){
             translationEl.classList.remove("hidden");
         }
         verbDetailsEl.textContent = exampleSentenceFr ? `${exampleSentence}\n${exampleSentenceFr}` : exampleSentence;
+        verbDetailsEl.classList.remove("hidden");
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+    } else if(flashcardMode === 'kasusverben'){
+        const germanWord = card[0];
+        const frenchWord = card[1];
+        const cas = card[2];
+        const exampleSentence = card[3];
+        const exampleSentenceFr = card[4] || "";
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
+        verbDetailsEl.innerHTML = `<strong>Cas fixe :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
@@ -2795,6 +2937,14 @@ function resetAllConfirm(){
 }
 
 function startExercises(){
+    startExerciseSet(exercises, "Verbes · Präsens", openVerbenNiveau, startExercises);
+}
+
+function startExerciseSet(list, kickerText, backFn, restartFn){
+    activeExercises = list;
+    exerciseBackHandler = backFn;
+    exerciseRestartHandler = restartFn;
+    document.getElementById("exerciseKicker").textContent = kickerText;
     currentExercise = 0;
     scoreValue = 0;
     exerciseResults = [];
@@ -2802,12 +2952,29 @@ function startExercises(){
     loadExercise();
 }
 
+function exerciseGoBack(){
+    if(typeof exerciseBackHandler === "function") exerciseBackHandler();
+    else goHome();
+}
+
+function restartActiveExerciseSet(){
+    if(typeof exerciseRestartHandler === "function") exerciseRestartHandler();
+}
+
+function startKasusReconnaissance(){
+    startExerciseSet(kasusReconnaissanceExercises, "Cas · Reconnaître le cas", openKasusInfo, startKasusReconnaissance);
+}
+
+function startKasusArticle(){
+    startExerciseSet(kasusArticleExercises, "Cas · Compléter l'article", openKasusInfo, startKasusArticle);
+}
+
 function loadExercise(){
-    const ex = exercises[currentExercise];
+    const ex = activeExercises[currentExercise];
     if(!ex) return;
     answered = false;
     document.getElementById("exerciseTitle").textContent = `Exercice ${currentExercise + 1}`;
-    document.getElementById("counter").textContent = `${currentExercise + 1} / ${exercises.length}`;
+    document.getElementById("counter").textContent = `${currentExercise + 1} / ${activeExercises.length}`;
     document.getElementById("question").textContent = ex.question;
     document.getElementById("questionTranslation").textContent = `Traduction : ${ex.translation}`;
     document.getElementById("hint").textContent = ex.hint;
@@ -2827,7 +2994,7 @@ function checkAnswer(){
     const input = document.getElementById("answer");
     const rawVal = input.value.trim();
     if(!rawVal){ input.focus(); return; }
-    const ex = exercises[currentExercise];
+    const ex = activeExercises[currentExercise];
     answered = true;
     const val = rawVal.toLowerCase();
     const isCorrect = ex.answers.some(a => a.toLowerCase() === val);
@@ -2848,12 +3015,12 @@ function checkAnswer(){
 
 function nextExercise(){
     currentExercise++;
-    if(currentExercise >= exercises.length){ showResults(); return; }
+    if(currentExercise >= activeExercises.length){ showResults(); return; }
     loadExercise();
 }
 
 function showResults(){
-    const percentage = Math.round(scoreValue / exercises.length * 100);
+    const percentage = Math.round(scoreValue / activeExercises.length * 100);
     document.getElementById("score").textContent = percentage + "%";
     document.getElementById("scoreText").textContent = `${scoreValue} exercice(s) réussi(s).`;
     showScreen("result");
