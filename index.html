@@ -938,7 +938,7 @@ button{font-family:inherit}
 <div class="app">
 
 <header>
-    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-08</span></div>
+    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-09</span></div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
 </header>
 
@@ -2520,7 +2520,10 @@ function flipCard(){
     resizeFlashcard();
 }
 
+let cardBusy = false;
+
 function handleCardTap(){
+    if(cardBusy) return; // ignore les taps pendant qu'une transition est déjà en cours
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
     if(flashcardEl.classList.contains("flipped")){
@@ -2531,6 +2534,9 @@ function handleCardTap(){
 }
 
 function slideToNextCard(flashcardEl){
+    if(cardBusy) return;
+    cardBusy = true;
+
     flashcardEl.style.transition = "opacity .22s ease";
     void flashcardEl.offsetHeight;
     flashcardEl.style.opacity = "0";
@@ -2548,6 +2554,7 @@ function slideToNextCard(flashcardEl){
         requestAnimationFrame(() => {
             flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .22s ease";
             flashcardEl.style.opacity = "1";
+            cardBusy = false;
         });
     }, 240);
 }
