@@ -1042,7 +1042,7 @@ button{font-family:inherit}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
             <div>
                 <strong>Cas</strong>
-                <small>Nominativ · Akkusativ</small>
+                <small>Nominativ · Akkusativ, etc.</small>
             </div>
         </div>
 
@@ -1381,6 +1381,61 @@ button{font-family:inherit}
 
     <div class="spacer"></div>
     <button class="secondary" onclick="startAdjektiveDeklinationExercises()">M'ENTRAÎNER : CHOISIR LA TERMINAISON →</button>
+</section>
+
+<!-- ================= PRÄPOSITIONEN ================= -->
+
+<section id="praepInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('praep')">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Grammaire</div>
+            <h2>Comprendre les prépositions</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Trois groupes à cas fixe</strong>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Toujours Akkusativ</strong><br>
+            durch, für, gegen, ohne, um<br>
+            <em>Das Geschenk ist für dich.</em> (Le cadeau est pour toi.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Toujours Dativ</strong><br>
+            aus, bei, mit, nach, seit, von, zu<br>
+            <em>Ich komme aus der Schweiz.</em> (Je viens de Suisse.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Toujours Genitiv</strong><br>
+            während, trotz, wegen<br>
+            <em>Wegen des Regens bleiben wir zu Hause.</em> (À cause de la pluie, on reste à la maison.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Wechselpräpositionen (à double sens)</strong>
+        <div class="info-box">
+            in, an, auf, über, unter, vor, hinter, neben, zwischen
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Wo ? (position) → Dativ</strong><br>
+            <em>Das Buch liegt auf dem Tisch.</em> (Le livre est sur la table — pas de mouvement.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">Wohin ? (mouvement) → Akkusativ</strong><br>
+            <em>Ich lege das Buch auf den Tisch.</em> (Je pose le livre sur la table — déplacement vers un endroit.)
+        </div>
+        <small style="color:#8290a5;">Astuce : si tu peux répondre à « où est-ce que ça va ? » avec un déplacement, c'est Akkusativ. Si ça décrit juste où quelque chose se trouve, c'est Dativ.</small>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPraepReconnaissance()">M'ENTRAÎNER : QUEL CAS ? →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPraepWoWohin()">M'ENTRAÎNER : WO OU WOHIN ? →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPraepVokabular()">VOCABULAIRE : FLASHCARDS →</button>
 </section>
 
 <!-- ================= FLASHCARDS ================= -->
@@ -1818,6 +1873,37 @@ const adjektiveDeklinationExercises = [
   { topic:"Déclinaison des adjectifs", question:"Mit heiß___ Tee wird es besser. (sans article, Dativ)", translation:"Avec du thé chaud, ce sera mieux.", hint:"(sans article, Dativ)", answers:["-em"], correct:"-em", explanation:"Sans article au Dativ (masc./neutre), l'adjectif prend -em : mit heißem Tee.", options: ADJEKTIVE_ENDING_OPTIONS }
 ];
 
+const PRAEP_CASE_OPTIONS = ["Akkusativ", "Dativ", "Genitiv", "Ça dépend (Wechselpräposition)"];
+
+const praepReconnaissanceExercises = [
+  { topic:"Prépositions · Quel cas ?", question:"für — quel cas impose cette préposition ?", translation:"pour", hint:"(toujours le même cas)", answers:["akkusativ"], correct:"Akkusativ", explanation:"« für » fait partie du groupe toujours Akkusativ (durch, für, gegen, ohne, um).", options: PRAEP_CASE_OPTIONS },
+  { topic:"Prépositions · Quel cas ?", question:"mit — quel cas impose cette préposition ?", translation:"avec", hint:"(toujours le même cas)", answers:["dativ"], correct:"Dativ", explanation:"« mit » fait partie du groupe toujours Dativ (aus, bei, mit, nach, seit, von, zu).", options: PRAEP_CASE_OPTIONS },
+  { topic:"Prépositions · Quel cas ?", question:"wegen — quel cas impose cette préposition ?", translation:"à cause de", hint:"(toujours le même cas)", answers:["genitiv"], correct:"Genitiv", explanation:"« wegen » fait partie du groupe toujours Genitiv (während, trotz, wegen).", options: PRAEP_CASE_OPTIONS },
+  { topic:"Prépositions · Quel cas ?", question:"auf — quel cas impose cette préposition ?", translation:"sur", hint:"(regarde bien le groupe)", answers:["ça dépend (wechselpräposition)","ca depend (wechselpraposition)"], correct:"Ça dépend (Wechselpräposition)", explanation:"« auf » est une Wechselpräposition : Dativ pour la position (wo), Akkusativ pour le mouvement (wohin).", options: PRAEP_CASE_OPTIONS }
+];
+
+const praepWoWohinExercises = [
+  { topic:"Prépositions · Wo oder Wohin?", question:"Die Katze schläft auf ___ Sofa. (das Sofa)", translation:"Le chat dort sur le canapé.", hint:"(le chat ne bouge pas — position)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"Aucun mouvement : le chat est déjà sur le canapé → Wo ? → Dativ : auf dem Sofa.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Prépositions · Wo oder Wohin?", question:"Ich stelle die Vase auf ___ Tisch. (der Tisch)", translation:"Je pose le vase sur la table.", hint:"(action de déplacer un objet)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« stellen » décrit un déplacement vers un endroit → Wohin ? → Akkusativ : auf den Tisch.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Prépositions · Wo oder Wohin?", question:"Die Kinder spielen in ___ Garten. (der Garten)", translation:"Les enfants jouent dans le jardin.", hint:"(ils sont déjà dans le jardin)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"Les enfants jouent sur place, sans changer d'endroit → Wo ? → Dativ : in dem (im) Garten.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Prépositions · Wo oder Wohin?", question:"Wir gehen in ___ Garten. (der Garten)", translation:"Nous allons dans le jardin.", hint:"(déplacement vers le jardin)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« gehen » indique un déplacement vers le jardin → Wohin ? → Akkusativ : in den Garten.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] }
+];
+
+const praepTheme = {
+  id: "praep_vokabular",
+  name: "Prépositions",
+  svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#9bdcff" stroke="none"/></svg>',
+  words: [
+    ["für", "pour", "toujours Akkusativ", "Das Geschenk ist für dich.", "Le cadeau est pour toi."],
+    ["ohne", "sans", "toujours Akkusativ", "Ich trinke Kaffee ohne Zucker.", "Je bois le café sans sucre."],
+    ["mit", "avec", "toujours Dativ", "Ich fahre mit dem Bus.", "Je vais en bus."],
+    ["nach", "après / vers", "toujours Dativ", "Nach der Schule gehe ich nach Hause.", "Après l'école, je rentre à la maison."],
+    ["wegen", "à cause de", "toujours Genitiv", "Wegen des Regens bleiben wir zu Hause.", "À cause de la pluie, on reste à la maison."],
+    ["auf", "sur", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Buch liegt auf dem Tisch.", "Le livre est sur la table."],
+    ["in", "dans", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Wir gehen in den Park.", "Nous allons dans le parc."]
+  ]
+};
+
 let currentTheme = null;
 let currentCards = [];
 let currentCardsFull = [];
@@ -1886,7 +1972,7 @@ function setWordState(themeId, index, state){
 const LEVELS = ["A1", "A2", "B1", "B2"];
 
 function updateGlobalProgress(){
-    let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length;
+    let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length + praepTheme.words.length;
     let mastered = 0;
     
     verbeTheme.words.forEach((w, i) => {
@@ -1897,6 +1983,9 @@ function updateGlobalProgress(){
     });
     kasusVerbTheme.words.forEach((w, i) => {
         if(getWordState(kasusVerbTheme.id, i).mastered) mastered++;
+    });
+    praepTheme.words.forEach((w, i) => {
+        if(getWordState(praepTheme.id, i).mastered) mastered++;
     });
 
     themes.forEach(t => {
@@ -2313,6 +2402,17 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "praep"){
+        return {
+            icon:"dossier", title:"Prépositions", sub:"Cas fixe & Wechselpräpositionen",
+            options:[
+                { icon:"dossier", title:"Comprendre les prépositions", desc:"Groupes à cas fixe & Wo/Wohin", primary:true, action:"openPraepInfo" },
+                { icon:"exercice", title:"Quel cas ?", desc:"Identifier le cas imposé", action:"startPraepReconnaissance" },
+                { icon:"exercice", title:"Wo ou Wohin ?", desc:"Position ou mouvement (Wechselpräpositionen)", action:"startPraepWoWohin" },
+                { icon:"carte", title:"Vocabulaire", desc:"für, mit, wegen, auf…", action:"startPraepVokabular" }
+            ]
+        };
+    }
     const labels = {
         kasus:"Cas", praep:"Prépositions",
         wortstellung:"Structure", possessiv:"Possessifs", partikeln:"Particules"
@@ -2440,6 +2540,32 @@ function startKasusVerben(){
     currentFlashcard = 0;
     document.getElementById("flashKicker").textContent = "Cas · Verbes à cas fixe";
     document.getElementById("flashThemeTitle").textContent = "Verbes à cas fixe";
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function openPraepInfo(){
+    showScreen("praepInfo");
+}
+
+function startPraepReconnaissance(){
+    startExerciseSet(praepReconnaissanceExercises, "Prépositions · Quel cas ?", openPraepInfo, startPraepReconnaissance);
+}
+
+function startPraepWoWohin(){
+    startExerciseSet(praepWoWohinExercises, "Prépositions · Wo oder Wohin?", openPraepInfo, startPraepWoWohin);
+}
+
+function startPraepVokabular(){
+    flashcardMode = 'praep';
+    currentTheme = praepTheme;
+    const allItems = praepTheme.words.map((word, index) => ({ word, index, themeId: praepTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Prépositions · Vocabulaire";
+    document.getElementById("flashThemeTitle").textContent = "Prépositions";
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -2735,6 +2861,7 @@ function handleFlashcardBack(){
     if(flashcardMode === 'verben') openVerbenNiveau();
     else if(flashcardMode === 'adjektive') openAdjektive();
     else if(flashcardMode === 'kasusverben') openKasusInfo();
+    else if(flashcardMode === 'praep') openPraepInfo();
     else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
     else openNomen();
 }
@@ -2757,7 +2884,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -2817,7 +2944,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep'){
         const germanWord = card[0];
         const frenchWord = card[1];
         const cas = card[2];
@@ -2833,7 +2960,7 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        verbDetailsEl.innerHTML = `<strong>Cas fixe :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`;
+        verbDetailsEl.innerHTML = `<strong>Cas :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
