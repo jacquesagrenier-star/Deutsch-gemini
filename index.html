@@ -2510,10 +2510,25 @@ function handleCardTap(){
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
     if(flashcardEl.classList.contains("flipped")){
-        skipFlashcard();
+        slideToNextCard(flashcardEl);
     } else {
         flipCard();
     }
+}
+
+function slideToNextCard(flashcardEl){
+    flashcardEl.style.transition = "transform .32s ease, opacity .28s ease";
+    flashcardEl.style.transform = "translateX(-130%) rotateY(180deg)";
+    flashcardEl.style.opacity = "0";
+    setTimeout(() => {
+        flashcardEl.style.transition = "none";
+        flashcardEl.style.transform = "";
+        flashcardEl.style.opacity = "1";
+        skipFlashcard();
+        requestAnimationFrame(() => {
+            flashcardEl.style.transition = "";
+        });
+    }, 260);
 }
 
 function toggleVerbExtra(){
