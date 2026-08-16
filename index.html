@@ -768,36 +768,45 @@ button{font-family:inherit}
     width:100%;
     font-size:13px;
     color:#bac7d9;
-    line-height:1.45;
+    line-height:1.4;
     background:rgba(0,0,0,.25);
-    padding:12px;
+    padding:12px 12px 10px 12px;
     border-radius:14px;
     border:1px solid rgba(255,255,255,.08);
     white-space:pre-line;
+    position:relative;
 }
 
-.verb-toggle-row{
-    text-align:center;
-    margin-top:8px;
-}
+.verb-sep{height:8px}
 
 .verb-toggle-btn{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
+    position:absolute;
+    left:50%;
+    bottom:-18px;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.22);
     border-radius:50%;
-    width:30px;
-    height:30px;
+    width:56px;
+    height:56px;
     color:#9bdcff;
     cursor:pointer;
-    font-size:14px;
+    font-size:26px;
     font-weight:700;
-    display:inline-flex;
+    display:flex;
     align-items:center;
     justify-content:center;
     line-height:1;
+    box-shadow:0 4px 12px rgba(0,0,0,.35);
 }
 
-.verb-toggle-btn:hover{background:rgba(255,255,255,.14)}
+.verb-toggle-btn:hover{background:rgba(255,255,255,.18)}
+
+.verb-extra{
+    margin-top:30px;
+    padding-top:10px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
 
 .word-audio-row{
     display:flex;
@@ -828,12 +837,6 @@ button{font-family:inherit}
 .icon-audio-btn svg{width:14px; height:14px; fill:currentColor;}
 
 .icon-audio-btn:hover{background:rgba(255,255,255,.20); transform:scale(1.05);}
-
-.verb-extra{
-    margin-top:10px;
-    padding-top:10px;
-    border-top:1px solid rgba(255,255,255,.08);
-}
 
 .audio-btn{
     margin-top:12px;
@@ -2445,14 +2448,17 @@ function loadFlashcard(){
             `ich ${p.ich || ""}`, `du ${p.du || ""}`, `er/sie/es ${p.er_sie_es || ""}`,
             `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
         ].join(" · ");
-        const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}<br><br>` +
-            `<strong>Présent :</strong> ${card.exemple || ""}<br>(${card.exemple_fr || ""})<br><br>` +
+        const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}` +
+            `<div class="verb-sep"></div>` +
+            `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${card.exemple_fr || ""})` +
+            `<div class="verb-sep"></div>` +
             `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${card.perfekt_fr || ""})`;
-        const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${card.praeteritum_fr || ""})<br><br>` +
+        const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${card.praeteritum_fr || ""})` +
+            `<div class="verb-sep"></div>` +
             `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${card.konjunktiv2_fr || ""})`;
         verbDetailsEl.innerHTML = `
             <div class="verb-core">${coreHtml}</div>
-            <div class="verb-toggle-row"><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button></div>
+            <button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button>
             <div class="verb-extra hidden">${extraHtml}</div>
         `;
         verbDetailsEl.classList.remove("hidden");
