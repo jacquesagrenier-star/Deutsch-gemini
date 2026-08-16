@@ -1277,6 +1277,7 @@ button{font-family:inherit}
             <button class="review-button mastered" onclick="markMastered()">Maîtrisé ✓</button>
         </div>
         <button class="secondary" style="margin-top:10px;" onclick="retryUnmastered()">Revoir les cartes non maîtrisées</button>
+        <button class="secondary" style="margin-top:10px;" onclick="retryMastered()">Revoir les cartes maîtrisées</button>
     </div>
 
 </section>
@@ -2646,6 +2647,15 @@ function retryUnmastered(){
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){ alert("Tous les éléments de cette série sont maîtrisés !"); return; }
+    currentFlashcard = 0;
+    loadFlashcard();
+}
+
+function retryMastered(){
+    if(!currentCardsFull.length) return;
+    currentCards = currentCardsFull.filter(item => getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){ alert("Aucune carte maîtrisée dans cette série pour l'instant."); return; }
+    shuffleArray(currentCards);
     currentFlashcard = 0;
     loadFlashcard();
 }
