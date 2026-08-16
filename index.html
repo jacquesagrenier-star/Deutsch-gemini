@@ -877,9 +877,10 @@ button{font-family:inherit}
 
 .review-options{
     display:grid;
-    grid-template-columns:1fr;
+    grid-template-columns:1fr 1fr;
     gap:10px;
-    margin-top:15px;
+    margin-top:16px;
+    width:100%;
 }
 
 .review-button{
@@ -937,7 +938,7 @@ button{font-family:inherit}
 <div class="app">
 
 <header>
-    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-15</span></div>
+    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#5a6b82; font-weight:400; vertical-align:middle;">build-16</span></div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
 </header>
 
@@ -1250,6 +1251,14 @@ button{font-family:inherit}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
+
+                <div id="flashReviewOptions" class="review-options">
+                    <button class="review-button" onclick="event.stopPropagation(); scheduleReview(2)">Revoir dans 2 min</button>
+                    <button class="review-button" onclick="event.stopPropagation(); scheduleReview(10)">Revoir dans 10 min</button>
+                    <button class="review-button" onclick="event.stopPropagation(); scheduleReview(1440)">Revoir demain</button>
+                    <button class="review-button mastered" onclick="event.stopPropagation(); markMastered()">Maîtrisé ✓</button>
+                </div>
+                <button class="secondary" style="margin-top:10px;" onclick="event.stopPropagation(); retryUnmastered()">Revoir les cartes non maîtrisées</button>
             </div>
         </div>
     </div>
