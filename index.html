@@ -2531,12 +2531,14 @@ function handleCardTap(){
 }
 
 function slideToNextCard(flashcardEl){
-    flashcardEl.style.transition = "opacity .22s ease";
-    flashcardEl.style.opacity = "0";
-    setTimeout(() => {
+    let done = false;
+
+    function proceed(){
+        if(done) return;
+        done = true;
+        flashcardEl.removeEventListener("transitionend", onTransitionEnd);
         // Désactive la transition le temps de charger la carte suivante : le retour
-        // à plat (retrait de "flipped") doit être instantané, pas une rotation cachée
-        // qui abîmerait la prochaine rotation visible.
+        // à plat (retrait de "flipped") doit être instantané, invisible, jamais animé.
         flashcardEl.style.transition = "none";
         skipFlashcard();
         void flashcardEl.offsetHeight; // force le navigateur à appliquer le changement avant de réactiver la transition
@@ -2544,7 +2546,19 @@ function slideToNextCard(flashcardEl){
             flashcardEl.style.transition = "transform .55s ease, height .55s ease, opacity .22s ease";
             flashcardEl.style.opacity = "1";
         });
-    }, 220);
+    }
+
+    function onTransitionEnd(e){
+        if(e.target === flashcardEl && e.propertyName === "opacity") proceed();
+    }
+
+    flashcardEl.addEventListener("transitionend", onTransitionEnd);
+    flashcardEl.style.transition = "opacity .22s ease";
+    void flashcardEl.offsetHeight; // force le fondu à démarrer immédiatement, sans délai de rendu
+    flashcardEl.style.opacity = "0";
+
+    // Filet de sécurité si transitionend ne se déclenche pas (ex: onglet en arrière-plan)
+    setTimeout(proceed, 350);
 }
 
 function toggleVerbExtra(){
