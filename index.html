@@ -1200,6 +1200,28 @@ button{font-family:inherit}
     </div>
 </section>
 
+<!-- ================= NOMEN PAR NIVEAU ================= -->
+
+<section id="nomenNiveau" class="screen">
+    <button class="back" onclick="goHome()">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Vocabulaire Intégré</div>
+            <h2>Noms par niveau</h2>
+        </div>
+        <div class="pill" id="nomenLevelCountPill">Niveaux</div>
+    </div>
+
+    <div class="filters-bar">
+        <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+        <div class="theme-list" id="nomenLevelList"></div>
+    </div>
+</section>
+
 <!-- ================= ADJEKTIVE ================= -->
 
 <section id="adjektive" class="screen">
@@ -1264,7 +1286,7 @@ button{font-family:inherit}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
-                <div class="skip-hint">Toucher la carte fait passer à la carte suivante, sans conserver ta progression.</div>
+                <div class="skip-hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
             </div>
         </div>
     </div>
@@ -1608,11 +1630,13 @@ async function loadThemesJson() {
         themes = order.map(id => grouped[id]);
         themesLoaded = true;
         renderThemes();
+        renderNomenLevels();
         updateDueBanner();
         updateOrbBadges();
     } catch (error) {
         themesLoaded = true;
         renderThemes();
+        renderNomenLevels();
         updateDueBanner();
         updateOrbBadges();
     }
@@ -1631,6 +1655,7 @@ let scoreValue = 0;
 let answered = false;
 let exerciseResults = [];
 let flashcardMode = 'nomen';
+let nomenReturnScreen = 'nomen';
 let frontIsFrench = true;
 
 function toggleFlipDirection(){
@@ -2081,6 +2106,7 @@ function orbPanelData(id){
             icon:"dossier", title:"Noms", sub:"Noms & thèmes",
             options:[
                 { icon:"reviser", title:"Réviser mes mots dus", desc:"Mots à repasser aujourd'hui", count: due > 0 ? formatBadgeCount(due) : null, primary:true, action:"startDueReview" },
+                { icon:"dossier", title:"Parcourir par niveau", desc:"A1 · A2 · B1 · B2", action:"openNomenNiveau" },
                 { icon:"dossier", title:"Parcourir par thème", desc:"Voir tous les thèmes disponibles", action:"openNomen" },
                 { icon:"ale", title:"Mots aléatoires", desc:"Mélange de tous les thèmes", action:"startRandomMixAll" }
             ]
@@ -2185,6 +2211,7 @@ function startAllAdjektiveFlashcards(){
 }
 
 function startRandomMixAll(){
+    nomenReturnScreen = 'nomen';
     startRandomMix("ALL");
 }
 
@@ -2200,6 +2227,77 @@ function showScreen(id){
 function goHome(){ showScreen("home"); }
 function openNomen(){ loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen"); }
 function openSettings(){ updateGlobalProgress(); showScreen("settings"); }
+
+const NOMEN_SVG = '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#9bdcff" stroke="none"/></svg>';
+
+function openNomenNiveau(){
+    loadThemesJson();
+    renderNomenLevels();
+    showScreen("nomenNiveau");
+}
+
+function renderNomenLevels(){
+    const container = document.getElementById("nomenLevelList");
+    const pill = document.getElementById("nomenLevelCountPill");
+    if(!container) return;
+    container.innerHTML = "";
+
+    const levelsPresent = LEVELS.filter(lvl => themes.some(t => t.levels[lvl]));
+    if(pill) pill.textContent = `${levelsPresent.length} niveau${levelsPresent.length !== 1 ? 'x' : ''}`;
+
+    const randomItem = document.createElement("div");
+    randomItem.className = "theme-item random-item";
+    randomItem.innerHTML = `
+        <div class="theme-header">
+            <div class="theme-left">
+                <div class="theme-icon">🎲</div>
+                <div>
+                    <div class="theme-name">Noms aléatoires</div>
+                    <div style="font-size:11px; color:#9bdcff; margin-top:2px;">Tous niveaux</div>
+                </div>
+            </div>
+        </div>
+        <div style="color:#8290a5; font-size:12px; margin-top:10px;">Mélange des noms de tous les niveaux disponibles.</div>
+    `;
+    randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix("ALL"); });
+    container.appendChild(randomItem);
+
+    levelsPresent.forEach(lvl => {
+        let total = 0, mastered = 0;
+        themes.forEach(t => {
+            const levelData = t.levels[lvl];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
+        });
+        const percentage = total ? Math.round(mastered / total * 100) : 0;
+
+        const item = document.createElement("div");
+        item.className = "theme-item";
+        item.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">${NOMEN_SVG}</div>
+                    <div>
+                        <div class="theme-name">Niveau ${lvl}</div>
+                        <div style="font-size:11px; color:#9bdcff; margin-top:2px;">${lvl}</div>
+                    </div>
+                </div>
+                <div class="theme-count">${mastered}/${total}</div>
+            </div>
+            <div class="theme-progress">
+                <div class="theme-progress-bar">
+                    <div class="theme-progress-fill" style="width:${percentage}%"></div>
+                </div>
+                <div class="theme-percent">${percentage}% maîtrisé</div>
+            </div>
+        `;
+        item.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix(lvl); });
+        container.appendChild(item);
+    });
+}
 
 function comingSoon(label){
     alert(`« ${label} » arrive bientôt !`);
@@ -2240,6 +2338,7 @@ function updateDueBanner(){
 
 function startDueReview(){
     flashcardMode = 'nomen';
+    nomenReturnScreen = 'nomen';
     let dueItems = getDueItems();
     if(dueItems.length === 0){ alert("Aucun mot à réviser pour l'instant. Continue comme ça !"); return; }
     shuffleArray(dueItems);
@@ -2290,7 +2389,7 @@ function filterAndRenderThemes(){
         </div>
         <div style="color:#8290a5; font-size:12px; margin-top:10px;">Mélange des mots de tous les thèmes du niveau sélectionné.</div>
     `;
-    randomItem.addEventListener("click", () => startRandomMix(selectedLevel));
+    randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomen'; startRandomMix(selectedLevel); });
     container.appendChild(randomItem);
 
     filtered.forEach(theme => {
@@ -2355,6 +2454,7 @@ function filterAndRenderThemes(){
 
 function startTheme(themeId, level){
     flashcardMode = 'nomen';
+    nomenReturnScreen = 'nomen';
     const theme = themes.find(t => t.id === themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
@@ -2418,6 +2518,7 @@ function startRandomMix(level){
 function handleFlashcardBack(){
     if(flashcardMode === 'verben') openVerbenNiveau();
     else if(flashcardMode === 'adjektive') openAdjektive();
+    else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
     else openNomen();
 }
 
@@ -2667,6 +2768,7 @@ function resetCurrentThemeConfirm(){
     delete progress[currentTheme.id];
     saveProgress(progress);
     renderThemes();
+    renderNomenLevels();
     renderAdjektiveLevels();
     renderVerbeLevels();
     updateGlobalProgress();
@@ -2682,6 +2784,7 @@ function resetAllConfirm(){
     localStorage.removeItem(STORAGE_KEY);
     updateGlobalProgress();
     renderThemes();
+    renderNomenLevels();
     renderAdjektiveLevels();
     renderVerbeLevels();
     updateDueBanner();
