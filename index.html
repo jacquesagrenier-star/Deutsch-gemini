@@ -1438,6 +1438,86 @@ button{font-family:inherit}
     <button class="secondary" onclick="startPraepVokabular()">VOCABULAIRE : FLASHCARDS →</button>
 </section>
 
+<!-- ================= PARTIKELN ================= -->
+
+<section id="partikelnInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('partikeln')">‹ Retour</button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker">Grammaire</div>
+            <h2>Comprendre les particules</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box">
+            Les particules modales n'ont pas de traduction directe : elles ne changent pas le sens littéral d'une phrase, mais son <strong>ton</strong>. Le but n'est pas de les traduire mot à mot, mais de reconnaître la nuance qu'elles ajoutent.
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Les particules les plus utiles</strong>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">doch</strong> — insistance amicale, encouragement<br>
+            <em>Mach das doch!</em> (Vas-y, fais-le donc !)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">mal</strong> — adoucit une demande, la rend plus légère<br>
+            <em>Komm mal her!</em> (Viens un peu par ici.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">denn</strong> — curiosité informelle, intérêt amical<br>
+            <em>Was machst du denn?</em> (Qu'est-ce que tu fais donc ?)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">eben / halt</strong> — résignation, « c'est comme ça »<br>
+            <em>Das ist eben so.</em> (C'est comme ça, un point c'est tout.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">wohl</strong> — supposition probable, pas totalement certaine<br>
+            <em>Das wird wohl stimmen.</em> (Ça doit sûrement être vrai.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">ja</strong> — évidence partagée, quelque chose de connu des deux locuteurs<br>
+            <em>Das ist ja klar!</em> (Mais c'est évident, voyons !)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">schon</strong> — rassurance, encouragement confiant<br>
+            <em>Das schaffst du schon!</em> (T'inquiète, tu vas y arriver.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">aber</strong> — surprise, emphase admirative<br>
+            <em>Das ist aber schön!</em> (Ça alors, que c'est beau !)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">eigentlich</strong> — curiosité, changement de sujet<br>
+            <em>Was machst du eigentlich?</em> (Au fait, qu'est-ce que tu fais ?)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">bloß / nur</strong> — urgence, mise en garde<br>
+            <em>Geh bloß nicht dahin!</em> (Ne va surtout pas là-bas !)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">ruhig</strong> — permission rassurante<br>
+            <em>Du kannst ruhig fragen.</em> (Tu peux demander sans problème.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">einfach</strong> — simplicité, désinvolture<br>
+            <em>Sag es einfach!</em> (Dis-le, tout simplement.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#9bdcff;">vielleicht</strong> — exaspération, emphase forte (pas « peut-être » ici)<br>
+            <em>Das ist vielleicht ein Chaos!</em> (Quel bazar, quand même !)
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPartikelnNuance()">M'ENTRAÎNER : RECONNAÎTRE LA NUANCE →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPartikelnVokabular()">VOCABULAIRE : FLASHCARDS →</button>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 
 <section id="flashcards" class="screen">
@@ -1896,11 +1976,80 @@ const praepTheme = {
   words: [
     ["für", "pour", "toujours Akkusativ", "Das Geschenk ist für dich.", "Le cadeau est pour toi."],
     ["ohne", "sans", "toujours Akkusativ", "Ich trinke Kaffee ohne Zucker.", "Je bois le café sans sucre."],
+    ["durch", "à travers", "toujours Akkusativ", "Wir gehen durch den Wald.", "Nous marchons à travers la forêt."],
+    ["gegen", "contre", "toujours Akkusativ", "Er läuft gegen die Wand.", "Il court contre le mur."],
+    ["um", "autour de / à (heure)", "toujours Akkusativ", "Wir treffen uns um sieben Uhr.", "On se retrouve à sept heures."],
     ["mit", "avec", "toujours Dativ", "Ich fahre mit dem Bus.", "Je vais en bus."],
     ["nach", "après / vers", "toujours Dativ", "Nach der Schule gehe ich nach Hause.", "Après l'école, je rentre à la maison."],
+    ["aus", "de / hors de", "toujours Dativ", "Ich komme aus der Schweiz.", "Je viens de Suisse."],
+    ["bei", "chez / près de", "toujours Dativ", "Ich wohne bei meinen Eltern.", "J'habite chez mes parents."],
+    ["seit", "depuis", "toujours Dativ", "Ich lerne seit zwei Jahren Deutsch.", "J'apprends l'allemand depuis deux ans."],
+    ["von", "de / de la part de", "toujours Dativ", "Das Geschenk ist von meiner Schwester.", "Le cadeau vient de ma sœur."],
+    ["zu", "vers / chez", "toujours Dativ", "Ich gehe zu meiner Freundin.", "Je vais chez mon amie."],
     ["wegen", "à cause de", "toujours Genitiv", "Wegen des Regens bleiben wir zu Hause.", "À cause de la pluie, on reste à la maison."],
+    ["während", "pendant", "toujours Genitiv", "Während des Urlaubs lese ich viel.", "Pendant les vacances, je lis beaucoup."],
+    ["trotz", "malgré", "toujours Genitiv", "Trotz des Regens gehen wir spazieren.", "Malgré la pluie, on va se promener."],
     ["auf", "sur", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Buch liegt auf dem Tisch.", "Le livre est sur la table."],
-    ["in", "dans", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Wir gehen in den Park.", "Nous allons dans le parc."]
+    ["in", "dans", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Wir gehen in den Park.", "Nous allons dans le parc."],
+    ["an", "à / contre (vertical)", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Bild hängt an der Wand.", "Le tableau est accroché au mur."],
+    ["über", "au-dessus de / par-dessus", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Lampe hängt über dem Tisch.", "La lampe est suspendue au-dessus de la table."],
+    ["unter", "sous", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Katze liegt unter dem Bett.", "Le chat est couché sous le lit."],
+    ["vor", "devant / avant", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Auto steht vor dem Haus.", "La voiture est garée devant la maison."],
+    ["hinter", "derrière", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Der Garten ist hinter dem Haus.", "Le jardin est derrière la maison."],
+    ["neben", "à côté de", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Er sitzt neben mir.", "Il est assis à côté de moi."],
+    ["zwischen", "entre", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Schule liegt zwischen dem Park und dem Fluss.", "L'école se trouve entre le parc et la rivière."]
+  ]
+};
+
+const PARTIKELN_NUANCE_OPTIONS = [
+  "Insistance amicale (encouragement)",
+  "Adoucit la demande (plus léger)",
+  "Curiosité informelle",
+  "Résignation (« c'est comme ça »)",
+  "Supposition probable",
+  "Évidence partagée",
+  "Rassurance",
+  "Surprise, emphase admirative",
+  "Curiosité, changement de sujet",
+  "Urgence, mise en garde",
+  "Permission rassurante",
+  "Simplicité, désinvolture",
+  "Exaspération, emphase forte"
+];
+
+const partikelnNuanceExercises = [
+  { topic:"Particules · Nuance", question:"Mach das doch! Quelle nuance apporte « doch » ici ?", translation:"Vas-y, fais-le donc !", hint:"(ton du locuteur)", answers:["insistance amicale (encouragement)"], correct:"Insistance amicale (encouragement)", explanation:"« doch » pousse gentiment quelqu'un à agir — une insistance amicale.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Komm mal her! Quelle nuance apporte « mal » ici ?", translation:"Viens un peu par ici.", hint:"(ton du locuteur)", answers:["adoucit la demande (plus léger)"], correct:"Adoucit la demande (plus léger)", explanation:"« mal » rend la demande plus légère et informelle, moins directe qu'un ordre sec.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Was machst du denn? Quelle nuance apporte « denn » ici ?", translation:"Qu'est-ce que tu fais donc ?", hint:"(ton du locuteur)", answers:["curiosité informelle"], correct:"Curiosité informelle", explanation:"« denn » dans une question marque un intérêt amical et informel, pas une interrogation neutre.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Das ist eben so. Quelle nuance apporte « eben » ici ?", translation:"C'est comme ça, un point c'est tout.", hint:"(ton du locuteur)", answers:["résignation (« c'est comme ça »)","resignation (« c'est comme ça »)"], correct:"Résignation (« c'est comme ça »)", explanation:"« eben » (ou « halt ») exprime qu'on accepte une situation sans pouvoir la changer.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Das wird wohl stimmen. Quelle nuance apporte « wohl » ici ?", translation:"Ça doit sûrement être vrai.", hint:"(ton du locuteur)", answers:["supposition probable"], correct:"Supposition probable", explanation:"« wohl » indique que le locuteur pense que c'est vrai, sans certitude absolue.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Das schaffst du schon! Quelle nuance apporte « schon » ici ?", translation:"T'inquiète, tu vas y arriver.", hint:"(ton du locuteur)", answers:["rassurance"], correct:"Rassurance", explanation:"« schon » ici rassure et encourage avec confiance, pas une simple affirmation temporelle.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Das ist aber schön! Quelle nuance apporte « aber » ici ?", translation:"Ça alors, que c'est beau !", hint:"(ton du locuteur)", answers:["surprise, emphase admirative"], correct:"Surprise, emphase admirative", explanation:"« aber » ici marque la surprise admirative, pas une opposition (« mais »).", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Was machst du eigentlich? Quelle nuance apporte « eigentlich » ici ?", translation:"Au fait, qu'est-ce que tu fais ?", hint:"(ton du locuteur)", answers:["curiosité, changement de sujet"], correct:"Curiosité, changement de sujet", explanation:"« eigentlich » introduit une question comme en passant, souvent pour changer de sujet.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Geh bloß nicht dahin! Quelle nuance apporte « bloß » ici ?", translation:"Ne va surtout pas là-bas !", hint:"(ton du locuteur)", answers:["urgence, mise en garde"], correct:"Urgence, mise en garde", explanation:"« bloß » (ou « nur ») renforce un avertissement avec urgence.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Du kannst ruhig fragen. Quelle nuance apporte « ruhig » ici ?", translation:"Tu peux demander sans problème.", hint:"(ton du locuteur)", answers:["permission rassurante"], correct:"Permission rassurante", explanation:"« ruhig » ici rassure que l'action est tout à fait acceptable.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Sag es einfach! Quelle nuance apporte « einfach » ici ?", translation:"Dis-le, tout simplement.", hint:"(ton du locuteur)", answers:["simplicité, désinvolture"], correct:"Simplicité, désinvolture", explanation:"« einfach » minimise la difficulté de l'action, en toute décontraction.", options: PARTIKELN_NUANCE_OPTIONS },
+  { topic:"Particules · Nuance", question:"Das ist vielleicht ein Chaos! Quelle nuance apporte « vielleicht » ici ?", translation:"Quel bazar, quand même !", hint:"(ton du locuteur — pas « peut-être »)", answers:["exaspération, emphase forte"], correct:"Exaspération, emphase forte", explanation:"Ici « vielleicht » n'exprime pas la possibilité mais une emphase exaspérée, comme « quel/quelle... ! ».", options: PARTIKELN_NUANCE_OPTIONS }
+];
+
+const partikelnTheme = {
+  id: "partikeln_vokabular",
+  name: "Particules",
+  svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>',
+  words: [
+    ["doch", "insistance amicale, encouragement", "particule modale", "Mach das doch!", "Vas-y, fais-le donc !"],
+    ["mal", "adoucit une demande", "particule modale", "Komm mal her!", "Viens un peu par ici."],
+    ["denn", "curiosité informelle", "particule modale", "Was machst du denn?", "Qu'est-ce que tu fais donc ?"],
+    ["eben / halt", "résignation, « c'est comme ça »", "particule modale", "Das ist eben so.", "C'est comme ça, un point c'est tout."],
+    ["wohl", "supposition probable", "particule modale", "Das wird wohl stimmen.", "Ça doit sûrement être vrai."],
+    ["ja", "évidence partagée", "particule modale", "Das ist ja klar!", "Mais c'est évident, voyons !"],
+    ["schon", "rassurance, encouragement confiant", "particule modale", "Das schaffst du schon!", "T'inquiète, tu vas y arriver."],
+    ["aber", "surprise, emphase admirative", "particule modale", "Das ist aber schön!", "Ça alors, que c'est beau !"],
+    ["eigentlich", "curiosité, changement de sujet", "particule modale", "Was machst du eigentlich?", "Au fait, qu'est-ce que tu fais ?"],
+    ["bloß / nur", "urgence, mise en garde", "particule modale", "Geh bloß nicht dahin!", "Ne va surtout pas là-bas !"],
+    ["ruhig", "permission rassurante", "particule modale", "Du kannst ruhig fragen.", "Tu peux demander sans problème."],
+    ["einfach", "simplicité, désinvolture", "particule modale", "Sag es einfach!", "Dis-le, tout simplement."],
+    ["vielleicht", "exaspération, emphase forte", "particule modale", "Das ist vielleicht ein Chaos!", "Quel bazar, quand même !"]
   ]
 };
 
@@ -1972,7 +2121,7 @@ function setWordState(themeId, index, state){
 const LEVELS = ["A1", "A2", "B1", "B2"];
 
 function updateGlobalProgress(){
-    let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length + praepTheme.words.length;
+    let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length + praepTheme.words.length + partikelnTheme.words.length;
     let mastered = 0;
     
     verbeTheme.words.forEach((w, i) => {
@@ -1986,6 +2135,9 @@ function updateGlobalProgress(){
     });
     praepTheme.words.forEach((w, i) => {
         if(getWordState(praepTheme.id, i).mastered) mastered++;
+    });
+    partikelnTheme.words.forEach((w, i) => {
+        if(getWordState(partikelnTheme.id, i).mastered) mastered++;
     });
 
     themes.forEach(t => {
@@ -2413,9 +2565,18 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "partikeln"){
+        return {
+            icon:"bientot", title:"Particules", sub:"Nuances de ton",
+            options:[
+                { icon:"dossier", title:"Comprendre les particules", desc:"doch, ja, mal, denn, wohl, schon…", primary:true, action:"openPartikelnInfo" },
+                { icon:"exercice", title:"Reconnaître la nuance", desc:"Identifier le ton apporté par la particule", action:"startPartikelnNuance" },
+                { icon:"carte", title:"Vocabulaire", desc:"Chaque particule avec sa nuance & un exemple", action:"startPartikelnVokabular" }
+            ]
+        };
+    }
     const labels = {
-        kasus:"Cas", praep:"Prépositions",
-        wortstellung:"Structure", possessiv:"Possessifs", partikeln:"Particules"
+        wortstellung:"Structure", possessiv:"Possessifs"
     };
     return {
         icon:"bientot", title: labels[id] || "Bientôt disponible", sub:"",
@@ -2566,6 +2727,28 @@ function startPraepVokabular(){
     currentFlashcard = 0;
     document.getElementById("flashKicker").textContent = "Prépositions · Vocabulaire";
     document.getElementById("flashThemeTitle").textContent = "Prépositions";
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function openPartikelnInfo(){
+    showScreen("partikelnInfo");
+}
+
+function startPartikelnNuance(){
+    startExerciseSet(partikelnNuanceExercises, "Particules · Nuance", openPartikelnInfo, startPartikelnNuance);
+}
+
+function startPartikelnVokabular(){
+    flashcardMode = 'partikeln';
+    currentTheme = partikelnTheme;
+    const allItems = partikelnTheme.words.map((word, index) => ({ word, index, themeId: partikelnTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Particules · Vocabulaire";
+    document.getElementById("flashThemeTitle").textContent = "Particules";
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -2862,6 +3045,7 @@ function handleFlashcardBack(){
     else if(flashcardMode === 'adjektive') openAdjektive();
     else if(flashcardMode === 'kasusverben') openKasusInfo();
     else if(flashcardMode === 'praep') openPraepInfo();
+    else if(flashcardMode === 'partikeln') openPartikelnInfo();
     else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
     else openNomen();
 }
@@ -2884,7 +3068,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -2944,12 +3128,13 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
         const germanWord = card[0];
         const frenchWord = card[1];
         const cas = card[2];
         const exampleSentence = card[3];
         const exampleSentenceFr = card[4] || "";
+        const label = flashcardMode === 'partikeln' ? 'Nuance' : 'Cas';
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
@@ -2960,7 +3145,9 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        verbDetailsEl.innerHTML = `<strong>Cas :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`;
+        verbDetailsEl.innerHTML = flashcardMode === 'partikeln'
+            ? `${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
+            : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
