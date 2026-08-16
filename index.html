@@ -776,20 +776,58 @@ button{font-family:inherit}
     white-space:pre-line;
 }
 
+.verb-toggle-row{
+    text-align:center;
+    margin-top:8px;
+}
+
 .verb-toggle-btn{
-    margin-top:10px;
     background:rgba(255,255,255,.08);
     border:1px solid rgba(255,255,255,.15);
-    border-radius:12px;
-    padding:8px 12px;
+    border-radius:50%;
+    width:30px;
+    height:30px;
     color:#9bdcff;
     cursor:pointer;
-    font-size:12px;
+    font-size:14px;
     font-weight:700;
-    width:100%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
 }
 
 .verb-toggle-btn:hover{background:rgba(255,255,255,.14)}
+
+.word-audio-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:4px;
+}
+
+.word-audio-row .back-word{margin-bottom:0}
+
+.icon-audio-btn{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    color:#9bdcff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:.2s;
+    padding:0;
+}
+
+.icon-audio-btn svg{width:14px; height:14px; fill:currentColor;}
+
+.icon-audio-btn:hover{background:rgba(255,255,255,.20); transform:scale(1.05);}
 
 .verb-extra{
     margin-top:10px;
@@ -1198,14 +1236,15 @@ button{font-family:inherit}
 
             <div class="flashcard-face flashcard-back">
                 <div id="flashArticle" class="article hidden"></div>
-                <div id="flashBackWord" class="back-word">Tisch</div>
+                <div class="word-audio-row">
+                    <div id="flashBackWord" class="back-word">Tisch</div>
+                    <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
+                        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    </button>
+                </div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashPlural" class="plural hidden" style="color:#8290a5; font-size:13px; margin-top:8px;"></div>
-                <button id="audioBtn" class="audio-btn" onclick="event.stopPropagation(); speakWord();">
-                    <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-                    Écouter
-                </button>
             </div>
         </div>
     </div>
@@ -2407,13 +2446,13 @@ function loadFlashcard(){
             `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
         ].join(" · ");
         const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}<br><br>` +
-            `<strong>Exemple :</strong> ${card.exemple || ""}<br>(${card.exemple_fr || ""})<br><br>` +
+            `<strong>Présent :</strong> ${card.exemple || ""}<br>(${card.exemple_fr || ""})<br><br>` +
             `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${card.perfekt_fr || ""})`;
         const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${card.praeteritum_fr || ""})<br><br>` +
             `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${card.konjunktiv2_fr || ""})`;
         verbDetailsEl.innerHTML = `
             <div class="verb-core">${coreHtml}</div>
-            <button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">Voir plus (Prätéritum · Konjunktiv II) ▾</button>
+            <div class="verb-toggle-row"><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button></div>
             <div class="verb-extra hidden">${extraHtml}</div>
         `;
         verbDetailsEl.classList.remove("hidden");
@@ -2477,7 +2516,7 @@ function toggleVerbExtra(){
     const btn = document.querySelector("#flashVerbDetails .verb-toggle-btn");
     if(!extra || !btn) return;
     const isHidden = extra.classList.toggle("hidden");
-    btn.textContent = isHidden ? "Voir plus (Prätéritum · Konjunktiv II) ▾" : "Voir moins ▴";
+    btn.textContent = isHidden ? "▾" : "▴";
     resizeFlashcard();
 }
 
