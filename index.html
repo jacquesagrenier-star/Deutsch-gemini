@@ -3512,22 +3512,40 @@ function playMasteredSound(){
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         const ctx = new AudioCtx();
         const now = ctx.currentTime;
-        const notes = [523.25, 659.25, 783.99, 1046.5]; // C5 E5 G5 C6 — arpège majeur gratifiant
+
+        // Petite fanfare courte et cuivrée : deux notes qui montent (quinte),
+        // timbre en dents de scie filtré pour évoquer une trompette, pas une cloche.
+        const notes = [659.25, 987.77]; // E5, B5 — montée courte et franche
         notes.forEach((freq, i) => {
             const osc = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const filter = ctx.createBiquadFilter();
             const gain = ctx.createGain();
-            osc.type = 'sine';
+
+            osc.type = 'sawtooth';
+            osc2.type = 'square';
             osc.frequency.value = freq;
-            const t0 = now + i * 0.08;
+            osc2.frequency.value = freq;
+            osc2.detune.value = 6; // léger désaccord pour épaissir le timbre
+
+            filter.type = 'lowpass';
+            filter.frequency.value = 3200;
+            filter.Q.value = 0.7;
+
+            const t0 = now + i * 0.1;
             gain.gain.setValueAtTime(0, t0);
-            gain.gain.linearRampToValueAtTime(0.22, t0 + 0.02);
-            gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.4);
-            osc.connect(gain);
+            gain.gain.linearRampToValueAtTime(0.18, t0 + 0.012);
+            gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.22);
+
+            osc.connect(filter);
+            osc2.connect(filter);
+            filter.connect(gain);
             gain.connect(ctx.destination);
-            osc.start(t0);
-            osc.stop(t0 + 0.42);
+
+            osc.start(t0); osc.stop(t0 + 0.24);
+            osc2.start(t0); osc2.stop(t0 + 0.24);
         });
-        setTimeout(() => ctx.close(), 900);
+        setTimeout(() => ctx.close(), 700);
     }catch(e){}
 }
 
