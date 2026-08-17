@@ -3518,7 +3518,14 @@ function getAudioCtx(){
     return sharedAudioCtx;
 }
 
-// Fallback : joue la fanfare directement via Web Audio (oscillateurs).
+// Notes du carillon "bravo" façon xylophone : un petit accord ascendant
+// (Do6 - Mi6 - Sol6), avec une attaque quasi immédiate et une décroissance
+// rapide façon lame de xylophone frappée.
+const BRAVO_NOTES = [1046.5, 1318.51, 1567.98]; // C6, E6, G6
+const BRAVO_NOTE_GAP = 0.11; // décalage entre chaque note (cascade)
+const BRAVO_NOTE_DURATION = 0.35;
+
+// Fallback : joue le carillon directement via Web Audio (oscillateurs).
 // Sur iOS, ce chemin est coupé si le bouton silencieux du téléphone est activé.
 function playMasteredSoundFallback(){
     try{
@@ -3527,35 +3534,23 @@ function playMasteredSoundFallback(){
 
         const startNotes = () => {
             const now = ctx.currentTime;
-            const notes = [659.25, 987.77]; // E5, B5 — montée courte et franche
-            notes.forEach((freq, i) => {
+            BRAVO_NOTES.forEach((freq, i) => {
                 const osc = ctx.createOscillator();
-                const osc2 = ctx.createOscillator();
-                const filter = ctx.createBiquadFilter();
                 const gain = ctx.createGain();
 
-                osc.type = 'sawtooth';
-                osc2.type = 'square';
+                osc.type = 'triangle'; // timbre clair et rond, proche d'une lame de xylophone
                 osc.frequency.value = freq;
-                osc2.frequency.value = freq;
-                osc2.detune.value = 6;
 
-                filter.type = 'lowpass';
-                filter.frequency.value = 3200;
-                filter.Q.value = 0.7;
-
-                const t0 = now + i * 0.1;
+                const t0 = now + i * BRAVO_NOTE_GAP;
                 gain.gain.setValueAtTime(0, t0);
-                gain.gain.linearRampToValueAtTime(0.18, t0 + 0.012);
-                gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.22);
+                gain.gain.linearRampToValueAtTime(0.32, t0 + 0.008); // attaque quasi instantanée
+                gain.gain.exponentialRampToValueAtTime(0.001, t0 + BRAVO_NOTE_DURATION); // décroissance rapide
 
-                osc.connect(filter);
-                osc2.connect(filter);
-                filter.connect(gain);
+                osc.connect(gain);
                 gain.connect(ctx.destination);
 
-                osc.start(t0); osc.stop(t0 + 0.24);
-                osc2.start(t0); osc2.stop(t0 + 0.24);
+                osc.start(t0);
+                osc.stop(t0 + BRAVO_NOTE_DURATION + 0.02);
             });
         };
 
@@ -3564,45 +3559,33 @@ function playMasteredSoundFallback(){
     }catch(e){}
 }
 
-// Construit la même fanfare "hors-ligne" (sans toucher les haut-parleurs),
-// pour pouvoir ensuite la rejouer via un élément <audio> classique.
+// Construit le même carillon "hors-ligne" (sans toucher les haut-parleurs),
+// pour pouvoir ensuite le rejouer via un élément <audio> classique.
 // C'est ce chemin-là (et non Web Audio brut) qu'iOS joue même quand le
 // bouton silencieux du téléphone est activé.
 function buildMasterySoundBuffer(){
     const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
     if(!OfflineCtx) return Promise.reject(new Error("OfflineAudioContext indisponible"));
     const sampleRate = 44100;
-    const duration = 0.4;
+    const duration = (BRAVO_NOTES.length - 1) * BRAVO_NOTE_GAP + BRAVO_NOTE_DURATION + 0.05;
     const ctx = new OfflineCtx(1, Math.ceil(sampleRate * duration), sampleRate);
-    const notes = [659.25, 987.77];
-    notes.forEach((freq, i) => {
+    BRAVO_NOTES.forEach((freq, i) => {
         const osc = ctx.createOscillator();
-        const osc2 = ctx.createOscillator();
-        const filter = ctx.createBiquadFilter();
         const gain = ctx.createGain();
 
-        osc.type = 'sawtooth';
-        osc2.type = 'square';
+        osc.type = 'triangle';
         osc.frequency.value = freq;
-        osc2.frequency.value = freq;
-        osc2.detune.value = 6;
 
-        filter.type = 'lowpass';
-        filter.frequency.value = 3200;
-        filter.Q.value = 0.7;
-
-        const t0 = i * 0.1;
+        const t0 = i * BRAVO_NOTE_GAP;
         gain.gain.setValueAtTime(0, t0);
-        gain.gain.linearRampToValueAtTime(0.5, t0 + 0.012);
-        gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.22);
+        gain.gain.linearRampToValueAtTime(0.55, t0 + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.001, t0 + BRAVO_NOTE_DURATION);
 
-        osc.connect(filter);
-        osc2.connect(filter);
-        filter.connect(gain);
+        osc.connect(gain);
         gain.connect(ctx.destination);
 
-        osc.start(t0); osc.stop(t0 + 0.24);
-        osc2.start(t0); osc2.stop(t0 + 0.24);
+        osc.start(t0);
+        osc.stop(t0 + BRAVO_NOTE_DURATION + 0.02);
     });
     return ctx.startRendering();
 }
@@ -3636,6 +3619,24 @@ function audioBufferToWavBlob(buffer){
 
 let masteryAudioEl = null;
 let masteryAudioReady = false;
+
+// Petit son silencieux joué en boucle dès la première interaction : force
+// iOS à traiter la page comme une source "média" plutôt que "sonnerie",
+// ce qui rend la lecture du carillon plus fiable même bouton silencieux activé.
+let silentUnlockEl = null;
+const SILENT_WAV_BASE64 = "UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+
+function startSilentUnlockLoop(){
+    try{
+        if(silentUnlockEl) return;
+        silentUnlockEl = new Audio("data:audio/wav;base64," + SILENT_WAV_BASE64);
+        silentUnlockEl.loop = true;
+        silentUnlockEl.setAttribute("x-webkit-airplay", "deny");
+        silentUnlockEl.volume = 0.01;
+        const p = silentUnlockEl.play();
+        if(p && typeof p.catch === 'function') p.catch(() => {});
+    }catch(e){}
+}
 
 function prepareMasterySound(){
     buildMasterySoundBuffer().then(buf => {
@@ -3915,6 +3916,7 @@ function showResults(){
             const ctx = getAudioCtx();
             if(ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
         }catch(e){}
+        startSilentUnlockLoop();
         document.removeEventListener('pointerdown', unlockAudioOnce);
     };
     document.addEventListener('pointerdown', unlockAudioOnce, { once: true });
