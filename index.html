@@ -3507,45 +3507,64 @@ function scheduleReview(minutes){
     nextFlashcard();
 }
 
+let sharedAudioCtx = null;
+
+function getAudioCtx(){
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if(!AudioCtx) return null;
+    if(!sharedAudioCtx){
+        sharedAudioCtx = new AudioCtx();
+    }
+    return sharedAudioCtx;
+}
+
 function playMasteredSound(){
     try{
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioCtx();
-        const now = ctx.currentTime;
+        const ctx = getAudioCtx();
+        if(!ctx) return;
 
-        // Petite fanfare courte et cuivrée : deux notes qui montent (quinte),
-        // timbre en dents de scie filtré pour évoquer une trompette, pas une cloche.
-        const notes = [659.25, 987.77]; // E5, B5 — montée courte et franche
-        notes.forEach((freq, i) => {
-            const osc = ctx.createOscillator();
-            const osc2 = ctx.createOscillator();
-            const filter = ctx.createBiquadFilter();
-            const gain = ctx.createGain();
+        const startNotes = () => {
+            const now = ctx.currentTime;
 
-            osc.type = 'sawtooth';
-            osc2.type = 'square';
-            osc.frequency.value = freq;
-            osc2.frequency.value = freq;
-            osc2.detune.value = 6; // léger désaccord pour épaissir le timbre
+            // Petite fanfare courte et cuivrée : deux notes qui montent (quinte),
+            // timbre en dents de scie filtré pour évoquer une trompette, pas une cloche.
+            const notes = [659.25, 987.77]; // E5, B5 — montée courte et franche
+            notes.forEach((freq, i) => {
+                const osc = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const filter = ctx.createBiquadFilter();
+                const gain = ctx.createGain();
 
-            filter.type = 'lowpass';
-            filter.frequency.value = 3200;
-            filter.Q.value = 0.7;
+                osc.type = 'sawtooth';
+                osc2.type = 'square';
+                osc.frequency.value = freq;
+                osc2.frequency.value = freq;
+                osc2.detune.value = 6; // léger désaccord pour épaissir le timbre
 
-            const t0 = now + i * 0.1;
-            gain.gain.setValueAtTime(0, t0);
-            gain.gain.linearRampToValueAtTime(0.18, t0 + 0.012);
-            gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.22);
+                filter.type = 'lowpass';
+                filter.frequency.value = 3200;
+                filter.Q.value = 0.7;
 
-            osc.connect(filter);
-            osc2.connect(filter);
-            filter.connect(gain);
-            gain.connect(ctx.destination);
+                const t0 = now + i * 0.1;
+                gain.gain.setValueAtTime(0, t0);
+                gain.gain.linearRampToValueAtTime(0.18, t0 + 0.012);
+                gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.22);
 
-            osc.start(t0); osc.stop(t0 + 0.24);
-            osc2.start(t0); osc2.stop(t0 + 0.24);
-        });
-        setTimeout(() => ctx.close(), 700);
+                osc.connect(filter);
+                osc2.connect(filter);
+                filter.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start(t0); osc.stop(t0 + 0.24);
+                osc2.start(t0); osc2.stop(t0 + 0.24);
+            });
+        };
+
+        if(ctx.state === 'suspended'){
+            ctx.resume().then(startNotes).catch(() => {});
+        } else {
+            startNotes();
+        }
     }catch(e){}
 }
 
