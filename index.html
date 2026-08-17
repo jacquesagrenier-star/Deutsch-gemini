@@ -3518,16 +3518,15 @@ function getAudioCtx(){
     return sharedAudioCtx;
 }
 
-function playMasteredSound(){
+// Fallback : joue la fanfare directement via Web Audio (oscillateurs).
+// Sur iOS, ce chemin est coupé si le bouton silencieux du téléphone est activé.
+function playMasteredSoundFallback(){
     try{
         const ctx = getAudioCtx();
         if(!ctx) return;
 
         const startNotes = () => {
             const now = ctx.currentTime;
-
-            // Petite fanfare courte et cuivrée : deux notes qui montent (quinte),
-            // timbre en dents de scie filtré pour évoquer une trompette, pas une cloche.
             const notes = [659.25, 987.77]; // E5, B5 — montée courte et franche
             notes.forEach((freq, i) => {
                 const osc = ctx.createOscillator();
@@ -3539,7 +3538,7 @@ function playMasteredSound(){
                 osc2.type = 'square';
                 osc.frequency.value = freq;
                 osc2.frequency.value = freq;
-                osc2.detune.value = 6; // léger désaccord pour épaissir le timbre
+                osc2.detune.value = 6;
 
                 filter.type = 'lowpass';
                 filter.frequency.value = 3200;
@@ -3560,12 +3559,108 @@ function playMasteredSound(){
             });
         };
 
-        if(ctx.state === 'suspended'){
-            ctx.resume().then(startNotes).catch(() => {});
-        } else {
-            startNotes();
-        }
+        ctx.resume().catch(() => {});
+        startNotes();
     }catch(e){}
+}
+
+// Construit la même fanfare "hors-ligne" (sans toucher les haut-parleurs),
+// pour pouvoir ensuite la rejouer via un élément <audio> classique.
+// C'est ce chemin-là (et non Web Audio brut) qu'iOS joue même quand le
+// bouton silencieux du téléphone est activé.
+function buildMasterySoundBuffer(){
+    const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if(!OfflineCtx) return Promise.reject(new Error("OfflineAudioContext indisponible"));
+    const sampleRate = 44100;
+    const duration = 0.4;
+    const ctx = new OfflineCtx(1, Math.ceil(sampleRate * duration), sampleRate);
+    const notes = [659.25, 987.77];
+    notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const filter = ctx.createBiquadFilter();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc2.type = 'square';
+        osc.frequency.value = freq;
+        osc2.frequency.value = freq;
+        osc2.detune.value = 6;
+
+        filter.type = 'lowpass';
+        filter.frequency.value = 3200;
+        filter.Q.value = 0.7;
+
+        const t0 = i * 0.1;
+        gain.gain.setValueAtTime(0, t0);
+        gain.gain.linearRampToValueAtTime(0.5, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.22);
+
+        osc.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(t0); osc.stop(t0 + 0.24);
+        osc2.start(t0); osc2.stop(t0 + 0.24);
+    });
+    return ctx.startRendering();
+}
+
+function audioBufferToWavBlob(buffer){
+    const numCh = buffer.numberOfChannels;
+    const length = buffer.length * numCh * 2 + 44;
+    const arrayBuffer = new ArrayBuffer(length);
+    const view = new DataView(arrayBuffer);
+    const writeString = (offset, str) => { for(let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i)); };
+
+    writeString(0, 'RIFF'); view.setUint32(4, length - 8, true); writeString(8, 'WAVE');
+    writeString(12, 'fmt '); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+    view.setUint16(22, numCh, true); view.setUint32(24, buffer.sampleRate, true);
+    view.setUint32(28, buffer.sampleRate * numCh * 2, true); view.setUint16(32, numCh * 2, true); view.setUint16(34, 16, true);
+    writeString(36, 'data'); view.setUint32(40, length - 44, true);
+
+    let pos = 44;
+    const channels = [];
+    for(let ch = 0; ch < numCh; ch++) channels.push(buffer.getChannelData(ch));
+    for(let i = 0; i < buffer.length; i++){
+        for(let ch = 0; ch < numCh; ch++){
+            let sample = Math.max(-1, Math.min(1, channels[ch][i]));
+            sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+            view.setInt16(pos, sample, true);
+            pos += 2;
+        }
+    }
+    return new Blob([arrayBuffer], { type: 'audio/wav' });
+}
+
+let masteryAudioEl = null;
+let masteryAudioReady = false;
+
+function prepareMasterySound(){
+    buildMasterySoundBuffer().then(buf => {
+        const blob = audioBufferToWavBlob(buf);
+        const url = URL.createObjectURL(blob);
+        masteryAudioEl = new Audio(url);
+        masteryAudioEl.preload = 'auto';
+        masteryAudioReady = true;
+    }).catch(() => {
+        masteryAudioReady = false;
+    });
+}
+
+function playMasteredSound(){
+    try{
+        if(masteryAudioReady && masteryAudioEl){
+            masteryAudioEl.currentTime = 0;
+            const p = masteryAudioEl.play();
+            if(p && typeof p.catch === 'function') p.catch(() => playMasteredSoundFallback());
+        } else {
+            playMasteredSoundFallback();
+        }
+    }catch(e){
+        playMasteredSoundFallback();
+    }
 }
 
 function launchConfetti(){
@@ -3814,6 +3909,15 @@ function showResults(){
     loadThemesJson();
     updateGlobalProgress();
     updateOrbBadges();
+    prepareMasterySound();
+    const unlockAudioOnce = () => {
+        try{
+            const ctx = getAudioCtx();
+            if(ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
+        }catch(e){}
+        document.removeEventListener('pointerdown', unlockAudioOnce);
+    };
+    document.addEventListener('pointerdown', unlockAudioOnce, { once: true });
 })();
 </script>
 
