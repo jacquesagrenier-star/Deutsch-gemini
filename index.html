@@ -1127,37 +1127,57 @@ button{font-family:inherit}
 .brand-mark .chevron-b{stroke:#12B5C9;}
 .brand-mark .chevron-dot{fill:#FF7A3D;}
 
-/* ============ THEME TOGGLE ============ */
+/* ============ THEME TOGGLE (segmented Clair / Foncé) ============ */
 
 .theme-toggle{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
 }
 
-.theme-toggle-btn{
-    width:38px;
-    height:38px;
-    border-radius:50%;
+.theme-switch{
+    display:flex;
+    align-items:center;
+    padding:3px;
+    border-radius:999px;
     background:rgba(255,255,255,.6);
     backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(16px);
     border:1px solid rgba(255,255,255,.8);
     box-shadow:0 3px 10px rgba(30,41,59,.10);
-    color:#1e2433;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    padding:0;
-    font-size:16px;
-    transition:.2s;
 }
 
-.theme-toggle-btn:hover{transform:translateY(-1px);}
-.theme-toggle-btn svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
-.theme-toggle-btn .icon-sun{display:block;}
-.theme-toggle-btn .icon-moon{display:none;}
+.theme-switch-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:none;
+    background:transparent;
+    color:#8a92a3;
+    font-size:13px;
+    font-weight:700;
+    padding:8px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+.theme-switch-btn .switch-icon{font-size:14px; line-height:1;}
+
+.theme-switch-btn:hover{color:#1e2433;}
+
+.theme-switch-btn.active{
+    background:#1e2433;
+    color:#ffffff;
+    box-shadow:0 3px 10px rgba(30,41,59,.18);
+}
+
+.theme-switch-btn.active.light{
+    background:#ffffff;
+    color:#1e2433;
+    box-shadow:0 3px 10px rgba(30,41,59,.12);
+}
 
 /* ============ GLOBAL PROGRESS RING ============ */
 
@@ -1226,7 +1246,7 @@ body[data-theme="dark"] .secondary,
 body[data-theme="dark"] .info-box,
 body[data-theme="dark"] .verb-details,
 body[data-theme="dark"] .avatar,
-body[data-theme="dark"] .theme-toggle-btn,
+body[data-theme="dark"] .theme-switch,
 body[data-theme="dark"] .filters-bar select,
 body[data-theme="dark"] .filters-bar input{
     background:rgba(255,255,255,.06);
@@ -1281,8 +1301,12 @@ body[data-theme="dark"] .radar-grid,
 body[data-theme="dark"] .radar-axis{stroke:rgba(255,255,255,.14);}
 body[data-theme="dark"] .radar-label{fill:#9CA0B4;}
 
-body[data-theme="dark"] .theme-toggle-btn .icon-sun{display:none;}
-body[data-theme="dark"] .theme-toggle-btn .icon-moon{display:block;}
+body[data-theme="dark"] .theme-switch-btn{color:#9CA0B4;}
+body[data-theme="dark"] .theme-switch-btn:hover{color:#F2F2F6;}
+body[data-theme="dark"] .theme-switch-btn.active{
+    background:#3b6fe0;
+    color:#ffffff;
+}
 
 body[data-theme="dark"] .brand-mark{background:rgba(139,107,255,.12);}
 body[data-theme="dark"] .brand-mark .chevron-a{stroke:#8B6BFF;}
@@ -1323,13 +1347,17 @@ body[data-theme="dark"] [style*="#8a92a3"]{color:#9CA0B4 !important;}
                 <circle class="chevron-dot" cx="32" cy="32" r="5"/>
             </svg>
         </div>
-        <span>Deutsch<span style="color:#3b6fe0;">AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-16</span></span>
+        <span>Deutsch<span style="color:#3b6fe0;">AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-17</span></span>
     </div>
     <div class="theme-toggle">
-        <button class="theme-toggle-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème clair/foncé">
-            <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5"/><path d="M12 19.5V22"/><path d="M4.2 4.2l1.8 1.8"/><path d="M18 18l1.8 1.8"/><path d="M2 12h2.5"/><path d="M19.5 12H22"/><path d="M4.2 19.8l1.8-1.8"/><path d="M18 6l1.8-1.8"/></svg>
-            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
-        </button>
+        <div class="theme-switch" role="group" aria-label="Choix du thème">
+            <button id="themeBtnLight" class="theme-switch-btn" onclick="setAppTheme('light')">
+                <span class="switch-icon">☀️</span> Clair
+            </button>
+            <button id="themeBtnDark" class="theme-switch-btn" onclick="setAppTheme('dark')">
+                <span class="switch-icon">🌙</span> Foncé
+            </button>
+        </div>
         <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
     </div>
 </header>
@@ -2118,13 +2146,25 @@ function applyAppTheme(theme){
     document.body.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
     if(meta) meta.setAttribute("content", theme === "dark" ? "#101116" : "#f4f7ff");
+
+    const lightBtn = document.getElementById("themeBtnLight");
+    const darkBtn = document.getElementById("themeBtnDark");
+    if(lightBtn && darkBtn){
+        lightBtn.classList.toggle("active", theme === "light");
+        lightBtn.classList.toggle("light", theme === "light");
+        darkBtn.classList.toggle("active", theme === "dark");
+        darkBtn.classList.remove("light");
+    }
+}
+
+function setAppTheme(theme){
+    applyAppTheme(theme);
+    try{ localStorage.setItem(THEME_STORAGE_KEY, theme); }catch(e){}
 }
 
 function toggleAppTheme(){
     const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
-    const next = current === "dark" ? "light" : "dark";
-    applyAppTheme(next);
-    try{ localStorage.setItem(THEME_STORAGE_KEY, next); }catch(e){}
+    setAppTheme(current === "dark" ? "light" : "dark");
 }
 
 function initAppTheme(){
