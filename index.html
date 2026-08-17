@@ -1107,6 +1107,191 @@ button{font-family:inherit}
     .flashcard-front .word{font-size:42px}
     .level-pills{grid-template-columns:repeat(2,1fr)}
 }
+
+/* ============ LOGO (chevrons SVG) ============ */
+
+.brand-mark{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(59,111,224,.08);
+    box-shadow:0 4px 14px rgba(30,41,59,.10);
+}
+
+.brand-mark svg{width:22px; height:22px;}
+.brand-mark .chevron-a{stroke:#6A3BFF;}
+.brand-mark .chevron-b{stroke:#12B5C9;}
+.brand-mark .chevron-dot{fill:#FF7A3D;}
+
+/* ============ THEME TOGGLE ============ */
+
+.theme-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.theme-toggle-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 3px 10px rgba(30,41,59,.10);
+    color:#1e2433;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    padding:0;
+    font-size:16px;
+    transition:.2s;
+}
+
+.theme-toggle-btn:hover{transform:translateY(-1px);}
+.theme-toggle-btn svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+.theme-toggle-btn .icon-sun{display:block;}
+.theme-toggle-btn .icon-moon{display:none;}
+
+/* ============ GLOBAL PROGRESS RING ============ */
+
+.global-progress-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-top:12px;
+}
+
+.global-ring-wrap{
+    position:relative;
+    width:76px;
+    height:76px;
+    flex-shrink:0;
+}
+
+.global-ring-wrap svg{transform:rotate(-90deg);}
+
+.global-ring-center{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.global-ring-num{
+    font-size:15px;
+    font-weight:800;
+    color:#1e2433;
+    line-height:1;
+}
+
+.global-ring-den{
+    font-size:9px;
+    font-weight:600;
+    color:#8a92a3;
+    margin-top:2px;
+}
+
+/* ============ DARK MODE ============ */
+
+body[data-theme="dark"]{
+    background:
+        radial-gradient(circle at 12% 8%,rgba(59,111,224,.14) 0%,transparent 42%),
+        radial-gradient(circle at 88% 12%,rgba(124,92,255,.12) 0%,transparent 38%),
+        radial-gradient(circle at 50% 100%,rgba(23,168,147,.10) 0%,transparent 45%),
+        linear-gradient(160deg,#15161d 0%,#101116 50%,#131319 100%);
+    color:#F2F2F6;
+}
+
+body[data-theme="dark"] .card,
+body[data-theme="dark"] .orb,
+body[data-theme="dark"] .orb-panel,
+body[data-theme="dark"] .orb-opt,
+body[data-theme="dark"] .due-banner,
+body[data-theme="dark"] .theme-item,
+body[data-theme="dark"] .subcategory,
+body[data-theme="dark"] .level-pill,
+body[data-theme="dark"] .flashcard-face,
+body[data-theme="dark"] .answer,
+body[data-theme="dark"] .pill,
+body[data-theme="dark"] .secondary,
+body[data-theme="dark"] .info-box,
+body[data-theme="dark"] .verb-details,
+body[data-theme="dark"] .avatar,
+body[data-theme="dark"] .theme-toggle-btn,
+body[data-theme="dark"] .filters-bar select,
+body[data-theme="dark"] .filters-bar input{
+    background:rgba(255,255,255,.06);
+    border-color:rgba(255,255,255,.12);
+}
+
+body[data-theme="dark"] .theme-item.random-item{
+    background:linear-gradient(120deg,rgba(59,130,246,.16),rgba(124,92,255,.16));
+}
+
+body[data-theme="dark"] .orb-opt.primary{
+    background:rgba(59,111,224,.16);
+    border-color:rgba(59,111,224,.4);
+}
+
+body[data-theme="dark"] .level-pill.done{
+    background:rgba(16,185,129,.16);
+    border-color:rgba(16,185,129,.5);
+}
+
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] strong,
+body[data-theme="dark"] .theme-name,
+body[data-theme="dark"] .global-ring-num,
+body[data-theme="dark"] .userProfile,
+body[data-theme="dark"] .avatar{
+    color:#F2F2F6;
+}
+
+body[data-theme="dark"] .subtitle,
+body[data-theme="dark"] .progress-text,
+body[data-theme="dark"] .due-banner-sub,
+body[data-theme="dark"] .theme-count,
+body[data-theme="dark"] .theme-percent,
+body[data-theme="dark"] .orb small,
+body[data-theme="dark"] .orb-opt-desc,
+body[data-theme="dark"] .level-pill-stat,
+body[data-theme="dark"] .global-ring-den,
+body[data-theme="dark"] .pill,
+body[data-theme="dark"] .explanation,
+body[data-theme="dark"] .verb-details{
+    color:#9CA0B4;
+}
+
+body[data-theme="dark"] .progress-bar,
+body[data-theme="dark"] .theme-progress-bar{
+    background:rgba(255,255,255,.1);
+}
+
+body[data-theme="dark"] .radar-grid,
+body[data-theme="dark"] .radar-axis{stroke:rgba(255,255,255,.14);}
+body[data-theme="dark"] .radar-label{fill:#9CA0B4;}
+
+body[data-theme="dark"] .theme-toggle-btn .icon-sun{display:none;}
+body[data-theme="dark"] .theme-toggle-btn .icon-moon{display:block;}
+
+body[data-theme="dark"] .brand-mark{background:rgba(139,107,255,.12);}
+body[data-theme="dark"] .brand-mark .chevron-a{stroke:#8B6BFF;}
+body[data-theme="dark"] .brand-mark .chevron-b{stroke:#3DD4E8;}
+
+/* Rattrape les couleurs posées en style inline dans le HTML/JS existant */
+body[data-theme="dark"] [style*="#667085"]{color:#9CA0B4 !important;}
+body[data-theme="dark"] [style*="#1e2433"]{color:#F2F2F6 !important;}
+body[data-theme="dark"] [style*="#8a92a3"]{color:#9CA0B4 !important;}
 </style>
 </head>
 
@@ -1120,6 +1305,10 @@ button{font-family:inherit}
             <stop offset="0%" stop-color="#3b6fe0"/>
             <stop offset="100%" stop-color="#d3a9ff"/>
         </linearGradient>
+        <linearGradient id="globalRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6A3BFF"/>
+            <stop offset="100%" stop-color="#12B5C9"/>
+        </linearGradient>
     </defs>
 </svg>
 
@@ -1127,13 +1316,22 @@ button{font-family:inherit}
 
 <header>
     <div class="logo" style="display:flex; align-items:center; gap:10px;">
-        <img src="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/logo.png"
-             width="34" height="34"
-             style="border-radius:9px; flex-shrink:0; display:block; box-shadow:0 4px 14px rgba(0,0,0,.4);"
-             alt="DeutschAI logo">
+        <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+                <path class="chevron-a" d="M22 12L8 32l14 20" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="chevron-b" d="M42 12l14 20-14 20" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle class="chevron-dot" cx="32" cy="32" r="5"/>
+            </svg>
+        </div>
         <span>Deutsch<span style="color:#3b6fe0;">AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-16</span></span>
     </div>
-    <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
+    <div class="theme-toggle">
+        <button class="theme-toggle-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème clair/foncé">
+            <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5"/><path d="M12 19.5V22"/><path d="M4.2 4.2l1.8 1.8"/><path d="M18 18l1.8 1.8"/><path d="M2 12h2.5"/><path d="M19.5 12H22"/><path d="M4.2 19.8l1.8-1.8"/><path d="M18 6l1.8-1.8"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        </button>
+        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
+    </div>
 </header>
 
 <!-- ================= AUTH ================= -->
@@ -1183,17 +1381,23 @@ button{font-family:inherit}
     </p>
 
     <div class="card">
-        <strong>Ta progression globale</strong>
-
-        <div id="globalProgressText" class="progress-text">
-            0 élément maîtrisé
-        </div>
-
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div id="globalProgress"
-                     class="progress-fill"
-                     style="width:0%">
+        <div class="global-progress-row">
+            <div class="global-ring-wrap">
+                <svg width="76" height="76" viewBox="0 0 76 76">
+                    <circle cx="38" cy="38" r="32" fill="none" stroke="rgba(30,41,59,.08)" stroke-width="7"/>
+                    <circle id="globalRingFill" cx="38" cy="38" r="32" fill="none" stroke="url(#globalRingGrad)"
+                        stroke-width="7" stroke-linecap="round"
+                        stroke-dasharray="201.06" stroke-dashoffset="201.06"/>
+                </svg>
+                <div class="global-ring-center">
+                    <div id="globalRingNum" class="global-ring-num">0</div>
+                    <div id="globalRingDen" class="global-ring-den">/ 0</div>
+                </div>
+            </div>
+            <div>
+                <strong>Ta progression globale</strong>
+                <div id="globalProgressText" class="progress-text">
+                    0 élément maîtrisé
                 </div>
             </div>
         </div>
@@ -1908,6 +2112,34 @@ onAuthStateChanged(auth, (user) => {
 </script>
 
 <script>
+const THEME_STORAGE_KEY = "deutschAI_theme";
+
+function applyAppTheme(theme){
+    document.body.setAttribute("data-theme", theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if(meta) meta.setAttribute("content", theme === "dark" ? "#101116" : "#f4f7ff");
+}
+
+function toggleAppTheme(){
+    const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    const next = current === "dark" ? "light" : "dark";
+    applyAppTheme(next);
+    try{ localStorage.setItem(THEME_STORAGE_KEY, next); }catch(e){}
+}
+
+function initAppTheme(){
+    let stored = null;
+    try{ stored = localStorage.getItem(THEME_STORAGE_KEY); }catch(e){}
+    if(stored === "dark" || stored === "light"){
+        applyAppTheme(stored);
+        return;
+    }
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    applyAppTheme(prefersDark ? "dark" : "light");
+}
+
+initAppTheme();
+
 function openAuth() {
     showScreen("auth");
 }
@@ -2363,6 +2595,8 @@ function updateGlobalProgress(){
     if(pBar) pBar.style.width = percentage + "%";
     if(pText) pText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} · ${percentage}%`;
     if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
+
+    updateGlobalProgressRing(mastered, total, percentage);
 }
 
 function masteryPercentForList(themeId, words){
@@ -2402,6 +2636,20 @@ function setRingPercent(id, percent){
     if(!el) return;
     el.style.strokeDasharray = RING_CIRCUMFERENCE;
     el.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - percent / 100);
+}
+
+const GLOBAL_RING_CIRCUMFERENCE = 2 * Math.PI * 32;
+
+function updateGlobalProgressRing(mastered, total, percent){
+    const fillEl = document.getElementById("globalRingFill");
+    const numEl = document.getElementById("globalRingNum");
+    const denEl = document.getElementById("globalRingDen");
+    if(fillEl){
+        fillEl.style.strokeDasharray = GLOBAL_RING_CIRCUMFERENCE;
+        fillEl.style.strokeDashoffset = GLOBAL_RING_CIRCUMFERENCE * (1 - percent / 100);
+    }
+    if(numEl) numEl.textContent = mastered;
+    if(denEl) denEl.textContent = `/ ${total}`;
 }
 
 function updateOrbRings(){
