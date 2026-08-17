@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f4f7ff">
+<meta name="theme-color" content="#ffffff">
 
 <title>DeutschAI</title>
 
@@ -13,12 +13,7 @@
 body{
     margin:0;
     min-height:100vh;
-    background:
-        radial-gradient(circle at 12% 8%,#dce9ff 0%,transparent 42%),
-        radial-gradient(circle at 88% 12%,#ffe3cf 0%,transparent 38%),
-        radial-gradient(circle at 50% 100%,#d7fbea 0%,transparent 45%),
-        linear-gradient(160deg,#f4f7ff 0%,#eef2fb 50%,#f7f4ff 100%);
-    background-attachment:fixed;
+    background:#ffffff;
     color:#1e2433;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -38,11 +33,9 @@ header{
 }
 
 .logo{
-    font-size:20px;
+    font-size:26px;
     font-weight:800;
 }
-
-.logo span{color:#3b6fe0}
 
 .avatar{
     width:38px;
@@ -81,10 +74,7 @@ h1{
 }
 
 .gradient{
-    background:linear-gradient(110deg,#2f6fed,#7c5cff,#17a893);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    color:#1e2433;
 }
 
 .subtitle{
@@ -159,10 +149,13 @@ h1{
 .orb-icon{
     width:30px;
     height:30px;
+    border-radius:10px;
     display:flex;
     align-items:center;
     justify-content:center;
     margin-bottom:6px;
+    background:rgba(59,111,224,.12);
+    border:1px solid rgba(59,111,224,.22);
 }
 
 .orb-icon svg{
@@ -187,6 +180,9 @@ h1{
 
 .orb-icon-wrap .orb-icon{
     margin-bottom:0;
+    width:28px;
+    height:28px;
+    border-radius:50%;
 }
 
 .orb-ring{
@@ -213,6 +209,70 @@ h1{
     stroke-linecap:round;
     transition:stroke-dashoffset .5s ease;
 }
+
+/* ============ COULEURS PAR CATÉGORIE ============ */
+
+.orb[data-orbid="verben"] .orb-icon{
+    background:rgba(249,115,22,.14);
+    border-color:rgba(249,115,22,.28);
+}
+.orb[data-orbid="verben"] .orb-icon svg{stroke:#f97316;}
+.orb[data-orbid="verben"] .orb-badge{background:#f97316; box-shadow:0 2px 6px rgba(249,115,22,.35);}
+
+.orb[data-orbid="nomen"] .orb-icon{
+    background:rgba(139,92,246,.14);
+    border-color:rgba(139,92,246,.28);
+}
+.orb[data-orbid="nomen"] .orb-icon svg{stroke:#8b5cf6;}
+.orb[data-orbid="nomen"] .orb-badge{background:#8b5cf6; box-shadow:0 2px 6px rgba(139,92,246,.35);}
+
+.orb[data-orbid="kasus"] .orb-icon{
+    background:rgba(16,185,129,.14);
+    border-color:rgba(16,185,129,.28);
+}
+.orb[data-orbid="kasus"] .orb-icon svg{stroke:#10b981;}
+.orb[data-orbid="kasus"] .orb-badge{background:#10b981; box-shadow:0 2px 6px rgba(16,185,129,.35);}
+
+.orb[data-orbid="adjektive"] .orb-icon{
+    background:rgba(244,63,94,.14);
+    border-color:rgba(244,63,94,.28);
+}
+.orb[data-orbid="adjektive"] .orb-icon svg{stroke:#f43f5e;}
+.orb[data-orbid="adjektive"] .orb-badge{background:#f43f5e; box-shadow:0 2px 6px rgba(244,63,94,.35);}
+
+.orb[data-orbid="praep"] .orb-icon{
+    background:rgba(6,182,212,.14);
+    border-color:rgba(6,182,212,.28);
+}
+.orb[data-orbid="praep"] .orb-icon svg{stroke:#06b6d4;}
+.orb[data-orbid="praep"] .orb-badge{background:#06b6d4; box-shadow:0 2px 6px rgba(6,182,212,.35);}
+
+.orb[data-orbid="wortstellung"] .orb-icon{
+    background:rgba(245,158,11,.14);
+    border-color:rgba(245,158,11,.28);
+}
+.orb[data-orbid="wortstellung"] .orb-icon svg{stroke:#f59e0b;}
+.orb[data-orbid="wortstellung"] .orb-badge{background:#f59e0b; box-shadow:0 2px 6px rgba(245,158,11,.35);}
+
+.orb[data-orbid="possessiv"] .orb-icon{
+    background:rgba(167,139,250,.14);
+    border-color:rgba(167,139,250,.28);
+}
+.orb[data-orbid="possessiv"] .orb-icon svg{stroke:#a78bfa;}
+.orb[data-orbid="possessiv"] .orb-badge{background:#a78bfa; box-shadow:0 2px 6px rgba(167,139,250,.35);}
+
+.orb[data-orbid="partikeln"] .orb-icon{
+    background:rgba(20,184,166,.14);
+    border-color:rgba(20,184,166,.28);
+}
+.orb[data-orbid="partikeln"] .orb-icon svg{stroke:#14b8a6;}
+.orb[data-orbid="partikeln"] .orb-badge{background:#14b8a6; box-shadow:0 2px 6px rgba(20,184,166,.35);}
+
+.orb[data-orbid="revision"] .orb-icon{
+    background:rgba(59,130,246,.14);
+    border-color:rgba(59,130,246,.28);
+}
+.orb[data-orbid="revision"] .orb-icon svg{stroke:#3b82f6;}
 
 .radar-grid{
     fill:none;
@@ -851,6 +911,10 @@ button{font-family:inherit}
 .flashcard.border-die.flipped .flashcard-back { border: 2px solid #ef4444; }
 .flashcard.border-das.flipped .flashcard-back { border: 2px solid #10b981; }
 
+.flashcard.border-der.flipped .back-word { color: #3b82f6; }
+.flashcard.border-die.flipped .back-word { color: #ef4444; }
+.flashcard.border-das.flipped .back-word { color: #10b981; }
+
 .article {
     font-size: 15px;
     font-weight: 700;
@@ -1179,6 +1243,30 @@ button{font-family:inherit}
     box-shadow:0 3px 10px rgba(30,41,59,.12);
 }
 
+.theme-icon-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.8);
+    background:rgba(255,255,255,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    box-shadow:0 3px 10px rgba(30,41,59,.10);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+    line-height:1;
+    cursor:pointer;
+    transition:.2s;
+    padding:0;
+}
+
+.theme-icon-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 5px 14px rgba(30,41,59,.14);
+}
+
 /* ============ GLOBAL PROGRESS RING ============ */
 
 .global-progress-row{
@@ -1223,11 +1311,11 @@ button{font-family:inherit}
 /* ============ DARK MODE ============ */
 
 body[data-theme="dark"]{
-    background:
-        radial-gradient(circle at 12% 8%,rgba(59,111,224,.14) 0%,transparent 42%),
-        radial-gradient(circle at 88% 12%,rgba(124,92,255,.12) 0%,transparent 38%),
-        radial-gradient(circle at 50% 100%,rgba(23,168,147,.10) 0%,transparent 45%),
-        linear-gradient(160deg,#15161d 0%,#101116 50%,#131319 100%);
+    background:#000000;
+    color:#F2F2F6;
+}
+
+body[data-theme="dark"] .gradient{
     color:#F2F2F6;
 }
 
@@ -1273,7 +1361,8 @@ body[data-theme="dark"] strong,
 body[data-theme="dark"] .theme-name,
 body[data-theme="dark"] .global-ring-num,
 body[data-theme="dark"] .userProfile,
-body[data-theme="dark"] .avatar{
+body[data-theme="dark"] .avatar,
+body[data-theme="dark"] .logo{
     color:#F2F2F6;
 }
 
@@ -1347,17 +1436,12 @@ body[data-theme="dark"] [style*="#8a92a3"]{color:#9CA0B4 !important;}
                 <circle class="chevron-dot" cx="32" cy="32" r="5"/>
             </svg>
         </div>
-        <span>Deutsch<span style="color:#3b6fe0;">AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-17</span></span>
+        <span>DeutschAI</span>
     </div>
     <div class="theme-toggle">
-        <div class="theme-switch" role="group" aria-label="Choix du thème">
-            <button id="themeBtnLight" class="theme-switch-btn" onclick="setAppTheme('light')">
-                <span class="switch-icon">☀️</span> Clair
-            </button>
-            <button id="themeBtnDark" class="theme-switch-btn" onclick="setAppTheme('dark')">
-                <span class="switch-icon">🌙</span> Foncé
-            </button>
-        </div>
+        <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
+            <span id="themeToggleIcon" class="switch-icon">☀️</span>
+        </button>
         <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
     </div>
 </header>
@@ -1448,7 +1532,7 @@ body[data-theme="dark"] [style*="#8a92a3"]{color:#9CA0B4 !important;}
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#3b6fe0" stroke="none"/></svg></div>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#8b5cf6" stroke="none"/></svg></div>
             </div>
             <div>
                 <strong>Noms</strong>
@@ -1484,7 +1568,7 @@ body[data-theme="dark"] [style*="#8a92a3"]{color:#9CA0B4 !important;}
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-praep" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#3b6fe0" stroke="none"/></svg></div>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#06b6d4" stroke="none"/></svg></div>
             </div>
             <div>
                 <strong>Prépositions</strong>
@@ -1522,7 +1606,7 @@ body[data-theme="dark"] [style*="#8a92a3"]{color:#9CA0B4 !important;}
             </div>
         </div>
 
-        <div class="orb" onclick="openSettings()">
+        <div class="orb" data-orbid="revision" onclick="openSettings()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
             <div>
                 <strong>Révision</strong>
@@ -2145,7 +2229,7 @@ const THEME_STORAGE_KEY = "deutschAI_theme";
 function applyAppTheme(theme){
     document.body.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if(meta) meta.setAttribute("content", theme === "dark" ? "#101116" : "#f4f7ff");
+    if(meta) meta.setAttribute("content", theme === "dark" ? "#000000" : "#ffffff");
 
     const lightBtn = document.getElementById("themeBtnLight");
     const darkBtn = document.getElementById("themeBtnDark");
