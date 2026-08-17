@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f6f7fb">
+<meta name="theme-color" content="#f4f7ff">
 
 <title>DeutschAI</title>
 
@@ -14,10 +14,11 @@ body{
     margin:0;
     min-height:100vh;
     background:
-        radial-gradient(circle at 12% 8%,#e4edff 0%,transparent 38%),
-        radial-gradient(circle at 88% 12%,#fdeada 0%,transparent 34%),
-        radial-gradient(circle at 50% 100%,#eafbf3 0%,transparent 40%),
-        #f7f8fb;
+        radial-gradient(circle at 12% 8%,#dce9ff 0%,transparent 42%),
+        radial-gradient(circle at 88% 12%,#ffe3cf 0%,transparent 38%),
+        radial-gradient(circle at 50% 100%,#d7fbea 0%,transparent 45%),
+        linear-gradient(160deg,#f4f7ff 0%,#eef2fb 50%,#f7f4ff 100%);
+    background-attachment:fixed;
     color:#1e2433;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -47,9 +48,11 @@ header{
     width:38px;
     height:38px;
     border-radius:50%;
-    background:#ffffff;
-    border:1px solid #e3e8f2;
-    box-shadow:0 3px 10px rgba(30,41,59,.08);
+    background:rgba(255,255,255,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 3px 10px rgba(30,41,59,.10);
     color:#1e2433;
     display:flex;
     align-items:center;
@@ -93,16 +96,18 @@ h1{
     margin-top:25px;
     padding:22px;
     border-radius:24px;
-    background:#ffffff;
-    border:1px solid #e7ebf3;
-    box-shadow:0 10px 28px rgba(30,41,59,.06);
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.75);
+    box-shadow:0 10px 28px rgba(30,41,59,.08);
 }
 
 .progress-container{margin-top:12px}
 
 .progress-bar{
     height:7px;
-    background:#eef1f7;
+    background:rgba(255,255,255,.6);
     border-radius:20px;
     overflow:hidden;
 }
@@ -137,16 +142,18 @@ h1{
     justify-content:center;
     text-align:center;
     cursor:pointer;
-    background:#ffffff;
-    border:1px solid #e7ebf3;
-    box-shadow:0 10px 24px rgba(30,41,59,.06);
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.75);
+    box-shadow:0 10px 24px rgba(30,41,59,.07);
     transition:.2s;
 }
 
 .orb:hover{
     transform:translateY(-4px);
-    box-shadow:0 14px 30px rgba(30,41,59,.10);
-    border-color:#d6e0f5;
+    box-shadow:0 14px 30px rgba(30,41,59,.12);
+    border-color:rgba(255,255,255,.95);
 }
 
 .orb-icon{
@@ -198,7 +205,7 @@ h1{
 }
 
 .orb-ring .ring-bg{
-    stroke:#eef1f7;
+    stroke:rgba(30,41,59,.1);
 }
 
 .orb-ring .ring-fill{
@@ -270,9 +277,11 @@ h1{
     margin-top:16px;
     padding:20px;
     border-radius:22px;
-    background:#ffffff;
-    border:1px solid #d6e0f5;
-    box-shadow:0 10px 28px rgba(30,41,59,.06);
+    background:rgba(255,255,255,.6);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 10px 28px rgba(30,41,59,.08);
     animation:orbPanelReveal .2s ease;
 }
 @keyframes orbPanelReveal{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);}}
@@ -288,8 +297,8 @@ h1{
     width:38px;
     height:38px;
     border-radius:12px;
-    background:#eef3ff;
-    border:1px solid #dbe6ff;
+    background:rgba(59,111,224,.12);
+    border:1px solid rgba(59,111,224,.25);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -325,18 +334,18 @@ h1{
     gap:10px;
     padding:13px 14px;
     border-radius:14px;
-    background:#f7f8fc;
-    border:1px solid #e7ebf3;
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.7);
     cursor:pointer;
     margin-bottom:8px;
     transition:.2s;
 }
 .orb-opt:last-child{margin-bottom:0}
-.orb-opt:hover{background:#eef1f7}
+.orb-opt:hover{background:rgba(255,255,255,.8)}
 
 .orb-opt.primary{
-    border-color:#bcd2fb;
-    background:#eef3ff;
+    border-color:rgba(59,111,224,.35);
+    background:rgba(59,111,224,.1);
 }
 
 .orb-opt-left{display:flex; align-items:center; gap:12px;}
@@ -345,7 +354,7 @@ h1{
     width:32px;
     height:32px;
     border-radius:10px;
-    background:#e3ecff;
+    background:rgba(59,111,224,.14);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -370,7 +379,7 @@ h1{
     font-size:11px;
     font-weight:700;
     color:#3b6fe0;
-    background:#dbe6ff;
+    background:rgba(59,111,224,.16);
     padding:3px 9px;
     border-radius:8px;
     flex-shrink:0;
@@ -402,8 +411,10 @@ h2{
 }
 
 .pill{
-    border:1px solid #e3e8f2;
-    background:#ffffff;
+    border:1px solid rgba(255,255,255,.8);
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     border-radius:20px;
     padding:7px 12px;
     color:#667085;
@@ -425,14 +436,16 @@ h2{
     padding:18px 20px;
     border-radius:20px;
     cursor:pointer;
-    background:linear-gradient(100deg,#eaf1ff,#f3edff);
-    border:1px solid #d6e0f5;
+    background:linear-gradient(100deg,rgba(59,130,246,.16),rgba(124,92,255,.16));
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.7);
     transition:.2s;
 }
 
 .due-banner:hover{
     transform:translateY(-2px);
-    background:linear-gradient(100deg,#dfeaff,#eee3ff);
+    background:linear-gradient(100deg,rgba(59,130,246,.24),rgba(124,92,255,.24));
 }
 
 .due-banner-left{
@@ -467,8 +480,10 @@ h2{
     min-width: 140px;
     padding: 10px 14px;
     border-radius: 14px;
-    border: 1px solid #dde3ee;
-    background: #ffffff;
+    border: 1px solid rgba(255,255,255,.8);
+    background: rgba(255,255,255,.5);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     color: #1e2433;
     font-size: 14px;
     outline: none;
@@ -485,8 +500,8 @@ h2{
 .subcategory{
     padding:18px;
     border-radius:18px;
-    background:#f7f8fc;
-    border:1px solid #e7ebf3;
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.7);
     cursor:pointer;
 }
 
@@ -520,8 +535,10 @@ button{font-family:inherit}
     width:100%;
     padding:15px;
     border-radius:16px;
-    border:1px solid #dde3ee;
-    background:#ffffff;
+    border:1px solid rgba(255,255,255,.8);
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     color:#1e2433;
     font-weight:700;
     cursor:pointer;
@@ -548,8 +565,10 @@ button{font-family:inherit}
     width:100%;
     padding:17px;
     border-radius:16px;
-    border:1px solid #dde3ee;
-    background:#f7f8fc;
+    border:1px solid rgba(255,255,255,.8);
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     color:#1e2433;
     font-size:18px;
     outline:none;
@@ -568,13 +587,13 @@ button{font-family:inherit}
 .feedback.show{display:block}
 
 .feedback.correct{
-    background:#eafaf1;
-    border:1px solid #b7ecd0;
+    background:rgba(16,185,129,.14);
+    border:1px solid rgba(16,185,129,.4);
 }
 
 .feedback.wrong{
-    background:#fdeef0;
-    border:1px solid #f6c6ce;
+    background:rgba(239,68,68,.14);
+    border:1px solid rgba(239,68,68,.4);
 }
 
 .feedback-title{
@@ -601,7 +620,7 @@ button{font-family:inherit}
     display:flex;
     justify-content:space-between;
     padding:14px 0;
-    border-bottom:1px solid #eef1f7;
+    border-bottom:1px solid rgba(30,41,59,.08);
     color:#4b5565;
 }
 
@@ -609,8 +628,8 @@ button{font-family:inherit}
     margin-top:20px;
     padding:17px;
     border-radius:17px;
-    background:#eef3ff;
-    border:1px solid #d6e0f5;
+    background:rgba(59,111,224,.1);
+    border:1px solid rgba(59,111,224,.25);
 }
 
 .hidden{display:none!important}
@@ -627,25 +646,25 @@ button{font-family:inherit}
 .theme-item{
     padding:17px;
     border-radius:18px;
-    background:#f7f8fc;
-    border:1px solid #e7ebf3;
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.7);
     cursor:pointer;
     transition:.2s;
 }
 
 .theme-item:hover{
     transform:translateY(-2px);
-    background:#eef1f7;
-    border-color:#d6e0f5;
+    background:rgba(255,255,255,.8);
+    border-color:rgba(255,255,255,.95);
 }
 
 .theme-item.random-item{
-    background:linear-gradient(120deg,#eaf1ff,#f3edff);
-    border:1px solid #d6e0f5;
+    background:linear-gradient(120deg,rgba(59,130,246,.14),rgba(124,92,255,.14));
+    border:1px solid rgba(255,255,255,.7);
 }
 
 .theme-item.random-item:hover{
-    background:linear-gradient(120deg,#dfeaff,#eee3ff);
+    background:linear-gradient(120deg,rgba(59,130,246,.22),rgba(124,92,255,.22));
 }
 
 .theme-header{
@@ -668,8 +687,8 @@ button{font-family:inherit}
     justify-content:center;
     width:36px;
     height:36px;
-    background:#eef3ff;
-    border:1px solid #dbe6ff;
+    background:rgba(59,111,224,.12);
+    border:1px solid rgba(59,111,224,.25);
     border-radius:10px;
 }
 
@@ -691,7 +710,7 @@ button{font-family:inherit}
 
 .theme-progress-bar{
     height:5px;
-    background:#e7ebf3;
+    background:rgba(30,41,59,.08);
     border-radius:10px;
 }
 
@@ -717,21 +736,21 @@ button{font-family:inherit}
 .level-pill{
     padding:10px 6px;
     border-radius:12px;
-    background:#ffffff;
-    border:1px solid #e7ebf3;
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.7);
     text-align:center;
     cursor:pointer;
     transition:.2s;
 }
 
 .level-pill:hover{
-    background:#eef1f7;
+    background:rgba(255,255,255,.85);
     transform:translateY(-2px);
 }
 
 .level-pill.done{
-    border-color:#a7e6c4;
-    background:#eafaf1;
+    border-color:rgba(16,185,129,.5);
+    background:rgba(16,185,129,.14);
 }
 
 .level-pill-label{
@@ -785,13 +804,15 @@ button{font-family:inherit}
     text-align:center;
     backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
-    background:#ffffff;
-    border:1px solid #e7ebf3;
-    box-shadow:0 16px 40px rgba(30,41,59,.09);
+    background:rgba(255,255,255,.6);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 16px 40px rgba(30,41,59,.1);
 }
 
 .flashcard-front{
-    border:1px solid #e7ebf3;
+    border:1px solid rgba(255,255,255,.8);
     padding:30px;
 }
 
@@ -814,12 +835,12 @@ button{font-family:inherit}
     justify-content:flex-start;
     overflow-y:auto;
     text-align:left;
-    border:1px solid #e7ebf3;
+    border:1px solid rgba(255,255,255,.8);
 }
 
 .flashcard.answer-accent.flipped .flashcard-back{
-    border:1.5px solid #a9c3fb;
-    background:#f4f7ff;
+    border:1.5px solid rgba(59,111,224,.4);
+    background:rgba(238,243,255,.75);
 }
 
 .flashcard.answer-accent.flipped .back-word{
@@ -860,10 +881,10 @@ button{font-family:inherit}
     font-size:13px;
     color:#4b5565;
     line-height:1.4;
-    background:#f7f8fc;
+    background:rgba(255,255,255,.5);
     padding:12px;
     border-radius:14px;
-    border:1px solid #e7ebf3;
+    border:1px solid rgba(255,255,255,.7);
     white-space:pre-line;
 }
 
@@ -887,7 +908,7 @@ button{font-family:inherit}
 .verb-extra{
     margin-top:2px;
     padding-top:8px;
-    border-top:1px solid #e7ebf3;
+    border-top:1px solid rgba(30,41,59,.1);
 }
 
 .word-audio-row{
@@ -904,8 +925,8 @@ button{font-family:inherit}
     width:30px;
     height:30px;
     border-radius:50%;
-    background:#eef3ff;
-    border:1px solid #dbe6ff;
+    background:rgba(59,111,224,.12);
+    border:1px solid rgba(59,111,224,.3);
     color:#3b6fe0;
     display:flex;
     align-items:center;
@@ -918,12 +939,12 @@ button{font-family:inherit}
 
 .icon-audio-btn svg{width:14px; height:14px; fill:currentColor;}
 
-.icon-audio-btn:hover{background:#dbe6ff; transform:scale(1.05);}
+.icon-audio-btn:hover{background:rgba(59,111,224,.2); transform:scale(1.05);}
 
 .audio-btn{
     margin-top:12px;
-    background:#eef3ff;
-    border:1px solid #dbe6ff;
+    background:rgba(59,111,224,.12);
+    border:1px solid rgba(59,111,224,.3);
     border-radius:20px;
     padding:6px 14px;
     color:#3b6fe0;
@@ -944,7 +965,7 @@ button{font-family:inherit}
 }
 
 .audio-btn:hover{
-    background:#dbe6ff;
+    background:rgba(59,111,224,.2);
     transform:scale(1.03);
 }
 
@@ -974,8 +995,8 @@ button{font-family:inherit}
 .review-button{
     padding:13px 8px;
     border-radius:14px;
-    border:1px solid #dde3ee;
-    background:#ffffff;
+    border:1px solid rgba(255,255,255,.8);
+    background:rgba(255,255,255,.55);
     color:#1e2433;
     cursor:pointer;
     font-size:12px;
@@ -983,23 +1004,23 @@ button{font-family:inherit}
 }
 
 .review-button:hover{
-    background:#f0f2f7;
+    background:rgba(255,255,255,.85);
 }
 
 .review-button.mastered{
-    border-color:#a7e6c4;
-    background:#eafaf1;
+    border-color:rgba(16,185,129,.5);
+    background:rgba(16,185,129,.16);
     color:#0e9f5f;
 }
 
 .review-button.warning{
-    border-color:#f6d9a8;
-    background:#fff7ea;
+    border-color:rgba(245,158,11,.5);
+    background:rgba(245,158,11,.16);
     color:#c9791b;
 }
 
 .danger{
-    border-color:#f6c6ce;
+    border-color:rgba(239,68,68,.4);
     color:#e0405b;
 }
 
@@ -1007,7 +1028,7 @@ button{font-family:inherit}
     margin-top:15px;
     padding:15px;
     border-radius:16px;
-    background:#f7f8fc;
+    background:rgba(255,255,255,.5);
     color:#4b5565;
     font-size:13px;
     line-height:1.5;
@@ -1096,7 +1117,7 @@ button{font-family:inherit}
 <svg width="0" height="0" style="position:absolute;">
     <defs>
         <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#8feaff"/>
+            <stop offset="0%" stop-color="#3b6fe0"/>
             <stop offset="100%" stop-color="#d3a9ff"/>
         </linearGradient>
     </defs>
@@ -1106,41 +1127,10 @@ button{font-family:inherit}
 
 <header>
     <div class="logo" style="display:flex; align-items:center; gap:10px;">
-        <svg width="34" height="34" viewBox="0 0 200 200" aria-hidden="true" style="flex-shrink:0;">
-            <defs>
-                <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#3b82f6"/>
-                    <stop offset="55%" stop-color="#7c5cff"/>
-                    <stop offset="100%" stop-color="#17a893"/>
-                </linearGradient>
-                <linearGradient id="logoSheen" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
-                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="logoRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#8feaff"/>
-                    <stop offset="100%" stop-color="#ffffff"/>
-                </linearGradient>
-            </defs>
-            <rect width="200" height="200" rx="46" fill="url(#logoBg)"/>
-            <rect width="200" height="100" rx="46" fill="url(#logoSheen)"/>
-            <circle cx="100" cy="100" r="46" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="10"/>
-            <circle cx="100" cy="100" r="46" fill="none" stroke="url(#logoRing)" stroke-width="10"
-                    stroke-linecap="round"
-                    stroke-dasharray="289"
-                    stroke-dashoffset="62"
-                    transform="rotate(-90 100 100)"/>
-            <g fill="#ffffff">
-                <rect x="87" y="76" width="10" height="47" rx="3.5"/>
-                <path d="M95.5 76
-                         c19.5 0 32 10.5 32 23.5
-                         s-12.5 23.5-32 23.5
-                         l0-11.5
-                         c12.5 0 19.5-4.7 19.5-12
-                         s-7-12-19.5-12
-                         z"/>
-            </g>
-        </svg>
+        <img src="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/logo.png"
+             width="34" height="34"
+             style="border-radius:9px; flex-shrink:0; display:block; box-shadow:0 4px 14px rgba(0,0,0,.4);"
+             alt="DeutschAI logo">
         <span>Deutsch<span style="color:#3b6fe0;">AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-16</span></span>
     </div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
