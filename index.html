@@ -1105,7 +1105,44 @@ button{font-family:inherit}
 <div class="app">
 
 <header>
-    <div class="logo">Deutsch<span>AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-16</span></div>
+    <div class="logo" style="display:flex; align-items:center; gap:10px;">
+        <svg width="34" height="34" viewBox="0 0 200 200" aria-hidden="true" style="flex-shrink:0;">
+            <defs>
+                <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="55%" stop-color="#7c5cff"/>
+                    <stop offset="100%" stop-color="#17a893"/>
+                </linearGradient>
+                <linearGradient id="logoSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="logoRing" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8feaff"/>
+                    <stop offset="100%" stop-color="#ffffff"/>
+                </linearGradient>
+            </defs>
+            <rect width="200" height="200" rx="46" fill="url(#logoBg)"/>
+            <rect width="200" height="100" rx="46" fill="url(#logoSheen)"/>
+            <circle cx="100" cy="100" r="46" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="10"/>
+            <circle cx="100" cy="100" r="46" fill="none" stroke="url(#logoRing)" stroke-width="10"
+                    stroke-linecap="round"
+                    stroke-dasharray="289"
+                    stroke-dashoffset="62"
+                    transform="rotate(-90 100 100)"/>
+            <g fill="#ffffff">
+                <rect x="87" y="76" width="10" height="47" rx="3.5"/>
+                <path d="M95.5 76
+                         c19.5 0 32 10.5 32 23.5
+                         s-12.5 23.5-32 23.5
+                         l0-11.5
+                         c12.5 0 19.5-4.7 19.5-12
+                         s-7-12-19.5-12
+                         z"/>
+            </g>
+        </svg>
+        <span>Deutsch<span style="color:#3b6fe0;">AI</span> <span style="font-size:9px; color:#8a92a3; font-weight:400; vertical-align:middle;">build-16</span></span>
+    </div>
     <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
 </header>
 
