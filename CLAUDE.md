@@ -1,0 +1,43 @@
+# DeutschAI
+
+Application web d'apprentissage du vocabulaire et de la grammaire allemande, destinée à des francophones. Interface en français, contenu en allemand.
+
+## Dépôt
+
+- GitHub : https://github.com/jacquesagrenier-star/Deutsch-gemini
+- Branche principale : `main`
+
+## Architecture
+
+C'est une app **statique, sans build**, en un seul fichier HTML autonome :
+
+- `index.html` — toute l'application (CSS et JS inline, pas de fichiers séparés, pas de bundler, pas de `npm install`). Ouvrir le fichier directement dans un navigateur suffit pour tester en local.
+- Authentification via **Firebase Auth** (email/mot de passe), projet Firebase `deutschai-b6fbb`. La clé API Firebase dans le code est une clé cliente publique (normal pour Firebase web) — pas un secret à protéger comme un mot de passe.
+- `AUTH_REQUIRED = false` dans le code : l'authentification n'est actuellement pas obligatoire pour utiliser l'app.
+
+## Données (important)
+
+Les fichiers de données sont chargés **à l'exécution, directement depuis GitHub**, pas empaquetés dans le HTML :
+
+```
+https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/verbe.json
+https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json
+https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json
+```
+
+**Conséquence : un `git push` sur `main` met à jour les données en production immédiatement**, sans étape de déploiement séparée. Il n'y a pas d'environnement de test — toute modification poussée sur `main` est visible tout de suite par l'app.
+
+Structure des fichiers JSON, organisés par niveau CECR (`A1`, `A2`, ...) :
+
+- **`adjectif.json`** : liste d'adjectifs — `mot`, `traduction`, `exemple` (allemand), `exemple_fr` (traduction français).
+- **`verbe.json`** : liste de verbes — `infinitif`, `traduction`, conjugaisons (`praesens`, `perfekt`, `praeteritum`, `konjunktiv2`), `exemple`/`exemple_fr` pour chaque temps.
+- **`themes.json`** : thèmes de vocabulaire (ex. `Familie`) avec un id, un niveau, une icône SVG inline, et une liste de `mots`.
+
+⚠️ **`Indexbackup.json`** malgré son extension `.json`, contient en fait du HTML (une ancienne sauvegarde de `index.html`). Ne pas essayer de le parser comme du JSON.
+
+## Conventions pour les contributions
+
+- Respecter la structure existante des entrées JSON (mêmes clés, mêmes niveaux CECR) lors de l'ajout de vocabulaire.
+- Toujours fournir la paire allemand/français (`exemple` + `exemple_fr`, ou équivalent) pour rester cohérent avec les données existantes.
+- Comme il n'y a pas de build ni de tests automatisés, valider les changements en ouvrant `index.html` dans un navigateur avant de pousser sur `main`.
+- Le dossier local du projet est synchronisé via OneDrive (`Desktop/Mes Projets/DeutschAI`) — éviter les opérations git lourdes ou concurrentes qui pourraient entrer en conflit avec la synchronisation OneDrive.
