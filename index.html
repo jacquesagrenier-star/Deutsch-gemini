@@ -1967,17 +1967,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <div class="card">
         <strong>Verbes de position (Wo?/Wohin?)</strong>
-        <div class="info-box" style="overflow-x:auto;">
-            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;">
-                    <td style="padding:8px 4px;">Wo ? · Dativ</td><td style="padding:8px 4px;">Wohin ? · Akkusativ</td><td style="padding:8px 4px;">Sens</td>
-                </tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">stehen</td><td>stellen</td><td>être debout / mettre debout</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">liegen</td><td>legen</td><td>être couché / poser à plat</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">sitzen</td><td>setzen</td><td>être assis / asseoir</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">hängen</td><td>hängen</td><td>être suspendu / accrocher</td></tr>
-            </table>
-        </div>
         <div class="info-box">
             <strong style="color:#3b6fe0;">Wo ? → Dativ</strong><br>
             <em>Das Buch liegt auf dem Tisch.</em> (Le livre est sur la table — état, pas de mouvement.)
@@ -1986,7 +1975,31 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <strong style="color:#3b6fe0;">Wohin ? → Akkusativ</strong><br>
             <em>Ich lege das Buch auf den Tisch.</em> (Je pose le livre sur la table — je le déplace vers cet endroit.)
         </div>
-        <small style="color:#576177;">Astuce : « hängen » a la même forme dans les deux sens — seul le contexte (et donc le cas) indique s'il s'agit d'un état (Dativ) ou d'une action (Akkusativ).</small>
+        <div class="info-box" style="overflow-x:auto;">
+            <strong style="color:#3b6fe0;">Wo ? · Dativ — irréguliers (verbes forts)</strong>
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px; margin-top:6px;">
+                <tr style="color:#3b6fe0; font-weight:800;">
+                    <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">Präsens</td><td style="padding:8px 4px;">Perfekt</td><td style="padding:8px 4px;">Präteritum</td>
+                </tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">stehen</td><td>steht</td><td>hat gestanden</td><td>stand</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">liegen</td><td>liegt</td><td>hat gelegen</td><td>lag</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">sitzen</td><td>sitzt</td><td>hat gesessen</td><td>saß</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">hängen</td><td>hängt</td><td>hat gehangen</td><td>hing</td></tr>
+            </table>
+        </div>
+        <div class="info-box" style="overflow-x:auto;">
+            <strong style="color:#3b6fe0;">Wohin ? · Akkusativ — réguliers (verbes faibles)</strong>
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px; margin-top:6px;">
+                <tr style="color:#3b6fe0; font-weight:800;">
+                    <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">Präsens</td><td style="padding:8px 4px;">Perfekt</td><td style="padding:8px 4px;">Präteritum</td>
+                </tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">stellen</td><td>stellt</td><td>hat gestellt</td><td>stellte</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">legen</td><td>legt</td><td>hat gelegt</td><td>legte</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">setzen</td><td>setzt</td><td>hat gesetzt</td><td>setzte</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">hängen</td><td>hängt</td><td>hat gehängt</td><td>hängte</td></tr>
+            </table>
+        </div>
+        <small style="color:#576177;">Astuce : les 4 verbes d'état (Wo ? → Dativ) sont irréguliers, avec un changement de voyelle au Perfekt/Präteritum (stehen→stand, liegen→lag, sitzen→saß, hängen→hing). Les 4 verbes d'action (Wohin ? → Akkusativ) sont réguliers, avec -te/-t (stellen→stellte, legen→legte, setzen→setzte, hängen→hängte). « hängen » a la même forme à l'infinitif dans les deux sens, mais se conjugue différemment selon le sens !</small>
     </div>
 
     <div class="spacer"></div>
@@ -2623,14 +2636,54 @@ const positionsverbenTheme = {
   name: "Verbes de position",
   svg: '<svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 10-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
   words: [
-    ["stehen", "être debout / se trouver", "Wo? → Dativ", "Das Auto steht vor dem Haus.", "La voiture est garée devant la maison."],
-    ["stellen", "mettre debout, poser", "Wohin? → Akkusativ", "Ich stelle das Glas auf den Tisch.", "Je pose le verre sur la table."],
-    ["liegen", "être couché / posé à plat", "Wo? → Dativ", "Das Buch liegt auf dem Tisch.", "Le livre est posé sur la table."],
-    ["legen", "poser à plat, coucher", "Wohin? → Akkusativ", "Ich lege das Buch auf den Tisch.", "Je pose le livre sur la table."],
-    ["sitzen", "être assis", "Wo? → Dativ", "Ich sitze auf dem Stuhl.", "Je suis assis sur la chaise."],
-    ["setzen", "asseoir, mettre en position assise", "Wohin? → Akkusativ", "Ich setze mich auf den Stuhl.", "Je m'assieds sur la chaise."],
-    ["hängen", "être suspendu / accroché", "Wo? → Dativ", "Das Bild hängt an der Wand.", "Le tableau est accroché au mur."],
-    ["hängen", "accrocher, suspendre", "Wohin? → Akkusativ", "Ich hänge das Bild an die Wand.", "J'accroche le tableau au mur."]
+    {
+      infinitif: "stehen", traduction: "être debout / se trouver", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
+      exemple: "Das Auto steht vor dem Haus.", exemple_fr: "La voiture est garée devant la maison.",
+      perfekt: "Das Auto hat vor dem Haus gestanden.", perfekt_fr: "La voiture était garée devant la maison.",
+      praeteritum: "Das Auto stand vor dem Haus.", praeteritum_fr: "La voiture était garée devant la maison."
+    },
+    {
+      infinitif: "stellen", traduction: "mettre debout, poser", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
+      exemple: "Ich stelle das Glas auf den Tisch.", exemple_fr: "Je pose le verre sur la table.",
+      perfekt: "Ich habe das Glas auf den Tisch gestellt.", perfekt_fr: "J'ai posé le verre sur la table.",
+      praeteritum: "Ich stellte das Glas auf den Tisch.", praeteritum_fr: "J'ai posé le verre sur la table."
+    },
+    {
+      infinitif: "liegen", traduction: "être couché / posé à plat", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
+      exemple: "Das Buch liegt auf dem Tisch.", exemple_fr: "Le livre est posé sur la table.",
+      perfekt: "Das Buch hat auf dem Tisch gelegen.", perfekt_fr: "Le livre était posé sur la table.",
+      praeteritum: "Das Buch lag auf dem Tisch.", praeteritum_fr: "Le livre était posé sur la table."
+    },
+    {
+      infinitif: "legen", traduction: "poser à plat, coucher", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
+      exemple: "Ich lege das Buch auf den Tisch.", exemple_fr: "Je pose le livre sur la table.",
+      perfekt: "Ich habe das Buch auf den Tisch gelegt.", perfekt_fr: "J'ai posé le livre sur la table.",
+      praeteritum: "Ich legte das Buch auf den Tisch.", praeteritum_fr: "J'ai posé le livre sur la table."
+    },
+    {
+      infinitif: "sitzen", traduction: "être assis", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
+      exemple: "Ich sitze auf dem Stuhl.", exemple_fr: "Je suis assis sur la chaise.",
+      perfekt: "Ich habe auf dem Stuhl gesessen.", perfekt_fr: "J'ai été assis sur la chaise.",
+      praeteritum: "Ich saß auf dem Stuhl.", praeteritum_fr: "J'étais assis sur la chaise."
+    },
+    {
+      infinitif: "setzen", traduction: "asseoir, mettre en position assise", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
+      exemple: "Ich setze mich auf den Stuhl.", exemple_fr: "Je m'assieds sur la chaise.",
+      perfekt: "Ich habe mich auf den Stuhl gesetzt.", perfekt_fr: "Je me suis assis sur la chaise.",
+      praeteritum: "Ich setzte mich auf den Stuhl.", praeteritum_fr: "Je me suis assis sur la chaise."
+    },
+    {
+      infinitif: "hängen", traduction: "être suspendu / accroché", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
+      exemple: "Das Bild hängt an der Wand.", exemple_fr: "Le tableau est accroché au mur.",
+      perfekt: "Das Bild hat an der Wand gehangen.", perfekt_fr: "Le tableau était accroché au mur.",
+      praeteritum: "Das Bild hing an der Wand.", praeteritum_fr: "Le tableau était accroché au mur."
+    },
+    {
+      infinitif: "hängen", traduction: "accrocher, suspendre", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
+      exemple: "Ich hänge das Bild an die Wand.", exemple_fr: "J'accroche le tableau au mur.",
+      perfekt: "Ich habe das Bild an die Wand gehängt.", perfekt_fr: "J'ai accroché le tableau au mur.",
+      praeteritum: "Ich hängte das Bild an die Wand.", praeteritum_fr: "J'ai accroché le tableau au mur."
+    }
   ]
 };
 
@@ -3885,7 +3938,30 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
+    } else if(flashcardMode === 'positionsverben'){
+        const germanWord = card.infinitif;
+        const frenchWord = card.traduction;
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = frenchWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        }
+        const coreHtml = `<strong>${card.cas}</strong> · ${card.regularite}` +
+            `<div class="verb-sep"></div>` +
+            `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${card.exemple_fr || ""})` +
+            `<div class="verb-sep"></div>` +
+            `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${card.perfekt_fr || ""})`;
+        const extraHtml = `<strong>Präteritum :</strong> ${card.praeteritum || ""}<br>(${card.praeteritum_fr || ""})`;
+        verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
+        verbDetailsEl.classList.remove("hidden");
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
         const germanWord = card[0];
         const frenchWord = card[1];
         const cas = card[2];
