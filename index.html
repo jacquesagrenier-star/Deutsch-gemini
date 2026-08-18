@@ -1965,12 +1965,38 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <small style="color:#576177;">Astuce : si tu peux répondre à « où est-ce que ça va ? » avec un déplacement, c'est Akkusativ. Si ça décrit juste où quelque chose se trouve, c'est Dativ.</small>
     </div>
 
+    <div class="card">
+        <strong>Verbes de position (Wo?/Wohin?)</strong>
+        <div class="info-box" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
+                <tr style="color:#3b6fe0; font-weight:800;">
+                    <td style="padding:8px 4px;">Wo ? · Dativ</td><td style="padding:8px 4px;">Wohin ? · Akkusativ</td><td style="padding:8px 4px;">Sens</td>
+                </tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">stehen</td><td>stellen</td><td>être debout / mettre debout</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">liegen</td><td>legen</td><td>être couché / poser à plat</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">sitzen</td><td>setzen</td><td>être assis / asseoir</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px;">hängen</td><td>hängen</td><td>être suspendu / accrocher</td></tr>
+            </table>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">Wo ? → Dativ</strong><br>
+            <em>Das Buch liegt auf dem Tisch.</em> (Le livre est sur la table — état, pas de mouvement.)
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">Wohin ? → Akkusativ</strong><br>
+            <em>Ich lege das Buch auf den Tisch.</em> (Je pose le livre sur la table — je le déplace vers cet endroit.)
+        </div>
+        <small style="color:#576177;">Astuce : « hängen » a la même forme dans les deux sens — seul le contexte (et donc le cas) indique s'il s'agit d'un état (Dativ) ou d'une action (Akkusativ).</small>
+    </div>
+
     <div class="spacer"></div>
     <button class="secondary" onclick="startPraepReconnaissance()">M'ENTRAÎNER : QUEL CAS ? →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startPraepWoWohin()">M'ENTRAÎNER : WO OU WOHIN ? →</button>
     <div class="spacer"></div>
-    <button class="secondary" onclick="startPraepVokabular()">VOCABULAIRE : FLASHCARDS →</button>
+    <button class="secondary" onclick="startPraepVokabular()">VOCABULAIRE : PRÉPOSITIONS →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPositionsverbenVokabular()">VOCABULAIRE : VERBES DE POSITION →</button>
 </section>
 
 <!-- ================= PARTIKELN ================= -->
@@ -2549,7 +2575,15 @@ const praepWoWohinExercises = [
   { topic:"Prépositions · Wo oder Wohin?", question:"Die Katze schläft auf ___ Sofa. (das Sofa)", translation:"Le chat dort sur le canapé.", hint:"(le chat ne bouge pas — position)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"Aucun mouvement : le chat est déjà sur le canapé → Wo ? → Dativ : auf dem Sofa.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
   { topic:"Prépositions · Wo oder Wohin?", question:"Ich stelle die Vase auf ___ Tisch. (der Tisch)", translation:"Je pose le vase sur la table.", hint:"(action de déplacer un objet)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« stellen » décrit un déplacement vers un endroit → Wohin ? → Akkusativ : auf den Tisch.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
   { topic:"Prépositions · Wo oder Wohin?", question:"Die Kinder spielen in ___ Garten. (der Garten)", translation:"Les enfants jouent dans le jardin.", hint:"(ils sont déjà dans le jardin)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"Les enfants jouent sur place, sans changer d'endroit → Wo ? → Dativ : in dem (im) Garten.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
-  { topic:"Prépositions · Wo oder Wohin?", question:"Wir gehen in ___ Garten. (der Garten)", translation:"Nous allons dans le jardin.", hint:"(déplacement vers le jardin)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« gehen » indique un déplacement vers le jardin → Wohin ? → Akkusativ : in den Garten.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] }
+  { topic:"Prépositions · Wo oder Wohin?", question:"Wir gehen in ___ Garten. (der Garten)", translation:"Nous allons dans le jardin.", hint:"(déplacement vers le jardin)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« gehen » indique un déplacement vers le jardin → Wohin ? → Akkusativ : in den Garten.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Der Wein steht auf ___ Tisch. (der Tisch)", translation:"Le vin est sur la table.", hint:"(le vin ne bouge pas — stehen)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"« stehen » décrit une position fixe (debout) → Wo ? → Dativ : auf dem Tisch.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Er stellt den Stuhl neben ___ Schrank. (der Schrank)", translation:"Il met la chaise à côté de l'armoire.", hint:"(il déplace la chaise — stellen)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« stellen » décrit le fait de mettre debout quelque part → Wohin ? → Akkusativ : neben den Schrank.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Der Schlüssel liegt auf ___ Kommode. (die Kommode)", translation:"La clé est posée sur la commode.", hint:"(la clé ne bouge pas — liegen)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"« liegen » décrit une position à plat, sans mouvement → Wo ? → Dativ : auf der Kommode.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Sie legt das Handtuch auf ___ Bett. (das Bett)", translation:"Elle pose la serviette sur le lit.", hint:"(elle dépose la serviette — legen)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« legen » décrit le fait de poser à plat quelque part → Wohin ? → Akkusativ : auf das Bett.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Die Katze sitzt auf ___ Fensterbank. (die Fensterbank)", translation:"Le chat est assis sur le rebord de la fenêtre.", hint:"(le chat ne bouge pas — sitzen)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"« sitzen » décrit une position assise fixe → Wo ? → Dativ : auf der Fensterbank.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Er setzt das Kind auf ___ Stuhl. (der Stuhl)", translation:"Il assoit l'enfant sur la chaise.", hint:"(il installe l'enfant — setzen)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« setzen » décrit le fait de mettre en position assise → Wohin ? → Akkusativ : auf den Stuhl.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Die Jacke hängt an ___ Haken. (der Haken)", translation:"La veste est accrochée à la patère.", hint:"(la veste ne bouge pas — hängen)", answers:["wo (dativ)","wo","dativ"], correct:"Wo (Dativ)", explanation:"« hängen » à la forme intransitive décrit une position suspendue fixe → Wo ? → Dativ : an dem (am) Haken.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] },
+  { topic:"Verben der Position · Wo oder Wohin?", question:"Ich hänge die Jacke an ___ Haken. (der Haken)", translation:"J'accroche la veste à la patère.", hint:"(je déplace la veste — hängen transitif)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« hängen » à la forme transitive décrit le fait de suspendre quelque part → Wohin ? → Akkusativ : an den Haken.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"] }
 ];
 
 const praepTheme = {
@@ -2581,6 +2615,22 @@ const praepTheme = {
     ["hinter", "derrière", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Der Garten ist hinter dem Haus.", "Le jardin est derrière la maison."],
     ["neben", "à côté de", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Er sitzt neben mir.", "Il est assis à côté de moi."],
     ["zwischen", "entre", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Schule liegt zwischen dem Park und dem Fluss.", "L'école se trouve entre le parc et la rivière."]
+  ]
+};
+
+const positionsverbenTheme = {
+  id: "positionsverben_vokabular",
+  name: "Verbes de position",
+  svg: '<svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 10-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
+  words: [
+    ["stehen", "être debout / se trouver", "Wo? → Dativ", "Das Auto steht vor dem Haus.", "La voiture est garée devant la maison."],
+    ["stellen", "mettre debout, poser", "Wohin? → Akkusativ", "Ich stelle das Glas auf den Tisch.", "Je pose le verre sur la table."],
+    ["liegen", "être couché / posé à plat", "Wo? → Dativ", "Das Buch liegt auf dem Tisch.", "Le livre est posé sur la table."],
+    ["legen", "poser à plat, coucher", "Wohin? → Akkusativ", "Ich lege das Buch auf den Tisch.", "Je pose le livre sur la table."],
+    ["sitzen", "être assis", "Wo? → Dativ", "Ich sitze auf dem Stuhl.", "Je suis assis sur la chaise."],
+    ["setzen", "asseoir, mettre en position assise", "Wohin? → Akkusativ", "Ich setze mich auf den Stuhl.", "Je m'assieds sur la chaise."],
+    ["hängen", "être suspendu / accroché", "Wo? → Dativ", "Das Bild hängt an der Wand.", "Le tableau est accroché au mur."],
+    ["hängen", "accrocher, suspendre", "Wohin? → Akkusativ", "Ich hänge das Bild an die Wand.", "J'accroche le tableau au mur."]
   ]
 };
 
@@ -3252,7 +3302,8 @@ function orbPanelData(id){
                 { icon:"dossier", title:"Comprendre les prépositions", desc:"Groupes à cas fixe & Wo/Wohin", primary:true, action:"openPraepInfo" },
                 { icon:"exercice", title:"Quel cas ?", desc:"Identifier le cas imposé", action:"startPraepReconnaissance" },
                 { icon:"exercice", title:"Wo ou Wohin ?", desc:"Position ou mouvement (Wechselpräpositionen)", action:"startPraepWoWohin" },
-                { icon:"carte", title:"Vocabulaire", desc:"für, mit, wegen, auf…", action:"startPraepVokabular" }
+                { icon:"carte", title:"Vocabulaire", desc:"für, mit, wegen, auf…", action:"startPraepVokabular" },
+                { icon:"carte", title:"Verbes de position", desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular" }
             ]
         };
     }
@@ -3418,6 +3469,20 @@ function startPraepVokabular(){
     currentFlashcard = 0;
     document.getElementById("flashKicker").textContent = "Prépositions · Vocabulaire";
     document.getElementById("flashThemeTitle").textContent = "Prépositions";
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startPositionsverbenVokabular(){
+    flashcardMode = 'positionsverben';
+    currentTheme = positionsverbenTheme;
+    const allItems = positionsverbenTheme.words.map((word, index) => ({ word, index, themeId: positionsverbenTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = "Verbes de position · Vocabulaire";
+    document.getElementById("flashThemeTitle").textContent = "Verbes de position";
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -3736,6 +3801,7 @@ function handleFlashcardBack(){
     else if(flashcardMode === 'adjektive') openAdjektive();
     else if(flashcardMode === 'kasusverben') openKasusInfo();
     else if(flashcardMode === 'praep') openPraepInfo();
+    else if(flashcardMode === 'positionsverben') openPraepInfo();
     else if(flashcardMode === 'partikeln') openPartikelnInfo();
     else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
     else openNomen();
@@ -3759,7 +3825,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -3819,7 +3885,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
         const germanWord = card[0];
         const frenchWord = card[1];
         const cas = card[2];
