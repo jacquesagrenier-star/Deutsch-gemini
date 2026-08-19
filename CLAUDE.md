@@ -13,7 +13,9 @@ C'est une app **statique, sans build**, en un seul fichier HTML autonome :
 
 - `index.html` — toute l'application (CSS et JS inline, pas de fichiers séparés, pas de bundler, pas de `npm install`). Ouvrir le fichier directement dans un navigateur suffit pour tester en local.
 - Authentification via **Firebase Auth** (email/mot de passe), projet Firebase `deutschai-b6fbb`. La clé API Firebase dans le code est une clé cliente publique (normal pour Firebase web) — pas un secret à protéger comme un mot de passe.
-- `AUTH_REQUIRED = false` dans le code : l'authentification n'est actuellement pas obligatoire pour utiliser l'app.
+- `AUTH_REQUIRED = true` dans le code : l'authentification est obligatoire pour utiliser l'app, avec inscription restreinte par **code d'invitation** (chaque code ne sert qu'une fois). L'écran d'authentification a deux onglets séparés « Se connecter » / « Créer un compte ».
+- Un **tableau de bord admin** (visible seulement pour le compte administrateur, via les réglages) permet de générer/supprimer des codes d'invitation et de voir la progression des testeurs.
+- La progression de l'utilisateur est synchronisée dans le cloud via **Firestore**.
 
 ## Données (important)
 
