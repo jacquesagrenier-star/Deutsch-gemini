@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v73</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v74</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -3538,11 +3538,17 @@ function refreshDynamicUiLang(){
     // recharge aussi (mot/traduction/question déjà vus dans l'ancienne langue).
     try{
         const flashcardsScreen = document.getElementById("flashcards");
-        if(flashcardsScreen && flashcardsScreen.classList.contains("active")) loadFlashcard();
+        if(flashcardsScreen && flashcardsScreen.classList.contains("active")){
+            if(flashKickerKey) setFlashHeader(flashKickerKey, flashTitleKey);
+            loadFlashcard();
+        }
     }catch(e){}
     try{
         const exerciseScreen = document.getElementById("exercise");
-        if(exerciseScreen && exerciseScreen.classList.contains("active")) loadExercise();
+        if(exerciseScreen && exerciseScreen.classList.contains("active")){
+            if(exerciseKickerKey) document.getElementById("exerciseKicker").textContent = t(exerciseKickerKey);
+            loadExercise();
+        }
     }catch(e){}
     try{
         const adminScreen = document.getElementById("adminDashboard");
@@ -5034,8 +5040,7 @@ function startVerbeDueReview(){
     currentCards = dueItems;
     currentTheme = { id: `verb_due_review`, name: t('theme_name_verb_due_review') };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_verben_revision');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_verben_revision', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5058,8 +5063,7 @@ function startVerbeLevel(level){
     }
     currentTheme = { id: `verb_${level}`, name: `${t('orb_verben_title')} · ${level}` };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_verben_flashcards');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_verben_flashcards', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5082,8 +5086,7 @@ function startVerbeRandomMix(){
     currentCards = unmastered;
     currentTheme = { id: `verb_random`, name: t('kicker_verben_aleatoire') };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_verben_aleatoire');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_verben_aleatoire', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5185,8 +5188,7 @@ function startAdjektiveDueReview(){
     currentCards = dueItems;
     currentTheme = { id: `adj_due_review`, name: t('theme_name_adj_due_review') };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_adj_revision');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_adj_revision', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5209,8 +5211,7 @@ function startAdjektiveLevel(level){
     }
     currentTheme = { id: `adj_${level}`, name: `${t('orb_adjektive_title')} · ${level}` };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_adj_flashcards');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_adj_flashcards', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5233,8 +5234,7 @@ function startAdjektiveRandomMix(){
     currentCards = unmastered;
     currentTheme = { id: `adj_random`, name: t('kicker_adj_aleatoire') };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_adj_aleatoire');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_adj_aleatoire', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5397,8 +5397,7 @@ function startAdjektiveFlashcards(){
     if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_adj_flashcards');
-    document.getElementById("flashThemeTitle").textContent = t('title_adjektive_allemands');
+    setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5410,8 +5409,7 @@ function startAllAdjektiveFlashcards(){
     currentCardsFull = allItems;
     currentCards = allItems;
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_adj_flashcards');
-    document.getElementById("flashThemeTitle").textContent = t('title_adjektive_allemands');
+    setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5544,7 +5542,7 @@ function openAdjektiveDeklination(){
 }
 
 function startAdjektiveDeklinationExercises(){
-    startExerciseSet(adjektiveDeklinationExercises, t("kicker_adjektive_deklination"), openAdjektiveDeklination, startAdjektiveDeklinationExercises);
+    startExerciseSet(adjektiveDeklinationExercises, "kicker_adjektive_deklination", openAdjektiveDeklination, startAdjektiveDeklinationExercises);
 }
 
 function startKasusVerben(){
@@ -5555,8 +5553,7 @@ function startKasusVerben(){
     currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_kasus_verben');
-    document.getElementById("flashThemeTitle").textContent = t('op_kasus_o4_t');
+    setFlashHeader('kicker_kasus_verben', 'op_kasus_o4_t');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5566,11 +5563,11 @@ function openPraepInfo(){
 }
 
 function startPraepReconnaissance(){
-    startExerciseSet(praepReconnaissanceExercises, t("kicker_praep_reconnaissance"), openPraepInfo, startPraepReconnaissance);
+    startExerciseSet(praepReconnaissanceExercises, "kicker_praep_reconnaissance", openPraepInfo, startPraepReconnaissance);
 }
 
 function startPraepWoWohin(){
-    startExerciseSet(praepWoWohinExercises, t("kicker_praep_wowohin"), openPraepInfo, startPraepWoWohin);
+    startExerciseSet(praepWoWohinExercises, "kicker_praep_wowohin", openPraepInfo, startPraepWoWohin);
 }
 
 function startPraepVokabular(){
@@ -5581,8 +5578,7 @@ function startPraepVokabular(){
     currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_praep_vocab');
-    document.getElementById("flashThemeTitle").textContent = t('orb_praep_title');
+    setFlashHeader('kicker_praep_vocab', 'orb_praep_title');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5595,8 +5591,7 @@ function startPositionsverbenVokabular(){
     currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_position_vocab');
-    document.getElementById("flashThemeTitle").textContent = t('op_praep_o5_t');
+    setFlashHeader('kicker_position_vocab', 'op_praep_o5_t');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5610,11 +5605,11 @@ function openZuInfinitivInfo(){
 }
 
 function startZuInfinitivExercise(){
-    startExerciseSet(zuInfinitivExercises, t("kicker_zuinf_exercise"), openZuInfinitivInfo, startZuInfinitivExercise);
+    startExerciseSet(zuInfinitivExercises, "kicker_zuinf_exercise", openZuInfinitivInfo, startZuInfinitivExercise);
 }
 
 function startPartikelnNuance(){
-    startExerciseSet(partikelnNuanceExercises, t("kicker_partikeln_nuance"), openPartikelnInfo, startPartikelnNuance);
+    startExerciseSet(partikelnNuanceExercises, "kicker_partikeln_nuance", openPartikelnInfo, startPartikelnNuance);
 }
 
 function startPartikelnVokabular(){
@@ -5625,8 +5620,7 @@ function startPartikelnVokabular(){
     currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_partikeln_vocab');
-    document.getElementById("flashThemeTitle").textContent = t('orb_partikeln_title');
+    setFlashHeader('kicker_partikeln_vocab', 'orb_partikeln_title');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5750,8 +5744,7 @@ function startDueReview(){
     currentCards = dueItems;
     currentTheme = { id: `due_review`, name: t('theme_name_due_review') };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_nomen_revision');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_nomen_revision', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5878,8 +5871,7 @@ function startTheme(themeId, level){
         return;
     }
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_nomen_flashcards');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_nomen_flashcards', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5912,8 +5904,7 @@ function startRandomMix(level){
     currentCards = unmastered;
     currentTheme = { id: `random_${level}`, name: tf('theme_name_random_words', { level: level === "ALL" ? t('all_levels') : level }) };
     currentFlashcard = 0;
-    document.getElementById("flashKicker").textContent = t('kicker_nomen_aleatoire');
-    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    setFlashHeader('kicker_nomen_aleatoire', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -5938,6 +5929,15 @@ function resizeFlashcard(){
     const FRONT_HEIGHT = 170; // hauteur fixe du recto, toujours la même peu importe la longueur du mot
     const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200) : FRONT_HEIGHT;
     flashcardEl.style.height = targetHeight + "px";
+}
+
+let flashKickerKey = null;
+let flashTitleKey = null; // null = utiliser currentTheme.name
+function setFlashHeader(kickerKey, titleKey){
+    flashKickerKey = kickerKey;
+    flashTitleKey = titleKey;
+    document.getElementById("flashKicker").textContent = t(kickerKey);
+    document.getElementById("flashThemeTitle").textContent = titleKey ? t(titleKey) : (currentTheme ? currentTheme.name : "");
 }
 
 function loadFlashcard(){
@@ -6832,14 +6832,16 @@ function resetAllConfirm(){
 }
 
 function startExercises(){
-    startExerciseSet(exercises, t("kicker_verben_praesens"), openVerbenNiveau, startExercises);
+    startExerciseSet(exercises, "kicker_verben_praesens", openVerbenNiveau, startExercises);
 }
 
-function startExerciseSet(list, kickerText, backFn, restartFn){
+let exerciseKickerKey = null;
+function startExerciseSet(list, kickerKey, backFn, restartFn){
     activeExercises = list;
+    exerciseKickerKey = kickerKey;
     exerciseBackHandler = backFn;
     exerciseRestartHandler = restartFn;
-    document.getElementById("exerciseKicker").textContent = kickerText;
+    document.getElementById("exerciseKicker").textContent = t(kickerKey);
     currentExercise = 0;
     scoreValue = 0;
     exerciseResults = [];
@@ -6857,11 +6859,11 @@ function restartActiveExerciseSet(){
 }
 
 function startKasusReconnaissance(){
-    startExerciseSet(kasusReconnaissanceExercises, t("kicker_kasus_reconnaissance"), openKasusInfo, startKasusReconnaissance);
+    startExerciseSet(kasusReconnaissanceExercises, "kicker_kasus_reconnaissance", openKasusInfo, startKasusReconnaissance);
 }
 
 function startKasusArticle(){
-    startExerciseSet(kasusArticleExercises, t("kicker_kasus_article"), openKasusInfo, startKasusArticle);
+    startExerciseSet(kasusArticleExercises, "kicker_kasus_article", openKasusInfo, startKasusArticle);
 }
 
 function loadExercise(){
