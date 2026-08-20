@@ -7,6 +7,12 @@ Application web d'apprentissage du vocabulaire et de la grammaire allemande, des
 - GitHub : https://github.com/jacquesagrenier-star/Deutsch-gemini
 - Branche principale : `main`
 
+## Marque
+
+- Nom retenu pour l'entreprise de cours de langue : **Wortando** (« Wort », mot en allemand, + « -ando », suffixe évoquant un geste répété jusqu'à devenir naturel). Choisi pour se prononcer sans effort en français, anglais et allemand.
+- Vérifié disponible (20 août 2026) : domaines `wortando.com`, `.de`, `.ca`, `.fr` ; comptes `@wortando` sur Instagram et TikTok ; aucune marque déposée ni entreprise existante sous ce nom.
+- Proposition de logo (wordmark + monogramme en W surmonté de deux points façon tréma allemand, palette Encre/Papier/Ambre/Pin) : voir l'artefact publié — https://claude.ai/code/artifact/0cef1150-b272-415d-aa02-4add8320a338
+
 ## Architecture
 
 C'est une app **statique, sans build**, en un seul fichier HTML autonome :
