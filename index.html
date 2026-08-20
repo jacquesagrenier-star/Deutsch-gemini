@@ -245,6 +245,13 @@ body[data-theme="dark"] .subtitle-version{
 .orb[data-orbid="verben"] .orb-icon svg{stroke:#f97316;}
 .orb[data-orbid="verben"] .orb-badge{background:#f97316; box-shadow:0 2px 6px rgba(249,115,22,.35);}
 
+.orb[data-orbid="imperativ"] .orb-icon{
+    background:rgba(225,29,72,.14);
+    border-color:rgba(225,29,72,.28);
+}
+.orb[data-orbid="imperativ"] .orb-icon svg{stroke:#e11d48;}
+.orb[data-orbid="imperativ"] .orb-badge{background:#e11d48; box-shadow:0 2px 6px rgba(225,29,72,.35);}
+
 .orb[data-orbid="nomen"] .orb-icon{
     background:rgba(139,92,246,.14);
     border-color:rgba(139,92,246,.28);
@@ -1769,7 +1776,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v66</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v67</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -1814,6 +1821,18 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_verben_title">Verbes</strong>
                 <small data-i18n="orb_verben_sub">Flashcards & Grammaire</small>
+            </div>
+        </div>
+
+        <div class="orb" data-orbid="imperativ" onclick="openOrbPanel('imperativ')">
+            <div id="badge-imperativ" class="orb-badge hidden"></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-imperativ" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 4v10"/><circle cx="12" cy="18.3" r="1.3" fill="#e11d48" stroke="none"/></svg></div>
+            </div>
+            <div>
+                <strong data-i18n="orb_imperativ_title">Impératif</strong>
+                <small data-i18n="orb_imperativ_sub">Geh! · Komm! · Sei!</small>
             </div>
         </div>
 
@@ -2665,6 +2684,8 @@ const I18N = {
         qual_100: "Maîtrise complète !",
         orb_verben_title: "Verbes",
         orb_verben_sub: "Flashcards & Grammaire",
+        orb_imperativ_title: "Impératif",
+        orb_imperativ_sub: "Geh! · Komm! · Sei!",
         orb_nomen_title: "Noms",
         orb_nomen_sub: "Thèmes & Vocabulaire",
         orb_kasus_title: "Cas",
@@ -2770,6 +2791,8 @@ const I18N = {
         op_verben_title: "Verbes", op_verben_sub: "Conjugaison & usage",
         op_verben_o1_t: "Réviser mes verbes",
         op_verben_o2_d: "A1 · A2 · B1 (B2 à venir)",
+        op_imperativ_title: "Impératif", op_imperativ_sub: "L'ordre, le conseil, l'instruction",
+        op_imperativ_lvl_desc: "du · ihr · Sie",
         op_verben_o3_t: "Verbes aléatoires",
         op_verben_o4_t: "Exercices Präsens", op_verben_o4_d: "Réguliers · irréguliers",
 
@@ -2892,6 +2915,7 @@ const I18N = {
         random_words_by_theme_desc: "Mélange des mots de tous les thèmes du niveau sélectionné.",
         kicker_verben_revision: "Verbes · Révision",
         kicker_verben_flashcards: "Verbes · Flashcards",
+        kicker_imperativ_flashcards: "Impératif · Flashcards",
         kicker_verben_aleatoire: "Verbes · Aléatoire",
         kicker_adj_revision: "Adjectifs · Révision",
         kicker_adj_flashcards: "Adjectifs · Flashcards",
@@ -2986,6 +3010,8 @@ const I18N = {
         qual_100: "Full mastery!",
         orb_verben_title: "Verbs",
         orb_verben_sub: "Flashcards & Grammar",
+        orb_imperativ_title: "Imperative",
+        orb_imperativ_sub: "Geh! · Komm! · Sei!",
         orb_nomen_title: "Nouns",
         orb_nomen_sub: "Themes & Vocabulary",
         orb_kasus_title: "Cases",
@@ -3094,6 +3120,8 @@ const I18N = {
         op_verben_title: "Verbs", op_verben_sub: "Conjugation & usage",
         op_verben_o1_t: "Review my verbs",
         op_verben_o2_d: "A1 · A2 · B1 (B2 coming soon)",
+        op_imperativ_title: "Imperative", op_imperativ_sub: "Commands, advice, instructions",
+        op_imperativ_lvl_desc: "du · ihr · Sie",
         op_verben_o3_t: "Random verbs",
         op_verben_o4_t: "Präsens exercises", op_verben_o4_d: "Regular · irregular",
 
@@ -3216,6 +3244,7 @@ const I18N = {
         random_words_by_theme_desc: "A mix of words from all themes at the selected level.",
         kicker_verben_revision: "Verbs · Review",
         kicker_verben_flashcards: "Verbs · Flashcards",
+        kicker_imperativ_flashcards: "Imperative · Flashcards",
         kicker_verben_aleatoire: "Verbs · Random",
         kicker_adj_revision: "Adjectives · Review",
         kicker_adj_flashcards: "Adjectives · Flashcards",
@@ -3597,6 +3626,7 @@ async function loadVerbeJson() {
                     praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "",
                     perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "",
                     konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "",
+                    imperativ: v.imperativ || null,
                     niveau: lvl
                 });
             });
@@ -4643,6 +4673,17 @@ function masteryPercentForList(themeId, words){
 }
 
 function getVerbenMasteryPercent(){ return masteryPercentForList(verbeTheme.id, verbeTheme.words); }
+// Progression separee de celle du mode Präsens : les 6 verbes de modalite
+// (sans imperatif standard) sont exclus du calcul.
+function getImperativMasteryPercent(){
+    let total = 0, mastered = 0;
+    verbeTheme.words.forEach((w, i) => {
+        if(!w.imperativ) return;
+        total++;
+        if(getWordState("imperativ", i).mastered) mastered++;
+    });
+    return total ? Math.round(mastered / total * 100) : 0;
+}
 function getAdjektiveMasteryPercent(){ return masteryPercentForList(adjektiveTheme.id, adjektiveTheme.words); }
 function getKasusMasteryPercent(){ return masteryPercentForList(kasusVerbTheme.id, kasusVerbTheme.words); }
 function getPraepMasteryPercent(){ return masteryPercentForList(praepTheme.id, praepTheme.words); }
@@ -4688,6 +4729,7 @@ function updateGlobalProgressRing(level, percent){
 
 function updateOrbRings(){
     setRingPercent("ring-verben", getVerbenMasteryPercent());
+    setRingPercent("ring-imperativ", getImperativMasteryPercent());
     setRingPercent("ring-nomen", getNomenMasteryPercent());
     setRingPercent("ring-kasus", getKasusMasteryPercent());
     setRingPercent("ring-adjektive", getAdjektiveMasteryPercent());
@@ -4893,6 +4935,39 @@ function startVerbeLevel(level){
     loadFlashcard();
 }
 
+// L'imperatif partage le meme fichier verbe.json que les flashcards Präsens,
+// mais avec un themeId distinct (verb_imperativ_{niveau}) : la progression de
+// ce mode est independante de celle du mode conjugaison. Les 6 verbes de
+// modalite n'ont pas de champ "imperativ" (pas d'imperatif standard) et sont
+// donc exclus automatiquement du tirage.
+function startImperativLevel(level){
+    flashcardMode = 'imperativ';
+    const now = Date.now();
+    const allItems = verbeTheme.words
+        .map((word, index) => ({ word, index, themeId: "imperativ" }))
+        .filter(it => it.word.niveau === level && it.word.imperativ);
+    if(allItems.length === 0){ alert(t('alert_no_verbs_available')); return; }
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){
+        alert(t('alert_all_verbs_mastered'));
+        return;
+    }
+    currentTheme = { id: `verb_imperativ_${level}`, name: `${t('orb_imperativ_title')} · ${level}` };
+    currentFlashcard = 0;
+    document.getElementById("flashKicker").textContent = t('kicker_imperativ_flashcards');
+    document.getElementById("flashThemeTitle").textContent = currentTheme.name;
+    showScreen("flashcards");
+    loadFlashcard();
+}
+function startImperativA1(){ startImperativLevel('A1'); }
+function startImperativA2(){ startImperativLevel('A2'); }
+function startImperativB1(){ startImperativLevel('B1'); }
+
 function startVerbeRandomMix(){
     flashcardMode = 'verben';
     let pool = verbeTheme.words.map((word, index) => ({ word, index, themeId: verbeTheme.id }));
@@ -5092,6 +5167,16 @@ function orbPanelData(id){
                 { icon:"dossier", title:t("op_by_level"), desc:t("op_verben_o2_d"), action:"openVerbenNiveau" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
                 { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"startExercises" }
+            ]
+        };
+    }
+    if(id === "imperativ"){
+        return {
+            icon:"exercice", title:t("op_imperativ_title"), sub:t("op_imperativ_sub"),
+            options:[
+                { icon:"carte", title:"A1", desc:t("op_imperativ_lvl_desc"), primary:true, action:"startImperativA1" },
+                { icon:"carte", title:"A2", desc:t("op_imperativ_lvl_desc"), action:"startImperativA2" },
+                { icon:"carte", title:"B1", desc:t("op_imperativ_lvl_desc"), action:"startImperativB1" }
             ]
         };
     }
@@ -5732,6 +5817,7 @@ function startRandomMix(level){
 
 function handleFlashcardBack(){
     if(flashcardMode === 'verben') openVerbenNiveau();
+    else if(flashcardMode === 'imperativ') openOrbPanel('imperativ');
     else if(flashcardMode === 'adjektive') openAdjektive();
     else if(flashcardMode === 'kasusverben') openKasusInfo();
     else if(flashcardMode === 'praep') openPraepInfo();
@@ -5759,7 +5845,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'imperativ'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -5805,6 +5891,32 @@ function loadFlashcard(){
             `<div class="verb-sep"></div>` +
             `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${konjunktiv2Tr || ""})`;
         verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
+        verbDetailsEl.classList.remove("hidden");
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+    } else if(flashcardMode === 'imperativ'){
+        const germanWord = card.infinitif;
+        const uiLang = getUiLang();
+        const useEn = uiLang === 'en';
+        const translatedWord = (useEn && card.traduction_en) ? card.traduction_en : card.traduction;
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = translatedWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = translatedWord;
+            translationEl.classList.remove("hidden");
+        }
+        const imp = card.imperativ || {};
+        const coreHtml = `<strong>IMPERATIV</strong><br>` +
+            `du &rarr; ${imp.du || ""}` +
+            `<div class="verb-sep"></div>` +
+            `ihr &rarr; ${imp.ihr || ""}` +
+            `<div class="verb-sep"></div>` +
+            `Sie &rarr; ${imp.sie_Sie || ""}`;
+        verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div>`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
@@ -5992,7 +6104,7 @@ function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
     const item = currentCards[currentFlashcard];
     const card = item.word;
-    const textToSpeak = flashcardMode === 'verben' ? card.infinitif : card[0];
+    const textToSpeak = (flashcardMode === 'verben' || flashcardMode === 'imperativ') ? card.infinitif : card[0];
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'de-DE';
