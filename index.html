@@ -252,6 +252,12 @@ body[data-theme="dark"] .subtitle-version{
 .orb[data-orbid="imperativ"] .orb-icon svg{stroke:#e11d48;}
 .orb[data-orbid="imperativ"] .orb-badge{background:#e11d48; box-shadow:0 2px 6px rgba(225,29,72,.35);}
 
+.orb[data-orbid="zuinfinitiv"] .orb-icon{
+    background:rgba(99,102,241,.14);
+    border-color:rgba(99,102,241,.28);
+}
+.orb[data-orbid="zuinfinitiv"] .orb-icon svg{stroke:#6366f1;}
+
 .orb[data-orbid="nomen"] .orb-icon{
     background:rgba(139,92,246,.14);
     border-color:rgba(139,92,246,.28);
@@ -1776,7 +1782,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v67</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v68</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -1833,6 +1839,15 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_imperativ_title">Impératif</strong>
                 <small data-i18n="orb_imperativ_sub">Geh! · Komm! · Sei!</small>
+            </div>
+        </div>
+
+        <div class="orb" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
+            <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_zuinf_title">Zu + infinitif</strong>
+                <small data-i18n="orb_zuinf_sub">versuchen zu · ohne zu</small>
             </div>
         </div>
 
@@ -2352,6 +2367,72 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     <button class="secondary" onclick="startPartikelnVokabular()" data-i18n="partikeln_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
 </section>
 
+<!-- ================= ZU + INFINITIF ================= -->
+
+<section id="zuInfinitivInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('zuinfinitiv')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="zuinf_info_title">Comprendre « zu » + infinitif</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="zuinf_intro">
+            Beaucoup de verbes allemands sont suivis d'un deuxième verbe à l'infinitif. La question est simple : faut-il mettre <strong>zu</strong> devant cet infinitif, ou pas ? La réponse dépend du premier verbe.
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zuinf_never_title">Jamais de « zu »</strong>
+        <div class="info-box" data-i18n-html="zuinf_never_modal">
+            Les <strong style="color:#3b6fe0;">verbes de modalité</strong> (können, müssen, dürfen, sollen, wollen, mögen) n'utilisent jamais « zu ».<br>
+            <em>Ich kann gut schwimmen.</em> (Je sais bien nager.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_never_movement">
+            Les verbes de <strong style="color:#3b6fe0;">mouvement et de perception</strong> (gehen, kommen, hören, sehen, lassen) se comportent souvent comme des modaux.<br>
+            <em>Ich gehe schwimmen.</em> (Je vais nager.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zuinf_always_title">Avec « zu »</strong>
+        <div class="info-box" data-i18n-html="zuinf_always_list">
+            La majorité des autres verbes exigent « zu » : <strong style="color:#3b6fe0;">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br>
+            <em>Ich versuche, Deutsch zu lernen.</em> (J'essaie d'apprendre l'allemand.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_separable">
+            Avec un <strong style="color:#3b6fe0;">verbe à particule séparable</strong>, « zu » s'insère entre la particule et le radical — un seul mot.<br>
+            <em>anfangen</em> → <em>Ich habe vor, an<strong>zu</strong>fangen.</em> (J'ai l'intention de commencer.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_brauchen">
+            <strong style="color:#3b6fe0;">brauchen</strong> (au négatif) exige aussi « zu », contrairement aux modaux.<br>
+            <em>Du brauchst nicht zu kommen.</em> (Tu n'as pas besoin de venir.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zuinf_constructions_title">Constructions à deux mots</strong>
+        <div class="info-box" data-i18n-html="zuinf_umzu">
+            <strong style="color:#3b6fe0;">um … zu</strong> — le but, « afin de »<br>
+            <em>Ich lerne Deutsch, um in Berlin zu arbeiten.</em> (J'apprends l'allemand afin de travailler à Berlin.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_ohnezu">
+            <strong style="color:#3b6fe0;">ohne … zu</strong> — l'absence, « sans »<br>
+            <em>Er ging, ohne zu grüßen.</em> (Il est parti sans dire bonjour.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_stattzu">
+            <strong style="color:#3b6fe0;">(an)statt … zu</strong> — la substitution, « au lieu de »<br>
+            <em>Sie las, statt zu schlafen.</em> (Elle a lu au lieu de dormir.)
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startZuInfinitivExercise()" data-i18n="zuinf_btn_exercise">M'ENTRAÎNER : ZU OU PAS ZU ? →</button>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 
 <section id="flashcards" class="screen">
@@ -2686,6 +2767,8 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammaire",
         orb_imperativ_title: "Impératif",
         orb_imperativ_sub: "Geh! · Komm! · Sei!",
+        orb_zuinf_title: "Zu + infinitif",
+        orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_nomen_title: "Noms",
         orb_nomen_sub: "Thèmes & Vocabulaire",
         orb_kasus_title: "Cas",
@@ -2793,6 +2876,9 @@ const I18N = {
         op_verben_o2_d: "A1 · A2 · B1 (B2 à venir)",
         op_imperativ_title: "Impératif", op_imperativ_sub: "L'ordre, le conseil, l'instruction",
         op_imperativ_lvl_desc: "du · ihr · Sie",
+        op_zuinf_title: "Zu + infinitif", op_zuinf_sub: "Faut-il « zu » ou pas ?",
+        op_zuinf_o1_t: "Comprendre la règle",
+        op_zuinf_o2_t: "M'entraîner", op_zuinf_o2_d: "Zu ou pas zu ?",
         op_verben_o3_t: "Verbes aléatoires",
         op_verben_o4_t: "Exercices Präsens", op_verben_o4_d: "Réguliers · irréguliers",
 
@@ -2867,6 +2953,21 @@ const I18N = {
         praep_btn_vocab: "VOCABULAIRE : PRÉPOSITIONS →",
         praep_btn_position_vocab: "VOCABULAIRE : VERBES DE POSITION →",
 
+        zuinf_info_title: "Comprendre « zu » + infinitif",
+        zuinf_intro: `Beaucoup de verbes allemands sont suivis d'un deuxième verbe à l'infinitif. La question est simple : faut-il mettre <strong>zu</strong> devant cet infinitif, ou pas ? La réponse dépend du premier verbe.`,
+        zuinf_never_title: "Jamais de « zu »",
+        zuinf_never_modal: `Les <strong style="color:#3b6fe0;">verbes de modalité</strong> (können, müssen, dürfen, sollen, wollen, mögen) n'utilisent jamais « zu ».<br><em>Ich kann gut schwimmen.</em> (Je sais bien nager.)`,
+        zuinf_never_movement: `Les verbes de <strong style="color:#3b6fe0;">mouvement et de perception</strong> (gehen, kommen, hören, sehen, lassen) se comportent souvent comme des modaux.<br><em>Ich gehe schwimmen.</em> (Je vais nager.)`,
+        zuinf_always_title: "Avec « zu »",
+        zuinf_always_list: `La majorité des autres verbes exigent « zu » : <strong style="color:#3b6fe0;">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br><em>Ich versuche, Deutsch zu lernen.</em> (J'essaie d'apprendre l'allemand.)`,
+        zuinf_separable: `Avec un <strong style="color:#3b6fe0;">verbe à particule séparable</strong>, « zu » s'insère entre la particule et le radical — un seul mot.<br><em>anfangen</em> → <em>Ich habe vor, an<strong>zu</strong>fangen.</em> (J'ai l'intention de commencer.)`,
+        zuinf_brauchen: `<strong style="color:#3b6fe0;">brauchen</strong> (au négatif) exige aussi « zu », contrairement aux modaux.<br><em>Du brauchst nicht zu kommen.</em> (Tu n'as pas besoin de venir.)`,
+        zuinf_constructions_title: "Constructions à deux mots",
+        zuinf_umzu: `<strong style="color:#3b6fe0;">um … zu</strong> — le but, « afin de »<br><em>Ich lerne Deutsch, um in Berlin zu arbeiten.</em> (J'apprends l'allemand afin de travailler à Berlin.)`,
+        zuinf_ohnezu: `<strong style="color:#3b6fe0;">ohne … zu</strong> — l'absence, « sans »<br><em>Er ging, ohne zu grüßen.</em> (Il est parti sans dire bonjour.)`,
+        zuinf_stattzu: `<strong style="color:#3b6fe0;">(an)statt … zu</strong> — la substitution, « au lieu de »<br><em>Sie las, statt zu schlafen.</em> (Elle a lu au lieu de dormir.)`,
+        zuinf_btn_exercise: "M'ENTRAÎNER : ZU OU PAS ZU ? →",
+        kicker_zuinf_exercise: "Zu + infinitif · Exercice",
         partikeln_info_title: "Comprendre les particules",
         partikeln_intro: `Les particules modales n'ont pas de traduction directe : elles ne changent pas le sens littéral d'une phrase, mais son <strong>ton</strong>. Le but n'est pas de les traduire mot à mot, mais de reconnaître la nuance qu'elles ajoutent.`,
         partikeln_most_useful_title: "Les particules les plus utiles",
@@ -3012,6 +3113,8 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammar",
         orb_imperativ_title: "Imperative",
         orb_imperativ_sub: "Geh! · Komm! · Sei!",
+        orb_zuinf_title: "Zu + infinitive",
+        orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_nomen_title: "Nouns",
         orb_nomen_sub: "Themes & Vocabulary",
         orb_kasus_title: "Cases",
@@ -3122,6 +3225,9 @@ const I18N = {
         op_verben_o2_d: "A1 · A2 · B1 (B2 coming soon)",
         op_imperativ_title: "Imperative", op_imperativ_sub: "Commands, advice, instructions",
         op_imperativ_lvl_desc: "du · ihr · Sie",
+        op_zuinf_title: "Zu + infinitive", op_zuinf_sub: "Do you need « zu » or not?",
+        op_zuinf_o1_t: "Understand the rule",
+        op_zuinf_o2_t: "Practice", op_zuinf_o2_d: "Zu or no zu?",
         op_verben_o3_t: "Random verbs",
         op_verben_o4_t: "Präsens exercises", op_verben_o4_d: "Regular · irregular",
 
@@ -3196,6 +3302,21 @@ const I18N = {
         praep_btn_vocab: "VOCABULARY: PREPOSITIONS →",
         praep_btn_position_vocab: "VOCABULARY: POSITION VERBS →",
 
+        zuinf_info_title: "Understanding « zu » + infinitive",
+        zuinf_intro: `Many German verbs are followed by a second verb in the infinitive. The question is simple: does that infinitive need <strong>zu</strong> in front of it, or not? The answer depends on the first verb.`,
+        zuinf_never_title: "Never « zu »",
+        zuinf_never_modal: `<strong style="color:#3b6fe0;">Modal verbs</strong> (können, müssen, dürfen, sollen, wollen, mögen) never use « zu ».<br><em>Ich kann gut schwimmen.</em> (I can swim well.)`,
+        zuinf_never_movement: `Verbs of <strong style="color:#3b6fe0;">movement and perception</strong> (gehen, kommen, hören, sehen, lassen) often behave like modals.<br><em>Ich gehe schwimmen.</em> (I'm going swimming.)`,
+        zuinf_always_title: "With « zu »",
+        zuinf_always_list: `Most other verbs require « zu »: <strong style="color:#3b6fe0;">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br><em>Ich versuche, Deutsch zu lernen.</em> (I'm trying to learn German.)`,
+        zuinf_separable: `With a <strong style="color:#3b6fe0;">separable-prefix verb</strong>, « zu » is inserted between the prefix and the stem — one single word.<br><em>anfangen</em> → <em>Ich habe vor, an<strong>zu</strong>fangen.</em> (I plan to start.)`,
+        zuinf_brauchen: `<strong style="color:#3b6fe0;">brauchen</strong> (in the negative) also requires « zu », unlike modals.<br><em>Du brauchst nicht zu kommen.</em> (You don't need to come.)`,
+        zuinf_constructions_title: "Two-word constructions",
+        zuinf_umzu: `<strong style="color:#3b6fe0;">um … zu</strong> — purpose, "in order to"<br><em>Ich lerne Deutsch, um in Berlin zu arbeiten.</em> (I'm learning German in order to work in Berlin.)`,
+        zuinf_ohnezu: `<strong style="color:#3b6fe0;">ohne … zu</strong> — absence, "without"<br><em>Er ging, ohne zu grüßen.</em> (He left without saying hello.)`,
+        zuinf_stattzu: `<strong style="color:#3b6fe0;">(an)statt … zu</strong> — substitution, "instead of"<br><em>Sie las, statt zu schlafen.</em> (She read instead of sleeping.)`,
+        zuinf_btn_exercise: "PRACTICE: ZU OR NO ZU? →",
+        kicker_zuinf_exercise: "Zu + infinitive · Exercise",
         partikeln_info_title: "Understanding particles",
         partikeln_intro: `Modal particles have no direct translation: they don't change a sentence's literal meaning, but its <strong>tone</strong>. The goal isn't to translate them word for word, but to recognize the nuance they add.`,
         partikeln_most_useful_title: "The most useful particles",
@@ -4213,6 +4334,20 @@ const PARTIKELN_NUANCE_OPTIONS_EN = [
   "Exasperation, strong emphasis"
 ];
 
+const zuInfinitivExercises = [
+  { topic:"Zu + infinitif", question:"Ich kann gut Deutsch ___.", question_en:"Ich kann gut Deutsch ___.", translation:"Je sais bien parler allemand.", translation_en:"I can speak German well.", hint:"können = verbe de modalité", hint_en:"können = modal verb", answers:["sprechen"], correct:"sprechen", correctEn:"sprechen", explanation:"Après un verbe de modalité (können, müssen, dürfen, sollen, wollen, mögen), jamais de « zu ».", explanation_en:"After a modal verb (können, müssen, dürfen, sollen, wollen, mögen), never use « zu ».", options:["sprechen","zu sprechen"], optionsEn:["sprechen","zu sprechen"] },
+  { topic:"Zu + infinitif", question:"Er muss früh ___.", question_en:"Er muss früh ___.", translation:"Il doit se lever tôt.", translation_en:"He has to get up early.", hint:"müssen = verbe de modalité", hint_en:"müssen = modal verb", answers:["aufstehen"], correct:"aufstehen", correctEn:"aufstehen", explanation:"Même règle : müssen est un modal, jamais de « zu » — même avec un verbe séparable (aufstehen).", explanation_en:"Same rule: müssen is modal, never « zu » — even with a separable verb (aufstehen).", options:["aufstehen","aufzustehen"], optionsEn:["aufstehen","aufzustehen"] },
+  { topic:"Zu + infinitif", question:"Wir gehen heute Abend ___.", question_en:"Wir gehen heute Abend ___.", translation:"Nous allons danser ce soir.", translation_en:"We're going dancing tonight.", hint:"gehen = verbe de mouvement", hint_en:"gehen = verb of movement", answers:["tanzen"], correct:"tanzen", correctEn:"tanzen", explanation:"Les verbes de mouvement (gehen, kommen) se comportent comme les modaux : pas de « zu ».", explanation_en:"Verbs of movement (gehen, kommen) behave like modals: no « zu ».", options:["tanzen","zu tanzen"], optionsEn:["tanzen","zu tanzen"] },
+  { topic:"Zu + infinitif", question:"Ich versuche, pünktlich ___.", question_en:"Ich versuche, pünktlich ___.", translation:"J'essaie d'être à l'heure.", translation_en:"I'm trying to be on time.", hint:"versuchen exige « zu »", hint_en:"versuchen requires « zu »", answers:["zu kommen"], correct:"zu kommen", correctEn:"zu kommen", explanation:"versuchen fait partie des verbes qui exigent « zu » devant l'infinitif qui suit.", explanation_en:"versuchen is one of the verbs that require « zu » before the following infinitive.", options:["zu kommen","kommen"], optionsEn:["zu kommen","kommen"] },
+  { topic:"Zu + infinitif", question:"Vergiss nicht, die Tür ___!", question_en:"Vergiss nicht, die Tür ___!", translation:"N'oublie pas de fermer la porte !", translation_en:"Don't forget to close the door!", hint:"vergessen exige « zu »", hint_en:"vergessen requires « zu »", answers:["zu schließen"], correct:"zu schließen", correctEn:"zu schließen", explanation:"vergessen, comme versuchen, exige « zu » devant l'infinitif.", explanation_en:"vergessen, like versuchen, requires « zu » before the infinitive.", options:["zu schließen","schließen"], optionsEn:["zu schließen","schließen"] },
+  { topic:"Zu + infinitif", question:"Wir haben vor, morgen ___.", question_en:"Wir haben vor, morgen ___.", translation:"Nous prévoyons de commencer demain.", translation_en:"We plan to start tomorrow.", hint:"verbe séparable : anfangen", hint_en:"separable verb: anfangen", answers:["anzufangen"], correct:"anzufangen", correctEn:"anzufangen", explanation:"Avec un verbe à particule séparable, « zu » s'insère entre la particule et le radical : an-zu-fangen, un seul mot.", explanation_en:"With a separable-prefix verb, « zu » is inserted between the prefix and the stem: an-zu-fangen, one word.", options:["anzufangen","zu anfangen"], optionsEn:["anzufangen","zu anfangen"] },
+  { topic:"Zu + infinitif", question:"Er hat versprochen, bald ___.", question_en:"Er hat versprochen, bald ___.", translation:"Il a promis de rappeler bientôt.", translation_en:"He promised to call back soon.", hint:"verbe séparable : anrufen", hint_en:"separable verb: anrufen", answers:["anzurufen"], correct:"anzurufen", correctEn:"anzurufen", explanation:"Encore un verbe séparable : « zu » s'insère au milieu — an-zu-rufen.", explanation_en:"Another separable verb: « zu » goes in the middle — an-zu-rufen.", options:["anzurufen","zu anrufen"], optionsEn:["anzurufen","zu anrufen"] },
+  { topic:"Zu + infinitif", question:"Du brauchst heute nicht ___.", question_en:"Du brauchst heute nicht ___.", translation:"Tu n'as pas besoin de travailler aujourd'hui.", translation_en:"You don't need to work today.", hint:"brauchen (négatif) exige « zu »", hint_en:"brauchen (negative) requires « zu »", answers:["zu arbeiten"], correct:"zu arbeiten", correctEn:"zu arbeiten", explanation:"brauchen n'est pas un modal : au négatif, il exige « zu », contrairement à können/müssen/etc.", explanation_en:"brauchen is not a modal: in the negative, it requires « zu », unlike können/müssen/etc.", options:["zu arbeiten","arbeiten"], optionsEn:["zu arbeiten","arbeiten"] },
+  { topic:"Zu + infinitif", question:"Ich rufe an, ___ dich zu informieren.", question_en:"Ich rufe an, ___ dich zu informieren.", translation:"J'appelle afin de t'informer.", translation_en:"I'm calling in order to inform you.", hint:"exprime le but", hint_en:"expresses purpose", answers:["um"], correct:"um", correctEn:"um", explanation:"« um … zu » exprime le but, « afin de ».", explanation_en:"« um … zu » expresses purpose, « in order to ».", options:["um","ohne"], optionsEn:["um","ohne"] },
+  { topic:"Zu + infinitif", question:"Er verließ den Raum, ___ etwas zu sagen.", question_en:"Er verließ den Raum, ___ etwas zu sagen.", translation:"Il a quitté la pièce sans rien dire.", translation_en:"He left the room without saying anything.", hint:"exprime l'absence", hint_en:"expresses absence", answers:["ohne"], correct:"ohne", correctEn:"ohne", explanation:"« ohne … zu » exprime l'absence, « sans ».", explanation_en:"« ohne … zu » expresses absence, « without ».", options:["ohne","statt"], optionsEn:["ohne","statt"] },
+  { topic:"Zu + infinitif", question:"Sie blieb zu Hause, ___ ins Kino zu gehen.", question_en:"Sie blieb zu Hause, ___ ins Kino zu gehen.", translation:"Elle est restée à la maison au lieu d'aller au cinéma.", translation_en:"She stayed home instead of going to the movies.", hint:"exprime la substitution", hint_en:"expresses substitution", answers:["statt"], correct:"statt", correctEn:"statt", explanation:"« (an)statt … zu » exprime la substitution, « au lieu de ».", explanation_en:"« (an)statt … zu » expresses substitution, « instead of ».", options:["statt","um"], optionsEn:["statt","um"] }
+];
+
 const partikelnNuanceExercises = [
   { topic:"Particules · Nuance", question:"Mach das doch! Quelle nuance apporte « doch » ici ?", question_en:"Mach das doch! What nuance does « doch » add here?", translation:"Vas-y, fais-le donc !", translation_en:"Go on, just do it!", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["insistance amicale (encouragement)","friendly insistence (encouragement)"], correct:"Insistance amicale (encouragement)", correctEn:"Friendly insistence (encouragement)", explanation:"« doch » pousse gentiment quelqu'un à agir — une insistance amicale.", explanation_en:"« doch » gently pushes someone to act — a friendly insistence.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN },
   { topic:"Particules · Nuance", question:"Komm mal her! Quelle nuance apporte « mal » ici ?", question_en:"Komm mal her! What nuance does « mal » add here?", translation:"Viens un peu par ici.", translation_en:"Come here for a sec.", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["adoucit la demande (plus léger)","softens the request (lighter tone)"], correct:"Adoucit la demande (plus léger)", correctEn:"Softens the request (lighter tone)", explanation:"« mal » rend la demande plus légère et informelle, moins directe qu'un ordre sec.", explanation_en:"« mal » makes the request lighter and more casual, less direct than a blunt order.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN },
@@ -5180,6 +5315,15 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "zuinfinitiv"){
+        return {
+            icon:"dossier", title:t("op_zuinf_title"), sub:t("op_zuinf_sub"),
+            options:[
+                { icon:"dossier", title:t("op_zuinf_o1_t"), desc:"versuchen, vergessen, anfangen…", primary:true, action:"openZuInfinitivInfo" },
+                { icon:"exercice", title:t("op_zuinf_o2_t"), desc:t("op_zuinf_o2_d"), action:"startZuInfinitivExercise" }
+            ]
+        };
+    }
     if(id === "nomen"){
         return {
             icon:"dossier", title:t("op_nomen_title"), sub:t("op_nomen_sub"),
@@ -5508,6 +5652,14 @@ function startPositionsverbenVokabular(){
 
 function openPartikelnInfo(){
     showScreen("partikelnInfo");
+}
+
+function openZuInfinitivInfo(){
+    showScreen("zuInfinitivInfo");
+}
+
+function startZuInfinitivExercise(){
+    startExerciseSet(zuInfinitivExercises, t("kicker_zuinf_exercise"), openZuInfinitivInfo, startZuInfinitivExercise);
 }
 
 function startPartikelnNuance(){
