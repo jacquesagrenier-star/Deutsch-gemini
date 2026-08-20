@@ -11,7 +11,11 @@ Application web d'apprentissage du vocabulaire et de la grammaire allemande, des
 
 - Nom retenu pour l'entreprise de cours de langue : **Wortando** (« Wort », mot en allemand, + « -ando », suffixe évoquant un geste répété jusqu'à devenir naturel). Choisi pour se prononcer sans effort en français, anglais et allemand.
 - Vérifié disponible (20 août 2026) : domaines `wortando.com`, `.de`, `.ca`, `.fr` ; comptes `@wortando` sur Instagram et TikTok ; aucune marque déposée ni entreprise existante sous ce nom.
-- Proposition de logo (wordmark + monogramme en W surmonté de deux points façon tréma allemand, palette Encre/Papier/Ambre/Pin) : voir l'artefact publié — https://claude.ai/code/artifact/0cef1150-b272-415d-aa02-4add8320a338
+- Logo retenu (validé) : monogramme en W (encre pleine, #1C2430) surmonté de deux points ambre (#E8A23A) façon tréma allemand. Concept complet et rationale : voir l'artefact publié — https://claude.ai/code/artifact/0cef1150-b272-415d-aa02-4add8320a338
+- Fichiers finaux dans `branding/` :
+  - `wortando-app-icon.png` — icône seule, carré plein 1024×1024, fond papier opaque (pour icône iOS, pas de texte).
+  - `wortando-logo-pale.png` — icône + mot « Wortando », fond transparent (pour les sections claires de l'app).
+  - `wortando-logo-dark.png` — icône seule, trait clair, fond transparent (pour les sections foncées de l'app).
 
 ## Architecture
 
