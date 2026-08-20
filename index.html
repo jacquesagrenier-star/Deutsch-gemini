@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v72</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v73</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -3018,6 +3018,7 @@ const I18N = {
         random_verbs_desc: "Mélange des verbes de tous les niveaux disponibles.",
         random_adj_desc: "Mélange des adjectifs de tous les niveaux.",
         random_nouns_by_level_desc: "Mélange des noms de tous les niveaux disponibles.",
+        label_plural: "Pluriel :",
         random_words_by_theme_desc: "Mélange des mots de tous les thèmes du niveau sélectionné.",
         kicker_verben_revision: "Verbes · Révision",
         kicker_verben_flashcards: "Verbes · Flashcards",
@@ -3367,6 +3368,7 @@ const I18N = {
         random_verbs_desc: "A mix of verbs from all available levels.",
         random_adj_desc: "A mix of adjectives from all levels.",
         random_nouns_by_level_desc: "A mix of nouns from all available levels.",
+        label_plural: "Plural:",
         random_words_by_theme_desc: "A mix of words from all themes at the selected level.",
         kicker_verben_revision: "Verbs · Review",
         kicker_verben_flashcards: "Verbs · Flashcards",
@@ -6096,7 +6098,7 @@ function loadFlashcard(){
         articleEl.textContent = card[1];
         articleEl.className = `article ${articleText}`;
         articleEl.classList.remove("hidden");
-        pluralEl.textContent = `Pluriel : ${card[2]}`;
+        pluralEl.textContent = `${t('label_plural')} ${card[2]}`;
         pluralEl.classList.remove("hidden");
         verbDetailsEl.classList.add("hidden");
     }
