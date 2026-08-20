@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v71</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v72</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -2373,8 +2373,31 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <em>Ich kann gut schwimmen.</em> (Je sais bien nager.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_never_movement">
-            Les verbes de <strong style="color:#3b6fe0;">mouvement et de perception</strong> (gehen, kommen, hören, sehen, lassen) se comportent souvent comme des modaux.<br>
+            Les verbes de <strong style="color:#3b6fe0;">mouvement</strong> (gehen, kommen) se comportent comme des modaux quand ils annoncent une activité qu'on va faire.<br>
             <em>Ich gehe schwimmen.</em> (Je vais nager.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_wahrnehmung">
+            Les <strong style="color:#3b6fe0;">verbes de perception</strong> — <em>Wahrnehmungsverben</em> — (sehen, hören, spüren, fühlen) forment une construction « accusatif + infinitif » : on perçoit quelqu'un ou quelque chose <strong>en train de</strong> faire une action, comme un seul bloc verbal, donc pas de « zu ».<br>
+            <em>Ich sehe die Kinder spielen.</em> (Je vois les enfants jouer.)<br>
+            <em>Ich höre ihn singen.</em> (Je l'entends chanter.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_lassen">
+            <strong style="color:#3b6fe0;">lassen</strong> suit la même logique, dans deux sens courants : faire faire quelque chose par quelqu'un d'autre (causatif), ou laisser faire.<br>
+            <em>Ich lasse mein Auto reparieren.</em> (Je fais réparer ma voiture.)<br>
+            <em>Lass mich das machen!</em> (Laisse-moi le faire !)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_bleiben">
+            <strong style="color:#3b6fe0;">bleiben</strong>, combiné à un verbe de position (stehen, sitzen, liegen), décrit un état qui continue — encore un bloc verbal sans « zu ».<br>
+            <em>Er blieb stehen.</em> (Il s'est arrêté / est resté debout.)<br>
+            <em>Bleib sitzen!</em> (Reste assis !)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_finden">
+            <strong style="color:#3b6fe0;">finden</strong>, quand il signifie « surprendre / rencontrer quelqu'un en train de faire quelque chose », suit la même construction que les verbes de perception.<br>
+            <em>Ich fand ihn schlafen.</em> (Je l'ai trouvé en train de dormir.)
+        </div>
+        <div class="info-box" data-i18n-html="zuinf_haben">
+            <strong style="color:#3b6fe0;">haben</strong>, combiné à un verbe de position, décrit un état — surtout à l'oral. Là aussi, pas de « zu ».<br>
+            <em>Ich habe das Bild an der Wand hängen.</em> (J'ai le tableau accroché au mur.)
         </div>
     </div>
 
@@ -2934,7 +2957,12 @@ const I18N = {
         zuinf_intro: `Beaucoup de verbes allemands sont suivis d'un deuxième verbe à l'infinitif. La question est simple : faut-il mettre <strong>zu</strong> devant cet infinitif, ou pas ? La réponse dépend du premier verbe.`,
         zuinf_never_title: "Jamais de « zu »",
         zuinf_never_modal: `Les <strong style="color:#3b6fe0;">verbes de modalité</strong> (können, müssen, dürfen, sollen, wollen, mögen) n'utilisent jamais « zu ».<br><em>Ich kann gut schwimmen.</em> (Je sais bien nager.)`,
-        zuinf_never_movement: `Les verbes de <strong style="color:#3b6fe0;">mouvement et de perception</strong> (gehen, kommen, hören, sehen, lassen) se comportent souvent comme des modaux.<br><em>Ich gehe schwimmen.</em> (Je vais nager.)`,
+        zuinf_never_movement: `Les verbes de <strong style="color:#3b6fe0;">mouvement</strong> (gehen, kommen) se comportent comme des modaux quand ils annoncent une activité qu'on va faire.<br><em>Ich gehe schwimmen.</em> (Je vais nager.)`,
+        zuinf_wahrnehmung: `Les <strong style="color:#3b6fe0;">verbes de perception</strong> — <em>Wahrnehmungsverben</em> — (sehen, hören, spüren, fühlen) forment une construction « accusatif + infinitif » : on perçoit quelqu'un ou quelque chose <strong>en train de</strong> faire une action, comme un seul bloc verbal, donc pas de « zu ».<br><em>Ich sehe die Kinder spielen.</em> (Je vois les enfants jouer.)<br><em>Ich höre ihn singen.</em> (Je l'entends chanter.)`,
+        zuinf_lassen: `<strong style="color:#3b6fe0;">lassen</strong> suit la même logique, dans deux sens courants : faire faire quelque chose par quelqu'un d'autre (causatif), ou laisser faire.<br><em>Ich lasse mein Auto reparieren.</em> (Je fais réparer ma voiture.)<br><em>Lass mich das machen!</em> (Laisse-moi le faire !)`,
+        zuinf_bleiben: `<strong style="color:#3b6fe0;">bleiben</strong>, combiné à un verbe de position (stehen, sitzen, liegen), décrit un état qui continue — encore un bloc verbal sans « zu ».<br><em>Er blieb stehen.</em> (Il s'est arrêté / est resté debout.)<br><em>Bleib sitzen!</em> (Reste assis !)`,
+        zuinf_finden: `<strong style="color:#3b6fe0;">finden</strong>, quand il signifie « surprendre / rencontrer quelqu'un en train de faire quelque chose », suit la même construction que les verbes de perception.<br><em>Ich fand ihn schlafen.</em> (Je l'ai trouvé en train de dormir.)`,
+        zuinf_haben: `<strong style="color:#3b6fe0;">haben</strong>, combiné à un verbe de position, décrit un état — surtout à l'oral. Là aussi, pas de « zu ».<br><em>Ich habe das Bild an der Wand hängen.</em> (J'ai le tableau accroché au mur.)`,
         zuinf_always_title: "Avec « zu »",
         zuinf_always_list: `La majorité des autres verbes exigent « zu » : <strong style="color:#3b6fe0;">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br><em>Ich versuche, Deutsch zu lernen.</em> (J'essaie d'apprendre l'allemand.)`,
         zuinf_separable: `Avec un <strong style="color:#3b6fe0;">verbe à particule séparable</strong>, « zu » s'insère entre la particule et le radical — un seul mot.<br><em>anfangen</em> → <em>Ich habe vor, an<strong>zu</strong>fangen.</em> (J'ai l'intention de commencer.)`,
@@ -3278,7 +3306,12 @@ const I18N = {
         zuinf_intro: `Many German verbs are followed by a second verb in the infinitive. The question is simple: does that infinitive need <strong>zu</strong> in front of it, or not? The answer depends on the first verb.`,
         zuinf_never_title: "Never « zu »",
         zuinf_never_modal: `<strong style="color:#3b6fe0;">Modal verbs</strong> (können, müssen, dürfen, sollen, wollen, mögen) never use « zu ».<br><em>Ich kann gut schwimmen.</em> (I can swim well.)`,
-        zuinf_never_movement: `Verbs of <strong style="color:#3b6fe0;">movement and perception</strong> (gehen, kommen, hören, sehen, lassen) often behave like modals.<br><em>Ich gehe schwimmen.</em> (I'm going swimming.)`,
+        zuinf_never_movement: `Verbs of <strong style="color:#3b6fe0;">movement</strong> (gehen, kommen) behave like modals when they announce an activity you're about to do.<br><em>Ich gehe schwimmen.</em> (I'm going swimming.)`,
+        zuinf_wahrnehmung: `<strong style="color:#3b6fe0;">Perception verbs</strong> — <em>Wahrnehmungsverben</em> — (sehen, hören, spüren, fühlen) form an "accusative + infinitive" construction: you perceive someone or something <strong>in the middle of</strong> doing an action, as a single verbal block, so no « zu ».<br><em>Ich sehe die Kinder spielen.</em> (I see the children playing.)<br><em>Ich höre ihn singen.</em> (I hear him singing.)`,
+        zuinf_lassen: `<strong style="color:#3b6fe0;">lassen</strong> follows the same logic, in two common senses: having something done by someone else (causative), or letting something happen.<br><em>Ich lasse mein Auto reparieren.</em> (I'm having my car repaired.)<br><em>Lass mich das machen!</em> (Let me do it!)`,
+        zuinf_bleiben: `<strong style="color:#3b6fe0;">bleiben</strong>, combined with a positional verb (stehen, sitzen, liegen), describes a continuing state — another verbal block with no « zu ».<br><em>Er blieb stehen.</em> (He stopped / stayed standing.)<br><em>Bleib sitzen!</em> (Stay seated!)`,
+        zuinf_finden: `<strong style="color:#3b6fe0;">finden</strong>, when it means "to come across / catch someone doing something," follows the same construction as perception verbs.<br><em>Ich fand ihn schlafen.</em> (I found him sleeping.)`,
+        zuinf_haben: `<strong style="color:#3b6fe0;">haben</strong>, combined with a positional verb, describes a state — mostly in speech. Here too, no « zu ».<br><em>Ich habe das Bild an der Wand hängen.</em> (I have the picture hanging on the wall.)`,
         zuinf_always_title: "With « zu »",
         zuinf_always_list: `Most other verbs require « zu »: <strong style="color:#3b6fe0;">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br><em>Ich versuche, Deutsch zu lernen.</em> (I'm trying to learn German.)`,
         zuinf_separable: `With a <strong style="color:#3b6fe0;">separable-prefix verb</strong>, « zu » is inserted between the prefix and the stem — one single word.<br><em>anfangen</em> → <em>Ich habe vor, an<strong>zu</strong>fangen.</em> (I plan to start.)`,
