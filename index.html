@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v74</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v75</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -3019,6 +3019,8 @@ const I18N = {
         random_adj_desc: "Mélange des adjectifs de tous les niveaux.",
         random_nouns_by_level_desc: "Mélange des noms de tous les niveaux disponibles.",
         label_plural: "Pluriel :",
+        label_case_word: "Cas",
+        label_nuance_word: "Nuance",
         random_words_by_theme_desc: "Mélange des mots de tous les thèmes du niveau sélectionné.",
         kicker_verben_revision: "Verbes · Révision",
         kicker_verben_flashcards: "Verbes · Flashcards",
@@ -3369,6 +3371,8 @@ const I18N = {
         random_adj_desc: "A mix of adjectives from all levels.",
         random_nouns_by_level_desc: "A mix of nouns from all available levels.",
         label_plural: "Plural:",
+        label_case_word: "Case",
+        label_nuance_word: "Nuance",
         random_words_by_theme_desc: "A mix of words from all themes at the selected level.",
         kicker_verben_revision: "Verbs · Review",
         kicker_verben_flashcards: "Verbs · Flashcards",
@@ -4051,12 +4055,12 @@ const kasusVerbTheme = {
   name: "Verbes à cas fixe",
   svg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>',
   words: [
-    ["helfen", "aider", "Dativ", "Ich helfe meiner Mutter.", "J'aide ma mère."],
-    ["danken", "remercier", "Dativ", "Ich danke dir für das Geschenk.", "Je te remercie pour le cadeau."],
-    ["gefallen", "plaire", "Dativ", "Das Kleid gefällt mir sehr.", "La robe me plaît beaucoup."],
-    ["brauchen", "avoir besoin de", "Akkusativ", "Ich brauche einen Stift.", "J'ai besoin d'un stylo."],
-    ["kaufen", "acheter", "Akkusativ", "Er kauft einen Apfel.", "Il achète une pomme."],
-    ["suchen", "chercher", "Akkusativ", "Wir suchen den Bahnhof.", "Nous cherchons la gare."]
+    ["helfen", "aider", "Dativ", "Ich helfe meiner Mutter.", "J'aide ma mère.", "to help", "I'm helping my mother."],
+    ["danken", "remercier", "Dativ", "Ich danke dir für das Geschenk.", "Je te remercie pour le cadeau.", "to thank", "I thank you for the gift."],
+    ["gefallen", "plaire", "Dativ", "Das Kleid gefällt mir sehr.", "La robe me plaît beaucoup.", "to please, to like", "I like the dress a lot."],
+    ["brauchen", "avoir besoin de", "Akkusativ", "Ich brauche einen Stift.", "J'ai besoin d'un stylo.", "to need", "I need a pen."],
+    ["kaufen", "acheter", "Akkusativ", "Er kauft einen Apfel.", "Il achète une pomme.", "to buy", "He's buying an apple."],
+    ["suchen", "chercher", "Akkusativ", "Wir suchen den Bahnhof.", "Nous cherchons la gare.", "to look for", "We're looking for the train station."]
   ]
 };
 
@@ -4231,30 +4235,30 @@ const praepTheme = {
   name: "Prépositions",
   svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#3b6fe0" stroke="none"/></svg>',
   words: [
-    ["für", "pour", "toujours Akkusativ", "Das Geschenk ist für dich.", "Le cadeau est pour toi."],
-    ["ohne", "sans", "toujours Akkusativ", "Ich trinke Kaffee ohne Zucker.", "Je bois le café sans sucre."],
-    ["durch", "à travers", "toujours Akkusativ", "Wir gehen durch den Wald.", "Nous marchons à travers la forêt."],
-    ["gegen", "contre", "toujours Akkusativ", "Er läuft gegen die Wand.", "Il court contre le mur."],
-    ["um", "autour de / à (heure)", "toujours Akkusativ", "Wir treffen uns um sieben Uhr.", "On se retrouve à sept heures."],
-    ["mit", "avec", "toujours Dativ", "Ich fahre mit dem Bus.", "Je vais en bus."],
-    ["nach", "après / vers", "toujours Dativ", "Nach der Schule gehe ich nach Hause.", "Après l'école, je rentre à la maison."],
-    ["aus", "de / hors de", "toujours Dativ", "Ich komme aus der Schweiz.", "Je viens de Suisse."],
-    ["bei", "chez / près de", "toujours Dativ", "Ich wohne bei meinen Eltern.", "J'habite chez mes parents."],
-    ["seit", "depuis", "toujours Dativ", "Ich lerne seit zwei Jahren Deutsch.", "J'apprends l'allemand depuis deux ans."],
-    ["von", "de / de la part de", "toujours Dativ", "Das Geschenk ist von meiner Schwester.", "Le cadeau vient de ma sœur."],
-    ["zu", "vers / chez", "toujours Dativ", "Ich gehe zu meiner Freundin.", "Je vais chez mon amie."],
-    ["wegen", "à cause de", "toujours Genitiv", "Wegen des Regens bleiben wir zu Hause.", "À cause de la pluie, on reste à la maison."],
-    ["während", "pendant", "toujours Genitiv", "Während des Urlaubs lese ich viel.", "Pendant les vacances, je lis beaucoup."],
-    ["trotz", "malgré", "toujours Genitiv", "Trotz des Regens gehen wir spazieren.", "Malgré la pluie, on va se promener."],
-    ["auf", "sur", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Buch liegt auf dem Tisch.", "Le livre est sur la table."],
-    ["in", "dans", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Wir gehen in den Park.", "Nous allons dans le parc."],
-    ["an", "à / contre (vertical)", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Bild hängt an der Wand.", "Le tableau est accroché au mur."],
-    ["über", "au-dessus de / par-dessus", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Lampe hängt über dem Tisch.", "La lampe est suspendue au-dessus de la table."],
-    ["unter", "sous", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Katze liegt unter dem Bett.", "Le chat est couché sous le lit."],
-    ["vor", "devant / avant", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Auto steht vor dem Haus.", "La voiture est garée devant la maison."],
-    ["hinter", "derrière", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Der Garten ist hinter dem Haus.", "Le jardin est derrière la maison."],
-    ["neben", "à côté de", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Er sitzt neben mir.", "Il est assis à côté de moi."],
-    ["zwischen", "entre", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Schule liegt zwischen dem Park und dem Fluss.", "L'école se trouve entre le parc et la rivière."]
+    ["für", "pour", "toujours Akkusativ", "Das Geschenk ist für dich.", "Le cadeau est pour toi.", "for", "The gift is for you.", "always Akkusativ"],
+    ["ohne", "sans", "toujours Akkusativ", "Ich trinke Kaffee ohne Zucker.", "Je bois le café sans sucre.", "without", "I drink coffee without sugar.", "always Akkusativ"],
+    ["durch", "à travers", "toujours Akkusativ", "Wir gehen durch den Wald.", "Nous marchons à travers la forêt.", "through", "We walk through the forest.", "always Akkusativ"],
+    ["gegen", "contre", "toujours Akkusativ", "Er läuft gegen die Wand.", "Il court contre le mur.", "against", "He runs into the wall.", "always Akkusativ"],
+    ["um", "autour de / à (heure)", "toujours Akkusativ", "Wir treffen uns um sieben Uhr.", "On se retrouve à sept heures.", "around / at (time)", "We're meeting at seven o'clock.", "always Akkusativ"],
+    ["mit", "avec", "toujours Dativ", "Ich fahre mit dem Bus.", "Je vais en bus.", "with", "I go by bus.", "always Dativ"],
+    ["nach", "après / vers", "toujours Dativ", "Nach der Schule gehe ich nach Hause.", "Après l'école, je rentre à la maison.", "after / to(wards)", "After school, I go home.", "always Dativ"],
+    ["aus", "de / hors de", "toujours Dativ", "Ich komme aus der Schweiz.", "Je viens de Suisse.", "from / out of", "I come from Switzerland.", "always Dativ"],
+    ["bei", "chez / près de", "toujours Dativ", "Ich wohne bei meinen Eltern.", "J'habite chez mes parents.", "at (someone's place) / near", "I live at my parents' place.", "always Dativ"],
+    ["seit", "depuis", "toujours Dativ", "Ich lerne seit zwei Jahren Deutsch.", "J'apprends l'allemand depuis deux ans.", "since / for", "I've been learning German for two years.", "always Dativ"],
+    ["von", "de / de la part de", "toujours Dativ", "Das Geschenk ist von meiner Schwester.", "Le cadeau vient de ma sœur.", "from / on behalf of", "The gift is from my sister.", "always Dativ"],
+    ["zu", "vers / chez", "toujours Dativ", "Ich gehe zu meiner Freundin.", "Je vais chez mon amie.", "to", "I'm going to my girlfriend's place.", "always Dativ"],
+    ["wegen", "à cause de", "toujours Genitiv", "Wegen des Regens bleiben wir zu Hause.", "À cause de la pluie, on reste à la maison.", "because of", "Because of the rain, we're staying home.", "always Genitiv"],
+    ["während", "pendant", "toujours Genitiv", "Während des Urlaubs lese ich viel.", "Pendant les vacances, je lis beaucoup.", "during", "During the vacation, I read a lot.", "always Genitiv"],
+    ["trotz", "malgré", "toujours Genitiv", "Trotz des Regens gehen wir spazieren.", "Malgré la pluie, on va se promener.", "despite", "Despite the rain, we're going for a walk.", "always Genitiv"],
+    ["auf", "sur", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Buch liegt auf dem Tisch.", "Le livre est sur la table.", "on", "The book is on the table.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["in", "dans", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Wir gehen in den Park.", "Nous allons dans le parc.", "in", "We're going into the park.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["an", "à / contre (vertical)", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Bild hängt an der Wand.", "Le tableau est accroché au mur.", "at / against (vertical)", "The picture is hanging on the wall.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["über", "au-dessus de / par-dessus", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Lampe hängt über dem Tisch.", "La lampe est suspendue au-dessus de la table.", "above / over", "The lamp hangs above the table.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["unter", "sous", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Katze liegt unter dem Bett.", "Le chat est couché sous le lit.", "under", "The cat is lying under the bed.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["vor", "devant / avant", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Auto steht vor dem Haus.", "La voiture est garée devant la maison.", "in front of / before", "The car is parked in front of the house.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["hinter", "derrière", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Der Garten ist hinter dem Haus.", "Le jardin est derrière la maison.", "behind", "The garden is behind the house.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["neben", "à côté de", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Er sitzt neben mir.", "Il est assis à côté de moi.", "next to", "He's sitting next to me.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
+    ["zwischen", "entre", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Schule liegt zwischen dem Park und dem Fluss.", "L'école se trouve entre le parc et la rivière.", "between", "The school is located between the park and the river.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"]
   ]
 };
 
@@ -4264,52 +4268,52 @@ const positionsverbenTheme = {
   svg: '<svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 10-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
   words: [
     {
-      infinitif: "stehen", traduction: "être debout / se trouver", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
-      exemple: "Das Auto steht vor dem Haus.", exemple_fr: "La voiture est garée devant la maison.",
-      perfekt: "Das Auto hat vor dem Haus gestanden.", perfekt_fr: "La voiture était garée devant la maison.",
-      praeteritum: "Das Auto stand vor dem Haus.", praeteritum_fr: "La voiture était garée devant la maison."
+      infinitif: "stehen", traduction: "être debout / se trouver", traduction_en: "to stand / to be located", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)", regularite_en: "Irregular (strong verb)",
+      exemple: "Das Auto steht vor dem Haus.", exemple_fr: "La voiture est garée devant la maison.", exemple_en: "The car is parked in front of the house.",
+      perfekt: "Das Auto hat vor dem Haus gestanden.", perfekt_fr: "La voiture était garée devant la maison.", perfekt_en: "The car was parked in front of the house.",
+      praeteritum: "Das Auto stand vor dem Haus.", praeteritum_fr: "La voiture était garée devant la maison.", praeteritum_en: "The car was parked in front of the house."
     },
     {
-      infinitif: "stellen", traduction: "mettre debout, poser", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
-      exemple: "Ich stelle das Glas auf den Tisch.", exemple_fr: "Je pose le verre sur la table.",
-      perfekt: "Ich habe das Glas auf den Tisch gestellt.", perfekt_fr: "J'ai posé le verre sur la table.",
-      praeteritum: "Ich stellte das Glas auf den Tisch.", praeteritum_fr: "J'ai posé le verre sur la table."
+      infinitif: "stellen", traduction: "mettre debout, poser", traduction_en: "to put, to place (upright)", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)", regularite_en: "Regular (weak verb)",
+      exemple: "Ich stelle das Glas auf den Tisch.", exemple_fr: "Je pose le verre sur la table.", exemple_en: "I'm putting the glass on the table.",
+      perfekt: "Ich habe das Glas auf den Tisch gestellt.", perfekt_fr: "J'ai posé le verre sur la table.", perfekt_en: "I put the glass on the table.",
+      praeteritum: "Ich stellte das Glas auf den Tisch.", praeteritum_fr: "J'ai posé le verre sur la table.", praeteritum_en: "I put the glass on the table."
     },
     {
-      infinitif: "liegen", traduction: "être couché / posé à plat", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
-      exemple: "Das Buch liegt auf dem Tisch.", exemple_fr: "Le livre est posé sur la table.",
-      perfekt: "Das Buch hat auf dem Tisch gelegen.", perfekt_fr: "Le livre était posé sur la table.",
-      praeteritum: "Das Buch lag auf dem Tisch.", praeteritum_fr: "Le livre était posé sur la table."
+      infinitif: "liegen", traduction: "être couché / posé à plat", traduction_en: "to lie / to be lying flat", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)", regularite_en: "Irregular (strong verb)",
+      exemple: "Das Buch liegt auf dem Tisch.", exemple_fr: "Le livre est posé sur la table.", exemple_en: "The book is lying on the table.",
+      perfekt: "Das Buch hat auf dem Tisch gelegen.", perfekt_fr: "Le livre était posé sur la table.", perfekt_en: "The book was lying on the table.",
+      praeteritum: "Das Buch lag auf dem Tisch.", praeteritum_fr: "Le livre était posé sur la table.", praeteritum_en: "The book was lying on the table."
     },
     {
-      infinitif: "legen", traduction: "poser à plat, coucher", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
-      exemple: "Ich lege das Buch auf den Tisch.", exemple_fr: "Je pose le livre sur la table.",
-      perfekt: "Ich habe das Buch auf den Tisch gelegt.", perfekt_fr: "J'ai posé le livre sur la table.",
-      praeteritum: "Ich legte das Buch auf den Tisch.", praeteritum_fr: "J'ai posé le livre sur la table."
+      infinitif: "legen", traduction: "poser à plat, coucher", traduction_en: "to lay (flat), to put down", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)", regularite_en: "Regular (weak verb)",
+      exemple: "Ich lege das Buch auf den Tisch.", exemple_fr: "Je pose le livre sur la table.", exemple_en: "I'm putting the book on the table.",
+      perfekt: "Ich habe das Buch auf den Tisch gelegt.", perfekt_fr: "J'ai posé le livre sur la table.", perfekt_en: "I put the book on the table.",
+      praeteritum: "Ich legte das Buch auf den Tisch.", praeteritum_fr: "J'ai posé le livre sur la table.", praeteritum_en: "I put the book on the table."
     },
     {
-      infinitif: "sitzen", traduction: "être assis", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
-      exemple: "Ich sitze auf dem Stuhl.", exemple_fr: "Je suis assis sur la chaise.",
-      perfekt: "Ich habe auf dem Stuhl gesessen.", perfekt_fr: "J'ai été assis sur la chaise.",
-      praeteritum: "Ich saß auf dem Stuhl.", praeteritum_fr: "J'étais assis sur la chaise."
+      infinitif: "sitzen", traduction: "être assis", traduction_en: "to sit / to be sitting", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)", regularite_en: "Irregular (strong verb)",
+      exemple: "Ich sitze auf dem Stuhl.", exemple_fr: "Je suis assis sur la chaise.", exemple_en: "I'm sitting on the chair.",
+      perfekt: "Ich habe auf dem Stuhl gesessen.", perfekt_fr: "J'ai été assis sur la chaise.", perfekt_en: "I was sitting on the chair.",
+      praeteritum: "Ich saß auf dem Stuhl.", praeteritum_fr: "J'étais assis sur la chaise.", praeteritum_en: "I was sitting on the chair."
     },
     {
-      infinitif: "setzen", traduction: "asseoir, mettre en position assise", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
-      exemple: "Ich setze mich auf den Stuhl.", exemple_fr: "Je m'assieds sur la chaise.",
-      perfekt: "Ich habe mich auf den Stuhl gesetzt.", perfekt_fr: "Je me suis assis sur la chaise.",
-      praeteritum: "Ich setzte mich auf den Stuhl.", praeteritum_fr: "Je me suis assis sur la chaise."
+      infinitif: "setzen", traduction: "asseoir, mettre en position assise", traduction_en: "to sit down, to seat", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)", regularite_en: "Regular (weak verb)",
+      exemple: "Ich setze mich auf den Stuhl.", exemple_fr: "Je m'assieds sur la chaise.", exemple_en: "I'm sitting down on the chair.",
+      perfekt: "Ich habe mich auf den Stuhl gesetzt.", perfekt_fr: "Je me suis assis sur la chaise.", perfekt_en: "I sat down on the chair.",
+      praeteritum: "Ich setzte mich auf den Stuhl.", praeteritum_fr: "Je me suis assis sur la chaise.", praeteritum_en: "I sat down on the chair."
     },
     {
-      infinitif: "hängen", traduction: "être suspendu / accroché", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)",
-      exemple: "Das Bild hängt an der Wand.", exemple_fr: "Le tableau est accroché au mur.",
-      perfekt: "Das Bild hat an der Wand gehangen.", perfekt_fr: "Le tableau était accroché au mur.",
-      praeteritum: "Das Bild hing an der Wand.", praeteritum_fr: "Le tableau était accroché au mur."
+      infinitif: "hängen", traduction: "être suspendu / accroché", traduction_en: "to hang, to be hanging", cas: "Wo? → Dativ", regularite: "Irrégulier (verbe fort)", regularite_en: "Irregular (strong verb)",
+      exemple: "Das Bild hängt an der Wand.", exemple_fr: "Le tableau est accroché au mur.", exemple_en: "The picture is hanging on the wall.",
+      perfekt: "Das Bild hat an der Wand gehangen.", perfekt_fr: "Le tableau était accroché au mur.", perfekt_en: "The picture was hanging on the wall.",
+      praeteritum: "Das Bild hing an der Wand.", praeteritum_fr: "Le tableau était accroché au mur.", praeteritum_en: "The picture was hanging on the wall."
     },
     {
-      infinitif: "hängen", traduction: "accrocher, suspendre", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)",
-      exemple: "Ich hänge das Bild an die Wand.", exemple_fr: "J'accroche le tableau au mur.",
-      perfekt: "Ich habe das Bild an die Wand gehängt.", perfekt_fr: "J'ai accroché le tableau au mur.",
-      praeteritum: "Ich hängte das Bild an die Wand.", praeteritum_fr: "J'ai accroché le tableau au mur."
+      infinitif: "hängen", traduction: "accrocher, suspendre", traduction_en: "to hang (something up)", cas: "Wohin? → Akkusativ", regularite: "Régulier (verbe faible)", regularite_en: "Regular (weak verb)",
+      exemple: "Ich hänge das Bild an die Wand.", exemple_fr: "J'accroche le tableau au mur.", exemple_en: "I'm hanging the picture on the wall.",
+      perfekt: "Ich habe das Bild an die Wand gehängt.", perfekt_fr: "J'ai accroché le tableau au mur.", perfekt_en: "I hung the picture on the wall.",
+      praeteritum: "Ich hängte das Bild an die Wand.", praeteritum_fr: "J'ai accroché le tableau au mur.", praeteritum_en: "I hung the picture on the wall."
     }
   ]
 };
@@ -4418,19 +4422,19 @@ const partikelnTheme = {
   name: "Particules",
   svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>',
   words: [
-    ["doch", "insistance amicale, encouragement", "particule modale", "Mach das doch!", "Vas-y, fais-le donc !"],
-    ["mal", "adoucit une demande", "particule modale", "Komm mal her!", "Viens un peu par ici."],
-    ["denn", "curiosité informelle", "particule modale", "Was machst du denn?", "Qu'est-ce que tu fais donc ?"],
-    ["eben / halt", "résignation, « c'est comme ça »", "particule modale", "Das ist eben so.", "C'est comme ça, un point c'est tout."],
-    ["wohl", "supposition probable", "particule modale", "Das wird wohl stimmen.", "Ça doit sûrement être vrai."],
-    ["ja", "évidence partagée", "particule modale", "Das ist ja klar!", "Mais c'est évident, voyons !"],
-    ["schon", "rassurance, encouragement confiant", "particule modale", "Das schaffst du schon!", "T'inquiète, tu vas y arriver."],
-    ["aber", "surprise, emphase admirative", "particule modale", "Das ist aber schön!", "Ça alors, que c'est beau !"],
-    ["eigentlich", "curiosité, changement de sujet", "particule modale", "Was machst du eigentlich?", "Au fait, qu'est-ce que tu fais ?"],
-    ["bloß / nur", "urgence, mise en garde", "particule modale", "Geh bloß nicht dahin!", "Ne va surtout pas là-bas !"],
-    ["ruhig", "permission rassurante", "particule modale", "Du kannst ruhig fragen.", "Tu peux demander sans problème."],
-    ["einfach", "simplicité, désinvolture", "particule modale", "Sag es einfach!", "Dis-le, tout simplement."],
-    ["vielleicht", "exaspération, emphase forte", "particule modale", "Das ist vielleicht ein Chaos!", "Quel bazar, quand même !"]
+    ["doch", "insistance amicale, encouragement", "particule modale", "Mach das doch!", "Vas-y, fais-le donc !", "friendly insistence, encouragement", "Go ahead and do it!"],
+    ["mal", "adoucit une demande", "particule modale", "Komm mal her!", "Viens un peu par ici.", "softens a request", "Come here for a sec."],
+    ["denn", "curiosité informelle", "particule modale", "Was machst du denn?", "Qu'est-ce que tu fais donc ?", "informal curiosity", "So what are you up to?"],
+    ["eben / halt", "résignation, « c'est comme ça »", "particule modale", "Das ist eben so.", "C'est comme ça, un point c'est tout.", "resignation, \"that's just how it is\"", "That's just how it is."],
+    ["wohl", "supposition probable", "particule modale", "Das wird wohl stimmen.", "Ça doit sûrement être vrai.", "probable assumption", "That's probably right."],
+    ["ja", "évidence partagée", "particule modale", "Das ist ja klar!", "Mais c'est évident, voyons !", "shared obviousness", "That's obvious, of course!"],
+    ["schon", "rassurance, encouragement confiant", "particule modale", "Das schaffst du schon!", "T'inquiète, tu vas y arriver.", "reassurance, confident encouragement", "Don't worry, you'll manage!"],
+    ["aber", "surprise, emphase admirative", "particule modale", "Das ist aber schön!", "Ça alors, que c'est beau !", "surprise, admiring emphasis", "Wow, that's beautiful!"],
+    ["eigentlich", "curiosité, changement de sujet", "particule modale", "Was machst du eigentlich?", "Au fait, qu'est-ce que tu fais ?", "curiosity, change of subject", "By the way, what are you up to?"],
+    ["bloß / nur", "urgence, mise en garde", "particule modale", "Geh bloß nicht dahin!", "Ne va surtout pas là-bas !", "urgency, warning", "Whatever you do, don't go there!"],
+    ["ruhig", "permission rassurante", "particule modale", "Du kannst ruhig fragen.", "Tu peux demander sans problème.", "reassuring permission", "Feel free to ask."],
+    ["einfach", "simplicité, désinvolture", "particule modale", "Sag es einfach!", "Dis-le, tout simplement.", "simplicity, casualness", "Just say it!"],
+    ["vielleicht", "exaspération, emphase forte", "particule modale", "Das ist vielleicht ein Chaos!", "Quel bazar, quand même !", "exasperation, strong emphasis", "What a mess, honestly!"]
   ]
 };
 
@@ -6026,7 +6030,9 @@ function loadFlashcard(){
         pluralEl.classList.add("hidden");
     } else if(flashcardMode === 'positionsverben'){
         const germanWord = card.infinitif;
-        const frenchWord = card.traduction;
+        const uiLang = getUiLang();
+        const useEn = uiLang === 'en';
+        const frenchWord = (useEn && card.traduction_en) ? card.traduction_en : card.traduction;
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
@@ -6037,23 +6043,29 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        const coreHtml = `<strong>${card.cas}</strong> · ${card.regularite}` +
+        const regularite = (useEn && card.regularite_en) ? card.regularite_en : card.regularite;
+        const exempleTr = (useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr;
+        const perfektTr = (useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr;
+        const praeteritumTr = (useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr;
+        const coreHtml = `<strong>${card.cas}</strong> · ${regularite}` +
             `<div class="verb-sep"></div>` +
-            `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${card.exemple_fr || ""})` +
+            `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${exempleTr || ""})` +
             `<div class="verb-sep"></div>` +
-            `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${card.perfekt_fr || ""})`;
-        const extraHtml = `<strong>Präteritum :</strong> ${card.praeteritum || ""}<br>(${card.praeteritum_fr || ""})`;
+            `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${perfektTr || ""})`;
+        const extraHtml = `<strong>Präteritum :</strong> ${card.praeteritum || ""}<br>(${praeteritumTr || ""})`;
         verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
     } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
         const germanWord = card[0];
-        const frenchWord = card[1];
-        const cas = card[2];
+        const uiLang = getUiLang();
+        const useEn = uiLang === 'en';
+        const frenchWord = (useEn && card[5]) ? card[5] : card[1];
+        const cas = (useEn && card[7]) ? card[7] : card[2];
         const exampleSentence = card[3];
-        const exampleSentenceFr = card[4] || "";
-        const label = flashcardMode === 'partikeln' ? 'Nuance' : 'Cas';
+        const exampleSentenceFr = ((useEn && card[6]) ? card[6] : card[4]) || "";
+        const label = flashcardMode === 'partikeln' ? t('label_nuance_word') : t('label_case_word');
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
