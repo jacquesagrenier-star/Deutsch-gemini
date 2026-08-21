@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v77</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v78</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6281,7 +6281,7 @@ function playToneFallback(notes, noteGap, noteDuration, peakGain){
 function playMasteredSoundFallback(){ playToneFallback(BRAVO_NOTES, BRAVO_NOTE_GAP, BRAVO_NOTE_DURATION, 0.32); }
 function playDailyGoalFanfareFallback(){
     playToneFallback(FANFARE_NOTES, FANFARE_NOTE_GAP, FANFARE_NOTE_DURATION, 0.36);
-    playLionRoarLayer();
+    playCelebrationCheerSound();
 }
 
 // Construit une séquence de notes "hors-ligne" (sans toucher les haut-parleurs),
@@ -6401,34 +6401,43 @@ function playMasteredSound(){
     }
 }
 
-// Vrai fichier audio du rugissement, fourni par l'utilisateur. Le grondement
-// synthétisé (playLionRoarLayer) ne sert plus que de filet de secours si ce
-// fichier échoue à charger ou à jouer.
-const LION_ROAR_AUDIO_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/video/rugissement.mp3";
-const LION_ROAR_DELAY_MS = 1300;
+// Étincelle triomphante synthétisée, en couche après la fanfare, pour
+// accompagner l'apparition du personnage (écolier joyeux qui jongle avec des
+// lettres). Remplace l'ancien rugissement de lion (devenu incohérent une fois
+// le lion remplacé par le personnage) : un petit arpège scintillant façon
+// "bravo !" plutôt qu'un grondement animal.
+const CELEBRATION_CHEER_DELAY_MS = 1300;
 
-function playLionRoarSound(){
-    try{
-        const audio = new Audio(LION_ROAR_AUDIO_URL);
-        const p = audio.play();
-        if(p && typeof p.catch === 'function') p.catch(() => playLionRoarLayer());
-    }catch(e){
-        playLionRoarLayer();
-    }
-}
-
-// Grondement grave stylisé (bruit filtré + oscillateur grave), en couche sous
-// la fanfare, pour évoquer un "rugissement" joyeux sans échantillon audio réel
-// (la synthèse par oscillateurs ne peut pas imiter un vrai rugissement, mais ce
-// grondement filtré s'en approche façon dessin animé). Filet de secours si
-// LION_ROAR_AUDIO_URL échoue.
-function playLionRoarLayer(){
+function playCelebrationCheerSound(){
     try{
         const ctx = getAudioCtx();
         if(!ctx) return;
         const t0 = ctx.currentTime + 0.02;
-        const duration = 1.5;
 
+        // Petit arpège ascendant (Do5-Mi5-Sol5-Do6) façon "ta-da !".
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        const noteGap = 0.075;
+        notes.forEach((freq, i) => {
+            const start = t0 + i * noteGap;
+            const osc = ctx.createOscillator();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, start);
+
+            const gain = ctx.createGain();
+            gain.gain.setValueAtTime(0, start);
+            gain.gain.linearRampToValueAtTime(0.22, start + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, start + 0.35);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(start);
+            osc.stop(start + 0.4);
+        });
+
+        // Scintillement bref (bruit filtré passe-haut) au sommet de l'arpège,
+        // pour un effet "paillettes" façon dessin animé.
+        const sparkleStart = t0 + notes.length * noteGap;
+        const duration = 0.3;
         const bufferSize = Math.floor(ctx.sampleRate * duration);
         const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
         const data = noiseBuffer.getChannelData(0);
@@ -6438,46 +6447,25 @@ function playLionRoarLayer(){
         noise.buffer = noiseBuffer;
 
         const filter = ctx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.Q.value = 1.1;
-        filter.frequency.setValueAtTime(110, t0);
-        filter.frequency.linearRampToValueAtTime(1400, t0 + 0.35);
-        filter.frequency.linearRampToValueAtTime(500, t0 + duration);
+        filter.type = 'highpass';
+        filter.frequency.value = 4000;
 
         const noiseGain = ctx.createGain();
-        noiseGain.gain.setValueAtTime(0, t0);
-        noiseGain.gain.linearRampToValueAtTime(0.26, t0 + 0.12);
-        noiseGain.gain.linearRampToValueAtTime(0.16, t0 + 0.6);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, t0 + duration);
+        noiseGain.gain.setValueAtTime(0.12, sparkleStart);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, sparkleStart + duration);
 
         noise.connect(filter);
         filter.connect(noiseGain);
         noiseGain.connect(ctx.destination);
-        noise.start(t0);
-        noise.stop(t0 + duration + 0.05);
-
-        const growl = ctx.createOscillator();
-        growl.type = 'sawtooth';
-        growl.frequency.setValueAtTime(85, t0);
-        growl.frequency.linearRampToValueAtTime(130, t0 + 0.2);
-        growl.frequency.linearRampToValueAtTime(65, t0 + duration);
-
-        const growlGain = ctx.createGain();
-        growlGain.gain.setValueAtTime(0, t0);
-        growlGain.gain.linearRampToValueAtTime(0.2, t0 + 0.15);
-        growlGain.gain.exponentialRampToValueAtTime(0.001, t0 + duration);
-
-        growl.connect(growlGain);
-        growlGain.connect(ctx.destination);
-        growl.start(t0);
-        growl.stop(t0 + duration + 0.05);
+        noise.start(sparkleStart);
+        noise.stop(sparkleStart + duration + 0.02);
 
         ctx.resume().catch(() => {});
     }catch(e){}
 }
 
-// fanfareAudioEl ne contient que les cloches ; le rugissement (fichier réel,
-// voir playLionRoarSound) est déclenché séparément avec un délai, dans
+// fanfareAudioEl ne contient que les cloches ; l'étincelle (voir
+// playCelebrationCheerSound) est déclenchée séparément avec un délai, dans
 // triggerDailyGoalCelebration().
 function playDailyGoalFanfare(){
     try{
@@ -6742,16 +6730,16 @@ function showDailyGoalText(){
     el.addEventListener("animationend", () => el.remove());
 }
 
-// Grande célébration (lion agrandi + fanfare + "+N !") : appelée dès que
+// Grande célébration (personnage agrandi + fanfare + "+N !") : appelée dès que
 // l'objectif du jour vient d'être atteint, peu importe l'action qui a déclenché
 // le franchissement (voir recordDailyActivity).
 function triggerDailyGoalCelebration(){
     // Confettis retirés temporairement pour mieux juger de la synchronisation
-    // vidéo/son (fanfare au démarrage de la vidéo, rugissement peu après).
+    // vidéo/son (fanfare au démarrage de la vidéo, étincelle peu après).
     showMasteryCharacter(VIDEO_BASE_URL + DAILY_GOAL_VIDEO_FILE, true);
     showDailyGoalText();
     playDailyGoalFanfare();
-    setTimeout(playLionRoarSound, LION_ROAR_DELAY_MS);
+    setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
 }
 
 function celebrateMastery(justReachedGoal){
