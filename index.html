@@ -1780,7 +1780,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v86</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v87</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6609,6 +6609,18 @@ const MASTERY_STRONG_BLUE_THRESH = 45;
 const MASTERY_ERODE_RADIUS = 3;
 const MASTERY_DILATE_RADIUS = 8;
 const MASTERY_CLOSE_RADIUS = 3;
+// Entre le bord sombre du personnage et l'anneau bleu vif, il reste une bande
+// grisâtre d'environ 40px (mesurée pixel par pixel) trop faible en signal pour
+// être candidate ni "loose" ni "strong" -- ni mask1 ni mask2 ne la couvrent,
+// ce qui laissait un mince trait sombre visible, séparé du personnage par un
+// espace. Une fermeture morphologique (dilatation puis érosion, même rayon)
+// appliquée à l'union des deux masques comble ce fossé sans rien ajouter
+// ailleurs : elle ne fait que combler les petits creux entre deux régions déjà
+// retenues, donc les vrais détails protégés du personnage (ex. reflet dans
+// l'œil) restent intacts tant qu'ils ne sont pas coincés entre deux telles
+// régions. Rayon 22 : comble largement les ~40px, vérifié sans nouvel artefact
+// (yeux, casquette, chandail) sur plusieurs images réelles.
+const MASTERY_GAP_CLOSE_RADIUS = 22;
 
 // En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
 // noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
@@ -6693,64 +6705,45 @@ function showMasteryCharacter(videoUrl, big){
     let rafId = null;
     let stopped = false;
 
-    // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
-    // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
-    // de O(rayon²) -- important pour rester fluide en animation temps réel.
+    // Filtre min/max séparable (passe horizontale puis verticale) par fenêtre
+    // glissante à file monotone (deque d'indices) : équivalent à une érosion/
+    // dilatation carrée classique mais en O(1) amorti par pixel, PEU IMPORTE le
+    // rayon -- indispensable pour rester fluide avec le grand rayon de fermeture
+    // (MASTERY_GAP_CLOSE_RADIUS, ~20) sans retomber dans un coût en O(rayon).
+    // isMin=true -> érosion (min/ET) ; isMin=false -> dilatation (max/OU).
+    const slideDq = new Int32Array(300); // reutilisee (jamais plus grand que size)
+    function slideExtreme(src, offset, stride, len, radius, dst, dstOffset, dstStride, isMin){
+        let head = 0, tail = 0, j = 0;
+        for(let i = 0; i < len; i++){
+            const jmax = Math.min(len - 1, i + radius);
+            while(j <= jmax){
+                const vj = src[offset + j * stride];
+                if(isMin){
+                    while(tail > head && src[offset + slideDq[tail - 1] * stride] >= vj) tail--;
+                } else {
+                    while(tail > head && src[offset + slideDq[tail - 1] * stride] <= vj) tail--;
+                }
+                slideDq[tail++] = j;
+                j++;
+            }
+            while(slideDq[head] < i - radius) head++;
+            dst[dstOffset + i * dstStride] = src[offset + slideDq[head] * stride];
+        }
+    }
+
     function erodeMask(mask, w, h, radius){
         const tmp = new Uint8Array(w * h);
-        for(let y = 0; y < h; y++){
-            const base = y * w;
-            for(let x = 0; x < w; x++){
-                let v = 1;
-                for(let dx = -radius; dx <= radius; dx++){
-                    const nx = x + dx;
-                    if(nx < 0 || nx >= w) continue; // hors cadre : aucune contrainte
-                    if(!mask[base + nx]){ v = 0; break; }
-                }
-                tmp[base + x] = v;
-            }
-        }
+        for(let y = 0; y < h; y++) slideExtreme(mask, y * w, 1, w, radius, tmp, y * w, 1, true);
         const out = new Uint8Array(w * h);
-        for(let x = 0; x < w; x++){
-            for(let y = 0; y < h; y++){
-                let v = 1;
-                for(let dy = -radius; dy <= radius; dy++){
-                    const ny = y + dy;
-                    if(ny < 0 || ny >= h) continue;
-                    if(!tmp[ny * w + x]){ v = 0; break; }
-                }
-                out[y * w + x] = v;
-            }
-        }
+        for(let x = 0; x < w; x++) slideExtreme(tmp, x, w, h, radius, out, x, w, true);
         return out;
     }
 
     function dilateMask(mask, w, h, radius){
         const tmp = new Uint8Array(w * h);
-        for(let y = 0; y < h; y++){
-            const base = y * w;
-            for(let x = 0; x < w; x++){
-                let v = 0;
-                for(let dx = -radius; dx <= radius; dx++){
-                    const nx = x + dx;
-                    if(nx < 0 || nx >= w) continue;
-                    if(mask[base + nx]){ v = 1; break; }
-                }
-                tmp[base + x] = v;
-            }
-        }
+        for(let y = 0; y < h; y++) slideExtreme(mask, y * w, 1, w, radius, tmp, y * w, 1, false);
         const out = new Uint8Array(w * h);
-        for(let x = 0; x < w; x++){
-            for(let y = 0; y < h; y++){
-                let v = 0;
-                for(let dy = -radius; dy <= radius; dy++){
-                    const ny = y + dy;
-                    if(ny < 0 || ny >= h) continue;
-                    if(tmp[ny * w + x]){ v = 1; break; }
-                }
-                out[y * w + x] = v;
-            }
-        }
+        for(let x = 0; x < w; x++) slideExtreme(tmp, x, w, h, radius, out, x, w, false);
         return out;
     }
 
@@ -6799,11 +6792,18 @@ function showMasteryCharacter(videoUrl, big){
 
         const mask2 = erodeMask(dilateMask(strongCand, w, h, MASTERY_CLOSE_RADIUS), w, h, MASTERY_CLOSE_RADIUS);
 
-        const finalMask = new Uint8Array(n);
+        const union = new Uint8Array(n);
         for(let p = 0; p < n; p++){
             const inMask1 = dilated1[p] && looseCand[p];
             const inMask2 = mask2[p] && strongCand[p]; // ne jamais depasser le signal fort d'origine
-            finalMask[p] = (inMask1 || inMask2) ? 1 : 0;
+            union[p] = (inMask1 || inMask2) ? 1 : 0;
+        }
+        // Comble le fossé grisâtre entre le personnage et l'anneau bleu (voir
+        // MASTERY_GAP_CLOSE_RADIUS) : ne fait qu'ajouter à l'union, jamais retirer.
+        const closed = erodeMask(dilateMask(union, w, h, MASTERY_GAP_CLOSE_RADIUS), w, h, MASTERY_GAP_CLOSE_RADIUS);
+        const finalMask = new Uint8Array(n);
+        for(let p = 0; p < n; p++){
+            finalMask[p] = (union[p] || closed[p]) ? 1 : 0;
         }
         return finalMask;
     }
