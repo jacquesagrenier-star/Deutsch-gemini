@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v75</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v76</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6540,7 +6540,7 @@ const VIDEO_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/D
 // dauphin.MP4 retiré temporairement : problème de détourage (le ventre passe du
 // noir au blanc), le fond ne se garde pas bien transparent sur cette vidéo.
 const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "chat.MP4", "poussin.MP4", "cheval.MP4", "girafe.MP4", "coq.MP4", "herisson.MP4"];
-const DAILY_GOAL_VIDEO_FILE = "lion.MP4";
+const DAILY_GOAL_VIDEO_FILE = "personnage.MP4";
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
 // Distance de couleur (0-255) par rapport au fond mesuré : en dessous de LOW, le
@@ -6746,8 +6746,8 @@ function celebrateMastery(justReachedGoal){
     if(justReachedGoal){
         triggerDailyGoalCelebration();
     } else {
-        launchConfetti();
-        showMasteryCharacter(pickRandomCelebrationVideo(), false);
+        // Confettis et petit animal retires (2026-08) : plus d'effet visuel a
+        // chaque carte maitrisee, seulement pour l'objectif du jour atteint.
         playMasteredSound();
     }
 }
