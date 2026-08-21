@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v80</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v81</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6534,12 +6534,15 @@ const DAILY_GOAL_VIDEO_SIZE = 260;
 // Distance de couleur (0-255) par rapport au fond mesuré : en dessous de LOW, le
 // pixel est considéré comme du fond (transparent) ; au-dessus de HIGH, comme le
 // sujet (opaque), avec un dégradé doux entre les deux pour adoucir les contours.
-// Écart LOW/HIGH volontairement étroit (10, au lieu de 42 à l'origine) : un
-// dégradé trop large rendait le personnage et les petites balles de lettres
-// visiblement translucides sur toute leur surface (leurs contours anticrénelés,
-// larges par rapport à leur petite taille, tombaient dans la zone de fondu).
-const MASTERY_CHROMA_LOW = 50;
-const MASTERY_CHROMA_HIGH = 60;
+// Seuils calibrés sur les images réelles de personnage.MP4 (analyse hors-ligne) :
+// le fond du studio varie de 0 à ~16 (bruit de compression/éclairage) sur tout le
+// cadre, alors que certaines zones du personnage (reflet sur le front, en
+// particulier) tombent dans une plage de 40 à 60 -- un HIGH à 60 (essayé d'abord)
+// les confondait avec le fond et créait un vrai trou transparent en plein visage.
+// HIGH=28 reste largement au-dessus du bruit du fond réel tout en excluant ces
+// zones du personnage.
+const MASTERY_CHROMA_LOW = 15;
+const MASTERY_CHROMA_HIGH = 28;
 
 // En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
 // noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
