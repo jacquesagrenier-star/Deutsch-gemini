@@ -1779,7 +1779,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v83</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v84</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6720,15 +6720,22 @@ function showMasteryCharacter(videoUrl, big){
         bgSampled = true;
     }
 
-    // Rayon d'érosion/dilatation (voir computeBackgroundMask) : le vêtement blanc
+    // Rayons d'érosion/dilatation (voir computeBackgroundMask) : le vêtement blanc
     // du personnage (rayures du chandail) est presque exactement de la même
     // couleur que le fond de studio -- aucun seuil de distance de couleur ne peut
     // les distinguer. Seule la CONNECTIVITÉ au bord permet de les séparer, mais un
     // simple pot-de-peinture laisse parfois filtrer un chemin fin (aisselle,
     // encolure) qui "tunnelise" jusqu'au vêtement. L'érosion coupe ces chemins
-    // fins avant le remplissage ; la dilatation restaure ensuite l'étendue du vrai
-    // fond (large, donc jamais complètement rongé par l'érosion).
-    const MASTERY_MORPH_RADIUS = 6;
+    // fins avant le remplissage.
+    // Rayons volontairement DIFFÉRENTS (érosion 6, dilatation 12) : une dilatation
+    // symétrique (même rayon que l'érosion) ne restaure pas certaines petites
+    // poches de vrai fond isolées (autour du chapeau, entre les jambes) -- trop
+    // étroites pour avoir survécu à l'érosion nulle part sur leur pourtour, donc
+    // jamais rattachées au fond principal par le remplissage. Une dilatation plus
+    // généreuse les rattrape par simple proximité, sans rouvrir le chemin fin vers
+    // le chandail (plus large que 12px, donc toujours bloqué).
+    const MASTERY_ERODE_RADIUS = 6;
+    const MASTERY_DILATE_RADIUS = 12;
 
     // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
     // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
@@ -6806,7 +6813,7 @@ function showMasteryCharacter(videoUrl, big){
         // Érosion : ne garde comme "cœur de fond" que les zones assez larges pour
         // survivre au rayon -- coupe les chemins fins qui tunnelisent vers le
         // vêtement clair du personnage.
-        const core = erodeMask(isBgColor, w, h, MASTERY_MORPH_RADIUS);
+        const core = erodeMask(isBgColor, w, h, MASTERY_ERODE_RADIUS);
         const isBg = new Uint8Array(n);
         const queue = new Int32Array(n);
         let qLen = 0;
@@ -6827,7 +6834,7 @@ function showMasteryCharacter(videoUrl, big){
         }
         // Dilatation : restaure l'étendue du fond réel (rongée par l'érosion),
         // sans jamais dépasser les pixels qui ressemblaient déjà au fond au départ.
-        const dilated = dilateMask(isBg, w, h, MASTERY_MORPH_RADIUS);
+        const dilated = dilateMask(isBg, w, h, MASTERY_DILATE_RADIUS);
         const finalMask = new Uint8Array(n);
         for(let p = 0; p < n; p++){
             finalMask[p] = (dilated[p] && isBgColor[p]) ? 1 : 0;
