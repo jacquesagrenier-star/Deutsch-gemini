@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v76</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v77</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6627,6 +6627,15 @@ function showMasteryCharacter(videoUrl, big){
     // l'animal lui-même, qui n'ont pas exactement la même teinte que le fond de studio.
     let bgSampled = false;
     let bgR = 255, bgG = 255, bgB = 255;
+    // Les tout premiers appels de dessin peuvent tomber avant que la video ait
+    // vraiment commence a jouer une image reelle (image de transition noire/vide
+    // le temps que le decodage demarre) : si on echantillonne le fond sur cette
+    // image-la, la reference se fige sur une mauvaise couleur et TOUTES les
+    // images suivantes (avec le vrai fond) sont jugees "pas du fond" -- l'effet
+    // reste opaque pour le reste de la video. On laisse donc passer quelques
+    // images avant de figer la reference.
+    let frameCount = 0;
+    const BG_SAMPLE_DELAY_FRAMES = 5;
 
     function sampleBackground(d){
         const corners = [
@@ -6683,22 +6692,25 @@ function showMasteryCharacter(videoUrl, big){
             const dx = (size - dw) / 2, dy = (size - dh) / 2;
             ctx.clearRect(0, 0, size, size);
             ctx.drawImage(video, dx, dy, dw, dh);
-            try{
-                const frame = ctx.getImageData(0, 0, size, size);
-                const d = frame.data;
-                if(!bgSampled) sampleBackground(d);
-                const mask = computeBackgroundMask(d, size, size);
-                const range = MASTERY_CHROMA_HIGH - MASTERY_CHROMA_LOW;
-                for(let p = 0; p < mask.length; p++){
-                    if(!mask[p]) continue; // pas relié au bord : on garde opaque, peu importe la couleur
-                    const i = p * 4;
-                    const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
-                    const dist = Math.max(dr, dg, db);
-                    const bgLikeness = Math.max(0, Math.min(1, (MASTERY_CHROMA_HIGH - dist) / range));
-                    d[i+3] = Math.round(d[i+3] * (1 - bgLikeness));
-                }
-                ctx.putImageData(frame, 0, 0);
-            }catch(e){ /* p.ex. canvas "tainted" par CORS : on garde l'image opaque telle quelle */ }
+            frameCount++;
+            if(frameCount > BG_SAMPLE_DELAY_FRAMES){
+                try{
+                    const frame = ctx.getImageData(0, 0, size, size);
+                    const d = frame.data;
+                    if(!bgSampled) sampleBackground(d);
+                    const mask = computeBackgroundMask(d, size, size);
+                    const range = MASTERY_CHROMA_HIGH - MASTERY_CHROMA_LOW;
+                    for(let p = 0; p < mask.length; p++){
+                        if(!mask[p]) continue; // pas relié au bord : on garde opaque, peu importe la couleur
+                        const i = p * 4;
+                        const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
+                        const dist = Math.max(dr, dg, db);
+                        const bgLikeness = Math.max(0, Math.min(1, (MASTERY_CHROMA_HIGH - dist) / range));
+                        d[i+3] = Math.round(d[i+3] * (1 - bgLikeness));
+                    }
+                    ctx.putImageData(frame, 0, 0);
+                }catch(e){ /* p.ex. canvas "tainted" par CORS : on garde l'image opaque telle quelle */ }
+            }
         }
         rafId = requestAnimationFrame(drawFrame);
     }
