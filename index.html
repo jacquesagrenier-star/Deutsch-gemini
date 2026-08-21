@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v79</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v80</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6534,8 +6534,21 @@ const DAILY_GOAL_VIDEO_SIZE = 260;
 // Distance de couleur (0-255) par rapport au fond mesuré : en dessous de LOW, le
 // pixel est considéré comme du fond (transparent) ; au-dessus de HIGH, comme le
 // sujet (opaque), avec un dégradé doux entre les deux pour adoucir les contours.
-const MASTERY_CHROMA_LOW = 18;
+// Écart LOW/HIGH volontairement étroit (10, au lieu de 42 à l'origine) : un
+// dégradé trop large rendait le personnage et les petites balles de lettres
+// visiblement translucides sur toute leur surface (leurs contours anticrénelés,
+// larges par rapport à leur petite taille, tombaient dans la zone de fondu).
+const MASTERY_CHROMA_LOW = 50;
 const MASTERY_CHROMA_HIGH = 60;
+
+// En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
+// noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
+// DARK_RECOLOR_THRESHOLD : luminosité (max R/G/B) en dessous de laquelle un pixel
+// est considéré "noir" et recoloré ; BASE/SPAN définissent le dégradé de bleu
+// (BASE = noir pur d'origine, BASE+SPAN = luminosité = seuil).
+const DARK_RECOLOR_THRESHOLD = 70;
+const DARK_RECOLOR_BASE = { r: 14, g: 20, b: 48 };
+const DARK_RECOLOR_SPAN = { r: 46, g: 46, b: 78 };
 
 // Tirage aléatoire, mais jamais deux fois le même animal d'affilée.
 let lastCelebrationAnimalFile = null;
@@ -6698,13 +6711,27 @@ function showMasteryCharacter(videoUrl, big){
                     if(!bgSampled) sampleBackground(d);
                     const mask = computeBackgroundMask(d, size, size);
                     const range = MASTERY_CHROMA_HIGH - MASTERY_CHROMA_LOW;
+                    const darkTheme = document.body.getAttribute("data-theme") === "dark";
                     for(let p = 0; p < mask.length; p++){
-                        if(!mask[p]) continue; // pas relié au bord : on garde opaque, peu importe la couleur
                         const i = p * 4;
-                        const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
-                        const dist = Math.max(dr, dg, db);
-                        const bgLikeness = Math.max(0, Math.min(1, (MASTERY_CHROMA_HIGH - dist) / range));
-                        d[i+3] = Math.round(d[i+3] * (1 - bgLikeness));
+                        if(mask[p]){
+                            const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
+                            const dist = Math.max(dr, dg, db);
+                            const bgLikeness = Math.max(0, Math.min(1, (MASTERY_CHROMA_HIGH - dist) / range));
+                            d[i+3] = Math.round(d[i+3] * (1 - bgLikeness));
+                        }
+                        // Thème sombre : le noir du personnage (casquette, etc.) se fond
+                        // dans le fond noir de l'appli -- on le remplace par un bleu marine
+                        // visible, en préservant le dégradé d'origine (ombres/reflets).
+                        if(darkTheme && d[i+3] > 0){
+                            const lum = Math.max(d[i], d[i+1], d[i+2]);
+                            if(lum < DARK_RECOLOR_THRESHOLD){
+                                const t = lum / DARK_RECOLOR_THRESHOLD;
+                                d[i]   = Math.round(DARK_RECOLOR_BASE.r + t * DARK_RECOLOR_SPAN.r);
+                                d[i+1] = Math.round(DARK_RECOLOR_BASE.g + t * DARK_RECOLOR_SPAN.g);
+                                d[i+2] = Math.round(DARK_RECOLOR_BASE.b + t * DARK_RECOLOR_SPAN.b);
+                            }
+                        }
                     }
                     ctx.putImageData(frame, 0, 0);
                     masked = true;
