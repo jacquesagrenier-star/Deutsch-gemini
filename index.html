@@ -1251,7 +1251,8 @@ button{font-family:inherit}
 }
 
 /* Célébration "objectif du jour atteint" (personnage) : plus gros, reste plus
-   longtemps. Durée = longueur de la vidéo (6.04s, sans boucle -- elle se fige
+   longtemps. Durée = longueur de la vidéo (3.9s, recadrée pour retirer le
+   filigrane CapCut ajouté en fin d'export ; sans boucle -- elle se fige
    naturellement sur sa dernière image une fois finie) + 1s d'arrêt sur image
    supplémentaire avant de s'effacer, pour bien voir le personnage immobile à
    la fin du jonglage plutôt que de le faire disparaître en pleine action. */
@@ -1260,14 +1261,14 @@ button{font-family:inherit}
     height:260px;
     filter:drop-shadow(0 16px 34px rgba(30,41,59,.32));
     animation-name:dailyGoalVideoPop;
-    animation-duration:7.8s;
+    animation-duration:5.6s;
 }
 
 @keyframes dailyGoalVideoPop{
     0%{ transform:translate(-50%,-50%) scale(.5); opacity:0; }
     8%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
     17%{ transform:translate(-50%,-50%) scale(1); }
-    90%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
+    88%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
     100%{ opacity:0; transform:translate(-50%,-68%) scale(.94); }
 }
 
@@ -1779,7 +1780,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v85</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v86</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6588,18 +6589,26 @@ const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "cha
 const DAILY_GOAL_VIDEO_FILE = "personnage.MP4";
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
-// Distance de couleur (0-255) par rapport au fond mesuré : en dessous de LOW, le
-// pixel est considéré comme du fond (transparent) ; au-dessus de HIGH, comme le
-// sujet (opaque), avec un dégradé doux entre les deux pour adoucir les contours.
-// Seuils calibrés sur les images réelles de personnage.MP4 (analyse hors-ligne) :
-// le fond du studio varie de 0 à ~16 (bruit de compression/éclairage) sur tout le
-// cadre, alors que certaines zones du personnage (reflet sur le front, en
-// particulier) tombent dans une plage de 40 à 60 -- un HIGH à 60 (essayé d'abord)
-// les confondait avec le fond et créait un vrai trou transparent en plein visage.
-// HIGH=28 reste largement au-dessus du bruit du fond réel tout en excluant ces
-// zones du personnage.
-const MASTERY_CHROMA_LOW = 15;
-const MASTERY_CHROMA_HIGH = 28;
+// personnage.MP4 (depuis le 2026-08-21) a un fond NOIR uni avec un liseré bleu
+// lumineux dessiné autour du personnage et des balles (ajouté par l'outil de
+// montage) -- plus fiable à détecter qu'une simple ressemblance de couleur au
+// fond, qui échouait sur les zones du personnage presque aussi claires/sombres
+// que le fond (chandail blanc, casquette noire). Deux niveaux de confiance :
+// - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord de
+//   l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il est très
+//   sombre OU nettement bleuté. Seuils calibrés hors-ligne (voir analyse pixel
+//   par pixel des images réelles) pour rester sous les teintes du chandail/
+//   pantalon marine (qui plafonnent vers ~20-25 de "bleuté").
+// - "strong" (signal très fort, bleu vif) est retiré SANS exiger de connectivité
+//   -- l'anneau bleu le plus lumineux peut être isolé du fond connecté par une
+//   fine bande grisâtre (artefact de compression) trop faible en signal pour la
+//   connectivité seule ; ce filtre à part le rattrape.
+const MASTERY_LOOSE_DARK_MAX = 26;
+const MASTERY_LOOSE_BLUE_THRESH = 34;
+const MASTERY_STRONG_BLUE_THRESH = 45;
+const MASTERY_ERODE_RADIUS = 3;
+const MASTERY_DILATE_RADIUS = 8;
+const MASTERY_CLOSE_RADIUS = 3;
 
 // En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
 // noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
@@ -6679,67 +6688,10 @@ function showMasteryCharacter(videoUrl, big){
     if(!ctx){ return; } // pas de support canvas : on saute simplement l'effet, la fête continue avec confettis
 
     container.appendChild(video);
-    // Le canvas n'est ajouté au DOM (et son animation CSS "pop-in" démarrée) qu'une
-    // fois la toute première image correctement rendue transparente -- voir plus
-    // bas. Sinon les quelques images passées à échantillonner le fond (encore
-    // opaques, voir BG_SAMPLE_DELAY_FRAMES) s'affichent en plein cadre blanc avant
-    // que la transparence ne s'active, un flash bref mais visible au démarrage.
+    container.appendChild(canvas);
 
     let rafId = null;
     let stopped = false;
-    let canvasAttached = false;
-    // Couleur de fond mesurée sur les coins de la toute première image (plutôt que de
-    // viser un blanc pur) : ça évite de rendre transparentes les parties claires de
-    // l'animal lui-même, qui n'ont pas exactement la même teinte que le fond de studio.
-    let bgSampled = false;
-    let bgR = 255, bgG = 255, bgB = 255;
-    // Les tout premiers appels de dessin peuvent tomber avant que la video ait
-    // vraiment commence a jouer une image reelle (image de transition noire/vide
-    // le temps que le decodage demarre) : si on echantillonne le fond sur cette
-    // image-la, la reference se fige sur une mauvaise couleur et TOUTES les
-    // images suivantes (avec le vrai fond) sont jugees "pas du fond" -- l'effet
-    // reste opaque pour le reste de la video. On laisse donc passer quelques
-    // images avant de figer la reference.
-    let frameCount = 0;
-    const BG_SAMPLE_DELAY_FRAMES = 5;
-    // Filet de secours : si la transparence n'a jamais pu être appliquée (ex.
-    // canvas "tainted" par CORS), on affiche quand même le canvas après ce délai
-    // plutôt que de ne jamais rien montrer.
-    const CANVAS_MAX_HIDE_FRAMES = 45;
-
-    function sampleBackground(d){
-        const corners = [
-            [4, 4], [size - 5, 4], [4, size - 5], [size - 5, size - 5]
-        ];
-        let r = 0, g = 0, b = 0;
-        corners.forEach(([x, y]) => {
-            const idx = (size * y + x) * 4;
-            r += d[idx]; g += d[idx+1]; b += d[idx+2];
-        });
-        bgR = r / corners.length; bgG = g / corners.length; bgB = b / corners.length;
-        bgSampled = true;
-    }
-
-    // Rayons d'érosion/dilatation (voir computeBackgroundMask) : le vêtement blanc
-    // du personnage (rayures du chandail) est presque exactement de la même
-    // couleur que le fond de studio -- aucun seuil de distance de couleur ne peut
-    // les distinguer. Seule la CONNECTIVITÉ au bord permet de les séparer, mais un
-    // simple pot-de-peinture laisse parfois filtrer un chemin fin (aisselle,
-    // encolure) qui "tunnelise" jusqu'au vêtement. L'érosion coupe ces chemins
-    // fins avant le remplissage.
-    // Rayons volontairement DIFFÉRENTS (érosion 6, dilatation 16) : une dilatation
-    // symétrique (même rayon que l'érosion) ne restaure pas certaines petites
-    // poches de vrai fond isolées (autour du chapeau, entre les jambes, au-dessus
-    // des bras) -- trop étroites pour avoir survécu à l'érosion nulle part sur
-    // leur pourtour, donc jamais rattachées au fond principal par le remplissage.
-    // Une dilatation plus généreuse les rattrape par simple proximité spatiale
-    // (elle ne suit aucun chemin, juste la distance), sans rouvrir le chemin fin
-    // vers le chandail (bien plus large que 16px, testé jusqu'à 20 sans fuite).
-    // Plafond empirique à 16 : au-delà (18-20), la dilatation finit par "sauter"
-    // jusqu'au reflet blanc dans l'œil (petite zone isolée elle aussi), qui se
-    // met alors à disparaître à tort.
-    const MASTERY_ERODE_RADIUS = 6;
-    const MASTERY_DILATE_RADIUS = 16;
 
     // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
     // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
@@ -6802,28 +6754,35 @@ function showMasteryCharacter(videoUrl, big){
         return out;
     }
 
-    // Ne rend transparent que le fond "connecté" aux bords de l'image (comme une
-    // baguette magique / pot de peinture partant du cadre) : les zones claires de
-    // l'animal, entourées par des couleurs plus foncées (donc jamais reliées au
-    // bord), restent protégées et opaques même si leur couleur ressemble au fond.
+    // Fond noir + liseré bleu (voir constantes MASTERY_* plus haut). Deux masques
+    // combinés par une union (OR) :
+    // - mask1 : remplissage depuis le bord de l'image ("baguette magique"), à
+    //   travers le filet large (loose) rongé par érosion -- protège les zones
+    //   claires/sombres du personnage qui NE SONT PAS reliées au bord (ex. reflet
+    //   dans l'œil), tout en couvrant largement le fond et son dégradé.
+    // - mask2 : le signal bleu très fort, retiré sans condition de connectivité
+    //   (fermeture morphologique pour lisser), car un anneau bleu vif isolé du
+    //   fond connecté par une fine bande grisâtre échapperait sinon à mask1.
     function computeBackgroundMask(d, w, h){
         const n = w * h;
-        const isBgColor = new Uint8Array(n);
+        const looseCand = new Uint8Array(n);
+        const strongCand = new Uint8Array(n);
         for(let p = 0; p < n; p++){
             const i = p * 4;
-            const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
-            if(Math.max(dr, dg, db) < MASTERY_CHROMA_HIGH) isBgColor[p] = 1;
+            const r = d[i], g = d[i+1], b = d[i+2];
+            const mx = Math.max(r, g, b);
+            const blueness = b - (r + g) / 2;
+            if(mx < MASTERY_LOOSE_DARK_MAX || blueness > MASTERY_LOOSE_BLUE_THRESH) looseCand[p] = 1;
+            if(blueness > MASTERY_STRONG_BLUE_THRESH) strongCand[p] = 1;
         }
-        // Érosion : ne garde comme "cœur de fond" que les zones assez larges pour
-        // survivre au rayon -- coupe les chemins fins qui tunnelisent vers le
-        // vêtement clair du personnage.
-        const core = erodeMask(isBgColor, w, h, MASTERY_ERODE_RADIUS);
-        const isBg = new Uint8Array(n);
+
+        const core = erodeMask(looseCand, w, h, MASTERY_ERODE_RADIUS);
+        const mask1seed = new Uint8Array(n);
         const queue = new Int32Array(n);
         let qLen = 0;
         function seed(x, y){
             const p = y * w + x;
-            if(core[p] && !isBg[p]){ isBg[p] = 1; queue[qLen++] = p; }
+            if(core[p] && !mask1seed[p]){ mask1seed[p] = 1; queue[qLen++] = p; }
         }
         for(let x = 0; x < w; x++){ seed(x, 0); seed(x, h - 1); }
         for(let y = 0; y < h; y++){ seed(0, y); seed(w - 1, y); }
@@ -6836,12 +6795,15 @@ function showMasteryCharacter(videoUrl, big){
             if(y > 0) seed(x, y - 1);
             if(y < h - 1) seed(x, y + 1);
         }
-        // Dilatation : restaure l'étendue du fond réel (rongée par l'érosion),
-        // sans jamais dépasser les pixels qui ressemblaient déjà au fond au départ.
-        const dilated = dilateMask(isBg, w, h, MASTERY_DILATE_RADIUS);
+        const dilated1 = dilateMask(mask1seed, w, h, MASTERY_DILATE_RADIUS);
+
+        const mask2 = erodeMask(dilateMask(strongCand, w, h, MASTERY_CLOSE_RADIUS), w, h, MASTERY_CLOSE_RADIUS);
+
         const finalMask = new Uint8Array(n);
         for(let p = 0; p < n; p++){
-            finalMask[p] = (dilated[p] && isBgColor[p]) ? 1 : 0;
+            const inMask1 = dilated1[p] && looseCand[p];
+            const inMask2 = mask2[p] && strongCand[p]; // ne jamais depasser le signal fort d'origine
+            finalMask[p] = (inMask1 || inMask2) ? 1 : 0;
         }
         return finalMask;
     }
@@ -6855,45 +6817,32 @@ function showMasteryCharacter(videoUrl, big){
             const dx = (size - dw) / 2, dy = (size - dh) / 2;
             ctx.clearRect(0, 0, size, size);
             ctx.drawImage(video, dx, dy, dw, dh);
-            frameCount++;
-            let masked = false;
-            if(frameCount > BG_SAMPLE_DELAY_FRAMES){
-                try{
-                    const frame = ctx.getImageData(0, 0, size, size);
-                    const d = frame.data;
-                    if(!bgSampled) sampleBackground(d);
-                    const mask = computeBackgroundMask(d, size, size);
-                    const range = MASTERY_CHROMA_HIGH - MASTERY_CHROMA_LOW;
-                    const darkTheme = document.body.getAttribute("data-theme") === "dark";
-                    for(let p = 0; p < mask.length; p++){
-                        const i = p * 4;
-                        if(mask[p]){
-                            const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
-                            const dist = Math.max(dr, dg, db);
-                            const bgLikeness = Math.max(0, Math.min(1, (MASTERY_CHROMA_HIGH - dist) / range));
-                            d[i+3] = Math.round(d[i+3] * (1 - bgLikeness));
-                        }
-                        // Thème sombre : le noir du personnage (casquette, etc.) se fond
-                        // dans le fond noir de l'appli -- on le remplace par un bleu marine
-                        // visible, en préservant le dégradé d'origine (ombres/reflets).
-                        if(darkTheme && d[i+3] > 0){
-                            const lum = Math.max(d[i], d[i+1], d[i+2]);
-                            if(lum < DARK_RECOLOR_THRESHOLD){
-                                const t = lum / DARK_RECOLOR_THRESHOLD;
-                                d[i]   = Math.round(DARK_RECOLOR_BASE.r + t * DARK_RECOLOR_SPAN.r);
-                                d[i+1] = Math.round(DARK_RECOLOR_BASE.g + t * DARK_RECOLOR_SPAN.g);
-                                d[i+2] = Math.round(DARK_RECOLOR_BASE.b + t * DARK_RECOLOR_SPAN.b);
-                            }
+            try{
+                const frame = ctx.getImageData(0, 0, size, size);
+                const d = frame.data;
+                const mask = computeBackgroundMask(d, size, size);
+                const darkTheme = document.body.getAttribute("data-theme") === "dark";
+                for(let p = 0; p < mask.length; p++){
+                    const i = p * 4;
+                    if(mask[p]){
+                        d[i+3] = 0;
+                        continue;
+                    }
+                    // Thème sombre : le noir du personnage (casquette, etc.) se fond
+                    // dans le fond noir de l'appli -- on le remplace par un bleu marine
+                    // visible, en préservant le dégradé d'origine (ombres/reflets).
+                    if(darkTheme){
+                        const lum = Math.max(d[i], d[i+1], d[i+2]);
+                        if(lum < DARK_RECOLOR_THRESHOLD){
+                            const t = lum / DARK_RECOLOR_THRESHOLD;
+                            d[i]   = Math.round(DARK_RECOLOR_BASE.r + t * DARK_RECOLOR_SPAN.r);
+                            d[i+1] = Math.round(DARK_RECOLOR_BASE.g + t * DARK_RECOLOR_SPAN.g);
+                            d[i+2] = Math.round(DARK_RECOLOR_BASE.b + t * DARK_RECOLOR_SPAN.b);
                         }
                     }
-                    ctx.putImageData(frame, 0, 0);
-                    masked = true;
-                }catch(e){ /* p.ex. canvas "tainted" par CORS : on garde l'image opaque telle quelle */ }
-            }
-            if(!canvasAttached && (masked || frameCount > BG_SAMPLE_DELAY_FRAMES + CANVAS_MAX_HIDE_FRAMES)){
-                container.appendChild(canvas);
-                canvasAttached = true;
-            }
+                }
+                ctx.putImageData(frame, 0, 0);
+            }catch(e){ /* p.ex. canvas "tainted" par CORS : on garde l'image opaque telle quelle */ }
         }
         rafId = requestAnimationFrame(drawFrame);
     }
