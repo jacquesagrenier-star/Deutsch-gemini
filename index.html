@@ -1775,7 +1775,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v78</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v79</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6606,10 +6606,15 @@ function showMasteryCharacter(videoUrl, big){
     if(!ctx){ return; } // pas de support canvas : on saute simplement l'effet, la fête continue avec confettis
 
     container.appendChild(video);
-    container.appendChild(canvas);
+    // Le canvas n'est ajouté au DOM (et son animation CSS "pop-in" démarrée) qu'une
+    // fois la toute première image correctement rendue transparente -- voir plus
+    // bas. Sinon les quelques images passées à échantillonner le fond (encore
+    // opaques, voir BG_SAMPLE_DELAY_FRAMES) s'affichent en plein cadre blanc avant
+    // que la transparence ne s'active, un flash bref mais visible au démarrage.
 
     let rafId = null;
     let stopped = false;
+    let canvasAttached = false;
     // Couleur de fond mesurée sur les coins de la toute première image (plutôt que de
     // viser un blanc pur) : ça évite de rendre transparentes les parties claires de
     // l'animal lui-même, qui n'ont pas exactement la même teinte que le fond de studio.
@@ -6624,6 +6629,10 @@ function showMasteryCharacter(videoUrl, big){
     // images avant de figer la reference.
     let frameCount = 0;
     const BG_SAMPLE_DELAY_FRAMES = 5;
+    // Filet de secours : si la transparence n'a jamais pu être appliquée (ex.
+    // canvas "tainted" par CORS), on affiche quand même le canvas après ce délai
+    // plutôt que de ne jamais rien montrer.
+    const CANVAS_MAX_HIDE_FRAMES = 45;
 
     function sampleBackground(d){
         const corners = [
@@ -6681,6 +6690,7 @@ function showMasteryCharacter(videoUrl, big){
             ctx.clearRect(0, 0, size, size);
             ctx.drawImage(video, dx, dy, dw, dh);
             frameCount++;
+            let masked = false;
             if(frameCount > BG_SAMPLE_DELAY_FRAMES){
                 try{
                     const frame = ctx.getImageData(0, 0, size, size);
@@ -6697,7 +6707,12 @@ function showMasteryCharacter(videoUrl, big){
                         d[i+3] = Math.round(d[i+3] * (1 - bgLikeness));
                     }
                     ctx.putImageData(frame, 0, 0);
+                    masked = true;
                 }catch(e){ /* p.ex. canvas "tainted" par CORS : on garde l'image opaque telle quelle */ }
+            }
+            if(!canvasAttached && (masked || frameCount > BG_SAMPLE_DELAY_FRAMES + CANVAS_MAX_HIDE_FRAMES)){
+                container.appendChild(canvas);
+                canvasAttached = true;
             }
         }
         rafId = requestAnimationFrame(drawFrame);
