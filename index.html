@@ -1779,7 +1779,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v84</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v85</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6727,15 +6727,19 @@ function showMasteryCharacter(videoUrl, big){
     // simple pot-de-peinture laisse parfois filtrer un chemin fin (aisselle,
     // encolure) qui "tunnelise" jusqu'au vêtement. L'érosion coupe ces chemins
     // fins avant le remplissage.
-    // Rayons volontairement DIFFÉRENTS (érosion 6, dilatation 12) : une dilatation
+    // Rayons volontairement DIFFÉRENTS (érosion 6, dilatation 16) : une dilatation
     // symétrique (même rayon que l'érosion) ne restaure pas certaines petites
-    // poches de vrai fond isolées (autour du chapeau, entre les jambes) -- trop
-    // étroites pour avoir survécu à l'érosion nulle part sur leur pourtour, donc
-    // jamais rattachées au fond principal par le remplissage. Une dilatation plus
-    // généreuse les rattrape par simple proximité, sans rouvrir le chemin fin vers
-    // le chandail (plus large que 12px, donc toujours bloqué).
+    // poches de vrai fond isolées (autour du chapeau, entre les jambes, au-dessus
+    // des bras) -- trop étroites pour avoir survécu à l'érosion nulle part sur
+    // leur pourtour, donc jamais rattachées au fond principal par le remplissage.
+    // Une dilatation plus généreuse les rattrape par simple proximité spatiale
+    // (elle ne suit aucun chemin, juste la distance), sans rouvrir le chemin fin
+    // vers le chandail (bien plus large que 16px, testé jusqu'à 20 sans fuite).
+    // Plafond empirique à 16 : au-delà (18-20), la dilatation finit par "sauter"
+    // jusqu'au reflet blanc dans l'œil (petite zone isolée elle aussi), qui se
+    // met alors à disparaître à tort.
     const MASTERY_ERODE_RADIUS = 6;
-    const MASTERY_DILATE_RADIUS = 12;
+    const MASTERY_DILATE_RADIUS = 16;
 
     // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
     // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
