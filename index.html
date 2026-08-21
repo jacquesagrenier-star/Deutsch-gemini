@@ -1251,7 +1251,7 @@ button{font-family:inherit}
 }
 
 /* Célébration "objectif du jour atteint" (personnage) : plus gros, reste plus
-   longtemps. Durée = longueur de la vidéo (3.9s, recadrée pour retirer le
+   longtemps. Durée = longueur de la vidéo (6.0s, recadrée pour retirer le
    filigrane CapCut ajouté en fin d'export ; sans boucle -- elle se fige
    naturellement sur sa dernière image une fois finie) + 1s d'arrêt sur image
    supplémentaire avant de s'effacer, pour bien voir le personnage immobile à
@@ -1261,14 +1261,14 @@ button{font-family:inherit}
     height:260px;
     filter:drop-shadow(0 16px 34px rgba(30,41,59,.32));
     animation-name:dailyGoalVideoPop;
-    animation-duration:5.6s;
+    animation-duration:7.7s;
 }
 
 @keyframes dailyGoalVideoPop{
     0%{ transform:translate(-50%,-50%) scale(.5); opacity:0; }
     8%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
     17%{ transform:translate(-50%,-50%) scale(1); }
-    88%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
+    91%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
     100%{ opacity:0; transform:translate(-50%,-68%) scale(.94); }
 }
 
@@ -1780,7 +1780,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v90</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v91</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6589,23 +6589,27 @@ const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "cha
 const DAILY_GOAL_VIDEO_FILE = "personnage.MP4";
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
-// personnage.MP4 (depuis le 2026-08-21) a un fond NOIR uni avec un liseré bleu
-// lumineux dessiné autour du personnage et des balles (ajouté par l'outil de
-// montage) -- plus fiable à détecter qu'une simple ressemblance de couleur au
-// fond, qui échouait sur les zones du personnage presque aussi claires/sombres
-// que le fond (chandail blanc, casquette noire). Deux niveaux de confiance :
+// personnage.MP4 (depuis le 2026-08-21, 2e export) a un fond NOIR uni avec un
+// liseré VERT vif et net dessiné autour du personnage et des balles (ajouté
+// par l'outil de montage) -- bien plus fiable qu'une simple ressemblance de
+// couleur au fond (qui échouait sur les zones presque aussi claires/sombres
+// que le fond) ou même que le 1er export à liseré bleu (le bleu se confondait
+// avec le pantalon/chandail marine ; le vert, lui, n'a aucun équivalent dans
+// la palette du personnage -- chandail, casquette, peau, ballons sont tous
+// nettement NON verts, vérifié pixel par pixel). La transition entre le
+// personnage et l'anneau vert est aussi beaucoup plus nette (~14px contre
+// ~40px avec le bleu), donc le simple rayon de dilatation ci-dessous suffit à
+// la combler sans le pontage risqué tenté (et abandonné) avec le bleu.
+// Deux niveaux de confiance :
 // - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord de
 //   l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il est très
-//   sombre OU nettement bleuté. Seuils calibrés hors-ligne (voir analyse pixel
-//   par pixel des images réelles) pour rester sous les teintes du chandail/
-//   pantalon marine (qui plafonnent vers ~20-25 de "bleuté").
-// - "strong" (signal très fort, bleu vif) est retiré SANS exiger de connectivité
-//   -- l'anneau bleu le plus lumineux peut être isolé du fond connecté par une
-//   fine bande grisâtre (artefact de compression) trop faible en signal pour la
-//   connectivité seule ; ce filtre à part le rattrape.
+//   sombre OU nettement verdâtre.
+// - "strong" (signal très fort, vert vif) est retiré SANS exiger de connectivité
+//   -- au cas où l'anneau le plus lumineux soit isolé du fond connecté par une
+//   fine bande de transition trop faible en signal pour la connectivité seule.
 const MASTERY_LOOSE_DARK_MAX = 26;
-const MASTERY_LOOSE_BLUE_THRESH = 34;
-const MASTERY_STRONG_BLUE_THRESH = 45;
+const MASTERY_LOOSE_GREEN_THRESH = 25;
+const MASTERY_STRONG_GREEN_THRESH = 90;
 const MASTERY_ERODE_RADIUS = 3;
 const MASTERY_DILATE_RADIUS = 8;
 const MASTERY_CLOSE_RADIUS = 3;
@@ -6754,15 +6758,15 @@ function showMasteryCharacter(videoUrl, big){
         return out;
     }
 
-    // Fond noir + liseré bleu (voir constantes MASTERY_* plus haut). Deux masques
+    // Fond noir + liseré vert (voir constantes MASTERY_* plus haut). Deux masques
     // combinés par une union (OR) :
     // - mask1 : remplissage depuis le bord de l'image ("baguette magique"), à
     //   travers le filet large (loose) rongé par érosion -- protège les zones
     //   claires/sombres du personnage qui NE SONT PAS reliées au bord (ex. reflet
     //   dans l'œil), tout en couvrant largement le fond et son dégradé.
-    // - mask2 : le signal bleu très fort, retiré sans condition de connectivité
-    //   (fermeture morphologique pour lisser), car un anneau bleu vif isolé du
-    //   fond connecté par une fine bande grisâtre échapperait sinon à mask1.
+    // - mask2 : le signal vert très fort, retiré sans condition de connectivité
+    //   (fermeture morphologique pour lisser), au cas où l'anneau le plus vif
+    //   soit isolé du fond connecté par une fine bande de transition.
     function computeBackgroundMask(d, w, h){
         const n = w * h;
         const looseCand = new Uint8Array(n);
@@ -6771,9 +6775,9 @@ function showMasteryCharacter(videoUrl, big){
             const i = p * 4;
             const r = d[i], g = d[i+1], b = d[i+2];
             const mx = Math.max(r, g, b);
-            const blueness = b - (r + g) / 2;
-            if(mx < MASTERY_LOOSE_DARK_MAX || blueness > MASTERY_LOOSE_BLUE_THRESH) looseCand[p] = 1;
-            if(blueness > MASTERY_STRONG_BLUE_THRESH) strongCand[p] = 1;
+            const greenness = g - Math.max(r, b);
+            if(mx < MASTERY_LOOSE_DARK_MAX || greenness > MASTERY_LOOSE_GREEN_THRESH) looseCand[p] = 1;
+            if(greenness > MASTERY_STRONG_GREEN_THRESH) strongCand[p] = 1;
         }
 
         const core = erodeMask(looseCand, w, h, MASTERY_ERODE_RADIUS);
