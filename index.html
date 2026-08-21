@@ -1250,20 +1250,24 @@ button{font-family:inherit}
     100%{ opacity:0; transform:translate(-50%,-78%) scale(.92); }
 }
 
-/* Célébration "objectif du jour atteint" (lion) : plus gros, reste plus longtemps. */
+/* Célébration "objectif du jour atteint" (personnage) : plus gros, reste plus
+   longtemps. Durée = longueur de la vidéo (6.04s, sans boucle -- elle se fige
+   naturellement sur sa dernière image une fois finie) + 1s d'arrêt sur image
+   supplémentaire avant de s'effacer, pour bien voir le personnage immobile à
+   la fin du jonglage plutôt que de le faire disparaître en pleine action. */
 .mastery-video-big{
     width:260px;
     height:260px;
     filter:drop-shadow(0 16px 34px rgba(30,41,59,.32));
     animation-name:dailyGoalVideoPop;
-    animation-duration:5.5s;
+    animation-duration:7.8s;
 }
 
 @keyframes dailyGoalVideoPop{
     0%{ transform:translate(-50%,-50%) scale(.5); opacity:0; }
-    12%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
-    24%{ transform:translate(-50%,-50%) scale(1); }
-    85%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
+    8%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
+    17%{ transform:translate(-50%,-50%) scale(1); }
+    90%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
     100%{ opacity:0; transform:translate(-50%,-68%) scale(.94); }
 }
 
@@ -1775,7 +1779,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v82</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v83</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -6716,6 +6720,77 @@ function showMasteryCharacter(videoUrl, big){
         bgSampled = true;
     }
 
+    // Rayon d'érosion/dilatation (voir computeBackgroundMask) : le vêtement blanc
+    // du personnage (rayures du chandail) est presque exactement de la même
+    // couleur que le fond de studio -- aucun seuil de distance de couleur ne peut
+    // les distinguer. Seule la CONNECTIVITÉ au bord permet de les séparer, mais un
+    // simple pot-de-peinture laisse parfois filtrer un chemin fin (aisselle,
+    // encolure) qui "tunnelise" jusqu'au vêtement. L'érosion coupe ces chemins
+    // fins avant le remplissage ; la dilatation restaure ensuite l'étendue du vrai
+    // fond (large, donc jamais complètement rongé par l'érosion).
+    const MASTERY_MORPH_RADIUS = 6;
+
+    // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
+    // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
+    // de O(rayon²) -- important pour rester fluide en animation temps réel.
+    function erodeMask(mask, w, h, radius){
+        const tmp = new Uint8Array(w * h);
+        for(let y = 0; y < h; y++){
+            const base = y * w;
+            for(let x = 0; x < w; x++){
+                let v = 1;
+                for(let dx = -radius; dx <= radius; dx++){
+                    const nx = x + dx;
+                    if(nx < 0 || nx >= w) continue; // hors cadre : aucune contrainte
+                    if(!mask[base + nx]){ v = 0; break; }
+                }
+                tmp[base + x] = v;
+            }
+        }
+        const out = new Uint8Array(w * h);
+        for(let x = 0; x < w; x++){
+            for(let y = 0; y < h; y++){
+                let v = 1;
+                for(let dy = -radius; dy <= radius; dy++){
+                    const ny = y + dy;
+                    if(ny < 0 || ny >= h) continue;
+                    if(!tmp[ny * w + x]){ v = 0; break; }
+                }
+                out[y * w + x] = v;
+            }
+        }
+        return out;
+    }
+
+    function dilateMask(mask, w, h, radius){
+        const tmp = new Uint8Array(w * h);
+        for(let y = 0; y < h; y++){
+            const base = y * w;
+            for(let x = 0; x < w; x++){
+                let v = 0;
+                for(let dx = -radius; dx <= radius; dx++){
+                    const nx = x + dx;
+                    if(nx < 0 || nx >= w) continue;
+                    if(mask[base + nx]){ v = 1; break; }
+                }
+                tmp[base + x] = v;
+            }
+        }
+        const out = new Uint8Array(w * h);
+        for(let x = 0; x < w; x++){
+            for(let y = 0; y < h; y++){
+                let v = 0;
+                for(let dy = -radius; dy <= radius; dy++){
+                    const ny = y + dy;
+                    if(ny < 0 || ny >= h) continue;
+                    if(tmp[ny * w + x]){ v = 1; break; }
+                }
+                out[y * w + x] = v;
+            }
+        }
+        return out;
+    }
+
     // Ne rend transparent que le fond "connecté" aux bords de l'image (comme une
     // baguette magique / pot de peinture partant du cadre) : les zones claires de
     // l'animal, entourées par des couleurs plus foncées (donc jamais reliées au
@@ -6728,12 +6803,16 @@ function showMasteryCharacter(videoUrl, big){
             const dr = Math.abs(d[i] - bgR), dg = Math.abs(d[i+1] - bgG), db = Math.abs(d[i+2] - bgB);
             if(Math.max(dr, dg, db) < MASTERY_CHROMA_HIGH) isBgColor[p] = 1;
         }
+        // Érosion : ne garde comme "cœur de fond" que les zones assez larges pour
+        // survivre au rayon -- coupe les chemins fins qui tunnelisent vers le
+        // vêtement clair du personnage.
+        const core = erodeMask(isBgColor, w, h, MASTERY_MORPH_RADIUS);
         const isBg = new Uint8Array(n);
         const queue = new Int32Array(n);
         let qLen = 0;
         function seed(x, y){
             const p = y * w + x;
-            if(isBgColor[p] && !isBg[p]){ isBg[p] = 1; queue[qLen++] = p; }
+            if(core[p] && !isBg[p]){ isBg[p] = 1; queue[qLen++] = p; }
         }
         for(let x = 0; x < w; x++){ seed(x, 0); seed(x, h - 1); }
         for(let y = 0; y < h; y++){ seed(0, y); seed(w - 1, y); }
@@ -6746,7 +6825,14 @@ function showMasteryCharacter(videoUrl, big){
             if(y > 0) seed(x, y - 1);
             if(y < h - 1) seed(x, y + 1);
         }
-        return isBg;
+        // Dilatation : restaure l'étendue du fond réel (rongée par l'érosion),
+        // sans jamais dépasser les pixels qui ressemblaient déjà au fond au départ.
+        const dilated = dilateMask(isBg, w, h, MASTERY_MORPH_RADIUS);
+        const finalMask = new Uint8Array(n);
+        for(let p = 0; p < n; p++){
+            finalMask[p] = (dilated[p] && isBgColor[p]) ? 1 : 0;
+        }
+        return finalMask;
     }
 
     function drawFrame(){
@@ -6842,10 +6928,14 @@ function triggerDailyGoalCelebration(){
 
 function celebrateMastery(justReachedGoal){
     if(justReachedGoal){
+        // Grande célébration (objectif du jour) : pas de confettis en plus, l'effet
+        // est déjà complet (personnage + fanfare + étincelle).
         triggerDailyGoalCelebration();
     } else {
-        // Confettis et petit animal retires (2026-08) : plus d'effet visuel a
-        // chaque carte maitrisee, seulement pour l'objectif du jour atteint.
+        // Petite explosion de confettis à chaque carte maîtrisée "normale" (le
+        // petit animal vidéo, lui, reste retiré). Pas de délai avant la carte
+        // suivante : les confettis se jouent en overlay, sans bloquer la suite.
+        launchConfetti();
         playMasteredSound();
     }
 }
@@ -6861,7 +6951,7 @@ function markMastered(){
     const justReachedGoal = recordDailyActivity();
     logMasteryEvent();
     celebrateMastery(justReachedGoal);
-    setTimeout(() => nextFlashcard(), 1000);
+    nextFlashcard();
 }
 
 function nextFlashcard(){
