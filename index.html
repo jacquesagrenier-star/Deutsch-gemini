@@ -172,6 +172,13 @@ body[data-theme="dark"] .subtitle-version{
     border-color:rgba(30,41,59,.32);
 }
 
+/* La grille d'accueil affiche un jeu de tuiles différent selon la direction
+   d'apprentissage (allemand par défaut, anglais si body[data-learning-dir="en"]) —
+   les catégories de grammaire ne sont pas les mêmes d'une langue à l'autre. */
+.orb-en{ display:none; }
+body[data-learning-dir="en"] .orb-de{ display:none; }
+body[data-learning-dir="en"] .orb-en{ display:flex; }
+
 .orb-icon{
     width:30px;
     height:30px;
@@ -1781,7 +1788,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v92</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v93</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -1817,7 +1824,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="grid" id="orbGrid">
-        <div class="orb" data-orbid="verben" onclick="openOrbPanel('verben')">
+        <div class="orb orb-de" data-orbid="verben" onclick="openOrbPanel('verben')">
             <div id="badge-verben" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -1829,7 +1836,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
+        <div class="orb orb-de" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
             <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
             <div>
@@ -1838,7 +1845,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="nomen" onclick="openOrbPanel('nomen')">
+        <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -1850,7 +1857,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="kasus" onclick="openOrbPanel('kasus')">
+        <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-kasus" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -1862,7 +1869,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="adjektive" onclick="openOrbPanel('adjektive')">
+        <div class="orb orb-de" data-orbid="adjektive" onclick="openOrbPanel('adjektive')">
             <div id="badge-adjektive" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-adjektive" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -1874,7 +1881,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="praep" onclick="openOrbPanel('praep')">
+        <div class="orb orb-de" data-orbid="praep" onclick="openOrbPanel('praep')">
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-praep" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -1886,7 +1893,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="wortstellung" onclick="openOrbPanel('wortstellung')">
+        <div class="orb orb-de" data-orbid="wortstellung" onclick="openOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
@@ -1895,7 +1902,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="possessiv" onclick="openOrbPanel('possessiv')">
+        <div class="orb orb-de" data-orbid="possessiv" onclick="openOrbPanel('possessiv')">
             <div id="badge-possessiv" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M8 12v6"/><path d="M5 21v-2a3 3 0 013-3h0a3 3 0 013 3v2"/><path d="M15 8h6"/></svg></div>
             <div>
@@ -1904,7 +1911,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="partikeln" onclick="openOrbPanel('partikeln')">
+        <div class="orb orb-de" data-orbid="partikeln" onclick="openOrbPanel('partikeln')">
             <div id="badge-partikeln" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-partikeln" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -1916,7 +1923,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="revision" onclick="openSettings()">
+        <div class="orb orb-de" data-orbid="revision" onclick="openSettings()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
             <div>
                 <strong data-i18n="orb_revision_title">Révision</strong>
@@ -1924,11 +1931,86 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="english" onclick="openOrbPanel('english')">
+        <!-- Tuiles anglais (visibles uniquement en direction "en", voir CSS .orb-en
+             ci-dessus) : catégories propres à l'anglais, différentes des catégories
+             de grammaire allemande ci-dessus (pas de Kasus/Partikeln en anglais). -->
+        <div class="orb orb-en" data-orbid="nomen_en" onclick="openEnglishNomen()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg></div>
             <div>
-                <strong data-i18n="orb_english_title">Anglais</strong>
-                <small data-i18n="orb_english_sub">Wortschatz · Verben · Grammatik</small>
+                <strong data-i18n="orb_en_nomen_title">Wortschatz</strong>
+                <small data-i18n="orb_en_nomen_sub">Thèmes & vocabulaire</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="verben_en" onclick="openEnglishVerben()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_verben_title">Verben</strong>
+                <small data-i18n="orb_en_verben_sub">Verbes irréguliers</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="artikel_en" onclick="openEnglishArtikel()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_artikel_title">Artikel</strong>
+                <small>a / an / the</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="zeiten_en" onclick="comingSoon('Zeiten (Tenses)')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_zeiten_title">Zeiten</strong>
+                <small data-i18n="orb_en_zeiten_sub">Present, Past, Perfect…</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="modal_en" onclick="comingSoon('Modalverben')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_modal_title">Modalverben</strong>
+                <small>can · must · should</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="praep_en" onclick="comingSoon('Präpositionen')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_praep_title">Präpositionen</strong>
+                <small>in · on · at</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="satzbau_en" onclick="comingSoon('Satzbau &amp; Fragen')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_satzbau_title">Satzbau & Fragen</strong>
+                <small data-i18n="orb_en_satzbau_sub">do / does · ordre des mots</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="vergleich_en" onclick="comingSoon('Vergleich')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_vergleich_title">Vergleich</strong>
+                <small>bigger · the biggest</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="phrasal_en" onclick="comingSoon('Phrasal Verbs')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div>
+                <strong>Phrasal Verbs</strong>
+                <small>give up · look for</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="revision_en" onclick="openSettings()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+            <div>
+                <strong data-i18n="orb_revision_title">Révision</strong>
+                <small data-i18n="orb_revision_sub">Progression · Reset</small>
             </div>
         </div>
     </div>
@@ -1957,8 +2039,8 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <div class="title-row">
         <div>
-            <div class="kicker" data-i18n="kicker_grammar_vocab">Grammaire & Vocabulaire</div>
-            <h2 data-i18n="verbenniveau_title">Verbes par niveau</h2>
+            <div class="kicker" id="verbenNiveauKicker" data-i18n="kicker_grammar_vocab">Grammaire & Vocabulaire</div>
+            <h2 id="verbenNiveauTitle" data-i18n="verbenniveau_title">Verbes par niveau</h2>
         </div>
         <div class="pill" id="verbLevelCountPill" data-i18n="levels_label">Niveaux</div>
     </div>
@@ -1985,8 +2067,8 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <div class="title-row">
         <div>
-            <div class="kicker" data-i18n="kicker_integrated_vocab">Vocabulaire Intégré</div>
-            <h2 data-i18n="nomen_title">Noms & Thèmes</h2>
+            <div class="kicker" id="nomenKicker" data-i18n="kicker_integrated_vocab">Vocabulaire Intégré</div>
+            <h2 id="nomenTitle" data-i18n="nomen_title">Noms & Thèmes</h2>
         </div>
         <div class="pill" id="themeCountPill" data-i18n="loading_label">Chargement...</div>
     </div>
@@ -2454,7 +2536,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 <!-- ================= GRAMMAIRE ANGLAISE (fusion de english/index.html) ================= -->
 
 <section id="englishGrammarInfo" class="screen">
-    <button class="back" onclick="openOrbPanel('english')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="title-row">
         <div>
             <div class="kicker" data-i18n="op_english_title">Anglais</div>
@@ -2806,8 +2888,21 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammaire",
         orb_zuinf_title: "Zu + infinitif",
         orb_zuinf_sub: "versuchen zu · ohne zu",
-        orb_english_title: "Anglais",
-        orb_english_sub: "Wortschatz · Verben · Grammatik",
+        orb_en_nomen_title: "Wortschatz",
+        orb_en_nomen_sub: "Thèmes & vocabulaire",
+        orb_en_verben_title: "Verben",
+        orb_en_verben_sub: "Verbes irréguliers",
+        orb_en_artikel_title: "Artikel",
+        orb_en_zeiten_title: "Zeiten",
+        orb_en_zeiten_sub: "Present, Past, Perfect…",
+        orb_en_modal_title: "Modalverben",
+        orb_en_praep_title: "Präpositionen",
+        orb_en_satzbau_title: "Satzbau & Fragen",
+        orb_en_satzbau_sub: "do / does · ordre des mots",
+        orb_en_vergleich_title: "Vergleich",
+        kicker_english_vocab: "Vocabulaire anglais intégré",
+        nomen_title_en: "Wortschatz & Thèmes",
+        verbenniveau_title_en: "Verben par niveau",
         orb_nomen_title: "Noms",
         orb_nomen_sub: "Thèmes & Vocabulaire",
         orb_kasus_title: "Cas",
@@ -3168,8 +3263,21 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammar",
         orb_zuinf_title: "Zu + infinitive",
         orb_zuinf_sub: "versuchen zu · ohne zu",
-        orb_english_title: "English",
-        orb_english_sub: "Wortschatz · Verben · Grammatik",
+        orb_en_nomen_title: "Wortschatz",
+        orb_en_nomen_sub: "Themes & vocabulary",
+        orb_en_verben_title: "Verben",
+        orb_en_verben_sub: "Irregular verbs",
+        orb_en_artikel_title: "Artikel",
+        orb_en_zeiten_title: "Zeiten",
+        orb_en_zeiten_sub: "Present, Past, Perfect…",
+        orb_en_modal_title: "Modalverben",
+        orb_en_praep_title: "Präpositionen",
+        orb_en_satzbau_title: "Satzbau & Fragen",
+        orb_en_satzbau_sub: "do / does · word order",
+        orb_en_vergleich_title: "Vergleich",
+        kicker_english_vocab: "Built-in English vocabulary",
+        nomen_title_en: "Wortschatz & Themes",
+        verbenniveau_title_en: "Verben by level",
         orb_nomen_title: "Nouns",
         orb_nomen_sub: "Themes & Vocabulary",
         orb_kasus_title: "Cases",
@@ -3601,8 +3709,13 @@ function setLearningDirection(dir){
 // éléments dépendant de la progression (celle-ci est maintenant isolée par
 // direction, voir progressKey()).
 function applyLearningDirectionUi(){
+    const dir = getLearningDirection();
     const btn = document.getElementById("learningDirToggleBtn");
-    if(btn) btn.textContent = getLearningDirection() === "en" ? "🇬🇧" : "🇩🇪";
+    if(btn) btn.textContent = dir === "en" ? "🇬🇧" : "🇩🇪";
+    // Pilote l'affichage des tuiles d'accueil (.orb-de / .orb-en, voir CSS) : les
+    // catégories de grammaire ne sont pas les mêmes selon la langue apprise.
+    document.body.setAttribute("data-learning-dir", dir);
+    renderFlipToggleButtons(); // masque le sélecteur FR⇄DE (non pertinent en anglais)
     updateGlobalProgress();
     updateOrbBadges();
 }
@@ -3666,6 +3779,18 @@ function initUiLang(){
 }
 
 initUiLang();
+
+// Applique dès le chargement la direction d'apprentissage déjà mémorisée
+// (localStorage), sinon la grille d'accueil afficherait par défaut les tuiles
+// allemandes même pour un usager déjà passé en anglais lors d'une session
+// précédente.
+function initLearningDirection(){
+    const btn = document.getElementById("learningDirToggleBtn");
+    if(btn) btn.textContent = getLearningDirection() === "en" ? "🇬🇧" : "🇩🇪";
+    document.body.setAttribute("data-learning-dir", getLearningDirection());
+    document.querySelectorAll(".flip-toggle-btn").forEach(b => b.classList.toggle("hidden", getLearningDirection() === 'en'));
+}
+initLearningDirection();
 
 function openAuth() {
     showScreen("auth");
@@ -4609,7 +4734,12 @@ let frontIsFrench = true;
 // le sens FR/DE lui-même. Pas appelable depuis applyUiLang()/initUiLang() (trop
 // tôt dans le script : frontIsFrench n'est pas encore déclarée à ce moment-là).
 function renderFlipToggleButtons(){
+    // En direction anglaise, le recto/verso est fixé (allemand connu -> anglais
+    // cible, voir loadFlashcard()) : ce sélecteur FR⇄DE n'a plus de sens, on le
+    // masque plutôt que d'afficher un libellé trompeur.
+    const learningEnglish = getLearningDirection() === 'en';
     document.querySelectorAll(".flip-toggle-btn").forEach(btn => {
+        btn.classList.toggle("hidden", learningEnglish);
         btn.textContent = frontIsFrench ? t("flip_direction_fr") : t("flip_direction_de");
     });
 }
@@ -5166,6 +5296,11 @@ function getVerbeLevelsPresent(){
 }
 
 function openVerbenNiveau(){
+    const learningEnglish = getLearningDirection() === 'en';
+    const kickerEl = document.getElementById("verbenNiveauKicker");
+    const titleEl = document.getElementById("verbenNiveauTitle");
+    if(kickerEl) kickerEl.textContent = t(learningEnglish ? "kicker_english_vocab" : "kicker_grammar_vocab");
+    if(titleEl) titleEl.textContent = t(learningEnglish ? "verbenniveau_title_en" : "verbenniveau_title");
     renderVerbeLevels();
     updateVerbDueBanner();
     showScreen("verbenNiveau");
@@ -5533,22 +5668,6 @@ function orbPanelData(id){
             ]
         };
     }
-    if(id === "english"){
-        return {
-            icon:"dossier", title:t("op_english_title"), sub:t("op_english_sub"),
-            options:[
-                { icon:"dossier", title:t("op_english_o1_t"), desc:t("op_english_o1_d"), primary:true, action:"openEnglishNomen" },
-                { icon:"reviser", title:t("op_english_o2_t"), desc:t("op_english_o2_d"), action:"openEnglishVerben" },
-                { icon:"exercice", title:t("op_english_o3_t"), desc:"a, an, the", action:"openEnglishArtikel" },
-                { icon:"bientot", title:t("op_english_o4_t"), desc:t("op_english_o4_d"), action:"comingSoonPanel|Zeiten (Tenses)" },
-                { icon:"bientot", title:t("op_english_o5_t"), desc:t("op_english_o5_d"), action:"comingSoonPanel|Modalverben" },
-                { icon:"bientot", title:t("op_english_o6_t"), desc:t("op_english_o6_d"), action:"comingSoonPanel|Präpositionen" },
-                { icon:"bientot", title:t("op_english_o7_t"), desc:t("op_english_o7_d"), action:"comingSoonPanel|Satzbau & Fragen" },
-                { icon:"bientot", title:t("op_english_o8_t"), desc:t("op_english_o8_d"), action:"comingSoonPanel|Vergleich" },
-                { icon:"bientot", title:t("op_english_o9_t"), desc:t("op_english_o9_d"), action:"comingSoonPanel|Phrasal Verbs" }
-            ]
-        };
-    }
     const labels = {
         wortstellung:t("orb_wortstellung_title"), possessiv:t("orb_possessiv_title")
     };
@@ -5724,7 +5843,14 @@ function showScreen(id){
 }
 
 function goHome(){ showScreen("home"); }
-function openNomen(){ loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen"); }
+function openNomen(){
+    const learningEnglish = getLearningDirection() === 'en';
+    const kickerEl = document.getElementById("nomenKicker");
+    const titleEl = document.getElementById("nomenTitle");
+    if(kickerEl) kickerEl.textContent = t(learningEnglish ? "kicker_english_vocab" : "kicker_integrated_vocab");
+    if(titleEl) titleEl.textContent = t(learningEnglish ? "nomen_title_en" : "nomen_title");
+    loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen");
+}
 function openSettings(){
     updateGlobalProgress();
     renderProgressRadar();
