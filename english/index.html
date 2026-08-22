@@ -1062,10 +1062,26 @@ function loadFlashcard(){
         document.getElementById("flashBackWord").textContent = card[1];
         verbDetailsEl.classList.add("hidden");
     }
+    resizeFlashcard();
+}
+// Les deux faces de la carte sont en position:absolute (pour l'effet de bascule
+// 3D), donc .flashcard-wrapper n'a naturellement AUCUNE hauteur -- sans ça, les
+// boutons "Beherrscht" qui suivent dans le flux normal se retrouvent invisibles,
+// cachés derrière la carte flottante. On fixe donc la hauteur explicitement ici.
+function resizeFlashcard(){
+    const flashcardEl = document.getElementById("flashcard");
+    const front = document.querySelector(".flashcard-front");
+    const back = document.querySelector(".flashcard-back");
+    if(!flashcardEl || !front || !back) return;
+    const isFlipped = flashcardEl.classList.contains("flipped");
+    const FRONT_HEIGHT = 170;
+    const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200) : FRONT_HEIGHT;
+    flashcardEl.style.height = targetHeight + "px";
 }
 function flipCard(){
     document.getElementById("flashcard").classList.add("flipped");
     document.getElementById("flashcardActions").classList.remove("hidden");
+    resizeFlashcard();
 }
 function handleCardTap(){
     const el = document.getElementById("flashcard");
