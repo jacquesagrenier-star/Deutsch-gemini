@@ -1710,6 +1710,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:11px; font-weight:800;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
             <span id="uiLangToggleLabel">EN</span>
         </button>
+        <button id="learningDirToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleLearningDirection()" title="Deutsch lernen / Learn English" aria-label="Switch learning language">🇩🇪</button>
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
@@ -1780,7 +1781,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v91</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v92</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -1920,6 +1921,14 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_revision_title">Révision</strong>
                 <small data-i18n="orb_revision_sub">Progression · Reset</small>
+            </div>
+        </div>
+
+        <div class="orb" data-orbid="english" onclick="openOrbPanel('english')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_english_title">Anglais</strong>
+                <small data-i18n="orb_english_sub">Wortschatz · Verben · Grammatik</small>
             </div>
         </div>
     </div>
@@ -2442,6 +2451,19 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     <button class="secondary" onclick="startZuInfinitivExercise()" data-i18n="zuinf_btn_exercise">M'ENTRAÎNER : ZU OU PAS ZU ? →</button>
 </section>
 
+<!-- ================= GRAMMAIRE ANGLAISE (fusion de english/index.html) ================= -->
+
+<section id="englishGrammarInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('english')"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="op_english_title">Anglais</div>
+            <h2 id="englishGrammarTitle"></h2>
+        </div>
+    </div>
+    <div id="englishGrammarBody"></div>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 
 <section id="flashcards" class="screen">
@@ -2757,6 +2779,14 @@ const UI_LANG_KEY = "deutschAI_uiLang";
 const UI_LANGS = ["fr", "en"];
 const DEFAULT_UI_LANG = "fr";
 
+// Direction d'apprentissage : "de" = apprendre l'allemand (contenu existant),
+// "en" = apprendre l'anglais (fusion de english/index.html). Indépendant de la
+// langue d'interface ci-dessus (UI_LANG_KEY) : on peut apprendre l'anglais avec
+// une interface en français, ou l'allemand avec une interface en anglais.
+const LEARNING_DIR_KEY = "deutschAI_learningDirection";
+const LEARNING_DIRS = ["de", "en"];
+const DEFAULT_LEARNING_DIR = "de";
+
 const I18N = {
     fr: {
         home_title_1: "Apprends l'allemand",
@@ -2776,6 +2806,8 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammaire",
         orb_zuinf_title: "Zu + infinitif",
         orb_zuinf_sub: "versuchen zu · ohne zu",
+        orb_english_title: "Anglais",
+        orb_english_sub: "Wortschatz · Verben · Grammatik",
         orb_nomen_title: "Noms",
         orb_nomen_sub: "Thèmes & Vocabulaire",
         orb_kasus_title: "Cas",
@@ -2884,6 +2916,16 @@ const I18N = {
         op_zuinf_title: "Zu + infinitif", op_zuinf_sub: "Faut-il « zu » ou pas ?",
         op_zuinf_o1_t: "Comprendre la règle",
         op_zuinf_o2_t: "M'entraîner", op_zuinf_o2_d: "Zu ou pas zu ?",
+        op_english_title: "Anglais", op_english_sub: "Apprendre l'anglais (pour germanophones)",
+        op_english_o1_t: "Wortschatz", op_english_o1_d: "Thèmes & vocabulaire",
+        op_english_o2_t: "Verben", op_english_o2_d: "Verbes irréguliers",
+        op_english_o3_t: "Artikel",
+        op_english_o4_t: "Zeiten", op_english_o4_d: "Present, Past, Perfect…",
+        op_english_o5_t: "Modalverben", op_english_o5_d: "can · must · should",
+        op_english_o6_t: "Präpositionen", op_english_o6_d: "in · on · at",
+        op_english_o7_t: "Satzbau & Fragen", op_english_o7_d: "do / does · ordre des mots",
+        op_english_o8_t: "Vergleich", op_english_o8_d: "bigger · the biggest",
+        op_english_o9_t: "Phrasal Verbs", op_english_o9_d: "give up · look for",
         op_verben_o3_t: "Verbes aléatoires",
         op_verben_o4_t: "Exercices Präsens", op_verben_o4_d: "Réguliers · irréguliers",
 
@@ -3029,6 +3071,7 @@ const I18N = {
         random_words_by_theme_desc: "Mélange des mots de tous les thèmes du niveau sélectionné.",
         kicker_verben_revision: "Verbes · Révision",
         kicker_verben_flashcards: "Verbes · Flashcards",
+        kicker_english_artikel_exercise: "Anglais · Artikel",
         kicker_verben_aleatoire: "Verbes · Aléatoire",
         kicker_adj_revision: "Adjectifs · Révision",
         kicker_adj_flashcards: "Adjectifs · Flashcards",
@@ -3125,6 +3168,8 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammar",
         orb_zuinf_title: "Zu + infinitive",
         orb_zuinf_sub: "versuchen zu · ohne zu",
+        orb_english_title: "English",
+        orb_english_sub: "Wortschatz · Verben · Grammatik",
         orb_nomen_title: "Nouns",
         orb_nomen_sub: "Themes & Vocabulary",
         orb_kasus_title: "Cases",
@@ -3236,6 +3281,16 @@ const I18N = {
         op_zuinf_title: "Zu + infinitive", op_zuinf_sub: "Do you need « zu » or not?",
         op_zuinf_o1_t: "Understand the rule",
         op_zuinf_o2_t: "Practice", op_zuinf_o2_d: "Zu or no zu?",
+        op_english_title: "English", op_english_sub: "Learn English (for German speakers)",
+        op_english_o1_t: "Wortschatz", op_english_o1_d: "Themes & vocabulary",
+        op_english_o2_t: "Verben", op_english_o2_d: "Irregular verbs",
+        op_english_o3_t: "Artikel",
+        op_english_o4_t: "Zeiten", op_english_o4_d: "Present, Past, Perfect…",
+        op_english_o5_t: "Modalverben", op_english_o5_d: "can · must · should",
+        op_english_o6_t: "Präpositionen", op_english_o6_d: "in · on · at",
+        op_english_o7_t: "Satzbau & Fragen", op_english_o7_d: "do / does · word order",
+        op_english_o8_t: "Vergleich", op_english_o8_d: "bigger · the biggest",
+        op_english_o9_t: "Phrasal Verbs", op_english_o9_d: "give up · look for",
         op_verben_o3_t: "Random verbs",
         op_verben_o4_t: "Präsens exercises", op_verben_o4_d: "Regular · irregular",
 
@@ -3381,6 +3436,7 @@ const I18N = {
         random_words_by_theme_desc: "A mix of words from all themes at the selected level.",
         kicker_verben_revision: "Verbs · Review",
         kicker_verben_flashcards: "Verbs · Flashcards",
+        kicker_english_artikel_exercise: "English · Artikel",
         kicker_verben_aleatoire: "Verbs · Random",
         kicker_adj_revision: "Adjectives · Review",
         kicker_adj_flashcards: "Adjectives · Flashcards",
@@ -3523,6 +3579,43 @@ function toggleUiLang(){
     updateGlobalProgress(); // rafraîchit les libellés générés en JS (qualitatif, semaine, objectif)
     renderFlipToggleButtons();
     refreshDynamicUiLang();
+}
+
+// ============ Direction d'apprentissage (allemand vs anglais) ============
+// Modèle direct de getUiLang/setUiLang/toggleUiLang ci-dessus, mais pour un axe
+// totalement indépendant : quelle langue est APPRISE (le contenu des cartes),
+// par opposition à la langue de l'INTERFACE (les libellés des boutons/écrans).
+function getLearningDirection(){
+    let dir;
+    try{ dir = localStorage.getItem(LEARNING_DIR_KEY); }catch(e){ dir = null; }
+    return LEARNING_DIRS.includes(dir) ? dir : DEFAULT_LEARNING_DIR;
+}
+
+function setLearningDirection(dir){
+    if(!LEARNING_DIRS.includes(dir)) return;
+    try{ localStorage.setItem(LEARNING_DIR_KEY, dir); }catch(e){}
+}
+
+// Met à jour l'icône du bouton de bascule (drapeau de la langue vers laquelle on
+// bascule en cliquant, même logique que uiLangToggleLabel) et rafraîchit les
+// éléments dépendant de la progression (celle-ci est maintenant isolée par
+// direction, voir progressKey()).
+function applyLearningDirectionUi(){
+    const btn = document.getElementById("learningDirToggleBtn");
+    if(btn) btn.textContent = getLearningDirection() === "en" ? "🇬🇧" : "🇩🇪";
+    updateGlobalProgress();
+    updateOrbBadges();
+}
+
+function toggleLearningDirection(){
+    setLearningDirection(getLearningDirection() === "de" ? "en" : "de");
+    applyLearningDirectionUi();
+    // Le bouton est dans le <header>, donc visible même sur l'écran de connexion —
+    // ne navigue vers l'accueil que si un compte est déjà connecté, sinon goHome()
+    // contournerait la porte d'authentification (la garde n'existe que dans
+    // onAuthStateChanged, pas dans showScreen/goHome eux-mêmes).
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(user) goHome();
 }
 
 // applyUiLang() ne touche que les éléments statiques marqués data-i18n/-html.
@@ -4611,20 +4704,48 @@ window.onDeutschAiUserSignedIn = function(){
     scheduleCloudSync();
 };
 
+// Préfixe la clé de thème selon la direction d'apprentissage active, pour que
+// la progression anglaise (english/index.html fusionné) reste totalement isolée
+// de la progression allemande sur les mêmes thèmes/niveaux sous-jacents, tout en
+// vivant dans le même objet localStorage.deutschAI_progress_v4 — donc incluse
+// automatiquement dans la sync cloud existante (syncProgressToCloud) sans
+// modification de ce code.
+//
+// progressDirectionOverride force temporairement la direction "allemand" pour
+// les quelques fonctions d'agrégat (anneau d'accueil, tuiles Verbes/Adjectifs/
+// Cas/Prépositions/Particules, radar de progression) qui n'ont pas d'équivalent
+// anglais dans cette fusion et doivent donc toujours refléter la progression
+// allemande, même quand l'utilisateur navigue actuellement en direction "en".
+// Sans ça, ces agrégats se retrouveraient à lire le compartiment "en__" (vide
+// ou partiel) dès qu'on bascule vers l'anglais, et afficheraient ~0% à tort.
+let progressDirectionOverride = null;
+function withGermanProgress(fn){
+    const prev = progressDirectionOverride;
+    progressDirectionOverride = 'de';
+    try{ return fn(); } finally{ progressDirectionOverride = prev; }
+}
+
+function progressKey(themeId){
+    const dir = progressDirectionOverride || getLearningDirection();
+    return dir === 'en' ? `en__${themeId}` : themeId;
+}
+
 function getWordState(themeId, index){
+    const key = progressKey(themeId);
     const progress = getProgress();
-    if(!progress[themeId]) progress[themeId] = {};
-    if(!progress[themeId][index]){
-        progress[themeId][index] = { mastered: false, due: 0, reviews: 0 };
+    if(!progress[key]) progress[key] = {};
+    if(!progress[key][index]){
+        progress[key][index] = { mastered: false, due: 0, reviews: 0 };
         saveProgress(progress);
     }
-    return progress[themeId][index];
+    return progress[key][index];
 }
 
 function setWordState(themeId, index, state){
+    const key = progressKey(themeId);
     const progress = getProgress();
-    if(!progress[themeId]) progress[themeId] = {};
-    progress[themeId][index] = state;
+    if(!progress[key]) progress[key] = {};
+    progress[key][index] = state;
     saveProgress(progress);
 }
 
@@ -4756,28 +4877,33 @@ function qualitativeLabel(percent){
 
 const HOME_LEVEL_KEY = "deutschAI_homeLevel";
 
+// Agrégat "allemand uniquement" (voir withGermanProgress ci-dessus) : cet
+// anneau d'accueil n'a pas d'équivalent anglais dans la fusion, il doit rester
+// stable quelle que soit la direction d'apprentissage active.
 function getLevelMasteryStats(level){
-    let mastered = 0, total = 0;
-    verbeTheme.words.forEach((w, i) => {
-        if(w.niveau !== level) return;
-        total++;
-        if(getWordState(verbeTheme.id, i).mastered) mastered++;
-    });
-    adjektiveTheme.words.forEach((w, i) => {
-        if(w.niveau !== level) return;
-        total++;
-        if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
-    });
-    themes.forEach(t => {
-        const levelData = t.levels[level];
-        if(!levelData) return;
-        total += levelData.words.length;
-        levelData.words.forEach((w, i) => {
-            if(getWordState(levelData.id, i).mastered) mastered++;
+    return withGermanProgress(() => {
+        let mastered = 0, total = 0;
+        verbeTheme.words.forEach((w, i) => {
+            if(w.niveau !== level) return;
+            total++;
+            if(getWordState(verbeTheme.id, i).mastered) mastered++;
         });
+        adjektiveTheme.words.forEach((w, i) => {
+            if(w.niveau !== level) return;
+            total++;
+            if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
+        });
+        themes.forEach(t => {
+            const levelData = t.levels[level];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
+        });
+        const percent = total ? Math.round(mastered / total * 100) : 0;
+        return { mastered, total, percent };
     });
-    const percent = total ? Math.round(mastered / total * 100) : 0;
-    return { mastered, total, percent };
 }
 
 // Au premier chargement (ou si rien n'est encore choisi) : le niveau le plus bas
@@ -4831,54 +4957,65 @@ function updateHomeStatsPanel(percent){
     if(dailyGoalFillEl) dailyGoalFillEl.style.width = Math.min(100, Math.round(dailyCount / dailyGoalTarget * 100)) + "%";
 }
 
+// Agrégat "allemand uniquement" (voir withGermanProgress ci-dessus) : le texte
+// de progression des réglages et l'anneau d'accueil n'ont pas d'équivalent
+// anglais dans la fusion, ils doivent rester stables quelle que soit la
+// direction d'apprentissage active.
 function updateGlobalProgress(){
-    let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length + praepTheme.words.length + partikelnTheme.words.length;
-    let mastered = 0;
-    
-    verbeTheme.words.forEach((w, i) => {
-        if(getWordState(verbeTheme.id, i).mastered) mastered++;
-    });
-    adjektiveTheme.words.forEach((w, i) => {
-        if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
-    });
-    kasusVerbTheme.words.forEach((w, i) => {
-        if(getWordState(kasusVerbTheme.id, i).mastered) mastered++;
-    });
-    praepTheme.words.forEach((w, i) => {
-        if(getWordState(praepTheme.id, i).mastered) mastered++;
-    });
-    partikelnTheme.words.forEach((w, i) => {
-        if(getWordState(partikelnTheme.id, i).mastered) mastered++;
-    });
+    withGermanProgress(() => {
+        let total = verbeTheme.words.length + adjektiveTheme.words.length + kasusVerbTheme.words.length + praepTheme.words.length + partikelnTheme.words.length;
+        let mastered = 0;
 
-    themes.forEach(t => {
-        LEVELS.forEach(lvl => {
-            const levelData = t.levels[lvl];
-            if(!levelData) return;
-            total += levelData.words.length;
-            levelData.words.forEach((w, i) => {
-                if(getWordState(levelData.id, i).mastered) mastered++;
+        verbeTheme.words.forEach((w, i) => {
+            if(getWordState(verbeTheme.id, i).mastered) mastered++;
+        });
+        adjektiveTheme.words.forEach((w, i) => {
+            if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
+        });
+        kasusVerbTheme.words.forEach((w, i) => {
+            if(getWordState(kasusVerbTheme.id, i).mastered) mastered++;
+        });
+        praepTheme.words.forEach((w, i) => {
+            if(getWordState(praepTheme.id, i).mastered) mastered++;
+        });
+        partikelnTheme.words.forEach((w, i) => {
+            if(getWordState(partikelnTheme.id, i).mastered) mastered++;
+        });
+
+        themes.forEach(t => {
+            LEVELS.forEach(lvl => {
+                const levelData = t.levels[lvl];
+                if(!levelData) return;
+                total += levelData.words.length;
+                levelData.words.forEach((w, i) => {
+                    if(getWordState(levelData.id, i).mastered) mastered++;
+                });
             });
         });
+        const percentage = total ? Math.round(mastered / total * 100) : 0;
+
+        const sText = document.getElementById("settingsProgress");
+        if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
+
+        const homeLevel = getHomeLevel();
+        const levelStats = getLevelMasteryStats(homeLevel);
+        updateGlobalProgressRing(homeLevel, levelStats.percent);
+        updateHomeStatsPanel(levelStats.percent);
     });
-    const percentage = total ? Math.round(mastered / total * 100) : 0;
-
-    const sText = document.getElementById("settingsProgress");
-    if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
-
-    const homeLevel = getHomeLevel();
-    const levelStats = getLevelMasteryStats(homeLevel);
-    updateGlobalProgressRing(homeLevel, levelStats.percent);
-    updateHomeStatsPanel(levelStats.percent);
 }
 
+// Agrégat "allemand uniquement" — utilisé pour les anneaux de progression des
+// tuiles d'accueil (Verbes/Adjectifs/Cas/Prépositions/Particules), qui n'ont
+// pas d'équivalent anglais dans cette fusion.
 function masteryPercentForList(themeId, words){
-    if(!words.length) return 0;
-    let mastered = 0;
-    words.forEach((w, i) => {
-        if(getWordState(themeId, i).mastered) mastered++;
+    return withGermanProgress(() => {
+        if(!words.length) return 0;
+        let mastered = 0;
+        words.forEach((w, i) => {
+            if(getWordState(themeId, i).mastered) mastered++;
+        });
+        return Math.round(mastered / words.length * 100);
     });
-    return Math.round(mastered / words.length * 100);
 }
 
 function getVerbenMasteryPercent(){ return masteryPercentForList(verbeTheme.id, verbeTheme.words); }
@@ -4887,19 +5024,23 @@ function getKasusMasteryPercent(){ return masteryPercentForList(kasusVerbTheme.i
 function getPraepMasteryPercent(){ return masteryPercentForList(praepTheme.id, praepTheme.words); }
 function getPartikelnMasteryPercent(){ return masteryPercentForList(partikelnTheme.id, partikelnTheme.words); }
 
+// Agrégat "allemand uniquement" — anneau de la tuile d'accueil "Noms" (label
+// allemand), qui doit rester stable même en direction anglaise.
 function getNomenMasteryPercent(){
-    let total = 0, mastered = 0;
-    themes.forEach(t => {
-        LEVELS.forEach(lvl => {
-            const levelData = t.levels[lvl];
-            if(!levelData) return;
-            total += levelData.words.length;
-            levelData.words.forEach((w, i) => {
-                if(getWordState(levelData.id, i).mastered) mastered++;
+    return withGermanProgress(() => {
+        let total = 0, mastered = 0;
+        themes.forEach(t => {
+            LEVELS.forEach(lvl => {
+                const levelData = t.levels[lvl];
+                if(!levelData) return;
+                total += levelData.words.length;
+                levelData.words.forEach((w, i) => {
+                    if(getWordState(levelData.id, i).mastered) mastered++;
+                });
             });
         });
+        return total ? Math.round(mastered / total * 100) : 0;
     });
-    return total ? Math.round(mastered / total * 100) : 0;
 }
 
 const RING_CIRCUMFERENCE = 2 * Math.PI * 19;
@@ -5392,6 +5533,22 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "english"){
+        return {
+            icon:"dossier", title:t("op_english_title"), sub:t("op_english_sub"),
+            options:[
+                { icon:"dossier", title:t("op_english_o1_t"), desc:t("op_english_o1_d"), primary:true, action:"openEnglishNomen" },
+                { icon:"reviser", title:t("op_english_o2_t"), desc:t("op_english_o2_d"), action:"openEnglishVerben" },
+                { icon:"exercice", title:t("op_english_o3_t"), desc:"a, an, the", action:"openEnglishArtikel" },
+                { icon:"bientot", title:t("op_english_o4_t"), desc:t("op_english_o4_d"), action:"comingSoonPanel|Zeiten (Tenses)" },
+                { icon:"bientot", title:t("op_english_o5_t"), desc:t("op_english_o5_d"), action:"comingSoonPanel|Modalverben" },
+                { icon:"bientot", title:t("op_english_o6_t"), desc:t("op_english_o6_d"), action:"comingSoonPanel|Präpositionen" },
+                { icon:"bientot", title:t("op_english_o7_t"), desc:t("op_english_o7_d"), action:"comingSoonPanel|Satzbau & Fragen" },
+                { icon:"bientot", title:t("op_english_o8_t"), desc:t("op_english_o8_d"), action:"comingSoonPanel|Vergleich" },
+                { icon:"bientot", title:t("op_english_o9_t"), desc:t("op_english_o9_d"), action:"comingSoonPanel|Phrasal Verbs" }
+            ]
+        };
+    }
     const labels = {
         wortstellung:t("orb_wortstellung_title"), possessiv:t("orb_possessiv_title")
     };
@@ -5409,6 +5566,82 @@ function openOrbPanel(id){
     openOrbId = id;
     renderOrbPanel();
     showScreen("orbPanel");
+}
+
+// ============ Contenu anglais (fusion de english/index.html) ============
+// Wortschatz et Verben réutilisent directement les écrans allemands existants
+// (liste de thèmes / liste de niveaux) — seule la direction change, ce qui
+// suffit à faire lire/écrire loadFlashcard() et getWordState()/setWordState()
+// dans le bon "compartiment" de progression (voir progressKey()). On passe
+// directement par openNomen()/openVerbenNiveau() (pas par le panneau à 4
+// options "verben", dont l'option Exercices est un quiz de grammaire allemande
+// sans rapport avec l'apprentissage de l'anglais).
+function openEnglishNomen(){
+    setLearningDirection('en');
+    applyLearningDirectionUi();
+    openNomen();
+}
+function openEnglishVerben(){
+    setLearningDirection('en');
+    applyLearningDirectionUi();
+    openVerbenNiveau();
+}
+
+// Contenu grammatical anglais : un seul écran générique piloté par un objet de
+// contenu (comme dans english/index.html), plutôt que 7 écrans HTML sur mesure —
+// seule la catégorie "Artikel" est complète pour l'instant, les 6 autres passent
+// par le mécanisme "comingSoonPanel|" déjà existant (voir orbPanelData ci-dessus).
+const ENGLISH_GRAMMAR_CONTENT = {
+    artikel: {
+        title: "a, an, the",
+        html: `
+        <div class="card">
+            <strong>Der unbestimmte Artikel: a / an</strong>
+            <div class="info-box"><strong style="color:#3b6fe0;">a</strong> — vor einem Konsonantenlaut<br><em>a dog, a university, a car</em> (achte auf den <strong>Laut</strong>, nicht den Buchstaben: "university" beginnt mit einem "j"-Laut!)</div>
+            <div class="info-box"><strong style="color:#3b6fe0;">an</strong> — vor einem Vokallaut<br><em>an apple, an hour, an idea</em> ("hour" beginnt stumm mit einem Vokallaut!)</div>
+        </div>
+        <div class="card">
+            <strong>Der bestimmte Artikel: the</strong>
+            <div class="info-box">Wird für etwas Bekanntes oder bereits Erwähntes verwendet — ähnlich wie der/die/das im Deutschen, aber <strong>ohne Genus</strong>: "the" gilt für alle Geschlechter und den Plural.<br><em>The dog is sleeping. The books are on the table.</em></div>
+        </div>
+        <div class="card">
+            <strong>Kein Artikel (Ø)</strong>
+            <div class="info-box">Bei allgemeinen Aussagen (unzählbare Nomen, Plural allgemein) steht im Englischen oft <strong>gar kein</strong> Artikel — anders als im Deutschen.<br><em>I like music. (Nicht "the music")<br>Dogs are loyal. (Nicht "the dogs")</em></div>
+        </div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="startEnglishArtikelExercise()">ÜBEN: A, AN ODER THE? →</button>`
+    }
+};
+
+function openEnglishArtikel(){
+    setLearningDirection('en');
+    applyLearningDirectionUi();
+    renderEnglishGrammar('artikel');
+}
+
+function renderEnglishGrammar(id){
+    const data = ENGLISH_GRAMMAR_CONTENT[id];
+    if(!data) return;
+    document.getElementById("englishGrammarTitle").textContent = data.title;
+    document.getElementById("englishGrammarBody").innerHTML = data.html;
+    showScreen("englishGrammarInfo");
+}
+
+// Porté tel quel depuis english/index.html : champs déjà compatibles avec
+// loadExercise()/checkAnswer() (question/translation/hint/answers/correct/
+// explanation). Ne pas ajouter de champs _en (question_en, optionsEn, etc.) —
+// ces objets sont déjà en anglais et ne doivent pas dépendre de la langue
+// d'interface (getUiLang()), qui est un axe indépendant de la direction.
+const artikelExercises = [
+  { question:"I saw ___ elephant at the zoo.", translation:"Ich habe im Zoo einen Elefanten gesehen.", hint:"(Vokallaut)", answers:["an"], correct:"an", explanation:"„elephant“ beginnt mit einem Vokallaut → an elephant." },
+  { question:"She is ___ university student.", translation:"Sie ist Studentin an einer Universität.", hint:"(Achtung: Laut, nicht Buchstabe!)", answers:["a"], correct:"a", explanation:"„university“ beginnt geschrieben mit einem Vokal, aber gesprochen mit einem „j“-Laut → a university." },
+  { question:"He waited for ___ hour.", translation:"Er hat eine Stunde gewartet.", hint:"(das „h“ ist stumm)", answers:["an"], correct:"an", explanation:"Das „h“ in „hour“ ist stumm, das Wort beginnt also mit einem Vokallaut → an hour." },
+  { question:"___ sun is shining today.", translation:"Die Sonne scheint heute.", hint:"(etwas Bekanntes, Einzigartiges)", answers:["the"], correct:"the", explanation:"Es gibt nur eine Sonne — etwas Einzigartiges/Bekanntes → the sun." },
+  { question:"I don't like ___ coffee in the morning.", translation:"Ich mag morgens keinen Kaffee (allgemein).", hint:"(allgemeine Aussage)", answers:[""], correct:"(kein Artikel)", explanation:"Bei einer allgemeinen Aussage über ein unzählbares Nomen steht im Englischen kein Artikel." }
+];
+
+function startEnglishArtikelExercise(){
+    startExerciseSet(artikelExercises, "kicker_english_artikel_exercise", () => renderEnglishGrammar('artikel'), startEnglishArtikelExercise);
 }
 
 function orbAction(action){
@@ -6022,16 +6255,38 @@ function loadFlashcard(){
 
     if(flashcardMode === 'verben'){
         const germanWord = card.infinitif;
-        // L'anglais n'existe encore que pour une partie du vocabulaire (Phase 2 en
-        // cours) : on retombe sur le français si la traduction anglaise manque.
+        // Direction "en" (apprendre l'anglais, fusion de english/index.html) : le mot
+        // allemand est connu, l'anglais est la cible, toujours affiché indépendamment
+        // de la langue d'interface. Direction "de" (par défaut) : comportement inchangé
+        // — l'anglais n'apparaît que si l'interface est en anglais (repli français sinon,
+        // Phase 2 en cours pour cette traduction).
+        const learningEnglish = getLearningDirection() === 'en';
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
-        const translatedWord = (useEn && card.traduction_en) ? card.traduction_en : card.traduction;
-        const exampleTr = (useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr;
-        const perfektTr = (useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr;
-        const praeteritumTr = (useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr;
-        const konjunktiv2Tr = (useEn && card.konjunktiv2_en) ? card.konjunktiv2_en : card.konjunktiv2_fr;
-        if(frontIsFrench){
+        const translatedWord = learningEnglish
+            ? (card.traduction_en || card.traduction)
+            : ((useEn && card.traduction_en) ? card.traduction_en : card.traduction);
+        const exampleTr = learningEnglish
+            ? (card.exemple_en || card.exemple_fr)
+            : ((useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr);
+        const perfektTr = learningEnglish
+            ? (card.perfekt_en || card.perfekt_fr)
+            : ((useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr);
+        const praeteritumTr = learningEnglish
+            ? (card.praeteritum_en || card.praeteritum_fr)
+            : ((useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr);
+        const konjunktiv2Tr = learningEnglish
+            ? (card.konjunktiv2_en || card.konjunktiv2_fr)
+            : ((useEn && card.konjunktiv2_en) ? card.konjunktiv2_en : card.konjunktiv2_fr);
+        // En direction anglaise, la carte s'ouvre toujours sur l'allemand (connu) au
+        // recto et l'anglais (cible) au verso — le bouton frontIsFrench reste réservé
+        // à la direction allemande FR/EN existante.
+        if(learningEnglish){
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = translatedWord;
+            translationEl.classList.remove("hidden");
+        } else if(frontIsFrench){
             document.getElementById("flashWord").textContent = translatedWord;
             document.getElementById("flashBackWord").textContent = germanWord;
             translationEl.classList.add("hidden");
@@ -6145,12 +6400,22 @@ function loadFlashcard(){
         pluralEl.classList.add("hidden");
     } else {
         const germanWord = card[0];
-        // L'anglais n'existe encore que pour une partie du vocabulaire (Phase 2 en
-        // cours) : on retombe sur le français si la traduction anglaise manque.
+        // Direction "en" : mot allemand connu, anglais (card[4]) = cible à apprendre,
+        // toujours affiché indépendamment de la langue d'interface (repli sur card[3]
+        // si le thème n'a pas encore de traduction anglaise). Direction "de" (par
+        // défaut) : comportement inchangé (repli français, Phase 2 en cours).
+        const learningEnglish = getLearningDirection() === 'en';
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
-        const frenchWord = (useEn && card[4]) ? card[4] : card[3];
-        if(frontIsFrench){
+        const frenchWord = learningEnglish
+            ? (card[4] || card[3])
+            : ((useEn && card[4]) ? card[4] : card[3]);
+        if(learningEnglish){
+            document.getElementById("flashWord").textContent = germanWord;
+            document.getElementById("flashBackWord").textContent = germanWord;
+            translationEl.textContent = frenchWord;
+            translationEl.classList.remove("hidden");
+        } else if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
             translationEl.classList.add("hidden");
@@ -6964,7 +7229,7 @@ function resetCurrentThemeConfirm(){
     if(!currentTheme){ alert(t('alert_open_series_first')); return; }
     if(!confirm(tf('confirm_reset_theme_progress', { name: currentTheme.name }))) return;
     const progress = getProgress();
-    delete progress[currentTheme.id];
+    delete progress[progressKey(currentTheme.id)];
     saveProgress(progress);
     renderThemes();
     renderNomenLevels();
