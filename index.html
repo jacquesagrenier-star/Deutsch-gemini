@@ -178,6 +178,10 @@ body[data-theme="dark"] .subtitle-version{
 .orb-en{ display:none; }
 body[data-learning-dir="en"] .orb-de{ display:none; }
 body[data-learning-dir="en"] .orb-en{ display:flex; }
+/* L'anneau/streak/objectif du jour de l'accueil ne mesurent que la progression
+   allemande (voir withGermanProgress côté JS) : les masquer en anglais plutôt
+   que de laisser croire que la progression anglaise s'y reflète aussi. */
+body[data-learning-dir="en"] #homeStatsCard{ display:none; }
 
 .orb-icon{
     width:30px;
@@ -1788,9 +1792,9 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v94</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v95</span></p>
 
-    <div class="card home-stats-card">
+    <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
             <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button" aria-label="Changer de niveau affiché" style="cursor:pointer;">
                 <svg width="76" height="76" viewBox="0 0 76 76">
@@ -3743,7 +3747,12 @@ function applyLearningDirectionUi(){
     // Pilote l'affichage des tuiles d'accueil (.orb-de / .orb-en, voir CSS) : les
     // catégories de grammaire ne sont pas les mêmes selon la langue apprise.
     document.body.setAttribute("data-learning-dir", dir);
-    renderFlipToggleButtons(); // masque le sélecteur FR⇄DE (non pertinent en anglais)
+    renderFlipToggleButtons(); // relabellise le sélecteur FR⇄DE / DE⇄EN
+    // Le sélecteur de langue d'interface (FR/EN) n'a pas de sens en direction
+    // anglaise : l'app ne propose pas d'interface allemande, et "convertir en
+    // français" en pleine leçon d'anglais est déroutant. On le masque.
+    const uiLangBtn = document.getElementById("uiLangToggleBtn");
+    if(uiLangBtn) uiLangBtn.classList.toggle("hidden", dir === "en");
     updateGlobalProgress();
     updateOrbBadges();
 }
@@ -3813,10 +3822,13 @@ initUiLang();
 // allemandes même pour un usager déjà passé en anglais lors d'une session
 // précédente.
 function initLearningDirection(){
+    const dir = getLearningDirection();
     const btn = document.getElementById("learningDirToggleBtn");
-    if(btn) btn.textContent = getLearningDirection() === "en" ? "🇩🇪" : "🇬🇧";
-    document.body.setAttribute("data-learning-dir", getLearningDirection());
+    if(btn) btn.textContent = dir === "en" ? "🇩🇪" : "🇬🇧";
+    document.body.setAttribute("data-learning-dir", dir);
     renderFlipToggleButtons();
+    const uiLangBtn = document.getElementById("uiLangToggleBtn");
+    if(uiLangBtn) uiLangBtn.classList.toggle("hidden", dir === "en");
 }
 initLearningDirection();
 
@@ -6467,10 +6479,11 @@ function loadFlashcard(){
         if(learningEnglish){
             // Pas de tableau de conjugaison allemand ici : hors sujet pour apprendre
             // l'anglais (voir stratégie discutée avec l'utilisateur). On montre plutôt
-            // l'infinitif anglais + deux phrases d'exemple allemand->anglais, pour
-            // ancrer le mot dans un contexte sans jargon grammatical allemand.
-            const exHtml = `${card.exemple || ""}<br>&rarr; ${exampleTr || ""}`;
-            const perfHtml = perfektTr ? `<div class="verb-sep"></div>${card.perfekt || ""}<br>&rarr; ${perfektTr}` : "";
+            // l'infinitif anglais + deux phrases d'exemple, ANGLAIS D'ABORD puis
+            // traduction allemande (le verso est le côté anglais : l'anglais doit
+            // être l'information principale, l'allemand la référence de contexte).
+            const exHtml = `${exampleTr || ""}<br>&rarr; ${card.exemple || ""}`;
+            const perfHtml = perfektTr ? `<div class="verb-sep"></div>${perfektTr}<br>&rarr; ${card.perfekt || ""}` : "";
             verbDetailsEl.innerHTML = `<div class="verb-core"><strong>${translatedWord}</strong><div class="verb-sep"></div>${exHtml}${perfHtml}</div>`;
         } else {
             const p = card.praesens || {};
@@ -6526,7 +6539,11 @@ function loadFlashcard(){
             translationEl.textContent = knownWord;
             translationEl.classList.remove("hidden");
         }
-        verbDetailsEl.textContent = exampleSentenceFr ? `${exampleSentence}\n${exampleSentenceFr}` : exampleSentence;
+        // En anglais, phrase anglaise d'abord puis référence allemande (voir même
+        // choix pour Verben) ; en allemand, comportement inchangé.
+        verbDetailsEl.textContent = exampleSentenceFr
+            ? (learningEnglish ? `${exampleSentenceFr}\n${exampleSentence}` : `${exampleSentence}\n${exampleSentenceFr}`)
+            : exampleSentence;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
@@ -6619,11 +6636,19 @@ function loadFlashcard(){
         else if(articleText === "die") flashcardEl.classList.add("border-die");
         else if(articleText === "das") flashcardEl.classList.add("border-das");
 
-        articleEl.textContent = card[1];
-        articleEl.className = `article ${articleText}`;
-        articleEl.classList.remove("hidden");
-        pluralEl.textContent = `${t('label_plural')} ${card[2]}`;
-        pluralEl.classList.remove("hidden");
+        // L'article (der/die/das) et le pluriel allemand n'ont pas de sens à côté
+        // du mot anglais affiché au verso en direction "en" (l'anglais n'a pas
+        // d'article genré) : on les masque plutôt que de les montrer à tort.
+        if(learningEnglish){
+            articleEl.classList.add("hidden");
+            pluralEl.classList.add("hidden");
+        } else {
+            articleEl.textContent = card[1];
+            articleEl.className = `article ${articleText}`;
+            articleEl.classList.remove("hidden");
+            pluralEl.textContent = `${t('label_plural')} ${card[2]}`;
+            pluralEl.classList.remove("hidden");
+        }
         verbDetailsEl.classList.add("hidden");
     }
 
@@ -6693,6 +6718,7 @@ function toggleVerbExtra(){
 // les voix disponibles, en la mémorisant une fois trouvée (la liste des voix se
 // charge de façon asynchrone, d'où l'écoute de "voiceschanged").
 let cachedGermanVoice = null;
+let cachedEnglishVoice = null;
 
 function findGermanVoice(){
     if(!('speechSynthesis' in window)) return null;
@@ -6700,20 +6726,36 @@ function findGermanVoice(){
     return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('de')) || null;
 }
 
-if('speechSynthesis' in window){
-    window.speechSynthesis.onvoiceschanged = () => { cachedGermanVoice = findGermanVoice(); };
-    cachedGermanVoice = findGermanVoice();
+function findEnglishVoice(){
+    if(!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('en')) || null;
 }
 
+if('speechSynthesis' in window){
+    window.speechSynthesis.onvoiceschanged = () => {
+        cachedGermanVoice = findGermanVoice();
+        cachedEnglishVoice = findEnglishVoice();
+    };
+    cachedGermanVoice = findGermanVoice();
+    cachedEnglishVoice = findEnglishVoice();
+}
+
+// Prononce le mot actuellement affiché au verso (flashBackWord) plutôt que de
+// recalculer depuis les données de la carte : flashBackWord contient toujours
+// exactement ce que loadFlashcard() a décidé d'afficher (allemand ou anglais
+// selon la direction ET l'état de la bascule recto/verso), donc toujours
+// cohérent avec ce que l'utilisateur voit, sans dupliquer cette logique ici.
 function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
-    const item = currentCards[currentFlashcard];
-    const card = item.word;
-    const textToSpeak = flashcardMode === 'verben' ? card.infinitif : card[0];
+    const backWordEl = document.getElementById("flashBackWord");
+    const textToSpeak = backWordEl ? backWordEl.textContent : "";
+    if(!textToSpeak) return;
+    const learningEnglish = getLearningDirection() === 'en';
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = 'de-DE';
-    const voice = cachedGermanVoice || findGermanVoice();
+    utterance.lang = learningEnglish ? 'en-GB' : 'de-DE';
+    const voice = learningEnglish ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
     if(voice) utterance.voice = voice;
     utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
