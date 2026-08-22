@@ -1788,7 +1788,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v93</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v94</span></p>
 
     <div class="card home-stats-card">
         <div class="global-progress-row">
@@ -1947,6 +1947,14 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_en_verben_title">Verben</strong>
                 <small data-i18n="orb_en_verben_sub">Verbes irréguliers</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="adjektive_en" onclick="openEnglishAdjektive()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_adjektive_title">Adjektive</strong>
+                <small data-i18n="orb_en_adjektive_sub">good · bigger · the biggest</small>
             </div>
         </div>
 
@@ -2122,8 +2130,8 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <div class="title-row">
         <div>
-            <div class="kicker" data-i18n="kicker_integrated_vocab">Vocabulaire Intégré</div>
-            <h2 data-i18n="adjektive_title">Adjectifs par niveau</h2>
+            <div class="kicker" id="adjektiveKicker" data-i18n="kicker_integrated_vocab">Vocabulaire Intégré</div>
+            <h2 id="adjektiveTitle" data-i18n="adjektive_title">Adjectifs par niveau</h2>
         </div>
         <div class="pill" data-i18n="four_levels">4 niveaux</div>
     </div>
@@ -2869,6 +2877,13 @@ const LEARNING_DIR_KEY = "deutschAI_learningDirection";
 const LEARNING_DIRS = ["de", "en"];
 const DEFAULT_LEARNING_DIR = "de";
 
+// Déclarées tôt (avant I18N/toute fonction) : progressKey()/renderFlipToggleButtons()
+// peuvent être appelées très tôt (init au chargement, callback Firebase asynchrone
+// onAuthStateChanged) — si ces `let` étaient déclarées plus bas comme avant, un appel
+// précoce tombait dans leur zone morte temporelle (TDZ) et plantait tout le script.
+let frontIsFrench = true;
+let progressDirectionOverride = null;
+
 const I18N = {
     fr: {
         home_title_1: "Apprends l'allemand",
@@ -2892,6 +2907,8 @@ const I18N = {
         orb_en_nomen_sub: "Thèmes & vocabulaire",
         orb_en_verben_title: "Verben",
         orb_en_verben_sub: "Verbes irréguliers",
+        orb_en_adjektive_title: "Adjektive",
+        orb_en_adjektive_sub: "good · bigger · the biggest",
         orb_en_artikel_title: "Artikel",
         orb_en_zeiten_title: "Zeiten",
         orb_en_zeiten_sub: "Present, Past, Perfect…",
@@ -2923,6 +2940,8 @@ const I18N = {
         back_button: "‹ Retour",
         flip_direction_fr: "🔁 Sens : FR → DE",
         flip_direction_de: "🔁 Sens : DE → FR",
+        flip_direction_de_to_en: "🔁 Sens : DE → EN",
+        flip_direction_en_to_de: "🔁 Sens : EN → DE",
 
         kicker_grammar_vocab: "Grammaire & Vocabulaire",
         verbenniveau_title: "Verbes par niveau",
@@ -2943,6 +2962,7 @@ const I18N = {
 
         nomenniveau_title: "Noms par niveau",
         adjektive_title: "Adjectifs par niveau",
+        adjektive_title_en: "Adjektive par niveau",
         four_levels: "4 niveaux",
 
         flash_tap_hint: "Touche la carte pour voir la réponse",
@@ -3267,6 +3287,8 @@ const I18N = {
         orb_en_nomen_sub: "Themes & vocabulary",
         orb_en_verben_title: "Verben",
         orb_en_verben_sub: "Irregular verbs",
+        orb_en_adjektive_title: "Adjektive",
+        orb_en_adjektive_sub: "good · bigger · the biggest",
         orb_en_artikel_title: "Artikel",
         orb_en_zeiten_title: "Zeiten",
         orb_en_zeiten_sub: "Present, Past, Perfect…",
@@ -3301,6 +3323,8 @@ const I18N = {
         // donc il reste "FR → DE" même quand l'interface est en anglais.
         flip_direction_fr: "🔁 Sens : FR → DE",
         flip_direction_de: "🔁 Sens : DE → FR",
+        flip_direction_de_to_en: "🔁 Sens : DE → EN",
+        flip_direction_en_to_de: "🔁 Sens : EN → DE",
 
         kicker_grammar_vocab: "Grammar & Vocabulary",
         verbenniveau_title: "Verbs by level",
@@ -3321,6 +3345,7 @@ const I18N = {
 
         nomenniveau_title: "Nouns by level",
         adjektive_title: "Adjectives by level",
+        adjektive_title_en: "Adjektive by level",
         four_levels: "4 levels",
 
         flash_tap_hint: "Tap the card to see the answer",
@@ -3711,7 +3736,10 @@ function setLearningDirection(dir){
 function applyLearningDirectionUi(){
     const dir = getLearningDirection();
     const btn = document.getElementById("learningDirToggleBtn");
-    if(btn) btn.textContent = dir === "en" ? "🇬🇧" : "🇩🇪";
+    // Comme uiLangToggleLabel : affiche le drapeau de la langue vers laquelle on
+    // bascule EN CLIQUANT (la cible), pas la direction actuelle — sinon cliquer
+    // sur le drapeau anglais semble "faire l'inverse" (basculer vers l'allemand).
+    if(btn) btn.textContent = dir === "en" ? "🇩🇪" : "🇬🇧";
     // Pilote l'affichage des tuiles d'accueil (.orb-de / .orb-en, voir CSS) : les
     // catégories de grammaire ne sont pas les mêmes selon la langue apprise.
     document.body.setAttribute("data-learning-dir", dir);
@@ -3786,9 +3814,9 @@ initUiLang();
 // précédente.
 function initLearningDirection(){
     const btn = document.getElementById("learningDirToggleBtn");
-    if(btn) btn.textContent = getLearningDirection() === "en" ? "🇬🇧" : "🇩🇪";
+    if(btn) btn.textContent = getLearningDirection() === "en" ? "🇩🇪" : "🇬🇧";
     document.body.setAttribute("data-learning-dir", getLearningDirection());
-    document.querySelectorAll(".flip-toggle-btn").forEach(b => b.classList.toggle("hidden", getLearningDirection() === 'en'));
+    renderFlipToggleButtons();
 }
 initLearningDirection();
 
@@ -4727,20 +4755,24 @@ let nomenReturnScreen = 'nomen';
 let activeExercises = exercises;
 let exerciseBackHandler = openVerbenNiveau;
 let exerciseRestartHandler = startExercises;
-let frontIsFrench = true;
+// frontIsFrench déclarée plus haut (près de LEARNING_DIR_KEY), voir commentaire là-bas.
 
 // Séparée de toggleFlipDirection() pour pouvoir aussi rafraîchir le texte de ces
 // boutons quand on change la langue de l'interface (toggleUiLang), sans changer
 // le sens FR/DE lui-même. Pas appelable depuis applyUiLang()/initUiLang() (trop
 // tôt dans le script : frontIsFrench n'est pas encore déclarée à ce moment-là).
 function renderFlipToggleButtons(){
-    // En direction anglaise, le recto/verso est fixé (allemand connu -> anglais
-    // cible, voir loadFlashcard()) : ce sélecteur FR⇄DE n'a plus de sens, on le
-    // masque plutôt que d'afficher un libellé trompeur.
+    // Le même bouton sert aux deux directions : en allemand, il bascule
+    // Français⇄Allemand ; en anglais, Allemand⇄Anglais (mêmes libellés adaptés).
     const learningEnglish = getLearningDirection() === 'en';
     document.querySelectorAll(".flip-toggle-btn").forEach(btn => {
-        btn.classList.toggle("hidden", learningEnglish);
-        btn.textContent = frontIsFrench ? t("flip_direction_fr") : t("flip_direction_de");
+        btn.classList.remove("hidden");
+        if(learningEnglish){
+            // frontIsFrench=true -> connu (allemand) au recto -> libellé "DE → EN".
+            btn.textContent = frontIsFrench ? t("flip_direction_de_to_en") : t("flip_direction_en_to_de");
+        } else {
+            btn.textContent = frontIsFrench ? t("flip_direction_fr") : t("flip_direction_de");
+        }
     });
 }
 
@@ -4848,7 +4880,7 @@ window.onDeutschAiUserSignedIn = function(){
 // allemande, même quand l'utilisateur navigue actuellement en direction "en".
 // Sans ça, ces agrégats se retrouveraient à lire le compartiment "en__" (vide
 // ou partiel) dès qu'on bascule vers l'anglais, et afficheraient ~0% à tort.
-let progressDirectionOverride = null;
+// (progressDirectionOverride déclarée plus haut, près de LEARNING_DIR_KEY.)
 function withGermanProgress(fn){
     const prev = progressDirectionOverride;
     progressDirectionOverride = 'de';
@@ -5453,6 +5485,11 @@ function updateAdjDueBanner(){
 }
 
 function openAdjektive(){
+    const learningEnglish = getLearningDirection() === 'en';
+    const kickerEl = document.getElementById("adjektiveKicker");
+    const titleEl = document.getElementById("adjektiveTitle");
+    if(kickerEl) kickerEl.textContent = t(learningEnglish ? "kicker_english_vocab" : "kicker_integrated_vocab");
+    if(titleEl) titleEl.textContent = t(learningEnglish ? "adjektive_title_en" : "adjektive_title");
     renderAdjektiveLevels();
     updateAdjDueBanner();
     showScreen("adjektive");
@@ -5704,6 +5741,11 @@ function openEnglishVerben(){
     setLearningDirection('en');
     applyLearningDirectionUi();
     openVerbenNiveau();
+}
+function openEnglishAdjektive(){
+    setLearningDirection('en');
+    applyLearningDirectionUi();
+    openAdjektive();
 }
 
 // Contenu grammatical anglais : un seul écran générique piloté par un objet de
@@ -6404,63 +6446,84 @@ function loadFlashcard(){
         const konjunktiv2Tr = learningEnglish
             ? (card.konjunktiv2_en || card.konjunktiv2_fr)
             : ((useEn && card.konjunktiv2_en) ? card.konjunktiv2_en : card.konjunktiv2_fr);
-        // En direction anglaise, la carte s'ouvre toujours sur l'allemand (connu) au
-        // recto et l'anglais (cible) au verso — le bouton frontIsFrench reste réservé
-        // à la direction allemande FR/EN existante.
-        if(learningEnglish){
-            document.getElementById("flashWord").textContent = germanWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
-            translationEl.textContent = translatedWord;
-            translationEl.classList.remove("hidden");
-        } else if(frontIsFrench){
-            document.getElementById("flashWord").textContent = translatedWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
+        // Le bouton flip-toggle-btn (recto/verso) fonctionne dans les deux
+        // directions, avec une sémantique constante : frontIsFrench=true (valeur
+        // par défaut) -> la langue CONNUE est au recto (français en mode allemand,
+        // allemand en mode anglais) ; false -> la langue CIBLE est au recto (mode
+        // "reconnaissance"). knownWord/targetWord s'inversent selon la direction
+        // pour que ce booléen unique garde le même sens dans les deux cas.
+        const knownWord = learningEnglish ? germanWord : translatedWord;
+        const targetWord = learningEnglish ? translatedWord : germanWord;
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = knownWord;
+            document.getElementById("flashBackWord").textContent = targetWord;
             translationEl.classList.add("hidden");
         } else {
-            document.getElementById("flashWord").textContent = germanWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
-            translationEl.textContent = translatedWord;
+            document.getElementById("flashWord").textContent = targetWord;
+            document.getElementById("flashBackWord").textContent = targetWord;
+            translationEl.textContent = knownWord;
             translationEl.classList.remove("hidden");
         }
-        const p = card.praesens || {};
-        const conjLines = [
-            `ich ${p.ich || ""}`, `du ${p.du || ""}`, `er/sie/es ${p.er_sie_es || ""}`,
-            `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
-        ].join(" · ");
-        const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}` +
-            `<div class="verb-sep"></div>` +
-            `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${exampleTr || ""})` +
-            `<div class="verb-sep"></div>` +
-            `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${perfektTr || ""})`;
-        const imp = card.imperativ;
-        const impHtml = imp
-            ? `<div class="verb-sep"></div><strong>Imperativ :</strong> du &rarr; ${imp.du} · ihr &rarr; ${imp.ihr} · Sie &rarr; ${imp.sie_Sie}`
-            : "";
-        const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${praeteritumTr || ""})` +
-            `<div class="verb-sep"></div>` +
-            `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${konjunktiv2Tr || ""})` +
-            impHtml;
-        verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
+        if(learningEnglish){
+            // Pas de tableau de conjugaison allemand ici : hors sujet pour apprendre
+            // l'anglais (voir stratégie discutée avec l'utilisateur). On montre plutôt
+            // l'infinitif anglais + deux phrases d'exemple allemand->anglais, pour
+            // ancrer le mot dans un contexte sans jargon grammatical allemand.
+            const exHtml = `${card.exemple || ""}<br>&rarr; ${exampleTr || ""}`;
+            const perfHtml = perfektTr ? `<div class="verb-sep"></div>${card.perfekt || ""}<br>&rarr; ${perfektTr}` : "";
+            verbDetailsEl.innerHTML = `<div class="verb-core"><strong>${translatedWord}</strong><div class="verb-sep"></div>${exHtml}${perfHtml}</div>`;
+        } else {
+            const p = card.praesens || {};
+            const conjLines = [
+                `ich ${p.ich || ""}`, `du ${p.du || ""}`, `er/sie/es ${p.er_sie_es || ""}`,
+                `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
+            ].join(" · ");
+            const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}` +
+                `<div class="verb-sep"></div>` +
+                `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${exampleTr || ""})` +
+                `<div class="verb-sep"></div>` +
+                `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${perfektTr || ""})`;
+            const imp = card.imperativ;
+            const impHtml = imp
+                ? `<div class="verb-sep"></div><strong>Imperativ :</strong> du &rarr; ${imp.du} · ihr &rarr; ${imp.ihr} · Sie &rarr; ${imp.sie_Sie}`
+                : "";
+            const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${praeteritumTr || ""})` +
+                `<div class="verb-sep"></div>` +
+                `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${konjunktiv2Tr || ""})` +
+                impHtml;
+            verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
+        }
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
     } else if(flashcardMode === 'adjektive'){
         const germanWord = card[0];
-        // L'anglais n'existe encore que pour une partie du vocabulaire (Phase 2 en
-        // cours) : on retombe sur le français si la traduction anglaise manque.
+        // Direction "en" : mot allemand connu, anglais (card[5]) = cible, toujours
+        // affiché indépendamment de la langue d'interface. Direction "de" (par
+        // défaut) : comportement inchangé (repli français, Phase 2 en cours).
+        const learningEnglish = getLearningDirection() === 'en';
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
-        const frenchWord = (useEn && card[5]) ? card[5] : card[1];
+        const frenchWord = learningEnglish
+            ? (card[5] || card[1])
+            : ((useEn && card[5]) ? card[5] : card[1]);
         const exampleSentence = card[2];
-        const exampleSentenceFr = (useEn && card[6]) ? card[6] : (card[4] || "");
+        const exampleSentenceFr = learningEnglish
+            ? (card[6] || card[4] || "")
+            : ((useEn && card[6]) ? card[6] : (card[4] || ""));
+        // Sémantique constante du bouton recto/verso (voir branche 'verben' plus
+        // haut) : frontIsFrench=true -> langue connue au recto (FR en allemand,
+        // DE en anglais) ; false -> langue cible au recto.
+        const knownWord = learningEnglish ? germanWord : frenchWord;
+        const targetWord = learningEnglish ? frenchWord : germanWord;
         if(frontIsFrench){
-            document.getElementById("flashWord").textContent = frenchWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
+            document.getElementById("flashWord").textContent = knownWord;
+            document.getElementById("flashBackWord").textContent = targetWord;
             translationEl.classList.add("hidden");
         } else {
-            document.getElementById("flashWord").textContent = germanWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
-            translationEl.textContent = frenchWord;
+            document.getElementById("flashWord").textContent = targetWord;
+            document.getElementById("flashBackWord").textContent = targetWord;
+            translationEl.textContent = knownWord;
             translationEl.classList.remove("hidden");
         }
         verbDetailsEl.textContent = exampleSentenceFr ? `${exampleSentence}\n${exampleSentenceFr}` : exampleSentence;
@@ -6536,19 +6599,19 @@ function loadFlashcard(){
         const frenchWord = learningEnglish
             ? (card[4] || card[3])
             : ((useEn && card[4]) ? card[4] : card[3]);
-        if(learningEnglish){
-            document.getElementById("flashWord").textContent = germanWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
-            translationEl.textContent = frenchWord;
-            translationEl.classList.remove("hidden");
-        } else if(frontIsFrench){
-            document.getElementById("flashWord").textContent = frenchWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
+        // Sémantique constante du bouton recto/verso (voir branche 'verben' plus
+        // haut) : frontIsFrench=true -> langue connue au recto (FR en allemand,
+        // DE en anglais) ; false -> langue cible au recto.
+        const knownWord = learningEnglish ? germanWord : frenchWord;
+        const targetWord = learningEnglish ? frenchWord : germanWord;
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = knownWord;
+            document.getElementById("flashBackWord").textContent = targetWord;
             translationEl.classList.add("hidden");
         } else {
-            document.getElementById("flashWord").textContent = germanWord;
-            document.getElementById("flashBackWord").textContent = germanWord;
-            translationEl.textContent = frenchWord;
+            document.getElementById("flashWord").textContent = targetWord;
+            document.getElementById("flashBackWord").textContent = targetWord;
+            translationEl.textContent = knownWord;
             translationEl.classList.remove("hidden");
         }
         const articleText = (card[1] || "").toLowerCase().trim();
