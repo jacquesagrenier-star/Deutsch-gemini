@@ -2094,7 +2094,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v128</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v129</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -6573,7 +6573,26 @@ const XP_PER_SUCCESS = 1;
 const XP_BONUS_GOAL_MULTIPLE = 5;
 let sessionCombo = 0; // pas persisté : repart de 0 à chaque rechargement de page
 
+// Migration ponctuelle v128 : l'XP accumulé avant ce changement l'a été à
+// +10/bonne réponse -- sans ça, un total déjà cumulé sous l'ancienne échelle
+// resterait figé et donnerait l'impression d'un nombre de réussites 10x trop
+// élevé une fois le nouveau taux (+1) en place. Se déclenche une seule fois
+// par direction (de/en), au premier getXp() suivant la mise à jour.
+const XP_MIGRATION_V128_KEY = "deutschAI_xpMigratedV128";
+
+function migrateXpScaleIfNeeded(){
+    const migKey = directionScopedKey(XP_MIGRATION_V128_KEY);
+    try{
+        if(localStorage.getItem(migKey) === "1") return;
+        const xpKey = directionScopedKey(XP_KEY);
+        const raw = parseInt(localStorage.getItem(xpKey) || "0", 10) || 0;
+        localStorage.setItem(xpKey, String(Math.round(raw / 10)));
+        localStorage.setItem(migKey, "1");
+    }catch(e){}
+}
+
 function getXp(){
+    migrateXpScaleIfNeeded();
     let xp = 0;
     try{ xp = parseInt(localStorage.getItem(directionScopedKey(XP_KEY)) || "0", 10) || 0; }catch(e){ xp = 0; }
     return xp;
