@@ -1924,7 +1924,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v119</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v120</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4720,12 +4720,20 @@ async function loadThemesJson() {
         renderNomenLevels();
         updateDueBanner();
         updateOrbBadges();
+        // L'anneau de progression du niveau actif (le gros "A1 X %" de l'accueil)
+        // avait déjà pu être peint une 1re fois plus tôt, contre des données
+        // encore vides (verbe/adjectif/thèmes pas encore arrivés du réseau) --
+        // sans ce rafraîchissement, il restait figé sur ce résultat erroné
+        // jusqu'à ce que l'utilisateur déclenche un recalcul manuellement (ex.
+        // taper sur le cercle pour changer de niveau). Signalé par l'utilisateur.
+        updateGlobalProgress();
     } catch (error) {
         themesLoaded = true;
         renderThemes();
         renderNomenLevels();
         updateDueBanner();
         updateOrbBadges();
+        updateGlobalProgress();
     }
 }
 
