@@ -2094,7 +2094,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v129</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v130</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2116,7 +2116,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                 <div class="home-stats-chips">
                     <span class="home-chip">🔥 <span id="streakCount">0</span> j</span>
                     <span class="home-chip hidden" id="streakFreezeChip" title="">❄️ <span id="streakFreezeCount">0</span></span>
-                    <span class="home-chip">⚡ <span id="xpCount">0</span> XP</span>
                     <span class="home-chip" id="weeklyMomentumChip">Cette semaine : 0</span>
                 </div>
             </div>
@@ -3043,7 +3042,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <h2 id="flashThemeTitle">Cartes</h2>
         </div>
         <div class="title-row-pills">
-            <div class="pill xp-pill" id="xpPillFlash">⚡ <span id="xpCountFlash">0</span></div>
             <div class="pill combo-pill hidden" id="comboPillFlash">🔥 x<span id="comboCountFlash">0</span></div>
             <div class="pill" id="flashCounter">1 / 10</div>
         </div>
@@ -3097,7 +3095,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <h2 id="exerciseTitle">Exercice 1</h2>
         </div>
         <div class="title-row-pills">
-            <div class="pill xp-pill" id="xpPillExercise">⚡ <span id="xpCountExercise">0</span></div>
             <div class="pill combo-pill hidden" id="comboPillExercise">🔥 x<span id="comboCountExercise">0</span></div>
             <div class="pill" id="counter">1 / 5</div>
         </div>
@@ -6614,15 +6611,11 @@ function resetCombo(){
     updateXpComboDisplay();
 }
 
-// Met à jour tous les affichages XP/combo présents dans le DOM (accueil,
-// flashcards, exercices) -- silencieux si un élément n'existe pas sur
-// l'écran courant.
+// Met à jour l'affichage du combo dans le DOM (flashcards, exercices).
+// Le XP lui-même n'est plus affiché nulle part (v130) -- il reste calculé en
+// coulisses uniquement pour alimenter les badges (voir checkAndUnlockBadges),
+// jugé redondant avec "Cette semaine" qui compte déjà les bonnes réponses.
 function updateXpComboDisplay(){
-    const xp = getXp();
-    ["xpCount", "xpCountFlash", "xpCountExercise"].forEach(id => {
-        const el = document.getElementById(id);
-        if(el) el.textContent = xp;
-    });
     [
         { pill: "comboPillFlash", num: "comboCountFlash" },
         { pill: "comboPillExercise", num: "comboCountExercise" }
