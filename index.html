@@ -1759,6 +1759,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:11px; font-weight:800;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
             <span id="uiLangToggleLabel">EN</span>
         </button>
+        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:16px;" onclick="openSettings()" title="Réglages / Settings" aria-label="Réglages">⚙️</button>
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
@@ -1870,7 +1871,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v96</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v97</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3916,16 +3917,22 @@ function refreshSetupChoiceActiveStates(){
     });
 }
 
+// Le retour visuel (bouton qui devient actif) doit être immédiat : on met la
+// donnée à jour et on rafraîchit les boutons AVANT le reste, puis on repousse
+// le travail plus lourd (updateGlobalProgress balaie des milliers de mots via
+// getWordState, qui refait un JSON.parse à chaque appel) après un setTimeout(0)
+// pour laisser le navigateur peindre le changement de couleur sans attendre —
+// sans ça, le clic semblait mettre 1-2 secondes à réagir.
 function selectLearningDirectionChoice(dir){
     setLearningDirection(dir);
-    applyLearningDirectionUi();
     refreshSetupChoiceActiveStates();
+    setTimeout(() => applyLearningDirectionUi(), 0);
 }
 
 function selectUiLangChoice(lang){
     setUiLang(lang);
-    applyUiLangSideEffects();
     refreshSetupChoiceActiveStates();
+    setTimeout(() => applyUiLangSideEffects(), 0);
 }
 
 function completeInitialSetup(){
@@ -6070,6 +6077,11 @@ function openNomen(){
     loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen");
 }
 function openSettings(){
+    // Le bouton ⚙️ est dans le <header>, donc visible même sur l'écran de
+    // connexion — sans cette garde, il contournerait la porte d'authentification
+    // (comme l'ancien bouton drapeau, voir commit v94).
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!user) return;
     updateGlobalProgress();
     renderProgressRadar();
     renderDailyGoalSetting();
