@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v109</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v110</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -8543,17 +8543,34 @@ const DAILY_GOAL_VIDEO_SIZE = 260;
 // transition anneau/fond reste large comme le 1er essai bleu abandonné pour
 // personnage.MP4 : sans traitement supplémentaire, un fin liseré bleu résiduel
 // reste visible autour du personnage une fois composé sur un fond sombre.
-// Corrigé par un "choke" (rétrécissement du personnage gardé de quelques
-// pixels, technique standard en incrustation chroma) plutôt qu'en touchant les
-// seuils de couleur partagés avec le vert -- vérifié sans perte de détail
-// visible (doigts, pompon, anses du trophée) sur les 3 vidéos.
+//
+// 1er correctif tenté : un simple "choke" (dilatation du masque retiré de 4px,
+// technique standard en incrustation chroma) -- éliminait bien le liseré, mais
+// mangeait aussi de vraies zones du personnage (manche, col) là où deux bords
+// bleus rapprochés (ex. pli du tissu, écart entre les jambes) se rejoignaient
+// après dilatation : signalé par l'utilisateur ("je perds de l'image, c'est
+// trop coupé") et confirmé en testant plusieurs images du même clip (pas
+// seulement l'image unique testée au départ).
+//
+// Correctif retenu : un "pontage" ciblé plutôt qu'un choke aveugle -- on
+// n'étend le masque retiré QUE vers des pixels encore un peu bleutés
+// (MASTERY_BRIDGE_OUTLINE_THRESH, très en dessous du seuil loose) et PROCHES
+// du masque déjà retiré (MASTERY_BRIDGE_RADIUS) : ça comble la bande de
+// transition sans jamais toucher un pixel réellement neutre (peau, doré,
+// blanc) même collé au bord. Un choke résiduel très léger
+// (MASTERY_BLUE_CHOKE_RADIUS = 2, contre 4 initialement) referme le dernier
+// filet sans manger de détail -- vérifié sur plusieurs images de chacune des
+// 3 vidéos (mains/trompette, bras levés, jambes rapprochées) après le premier
+// échec.
 const MASTERY_LOOSE_DARK_MAX = 26;
 const MASTERY_LOOSE_OUTLINE_THRESH = 25;
 const MASTERY_STRONG_OUTLINE_THRESH = 90;
+const MASTERY_BRIDGE_OUTLINE_THRESH = 8;
+const MASTERY_BRIDGE_RADIUS = 3;
 const MASTERY_ERODE_RADIUS = 3;
 const MASTERY_DILATE_RADIUS = 8;
 const MASTERY_CLOSE_RADIUS = 3;
-const MASTERY_BLUE_CHOKE_RADIUS = 4;
+const MASTERY_BLUE_CHOKE_RADIUS = 2;
 
 // En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
 // noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
@@ -8720,6 +8737,11 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio){
         const looseCand = new Uint8Array(n);
         const strongCand = new Uint8Array(n);
         const isBlue = outlineColor === "blue";
+        // weakCand (bleu seulement) : pixels encore un peu teintés bleu mais
+        // sous le seuil loose -- sert uniquement de "pontage" ciblé plus bas,
+        // jamais à retirer un pixel directement (voir commentaire des
+        // constantes MASTERY_BRIDGE_*).
+        const weakCand = isBlue ? new Uint8Array(n) : null;
         for(let p = 0; p < n; p++){
             const i = p * 4;
             const r = d[i], g = d[i+1], b = d[i+2];
@@ -8730,6 +8752,7 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio){
             const outlineness = isBlue ? (b - Math.max(r, g)) : (g - Math.max(r, b));
             if(mx < MASTERY_LOOSE_DARK_MAX || outlineness > MASTERY_LOOSE_OUTLINE_THRESH) looseCand[p] = 1;
             if(outlineness > MASTERY_STRONG_OUTLINE_THRESH) strongCand[p] = 1;
+            if(isBlue && outlineness > MASTERY_BRIDGE_OUTLINE_THRESH) weakCand[p] = 1;
         }
 
         const core = erodeMask(looseCand, w, h, MASTERY_ERODE_RADIUS);
@@ -8762,11 +8785,22 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio){
             finalMask[p] = (inMask1 || inMask2) ? 1 : 0;
         }
         // Liseré bleu : transition anneau/fond nettement plus large qu'en vert
-        // (~40px contre ~14px, voir commentaire des constantes) -- un fin liseré
-        // résiduel reste visible sans ce "choke" (rétrécissement du personnage
-        // gardé de quelques pixels, cf. incrustation chroma classique). Appliqué
-        // uniquement au bleu pour ne rien changer au rendu vert déjà vérifié.
-        if(isBlue) finalMask = dilateMask(finalMask, w, h, MASTERY_BLUE_CHOKE_RADIUS);
+        // (~40px contre ~14px, voir commentaire des constantes MASTERY_*).
+        // Deux passes ciblées plutôt qu'un choke aveugle (celui-ci mangeait de
+        // vraies zones du personnage -- voir commentaire des constantes) :
+        // 1) pontage -- étend le masque vers les pixels encore faiblement
+        //    bleutés (weakCand) mais PROCHES du masque déjà retiré, sans
+        //    jamais toucher un pixel neutre même collé au bord ;
+        // 2) choke résiduel très léger pour fermer le dernier filet.
+        // Les deux sont appliqués uniquement au bleu, le rendu vert (déjà
+        // vérifié) reste inchangé.
+        if(isBlue){
+            const dilatedFinal = dilateMask(finalMask, w, h, MASTERY_BRIDGE_RADIUS);
+            for(let p = 0; p < n; p++){
+                if(dilatedFinal[p] && weakCand[p]) finalMask[p] = 1;
+            }
+            finalMask = dilateMask(finalMask, w, h, MASTERY_BLUE_CHOKE_RADIUS);
+        }
         return finalMask;
     }
 
