@@ -549,6 +549,124 @@ h2{
     font-size:12px;
 }
 
+.title-row-pills{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.xp-pill{
+    font-weight:700;
+    color:#b9770e;
+    border-color:rgba(232,162,58,.5);
+    background:rgba(232,162,58,.14);
+}
+
+.combo-pill{
+    font-weight:700;
+    color:#c2410c;
+    border-color:rgba(234,88,12,.45);
+    background:rgba(234,88,12,.14);
+    animation: comboPop .25s ease;
+}
+
+@keyframes comboPop{
+    0%{ transform:scale(.7); opacity:0; }
+    100%{ transform:scale(1); opacity:1; }
+}
+
+body[data-theme="dark"] .xp-pill{
+    color:#f5c374;
+    background:rgba(232,162,58,.18);
+    border-color:rgba(232,162,58,.55);
+}
+
+body[data-theme="dark"] .combo-pill{
+    color:#ffb27a;
+    background:rgba(234,88,12,.2);
+    border-color:rgba(234,88,12,.55);
+}
+
+.badges-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(74px, 1fr));
+    gap:10px;
+    margin-top:14px;
+}
+
+.badge-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    padding:10px 6px;
+    border-radius:14px;
+    border:1px solid rgba(30,41,59,.14);
+    background:rgba(255,255,255,.5);
+    text-align:center;
+}
+
+.badge-item .badge-icon{
+    font-size:26px;
+    filter:grayscale(1);
+    opacity:.35;
+}
+
+.badge-item.unlocked{
+    border-color:rgba(232,162,58,.5);
+    background:rgba(232,162,58,.1);
+}
+
+.badge-item.unlocked .badge-icon{
+    filter:none;
+    opacity:1;
+}
+
+.badge-item .badge-label{
+    font-size:10px;
+    color:#576177;
+    line-height:1.25;
+}
+
+body[data-theme="dark"] .badge-item{
+    background:rgba(255,255,255,.04);
+    border-color:rgba(255,255,255,.12);
+}
+
+body[data-theme="dark"] .badge-item.unlocked{
+    background:rgba(232,162,58,.14);
+    border-color:rgba(232,162,58,.5);
+}
+
+.badge-toast{
+    position:fixed;
+    left:50%;
+    bottom:26px;
+    transform:translateX(-50%) translateY(20px);
+    background:#1C2430;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:14px;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+    z-index:10000;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease;
+    max-width:88vw;
+}
+
+.badge-toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
 .filters-bar {
     display: flex;
     gap: 10px;
@@ -1785,6 +1903,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 <body>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
+<div id="badgeToast" class="badge-toast"></div>
 
 <svg width="0" height="0" style="position:absolute;">
     <defs>
@@ -1925,7 +2044,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v122</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v123</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -1946,6 +2065,8 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                 <div id="globalProgressQualitative" class="home-stats-qualitative">Tu commences !</div>
                 <div class="home-stats-chips">
                     <span class="home-chip">🔥 <span id="streakCount">0</span> j</span>
+                    <span class="home-chip hidden" id="streakFreezeChip" title="">❄️ <span id="streakFreezeCount">0</span></span>
+                    <span class="home-chip">⚡ <span id="xpCount">0</span> XP</span>
                     <span class="home-chip" id="weeklyMomentumChip">Cette semaine : 0</span>
                 </div>
             </div>
@@ -2871,7 +2992,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div class="kicker" id="flashKicker">Flashcards</div>
             <h2 id="flashThemeTitle">Cartes</h2>
         </div>
-        <div class="pill" id="flashCounter">1 / 10</div>
+        <div class="title-row-pills">
+            <div class="pill xp-pill" id="xpPillFlash">⚡ <span id="xpCountFlash">0</span></div>
+            <div class="pill combo-pill hidden" id="comboPillFlash">🔥 x<span id="comboCountFlash">0</span></div>
+            <div class="pill" id="flashCounter">1 / 10</div>
+        </div>
     </div>
 
     <div class="flashcard-wrapper">
@@ -2920,7 +3045,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div class="kicker" id="exerciseKicker">Verbes · Präsens</div>
             <h2 id="exerciseTitle">Exercice 1</h2>
         </div>
-        <div class="pill" id="counter">1 / 5</div>
+        <div class="title-row-pills">
+            <div class="pill xp-pill" id="xpPillExercise">⚡ <span id="xpCountExercise">0</span></div>
+            <div class="pill combo-pill hidden" id="comboPillExercise">🔥 x<span id="comboCountExercise">0</span></div>
+            <div class="pill" id="counter">1 / 5</div>
+        </div>
     </div>
 
     <div class="card">
@@ -3027,6 +3156,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <button class="secondary danger" onclick="resetCurrentThemeConfirm()" data-i18n="settings_reset_theme">RESET DU THÈME ACTUEL</button>
         <div class="spacer"></div>
         <button class="secondary danger" onclick="resetAllConfirm()" data-i18n="settings_reset_all">RESET DE TOUTE LA PROGRESSION</button>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="settings_badges_title">Badges</strong>
+        <div id="badgesGrid" class="badges-grid"></div>
     </div>
 
     <div class="card">
@@ -3153,6 +3287,8 @@ onAuthStateChanged(auth, (user) => {
             goHome();
         }
         if(typeof window.onDeutschAiUserSignedIn === "function") window.onDeutschAiUserSignedIn(user);
+        if(typeof checkAndUnlockBadges === "function") checkAndUnlockBadges();
+        if(typeof renderBadgesGrid === "function") renderBadgesGrid();
     } else {
         userProfile.textContent = "CM";
         authContent.classList.remove("hidden");
@@ -3355,6 +3491,26 @@ const I18N = {
         settings_view_themes: "VOIR LES THÈMES",
         settings_reset_theme: "RESET DU THÈME ACTUEL",
         settings_reset_all: "RESET DE TOUTE LA PROGRESSION",
+        settings_badges_title: "Badges",
+        badge_unlocked_prefix: "Badge débloqué :",
+        badge_locked_hint: "Pas encore débloqué",
+        badge_first_word_title: "Premier pas",
+        badge_first_word_desc: "Ta première réussite enregistrée.",
+        badge_xp_500_title: "Sur la bonne voie",
+        badge_xp_500_desc: "500 points d'expérience atteints.",
+        badge_xp_2000_title: "Machine à mots",
+        badge_xp_2000_desc: "2000 points d'expérience atteints.",
+        badge_xp_5000_title: "Polyglotte en herbe",
+        badge_xp_5000_desc: "5000 points d'expérience atteints.",
+        badge_streak_3_title: "3 jours de suite",
+        badge_streak_3_desc: "Trois jours consécutifs d'activité.",
+        badge_streak_7_title: "Une semaine complète",
+        badge_streak_7_desc: "Sept jours consécutifs d'activité.",
+        badge_streak_30_title: "Un mois de discipline",
+        badge_streak_30_desc: "Trente jours consécutifs d'activité.",
+        streak_freeze_used: "Gel de série utilisé ! Ta série continue malgré le jour manqué.",
+        streak_freeze_earned: "Gel de série gagné ! Il protégera ta série un jour où tu en manques un.",
+        streak_freeze_hint: "Gel de série disponible : protège ta série un jour manqué.",
         settings_daily_goal: "Objectif quotidien",
         settings_daily_goal_desc: "Nombre de cartes à réviser par jour pour remplir la barre « Objectif du jour » de l'écran d'accueil.",
         settings_reset_daily: "RÉINITIALISER LE COMPTE DU JOUR (TESTS)",
@@ -3809,6 +3965,26 @@ const I18N = {
         settings_view_themes: "VIEW THEMES",
         settings_reset_theme: "RESET CURRENT THEME",
         settings_reset_all: "RESET ALL PROGRESS",
+        settings_badges_title: "Badges",
+        badge_unlocked_prefix: "Badge unlocked:",
+        badge_locked_hint: "Not unlocked yet",
+        badge_first_word_title: "First step",
+        badge_first_word_desc: "Your first recorded success.",
+        badge_xp_500_title: "On a roll",
+        badge_xp_500_desc: "Reached 500 experience points.",
+        badge_xp_2000_title: "Word machine",
+        badge_xp_2000_desc: "Reached 2000 experience points.",
+        badge_xp_5000_title: "Budding polyglot",
+        badge_xp_5000_desc: "Reached 5000 experience points.",
+        badge_streak_3_title: "3 days in a row",
+        badge_streak_3_desc: "Three consecutive days of activity.",
+        badge_streak_7_title: "A full week",
+        badge_streak_7_desc: "Seven consecutive days of activity.",
+        badge_streak_30_title: "A month of discipline",
+        badge_streak_30_desc: "Thirty consecutive days of activity.",
+        streak_freeze_used: "Streak freeze used! Your streak survives the missed day.",
+        streak_freeze_earned: "Streak freeze earned! It will protect your streak on a missed day.",
+        streak_freeze_hint: "Streak freeze available: protects your streak on one missed day.",
         settings_daily_goal: "Daily goal",
         settings_daily_goal_desc: "Number of cards to review per day to fill the \"Daily goal\" bar on the home screen.",
         settings_reset_daily: "RESET TODAY'S COUNT (TESTING)",
@@ -6135,6 +6311,9 @@ const LEVELS = ["A1", "A2", "B1", "B2"];
 
 const DAILY_ACTIVITY_KEY = "deutschAI_dailyActivity";
 const STREAK_KEY = "deutschAI_streak";
+const STREAK_FREEZE_KEY = "deutschAI_streakFreezes";
+const STREAK_FREEZE_STARTING_COUNT = 1; // offert dès le départ, comme un "essai gratuit" de la mécanique
+const STREAK_FREEZE_MAX = 3; // évite d'accumuler indéfiniment
 const DAILY_GOAL_VIDEO_ROTATION_KEY = "deutschAI_dailyGoalVideoRotation";
 const MASTERY_LOG_KEY = "deutschAI_masteryLog";
 const DAILY_GOAL_STORAGE_KEY = "deutschAI_dailyGoalTarget";
@@ -6142,6 +6321,131 @@ const DEFAULT_DAILY_GOAL_TARGET = 30;
 const DAILY_GOAL_MIN = 5;
 const DAILY_GOAL_MAX = 100;
 const DAILY_GOAL_STEP = 5;
+
+// ============ XP & combo (gamification) ============
+const XP_KEY = "deutschAI_xp";
+const XP_PER_SUCCESS = 10;
+const XP_BONUS_GOAL_MULTIPLE = 50;
+let sessionCombo = 0; // pas persisté : repart de 0 à chaque rechargement de page
+
+function getXp(){
+    let xp = 0;
+    try{ xp = parseInt(localStorage.getItem(directionScopedKey(XP_KEY)) || "0", 10) || 0; }catch(e){ xp = 0; }
+    return xp;
+}
+
+function addXp(amount){
+    const xp = getXp() + amount;
+    try{ localStorage.setItem(directionScopedKey(XP_KEY), String(xp)); }catch(e){}
+    return xp;
+}
+
+function registerComboSuccess(){
+    sessionCombo++;
+    return sessionCombo;
+}
+
+function resetCombo(){
+    sessionCombo = 0;
+    updateXpComboDisplay();
+}
+
+// Met à jour tous les affichages XP/combo présents dans le DOM (accueil,
+// flashcards, exercices) -- silencieux si un élément n'existe pas sur
+// l'écran courant.
+function updateXpComboDisplay(){
+    const xp = getXp();
+    ["xpCount", "xpCountFlash", "xpCountExercise"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = xp;
+    });
+    [
+        { pill: "comboPillFlash", num: "comboCountFlash" },
+        { pill: "comboPillExercise", num: "comboCountExercise" }
+    ].forEach(({ pill, num }) => {
+        const pillEl = document.getElementById(pill);
+        const numEl = document.getElementById(num);
+        if(!pillEl) return;
+        if(sessionCombo >= 2){
+            if(numEl) numEl.textContent = sessionCombo;
+            pillEl.classList.remove("hidden");
+        } else {
+            pillEl.classList.add("hidden");
+        }
+    });
+}
+
+// ============ Badges / succès (gamification) ============
+// Basés uniquement sur des lectures O(1) déjà en cache (XP, streak) --
+// jamais sur un recalcul complet du corpus (voir le bug de performance
+// O(n²) corrigé en v100, à ne pas réintroduire ici).
+const BADGES_KEY = "deutschAI_badges";
+const BADGE_DEFINITIONS = [
+    { id: "first_word", icon: "🌱", titleKey: "badge_first_word_title", descKey: "badge_first_word_desc", check: s => s.xp >= 10 },
+    { id: "xp_500", icon: "⚡", titleKey: "badge_xp_500_title", descKey: "badge_xp_500_desc", check: s => s.xp >= 500 },
+    { id: "xp_2000", icon: "🚀", titleKey: "badge_xp_2000_title", descKey: "badge_xp_2000_desc", check: s => s.xp >= 2000 },
+    { id: "xp_5000", icon: "👑", titleKey: "badge_xp_5000_title", descKey: "badge_xp_5000_desc", check: s => s.xp >= 5000 },
+    { id: "streak_3", icon: "🔥", titleKey: "badge_streak_3_title", descKey: "badge_streak_3_desc", check: s => s.streak >= 3 },
+    { id: "streak_7", icon: "🗓️", titleKey: "badge_streak_7_title", descKey: "badge_streak_7_desc", check: s => s.streak >= 7 },
+    { id: "streak_30", icon: "🏆", titleKey: "badge_streak_30_title", descKey: "badge_streak_30_desc", check: s => s.streak >= 30 }
+];
+
+function getUnlockedBadges(){
+    try{ return JSON.parse(localStorage.getItem(directionScopedKey(BADGES_KEY)) || "[]"); }catch(e){ return []; }
+}
+
+function saveUnlockedBadges(list){
+    try{ localStorage.setItem(directionScopedKey(BADGES_KEY), JSON.stringify(list)); }catch(e){}
+}
+
+// Vérifie tous les badges à chaque succès (flashcard ou exercice) et
+// affiche un toast pour tout nouveau déblocage. Lecture seule bon marché :
+// getXp()/getStreakCount() sont déjà des compteurs, pas des scans.
+function checkAndUnlockBadges(){
+    const unlocked = getUnlockedBadges();
+    const stats = { xp: getXp(), streak: getStreakCount() };
+    let changed = false;
+    BADGE_DEFINITIONS.forEach(def => {
+        if(unlocked.includes(def.id)) return;
+        if(def.check(stats)){
+            unlocked.push(def.id);
+            changed = true;
+            showBadgeToast(def);
+        }
+    });
+    if(changed){
+        saveUnlockedBadges(unlocked);
+        renderBadgesGrid();
+    }
+}
+
+function showToast(icon, text){
+    const toast = document.getElementById("badgeToast");
+    if(!toast) return;
+    toast.innerHTML = `<span style="font-size:22px;">${icon}</span><span>${text}</span>`;
+    toast.classList.add("show");
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+}
+
+function showBadgeToast(def){
+    showToast(def.icon, `${t("badge_unlocked_prefix")} ${t(def.titleKey)}`);
+}
+
+function renderBadgesGrid(){
+    const grid = document.getElementById("badgesGrid");
+    if(!grid) return;
+    const unlocked = getUnlockedBadges();
+    grid.innerHTML = BADGE_DEFINITIONS.map(def => {
+        const isUnlocked = unlocked.includes(def.id);
+        const title = t(def.titleKey);
+        const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
+        return `<div class="badge-item${isUnlocked ? " unlocked" : ""}" title="${title} — ${desc}">
+            <span class="badge-icon">${def.icon}</span>
+            <span class="badge-label">${title}</span>
+        </div>`;
+    }).join("");
+}
 
 function getDailyGoalTarget(){
     let v;
@@ -6223,12 +6527,51 @@ function recordDailyActivity(){
     if(!streak) streak = { count: 0, lastActiveDate: null };
     if(streak.lastActiveDate !== today){
         const yesterday = getTodayStr(new Date(Date.now() - 86400000));
-        streak.count = (streak.lastActiveDate === yesterday) ? streak.count + 1 : 1;
+        if(streak.lastActiveDate === yesterday){
+            streak.count += 1;
+        } else if(streak.lastActiveDate && getStreakFreezes() > 0 && daysBetweenDateStrs(streak.lastActiveDate, today) === 2){
+            // Exactement un jour manqué (avant-hier était le dernier jour actif) :
+            // on consomme un gel de série au lieu de remettre le compteur à 1.
+            spendStreakFreeze();
+            streak.count += 1;
+            showToast("❄️", t("streak_freeze_used"));
+        } else {
+            streak.count = 1;
+        }
         streak.lastActiveDate = today;
         try{ localStorage.setItem(streakKey, JSON.stringify(streak)); }catch(e){}
+        // Récompense : un gel de série gagné tous les 7 jours de suite (plafonné).
+        if(streak.count > 0 && streak.count % 7 === 0) grantStreakFreeze();
     }
 
     return justReachedMultiple;
+}
+
+function daysBetweenDateStrs(a, b){
+    return Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
+}
+
+function getStreakFreezes(){
+    let n = STREAK_FREEZE_STARTING_COUNT;
+    try{
+        const raw = localStorage.getItem(directionScopedKey(STREAK_FREEZE_KEY));
+        if(raw !== null) n = parseInt(raw, 10) || 0;
+    }catch(e){}
+    return n;
+}
+
+function setStreakFreezes(n){
+    try{ localStorage.setItem(directionScopedKey(STREAK_FREEZE_KEY), String(Math.max(0, Math.min(STREAK_FREEZE_MAX, n)))); }catch(e){}
+}
+
+function spendStreakFreeze(){
+    setStreakFreezes(getStreakFreezes() - 1);
+}
+
+function grantStreakFreeze(){
+    if(getStreakFreezes() >= STREAK_FREEZE_MAX) return;
+    setStreakFreezes(getStreakFreezes() + 1);
+    showToast("❄️", t("streak_freeze_earned"));
 }
 
 function getDailyActivityCount(){
@@ -6340,6 +6683,17 @@ function updateHomeStatsPanel(percent){
 
     const streakEl = document.getElementById("streakCount");
     if(streakEl) streakEl.textContent = getStreakCount();
+
+    const freezeChip = document.getElementById("streakFreezeChip");
+    const freezeCountEl = document.getElementById("streakFreezeCount");
+    if(freezeChip && freezeCountEl){
+        const freezes = getStreakFreezes();
+        freezeCountEl.textContent = freezes;
+        freezeChip.title = t("streak_freeze_hint");
+        freezeChip.classList.toggle("hidden", freezes <= 0);
+    }
+
+    updateXpComboDisplay();
 
     const momentumEl = document.getElementById("weeklyMomentumChip");
     if(momentumEl){
@@ -7253,6 +7607,7 @@ function openSettings(){
     updateGlobalProgress();
     renderProgressRadar();
     renderDailyGoalSetting();
+    renderBadgesGrid();
     refreshSetupChoiceActiveStates();
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
@@ -7787,6 +8142,7 @@ function setFlashHeader(kickerKey, titleKey){
 }
 
 function loadFlashcard(){
+    updateXpComboDisplay();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
     const card = item.word;
@@ -9009,6 +9365,10 @@ function triggerDailyGoalCelebration(multiple){
 }
 
 function celebrateMastery(justReachedMultiple){
+    registerComboSuccess();
+    addXp(XP_PER_SUCCESS + (justReachedMultiple > 0 ? XP_BONUS_GOAL_MULTIPLE : 0));
+    updateXpComboDisplay();
+    checkAndUnlockBadges();
     if(justReachedMultiple > 0){
         // Grande célébration (palier de l'objectif du jour) : pas de confettis en
         // plus, l'effet est déjà complet (personnage + son + étincelle).
@@ -9107,9 +9467,10 @@ function resetAllConfirm(){
     // deux dans un seul objet. Corrige au passage un oubli pré-existant : ces
     // trois clés n'étaient jamais effacées par "Réinitialiser toute la
     // progression", contrairement à la progression par mot.
-    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY].forEach(k => {
+    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY, XP_KEY, BADGES_KEY, STREAK_FREEZE_KEY].forEach(k => {
         try{ localStorage.removeItem(k); localStorage.removeItem(`en__${k}`); }catch(e){}
     });
+    sessionCombo = 0;
     updateGlobalProgress();
     renderThemes();
     renderNomenLevels();
@@ -9179,6 +9540,7 @@ function startKasusArticle(){
 }
 
 function loadExercise(){
+    updateXpComboDisplay();
     const ex = activeExercises[currentExercise];
     if(!ex) return;
     answered = false;
@@ -9259,6 +9621,7 @@ function checkAnswer(){
         feedback.className = "feedback show wrong";
         const correctDisplay = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_wrong_title")}</div><div class="explanation"><strong>${t("correct_answer_label")}</strong> ${correctDisplay}</div>`;
+        resetCombo();
     }
     if(usingSelect) select.disabled = true; else input.disabled = true;
     document.getElementById("checkButton").classList.add("hidden");
