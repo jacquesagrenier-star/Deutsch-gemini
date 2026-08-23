@@ -1100,7 +1100,7 @@ button{font-family:inherit}
     white-space:pre-line;
 }
 
-.verb-sep{height:8px}
+.verb-sep{height:4px}
 
 .verb-toggle-btn{
     display:block;
@@ -1154,13 +1154,15 @@ button{font-family:inherit}
 .icon-audio-btn:hover{background:rgba(59,111,224,.2); transform:scale(1.05);}
 
 .icon-audio-btn-sm{
-    width:20px;
-    height:20px;
-    vertical-align:-5px;
-    margin-left:4px;
+    display:inline-flex;
+    width:15px;
+    height:15px;
+    vertical-align:-2px;
+    margin-left:3px;
+    flex-shrink:0;
 }
 
-.icon-audio-btn-sm svg{width:10px; height:10px;}
+.icon-audio-btn-sm svg{width:8px; height:8px;}
 
 .audio-btn{
     margin-top:12px;
@@ -8128,18 +8130,22 @@ function speakWord(){
 // Markup du petit bouton d'écoute inline placé juste après une phrase
 // d'exemple (Präsens, Perfekt, Präteritum, Konjunktiv II, Imperativ...), pour
 // noms/verbes/adjectifs et catégories de grammaire (positionsverben,
-// kasusverben, praep, partikeln) -- collé en bout de ligne plutôt que sur une
-// ligne à part, pour ne pas gonfler la hauteur de la carte. `text` est la
-// phrase à prononcer, `lang` "de" ou "en" ; retourne "" (aucun bouton) si le
-// texte est vide, pour ne jamais afficher un bouton muet. Chaque appel
-// enregistre sa propre entrée dans sentenceRegistry -- plusieurs boutons
-// peuvent donc coexister sur une même carte (une par temps verbal), chacun
-// prononçant sa propre phrase.
+// kasusverben, praep, partikeln) -- collé directement (sans espace) au dernier
+// mot de la phrase plutôt que sur une ligne à part : un espace littéral avant
+// le bouton crée un point de coupure que le navigateur peut utiliser pour
+// renvoyer le bouton seul à la ligne suivante ; sans cet espace, le bouton
+// reste soudé au dernier mot (l'espacement visuel vient uniquement du
+// margin-left CSS de .icon-audio-btn-sm), et ne peut plus finir isolé sur sa
+// propre ligne. `text` est la phrase à prononcer, `lang` "de" ou "en" ;
+// retourne "" (aucun bouton) si le texte est vide, pour ne jamais afficher un
+// bouton muet. Chaque appel enregistre sa propre entrée dans sentenceRegistry
+// -- plusieurs boutons peuvent donc coexister sur une même carte (une par
+// temps verbal), chacun prononçant sa propre phrase.
 function sentenceSpeakBtnHtml(text, lang){
     if(!text) return "";
     const idx = sentenceRegistry.length;
     sentenceRegistry.push({text, lang});
-    return ` <button class="icon-audio-btn icon-audio-btn-sm" onclick="event.stopPropagation(); speakRegisteredSentence(${idx});" aria-label="Écouter la phrase"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>`;
+    return `<button class="icon-audio-btn icon-audio-btn-sm" onclick="event.stopPropagation(); speakRegisteredSentence(${idx});" aria-label="Écouter la phrase"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>`;
 }
 
 // Prononce la phrase enregistrée à cet index (voir sentenceSpeakBtnHtml) --
