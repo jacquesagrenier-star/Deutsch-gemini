@@ -2094,7 +2094,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v127</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v128</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3576,11 +3576,11 @@ const I18N = {
         badge_first_word_title: "Premier pas",
         badge_first_word_desc: "Ta première réussite enregistrée.",
         badge_xp_500_title: "Sur la bonne voie",
-        badge_xp_500_desc: "500 points d'expérience atteints.",
+        badge_xp_500_desc: "50 points d'expérience atteints.",
         badge_xp_2000_title: "Machine à mots",
-        badge_xp_2000_desc: "2000 points d'expérience atteints.",
+        badge_xp_2000_desc: "200 points d'expérience atteints.",
         badge_xp_5000_title: "Polyglotte en herbe",
-        badge_xp_5000_desc: "5000 points d'expérience atteints.",
+        badge_xp_5000_desc: "500 points d'expérience atteints.",
         badge_streak_3_title: "3 jours de suite",
         badge_streak_3_desc: "Trois jours consécutifs d'activité.",
         badge_streak_7_title: "Une semaine complète",
@@ -4076,11 +4076,11 @@ const I18N = {
         badge_first_word_title: "First step",
         badge_first_word_desc: "Your first recorded success.",
         badge_xp_500_title: "On a roll",
-        badge_xp_500_desc: "Reached 500 experience points.",
+        badge_xp_500_desc: "Reached 50 experience points.",
         badge_xp_2000_title: "Word machine",
-        badge_xp_2000_desc: "Reached 2000 experience points.",
+        badge_xp_2000_desc: "Reached 200 experience points.",
         badge_xp_5000_title: "Budding polyglot",
-        badge_xp_5000_desc: "Reached 5000 experience points.",
+        badge_xp_5000_desc: "Reached 500 experience points.",
         badge_streak_3_title: "3 days in a row",
         badge_streak_3_desc: "Three consecutive days of activity.",
         badge_streak_7_title: "A full week",
@@ -6563,8 +6563,14 @@ const DAILY_GOAL_STEP = 5;
 
 // ============ XP & combo (gamification) ============
 const XP_KEY = "deutschAI_xp";
-const XP_PER_SUCCESS = 10;
-const XP_BONUS_GOAL_MULTIPLE = 50;
+// +1 par bonne réponse (même échelle que l'objectif du jour, voir
+// recordDailyActivity) -- volontairement PAS un multiplicateur arbitraire :
+// l'utilisateur voit "6/30 aujourd'hui" et doit pouvoir relier ça à son XP
+// sans se demander pourquoi les deux chiffres n'avancent pas pareil. La
+// différence entre les deux reste uniquement que l'XP ne se remet jamais à
+// zéro (total cumulatif) alors que l'objectif du jour recommence chaque jour.
+const XP_PER_SUCCESS = 1;
+const XP_BONUS_GOAL_MULTIPLE = 5;
 let sessionCombo = 0; // pas persisté : repart de 0 à chaque rechargement de page
 
 function getXp(){
@@ -6620,10 +6626,10 @@ function updateXpComboDisplay(){
 // O(n²) corrigé en v100, à ne pas réintroduire ici).
 const BADGES_KEY = "deutschAI_badges";
 const BADGE_DEFINITIONS = [
-    { id: "first_word", icon: "🌱", titleKey: "badge_first_word_title", descKey: "badge_first_word_desc", check: s => s.xp >= 10 },
-    { id: "xp_500", icon: "⚡", titleKey: "badge_xp_500_title", descKey: "badge_xp_500_desc", check: s => s.xp >= 500 },
-    { id: "xp_2000", icon: "🚀", titleKey: "badge_xp_2000_title", descKey: "badge_xp_2000_desc", check: s => s.xp >= 2000 },
-    { id: "xp_5000", icon: "👑", titleKey: "badge_xp_5000_title", descKey: "badge_xp_5000_desc", check: s => s.xp >= 5000 },
+    { id: "first_word", icon: "🌱", titleKey: "badge_first_word_title", descKey: "badge_first_word_desc", check: s => s.xp >= 1 },
+    { id: "xp_500", icon: "⚡", titleKey: "badge_xp_500_title", descKey: "badge_xp_500_desc", check: s => s.xp >= 50 },
+    { id: "xp_2000", icon: "🚀", titleKey: "badge_xp_2000_title", descKey: "badge_xp_2000_desc", check: s => s.xp >= 200 },
+    { id: "xp_5000", icon: "👑", titleKey: "badge_xp_5000_title", descKey: "badge_xp_5000_desc", check: s => s.xp >= 500 },
     { id: "streak_3", icon: "🔥", titleKey: "badge_streak_3_title", descKey: "badge_streak_3_desc", check: s => s.streak >= 3 },
     { id: "streak_7", icon: "🗓️", titleKey: "badge_streak_7_title", descKey: "badge_streak_7_desc", check: s => s.streak >= 7 },
     { id: "streak_30", icon: "🏆", titleKey: "badge_streak_30_title", descKey: "badge_streak_30_desc", check: s => s.streak >= 30 }
