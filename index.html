@@ -44,8 +44,8 @@ header{
 }
 
 .avatar{
-    width:38px;
-    height:38px;
+    width:32px;
+    height:32px;
     border-radius:50%;
     background:rgba(255,255,255,.6);
     backdrop-filter:blur(16px);
@@ -56,7 +56,7 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
 }
 
@@ -1356,7 +1356,7 @@ body[data-theme="dark"] .brand-logo-dark{ display:block; }
 .theme-toggle{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:6px;
 }
 
 .theme-switch{
@@ -1404,8 +1404,8 @@ body[data-theme="dark"] .brand-logo-dark{ display:block; }
 }
 
 .theme-icon-btn{
-    width:38px;
-    height:38px;
+    width:32px;
+    height:32px;
     border-radius:50%;
     border:1px solid rgba(30,41,59,.32);
     background:rgba(255,255,255,.6);
@@ -1415,7 +1415,7 @@ body[data-theme="dark"] .brand-logo-dark{ display:block; }
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:17px;
+    font-size:14px;
     line-height:1;
     cursor:pointer;
     transition:.2s;
@@ -1759,7 +1759,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:11px; font-weight:800;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
             <span id="uiLangToggleLabel">EN</span>
         </button>
-        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:16px;" onclick="openSettings()" title="Réglages / Settings" aria-label="Réglages">⚙️</button>
+        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:13px;" onclick="openSettings()" title="Réglages / Settings" aria-label="Réglages">⚙️</button>
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
@@ -1842,7 +1842,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                 </button>
             </div>
         </div>
-        <div class="setup-choice-group">
+        <div class="setup-choice-group" id="setupUiLangGroup">
             <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue voulez-vous les instructions ?</div>
             <div class="setup-choice-row">
                 <button class="setup-choice" id="setupChoiceLangFr" onclick="selectUiLangChoice('fr')">
@@ -1871,7 +1871,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v97</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v98</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2006,14 +2006,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="revision" onclick="openSettings()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-            <div>
-                <strong data-i18n="orb_revision_title">Révision</strong>
-                <small data-i18n="orb_revision_sub">Progression · Reset</small>
-            </div>
-        </div>
-
         <!-- Tuiles anglais (visibles uniquement en direction "en", voir CSS .orb-en
              ci-dessus) : catégories propres à l'anglais, différentes des catégories
              de grammaire allemande ci-dessus (pas de Kasus/Partikeln en anglais). -->
@@ -2097,13 +2089,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb orb-en" data-orbid="revision_en" onclick="openSettings()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-            <div>
-                <strong data-i18n="orb_revision_title">Révision</strong>
-                <small data-i18n="orb_revision_sub">Progression · Reset</small>
-            </div>
-        </div>
     </div>
 
 </section>
@@ -2771,7 +2756,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                 </button>
             </div>
         </div>
-        <div class="setup-choice-group">
+        <div class="setup-choice-group" id="settingsUiLangGroup">
             <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue voulez-vous les instructions ?</div>
             <div class="setup-choice-row">
                 <button class="setup-choice" onclick="selectUiLangChoice('fr')">
@@ -3915,6 +3900,14 @@ function refreshSetupChoiceActiveStates(){
     document.querySelectorAll('.setup-choice[onclick*="selectUiLangChoice"]').forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("onclick").includes(`'${lang}'`));
     });
+    // Le module anglais n'existe qu'en anglais (pas de traduction française des
+    // explications de grammaire) : le choix de langue d'interface n'a pas lieu
+    // d'être en direction anglaise, masqué comme le bouton FR/EN du header.
+    const learningEnglish = dir === 'en';
+    const setupGroup = document.getElementById("setupUiLangGroup");
+    const settingsGroup = document.getElementById("settingsUiLangGroup");
+    if(setupGroup) setupGroup.classList.toggle("hidden", learningEnglish);
+    if(settingsGroup) settingsGroup.classList.toggle("hidden", learningEnglish);
 }
 
 // Le retour visuel (bouton qui devient actif) doit être immédiat : on met la
@@ -3925,8 +3918,12 @@ function refreshSetupChoiceActiveStates(){
 // sans ça, le clic semblait mettre 1-2 secondes à réagir.
 function selectLearningDirectionChoice(dir){
     setLearningDirection(dir);
+    // Le module anglais n'existe qu'en anglais (voir refreshSetupChoiceActiveStates) :
+    // si l'interface était en français, on la force en anglais pour rester cohérent
+    // avec le choix de langue masqué.
+    if(dir === 'en' && getUiLang() !== 'en') setUiLang('en');
     refreshSetupChoiceActiveStates();
-    setTimeout(() => applyLearningDirectionUi(), 0);
+    setTimeout(() => { applyLearningDirectionUi(); applyUiLangSideEffects(); }, 0);
 }
 
 function selectUiLangChoice(lang){
