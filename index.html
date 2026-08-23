@@ -311,6 +311,31 @@ body[data-learning-dir="en"] #homeStatsCard{ display:none; }
 .orb[data-orbid="partikeln"] .orb-icon svg{stroke:#14b8a6;}
 .orb[data-orbid="partikeln"] .orb-badge{background:#14b8a6; box-shadow:0 2px 6px rgba(20,184,166,.35);}
 
+/* Tuiles anglaises : même système de couleur par catégorie que les tuiles
+   allemandes (souvent la même teinte quand la catégorie a un équivalent
+   sémantique direct : Wortschatz/Noms, Verben/Verbes, Adjektive/Adjectifs,
+   Satzbau/Structure, Phrasal Verbs/Particules). */
+.orb[data-orbid="nomen_en"] .orb-icon{background:rgba(139,92,246,.14); border-color:rgba(139,92,246,.28);}
+.orb[data-orbid="nomen_en"] .orb-icon svg{stroke:#8b5cf6;}
+.orb[data-orbid="verben_en"] .orb-icon{background:rgba(249,115,22,.14); border-color:rgba(249,115,22,.28);}
+.orb[data-orbid="verben_en"] .orb-icon svg{stroke:#f97316;}
+.orb[data-orbid="adjektive_en"] .orb-icon{background:rgba(244,63,94,.14); border-color:rgba(244,63,94,.28);}
+.orb[data-orbid="adjektive_en"] .orb-icon svg{stroke:#f43f5e;}
+.orb[data-orbid="artikel_en"] .orb-icon{background:rgba(99,102,241,.14); border-color:rgba(99,102,241,.28);}
+.orb[data-orbid="artikel_en"] .orb-icon svg{stroke:#6366f1;}
+.orb[data-orbid="zeiten_en"] .orb-icon{background:rgba(16,185,129,.14); border-color:rgba(16,185,129,.28);}
+.orb[data-orbid="zeiten_en"] .orb-icon svg{stroke:#10b981;}
+.orb[data-orbid="modal_en"] .orb-icon{background:rgba(59,130,246,.14); border-color:rgba(59,130,246,.28);}
+.orb[data-orbid="modal_en"] .orb-icon svg{stroke:#3b82f6;}
+.orb[data-orbid="praep_en"] .orb-icon{background:rgba(6,182,212,.14); border-color:rgba(6,182,212,.28);}
+.orb[data-orbid="praep_en"] .orb-icon svg{stroke:#06b6d4;}
+.orb[data-orbid="satzbau_en"] .orb-icon{background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.28);}
+.orb[data-orbid="satzbau_en"] .orb-icon svg{stroke:#f59e0b;}
+.orb[data-orbid="vergleich_en"] .orb-icon{background:rgba(236,72,153,.14); border-color:rgba(236,72,153,.28);}
+.orb[data-orbid="vergleich_en"] .orb-icon svg{stroke:#ec4899;}
+.orb[data-orbid="phrasal_en"] .orb-icon{background:rgba(20,184,166,.14); border-color:rgba(20,184,166,.28);}
+.orb[data-orbid="phrasal_en"] .orb-icon svg{stroke:#14b8a6;}
+
 .orb[data-orbid="revision"] .orb-icon{
     background:rgba(59,130,246,.14);
     border-color:rgba(59,130,246,.28);
@@ -1871,7 +1896,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v100</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v101</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -1907,27 +1932,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="grid" id="orbGrid">
-        <div class="orb orb-de" data-orbid="verben" onclick="openOrbPanel('verben')">
-            <div id="badge-verben" class="orb-badge hidden"></div>
-            <div class="orb-icon-wrap">
-                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
-            </div>
-            <div>
-                <strong data-i18n="orb_verben_title">Verbes</strong>
-                <small data-i18n="orb_verben_sub">Flashcards & Grammaire</small>
-            </div>
-        </div>
-
-        <div class="orb orb-de" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
-            <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
-            <div>
-                <strong data-i18n="orb_zuinf_title">Zu + infinitif</strong>
-                <small data-i18n="orb_zuinf_sub">versuchen zu · ohne zu</small>
-            </div>
-        </div>
-
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
@@ -1940,15 +1944,15 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
-            <div id="badge-kasus" class="orb-badge hidden"></div>
+        <div class="orb orb-de" data-orbid="verben" onclick="openOrbPanel('verben')">
+            <div id="badge-verben" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
-                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-kasus" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/><path d="M17 7l3 5-3 5"/></svg></div>
             </div>
             <div>
-                <strong data-i18n="orb_kasus_title">Cas</strong>
-                <small data-i18n="orb_kasus_sub">Nominativ · Akkusativ, etc.</small>
+                <strong data-i18n="orb_verben_title">Verbes</strong>
+                <small data-i18n="orb_verben_sub">Flashcards & Grammaire</small>
             </div>
         </div>
 
@@ -1961,6 +1965,27 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_adjektive_title">Adjectifs</strong>
                 <small data-i18n="orb_adjektive_sub">Endungen</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
+            <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_zuinf_title">Zu + infinitif</strong>
+                <small data-i18n="orb_zuinf_sub">versuchen zu · ohne zu</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
+            <div id="badge-kasus" class="orb-badge hidden"></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-kasus" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
+            </div>
+            <div>
+                <strong data-i18n="orb_kasus_title">Cas</strong>
+                <small data-i18n="orb_kasus_sub">Nominativ · Akkusativ, etc.</small>
             </div>
         </div>
 
@@ -2010,7 +2035,10 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
              ci-dessus) : catégories propres à l'anglais, différentes des catégories
              de grammaire allemande ci-dessus (pas de Kasus/Partikeln en anglais). -->
         <div class="orb orb-en" data-orbid="nomen_en" onclick="openEnglishNomen()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen-en" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg></div>
+            </div>
             <div>
                 <strong data-i18n="orb_en_nomen_title">Wortschatz</strong>
                 <small data-i18n="orb_en_nomen_sub">Thèmes & vocabulaire</small>
@@ -2018,7 +2046,10 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </div>
 
         <div class="orb orb-en" data-orbid="verben_en" onclick="openEnglishVerben()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben-en" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 12h11"/><path d="M11 7l5 5-5 5"/></svg></div>
+            </div>
             <div>
                 <strong data-i18n="orb_en_verben_title">Verben</strong>
                 <small data-i18n="orb_en_verben_sub">Verbes irréguliers</small>
@@ -2026,7 +2057,10 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </div>
 
         <div class="orb orb-en" data-orbid="adjektive_en" onclick="openEnglishAdjektive()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
+            <div class="orb-icon-wrap">
+                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-adjektive-en" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 18h2v-4H4z"/><path d="M9 18h2v-8H9z"/><path d="M14 18h2v-12H14z"/></svg></div>
+            </div>
             <div>
                 <strong data-i18n="orb_en_adjektive_title">Adjektive</strong>
                 <small data-i18n="orb_en_adjektive_sub">good · bigger · the biggest</small>
@@ -2518,6 +2552,112 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     <button class="secondary" onclick="startPartikelnNuance()" data-i18n="partikeln_btn_nuance">M'ENTRAÎNER : RECONNAÎTRE LA NUANCE →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startPartikelnVokabular()" data-i18n="partikeln_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
+</section>
+
+<!-- ================= STRUCTURE (SATZBAU) ================= -->
+
+<section id="wortstellungInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('wortstellung')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="wortstellung_info_title">Comprendre l'ordre des mots</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="wortstellung_v2_title">La règle du verbe en 2ème position</strong>
+        <div class="info-box" data-i18n-html="wortstellung_v2">
+            Dans une phrase déclarative, le verbe conjugué occupe <strong>toujours</strong> la 2ème position — pas forcément le 2ème mot, mais le 2ème « bloc ». Si autre chose que le sujet ouvre la phrase, le sujet passe après le verbe.<br>
+            <em>Ich gehe heute ins Kino. → Heute gehe ich ins Kino.</em> (Aujourd'hui, je vais au cinéma.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="wortstellung_sub_title">Le verbe à la fin dans les subordonnées</strong>
+        <div class="info-box" data-i18n-html="wortstellung_sub">
+            Après une conjonction de subordination (<strong>weil, dass, wenn, obwohl, ob</strong>...), le verbe conjugué se déplace à la <strong>toute fin</strong> de la proposition.<br>
+            <em>Ich bleibe zu Hause, weil ich krank bin.</em> (Je reste à la maison parce que je suis malade.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="wortstellung_frage_title">Former une question</strong>
+        <div class="info-box" data-i18n-html="wortstellung_frage">
+            Question fermée (oui/non) → le verbe conjugué en <strong>1ère</strong> position. Question ouverte (wer, was, wann, wo, warum...) → le mot interrogatif en 1er, puis le verbe en 2ème position.<br>
+            <em>Kommst du mit?</em> (Tu viens ?) — <em>Wann kommst du?</em> (Quand viens-tu ?)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="wortstellung_tekamolo_title">L'ordre TeKaMoLo</strong>
+        <div class="info-box" data-i18n-html="wortstellung_tekamolo">
+            Plusieurs compléments circonstanciels se suivent dans cet ordre : <strong>Te</strong>mporal (quand) → <strong>Ka</strong>usal (pourquoi) → <strong>Mo</strong>dal (comment) → <strong>Lo</strong>kal (où).<br>
+            <em>Ich fahre morgen wegen der Ferien mit dem Zug nach Berlin.</em> (Je pars demain, à cause des vacances, en train, à Berlin.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="wortstellung_nicht_title">La place de « nicht »</strong>
+        <div class="info-box" data-i18n-html="wortstellung_nicht">
+            La négation <strong>nicht</strong> se place en général à la fin de la phrase quand elle porte sur toute l'action ; juste avant l'élément précis si elle ne porte que sur celui-ci.<br>
+            <em>Ich verstehe das nicht.</em> (Je ne comprends pas ça.) — <em>Ich komme nicht heute, sondern morgen.</em> (Je ne viens pas aujourd'hui, mais demain.)
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startWortstellungExercise()" data-i18n="wortstellung_btn_exercise">M'ENTRAÎNER : ORDRE DES MOTS →</button>
+</section>
+
+<!-- ================= POSSESSIFS ================= -->
+
+<section id="possessivInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('possessiv')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="possessiv_info_title">Comprendre les possessifs</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="possessiv_base_title">Les possessifs de base</strong>
+        <div class="info-box" data-i18n-html="possessiv_base">
+            <strong style="color:#3b6fe0;">mein</strong> (mon/ma/mes) · <strong style="color:#3b6fe0;">dein</strong> (ton/ta/tes) · <strong style="color:#3b6fe0;">sein</strong> (son/sa/ses — à lui) · <strong style="color:#3b6fe0;">ihr</strong> (son/sa/ses — à elle) · <strong style="color:#3b6fe0;">unser</strong> (notre/nos) · <strong style="color:#3b6fe0;">euer</strong> (votre/vos, tutoiement pluriel) · <strong style="color:#3b6fe0;">ihr</strong> (leur/leurs) · <strong style="color:#3b6fe0;">Ihr</strong> (votre/vos, vouvoiement)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="possessiv_agree_title">Ils s'accordent avec le mot possédé, pas avec le possesseur</strong>
+        <div class="info-box" data-i18n-html="possessiv_agree">
+            Comme l'article indéfini <strong>ein</strong>, le possessif prend les terminaisons du <strong>genre</strong> et du <strong>cas</strong> du nom possédé — jamais de la personne qui possède.<br>
+            <em>mein Bruder</em> (der Bruder, masc., pas de terminaison) · <em>meine Schwester</em> (die Schwester, fém., -e) · <em>mein Kind</em> (das Kind, neutre, pas de terminaison) · <em>meine Eltern</em> (pluriel, -e)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="possessiv_declension_title">Déclinaison par cas (comme « ein »)</strong>
+        <div class="info-box" data-i18n-html="possessiv_declension">
+            <strong>Nominatif :</strong> mein · meine · mein · meine (pl.)<br>
+            <strong>Accusatif :</strong> meinen · meine · mein · meine (pl.)<br>
+            <strong>Datif :</strong> meinem · meiner · meinem · meinen (pl.)<br>
+            <strong>Génitif :</strong> meines · meiner · meines · meiner (pl.)<br>
+            (ordre : masculin · féminin · neutre · pluriel)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="possessiv_euer_title">Piège : « euer » perd son deuxième e</strong>
+        <div class="info-box" data-i18n-html="possessiv_euer">
+            Dès qu'on ajoute une terminaison à <strong>euer</strong>, le deuxième « e » disparaît : on écrit <strong>eure</strong>, pas « euere ».<br>
+            <em>Wo sind eure Schuhe?</em> (Où sont vos chaussures ?)
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPossessivExercise()" data-i18n="possessiv_btn_exercise">M'ENTRAÎNER : LES POSSESSIFS →</button>
 </section>
 
 <!-- ================= ZU + INFINITIF ================= -->
@@ -3153,6 +3293,8 @@ const I18N = {
         op_zuinf_title: "Zu + infinitif", op_zuinf_sub: "Faut-il « zu » ou pas ?",
         op_zuinf_o1_t: "Comprendre la règle",
         op_zuinf_o2_t: "M'entraîner", op_zuinf_o2_d: "Zu ou pas zu ?",
+        op_wortstellung_o2_t: "M'entraîner", op_wortstellung_o2_d: "Où va le verbe ?",
+        op_possessiv_o2_t: "M'entraîner", op_possessiv_o2_d: "mein, deine, seinem…",
         op_english_title: "Anglais", op_english_sub: "Apprendre l'anglais (pour germanophones)",
         op_english_o1_t: "Wortschatz", op_english_o1_d: "Thèmes & vocabulaire",
         op_english_o2_t: "Verben", op_english_o2_d: "Verbes irréguliers",
@@ -3275,6 +3417,32 @@ const I18N = {
         partikel_vielleicht: `<strong style="color:#3b6fe0;">vielleicht</strong> — exaspération, emphase forte (pas « peut-être » ici)<br><em>Das ist vielleicht ein Chaos!</em> (Quel bazar, quand même !)`,
         partikeln_btn_nuance: "M'ENTRAÎNER : RECONNAÎTRE LA NUANCE →",
         partikeln_btn_vocab: "VOCABULAIRE : FLASHCARDS →",
+
+        wortstellung_info_title: "Comprendre l'ordre des mots",
+        wortstellung_v2_title: "La règle du verbe en 2ème position",
+        wortstellung_v2: "Dans une phrase déclarative, le verbe conjugué occupe <strong>toujours</strong> la 2ème position — pas forcément le 2ème mot, mais le 2ème « bloc ». Si autre chose que le sujet ouvre la phrase, le sujet passe après le verbe.<br><em>Ich gehe heute ins Kino. → Heute gehe ich ins Kino.</em> (Aujourd'hui, je vais au cinéma.)",
+        wortstellung_sub_title: "Le verbe à la fin dans les subordonnées",
+        wortstellung_sub: "Après une conjonction de subordination (<strong>weil, dass, wenn, obwohl, ob</strong>...), le verbe conjugué se déplace à la <strong>toute fin</strong> de la proposition.<br><em>Ich bleibe zu Hause, weil ich krank bin.</em> (Je reste à la maison parce que je suis malade.)",
+        wortstellung_frage_title: "Former une question",
+        wortstellung_frage: "Question fermée (oui/non) → le verbe conjugué en <strong>1ère</strong> position. Question ouverte (wer, was, wann, wo, warum...) → le mot interrogatif en 1er, puis le verbe en 2ème position.<br><em>Kommst du mit?</em> (Tu viens ?) — <em>Wann kommst du?</em> (Quand viens-tu ?)",
+        wortstellung_tekamolo_title: "L'ordre TeKaMoLo",
+        wortstellung_tekamolo: "Plusieurs compléments circonstanciels se suivent dans cet ordre : <strong>Te</strong>mporal (quand) → <strong>Ka</strong>usal (pourquoi) → <strong>Mo</strong>dal (comment) → <strong>Lo</strong>kal (où).<br><em>Ich fahre morgen wegen der Ferien mit dem Zug nach Berlin.</em> (Je pars demain, à cause des vacances, en train, à Berlin.)",
+        wortstellung_nicht_title: "La place de « nicht »",
+        wortstellung_nicht: "La négation <strong>nicht</strong> se place en général à la fin de la phrase quand elle porte sur toute l'action ; juste avant l'élément précis si elle ne porte que sur celui-ci.<br><em>Ich verstehe das nicht.</em> (Je ne comprends pas ça.) — <em>Ich komme nicht heute, sondern morgen.</em> (Je ne viens pas aujourd'hui, mais demain.)",
+        wortstellung_btn_exercise: "M'ENTRAÎNER : ORDRE DES MOTS →",
+        kicker_wortstellung_exercise: "Structure · Ordre des mots",
+
+        possessiv_info_title: "Comprendre les possessifs",
+        possessiv_base_title: "Les possessifs de base",
+        possessiv_base: "<strong style=\"color:#3b6fe0;\">mein</strong> (mon/ma/mes) · <strong style=\"color:#3b6fe0;\">dein</strong> (ton/ta/tes) · <strong style=\"color:#3b6fe0;\">sein</strong> (son/sa/ses — à lui) · <strong style=\"color:#3b6fe0;\">ihr</strong> (son/sa/ses — à elle) · <strong style=\"color:#3b6fe0;\">unser</strong> (notre/nos) · <strong style=\"color:#3b6fe0;\">euer</strong> (votre/vos, tutoiement pluriel) · <strong style=\"color:#3b6fe0;\">ihr</strong> (leur/leurs) · <strong style=\"color:#3b6fe0;\">Ihr</strong> (votre/vos, vouvoiement)",
+        possessiv_agree_title: "Ils s'accordent avec le mot possédé, pas avec le possesseur",
+        possessiv_agree: "Comme l'article indéfini <strong>ein</strong>, le possessif prend les terminaisons du <strong>genre</strong> et du <strong>cas</strong> du nom possédé — jamais de la personne qui possède.<br><em>mein Bruder</em> (der Bruder, masc., pas de terminaison) · <em>meine Schwester</em> (die Schwester, fém., -e) · <em>mein Kind</em> (das Kind, neutre, pas de terminaison) · <em>meine Eltern</em> (pluriel, -e)",
+        possessiv_declension_title: "Déclinaison par cas (comme « ein »)",
+        possessiv_declension: "<strong>Nominatif :</strong> mein · meine · mein · meine (pl.)<br><strong>Accusatif :</strong> meinen · meine · mein · meine (pl.)<br><strong>Datif :</strong> meinem · meiner · meinem · meinen (pl.)<br><strong>Génitif :</strong> meines · meiner · meines · meiner (pl.)<br>(ordre : masculin · féminin · neutre · pluriel)",
+        possessiv_euer_title: "Piège : « euer » perd son deuxième e",
+        possessiv_euer: "Dès qu'on ajoute une terminaison à <strong>euer</strong>, le deuxième « e » disparaît : on écrit <strong>eure</strong>, pas « euere ».<br><em>Wo sind eure Schuhe?</em> (Où sont vos chaussures ?)",
+        possessiv_btn_exercise: "M'ENTRAÎNER : LES POSSESSIFS →",
+        kicker_possessiv_exercise: "Possessifs · Exercice",
 
         exercise_number_title: "Exercice {n}",
         question_translation_label: "Traduction : {translation}",
@@ -3545,6 +3713,8 @@ const I18N = {
         op_zuinf_title: "Zu + infinitive", op_zuinf_sub: "Do you need « zu » or not?",
         op_zuinf_o1_t: "Understand the rule",
         op_zuinf_o2_t: "Practice", op_zuinf_o2_d: "Zu or no zu?",
+        op_wortstellung_o2_t: "Practice", op_wortstellung_o2_d: "Where does the verb go?",
+        op_possessiv_o2_t: "Practice", op_possessiv_o2_d: "mein, deine, seinem…",
         op_english_title: "English", op_english_sub: "Learn English (for German speakers)",
         op_english_o1_t: "Wortschatz", op_english_o1_d: "Themes & vocabulary",
         op_english_o2_t: "Verben", op_english_o2_d: "Irregular verbs",
@@ -3667,6 +3837,32 @@ const I18N = {
         partikel_vielleicht: `<strong style="color:#3b6fe0;">vielleicht</strong> — exasperation, strong emphasis (not "maybe" here)<br><em>Das ist vielleicht ein Chaos!</em> (What a mess, honestly!)`,
         partikeln_btn_nuance: "PRACTICE: RECOGNIZE THE NUANCE →",
         partikeln_btn_vocab: "VOCABULARY: FLASHCARDS →",
+
+        wortstellung_info_title: "Understanding word order",
+        wortstellung_v2_title: "The verb-second (V2) rule",
+        wortstellung_v2: "In a statement, the conjugated verb <strong>always</strong> sits in 2nd position — not necessarily the 2nd word, but the 2nd \"block\". If something other than the subject opens the sentence, the subject moves after the verb.<br><em>Ich gehe heute ins Kino. → Heute gehe ich ins Kino.</em> (Today I'm going to the movies.)",
+        wortstellung_sub_title: "The verb goes last in subordinate clauses",
+        wortstellung_sub: "After a subordinating conjunction (<strong>weil, dass, wenn, obwohl, ob</strong>...), the conjugated verb moves to the <strong>very end</strong> of the clause.<br><em>Ich bleibe zu Hause, weil ich krank bin.</em> (I'm staying home because I'm sick.)",
+        wortstellung_frage_title: "Forming a question",
+        wortstellung_frage: "Yes/no question → conjugated verb in <strong>1st</strong> position. Question with a question word (wer, was, wann, wo, warum...) → question word first, then the verb in 2nd position.<br><em>Kommst du mit?</em> (Are you coming?) — <em>Wann kommst du?</em> (When are you coming?)",
+        wortstellung_tekamolo_title: "The TeKaMoLo order",
+        wortstellung_tekamolo: "When several adverbials follow each other, the usual order is <strong>Te</strong>mporal (when) → <strong>Ka</strong>usal (why) → <strong>Mo</strong>dal (how) → <strong>Lo</strong>kal (where).<br><em>Ich fahre morgen wegen der Ferien mit dem Zug nach Berlin.</em> (I'm leaving tomorrow, because of the holidays, by train, to Berlin.)",
+        wortstellung_nicht_title: "Where to put \"nicht\"",
+        wortstellung_nicht: "The negation <strong>nicht</strong> usually goes at the end of the sentence when it negates the whole action; right before the specific element if it only negates that.<br><em>Ich verstehe das nicht.</em> (I don't understand that.) — <em>Ich komme nicht heute, sondern morgen.</em> (I'm not coming today, but tomorrow.)",
+        wortstellung_btn_exercise: "PRACTICE: WORD ORDER →",
+        kicker_wortstellung_exercise: "Structure · Word order",
+
+        possessiv_info_title: "Understanding possessives",
+        possessiv_base_title: "The basic possessives",
+        possessiv_base: "<strong style=\"color:#3b6fe0;\">mein</strong> (my) · <strong style=\"color:#3b6fe0;\">dein</strong> (your, informal) · <strong style=\"color:#3b6fe0;\">sein</strong> (his/its) · <strong style=\"color:#3b6fe0;\">ihr</strong> (her/its) · <strong style=\"color:#3b6fe0;\">unser</strong> (our) · <strong style=\"color:#3b6fe0;\">euer</strong> (your, informal plural) · <strong style=\"color:#3b6fe0;\">ihr</strong> (their) · <strong style=\"color:#3b6fe0;\">Ihr</strong> (your, formal)",
+        possessiv_agree_title: "They agree with the thing owned, not the owner",
+        possessiv_agree: "Like the indefinite article <strong>ein</strong>, the possessive takes the ending of the <strong>gender</strong> and <strong>case</strong> of the noun it describes — never of the person who owns it.<br><em>mein Bruder</em> (der Bruder, masc., no ending) · <em>meine Schwester</em> (die Schwester, fem., -e) · <em>mein Kind</em> (das Kind, neuter, no ending) · <em>meine Eltern</em> (plural, -e)",
+        possessiv_declension_title: "Declension by case (like \"ein\")",
+        possessiv_declension: "<strong>Nominative:</strong> mein · meine · mein · meine (pl.)<br><strong>Accusative:</strong> meinen · meine · mein · meine (pl.)<br><strong>Dative:</strong> meinem · meiner · meinem · meinen (pl.)<br><strong>Genitive:</strong> meines · meiner · meines · meiner (pl.)<br>(order: masculine · feminine · neuter · plural)",
+        possessiv_euer_title: "Trap: \"euer\" loses its second e",
+        possessiv_euer: "As soon as an ending is added to <strong>euer</strong>, the second \"e\" drops: it becomes <strong>eure</strong>, not \"euere\".<br><em>Wo sind eure Schuhe?</em> (Where are your shoes?)",
+        possessiv_btn_exercise: "PRACTICE: POSSESSIVES →",
+        kicker_possessiv_exercise: "Possessives · Exercise",
 
         exercise_number_title: "Exercise {n}",
         question_translation_label: "Translation: {translation}",
@@ -4866,6 +5062,24 @@ const zuInfinitivExercises = [
   { topic:"Zu + infinitif", question:"Es beginnt ___.", question_en:"Es beginnt ___.", translation:"Il commence à pleuvoir.", translation_en:"It's starting to rain.", hint:"beginnen exige « zu »", hint_en:"beginnen requires « zu »", answers:["zu regnen"], correct:"zu regnen", correctEn:"zu regnen", explanation:"beginnen exige « zu » devant l'infinitif.", explanation_en:"beginnen requires « zu » before the infinitive.", options:["zu regnen","regnen"], optionsEn:["zu regnen","regnen"] }
 ];
 
+const wortstellungExercises = [
+  { topic:"Structure · Ordre des mots", question:"Am Wochenende ___ wir ins Kino.", question_en:"Am Wochenende ___ wir ins Kino.", translation:"Le week-end, nous allons au cinéma.", translation_en:"On the weekend, we go to the movies.", hint:"(le verbe reste en 2e position)", hint_en:"(the verb stays in 2nd position)", answers:["gehen"], correct:"gehen", explanation:"Même si « Am Wochenende » ouvre la phrase, le verbe conjugué reste en 2e position — le sujet « wir » passe donc après lui.", explanation_en:"Even though « Am Wochenende » opens the sentence, the conjugated verb stays in 2nd position — so the subject « wir » moves after it." },
+  { topic:"Structure · Ordre des mots", question:"___ du heute Zeit?", question_en:"___ du heute Zeit?", translation:"As-tu du temps aujourd'hui ?", translation_en:"Do you have time today?", hint:"(question fermée)", hint_en:"(yes/no question)", answers:["Hast","hast"], correct:"Hast", explanation:"Dans une question fermée (oui/non), le verbe conjugué se place en première position, avant le sujet.", explanation_en:"In a yes/no question, the conjugated verb goes in first position, before the subject." },
+  { topic:"Structure · Ordre des mots", question:"Ich bleibe zu Hause, weil ich krank ___.", question_en:"Ich bleibe zu Hause, weil ich krank ___.", translation:"Je reste à la maison parce que je suis malade.", translation_en:"I'm staying home because I'm sick.", hint:"(après « weil »)", hint_en:"(after « weil »)", answers:["bin"], correct:"bin", explanation:"Après « weil » (comme dass, wenn, obwohl...), le verbe conjugué se place à la toute fin de la proposition subordonnée.", explanation_en:"After « weil » (like dass, wenn, obwohl...), the conjugated verb moves to the very end of the subordinate clause." },
+  { topic:"Structure · Ordre des mots", question:"Wann ___ der Film?", question_en:"Wann ___ der Film?", translation:"Quand commence le film ?", translation_en:"When does the movie start?", hint:"(après un mot interrogatif)", hint_en:"(after a question word)", answers:["beginnt"], correct:"beginnt", explanation:"Après un mot interrogatif (wann, wo, warum...), le verbe conjugué reste en 2e position, comme dans une phrase déclarative.", explanation_en:"After a question word (wann, wo, warum...), the conjugated verb stays in 2nd position, just like in a normal statement." },
+  { topic:"Structure · Ordre des mots", question:"Er sagt, dass er müde ___.", question_en:"Er sagt, dass er müde ___.", translation:"Il dit qu'il est fatigué.", translation_en:"He says that he's tired.", hint:"(après « dass »)", hint_en:"(after « dass »)", answers:["ist"], correct:"ist", explanation:"Même règle qu'après « weil » : après « dass », le verbe conjugué va à la fin de la proposition.", explanation_en:"Same rule as after « weil »: after « dass », the conjugated verb goes to the end of the clause." },
+  { topic:"Structure · Ordre des mots", question:"Ich verstehe das ___.", question_en:"Ich verstehe das ___.", translation:"Je ne comprends pas ça.", translation_en:"I don't understand that.", hint:"(négation générale, en fin de phrase)", hint_en:"(general negation, end of sentence)", answers:["nicht"], correct:"nicht", explanation:"Quand la négation porte sur toute l'action, « nicht » se place généralement à la fin de la phrase.", explanation_en:"When the negation applies to the whole action, « nicht » usually goes at the end of the sentence." }
+];
+
+const possessivExercises = [
+  { topic:"Possessifs", question:"Das ist ___ Bruder.", question_en:"Das ist ___ Bruder.", translation:"C'est mon frère.", translation_en:"This is my brother.", hint:"(der Bruder, Nominativ)", hint_en:"(der Bruder, Nominative)", answers:["mein"], correct:"mein", explanation:"« der Bruder » est masculin ; au Nominativ, le possessif masculin ne prend pas de terminaison : mein.", explanation_en:"« der Bruder » is masculine; in the Nominative, the masculine possessive takes no ending: mein." },
+  { topic:"Possessifs", question:"Ich liebe ___ Schwester.", question_en:"Ich liebe ___ Schwester.", translation:"J'aime ma sœur.", translation_en:"I love my sister.", hint:"(die Schwester, Akkusativ)", hint_en:"(die Schwester, Accusative)", answers:["meine"], correct:"meine", explanation:"« die Schwester » est féminin ; le possessif féminin prend toujours -e : meine.", explanation_en:"« die Schwester » is feminine; the feminine possessive always takes -e: meine." },
+  { topic:"Possessifs", question:"Er gibt ___ Freund ein Geschenk.", question_en:"Er gibt ___ Freund ein Geschenk.", translation:"Il offre un cadeau à son ami (à lui).", translation_en:"He gives a present to his (male) friend.", hint:"(der Freund, Dativ, « à lui »)", hint_en:"(der Freund, Dative, \"his\")", answers:["seinem"], correct:"seinem", explanation:"« à lui » → sein-. Au Dativ masculin, la terminaison est -em : seinem.", explanation_en:"\"his\" → sein-. In the masculine Dative, the ending is -em: seinem." },
+  { topic:"Possessifs", question:"Wo ist ___ Auto?", question_en:"Wo ist ___ Auto?", translation:"Où est sa voiture (à elle) ?", translation_en:"Where is her car?", hint:"(das Auto, Nominativ, « à elle »)", hint_en:"(das Auto, Nominative, \"her\")", answers:["ihr"], correct:"ihr", explanation:"« à elle » → ihr-. Au Nominativ neutre, pas de terminaison : ihr.", explanation_en:"\"her\" → ihr-. In the neuter Nominative, no ending: ihr." },
+  { topic:"Possessifs", question:"Kinder, wo sind ___ Schuhe?", question_en:"Kinder, wo sind ___ Schuhe?", translation:"Les enfants, où sont vos chaussures ?", translation_en:"Kids, where are your shoes?", hint:"(die Schuhe, pluriel, tutoiement pluriel — attention au piège)", hint_en:"(die Schuhe, plural, informal \"you all\" — watch the trap)", answers:["eure"], correct:"eure", explanation:"« euer » perd son deuxième e dès qu'on ajoute une terminaison : eure, pas « euere ».", explanation_en:"« euer » loses its second e as soon as an ending is added: eure, not \"euere\"." },
+  { topic:"Possessifs", question:"Wir besuchen ___ Großeltern.", question_en:"Wir besuchen ___ Großeltern.", translation:"Nous rendons visite à nos grands-parents.", translation_en:"We're visiting our grandparents.", hint:"(die Großeltern, Akkusativ pluriel)", hint_en:"(die Großeltern, plural Accusative)", answers:["unsere"], correct:"unsere", explanation:"Au pluriel, tous les possessifs prennent -e : unsere.", explanation_en:"In the plural, all possessives take -e: unsere." }
+];
+
 const partikelnNuanceExercises = [
   { topic:"Particules · Nuance", question:"Mach das doch! Quelle nuance apporte « doch » ici ?", question_en:"Mach das doch! What nuance does « doch » add here?", translation:"Vas-y, fais-le donc !", translation_en:"Go on, just do it!", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["insistance amicale (encouragement)","friendly insistence (encouragement)"], correct:"Insistance amicale (encouragement)", correctEn:"Friendly insistence (encouragement)", explanation:"« doch » pousse gentiment quelqu'un à agir — une insistance amicale.", explanation_en:"« doch » gently pushes someone to act — a friendly insistence.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN },
   { topic:"Particules · Nuance", question:"Komm mal her! Quelle nuance apporte « mal » ici ?", question_en:"Komm mal her! What nuance does « mal » add here?", translation:"Viens un peu par ici.", translation_en:"Come here for a sec.", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["adoucit la demande (plus léger)","softens the request (lighter tone)"], correct:"Adoucit la demande (plus léger)", correctEn:"Softens the request (lighter tone)", explanation:"« mal » rend la demande plus légère et informelle, moins directe qu'un ordre sec.", explanation_en:"« mal » makes the request lighter and more casual, less direct than a blunt order.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN },
@@ -5457,6 +5671,43 @@ function updateOrbRings(){
     setRingPercent("ring-adjektive", getAdjektiveMasteryPercent());
     setRingPercent("ring-praep", getPraepMasteryPercent());
     setRingPercent("ring-partikeln", getPartikelnMasteryPercent());
+    updateOrbRingsEn();
+}
+
+// Anneaux des tuiles anglaises (Wortschatz/Verben/Adjektive) : mêmes données
+// que les tuiles allemandes correspondantes, mais SANS withGermanProgress —
+// on veut ici la progression du compartiment "en__" (voir progressKey()).
+// Inoffensif d'appeler ceci même en direction allemande : les tuiles .orb-en
+// sont cachées par CSS, et getWordState() ne dépend que de la direction
+// ACTUELLE, donc ces pourcentages ne sont justes que lorsque direction="en" —
+// mais comme ils ne sont visibles que dans ce cas, ce n'est jamais un souci.
+function masteryPercentForListRaw(themeId, words){
+    if(!words.length) return 0;
+    let mastered = 0;
+    words.forEach((w, i) => { if(getWordState(themeId, i).mastered) mastered++; });
+    return Math.round(mastered / words.length * 100);
+}
+function getNomenEnMasteryPercent(){
+    let total = 0, mastered = 0;
+    themes.forEach(t => {
+        LEVELS.forEach(lvl => {
+            const levelData = t.levels[lvl];
+            if(!levelData) return;
+            total += levelData.words.length;
+            levelData.words.forEach((w, i) => {
+                if(getWordState(levelData.id, i).mastered) mastered++;
+            });
+        });
+    });
+    return total ? Math.round(mastered / total * 100) : 0;
+}
+function getVerbenEnMasteryPercent(){ return masteryPercentForListRaw(verbeTheme.id, verbeTheme.words); }
+function getAdjektiveEnMasteryPercent(){ return masteryPercentForListRaw(adjektiveTheme.id, adjektiveTheme.words); }
+function updateOrbRingsEn(){
+    if(getLearningDirection() !== 'en') return; // sinon on calculerait le mauvais compartiment
+    setRingPercent("ring-nomen-en", getNomenEnMasteryPercent());
+    setRingPercent("ring-verben-en", getVerbenEnMasteryPercent());
+    setRingPercent("ring-adjektive-en", getAdjektiveEnMasteryPercent());
 }
 
 function renderProgressRadar(){
@@ -5927,9 +6178,25 @@ function orbPanelData(id){
             ]
         };
     }
-    const labels = {
-        wortstellung:t("orb_wortstellung_title"), possessiv:t("orb_possessiv_title")
-    };
+    if(id === "wortstellung"){
+        return {
+            icon:"dossier", title:t("orb_wortstellung_title"), sub:t("orb_wortstellung_sub"),
+            options:[
+                { icon:"dossier", title:t("wortstellung_v2_title"), desc:"V2 · TeKaMoLo · nicht", primary:true, action:"openWortstellungInfo" },
+                { icon:"exercice", title:t("op_wortstellung_o2_t"), desc:t("op_wortstellung_o2_d"), action:"startWortstellungExercise" }
+            ]
+        };
+    }
+    if(id === "possessiv"){
+        return {
+            icon:"dossier", title:t("orb_possessiv_title"), sub:t("orb_possessiv_sub"),
+            options:[
+                { icon:"dossier", title:t("possessiv_base_title"), desc:"mein · dein · sein · ihr…", primary:true, action:"openPossessivInfo" },
+                { icon:"exercice", title:t("op_possessiv_o2_t"), desc:t("op_possessiv_o2_d"), action:"startPossessivExercise" }
+            ]
+        };
+    }
+    const labels = {};
     return {
         icon:"bientot", title: labels[id] || t("op_coming_soon"), sub:"",
         options:[
@@ -6291,6 +6558,20 @@ function startPositionsverbenVokabular(){
 
 function openPartikelnInfo(){
     showScreen("partikelnInfo");
+}
+
+function openWortstellungInfo(){
+    showScreen("wortstellungInfo");
+}
+function startWortstellungExercise(){
+    startExerciseSet(wortstellungExercises, "kicker_wortstellung_exercise", openWortstellungInfo, startWortstellungExercise);
+}
+
+function openPossessivInfo(){
+    showScreen("possessivInfo");
+}
+function startPossessivExercise(){
+    startExerciseSet(possessivExercises, "kicker_possessiv_exercise", openPossessivInfo, startPossessivExercise);
 }
 
 function openZuInfinitivInfo(){
