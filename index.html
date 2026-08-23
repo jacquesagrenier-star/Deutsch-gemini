@@ -1924,7 +1924,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v120</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v121</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4546,7 +4546,8 @@ async function handleEmailSignup() {
             try {
                 await window.fsUpdateDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code), {
                     used: true,
-                    usedAt: window.fsServerTimestamp()
+                    usedAt: window.fsServerTimestamp(),
+                    usedBy: uid
                 });
             } catch (e) {}
             try {
