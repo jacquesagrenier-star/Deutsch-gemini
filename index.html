@@ -2802,7 +2802,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                 <div class="word-audio-row">
                     <div id="flashBackWord" class="back-word">Tisch</div>
                     <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
-                        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
                 <div id="flashTranslation" class="translation">Table</div>
@@ -3152,12 +3152,13 @@ const DEFAULT_LEARNING_DIR = "de";
 let frontIsFrench = true;
 let progressDirectionOverride = null;
 
-// Phrase d'exemple actuellement affichée au verso de la flashcard (langue
-// étudiée uniquement), retenue ici pour que le bouton d'écoute inline
-// (speakExampleSentence()) n'ait pas besoin de connaître les données de la
-// carte -- juste ce que loadFlashcard() a décidé d'afficher.
-let currentSentenceToSpeak = "";
-let currentSentenceLang = "de";
+// Registre des phrases d'exemple actuellement affichées au verso de la
+// flashcard (toutes les phrases : Präsens, Perfekt, Präteritum, Konjunktiv II,
+// Imperativ...). Chaque bouton d'écoute inline (sentenceSpeakBtnHtml) y
+// enregistre son texte+langue et reçoit l'index correspondant ;
+// speakRegisteredSentence(idx) relit cet index au moment du clic -- remis à
+// zéro à chaque loadFlashcard() pour ne pas accumuler les cartes précédentes.
+let sentenceRegistry = [];
 
 const I18N = {
     fr: {
@@ -7301,6 +7302,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
+    sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
         flashcardEl.classList.add("answer-accent");
     }
@@ -7361,11 +7363,10 @@ function loadFlashcard(){
             // l'infinitif anglais + deux phrases d'exemple, ANGLAIS D'ABORD puis
             // traduction allemande (le verso est le côté anglais : l'anglais doit
             // être l'information principale, l'allemand la référence de contexte).
-            currentSentenceToSpeak = exampleTr || "";
-            currentSentenceLang = "en";
-            const speakBtn = exampleTr ? sentenceSpeakBtnHtml() : "";
-            const exHtml = `${exampleTr || ""}${speakBtn}<br>&rarr; ${card.exemple || ""}`;
-            const perfHtml = perfektTr ? `<div class="verb-sep"></div>${perfektTr}<br>&rarr; ${card.perfekt || ""}` : "";
+            const exSpeakBtn = sentenceSpeakBtnHtml(exampleTr, "en");
+            const exHtml = `${exampleTr || ""}${exSpeakBtn}<br>&rarr; ${card.exemple || ""}`;
+            const perfSpeakBtn = sentenceSpeakBtnHtml(perfektTr, "en");
+            const perfHtml = perfektTr ? `<div class="verb-sep"></div>${perfektTr}${perfSpeakBtn}<br>&rarr; ${card.perfekt || ""}` : "";
             verbDetailsEl.innerHTML = `<div class="verb-core"><strong>${translatedWord}</strong><div class="verb-sep"></div>${exHtml}${perfHtml}</div>`;
         } else {
             const p = card.praesens || {};
@@ -7373,21 +7374,23 @@ function loadFlashcard(){
                 `ich ${p.ich || ""}`, `du ${p.du || ""}`, `er/sie/es ${p.er_sie_es || ""}`,
                 `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
             ].join(" · ");
-            currentSentenceToSpeak = card.exemple || "";
-            currentSentenceLang = "de";
-            const speakBtn = card.exemple ? sentenceSpeakBtnHtml() : "";
+            const praesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
+            const perfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
             const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Präsens :</strong> ${card.exemple || ""}${speakBtn}<br>(${exampleTr || ""})` +
+                `<strong>Präsens :</strong> ${card.exemple || ""}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${perfektTr || ""})`;
+                `<strong>Perfekt :</strong> ${card.perfekt || ""}${perfektSpeakBtn}<br>(${perfektTr || ""})`;
             const imp = card.imperativ;
+            const impSpeakBtn = imp ? sentenceSpeakBtnHtml(`${imp.du} ${imp.ihr} ${imp.sie_Sie}`, "de") : "";
             const impHtml = imp
-                ? `<div class="verb-sep"></div><strong>Imperativ :</strong> du &rarr; ${imp.du} · ihr &rarr; ${imp.ihr} · Sie &rarr; ${imp.sie_Sie}`
+                ? `<div class="verb-sep"></div><strong>Imperativ :</strong> du &rarr; ${imp.du} · ihr &rarr; ${imp.ihr} · Sie &rarr; ${imp.sie_Sie}${impSpeakBtn}`
                 : "";
-            const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}<br>(${praeteritumTr || ""})` +
+            const praeteritumSpeakBtn = sentenceSpeakBtnHtml(card.praeteritum, "de");
+            const konjunktiv2SpeakBtn = sentenceSpeakBtnHtml(card.konjunktiv2, "de");
+            const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}<br>(${konjunktiv2Tr || ""})` +
+                `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
                 impHtml;
             verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
         }
@@ -7428,10 +7431,10 @@ function loadFlashcard(){
         // choix pour Verben) ; en allemand, comportement inchangé.
         // Le bouton d'écoute inline parle toujours la phrase dans la langue
         // étudiée (allemande en direction "de", anglaise en direction "en"),
-        // jamais la traduction de référence -- voir speakExampleSentence().
-        currentSentenceToSpeak = learningEnglish ? (exampleSentenceFr || "") : (exampleSentence || "");
-        currentSentenceLang = learningEnglish ? "en" : "de";
-        const adjSpeakBtn = currentSentenceToSpeak ? sentenceSpeakBtnHtml() : "";
+        // jamais la traduction de référence -- voir speakRegisteredSentence().
+        const adjSpeakBtn = learningEnglish
+            ? sentenceSpeakBtnHtml(exampleSentenceFr, "en")
+            : sentenceSpeakBtnHtml(exampleSentence, "de");
         verbDetailsEl.innerHTML = exampleSentenceFr
             ? (learningEnglish
                 ? `${exampleSentenceFr}${adjSpeakBtn}\n${exampleSentence}`
@@ -7459,12 +7462,15 @@ function loadFlashcard(){
         const exempleTr = (useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr;
         const perfektTr = (useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr;
         const praeteritumTr = (useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr;
+        const posPraesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
+        const posPerfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
         const coreHtml = `<strong>${card.cas}</strong> · ${regularite}` +
             `<div class="verb-sep"></div>` +
-            `<strong>Präsens :</strong> ${card.exemple || ""}<br>(${exempleTr || ""})` +
+            `<strong>Präsens :</strong> ${card.exemple || ""}${posPraesensSpeakBtn}<br>(${exempleTr || ""})` +
             `<div class="verb-sep"></div>` +
-            `<strong>Perfekt :</strong> ${card.perfekt || ""}<br>(${perfektTr || ""})`;
-        const extraHtml = `<strong>Präteritum :</strong> ${card.praeteritum || ""}<br>(${praeteritumTr || ""})`;
+            `<strong>Perfekt :</strong> ${card.perfekt || ""}${posPerfektSpeakBtn}<br>(${perfektTr || ""})`;
+        const posPraeteritumSpeakBtn = sentenceSpeakBtnHtml(card.praeteritum, "de");
+        const extraHtml = `<strong>Präteritum :</strong> ${card.praeteritum || ""}${posPraeteritumSpeakBtn}<br>(${praeteritumTr || ""})`;
         verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
@@ -7491,9 +7497,10 @@ function loadFlashcard(){
         const praepDiagramHtml = flashcardMode === 'praep'
             ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
             : "";
+        const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
         verbDetailsEl.innerHTML = flashcardMode === 'partikeln'
-            ? `${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
-            : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`;
+            ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
+            : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
@@ -7552,11 +7559,11 @@ function loadFlashcard(){
         // Phrase d'exemple (comme pour les adjectifs) : anglais d'abord en
         // direction anglaise, allemand d'abord sinon. Masquée si le thème n'a
         // pas encore de phrase d'exemple renseignée. Le bouton d'écoute inline
-        // parle toujours la phrase dans la langue étudiée (voir speakExampleSentence()).
+        // parle toujours la phrase dans la langue étudiée (voir speakRegisteredSentence()).
         if(exampleSentence){
-            currentSentenceToSpeak = learningEnglish ? (exampleSentenceFr || "") : exampleSentence;
-            currentSentenceLang = learningEnglish ? "en" : "de";
-            const nomenSpeakBtn = currentSentenceToSpeak ? sentenceSpeakBtnHtml() : "";
+            const nomenSpeakBtn = learningEnglish
+                ? sentenceSpeakBtnHtml(exampleSentenceFr, "en")
+                : sentenceSpeakBtnHtml(exampleSentence, "de");
             verbDetailsEl.innerHTML = exampleSentenceFr
                 ? (learningEnglish
                     ? `${exampleSentenceFr}${nomenSpeakBtn}\n${exampleSentence}`
@@ -7691,26 +7698,34 @@ function speakWord(){
     window.speechSynthesis.speak(utterance);
 }
 
-// Markup du petit bouton d'écoute inline placé à côté d'une phrase d'exemple
-// (noms/verbes/adjectifs). Il ne porte aucune donnée lui-même : il déclenche
-// toujours speakExampleSentence(), qui lit currentSentenceToSpeak/Lang --
-// ces deux variables sont mises à jour par loadFlashcard() juste avant
-// l'injection de ce bouton dans le DOM, donc toujours synchronisées avec la
-// phrase affichée à l'instant du clic.
-function sentenceSpeakBtnHtml(){
-    return ` <button class="icon-audio-btn icon-audio-btn-sm" onclick="event.stopPropagation(); speakExampleSentence();" aria-label="Écouter la phrase"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></button>`;
+// Markup du petit bouton d'écoute inline placé juste après une phrase
+// d'exemple (Präsens, Perfekt, Präteritum, Konjunktiv II, Imperativ...), pour
+// noms/verbes/adjectifs et catégories de grammaire (positionsverben,
+// kasusverben, praep, partikeln) -- collé en bout de ligne plutôt que sur une
+// ligne à part, pour ne pas gonfler la hauteur de la carte. `text` est la
+// phrase à prononcer, `lang` "de" ou "en" ; retourne "" (aucun bouton) si le
+// texte est vide, pour ne jamais afficher un bouton muet. Chaque appel
+// enregistre sa propre entrée dans sentenceRegistry -- plusieurs boutons
+// peuvent donc coexister sur une même carte (une par temps verbal), chacun
+// prononçant sa propre phrase.
+function sentenceSpeakBtnHtml(text, lang){
+    if(!text) return "";
+    const idx = sentenceRegistry.length;
+    sentenceRegistry.push({text, lang});
+    return ` <button class="icon-audio-btn icon-audio-btn-sm" onclick="event.stopPropagation(); speakRegisteredSentence(${idx});" aria-label="Écouter la phrase"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>`;
 }
 
-// Prononce la phrase d'exemple dans la langue étudiée (allemand en direction
-// "de", anglais en direction "en") -- jamais la traduction de référence,
-// conformément à la demande : "entendre la phrase aussi en allemand lorsqu'on
-// étudie l'allemand [...] la même chose pour l'anglais".
-function speakExampleSentence(){
-    if(!currentSentenceToSpeak || !('speechSynthesis' in window)) return;
+// Prononce la phrase enregistrée à cet index (voir sentenceSpeakBtnHtml) --
+// jamais la traduction de référence, conformément à la demande : "entendre la
+// phrase aussi en allemand lorsqu'on étudie l'allemand [...] la même chose
+// pour l'anglais".
+function speakRegisteredSentence(idx){
+    const entry = sentenceRegistry[idx];
+    if(!entry || !entry.text || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(currentSentenceToSpeak);
-    utterance.lang = currentSentenceLang === 'en' ? 'en-GB' : 'de-DE';
-    const voice = currentSentenceLang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
+    const utterance = new SpeechSynthesisUtterance(entry.text);
+    utterance.lang = entry.lang === 'en' ? 'en-GB' : 'de-DE';
+    const voice = entry.lang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
     if(voice) utterance.voice = voice;
     utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
