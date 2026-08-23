@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v116</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v117</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -8643,9 +8643,19 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSecond
     // tenait en équilibre) plutôt qu'au centre de l'écran : on mesure la
     // position réelle de la carte à l'instant du déclenchement, ce qui reste
     // correct quelle que soit la taille d'écran. Repli sur la position CSS
-    // par défaut (centrée) si la carte n'est pas trouvée.
+    // par défaut (centrée) si la carte n'est pas trouvée -- OU si elle existe
+    // dans le DOM mais n'est pas visible (offsetParent === null tant qu'un
+    // ancêtre a display:none) : l'écran #flashcards reste présent dans le DOM
+    // même une fois quitté (juste masqué par la classe .screen sans .active),
+    // donc getElementById le retrouve toujours. Sans cette vérification, une
+    // célébration déclenchée depuis l'écran d'exercices (ajoutée en v116 :
+    // une bonne réponse compte aussi pour l'objectif du jour) se positionnait
+    // sur les coordonnées obsolètes de la dernière carte affichée -- souvent
+    // hors écran -- rendant le personnage invisible malgré un déclenchement
+    // réussi (confirmé : la célébration se déclenchait bien, seule la
+    // position était fausse).
     const flashcardEl = document.getElementById("flashcard");
-    if(flashcardEl){
+    if(flashcardEl && flashcardEl.offsetParent !== null){
         const rect = flashcardEl.getBoundingClientRect();
         // On décale vers l'intérieur (55 % de la taille de l'icône, un peu plus
         // que la moitié) plutôt que de centrer pile sur le coin, pour que l'icône
