@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v112</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v113</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -8508,11 +8508,18 @@ const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "cha
 // 2026-08-23) ont leur propre son (trompette, applaudissements...) : on les
 // laisse non muettes et on saute la fanfare synthétisée pour elles (voir
 // DAILY_GOAL_VIDEOS ci-dessous et triggerDailyGoalCelebration()).
+// durationS : longueur réelle du clip (personnage2/3/4.MP4 ont dû être
+// recoupées le 2026-08-23 pour retirer un écran de fin CapCut -- logo + ID de
+// compte -- qui s'était glissé dans l'export, contrairement à personnage.MP4
+// déjà propre depuis le départ). Sert à calibrer l'animation CSS par vidéo
+// (voir animationHoldSeconds plus bas) au lieu d'une durée unique 7.7s pensée
+// pour les 6.0s de personnage.MP4 -- sans ça, les clips plus courts restent
+// figés sur leur dernière image plusieurs secondes de trop avant de disparaître.
 const DAILY_GOAL_VIDEOS = [
-    { file: "personnage.MP4", outline: "green", muted: true },
-    { file: "personnage2.MP4", outline: "blue", muted: false },
-    { file: "personnage3.MP4", outline: "blue", muted: false },
-    { file: "personnage4.MP4", outline: "blue", muted: false },
+    { file: "personnage.MP4", outline: "green", muted: true, durationS: 6.0 },
+    { file: "personnage2.MP4", outline: "blue", muted: false, durationS: 3.9 },
+    { file: "personnage3.MP4", outline: "blue", muted: false, durationS: 4.7 },
+    { file: "personnage4.MP4", outline: "blue", muted: false, durationS: 3.2 },
 ];
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
@@ -8607,7 +8614,12 @@ function pickRandomCelebrationVideo(){
 // pour laisser le son natif de la vidéo jouer (personnage2/3/4.MP4) plutôt que
 // de forcer le mode muet (comportement historique, toujours utilisé pour les
 // animaux et personnage.MP4 dont le son est remplacé par la fanfare synthétisée).
-function showMasteryCharacter(videoUrl, big, outlineColor, playAudio){
+// holdSeconds (variante "big" seulement) : durée totale de l'animation CSS
+// (clip + arrêt sur image + fondu), calibrée par appelant à partir de la
+// durée réelle du clip -- voir DAILY_GOAL_VIDEOS.durationS. Repli sur la
+// durée par défaut de .mastery-video-big (7.7s, calibrée pour personnage.MP4)
+// si non fournie.
+function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSeconds){
     const container = document.getElementById("confettiContainer");
     if(!container) return;
     const size = big ? DAILY_GOAL_VIDEO_SIZE : MASTERY_VIDEO_SIZE;
@@ -8640,6 +8652,7 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio){
     canvas.width = size;
     canvas.height = size;
     canvas.setAttribute("aria-hidden", "true");
+    if(big && holdSeconds) canvas.style.animationDuration = holdSeconds + "s";
 
     // Ancre l'animal sur le coin supérieur droit de la carte (comme s'il s'y
     // tenait en équilibre) plutôt qu'au centre de l'écran : on mesure la
@@ -8932,7 +8945,10 @@ function triggerDailyGoalCelebration(multiple){
     const startIdx = getDailyGoalVideoStartIndex();
     const seqIndex = Math.min(multiple, n) - 1; // répète la dernière au-delà du palier n
     const video = DAILY_GOAL_VIDEOS[(startIdx + seqIndex) % n];
-    showMasteryCharacter(VIDEO_BASE_URL + video.file, true, video.outline, !video.muted);
+    // Arrêt sur image (1s) + marge de fondu (0.7s) après la fin réelle du clip,
+    // mêmes proportions que le calibrage d'origine de personnage.MP4 (6.0s -> 7.7s).
+    const holdSeconds = (video.durationS || 6.0) + 1.7;
+    showMasteryCharacter(VIDEO_BASE_URL + video.file, true, video.outline, !video.muted, holdSeconds);
     showDailyGoalText(getDailyGoalTarget() * multiple);
     if(video.muted){
         playDailyGoalFanfare();
