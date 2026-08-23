@@ -2090,7 +2090,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v125</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v126</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3077,6 +3077,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </div>
         <button class="secondary" style="margin-top:10px;" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
         <button class="secondary" style="margin-top:10px;" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
+        <button id="dictationStartBtn" class="secondary hidden" style="margin-top:10px;" onclick="startDictationExercise()" data-i18n="dictation_start_btn">🎧 S'ENTRAÎNER : DICTÉE</button>
     </div>
 
 </section>
@@ -3100,6 +3101,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <div class="card">
         <div class="question" id="question"></div>
+        <button id="dictationReplayBtn" class="secondary hidden" style="margin:8px 0;" onclick="replayDictationAudio()" data-i18n="dictation_replay_btn">🔊 RÉÉCOUTER</button>
         <div class="translation-example" id="questionTranslation"></div>
         <div id="hint" style="color:#576177;margin-bottom:15px"></div>
 
@@ -3581,6 +3583,13 @@ const I18N = {
         badge_streak_7_desc: "Sept jours consécutifs d'activité.",
         badge_streak_30_title: "Un mois de discipline",
         badge_streak_30_desc: "Trente jours consécutifs d'activité.",
+        dictation_start_btn: "🎧 S'ENTRAÎNER : DICTÉE",
+        dictation_replay_btn: "🔊 RÉÉCOUTER",
+        dictation_instruction: "Écoute et écris ce que tu entends.",
+        dictation_hint: "Pas besoin d'écrire l'article (der/die/das).",
+        dictation_explanation_prefix: "Le mot était :",
+        kicker_dictation_exercise: "Dictée",
+        alert_no_dictation_available: "Ouvre d'abord une série de vocabulaire (Wortschatz) pour t'entraîner à la dictée.",
         notif_title: "Rappels quotidiens",
         notif_desc: "Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.",
         notif_btn_enable: "ACTIVER LES RAPPELS",
@@ -4074,6 +4083,13 @@ const I18N = {
         badge_streak_7_desc: "Seven consecutive days of activity.",
         badge_streak_30_title: "A month of discipline",
         badge_streak_30_desc: "Thirty consecutive days of activity.",
+        dictation_start_btn: "🎧 PRACTICE: DICTATION",
+        dictation_replay_btn: "🔊 REPLAY",
+        dictation_instruction: "Listen and write what you hear.",
+        dictation_hint: "No need to write the article (der/die/das).",
+        dictation_explanation_prefix: "The word was:",
+        kicker_dictation_exercise: "Dictation",
+        alert_no_dictation_available: "Open a vocabulary set (Wortschatz) first to practice dictation.",
         notif_title: "Daily reminders",
         notif_desc: "Get a notification when you haven't reached your daily goal yet.",
         notif_btn_enable: "ENABLE REMINDERS",
@@ -8369,6 +8385,8 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
+    const dictationBtn = document.getElementById("dictationStartBtn");
+    if(dictationBtn) dictationBtn.classList.toggle("hidden", flashcardMode !== 'nomen');
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
         flashcardEl.classList.add("answer-accent");
@@ -8765,6 +8783,73 @@ function speakWord(){
     window.speechSynthesis.speak(utterance);
 }
 
+// ============ Exercices d'écoute / dictée ============
+// Prononce n'importe quel texte dans la langue donnée -- utilisé par les
+// exercices de dictée (à la différence de speakWord(), qui lit toujours la
+// carte affichée à l'écran). Débit un peu plus lent (0.85) qu'ailleurs pour
+// laisser le temps d'écrire ce qu'on entend.
+function speakDictationText(text, lang){
+    if(!text || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'en' ? 'en-GB' : 'de-DE';
+    const voice = lang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
+    if(voice) utterance.voice = voice;
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+}
+
+function replayDictationAudio(){
+    const ex = activeExercises[currentExercise];
+    if(!ex || !ex.dictationText) return;
+    speakDictationText(ex.dictationText, ex.dictationLang || "de");
+}
+
+// Construit une série d'exercices de dictée à partir des cartes actuellement
+// ouvertes (currentCards) -- seul le format "nomen" (tableau, voir loadFlashcard)
+// est supporté pour l'instant, les autres catégories (verben/adjektive/...)
+// ont des formes de données trop différentes pour être couvertes en toute
+// sécurité ici sans risquer une régression ailleurs.
+function buildNomenDictationExercises(){
+    if(!currentCards.length) return [];
+    const learningEnglish = getLearningDirection() === 'en';
+    const useEn = getUiLang() === 'en';
+    const list = [];
+    currentCards.forEach(item => {
+        const card = item.word;
+        if(!Array.isArray(card)) return;
+        const germanWord = card[0];
+        const frenchWord = learningEnglish ? (card[4] || card[3]) : ((useEn && card[4]) ? card[4] : card[3]);
+        const targetWord = learningEnglish ? frenchWord : germanWord;
+        const knownWord = learningEnglish ? germanWord : frenchWord;
+        if(!targetWord) return;
+        list.push({
+            topic: "dictation",
+            question: I18N.fr.dictation_instruction,
+            question_en: I18N.en.dictation_instruction,
+            translation: knownWord,
+            translation_en: knownWord,
+            hint: I18N.fr.dictation_hint,
+            hint_en: I18N.en.dictation_hint,
+            answers: [targetWord],
+            correct: targetWord,
+            correctEn: targetWord,
+            explanation: `${I18N.fr.dictation_explanation_prefix} ${targetWord}`,
+            explanation_en: `${I18N.en.dictation_explanation_prefix} ${targetWord}`,
+            dictation: true,
+            dictationText: targetWord,
+            dictationLang: learningEnglish ? "en" : "de"
+        });
+    });
+    return list;
+}
+
+function startDictationExercise(){
+    const list = buildNomenDictationExercises();
+    if(!list.length){ alert(t("alert_no_dictation_available")); return; }
+    startExerciseSet(shuffleArray(list.slice()), "kicker_dictation_exercise", handleFlashcardBack, startDictationExercise);
+}
+
 // Markup du petit bouton d'écoute inline placé juste après une phrase
 // d'exemple (Präsens, Perfekt, Präteritum, Konjunktiv II, Imperativ...), pour
 // noms/verbes/adjectifs et catégories de grammaire (positionsverben,
@@ -8802,12 +8887,26 @@ function speakRegisteredSentence(idx){
     window.speechSynthesis.speak(utterance);
 }
 
+// Paliers (en jours) de l'intervalle "Revoir demain", façon SM-2/Anki :
+// grandit à chaque succès consécutif sur CE mot précis plutôt que de rester
+// fixé à 1 jour indéfiniment. Repart de zéro si l'utilisateur retombe sur
+// "2 min" ou "10 min" (signe qu'il ne savait plus le mot).
+const SRS_DAILY_LADDER_DAYS = [1, 3, 7, 16, 35];
+
 function scheduleReview(minutes){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
     state.mastered = false;
-    state.due = Date.now() + (minutes * 60 * 1000);
+    if(minutes === 1440){
+        const step = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
+        const days = SRS_DAILY_LADDER_DAYS[step];
+        state.due = Date.now() + (days * 24 * 60 * 60 * 1000);
+        state.srsDailyStreak = (state.srsDailyStreak || 0) + 1;
+    } else {
+        state.due = Date.now() + (minutes * 60 * 1000);
+        state.srsDailyStreak = 0; // rechute : l'échelle repart de zéro pour ce mot
+    }
     state.reviews = (state.reviews || 0) + 1;
     setWordState(item.themeId, item.index, state);
     const justReachedMultiple = recordDailyActivity();
@@ -9793,6 +9892,12 @@ function loadExercise(){
         input.disabled = false;
         input.classList.remove("hidden");
         select.classList.add("hidden");
+    }
+
+    const dictationReplayBtn = document.getElementById("dictationReplayBtn");
+    if(dictationReplayBtn){
+        dictationReplayBtn.classList.toggle("hidden", !ex.dictation);
+        if(ex.dictation) speakDictationText(ex.dictationText, ex.dictationLang || "de");
     }
 
     document.getElementById("checkButton").classList.remove("hidden");
