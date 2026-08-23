@@ -1607,15 +1607,18 @@ body[data-theme="dark"] .subtitle{
 /* #3b6fe0 (bleu de marque) sur fond noir pur ne passe pas assez : contraste
    ~4.4:1, juste sous le seuil WCAG AA (4.5:1) pour du texte normal, et perçu
    comme flou/pas assez visible dans les faits (signalé par l'utilisateur).
-   #7ea6ff (même teinte, plus clair) donne ~8.8:1 sur noir. Deux endroits à
-   couvrir : la classe .kicker (étiquettes "GRAMMAIRE", "VERBES · PRÄSENS"...)
-   et les 163 <strong style="color:#3b6fe0"> inline dans les écrans de
-   grammaire (accord de sélecteur d'attribut + !important, seul moyen de
-   surcharger un style inline sans modifier chacune des 163 occurrences). */
+   #7ea6ff (même teinte, plus clair) donne ~8.8:1 sur noir. Le 1er correctif
+   ne ciblait que <strong style="color:#3b6fe0">, mais la même couleur est
+   aussi posée en inline sur des <td>/<tr> (ex. tableaux de déclinaison
+   Nominativ/Akkusativ/Dativ/Genitiv des écrans de grammaire, Kasus) --
+   toujours pas assez visible malgré le 1er correctif, signalé une 2e fois.
+   Sélecteur d'attribut sans restriction de balise (au lieu de strong[...])
+   pour couvrir tous les cas d'un coup, + !important, seul moyen de
+   surcharger un style inline sans modifier chacune des ~180 occurrences. */
 body[data-theme="dark"] .kicker{
     color:#7ea6ff;
 }
-body[data-theme="dark"] strong[style*="color:#3b6fe0"]{
+body[data-theme="dark"] [style*="color:#3b6fe0"]{
     color:#7ea6ff !important;
 }
 
@@ -1921,7 +1924,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v118</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v119</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
