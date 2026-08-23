@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v113</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v114</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -8503,90 +8503,60 @@ const VIDEO_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/D
 const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "chat.MP4", "poussin.MP4", "cheval.MP4", "girafe.MP4", "coq.MP4", "herisson.MP4"];
 // Célébration de l'objectif du jour : une vidéo par palier atteint (1x, 2x, 3x,
 // 4x l'objectif), au-delà on répète la dernière (voir triggerDailyGoalCelebration).
-// personnage.MP4 (liseré VERT) reste inchangée -- muette, avec la fanfare
-// synthétisée existante. personnage2/3/4.MP4 (liserés BLEUS, ajoutées le
-// 2026-08-23) ont leur propre son (trompette, applaudissements...) : on les
-// laisse non muettes et on saute la fanfare synthétisée pour elles (voir
-// DAILY_GOAL_VIDEOS ci-dessous et triggerDailyGoalCelebration()).
-// durationS : longueur réelle du clip (personnage2/3/4.MP4 ont dû être
-// recoupées le 2026-08-23 pour retirer un écran de fin CapCut -- logo + ID de
-// compte -- qui s'était glissé dans l'export, contrairement à personnage.MP4
-// déjà propre depuis le départ). Sert à calibrer l'animation CSS par vidéo
-// (voir animationHoldSeconds plus bas) au lieu d'une durée unique 7.7s pensée
-// pour les 6.0s de personnage.MP4 -- sans ça, les clips plus courts restent
-// figés sur leur dernière image plusieurs secondes de trop avant de disparaître.
+//
+// Historique (pour comprendre pourquoi la détection ci-dessous est si simple) :
+// la 1re génération de ces vidéos (personnage.MP4 vert, puis personnage2/3/4.MP4
+// bleu) traçait un anneau de couleur vif autour du personnage sur fond noir, et
+// il fallait deviner pixel par pixel si une couleur donnée appartenait au fond
+// ou au personnage -- seuils loose/strong/pontage, plusieurs correctifs ratés
+// (liseré résiduel, puis morceaux de vrai tissu mangés). Le 2026-08-23,
+// l'utilisateur a retrouvé dans CapCut Pro un outil de découpage par IA
+// ("Auto Removal", sans fond vert/bleu) et a refait les 4 vidéos avec : fond
+// NOIR UNI, aucun anneau de couleur, bords déjà nets. Ça élimine le problème à
+// la racine -- plus besoin de reconnaître une couleur de liseré, juste
+// "retirer le noir connecté au bord de l'image" suffit (voir
+// computeBackgroundMask, branche par défaut). Le fond vert reste utile pour
+// les vidéos d'animaux (CELEBRATION_ANIMAL_FILES, qui ont encore l'ancien
+// style avec liseré), d'où la branche "green" conservée à part.
+//
+// muted:false partout -- les 4 clips ont leur propre son (trompette,
+// applaudissements...), on saute donc la fanfare synthétisée pour eux (voir
+// triggerDailyGoalCelebration : if(video.muted){...}).
+// durationS : longueur réelle du clip, pour calibrer l'animation CSS par vidéo
+// (voir triggerDailyGoalCelebration) -- sans ça, un clip plus court qu'un autre
+// resterait figé sur sa dernière image plusieurs secondes de trop.
 const DAILY_GOAL_VIDEOS = [
-    { file: "personnage.MP4", outline: "green", muted: true, durationS: 6.0 },
-    { file: "personnage2.MP4", outline: "blue", muted: false, durationS: 3.9 },
-    { file: "personnage3.MP4", outline: "blue", muted: false, durationS: 4.7 },
-    { file: "personnage4.MP4", outline: "blue", muted: false, durationS: 3.2 },
+    { file: "personnage1.MP4", muted: false, durationS: 6.0 },
+    { file: "personnage2.MP4", muted: false, durationS: 6.0 },
+    { file: "personnage3.MP4", muted: false, durationS: 5.9 },
+    { file: "personnage4.MP4", muted: false, durationS: 6.0 },
 ];
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
-// personnage.MP4 (depuis le 2026-08-21, 2e export) a un fond NOIR uni avec un
-// liseré VERT vif et net dessiné autour du personnage et des balles (ajouté
-// par l'outil de montage) -- bien plus fiable qu'une simple ressemblance de
-// couleur au fond (qui échouait sur les zones presque aussi claires/sombres
-// que le fond) ou même que le 1er export à liseré bleu (le bleu se confondait
-// avec le pantalon/chandail marine ; le vert, lui, n'a aucun équivalent dans
-// la palette du personnage -- chandail, casquette, peau, ballons sont tous
-// nettement NON verts, vérifié pixel par pixel). La transition entre le
-// personnage et l'anneau vert est aussi beaucoup plus nette (~14px contre
-// ~40px avec le bleu), donc le simple rayon de dilatation ci-dessous suffit à
-// la combler sans le pontage risqué tenté (et abandonné) avec le bleu.
-// Deux niveaux de confiance :
+// Fond NOIR + liseré VERT vif tracé autour du personnage/des animaux (ajouté
+// par l'outil de montage) -- utilisé par les vidéos d'animaux
+// (CELEBRATION_ANIMAL_FILES). Deux niveaux de confiance :
 // - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord de
 //   l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il est très
-//   sombre OU nettement teinté dans la couleur du liseré (vert ou bleu selon
-//   la vidéo, voir MASTERY_OUTLINE_COLORS ci-dessous).
-// - "strong" (signal très fort) est retiré SANS exiger de connectivité -- au
-//   cas où l'anneau le plus lumineux soit isolé du fond connecté par une fine
-//   bande de transition trop faible en signal pour la connectivité seule.
-//
-// personnage2/3/4.MP4 (liseré BLEU, ajoutées le 2026-08-23) : mêmes seuils
-// loose/strong que le vert (vérifié pixel par pixel sur les 3 vidéos -- le
-// pantalon/chandail marine du personnage plafonne à une "bleuité" ~23, largement
-// sous le seuil loose de 25, alors que l'anneau bleu vif est à ~110). Mais leur
-// transition anneau/fond reste large comme le 1er essai bleu abandonné pour
-// personnage.MP4 : sans traitement supplémentaire, un fin liseré bleu résiduel
-// reste visible autour du personnage une fois composé sur un fond sombre.
-//
-// 1er correctif tenté : un simple "choke" (dilatation du masque retiré de 4px,
-// technique standard en incrustation chroma) -- éliminait bien le liseré, mais
-// mangeait aussi de vraies zones du personnage (manche, col) là où deux bords
-// bleus rapprochés (ex. pli du tissu, écart entre les jambes) se rejoignaient
-// après dilatation : signalé par l'utilisateur ("je perds de l'image, c'est
-// trop coupé").
-//
-// 2e correctif tenté : "pontage" ciblé (n'étend le masque que vers des pixels
-// encore bleutés ET proches du masque, jamais un pixel neutre) + un choke
-// résiduel réduit à 2px -- mieux, mais encore signalé comme perdant un peu
-// d'image autour du personnage.
-//
-// 3e correctif tenté : plus AUCUN choke (0px), seul un pontage multi-passes
-// (MASTERY_BRIDGE_RADIUS = 5, MASTERY_BRIDGE_PASSES = 3) -- mais avec un seuil
-// de pontage (MASTERY_BRIDGE_OUTLINE_THRESH) fixé à 8, beaucoup trop permissif :
-// mesuré après coup, le tissu marine RÉEL du chandail (rayures) atteint une
-// "bleuité" jusqu'à 27 (médiane 7, un pixel isolé à 47) -- largement au-dessus
-// de 8. Le pontage mangeait donc carrément de vraies rayures du chandail dès
-// qu'elles étaient à portée d'un pixel de fond déjà retiré (signalé par
-// l'utilisateur : perte "à l'intérieur de l'image du personnage, dans son
-// chandail"), pas seulement au contour.
-//
-// Correctif retenu : seuil de pontage relevé à 55 -- confortablement au-dessus
-// de la bleuité mesurée sur le vrai tissu marine (max observé 47), mais encore
-// nettement sous l'anneau bleu vif (~110). Aucun choke n'est réintroduit.
-// Revérifié sur les mêmes images (mains/trompette, bras levés, jambes
-// rapprochées, trophée) après cet échec : chandail et rayures intacts partout.
+//   sombre OU nettement verdâtre.
+// - "strong" (signal très fort, vert vif) est retiré SANS exiger de
+//   connectivité -- au cas où l'anneau le plus lumineux soit isolé du fond
+//   connecté par une fine bande de transition trop faible en signal pour la
+//   connectivité seule.
 const MASTERY_LOOSE_DARK_MAX = 26;
 const MASTERY_LOOSE_OUTLINE_THRESH = 25;
 const MASTERY_STRONG_OUTLINE_THRESH = 90;
-const MASTERY_BRIDGE_OUTLINE_THRESH = 55;
-const MASTERY_BRIDGE_RADIUS = 5;
-const MASTERY_BRIDGE_PASSES = 3;
 const MASTERY_ERODE_RADIUS = 3;
 const MASTERY_DILATE_RADIUS = 8;
 const MASTERY_CLOSE_RADIUS = 3;
+// Fond NOIR UNI SANS liseré (personnage1-4.MP4, détourés par IA dans CapCut --
+// voir commentaire de DAILY_GOAL_VIDEOS). Un seuil plus strict que
+// MASTERY_LOOSE_DARK_MAX (12 contre 26) suffit puisqu'il n'y a plus besoin de
+// laisser de marge pour un anneau de couleur -- vérifié sans aucune perte sur
+// plusieurs poses (mains/trompette, chute/roulé-boulé, jonglage, trophée).
+const MASTERY_SIMPLE_DARK_MAX = 12;
+const MASTERY_SIMPLE_ERODE_RADIUS = 2;
+const MASTERY_SIMPLE_DILATE_RADIUS = 3;
 
 // En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
 // noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
@@ -8754,27 +8724,72 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSecond
     // - mask2 : le signal vert très fort, retiré sans condition de connectivité
     //   (fermeture morphologique pour lisser), au cas où l'anneau le plus vif
     //   soit isolé du fond connecté par une fine bande de transition.
+    // outlineColor "green" = animaux (fond noir + liseré vert, voir constantes
+    // MASTERY_LOOSE_*/STRONG_*) ; tout le reste (défaut) = personnage1-4.MP4
+    // (fond noir uni sans liseré, détourage IA -- voir MASTERY_SIMPLE_*).
     function computeBackgroundMask(d, w, h, outlineColor){
+        if(outlineColor === "green") return computeBackgroundMaskGreen(d, w, h);
+        return computeBackgroundMaskSimple(d, w, h);
+    }
+
+    // Fond noir uni SANS aucun liseré (voir commentaire de DAILY_GOAL_VIDEOS) :
+    // remplissage depuis le bord de l'image à travers les pixels très sombres,
+    // avec une petite marge de dilatation pour la transition anti-aliasée --
+    // pas de canal de couleur à interpréter, donc pas de risque de manger du
+    // vrai tissu (contrairement au liseré coloré des anciennes vidéos).
+    function computeBackgroundMaskSimple(d, w, h){
+        const n = w * h;
+        const dark = new Uint8Array(n);
+        for(let p = 0; p < n; p++){
+            const i = p * 4;
+            const mx = Math.max(d[i], d[i+1], d[i+2]);
+            if(mx < MASTERY_SIMPLE_DARK_MAX) dark[p] = 1;
+        }
+        const core = erodeMask(dark, w, h, MASTERY_SIMPLE_ERODE_RADIUS);
+        const seedMask = new Uint8Array(n);
+        const queue = new Int32Array(n);
+        let qLen = 0;
+        function seed(x, y){
+            const p = y * w + x;
+            if(core[p] && !seedMask[p]){ seedMask[p] = 1; queue[qLen++] = p; }
+        }
+        for(let x = 0; x < w; x++){ seed(x, 0); seed(x, h - 1); }
+        for(let y = 0; y < h; y++){ seed(0, y); seed(w - 1, y); }
+        let qi = 0;
+        while(qi < qLen){
+            const p = queue[qi++];
+            const x = p % w, y = (p / w) | 0;
+            if(x > 0) seed(x - 1, y);
+            if(x < w - 1) seed(x + 1, y);
+            if(y > 0) seed(x, y - 1);
+            if(y < h - 1) seed(x, y + 1);
+        }
+        const dilated = dilateMask(seedMask, w, h, MASTERY_SIMPLE_DILATE_RADIUS);
+        const finalMask = new Uint8Array(n);
+        for(let p = 0; p < n; p++) finalMask[p] = (dilated[p] && dark[p]) ? 1 : 0;
+        return finalMask;
+    }
+
+    // Fond noir + liseré VERT vif (animaux, voir commentaire des constantes
+    // MASTERY_LOOSE_*/STRONG_*). Deux niveaux de confiance :
+    // - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord
+    //   de l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il
+    //   est très sombre OU nettement verdâtre.
+    // - "strong" (signal très fort, vert vif) est retiré SANS exiger de
+    //   connectivité -- au cas où l'anneau le plus lumineux soit isolé du fond
+    //   connecté par une fine bande de transition trop faible en signal pour la
+    //   connectivité seule.
+    function computeBackgroundMaskGreen(d, w, h){
         const n = w * h;
         const looseCand = new Uint8Array(n);
         const strongCand = new Uint8Array(n);
-        const isBlue = outlineColor === "blue";
-        // weakCand (bleu seulement) : pixels encore un peu teintés bleu mais
-        // sous le seuil loose -- sert uniquement de "pontage" ciblé plus bas,
-        // jamais à retirer un pixel directement (voir commentaire des
-        // constantes MASTERY_BRIDGE_*).
-        const weakCand = isBlue ? new Uint8Array(n) : null;
         for(let p = 0; p < n; p++){
             const i = p * 4;
             const r = d[i], g = d[i+1], b = d[i+2];
             const mx = Math.max(r, g, b);
-            // "outlineness" : dominance du canal du liseré sur les deux autres.
-            // Mêmes seuils pour vert et bleu (vérifiés séparément sur chaque jeu
-            // de vidéos, voir commentaire des constantes MASTERY_*).
-            const outlineness = isBlue ? (b - Math.max(r, g)) : (g - Math.max(r, b));
-            if(mx < MASTERY_LOOSE_DARK_MAX || outlineness > MASTERY_LOOSE_OUTLINE_THRESH) looseCand[p] = 1;
-            if(outlineness > MASTERY_STRONG_OUTLINE_THRESH) strongCand[p] = 1;
-            if(isBlue && outlineness > MASTERY_BRIDGE_OUTLINE_THRESH) weakCand[p] = 1;
+            const greenness = g - Math.max(r, b);
+            if(mx < MASTERY_LOOSE_DARK_MAX || greenness > MASTERY_LOOSE_OUTLINE_THRESH) looseCand[p] = 1;
+            if(greenness > MASTERY_STRONG_OUTLINE_THRESH) strongCand[p] = 1;
         }
 
         const core = erodeMask(looseCand, w, h, MASTERY_ERODE_RADIUS);
@@ -8800,31 +8815,11 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSecond
 
         const mask2 = erodeMask(dilateMask(strongCand, w, h, MASTERY_CLOSE_RADIUS), w, h, MASTERY_CLOSE_RADIUS);
 
-        let finalMask = new Uint8Array(n);
+        const finalMask = new Uint8Array(n);
         for(let p = 0; p < n; p++){
             const inMask1 = dilated1[p] && looseCand[p];
             const inMask2 = mask2[p] && strongCand[p]; // ne jamais depasser le signal fort d'origine
             finalMask[p] = (inMask1 || inMask2) ? 1 : 0;
-        }
-        // Liseré bleu : transition anneau/fond nettement plus large qu'en vert
-        // (~40px contre ~14px, voir commentaire des constantes MASTERY_*).
-        // Pontage ciblé SANS AUCUN choke (voir commentaire des constantes --
-        // deux correctifs avec choke, même léger, ont mangé de vraies zones du
-        // personnage) : plusieurs passes successives étendent le masque vers
-        // les pixels encore faiblement bleutés (weakCand) PROCHES du masque
-        // déjà retiré, jusqu'à ce que plus rien ne change -- comble une large
-        // bande de transition par bonds successifs sans jamais toucher un
-        // pixel neutre (peau, doré, blanc), même collé au bord. Appliqué
-        // uniquement au bleu ; le rendu vert (déjà vérifié) reste inchangé.
-        if(isBlue){
-            for(let pass = 0; pass < MASTERY_BRIDGE_PASSES; pass++){
-                const dilatedFinal = dilateMask(finalMask, w, h, MASTERY_BRIDGE_RADIUS);
-                let changed = false;
-                for(let p = 0; p < n; p++){
-                    if(dilatedFinal[p] && weakCand[p] && !finalMask[p]){ finalMask[p] = 1; changed = true; }
-                }
-                if(!changed) break;
-            }
         }
         return finalMask;
     }
