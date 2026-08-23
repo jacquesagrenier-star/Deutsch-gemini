@@ -1895,7 +1895,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v104</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v105</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4560,7 +4560,10 @@ async function loadThemesJson() {
                     w.genre || w.article || "der",
                     w.pluriel || w.plural || "—",
                     w.traduction || w.fr || "",
-                    w.traduction_en || w.en || ""
+                    w.traduction_en || w.en || "",
+                    w.exemple || w.example || "",
+                    w.exemple_fr || "",
+                    w.exemple_en || ""
                 ];
             });
 
@@ -7476,6 +7479,13 @@ function loadFlashcard(){
         const frenchWord = learningEnglish
             ? (card[4] || card[3])
             : ((useEn && card[4]) ? card[4] : card[3]);
+        // card[5]/card[6]/card[7] = phrase d'exemple (allemand/français/anglais),
+        // absentes pour les thèmes pas encore enrichis (repli sur "" -> pas
+        // d'exemple affiché, comme pour les traductions manquantes ci-dessus).
+        const exampleSentence = card[5] || "";
+        const exampleSentenceFr = learningEnglish
+            ? (card[7] || card[6] || "")
+            : ((useEn && card[7]) ? card[7] : (card[6] || ""));
         // Sémantique constante du bouton recto/verso (voir branche 'verben' plus
         // haut) : frontIsFrench=true -> langue connue au recto (FR en allemand,
         // DE en anglais) ; false -> langue cible au recto.
@@ -7509,7 +7519,17 @@ function loadFlashcard(){
             pluralEl.textContent = `${t('label_plural')} ${card[2]}`;
             pluralEl.classList.remove("hidden");
         }
-        verbDetailsEl.classList.add("hidden");
+        // Phrase d'exemple (comme pour les adjectifs) : anglais d'abord en
+        // direction anglaise, allemand d'abord sinon. Masquée si le thème n'a
+        // pas encore de phrase d'exemple renseignée.
+        if(exampleSentence){
+            verbDetailsEl.textContent = exampleSentenceFr
+                ? (learningEnglish ? `${exampleSentenceFr}\n${exampleSentence}` : `${exampleSentence}\n${exampleSentenceFr}`)
+                : exampleSentence;
+            verbDetailsEl.classList.remove("hidden");
+        } else {
+            verbDetailsEl.classList.add("hidden");
+        }
     }
 
     resizeFlashcard();
@@ -7609,8 +7629,16 @@ if('speechSynthesis' in window){
 function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
     const backWordEl = document.getElementById("flashBackWord");
-    const textToSpeak = backWordEl ? backWordEl.textContent : "";
+    let textToSpeak = backWordEl ? backWordEl.textContent : "";
     if(!textToSpeak) return;
+    // Pour les noms allemands, inclure l'article (der/die/das) dans la
+    // prononciation quand il est affiché sur la carte -- plus utile pour
+    // retenir le genre que le nom seul. flashArticle n'est visible que dans
+    // la branche "nomen" en direction allemande (masqué partout ailleurs).
+    const articleEl = document.getElementById("flashArticle");
+    if(articleEl && !articleEl.classList.contains("hidden") && articleEl.textContent){
+        textToSpeak = `${articleEl.textContent} ${textToSpeak}`;
+    }
     const learningEnglish = getLearningDirection() === 'en';
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
