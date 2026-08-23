@@ -606,6 +606,7 @@ body[data-theme="dark"] .combo-pill{
     border:1px solid rgba(30,41,59,.14);
     background:rgba(255,255,255,.5);
     text-align:center;
+    cursor:pointer;
 }
 
 .badge-item .badge-icon{
@@ -2094,7 +2095,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v130</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v131</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2128,6 +2129,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
             <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
         </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="settings_badges_title">Badges</strong>
+        <div id="badgesGridHome" class="badges-grid"></div>
     </div>
 
     <div class="grid" id="orbGrid">
@@ -6689,19 +6695,34 @@ function showBadgeToast(def){
     showToast(def.icon, `${t("badge_unlocked_prefix")} ${t(def.titleKey)}`);
 }
 
+// Rendue à deux endroits : l'accueil (là où on voit déjà la progression) et
+// les réglages -- même source, même comportement aux deux endroits. `title`
+// reste en place pour le survol sur ordinateur, mais l'explication passe
+// surtout par onclick/showBadgeDetail() puisqu'un tooltip HTML ne se
+// déclenche pas de façon fiable au toucher sur mobile.
 function renderBadgesGrid(){
-    const grid = document.getElementById("badgesGrid");
-    if(!grid) return;
     const unlocked = getUnlockedBadges();
-    grid.innerHTML = BADGE_DEFINITIONS.map(def => {
+    const html = BADGE_DEFINITIONS.map(def => {
         const isUnlocked = unlocked.includes(def.id);
         const title = t(def.titleKey);
         const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
-        return `<div class="badge-item${isUnlocked ? " unlocked" : ""}" title="${title} — ${desc}">
+        return `<div class="badge-item${isUnlocked ? " unlocked" : ""}" title="${title} — ${desc}" onclick="showBadgeDetail('${def.id}')" role="button" tabindex="0">
             <span class="badge-icon">${def.icon}</span>
             <span class="badge-label">${title}</span>
         </div>`;
     }).join("");
+    ["badgesGrid", "badgesGridHome"].forEach(id => {
+        const grid = document.getElementById(id);
+        if(grid) grid.innerHTML = html;
+    });
+}
+
+function showBadgeDetail(id){
+    const def = BADGE_DEFINITIONS.find(b => b.id === id);
+    if(!def) return;
+    const isUnlocked = getUnlockedBadges().includes(id);
+    const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
+    showToast(def.icon, `${t(def.titleKey)} — ${desc}`);
 }
 
 function getDailyGoalTarget(){
@@ -7844,7 +7865,7 @@ function showScreen(id){
     updateOrbBadges();
 }
 
-function goHome(){ showScreen("home"); }
+function goHome(){ showScreen("home"); renderBadgesGrid(); }
 function openNomen(){
     const learningEnglish = getLearningDirection() === 'en';
     const kickerEl = document.getElementById("nomenKicker");
