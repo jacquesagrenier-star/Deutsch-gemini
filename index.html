@@ -667,6 +667,37 @@ body[data-theme="dark"] .badge-item.unlocked{
     transform:translateX(-50%) translateY(0);
 }
 
+.auth-value-card{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    background:linear-gradient(135deg, rgba(232,162,58,.12), rgba(28,36,48,.03));
+    border-color:rgba(232,162,58,.35);
+}
+
+.auth-value-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:14px;
+    color:#1e2433;
+    line-height:1.4;
+}
+
+.auth-value-icon{
+    font-size:19px;
+    line-height:1.4;
+}
+
+body[data-theme="dark"] .auth-value-card{
+    background:linear-gradient(135deg, rgba(232,162,58,.14), rgba(255,255,255,.03));
+    border-color:rgba(232,162,58,.4);
+}
+
+body[data-theme="dark"] .auth-value-row{
+    color:#F2F2F6;
+}
+
 .filters-bar {
     display: flex;
     gap: 10px;
@@ -1950,6 +1981,21 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </div>
     </div>
 
+    <div class="card auth-value-card">
+        <div class="auth-value-row">
+            <span class="auth-value-icon">🗂️</span>
+            <span data-i18n="auth_value_1">Vocabulaire et grammaire allemande organisés par niveau, du A1 au B2.</span>
+        </div>
+        <div class="auth-value-row">
+            <span class="auth-value-icon">🎯</span>
+            <span data-i18n="auth_value_2">Objectifs quotidiens, séries, XP et badges pour rester motivé.</span>
+        </div>
+        <div class="auth-value-row">
+            <span class="auth-value-icon">🔄</span>
+            <span data-i18n="auth_value_3">Répétition espacée : chaque mot revient au bon moment pour rester en mémoire.</span>
+        </div>
+    </div>
+
     <div id="authModeToggle" class="auth-mode-toggle">
         <button type="button" id="authModeLoginBtn" class="auth-mode-btn active" onclick="setAuthMode('login')" data-i18n="auth_mode_login">Se connecter</button>
         <button type="button" id="authModeSignupBtn" class="auth-mode-btn" onclick="setAuthMode('signup')" data-i18n="auth_mode_signup">Créer un compte</button>
@@ -2044,7 +2090,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v123</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v124</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3147,6 +3193,13 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
+        <strong data-i18n="settings_invite_title">Inviter un ami</strong>
+        <p style="color:#576177" data-i18n="settings_invite_desc">Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.</p>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="shareWortandoInvite()" data-i18n="settings_invite_btn">PARTAGER WORTANDO</button>
+    </div>
+
+    <div class="card">
         <strong data-i18n="settings_global_progress">Progression globale</strong>
         <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
 
@@ -3508,6 +3561,11 @@ const I18N = {
         badge_streak_7_desc: "Sept jours consécutifs d'activité.",
         badge_streak_30_title: "Un mois de discipline",
         badge_streak_30_desc: "Trente jours consécutifs d'activité.",
+        settings_invite_title: "Inviter un ami",
+        settings_invite_desc: "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.",
+        settings_invite_btn: "PARTAGER WORTANDO",
+        invite_share_text: "Je m'entraîne en allemand (et en anglais) avec Wortando — demande-moi un code d'invitation pour essayer !",
+        invite_share_copied: "Message copié — colle-le où tu veux pour l'envoyer !",
         streak_freeze_used: "Gel de série utilisé ! Ta série continue malgré le jour manqué.",
         streak_freeze_earned: "Gel de série gagné ! Il protégera ta série un jour où tu en manques un.",
         streak_freeze_hint: "Gel de série disponible : protège ta série un jour manqué.",
@@ -3519,6 +3577,9 @@ const I18N = {
         auth_kicker: "Accès restreint",
         auth_title: "Connexion obligatoire",
         auth_desc: "Veuillez vous connecter ou créer un compte pour utiliser Wortando.",
+        auth_value_1: "Vocabulaire et grammaire allemande organisés par niveau, du A1 au B2.",
+        auth_value_2: "Objectifs quotidiens, séries, XP et badges pour rester motivé.",
+        auth_value_3: "Répétition espacée : chaque mot revient au bon moment pour rester en mémoire.",
         auth_mode_login: "Se connecter",
         auth_mode_signup: "Créer un compte",
         auth_email_placeholder: "E-mail",
@@ -3982,6 +4043,11 @@ const I18N = {
         badge_streak_7_desc: "Seven consecutive days of activity.",
         badge_streak_30_title: "A month of discipline",
         badge_streak_30_desc: "Thirty consecutive days of activity.",
+        settings_invite_title: "Invite a friend",
+        settings_invite_desc: "Learning with Wortando? Share it with someone who'd like to learn German or English.",
+        settings_invite_btn: "SHARE WORTANDO",
+        invite_share_text: "I'm practicing German (and English) with Wortando — ask me for an invite code to try it!",
+        invite_share_copied: "Message copied — paste it anywhere to send it!",
         streak_freeze_used: "Streak freeze used! Your streak survives the missed day.",
         streak_freeze_earned: "Streak freeze earned! It will protect your streak on a missed day.",
         streak_freeze_hint: "Streak freeze available: protects your streak on one missed day.",
@@ -3993,6 +4059,9 @@ const I18N = {
         auth_kicker: "Restricted access",
         auth_title: "Login required",
         auth_desc: "Please sign in or create an account to use Wortando.",
+        auth_value_1: "German vocabulary and grammar organized by level, from A1 to B2.",
+        auth_value_2: "Daily goals, streaks, XP and badges to keep you motivated.",
+        auth_value_3: "Spaced repetition: every word comes back at just the right time to stick.",
         auth_mode_login: "Sign in",
         auth_mode_signup: "Create account",
         auth_email_placeholder: "Email",
@@ -4750,6 +4819,29 @@ async function handleLogout() {
         showScreen("auth");
     } catch (error) {
         alert(t('alert_logout_error'));
+    }
+}
+
+// Boucle de croissance simple : pas de création de code par l'utilisateur
+// (ça resterait réservé à l'admin, voir les règles Firestore), juste un
+// partage du message + de l'app -- le destinataire redemande un code
+// d'invitation à l'admin par un autre canal.
+async function shareWortandoInvite(){
+    const shareText = t("invite_share_text");
+    const shareUrl = window.location.origin + window.location.pathname;
+    try {
+        if (navigator.share) {
+            await navigator.share({ title: "Wortando", text: shareText, url: shareUrl });
+            return;
+        }
+    } catch (e) {
+        return; // l'utilisateur a annulé le partage natif -- pas d'erreur à afficher
+    }
+    try {
+        await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+        alert(t("invite_share_copied"));
+    } catch (e) {
+        alert(shareText + " " + shareUrl);
     }
 }
 
