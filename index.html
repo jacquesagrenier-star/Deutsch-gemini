@@ -1871,7 +1871,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v99</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v100</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3925,6 +3925,15 @@ function refreshSetupChoiceActiveStates(){
 // getWordState, qui refait un JSON.parse à chaque appel) après un setTimeout(0)
 // pour laisser le navigateur peindre le changement de couleur sans attendre —
 // sans ça, le clic semblait mettre 1-2 secondes à réagir.
+// requestAnimationFrame (x2) attend que le navigateur ait peint la trame
+// courante avant de lancer le travail plus lourd — plus fiable que
+// setTimeout(fn, 0), qui ne garantit pas qu'une peinture ait lieu avant que
+// le callback ne s'exécute (observé : la mise en surbrillance restait visible
+// après le calcul lourd sur certains téléphones malgré le setTimeout).
+function afterNextPaint(fn){
+    requestAnimationFrame(() => requestAnimationFrame(fn));
+}
+
 function selectLearningDirectionChoice(dir){
     setLearningDirection(dir);
     // Le module anglais n'existe qu'en anglais (voir refreshSetupChoiceActiveStates) :
@@ -3932,13 +3941,13 @@ function selectLearningDirectionChoice(dir){
     // avec le choix de langue masqué.
     if(dir === 'en' && getUiLang() !== 'en') setUiLang('en');
     refreshSetupChoiceActiveStates();
-    setTimeout(() => { applyLearningDirectionUi(); applyUiLangSideEffects(); }, 0);
+    afterNextPaint(() => { applyLearningDirectionUi(); applyUiLangSideEffects(); });
 }
 
 function selectUiLangChoice(lang){
     setUiLang(lang);
     refreshSetupChoiceActiveStates();
-    setTimeout(() => applyUiLangSideEffects(), 0);
+    afterNextPaint(() => applyUiLangSideEffects());
 }
 
 function completeInitialSetup(){
@@ -4981,16 +4990,33 @@ function shuffleArray(arr){
 
 const STORAGE_KEY = "deutschAI_progress_v4";
 
+// Cache mémoire : getWordState()/setWordState() sont le seul point d'accès à
+// la progression (voir progressKey()), et tout appelant qui lit repasse par
+// getProgress() puis réécrit via saveProgress(progress) avec le MÊME objet —
+// donc le garder en mémoire plutôt que re-JSON.parse à chaque appel est sûr,
+// et évite un vrai problème de performance : des écrans comme l'accueil ou la
+// nouvelle configuration appellent getWordState() en boucle sur des milliers
+// de mots (updateGlobalProgress, getLevelMasteryStats...), et re-parser tout
+// l'objet de progression à CHAQUE mot, à chaque appel, devenait perceptible
+// (plusieurs secondes) une fois la progression réelle accumulée sur des
+// semaines de test. (Limite acceptée : si l'app est ouverte dans plusieurs
+// onglets à la fois, ce cache peut devenir périmé dans les autres onglets —
+// déjà le cas en pratique avec localStorage hors rechargement complet.)
+let progressCache = null;
+
 function getProgress(){
+    if(progressCache) return progressCache;
     try{
         const data = localStorage.getItem(STORAGE_KEY);
-        return data ? JSON.parse(data) : {};
+        progressCache = data ? JSON.parse(data) : {};
     }catch(e){
-        return {};
+        progressCache = {};
     }
+    return progressCache;
 }
 
 function saveProgress(progress){
+    progressCache = progress;
     try{
         localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }catch(e){}
@@ -5086,8 +5112,15 @@ function getWordState(themeId, index){
     const progress = getProgress();
     if(!progress[key]) progress[key] = {};
     if(!progress[key][index]){
+        // Ne PAS persister ici (pas de saveProgress) : cette valeur par défaut est
+        // indiscernable de "aucune entrée" pour tout le code qui la lit (mastered:
+        // false dans les deux cas). L'écrire dans localStorage à chaque simple
+        // lecture d'un mot jamais encore touché causait un JSON.stringify de tout
+        // l'objet de progression à CHAQUE mot affiché pour la première fois — sur
+        // ~2000 mots, un vrai O(n²) responsable d'un blocage de plusieurs secondes
+        // (ex. à l'ouverture de l'accueil ou de la configuration). setWordState()
+        // reste le seul endroit qui persiste réellement un changement d'état.
         progress[key][index] = { mastered: false, due: 0, reviews: 0 };
-        saveProgress(progress);
     }
     return progress[key][index];
 }
@@ -7663,6 +7696,7 @@ function resetCurrentThemeConfirm(){
 function resetAllConfirm(){
     if(!confirm(t('confirm_reset_all_progress'))) return;
     localStorage.removeItem(STORAGE_KEY);
+    progressCache = {}; // sinon getProgress() renverrait encore l'ancien cache mémoire
     updateGlobalProgress();
     renderThemes();
     renderNomenLevels();
