@@ -2095,7 +2095,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v131</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v132</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2118,6 +2118,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                     <span class="home-chip">🔥 <span id="streakCount">0</span> j</span>
                     <span class="home-chip hidden" id="streakFreezeChip" title="">❄️ <span id="streakFreezeCount">0</span></span>
                     <span class="home-chip" id="weeklyMomentumChip">Cette semaine : 0</span>
+                    <span class="home-chip" id="badgeCountChip" onclick="openSettings()" style="cursor:pointer;">🏅 <span id="badgeCountHome">0</span>/<span id="badgeCountTotal">0</span></span>
                 </div>
             </div>
         </div>
@@ -2129,11 +2130,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
             <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
         </div>
-    </div>
-
-    <div class="card">
-        <strong data-i18n="settings_badges_title">Badges</strong>
-        <div id="badgesGridHome" class="badges-grid"></div>
     </div>
 
     <div class="grid" id="orbGrid">
@@ -6695,26 +6691,29 @@ function showBadgeToast(def){
     showToast(def.icon, `${t("badge_unlocked_prefix")} ${t(def.titleKey)}`);
 }
 
-// Rendue à deux endroits : l'accueil (là où on voit déjà la progression) et
-// les réglages -- même source, même comportement aux deux endroits. `title`
-// reste en place pour le survol sur ordinateur, mais l'explication passe
-// surtout par onclick/showBadgeDetail() puisqu'un tooltip HTML ne se
+// Grille complète (Réglages uniquement -- trop volumineuse pour l'accueil,
+// voir badgeCountChip ci-dessous pour la puce compacte sur l'accueil).
+// `title` reste en place pour le survol sur ordinateur, mais l'explication
+// passe surtout par onclick/showBadgeDetail() puisqu'un tooltip HTML ne se
 // déclenche pas de façon fiable au toucher sur mobile.
 function renderBadgesGrid(){
     const unlocked = getUnlockedBadges();
-    const html = BADGE_DEFINITIONS.map(def => {
-        const isUnlocked = unlocked.includes(def.id);
-        const title = t(def.titleKey);
-        const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
-        return `<div class="badge-item${isUnlocked ? " unlocked" : ""}" title="${title} — ${desc}" onclick="showBadgeDetail('${def.id}')" role="button" tabindex="0">
-            <span class="badge-icon">${def.icon}</span>
-            <span class="badge-label">${title}</span>
-        </div>`;
-    }).join("");
-    ["badgesGrid", "badgesGridHome"].forEach(id => {
-        const grid = document.getElementById(id);
-        if(grid) grid.innerHTML = html;
-    });
+    const grid = document.getElementById("badgesGrid");
+    if(grid){
+        grid.innerHTML = BADGE_DEFINITIONS.map(def => {
+            const isUnlocked = unlocked.includes(def.id);
+            const title = t(def.titleKey);
+            const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
+            return `<div class="badge-item${isUnlocked ? " unlocked" : ""}" title="${title} — ${desc}" onclick="showBadgeDetail('${def.id}')" role="button" tabindex="0">
+                <span class="badge-icon">${def.icon}</span>
+                <span class="badge-label">${title}</span>
+            </div>`;
+        }).join("");
+    }
+    const countEl = document.getElementById("badgeCountHome");
+    const totalEl = document.getElementById("badgeCountTotal");
+    if(countEl) countEl.textContent = unlocked.length;
+    if(totalEl) totalEl.textContent = BADGE_DEFINITIONS.length;
 }
 
 function showBadgeDetail(id){
