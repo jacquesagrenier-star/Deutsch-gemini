@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v114</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v115</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -6059,6 +6059,18 @@ function progressKey(themeId){
     return dir === 'en' ? `en__${themeId}` : themeId;
 }
 
+// Même principe que progressKey() mais pour une clé localStorage entière
+// plutôt qu'un id de thème -- utilisé pour la série de jours (streak),
+// l'objectif du jour et le compteur "revu cette semaine" (voir
+// DAILY_ACTIVITY_KEY/STREAK_KEY/MASTERY_LOG_KEY plus bas), qui n'étaient PAS
+// isolés par direction jusqu'ici (contrairement à la progression par mot) --
+// signalé par l'utilisateur : apprendre l'anglais faisait progresser à tort
+// le streak/objectif/compteur hebdomadaire de l'allemand, et vice-versa.
+function directionScopedKey(baseKey){
+    const dir = progressDirectionOverride || getLearningDirection();
+    return dir === 'en' ? `en__${baseKey}` : baseKey;
+}
+
 function getWordState(themeId, index){
     const key = progressKey(themeId);
     const progress = getProgress();
@@ -6126,7 +6138,7 @@ function adjustDailyGoal(delta){
 // pouvoir retester la célébration du lion sans attendre le lendemain.
 function resetDailyActivityConfirm(){
     if(!confirm(t('confirm_reset_daily_goal'))) return;
-    try{ localStorage.removeItem(DAILY_ACTIVITY_KEY); }catch(e){}
+    try{ localStorage.removeItem(directionScopedKey(DAILY_ACTIVITY_KEY)); }catch(e){}
     updateGlobalProgress();
 }
 
@@ -6150,7 +6162,8 @@ function getTodayStr(d){
 // pouvoir célébrer plusieurs fois dans la même journée.
 function recordDailyActivity(){
     let daily;
-    try{ daily = JSON.parse(localStorage.getItem(DAILY_ACTIVITY_KEY) || "null"); }catch(e){ daily = null; }
+    const dailyKey = directionScopedKey(DAILY_ACTIVITY_KEY);
+    try{ daily = JSON.parse(localStorage.getItem(dailyKey) || "null"); }catch(e){ daily = null; }
     const today = getTodayStr();
     if(!daily || daily.date !== today) daily = { date: today, count: 0, milestonesCelebrated: 0 };
     // Migration depuis l'ancien format (un seul booléen "goalCelebrated") : un
@@ -6170,16 +6183,17 @@ function recordDailyActivity(){
         daily.milestonesCelebrated = multiplesReached;
         justReachedMultiple = multiplesReached;
     }
-    try{ localStorage.setItem(DAILY_ACTIVITY_KEY, JSON.stringify(daily)); }catch(e){}
+    try{ localStorage.setItem(dailyKey, JSON.stringify(daily)); }catch(e){}
 
     let streak;
-    try{ streak = JSON.parse(localStorage.getItem(STREAK_KEY) || "null"); }catch(e){ streak = null; }
+    const streakKey = directionScopedKey(STREAK_KEY);
+    try{ streak = JSON.parse(localStorage.getItem(streakKey) || "null"); }catch(e){ streak = null; }
     if(!streak) streak = { count: 0, lastActiveDate: null };
     if(streak.lastActiveDate !== today){
         const yesterday = getTodayStr(new Date(Date.now() - 86400000));
         streak.count = (streak.lastActiveDate === yesterday) ? streak.count + 1 : 1;
         streak.lastActiveDate = today;
-        try{ localStorage.setItem(STREAK_KEY, JSON.stringify(streak)); }catch(e){}
+        try{ localStorage.setItem(streakKey, JSON.stringify(streak)); }catch(e){}
     }
 
     return justReachedMultiple;
@@ -6187,30 +6201,31 @@ function recordDailyActivity(){
 
 function getDailyActivityCount(){
     let daily;
-    try{ daily = JSON.parse(localStorage.getItem(DAILY_ACTIVITY_KEY) || "null"); }catch(e){ daily = null; }
+    try{ daily = JSON.parse(localStorage.getItem(directionScopedKey(DAILY_ACTIVITY_KEY)) || "null"); }catch(e){ daily = null; }
     const today = getTodayStr();
     return (daily && daily.date === today) ? daily.count : 0;
 }
 
 function getStreakCount(){
     let streak;
-    try{ streak = JSON.parse(localStorage.getItem(STREAK_KEY) || "null"); }catch(e){ streak = null; }
+    try{ streak = JSON.parse(localStorage.getItem(directionScopedKey(STREAK_KEY)) || "null"); }catch(e){ streak = null; }
     return streak ? streak.count : 0;
 }
 
 // Vélocité récente : nombre d'éléments maîtrisés dans les 7 derniers jours.
 function logMasteryEvent(){
     let log;
-    try{ log = JSON.parse(localStorage.getItem(MASTERY_LOG_KEY) || "[]"); }catch(e){ log = []; }
+    const key = directionScopedKey(MASTERY_LOG_KEY);
+    try{ log = JSON.parse(localStorage.getItem(key) || "[]"); }catch(e){ log = []; }
     log.push(Date.now());
     const cutoff = Date.now() - 60 * 24 * 60 * 60 * 1000;
     log = log.filter(t => t > cutoff);
-    try{ localStorage.setItem(MASTERY_LOG_KEY, JSON.stringify(log)); }catch(e){}
+    try{ localStorage.setItem(key, JSON.stringify(log)); }catch(e){}
 }
 
 function getWeeklyMasteryCount(){
     let log;
-    try{ log = JSON.parse(localStorage.getItem(MASTERY_LOG_KEY) || "[]"); }catch(e){ log = []; }
+    try{ log = JSON.parse(localStorage.getItem(directionScopedKey(MASTERY_LOG_KEY)) || "[]"); }catch(e){ log = []; }
     const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
     return log.filter(t => t > cutoff).length;
 }
@@ -9044,6 +9059,15 @@ function resetAllConfirm(){
     if(!confirm(t('confirm_reset_all_progress'))) return;
     localStorage.removeItem(STORAGE_KEY);
     progressCache = {}; // sinon getProgress() renverrait encore l'ancien cache mémoire
+    // "Toute la progression" = les deux directions -- efface explicitement les
+    // deux compartiments (allemand et en__) plutôt que seulement celui actif,
+    // pour rester cohérent avec STORAGE_KEY ci-dessus qui contient déjà les
+    // deux dans un seul objet. Corrige au passage un oubli pré-existant : ces
+    // trois clés n'étaient jamais effacées par "Réinitialiser toute la
+    // progression", contrairement à la progression par mot.
+    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY].forEach(k => {
+        try{ localStorage.removeItem(k); localStorage.removeItem(`en__${k}`); }catch(e){}
+    });
     updateGlobalProgress();
     renderThemes();
     renderNomenLevels();
