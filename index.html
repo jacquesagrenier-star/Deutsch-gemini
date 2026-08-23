@@ -1763,7 +1763,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
-        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openAuth()" title="Compte">CM</div>
+        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openSettings()" title="Compte">CM</div>
     </div>
 </header>
 
@@ -1871,7 +1871,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v98</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v99</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2772,6 +2772,13 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
+        <strong data-i18n="settings_account_title">Compte</strong>
+        <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
+        <div class="spacer"></div>
+        <button class="secondary danger" onclick="handleLogout()" data-i18n="auth_logout">SE DÉCONNECTER</button>
+    </div>
+
+    <div class="card">
         <strong data-i18n="settings_global_progress">Progression globale</strong>
         <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
 
@@ -3092,6 +3099,7 @@ const I18N = {
         dashboard_button: "TABLEAU DE BORD",
 
         kicker_progress: "Progression",
+        settings_account_title: "Compte",
         settings_title: "Révision",
         settings_global_progress: "Progression globale",
         settings_view_themes: "VOIR LES THÈMES",
@@ -3483,6 +3491,7 @@ const I18N = {
         dashboard_button: "DASHBOARD",
 
         kicker_progress: "Progress",
+        settings_account_title: "Account",
         settings_title: "Review",
         settings_global_progress: "Overall progress",
         settings_view_themes: "VIEW THEMES",
@@ -6079,6 +6088,8 @@ function openSettings(){
     // (comme l'ancien bouton drapeau, voir commit v94).
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user) return;
+    const emailDisplay = document.getElementById("settingsUserEmailDisplay");
+    if(emailDisplay) emailDisplay.textContent = user.email || "";
     updateGlobalProgress();
     renderProgressRadar();
     renderDailyGoalSetting();
