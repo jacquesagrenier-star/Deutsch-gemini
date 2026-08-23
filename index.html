@@ -645,6 +645,61 @@ body[data-theme="dark"] .badge-item .badge-label{
     color:#B7BBCB;
 }
 
+.next-badge-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(232,162,58,.14);
+    border-radius:10px;
+    padding:10px 12px;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+.next-badge-icon{
+    font-size:22px;
+}
+
+.next-badge-info{
+    flex:1;
+    min-width:0;
+}
+
+.next-badge-title{
+    font-size:13px;
+    font-weight:700;
+    color:#854F0B;
+    margin:0;
+}
+
+.next-badge-track{
+    background:rgba(240,153,123,.25);
+    border-radius:6px;
+    height:6px;
+    margin-top:6px;
+    overflow:hidden;
+}
+
+.next-badge-fill{
+    background:#BA7517;
+    height:100%;
+}
+
+.next-badge-progress{
+    font-size:11px;
+    color:#854F0B;
+    margin:4px 0 0;
+}
+
+body[data-theme="dark"] .next-badge-box{
+    background:rgba(232,162,58,.18);
+}
+
+body[data-theme="dark"] .next-badge-title,
+body[data-theme="dark"] .next-badge-progress{
+    color:#f5c374;
+}
+
 .badge-toast{
     position:fixed;
     left:50%;
@@ -2095,7 +2150,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v132</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v133</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2118,8 +2173,15 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                     <span class="home-chip">🔥 <span id="streakCount">0</span> j</span>
                     <span class="home-chip hidden" id="streakFreezeChip" title="">❄️ <span id="streakFreezeCount">0</span></span>
                     <span class="home-chip" id="weeklyMomentumChip">Cette semaine : 0</span>
-                    <span class="home-chip" id="badgeCountChip" onclick="openSettings()" style="cursor:pointer;">🏅 <span id="badgeCountHome">0</span>/<span id="badgeCountTotal">0</span></span>
                 </div>
+            </div>
+        </div>
+        <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
+            <span id="nextBadgeIcon" class="next-badge-icon"></span>
+            <div class="next-badge-info">
+                <p id="nextBadgeTitle" class="next-badge-title"></p>
+                <div class="next-badge-track"><div id="nextBadgeFill" class="next-badge-fill" style="width:0%"></div></div>
+                <p id="nextBadgeProgress" class="next-badge-progress"></p>
             </div>
         </div>
         <div class="home-level-hint" data-i18n="home_ring_hint">Touche le cercle pour changer de niveau (A1 · A2 · B1 · B2)</div>
@@ -3609,6 +3671,9 @@ const I18N = {
         settings_invite_btn: "PARTAGER WORTANDO",
         invite_share_text: "Je m'entraîne en allemand (et en anglais) avec Wortando — demande-moi un code d'invitation pour essayer !",
         invite_share_copied: "Message copié — colle-le où tu veux pour l'envoyer !",
+        next_badge_progress: "{current} sur {threshold} {unit}",
+        next_badge_unit_days: "jours",
+        next_badge_unit_xp: "points",
         streak_freeze_used: "Gel de série utilisé ! Ta série continue malgré le jour manqué.",
         streak_freeze_earned: "Gel de série gagné ! Il protégera ta série un jour où tu en manques un.",
         streak_freeze_hint: "Gel de série disponible : protège ta série un jour manqué.",
@@ -4109,6 +4174,9 @@ const I18N = {
         settings_invite_btn: "SHARE WORTANDO",
         invite_share_text: "I'm practicing German (and English) with Wortando — ask me for an invite code to try it!",
         invite_share_copied: "Message copied — paste it anywhere to send it!",
+        next_badge_progress: "{current} of {threshold} {unit}",
+        next_badge_unit_days: "days",
+        next_badge_unit_xp: "points",
         streak_freeze_used: "Streak freeze used! Your streak survives the missed day.",
         streak_freeze_earned: "Streak freeze earned! It will protect your streak on a missed day.",
         streak_freeze_hint: "Streak freeze available: protects your streak on one missed day.",
@@ -6639,14 +6707,18 @@ function updateXpComboDisplay(){
 // jamais sur un recalcul complet du corpus (voir le bug de performance
 // O(n²) corrigé en v100, à ne pas réintroduire ici).
 const BADGES_KEY = "deutschAI_badges";
+// metric ("xp" ou "streak") + threshold plutôt qu'une fonction check() : permet
+// de calculer une progression (current/threshold) générique pour n'importe
+// quel badge, utilisé par getNextBadgeToUnlock() pour la mise en avant sur
+// l'accueil (voir renderNextBadgeBox()).
 const BADGE_DEFINITIONS = [
-    { id: "first_word", icon: "🌱", titleKey: "badge_first_word_title", descKey: "badge_first_word_desc", check: s => s.xp >= 1 },
-    { id: "xp_500", icon: "⚡", titleKey: "badge_xp_500_title", descKey: "badge_xp_500_desc", check: s => s.xp >= 50 },
-    { id: "xp_2000", icon: "🚀", titleKey: "badge_xp_2000_title", descKey: "badge_xp_2000_desc", check: s => s.xp >= 200 },
-    { id: "xp_5000", icon: "👑", titleKey: "badge_xp_5000_title", descKey: "badge_xp_5000_desc", check: s => s.xp >= 500 },
-    { id: "streak_3", icon: "🔥", titleKey: "badge_streak_3_title", descKey: "badge_streak_3_desc", check: s => s.streak >= 3 },
-    { id: "streak_7", icon: "🗓️", titleKey: "badge_streak_7_title", descKey: "badge_streak_7_desc", check: s => s.streak >= 7 },
-    { id: "streak_30", icon: "🏆", titleKey: "badge_streak_30_title", descKey: "badge_streak_30_desc", check: s => s.streak >= 30 }
+    { id: "first_word", icon: "🌱", titleKey: "badge_first_word_title", descKey: "badge_first_word_desc", metric: "xp", threshold: 1 },
+    { id: "xp_500", icon: "⚡", titleKey: "badge_xp_500_title", descKey: "badge_xp_500_desc", metric: "xp", threshold: 50 },
+    { id: "xp_2000", icon: "🚀", titleKey: "badge_xp_2000_title", descKey: "badge_xp_2000_desc", metric: "xp", threshold: 200 },
+    { id: "xp_5000", icon: "👑", titleKey: "badge_xp_5000_title", descKey: "badge_xp_5000_desc", metric: "xp", threshold: 500 },
+    { id: "streak_3", icon: "🔥", titleKey: "badge_streak_3_title", descKey: "badge_streak_3_desc", metric: "streak", threshold: 3 },
+    { id: "streak_7", icon: "🗓️", titleKey: "badge_streak_7_title", descKey: "badge_streak_7_desc", metric: "streak", threshold: 7 },
+    { id: "streak_30", icon: "🏆", titleKey: "badge_streak_30_title", descKey: "badge_streak_30_desc", metric: "streak", threshold: 30 }
 ];
 
 function getUnlockedBadges(){
@@ -6666,7 +6738,7 @@ function checkAndUnlockBadges(){
     let changed = false;
     BADGE_DEFINITIONS.forEach(def => {
         if(unlocked.includes(def.id)) return;
-        if(def.check(stats)){
+        if(stats[def.metric] >= def.threshold){
             unlocked.push(def.id);
             changed = true;
             showBadgeToast(def);
@@ -6676,6 +6748,39 @@ function checkAndUnlockBadges(){
         saveUnlockedBadges(unlocked);
         renderBadgesGrid();
     }
+}
+
+// Le badge locked le plus proche d'être débloqué (le + grand ratio
+// current/threshold), tous types confondus (xp et streak) -- c'est celui-là
+// qu'on met en avant sur l'accueil plutôt que la grille complète.
+function getNextBadgeToUnlock(){
+    const unlocked = getUnlockedBadges();
+    const stats = { xp: getXp(), streak: getStreakCount() };
+    let best = null;
+    let bestRatio = -1;
+    BADGE_DEFINITIONS.forEach(def => {
+        if(unlocked.includes(def.id)) return;
+        const current = stats[def.metric] || 0;
+        const ratio = Math.min(1, current / def.threshold);
+        if(ratio > bestRatio){
+            bestRatio = ratio;
+            best = { def, current: Math.min(current, def.threshold), threshold: def.threshold, ratio };
+        }
+    });
+    return best;
+}
+
+function renderNextBadgeBox(){
+    const box = document.getElementById("nextBadgeBox");
+    if(!box) return;
+    const next = getNextBadgeToUnlock();
+    if(!next){ box.classList.add("hidden"); return; }
+    box.classList.remove("hidden");
+    document.getElementById("nextBadgeIcon").textContent = next.def.icon;
+    document.getElementById("nextBadgeTitle").textContent = t(next.def.titleKey);
+    document.getElementById("nextBadgeFill").style.width = Math.round(next.ratio * 100) + "%";
+    const unit = next.def.metric === "streak" ? t("next_badge_unit_days") : t("next_badge_unit_xp");
+    document.getElementById("nextBadgeProgress").textContent = tf("next_badge_progress", { current: next.current, threshold: next.threshold, unit });
 }
 
 function showToast(icon, text){
@@ -6692,9 +6797,9 @@ function showBadgeToast(def){
 }
 
 // Grille complète (Réglages uniquement -- trop volumineuse pour l'accueil,
-// voir badgeCountChip ci-dessous pour la puce compacte sur l'accueil).
-// `title` reste en place pour le survol sur ordinateur, mais l'explication
-// passe surtout par onclick/showBadgeDetail() puisqu'un tooltip HTML ne se
+// voir renderNextBadgeBox() pour la mise en avant sur l'accueil). `title`
+// reste en place pour le survol sur ordinateur, mais l'explication passe
+// surtout par onclick/showBadgeDetail() puisqu'un tooltip HTML ne se
 // déclenche pas de façon fiable au toucher sur mobile.
 function renderBadgesGrid(){
     const unlocked = getUnlockedBadges();
@@ -6710,10 +6815,7 @@ function renderBadgesGrid(){
             </div>`;
         }).join("");
     }
-    const countEl = document.getElementById("badgeCountHome");
-    const totalEl = document.getElementById("badgeCountTotal");
-    if(countEl) countEl.textContent = unlocked.length;
-    if(totalEl) totalEl.textContent = BADGE_DEFINITIONS.length;
+    renderNextBadgeBox();
 }
 
 function showBadgeDetail(id){
