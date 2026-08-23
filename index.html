@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v108</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v109</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -6091,6 +6091,7 @@ const LEVELS = ["A1", "A2", "B1", "B2"];
 
 const DAILY_ACTIVITY_KEY = "deutschAI_dailyActivity";
 const STREAK_KEY = "deutschAI_streak";
+const DAILY_GOAL_VIDEO_ROTATION_KEY = "deutschAI_dailyGoalVideoRotation";
 const MASTERY_LOG_KEY = "deutschAI_masteryLog";
 const DAILY_GOAL_STORAGE_KEY = "deutschAI_dailyGoalTarget";
 const DEFAULT_DAILY_GOAL_TARGET = 30;
@@ -6141,19 +6142,33 @@ function getTodayStr(d){
 // exact) — ça déclenche la grande célébration (lion) une seule fois par jour,
 // peu importe si c'est une carte "maîtrisée" ou "à revoir" qui fait passer le
 // seuil, et même si l'objectif a été changé en cours de route.
+// Retourne 0 si aucun nouveau palier n'est atteint par cette activité, sinon
+// le numéro du palier (1 = objectif atteint, 2 = doublé, 3 = triplé, 4 =
+// quadruplé, etc.) -- voir triggerDailyGoalCelebration() pour l'association
+// palier -> vidéo. Remplace l'ancien booléen "goalCelebrated" (un seul
+// palier possible par jour) par un compteur "milestonesCelebrated", pour
+// pouvoir célébrer plusieurs fois dans la même journée.
 function recordDailyActivity(){
     let daily;
     try{ daily = JSON.parse(localStorage.getItem(DAILY_ACTIVITY_KEY) || "null"); }catch(e){ daily = null; }
     const today = getTodayStr();
-    if(!daily || daily.date !== today) daily = { date: today, count: 0, goalCelebrated: false };
-    if(typeof daily.goalCelebrated !== "boolean") daily.goalCelebrated = false;
+    if(!daily || daily.date !== today) daily = { date: today, count: 0, milestonesCelebrated: 0 };
+    // Migration depuis l'ancien format (un seul booléen "goalCelebrated") : un
+    // objectif déjà célébré aujourd'hui sous l'ancien format compte comme le
+    // palier 1 déjà atteint, pour ne pas re-déclencher la célébration au
+    // prochain chargement après la mise à jour.
+    if(typeof daily.milestonesCelebrated !== "number"){
+        daily.milestonesCelebrated = daily.goalCelebrated ? 1 : 0;
+    }
+    delete daily.goalCelebrated;
     const target = getDailyGoalTarget();
     daily.count += 1;
 
-    let justReachedGoal = false;
-    if(!daily.goalCelebrated && daily.count >= target){
-        daily.goalCelebrated = true;
-        justReachedGoal = true;
+    let justReachedMultiple = 0;
+    const multiplesReached = target > 0 ? Math.floor(daily.count / target) : 0;
+    if(multiplesReached > daily.milestonesCelebrated){
+        daily.milestonesCelebrated = multiplesReached;
+        justReachedMultiple = multiplesReached;
     }
     try{ localStorage.setItem(DAILY_ACTIVITY_KEY, JSON.stringify(daily)); }catch(e){}
 
@@ -6167,7 +6182,7 @@ function recordDailyActivity(){
         try{ localStorage.setItem(STREAK_KEY, JSON.stringify(streak)); }catch(e){}
     }
 
-    return justReachedGoal;
+    return justReachedMultiple;
 }
 
 function getDailyActivityCount(){
@@ -8172,7 +8187,8 @@ function scheduleReview(minutes){
     state.due = Date.now() + (minutes * 60 * 1000);
     state.reviews = (state.reviews || 0) + 1;
     setWordState(item.themeId, item.index, state);
-    if(recordDailyActivity()) triggerDailyGoalCelebration();
+    const justReachedMultiple = recordDailyActivity();
+    if(justReachedMultiple > 0) triggerDailyGoalCelebration(justReachedMultiple);
     nextFlashcard();
 }
 
@@ -8485,7 +8501,19 @@ const VIDEO_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/D
 // dauphin.MP4 retiré temporairement : problème de détourage (le ventre passe du
 // noir au blanc), le fond ne se garde pas bien transparent sur cette vidéo.
 const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "chat.MP4", "poussin.MP4", "cheval.MP4", "girafe.MP4", "coq.MP4", "herisson.MP4"];
-const DAILY_GOAL_VIDEO_FILE = "personnage.MP4";
+// Célébration de l'objectif du jour : une vidéo par palier atteint (1x, 2x, 3x,
+// 4x l'objectif), au-delà on répète la dernière (voir triggerDailyGoalCelebration).
+// personnage.MP4 (liseré VERT) reste inchangée -- muette, avec la fanfare
+// synthétisée existante. personnage2/3/4.MP4 (liserés BLEUS, ajoutées le
+// 2026-08-23) ont leur propre son (trompette, applaudissements...) : on les
+// laisse non muettes et on saute la fanfare synthétisée pour elles (voir
+// DAILY_GOAL_VIDEOS ci-dessous et triggerDailyGoalCelebration()).
+const DAILY_GOAL_VIDEOS = [
+    { file: "personnage.MP4", outline: "green", muted: true },
+    { file: "personnage2.MP4", outline: "blue", muted: false },
+    { file: "personnage3.MP4", outline: "blue", muted: false },
+    { file: "personnage4.MP4", outline: "blue", muted: false },
+];
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
 // personnage.MP4 (depuis le 2026-08-21, 2e export) a un fond NOIR uni avec un
@@ -8502,16 +8530,30 @@ const DAILY_GOAL_VIDEO_SIZE = 260;
 // Deux niveaux de confiance :
 // - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord de
 //   l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il est très
-//   sombre OU nettement verdâtre.
-// - "strong" (signal très fort, vert vif) est retiré SANS exiger de connectivité
-//   -- au cas où l'anneau le plus lumineux soit isolé du fond connecté par une
-//   fine bande de transition trop faible en signal pour la connectivité seule.
+//   sombre OU nettement teinté dans la couleur du liseré (vert ou bleu selon
+//   la vidéo, voir MASTERY_OUTLINE_COLORS ci-dessous).
+// - "strong" (signal très fort) est retiré SANS exiger de connectivité -- au
+//   cas où l'anneau le plus lumineux soit isolé du fond connecté par une fine
+//   bande de transition trop faible en signal pour la connectivité seule.
+//
+// personnage2/3/4.MP4 (liseré BLEU, ajoutées le 2026-08-23) : mêmes seuils
+// loose/strong que le vert (vérifié pixel par pixel sur les 3 vidéos -- le
+// pantalon/chandail marine du personnage plafonne à une "bleuité" ~23, largement
+// sous le seuil loose de 25, alors que l'anneau bleu vif est à ~110). Mais leur
+// transition anneau/fond reste large comme le 1er essai bleu abandonné pour
+// personnage.MP4 : sans traitement supplémentaire, un fin liseré bleu résiduel
+// reste visible autour du personnage une fois composé sur un fond sombre.
+// Corrigé par un "choke" (rétrécissement du personnage gardé de quelques
+// pixels, technique standard en incrustation chroma) plutôt qu'en touchant les
+// seuils de couleur partagés avec le vert -- vérifié sans perte de détail
+// visible (doigts, pompon, anses du trophée) sur les 3 vidéos.
 const MASTERY_LOOSE_DARK_MAX = 26;
-const MASTERY_LOOSE_GREEN_THRESH = 25;
-const MASTERY_STRONG_GREEN_THRESH = 90;
+const MASTERY_LOOSE_OUTLINE_THRESH = 25;
+const MASTERY_STRONG_OUTLINE_THRESH = 90;
 const MASTERY_ERODE_RADIUS = 3;
 const MASTERY_DILATE_RADIUS = 8;
 const MASTERY_CLOSE_RADIUS = 3;
+const MASTERY_BLUE_CHOKE_RADIUS = 4;
 
 // En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
 // noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
@@ -8534,7 +8576,12 @@ function pickRandomCelebrationVideo(){
     return VIDEO_BASE_URL + file;
 }
 
-function showMasteryCharacter(videoUrl, big){
+// outlineColor : "green" (défaut, historique) ou "blue" (personnage2/3/4.MP4) --
+// détermine quel canal domine dans computeBackgroundMask(). playAudio : true
+// pour laisser le son natif de la vidéo jouer (personnage2/3/4.MP4) plutôt que
+// de forcer le mode muet (comportement historique, toujours utilisé pour les
+// animaux et personnage.MP4 dont le son est remplacé par la fanfare synthétisée).
+function showMasteryCharacter(videoUrl, big, outlineColor, playAudio){
     const container = document.getElementById("confettiContainer");
     if(!container) return;
     const size = big ? DAILY_GOAL_VIDEO_SIZE : MASTERY_VIDEO_SIZE;
@@ -8542,9 +8589,11 @@ function showMasteryCharacter(videoUrl, big){
     const video = document.createElement("video");
     video.crossOrigin = "anonymous"; // requis pour lire les pixels du canvas (raw.githubusercontent.com envoie déjà Access-Control-Allow-Origin: *)
     video.src = videoUrl;
-    video.muted = true;
-    video.defaultMuted = true;
-    video.setAttribute("muted", "");
+    if(!playAudio){
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute("muted", "");
+    }
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
     video.setAttribute("aria-hidden", "true");
@@ -8666,17 +8715,21 @@ function showMasteryCharacter(videoUrl, big){
     // - mask2 : le signal vert très fort, retiré sans condition de connectivité
     //   (fermeture morphologique pour lisser), au cas où l'anneau le plus vif
     //   soit isolé du fond connecté par une fine bande de transition.
-    function computeBackgroundMask(d, w, h){
+    function computeBackgroundMask(d, w, h, outlineColor){
         const n = w * h;
         const looseCand = new Uint8Array(n);
         const strongCand = new Uint8Array(n);
+        const isBlue = outlineColor === "blue";
         for(let p = 0; p < n; p++){
             const i = p * 4;
             const r = d[i], g = d[i+1], b = d[i+2];
             const mx = Math.max(r, g, b);
-            const greenness = g - Math.max(r, b);
-            if(mx < MASTERY_LOOSE_DARK_MAX || greenness > MASTERY_LOOSE_GREEN_THRESH) looseCand[p] = 1;
-            if(greenness > MASTERY_STRONG_GREEN_THRESH) strongCand[p] = 1;
+            // "outlineness" : dominance du canal du liseré sur les deux autres.
+            // Mêmes seuils pour vert et bleu (vérifiés séparément sur chaque jeu
+            // de vidéos, voir commentaire des constantes MASTERY_*).
+            const outlineness = isBlue ? (b - Math.max(r, g)) : (g - Math.max(r, b));
+            if(mx < MASTERY_LOOSE_DARK_MAX || outlineness > MASTERY_LOOSE_OUTLINE_THRESH) looseCand[p] = 1;
+            if(outlineness > MASTERY_STRONG_OUTLINE_THRESH) strongCand[p] = 1;
         }
 
         const core = erodeMask(looseCand, w, h, MASTERY_ERODE_RADIUS);
@@ -8702,12 +8755,18 @@ function showMasteryCharacter(videoUrl, big){
 
         const mask2 = erodeMask(dilateMask(strongCand, w, h, MASTERY_CLOSE_RADIUS), w, h, MASTERY_CLOSE_RADIUS);
 
-        const finalMask = new Uint8Array(n);
+        let finalMask = new Uint8Array(n);
         for(let p = 0; p < n; p++){
             const inMask1 = dilated1[p] && looseCand[p];
             const inMask2 = mask2[p] && strongCand[p]; // ne jamais depasser le signal fort d'origine
             finalMask[p] = (inMask1 || inMask2) ? 1 : 0;
         }
+        // Liseré bleu : transition anneau/fond nettement plus large qu'en vert
+        // (~40px contre ~14px, voir commentaire des constantes) -- un fin liseré
+        // résiduel reste visible sans ce "choke" (rétrécissement du personnage
+        // gardé de quelques pixels, cf. incrustation chroma classique). Appliqué
+        // uniquement au bleu pour ne rien changer au rendu vert déjà vérifié.
+        if(isBlue) finalMask = dilateMask(finalMask, w, h, MASTERY_BLUE_CHOKE_RADIUS);
         return finalMask;
     }
 
@@ -8723,7 +8782,7 @@ function showMasteryCharacter(videoUrl, big){
             try{
                 const frame = ctx.getImageData(0, 0, size, size);
                 const d = frame.data;
-                const mask = computeBackgroundMask(d, size, size);
+                const mask = computeBackgroundMask(d, size, size, outlineColor);
                 const darkTheme = document.body.getAttribute("data-theme") === "dark";
                 for(let p = 0; p < mask.length; p++){
                     const i = p * 4;
@@ -8751,7 +8810,19 @@ function showMasteryCharacter(videoUrl, big){
     }
 
     video.addEventListener("loadeddata", () => {
-        video.play().catch(() => {});
+        // Certains navigateurs bloquent la lecture automatique AVEC son même
+        // depuis un clic (politique d'autoplay) : si la lecture non muette est
+        // rejetée, on retente aussitôt en muet plutôt que de perdre l'animation
+        // entière (mieux vaut l'effet visuel sans son que rien du tout).
+        const playPromise = video.play();
+        if(playPromise && typeof playPromise.catch === "function"){
+            playPromise.catch(() => {
+                if(!video.muted){
+                    video.muted = true;
+                    video.play().catch(() => {});
+                }
+            });
+        }
         drawFrame();
     });
     video.addEventListener("error", () => { stopped = true; video.remove(); canvas.remove(); });
@@ -8765,35 +8836,69 @@ function showMasteryCharacter(videoUrl, big){
     });
 }
 
-// Gros bandeau "+N !" affiché uniquement lorsque l'objectif du jour vient d'être
-// atteint, au-dessus du lion agrandi.
-function showDailyGoalText(){
+// Gros bandeau "+N !" affiché à chaque palier de l'objectif du jour franchi,
+// au-dessus du personnage agrandi -- montre le seuil réellement atteint
+// (objectif x multiple), pas toujours l'objectif de base.
+function showDailyGoalText(threshold){
     const container = document.getElementById("confettiContainer");
     if(!container) return;
     const el = document.createElement("div");
     el.className = "daily-goal-text";
-    el.textContent = "+" + getDailyGoalTarget() + " !";
+    el.textContent = "+" + threshold + " !";
     container.appendChild(el);
     el.addEventListener("animationend", () => el.remove());
 }
 
-// Grande célébration (personnage agrandi + fanfare + "+N !") : appelée dès que
-// l'objectif du jour vient d'être atteint, peu importe l'action qui a déclenché
-// le franchissement (voir recordDailyActivity).
-function triggerDailyGoalCelebration(){
-    // Confettis retirés temporairement pour mieux juger de la synchronisation
-    // vidéo/son (fanfare au démarrage de la vidéo, étincelle peu après).
-    showMasteryCharacter(VIDEO_BASE_URL + DAILY_GOAL_VIDEO_FILE, true);
-    showDailyGoalText();
-    playDailyGoalFanfare();
-    setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
+// Fait tourner, un jour calendaire à la fois, quelle vidéo de DAILY_GOAL_VIDEOS
+// ouvre la séquence de célébrations du jour (mémorisé plutôt que random, pour
+// ne jamais retomber deux jours de suite sur la même -- demande explicite de
+// l'utilisateur). Le jour 1 démarre à l'index 0 (personnage.MP4), le jour 2 à
+// l'index 1, etc., en bouclant sur les 4 vidéos. N'avance que lors du premier
+// appel d'un nouveau jour (comparaison de date), reste stable pour tous les
+// paliers célébrés le même jour.
+function getDailyGoalVideoStartIndex(){
+    let rot;
+    try{ rot = JSON.parse(localStorage.getItem(DAILY_GOAL_VIDEO_ROTATION_KEY) || "null"); }catch(e){ rot = null; }
+    const today = getTodayStr();
+    const n = DAILY_GOAL_VIDEOS.length;
+    if(!rot || typeof rot.startIndex !== "number"){
+        rot = { date: today, startIndex: 0 };
+    } else if(rot.date !== today){
+        rot = { date: today, startIndex: (rot.startIndex + 1) % n };
+    }
+    try{ localStorage.setItem(DAILY_GOAL_VIDEO_ROTATION_KEY, JSON.stringify(rot)); }catch(e){}
+    return rot.startIndex;
 }
 
-function celebrateMastery(justReachedGoal){
-    if(justReachedGoal){
-        // Grande célébration (objectif du jour) : pas de confettis en plus, l'effet
-        // est déjà complet (personnage + fanfare + étincelle).
-        triggerDailyGoalCelebration();
+// Grande célébration (personnage agrandi + "+N !") : appelée à chaque palier
+// de l'objectif du jour franchi (1x, 2x, 3x, 4x...), peu importe l'action qui
+// a déclenché le franchissement (voir recordDailyActivity). `multiple` est le
+// numéro du palier (1 = objectif atteint, 2 = doublé, etc.) ; au-delà de la
+// 4e vidéo, on répète la dernière plutôt que de célébrer sans vidéo.
+// La vidéo qui ouvre la séquence tourne d'un jour à l'autre (voir
+// getDailyGoalVideoStartIndex) : ex. jour 1 -> 1x=personnage, 2x=personnage2...
+// jour 2 -> 1x=personnage2, 2x=personnage3... personnage.MP4 (vert) garde son
+// comportement historique (muette + fanfare synthétisée) ; personnage2/3/4.MP4
+// (bleu) gardent leur propre son et sautent la fanfare pour ne pas superposer
+// les deux (voir DAILY_GOAL_VIDEOS).
+function triggerDailyGoalCelebration(multiple){
+    const n = DAILY_GOAL_VIDEOS.length;
+    const startIdx = getDailyGoalVideoStartIndex();
+    const seqIndex = Math.min(multiple, n) - 1; // répète la dernière au-delà du palier n
+    const video = DAILY_GOAL_VIDEOS[(startIdx + seqIndex) % n];
+    showMasteryCharacter(VIDEO_BASE_URL + video.file, true, video.outline, !video.muted);
+    showDailyGoalText(getDailyGoalTarget() * multiple);
+    if(video.muted){
+        playDailyGoalFanfare();
+        setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
+    }
+}
+
+function celebrateMastery(justReachedMultiple){
+    if(justReachedMultiple > 0){
+        // Grande célébration (palier de l'objectif du jour) : pas de confettis en
+        // plus, l'effet est déjà complet (personnage + son + étincelle).
+        triggerDailyGoalCelebration(justReachedMultiple);
     } else {
         // Petite explosion de confettis à chaque carte maîtrisée "normale" (le
         // petit animal vidéo, lui, reste retiré). Pas de délai avant la carte
@@ -8811,9 +8916,9 @@ function markMastered(){
     state.due = 0;
     state.reviews = (state.reviews || 0) + 1;
     setWordState(item.themeId, item.index, state);
-    const justReachedGoal = recordDailyActivity();
+    const justReachedMultiple = recordDailyActivity();
     logMasteryEvent();
-    celebrateMastery(justReachedGoal);
+    celebrateMastery(justReachedMultiple);
     nextFlashcard();
 }
 
