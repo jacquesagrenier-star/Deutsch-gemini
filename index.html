@@ -1891,12 +1891,12 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <h1>
         <span class="gradient">
-            <span data-i18n="home_title_1">Apprends l'allemand</span>
-            <span data-i18n="home_title_2">mot par mot.</span>
+            <span id="homeTitle1" data-i18n="home_title_1">Apprends l'allemand</span>
+            <span id="homeTitle2" data-i18n="home_title_2">mot par mot.</span>
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v101</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v102</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3142,6 +3142,9 @@ const I18N = {
         home_title_1: "Apprends l'allemand",
         home_title_2: "mot par mot.",
         home_subtitle: "Ton tuteur personnel pour la grammaire allemande et le vocabulaire.",
+        home_title_1_en_dir: "Apprends l'anglais",
+        home_title_2_en_dir: "mot par mot.",
+        home_subtitle_en_dir: "Ton tuteur personnel pour la grammaire anglaise et le vocabulaire.",
         home_ring_hint: "Touche le cercle pour changer de niveau (A1 · A2 · B1 · B2)",
         home_daily_goal_label: "🎯 Objectif du jour",
         home_week_zero: "Cette semaine : 0",
@@ -3559,6 +3562,9 @@ const I18N = {
         home_title_1: "Learn German",
         home_title_2: "word by word.",
         home_subtitle: "Your personal tutor for German grammar and vocabulary.",
+        home_title_1_en_dir: "Learn English",
+        home_title_2_en_dir: "word by word.",
+        home_subtitle_en_dir: "Your personal tutor for English grammar and vocabulary.",
         home_ring_hint: "Tap the circle to change level (A1 · A2 · B1 · B2)",
         home_daily_goal_label: "🎯 Daily goal",
         home_week_zero: "This week: 0",
@@ -4038,6 +4044,7 @@ function applyUiLangSideEffects(){
     applyUiLang();
     updateGlobalProgress(); // rafraîchit les libellés générés en JS (qualitatif, semaine, objectif)
     renderFlipToggleButtons();
+    refreshHomeHeroText();
     refreshDynamicUiLang();
 }
 
@@ -4067,12 +4074,28 @@ function setLearningDirection(dir){
 // bascule en cliquant, même logique que uiLangToggleLabel) et rafraîchit les
 // éléments dépendant de la progression (celle-ci est maintenant isolée par
 // direction, voir progressKey()).
+// Le grand titre/sous-titre de l'accueil ("Apprends l'allemand mot par mot" /
+// "Ton tuteur personnel pour la grammaire allemande...") dépend des DEUX axes
+// à la fois : la direction (quelle langue est apprise) ET la langue d'interface
+// (dans quelle langue le texte est écrit) — d'où un rafraîchissement séparé,
+// appelé après un changement de l'un ou l'autre.
+function refreshHomeHeroText(){
+    const dir = getLearningDirection();
+    const t1 = document.getElementById("homeTitle1");
+    const t2 = document.getElementById("homeTitle2");
+    const sub = document.getElementById("homeSubtitle");
+    if(t1) t1.textContent = t(dir === "en" ? "home_title_1_en_dir" : "home_title_1");
+    if(t2) t2.textContent = t(dir === "en" ? "home_title_2_en_dir" : "home_title_2");
+    if(sub) sub.textContent = t(dir === "en" ? "home_subtitle_en_dir" : "home_subtitle");
+}
+
 function applyLearningDirectionUi(){
     const dir = getLearningDirection();
     // Pilote l'affichage des tuiles d'accueil (.orb-de / .orb-en, voir CSS) : les
     // catégories de grammaire ne sont pas les mêmes selon la langue apprise.
     document.body.setAttribute("data-learning-dir", dir);
     renderFlipToggleButtons(); // relabellise le sélecteur FR⇄DE / DE⇄EN
+    refreshHomeHeroText();
     // Le sélecteur de langue d'interface (FR/EN) n'a pas de sens en direction
     // anglaise : l'app ne propose pas d'interface allemande, et "convertir en
     // français" en pleine leçon d'anglais est déroutant. On le masque.
@@ -4208,6 +4231,7 @@ function initLearningDirection(){
     const dir = getLearningDirection();
     document.body.setAttribute("data-learning-dir", dir);
     renderFlipToggleButtons();
+    refreshHomeHeroText();
     const uiLangBtn = document.getElementById("uiLangToggleBtn");
     if(uiLangBtn) uiLangBtn.classList.toggle("hidden", dir === "en");
     refreshSetupChoiceActiveStates();
