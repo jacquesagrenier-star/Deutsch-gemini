@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v111</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v112</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -8556,22 +8556,25 @@ const DAILY_GOAL_VIDEO_SIZE = 260;
 // résiduel réduit à 2px -- mieux, mais encore signalé comme perdant un peu
 // d'image autour du personnage.
 //
-// Correctif retenu : plus AUCUN choke (0px) -- seul le pontage ciblé étend le
-// masque, sur plusieurs passes successives (MASTERY_BRIDGE_PASSES) avec un
-// rayon plus généreux (MASTERY_BRIDGE_RADIUS = 5) pour couvrir toute la large
-// bande de transition en plusieurs bonds. Comme le pontage n'ajoute jamais un
-// pixel dont la "bleuité" est sous MASTERY_BRIDGE_OUTLINE_THRESH, il ne peut
-// PAS toucher un pixel réellement neutre (peau, doré, blanc, marine foncé)
-// même juste à côté du fond retiré -- élimine donc toute perte de vraie image,
-// au prix d'un très fin liseré résiduel encore possible dans de rares
-// interstices étroits (ex. entre les jambes) plutôt que de risquer de manger
-// le personnage. Vérifié sur plusieurs images de chacune des 3 vidéos
-// (mains/trompette, bras levés, jambes rapprochées, trophée) après les deux
-// échecs précédents.
+// 3e correctif tenté : plus AUCUN choke (0px), seul un pontage multi-passes
+// (MASTERY_BRIDGE_RADIUS = 5, MASTERY_BRIDGE_PASSES = 3) -- mais avec un seuil
+// de pontage (MASTERY_BRIDGE_OUTLINE_THRESH) fixé à 8, beaucoup trop permissif :
+// mesuré après coup, le tissu marine RÉEL du chandail (rayures) atteint une
+// "bleuité" jusqu'à 27 (médiane 7, un pixel isolé à 47) -- largement au-dessus
+// de 8. Le pontage mangeait donc carrément de vraies rayures du chandail dès
+// qu'elles étaient à portée d'un pixel de fond déjà retiré (signalé par
+// l'utilisateur : perte "à l'intérieur de l'image du personnage, dans son
+// chandail"), pas seulement au contour.
+//
+// Correctif retenu : seuil de pontage relevé à 55 -- confortablement au-dessus
+// de la bleuité mesurée sur le vrai tissu marine (max observé 47), mais encore
+// nettement sous l'anneau bleu vif (~110). Aucun choke n'est réintroduit.
+// Revérifié sur les mêmes images (mains/trompette, bras levés, jambes
+// rapprochées, trophée) après cet échec : chandail et rayures intacts partout.
 const MASTERY_LOOSE_DARK_MAX = 26;
 const MASTERY_LOOSE_OUTLINE_THRESH = 25;
 const MASTERY_STRONG_OUTLINE_THRESH = 90;
-const MASTERY_BRIDGE_OUTLINE_THRESH = 8;
+const MASTERY_BRIDGE_OUTLINE_THRESH = 55;
 const MASTERY_BRIDGE_RADIUS = 5;
 const MASTERY_BRIDGE_PASSES = 3;
 const MASTERY_ERODE_RADIUS = 3;
