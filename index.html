@@ -910,6 +910,33 @@ button{font-family:inherit}
     background:rgba(16,185,129,.14);
 }
 
+/* ============ Configuration (direction d'apprentissage / langue d'interface) :
+   premier lancement (#setup) et section équivalente dans Réglages ============ */
+.setup-choice-group{margin-top:22px;}
+.setup-choice-group:first-child{margin-top:0;}
+.setup-choice-label{font-weight:800; font-size:14px; color:#1e2433; margin-bottom:10px;}
+.setup-choice-row{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.setup-choice{
+    padding:18px 10px;
+    border-radius:16px;
+    background:rgba(255,255,255,.5);
+    border:1.5px solid rgba(30,41,59,.32);
+    text-align:center;
+    cursor:pointer;
+    transition:.15s;
+    font-family:inherit;
+    font-weight:700;
+    font-size:14px;
+    color:#1e2433;
+}
+.setup-choice:hover{background:rgba(255,255,255,.85); transform:translateY(-2px);}
+.setup-choice .setup-choice-flag{display:block; font-size:26px; margin-bottom:6px;}
+.setup-choice.active{
+    border-color:rgba(59,111,224,.5);
+    background:rgba(59,111,224,.1);
+    color:#3b6fe0;
+}
+
 .level-pill-label{
     font-weight:800;
     font-size:13px;
@@ -1577,6 +1604,17 @@ body[data-theme="dark"] .orb-opt.primary{
     border-color:rgba(59,111,224,.4);
 }
 
+body[data-theme="dark"] .setup-choice{
+    background:rgba(255,255,255,.06);
+    border-color:rgba(255,255,255,.16);
+    color:#F2F2F6;
+}
+body[data-theme="dark"] .setup-choice.active{
+    background:rgba(59,111,224,.16);
+    border-color:rgba(59,111,224,.45);
+    color:#8fb4ff;
+}
+
 /* .orb-opt.primary .orb-opt-title (2 classes + descendant) est plus spécifique
    que le simple "body[data-theme=dark] .orb-opt-title" du groupe de couleurs
    claires plus haut, donc il gagnait même en mode sombre et gardait le titre
@@ -1721,7 +1759,6 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:11px; font-weight:800;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
             <span id="uiLangToggleLabel">EN</span>
         </button>
-        <button id="learningDirToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleLearningDirection()" title="Deutsch lernen / Learn English" aria-label="Switch learning language">🇩🇪</button>
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
@@ -1781,6 +1818,47 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 </section>
 
+<!-- ================= CONFIGURATION INITIALE (premier lancement) ================= -->
+
+<section id="setup" class="screen">
+    <div class="title-row" style="margin-top: 10px;">
+        <div>
+            <div class="kicker" data-i18n="setup_kicker">Bienvenue</div>
+            <h2 data-i18n="setup_title">Configurons votre apprentissage</h2>
+        </div>
+    </div>
+    <div class="card">
+        <div class="setup-choice-group">
+            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que vous apprenez ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" id="setupChoiceDirDe" onclick="selectLearningDirectionChoice('de')">
+                    <span class="setup-choice-flag">🇩🇪</span>
+                    <span data-i18n="setup_learning_de">Allemand</span>
+                </button>
+                <button class="setup-choice" id="setupChoiceDirEn" onclick="selectLearningDirectionChoice('en')">
+                    <span class="setup-choice-flag">🇬🇧</span>
+                    <span data-i18n="setup_learning_en">Anglais</span>
+                </button>
+            </div>
+        </div>
+        <div class="setup-choice-group">
+            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue voulez-vous les instructions ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" id="setupChoiceLangFr" onclick="selectUiLangChoice('fr')">
+                    <span class="setup-choice-flag">🇫🇷</span>
+                    <span>Français</span>
+                </button>
+                <button class="setup-choice" id="setupChoiceLangEn" onclick="selectUiLangChoice('en')">
+                    <span class="setup-choice-flag">🇬🇧</span>
+                    <span>English</span>
+                </button>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <button class="primary" onclick="completeInitialSetup()" data-i18n="setup_continue">CONTINUER</button>
+    </div>
+</section>
+
 <!-- ================= HOME ================= -->
 
 <section id="home" class="screen active">
@@ -1792,7 +1870,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v95</span></p>
+    <p class="subtitle"><span data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v96</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2678,6 +2756,36 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
+        <strong data-i18n="setup_settings_title">Configuration</strong>
+        <div class="setup-choice-group" style="margin-top:14px;">
+            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que vous apprenez ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" onclick="selectLearningDirectionChoice('de')">
+                    <span class="setup-choice-flag">🇩🇪</span>
+                    <span data-i18n="setup_learning_de">Allemand</span>
+                </button>
+                <button class="setup-choice" onclick="selectLearningDirectionChoice('en')">
+                    <span class="setup-choice-flag">🇬🇧</span>
+                    <span data-i18n="setup_learning_en">Anglais</span>
+                </button>
+            </div>
+        </div>
+        <div class="setup-choice-group">
+            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue voulez-vous les instructions ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" onclick="selectUiLangChoice('fr')">
+                    <span class="setup-choice-flag">🇫🇷</span>
+                    <span>Français</span>
+                </button>
+                <button class="setup-choice" onclick="selectUiLangChoice('en')">
+                    <span class="setup-choice-flag">🇬🇧</span>
+                    <span>English</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
         <strong data-i18n="settings_global_progress">Progression globale</strong>
         <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
 
@@ -2801,7 +2909,15 @@ onAuthStateChanged(auth, (user) => {
         if(typeof setAuthMode === "function") setAuthMode("login");
         userAccountInfo.classList.remove("hidden");
         userEmailDisplay.textContent = user.email;
-        if(document.getElementById("auth").classList.contains("active")) {
+        // Premier lancement (configuration jamais complétée) : passe par l'écran
+        // de configuration. Vérifié inconditionnellement (pas seulement si on
+        // vient de l'écran de connexion) car une session Firebase déjà persistée
+        // déclenche aussi ce callback au chargement, alors que "home" est déjà
+        // l'écran actif par défaut dans le HTML statique.
+        if(typeof isSetupDone === "function" && !isSetupDone()){
+            refreshSetupChoiceActiveStates();
+            showScreen("setup");
+        } else if(document.getElementById("auth").classList.contains("active")) {
             goHome();
         }
         if(typeof window.onDeutschAiUserSignedIn === "function") window.onDeutschAiUserSignedIn(user);
@@ -3014,6 +3130,14 @@ const I18N = {
         auth_login: "SE CONNECTER",
         auth_login_loading: "CONNEXION…",
         auth_signup: "CRÉER UN COMPTE",
+        setup_kicker: "Bienvenue",
+        setup_title: "Configurons votre apprentissage",
+        setup_learning_label: "Qu'est-ce que vous apprenez ?",
+        setup_learning_de: "Allemand",
+        setup_learning_en: "Anglais",
+        setup_uilang_label: "Dans quelle langue voulez-vous les instructions ?",
+        setup_continue: "CONTINUER",
+        setup_settings_title: "Configuration",
         auth_signup_loading: "CRÉATION…",
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
@@ -3397,6 +3521,14 @@ const I18N = {
         auth_login: "SIGN IN",
         auth_login_loading: "SIGNING IN…",
         auth_signup: "CREATE ACCOUNT",
+        setup_kicker: "Welcome",
+        setup_title: "Let's set up your learning",
+        setup_learning_label: "What are you learning?",
+        setup_learning_de: "German",
+        setup_learning_en: "English",
+        setup_uilang_label: "Which language for the instructions?",
+        setup_continue: "CONTINUE",
+        setup_settings_title: "Configuration",
         auth_signup_loading: "CREATING…",
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
@@ -3708,14 +3840,21 @@ function applyUiLang(){
     }
 }
 
-function toggleUiLang(){
-    const idx = UI_LANGS.indexOf(getUiLang());
-    const next = UI_LANGS[(idx + 1) % UI_LANGS.length];
-    setUiLang(next);
+// Effets de bord communs après un changement de langue d'interface, que ce
+// soit via le bouton de bascule (toggleUiLang) ou un choix explicite dans la
+// configuration (selectUiLangChoice).
+function applyUiLangSideEffects(){
     applyUiLang();
     updateGlobalProgress(); // rafraîchit les libellés générés en JS (qualitatif, semaine, objectif)
     renderFlipToggleButtons();
     refreshDynamicUiLang();
+}
+
+function toggleUiLang(){
+    const idx = UI_LANGS.indexOf(getUiLang());
+    const next = UI_LANGS[(idx + 1) % UI_LANGS.length];
+    setUiLang(next);
+    applyUiLangSideEffects();
 }
 
 // ============ Direction d'apprentissage (allemand vs anglais) ============
@@ -3739,11 +3878,6 @@ function setLearningDirection(dir){
 // direction, voir progressKey()).
 function applyLearningDirectionUi(){
     const dir = getLearningDirection();
-    const btn = document.getElementById("learningDirToggleBtn");
-    // Comme uiLangToggleLabel : affiche le drapeau de la langue vers laquelle on
-    // bascule EN CLIQUANT (la cible), pas la direction actuelle — sinon cliquer
-    // sur le drapeau anglais semble "faire l'inverse" (basculer vers l'allemand).
-    if(btn) btn.textContent = dir === "en" ? "🇩🇪" : "🇬🇧";
     // Pilote l'affichage des tuiles d'accueil (.orb-de / .orb-en, voir CSS) : les
     // catégories de grammaire ne sont pas les mêmes selon la langue apprise.
     document.body.setAttribute("data-learning-dir", dir);
@@ -3757,15 +3891,46 @@ function applyLearningDirectionUi(){
     updateOrbBadges();
 }
 
-function toggleLearningDirection(){
-    setLearningDirection(getLearningDirection() === "de" ? "en" : "de");
+// ============ Configuration (premier lancement + section Réglages) ============
+// Remplace l'ancien bouton drapeau du header (retiré : redondant et jugé
+// encombrant une fois qu'il existe un vrai endroit pour ce choix). Les mêmes
+// boutons .setup-choice existent en double dans le DOM (écran #setup au
+// premier lancement, section en haut de Réglages) : on les synchronise tous
+// à chaque changement via refreshSetupChoiceActiveStates().
+const SETUP_DONE_KEY = "deutschAI_setupDone";
+function isSetupDone(){
+    try{ return localStorage.getItem(SETUP_DONE_KEY) === "1"; }catch(e){ return false; }
+}
+function markSetupDone(){
+    try{ localStorage.setItem(SETUP_DONE_KEY, "1"); }catch(e){}
+}
+
+function refreshSetupChoiceActiveStates(){
+    const dir = getLearningDirection();
+    const lang = getUiLang();
+    document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice"]').forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("onclick").includes(`'${dir}'`));
+    });
+    document.querySelectorAll('.setup-choice[onclick*="selectUiLangChoice"]').forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("onclick").includes(`'${lang}'`));
+    });
+}
+
+function selectLearningDirectionChoice(dir){
+    setLearningDirection(dir);
     applyLearningDirectionUi();
-    // Le bouton est dans le <header>, donc visible même sur l'écran de connexion —
-    // ne navigue vers l'accueil que si un compte est déjà connecté, sinon goHome()
-    // contournerait la porte d'authentification (la garde n'existe que dans
-    // onAuthStateChanged, pas dans showScreen/goHome eux-mêmes).
-    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
-    if(user) goHome();
+    refreshSetupChoiceActiveStates();
+}
+
+function selectUiLangChoice(lang){
+    setUiLang(lang);
+    applyUiLangSideEffects();
+    refreshSetupChoiceActiveStates();
+}
+
+function completeInitialSetup(){
+    markSetupDone();
+    goHome();
 }
 
 // applyUiLang() ne touche que les éléments statiques marqués data-i18n/-html.
@@ -3823,12 +3988,11 @@ initUiLang();
 // précédente.
 function initLearningDirection(){
     const dir = getLearningDirection();
-    const btn = document.getElementById("learningDirToggleBtn");
-    if(btn) btn.textContent = dir === "en" ? "🇩🇪" : "🇬🇧";
     document.body.setAttribute("data-learning-dir", dir);
     renderFlipToggleButtons();
     const uiLangBtn = document.getElementById("uiLangToggleBtn");
     if(uiLangBtn) uiLangBtn.classList.toggle("hidden", dir === "en");
+    refreshSetupChoiceActiveStates();
 }
 initLearningDirection();
 
@@ -5909,6 +6073,7 @@ function openSettings(){
     updateGlobalProgress();
     renderProgressRadar();
     renderDailyGoalSetting();
+    refreshSetupChoiceActiveStates();
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
     showScreen("settings");
