@@ -1906,7 +1906,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v115</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v116</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -9200,6 +9200,19 @@ function checkAnswer(){
         feedback.className = "feedback show correct";
         const explanation = (useEn && ex.explanation_en) ? ex.explanation_en : ex.explanation;
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_correct_title")}</div><div class="explanation">${explanation}</div>`;
+        // Une bonne réponse compte désormais aussi pour l'objectif du jour, la
+        // série de jours (streak) et le compteur hebdomadaire -- même chemin que
+        // markMastered()/scheduleReview() pour les flashcards (recordDailyActivity
+        // + celebrateMastery), pour N'IMPORTE QUEL exercice (Präsens, Präteritum,
+        // Perfekt, Konjunktiv II, Infinitiv, Wortstellung, Possessiv, Kasus...)
+        // puisqu'ils partagent tous ce même checkAnswer(). Sinon "objectif du
+        // jour" n'aurait reflété que les flashcards, pas les exercices.
+        // celebrateMastery() choisit elle-même entre petits confettis (cas
+        // normal) et grande célébration vidéo (si un palier vient d'être
+        // franchi) -- comportement identique à une carte maîtrisée.
+        const justReachedMultiple = recordDailyActivity();
+        logMasteryEvent();
+        celebrateMastery(justReachedMultiple);
     }else{
         feedback.className = "feedback show wrong";
         const correctDisplay = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
