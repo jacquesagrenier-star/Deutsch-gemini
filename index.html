@@ -2299,7 +2299,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v142</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v143</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -9147,7 +9147,11 @@ function buildRektionBadgesHtml(card){
     let html = "";
     if(card.rektion){
         const cls = "rektion-" + card.rektion.toLowerCase().replace("+", "-");
-        html += `<span class="rektion-badge ${cls}">+ ${card.rektion}</span> `;
+        // "Akkusativ+Dativ" -> "Akkusativ + Dativ" (espaces autour du +, pour
+        // "et", pas "en plus de") ; un seul cas s'affiche sans "+" du tout,
+        // pour ne pas laisser croire qu'il en manque un deuxième.
+        const label = card.rektion.includes("+") ? card.rektion.replace("+", " + ") : card.rektion;
+        html += `<span class="rektion-badge ${cls}">${label}</span> `;
     }
     if(card.reflexiv){
         html += `<span class="rektion-badge reflexiv-badge">${t("reflexiv_badge_label")}</span> `;
