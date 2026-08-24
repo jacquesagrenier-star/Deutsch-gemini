@@ -2338,7 +2338,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v149</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v150</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -9210,7 +9210,12 @@ function buildRektionBadgesHtml(card){
         // "Akkusativ + Dativ" : sur demande de l'utilisateur, pour pouvoir
         // ensuite associer chaque pastille à un mot souligné de la même
         // couleur dans la phrase d'exemple (voir exempleHighlight/.hl-*).
-        card.rektion.split("+").forEach(part => {
+        // Dativ affiché avant Akkusativ (même si stocké "Akkusativ+Dativ") :
+        // suit l'ordre naturel de la phrase allemande, ex. "Ich gebe dir
+        // (Dativ) das Buch (Akkusativ)".
+        const parts = card.rektion.split("+");
+        parts.sort((a, b) => (a === "Dativ" ? -1 : b === "Dativ" ? 1 : 0));
+        parts.forEach(part => {
             const cls = "rektion-" + part.toLowerCase();
             html += `<span class="rektion-badge ${cls}">${part}</span> `;
         });
