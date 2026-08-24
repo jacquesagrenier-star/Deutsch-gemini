@@ -916,6 +916,12 @@ body[data-theme="dark"] .auth-value-row{
     border:1px solid rgba(232,162,58,.4);
 }
 
+.praeposition-badge{
+    background:rgba(219,39,119,.12);
+    color:#be185d;
+    border:1px solid rgba(219,39,119,.35);
+}
+
 body[data-theme="dark"] .rektion-akkusativ{
     background:rgba(59,111,224,.22);
     color:#9db8f0;
@@ -938,6 +944,12 @@ body[data-theme="dark"] .reflexiv-badge{
     background:rgba(232,162,58,.2);
     color:#f5c374;
     border-color:rgba(232,162,58,.5);
+}
+
+body[data-theme="dark"] .praeposition-badge{
+    background:rgba(219,39,119,.22);
+    color:#f9a8d4;
+    border-color:rgba(219,39,119,.5);
 }
 
 .subcategories{
@@ -2287,7 +2299,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v141</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v142</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5245,7 +5257,7 @@ async function loadVerbeJson() {
                     perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "",
                     konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "",
                     imperativ: v.imperativ || null,
-                    rektion: v.rektion || "", reflexiv: !!v.reflexiv,
+                    rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "",
                     niveau: lvl
                 });
             });
@@ -9139,6 +9151,9 @@ function buildRektionBadgesHtml(card){
     }
     if(card.reflexiv){
         html += `<span class="rektion-badge reflexiv-badge">${t("reflexiv_badge_label")}</span> `;
+    }
+    if(card.praeposition){
+        html += `<span class="rektion-badge praeposition-badge">${card.praeposition}</span> `;
     }
     return html ? `<div style="margin-bottom:2px;">${html}</div>` : "";
 }
