@@ -2107,6 +2107,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     <div class="card hidden" id="authSignupCard">
         <p style="color:#576177" data-i18n="auth_signup_desc">Tu as reçu un code d'invitation ? Crée ton compte ici.</p>
         <div class="spacer"></div>
+        <input id="authSignupFirstName" class="answer" type="text" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
         <div class="password-field-wrap" style="margin-bottom:10px;">
             <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (6 caractères min.)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
@@ -2177,7 +2178,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v135</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v136</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3375,7 +3376,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
 
@@ -3398,6 +3399,7 @@ window.firebaseAuth = auth;
 window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
 window.signOut = signOut;
+window.updateProfile = updateProfile;
 
 // Accès à Firestore depuis le script principal (non-module) : même pattern que
 // les fonctions Auth ci-dessus, exposées individuellement sur window.
@@ -3721,6 +3723,7 @@ const I18N = {
         auth_value_3: "Répétition espacée : chaque mot revient au bon moment pour rester en mémoire.",
         auth_mode_login: "Se connecter",
         auth_mode_signup: "Créer un compte",
+        auth_first_name_placeholder: "Prénom",
         auth_email_placeholder: "E-mail",
         auth_password_placeholder: "Mot de passe",
         auth_signup_password_placeholder: "Mot de passe (6 caractères min.)",
@@ -4028,6 +4031,7 @@ const I18N = {
 
         auth_signup_desc: "Tu as reçu un code d'invitation ? Crée ton compte ici.",
         auth_invite_code_placeholder: "Code d'invitation",
+        alert_first_name_required: "Merci d'entrer ton prénom.",
         alert_invite_code_required: "Merci d'entrer ton code d'invitation.",
         alert_invite_check_failed: "Impossible de vérifier le code pour l'instant. Réessaie.",
         alert_invalid_invite_code: "Ce code d'invitation est invalide ou a déjà été utilisé.",
@@ -4227,6 +4231,7 @@ const I18N = {
         auth_value_3: "Spaced repetition: every word comes back at just the right time to stick.",
         auth_mode_login: "Sign in",
         auth_mode_signup: "Create account",
+        auth_first_name_placeholder: "First name",
         auth_email_placeholder: "Email",
         auth_password_placeholder: "Password",
         auth_signup_password_placeholder: "Password (min. 6 characters)",
@@ -4534,6 +4539,7 @@ const I18N = {
 
         auth_signup_desc: "Got an invite code? Create your account here.",
         auth_invite_code_placeholder: "Invite code",
+        alert_first_name_required: "Please enter your first name.",
         alert_invite_code_required: "Please enter your invite code.",
         alert_invite_check_failed: "Couldn't check the code right now. Please try again.",
         alert_invalid_invite_code: "This invite code is invalid or has already been used.",
@@ -4920,11 +4926,14 @@ async function handleEmailLogin() {
 }
 
 async function handleEmailSignup() {
+    const firstNameInput = document.getElementById("authSignupFirstName");
+    const firstName = firstNameInput ? firstNameInput.value.trim() : "";
     const email = document.getElementById("authSignupEmail").value.trim();
     const password = document.getElementById("authSignupPassword").value;
     const passwordConfirm = document.getElementById("authSignupPasswordConfirm").value;
     const codeInput = document.getElementById("authInviteCode");
     const code = codeInput ? codeInput.value.trim().toUpperCase() : "";
+    if (!firstName) { alert(t('alert_first_name_required')); return; }
     if (!isValidEmail(email)) { alert(t('alert_valid_email')); return; }
     if (password.length < 6) { alert(t('alert_password_min_length')); return; }
     if (password !== passwordConfirm) { alert(t('alert_password_mismatch')); return; }
@@ -4949,6 +4958,10 @@ async function handleEmailSignup() {
         try {
             const cred = await window.createUserWithEmailAndPassword(window.firebaseAuth, email, password);
             const uid = cred.user.uid;
+            // Prénom stocké sur le profil Firebase Auth (displayName) --
+            // disponible directement via currentUser.displayName sans lecture
+            // Firestore supplémentaire, utilisé par updateHomeGreeting().
+            try { await window.updateProfile(cred.user, { displayName: firstName }); } catch (e) {}
             // La marque « utilisé » et le profil se créent une fois le compte prêt
             // (le nouvel utilisateur est alors authentifié, ce qu'exigent les règles
             // Firestore) : un échec ici n'empêche pas la connexion de fonctionner.
@@ -4962,6 +4975,7 @@ async function handleEmailSignup() {
             try {
                 await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', uid), {
                     email,
+                    firstName,
                     inviteCode: code,
                     createdAt: window.fsServerTimestamp()
                 }, { merge: true });
@@ -8020,10 +8034,14 @@ function updateHomeGreeting(){
         : "greeting_evening";
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     let name = "";
-    if(user && user.email){
-        // "jacques.a.grenier@..." -> "Jacques" : garde seulement le premier
-        // segment avant un point ou un chiffre, pour un prénom présentable
-        // plutôt que la partie locale complète de l'adresse.
+    if(user && user.displayName){
+        // Prénom saisi à l'inscription (voir handleEmailSignup), fiable
+        // contrairement à une déduction depuis l'adresse e-mail.
+        name = user.displayName.trim();
+    } else if(user && user.email){
+        // Repli pour les comptes créés avant l'ajout du champ Prénom (pas de
+        // displayName) : déduction depuis l'e-mail, imparfaite mais mieux que
+        // rien. "jacques.a.grenier@..." -> "Jacques".
         name = user.email.split("@")[0].split(/[.\d_+-]/)[0];
         if(name) name = name.charAt(0).toUpperCase() + name.slice(1);
     }
