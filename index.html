@@ -922,6 +922,19 @@ body[data-theme="dark"] .auth-value-row{
     border:1px solid rgba(219,39,119,.35);
 }
 
+.rektion-nominativ{
+    background:rgba(22,163,74,.12);
+    color:#15803d;
+    border:1px solid rgba(22,163,74,.35);
+}
+
+.intransitiv-badge{
+    background:rgba(107,114,128,.1);
+    color:#4b5563;
+    border:1px solid rgba(107,114,128,.3);
+    font-weight:600;
+}
+
 body[data-theme="dark"] .rektion-akkusativ{
     background:rgba(59,111,224,.22);
     color:#9db8f0;
@@ -950,6 +963,18 @@ body[data-theme="dark"] .praeposition-badge{
     background:rgba(219,39,119,.22);
     color:#f9a8d4;
     border-color:rgba(219,39,119,.5);
+}
+
+body[data-theme="dark"] .rektion-nominativ{
+    background:rgba(22,163,74,.22);
+    color:#86efac;
+    border-color:rgba(22,163,74,.5);
+}
+
+body[data-theme="dark"] .intransitiv-badge{
+    background:rgba(148,163,184,.16);
+    color:#cbd5e1;
+    border-color:rgba(148,163,184,.4);
 }
 
 .subcategories{
@@ -2299,7 +2324,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v143</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v144</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3826,6 +3851,7 @@ const I18N = {
         greeting_afternoon: "Bon après-midi",
         greeting_evening: "Bonsoir",
         reflexiv_badge_label: "réfléchi (sich)",
+        intransitiv_badge_label: "sans complément",
         next_badge_progress: "{current} sur {threshold} {unit}",
         next_badge_unit_days: "jours",
         next_badge_unit_xp: "points",
@@ -4335,6 +4361,7 @@ const I18N = {
         greeting_afternoon: "Good afternoon",
         greeting_evening: "Good evening",
         reflexiv_badge_label: "reflexive (sich)",
+        intransitiv_badge_label: "no object",
         next_badge_progress: "{current} of {threshold} {unit}",
         next_badge_unit_days: "days",
         next_badge_unit_xp: "points",
@@ -5257,7 +5284,7 @@ async function loadVerbeJson() {
                     perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "",
                     konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "",
                     imperativ: v.imperativ || null,
-                    rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "",
+                    rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
                     niveau: lvl
                 });
             });
@@ -9158,6 +9185,9 @@ function buildRektionBadgesHtml(card){
     }
     if(card.praeposition){
         html += `<span class="rektion-badge praeposition-badge">${card.praeposition}</span> `;
+    }
+    if(card.intransitiv){
+        html += `<span class="rektion-badge intransitiv-badge">${t("intransitiv_badge_label")}</span> `;
     }
     return html ? `<div style="margin-bottom:2px;">${html}</div>` : "";
 }
