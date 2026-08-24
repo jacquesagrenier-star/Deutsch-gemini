@@ -2287,7 +2287,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v140</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v141</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5219,9 +5219,17 @@ let verbeTheme = {
   words: []
 };
 
+// { cache: 'no-cache' } sur les 3 fetch() de données (ici + adjectif.json +
+// themes.json) : force le navigateur à revalider auprès du serveur (ETag)
+// avant de réutiliser une réponse déjà en cache, plutôt que de servir
+// aveuglément une ancienne copie locale. Sans ça, une mise à jour poussée sur
+// main (le workflow normal du projet, voir CLAUDE.md) pouvait rester
+// invisible pour un appareil qui avait déjà chargé l'app une fois -- même
+// après un rechargement complet de la page. Repéré via les pastilles de
+// régime des verbes qui n'apparaissaient pas malgré des données correctes.
 async function loadVerbeJson() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/verbe.json');
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/verbe.json', { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier verbe.json introuvable");
         const data = await response.json();
         let words = [];
@@ -5275,7 +5283,7 @@ let adjektiveTheme = {
 
 async function loadAdjektiveJson() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json');
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json', { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
         const data = await response.json();
         const levels = ["A1", "A2", "B1", "B2"];
@@ -5325,7 +5333,7 @@ async function loadThemesJson() {
     await loadAdjektiveJson();
     await loadVerbeJson();
     try {
-        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json');
+        const response = await fetch('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json', { cache: 'no-cache' });
         if (!response.ok) throw new Error("Erreur themes.json");
         const rawJson = await response.json();
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
