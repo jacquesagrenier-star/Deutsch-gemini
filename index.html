@@ -977,6 +977,19 @@ body[data-theme="dark"] .intransitiv-badge{
     border-color:rgba(148,163,184,.4);
 }
 
+/* Surlignage dans la phrase d'exemple (voir exempleHighlight) -- mêmes
+   couleurs que les pastilles correspondantes, pour que l'œil associe
+   directement le mot souligné à sa pastille. */
+.hl-akkusativ{ color:#1a4fb4; text-decoration:underline; text-decoration-color:#1a4fb4; text-underline-offset:2px; font-weight:700; }
+.hl-dativ{ color:#6d28d9; text-decoration:underline; text-decoration-color:#6d28d9; text-underline-offset:2px; font-weight:700; }
+.hl-nominativ{ color:#15803d; text-decoration:underline; text-decoration-color:#15803d; text-underline-offset:2px; font-weight:700; }
+.hl-praeposition{ color:#be185d; text-decoration:underline; text-decoration-color:#be185d; text-underline-offset:2px; font-weight:700; }
+
+body[data-theme="dark"] .hl-akkusativ{ color:#9db8f0; text-decoration-color:#9db8f0; }
+body[data-theme="dark"] .hl-dativ{ color:#c4b5fd; text-decoration-color:#c4b5fd; }
+body[data-theme="dark"] .hl-nominativ{ color:#86efac; text-decoration-color:#86efac; }
+body[data-theme="dark"] .hl-praeposition{ color:#f9a8d4; text-decoration-color:#f9a8d4; }
+
 .subcategories{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -2324,7 +2337,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v144</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v145</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5285,6 +5298,7 @@ async function loadVerbeJson() {
                     konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "",
                     imperativ: v.imperativ || null,
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
+                    exempleHighlight: v.exempleHighlight || "",
                     niveau: lvl
                 });
             });
@@ -8870,9 +8884,16 @@ function loadFlashcard(){
             const praesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
             const perfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
             const rektionHtml = buildRektionBadgesHtml(card);
+            // exempleHighlight (si présent) surligne dans la phrase le(s) mot(s)
+            // qui correspond(ent) à chaque pastille de régime, avec la même
+            // couleur -- ex. "dir" en violet (Dativ) et "eine E-Mail" en bleu
+            // (Akkusativ) pour schreiben. Le bouton audio continue de lire
+            // card.exemple (texte brut, sans balises) : la synthèse vocale ne
+            // doit jamais recevoir de HTML.
+            const exampleDisplay = card.exempleHighlight || card.exemple || "";
             const coreHtml = `${rektionHtml}<strong>PRÄSENS</strong><br>${conjLines}` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Präsens :</strong> ${card.exemple || ""}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
+                `<strong>Präsens :</strong> ${exampleDisplay}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Perfekt :</strong> ${card.perfekt || ""}${perfektSpeakBtn}<br>(${perfektTr || ""})`;
             const imp = card.imperativ;
@@ -9173,12 +9194,14 @@ if('speechSynthesis' in window){
 function buildRektionBadgesHtml(card){
     let html = "";
     if(card.rektion){
-        const cls = "rektion-" + card.rektion.toLowerCase().replace("+", "-");
-        // "Akkusativ+Dativ" -> "Akkusativ + Dativ" (espaces autour du +, pour
-        // "et", pas "en plus de") ; un seul cas s'affiche sans "+" du tout,
-        // pour ne pas laisser croire qu'il en manque un deuxième.
-        const label = card.rektion.includes("+") ? card.rektion.replace("+", " + ") : card.rektion;
-        html += `<span class="rektion-badge ${cls}">${label}</span> `;
+        // Une pastille SÉPARÉE par cas plutôt qu'une seule combinée
+        // "Akkusativ + Dativ" : sur demande de l'utilisateur, pour pouvoir
+        // ensuite associer chaque pastille à un mot souligné de la même
+        // couleur dans la phrase d'exemple (voir exempleHighlight/.hl-*).
+        card.rektion.split("+").forEach(part => {
+            const cls = "rektion-" + part.toLowerCase();
+            html += `<span class="rektion-badge ${cls}">${part}</span> `;
+        });
     }
     if(card.reflexiv){
         html += `<span class="rektion-badge reflexiv-badge">${t("reflexiv_badge_label")}</span> `;
