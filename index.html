@@ -2338,7 +2338,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v160</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v161</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2618,6 +2618,9 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <strong data-i18n="grammar_exercises_title">Exercices de grammaire</strong>
         <p style="color:#576177" data-i18n="verbenniveau_exercises_desc">Exercices ciblés sur la conjugaison au présent.</p>
         <button class="secondary" onclick="startExercises()" data-i18n="verbenniveau_exercises_btn">EXERCICES PRÄSENS →</button>
+        <div class="spacer"></div>
+        <p style="color:#576177" data-i18n="verbenniveau_rektion_desc">Teste ta connaissance du régime (Akkusativ, Dativ...) des verbes déjà vus.</p>
+        <button class="secondary" onclick="startVerbRektionExercise()" data-i18n="verbenniveau_rektion_btn">EXERCICES : RÉGIME DES VERBES →</button>
     </div>
 </section>
 
@@ -3777,6 +3780,10 @@ const I18N = {
         levels_label: "Niveaux",
         grammar_exercises_title: "Exercices de grammaire",
         verbenniveau_exercises_desc: "Exercices ciblés sur la conjugaison au présent.",
+        verbenniveau_rektion_desc: "Teste ta connaissance du régime (Akkusativ, Dativ...) des verbes déjà vus.",
+        verbenniveau_rektion_btn: "EXERCICES : RÉGIME DES VERBES →",
+        kicker_verb_rektion: "Régime des verbes",
+        alert_no_rektion_available: "Aucun verbe avec régime chargé pour l'instant. Réessaie dans un instant.",
         verbenniveau_exercises_btn: "EXERCICES PRÄSENS →",
 
         kicker_integrated_vocab: "Vocabulaire Intégré",
@@ -4287,6 +4294,10 @@ const I18N = {
         levels_label: "Levels",
         grammar_exercises_title: "Grammar exercises",
         verbenniveau_exercises_desc: "Exercises focused on the present tense.",
+        verbenniveau_rektion_desc: "Test your knowledge of the case (Akkusativ, Dativ...) each verb governs.",
+        verbenniveau_rektion_btn: "EXERCISES: VERB CASE GOVERNMENT →",
+        kicker_verb_rektion: "Verb case government",
+        alert_no_rektion_available: "No tagged verbs loaded yet. Try again in a moment.",
         verbenniveau_exercises_btn: "PRÄSENS EXERCISES →",
 
         kicker_integrated_vocab: "Built-in Vocabulary",
@@ -10326,6 +10337,48 @@ function startKonjunktiv2Exercise(){
 }
 function startInfinitivExercise(){
     startExerciseSet(shuffleArray(infinitivExercises), "kicker_verben_infinitiv", openVerbenTempsInfo, startInfinitivExercise);
+}
+
+// ============ Exercice "régime des verbes" ============
+// Généré dynamiquement à partir des verbes déjà tagués (champ rektion,
+// voir buildRektionBadgesHtml) -- aucun contenu à maintenir séparément,
+// réutilise directement les 311 verbes A1/A2/B1 qui ont un régime direct
+// (Akkusativ/Dativ/Akkusativ+Dativ/Nominativ). Les verbes uniquement à
+// préposition fixe (denken, warten...) n'ont pas de régime direct et ne
+// sont donc pas inclus dans ce quiz précis.
+const VERB_REKTION_OPTIONS = ["Akkusativ", "Dativ", "Akkusativ + Dativ", "Nominativ"];
+
+function buildVerbRektionExercises(){
+    const seen = new Set();
+    const list = [];
+    verbeTheme.words.forEach(card => {
+        if(!card.rektion || seen.has(card.infinitif)) return;
+        seen.add(card.infinitif);
+        const correct = card.rektion.replace("+", " + ");
+        const traductionEn = card.traduction_en || card.traduction;
+        list.push({
+            topic: "Régime des verbes",
+            question: `${card.exemple} — Quel cas est-ce que « ${card.infinitif} » gouverne ?`,
+            question_en: `${card.exemple} — Which case does "${card.infinitif}" govern?`,
+            translation: card.exemple_fr || "",
+            translation_en: card.exemple_en || card.exemple_fr || "",
+            hint: `(${card.traduction})`,
+            hint_en: `(${traductionEn})`,
+            answers: [correct.toLowerCase()],
+            correct: correct,
+            correctEn: correct,
+            explanation: `« ${card.infinitif} » (${card.traduction}) gouverne le ${correct}.`,
+            explanation_en: `"${card.infinitif}" (${traductionEn}) governs the ${correct}.`,
+            options: VERB_REKTION_OPTIONS
+        });
+    });
+    return list;
+}
+
+function startVerbRektionExercise(){
+    const list = buildVerbRektionExercises();
+    if(!list.length){ showInfoToast(t("alert_no_rektion_available")); return; }
+    startExerciseSet(shuffleArray(list), "kicker_verb_rektion", openVerbenNiveau, startVerbRektionExercise);
 }
 
 let exerciseKickerKey = null;
