@@ -62,7 +62,16 @@ header{
 }
 
 .screen{display:none}
-.screen.active{display:block}
+.screen.active{display:block; animation:screenFadeIn .2s ease;}
+
+@keyframes screenFadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@media (prefers-reduced-motion: reduce){
+    .screen.active{animation:none;}
+}
 
 .kicker{
     color:#3b6fe0;
@@ -245,6 +254,21 @@ body[data-learning-dir="en"] .orb-en{ display:flex; }
     stroke:url(#ringGradient);
     stroke-linecap:round;
     transition:stroke-dashoffset .5s ease;
+}
+
+#globalRingFill{
+    transition:stroke-dashoffset .5s ease;
+}
+
+.home-greeting{
+    font-size:14px;
+    font-weight:700;
+    color:#b9770e;
+    margin:0 0 4px;
+}
+
+body[data-theme="dark"] .home-greeting{
+    color:#f5c374;
 }
 
 /* ============ COULEURS PAR CATÉGORIE ============ */
@@ -683,6 +707,7 @@ body[data-theme="dark"] .badge-item .badge-label{
 .next-badge-fill{
     background:#BA7517;
     height:100%;
+    transition:width .5s ease;
 }
 
 .next-badge-progress{
@@ -2143,6 +2168,8 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
 <section id="home" class="screen active">
 
+    <p id="homeGreeting" class="home-greeting"></p>
+
     <h1>
         <span class="gradient">
             <span id="homeTitle1" data-i18n="home_title_1">Apprends l'allemand</span>
@@ -2150,7 +2177,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v134</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v135</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3429,6 +3456,7 @@ onAuthStateChanged(auth, (user) => {
         if(typeof window.onDeutschAiUserSignedIn === "function") window.onDeutschAiUserSignedIn(user);
         if(typeof checkAndUnlockBadges === "function") checkAndUnlockBadges();
         if(typeof renderBadgesGrid === "function") renderBadgesGrid();
+        if(typeof updateHomeGreeting === "function") updateHomeGreeting();
     } else {
         userProfile.textContent = "CM";
         authContent.classList.remove("hidden");
@@ -3671,6 +3699,9 @@ const I18N = {
         settings_invite_btn: "PARTAGER WORTANDO",
         invite_share_text: "Je m'entraîne en allemand (et en anglais) avec Wortando — demande-moi un code d'invitation pour essayer !",
         invite_share_copied: "Message copié — colle-le où tu veux pour l'envoyer !",
+        greeting_morning: "Bonjour",
+        greeting_afternoon: "Bon après-midi",
+        greeting_evening: "Bonsoir",
         next_badge_progress: "{current} sur {threshold} {unit}",
         next_badge_unit_days: "jours",
         next_badge_unit_xp: "points",
@@ -4174,6 +4205,9 @@ const I18N = {
         settings_invite_btn: "SHARE WORTANDO",
         invite_share_text: "I'm practicing German (and English) with Wortando — ask me for an invite code to try it!",
         invite_share_copied: "Message copied — paste it anywhere to send it!",
+        greeting_morning: "Good morning",
+        greeting_afternoon: "Good afternoon",
+        greeting_evening: "Good evening",
         next_badge_progress: "{current} of {threshold} {unit}",
         next_badge_unit_days: "days",
         next_badge_unit_xp: "points",
@@ -7973,7 +8007,28 @@ function showScreen(id){
     updateOrbBadges();
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); }
+
+// Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
+// collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
+function updateHomeGreeting(){
+    const el = document.getElementById("homeGreeting");
+    if(!el) return;
+    const hour = new Date().getHours();
+    const key = (hour >= 5 && hour < 12) ? "greeting_morning"
+        : (hour >= 12 && hour < 18) ? "greeting_afternoon"
+        : "greeting_evening";
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    let name = "";
+    if(user && user.email){
+        // "jacques.a.grenier@..." -> "Jacques" : garde seulement le premier
+        // segment avant un point ou un chiffre, pour un prénom présentable
+        // plutôt que la partie locale complète de l'adresse.
+        name = user.email.split("@")[0].split(/[.\d_+-]/)[0];
+        if(name) name = name.charAt(0).toUpperCase() + name.slice(1);
+    }
+    el.textContent = name ? `${t(key)}, ${name} !` : `${t(key)} !`;
+}
 function openNomen(){
     const learningEnglish = getLearningDirection() === 'en';
     const kickerEl = document.getElementById("nomenKicker");
