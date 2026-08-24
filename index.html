@@ -2338,7 +2338,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v148</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v149</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5306,7 +5306,8 @@ async function loadVerbeJson() {
                     konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "",
                     imperativ: v.imperativ || null,
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
-                    exempleHighlight: v.exempleHighlight || "",
+                    exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
+                    praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
                     niveau: lvl
                 });
             });
@@ -8899,11 +8900,12 @@ function loadFlashcard(){
             // card.exemple (texte brut, sans balises) : la synthèse vocale ne
             // doit jamais recevoir de HTML.
             const exampleDisplay = card.exempleHighlight || card.exemple || "";
+            const perfektDisplay = card.perfektHighlight || card.perfekt || "";
             const coreHtml = `${rektionHtml}<strong>PRÄSENS</strong><br>${conjLines}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Präsens :</strong> ${exampleDisplay}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Perfekt :</strong> ${card.perfekt || ""}${perfektSpeakBtn}<br>(${perfektTr || ""})`;
+                `<strong>Perfekt :</strong> ${perfektDisplay}${perfektSpeakBtn}<br>(${perfektTr || ""})`;
             const imp = card.imperativ;
             const impSpeakBtn = imp ? sentenceSpeakBtnHtml(`${imp.du} ${imp.ihr} ${imp.sie_Sie}`, "de") : "";
             const impHtml = imp
@@ -8911,9 +8913,11 @@ function loadFlashcard(){
                 : "";
             const praeteritumSpeakBtn = sentenceSpeakBtnHtml(card.praeteritum, "de");
             const konjunktiv2SpeakBtn = sentenceSpeakBtnHtml(card.konjunktiv2, "de");
-            const extraHtml = `<strong>Prätéritum :</strong> ${card.praeteritum || ""}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})` +
+            const praeteritumDisplay = card.praeteritumHighlight || card.praeteritum || "";
+            const konjunktiv2Display = card.konjunktiv2Highlight || card.konjunktiv2 || "";
+            const extraHtml = `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Konjunktiv II :</strong> ${card.konjunktiv2 || ""}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
+                `<strong>Konjunktiv II :</strong> ${konjunktiv2Display}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
                 impHtml;
             verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
         }
