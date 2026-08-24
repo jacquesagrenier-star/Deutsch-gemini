@@ -752,6 +752,28 @@ body[data-theme="dark"] .next-badge-progress{
     transform:translateX(-50%) translateY(0);
 }
 
+.global-loading-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, transparent, #E8A23A, transparent);
+    background-size:200% 100%;
+    animation:loadingBarSweep 1.1s ease-in-out infinite;
+    z-index:10001;
+    pointer-events:none;
+}
+
+@keyframes loadingBarSweep{
+    0%{background-position:200% 0;}
+    100%{background-position:-200% 0;}
+}
+
+@media (prefers-reduced-motion: reduce){
+    .global-loading-bar{animation:none; background:#E8A23A;}
+}
+
 .auth-value-card{
     display:flex;
     flex-direction:column;
@@ -850,6 +872,14 @@ body[data-theme="dark"] .auth-value-row{
     font-size: 14px;
     outline: none;
     font-family: inherit;
+}
+
+/* Anneau de focus visible seulement à la navigation clavier (pas au clic
+   souris/tactile) -- filet de sécurité générique pour tout élément
+   interactif qui n'a pas déjà son propre style de focus explicite. */
+:focus-visible{
+    outline:2px solid #3b6fe0;
+    outline-offset:2px;
 }
 
 .subcategories{
@@ -1369,6 +1399,7 @@ button{font-family:inherit}
 .word-audio-row .back-word{margin-bottom:0}
 
 .icon-audio-btn{
+    position:relative;
     width:30px;
     height:30px;
     border-radius:50%;
@@ -1382,6 +1413,15 @@ button{font-family:inherit}
     flex-shrink:0;
     transition:.2s;
     padding:0;
+}
+
+/* Étend la zone tactile réelle à ~44px (recommandation mobile) sans changer
+   la taille visuelle du bouton -- un cercle plus gros casserait la mise en
+   page à côté du mot/de la phrase. */
+.icon-audio-btn::after{
+    content:"";
+    position:absolute;
+    inset:-7px;
 }
 
 .icon-audio-btn svg{width:14px; height:14px; fill:currentColor;}
@@ -1674,6 +1714,7 @@ body[data-theme="dark"] .brand-logo-dark{ display:block; }
 }
 
 .theme-icon-btn{
+    position:relative;
     width:32px;
     height:32px;
     border-radius:50%;
@@ -1690,6 +1731,15 @@ body[data-theme="dark"] .brand-logo-dark{ display:block; }
     cursor:pointer;
     transition:.2s;
     padding:0;
+}
+
+/* Même agrandissement de zone tactile que .icon-audio-btn (voir plus haut) --
+   ces boutons du header sont serrés les uns contre les autres, l'espace de
+   ~6px entre eux limite le débordement des zones tactiles adjacentes. */
+.theme-icon-btn::after{
+    content:"";
+    position:absolute;
+    inset:-6px;
 }
 
 .theme-icon-btn:hover{
@@ -2020,6 +2070,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
 <div id="badgeToast" class="badge-toast"></div>
+<div id="globalLoadingBar" class="global-loading-bar hidden"></div>
 
 <svg width="0" height="0" style="position:absolute;">
     <defs>
@@ -2178,7 +2229,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v136</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v137</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4912,14 +4963,14 @@ function setAuthButtonLoading(btnId, isLoading, loadingTextKey, normalTextKey) {
 async function handleEmailLogin() {
     const email = document.getElementById("authEmail").value.trim();
     const password = document.getElementById("authPassword").value;
-    if (!isValidEmail(email)) { alert(t('alert_valid_email')); return; }
-    if (!password) { alert(t('alert_enter_password')); return; }
+    if (!isValidEmail(email)) { showInfoToast(t('alert_valid_email')); return; }
+    if (!password) { showInfoToast(t('alert_enter_password')); return; }
     setAuthButtonLoading('authLoginBtn', true, 'auth_login_loading', 'auth_login');
     try {
         await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
         goHome();
     } catch (error) {
-        alert(t('alert_login_error_prefix') + getFriendlyAuthError(error));
+        showInfoToast(t('alert_login_error_prefix') + getFriendlyAuthError(error));
     } finally {
         setAuthButtonLoading('authLoginBtn', false, 'auth_login_loading', 'auth_login');
     }
@@ -4933,11 +4984,11 @@ async function handleEmailSignup() {
     const passwordConfirm = document.getElementById("authSignupPasswordConfirm").value;
     const codeInput = document.getElementById("authInviteCode");
     const code = codeInput ? codeInput.value.trim().toUpperCase() : "";
-    if (!firstName) { alert(t('alert_first_name_required')); return; }
-    if (!isValidEmail(email)) { alert(t('alert_valid_email')); return; }
-    if (password.length < 6) { alert(t('alert_password_min_length')); return; }
-    if (password !== passwordConfirm) { alert(t('alert_password_mismatch')); return; }
-    if (!code) { alert(t('alert_invite_code_required')); return; }
+    if (!firstName) { showInfoToast(t('alert_first_name_required')); return; }
+    if (!isValidEmail(email)) { showInfoToast(t('alert_valid_email')); return; }
+    if (password.length < 6) { showInfoToast(t('alert_password_min_length')); return; }
+    if (password !== passwordConfirm) { showInfoToast(t('alert_password_mismatch')); return; }
+    if (!code) { showInfoToast(t('alert_invite_code_required')); return; }
 
     setAuthButtonLoading('authSignupBtn', true, 'auth_signup_loading', 'auth_signup');
     try {
@@ -4947,11 +4998,11 @@ async function handleEmailSignup() {
         try {
             codeSnap = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code));
         } catch (e) {
-            alert(t('alert_invite_check_failed'));
+            showInfoToast(t('alert_invite_check_failed'));
             return;
         }
         if (!codeSnap.exists() || codeSnap.data().used) {
-            alert(t('alert_invalid_invite_code'));
+            showInfoToast(t('alert_invalid_invite_code'));
             return;
         }
 
@@ -4983,7 +5034,7 @@ async function handleEmailSignup() {
             if (typeof syncProgressToCloud === "function") syncProgressToCloud();
             goHome();
         } catch (error) {
-            alert(t('alert_signup_error_prefix') + getFriendlyAuthError(error));
+            showInfoToast(t('alert_signup_error_prefix') + getFriendlyAuthError(error));
         }
     } finally {
         setAuthButtonLoading('authSignupBtn', false, 'auth_signup_loading', 'auth_signup');
@@ -4995,7 +5046,7 @@ async function handleLogout() {
         await window.signOut(window.firebaseAuth);
         showScreen("auth");
     } catch (error) {
-        alert(t('alert_logout_error'));
+        showInfoToast(t('alert_logout_error'));
     }
 }
 
@@ -5016,9 +5067,9 @@ async function shareWortandoInvite(){
     }
     try {
         await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
-        alert(t("invite_share_copied"));
+        showInfoToast(t("invite_share_copied"));
     } catch (e) {
-        alert(shareText + " " + shareUrl);
+        showInfoToast(shareText + " " + shareUrl);
     }
 }
 
@@ -5050,24 +5101,24 @@ function updateNotificationsUi(){
 
 async function enableNotifications(){
     if(FCM_VAPID_KEY === "REMPLACE_PAR_TA_CLE_VAPID"){
-        alert(t("notif_not_configured"));
+        showInfoToast(t("notif_not_configured"));
         return;
     }
     if(!("Notification" in window) || !("serviceWorker" in navigator) || !window.fsMessaging){
-        alert(t("notif_unsupported"));
+        showInfoToast(t("notif_unsupported"));
         return;
     }
     try{
         const supported = await window.fsFcmIsSupported();
-        if(!supported){ alert(t("notif_unsupported")); return; }
+        if(!supported){ showInfoToast(t("notif_unsupported")); return; }
         const permission = await Notification.requestPermission();
-        if(permission !== "granted"){ alert(t("notif_denied")); return; }
+        if(permission !== "granted"){ showInfoToast(t("notif_denied")); return; }
         const registration = await navigator.serviceWorker.register("firebase-messaging-sw.js");
         const token = await window.fsFcmGetToken(window.fsMessaging, {
             vapidKey: FCM_VAPID_KEY,
             serviceWorkerRegistration: registration
         });
-        if(!token){ alert(t("notif_token_failed")); return; }
+        if(!token){ showInfoToast(t("notif_token_failed")); return; }
         const user = window.firebaseAuth && window.firebaseAuth.currentUser;
         if(user){
             await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), {
@@ -5076,9 +5127,9 @@ async function enableNotifications(){
             }, { merge: true });
         }
         setNotificationsEnabledLocally(true);
-        alert(t("notif_enabled_success"));
+        showInfoToast(t("notif_enabled_success"));
     }catch(e){
-        alert(t("notif_error_prefix") + e.message);
+        showInfoToast(t("notif_error_prefix") + e.message);
     }
 }
 
@@ -5092,7 +5143,7 @@ async function disableNotifications(){
             }, { merge: true });
         }catch(e){}
     }
-    alert(t("notif_disabled_success"));
+    showInfoToast(t("notif_disabled_success"));
 }
 
 function toggleNotifications(){
@@ -5196,8 +5247,20 @@ async function loadAdjektiveJson() {
 let themes = [];
 let themesLoaded = false;
 
+function showGlobalLoadingBar(){
+    const bar = document.getElementById("globalLoadingBar");
+    if(bar) bar.classList.remove("hidden");
+}
+
+function hideGlobalLoadingBar(){
+    const bar = document.getElementById("globalLoadingBar");
+    if(bar) bar.classList.add("hidden");
+}
+
 async function loadThemesJson() {
     if (themesLoaded) return;
+    showGlobalLoadingBar();
+    try {
     await loadAdjektiveJson();
     await loadVerbeJson();
     try {
@@ -5259,6 +5322,9 @@ async function loadThemesJson() {
         updateDueBanner();
         updateOrbBadges();
         updateGlobalProgress();
+    }
+    } finally {
+        hideGlobalLoadingBar();
     }
 }
 
@@ -6831,17 +6897,27 @@ function renderNextBadgeBox(){
     document.getElementById("nextBadgeProgress").textContent = tf("next_badge_progress", { current: next.current, threshold: next.threshold, unit });
 }
 
-function showToast(icon, text){
+function showToast(icon, text, durationMs){
     const toast = document.getElementById("badgeToast");
     if(!toast) return;
     toast.innerHTML = `<span style="font-size:22px;">${icon}</span><span>${text}</span>`;
     toast.classList.add("show");
     clearTimeout(toast._hideTimer);
-    toast._hideTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+    toast._hideTimer = setTimeout(() => toast.classList.remove("show"), durationMs || 3200);
 }
 
 function showBadgeToast(def){
     showToast(def.icon, `${t("badge_unlocked_prefix")} ${t(def.titleKey)}`);
+}
+
+// Remplace les alert() natifs du navigateur (bloquants, hors style de
+// l'app) par le même toast que les badges -- pour les messages informatifs
+// uniquement (erreurs, "rien à réviser", succès...). Les confirm() de
+// suppression/reset restent natifs : un toast ne peut pas bloquer en
+// attendant un oui/non. Durée un peu plus longue que les badges (4.2s) :
+// ces messages sont parfois plus longs à lire (erreurs de formulaire).
+function showInfoToast(message){
+    showToast("ℹ️", message, 4200);
 }
 
 // Grille complète (Réglages uniquement -- trop volumineuse pour l'accueil,
@@ -7525,7 +7601,7 @@ function renderVerbeLevels(){
 function startVerbeDueReview(){
     flashcardMode = 'verben';
     let dueItems = getVerbeDueItemsAll();
-    if(dueItems.length === 0){ alert(t('alert_no_verbs_due')); return; }
+    if(dueItems.length === 0){ showInfoToast(t('alert_no_verbs_due')); return; }
     shuffleArray(dueItems);
     if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
@@ -7550,7 +7626,7 @@ function startVerbeLevel(level){
     });
     if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){
-        alert(t('alert_all_verbs_mastered'));
+        showInfoToast(t('alert_all_verbs_mastered'));
         return;
     }
     currentTheme = { id: `verb_${level}`, name: `${t('orb_verben_title')} · ${level}` };
@@ -7563,7 +7639,7 @@ function startVerbeLevel(level){
 function startVerbeRandomMix(){
     flashcardMode = 'verben';
     let pool = verbeTheme.words.map((word, index) => ({ word, index, themeId: verbeTheme.id }));
-    if(pool.length === 0){ alert(t('alert_no_verbs_available')); return; }
+    if(pool.length === 0){ showInfoToast(t('alert_no_verbs_available')); return; }
     shuffleArray(pool);
 
     const now = Date.now();
@@ -7678,7 +7754,7 @@ function renderAdjektiveLevels(){
 function startAdjektiveDueReview(){
     flashcardMode = 'adjektive';
     let dueItems = getAdjektiveDueItemsAll();
-    if(dueItems.length === 0){ alert(t('alert_no_adj_due')); return; }
+    if(dueItems.length === 0){ showInfoToast(t('alert_no_adj_due')); return; }
     shuffleArray(dueItems);
     if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
@@ -7703,7 +7779,7 @@ function startAdjektiveLevel(level){
     });
     if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){
-        alert(t('alert_all_adj_mastered'));
+        showInfoToast(t('alert_all_adj_mastered'));
         return;
     }
     currentTheme = { id: `adj_${level}`, name: `${t('orb_adjektive_title')} · ${level}` };
@@ -7716,7 +7792,7 @@ function startAdjektiveLevel(level){
 function startAdjektiveRandomMix(){
     flashcardMode = 'adjektive';
     let pool = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
-    if(pool.length === 0){ alert(t('alert_no_adj_available')); return; }
+    if(pool.length === 0){ showInfoToast(t('alert_no_adj_available')); return; }
     shuffleArray(pool);
 
     const now = Date.now();
@@ -8099,10 +8175,10 @@ async function generateInviteCode(){
             createdAt: window.fsServerTimestamp(),
             createdBy: window.firebaseAuth.currentUser.email
         });
-        alert(tf('admin_code_generated', { code }));
+        showInfoToast(tf('admin_code_generated', { code }));
         renderAdminCodesList();
     }catch(e){
-        alert(t('admin_action_failed'));
+        showInfoToast(t('admin_action_failed'));
     }
 }
 
@@ -8113,7 +8189,7 @@ async function deleteInviteCode(code){
         await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code));
         renderAdminCodesList();
     }catch(e){
-        alert(t('admin_action_failed'));
+        showInfoToast(t('admin_action_failed'));
     }
 }
 
@@ -8358,7 +8434,7 @@ function renderNomenLevels(){
 }
 
 function comingSoon(label){
-    alert(tf('alert_coming_soon', { label }));
+    showInfoToast(tf('alert_coming_soon', { label }));
 }
 
 function getAllNomenItems(){
@@ -8398,7 +8474,7 @@ function startDueReview(){
     flashcardMode = 'nomen';
     nomenReturnScreen = 'nomen';
     let dueItems = getDueItems();
-    if(dueItems.length === 0){ alert(t('alert_no_words_due')); return; }
+    if(dueItems.length === 0){ showInfoToast(t('alert_no_words_due')); return; }
     shuffleArray(dueItems);
     if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
@@ -8515,7 +8591,7 @@ function startTheme(themeId, level){
     const theme = themes.find(t => t.id === themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
-    if(!levelData){ alert(t('alert_level_unavailable')); return; }
+    if(!levelData){ showInfoToast(t('alert_level_unavailable')); return; }
 
     currentTheme = { id: levelData.id, name: `${theme.name} · ${level}` };
 
@@ -8528,7 +8604,7 @@ function startTheme(themeId, level){
     });
     if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0){
-        alert(t('alert_all_theme_words_mastered'));
+        showInfoToast(t('alert_all_theme_words_mastered'));
         return;
     }
     currentFlashcard = 0;
@@ -8550,7 +8626,7 @@ function startRandomMix(level){
             });
         });
     });
-    if(pool.length === 0){ alert(t('alert_no_words_available')); return; }
+    if(pool.length === 0){ showInfoToast(t('alert_no_words_available')); return; }
     shuffleArray(pool);
 
     const now = Date.now();
@@ -9070,7 +9146,7 @@ function buildNomenDictationExercises(){
 
 function startDictationExercise(){
     const list = buildNomenDictationExercises();
-    if(!list.length){ alert(t("alert_no_dictation_available")); return; }
+    if(!list.length){ showInfoToast(t("alert_no_dictation_available")); return; }
     startExerciseSet(shuffleArray(list.slice()), "kicker_dictation_exercise", handleFlashcardBack, startDictationExercise);
 }
 
@@ -9946,7 +10022,7 @@ function nextFlashcard(){
     updateVerbDueBanner();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
-        alert(t('alert_session_ended_saved'));
+        showInfoToast(t('alert_session_ended_saved'));
         handleFlashcardBack();
         return;
     }
@@ -9957,7 +10033,7 @@ function skipFlashcard(){
     // Passe à la carte suivante sans enregistrer d'évaluation (utilisé par le swipe)
     currentFlashcard++;
     if(currentFlashcard >= currentCards.length){
-        alert(t('alert_session_ended'));
+        showInfoToast(t('alert_session_ended'));
         handleFlashcardBack();
         return;
     }
@@ -9967,7 +10043,7 @@ function skipFlashcard(){
 function retryUnmastered(){
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => !getWordState(item.themeId, item.index).mastered);
-    if(currentCards.length === 0){ alert(t('alert_all_series_mastered')); return; }
+    if(currentCards.length === 0){ showInfoToast(t('alert_all_series_mastered')); return; }
     currentFlashcard = 0;
     loadFlashcard();
 }
@@ -9975,14 +10051,14 @@ function retryUnmastered(){
 function retryMastered(){
     if(!currentCardsFull.length) return;
     currentCards = currentCardsFull.filter(item => getWordState(item.themeId, item.index).mastered);
-    if(currentCards.length === 0){ alert(t('alert_no_mastered_in_series')); return; }
+    if(currentCards.length === 0){ showInfoToast(t('alert_no_mastered_in_series')); return; }
     shuffleArray(currentCards);
     currentFlashcard = 0;
     loadFlashcard();
 }
 
 function resetCurrentThemeConfirm(){
-    if(!currentTheme){ alert(t('alert_open_series_first')); return; }
+    if(!currentTheme){ showInfoToast(t('alert_open_series_first')); return; }
     if(!confirm(tf('confirm_reset_theme_progress', { name: currentTheme.name }))) return;
     const progress = getProgress();
     delete progress[progressKey(currentTheme.id)];
@@ -9997,7 +10073,7 @@ function resetCurrentThemeConfirm(){
     updateVerbDueBanner();
     updateOrbBadges();
     renderProgressRadar();
-    alert(t('alert_series_reset'));
+    showInfoToast(t('alert_series_reset'));
 }
 
 function resetAllConfirm(){
@@ -10024,7 +10100,7 @@ function resetAllConfirm(){
     updateVerbDueBanner();
     updateOrbBadges();
     renderProgressRadar();
-    alert(t('alert_all_progress_reset'));
+    showInfoToast(t('alert_all_progress_reset'));
 }
 
 function openVerbenTempsInfo(){
