@@ -2150,7 +2150,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v133</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v134</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2171,7 +2171,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                 <div id="globalProgressQualitative" class="home-stats-qualitative">Tu commences !</div>
                 <div class="home-stats-chips">
                     <span class="home-chip">🔥 <span id="streakCount">0</span> j</span>
-                    <span class="home-chip hidden" id="streakFreezeChip" title="">❄️ <span id="streakFreezeCount">0</span></span>
+                    <span class="home-chip hidden" id="streakFreezeChip" title="" onclick="showStreakFreezeDetail()" style="cursor:pointer;">❄️ <span id="streakFreezeCount">0</span></span>
                     <span class="home-chip" id="weeklyMomentumChip">Cette semaine : 0</span>
                 </div>
             </div>
@@ -6951,6 +6951,13 @@ function grantStreakFreeze(){
     if(getStreakFreezes() >= STREAK_FREEZE_MAX) return;
     setStreakFreezes(getStreakFreezes() + 1);
     showToast("❄️", t("streak_freeze_earned"));
+}
+
+// Explication au tap de la puce ❄️ de l'accueil -- même raison que pour les
+// badges (showBadgeDetail) : un tooltip title="" ne se déclenche pas de
+// façon fiable au toucher sur mobile.
+function showStreakFreezeDetail(){
+    showToast("❄️", t("streak_freeze_hint"));
 }
 
 function getDailyActivityCount(){
