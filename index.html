@@ -1062,6 +1062,17 @@ button{font-family:inherit}
     color:#1e2433;
 }
 
+/* Mot inséré à la place du blanc ("___") une fois qu'on a répondu -- voir
+   checkAnswer(). Souligné + gras pour rester repérable dans la phrase, sans
+   couleur propre (le vert/rouge de bonne/mauvaise réponse reste porté par
+   l'encadré de feedback juste en dessous, pas dupliqué ici). */
+.filled-blank{
+    font-weight:800;
+    text-decoration:underline;
+    text-decoration-thickness:2px;
+    text-underline-offset:3px;
+}
+
 .translation-example{
     color:#576177;
     font-size:15px;
@@ -2395,7 +2406,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v168</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v169</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -11259,6 +11270,19 @@ function checkAnswer(){
             : ((useEn && ex.correctEn) ? ex.correctEn : ex.correct);
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_wrong_title")}</div><div class="explanation"><strong>${t("correct_answer_label")}</strong> ${correctDisplay}</div>`;
         resetCombo();
+    }
+    // Pour les exercices a texte libre avec un blanc ("___") dans l'enonce :
+    // une fois repondu (bonne ou mauvaise reponse), on remplace le blanc par
+    // le mot correct directement dans la phrase -- voir la bonne forme EN
+    // CONTEXTE renforce mieux que de la lire isolee dans le corrige, surtout
+    // quand la reponse etait fausse (pas besoin de recoller mentalement le
+    // mot dans la phrase du dessus).
+    if(!usingChunks && !usingSelect){
+        const questionText = (useEn && ex.question_en) ? ex.question_en : ex.question;
+        if(questionText && questionText.includes("___")){
+            const correctWord = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+            document.getElementById("question").innerHTML = questionText.replace("___", `<span class="filled-blank">${correctWord}</span>`);
+        }
     }
     if(usingChunks){ renderChunkAnswerUi(); }
     else if(usingSelect){ select.disabled = true; }
