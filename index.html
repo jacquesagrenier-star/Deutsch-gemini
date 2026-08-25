@@ -2418,7 +2418,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v174</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v175</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2783,6 +2783,24 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
     <div class="card" style="margin-top:15px;">
         <div class="theme-list" id="nomenLevelList"></div>
+    </div>
+</section>
+
+<!-- ================= CHAPITRES VHS ================= -->
+
+<section id="vhsKapitelListe" class="screen">
+    <button class="back" onclick="openNomen()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="kicker_integrated_vocab">Vocabulaire Intégré</div>
+            <h2 data-i18n="vhs_kapitel_liste_title">Chapitres VHS</h2>
+        </div>
+        <div class="pill" data-i18n="level_b1">Niveau B1</div>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+        <div class="theme-list" id="vhsKapitelList"></div>
     </div>
 </section>
 
@@ -4564,6 +4582,13 @@ const I18N = {
         konjunktionen_denn_weil_warn: `⚠️ Piège classique : <strong>denn</strong> (car) et <strong>weil</strong> (parce que) veulent presque dire la même chose, mais <strong>denn</strong> est une coordination (verbe en 2ème position) alors que <strong>weil</strong> est une subordination (verbe à la fin). Le sens ne suffit pas à deviner la catégorie — il faut la mémoriser mot par mot.`,
         konjunktionen_btn_nuance: "M'ENTRAÎNER : COORDINATION OU SUBORDINATION →",
         konjunktionen_btn_vocab: "VOCABULAIRE : FLASHCARDS →",
+
+        vhs_kapitel_tile_title: "Chapitres VHS",
+        vhs_kapitel_tile_sub: "Cours B1",
+        vhs_kapitel_tile_desc: "Le vocabulaire de chaque chapitre de ton cours, regroupé à part.",
+        vhs_kapitel_liste_title: "Chapitres VHS",
+        vhs_kapitel_row_label: "Chapitre {n}",
+        vhs_kapitel_none_yet: "Aucun chapitre ajouté pour le moment.",
         kicker_praep_vocab: "Prépositions · Vocabulaire",
         kicker_position_vocab: "Verbes de position · Vocabulaire",
         kicker_partikeln_vocab: "Particules · Vocabulaire",
@@ -5159,6 +5184,13 @@ const I18N = {
         konjunktionen_denn_weil_warn: `⚠️ Classic trap: <strong>denn</strong> (because) and <strong>weil</strong> (because) mean almost the same thing, but <strong>denn</strong> is coordinating (verb in 2nd position) while <strong>weil</strong> is subordinating (verb at the end). Meaning alone won't tell you which category — you have to memorize it word by word.`,
         konjunktionen_btn_nuance: "PRACTICE: COORDINATING OR SUBORDINATING →",
         konjunktionen_btn_vocab: "VOCABULARY: FLASHCARDS →",
+
+        vhs_kapitel_tile_title: "VHS Chapters",
+        vhs_kapitel_tile_sub: "B1 course",
+        vhs_kapitel_tile_desc: "The vocabulary from each chapter of your course, grouped separately.",
+        vhs_kapitel_liste_title: "VHS Chapters",
+        vhs_kapitel_row_label: "Chapter {n}",
+        vhs_kapitel_none_yet: "No chapters added yet.",
         kicker_praep_vocab: "Prepositions · Vocabulary",
         kicker_position_vocab: "Position verbs · Vocabulary",
         kicker_partikeln_vocab: "Particles · Vocabulary",
@@ -9702,7 +9734,7 @@ function filterAndRenderThemes(){
     if(!container) return;
 
     const selectedLevel = document.getElementById("levelFilter").value;
-    const filtered = themes;
+    const filtered = themes.filter(theme => !theme.id.startsWith('vhs_kapitel'));
 
     const pill = document.getElementById("themeCountPill");
     if(pill) pill.textContent = `${filtered.length} ${t(filtered.length > 1 ? 'label_theme_plural' : 'label_theme_singular')}`;
@@ -9731,6 +9763,25 @@ function filterAndRenderThemes(){
     `;
     randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomen'; startRandomMix(selectedLevel); });
     container.appendChild(randomItem);
+
+    if(selectedLevel === "ALL" || selectedLevel === "B1"){
+        const vhsItem = document.createElement("div");
+        vhsItem.className = "theme-item random-item";
+        vhsItem.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">📚</div>
+                    <div>
+                        <div class="theme-name">${t('vhs_kapitel_tile_title')}</div>
+                        <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${t('vhs_kapitel_tile_sub')}</div>
+                    </div>
+                </div>
+            </div>
+            <div style="color:#576177; font-size:12px; margin-top:10px;">${t('vhs_kapitel_tile_desc')}</div>
+        `;
+        vhsItem.addEventListener("click", () => { openVhsKapitelListe(); });
+        container.appendChild(vhsItem);
+    }
 
     filtered.forEach(theme => {
         let total = 0, mastered = 0;
@@ -9792,9 +9843,61 @@ function filterAndRenderThemes(){
     });
 }
 
-function startTheme(themeId, level){
+function openVhsKapitelListe(){
+    renderVhsKapitelListe();
+    showScreen("vhsKapitelListe");
+}
+
+function renderVhsKapitelListe(){
+    const container = document.getElementById("vhsKapitelList");
+    if(!container) return;
+
+    const chapters = themes
+        .filter(th => th.id.startsWith('vhs_kapitel'))
+        .map(th => ({ theme: th, num: parseInt(th.id.replace('vhs_kapitel', ''), 10) || 0 }))
+        .sort((a, b) => a.num - b.num);
+
+    if(chapters.length === 0){
+        container.innerHTML = `<p style="color:#576177; text-align:center; padding:20px;">${t('vhs_kapitel_none_yet')}</p>`;
+        return;
+    }
+
+    container.innerHTML = "";
+    chapters.forEach(({ theme, num }) => {
+        const levelData = theme.levels.B1;
+        if(!levelData) return;
+        const total = levelData.words.length;
+        let mastered = 0;
+        levelData.words.forEach((w, i) => { if(getWordState(levelData.id, i).mastered) mastered++; });
+        const percentage = total ? Math.round(mastered / total * 100) : 0;
+
+        const item = document.createElement("div");
+        item.className = "theme-item";
+        item.innerHTML = `
+            <div class="theme-header">
+                <div class="theme-left">
+                    <div class="theme-icon">${theme.svg || ''}</div>
+                    <div>
+                        <div class="theme-name">${tf('vhs_kapitel_row_label', { n: num })}</div>
+                    </div>
+                </div>
+                <div class="theme-count">${mastered}/${total}</div>
+            </div>
+            <div class="theme-progress">
+                <div class="theme-progress-bar">
+                    <div class="theme-progress-fill" style="width:${percentage}%"></div>
+                </div>
+                <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
+            </div>
+        `;
+        item.addEventListener("click", () => { startTheme(theme.id, 'B1', 'vhsKapitelListe'); });
+        container.appendChild(item);
+    });
+}
+
+function startTheme(themeId, level, returnScreen){
     flashcardMode = 'nomen';
-    nomenReturnScreen = 'nomen';
+    nomenReturnScreen = returnScreen || 'nomen';
     const theme = themes.find(t => t.id === themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
@@ -9861,6 +9964,7 @@ function handleFlashcardBack(){
     else if(flashcardMode === 'positionsverben') openPraepInfo();
     else if(flashcardMode === 'partikeln') openPartikelnInfo();
     else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
+    else if(nomenReturnScreen === 'vhsKapitelListe') openVhsKapitelListe();
     else openNomen();
 }
 
