@@ -2268,6 +2268,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <p style="color:#576177" data-i18n="auth_signup_desc">Tu as reçu un code d'invitation ? Crée ton compte ici.</p>
         <div class="spacer"></div>
         <input id="authSignupFirstName" class="answer" type="text" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
+        <select id="authSignupGender" class="answer" style="margin-bottom:12px;">
+            <option value="" data-i18n="auth_gender_placeholder">Genre</option>
+            <option value="female" data-i18n="auth_gender_female">Féminin</option>
+            <option value="male" data-i18n="auth_gender_male">Masculin</option>
+        </select>
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
         <div class="password-field-wrap" style="margin-bottom:10px;">
             <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (6 caractères min.)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
@@ -2338,7 +2343,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v164</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v165</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3900,6 +3905,9 @@ const I18N = {
         auth_mode_login: "Se connecter",
         auth_mode_signup: "Créer un compte",
         auth_first_name_placeholder: "Prénom",
+        auth_gender_placeholder: "Genre",
+        auth_gender_female: "Féminin",
+        auth_gender_male: "Masculin",
         auth_email_placeholder: "E-mail",
         auth_password_placeholder: "Mot de passe",
         auth_signup_password_placeholder: "Mot de passe (6 caractères min.)",
@@ -4208,6 +4216,7 @@ const I18N = {
         auth_signup_desc: "Tu as reçu un code d'invitation ? Crée ton compte ici.",
         auth_invite_code_placeholder: "Code d'invitation",
         alert_first_name_required: "Merci d'entrer ton prénom.",
+        alert_gender_required: "Merci d'indiquer ton genre.",
         alert_invite_code_required: "Merci d'entrer ton code d'invitation.",
         alert_invite_check_failed: "Impossible de vérifier le code pour l'instant. Réessaie.",
         alert_invalid_invite_code: "Ce code d'invitation est invalide ou a déjà été utilisé.",
@@ -4417,6 +4426,9 @@ const I18N = {
         auth_mode_login: "Sign in",
         auth_mode_signup: "Create account",
         auth_first_name_placeholder: "First name",
+        auth_gender_placeholder: "Gender",
+        auth_gender_female: "Female",
+        auth_gender_male: "Male",
         auth_email_placeholder: "Email",
         auth_password_placeholder: "Password",
         auth_signup_password_placeholder: "Password (min. 6 characters)",
@@ -4725,6 +4737,7 @@ const I18N = {
         auth_signup_desc: "Got an invite code? Create your account here.",
         auth_invite_code_placeholder: "Invite code",
         alert_first_name_required: "Please enter your first name.",
+        alert_gender_required: "Please select your gender.",
         alert_invite_code_required: "Please enter your invite code.",
         alert_invite_check_failed: "Couldn't check the code right now. Please try again.",
         alert_invalid_invite_code: "This invite code is invalid or has already been used.",
@@ -5116,12 +5129,15 @@ async function handleEmailLogin() {
 async function handleEmailSignup() {
     const firstNameInput = document.getElementById("authSignupFirstName");
     const firstName = firstNameInput ? firstNameInput.value.trim() : "";
+    const genderInput = document.getElementById("authSignupGender");
+    const gender = genderInput ? genderInput.value : "";
     const email = document.getElementById("authSignupEmail").value.trim();
     const password = document.getElementById("authSignupPassword").value;
     const passwordConfirm = document.getElementById("authSignupPasswordConfirm").value;
     const codeInput = document.getElementById("authInviteCode");
     const code = codeInput ? codeInput.value.trim().toUpperCase() : "";
     if (!firstName) { showInfoToast(t('alert_first_name_required')); return; }
+    if (!gender) { showInfoToast(t('alert_gender_required')); return; }
     if (!isValidEmail(email)) { showInfoToast(t('alert_valid_email')); return; }
     if (password.length < 6) { showInfoToast(t('alert_password_min_length')); return; }
     if (password !== passwordConfirm) { showInfoToast(t('alert_password_mismatch')); return; }
@@ -5164,6 +5180,7 @@ async function handleEmailSignup() {
                 await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', uid), {
                     email,
                     firstName,
+                    gender,
                     inviteCode: code,
                     createdAt: window.fsServerTimestamp()
                 }, { merge: true });
