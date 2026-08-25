@@ -1579,6 +1579,9 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     border-top:1px solid rgba(30,41,59,.1);
 }
 
+.info-box.expanded .praep-examples{display:block!important;}
+.info-box.expanded .praep-chevron{transform:rotate(180deg);}
+
 .word-audio-row{
     display:flex;
     align-items:center;
@@ -2425,7 +2428,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v182</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v183</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2993,8 +2996,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
-        <strong data-i18n="praep_quickref_title">16 prépositions en un coup d'œil</strong>
-        <div id="praepQuickRefGrid" style="display:flex; flex-direction:column; gap:8px; margin-top:12px;"></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; cursor:pointer;" onclick="togglePraepQuickRef()">
+            <strong data-i18n="praep_quickref_title">Toutes les prépositions en un coup d'œil</strong>
+            <span id="praepQuickRefChevron" style="color:#3b6fe0; font-weight:800; font-size:20px; transition:transform .15s; flex:none;">▾</span>
+        </div>
+        <div id="praepQuickRefGrid" class="hidden" style="display:flex; flex-direction:column; gap:8px; margin-top:12px;"></div>
     </div>
 
     <div class="card">
@@ -4389,7 +4395,7 @@ const I18N = {
 
         praep_info_title: "Comprendre les prépositions",
         praep_visual_title: "Aide-mémoire visuel",
-        praep_quickref_title: "Toutes les prépositions en un coup d'œil",
+        praep_quickref_title: "Prépositions et exemples, classés par cas",
         praep_fixedcase_title: "Trois groupes à cas fixe",
         praep_box_akkusativ: `<strong style="color:#3b6fe0;">Toujours Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (Le cadeau est pour toi.)`,
         praep_box_dativ: `<strong style="color:#3b6fe0;">Toujours Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (Je viens de Suisse.)`,
@@ -4999,7 +5005,7 @@ const I18N = {
 
         praep_info_title: "Understanding prepositions",
         praep_visual_title: "Visual reference",
-        praep_quickref_title: "All prepositions at a glance",
+        praep_quickref_title: "Prepositions and examples, by case",
         praep_fixedcase_title: "Three fixed-case groups",
         praep_box_akkusativ: `<strong style="color:#3b6fe0;">Always Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (The gift is for you.)`,
         praep_box_dativ: `<strong style="color:#3b6fe0;">Always Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (I come from Switzerland.)`,
@@ -7104,6 +7110,23 @@ function praepCaseBadgeFor(catFr){
     return PRAEP_CASE_BADGE[catFr] || { label: "Wechsel", color: "#f59e0b" };
 }
 
+// Pour les 9 Wechselpräpositionen : une phrase Wo ? (Dativ, position -- reprend
+// exactement l'exemple déjà utilisé dans praepTheme.words) et une phrase Wohin ?
+// (Akkusativ, mouvement, nouvelle) pour illustrer concrètement le changement de
+// cas selon le sens, plutôt qu'un seul exemple qui ne montre qu'un des deux cas.
+// N'affecte pas praepTheme.words ni les flashcards -- purement ce composant.
+const PRAEP_WECHSEL_WOHIN = {
+  "in": { de: "Die Kinder gehen in den Park.", fr: "Les enfants vont dans le parc.", en: "The children are going into the park." },
+  "an": { de: "Ich hänge das Bild an die Wand.", fr: "J'accroche le tableau au mur.", en: "I hang the picture on the wall." },
+  "auf": { de: "Ich lege das Buch auf den Tisch.", fr: "Je pose le livre sur la table.", en: "I put the book on the table." },
+  "über": { de: "Ich hänge die Lampe über den Tisch.", fr: "J'accroche la lampe au-dessus de la table.", en: "I hang the lamp above the table." },
+  "unter": { de: "Die Katze läuft unter das Bett.", fr: "Le chat court sous le lit.", en: "The cat runs under the bed." },
+  "vor": { de: "Er stellt das Auto vor das Haus.", fr: "Il gare la voiture devant la maison.", en: "He parks the car in front of the house." },
+  "hinter": { de: "Sie geht hinter das Haus.", fr: "Elle va derrière la maison.", en: "She goes behind the house." },
+  "neben": { de: "Er setzt sich neben mich.", fr: "Il s'assoit à côté de moi.", en: "He sits down next to me." },
+  "zwischen": { de: "Er stellt das Fahrrad zwischen den Park und den Fluss.", fr: "Il place le vélo entre le parc et la rivière.", en: "He places the bike between the park and the river." }
+};
+
 function renderPraepQuickRef(){
     const container = document.getElementById("praepQuickRefGrid");
     if(!container) return;
@@ -7118,19 +7141,42 @@ function renderPraepQuickRef(){
     });
     container.innerHTML = sorted.map(([wort, fr, catFr, deEx, frEx, en, enEx]) => {
         const badge = praepCaseBadgeFor(catFr);
+        const wohin = badge.label === "Wechsel" ? PRAEP_WECHSEL_WOHIN[wort] : null;
+        const exemplesHtml = wohin ? `
+            <div style="margin-top:6px;">
+                <span style="font-size:11px; font-weight:700; color:${badge.color};">Wo? (Dativ)</span><br>
+                <em>${deEx}</em><br>
+                <span style="color:#576177;">(${useEn ? enEx : frEx})</span>
+            </div>
+            <div style="margin-top:6px;">
+                <span style="font-size:11px; font-weight:700; color:${badge.color};">Wohin? (Akkusativ)</span><br>
+                <em>${wohin.de}</em><br>
+                <span style="color:#576177;">(${useEn ? wohin.en : wohin.fr})</span>
+            </div>
+        ` : `
+            <div style="margin-top:4px;">
+                <em>${deEx}</em><br>
+                <span style="color:#576177;">(${useEn ? enEx : frEx})</span>
+            </div>
+        `;
         return `
         <div class="info-box" style="margin-top:0;">
             <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
                 <strong style="color:#3b6fe0;">${wort}</strong> — ${useEn ? en : fr}
                 <span style="flex:none; font-size:10px; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:#fff; background:${badge.color}; padding:3px 8px; border-radius:20px;">${badge.label}</span>
             </div>
-            <div style="margin-top:4px;">
-                <em>${deEx}</em><br>
-                <span style="color:#576177;">(${useEn ? enEx : frEx})</span>
-            </div>
+            ${exemplesHtml}
         </div>
         `;
     }).join("");
+}
+
+function togglePraepQuickRef(){
+    const grid = document.getElementById("praepQuickRefGrid");
+    const chevron = document.getElementById("praepQuickRefChevron");
+    if(!grid) return;
+    const nowHidden = grid.classList.toggle("hidden");
+    if(chevron) chevron.style.transform = nowHidden ? "rotate(0deg)" : "rotate(180deg)";
 }
 
 const positionsverbenTheme = {
