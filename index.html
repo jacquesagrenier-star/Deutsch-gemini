@@ -2338,7 +2338,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v162</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v163</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4220,6 +4220,7 @@ const I18N = {
         admin_no_codes: "Aucun code créé pour l'instant.",
         admin_code_used: "Déjà utilisé",
         admin_code_available: "Disponible",
+        admin_code_note_placeholder: "Donné à qui ?",
         admin_delete_code_btn: "SUPPRIMER",
         admin_load_failed: "Impossible de charger les données. Vérifie que Firestore est bien activé.",
         admin_no_users: "Aucun testeur pour l'instant.",
@@ -4734,6 +4735,7 @@ const I18N = {
         admin_no_codes: "No codes created yet.",
         admin_code_used: "Already used",
         admin_code_available: "Available",
+        admin_code_note_placeholder: "Given to whom?",
         admin_delete_code_btn: "DELETE",
         admin_load_failed: "Couldn't load the data. Make sure Firestore is enabled.",
         admin_no_users: "No testers yet.",
@@ -8314,11 +8316,21 @@ async function generateInviteCode(){
     try{
         await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code), {
             used: false,
+            note: "",
             createdAt: window.fsServerTimestamp(),
             createdBy: window.firebaseAuth.currentUser.email
         });
         showInfoToast(tf('admin_code_generated', { code }));
         renderAdminCodesList();
+    }catch(e){
+        showInfoToast(t('admin_action_failed'));
+    }
+}
+
+async function updateInviteCodeNote(code, note){
+    if(!isAdminUser()) return;
+    try{
+        await window.fsUpdateDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code), { note: note.trim() });
     }catch(e){
         showInfoToast(t('admin_action_failed'));
     }
@@ -8350,11 +8362,12 @@ async function renderAdminCodesList(){
         }
         container.innerHTML = codes.map(c => `
             <div class="admin-code-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
-                <div>
+                <div style="flex:1; min-width:0;">
                     <div style="font-weight:800; letter-spacing:1px;">${c.id}</div>
                     <small style="color:#576177;">${c.used ? t('admin_code_used') : t('admin_code_available')}</small>
+                    <input type="text" class="admin-code-note" placeholder="${t('admin_code_note_placeholder')}" value="${(c.note || "").replace(/"/g, "&quot;")}" onblur="updateInviteCodeNote('${c.id}', this.value)" style="display:block; width:100%; margin-top:6px; padding:8px 10px; font-size:13px; border:1px solid rgba(30,41,59,.15); border-radius:8px; background:transparent; color:inherit; min-height:36px;">
                 </div>
-                <button class="secondary danger" style="width:auto; padding:8px 14px; font-size:12px;" onclick="deleteInviteCode('${c.id}')" data-i18n="admin_delete_code_btn">SUPPRIMER</button>
+                <button class="secondary danger" style="width:auto; padding:8px 14px; font-size:12px; flex:none;" onclick="deleteInviteCode('${c.id}')" data-i18n="admin_delete_code_btn">SUPPRIMER</button>
             </div>
         `).join("");
     }catch(e){
