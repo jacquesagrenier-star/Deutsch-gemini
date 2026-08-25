@@ -2418,7 +2418,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v178</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v179</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4591,12 +4591,14 @@ const I18N = {
         vhs_kapitel_none_yet: "Aucun chapitre ajouté pour le moment.",
         vhs_kapitel_pill_noms: "Noms",
         vhs_kapitel_pill_verben: "Verbes",
+        vhs_kapitel_pill_adjektive: "Adjectifs",
         kicker_praep_vocab: "Prépositions · Vocabulaire",
         kicker_position_vocab: "Verbes de position · Vocabulaire",
         kicker_partikeln_vocab: "Particules · Vocabulaire",
         kicker_nomen_revision: "Noms · Révision",
         kicker_nomen_flashcards: "Noms · Flashcards",
         kicker_vhs_verben_flashcards: "Verbes · Flashcards",
+        kicker_vhs_adjektive_flashcards: "Adjectifs · Flashcards",
         kicker_nomen_aleatoire: "Noms · Aléatoire",
         title_adjektive_allemands: "Adjectifs allemands",
         theme_name_verb_due_review: "Révision du jour · Verbes",
@@ -5196,12 +5198,14 @@ const I18N = {
         vhs_kapitel_none_yet: "No chapters added yet.",
         vhs_kapitel_pill_noms: "Nouns",
         vhs_kapitel_pill_verben: "Verbs",
+        vhs_kapitel_pill_adjektive: "Adjectives",
         kicker_praep_vocab: "Prepositions · Vocabulary",
         kicker_position_vocab: "Position verbs · Vocabulary",
         kicker_partikeln_vocab: "Particles · Vocabulary",
         kicker_nomen_revision: "Nouns · Review",
         kicker_nomen_flashcards: "Nouns · Flashcards",
         kicker_vhs_verben_flashcards: "Verbs · Flashcards",
+        kicker_vhs_adjektive_flashcards: "Adjectives · Flashcards",
         kicker_nomen_aleatoire: "Nouns · Random",
         title_adjektive_allemands: "German adjectives",
         theme_name_verb_due_review: "Daily review · Verbs",
@@ -5999,11 +6003,25 @@ async function loadThemesJson() {
                 ];
             });
 
+            const rawAdjektive = t.adjektive || [];
+            const adjektive = rawAdjektive.map(a => {
+                if (Array.isArray(a)) return a;
+                return [
+                    a.mot || "",
+                    a.traduction || "",
+                    "",
+                    a.exemple || "",
+                    a.exemple_fr || "",
+                    a.traduction_en || "",
+                    a.exemple_en || ""
+                ];
+            });
+
             if (!grouped[baseId]) {
                 grouped[baseId] = { id: baseId, name, svg, levels: {} };
                 order.push(baseId);
             }
-            grouped[baseId].levels[niveau] = { id: entryId, words, verben };
+            grouped[baseId].levels[niveau] = { id: entryId, words, verben, adjektive };
         });
 
         themes = order.map(id => grouped[id]);
@@ -9887,6 +9905,17 @@ function renderVhsKapitelListe(){
                     <div class="level-pill-stat">${verbenMastered}/${verbenTotal}</div>
                 </div>` : "";
 
+        const adjTotal = (levelData.adjektive || []).length;
+        let adjMastered = 0;
+        const adjThemeId = levelData.id + '__adjektive';
+        (levelData.adjektive || []).forEach((w, i) => { if(getWordState(adjThemeId, i).mastered) adjMastered++; });
+
+        const adjPillHtml = adjTotal > 0 ? `
+                <div class="level-pill" data-action="adjektive">
+                    <div class="level-pill-label">${t('vhs_kapitel_pill_adjektive')}</div>
+                    <div class="level-pill-stat">${adjMastered}/${adjTotal}</div>
+                </div>` : "";
+
         const item = document.createElement("div");
         item.className = "theme-item";
         item.innerHTML = `
@@ -9909,13 +9938,14 @@ function renderVhsKapitelListe(){
                 <div class="level-pill" data-action="noms">
                     <div class="level-pill-label">${t('vhs_kapitel_pill_noms')}</div>
                     <div class="level-pill-stat">${mastered}/${total}</div>
-                </div>${verbenPillHtml}
+                </div>${verbenPillHtml}${adjPillHtml}
             </div>
         `;
         item.querySelectorAll(".level-pill").forEach(pillEl => {
             pillEl.addEventListener("click", (e) => {
                 e.stopPropagation();
                 if(pillEl.dataset.action === "verben") startThemeVerben(theme.id, 'B1', 'vhsKapitelListe');
+                else if(pillEl.dataset.action === "adjektive") startThemeAdjektive(theme.id, 'B1', 'vhsKapitelListe');
                 else startTheme(theme.id, 'B1', 'vhsKapitelListe');
             });
         });
@@ -9976,6 +10006,35 @@ function startThemeVerben(themeId, level, returnScreen){
     }
     currentFlashcard = 0;
     setFlashHeader('kicker_vhs_verben_flashcards', null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startThemeAdjektive(themeId, level, returnScreen){
+    flashcardMode = 'vhskapiteladjektive';
+    nomenReturnScreen = returnScreen || 'nomen';
+    const theme = themes.find(t => t.id === themeId);
+    if(!theme) return;
+    const levelData = theme.levels[level];
+    if(!levelData || !levelData.adjektive || levelData.adjektive.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
+
+    const adjThemeId = levelData.id + '__adjektive';
+    currentTheme = { id: adjThemeId, name: `${theme.name} · ${level} · Adjektive` };
+
+    const now = Date.now();
+    const allItems = levelData.adjektive.map((word, index) => ({ word, index, themeId: adjThemeId }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => {
+        const state = getWordState(item.themeId, item.index);
+        return !state.mastered && (!state.due || state.due <= now);
+    });
+    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0){
+        showInfoToast(t('alert_all_theme_words_mastered'));
+        return;
+    }
+    currentFlashcard = 0;
+    setFlashHeader('kicker_vhs_adjektive_flashcards', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -10056,7 +10115,7 @@ function loadFlashcard(){
     const dictationBtn = document.getElementById("dictationStartBtn");
     if(dictationBtn) dictationBtn.classList.toggle("hidden", flashcardMode !== 'nomen');
     sentenceRegistry = [];
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapitelverben'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -10239,7 +10298,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapitelverben'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive'){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
@@ -10264,7 +10323,7 @@ function loadFlashcard(){
             ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
             : "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
-        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapitelverben')
+        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive')
             ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
             : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`;
         verbDetailsEl.classList.remove("hidden");
