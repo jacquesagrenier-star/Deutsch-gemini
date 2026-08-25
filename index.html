@@ -2405,7 +2405,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v171</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v172</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -11279,7 +11279,16 @@ function checkAnswer(){
     if(!usingChunks && !usingSelect){
         const questionText = (useEn && ex.question_en) ? ex.question_en : ex.question;
         if(questionText && questionText.includes("___")){
-            const correctWord = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+            let correctWord = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+            // Majuscule automatique si le blanc est en tout debut de phrase
+            // (ex. "___ du gestern zu Hause?" -> "Warst du..."). Les noms
+            // communs allemands, eux, doivent deja etre stockes avec leur
+            // majuscule dans correct/correctEn -- la comparaison de reponse
+            // reste insensible a la casse (voir plus haut), donc les stocker
+            // capitalises ne casse rien.
+            if(questionText.indexOf("___") === 0 && correctWord){
+                correctWord = correctWord.charAt(0).toUpperCase() + correctWord.slice(1);
+            }
             document.getElementById("question").innerHTML = questionText.replace("___", `<span class="filled-blank">${correctWord}</span>`);
         }
     }
