@@ -2418,7 +2418,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v176</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v177</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -9764,25 +9764,6 @@ function filterAndRenderThemes(){
     `;
     randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomen'; startRandomMix(selectedLevel); });
     container.appendChild(randomItem);
-
-    if(selectedLevel === "ALL" || selectedLevel === "B1"){
-        const vhsItem = document.createElement("div");
-        vhsItem.className = "theme-item random-item";
-        vhsItem.innerHTML = `
-            <div class="theme-header">
-                <div class="theme-left">
-                    <div class="theme-icon">📚</div>
-                    <div>
-                        <div class="theme-name">${t('vhs_kapitel_tile_title')}</div>
-                        <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${t('vhs_kapitel_tile_sub')}</div>
-                    </div>
-                </div>
-            </div>
-            <div style="color:#576177; font-size:12px; margin-top:10px;">${t('vhs_kapitel_tile_desc')}</div>
-        `;
-        vhsItem.addEventListener("click", () => { openVhsKapitelListe(); });
-        container.appendChild(vhsItem);
-    }
 
     filtered.forEach(theme => {
         let total = 0, mastered = 0;
