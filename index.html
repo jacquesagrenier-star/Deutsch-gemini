@@ -328,6 +328,13 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="possessiv"] .orb-icon svg{stroke:#a78bfa;}
 .orb[data-orbid="possessiv"] .orb-badge{background:#a78bfa; box-shadow:0 2px 6px rgba(167,139,250,.35);}
 
+.orb[data-orbid="relativ"] .orb-icon{
+    background:rgba(217,70,239,.14);
+    border-color:rgba(217,70,239,.28);
+}
+.orb[data-orbid="relativ"] .orb-icon svg{stroke:#d946ef;}
+.orb[data-orbid="relativ"] .orb-badge{background:#d946ef; box-shadow:0 2px 6px rgba(217,70,239,.35);}
+
 .orb[data-orbid="partikeln"] .orb-icon{
     background:rgba(20,184,166,.14);
     border-color:rgba(20,184,166,.28);
@@ -1076,6 +1083,51 @@ button{font-family:inherit}
 }
 
 .answer:focus{border-color:#3b82f6}
+
+/* Exercice "remets les mots en ordre" (pronoms relatifs, etc.) : deux zones --
+   une bande "construite" (vide au depart, pointille) ou les mots tapes
+   s'accumulent dans l'ordre, et une bande "banque" avec les mots restants
+   melanges. Taper un mot dans la banque le deplace vers la bande construite ;
+   taper un mot deja place le retire (annule ce choix). */
+.chunk-strip{
+    display:flex; flex-wrap:wrap; gap:8px;
+    min-height:52px;
+    padding:10px;
+    border-radius:14px;
+    margin-bottom:12px;
+}
+.chunk-strip-built{
+    border:2px dashed rgba(30,41,59,.28);
+    background:rgba(59,130,246,.05);
+}
+.chunk-strip-bank{
+    border:1px solid rgba(30,41,59,.14);
+    background:rgba(255,255,255,.4);
+}
+.chunk-pill{
+    display:inline-flex; align-items:center;
+    padding:9px 14px;
+    min-height:44px;
+    border-radius:12px;
+    border:1px solid rgba(30,41,59,.22);
+    background:#fff;
+    font-size:16px;
+    font-weight:600;
+    color:#1e2433;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+}
+.chunk-pill:hover{ box-shadow:0 2px 8px rgba(30,41,59,.12); }
+.chunk-pill:active{ transform:scale(.96); }
+.chunk-pill.placed{
+    background:#eef2ff;
+    border-color:#3b82f6;
+    color:#1e3a8a;
+}
+body[data-theme="dark"] .chunk-strip-built{ background:rgba(96,165,250,.08); border-color:rgba(226,232,240,.28); }
+body[data-theme="dark"] .chunk-strip-bank{ background:rgba(255,255,255,.04); border-color:rgba(226,232,240,.14); }
+body[data-theme="dark"] .chunk-pill{ background:#1e2433; border-color:rgba(226,232,240,.24); color:#e7ebf3; }
+body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); border-color:#60a5fa; color:#bfdbfe; }
 
 .password-field-wrap{ position:relative; }
 .password-field-wrap .answer{ padding-right:48px; }
@@ -2343,7 +2395,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v166</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v167</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2472,6 +2524,15 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_possessiv_title">Possessifs</strong>
                 <small data-i18n="orb_possessiv_sub">mein · dein</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="relativ" onclick="openOrbPanel('relativ')">
+            <div id="badge-relativ" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 7h9"/><path d="M4 12h6"/><path d="M4 17h9"/><circle cx="19" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/></svg></div>
+            <div>
+                <strong data-i18n="orb_relativ_title">Pronoms relatifs</strong>
+                <small data-i18n="orb_relativ_sub">der · den · dem</small>
             </div>
         </div>
 
@@ -3076,6 +3137,117 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 </section>
 
+<!-- ================= PRONOMS RELATIFS ================= -->
+
+<section id="relativInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('relativ')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="relativ_info_title">Pronoms relatifs — Nominativ, Akkusativ, Dativ</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="relativ_intro">
+            Un pronom relatif relie une information supplémentaire à un nom déjà mentionné — <strong>« qui »</strong>, <strong>« que »</strong>, <strong>« à qui »</strong> en français.<br><em>Ich kenne den Mann. Der Mann wohnt hier.</em> → <em>Ich kenne den Mann, <strong>der</strong> hier wohnt.</em> (Je connais l'homme qui habite ici.)
+        </div>
+        <div class="info-box" data-i18n-html="relativ_good_news">
+            Bonne nouvelle : ces pronoms sont <strong>presque identiques</strong> aux articles définis que tu connais déjà (der/die/das/den/dem/der...). Une seule vraie nouveauté : <strong>denen</strong> au datif pluriel, au lieu de « den ».
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="relativ_table_title">Tableau de déclinaison</strong>
+        <div class="info-box" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
+                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                    <td style="padding:8px 4px;"></td>
+                    <td style="padding:8px 4px;">masc.</td>
+                    <td style="padding:8px 4px;">fém.</td>
+                    <td style="padding:8px 4px;">neutre</td>
+                    <td style="padding:8px 4px;">pluriel</td>
+                </tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Nom.</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Akk.</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Dat.</td><td>dem</td><td>der</td><td>dem</td><td style="color:#be185d; font-weight:800;">denen</td></tr>
+            </table>
+        </div>
+        <small style="color:#576177;" data-i18n="relativ_table_tip">La seule case qui change vraiment : le datif pluriel (denen). Tout le reste = les articles définis.</small>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="relativ_wortstellung_title">⚠️ Le verbe va à la toute fin</strong>
+        <div class="info-box" data-i18n-html="relativ_wortstellung">
+            Comme toute proposition subordonnée, la relative envoie son verbe conjugué à la fin. Au Perfekt, les <strong>deux</strong> morceaux du verbe suivent cette règle : le participe d'abord, l'auxiliaire (conjugué) juste après, tout à la fin.<br>
+            <em>Das ist das Buch, das ich gestern <strong>gekauft habe</strong>.</em> (C'est le livre que j'ai acheté hier.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="relativ_genre_title">⚠️ Le genre vient du nom, pas du sujet</strong>
+        <div class="info-box" data-i18n-html="relativ_genre">
+            Le genre et le nombre du pronom relatif dépendent du nom auquel il se rapporte (le « Bezugswort », juste avant la virgule) — <strong>jamais</strong> du sujet à l'intérieur de la relative.<br>
+            <em>Das ist die Frau, <strong>die</strong> ich kenne.</em> (die = féminin parce que « die Frau » est féminin, pas parce que « ich ».)
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startRelativReconnaissance()" data-i18n="relativ_btn_reconnaissance">M'ENTRAÎNER : RECONNAÎTRE LE PRONOM →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startRelativOrder()" data-i18n="relativ_btn_order">M'ENTRAÎNER : REMETTRE LES MOTS EN ORDRE →</button>
+</section>
+
+<section id="relativGenitivInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('relativ')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="relativ_gen_info_title">Pronoms relatifs — Genitiv</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="relativ_gen_intro">
+            Le pronom relatif au génitif exprime la possession — <strong>« dont »</strong>, <strong>« dont le/la »</strong> en français.<br><em>Das ist der Mann. Sein Auto ist kaputt.</em> → <em>Das ist der Mann, <strong>dessen</strong> Auto kaputt ist.</em> (C'est l'homme dont la voiture est en panne.)
+        </div>
+        <div class="info-box" data-i18n-html="relativ_gen_warning">
+            Ici, pas de lien avec « des »/« der » : ce sont des formes complètement différentes à mémoriser, <strong>dessen</strong> et <strong>deren</strong>.
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="relativ_gen_table_title">Tableau de déclinaison</strong>
+        <div class="info-box" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
+                <tr style="color:#3b6fe0; font-weight:800;">
+                    <td style="padding:8px 4px;">masc.</td>
+                    <td style="padding:8px 4px;">fém.</td>
+                    <td style="padding:8px 4px;">neutre</td>
+                    <td style="padding:8px 4px;">pluriel</td>
+                </tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:800;">dessen</td><td style="font-weight:800;">deren</td><td style="font-weight:800;">dessen</td><td style="font-weight:800;">deren</td></tr>
+            </table>
+        </div>
+        <small style="color:#576177;" data-i18n="relativ_gen_table_tip">dessen/deren s'accordent avec le nom auquel ils se rapportent (comme au Nominativ/Akkusativ/Dativ) — le genre du mot qui suit ne change rien à leur forme.</small>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="relativ_genre_title">⚠️ Le genre vient du nom, pas du sujet</strong>
+        <div class="info-box" data-i18n-html="relativ_gen_genre">
+            Même règle qu'au Nominativ/Akkusativ/Dativ : dessen/deren s'accordent avec le nom qui précède la virgule, pas avec ce qui suit à l'intérieur de la relative.<br>
+            <em>Das ist die Frau, <strong>deren</strong> Sohn Lehrer ist.</em> (deren = féminin parce que « die Frau » est féminin, même si « Sohn » est masculin.)
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startRelativGenitivReconnaissance()" data-i18n="relativ_gen_btn_reconnaissance">M'ENTRAÎNER : RECONNAÎTRE LE PRONOM →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startRelativGenitivOrder()" data-i18n="relativ_gen_btn_order">M'ENTRAÎNER : REMETTRE LES MOTS EN ORDRE →</button>
+</section>
+
 <!-- ================= VERBEN · TEMPS ================= -->
 
 <section id="verbenTempsInfo" class="screen">
@@ -3370,6 +3542,11 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <select id="answerSelect" class="answer hidden">
             <option value="" data-i18n="choose_case">-- Choisis le cas --</option>
         </select>
+
+        <div id="answerChunksWrap" class="hidden">
+            <div id="answerChunksBuilt" class="chunk-strip chunk-strip-built"></div>
+            <div id="answerChunksBank" class="chunk-strip chunk-strip-bank"></div>
+        </div>
 
         <div class="spacer"></div>
         <button id="checkButton" class="primary" onclick="checkAnswer()" data-i18n="verify_button">VÉRIFIER</button>
@@ -3776,6 +3953,8 @@ const I18N = {
         orb_wortstellung_sub: "Satzbau",
         orb_possessiv_title: "Possessifs",
         orb_possessiv_sub: "mein · dein",
+        orb_relativ_title: "Pronoms relatifs",
+        orb_relativ_sub: "der · den · dem",
         orb_partikeln_title: "Particules",
         orb_partikeln_sub: "doch · ja · mal",
         orb_revision_title: "Révision",
@@ -3976,6 +4155,9 @@ const I18N = {
         op_kasus_o2_t: "Reconnaître le cas", op_kasus_o2_d: "Identifier le cas dans une phrase",
         op_kasus_o3_t: "Compléter l'article", op_kasus_o3_d: "Choisir le bon article/terminaison",
         op_kasus_o4_t: "Verbes à cas fixe",
+        op_relativ_title: "Pronoms relatifs", op_relativ_sub: "der · den · dem · dessen",
+        op_relativ_o1_t: "Nominativ, Akkusativ, Dativ", op_relativ_o1_d: "Presque comme les articles définis",
+        op_relativ_o2_t: "Genitiv", op_relativ_o2_d: "dessen · deren — « dont »",
 
         op_praep_title: "Prépositions", op_praep_sub: "Cas fixe & Wechselpräpositionen",
         op_praep_o1_t: "Comprendre les prépositions", op_praep_o1_d: "Groupes à cas fixe & Wo/Wohin",
@@ -4166,6 +4348,31 @@ const I18N = {
         kicker_adj_flashcards: "Adjectifs · Flashcards",
         kicker_adj_aleatoire: "Adjectifs · Aléatoire",
         kicker_kasus_verben: "Cas · Verbes à cas fixe",
+        kicker_relativ_reconnaissance: "Pronoms relatifs · Reconnaître",
+        kicker_relativ_order: "Pronoms relatifs · Ordre des mots",
+        kicker_relativ_gen_reconnaissance: "Pronoms relatifs · Genitiv · Reconnaître",
+        kicker_relativ_gen_order: "Pronoms relatifs · Genitiv · Ordre des mots",
+
+        relativ_info_title: "Pronoms relatifs — Nominativ, Akkusativ, Dativ",
+        relativ_intro: `Un pronom relatif relie une information supplémentaire à un nom déjà mentionné — <strong>« qui »</strong>, <strong>« que »</strong>, <strong>« à qui »</strong> en français.<br><em>Ich kenne den Mann. Der Mann wohnt hier.</em> → <em>Ich kenne den Mann, <strong>der</strong> hier wohnt.</em> (Je connais l'homme qui habite ici.)`,
+        relativ_good_news: `Bonne nouvelle : ces pronoms sont <strong>presque identiques</strong> aux articles définis que tu connais déjà (der/die/das/den/dem/der...). Une seule vraie nouveauté : <strong>denen</strong> au datif pluriel, au lieu de « den ».`,
+        relativ_table_title: "Tableau de déclinaison",
+        relativ_table_tip: "La seule case qui change vraiment : le datif pluriel (denen). Tout le reste = les articles définis.",
+        relativ_wortstellung_title: "⚠️ Le verbe va à la toute fin",
+        relativ_wortstellung: `Comme toute proposition subordonnée, la relative envoie son verbe conjugué à la fin. Au Perfekt, les <strong>deux</strong> morceaux du verbe suivent cette règle : le participe d'abord, l'auxiliaire (conjugué) juste après, tout à la fin.<br><em>Das ist das Buch, das ich gestern <strong>gekauft habe</strong>.</em> (C'est le livre que j'ai acheté hier.)`,
+        relativ_genre_title: "⚠️ Le genre vient du nom, pas du sujet",
+        relativ_genre: `Le genre et le nombre du pronom relatif dépendent du nom auquel il se rapporte (le « Bezugswort », juste avant la virgule) — <strong>jamais</strong> du sujet à l'intérieur de la relative.<br><em>Das ist die Frau, <strong>die</strong> ich kenne.</em> (die = féminin parce que « die Frau » est féminin, pas parce que « ich ».)`,
+        relativ_btn_reconnaissance: "M'ENTRAÎNER : RECONNAÎTRE LE PRONOM →",
+        relativ_btn_order: "M'ENTRAÎNER : REMETTRE LES MOTS EN ORDRE →",
+
+        relativ_gen_info_title: "Pronoms relatifs — Genitiv",
+        relativ_gen_intro: `Le pronom relatif au génitif exprime la possession — <strong>« dont »</strong>, <strong>« dont le/la »</strong> en français.<br><em>Das ist der Mann. Sein Auto ist kaputt.</em> → <em>Das ist der Mann, <strong>dessen</strong> Auto kaputt ist.</em> (C'est l'homme dont la voiture est en panne.)`,
+        relativ_gen_warning: `Ici, pas de lien avec « des »/« der » : ce sont des formes complètement différentes à mémoriser, <strong>dessen</strong> et <strong>deren</strong>.`,
+        relativ_gen_table_title: "Tableau de déclinaison",
+        relativ_gen_table_tip: "dessen/deren s'accordent avec le nom auquel ils se rapportent (comme au Nominativ/Akkusativ/Dativ) — le genre du mot qui suit ne change rien à leur forme.",
+        relativ_gen_genre: `Même règle qu'au Nominativ/Akkusativ/Dativ : dessen/deren s'accordent avec le nom qui précède la virgule, pas avec ce qui suit à l'intérieur de la relative.<br><em>Das ist die Frau, <strong>deren</strong> Sohn Lehrer ist.</em> (deren = féminin parce que « die Frau » est féminin, même si « Sohn » est masculin.)`,
+        relativ_gen_btn_reconnaissance: "M'ENTRAÎNER : RECONNAÎTRE LE PRONOM →",
+        relativ_gen_btn_order: "M'ENTRAÎNER : REMETTRE LES MOTS EN ORDRE →",
         kicker_praep_vocab: "Prépositions · Vocabulaire",
         kicker_position_vocab: "Verbes de position · Vocabulaire",
         kicker_partikeln_vocab: "Particules · Vocabulaire",
@@ -4294,6 +4501,8 @@ const I18N = {
         orb_wortstellung_sub: "Satzbau",
         orb_possessiv_title: "Possessives",
         orb_possessiv_sub: "mein · dein",
+        orb_relativ_title: "Relative pronouns",
+        orb_relativ_sub: "der · den · dem",
         orb_partikeln_title: "Particles",
         orb_partikeln_sub: "doch · ja · mal",
         orb_revision_title: "Review",
@@ -4497,6 +4706,9 @@ const I18N = {
         op_kasus_o2_t: "Identify the case", op_kasus_o2_d: "Identify the case in a sentence",
         op_kasus_o3_t: "Complete the article", op_kasus_o3_d: "Choose the right article/ending",
         op_kasus_o4_t: "Fixed-case verbs",
+        op_relativ_title: "Relative pronouns", op_relativ_sub: "der · den · dem · dessen",
+        op_relativ_o1_t: "Nominativ, Akkusativ, Dativ", op_relativ_o1_d: "Almost the same as definite articles",
+        op_relativ_o2_t: "Genitiv", op_relativ_o2_d: "dessen · deren — \"whose\"",
 
         op_praep_title: "Prepositions", op_praep_sub: "Fixed case & Wechselpräpositionen",
         op_praep_o1_t: "Understand prepositions", op_praep_o1_d: "Fixed-case groups & Wo/Wohin",
@@ -4687,6 +4899,31 @@ const I18N = {
         kicker_adj_flashcards: "Adjectives · Flashcards",
         kicker_adj_aleatoire: "Adjectives · Random",
         kicker_kasus_verben: "Cases · Fixed-case verbs",
+        kicker_relativ_reconnaissance: "Relative pronouns · Identify",
+        kicker_relativ_order: "Relative pronouns · Word order",
+        kicker_relativ_gen_reconnaissance: "Relative pronouns · Genitiv · Identify",
+        kicker_relativ_gen_order: "Relative pronouns · Genitiv · Word order",
+
+        relativ_info_title: "Relative pronouns — Nominativ, Akkusativ, Dativ",
+        relativ_intro: `A relative pronoun links extra information to a noun already mentioned — <strong>"who"</strong>, <strong>"that"</strong>, <strong>"whom"</strong> in English.<br><em>Ich kenne den Mann. Der Mann wohnt hier.</em> → <em>Ich kenne den Mann, <strong>der</strong> hier wohnt.</em> (I know the man who lives here.)`,
+        relativ_good_news: `Good news: these pronouns are <strong>almost identical</strong> to the definite articles you already know (der/die/das/den/dem/der...). Only one real novelty: <strong>denen</strong> in the dative plural, instead of "den".`,
+        relativ_table_title: "Declension table",
+        relativ_table_tip: "The only cell that really changes: dative plural (denen). Everything else = the definite articles.",
+        relativ_wortstellung_title: "⚠️ The verb goes to the very end",
+        relativ_wortstellung: `Like any subordinate clause, the relative clause sends its conjugated verb to the end. In the Perfekt, both parts of the verb follow this rule: the participle first, the auxiliary (conjugated) right after, both at the very end.<br><em>Das ist das Buch, das ich gestern <strong>gekauft habe</strong>.</em> (That's the book I bought yesterday.)`,
+        relativ_genre_title: "⚠️ Gender comes from the noun, not the subject",
+        relativ_genre: `The gender and number of the relative pronoun depend on the noun it refers to (the "Bezugswort", right before the comma) — <strong>never</strong> on the subject inside the relative clause.<br><em>Das ist die Frau, <strong>die</strong> ich kenne.</em> (die = feminine because "die Frau" is feminine, not because of "ich".)`,
+        relativ_btn_reconnaissance: "PRACTICE: IDENTIFY THE PRONOUN →",
+        relativ_btn_order: "PRACTICE: PUT THE WORDS IN ORDER →",
+
+        relativ_gen_info_title: "Relative pronouns — Genitiv",
+        relativ_gen_intro: `The genitive relative pronoun expresses possession — <strong>"whose"</strong> in English.<br><em>Das ist der Mann. Sein Auto ist kaputt.</em> → <em>Das ist der Mann, <strong>dessen</strong> Auto kaputt ist.</em> (That's the man whose car broke down.)`,
+        relativ_gen_warning: `No connection to "des"/"der" here: these are completely different forms to memorize, <strong>dessen</strong> and <strong>deren</strong>.`,
+        relativ_gen_table_title: "Declension table",
+        relativ_gen_table_tip: "dessen/deren agree with the noun they refer to (as with Nominativ/Akkusativ/Dativ) — the gender of the word that follows changes nothing about their form.",
+        relativ_gen_genre: `Same rule as with Nominativ/Akkusativ/Dativ: dessen/deren agree with the noun before the comma, not with what follows inside the relative clause.<br><em>Das ist die Frau, <strong>deren</strong> Sohn Lehrer ist.</em> (deren = feminine because "die Frau" is feminine, even though "Sohn" is masculine.)`,
+        relativ_gen_btn_reconnaissance: "PRACTICE: IDENTIFY THE PRONOUN →",
+        relativ_gen_btn_order: "PRACTICE: PUT THE WORDS IN ORDER →",
         kicker_praep_vocab: "Prepositions · Vocabulary",
         kicker_position_vocab: "Position verbs · Vocabulary",
         kicker_partikeln_vocab: "Particles · Vocabulary",
@@ -5935,6 +6172,60 @@ const kasusReconnaissanceExercises = [
   { topic:"Reconnaître le cas", question:"Die Blätter der Bäume fallen im Herbst. Quel cas est « der Bäume » ?", question_en:"Die Blätter der Bäume fallen im Herbst. Which case is « der Bäume »?", translation:"Les feuilles des arbres tombent en automne.", translation_en:"The leaves of the trees fall in autumn.", hint:"(à qui appartient ?)", hint_en:"(who does it belong to?)", answers:["genitiv","genitif"], correct:"Genitiv", explanation:"« der Bäume » marque la possession (les feuilles DES arbres) — Genitiv.", explanation_en:"« der Bäume » marks possession (the leaves OF the trees) — Genitiv.", options: KASUS_OPTIONS },
   { topic:"Reconnaître le cas", question:"Die Meinung des Chefs zählt. Quel cas est « des Chefs » ?", question_en:"Die Meinung des Chefs zählt. Which case is « des Chefs »?", translation:"L'opinion du patron compte.", translation_en:"The boss's opinion counts.", hint:"(à qui appartient ?)", hint_en:"(who does it belong to?)", answers:["genitiv","genitif"], correct:"Genitiv", explanation:"« des Chefs » marque la possession (l'opinion DU patron) — Genitiv.", explanation_en:"« des Chefs » marks possession (the opinion OF the boss) — Genitiv.", options: KASUS_OPTIONS },
   { topic:"Reconnaître le cas", question:"Der Wind weht stark. Quel cas est « Der Wind » ?", question_en:"Der Wind weht stark. Which case is « Der Wind »?", translation:"Le vent souffle fort.", translation_en:"The wind is blowing strongly.", hint:"(qui fait l'action ?)", hint_en:"(who performs the action?)", answers:["nominativ","nominatif"], correct:"Nominativ", explanation:"« Der Wind » est le sujet de la phrase — Nominativ.", explanation_en:"« Der Wind » is the subject of the sentence — Nominativ.", options: KASUS_OPTIONS }
+];
+
+// Pronoms relatifs (Nominativ/Akkusativ/Dativ) -- phase 1 d'un lot plus vaste
+// prevu (50 Akkusativ / 50 Dativ / 50 mixte, puis eventuellement genitif en
+// plus) : ce premier lot couvre chaque case masc/fem/neutre/pluriel x
+// Nom/Akk/Dat une fois, pour valider le moteur avant de monter en volume.
+const relativReconnaissanceExercises = [
+  { topic:"Pronoms relatifs", question:"Der Mann, ___ dort steht, ist mein Nachbar.", question_en:"Der Mann, ___ dort steht, ist mein Nachbar.", translation:"L'homme qui se tient là est mon voisin.", translation_en:"The man who is standing there is my neighbor.", hint:"(Nominativ, masculin -- sujet de la relative)", hint_en:"(Nominativ, masculine -- subject of the relative clause)", answers:["der"], correct:"der", explanation:"« der Mann » est masculin et « der » est le sujet de « steht » -- Nominativ masculin.", explanation_en:"« der Mann » is masculine and « der » is the subject of « steht » -- Nominativ masculine." },
+  { topic:"Pronoms relatifs", question:"Die Frau, ___ hier arbeitet, heißt Anna.", question_en:"Die Frau, ___ hier arbeitet, heißt Anna.", translation:"La femme qui travaille ici s'appelle Anna.", translation_en:"The woman who works here is called Anna.", hint:"(Nominativ, féminin)", hint_en:"(Nominativ, feminine)", answers:["die"], correct:"die", explanation:"« die Frau » est féminin et « die » est le sujet de « arbeitet » -- Nominativ féminin.", explanation_en:"« die Frau » is feminine and « die » is the subject of « arbeitet » -- Nominativ feminine." },
+  { topic:"Pronoms relatifs", question:"Das Kind, ___ dort spielt, ist mein Sohn.", question_en:"Das Kind, ___ dort spielt, ist mein Sohn.", translation:"L'enfant qui joue là est mon fils.", translation_en:"The child who is playing there is my son.", hint:"(Nominativ, neutre)", hint_en:"(Nominativ, neuter)", answers:["das"], correct:"das", explanation:"« das Kind » est neutre et « das » est le sujet de « spielt » -- Nominativ neutre.", explanation_en:"« das Kind » is neuter and « das » is the subject of « spielt » -- Nominativ neuter." },
+  { topic:"Pronoms relatifs", question:"Die Kinder, ___ dort spielen, sind meine Neffen.", question_en:"Die Kinder, ___ dort spielen, sind meine Neffen.", translation:"Les enfants qui jouent là sont mes neveux.", translation_en:"The children who are playing there are my nephews.", hint:"(Nominativ, pluriel)", hint_en:"(Nominativ, plural)", answers:["die"], correct:"die", explanation:"Au pluriel, le Nominativ est toujours « die ».", explanation_en:"In the plural, Nominativ is always « die »." },
+  { topic:"Pronoms relatifs", question:"Der Mann, ___ ich gestern gesehen habe, wohnt hier.", question_en:"Der Mann, ___ ich gestern gesehen habe, wohnt hier.", translation:"L'homme que j'ai vu hier habite ici.", translation_en:"The man I saw yesterday lives here.", hint:"(Akkusativ, masculin -- objet de « sehen »)", hint_en:"(Akkusativ, masculine -- object of « sehen »)", answers:["den"], correct:"den", explanation:"« den Mann » est l'objet direct de « sehen » -- Akkusativ masculin, seule forme qui change par rapport au Nominativ.", explanation_en:"« den Mann » is the direct object of « sehen » -- Akkusativ masculine, the only form that changes from Nominativ." },
+  { topic:"Pronoms relatifs", question:"Die Frau, ___ ich kenne, ist Ärztin.", question_en:"Die Frau, ___ ich kenne, ist Ärztin.", translation:"La femme que je connais est médecin.", translation_en:"The woman I know is a doctor.", hint:"(Akkusativ, féminin)", hint_en:"(Akkusativ, feminine)", answers:["die"], correct:"die", explanation:"Au féminin, Nominativ et Akkusativ sont identiques -- « die ».", explanation_en:"For feminine, Nominativ and Akkusativ are identical -- « die »." },
+  { topic:"Pronoms relatifs", question:"Das Buch, ___ ich lese, ist spannend.", question_en:"Das Buch, ___ ich lese, ist spannend.", translation:"Le livre que je lis est passionnant.", translation_en:"The book I'm reading is exciting.", hint:"(Akkusativ, neutre)", hint_en:"(Akkusativ, neuter)", answers:["das"], correct:"das", explanation:"Au neutre aussi, Nominativ et Akkusativ sont identiques -- « das ».", explanation_en:"For neuter too, Nominativ and Akkusativ are identical -- « das »." },
+  { topic:"Pronoms relatifs", question:"Die Schuhe, ___ ich gekauft habe, sind rot.", question_en:"Die Schuhe, ___ ich gekauft habe, sind rot.", translation:"Les chaussures que j'ai achetées sont rouges.", translation_en:"The shoes I bought are red.", hint:"(Akkusativ, pluriel)", hint_en:"(Akkusativ, plural)", answers:["die"], correct:"die", explanation:"Au pluriel, Nominativ et Akkusativ sont identiques -- « die ».", explanation_en:"In the plural, Nominativ and Akkusativ are identical -- « die »." },
+  { topic:"Pronoms relatifs", question:"Der Mann, ___ ich geholfen habe, ist dankbar.", question_en:"Der Mann, ___ ich geholfen habe, ist dankbar.", translation:"L'homme que j'ai aidé est reconnaissant.", translation_en:"The man I helped is grateful.", hint:"(Dativ, masculin -- helfen + Dativ)", hint_en:"(Dativ, masculine -- helfen + Dativ)", answers:["dem"], correct:"dem", explanation:"« helfen » gouverne le Dativ -- « dem Mann » -- Dativ masculin.", explanation_en:"« helfen » governs Dativ -- « dem Mann » -- Dativ masculine." },
+  { topic:"Pronoms relatifs", question:"Die Frau, ___ ich das Buch gegeben habe, liest gern.", question_en:"Die Frau, ___ ich das Buch gegeben habe, liest gern.", translation:"La femme à qui j'ai donné le livre aime lire.", translation_en:"The woman I gave the book to loves reading.", hint:"(Dativ, féminin -- à qui ?)", hint_en:"(Dativ, feminine -- to whom?)", answers:["der"], correct:"der", explanation:"« geben » + datif : à qui on donne quelque chose -- « der Frau » -- Dativ féminin.", explanation_en:"« geben » + dative: to whom something is given -- « der Frau » -- Dativ feminine." },
+  { topic:"Pronoms relatifs", question:"Das Kind, ___ ich geholfen habe, lächelt.", question_en:"Das Kind, ___ ich geholfen habe, lächelt.", translation:"L'enfant que j'ai aidé sourit.", translation_en:"The child I helped is smiling.", hint:"(Dativ, neutre)", hint_en:"(Dativ, neuter)", answers:["dem"], correct:"dem", explanation:"« helfen » + Dativ -- « dem Kind » -- Dativ neutre (identique au masculin).", explanation_en:"« helfen » + Dativ -- « dem Kind » -- Dativ neuter (same form as masculine)." },
+  { topic:"Pronoms relatifs", question:"Die Leute, ___ ich geholfen habe, sind zufrieden.", question_en:"Die Leute, ___ ich geholfen habe, sind zufrieden.", translation:"Les gens que j'ai aidés sont satisfaits.", translation_en:"The people I helped are satisfied.", hint:"(Dativ, pluriel -- attention, forme spéciale !)", hint_en:"(Dativ, plural -- watch out, special form!)", answers:["denen"], correct:"denen", explanation:"Au Dativ pluriel, le pronom relatif est « denen », pas « den » comme l'article défini -- la seule vraie exception du tableau.", explanation_en:"In the Dativ plural, the relative pronoun is « denen », not « den » like the definite article -- the one true exception in the table." }
+];
+
+const relativOrderExercises = [
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Je connais l'homme qui habite ici.", translation_en:"I know the man who lives here.", chunks:["Ich kenne den Mann,", "der hier", "wohnt."], explanation:"Le verbe conjugué (wohnt) va à la toute fin de la relative.", explanation_en:"The conjugated verb (wohnt) goes to the very end of the relative clause." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est la femme que j'ai rencontrée hier.", translation_en:"That's the woman I met yesterday.", chunks:["Das ist die Frau,", "die ich gestern", "getroffen habe."], explanation:"Au Perfekt, le participe (getroffen) précède l'auxiliaire (habe), tous les deux à la fin.", explanation_en:"In the Perfekt, the participle (getroffen) comes before the auxiliary (habe), both at the end." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Je rends visite à l'enfant que j'aide.", translation_en:"I'm visiting the child I'm helping.", chunks:["Ich besuche das Kind,", "dem ich", "helfe."], explanation:"« helfen » + Dativ -- « dem Kind » -- verbe à la fin.", explanation_en:"« helfen » + Dativ -- « dem Kind » -- verb at the end." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"J'aime les enfants que j'aide.", translation_en:"I like the children I help.", chunks:["Ich mag die Kinder,", "denen ich", "helfe."], explanation:"Dativ pluriel = « denen », verbe à la fin.", explanation_en:"Dativ plural = « denen », verb at the end." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est le professeur que tous les élèves aiment.", translation_en:"He's the teacher all the students like.", chunks:["Er ist der Lehrer,", "den alle Schüler", "mögen."], explanation:"« den » est l'objet direct de « mögen » -- Akkusativ masculin.", explanation_en:"« den » is the direct object of « mögen » -- Akkusativ masculine." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est la voiture que j'ai achetée.", translation_en:"That's the car I bought.", chunks:["Das ist das Auto,", "das ich", "gekauft habe."], explanation:"Akkusativ neutre (« das ») + Perfekt à la fin (gekauft habe).", explanation_en:"Akkusativ neuter (« das ») + Perfekt at the end (gekauft habe)." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Je connais la femme à qui tu as écrit.", translation_en:"I know the woman you wrote to.", chunks:["Ich kenne die Frau,", "der du", "geschrieben hast."], explanation:"« schreiben » + Dativ féminin (« der ») + Perfekt à la fin.", explanation_en:"« schreiben » + Dativ feminine (« der ») + Perfekt at the end." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Nous rendons visite aux amis qui nous ont invités.", translation_en:"We're visiting the friends who invited us.", chunks:["Wir besuchen die Freunde,", "die uns", "eingeladen haben."], explanation:"« die » = Nominativ pluriel, sujet de « eingeladen haben ».", explanation_en:"« die » = Nominativ plural, subject of « eingeladen haben »." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est le film que je recommande.", translation_en:"That's the film I recommend.", chunks:["Das ist der Film,", "den ich", "empfehle."], explanation:"« den » = Akkusativ masculin, objet de « empfehlen ».", explanation_en:"« den » = Akkusativ masculine, object of « empfehlen »." },
+  { topic:"Pronoms relatifs · Ordre des mots", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Elle est la médecin à qui je fais confiance.", translation_en:"She's the doctor I trust.", chunks:["Sie ist die Ärztin,", "der ich", "vertraue."], explanation:"« vertrauen » + Dativ féminin (« der »).", explanation_en:"« vertrauen » + Dativ feminine (« der »)." }
+];
+
+const relativGenitivReconnaissanceExercises = [
+  { topic:"Pronoms relatifs · Genitiv", question:"Der Mann, ___ Auto kaputt ist, wartet auf den Abschleppwagen.", question_en:"Der Mann, ___ Auto kaputt ist, wartet auf den Abschleppwagen.", translation:"L'homme dont la voiture est en panne attend la dépanneuse.", translation_en:"The man whose car broke down is waiting for the tow truck.", hint:"(Genitiv, masculin -- « dont »)", hint_en:"(Genitiv, masculine -- \"whose\")", answers:["dessen"], correct:"dessen", explanation:"« der Mann » est masculin -- Genitiv masculin = « dessen ».", explanation_en:"« der Mann » is masculine -- Genitiv masculine = « dessen »." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Der Lehrer, ___ Buch ich gelesen habe, ist bekannt.", question_en:"Der Lehrer, ___ Buch ich gelesen habe, ist bekannt.", translation:"Le professeur dont j'ai lu le livre est connu.", translation_en:"The teacher whose book I read is well-known.", hint:"(Genitiv, masculin)", hint_en:"(Genitiv, masculine)", answers:["dessen"], correct:"dessen", explanation:"« der Lehrer » est masculin -- « dessen ».", explanation_en:"« der Lehrer » is masculine -- « dessen »." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Die Frau, ___ Sohn Lehrer ist, wohnt hier.", question_en:"Die Frau, ___ Sohn Lehrer ist, wohnt hier.", translation:"La femme dont le fils est professeur habite ici.", translation_en:"The woman whose son is a teacher lives here.", hint:"(Genitiv, féminin -- même si « Sohn » est masculin !)", hint_en:"(Genitiv, feminine -- even though \"Sohn\" is masculine!)", answers:["deren"], correct:"deren", explanation:"Le genre vient de « die Frau » (féminin), pas de « Sohn » -- « deren ».", explanation_en:"The gender comes from « die Frau » (feminine), not from « Sohn » -- « deren »." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Die Ärztin, ___ Praxis hier ist, ist sehr nett.", question_en:"Die Ärztin, ___ Praxis hier ist, ist sehr nett.", translation:"La médecin dont le cabinet est ici est très gentille.", translation_en:"The doctor whose practice is here is very nice.", hint:"(Genitiv, féminin)", hint_en:"(Genitiv, feminine)", answers:["deren"], correct:"deren", explanation:"« die Ärztin » est féminin -- « deren ».", explanation_en:"« die Ärztin » is feminine -- « deren »." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Das Kind, ___ Eltern Lehrer sind, lernt gern.", question_en:"Das Kind, ___ Eltern Lehrer sind, lernt gern.", translation:"L'enfant dont les parents sont professeurs aime apprendre.", translation_en:"The child whose parents are teachers loves learning.", hint:"(Genitiv, neutre)", hint_en:"(Genitiv, neuter)", answers:["dessen"], correct:"dessen", explanation:"« das Kind » est neutre -- Genitiv neutre = « dessen » (identique au masculin).", explanation_en:"« das Kind » is neuter -- Genitiv neuter = « dessen » (same form as masculine)." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Das Haus, ___ Dach kaputt ist, wird repariert.", question_en:"Das Haus, ___ Dach kaputt ist, wird repariert.", translation:"La maison dont le toit est cassé va être réparée.", translation_en:"The house whose roof is broken is being repaired.", hint:"(Genitiv, neutre)", hint_en:"(Genitiv, neuter)", answers:["dessen"], correct:"dessen", explanation:"« das Haus » est neutre -- « dessen ».", explanation_en:"« das Haus » is neuter -- « dessen »." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Die Leute, ___ Auto alt ist, kaufen ein neues.", question_en:"Die Leute, ___ Auto alt ist, kaufen ein neues.", translation:"Les gens dont la voiture est vieille en achètent une nouvelle.", translation_en:"The people whose car is old are buying a new one.", hint:"(Genitiv, pluriel)", hint_en:"(Genitiv, plural)", answers:["deren"], correct:"deren", explanation:"Au pluriel, le Genitiv est toujours « deren ».", explanation_en:"In the plural, Genitiv is always « deren »." },
+  { topic:"Pronoms relatifs · Genitiv", question:"Die Studenten, ___ Noten gut sind, freuen sich.", question_en:"Die Studenten, ___ Noten gut sind, freuen sich.", translation:"Les étudiants dont les notes sont bonnes sont contents.", translation_en:"The students whose grades are good are happy.", hint:"(Genitiv, pluriel)", hint_en:"(Genitiv, plural)", answers:["deren"], correct:"deren", explanation:"Pluriel -- « deren ».", explanation_en:"Plural -- « deren »." }
+];
+
+const relativGenitivOrderExercises = [
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Je connais l'homme dont la voiture est en panne.", translation_en:"I know the man whose car broke down.", chunks:["Ich kenne den Mann,", "dessen Auto", "kaputt ist."], explanation:"« dessen » (masculin) + verbe à la fin.", explanation_en:"« dessen » (masculine) + verb at the end." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est la femme dont le fils est professeur.", translation_en:"That's the woman whose son is a teacher.", chunks:["Das ist die Frau,", "deren Sohn", "Lehrer ist."], explanation:"« deren » vient de « die Frau » (féminin), pas de « Sohn ».", explanation_en:"« deren » comes from « die Frau » (feminine), not from « Sohn »." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Nous connaissons l'enfant dont les parents sont médecins.", translation_en:"We know the child whose parents are doctors.", chunks:["Wir kennen das Kind,", "dessen Eltern", "Ärzte sind."], explanation:"« dessen » (neutre, comme « das Kind »).", explanation_en:"« dessen » (neuter, like « das Kind »)." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Ce sont les gens dont la maison brûle.", translation_en:"Those are the people whose house is burning.", chunks:["Das sind die Leute,", "deren Haus", "brennt."], explanation:"« deren » (pluriel).", explanation_en:"« deren » (plural)." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est l'auteur dont j'ai lu le livre.", translation_en:"He's the author whose book I read.", chunks:["Er ist der Autor,", "dessen Buch ich", "gelesen habe."], explanation:"« dessen » + Perfekt à la fin (gelesen habe).", explanation_en:"« dessen » + Perfekt at the end (gelesen habe)." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est la chanteuse dont j'aime la chanson.", translation_en:"She's the singer whose song I like.", chunks:["Sie ist die Sängerin,", "deren Lied ich", "mag."], explanation:"« deren » (féminin, comme « die Sängerin »).", explanation_en:"« deren » (feminine, like « die Sängerin »)." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"C'est la fille dont la mère est médecin.", translation_en:"That's the girl whose mother is a doctor.", chunks:["Das ist das Mädchen,", "dessen Mutter", "Ärztin ist."], explanation:"« dessen » -- « das Mädchen » est grammaticalement neutre malgré le sens féminin.", explanation_en:"« dessen » -- « das Mädchen » is grammatically neuter despite its feminine meaning." },
+  { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Je rends visite aux étudiants dont les notes sont bonnes.", translation_en:"I'm visiting the students whose grades are good.", chunks:["Ich besuche die Studenten,", "deren Noten", "gut sind."], explanation:"« deren » (pluriel).", explanation_en:"« deren » (plural)." }
 ];
 
 const kasusArticleExercises = [
@@ -8058,6 +8349,15 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "relativ"){
+        return {
+            icon:"dossier", title:t("op_relativ_title"), sub:t("op_relativ_sub"),
+            options:[
+                { icon:"dossier", title:t("op_relativ_o1_t"), desc:t("op_relativ_o1_d"), primary:true, action:"openRelativInfo" },
+                { icon:"dossier", title:t("op_relativ_o2_t"), desc:t("op_relativ_o2_d"), action:"openRelativGenitivInfo" }
+            ]
+        };
+    }
     if(id === "praep"){
         return {
             icon:"dossier", title:t("op_praep_title"), sub:t("op_praep_sub"),
@@ -8482,6 +8782,14 @@ async function renderAdminUsersList(){
 
 function openKasusInfo(){
     showScreen("kasusInfo");
+}
+
+function openRelativInfo(){
+    showScreen("relativInfo");
+}
+
+function openRelativGenitivInfo(){
+    showScreen("relativGenitivInfo");
 }
 
 function openAdjektiveDeklination(){
@@ -10502,8 +10810,74 @@ function startKasusReconnaissance(){
     startExerciseSet(kasusReconnaissanceExercises, "kicker_kasus_reconnaissance", openKasusInfo, startKasusReconnaissance);
 }
 
+function startRelativReconnaissance(){
+    startExerciseSet(shuffleArray(relativReconnaissanceExercises), "kicker_relativ_reconnaissance", openRelativInfo, startRelativReconnaissance);
+}
+
+function startRelativOrder(){
+    startExerciseSet(shuffleArray(relativOrderExercises), "kicker_relativ_order", openRelativInfo, startRelativOrder);
+}
+
+function startRelativGenitivReconnaissance(){
+    startExerciseSet(shuffleArray(relativGenitivReconnaissanceExercises), "kicker_relativ_gen_reconnaissance", openRelativGenitivInfo, startRelativGenitivReconnaissance);
+}
+
+function startRelativGenitivOrder(){
+    startExerciseSet(shuffleArray(relativGenitivOrderExercises), "kicker_relativ_gen_order", openRelativGenitivInfo, startRelativGenitivOrder);
+}
+
 function startKasusArticle(){
     startExerciseSet(kasusArticleExercises, "kicker_kasus_article", openKasusInfo, startKasusArticle);
+}
+
+// Etat de l'exercice "remets les mots en ordre" (chunkShuffled = les morceaux
+// melanges affiches dans la banque ; chunkBuilt = liste des index dans
+// chunkShuffled, dans l'ordre ou l'utilisateur les a tapes -- reconstitue la
+// bande du haut). Reinitialise a chaque loadExercise().
+let chunkShuffled = [];
+let chunkBuilt = [];
+
+function shuffleChunksForExercise(chunks){
+    const arr = chunks.map((text, i) => ({ text, origIndex: i, used: false }));
+    let attempts = 0;
+    do {
+        for(let i = arr.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        attempts++;
+    } while(attempts < 8 && arr.length > 1 && arr.every((c, i) => c.origIndex === i));
+    return arr;
+}
+
+function renderChunkAnswerUi(){
+    const builtEl = document.getElementById("answerChunksBuilt");
+    const bankEl = document.getElementById("answerChunksBank");
+    if(!builtEl || !bankEl) return;
+    builtEl.innerHTML = chunkBuilt.map((shuffledIdx, pos) =>
+        `<button type="button" class="chunk-pill placed" onclick="unplaceChunk(${pos})">${chunkShuffled[shuffledIdx].text}</button>`
+    ).join("");
+    bankEl.innerHTML = chunkShuffled.map((c, i) =>
+        c.used ? "" : `<button type="button" class="chunk-pill" onclick="placeChunk(${i})">${c.text}</button>`
+    ).join("");
+}
+
+function placeChunk(shuffledIdx){
+    if(answered) return;
+    const c = chunkShuffled[shuffledIdx];
+    if(!c || c.used) return;
+    c.used = true;
+    chunkBuilt.push(shuffledIdx);
+    renderChunkAnswerUi();
+}
+
+function unplaceChunk(builtPos){
+    if(answered) return;
+    const shuffledIdx = chunkBuilt[builtPos];
+    if(shuffledIdx === undefined) return;
+    chunkShuffled[shuffledIdx].used = false;
+    chunkBuilt.splice(builtPos, 1);
+    renderChunkAnswerUi();
 }
 
 function loadExercise(){
@@ -10528,18 +10902,29 @@ function loadExercise(){
 
     const input = document.getElementById("answer");
     const select = document.getElementById("answerSelect");
+    const chunksWrap = document.getElementById("answerChunksWrap");
+    const usingChunks = !!(ex.chunks && ex.chunks.length);
 
-    if(opts && opts.length){
+    if(usingChunks){
+        chunkShuffled = shuffleChunksForExercise(ex.chunks);
+        chunkBuilt = [];
+        renderChunkAnswerUi();
+        chunksWrap.classList.remove("hidden");
+        input.classList.add("hidden");
+        select.classList.add("hidden");
+    } else if(opts && opts.length){
         select.innerHTML = `<option value="">${t("choose_case")}</option>` +
             opts.map(o => `<option value="${o}">${o}</option>`).join("");
         select.disabled = false;
         select.classList.remove("hidden");
         input.classList.add("hidden");
+        chunksWrap.classList.add("hidden");
     } else {
         input.value = "";
         input.disabled = false;
         input.classList.remove("hidden");
         select.classList.add("hidden");
+        chunksWrap.classList.add("hidden");
     }
 
     const dictationReplayBtn = document.getElementById("dictationReplayBtn");
@@ -10553,7 +10938,7 @@ function loadExercise(){
     const feedback = document.getElementById("feedback");
     feedback.className = "feedback";
     feedback.innerHTML = "";
-    if(!(opts && opts.length)) setTimeout(() => input.focus(), 50);
+    if(!usingChunks && !(opts && opts.length)) setTimeout(() => input.focus(), 50);
 }
 
 function checkAnswer(){
@@ -10562,14 +10947,22 @@ function checkAnswer(){
     const uiLang = getUiLang();
     const useEn = uiLang === 'en';
     const opts = (useEn && ex.optionsEn) ? ex.optionsEn : ex.options;
+    const usingChunks = !!(ex.chunks && ex.chunks.length);
     const usingSelect = !!(opts && opts.length);
     const input = document.getElementById("answer");
     const select = document.getElementById("answerSelect");
-    const rawVal = usingSelect ? select.value.trim() : input.value.trim();
-    if(!rawVal){ if(usingSelect) select.focus(); else input.focus(); return; }
+    let isCorrect;
+    if(usingChunks){
+        if(chunkBuilt.length < ex.chunks.length) return; // pas encore tous places
+        const builtText = chunkBuilt.map(i => chunkShuffled[i].text);
+        isCorrect = builtText.every((txt, i) => txt === ex.chunks[i]);
+    } else {
+        const rawVal = usingSelect ? select.value.trim() : input.value.trim();
+        if(!rawVal){ if(usingSelect) select.focus(); else input.focus(); return; }
+        const val = rawVal.toLowerCase();
+        isCorrect = ex.answers.some(a => a.toLowerCase() === val);
+    }
     answered = true;
-    const val = rawVal.toLowerCase();
-    const isCorrect = ex.answers.some(a => a.toLowerCase() === val);
     exerciseResults.push({ topic: ex.topic, correct: isCorrect });
     const feedback = document.getElementById("feedback");
     if(isCorrect){
@@ -10592,11 +10985,15 @@ function checkAnswer(){
         celebrateMastery(justReachedMultiple);
     }else{
         feedback.className = "feedback show wrong";
-        const correctDisplay = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+        const correctDisplay = usingChunks
+            ? ex.chunks.join(" ")
+            : ((useEn && ex.correctEn) ? ex.correctEn : ex.correct);
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_wrong_title")}</div><div class="explanation"><strong>${t("correct_answer_label")}</strong> ${correctDisplay}</div>`;
         resetCombo();
     }
-    if(usingSelect) select.disabled = true; else input.disabled = true;
+    if(usingChunks){ renderChunkAnswerUi(); }
+    else if(usingSelect){ select.disabled = true; }
+    else{ input.disabled = true; }
     document.getElementById("checkButton").classList.add("hidden");
     document.getElementById("nextButton").classList.remove("hidden");
 }
