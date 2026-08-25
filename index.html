@@ -2425,7 +2425,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v181</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v182</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4389,7 +4389,7 @@ const I18N = {
 
         praep_info_title: "Comprendre les prépositions",
         praep_visual_title: "Aide-mémoire visuel",
-        praep_quickref_title: "16 prépositions en un coup d'œil",
+        praep_quickref_title: "Toutes les prépositions en un coup d'œil",
         praep_fixedcase_title: "Trois groupes à cas fixe",
         praep_box_akkusativ: `<strong style="color:#3b6fe0;">Toujours Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (Le cadeau est pour toi.)`,
         praep_box_dativ: `<strong style="color:#3b6fe0;">Toujours Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (Je viens de Suisse.)`,
@@ -4999,7 +4999,7 @@ const I18N = {
 
         praep_info_title: "Understanding prepositions",
         praep_visual_title: "Visual reference",
-        praep_quickref_title: "16 prepositions at a glance",
+        praep_quickref_title: "All prepositions at a glance",
         praep_fixedcase_title: "Three fixed-case groups",
         praep_box_akkusativ: `<strong style="color:#3b6fe0;">Always Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (The gift is for you.)`,
         praep_box_dativ: `<strong style="color:#3b6fe0;">Always Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (I come from Switzerland.)`,
@@ -7089,46 +7089,48 @@ const praepTheme = {
   ]
 };
 
-// Aide-mémoire visuel des 16 prépositions les plus courantes, affiché sur
-// praepInfo en complément du diagramme Akkusativ/Dativ/Wechselpräpositionen
-// existant. Reconstruit nativement (HTML/CSS, voir renderPraepQuickRef) à
-// partir de deux images fournies par l'utilisatrice (video/Prepfrancais.jpeg,
-// video/Prepanglais.jpeg) pour rester cohérent avec le style de l'app et
-// s'adapter au mode sombre -- contenu identique, juste pas une image figée.
-// Format : [mot, icone, traduction_fr, exemple_de, exemple_fr, traduction_en, exemple_en]
-const PRAEP_QUICKREF = [
-  ["bis", "⏰", "jusqu'à", "bis 5 Uhr / bis nach Hause", "jusqu'à 5 heures / jusqu'à la maison", "until", "until 5 o'clock / until home"],
-  ["durch", "🚇", "à travers", "Wir fahren durch den Tunnel.", "Nous roulons à travers le tunnel.", "through", "We drive through the tunnel."],
-  ["für", "🎁", "pour", "Das ist für dich.", "C'est pour toi.", "for", "This is for you."],
-  ["ohne", "🥛", "sans", "Ich trinke Wasser ohne Zucker.", "Je bois de l'eau sans sucre.", "without", "I drink water without sugar."],
-  ["in", "📦", "dans", "Ich lege den Ball in die Kiste.", "Je mets le ballon dans la boîte.", "in / into", "I put the ball into the box."],
-  ["an", "🖼️", "sur, à", "Ich hänge das Bild an die Wand.", "J'accroche le tableau sur le mur.", "at / to", "I hang the picture on the wall."],
-  ["auf", "📖", "sur", "Ich lege das Buch auf den Tisch.", "Je pose le livre sur la table.", "on", "I place the book on the table."],
-  ["neben", "🪑", "à côté de", "Ich stelle den Stuhl neben den Schreibtisch.", "Je place la chaise à côté du bureau.", "next to", "I place the chair next to the desk."],
-  ["hinter", "🌳", "derrière", "Der Hase sitzt hinter dem Baum.", "Le lapin est assis derrière l'arbre.", "behind", "The rabbit sits behind the tree."],
-  ["über", "🌉", "au-dessus de", "Das Flugzeug fliegt über die Stadt.", "L'avion vole au-dessus de la ville.", "over / above", "The airplane flies over the city."],
-  ["unter", "🐱", "sous", "Die Katze schläft unter dem Stuhl.", "Le chat dort sous la chaise.", "under", "The cat sleeps under the chair."],
-  ["zwischen", "🪨", "entre", "Der Ball liegt zwischen den Steinen.", "La balle se trouve entre les pierres.", "between", "The ball lies between the stones."],
-  ["ab", "📅", "à partir de", "ab Montag", "à partir de lundi", "from", "from Monday"],
-  ["gegenüber", "🍽️", "en face de", "Er sitzt mir gegenüber.", "Il est assis en face de moi.", "opposite", "He sits opposite me."],
-  ["zu", "🏠", "vers, chez", "Ich gehe zum Arzt.", "Je vais chez le médecin.", "to / at", "I go to the doctor."],
-  ["mit", "🐕", "avec", "Ich gehe mit dem Hund spazieren.", "Je me promène avec le chien.", "with", "I walk with the dog."]
-];
+// Aide-mémoire visuel de praepTheme.words (28 prépositions, meme source que
+// les flashcards -- une seule liste à tenir à jour), affiché sur praepInfo en
+// complément du diagramme Akkusativ/Dativ/Wechselpräpositionen existant.
+// Regroupé par cas (au lieu d'un ordre arbitraire) et avec une étiquette de
+// cas colorée plutôt qu'une icône décorative, pour renforcer la notion de cas
+// plutôt que juste illustrer le sens du mot.
+const PRAEP_CASE_BADGE = {
+  "toujours Akkusativ": { label: "Akkusativ", color: "#3b82f6" },
+  "toujours Dativ": { label: "Dativ", color: "#10b981" },
+  "toujours Genitiv": { label: "Genitiv", color: "#a78bfa" }
+};
+function praepCaseBadgeFor(catFr){
+    return PRAEP_CASE_BADGE[catFr] || { label: "Wechsel", color: "#f59e0b" };
+}
 
 function renderPraepQuickRef(){
     const container = document.getElementById("praepQuickRefGrid");
     if(!container) return;
     const useEn = getUiLang() === 'en';
-    container.innerHTML = PRAEP_QUICKREF.map(([wort, icon, fr, deEx, frEx, en, enEx]) => `
-        <div class="info-box" style="display:flex; align-items:flex-start; gap:10px; margin-top:0;">
-            <div style="font-size:22px; line-height:1; flex:none;">${icon}</div>
-            <div>
-                <strong style="color:#3b6fe0;">${wort}</strong> — ${useEn ? en : fr}<br>
+    // Regroupe par cas dans l'ordre pédagogique Akkusativ -> Dativ -> Genitiv -> Wechsel,
+    // en conservant l'ordre d'origine de praepTheme.words à l'intérieur de chaque groupe.
+    const order = ["Akkusativ", "Dativ", "Genitiv", "Wechsel"];
+    const sorted = praepTheme.words.slice().sort((a, b) => {
+        const ai = order.indexOf(praepCaseBadgeFor(a[2]).label);
+        const bi = order.indexOf(praepCaseBadgeFor(b[2]).label);
+        return ai - bi;
+    });
+    container.innerHTML = sorted.map(([wort, fr, catFr, deEx, frEx, en, enEx]) => {
+        const badge = praepCaseBadgeFor(catFr);
+        return `
+        <div class="info-box" style="margin-top:0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                <strong style="color:#3b6fe0;">${wort}</strong> — ${useEn ? en : fr}
+                <span style="flex:none; font-size:10px; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:#fff; background:${badge.color}; padding:3px 8px; border-radius:20px;">${badge.label}</span>
+            </div>
+            <div style="margin-top:4px;">
                 <em>${deEx}</em><br>
                 <span style="color:#576177;">(${useEn ? enEx : frEx})</span>
             </div>
         </div>
-    `).join("");
+        `;
+    }).join("");
 }
 
 const positionsverbenTheme = {
