@@ -349,6 +349,13 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="konjunktionen"] .orb-icon svg{stroke:#0ea5e9;}
 .orb[data-orbid="konjunktionen"] .orb-badge{background:#0ea5e9; box-shadow:0 2px 6px rgba(14,165,233,.35);}
 
+.orb[data-orbid="vhskapitel"] .orb-icon{
+    background:rgba(245,158,11,.14);
+    border-color:rgba(245,158,11,.28);
+}
+.orb[data-orbid="vhskapitel"] .orb-icon svg{stroke:#f59e0b;}
+.orb[data-orbid="vhskapitel"] .orb-badge{background:#f59e0b; box-shadow:0 2px 6px rgba(245,158,11,.35);}
+
 .orb[data-orbid="partikeln"] .orb-icon{
     background:rgba(20,184,166,.14);
     border-color:rgba(20,184,166,.28);
@@ -2418,7 +2425,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v179</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v180</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2586,6 +2593,20 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_konjunktionen_title">Conjonctions</strong>
                 <small data-i18n="orb_konjunktionen_sub">und · weil · aber</small>
+            </div>
+        </div>
+
+        <!-- Tuile "Chapitres VHS" : contenu specifique au cours B1 de l'utilisatrice
+             (Nomen+Verben+Adjektive par chapitre), pas pertinent pour le grand public.
+             Cachee par defaut (classe "hidden"), affichee seulement pour l'admin ou les
+             comptes testeurs autorises via le tableau de bord admin (voir
+             updateVhsKapitelTileVisibility()). Va directement a l'ecran de la liste des
+             chapitres (pas de panneau intermediaire : il n'y a qu'une seule action ici). -->
+        <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" onclick="openVhsKapitelListe()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
+            <div>
+                <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
+                <small data-i18n="vhs_kapitel_tile_sub">Cours B1</small>
             </div>
         </div>
 
@@ -3983,6 +4004,8 @@ onAuthStateChanged(auth, (user) => {
         if(typeof setAuthMode === "function") setAuthMode("login");
         userAccountInfo.classList.add("hidden");
         userEmailDisplay.textContent = "";
+        if(typeof vhsKapitelAccess !== "undefined") vhsKapitelAccess = false;
+        if(typeof updateVhsKapitelTileVisibility === "function") updateVhsKapitelTileVisibility();
         if(AUTH_REQUIRED) showScreen("auth");
     }
 });
@@ -4670,6 +4693,8 @@ const I18N = {
         admin_delete_code_btn: "SUPPRIMER",
         admin_load_failed: "Impossible de charger les données. Vérifie que Firestore est bien activé.",
         admin_no_users: "Aucun testeur pour l'instant.",
+        admin_vhs_access_on: "✓ Chapitres VHS activés",
+        admin_vhs_access_off: "Activer Chapitres VHS",
         admin_user_stats: "{mastered}/{total} mots maîtrisés · série de {streak} jour(s)"
     },
     en: {
@@ -5277,6 +5302,8 @@ const I18N = {
         admin_delete_code_btn: "DELETE",
         admin_load_failed: "Couldn't load the data. Make sure Firestore is enabled.",
         admin_no_users: "No testers yet.",
+        admin_vhs_access_on: "✓ VHS Chapters enabled",
+        admin_vhs_access_off: "Enable VHS Chapters",
         admin_user_stats: "{mastered}/{total} words mastered · {streak}-day streak"
     }
 };
@@ -7801,7 +7828,32 @@ async function syncProgressToCloud(){
 // de nouveau n'est encore maîtrisé pendant cette session.
 window.onDeutschAiUserSignedIn = function(){
     scheduleCloudSync();
+    loadVhsKapitelAccessFlag();
 };
+
+// ============ Visibilité de "Chapitres VHS" (contenu specifique au cours de
+// l'utilisatrice, pas pertinent pour le grand public) ============
+// Cache par defaut ; visible seulement pour l'admin (toujours) ou pour un
+// compte dont le champ Firestore vhsChaptersEnabled === true (accorde via le
+// tableau de bord admin, voir toggleUserVhsAccess()).
+let vhsKapitelAccess = false;
+
+function updateVhsKapitelTileVisibility(){
+    const tile = document.getElementById("vhsKapitelTile");
+    if(tile) tile.classList.toggle("hidden", !(isAdminUser() || vhsKapitelAccess));
+}
+
+async function loadVhsKapitelAccessFlag(){
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!user || !window.firestoreDb){ updateVhsKapitelTileVisibility(); return; }
+    try{
+        const snap = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid));
+        vhsKapitelAccess = !!(snap.exists() && snap.data().vhsChaptersEnabled === true);
+    }catch(e){
+        vhsKapitelAccess = false;
+    }
+    updateVhsKapitelTileVisibility();
+}
 
 // Préfixe la clé de thème selon la direction d'apprentissage active, pour que
 // la progression anglaise (english/index.html fusionné) reste totalement isolée
@@ -8997,8 +9049,7 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_nomen_o1_t"), desc:t("op_due_desc"), primary:true, action:"startDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:t("op_4_levels"), action:"openNomenNiveau" },
                 { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
-                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
-                { icon:"dossier", title:t("vhs_kapitel_tile_title"), desc:t("vhs_kapitel_tile_sub"), action:"openVhsKapitelListe" }
+                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" }
             ]
         };
     }
@@ -9464,14 +9515,33 @@ async function renderAdminUsersList(){
             container.textContent = t('admin_no_users');
             return;
         }
-        container.innerHTML = users.map(u => `
+        container.innerHTML = users.map(u => {
+            const vhsOn = u.vhsChaptersEnabled === true;
+            return `
             <div class="admin-user-row" style="padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
-                <div style="font-weight:700;">${u.email || u.id}</div>
-                <small style="color:#576177;">${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+                    <div>
+                        <div style="font-weight:700;">${u.email || u.id}</div>
+                        <small style="color:#576177;">${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
+                    </div>
+                    <button class="secondary" style="min-height:auto; padding:6px 10px; font-size:12px; white-space:nowrap;" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
+                        ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
+                    </button>
+                </div>
             </div>
-        `).join("");
+        `;}).join("");
     }catch(e){
         container.textContent = t('admin_load_failed');
+    }
+}
+
+async function toggleUserVhsAccess(uid, enable){
+    if(!isAdminUser()) return;
+    try{
+        await window.fsUpdateDoc(window.fsDoc(window.firestoreDb, 'users', uid), { vhsChaptersEnabled: enable });
+        renderAdminUsersList();
+    }catch(e){
+        showInfoToast(t('admin_action_failed'));
     }
 }
 
