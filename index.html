@@ -2338,7 +2338,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v163</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v164</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3519,6 +3519,13 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
+        <strong data-i18n="admin_deploy_title">Déploiement</strong>
+        <div class="info-box" data-i18n="admin_deploy_desc">Wortando-staging.netlify.app reflète la branche staging (test) ; jacquesagrenier-star.github.io reflète main (production).</div>
+        <div class="spacer"></div>
+        <div id="adminDeployStatus" class="info-box" data-i18n="loading_label">Chargement...</div>
+    </div>
+
+    <div class="card">
         <strong data-i18n="admin_codes_title">Codes d'invitation</strong>
         <div class="info-box" data-i18n="admin_codes_desc">Donne un code à chaque personne que tu autorises. Chaque code ne sert qu'une seule fois.</div>
         <div class="spacer"></div>
@@ -4210,6 +4217,8 @@ const I18N = {
         settings_admin_btn: "TABLEAU DE BORD →",
         admin_kicker: "Administration",
         admin_title: "Tableau de bord",
+        admin_deploy_title: "Déploiement",
+        admin_deploy_desc: "wortando-staging.netlify.app reflète la branche staging (test) ; jacquesagrenier-star.github.io reflète main (production).",
         admin_codes_title: "Codes d'invitation",
         admin_codes_desc: "Donne un code à chaque personne que tu autorises. Chaque code ne sert qu'une seule fois.",
         admin_generate_code_btn: "GÉNÉRER UN NOUVEAU CODE →",
@@ -4725,6 +4734,8 @@ const I18N = {
         settings_admin_btn: "DASHBOARD →",
         admin_kicker: "Admin",
         admin_title: "Dashboard",
+        admin_deploy_title: "Deployment",
+        admin_deploy_desc: "wortando-staging.netlify.app reflects the staging branch (test); jacquesagrenier-star.github.io reflects main (production).",
         admin_codes_title: "Invite codes",
         admin_codes_desc: "Give a code to each person you authorize. Each code can only be used once.",
         admin_generate_code_btn: "GENERATE A NEW CODE →",
@@ -8299,8 +8310,56 @@ function openSettings(){
 function openAdminDashboard(){
     if(!isAdminUser()){ goHome(); return; }
     showScreen("adminDashboard");
+    renderAdminDeployStatus();
     renderAdminCodesList();
     renderAdminUsersList();
+}
+
+function timeAgoFr(dateStr){
+    const diffMs = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diffMs / 60000);
+    if(mins < 1) return "à l'instant";
+    if(mins < 60) return `il y a ${mins} min`;
+    const hrs = Math.floor(mins / 60);
+    if(hrs < 24) return `il y a ${hrs} h`;
+    const days = Math.floor(hrs / 24);
+    return `il y a ${days} j`;
+}
+
+async function fetchBranchDeployInfo(branch){
+    const res = await fetch(`https://api.github.com/repos/jacquesagrenier-star/Deutsch-gemini/commits/${branch}`, { cache: "no-cache" });
+    if(!res.ok) throw new Error("github api failed");
+    const data = await res.json();
+    return {
+        sha: data.sha.slice(0, 7),
+        message: (data.commit && data.commit.message || "").split("\n")[0],
+        date: data.commit && data.commit.author && data.commit.author.date
+    };
+}
+
+async function renderAdminDeployStatus(){
+    const el = document.getElementById("adminDeployStatus");
+    if(!el || !isAdminUser()) return;
+    try{
+        const [prod, staging] = await Promise.all([
+            fetchBranchDeployInfo("main"),
+            fetchBranchDeployInfo("staging")
+        ]);
+        el.innerHTML = `
+            <div style="margin-bottom:10px;">
+                <div style="font-weight:800; color:#16a34a;">🟢 Production (main)</div>
+                <div>${prod.message}</div>
+                <small style="color:#576177;">${prod.sha} · ${timeAgoFr(prod.date)}</small>
+            </div>
+            <div>
+                <div style="font-weight:800; color:#d97706;">🟡 En test (staging)</div>
+                <div>${staging.message}</div>
+                <small style="color:#576177;">${staging.sha} · ${timeAgoFr(staging.date)}</small>
+            </div>
+        `;
+    }catch(e){
+        el.textContent = t('admin_load_failed');
+    }
 }
 
 function randomInviteCode(){
