@@ -2454,7 +2454,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v185</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v186</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3027,6 +3027,54 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <span id="praepQuickRefChevron" style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:none; border-radius:50%; background:rgba(59,111,224,.12); color:#3b6fe0; font-weight:800; font-size:22px; transition:transform .15s;">▾</span>
         </div>
         <div id="praepQuickRefGrid" class="hidden" style="display:flex; flex-direction:column; gap:8px; margin-top:12px;"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="praep_contract_title">Formes contractées</strong>
+        <p style="margin-top:8px;" data-i18n="praep_contract_intro">Certaines prépositions se contractent avec l'article défini (dem/das/der) quand celui-ci n'est pas particulièrement souligné — très fréquent à l'oral comme à l'écrit.</p>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">an + dem → am</strong><br>
+            <em>Ich warte am Bahnhof.</em> <span data-i18n="praep_contract_am">(J'attends à la gare.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">an + das → ans</strong><br>
+            <em>Ich gehe ans Fenster.</em> <span data-i18n="praep_contract_ans">(Je vais à la fenêtre.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">auf + das → aufs</strong><br>
+            <em>Ich freue mich aufs Wochenende.</em> <span data-i18n="praep_contract_aufs">(Je me réjouis du week-end.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">bei + dem → beim</strong><br>
+            <em>Ich bin beim Arzt.</em> <span data-i18n="praep_contract_beim">(Je suis chez le médecin.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">für + das → fürs</strong><br>
+            <em>Das ist gut fürs Team.</em> <span data-i18n="praep_contract_fuers">(C'est bon pour l'équipe.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">in + dem → im</strong><br>
+            <em>Ich bin im Büro.</em> <span data-i18n="praep_contract_im">(Je suis au bureau.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">in + das → ins</strong><br>
+            <em>Ich gehe ins Kino.</em> <span data-i18n="praep_contract_ins">(Je vais au cinéma.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">von + dem → vom</strong><br>
+            <em>Ich komme vom Supermarkt.</em> <span data-i18n="praep_contract_vom">(Je viens du supermarché.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">zu + dem → zum</strong><br>
+            <em>Ich gehe zum Arzt.</em> <span data-i18n="praep_contract_zum">(Je vais chez le médecin.)</span>
+        </div>
+        <div class="info-box">
+            <strong style="color:#3b6fe0;">zu + der → zur</strong><br>
+            <em>Ich gehe zur Schule.</em> <span data-i18n="praep_contract_zur">(Je vais à l'école.)</span>
+        </div>
+        <div class="info-box" data-i18n-html="praep_contract_warn">
+            ⚠️ La forme contractée est obligatoire dans les expressions figées (<em>ins Kino</em>, <em>zum Glück</em>) et facultative ailleurs — la forme non contractée (<em>in das</em>, <em>zu dem</em>) reste correcte mais sonne plus insistante, moins naturelle à l'oral.
+        </div>
     </div>
 
     <div class="card">
@@ -4422,6 +4470,19 @@ const I18N = {
         praep_info_title: "Comprendre les prépositions",
         praep_visual_title: "Aide-mémoire visuel",
         praep_quickref_title: "Prépositions et exemples, classés par cas",
+        praep_contract_title: "Formes contractées",
+        praep_contract_intro: "Certaines prépositions se contractent avec l'article défini (dem/das/der) quand celui-ci n'est pas particulièrement souligné — très fréquent à l'oral comme à l'écrit.",
+        praep_contract_am: "(J'attends à la gare.)",
+        praep_contract_ans: "(Je vais à la fenêtre.)",
+        praep_contract_aufs: "(Je me réjouis du week-end.)",
+        praep_contract_beim: "(Je suis chez le médecin.)",
+        praep_contract_fuers: "(C'est bon pour l'équipe.)",
+        praep_contract_im: "(Je suis au bureau.)",
+        praep_contract_ins: "(Je vais au cinéma.)",
+        praep_contract_vom: "(Je viens du supermarché.)",
+        praep_contract_zum: "(Je vais chez le médecin.)",
+        praep_contract_zur: "(Je vais à l'école.)",
+        praep_contract_warn: "⚠️ La forme contractée est obligatoire dans les expressions figées (<em>ins Kino</em>, <em>zum Glück</em>) et facultative ailleurs — la forme non contractée (<em>in das</em>, <em>zu dem</em>) reste correcte mais sonne plus insistante, moins naturelle à l'oral.",
         praep_fixedcase_title: "Trois groupes à cas fixe",
         praep_box_akkusativ: `<strong style="color:#3b6fe0;">Toujours Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (Le cadeau est pour toi.)`,
         praep_box_dativ: `<strong style="color:#3b6fe0;">Toujours Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (Je viens de Suisse.)`,
@@ -5032,6 +5093,19 @@ const I18N = {
         praep_info_title: "Understanding prepositions",
         praep_visual_title: "Visual reference",
         praep_quickref_title: "Prepositions and examples, by case",
+        praep_contract_title: "Contracted forms",
+        praep_contract_intro: "Some prepositions contract with the definite article (dem/das/der) when it isn't particularly emphasized — very common in both speech and writing.",
+        praep_contract_am: "(I'm waiting at the station.)",
+        praep_contract_ans: "(I'm going to the window.)",
+        praep_contract_aufs: "(I'm looking forward to the weekend.)",
+        praep_contract_beim: "(I'm at the doctor's.)",
+        praep_contract_fuers: "(That's good for the team.)",
+        praep_contract_im: "(I'm at the office.)",
+        praep_contract_ins: "(I'm going to the movies.)",
+        praep_contract_vom: "(I'm coming from the supermarket.)",
+        praep_contract_zum: "(I'm going to the doctor's.)",
+        praep_contract_zur: "(I'm going to school.)",
+        praep_contract_warn: "⚠️ The contracted form is mandatory in fixed expressions (<em>ins Kino</em>, <em>zum Glück</em>) and optional elsewhere — the uncontracted form (<em>in das</em>, <em>zu dem</em>) is still correct but sounds more emphatic, less natural in speech.",
         praep_fixedcase_title: "Three fixed-case groups",
         praep_box_akkusativ: `<strong style="color:#3b6fe0;">Always Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (The gift is for you.)`,
         praep_box_dativ: `<strong style="color:#3b6fe0;">Always Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (I come from Switzerland.)`,
