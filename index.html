@@ -2343,7 +2343,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v165</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v166</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4920,6 +4920,11 @@ function refreshSetupChoiceActiveStates(){
     const settingsGroup = document.getElementById("settingsUiLangGroup");
     if(setupGroup) setupGroup.classList.toggle("hidden", learningEnglish);
     if(settingsGroup) settingsGroup.classList.toggle("hidden", learningEnglish);
+    // Module anglais réservé à l'admin pour l'instant (encore en rodage) --
+    // masqué pour les testeurs sur l'écran de config initiale ET dans Réglages.
+    document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'en\')"]').forEach(btn => {
+        btn.classList.toggle("hidden", !isAdminUser());
+    });
 }
 
 // Le retour visuel (bouton qui devient actif) doit être immédiat : on met la
