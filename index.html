@@ -2101,6 +2101,31 @@ body[data-theme="dark"] [style*="color:#3b6fe0"]{
     color:#7ea6ff !important;
 }
 
+/* Meme probleme que #3b6fe0 ci-dessus, mais pour les deux gris de texte de
+   "light mode" (#576177 clair-moyen, #1e2433 quasi-noir) : nulle part
+   ajustes pour le theme sombre, donc quasi invisibles sur fond noir pur.
+   Repere par l'utilisateur dans l'ecran "Comprendre les conjonctions"
+   (.info-box, ~tout le texte explicatif de grammaire) et dans le feedback
+   correct/incorrect des exercices (.feedback-title, ex. "Pas tout a fait").
+   .info-box et .review-button n'avaient qu'un correctif de fond/bordure
+   (voir bloc juste au-dessus) sans jamais toucher la couleur du texte.
+   Meme technique que #3b6fe0 pour les ~35 endroits ou ces gris sont poses
+   en style inline plutot que via une classe (impossible a cibler autrement
+   sans modifier chaque occurrence une par une). */
+body[data-theme="dark"] .info-box,
+body[data-theme="dark"] .review-button{
+    color:#B7BBCB;
+}
+body[data-theme="dark"] .feedback-title{
+    color:#F2F2F6;
+}
+body[data-theme="dark"] [style*="color:#576177"]{
+    color:#B7BBCB !important;
+}
+body[data-theme="dark"] [style*="color:#1e2433"]{
+    color:#F2F2F6 !important;
+}
+
 body[data-theme="dark"] .gradient{
     color:#F2F2F6;
 }
@@ -2118,6 +2143,7 @@ body[data-theme="dark"] .answer,
 body[data-theme="dark"] .pill,
 body[data-theme="dark"] .secondary,
 body[data-theme="dark"] .info-box,
+body[data-theme="dark"] .review-button,
 body[data-theme="dark"] .verb-details,
 body[data-theme="dark"] .avatar,
 body[data-theme="dark"] .theme-switch,
@@ -2428,7 +2454,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v184</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v185</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
