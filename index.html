@@ -335,6 +335,20 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="relativ"] .orb-icon svg{stroke:#d946ef;}
 .orb[data-orbid="relativ"] .orb-badge{background:#d946ef; box-shadow:0 2px 6px rgba(217,70,239,.35);}
 
+.orb[data-orbid="adverbien"] .orb-icon{
+    background:rgba(132,204,22,.14);
+    border-color:rgba(132,204,22,.28);
+}
+.orb[data-orbid="adverbien"] .orb-icon svg{stroke:#84cc16;}
+.orb[data-orbid="adverbien"] .orb-badge{background:#84cc16; box-shadow:0 2px 6px rgba(132,204,22,.35);}
+
+.orb[data-orbid="konjunktionen"] .orb-icon{
+    background:rgba(14,165,233,.14);
+    border-color:rgba(14,165,233,.28);
+}
+.orb[data-orbid="konjunktionen"] .orb-icon svg{stroke:#0ea5e9;}
+.orb[data-orbid="konjunktionen"] .orb-badge{background:#0ea5e9; box-shadow:0 2px 6px rgba(14,165,233,.35);}
+
 .orb[data-orbid="partikeln"] .orb-icon{
     background:rgba(20,184,166,.14);
     border-color:rgba(20,184,166,.28);
@@ -2404,7 +2418,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v173</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v174</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2554,6 +2568,24 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_partikeln_title">Particules</strong>
                 <small data-i18n="orb_partikeln_sub">doch · ja · mal</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="adverbien" onclick="openOrbPanel('adverbien')">
+            <div id="badge-adverbien" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+            <div>
+                <strong data-i18n="orb_adverbien_title">Adverbes</strong>
+                <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="konjunktionen" onclick="openOrbPanel('konjunktionen')">
+            <div id="badge-konjunktionen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg></div>
+            <div>
+                <strong data-i18n="orb_konjunktionen_title">Conjonctions</strong>
+                <small data-i18n="orb_konjunktionen_sub">und · weil · aber</small>
             </div>
         </div>
 
@@ -3081,6 +3113,108 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     <button class="secondary" onclick="startPartikelnNuance()" data-i18n="partikeln_btn_nuance">M'ENTRAÎNER : RECONNAÎTRE LA NUANCE →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startPartikelnVokabular()" data-i18n="partikeln_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
+</section>
+
+<!-- ================= ADVERBES ================= -->
+
+<section id="adverbienInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('adverbien')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="adverbien_info_title">Comprendre les adverbes</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="adverbien_intro">
+            Un adverbe modifie un verbe, un adjectif ou toute la phrase — contrairement à l'adjectif, il ne s'accorde jamais et ne prend jamais de terminaison. On les classe en 4 grandes familles, selon la question à laquelle ils répondent.
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_temps_title">Temps — « quand ? »</strong>
+        <div class="info-box" data-i18n-html="adverbien_temps">
+            <em>heute, morgen, gestern, jetzt, schon, bald, oft, nie, immer, manchmal...</em><br>
+            <em>Ich rauche nie.</em> (Je ne fume jamais.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_lieu_title">Lieu — « où ? »</strong>
+        <div class="info-box" data-i18n-html="adverbien_lieu">
+            <em>hier, dort, oben, unten, drinnen, draußen, überall, links, rechts...</em><br>
+            <em>Die Kinder spielen draußen.</em> (Les enfants jouent dehors.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_maniere_title">Manière — « comment ? »</strong>
+        <div class="info-box" data-i18n-html="adverbien_maniere">
+            <em>schnell, langsam, gern, laut, leise, plötzlich, zusammen, allein...</em><br>
+            <em>Sprich bitte langsam.</em> (Parle lentement, s'il te plaît.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_degre_title">Degré — « à quel point ? »</strong>
+        <div class="info-box" data-i18n-html="adverbien_degre">
+            <em>sehr, ziemlich, zu, kaum, fast, genug, besonders, wenig...</em><br>
+            <em>Das ist sehr wichtig.</em> (C'est très important.)
+        </div>
+        <div class="info-box" data-i18n-html="adverbien_tekamolo_link">
+            Ce sont exactement les 4 catégories de l'ordre <strong>TeKaMoLo</strong> (Temporal · Kausal · Modal · Lokal) déjà vues dans « Structure » — quand plusieurs adverbes se suivent dans une phrase, c'est cet ordre qu'ils respectent.
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startAdverbienNuance()" data-i18n="adverbien_btn_nuance">M'ENTRAÎNER : RECONNAÎTRE LA CATÉGORIE →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startAdverbienVokabular()" data-i18n="adverbien_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
+</section>
+
+<!-- ================= CONJONCTIONS ================= -->
+
+<section id="konjunktionenInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('konjunktionen')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="konjunktionen_info_title">Comprendre les conjonctions</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="konjunktionen_intro">
+            Une conjonction relie deux phrases ou deux idées — mais selon <strong>laquelle</strong> on utilise, l'ordre des mots change complètement. C'est la seule chose vraiment importante à retenir ici : il n'y a que deux catégories, et chacune a une règle fixe.
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="konjunktionen_koord_title">Coordination — l'ordre des mots ne change pas</strong>
+        <div class="info-box" data-i18n-html="konjunktionen_koord">
+            Seulement 5 mots à retenir : <strong>und, oder, aber, denn, sondern</strong>. Elles relient deux phrases complètes, chacune gardant son verbe en 2ème position.<br>
+            <em>Ich bin müde, <strong>aber</strong> ich arbeite weiter.</em> (Je suis fatigué, mais je continue à travailler — « arbeite » reste en 2ème position.)
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="konjunktionen_sub_title">Subordination — le verbe va à la fin</strong>
+        <div class="info-box" data-i18n-html="konjunktionen_sub">
+            Toutes les autres : <strong>weil, dass, wenn, obwohl, während, bevor, nachdem, ob, da, damit, sodass, als, bis</strong>... Elles envoient le verbe conjugué à la <strong>toute fin</strong> de la proposition — la même règle que « Structure » a déjà enseignée.<br>
+            <em>Ich bleibe zu Hause, <strong>weil</strong> ich krank <strong>bin</strong>.</em> (Je reste à la maison parce que je suis malade — « bin » va à la fin.)
+        </div>
+        <div class="info-box" data-i18n-html="konjunktionen_denn_weil_warn">
+            ⚠️ Piège classique : <strong>denn</strong> (car) et <strong>weil</strong> (parce que) veulent presque dire la même chose, mais <strong>denn</strong> est une coordination (verbe en 2ème position) alors que <strong>weil</strong> est une subordination (verbe à la fin). Le sens ne suffit pas à deviner la catégorie — il faut la mémoriser mot par mot.
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKonjunktionenNuance()" data-i18n="konjunktionen_btn_nuance">M'ENTRAÎNER : COORDINATION OU SUBORDINATION →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKonjunktionenVokabular()" data-i18n="konjunktionen_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
 </section>
 
 <!-- ================= STRUCTURE (SATZBAU) ================= -->
@@ -4352,6 +4486,7 @@ const I18N = {
         label_plural: "Pluriel :",
         label_case_word: "Cas",
         label_nuance_word: "Nuance",
+        label_word_category: "Catégorie",
         random_words_by_theme_desc: "Mélange des mots de tous les thèmes du niveau sélectionné.",
         kicker_verben_revision: "Verbes · Révision",
         kicker_verben_flashcards: "Verbes · Flashcards",
@@ -4390,6 +4525,45 @@ const I18N = {
         relativ_gen_genre: `Même règle qu'au Nominativ/Akkusativ/Dativ : dessen/deren s'accordent avec le nom qui précède la virgule, pas avec ce qui suit à l'intérieur de la relative.<br><em>Das ist die Frau, <strong>deren</strong> Sohn Lehrer ist.</em> (deren = féminin parce que « die Frau » est féminin, même si « Sohn » est masculin.)`,
         relativ_gen_btn_reconnaissance: "M'ENTRAÎNER : RECONNAÎTRE LE PRONOM →",
         relativ_gen_btn_order: "M'ENTRAÎNER : REMETTRE LES MOTS EN ORDRE →",
+
+        orb_adverbien_title: "Adverbes",
+        orb_adverbien_sub: "heute · hier · sehr",
+        orb_konjunktionen_title: "Conjonctions",
+        orb_konjunktionen_sub: "und · weil · aber",
+        op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
+        op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "4 catégories : temps, lieu, manière, degré",
+        op_adverbien_o2_t: "Reconnaître la catégorie", op_adverbien_o2_d: "Identifier temps/lieu/manière/degré",
+        op_adverbien_o3_t: "Vocabulaire",
+        op_konjunktionen_title: "Conjonctions", op_konjunktionen_sub: "und · weil · aber",
+        op_konjunktionen_o1_t: "Comprendre les conjonctions", op_konjunktionen_o1_d: "Coordination vs subordination",
+        op_konjunktionen_o2_t: "Coordination ou subordination ?", op_konjunktionen_o2_d: "L'impact sur l'ordre des mots",
+        op_konjunktionen_o3_t: "Vocabulaire",
+        kicker_adverbien_nuance: "Adverbes · Catégorie",
+        kicker_adverbien_vocab: "Adverbes · Vocabulaire",
+        kicker_konjunktionen_nuance: "Conjonctions · Type",
+        kicker_konjunktionen_vocab: "Conjonctions · Vocabulaire",
+        adverbien_info_title: "Comprendre les adverbes",
+        adverbien_intro: "Un adverbe modifie un verbe, un adjectif ou toute la phrase — contrairement à l'adjectif, il ne s'accorde jamais et ne prend jamais de terminaison. On les classe en 4 grandes familles, selon la question à laquelle ils répondent.",
+        adverbien_temps_title: "Temps — « quand ? »",
+        adverbien_temps: `<em>heute, morgen, gestern, jetzt, schon, bald, oft, nie, immer, manchmal...</em><br><em>Ich rauche nie.</em> (Je ne fume jamais.)`,
+        adverbien_lieu_title: "Lieu — « où ? »",
+        adverbien_lieu: `<em>hier, dort, oben, unten, drinnen, draußen, überall, links, rechts...</em><br><em>Die Kinder spielen draußen.</em> (Les enfants jouent dehors.)`,
+        adverbien_maniere_title: "Manière — « comment ? »",
+        adverbien_maniere: `<em>schnell, langsam, gern, laut, leise, plötzlich, zusammen, allein...</em><br><em>Sprich bitte langsam.</em> (Parle lentement, s'il te plaît.)`,
+        adverbien_degre_title: "Degré — « à quel point ? »",
+        adverbien_degre: `<em>sehr, ziemlich, zu, kaum, fast, genug, besonders, wenig...</em><br><em>Das ist sehr wichtig.</em> (C'est très important.)`,
+        adverbien_tekamolo_link: `Ce sont exactement les 4 catégories de l'ordre <strong>TeKaMoLo</strong> (Temporal · Kausal · Modal · Lokal) déjà vues dans « Structure » — quand plusieurs adverbes se suivent dans une phrase, c'est cet ordre qu'ils respectent.`,
+        adverbien_btn_nuance: "M'ENTRAÎNER : RECONNAÎTRE LA CATÉGORIE →",
+        adverbien_btn_vocab: "VOCABULAIRE : FLASHCARDS →",
+        konjunktionen_info_title: "Comprendre les conjonctions",
+        konjunktionen_intro: `Une conjonction relie deux phrases ou deux idées — mais selon <strong>laquelle</strong> on utilise, l'ordre des mots change complètement. C'est la seule chose vraiment importante à retenir ici : il n'y a que deux catégories, et chacune a une règle fixe.`,
+        konjunktionen_koord_title: "Coordination — l'ordre des mots ne change pas",
+        konjunktionen_koord: `Seulement 5 mots à retenir : <strong>und, oder, aber, denn, sondern</strong>. Elles relient deux phrases complètes, chacune gardant son verbe en 2ème position.<br><em>Ich bin müde, <strong>aber</strong> ich arbeite weiter.</em> (Je suis fatigué, mais je continue à travailler — « arbeite » reste en 2ème position.)`,
+        konjunktionen_sub_title: "Subordination — le verbe va à la fin",
+        konjunktionen_sub: `Toutes les autres : <strong>weil, dass, wenn, obwohl, während, bevor, nachdem, ob, da, damit, sodass, als, bis</strong>... Elles envoient le verbe conjugué à la <strong>toute fin</strong> de la proposition — la même règle que « Structure » a déjà enseignée.<br><em>Ich bleibe zu Hause, <strong>weil</strong> ich krank <strong>bin</strong>.</em> (Je reste à la maison parce que je suis malade — « bin » va à la fin.)`,
+        konjunktionen_denn_weil_warn: `⚠️ Piège classique : <strong>denn</strong> (car) et <strong>weil</strong> (parce que) veulent presque dire la même chose, mais <strong>denn</strong> est une coordination (verbe en 2ème position) alors que <strong>weil</strong> est une subordination (verbe à la fin). Le sens ne suffit pas à deviner la catégorie — il faut la mémoriser mot par mot.`,
+        konjunktionen_btn_nuance: "M'ENTRAÎNER : COORDINATION OU SUBORDINATION →",
+        konjunktionen_btn_vocab: "VOCABULAIRE : FLASHCARDS →",
         kicker_praep_vocab: "Prépositions · Vocabulaire",
         kicker_position_vocab: "Verbes de position · Vocabulaire",
         kicker_partikeln_vocab: "Particules · Vocabulaire",
@@ -4907,6 +5081,7 @@ const I18N = {
         label_plural: "Plural:",
         label_case_word: "Case",
         label_nuance_word: "Nuance",
+        label_word_category: "Category",
         random_words_by_theme_desc: "A mix of words from all themes at the selected level.",
         kicker_verben_revision: "Verbs · Review",
         kicker_verben_flashcards: "Verbs · Flashcards",
@@ -4945,6 +5120,45 @@ const I18N = {
         relativ_gen_genre: `Same rule as with Nominativ/Akkusativ/Dativ: dessen/deren agree with the noun before the comma, not with what follows inside the relative clause.<br><em>Das ist die Frau, <strong>deren</strong> Sohn Lehrer ist.</em> (deren = feminine because "die Frau" is feminine, even though "Sohn" is masculine.)`,
         relativ_gen_btn_reconnaissance: "PRACTICE: IDENTIFY THE PRONOUN →",
         relativ_gen_btn_order: "PRACTICE: PUT THE WORDS IN ORDER →",
+
+        orb_adverbien_title: "Adverbs",
+        orb_adverbien_sub: "heute · hier · sehr",
+        orb_konjunktionen_title: "Conjunctions",
+        orb_konjunktionen_sub: "und · weil · aber",
+        op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
+        op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "4 categories: time, place, manner, degree",
+        op_adverbien_o2_t: "Identify the category", op_adverbien_o2_d: "Identify time/place/manner/degree",
+        op_adverbien_o3_t: "Vocabulary",
+        op_konjunktionen_title: "Conjunctions", op_konjunktionen_sub: "und · weil · aber",
+        op_konjunktionen_o1_t: "Understand conjunctions", op_konjunktionen_o1_d: "Coordinating vs subordinating",
+        op_konjunktionen_o2_t: "Coordinating or subordinating?", op_konjunktionen_o2_d: "The impact on word order",
+        op_konjunktionen_o3_t: "Vocabulary",
+        kicker_adverbien_nuance: "Adverbs · Category",
+        kicker_adverbien_vocab: "Adverbs · Vocabulary",
+        kicker_konjunktionen_nuance: "Conjunctions · Type",
+        kicker_konjunktionen_vocab: "Conjunctions · Vocabulary",
+        adverbien_info_title: "Understand adverbs",
+        adverbien_intro: "An adverb modifies a verb, an adjective, or a whole sentence — unlike an adjective, it never agrees and never takes an ending. They fall into 4 main families, depending on the question they answer.",
+        adverbien_temps_title: "Time — \"when?\"",
+        adverbien_temps: `<em>heute, morgen, gestern, jetzt, schon, bald, oft, nie, immer, manchmal...</em><br><em>Ich rauche nie.</em> (I never smoke.)`,
+        adverbien_lieu_title: "Place — \"where?\"",
+        adverbien_lieu: `<em>hier, dort, oben, unten, drinnen, draußen, überall, links, rechts...</em><br><em>Die Kinder spielen draußen.</em> (The children are playing outside.)`,
+        adverbien_maniere_title: "Manner — \"how?\"",
+        adverbien_maniere: `<em>schnell, langsam, gern, laut, leise, plötzlich, zusammen, allein...</em><br><em>Sprich bitte langsam.</em> (Please speak slowly.)`,
+        adverbien_degre_title: "Degree — \"to what extent?\"",
+        adverbien_degre: `<em>sehr, ziemlich, zu, kaum, fast, genug, besonders, wenig...</em><br><em>Das ist sehr wichtig.</em> (That's very important.)`,
+        adverbien_tekamolo_link: `These are exactly the 4 categories of the <strong>TeKaMoLo</strong> order (Temporal · Kausal · Modal · Lokal) already seen in "Structure" — when several adverbs follow each other in a sentence, this is the order they follow.`,
+        adverbien_btn_nuance: "PRACTICE: IDENTIFY THE CATEGORY →",
+        adverbien_btn_vocab: "VOCABULARY: FLASHCARDS →",
+        konjunktionen_info_title: "Understand conjunctions",
+        konjunktionen_intro: `A conjunction links two sentences or two ideas — but depending on <strong>which one</strong> you use, the word order changes completely. That's the only thing really important to remember here: there are only two categories, and each has a fixed rule.`,
+        konjunktionen_koord_title: "Coordinating — word order doesn't change",
+        konjunktionen_koord: `Only 5 words to remember: <strong>und, oder, aber, denn, sondern</strong>. They link two complete sentences, each keeping its verb in 2nd position.<br><em>Ich bin müde, <strong>aber</strong> ich arbeite weiter.</em> (I'm tired, but I keep working — "arbeite" stays in 2nd position.)`,
+        konjunktionen_sub_title: "Subordinating — the verb goes to the end",
+        konjunktionen_sub: `All the others: <strong>weil, dass, wenn, obwohl, während, bevor, nachdem, ob, da, damit, sodass, als, bis</strong>... They send the conjugated verb to the <strong>very end</strong> of the clause — the same rule already taught in "Structure".<br><em>Ich bleibe zu Hause, <strong>weil</strong> ich krank <strong>bin</strong>.</em> (I'm staying home because I'm sick — "bin" goes to the end.)`,
+        konjunktionen_denn_weil_warn: `⚠️ Classic trap: <strong>denn</strong> (because) and <strong>weil</strong> (because) mean almost the same thing, but <strong>denn</strong> is coordinating (verb in 2nd position) while <strong>weil</strong> is subordinating (verb at the end). Meaning alone won't tell you which category — you have to memorize it word by word.`,
+        konjunktionen_btn_nuance: "PRACTICE: COORDINATING OR SUBORDINATING →",
+        konjunktionen_btn_vocab: "VOCABULARY: FLASHCARDS →",
         kicker_praep_vocab: "Prepositions · Vocabulary",
         kicker_position_vocab: "Position verbs · Vocabulary",
         kicker_partikeln_vocab: "Particles · Vocabulary",
@@ -6855,6 +7069,11 @@ const PARTIKELN_NUANCE_OPTIONS_EN = [
   "Exasperation, strong emphasis"
 ];
 
+const ADVERB_CATEGORY_OPTIONS = ["Temps", "Lieu", "Manière", "Degré"];
+const ADVERB_CATEGORY_OPTIONS_EN = ["Time", "Place", "Manner", "Degree"];
+const KONJUNKTION_TYPE_OPTIONS = ["Coordination (ordre des mots inchangé)", "Subordination (verbe à la fin)"];
+const KONJUNKTION_TYPE_OPTIONS_EN = ["Coordinating (word order unchanged)", "Subordinating (verb goes to the end)"];
+
 const zuInfinitivExercises = [
   { topic:"Zu + infinitif", question:"Ich kann gut Deutsch ___.", question_en:"Ich kann gut Deutsch ___.", translation:"Je sais bien parler allemand.", translation_en:"I can speak German well.", hint:"können = verbe de modalité", hint_en:"können = modal verb", answers:["sprechen"], correct:"sprechen", correctEn:"sprechen", explanation:"Après un verbe de modalité (können, müssen, dürfen, sollen, wollen, mögen), jamais de « zu ».", explanation_en:"After a modal verb (können, müssen, dürfen, sollen, wollen, mögen), never use « zu ».", options:["sprechen","zu sprechen"], optionsEn:["sprechen","zu sprechen"] },
   { topic:"Zu + infinitif", question:"Er muss früh ___.", question_en:"Er muss früh ___.", translation:"Il doit se lever tôt.", translation_en:"He has to get up early.", hint:"müssen = verbe de modalité", hint_en:"müssen = modal verb", answers:["aufstehen"], correct:"aufstehen", correctEn:"aufstehen", explanation:"Même règle : müssen est un modal, jamais de « zu » — même avec un verbe séparable (aufstehen).", explanation_en:"Same rule: müssen is modal, never « zu » — even with a separable verb (aufstehen).", options:["aufstehen","aufzustehen"], optionsEn:["aufstehen","aufzustehen"] },
@@ -7176,6 +7395,40 @@ const possessivExercises = [
   { topic:"Possessifs", question:"Peter spielt mit ___ Kind.", question_en:"Peter spielt mit ___ Kind.", translation:"Peter joue avec leur enfant.", translation_en:"Peter plays with their child.", hint:"(das Kind, Dativ, neutre, « à eux »)", hint_en:"(das Kind, Dative, neuter, \"their\")", answers:["ihrem"], correct:"ihrem", explanation:"Datif neutre : comme le masculin, terminaison -em → ihrem.", explanation_en:"Neuter Dative: like the masculine, ending -em → ihrem." },
   { topic:"Possessifs", question:"Das ist das Auto ___ Bruders.", question_en:"Das ist das Auto ___ Bruders.", translation:"C'est la voiture de leur frère.", translation_en:"That's their brother's car.", hint:"(der Bruder, Genitiv, masc., « à eux »)", hint_en:"(der Bruder, Genitive, masc., \"their\")", answers:["ihres"], correct:"ihres", explanation:"Génitif masculin : terminaison -es → ihres.", explanation_en:"Masculine Genitive: ending -es → ihres." }
 ];
+const adverbienNuanceExercises = [
+  { topic:"Adverbes · Catégorie", question:"Ich arbeite heute von zu Hause. Quelle catégorie pour « heute » ?", question_en:"Ich arbeite heute von zu Hause. Which category for « heute »?", translation:"Je travaille de la maison aujourd'hui.", translation_en:"I'm working from home today.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« heute » répond à « quand ? » -- adverbe de temps.", explanation_en:"« heute » answers « when? » -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Ich wohne hier seit zwei Jahren. Quelle catégorie pour « hier » ?", question_en:"Ich wohne hier seit zwei Jahren. Which category for « hier »?", translation:"J'habite ici depuis deux ans.", translation_en:"I've lived here for two years.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« hier » (ici, allemand) répond à « où ? » -- adverbe de lieu.", explanation_en:"« hier » (German for \"here\") answers « where? » -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Er läuft sehr schnell. Quelle catégorie pour « schnell » ?", question_en:"Er läuft sehr schnell. Which category for « schnell »?", translation:"Il court très vite.", translation_en:"He runs very fast.", hint:"(comment ?)", hint_en:"(how?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« schnell » répond à « comment ? » -- adverbe de manière.", explanation_en:"« schnell » answers « how? » -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Das ist sehr wichtig. Quelle catégorie pour « sehr » ?", question_en:"Das ist sehr wichtig. Which category for « sehr »?", translation:"C'est très important.", translation_en:"That's very important.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« sehr » intensifie un adjectif -- adverbe de degré.", explanation_en:"« sehr » intensifies an adjective -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Wir sehen uns morgen. Quelle catégorie pour « morgen » ?", question_en:"Wir sehen uns morgen. Which category for « morgen »?", translation:"On se voit demain.", translation_en:"See you tomorrow.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« morgen » répond à « quand ? » -- adverbe de temps.", explanation_en:"« morgen » answers « when? » -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Das Bad ist oben. Quelle catégorie pour « oben » ?", question_en:"Das Bad ist oben. Which category for « oben »?", translation:"La salle de bain est en haut.", translation_en:"The bathroom is upstairs.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« oben » répond à « où ? » -- adverbe de lieu.", explanation_en:"« oben » answers « where? » -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Sprich bitte langsam. Quelle catégorie pour « langsam » ?", question_en:"Sprich bitte langsam. Which category for « langsam »?", translation:"Parle lentement, s'il te plaît.", translation_en:"Please speak slowly.", hint:"(comment ?)", hint_en:"(how?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« langsam » répond à « comment ? » -- adverbe de manière.", explanation_en:"« langsam » answers « how? » -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Der Kaffee ist zu heiß. Quelle catégorie pour « zu » ?", question_en:"Der Kaffee ist zu heiß. Which category for « zu »?", translation:"Le café est trop chaud.", translation_en:"The coffee is too hot.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« zu » (trop) intensifie « heiß » -- adverbe de degré.", explanation_en:"« zu » (too) intensifies « heiß » -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Ich rauche nie. Quelle catégorie pour « nie » ?", question_en:"Ich rauche nie. Which category for « nie »?", translation:"Je ne fume jamais.", translation_en:"I never smoke.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« nie » répond à « quand ? » (jamais) -- adverbe de temps.", explanation_en:"« nie » answers « when? » (never) -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Die Kinder spielen draußen. Quelle catégorie pour « draußen » ?", question_en:"Die Kinder spielen draußen. Which category for « draußen »?", translation:"Les enfants jouent dehors.", translation_en:"The children are playing outside.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« draußen » répond à « où ? » -- adverbe de lieu.", explanation_en:"« draußen » answers « where? » -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Plötzlich fing es an zu regnen. Quelle catégorie pour « plötzlich » ?", question_en:"Plötzlich fing es an zu regnen. Which category for « plötzlich »?", translation:"Soudain, il s'est mis à pleuvoir.", translation_en:"Suddenly it started to rain.", hint:"(comment/de quelle façon l'action arrive ?)", hint_en:"(how does the action happen?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« plötzlich » décrit la façon dont l'action survient -- adverbe de manière.", explanation_en:"« plötzlich » describes how the action happens -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Ich habe heute kaum Zeit. Quelle catégorie pour « kaum » ?", question_en:"Ich habe heute kaum Zeit. Which category for « kaum »?", translation:"J'ai à peine le temps aujourd'hui.", translation_en:"I hardly have time today.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« kaum » (à peine) module la quantité -- adverbe de degré.", explanation_en:"« kaum » (hardly) modulates quantity -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Er kommt immer pünktlich. Quelle catégorie pour « immer » ?", question_en:"Er kommt immer pünktlich. Which category for « immer »?", translation:"Il arrive toujours à l'heure.", translation_en:"He always arrives on time.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« immer » répond à « quand ? » (toujours) -- adverbe de temps.", explanation_en:"« immer » answers « when? » (always) -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Fahren Sie rechts ab. Quelle catégorie pour « rechts » ?", question_en:"Fahren Sie rechts ab. Which category for « rechts »?", translation:"Tournez à droite.", translation_en:"Turn right.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« rechts » répond à « où ? » (direction) -- adverbe de lieu.", explanation_en:"« rechts » answers « where? » (direction) -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Sprich leise, das Baby schläft. Quelle catégorie pour « leise » ?", question_en:"Sprich leise, das Baby schläft. Which category for « leise »?", translation:"Parle doucement, le bébé dort.", translation_en:"Speak quietly, the baby is sleeping.", hint:"(comment ?)", hint_en:"(how?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« leise » répond à « comment ? » -- adverbe de manière.", explanation_en:"« leise » answers « how? » -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Catégorie", question:"Wir sind fast da. Quelle catégorie pour « fast » ?", question_en:"Wir sind fast da. Which category for « fast »?", translation:"On est presque arrivés.", translation_en:"We're almost there.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« fast » (presque) module l'accomplissement de l'action -- adverbe de degré.", explanation_en:"« fast » (almost) modulates how complete the action is -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN }
+];
+
+const konjunktionenNuanceExercises = [
+  { topic:"Conjonctions · Type", question:"Ich koche und du deckst den Tisch. Quel type de conjonction est « und » ?", question_en:"Ich koche und du deckst den Tisch. What type of conjunction is « und »?", translation:"Je cuisine et tu mets la table.", translation_en:"I'm cooking and you're setting the table.", hint:"(regarde la position du verbe après « und »)", hint_en:"(look at the verb position after « und »)", answers:["coordination (ordre des mots inchangé)","coordinating (word order unchanged)"], correct:"Coordination (ordre des mots inchangé)", correctEn:"Coordinating (word order unchanged)", explanation:"Après « und », le verbe reste en 2e position (« du deckst ») -- coordination.", explanation_en:"After « und », the verb stays in 2nd position (« du deckst ») -- coordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich bleibe zu Hause, weil ich krank bin. Quel type de conjonction est « weil » ?", question_en:"Ich bleibe zu Hause, weil ich krank bin. What type of conjunction is « weil »?", translation:"Je reste à la maison parce que je suis malade.", translation_en:"I'm staying home because I'm sick.", hint:"(regarde où va le verbe conjugué)", hint_en:"(look at where the conjugated verb goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"Après « weil », le verbe conjugué (bin) va à la toute fin -- subordination.", explanation_en:"After « weil », the conjugated verb (bin) goes to the very end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich weiß, dass du recht hast. Quel type de conjonction est « dass » ?", question_en:"Ich weiß, dass du recht hast. What type of conjunction is « dass »?", translation:"Je sais que tu as raison.", translation_en:"I know that you're right.", hint:"(regarde où va « hast »)", hint_en:"(look at where « hast » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« dass » envoie le verbe conjugué (hast) à la fin -- subordination.", explanation_en:"« dass » sends the conjugated verb (hast) to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich bin müde, aber ich arbeite weiter. Quel type de conjonction est « aber » ?", question_en:"Ich bin müde, aber ich arbeite weiter. What type of conjunction is « aber »?", translation:"Je suis fatigué, mais je continue à travailler.", translation_en:"I'm tired, but I keep working.", hint:"(regarde la position de « arbeite »)", hint_en:"(look at the position of « arbeite »)", answers:["coordination (ordre des mots inchangé)","coordinating (word order unchanged)"], correct:"Coordination (ordre des mots inchangé)", correctEn:"Coordinating (word order unchanged)", explanation:"Après « aber », le verbe reste en 2e position -- coordination.", explanation_en:"After « aber », the verb stays in 2nd position -- coordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich rufe an, wenn ich ankomme. Quel type de conjonction est « wenn » ?", question_en:"Ich rufe an, wenn ich ankomme. What type of conjunction is « wenn »?", translation:"J'appelle quand j'arrive.", translation_en:"I'll call when I arrive.", hint:"(regarde où va « ankomme »)", hint_en:"(look at where « ankomme » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« wenn » envoie le verbe à la fin -- subordination.", explanation_en:"« wenn » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Kommst du mit oder bleibst du hier? Quel type de conjonction est « oder » ?", question_en:"Kommst du mit oder bleibst du hier? What type of conjunction is « oder »?", translation:"Tu viens avec nous ou tu restes ici ?", translation_en:"Are you coming with us or staying here?", hint:"(regarde la position de « bleibst »)", hint_en:"(look at the position of « bleibst »)", answers:["coordination (ordre des mots inchangé)","coordinating (word order unchanged)"], correct:"Coordination (ordre des mots inchangé)", correctEn:"Coordinating (word order unchanged)", explanation:"« oder » ne change rien à l'ordre des mots -- coordination.", explanation_en:"« oder » doesn't change the word order -- coordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich gehe raus, obwohl es regnet. Quel type de conjonction est « obwohl » ?", question_en:"Ich gehe raus, obwohl es regnet. What type of conjunction is « obwohl »?", translation:"Je sors, bien qu'il pleuve.", translation_en:"I'm going out, although it's raining.", hint:"(regarde où va « regnet »)", hint_en:"(look at where « regnet » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« obwohl » envoie le verbe à la fin -- subordination.", explanation_en:"« obwohl » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich trinke keinen Kaffee, sondern Tee. Quel type de conjonction est « sondern » ?", question_en:"Ich trinke keinen Kaffee, sondern Tee. What type of conjunction is « sondern »?", translation:"Je ne bois pas de café, mais du thé.", translation_en:"I don't drink coffee, but rather tea.", hint:"(fait partie des 5 conjonctions de coordination)", hint_en:"(one of the 5 coordinating conjunctions)", answers:["coordination (ordre des mots inchangé)","coordinating (word order unchanged)"], correct:"Coordination (ordre des mots inchangé)", correctEn:"Coordinating (word order unchanged)", explanation:"« sondern » fait partie des 5 conjonctions de coordination (und, oder, aber, denn, sondern).", explanation_en:"« sondern » is one of the 5 coordinating conjunctions (und, oder, aber, denn, sondern).", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ruf mich an, bevor du kommst. Quel type de conjonction est « bevor » ?", question_en:"Ruf mich an, bevor du kommst. What type of conjunction is « bevor »?", translation:"Appelle-moi avant de venir.", translation_en:"Call me before you come.", hint:"(regarde où va « kommst »)", hint_en:"(look at where « kommst » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« bevor » envoie le verbe à la fin -- subordination.", explanation_en:"« bevor » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich bleibe zu Hause, denn ich bin krank. Quel type de conjonction est « denn » ?", question_en:"Ich bleibe zu Hause, denn ich bin krank. What type of conjunction is « denn »?", translation:"Je reste à la maison, car je suis malade.", translation_en:"I'm staying home, because I'm sick.", hint:"(attention : ne pas confondre avec « weil » !)", hint_en:"(careful: don't confuse with « weil »!)", answers:["coordination (ordre des mots inchangé)","coordinating (word order unchanged)"], correct:"Coordination (ordre des mots inchangé)", correctEn:"Coordinating (word order unchanged)", explanation:"« denn » (car) est une coordination, même si elle exprime une cause comme « weil » -- le verbe reste en 2e position (« ich bin »).", explanation_en:"« denn » (because) is coordinating, even though it expresses a cause like « weil » -- the verb stays in 2nd position (« ich bin »).", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich weiß nicht, ob er kommt. Quel type de conjonction est « ob » ?", question_en:"Ich weiß nicht, ob er kommt. What type of conjunction is « ob »?", translation:"Je ne sais pas s'il vient.", translation_en:"I don't know whether he's coming.", hint:"(regarde où va « kommt »)", hint_en:"(look at where « kommt » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« ob » envoie le verbe à la fin -- subordination.", explanation_en:"« ob » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Ich spreche langsam, damit du mich verstehst. Quel type de conjonction est « damit » ?", question_en:"Ich spreche langsam, damit du mich verstehst. What type of conjunction is « damit »?", translation:"Je parle lentement afin que tu me comprennes.", translation_en:"I speak slowly so that you understand me.", hint:"(regarde où va « verstehst »)", hint_en:"(look at where « verstehst » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« damit » envoie le verbe à la fin -- subordination.", explanation_en:"« damit » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN },
+  { topic:"Conjonctions · Type", question:"Als ich Kind war, wohnte ich in Berlin. Quel type de conjonction est « als » ?", question_en:"Als ich Kind war, wohnte ich in Berlin. What type of conjunction is « als »?", translation:"Quand j'étais enfant, j'habitais à Berlin.", translation_en:"When I was a child, I lived in Berlin.", hint:"(regarde où va « war »)", hint_en:"(look at where « war » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« als » envoie le verbe à la fin -- subordination.", explanation_en:"« als » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN }
+];
 
 const partikelnNuanceExercises = [
   { topic:"Particules · Nuance", question:"Mach das doch! Quelle nuance apporte « doch » ici ?", question_en:"Mach das doch! What nuance does « doch » add here?", translation:"Vas-y, fais-le donc !", translation_en:"Go on, just do it!", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["insistance amicale (encouragement)","friendly insistence (encouragement)"], correct:"Insistance amicale (encouragement)", correctEn:"Friendly insistence (encouragement)", explanation:"« doch » pousse gentiment quelqu'un à agir — une insistance amicale.", explanation_en:"« doch » gently pushes someone to act — a friendly insistence.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN },
@@ -7248,6 +7501,84 @@ const partikelnTheme = {
     ["ruhig", "permission rassurante", "particule modale", "Du kannst ruhig fragen.", "Tu peux demander sans problème.", "reassuring permission", "Feel free to ask."],
     ["einfach", "simplicité, désinvolture", "particule modale", "Sag es einfach!", "Dis-le, tout simplement.", "simplicity, casualness", "Just say it!"],
     ["vielleicht", "exaspération, emphase forte", "particule modale", "Das ist vielleicht ein Chaos!", "Quel bazar, quand même !", "exasperation, strong emphasis", "What a mess, honestly!"]
+  ]
+};
+
+// Adverbes classes par categorie (temps/lieu/maniere/degre -- memes 4
+// categories que TeKaMoLo deja enseigne dans Structure, pour renforcer le
+// lien). Meme mecanique que partikelnTheme : tuples reutilises tels quels
+// par loadFlashcard() (flashcardMode === 'adverbien').
+const adverbienTheme = {
+  id: "adverbien_vokabular",
+  name: "Adverbes",
+  svg: '<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>',
+  words: [
+    ["heute", "aujourd'hui", "adverbe de temps", "Ich arbeite heute von zu Hause.", "Je travaille de la maison aujourd'hui.", "today", "I'm working from home today."],
+    ["morgen", "demain", "adverbe de temps", "Wir sehen uns morgen.", "On se voit demain.", "tomorrow", "See you tomorrow."],
+    ["gestern", "hier", "adverbe de temps", "Gestern habe ich sie getroffen.", "Je l'ai rencontrée hier.", "yesterday", "I met her yesterday."],
+    ["jetzt", "maintenant", "adverbe de temps", "Ich muss jetzt gehen.", "Je dois y aller maintenant.", "now", "I have to go now."],
+    ["später", "plus tard", "adverbe de temps", "Wir reden später darüber.", "On en reparlera plus tard.", "later", "We'll talk about it later."],
+    ["schon", "déjà", "adverbe de temps", "Ich habe schon gegessen.", "J'ai déjà mangé.", "already", "I've already eaten."],
+    ["bald", "bientôt", "adverbe de temps", "Der Film beginnt bald.", "Le film commence bientôt.", "soon", "The movie starts soon."],
+    ["oft", "souvent", "adverbe de temps", "Ich gehe oft schwimmen.", "Je vais souvent nager.", "often", "I often go swimming."],
+    ["nie", "jamais", "adverbe de temps", "Ich rauche nie.", "Je ne fume jamais.", "never", "I never smoke."],
+    ["immer", "toujours", "adverbe de temps", "Er kommt immer pünktlich.", "Il arrive toujours à l'heure.", "always", "He always arrives on time."],
+    ["manchmal", "parfois", "adverbe de temps", "Manchmal regnet es hier viel.", "Il pleut parfois beaucoup ici.", "sometimes", "It sometimes rains a lot here."],
+    ["hier", "ici", "adverbe de lieu", "Ich wohne hier seit zwei Jahren.", "J'habite ici depuis deux ans.", "here", "I've lived here for two years."],
+    ["dort", "là-bas", "adverbe de lieu", "Das Restaurant ist dort drüben.", "Le restaurant est là-bas.", "over there", "The restaurant is over there."],
+    ["oben", "en haut", "adverbe de lieu", "Das Bad ist oben.", "La salle de bain est en haut.", "upstairs", "The bathroom is upstairs."],
+    ["unten", "en bas", "adverbe de lieu", "Die Küche ist unten.", "La cuisine est en bas.", "downstairs", "The kitchen is downstairs."],
+    ["drinnen", "à l'intérieur", "adverbe de lieu", "Bei diesem Wetter bleiben wir drinnen.", "Avec ce temps, on reste à l'intérieur.", "inside", "In this weather, we're staying inside."],
+    ["draußen", "dehors", "adverbe de lieu", "Die Kinder spielen draußen.", "Les enfants jouent dehors.", "outside", "The children are playing outside."],
+    ["überall", "partout", "adverbe de lieu", "Ich habe überall gesucht.", "J'ai cherché partout.", "everywhere", "I looked everywhere."],
+    ["links", "à gauche", "adverbe de lieu", "Die Bank ist links.", "La banque est à gauche.", "on the left", "The bank is on the left."],
+    ["rechts", "à droite", "adverbe de lieu", "Fahren Sie rechts ab.", "Tournez à droite.", "on the right", "Turn right."],
+    ["schnell", "vite", "adverbe de manière", "Er läuft sehr schnell.", "Il court très vite.", "fast", "He runs very fast."],
+    ["langsam", "lentement", "adverbe de manière", "Sprich bitte langsam.", "Parle lentement, s'il te plaît.", "slowly", "Please speak slowly."],
+    ["gern", "volontiers, avec plaisir", "adverbe de manière", "Ich helfe dir gern.", "Je t'aide volontiers.", "gladly", "I'm happy to help you."],
+    ["laut", "fort, bruyamment", "adverbe de manière", "Er spricht immer sehr laut.", "Il parle toujours très fort.", "loudly", "He always speaks very loudly."],
+    ["leise", "doucement, silencieusement", "adverbe de manière", "Sprich leise, das Baby schläft.", "Parle doucement, le bébé dort.", "quietly", "Speak quietly, the baby is sleeping."],
+    ["plötzlich", "soudain", "adverbe de manière", "Plötzlich fing es an zu regnen.", "Soudain, il s'est mis à pleuvoir.", "suddenly", "Suddenly it started to rain."],
+    ["zusammen", "ensemble", "adverbe de manière", "Wir kochen heute zusammen.", "On cuisine ensemble aujourd'hui.", "together", "We're cooking together today."],
+    ["allein", "seul", "adverbe de manière", "Sie reist gern allein.", "Elle aime voyager seule.", "alone", "She likes to travel alone."],
+    ["sehr", "très", "adverbe de degré", "Das ist sehr wichtig.", "C'est très important.", "very", "That's very important."],
+    ["ziemlich", "plutôt, assez", "adverbe de degré", "Das Buch ist ziemlich lang.", "Le livre est plutôt long.", "quite", "The book is quite long."],
+    ["zu", "trop", "adverbe de degré", "Der Kaffee ist zu heiß.", "Le café est trop chaud.", "too", "The coffee is too hot."],
+    ["kaum", "à peine", "adverbe de degré", "Ich habe heute kaum Zeit.", "J'ai à peine le temps aujourd'hui.", "hardly", "I hardly have time today."],
+    ["fast", "presque", "adverbe de degré", "Wir sind fast da.", "On est presque arrivés.", "almost", "We're almost there."],
+    ["genug", "assez, suffisamment", "adverbe de degré", "Du hast genug gearbeitet.", "Tu as assez travaillé.", "enough", "You've worked enough."],
+    ["besonders", "particulièrement", "adverbe de degré", "Der Kuchen ist besonders lecker.", "Le gâteau est particulièrement délicieux.", "especially", "The cake is especially delicious."],
+    ["wenig", "peu", "adverbe de degré", "Ich habe heute wenig geschlafen.", "J'ai peu dormi aujourd'hui.", "little", "I slept little today."]
+  ]
+};
+
+// Conjonctions -- deux categories seulement, mais la distinction est LA
+// notion cle (position du verbe, deja enseignee dans Structure) : les
+// coordonnantes ne changent rien a l'ordre des mots, les subordonnantes
+// envoient le verbe conjugue a la fin.
+const konjunktionenTheme = {
+  id: "konjunktionen_vokabular",
+  name: "Conjonctions",
+  svg: '<svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg>',
+  words: [
+    ["und", "et", "conjonction de coordination", "Ich koche und du deckst den Tisch.", "Je cuisine et tu mets la table.", "and", "I'm cooking and you're setting the table."],
+    ["oder", "ou", "conjonction de coordination", "Kommst du mit oder bleibst du hier?", "Tu viens avec nous ou tu restes ici ?", "or", "Are you coming with us or staying here?"],
+    ["aber", "mais", "conjonction de coordination", "Ich bin müde, aber ich arbeite weiter.", "Je suis fatigué, mais je continue à travailler.", "but", "I'm tired, but I keep working."],
+    ["denn", "car", "conjonction de coordination", "Ich bleibe zu Hause, denn ich bin krank.", "Je reste à la maison, car je suis malade.", "because", "I'm staying home, because I'm sick."],
+    ["sondern", "mais (plutôt)", "conjonction de coordination", "Ich trinke keinen Kaffee, sondern Tee.", "Je ne bois pas de café, mais du thé.", "but rather", "I don't drink coffee, but rather tea."],
+    ["weil", "parce que", "conjonction de subordination", "Ich bleibe zu Hause, weil ich krank bin.", "Je reste à la maison parce que je suis malade.", "because", "I'm staying home because I'm sick."],
+    ["dass", "que", "conjonction de subordination", "Ich weiß, dass du recht hast.", "Je sais que tu as raison.", "that", "I know that you're right."],
+    ["wenn", "si, quand (répétitif/futur)", "conjonction de subordination", "Ich rufe an, wenn ich ankomme.", "J'appelle quand j'arrive.", "if, when", "I'll call when I arrive."],
+    ["obwohl", "bien que", "conjonction de subordination", "Ich gehe raus, obwohl es regnet.", "Je sors, bien qu'il pleuve.", "although", "I'm going out, although it's raining."],
+    ["während", "pendant que", "conjonction de subordination", "Ich koche, während du den Tisch deckst.", "Je cuisine pendant que tu mets la table.", "while", "I'm cooking while you set the table."],
+    ["bevor", "avant que", "conjonction de subordination", "Ruf mich an, bevor du kommst.", "Appelle-moi avant de venir.", "before", "Call me before you come."],
+    ["nachdem", "après que", "conjonction de subordination", "Nachdem ich gegessen hatte, ging ich schlafen.", "Après avoir mangé, je suis allé dormir.", "after", "After I had eaten, I went to sleep."],
+    ["ob", "si (question indirecte)", "conjonction de subordination", "Ich weiß nicht, ob er kommt.", "Je ne sais pas s'il vient.", "whether", "I don't know whether he's coming."],
+    ["da", "comme, puisque", "conjonction de subordination", "Da es regnet, bleiben wir drinnen.", "Comme il pleut, on reste à l'intérieur.", "since", "Since it's raining, we're staying inside."],
+    ["damit", "afin que", "conjonction de subordination", "Ich spreche langsam, damit du mich verstehst.", "Je parle lentement afin que tu me comprennes.", "so that", "I speak slowly so that you understand me."],
+    ["sodass", "de sorte que", "conjonction de subordination", "Es regnete stark, sodass wir zu Hause blieben.", "Il pleuvait fort, de sorte qu'on est restés à la maison.", "so that", "It rained hard, so we stayed home."],
+    ["als", "quand (unique, passé)", "conjonction de subordination", "Als ich Kind war, wohnte ich in Berlin.", "Quand j'étais enfant, j'habitais à Berlin.", "when (past, one-time)", "When I was a child, I lived in Berlin."],
+    ["bis", "jusqu'à ce que", "conjonction de subordination", "Ich warte, bis du fertig bist.", "J'attends jusqu'à ce que tu aies fini.", "until", "I'll wait until you're done."]
   ]
 };
 
@@ -8628,6 +8959,26 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "adverbien"){
+        return {
+            icon:"dossier", title:t("op_adverbien_title"), sub:t("op_adverbien_sub"),
+            options:[
+                { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
+                { icon:"exercice", title:t("op_adverbien_o2_t"), desc:t("op_adverbien_o2_d"), action:"startAdverbienNuance" },
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:"heute, hier, sehr…", action:"startAdverbienVokabular" }
+            ]
+        };
+    }
+    if(id === "konjunktionen"){
+        return {
+            icon:"dossier", title:t("op_konjunktionen_title"), sub:t("op_konjunktionen_sub"),
+            options:[
+                { icon:"dossier", title:t("op_konjunktionen_o1_t"), desc:t("op_konjunktionen_o1_d"), primary:true, action:"openKonjunktionenInfo" },
+                { icon:"exercice", title:t("op_konjunktionen_o2_t"), desc:t("op_konjunktionen_o2_d"), action:"startKonjunktionenNuance" },
+                { icon:"carte", title:t("op_konjunktionen_o3_t"), desc:"und, weil, aber…", action:"startKonjunktionenVokabular" }
+            ]
+        };
+    }
     if(id === "praep"){
         return {
             icon:"dossier", title:t("op_praep_title"), sub:t("op_praep_sub"),
@@ -9125,6 +9476,48 @@ function openPartikelnInfo(){
     showScreen("partikelnInfo");
 }
 
+function openAdverbienInfo(){
+    showScreen("adverbienInfo");
+}
+
+function startAdverbienNuance(){
+    startExerciseSet(shuffleArray(adverbienNuanceExercises), "kicker_adverbien_nuance", openAdverbienInfo, startAdverbienNuance);
+}
+
+function startAdverbienVokabular(){
+    flashcardMode = 'adverbien';
+    currentTheme = adverbienTheme;
+    const allItems = adverbienTheme.words.map((word, index) => ({ word, index, themeId: adverbienTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_adverbien_vocab', 'orb_adverbien_title');
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function openKonjunktionenInfo(){
+    showScreen("konjunktionenInfo");
+}
+
+function startKonjunktionenNuance(){
+    startExerciseSet(shuffleArray(konjunktionenNuanceExercises), "kicker_konjunktionen_nuance", openKonjunktionenInfo, startKonjunktionenNuance);
+}
+
+function startKonjunktionenVokabular(){
+    flashcardMode = 'konjunktionen';
+    currentTheme = konjunktionenTheme;
+    const allItems = konjunktionenTheme.words.map((word, index) => ({ word, index, themeId: konjunktionenTheme.id }));
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_konjunktionen_vocab', 'orb_konjunktionen_title');
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
 function openWortstellungInfo(){
     showScreen("wortstellungInfo");
 }
@@ -9502,7 +9895,7 @@ function loadFlashcard(){
     const dictationBtn = document.getElementById("dictationStartBtn");
     if(dictationBtn) dictationBtn.classList.toggle("hidden", flashcardMode !== 'nomen');
     sentenceRegistry = [];
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -9685,7 +10078,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen'){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
@@ -9693,7 +10086,9 @@ function loadFlashcard(){
         const cas = (useEn && card[7]) ? card[7] : card[2];
         const exampleSentence = card[3];
         const exampleSentenceFr = ((useEn && card[6]) ? card[6] : card[4]) || "";
-        const label = flashcardMode === 'partikeln' ? t('label_nuance_word') : t('label_case_word');
+        const label = flashcardMode === 'partikeln' ? t('label_nuance_word')
+            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen') ? t('label_word_category')
+            : t('label_case_word');
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
