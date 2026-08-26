@@ -363,6 +363,13 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="zahlen"] .orb-icon svg{stroke:#ea580c;}
 .orb[data-orbid="zahlen"] .orb-badge{background:#ea580c; box-shadow:0 2px 6px rgba(234,88,12,.35);}
 
+.orb[data-orbid="schreiben"] .orb-icon{
+    background:rgba(244,63,94,.14);
+    border-color:rgba(244,63,94,.28);
+}
+.orb[data-orbid="schreiben"] .orb-icon svg{stroke:#f43f5e;}
+.orb[data-orbid="schreiben"] .orb-badge{background:#f43f5e; box-shadow:0 2px 6px rgba(244,63,94,.35);}
+
 .orb[data-orbid="konjunktionen"] .orb-icon{
     background:rgba(14,165,233,.14);
     border-color:rgba(14,165,233,.28);
@@ -2681,7 +2688,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v206</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v207</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2831,6 +2838,15 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_adverbien_title">Adverbes</strong>
                 <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="schreiben" onclick="openOrbPanel('schreiben')">
+            <div id="badge-schreiben" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_schreiben_title">Écrire</strong>
+                <small data-i18n="orb_schreiben_sub">traduire une phrase</small>
             </div>
         </div>
 
@@ -5168,6 +5184,13 @@ const I18N = {
         orb_adverbien_title: "Adverbes",
         orb_redewendungen_title: "Expressions",
         orb_pronomen_title: "Pronoms",
+        orb_schreiben_title: "Écrire",
+        orb_schreiben_sub: "traduire une phrase",
+        op_schreiben_title: "Écrire en allemand", op_schreiben_sub: "produire, pas seulement reconnaître",
+        op_schreiben_all_t: "Tous les niveaux", op_schreiben_all_d: "15 phrases tirées de tout le vocabulaire",
+        op_schreiben_level_d: "15 phrases du niveau {n}",
+        kicker_schreiben: "Écrire · Traduction",
+        schreiben_hint: "Écris la phrase en allemand. Les accents et la ponctuation ne comptent pas.",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Nombres",
         orb_zahlen_sub: "einundzwanzig · dritte",
@@ -5906,9 +5929,16 @@ const I18N = {
 
         orb_adverbien_title: "Adverbs",
         orb_redewendungen_title: "Expressions",
-        orb_pronomen_title: "Pronoms",
+        orb_pronomen_title: "Pronouns",
+        orb_schreiben_title: "Write",
+        orb_schreiben_sub: "translate a sentence",
+        op_schreiben_title: "Write in German", op_schreiben_sub: "produce, not just recognise",
+        op_schreiben_all_t: "All levels", op_schreiben_all_d: "15 sentences from the whole vocabulary",
+        op_schreiben_level_d: "15 sentences from level {n}",
+        kicker_schreiben: "Write · Translation",
+        schreiben_hint: "Write the sentence in German. Accents and punctuation don't count.",
         orb_pronomen_sub: "ich · mich · mir",
-        orb_zahlen_title: "Nombres",
+        orb_zahlen_title: "Numbers",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
         op_pronomen_sub: "ich · mich · mir",
@@ -10062,6 +10092,18 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "schreiben"){
+        const niveaux = ["A1", "A2", "B1", "B2"];
+        return {
+            icon:"exercice", title:t("op_schreiben_title"), sub:t("op_schreiben_sub"),
+            options: [{ icon:"exercice", title:t("op_schreiben_all_t"), desc:t("op_schreiben_all_d"),
+                        primary:true, action:"startSchreibenALL" }]
+                .concat(niveaux.map(n => ({
+                    icon:"exercice", title:n, desc:tf("op_schreiben_level_d", { n: n }),
+                    action:"startSchreiben" + n
+                })))
+        };
+    }
     if(id === "pronomen"){
         return {
             icon:"dossier", title:t("op_pronomen_title"), sub:t("op_pronomen_sub"),
@@ -13557,6 +13599,99 @@ function startVerbRektionExercise(){
 }
 
 let exerciseKickerKey = null;
+// ============ Exercice productif : ecrire la phrase allemande ============
+// Premier exercice ou l'apprenant PRODUIT de l'allemand au lieu de le
+// reconnaitre : les 21 autres series sont des choix multiples, des textes a
+// trou ou des remises en ordre. Aucune donnee nouvelle n'a ete necessaire :
+// chaque carte de l'app porte deja sa phrase d'exemple dans les trois langues.
+function normaliserSaisie(txt){
+    return (txt || "").toString().toLowerCase()
+        .replace(/\u00df/g, "ss")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[.,!?;:\u00ab\u00bb"'\u2019\u2013\u2014-]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+// Rassemble toutes les phrases traduisibles du niveau demande, toutes
+// categories confondues. Les verbes en fournissent quatre chacun (present,
+// parfait, preterit, subjonctif II), ce qui fait de loin le plus gros vivier.
+function phrasesTraduisibles(niveau){
+    const sorties = [];
+    const ajouter = (de, fr, en, source) => {
+        if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source });
+    };
+    const bonNiveau = (n) => niveau === "ALL" || n === niveau;
+
+    (typeof themes !== 'undefined' ? themes : []).forEach(theme => {
+        Object.keys(theme.levels || {}).forEach(lvl => {
+            if(!bonNiveau(lvl)) return;
+            const lv = theme.levels[lvl];
+            (lv.words || []).forEach(w => ajouter(w[5], w[6], w[7], theme.name));
+            (lv.verben || []).forEach(v => {
+                ajouter(v.exemple, v.exemple_fr, v.exemple_en, theme.name);
+                ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, theme.name);
+            });
+            (lv.adjektive || []).forEach(a => ajouter(a[3], a[4], a[6], theme.name));
+        });
+    });
+
+    (verbeTheme.words || []).forEach(v => {
+        if(!bonNiveau(v.niveau)) return;
+        const src = t('orb_verben_title');
+        ajouter(v.exemple, v.exemple_fr, v.exemple_en, src);
+        ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, src);
+        ajouter(v.praeteritum, v.praeteritum_fr, v.praeteritum_en, src);
+        ajouter(v.konjunktiv2, v.konjunktiv2_fr, v.konjunktiv2_en, src);
+    });
+
+    (adjektiveTheme.words || []).forEach(a => {
+        if(!bonNiveau(a[3])) return;
+        ajouter(a[2], a[4], a[6], t('orb_adjektive_title'));
+    });
+
+    [[adverbienTheme, 'orb_adverbien_title'], [redewendungenTheme, 'orb_redewendungen_title']]
+        .forEach(pair => {
+            (pair[0].words || []).forEach(w => {
+                if(!bonNiveau(w[8])) return;
+                ajouter(w[3], w[4], w[6], t(pair[1]));
+            });
+        });
+
+    return sorties;
+}
+
+const SCHREIBEN_TAILLE_SERIE = 15;
+
+function startSchreibenALL(){ startSchreiben("ALL"); }
+function startSchreibenA1(){ startSchreiben("A1"); }
+function startSchreibenA2(){ startSchreiben("A2"); }
+function startSchreibenB1(){ startSchreiben("B1"); }
+function startSchreibenB2(){ startSchreiben("B2"); }
+
+function startSchreiben(niveau){
+    const vivier = phrasesTraduisibles(niveau || "ALL");
+    if(vivier.length < 3){ showInfoToast(t('alert_level_unavailable')); return; }
+    shuffleArray(vivier);
+    const useEn = getUiLang() === 'en';
+    const liste = vivier.slice(0, SCHREIBEN_TAILLE_SERIE).map(ph => ({
+        topic: "\u00c9crire \u00b7 " + ph.source,
+        question: ph.fr,
+        question_en: ph.en,
+        translation: ph.source,
+        translation_en: ph.source,
+        hint: t('schreiben_hint'),
+        hint_en: t('schreiben_hint'),
+        answers: [ph.de],
+        correct: ph.de,
+        correctEn: ph.de,
+        explanation: ph.de,
+        explanation_en: ph.de,
+        tolerant: true
+    }));
+    startExerciseSet(liste, 'kicker_schreiben', () => openOrbPanel('schreiben'), () => startSchreiben(niveau));
+}
+
 function startExerciseSet(list, kickerKey, backFn, restartFn){
     activeExercises = list;
     exerciseKickerKey = kickerKey;
@@ -13741,7 +13876,14 @@ function checkAnswer(){
         const rawVal = usingSelect ? select.value.trim() : input.value.trim();
         if(!rawVal){ if(usingSelect) select.focus(); else input.focus(); return; }
         const val = rawVal.toLowerCase();
-        isCorrect = ex.answers.some(a => a.toLowerCase() === val);
+        // Les exercices de traduction acceptent une saisie approchante : la
+        // ponctuation, la casse et les accents ne sont pas ce qu'on evalue, et
+        // taper un umlaut sur un clavier francais est un obstacle materiel, pas
+        // linguistique. Les autres exercices gardent la comparaison stricte :
+        // eux portent justement sur une forme precise (der/den, -en/-em...).
+        isCorrect = ex.tolerant
+            ? ex.answers.some(a => normaliserSaisie(a) === normaliserSaisie(rawVal))
+            : ex.answers.some(a => a.toLowerCase() === val);
     }
     answered = true;
     exerciseResults.push({ topic: ex.topic, correct: isCorrect });
