@@ -1618,6 +1618,17 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     color:#1e2433;
 }
 
+/* Filet de securite : meme si le calcul de fitFlashcardWords() est pris en
+   defaut (police pas encore chargee au tout premier affichage, par exemple),
+   un mot compose allemand trop long se coupe au lieu de sortir de la carte.
+   max-width empeche aussi le mot de deborder de la rangee avec le bouton
+   d'ecoute au verso. */
+.flashcard-front .word,
+.back-word{
+    max-width:100%;
+    overflow-wrap:anywhere;
+}
+
 .tap-hint{
     margin-top:35px;
     color:#767f8f;
@@ -2647,7 +2658,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v195</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v196</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -11016,7 +11027,67 @@ function handleFlashcardBack(){
     else openNomen();
 }
 
+// Mesure hors ecran, sans toucher au DOM affiche : donne la largeur qu'occupera
+// le texte a une taille donnee, pour en deduire la taille qui tient dans la
+// carte. Un seul calcul, pas de boucle de reduction progressive.
+const flashTextMeasureCtx = (() => {
+    try{ return document.createElement("canvas").getContext("2d"); }
+    catch(e){ return null; }
+})();
+
+// Reduit la police du mot affiche juste assez pour qu'il tienne dans la largeur
+// disponible. Sans cela, un mot long ET insecable -- typiquement un compose
+// allemand comme "Geschwindigkeitsbegrenzung" -- depassait du cadre de la carte,
+// puisque le recto est en 48px fixes et qu'il n'y a aucun espace ou couper.
+function fitFlashcardWord(el, maxPx, minPx, available){
+    if(!el) return;
+    const text = el.textContent || "";
+    el.style.fontSize = "";
+    if(!text || !flashTextMeasureCtx || !(available > 0)) return;
+    const cs = getComputedStyle(el);
+    flashTextMeasureCtx.font = `${cs.fontStyle} ${cs.fontWeight} ${maxPx}px ${cs.fontFamily}`;
+    const width = flashTextMeasureCtx.measureText(text).width;
+    if(width <= available) return;
+    el.style.fontSize = Math.max(minPx, Math.floor(maxPx * available / width)) + "px";
+}
+
+function largeurUtile(el){
+    if(!el) return 0;
+    const cs = getComputedStyle(el);
+    return el.clientWidth - parseFloat(cs.paddingLeft || 0) - parseFloat(cs.paddingRight || 0);
+}
+
+function fitFlashcardWords(){
+    const front = document.querySelector(".flashcard-front");
+    const frontWord = document.getElementById("flashWord");
+    // Taille de reference identique a la regle CSS (42px sous 480px de large,
+    // voir la media query) : on repart toujours du maximum, jamais de la
+    // taille reduite calculee pour la carte precedente.
+    const maxFront = window.innerWidth <= 480 ? 42 : 48;
+    fitFlashcardWord(frontWord, maxFront, 18, largeurUtile(front));
+
+    // Au verso, le mot partage sa rangee avec le bouton d'ecoute : la largeur
+    // disponible est celle de la rangee moins ce bouton et l'espace entre eux.
+    const backWord = document.getElementById("flashBackWord");
+    const row = backWord ? backWord.closest(".word-audio-row") : null;
+    if(row){
+        const btn = row.querySelector(".icon-audio-btn");
+        const gap = parseFloat(getComputedStyle(row).gap || 10) || 10;
+        // Largeur mesuree sur la FACE, pas sur la rangee : la face etant un
+        // conteneur flex en colonne avec align-items:center, la rangee se
+        // dimensionne sur son contenu. La mesurer reviendrait a deduire la
+        // place disponible de la taille actuelle du texte -- un raisonnement
+        // circulaire qui reduisait tous les mots au minimum, meme "Vater".
+        const face = backWord.closest(".flashcard-back");
+        const dispo = largeurUtile(face) - (btn ? btn.offsetWidth + gap : 0);
+        fitFlashcardWord(backWord, 26, 15, dispo);
+    }
+}
+
 function resizeFlashcard(){
+    // La taille du mot se recalcule avant la hauteur : la hauteur de la carte
+    // depend du texte une fois mis a l'echelle.
+    fitFlashcardWords();
     const flashcardEl = document.getElementById("flashcard");
     const front = document.querySelector(".flashcard-front");
     const back = document.querySelector(".flashcard-back");
@@ -11026,6 +11097,13 @@ function resizeFlashcard(){
     const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200) : FRONT_HEIGHT;
     flashcardEl.style.height = targetHeight + "px";
 }
+
+// Rotation du telephone ou changement de largeur : la place disponible change,
+// donc la taille du mot et la hauteur de la carte doivent etre recalculees.
+window.addEventListener("resize", () => {
+    const el = document.getElementById("flashcard");
+    if(el && el.offsetParent !== null) resizeFlashcard();
+});
 
 let flashKickerKey = null;
 let flashTitleKey = null; // null = utiliser currentTheme.name
