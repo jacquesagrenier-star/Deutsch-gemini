@@ -1668,6 +1668,17 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     margin-bottom:4px;
 }
 
+/* Pluriel affiche juste sous le nom (et non apres la phrase d'exemple) : c'est
+   une information de forme, elle appartient au bloc allemand. Bleu marine
+   plutot que gris -- le bleu vif, le rouge et le vert sont deja pris par
+   der/die/das (voir .border-der/.border-die/.border-das). */
+.plural{
+    color:#1e3a8a;
+    font-size:14px;
+    font-weight:600;
+    margin:2px 0 10px;
+}
+
 .translation{
     color:#1e2433;
     font-size:16px;
@@ -2299,6 +2310,10 @@ body[data-theme="dark"] .search-result:hover{
     background:rgba(255,255,255,.1);
 }
 
+body[data-theme="dark"] .plural{
+    color:#A8C0F0;
+}
+
 body[data-theme="dark"] .search-result.exact{
     background:linear-gradient(120deg,rgba(59,130,246,.22),rgba(124,92,255,.18));
     border-color:rgba(96,165,250,.6);
@@ -2632,7 +2647,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v193</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v195</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3972,9 +3987,9 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
+                <div id="flashPlural" class="plural hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
-                <div id="flashPlural" class="plural hidden" style="color:#576177; font-size:13px; margin-top:8px;"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
             </div>
         </div>
@@ -11301,7 +11316,13 @@ function loadFlashcard(){
             articleEl.textContent = card[1];
             articleEl.className = `article ${articleText}`;
             articleEl.classList.remove("hidden");
-            pluralEl.textContent = `${t('label_plural')} ${card[2]}`;
+            // Article "die" ecrit en toutes lettres devant le pluriel : il est le
+            // meme pour les trois genres, mais l'afficher evite d'avoir a le
+            // deviner et renforce l'automatisme. Les noms sans pluriel (246
+            // entrees, notes "—") gardent le tiret seul, sans article.
+            const pluralForm = (card[2] || "").trim();
+            const aUnPluriel = pluralForm && pluralForm !== "—" && pluralForm !== "-";
+            pluralEl.textContent = `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
             pluralEl.classList.remove("hidden");
         }
         // Phrase d'exemple (comme pour les adjectifs) : anglais d'abord en
@@ -11342,6 +11363,9 @@ function flipCard(){
 let cardBusy = false;
 
 function handleCardTap(){
+    // Toucher la carte = l'utilisateur passe a la suite : la video de
+    // gratification eventuellement en cours s'arrete ici (demande explicite).
+    stopMasteryCelebrations();
     if(cardBusy) return; // ignore les taps pendant qu'une transition est déjà en cours
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
@@ -12033,6 +12057,11 @@ function pickRandomCelebrationVideo(){
 // durée réelle du clip -- voir DAILY_GOAL_VIDEOS.durationS. Repli sur la
 // durée par défaut de .mastery-video-big (7.7s, calibrée pour personnage.MP4)
 // si non fournie.
+// Celebrations en cours : permet de les interrompre depuis l'exterieur (voir
+// stopMasteryCelebrations). Plusieurs peuvent se superposer -- un palier de
+// l'objectif du jour declenche une sequence de plusieurs videos.
+let activeCelebrationStops = [];
+
 function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSeconds){
     const container = document.getElementById("confettiContainer");
     if(!container) return;
@@ -12107,6 +12136,22 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSecond
 
     let rafId = null;
     let stopped = false;
+
+    // Fin de vie unique de la celebration, quelle qu'en soit la cause : fin de
+    // l'animation, erreur de chargement, ou interruption par l'utilisateur
+    // (stopMasteryCelebrations). Enregistree dans activeCelebrationStops pour
+    // qu'un appui sur l'ecran puisse l'appeler de l'exterieur.
+    function teardown(){
+        if(stopped) return;
+        stopped = true;
+        if(rafId) cancelAnimationFrame(rafId);
+        try{ video.pause(); }catch(e){}
+        video.remove();
+        canvas.remove();
+        const i = activeCelebrationStops.indexOf(teardown);
+        if(i !== -1) activeCelebrationStops.splice(i, 1);
+    }
+    activeCelebrationStops.push(teardown);
 
     // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
     // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
@@ -12333,15 +12378,24 @@ function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSecond
         }
         drawFrame();
     });
-    video.addEventListener("error", () => { stopped = true; video.remove(); canvas.remove(); });
+    video.addEventListener("error", teardown);
+    canvas.addEventListener("animationend", teardown);
+}
 
-    canvas.addEventListener("animationend", () => {
-        stopped = true;
-        if(rafId) cancelAnimationFrame(rafId);
-        video.pause();
-        video.remove();
-        canvas.remove();
-    });
+// Coupe net la ou les celebrations en cours (video du personnage + bandeau
+// "+N !"). Appelee quand l'utilisateur touche l'ecran pour continuer : la
+// gratification a alors joue son role, la laisser tourner par-dessus la carte
+// suivante n'apporte plus rien. Sans interaction, rien n'est coupe et la video
+// va jusqu'au bout de son animation, comme avant.
+function stopMasteryCelebrations(){
+    if(activeCelebrationStops.length){
+        activeCelebrationStops.slice().forEach(fn => { try{ fn(); }catch(e){} });
+        activeCelebrationStops.length = 0;
+    }
+    const container = document.getElementById("confettiContainer");
+    if(container){
+        container.querySelectorAll(".daily-goal-text").forEach(el => el.remove());
+    }
 }
 
 // Gros bandeau "+N !" affiché à chaque palier de l'objectif du jour franchi,
@@ -12837,6 +12891,9 @@ function checkAnswer(){
 }
 
 function nextExercise(){
+    // Meme regle que pour les cartes : passer a la question suivante coupe la
+    // celebration en cours.
+    stopMasteryCelebrations();
     currentExercise++;
     if(currentExercise >= activeExercises.length){ showResults(); return; }
     loadExercise();
