@@ -2660,7 +2660,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v202</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v203</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4167,6 +4167,12 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
+        <strong data-i18n="voice_title">Voix de lecture</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
+        <div id="voiceSettingsBox"></div>
+    </div>
+
+    <div class="card">
         <strong data-i18n="settings_account_title">Compte</strong>
         <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
         <div class="spacer"></div>
@@ -4596,6 +4602,14 @@ const I18N = {
 
         kicker_progress: "Progression",
         settings_account_title: "Compte",
+        voice_title: "Voix de lecture",
+        voice_desc: "Ton appareil propose parfois plusieurs voix pour la m\u00eame langue : une voix compacte, m\u00e9canique, et une voix am\u00e9lior\u00e9e beaucoup plus naturelle. L'\u00e9toile signale les meilleures.",
+        voice_lang_de: "Allemand",
+        voice_lang_en: "Anglais",
+        voice_test: "\u00c9couter",
+        voice_none: "Aucune voix install\u00e9e pour cette langue sur cet appareil. Les phrases seront lues avec la voix par d\u00e9faut, donc avec un mauvais accent. Ajoute-la dans les r\u00e9glages de ton t\u00e9l\u00e9phone (Accessibilit\u00e9 \u203a Contenu parl\u00e9 \u203a Voix).",
+        voice_only_one: "Une seule voix install\u00e9e. Tu peux en ajouter une am\u00e9lior\u00e9e dans les r\u00e9glages de ton t\u00e9l\u00e9phone, puis revenir la choisir ici.",
+        voice_unsupported: "Ce navigateur ne propose pas de synth\u00e8se vocale.",
         settings_title: "Révision",
         settings_global_progress: "Progression globale",
         settings_view_themes: "VOIR LES THÈMES",
@@ -5266,6 +5280,14 @@ const I18N = {
 
         kicker_progress: "Progress",
         settings_account_title: "Account",
+        voice_title: "Reading voice",
+        voice_desc: "Your device often offers several voices for the same language: a compact, mechanical one and a much more natural enhanced one. The star marks the best ones.",
+        voice_lang_de: "German",
+        voice_lang_en: "English",
+        voice_test: "Listen",
+        voice_none: "No voice installed for this language on this device. Sentences will be read with the default voice, and therefore with the wrong accent. Add one in your phone settings (Accessibility \u203a Spoken Content \u203a Voices).",
+        voice_only_one: "Only one voice installed. You can add an enhanced one in your phone settings, then come back and pick it here.",
+        voice_unsupported: "This browser does not provide speech synthesis.",
         settings_title: "Review",
         settings_global_progress: "Overall progress",
         settings_view_themes: "VIEW THEMES",
@@ -10334,6 +10356,7 @@ function openNomen(){
     loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen");
 }
 function openSettings(){
+    renderVoiceSettings();
     // Le bouton ⚙️ est dans le <header>, donc visible même sur l'écran de
     // connexion — sans cette garde, il contournerait la porte d'authentification
     // (comme l'ancien bouton drapeau, voir commit v94).
@@ -11743,22 +11766,123 @@ function toggleVerbExtra(){
 let cachedGermanVoice = null;
 let cachedEnglishVoice = null;
 
-function findGermanVoice(){
-    if(!('speechSynthesis' in window)) return null;
-    const voices = window.speechSynthesis.getVoices();
-    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('de')) || null;
+const VOICE_CHOICE_KEY = "deutschAI_voiceChoice";
+
+// Un meme appareil expose souvent DEUX voix pour la meme langue : une voix
+// "compacte" (celle qui sonne mecanique) et une voix amelioree ou neurale, bien
+// plus naturelle. L'ancienne version prenait la PREMIERE voix trouvee, qui est
+// tres souvent la compacte -- d'ou l'impression de robot alors qu'une bonne voix
+// etait deja installee. On les classe donc, du meilleur au moins bon.
+const VOICE_GOOD_HINTS = ["natural", "neural", "enhanced", "premium", "online", "google", "siri", "wavenet"];
+const VOICE_POOR_HINTS = ["compact", "espeak", "kompakt"];
+
+function voiceQualityScore(v){
+    const nom = ((v && v.name) || "").toLowerCase();
+    let score = 0;
+    VOICE_GOOD_HINTS.forEach(h => { if(nom.indexOf(h) !== -1) score += 10; });
+    VOICE_POOR_HINTS.forEach(h => { if(nom.indexOf(h) !== -1) score -= 10; });
+    // Une voix distante est presque toujours neurale ; une voix locale marche
+    // hors connexion. On privilegie legerement la qualite, le repli restant local.
+    if(v && v.localService === false) score += 3;
+    // Allemand et anglais standard avant les variantes regionales.
+    const lang = ((v && v.lang) || "").toLowerCase();
+    if(lang === "de-de" || lang === "en-gb" || lang === "en-us") score += 2;
+    return score;
 }
 
-function findEnglishVoice(){
-    if(!('speechSynthesis' in window)) return null;
-    const voices = window.speechSynthesis.getVoices();
-    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('en')) || null;
+function voicesForLang(prefix){
+    if(!('speechSynthesis' in window)) return [];
+    return window.speechSynthesis.getVoices()
+        .filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix))
+        .sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
+}
+
+function storedVoiceChoice(){
+    try{ return JSON.parse(localStorage.getItem(VOICE_CHOICE_KEY) || "{}"); }
+    catch(e){ return {}; }
+}
+
+// Choix explicite de l'utilisateur s'il existe encore sur l'appareil, sinon la
+// mieux classee. Le choix est memorise par langue.
+function pickVoice(prefix){
+    const dispo = voicesForLang(prefix);
+    if(!dispo.length) return null;
+    const choisi = storedVoiceChoice()[prefix];
+    if(choisi){
+        const trouve = dispo.find(v => v.name === choisi);
+        if(trouve) return trouve;
+    }
+    return dispo[0];
+}
+
+function findGermanVoice(){ return pickVoice('de'); }
+function findEnglishVoice(){ return pickVoice('en'); }
+
+function setVoiceChoice(prefix, nom){
+    const choix = storedVoiceChoice();
+    choix[prefix] = nom;
+    try{ localStorage.setItem(VOICE_CHOICE_KEY, JSON.stringify(choix)); }catch(e){}
+    cachedGermanVoice = findGermanVoice();
+    cachedEnglishVoice = findEnglishVoice();
+    // Extrait immediat : on juge une voix a l'oreille, pas a son nom.
+    testVoice(prefix);
+}
+
+function testVoice(prefix){
+    if(!('speechSynthesis' in window)) return;
+    const voix = pickVoice(prefix);
+    if(!voix) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(prefix === 'de'
+        ? "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch."
+        : "Good morning! I learn a little English every day.");
+    u.voice = voix;
+    u.lang = voix.lang;
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+}
+
+// Liste des voix disponibles, dans les reglages. Sert autant a choisir qu'a
+// constater qu'il n'y en a qu'une (auquel cas il faut en installer une autre
+// dans les reglages du telephone -- l'app ne peut pas le faire a la place).
+function renderVoiceSettings(){
+    const box = document.getElementById("voiceSettingsBox");
+    if(!box) return;
+    if(!('speechSynthesis' in window)){
+        box.innerHTML = `<p style="color:#576177;">${t('voice_unsupported')}</p>`;
+        return;
+    }
+    const langues = [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
+    box.innerHTML = langues.map(([prefix, libelle]) => {
+        const dispo = voicesForLang(prefix);
+        if(!dispo.length){
+            return `<div style="margin-top:12px;"><strong>${libelle}</strong>`
+                + `<p style="color:#576177; margin-top:4px;">${t('voice_none')}</p></div>`;
+        }
+        const actuelle = pickVoice(prefix);
+        const options = dispo.map(v => {
+            const marque = voiceQualityScore(v) >= 10 ? " \u2b50" : "";
+            const sel = actuelle && v.name === actuelle.name ? " selected" : "";
+            return `<option value="${v.name.replace(/"/g, '&quot;')}"${sel}>${v.name}${marque}</option>`;
+        }).join("");
+        return `<div style="margin-top:12px;">`
+            + `<strong>${libelle}</strong>`
+            + `<div class="filters-bar" style="margin-top:8px;">`
+            + `<select onchange="setVoiceChoice('${prefix}', this.value)">${options}</select>`
+            + `<button class="secondary" style="flex:0 0 auto; min-height:auto; padding:10px 14px;" onclick="testVoice('${prefix}')">${t('voice_test')}</button>`
+            + `</div>`
+            + (dispo.length === 1 ? `<p style="color:#576177; font-size:13px; margin-top:6px;">${t('voice_only_one')}</p>` : "")
+            + `</div>`;
+    }).join("");
 }
 
 if('speechSynthesis' in window){
     window.speechSynthesis.onvoiceschanged = () => {
         cachedGermanVoice = findGermanVoice();
         cachedEnglishVoice = findEnglishVoice();
+        // getVoices() est vide au premier appel sur plusieurs navigateurs : la
+        // liste n'arrive qu'ici, il faut donc redessiner l'ecran s'il est ouvert.
+        if(document.getElementById("voiceSettingsBox")) renderVoiceSettings();
     };
     cachedGermanVoice = findGermanVoice();
     cachedEnglishVoice = findEnglishVoice();
