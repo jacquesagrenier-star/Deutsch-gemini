@@ -2736,7 +2736,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v217</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v218</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4517,7 +4517,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         <button id="notifToggleBtn" class="secondary" onclick="toggleNotifications()" data-i18n="notif_btn_enable">ACTIVER LES RAPPELS</button>
     </div>
 
-    <div class="card">
+    <div class="card" id="inviteCard">
         <strong data-i18n="settings_invite_title">Inviter un ami</strong>
         <p style="color:#576177" data-i18n="settings_invite_desc">Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.</p>
         <div class="spacer"></div>
@@ -10989,6 +10989,12 @@ function openSettings(){
     refreshSetupChoiceActiveStates();
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
+    // "Inviter un ami" reste reserve a l'administrateur : l'inscription passe
+    // par un code d'invitation, et lui seul peut en generer. Propose a un
+    // testeur, ce bouton ne pouvait produire qu'une demande qu'il etait
+    // incapable de satisfaire.
+    const inviteCard = document.getElementById("inviteCard");
+    if(inviteCard) inviteCard.classList.toggle("hidden", !isAdminUser());
     showScreen("settings");
 }
 
@@ -13058,7 +13064,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 217;
+const APP_VERSION = 218;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
