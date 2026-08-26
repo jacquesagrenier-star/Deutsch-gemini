@@ -2660,7 +2660,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v201</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v202</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3537,9 +3537,27 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     <div class="spacer"></div>
     <button class="secondary" onclick="startAdverbienNuance()" data-i18n="adverbien_btn_nuance">M'ENTRAÎNER : RECONNAÎTRE LA CATÉGORIE →</button>
     <div class="spacer"></div>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="openAdverbienVokabular()" data-i18n="adverbien_btn_vocab">VOCABULAIRE : CHOISIR UN NIVEAU →</button>
+</section>
+
+<!-- Ecran dedie au choix niveau + famille. Separe de "Comprendre les adverbes"
+     parce que l'option "Vocabulaire" du panneau doit mener a un CHOIX, pas au
+     bas d'une page d'explications : elle lancait auparavant les 340 cartes d'un
+     coup, sans jamais montrer ni les niveaux ni les familles. -->
+<section id="adverbienVokabular" class="screen">
+    <button class="back" onclick="openOrbPanel('adverbien')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="orb_adverbien_title">Adverbes</div>
+            <h2 data-i18n="adverbien_vocab_title">Vocabulaire : flashcards</h2>
+        </div>
+    </div>
+
     <div class="card">
-        <strong data-i18n="adverbien_vocab_title">Vocabulaire : flashcards</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="adverbien_vocab_desc">Tous les adverbes, classés par catégorie (Zeit, Ort/Richtung, Häufigkeit…). Choisis un niveau ou révise l'ensemble.</p>
+        <strong data-i18n="adverbien_level_title">Choisir un niveau</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="adverbien_vocab_desc">Choisis d'abord un niveau : la liste des familles juste en dessous s'ajuste au niveau choisi.</p>
         <div id="adverbienLevelBar" class="filters-bar"></div>
     </div>
 
@@ -4457,6 +4475,8 @@ const I18N = {
         adverbien_level_all: "Tous",
         adverbien_cat_title: "R\u00e9viser par famille",
         adverbien_cat_all: "Toutes les familles",
+        adverbien_level_title: "Choisir un niveau",
+        adverbien_btn_vocab: "VOCABULAIRE : CHOISIR UN NIVEAU \u2192",
         adverbien_cat_desc: "Les adverbes s'apprennent en opposant les mots d'une m\u00eame famille : immer, oft, manchmal, selten, nie.",
         search_card_kicker: "Depuis la recherche",
         search_kind_noun: "Nom",
@@ -4960,14 +4980,15 @@ const I18N = {
         orb_konjunktionen_title: "Conjonctions",
         orb_konjunktionen_sub: "und · weil · aber",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
-        op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "4 catégories : temps, lieu, manière, degré",
-        op_adverbien_o2_t: "Reconnaître la catégorie", op_adverbien_o2_d: "Identifier temps/lieu/manière/degré",
+        op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
+        op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
+        op_adverbien_o3_d: "340 mots · 8 familles",
         op_adverbien_o3_t: "Vocabulaire",
         op_konjunktionen_title: "Conjonctions", op_konjunktionen_sub: "und · weil · aber",
         op_konjunktionen_o1_t: "Comprendre les conjonctions", op_konjunktionen_o1_d: "Coordination vs subordination",
         op_konjunktionen_o2_t: "Coordination ou subordination ?", op_konjunktionen_o2_d: "L'impact sur l'ordre des mots",
         op_konjunktionen_o3_t: "Vocabulaire",
-        kicker_adverbien_nuance: "Adverbes · Catégorie",
+        kicker_adverbien_nuance: "Adverbes · Famille",
         kicker_adverbien_vocab: "Adverbes · Vocabulaire",
         kicker_konjunktionen_nuance: "Conjonctions · Type",
         kicker_konjunktionen_vocab: "Conjonctions · Vocabulaire",
@@ -4990,8 +5011,7 @@ const I18N = {
         adverbien_frage_title: "Frageadverbien \u2014 les mots qui interrogent",
         adverbien_frage: "<em>wann, wo, wie, warum, wohin, woher, wieso, inwiefern\u2026</em><br><em>Woher kommst du?</em> (D'o\u00f9 viens-tu ?)<br>Ils ouvrent une question et se placent <strong>en t\u00eate</strong>, le verbe juste apr\u00e8s. Chacun r\u00e9pond \u00e0 une des familles ci-dessus : <em>wann</em> interroge le Zeit, <em>wo</em> le Ort, <em>warum</em> le Grund.",
         adverbien_tekamolo_link: "Quand plusieurs de ces adverbes se suivent dans une m\u00eame phrase, ils respectent l'ordre <strong>TeKaMoLo</strong> : <strong>Te</strong>mporal (Zeit) \u00b7 <strong>Ka</strong>usal (Grund/Folge) \u00b7 <strong>Mo</strong>dal (Art und Weise) \u00b7 <strong>Lo</strong>kal (Ort/Richtung) \u2014 d\u00e9j\u00e0 vu dans \u00ab Structure \u00bb. Les quatre autres familles n'entrent pas dans cet ordre : H\u00e4ufigkeit se place avec le temps, Grad/Menge colle au mot qu'il dose, Verbindung/Logik ouvre souvent la phrase, et Frageadverbien la commence toujours.",
-        adverbien_btn_nuance: "M'ENTRAÎNER : RECONNAÎTRE LA CATÉGORIE →",
-        adverbien_btn_vocab: "VOCABULAIRE : FLASHCARDS →",
+        adverbien_btn_nuance: "M'ENTRAÎNER : RECONNAÎTRE LA FAMILLE →",
         konjunktionen_info_title: "Comprendre les conjonctions",
         konjunktionen_intro: `Une conjonction relie deux phrases ou deux idées — mais selon <strong>laquelle</strong> on utilise, l'ordre des mots change complètement. C'est la seule chose vraiment importante à retenir ici : il n'y a que deux catégories, et chacune a une règle fixe.`,
         konjunktionen_koord_title: "Coordination — l'ordre des mots ne change pas",
@@ -5122,6 +5142,8 @@ const I18N = {
         adverbien_level_all: "All",
         adverbien_cat_title: "Review by family",
         adverbien_cat_all: "All families",
+        adverbien_level_title: "Choose a level",
+        adverbien_btn_vocab: "VOCABULARY: CHOOSE A LEVEL \u2192",
         adverbien_cat_desc: "Adverbs are learned by contrasting words of the same family: immer, oft, manchmal, selten, nie.",
         search_card_kicker: "From search",
         search_kind_noun: "Noun",
@@ -5628,14 +5650,15 @@ const I18N = {
         orb_konjunktionen_title: "Conjunctions",
         orb_konjunktionen_sub: "und · weil · aber",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
-        op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "4 categories: time, place, manner, degree",
-        op_adverbien_o2_t: "Identify the category", op_adverbien_o2_d: "Identify time/place/manner/degree",
+        op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
+        op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
+        op_adverbien_o3_d: "340 words · 8 families",
         op_adverbien_o3_t: "Vocabulary",
         op_konjunktionen_title: "Conjunctions", op_konjunktionen_sub: "und · weil · aber",
         op_konjunktionen_o1_t: "Understand conjunctions", op_konjunktionen_o1_d: "Coordinating vs subordinating",
         op_konjunktionen_o2_t: "Coordinating or subordinating?", op_konjunktionen_o2_d: "The impact on word order",
         op_konjunktionen_o3_t: "Vocabulary",
-        kicker_adverbien_nuance: "Adverbs · Category",
+        kicker_adverbien_nuance: "Adverbs · Family",
         kicker_adverbien_vocab: "Adverbs · Vocabulary",
         kicker_konjunktionen_nuance: "Conjunctions · Type",
         kicker_konjunktionen_vocab: "Conjunctions · Vocabulary",
@@ -5658,8 +5681,7 @@ const I18N = {
         adverbien_frage_title: "Frageadverbien \u2014 the question words",
         adverbien_frage: "<em>wann, wo, wie, warum, wohin, woher, wieso, inwiefern\u2026</em><br><em>Woher kommst du?</em> (Where do you come from?)<br>They open a question and stand <strong>first</strong>, with the verb right after. Each one asks about one of the families above: <em>wann</em> asks for Zeit, <em>wo</em> for Ort, <em>warum</em> for Grund.",
         adverbien_tekamolo_link: "When several of these adverbs follow one another in the same sentence, they keep the <strong>TeKaMoLo</strong> order: <strong>Te</strong>mporal (Zeit) \u00b7 <strong>Ka</strong>usal (Grund/Folge) \u00b7 <strong>Mo</strong>dal (Art und Weise) \u00b7 <strong>Lo</strong>kal (Ort/Richtung) \u2014 already seen in \"Structure\". The other four families stay outside that order: H\u00e4ufigkeit sits with time, Grad/Menge clings to the word it calibrates, Verbindung/Logik often opens the sentence, and Frageadverbien always starts it.",
-        adverbien_btn_nuance: "PRACTICE: IDENTIFY THE CATEGORY →",
-        adverbien_btn_vocab: "VOCABULARY: FLASHCARDS →",
+        adverbien_btn_nuance: "PRACTICE: IDENTIFY THE FAMILY →",
         konjunktionen_info_title: "Understand conjunctions",
         konjunktionen_intro: `A conjunction links two sentences or two ideas — but depending on <strong>which one</strong> you use, the word order changes completely. That's the only thing really important to remember here: there are only two categories, and each has a fixed rule.`,
         konjunktionen_koord_title: "Coordinating — word order doesn't change",
@@ -9687,7 +9709,7 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:t("op_adverbien_o2_d"), action:"startAdverbienNuance" },
-                { icon:"carte", title:t("op_adverbien_o3_t"), desc:"heute, hier, sehr…", action:"startAdverbienVokabular" }
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" }
             ]
         };
     }
@@ -10593,7 +10615,6 @@ function openPartikelnInfo(){
 }
 
 function openAdverbienInfo(){
-    renderAdverbienLevelBar();
     showScreen("adverbienInfo");
 }
 
@@ -10610,6 +10631,11 @@ let adverbienSelectedLevel = "ALL";
 function selectAdverbienLevel(level){
     adverbienSelectedLevel = level || "ALL";
     renderAdverbienLevelBar();
+}
+
+function openAdverbienVokabular(){
+    renderAdverbienLevelBar();
+    showScreen("adverbienVokabular");
 }
 
 function renderAdverbienLevelBar(){
@@ -11195,7 +11221,7 @@ const FLASHCARD_RETURN_SCREENS = {
     praep:           () => openPraepInfo(),
     positionsverben: () => openPraepInfo(),
     partikeln:       () => openPartikelnInfo(),
-    adverbien:       () => openAdverbienInfo(),
+    adverbien:       () => openAdverbienVokabular(),
     konjunktionen:   () => openKonjunktionenInfo()
 };
 
