@@ -1330,6 +1330,15 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     transform:translateY(-1px);
 }
 
+/* 16px MINIMUM : en dessous, Safari iOS zoome automatiquement sur le champ des
+   qu'on le touche, et l'utilisateur doit rezoomer a la main. Les autres champs
+   de l'app (.answer, 18-19px) n'ont jamais eu le probleme ; .filters-bar input
+   est a 14px. Corrige ici plutot que par maximum-scale sur le viewport, qui
+   desactiverait le zoom manuel dans toute l'app. */
+#wordSearchInput{
+    font-size:16px;
+}
+
 .search-launch svg{
     width:18px; height:18px; flex:none;
     stroke:#3b6fe0; fill:none; stroke-width:2; stroke-linecap:round;
@@ -2632,7 +2641,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v189</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v190</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -10006,7 +10015,12 @@ function findSearchSuggestions(q){
     return out.slice(0, SEARCH_MAX_SUGGESTIONS).map(x => x.e);
 }
 
-function searchResultHtml(entry, i, exact){
+// La provenance (Kapitel 3 (VHS), Verbes A2...) n'est affichee que si elle est
+// NECESSAIRE, c'est-a-dire quand le meme mot allemand apparait plusieurs fois
+// dans la liste : sur une ligne unique elle n'apprend rien et alourdit, mais
+// sans elle deux homonymes seraient deux lignes identiques impossibles a
+// distinguer (helfen est a la fois dans Verbes A1 et dans Verbes a cas fixe).
+function searchResultHtml(entry, i, exact, showSource){
     const useEn = getUiLang() === 'en';
     const trad = useEn ? (entry.en || entry.fr) : (entry.fr || entry.en);
     return '<div class="search-result' + (exact ? ' exact' : '') + '" onclick="openSearchCard(' + i + ')">'
@@ -10017,7 +10031,7 @@ function searchResultHtml(entry, i, exact){
         + '<div class="search-meta">'
         + (exact ? '<span class="search-tag exact">' + t('search_exact') + '</span>' : "")
         + '<span class="search-tag">' + t(entry.kindKey) + '</span>'
-        + '<span class="search-tag src">' + entry.source + '</span>'
+        + (showSource ? '<span class="search-tag src">' + entry.source + '</span>' : "")
         + searchStateTag(entry)
         + '</div>'
         + '</div>';
@@ -10064,7 +10078,7 @@ function renderWordSearch(rawQuery){
         if(suggestions.length){
             searchResults = suggestions;
             html += '<div class="search-suggest-label">' + t('search_none_suggest') + '</div>'
-                + suggestions.map((e, i) => searchResultHtml(e, i, false)).join("");
+                + suggestions.map((e, i) => searchResultHtml(e, i, false, false)).join("");
         }
         box.innerHTML = html;
         return;
@@ -10073,7 +10087,10 @@ function renderWordSearch(rawQuery){
     const shown = hits.slice(0, SEARCH_MAX_RESULTS);
     searchResults = shown.map(h => h.e);
     if(pill) pill.textContent = tf(hits.length === 1 ? 'search_count_one' : 'search_count', { n: hits.length });
-    box.innerHTML = shown.map((h, i) => searchResultHtml(h.e, i, h.exact)).join("")
+    // Homonymes presents dans la liste affichee : eux seuls montrent leur provenance.
+    const homonymes = {};
+    shown.forEach(h => { homonymes[h.e.de] = (homonymes[h.e.de] || 0) + 1; });
+    box.innerHTML = shown.map((h, i) => searchResultHtml(h.e, i, h.exact, homonymes[h.e.de] > 1)).join("")
         + (hits.length > shown.length
             ? '<div class="search-empty">' + tf('search_more', { n: shown.length }) + '</div>'
             : "");
