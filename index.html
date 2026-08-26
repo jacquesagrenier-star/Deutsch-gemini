@@ -2747,7 +2747,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v211</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v212</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5435,6 +5435,9 @@ const I18N = {
         tuiles_level_all: "Tous niveaux",
         tuiles_hint: "Touche les mots dans l'ordre. Un mot placé par erreur : touche-le pour le renvoyer.",
         kicker_tuiles: "Écrire · construire la phrase",
+        rattrapage_intro: "Reconstruis-la avec les mots ci-dessous.",
+        rattrapage_hint: "Touche les mots dans l'ordre. Un mot placé par erreur : touche-le pour le renvoyer.",
+        rattrapage_reussi: "Bien reconstruit. La phrase reste comptée comme manquée — c'est la frappe qui est évaluée.",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -6213,6 +6216,9 @@ const I18N = {
         tuiles_level_all: "All levels",
         tuiles_hint: "Tap the words in order. Tapped one by mistake? Tap it again to send it back.",
         kicker_tuiles: "Writing · build the sentence",
+        rattrapage_intro: "Rebuild it with the words below.",
+        rattrapage_hint: "Tap the words in order. Tapped one by mistake? Tap it again to send it back.",
+        rattrapage_reussi: "Well rebuilt. The sentence still counts as missed — typing is what is graded.",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -13059,7 +13065,7 @@ document.addEventListener("visibilitychange", () => {
 // en v208 alors que v209 etait publiee depuis un moment). L'app compare donc
 // sa propre version a celle publiee et le dit, plutot que de laisser croire
 // que la nouveaute n'a pas ete livree.
-const APP_VERSION = 211;
+const APP_VERSION = 212;
 const VERSION_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/version.json";
 const VERSION_INTERVALLE_MS = 5 * 60 * 1000;
 
@@ -14558,7 +14564,8 @@ function startSchreiben(niveau){
         correctEn: ph.de,
         explanation: ph.de,
         explanation_en: ph.de,
-        tolerant: true
+        tolerant: true,
+        rattrapage: true
     }));
     startExerciseSet(liste, 'kicker_schreiben', () => openOrbPanel('schreiben'), () => startSchreiben(niveau));
 }
@@ -14731,6 +14738,38 @@ function loadExercise(){
     if(!usingChunks && !(opts && opts.length)) setTimeout(() => input.focus(), 50);
 }
 
+
+// Decoupe une phrase en tuiles : la ponctuation finale reste dehors, sinon
+// elle designerait le dernier mot.
+function tuilesDepuisPhrase(phrase){
+    const brut = (phrase || "").trim();
+    if(!brut) return [];
+    const finale = (brut.match(/[.!?]+$/) || [""])[0];
+    const corps = finale ? brut.slice(0, brut.length - finale.length).trim() : brut;
+    return corps.split(/\s+/).filter(Boolean);
+}
+
+// Rattrapage : une phrase ratee au clavier revient immediatement en tuiles pour
+// etre reconstruite. Sans cela, une reponse fausse se soldait par l'affichage
+// de la bonne phrase et on passait a la suivante -- on ne produisait jamais la
+// forme correcte, ce qui est justement l'interet d'un exercice de production.
+function passerEnRattrapageTuiles(ex, tokens){
+    ex.chunks = tokens;
+    ex.leurres = leurresPour(tokens, []);
+    ex.rattrapage = false;    // une seule tentative de rattrapage
+    ex.estRattrapage = true;  // ne recompte ni le score ni la serie
+    ex.hint = t("rattrapage_hint");
+    ex.hint_en = t("rattrapage_hint");
+    answered = false;
+    loadExercise();
+    // loadExercise vide le retour : on le re-remplit apres, sans reveler la
+    // phrase -- c'est a l'apprenant de la reconstituer.
+    const feedback = document.getElementById("feedback");
+    feedback.className = "feedback show wrong";
+    feedback.innerHTML = `<div class="feedback-title">${t("feedback_wrong_title")}</div>`
+        + `<div class="explanation">${t("rattrapage_intro")}</div>`;
+}
+
 function checkAnswer(){
     if(answered) return;
     const ex = activeExercises[currentExercise];
@@ -14759,13 +14798,28 @@ function checkAnswer(){
             ? ex.answers.some(a => normaliserSaisie(a) === normaliserSaisie(rawVal))
             : ex.answers.some(a => a.toLowerCase() === val);
     }
+    // Phrase ratee au clavier : on la redonne en tuiles au lieu d'afficher la
+    // reponse. L'echec est enregistre tout de suite -- c'est la frappe qu'on
+    // evalue, le rattrapage ne rachete pas la note.
+    if(!isCorrect && ex.rattrapage && !usingChunks){
+        const tokens = tuilesDepuisPhrase(ex.correct);
+        if(tokens.length >= 2){
+            exerciseResults.push({ topic: ex.topic, correct: false });
+            resetCombo();
+            passerEnRattrapageTuiles(ex, tokens);
+            return;
+        }
+    }
     answered = true;
-    exerciseResults.push({ topic: ex.topic, correct: isCorrect });
+    const enRattrapage = !!ex.estRattrapage;
+    if(!enRattrapage) exerciseResults.push({ topic: ex.topic, correct: isCorrect });
     const feedback = document.getElementById("feedback");
     if(isCorrect){
-        scoreValue++;
+        if(!enRattrapage) scoreValue++;
         feedback.className = "feedback show correct";
-        const explanation = (useEn && ex.explanation_en) ? ex.explanation_en : ex.explanation;
+        const explanation = enRattrapage
+            ? t("rattrapage_reussi")
+            : ((useEn && ex.explanation_en) ? ex.explanation_en : ex.explanation);
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_correct_title")}</div><div class="explanation">${explanation}</div>`;
         // Une bonne réponse compte désormais aussi pour l'objectif du jour, la
         // série de jours (streak) et le compteur hebdomadaire -- même chemin que
@@ -14777,9 +14831,11 @@ function checkAnswer(){
         // celebrateMastery() choisit elle-même entre petits confettis (cas
         // normal) et grande célébration vidéo (si un palier vient d'être
         // franchi) -- comportement identique à une carte maîtrisée.
-        const justReachedMultiple = recordDailyActivity();
-        logMasteryEvent();
-        celebrateMastery(justReachedMultiple);
+        if(!enRattrapage){
+            const justReachedMultiple = recordDailyActivity();
+            logMasteryEvent();
+            celebrateMastery(justReachedMultiple);
+        }
     }else{
         feedback.className = "feedback show wrong";
         const correctDisplay = ((useEn && ex.correctEn) ? ex.correctEn : ex.correct)
