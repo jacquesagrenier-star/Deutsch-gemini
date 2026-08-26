@@ -349,6 +349,20 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="redewendungen"] .orb-icon svg{stroke:#d946ef;}
 .orb[data-orbid="redewendungen"] .orb-badge{background:#d946ef; box-shadow:0 2px 6px rgba(217,70,239,.35);}
 
+.orb[data-orbid="pronomen"] .orb-icon{
+    background:rgba(6,182,212,.14);
+    border-color:rgba(6,182,212,.28);
+}
+.orb[data-orbid="pronomen"] .orb-icon svg{stroke:#06b6d4;}
+.orb[data-orbid="pronomen"] .orb-badge{background:#06b6d4; box-shadow:0 2px 6px rgba(6,182,212,.35);}
+
+.orb[data-orbid="zahlen"] .orb-icon{
+    background:rgba(234,88,12,.14);
+    border-color:rgba(234,88,12,.28);
+}
+.orb[data-orbid="zahlen"] .orb-icon svg{stroke:#ea580c;}
+.orb[data-orbid="zahlen"] .orb-badge{background:#ea580c; box-shadow:0 2px 6px rgba(234,88,12,.35);}
+
 .orb[data-orbid="konjunktionen"] .orb-icon{
     background:rgba(14,165,233,.14);
     border-color:rgba(14,165,233,.28);
@@ -2667,7 +2681,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v204</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v205</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2797,23 +2811,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="possessiv" onclick="openOrbPanel('possessiv')">
-            <div id="badge-possessiv" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M8 12v6"/><path d="M5 21v-2a3 3 0 013-3h0a3 3 0 013 3v2"/><path d="M15 8h6"/></svg></div>
-            <div>
-                <strong data-i18n="orb_possessiv_title">Possessifs</strong>
-                <small data-i18n="orb_possessiv_sub">mein · dein</small>
-            </div>
-        </div>
 
-        <div class="orb orb-de" data-orbid="relativ" onclick="openOrbPanel('relativ')">
-            <div id="badge-relativ" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 7h9"/><path d="M4 12h6"/><path d="M4 17h9"/><circle cx="19" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/></svg></div>
-            <div>
-                <strong data-i18n="orb_relativ_title">Pronoms relatifs</strong>
-                <small data-i18n="orb_relativ_sub">der · den · dem</small>
-            </div>
-        </div>
 
         <div class="orb orb-de" data-orbid="partikeln" onclick="openOrbPanel('partikeln')">
             <div id="badge-partikeln" class="orb-badge hidden"></div>
@@ -2833,6 +2831,24 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_adverbien_title">Adverbes</strong>
                 <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="pronomen" onclick="openOrbPanel('pronomen')">
+            <div id="badge-pronomen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M17 9h4"/><path d="M17 13h4"/></svg></div>
+            <div>
+                <strong data-i18n="orb_pronomen_title">Pronoms</strong>
+                <small data-i18n="orb_pronomen_sub">ich · mich · mir</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="zahlen" onclick="openOrbPanel('zahlen')">
+            <div id="badge-zahlen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 6a3.5 3.5 0 11-2.5 6"/></svg></div>
+            <div>
+                <strong data-i18n="orb_zahlen_title">Nombres</strong>
+                <small data-i18n="orb_zahlen_sub">einundzwanzig · dritte</small>
             </div>
         </div>
 
@@ -3561,6 +3577,97 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
      parce que l'option "Vocabulaire" du panneau doit mener a un CHOIX, pas au
      bas d'une page d'explications : elle lancait auparavant les 340 cartes d'un
      coup, sans jamais montrer ni les niveaux ni les familles. -->
+<!-- ================= PRONOMS ================= -->
+
+<section id="personalpronomenInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('pronomen')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="personal_info_title">Pronoms personnels et réfléchis</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="personal_intro"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="personal_table_title">Les trois cas</strong>
+        <div class="info-box" data-i18n-html="personal_table"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="personal_piege_title">Les pièges</strong>
+        <div class="info-box" data-i18n-html="personal_piege"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="reflexiv_title">Pronoms réfléchis</strong>
+        <div class="info-box" data-i18n-html="reflexiv_text"></div>
+    </div>
+</section>
+
+<section id="demonstrativInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('pronomen')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="demonstrativ_info_title">Démonstratifs et indéfinis</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="demonstrativ_title">Demonstrativpronomen — celui-ci, celui-là</strong>
+        <div class="info-box" data-i18n-html="demonstrativ_text"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="indefinit_title">Indefinitpronomen — on, quelqu'un, personne</strong>
+        <div class="info-box" data-i18n-html="indefinit_text"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="indefinit_piege_title">Le piège de « man »</strong>
+        <div class="info-box" data-i18n-html="indefinit_piege"></div>
+    </div>
+</section>
+
+<!-- ================= NOMBRES ================= -->
+
+<section id="zahlenInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('zahlen')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="zahlen_info_title">Les nombres</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zahlen_grund_title">Grundzahlen — compter</strong>
+        <div class="info-box" data-i18n-html="zahlen_grund"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zahlen_umgekehrt_title">Le piège : l'ordre inversé</strong>
+        <div class="info-box" data-i18n-html="zahlen_umgekehrt"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zahlen_ordnung_title">Ordnungszahlen — premier, deuxième…</strong>
+        <div class="info-box" data-i18n-html="zahlen_ordnung"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="zahlen_bruch_title">Fractions, années et prix</strong>
+        <div class="info-box" data-i18n-html="zahlen_bruch"></div>
+    </div>
+</section>
+
 <!-- ================= EXPRESSIONS ================= -->
 
 <section id="redewendungenInfo" class="screen">
@@ -3746,7 +3853,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 <!-- ================= PRONOMS RELATIFS ================= -->
 
 <section id="relativInfo" class="screen">
-    <button class="back" onclick="openOrbPanel('relativ')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="openOrbPanel('pronomen')"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -3810,7 +3917,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 </section>
 
 <section id="relativGenitivInfo" class="screen">
-    <button class="back" onclick="openOrbPanel('relativ')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="openOrbPanel('pronomen')"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -3924,7 +4031,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 <!-- ================= POSSESSIFS ================= -->
 
 <section id="possessivInfo" class="screen">
-    <button class="back" onclick="openOrbPanel('possessiv')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="openOrbPanel('pronomen')"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -5060,6 +5167,48 @@ const I18N = {
 
         orb_adverbien_title: "Adverbes",
         orb_redewendungen_title: "Expressions",
+        orb_pronomen_title: "Pronoms",
+        orb_pronomen_sub: "ich · mich · mir",
+        orb_zahlen_title: "Nombres",
+        orb_zahlen_sub: "einundzwanzig · dritte",
+        op_pronomen_title: "Pronoms",
+        op_pronomen_sub: "ich · mich · mir",
+        op_pronomen_o1_t: "Personnels et réfléchis",
+        op_pronomen_o1_d: "ich, mich, mir · sich waschen",
+        op_pronomen_o2_t: "Démonstratifs et indéfinis",
+        op_pronomen_o2_d: "dieser, man, jemand, jeder",
+        op_pronomen_o3_t: "Possessifs",
+        op_pronomen_o3_d: "mein, dein, unser",
+        op_pronomen_o4_t: "Relatifs",
+        op_pronomen_o4_d: "der, die, das, dessen",
+        op_zahlen_title: "Nombres",
+        op_zahlen_sub: "compter, dater, chiffrer",
+        op_zahlen_o1_t: "Comprendre les nombres",
+        op_zahlen_o1_d: "Grundzahlen, Ordnungszahlen, fractions",
+        personal_info_title: "Pronoms personnels et réfléchis",
+        personal_intro: "Un pronom personnel remplace un nom déjà connu. Sa forme change selon sa <strong>fonction dans la phrase</strong> — donc selon le cas, exactement comme les articles.<br>Le français fait la même chose (<em>je / me / moi</em>), mais l'allemand est plus régulier : une seule série de formes, valable partout.",
+        personal_table_title: "Les trois cas",
+        personal_table: "<table style=\"width:100%; border-collapse:collapse; text-align:center; font-size:14px;\"><tr style=\"color:#3b6fe0; font-weight:800;\"><td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">Nominativ</td><td style=\"padding:8px 4px;\">Akkusativ</td><td style=\"padding:8px 4px;\">Dativ</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">1<sup>re</sup> sg</td><td style=\"padding:8px 4px;\">ich</td><td style=\"padding:8px 4px;\">mich</td><td style=\"padding:8px 4px;\">mir</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">2<sup>e</sup> sg</td><td style=\"padding:8px 4px;\">du</td><td style=\"padding:8px 4px;\">dich</td><td style=\"padding:8px 4px;\">dir</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3<sup>e</sup> masc.</td><td style=\"padding:8px 4px;\">er</td><td style=\"padding:8px 4px;\">ihn</td><td style=\"padding:8px 4px;\">ihm</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3<sup>e</sup> fém.</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">ihr</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3<sup>e</sup> neutre</td><td style=\"padding:8px 4px;\">es</td><td style=\"padding:8px 4px;\">es</td><td style=\"padding:8px 4px;\">ihm</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">1<sup>re</sup> pl</td><td style=\"padding:8px 4px;\">wir</td><td style=\"padding:8px 4px;\">uns</td><td style=\"padding:8px 4px;\">uns</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">2<sup>e</sup> pl</td><td style=\"padding:8px 4px;\">ihr</td><td style=\"padding:8px 4px;\">euch</td><td style=\"padding:8px 4px;\">euch</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3<sup>e</sup> pl</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">ihnen</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">politesse</td><td style=\"padding:8px 4px;\">Sie</td><td style=\"padding:8px 4px;\">Sie</td><td style=\"padding:8px 4px;\">Ihnen</td></tr></table>",
+        personal_piege_title: "Les pièges",
+        personal_piege: "<strong>1. <em>sie</em> a trois valeurs.</strong> <em>sie</em> = elle · <em>sie</em> = ils/elles · <em>Sie</em> (majuscule) = vous de politesse. Seuls la majuscule et le verbe les distinguent : <em>sie kommt</em> (elle vient) · <em>sie kommen</em> (ils viennent) · <em>Sie kommen</em> (vous venez).<br><br><strong>2. <em>ihr</em> aussi.</strong> <em>ihr</em> = vous (tutoiement pluriel) au nominatif, mais <em>ihr</em> = à elle au datif : <em>Ich gebe ihr das Buch.</em> (Je lui donne le livre, à elle.)<br><br><strong>3. Après une préposition, c'est elle qui commande le cas.</strong> <em>für mich</em> (accusatif), <em>mit mir</em> (datif). Ne cherche pas la fonction dans la phrase : regarde la préposition.<br><br><strong>4. <em>es</em> ne se supprime pas.</strong> Là où le français dit « il pleut » avec un sujet vide, l'allemand exige <em>es</em> : <em>Es regnet.</em>",
+        reflexiv_title: "Pronoms réfléchis",
+        reflexiv_text: "Identiques aux pronoms personnels, <strong>sauf à la 3<sup>e</sup> personne</strong> où tout devient <em>sich</em> : <em>mich/mir · dich/dir · <strong>sich</strong> · uns · euch · <strong>sich</strong></em>.<br><br><strong>Accusatif ou datif ?</strong> Datif dès qu'il y a <em>déjà</em> un complément à l'accusatif :<br><em>Ich wasche <strong>mich</strong>.</em> (Je me lave.) — pas d'autre complément → accusatif.<br><em>Ich wasche <strong>mir</strong> die Hände.</em> (Je me lave les mains.) — <em>die Hände</em> occupe l'accusatif → <em>mir</em>.<br><br>Attention : beaucoup de verbes sont réfléchis en allemand sans l'être en français — <em>sich freuen</em> (se réjouir), <em>sich beeilen</em> (se dépêcher), mais aussi <em>sich erinnern</em> (se souvenir) et <em>sich bewerben</em> (postuler).",
+        demonstrativ_info_title: "Démonstratifs et indéfinis",
+        demonstrativ_title: "Demonstrativpronomen — celui-ci, celui-là",
+        demonstrativ_text: "<em>dieser</em> se décline exactement comme l'article défini :<table style=\"width:100%; border-collapse:collapse; text-align:center; font-size:14px;\"><tr style=\"color:#3b6fe0; font-weight:800;\"><td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fém.</td><td style=\"padding:8px 4px;\">neutre</td><td style=\"padding:8px 4px;\">pluriel</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">Nom.</td><td style=\"padding:8px 4px;\">dieser</td><td style=\"padding:8px 4px;\">diese</td><td style=\"padding:8px 4px;\">dieses</td><td style=\"padding:8px 4px;\">diese</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">Akk.</td><td style=\"padding:8px 4px;\">diesen</td><td style=\"padding:8px 4px;\">diese</td><td style=\"padding:8px 4px;\">dieses</td><td style=\"padding:8px 4px;\">diese</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">Dat.</td><td style=\"padding:8px 4px;\">diesem</td><td style=\"padding:8px 4px;\">dieser</td><td style=\"padding:8px 4px;\">diesem</td><td style=\"padding:8px 4px;\">diesen</td></tr></table><em>Dieses Buch ist neu.</em> (Ce livre-ci est neuf.)<br><br><strong>À l'oral, l'article seul sert de démonstratif</strong>, et il est bien plus fréquent que <em>dieser</em> :<br><em><strong>Den</strong> kenne ich nicht.</em> (Celui-là, je ne le connais pas.) — remarque que <em>den</em> ouvre la phrase, ce qui le met en relief.<br><br><em>jener</em> (celui-là, plus lointain) existe mais appartient à l'écrit soutenu : on l'apprend pour le lire, pas pour le dire.",
+        indefinit_title: "Indefinitpronomen — on, quelqu'un, personne",
+        indefinit_text: "<strong>man</strong> — le « on » français : <em>man</em> (nom.) · <em>einen</em> (acc.) · <em>einem</em> (dat.).<br><em>Hier darf man nicht parken.</em> (Ici, on ne peut pas se garer.)<br><br><strong>jemand / niemand</strong> — quelqu'un / personne : <em>Hat jemand angerufen?</em> · <em>Niemand weiß es.</em><br><br><strong>etwas / nichts</strong> — quelque chose / rien : <em>Ich habe etwas vergessen.</em> · <em>Das ändert nichts.</em><br><br><strong>jeder · alle · einige · manche · viele</strong> — chacun, tous, quelques-uns, certains, beaucoup.<br><em>Jeder kennt diesen Film.</em> — <em>jeder</em> est <strong>singulier</strong> : le verbe reste au singulier, contrairement au français « tous connaissent ».",
+        indefinit_piege_title: "Le piège de « man »",
+        indefinit_piege: "<strong>man ≠ Mann.</strong> <em>man</em> (minuscule, un seul n) = on. <em>der Mann</em> (majuscule, deux n) = l'homme. À l'oral ils se ressemblent ; à l'écrit, la confusion se voit tout de suite.<br><br><strong>Et « on » français ne se traduit pas toujours par <em>man</em>.</strong> Quand « on » veut dire « nous » — « on y va ? » — l'allemand dit <em>wir</em> : <em>Gehen wir?</em> Utiliser <em>man</em> ici serait compris comme « les gens en général ».",
+        zahlen_info_title: "Les nombres",
+        zahlen_grund_title: "Grundzahlen — compter",
+        zahlen_grund: "<strong>0 à 12, à apprendre par cœur :</strong> <em>null, eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn, elf, zwölf</em>.<br><br><strong>13 à 19 : unité + <em>zehn</em></strong> — <em>dreizehn, vierzehn, fünfzehn</em>… avec deux raccourcis : <em>sechzehn</em> (pas <em>sechszehn</em>) et <em>siebzehn</em> (pas <em>siebenzehn</em>).<br><br><strong>Les dizaines : + <em>zig</em></strong> — <em>zwanzig, dreißig</em> (avec ß, pas <em>zig</em>), <em>vierzig, fünfzig, sechzig, siebzig, achtzig, neunzig</em>.<br><br><strong>Au-delà :</strong> <em>hundert</em>, <em>tausend</em>, <em>eine Million</em>.<br><br><strong><em>eins</em> ou <em>ein</em> ?</strong> Seul, on compte <em>eins</em> ; devant un nom, il devient l'article : <em>ein Buch</em>, <em>eine Frau</em>.",
+        zahlen_umgekehrt_title: "Le piège : l'ordre inversé",
+        zahlen_umgekehrt: "En allemand, <strong>l'unité se dit AVANT la dizaine</strong>, reliée par <em>und</em> :<br><em>21 = <strong>ein</strong>und<strong>zwanzig</strong></em> — littéralement « un-et-vingt ».<br><em>47 = siebenundvierzig</em> · <em>99 = neunundneunzig</em><br><br>Et tout s'écrit <strong>en un seul mot</strong>, aussi long soit-il :<br><em>345 = dreihundertfünfundvierzig</em><br><br>C'est la difficulté n° 1 pour un francophone : à l'écoute, tu entends l'unité en premier et tu dois attendre la fin pour connaître le nombre. Un numéro de téléphone dicté se note donc à l'envers si on écrit trop vite.",
+        zahlen_ordnung_title: "Ordnungszahlen — premier, deuxième…",
+        zahlen_ordnung: "<strong>Jusqu'à 19 : + <em>-te</em></strong> — <em>der vier<strong>te</strong>, der zehn<strong>te</strong></em>.<br><strong>À partir de 20 : + <em>-ste</em></strong> — <em>der zwanzig<strong>ste</strong>, der hundert<strong>ste</strong></em>.<br><br><strong>Quatre irréguliers</strong> à connaître : <em>der <strong>erste</strong></em> (1<sup>er</sup>), <em>der <strong>dritte</strong></em> (3<sup>e</sup>), <em>der <strong>siebte</strong></em> (7<sup>e</sup>), <em>der <strong>achte</strong></em> (8<sup>e</sup>, un seul t).<br><br>Ils se déclinent comme des adjectifs : <em>am dritt<strong>en</strong> Mai</em> (le 3 mai), <em>die erst<strong>e</strong> Woche</em>.<br><br>À l'écrit, le point remplace la terminaison : <em>am 3. Mai</em> se lit <em>am dritten Mai</em>.",
+        zahlen_bruch_title: "Fractions, années et prix",
+        zahlen_bruch: "<strong>Fractions :</strong> <em>halb</em> / <em>die Hälfte</em> (la moitié), puis ordinal + <em>-el</em> : <em>ein Drittel</em> (un tiers), <em>ein Viertel</em> (un quart), <em>drei Viertel</em>.<br><br><strong>Années :</strong> jusqu'en 1999, on lit par centaines — <em>1999 = neunzehnhundertneunundneunzig</em>. À partir de 2000, on lit normalement : <em>2026 = zweitausendsechsundzwanzig</em>.<br>Et contrairement au français, <strong>on ne met pas de préposition</strong> : <em>Ich bin 1990 geboren.</em> (pas <em>in 1990</em>) — ou alors <em>im Jahr 1990</em>.<br><br><strong>Prix :</strong> la virgule se dit en séparant les deux parties — <em>3,50 €</em> se lit <em>drei Euro fünfzig</em>.",
         orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Comprendre les expressions", op_redewendungen_o1_d: "6 familles : saluer, nuancer, r\u00e9agir\u2026",
@@ -5757,6 +5906,48 @@ const I18N = {
 
         orb_adverbien_title: "Adverbs",
         orb_redewendungen_title: "Expressions",
+        orb_pronomen_title: "Pronoms",
+        orb_pronomen_sub: "ich · mich · mir",
+        orb_zahlen_title: "Nombres",
+        orb_zahlen_sub: "einundzwanzig · dritte",
+        op_pronomen_title: "Pronoms",
+        op_pronomen_sub: "ich · mich · mir",
+        op_pronomen_o1_t: "Personal and reflexive",
+        op_pronomen_o1_d: "ich, mich, mir · sich waschen",
+        op_pronomen_o2_t: "Demonstrative and indefinite",
+        op_pronomen_o2_d: "dieser, man, jemand, jeder",
+        op_pronomen_o3_t: "Possessive",
+        op_pronomen_o3_d: "mein, dein, unser",
+        op_pronomen_o4_t: "Relative",
+        op_pronomen_o4_d: "der, die, das, dessen",
+        op_zahlen_title: "Nombres",
+        op_zahlen_sub: "counting, dates, figures",
+        op_zahlen_o1_t: "Understand numbers",
+        op_zahlen_o1_d: "Grundzahlen, Ordnungszahlen, fractions",
+        personal_info_title: "Personal and reflexive pronouns",
+        personal_intro: "A personal pronoun replaces a noun already known. Its form changes according to its <strong>function in the sentence</strong> — that is, according to case, exactly like articles.<br>English does this too (<em>I / me</em>), but German is more systematic: one single set of forms, valid everywhere.",
+        personal_table_title: "The three cases",
+        personal_table: "<table style=\"width:100%; border-collapse:collapse; text-align:center; font-size:14px;\"><tr style=\"color:#3b6fe0; font-weight:800;\"><td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">Nominativ</td><td style=\"padding:8px 4px;\">Akkusativ</td><td style=\"padding:8px 4px;\">Dativ</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">1st sg</td><td style=\"padding:8px 4px;\">ich</td><td style=\"padding:8px 4px;\">mich</td><td style=\"padding:8px 4px;\">mir</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">2nd sg</td><td style=\"padding:8px 4px;\">du</td><td style=\"padding:8px 4px;\">dich</td><td style=\"padding:8px 4px;\">dir</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3rd masc.</td><td style=\"padding:8px 4px;\">er</td><td style=\"padding:8px 4px;\">ihn</td><td style=\"padding:8px 4px;\">ihm</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3rd fem.</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">ihr</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3rd neut.</td><td style=\"padding:8px 4px;\">es</td><td style=\"padding:8px 4px;\">es</td><td style=\"padding:8px 4px;\">ihm</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">1st pl</td><td style=\"padding:8px 4px;\">wir</td><td style=\"padding:8px 4px;\">uns</td><td style=\"padding:8px 4px;\">uns</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">2nd pl</td><td style=\"padding:8px 4px;\">ihr</td><td style=\"padding:8px 4px;\">euch</td><td style=\"padding:8px 4px;\">euch</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">3rd pl</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">sie</td><td style=\"padding:8px 4px;\">ihnen</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">formal</td><td style=\"padding:8px 4px;\">Sie</td><td style=\"padding:8px 4px;\">Sie</td><td style=\"padding:8px 4px;\">Ihnen</td></tr></table>",
+        personal_piege_title: "The traps",
+        personal_piege: "<strong>1. <em>sie</em> has three values.</strong> <em>sie</em> = she · <em>sie</em> = they · <em>Sie</em> (capital) = formal you. Only the capital and the verb tell them apart: <em>sie kommt</em> (she comes) · <em>sie kommen</em> (they come) · <em>Sie kommen</em> (you come).<br><br><strong>2. <em>ihr</em> too.</strong> <em>ihr</em> = you (plural) in the nominative, but <em>ihr</em> = to her in the dative: <em>Ich gebe ihr das Buch.</em> (I give her the book.)<br><br><strong>3. After a preposition, the preposition rules the case.</strong> <em>für mich</em> (accusative), <em>mit mir</em> (dative). Don't look for the function in the sentence: look at the preposition.<br><br><strong>4. <em>es</em> cannot be dropped.</strong> German requires <em>es</em> as a subject: <em>Es regnet.</em>",
+        reflexiv_title: "Reflexive pronouns",
+        reflexiv_text: "Identical to the personal pronouns, <strong>except in the 3rd person</strong> where everything becomes <em>sich</em>: <em>mich/mir · dich/dir · <strong>sich</strong> · uns · euch · <strong>sich</strong></em>.<br><br><strong>Accusative or dative?</strong> Dative as soon as there is <em>already</em> an accusative object:<br><em>Ich wasche <strong>mich</strong>.</em> (I wash myself.) — no other object → accusative.<br><em>Ich wasche <strong>mir</strong> die Hände.</em> (I wash my hands.) — <em>die Hände</em> takes the accusative slot → <em>mir</em>.<br><br>Careful: many verbs are reflexive in German without being so in English — <em>sich freuen</em> (to be glad), <em>sich beeilen</em> (to hurry), <em>sich erinnern</em> (to remember), <em>sich bewerben</em> (to apply).",
+        demonstrativ_info_title: "Demonstrative and indefinite",
+        demonstrativ_title: "Demonstrativpronomen — this one, that one",
+        demonstrativ_text: "<em>dieser</em> declines exactly like the definite article:<table style=\"width:100%; border-collapse:collapse; text-align:center; font-size:14px;\"><tr style=\"color:#3b6fe0; font-weight:800;\"><td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fem.</td><td style=\"padding:8px 4px;\">neut.</td><td style=\"padding:8px 4px;\">plural</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">Nom.</td><td style=\"padding:8px 4px;\">dieser</td><td style=\"padding:8px 4px;\">diese</td><td style=\"padding:8px 4px;\">dieses</td><td style=\"padding:8px 4px;\">diese</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">Akk.</td><td style=\"padding:8px 4px;\">diesen</td><td style=\"padding:8px 4px;\">diese</td><td style=\"padding:8px 4px;\">dieses</td><td style=\"padding:8px 4px;\">diese</td></tr><tr style=\"border-top:1px solid #e7ebf3;\"><td style=\"padding:8px 4px; font-weight:700; color:#3b6fe0;\">Dat.</td><td style=\"padding:8px 4px;\">diesem</td><td style=\"padding:8px 4px;\">dieser</td><td style=\"padding:8px 4px;\">diesem</td><td style=\"padding:8px 4px;\">diesen</td></tr></table><em>Dieses Buch ist neu.</em> (This book is new.)<br><br><strong>In speech, the bare article serves as a demonstrative</strong>, and it is far more common than <em>dieser</em>:<br><em><strong>Den</strong> kenne ich nicht.</em> (That one I don't know.) — note that <em>den</em> opens the sentence, which is what puts it in focus.<br><br><em>jener</em> (that one, further away) exists but belongs to formal writing: learn it to read, not to say.",
+        indefinit_title: "Indefinitpronomen — one, someone, nobody",
+        indefinit_text: "<strong>man</strong> — the impersonal \"one/you\": <em>man</em> (nom.) · <em>einen</em> (acc.) · <em>einem</em> (dat.).<br><em>Hier darf man nicht parken.</em> (You can't park here.)<br><br><strong>jemand / niemand</strong> — someone / nobody: <em>Hat jemand angerufen?</em> · <em>Niemand weiß es.</em><br><br><strong>etwas / nichts</strong> — something / nothing: <em>Ich habe etwas vergessen.</em> · <em>Das ändert nichts.</em><br><br><strong>jeder · alle · einige · manche · viele</strong> — each, all, some, certain ones, many.<br><em>Jeder kennt diesen Film.</em> — <em>jeder</em> is <strong>singular</strong>: the verb stays singular, unlike English \"everybody knows\".",
+        indefinit_piege_title: "The \"man\" trap",
+        indefinit_piege: "<strong>man ≠ Mann.</strong> <em>man</em> (lowercase, one n) = one/you. <em>der Mann</em> (capital, two n) = the man. They sound alike; in writing the mistake is immediately visible.<br><br><strong>And \"we\" is not <em>man</em>.</strong> When you mean \"shall we go?\", German uses <em>wir</em>: <em>Gehen wir?</em> Using <em>man</em> there would be understood as \"people in general\".",
+        zahlen_info_title: "Numbers",
+        zahlen_grund_title: "Grundzahlen — counting",
+        zahlen_grund: "<strong>0 to 12, learn by heart:</strong> <em>null, eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn, elf, zwölf</em>.<br><br><strong>13 to 19: unit + <em>zehn</em></strong> — <em>dreizehn, vierzehn, fünfzehn</em>… with two shortcuts: <em>sechzehn</em> (not <em>sechszehn</em>) and <em>siebzehn</em> (not <em>siebenzehn</em>).<br><br><strong>Tens: + <em>zig</em></strong> — <em>zwanzig, dreißig</em> (with ß, not <em>zig</em>), <em>vierzig, fünfzig, sechzig, siebzig, achtzig, neunzig</em>.<br><br><strong>Beyond:</strong> <em>hundert</em>, <em>tausend</em>, <em>eine Million</em>.<br><br><strong><em>eins</em> or <em>ein</em>?</strong> On its own you count <em>eins</em>; before a noun it becomes the article: <em>ein Buch</em>, <em>eine Frau</em>.",
+        zahlen_umgekehrt_title: "The trap: reversed order",
+        zahlen_umgekehrt: "In German the <strong>unit is said BEFORE the ten</strong>, joined by <em>und</em>:<br><em>21 = <strong>ein</strong>und<strong>zwanzig</strong></em> — literally \"one-and-twenty\".<br><em>47 = siebenundvierzig</em> · <em>99 = neunundneunzig</em><br><br>And it is all written <strong>as a single word</strong>, however long:<br><em>345 = dreihundertfünfundvierzig</em><br><br>When listening, you hear the unit first and must wait for the end to know the number. A dictated phone number gets written backwards if you write too fast.",
+        zahlen_ordnung_title: "Ordnungszahlen — first, second…",
+        zahlen_ordnung: "<strong>Up to 19: + <em>-te</em></strong> — <em>der vier<strong>te</strong>, der zehn<strong>te</strong></em>.<br><strong>From 20 on: + <em>-ste</em></strong> — <em>der zwanzig<strong>ste</strong>, der hundert<strong>ste</strong></em>.<br><br><strong>Four irregulars</strong> to know: <em>der <strong>erste</strong></em> (1st), <em>der <strong>dritte</strong></em> (3rd), <em>der <strong>siebte</strong></em> (7th), <em>der <strong>achte</strong></em> (8th, single t).<br><br>They decline like adjectives: <em>am dritt<strong>en</strong> Mai</em> (on 3 May), <em>die erst<strong>e</strong> Woche</em>.<br><br>In writing, the full stop replaces the ending: <em>am 3. Mai</em> is read <em>am dritten Mai</em>.",
+        zahlen_bruch_title: "Fractions, years and prices",
+        zahlen_bruch: "<strong>Fractions:</strong> <em>halb</em> / <em>die Hälfte</em> (the half), then ordinal + <em>-el</em>: <em>ein Drittel</em> (a third), <em>ein Viertel</em> (a quarter), <em>drei Viertel</em>.<br><br><strong>Years:</strong> up to 1999 they are read in hundreds — <em>1999 = neunzehnhundertneunundneunzig</em>. From 2000 on they are read normally: <em>2026 = zweitausendsechsundzwanzig</em>.<br>And <strong>no preposition</strong> is used: <em>Ich bin 1990 geboren.</em> (not <em>in 1990</em>) — or else <em>im Jahr 1990</em>.<br><br><strong>Prices:</strong> the comma is said by separating the two parts — <em>3,50 €</em> is read <em>drei Euro fünfzig</em>.",
         orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Understand expressions", op_redewendungen_o1_d: "6 families: greeting, hedging, reacting\u2026",
@@ -9887,6 +10078,25 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "pronomen"){
+        return {
+            icon:"dossier", title:t("op_pronomen_title"), sub:t("op_pronomen_sub"),
+            options:[
+                { icon:"dossier", title:t("op_pronomen_o1_t"), desc:t("op_pronomen_o1_d"), primary:true, action:"openPersonalpronomenInfo" },
+                { icon:"dossier", title:t("op_pronomen_o2_t"), desc:t("op_pronomen_o2_d"), action:"openDemonstrativInfo" },
+                { icon:"dossier", title:t("op_pronomen_o3_t"), desc:t("op_pronomen_o3_d"), action:"openPossessivInfo" },
+                { icon:"dossier", title:t("op_pronomen_o4_t"), desc:t("op_pronomen_o4_d"), action:"openRelativInfo" }
+            ]
+        };
+    }
+    if(id === "zahlen"){
+        return {
+            icon:"dossier", title:t("op_zahlen_title"), sub:t("op_zahlen_sub"),
+            options:[
+                { icon:"dossier", title:t("op_zahlen_o1_t"), desc:t("op_zahlen_o1_d"), primary:true, action:"openZahlenInfo" }
+            ]
+        };
+    }
     if(id === "redewendungen"){
         return {
             icon:"dossier", title:t("op_redewendungen_title"), sub:t("op_redewendungen_sub"),
@@ -10818,6 +11028,10 @@ function selectAdverbienLevel(level){
     adverbienSelectedLevel = level || "ALL";
     renderAdverbienLevelBar();
 }
+
+function openPersonalpronomenInfo(){ showScreen("personalpronomenInfo"); }
+function openDemonstrativInfo(){ showScreen("demonstrativInfo"); }
+function openZahlenInfo(){ showScreen("zahlenInfo"); }
 
 function openRedewendungenInfo(){
     showScreen("redewendungenInfo");
