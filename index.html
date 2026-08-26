@@ -2660,7 +2660,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v200</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v201</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3487,44 +3487,51 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
     </div>
 
     <div class="card">
-        <div class="info-box" data-i18n-html="adverbien_intro">
-            Un adverbe modifie un verbe, un adjectif ou toute la phrase — contrairement à l'adjectif, il ne s'accorde jamais et ne prend jamais de terminaison. On les classe en 4 grandes familles, selon la question à laquelle ils répondent.
-        </div>
+        <div class="info-box" data-i18n-html="adverbien_intro"></div>
     </div>
 
     <div class="card">
-        <strong data-i18n="adverbien_temps_title">Temps — « quand ? »</strong>
-        <div class="info-box" data-i18n-html="adverbien_temps">
-            <em>heute, morgen, gestern, jetzt, schon, bald, oft, nie, immer, manchmal...</em><br>
-            <em>Ich rauche nie.</em> (Je ne fume jamais.)
-        </div>
+        <strong data-i18n="adverbien_zeit_title">Zeit</strong>
+        <div class="info-box" data-i18n-html="adverbien_zeit"></div>
     </div>
 
     <div class="card">
-        <strong data-i18n="adverbien_lieu_title">Lieu — « où ? »</strong>
-        <div class="info-box" data-i18n-html="adverbien_lieu">
-            <em>hier, dort, oben, unten, drinnen, draußen, überall, links, rechts...</em><br>
-            <em>Die Kinder spielen draußen.</em> (Les enfants jouent dehors.)
-        </div>
+        <strong data-i18n="adverbien_ort_title">Ort/Richtung</strong>
+        <div class="info-box" data-i18n-html="adverbien_ort"></div>
     </div>
 
     <div class="card">
-        <strong data-i18n="adverbien_maniere_title">Manière — « comment ? »</strong>
-        <div class="info-box" data-i18n-html="adverbien_maniere">
-            <em>schnell, langsam, gern, laut, leise, plötzlich, zusammen, allein...</em><br>
-            <em>Sprich bitte langsam.</em> (Parle lentement, s'il te plaît.)
-        </div>
+        <strong data-i18n="adverbien_haeufigkeit_title">Häufigkeit</strong>
+        <div class="info-box" data-i18n-html="adverbien_haeufigkeit"></div>
     </div>
 
     <div class="card">
-        <strong data-i18n="adverbien_degre_title">Degré — « à quel point ? »</strong>
-        <div class="info-box" data-i18n-html="adverbien_degre">
-            <em>sehr, ziemlich, zu, kaum, fast, genug, besonders, wenig...</em><br>
-            <em>Das ist sehr wichtig.</em> (C'est très important.)
-        </div>
-        <div class="info-box" data-i18n-html="adverbien_tekamolo_link">
-            Ce sont exactement les 4 catégories de l'ordre <strong>TeKaMoLo</strong> (Temporal · Kausal · Modal · Lokal) déjà vues dans « Structure » — quand plusieurs adverbes se suivent dans une phrase, c'est cet ordre qu'ils respectent.
-        </div>
+        <strong data-i18n="adverbien_artweise_title">Art und Weise</strong>
+        <div class="info-box" data-i18n-html="adverbien_artweise"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_gradmenge_title">Grad/Menge</strong>
+        <div class="info-box" data-i18n-html="adverbien_gradmenge"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_grundfolge_title">Grund/Folge</strong>
+        <div class="info-box" data-i18n-html="adverbien_grundfolge"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_verbindung_title">Verbindung/Logik</strong>
+        <div class="info-box" data-i18n-html="adverbien_verbindung"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_frage_title">Frageadverbien</strong>
+        <div class="info-box" data-i18n-html="adverbien_frage"></div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="adverbien_tekamolo_link"></div>
     </div>
 
     <div class="spacer"></div>
@@ -4965,16 +4972,24 @@ const I18N = {
         kicker_konjunktionen_nuance: "Conjonctions · Type",
         kicker_konjunktionen_vocab: "Conjonctions · Vocabulaire",
         adverbien_info_title: "Comprendre les adverbes",
-        adverbien_intro: "Un adverbe modifie un verbe, un adjectif ou toute la phrase — contrairement à l'adjectif, il ne s'accorde jamais et ne prend jamais de terminaison. On les classe en 4 grandes familles, selon la question à laquelle ils répondent.",
-        adverbien_temps_title: "Temps — « quand ? »",
-        adverbien_temps: `<em>heute, morgen, gestern, jetzt, schon, bald, oft, nie, immer, manchmal...</em><br><em>Ich rauche nie.</em> (Je ne fume jamais.)`,
-        adverbien_lieu_title: "Lieu — « où ? »",
-        adverbien_lieu: `<em>hier, dort, oben, unten, drinnen, draußen, überall, links, rechts...</em><br><em>Die Kinder spielen draußen.</em> (Les enfants jouent dehors.)`,
-        adverbien_maniere_title: "Manière — « comment ? »",
-        adverbien_maniere: `<em>schnell, langsam, gern, laut, leise, plötzlich, zusammen, allein...</em><br><em>Sprich bitte langsam.</em> (Parle lentement, s'il te plaît.)`,
-        adverbien_degre_title: "Degré — « à quel point ? »",
-        adverbien_degre: `<em>sehr, ziemlich, zu, kaum, fast, genug, besonders, wenig...</em><br><em>Das ist sehr wichtig.</em> (C'est très important.)`,
-        adverbien_tekamolo_link: `Ce sont exactement les 4 catégories de l'ordre <strong>TeKaMoLo</strong> (Temporal · Kausal · Modal · Lokal) déjà vues dans « Structure » — quand plusieurs adverbes se suivent dans une phrase, c'est cet ordre qu'ils respectent.`,
+        adverbien_intro: "Un adverbe modifie un verbe, un adjectif ou toute la phrase. Contrairement \u00e0 l'adjectif, il ne s'accorde jamais et ne prend aucune terminaison. On les classe en <strong>huit familles</strong>, selon ce qu'ils apportent \u00e0 la phrase.",
+        adverbien_zeit_title: "Zeit \u2014 quand ?",
+        adverbien_zeit: "<em>heute, gestern, morgen, bald, sp\u00e4ter, vorhin, endlich, bereits\u2026</em><br><em>Endlich scheint die Sonne.</em> (Enfin le soleil brille.)<br>Situe l'action <strong>sur la ligne du temps</strong>. \u00c0 ne pas confondre avec H\u00e4ufigkeit, qui compte les r\u00e9p\u00e9titions.",
+        adverbien_ort_title: "Ort/Richtung \u2014 o\u00f9 ? vers o\u00f9 ?",
+        adverbien_ort: "<em>hier, dort, oben, unten, drau\u00dfen, geradeaus, zur\u00fcck, hinein\u2026</em><br><em>Gehen Sie geradeaus bis zur Kirche.</em> (Allez tout droit jusqu'\u00e0 l'\u00e9glise.)<br>L'allemand distingue le <strong>lieu</strong> (wo ? \u2014 <em>hier</em>) de la <strong>direction</strong> (wohin ? \u2014 <em>hierher</em>), l\u00e0 o\u00f9 le fran\u00e7ais dit \u00ab ici \u00bb dans les deux cas.",
+        adverbien_haeufigkeit_title: "H\u00e4ufigkeit \u2014 \u00e0 quelle fr\u00e9quence ?",
+        adverbien_haeufigkeit: "<em>immer, oft, manchmal, selten, nie, meistens, regelm\u00e4\u00dfig, st\u00e4ndig\u2026</em><br><em>Sie kommt nie zu sp\u00e4t.</em> (Elle n'arrive jamais en retard.)<br>Ces mots r\u00e9pondent \u00e0 \u00ab combien de fois ? \u00bb, pas \u00e0 \u00ab quand ? \u00bb : <em>nie</em> et <em>immer</em> sont donc de la fr\u00e9quence, pas du temps.",
+        adverbien_artweise_title: "Art und Weise \u2014 comment ?",
+        adverbien_artweise: "<em>schnell, langsam, gern, laut, leise, sorgf\u00e4ltig, pl\u00f6tzlich, gemeinsam\u2026</em><br><em>Sprich bitte langsam.</em> (Parle lentement, s'il te pla\u00eet.)<br>D\u00e9crit <strong>la fa\u00e7on dont l'action se d\u00e9roule</strong>. En allemand, l'adjectif sert tel quel d'adverbe : pas de terminaison en \u00ab -ment \u00bb \u00e0 ajouter.",
+        adverbien_gradmenge_title: "Grad/Menge \u2014 \u00e0 quel point ?",
+        adverbien_gradmenge: "<em>sehr, ziemlich, zu, kaum, fast, genug, besonders, v\u00f6llig\u2026</em><br><em>Die Suppe ist zu hei\u00df.</em> (La soupe est trop chaude.)<br>Dose l'intensit\u00e9 d'un adjectif, d'un adverbe ou d'un verbe. Ils ne vivent jamais seuls : ils accompagnent toujours un autre mot.",
+        adverbien_grundfolge_title: "Grund/Folge \u2014 pourquoi ? avec quelle cons\u00e9quence ?",
+        adverbien_grundfolge: "<em>deshalb, deswegen, daher, trotzdem, sonst, folglich, dennoch\u2026</em><br><em>Es regnet, deshalb bleiben wir zu Hause.</em> (Il pleut, c'est pourquoi nous restons \u00e0 la maison.)<br>\u26a0\ufe0f Ce sont des <strong>adverbes</strong>, pas des conjonctions : le verbe reste en <strong>deuxi\u00e8me position</strong> et passe devant le sujet \u2014 <em>deshalb <u>bleiben wir</u></em>, et non \u00ab deshalb wir bleiben \u00bb.",
+        adverbien_verbindung_title: "Verbindung/Logik \u2014 quel lien, quelle nuance ?",
+        adverbien_verbindung: "<em>au\u00dferdem, allerdings, n\u00e4mlich, vielleicht, leider, zwar, keineswegs\u2026</em><br><em>Die Wohnung ist g\u00fcnstig, au\u00dferdem liegt sie zentral.</em> (L'appartement est bon march\u00e9, de plus il est central.)<br>Ils ne portent pas sur un mot mais sur <strong>toute la phrase</strong> : ils ajoutent un argument, nuancent, ou disent \u00e0 quel point on y croit.",
+        adverbien_frage_title: "Frageadverbien \u2014 les mots qui interrogent",
+        adverbien_frage: "<em>wann, wo, wie, warum, wohin, woher, wieso, inwiefern\u2026</em><br><em>Woher kommst du?</em> (D'o\u00f9 viens-tu ?)<br>Ils ouvrent une question et se placent <strong>en t\u00eate</strong>, le verbe juste apr\u00e8s. Chacun r\u00e9pond \u00e0 une des familles ci-dessus : <em>wann</em> interroge le Zeit, <em>wo</em> le Ort, <em>warum</em> le Grund.",
+        adverbien_tekamolo_link: "Quand plusieurs de ces adverbes se suivent dans une m\u00eame phrase, ils respectent l'ordre <strong>TeKaMoLo</strong> : <strong>Te</strong>mporal (Zeit) \u00b7 <strong>Ka</strong>usal (Grund/Folge) \u00b7 <strong>Mo</strong>dal (Art und Weise) \u00b7 <strong>Lo</strong>kal (Ort/Richtung) \u2014 d\u00e9j\u00e0 vu dans \u00ab Structure \u00bb. Les quatre autres familles n'entrent pas dans cet ordre : H\u00e4ufigkeit se place avec le temps, Grad/Menge colle au mot qu'il dose, Verbindung/Logik ouvre souvent la phrase, et Frageadverbien la commence toujours.",
         adverbien_btn_nuance: "M'ENTRAÎNER : RECONNAÎTRE LA CATÉGORIE →",
         adverbien_btn_vocab: "VOCABULAIRE : FLASHCARDS →",
         konjunktionen_info_title: "Comprendre les conjonctions",
@@ -5625,16 +5640,24 @@ const I18N = {
         kicker_konjunktionen_nuance: "Conjunctions · Type",
         kicker_konjunktionen_vocab: "Conjunctions · Vocabulary",
         adverbien_info_title: "Understand adverbs",
-        adverbien_intro: "An adverb modifies a verb, an adjective, or a whole sentence — unlike an adjective, it never agrees and never takes an ending. They fall into 4 main families, depending on the question they answer.",
-        adverbien_temps_title: "Time — \"when?\"",
-        adverbien_temps: `<em>heute, morgen, gestern, jetzt, schon, bald, oft, nie, immer, manchmal...</em><br><em>Ich rauche nie.</em> (I never smoke.)`,
-        adverbien_lieu_title: "Place — \"where?\"",
-        adverbien_lieu: `<em>hier, dort, oben, unten, drinnen, draußen, überall, links, rechts...</em><br><em>Die Kinder spielen draußen.</em> (The children are playing outside.)`,
-        adverbien_maniere_title: "Manner — \"how?\"",
-        adverbien_maniere: `<em>schnell, langsam, gern, laut, leise, plötzlich, zusammen, allein...</em><br><em>Sprich bitte langsam.</em> (Please speak slowly.)`,
-        adverbien_degre_title: "Degree — \"to what extent?\"",
-        adverbien_degre: `<em>sehr, ziemlich, zu, kaum, fast, genug, besonders, wenig...</em><br><em>Das ist sehr wichtig.</em> (That's very important.)`,
-        adverbien_tekamolo_link: `These are exactly the 4 categories of the <strong>TeKaMoLo</strong> order (Temporal · Kausal · Modal · Lokal) already seen in "Structure" — when several adverbs follow each other in a sentence, this is the order they follow.`,
+        adverbien_intro: "An adverb modifies a verb, an adjective or the whole sentence. Unlike an adjective it never agrees and never takes an ending. They fall into <strong>eight families</strong>, according to what they add to the sentence.",
+        adverbien_zeit_title: "Zeit \u2014 when?",
+        adverbien_zeit: "<em>heute, gestern, morgen, bald, sp\u00e4ter, vorhin, endlich, bereits\u2026</em><br><em>Endlich scheint die Sonne.</em> (The sun is finally shining.)<br>Places the action <strong>on the timeline</strong>. Not to be confused with H\u00e4ufigkeit, which counts repetitions.",
+        adverbien_ort_title: "Ort/Richtung \u2014 where? where to?",
+        adverbien_ort: "<em>hier, dort, oben, unten, drau\u00dfen, geradeaus, zur\u00fcck, hinein\u2026</em><br><em>Gehen Sie geradeaus bis zur Kirche.</em> (Go straight ahead to the church.)<br>German separates <strong>place</strong> (wo? \u2014 <em>hier</em>) from <strong>direction</strong> (wohin? \u2014 <em>hierher</em>), where English often uses \"here\" for both.",
+        adverbien_haeufigkeit_title: "H\u00e4ufigkeit \u2014 how often?",
+        adverbien_haeufigkeit: "<em>immer, oft, manchmal, selten, nie, meistens, regelm\u00e4\u00dfig, st\u00e4ndig\u2026</em><br><em>Sie kommt nie zu sp\u00e4t.</em> (She is never late.)<br>These answer \"how many times?\", not \"when?\": <em>nie</em> and <em>immer</em> are therefore frequency, not time.",
+        adverbien_artweise_title: "Art und Weise \u2014 how?",
+        adverbien_artweise: "<em>schnell, langsam, gern, laut, leise, sorgf\u00e4ltig, pl\u00f6tzlich, gemeinsam\u2026</em><br><em>Sprich bitte langsam.</em> (Please speak slowly.)<br>Describes <strong>the way the action unfolds</strong>. In German the plain adjective serves as the adverb: there is no \"-ly\" ending to add.",
+        adverbien_gradmenge_title: "Grad/Menge \u2014 to what extent?",
+        adverbien_gradmenge: "<em>sehr, ziemlich, zu, kaum, fast, genug, besonders, v\u00f6llig\u2026</em><br><em>Die Suppe ist zu hei\u00df.</em> (The soup is too hot.)<br>Calibrates the intensity of an adjective, an adverb or a verb. They never stand alone: they always accompany another word.",
+        adverbien_grundfolge_title: "Grund/Folge \u2014 why? with what consequence?",
+        adverbien_grundfolge: "<em>deshalb, deswegen, daher, trotzdem, sonst, folglich, dennoch\u2026</em><br><em>Es regnet, deshalb bleiben wir zu Hause.</em> (It's raining, that's why we're staying home.)<br>\u26a0\ufe0f These are <strong>adverbs</strong>, not conjunctions: the verb stays in <strong>second position</strong> and moves ahead of the subject \u2014 <em>deshalb <u>bleiben wir</u></em>, not \"deshalb wir bleiben\".",
+        adverbien_verbindung_title: "Verbindung/Logik \u2014 what link, what nuance?",
+        adverbien_verbindung: "<em>au\u00dferdem, allerdings, n\u00e4mlich, vielleicht, leider, zwar, keineswegs\u2026</em><br><em>Die Wohnung ist g\u00fcnstig, au\u00dferdem liegt sie zentral.</em> (The flat is cheap, besides it's central.)<br>They bear not on a single word but on <strong>the whole sentence</strong>: they add an argument, qualify it, or say how strongly you believe it.",
+        adverbien_frage_title: "Frageadverbien \u2014 the question words",
+        adverbien_frage: "<em>wann, wo, wie, warum, wohin, woher, wieso, inwiefern\u2026</em><br><em>Woher kommst du?</em> (Where do you come from?)<br>They open a question and stand <strong>first</strong>, with the verb right after. Each one asks about one of the families above: <em>wann</em> asks for Zeit, <em>wo</em> for Ort, <em>warum</em> for Grund.",
+        adverbien_tekamolo_link: "When several of these adverbs follow one another in the same sentence, they keep the <strong>TeKaMoLo</strong> order: <strong>Te</strong>mporal (Zeit) \u00b7 <strong>Ka</strong>usal (Grund/Folge) \u00b7 <strong>Mo</strong>dal (Art und Weise) \u00b7 <strong>Lo</strong>kal (Ort/Richtung) \u2014 already seen in \"Structure\". The other four families stay outside that order: H\u00e4ufigkeit sits with time, Grad/Menge clings to the word it calibrates, Verbindung/Logik often opens the sentence, and Frageadverbien always starts it.",
         adverbien_btn_nuance: "PRACTICE: IDENTIFY THE CATEGORY →",
         adverbien_btn_vocab: "VOCABULARY: FLASHCARDS →",
         konjunktionen_info_title: "Understand conjunctions",
@@ -7734,8 +7757,13 @@ const PARTIKELN_NUANCE_OPTIONS_EN = [
   "Exasperation, strong emphasis"
 ];
 
-const ADVERB_CATEGORY_OPTIONS = ["Temps", "Lieu", "Manière", "Degré"];
-const ADVERB_CATEGORY_OPTIONS_EN = ["Time", "Place", "Manner", "Degree"];
+// Les huit familles, sous leur nom allemand -- le meme dans les deux langues
+// d'interface, et le meme que sur les cartes et dans adverbe.json. C'est ce nom
+// que l'apprenant retrouvera dans une grammaire ; la glose vit dans l'indice et
+// l'explication de chaque question.
+const ADVERB_CATEGORY_OPTIONS = ["Zeit", "Ort/Richtung", "Häufigkeit", "Art und Weise",
+    "Grad/Menge", "Grund/Folge", "Verbindung/Logik", "Frageadverbien"];
+const ADVERB_CATEGORY_OPTIONS_EN = ADVERB_CATEGORY_OPTIONS;
 const KONJUNKTION_TYPE_OPTIONS = ["Coordination (ordre des mots inchangé)", "Subordination (verbe à la fin)"];
 const KONJUNKTION_TYPE_OPTIONS_EN = ["Coordinating (word order unchanged)", "Subordinating (verb goes to the end)"];
 
@@ -8060,23 +8088,27 @@ const possessivExercises = [
   { topic:"Possessifs", question:"Peter spielt mit ___ Kind.", question_en:"Peter spielt mit ___ Kind.", translation:"Peter joue avec leur enfant.", translation_en:"Peter plays with their child.", hint:"(das Kind, Dativ, neutre, « à eux »)", hint_en:"(das Kind, Dative, neuter, \"their\")", answers:["ihrem"], correct:"ihrem", explanation:"Datif neutre : comme le masculin, terminaison -em → ihrem.", explanation_en:"Neuter Dative: like the masculine, ending -em → ihrem." },
   { topic:"Possessifs", question:"Das ist das Auto ___ Bruders.", question_en:"Das ist das Auto ___ Bruders.", translation:"C'est la voiture de leur frère.", translation_en:"That's their brother's car.", hint:"(der Bruder, Genitiv, masc., « à eux »)", hint_en:"(der Bruder, Genitive, masc., \"their\")", answers:["ihres"], correct:"ihres", explanation:"Génitif masculin : terminaison -es → ihres.", explanation_en:"Masculine Genitive: ending -es → ihres." }
 ];
+// Deux questions par famille, avec des mots reellement presents dans
+// adverbe.json. Plusieurs items opposent deux familles voisines, la ou se
+// trouve la vraie difficulte : nie (Haeufigkeit, pas Zeit), rueckwaerts
+// (Ort/Richtung, pas Art und Weise), wohin (Frageadverb, pas Ort/Richtung).
 const adverbienNuanceExercises = [
-  { topic:"Adverbes · Catégorie", question:"Ich arbeite heute von zu Hause. Quelle catégorie pour « heute » ?", question_en:"Ich arbeite heute von zu Hause. Which category for « heute »?", translation:"Je travaille de la maison aujourd'hui.", translation_en:"I'm working from home today.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« heute » répond à « quand ? » -- adverbe de temps.", explanation_en:"« heute » answers « when? » -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Ich wohne hier seit zwei Jahren. Quelle catégorie pour « hier » ?", question_en:"Ich wohne hier seit zwei Jahren. Which category for « hier »?", translation:"J'habite ici depuis deux ans.", translation_en:"I've lived here for two years.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« hier » (ici, allemand) répond à « où ? » -- adverbe de lieu.", explanation_en:"« hier » (German for \"here\") answers « where? » -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Er läuft sehr schnell. Quelle catégorie pour « schnell » ?", question_en:"Er läuft sehr schnell. Which category for « schnell »?", translation:"Il court très vite.", translation_en:"He runs very fast.", hint:"(comment ?)", hint_en:"(how?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« schnell » répond à « comment ? » -- adverbe de manière.", explanation_en:"« schnell » answers « how? » -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Das ist sehr wichtig. Quelle catégorie pour « sehr » ?", question_en:"Das ist sehr wichtig. Which category for « sehr »?", translation:"C'est très important.", translation_en:"That's very important.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« sehr » intensifie un adjectif -- adverbe de degré.", explanation_en:"« sehr » intensifies an adjective -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Wir sehen uns morgen. Quelle catégorie pour « morgen » ?", question_en:"Wir sehen uns morgen. Which category for « morgen »?", translation:"On se voit demain.", translation_en:"See you tomorrow.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« morgen » répond à « quand ? » -- adverbe de temps.", explanation_en:"« morgen » answers « when? » -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Das Bad ist oben. Quelle catégorie pour « oben » ?", question_en:"Das Bad ist oben. Which category for « oben »?", translation:"La salle de bain est en haut.", translation_en:"The bathroom is upstairs.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« oben » répond à « où ? » -- adverbe de lieu.", explanation_en:"« oben » answers « where? » -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Sprich bitte langsam. Quelle catégorie pour « langsam » ?", question_en:"Sprich bitte langsam. Which category for « langsam »?", translation:"Parle lentement, s'il te plaît.", translation_en:"Please speak slowly.", hint:"(comment ?)", hint_en:"(how?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« langsam » répond à « comment ? » -- adverbe de manière.", explanation_en:"« langsam » answers « how? » -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Der Kaffee ist zu heiß. Quelle catégorie pour « zu » ?", question_en:"Der Kaffee ist zu heiß. Which category for « zu »?", translation:"Le café est trop chaud.", translation_en:"The coffee is too hot.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« zu » (trop) intensifie « heiß » -- adverbe de degré.", explanation_en:"« zu » (too) intensifies « heiß » -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Ich rauche nie. Quelle catégorie pour « nie » ?", question_en:"Ich rauche nie. Which category for « nie »?", translation:"Je ne fume jamais.", translation_en:"I never smoke.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« nie » répond à « quand ? » (jamais) -- adverbe de temps.", explanation_en:"« nie » answers « when? » (never) -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Die Kinder spielen draußen. Quelle catégorie pour « draußen » ?", question_en:"Die Kinder spielen draußen. Which category for « draußen »?", translation:"Les enfants jouent dehors.", translation_en:"The children are playing outside.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« draußen » répond à « où ? » -- adverbe de lieu.", explanation_en:"« draußen » answers « where? » -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Plötzlich fing es an zu regnen. Quelle catégorie pour « plötzlich » ?", question_en:"Plötzlich fing es an zu regnen. Which category for « plötzlich »?", translation:"Soudain, il s'est mis à pleuvoir.", translation_en:"Suddenly it started to rain.", hint:"(comment/de quelle façon l'action arrive ?)", hint_en:"(how does the action happen?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« plötzlich » décrit la façon dont l'action survient -- adverbe de manière.", explanation_en:"« plötzlich » describes how the action happens -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Ich habe heute kaum Zeit. Quelle catégorie pour « kaum » ?", question_en:"Ich habe heute kaum Zeit. Which category for « kaum »?", translation:"J'ai à peine le temps aujourd'hui.", translation_en:"I hardly have time today.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« kaum » (à peine) module la quantité -- adverbe de degré.", explanation_en:"« kaum » (hardly) modulates quantity -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Er kommt immer pünktlich. Quelle catégorie pour « immer » ?", question_en:"Er kommt immer pünktlich. Which category for « immer »?", translation:"Il arrive toujours à l'heure.", translation_en:"He always arrives on time.", hint:"(quand ?)", hint_en:"(when?)", answers:["temps","time"], correct:"Temps", correctEn:"Time", explanation:"« immer » répond à « quand ? » (toujours) -- adverbe de temps.", explanation_en:"« immer » answers « when? » (always) -- adverb of time.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Fahren Sie rechts ab. Quelle catégorie pour « rechts » ?", question_en:"Fahren Sie rechts ab. Which category for « rechts »?", translation:"Tournez à droite.", translation_en:"Turn right.", hint:"(où ?)", hint_en:"(where?)", answers:["lieu","place"], correct:"Lieu", correctEn:"Place", explanation:"« rechts » répond à « où ? » (direction) -- adverbe de lieu.", explanation_en:"« rechts » answers « where? » (direction) -- adverb of place.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Sprich leise, das Baby schläft. Quelle catégorie pour « leise » ?", question_en:"Sprich leise, das Baby schläft. Which category for « leise »?", translation:"Parle doucement, le bébé dort.", translation_en:"Speak quietly, the baby is sleeping.", hint:"(comment ?)", hint_en:"(how?)", answers:["manière","manner"], correct:"Manière", correctEn:"Manner", explanation:"« leise » répond à « comment ? » -- adverbe de manière.", explanation_en:"« leise » answers « how? » -- adverb of manner.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
-  { topic:"Adverbes · Catégorie", question:"Wir sind fast da. Quelle catégorie pour « fast » ?", question_en:"Wir sind fast da. Which category for « fast »?", translation:"On est presque arrivés.", translation_en:"We're almost there.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["degré","degree"], correct:"Degré", correctEn:"Degree", explanation:"« fast » (presque) module l'accomplissement de l'action -- adverbe de degré.", explanation_en:"« fast » (almost) modulates how complete the action is -- adverb of degree.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN }
+  { topic:"Adverbes · Famille", question:"Ich arbeite heute von zu Hause. Quelle famille pour « heute » ?", question_en:"Ich arbeite heute von zu Hause. Which family does « heute » belong to?", translation:"Je travaille de la maison aujourd'hui.", translation_en:"I'm working from home today.", hint:"(quand ?)", hint_en:"(when?)", answers:["zeit"], correct:"Zeit", correctEn:"Zeit", explanation:"« heute » situe l'action dans le temps -- Zeit.", explanation_en:"« heute » places the action in time -- Zeit.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Der Aufzug ist vorübergehend außer Betrieb. Quelle famille pour « vorübergehend » ?", question_en:"Der Aufzug ist vorübergehend außer Betrieb. Which family does « vorübergehend » belong to?", translation:"L'ascenseur est temporairement hors service.", translation_en:"The lift is temporarily out of order.", hint:"(pour combien de temps ?)", hint_en:"(for how long?)", answers:["zeit"], correct:"Zeit", correctEn:"Zeit", explanation:"« vorübergehend » dit la durée, pas la manière -- Zeit.", explanation_en:"« vorübergehend » states duration, not manner -- Zeit.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Die Kinder spielen draußen. Quelle famille pour « draußen » ?", question_en:"Die Kinder spielen draußen. Which family does « draußen » belong to?", translation:"Les enfants jouent dehors.", translation_en:"The children are playing outside.", hint:"(où ?)", hint_en:"(where?)", answers:["ort/richtung"], correct:"Ort/Richtung", correctEn:"Ort/Richtung", explanation:"« draußen » répond à « où ? » -- Ort/Richtung.", explanation_en:"« draußen » answers « where? » -- Ort/Richtung.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Er fuhr rückwärts aus der Garage. Quelle famille pour « rückwärts » ?", question_en:"Er fuhr rückwärts aus der Garage. Which family does « rückwärts » belong to?", translation:"Il est sorti du garage en marche arrière.", translation_en:"He drove backwards out of the garage.", hint:"(dans quelle direction ?)", hint_en:"(in which direction?)", answers:["ort/richtung"], correct:"Ort/Richtung", correctEn:"Ort/Richtung", explanation:"« rückwärts » indique une direction -- Ort/Richtung, pas Art und Weise.", explanation_en:"« rückwärts » gives a direction -- Ort/Richtung, not Art und Weise.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Ich rauche nie. Quelle famille pour « nie » ?", question_en:"Ich rauche nie. Which family does « nie » belong to?", translation:"Je ne fume jamais.", translation_en:"I never smoke.", hint:"(à quelle fréquence ?)", hint_en:"(how often?)", answers:["häufigkeit"], correct:"Häufigkeit", correctEn:"Häufigkeit", explanation:"« nie » dit combien de FOIS, pas quand : c'est Häufigkeit, la fréquence.", explanation_en:"« nie » says how OFTEN, not when: that is Häufigkeit, frequency.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Das Telefon klingelt dauernd. Quelle famille pour « dauernd » ?", question_en:"Das Telefon klingelt dauernd. Which family does « dauernd » belong to?", translation:"Le téléphone sonne sans arrêt.", translation_en:"The phone rings all the time.", hint:"(à quelle fréquence ?)", hint_en:"(how often?)", answers:["häufigkeit"], correct:"Häufigkeit", correctEn:"Häufigkeit", explanation:"« dauernd » compte les répétitions -- Häufigkeit.", explanation_en:"« dauernd » counts repetitions -- Häufigkeit.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Sprich bitte langsam. Quelle famille pour « langsam » ?", question_en:"Sprich bitte langsam. Which family does « langsam » belong to?", translation:"Parle lentement, s'il te plaît.", translation_en:"Please speak slowly.", hint:"(comment ?)", hint_en:"(how?)", answers:["art und weise"], correct:"Art und Weise", correctEn:"Art und Weise", explanation:"« langsam » dit COMMENT l'action se fait -- Art und Weise.", explanation_en:"« langsam » says HOW the action is done -- Art und Weise.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Lies den Vertrag sorgfältig durch. Quelle famille pour « sorgfältig » ?", question_en:"Lies den Vertrag sorgfältig durch. Which family does « sorgfältig » belong to?", translation:"Lis le contrat soigneusement.", translation_en:"Read the contract carefully.", hint:"(de quelle façon ?)", hint_en:"(in what way?)", answers:["art und weise"], correct:"Art und Weise", correctEn:"Art und Weise", explanation:"« sorgfältig » qualifie la manière de lire -- Art und Weise.", explanation_en:"« sorgfältig » qualifies the way of reading -- Art und Weise.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Das ist sehr wichtig. Quelle famille pour « sehr » ?", question_en:"Das ist sehr wichtig. Which family does « sehr » belong to?", translation:"C'est très important.", translation_en:"That's very important.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["grad/menge"], correct:"Grad/Menge", correctEn:"Grad/Menge", explanation:"« sehr » intensifie un adjectif -- Grad/Menge.", explanation_en:"« sehr » intensifies an adjective -- Grad/Menge.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Der Saal war nahezu leer. Quelle famille pour « nahezu » ?", question_en:"Der Saal war nahezu leer. Which family does « nahezu » belong to?", translation:"La salle était quasiment vide.", translation_en:"The hall was nearly empty.", hint:"(à quel point ?)", hint_en:"(to what extent?)", answers:["grad/menge"], correct:"Grad/Menge", correctEn:"Grad/Menge", explanation:"« nahezu » dose le degré de « leer » -- Grad/Menge.", explanation_en:"« nahezu » calibrates the degree of « leer » -- Grad/Menge.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Es regnet, deshalb bleiben wir zu Hause. Quelle famille pour « deshalb » ?", question_en:"Es regnet, deshalb bleiben wir zu Hause. Which family does « deshalb » belong to?", translation:"Il pleut, c'est pourquoi nous restons à la maison.", translation_en:"It's raining, that's why we're staying home.", hint:"(pourquoi ? avec quelle conséquence ?)", hint_en:"(why? with what consequence?)", answers:["grund/folge"], correct:"Grund/Folge", correctEn:"Grund/Folge", explanation:"« deshalb » relie une cause à sa conséquence -- Grund/Folge.", explanation_en:"« deshalb » links a cause to its consequence -- Grund/Folge.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Der Antrag war unvollständig, folglich wurde er abgelehnt. Quelle famille pour « folglich » ?", question_en:"Der Antrag war unvollständig, folglich wurde er abgelehnt. Which family does « folglich » belong to?", translation:"La demande était incomplète, par conséquent elle a été refusée.", translation_en:"The application was incomplete, consequently it was rejected.", hint:"(quelle conséquence ?)", hint_en:"(what consequence?)", answers:["grund/folge"], correct:"Grund/Folge", correctEn:"Grund/Folge", explanation:"« folglich » tire la conséquence de ce qui précède -- Grund/Folge.", explanation_en:"« folglich » draws the consequence of what precedes -- Grund/Folge.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Die Wohnung ist günstig, außerdem liegt sie zentral. Quelle famille pour « außerdem » ?", question_en:"Die Wohnung ist günstig, außerdem liegt sie zentral. Which family does « außerdem » belong to?", translation:"L'appartement est bon marché, de plus il est central.", translation_en:"The flat is cheap, besides it's central.", hint:"(quel lien entre les deux idées ?)", hint_en:"(what link between the two ideas?)", answers:["verbindung/logik"], correct:"Verbindung/Logik", correctEn:"Verbindung/Logik", explanation:"« außerdem » ajoute un argument -- Verbindung/Logik.", explanation_en:"« außerdem » adds an argument -- Verbindung/Logik.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Das ist keineswegs selbstverständlich. Quelle famille pour « keineswegs » ?", question_en:"Das ist keineswegs selbstverständlich. Which family does « keineswegs » belong to?", translation:"Cela ne va nullement de soi.", translation_en:"That is by no means self-evident.", hint:"(quelle prise de position ?)", hint_en:"(what stance?)", answers:["verbindung/logik"], correct:"Verbindung/Logik", correctEn:"Verbindung/Logik", explanation:"« keineswegs » commente toute la phrase (négation forte) -- Verbindung/Logik.", explanation_en:"« keineswegs » comments on the whole sentence (strong negation) -- Verbindung/Logik.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Wohin fährst du in den Ferien? Quelle famille pour « wohin » ?", question_en:"Wohin fährst du in den Ferien? Which family does « wohin » belong to?", translation:"Où vas-tu pendant les vacances ?", translation_en:"Where are you going on holiday?", hint:"(mot qui pose la question)", hint_en:"(word asking the question)", answers:["frageadverbien"], correct:"Frageadverbien", correctEn:"Frageadverbien", explanation:"« wohin » interroge sur la direction : c'est un Frageadverb, pas un Ort/Richtung.", explanation_en:"« wohin » asks about direction: it is a Frageadverb, not an Ort/Richtung.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
+  { topic:"Adverbes · Famille", question:"Inwiefern betrifft das unsere Abteilung? Quelle famille pour « inwiefern » ?", question_en:"Inwiefern betrifft das unsere Abteilung? Which family does « inwiefern » belong to?", translation:"Dans quelle mesure cela concerne-t-il notre service ?", translation_en:"To what extent does that affect our department?", hint:"(mot qui pose la question)", hint_en:"(word asking the question)", answers:["frageadverbien"], correct:"Frageadverbien", correctEn:"Frageadverbien", explanation:"« inwiefern » ouvre une question -- Frageadverbien.", explanation_en:"« inwiefern » opens a question -- Frageadverbien.", options: ADVERB_CATEGORY_OPTIONS, optionsEn: ADVERB_CATEGORY_OPTIONS_EN },
 ];
 
 const konjunktionenNuanceExercises = [
@@ -10569,13 +10601,6 @@ function startAdverbienNuance(){
     startExerciseSet(shuffleArray(adverbienNuanceExercises), "kicker_adverbien_nuance", openAdverbienInfo, startAdverbienNuance);
 }
 
-// level: "A1".."B2" pour un niveau precis, rien (ou "ALL") pour tout le stock.
-// L'index passe a getWordState reste celui du tableau COMPLET, jamais celui de
-// la liste filtree : sinon la progression d'un mot changerait de proprietaire
-// selon le niveau par lequel on l'a ouvert.
-// Barre de niveaux construite a partir des donnees reellement chargees : un
-// niveau encore vide (adverbe.json se remplit progressivement) n'affiche pas de
-// bouton mort. Le compte est indique pour que le choix soit informe.
 // Niveau actuellement choisi dans l'ecran Adverbes ("ALL" = tous niveaux).
 // La liste des familles affichee juste en dessous est recalculee pour ce
 // niveau : les comptes montrent ce qu'on obtiendra reellement en cliquant,
