@@ -2747,7 +2747,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v210</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v211</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4379,6 +4379,26 @@ body[data-theme="dark"] .ecoute-btn.principal{
     <p class="ecoute-note" data-i18n="ecoute_note">L'écoute ne modifie pas ta progression : c'est une révision passive, pas un test.</p>
 </section>
 
+<section id="tuilesMenu" class="screen">
+    <button class="back" onclick="openOrbPanel('schreiben')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="op_schreiben_title">Écrire en allemand</div>
+            <h2 data-i18n="tuiles_menu_title">Construire la phrase</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <p style="color:#576177; line-height:1.5;" data-i18n="tuiles_menu_desc">On te donne la phrase en français et les mots allemands en vrac. Touche-les dans le bon ordre — pas de clavier. Le banc contient un ou deux mots en trop, choisis dans la même famille que ceux de la phrase : c'est là que se joue l'exercice.</p>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="tuiles_level_title">Choisir un niveau</strong>
+        <div id="tuilesLevelBar" class="filters-bar" style="margin-top:10px;"></div>
+    </div>
+</section>
+
 <!-- ================= EXERCISE ================= -->
 
 <section id="exercise" class="screen">
@@ -5408,6 +5428,13 @@ const I18N = {
         version_new_title: "Nouvelle version disponible",
         version_new_detail: "Tu es en v{de}, la version {a} est publiée.",
         version_new_reload: "Recharger",
+        op_tuiles_t: "Construire la phrase", op_tuiles_d: "toucher les mots, sans clavier",
+        tuiles_menu_title: "Construire la phrase",
+        tuiles_menu_desc: "On te donne la phrase en français et les mots allemands en vrac. Touche-les dans le bon ordre — pas de clavier. Le banc contient un ou deux mots en trop, choisis dans la même famille que ceux de la phrase : c'est là que se joue l'exercice.",
+        tuiles_level_title: "Choisir un niveau",
+        tuiles_level_all: "Tous niveaux",
+        tuiles_hint: "Touche les mots dans l'ordre. Un mot placé par erreur : touche-le pour le renvoyer.",
+        kicker_tuiles: "Écrire · construire la phrase",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -6179,6 +6206,13 @@ const I18N = {
         version_new_title: "New version available",
         version_new_detail: "You are on v{de}, version {a} has been published.",
         version_new_reload: "Reload",
+        op_tuiles_t: "Build the sentence", op_tuiles_d: "tap the words, no keyboard",
+        tuiles_menu_title: "Build the sentence",
+        tuiles_menu_desc: "You get the sentence in your language and the German words scrambled. Tap them in the right order — no keyboard. The bank holds one or two extra words, taken from the same family as those in the sentence: that is where the exercise happens.",
+        tuiles_level_title: "Choose a level",
+        tuiles_level_all: "All levels",
+        tuiles_hint: "Tap the words in order. Tapped one by mistake? Tap it again to send it back.",
+        kicker_tuiles: "Writing · build the sentence",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -10281,8 +10315,10 @@ function orbPanelData(id){
         const niveaux = ["A1", "A2", "B1", "B2"];
         return {
             icon:"exercice", title:t("op_schreiben_title"), sub:t("op_schreiben_sub"),
-            options: [{ icon:"exercice", title:t("op_schreiben_all_t"), desc:t("op_schreiben_all_d"),
-                        primary:true, action:"startSchreibenALL" }]
+            options: [{ icon:"carte", title:t("op_tuiles_t"), desc:t("op_tuiles_d"),
+                        primary:true, action:"ouvrirTuilesMenu" },
+                      { icon:"exercice", title:t("op_schreiben_all_t"), desc:t("op_schreiben_all_d"),
+                        action:"startSchreibenALL" }]
                 .concat(niveaux.map(n => ({
                     icon:"exercice", title:n, desc:tf("op_schreiben_level_d", { n: n }),
                     action:"startSchreiben" + n
@@ -12450,12 +12486,23 @@ function storedVoiceChoice(){
 
 // Choix explicite de l'utilisateur s'il existe encore sur l'appareil, sinon la
 // mieux classee. Le choix est memorise par langue.
+// Voix retenue par defaut pour une langue, avant le classement automatique.
+// Moira (en-IE) articule nettement et sonne moins mecanique que les voix
+// anglaises proposees par defaut sur la plupart des appareils. Un choix
+// explicite fait dans les reglages reste prioritaire sur cette preference.
+const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [] };
+
 function pickVoice(prefix){
     const dispo = voicesForLang(prefix);
     if(!dispo.length) return null;
     const choisi = storedVoiceChoice()[prefix];
     if(choisi){
         const trouve = dispo.find(v => v.name === choisi);
+        if(trouve) return trouve;
+    }
+    const preferees = VOICE_PREFEREES[prefix] || [];
+    for(const nom of preferees){
+        const trouve = dispo.find(v => (v.name || "").toLowerCase().indexOf(nom) !== -1);
         if(trouve) return trouve;
     }
     return dispo[0];
@@ -13012,7 +13059,7 @@ document.addEventListener("visibilitychange", () => {
 // en v208 alors que v209 etait publiee depuis un moment). L'app compare donc
 // sa propre version a celle publiee et le dit, plutot que de laisser croire
 // que la nouveaute n'a pas ete livree.
-const APP_VERSION = 210;
+const APP_VERSION = 211;
 const VERSION_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/version.json";
 const VERSION_INTERVALLE_MS = 5 * 60 * 1000;
 
@@ -14351,6 +14398,142 @@ function phrasesTraduisibles(niveau){
 
 const SCHREIBEN_TAILLE_SERIE = 15;
 
+
+// ==================== Construire la phrase (tuiles) ====================
+// Palier intermediaire entre reconnaitre et produire : on touche les mots au
+// lieu de les taper. Le mecanisme de tuiles existait deja (placeChunk /
+// unplaceChunk, verification exacte de la sequence) et ne servait qu'a des
+// exercices a deux blocs ecrits a la main -- ici on l'alimente avec les phrases
+// d'exemple deja presentes dans les donnees, decoupees mot a mot.
+//
+// Pas de glisser-deposer : sur mobile il faudrait intercepter touchmove, donc
+// bloquer le defilement de la page, et une phrase sur deux lignes deviendrait
+// inatteignable. Toucher pour placer, retoucher pour renvoyer au banc.
+
+const TUILES_TAILLE_SERIE = 12;
+const TUILES_MIN_MOTS = 4;
+const TUILES_MAX_MOTS = 9;
+
+// Un banc contenant exactement les bons mots se resout par elimination, sans
+// rien comprendre a la grammaire. Les leurres sont donc tires de la MEME
+// famille que ce que la phrase contient deja : c'est le choix entre dem et den
+// qui fait travailler, pas un mot sans rapport.
+const TUILES_FAMILLES = [
+    ["der", "die", "das", "den", "dem", "des"],
+    ["ein", "eine", "einen", "einem", "einer", "eines"],
+    ["kein", "keine", "keinen", "keinem", "keiner"],
+    ["mein", "meine", "meinen", "meinem", "meiner"],
+    ["sein", "seine", "seinen", "seinem", "seiner"],
+    ["ich", "mich", "mir"],
+    ["du", "dich", "dir"],
+    ["er", "ihn", "ihm"],
+    ["wir", "uns"],
+    ["ihr", "euch"],
+    ["in", "an", "auf", "unter", "\u00fcber", "neben", "zwischen"],
+    ["mit", "nach", "bei", "seit", "von", "zu", "aus"]
+];
+
+function leurresPour(tokens, reservoir){
+    const presents = new Set(tokens.map(x => x.toLowerCase()));
+    const sortie = [];
+    tokens.forEach(tok => {
+        if(sortie.length >= 2) return;
+        const net = tok.toLowerCase().replace(/[.,!?;:]+$/, "");
+        const famille = TUILES_FAMILLES.find(f => f.indexOf(net) !== -1);
+        if(!famille) return;
+        const candidats = famille.filter(m => !presents.has(m));
+        if(!candidats.length) return;
+        const choisi = candidats[Math.floor(Math.random() * candidats.length)];
+        sortie.push(choisi);
+        presents.add(choisi);
+    });
+    // Aucune famille reconnue (phrase sans article ni preposition) : un mot
+    // plausible du meme niveau, faute de mieux.
+    if(!sortie.length && reservoir.length){
+        for(let essai = 0; essai < 8; essai++){
+            const m = reservoir[Math.floor(Math.random() * reservoir.length)];
+            if(m && !presents.has(m.toLowerCase())){ sortie.push(m); break; }
+        }
+    }
+    return sortie;
+}
+
+function startTuilesALL(){ startTuiles("ALL"); }
+function startTuilesA1(){ startTuiles("A1"); }
+function startTuilesA2(){ startTuiles("A2"); }
+function startTuilesB1(){ startTuiles("B1"); }
+function startTuilesB2(){ startTuiles("B2"); }
+
+function phrasesPourTuiles(niveau){
+    return phrasesTraduisibles(niveau || "ALL").filter(ph => {
+        const n = ph.de.trim().split(/\s+/).length;
+        return n >= TUILES_MIN_MOTS && n <= TUILES_MAX_MOTS;
+    });
+}
+
+function startTuiles(niveau){
+    const vivier = phrasesPourTuiles(niveau);
+    if(vivier.length < 3){ showInfoToast(t("alert_level_unavailable")); return; }
+    shuffleArray(vivier);
+
+    // Reservoir de mots pour les leurres lexicaux, pris au meme niveau.
+    const reservoir = [];
+    vivier.slice(0, 300).forEach(ph => {
+        ph.de.split(/\s+/).forEach(m => {
+            const net = m.replace(/[.,!?;:\u00ab\u00bb"']+/g, "");
+            if(net.length >= 4) reservoir.push(net);
+        });
+    });
+
+    const useEn = getUiLang() === "en";
+    const liste = vivier.slice(0, TUILES_TAILLE_SERIE).map(ph => {
+        const brut = ph.de.trim();
+        // La ponctuation finale reste hors des tuiles : collee au dernier mot,
+        // elle dirait lequel termine la phrase.
+        const finale = (brut.match(/[.!?]+$/) || [""])[0];
+        const corps = finale ? brut.slice(0, brut.length - finale.length).trim() : brut;
+        const tokens = corps.split(/\s+/);
+        return {
+            topic: "Construire \u00b7 " + ph.source,
+            question: useEn ? ph.en : ph.fr,
+            question_en: ph.en,
+            translation: ph.source,
+            translation_en: ph.source,
+            hint: t("tuiles_hint"),
+            hint_en: t("tuiles_hint"),
+            chunks: tokens,
+            leurres: leurresPour(tokens, reservoir),
+            correct: brut,
+            correctEn: brut,
+            explanation: "",
+            explanation_en: ""
+        };
+    });
+    startExerciseSet(liste, "kicker_tuiles", () => ouvrirTuilesMenu(), () => startTuiles(niveau));
+}
+
+function ouvrirTuilesMenu(){
+    showScreen("tuilesMenu");
+    renderTuilesMenu();
+    // Les phrases viennent en partie de themes.json, charge de facon asynchrone.
+    Promise.resolve(loadThemesJson()).then(() => renderTuilesMenu()).catch(() => {});
+}
+
+function renderTuilesMenu(){
+    const bar = document.getElementById("tuilesLevelBar");
+    if(!bar) return;
+    const bouton = (val, libelle, n) =>
+        `<button class="secondary" style="flex:1 1 ${val === "ALL" ? "100%" : "46%"}; min-width:0;"`
+        + ` onclick="startTuiles('${val}')">${libelle} (${n})</button>`;
+    let html = bouton("ALL", t("tuiles_level_all"), phrasesPourTuiles("ALL").length);
+    LEVELS.forEach(lvl => {
+        const n = phrasesPourTuiles(lvl).length;
+        if(n) html += bouton(lvl, lvl, n);
+    });
+    bar.innerHTML = html;
+}
+
+
 function startSchreibenALL(){ startSchreiben("ALL"); }
 function startSchreibenA1(){ startSchreiben("A1"); }
 function startSchreibenA2(){ startSchreiben("A2"); }
@@ -14441,8 +14624,11 @@ function startKasusArticle(){
 let chunkShuffled = [];
 let chunkBuilt = [];
 
-function shuffleChunksForExercise(chunks){
+function shuffleChunksForExercise(chunks, leurres){
     const arr = chunks.map((text, i) => ({ text, origIndex: i, used: false }));
+    // Leurres : presents dans le banc, absents de la reponse. origIndex -1 les
+    // exclut du garde-fou anti-melange-identite juste en dessous.
+    (leurres || []).forEach(text => arr.push({ text, origIndex: -1, used: false }));
     let attempts = 0;
     do {
         for(let i = arr.length - 1; i > 0; i--){
@@ -14510,7 +14696,7 @@ function loadExercise(){
     const usingChunks = !!(ex.chunks && ex.chunks.length);
 
     if(usingChunks){
-        chunkShuffled = shuffleChunksForExercise(ex.chunks);
+        chunkShuffled = shuffleChunksForExercise(ex.chunks, ex.leurres);
         chunkBuilt = [];
         renderChunkAnswerUi();
         chunksWrap.classList.remove("hidden");
@@ -14596,9 +14782,8 @@ function checkAnswer(){
         celebrateMastery(justReachedMultiple);
     }else{
         feedback.className = "feedback show wrong";
-        const correctDisplay = usingChunks
-            ? ex.chunks.join(" ")
-            : ((useEn && ex.correctEn) ? ex.correctEn : ex.correct);
+        const correctDisplay = ((useEn && ex.correctEn) ? ex.correctEn : ex.correct)
+            || (usingChunks ? ex.chunks.join(" ") : "");
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_wrong_title")}</div><div class="explanation"><strong>${t("correct_answer_label")}</strong> ${correctDisplay}</div>`;
         resetCombo();
     }
