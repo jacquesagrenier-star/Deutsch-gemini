@@ -2454,7 +2454,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v186</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v187</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -6128,20 +6128,23 @@ async function loadThemesJson() {
             });
 
             const rawVerben = t.verben || [];
+            // Les verbes des chapitres VHS suivent le même contrat que verbe.json
+            // (infinitif, praesens, perfekt, rektion...) et sont passés tels quels à
+            // loadFlashcard(), qui réutilise pour 'vhskapitelverben' le rendu complet
+            // des cartes Verbes (conjugaison + temps + pastilles de régime). Une
+            // entrée pas encore enrichie (sans praesens) reste valide : la carte se
+            // replie alors sur la seule phrase d'exemple.
             const verben = rawVerben.map(v => {
-                if (Array.isArray(v)) return v;
-                // Même ordre de tuple que partikelnTheme/adverbienTheme (consommé par
-                // loadFlashcard() en mode 'vhskapitelverben') : [mot, fr, catégorie
-                // (inutilisée ici), exempleDE, exempleFR, en, exempleEN].
-                return [
-                    v.infinitif || "",
-                    v.traduction || "",
-                    "",
-                    v.exemple || "",
-                    v.exemple_fr || "",
-                    v.traduction_en || "",
-                    v.exemple_en || ""
-                ];
+                if (!Array.isArray(v)) return v;
+                // Repli pour l'ancien format tuple [mot, fr, cat, exDE, exFR, en, exEN].
+                return {
+                    infinitif: v[0] || "",
+                    traduction: v[1] || "",
+                    exemple: v[3] || "",
+                    exemple_fr: v[4] || "",
+                    traduction_en: v[5] || "",
+                    exemple_en: v[6] || ""
+                };
             });
 
             const rawAdjektive = t.adjektive || [];
@@ -10395,7 +10398,7 @@ function loadFlashcard(){
     const pluralEl = document.getElementById("flashPlural");
     const translationEl = document.getElementById("flashTranslation");
 
-    if(flashcardMode === 'verben'){
+    if(flashcardMode === 'verben' || flashcardMode === 'vhskapitelverben'){
         const germanWord = card.infinitif;
         // Direction "en" (apprendre l'anglais, fusion de english/index.html) : le mot
         // allemand est connu, l'anglais est la cible, toujours affiché indépendamment
@@ -10449,6 +10452,12 @@ function loadFlashcard(){
             const perfSpeakBtn = sentenceSpeakBtnHtml(perfektTr, "en");
             const perfHtml = perfektTr ? `<div class="verb-sep"></div>${perfektTr}${perfSpeakBtn}<br>&rarr; ${card.perfekt || ""}` : "";
             verbDetailsEl.innerHTML = `<div class="verb-core"><strong>${translatedWord}</strong><div class="verb-sep"></div>${exHtml}${perfHtml}</div>`;
+        } else if(!card.praesens){
+            // Verbe de chapitre VHS pas encore enrichi (conjugaison et temps à
+            // venir) : on n'affiche que la phrase d'exemple, plutôt qu'un tableau
+            // Präsens vide suivi de lignes "Perfekt :" sans contenu.
+            const soloSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
+            verbDetailsEl.innerHTML = `<div class="verb-core">${buildRektionBadgesHtml(card)}${card.exemple || ""}${soloSpeakBtn}${exampleTr ? `<br>(${exampleTr})` : ""}</div>`;
         } else {
             const p = card.praesens || {};
             const conjLines = [
@@ -10567,7 +10576,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapiteladjektive'){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
@@ -10592,7 +10601,7 @@ function loadFlashcard(){
             ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
             : "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
-        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive')
+        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive')
             ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
             : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`;
         verbDetailsEl.classList.remove("hidden");
