@@ -1348,6 +1348,25 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
 
 .search-result:hover{ background:rgba(255,255,255,.8); }
 
+/* Correspondance exacte : encadre accentue + pastille, pour qu'elle se
+   distingue immediatement des mots qui contiennent seulement la recherche
+   (chercher "Vater" renvoie aussi Vatertag, Grossvater, Stiefvater...). */
+.search-result.exact{
+    background:linear-gradient(120deg,rgba(59,111,224,.13),rgba(124,92,255,.10));
+    border-color:rgba(59,111,224,.55);
+    box-shadow:0 2px 12px rgba(59,111,224,.15);
+}
+
+.search-result.exact:hover{
+    background:linear-gradient(120deg,rgba(59,111,224,.2),rgba(124,92,255,.16));
+}
+
+.search-tag.exact{
+    background:#3b6fe0;
+    border-color:#3b6fe0;
+    color:#fff;
+}
+
 .search-result-head{
     display:flex;
     align-items:baseline;
@@ -1393,15 +1412,6 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     background:rgba(245,158,11,.14);
     border-color:rgba(245,158,11,.32);
     color:#9a6407;
-}
-
-.search-details{
-    margin-top:12px;
-    padding-top:12px;
-    border-top:1px solid rgba(30,41,59,.14);
-    font-size:14px;
-    line-height:1.55;
-    color:#1e2433;
 }
 
 /* Etat vide : enonce le perimetre couvert (A1-B2) plutot qu'un simple "aucun
@@ -2289,6 +2299,22 @@ body[data-theme="dark"] .search-result:hover{
     background:rgba(255,255,255,.1);
 }
 
+body[data-theme="dark"] .search-result.exact{
+    background:linear-gradient(120deg,rgba(59,130,246,.22),rgba(124,92,255,.18));
+    border-color:rgba(96,165,250,.6);
+    box-shadow:none;
+}
+
+body[data-theme="dark"] .search-result.exact:hover{
+    background:linear-gradient(120deg,rgba(59,130,246,.3),rgba(124,92,255,.24));
+}
+
+body[data-theme="dark"] .search-tag.exact{
+    background:#60a5fa;
+    border-color:#60a5fa;
+    color:#0b1020;
+}
+
 /* Fond ET couleur de texte : un correctif de fond seul laissait du texte sombre
    sur fond sombre (meme ecueil que celui corrige en v185). */
 body[data-theme="dark"] .search-launch,
@@ -2300,7 +2326,6 @@ body[data-theme="dark"] .search-tag.src{
 }
 
 body[data-theme="dark"] .search-word,
-body[data-theme="dark"] .search-details,
 body[data-theme="dark"] .search-empty strong{
     color:#F2F2F6;
 }
@@ -2308,10 +2333,6 @@ body[data-theme="dark"] .search-empty strong{
 body[data-theme="dark"] .search-tag.src{
     background:rgba(255,255,255,.08);
     border-color:rgba(255,255,255,.18);
-}
-
-body[data-theme="dark"] .search-details{
-    border-top-color:rgba(255,255,255,.16);
 }
 
 body[data-theme="dark"] .orb-opt.primary{
@@ -2611,7 +2632,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v188</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v189</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4385,6 +4406,8 @@ const I18N = {
         search_none_title: "« {q} » ne fait pas partie des flashcards.",
         search_none_scope: "L'app couvre {n} cartes, du niveau A1 au niveau B2. Ce mot est simplement en dehors de ce programme — il ne manque rien à ton apprentissage.",
         search_none_suggest: "Peut-être cherchais-tu :",
+        search_exact: "Correspondance exacte",
+        search_card_kicker: "Depuis la recherche",
         search_kind_noun: "Nom",
         search_kind_verb: "Verbe",
         search_kind_adj: "Adjectif",
@@ -5037,6 +5060,8 @@ const I18N = {
         search_none_title: "“{q}” is not among the flashcards.",
         search_none_scope: "The app covers {n} cards, from level A1 to B2. This word simply falls outside that syllabus — nothing is missing from your course.",
         search_none_suggest: "Did you mean:",
+        search_exact: "Exact match",
+        search_card_kicker: "From search",
         search_kind_noun: "Noun",
         search_kind_verb: "Verb",
         search_kind_adj: "Adjective",
@@ -9770,6 +9795,7 @@ let searchIndex = null;
 let searchIndexStamp = -1;
 let searchResults = [];
 let searchDebounceTimer = null;
+let flashcardFromSearch = false;
 const SEARCH_MAX_RESULTS = 60;
 const SEARCH_MAX_SUGGESTIONS = 6;
 
@@ -9786,6 +9812,10 @@ function normalizeSearch(str){
 function pushSearchEntry(list, entry){
     entry.haystack = normalizeSearch([entry.de, entry.fr, entry.en].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
+    // Formes normalisees memorisees a la construction : reconnaitre une
+    // correspondance EXACTE a chaque frappe sans re-normaliser 2857 entrees.
+    entry.frNorm = normalizeSearch(entry.fr);
+    entry.enNorm = normalizeSearch(entry.en);
     list.push(entry);
 }
 
@@ -9800,26 +9830,25 @@ function buildSearchIndex(){
             const lv = theme.levels[level];
             const src = theme.name + " \u00b7 " + level;
             (lv.words || []).forEach((w, index) => pushSearchEntry(list, {
-                type: 'noun', kindKey: 'search_kind_noun', source: src,
+                kindKey: 'search_kind_noun', source: src, mode: 'nomen',
                 themeId: lv.id, index: index, card: w,
                 de: w[0], fr: w[3], en: w[4]
             }));
             (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
-                type: 'verb', kindKey: 'search_kind_verb', source: src,
+                kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben',
                 themeId: lv.id + '__verben', index: index, card: v,
                 de: v.infinitif, fr: v.traduction, en: v.traduction_en
             }));
             (lv.adjektive || []).forEach((a, index) => pushSearchEntry(list, {
-                type: 'simple', kindKey: 'search_kind_adj', source: src,
-                themeId: lv.id + '__adjektive', index: index,
-                card: { exemple: a[3], exemple_fr: a[4], exemple_en: a[6] },
+                kindKey: 'search_kind_adj', source: src, mode: 'vhskapiteladjektive',
+                themeId: lv.id + '__adjektive', index: index, card: a,
                 de: a[0], fr: a[1], en: a[5]
             }));
         });
     });
 
     (verbeTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
-        type: 'verb', kindKey: 'search_kind_verb',
+        kindKey: 'search_kind_verb', mode: 'verben',
         source: (t('orb_verben_title') + " \u00b7 " + (v.niveau || "")).trim(),
         themeId: verbeTheme.id, index: index, card: v,
         de: v.infinitif, fr: v.traduction, en: v.traduction_en
@@ -9827,32 +9856,30 @@ function buildSearchIndex(){
 
     // adjectif.json : [mot, traduction, exemple, niveau, exemple_fr, en, exemple_en]
     (adjektiveTheme.words || []).forEach((a, index) => pushSearchEntry(list, {
-        type: 'simple', kindKey: 'search_kind_adj',
+        kindKey: 'search_kind_adj', mode: 'adjektive',
         source: (t('orb_adjektive_title') + " \u00b7 " + (a[3] || "")).trim(),
-        themeId: adjektiveTheme.id, index: index,
-        card: { exemple: a[2], exemple_fr: a[4], exemple_en: a[6] },
+        themeId: adjektiveTheme.id, index: index, card: a,
         de: a[0], fr: a[1], en: a[5]
     }));
 
     // Themes de grammaire definis dans ce fichier : tuples
     // [de, fr, categorie, exempleDE, exempleFR, en, exempleEN, categorie_en].
     [
-        [praepTheme, 'search_kind_prep', 'search_src_praep'],
-        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb'],
-        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj'],
-        [partikelnTheme, 'search_kind_particle', 'search_src_particle'],
-        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus']
+        [praepTheme, 'search_kind_prep', 'search_src_praep', 'praep'],
+        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb', 'adverbien'],
+        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj', 'konjunktionen'],
+        [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln'],
+        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben']
     ].forEach(cfg => {
         (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
-            type: 'grammar', kindKey: cfg[1], source: t(cfg[2]),
-            themeId: cfg[0].id, index: index,
-            card: { cas: w[2], cas_en: w[7], exemple: w[3], exemple_fr: w[4], exemple_en: w[6] },
+            kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3],
+            themeId: cfg[0].id, index: index, card: w,
             de: w[0], fr: w[1], en: w[5]
         }));
     });
 
     (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
-        type: 'posverb', kindKey: 'search_kind_verb', source: t('search_src_position'),
+        kindKey: 'search_kind_verb', mode: 'positionsverben', source: t('search_src_position'),
         themeId: positionsverbenTheme.id, index: index, card: v,
         de: v.infinitif, fr: v.traduction, en: v.traduction_en
     }));
@@ -9979,20 +10006,20 @@ function findSearchSuggestions(q){
     return out.slice(0, SEARCH_MAX_SUGGESTIONS).map(x => x.e);
 }
 
-function searchResultHtml(entry, i){
+function searchResultHtml(entry, i, exact){
     const useEn = getUiLang() === 'en';
     const trad = useEn ? (entry.en || entry.fr) : (entry.fr || entry.en);
-    return '<div class="search-result" onclick="toggleSearchResult(' + i + ')">'
+    return '<div class="search-result' + (exact ? ' exact' : '') + '" onclick="openSearchCard(' + i + ')">'
         + '<div class="search-result-head">'
         + '<span class="search-word">' + entry.de + '</span>'
         + '<span class="search-trad">' + (trad || "") + '</span>'
         + '</div>'
         + '<div class="search-meta">'
+        + (exact ? '<span class="search-tag exact">' + t('search_exact') + '</span>' : "")
         + '<span class="search-tag">' + t(entry.kindKey) + '</span>'
         + '<span class="search-tag src">' + entry.source + '</span>'
         + searchStateTag(entry)
         + '</div>'
-        + '<div class="search-details hidden" id="searchDetails' + i + '"></div>'
         + '</div>';
 }
 
@@ -10014,10 +10041,12 @@ function renderWordSearch(rawQuery){
     for(let i = 0; i < all.length; i++){
         const e = all[i];
         if(e.haystack.indexOf(q) === -1) continue;
-        // Le mot allemand qui COMMENCE par la requete passe devant : c'est
-        // presque toujours celui qu'on cherchait.
-        const rank = e.deNorm.indexOf(q) === 0 ? 0 : (e.deNorm.indexOf(q) !== -1 ? 1 : 2);
-        hits.push({ e: e, rank: rank });
+        // Le mot cherche EXACTEMENT (allemand, francais ou anglais) passe devant
+        // et sera mis en evidence ; vient ensuite le mot allemand qui commence
+        // par la requete, puis le reste.
+        const exact = (e.deNorm === q || e.frNorm === q || e.enNorm === q);
+        const rank = exact ? 0 : (e.deNorm.indexOf(q) === 0 ? 1 : (e.deNorm.indexOf(q) !== -1 ? 2 : 3));
+        hits.push({ e: e, rank: rank, exact: exact });
     }
     hits.sort((a, b) => a.rank - b.rank || a.e.de.length - b.e.de.length || a.e.de.localeCompare(b.e.de));
 
@@ -10035,92 +10064,46 @@ function renderWordSearch(rawQuery){
         if(suggestions.length){
             searchResults = suggestions;
             html += '<div class="search-suggest-label">' + t('search_none_suggest') + '</div>'
-                + suggestions.map((e, i) => searchResultHtml(e, i)).join("");
+                + suggestions.map((e, i) => searchResultHtml(e, i, false)).join("");
         }
         box.innerHTML = html;
         return;
     }
 
-    const shown = hits.slice(0, SEARCH_MAX_RESULTS).map(h => h.e);
-    searchResults = shown;
+    const shown = hits.slice(0, SEARCH_MAX_RESULTS);
+    searchResults = shown.map(h => h.e);
     if(pill) pill.textContent = tf(hits.length === 1 ? 'search_count_one' : 'search_count', { n: hits.length });
-    box.innerHTML = shown.map((e, i) => searchResultHtml(e, i)).join("")
+    box.innerHTML = shown.map((h, i) => searchResultHtml(h.e, i, h.exact)).join("")
         + (hits.length > shown.length
             ? '<div class="search-empty">' + tf('search_more', { n: shown.length }) + '</div>'
             : "");
 }
 
-function toggleSearchResult(i){
-    const el = document.getElementById('searchDetails' + i);
+// Ouvre le mot trouve dans la VRAIE carte de flashcard (recto/verso, audio,
+// boutons de revision) plutot que dans un rendu parallele : un second affichage
+// des memes donnees finit toujours par diverger de celui des sessions.
+// Session d'UNE carte : l'evaluer (ou revenir en arriere) ramene a l'accueil,
+// voir handleFlashcardBack().
+function openSearchCard(i){
     const entry = searchResults[i];
-    if(!el || !entry) return;
-    // Details construits a la demande : evite d'enregistrer 60 phrases dans
-    // sentenceRegistry (boutons d'ecoute) a chaque frappe.
-    if(!el.innerHTML) el.innerHTML = renderSearchDetails(entry);
-    el.classList.toggle('hidden');
-}
-
-function renderSearchDetails(entry){
-    const useEn = getUiLang() === 'en';
-    const c = entry.card || {};
-    const pick = (fr, en) => (useEn && en) ? en : (fr || en || "");
-    const sentence = (de, trad) => de
-        ? '<div class="verb-sep"></div>' + de + sentenceSpeakBtnHtml(de, "de")
-            + (trad ? '<br>(' + trad + ')' : "")
-        : "";
-    const tense = (label, de, trad) => de
-        ? '<div class="verb-sep"></div><strong>' + label + ' :</strong> ' + de
-            + sentenceSpeakBtnHtml(de, "de") + (trad ? '<br>(' + trad + ')' : "")
-        : "";
-
-    if(entry.type === 'verb'){
-        let html = buildRektionBadgesHtml(c);
-        if(c.praesens){
-            const p = c.praesens;
-            html += '<strong>PR\u00c4SENS</strong><br>'
-                + ['ich ' + (p.ich || ""), 'du ' + (p.du || ""), 'er/sie/es ' + (p.er_sie_es || ""),
-                   'wir ' + (p.wir || ""), 'ihr ' + (p.ihr || ""), 'sie/Sie ' + (p.sie_Sie || "")].join(" \u00b7 ");
-        }
-        html += tense('Pr\u00e4sens', c.exemple, pick(c.exemple_fr, c.exemple_en));
-        html += tense('Perfekt', c.perfekt, pick(c.perfekt_fr, c.perfekt_en));
-        html += tense('Pr\u00e4teritum', c.praeteritum, pick(c.praeteritum_fr, c.praeteritum_en));
-        html += tense('Konjunktiv II', c.konjunktiv2, pick(c.konjunktiv2_fr, c.konjunktiv2_en));
-        if(c.imperativ){
-            html += '<div class="verb-sep"></div><strong>Imperativ :</strong> du \u2192 ' + c.imperativ.du
-                + ' \u00b7 ihr \u2192 ' + c.imperativ.ihr + ' \u00b7 Sie \u2192 ' + c.imperativ.sie_Sie;
-        }
-        return html;
-    }
-
-    if(entry.type === 'posverb'){
-        let html = '<strong>' + (c.cas || "") + '</strong> \u00b7 '
-            + (useEn ? (c.regularite_en || c.regularite || "") : (c.regularite || ""));
-        html += tense('Pr\u00e4sens', c.exemple, pick(c.exemple_fr, c.exemple_en));
-        html += tense('Perfekt', c.perfekt, pick(c.perfekt_fr, c.perfekt_en));
-        html += tense('Pr\u00e4teritum', c.praeteritum, pick(c.praeteritum_fr, c.praeteritum_en));
-        return html;
-    }
-
-    if(entry.type === 'noun'){
-        const w = c;
-        const article = w[1] || "";
-        const plural = w[2] || "";
-        let html = '<strong>' + (article ? article + ' ' : "") + w[0] + '</strong>';
-        if(plural && plural !== "\u2014") html += ' \u00b7 ' + t('search_plural') + ' : die ' + plural;
-        html += sentence(w[5], pick(w[6], w[7]));
-        return html;
-    }
-
-    if(entry.type === 'grammar'){
-        const cat = useEn ? (c.cas_en || c.cas) : c.cas;
-        return (cat ? '<strong>' + cat + '</strong>' : "")
-            + sentence(c.exemple, pick(c.exemple_fr, c.exemple_en));
-    }
-
-    return sentence(c.exemple, pick(c.exemple_fr, c.exemple_en));
+    if(!entry) return;
+    flashcardMode = entry.mode;
+    currentTheme = { id: entry.themeId, name: entry.source };
+    const item = { word: entry.card, index: entry.index, themeId: entry.themeId };
+    currentCards = [item];
+    currentCardsFull = [item];
+    currentFlashcard = 0;
+    flashcardFromSearch = true;
+    setFlashHeader('search_card_kicker', null);
+    showScreen("flashcards");
+    loadFlashcard();
 }
 
 function showScreen(id){
+    // Tout depart de l'ecran des flashcards annule l'origine "recherche" : sans
+    // cela, une session ouverte plus tard par le chemin normal reviendrait a
+    // tort a l'accueil a la fin.
+    if(id !== 'flashcards') flashcardFromSearch = false;
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
@@ -10953,6 +10936,9 @@ function startRandomMix(level){
 }
 
 function handleFlashcardBack(){
+    // Carte ouverte depuis la recherche : retour a l'accueil, d'ou la recherche
+    // a ete lancee -- pas vers le menu du type de mot, qui n'a pas ete traverse.
+    if(flashcardFromSearch){ flashcardFromSearch = false; goHome(); return; }
     if(flashcardMode === 'verben') openVerbenNiveau();
     else if(flashcardMode === 'adjektive') openAdjektive();
     else if(flashcardMode === 'kasusverben') openKasusInfo();
