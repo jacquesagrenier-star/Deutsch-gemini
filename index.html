@@ -1261,6 +1261,13 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     border:1px solid rgba(239,68,68,.4);
 }
 
+/* Ni juste ni faux : il manque simplement des mots. Une couleur neutre evite
+   de faire passer une reponse incomplete pour une erreur. */
+.feedback.incomplet{
+    background:rgba(232,162,58,.16);
+    border:1px solid rgba(232,162,58,.45);
+}
+
 .feedback-title{
     font-weight:800;
     font-size:18px;
@@ -2498,6 +2505,11 @@ body[data-theme="dark"] .auth-mode-btn.active{
     box-shadow:none;
 }
 
+body[data-theme="dark"] .feedback.incomplet{
+    background:rgba(232,162,58,.20);
+    border-color:rgba(232,162,58,.5);
+}
+
 body[data-theme="dark"] .radar-grid,
 body[data-theme="dark"] .radar-axis{stroke:rgba(255,255,255,.2);}
 body[data-theme="dark"] .ring-bg{stroke:rgba(255,255,255,.2);}
@@ -2724,7 +2736,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v216</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v217</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5414,6 +5426,8 @@ const I18N = {
         rattrapage_reussi: "Bien reconstruit. La phrase reste comptée comme manquée — c'est la frappe qui est évaluée.",
         voice_lang_fr: "Voix française (traductions du mode Écoute)",
         tuiles_level_sub: "{n} phrases tirées de {total}",
+        chunks_manque_un: "Il manque encore un mot.",
+        chunks_manque_n: "Il manque encore {n} mots.",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -6194,6 +6208,8 @@ const I18N = {
         rattrapage_reussi: "Well rebuilt. The sentence still counts as missed — typing is what is graded.",
         voice_lang_fr: "French voice (Listen mode translations)",
         tuiles_level_sub: "{n} sentences drawn from {total}",
+        chunks_manque_un: "One word is still missing.",
+        chunks_manque_n: "{n} words are still missing.",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -13042,7 +13058,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 216;
+const APP_VERSION = 217;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -14584,8 +14600,16 @@ function renderChunkAnswerUi(){
     ).join("");
 }
 
+// Le rappel "il manque des mots" s'efface des qu'on touche a nouveau une tuile :
+// sinon il resterait affiche sous une reponse devenue complete.
+function effacerRappelIncomplet(){
+    const fb = document.getElementById("feedback");
+    if(fb && fb.classList.contains("incomplet")) fb.className = "feedback";
+}
+
 function placeChunk(shuffledIdx){
     if(answered) return;
+    effacerRappelIncomplet();
     const c = chunkShuffled[shuffledIdx];
     if(!c || c.used) return;
     c.used = true;
@@ -14595,6 +14619,7 @@ function placeChunk(shuffledIdx){
 
 function unplaceChunk(builtPos){
     if(answered) return;
+    effacerRappelIncomplet();
     const shuffledIdx = chunkBuilt[builtPos];
     if(shuffledIdx === undefined) return;
     chunkShuffled[shuffledIdx].used = false;
@@ -14707,7 +14732,15 @@ function checkAnswer(){
     const select = document.getElementById("answerSelect");
     let isCorrect;
     if(usingChunks){
-        if(chunkBuilt.length < ex.chunks.length) return; // pas encore tous places
+        const manquants = ex.chunks.length - chunkBuilt.length;
+        if(manquants > 0){
+            const fb = document.getElementById("feedback");
+            fb.className = "feedback show incomplet";
+            fb.innerHTML = `<div class="feedback-title">` +
+                (manquants === 1 ? t("chunks_manque_un") : tf("chunks_manque_n", { n: manquants })) +
+                `</div>`;
+            return;
+        }
         const builtText = chunkBuilt.map(i => chunkShuffled[i].text);
         isCorrect = builtText.every((txt, i) => txt === ex.chunks[i]);
     } else {
