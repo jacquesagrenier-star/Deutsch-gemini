@@ -1411,18 +1411,6 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     color:#576177;
 }
 
-.search-tag.done{
-    background:rgba(16,185,129,.14);
-    border-color:rgba(16,185,129,.32);
-    color:#0f7a57;
-}
-
-.search-tag.due{
-    background:rgba(245,158,11,.14);
-    border-color:rgba(245,158,11,.32);
-    color:#9a6407;
-}
-
 /* Etat vide : enonce le perimetre couvert (A1-B2) plutot qu'un simple "aucun
    resultat", pour qu'une absence se lise comme une limite assumee du programme
    et non comme un trou dans l'outil. */
@@ -2641,7 +2629,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v190</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v191</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4430,9 +4418,6 @@ const I18N = {
         search_src_particle: "Particules",
         search_src_kasus: "Verbes à cas fixe",
         search_src_position: "Verbes de position",
-        search_state_mastered: "Maîtrisé",
-        search_state_due: "À revoir le {date}",
-        search_state_progress: "En cours",
         search_plural: "Pluriel",
         home_daily_goal_label: "🎯 Objectif du jour",
         home_week_zero: "Cette semaine : 0",
@@ -5084,9 +5069,6 @@ const I18N = {
         search_src_particle: "Particles",
         search_src_kasus: "Fixed-case verbs",
         search_src_position: "Position verbs",
-        search_state_mastered: "Mastered",
-        search_state_due: "Review on {date}",
-        search_state_progress: "In progress",
         search_plural: "Plural",
         home_daily_goal_label: "🎯 Daily goal",
         home_week_zero: "This week: 0",
@@ -9818,6 +9800,16 @@ function normalizeSearch(str){
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
+// Sens portes par une traduction : "conclure, verrouiller" -> [conclure, verrouiller].
+// Sert a reconnaitre deux fiches du MEME mot qui enseignent la MEME chose
+// ("conclure, verrouiller" et "conclure, terminer") et a les fusionner, sans
+// fusionner celles qui enseignent autre chose (Rezept = recette / ordonnance).
+function searchSenseTokens(str){
+    return normalizeSearch(str).split(/[,;\/]/)
+        .map(x => x.replace(/\(.*?\)/g, "").trim())
+        .filter(Boolean);
+}
+
 function pushSearchEntry(list, entry){
     entry.haystack = normalizeSearch([entry.de, entry.fr, entry.en].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
@@ -9825,6 +9817,11 @@ function pushSearchEntry(list, entry){
     // correspondance EXACTE a chaque frappe sans re-normaliser 2857 entrees.
     entry.frNorm = normalizeSearch(entry.fr);
     entry.enNorm = normalizeSearch(entry.en);
+    entry.senses = searchSenseTokens(entry.fr);
+    // prio 0 = cours principal (Verbes, Adjectifs), 1 = themes de vocabulaire,
+    // 2 = chapitres VHS, 3 = themes de grammaire. En cas de doublon, c'est la
+    // fiche de plus petite prio qui est conservee.
+    if(entry.prio === undefined) entry.prio = 1;
     list.push(entry);
 }
 
@@ -9844,12 +9841,12 @@ function buildSearchIndex(){
                 de: w[0], fr: w[3], en: w[4]
             }));
             (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
-                kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben',
+                kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben', prio: 2,
                 themeId: lv.id + '__verben', index: index, card: v,
                 de: v.infinitif, fr: v.traduction, en: v.traduction_en
             }));
             (lv.adjektive || []).forEach((a, index) => pushSearchEntry(list, {
-                kindKey: 'search_kind_adj', source: src, mode: 'vhskapiteladjektive',
+                kindKey: 'search_kind_adj', source: src, mode: 'vhskapiteladjektive', prio: 2,
                 themeId: lv.id + '__adjektive', index: index, card: a,
                 de: a[0], fr: a[1], en: a[5]
             }));
@@ -9857,7 +9854,7 @@ function buildSearchIndex(){
     });
 
     (verbeTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
-        kindKey: 'search_kind_verb', mode: 'verben',
+        kindKey: 'search_kind_verb', mode: 'verben', prio: 0,
         source: (t('orb_verben_title') + " \u00b7 " + (v.niveau || "")).trim(),
         themeId: verbeTheme.id, index: index, card: v,
         de: v.infinitif, fr: v.traduction, en: v.traduction_en
@@ -9865,7 +9862,7 @@ function buildSearchIndex(){
 
     // adjectif.json : [mot, traduction, exemple, niveau, exemple_fr, en, exemple_en]
     (adjektiveTheme.words || []).forEach((a, index) => pushSearchEntry(list, {
-        kindKey: 'search_kind_adj', mode: 'adjektive',
+        kindKey: 'search_kind_adj', mode: 'adjektive', prio: 0,
         source: (t('orb_adjektive_title') + " \u00b7 " + (a[3] || "")).trim(),
         themeId: adjektiveTheme.id, index: index, card: a,
         de: a[0], fr: a[1], en: a[5]
@@ -9881,14 +9878,14 @@ function buildSearchIndex(){
         [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben']
     ].forEach(cfg => {
         (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
-            kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3],
+            kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3], prio: 3,
             themeId: cfg[0].id, index: index, card: w,
             de: w[0], fr: w[1], en: w[5]
         }));
     });
 
     (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
-        kindKey: 'search_kind_verb', mode: 'positionsverben', source: t('search_src_position'),
+        kindKey: 'search_kind_verb', mode: 'positionsverben', prio: 3, source: t('search_src_position'),
         themeId: positionsverbenTheme.id, index: index, card: v,
         de: v.infinitif, fr: v.traduction, en: v.traduction_en
     }));
@@ -9939,18 +9936,6 @@ function scheduleWordSearch(){
 function runWordSearch(){
     const input = document.getElementById('wordSearchInput');
     renderWordSearch(input ? input.value : "");
-}
-
-function searchStateTag(entry){
-    const st = getWordState(entry.themeId, entry.index) || {};
-    if(st.mastered) return '<span class="search-tag done">' + t('search_state_mastered') + '</span>';
-    if(st.due && st.due > Date.now()){
-        const d = new Date(st.due).toLocaleDateString(getUiLang() === 'en' ? 'en-GB' : 'fr-FR',
-            { day: '2-digit', month: '2-digit' });
-        return '<span class="search-tag due">' + tf('search_state_due', { date: d }) + '</span>';
-    }
-    if(st.reviews) return '<span class="search-tag due">' + t('search_state_progress') + '</span>';
-    return "";
 }
 
 // Distance de Levenshtein bornee : sert uniquement a proposer des mots proches
@@ -10020,7 +10005,10 @@ function findSearchSuggestions(q){
 // dans la liste : sur une ligne unique elle n'apprend rien et alourdit, mais
 // sans elle deux homonymes seraient deux lignes identiques impossibles a
 // distinguer (helfen est a la fois dans Verbes A1 et dans Verbes a cas fixe).
-function searchResultHtml(entry, i, exact, showSource){
+// Une ligne porte le strict necessaire : le mot, sa traduction, la nature du mot
+// et, le cas echeant, la pastille "correspondance exacte". Ni provenance ni etat
+// de progression : sur une liste de resultats, c'est du bruit.
+function searchResultHtml(entry, i, exact){
     const useEn = getUiLang() === 'en';
     const trad = useEn ? (entry.en || entry.fr) : (entry.fr || entry.en);
     return '<div class="search-result' + (exact ? ' exact' : '') + '" onclick="openSearchCard(' + i + ')">'
@@ -10031,10 +10019,36 @@ function searchResultHtml(entry, i, exact, showSource){
         + '<div class="search-meta">'
         + (exact ? '<span class="search-tag exact">' + t('search_exact') + '</span>' : "")
         + '<span class="search-tag">' + t(entry.kindKey) + '</span>'
-        + (showSource ? '<span class="search-tag src">' + entry.source + '</span>' : "")
-        + searchStateTag(entry)
         + '</div>'
         + '</div>';
+}
+
+// Fusionne les fiches du meme mot allemand qui enseignent le meme sens (helfen
+// est a la fois dans Verbes A1 et dans Verbes a cas fixe : une seule ligne
+// suffit, celle du cours principal, cf. le tri par prio). Deux fiches dont
+// aucun sens ne se recoupe sont conservees toutes les deux : ce sont des mots
+// differents qui s'ecrivent pareil -- Rezept (recette / ordonnance), sauer
+// (fache / acide), zu (ferme / vers / trop). Les fondre ferait disparaitre du
+// vocabulaire sans que rien ne le signale.
+function dedupeSearchHits(hits){
+    const kept = [];
+    const parMot = {};
+    for(let i = 0; i < hits.length; i++){
+        const h = hits[i];
+        const senses = h.e.senses || [];
+        const deja = parMot[h.e.de];
+        if(!deja){
+            parMot[h.e.de] = [senses];
+            kept.push(h);
+            continue;
+        }
+        const memeSens = deja.some(prev => prev.some(a =>
+            senses.some(b => a === b || a.indexOf(b) !== -1 || b.indexOf(a) !== -1)));
+        if(memeSens) continue;
+        deja.push(senses);
+        kept.push(h);
+    }
+    return kept;
 }
 
 function renderWordSearch(rawQuery){
@@ -10062,7 +10076,10 @@ function renderWordSearch(rawQuery){
         const rank = exact ? 0 : (e.deNorm.indexOf(q) === 0 ? 1 : (e.deNorm.indexOf(q) !== -1 ? 2 : 3));
         hits.push({ e: e, rank: rank, exact: exact });
     }
-    hits.sort((a, b) => a.rank - b.rank || a.e.de.length - b.e.de.length || a.e.de.localeCompare(b.e.de));
+    // prio avant la longueur : a pertinence egale, c'est la fiche du cours
+    // principal qui remonte -- et donc celle que la fusion ci-dessous conserve.
+    hits.sort((a, b) => a.rank - b.rank || a.e.prio - b.e.prio
+        || a.e.de.length - b.e.de.length || a.e.de.localeCompare(b.e.de));
 
     if(!hits.length){
         searchResults = [];
@@ -10078,20 +10095,18 @@ function renderWordSearch(rawQuery){
         if(suggestions.length){
             searchResults = suggestions;
             html += '<div class="search-suggest-label">' + t('search_none_suggest') + '</div>'
-                + suggestions.map((e, i) => searchResultHtml(e, i, false, false)).join("");
+                + suggestions.map((e, i) => searchResultHtml(e, i, false)).join("");
         }
         box.innerHTML = html;
         return;
     }
 
-    const shown = hits.slice(0, SEARCH_MAX_RESULTS);
+    const unique = dedupeSearchHits(hits);
+    const shown = unique.slice(0, SEARCH_MAX_RESULTS);
     searchResults = shown.map(h => h.e);
-    if(pill) pill.textContent = tf(hits.length === 1 ? 'search_count_one' : 'search_count', { n: hits.length });
-    // Homonymes presents dans la liste affichee : eux seuls montrent leur provenance.
-    const homonymes = {};
-    shown.forEach(h => { homonymes[h.e.de] = (homonymes[h.e.de] || 0) + 1; });
-    box.innerHTML = shown.map((h, i) => searchResultHtml(h.e, i, h.exact, homonymes[h.e.de] > 1)).join("")
-        + (hits.length > shown.length
+    if(pill) pill.textContent = tf(unique.length === 1 ? 'search_count_one' : 'search_count', { n: unique.length });
+    box.innerHTML = shown.map((h, i) => searchResultHtml(h.e, i, h.exact)).join("")
+        + (unique.length > shown.length
             ? '<div class="search-empty">' + tf('search_more', { n: shown.length }) + '</div>'
             : "");
 }
