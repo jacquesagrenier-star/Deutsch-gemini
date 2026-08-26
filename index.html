@@ -2681,7 +2681,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v205</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v206</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -9798,11 +9798,7 @@ function startVerbeLevel(level){
         .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
         .filter(it => it.word.niveau === level);
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
         showInfoToast(t('alert_all_verbs_mastered'));
         return;
@@ -9821,11 +9817,7 @@ function startVerbeRandomMix(){
     shuffleArray(pool);
 
     const now = Date.now();
-    let unmastered = pool.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(unmastered.length === 0) unmastered = pool.filter(item => !getWordState(item.themeId, item.index).mastered);
+    let unmastered = cartesDeSession(pool);
     if(unmastered.length === 0) unmastered = pool;
 
     currentCardsFull = pool;
@@ -9951,11 +9943,7 @@ function startAdjektiveLevel(level){
         .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
         .filter(it => it.word[3] === level);
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
         showInfoToast(t('alert_all_adj_mastered'));
         return;
@@ -9974,11 +9962,7 @@ function startAdjektiveRandomMix(){
     shuffleArray(pool);
 
     const now = Date.now();
-    let unmastered = pool.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(unmastered.length === 0) unmastered = pool.filter(item => !getWordState(item.themeId, item.index).mastered);
+    let unmastered = cartesDeSession(pool);
     if(unmastered.length === 0) unmastered = pool;
 
     currentCardsFull = pool;
@@ -10294,11 +10278,7 @@ function startAdjektiveFlashcards(){
     const now = Date.now();
     const allItems = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
@@ -10959,7 +10939,7 @@ function startKasusVerben(){
     currentTheme = kasusVerbTheme;
     const allItems = kasusVerbTheme.words.map((word, index) => ({ word, index, themeId: kasusVerbTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_kasus_verben', 'op_kasus_o4_t');
@@ -10985,7 +10965,7 @@ function startPraepVokabular(){
     currentTheme = praepTheme;
     const allItems = praepTheme.words.map((word, index) => ({ word, index, themeId: praepTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_praep_vocab', 'orb_praep_title');
@@ -10998,7 +10978,7 @@ function startPositionsverbenVokabular(){
     currentTheme = positionsverbenTheme;
     const allItems = positionsverbenTheme.words.map((word, index) => ({ word, index, themeId: positionsverbenTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_position_vocab', 'op_praep_o5_t');
@@ -11098,7 +11078,7 @@ function startRedewendungenVokabular(level, kategorie){
     if(kategorie && kategorie !== "ALL") allItems = allItems.filter(it => (it.word[9] || "") === kategorie);
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_redewendungen_vocab', 'orb_redewendungen_title');
@@ -11172,7 +11152,7 @@ function startAdverbienVokabular(level, kategorie){
     }
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_adverbien_vocab', 'orb_adverbien_title');
@@ -11193,7 +11173,7 @@ function startKonjunktionenVokabular(){
     currentTheme = konjunktionenTheme;
     const allItems = konjunktionenTheme.words.map((word, index) => ({ word, index, themeId: konjunktionenTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_konjunktionen_vocab', 'orb_konjunktionen_title');
@@ -11244,7 +11224,7 @@ function startPartikelnVokabular(){
     currentTheme = partikelnTheme;
     const allItems = partikelnTheme.words.map((word, index) => ({ word, index, themeId: partikelnTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
     setFlashHeader('kicker_partikeln_vocab', 'orb_partikeln_title');
@@ -11575,11 +11555,7 @@ function startTheme(themeId, level, returnScreen){
     const now = Date.now();
     const allItems = levelData.words.map((word, index) => ({ word, index, themeId: levelData.id }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
         showInfoToast(t('alert_all_theme_words_mastered'));
         return;
@@ -11604,11 +11580,7 @@ function startThemeVerben(themeId, level, returnScreen){
     const now = Date.now();
     const allItems = levelData.verben.map((word, index) => ({ word, index, themeId: verbenThemeId }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
         showInfoToast(t('alert_all_theme_words_mastered'));
         return;
@@ -11633,11 +11605,7 @@ function startThemeAdjektive(themeId, level, returnScreen){
     const now = Date.now();
     const allItems = levelData.adjektive.map((word, index) => ({ word, index, themeId: adjThemeId }));
     currentCardsFull = allItems;
-    currentCards = allItems.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(currentCards.length === 0) currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
         showInfoToast(t('alert_all_theme_words_mastered'));
         return;
@@ -11665,11 +11633,7 @@ function startRandomMix(level){
     shuffleArray(pool);
 
     const now = Date.now();
-    let unmastered = pool.filter(item => {
-        const state = getWordState(item.themeId, item.index);
-        return !state.mastered && (!state.due || state.due <= now);
-    });
-    if(unmastered.length === 0) unmastered = pool.filter(item => !getWordState(item.themeId, item.index).mastered);
+    let unmastered = cartesDeSession(pool);
     if(unmastered.length === 0) unmastered = pool;
 
     currentCardsFull = pool;
@@ -12511,6 +12475,43 @@ function speakRegisteredSentence(idx){
 // fixé à 1 jour indéfiniment. Repart de zéro si l'utilisateur retombe sur
 // "2 min" ou "10 min" (signe qu'il ne savait plus le mot).
 const SRS_DAILY_LADDER_DAYS = [1, 3, 7, 16, 35];
+
+// ============ Selection des cartes d'une session (repetition espacee) ============
+// Une seule porte d'entree pour TOUTES les categories. Auparavant chaque
+// start...() refaisait ce filtrage a la main, et les dix versions ne se
+// valaient pas : celles des adverbes, expressions, prepositions, particules,
+// conjonctions et verbes de position ne lisaient jamais la date de revision.
+// Une carte programmee pour demain y revenait donc immediatement, et le bouton
+// "revoir demain" n'avait aucun effet. Passer par une fonction unique rend
+// l'oubli impossible pour une categorie ajoutee plus tard.
+function cartesEchues(items){
+    const maintenant = Date.now();
+    return items.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        return !st.mastered && (!st.due || st.due <= maintenant);
+    });
+}
+
+// Cartes REPORTEES dont l'echeance est passee. Distinct de cartesEchues() :
+// on exige ici une date explicitement fixee par l'utilisateur ("revoir dans
+// 2 min"), sinon toute carte jamais programmee serait consideree comme due et
+// la session tournerait en boucle a la fin de chaque paquet.
+function cartesRevenues(items){
+    const maintenant = Date.now();
+    return items.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        return !st.mastered && st.due && st.due <= maintenant;
+    });
+}
+
+// Cartes a proposer a l'ouverture : celles qui sont dues ; a defaut, toutes
+// celles qui ne sont pas encore maitrisees (pour ne jamais ouvrir une session
+// vide alors qu'il reste des mots a apprendre).
+function cartesDeSession(items){
+    const dues = cartesEchues(items);
+    if(dues.length) return dues;
+    return items.filter(it => !getWordState(it.themeId, it.index).mastered);
+}
 
 function scheduleReview(minutes){
     if(!currentCards.length) return;
@@ -13395,6 +13396,19 @@ function nextFlashcard(){
     updateVerbDueBanner();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
+        // Fin du paquet : les cartes mises en attente ("revoir dans 2 min",
+        // "dans 10 min") sont-elles redevenues dues entre-temps ? Sans ce
+        // rebalayage, scheduleReview() enregistrait bien une date mais rien ne
+        // ramenait jamais la carte : currentCards etait fige a l'ouverture de
+        // la session, donc le bouton "2 min" ne servait a rien nulle part --
+        // pas seulement dans les categories recentes.
+        const revenues = cartesRevenues(currentCardsFull || []);
+        if(revenues.length){
+            currentCards = revenues;
+            currentFlashcard = 0;
+            loadFlashcard();
+            return;
+        }
         showInfoToast(t('alert_session_ended_saved'));
         handleFlashcardBack();
         return;
