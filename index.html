@@ -2747,7 +2747,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v212</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v213</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5438,6 +5438,7 @@ const I18N = {
         rattrapage_intro: "Reconstruis-la avec les mots ci-dessous.",
         rattrapage_hint: "Touche les mots dans l'ordre. Un mot placé par erreur : touche-le pour le renvoyer.",
         rattrapage_reussi: "Bien reconstruit. La phrase reste comptée comme manquée — c'est la frappe qui est évaluée.",
+        voice_lang_fr: "Voix française (traductions du mode Écoute)",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -6219,6 +6220,7 @@ const I18N = {
         rattrapage_intro: "Rebuild it with the words below.",
         rattrapage_hint: "Tap the words in order. Tapped one by mistake? Tap it again to send it back.",
         rattrapage_reussi: "Well rebuilt. The sentence still counts as missed — typing is what is graded.",
+        voice_lang_fr: "French voice (Listen mode translations)",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -12532,9 +12534,12 @@ function testVoice(prefix){
     const voix = pickVoice(prefix);
     if(!voix) return;
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(prefix === 'de'
-        ? "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch."
-        : "Good morning! I learn a little English every day.");
+    const extraits = {
+        de: "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch.",
+        en: "Good morning! I learn a little English every day.",
+        fr: "Bonjour ! J'apprends un peu d'allemand chaque jour."
+    };
+    const u = new SpeechSynthesisUtterance(extraits[prefix] || extraits.en);
     u.voice = voix;
     u.lang = voix.lang;
     u.rate = 0.9;
@@ -12551,7 +12556,8 @@ function renderVoiceSettings(){
         box.innerHTML = `<p style="color:#576177;">${t('voice_unsupported')}</p>`;
         return;
     }
-    const langues = [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
+    const langues = [['de', t('voice_lang_de')], ['en', t('voice_lang_en')],
+                     ['fr', t('voice_lang_fr')]];
     box.innerHTML = langues.map(([prefix, libelle]) => {
         const dispo = voicesForLang(prefix);
         if(!dispo.length){
@@ -13065,7 +13071,7 @@ document.addEventListener("visibilitychange", () => {
 // en v208 alors que v209 etait publiee depuis un moment). L'app compare donc
 // sa propre version a celle publiee et le dit, plutot que de laisser croire
 // que la nouveaute n'a pas ete livree.
-const APP_VERSION = 212;
+const APP_VERSION = 213;
 const VERSION_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/version.json";
 const VERSION_INTERVALLE_MS = 5 * 60 * 1000;
 
