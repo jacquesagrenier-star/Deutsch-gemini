@@ -287,6 +287,30 @@ def verifier_retours_flashcards(r, source):
 
 # --------------------------------------------------------------------------
 
+def verifier_version(r, source):
+    """Le numero de version vit a trois endroits : l'etiquette affichee, la
+    constante APP_VERSION et version.json, que l'app distante consulte pour
+    savoir si un appareil est reste en arriere. Les trois doivent concorder --
+    sinon soit l'etiquette ment, soit personne n'est prevenu de la mise a jour.
+    """
+    badge = re.search(r'class="subtitle-version">v(\d+)<', source)
+    const = re.search(r"const APP_VERSION = (\d+);", source)
+    fichier = charger("version.json")
+    if not badge:
+        return r.echec("version", "etiquette de version introuvable dans index.html")
+    if not const:
+        return r.echec("version", "const APP_VERSION introuvable dans index.html")
+    if fichier is None:
+        return r.echec("version", "version.json introuvable")
+    n_badge, n_const = int(badge.group(1)), int(const.group(1))
+    n_fichier = int(fichier.get("version", 0))
+    r.controle(3)
+    if not (n_badge == n_const == n_fichier):
+        r.echec("version", "numeros discordants -- etiquette v%d, APP_VERSION %d, version.json %d"
+                % (n_badge, n_const, n_fichier))
+    print("   version         : v%d (etiquette, APP_VERSION et version.json concordent)" % n_badge)
+
+
 def main():
     if not os.path.exists(INDEX):
         print("index.html introuvable dans %s" % RACINE)
@@ -308,6 +332,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_version(r, source)
 
     print("\n" + "-" * 62)
     if r.avertissements:
