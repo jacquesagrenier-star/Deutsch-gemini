@@ -2517,6 +2517,41 @@ body[data-theme="dark"] .theme-switch-btn.active{
 body[data-theme="dark"] [style*="#576177"]{color:#B7BBCB !important;}
 body[data-theme="dark"] [style*="#1e2433"]{color:#F2F2F6 !important;}
 body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
+
+/* ===== Mode Écoute ===== */
+.ecoute-stage{ text-align:center; padding:26px 18px; }
+.ecoute-ligne{ opacity:.32; transition:opacity .25s ease; overflow-wrap:anywhere; }
+.ecoute-ligne.actif{ opacity:1; }
+.ecoute-mot{ font-size:34px; font-weight:800; color:#1e2433; line-height:1.15; margin-top:4px; }
+.ecoute-trad{ font-size:19px; color:#576177; font-weight:600; }
+.ecoute-phrase{ font-size:17px; color:#1e2433; line-height:1.45; margin-top:20px; }
+.ecoute-phrase-fr{ font-size:15px; color:#576177; line-height:1.45; margin-top:8px; }
+.ecoute-etat{ font-size:12px; color:#767f8f; margin-top:16px; min-height:17px; letter-spacing:.02em; }
+.ecoute-controles{ display:flex; gap:14px; justify-content:center; align-items:center; margin-top:18px; }
+.ecoute-btn{
+    width:54px; height:54px; border-radius:50%; border:1.5px solid #d8dde8;
+    background:#ffffff; color:#3b6fe0; display:flex; align-items:center;
+    justify-content:center; cursor:pointer; padding:0;
+}
+.ecoute-btn svg{ width:24px; height:24px; fill:currentColor; }
+.ecoute-btn.principal{
+    width:70px; height:70px; background:#3b6fe0; border-color:#3b6fe0; color:#ffffff;
+    box-shadow:0 6px 16px rgba(59,111,224,.32);
+}
+.ecoute-btn.principal svg{ width:30px; height:30px; }
+.ecoute-note{ font-size:12px; color:#767f8f; line-height:1.5; margin-top:14px; text-align:center; }
+body[data-theme="dark"] .ecoute-mot,
+body[data-theme="dark"] .ecoute-phrase{ color:#F2F2F6; }
+body[data-theme="dark"] .ecoute-trad,
+body[data-theme="dark"] .ecoute-phrase-fr,
+body[data-theme="dark"] .ecoute-etat,
+body[data-theme="dark"] .ecoute-note{ color:#B7BBCB; }
+body[data-theme="dark"] .ecoute-btn{
+    background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); color:#8fb0f5;
+}
+body[data-theme="dark"] .ecoute-btn.principal{
+    background:#3b6fe0; border-color:#3b6fe0; color:#ffffff;
+}
 </style>
 </head>
 
@@ -2688,7 +2723,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v208</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v209</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4249,6 +4284,77 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 
 </section>
 
+<!-- ================= ÉCOUTE ================= -->
+
+<section id="ecouteMenu" class="screen">
+    <button class="back" onclick="ecouteMenuRetour()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="ecouteMenuKicker">Écoute</div>
+            <h2 data-i18n="ecoute_menu_title">Écouter et répéter</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <p style="color:#576177; line-height:1.5;" data-i18n="ecoute_menu_desc">Une séance mains libres : l'app dit le mot, laisse un silence pour que tu le répètes à voix haute, puis lit la phrase d'exemple. Garde l'écran allumé — la voix se tait si le téléphone se verrouille.</p>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="ecoute_sens_title">Ordre des langues</strong>
+        <div id="ecouteSensBar" class="filters-bar" style="margin-top:10px;"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="ecoute_level_title">Choisir un niveau</strong>
+        <div id="ecouteLevelBar" class="filters-bar" style="margin-top:10px;"></div>
+    </div>
+</section>
+
+<section id="ecoute" class="screen">
+    <button class="back" onclick="quitterEcoute()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="ecouteKicker">Écoute</div>
+            <h2 data-i18n="ecoute_title">Écouter et répéter</h2>
+        </div>
+        <div class="title-row-pills">
+            <div class="pill" id="ecouteCounter">1 / 10</div>
+        </div>
+    </div>
+
+    <div class="card ecoute-stage">
+        <div id="ecouteLigneConnu" class="ecoute-ligne ecoute-trad"></div>
+        <div id="ecouteLigneCible" class="ecoute-ligne ecoute-mot"></div>
+        <div id="ecouteLignePhraseCible" class="ecoute-ligne ecoute-phrase"></div>
+        <div id="ecouteLignePhraseConnu" class="ecoute-ligne ecoute-phrase-fr"></div>
+        <div id="ecouteEtat" class="ecoute-etat"></div>
+    </div>
+
+    <div class="ecoute-controles">
+        <button class="ecoute-btn" onclick="ecoutePrecedent()" aria-label="Précédent">
+            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button class="ecoute-btn principal" id="ecoutePlayBtn" onclick="ecouteBasculer()" aria-label="Lecture">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="ecoute-btn" onclick="ecouteSuivant()" aria-label="Suivant">
+            <svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+        </button>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+        <strong data-i18n="ecoute_reglages_title">Réglages</strong>
+        <div style="font-size:12px; color:#576177; margin-top:12px;" data-i18n="ecoute_vitesse_label">Vitesse de la voix</div>
+        <div id="ecouteVitesseBar" class="filters-bar" style="margin-top:6px;"></div>
+        <div style="font-size:12px; color:#576177; margin-top:14px;" data-i18n="ecoute_pause_label">Temps laissé pour répéter</div>
+        <div id="ecoutePauseBar" class="filters-bar" style="margin-top:6px;"></div>
+    </div>
+
+    <p class="ecoute-note" data-i18n="ecoute_note">L'écoute ne modifie pas ta progression : c'est une révision passive, pas un test.</p>
+</section>
+
 <!-- ================= EXERCISE ================= -->
 
 <section id="exercise" class="screen">
@@ -4909,7 +5015,7 @@ const I18N = {
 
         op_verben_title: "Verbes", op_verben_sub: "Conjugaison & usage",
         op_verben_o1_t: "Réviser mes verbes",
-        op_verben_o2_d: "A1 · A2 · B1 (B2 à venir)",
+        op_verben_o2_d: "A1 · A2 · B1 · B2",
         op_zuinf_title: "Zu + infinitif", op_zuinf_sub: "Faut-il « zu » ou pas ?",
         op_zuinf_o1_t: "Comprendre la règle",
         op_zuinf_o2_t: "M'entraîner", op_zuinf_o2_d: "Zu ou pas zu ?",
@@ -5253,6 +5359,28 @@ const I18N = {
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Conjonctions",
         orb_konjunktionen_sub: "und · weil · aber",
+        op_ecoute_t: "Écouter et répéter", op_ecoute_d: "séance audio, mains libres",
+        ecoute_menu_title: "Écouter et répéter",
+        ecoute_menu_desc: "Une séance mains libres : l'app dit le mot, laisse un silence pour que tu le répètes à voix haute, puis lit la phrase d'exemple. Garde l'écran allumé — la voix se tait si le téléphone se verrouille.",
+        ecoute_sens_title: "Ordre des langues",
+        ecoute_sens_connu_cible: "Traduction d'abord",
+        ecoute_sens_connu_cible_d: "tu produis l'allemand de mémoire",
+        ecoute_sens_cible_connu: "Allemand d'abord",
+        ecoute_sens_cible_connu_d: "tu reconnais, puis tu vérifies",
+        ecoute_level_title: "Choisir un niveau",
+        ecoute_level_all: "Tous",
+        ecoute_title: "Écouter et répéter",
+        ecoute_reglages_title: "Réglages",
+        ecoute_vitesse_label: "Vitesse de la voix",
+        ecoute_pause_label: "Temps laissé pour répéter",
+        ecoute_vitesse_lente: "Lente", ecoute_vitesse_normale: "Normale", ecoute_vitesse_rapide: "Rapide",
+        ecoute_pause_courte: "Court", ecoute_pause_moyenne: "Moyen", ecoute_pause_longue: "Long",
+        ecoute_etat_repete: "À toi — répète à voix haute",
+        ecoute_etat_pause: "En pause",
+        ecoute_etat_fin: "Séance terminée",
+        ecoute_terminee: "Séance d'écoute terminée.",
+        ecoute_note: "L'écoute ne modifie pas ta progression : c'est une révision passive, pas un test.",
+        ecoute_aucune_voix: "Aucune voix n'est installée sur cet appareil pour cette langue.",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -5655,7 +5783,7 @@ const I18N = {
 
         op_verben_title: "Verbs", op_verben_sub: "Conjugation & usage",
         op_verben_o1_t: "Review my verbs",
-        op_verben_o2_d: "A1 · A2 · B1 (B2 coming soon)",
+        op_verben_o2_d: "A1 · A2 · B1 · B2",
         op_zuinf_title: "Zu + infinitive", op_zuinf_sub: "Do you need « zu » or not?",
         op_zuinf_o1_t: "Understand the rule",
         op_zuinf_o2_t: "Practice", op_zuinf_o2_d: "Zu or no zu?",
@@ -5999,6 +6127,28 @@ const I18N = {
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Conjunctions",
         orb_konjunktionen_sub: "und · weil · aber",
+        op_ecoute_t: "Listen and repeat", op_ecoute_d: "hands-free audio session",
+        ecoute_menu_title: "Listen and repeat",
+        ecoute_menu_desc: "A hands-free session: the app says the word, leaves a silence for you to repeat it out loud, then reads the example sentence. Keep the screen on — the voice stops if the phone locks.",
+        ecoute_sens_title: "Language order",
+        ecoute_sens_connu_cible: "Translation first",
+        ecoute_sens_connu_cible_d: "you produce the German from memory",
+        ecoute_sens_cible_connu: "German first",
+        ecoute_sens_cible_connu_d: "you recognise, then you check",
+        ecoute_level_title: "Choose a level",
+        ecoute_level_all: "All",
+        ecoute_title: "Listen and repeat",
+        ecoute_reglages_title: "Settings",
+        ecoute_vitesse_label: "Voice speed",
+        ecoute_pause_label: "Time given to repeat",
+        ecoute_vitesse_lente: "Slow", ecoute_vitesse_normale: "Normal", ecoute_vitesse_rapide: "Fast",
+        ecoute_pause_courte: "Short", ecoute_pause_moyenne: "Medium", ecoute_pause_longue: "Long",
+        ecoute_etat_repete: "Your turn — repeat out loud",
+        ecoute_etat_pause: "Paused",
+        ecoute_etat_fin: "Session finished",
+        ecoute_terminee: "Listening session finished.",
+        ecoute_note: "Listening does not change your progress: it is passive review, not a test.",
+        ecoute_aucune_voix: "No voice is installed on this device for that language.",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -10016,6 +10166,7 @@ const ORB_ICONS = {
     ale: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="#3b6fe0" stroke="none"/><circle cx="15" cy="9" r="1" fill="#3b6fe0" stroke="none"/><circle cx="9" cy="15" r="1" fill="#3b6fe0" stroke="none"/><circle cx="15" cy="15" r="1" fill="#3b6fe0" stroke="none"/><circle cx="12" cy="12" r="1" fill="#3b6fe0" stroke="none"/></svg>',
     exercice: '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>',
     carte: '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>',
+    casque: '<svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg>',
     bientot: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>'
 };
 
@@ -10027,7 +10178,8 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_verben_o1_t"), desc:t("op_due_desc"), primary:true, action:"startVerbeDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:t("op_verben_o2_d"), action:"openVerbenNiveau" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
-                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" }
+                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" },
+                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteVerben" }
             ]
         };
     }
@@ -10047,7 +10199,8 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_nomen_o1_t"), desc:t("op_due_desc"), primary:true, action:"startDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:t("op_4_levels"), action:"openNomenNiveau" },
                 { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
-                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" }
+                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
+                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteNomen" }
             ]
         };
     }
@@ -10058,7 +10211,8 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_adjektive_o1_t"), desc:t("op_due_desc"), primary:true, action:"startAdjektiveDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:t("op_4_levels"), action:"openAdjektive" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix" },
-                { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination" }
+                { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination" },
+                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteAdjektive" }
             ]
         };
     }
@@ -10088,7 +10242,8 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:t("op_adverbien_o2_d"), action:"startAdverbienNuance" },
-                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" }
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" },
+                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteAdverbien" }
             ]
         };
     }
@@ -10708,6 +10863,10 @@ function showScreen(id){
     // cela, une session ouverte plus tard par le chemin normal reviendrait a
     // tort a l'accueil a la fin.
     if(id !== 'flashcards') flashcardFromSearch = false;
+    // Quitter l'ecran d'ecoute par n'importe quel chemin (Retour, accueil,
+    // reglages) doit couper la voix : sans cette garde, la seance continue
+    // de parler par-dessus l'ecran suivant.
+    if(id !== 'ecoute') arreterEcoute();
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
@@ -12385,6 +12544,436 @@ function buildRektionBadgesHtml(card){
 // exactement ce que loadFlashcard() a décidé d'afficher (allemand ou anglais
 // selon la direction ET l'état de la bascule recto/verso), donc toujours
 // cohérent avec ce que l'utilisateur voit, sans dupliquer cette logique ici.
+// ==================== Mode Écoute ====================
+// Séance audio inspirée de Pimsleur : on entend le mot, on dispose d'un silence
+// pour le répéter à voix haute, puis on entend la phrase d'exemple et sa
+// traduction. Tout passe par la voix du navigateur (speechSynthesis) : aucun
+// fichier audio n'est stocké, il suffit d'indiquer la langue de l'utterance
+// pour obtenir une voix française, allemande ou anglaise.
+//
+// Limite connue et assumée : speechSynthesis se tait dès que l'écran se
+// verrouille ou que Safari passe en arrière-plan. Ce mode est donc conçu pour
+// être utilisé écran allumé -- wakeLock, quand il existe, empêche la mise en
+// veille pendant la séance. Une vraie écoute poche fermée demanderait des
+// fichiers audio pré-générés joués comme de la musique, ce que ce mode ne fait
+// volontairement pas.
+
+const ECOUTE_VITESSES = [0.7, 0.85, 1.0];
+const ECOUTE_PAUSES = [0.6, 1, 1.6];
+const ECOUTE_CLE_REGLAGES = "deutschAI_ecoute";
+const ECOUTE_LIGNES = ["ecouteLigneConnu", "ecouteLigneCible",
+                       "ecouteLignePhraseCible", "ecouteLignePhraseConnu"];
+const ECOUTE_TITRES = {
+    nomen: "op_nomen_title", verben: "op_verben_title",
+    adjektive: "op_adjektive_title", adverbien: "op_adverbien_title"
+};
+
+let ecouteCategorie = "nomen";
+let ecouteCartes = [];
+let ecouteIndex = 0;
+let ecouteEtapes = [];
+let ecouteEtape = 0;
+let ecouteJoue = false;
+let ecouteMinuteur = null;
+let ecouteWakeLock = null;
+let ecouteSens = "connu-cible";
+let ecouteVitesse = 0.85;
+let ecoutePauseFacteur = 1;
+// Jeton de séquence : cancel() déclenche aussi onend sur l'utterance annulée.
+// Sans ce garde-fou, une utterance coupée ferait avancer la séquence en double
+// et deux voix finiraient par se chevaucher.
+let ecouteJeton = 0;
+
+function ecouteReglagesCharges(){
+    try{ return JSON.parse(localStorage.getItem(ECOUTE_CLE_REGLAGES) || "{}"); }
+    catch(e){ return {}; }
+}
+
+function ecouteEnregistrerReglages(){
+    try{
+        localStorage.setItem(ECOUTE_CLE_REGLAGES, JSON.stringify({
+            sens: ecouteSens, vitesse: ecouteVitesse, pause: ecoutePauseFacteur
+        }));
+    }catch(e){}
+}
+
+// Rôles des langues. Direction "en" (germanophones apprenant l'anglais) : la
+// cible est l'anglais, la langue connue l'allemand. Sinon la cible est
+// l'allemand et la langue connue celle de l'interface.
+function ecouteLangues(){
+    if(getLearningDirection() === "en") return { cible:"en", connu:"de" };
+    return { cible:"de", connu: getUiLang() === "en" ? "en" : "fr" };
+}
+
+// Extraction du contenu quelle que soit la forme de la carte : les verbes sont
+// des objets, les noms/adjectifs/adverbes des tableaux dont les positions
+// diffèrent d'une catégorie à l'autre (voir loadFlashcard).
+function contenuEcoute(item){
+    const c = item.word;
+    let de = "", fr = "", en = "", pDe = "", pFr = "", pEn = "";
+    if(ecouteCategorie === "verben"){
+        de = c.infinitif || ""; fr = c.traduction || ""; en = c.traduction_en || "";
+        pDe = c.exemple || ""; pFr = c.exemple_fr || ""; pEn = c.exemple_en || "";
+    } else if(ecouteCategorie === "nomen"){
+        // Article prononcé avec le nom : c'est ainsi qu'on retient le genre.
+        de = ((c[1] || "") + " " + (c[0] || "")).trim();
+        fr = c[3] || ""; en = c[4] || "";
+        pDe = c[5] || ""; pFr = c[6] || ""; pEn = c[7] || "";
+    } else if(ecouteCategorie === "adjektive"){
+        de = c[0] || ""; fr = c[1] || ""; en = c[5] || "";
+        pDe = c[2] || ""; pFr = c[4] || ""; pEn = c[6] || "";
+    } else {
+        de = c[0] || ""; fr = c[1] || ""; en = c[5] || "";
+        pDe = c[3] || ""; pFr = c[4] || ""; pEn = c[6] || "";
+    }
+    const L = ecouteLangues();
+    const mot = (lang) => lang === "de" ? de : (lang === "en" ? (en || fr) : fr);
+    const phrase = (lang) => lang === "de" ? pDe : (lang === "en" ? (pEn || pFr) : pFr);
+    return {
+        cibleMot: mot(L.cible), connuMot: mot(L.connu),
+        ciblePhrase: phrase(L.cible), connuPhrase: phrase(L.connu),
+        langCible: L.cible, langConnu: L.connu
+    };
+}
+
+function poolEcoute(categorie, niveau){
+    const tous = (niveau === "ALL");
+    if(categorie === "verben"){
+        return (verbeTheme.words || [])
+            .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
+            .filter(it => tous || it.word.niveau === niveau);
+    }
+    if(categorie === "adjektive"){
+        return (adjektiveTheme.words || [])
+            .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
+            .filter(it => tous || it.word[3] === niveau);
+    }
+    if(categorie === "adverbien"){
+        return (adverbienTheme.words || [])
+            .map((word, index) => ({ word, index, themeId: adverbienTheme.id }))
+            .filter(it => tous || (it.word[8] || "") === niveau);
+    }
+    const pool = [];
+    (themes || []).forEach(theme => {
+        (tous ? LEVELS : [niveau]).forEach(lvl => {
+            const levelData = theme.levels && theme.levels[lvl];
+            if(!levelData) return;
+            levelData.words.forEach((word, index) => {
+                pool.push({ word, index, themeId: levelData.id });
+            });
+        });
+    });
+    return pool;
+}
+
+// ---- Menu ----
+
+function ouvrirEcouteMenu(categorie){
+    ecouteCategorie = categorie || "nomen";
+    const r = ecouteReglagesCharges();
+    if(r.sens) ecouteSens = r.sens;
+    if(r.vitesse) ecouteVitesse = r.vitesse;
+    if(r.pause) ecoutePauseFacteur = r.pause;
+    const kicker = document.getElementById("ecouteMenuKicker");
+    if(kicker) kicker.textContent = t(ECOUTE_TITRES[ecouteCategorie] || "op_nomen_title");
+    showScreen("ecouteMenu");
+    renderEcouteMenu();
+    // Les noms viennent de themes.json, chargé de façon asynchrone : on rend une
+    // première fois tout de suite, puis à nouveau une fois les données là.
+    if(ecouteCategorie === "nomen"){
+        Promise.resolve(loadThemesJson()).then(() => renderEcouteMenu()).catch(() => {});
+    }
+}
+
+function ecouteNomen(){ ouvrirEcouteMenu("nomen"); }
+function ecouteVerben(){ ouvrirEcouteMenu("verben"); }
+function ecouteAdjektive(){ ouvrirEcouteMenu("adjektive"); }
+function ecouteAdverbien(){ ouvrirEcouteMenu("adverbien"); }
+
+function ecouteMenuRetour(){ openOrbPanel(ecouteCategorie); }
+
+function ecouteBoutonBarre(actif, onclick, libelle, sous, largeur){
+    const style = (largeur || "flex:1; min-width:0;")
+        + (actif ? " border-color:#3b6fe0; color:#3b6fe0; font-weight:700;" : "");
+    const bas = sous ? `<br><small style="opacity:.75; font-weight:400;">${sous}</small>` : "";
+    return `<button class="secondary" style="${style}" onclick="${onclick}">${libelle}${bas}</button>`;
+}
+
+function renderEcouteMenu(){
+    const sensBar = document.getElementById("ecouteSensBar");
+    if(sensBar){
+        sensBar.innerHTML =
+            ecouteBoutonBarre(ecouteSens === "connu-cible", "setEcouteSens('connu-cible')",
+                t("ecoute_sens_connu_cible"), t("ecoute_sens_connu_cible_d"), "flex:1 1 46%; min-width:0;")
+          + ecouteBoutonBarre(ecouteSens === "cible-connu", "setEcouteSens('cible-connu')",
+                t("ecoute_sens_cible_connu"), t("ecoute_sens_cible_connu_d"), "flex:1 1 46%; min-width:0;");
+    }
+    const bar = document.getElementById("ecouteLevelBar");
+    if(bar){
+        const total = poolEcoute(ecouteCategorie, "ALL").length;
+        let html = ecouteBoutonBarre(false, "demarrerEcoute('ALL')",
+            `${t("ecoute_level_all")} (${total})`, "", "flex:1 1 100%;");
+        LEVELS.forEach(lvl => {
+            const n = poolEcoute(ecouteCategorie, lvl).length;
+            if(n) html += ecouteBoutonBarre(false, `demarrerEcoute('${lvl}')`,
+                `${lvl} (${n})`, "", "flex:1 1 46%; min-width:0;");
+        });
+        bar.innerHTML = html;
+    }
+}
+
+function setEcouteSens(sens){
+    ecouteSens = sens;
+    ecouteEnregistrerReglages();
+    renderEcouteMenu();
+}
+
+// ---- Lecteur ----
+
+function demarrerEcoute(niveau){
+    const pool = poolEcoute(ecouteCategorie, niveau);
+    if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
+    // Mêmes cartes que les flashcards : les non maîtrisées d'abord. Si tout est
+    // maîtrisé on écoute quand même l'ensemble -- l'écoute est une révision
+    // passive, elle n'a pas de raison de refuser de jouer.
+    let liste = cartesDeSession(pool);
+    if(!liste.length) liste = pool;
+    liste = liste.slice();
+    shuffleArray(liste);
+    ecouteCartes = liste;
+    ecouteIndex = 0;
+    const kicker = document.getElementById("ecouteKicker");
+    if(kicker){
+        const nom = t(ECOUTE_TITRES[ecouteCategorie] || "op_nomen_title");
+        kicker.textContent = niveau === "ALL" ? nom : `${nom} · ${niveau}`;
+    }
+    showScreen("ecoute");
+    renderEcouteReglages();
+    ecouteDemarrerWakeLock();
+    // La première utterance part dans le même geste que le clic : sur iOS, une
+    // lecture différée serait bloquée.
+    ecouteChargerCarte(true);
+}
+
+function ecouteChargerCarte(joue){
+    const item = ecouteCartes[ecouteIndex];
+    if(!item){ ecouteFin(); return; }
+    const c = contenuEcoute(item);
+    const compteur = document.getElementById("ecouteCounter");
+    if(compteur) compteur.textContent = `${ecouteIndex + 1} / ${ecouteCartes.length}`;
+    const poser = (id, txt) => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = txt || "";
+    };
+    poser("ecouteLigneConnu", c.connuMot);
+    poser("ecouteLigneCible", c.cibleMot);
+    poser("ecouteLignePhraseCible", c.ciblePhrase);
+    poser("ecouteLignePhraseConnu", c.connuPhrase);
+    ecouteEtapes = ecouteConstruireSequence(c);
+    ecouteEtape = 0;
+    if(joue) ecouteLancer(); else ecouteMajBouton();
+}
+
+function ecouteConstruireSequence(c){
+    const seq = [];
+    const dire = (texte, lang, ligne) => {
+        if(texte) seq.push({ type:"dire", texte, lang, ligne });
+    };
+    const silence = (texte, ligne) => {
+        if(texte) seq.push({ type:"silence", texte, ligne });
+    };
+    if(ecouteSens === "cible-connu"){
+        dire(c.cibleMot, c.langCible, "ecouteLigneCible");
+        silence(c.cibleMot, "ecouteLigneCible");
+        dire(c.connuMot, c.langConnu, "ecouteLigneConnu");
+    } else {
+        dire(c.connuMot, c.langConnu, "ecouteLigneConnu");
+        dire(c.cibleMot, c.langCible, "ecouteLigneCible");
+        silence(c.cibleMot, "ecouteLigneCible");
+    }
+    dire(c.ciblePhrase, c.langCible, "ecouteLignePhraseCible");
+    silence(c.ciblePhrase, "ecouteLignePhraseCible");
+    dire(c.connuPhrase, c.langConnu, "ecouteLignePhraseConnu");
+    return seq;
+}
+
+// Le silence suit la longueur de ce qui vient d'être dit : un mot seul n'a pas
+// besoin du même temps de répétition qu'une phrase de douze mots.
+function ecouteDureeSilence(texte){
+    const base = Math.min(9000, 700 + (texte || "").length * 75);
+    return Math.round(base * ecoutePauseFacteur / ecouteVitesse);
+}
+
+function ecouteSurligner(id){
+    ECOUTE_LIGNES.forEach(x => {
+        const el = document.getElementById(x);
+        if(el) el.classList.toggle("actif", x === id);
+    });
+}
+
+function ecouteEtat(txt){
+    const el = document.getElementById("ecouteEtat");
+    if(el) el.textContent = txt || "";
+}
+
+function ecouteMajBouton(){
+    const btn = document.getElementById("ecoutePlayBtn");
+    if(!btn) return;
+    btn.innerHTML = ecouteJoue
+        ? '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+}
+
+function ecouteLancer(){
+    ecouteJoue = true;
+    ecouteMajBouton();
+    ecouteJouerEtape();
+}
+
+function ecouteJouerEtape(){
+    if(!ecouteJoue) return;
+    if(ecouteEtape >= ecouteEtapes.length){ ecouteCarteSuivante(); return; }
+    const et = ecouteEtapes[ecouteEtape];
+    ecouteSurligner(et.ligne || null);
+    const jeton = ++ecouteJeton;
+    const avancer = () => {
+        if(jeton !== ecouteJeton || !ecouteJoue) return;
+        ecouteEtape++;
+        ecouteJouerEtape();
+    };
+    if(et.type === "silence"){
+        ecouteEtat(t("ecoute_etat_repete"));
+        ecouteMinuteur = setTimeout(avancer, ecouteDureeSilence(et.texte));
+        return;
+    }
+    ecouteEtat("");
+    if(!("speechSynthesis" in window)){ avancer(); return; }
+    const u = new SpeechSynthesisUtterance(et.texte);
+    const voix = pickVoice(et.lang);
+    if(voix){
+        u.voice = voix;
+        u.lang = voix.lang;
+    } else {
+        u.lang = et.lang === "de" ? "de-DE" : (et.lang === "en" ? "en-GB" : "fr-FR");
+    }
+    u.rate = ecouteVitesse;
+    u.onend = avancer;
+    u.onerror = avancer;
+    window.speechSynthesis.speak(u);
+}
+
+// Pause : plutôt que speechSynthesis.pause(), peu fiable sur iOS, on coupe et
+// on rejouera l'étape courante depuis son début à la reprise.
+function mettreEcouteEnPause(){
+    ecouteJoue = false;
+    ecouteArreterSon();
+    ecouteEtat(t("ecoute_etat_pause"));
+    ecouteMajBouton();
+}
+
+function ecouteBasculer(){
+    if(ecouteJoue) mettreEcouteEnPause();
+    else ecouteLancer();
+}
+
+function ecouteArreterSon(){
+    ecouteJeton++;
+    if(ecouteMinuteur){ clearTimeout(ecouteMinuteur); ecouteMinuteur = null; }
+    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function ecouteAller(i){
+    ecouteArreterSon();
+    if(i < 0) i = 0;
+    if(i >= ecouteCartes.length){ ecouteFin(); return; }
+    ecouteIndex = i;
+    ecouteChargerCarte(true);
+}
+
+function ecouteSuivant(){ ecouteAller(ecouteIndex + 1); }
+function ecoutePrecedent(){ ecouteAller(ecouteIndex - 1); }
+
+function ecouteCarteSuivante(){
+    if(ecouteIndex + 1 >= ecouteCartes.length){ ecouteFin(); return; }
+    ecouteIndex++;
+    ecouteChargerCarte(true);
+}
+
+function ecouteFin(){
+    ecouteJoue = false;
+    ecouteArreterSon();
+    ecouteSurligner(null);
+    ecouteMajBouton();
+    ecouteEtat(t("ecoute_etat_fin"));
+    showInfoToast(t("ecoute_terminee"));
+}
+
+// Appelée aussi par showScreen dès qu'on quitte l'écran, quel que soit le
+// chemin emprunté.
+function arreterEcoute(){
+    if(!ecouteJoue && !ecouteMinuteur && !ecouteWakeLock) return;
+    ecouteJoue = false;
+    ecouteArreterSon();
+    ecouteLibererWakeLock();
+    ecouteMajBouton();
+}
+
+function quitterEcoute(){ ouvrirEcouteMenu(ecouteCategorie); }
+
+function renderEcouteReglages(){
+    const vb = document.getElementById("ecouteVitesseBar");
+    if(vb){
+        const libelles = [t("ecoute_vitesse_lente"), t("ecoute_vitesse_normale"), t("ecoute_vitesse_rapide")];
+        vb.innerHTML = ECOUTE_VITESSES.map((v, i) => ecouteBoutonBarre(
+            Math.abs(v - ecouteVitesse) < 0.001, `setEcouteVitesse(${v})`, libelles[i])).join("");
+    }
+    const pb = document.getElementById("ecoutePauseBar");
+    if(pb){
+        const libelles = [t("ecoute_pause_courte"), t("ecoute_pause_moyenne"), t("ecoute_pause_longue")];
+        pb.innerHTML = ECOUTE_PAUSES.map((p, i) => ecouteBoutonBarre(
+            Math.abs(p - ecoutePauseFacteur) < 0.001, `setEcoutePause(${p})`, libelles[i])).join("");
+    }
+}
+
+// Un réglage se juge à l'oreille : on rejoue l'étape courante immédiatement
+// plutôt que d'attendre la carte suivante.
+function ecouteAppliquerReglage(){
+    ecouteEnregistrerReglages();
+    renderEcouteReglages();
+    if(ecouteJoue){
+        ecouteArreterSon();
+        ecouteJoue = true;
+        ecouteJouerEtape();
+    }
+}
+
+function setEcouteVitesse(v){ ecouteVitesse = v; ecouteAppliquerReglage(); }
+function setEcoutePause(p){ ecoutePauseFacteur = p; ecouteAppliquerReglage(); }
+
+// L'écran s'éteint au bout de quelques secondes de silence, et la voix se tait
+// avec lui. wakeLock (Safari iOS 16.4+, Chrome) l'en empêche pendant la séance.
+function ecouteDemarrerWakeLock(){
+    if(!("wakeLock" in navigator)) return;
+    try{
+        navigator.wakeLock.request("screen")
+            .then(l => { ecouteWakeLock = l; })
+            .catch(() => {});
+    }catch(e){}
+}
+
+function ecouteLibererWakeLock(){
+    if(!ecouteWakeLock) return;
+    try{ ecouteWakeLock.release(); }catch(e){}
+    ecouteWakeLock = null;
+}
+
+// Passer en arrière-plan coupe la synthèse vocale sans prévenir : on met en
+// pause explicitement pour que le bouton reflète l'état réel au retour.
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden && ecouteJoue) mettreEcouteEnPause();
+});
+
+
 function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
     const backWordEl = document.getElementById("flashBackWord");
