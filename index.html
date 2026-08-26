@@ -2747,7 +2747,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v213</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v214</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5439,6 +5439,9 @@ const I18N = {
         rattrapage_hint: "Touche les mots dans l'ordre. Un mot placé par erreur : touche-le pour le renvoyer.",
         rattrapage_reussi: "Bien reconstruit. La phrase reste comptée comme manquée — c'est la frappe qui est évaluée.",
         voice_lang_fr: "Voix française (traductions du mode Écoute)",
+        version_attente_title: "Mise à jour en cours de déploiement",
+        version_attente_detail: "Elle n'est pas encore servie par l'hébergeur. Réessaie dans une minute.",
+        version_retry: "Réessayer",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -6221,6 +6224,9 @@ const I18N = {
         rattrapage_hint: "Tap the words in order. Tapped one by mistake? Tap it again to send it back.",
         rattrapage_reussi: "Well rebuilt. The sentence still counts as missed — typing is what is graded.",
         voice_lang_fr: "French voice (Listen mode translations)",
+        version_attente_title: "Update still deploying",
+        version_attente_detail: "The host is not serving it yet. Try again in a minute.",
+        version_retry: "Try again",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -13071,13 +13077,30 @@ document.addEventListener("visibilitychange", () => {
 // en v208 alors que v209 etait publiee depuis un moment). L'app compare donc
 // sa propre version a celle publiee et le dit, plutot que de laisser croire
 // que la nouveaute n'a pas ete livree.
-const APP_VERSION = 213;
-const VERSION_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/version.json";
+const APP_VERSION = 214;
+// version.json est lu depuis LA MEME ORIGINE que la page, jamais depuis
+// raw.githubusercontent. La premiere version comparait ces deux services :
+// raw se met a jour en quelques secondes, GitHub Pages doit reconstruire et
+// deployer. Il existait donc une fenetre ou le bandeau annoncait une version
+// que l'hebergeur ne pouvait pas encore servir -- recharger n'y changeait rien
+// et l'app paraissait cassee. Meme origine = meme deploiement = pas d'ecart
+// possible entre ce qu'on annonce et ce qu'un rechargement peut livrer.
+const VERSION_URL = "version.json";
 const VERSION_INTERVALLE_MS = 5 * 60 * 1000;
+const VERSION_TENTATIVE_CLE = "deutschAI_versionTentee";
 
 let versionDistante = null;
 let versionDerniereVerif = 0;
 let versionBanniereMasquee = false;
+
+function tentativeEnregistree(){
+    try{ return parseInt(sessionStorage.getItem(VERSION_TENTATIVE_CLE) || "0", 10) || 0; }
+    catch(e){ return 0; }
+}
+
+function oublierTentative(){
+    try{ sessionStorage.removeItem(VERSION_TENTATIVE_CLE); }catch(e){}
+}
 
 async function verifierNouvelleVersion(){
     const maintenant = Date.now();
@@ -13090,7 +13113,8 @@ async function verifierNouvelleVersion(){
         if(!r.ok) return;
         const d = await r.json();
         const n = parseInt(d.version, 10);
-        if(!n || n <= APP_VERSION) return;
+        if(!n) return;
+        if(n <= APP_VERSION){ oublierTentative(); return; }
         versionDistante = n;
         if(!versionBanniereMasquee) afficherBanniereVersion();
     }catch(e){}
@@ -13099,8 +13123,17 @@ async function verifierNouvelleVersion(){
 function afficherBanniereVersion(){
     const el = document.getElementById("versionBanner");
     if(!el || !versionDistante) return;
+    // Un rechargement deja tente qui n'a rien change : le dire, plutot que de
+    // reafficher le meme message et laisser croire que le bouton ne marche pas.
+    const enAttente = tentativeEnregistree() >= versionDistante;
+    const titre = document.getElementById("versionBannerTitle");
     const detail = document.getElementById("versionBannerDetail");
-    if(detail) detail.textContent = tf("version_new_detail", { de: APP_VERSION, a: versionDistante });
+    const bouton = document.getElementById("versionBannerBtn");
+    if(titre) titre.textContent = t(enAttente ? "version_attente_title" : "version_new_title");
+    if(detail) detail.textContent = enAttente
+        ? t("version_attente_detail")
+        : tf("version_new_detail", { de: APP_VERSION, a: versionDistante });
+    if(bouton) bouton.textContent = t(enAttente ? "version_retry" : "version_new_reload");
     el.classList.remove("hidden");
 }
 
@@ -13114,8 +13147,11 @@ function masquerBanniereVersion(){
 // seul moyen fiable de passer outre le cache sur iOS, ou location.reload()
 // ressert simplement la copie gardee.
 function rechargerNouvelleVersion(){
+    try{ sessionStorage.setItem(VERSION_TENTATIVE_CLE, String(versionDistante || 0)); }catch(e){}
     const base = location.origin + location.pathname;
-    location.replace(base + "?v=" + (versionDistante || Date.now()));
+    // Horodatage en plus du numero : sans lui, un deuxieme clic viserait la
+    // MEME adresse que le premier et pourrait etre resservi depuis le cache.
+    location.replace(base + "?v=" + (versionDistante || 0) + "&t=" + Date.now());
 }
 
 // Le numero affiche a cote du titre vient de la constante, jamais d'un texte
@@ -14916,10 +14952,10 @@ function showResults(){
 
 <div id="versionBanner" class="version-banner hidden">
     <div class="version-banner-text">
-        <strong data-i18n="version_new_title">Nouvelle version disponible</strong>
+        <strong id="versionBannerTitle" data-i18n="version_new_title">Nouvelle version disponible</strong>
         <span id="versionBannerDetail"></span>
     </div>
-    <button class="version-banner-btn" onclick="rechargerNouvelleVersion()" data-i18n="version_new_reload">Recharger</button>
+    <button id="versionBannerBtn" class="version-banner-btn" onclick="rechargerNouvelleVersion()" data-i18n="version_new_reload">Recharger</button>
     <button class="version-banner-close" onclick="masquerBanniereVersion()" aria-label="Fermer">&times;</button>
 </div>
 
