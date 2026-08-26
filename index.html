@@ -1304,6 +1304,127 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     background:linear-gradient(120deg,rgba(59,130,246,.22),rgba(124,92,255,.22));
 }
 
+/* ---- Recherche dans les flashcards (entree depuis l'accueil uniquement) ---- */
+.search-launch{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    margin-top:18px;
+    padding:14px 16px;
+    border-radius:16px;
+    border:1px solid rgba(30,41,59,.32);
+    background:rgba(255,255,255,.5);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    color:#576177;
+    font-size:15px;
+    font-family:inherit;
+    text-align:left;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.search-launch:hover{
+    background:rgba(255,255,255,.8);
+    transform:translateY(-1px);
+}
+
+.search-launch svg{
+    width:18px; height:18px; flex:none;
+    stroke:#3b6fe0; fill:none; stroke-width:2; stroke-linecap:round;
+}
+
+.search-result{
+    padding:14px 16px;
+    border-radius:16px;
+    background:rgba(255,255,255,.5);
+    border:1px solid rgba(30,41,59,.32);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.search-result + .search-result{ margin-top:10px; }
+
+.search-result:hover{ background:rgba(255,255,255,.8); }
+
+.search-result-head{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    flex-wrap:wrap;
+}
+
+.search-word{ font-weight:700; color:#1e2433; font-size:16px; }
+
+.search-trad{ color:#576177; font-size:14px; }
+
+.search-meta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.search-tag{
+    font-size:11px;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:999px;
+    background:rgba(59,111,224,.12);
+    border:1px solid rgba(59,111,224,.25);
+    color:#3b6fe0;
+}
+
+.search-tag.src{
+    background:rgba(30,41,59,.06);
+    border-color:rgba(30,41,59,.18);
+    color:#576177;
+}
+
+.search-tag.done{
+    background:rgba(16,185,129,.14);
+    border-color:rgba(16,185,129,.32);
+    color:#0f7a57;
+}
+
+.search-tag.due{
+    background:rgba(245,158,11,.14);
+    border-color:rgba(245,158,11,.32);
+    color:#9a6407;
+}
+
+.search-details{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid rgba(30,41,59,.14);
+    font-size:14px;
+    line-height:1.55;
+    color:#1e2433;
+}
+
+/* Etat vide : enonce le perimetre couvert (A1-B2) plutot qu'un simple "aucun
+   resultat", pour qu'une absence se lise comme une limite assumee du programme
+   et non comme un trou dans l'outil. */
+.search-empty{
+    color:#576177;
+    font-size:14px;
+    line-height:1.6;
+    text-align:center;
+    padding:24px 12px;
+}
+
+.search-empty strong{ color:#1e2433; }
+
+.search-suggest-label{
+    margin:18px 0 10px;
+    font-size:13px;
+    font-weight:600;
+    color:#576177;
+    text-align:center;
+}
+
 .theme-header{
     display:flex;
     justify-content:space-between;
@@ -2157,6 +2278,42 @@ body[data-theme="dark"] .theme-item.random-item{
     background:linear-gradient(120deg,rgba(59,130,246,.16),rgba(124,92,255,.16));
 }
 
+body[data-theme="dark"] .search-launch,
+body[data-theme="dark"] .search-result{
+    background:rgba(255,255,255,.06);
+    border-color:rgba(255,255,255,.16);
+}
+
+body[data-theme="dark"] .search-launch:hover,
+body[data-theme="dark"] .search-result:hover{
+    background:rgba(255,255,255,.1);
+}
+
+/* Fond ET couleur de texte : un correctif de fond seul laissait du texte sombre
+   sur fond sombre (meme ecueil que celui corrige en v185). */
+body[data-theme="dark"] .search-launch,
+body[data-theme="dark"] .search-trad,
+body[data-theme="dark"] .search-empty,
+body[data-theme="dark"] .search-suggest-label,
+body[data-theme="dark"] .search-tag.src{
+    color:#B7BBCB;
+}
+
+body[data-theme="dark"] .search-word,
+body[data-theme="dark"] .search-details,
+body[data-theme="dark"] .search-empty strong{
+    color:#F2F2F6;
+}
+
+body[data-theme="dark"] .search-tag.src{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.18);
+}
+
+body[data-theme="dark"] .search-details{
+    border-top-color:rgba(255,255,255,.16);
+}
+
 body[data-theme="dark"] .orb-opt.primary{
     background:rgba(59,111,224,.16);
     border-color:rgba(59,111,224,.4);
@@ -2454,7 +2611,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v187</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v188</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2497,6 +2654,13 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
         </div>
     </div>
+
+    <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
+         donc hors de portee pendant un exercice (voir openWordSearch). -->
+    <button class="search-launch" onclick="openWordSearch()">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <span data-i18n="search_launch">Rechercher un mot dans mes flashcards</span>
+    </button>
 
     <div class="grid" id="orbGrid">
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
@@ -2751,6 +2915,28 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 </section>
 
 <!-- ================= VERBEN ================= -->
+
+<!-- ================= RECHERCHE DANS LES FLASHCARDS ================= -->
+
+<section id="wordSearch" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="search_kicker">Flashcards</div>
+            <h2 data-i18n="search_title">Rechercher un mot</h2>
+        </div>
+        <div class="pill" id="wordSearchCount">—</div>
+    </div>
+
+    <div class="filters-bar">
+        <input id="wordSearchInput" type="search" autocomplete="off" autocapitalize="none"
+               autocorrect="off" spellcheck="false" oninput="scheduleWordSearch()"
+               data-i18n-placeholder="search_placeholder" placeholder="Allemand, français ou anglais…">
+    </div>
+
+    <div id="wordSearchResults" style="margin-top:16px;"></div>
+</section>
 
 <section id="verbenNiveau" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
@@ -4184,6 +4370,38 @@ const I18N = {
         home_title_2_en_dir: "mot par mot.",
         home_subtitle_en_dir: "Ton tuteur personnel pour la grammaire anglaise et le vocabulaire.",
         home_ring_hint: "Touche le cercle pour changer de niveau (A1 · A2 · B1 · B2)",
+
+        // --- Recherche dans les flashcards (v188) ---
+        search_launch: "Rechercher un mot dans mes flashcards",
+        search_kicker: "Flashcards",
+        search_title: "Rechercher un mot",
+        search_placeholder: "Allemand, français ou anglais…",
+        search_hint: "Tape au moins deux lettres. La recherche couvre les {n} cartes de l'app, en allemand, en français et en anglais.",
+        search_count: "{n} résultats",
+        search_count_one: "1 résultat",
+        search_count_none: "Aucun résultat",
+        search_count_total: "{n} cartes",
+        search_more: "Seuls les {n} premiers résultats sont affichés — précise ta recherche.",
+        search_none_title: "« {q} » ne fait pas partie des flashcards.",
+        search_none_scope: "L'app couvre {n} cartes, du niveau A1 au niveau B2. Ce mot est simplement en dehors de ce programme — il ne manque rien à ton apprentissage.",
+        search_none_suggest: "Peut-être cherchais-tu :",
+        search_kind_noun: "Nom",
+        search_kind_verb: "Verbe",
+        search_kind_adj: "Adjectif",
+        search_kind_prep: "Préposition",
+        search_kind_adverb: "Adverbe",
+        search_kind_conj: "Conjonction",
+        search_kind_particle: "Particule",
+        search_src_praep: "Prépositions",
+        search_src_adverb: "Adverbes",
+        search_src_conj: "Conjonctions",
+        search_src_particle: "Particules",
+        search_src_kasus: "Verbes à cas fixe",
+        search_src_position: "Verbes de position",
+        search_state_mastered: "Maîtrisé",
+        search_state_due: "À revoir le {date}",
+        search_state_progress: "En cours",
+        search_plural: "Pluriel",
         home_daily_goal_label: "🎯 Objectif du jour",
         home_week_zero: "Cette semaine : 0",
         home_week_positive: "+{n} cette semaine",
@@ -4804,6 +5022,38 @@ const I18N = {
         home_title_2_en_dir: "word by word.",
         home_subtitle_en_dir: "Your personal tutor for English grammar and vocabulary.",
         home_ring_hint: "Tap the circle to change level (A1 · A2 · B1 · B2)",
+
+        // --- Flashcard search (v188) ---
+        search_launch: "Search for a word in my flashcards",
+        search_kicker: "Flashcards",
+        search_title: "Search for a word",
+        search_placeholder: "German, French or English…",
+        search_hint: "Type at least two letters. The search covers all {n} cards in the app, in German, French and English.",
+        search_count: "{n} results",
+        search_count_one: "1 result",
+        search_count_none: "No result",
+        search_count_total: "{n} cards",
+        search_more: "Only the first {n} results are shown — narrow your search.",
+        search_none_title: "“{q}” is not among the flashcards.",
+        search_none_scope: "The app covers {n} cards, from level A1 to B2. This word simply falls outside that syllabus — nothing is missing from your course.",
+        search_none_suggest: "Did you mean:",
+        search_kind_noun: "Noun",
+        search_kind_verb: "Verb",
+        search_kind_adj: "Adjective",
+        search_kind_prep: "Preposition",
+        search_kind_adverb: "Adverb",
+        search_kind_conj: "Conjunction",
+        search_kind_particle: "Particle",
+        search_src_praep: "Prepositions",
+        search_src_adverb: "Adverbs",
+        search_src_conj: "Conjunctions",
+        search_src_particle: "Particles",
+        search_src_kasus: "Fixed-case verbs",
+        search_src_position: "Position verbs",
+        search_state_mastered: "Mastered",
+        search_state_due: "Review on {date}",
+        search_state_progress: "In progress",
+        search_plural: "Plural",
         home_daily_goal_label: "🎯 Daily goal",
         home_week_zero: "This week: 0",
         home_week_positive: "+{n} this week",
@@ -9510,6 +9760,364 @@ function startAllAdjektiveFlashcards(){
 function startRandomMixAll(){
     nomenReturnScreen = 'nomen';
     startRandomMix("ALL");
+}
+
+// ==================== Recherche dans les flashcards ====================
+// Accessible depuis l'accueil UNIQUEMENT (bouton .search-launch) : aucun raccourci
+// global, aucune entree depuis un ecran d'exercice. La recherche reste ainsi un
+// outil de consultation et ne peut pas servir d'antiseche pendant les exercices.
+let searchIndex = null;
+let searchIndexStamp = -1;
+let searchResults = [];
+let searchDebounceTimer = null;
+const SEARCH_MAX_RESULTS = 60;
+const SEARCH_MAX_SUGGESTIONS = 6;
+
+// Normalisation commune a l'index et a la requete : minuscules, sans accents,
+// "ss" pour l'eszett. Sur un clavier francais, taper "giessen" doit trouver
+// "gie\u00dfen" et "uber" doit trouver "\u00fcber" -- sinon l'outil n'est utilisable
+// que par quelqu'un qui sait deja ecrire le mot allemand.
+function normalizeSearch(str){
+    return (str || "").toString().toLowerCase()
+        .replace(/\u00df/g, "ss")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function pushSearchEntry(list, entry){
+    entry.haystack = normalizeSearch([entry.de, entry.fr, entry.en].filter(Boolean).join(" ~ "));
+    entry.deNorm = normalizeSearch(entry.de);
+    list.push(entry);
+}
+
+// themeId + index reprennent EXACTEMENT la convention des sessions de flashcards
+// (voir startVerbeLevel, startThemeVerben...), sinon l'etat de progression affiche
+// serait celui d'un autre mot.
+function buildSearchIndex(){
+    const list = [];
+
+    (typeof themes !== 'undefined' ? themes : []).forEach(theme => {
+        Object.keys(theme.levels || {}).forEach(level => {
+            const lv = theme.levels[level];
+            const src = theme.name + " \u00b7 " + level;
+            (lv.words || []).forEach((w, index) => pushSearchEntry(list, {
+                type: 'noun', kindKey: 'search_kind_noun', source: src,
+                themeId: lv.id, index: index, card: w,
+                de: w[0], fr: w[3], en: w[4]
+            }));
+            (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
+                type: 'verb', kindKey: 'search_kind_verb', source: src,
+                themeId: lv.id + '__verben', index: index, card: v,
+                de: v.infinitif, fr: v.traduction, en: v.traduction_en
+            }));
+            (lv.adjektive || []).forEach((a, index) => pushSearchEntry(list, {
+                type: 'simple', kindKey: 'search_kind_adj', source: src,
+                themeId: lv.id + '__adjektive', index: index,
+                card: { exemple: a[3], exemple_fr: a[4], exemple_en: a[6] },
+                de: a[0], fr: a[1], en: a[5]
+            }));
+        });
+    });
+
+    (verbeTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
+        type: 'verb', kindKey: 'search_kind_verb',
+        source: (t('orb_verben_title') + " \u00b7 " + (v.niveau || "")).trim(),
+        themeId: verbeTheme.id, index: index, card: v,
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en
+    }));
+
+    // adjectif.json : [mot, traduction, exemple, niveau, exemple_fr, en, exemple_en]
+    (adjektiveTheme.words || []).forEach((a, index) => pushSearchEntry(list, {
+        type: 'simple', kindKey: 'search_kind_adj',
+        source: (t('orb_adjektive_title') + " \u00b7 " + (a[3] || "")).trim(),
+        themeId: adjektiveTheme.id, index: index,
+        card: { exemple: a[2], exemple_fr: a[4], exemple_en: a[6] },
+        de: a[0], fr: a[1], en: a[5]
+    }));
+
+    // Themes de grammaire definis dans ce fichier : tuples
+    // [de, fr, categorie, exempleDE, exempleFR, en, exempleEN, categorie_en].
+    [
+        [praepTheme, 'search_kind_prep', 'search_src_praep'],
+        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb'],
+        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj'],
+        [partikelnTheme, 'search_kind_particle', 'search_src_particle'],
+        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus']
+    ].forEach(cfg => {
+        (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
+            type: 'grammar', kindKey: cfg[1], source: t(cfg[2]),
+            themeId: cfg[0].id, index: index,
+            card: { cas: w[2], cas_en: w[7], exemple: w[3], exemple_fr: w[4], exemple_en: w[6] },
+            de: w[0], fr: w[1], en: w[5]
+        }));
+    });
+
+    (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
+        type: 'posverb', kindKey: 'search_kind_verb', source: t('search_src_position'),
+        themeId: positionsverbenTheme.id, index: index, card: v,
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en
+    }));
+
+    return list;
+}
+
+// Empreinte bon marche des sources : permet de reconstruire l'index si les
+// donnees ont fini de charger (ou ont ete rechargees) apres une premiere ouverture.
+function searchSourcesStamp(){
+    return (typeof themes !== 'undefined' ? themes.length : 0) * 1000000
+        + (verbeTheme.words || []).length * 1000
+        + (adjektiveTheme.words || []).length;
+}
+
+function ensureSearchIndex(){
+    const stamp = searchSourcesStamp();
+    if(!searchIndex || stamp !== searchIndexStamp){
+        searchIndex = buildSearchIndex();
+        searchIndexStamp = stamp;
+    }
+    return searchIndex;
+}
+
+function openWordSearch(){
+    ensureSearchIndex();
+    const input = document.getElementById('wordSearchInput');
+    if(input) input.value = "";
+    searchResults = [];
+    renderWordSearch("");
+    showScreen('wordSearch');
+    // Focus differe : sur iOS, focus() avant l'affichage effectif de l'ecran
+    // n'ouvre pas le clavier.
+    setTimeout(() => {
+        const el = document.getElementById('wordSearchInput');
+        if(el) el.focus();
+    }, 150);
+}
+
+// Anti-rebond : filtrer ~2900 entrees a chaque frappe reste rapide, mais rendre
+// 60 resultats a chaque touche ne l'est pas. A noter : rien ici n'ecrit dans le
+// stockage de progression (cf. le piege O(n^2) corrige en v100).
+function scheduleWordSearch(){
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(runWordSearch, 130);
+}
+
+function runWordSearch(){
+    const input = document.getElementById('wordSearchInput');
+    renderWordSearch(input ? input.value : "");
+}
+
+function searchStateTag(entry){
+    const st = getWordState(entry.themeId, entry.index) || {};
+    if(st.mastered) return '<span class="search-tag done">' + t('search_state_mastered') + '</span>';
+    if(st.due && st.due > Date.now()){
+        const d = new Date(st.due).toLocaleDateString(getUiLang() === 'en' ? 'en-GB' : 'fr-FR',
+            { day: '2-digit', month: '2-digit' });
+        return '<span class="search-tag due">' + tf('search_state_due', { date: d }) + '</span>';
+    }
+    if(st.reviews) return '<span class="search-tag due">' + t('search_state_progress') + '</span>';
+    return "";
+}
+
+// Distance de Levenshtein bornee : sert uniquement a proposer des mots proches
+// quand une recherche ne donne rien (fautes de frappe). Calculee sur un
+// sous-ensemble reduit (meme initiale, longueur voisine), jamais sur tout l'index.
+function searchEditDistance(a, b, max){
+    const la = a.length, lb = b.length;
+    if(Math.abs(la - lb) > max) return max + 1;
+    let prev = new Array(lb + 1);
+    for(let j = 0; j <= lb; j++) prev[j] = j;
+    for(let i = 1; i <= la; i++){
+        const cur = new Array(lb + 1);
+        cur[0] = i;
+        let best = cur[0];
+        for(let j = 1; j <= lb; j++){
+            cur[j] = Math.min(
+                prev[j] + 1,
+                cur[j - 1] + 1,
+                prev[j - 1] + (a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1)
+            );
+            if(cur[j] < best) best = cur[j];
+        }
+        if(best > max) return max + 1;
+        prev = cur;
+    }
+    return prev[lb];
+}
+
+function findSearchSuggestions(q){
+    const out = [];
+    const seen = {};
+
+    // 1) Mots a distance d'edition <= 2 : c'est le cas de la faute de frappe, et
+    //    il doit primer. Passer le prefixe en premier saturait la liste de mots
+    //    seulement voisins ("gruessn" proposait "gruen"/"Gruppe" mais jamais
+    //    "gruessen", pourtant a une seule lettre pres).
+    (searchIndex || []).forEach(e => {
+        if(seen[e.de] || !e.deNorm || e.deNorm[0] !== q[0]) return;
+        if(Math.abs(e.deNorm.length - q.length) > 2) return;
+        const d = searchEditDistance(q, e.deNorm, 2);
+        if(d <= 2){
+            seen[e.de] = 1;
+            out.push({ e: e, d: d });
+        }
+    });
+
+    // 2) Complement par prefixe commun (3 lettres), pour ne pas laisser l'ecran
+    //    vide quand aucun mot proche n'existe.
+    const prefix = q.slice(0, 3);
+    if(prefix.length >= 3){
+        (searchIndex || []).forEach(e => {
+            if(out.length >= SEARCH_MAX_SUGGESTIONS * 4) return;
+            if(seen[e.de] || e.deNorm.indexOf(prefix) !== 0) return;
+            seen[e.de] = 1;
+            out.push({ e: e, d: 3 });
+        });
+    }
+
+    out.sort((a, b) => a.d - b.d
+        || Math.abs(a.e.deNorm.length - q.length) - Math.abs(b.e.deNorm.length - q.length)
+        || a.e.de.localeCompare(b.e.de));
+    return out.slice(0, SEARCH_MAX_SUGGESTIONS).map(x => x.e);
+}
+
+function searchResultHtml(entry, i){
+    const useEn = getUiLang() === 'en';
+    const trad = useEn ? (entry.en || entry.fr) : (entry.fr || entry.en);
+    return '<div class="search-result" onclick="toggleSearchResult(' + i + ')">'
+        + '<div class="search-result-head">'
+        + '<span class="search-word">' + entry.de + '</span>'
+        + '<span class="search-trad">' + (trad || "") + '</span>'
+        + '</div>'
+        + '<div class="search-meta">'
+        + '<span class="search-tag">' + t(entry.kindKey) + '</span>'
+        + '<span class="search-tag src">' + entry.source + '</span>'
+        + searchStateTag(entry)
+        + '</div>'
+        + '<div class="search-details hidden" id="searchDetails' + i + '"></div>'
+        + '</div>';
+}
+
+function renderWordSearch(rawQuery){
+    const box = document.getElementById('wordSearchResults');
+    const pill = document.getElementById('wordSearchCount');
+    if(!box) return;
+    const all = ensureSearchIndex();
+    const q = normalizeSearch(rawQuery).trim();
+
+    if(q.length < 2){
+        searchResults = [];
+        if(pill) pill.textContent = tf('search_count_total', { n: all.length });
+        box.innerHTML = '<div class="search-empty">' + tf('search_hint', { n: all.length }) + '</div>';
+        return;
+    }
+
+    const hits = [];
+    for(let i = 0; i < all.length; i++){
+        const e = all[i];
+        if(e.haystack.indexOf(q) === -1) continue;
+        // Le mot allemand qui COMMENCE par la requete passe devant : c'est
+        // presque toujours celui qu'on cherchait.
+        const rank = e.deNorm.indexOf(q) === 0 ? 0 : (e.deNorm.indexOf(q) !== -1 ? 1 : 2);
+        hits.push({ e: e, rank: rank });
+    }
+    hits.sort((a, b) => a.rank - b.rank || a.e.de.length - b.e.de.length || a.e.de.localeCompare(b.e.de));
+
+    if(!hits.length){
+        searchResults = [];
+        if(pill) pill.textContent = t('search_count_none');
+        // Un "aucun resultat" sec laisse croire que l'app est incomplete. On
+        // enonce donc le perimetre reel (nombre de cartes, A1 -> B2) et on propose
+        // des mots proches, ce qui rattrape aussi les fautes de frappe.
+        const suggestions = findSearchSuggestions(q);
+        let html = '<div class="search-empty">'
+            + tf('search_none_title', { q: rawQuery.trim() })
+            + '<br><br>' + tf('search_none_scope', { n: all.length })
+            + '</div>';
+        if(suggestions.length){
+            searchResults = suggestions;
+            html += '<div class="search-suggest-label">' + t('search_none_suggest') + '</div>'
+                + suggestions.map((e, i) => searchResultHtml(e, i)).join("");
+        }
+        box.innerHTML = html;
+        return;
+    }
+
+    const shown = hits.slice(0, SEARCH_MAX_RESULTS).map(h => h.e);
+    searchResults = shown;
+    if(pill) pill.textContent = tf(hits.length === 1 ? 'search_count_one' : 'search_count', { n: hits.length });
+    box.innerHTML = shown.map((e, i) => searchResultHtml(e, i)).join("")
+        + (hits.length > shown.length
+            ? '<div class="search-empty">' + tf('search_more', { n: shown.length }) + '</div>'
+            : "");
+}
+
+function toggleSearchResult(i){
+    const el = document.getElementById('searchDetails' + i);
+    const entry = searchResults[i];
+    if(!el || !entry) return;
+    // Details construits a la demande : evite d'enregistrer 60 phrases dans
+    // sentenceRegistry (boutons d'ecoute) a chaque frappe.
+    if(!el.innerHTML) el.innerHTML = renderSearchDetails(entry);
+    el.classList.toggle('hidden');
+}
+
+function renderSearchDetails(entry){
+    const useEn = getUiLang() === 'en';
+    const c = entry.card || {};
+    const pick = (fr, en) => (useEn && en) ? en : (fr || en || "");
+    const sentence = (de, trad) => de
+        ? '<div class="verb-sep"></div>' + de + sentenceSpeakBtnHtml(de, "de")
+            + (trad ? '<br>(' + trad + ')' : "")
+        : "";
+    const tense = (label, de, trad) => de
+        ? '<div class="verb-sep"></div><strong>' + label + ' :</strong> ' + de
+            + sentenceSpeakBtnHtml(de, "de") + (trad ? '<br>(' + trad + ')' : "")
+        : "";
+
+    if(entry.type === 'verb'){
+        let html = buildRektionBadgesHtml(c);
+        if(c.praesens){
+            const p = c.praesens;
+            html += '<strong>PR\u00c4SENS</strong><br>'
+                + ['ich ' + (p.ich || ""), 'du ' + (p.du || ""), 'er/sie/es ' + (p.er_sie_es || ""),
+                   'wir ' + (p.wir || ""), 'ihr ' + (p.ihr || ""), 'sie/Sie ' + (p.sie_Sie || "")].join(" \u00b7 ");
+        }
+        html += tense('Pr\u00e4sens', c.exemple, pick(c.exemple_fr, c.exemple_en));
+        html += tense('Perfekt', c.perfekt, pick(c.perfekt_fr, c.perfekt_en));
+        html += tense('Pr\u00e4teritum', c.praeteritum, pick(c.praeteritum_fr, c.praeteritum_en));
+        html += tense('Konjunktiv II', c.konjunktiv2, pick(c.konjunktiv2_fr, c.konjunktiv2_en));
+        if(c.imperativ){
+            html += '<div class="verb-sep"></div><strong>Imperativ :</strong> du \u2192 ' + c.imperativ.du
+                + ' \u00b7 ihr \u2192 ' + c.imperativ.ihr + ' \u00b7 Sie \u2192 ' + c.imperativ.sie_Sie;
+        }
+        return html;
+    }
+
+    if(entry.type === 'posverb'){
+        let html = '<strong>' + (c.cas || "") + '</strong> \u00b7 '
+            + (useEn ? (c.regularite_en || c.regularite || "") : (c.regularite || ""));
+        html += tense('Pr\u00e4sens', c.exemple, pick(c.exemple_fr, c.exemple_en));
+        html += tense('Perfekt', c.perfekt, pick(c.perfekt_fr, c.perfekt_en));
+        html += tense('Pr\u00e4teritum', c.praeteritum, pick(c.praeteritum_fr, c.praeteritum_en));
+        return html;
+    }
+
+    if(entry.type === 'noun'){
+        const w = c;
+        const article = w[1] || "";
+        const plural = w[2] || "";
+        let html = '<strong>' + (article ? article + ' ' : "") + w[0] + '</strong>';
+        if(plural && plural !== "\u2014") html += ' \u00b7 ' + t('search_plural') + ' : die ' + plural;
+        html += sentence(w[5], pick(w[6], w[7]));
+        return html;
+    }
+
+    if(entry.type === 'grammar'){
+        const cat = useEn ? (c.cas_en || c.cas) : c.cas;
+        return (cat ? '<strong>' + cat + '</strong>' : "")
+            + sentence(c.exemple, pick(c.exemple_fr, c.exemple_en));
+    }
+
+    return sentence(c.exemple, pick(c.exemple_fr, c.exemple_en));
 }
 
 function showScreen(id){
