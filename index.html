@@ -1618,15 +1618,17 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     color:#1e2433;
 }
 
-/* Filet de securite : meme si le calcul de fitFlashcardWords() est pris en
-   defaut (police pas encore chargee au tout premier affichage, par exemple),
-   un mot compose allemand trop long se coupe au lieu de sortir de la carte.
-   max-width empeche aussi le mot de deborder de la rangee avec le bouton
-   d'ecoute au verso. */
+/* Filet de securite : meme si l'ajustement de fitFlashcardWords() est pris en
+   defaut, un mot trop long se coupe au lieu de sortir de la carte. max-width
+   empeche aussi le mot de deborder de la rangee avec le bouton d'ecoute au
+   verso. L'interligne est fixe (et non "normal") pour que le nombre de lignes
+   soit calculable de facon fiable, et parce qu'un grand mot sur deux lignes est
+   plus lisible avec un interligne serre. */
 .flashcard-front .word,
 .back-word{
     max-width:100%;
     overflow-wrap:anywhere;
+    line-height:1.12;
 }
 
 .tap-hint{
@@ -2658,7 +2660,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v198</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v199</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -4444,9 +4446,10 @@ const I18N = {
         search_none_suggest: "Peut-être cherchais-tu :",
         search_exact: "Correspondance exacte",
         adverbien_vocab_title: "Vocabulaire : flashcards",
-        adverbien_vocab_desc: "Tous les adverbes, class\u00e9s par cat\u00e9gorie (Zeit, Ort/Richtung, H\u00e4ufigkeit\u2026). Choisis un niveau ou r\u00e9vise l'ensemble.",
+        adverbien_vocab_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'ajuste au niveau choisi.",
         adverbien_level_all: "Tous",
         adverbien_cat_title: "R\u00e9viser par famille",
+        adverbien_cat_all: "Toutes les familles",
         adverbien_cat_desc: "Les adverbes s'apprennent en opposant les mots d'une m\u00eame famille : immer, oft, manchmal, selten, nie.",
         search_card_kicker: "Depuis la recherche",
         search_kind_noun: "Nom",
@@ -5100,9 +5103,10 @@ const I18N = {
         search_none_suggest: "Did you mean:",
         search_exact: "Exact match",
         adverbien_vocab_title: "Vocabulary: flashcards",
-        adverbien_vocab_desc: "All adverbs, grouped by category (Zeit, Ort/Richtung, H\u00e4ufigkeit\u2026). Pick a level or review the whole set.",
+        adverbien_vocab_desc: "Pick a level first: the list of families just below adjusts to the level you chose.",
         adverbien_level_all: "All",
         adverbien_cat_title: "Review by family",
+        adverbien_cat_all: "All families",
         adverbien_cat_desc: "Adverbs are learned by contrasting words of the same family: immer, oft, manchmal, selten, nie.",
         search_card_kicker: "From search",
         search_kind_noun: "Noun",
@@ -10572,37 +10576,63 @@ function startAdverbienNuance(){
 // Barre de niveaux construite a partir des donnees reellement chargees : un
 // niveau encore vide (adverbe.json se remplit progressivement) n'affiche pas de
 // bouton mort. Le compte est indique pour que le choix soit informe.
+// Niveau actuellement choisi dans l'ecran Adverbes ("ALL" = tous niveaux).
+// La liste des familles affichee juste en dessous est recalculee pour ce
+// niveau : les comptes montrent ce qu'on obtiendra reellement en cliquant,
+// et une famille absente du niveau n'apparait pas.
+let adverbienSelectedLevel = "ALL";
+
+function selectAdverbienLevel(level){
+    adverbienSelectedLevel = level || "ALL";
+    renderAdverbienLevelBar();
+}
+
 function renderAdverbienLevelBar(){
     const mots = adverbienTheme.words || [];
+    const niveauOk = (w) => adverbienSelectedLevel === "ALL" || (w[8] || "") === adverbienSelectedLevel;
 
     const bar = document.getElementById("adverbienLevelBar");
     if(bar){
         const parNiveau = {};
         mots.forEach(w => { const n = w[8] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
-        let html = `<button class="secondary" style="flex:1;" onclick="startAdverbienVokabular('ALL')">${t('adverbien_level_all')} (${mots.length})</button>`;
+        const bouton = (val, libelle, n) => {
+            const actif = adverbienSelectedLevel === val;
+            // Le niveau choisi est mis en avant : sans repere visuel, la liste
+            // de familles en dessous changerait sans qu'on sache pourquoi.
+            const style = actif
+                ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+                : "flex:1; min-width:0;";
+            return `<button class="secondary" style="${style}" onclick="selectAdverbienLevel('${val}')">${libelle} (${n})</button>`;
+        };
+        let html = bouton("ALL", t('adverbien_level_all'), mots.length);
         ["A1", "A2", "B1", "B2"].forEach(lvl => {
-            if(!parNiveau[lvl]) return;
-            html += `<button class="secondary" style="flex:1;" onclick="startAdverbienVokabular('${lvl}')">${lvl} (${parNiveau[lvl]})</button>`;
+            if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
     }
 
-    // Reviser par famille (Zeit, Ort/Richtung...) plutot que par niveau : c'est
-    // ainsi qu'on apprend les adverbes, en opposant les mots d'une meme famille
-    // (immer / oft / manchmal / selten / nie), pas dans un ordre quelconque.
+    // Reviser par famille (Zeit, Ort/Richtung...) : c'est ainsi qu'on apprend
+    // les adverbes, en opposant les mots d'une meme serie (immer / oft /
+    // manchmal / selten / nie) plutot que dans un ordre quelconque.
     const catBar = document.getElementById("adverbienCategoryBar");
     if(catBar){
+        const duNiveau = mots.filter(niveauOk);
         const parCat = {};
-        mots.forEach(w => { const c = w[9] || ""; if(c) parCat[c] = (parCat[c] || 0) + 1; });
+        duNiveau.forEach(w => { const c = w[9] || ""; if(c) parCat[c] = (parCat[c] || 0) + 1; });
         const ordre = ["Zeit", "Ort/Richtung", "H\u00e4ufigkeit", "Art und Weise",
                        "Grad/Menge", "Grund/Folge", "Verbindung/Logik", "Frageadverbien"];
-        catBar.innerHTML = ordre.filter(c => parCat[c]).map(c => {
+        const lvl = adverbienSelectedLevel;
+        let html = `<button class="secondary" style="flex:1 1 100%;" onclick="startAdverbienVokabular('${lvl}', 'ALL')">`
+            + `${t('adverbien_cat_all')} (${duNiveau.length})</button>`;
+        html += ordre.filter(c => parCat[c]).map(c => {
             const gloss = (ADVERB_CATEGORIES[c] || {})[getUiLang() === 'en' ? 'en' : 'fr'] || c;
             const nom = gloss.split(" \u2014 ")[0];
             const sens = gloss.split(" \u2014 ")[1] || "";
-            return `<button class="secondary" style="flex:1 1 46%; min-width:0;" onclick="startAdverbienVokabular('ALL', '${c.replace(/'/g, "\\'")}')">`
+            const arg = c.replace(/'/g, "\\'");
+            return `<button class="secondary" style="flex:1 1 46%; min-width:0;" onclick="startAdverbienVokabular('${lvl}', '${arg}')">`
                 + `${nom} (${parCat[c]})${sens ? `<br><small style="opacity:.75; font-weight:400;">${sens}</small>` : ""}</button>`;
         }).join("");
+        catBar.innerHTML = html;
     }
 }
 
@@ -11157,28 +11187,40 @@ function handleFlashcardBack(){
     else openNomen();
 }
 
-// Mesure hors ecran, sans toucher au DOM affiche : donne la largeur qu'occupera
-// le texte a une taille donnee, pour en deduire la taille qui tient dans la
-// carte. Un seul calcul, pas de boucle de reduction progressive.
-const flashTextMeasureCtx = (() => {
-    try{ return document.createElement("canvas").getContext("2d"); }
-    catch(e){ return null; }
-})();
+// Nombre de lignes maximum tolere pour le mot d'une carte. L'utilisateur
+// prefere explicitement deux lignes bien lisibles a une ligne rapetissee.
+const FLASH_WORD_MAX_LINES = 2;
 
-// Reduit la police du mot affiche juste assez pour qu'il tienne dans la largeur
-// disponible. Sans cela, un mot long ET insecable -- typiquement un compose
-// allemand comme "Geschwindigkeitsbegrenzung" -- depassait du cadre de la carte,
-// puisque le recto est en 48px fixes et qu'il n'y a aucun espace ou couper.
+// Reduit la police du mot juste assez pour qu'il tienne dans la carte, en
+// autorisant DEUX lignes avant de rapetisser : un mot long garde ainsi une
+// taille confortable au lieu d'etre ecrase sur une seule ligne.
+//
+// La mesure se fait sur l'element reellement rendu (scrollWidth/scrollHeight)
+// et non par un calcul de largeur hors ecran : la police web (Bricolage
+// Grotesque, chargee en display=swap) n'est pas forcement arrivee au premier
+// affichage, et elle est plus large que la police de repli. Un calcul fait sur
+// les metriques du repli donnait une taille trop grande, et le mot debordait
+// d'une lettre une fois la vraie police appliquee -- d'ou le rappel de
+// fitFlashcardWords() sur document.fonts.ready.
 function fitFlashcardWord(el, maxPx, minPx, available){
     if(!el) return;
-    const text = el.textContent || "";
     el.style.fontSize = "";
-    if(!text || !flashTextMeasureCtx || !(available > 0)) return;
-    const cs = getComputedStyle(el);
-    flashTextMeasureCtx.font = `${cs.fontStyle} ${cs.fontWeight} ${maxPx}px ${cs.fontFamily}`;
-    const width = flashTextMeasureCtx.measureText(text).width;
-    if(width <= available) return;
-    el.style.fontSize = Math.max(minPx, Math.floor(maxPx * available / width)) + "px";
+    const texte = (el.textContent || "").trim();
+    if(!texte || !(available > 0)) return;
+
+    const tient = (size) => {
+        el.style.fontSize = size + "px";
+        const lignes = Math.round(el.scrollHeight / (size * 1.12));
+        return el.scrollWidth <= available + 0.5 && lignes <= FLASH_WORD_MAX_LINES;
+    };
+
+    let size = maxPx;
+    if(tient(size)) return;
+    // Descente par pas de 2px (assez fin pour l'oeil, deux fois moins de
+    // mesures), puis remontee d'un cran si le pas est passe juste a cote.
+    while(size > minPx && !tient(size)) size -= 2;
+    if(size < minPx){ size = minPx; el.style.fontSize = size + "px"; return; }
+    if(tient(size + 1)) el.style.fontSize = (size + 1) + "px";
 }
 
 function largeurUtile(el){
@@ -11191,27 +11233,33 @@ function fitFlashcardWords(){
     const front = document.querySelector(".flashcard-front");
     const frontWord = document.getElementById("flashWord");
     // Taille de reference identique a la regle CSS (42px sous 480px de large,
-    // voir la media query) : on repart toujours du maximum, jamais de la
-    // taille reduite calculee pour la carte precedente.
+    // voir la media query) : on repart toujours du maximum, jamais de la taille
+    // reduite calculee pour la carte precedente.
     const maxFront = window.innerWidth <= 480 ? 42 : 48;
-    fitFlashcardWord(frontWord, maxFront, 18, largeurUtile(front));
+    fitFlashcardWord(frontWord, maxFront, 24, largeurUtile(front));
 
     // Au verso, le mot partage sa rangee avec le bouton d'ecoute : la largeur
-    // disponible est celle de la rangee moins ce bouton et l'espace entre eux.
+    // disponible est celle de la FACE moins ce bouton et l'espace entre eux.
+    // Mesurer la rangee elle-meme reviendrait a deduire la place disponible de
+    // la taille actuelle du texte, la rangee se dimensionnant sur son contenu.
     const backWord = document.getElementById("flashBackWord");
     const row = backWord ? backWord.closest(".word-audio-row") : null;
     if(row){
         const btn = row.querySelector(".icon-audio-btn");
         const gap = parseFloat(getComputedStyle(row).gap || 10) || 10;
-        // Largeur mesuree sur la FACE, pas sur la rangee : la face etant un
-        // conteneur flex en colonne avec align-items:center, la rangee se
-        // dimensionne sur son contenu. La mesurer reviendrait a deduire la
-        // place disponible de la taille actuelle du texte -- un raisonnement
-        // circulaire qui reduisait tous les mots au minimum, meme "Vater".
         const face = backWord.closest(".flashcard-back");
-        const dispo = largeurUtile(face) - (btn ? btn.offsetWidth + gap : 0);
-        fitFlashcardWord(backWord, 26, 15, dispo);
+        fitFlashcardWord(backWord, 26, 16, largeurUtile(face) - (btn ? btn.offsetWidth + gap : 0));
     }
+}
+
+// La police web arrive apres le premier rendu (display=swap) et elle est plus
+// large que la police de repli : sans ce rappel, un mot mesure trop tot resterait
+// trop grand et deborderait d'une lettre.
+if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(() => {
+        const el = document.getElementById("flashcard");
+        if(el && el.offsetParent !== null) resizeFlashcard();
+    });
 }
 
 function resizeFlashcard(){
@@ -11223,8 +11271,23 @@ function resizeFlashcard(){
     const back = document.querySelector(".flashcard-back");
     if(!flashcardEl || !front || !back) return;
     const isFlipped = flashcardEl.classList.contains("flipped");
-    const FRONT_HEIGHT = 170; // hauteur fixe du recto, toujours la même peu importe la longueur du mot
-    const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200) : FRONT_HEIGHT;
+    // 170px est la hauteur habituelle du recto ; elle s'etire si le mot occupe
+    // deux lignes, plutot que de rogner le mot ou l'indication de touche.
+    // Hauteur deduite du MOT et de l'indication, pas de la face : la face est en
+    // position absolue dans une carte dont on est justement en train de fixer la
+    // hauteur, donc la mesurer melange cause et consequence.
+    const FRONT_HEIGHT = 170;
+    let besoinRecto = FRONT_HEIGHT;
+    const motEl = document.getElementById("flashWord");
+    const hintEl = front.querySelector(".tap-hint");
+    if(motEl){
+        const csFront = getComputedStyle(front);
+        besoinRecto = parseFloat(csFront.paddingTop) + parseFloat(csFront.paddingBottom)
+            + motEl.offsetHeight
+            + (hintEl ? hintEl.offsetHeight + parseFloat(getComputedStyle(hintEl).marginTop || 0) : 0);
+    }
+    const targetHeight = isFlipped ? Math.max(back.scrollHeight, 200)
+                                   : Math.max(FRONT_HEIGHT, Math.ceil(besoinRecto));
     flashcardEl.style.height = targetHeight + "px";
 }
 
