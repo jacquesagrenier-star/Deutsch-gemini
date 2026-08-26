@@ -1383,16 +1383,17 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     flex-wrap:wrap;
 }
 
+.search-exact-line{
+    margin-bottom:7px;
+}
+
 .search-word{ font-weight:700; color:#1e2433; font-size:16px; }
 
-.search-trad{ color:#576177; font-size:14px; }
-
-.search-meta{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    flex-wrap:wrap;
-    margin-top:8px;
+.search-trad{
+    color:#576177;
+    font-size:14px;
+    flex:1 1 auto;
+    min-width:0;
 }
 
 .search-tag{
@@ -1403,6 +1404,8 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     background:rgba(59,111,224,.12);
     border:1px solid rgba(59,111,224,.25);
     color:#3b6fe0;
+    white-space:nowrap;
+    flex:none;
 }
 
 .search-tag.src{
@@ -2629,7 +2632,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v191</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v192</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -10011,13 +10014,15 @@ function findSearchSuggestions(q){
 function searchResultHtml(entry, i, exact){
     const useEn = getUiLang() === 'en';
     const trad = useEn ? (entry.en || entry.fr) : (entry.fr || entry.en);
+    // Mot, traduction et nature sur UNE seule ligne ; la pastille "correspondance
+    // exacte" est placee au-dessus plutot qu'a la suite, pour ne pas repousser la
+    // nature du mot sur une deuxieme ligne et garder toutes les lignes alignees.
     return '<div class="search-result' + (exact ? ' exact' : '') + '" onclick="openSearchCard(' + i + ')">'
+        + (exact ? '<div class="search-exact-line"><span class="search-tag exact">'
+            + t('search_exact') + '</span></div>' : "")
         + '<div class="search-result-head">'
         + '<span class="search-word">' + entry.de + '</span>'
         + '<span class="search-trad">' + (trad || "") + '</span>'
-        + '</div>'
-        + '<div class="search-meta">'
-        + (exact ? '<span class="search-tag exact">' + t('search_exact') + '</span>' : "")
         + '<span class="search-tag">' + t(entry.kindKey) + '</span>'
         + '</div>'
         + '</div>';
@@ -10339,14 +10344,28 @@ async function renderAdminUsersList(){
             container.textContent = t('admin_no_users');
             return;
         }
+        // Identification par le PRENOM (saisi a l'inscription et deja enregistre
+        // dans le document Firestore) plutot que par l'adresse e-mail : bien plus
+        // lisible pour reconnaitre un testeur d'un coup d'oeil. Repli sur
+        // l'e-mail pour les comptes crees avant que le prenom soit obligatoire.
+        // L'e-mail reste affiche en second, en petit, quand deux testeurs
+        // portent le meme prenom -- sinon leurs deux lignes seraient identiques.
+        const prenomsVus = {};
+        users.forEach(u => {
+            const n = (u.firstName || "").trim();
+            if(n) prenomsVus[n] = (prenomsVus[n] || 0) + 1;
+        });
         container.innerHTML = users.map(u => {
             const vhsOn = u.vhsChaptersEnabled === true;
+            const prenom = (u.firstName || "").trim();
+            const titre = prenom || u.email || u.id;
+            const emailEnRappel = (prenom && prenomsVus[prenom] > 1) ? (u.email || "") : "";
             return `
             <div class="admin-user-row" style="padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
                     <div>
-                        <div style="font-weight:700;">${u.email || u.id}</div>
-                        <small style="color:#576177;">${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
+                        <div style="font-weight:700;">${titre}</div>
+                        <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
                     </div>
                     <button class="secondary" style="min-height:auto; padding:6px 10px; font-size:12px; white-space:nowrap;" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
