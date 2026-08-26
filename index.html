@@ -2658,7 +2658,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v197</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v198</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3532,6 +3532,12 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         <strong data-i18n="adverbien_vocab_title">Vocabulaire : flashcards</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="adverbien_vocab_desc">Tous les adverbes, classés par catégorie (Zeit, Ort/Richtung, Häufigkeit…). Choisis un niveau ou révise l'ensemble.</p>
         <div id="adverbienLevelBar" class="filters-bar"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_cat_title">Réviser par famille</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="adverbien_cat_desc">Les adverbes s'apprennent en opposant les mots d'une même famille : immer, oft, manchmal, selten, nie.</p>
+        <div id="adverbienCategoryBar" class="filters-bar"></div>
     </div>
 </section>
 
@@ -4440,6 +4446,8 @@ const I18N = {
         adverbien_vocab_title: "Vocabulaire : flashcards",
         adverbien_vocab_desc: "Tous les adverbes, class\u00e9s par cat\u00e9gorie (Zeit, Ort/Richtung, H\u00e4ufigkeit\u2026). Choisis un niveau ou r\u00e9vise l'ensemble.",
         adverbien_level_all: "Tous",
+        adverbien_cat_title: "R\u00e9viser par famille",
+        adverbien_cat_desc: "Les adverbes s'apprennent en opposant les mots d'une m\u00eame famille : immer, oft, manchmal, selten, nie.",
         search_card_kicker: "Depuis la recherche",
         search_kind_noun: "Nom",
         search_kind_verb: "Verbe",
@@ -5094,6 +5102,8 @@ const I18N = {
         adverbien_vocab_title: "Vocabulary: flashcards",
         adverbien_vocab_desc: "All adverbs, grouped by category (Zeit, Ort/Richtung, H\u00e4ufigkeit\u2026). Pick a level or review the whole set.",
         adverbien_level_all: "All",
+        adverbien_cat_title: "Review by family",
+        adverbien_cat_desc: "Adverbs are learned by contrasting words of the same family: immer, oft, manchmal, selten, nie.",
         search_card_kicker: "From search",
         search_kind_noun: "Noun",
         search_kind_verb: "Verb",
@@ -10563,27 +10573,50 @@ function startAdverbienNuance(){
 // niveau encore vide (adverbe.json se remplit progressivement) n'affiche pas de
 // bouton mort. Le compte est indique pour que le choix soit informe.
 function renderAdverbienLevelBar(){
-    const bar = document.getElementById("adverbienLevelBar");
-    if(!bar) return;
     const mots = adverbienTheme.words || [];
-    const parNiveau = {};
-    mots.forEach(w => { const n = w[8] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
-    let html = `<button class="secondary" style="flex:1;" onclick="startAdverbienVokabular('ALL')">${t('adverbien_level_all')} (${mots.length})</button>`;
-    ["A1", "A2", "B1", "B2"].forEach(lvl => {
-        if(!parNiveau[lvl]) return;
-        html += `<button class="secondary" style="flex:1;" onclick="startAdverbienVokabular('${lvl}')">${lvl} (${parNiveau[lvl]})</button>`;
-    });
-    bar.innerHTML = html;
+
+    const bar = document.getElementById("adverbienLevelBar");
+    if(bar){
+        const parNiveau = {};
+        mots.forEach(w => { const n = w[8] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
+        let html = `<button class="secondary" style="flex:1;" onclick="startAdverbienVokabular('ALL')">${t('adverbien_level_all')} (${mots.length})</button>`;
+        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+            if(!parNiveau[lvl]) return;
+            html += `<button class="secondary" style="flex:1;" onclick="startAdverbienVokabular('${lvl}')">${lvl} (${parNiveau[lvl]})</button>`;
+        });
+        bar.innerHTML = html;
+    }
+
+    // Reviser par famille (Zeit, Ort/Richtung...) plutot que par niveau : c'est
+    // ainsi qu'on apprend les adverbes, en opposant les mots d'une meme famille
+    // (immer / oft / manchmal / selten / nie), pas dans un ordre quelconque.
+    const catBar = document.getElementById("adverbienCategoryBar");
+    if(catBar){
+        const parCat = {};
+        mots.forEach(w => { const c = w[9] || ""; if(c) parCat[c] = (parCat[c] || 0) + 1; });
+        const ordre = ["Zeit", "Ort/Richtung", "H\u00e4ufigkeit", "Art und Weise",
+                       "Grad/Menge", "Grund/Folge", "Verbindung/Logik", "Frageadverbien"];
+        catBar.innerHTML = ordre.filter(c => parCat[c]).map(c => {
+            const gloss = (ADVERB_CATEGORIES[c] || {})[getUiLang() === 'en' ? 'en' : 'fr'] || c;
+            const nom = gloss.split(" \u2014 ")[0];
+            const sens = gloss.split(" \u2014 ")[1] || "";
+            return `<button class="secondary" style="flex:1 1 46%; min-width:0;" onclick="startAdverbienVokabular('ALL', '${c.replace(/'/g, "\\'")}')">`
+                + `${nom} (${parCat[c]})${sens ? `<br><small style="opacity:.75; font-weight:400;">${sens}</small>` : ""}</button>`;
+        }).join("");
+    }
 }
 
-function startAdverbienVokabular(level){
+function startAdverbienVokabular(level, kategorie){
     flashcardMode = 'adverbien';
     currentTheme = adverbienTheme;
     let allItems = adverbienTheme.words.map((word, index) => ({ word, index, themeId: adverbienTheme.id }));
     if(level && level !== "ALL"){
         allItems = allItems.filter(it => (it.word[8] || "") === level);
-        if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     }
+    if(kategorie && kategorie !== "ALL"){
+        allItems = allItems.filter(it => (it.word[9] || "") === kategorie);
+    }
+    if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
     if(currentCards.length === 0) currentCards = allItems;
@@ -11094,17 +11127,32 @@ function startRandomMix(level){
     loadFlashcard();
 }
 
+// Ecran d'ou vient chaque mode de flashcard, et donc ou son bouton Retour doit
+// ramener. Table explicite plutot qu'une chaine de else if : les modes
+// 'adverbien' et 'konjunktionen' n'y figuraient pas et retombaient donc
+// silencieusement dans le cas par defaut (l'ecran Noms), alors qu'on y arrive
+// depuis le panneau Verbes. Un mode oublie se voit ici ; il ne se deguise plus
+// en retour vers les noms.
+const FLASHCARD_RETURN_SCREENS = {
+    verben:          () => openVerbenNiveau(),
+    adjektive:       () => openAdjektive(),
+    kasusverben:     () => openKasusInfo(),
+    praep:           () => openPraepInfo(),
+    positionsverben: () => openPraepInfo(),
+    partikeln:       () => openPartikelnInfo(),
+    adverbien:       () => openAdverbienInfo(),
+    konjunktionen:   () => openKonjunktionenInfo()
+};
+
 function handleFlashcardBack(){
     // Carte ouverte depuis la recherche : retour a l'accueil, d'ou la recherche
     // a ete lancee -- pas vers le menu du type de mot, qui n'a pas ete traverse.
     if(flashcardFromSearch){ flashcardFromSearch = false; goHome(); return; }
-    if(flashcardMode === 'verben') openVerbenNiveau();
-    else if(flashcardMode === 'adjektive') openAdjektive();
-    else if(flashcardMode === 'kasusverben') openKasusInfo();
-    else if(flashcardMode === 'praep') openPraepInfo();
-    else if(flashcardMode === 'positionsverben') openPraepInfo();
-    else if(flashcardMode === 'partikeln') openPartikelnInfo();
-    else if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
+    const retour = FLASHCARD_RETURN_SCREENS[flashcardMode];
+    if(retour){ retour(); return; }
+    // Restent les modes lies aux noms (nomen, vhskapitelverben,
+    // vhskapiteladjektive), qui memorisent leur origine dans nomenReturnScreen.
+    if(nomenReturnScreen === 'nomenNiveau') openNomenNiveau();
     else if(nomenReturnScreen === 'vhsKapitelListe') openVhsKapitelListe();
     else openNomen();
 }
