@@ -2553,29 +2553,6 @@ body[data-theme="dark"] .ecoute-btn.principal{
     background:#3b6fe0; border-color:#3b6fe0; color:#ffffff;
 }
 
-/* ===== Bandeau "nouvelle version" ===== */
-.version-banner{
-    position:fixed; left:12px; right:12px; z-index:9000;
-    bottom:calc(12px + env(safe-area-inset-bottom, 0px));
-    display:flex; align-items:center; gap:12px;
-    padding:14px 14px 14px 16px; border-radius:16px;
-    background:#1e2433; color:#ffffff;
-    box-shadow:0 10px 30px rgba(30,36,51,.34);
-    animation:orbPanelReveal .2s ease;
-}
-.version-banner.hidden{ display:none; }
-.version-banner-text{ flex:1; min-width:0; font-size:13px; line-height:1.35; }
-.version-banner-text strong{ display:block; font-size:14px; }
-.version-banner-text span{ opacity:.72; }
-.version-banner-btn{
-    flex-shrink:0; border:none; border-radius:11px; padding:10px 15px;
-    background:#3b6fe0; color:#ffffff; font-weight:700; font-size:13px; cursor:pointer;
-}
-.version-banner-close{
-    flex-shrink:0; border:none; background:transparent; color:#ffffff;
-    opacity:.55; font-size:22px; line-height:1; padding:0 4px; cursor:pointer;
-}
-@media (min-width:640px){ .version-banner{ left:auto; right:20px; max-width:420px; } }
 </style>
 </head>
 
@@ -2747,7 +2724,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v214</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v215</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -5425,9 +5402,6 @@ const I18N = {
         ecoute_terminee: "Séance d'écoute terminée.",
         ecoute_note: "L'écoute ne modifie pas ta progression : c'est une révision passive, pas un test.",
         ecoute_aucune_voix: "Aucune voix n'est installée sur cet appareil pour cette langue.",
-        version_new_title: "Nouvelle version disponible",
-        version_new_detail: "Tu es en v{de}, la version {a} est publiée.",
-        version_new_reload: "Recharger",
         op_tuiles_t: "Construire la phrase", op_tuiles_d: "toucher les mots, sans clavier",
         tuiles_menu_title: "Construire la phrase",
         tuiles_menu_desc: "On te donne la phrase en français et les mots allemands en vrac. Touche-les dans le bon ordre — pas de clavier. Le banc contient un ou deux mots en trop, choisis dans la même famille que ceux de la phrase : c'est là que se joue l'exercice.",
@@ -5439,9 +5413,7 @@ const I18N = {
         rattrapage_hint: "Touche les mots dans l'ordre. Un mot placé par erreur : touche-le pour le renvoyer.",
         rattrapage_reussi: "Bien reconstruit. La phrase reste comptée comme manquée — c'est la frappe qui est évaluée.",
         voice_lang_fr: "Voix française (traductions du mode Écoute)",
-        version_attente_title: "Mise à jour en cours de déploiement",
-        version_attente_detail: "Elle n'est pas encore servie par l'hébergeur. Réessaie dans une minute.",
-        version_retry: "Réessayer",
+        tuiles_level_sub: "{n} phrases tirées de {total}",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
@@ -6210,9 +6182,6 @@ const I18N = {
         ecoute_terminee: "Listening session finished.",
         ecoute_note: "Listening does not change your progress: it is passive review, not a test.",
         ecoute_aucune_voix: "No voice is installed on this device for that language.",
-        version_new_title: "New version available",
-        version_new_detail: "You are on v{de}, version {a} has been published.",
-        version_new_reload: "Reload",
         op_tuiles_t: "Build the sentence", op_tuiles_d: "tap the words, no keyboard",
         tuiles_menu_title: "Build the sentence",
         tuiles_menu_desc: "You get the sentence in your language and the German words scrambled. Tap them in the right order — no keyboard. The bank holds one or two extra words, taken from the same family as those in the sentence: that is where the exercise happens.",
@@ -6224,9 +6193,7 @@ const I18N = {
         rattrapage_hint: "Tap the words in order. Tapped one by mistake? Tap it again to send it back.",
         rattrapage_reussi: "Well rebuilt. The sentence still counts as missed — typing is what is graded.",
         voice_lang_fr: "French voice (Listen mode translations)",
-        version_attente_title: "Update still deploying",
-        version_attente_detail: "The host is not serving it yet. Try again in a minute.",
-        version_retry: "Try again",
+        tuiles_level_sub: "{n} sentences drawn from {total}",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
@@ -13070,103 +13037,17 @@ document.addEventListener("visibilitychange", () => {
 
 
 
-// ==================== Detection d'une nouvelle version ====================
-// GitHub Pages sert index.html avec Cache-Control: max-age=600. Safari sur iOS
-// garde souvent la page bien plus longtemps -- au point de rester plusieurs
-// versions en arriere sans aucun signe visible (constate : un appareil bloque
-// en v208 alors que v209 etait publiee depuis un moment). L'app compare donc
-// sa propre version a celle publiee et le dit, plutot que de laisser croire
-// que la nouveaute n'a pas ete livree.
-const APP_VERSION = 214;
-// version.json est lu depuis LA MEME ORIGINE que la page, jamais depuis
-// raw.githubusercontent. La premiere version comparait ces deux services :
-// raw se met a jour en quelques secondes, GitHub Pages doit reconstruire et
-// deployer. Il existait donc une fenetre ou le bandeau annoncait une version
-// que l'hebergeur ne pouvait pas encore servir -- recharger n'y changeait rien
-// et l'app paraissait cassee. Meme origine = meme deploiement = pas d'ecart
-// possible entre ce qu'on annonce et ce qu'un rechargement peut livrer.
-const VERSION_URL = "version.json";
-const VERSION_INTERVALLE_MS = 5 * 60 * 1000;
-const VERSION_TENTATIVE_CLE = "deutschAI_versionTentee";
+// Le numero de version est affiche a cote du titre. Il n'y a volontairement
+// AUCUNE verification automatique : la comparaison avec une version publiee a
+// produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
+// pas encore, sans recours possible. L'usager prefere connaitre le numero et la
+// liste des changements, puis verifier l'etiquette lui-meme.
+const APP_VERSION = 215;
 
-let versionDistante = null;
-let versionDerniereVerif = 0;
-let versionBanniereMasquee = false;
-
-function tentativeEnregistree(){
-    try{ return parseInt(sessionStorage.getItem(VERSION_TENTATIVE_CLE) || "0", 10) || 0; }
-    catch(e){ return 0; }
-}
-
-function oublierTentative(){
-    try{ sessionStorage.removeItem(VERSION_TENTATIVE_CLE); }catch(e){}
-}
-
-async function verifierNouvelleVersion(){
-    const maintenant = Date.now();
-    if(maintenant - versionDerniereVerif < VERSION_INTERVALLE_MS) return;
-    versionDerniereVerif = maintenant;
-    try{
-        // no-store + URL horodatee : le fichier de version est justement celui
-        // qui ne doit jamais venir d'un cache.
-        const r = await fetch(cacheBustedUrl(VERSION_URL), { cache: "no-store" });
-        if(!r.ok) return;
-        const d = await r.json();
-        const n = parseInt(d.version, 10);
-        if(!n) return;
-        if(n <= APP_VERSION){ oublierTentative(); return; }
-        versionDistante = n;
-        if(!versionBanniereMasquee) afficherBanniereVersion();
-    }catch(e){}
-}
-
-function afficherBanniereVersion(){
-    const el = document.getElementById("versionBanner");
-    if(!el || !versionDistante) return;
-    // Un rechargement deja tente qui n'a rien change : le dire, plutot que de
-    // reafficher le meme message et laisser croire que le bouton ne marche pas.
-    const enAttente = tentativeEnregistree() >= versionDistante;
-    const titre = document.getElementById("versionBannerTitle");
-    const detail = document.getElementById("versionBannerDetail");
-    const bouton = document.getElementById("versionBannerBtn");
-    if(titre) titre.textContent = t(enAttente ? "version_attente_title" : "version_new_title");
-    if(detail) detail.textContent = enAttente
-        ? t("version_attente_detail")
-        : tf("version_new_detail", { de: APP_VERSION, a: versionDistante });
-    if(bouton) bouton.textContent = t(enAttente ? "version_retry" : "version_new_reload");
-    el.classList.remove("hidden");
-}
-
-function masquerBanniereVersion(){
-    versionBanniereMasquee = true;
-    const el = document.getElementById("versionBanner");
-    if(el) el.classList.add("hidden");
-}
-
-// Une nouvelle URL est une nouvelle ressource pour le navigateur : c'est le
-// seul moyen fiable de passer outre le cache sur iOS, ou location.reload()
-// ressert simplement la copie gardee.
-function rechargerNouvelleVersion(){
-    try{ sessionStorage.setItem(VERSION_TENTATIVE_CLE, String(versionDistante || 0)); }catch(e){}
-    const base = location.origin + location.pathname;
-    // Horodatage en plus du numero : sans lui, un deuxieme clic viserait la
-    // MEME adresse que le premier et pourrait etre resservi depuis le cache.
-    location.replace(base + "?v=" + (versionDistante || 0) + "&t=" + Date.now());
-}
-
-// Le numero affiche a cote du titre vient de la constante, jamais d'un texte
-// ecrit a la main : les deux ne peuvent plus diverger.
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
     if(el) el.textContent = "v" + APP_VERSION;
 }
-
-// Au retour au premier plan : c'est le moment ou une version publiee entre-temps
-// a le plus de chances d'exister.
-document.addEventListener("visibilitychange", () => {
-    if(!document.hidden) verifierNouvelleVersion();
-});
-
 
 function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
@@ -14572,7 +14453,9 @@ function renderTuilesMenu(){
     if(!bar) return;
     const bouton = (val, libelle, n) =>
         `<button class="secondary" style="flex:1 1 ${val === "ALL" ? "100%" : "46%"}; min-width:0;"`
-        + ` onclick="startTuiles('${val}')">${libelle} (${n})</button>`;
+        + ` onclick="startTuiles('${val}')">${libelle}`
+        + `<br><small style="opacity:.75; font-weight:400;">`
+        + `${tf("tuiles_level_sub", { n: TUILES_TAILLE_SERIE, total: n })}</small></button>`;
     let html = bouton("ALL", t("tuiles_level_all"), phrasesPourTuiles("ALL").length);
     LEVELS.forEach(lvl => {
         const n = phrasesPourTuiles(lvl).length;
@@ -14932,7 +14815,6 @@ function showResults(){
 
 (() => {
     afficherNumeroVersion();
-    verifierNouvelleVersion();
     loadThemesJson();
     updateGlobalProgress();
     renderDailyGoalSetting();
@@ -14949,15 +14831,6 @@ function showResults(){
     document.addEventListener('pointerdown', unlockAudioOnce, { once: true });
 })();
 </script>
-
-<div id="versionBanner" class="version-banner hidden">
-    <div class="version-banner-text">
-        <strong id="versionBannerTitle" data-i18n="version_new_title">Nouvelle version disponible</strong>
-        <span id="versionBannerDetail"></span>
-    </div>
-    <button id="versionBannerBtn" class="version-banner-btn" onclick="rechargerNouvelleVersion()" data-i18n="version_new_reload">Recharger</button>
-    <button class="version-banner-close" onclick="masquerBanniereVersion()" aria-label="Fermer">&times;</button>
-</div>
 
 </body>
 </html>
