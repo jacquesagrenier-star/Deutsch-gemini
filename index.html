@@ -342,6 +342,13 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="adverbien"] .orb-icon svg{stroke:#84cc16;}
 .orb[data-orbid="adverbien"] .orb-badge{background:#84cc16; box-shadow:0 2px 6px rgba(132,204,22,.35);}
 
+.orb[data-orbid="redewendungen"] .orb-icon{
+    background:rgba(217,70,239,.14);
+    border-color:rgba(217,70,239,.28);
+}
+.orb[data-orbid="redewendungen"] .orb-icon svg{stroke:#d946ef;}
+.orb[data-orbid="redewendungen"] .orb-badge{background:#d946ef; box-shadow:0 2px 6px rgba(217,70,239,.35);}
+
 .orb[data-orbid="konjunktionen"] .orb-icon{
     background:rgba(14,165,233,.14);
     border-color:rgba(14,165,233,.28);
@@ -2660,7 +2667,7 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v203</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v204</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2826,6 +2833,15 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
             <div>
                 <strong data-i18n="orb_adverbien_title">Adverbes</strong>
                 <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
+            </div>
+        </div>
+
+        <div class="orb orb-de" data-orbid="redewendungen" onclick="openOrbPanel('redewendungen')">
+            <div id="badge-redewendungen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_redewendungen_title">Expressions</strong>
+                <small data-i18n="orb_redewendungen_sub">keine Ahnung · auf jeden Fall</small>
             </div>
         </div>
 
@@ -3545,6 +3561,59 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
      parce que l'option "Vocabulaire" du panneau doit mener a un CHOIX, pas au
      bas d'une page d'explications : elle lancait auparavant les 340 cartes d'un
      coup, sans jamais montrer ni les niveaux ni les familles. -->
+<!-- ================= EXPRESSIONS ================= -->
+
+<section id="redewendungenInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('redewendungen')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="grammar_kicker">Grammaire</div>
+            <h2 data-i18n="redewendungen_info_title">Comprendre les expressions</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="redewendungen_intro"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="redewendungen_pourquoi_title">Pourquoi les apprendre en bloc</strong>
+        <div class="info-box" data-i18n-html="redewendungen_pourquoi"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="redewendungen_piege_title">Le piège : la traduction mot à mot</strong>
+        <div class="info-box" data-i18n-html="redewendungen_piege"></div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="openRedewendungenVokabular()" data-i18n="redewendungen_btn_vocab">VOCABULAIRE : CHOISIR UN NIVEAU →</button>
+</section>
+
+<section id="redewendungenVokabular" class="screen">
+    <button class="back" onclick="openOrbPanel('redewendungen')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="orb_redewendungen_title">Expressions</div>
+            <h2 data-i18n="redewendungen_vocab_title">Vocabulaire : flashcards</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="adverbien_level_title">Choisir un niveau</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="redewendungen_vocab_desc">Choisis d'abord un niveau : la liste des familles juste en dessous s'ajuste au niveau choisi.</p>
+        <div id="redewendungenLevelBar" class="filters-bar"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="redewendungen_cat_title">Réviser par famille</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="redewendungen_cat_desc">Les expressions se retiennent par situation : saluer, donner son avis, nuancer.</p>
+        <div id="redewendungenCategoryBar" class="filters-bar"></div>
+    </div>
+</section>
+
 <section id="adverbienVokabular" class="screen">
     <button class="back" onclick="openOrbPanel('adverbien')"><span data-i18n="back_button">‹ Retour</span></button>
 
@@ -4990,6 +5059,25 @@ const I18N = {
         relativ_gen_btn_order: "M'ENTRAÎNER : REMETTRE LES MOTS EN ORDRE →",
 
         orb_adverbien_title: "Adverbes",
+        orb_redewendungen_title: "Expressions",
+        orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
+        op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
+        op_redewendungen_o1_t: "Comprendre les expressions", op_redewendungen_o1_d: "6 familles : saluer, nuancer, r\u00e9agir\u2026",
+        op_redewendungen_o2_t: "Vocabulaire", op_redewendungen_o2_d: "151 expressions \u00b7 6 familles",
+        redewendungen_info_title: "Comprendre les expressions",
+        redewendungen_intro: "Une <em>Redewendung</em> est un bloc tout fait : plusieurs mots qui ne se comprennent qu'ensemble. <em>Es kommt darauf an</em> ne s'analyse pas mot \u00e0 mot, il se retient d'un seul tenant \u2014 comme on retient un mot de vocabulaire.",
+        redewendungen_pourquoi_title: "Pourquoi les apprendre en bloc",
+        redewendungen_pourquoi: "C'est ce qui distingue le plus nettement un apprenant d'un locuteur \u00e0 l'aise. Conna\u00eetre <em>Ahnung</em> (le soup\u00e7on, l'id\u00e9e) ne sert \u00e0 rien ; savoir r\u00e9pondre <em>keine Ahnung</em> sert tous les jours.<br>Elles \u00e9vitent aussi de construire chaque phrase de z\u00e9ro : un bloc pr\u00eat \u00e0 l'emploi lib\u00e8re l'attention pour le reste de la phrase.",
+        redewendungen_piege_title: "Le pi\u00e8ge : la traduction mot \u00e0 mot",
+        redewendungen_piege: "<em>Ich verstehe nur Bahnhof</em> signifie \u00ab je n'y comprends rien \u00bb, pas \u00ab je ne comprends que la gare \u00bb. Et l'inverse est vrai : \u00ab j'ai le cafard \u00bb ne se traduit pas par <em>ich habe die Kakerlake</em>.<br><strong>Apprends l'expression avec sa situation</strong>, jamais avec sa d\u00e9composition. C'est pourquoi les familles ici sont des situations \u2014 saluer, donner son avis, nuancer \u2014 et non des cat\u00e9gories grammaticales.",
+        redewendungen_vocab_title: "Vocabulaire : flashcards",
+        redewendungen_vocab_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'ajuste au niveau choisi.",
+        redewendungen_cat_title: "R\u00e9viser par famille",
+        redewendungen_cat_desc: "Les expressions se retiennent par situation : saluer, donner son avis, nuancer.",
+        redewendungen_btn_vocab: "VOCABULAIRE : CHOISIR UN NIVEAU \u2192",
+        kicker_redewendungen_vocab: "Expressions \u00b7 Vocabulaire",
+        search_kind_expr: "Expression",
+        search_src_redewendungen: "Expressions",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Conjonctions",
         orb_konjunktionen_sub: "und · weil · aber",
@@ -5668,6 +5756,25 @@ const I18N = {
         relativ_gen_btn_order: "PRACTICE: PUT THE WORDS IN ORDER →",
 
         orb_adverbien_title: "Adverbs",
+        orb_redewendungen_title: "Expressions",
+        orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
+        op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
+        op_redewendungen_o1_t: "Understand expressions", op_redewendungen_o1_d: "6 families: greeting, hedging, reacting\u2026",
+        op_redewendungen_o2_t: "Vocabulary", op_redewendungen_o2_d: "151 expressions \u00b7 6 families",
+        redewendungen_info_title: "Understand expressions",
+        redewendungen_intro: "A <em>Redewendung</em> is a ready-made block: several words that only make sense together. <em>Es kommt darauf an</em> cannot be parsed word by word \u2014 it is memorised as one piece, like a vocabulary item.",
+        redewendungen_pourquoi_title: "Why learn them as a block",
+        redewendungen_pourquoi: "This is what most clearly separates a learner from a comfortable speaker. Knowing <em>Ahnung</em> (an inkling) is of little use; being able to answer <em>keine Ahnung</em> is useful every day.<br>They also spare you from building every sentence from scratch: a ready-made block frees your attention for the rest of the sentence.",
+        redewendungen_piege_title: "The trap: word-for-word translation",
+        redewendungen_piege: "<em>Ich verstehe nur Bahnhof</em> means \"it's all Greek to me\", not \"I only understand the station\". And the reverse holds: \"it's raining cats and dogs\" is not <em>es regnet Katzen und Hunde</em>.<br><strong>Learn the expression with its situation</strong>, never with its parts. That is why the families here are situations \u2014 greeting, giving an opinion, hedging \u2014 and not grammatical categories.",
+        redewendungen_vocab_title: "Vocabulary: flashcards",
+        redewendungen_vocab_desc: "Pick a level first: the list of families just below adjusts to the level you chose.",
+        redewendungen_cat_title: "Review by family",
+        redewendungen_cat_desc: "Expressions stick by situation: greeting, giving an opinion, hedging.",
+        redewendungen_btn_vocab: "VOCABULARY: CHOOSE A LEVEL \u2192",
+        kicker_redewendungen_vocab: "Expressions \u00b7 Vocabulary",
+        search_kind_expr: "Expression",
+        search_src_redewendungen: "Expressions",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Conjunctions",
         orb_konjunktionen_sub: "und · weil · aber",
@@ -6496,6 +6603,43 @@ const ADVERB_CATEGORIES = {
 // Tuple produit, compatible avec le rendu existant des cartes de grammaire :
 // [mot, fr, categorie affichee FR, exempleDE, exempleFR, en, exempleEN,
 //  categorie affichee EN, niveau, categorie brute].
+// Familles d'expressions, classees par FONCTION (saluer, donner son avis,
+// nuancer...) et non par forme : c'est ainsi qu'on va les chercher quand on
+// parle.
+const REDEWENDUNG_CATEGORIES = {
+    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk" },
+    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement" },
+    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions" },
+    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life" },
+    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance" },
+    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun" }
+};
+
+// Meme principe que adverbe.json : la donnee vit hors du code. Tuple produit,
+// compatible avec le rendu existant des cartes de grammaire.
+async function loadRedewendungenJson() {
+    try {
+        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/redewendung.json'), { cache: 'no-cache' });
+        if (!response.ok) throw new Error("Fichier redewendung.json introuvable");
+        const data = await response.json();
+        const words = [];
+        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+            (data[lvl] || []).forEach(r => {
+                const cat = REDEWENDUNG_CATEGORIES[r.kategorie] || { fr: r.kategorie, en: r.kategorie };
+                words.push([
+                    r.mot || "", r.traduction || "", cat.fr,
+                    r.exemple || "", r.exemple_fr || "",
+                    r.traduction_en || "", r.exemple_en || "",
+                    cat.en, lvl, r.kategorie || ""
+                ]);
+            });
+        });
+        if (words.length) redewendungenTheme.words = words;
+    } catch (e) {
+        console.warn("Chargement de secours pour redewendung.json", e);
+    }
+}
+
 async function loadAdverbienJson() {
     try {
         const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adverbe.json'), { cache: 'no-cache' });
@@ -6526,6 +6670,7 @@ async function loadThemesJson() {
     await loadAdjektiveJson();
     await loadVerbeJson();
     await loadAdverbienJson();
+    await loadRedewendungenJson();
     try {
         const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Erreur themes.json");
@@ -8249,6 +8394,13 @@ const partikelnTheme = {
 // categories que TeKaMoLo deja enseigne dans Structure, pour renforcer le
 // lien). Meme mecanique que partikelnTheme : tuples reutilises tels quels
 // par loadFlashcard() (flashcardMode === 'adverbien').
+const redewendungenTheme = {
+  id: "redewendungen_vokabular",
+  name: "Expressions",
+  svg: '<svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>',
+  words: []
+};
+
 const adverbienTheme = {
   id: "adverbien_vokabular",
   name: "Adverbes",
@@ -9735,6 +9887,15 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "redewendungen"){
+        return {
+            icon:"dossier", title:t("op_redewendungen_title"), sub:t("op_redewendungen_sub"),
+            options:[
+                { icon:"dossier", title:t("op_redewendungen_o1_t"), desc:t("op_redewendungen_o1_d"), primary:true, action:"openRedewendungenInfo" },
+                { icon:"carte", title:t("op_redewendungen_o2_t"), desc:t("op_redewendungen_o2_d"), action:"openRedewendungenVokabular" }
+            ]
+        };
+    }
     if(id === "konjunktionen"){
         return {
             icon:"dossier", title:t("op_konjunktionen_title"), sub:t("op_konjunktionen_sub"),
@@ -10049,7 +10210,8 @@ function buildSearchIndex(){
         [adverbienTheme, 'search_kind_adverb', 'search_src_adverb', 'adverbien'],
         [konjunktionenTheme, 'search_kind_conj', 'search_src_conj', 'konjunktionen'],
         [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln'],
-        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben']
+        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben'],
+        [redewendungenTheme, 'search_kind_expr', 'search_src_redewendungen', 'redewendungen']
     ].forEach(cfg => {
         (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
             kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3], prio: 3,
@@ -10073,7 +10235,8 @@ function searchSourcesStamp(){
     return (typeof themes !== 'undefined' ? themes.length : 0) * 1000000000
         + (verbeTheme.words || []).length * 1000000
         + (adjektiveTheme.words || []).length * 1000
-        + (adverbienTheme.words || []).length;
+        + (adverbienTheme.words || []).length
+        + (redewendungenTheme.words || []).length;
 }
 
 function ensureSearchIndex(){
@@ -10654,6 +10817,79 @@ let adverbienSelectedLevel = "ALL";
 function selectAdverbienLevel(level){
     adverbienSelectedLevel = level || "ALL";
     renderAdverbienLevelBar();
+}
+
+function openRedewendungenInfo(){
+    showScreen("redewendungenInfo");
+}
+
+function openRedewendungenVokabular(){
+    renderRedewendungenBars();
+    showScreen("redewendungenVokabular");
+}
+
+let redewendungenSelectedLevel = "ALL";
+
+function selectRedewendungenLevel(level){
+    redewendungenSelectedLevel = level || "ALL";
+    renderRedewendungenBars();
+}
+
+function renderRedewendungenBars(){
+    const mots = redewendungenTheme.words || [];
+    const bar = document.getElementById("redewendungenLevelBar");
+    if(bar){
+        const parNiveau = {};
+        mots.forEach(w => { const n = w[8] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
+        const bouton = (val, libelle, n) => {
+            const actif = redewendungenSelectedLevel === val;
+            const style = actif ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+                                : "flex:1; min-width:0;";
+            return `<button class="secondary" style="${style}" onclick="selectRedewendungenLevel('${val}')">${libelle} (${n})</button>`;
+        };
+        let html = bouton("ALL", t('adverbien_level_all'), mots.length);
+        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+            if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
+        });
+        bar.innerHTML = html;
+    }
+
+    const catBar = document.getElementById("redewendungenCategoryBar");
+    if(catBar){
+        const duNiveau = mots.filter(w => redewendungenSelectedLevel === "ALL" || (w[8] || "") === redewendungenSelectedLevel);
+        const parCat = {};
+        duNiveau.forEach(w => { const c = w[9] || ""; if(c) parCat[c] = (parCat[c] || 0) + 1; });
+        const ordre = ["Begrüßung/Small Talk", "Meinung/Zustimmung", "Gefühle/Reaktionen",
+                       "Alltag/Organisation", "Diskussion/Nuance", "Feste Verbindungen"];
+        const lvl = redewendungenSelectedLevel;
+        let html = `<button class="secondary" style="flex:1 1 100%;" onclick="startRedewendungenVokabular('${lvl}', 'ALL')">`
+            + `${t('adverbien_cat_all')} (${duNiveau.length})</button>`;
+        html += ordre.filter(c => parCat[c]).map(c => {
+            const gloss = (REDEWENDUNG_CATEGORIES[c] || {})[getUiLang() === 'en' ? 'en' : 'fr'] || c;
+            const nom = gloss.split(" \u2014 ")[0];
+            const sens = gloss.split(" \u2014 ")[1] || "";
+            const arg = c.replace(/'/g, "\\'");
+            return `<button class="secondary" style="flex:1 1 46%; min-width:0;" onclick="startRedewendungenVokabular('${lvl}', '${arg}')">`
+                + `${nom} (${parCat[c]})${sens ? `<br><small style="opacity:.75; font-weight:400;">${sens}</small>` : ""}</button>`;
+        }).join("");
+        catBar.innerHTML = html;
+    }
+}
+
+function startRedewendungenVokabular(level, kategorie){
+    flashcardMode = 'redewendungen';
+    currentTheme = redewendungenTheme;
+    let allItems = redewendungenTheme.words.map((word, index) => ({ word, index, themeId: redewendungenTheme.id }));
+    if(level && level !== "ALL") allItems = allItems.filter(it => (it.word[8] || "") === level);
+    if(kategorie && kategorie !== "ALL") allItems = allItems.filter(it => (it.word[9] || "") === kategorie);
+    if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
+    currentCardsFull = allItems;
+    currentCards = allItems.filter(item => !getWordState(item.themeId, item.index).mastered);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_redewendungen_vocab', 'orb_redewendungen_title');
+    showScreen("flashcards");
+    loadFlashcard();
 }
 
 function openAdverbienVokabular(){
@@ -11245,6 +11481,7 @@ const FLASHCARD_RETURN_SCREENS = {
     positionsverben: () => openPraepInfo(),
     partikeln:       () => openPartikelnInfo(),
     adverbien:       () => openAdverbienVokabular(),
+    redewendungen:   () => openRedewendungenVokabular(),
     konjunktionen:   () => openKonjunktionenInfo()
 };
 
@@ -11392,7 +11629,7 @@ function loadFlashcard(){
     const dictationBtn = document.getElementById("dictationStartBtn");
     if(dictationBtn) dictationBtn.classList.toggle("hidden", flashcardMode !== 'nomen');
     sentenceRegistry = [];
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -11581,7 +11818,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'vhskapiteladjektive'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapiteladjektive'){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
@@ -11590,7 +11827,7 @@ function loadFlashcard(){
         const exampleSentence = card[3];
         const exampleSentenceFr = ((useEn && card[6]) ? card[6] : card[4]) || "";
         const label = flashcardMode === 'partikeln' ? t('label_nuance_word')
-            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen') ? t('label_word_category')
+            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen') ? t('label_word_category')
             : t('label_case_word');
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
