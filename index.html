@@ -2726,7 +2726,12 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
    L'accueil consacrait 620 px sur 844 -- 73 % de l'ecran d'un iPhone -- a un
    titre, un sous-titre et des statistiques, avant la premiere tuile. Le
    contenu que la personne vient chercher commencait sous le pli. */
-#home{display:flex; flex-direction:column;}
+/* ATTENTION a la specificite : ".screen{display:none}" ne pese qu'une classe,
+   alors qu'un selecteur d'identifiant pese davantage. Ecrit "#home{display:flex}",
+   l'accueil restait affiche meme inactif, et tous les autres ecrans se
+   dessinaient EN DESSOUS de ses tuiles (bug de la v232). Le selecteur doit
+   donc porter ".active". */
+#home.active{display:flex; flex-direction:column;}
 .home-greeting-row{order:1; display:flex; align-items:baseline; gap:7px; margin-bottom:12px;}
 .home-greeting-row .home-greeting{margin:0;}
 /* La version se loge dans le coin de la carte de progression : elle ne coute
@@ -2977,7 +2982,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v233</span>
+        <span class="subtitle-version">v234</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14307,7 +14312,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 233;
+const APP_VERSION = 234;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
