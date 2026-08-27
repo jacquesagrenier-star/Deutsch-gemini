@@ -2729,7 +2729,13 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 #home{display:flex; flex-direction:column;}
 .home-greeting-row{order:1; display:flex; align-items:baseline; gap:7px; margin-bottom:12px;}
 .home-greeting-row .home-greeting{margin:0;}
-.home-greeting-row .subtitle-version{color:#b6bcc7; font-weight:600; font-size:12px;}
+/* La version se loge dans le coin de la carte de progression : elle ne coute
+   plus une ligne sous le logo. */
+.home-stats-card{position:relative;}
+.home-stats-card .subtitle-version{
+    position:absolute; right:10px; bottom:7px;
+    color:#c3c9d4; font-weight:600; font-size:10.5px; letter-spacing:.02em;
+}
 .search-launch{order:2; margin:0 0 14px !important;}
 .home-stats-card{order:3;}
 #orbGrid{order:4;}
@@ -2758,16 +2764,23 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 .home-stats-card .global-ring-wrap svg{width:104px; height:104px;}
 .home-stats-card .global-ring-level{font-size:13px; letter-spacing:.09em; margin-bottom:2px;}
 .home-stats-card .global-ring-num{font-size:25px;}
-/* La pastille de changement de niveau remonte au bord superieur gauche. */
-.home-stats-card .ring-cycle-badge{top:2px; left:-2px; right:auto; bottom:auto;}
+/* La pastille de changement de niveau : au bord superieur gauche, et assez
+   grosse pour qu'on comprenne qu'elle se touche. */
+.home-stats-card .ring-cycle-badge{
+    top:0; left:-4px; right:auto; bottom:auto;
+    width:30px; height:30px; font-size:16px;
+}
 
-.home-daily-goal{margin-top:9px !important; padding-top:9px !important;}
+.home-daily-goal{margin-top:4px !important; padding-top:6px !important;}
 .home-daily-goal-row{justify-content:center !important; gap:8px !important; font-size:13px;}
 #dailyGoalCount{font-weight:800; color:#3b6fe0;}
 
 /* Une tuile ne doit jamais depasser deux lignes par ligne de texte, sans quoi
    elle devient plus haute que ses voisines et casse la grille. */
 .orb strong{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.15;}
+/* "Mon vocabulaire" tient sur une ligne mais remplit la tuile d'un bord a
+   l'autre : on le force sur deux lignes pour lui rendre de l'air. */
+.orb[data-orbid="monvocab"] strong{max-width:6.5em; margin:0 auto;}
 .orb small{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.25;}
 
 </style>
@@ -2942,7 +2955,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <div class="home-greeting-row">
         <p id="homeGreeting" class="home-greeting"></p>
-        <span class="subtitle-version">v232</span>
     </div>
 
     <h1>
@@ -2965,6 +2977,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
+        <span class="subtitle-version">v233</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4917,6 +4930,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card">
+        <strong data-i18n="admin_requests_title">Mots demandés</strong>
+        <div class="info-box" data-i18n="admin_requests_desc">Les mots que tes testeurs ont cherchés puis mis de côté. Les plus demandés méritent une vraie fiche dans le cours.</div>
+        <div class="spacer"></div>
+        <div id="adminRequestsList" class="info-box" data-i18n="loading_label">Chargement...</div>
+    </div>
+
+    <div class="card">
         <strong data-i18n="admin_users_title">Testeurs</strong>
         <div id="adminUsersList" class="info-box" data-i18n="loading_label">Chargement...</div>
     </div>
@@ -5136,6 +5156,10 @@ const I18N = {
         myvocab_added: "« {mot} » ajouté à tes flashcards.",
         myvocab_already: "« {mot} » est déjà dans tes flashcards.",
         myvocab_full: "Tu as atteint {n} mots mis de côté. Fais-en le tour avant d'en ajouter.",
+        myvocab_sans_genre: "« {mot} » n'a pas d'article dans le dictionnaire. On ne peut pas en faire une carte fiable, mais ta demande est notée.",
+        myvocab_deja_cours: "« {mot} » est déjà une carte du cours — inutile de l'ajouter.",
+        myvocab_diplomes: "{n} de tes mots sont entrés dans le cours : ils ont maintenant une vraie fiche.",
+        myvocab_tout_diplome: "Tous tes mots sont entrés dans le cours. Cherche-en de nouveaux !",
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
         review_good: "Je savais ✓",
@@ -5939,6 +5963,10 @@ const I18N = {
         admin_codes_desc: "Donne un code à chaque personne que tu autorises. Chaque code ne sert qu'une seule fois.",
         admin_generate_code_btn: "GÉNÉRER UN NOUVEAU CODE →",
         admin_users_title: "Testeurs",
+        admin_requests_title: "Mots demandés",
+        admin_requests_desc: "Les mots que tes testeurs ont cherchés puis mis de côté. Les plus demandés méritent une vraie fiche dans le cours.",
+        admin_requests_none: "Aucun mot demandé pour l'instant.",
+        admin_requests_more: "et {n} autres.",
         admin_code_generated: "Nouveau code créé : {code}",
         admin_action_failed: "L'action a échoué. Vérifie que Firestore est bien activé et réessaie.",
         admin_confirm_delete_code: "Supprimer le code « {code} » ?",
@@ -5984,6 +6012,10 @@ const I18N = {
         myvocab_added: "“{mot}” added to your flashcards.",
         myvocab_already: "“{mot}” is already in your flashcards.",
         myvocab_full: "You have reached {n} saved words. Work through them before adding more.",
+        myvocab_sans_genre: "“{mot}” has no article in the dictionary. We can't build a reliable card, but your request is noted.",
+        myvocab_deja_cours: "“{mot}” is already a course card — no need to add it.",
+        myvocab_diplomes: "{n} of your words have entered the course: they now have a full entry.",
+        myvocab_tout_diplome: "All your words have entered the course. Go find new ones!",
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
         review_good: "I knew it ✓",
@@ -6790,6 +6822,10 @@ const I18N = {
         admin_codes_desc: "Give a code to each person you authorize. Each code can only be used once.",
         admin_generate_code_btn: "GENERATE A NEW CODE →",
         admin_users_title: "Testers",
+        admin_requests_title: "Requested words",
+        admin_requests_desc: "Words your testers looked up and saved. The most requested deserve a full course entry.",
+        admin_requests_none: "No requested words yet.",
+        admin_requests_more: "and {n} more.",
         admin_code_generated: "New code created: {code}",
         admin_action_failed: "The action failed. Make sure Firestore is enabled and try again.",
         admin_confirm_delete_code: "Delete code « {code} »?",
@@ -9652,6 +9688,11 @@ async function syncProgressToCloud(){
             // si l'utilisateur n'a rien fait aujourd'hui.
             dailyActivityToday: getDailyActivityCount(),
             dailyActivityDate: getTodayStr(),
+            // Ce que la personne a cherche puis mis de cote. C'est la demande
+            // reelle : elle dit quels mots meritent une vraie fiche, au lieu
+            // qu'on les devine depuis un corpus.
+            vocabDemandes: loadMyRequests().slice(-150),
+            vocabCartes: loadMyVocab().filter(w => w[10] !== "1").map(w => w[0]).slice(-150),
             progress,
             updatedAt: window.fsServerTimestamp()
         };
@@ -11480,6 +11521,10 @@ function dedupeSearchHits(hits){
 //   7 pluriel (facultatif : environ deux noms sur trois en ont un)
 //   8 participe passe (verbes allemands seulement) · 9 auxiliaire haben/sein
 const MY_VOCAB_KEY = "deutschAI_monVocabulaire";
+// Tout mot sur lequel on a touche le "+", carde ou non. C'est ce que
+// l'administrateur voit remonter : un mot qu'on n'a meme pas pu carder est le
+// signal le plus fort qu'il faut en ecrire la fiche.
+const MY_REQUESTS_KEY = "deutschAI_motsDemandes";
 // 86 octets par mot en moyenne : 5 000 mots pesent 0,43 Mo sur les ~5 Mo
 // disponibles, en laissant la place a la progression, qui est le gros poste.
 const MY_VOCAB_MAX = 5000;
@@ -11515,6 +11560,31 @@ function loadMyVocab(){
     return monVocabTheme.words;
 }
 
+function loadMyRequests(){
+    try{ const l = JSON.parse(localStorage.getItem(directionScopedKey(MY_REQUESTS_KEY)) || "[]");
+         return Array.isArray(l) ? l : []; }
+    catch(e){ return []; }
+}
+
+function noterDemande(mot, sens){
+    const liste = loadMyRequests();
+    if(liste.some(d => d.m === mot)) return;
+    liste.push({ m: mot, t: sens, d: getTodayStr() });
+    try{ localStorage.setItem(directionScopedKey(MY_REQUESTS_KEY), JSON.stringify(liste.slice(-300))); }catch(e){}
+    scheduleCloudSync();
+}
+
+// Un mot du cours a une vraie fiche : genre, pluriel, phrase d'exemple. Le jour
+// ou il y entre, la note que la personne s'etait faite n'a plus de raison
+// d'exister. On la marque au lieu de la supprimer : la progression est indexee
+// par position, et retirer une entree decalerait toutes les suivantes.
+function motDejaDansLeCours(mot){
+    const index = (typeof ensureSearchIndex === "function") ? ensureSearchIndex() : null;
+    if(!index || !index.length) return false;
+    const bas = (mot || "").toLowerCase();
+    return index.some(e => (e.de || "").toLowerCase() === bas);
+}
+
 function saveMyVocab(){
     try{
         localStorage.setItem(directionScopedKey(MY_VOCAB_KEY),
@@ -11525,7 +11595,7 @@ function saveMyVocab(){
 function updateMyVocabTile(){
     const el = document.getElementById("myVocabCount");
     if(!el) return;
-    const n = loadMyVocab().length;
+    const n = loadMyVocab().filter(w => w[10] !== "1").length;
     el.textContent = n ? tf(n === 1 ? "myvocab_count_one" : "myvocab_count", { n })
                        : t("myvocab_empty");
 }
@@ -11537,8 +11607,21 @@ function addToMyVocab(i){
     if(!entree) return;
     const o = entree.o;
     loadMyVocab();
+    noterDemande(o.m, (o.t || []).join(", "));
+
     if(monVocabTheme.words.some(w => w[0] === o.m)){
         showInfoToast(tf("myvocab_already", { mot: o.m }));
+        return;
+    }
+    // Un nom allemand sans article n'est pas seulement incomplet : il pousse
+    // l'apprenant a en inventer un et a se fixer une faute. On refuse la carte
+    // -- la demande, elle, est deja notee.
+    if(o.p === "n" && entree.pair.slice(0, 2) === "de" && !o.g){
+        showInfoToast(tf("myvocab_sans_genre", { mot: o.m }));
+        return;
+    }
+    if(motDejaDansLeCours(o.m)){
+        showInfoToast(tf("myvocab_deja_cours", { mot: o.m }));
         return;
     }
     if(monVocabTheme.words.length >= MY_VOCAB_MAX){
@@ -11559,9 +11642,19 @@ function addToMyVocab(i){
 function openMyVocab(){
     const mots = loadMyVocab();
     if(!mots.length){ showInfoToast(t("myvocab_how")); return; }
+
+    // Les mots entres dans le cours depuis sont marques puis ecartes du paquet.
+    // On les garde dans la liste pour ne pas decaler la progression des autres.
+    let diplomes = 0;
+    mots.forEach(w => {
+        if(w[10] !== "1" && motDejaDansLeCours(w[0])){ w[10] = "1"; diplomes++; }
+    });
+    if(diplomes){ saveMyVocab(); showInfoToast(tf("myvocab_diplomes", { n: diplomes })); }
     flashcardMode = 'monvocab';
     currentTheme = monVocabTheme;
-    const items = mots.map((word, index) => ({ word, index, themeId: monVocabTheme.id }));
+    const items = mots.map((word, index) => ({ word, index, themeId: monVocabTheme.id }))
+                      .filter(it => it.word[10] !== "1");
+    if(!items.length){ showInfoToast(t("myvocab_tout_diplome")); return; }
     currentCardsFull = items;
     currentCards = cartesDeSession(items);
     if(!currentCards.length) currentCards = items;
@@ -12046,6 +12139,35 @@ async function renderAdminCodesList(){
     }
 }
 
+// Agrege les mots demandes par tous les testeurs. Un mot reclame par
+// plusieurs personnes passe devant : c'est la file d'attente d'ecriture.
+function renderAdminRequests(users){
+    const box = document.getElementById("adminRequestsList");
+    if(!box) return;
+    const compte = {};
+    (users || []).forEach(u => {
+        const prenom = (u.firstName || u.email || "?").trim();
+        (u.vocabDemandes || []).forEach(d => {
+            if(!d || !d.m) return;
+            if(!compte[d.m]) compte[d.m] = { mot: d.m, sens: d.t || "", qui: [] };
+            if(compte[d.m].qui.indexOf(prenom) === -1) compte[d.m].qui.push(prenom);
+        });
+    });
+    const liste = Object.values(compte).sort((a, b) =>
+        b.qui.length - a.qui.length || a.mot.localeCompare(b.mot));
+    if(!liste.length){ box.textContent = t("admin_requests_none"); return; }
+    box.innerHTML = liste.slice(0, 60).map(d => `
+        <div style="padding:7px 0; border-top:1px solid rgba(30,41,59,.1);">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;">
+                <strong>${d.mot}</strong>
+                <small style="color:#3b6fe0; font-weight:700; white-space:nowrap;">${d.qui.length}×</small>
+            </div>
+            <small style="color:#576177;">${d.sens}</small><br>
+            <small style="color:#8b93a3;">${d.qui.join(", ")}</small>
+        </div>`).join("")
+        + (liste.length > 60 ? `<div class="spacer"></div><small style="color:#8b93a3;">${tf("admin_requests_more", { n: liste.length - 60 })}</small>` : "");
+}
+
 async function renderAdminUsersList(){
     const container = document.getElementById("adminUsersList");
     if(!container || !isAdminUser()) return;
@@ -12070,6 +12192,7 @@ async function renderAdminUsersList(){
             const n = (u.firstName || "").trim();
             if(n) prenomsVus[n] = (prenomsVus[n] || 0) + 1;
         });
+        renderAdminRequests(users);
         container.innerHTML = users.map(u => {
             const vhsOn = u.vhsChaptersEnabled === true;
             const prenom = (u.firstName || "").trim();
@@ -14184,7 +14307,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 232;
+const APP_VERSION = 233;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
