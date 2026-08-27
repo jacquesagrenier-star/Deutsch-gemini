@@ -2629,6 +2629,38 @@ body[data-theme="dark"] .ecoute-btn.principal{
 .home-help-launch:hover{color:#3b6fe0;}
 body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
 
+/* Dictionnaire : deuxieme bloc de resultats sous les flashcards, sur le meme
+   ecran de recherche. Volontairement plus sobre que .search-result -- les
+   cartes du cours restent l'element principal. */
+.dict-section{margin-top:26px;}
+.dict-section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:10px; margin-bottom:10px;
+}
+.dict-section-title{
+    font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:#8b93a3;
+}
+.dict-row{
+    padding:11px 14px; border:1px solid #e6e9ef; border-radius:12px;
+    margin-bottom:8px; background:#fff;
+}
+.dict-row-top{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;}
+.dict-word{font-weight:700; font-size:16px; color:#1C2430;}
+.dict-gender{font-weight:700; color:#3b6fe0;}
+.dict-pron{font-size:12px; color:#8b93a3;}
+.dict-pos{
+    font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:#8b93a3; border:1px solid #e6e9ef; border-radius:5px; padding:1px 5px;
+}
+.dict-trans{margin-top:3px; color:#576177; font-size:14px;}
+.dict-credit{margin-top:12px; font-size:11px; color:#9aa2b1; line-height:1.5;}
+.dict-credit a{color:#9aa2b1;}
+.dict-loading{font-size:13px; color:#8b93a3; padding:6px 2px;}
+body[data-theme="dark"] .dict-row{background:#161a22; border-color:#252c38;}
+body[data-theme="dark"] .dict-word{color:#e9ecf1;}
+body[data-theme="dark"] .dict-trans{color:#aab3c2;}
+
 </style>
 </head>
 
@@ -2808,7 +2840,17 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v224</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v225</span></p>
+
+    <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
+         donc hors de portee pendant un exercice (voir openWordSearch). Placee
+         au-dessus de la carte de progression depuis v225 : avec le dictionnaire
+         integre, ce n'est plus une action secondaire mais l'usage quotidien --
+         la releguer sous 269 px de statistiques la rendait invisible. -->
+    <button class="search-launch" onclick="openWordSearch()">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <span data-i18n="search_launch">Chercher un mot</span>
+    </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2852,12 +2894,6 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </div>
     </div>
 
-    <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
-         donc hors de portee pendant un exercice (voir openWordSearch). -->
-    <button class="search-launch" onclick="openWordSearch()">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-        <span data-i18n="search_launch">Rechercher un mot dans mes flashcards</span>
-    </button>
 
     <button class="home-help-launch" onclick="openOnboardingVideo(false)">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
@@ -3190,6 +3226,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
     </div>
 
     <div id="wordSearchResults" style="margin-top:16px;"></div>
+    <div id="dictResults"></div>
 </section>
 
 <section id="verbenNiveau" class="screen">
@@ -4950,6 +4987,12 @@ const I18N = {
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
+        dict_section_title: "Dictionnaire",
+        dict_loading: "Recherche dans le dictionnaire…",
+        dict_none: "Aucune entrée de dictionnaire pour ce mot.",
+        dict_count: "{n} entrées",
+        dict_count_one: "1 entrée",
+        dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         en_module_mastered_label: "✅ Maîtrisé",
         en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
         en_module_vocabulary_title: "Vocabulaire",
@@ -4979,7 +5022,7 @@ const I18N = {
         home_ring_hint: "Touche le cercle pour changer de niveau (A1 · A2 · B1 · B2)",
 
         // --- Recherche dans les flashcards (v188) ---
-        search_launch: "Rechercher un mot dans mes flashcards",
+        search_launch: "Chercher un mot",
         search_kicker: "Flashcards",
         search_title: "Rechercher un mot",
         search_placeholder: "Allemand, français ou anglais…",
@@ -5769,6 +5812,12 @@ const I18N = {
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
+        dict_section_title: "Dictionary",
+        dict_loading: "Searching the dictionary…",
+        dict_none: "No dictionary entry for this word.",
+        dict_count: "{n} entries",
+        dict_count_one: "1 entry",
+        dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         en_module_mastered_label: "✅ Mastered",
         en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
         en_module_vocabulary_title: "Vocabulary",
@@ -5798,7 +5847,7 @@ const I18N = {
         home_ring_hint: "Tap the circle to change level (A1 · A2 · B1 · B2)",
 
         // --- Flashcard search (v188) ---
-        search_launch: "Search for a word in my flashcards",
+        search_launch: "Look up a word",
         search_kicker: "Flashcards",
         search_title: "Search for a word",
         search_placeholder: "German, French or English…",
@@ -11089,6 +11138,8 @@ function openWordSearch(){
     if(input) input.value = "";
     searchResults = [];
     renderWordSearch("");
+    const dictBox = document.getElementById("dictResults");
+    if(dictBox) dictBox.innerHTML = "";
     showScreen('wordSearch');
     // Focus differe : sur iOS, focus() avant l'affichage effectif de l'ecran
     // n'ouvre pas le clavier.
@@ -11108,7 +11159,11 @@ function scheduleWordSearch(){
 
 function runWordSearch(){
     const input = document.getElementById('wordSearchInput');
-    renderWordSearch(input ? input.value : "");
+    const q = input ? input.value : "";
+    renderWordSearch(q);
+    // Volontairement sans await : les cartes du cours s'affichent tout de
+    // suite, le dictionnaire se remplit quand sa tranche arrive.
+    runDictLookup(q);
 }
 
 // Distance de Levenshtein bornee : sert uniquement a proposer des mots proches
@@ -11224,6 +11279,128 @@ function dedupeSearchHits(hits){
         kept.push(h);
     }
     return kept;
+}
+
+// ================= DICTIONNAIRE =================
+// Donnees WikDict (Wiktionnaire via DBnary), CC BY-SA 4.0. Decoupees par
+// prefixe de deux lettres : une recherche ne telecharge que la tranche utile
+// (1 Ko en mediane, 195 Ko au pire) au lieu des 10 Mo du dictionnaire entier.
+// Le credit d'attribution est affiche sous les resultats, comme l'exige la
+// licence -- ne pas le retirer.
+const DICT_BASE_URL = "dict/";
+const DICT_PAIRS = ["de-en", "en-de"];
+const DICT_MAX_RESULTS = 12;
+
+const dictChunks = {};
+const dictIndexes = {};
+let dictSeq = 0;   // seule la derniere frappe a le droit d'ecrire dans le DOM
+
+function dictNormalize(str){
+    return (str || "").toLowerCase().normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, "");
+}
+
+function dictKey(str){
+    const d = dictNormalize(str);
+    return (d.slice(0, 2) || "zz").padEnd(2, "_");
+}
+
+async function dictLoadIndex(pair){
+    if(dictIndexes[pair]) return dictIndexes[pair];
+    try{
+        const r = await fetch(DICT_BASE_URL + pair + "/index.json");
+        if(!r.ok) throw new Error("index " + pair);
+        dictIndexes[pair] = new Set(await r.json());
+    }catch(e){
+        console.warn("Dictionnaire : index " + pair + " indisponible", e);
+        dictIndexes[pair] = new Set();
+        dictIndexes[pair].introuvable = true;
+    }
+    return dictIndexes[pair];
+}
+
+async function dictLoadChunk(pair, key){
+    const id = pair + "/" + key;
+    if(dictChunks[id]) return dictChunks[id];
+    const index = await dictLoadIndex(pair);
+    // L'index evite une requete 404 pour une tranche qui n'existe pas.
+    if(!index.has(key)){ dictChunks[id] = []; return dictChunks[id]; }
+    try{
+        const r = await fetch(DICT_BASE_URL + id + ".json");
+        if(!r.ok) throw new Error("tranche " + id);
+        dictChunks[id] = await r.json();
+    }catch(e){
+        console.warn("Dictionnaire : tranche " + id + " indisponible", e);
+        dictChunks[id] = [];
+    }
+    return dictChunks[id];
+}
+
+async function runDictLookup(rawQuery){
+    const box = document.getElementById("dictResults");
+    if(!box) return;
+    const q = (rawQuery || "").trim();
+    const norm = dictNormalize(q);
+    if(norm.length < 2){ box.innerHTML = ""; return; }
+
+    const moi = ++dictSeq;
+    box.innerHTML = '<div class="dict-section"><div class="dict-section-title">'
+        + t("dict_section_title") + '</div><div class="dict-loading">'
+        + t("dict_loading") + '</div></div>';
+
+    const key = dictKey(q);
+    const paquets = await Promise.all(DICT_PAIRS.map(p => dictLoadChunk(p, key)));
+    if(moi !== dictSeq) return;   // une frappe plus recente a pris la main
+
+    // Aucune tranche joignable : le dictionnaire n'est pas publie (ou le reseau
+    // est coupe). On efface la section au lieu d'afficher un faux "aucun
+    // resultat", qui ferait croire que le mot n'existe pas.
+    if(DICT_PAIRS.every(p => (dictIndexes[p] || {}).introuvable)){
+        box.innerHTML = "";
+        return;
+    }
+
+    const trouves = [];
+    paquets.forEach(paquet => {
+        paquet.forEach(o => {
+            const n = dictNormalize(o.m);
+            if(n.indexOf(norm) !== 0) return;
+            trouves.push({ o: o, exact: n === norm });
+        });
+    });
+    // Correspondance exacte d'abord, puis les mots les plus courants : sans le
+    // tri par frequence, "Haus" se retrouvait derriere "Hausanschlussleitung".
+    trouves.sort((a, b) => (b.exact - a.exact)
+        || ((b.o.r || 0) - (a.o.r || 0))
+        || a.o.m.length - b.o.m.length
+        || a.o.m.localeCompare(b.o.m));
+
+    if(moi !== dictSeq) return;
+    box.innerHTML = renderDictSection(trouves.slice(0, DICT_MAX_RESULTS), trouves.length);
+}
+
+function renderDictSection(liste, total){
+    const credit = '<div class="dict-credit">' + t("dict_credit") + '</div>';
+    if(!liste.length){
+        return '<div class="dict-section"><div class="dict-section-title">'
+            + t("dict_section_title") + '</div><div class="search-empty">'
+            + t("dict_none") + '</div>' + credit + '</div>';
+    }
+    const lignes = liste.map(x => {
+        const o = x.o;
+        const genre = o.g ? '<span class="dict-gender">' + o.g + '</span> ' : "";
+        const pron  = o.i ? '<span class="dict-pron">[' + o.i + ']</span>' : "";
+        const pos   = o.p ? '<span class="dict-pos">' + o.p + '</span>' : "";
+        return '<div class="dict-row"><div class="dict-row-top">'
+            + '<span class="dict-word">' + genre + o.m + '</span>'
+            + pron + pos + '</div>'
+            + '<div class="dict-trans">' + o.t.join(" · ") + '</div></div>';
+    }).join("");
+    const pill = '<span class="dict-section-title">'
+        + tf(total === 1 ? "dict_count_one" : "dict_count", { n: total }) + '</span>';
+    return '<div class="dict-section"><div class="dict-section-head">'
+        + '<span class="dict-section-title">' + t("dict_section_title") + '</span>'
+        + pill + '</div>' + lignes + credit + '</div>';
 }
 
 function renderWordSearch(rawQuery){
@@ -13610,7 +13787,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 224;
+const APP_VERSION = 225;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
