@@ -122,6 +122,49 @@ def verifier_liste(r, fichier, cats, nom_champ="mot"):
     print("   %-15s : %d entrees" % (fichier, total))
 
 
+# Modules anglais : phrasal verbs, verbes irreguliers, pieges, expressions.
+# Forme voisine des fichiers allemands, mais le mot vedette est anglais et la
+# phrase d'exemple l'est aussi -- il n'y a donc pas de champ "exemple_en".
+FICHIERS_ANGLAIS = [
+    ("phrasal_verbs.json", None),
+    ("english_verbs.json", "formes"),
+    ("english_pitfalls.json", None),
+    ("english_expressions.json", None),
+]
+
+
+def verifier_anglais(r):
+    for fichier, champ_extra in FICHIERS_ANGLAIS:
+        d = charger(fichier)
+        if d is None:
+            r.echec(fichier, "fichier introuvable")
+            continue
+        requis = ["mot", "traduction", "traduction_en", "kategorie",
+                  "exemple", "exemple_fr"]
+        vus = {}
+        total = 0
+        cats = set()
+        for niveau in NIVEAUX:
+            for e in d.get(niveau, []):
+                r.controle()
+                total += 1
+                mot = e.get("mot", "?")
+                for champ in requis:
+                    if not e.get(champ):
+                        r.echec(fichier, "%s (%s) : champ vide -> %s" % (mot, niveau, champ))
+                if champ_extra and not e.get(champ_extra):
+                    r.echec(fichier, "%s (%s) : champ vide -> %s" % (mot, niveau, champ_extra))
+                # Un faux ami sans ligne "piege" perd tout son interet : c'est
+                # justement elle qui nomme le mot francais trompeur.
+                if e.get("kategorie") == "Faux amis" and not e.get("piege"):
+                    r.echec(fichier, "%s : faux ami sans champ 'piege'" % mot)
+                if mot in vus:
+                    r.echec(fichier, "%s : doublon (%s et %s)" % (mot, vus[mot], niveau))
+                vus[mot] = niveau
+                cats.add(e.get("kategorie"))
+        print("   %-24s : %d entrees, %d familles" % (fichier, total, len(cats)))
+
+
 def verifier_themes(r):
     d = charger("themes.json")
     if d is None:
@@ -324,6 +367,9 @@ def main():
     verifier_liste(r, "adverbe.json", CATS_ADVERBES)
     verifier_liste(r, "redewendung.json", CATS_EXPRESSIONS)
     verifier_themes(r)
+
+    print("\nMODULES ANGLAIS")
+    verifier_anglais(r)
 
     print("\nCODE ET INTERFACE")
     cles = verifier_traductions(r, source)

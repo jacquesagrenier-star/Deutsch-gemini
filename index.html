@@ -419,6 +419,8 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="expressions_en"] .orb-icon svg{stroke:#8b5cf6;}
 .orb[data-orbid="pitfalls_en"] .orb-icon{background:rgba(239,68,68,.14); border-color:rgba(239,68,68,.28);}
 .orb[data-orbid="pitfalls_en"] .orb-icon svg{stroke:#ef4444;}
+.orb[data-orbid="irregular_en"] .orb-icon{background:rgba(249,115,22,.14); border-color:rgba(249,115,22,.28);}
+.orb[data-orbid="irregular_en"] .orb-icon svg{stroke:#f97316;}
 
 .orb[data-orbid="revision"] .orb-icon{
     background:rgba(59,130,246,.14);
@@ -2804,7 +2806,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v220</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v221</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3110,6 +3112,14 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
             <div>
                 <strong>Phrasal Verbs</strong>
                 <small data-i18n="orb_en_phrasal_sub">give up · look after</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="irregular_en" onclick="openEnglishModule('irregular')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M4 12h7"/><path d="M4 17h12"/><path d="M17 7l3 3-3 3"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_irregular_title">Verbes irréguliers</strong>
+                <small data-i18n="orb_en_irregular_sub">take → took → taken</small>
             </div>
         </div>
 
@@ -4920,6 +4930,12 @@ const I18N = {
         en_module_expressions_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
+        label_english_forms: "Formes",
+        en_module_irregular_title: "Verbes irréguliers",
+        en_module_irregular_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
+        en_module_irregular_cat_desc: "Les irréguliers s'apprennent par patron, pas en vrac : ceux dont les trois formes sont identiques, ceux dont le prétérit et le participe se ressemblent, et ceux qui changent trois fois.",
+        orb_en_irregular_title: "Verbes irréguliers",
+        orb_en_irregular_sub: "take → took → taken",
         orb_en_phrasal_sub: "give up · look after",
         orb_en_expressions_title: "Expressions",
         orb_en_expressions_sub: "It depends · By the way",
@@ -5723,6 +5739,12 @@ const I18N = {
         en_module_expressions_level_desc: "Pick a level first: the list of families below adjusts to it.",
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
+        label_english_forms: "Forms",
+        en_module_irregular_title: "Irregular verbs",
+        en_module_irregular_level_desc: "Pick a level first: the list of families below adjusts to it.",
+        en_module_irregular_cat_desc: "Irregular verbs are learnt by pattern, not at random: those whose three forms are identical, those whose past and participle match, and those that change three times.",
+        orb_en_irregular_title: "Irregular verbs",
+        orb_en_irregular_sub: "take → took → taken",
         orb_en_phrasal_sub: "give up · look after",
         orb_en_expressions_title: "Expressions",
         orb_en_expressions_sub: "It depends · By the way",
@@ -7323,6 +7345,7 @@ async function loadAdverbienJson() {
 // loadFlashcard() (flashcardMode === 'englishmodule') :
 //   0 mot EN · 1 traduction FR · 2 categorie · 3 exemple EN · 4 exemple FR
 //   5 definition EN · 6 piege FR (facultatif) · 7 niveau
+//   8 formes (facultatif, verbes irreguliers : "take -> took -> taken")
 const ENGLISH_MODULES = {
     phrasal: {
         file: "phrasal_verbs.json",
@@ -7331,6 +7354,15 @@ const ENGLISH_MODULES = {
         catDescKey: "en_module_phrasal_cat_desc",
         theme: { id: "english_phrasal", name: "Phrasal verbs",
                  svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><circle cx="12" cy="12" r="3"/></svg>',
+                 words: [] }
+    },
+    irregular: {
+        file: "english_verbs.json",
+        titleKey: "en_module_irregular_title",
+        levelDescKey: "en_module_irregular_level_desc",
+        catDescKey: "en_module_irregular_cat_desc",
+        theme: { id: "english_irregular", name: "Verbes irréguliers",
+                 svg: '<svg viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M4 12h7"/><path d="M4 17h12"/></svg>',
                  words: [] }
     },
     pitfalls: {
@@ -7369,7 +7401,7 @@ async function loadEnglishModuleJson(id) {
                 words.push([
                     w.mot || "", w.traduction || "", w.kategorie || "",
                     w.exemple || "", w.exemple_fr || "",
-                    w.traduction_en || "", w.piege || "", lvl
+                    w.traduction_en || "", w.piege || "", lvl, w.formes || ""
                 ]);
             });
         });
@@ -12667,6 +12699,7 @@ function loadFlashcard(){
         const exampleSentence = card[3];
         const exampleSentenceFr = useEn ? "" : (card[4] || "");
         const piege = (!useEn && card[6]) ? card[6] : "";
+        const formes = card[8] || "";
 
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = knownWord;
@@ -12680,6 +12713,7 @@ function loadFlashcard(){
         }
         const enSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "en");
         verbDetailsEl.innerHTML = `<strong>${t('label_word_category')} :</strong> ${categorie}`
+            + (formes ? `<div class="verb-sep"></div><strong>${t('label_english_forms')} :</strong> ${formes}` : "")
             + `<div class="verb-sep"></div>${exampleSentence}${enSpeakBtn}`
             + (exampleSentenceFr ? `<br>(${exampleSentenceFr})` : "")
             + (piege ? `<div class="verb-sep"></div><strong>${t('label_english_pitfall')} :</strong> ${piege}` : "");
@@ -13484,7 +13518,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 220;
+const APP_VERSION = 221;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
