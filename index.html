@@ -3070,7 +3070,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v245</span>
+        <span class="subtitle-version">v246</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14535,15 +14535,40 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-// AUCUNE verification automatique : la comparaison avec une version publiee a
-// produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
-// pas encore, sans recours possible. L'usager prefere connaitre le numero et la
-// liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 245;
+const APP_VERSION = 246;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
     if(el) el.textContent = "v" + APP_VERSION;
+}
+
+// ---- Mise a jour silencieuse -------------------------------------------
+// Une premiere tentative avait ete retiree : elle AFFICHAIT un bandeau
+// annoncant une mise a jour que l'hebergeur ne servait pas encore, sans que
+// l'usager puisse rien y faire. Le defaut n'etait pas la verification, c'etait
+// l'annonce -- et un simple rechargement ne l'aurait pas resolu non plus,
+// puisque le navigateur aurait resservi la meme page depuis son cache.
+//
+// Ici on ne dit rien et on recharge vers une ADRESSE differente (?v=NNN), la
+// seule chose qui force Safari a retelecharger : c'est exactement le geste
+// manuel qui debloque le probleme aujourd'hui. Trois garde-fous :
+//   - un verrou de session, pour qu'un echec ne puisse jamais boucler ;
+//   - on ne recharge que vers un numero STRICTEMENT superieur ;
+//   - toute erreur reseau est ignoree en silence -- hors ligne, l'app demarre.
+const VERSION_RECHARGE_FAITE = "deutschAI_rechargeVersion";
+
+async function verifierNouvelleVersion(){
+    try{
+        if(sessionStorage.getItem(VERSION_RECHARGE_FAITE)) return;
+        const r = await fetch("version.json?t=" + Date.now(), { cache: "no-store" });
+        if(!r.ok) return;
+        const publiee = parseInt((await r.json()).version, 10);
+        if(!Number.isFinite(publiee) || publiee <= APP_VERSION) return;
+        sessionStorage.setItem(VERSION_RECHARGE_FAITE, String(publiee));
+        const url = new URL(window.location.href);
+        url.searchParams.set("v", String(publiee));
+        window.location.replace(url.toString());
+    }catch(e){ /* hors ligne ou fichier absent : on garde la version en cours */ }
 }
 
 function speakWord(){
@@ -16514,6 +16539,7 @@ function showResults(){
 
 (() => {
     afficherNumeroVersion();
+    verifierNouvelleVersion();
     loadThemesJson();
     updateGlobalProgress();
     renderDailyGoalSetting();
