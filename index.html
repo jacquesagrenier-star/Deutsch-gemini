@@ -2901,7 +2901,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v230</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v231</span></p>
 
     <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
          donc hors de portee pendant un exercice (voir openWordSearch). Placee
@@ -5090,6 +5090,8 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         dict_plural: "pl. {pl}",
+        dict_participle: "part. {pp}",
+        label_participle: "Participe",
         en_module_mastered_label: "✅ Maîtrisé",
         en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
         en_module_vocabulary_title: "Vocabulaire",
@@ -5934,6 +5936,8 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         dict_plural: "pl. {pl}",
+        dict_participle: "past part. {pp}",
+        label_participle: "Past participle",
         en_module_mastered_label: "✅ Mastered",
         en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
         en_module_vocabulary_title: "Vocabulary",
@@ -11407,6 +11411,7 @@ function dedupeSearchHits(hits){
 //   0 mot · 1 traductions · 2 genre · 3 API · 4 nature · 5 langue du mot
 //   6 indice de frequence (facultatif : les mots ajoutes avant v229 n'en ont pas)
 //   7 pluriel (facultatif : environ deux noms sur trois en ont un)
+//   8 participe passe (verbes allemands seulement) · 9 auxiliaire haben/sein
 const MY_VOCAB_KEY = "deutschAI_monVocabulaire";
 // 86 octets par mot en moyenne : 5 000 mots pesent 0,43 Mo sur les ~5 Mo
 // disponibles, en laissant la place a la progression, qui est le gros poste.
@@ -11475,7 +11480,7 @@ function addToMyVocab(i){
     }
     monVocabTheme.words.push([
         o.m, (o.t || []).join(", "), o.g || "", o.i || "", o.p || "",
-        entree.pair === "de-en" ? "de" : "en", o.r || 0, o.pl || ""
+        entree.pair.slice(0, 2), o.r || 0, o.pl || "", o.pp || "", o.aux || ""
     ]);
     saveMyVocab();
     updateMyVocabTile();
@@ -11506,7 +11511,16 @@ function openMyVocab(){
 // Le credit d'attribution est affiche sous les resultats, comme l'exige la
 // licence -- ne pas le retirer.
 const DICT_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/dict/";
-const DICT_PAIRS = ["de-en", "en-de"];
+// Quatre paires existent ; on n'en interroge que deux, celles qui parlent la
+// langue de l'interface. Un francophone qui cherche "Haus" doit lire "maison",
+// pas "house" -- c'etait le cas avant v231.
+const DICT_PAIRS_PAR_LANGUE = {
+    fr: ["de-fr", "fr-de"],
+    en: ["de-en", "en-de"]
+};
+function dictPairs(){
+    return DICT_PAIRS_PAR_LANGUE[getUiLang()] || DICT_PAIRS_PAR_LANGUE.en;
+}
 const DICT_MAX_RESULTS = 12;
 
 const dictBuckets = {};
@@ -11602,13 +11616,14 @@ async function runDictLookup(rawQuery){
         + t("dict_section_title") + '</div><div class="dict-loading">'
         + t("dict_loading") + '</div></div>';
 
-    const paquets = await Promise.all(DICT_PAIRS.map(p => dictEntriesFor(p, norm)));
+    const paires = dictPairs();
+    const paquets = await Promise.all(paires.map(p => dictEntriesFor(p, norm)));
     if(moi !== dictSeq) return;   // une frappe plus recente a pris la main
 
     // Aucune tranche joignable : le dictionnaire n'est pas publie (ou le reseau
     // est coupe). On efface la section au lieu d'afficher un faux "aucun
     // resultat", qui ferait croire que le mot n'existe pas.
-    if(DICT_PAIRS.every(p => (dictIndexes[p] || []).introuvable)){
+    if(paires.every(p => (dictIndexes[p] || []).introuvable)){
         box.innerHTML = "";
         return;
     }
@@ -11618,7 +11633,7 @@ async function runDictLookup(rawQuery){
         paquet.forEach(o => {
             const n = dictNormalize(o.m);
             if(n.indexOf(norm) !== 0) return;
-            trouves.push({ o: o, exact: n === norm, pair: DICT_PAIRS[iPaire] });
+            trouves.push({ o: o, exact: n === norm, pair: paires[iPaire] });
         });
     });
     // Correspondance exacte d'abord, puis les mots les plus courants : sans le
@@ -11650,13 +11665,19 @@ function renderDictSection(liste, total){
         // Le pluriel manque pour un nom sur trois : on n'affiche rien plutot
         // que de reserver une place vide.
         const plur  = o.pl ? '<span class="dict-plural">' + tf("dict_plural", { pl: o.pl }) + '</span>' : "";
+        // Participe passe : la seule forme verbale deductible sans risque.
+        // L'auxiliaire n'est sur que pour un verbe sur quatre : on ne l'ajoute
+        // que dans ce cas.
+        const part  = o.pp
+            ? '<span class="dict-plural">' + tf("dict_participle", { pp: (o.aux === "sein" ? "ist " : o.aux === "haben" ? "hat " : "") + o.pp }) + '</span>'
+            : "";
         const dedans = deja.some(w => w[0] === o.m);
         const ajout = '<button id="dictAdd' + i + '" class="dict-add' + (dedans ? ' ajoute' : '')
             + '" onclick="event.stopPropagation(); addToMyVocab(' + i + ');" title="'
             + t("myvocab_add_title") + '">' + (dedans ? "\u2713" : "+") + '</button>';
         return '<div class="dict-row">' + ajout + '<div class="dict-row-top">'
             + '<span class="dict-word">' + genre + o.m + '</span>'
-            + pron + pos + plur + '</div>'
+            + pron + pos + plur + part + '</div>'
             + '<div class="dict-trans">' + o.t.join(" · ") + '</div></div>';
     }).join("");
     const pill = '<span class="dict-section-title">'
@@ -13255,6 +13276,8 @@ function loadFlashcard(){
             pluralEl.classList.add("hidden");
         }
         const details = [];
+        if(card[8]) details.push('<strong>' + t('label_participle') + " : </strong>"
+            + (card[9] === "sein" ? "ist " : card[9] === "haben" ? "hat " : "") + card[8]);
         if(card[3]) details.push('<span style="opacity:.7;">[' + card[3] + ']</span>');
         if(card[4]) details.push(card[4]);
         const freq = myVocabFreqLabel(card[6]);
@@ -14094,7 +14117,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 230;
+const APP_VERSION = 231;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
