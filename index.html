@@ -2992,7 +2992,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v237</span>
+        <span class="subtitle-version">v238</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5181,6 +5181,7 @@ const I18N = {
         myvocab_deja_cours: "« {mot} » est déjà une carte du cours — inutile de l'ajouter.",
         myvocab_diplomes: "{n} de tes mots sont entrés dans le cours : ils ont maintenant une vraie fiche.",
         myvocab_tout_diplome: "Tous tes mots sont entrés dans le cours. Cherche-en de nouveaux !",
+        myvocab_vide_explication: "<strong>Mon vocabulaire est encore vide.</strong><br>C'est ta réserve personnelle : les mots que tu rencontres ailleurs — en cours, dans un texte, dans une conversation — et qui ne sont pas dans l'app.<br><br>Cherche-en un ci-dessus, puis touche le <strong>+</strong> à côté du résultat du dictionnaire. Il deviendra une carte à réviser comme les autres.",
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
         review_good: "Je savais ✓",
@@ -6043,6 +6044,7 @@ const I18N = {
         myvocab_deja_cours: "“{mot}” is already a course card — no need to add it.",
         myvocab_diplomes: "{n} of your words have entered the course: they now have a full entry.",
         myvocab_tout_diplome: "All your words have entered the course. Go find new ones!",
+        myvocab_vide_explication: "<strong>My vocabulary is still empty.</strong><br>It's your personal stock: the words you meet elsewhere — in class, in a text, in a conversation — that aren't in the app.<br><br>Search for one above, then tap the <strong>+</strong> beside the dictionary result. It becomes a card you review like any other.",
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
         review_good: "I knew it ✓",
@@ -11399,7 +11401,13 @@ function ensureSearchIndex(){
     return searchIndex;
 }
 
-function openWordSearch(){
+// Vrai le temps d'une visite venue de la tuile "Mon vocabulaire" vide : l'ecran
+// de recherche explique alors d'ou viennent les mots gardes, au lieu de son
+// texte d'accueil habituel.
+let rechercheDepuisVocabVide = false;
+
+function openWordSearch(depuisVocabVide){
+    rechercheDepuisVocabVide = !!depuisVocabVide;
     ensureSearchIndex();
     const input = document.getElementById('wordSearchInput');
     if(input) input.value = "";
@@ -11703,7 +11711,7 @@ async function completerVieillesFiches(){
 
 function openMyVocab(){
     const mots = loadMyVocab();
-    if(!mots.length){ showInfoToast(t("myvocab_how")); return; }
+    if(!mots.length){ openWordSearch(true); return; }
     completerVieillesFiches();
 
     // Les mots entres dans le cours depuis sont marques puis ecartes du paquet.
@@ -11928,7 +11936,9 @@ function renderWordSearch(rawQuery){
         // La phrase juste en dessous annonce deja l'etendue de la recherche :
         // repeter le nombre dans la pastille le disait deux fois a l'ecran.
         if(pill) pill.textContent = "";
-        box.innerHTML = '<div class="search-empty">' + tf('search_hint', { n: all.length }) + '</div>';
+        box.innerHTML = '<div class="search-empty">'
+            + (rechercheDepuisVocabVide ? t('myvocab_vide_explication') : tf('search_hint', { n: all.length }))
+            + '</div>';
         return;
     }
 
@@ -14388,7 +14398,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 237;
+const APP_VERSION = 238;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
