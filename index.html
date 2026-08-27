@@ -2723,6 +2723,7 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .srs-ladder.done .srs-pip{width:9px; height:9px; animation:pipPop .42s ease both;}
 .srs-ladder.done .srs-pip:nth-child(2){animation-delay:.07s;}
 .srs-ladder.done .srs-pip:nth-child(3){animation-delay:.14s;}
+.srs-ladder.done .srs-pip:nth-child(4){animation-delay:.21s;}
 @keyframes pipPop{
     0%{transform:scale(.55); opacity:.4;}
     60%{transform:scale(1.28);}
@@ -3052,7 +3053,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v243</span>
+        <span class="subtitle-version">v244</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5281,9 +5282,10 @@ const I18N = {
         alert_maitrises_revoir: "{n} mots maîtrisés reviennent en révision.",
         alert_maitrises_aucun: "Aucun mot maîtrisé pour l'instant.",
         srs_etat_0: "nouveau mot",
-        srs_etat_1: "je progresse",
-        srs_etat_2: "j'y suis presque",
-        srs_etat_3: "je maîtrise",
+        srs_etat_1: "je commence",
+        srs_etat_2: "je progresse",
+        srs_etat_3: "j'y suis presque",
+        srs_etat_4: "je maîtrise",
         home_streak_unit: "jours",
         home_week_unit: "cette semaine",
         en_module_mastered_label: "✅ Maîtrisé",
@@ -6158,9 +6160,10 @@ const I18N = {
         alert_maitrises_revoir: "{n} mastered words are back in review.",
         alert_maitrises_aucun: "No mastered words yet.",
         srs_etat_0: "new word",
-        srs_etat_1: "making progress",
-        srs_etat_2: "almost there",
-        srs_etat_3: "I know it",
+        srs_etat_1: "getting started",
+        srs_etat_2: "making progress",
+        srs_etat_3: "almost there",
+        srs_etat_4: "I know it",
         home_streak_unit: "days",
         home_week_unit: "this week",
         en_module_mastered_label: "✅ Mastered",
@@ -14519,7 +14522,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 243;
+const APP_VERSION = 244;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -14732,10 +14735,17 @@ function scheduleReview(minutes, differerLaSuite){
 //   2e               -> 1 jour
 //   3e               -> 3 jours
 //   4e               -> maitrise
-// Un "Encore" fait tout repartir de zero. SRS_MASTERY_AFTER_RUNGS regle le
-// nombre de paliers en jours a franchir avant la maitrise : le baisser rend la
-// progression plus rapide, le monter la rend plus exigeante.
-const SRS_MASTERY_AFTER_RUNGS = 3;
+// Un "Encore" fait tout repartir de zero.
+//
+// SRS_PALIERS est ce que les pastilles comptent : le nombre de "Je savais"
+// d'affilee avant la maitrise. Une pastille = une reussite, des la premiere --
+// auparavant elles suivaient l'echelle EN JOURS, si bien que le premier clic
+// n'allumait rien et que l'effort semblait ignore.
+const SRS_PALIERS = 4;
+// Nombre de barreaux en jours franchis avant la maitrise. Il en faut un de
+// moins que de pastilles : la premiere reussite programme 10 minutes, pas un
+// jour, et ne monte donc pas cette echelle-la.
+const SRS_MASTERY_AFTER_RUNGS = SRS_PALIERS - 1;
 
 let sessionVues = 0;
 let sessionSues = 0;
@@ -14763,10 +14773,10 @@ function majEcheances(animerDernier){
 
     if(!ladder || !pipsBox || !txt) return;
     ladder.classList.remove("hidden");
-    const atteints = Math.min(palier, SRS_MASTERY_AFTER_RUNGS);
-    const fini     = atteints >= SRS_MASTERY_AFTER_RUNGS;
+    const atteints = Math.min(reussites, SRS_PALIERS);
+    const fini     = atteints >= SRS_PALIERS;
     let pips = "";
-    for(let i = 0; i < SRS_MASTERY_AFTER_RUNGS; i++){
+    for(let i = 0; i < SRS_PALIERS; i++){
         let cls = i < atteints ? "srs-pip on" : (i === atteints && !fini ? "srs-pip next" : "srs-pip");
         if(animerDernier && i === atteints - 1) cls += " frais";
         pips += '<span class="' + cls + '"></span>';
@@ -14775,7 +14785,7 @@ function majEcheances(animerDernier){
     ladder.classList.toggle("done", fini);
     // Le palier se nomme, il ne se compte pas : "je progresse" se lit sans
     // avoir a savoir combien d'etapes compte l'echelle.
-    const noms = ["srs_etat_0", "srs_etat_1", "srs_etat_2", "srs_etat_3"];
+    const noms = ["srs_etat_0", "srs_etat_1", "srs_etat_2", "srs_etat_3", "srs_etat_4"];
     txt.textContent = t(noms[Math.min(atteints, noms.length - 1)]);
 }
 
@@ -14816,11 +14826,11 @@ function reviewGood(){
         // de confettis : une recompense qui ne correspond a rien se decouvre
         // vite, et devient du bruit.
         scheduleReview(10, true);
-        celebrerPalier(false);
+        celebrerPalier(true);
         return;
     }
     // Ensuite on monte l'echelle des jours (voir SRS_DAILY_LADDER_DAYS).
-    if((state.srsDailyStreak || 0) + 1 >= SRS_MASTERY_AFTER_RUNGS){
+    if(reussites + 1 >= SRS_PALIERS){
         markMastered();
         return;
     }
@@ -15702,16 +15712,17 @@ function celebrateMastery(justReachedMultiple){
 
 // Duree avant qu'un mot maitrise revienne se faire verifier : le barreau
 // suivant de l'echelle du mot (16 jours), pas un chiffre invente.
-const SRS_MAINTENANCE_DAYS = SRS_DAILY_LADDER_DAYS[SRS_MASTERY_AFTER_RUNGS] || 16;
+const SRS_MAINTENANCE_DAYS = SRS_DAILY_LADDER_DAYS[3] || 16;
 
 function markMastered(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
     state.mastered = true;
-    // Trois barreaux franchis : sans cela la bande resterait a deux points
-    // pleins au moment meme ou le mot est declare maitrise.
-    state.srsDailyStreak = SRS_MASTERY_AFTER_RUNGS;
+    // Les quatre pastilles doivent etre pleines a l'instant meme ou le mot est
+    // declare maitrise -- y compris s'il y arrive par un autre chemin que les
+    // quatre "Je savais" d'affilee.
+    state.srsHits = Math.max(state.srsHits || 0, SRS_PALIERS);
     // Auparavant due=0 : le mot quittait le paquet POUR TOUJOURS. Un mot su
     // trois fois de suite n'est pas un mot acquis a vie -- il revient une fois,
     // longtemps apres, pour le verifier. Le pourcentage, lui, ne bouge pas :
