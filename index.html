@@ -2783,10 +2783,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 .home-stats-card .global-ring-wrap svg{width:104px; height:104px;}
 .home-stats-card .global-ring-level{font-size:13px; letter-spacing:.09em; margin-bottom:2px;}
 .home-stats-card .global-ring-num{font-size:25px;}
-/* La pastille de changement de niveau : au bord superieur gauche, et assez
-   grosse pour qu'on comprenne qu'elle se touche. */
+/* La pastille de changement de niveau : au coin superieur DROIT, et assez
+   grosse pour qu'on comprenne qu'elle se touche.
+   A gauche, la main d'un droitier passait par-dessus le centre de l'anneau en
+   allant la toucher -- elle masquait le pourcentage au moment precis ou il
+   change. Le coin superieur droit est le seul endroit qui la garde contre
+   l'anneau sans jamais recouvrir ni le trace de progression ni le centre :
+   entre le cercle inscrit et le coin du carre, il n'y a rien a cacher. */
 .home-stats-card .ring-cycle-badge{
-    top:0; left:-4px; right:auto; bottom:auto;
+    top:-2px; right:-2px; left:auto; bottom:auto;
     width:30px; height:30px;
     /* La pastille garde sa taille ; c'est le symbole a l'interieur qui la
        remplit presque entierement. line-height:1 evite qu'il soit repousse
@@ -3002,7 +3007,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v239</span>
+        <span class="subtitle-version">v240</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14419,7 +14424,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 239;
+const APP_VERSION = 240;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
