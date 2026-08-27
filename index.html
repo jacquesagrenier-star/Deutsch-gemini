@@ -2720,6 +2720,8 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
     font-size:11px; font-weight:700; letter-spacing:.03em;
 }
 
+.dict-plural{font-size:12px; color:#8b93a3; font-style:italic;}
+
 </style>
 </head>
 
@@ -2899,7 +2901,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v229</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v230</span></p>
 
     <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
          donc hors de portee pendant un exercice (voir openWordSearch). Placee
@@ -5087,6 +5089,7 @@ const I18N = {
         dict_count: "{n} entrées",
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
+        dict_plural: "pl. {pl}",
         en_module_mastered_label: "✅ Maîtrisé",
         en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
         en_module_vocabulary_title: "Vocabulaire",
@@ -5930,6 +5933,7 @@ const I18N = {
         dict_count: "{n} entries",
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
+        dict_plural: "pl. {pl}",
         en_module_mastered_label: "✅ Mastered",
         en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
         en_module_vocabulary_title: "Vocabulary",
@@ -11402,6 +11406,7 @@ function dedupeSearchHits(hits){
 // Tuple d'une carte (consomme par loadFlashcard, mode 'monvocab') :
 //   0 mot · 1 traductions · 2 genre · 3 API · 4 nature · 5 langue du mot
 //   6 indice de frequence (facultatif : les mots ajoutes avant v229 n'en ont pas)
+//   7 pluriel (facultatif : environ deux noms sur trois en ont un)
 const MY_VOCAB_KEY = "deutschAI_monVocabulaire";
 // 86 octets par mot en moyenne : 5 000 mots pesent 0,43 Mo sur les ~5 Mo
 // disponibles, en laissant la place a la progression, qui est le gros poste.
@@ -11470,7 +11475,7 @@ function addToMyVocab(i){
     }
     monVocabTheme.words.push([
         o.m, (o.t || []).join(", "), o.g || "", o.i || "", o.p || "",
-        entree.pair === "de-en" ? "de" : "en", o.r || 0
+        entree.pair === "de-en" ? "de" : "en", o.r || 0, o.pl || ""
     ]);
     saveMyVocab();
     updateMyVocabTile();
@@ -11642,13 +11647,16 @@ function renderDictSection(liste, total){
         const genre = o.g ? '<span class="dict-gender">' + o.g + '</span> ' : "";
         const pron  = o.i ? '<span class="dict-pron">[' + o.i + ']</span>' : "";
         const pos   = o.p ? '<span class="dict-pos">' + o.p + '</span>' : "";
+        // Le pluriel manque pour un nom sur trois : on n'affiche rien plutot
+        // que de reserver une place vide.
+        const plur  = o.pl ? '<span class="dict-plural">' + tf("dict_plural", { pl: o.pl }) + '</span>' : "";
         const dedans = deja.some(w => w[0] === o.m);
         const ajout = '<button id="dictAdd' + i + '" class="dict-add' + (dedans ? ' ajoute' : '')
             + '" onclick="event.stopPropagation(); addToMyVocab(' + i + ');" title="'
             + t("myvocab_add_title") + '">' + (dedans ? "\u2713" : "+") + '</button>';
         return '<div class="dict-row">' + ajout + '<div class="dict-row-top">'
             + '<span class="dict-word">' + genre + o.m + '</span>'
-            + pron + pos + '</div>'
+            + pron + pos + plur + '</div>'
             + '<div class="dict-trans">' + o.t.join(" · ") + '</div></div>';
     }).join("");
     const pill = '<span class="dict-section-title">'
@@ -13239,7 +13247,13 @@ function loadFlashcard(){
         } else {
             articleEl.classList.add("hidden");
         }
-        pluralEl.classList.add("hidden");
+        // Meme presentation que les cartes du cours : "Pluriel : die Hauser".
+        if(card[7]){
+            pluralEl.textContent = t('label_plural') + " die " + card[7];
+            pluralEl.classList.remove("hidden");
+        } else {
+            pluralEl.classList.add("hidden");
+        }
         const details = [];
         if(card[3]) details.push('<span style="opacity:.7;">[' + card[3] + ']</span>');
         if(card[4]) details.push(card[4]);
@@ -14080,7 +14094,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 229;
+const APP_VERSION = 230;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
