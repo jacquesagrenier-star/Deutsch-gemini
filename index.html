@@ -2164,18 +2164,22 @@ body[data-theme="dark"] .brand-logo-dark{ display:block; }
     width:22px;
     height:22px;
     border-radius:50%;
-    background:#3b6fe0;
+    background:#1C2430;
     color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:13px;
     font-weight:800;
-    box-shadow:0 2px 6px rgba(59,111,224,.5);
+    box-shadow:0 2px 6px rgba(28,36,48,.38);
     pointer-events:none;
 }
 
 .global-ring-track{stroke:rgba(30,41,59,.1);}
+body[data-theme="dark"] .ring-cycle-badge{
+    background:#e9ecf1; color:#1C2430;
+    box-shadow:0 2px 6px rgba(0,0,0,.45);
+}
 
 .global-ring-center{
     position:absolute;
@@ -2791,7 +2795,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
    l'anneau sans jamais recouvrir ni le trace de progression ni le centre :
    entre le cercle inscrit et le coin du carre, il n'y a rien a cacher. */
 .home-stats-card .ring-cycle-badge{
-    top:-2px; right:-2px; left:auto; bottom:auto;
+    top:-9px; right:-9px; left:auto; bottom:auto;
     width:30px; height:30px;
     /* La pastille garde sa taille ; c'est le symbole a l'interieur qui la
        remplit presque entierement. line-height:1 evite qu'il soit repousse
@@ -3007,7 +3011,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v240</span>
+        <span class="subtitle-version">v241</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4634,6 +4638,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     </button>
                 </div>
                 <div id="flashPlural" class="plural hidden"></div>
+                <div id="flashPaire" class="plural hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
@@ -5738,6 +5743,8 @@ const I18N = {
         random_adj_desc: "Mélange des adjectifs de tous les niveaux.",
         random_nouns_by_level_desc: "Mélange des noms de tous les niveaux disponibles.",
         label_plural: "Pluriel :",
+        label_feminine: "Féminin :",
+        label_masculine: "Masculin :",
         label_case_word: "Cas",
         label_nuance_word: "Nuance",
         label_word_category: "Catégorie",
@@ -6606,6 +6613,8 @@ const I18N = {
         random_adj_desc: "A mix of adjectives from all levels.",
         random_nouns_by_level_desc: "A mix of nouns from all available levels.",
         label_plural: "Plural:",
+        label_feminine: "Feminine:",
+        label_masculine: "Masculine:",
         label_case_word: "Case",
         label_nuance_word: "Nuance",
         label_word_category: "Category",
@@ -7841,7 +7850,11 @@ async function loadThemesJson() {
                     w.traduction_en || w.en || "",
                     w.exemple || w.example || "",
                     w.exemple_fr || "",
-                    w.exemple_en || ""
+                    w.exemple_en || "",
+                    // L'autre forme du nom de personne : "Aerztin" sur der Arzt,
+                    // "Arzt" sur die Aerztin. Un seul emplacement suffit -- son
+                    // article est toujours l'inverse de celui de l'entree.
+                    w.feminin || w.masculin || ""
                 ];
             });
 
@@ -11318,7 +11331,7 @@ function searchSenseTokens(str){
 }
 
 function pushSearchEntry(list, entry){
-    entry.haystack = normalizeSearch([entry.de, entry.fr, entry.en].filter(Boolean).join(" ~ "));
+    entry.haystack = normalizeSearch([entry.de, entry.fr, entry.en, entry.alt].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
     // Formes normalisees memorisees a la construction : reconnaitre une
     // correspondance EXACTE a chaque frappe sans re-normaliser 2857 entrees.
@@ -11345,7 +11358,7 @@ function buildSearchIndex(){
             (lv.words || []).forEach((w, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_noun', source: src, mode: 'nomen',
                 themeId: lv.id, index: index, card: w,
-                de: w[0], fr: w[3], en: w[4]
+                de: w[0], fr: w[3], en: w[4], alt: w[8]
             }));
             (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben', prio: 2,
@@ -13373,6 +13386,7 @@ function loadFlashcard(){
     const verbDetailsEl = document.getElementById("flashVerbDetails");
     const articleEl = document.getElementById("flashArticle");
     const pluralEl = document.getElementById("flashPlural");
+    const paireEl  = document.getElementById("flashPaire");
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben' || flashcardMode === 'vhskapitelverben'){
@@ -13714,6 +13728,20 @@ function loadFlashcard(){
             const aUnPluriel = pluralForm && pluralForm !== "—" && pluralForm !== "-";
             pluralEl.textContent = `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
             pluralEl.classList.remove("hidden");
+        }
+        // Un nom de personne s'apprend par paire : donner "der Arzt" sans
+        // "die Ärztin" laisse l'apprenant fabriquer le feminin au jugé -- et il
+        // est irregulier une fois sur trois (Arzt/Ärztin, Koch/Köchin).
+        if(paireEl){
+            const autre = (card[8] || "").trim();
+            if(autre && !learningEnglish){
+                const versFeminin = card[1] === "der";
+                paireEl.textContent = (versFeminin ? t('label_feminine') : t('label_masculine'))
+                    + " " + (versFeminin ? "die " : "der ") + autre;
+                paireEl.classList.remove("hidden");
+            } else {
+                paireEl.classList.add("hidden");
+            }
         }
         // Phrase d'exemple (comme pour les adjectifs) : anglais d'abord en
         // direction anglaise, allemand d'abord sinon. Masquée si le thème n'a
@@ -14424,7 +14452,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 240;
+const APP_VERSION = 241;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
