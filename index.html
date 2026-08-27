@@ -2777,7 +2777,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
    grosse pour qu'on comprenne qu'elle se touche. */
 .home-stats-card .ring-cycle-badge{
     top:0; left:-4px; right:auto; bottom:auto;
-    width:30px; height:30px; font-size:16px;
+    width:30px; height:30px;
+    /* La pastille garde sa taille ; c'est le symbole a l'interieur qui la
+       remplit presque entierement. line-height:1 evite qu'il soit repousse
+       vers le bas par l'interligne par defaut. */
+    font-size:25px;
+    line-height:1;
+    padding-bottom:2px;
 }
 
 .home-daily-goal{margin-top:4px !important; padding-top:6px !important;}
@@ -2986,7 +2992,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v235</span>
+        <span class="subtitle-version">v236</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14365,7 +14371,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 235;
+const APP_VERSION = 236;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
