@@ -2661,6 +2661,59 @@ body[data-theme="dark"] .dict-row{background:#161a22; border-color:#252c38;}
 body[data-theme="dark"] .dict-word{color:#e9ecf1;}
 body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 
+/* Verso d'une carte : deux gestes, pas quatre. La personne sait si le mot lui
+   est revenu ; elle n'a pas a choisir en plus une echeance de revision. */
+.judge-row{display:flex; gap:10px;}
+.judge-button{
+    flex:1; margin:0; padding:16px 12px; border-radius:16px;
+    font-weight:800; font-size:15px; letter-spacing:.01em;
+    border:1.5px solid transparent; cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+}
+.judge-button:active{transform:scale(.97);}
+.judge-again{background:#fff; border-color:#e3e7ee; color:#576177;}
+.judge-again:hover{border-color:#c9d0dc;}
+.judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+.judge-good:hover{background:#cdf0dc;}
+.judge-known{
+    display:block; width:100%; margin-top:12px; padding:8px;
+    background:none; border:none; color:#8b93a3;
+    font-size:12.5px; font-weight:600; cursor:pointer;
+}
+.judge-known:hover{color:#3b6fe0;}
+
+/* Fin de paquet : le seul moment ou les actions de SESSION ont leur place.
+   Avant v227 elles etaient collees sous chaque carte, ce qui faisait sept
+   boutons a lire a chaque mot. */
+.flashcard-end{
+    margin-top:6px; padding:20px; border:1px solid #e6e9ef;
+    border-radius:20px; background:#fff;
+}
+.flash-end-title{font-weight:800; font-size:18px; color:#1C2430;}
+.flash-end-summary{margin-top:6px; color:#576177; font-size:14px;}
+.flashcard-end button{margin-top:10px;}
+body[data-theme="dark"] .judge-again{background:#161a22; border-color:#2a3240; color:#aab3c2;}
+body[data-theme="dark"] .judge-good{background:#123024; border-color:#2c5c44; color:#8fd8b4;}
+body[data-theme="dark"] .flashcard-end{background:#161a22; border-color:#252c38;}
+body[data-theme="dark"] .flash-end-title{color:#e9ecf1;}
+
+/* Bouton d'ajout sur une ligne de dictionnaire : discret tant qu'on ne le
+   cherche pas, evident des qu'on le cherche. */
+.dict-row{position:relative;}
+.dict-add{
+    position:absolute; top:8px; right:8px;
+    width:30px; height:30px; padding:0; border-radius:9px;
+    border:1px solid #dfe4ec; background:#fff; color:#3b6fe0;
+    font-size:17px; font-weight:700; line-height:1; cursor:pointer;
+}
+.dict-add:hover{background:#eef3ff; border-color:#3b6fe0;}
+.dict-add.ajoute{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47; cursor:default;}
+.dict-row-top{padding-right:36px;}
+body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
+
+.orb[data-orbid="monvocab"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.3);}
+.orb[data-orbid="monvocab"] .orb-icon svg{stroke:#E8A23A;}
+
 </style>
 </head>
 
@@ -2840,7 +2893,7 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v226</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v227</span></p>
 
     <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
          donc hors de portee pendant un exercice (voir openWordSearch). Placee
@@ -2901,6 +2954,16 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
     </button>
 
     <div class="grid" id="orbGrid">
+        <!-- Sans classe orb-de ni orb-en : les mots mis de cote valent dans les
+             deux directions d'apprentissage (voir le CSS .orb-en / .orb-de). -->
+        <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
+            <div>
+                <strong data-i18n="myvocab_title">Mon vocabulaire</strong>
+                <small id="myVocabCount" data-i18n="myvocab_empty">Ajoute des mots du dictionnaire</small>
+            </div>
+        </div>
+
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
@@ -4467,15 +4530,22 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
-        <div id="flashReviewOptions" class="review-options">
-            <button class="review-button" onclick="scheduleReview(2)" data-i18n="review_2min">Revoir dans 2 min</button>
-            <button class="review-button" onclick="scheduleReview(10)" data-i18n="review_10min">Revoir dans 10 min</button>
-            <button class="review-button" onclick="scheduleReview(1440)" data-i18n="review_tomorrow">Revoir demain</button>
-            <button class="review-button mastered" onclick="markMastered()" data-i18n="review_mastered">Maîtrisé ✓</button>
+        <div class="judge-row">
+            <button class="judge-button judge-again" onclick="reviewAgain()" data-i18n="review_again">↺ Encore</button>
+            <button class="judge-button judge-good" onclick="reviewGood()" data-i18n="review_good">Je savais ✓</button>
         </div>
-        <button class="secondary" style="margin-top:10px;" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
-        <button class="secondary" style="margin-top:10px;" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
-        <button id="dictationStartBtn" class="secondary hidden" style="margin-top:10px;" onclick="startDictationExercise()" data-i18n="dictation_start_btn">🎧 S'ENTRAÎNER : DICTÉE</button>
+        <button class="judge-known" onclick="markKnownAlready()" data-i18n="review_known">Je connais déjà ce mot — ne plus me le montrer</button>
+    </div>
+
+    <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
+         d'etre repetees sous chaque carte. -->
+    <div id="flashcardEnd" class="flashcard-end hidden">
+        <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
+        <div class="flash-end-summary" id="flashEndSummary"></div>
+        <button class="secondary" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
+        <button class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
+        <button id="dictationStartBtn" class="secondary hidden" onclick="startDictationExercise()" data-i18n="dictation_start_btn">🎧 S'ENTRAÎNER : DICTÉE</button>
+        <button class="primary" onclick="handleFlashcardBack()" data-i18n="flash_end_done">TERMINER</button>
     </div>
 
 </section>
@@ -4987,6 +5057,22 @@ const I18N = {
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
+        myvocab_title: "Mon vocabulaire",
+        myvocab_empty: "Ajoute des mots du dictionnaire",
+        myvocab_count: "{n} mots mis de côté",
+        myvocab_count_one: "1 mot mis de côté",
+        myvocab_add_title: "Ajouter à mes flashcards",
+        myvocab_added: "« {mot} » ajouté à ton vocabulaire.",
+        myvocab_already: "« {mot} » est déjà dans ton vocabulaire.",
+        myvocab_full: "Ton vocabulaire est plein ({n} mots). Fais-en le tour avant d'en ajouter.",
+        myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
+        review_again: "↺ Encore",
+        review_good: "Je savais ✓",
+        review_known: "Je connais déjà ce mot — ne plus me le montrer",
+        flash_end_title: "Paquet terminé",
+        flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
+        flash_end_summary_one: "1 carte vue.",
+        flash_end_done: "TERMINER",
         dict_section_title: "Dictionnaire",
         dict_loading: "Recherche dans le dictionnaire…",
         dict_none: "Aucune entrée de dictionnaire pour ce mot.",
@@ -5812,6 +5898,22 @@ const I18N = {
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
+        myvocab_title: "My vocabulary",
+        myvocab_empty: "Add words from the dictionary",
+        myvocab_count: "{n} words saved",
+        myvocab_count_one: "1 word saved",
+        myvocab_add_title: "Add to my flashcards",
+        myvocab_added: "“{mot}” added to your vocabulary.",
+        myvocab_already: "“{mot}” is already in your vocabulary.",
+        myvocab_full: "Your vocabulary is full ({n} words). Work through it before adding more.",
+        myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
+        review_again: "↺ Again",
+        review_good: "I knew it ✓",
+        review_known: "I already know this word — stop showing it",
+        flash_end_title: "Deck finished",
+        flash_end_summary: "{vues} cards seen, {sues} right first time.",
+        flash_end_summary_one: "1 card seen.",
+        flash_end_done: "DONE",
         dict_section_title: "Dictionary",
         dict_loading: "Searching the dictionary…",
         dict_none: "No dictionary entry for this word.",
@@ -11281,6 +11383,88 @@ function dedupeSearchHits(hits){
     return kept;
 }
 
+// ================= MON VOCABULAIRE =================
+// Mots mis de cote depuis le dictionnaire. Stockes en local seulement : la
+// synchronisation Firestore existante n'envoie que vers le nuage, sans retour,
+// donc une liste creee sur le telephone n'apparait pas sur l'ordinateur. C'est
+// une limite connue, pas un oubli.
+//
+// Tuple d'une carte (consomme par loadFlashcard, mode 'monvocab') :
+//   0 mot · 1 traductions · 2 genre · 3 API · 4 nature · 5 langue du mot
+const MY_VOCAB_KEY = "deutschAI_monVocabulaire";
+const MY_VOCAB_MAX = 500;
+
+const monVocabTheme = {
+    id: "mon_vocabulaire",
+    name: "Mon vocabulaire",
+    svg: '<svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg>',
+    words: []
+};
+
+function loadMyVocab(){
+    let liste;
+    try{ liste = JSON.parse(localStorage.getItem(directionScopedKey(MY_VOCAB_KEY)) || "[]"); }
+    catch(e){ liste = []; }
+    monVocabTheme.words = Array.isArray(liste) ? liste : [];
+    return monVocabTheme.words;
+}
+
+function saveMyVocab(){
+    try{
+        localStorage.setItem(directionScopedKey(MY_VOCAB_KEY),
+                             JSON.stringify(monVocabTheme.words));
+    }catch(e){}
+}
+
+function updateMyVocabTile(){
+    const el = document.getElementById("myVocabCount");
+    if(!el) return;
+    const n = loadMyVocab().length;
+    el.textContent = n ? tf(n === 1 ? "myvocab_count_one" : "myvocab_count", { n })
+                       : t("myvocab_empty");
+}
+
+// Ajoute une entree de dictionnaire affichee a l'ecran. L'index renvoie a
+// dictShown, rempli au moment du rendu -- pas a la liste complete des resultats.
+function addToMyVocab(i){
+    const entree = dictShown[i];
+    if(!entree) return;
+    const o = entree.o;
+    loadMyVocab();
+    if(monVocabTheme.words.some(w => w[0] === o.m)){
+        showInfoToast(tf("myvocab_already", { mot: o.m }));
+        return;
+    }
+    if(monVocabTheme.words.length >= MY_VOCAB_MAX){
+        showInfoToast(tf("myvocab_full", { n: MY_VOCAB_MAX }));
+        return;
+    }
+    monVocabTheme.words.push([
+        o.m, (o.t || []).join(", "), o.g || "", o.i || "", o.p || "",
+        entree.pair === "de-en" ? "de" : "en"
+    ]);
+    saveMyVocab();
+    updateMyVocabTile();
+    showInfoToast(tf("myvocab_added", { mot: o.m }));
+    const bouton = document.getElementById("dictAdd" + i);
+    if(bouton){ bouton.classList.add("ajoute"); bouton.textContent = "\u2713"; }
+}
+
+function openMyVocab(){
+    const mots = loadMyVocab();
+    if(!mots.length){ showInfoToast(t("myvocab_how")); return; }
+    flashcardMode = 'monvocab';
+    currentTheme = monVocabTheme;
+    const items = mots.map((word, index) => ({ word, index, themeId: monVocabTheme.id }));
+    currentCardsFull = items;
+    currentCards = cartesDeSession(items);
+    if(!currentCards.length) currentCards = items;
+    currentFlashcard = 0;
+    setFlashHeader('myvocab_title', null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
 // ================= DICTIONNAIRE =================
 // Donnees WikDict (Wiktionnaire via DBnary), CC BY-SA 4.0. Decoupees par
 // prefixe de deux lettres : une recherche ne telecharge que la tranche utile
@@ -11294,6 +11478,7 @@ const DICT_MAX_RESULTS = 12;
 const dictBuckets = {};
 const dictIndexes = {};
 let dictSeq = 0;   // seule la derniere frappe a le droit d'ecrire dans le DOM
+let dictShown = [];  // entrees actuellement affichees, cible des boutons d'ajout
 
 function dictNormalize(str){
     return (str || "").toLowerCase().normalize("NFD")
@@ -11378,11 +11563,11 @@ async function runDictLookup(rawQuery){
     }
 
     const trouves = [];
-    paquets.forEach(paquet => {
+    paquets.forEach((paquet, iPaire) => {
         paquet.forEach(o => {
             const n = dictNormalize(o.m);
             if(n.indexOf(norm) !== 0) return;
-            trouves.push({ o: o, exact: n === norm });
+            trouves.push({ o: o, exact: n === norm, pair: DICT_PAIRS[iPaire] });
         });
     });
     // Correspondance exacte d'abord, puis les mots les plus courants : sans le
@@ -11403,12 +11588,18 @@ function renderDictSection(liste, total){
             + t("dict_section_title") + '</div><div class="search-empty">'
             + t("dict_none") + '</div>' + credit + '</div>';
     }
-    const lignes = liste.map(x => {
+    const deja = loadMyVocab();
+    dictShown = liste;
+    const lignes = liste.map((x, i) => {
         const o = x.o;
         const genre = o.g ? '<span class="dict-gender">' + o.g + '</span> ' : "";
         const pron  = o.i ? '<span class="dict-pron">[' + o.i + ']</span>' : "";
         const pos   = o.p ? '<span class="dict-pos">' + o.p + '</span>' : "";
-        return '<div class="dict-row"><div class="dict-row-top">'
+        const dedans = deja.some(w => w[0] === o.m);
+        const ajout = '<button id="dictAdd' + i + '" class="dict-add' + (dedans ? ' ajoute' : '')
+            + '" onclick="event.stopPropagation(); addToMyVocab(' + i + ');" title="'
+            + t("myvocab_add_title") + '">' + (dedans ? "\u2713" : "+") + '</button>';
+        return '<div class="dict-row">' + ajout + '<div class="dict-row-top">'
             + '<span class="dict-word">' + genre + o.m + '</span>'
             + pron + pos + '</div>'
             + '<div class="dict-trans">' + o.t.join(" · ") + '</div></div>';
@@ -11517,7 +11708,7 @@ function showScreen(id){
     updateOrbBadges();
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -12636,10 +12827,13 @@ const FLASHCARD_RETURN_SCREENS = {
     adverbien:       () => openAdverbienVokabular(),
     redewendungen:   () => openRedewendungenVokabular(),
     konjunktionen:   () => openKonjunktionenInfo(),
+    monvocab:        () => goHome(),
     englishmodule:   () => openEnglishModule(currentEnglishModule)
 };
 
 function handleFlashcardBack(){
+    sessionVues = 0; sessionSues = 0;
+    hideFlashcardEnd();
     // Carte ouverte depuis la recherche : retour a l'accueil, d'ou la recherche
     // a ete lancee -- pas vers le menu du type de mot, qui n'a pas ete traverse.
     if(flashcardFromSearch){ flashcardFromSearch = false; goHome(); return; }
@@ -12774,14 +12968,13 @@ function setFlashHeader(kickerKey, titleKey){
 
 function loadFlashcard(){
     updateXpComboDisplay();
+    hideFlashcardEnd();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    const dictationBtn = document.getElementById("dictationStartBtn");
-    if(dictationBtn) dictationBtn.classList.toggle("hidden", flashcardMode !== 'nomen');
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
@@ -12972,6 +13165,34 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
+    } else if(flashcardMode === 'monvocab'){
+        // Mot mis de cote depuis le dictionnaire : pas de phrase d'exemple,
+        // juste le mot, son genre, sa prononciation et ses traductions.
+        const mot = card[0], trads = card[1], genre = card[2];
+        const langue = card[5] || "de";
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = trads;
+            document.getElementById("flashBackWord").textContent = mot;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = mot;
+            document.getElementById("flashBackWord").textContent = mot;
+            translationEl.textContent = trads;
+            translationEl.classList.remove("hidden");
+        }
+        if(genre){
+            articleEl.textContent = genre;
+            articleEl.classList.remove("hidden");
+        } else {
+            articleEl.classList.add("hidden");
+        }
+        pluralEl.classList.add("hidden");
+        const details = [];
+        if(card[3]) details.push('<span style="opacity:.7;">[' + card[3] + ']</span>');
+        if(card[4]) details.push(card[4]);
+        details.push(sentenceSpeakBtnHtml(mot, langue));
+        verbDetailsEl.innerHTML = details.join(" ");
+        verbDetailsEl.classList.remove("hidden");
     } else if(flashcardMode === 'englishmodule'){
         // Ici la langue cible est l'ANGLAIS et la langue connue le francais --
         // l'inverse de tous les autres modes. La phrase d'exemple se prononce
@@ -13804,7 +14025,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 226;
+const APP_VERSION = 227;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -14000,6 +14221,89 @@ function scheduleReview(minutes){
     const justReachedMultiple = recordDailyActivity();
     if(justReachedMultiple > 0) triggerDailyGoalCelebration(justReachedMultiple);
     nextFlashcard();
+}
+
+// Une seule question est posee a l'usager -- "je savais" ou non -- et c'est
+// l'app qui en deduit l'echeance. Avant v227 il fallait choisir soi-meme entre
+// 2 min, 10 min, demain et "maitrise" : quatre decisions de planification a
+// chaque carte, alors que la seule chose que la personne sait vraiment, c'est
+// si le mot lui est revenu.
+//
+// Echelle parcourue par "Je savais" :
+//   1re reussite      -> 10 minutes (on reste dans la session, pour consolider)
+//   2e               -> 1 jour
+//   3e               -> 3 jours
+//   4e               -> maitrise
+// Un "Encore" fait tout repartir de zero. SRS_MASTERY_AFTER_RUNGS regle le
+// nombre de paliers en jours a franchir avant la maitrise : le baisser rend la
+// progression plus rapide, le monter la rend plus exigeante.
+const SRS_MASTERY_AFTER_RUNGS = 3;
+
+let sessionVues = 0;
+let sessionSues = 0;
+
+function reviewAgain(){
+    if(!currentCards.length) return;
+    const item = currentCards[currentFlashcard];
+    const state = getWordState(item.themeId, item.index);
+    state.srsHits = 0;
+    setWordState(item.themeId, item.index, state);
+    sessionVues++;
+    scheduleReview(2);   // revient dans la meme session
+}
+
+function reviewGood(){
+    if(!currentCards.length) return;
+    const item = currentCards[currentFlashcard];
+    const state = getWordState(item.themeId, item.index);
+    const reussites = state.srsHits || 0;
+    state.srsHits = reussites + 1;
+    setWordState(item.themeId, item.index, state);
+    sessionVues++;
+    sessionSues++;
+
+    if(reussites === 0){
+        // Premiere reussite : on la revoit avant la fin de la session, ce que
+        // faisait l'ancien bouton "10 min".
+        scheduleReview(10);
+        return;
+    }
+    // Ensuite on monte l'echelle des jours (voir SRS_DAILY_LADDER_DAYS).
+    if((state.srsDailyStreak || 0) + 1 >= SRS_MASTERY_AFTER_RUNGS){
+        markMastered();
+        return;
+    }
+    scheduleReview(1440);
+}
+
+// Echappatoire pour les mots deja connus : sans elle, quelqu'un qui ouvre un
+// theme de 60 mots dont il en connait 40 devrait les faire remonter un a un.
+function markKnownAlready(){
+    sessionVues++;
+    sessionSues++;
+    markMastered();
+}
+
+// Affiche le bilan de fin de paquet au lieu de quitter l'ecran : c'est le seul
+// endroit ou "revoir les non maitrisees" a du sens, et il n'y en avait aucun.
+function showFlashcardEnd(){
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.add("hidden");
+    const fin = document.getElementById("flashcardEnd");
+    if(!fin) return false;
+    const resume = document.getElementById("flashEndSummary");
+    if(resume) resume.textContent = tf(sessionVues === 1 ? "flash_end_summary_one" : "flash_end_summary",
+                                       { vues: sessionVues, sues: sessionSues });
+    const dictee = document.getElementById("dictationStartBtn");
+    if(dictee) dictee.classList.toggle("hidden", flashcardMode !== 'nomen');
+    fin.classList.remove("hidden");
+    sessionVues = 0; sessionSues = 0;
+    return true;
+}
+
+function hideFlashcardEnd(){
+    const fin = document.getElementById("flashcardEnd");
+    if(fin) fin.classList.add("hidden");
 }
 
 let sharedAudioCtx = null;
@@ -14877,6 +15181,7 @@ function nextFlashcard(){
             loadFlashcard();
             return;
         }
+        if(showFlashcardEnd()) return;
         showInfoToast(t('alert_session_ended_saved'));
         handleFlashcardBack();
         return;
