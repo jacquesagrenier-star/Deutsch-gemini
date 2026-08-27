@@ -2633,6 +2633,16 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
    ecran de recherche. Volontairement plus sobre que .search-result -- les
    cartes du cours restent l'element principal. */
 .dict-section{margin-top:26px;}
+/* Meme en-tete pour le bloc des cartes : les deux origines se lisent alors en
+   parallele, au lieu d'une liste anonyme suivie d'une section nommee. */
+.search-section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:10px; margin-bottom:10px;
+}
+.dict-section-note{
+    font-size:12px; color:#8b93a3; line-height:1.45;
+    margin:-4px 0 12px;
+}
 .dict-section-head{
     display:flex; align-items:baseline; justify-content:space-between;
     gap:10px; margin-bottom:10px;
@@ -2992,7 +3002,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v238</span>
+        <span class="subtitle-version">v239</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5191,6 +5201,8 @@ const I18N = {
         flash_end_summary_one: "1 carte vue.",
         flash_end_done: "TERMINER",
         dict_section_title: "Dictionnaire",
+        dict_section_note: "Ces mots n'ont pas encore de carte. Touche le + pour en faire une et la retrouver dans Mon vocabulaire.",
+        search_head_cours: "Cartes de l'app",
         dict_loading: "Recherche dans le dictionnaire…",
         dict_none: "Aucune entrée de dictionnaire pour ce mot.",
         dict_count: "{n} entrées",
@@ -6054,6 +6066,8 @@ const I18N = {
         flash_end_summary_one: "1 card seen.",
         flash_end_done: "DONE",
         dict_section_title: "Dictionary",
+        dict_section_note: "These words have no card yet. Tap + to make one and find it in My vocabulary.",
+        search_head_cours: "Cards in the app",
         dict_loading: "Searching the dictionary…",
         dict_none: "No dictionary entry for this word.",
         dict_count: "{n} entries",
@@ -11920,7 +11934,9 @@ function renderDictSection(liste, total){
         + tf(total === 1 ? "dict_count_one" : "dict_count", { n: total }) + '</span>';
     return '<div class="dict-section"><div class="dict-section-head">'
         + '<span class="dict-section-title">' + t("dict_section_title") + '</span>'
-        + pill + '</div>' + lignes + credit + '</div>';
+        + pill + '</div>'
+        + '<div class="dict-section-note">' + t("dict_section_note") + '</div>'
+        + lignes + credit + '</div>';
 }
 
 function renderWordSearch(rawQuery){
@@ -11987,7 +12003,12 @@ function renderWordSearch(rawQuery){
     const shown = unique.slice(0, SEARCH_MAX_RESULTS);
     searchResults = shown.map(h => h.e);
     if(pill) pill.textContent = tf(unique.length === 1 ? 'search_count_one' : 'search_count', { n: unique.length });
-    box.innerHTML = shown.map((h, i) => searchResultHtml(h.e, i, h.exact)).join("")
+    box.innerHTML = '<div class="search-section-head">'
+        + '<span class="dict-section-title">' + t('search_head_cours') + '</span>'
+        + '<span class="dict-section-title">'
+        + tf(unique.length === 1 ? 'search_count_one' : 'search_count', { n: unique.length })
+        + '</span></div>'
+        + shown.map((h, i) => searchResultHtml(h.e, i, h.exact)).join("")
         + (unique.length > shown.length
             ? '<div class="search-empty">' + tf('search_more', { n: shown.length }) + '</div>'
             : "");
@@ -14398,7 +14419,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 238;
+const APP_VERSION = 239;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
