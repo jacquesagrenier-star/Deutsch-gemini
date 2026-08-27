@@ -3070,7 +3070,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v246</span>
+        <span class="subtitle-version">v247</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -7941,7 +7941,11 @@ async function loadThemesJson() {
                     // L'autre forme du nom de personne : "Aerztin" sur der Arzt,
                     // "Arzt" sur die Aerztin. Un seul emplacement suffit -- son
                     // article est toujours l'inverse de celui de l'entree.
-                    w.feminin || w.masculin || ""
+                    w.feminin || w.masculin || "",
+                    // Article francais de la traduction, elision comprise :
+                    // "la ", "le ", "les " ou "l'". Vide quand le genre n'a pas
+                    // pu etre etabli -- pas d'article vaut mieux qu'un faux.
+                    w.article_fr || ""
                 ];
             });
 
@@ -11395,6 +11399,8 @@ let searchResults = [];
 let searchDebounceTimer = null;
 let flashcardFromSearch = false;
 const SEARCH_MAX_RESULTS = 60;
+// Rang des correspondances enfouies au milieu d'un mot (voir renderWordSearch).
+const RANG_INTERIEUR = 9;
 const SEARCH_MAX_SUGGESTIONS = 6;
 
 // Normalisation commune a l'index et a la requete : minuscules, sans accents,
@@ -12064,15 +12070,38 @@ function renderWordSearch(rawQuery){
     }
 
     const hits = [];
+    // Chercher une sous-chaine n'importe ou dans la fiche donnait des resultats
+    // qui semblaient tires au hasard : "table" ramenait bequem (confor-TABLE-)
+    // et gerecht (equi-TABLE-), "tisch" ramenait chaotisch et praktisch. On
+    // distingue donc une correspondance en DEBUT DE MOT d'une correspondance
+    // enfouie au milieu d'un autre mot.
+    const LETTRE = /[a-z0-9]/;
+    let mieuxQuInterieur = false;
     for(let i = 0; i < all.length; i++){
         const e = all[i];
-        if(e.haystack.indexOf(q) === -1) continue;
+        let pos = e.haystack.indexOf(q);
+        if(pos === -1) continue;
+        let debutDeMot = false;
+        for(let p = pos; p !== -1; p = e.haystack.indexOf(q, p + 1)){
+            if(p === 0 || !LETTRE.test(e.haystack.charAt(p - 1))){ debutDeMot = true; break; }
+        }
         // Le mot cherche EXACTEMENT (allemand, francais ou anglais) passe devant
         // et sera mis en evidence ; vient ensuite le mot allemand qui commence
         // par la requete, puis le reste.
         const exact = (e.deNorm === q || e.frNorm === q || e.enNorm === q);
-        const rank = exact ? 0 : (e.deNorm.indexOf(q) === 0 ? 1 : (e.deNorm.indexOf(q) !== -1 ? 2 : 3));
+        const rank = exact ? 0
+                   : (e.deNorm.indexOf(q) === 0 ? 1
+                   : (debutDeMot ? 2 : RANG_INTERIEUR));
+        if(rank !== RANG_INTERIEUR) mieuxQuInterieur = true;
         hits.push({ e: e, rank: rank, exact: exact });
+    }
+    // Les correspondances enfouies ne sont conservees QUE si rien de mieux n'a
+    // ete trouve : mieux vaut "chaotisch" que rien du tout quand on cherche une
+    // terminaison, mais jamais a cote du mot juste.
+    if(mieuxQuInterieur){
+        for(let i = hits.length - 1; i >= 0; i--){
+            if(hits[i].rank === RANG_INTERIEUR) hits.splice(i, 1);
+        }
     }
     // prio avant la longueur : a pertinence egale, c'est la fiche du cours
     // principal qui remonte -- et donc celle que la fusion ci-dessous conserve.
@@ -13780,8 +13809,15 @@ function loadFlashcard(){
         // Sémantique constante du bouton recto/verso (voir branche 'verben' plus
         // haut) : frontIsFrench=true -> langue connue au recto (FR en allemand,
         // DE en anglais) ; false -> langue cible au recto.
-        const knownWord = learningEnglish ? germanWord : frenchWord;
-        const targetWord = learningEnglish ? frenchWord : germanWord;
+        // Un nom seul -- "table", "medecin" -- se lit comme une entree de
+        // glossaire. Avec son article il se lit comme du francais, et c'est
+        // bien du francais qu'on demande de traduire. L'article ne vaut QUE
+        // pour le francais : la traduction anglaise n'en prend pas.
+        const montreFrancais = !learningEnglish && !(useEn && card[4]);
+        const francaisAffiche = (montreFrancais && card[9] ? card[9] : "") + frenchWord;
+
+        const knownWord = learningEnglish ? germanWord : francaisAffiche;
+        const targetWord = learningEnglish ? francaisAffiche : germanWord;
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = knownWord;
             document.getElementById("flashBackWord").textContent = targetWord;
@@ -14535,7 +14571,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 246;
+const APP_VERSION = 247;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
