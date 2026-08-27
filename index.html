@@ -2714,6 +2714,12 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 .orb[data-orbid="monvocab"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.3);}
 .orb[data-orbid="monvocab"] .orb-icon svg{stroke:#E8A23A;}
 
+.freq-chip{
+    display:inline-block; padding:1px 7px; border-radius:6px;
+    background:rgba(59,111,224,.12); color:#3b6fe0;
+    font-size:11px; font-weight:700; letter-spacing:.03em;
+}
+
 </style>
 </head>
 
@@ -2893,7 +2899,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v228</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v229</span></p>
 
     <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
          donc hors de portee pendant un exercice (voir openWordSearch). Placee
@@ -5062,9 +5068,11 @@ const I18N = {
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
         myvocab_add_title: "Ajouter à mes flashcards",
-        myvocab_added: "« {mot} » ajouté à ton vocabulaire.",
-        myvocab_already: "« {mot} » est déjà dans ton vocabulaire.",
-        myvocab_full: "Ton vocabulaire est plein ({n} mots). Fais-en le tour avant d'en ajouter.",
+        myvocab_freq_high: "très courant",
+        myvocab_freq_mid: "courant",
+        myvocab_added: "« {mot} » ajouté à tes flashcards.",
+        myvocab_already: "« {mot} » est déjà dans tes flashcards.",
+        myvocab_full: "Tu as atteint {n} mots mis de côté. Fais-en le tour avant d'en ajouter.",
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
         review_good: "Je savais ✓",
@@ -5903,9 +5911,11 @@ const I18N = {
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
         myvocab_add_title: "Add to my flashcards",
-        myvocab_added: "“{mot}” added to your vocabulary.",
-        myvocab_already: "“{mot}” is already in your vocabulary.",
-        myvocab_full: "Your vocabulary is full ({n} words). Work through it before adding more.",
+        myvocab_freq_high: "very common",
+        myvocab_freq_mid: "common",
+        myvocab_added: "“{mot}” added to your flashcards.",
+        myvocab_already: "“{mot}” is already in your flashcards.",
+        myvocab_full: "You have reached {n} saved words. Work through them before adding more.",
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
         review_good: "I knew it ✓",
@@ -11391,8 +11401,27 @@ function dedupeSearchHits(hits){
 //
 // Tuple d'une carte (consomme par loadFlashcard, mode 'monvocab') :
 //   0 mot · 1 traductions · 2 genre · 3 API · 4 nature · 5 langue du mot
+//   6 indice de frequence (facultatif : les mots ajoutes avant v229 n'en ont pas)
 const MY_VOCAB_KEY = "deutschAI_monVocabulaire";
-const MY_VOCAB_MAX = 500;
+// 86 octets par mot en moyenne : 5 000 mots pesent 0,43 Mo sur les ~5 Mo
+// disponibles, en laissant la place a la progression, qui est le gros poste.
+const MY_VOCAB_MAX = 5000;
+
+// Indice de frequence fourni par WikDict (le meme qui classe les resultats de
+// recherche). On n'etiquette que le haut du classement : "rare" colle a un mot
+// que la personne vient de choisir d'apprendre serait decourageant pour rien.
+// Reperes mesures sur les 46 000 mots qui portent l'indice : mediane 0,3 ;
+// 90e centile 1,0 ; 99e centile 2,4.
+const MY_VOCAB_FREQ_TRES = 2.0;
+const MY_VOCAB_FREQ_COURANT = 0.8;
+
+function myVocabFreqLabel(r){
+    const n = parseFloat(r);
+    if(!(n > 0)) return "";
+    if(n >= MY_VOCAB_FREQ_TRES) return t("myvocab_freq_high");
+    if(n >= MY_VOCAB_FREQ_COURANT) return t("myvocab_freq_mid");
+    return "";
+}
 
 const monVocabTheme = {
     id: "mon_vocabulaire",
@@ -11441,7 +11470,7 @@ function addToMyVocab(i){
     }
     monVocabTheme.words.push([
         o.m, (o.t || []).join(", "), o.g || "", o.i || "", o.p || "",
-        entree.pair === "de-en" ? "de" : "en"
+        entree.pair === "de-en" ? "de" : "en", o.r || 0
     ]);
     saveMyVocab();
     updateMyVocabTile();
@@ -13214,6 +13243,8 @@ function loadFlashcard(){
         const details = [];
         if(card[3]) details.push('<span style="opacity:.7;">[' + card[3] + ']</span>');
         if(card[4]) details.push(card[4]);
+        const freq = myVocabFreqLabel(card[6]);
+        if(freq) details.push('<span class="freq-chip">' + freq + '</span>');
         details.push(sentenceSpeakBtnHtml(mot, langue));
         verbDetailsEl.innerHTML = details.join(" ");
         verbDetailsEl.classList.remove("hidden");
@@ -14049,7 +14080,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 228;
+const APP_VERSION = 229;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
