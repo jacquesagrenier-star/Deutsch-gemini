@@ -129,6 +129,7 @@ FICHIERS_ANGLAIS = [
     ("english_themes.json", None),
     ("phrasal_verbs.json", None),
     ("english_verbs.json", "formes"),
+    ("english_britam.json", None),
     ("english_pitfalls.json", None),
     ("english_expressions.json", None),
 ]

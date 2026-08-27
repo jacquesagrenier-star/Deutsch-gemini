@@ -421,6 +421,8 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="pitfalls_en"] .orb-icon svg{stroke:#ef4444;}
 .orb[data-orbid="irregular_en"] .orb-icon{background:rgba(249,115,22,.14); border-color:rgba(249,115,22,.28);}
 .orb[data-orbid="irregular_en"] .orb-icon svg{stroke:#f97316;}
+.orb[data-orbid="britam_en"] .orb-icon{background:rgba(59,130,246,.14); border-color:rgba(59,130,246,.28);}
+.orb[data-orbid="britam_en"] .orb-icon svg{stroke:#3b82f6;}
 
 .orb[data-orbid="revision"] .orb-icon{
     background:rgba(59,130,246,.14);
@@ -2806,7 +2808,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v222</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v223</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3128,6 +3130,14 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
             <div>
                 <strong data-i18n="orb_en_expressions_title">Expressions</strong>
                 <small data-i18n="orb_en_expressions_sub">It depends · By the way</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="britam_en" onclick="openEnglishModule('britam')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 010 18a15 15 0 010-18z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_britam_title">GB / US</strong>
+                <small data-i18n="orb_en_britam_sub">flat · apartment</small>
             </div>
         </div>
 
@@ -4934,6 +4944,11 @@ const I18N = {
         en_module_vocabulary_title: "Vocabulaire",
         en_module_vocabulary_level_desc: "Choisis d'abord un niveau : la liste des thèmes juste en dessous s'y ajuste.",
         en_module_vocabulary_cat_desc: "Les mots ne s'apprennent pas isolés : chacun arrive avec une phrase qui montre comment on s'en sert vraiment.",
+        en_module_britam_title: "Britannique ou américain",
+        en_module_britam_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
+        en_module_britam_cat_desc: "Le même objet porte souvent deux noms selon la rive de l'Atlantique. Mieux vaut savoir lequel on emploie que de mélanger les deux sans le savoir.",
+        orb_en_britam_title: "GB / US",
+        orb_en_britam_sub: "flat · apartment",
         en_module_irregular_title: "Verbes irréguliers",
         en_module_irregular_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
         en_module_irregular_cat_desc: "Les irréguliers s'apprennent par patron, pas en vrac : ceux dont les trois formes sont identiques, ceux dont le prétérit et le participe se ressemblent, et ceux qui changent trois fois.",
@@ -5746,6 +5761,11 @@ const I18N = {
         en_module_vocabulary_title: "Vocabulary",
         en_module_vocabulary_level_desc: "Pick a level first: the list of themes below adjusts to it.",
         en_module_vocabulary_cat_desc: "Words are never learnt in isolation: each one comes with a sentence showing how it is actually used.",
+        en_module_britam_title: "British or American",
+        en_module_britam_level_desc: "Pick a level first: the list of families below adjusts to it.",
+        en_module_britam_cat_desc: "The same object often has two names depending on the side of the Atlantic. Better to know which one you are using than to mix them unknowingly.",
+        orb_en_britam_title: "GB / US",
+        orb_en_britam_sub: "flat · apartment",
         en_module_irregular_title: "Irregular verbs",
         en_module_irregular_level_desc: "Pick a level first: the list of families below adjusts to it.",
         en_module_irregular_cat_desc: "Irregular verbs are learnt by pattern, not at random: those whose three forms are identical, those whose past and participle match, and those that change three times.",
@@ -7369,6 +7389,15 @@ const ENGLISH_MODULES = {
         catDescKey: "en_module_vocabulary_cat_desc",
         theme: { id: "english_vocabulary", name: "Vocabulaire",
                  svg: '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg>',
+                 words: [] }
+    },
+    britam: {
+        file: "english_britam.json",
+        titleKey: "en_module_britam_title",
+        levelDescKey: "en_module_britam_level_desc",
+        catDescKey: "en_module_britam_cat_desc",
+        theme: { id: "english_britam", name: "GB / US",
+                 svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 010 18a15 15 0 010-18z"/></svg>',
                  words: [] }
     },
     irregular: {
@@ -13538,7 +13567,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 222;
+const APP_VERSION = 223;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
