@@ -2565,6 +2565,62 @@ body[data-theme="dark"] .ecoute-btn.principal{
     background:#3b6fe0; border-color:#3b6fe0; color:#ffffff;
 }
 
+/* Video d'accueil : superposition plein ecran, affichee une fois apres l'ecran
+   de configuration puis rejouable depuis l'accueil (voir openOnboardingVideo). */
+.onboarding-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(28,36,48,.78);
+    backdrop-filter:blur(6px);
+    z-index:10002;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    transition:opacity .25s ease;
+}
+.onboarding-overlay.show{opacity:1;}
+.onboarding-box{
+    width:100%;
+    max-width:420px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+.onboarding-video{
+    /* La video fait toujours 9:16 : on fixe le rapport en CSS pour que la boite
+       ait deja la bonne forme avant que les metadonnees soient chargees. */
+    display:block;
+    margin:0 auto;
+    height:min(72vh, 640px);
+    aspect-ratio:9 / 16;
+    width:auto;
+    max-width:100%;
+    border-radius:20px;
+    background:#000;
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+.onboarding-actions{display:flex; gap:10px;}
+.onboarding-actions button{flex:1; margin:0;}
+.home-help-launch{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    margin:10px 0 4px;
+    padding:10px;
+    background:none;
+    border:none;
+    color:#576177;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+}
+.home-help-launch:hover{color:#3b6fe0;}
+body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
+
 </style>
 </head>
 
@@ -2573,6 +2629,14 @@ body[data-theme="dark"] .ecoute-btn.principal{
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
 <div id="badgeToast" class="badge-toast"></div>
 <div id="globalLoadingBar" class="global-loading-bar hidden"></div>
+<div id="onboardingOverlay" class="onboarding-overlay hidden">
+    <div class="onboarding-box">
+        <video id="onboardingVideo" class="onboarding-video" playsinline controls preload="none"></video>
+        <div class="onboarding-actions">
+            <button class="primary" onclick="closeOnboardingVideo()" data-i18n="onboarding_close">J'AI COMPRIS</button>
+        </div>
+    </div>
+</div>
 
 <svg width="0" height="0" style="position:absolute;">
     <defs>
@@ -2736,7 +2800,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v218</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v219</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -2785,6 +2849,11 @@ body[data-theme="dark"] .ecoute-btn.principal{
     <button class="search-launch" onclick="openWordSearch()">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
         <span data-i18n="search_launch">Rechercher un mot dans mes flashcards</span>
+    </button>
+
+    <button class="home-help-launch" onclick="openOnboardingVideo(false)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
+        <span data-i18n="onboarding_home_button">Comment commencer ? (45 s)</span>
     </button>
 
     <div class="grid" id="orbGrid">
@@ -4784,6 +4853,8 @@ let sentenceRegistry = [];
 
 const I18N = {
     fr: {
+        onboarding_home_button: "Comment commencer ? (45 s)",
+        onboarding_close: "J'AI COMPRIS",
         home_title_1: "Apprends l'allemand",
         home_title_2: "mot par mot.",
         home_subtitle: "Ton tuteur personnel pour la grammaire allemande et le vocabulaire.",
@@ -5563,6 +5634,8 @@ const I18N = {
         admin_user_stats: "{mastered}/{total} mots maîtrisés · série de {streak} jour(s)"
     },
     en: {
+        onboarding_home_button: "How do I start? (45 s)",
+        onboarding_close: "GOT IT",
         home_title_1: "Learn German",
         home_title_2: "word by word.",
         home_subtitle: "Your personal tutor for German grammar and vocabulary.",
@@ -6540,6 +6613,63 @@ function selectUiLangChoice(lang){
 function completeInitialSetup(){
     markSetupDone();
     goHome();
+    // Le clic sur CONTINUER est un geste utilisateur : c'est le seul moment ou
+    // le navigateur laisse demarrer une video avec le son. D'ou le lancement
+    // ici plutot qu'au chargement de l'accueil.
+    maybeShowOnboardingVideo();
+}
+
+// ---- Video d'accueil ---------------------------------------------------
+// Une seule video existe pour l'instant (narration francaise). En interface
+// anglaise on n'ouvre donc rien automatiquement -- le bouton de l'accueil
+// reste disponible pour qui veut quand meme la regarder.
+const ONBOARDING_SEEN_KEY  = "deutschAI_onboardingSeen";
+const ONBOARDING_VIDEO_FILES = { fr: "wortando-demarrage-fr.mp4" };
+
+function onboardingVideoUrl(){
+    const file = ONBOARDING_VIDEO_FILES[getUiLang()] || ONBOARDING_VIDEO_FILES.fr;
+    return VIDEO_BASE_URL + file;
+}
+
+function hasSeenOnboarding(){
+    try{ return localStorage.getItem(ONBOARDING_SEEN_KEY) === "1"; }catch(e){ return false; }
+}
+
+function markOnboardingSeen(){
+    try{ localStorage.setItem(ONBOARDING_SEEN_KEY, "1"); }catch(e){}
+}
+
+function maybeShowOnboardingVideo(){
+    if(hasSeenOnboarding()) return;
+    if(!ONBOARDING_VIDEO_FILES[getUiLang()]) return;
+    openOnboardingVideo(true);
+}
+
+function openOnboardingVideo(auto){
+    const overlay = document.getElementById("onboardingOverlay");
+    const video   = document.getElementById("onboardingVideo");
+    if(!overlay || !video) return;
+    markOnboardingSeen();
+
+    if(!video.src) video.src = onboardingVideoUrl();
+    video.currentTime = 0;
+    overlay.classList.remove("hidden");
+    // Laisse un rafraichissement se produire avant la transition d'opacite.
+    requestAnimationFrame(() => overlay.classList.add("show"));
+
+    // Si le navigateur refuse le demarrage automatique, la video reste sur sa
+    // premiere image avec ses controles : l'utilisateur appuie sur lecture.
+    const played = video.play();
+    if(played && played.catch) played.catch(() => {});
+}
+
+function closeOnboardingVideo(){
+    const overlay = document.getElementById("onboardingOverlay");
+    const video   = document.getElementById("onboardingVideo");
+    if(!overlay) return;
+    if(video){ try{ video.pause(); }catch(e){} }
+    overlay.classList.remove("show");
+    setTimeout(() => overlay.classList.add("hidden"), 250);
 }
 
 // applyUiLang() ne touche que les éléments statiques marqués data-i18n/-html.
@@ -13064,7 +13194,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 218;
+const APP_VERSION = 219;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
