@@ -415,6 +415,10 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="vergleich_en"] .orb-icon svg{stroke:#ec4899;}
 .orb[data-orbid="phrasal_en"] .orb-icon{background:rgba(20,184,166,.14); border-color:rgba(20,184,166,.28);}
 .orb[data-orbid="phrasal_en"] .orb-icon svg{stroke:#14b8a6;}
+.orb[data-orbid="expressions_en"] .orb-icon{background:rgba(139,92,246,.14); border-color:rgba(139,92,246,.28);}
+.orb[data-orbid="expressions_en"] .orb-icon svg{stroke:#8b5cf6;}
+.orb[data-orbid="pitfalls_en"] .orb-icon{background:rgba(239,68,68,.14); border-color:rgba(239,68,68,.28);}
+.orb[data-orbid="pitfalls_en"] .orb-icon svg{stroke:#ef4444;}
 
 .orb[data-orbid="revision"] .orb-icon{
     background:rgba(59,130,246,.14);
@@ -2800,7 +2804,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v219</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v220</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3101,11 +3105,27 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
             </div>
         </div>
 
-        <div class="orb orb-en" data-orbid="phrasal_en" onclick="comingSoon('Phrasal Verbs')">
+        <div class="orb orb-en" data-orbid="phrasal_en" onclick="openEnglishModule('phrasal')">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><circle cx="12" cy="12" r="3"/></svg></div>
             <div>
                 <strong>Phrasal Verbs</strong>
-                <small>give up · look for</small>
+                <small data-i18n="orb_en_phrasal_sub">give up · look after</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="expressions_en" onclick="openEnglishModule('expressions')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_expressions_title">Expressions</strong>
+                <small data-i18n="orb_en_expressions_sub">It depends · By the way</small>
+            </div>
+        </div>
+
+        <div class="orb orb-en" data-orbid="pitfalls_en" onclick="openEnglishModule('pitfalls')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v4"/><path d="M12 16.5v.5"/></svg></div>
+            <div>
+                <strong data-i18n="orb_en_pitfalls_title">Pièges</strong>
+                <small data-i18n="orb_en_pitfalls_sub">actually ≠ actuellement</small>
             </div>
         </div>
 
@@ -3874,6 +3894,34 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         <strong data-i18n="adverbien_cat_title">Réviser par famille</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="adverbien_cat_desc">Les adverbes s'apprennent en opposant les mots d'une même famille : immer, oft, manchmal, selten, nie.</p>
         <div id="adverbienCategoryBar" class="filters-bar"></div>
+    </div>
+</section>
+
+<!-- ================= MODULES ANGLAIS ================= -->
+<!-- Un seul ecran sert les trois modules anglais (phrasal verbs, pieges,
+     expressions) : ils ont exactement la meme forme (niveaux + familles), seuls
+     le titre et le jeu de donnees changent. Voir ENGLISH_MODULES. -->
+<section id="englishModule" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="englishModuleKicker">Anglais</div>
+            <h2 id="englishModuleTitle">Module</h2>
+        </div>
+        <div class="pill" id="englishModuleCountPill"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="en_module_level_title">Choisir un niveau</strong>
+        <p style="color:#576177; margin-top:6px;" id="englishModuleLevelDesc"></p>
+        <div id="englishModuleLevelBar" class="filters-bar"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="en_module_cat_title">Réviser par famille</strong>
+        <p style="color:#576177; margin-top:6px;" id="englishModuleCatDesc"></p>
+        <div id="englishModuleCategoryBar" class="filters-bar"></div>
     </div>
 </section>
 
@@ -4855,6 +4903,28 @@ const I18N = {
     fr: {
         onboarding_home_button: "Comment commencer ? (45 s)",
         onboarding_close: "J'AI COMPRIS",
+        alert_data_load_failed: "Impossible de charger les données. Vérifie ta connexion.",
+        kicker_english_module: "Anglais",
+        en_module_count: "{n} entrées",
+        en_module_level_all: "Tous",
+        en_module_cat_all: "Tout mélanger",
+        en_module_level_title: "Choisir un niveau",
+        en_module_cat_title: "Réviser par famille",
+        en_module_phrasal_title: "Phrasal verbs",
+        en_module_phrasal_level_desc: "Choisis d'abord un niveau : la liste des verbes juste en dessous s'y ajuste.",
+        en_module_phrasal_cat_desc: "Les phrasal verbs s'apprennent verbe par verbe : toutes les tournures de GET ensemble, puis celles de TAKE.",
+        en_module_pitfalls_title: "Pièges de l'anglais",
+        en_module_pitfalls_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
+        en_module_pitfalls_cat_desc: "Deux familles : les faux amis (actually ≠ actuellement) et les mots que l'on confond entre eux (lend / borrow).",
+        en_module_expressions_title: "Expressions courantes",
+        en_module_expressions_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
+        en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
+        label_english_pitfall: "Piège",
+        orb_en_phrasal_sub: "give up · look after",
+        orb_en_expressions_title: "Expressions",
+        orb_en_expressions_sub: "It depends · By the way",
+        orb_en_pitfalls_title: "Pièges",
+        orb_en_pitfalls_sub: "actually ≠ actuellement",
         home_title_1: "Apprends l'allemand",
         home_title_2: "mot par mot.",
         home_subtitle: "Ton tuteur personnel pour la grammaire allemande et le vocabulaire.",
@@ -5636,6 +5706,28 @@ const I18N = {
     en: {
         onboarding_home_button: "How do I start? (45 s)",
         onboarding_close: "GOT IT",
+        alert_data_load_failed: "Could not load the data. Check your connection.",
+        kicker_english_module: "English",
+        en_module_count: "{n} entries",
+        en_module_level_all: "All",
+        en_module_cat_all: "Mix everything",
+        en_module_level_title: "Choose a level",
+        en_module_cat_title: "Review by family",
+        en_module_phrasal_title: "Phrasal verbs",
+        en_module_phrasal_level_desc: "Pick a level first: the list of verbs below adjusts to it.",
+        en_module_phrasal_cat_desc: "Phrasal verbs are learnt verb by verb: every GET expression together, then every TAKE one.",
+        en_module_pitfalls_title: "English traps",
+        en_module_pitfalls_level_desc: "Pick a level first: the list of families below adjusts to it.",
+        en_module_pitfalls_cat_desc: "Two families: false friends and words learners mix up with each other (lend / borrow).",
+        en_module_expressions_title: "Everyday expressions",
+        en_module_expressions_level_desc: "Pick a level first: the list of families below adjusts to it.",
+        en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
+        label_english_pitfall: "Trap",
+        orb_en_phrasal_sub: "give up · look after",
+        orb_en_expressions_title: "Expressions",
+        orb_en_expressions_sub: "It depends · By the way",
+        orb_en_pitfalls_title: "Traps",
+        orb_en_pitfalls_sub: "false friends",
         home_title_1: "Learn German",
         home_title_2: "word by word.",
         home_subtitle: "Your personal tutor for German grammar and vocabulary.",
@@ -7222,6 +7314,75 @@ async function loadAdverbienJson() {
         if (words.length) adverbienTheme.words = words;
     } catch (e) {
         console.warn("Chargement de secours pour adverbe.json", e);
+    }
+}
+
+// ---- Modules anglais --------------------------------------------------
+// Trois fichiers de meme forme que adverbe.json, mais dont le mot vedette est
+// anglais et la glose francaise. Tuple produit ici, consomme tel quel par
+// loadFlashcard() (flashcardMode === 'englishmodule') :
+//   0 mot EN · 1 traduction FR · 2 categorie · 3 exemple EN · 4 exemple FR
+//   5 definition EN · 6 piege FR (facultatif) · 7 niveau
+const ENGLISH_MODULES = {
+    phrasal: {
+        file: "phrasal_verbs.json",
+        titleKey: "en_module_phrasal_title",
+        levelDescKey: "en_module_phrasal_level_desc",
+        catDescKey: "en_module_phrasal_cat_desc",
+        theme: { id: "english_phrasal", name: "Phrasal verbs",
+                 svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><circle cx="12" cy="12" r="3"/></svg>',
+                 words: [] }
+    },
+    pitfalls: {
+        file: "english_pitfalls.json",
+        titleKey: "en_module_pitfalls_title",
+        levelDescKey: "en_module_pitfalls_level_desc",
+        catDescKey: "en_module_pitfalls_cat_desc",
+        theme: { id: "english_pitfalls", name: "Pièges",
+                 svg: '<svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/></svg>',
+                 words: [] }
+    },
+    expressions: {
+        file: "english_expressions.json",
+        titleKey: "en_module_expressions_title",
+        levelDescKey: "en_module_expressions_level_desc",
+        catDescKey: "en_module_expressions_cat_desc",
+        theme: { id: "english_expressions", name: "Expressions",
+                 svg: '<svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>',
+                 words: [] }
+    }
+};
+
+const englishModulesLoaded = {};
+
+async function loadEnglishModuleJson(id) {
+    const mod = ENGLISH_MODULES[id];
+    if (!mod || englishModulesLoaded[id]) return;
+    showGlobalLoadingBar();
+    try {
+        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/' + mod.file), { cache: 'no-cache' });
+        if (!response.ok) throw new Error("Fichier " + mod.file + " introuvable");
+        const data = await response.json();
+        const words = [];
+        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+            (data[lvl] || []).forEach(w => {
+                words.push([
+                    w.mot || "", w.traduction || "", w.kategorie || "",
+                    w.exemple || "", w.exemple_fr || "",
+                    w.traduction_en || "", w.piege || "", lvl
+                ]);
+            });
+        });
+        mod.theme.words = words;
+        englishModulesLoaded[id] = true;
+        // Le chargement est asynchrone : si l'ecran est deja affiche, il a ete
+        // dessine sur une liste vide et doit etre redessine ici.
+        if (currentEnglishModule === id) renderEnglishModuleBars();
+    } catch (e) {
+        console.warn("Chargement de " + mod.file + " impossible", e);
+        showInfoToast(t('alert_data_load_failed'));
+    } finally {
+        hideGlobalLoadingBar();
     }
 }
 
@@ -11560,6 +11721,102 @@ function startAdverbienVokabular(level, kategorie){
     loadFlashcard();
 }
 
+// ---- Ecran generique des modules anglais -------------------------------
+let currentEnglishModule = null;
+let englishModuleLevel = "ALL";
+
+function openEnglishModule(id){
+    if(!ENGLISH_MODULES[id]) return;
+    // Ces modules n'existent qu'en direction anglaise : y entrer depuis une
+    // tuile la suppose deja active, mais on la force pour les appels directs
+    // (retour de flashcard, rechargement).
+    setLearningDirection('en');
+    applyLearningDirectionUi();
+    currentEnglishModule = id;
+    englishModuleLevel = "ALL";
+    loadEnglishModuleJson(id);
+    renderEnglishModuleBars();
+    showScreen("englishModule");
+}
+
+function selectEnglishModuleLevel(level){
+    englishModuleLevel = level;
+    renderEnglishModuleBars();
+}
+
+function renderEnglishModuleBars(){
+    const mod = ENGLISH_MODULES[currentEnglishModule];
+    if(!mod) return;
+    const mots = mod.theme.words || [];
+
+    const kicker = document.getElementById("englishModuleKicker");
+    if(kicker) kicker.textContent = t('kicker_english_module');
+    const titre = document.getElementById("englishModuleTitle");
+    if(titre) titre.textContent = t(mod.titleKey);
+    const pill = document.getElementById("englishModuleCountPill");
+    if(pill) pill.textContent = mots.length ? tf('en_module_count', { n: mots.length }) : "";
+    const ld = document.getElementById("englishModuleLevelDesc");
+    if(ld) ld.textContent = t(mod.levelDescKey);
+    const cd = document.getElementById("englishModuleCatDesc");
+    if(cd) cd.textContent = t(mod.catDescKey);
+
+    const bar = document.getElementById("englishModuleLevelBar");
+    if(bar){
+        const parNiveau = {};
+        mots.forEach(w => { const n = w[7] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
+        const bouton = (val, libelle, n) => {
+            const actif = englishModuleLevel === val;
+            const style = actif
+                ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+                : "flex:1; min-width:0;";
+            return `<button class="secondary" style="${style}" onclick="selectEnglishModuleLevel('${val}')">${libelle} (${n})</button>`;
+        };
+        let html = bouton("ALL", t('en_module_level_all'), mots.length);
+        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+            if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
+        });
+        bar.innerHTML = html;
+    }
+
+    const catBar = document.getElementById("englishModuleCategoryBar");
+    if(catBar){
+        const duNiveau = mots.filter(w => englishModuleLevel === "ALL" || (w[7] || "") === englishModuleLevel);
+        const parCat = {};
+        duNiveau.forEach(w => { const c = w[2] || ""; if(c) parCat[c] = (parCat[c] || 0) + 1; });
+        const lvl = englishModuleLevel;
+        let html = `<button class="secondary" style="flex:1 1 100%;" onclick="startEnglishModule('${lvl}', 'ALL')">`
+            + `${t('en_module_cat_all')} (${duNiveau.length})</button>`;
+        html += Object.keys(parCat).sort().map(c => {
+            const arg = c.replace(/'/g, "\\'");
+            return `<button class="secondary" style="flex:1 1 46%; min-width:0;" onclick="startEnglishModule('${lvl}', '${arg}')">`
+                + `${c} (${parCat[c]})</button>`;
+        }).join("");
+        catBar.innerHTML = html;
+    }
+}
+
+function startEnglishModule(level, kategorie){
+    const mod = ENGLISH_MODULES[currentEnglishModule];
+    if(!mod) return;
+    flashcardMode = 'englishmodule';
+    currentTheme = mod.theme;
+    let allItems = (mod.theme.words || []).map((word, index) => ({ word, index, themeId: mod.theme.id }));
+    if(level && level !== "ALL"){
+        allItems = allItems.filter(it => (it.word[7] || "") === level);
+    }
+    if(kategorie && kategorie !== "ALL"){
+        allItems = allItems.filter(it => (it.word[2] || "") === kategorie);
+    }
+    if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
+    currentCardsFull = allItems;
+    currentCards = cartesDeSession(allItems);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_english_module', mod.titleKey);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
 function openKonjunktionenInfo(){
     showScreen("konjunktionenInfo");
 }
@@ -12060,7 +12317,8 @@ const FLASHCARD_RETURN_SCREENS = {
     partikeln:       () => openPartikelnInfo(),
     adverbien:       () => openAdverbienVokabular(),
     redewendungen:   () => openRedewendungenVokabular(),
-    konjunktionen:   () => openKonjunktionenInfo()
+    konjunktionen:   () => openKonjunktionenInfo(),
+    englishmodule:   () => openEnglishModule(currentEnglishModule)
 };
 
 function handleFlashcardBack(){
@@ -12207,7 +12465,7 @@ function loadFlashcard(){
     const dictationBtn = document.getElementById("dictationStartBtn");
     if(dictationBtn) dictationBtn.classList.toggle("hidden", flashcardMode !== 'nomen');
     sentenceRegistry = [];
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -12393,6 +12651,38 @@ function loadFlashcard(){
         const posPraeteritumSpeakBtn = sentenceSpeakBtnHtml(card.praeteritum, "de");
         const extraHtml = `<strong>Präteritum :</strong> ${card.praeteritum || ""}${posPraeteritumSpeakBtn}<br>(${praeteritumTr || ""})`;
         verbDetailsEl.innerHTML = `<div class="verb-core">${coreHtml}</div><button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extraHtml}</div>`;
+        verbDetailsEl.classList.remove("hidden");
+        articleEl.classList.add("hidden");
+        pluralEl.classList.add("hidden");
+    } else if(flashcardMode === 'englishmodule'){
+        // Ici la langue cible est l'ANGLAIS et la langue connue le francais --
+        // l'inverse de tous les autres modes. La phrase d'exemple se prononce
+        // donc en anglais, pas en allemand.
+        const englishWord = card[0];
+        const useEn = getUiLang() === 'en';
+        // Interface anglaise : on glose par la definition anglaise plutot que
+        // par le francais, sinon la carte melangerait trois langues.
+        const knownWord = (useEn && card[5]) ? card[5] : card[1];
+        const categorie = card[2];
+        const exampleSentence = card[3];
+        const exampleSentenceFr = useEn ? "" : (card[4] || "");
+        const piege = (!useEn && card[6]) ? card[6] : "";
+
+        if(frontIsFrench){
+            document.getElementById("flashWord").textContent = knownWord;
+            document.getElementById("flashBackWord").textContent = englishWord;
+            translationEl.classList.add("hidden");
+        } else {
+            document.getElementById("flashWord").textContent = englishWord;
+            document.getElementById("flashBackWord").textContent = englishWord;
+            translationEl.textContent = knownWord;
+            translationEl.classList.remove("hidden");
+        }
+        const enSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "en");
+        verbDetailsEl.innerHTML = `<strong>${t('label_word_category')} :</strong> ${categorie}`
+            + `<div class="verb-sep"></div>${exampleSentence}${enSpeakBtn}`
+            + (exampleSentenceFr ? `<br>(${exampleSentenceFr})` : "")
+            + (piege ? `<div class="verb-sep"></div><strong>${t('label_english_pitfall')} :</strong> ${piege}` : "");
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
@@ -13194,7 +13484,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 219;
+const APP_VERSION = 220;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
