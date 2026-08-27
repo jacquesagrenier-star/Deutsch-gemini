@@ -2808,7 +2808,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v223</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v224</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3932,6 +3932,15 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         <div class="pill" id="englishModuleCountPill"></div>
     </div>
 
+    <div class="card" id="englishModuleProgress">
+        <div class="home-daily-goal-row">
+            <span id="englishModuleProgressLabel"></span>
+            <span id="englishModuleProgressCount"></span>
+        </div>
+        <div class="home-daily-goal-track"><div id="englishModuleProgressFill" class="home-daily-goal-fill" style="width:0%"></div></div>
+        <p style="color:#576177; margin-top:10px; font-size:13px;" id="englishModuleProgressHint"></p>
+    </div>
+
     <div class="card">
         <strong data-i18n="en_module_level_title">Choisir un niveau</strong>
         <p style="color:#576177; margin-top:6px;" id="englishModuleLevelDesc"></p>
@@ -4941,6 +4950,8 @@ const I18N = {
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
+        en_module_mastered_label: "✅ Maîtrisé",
+        en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
         en_module_vocabulary_title: "Vocabulaire",
         en_module_vocabulary_level_desc: "Choisis d'abord un niveau : la liste des thèmes juste en dessous s'y ajuste.",
         en_module_vocabulary_cat_desc: "Les mots ne s'apprennent pas isolés : chacun arrive avec une phrase qui montre comment on s'en sert vraiment.",
@@ -5758,6 +5769,8 @@ const I18N = {
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
+        en_module_mastered_label: "✅ Mastered",
+        en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
         en_module_vocabulary_title: "Vocabulary",
         en_module_vocabulary_level_desc: "Pick a level first: the list of themes below adjusts to it.",
         en_module_vocabulary_cat_desc: "Words are never learnt in isolation: each one comes with a sentence showing how it is actually used.",
@@ -11820,6 +11833,35 @@ function openEnglishModule(id){
     showScreen("englishModule");
 }
 
+// Nombre de cartes maitrisees du module. getWordState() prefixe deja la cle
+// avec "en__" en direction anglaise (voir progressKey), donc la progression
+// anglaise ne se melange pas a l'allemande sur un meme identifiant.
+function englishModuleMastery(id){
+    const mod = ENGLISH_MODULES[id];
+    const mots = (mod && mod.theme.words) || [];
+    let done = 0;
+    mots.forEach((w, i) => { if(getWordState(mod.theme.id, i).mastered) done++; });
+    return { done, total: mots.length };
+}
+
+function renderEnglishModuleProgress(){
+    const mod = ENGLISH_MODULES[currentEnglishModule];
+    if(!mod) return;
+    const { done, total } = englishModuleMastery(currentEnglishModule);
+    const pct = total ? Math.round(done / total * 100) : 0;
+
+    const label = document.getElementById("englishModuleProgressLabel");
+    if(label) label.textContent = t('en_module_mastered_label');
+    const count = document.getElementById("englishModuleProgressCount");
+    if(count) count.textContent = done + " / " + total;
+    const fill = document.getElementById("englishModuleProgressFill");
+    if(fill) fill.style.width = pct + "%";
+    const hint = document.getElementById("englishModuleProgressHint");
+    if(hint) hint.textContent = total
+        ? tf('en_module_mastered_hint', { pct, reste: total - done })
+        : "";
+}
+
 function selectEnglishModuleLevel(level){
     englishModuleLevel = level;
     renderEnglishModuleBars();
@@ -11840,6 +11882,7 @@ function renderEnglishModuleBars(){
     if(ld) ld.textContent = t(mod.levelDescKey);
     const cd = document.getElementById("englishModuleCatDesc");
     if(cd) cd.textContent = t(mod.catDescKey);
+    renderEnglishModuleProgress();
 
     const bar = document.getElementById("englishModuleLevelBar");
     if(bar){
@@ -13567,7 +13610,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 223;
+const APP_VERSION = 224;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
