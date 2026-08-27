@@ -2705,13 +2705,16 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
     display:flex; align-items:center; justify-content:center; gap:7px;
     margin-top:5px;
 }
-.srs-pips{display:flex; gap:4px;}
+.srs-pips{display:flex; gap:5px;}
+/* A 6 px la pastille se lisait comme une ponctuation. Elle doit se voir
+   s'allumer d'un bout a l'autre du bouton -- c'est toute sa raison d'etre. */
 .srs-pip{
-    width:6px; height:6px; border-radius:50%;
-    background:rgba(28,107,71,.22); transition:background .25s ease;
+    width:10px; height:10px; border-radius:50%;
+    background:rgba(28,107,71,.20);
+    transition:background .25s ease, transform .25s ease;
 }
 .srs-pip.on{background:#1c6b47;}
-.srs-pip.next{box-shadow:0 0 0 2px rgba(28,107,71,.16);}
+.srs-pip.next{box-shadow:0 0 0 2.5px rgba(28,107,71,.18);}
 .srs-ladder-text{
     font-size:11px; font-weight:700; color:#1c6b47; opacity:.78;
     letter-spacing:.01em; text-transform:none;
@@ -2719,8 +2722,8 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 /* Trois pastilles vertes : c'est le seul etat qui merite d'etre remarque, et
    le seul qu'on voit rarement. Elles grossissent et respirent une fois. */
 .srs-ladder.done .srs-ladder-text{opacity:1; font-weight:800;}
-.srs-ladder.done .srs-pips{gap:5px;}
-.srs-ladder.done .srs-pip{width:9px; height:9px; animation:pipPop .42s ease both;}
+.srs-ladder.done .srs-pips{gap:6px;}
+.srs-ladder.done .srs-pip{width:13px; height:13px; animation:pipPop .42s ease both;}
 .srs-ladder.done .srs-pip:nth-child(2){animation-delay:.07s;}
 .srs-ladder.done .srs-pip:nth-child(3){animation-delay:.14s;}
 .srs-ladder.done .srs-pip:nth-child(4){animation-delay:.21s;}
@@ -2735,12 +2738,26 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 }
 body[data-theme="dark"] .srs-pip{background:rgba(159,220,190,.28);}
 body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
+/* Sans cadre, ce troisieme geste se lisait comme une legende : rien n'indiquait
+   qu'il se touche, et c'est pourtant l'action la plus lourde des trois -- elle
+   retire le mot du paquet. Une pastille bordee suffit a le dire, sans lui donner
+   le poids des deux boutons de jugement. */
 .judge-known{
-    display:block; width:100%; margin-top:12px; padding:8px;
-    background:none; border:none; color:#8b93a3;
-    font-size:12.5px; font-weight:600; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    width:fit-content; max-width:100%; margin:14px auto 0; padding:9px 16px;
+    background:#fff; border:1.5px solid #e3e7ee; border-radius:999px;
+    color:#697285; font-size:12.5px; font-weight:700; cursor:pointer;
+    transition:border-color .15s ease, color .15s ease, transform .12s ease;
 }
-.judge-known:hover{color:#3b6fe0;}
+.judge-known::before{
+    content:"✓"; font-size:13px; font-weight:800; color:#9aa2b1; flex:none;
+}
+.judge-known:hover{border-color:#c9d0dc; color:#4a5464;}
+.judge-known:hover::before{color:#697285;}
+.judge-known:active{transform:scale(.97);}
+body[data-theme="dark"] .judge-known{
+    background:#161a22; border-color:#2a3240; color:#aab3c2;
+}
 
 /* Fin de paquet : le seul moment ou les actions de SESSION ont leur place.
    Avant v227 elles etaient collees sous chaque carte, ce qui faisait sept
@@ -3053,7 +3070,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v244</span>
+        <span class="subtitle-version">v245</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14522,7 +14539,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 244;
+const APP_VERSION = 245;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
