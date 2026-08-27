@@ -126,6 +126,7 @@ def verifier_liste(r, fichier, cats, nom_champ="mot"):
 # Forme voisine des fichiers allemands, mais le mot vedette est anglais et la
 # phrase d'exemple l'est aussi -- il n'y a donc pas de champ "exemple_en".
 FICHIERS_ANGLAIS = [
+    ("english_themes.json", None),
     ("phrasal_verbs.json", None),
     ("english_verbs.json", "formes"),
     ("english_pitfalls.json", None),

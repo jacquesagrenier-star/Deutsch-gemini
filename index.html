@@ -2806,7 +2806,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v221</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v222</span></p>
 
     <div class="card home-stats-card" id="homeStatsCard">
         <div class="global-progress-row">
@@ -3026,13 +3026,13 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
         <!-- Tuiles anglais (visibles uniquement en direction "en", voir CSS .orb-en
              ci-dessus) : catégories propres à l'anglais, différentes des catégories
              de grammaire allemande ci-dessus (pas de Kasus/Partikeln en anglais). -->
-        <div class="orb orb-en" data-orbid="nomen_en" onclick="openEnglishNomen()">
+        <div class="orb orb-en" data-orbid="nomen_en" onclick="openEnglishModule('vocabulary')">
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen-en" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
                 <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg></div>
             </div>
             <div>
-                <strong data-i18n="orb_en_nomen_title">Wortschatz</strong>
+                <strong data-i18n="orb_en_nomen_title">Vocabulaire</strong>
                 <small data-i18n="orb_en_nomen_sub">Thèmes & vocabulaire</small>
             </div>
         </div>
@@ -4931,6 +4931,9 @@ const I18N = {
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
+        en_module_vocabulary_title: "Vocabulaire",
+        en_module_vocabulary_level_desc: "Choisis d'abord un niveau : la liste des thèmes juste en dessous s'y ajuste.",
+        en_module_vocabulary_cat_desc: "Les mots ne s'apprennent pas isolés : chacun arrive avec une phrase qui montre comment on s'en sert vraiment.",
         en_module_irregular_title: "Verbes irréguliers",
         en_module_irregular_level_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'y ajuste.",
         en_module_irregular_cat_desc: "Les irréguliers s'apprennent par patron, pas en vrac : ceux dont les trois formes sont identiques, ceux dont le prétérit et le participe se ressemblent, et ceux qui changent trois fois.",
@@ -5000,8 +5003,8 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammaire",
         orb_zuinf_title: "Zu + infinitif",
         orb_zuinf_sub: "versuchen zu · ohne zu",
-        orb_en_nomen_title: "Wortschatz",
-        orb_en_nomen_sub: "Thèmes & vocabulaire",
+        orb_en_nomen_title: "Vocabulaire",
+        orb_en_nomen_sub: "Thèmes & mots en contexte",
         orb_en_verben_title: "Verben",
         orb_en_verben_sub: "Verbes irréguliers",
         orb_en_adjektive_title: "Adjektive",
@@ -5740,6 +5743,9 @@ const I18N = {
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
+        en_module_vocabulary_title: "Vocabulary",
+        en_module_vocabulary_level_desc: "Pick a level first: the list of themes below adjusts to it.",
+        en_module_vocabulary_cat_desc: "Words are never learnt in isolation: each one comes with a sentence showing how it is actually used.",
         en_module_irregular_title: "Irregular verbs",
         en_module_irregular_level_desc: "Pick a level first: the list of families below adjusts to it.",
         en_module_irregular_cat_desc: "Irregular verbs are learnt by pattern, not at random: those whose three forms are identical, those whose past and participle match, and those that change three times.",
@@ -5809,8 +5815,8 @@ const I18N = {
         orb_verben_sub: "Flashcards & Grammar",
         orb_zuinf_title: "Zu + infinitive",
         orb_zuinf_sub: "versuchen zu · ohne zu",
-        orb_en_nomen_title: "Wortschatz",
-        orb_en_nomen_sub: "Themes & vocabulary",
+        orb_en_nomen_title: "Vocabulary",
+        orb_en_nomen_sub: "Themes & words in context",
         orb_en_verben_title: "Verben",
         orb_en_verben_sub: "Irregular verbs",
         orb_en_adjektive_title: "Adjektive",
@@ -7354,6 +7360,15 @@ const ENGLISH_MODULES = {
         catDescKey: "en_module_phrasal_cat_desc",
         theme: { id: "english_phrasal", name: "Phrasal verbs",
                  svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><circle cx="12" cy="12" r="3"/></svg>',
+                 words: [] }
+    },
+    vocabulary: {
+        file: "english_themes.json",
+        titleKey: "en_module_vocabulary_title",
+        levelDescKey: "en_module_vocabulary_level_desc",
+        catDescKey: "en_module_vocabulary_cat_desc",
+        theme: { id: "english_vocabulary", name: "Vocabulaire",
+                 svg: '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/></svg>',
                  words: [] }
     },
     irregular: {
@@ -10747,6 +10762,11 @@ function openOrbPanel(id){
 // directement par openNomen()/openVerbenNiveau() (pas par le panneau à 4
 // options "verben", dont l'option Exercices est un quiz de grammaire allemande
 // sans rapport avec l'apprentissage de l'anglais).
+// Plus appelee depuis v222 : la tuile Vocabulaire pointe desormais vers le
+// vocabulaire anglais (openEnglishModule('vocabulary')) plutot que vers les
+// themes allemands. Conservee telle quelle parce qu'elle est le chemin de
+// retour en arriere : il suffit de remettre onclick="openEnglishNomen()" sur
+// la tuile data-orbid="nomen_en" pour retrouver l'ancien comportement.
 function openEnglishNomen(){
     setLearningDirection('en');
     applyLearningDirectionUi();
@@ -13518,7 +13538,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 221;
+const APP_VERSION = 222;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
