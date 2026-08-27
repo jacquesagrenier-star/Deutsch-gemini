@@ -2840,7 +2840,7 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v225</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v226</span></p>
 
     <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
          donc hors de portee pendant un exercice (voir openWordSearch). Placee
@@ -11287,11 +11287,11 @@ function dedupeSearchHits(hits){
 // (1 Ko en mediane, 195 Ko au pire) au lieu des 10 Mo du dictionnaire entier.
 // Le credit d'attribution est affiche sous les resultats, comme l'exige la
 // licence -- ne pas le retirer.
-const DICT_BASE_URL = "dict/";
+const DICT_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/dict/";
 const DICT_PAIRS = ["de-en", "en-de"];
 const DICT_MAX_RESULTS = 12;
 
-const dictChunks = {};
+const dictBuckets = {};
 const dictIndexes = {};
 let dictSeq = 0;   // seule la derniere frappe a le droit d'ecrire dans le DOM
 
@@ -11300,40 +11300,58 @@ function dictNormalize(str){
         .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, "");
 }
 
-function dictKey(str){
-    const d = dictNormalize(str);
-    return (d.slice(0, 2) || "zz").padEnd(2, "_");
-}
-
+// Le dictionnaire est decoupe en paquets de 120 Ko, tries alphabetiquement.
+// index.json donne le premier mot (normalise) de chaque paquet ; on y cherche
+// par dichotomie celui qui contient la requete. Un decoupage par lettre initiale
+// aurait donne 900 fichiers pour la meme chose -- ici il y en a 88.
 async function dictLoadIndex(pair){
     if(dictIndexes[pair]) return dictIndexes[pair];
     try{
         const r = await fetch(DICT_BASE_URL + pair + "/index.json");
         if(!r.ok) throw new Error("index " + pair);
-        dictIndexes[pair] = new Set(await r.json());
+        dictIndexes[pair] = await r.json();
     }catch(e){
         console.warn("Dictionnaire : index " + pair + " indisponible", e);
-        dictIndexes[pair] = new Set();
+        dictIndexes[pair] = [];
         dictIndexes[pair].introuvable = true;
     }
     return dictIndexes[pair];
 }
 
-async function dictLoadChunk(pair, key){
-    const id = pair + "/" + key;
-    if(dictChunks[id]) return dictChunks[id];
-    const index = await dictLoadIndex(pair);
-    // L'index evite une requete 404 pour une tranche qui n'existe pas.
-    if(!index.has(key)){ dictChunks[id] = []; return dictChunks[id]; }
+async function dictLoadBucket(pair, i){
+    const id = pair + "/" + String(i).padStart(3, "0");
+    if(dictBuckets[id]) return dictBuckets[id];
     try{
         const r = await fetch(DICT_BASE_URL + id + ".json");
-        if(!r.ok) throw new Error("tranche " + id);
-        dictChunks[id] = await r.json();
+        if(!r.ok) throw new Error("paquet " + id);
+        dictBuckets[id] = await r.json();
     }catch(e){
-        console.warn("Dictionnaire : tranche " + id + " indisponible", e);
-        dictChunks[id] = [];
+        console.warn("Dictionnaire : paquet " + id + " indisponible", e);
+        dictBuckets[id] = [];
     }
-    return dictChunks[id];
+    return dictBuckets[id];
+}
+
+// Renvoie les entrees du dictionnaire dont le mot commence par `norm`.
+async function dictEntriesFor(pair, norm){
+    const bornes = await dictLoadIndex(pair);
+    if(!bornes.length) return [];
+
+    // Dichotomie : dernier paquet dont la borne de depart precede la requete.
+    let bas = 0, haut = bornes.length - 1, trouve = 0;
+    while(bas <= haut){
+        const mid = (bas + haut) >> 1;
+        if(bornes[mid] <= norm){ trouve = mid; bas = mid + 1; }
+        else haut = mid - 1;
+    }
+    const aCharger = [trouve];
+    // Un prefixe peut deborder sur le paquet suivant : "wass" commence avant la
+    // borne du paquet d'apres, mais "Wasserfall" peut s'y trouver.
+    for(let j = trouve + 1; j < bornes.length && bornes[j].indexOf(norm) === 0; j++){
+        aCharger.push(j);
+    }
+    const paquets = await Promise.all(aCharger.map(i => dictLoadBucket(pair, i)));
+    return [].concat.apply([], paquets);
 }
 
 async function runDictLookup(rawQuery){
@@ -11348,14 +11366,13 @@ async function runDictLookup(rawQuery){
         + t("dict_section_title") + '</div><div class="dict-loading">'
         + t("dict_loading") + '</div></div>';
 
-    const key = dictKey(q);
-    const paquets = await Promise.all(DICT_PAIRS.map(p => dictLoadChunk(p, key)));
+    const paquets = await Promise.all(DICT_PAIRS.map(p => dictEntriesFor(p, norm)));
     if(moi !== dictSeq) return;   // une frappe plus recente a pris la main
 
     // Aucune tranche joignable : le dictionnaire n'est pas publie (ou le reseau
     // est coupe). On efface la section au lieu d'afficher un faux "aucun
     // resultat", qui ferait croire que le mot n'existe pas.
-    if(DICT_PAIRS.every(p => (dictIndexes[p] || {}).introuvable)){
+    if(DICT_PAIRS.every(p => (dictIndexes[p] || []).introuvable)){
         box.innerHTML = "";
         return;
     }
@@ -13787,7 +13804,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 225;
+const APP_VERSION = 226;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
