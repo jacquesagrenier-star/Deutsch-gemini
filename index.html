@@ -2992,7 +2992,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v236</span>
+        <span class="subtitle-version">v237</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3045,7 +3045,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
 
-    <button class="home-help-launch" onclick="openOnboardingVideo(false)">
+    <button class="home-help-launch" id="homeHelpLaunch" onclick="openOnboardingVideo(false)">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
         <span data-i18n="onboarding_home_button">Comment commencer ? (45 s)</span>
     </button>
@@ -7076,6 +7076,11 @@ function completeInitialSetup(){
 }
 
 // ---- Video d'accueil ---------------------------------------------------
+// MISE EN RETRAIT (v237) : la video est a retravailler. Tout le code, l'overlay
+// et le fichier .mp4 restent en place ; seuls les deux points d'entree sont
+// coupes par ce drapeau. Le remettre a true les rouvre tous les deux.
+const VIDEO_ACCUEIL_ACTIVE = false;
+
 // Une seule video existe pour l'instant (narration francaise). En interface
 // anglaise on n'ouvre donc rien automatiquement -- le bouton de l'accueil
 // reste disponible pour qui veut quand meme la regarder.
@@ -7096,6 +7101,7 @@ function markOnboardingSeen(){
 }
 
 function maybeShowOnboardingVideo(){
+    if(!VIDEO_ACCUEIL_ACTIVE) return;
     if(hasSeenOnboarding()) return;
     if(!ONBOARDING_VIDEO_FILES[getUiLang()]) return;
     openOnboardingVideo(true);
@@ -11919,7 +11925,9 @@ function renderWordSearch(rawQuery){
     if(q.length < 2){
         searchHadHits = false;
         searchResults = [];
-        if(pill) pill.textContent = tf('search_count_total', { n: all.length });
+        // La phrase juste en dessous annonce deja l'etendue de la recherche :
+        // repeter le nombre dans la pastille le disait deux fois a l'ecran.
+        if(pill) pill.textContent = "";
         box.innerHTML = '<div class="search-empty">' + tf('search_hint', { n: all.length }) + '</div>';
         return;
     }
@@ -12010,6 +12018,15 @@ function showScreen(id){
     window.scrollTo(0,0);
     updateGlobalProgress();
     updateOrbBadges();
+}
+
+// Le bouton vit dans le HTML statique : c'est au demarrage qu'on le retire
+// quand la video est en retrait.
+if(!VIDEO_ACCUEIL_ACTIVE){
+    document.addEventListener("DOMContentLoaded", () => {
+        const b = document.getElementById("homeHelpLaunch");
+        if(b) b.style.display = "none";
+    });
 }
 
 function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); }
@@ -14371,7 +14388,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 236;
+const APP_VERSION = 237;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
