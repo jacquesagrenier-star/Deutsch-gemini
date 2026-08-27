@@ -2893,7 +2893,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
         </span>
     </h1>
 
-    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v227</span></p>
+    <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span> <span class="subtitle-version">v228</span></p>
 
     <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
          donc hors de portee pendant un exercice (voir openWordSearch). Placee
@@ -11479,6 +11479,22 @@ const dictBuckets = {};
 const dictIndexes = {};
 let dictSeq = 0;   // seule la derniere frappe a le droit d'ecrire dans le DOM
 let dictShown = [];  // entrees actuellement affichees, cible des boutons d'ajout
+let searchHadHits = false;  // les cartes du cours ont-elles trouve quelque chose ?
+
+// Quand les cartes ne trouvent rien, le dictionnaire passe DEVANT. Sinon la
+// personne recoit d'abord "aucun resultat" suivi de six suggestions qui ne sont
+// pas son mot, et la bonne reponse se retrouve sous le pli : sur un iPhone, la
+// section Dictionnaire commencait a 910 px pour un ecran de 844.
+function placeDictSection(devant){
+    const box = document.getElementById("dictResults");
+    const res = document.getElementById("wordSearchResults");
+    if(!box || !res || !res.parentNode) return;
+    if(devant){
+        if(res.previousElementSibling !== box) res.parentNode.insertBefore(box, res);
+    } else if(res.nextElementSibling !== box){
+        res.parentNode.insertBefore(box, res.nextSibling);
+    }
+}
 
 function dictNormalize(str){
     return (str || "").toLowerCase().normalize("NFD")
@@ -11547,6 +11563,7 @@ async function runDictLookup(rawQuery){
     if(norm.length < 2){ box.innerHTML = ""; return; }
 
     const moi = ++dictSeq;
+    placeDictSection(!searchHadHits);
     box.innerHTML = '<div class="dict-section"><div class="dict-section-title">'
         + t("dict_section_title") + '</div><div class="dict-loading">'
         + t("dict_loading") + '</div></div>';
@@ -11578,6 +11595,7 @@ async function runDictLookup(rawQuery){
         || a.o.m.localeCompare(b.o.m));
 
     if(moi !== dictSeq) return;
+    placeDictSection(!searchHadHits);
     box.innerHTML = renderDictSection(trouves.slice(0, DICT_MAX_RESULTS), trouves.length);
 }
 
@@ -11619,6 +11637,7 @@ function renderWordSearch(rawQuery){
     const q = normalizeSearch(rawQuery).trim();
 
     if(q.length < 2){
+        searchHadHits = false;
         searchResults = [];
         if(pill) pill.textContent = tf('search_count_total', { n: all.length });
         box.innerHTML = '<div class="search-empty">' + tf('search_hint', { n: all.length }) + '</div>';
@@ -11642,6 +11661,7 @@ function renderWordSearch(rawQuery){
         || a.e.de.length - b.e.de.length || a.e.de.localeCompare(b.e.de));
 
     if(!hits.length){
+        searchHadHits = false;
         searchResults = [];
         if(pill) pill.textContent = t('search_count_none');
         // Un "aucun resultat" sec laisse croire que l'app est incomplete. On
@@ -11652,6 +11672,9 @@ function renderWordSearch(rawQuery){
             + tf('search_none_title', { q: rawQuery.trim() })
             + '<br><br>' + tf('search_none_scope', { n: all.length })
             + '</div>';
+        // Le titre reste exact -- le mot n'est pas dans les CARTES -- mais il ne
+        // doit pas laisser croire qu'il n'existe pas : le dictionnaire est
+        // desormais affiche juste au-dessus.
         if(suggestions.length){
             searchResults = suggestions;
             html += '<div class="search-suggest-label">' + t('search_none_suggest') + '</div>'
@@ -11661,6 +11684,7 @@ function renderWordSearch(rawQuery){
         return;
     }
 
+    searchHadHits = true;
     const unique = dedupeSearchHits(hits);
     const shown = unique.slice(0, SEARCH_MAX_RESULTS);
     searchResults = shown.map(h => h.e);
@@ -14025,7 +14049,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 227;
+const APP_VERSION = 228;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
