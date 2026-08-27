@@ -2685,9 +2685,14 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
     transition:transform .12s ease, box-shadow .12s ease;
 }
 .judge-button:active{transform:scale(.97);}
-.judge-again{background:#fff; border-color:#e3e7ee; color:#576177;}
+/* Les deux gestes ne pesent pas pareil : "Je savais" est celui qu'on vise, et
+   c'est lui qui porte l'echelle. "Encore" garde juste de quoi se toucher. */
+.judge-again{
+    flex:0 0 29%; background:#fff; border-color:#e3e7ee; color:#576177;
+    font-size:14px;
+}
 .judge-again:hover{border-color:#c9d0dc;}
-.judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+.judge-good{flex:1; background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .judge-good:hover{background:#cdf0dc;}
 .judge-echeance{
     display:block; margin-top:3px;
@@ -2697,19 +2702,38 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    le mot sur l'echelle, et un "Encore" les vide sous les yeux -- la sanction
    se voit au lieu d'etre expliquee. */
 .srs-ladder{
-    display:flex; align-items:center; justify-content:center; gap:9px;
-    margin:0 0 11px;
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    margin-top:5px;
 }
-.srs-pips{display:flex; gap:5px;}
+.srs-pips{display:flex; gap:4px;}
 .srs-pip{
-    width:7px; height:7px; border-radius:50%;
-    background:#dfe3ea; transition:background .25s ease, transform .25s ease;
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(28,107,71,.22); transition:background .25s ease;
 }
-.srs-pip.on{background:#2fa36b;}
-.srs-pip.next{box-shadow:0 0 0 2px rgba(47,163,107,.22);}
-.srs-ladder-text{font-size:11.5px; font-weight:600; color:#8b93a3; letter-spacing:.01em;}
-.srs-ladder.done .srs-ladder-text{color:#1c6b47;}
-body[data-theme="dark"] .srs-pip{background:#2a3240;}
+.srs-pip.on{background:#1c6b47;}
+.srs-pip.next{box-shadow:0 0 0 2px rgba(28,107,71,.16);}
+.srs-ladder-text{
+    font-size:11px; font-weight:700; color:#1c6b47; opacity:.78;
+    letter-spacing:.01em; text-transform:none;
+}
+/* Trois pastilles vertes : c'est le seul etat qui merite d'etre remarque, et
+   le seul qu'on voit rarement. Elles grossissent et respirent une fois. */
+.srs-ladder.done .srs-ladder-text{opacity:1; font-weight:800;}
+.srs-ladder.done .srs-pips{gap:5px;}
+.srs-ladder.done .srs-pip{width:9px; height:9px; animation:pipPop .42s ease both;}
+.srs-ladder.done .srs-pip:nth-child(2){animation-delay:.07s;}
+.srs-ladder.done .srs-pip:nth-child(3){animation-delay:.14s;}
+@keyframes pipPop{
+    0%{transform:scale(.55); opacity:.4;}
+    60%{transform:scale(1.28);}
+    100%{transform:scale(1); opacity:1;}
+}
+.srs-pip.frais{animation:pipPop .42s ease both;}
+@media (prefers-reduced-motion:reduce){
+    .srs-ladder.done .srs-pip, .srs-pip.frais{animation:none;}
+}
+body[data-theme="dark"] .srs-pip{background:rgba(159,220,190,.28);}
+body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
 .judge-known{
     display:block; width:100%; margin-top:12px; padding:8px;
     background:none; border:none; color:#8b93a3;
@@ -2812,7 +2836,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
    l'anneau sans jamais recouvrir ni le trace de progression ni le centre :
    entre le cercle inscrit et le coin du carre, il n'y a rien a cacher. */
 .home-stats-card .ring-cycle-badge{
-    top:-9px; right:-9px; left:auto; bottom:auto;
+    top:-4px; right:-4px; left:auto; bottom:auto;
     width:30px; height:30px;
     /* La pastille garde sa taille ; c'est le symbole a l'interieur qui la
        remplit presque entierement. line-height:1 evite qu'il soit repousse
@@ -3028,7 +3052,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v242</span>
+        <span class="subtitle-version">v243</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4664,10 +4688,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
-        <div class="srs-ladder" id="srsLadder">
-            <div class="srs-pips" id="srsPips" aria-hidden="true"></div>
-            <span class="srs-ladder-text" id="srsLadderText"></span>
-        </div>
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
                 <span data-i18n="review_again">↺ Encore</span>
@@ -4675,7 +4695,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </button>
             <button class="judge-button judge-good" onclick="reviewGood()">
                 <span data-i18n="review_good">Je savais ✓</span>
-                <small class="judge-echeance" id="judgeEcheanceGood"></small>
+                <span class="srs-ladder" id="srsLadder">
+                    <span class="srs-pips" id="srsPips" aria-hidden="true"></span>
+                    <span class="srs-ladder-text" id="srsLadderText"></span>
+                </span>
             </button>
         </div>
         <button class="judge-known" onclick="markKnownAlready()" data-i18n="review_known">Je connais déjà ce mot — ne plus me le montrer</button>
@@ -4931,6 +4954,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <button class="secondary danger" onclick="resetCurrentThemeConfirm()" data-i18n="settings_reset_theme">RESET DU THÈME ACTUEL</button>
         <div class="spacer"></div>
         <button class="secondary danger" onclick="resetAllConfirm()" data-i18n="settings_reset_all">RESET DE TOUTE LA PROGRESSION</button>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="remettreMaitrisesEnRevision()" data-i18n="settings_revoir_maitrises">REVOIR LES MOTS MAÎTRISÉS</button>
+        <small style="color:#576177;" data-i18n="settings_revoir_maitrises_desc">Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.</small>
     </div>
 
     <div class="card">
@@ -5248,10 +5274,16 @@ const I18N = {
         echeance_demain: "demain",
         echeance_jours: "{n} j",
         echeance_maitrise: "maîtrisé ✓",
-        srs_ladder_new: "nouveau mot",
-        srs_ladder_one: "dernière étape",
-        srs_ladder_left: "{n} étapes avant la maîtrise",
-        srs_ladder_done: "maîtrisé",
+        mastery_toast: "Maîtrisé ! Ce mot reviendra une fois dans {n} jours, pour vérifier.",
+        settings_revoir_maitrises: "REVOIR LES MOTS MAÎTRISÉS",
+        settings_revoir_maitrises_desc: "Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.",
+        confirm_revoir_maitrises: "Remettre tous tes mots maîtrisés en révision ? Ta progression et ton pourcentage sont conservés.",
+        alert_maitrises_revoir: "{n} mots maîtrisés reviennent en révision.",
+        alert_maitrises_aucun: "Aucun mot maîtrisé pour l'instant.",
+        srs_etat_0: "nouveau mot",
+        srs_etat_1: "je progresse",
+        srs_etat_2: "j'y suis presque",
+        srs_etat_3: "je maîtrise",
         home_streak_unit: "jours",
         home_week_unit: "cette semaine",
         en_module_mastered_label: "✅ Maîtrisé",
@@ -6119,10 +6151,16 @@ const I18N = {
         echeance_demain: "tomorrow",
         echeance_jours: "{n} d",
         echeance_maitrise: "mastered ✓",
-        srs_ladder_new: "new word",
-        srs_ladder_one: "last step",
-        srs_ladder_left: "{n} steps to mastery",
-        srs_ladder_done: "mastered",
+        mastery_toast: "Mastered! This word will come back once in {n} days, as a check.",
+        settings_revoir_maitrises: "REVIEW MASTERED WORDS",
+        settings_revoir_maitrises_desc: "Puts mastered words back in circulation, without erasing your progress or your percentage.",
+        confirm_revoir_maitrises: "Put all your mastered words back into review? Your progress and percentage are kept.",
+        alert_maitrises_revoir: "{n} mastered words are back in review.",
+        alert_maitrises_aucun: "No mastered words yet.",
+        srs_etat_0: "new word",
+        srs_etat_1: "making progress",
+        srs_etat_2: "almost there",
+        srs_etat_3: "I know it",
         home_streak_unit: "days",
         home_week_unit: "this week",
         en_module_mastered_label: "✅ Mastered",
@@ -14481,7 +14519,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 242;
+const APP_VERSION = 243;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -14633,7 +14671,11 @@ function cartesEchues(items){
     const maintenant = Date.now();
     return items.filter(it => {
         const st = getWordState(it.themeId, it.index);
-        return !st.mastered && (!st.due || st.due <= maintenant);
+        // Un mot maitrise n'est du QUE si son echeance d'entretien est passee.
+        // Les maitrises d'avant la v243 ont due=0 et restent donc dehors : le
+        // bouton des reglages est la pour les faire revenir.
+        if(st.mastered) return !!st.due && st.due <= maintenant;
+        return !st.due || st.due <= maintenant;
     });
 }
 
@@ -14658,7 +14700,7 @@ function cartesDeSession(items){
     return items.filter(it => !getWordState(it.themeId, it.index).mastered);
 }
 
-function scheduleReview(minutes){
+function scheduleReview(minutes, differerLaSuite){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
@@ -14676,7 +14718,7 @@ function scheduleReview(minutes){
     setWordState(item.themeId, item.index, state);
     const justReachedMultiple = recordDailyActivity();
     if(justReachedMultiple > 0) triggerDailyGoalCelebration(justReachedMultiple);
-    nextFlashcard();
+    if(!differerLaSuite) nextFlashcard();
 }
 
 // Une seule question est posee a l'usager -- "je savais" ou non -- et c'est
@@ -14701,10 +14743,9 @@ let sessionSues = 0;
 // Sous chaque bouton, l'echeance qu'il declenche pour CETTE carte. Sans cela
 // la personne appuie sans savoir ce qu'elle programme -- et le sens de
 // "Je savais" change selon l'historique du mot.
-function majEcheances(){
+function majEcheances(animerDernier){
     const elA = document.getElementById("judgeEcheanceAgain");
-    const elB = document.getElementById("judgeEcheanceGood");
-    if(!elA || !elB) return;
+    if(!elA) return;
     elA.textContent = t("echeance_2min");
 
     const ladder  = document.getElementById("srsLadder");
@@ -14713,7 +14754,6 @@ function majEcheances(){
 
     const item = currentCards.length ? currentCards[currentFlashcard] : null;
     if(!item){
-        elB.textContent = "";
         if(ladder) ladder.classList.add("hidden");
         return;
     }
@@ -14721,31 +14761,22 @@ function majEcheances(){
     const reussites = state.srsHits || 0;
     const palier    = state.srsDailyStreak || 0;
 
-    // Libelle du bouton vert : la seule echeance, sans phrase autour.
-    if(reussites === 0){
-        elB.textContent = t("echeance_10min");
-    } else if(palier + 1 >= SRS_MASTERY_AFTER_RUNGS){
-        elB.textContent = t("echeance_maitrise");
-    } else {
-        const jours = SRS_DAILY_LADDER_DAYS[Math.min(palier, SRS_DAILY_LADDER_DAYS.length - 1)];
-        elB.textContent = jours === 1 ? t("echeance_demain") : tf("echeance_jours", { n: jours });
-    }
-
     if(!ladder || !pipsBox || !txt) return;
     ladder.classList.remove("hidden");
     const atteints = Math.min(palier, SRS_MASTERY_AFTER_RUNGS);
     const fini     = atteints >= SRS_MASTERY_AFTER_RUNGS;
     let pips = "";
     for(let i = 0; i < SRS_MASTERY_AFTER_RUNGS; i++){
-        const cls = i < atteints ? "srs-pip on" : (i === atteints && !fini ? "srs-pip next" : "srs-pip");
+        let cls = i < atteints ? "srs-pip on" : (i === atteints && !fini ? "srs-pip next" : "srs-pip");
+        if(animerDernier && i === atteints - 1) cls += " frais";
         pips += '<span class="' + cls + '"></span>';
     }
     pipsBox.innerHTML = pips;
     ladder.classList.toggle("done", fini);
-    const reste = SRS_MASTERY_AFTER_RUNGS - atteints;
-    txt.textContent = fini ? t("srs_ladder_done")
-        : (reussites === 0 && palier === 0 ? t("srs_ladder_new")
-        : (reste === 1 ? t("srs_ladder_one") : tf("srs_ladder_left", { n: reste })));
+    // Le palier se nomme, il ne se compte pas : "je progresse" se lit sans
+    // avoir a savoir combien d'etapes compte l'echelle.
+    const noms = ["srs_etat_0", "srs_etat_1", "srs_etat_2", "srs_etat_3"];
+    txt.textContent = t(noms[Math.min(atteints, noms.length - 1)]);
 }
 
 function reviewAgain(){
@@ -14756,6 +14787,17 @@ function reviewAgain(){
     setWordState(item.themeId, item.index, state);
     sessionVues++;
     scheduleReview(2);   // revient dans la meme session
+}
+
+// La recompense doit etre VUE. Tant que la carte tournait dans la meme image
+// que le clic, le point vert gagne s'allumait sur une carte deja disparue :
+// l'effort n'etait paye par rien de visible.
+let attentePalier = null;
+function celebrerPalier(pointGagne){
+    majEcheances(true);
+    if(pointGagne){ launchConfetti(); playMasteredSound(); }
+    clearTimeout(attentePalier);
+    attentePalier = setTimeout(nextFlashcard, pointGagne ? 950 : 520);
 }
 
 function reviewGood(){
@@ -14770,8 +14812,11 @@ function reviewGood(){
 
     if(reussites === 0){
         // Premiere reussite : on la revoit avant la fin de la session, ce que
-        // faisait l'ancien bouton "10 min".
-        scheduleReview(10);
+        // faisait l'ancien bouton "10 min". Aucun palier gagne ici -- donc pas
+        // de confettis : une recompense qui ne correspond a rien se decouvre
+        // vite, et devient du bruit.
+        scheduleReview(10, true);
+        celebrerPalier(false);
         return;
     }
     // Ensuite on monte l'echelle des jours (voir SRS_DAILY_LADDER_DAYS).
@@ -14779,7 +14824,8 @@ function reviewGood(){
         markMastered();
         return;
     }
-    scheduleReview(1440);
+    scheduleReview(1440, true);
+    celebrerPalier(true);
 }
 
 // Echappatoire pour les mots deja connus : sans elle, quelqu'un qui ouvre un
@@ -15650,21 +15696,35 @@ function celebrateMastery(justReachedMultiple){
         // suivante : les confettis se jouent en overlay, sans bloquer la suite.
         launchConfetti();
         playMasteredSound();
+        showInfoToast(tf("mastery_toast", { n: SRS_MAINTENANCE_DAYS }));
     }
 }
+
+// Duree avant qu'un mot maitrise revienne se faire verifier : le barreau
+// suivant de l'echelle du mot (16 jours), pas un chiffre invente.
+const SRS_MAINTENANCE_DAYS = SRS_DAILY_LADDER_DAYS[SRS_MASTERY_AFTER_RUNGS] || 16;
 
 function markMastered(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
     state.mastered = true;
-    state.due = 0;
+    // Trois barreaux franchis : sans cela la bande resterait a deux points
+    // pleins au moment meme ou le mot est declare maitrise.
+    state.srsDailyStreak = SRS_MASTERY_AFTER_RUNGS;
+    // Auparavant due=0 : le mot quittait le paquet POUR TOUJOURS. Un mot su
+    // trois fois de suite n'est pas un mot acquis a vie -- il revient une fois,
+    // longtemps apres, pour le verifier. Le pourcentage, lui, ne bouge pas :
+    // "mastered" reste vrai, la carte n'est qu'echue.
+    state.due = Date.now() + (SRS_MAINTENANCE_DAYS * 24 * 60 * 60 * 1000);
     state.reviews = (state.reviews || 0) + 1;
     setWordState(item.themeId, item.index, state);
     const justReachedMultiple = recordDailyActivity();
     logMasteryEvent();
     celebrateMastery(justReachedMultiple);
-    nextFlashcard();
+    majEcheances(true);
+    clearTimeout(attentePalier);
+    attentePalier = setTimeout(nextFlashcard, 1250);
 }
 
 function nextFlashcard(){
@@ -15721,6 +15781,27 @@ function retryMastered(){
     shuffleArray(currentCards);
     currentFlashcard = 0;
     loadFlashcard();
+}
+
+// Distinct d'un reset : la progression et le pourcentage sont conserves, seule
+// l'echeance d'entretien est ramenee a maintenant. Les mots maitrises avant la
+// v243 n'en avaient aucune -- c'est le seul moyen de les revoir.
+function remettreMaitrisesEnRevision(){
+    if(!confirm(t("confirm_revoir_maitrises"))) return;
+    const progress = getProgress();
+    let touches = 0;
+    Object.keys(progress).forEach(cle => {
+        const theme = progress[cle];
+        if(!theme || typeof theme !== "object") return;
+        Object.keys(theme).forEach(i => {
+            const st = theme[i];
+            if(st && typeof st === "object" && st.mastered){ st.due = Date.now(); touches++; }
+        });
+    });
+    saveProgress(progress);
+    updateDueBanner(); updateAdjDueBanner(); updateVerbDueBanner(); updateOrbBadges();
+    showInfoToast(touches ? tf("alert_maitrises_revoir", { n: touches })
+                          : t("alert_maitrises_aucun"));
 }
 
 function resetCurrentThemeConfirm(){
