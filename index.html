@@ -2675,6 +2675,10 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .judge-again:hover{border-color:#c9d0dc;}
 .judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .judge-good:hover{background:#cdf0dc;}
+.judge-echeance{
+    display:block; margin-top:3px;
+    font-size:11px; font-weight:600; opacity:.72; letter-spacing:0;
+}
 .judge-known{
     display:block; width:100%; margin-top:12px; padding:8px;
     background:none; border:none; color:#8b93a3;
@@ -2982,7 +2986,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v234</span>
+        <span class="subtitle-version">v235</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4618,8 +4622,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <div id="flashcardActions" class="flashcard-actions hidden">
         <div class="judge-row">
-            <button class="judge-button judge-again" onclick="reviewAgain()" data-i18n="review_again">↺ Encore</button>
-            <button class="judge-button judge-good" onclick="reviewGood()" data-i18n="review_good">Je savais ✓</button>
+            <button class="judge-button judge-again" onclick="reviewAgain()">
+                <span data-i18n="review_again">↺ Encore</span>
+                <small class="judge-echeance" id="judgeEcheanceAgain"></small>
+            </button>
+            <button class="judge-button judge-good" onclick="reviewGood()">
+                <span data-i18n="review_good">Je savais ✓</span>
+                <small class="judge-echeance" id="judgeEcheanceGood"></small>
+            </button>
         </div>
         <button class="judge-known" onclick="markKnownAlready()" data-i18n="review_known">Je connais déjà ce mot — ne plus me le montrer</button>
     </div>
@@ -5182,6 +5192,12 @@ const I18N = {
         dict_plural: "pl. {pl}",
         dict_participle: "part. {pp}",
         label_participle: "Participe",
+        pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
+        echeance_2min: "revient dans 2 min",
+        echeance_10min: "revient dans 10 min",
+        echeance_demain: "revient demain",
+        echeance_jours: "revient dans {n} jours",
+        echeance_maitrise: "classé maîtrisé",
         home_streak_unit: "jours",
         home_week_unit: "cette semaine",
         en_module_mastered_label: "✅ Maîtrisé",
@@ -5214,17 +5230,17 @@ const I18N = {
 
         // --- Recherche dans les flashcards (v188) ---
         search_launch: "Chercher un mot",
-        search_kicker: "Flashcards",
+        search_kicker: "Flashcards et dictionnaire",
         search_title: "Rechercher un mot",
         search_placeholder: "Allemand, français ou anglais…",
-        search_hint: "Tape au moins deux lettres. La recherche couvre les {n} cartes de l'app, en allemand, en français et en anglais.",
+        search_hint: "Tape au moins deux lettres. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 250 000 mots.",
         search_count: "{n} résultats",
         search_count_one: "1 résultat",
         search_count_none: "Aucun résultat",
         search_count_total: "{n} cartes",
         search_more: "Seuls les {n} premiers résultats sont affichés — précise ta recherche.",
-        search_none_title: "« {q} » ne fait pas partie des flashcards.",
-        search_none_scope: "L'app couvre {n} cartes, du niveau A1 au niveau B2. Ce mot est simplement en dehors de ce programme — il ne manque rien à ton apprentissage.",
+        search_none_title: "« {q} » ne fait pas partie de tes cartes.",
+        search_none_scope: "Le cours couvre {n} cartes, du niveau A1 au B2. Ce mot est en dehors du programme — regarde l'entrée de dictionnaire ci-dessus, et touche le + pour l'ajouter à tes cartes.",
         search_none_suggest: "Peut-être cherchais-tu :",
         search_exact: "Correspondance exacte",
         adverbien_vocab_title: "Vocabulaire : flashcards",
@@ -6038,6 +6054,12 @@ const I18N = {
         dict_plural: "pl. {pl}",
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
+        pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
+        echeance_2min: "back in 2 min",
+        echeance_10min: "back in 10 min",
+        echeance_demain: "back tomorrow",
+        echeance_jours: "back in {n} days",
+        echeance_maitrise: "marked mastered",
         home_streak_unit: "days",
         home_week_unit: "this week",
         en_module_mastered_label: "✅ Mastered",
@@ -6070,17 +6092,17 @@ const I18N = {
 
         // --- Flashcard search (v188) ---
         search_launch: "Look up a word",
-        search_kicker: "Flashcards",
+        search_kicker: "Flashcards and dictionary",
         search_title: "Search for a word",
         search_placeholder: "German, French or English…",
-        search_hint: "Type at least two letters. The search covers all {n} cards in the app, in German, French and English.",
+        search_hint: "Type at least two letters. The search looks through your {n} cards, then the dictionary — over 250,000 words.",
         search_count: "{n} results",
         search_count_one: "1 result",
         search_count_none: "No result",
         search_count_total: "{n} cards",
         search_more: "Only the first {n} results are shown — narrow your search.",
-        search_none_title: "“{q}” is not among the flashcards.",
-        search_none_scope: "The app covers {n} cards, from level A1 to B2. This word simply falls outside that syllabus — nothing is missing from your course.",
+        search_none_title: "“{q}” is not among your cards.",
+        search_none_scope: "The course covers {n} cards, from A1 to B2. This word is outside the syllabus — see the dictionary entry above, and tap + to add it to your cards.",
         search_none_suggest: "Did you mean:",
         search_exact: "Exact match",
         adverbien_vocab_title: "Vocabulary: flashcards",
@@ -11644,9 +11666,33 @@ function addToMyVocab(i){
     if(bouton){ bouton.classList.add("ajoute"); bouton.textContent = "\u2713"; }
 }
 
+// Les mots mis de cote avant la v230 n'ont ni pluriel ni participe : ces
+// champs n'existaient pas encore. On va les rechercher dans le dictionnaire a
+// l'ouverture, une fois, plutot que de laisser des fiches amputees.
+async function completerVieillesFiches(){
+    const mots = loadMyVocab();
+    const aCompleter = mots.filter(w => w.length < 10 || (!w[7] && !w[8]));
+    if(!aCompleter.length) return 0;
+    let complets = 0;
+    for(const w of aCompleter.slice(0, 40)){
+        const paire = (w[5] === "de") ? dictPairs()[0] : dictPairs()[1];
+        try{
+            const entrees = await dictEntriesFor(paire, dictNormalize(w[0]));
+            const o = entrees.find(e => e.m === w[0]);
+            if(!o) continue;
+            while(w.length < 10) w.push("");
+            if(o.pl && !w[7]) { w[7] = o.pl; complets++; }
+            if(o.pp && !w[8]) { w[8] = o.pp; w[9] = o.aux || ""; complets++; }
+        }catch(e){ /* le dictionnaire est indisponible : on reessaiera */ }
+    }
+    if(complets) saveMyVocab();
+    return complets;
+}
+
 function openMyVocab(){
     const mots = loadMyVocab();
     if(!mots.length){ showInfoToast(t("myvocab_how")); return; }
+    completerVieillesFiches();
 
     // Les mots entres dans le cours depuis sont marques puis ecartes du paquet.
     // On les garde dans la liste pour ne pas decaler la progression des autres.
@@ -11825,8 +11871,13 @@ function renderDictSection(liste, total){
     const lignes = liste.map((x, i) => {
         const o = x.o;
         const genre = o.g ? '<span class="dict-gender">' + o.g + '</span> ' : "";
-        const pron  = o.i ? '<span class="dict-pron">[' + o.i + ']</span>' : "";
-        const pos   = o.p ? '<span class="dict-pos">' + o.p + '</span>' : "";
+        // L'alphabet phonetique ne parle qu'aux linguistes ; le bouton d'ecoute
+        // de la carte rend le meme service a tout le monde. Les donnees restent
+        // dans les fichiers, seul l'affichage est retire.
+        const pron  = "";
+        // "n" ne veut rien dire pour qui n'est pas linguiste : on ecrit la
+        // nature en toutes lettres.
+        const pos   = o.p ? '<span class="dict-pos">' + t("pos_" + o.p) + '</span>' : "";
         // Le pluriel manque pour un nom sur trois : on n'affiche rien plutot
         // que de reserver une place vide.
         const plur  = o.pl ? '<span class="dict-plural">' + tf("dict_plural", { pl: o.pl }) + '</span>' : "";
@@ -13246,6 +13297,7 @@ function setFlashHeader(kickerKey, titleKey){
 function loadFlashcard(){
     updateXpComboDisplay();
     hideFlashcardEnd();
+    majEcheances();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
     const card = item.word;
@@ -13463,9 +13515,11 @@ function loadFlashcard(){
         } else {
             articleEl.classList.add("hidden");
         }
-        // Meme presentation que les cartes du cours : "Pluriel : die Hauser".
+        // "die" ne vaut que pour un pluriel ALLEMAND : un mot anglais ou
+        // francais garde ne prend pas d'article allemand.
         if(card[7]){
-            pluralEl.textContent = t('label_plural') + " die " + card[7];
+            pluralEl.textContent = t('label_plural') + " "
+                + (langue === "de" ? "die " : "") + card[7];
             pluralEl.classList.remove("hidden");
         } else {
             pluralEl.classList.add("hidden");
@@ -13473,8 +13527,7 @@ function loadFlashcard(){
         const details = [];
         if(card[8]) details.push('<strong>' + t('label_participle') + " : </strong>"
             + (card[9] === "sein" ? "ist " : card[9] === "haben" ? "hat " : "") + card[8]);
-        if(card[3]) details.push('<span style="opacity:.7;">[' + card[3] + ']</span>');
-        if(card[4]) details.push(card[4]);
+        if(card[4]) details.push(t("pos_" + card[4]));
         const freq = myVocabFreqLabel(card[6]);
         if(freq) details.push('<span class="freq-chip">' + freq + '</span>');
         details.push(sentenceSpeakBtnHtml(mot, langue));
@@ -14312,7 +14365,7 @@ document.addEventListener("visibilitychange", () => {
 // produit un bandeau qui annoncait une mise a jour que l'hebergeur ne servait
 // pas encore, sans recours possible. L'usager prefere connaitre le numero et la
 // liste des changements, puis verifier l'etiquette lui-meme.
-const APP_VERSION = 234;
+const APP_VERSION = 235;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -14528,6 +14581,26 @@ const SRS_MASTERY_AFTER_RUNGS = 3;
 
 let sessionVues = 0;
 let sessionSues = 0;
+
+// Sous chaque bouton, l'echeance qu'il declenche pour CETTE carte. Sans cela
+// la personne appuie sans savoir ce qu'elle programme -- et le sens de
+// "Je savais" change selon l'historique du mot.
+function majEcheances(){
+    const elA = document.getElementById("judgeEcheanceAgain");
+    const elB = document.getElementById("judgeEcheanceGood");
+    if(!elA || !elB) return;
+    elA.textContent = t("echeance_2min");
+    if(!currentCards.length){ elB.textContent = ""; return; }
+    const item = currentCards[currentFlashcard];
+    if(!item){ elB.textContent = ""; return; }
+    const state = getWordState(item.themeId, item.index);
+    const reussites = state.srsHits || 0;
+    if(reussites === 0){ elB.textContent = t("echeance_10min"); return; }
+    const palier = state.srsDailyStreak || 0;
+    if(palier + 1 >= SRS_MASTERY_AFTER_RUNGS){ elB.textContent = t("echeance_maitrise"); return; }
+    const jours = SRS_DAILY_LADDER_DAYS[Math.min(palier, SRS_DAILY_LADDER_DAYS.length - 1)];
+    elB.textContent = jours === 1 ? t("echeance_demain") : tf("echeance_jours", { n: jours });
+}
 
 function reviewAgain(){
     if(!currentCards.length) return;
