@@ -19,9 +19,13 @@ Application web d'apprentissage du vocabulaire et de la grammaire allemande, des
 
 ## Architecture
 
-C'est une app **statique, sans build**, en un seul fichier HTML autonome :
+C'est une app **statique, sans build**, essentiellement en un seul fichier HTML autonome :
 
-- `index.html` — toute l'application (CSS et JS inline, pas de fichiers séparés, pas de bundler, pas de `npm install`). Ouvrir le fichier directement dans un navigateur suffit pour tester en local.
+- `index.html` — toute l'application (CSS et JS inline, pas de bundler, pas de `npm install`). Ouvrir le fichier directement dans un navigateur suffit pour tester en local.
+- `firebase-messaging-sw.js` — le **seul autre fichier de code**, et le seul qui doive le rester. C'est le service worker, et il a deux rôles réunis de force : il sert `index.html` depuis le disque (démarrage instantané, v257) et il affiche les notifications Firebase. Ils cohabitent parce qu'un navigateur n'accepte **qu'un service worker par portée** — en enregistrer un second remplacerait celui-ci et supprimerait les notifications, sans aucun message d'erreur.
+  - Règle à ne pas assouplir : il n'intercepte **que la page elle-même**. Firestore, l'authentification, les JSON de vocabulaire, les polices et `version.json` passent droit et n'entrent jamais dans le cache. Un service worker qui déborde de son rôle fige des versions et sert des données périmées — des défauts invisibles en développement et impossibles à déboguer à distance.
+  - `?v=NNN` court-circuite le cache : c'est le geste de mise à jour de `verifierNouvelleVersion()`, il doit continuer de fonctionner.
+- Le CSS est **coupé en deux volontairement** (v256) : le `<head>` ne garde que les règles de l'écran d'ouverture, tout le reste vit dans un `<style>` au début du `<body>`. Un `<style>` dans le `<head>` bloque le premier rendu, et le nôtre pesait 85 ko. Ne pas le remonter dans le `<head>` « pour faire propre ».
 - Authentification via **Firebase Auth** (email/mot de passe), projet Firebase `deutschai-b6fbb`. La clé API Firebase dans le code est une clé cliente publique (normal pour Firebase web) — pas un secret à protéger comme un mot de passe.
 - `AUTH_REQUIRED = true` dans le code : l'authentification est obligatoire pour utiliser l'app, avec inscription restreinte par **code d'invitation** (chaque code ne sert qu'une fois). L'écran d'authentification a deux onglets séparés « Se connecter » / « Créer un compte ».
 - Un **tableau de bord admin** (visible seulement pour le compte administrateur, via les réglages) permet de générer/supprimer des codes d'invitation et de voir la progression des testeurs.
