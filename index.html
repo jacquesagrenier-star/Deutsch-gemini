@@ -187,7 +187,8 @@ html,body{margin:0}
     var DELAI_ABSENCE = 5000;
     var enCours = false;
     var minuterie = null;
-    var cacheDepuis = 0;
+    var derniereBattue = Date.now();
+    var debutPage = Date.now();
 
     // Exposee (v256) pour que la mise a jour silencieuse puisse recouvrir
     // l'ecran avant de recharger la page.
@@ -240,51 +241,74 @@ html,body{margin:0}
     jouer();
 
     // ---- Quitter l'app, puis y revenir ---------------------------------
-    // Sur telephone, quitter l'app puis y revenir ne recharge PAS la page --
-    // elle est seulement mise en veille -- donc rien ne rejouerait sans ceci.
+    // Quitter l'app puis y revenir ne recharge PAS la page -- elle est
+    // seulement mise en veille -- donc rien ne rejouerait sans ceci.
     //
-    // Et surtout : on couvre l'ecran AVANT de partir. Le systeme photographie
-    // la page au moment ou l'app s'efface et reaffiche cette photo pendant
-    // qu'il la rouvre ; si la photo montre l'accueil, on voit l'accueil une
-    // fraction de seconde avant la video.
+    // LE POULS (v259). Les v251 a v258 attendaient un evenement de DEPART
+    // (blur, pagehide, freeze, visibilitychange) pour savoir qu'on s'etait
+    // absente. Une app INSTALLEE sur l'ecran d'accueil n'en emet pas
+    // forcement : iOS la suspend et la reveille sans rien dire a la page. On
+    // retombait donc droit dans l'app sans jamais revoir l'ouverture -- sauf
+    // apres l'avoir vraiment fermee depuis le selecteur d'apps, puisque la
+    // page etait alors rechargee de zero. C'est exactement ce qui a ete
+    // observe apres l'installation.
     //
-    // La v252 couvrait sur visibilitychange -- trop tard : quand cet evenement
-    // arrive, la page est DEJA cachee, donc elle ne se redessine plus et la
-    // couverture n'entre jamais dans la photo. C'est pourquoi le defaut
-    // persistait. "blur" arrive plus tot, pendant que la page dessine encore ;
-    // pagehide et freeze couvrent les cas ou l'app est carrement dechargee.
-    // Les quatre passent par la meme porte, qui ne s'ouvre qu'une fois.
+    // On ne demande donc plus rien au systeme : on estampille l'heure toutes
+    // les 300 ms. Quand l'app est suspendue le pouls s'arrete, et le trou
+    // entre deux estampilles mesure l'absence. Aucun evenement n'est requis.
+    //
+    // Les evenements de depart gardent un autre role : couvrir l'ecran AVANT
+    // de partir, pour que la photo que le systeme prend de la page -- et qu'il
+    // reaffiche pendant qu'il la rouvre -- montre l'ouverture et non l'accueil.
+    // "blur" arrive pendant que la page dessine encore ; pagehide et freeze
+    // couvrent le cas ou l'app est carrement dechargee.
     function veille(){
-        if(cacheDepuis) return;          // deja en veille : rien a refaire
-        cacheDepuis = Date.now();
+        if(enCours) return;              // l'ouverture couvre deja l'ecran
         if(minuterie){ clearTimeout(minuterie); minuterie = null; }
-        enCours = false;
         try{ video.pause(); }catch(e){}
         couvrir();
     }
 
-    function reveil(){
-        if(!cacheDepuis) return;
-        var absence = Date.now() - cacheDepuis;
-        cacheDepuis = 0;
+    function retour(){
+        var absence = Date.now() - derniereBattue;
+        derniereBattue = Date.now();
+        // L'ouverture joue encore : passer au premier plan a pu mettre la video
+        // en pause. On la relance plutot que de la couper -- c'est aussi ce qui
+        // empechait l'ouverture de survivre au lancement de l'app installee,
+        // iOS enchainant blur puis focus pendant qu'elle s'ouvre.
+        if(enCours){
+            if(video.paused){ try{ video.play(); }catch(e){} }
+            return;
+        }
         // Un aller-retour eclair (une notification, une feuille de partage) ne
         // merite pas trois secondes d'animation : on decouvre sans fondu.
         if(absence >= DELAI_ABSENCE) jouer();
         else decouvrir(false);
     }
 
+    setInterval(function(){
+        var absence = Date.now() - derniereBattue;
+        derniereBattue = Date.now();
+        if(enCours) return;
+        // Le demarrage est exclu : c'est la seule periode ou le fil principal
+        // peut rester bloque assez longtemps pour ressembler a une absence
+        // (chargement et indexation du vocabulaire).
+        if(Date.now() - debutPage < 6000) return;
+        if(absence >= DELAI_ABSENCE) jouer();
+    }, 300);
+
     window.addEventListener("blur", veille);
     window.addEventListener("pagehide", veille);
     document.addEventListener("freeze", veille);
-    window.addEventListener("focus", reveil);
+    window.addEventListener("focus", retour);
     document.addEventListener("visibilitychange", function(){
-        if(document.hidden) veille(); else reveil();
+        if(document.hidden) veille(); else retour();
     });
 
     // Safari restaure parfois la page depuis son cache d'historique sans passer
     // par visibilitychange : on y revient de l'exterieur, donc on rejoue.
     window.addEventListener("pageshow", function(ev){
-        if(ev.persisted){ cacheDepuis = 0; jouer(); }
+        if(ev.persisted){ derniereBattue = Date.now(); jouer(); }
     });
 })();
 </script>
@@ -3348,7 +3372,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v258</span>
+        <span class="subtitle-version">v259</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14863,7 +14887,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 258;
+const APP_VERSION = 259;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -51,6 +51,46 @@ def largeur_css_du_logo(l_css, h_css):
     """La regle CSS : width: min(76vw, 58vh, 420px)."""
     return min(0.76 * l_css, 0.58 * h_css, 420.0)
 
+# Part de la largeur de l'icone qu'occupe le monogramme. Dans le fichier
+# d'origine il n'en prenait que 55 %, ce qui le rendait minuscule une fois
+# pose sur l'ecran d'accueil parmi les autres apps. iOS decoupe ensuite
+# l'icone en carre arrondi : a 76 %, le logo respire encore sans jamais
+# s'approcher des coins ronges par ce masque.
+PART_DU_LOGO = 0.76
+
+def faire_icone():
+    """Recadre le monogramme au plus pres, puis le recentre plus gros.
+
+    Sans icone declaree, iOS fabrique la sienne a partir d'une capture de la
+    page -- une vignette illisible. Le fichier d'origine
+    (wortando-app-icon.png) n'est PAS modifie : il sert encore de favicon et
+    d'icone de notification, ou le cadrage large convient.
+    """
+    src = Image.open(RACINE / "branding" / "wortando-app-icon.png").convert("RGB")
+    papier = src.getpixel((5, 5))
+    px = src.load()
+    x0, y0, x1, y1 = src.width, src.height, 0, 0
+    for y in range(src.height):
+        for x in range(src.width):
+            r, g, b = px[x, y]
+            if abs(r-papier[0]) + abs(g-papier[1]) + abs(b-papier[2]) > 40:
+                x0, x1 = min(x0, x), max(x1, x)
+                y0, y1 = min(y0, y), max(y1, y)
+    logo = src.crop((x0, y0, x1 + 1, y1 + 1))
+
+    cote = 1024
+    ll = round(cote * PART_DU_LOGO)
+    lh = round(ll * logo.height / logo.width)
+    toile = Image.new("RGB", (cote, cote), papier)
+    toile.paste(logo.resize((ll, lh), Image.LANCZOS),
+                ((cote - ll) // 2, (cote - lh) // 2))
+    toile.save(RACINE / "branding" / "wortando-icone-ecran-accueil.png", optimize=True)
+    toile.resize((180, 180), Image.LANCZOS).save(
+        RACINE / "branding" / "wortando-apple-touch-icon.png", optimize=True)
+    print("  logo recadre : %dx%d -> %d%% de l'icone (etait %d%%)" % (
+        logo.width, logo.height, round(100 * PART_DU_LOGO),
+        round(100 * logo.width / src.width)))
+
 def main():
     logo = Image.open(SOURCE).convert("RGB")
     SORTIE.mkdir(parents=True, exist_ok=True)
@@ -74,11 +114,7 @@ def main():
         lignes.append((nom, l_css, h_css, densite,
                        (SORTIE / nom).stat().st_size))
 
-    # L'icone que iOS pose sur l'ecran d'accueil. Sans elle, iOS fabrique
-    # l'icone a partir d'une capture de la page -- une vignette illisible.
-    icone = Image.open(RACINE / "branding" / "wortando-app-icon.png").convert("RGB")
-    icone.resize((180, 180), Image.LANCZOS).save(
-        RACINE / "branding" / "wortando-apple-touch-icon.png", optimize=True)
+    faire_icone()
 
     total = sum(l[4] for l in lignes)
     for nom, l, h, d, o in lignes:
