@@ -2877,8 +2877,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 .orb small{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.25;}
 
 /* ============ OUVERTURE DE L'APP (v248) ============
-   Le logo se deplie en livre puis se replie -- 3 secondes, une seule fois par
-   session. La video est EMBARQUEE en base64 plutot que chargee depuis
+   Le logo se deplie en livre puis se replie -- 3 secondes, a CHAQUE ouverture
+   de l'app (v250). La video est EMBARQUEE en base64 plutot que chargee depuis
    VIDEO_BASE_URL : un ecran d'ouverture qui attend le reseau n'est pas un
    ecran d'ouverture, il montre un fond creme vide pendant une seconde. A
    133 ko elle tient dans le fichier sans le denaturer.
@@ -2890,8 +2890,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
    voit aucun bord : l'animation flotte sur l'ecran.
 
    L'animation CSS de sortie n'est qu'un FILET DE SECURITE (declenchee a
-   4200 ms) pour le cas ou le JS ne tournerait pas du tout. En marche normale
-   c'est le JS qui retire l'ecran des la fin de la video (~3070 ms). */
+   4200 ms) pour le cas ou le JS ne tournerait pas du tout. Des que le JS
+   demarre il pose la classe .pilote, qui coupe ce filet : c'est lui qui cache
+   l'ecran a la fin de la video (~3070 ms).
+
+   L'ecran n'est PAS retire du DOM, seulement masque (.parti) : il faut pouvoir
+   le rejouer quand l'usager revient dans l'app, et la video de 133 ko est deja
+   decodee -- la rejouer est instantane. */
 #splashOuverture{
     position:fixed;
     inset:0;
@@ -2909,11 +2914,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     height:auto;
     display:block;
 }
+#splashOuverture.pilote{
+    animation:none;              /* le JS a pris la main : on coupe le filet */
+}
 #splashOuverture.sortie{
     opacity:0;
     transition:opacity 400ms ease;
     pointer-events:none;
-    animation:none;              /* le JS a pris la main : on coupe le filet */
+}
+#splashOuverture.parti{
+    display:none;                /* masque, mais toujours la, pret a rejouer */
 }
 @keyframes splashOuvertureSortie{ to{ opacity:0; visibility:hidden; } }
 
@@ -2940,39 +2950,80 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     var ecran = document.getElementById("splashOuverture");
     if(!ecran) return;
     var video = document.getElementById("splashOuvertureVideo");
+    if(!video){ ecran.parentNode.removeChild(ecran); return; }
 
-    // Une fois par session, pas une fois par chargement : verifierNouvelleVersion()
-    // recharge la page vers ?v=NNN, et sans cette porte l'ouverture jouerait deux
-    // fois de suite. Ouvrir l'app depuis l'ecran d'accueil ouvre une nouvelle
-    // session, donc l'animation revient -- c'est bien le geste vise.
-    var CLE = "wortando_ouvertureVue";
-    try{
-        if(sessionStorage.getItem(CLE)){ ecran.parentNode.removeChild(ecran); return; }
-        sessionStorage.setItem(CLE, "1");
-    }catch(e){ /* navigation privee : on joue, tant pis pour la repetition */ }
+    // Le JS tourne : on desarme le filet de securite CSS, c'est nous qui menons.
+    ecran.classList.add("pilote");
 
-    var parti = false;
+    var minuterie = null;
+
     function partir(){
-        if(parti) return;
-        parti = true;
+        if(ecran.classList.contains("sortie")) return;
+        if(minuterie){ clearTimeout(minuterie); minuterie = null; }
         ecran.classList.add("sortie");
-        setTimeout(function(){
-            if(ecran.parentNode) ecran.parentNode.removeChild(ecran);
-        }, 420);
+        setTimeout(function(){ ecran.classList.add("parti"); }, 420);
     }
 
-    ecran.addEventListener("click", partir);      // on peut toujours passer outre
-    if(video){
-        video.addEventListener("ended", partir);
-        video.addEventListener("error", partir);
+    function jouer(){
+        // Au retour dans l'app, visibilitychange et pageshow peuvent se suivre
+        // de quelques millisecondes : si l'ouverture tourne deja, on la laisse
+        // tranquille plutot que de la rembobiner sous ses propres pieds.
+        if(!ecran.classList.contains("parti") && !ecran.classList.contains("sortie")
+           && !video.paused) return;
+        if(minuterie){ clearTimeout(minuterie); minuterie = null; }
+        ecran.classList.remove("parti");
+        ecran.classList.remove("sortie");   // retire aussi la transition : reapparition nette
+        // Rembobiner AVANT que la video ait ses metadonnees annule la lecture
+        // qu'on est en train de demander (le seek interrompt le play). Au tout
+        // premier passage elle est deja a zero : il n'y a rien a rembobiner.
+        try{
+            if(video.readyState > 0 && video.currentTime > 0) video.currentTime = 0;
+        }catch(e){}
+        var lecture = video.play();
         // iOS en mode economie d'energie refuse la lecture automatique meme en
         // sourdine. Sans ceci l'app resterait figee sur la premiere image : on
-        // sort immediatement plutot que d'imposer un ecran mort.
-        var lecture = video.play();
-        if(lecture && lecture.catch) lecture.catch(partir);
+        // sort plutot que d'imposer un ecran mort. Mais une promesse rejetee
+        // n'est pas toujours un refus -- un rembobinage l'interrompt aussi --
+        // alors on ne tranche qu'apres avoir verifie que rien ne joue.
+        if(lecture && lecture.catch) lecture.catch(function(){
+            setTimeout(function(){ if(video.paused) partir(); }, 250);
+        });
+        minuterie = setTimeout(partir, 3800);   // garde-fou, quoi qu'il arrive
     }
-    // Dernier garde-fou, quoi qu'il arrive.
-    setTimeout(partir, 3800);
+
+    ecran.addEventListener("click", partir);   // on peut toujours passer outre
+    video.addEventListener("ended", partir);
+    video.addEventListener("error", partir);
+
+    // ---- Au chargement -------------------------------------------------
+    // Une seule exception : verifierNouvelleVersion() recharge la page vers
+    // ?v=NNN apres avoir pose sa cle de session. Si elle est deja la, c'est que
+    // l'ouverture vient de jouer sur la page d'avant -- inutile de la refaire.
+    var rechargeVersion = false;
+    try{ rechargeVersion = !!sessionStorage.getItem("deutschAI_rechargeVersion"); }catch(e){}
+    if(rechargeVersion) ecran.classList.add("parti");
+    else jouer();
+
+    // ---- Au retour dans l'app ------------------------------------------
+    // Le cas qui manquait jusqu'a la v250 : sur telephone, quitter l'app puis y
+    // revenir ne recharge PAS la page -- elle est seulement mise en veille. Le
+    // script ci-dessus ne rejoue donc jamais. C'est visibilitychange qui dit
+    // qu'on revient, et le delai ci-dessous distingue "j'ai quitte l'app" d'un
+    // simple coup d'oeil a une notification : sous 10 secondes on ne rejoue pas.
+    var DELAI_ABSENCE = 10000;
+    var cacheDepuis = 0;
+
+    document.addEventListener("visibilitychange", function(){
+        if(document.hidden){ cacheDepuis = Date.now(); return; }
+        if(cacheDepuis && Date.now() - cacheDepuis >= DELAI_ABSENCE) jouer();
+        cacheDepuis = 0;
+    });
+
+    // Safari restaure parfois la page depuis son cache d'historique sans passer
+    // par visibilitychange : on y revient de l'exterieur, donc on rejoue.
+    window.addEventListener("pageshow", function(ev){
+        if(ev.persisted) jouer();
+    });
 })();
 </script>
 
@@ -3165,7 +3216,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v249</span>
+        <span class="subtitle-version">v250</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14666,7 +14717,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 249;
+const APP_VERSION = 250;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
