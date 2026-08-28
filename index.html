@@ -7,6 +7,60 @@
 
 <title>Wortando</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png">
+<link rel="apple-touch-icon" href="branding/wortando-apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+
+<!-- APP INSTALLABLE SUR L'ECRAN D'ACCUEIL (v258).
+
+     "Ajouter a l'ecran d'accueil" depuis le menu de partage de Safari. Aucun
+     App Store, aucun compte developpeur : ca reste cette page, publiee par
+     git push. Deux raisons de le vouloir :
+
+     1. Sur iPhone, les notifications web ne fonctionnent QUE depuis une app
+        installee (Apple l'exige depuis iOS 16.4). Sans ceci, tout le code de
+        notifications et firebase-messaging-sw.js ne servent a personne.
+     2. iOS affiche alors l'image de lancement ci-dessous au lieu de sa photo
+        de la session precedente -- ce qui supprime l'eclair d'accueil qu'on
+        voyait avant la video d'ouverture.
+
+     apple-touch-icon est indispensable : sans elle, iOS fabrique l'icone a
+     partir d'une capture de la page, soit une vignette illisible. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Wortando">
+
+<!-- Ecrans de lancement iOS. Chacun reproduit au pixel pres la premiere image
+     de la video d'ouverture sur son fond creme : le passage de l'ecran de
+     lancement du systeme a la video est donc invisible. iOS n'utilise une
+     image que si la taille correspond EXACTEMENT, d'ou une entree par
+     appareil ; une taille inconnue retombe simplement sur le comportement
+     d'avant, jamais pire. Regenerer avec :
+         python branding/faire-ecrans-de-lancement.py -->
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-320x568@2x.png"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-375x667@2x.png"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-375x812@3x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-390x844@3x.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-393x852@3x.png"
+      media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-402x874@3x.png"
+      media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-414x736@3x.png"
+      media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-414x896@2x.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-414x896@3x.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-428x926@3x.png"
+      media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-430x932@3x.png"
+      media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="branding/lancement/lancement-440x956@3x.png"
+      media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- La police est chargee SANS bloquer le premier rendu (v255). En feuille de
@@ -3294,7 +3348,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v257</span>
+        <span class="subtitle-version">v258</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14809,7 +14863,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 257;
+const APP_VERSION = 258;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
