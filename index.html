@@ -3251,7 +3251,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v253</span>
+        <span class="subtitle-version">v254</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -11605,8 +11605,19 @@ function searchSenseTokens(str){
 }
 
 function pushSearchEntry(list, entry){
-    entry.haystack = normalizeSearch([entry.de, entry.fr, entry.en, entry.alt].filter(Boolean).join(" ~ "));
+    // On ne cherche QUE dans l'allemand et dans la langue de l'interface. Avant
+    // la v254 la traduction anglaise etait fouillee aussi : en francais, taper
+    // "book" ramenait huit cartes (Buch/livre, Heft/cahier, Lehrbuch/manuel...)
+    // dont la traduction affichee n'avait aucun rapport avec la requete -- des
+    // resultats qui semblaient tires au hasard, puisque le mot qui les avait
+    // fait remonter n'etait nulle part a l'ecran. Symetriquement, en anglais on
+    // ne fouille plus le francais.
+    const trad = (getUiLang() === 'en') ? entry.en : entry.fr;
+    entry.haystack = normalizeSearch([entry.de, trad, entry.alt].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
+    // Traduction affichee, normalisee : c'est elle qui compte pour une
+    // correspondance exacte, pas celle de l'autre langue.
+    entry.uiNorm = normalizeSearch(trad);
     // Formes normalisees memorisees a la construction : reconnaitre une
     // correspondance EXACTE a chaque frappe sans re-normaliser 2857 entrees.
     entry.frNorm = normalizeSearch(entry.fr);
@@ -11691,7 +11702,10 @@ function buildSearchIndex(){
 // Empreinte bon marche des sources : permet de reconstruire l'index si les
 // donnees ont fini de charger (ou ont ete rechargees) apres une premiere ouverture.
 function searchSourcesStamp(){
-    return (typeof themes !== 'undefined' ? themes.length : 0) * 1000000000
+    // La langue entre dans l'empreinte : l'index ne contient plus que l'allemand
+    // et la langue de l'interface, il doit donc etre rebati quand elle change.
+    return (getUiLang() === 'en' ? 1 : 0) * 1000000000000
+        + (typeof themes !== 'undefined' ? themes.length : 0) * 1000000000
         + (verbeTheme.words || []).length * 1000000
         + (adjektiveTheme.words || []).length * 1000
         + (adverbienTheme.words || []).length
@@ -12269,7 +12283,7 @@ function renderWordSearch(rawQuery){
         // Le mot cherche EXACTEMENT (allemand, francais ou anglais) passe devant
         // et sera mis en evidence ; vient ensuite le mot allemand qui commence
         // par la requete, puis le reste.
-        const exact = (e.deNorm === q || e.frNorm === q || e.enNorm === q);
+        const exact = (e.deNorm === q || e.uiNorm === q);
         const rank = exact ? 0
                    : (e.deNorm.indexOf(q) === 0 ? 1
                    : (debutDeMot ? 2 : RANG_INTERIEUR));
@@ -14752,7 +14766,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 253;
+const APP_VERSION = 254;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
