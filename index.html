@@ -2878,7 +2878,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 /* ============ OUVERTURE DE L'APP (v248) ============
    Le logo se deplie en livre puis se replie -- 3 secondes, a CHAQUE ouverture
-   de l'app (v250). La video est EMBARQUEE en base64 plutot que chargee depuis
+   de l'app et a chaque retour dedans (v251). La video est EMBARQUEE en base64
+   plutot que chargee depuis
    VIDEO_BASE_URL : un ecran d'ouverture qui attend le reseau n'est pas un
    ecran d'ouverture, il montre un fond creme vide pendant une seconde. A
    133 ko elle tient dans le fichier sans le denaturer.
@@ -2955,27 +2956,32 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     // Le JS tourne : on desarme le filet de securite CSS, c'est nous qui menons.
     ecran.classList.add("pilote");
 
+    // AUCUNE condition pour ne pas jouer (v251). Les v248 et v250 en avaient
+    // chacune une, et chacune a fini par empecher l'ouverture de revenir : une
+    // cle de sessionStorage survit a la mise en veille de l'app, donc "deja vu
+    // dans cette session" finissait par vouloir dire "plus jamais". Le seul
+    // effet de bord qui reste est qu'une mise a jour de version rejoue
+    // l'ouverture une fois de plus -- une fois par publication, c'est tout.
+
+    var enCours = false;
     var minuterie = null;
 
     function partir(){
-        if(ecran.classList.contains("sortie")) return;
+        if(!enCours) return;
+        enCours = false;
         if(minuterie){ clearTimeout(minuterie); minuterie = null; }
         ecran.classList.add("sortie");
         setTimeout(function(){ ecran.classList.add("parti"); }, 420);
     }
 
     function jouer(){
-        // Au retour dans l'app, visibilitychange et pageshow peuvent se suivre
-        // de quelques millisecondes : si l'ouverture tourne deja, on la laisse
-        // tranquille plutot que de la rembobiner sous ses propres pieds.
-        if(!ecran.classList.contains("parti") && !ecran.classList.contains("sortie")
-           && !video.paused) return;
-        if(minuterie){ clearTimeout(minuterie); minuterie = null; }
+        if(enCours) return;   // deja a l'ecran : on ne la rembobine pas
+        enCours = true;
         ecran.classList.remove("parti");
         ecran.classList.remove("sortie");   // retire aussi la transition : reapparition nette
         // Rembobiner AVANT que la video ait ses metadonnees annule la lecture
-        // qu'on est en train de demander (le seek interrompt le play). Au tout
-        // premier passage elle est deja a zero : il n'y a rien a rembobiner.
+        // qu'on demande au meme instant. Au premier passage elle est deja a
+        // zero : il n'y a rien a rembobiner.
         try{
             if(video.readyState > 0 && video.currentTime > 0) video.currentTime = 0;
         }catch(e){}
@@ -2995,22 +3001,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     video.addEventListener("ended", partir);
     video.addEventListener("error", partir);
 
-    // ---- Au chargement -------------------------------------------------
-    // Une seule exception : verifierNouvelleVersion() recharge la page vers
-    // ?v=NNN apres avoir pose sa cle de session. Si elle est deja la, c'est que
-    // l'ouverture vient de jouer sur la page d'avant -- inutile de la refaire.
-    var rechargeVersion = false;
-    try{ rechargeVersion = !!sessionStorage.getItem("deutschAI_rechargeVersion"); }catch(e){}
-    if(rechargeVersion) ecran.classList.add("parti");
-    else jouer();
+    jouer();
 
     // ---- Au retour dans l'app ------------------------------------------
-    // Le cas qui manquait jusqu'a la v250 : sur telephone, quitter l'app puis y
-    // revenir ne recharge PAS la page -- elle est seulement mise en veille. Le
-    // script ci-dessus ne rejoue donc jamais. C'est visibilitychange qui dit
-    // qu'on revient, et le delai ci-dessous distingue "j'ai quitte l'app" d'un
-    // simple coup d'oeil a une notification : sous 10 secondes on ne rejoue pas.
-    var DELAI_ABSENCE = 10000;
+    // Sur telephone, quitter l'app puis y revenir ne recharge PAS la page --
+    // elle est seulement mise en veille -- donc rien ne rejouerait sans ceci.
+    // Le delai distingue "j'ai quitte l'app" d'un simple coup d'oeil a une
+    // notification ou d'une feuille de partage qui s'ouvre par-dessus.
+    var DELAI_ABSENCE = 5000;
     var cacheDepuis = 0;
 
     document.addEventListener("visibilitychange", function(){
@@ -3216,7 +3214,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v250</span>
+        <span class="subtitle-version">v251</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3606,7 +3604,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="filters-bar">
         <input id="wordSearchInput" type="search" autocomplete="off" autocapitalize="none"
                autocorrect="off" spellcheck="false" oninput="scheduleWordSearch()"
-               data-i18n-placeholder="search_placeholder" placeholder="Allemand, français ou anglais…">
+               data-i18n-placeholder="search_placeholder" placeholder="Allemand ou français…">
     </div>
 
     <div id="wordSearchResults" style="margin-top:16px;"></div>
@@ -5483,7 +5481,7 @@ const I18N = {
         search_launch: "Chercher un mot",
         search_kicker: "Flashcards et dictionnaire",
         search_title: "Rechercher un mot",
-        search_placeholder: "Allemand, français ou anglais…",
+        search_placeholder: "Allemand ou français…",
         search_hint: "Tape au moins deux lettres. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 250 000 mots.",
         search_count: "{n} résultats",
         search_count_one: "1 résultat",
@@ -6361,7 +6359,7 @@ const I18N = {
         search_launch: "Look up a word",
         search_kicker: "Flashcards and dictionary",
         search_title: "Search for a word",
-        search_placeholder: "German, French or English…",
+        search_placeholder: "German or English…",
         search_hint: "Type at least two letters. The search looks through your {n} cards, then the dictionary — over 250,000 words.",
         search_count: "{n} results",
         search_count_one: "1 result",
@@ -14717,7 +14715,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 250;
+const APP_VERSION = 251;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
