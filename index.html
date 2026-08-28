@@ -9,7 +9,21 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+<!-- La police est chargee SANS bloquer le premier rendu (v255). En feuille de
+     style ordinaire, Safari refuse de peindre quoi que ce soit tant que Google
+     n'a pas repondu. L'ecran d'ouverture, lui, est pret instantanement (la
+     video est embarquee en base64, elle n'attend aucun reseau) -- mais il
+     n'avait pas le droit de s'afficher. Pendant cette attente, Safari laisse a
+     l'ecran sa PHOTO de la visite precedente : d'ou l'eclair d'accueil avant
+     la video, quand on ouvre l'app par un lien.
+
+     media="print" rend la feuille non bloquante ; onload la remet sur "all" et
+     la police s'applique alors normalement. Elle arrive tres largement avant
+     la fin des trois secondes d'ouverture, donc la police de secours n'est
+     jamais visible. -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet"></noscript>
 
 <style>
 *{box-sizing:border-box}
@@ -2924,7 +2938,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     pointer-events:none;
 }
 #splashOuverture.parti{
-    display:none;                /* masque, mais toujours la, pret a rejouer */
+    /* Masque, mais toujours la, pret a rejouer -- et toujours dans la mise en
+       page (v255). Avec display:none, le recouvrir obligeait le navigateur a
+       refaire une mise en page ET a reafficher un <video> : deux operations
+       qui peuvent ne pas tenir dans la seule image dont on dispose. En
+       opacite, recouvrir n'est plus qu'une bascule du compositeur. */
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
 }
 @keyframes splashOuvertureSortie{ to{ opacity:0; visibility:hidden; } }
 
@@ -3251,7 +3272,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v254</span>
+        <span class="subtitle-version">v255</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14766,7 +14787,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 254;
+const APP_VERSION = 255;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
