@@ -2959,26 +2959,35 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     // AUCUNE condition pour ne pas jouer (v251). Les v248 et v250 en avaient
     // chacune une, et chacune a fini par empecher l'ouverture de revenir : une
     // cle de sessionStorage survit a la mise en veille de l'app, donc "deja vu
-    // dans cette session" finissait par vouloir dire "plus jamais". Le seul
-    // effet de bord qui reste est qu'une mise a jour de version rejoue
-    // l'ouverture une fois de plus -- une fois par publication, c'est tout.
+    // dans cette session" finissait par vouloir dire "plus jamais".
 
+    var DELAI_ABSENCE = 5000;
     var enCours = false;
     var minuterie = null;
+    var cacheDepuis = 0;
 
-    function partir(){
-        if(!enCours) return;
-        enCours = false;
-        if(minuterie){ clearTimeout(minuterie); minuterie = null; }
-        ecran.classList.add("sortie");
-        setTimeout(function(){ ecran.classList.add("parti"); }, 420);
+    function couvrir(){
+        ecran.classList.remove("parti");
+        ecran.classList.remove("sortie");
     }
+
+    function decouvrir(douce){
+        if(minuterie){ clearTimeout(minuterie); minuterie = null; }
+        enCours = false;
+        if(douce){
+            ecran.classList.add("sortie");
+            setTimeout(function(){ ecran.classList.add("parti"); }, 420);
+        } else {
+            ecran.classList.add("parti");   // sans fondu : on ne fait pas attendre
+        }
+    }
+
+    function partir(){ if(enCours) decouvrir(true); }
 
     function jouer(){
         if(enCours) return;   // deja a l'ecran : on ne la rembobine pas
         enCours = true;
-        ecran.classList.remove("parti");
-        ecran.classList.remove("sortie");   // retire aussi la transition : reapparition nette
+        couvrir();
         // Rembobiner AVANT que la video ait ses metadonnees annule la lecture
         // qu'on demande au meme instant. Au premier passage elle est deja a
         // zero : il n'y a rien a rembobiner.
@@ -3003,18 +3012,32 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     jouer();
 
-    // ---- Au retour dans l'app ------------------------------------------
+    // ---- Quitter l'app, puis y revenir ---------------------------------
     // Sur telephone, quitter l'app puis y revenir ne recharge PAS la page --
     // elle est seulement mise en veille -- donc rien ne rejouerait sans ceci.
-    // Le delai distingue "j'ai quitte l'app" d'un simple coup d'oeil a une
-    // notification ou d'une feuille de partage qui s'ouvre par-dessus.
-    var DELAI_ABSENCE = 5000;
-    var cacheDepuis = 0;
-
+    //
+    // Et surtout : on couvre l'ecran AU MOMENT DE PARTIR, pas au retour. Le
+    // systeme photographie la page quand elle passe en veille et reaffiche
+    // cette photo pendant qu'il rouvre l'app ; si on attendait le retour pour
+    // couvrir, on verrait donc l'accueil une fraction de seconde avant la
+    // video, ce qui etait le defaut de la v251. En couvrant avant, la photo
+    // que le systeme prend est deja l'ecran d'ouverture.
     document.addEventListener("visibilitychange", function(){
-        if(document.hidden){ cacheDepuis = Date.now(); return; }
-        if(cacheDepuis && Date.now() - cacheDepuis >= DELAI_ABSENCE) jouer();
+        if(document.hidden){
+            cacheDepuis = Date.now();
+            if(minuterie){ clearTimeout(minuterie); minuterie = null; }
+            enCours = false;
+            try{ video.pause(); }catch(e){}
+            couvrir();
+            return;
+        }
+        if(!cacheDepuis) return;
+        var absence = Date.now() - cacheDepuis;
         cacheDepuis = 0;
+        // Un aller-retour eclair (une notification, une feuille de partage) ne
+        // merite pas trois secondes d'animation : on decouvre sans fondu.
+        if(absence >= DELAI_ABSENCE) jouer();
+        else decouvrir(false);
     });
 
     // Safari restaure parfois la page depuis son cache d'historique sans passer
@@ -3214,7 +3237,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v251</span>
+        <span class="subtitle-version">v252</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14715,7 +14738,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 251;
+const APP_VERSION = 252;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
