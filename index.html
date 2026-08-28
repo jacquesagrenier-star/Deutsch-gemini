@@ -3294,7 +3294,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v256</span>
+        <span class="subtitle-version">v257</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14809,7 +14809,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 256;
+const APP_VERSION = 257;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -14829,6 +14829,32 @@ function afficherNumeroVersion(){
 //   - un verrou de session, pour qu'un echec ne puisse jamais boucler ;
 //   - on ne recharge que vers un numero STRICTEMENT superieur ;
 //   - toute erreur reseau est ignoree en silence -- hors ligne, l'app demarre.
+// ---- Cache de demarrage -----------------------------------------------
+// Le service worker sert index.html depuis le disque du telephone, donc la
+// page s'affiche sans aller-retour reseau. C'est le dernier morceau de
+// l'eclair d'accueil qu'on voyait avant la video d'ouverture : la v256 avait
+// ramene le cout du premier rendu de 85 ko a 5 ko, mais il restait le temps
+// de la connexion elle-meme, qu'aucune optimisation du fichier ne peut
+// supprimer.
+//
+// C'est le MEME fichier que celui des notifications : un navigateur n'accepte
+// qu'un service worker par portee, donc les deux roles y cohabitent. On
+// l'enregistre ici pour tout le monde, sans rien demander -- enregistrer un
+// service worker ne declenche AUCUNE permission. Ce sont les notifications
+// qui en demandent une, et c'est activerNotifications() qui s'en charge, le
+// moment venu, en reutilisant cet enregistrement.
+//
+// Hors https (ouverture du fichier en local pour tester), le navigateur
+// refuse les service workers : on n'essaie meme pas.
+function enregistrerServiceWorker(){
+    if(!("serviceWorker" in navigator)) return;
+    const sur = location.protocol === "https:" || location.hostname === "localhost";
+    if(!sur) return;
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("firebase-messaging-sw.js").catch(() => {});
+    });
+}
+
 const VERSION_RECHARGE_FAITE = "deutschAI_rechargeVersion";
 
 async function verifierNouvelleVersion(){
@@ -16822,6 +16848,7 @@ function showResults(){
 
 (() => {
     afficherNumeroVersion();
+    enregistrerServiceWorker();
     verifierNouvelleVersion();
     loadThemesJson();
     updateGlobalProgress();
