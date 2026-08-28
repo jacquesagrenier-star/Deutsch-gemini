@@ -2878,7 +2878,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 /* ============ OUVERTURE DE L'APP (v248) ============
    Le logo se deplie en livre puis se replie -- 3 secondes, a CHAQUE ouverture
-   de l'app et a chaque retour dedans (v251). La video est EMBARQUEE en base64
+   de l'app et a chaque retour dedans (v251, couverture avancee en v253). La video est EMBARQUEE en base64
    plutot que chargee depuis
    VIDEO_BASE_URL : un ecran d'ouverture qui attend le reseau n'est pas un
    ecran d'ouverture, il montre un fond creme vide pendant une seconde. A
@@ -3016,21 +3016,27 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     // Sur telephone, quitter l'app puis y revenir ne recharge PAS la page --
     // elle est seulement mise en veille -- donc rien ne rejouerait sans ceci.
     //
-    // Et surtout : on couvre l'ecran AU MOMENT DE PARTIR, pas au retour. Le
-    // systeme photographie la page quand elle passe en veille et reaffiche
-    // cette photo pendant qu'il rouvre l'app ; si on attendait le retour pour
-    // couvrir, on verrait donc l'accueil une fraction de seconde avant la
-    // video, ce qui etait le defaut de la v251. En couvrant avant, la photo
-    // que le systeme prend est deja l'ecran d'ouverture.
-    document.addEventListener("visibilitychange", function(){
-        if(document.hidden){
-            cacheDepuis = Date.now();
-            if(minuterie){ clearTimeout(minuterie); minuterie = null; }
-            enCours = false;
-            try{ video.pause(); }catch(e){}
-            couvrir();
-            return;
-        }
+    // Et surtout : on couvre l'ecran AVANT de partir. Le systeme photographie
+    // la page au moment ou l'app s'efface et reaffiche cette photo pendant
+    // qu'il la rouvre ; si la photo montre l'accueil, on voit l'accueil une
+    // fraction de seconde avant la video.
+    //
+    // La v252 couvrait sur visibilitychange -- trop tard : quand cet evenement
+    // arrive, la page est DEJA cachee, donc elle ne se redessine plus et la
+    // couverture n'entre jamais dans la photo. C'est pourquoi le defaut
+    // persistait. "blur" arrive plus tot, pendant que la page dessine encore ;
+    // pagehide et freeze couvrent les cas ou l'app est carrement dechargee.
+    // Les quatre passent par la meme porte, qui ne s'ouvre qu'une fois.
+    function veille(){
+        if(cacheDepuis) return;          // deja en veille : rien a refaire
+        cacheDepuis = Date.now();
+        if(minuterie){ clearTimeout(minuterie); minuterie = null; }
+        enCours = false;
+        try{ video.pause(); }catch(e){}
+        couvrir();
+    }
+
+    function reveil(){
         if(!cacheDepuis) return;
         var absence = Date.now() - cacheDepuis;
         cacheDepuis = 0;
@@ -3038,12 +3044,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         // merite pas trois secondes d'animation : on decouvre sans fondu.
         if(absence >= DELAI_ABSENCE) jouer();
         else decouvrir(false);
+    }
+
+    window.addEventListener("blur", veille);
+    window.addEventListener("pagehide", veille);
+    document.addEventListener("freeze", veille);
+    window.addEventListener("focus", reveil);
+    document.addEventListener("visibilitychange", function(){
+        if(document.hidden) veille(); else reveil();
     });
 
     // Safari restaure parfois la page depuis son cache d'historique sans passer
     // par visibilitychange : on y revient de l'exterieur, donc on rejoue.
     window.addEventListener("pageshow", function(ev){
-        if(ev.persisted) jouer();
+        if(ev.persisted){ cacheDepuis = 0; jouer(); }
     });
 })();
 </script>
@@ -3237,7 +3251,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v252</span>
+        <span class="subtitle-version">v253</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14738,7 +14752,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 252;
+const APP_VERSION = 253;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
