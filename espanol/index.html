@@ -14515,7 +14515,7 @@ function voiceQualityScore(v){
     // hors connexion. On privilegie legerement la qualite, le repli restant local.
     if(v && v.localService === false) score += 3;
     // Espagnol d'Espagne et anglais standard avant les variantes regionales :
-    // le cours enseigne les formes "vosotros" (vivis, vivisteis), c'est-a-dire
+    // le cours enseigne les formes "vosotros" (vivís, vivisteis), c'est-a-dire
     // l'espagnol peninsulaire, pas l'espagnol d'Amerique.
     const lang = ((v && v.lang) || "").toLowerCase();
     if(lang === "es-es" || lang === "en-gb" || lang === "en-us") score += 2;
