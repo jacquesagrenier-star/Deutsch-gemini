@@ -3372,7 +3372,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v259</span>
+        <span class="subtitle-version">v260</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10132,6 +10132,11 @@ function scheduleCloudSync(){
 async function syncProgressToCloud(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb) return;
+    // Filet de securite : tant que la restauration n'a pas abouti, on ne sait
+    // pas si le local est vide parce que la personne debute ou parce qu'on est
+    // dans un stockage neuf (app installee sur l'ecran d'accueil). Dans le
+    // doute, on n'ecrit pas.
+    if(!cloudRestoreDone) return;
     try{
         const progress = getProgress();
         let masteredCount = 0, totalCount = 0;
@@ -10169,11 +10174,91 @@ async function syncProgressToCloud(){
     }
 }
 
-// Appelé depuis le script Firebase (module) juste après la connexion, pour que
-// la progression déjà accumulée localement remonte vers Firestore même si rien
-// de nouveau n'est encore maîtrisé pendant cette session.
+// ============ Restauration depuis le cloud ============
+//
+// La synchronisation a longtemps ete a SENS UNIQUE : on televersait, rien ne
+// redescendait. Tant qu'on ouvrait l'app dans Safari, cela ne se voyait pas --
+// le localStorage suffisait.
+//
+// Cela s'est vu le jour ou l'app a ete installee sur l'ecran d'accueil : iOS
+// donne aux applications installees un stockage SEPARE de celui de Safari.
+// L'app s'ouvrait donc a 0 %, et quatre secondes plus tard elle televersait ce
+// vide par-dessus la sauvegarde du cloud. Perte de donnees, a chaque ouverture.
+let cloudRestoreDone = false;
+
+// On garde l'etat le PLUS AVANCE des deux, jamais le plus recent : une seance
+// faite hors ligne sur un appareil ne doit pas disparaitre parce qu'un autre
+// appareil s'est connecte apres.
+function mergeWordState(a, b){
+    if(!a) return b;
+    if(!b) return a;
+    const ra = a.reviews || 0, rb = b.reviews || 0;
+    if(ra !== rb) return ra > rb ? a : b;
+    if(!!a.mastered !== !!b.mastered) return a.mastered ? a : b;
+    const sa = a.srsHits || 0, sb = b.srsHits || 0;
+    if(sa !== sb) return sa > sb ? a : b;
+    return a;
+}
+
+async function restoreProgressFromCloud(){
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!user || !window.firestoreDb){ cloudRestoreDone = true; return; }
+    try{
+        const snap = await window.fsGetDoc(
+            window.fsDoc(window.firestoreDb, 'users', user.uid));
+        if(!snap.exists()){ cloudRestoreDone = true; return; }
+        const data = snap.data() || {};
+        const remote = data.progress || {};
+        const local = getProgress();
+
+        let ajoutes = 0;
+        Object.keys(remote).forEach(themeKey => {
+            const remoteTheme = remote[themeKey] || {};
+            if(!local[themeKey]) local[themeKey] = {};
+            Object.keys(remoteTheme).forEach(index => {
+                const antes = local[themeKey][index];
+                const fusion = mergeWordState(antes, remoteTheme[index]);
+                if(fusion !== antes){ ajoutes++; }
+                local[themeKey][index] = fusion;
+            });
+        });
+        if(ajoutes) saveProgress(local);
+
+        // La serie et l'XP se restaurent au maximum, jamais a la baisse.
+        try{
+            if(typeof data.streak === "number" && data.streak > getStreakCount()){
+                localStorage.setItem(STREAK_KEY, String(data.streak));
+            }
+            if(typeof data.xp === "number" && data.xp > getXp()){
+                localStorage.setItem(XP_KEY, String(data.xp));
+            }
+        }catch(e){}
+
+        cloudRestoreDone = true;
+        if(ajoutes){
+            // L'accueil affiche deja 0 % a ce stade : il faut le redessiner,
+            // sinon la restauration est invisible jusqu'au prochain ecran.
+            if(typeof updateGlobalProgress === "function") updateGlobalProgress();
+            if(typeof updateHomeStatsPanel === "function") updateHomeStatsPanel();
+            if(typeof renderThemes === "function" &&
+               document.getElementById("nomen") &&
+               document.getElementById("nomen").classList.contains("active")){
+                renderThemes();
+            }
+        }
+    }catch(e){
+        // Restauration ratee : on NE marque PAS cloudRestoreDone, ce qui
+        // bloque l'envoi. Une sauvegarde qui ne part pas se rattrape a la
+        // prochaine ouverture ; une sauvegarde ecrasee, non.
+        console.warn("Restauration de la progression impossible", e);
+    }
+}
+
+// Appelé depuis le script Firebase (module) juste après la connexion. On
+// RESTAURE d'abord, on televerse ensuite : l'ordre inverse ecrasait le cloud
+// avec le localStorage vide d'une app fraichement installee.
 window.onDeutschAiUserSignedIn = function(){
-    scheduleCloudSync();
+    restoreProgressFromCloud().then(scheduleCloudSync);
     loadVhsKapitelAccessFlag();
 };
 
@@ -14887,7 +14972,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 259;
+const APP_VERSION = 260;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
