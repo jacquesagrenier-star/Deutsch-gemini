@@ -14478,12 +14478,22 @@ function toggleVerbExtra(){
 }
 
 // Sur iOS Safari, utterance.lang seul ne suffit pas toujours : si aucune voix
-// allemande n'est (encore) chargée, le système peut basculer sur la voix par
-// défaut (souvent française) et prononcer le mot allemand avec des règles de
-// prononciation françaises. On cherche donc explicitement une voix "de*" parmi
+// espagnole n'est (encore) chargée, le système peut basculer sur la voix par
+// défaut (souvent française) et prononcer le mot espagnol avec des règles de
+// prononciation françaises. On cherche donc explicitement une voix "es*" parmi
 // les voix disponibles, en la mémorisant une fois trouvée (la liste des voix se
 // charge de façon asynchrone, d'où l'écoute de "voiceschanged").
-let cachedGermanVoice = null;
+//
+// Le code interne "de" désigne PARTOUT la langue apprise : c'est un héritage de
+// l'app allemande dont ce fork est issu, et il est gardé tel quel parce que les
+// clés de progression, la forme des données et la direction d'apprentissage en
+// dépendent. Ici la langue apprise est l'espagnol, d'où ces deux tables : elles
+// sont le SEUL endroit où ce code interne devient une vraie langue de synthèse.
+// Sans elles, c'est une voix allemande qui lisait les phrases espagnoles.
+const VOIX_PREFIXE = { de: "es", en: "en", fr: "fr" };
+const VOIX_ETIQUETTE = { de: "es-ES", en: "en-GB", fr: "fr-FR" };
+
+let cachedSpanishVoice = null;
 let cachedEnglishVoice = null;
 
 const VOICE_CHOICE_KEY = "wortandoEs_voiceChoice";
@@ -14504,14 +14514,17 @@ function voiceQualityScore(v){
     // Une voix distante est presque toujours neurale ; une voix locale marche
     // hors connexion. On privilegie legerement la qualite, le repli restant local.
     if(v && v.localService === false) score += 3;
-    // Allemand et anglais standard avant les variantes regionales.
+    // Espagnol d'Espagne et anglais standard avant les variantes regionales :
+    // le cours enseigne les formes "vosotros" (vivis, vivisteis), c'est-a-dire
+    // l'espagnol peninsulaire, pas l'espagnol d'Amerique.
     const lang = ((v && v.lang) || "").toLowerCase();
-    if(lang === "de-de" || lang === "en-gb" || lang === "en-us") score += 2;
+    if(lang === "es-es" || lang === "en-gb" || lang === "en-us") score += 2;
     return score;
 }
 
-function voicesForLang(prefix){
+function voicesForLang(code){
     if(!('speechSynthesis' in window)) return [];
+    const prefix = VOIX_PREFIXE[code] || code;
     return window.speechSynthesis.getVoices()
         .filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix))
         .sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
@@ -14546,14 +14559,15 @@ function pickVoice(prefix){
     return dispo[0];
 }
 
-function findGermanVoice(){ return pickVoice('de'); }
+// 'de' = code interne de la langue apprise (voir VOIX_PREFIXE) -> voix espagnole.
+function findSpanishVoice(){ return pickVoice('de'); }
 function findEnglishVoice(){ return pickVoice('en'); }
 
 function setVoiceChoice(prefix, nom){
     const choix = storedVoiceChoice();
     choix[prefix] = nom;
     try{ localStorage.setItem(VOICE_CHOICE_KEY, JSON.stringify(choix)); }catch(e){}
-    cachedGermanVoice = findGermanVoice();
+    cachedSpanishVoice = findSpanishVoice();
     cachedEnglishVoice = findEnglishVoice();
     // Extrait immediat : on juge une voix a l'oreille, pas a son nom.
     testVoice(prefix);
@@ -14565,9 +14579,9 @@ function testVoice(prefix){
     if(!voix) return;
     window.speechSynthesis.cancel();
     const extraits = {
-        de: "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch.",
-        en: "Good morning! I learn a little English every day.",
-        fr: "Bonjour ! J'apprends un peu d'allemand chaque jour."
+        de: "¡Buenos días! Aprendo un poco de español todos los días.",
+        en: "Good morning! I learn a little Spanish every day.",
+        fr: "Bonjour ! J'apprends un peu d'espagnol chaque jour."
     };
     const u = new SpeechSynthesisUtterance(extraits[prefix] || extraits.en);
     u.voice = voix;
@@ -14613,13 +14627,13 @@ function renderVoiceSettings(){
 
 if('speechSynthesis' in window){
     window.speechSynthesis.onvoiceschanged = () => {
-        cachedGermanVoice = findGermanVoice();
+        cachedSpanishVoice = findSpanishVoice();
         cachedEnglishVoice = findEnglishVoice();
         // getVoices() est vide au premier appel sur plusieurs navigateurs : la
         // liste n'arrive qu'ici, il faut donc redessiner l'ecran s'il est ouvert.
         if(document.getElementById("voiceSettingsBox")) renderVoiceSettings();
     };
-    cachedGermanVoice = findGermanVoice();
+    cachedSpanishVoice = findSpanishVoice();
     cachedEnglishVoice = findEnglishVoice();
 }
 
@@ -14984,7 +14998,7 @@ function ecouteJouerEtape(){
         u.voice = voix;
         u.lang = voix.lang;
     } else {
-        u.lang = et.lang === "de" ? "de-DE" : (et.lang === "en" ? "en-GB" : "fr-FR");
+        u.lang = VOIX_ETIQUETTE[et.lang] || VOIX_ETIQUETTE.fr;
     }
     u.rate = ecouteVitesse;
     u.onend = avancer;
@@ -15106,7 +15120,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 19;
+const APP_VERSION = 20;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -15182,7 +15196,7 @@ function speakWord(){
     const backWordEl = document.getElementById("flashBackWord");
     let textToSpeak = backWordEl ? backWordEl.textContent : "";
     if(!textToSpeak) return;
-    // Pour les noms allemands, inclure l'article (der/die/das) dans la
+    // Pour les noms espagnols, inclure l'article (el/la/los/las) dans la
     // prononciation quand il est affiché sur la carte -- plus utile pour
     // retenir le genre que le nom seul. flashArticle n'est visible que dans
     // la branche "nomen" en direction allemande (masqué partout ailleurs).
@@ -15193,8 +15207,8 @@ function speakWord(){
     const learningEnglish = getLearningDirection() === 'en';
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = learningEnglish ? 'en-GB' : 'de-DE';
-    const voice = learningEnglish ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
+    utterance.lang = learningEnglish ? VOIX_ETIQUETTE.en : VOIX_ETIQUETTE.de;
+    const voice = learningEnglish ? (cachedEnglishVoice || findEnglishVoice()) : (cachedSpanishVoice || findSpanishVoice());
     if(voice) utterance.voice = voice;
     utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
@@ -15209,8 +15223,8 @@ function speakDictationText(text, lang){
     if(!text || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang === 'en' ? 'en-GB' : 'de-DE';
-    const voice = lang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
+    utterance.lang = lang === 'en' ? VOIX_ETIQUETTE.en : VOIX_ETIQUETTE.de;
+    const voice = lang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedSpanishVoice || findSpanishVoice());
     if(voice) utterance.voice = voice;
     utterance.rate = 0.85;
     window.speechSynthesis.speak(utterance);
@@ -15297,8 +15311,8 @@ function speakRegisteredSentence(idx){
     if(!entry || !entry.text || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(entry.text);
-    utterance.lang = entry.lang === 'en' ? 'en-GB' : 'de-DE';
-    const voice = entry.lang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedGermanVoice || findGermanVoice());
+    utterance.lang = entry.lang === 'en' ? VOIX_ETIQUETTE.en : VOIX_ETIQUETTE.de;
+    const voice = entry.lang === 'en' ? (cachedEnglishVoice || findEnglishVoice()) : (cachedSpanishVoice || findSpanishVoice());
     if(voice) utterance.voice = voice;
     utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
