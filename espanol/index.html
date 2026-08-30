@@ -3437,7 +3437,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v261</span>
+        <span class="subtitle-version">v262</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5706,7 +5706,7 @@ const I18N = {
         dict_participle: "part. {pp}",
         label_participle: "Participe",
         pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
-        echeance_encore: "d'ici la fin",
+        echeance_encore: "dans quelques cartes",
         echeance_10min: "10 min",
         echeance_demain: "demain",
         echeance_jours: "{n} j",
@@ -6584,7 +6584,7 @@ const I18N = {
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
         pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
-        echeance_encore: "before the end",
+        echeance_encore: "in a few cards",
         echeance_10min: "10 min",
         echeance_demain: "tomorrow",
         echeance_jours: "{n} d",
@@ -15113,7 +15113,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 21;
+const APP_VERSION = 22;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -15421,6 +15421,17 @@ const SRS_PALIERS = 4;
 // paquet (cartesEncoreEnAttente). Les voir diverger rendrait le rattrapage
 // muet, et le defaut serait invisible.
 const SRS_ENCORE_MINUTES = 2;
+// Nombre de cartes vues AVANT de revoir un mot rate. Le mot est remis dans la
+// file de la seance, quelques rangs plus loin, au lieu d'attendre la fin du
+// paquet.
+//
+// POURQUOI PAS LA FIN DU PAQUET. En mode "Mots au hasard", le paquet n'est pas
+// un theme : startRandomMix() empile TOUS les noms des niveaux choisis, jusqu'a
+// 1840 cartes. La fin n'arrive jamais, donc un rattrapage place a la fin ne
+// s'execute jamais -- le mot rate ne revenait pas, exactement la ou l'usager
+// testait. Trois cartes suffisent a ne pas repondre de memoire immediate, et
+// n'obligent a finir aucun paquet.
+const SRS_CARTES_AVANT_RETOUR = 3;
 // Nombre de barreaux en jours franchis avant la maitrise. Il en faut un de
 // moins que de pastilles : la premiere reussite programme 10 minutes, pas un
 // jour, et ne monte donc pas cette echelle-la.
@@ -15475,7 +15486,23 @@ function reviewAgain(){
     state.srsHits = 0;
     setWordState(item.themeId, item.index, state);
     sessionVues++;
+    remettreEnFile(item);
     scheduleReview(SRS_ENCORE_MINUTES);   // revient dans la meme session
+}
+
+// Reinsere la carte quelques rangs plus loin dans la file de la seance.
+// Appele AVANT scheduleReview(), qui enchaine sur nextFlashcard() : inserer
+// apres deplacerait la cible d'un rang.
+function remettreEnFile(item){
+    // currentCards et currentCardsFull sont le MEME tableau dans plusieurs
+    // seances (revision du jour, categories ouvertes sans carte due). On
+    // detache la file de session avant d'y inserer, sinon le paquet de
+    // reference gagne lui aussi le doublon -- et le rattrapage de fin de
+    // paquet proposerait la carte deux fois.
+    if(currentCards === currentCardsFull) currentCards = currentCards.slice();
+    const cible = Math.min(currentFlashcard + 1 + SRS_CARTES_AVANT_RETOUR,
+                           currentCards.length);
+    currentCards.splice(cible, 0, item);
 }
 
 // La recompense doit etre VUE. Tant que la carte tournait dans la meme image
