@@ -2204,6 +2204,18 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     line-height:1.4;
 }
 
+/* L'indication du retour s'aligne a droite : elle designe la zone qu'elle
+   decrit, au lieu de la decrire uniquement en mots. Le `margin-top:auto` de
+   .skip-hint pousse deja le bloc en bas de la face ; celle-ci le suit. */
+.return-hint{
+    /* La face est un flex centre : sans cette ligne le bloc se retrecit au
+       texte, et l'alignement a droite ne se voit pas. */
+    align-self:stretch;
+    text-align:right;
+    margin-top:0;
+    padding-top:6px;
+}
+
 .review-button{
     padding:13px 8px;
     border-radius:14px;
@@ -3389,7 +3401,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v292</span>
+        <span class="subtitle-version">v293</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4987,7 +4999,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="flashcard-wrapper">
-        <div id="flashcard" class="flashcard" onclick="handleCardTap()">
+        <div id="flashcard" class="flashcard" onclick="handleCardTap(event)">
             <div class="flashcard-face flashcard-front">
                 <div id="flashWord" class="word">Tisch</div>
                 <div class="tap-hint" data-i18n="flash_tap_hint">Touche la carte pour voir la réponse</div>
@@ -5007,6 +5019,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
+                <div class="skip-hint return-hint" data-i18n="flash_return_hint">↩ Toucher le bord droit revient au recto.</div>
             </div>
         </div>
     </div>
@@ -5769,6 +5782,7 @@ const I18N = {
 
         flash_tap_hint: "Touche la carte pour voir la réponse",
         flash_skip_hint: "Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.",
+        flash_return_hint: "↩ Toucher le bord droit revient au recto.",
         review_2min: "Revoir dans 2 min",
         review_10min: "Revoir dans 10 min",
         review_tomorrow: "Revoir demain",
@@ -6666,6 +6680,7 @@ const I18N = {
 
         flash_tap_hint: "Tap the card to see the answer",
         flash_skip_hint: "Tapping the card moves to the next one, without saving your progress.",
+        flash_return_hint: "↩ Tapping the right edge goes back to the front.",
         review_2min: "Review in 2 min",
         review_10min: "Review in 10 min",
         review_tomorrow: "Review tomorrow",
@@ -14370,7 +14385,39 @@ function flipCard(){
 
 let cardBusy = false;
 
-function handleCardTap(){
+// Largeur de la bande de retour, en fraction de la carte. Un quart : assez
+// large pour se toucher au pouce sans viser, assez etroit pour que le geste
+// courant -- passer a la suivante -- garde les trois autres quarts.
+const BANDE_RETOUR = 0.25;
+
+// Vrai si le clic tombe dans cette bande. Un clic declenche au clavier n'a pas
+// de coordonnees utilisables (clientX vaut 0) : il vaut alors le geste
+// ordinaire, pas le retour.
+function tapSurBordDroit(event, flashcardEl){
+    if(!event || !event.clientX) return false;
+    // On mesure le CONTENEUR, pas la carte : la carte tourne autour de son axe
+    // vertical, et a mi-parcours sa projection a une largeur nulle. Mesuree la,
+    // toute position tombe hors de la bande et le retour ne se declenche jamais.
+    const cadre = flashcardEl.closest(".flashcard-wrapper") || flashcardEl;
+    const r = cadre.getBoundingClientRect();
+    if(!r.width) return false;
+    return (event.clientX - r.left) / r.width > (1 - BANDE_RETOUR);
+}
+
+function unflipCard(){
+    const flashcardEl = document.getElementById("flashcard");
+    if(!flashcardEl) return;
+    flashcardEl.classList.remove("flipped");
+    // Les boutons de jugement se retirent avec la reponse : juger une carte
+    // qu'on ne voit plus n'aurait aucun sens.
+    document.getElementById("flashcardActions").classList.add("hidden");
+    // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
+    // voix continue de dire une reponse qui n'est plus a l'ecran.
+    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    resizeFlashcard();
+}
+
+function handleCardTap(event){
     // Toucher la carte = l'utilisateur passe a la suite : la video de
     // gratification eventuellement en cours s'arrete ici (demande explicite).
     stopMasteryCelebrations();
@@ -14378,6 +14425,7 @@ function handleCardTap(){
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
     if(flashcardEl.classList.contains("flipped")){
+        if(tapSurBordDroit(event, flashcardEl)){ unflipCard(); return; }
         slideToNextCard(flashcardEl);
     } else {
         flipCard();
@@ -15056,7 +15104,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 292;
+const APP_VERSION = 293;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
