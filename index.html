@@ -2207,13 +2207,28 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
 /* L'indication du retour s'aligne a droite : elle designe la zone qu'elle
    decrit, au lieu de la decrire uniquement en mots. Le `margin-top:auto` de
    .skip-hint pousse deja le bloc en bas de la face ; celle-ci le suit. */
-.return-hint{
-    /* La face est un flex centre : sans cette ligne le bloc se retrecit au
-       texte, et l'alignement a droite ne se voit pas. */
+/* Une carte de la carte. Chaque moitie porte le signe du geste qu'elle
+   declenche, a l'endroit ou il faut toucher : le trait du milieu montre ou
+   passe la frontiere. Deux signes disent ce que deux phrases disaient mal.
+   La face est un flex centre, d'ou le align-self:stretch -- sans lui la
+   rangee se retrecirait aux deux caracteres et ne designerait plus rien. */
+.tap-map{
+    display:flex;
     align-self:stretch;
-    text-align:right;
     margin-top:0;
-    padding-top:6px;
+    padding-top:10px;
+    color:#9aa3b2;
+    font-size:17px;
+    line-height:1;
+}
+
+.tap-map-half{
+    flex:1;
+    text-align:center;
+}
+
+.tap-map-half + .tap-map-half{
+    border-left:1px solid rgba(30,41,59,.14);
 }
 
 .review-button{
@@ -2830,6 +2845,11 @@ body[data-theme="dark"] .pill,
 body[data-theme="dark"] .explanation,
 body[data-theme="dark"] .verb-details,
 body[data-theme="dark"] .orb-panel-sub,
+body[data-theme="dark"] .tap-map{ color:#8A90A3; }
+body[data-theme="dark"] .tap-map-half + .tap-map-half{
+    border-left-color:rgba(183,187,203,.20);
+}
+
 body[data-theme="dark"] .tap-hint,
 body[data-theme="dark"] .skip-hint,
 body[data-theme="dark"] .stat{
@@ -3401,7 +3421,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v293</span>
+        <span class="subtitle-version">v294</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3896,7 +3916,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="kicker" id="adjektiveKicker" data-i18n="kicker_integrated_vocab">Vocabulaire Intégré</div>
             <h2 id="adjektiveTitle" data-i18n="adjektive_title">Adjectifs par niveau</h2>
         </div>
-        <div class="pill" data-i18n="four_levels">4 niveaux</div>
+        <div class="pill" id="adjLevelCountPill" data-i18n="levels_label">Niveaux</div>
     </div>
 
     <div class="filters-bar">
@@ -5018,8 +5038,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
-                <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
-                <div class="skip-hint return-hint" data-i18n="flash_return_hint">↩ Toucher le bord droit revient au recto.</div>
+                <div class="skip-hint" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
+                <div class="tap-map" aria-hidden="true">
+                    <span class="tap-map-half">↩</span>
+                    <span class="tap-map-half">→</span>
+                </div>
             </div>
         </div>
     </div>
@@ -5778,11 +5801,9 @@ const I18N = {
         nomenniveau_title: "Noms par niveau",
         adjektive_title: "Adjectifs par niveau",
         adjektive_title_en: "Adjektive par niveau",
-        four_levels: "4 niveaux",
 
         flash_tap_hint: "Touche la carte pour voir la réponse",
-        flash_skip_hint: "Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.",
-        flash_return_hint: "↩ Toucher le bord droit revient au recto.",
+        flash_skip_hint: "Passer une carte ne compte pas dans ta progression.",
         review_2min: "Revoir dans 2 min",
         review_10min: "Revoir dans 10 min",
         review_tomorrow: "Revoir demain",
@@ -6676,11 +6697,9 @@ const I18N = {
         nomenniveau_title: "Nouns by level",
         adjektive_title: "Adjectives by level",
         adjektive_title_en: "Adjektive by level",
-        four_levels: "4 levels",
 
         flash_tap_hint: "Tap the card to see the answer",
-        flash_skip_hint: "Tapping the card moves to the next one, without saving your progress.",
-        flash_return_hint: "↩ Tapping the right edge goes back to the front.",
+        flash_skip_hint: "Skipping a card doesn't count toward your progress.",
         review_2min: "Review in 2 min",
         review_10min: "Review in 10 min",
         review_tomorrow: "Review tomorrow",
@@ -11344,10 +11363,21 @@ function openAdjektive(){
     showScreen("adjektive");
 }
 
+// Les adjectifs sont stockes en tableaux, niveau en case 3 -- les verbes,
+// eux, sont des objets a champ `niveau`. D'ou deux fonctions plutot qu'une.
+function getAdjektiveLevelsPresent(){
+    const present = new Set(adjektiveTheme.words.map(w => w[3]));
+    return LEVELS.filter(lvl => present.has(lvl));
+}
+
 function renderAdjektiveLevels(){
     const container = document.getElementById("adjLevelList");
+    const pill = document.getElementById("adjLevelCountPill");
     if(!container) return;
     container.innerHTML = "";
+
+    const levelsPresent = getAdjektiveLevelsPresent();
+    if(pill) pill.textContent = `${levelsPresent.length} ${t(levelsPresent.length !== 1 ? 'label_level_plural' : 'label_level_singular')}`;
 
     const randomItem = document.createElement("div");
     randomItem.className = "theme-item random-item";
@@ -14385,23 +14415,21 @@ function flipCard(){
 
 let cardBusy = false;
 
-// Largeur de la bande de retour, en fraction de la carte. Un quart : assez
-// large pour se toucher au pouce sans viser, assez etroit pour que le geste
-// courant -- passer a la suivante -- garde les trois autres quarts.
-const BANDE_RETOUR = 0.25;
-
-// Vrai si le clic tombe dans cette bande. Un clic declenche au clavier n'a pas
-// de coordonnees utilisables (clientX vaut 0) : il vaut alors le geste
-// ordinaire, pas le retour.
-function tapSurBordDroit(event, flashcardEl){
+// Vrai si le clic tombe dans la moitie gauche du verso, celle qui ramene au
+// recto. Une moitie plutot qu'une bande etroite : le geste doit se faire au
+// pouce, sans regarder ou l'on touche.
+//
+// Un clic declenche au clavier n'a pas de coordonnees utilisables (clientX
+// vaut 0) : il vaut alors le geste ordinaire, pas le retour.
+function tapSurMoitieGauche(event, flashcardEl){
     if(!event || !event.clientX) return false;
     // On mesure le CONTENEUR, pas la carte : la carte tourne autour de son axe
     // vertical, et a mi-parcours sa projection a une largeur nulle. Mesuree la,
-    // toute position tombe hors de la bande et le retour ne se declenche jamais.
+    // le calcul ne veut plus rien dire.
     const cadre = flashcardEl.closest(".flashcard-wrapper") || flashcardEl;
     const r = cadre.getBoundingClientRect();
     if(!r.width) return false;
-    return (event.clientX - r.left) / r.width > (1 - BANDE_RETOUR);
+    return (event.clientX - r.left) / r.width < 0.5;
 }
 
 function unflipCard(){
@@ -14425,7 +14453,7 @@ function handleCardTap(event){
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
     if(flashcardEl.classList.contains("flipped")){
-        if(tapSurBordDroit(event, flashcardEl)){ unflipCard(); return; }
+        if(tapSurMoitieGauche(event, flashcardEl)){ unflipCard(); return; }
         slideToNextCard(flashcardEl);
     } else {
         flipCard();
@@ -15104,7 +15132,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 293;
+const APP_VERSION = 294;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
