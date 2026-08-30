@@ -1865,8 +1865,12 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
        derniere pastille tomber seule a la ligne. Le navigateur en place
        autant que la largeur en permet, et retombe a quatre ou trois sur un
        ecran etroit. */
-    grid-template-columns:repeat(auto-fit, minmax(58px, 1fr));
-    gap:8px;
+    /* 48px + 6px d'ecart : cinq pastilles tiennent sur la rangee d'un
+       telephone (le conteneur y fait 299px), la ou 58px n'en laissait passer
+       que quatre et renvoyait le C1 seul a la ligne suivante. « 0/449 », le
+       compte le plus large de l'app, mesure 45px -- il reste de la marge. */
+    grid-template-columns:repeat(auto-fit, minmax(48px, 1fr));
+    gap:6px;
     margin-top:14px;
 }
 
@@ -3440,7 +3444,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v299</span>
+        <span class="subtitle-version">v300</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -15226,7 +15230,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 299;
+const APP_VERSION = 300;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
