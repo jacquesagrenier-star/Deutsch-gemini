@@ -3509,7 +3509,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v300</span>
+        <span class="subtitle-version">v302</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10563,6 +10563,36 @@ function setWordState(themeId, index, state){
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1"];
 
+// Les themes qui entrent dans la progression -- c'est-a-dire tous sauf les
+// chapitres VHS. Ceux-ci sont une liste de revision reservee aux etudiants du
+// cours, affichee derriere un drapeau d'acces ; leurs mots ne doivent pas
+// gonfler le paquet ni les pourcentages de ceux qui ne les voient meme pas.
+// Ils gardent en revanche leurs compteurs propres, dans l'ecran des chapitres.
+function estChapitreVhs(theme){
+    return !!theme && typeof theme.id === "string"
+        && theme.id.startsWith("vhs_kapitel");
+}
+
+function themesComptes(){
+    return (typeof themes !== "undefined" ? themes : []).filter(
+        th => !estChapitreVhs(th));
+}
+
+// Le meme mot vit parfois a deux endroits (« Ticket » en Reisen A1 et A2). On
+// n'en garde qu'un dans une pioche -- et de preference celui qui reste a
+// apprendre : garder aveuglement le premier masquerait une carte non maitrisee
+// derriere une copie deja acquise.
+function sansDoublons(pool){
+    const gardes = new Map();
+    pool.forEach(item => {
+        const cle = item.word[0];
+        const acquis = !!getWordState(item.themeId, item.index).mastered;
+        const deja = gardes.get(cle);
+        if(!deja || (deja.acquis && !acquis)) gardes.set(cle, { item, acquis });
+    });
+    return Array.from(gardes.values()).map(g => g.item);
+}
+
 // « A1 \u00b7 A2 \u00b7 B1 \u00b7 B2 \u00b7 C1 », pour les libelles qui enumerent les
 // niveaux. Ces listes etaient recopiees a la main dans les traductions et
 // sont restees a B2 quand le C1 est arrive : quatre endroits a corriger pour
@@ -10986,7 +11016,7 @@ function getLevelMasteryStats(level){
             total++;
             if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
         });
-        themes.forEach(t => {
+        themesComptes().forEach(t => {
             const levelData = t.levels[level];
             if(!levelData) return;
             total += levelData.words.length;
@@ -11084,7 +11114,7 @@ function updateGlobalProgress(){
         adjektiveTheme.words.forEach((w, i) => {
             if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
         });
-        themes.forEach(t => {
+        themesComptes().forEach(t => {
             LEVELS.forEach(lvl => {
                 const levelData = t.levels[lvl];
                 if(!levelData) return;
@@ -11123,7 +11153,7 @@ function updateGlobalProgress(){
             if(getWordState(partikelnTheme.id, i).mastered) mastered++;
         });
 
-        themes.forEach(t => {
+        themesComptes().forEach(t => {
             LEVELS.forEach(lvl => {
                 const levelData = t.levels[lvl];
                 if(!levelData) return;
@@ -11162,7 +11192,7 @@ function getLevelMasteryStatsEn(level){
         total++;
         if(getWordState(adjektiveTheme.id, i).mastered) mastered++;
     });
-    themes.forEach(t => {
+    themesComptes().forEach(t => {
         const levelData = t.levels[level];
         if(!levelData) return;
         total += levelData.words.length;
@@ -11199,7 +11229,7 @@ function getPartikelnMasteryPercent(){ return masteryPercentForList(partikelnThe
 function getNomenMasteryPercent(){
     return withGermanProgress(() => {
         let total = 0, mastered = 0;
-        themes.forEach(t => {
+        themesComptes().forEach(t => {
             LEVELS.forEach(lvl => {
                 const levelData = t.levels[lvl];
                 if(!levelData) return;
@@ -11261,7 +11291,7 @@ function masteryPercentForListRaw(themeId, words){
 }
 function getNomenEnMasteryPercent(){
     let total = 0, mastered = 0;
-    themes.forEach(t => {
+    themesComptes().forEach(t => {
         LEVELS.forEach(lvl => {
             const levelData = t.levels[lvl];
             if(!levelData) return;
@@ -12073,7 +12103,7 @@ function pushSearchEntry(list, entry){
 function buildSearchIndex(){
     const list = [];
 
-    (typeof themes !== 'undefined' ? themes : []).forEach(theme => {
+    themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(level => {
             const lv = theme.levels[level];
             const src = theme.name + " \u00b7 " + level;
@@ -13620,7 +13650,7 @@ function renderNomenLevels(){
 
     levelsPresent.forEach(lvl => {
         let total = 0, mastered = 0;
-        themes.forEach(th => {
+        themesComptes().forEach(th => {
             const levelData = th.levels[lvl];
             if(!levelData) return;
             total += levelData.words.length;
@@ -13661,7 +13691,8 @@ function comingSoon(label){
 
 function getAllNomenItems(){
     let pool = [];
-    themes.forEach(theme => {
+    // (dedoublonne juste avant d'etre rendu -- voir plus bas)
+    themesComptes().forEach(theme => {
         LEVELS.forEach(lvl => {
             const levelData = theme.levels[lvl];
             if(!levelData) return;
@@ -13670,7 +13701,7 @@ function getAllNomenItems(){
             });
         });
     });
-    return pool;
+    return sansDoublons(pool);
 }
 
 const DUE_SESSION_CAP = 30;
@@ -14006,7 +14037,7 @@ function startRandomMix(level){
     flashcardMode = 'nomen';
     const levelsToUse = (level === "ALL") ? LEVELS : [level];
     let pool = [];
-    themes.forEach(theme => {
+    themesComptes().forEach(theme => {
         levelsToUse.forEach(lvl => {
             const levelData = theme.levels[lvl];
             if(!levelData) return;
@@ -14016,6 +14047,7 @@ function startRandomMix(level){
         });
     });
     if(pool.length === 0){ showInfoToast(t('alert_no_words_available')); return; }
+    pool = sansDoublons(pool);
     shuffleArray(pool);
 
     const now = Date.now();
@@ -15373,7 +15405,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 28;
+const APP_VERSION = 29;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -16942,7 +16974,7 @@ function phrasesTraduisibles(niveau){
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
 
-    (typeof themes !== 'undefined' ? themes : []).forEach(theme => {
+    themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(lvl => {
             if(!bonNiveau(lvl)) return;
             const lv = theme.levels[lvl];
