@@ -3444,7 +3444,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v304</span>
+        <span class="subtitle-version">v305</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4233,6 +4233,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <button class="secondary" onclick="startPraepWoWohin()" data-i18n="praep_btn_wowohin">M'ENTRAÎNER : WO OU WOHIN ? →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startPraepVokabular()" data-i18n="praep_btn_vocab">VOCABULAIRE : PRÉPOSITIONS →</button>
+    <div id="praepNiveauBar" class="filters-bar"></div>
     <div class="spacer"></div>
     <button class="secondary" onclick="startPositionsverbenVokabular()" data-i18n="praep_btn_position_vocab">VOCABULAIRE : VERBES DE POSITION →</button>
 </section>
@@ -4315,6 +4316,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <button class="secondary" onclick="startPartikelnNuance()" data-i18n="partikeln_btn_nuance">M'ENTRAÎNER : RECONNAÎTRE LA NUANCE →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startPartikelnVokabular()" data-i18n="partikeln_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
+    <div id="partikelnNiveauBar" class="filters-bar"></div>
 </section>
 
 <!-- ================= ADVERBES ================= -->
@@ -4633,6 +4635,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <button class="secondary" onclick="startKonjunktionenNuance()" data-i18n="konjunktionen_btn_nuance">M'ENTRAÎNER : COORDINATION OU SUBORDINATION →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startKonjunktionenVokabular()" data-i18n="konjunktionen_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
+    <div id="konjunktionenNiveauBar" class="filters-bar"></div>
 </section>
 
 <!-- ================= STRUCTURE (SATZBAU) ================= -->
@@ -8148,6 +8151,39 @@ const REDEWENDUNG_CATEGORIES = {
 
 // Meme principe que adverbe.json : la donnee vit hors du code. Tuple produit,
 // compatible avec le rendu existant des cartes de grammaire.
+// Conjonctions, particules et prepositions vivaient dans ce fichier, seules
+// listes de vocabulaire de l'app a ne pas avoir de source de donnees -- et
+// donc les seules sans niveau. Elles sont desormais dans funktionswort.json ;
+// ce qui reste ecrit en dur plus bas sert de secours si le telechargement
+// echoue, comme pour les autres listes.
+const FUNKTIONSWORT_THEMES = {
+    konjunktionen:  () => konjunktionenTheme,
+    partikeln:      () => partikelnTheme,
+    praepositionen: () => praepTheme
+};
+
+async function loadFunktionswoerterJson() {
+    try {
+        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/funktionswort.json'), { cache: 'no-cache' });
+        if (!response.ok) throw new Error("Fichier funktionswort.json introuvable");
+        const data = await response.json();
+        Object.keys(FUNKTIONSWORT_THEMES).forEach(cle => {
+            const liste = data[cle];
+            if (!liste || !liste.length) return;
+            // Meme disposition que les adverbes et les expressions : le niveau
+            // en case 8, ou toute l'app va le chercher.
+            FUNKTIONSWORT_THEMES[cle]().words = liste.map(w => [
+                w.mot || "", w.traduction || "", w.kategorie || "",
+                w.exemple || "", w.exemple_fr || "",
+                w.traduction_en || "", w.exemple_en || "",
+                w.kategorie_en || "", w.niveau || ""
+            ]);
+        });
+    } catch (e) {
+        console.warn("Chargement de secours pour funktionswort.json", e);
+    }
+}
+
 async function loadRedewendungenJson() {
     try {
         const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/redewendung.json'), { cache: 'no-cache' });
@@ -8299,6 +8335,7 @@ async function loadThemesJson() {
     await loadVerbeJson();
     await loadAdverbienJson();
     await loadRedewendungenJson();
+    await loadFunktionswoerterJson();
     try {
         const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Erreur themes.json");
@@ -13062,6 +13099,8 @@ function startKasusVerben(){
 }
 
 function openPraepInfo(){
+    renderNiveauBarFonctionnel("praepNiveauBar", praepTheme,
+                               "startPraepVokabular");
     renderPraepQuickRef();
     showScreen("praepInfo");
 }
@@ -13074,10 +13113,17 @@ function startPraepWoWohin(){
     startExerciseSet(praepWoWohinExercises, "kicker_praep_wowohin", openPraepInfo, startPraepWoWohin);
 }
 
-function startPraepVokabular(){
+function startPraepVokabular(niveau){
     flashcardMode = 'praep';
     currentTheme = praepTheme;
-    const allItems = praepTheme.words.map((word, index) => ({ word, index, themeId: praepTheme.id }));
+    // Un niveau demande ne garde que les cartes de ce niveau ; sans
+    // argument, le paquet reste entier -- c'est le comportement
+    // d'avant, et celui des raccourcis qui appellent sans preciser.
+    let allItems = praepTheme.words.map((word, index) => ({ word, index, themeId: praepTheme.id }));
+    if(niveau && niveau !== "ALL"){
+        const filtre = allItems.filter(it => (it.word[8] || "") === niveau);
+        if(filtre.length) allItems = filtre;
+    }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
@@ -13101,6 +13147,8 @@ function startPositionsverbenVokabular(){
 }
 
 function openPartikelnInfo(){
+    renderNiveauBarFonctionnel("partikelnNiveauBar", partikelnTheme,
+                               "startPartikelnVokabular");
     showScreen("partikelnInfo");
 }
 
@@ -13426,7 +13474,25 @@ function startEnglishModule(level, kategorie){
     loadFlashcard();
 }
 
+// Une rangee par fiche : « Tous (28) · A1 (13) · A2 (10) · B1 (5) ».
+// Les niveaux absents ne sont pas affiches -- un bouton « C1 (0) » n'apprend
+// rien et prend la place des autres.
+function renderNiveauBarFonctionnel(barId, theme, fonction){
+    const bar = document.getElementById(barId);
+    if(!bar) return;
+    const mots = (theme && theme.words) || [];
+    const parNiveau = {};
+    mots.forEach(w => { const n = w[8] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
+    const bouton = (val, libelle, n) =>
+        `<button class="secondary" style="flex:1; min-width:0;" onclick="${fonction}('${val}')">${libelle} (${n})</button>`;
+    let html = bouton("ALL", t('adverbien_level_all'), mots.length);
+    LEVELS.forEach(lvl => { if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]); });
+    bar.innerHTML = html;
+}
+
 function openKonjunktionenInfo(){
+    renderNiveauBarFonctionnel("konjunktionenNiveauBar", konjunktionenTheme,
+                               "startKonjunktionenVokabular");
     showScreen("konjunktionenInfo");
 }
 
@@ -13434,10 +13500,17 @@ function startKonjunktionenNuance(){
     startExerciseSet(shuffleArray(konjunktionenNuanceExercises), "kicker_konjunktionen_nuance", openKonjunktionenInfo, startKonjunktionenNuance);
 }
 
-function startKonjunktionenVokabular(){
+function startKonjunktionenVokabular(niveau){
     flashcardMode = 'konjunktionen';
     currentTheme = konjunktionenTheme;
-    const allItems = konjunktionenTheme.words.map((word, index) => ({ word, index, themeId: konjunktionenTheme.id }));
+    // Un niveau demande ne garde que les cartes de ce niveau ; sans
+    // argument, le paquet reste entier -- c'est le comportement
+    // d'avant, et celui des raccourcis qui appellent sans preciser.
+    let allItems = konjunktionenTheme.words.map((word, index) => ({ word, index, themeId: konjunktionenTheme.id }));
+    if(niveau && niveau !== "ALL"){
+        const filtre = allItems.filter(it => (it.word[8] || "") === niveau);
+        if(filtre.length) allItems = filtre;
+    }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
@@ -13485,10 +13558,17 @@ function startPartikelnNuance(){
     startExerciseSet(partikelnNuanceExercises, "kicker_partikeln_nuance", openPartikelnInfo, startPartikelnNuance);
 }
 
-function startPartikelnVokabular(){
+function startPartikelnVokabular(niveau){
     flashcardMode = 'partikeln';
     currentTheme = partikelnTheme;
-    const allItems = partikelnTheme.words.map((word, index) => ({ word, index, themeId: partikelnTheme.id }));
+    // Un niveau demande ne garde que les cartes de ce niveau ; sans
+    // argument, le paquet reste entier -- c'est le comportement
+    // d'avant, et celui des raccourcis qui appellent sans preciser.
+    let allItems = partikelnTheme.words.map((word, index) => ({ word, index, themeId: partikelnTheme.id }));
+    if(niveau && niveau !== "ALL"){
+        const filtre = allItems.filter(it => (it.word[8] || "") === niveau);
+        if(filtre.length) allItems = filtre;
+    }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
@@ -15262,7 +15342,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 304;
+const APP_VERSION = 305;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
