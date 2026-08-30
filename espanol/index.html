@@ -2244,6 +2244,18 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     line-height:1.4;
 }
 
+/* L'indication du retour s'aligne a droite : elle designe la zone qu'elle
+   decrit, au lieu de la decrire uniquement en mots. Le `margin-top:auto` de
+   .skip-hint pousse deja le bloc en bas de la face ; celle-ci le suit. */
+.return-hint{
+    /* La face est un flex centre : sans cette ligne le bloc se retrecit au
+       texte, et l'alignement a droite ne se voit pas. */
+    align-self:stretch;
+    text-align:right;
+    margin-top:0;
+    padding-top:6px;
+}
+
 .review-button{
     padding:13px 8px;
     border-radius:14px;
@@ -3454,7 +3466,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v291</span>
+        <span class="subtitle-version">v293</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5052,7 +5064,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="flashcard-wrapper">
-        <div id="flashcard" class="flashcard" onclick="handleCardTap()">
+        <div id="flashcard" class="flashcard" onclick="handleCardTap(event)">
             <div class="flashcard-face flashcard-front">
                 <div id="flashWord" class="word">Tisch</div>
                 <div class="tap-hint" data-i18n="flash_tap_hint">Touche la carte pour voir la réponse</div>
@@ -5072,6 +5084,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
+                <div class="skip-hint return-hint" data-i18n="flash_return_hint">↩ Toucher le bord droit revient au recto.</div>
             </div>
         </div>
     </div>
@@ -5585,14 +5598,6 @@ function applyAppTheme(theme){
     const icon = document.getElementById("themeToggleIcon");
     if(icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
 
-    const lightBtn = document.getElementById("themeBtnLight");
-    const darkBtn = document.getElementById("themeBtnDark");
-    if(lightBtn && darkBtn){
-        lightBtn.classList.toggle("active", theme === "light");
-        lightBtn.classList.toggle("light", theme === "light");
-        darkBtn.classList.toggle("active", theme === "dark");
-        darkBtn.classList.remove("light");
-    }
 }
 
 function setAppTheme(theme){
@@ -5895,6 +5900,7 @@ const I18N = {
 
         flash_tap_hint: "Touche la carte pour voir la réponse",
         flash_skip_hint: "Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.",
+        flash_return_hint: "↩ Toucher le bord droit revient au recto.",
         review_2min: "Revoir dans 2 min",
         review_10min: "Revoir dans 10 min",
         review_tomorrow: "Revoir demain",
@@ -6477,7 +6483,6 @@ const I18N = {
         theme_name_adj_due_review: "Révision du jour · Adjectifs",
         theme_name_due_review: "Révision du jour",
         theme_name_random_words: "Mots aléatoires · {level}",
-        due_banner_all_caught_up: "Tout est à jour !",
         label_verb_singular: "verbe",
         label_verb_plural: "verbes",
         label_word_singular: "mot",
@@ -6794,6 +6799,7 @@ const I18N = {
 
         flash_tap_hint: "Tap the card to see the answer",
         flash_skip_hint: "Tapping the card moves to the next one, without saving your progress.",
+        flash_return_hint: "↩ Tapping the right edge goes back to the front.",
         review_2min: "Review in 2 min",
         review_10min: "Review in 10 min",
         review_tomorrow: "Review tomorrow",
@@ -7376,7 +7382,6 @@ const I18N = {
         theme_name_adj_due_review: "Daily review · Adjectives",
         theme_name_due_review: "Daily review",
         theme_name_random_words: "Random words · {level}",
-        due_banner_all_caught_up: "All caught up!",
         label_verb_singular: "verb",
         label_verb_plural: "verbs",
         label_word_singular: "word",
@@ -7725,9 +7730,6 @@ function refreshDynamicUiLang(){
     try{ renderNomenLevels(); }catch(e){}
     try{ filterAndRenderThemes(); }catch(e){}
     try{ renderOrbPanel(); }catch(e){}
-    try{ updateVerbDueBanner(); }catch(e){}
-    try{ updateAdjDueBanner(); }catch(e){}
-    try{ updateDueBanner(); }catch(e){}
     try{ renderPraepQuickRef(); }catch(e){}
     // Si une carte ou un exercice est affiché au moment du basculement, on le
     // recharge aussi (mot/traduction/question déjà vus dans l'ancienne langue).
@@ -8481,7 +8483,6 @@ async function loadThemesJson() {
         themesLoaded = true;
         renderThemes();
         renderNomenLevels();
-        updateDueBanner();
         updateOrbBadges();
         // L'anneau de progression du niveau actif (le gros "A1 X %" de l'accueil)
         // avait déjà pu être peint une 1re fois plus tôt, contre des données
@@ -8494,7 +8495,6 @@ async function loadThemesJson() {
         themesLoaded = true;
         renderThemes();
         renderNomenLevels();
-        updateDueBanner();
         updateOrbBadges();
         updateGlobalProgress();
     }
@@ -11306,14 +11306,6 @@ function getVerbenDueCount(){
     return getVerbeDueItemsAll().length;
 }
 
-function updateVerbDueBanner(){
-    const el = document.getElementById("verbDueBannerCount");
-    if(!el) return;
-    const count = getVerbeDueItemsAll().length;
-    if(count === 0) el.textContent = t('due_banner_all_caught_up');
-    else if(count > DUE_SESSION_CAP) el.textContent = `${DUE_SESSION_CAP}+ ${t('label_verb_plural')}`;
-    else el.textContent = `${count} ${t(count !== 1 ? 'label_verb_plural' : 'label_verb_singular')}`;
-}
 
 function getVerbeLevelsPresent(){
     const present = new Set(verbeTheme.words.map(w => w.niveau));
@@ -11327,7 +11319,6 @@ function openVerbenNiveau(){
     if(kickerEl) kickerEl.textContent = t(learningEnglish ? "kicker_english_vocab" : "kicker_grammar_vocab");
     if(titleEl) titleEl.textContent = t(learningEnglish ? "verbenniveau_title_en" : "verbenniveau_title");
     renderVerbeLevels();
-    updateVerbDueBanner();
     showScreen("verbenNiveau");
 }
 
@@ -11460,14 +11451,6 @@ function getAdjektiveDueCount(){
     return getAdjektiveDueItemsAll().length;
 }
 
-function updateAdjDueBanner(){
-    const el = document.getElementById("adjDueBannerCount");
-    if(!el) return;
-    const count = getAdjektiveDueItemsAll().length;
-    if(count === 0) el.textContent = t('due_banner_all_caught_up');
-    else if(count > DUE_SESSION_CAP) el.textContent = `${DUE_SESSION_CAP}+ ${t('label_word_plural')}`;
-    else el.textContent = `${count} ${t(count !== 1 ? 'label_word_plural' : 'label_word_singular')}`;
-}
 
 function openAdjektive(){
     const learningEnglish = getLearningDirection() === 'en';
@@ -11476,7 +11459,6 @@ function openAdjektive(){
     if(kickerEl) kickerEl.textContent = t(learningEnglish ? "kicker_english_vocab" : "kicker_integrated_vocab");
     if(titleEl) titleEl.textContent = t(learningEnglish ? "adjektive_title_en" : "adjektive_title");
     renderAdjektiveLevels();
-    updateAdjDueBanner();
     showScreen("adjektive");
 }
 
@@ -12813,7 +12795,7 @@ function openNomen(){
     const titleEl = document.getElementById("nomenTitle");
     if(kickerEl) kickerEl.textContent = t(learningEnglish ? "kicker_english_vocab" : "kicker_integrated_vocab");
     if(titleEl) titleEl.textContent = t(learningEnglish ? "nomen_title_en" : "nomen_title");
-    loadThemesJson(); renderThemes(); updateDueBanner(); showScreen("nomen");
+    loadThemesJson(); renderThemes(); showScreen("nomen");
 }
 function openSettings(){
     renderVoiceSettings();
@@ -13624,14 +13606,6 @@ function getDueItems(){
     });
 }
 
-function updateDueBanner(){
-    const el = document.getElementById("dueBannerCount");
-    if(!el) return;
-    const count = getDueItems().length;
-    if(count === 0) el.textContent = t('due_banner_all_caught_up');
-    else if(count > DUE_SESSION_CAP) el.textContent = `${DUE_SESSION_CAP}+ ${t('label_word_plural')}`;
-    else el.textContent = `${count} ${t(count !== 1 ? 'label_word_plural' : 'label_word_singular')}`;
-}
 
 function startDueReview(){
     flashcardMode = 'nomen';
@@ -14529,7 +14503,39 @@ function flipCard(){
 
 let cardBusy = false;
 
-function handleCardTap(){
+// Largeur de la bande de retour, en fraction de la carte. Un quart : assez
+// large pour se toucher au pouce sans viser, assez etroit pour que le geste
+// courant -- passer a la suivante -- garde les trois autres quarts.
+const BANDE_RETOUR = 0.25;
+
+// Vrai si le clic tombe dans cette bande. Un clic declenche au clavier n'a pas
+// de coordonnees utilisables (clientX vaut 0) : il vaut alors le geste
+// ordinaire, pas le retour.
+function tapSurBordDroit(event, flashcardEl){
+    if(!event || !event.clientX) return false;
+    // On mesure le CONTENEUR, pas la carte : la carte tourne autour de son axe
+    // vertical, et a mi-parcours sa projection a une largeur nulle. Mesuree la,
+    // toute position tombe hors de la bande et le retour ne se declenche jamais.
+    const cadre = flashcardEl.closest(".flashcard-wrapper") || flashcardEl;
+    const r = cadre.getBoundingClientRect();
+    if(!r.width) return false;
+    return (event.clientX - r.left) / r.width > (1 - BANDE_RETOUR);
+}
+
+function unflipCard(){
+    const flashcardEl = document.getElementById("flashcard");
+    if(!flashcardEl) return;
+    flashcardEl.classList.remove("flipped");
+    // Les boutons de jugement se retirent avec la reponse : juger une carte
+    // qu'on ne voit plus n'aurait aucun sens.
+    document.getElementById("flashcardActions").classList.add("hidden");
+    // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
+    // voix continue de dire une reponse qui n'est plus a l'ecran.
+    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    resizeFlashcard();
+}
+
+function handleCardTap(event){
     // Toucher la carte = l'utilisateur passe a la suite : la video de
     // gratification eventuellement en cours s'arrete ici (demande explicite).
     stopMasteryCelebrations();
@@ -14537,6 +14543,7 @@ function handleCardTap(){
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
     if(flashcardEl.classList.contains("flipped")){
+        if(tapSurBordDroit(event, flashcardEl)){ unflipCard(); return; }
         slideToNextCard(flashcardEl);
     } else {
         flipCard();
@@ -15240,7 +15247,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 23;
+const APP_VERSION = 24;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -16594,9 +16601,6 @@ function markMastered(){
 
 function nextFlashcard(){
     currentFlashcard++;
-    updateDueBanner();
-    updateAdjDueBanner();
-    updateVerbDueBanner();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         // Fin du paquet : les cartes mises en attente ("revoir dans 2 min",
@@ -16676,7 +16680,7 @@ function remettreMaitrisesEnRevision(){
         });
     });
     saveProgress(progress);
-    updateDueBanner(); updateAdjDueBanner(); updateVerbDueBanner(); updateOrbBadges();
+    updateOrbBadges();
     showInfoToast(touches ? tf("alert_maitrises_revoir", { n: touches })
                           : t("alert_maitrises_aucun"));
 }
@@ -16692,9 +16696,6 @@ function resetCurrentThemeConfirm(){
     renderAdjektiveLevels();
     renderVerbeLevels();
     updateGlobalProgress();
-    updateDueBanner();
-    updateAdjDueBanner();
-    updateVerbDueBanner();
     updateOrbBadges();
     renderProgressRadar();
     showInfoToast(t('alert_series_reset'));
@@ -16719,9 +16720,6 @@ function resetAllConfirm(){
     renderNomenLevels();
     renderAdjektiveLevels();
     renderVerbeLevels();
-    updateDueBanner();
-    updateAdjDueBanner();
-    updateVerbDueBanner();
     updateOrbBadges();
     renderProgressRadar();
     showInfoToast(t('alert_all_progress_reset'));
