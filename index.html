@@ -2219,6 +2219,23 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     margin-top:16px;
 }
 
+/* La mention de registre : elle informe sans se disputer la place avec la
+   phrase qu'elle commente. */
+.registre-note{
+    margin-top:6px;
+    font-size:11px;
+    line-height:1.35;
+    color:#7a6a3a;
+    background:rgba(232,162,58,.13);
+    border-radius:8px;
+    padding:5px 8px;
+}
+
+body[data-theme="dark"] .registre-note{
+    color:#d9c48a;
+    background:rgba(232,162,58,.10);
+}
+
 .skip-hint{
     text-align:center;
     color:#767f8f;
@@ -3444,7 +3461,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v310</span>
+        <span class="subtitle-version">v311</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5807,6 +5824,7 @@ const I18N = {
         loading_label: "Chargement...",
         all_levels: "Tous les niveaux",
         all_themes: "Tous les th\u00e8mes",
+        praeteritum_ecrit: "\u00c0 l'\u00e9crit surtout \u2014 \u00e0 l'oral, on emploie le parfait pour ce verbe.",
         zahlen_btn_vocab: "VOCABULAIRE : NOMBRES \u2192",
         kicker_zahlen_vocab: "Nombres \u00b7 Vocabulaire",
         level_a1: "Niveau A1",
@@ -6704,6 +6722,7 @@ const I18N = {
         loading_label: "Loading...",
         all_levels: "All levels",
         all_themes: "All topics",
+        praeteritum_ecrit: "Mainly written \u2014 in speech, the perfect is used for this verb.",
         zahlen_btn_vocab: "VOCABULARY: NUMBERS \u2192",
         kicker_zahlen_vocab: "Numbers \u00b7 Vocabulary",
         level_a1: "Level A1",
@@ -10495,6 +10514,25 @@ function setWordState(themeId, index, state){
     if(!progress[key]) progress[key] = {};
     progress[key][index] = state;
     saveProgress(progress);
+}
+
+// Les verbes dont le preterit s'entend encore dans la conversation. Partout
+// ailleurs, l'allemand parle prefere le parfait -- « Ich habe ihm nicht
+// geglaubt », et non « Ich glaubte ihm nicht », qui sonne ecrit.
+//
+// La liste est courte parce que la regle l'est : sein, haben, werden, les six
+// modaux, et une poignee de verbes assez frequents pour avoir garde leur
+// preterit oral.
+const PRAETERITUM_ORAL = new Set([
+    "sein", "haben", "werden",
+    "koennen", "k\u00f6nnen", "muessen", "m\u00fcssen", "wollen", "sollen",
+    "duerfen", "d\u00fcrfen", "moegen", "m\u00f6gen",
+    "wissen", "geben", "denken", "finden", "heissen", "hei\u00dfen",
+    "sitzen", "stehen", "liegen", "gehen", "kommen"
+]);
+
+function praeteritumEstEcrit(infinitif){
+    return !PRAETERITUM_ORAL.has((infinitif || "").trim());
 }
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1"];
@@ -14348,7 +14386,12 @@ function loadFlashcard(){
             const konjunktiv2SpeakBtn = sentenceSpeakBtnHtml(card.konjunktiv2, "de");
             const praeteritumDisplay = card.praeteritumHighlight || card.praeteritum || "";
             const konjunktiv2Display = card.konjunktiv2Highlight || card.konjunktiv2 || "";
-            const extraHtml = `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})` +
+            // La mention n'apparait que quand elle apprend quelque chose :
+            // sur `sein` ou les modaux, le preterit est courant a l'oral et
+            // la signaler serait faux.
+            const praeteritumNote = praeteritumEstEcrit(card.infinitif)
+                ? `<div class="registre-note">${t('praeteritum_ecrit')}</div>` : "";
+            const extraHtml = `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})${praeteritumNote}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Konjunktiv II :</strong> ${konjunktiv2Display}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
                 impHtml;
@@ -15380,7 +15423,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 310;
+const APP_VERSION = 311;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
