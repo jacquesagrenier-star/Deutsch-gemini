@@ -3440,7 +3440,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v296</span>
+        <span class="subtitle-version">v297</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12673,11 +12673,25 @@ function openSearchCard(i){
     loadFlashcard();
 }
 
+// Le panneau depuis lequel la seance de cartes a ete lancee, s'il y en a un.
+// Le retour etait decide par le TYPE de carte et non par le chemin parcouru :
+// « Nuances & ton », ouvert depuis la porte des expressions, ramenait a
+// l'ecran « comprendre les particules », que l'utilisateur n'avait jamais
+// traverse -- et il ne retrouvait plus la porte d'ou il venait.
+let panneauAvantFlashcards = null;
+
 function showScreen(id){
     // Tout depart de l'ecran des flashcards annule l'origine "recherche" : sans
     // cela, une session ouverte plus tard par le chemin normal reviendrait a
     // tort a l'accueil a la fin.
     if(id !== 'flashcards') flashcardFromSearch = false;
+    // On note d'ou l'on entre dans les cartes. Toujours -- y compris pour
+    // remettre a null quand on n'y entre pas depuis un panneau : sans cela une
+    // origine ancienne survivrait a la seance suivante.
+    if(id === 'flashcards'){
+        const actif = document.querySelector(".screen.active");
+        panneauAvantFlashcards = (actif && actif.id === "orbPanel") ? openOrbId : null;
+    }
     // Quitter l'ecran d'ecoute par n'importe quel chemin (Retour, accueil,
     // reglages) doit couper la voix : sans cette garde, la seance continue
     // de parler par-dessus l'ecran suivant.
@@ -13901,6 +13915,15 @@ function handleFlashcardBack(){
     // Carte ouverte depuis la recherche : retour a l'accueil, d'ou la recherche
     // a ete lancee -- pas vers le menu du type de mot, qui n'a pas ete traverse.
     if(flashcardFromSearch){ flashcardFromSearch = false; goHome(); return; }
+    // Venu d'un panneau : on y retourne. C'est l'ecran que l'utilisateur a
+    // reellement traverse, et la table ci-dessous ne peut pas le deviner --
+    // plusieurs chemins menent au meme type de carte.
+    if(panneauAvantFlashcards){
+        const panneau = panneauAvantFlashcards;
+        panneauAvantFlashcards = null;
+        openOrbPanel(panneau);
+        return;
+    }
     const retour = FLASHCARD_RETURN_SCREENS[flashcardMode];
     if(retour){ retour(); return; }
     // Restent les modes lies aux noms (nomen, vhskapitelverben,
@@ -15181,7 +15204,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 296;
+const APP_VERSION = 297;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
