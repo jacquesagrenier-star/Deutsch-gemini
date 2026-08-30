@@ -3440,7 +3440,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v298</span>
+        <span class="subtitle-version">v299</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3872,6 +3872,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <option value="B1" data-i18n="level_b1">Niveau B1</option>
             <option value="B2" data-i18n="level_b2">Niveau B2</option>
             <option value="C1" data-i18n="level_c1">Niveau C1</option>
+        </select>
+        <select id="themeFilter" onchange="filterAndRenderThemes()">
+            <option value="ALL" data-i18n="all_themes">Tous les thèmes</option>
         </select>
     </div>
     <div class="filters-bar">
@@ -5794,6 +5797,7 @@ const I18N = {
         nomen_title: "Noms & Thèmes",
         loading_label: "Chargement...",
         all_levels: "Tous les niveaux",
+        all_themes: "Tous les th\u00e8mes",
         level_a1: "Niveau A1",
         level_a2: "Niveau A2",
         level_b1: "Niveau B1",
@@ -6688,6 +6692,7 @@ const I18N = {
         nomen_title: "Nouns & Themes",
         loading_label: "Loading...",
         all_levels: "All levels",
+        all_themes: "All topics",
         level_a1: "Level A1",
         level_a2: "Level A2",
         level_b1: "Level B1",
@@ -13584,6 +13589,7 @@ function filterAndRenderThemes(){
     if(!container) return;
 
     const selectedLevel = document.getElementById("levelFilter").value;
+    const selectedTheme = (document.getElementById("themeFilter") || {}).value || "ALL";
     const levelsToShow = (selectedLevel === "ALL") ? LEVELS : [selectedLevel];
 
     // Le filtre de niveau ne filtrait pas la liste : il ne restreignait que les
@@ -13598,6 +13604,22 @@ function filterAndRenderThemes(){
 
     const pill = document.getElementById("themeCountPill");
     if(pill) pill.textContent = `${filtered.length} ${t(filtered.length > 1 ? 'label_theme_plural' : 'label_theme_singular')}`;
+
+    // La liste deroulante suit le niveau choisi. On la reconstruit a chaque
+    // rendu, et on ne garde la selection que si elle survit au filtre : passer
+    // en A1 alors qu'un theme C1 etait choisi doit revenir a « Tous ».
+    const selTheme = document.getElementById("themeFilter");
+    let themeChoisi = selectedTheme;
+    if(selTheme){
+        if(!filtered.some(th => th.id === themeChoisi)) themeChoisi = "ALL";
+        selTheme.innerHTML = [`<option value="ALL">${t('all_themes')}</option>`]
+            .concat(filtered.map(th => `<option value="${th.id}">${th.name}</option>`))
+            .join("");
+        selTheme.value = themeChoisi;
+    }
+    const aAfficher = themeChoisi === "ALL"
+        ? filtered
+        : filtered.filter(th => th.id === themeChoisi);
 
     if(filtered.length === 0){
         container.innerHTML = `<p style="text-align:center; color:#576177; padding:20px;">${t('no_themes_found')}</p>`;
@@ -13623,7 +13645,7 @@ function filterAndRenderThemes(){
     randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomen'; startRandomMix(selectedLevel); });
     container.appendChild(randomItem);
 
-    filtered.forEach(theme => {
+    aAfficher.forEach(theme => {
         // Les niveaux que CE theme porte vraiment. Le libelle bleu enumerait
         // levelsToShow, c'est-a-dire tous les niveaux de l'app : chaque theme
         // annoncait donc un C1 que la plupart n'ont pas, pendant que la rangee
@@ -13658,7 +13680,7 @@ function filterAndRenderThemes(){
         }).join("");
 
         const item = document.createElement("div");
-        item.className = "theme-item";
+        item.className = "theme-item" + (themeChoisi === "ALL" ? "" : " ouvert");
         item.innerHTML = `
             <div class="theme-header">
                 <div class="theme-left">
@@ -15204,7 +15226,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 298;
+const APP_VERSION = 299;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
