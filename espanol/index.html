@@ -5325,12 +5325,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div id="voiceSettingsBox"></div>
     </div>
 
-    <div class="card">
-        <strong data-i18n="settings_account_title">Compte</strong>
-        <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
-        <div class="spacer"></div>
-        <button class="secondary danger" onclick="handleLogout()" data-i18n="auth_logout">SE DÉCONNECTER</button>
-    </div>
+    <!-- Carte « Compte » retiree par fork.py : ce fork n'a pas de comptes,
+         la porte est le code d'invitation. -->
 
     <div class="card">
         <strong data-i18n="notif_title">Rappels quotidiens</strong>
@@ -12754,8 +12750,6 @@ function openSettings(){
     // connexion — sans cette garde, il contournerait la porte d'authentification
     // (comme l'ancien bouton drapeau, voir commit v94).
     if(!accesoConcedido()) return;
-    const emailDisplay = document.getElementById("settingsUserEmailDisplay");
-    if(emailDisplay) emailDisplay.textContent = "";
     updateGlobalProgress();
     renderProgressRadar();
     renderDailyGoalSetting();
