@@ -3505,7 +3505,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v295</span>
+        <span class="subtitle-version">v296</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -13686,7 +13686,17 @@ function filterAndRenderThemes(){
     if(!container) return;
 
     const selectedLevel = document.getElementById("levelFilter").value;
-    const filtered = themes.filter(theme => !theme.id.startsWith('vhs_kapitel'));
+    const levelsToShow = (selectedLevel === "ALL") ? LEVELS : [selectedLevel];
+
+    // Le filtre de niveau ne filtrait pas la liste : il ne restreignait que les
+    // pastilles affichees dans chaque theme. Tant que tous les themes
+    // couvraient A1-B2, aucun ne ressortait vide et cela ne se voyait pas. Les
+    // 53 themes C1 -- qui n'existent qu'a ce niveau -- ont revele la faute :
+    // choisir C1 donnait 32 lignes a 0/0, sans pastille, AVANT le premier
+    // theme C1. Un theme sans rien au niveau demande n'a pas a etre montre.
+    const filtered = themes.filter(theme =>
+        !theme.id.startsWith('vhs_kapitel')
+        && levelsToShow.some(lvl => theme.levels[lvl]));
 
     const pill = document.getElementById("themeCountPill");
     if(pill) pill.textContent = `${filtered.length} ${t(filtered.length > 1 ? 'label_theme_plural' : 'label_theme_singular')}`;
@@ -13696,7 +13706,6 @@ function filterAndRenderThemes(){
         return;
     }
 
-    const levelsToShow = (selectedLevel === "ALL") ? LEVELS : [selectedLevel];
     container.innerHTML = "";
 
     const randomItem = document.createElement("div");
@@ -15315,7 +15324,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 25;
+const APP_VERSION = 26;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
