@@ -3389,7 +3389,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v289</span>
+        <span class="subtitle-version">v290</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -15093,7 +15093,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 289;
+const APP_VERSION = 290;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -15917,6 +15917,17 @@ const DAILY_GOAL_VIDEOS = [
     { file: "personnage3.MP4", muted: false, durationS: 5.9 },
     { file: "personnage4.MP4", muted: false, durationS: 6.0 },
 ];
+// MISE EN RETRAIT (v290), a la demande de l'utilisateur : les videos de
+// gratification de l'objectif du jour ne se jouent plus. Meme procede que
+// VIDEO_ACCUEIL_ACTIVE plus haut -- tout le code, les quatre clips et le rendu
+// restent en place, seul ce drapeau les eteint. Le remettre a true les rouvre
+// sans autre modification.
+//
+// Le palier reste annonce : le texte et la fanfare continuent de se jouer (voir
+// triggerDailyGoalCelebration). Sans cela le moment deviendrait entierement
+// muet, puisque les quatre clips portent leur propre son.
+const VIDEO_GRATIFICATION_ACTIVE = false;
+
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
 // Fond NOIR + liseré VERT vif tracé autour du personnage/des animaux (ajouté
@@ -16362,6 +16373,16 @@ function getDailyGoalVideoStartIndex(){
 // (bleu) gardent leur propre son et sautent la fanfare pour ne pas superposer
 // les deux (voir DAILY_GOAL_VIDEOS).
 function triggerDailyGoalCelebration(multiple){
+    // Videos retirees : on garde l'annonce du palier -- texte + fanfare + cri de
+    // foule -- et on saute le personnage. Les clips actifs ne sont pas "muted",
+    // donc la fanfare doit etre jouee explicitement ici : la brancher sur
+    // video.muted comme plus bas laisserait le palier sans aucun son.
+    if(!VIDEO_GRATIFICATION_ACTIVE){
+        showDailyGoalText(getDailyGoalTarget() * multiple);
+        playDailyGoalFanfare();
+        setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
+        return;
+    }
     const n = DAILY_GOAL_VIDEOS.length;
     const startIdx = getDailyGoalVideoStartIndex();
     const seqIndex = Math.min(multiple, n) - 1; // répète la dernière au-delà du palier n
