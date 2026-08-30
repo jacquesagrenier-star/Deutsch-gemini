@@ -3444,7 +3444,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v305</span>
+        <span class="subtitle-version">v306</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4452,6 +4452,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 <section id="zahlenInfo" class="screen">
     <button class="back" onclick="openOrbPanel('zahlen')"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="secondary" onclick="startZahlenVokabular()" data-i18n="zahlen_btn_vocab">VOCABULAIRE : NOMBRES →</button>
+    <div id="zahlenNiveauBar" class="filters-bar"></div>
 
     <div class="title-row">
         <div>
@@ -5805,6 +5807,8 @@ const I18N = {
         loading_label: "Chargement...",
         all_levels: "Tous les niveaux",
         all_themes: "Tous les th\u00e8mes",
+        zahlen_btn_vocab: "VOCABULAIRE : NOMBRES \u2192",
+        kicker_zahlen_vocab: "Nombres \u00b7 Vocabulaire",
         level_a1: "Niveau A1",
         level_a2: "Niveau A2",
         level_b1: "Niveau B1",
@@ -6700,6 +6704,8 @@ const I18N = {
         loading_label: "Loading...",
         all_levels: "All levels",
         all_themes: "All topics",
+        zahlen_btn_vocab: "VOCABULARY: NUMBERS \u2192",
+        kicker_zahlen_vocab: "Numbers \u00b7 Vocabulary",
         level_a1: "Level A1",
         level_a2: "Level A2",
         level_b1: "Level B1",
@@ -8158,6 +8164,7 @@ const REDEWENDUNG_CATEGORIES = {
 // echoue, comme pour les autres listes.
 const FUNKTIONSWORT_THEMES = {
     konjunktionen:  () => konjunktionenTheme,
+    zahlen:         () => zahlenTheme,
     partikeln:      () => partikelnTheme,
     praepositionen: () => praepTheme
 };
@@ -10127,6 +10134,16 @@ const adverbienTheme = {
 // notion cle (position du verbe, deja enseignee dans Structure) : les
 // coordonnantes ne changent rien a l'ordre des mots, les subordonnantes
 // envoient le verbe conjugue a la fin.
+// Les nombres n'ont pas de version de secours ecrite en dur : ils sont nes
+// dans funktionswort.json. Si le telechargement echoue, le paquet reste vide
+// et le bouton le dit, plutot que d'afficher trois cartes trompeuses.
+const zahlenTheme = {
+  id: "zahlen_vokabular",
+  name: "Nombres",
+  svg: '<svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 16"/></svg>',
+  words: []
+};
+
 const konjunktionenTheme = {
   id: "konjunktionen_vokabular",
   name: "Conjonctions",
@@ -13173,7 +13190,9 @@ function selectAdverbienLevel(level){
 
 function openPersonalpronomenInfo(){ showScreen("personalpronomenInfo"); }
 function openDemonstrativInfo(){ showScreen("demonstrativInfo"); }
-function openZahlenInfo(){ showScreen("zahlenInfo"); }
+function openZahlenInfo(){
+    renderNiveauBarFonctionnel("zahlenNiveauBar", zahlenTheme,
+                               "startZahlenVokabular"); showScreen("zahlenInfo"); }
 
 function openRedewendungenInfo(){
     showScreen("redewendungenInfo");
@@ -13498,6 +13517,24 @@ function openKonjunktionenInfo(){
 
 function startKonjunktionenNuance(){
     startExerciseSet(shuffleArray(konjunktionenNuanceExercises), "kicker_konjunktionen_nuance", openKonjunktionenInfo, startKonjunktionenNuance);
+}
+
+function startZahlenVokabular(niveau){
+    if(!zahlenTheme.words.length){ showInfoToast(t('alert_no_words_available')); return; }
+    flashcardMode = 'zahlen';
+    currentTheme = zahlenTheme;
+    let allItems = zahlenTheme.words.map((word, index) => ({ word, index, themeId: zahlenTheme.id }));
+    if(niveau && niveau !== "ALL"){
+        const filtre = allItems.filter(it => (it.word[8] || "") === niveau);
+        if(filtre.length) allItems = filtre;
+    }
+    currentCardsFull = allItems;
+    currentCards = cartesDeSession(allItems);
+    if(currentCards.length === 0) currentCards = allItems;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_zahlen_vocab', 'zahlen_info_title');
+    showScreen("flashcards");
+    loadFlashcard();
 }
 
 function startKonjunktionenVokabular(niveau){
@@ -14043,6 +14080,7 @@ const FLASHCARD_RETURN_SCREENS = {
     adverbien:       () => openAdverbienVokabular(),
     redewendungen:   () => openRedewendungenVokabular(),
     konjunktionen:   () => openKonjunktionenInfo(),
+    zahlen:          () => openZahlenInfo(),
     monvocab:        () => goHome(),
     englishmodule:   () => openEnglishModule(currentEnglishModule)
 };
@@ -14202,7 +14240,7 @@ function loadFlashcard(){
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
     sentenceRegistry = [];
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -14470,7 +14508,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapiteladjektive'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapiteladjektive'){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
@@ -14479,7 +14517,7 @@ function loadFlashcard(){
         const exampleSentence = card[3];
         const exampleSentenceFr = ((useEn && card[6]) ? card[6] : card[4]) || "";
         const label = flashcardMode === 'partikeln' ? t('label_nuance_word')
-            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'redewendungen') ? t('label_word_category')
+            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen') ? t('label_word_category')
             : t('label_case_word');
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
@@ -15342,7 +15380,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 305;
+const APP_VERSION = 306;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
