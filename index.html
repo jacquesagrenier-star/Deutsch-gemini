@@ -3372,7 +3372,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v260</span>
+        <span class="subtitle-version">v261</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5589,7 +5589,7 @@ const I18N = {
         dict_participle: "part. {pp}",
         label_participle: "Participe",
         pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
-        echeance_2min: "2 min",
+        echeance_encore: "d'ici la fin",
         echeance_10min: "10 min",
         echeance_demain: "demain",
         echeance_jours: "{n} j",
@@ -6467,7 +6467,7 @@ const I18N = {
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
         pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
-        echeance_2min: "2 min",
+        echeance_encore: "before the end",
         echeance_10min: "10 min",
         echeance_demain: "tomorrow",
         echeance_jours: "{n} d",
@@ -14972,7 +14972,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 260;
+const APP_VERSION = 261;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -15208,6 +15208,25 @@ function cartesRevenues(items){
     });
 }
 
+// Cartes mises de cote par "Encore" et dont les deux minutes ne sont pas encore
+// ecoulees. Un mot qu'on vient de rater doit revenir AVANT la fin de la seance --
+// c'est ce que le bouton annonce. Or le rebalayage de fin de paquet ne reprenait
+// que les echeances DEJA passees : sur un paquet de huit mots, traverse en moins
+// de deux minutes, la carte n'etait jamais reprise, la seance se terminait sans
+// elle, et le bouton ne tenait sa promesse que sur les longs paquets.
+//
+// srsHits === 0 identifie a lui seul un "Encore" : reviewAgain() remet ce
+// compteur a zero, alors qu'une premiere reussite l'a deja monte a 1 et qu'un
+// mot maitrise est a 4. Une premiere reussite (10 min) et l'echelle en jours
+// gardent donc leur echeance -- on ne devance que ce qu'on vient de rater.
+function cartesEncoreEnAttente(items){
+    const limite = Date.now() + SRS_ENCORE_MINUTES * 60 * 1000;
+    return items.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        return !st.mastered && (st.srsHits || 0) === 0 && st.due && st.due <= limite;
+    });
+}
+
 // Cartes a proposer a l'ouverture : celles qui sont dues ; a defaut, toutes
 // celles qui ne sont pas encore maitrisees (pour ne jamais ouvrir une session
 // vide alors qu'il reste des mots a apprendre).
@@ -15256,6 +15275,11 @@ function scheduleReview(minutes, differerLaSuite){
 // auparavant elles suivaient l'echelle EN JOURS, si bien que le premier clic
 // n'allumait rien et que l'effort semblait ignore.
 const SRS_PALIERS = 4;
+// Delai du bouton "Encore". Nomme parce que DEUX endroits en dependent : celui
+// qui programme le retour (reviewAgain) et celui qui le rattrape a la fin du
+// paquet (cartesEncoreEnAttente). Les voir diverger rendrait le rattrapage
+// muet, et le defaut serait invisible.
+const SRS_ENCORE_MINUTES = 2;
 // Nombre de barreaux en jours franchis avant la maitrise. Il en faut un de
 // moins que de pastilles : la premiere reussite programme 10 minutes, pas un
 // jour, et ne monte donc pas cette echelle-la.
@@ -15270,7 +15294,7 @@ let sessionSues = 0;
 function majEcheances(animerDernier){
     const elA = document.getElementById("judgeEcheanceAgain");
     if(!elA) return;
-    elA.textContent = t("echeance_2min");
+    elA.textContent = t("echeance_encore");
 
     const ladder  = document.getElementById("srsLadder");
     const pipsBox = document.getElementById("srsPips");
@@ -15310,7 +15334,7 @@ function reviewAgain(){
     state.srsHits = 0;
     setWordState(item.themeId, item.index, state);
     sessionVues++;
-    scheduleReview(2);   // revient dans la meme session
+    scheduleReview(SRS_ENCORE_MINUTES);   // revient dans la meme session
 }
 
 // La recompense doit etre VUE. Tant que la carte tournait dans la meme image
@@ -16268,6 +16292,18 @@ function nextFlashcard(){
         const revenues = cartesRevenues(currentCardsFull || []);
         if(revenues.length){
             currentCards = revenues;
+            currentFlashcard = 0;
+            loadFlashcard();
+            return;
+        }
+        // Rien n'est du a la seconde pres. Les mots rates ("Encore") reviennent
+        // quand meme, sans attendre la fin de leurs deux minutes : le reste du
+        // paquet a deja servi d'intervalle. Un mot sur lequel on repond
+        // "Encore" indefiniment revient indefiniment -- c'est voulu, il n'est
+        // pas su ; "Je savais" ou le bouton retour ferment la seance.
+        const encore = cartesEncoreEnAttente(currentCardsFull || []);
+        if(encore.length){
+            currentCards = encore;
             currentFlashcard = 0;
             loadFlashcard();
             return;
