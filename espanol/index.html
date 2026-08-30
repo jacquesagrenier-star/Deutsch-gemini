@@ -2081,6 +2081,22 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     margin:2px 0 10px;
 }
 
+/* Marque d'usage (C1). Elle n'apparait QUE sur les mots qui detonnent -- un
+   mot normal n'en porte aucune. C'est deliberé : une mention presente sur trois
+   cartes sur quatre cesse d'etre lue, et le jour ou elle compte, l'oeil passe
+   dessus. D'ou aussi le ton discret, qui ne concurrence pas la traduction. */
+.usage-mark{
+    display:inline-block;
+    color:#7a6532;
+    background:#faf3e2;
+    border:1px solid #ecdcb4;
+    border-radius:999px;
+    padding:3px 11px;
+    font-size:12px;
+    font-style:italic;
+    margin:0 0 10px;
+}
+
 .translation{
     color:#1e2433;
     font-size:16px;
@@ -2716,6 +2732,7 @@ body[data-theme="dark"] .search-result:hover{
     background:rgba(255,255,255,.1);
 }
 
+body[data-theme="dark"] .usage-mark{background:#241f15; border-color:#3b3324; color:#cbb87f;}
 body[data-theme="dark"] .plural{
     color:#A8C0F0;
 }
@@ -3437,7 +3454,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v262</span>
+        <span class="subtitle-version">v291</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3586,18 +3603,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 
 
-        <div class="orb orb-de" data-orbid="partikeln" onclick="abrirGramatica('concordancia')">
-            <div id="badge-partikeln" class="orb-badge hidden"></div>
-            <div class="orb-icon-wrap">
-                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-partikeln" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
-            </div>
-            <div>
-                <strong data-i18n="orb_partikeln_title">Particules</strong>
-                <small data-i18n="orb_partikeln_sub">doch · ja · mal</small>
-            </div>
-        </div>
-
         <div class="orb orb-de" data-orbid="adverbien" onclick="openOrbPanel('adverbien')">
             <div id="badge-adverbien" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
@@ -3634,23 +3639,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="redewendungen" onclick="openOrbPanel('redewendungen')">
-            <div id="badge-redewendungen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg></div>
+        <!-- Une porte, dix situations. Elle remplace les tuiles Expressions,
+             Particules et Conjonctions : leurs panneaux existent toujours et
+             restent la cible de plusieurs boutons Retour, mais l'accueil ne
+             demande plus a l'usager de savoir si ce qu'il cherche est une
+             expression, une particule ou une conjonction. -->
+        <div class="orb orb-de" data-orbid="ausdruecke" onclick="openOrbPanel('ausdruecke')">
+            <div id="badge-ausdruecke" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/><path d="M8 10h8"/><path d="M8 13h5"/></svg></div>
             <div>
-                <strong data-i18n="orb_redewendungen_title">Expressions</strong>
-                <small data-i18n="orb_redewendungen_sub">keine Ahnung · auf jeden Fall</small>
+                <strong data-i18n="orb_ausdruecke_title">Expressions & tournures</strong>
+                <small data-i18n="orb_ausdruecke_sub">Par situation</small>
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="konjunktionen" onclick="openOrbPanel('konjunktionen')">
-            <div id="badge-konjunktionen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg></div>
-            <div>
-                <strong data-i18n="orb_konjunktionen_title">Conjonctions</strong>
-                <small data-i18n="orb_konjunktionen_sub">und · weil · aber</small>
-            </div>
-        </div>
 
         <!-- Tuile "Chapitres VHS" : contenu specifique au cours B1 de l'utilisatrice
              (Nomen+Verben+Adjektive par chapitre), pas pertinent pour le grand public.
@@ -3883,6 +3885,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <option value="A2" data-i18n="level_a2">Niveau A2</option>
             <option value="B1" data-i18n="level_b1">Niveau B1</option>
             <option value="B2" data-i18n="level_b2">Niveau B2</option>
+            <option value="C1" data-i18n="level_c1">Niveau C1</option>
         </select>
     </div>
     <div class="filters-bar">
@@ -5065,6 +5068,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 </div>
                 <div id="flashPlural" class="plural hidden"></div>
                 <div id="flashPaire" class="plural hidden"></div>
+                <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
@@ -5863,7 +5867,25 @@ const I18N = {
         level_a1: "Niveau A1",
         level_a2: "Niveau A2",
         level_b1: "Niveau B1",
+        orb_ausdruecke_title: "Expressions & tournures",
+        orb_ausdruecke_sub: "Par situation",
+        grp_meinung: "Nuances et opinion",
+        grp_diskussion: "Relier ses idées",
+        grp_ton: "Marqueurs du discours",
+        grp_ton_adv: "Adverbes de nuance",
+        grp_verbindungen: "Verbes et leurs tournures",
+        grp_gefuehle: "Réactions et exclamations",
+        grp_alltag: "Vie quotidienne",
+        grp_smalltalk: "Salutations et politesse",
+        grp_ideen: "Conjonctions",
+        grp_praep: "Prépositions",
+        grp_modismos: "Expressions imagées",
         level_b2: "Niveau B2",
+        usage_ecrit: "surtout à l'écrit",
+        usage_familier: "familier — à éviter à l'écrit",
+        usage_plus_formel: "plus formel que {mot}",
+        usage_plus_familier: "plus familier que {mot}",
+        level_c1: "Niveau C1",
         loading_themes: "Chargement des thèmes...",
 
         nomenniveau_title: "Noms par niveau",
@@ -6240,7 +6262,7 @@ const I18N = {
         label_plural: "Pluriel :",
         label_feminine: "Féminin :",
         label_masculine: "Masculin :",
-        label_case_word: "Cas",
+        label_case_word: "Emploi",
         label_nuance_word: "Nuance",
         label_word_category: "Catégorie",
         random_words_by_theme_desc: "Mélange des mots de tous les thèmes du niveau sélectionné.",
@@ -6444,7 +6466,7 @@ const I18N = {
         vhs_kapitel_pill_adjektive: "Adjectifs",
         kicker_praep_vocab: "Prépositions · Vocabulaire",
         kicker_position_vocab: "Verbes de position · Vocabulaire",
-        kicker_partikeln_vocab: "Particules · Vocabulaire",
+        kicker_partikeln_vocab: "Marqueurs du discours · Vocabulaire",
         kicker_nomen_revision: "Noms · Révision",
         kicker_nomen_flashcards: "Noms · Flashcards",
         kicker_vhs_verben_flashcards: "Verbes · Flashcards",
@@ -6744,7 +6766,25 @@ const I18N = {
         level_a1: "Level A1",
         level_a2: "Level A2",
         level_b1: "Level B1",
+        orb_ausdruecke_title: "Expressions & phrases",
+        orb_ausdruecke_sub: "By situation",
+        grp_meinung: "Nuance & opinion",
+        grp_diskussion: "Linking ideas",
+        grp_ton: "Discourse markers",
+        grp_ton_adv: "Adverbs of stance",
+        grp_verbindungen: "Verbs and their phrases",
+        grp_gefuehle: "Reactions & exclamations",
+        grp_alltag: "Everyday life",
+        grp_smalltalk: "Greetings & courtesy",
+        grp_ideen: "Conjunctions",
+        grp_praep: "Prepositions",
+        grp_modismos: "Idioms",
         level_b2: "Level B2",
+        usage_ecrit: "mostly written",
+        usage_familier: "informal — avoid in writing",
+        usage_plus_formel: "more formal than {mot}",
+        usage_plus_familier: "more informal than {mot}",
+        level_c1: "Level C1",
         loading_themes: "Loading themes...",
 
         nomenniveau_title: "Nouns by level",
@@ -7121,7 +7161,7 @@ const I18N = {
         label_plural: "Plural:",
         label_feminine: "Feminine:",
         label_masculine: "Masculine:",
-        label_case_word: "Case",
+        label_case_word: "Use",
         label_nuance_word: "Nuance",
         label_word_category: "Category",
         random_words_by_theme_desc: "A mix of words from all themes at the selected level.",
@@ -7325,7 +7365,7 @@ const I18N = {
         vhs_kapitel_pill_adjektive: "Adjectives",
         kicker_praep_vocab: "Prepositions · Vocabulary",
         kicker_position_vocab: "Position verbs · Vocabulary",
-        kicker_partikeln_vocab: "Particles · Vocabulary",
+        kicker_partikeln_vocab: "Discourse markers · Vocabulary",
         kicker_nomen_revision: "Nouns · Review",
         kicker_nomen_flashcards: "Nouns · Flashcards",
         kicker_vhs_verben_flashcards: "Verbs · Flashcards",
@@ -8112,7 +8152,7 @@ async function loadAdjektiveJson() {
         const response = await fetch(cacheBustedUrl('datos/adjetivos.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
         const data = await response.json();
-        const levels = ["A1", "A2", "B1", "B2"];
+        const levels = ["A1", "A2", "B1", "B2", "C1"];
         let words = [];
         levels.forEach(lvl => {
             const arr = data[lvl] || [];
@@ -8156,14 +8196,14 @@ function hideGlobalLoadingBar(){
 // allemand reste en tete : c'est celui que l'apprenant retrouvera dans une
 // grammaire ou un cours.
 const ADVERB_CATEGORIES = {
-    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time" },
-    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction" },
-    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency" },
-    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner" },
-    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity" },
-    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence" },
-    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link" },
-    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words" }
+    "tiempo":        { fr: "Tiempo \u2014 temps", en: "Tiempo \u2014 time" },
+    "lugar":         { fr: "Lugar \u2014 lieu, direction", en: "Lugar \u2014 place, direction" },
+    "frecuencia":    { fr: "Frecuencia \u2014 fr\u00e9quence", en: "Frecuencia \u2014 frequency" },
+    "modo":          { fr: "Modo \u2014 mani\u00e8re", en: "Modo \u2014 manner" },
+    "cantidad":      { fr: "Cantidad \u2014 degr\u00e9, quantit\u00e9", en: "Cantidad \u2014 degree, quantity" },
+    "duda":          { fr: "Duda \u2014 doute, probabilit\u00e9", en: "Duda \u2014 doubt, likelihood" },
+    "afirmacion":    { fr: "Afirmaci\u00f3n \u2014 affirmer, nier", en: "Afirmaci\u00f3n \u2014 affirming, denying" },
+    "discurso":      { fr: "Discurso \u2014 organiser le propos", en: "Discurso \u2014 structuring speech" }
 };
 
 // Adverbes charges depuis adverbe.json (meme principe que verbe.json et
@@ -8177,12 +8217,23 @@ const ADVERB_CATEGORIES = {
 // nuancer...) et non par forme : c'est ainsi qu'on va les chercher quand on
 // parle.
 const REDEWENDUNG_CATEGORIES = {
-    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk" },
-    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement" },
-    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions" },
-    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life" },
-    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance" },
-    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun" }
+    "saludo":        { fr: "Saludos \u2014 saluer, prendre cong\u00e9", en: "Saludos \u2014 greetings, goodbyes" },
+    "cortesia":      { fr: "Cortes\u00eda \u2014 remercier, s'excuser", en: "Cortes\u00eda \u2014 thanking, apologising" },
+    "cotidiano":     { fr: "Vida diaria \u2014 la vie pratique", en: "Vida diaria \u2014 everyday life" },
+    "matiz":         { fr: "Matizar \u2014 nuancer, prendre position", en: "Matizar \u2014 hedging, taking a stance" },
+    "conectar":      { fr: "Conectar \u2014 relier ses id\u00e9es", en: "Conectar \u2014 linking ideas" },
+    "reaccion":      { fr: "Reacciones \u2014 r\u00e9agir", en: "Reacciones \u2014 reacting" },
+    "interjeccion":  { fr: "Interjecciones \u2014 s'exclamer", en: "Interjecciones \u2014 exclamations" },
+    "modismo":       { fr: "Modismos \u2014 expressions imag\u00e9es", en: "Modismos \u2014 idioms" },
+    "tener":         { fr: "Con tener \u2014 tener ganas, tener prisa", en: "Con tener \u2014 tener ganas, tener prisa" },
+    "dar":           { fr: "Con dar \u2014 dar igual, dar miedo", en: "Con dar \u2014 dar igual, dar miedo" },
+    "hacer":         { fr: "Con hacer \u2014 hacer cola, hacer caso", en: "Con hacer \u2014 hacer cola, hacer caso" },
+    "poner":         { fr: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", en: "Con poner \u2014 poner al d\u00eda, ponerse las pilas" },
+    "echar":         { fr: "Con echar \u2014 echar de menos, echar una mano", en: "Con echar \u2014 echar de menos, echar una mano" },
+    "llevar":        { fr: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", en: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n" },
+    "quedar":        { fr: "Con quedar \u2014 quedar claro, quedarse corto", en: "Con quedar \u2014 quedar claro, quedarse corto" },
+    "estar":         { fr: "Con estar \u2014 estar de acuerdo, estar al tanto", en: "Con estar \u2014 estar de acuerdo, estar al tanto" },
+    "ser":           { fr: "Con ser \u2014 ser capaz, ser un rollo", en: "Con ser \u2014 ser capaz, ser un rollo" }
 };
 
 // Meme principe que adverbe.json : la donnee vit hors du code. Tuple produit,
@@ -8193,7 +8244,7 @@ async function loadRedewendungenJson() {
         if (!response.ok) throw new Error("Fichier redewendung.json introuvable");
         const data = await response.json();
         const words = [];
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             (data[lvl] || []).forEach(r => {
                 const cat = REDEWENDUNG_CATEGORIES[r.kategorie] || { fr: r.kategorie, en: r.kategorie };
                 words.push([
@@ -8216,7 +8267,7 @@ async function loadAdverbienJson() {
         if (!response.ok) throw new Error("Fichier adverbe.json introuvable");
         const data = await response.json();
         const words = [];
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             (data[lvl] || []).forEach(a => {
                 const cat = ADVERB_CATEGORIES[a.kategorie] || { fr: a.kategorie, en: a.kategorie };
                 words.push([
@@ -8353,7 +8404,7 @@ async function loadThemesJson() {
             const niveau = (t.niveau || "A1").toUpperCase();
             const svg = t.svg || DEFAULT_SVG;
             const entryId = t.id || `theme_${idx}`;
-            const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
+            const baseId = entryId.replace(/_(a1|a2|b1|b2|c1)$/i, "") || `theme_${idx}`;
 
             const rawWords = t.words || t.mots || [];
             const words = rawWords.map(w => {
@@ -8374,7 +8425,14 @@ async function loadThemesJson() {
                     // Article francais de la traduction, elision comprise :
                     // "la ", "le ", "les " ou "l'". Vide quand le genre n'a pas
                     // pu etre etabli -- pas d'article vaut mieux qu'un faux.
-                    w.article_fr || ""
+                    w.article_fr || "",
+                    // Marque d'usage, introduite avec le C1 (voir usageMarkText).
+                    // Vide sur l'immense majorite des mots, et c'est voulu.
+                    w.registre || "",
+                    // Le mot courant auquel celui-ci se compare -- toujours un
+                    // mot deja present a un niveau INFERIEUR, sinon la
+                    // comparaison renvoie vers un mot jamais rencontre.
+                    w.vergleich || ""
                 ];
             });
 
@@ -9403,37 +9461,29 @@ const PREP_DIAGRAM_URL = "https://raw.githubusercontent.com/jacquesagrenier-star
 
 const praepTheme = {
   id: "praep_vokabular",
-  name: "Prépositions",
+  name: "Preposiciones",
   svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#3b6fe0" stroke="none"/></svg>',
   words: [
-    ["für", "pour", "toujours Akkusativ", "Das Geschenk ist für dich.", "Le cadeau est pour toi.", "for", "The gift is for you.", "always Akkusativ"],
-    ["ohne", "sans", "toujours Akkusativ", "Ich trinke Kaffee ohne Zucker.", "Je bois le café sans sucre.", "without", "I drink coffee without sugar.", "always Akkusativ"],
-    ["durch", "à travers", "toujours Akkusativ", "Wir gehen durch den Wald.", "Nous marchons à travers la forêt.", "through", "We walk through the forest.", "always Akkusativ"],
-    ["gegen", "contre", "toujours Akkusativ", "Er läuft gegen die Wand.", "Il court contre le mur.", "against", "He runs into the wall.", "always Akkusativ"],
-    ["um", "autour de / à (heure)", "toujours Akkusativ", "Wir treffen uns um sieben Uhr.", "On se retrouve à sept heures.", "around / at (time)", "We're meeting at seven o'clock.", "always Akkusativ"],
-    ["bis", "jusqu'à", "toujours Akkusativ", "Ich bleibe bis Freitag hier.", "Je reste ici jusqu'à vendredi.", "until", "I'm staying here until Friday.", "always Akkusativ"],
-    ["mit", "avec", "toujours Dativ", "Ich fahre mit dem Bus.", "Je vais en bus.", "with", "I go by bus.", "always Dativ"],
-    ["nach", "après / vers", "toujours Dativ", "Nach der Schule gehe ich nach Hause.", "Après l'école, je rentre à la maison.", "after / to(wards)", "After school, I go home.", "always Dativ"],
-    ["aus", "de / hors de", "toujours Dativ", "Ich komme aus der Schweiz.", "Je viens de Suisse.", "from / out of", "I come from Switzerland.", "always Dativ"],
-    ["bei", "chez / près de", "toujours Dativ", "Ich wohne bei meinen Eltern.", "J'habite chez mes parents.", "at (someone's place) / near", "I live at my parents' place.", "always Dativ"],
-    ["seit", "depuis", "toujours Dativ", "Ich lerne seit zwei Jahren Deutsch.", "J'apprends l'allemand depuis deux ans.", "since / for", "I've been learning German for two years.", "always Dativ"],
-    ["von", "de / de la part de", "toujours Dativ", "Das Geschenk ist von meiner Schwester.", "Le cadeau vient de ma sœur.", "from / on behalf of", "The gift is from my sister.", "always Dativ"],
-    ["zu", "vers / chez", "toujours Dativ", "Ich gehe zu meiner Freundin.", "Je vais chez mon amie.", "to", "I'm going to my girlfriend's place.", "always Dativ"],
-    ["ab", "à partir de", "toujours Dativ", "Ab dem ersten Mai arbeite ich hier.", "À partir du premier mai, je travaille ici.", "from (a point on)", "Starting May first, I work here.", "always Dativ"],
-    ["außer", "sauf / excepté", "toujours Dativ", "Außer meiner Schwester kommt niemand.", "À part ma sœur, personne ne vient.", "except / apart from", "Except for my sister, nobody is coming.", "always Dativ"],
-    ["gegenüber", "en face de", "toujours Dativ", "Die Bäckerei ist gegenüber der Kirche.", "La boulangerie est en face de l'église.", "across from / opposite", "The bakery is across from the church.", "always Dativ"],
-    ["wegen", "à cause de", "toujours Genitiv", "Wegen des Regens bleiben wir zu Hause.", "À cause de la pluie, on reste à la maison.", "because of", "Because of the rain, we're staying home.", "always Genitiv"],
-    ["während", "pendant", "toujours Genitiv", "Während des Urlaubs lese ich viel.", "Pendant les vacances, je lis beaucoup.", "during", "During the vacation, I read a lot.", "always Genitiv"],
-    ["trotz", "malgré", "toujours Genitiv", "Trotz des Regens gehen wir spazieren.", "Malgré la pluie, on va se promener.", "despite", "Despite the rain, we're going for a walk.", "always Genitiv"],
-    ["auf", "sur", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Buch liegt auf dem Tisch.", "Le livre est sur la table.", "on", "The book is on the table.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["in", "dans", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Wir gehen in den Park.", "Nous allons dans le parc.", "in", "We're going into the park.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["an", "à / contre (vertical)", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Bild hängt an der Wand.", "Le tableau est accroché au mur.", "at / against (vertical)", "The picture is hanging on the wall.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["über", "au-dessus de / par-dessus", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Lampe hängt über dem Tisch.", "La lampe est suspendue au-dessus de la table.", "above / over", "The lamp hangs above the table.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["unter", "sous", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Katze liegt unter dem Bett.", "Le chat est couché sous le lit.", "under", "The cat is lying under the bed.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["vor", "devant / avant", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Das Auto steht vor dem Haus.", "La voiture est garée devant la maison.", "in front of / before", "The car is parked in front of the house.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["hinter", "derrière", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Der Garten ist hinter dem Haus.", "Le jardin est derrière la maison.", "behind", "The garden is behind the house.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["neben", "à côté de", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Er sitzt neben mir.", "Il est assis à côté de moi.", "next to", "He's sitting next to me.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"],
-    ["zwischen", "entre", "Wechselpräposition (Wo=Dativ, Wohin=Akkusativ)", "Die Schule liegt zwischen dem Park und dem Fluss.", "L'école se trouve entre le parc et la rivière.", "between", "The school is located between the park and the river.", "two-way preposition (Wo=Dativ, Wohin=Akkusativ)"]
+    ["a", "à", "direction, destinataire, heure", "Voy a Madrid el lunes.", "Je vais à Madrid lundi.", "to", "I'm going to Madrid on Monday.", "direction, indirect object, time"],
+    ["de", "de", "origine, possession, matière", "Es el coche de mi hermana.", "C'est la voiture de ma sœur.", "of, from", "It's my sister's car.", "origin, possession, material"],
+    ["en", "dans, en, à", "lieu où l'on est, moyen de transport", "Vivo en Sevilla desde hace dos años.", "J'habite à Séville depuis deux ans.", "in, at, on", "I've lived in Seville for two years.", "location, means of transport"],
+    ["con", "avec", "accompagnement, moyen", "Voy con mis padres.", "J'y vais avec mes parents.", "with", "I'm going with my parents.", "accompaniment, means"],
+    ["sin", "sans", "absence", "Tomo el café sin azúcar.", "Je prends le café sans sucre.", "without", "I take my coffee without sugar.", "absence"],
+    ["por", "par, à cause de, pour (échange)", "cause, passage, durée, échange", "Gracias por tu ayuda.", "Merci pour ton aide.", "for, by, through", "Thanks for your help.", "cause, route, duration, exchange"],
+    ["para", "pour (but, destinataire)", "but, destinataire, échéance", "Este regalo es para ti.", "Ce cadeau est pour toi.", "for, in order to", "This present is for you.", "purpose, recipient, deadline"],
+    ["sobre", "sur, au sujet de", "position, sujet", "El libro está sobre la mesa.", "Le livre est sur la table.", "on, about", "The book is on the table.", "position, topic"],
+    ["bajo", "sous", "position, subordination", "Trabaja bajo mucha presión.", "Il travaille sous forte pression.", "under", "He works under a lot of pressure.", "position, subordination"],
+    ["entre", "entre, parmi", "position intermédiaire", "El pueblo está entre dos montañas.", "Le village est entre deux montagnes.", "between, among", "The village lies between two mountains.", "intermediate position"],
+    ["hasta", "jusqu'à", "limite dans l'espace ou le temps", "Caminamos hasta la playa.", "Nous avons marché jusqu'à la plage.", "until, as far as", "We walked as far as the beach.", "limit in space or time"],
+    ["desde", "depuis", "point de départ", "Desde aquí se ve el mar.", "D'ici on voit la mer.", "from, since", "From here you can see the sea.", "starting point"],
+    ["hacia", "vers", "direction approximative", "Se dirigía hacia el norte.", "Il se dirigeait vers le nord.", "towards", "He was heading north.", "approximate direction"],
+    ["contra", "contre", "opposition", "Nadie votó contra la propuesta.", "Personne n'a voté contre la proposition.", "against", "Nobody voted against the proposal.", "opposition"],
+    ["según", "selon", "source, point de vue", "Según el informe, todo está en orden.", "Selon le rapport, tout est en ordre.", "according to", "According to the report, everything is fine.", "source, viewpoint"],
+    ["durante", "pendant", "durée", "Llovió durante toda la noche.", "Il a plu pendant toute la nuit.", "during, for", "It rained all night long.", "duration"],
+    ["ante", "devant, face à", "position, confrontation", "Compareció ante el juez.", "Il a comparu devant le juge.", "before, faced with", "He appeared before the judge.", "position, confrontation"],
+    ["tras", "après, derrière", "succession", "Tras la reunión, hablamos.", "Après la réunion, nous avons parlé.", "after, behind", "After the meeting, we talked.", "succession"],
+    ["mediante", "au moyen de", "moyen (registre soutenu)", "Se resolvió mediante un acuerdo.", "Cela s'est réglé au moyen d'un accord.", "by means of", "It was settled by means of an agreement.", "means (formal register)"],
+    ["salvo", "sauf", "exception", "Abrimos todos los días salvo el lunes.", "Nous ouvrons tous les jours sauf le lundi.", "except", "We open every day except Monday.", "exception"],
   ]
 };
 
@@ -10034,22 +10084,23 @@ const partikelnNuanceExercises = [
 
 const partikelnTheme = {
   id: "partikeln_vokabular",
-  name: "Particules",
+  name: "Marcadores del discurso",
   svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>',
   words: [
-    ["doch", "insistance amicale, encouragement", "particule modale", "Mach das doch!", "Vas-y, fais-le donc !", "friendly insistence, encouragement", "Go ahead and do it!"],
-    ["mal", "adoucit une demande", "particule modale", "Komm mal her!", "Viens un peu par ici.", "softens a request", "Come here for a sec."],
-    ["denn", "curiosité informelle", "particule modale", "Was machst du denn?", "Qu'est-ce que tu fais donc ?", "informal curiosity", "So what are you up to?"],
-    ["eben / halt", "résignation, « c'est comme ça »", "particule modale", "Das ist eben so.", "C'est comme ça, un point c'est tout.", "resignation, \"that's just how it is\"", "That's just how it is."],
-    ["wohl", "supposition probable", "particule modale", "Das wird wohl stimmen.", "Ça doit sûrement être vrai.", "probable assumption", "That's probably right."],
-    ["ja", "évidence partagée", "particule modale", "Das ist ja klar!", "Mais c'est évident, voyons !", "shared obviousness", "That's obvious, of course!"],
-    ["schon", "rassurance, encouragement confiant", "particule modale", "Das schaffst du schon!", "T'inquiète, tu vas y arriver.", "reassurance, confident encouragement", "Don't worry, you'll manage!"],
-    ["aber", "surprise, emphase admirative", "particule modale", "Das ist aber schön!", "Ça alors, que c'est beau !", "surprise, admiring emphasis", "Wow, that's beautiful!"],
-    ["eigentlich", "curiosité, changement de sujet", "particule modale", "Was machst du eigentlich?", "Au fait, qu'est-ce que tu fais ?", "curiosity, change of subject", "By the way, what are you up to?"],
-    ["bloß / nur", "urgence, mise en garde", "particule modale", "Geh bloß nicht dahin!", "Ne va surtout pas là-bas !", "urgency, warning", "Whatever you do, don't go there!"],
-    ["ruhig", "permission rassurante", "particule modale", "Du kannst ruhig fragen.", "Tu peux demander sans problème.", "reassuring permission", "Feel free to ask."],
-    ["einfach", "simplicité, désinvolture", "particule modale", "Sag es einfach!", "Dis-le, tout simplement.", "simplicity, casualness", "Just say it!"],
-    ["vielleicht", "exaspération, emphase forte", "particule modale", "Das ist vielleicht ein Chaos!", "Quel bazar, quand même !", "exasperation, strong emphasis", "What a mess, honestly!"]
+    ["pues", "eh bien, alors", "marqueur du discours", "Pues no sé qué decir.", "Eh bien, je ne sais pas quoi dire.", "well then", "Well, I don't know what to say."],
+    ["bueno", "bon, d'accord", "marqueur du discours", "Bueno, vamos a ver.", "Bon, on va voir.", "well, all right", "All right, let's see."],
+    ["o sea", "c'est-à-dire", "marqueur du discours", "Llega tarde, o sea, como siempre.", "Il arrive tard, c'est-à-dire comme toujours.", "that is, I mean", "He's late, I mean, as always."],
+    ["a ver", "voyons, alors", "marqueur du discours", "A ver, ¿qué ha pasado aquí?", "Voyons, que s'est-il passé ici ?", "let's see", "Let's see, what happened here?"],
+    ["oye", "dis donc, écoute", "marqueur du discours", "Oye, ¿tienes un momento?", "Dis, tu as un moment ?", "hey, listen", "Hey, have you got a minute?"],
+    ["mira", "regarde, écoute", "marqueur du discours", "Mira, no es tan sencillo.", "Écoute, ce n'est pas si simple.", "look", "Look, it's not that simple."],
+    ["hombre", "enfin, voyons", "marqueur du discours", "¡Hombre, claro que sí!", "Mais bien sûr, voyons !", "come on, of course", "Come on, of course!"],
+    ["vaya", "eh bien, tiens donc", "marqueur du discours", "¡Vaya, qué sorpresa!", "Eh bien, quelle surprise !", "well, wow", "Well, what a surprise!"],
+    ["venga", "allez, allons", "marqueur du discours", "¡Venga, que llegamos tarde!", "Allez, on va être en retard !", "come on", "Come on, we're going to be late!"],
+    ["anda", "allons, tiens", "marqueur du discours", "Anda, no digas eso.", "Allons, ne dis pas ça.", "come on, oh", "Come on, don't say that."],
+    ["claro", "bien sûr", "marqueur du discours", "Claro que te ayudo.", "Bien sûr que je t'aide.", "of course", "Of course I'll help you."],
+    ["en fin", "bref, enfin", "marqueur du discours", "En fin, ya veremos mañana.", "Bref, on verra demain.", "anyway", "Anyway, we'll see tomorrow."],
+    ["total", "bref, au bout du compte", "marqueur du discours", "Total, que no vino nadie.", "Bref, personne n'est venu.", "in short", "In short, nobody came."],
+    ["ya", "déjà, ça y est", "marqueur du discours", "Ya lo sé, no hace falta repetirlo.", "Je sais déjà, pas besoin de le répéter.", "already, I know", "I know already, no need to repeat it."],
   ]
 };
 
@@ -10114,27 +10165,29 @@ const adverbienTheme = {
 // envoient le verbe conjugue a la fin.
 const konjunktionenTheme = {
   id: "konjunktionen_vokabular",
-  name: "Conjonctions",
+  name: "Conjunciones",
   svg: '<svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg>',
   words: [
-    ["und", "et", "conjonction de coordination", "Ich koche und du deckst den Tisch.", "Je cuisine et tu mets la table.", "and", "I'm cooking and you're setting the table."],
-    ["oder", "ou", "conjonction de coordination", "Kommst du mit oder bleibst du hier?", "Tu viens avec nous ou tu restes ici ?", "or", "Are you coming with us or staying here?"],
-    ["aber", "mais", "conjonction de coordination", "Ich bin müde, aber ich arbeite weiter.", "Je suis fatigué, mais je continue à travailler.", "but", "I'm tired, but I keep working."],
-    ["denn", "car", "conjonction de coordination", "Ich bleibe zu Hause, denn ich bin krank.", "Je reste à la maison, car je suis malade.", "because", "I'm staying home, because I'm sick."],
-    ["sondern", "mais (plutôt)", "conjonction de coordination", "Ich trinke keinen Kaffee, sondern Tee.", "Je ne bois pas de café, mais du thé.", "but rather", "I don't drink coffee, but rather tea."],
-    ["weil", "parce que", "conjonction de subordination", "Ich bleibe zu Hause, weil ich krank bin.", "Je reste à la maison parce que je suis malade.", "because", "I'm staying home because I'm sick."],
-    ["dass", "que", "conjonction de subordination", "Ich weiß, dass du recht hast.", "Je sais que tu as raison.", "that", "I know that you're right."],
-    ["wenn", "si, quand (répétitif/futur)", "conjonction de subordination", "Ich rufe an, wenn ich ankomme.", "J'appelle quand j'arrive.", "if, when", "I'll call when I arrive."],
-    ["obwohl", "bien que", "conjonction de subordination", "Ich gehe raus, obwohl es regnet.", "Je sors, bien qu'il pleuve.", "although", "I'm going out, although it's raining."],
-    ["während", "pendant que", "conjonction de subordination", "Ich koche, während du den Tisch deckst.", "Je cuisine pendant que tu mets la table.", "while", "I'm cooking while you set the table."],
-    ["bevor", "avant que", "conjonction de subordination", "Ruf mich an, bevor du kommst.", "Appelle-moi avant de venir.", "before", "Call me before you come."],
-    ["nachdem", "après que", "conjonction de subordination", "Nachdem ich gegessen hatte, ging ich schlafen.", "Après avoir mangé, je suis allé dormir.", "after", "After I had eaten, I went to sleep."],
-    ["ob", "si (question indirecte)", "conjonction de subordination", "Ich weiß nicht, ob er kommt.", "Je ne sais pas s'il vient.", "whether", "I don't know whether he's coming."],
-    ["da", "comme, puisque", "conjonction de subordination", "Da es regnet, bleiben wir drinnen.", "Comme il pleut, on reste à l'intérieur.", "since", "Since it's raining, we're staying inside."],
-    ["damit", "afin que", "conjonction de subordination", "Ich spreche langsam, damit du mich verstehst.", "Je parle lentement afin que tu me comprennes.", "so that", "I speak slowly so that you understand me."],
-    ["sodass", "de sorte que", "conjonction de subordination", "Es regnete stark, sodass wir zu Hause blieben.", "Il pleuvait fort, de sorte qu'on est restés à la maison.", "so that", "It rained hard, so we stayed home."],
-    ["als", "quand (unique, passé)", "conjonction de subordination", "Als ich Kind war, wohnte ich in Berlin.", "Quand j'étais enfant, j'habitais à Berlin.", "when (past, one-time)", "When I was a child, I lived in Berlin."],
-    ["bis", "jusqu'à ce que", "conjonction de subordination", "Ich warte, bis du fertig bist.", "J'attends jusqu'à ce que tu aies fini.", "until", "I'll wait until you're done."]
+    ["y", "et", "conjonction de coordination", "Cocino y tú pones la mesa.", "Je cuisine et tu mets la table.", "and", "I'm cooking and you're setting the table.", "coordinating conjunction"],
+    ["e", "et (devant i-/hi-)", "conjonction de coordination", "Padre e hijo trabajan juntos.", "Le père et le fils travaillent ensemble.", "and (before i-/hi-)", "Father and son work together.", "coordinating conjunction"],
+    ["o", "ou", "conjonction de coordination", "¿Vienes o te quedas?", "Tu viens ou tu restes ?", "or", "Are you coming or staying?", "coordinating conjunction"],
+    ["u", "ou (devant o-/ho-)", "conjonction de coordination", "Siete u ocho personas.", "Sept ou huit personnes.", "or (before o-/ho-)", "Seven or eight people.", "coordinating conjunction"],
+    ["pero", "mais", "conjonction de coordination", "Es caro, pero vale la pena.", "C'est cher, mais ça vaut la peine.", "but", "It's expensive, but it's worth it.", "coordinating conjunction"],
+    ["sino", "mais (après négation)", "conjonction de coordination", "No es azul, sino verde.", "Ce n'est pas bleu, mais vert.", "but rather", "It's not blue, but green.", "coordinating conjunction"],
+    ["ni", "ni", "conjonction de coordination", "No come carne ni pescado.", "Il ne mange ni viande ni poisson.", "nor", "He eats neither meat nor fish.", "coordinating conjunction"],
+    ["porque", "parce que", "conjonction de subordination", "No salgo porque llueve.", "Je ne sors pas parce qu'il pleut.", "because", "I'm not going out because it's raining.", "subordinating conjunction"],
+    ["como", "comme (cause, en tête)", "conjonction de subordination", "Como llovía, nos quedamos.", "Comme il pleuvait, nous sommes restés.", "as, since", "As it was raining, we stayed.", "subordinating conjunction"],
+    ["que", "que", "conjonction de subordination", "Creo que tiene razón.", "Je crois qu'il a raison.", "that", "I think he's right.", "subordinating conjunction"],
+    ["si", "si", "conjonction de subordination", "Si llueve, no vamos.", "S'il pleut, nous n'irons pas.", "if", "If it rains, we won't go.", "subordinating conjunction"],
+    ["aunque", "bien que, même si", "subordination — indicatif pour un fait, subjonctif pour une hypothèse", "Aunque es tarde, sigo trabajando.", "Bien qu'il soit tard, je continue à travailler.", "although", "Although it's late, I keep working.", "subordinating — indicative for a fact, subjunctive for a supposition"],
+    ["mientras", "pendant que, tant que", "subordination — subjonctif si c'est à venir", "Mientras cocino, escucho la radio.", "Pendant que je cuisine, j'écoute la radio.", "while", "While I cook, I listen to the radio.", "subordinating — subjunctive if it's still to come"],
+    ["cuando", "quand", "subordination — subjonctif si c'est à venir", "Cuando llegues, llámame.", "Quand tu arriveras, appelle-moi.", "when", "When you arrive, call me.", "subordinating — subjunctive if it's still to come"],
+    ["antes de que", "avant que", "subordination — toujours au subjonctif", "Salgamos antes de que empiece a llover.", "Sortons avant qu'il ne commence à pleuvoir.", "before", "Let's leave before it starts raining.", "subordinating — always + subjunctive"],
+    ["después de que", "après que", "subordination — subjonctif si c'est à venir", "Después de que se fue, todo cambió.", "Après qu'il est parti, tout a changé.", "after", "After he left, everything changed.", "subordinating — subjunctive if it's still to come"],
+    ["hasta que", "jusqu'à ce que", "subordination — subjonctif si c'est à venir", "Espera hasta que yo vuelva.", "Attends jusqu'à ce que je revienne.", "until", "Wait until I come back.", "subordinating — subjunctive if it's still to come"],
+    ["para que", "pour que", "subordination — toujours au subjonctif", "Te lo explico para que lo entiendas.", "Je te l'explique pour que tu comprennes.", "so that", "I'm explaining it so that you understand.", "subordinating — always + subjunctive"],
+    ["así que", "donc, si bien que", "conjonction de conséquence", "Era tarde, así que nos fuimos.", "Il était tard, donc nous sommes partis.", "so", "It was late, so we left.", "conjunction of result"],
+    ["pues", "car, donc", "conjonction de conséquence", "No insistas, pues no cambiará de idea.", "N'insiste pas, car il ne changera pas d'avis.", "since, so", "Don't insist, since he won't change his mind.", "conjunction of result"],
   ]
 };
 
@@ -10465,7 +10518,7 @@ function setWordState(themeId, index, state){
     saveProgress(progress);
 }
 
-const LEVELS = ["A1", "A2", "B1", "B2"];
+const LEVELS = ["A1", "A2", "B1", "B2", "C1"];
 
 // ============ Streak, objectif du jour & vélocité (motivation) ============
 
@@ -11632,7 +11685,7 @@ function orbPanelData(id){
         };
     }
     if(id === "schreiben"){
-        const niveaux = ["A1", "A2", "B1", "B2"];
+        const niveaux = ["A1", "A2", "B1", "B2", "C1"];
         return {
             icon:"exercice", title:t("op_schreiben_title"), sub:t("op_schreiben_sub"),
             options: [{ icon:"carte", title:t("op_tuiles_t"), desc:t("op_tuiles_d"),
@@ -11670,6 +11723,24 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_redewendungen_o1_t"), desc:t("op_redewendungen_o1_d"), primary:true, action:"openRedewendungenInfo" },
                 { icon:"carte", title:t("op_redewendungen_o2_t"), desc:t("op_redewendungen_o2_d"), action:"openRedewendungenVokabular" }
+            ]
+        };
+    }
+    if(id === "ausdruecke"){
+        return {
+            icon:"dossier", title:t("orb_ausdruecke_title"), sub:t("orb_ausdruecke_sub"),
+            options:[
+                { icon:"carte", title:t("grp_meinung"), desc:"por lo visto · la verdad es que", primary:true, action:"ausdrueckeMeinung" },
+                { icon:"carte", title:t("grp_diskussion"), desc:"en cambio · por lo tanto", action:"ausdrueckeDiskussion" },
+                { icon:"carte", title:t("grp_verbindungen"), desc:"tener ganas · dar igual · echar de menos", action:"ausdrueckeVerbindungen" },
+                { icon:"carte", title:t("grp_gefuehle"), desc:"¡qué va! · menos mal", action:"ausdrueckeGefuehle" },
+                { icon:"carte", title:t("grp_alltag"), desc:"de momento · a lo mejor", action:"ausdrueckeAlltag" },
+                { icon:"carte", title:t("grp_smalltalk"), desc:"qué tal · con mucho gusto", action:"ausdrueckeSmalltalk" },
+                { icon:"carte", title:t("grp_modismos"), desc:"estar en las nubes · costar un ojo", action:"ausdrueckeModismos" },
+                { icon:"carte", title:t("grp_ton_adv"), desc:"quizá · desde luego · tal vez", action:"ausdrueckeTonAdverbien" },
+                { icon:"dossier", title:t("grp_ideen"), desc:"y · pero · aunque · para que", action:"startKonjunktionenVokabular" },
+                { icon:"dossier", title:t("grp_ton"), desc:"pues · bueno · oye · vaya", action:"startPartikelnVokabular" },
+                { icon:"dossier", title:t("grp_praep"), desc:"a · de · por · para", action:"startPraepVokabular" }
             ]
         };
     }
@@ -13037,7 +13108,7 @@ function startPraepVokabular(){
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    setFlashHeader('kicker_praep_vocab', 'orb_praep_title');
+    setFlashHeader('kicker_praep_vocab', 'grp_praep');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -13111,7 +13182,7 @@ function renderRedewendungenBars(){
             return `<button class="secondary" style="${style}" onclick="selectRedewendungenLevel('${val}')">${libelle} (${n})</button>`;
         };
         let html = bouton("ALL", t('adverbien_level_all'), mots.length);
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
@@ -13144,7 +13215,10 @@ function startRedewendungenVokabular(level, kategorie){
     currentTheme = redewendungenTheme;
     let allItems = redewendungenTheme.words.map((word, index) => ({ word, index, themeId: redewendungenTheme.id }));
     if(level && level !== "ALL") allItems = allItems.filter(it => (it.word[8] || "") === level);
-    if(kategorie && kategorie !== "ALL") allItems = allItems.filter(it => (it.word[9] || "") === kategorie);
+    if(kategorie && kategorie !== "ALL"){
+        const cats = Array.isArray(kategorie) ? kategorie : [kategorie];
+        allItems = allItems.filter(it => cats.indexOf(it.word[9] || "") !== -1);
+    }
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
@@ -13154,6 +13228,29 @@ function startRedewendungenVokabular(level, kategorie){
     showScreen("flashcards");
     loadFlashcard();
 }
+
+// ============ Expressions & tournures : une porte, des situations ============
+// Ces contenus existaient deja -- 465 entrees dans redewendung.json, plus les
+// particules, les conjonctions et les prepositions -- mais eparpilles sur
+// quatre tuiles d'accueil nommees par categorie grammaticale. Quelqu'un qui
+// veut "apprendre a donner son avis" ne pouvait pas deviner que la reponse
+// etait derriere "Expressions", "Particules" ou "Conjonctions".
+//
+// Le classement retenu est celui des SITUATIONS -- deja porte par le champ
+// kategorie de redewendung.json -- et non celui des types (collocation, idiome,
+// structure) : pour choisir un type, il faudrait deja savoir dans quelle
+// categorie tombe ce qu'on ne connait justement pas encore.
+//
+// Chaque groupe est une fonction SANS ARGUMENT : orbAction() appelle
+// window[nom]() et ne sait pas transmettre de parametre.
+function ausdrueckeMeinung(){ startRedewendungenVokabular("ALL", ["matiz"]); }
+function ausdrueckeDiskussion(){ startRedewendungenVokabular("ALL", ["conectar"]); }
+function ausdrueckeVerbindungen(){ startRedewendungenVokabular("ALL", ["tener", "dar", "hacer", "estar", "poner", "echar", "ser", "llevar", "quedar"]); }
+function ausdrueckeGefuehle(){ startRedewendungenVokabular("ALL", ["reaccion", "interjeccion"]); }
+function ausdrueckeAlltag(){ startRedewendungenVokabular("ALL", ["cotidiano"]); }
+function ausdrueckeSmalltalk(){ startRedewendungenVokabular("ALL", ["saludo", "cortesia"]); }
+function ausdrueckeModismos(){ startRedewendungenVokabular("ALL", ["modismo"]); }
+function ausdrueckeTonAdverbien(){ startAdverbienVokabular("ALL", ["duda", "afirmacion"]); }
 
 function openAdverbienVokabular(){
     renderAdverbienLevelBar();
@@ -13178,7 +13275,7 @@ function renderAdverbienLevelBar(){
             return `<button class="secondary" style="${style}" onclick="selectAdverbienLevel('${val}')">${libelle} (${n})</button>`;
         };
         let html = bouton("ALL", t('adverbien_level_all'), mots.length);
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
@@ -13217,7 +13314,8 @@ function startAdverbienVokabular(level, kategorie){
         allItems = allItems.filter(it => (it.word[8] || "") === level);
     }
     if(kategorie && kategorie !== "ALL"){
-        allItems = allItems.filter(it => (it.word[9] || "") === kategorie);
+        const cats = Array.isArray(kategorie) ? kategorie : [kategorie];
+        allItems = allItems.filter(it => cats.indexOf(it.word[9] || "") !== -1);
     }
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
@@ -13310,7 +13408,7 @@ function renderEnglishModuleBars(){
             return `<button class="secondary" style="${style}" onclick="selectEnglishModuleLevel('${val}')">${libelle} (${n})</button>`;
         };
         let html = bouton("ALL", t('en_module_level_all'), mots.length);
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
@@ -13422,7 +13520,7 @@ function startPartikelnVokabular(){
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = allItems;
     currentFlashcard = 0;
-    setFlashHeader('kicker_partikeln_vocab', 'orb_partikeln_title');
+    setFlashHeader('kicker_partikeln_vocab', 'grp_ton');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -14016,6 +14114,11 @@ function loadFlashcard(){
     const articleEl = document.getElementById("flashArticle");
     const pluralEl = document.getElementById("flashPlural");
     const paireEl  = document.getElementById("flashPaire");
+    const usageEl  = document.getElementById("flashUsage");
+    // Masquee d'entree : seules les cartes de noms la remplissent, et la meme
+    // carte HTML sert a tous les modes -- sans ce reglage par defaut, la marque
+    // d'un nom resterait affichee sur la carte de verbe suivante.
+    if(usageEl) usageEl.classList.add("hidden");
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben' || flashcardMode === 'vhskapitelverben'){
@@ -14294,9 +14397,7 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        const praepDiagramHtml = flashcardMode === 'praep'
-            ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
-            : "";
+        const praepDiagramHtml = "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
         verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive')
             ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
@@ -14368,6 +14469,14 @@ function loadFlashcard(){
             const aUnPluriel = pluralForm && pluralForm !== "—" && pluralForm !== "-";
             pluralEl.textContent = `${t('label_plural')} ${aUnPluriel ? articuloPlural(card[1]) + pluralForm : (pluralForm || "—")}`;
             pluralEl.classList.remove("hidden");
+        }
+        // La marque d'usage n'a de sens que sur le mot allemand : en direction
+        // anglaise, la cible est l'anglais et le registre allemand ne dit plus
+        // rien de ce qui est affiche.
+        if(usageEl && !learningEnglish){
+            const marque = usageMarkText(card[10] || "", card[11] || "");
+            usageEl.textContent = marque;
+            usageEl.classList.toggle("hidden", !marque);
         }
         // Un nom de personne s'apprend par paire : donner "der Arzt" sans
         // "die Ärztin" laisse l'apprenant fabriquer le feminin au jugé -- et il
@@ -14636,6 +14745,24 @@ if('speechSynthesis' in window){
 // le régime doit s'apprendre EN MÊME TEMPS que le verbe, pas comme un module
 // séparé qu'on visite une fois. Absent (undefined) pour les niveaux pas
 // encore enrichis (A2/B1) -> aucune pastille affichée, sans erreur.
+// Texte de la marque d'usage, ou "" quand le mot n'a rien de particulier.
+// Deux formes, de la plus utile a la moins :
+//   1. une comparaison avec un mot DEJA CONNU ("plus formel que kaufen") --
+//      c'est la seule qui apprenne vraiment quelque chose ;
+//   2. a defaut, la situation d'emploi ("surtout a l'ecrit").
+// Le vocabulaire de linguiste ("registre soutenu", "neutre") est ecarte : il
+// faut deja savoir ce qu'il veut dire pour en tirer quelque chose, et
+// "neutre" serait l'etiquette de la grande majorite des mots.
+function usageMarkText(registre, vergleich){
+    if(vergleich){
+        return tf(registre === "umgangssprachlich" ? "usage_plus_familier" : "usage_plus_formel",
+                  { mot: vergleich });
+    }
+    if(registre === "schriftlich") return t("usage_ecrit");
+    if(registre === "umgangssprachlich") return t("usage_familier");
+    return "";
+}
+
 function buildRektionBadgesHtml(card){
     let html = "";
     if(card.rektion){
@@ -15113,7 +15240,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 22;
+const APP_VERSION = 23;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -15937,6 +16064,17 @@ const DAILY_GOAL_VIDEOS = [
     { file: "personnage3.MP4", muted: false, durationS: 5.9 },
     { file: "personnage4.MP4", muted: false, durationS: 6.0 },
 ];
+// MISE EN RETRAIT (v290), a la demande de l'utilisateur : les videos de
+// gratification de l'objectif du jour ne se jouent plus. Meme procede que
+// VIDEO_ACCUEIL_ACTIVE plus haut -- tout le code, les quatre clips et le rendu
+// restent en place, seul ce drapeau les eteint. Le remettre a true les rouvre
+// sans autre modification.
+//
+// Le palier reste annonce : le texte et la fanfare continuent de se jouer (voir
+// triggerDailyGoalCelebration). Sans cela le moment deviendrait entierement
+// muet, puisque les quatre clips portent leur propre son.
+const VIDEO_GRATIFICATION_ACTIVE = false;
+
 const MASTERY_VIDEO_SIZE = 150;
 const DAILY_GOAL_VIDEO_SIZE = 260;
 // Fond NOIR + liseré VERT vif tracé autour du personnage/des animaux (ajouté
@@ -16382,6 +16520,16 @@ function getDailyGoalVideoStartIndex(){
 // (bleu) gardent leur propre son et sautent la fanfare pour ne pas superposer
 // les deux (voir DAILY_GOAL_VIDEOS).
 function triggerDailyGoalCelebration(multiple){
+    // Videos retirees : on garde l'annonce du palier -- texte + fanfare + cri de
+    // foule -- et on saute le personnage. Les clips actifs ne sont pas "muted",
+    // donc la fanfare doit etre jouee explicitement ici : la brancher sur
+    // video.muted comme plus bas laisserait le palier sans aucun son.
+    if(!VIDEO_GRATIFICATION_ACTIVE){
+        showDailyGoalText(getDailyGoalTarget() * multiple);
+        playDailyGoalFanfare();
+        setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
+        return;
+    }
     const n = DAILY_GOAL_VIDEOS.length;
     const startIdx = getDailyGoalVideoStartIndex();
     const seqIndex = Math.min(multiple, n) - 1; // répète la dernière au-delà du palier n
@@ -16775,6 +16923,7 @@ function startTuilesA1(){ startTuiles("A1"); }
 function startTuilesA2(){ startTuiles("A2"); }
 function startTuilesB1(){ startTuiles("B1"); }
 function startTuilesB2(){ startTuiles("B2"); }
+function startTuilesC1(){ startTuiles("C1"); }
 
 function phrasesPourTuiles(niveau){
     return phrasesTraduisibles(niveau || "ALL").filter(ph => {
@@ -16853,6 +17002,7 @@ function startSchreibenA1(){ startSchreiben("A1"); }
 function startSchreibenA2(){ startSchreiben("A2"); }
 function startSchreibenB1(){ startSchreiben("B1"); }
 function startSchreibenB2(){ startSchreiben("B2"); }
+function startSchreibenC1(){ startSchreiben("C1"); }
 
 function startSchreiben(niveau){
     const vivier = phrasesTraduisibles(niveau || "ALL");
