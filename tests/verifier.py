@@ -28,7 +28,10 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # (utile pour prouver que le filet attrape bien une regression donnee).
 INDEX = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RACINE, "index.html")
 
-NIVEAUX = ["A1", "A2", "B1", "B2"]
+# C1 ouvert le 30 aout 2026. Les fichiers de verbes, adjectifs et adverbes
+# n'ont pas encore de cle "C1" : les boucles ci-dessous acceptent une cle
+# absente, donc les y laisser ne coute rien et evite de l'oublier plus tard.
+NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
 PERSONNES = ["ich", "du", "er_sie_es", "wir", "ihr", "sie_Sie"]
 GENRES = {"der", "die", "das", "der/die", "der/das", "die (Pl.)"}
 REKTIONS = {"", "Nominativ", "Akkusativ", "Dativ", "Akkusativ+Dativ", "Genitiv"}

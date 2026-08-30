@@ -2041,6 +2041,22 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
     margin:2px 0 10px;
 }
 
+/* Marque d'usage (C1). Elle n'apparait QUE sur les mots qui detonnent -- un
+   mot normal n'en porte aucune. C'est deliberé : une mention presente sur trois
+   cartes sur quatre cesse d'etre lue, et le jour ou elle compte, l'oeil passe
+   dessus. D'ou aussi le ton discret, qui ne concurrence pas la traduction. */
+.usage-mark{
+    display:inline-block;
+    color:#7a6532;
+    background:#faf3e2;
+    border:1px solid #ecdcb4;
+    border-radius:999px;
+    padding:3px 11px;
+    font-size:12px;
+    font-style:italic;
+    margin:0 0 10px;
+}
+
 .translation{
     color:#1e2433;
     font-size:16px;
@@ -2676,6 +2692,7 @@ body[data-theme="dark"] .search-result:hover{
     background:rgba(255,255,255,.1);
 }
 
+body[data-theme="dark"] .usage-mark{background:#241f15; border-color:#3b3324; color:#cbb87f;}
 body[data-theme="dark"] .plural{
     color:#A8C0F0;
 }
@@ -3372,7 +3389,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v262</span>
+        <span class="subtitle-version">v263</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3818,6 +3835,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <option value="A2" data-i18n="level_a2">Niveau A2</option>
             <option value="B1" data-i18n="level_b1">Niveau B1</option>
             <option value="B2" data-i18n="level_b2">Niveau B2</option>
+            <option value="C1" data-i18n="level_c1">Niveau C1</option>
         </select>
     </div>
     <div class="filters-bar">
@@ -5000,6 +5018,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 </div>
                 <div id="flashPlural" class="plural hidden"></div>
                 <div id="flashPaire" class="plural hidden"></div>
+                <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Toucher la carte fait passer à la carte suivante, sans enregistrer ta progression.</div>
@@ -5747,6 +5766,11 @@ const I18N = {
         level_a2: "Niveau A2",
         level_b1: "Niveau B1",
         level_b2: "Niveau B2",
+        usage_ecrit: "surtout à l'écrit",
+        usage_familier: "familier — à éviter à l'écrit",
+        usage_plus_formel: "plus formel que {mot}",
+        usage_plus_familier: "plus familier que {mot}",
+        level_c1: "Niveau C1",
         loading_themes: "Chargement des thèmes...",
 
         nomenniveau_title: "Noms par niveau",
@@ -6628,6 +6652,11 @@ const I18N = {
         level_a2: "Level A2",
         level_b1: "Level B1",
         level_b2: "Level B2",
+        usage_ecrit: "mostly written",
+        usage_familier: "informal — avoid in writing",
+        usage_plus_formel: "more formal than {mot}",
+        usage_plus_familier: "more informal than {mot}",
+        level_c1: "Level C1",
         loading_themes: "Loading themes...",
 
         nomenniveau_title: "Nouns by level",
@@ -7985,7 +8014,7 @@ async function loadAdjektiveJson() {
         const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
         const data = await response.json();
-        const levels = ["A1", "A2", "B1", "B2"];
+        const levels = ["A1", "A2", "B1", "B2", "C1"];
         let words = [];
         levels.forEach(lvl => {
             const arr = data[lvl] || [];
@@ -8066,7 +8095,7 @@ async function loadRedewendungenJson() {
         if (!response.ok) throw new Error("Fichier redewendung.json introuvable");
         const data = await response.json();
         const words = [];
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             (data[lvl] || []).forEach(r => {
                 const cat = REDEWENDUNG_CATEGORIES[r.kategorie] || { fr: r.kategorie, en: r.kategorie };
                 words.push([
@@ -8089,7 +8118,7 @@ async function loadAdverbienJson() {
         if (!response.ok) throw new Error("Fichier adverbe.json introuvable");
         const data = await response.json();
         const words = [];
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             (data[lvl] || []).forEach(a => {
                 const cat = ADVERB_CATEGORIES[a.kategorie] || { fr: a.kategorie, en: a.kategorie };
                 words.push([
@@ -8226,7 +8255,7 @@ async function loadThemesJson() {
             const niveau = (t.niveau || "A1").toUpperCase();
             const svg = t.svg || DEFAULT_SVG;
             const entryId = t.id || `theme_${idx}`;
-            const baseId = entryId.replace(/_(a1|a2|b1|b2)$/i, "") || `theme_${idx}`;
+            const baseId = entryId.replace(/_(a1|a2|b1|b2|c1)$/i, "") || `theme_${idx}`;
 
             const rawWords = t.words || t.mots || [];
             const words = rawWords.map(w => {
@@ -8247,7 +8276,14 @@ async function loadThemesJson() {
                     // Article francais de la traduction, elision comprise :
                     // "la ", "le ", "les " ou "l'". Vide quand le genre n'a pas
                     // pu etre etabli -- pas d'article vaut mieux qu'un faux.
-                    w.article_fr || ""
+                    w.article_fr || "",
+                    // Marque d'usage, introduite avec le C1 (voir usageMarkText).
+                    // Vide sur l'immense majorite des mots, et c'est voulu.
+                    w.registre || "",
+                    // Le mot courant auquel celui-ci se compare -- toujours un
+                    // mot deja present a un niveau INFERIEUR, sinon la
+                    // comparaison renvoie vers un mot jamais rencontre.
+                    w.vergleich || ""
                 ];
             });
 
@@ -10350,7 +10386,7 @@ function setWordState(themeId, index, state){
     saveProgress(progress);
 }
 
-const LEVELS = ["A1", "A2", "B1", "B2"];
+const LEVELS = ["A1", "A2", "B1", "B2", "C1"];
 
 // ============ Streak, objectif du jour & vélocité (motivation) ============
 
@@ -11517,7 +11553,7 @@ function orbPanelData(id){
         };
     }
     if(id === "schreiben"){
-        const niveaux = ["A1", "A2", "B1", "B2"];
+        const niveaux = ["A1", "A2", "B1", "B2", "C1"];
         return {
             icon:"exercice", title:t("op_schreiben_title"), sub:t("op_schreiben_sub"),
             options: [{ icon:"carte", title:t("op_tuiles_t"), desc:t("op_tuiles_d"),
@@ -12999,7 +13035,7 @@ function renderRedewendungenBars(){
             return `<button class="secondary" style="${style}" onclick="selectRedewendungenLevel('${val}')">${libelle} (${n})</button>`;
         };
         let html = bouton("ALL", t('adverbien_level_all'), mots.length);
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
@@ -13066,7 +13102,7 @@ function renderAdverbienLevelBar(){
             return `<button class="secondary" style="${style}" onclick="selectAdverbienLevel('${val}')">${libelle} (${n})</button>`;
         };
         let html = bouton("ALL", t('adverbien_level_all'), mots.length);
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
@@ -13198,7 +13234,7 @@ function renderEnglishModuleBars(){
             return `<button class="secondary" style="${style}" onclick="selectEnglishModuleLevel('${val}')">${libelle} (${n})</button>`;
         };
         let html = bouton("ALL", t('en_module_level_all'), mots.length);
-        ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        ["A1", "A2", "B1", "B2", "C1"].forEach(lvl => {
             if(parNiveau[lvl]) html += bouton(lvl, lvl, parNiveau[lvl]);
         });
         bar.innerHTML = html;
@@ -13904,6 +13940,11 @@ function loadFlashcard(){
     const articleEl = document.getElementById("flashArticle");
     const pluralEl = document.getElementById("flashPlural");
     const paireEl  = document.getElementById("flashPaire");
+    const usageEl  = document.getElementById("flashUsage");
+    // Masquee d'entree : seules les cartes de noms la remplissent, et la meme
+    // carte HTML sert a tous les modes -- sans ce reglage par defaut, la marque
+    // d'un nom resterait affichee sur la carte de verbe suivante.
+    if(usageEl) usageEl.classList.add("hidden");
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben' || flashcardMode === 'vhskapitelverben'){
@@ -14253,6 +14294,14 @@ function loadFlashcard(){
             pluralEl.textContent = `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
             pluralEl.classList.remove("hidden");
         }
+        // La marque d'usage n'a de sens que sur le mot allemand : en direction
+        // anglaise, la cible est l'anglais et le registre allemand ne dit plus
+        // rien de ce qui est affiche.
+        if(usageEl && !learningEnglish){
+            const marque = usageMarkText(card[10] || "", card[11] || "");
+            usageEl.textContent = marque;
+            usageEl.classList.toggle("hidden", !marque);
+        }
         // Un nom de personne s'apprend par paire : donner "der Arzt" sans
         // "die Ärztin" laisse l'apprenant fabriquer le feminin au jugé -- et il
         // est irregulier une fois sur trois (Arzt/Ärztin, Koch/Köchin).
@@ -14506,6 +14555,24 @@ if('speechSynthesis' in window){
 // le régime doit s'apprendre EN MÊME TEMPS que le verbe, pas comme un module
 // séparé qu'on visite une fois. Absent (undefined) pour les niveaux pas
 // encore enrichis (A2/B1) -> aucune pastille affichée, sans erreur.
+// Texte de la marque d'usage, ou "" quand le mot n'a rien de particulier.
+// Deux formes, de la plus utile a la moins :
+//   1. une comparaison avec un mot DEJA CONNU ("plus formel que kaufen") --
+//      c'est la seule qui apprenne vraiment quelque chose ;
+//   2. a defaut, la situation d'emploi ("surtout a l'ecrit").
+// Le vocabulaire de linguiste ("registre soutenu", "neutre") est ecarte : il
+// faut deja savoir ce qu'il veut dire pour en tirer quelque chose, et
+// "neutre" serait l'etiquette de la grande majorite des mots.
+function usageMarkText(registre, vergleich){
+    if(vergleich){
+        return tf(registre === "umgangssprachlich" ? "usage_plus_familier" : "usage_plus_formel",
+                  { mot: vergleich });
+    }
+    if(registre === "schriftlich") return t("usage_ecrit");
+    if(registre === "umgangssprachlich") return t("usage_familier");
+    return "";
+}
+
 function buildRektionBadgesHtml(card){
     let html = "";
     if(card.rektion){
@@ -14972,7 +15039,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 262;
+const APP_VERSION = 263;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -16634,6 +16701,7 @@ function startTuilesA1(){ startTuiles("A1"); }
 function startTuilesA2(){ startTuiles("A2"); }
 function startTuilesB1(){ startTuiles("B1"); }
 function startTuilesB2(){ startTuiles("B2"); }
+function startTuilesC1(){ startTuiles("C1"); }
 
 function phrasesPourTuiles(niveau){
     return phrasesTraduisibles(niveau || "ALL").filter(ph => {
@@ -16712,6 +16780,7 @@ function startSchreibenA1(){ startSchreiben("A1"); }
 function startSchreibenA2(){ startSchreiben("A2"); }
 function startSchreibenB1(){ startSchreiben("B1"); }
 function startSchreibenB2(){ startSchreiben("B2"); }
+function startSchreibenC1(){ startSchreiben("C1"); }
 
 function startSchreiben(niveau){
     const vivier = phrasesTraduisibles(niveau || "ALL");
