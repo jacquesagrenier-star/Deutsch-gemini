@@ -37,7 +37,10 @@ GENRES = {"der", "die", "das", "der/die", "der/das", "die (Pl.)"}
 REKTIONS = {"", "Nominativ", "Akkusativ", "Dativ", "Akkusativ+Dativ", "Genitiv"}
 
 CATS_ADVERBES = {"Zeit", "Ort/Richtung", "Häufigkeit", "Art und Weise",
-                 "Grad/Menge", "Grund/Folge", "Verbindung/Logik", "Frageadverbien"}
+                 "Grad/Menge", "Grund/Folge", "Verbindung/Logik", "Frageadverbien",
+                 # Marqueurs d'attitude, regroupes avec les particules dans
+                 # la porte "Expressions & tournures" (v265).
+                 "Nuance/Ton"}
 CATS_EXPRESSIONS = {"Begrüßung/Small Talk", "Meinung/Zustimmung", "Gefühle/Reaktionen",
                     "Alltag/Organisation", "Diskussion/Nuance", "Feste Verbindungen"}
 

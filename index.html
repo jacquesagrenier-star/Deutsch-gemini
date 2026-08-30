@@ -3389,7 +3389,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v264</span>
+        <span class="subtitle-version">v265</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3538,18 +3538,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 
 
-        <div class="orb orb-de" data-orbid="partikeln" onclick="openOrbPanel('partikeln')">
-            <div id="badge-partikeln" class="orb-badge hidden"></div>
-            <div class="orb-icon-wrap">
-                <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-partikeln" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg></div>
-            </div>
-            <div>
-                <strong data-i18n="orb_partikeln_title">Particules</strong>
-                <small data-i18n="orb_partikeln_sub">doch · ja · mal</small>
-            </div>
-        </div>
-
         <div class="orb orb-de" data-orbid="adverbien" onclick="openOrbPanel('adverbien')">
             <div id="badge-adverbien" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
@@ -3586,23 +3574,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="redewendungen" onclick="openOrbPanel('redewendungen')">
-            <div id="badge-redewendungen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg></div>
+        <!-- Une porte, dix situations. Elle remplace les tuiles Expressions,
+             Particules et Conjonctions : leurs panneaux existent toujours et
+             restent la cible de plusieurs boutons Retour, mais l'accueil ne
+             demande plus a l'usager de savoir si ce qu'il cherche est une
+             expression, une particule ou une conjonction. -->
+        <div class="orb orb-de" data-orbid="ausdruecke" onclick="openOrbPanel('ausdruecke')">
+            <div id="badge-ausdruecke" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/><path d="M8 10h8"/><path d="M8 13h5"/></svg></div>
             <div>
-                <strong data-i18n="orb_redewendungen_title">Expressions</strong>
-                <small data-i18n="orb_redewendungen_sub">keine Ahnung · auf jeden Fall</small>
+                <strong data-i18n="orb_ausdruecke_title">Expressions & tournures</strong>
+                <small data-i18n="orb_ausdruecke_sub">Par situation</small>
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="konjunktionen" onclick="openOrbPanel('konjunktionen')">
-            <div id="badge-konjunktionen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg></div>
-            <div>
-                <strong data-i18n="orb_konjunktionen_title">Conjonctions</strong>
-                <small data-i18n="orb_konjunktionen_sub">und · weil · aber</small>
-            </div>
-        </div>
 
         <!-- Tuile "Chapitres VHS" : contenu specifique au cours B1 de l'utilisatrice
              (Nomen+Verben+Adjektive par chapitre), pas pertinent pour le grand public.
@@ -5765,6 +5750,18 @@ const I18N = {
         level_a1: "Niveau A1",
         level_a2: "Niveau A2",
         level_b1: "Niveau B1",
+        orb_ausdruecke_title: "Expressions & tournures",
+        orb_ausdruecke_sub: "Par situation",
+        grp_meinung: "Opinions & accord",
+        grp_diskussion: "Discussion & nuance",
+        grp_ton: "Nuances & ton",
+        grp_ton_adv: "Adverbes de ton",
+        grp_verbindungen: "Tournures fig\u00e9es",
+        grp_gefuehle: "\u00c9motions & r\u00e9actions",
+        grp_alltag: "Vie quotidienne & organisation",
+        grp_smalltalk: "Salutations & small talk",
+        grp_ideen: "Relations entre les id\u00e9es",
+        grp_praep: "Verbes & pr\u00e9positions",
         level_b2: "Niveau B2",
         usage_ecrit: "surtout à l'écrit",
         usage_familier: "familier — à éviter à l'écrit",
@@ -6651,6 +6648,18 @@ const I18N = {
         level_a1: "Level A1",
         level_a2: "Level A2",
         level_b1: "Level B1",
+        orb_ausdruecke_title: "Expressions & phrases",
+        orb_ausdruecke_sub: "By situation",
+        grp_meinung: "Opinions & agreement",
+        grp_diskussion: "Discussion & nuance",
+        grp_ton: "Nuance & tone",
+        grp_ton_adv: "Tone adverbs",
+        grp_verbindungen: "Set phrases",
+        grp_gefuehle: "Emotions & reactions",
+        grp_alltag: "Everyday life & organising",
+        grp_smalltalk: "Greetings & small talk",
+        grp_ideen: "Linking ideas",
+        grp_praep: "Verbs & prepositions",
         level_b2: "Level B2",
         usage_ecrit: "mostly written",
         usage_familier: "informal — avoid in writing",
@@ -8065,7 +8074,12 @@ const ADVERB_CATEGORIES = {
     "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity" },
     "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence" },
     "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link" },
-    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words" }
+    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words" },
+    // Marqueurs d'attitude plutot que liens logiques : allerdings, zwar,
+    // immerhin, ohnehin... Ils ne disent pas comment deux idees s'articulent,
+    // ils disent ce que celui qui parle en pense. C'est le role des
+    // particules, d'ou leur regroupement avec elles dans "Nuances & ton".
+    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude" }
 };
 
 // Adverbes charges depuis adverbe.json (meme principe que verbe.json et
@@ -11594,6 +11608,24 @@ function orbPanelData(id){
             ]
         };
     }
+    if(id === "ausdruecke"){
+        return {
+            icon:"dossier", title:t("orb_ausdruecke_title"), sub:t("orb_ausdruecke_sub"),
+            options:[
+                { icon:"carte", title:t("grp_meinung"), desc:"meiner Meinung nach \u00b7 auf jeden Fall",
+                  primary:true, action:"ausdrueckeMeinung" },
+                { icon:"carte", title:t("grp_diskussion"), desc:"es geht um \u00b7 im Gegenteil", action:"ausdrueckeDiskussion" },
+                { icon:"carte", title:t("grp_ton"), desc:"doch \u00b7 ja \u00b7 mal \u00b7 eben", action:"startPartikelnVokabular" },
+                { icon:"carte", title:t("grp_ton_adv"), desc:"allerdings \u00b7 zwar \u00b7 immerhin", action:"ausdrueckeTonAdverbien" },
+                { icon:"carte", title:t("grp_verbindungen"), desc:"eine Entscheidung treffen", action:"ausdrueckeVerbindungen" },
+                { icon:"carte", title:t("grp_gefuehle"), desc:"keine Ahnung \u00b7 zum Gl\u00fcck", action:"ausdrueckeGefuehle" },
+                { icon:"carte", title:t("grp_alltag"), desc:"Bescheid sagen \u00b7 Zeit haben", action:"ausdrueckeAlltag" },
+                { icon:"carte", title:t("grp_smalltalk"), desc:"wie geht's \u00b7 bis dann", action:"ausdrueckeSmalltalk" },
+                { icon:"dossier", title:t("grp_ideen"), desc:"und \u00b7 weil \u00b7 obwohl \u00b7 damit", action:"openKonjunktionenInfo" },
+                { icon:"dossier", title:t("grp_praep"), desc:"f\u00fcr \u00b7 mit \u00b7 wegen \u00b7 auf", action:"openPraepInfo" }
+            ]
+        };
+    }
     if(id === "konjunktionen"){
         return {
             icon:"dossier", title:t("op_konjunktionen_title"), sub:t("op_konjunktionen_sub"),
@@ -13078,6 +13110,28 @@ function startRedewendungenVokabular(level, kategorie){
     showScreen("flashcards");
     loadFlashcard();
 }
+
+// ============ Expressions & tournures : une porte, des situations ============
+// Ces contenus existaient deja -- 465 entrees dans redewendung.json, plus les
+// particules, les conjonctions et les prepositions -- mais eparpilles sur
+// quatre tuiles d'accueil nommees par categorie grammaticale. Quelqu'un qui
+// veut "apprendre a donner son avis" ne pouvait pas deviner que la reponse
+// etait derriere "Expressions", "Particules" ou "Conjonctions".
+//
+// Le classement retenu est celui des SITUATIONS -- deja porte par le champ
+// kategorie de redewendung.json -- et non celui des types (collocation, idiome,
+// structure) : pour choisir un type, il faudrait deja savoir dans quelle
+// categorie tombe ce qu'on ne connait justement pas encore.
+//
+// Chaque groupe est une fonction SANS ARGUMENT : orbAction() appelle
+// window[nom]() et ne sait pas transmettre de parametre.
+function ausdrueckeSmalltalk(){ startRedewendungenVokabular("ALL", "Begr\u00fc\u00dfung/Small Talk"); }
+function ausdrueckeAlltag(){ startRedewendungenVokabular("ALL", "Alltag/Organisation"); }
+function ausdrueckeMeinung(){ startRedewendungenVokabular("ALL", "Meinung/Zustimmung"); }
+function ausdrueckeDiskussion(){ startRedewendungenVokabular("ALL", "Diskussion/Nuance"); }
+function ausdrueckeGefuehle(){ startRedewendungenVokabular("ALL", "Gef\u00fchle/Reaktionen"); }
+function ausdrueckeVerbindungen(){ startRedewendungenVokabular("ALL", "Feste Verbindungen"); }
+function ausdrueckeTonAdverbien(){ startAdverbienVokabular("ALL", "Nuance/Ton"); }
 
 function openAdverbienVokabular(){
     renderAdverbienLevelBar();
@@ -15039,7 +15093,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 264;
+const APP_VERSION = 265;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
