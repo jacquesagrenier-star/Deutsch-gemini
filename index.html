@@ -3535,7 +3535,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v320</span>
+        <span class="subtitle-version">v321</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6671,6 +6671,7 @@ const I18N = {
         admin_action_failed: "L'action a échoué. Vérifie que Firestore est bien activé et réessaie.",
         admin_confirm_delete_code: "Supprimer le code « {code} » ?",
         admin_no_codes: "Aucun code créé pour l'instant.",
+        admin_retry_btn: "RÉESSAYER",
         admin_code_used: "Déjà utilisé",
         admin_code_available: "Disponible",
         admin_code_note_placeholder: "Donné à qui ?",
@@ -7589,6 +7590,7 @@ const I18N = {
         admin_action_failed: "The action failed. Make sure Firestore is enabled and try again.",
         admin_confirm_delete_code: "Delete code « {code} »?",
         admin_no_codes: "No codes created yet.",
+        admin_retry_btn: "RETRY",
         admin_code_used: "Already used",
         admin_code_available: "Available",
         admin_code_note_placeholder: "Given to whom?",
@@ -13519,6 +13521,26 @@ function openSettings(){
 
 // ============ Tableau de bord admin (codes d'invitation + testeurs) ============
 
+// Une lecture Firestore qui echoue laissait un ecran qu'on lit comme une
+// perte de donnees -- alors que rien n'est perdu, la requete est simplement
+// partie avant que la connexion soit prete (typique au demarrage a froid de
+// l'app installee). On dit clairement que c'est un echec de lecture, et on
+// offre de reessayer plutot que de renvoyer l'admin a l'accueil.
+function adminEtatErreur(container, relance){
+    if(!container) return;
+    container.innerHTML = "";
+    const texte = document.createElement("div");
+    texte.style.cssText = "color:#576177; margin-bottom:12px;";
+    texte.textContent = t("admin_load_failed");
+    const bouton = document.createElement("button");
+    bouton.className = "secondary";
+    bouton.style.cssText = "width:auto; padding:8px 16px; font-size:13px;";
+    bouton.textContent = t("admin_retry_btn");
+    bouton.onclick = relance;
+    container.appendChild(texte);
+    container.appendChild(bouton);
+}
+
 function openAdminDashboard(){
     if(!isAdminUser()){ goHome(); return; }
     showScreen("adminDashboard");
@@ -13570,7 +13592,7 @@ async function renderAdminDeployStatus(){
             </div>
         `;
     }catch(e){
-        el.textContent = t('admin_load_failed');
+        adminEtatErreur(el, renderAdminDeployStatus);
     }
 }
 
@@ -13621,6 +13643,9 @@ async function deleteInviteCode(code){
 async function renderAdminCodesList(){
     const container = document.getElementById("adminCodesList");
     if(!container || !isAdminUser()) return;
+    // Firestore pas encore initialise : c'est un echec de lecture, pas une
+    // collection vide. La difference change tout pour qui regarde l'ecran.
+    if(!window.firestoreDb){ adminEtatErreur(container, renderAdminCodesList); return; }
     container.textContent = t('loading_label');
     try{
         const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, 'inviteCodes'));
@@ -13642,7 +13667,7 @@ async function renderAdminCodesList(){
             </div>
         `).join("");
     }catch(e){
-        container.textContent = t('admin_load_failed');
+        adminEtatErreur(container, renderAdminCodesList);
     }
 }
 
@@ -13678,6 +13703,7 @@ function renderAdminRequests(users){
 async function renderAdminUsersList(){
     const container = document.getElementById("adminUsersList");
     if(!container || !isAdminUser()) return;
+    if(!window.firestoreDb){ adminEtatErreur(container, renderAdminUsersList); return; }
     container.textContent = t('loading_label');
     try{
         const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, 'users'));
@@ -13719,7 +13745,7 @@ async function renderAdminUsersList(){
             </div>
         `;}).join("");
     }catch(e){
-        container.textContent = t('admin_load_failed');
+        adminEtatErreur(container, renderAdminUsersList);
     }
 }
 
@@ -16047,7 +16073,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 320;
+const APP_VERSION = 321;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
