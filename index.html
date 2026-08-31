@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v326</span>
+        <span class="subtitle-version">v327</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -8612,8 +8612,10 @@ const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr" };
 const RANGS_CARTE = {
     nomen:         { traduction: { fr:3, en:4, tr:12 }, exemple: { fr:6, en:7, tr:13 } },
     adjektive:     { traduction: { fr:1, en:5, tr:7  }, exemple: { fr:4, en:6, tr:8  } },
-    funktionswort: { traduction: { fr:1, en:5, tr:9  }, exemple: { fr:4, en:6, tr:10 } },
-    expression:    { traduction: { fr:1, en:5, tr:10 }, exemple: { fr:4, en:6, tr:11 } }
+    funktionswort: { traduction: { fr:1, en:5, tr:9  }, exemple: { fr:4, en:6, tr:10 },
+                     categorie:  { fr:2, en:7, tr:11 } },
+    expression:    { traduction: { fr:1, en:5, tr:10 }, exemple: { fr:4, en:6, tr:11 },
+                     categorie:  { fr:2, en:7, tr:12 } }
 };
 
 // Lit un texte de carte dans la langue voulue, avec le meme repli que
@@ -8642,6 +8644,34 @@ function langueTraduite(obj, base, lang){
         if(obj[cle]) return code;
     }
     return frSuffixe ? null : (obj[base] ? "fr" : null);
+}
+
+// Quel mode de flashcard suit quelle disposition. Les modes absents de cette
+// table (verbes, module anglais) ont leur propre rendu.
+//
+// Certaines listes ecrites en dur dans le fichier sont plus courtes que leurs
+// homologues chargees depuis JSON : le rang turc n'y existe pas encore. Ce
+// n'est pas un probleme -- texteCarte replie alors sur l'anglais puis le
+// francais, exactement comme pour un mot pas encore traduit.
+const TYPE_CARTE_PAR_MODE = {
+    nomen: "nomen", monvocab: "nomen",
+    adjektive: "adjektive", vhskapiteladjektive: "adjektive",
+    praep: "funktionswort", positionsverben: "funktionswort",
+    partikeln: "funktionswort", konjunktionen: "funktionswort",
+    zahlen: "funktionswort", kasusverben: "funktionswort",
+    adverbien: "expression", redewendungen: "expression"
+};
+
+// Petites tables de libelles -- { fr: "temps", en: "time" } -- pour les
+// categories d'adverbes et d'expressions, les glossaires du dictionnaire, les
+// phrases Wo/Wohin. Meme repli que partout ailleurs : ajouter "tr:" a la table
+// suffit, aucun appelant ne change.
+function libelle(table, lang){
+    if(!table) return "";
+    for(const code of langueEtRepli(lang)){
+        if(table[code]) return table[code];
+    }
+    return "";
 }
 
 function texteCarte(carte, type, quoi, lang){
@@ -9455,7 +9485,8 @@ async function loadFunktionswoerterJson() {
                 w.exemple || "", w.exemple_fr || "",
                 w.traduction_en || "", w.exemple_en || "",
                 w.kategorie_en || "", w.niveau || "",
-                w.traduction_tr || "", w.exemple_tr || ""   // rangs 9 et 10
+                w.traduction_tr || "", w.exemple_tr || "",  // rangs 9 et 10
+                w.kategorie_tr || ""                        // rang 11
             ]);
         });
     } catch (e) {
@@ -9477,7 +9508,8 @@ async function loadRedewendungenJson() {
                     r.exemple || "", r.exemple_fr || "",
                     r.traduction_en || "", r.exemple_en || "",
                     cat.en, lvl, r.kategorie || "",
-                    r.traduction_tr || "", r.exemple_tr || ""   // rangs 10 et 11
+                    r.traduction_tr || "", r.exemple_tr || "",  // rangs 10 et 11
+                    cat.tr || ""                                // rang 12
                 ]);
             });
         });
@@ -9501,7 +9533,8 @@ async function loadAdverbienJson() {
                     a.exemple || "", a.exemple_fr || "",
                     a.traduction_en || "", a.exemple_en || "",
                     cat.en, lvl, a.kategorie || "",
-                    a.traduction_tr || "", a.exemple_tr || ""   // rangs 10 et 11
+                    a.traduction_tr || "", a.exemple_tr || "",  // rangs 10 et 11
+                    cat.tr || ""                                // rang 12
                 ]);
             });
         });
@@ -11132,30 +11165,35 @@ function renderPraepQuickRef(){
         const bi = order.indexOf(praepCaseBadgeFor(b[2]).label);
         return ai - bi;
     });
-    container.innerHTML = sorted.map(([wort, fr, catFr, deEx, frEx, en, enEx]) => {
+    container.innerHTML = sorted.map(carte => {
+        const [wort, fr, catFr, deEx, frEx, en, enEx] = carte;
+        // La carte porte toutes les langues connues : on lit par code plutot
+        // que par rang, sinon le turc n'aurait nulle part ou aller.
+        const traductionConnue = texteCarte(carte, "funktionswort", "traduction");
+        const exempleConnu = texteCarte(carte, "funktionswort", "exemple");
         const badge = praepCaseBadgeFor(catFr);
         const wohin = badge.label === "Wechsel" ? PRAEP_WECHSEL_WOHIN[wort] : null;
         const exemplesHtml = wohin ? `
             <div style="margin-top:6px;">
                 <span style="font-size:11px; font-weight:700; color:${badge.color};">Wo? (Dativ)</span><br>
                 <em>${deEx}</em><br>
-                <span style="color:#576177;">(${useEn ? enEx : frEx})</span>
+                <span style="color:#576177;">(${exempleConnu})</span>
             </div>
             <div style="margin-top:6px;">
                 <span style="font-size:11px; font-weight:700; color:${badge.color};">Wohin? (Akkusativ)</span><br>
                 <em>${wohin.de}</em><br>
-                <span style="color:#576177;">(${useEn ? wohin.en : wohin.fr})</span>
+                <span style="color:#576177;">(${libelle(wohin)})</span>
             </div>
         ` : `
             <div style="margin-top:4px;">
                 <em>${deEx}</em><br>
-                <span style="color:#576177;">(${useEn ? enEx : frEx})</span>
+                <span style="color:#576177;">(${exempleConnu})</span>
             </div>
         `;
         return `
         <div class="info-box" style="margin-top:0;">
             <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                <strong style="color:#3b6fe0;">${wort}</strong> — ${useEn ? en : fr}
+                <strong style="color:#3b6fe0;">${wort}</strong> — ${traductionConnue}
                 <span style="flex:none; font-size:10px; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:#fff; background:${badge.color}; padding:3px 8px; border-radius:20px;">${badge.label}</span>
             </div>
             ${exemplesHtml}
@@ -13730,7 +13768,7 @@ function pushSearchEntry(list, entry){
     // resultats qui semblaient tires au hasard, puisque le mot qui les avait
     // fait remonter n'etait nulle part a l'ecran. Symetriquement, en anglais on
     // ne fouille plus le francais.
-    const trad = (getUiLang() === 'en') ? entry.en : entry.fr;
+    const trad = libelle(entry);
     entry.haystack = normalizeSearch([entry.de, trad, entry.alt].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
     // Traduction affichee, normalisee : c'est elle qui compte pour une
@@ -13951,7 +13989,7 @@ function findSearchSuggestions(q){
 // de progression : sur une liste de resultats, c'est du bruit.
 function searchResultHtml(entry, i, exact){
     const useEn = getUiLang() === 'en';
-    const trad = useEn ? (entry.en || entry.fr) : (entry.fr || entry.en);
+    const trad = libelle(entry);
     // Mot, traduction et nature sur UNE seule ligne ; la pastille "correspondance
     // exacte" est placee au-dessus plutot qu'a la suite, pour ne pas repousser la
     // nature du mot sur une deuxieme ligne et garder toutes les lignes alignees.
@@ -15004,7 +15042,7 @@ function renderRedewendungenBars(){
         let html = `<button class="secondary" style="flex:1 1 100%;" onclick="startRedewendungenVokabular('${lvl}', 'ALL')">`
             + `${t('adverbien_cat_all')} (${duNiveau.length})</button>`;
         html += ordre.filter(c => parCat[c]).map(c => {
-            const gloss = (REDEWENDUNG_CATEGORIES[c] || {})[getUiLang() === 'en' ? 'en' : 'fr'] || c;
+            const gloss = libelle(REDEWENDUNG_CATEGORIES[c]) || c;
             const nom = gloss.split(" \u2014 ")[0];
             const sens = gloss.split(" \u2014 ")[1] || "";
             const arg = c.replace(/'/g, "\\'");
@@ -15099,7 +15137,7 @@ function renderAdverbienLevelBar(){
         let html = `<button class="secondary" style="flex:1 1 100%;" onclick="startAdverbienVokabular('${lvl}', 'ALL')">`
             + `${t('adverbien_cat_all')} (${duNiveau.length})</button>`;
         html += ordre.filter(c => parCat[c]).map(c => {
-            const gloss = (ADVERB_CATEGORIES[c] || {})[getUiLang() === 'en' ? 'en' : 'fr'] || c;
+            const gloss = libelle(ADVERB_CATEGORIES[c]) || c;
             const nom = gloss.split(" \u2014 ")[0];
             const sens = gloss.split(" \u2014 ")[1] || "";
             const arg = c.replace(/'/g, "\\'");
@@ -16136,11 +16174,11 @@ function loadFlashcard(){
         const useEn = uiLang === 'en';
         const frenchWord = learningEnglish
             ? (card[5] || card[1])
-            : ((useEn && card[5]) ? card[5] : card[1]);
+            : texteCarte(card, "adjektive", "traduction");
         const exampleSentence = card[2];
         const exampleSentenceFr = learningEnglish
             ? (card[6] || card[4] || "")
-            : ((useEn && card[6]) ? card[6] : (card[4] || ""));
+            : texteCarte(card, "adjektive", "exemple");
         // Sémantique constante du bouton recto/verso (voir branche 'verben' plus
         // haut) : frontIsFrench=true -> langue connue au recto (FR en allemand,
         // DE en anglais) ; false -> langue cible au recto.
@@ -16281,10 +16319,15 @@ function loadFlashcard(){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
-        const frenchWord = (useEn && card[5]) ? card[5] : card[1];
-        const cas = (useEn && card[7]) ? card[7] : card[2];
+        const typeCarte = TYPE_CARTE_PAR_MODE[flashcardMode] || "funktionswort";
+        const frenchWord = texteCarte(card, typeCarte, "traduction");
+        // La categorie n'est pas rangee dans la carte comme les traductions :
+        // elle vient des tables de categories, qui portent leurs propres
+        // libelles par langue.
+        const cas = texteCarte(card, typeCarte, "categorie")
+            || ((useEn && card[7]) ? card[7] : card[2]);
         const exampleSentence = card[3];
-        const exampleSentenceFr = ((useEn && card[6]) ? card[6] : card[4]) || "";
+        const exampleSentenceFr = texteCarte(card, typeCarte, "exemple");
         const label = flashcardMode === 'partikeln' ? t('label_nuance_word')
             : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen') ? t('label_word_category')
             : t('label_case_word');
@@ -16319,14 +16362,14 @@ function loadFlashcard(){
         const useEn = uiLang === 'en';
         const frenchWord = learningEnglish
             ? (card[4] || card[3])
-            : ((useEn && card[4]) ? card[4] : card[3]);
+            : texteCarte(card, "nomen", "traduction");
         // card[5]/card[6]/card[7] = phrase d'exemple (allemand/français/anglais),
         // absentes pour les thèmes pas encore enrichis (repli sur "" -> pas
         // d'exemple affiché, comme pour les traductions manquantes ci-dessus).
         const exampleSentence = card[5] || "";
         const exampleSentenceFr = learningEnglish
             ? (card[7] || card[6] || "")
-            : ((useEn && card[7]) ? card[7] : (card[6] || ""));
+            : texteCarte(card, "nomen", "exemple");
         // Sémantique constante du bouton recto/verso (voir branche 'verben' plus
         // haut) : frontIsFrench=true -> langue connue au recto (FR en allemand,
         // DE en anglais) ; false -> langue cible au recto.
@@ -16334,7 +16377,13 @@ function loadFlashcard(){
         // glossaire. Avec son article il se lit comme du francais, et c'est
         // bien du francais qu'on demande de traduire. L'article ne vaut QUE
         // pour le francais : la traduction anglaise n'en prend pas.
-        const montreFrancais = !learningEnglish && !(useEn && card[4]);
+        // L'article francais ("la ", "le ") ne se met que devant du FRANCAIS.
+        // Le test regardait "la langue n'est pas l'anglais", ce qui collait un
+        // article francais devant une traduction anglaise des que l'interface
+        // passait au turc. On demande maintenant quelle langue a reellement
+        // ete servie.
+        const montreFrancais = !learningEnglish
+            && langueCarte(card, "nomen", "traduction") === "fr";
         const francaisAffiche = (montreFrancais && card[9] ? card[9] : "") + frenchWord;
 
         const knownWord = learningEnglish ? germanWord : francaisAffiche;
@@ -17156,7 +17205,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 326;
+const APP_VERSION = 327;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17286,7 +17335,7 @@ function buildNomenDictationExercises(){
         const card = item.word;
         if(!Array.isArray(card)) return;
         const germanWord = card[0];
-        const frenchWord = learningEnglish ? (card[4] || card[3]) : ((useEn && card[4]) ? card[4] : card[3]);
+        const frenchWord = learningEnglish ? (card[4] || card[3]) : texteCarte(card, "nomen", "traduction");
         const targetWord = learningEnglish ? frenchWord : germanWord;
         const knownWord = learningEnglish ? germanWord : frenchWord;
         if(!targetWord) return;
@@ -18864,7 +18913,7 @@ function startTuiles(niveau){
         const tokens = corps.split(/\s+/);
         return {
             topic: "Construire \u00b7 " + ph.source,
-            question: useEn ? ph.en : ph.fr,
+            question: libelle(ph),
             question_en: ph.en,
             translation: ph.source,
             translation_en: ph.source,
