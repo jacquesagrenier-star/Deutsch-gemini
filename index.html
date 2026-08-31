@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v325</span>
+        <span class="subtitle-version">v326</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -8601,6 +8601,60 @@ function texteTraduit(obj, base, lang){
 // tableau), d'ou une fonction distincte de texteTraduit.
 const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr" };
 
+// ============ Ou se trouve chaque langue dans une carte ============
+// Les cartes de vocabulaire sont des TABLEAUX : le rang encode le sens, et il
+// differe d'un type a l'autre -- la traduction francaise est en 1 pour un
+// adjectif, en 3 pour un nom. Cette table est le seul endroit qui le sait.
+//
+// Le turc occupe des rangs ajoutes EN FIN : aucun rang existant ne bouge,
+// donc aucun des lecteurs positionnels du fichier n'est affecte. Ajouter une
+// langue de plus se fera pareil -- une paire de rangs au bout, une ligne ici.
+const RANGS_CARTE = {
+    nomen:         { traduction: { fr:3, en:4, tr:12 }, exemple: { fr:6, en:7, tr:13 } },
+    adjektive:     { traduction: { fr:1, en:5, tr:7  }, exemple: { fr:4, en:6, tr:8  } },
+    funktionswort: { traduction: { fr:1, en:5, tr:9  }, exemple: { fr:4, en:6, tr:10 } },
+    expression:    { traduction: { fr:1, en:5, tr:10 }, exemple: { fr:4, en:6, tr:11 } }
+};
+
+// Lit un texte de carte dans la langue voulue, avec le meme repli que
+// texteTraduit : tr -> en -> fr. Renvoie "" si le rang n'existe pas encore
+// (le corpus turc se remplit progressivement).
+// Quelle langue le repli a-t-il REELLEMENT servie ? La voix de lecture en
+// depend : servir une phrase anglaise avec une voix turque la rendrait
+// incomprehensible. Renvoie null si aucune langue connue n'a de contenu.
+function langueCarte(carte, type, quoi, lang){
+    if(!carte) return null;
+    const rangs = (RANGS_CARTE[type] || {})[quoi];
+    if(!rangs) return null;
+    for(const code of langueEtRepli(lang)){
+        const r = rangs[code];
+        if(r !== undefined && carte[r]) return code;
+    }
+    return null;
+}
+
+// Meme question pour un objet a champs nommes (les verbes).
+function langueTraduite(obj, base, lang){
+    if(!obj) return null;
+    const frSuffixe = obj[base + "_fr"] !== undefined;
+    for(const code of langueEtRepli(lang)){
+        const cle = (code === "fr" && !frSuffixe) ? base : base + SUFFIXE_LANGUE[code];
+        if(obj[cle]) return code;
+    }
+    return frSuffixe ? null : (obj[base] ? "fr" : null);
+}
+
+function texteCarte(carte, type, quoi, lang){
+    if(!carte) return "";
+    const rangs = (RANGS_CARTE[type] || {})[quoi];
+    if(!rangs) return "";
+    for(const code of langueEtRepli(lang)){
+        const r = rangs[code];
+        if(r !== undefined && carte[r]) return carte[r];
+    }
+    return "";
+}
+
 function valeurTraduite(obj, base, lang){
     if(!obj) return undefined;
     for(const code of langueEtRepli(lang)){
@@ -9304,7 +9358,9 @@ async function loadAdjektiveJson() {
                     lvl,
                     w.exemple_fr || "",
                     w.traduction_en || "",
-                    w.exemple_en || ""
+                    w.exemple_en || "",
+                    w.traduction_tr || "",   // rang 7
+                    w.exemple_tr || ""       // rang 8
                 ]);
             });
         });
@@ -9398,7 +9454,8 @@ async function loadFunktionswoerterJson() {
                 w.mot || "", w.traduction || "", w.kategorie || "",
                 w.exemple || "", w.exemple_fr || "",
                 w.traduction_en || "", w.exemple_en || "",
-                w.kategorie_en || "", w.niveau || ""
+                w.kategorie_en || "", w.niveau || "",
+                w.traduction_tr || "", w.exemple_tr || ""   // rangs 9 et 10
             ]);
         });
     } catch (e) {
@@ -9419,7 +9476,8 @@ async function loadRedewendungenJson() {
                     r.mot || "", r.traduction || "", cat.fr,
                     r.exemple || "", r.exemple_fr || "",
                     r.traduction_en || "", r.exemple_en || "",
-                    cat.en, lvl, r.kategorie || ""
+                    cat.en, lvl, r.kategorie || "",
+                    r.traduction_tr || "", r.exemple_tr || ""   // rangs 10 et 11
                 ]);
             });
         });
@@ -9442,7 +9500,8 @@ async function loadAdverbienJson() {
                     a.mot || "", a.traduction || "", cat.fr,
                     a.exemple || "", a.exemple_fr || "",
                     a.traduction_en || "", a.exemple_en || "",
-                    cat.en, lvl, a.kategorie || ""
+                    cat.en, lvl, a.kategorie || "",
+                    a.traduction_tr || "", a.exemple_tr || ""   // rangs 10 et 11
                 ]);
             });
         });
@@ -9601,7 +9660,9 @@ async function loadThemesJson() {
                     // Le mot courant auquel celui-ci se compare -- toujours un
                     // mot deja present a un niveau INFERIEUR, sinon la
                     // comparaison renvoie vers un mot jamais rencontre.
-                    w.vergleich || ""
+                    w.vergleich || "",
+                    w.traduction_tr || "",   // rang 12
+                    w.exemple_tr || ""       // rang 13
                 ];
             });
 
@@ -16708,7 +16769,9 @@ function ecouteEnregistrerReglages(){
 // l'allemand et la langue connue celle de l'interface.
 function ecouteLangues(){
     if(getLearningDirection() === "en") return { cible:"en", connu:"de" };
-    return { cible:"de", connu: getUiLang() === "en" ? "en" : "fr" };
+    // La langue connue est simplement celle de l'interface : le repli du
+    // texte est gere plus bas, et la voix suit la langue REELLEMENT servie.
+    return { cible:"de", connu: getUiLang() };
 }
 
 // Extraction du contenu quelle que soit la forme de la carte : les verbes sont
@@ -16717,28 +16780,45 @@ function ecouteLangues(){
 function contenuEcoute(item){
     const c = item.word;
     let de = "", fr = "", en = "", pDe = "", pFr = "", pEn = "";
+    // L'allemand se lit toujours au meme endroit ; les langues CONNUES passent
+    // par RANGS_CARTE, qui sait ou chacune se trouve selon le type de carte.
+    let type = item.type;
     if(item.type === "verben"){
-        de = c.infinitif || ""; fr = c.traduction || ""; en = c.traduction_en || "";
-        pDe = c.exemple || ""; pFr = c.exemple_fr || ""; pEn = c.exemple_en || "";
+        de = c.infinitif || "";
+        pDe = c.exemple || "";
     } else if(item.type === "nomen"){
         // Article prononcé avec le nom : c'est ainsi qu'on retient le genre.
         de = ((c[1] || "") + " " + (c[0] || "")).trim();
-        fr = c[3] || ""; en = c[4] || "";
-        pDe = c[5] || ""; pFr = c[6] || ""; pEn = c[7] || "";
+        pDe = c[5] || "";
     } else if(item.type === "adjektive"){
-        de = c[0] || ""; fr = c[1] || ""; en = c[5] || "";
-        pDe = c[2] || ""; pFr = c[4] || ""; pEn = c[6] || "";
+        de = c[0] || ""; pDe = c[2] || "";
     } else {
-        de = c[0] || ""; fr = c[1] || ""; en = c[5] || "";
-        pDe = c[3] || ""; pFr = c[4] || ""; pEn = c[6] || "";
+        de = c[0] || ""; pDe = c[3] || ""; type = "expression";
     }
     const L = ecouteLangues();
-    const mot = (lang) => lang === "de" ? de : (lang === "en" ? (en || fr) : fr);
-    const phrase = (lang) => lang === "de" ? pDe : (lang === "en" ? (pEn || pFr) : pFr);
+    const connu = (lang) => item.type === "verben"
+        ? texteTraduit(c, "traduction", lang)
+        : texteCarte(c, type, "traduction", lang);
+    const connuPhrase = (lang) => item.type === "verben"
+        ? texteTraduit(c, "exemple", lang)
+        : texteCarte(c, type, "exemple", lang);
+    const mot = (lang) => lang === "de" ? de : connu(lang);
+    const phrase = (lang) => lang === "de" ? pDe : connuPhrase(lang);
+    // La voix de la langue connue est celle que le repli a servie, pas celle
+    // demandee : en turc sans corpus turc, le texte est anglais, donc la voix
+    // doit etre anglaise.
+    const langServie = (q) => {
+        if(L.connu === "de") return "de";
+        const code = item.type === "verben"
+            ? langueTraduite(c, q === "mot" ? "traduction" : "exemple", L.connu)
+            : langueCarte(c, type, q === "mot" ? "traduction" : "exemple", L.connu);
+        return code || L.connu;
+    };
     return {
         cibleMot: mot(L.cible), connuMot: mot(L.connu),
         ciblePhrase: phrase(L.cible), connuPhrase: phrase(L.connu),
-        langCible: L.cible, langConnu: L.connu
+        langCible: L.cible, langConnu: langServie("mot"),
+        langConnuPhrase: langServie("phrase")
     };
 }
 
@@ -16891,7 +16971,9 @@ function ecouteConstruireSequence(c){
     }
     dire(c.ciblePhrase, c.langCible, "ecouteLignePhraseCible");
     silence(c.ciblePhrase, "ecouteLignePhraseCible");
-    dire(c.connuPhrase, c.langConnu, "ecouteLignePhraseConnu");
+    // La phrase peut se replier sur une autre langue que le mot (un mot traduit
+    // mais pas encore sa phrase) : sa voix se decide separement.
+    dire(c.connuPhrase, c.langConnuPhrase || c.langConnu, "ecouteLignePhraseConnu");
     return seq;
 }
 
@@ -17074,7 +17156,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 325;
+const APP_VERSION = 326;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
