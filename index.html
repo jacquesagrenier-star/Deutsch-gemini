@@ -3515,7 +3515,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v314</span>
+        <span class="subtitle-version">v315</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10993,8 +10993,71 @@ function directionScopedKey(baseKey){
     return dir === 'en' ? `en__${baseKey}` : baseKey;
 }
 
+// CLE STABLE D'UN MOT DANS SA LISTE (v315).
+//
+// Jusqu'ici la progression etait rangee sous la POSITION du mot dans le
+// fichier : progress["verben"][159]. Consequence invisible mais grave :
+// inserer un verbe en A2 decalait tout A2, B1, B2 et C1 d'un cran, et chaque
+// testeur heritait silencieusement de la progression du mot voisin -- son
+// calendrier de repetition espacee devenait faux sur ~900 mots. La base ne
+// pouvait donc plus accueillir un verbe manquant sans casser tout le monde.
+//
+// Pour les listes enregistrees ici, la cle est desormais le mot allemand
+// lui-meme. On peut ajouter, retirer et reordonner librement.
+//
+// Les autres listes gardent la position : leurs donnees ne bougent pas, et un
+// changement de cle inutile serait un risque gratuit. Ajouter une liste ici
+// suffit a la faire basculer -- mais il faut alors prevoir sa migration, comme
+// migrerProgressionVerbes() ci-dessous.
+const CLES_STABLES = {
+    verben: (i) => {
+        const w = verbeTheme.words[i];
+        return (w && w.infinitif) ? w.infinitif : null;
+    }
+};
+
+// Retombe sur la position quand la liste n'est pas encore chargee ou que le
+// mot n'a pas de lemme : mieux vaut une cle imparfaite qu'une exception au
+// milieu d'une boucle sur des milliers de mots.
+function cleMot(themeId, index){
+    const f = CLES_STABLES[themeId];
+    if(!f) return index;
+    const cle = f(index);
+    return (cle === null || cle === undefined || cle === "") ? index : cle;
+}
+
+// Instantane de l'ordre des verbes tel qu'il etait en v314, SEUL moyen de
+// traduire une progression deja enregistree sous forme de positions. Ne sert
+// qu'une fois par appareil (voir migrerProgressionVerbes). Supprimable une
+// fois que tous les testeurs auront ouvert une version >= v315 : la migration
+// est marquee dans la progression elle-meme, elle ne se rejouera pas.
+const ORDRE_VERBES_V314 = "sein|haben|werden|können|müssen|wollen|sollen|dürfen|mögen|machen|gehen|kommen|sehen|geben|nehmen|sagen|wissen|finden|denken|glauben|brauchen|arbeiten|spielen|lernen|wohnen|leben|lieben|kaufen|verkaufen|kochen|essen|trinken|schlafen|hören|sprechen|lesen|schreiben|fahren|fliegen|laufen|tragen|helfen|lachen|weinen|fragen|antworten|warten|suchen|öffnen|schließen|beginnen|bleiben|bekommen|verstehen|kennen|treffen|besuchen|feiern|tanzen|singen|malen|putzen|waschen|duschen|packen|reisen|parken|bezahlen|sparen|verdienen|heißen|studieren|zeigen|erzählen|erklären|vergessen|sich erinnern|fühlen|riechen|schmecken|rufen|stellen|legen|setzen|sitzen|stehen|liegen|hängen|tun|anfangen|aufhören|aufstehen|anziehen|ausziehen|einkaufen|fernsehen|abholen|anrufen|mitbringen|vorbereiten|aufräumen|schwimmen|rauchen|aufmachen|zumachen|schauen|zählen|weggehen|abfahren|sich freuen|sich ärgern|sich beeilen|sich entscheiden|sich verspäten|sich verlieben|sich vorstellen|sich anmelden|sich abmelden|sich entschuldigen|sich beschweren|sich unterhalten|sich verabreden|sich verabschieden|sich interessieren|sich konzentrieren|sich ausruhen|sich verletzen|sich verändern|wechseln|verbessern|vergleichen|verlieren|gewinnen|verlassen|erreichen|erwarten|entdecken|entwickeln|entstehen|entfernen|entscheiden|beeindrucken|beeinflussen|beobachten|bemerken|besitzen|bestellen|bestehen|bestimmen|betreten|betreuen|beurteilen|bewegen|sich bewerben|bezeichnen|buchen|dauern|diskutieren|drehen|drucken|drücken|einladen|einsteigen|aussteigen|umsteigen|empfehlen|enthalten|sich entspannen|erfahren|erfinden|ergänzen|erhalten|erhöhen|erinnern|erkennen|erledigen|ermöglichen|eröffnen|erscheinen|ersetzen|erwähnen|existieren|fehlen|feststellen|folgen|fordern|fördern|formulieren|fortsetzen|funktionieren|gehören|gelingen|genießen|geschehen|gestalten|sich gewöhnen|gratulieren|handeln|herausfinden|herstellen|hinweisen|hoffen|informieren|installieren|interessieren|investieren|klingen|kontrollieren|kritisieren|sich kümmern|laden|landen|lassen|leihen|leiten|sich lohnen|lösen|löschen|markieren|meinen|melden|merken|mieten|vermieten|nutzen|organisieren|passieren|planen|prüfen|rechnen|reagieren|reduzieren|regnen|reparieren|reservieren|retten|schaffen|scheinen|schicken|schneiden|schützen|sinken|sorgen|spüren|steigen|steigern|stimmen|streiten|teilen|telefonieren|testen|träumen|trennen|überlegen|verbieten|erlauben|verzichten|vermeiden|widersprechen|zeichnen|ziehen|brechen|sterben|springen|fangen|nennen|passen|anhalten|ausruhen|umziehen|küssen|lügen|rennen|bedeuten|beißen|fressen|decken|stecken|ärgern|vorstellen|abbiegen|lüften|behaupten|betonen|bewerten|überzeugen|überraschen|gestehen|zugeben|vermuten|bezweifeln|unterstützen|ablehnen|akzeptieren|respektieren|sich einigen|verhandeln|sich auseinandersetzen|sich widmen|teilnehmen|mitteilen|benachrichtigen|vorschlagen|zustimmen|sich entschließen|verfügen|beitragen|sich bemühen|sich anstrengen|sich auswirken|ändern|sich verhalten|sich befinden|empfinden|sich äußern|verzeihen|andeuten|vertrauen|misstrauen|sich sorgen|sich beschäftigen|verhindern|ermitteln|überwinden|sich anpassen|sich verlassen|abschließen|zusammenfassen|sich erholen|sich irren|sich engagieren|sich orientieren|verschmutzen|recyceln|verbrauchen|erzeugen|vermarkten|produzieren|liefern|exportieren|importieren|konsumieren|finanzieren|sich verschulden|anlegen|verwalten|beaufsichtigen|delegieren|koordinieren|durchführen|umsetzen|verwirklichen|scheitern|versagen|bewältigen|beheben|verursachen|auslösen|hervorrufen|resultieren|führen|begründen|rechtfertigen|widerlegen|beweisen|nachweisen|belegen|dokumentieren|veröffentlichen|verbreiten|übertragen|senden|empfangen|begrüßen|verabschieden|beschließen|festlegen|vereinbaren|anordnen|befehlen|gehorchen|sich widersetzen|sich wehren|kämpfen|verteidigen|angreifen|bedrohen|gefährden|riskieren|wagen|sich trauen|zögern|zweifeln|nachdenken|grübeln|sich vertiefen|begreifen|erfassen|wahrnehmen|registrieren|übersehen|ignorieren|vernachlässigen|verpassen|versäumen|nachholen|wiederholen|üben|trainieren|sich qualifizieren|abschneiden|durchfallen|absolvieren|erwerben|sich aneignen|beherrschen|beherzigen|befolgen|einhalten|verletzen|missachten|verstoßen|bestrafen|belohnen|loben|tadeln|beschimpfen|beleidigen|verspotten|necken|trösten|beruhigen|sich aufregen|beunruhigen|erschrecken|sich ängstigen|genesen|heilen|sich erkälten|bluten|schwitzen|frieren|verhungern|ersticken|ertrinken|verbrennen|explodieren|zusammenbrechen|einstürzen|zerstören|beschädigen|wiederherstellen|erneuern|austauschen|tauschen|spekulieren|wetten|würfeln|losen|auslosen|sich erkundigen|nachfragen|hinterfragen|beanstanden|reklamieren|umtauschen|zurückgeben|zurückzahlen|borgen|verpachten|spenden|stiften|sammeln|aufbewahren|lagern|verstauen|transportieren|befördern|verladen|versenden|zustellen|schlagen|brennen|reichen|töten|einstellen|treten|berühren|bieten|fürchten|klappen|abkühlen|aufgehen|zerbrechen|blasen|bedecken|schalten|wickeln|ablegen|ansprechen|aufstellen|reißen|nachsehen|abgehen|umbringen|anstreichen|aufziehen|annehmen|einziehen|entsorgen|füttern|gießen|grüßen|berechnen|bestätigen|ernten|garantieren|schonen|überweisen|verschwinden|erstatten|sperren|stehlen|abheben|angeben|aufnehmen|ausdrucken|einzahlen|abnehmen|sich ernähren|fallen|verändern|zubereiten|gründen|herunterladen|leisten|sich amüsieren|anwenden|behalten|operieren|röntgen|stürzen|versorgen|wehtun|begleiten|sich etwas brechen|massieren|wachsen|atmen|sich etwas anschaffen|blühen|heizen|recht haben|wecken|sich etwas wünschen|siegen|tauchen|überreden|dabei sein|halten|kleben|sich etwas leisten|loslassen|sich etwas teilen|sich trennen|verreisen|wert sein|abwaschen|ankommen|aufgeben|behandeln|bringen|erziehen|entgegennehmen|frustrieren|montieren|zusammenbleiben|sich zusammensetzen|auftreten|auschecken|einfallen|einreichen|verleihen|sich verpflichten|zusammenkommen|absagen|aufpumpen|auswechseln|sich bedanken|sich einsetzen|sich entwickeln|erfordern|abrechnen|anzünden|Sport treiben|verbinden|abhängen|sich auskennen|sich beschränken|unter sich bleiben|sich drehen|sich freinehmen|zu tun haben|verurteilen|abstimmen|ausbilden|befristen|einbürgern|sich etwas überlegen|abwägen|anstreben|aufweisen|ausschließen|ausweichen|bedauern|berücksichtigen|beruhen|beseitigen|sich bewähren|bewirken|sich beziehen|einräumen|entfallen|sich entfalten|entgegenkommen|erlassen|erweisen|festhalten|gelten|hervorheben|nachvollziehen|sich niederlassen|schildern|übernehmen|unterlassen|verzeichnen|vorbeugen|zunehmen|zurückführen|zusagen|sich abfinden|beanspruchen|eingreifen|einschätzen|sich durchsetzen|vermitteln|verschärfen|zutreffen|entnehmen|veranlassen|unterbinden|beziffern|revidieren|relativieren|konkretisieren|obliegen|bemängeln|einbüßen|entkräften|sich erübrigen|vorwerfen|untermauern|sich abzeichnen|begünstigen|einleiten|erlangen|schmälern|übertreffen|unterstreichen|verankern|zurückgehen|sich abheben|auffordern|befürworten|beisteuern|einbeziehen|entgegenwirken|herausstellen|verdeutlichen|vorsehen|sich zuwenden|abraten|anregen|aufgreifen|ausloten|abschaffen|abwickeln|anfechten|angehen|ankurbeln|aufbauen|aufheben|aufkommen|ausarbeiten|ausbauen|auslegen|ausrichten|aussetzen|beauftragen|beeinträchtigen|belasten|benachteiligen|beschleunigen|bestreiten|bevorzugen|darlegen|eindämmen|einholen|einstufen|entlasten|entsprechen|erproben|erschweren|erzielen|gewährleisten|gliedern|kennzeichnen|mindern|nahelegen|offenlegen|prägen|sichern|überarbeiten|untersagen|veranschaulichen|vereinfachen|verfassen|verlagern|verstärken|verwerfen|vorantreiben|vorlegen|zulassen|zusichern|anpassen|ansiedeln|aussagen|bedingen|beteiligen|betrachten|dämpfen|hemmen|hinauszögern|hinterlegen|sanieren|stützen|überwachen|umgehen|unterlaufen|verbergen|verfolgen|vergeben|verharren|verkürzen|verschieben|wahren|besiegeln|bewerkstelligen|bilanzieren|abbrechen|anführen|aufhalten|befreien|benennen|eingehen|feuern|rühren|treiben|vergehen|wenden|wirken|erwischen|abschreiben|bewässern|zerschlagen|auseinanderbrechen|erheben|hinnehmen|abbauen|kreuzen|überlassen|verderben|antreiben|spalten|erörtern|voraussetzen|unterstellen|einwenden|folgern|ableiten|gewichten|sich zuspitzen|beharren|erschließen|sich abschwächen|ausufern|veranschlagen|einkalkulieren|aufschlüsseln|heranziehen|herleiten|bekräftigen|zugestehen|abstreiten|verharmlosen|aushebeln|einstehen|absichern|abwenden|auffangen|abfedern|eingrenzen|ausklammern|einhergehen|beantragen|genehmigen|entziehen|erteilen|auferlegen|verhängen|widerrufen|vertagen|nachreichen|verschweigen|beschönigen|entschärfen|aushandeln|beilegen|verorten|bezeugen|beteuern|leugnen|dementieren|aufbauschen|kompensieren|aufwiegen|einordnen|abgrenzen|herabsetzen|hervorgehen|münden|mutmaßen|weiterleiten|zurückstellen|ermahnen|protokollieren|einsehen|vorenthalten|schlichten|unterzeichnen|verlängern|auslaufen|nachhaken|nachfassen|durchleuchten|aufdecken|vertuschen|verschleiern|kaschieren|vortäuschen|verfälschen|standhalten|durchhalten|einlenken|zurückrudern|pochen|archivieren|abmahnen|deeskalieren|ratifizieren|bürgen|versanden|erahnen|untergliedern|drängen|bedrängen|zusetzen|zermürben|entmutigen|bestärken|beflügeln|anspornen|lähmen|vereiteln|durchkreuzen|zunichtemachen|misslingen|straucheln|fruchten|sich amortisieren|sich rentieren|abwerfen|erwirtschaften|verwarnen|mahnen|nachverhandeln|sichten|sondieren|eruieren|recherchieren|zusammentragen|bündeln|straffen|ausweiten|aufstocken|drosseln|zurückfahren|umschichten|zweckentfremden|wegfallen|anfallen|zustehen|zukommen|unterbleiben|ausbleiben|eintreffen|gebühren|abspecken|beipflichten|entgegnen|entgegensetzen|aufbegehren|protestieren|zaudern|umschwenken|umdenken|nachempfinden|mitfühlen|verinnerlichen|sich einprägen|auffrischen|pauken|büffeln|erlernen|vertiefen|verfeinern|auskundschaften|zuspielen|erlahmen|umwidmen|sicherstellen|bewilligen|verweigern|dulden|billigen|missbilligen|ahnden|sanktionieren|auszeichnen|würdigen|sich anbahnen|bevorstehen|heraufziehen|abflauen|abtasten|hochfahren|zufallen|bezuschussen|unterwandern|ausschmücken|anzweifeln|erhärten|hervorbringen|zeitigen|durchschlagen|abfärben|übergreifen|ausstrahlen|festschreiben|zementieren|aufweichen|lockern|nachjustieren|nachbessern|fälschen|tarnen|bohren|abklopfen|überhandnehmen|einreißen|abebben|nachziehen|gleichziehen|aufholen|zurückfallen|dominieren|ablösen|nachfolgen|beerben|fortdauern|fortbestehen|überdauern|fortführen|wiederaufnehmen|ruhen|naheliegen|einleuchten|befremden|verwundern|verblüffen|bestürzen|aufwühlen|beschwichtigen|besänftigen|aufmuntern|zerstreuen|mitwirken|mitgestalten|mitreden|mitbestimmen|betrauen|abstellen|bereitstellen|zuweisen|zuteilen|entsenden|abordnen|umreißen|skizzieren|ausformulieren|redigieren|lektorieren|einfügen|umstellen|betiteln|beschriften|nummerieren|verweisen|sich zurechtfinden|sich verirren|abkommen|umkehren|überschreiten|unterschreiten|verfehlen|durchstehen|überstehen|wegstecken|verkraften|meistern|schultern|stemmen|sich durchbeißen|anpacken|sich verzetteln|abschweifen|ausschweifen|klarstellen|richtigstellen|präzisieren|erläutern|umschreiben|paraphrasieren|abkürzen";
+
+function migrerProgressionVerbes(){
+    try{
+        const progress = getProgress();
+        const faites = progress.__migrations || {};
+        if(faites.verbes_par_lemme) return;
+        const ordre = ORDRE_VERBES_V314.split("|");
+        ["verben", "en__verben"].forEach(cle => {
+            const bloc = progress[cle];
+            if(!bloc || typeof bloc !== "object") return;
+            Object.keys(bloc).forEach(k => {
+                if(!/^\d+$/.test(k)) return;          // deja range par lemme
+                const lemme = ordre[parseInt(k, 10)];
+                if(lemme && !bloc[lemme]) bloc[lemme] = bloc[k];
+                delete bloc[k];
+            });
+        });
+        faites.verbes_par_lemme = true;
+        progress.__migrations = faites;
+        saveProgress(progress);
+    }catch(e){ /* une migration ratee ne doit pas empecher l'app de demarrer */ }
+}
+
 function getWordState(themeId, index){
     const key = progressKey(themeId);
+    index = cleMot(themeId, index);
     const progress = getProgress();
     if(!progress[key]) progress[key] = {};
     if(!progress[key][index]){
@@ -11013,6 +11076,7 @@ function getWordState(themeId, index){
 
 function setWordState(themeId, index, state){
     const key = progressKey(themeId);
+    index = cleMot(themeId, index);
     const progress = getProgress();
     if(!progress[key]) progress[key] = {};
     progress[key][index] = state;
@@ -15955,7 +16019,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 314;
+const APP_VERSION = 315;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17380,6 +17444,7 @@ function remettreMaitrisesEnRevision(){
     const progress = getProgress();
     let touches = 0;
     Object.keys(progress).forEach(cle => {
+        if(cle === "__migrations") return;   // journal des migrations, pas des mots
         const theme = progress[cle];
         if(!theme || typeof theme !== "object") return;
         Object.keys(theme).forEach(i => {
@@ -18170,6 +18235,9 @@ function showResults(){
 
 (() => {
     afficherNumeroVersion();
+    // Avant tout calcul de progression : traduit une eventuelle progression
+    // rangee par position en progression rangee par lemme.
+    migrerProgressionVerbes();
     enregistrerServiceWorker();
     verifierNouvelleVersion();
     loadThemesJson();
