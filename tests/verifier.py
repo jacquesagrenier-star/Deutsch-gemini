@@ -235,16 +235,23 @@ def verifier_adjectifs(r):
 # --------------------------------------------------------------------------
 
 def blocs_i18n(source):
-    """Renvoie {langue: {cle: ligne}} pour les deux dictionnaires de traduction."""
+    """Renvoie {langue: Counter(cle)} pour TOUS les dictionnaires de traduction.
+
+    Le decoupage etait code en dur pour deux langues : il coupait a "en: {" et
+    attribuait tout le reste a l'anglais. Un troisieme bloc voyait donc ses
+    cles comptees comme des doublons anglais. On repere maintenant chaque
+    entete "    xx: {" et on borne chaque langue par la suivante.
+    """
     debut = source.index("const I18N = {")
     fin = source.index("\n};", debut)
     bloc = source[debut:fin]
-    coupe = bloc.index("\n    en: {")
+    entetes = [(m.start(), m.group(1)) for m in re.finditer(r"\n    ([a-z]{2}): \{", bloc)]
     resultat = {}
-    for langue, segment in (("fr", bloc[:coupe]), ("en", bloc[coupe:])):
-        cles = collections.Counter(
-            m[1] for m in re.findall(r"(^\s{8}|,\s*)([A-Za-z0-9_]+):\s*[\"'`]", segment, re.M))
-        resultat[langue] = cles
+    for i, (pos, langue) in enumerate(entetes):
+        borne = entetes[i + 1][0] if i + 1 < len(entetes) else len(bloc)
+        resultat[langue] = collections.Counter(
+            m[1] for m in re.findall(r"(^\s{8}|,\s*)([A-Za-z0-9_]+):\s*[\"'`]",
+                                     bloc[pos:borne], re.M))
     return resultat
 
 
@@ -255,12 +262,18 @@ def verifier_traductions(r, source):
         for k in doublons:
             r.echec("i18n", "%s : cle en double -> %s (la derniere ecrase la premiere)" % (langue, k))
         r.controle(len(cles))
-    fr, en = set(dicos["fr"]), set(dicos["en"])
-    for k in sorted(fr - en):
-        r.echec("i18n", "cle absente du dictionnaire anglais : %s" % k)
-    for k in sorted(en - fr):
-        r.echec("i18n", "cle absente du dictionnaire francais : %s" % k)
-    print("   traductions     : %d cles fr, %d cles en" % (len(fr), len(en)))
+    # Le francais fait reference : c'est la langue d'origine du contenu.
+    fr = set(dicos["fr"])
+    for langue in sorted(dicos):
+        if langue == "fr":
+            continue
+        autres = set(dicos[langue])
+        for k in sorted(fr - autres):
+            r.echec("i18n", "cle absente du dictionnaire %s : %s" % (langue, k))
+        for k in sorted(autres - fr):
+            r.echec("i18n", "cle absente du dictionnaire francais : %s (vue en %s)" % (k, langue))
+    print("   traductions     : " +
+          " | ".join("%d cles %s" % (len(dicos[l]), l) for l in sorted(dicos)))
     return fr
 
 
