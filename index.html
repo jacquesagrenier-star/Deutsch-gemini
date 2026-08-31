@@ -1559,6 +1559,15 @@ body[data-theme="dark"] .chunk-strip-bank{ background:rgba(255,255,255,.04); bor
 body[data-theme="dark"] .chunk-pill{ background:#1e2433; border-color:rgba(226,232,240,.24); color:#e7ebf3; }
 body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); border-color:#60a5fa; color:#bfdbfe; }
 
+.marque-mention{
+    text-align:center;
+    font-size:12.5px;
+    color:#8a93a3;
+    margin:22px 0 6px;
+    letter-spacing:.01em;
+}
+body[data-theme="dark"] .marque-mention{ color:#6b7484; }
+
 .password-field-wrap{ position:relative; }
 .password-field-wrap .answer{ padding-right:48px; }
 .password-toggle-btn{
@@ -3519,7 +3528,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v317</span>
+        <span class="subtitle-version">v318</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5505,6 +5514,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <svg id="progressRadar" viewBox="0 0 220 220" style="width:100%; max-width:280px; display:block; margin:14px auto 0;"></svg>
     </div>
 
+    <!-- Mention de marque. UNE SEULE fois dans toute l'app, et ici plutot que
+         dans l'en-tete : le nom apparait sur chaque ecran, un exposant repete
+         partout serait illisible sur telephone et n'apprendrait rien a
+         l'apprenant. Le symbole (TM) se revendique librement ; le (R) est
+         reserve aux marques ENREGISTREES et l'afficher avant le certificat est
+         une fausse declaration, sanctionnable dans plusieurs pays de l'Union. -->
+    <p class="marque-mention" data-i18n="settings_trademark">Wortando™ est une marque de commerce.</p>
+
     <div class="card hidden" id="adminDashboardCard">
         <strong data-i18n="settings_admin_title">Administration</strong>
         <div class="info-box" data-i18n="settings_admin_desc">Visible seulement par ton compte : gérer les codes d'invitation et voir la progression des testeurs.</div>
@@ -6614,6 +6631,7 @@ const I18N = {
         alert_invite_check_failed: "Impossible de vérifier le code pour l'instant. Réessaie.",
         alert_invalid_invite_code: "Ce code d'invitation est invalide ou a déjà été utilisé.",
 
+        settings_trademark: "Wortando™ est une marque de commerce.",
         settings_admin_title: "Administration",
         settings_admin_desc: "Visible seulement par ton compte : gérer les codes d'invitation et voir la progression des testeurs.",
         settings_admin_btn: "TABLEAU DE BORD →",
@@ -7531,6 +7549,7 @@ const I18N = {
         alert_invite_check_failed: "Couldn't check the code right now. Please try again.",
         alert_invalid_invite_code: "This invite code is invalid or has already been used.",
 
+        settings_trademark: "Wortando™ is a trademark.",
         settings_admin_title: "Admin",
         settings_admin_desc: "Only visible to your account: manage invite codes and see testers' progress.",
         settings_admin_btn: "DASHBOARD →",
@@ -16023,7 +16042,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 317;
+const APP_VERSION = 318;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
