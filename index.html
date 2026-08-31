@@ -3382,8 +3382,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <span class="brand-wordmark">Wortando</span>
     </div>
     <div class="theme-toggle">
-        <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:11px; font-weight:800;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
-            <span id="uiLangToggleLabel">EN</span>
+        <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
+            <span id="uiLangToggleLabel">🇫🇷</span>
         </button>
         <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:13px;" onclick="openSettings()" title="Réglages / Settings" aria-label="Réglages">⚙️</button>
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
@@ -3500,6 +3500,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span class="setup-choice-flag">🇬🇧</span>
                     <span>English</span>
                 </button>
+                <button class="setup-choice" id="setupChoiceLangTr" onclick="selectUiLangChoice('tr')">
+                    <span class="setup-choice-flag">🇹🇷</span>
+                    <span>Türkçe</span>
+                </button>
             </div>
         </div>
         <div class="spacer"></div>
@@ -3535,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v323</span>
+        <span class="subtitle-version">v324</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5468,6 +5472,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <button class="setup-choice" onclick="selectUiLangChoice('en')">
                     <span class="setup-choice-flag">🇬🇧</span>
                     <span>English</span>
+                </button>
+                <button class="setup-choice" onclick="selectUiLangChoice('tr')">
+                    <span class="setup-choice-flag">🇹🇷</span>
+                    <span>Türkçe</span>
                 </button>
             </div>
         </div>
@@ -8552,6 +8560,9 @@ function setUiLang(lang){
 // l'ajouter a UI_LANGS et a REPLI_LANGUE -- plus une seule ternaire a reecrire.
 const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr" };
 
+// Le drapeau affiche dans l'en-tete. Ce sont des emoji, donc rien a heberger.
+const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷" };
+
 // Ordre de repli quand la traduction manque. Le turc arrive en dernier et son
 // corpus se remplira progressivement : sans repli, chaque mot pas encore
 // traduit s'afficherait vide.
@@ -8622,11 +8633,13 @@ function applyUiLang(){
     // (pas la langue actuelle) : en FR, on voit "EN" pour passer à l'anglais ;
     // une fois en anglais, on voit "FR" pour revenir au français.
     if(label){
-        // La pastille annonce la langue SUIVANTE du cycle, pas "une autre" :
-        // avec trois langues, "la premiere qui n'est pas l'actuelle" renvoyait
-        // le francais depuis l'anglais alors que le clic menait au turc.
-        const idx = UI_LANGS.indexOf(getUiLang());
-        label.textContent = UI_LANGS[(idx + 1) % UI_LANGS.length].toUpperCase();
+        // La pastille montre desormais le drapeau de la langue COURANTE, plus
+        // le code de la suivante. A deux langues, "EN" se lisait sans ambiguite
+        // comme "passer a l'anglais". A trois, "TR" ne dit plus si on y va ou
+        // si on y est -- alors qu'un drapeau repond toujours "tu es ici".
+        // Le choix explicite reste dans les Reglages, ou les trois drapeaux
+        // sont visibles ensemble.
+        label.textContent = DRAPEAUX_LANGUE[getUiLang()] || getUiLang().toUpperCase();
     }
 }
 
@@ -17046,7 +17059,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 323;
+const APP_VERSION = 324;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
