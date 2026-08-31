@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v337</span>
+        <span class="subtitle-version">v338</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -8543,6 +8543,17 @@ function getUiLang(){
 function setUiLang(lang){
     if(!UI_LANGS.includes(lang)) return;
     try{ localStorage.setItem(UI_LANG_KEY, lang); }catch(e){}
+    appliquerLangueDocument(lang);
+}
+
+// L'attribut lang du document n'est pas decoratif : c'est lui qui decide de la
+// facon dont le navigateur passe un texte en majuscules. Le turc a deux i --
+// i/I sans point et i/İ avec -- et sans lang="tr" une regle text-transform:
+// uppercase rend « erişim » en « ERIŞIM » au lieu de « ERİŞİM ». Le defaut
+// n'apparait que dans cette langue, et seulement sur les libelles capitalises
+// par le CSS : ceux ecrits deja en majuscules dans les donnees sont corrects.
+function appliquerLangueDocument(lang){
+    try{ document.documentElement.lang = lang || getUiLang(); }catch(e){}
 }
 
 // ============ Lecture d'un champ traduit ============
@@ -8715,6 +8726,7 @@ function tf(key, vars){
 // fichier) : appelable en tout début de script sans risque de référence à une
 // variable pas encore initialisée (verbeTheme, themes, etc.).
 function applyUiLang(){
+    appliquerLangueDocument();
     document.querySelectorAll('[data-i18n]').forEach(el => {
         el.textContent = t(el.getAttribute('data-i18n'));
     });
@@ -17254,7 +17266,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 337;
+const APP_VERSION = 338;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
