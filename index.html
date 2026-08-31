@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v329</span>
+        <span class="subtitle-version">v330</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -9326,12 +9326,12 @@ async function loadVerbeJson() {
             arr.forEach(v => {
                 words.push({
                     infinitif: v.infinitif || "",
-                    traduction: v.traduction || "", traduction_en: v.traduction_en || "",
+                    traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "",
                     praesens: v.praesens || {},
-                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "",
-                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "",
-                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "",
-                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "",
+                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "",
+                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "", praeteritum_tr: v.praeteritum_tr || "",
+                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "", perfekt_tr: v.perfekt_tr || "",
+                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "", konjunktiv2_tr: v.konjunktiv2_tr || "",
                     imperativ: v.imperativ || null,
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
@@ -13799,17 +13799,17 @@ function buildSearchIndex(){
             (lv.words || []).forEach((w, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_noun', source: src, mode: 'nomen',
                 themeId: lv.id, index: index, card: w,
-                de: w[0], fr: w[3], en: w[4], alt: w[8]
+                de: w[0], fr: w[3], en: w[4], tr: w[12], alt: w[8]
             }));
             (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben', prio: 2,
                 themeId: lv.id + '__verben', index: index, card: v,
-                de: v.infinitif, fr: v.traduction, en: v.traduction_en
+                de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr
             }));
             (lv.adjektive || []).forEach((a, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_adj', source: src, mode: 'vhskapiteladjektive', prio: 2,
                 themeId: lv.id + '__adjektive', index: index, card: a,
-                de: a[0], fr: a[1], en: a[5]
+                de: a[0], fr: a[1], en: a[5], tr: a[7]
             }));
         });
     });
@@ -13818,7 +13818,7 @@ function buildSearchIndex(){
         kindKey: 'search_kind_verb', mode: 'verben', prio: 0,
         source: (t('orb_verben_title') + " \u00b7 " + (v.niveau || "")).trim(),
         themeId: verbeTheme.id, index: index, card: v,
-        de: v.infinitif, fr: v.traduction, en: v.traduction_en
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr
     }));
 
     // adjectif.json : [mot, traduction, exemple, niveau, exemple_fr, en, exemple_en]
@@ -13826,30 +13826,30 @@ function buildSearchIndex(){
         kindKey: 'search_kind_adj', mode: 'adjektive', prio: 0,
         source: (t('orb_adjektive_title') + " \u00b7 " + (a[3] || "")).trim(),
         themeId: adjektiveTheme.id, index: index, card: a,
-        de: a[0], fr: a[1], en: a[5]
+        de: a[0], fr: a[1], en: a[5], tr: a[7]
     }));
 
     // Themes de grammaire definis dans ce fichier : tuples
     // [de, fr, categorie, exempleDE, exempleFR, en, exempleEN, categorie_en].
     [
-        [praepTheme, 'search_kind_prep', 'search_src_praep', 'praep'],
-        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb', 'adverbien'],
-        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj', 'konjunktionen'],
-        [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln'],
-        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben'],
-        [redewendungenTheme, 'search_kind_expr', 'search_src_redewendungen', 'redewendungen']
+        [praepTheme, 'search_kind_prep', 'search_src_praep', 'praep', 9],
+        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb', 'adverbien', 10],
+        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj', 'konjunktionen', 9],
+        [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln', 9],
+        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben', 9],
+        [redewendungenTheme, 'search_kind_expr', 'search_src_redewendungen', 'redewendungen', 10]
     ].forEach(cfg => {
         (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
             kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3], prio: 3,
             themeId: cfg[0].id, index: index, card: w,
-            de: w[0], fr: w[1], en: w[5]
+            de: w[0], fr: w[1], en: w[5], tr: w[cfg[4]]
         }));
     });
 
     (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
         kindKey: 'search_kind_verb', mode: 'positionsverben', prio: 3, source: t('search_src_position'),
         themeId: positionsverbenTheme.id, index: index, card: v,
-        de: v.infinitif, fr: v.traduction, en: v.traduction_en
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr
     }));
 
     return list;
@@ -16068,22 +16068,21 @@ function loadFlashcard(){
         // Phase 2 en cours pour cette traduction).
         const learningEnglish = getLearningDirection() === 'en';
         const uiLang = getUiLang();
-        const useEn = uiLang === 'en';
         const translatedWord = learningEnglish
             ? (card.traduction_en || card.traduction)
             : (texteTraduit(card, "traduction"));
         const exampleTr = learningEnglish
             ? (card.exemple_en || card.exemple_fr)
-            : ((useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr);
+            : texteTraduit(card, "exemple");
         const perfektTr = learningEnglish
             ? (card.perfekt_en || card.perfekt_fr)
-            : ((useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr);
+            : texteTraduit(card, "perfekt");
         const praeteritumTr = learningEnglish
             ? (card.praeteritum_en || card.praeteritum_fr)
-            : ((useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr);
+            : texteTraduit(card, "praeteritum");
         const konjunktiv2Tr = learningEnglish
             ? (card.konjunktiv2_en || card.konjunktiv2_fr)
-            : ((useEn && card.konjunktiv2_en) ? card.konjunktiv2_en : card.konjunktiv2_fr);
+            : texteTraduit(card, "konjunktiv2");
         // Le bouton flip-toggle-btn (recto/verso) fonctionne dans les deux
         // directions, avec une sémantique constante : frontIsFrench=true (valeur
         // par défaut) -> la langue CONNUE est au recto (français en mode allemand,
@@ -16171,7 +16170,6 @@ function loadFlashcard(){
         // défaut) : comportement inchangé (repli français, Phase 2 en cours).
         const learningEnglish = getLearningDirection() === 'en';
         const uiLang = getUiLang();
-        const useEn = uiLang === 'en';
         const frenchWord = learningEnglish
             ? (card[5] || card[1])
             : texteCarte(card, "adjektive", "traduction");
@@ -16212,8 +16210,6 @@ function loadFlashcard(){
         pluralEl.classList.add("hidden");
     } else if(flashcardMode === 'positionsverben'){
         const germanWord = card.infinitif;
-        const uiLang = getUiLang();
-        const useEn = uiLang === 'en';
         const frenchWord = texteTraduit(card, "traduction");
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
@@ -16226,9 +16222,9 @@ function loadFlashcard(){
             translationEl.classList.remove("hidden");
         }
         const regularite = texteTraduit(card, "regularite");
-        const exempleTr = (useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr;
-        const perfektTr = (useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr;
-        const praeteritumTr = (useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr;
+        const exempleTr = texteTraduit(card, "exemple");
+        const perfektTr = texteTraduit(card, "perfekt");
+        const praeteritumTr = texteTraduit(card, "praeteritum");
         const posPraesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
         const posPerfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
         const coreHtml = `<strong>${card.cas}</strong> · ${regularite}` +
@@ -17205,7 +17201,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 329;
+const APP_VERSION = 330;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
