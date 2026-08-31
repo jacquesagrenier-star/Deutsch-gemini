@@ -676,6 +676,13 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="schreiben"] .orb-icon svg{stroke:#f43f5e;}
 .orb[data-orbid="schreiben"] .orb-badge{background:#f43f5e; box-shadow:0 2px 6px rgba(244,63,94,.35);}
 
+.orb[data-orbid="ecouter"] .orb-icon{
+    background:rgba(236,72,153,.14);
+    border-color:rgba(236,72,153,.28);
+}
+.orb[data-orbid="ecouter"] .orb-icon svg{stroke:#ec4899;}
+.orb[data-orbid="ecouter"] .orb-badge{background:#ec4899; box-shadow:0 2px 6px rgba(236,72,153,.35);}
+
 .orb[data-orbid="konjunktionen"] .orb-icon{
     background:rgba(14,165,233,.14);
     border-color:rgba(14,165,233,.28);
@@ -3528,7 +3535,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v318</span>
+        <span class="subtitle-version">v319</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3692,6 +3699,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div>
                 <strong data-i18n="orb_schreiben_title">Écrire</strong>
                 <small data-i18n="orb_schreiben_sub">traduire une phrase</small>
+            </div>
+        </div>
+
+        <!-- Seconde tuile d'ACTIVITE, a cote d'Ecrire : les deux seules de la
+             grille qui nomment un geste plutot qu'un contenu. L'ecoute ne vit
+             plus dans les panneaux Noms/Verbes/Adjectifs/Adverbes -- elle est
+             ici, rangee par NIVEAU, tous types de mots meles. Pas de panneau
+             intermediaire : il n'y a qu'une action, on va droit au menu. -->
+        <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
+            <div>
+                <strong data-i18n="orb_ecouter_title">Écouter</strong>
+                <small data-i18n="orb_ecouter_sub">mains libres · A1 → C1</small>
             </div>
         </div>
 
@@ -6487,7 +6507,7 @@ const I18N = {
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Conjonctions",
         orb_konjunktionen_sub: "und · weil · aber",
-        op_ecoute_t: "Écouter et répéter", op_ecoute_d: "séance audio, mains libres",
+        orb_ecouter_title: "Écouter", orb_ecouter_sub: "mains libres · A1 → C1",
         ecoute_menu_title: "Écouter et répéter",
         ecoute_menu_desc: "Une séance mains libres : l'app dit le mot, laisse un silence pour que tu le répètes à voix haute, puis lit la phrase d'exemple. Garde l'écran allumé — la voix se tait si le téléphone se verrouille.",
         ecoute_sens_title: "Ordre des langues",
@@ -7405,7 +7425,7 @@ const I18N = {
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Conjunctions",
         orb_konjunktionen_sub: "und · weil · aber",
-        op_ecoute_t: "Listen and repeat", op_ecoute_d: "hands-free audio session",
+        orb_ecouter_title: "Listen", orb_ecouter_sub: "hands-free · A1 → C1",
         ecoute_menu_title: "Listen and repeat",
         ecoute_menu_desc: "A hands-free session: the app says the word, leaves a silence for you to repeat it out loud, then reads the example sentence. Keep the screen on — the voice stops if the phone locks.",
         ecoute_sens_title: "Language order",
@@ -12254,8 +12274,7 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_verben_o1_t"), desc:t("op_due_desc"), primary:true, action:"startVerbeDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
-                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" },
-                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteVerben" }
+                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" }
             ]
         };
     }
@@ -12275,8 +12294,7 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_nomen_o1_t"), desc:t("op_due_desc"), primary:true, action:"startDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openNomenNiveau" },
                 { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
-                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
-                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteNomen" }
+                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" }
             ]
         };
     }
@@ -12287,8 +12305,7 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_adjektive_o1_t"), desc:t("op_due_desc"), primary:true, action:"startAdjektiveDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openAdjektive" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix" },
-                { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination" },
-                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteAdjektive" }
+                { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination" }
             ]
         };
     }
@@ -12322,8 +12339,7 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:t("op_adverbien_o2_d"), action:"startAdverbienNuance" },
-                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" },
-                { icon:"casque", title:t("op_ecoute_t"), desc:t("op_ecoute_d"), action:"ecouteAdverbien" }
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" }
             ]
         };
     }
@@ -15629,12 +15645,6 @@ const ECOUTE_PAUSES = [0.6, 1, 1.6];
 const ECOUTE_CLE_REGLAGES = "deutschAI_ecoute";
 const ECOUTE_LIGNES = ["ecouteLigneConnu", "ecouteLigneCible",
                        "ecouteLignePhraseCible", "ecouteLignePhraseConnu"];
-const ECOUTE_TITRES = {
-    nomen: "op_nomen_title", verben: "op_verben_title",
-    adjektive: "op_adjektive_title", adverbien: "op_adverbien_title"
-};
-
-let ecouteCategorie = "nomen";
 let ecouteCartes = [];
 let ecouteIndex = 0;
 let ecouteEtapes = [];
@@ -15677,15 +15687,15 @@ function ecouteLangues(){
 function contenuEcoute(item){
     const c = item.word;
     let de = "", fr = "", en = "", pDe = "", pFr = "", pEn = "";
-    if(ecouteCategorie === "verben"){
+    if(item.type === "verben"){
         de = c.infinitif || ""; fr = c.traduction || ""; en = c.traduction_en || "";
         pDe = c.exemple || ""; pFr = c.exemple_fr || ""; pEn = c.exemple_en || "";
-    } else if(ecouteCategorie === "nomen"){
+    } else if(item.type === "nomen"){
         // Article prononcé avec le nom : c'est ainsi qu'on retient le genre.
         de = ((c[1] || "") + " " + (c[0] || "")).trim();
         fr = c[3] || ""; en = c[4] || "";
         pDe = c[5] || ""; pFr = c[6] || ""; pEn = c[7] || "";
-    } else if(ecouteCategorie === "adjektive"){
+    } else if(item.type === "adjektive"){
         de = c[0] || ""; fr = c[1] || ""; en = c[5] || "";
         pDe = c[2] || ""; pFr = c[4] || ""; pEn = c[6] || "";
     } else {
@@ -15702,30 +15712,30 @@ function contenuEcoute(item){
     };
 }
 
-function poolEcoute(categorie, niveau){
+function poolEcoute(niveau){
     const tous = (niveau === "ALL");
-    if(categorie === "verben"){
-        return (verbeTheme.words || [])
-            .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
-            .filter(it => tous || it.word.niveau === niveau);
-    }
-    if(categorie === "adjektive"){
-        return (adjektiveTheme.words || [])
-            .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
-            .filter(it => tous || it.word[3] === niveau);
-    }
-    if(categorie === "adverbien"){
-        return (adverbienTheme.words || [])
-            .map((word, index) => ({ word, index, themeId: adverbienTheme.id }))
-            .filter(it => tous || (it.word[8] || "") === niveau);
-    }
     const pool = [];
+
+    // Chaque carte porte SON type : le bassin melange les quatre categories,
+    // donc contenuEcoute() ne peut plus le deduire d'une variable globale.
+    (verbeTheme.words || []).forEach((word, index) => {
+        if(tous || word.niveau === niveau)
+            pool.push({ word, index, themeId: verbeTheme.id, type: "verben" });
+    });
+    (adjektiveTheme.words || []).forEach((word, index) => {
+        if(tous || word[3] === niveau)
+            pool.push({ word, index, themeId: adjektiveTheme.id, type: "adjektive" });
+    });
+    (adverbienTheme.words || []).forEach((word, index) => {
+        if(tous || (word[8] || "") === niveau)
+            pool.push({ word, index, themeId: adverbienTheme.id, type: "adverbien" });
+    });
     (themes || []).forEach(theme => {
         (tous ? LEVELS : [niveau]).forEach(lvl => {
             const levelData = theme.levels && theme.levels[lvl];
             if(!levelData) return;
             levelData.words.forEach((word, index) => {
-                pool.push({ word, index, themeId: levelData.id });
+                pool.push({ word, index, themeId: levelData.id, type: "nomen" });
             });
         });
     });
@@ -15734,29 +15744,21 @@ function poolEcoute(categorie, niveau){
 
 // ---- Menu ----
 
-function ouvrirEcouteMenu(categorie){
-    ecouteCategorie = categorie || "nomen";
+function ouvrirEcouteMenu(){
     const r = ecouteReglagesCharges();
     if(r.sens) ecouteSens = r.sens;
     if(r.vitesse) ecouteVitesse = r.vitesse;
     if(r.pause) ecoutePauseFacteur = r.pause;
     const kicker = document.getElementById("ecouteMenuKicker");
-    if(kicker) kicker.textContent = t(ECOUTE_TITRES[ecouteCategorie] || "op_nomen_title");
+    if(kicker) kicker.textContent = t("orb_ecouter_title");
     showScreen("ecouteMenu");
     renderEcouteMenu();
-    // Les noms viennent de themes.json, chargé de façon asynchrone : on rend une
-    // première fois tout de suite, puis à nouveau une fois les données là.
-    if(ecouteCategorie === "nomen"){
-        Promise.resolve(loadThemesJson()).then(() => renderEcouteMenu()).catch(() => {});
-    }
+    // Les noms viennent de themes.json, charge de facon asynchrone : on rend
+    // une premiere fois tout de suite, puis a nouveau une fois les donnees la.
+    Promise.resolve(loadThemesJson()).then(() => renderEcouteMenu()).catch(() => {});
 }
 
-function ecouteNomen(){ ouvrirEcouteMenu("nomen"); }
-function ecouteVerben(){ ouvrirEcouteMenu("verben"); }
-function ecouteAdjektive(){ ouvrirEcouteMenu("adjektive"); }
-function ecouteAdverbien(){ ouvrirEcouteMenu("adverbien"); }
-
-function ecouteMenuRetour(){ openOrbPanel(ecouteCategorie); }
+function ecouteMenuRetour(){ goHome(); }
 
 function ecouteBoutonBarre(actif, onclick, libelle, sous, largeur){
     const style = (largeur || "flex:1; min-width:0;")
@@ -15776,11 +15778,11 @@ function renderEcouteMenu(){
     }
     const bar = document.getElementById("ecouteLevelBar");
     if(bar){
-        const total = poolEcoute(ecouteCategorie, "ALL").length;
+        const total = poolEcoute("ALL").length;
         let html = ecouteBoutonBarre(false, "demarrerEcoute('ALL')",
             `${t("ecoute_level_all")} (${total})`, "", "flex:1 1 100%;");
         LEVELS.forEach(lvl => {
-            const n = poolEcoute(ecouteCategorie, lvl).length;
+            const n = poolEcoute(lvl).length;
             if(n) html += ecouteBoutonBarre(false, `demarrerEcoute('${lvl}')`,
                 `${lvl} (${n})`, "", "flex:1 1 46%; min-width:0;");
         });
@@ -15797,7 +15799,7 @@ function setEcouteSens(sens){
 // ---- Lecteur ----
 
 function demarrerEcoute(niveau){
-    const pool = poolEcoute(ecouteCategorie, niveau);
+    const pool = poolEcoute(niveau);
     if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
     // Mêmes cartes que les flashcards : les non maîtrisées d'abord. Si tout est
     // maîtrisé on écoute quand même l'ensemble -- l'écoute est une révision
@@ -15810,7 +15812,7 @@ function demarrerEcoute(niveau){
     ecouteIndex = 0;
     const kicker = document.getElementById("ecouteKicker");
     if(kicker){
-        const nom = t(ECOUTE_TITRES[ecouteCategorie] || "op_nomen_title");
+        const nom = t("orb_ecouter_title");
         kicker.textContent = niveau === "ALL" ? nom : `${nom} · ${niveau}`;
     }
     showScreen("ecoute");
@@ -15984,7 +15986,7 @@ function arreterEcoute(){
     ecouteMajBouton();
 }
 
-function quitterEcoute(){ ouvrirEcouteMenu(ecouteCategorie); }
+function quitterEcoute(){ ouvrirEcouteMenu(); }
 
 function renderEcouteReglages(){
     const vb = document.getElementById("ecouteVitesseBar");
@@ -16042,7 +16044,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 318;
+const APP_VERSION = 319;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
