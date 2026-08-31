@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v324</span>
+        <span class="subtitle-version">v325</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -8554,7 +8554,7 @@ function setUiLang(lang){
 //                    -> l'allemand n'a pas de suffixe, toutes les langues
 //                       connues en ont un
 //
-// Avant, chaque site s'ecrivait (useEn && x.champ_en) ? x.champ_en : x.champ.
+// Avant, chaque site s'ecrivait texteTraduit(x, "champ").
 // Une ternaire ne se met pas a trois langues : d'ou ces deux fonctions, seuls
 // endroits qui connaissent les suffixes. Ajouter une langue, c'est desormais
 // l'ajouter a UI_LANGS et a REPLI_LANGUE -- plus une seule ternaire a reecrire.
@@ -8593,6 +8593,21 @@ function texteTraduit(obj, base, lang){
     // Quand le francais est suffixe, le champ nu est l'allemand : le renvoyer
     // afficherait la reponse a la place de la question.
     return frSuffixe ? "" : (obj[base] || "");
+}
+
+// Quelques champs suivent une casse chameau au lieu du suffixe souligne :
+// options / optionsEn, correct / correctEn. Meme logique de repli, autre
+// convention -- et ils ne portent pas toujours du texte (options est un
+// tableau), d'ou une fonction distincte de texteTraduit.
+const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr" };
+
+function valeurTraduite(obj, base, lang){
+    if(!obj) return undefined;
+    for(const code of langueEtRepli(lang)){
+        const v = obj[base + SUFFIXE_CHAMEAU[code]];
+        if(v !== undefined && v !== null && v !== "") return v;
+    }
+    return obj[base];
 }
 
 function t(key){
@@ -15957,7 +15972,7 @@ function loadFlashcard(){
         const useEn = uiLang === 'en';
         const translatedWord = learningEnglish
             ? (card.traduction_en || card.traduction)
-            : ((useEn && card.traduction_en) ? card.traduction_en : card.traduction);
+            : (texteTraduit(card, "traduction"));
         const exampleTr = learningEnglish
             ? (card.exemple_en || card.exemple_fr)
             : ((useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr);
@@ -16100,7 +16115,7 @@ function loadFlashcard(){
         const germanWord = card.infinitif;
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
-        const frenchWord = (useEn && card.traduction_en) ? card.traduction_en : card.traduction;
+        const frenchWord = texteTraduit(card, "traduction");
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
             document.getElementById("flashBackWord").textContent = germanWord;
@@ -16111,7 +16126,7 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        const regularite = (useEn && card.regularite_en) ? card.regularite_en : card.regularite;
+        const regularite = texteTraduit(card, "regularite");
         const exempleTr = (useEn && card.exemple_en) ? card.exemple_en : card.exemple_fr;
         const perfektTr = (useEn && card.perfekt_en) ? card.perfekt_en : card.perfekt_fr;
         const praeteritumTr = (useEn && card.praeteritum_en) ? card.praeteritum_en : card.praeteritum_fr;
@@ -17059,7 +17074,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 324;
+const APP_VERSION = 325;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18819,7 +18834,6 @@ function startSchreiben(niveau){
     const vivier = phrasesTraduisibles(niveau || "ALL");
     if(vivier.length < 3){ showInfoToast(t('alert_level_unavailable')); return; }
     shuffleArray(vivier);
-    const useEn = getUiLang() === 'en';
     const liste = vivier.slice(0, SCHREIBEN_TAILLE_SERIE).map(ph => ({
         topic: "\u00c9crire \u00b7 " + ph.source,
         question: ph.fr,
@@ -18979,11 +18993,10 @@ function loadExercise(){
     // L'anglais n'existe encore que pour une partie du contenu des exercices
     // (Phase 2 en cours) : on retombe sur le français si la traduction anglaise manque.
     const uiLang = getUiLang();
-    const useEn = uiLang === 'en';
-    const question = (useEn && ex.question_en) ? ex.question_en : ex.question;
-    const translation = (useEn && ex.translation_en) ? ex.translation_en : ex.translation;
-    const hint = (useEn && ex.hint_en) ? ex.hint_en : ex.hint;
-    const opts = (useEn && ex.optionsEn) ? ex.optionsEn : ex.options;
+    const question = texteTraduit(ex, "question");
+    const translation = texteTraduit(ex, "translation");
+    const hint = texteTraduit(ex, "hint");
+    const opts = valeurTraduite(ex, "options");
 
     document.getElementById("counter").textContent = `${currentExercise + 1} / ${activeExercises.length}`;
     document.getElementById("questionTranslation").textContent = tf("question_translation_label", { translation });
@@ -19058,7 +19071,7 @@ function echapperHtml(txt){
 function motPourLeBlanc(mot){
     const ex = activeExercises[currentExercise];
     if(!ex || !mot) return mot;
-    const q = (getUiLang() === 'en' && ex.question_en) ? ex.question_en : ex.question;
+    const q = texteTraduit(ex, "question");
     if(q && q.indexOf("___") === 0) return mot.charAt(0).toUpperCase() + mot.slice(1);
     return mot;
 }
@@ -19125,8 +19138,7 @@ function checkAnswer(){
     if(answered) return;
     const ex = activeExercises[currentExercise];
     const uiLang = getUiLang();
-    const useEn = uiLang === 'en';
-    const opts = (useEn && ex.optionsEn) ? ex.optionsEn : ex.options;
+    const opts = valeurTraduite(ex, "options");
     const usingChunks = !!(ex.chunks && ex.chunks.length);
     const usingOptions = !usingChunks && !!(opts && opts.length);
     const input = document.getElementById("answer");
@@ -19188,7 +19200,7 @@ function checkAnswer(){
         feedback.className = "feedback show correct";
         const explanation = enRattrapage
             ? t("rattrapage_reussi")
-            : ((useEn && ex.explanation_en) ? ex.explanation_en : ex.explanation);
+            : (texteTraduit(ex, "explanation"));
         feedback.innerHTML = `<div class="feedback-title">${t("feedback_correct_title")}</div><div class="explanation">${explanation}</div>`;
         // Une bonne réponse compte désormais aussi pour l'objectif du jour, la
         // série de jours (streak) et le compteur hebdomadaire -- même chemin que
@@ -19207,7 +19219,7 @@ function checkAnswer(){
         }
     }else{
         feedback.className = "feedback show wrong";
-        const correctDisplay = ((useEn && ex.correctEn) ? ex.correctEn : ex.correct)
+        const correctDisplay = (valeurTraduite(ex, "correct"))
             || (usingChunks ? ex.chunks.join(" ") : "");
         let html = `<div class="feedback-title">${t("feedback_wrong_title")}</div>`;
         // Avec des tuiles, la bonne reponse est DEJA sous les yeux : la tuile
@@ -19220,7 +19232,7 @@ function checkAnswer(){
         // L'explication n'apparaissait qu'en cas de BONNE reponse -- soit
         // exactement a l'envers du besoin. Celui qui se trompe est celui a qui
         // il faut dire pourquoi.
-        const pourquoi = (useEn && ex.explanation_en) ? ex.explanation_en : ex.explanation;
+        const pourquoi = texteTraduit(ex, "explanation");
         if(pourquoi) html += `<div class="explanation">${pourquoi}</div>`;
         feedback.innerHTML = html;
         resetCombo();
@@ -19232,9 +19244,9 @@ function checkAnswer(){
     // quand la reponse etait fausse (pas besoin de recoller mentalement le
     // mot dans la phrase du dessus).
     if(!usingChunks && !usingOptions){
-        const questionText = (useEn && ex.question_en) ? ex.question_en : ex.question;
+        const questionText = texteTraduit(ex, "question");
         if(questionText && questionText.includes("___")){
-            let correctWord = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+            let correctWord = valeurTraduite(ex, "correct");
             // Majuscule automatique si le blanc est en tout debut de phrase
             // (ex. "___ du gestern zu Hause?" -> "Warst du..."). Les noms
             // communs allemands, eux, doivent deja etre stockes avec leur
@@ -19252,7 +19264,7 @@ function checkAnswer(){
         // La bonne tuile passe au vert, celle qu'on avait choisie a tort au
         // rouge, et le blanc de la phrase recoit la BONNE forme (verte) : meme
         // apres une erreur, la derniere chose qu'on lit est la phrase juste.
-        const bonne = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+        const bonne = valeurTraduite(ex, "correct");
         const wrap = document.getElementById("answerOptions");
         if(wrap) Array.from(wrap.children).forEach((btn, i) => {
             const val = String(optionTuiles[i]);
