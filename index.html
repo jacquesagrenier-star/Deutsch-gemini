@@ -3535,7 +3535,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v321</span>
+        <span class="subtitle-version">v322</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5366,8 +5366,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <div class="title-row">
         <div>
-            <div class="kicker" id="exerciseKicker">Verbes · Präsens</div>
-            <h2 id="exerciseTitle">Exercice 1</h2>
+            <!-- Un seul titre : il nomme ce qu'on travaille. Le numero de
+                 l'exercice etait affiche ici ET dans la pastille a droite
+                 ("Exercice 1" a cote de "1 / 50") -- deux fois le meme
+                 chiffre, dont un qui n'apprend rien. -->
+            <h2 id="exerciseKicker">Verbes · Präsens</h2>
         </div>
         <div class="title-row-pills">
             <div class="pill combo-pill hidden" id="comboPillExercise">🔥 x<span id="comboCountExercise">0</span></div>
@@ -6340,7 +6343,6 @@ const I18N = {
         possessiv_btn_exercise: "M'ENTRAÎNER (70 exercices) →",
         kicker_possessiv_exercise: "Possessifs · Exercice",
 
-        exercise_number_title: "Exercice {n}",
         question_translation_label: "Traduction : {translation}",
         feedback_correct_title: "✓ Correct !",
         feedback_wrong_title: "✗ Pas tout à fait",
@@ -7259,7 +7261,6 @@ const I18N = {
         possessiv_btn_exercise: "PRACTICE (70 exercises) →",
         kicker_possessiv_exercise: "Possessives · Exercise",
 
-        exercise_number_title: "Exercise {n}",
         question_translation_label: "Translation: {translation}",
         feedback_correct_title: "✓ Correct!",
         feedback_wrong_title: "✗ Not quite",
@@ -16073,7 +16074,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 321;
+const APP_VERSION = 322;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17999,7 +18000,6 @@ function loadExercise(){
     const hint = (useEn && ex.hint_en) ? ex.hint_en : ex.hint;
     const opts = (useEn && ex.optionsEn) ? ex.optionsEn : ex.options;
 
-    document.getElementById("exerciseTitle").textContent = tf("exercise_number_title", { n: currentExercise + 1 });
     document.getElementById("counter").textContent = `${currentExercise + 1} / ${activeExercises.length}`;
     document.getElementById("questionTranslation").textContent = tf("question_translation_label", { translation });
     document.getElementById("hint").textContent = hint;
