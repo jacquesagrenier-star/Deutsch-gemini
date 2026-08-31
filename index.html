@@ -1434,6 +1434,60 @@ button{font-family:inherit}
 }
 body[data-theme="dark"] .filled-blank{ color:#34d399; }
 
+/* Le blanc de la phrase pendant qu'on repond par tuiles. "vide" = le ___ pas
+   encore rempli, "pose" = la tuile choisie mais pas encore verifiee (bleu,
+   donc revocable), et .filled-blank tout court = la bonne forme apres
+   verification (vert). */
+.filled-blank.vide{ color:#94a3b8; letter-spacing:1px; }
+.filled-blank.pose{ color:#2563eb; border-bottom:2px solid #2563eb; }
+body[data-theme="dark"] .filled-blank.vide{ color:#64748b; }
+body[data-theme="dark"] .filled-blank.pose{ color:#60a5fa; border-bottom-color:#60a5fa; }
+
+/* Tuiles de reponse : meme geste que les tuiles de remise en ordre
+   (.chunk-pill), mais un seul choix a la fois. Apres verification, la bonne
+   tuile passe au vert et celle qu'on avait choisie a tort au rouge -- on voit
+   les deux d'un coup, sans relire le corrige. */
+.option-strip{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-bottom:12px;
+}
+.option-pill{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:9px 16px;
+    min-height:44px;
+    border-radius:12px;
+    border:1px solid rgba(30,41,59,.22);
+    background:#fff;
+    font-size:16px;
+    font-weight:600;
+    color:#1e2433;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+}
+.option-pill:hover{ box-shadow:0 2px 8px rgba(30,41,59,.12); }
+.option-pill:active{ transform:scale(.96); }
+.option-pill.choisie{
+    background:#eef2ff;
+    border-color:#3b82f6;
+    color:#1e3a8a;
+}
+.option-pill.juste{
+    background:#dcfce7;
+    border-color:#10b981;
+    color:#065f46;
+}
+.option-pill.fausse{
+    background:#fee2e2;
+    border-color:#ef4444;
+    color:#991b1b;
+}
+.option-pill:disabled{ cursor:default; opacity:.75; }
+.option-pill.juste:disabled, .option-pill.fausse:disabled{ opacity:1; }
+body[data-theme="dark"] .option-pill{ background:#1e2433; border-color:rgba(226,232,240,.24); color:#e7ebf3; }
+body[data-theme="dark"] .option-pill.choisie{ background:rgba(59,130,246,.22); border-color:#60a5fa; color:#bfdbfe; }
+body[data-theme="dark"] .option-pill.juste{ background:rgba(16,185,129,.22); border-color:#34d399; color:#a7f3d0; }
+body[data-theme="dark"] .option-pill.fausse{ background:rgba(239,68,68,.20); border-color:#f87171; color:#fecaca; }
+
 .translation-example{
     color:#576177;
     font-size:15px;
@@ -3461,7 +3515,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v311</span>
+        <span class="subtitle-version">v312</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3582,8 +3636,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
             </div>
             <div>
-                <strong data-i18n="orb_kasus_title">Cas</strong>
-                <small data-i18n="orb_kasus_sub">Nominativ · Akkusativ, etc.</small>
+                <strong data-i18n="orb_kasus_title">Cas & articles</strong>
+                <small data-i18n="orb_kasus_sub">der · den · dem · ein · kein</small>
             </div>
         </div>
 
@@ -4003,8 +4057,25 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         </div>
     </div>
 
+    <!-- Le coeur de la lecon : ce n'est pas trois tableaux a apprendre, c'est
+         UN jeu de terminaisons pose sur trois debuts de mot. Ce texte vient
+         avant les tableaux exprès -- sans lui, on les lit comme trois lecons
+         separees, ce qui triple le travail pour rien. -->
     <div class="card">
-        <strong data-i18n="kasus_decl_table_title">Tableau de déclinaison (articles définis)</strong>
+        <strong data-i18n="art_systeme_title">Trois familles, un seul jeu de terminaisons</strong>
+        <div class="info-box" data-i18n-html="art_systeme_intro">
+            Le <strong>début</strong> du mot dit seulement de quoi on parle : <strong>d-</strong> (le/la), <strong>ein-</strong> (un/une), <strong>kein-</strong> (aucun), et aussi <strong>mein-, dein-, sein-…</strong> (mon, ton, son).<br>
+            La <strong>terminaison</strong>, elle, porte le cas et le genre : <strong>-n</strong> (masculin Akkusativ), <strong>-m</strong> (Dativ masc./neutre), <strong>-r</strong> (Dativ et Genitiv féminins), <strong>-s</strong> (Genitiv masc./neutre), <strong>-e</strong> (féminin et pluriel).<br>
+            Tu n'as donc pas trois tableaux à retenir, mais un seul — et trois débuts sur lesquels le poser.
+        </div>
+        <div class="info-box" data-i18n-html="art_systeme_trous">
+            <strong>Les deux seules cases vides.</strong> « ein » n'a <em>aucune</em> terminaison au masculin Nominativ (<em>ein Mann</em>) ni au neutre Nominativ/Akkusativ (<em>ein Kind</em>), là où « der » et « das » en ont une.<br>
+            Ce n'est pas un détail : c'est exactement pour ça que l'adjectif change de terminaison après « ein » — c'est lui qui doit porter le signal manquant (<em>ein <strong>guter</strong> Mann</em>, mais <em>der gut<strong>e</strong> Mann</em>).
+        </div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n-html="art_table_def_title">1. Articles définis — <em>der / die / das</em> (le, la, les)</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
                 <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
@@ -4014,19 +4085,58 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <td style="padding:8px 4px;">neutre</td>
                     <td style="padding:8px 4px;">pluriel</td>
                 </tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Nom.</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Akk.</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Dat.</td><td>dem</td><td>der</td><td>dem</td><td>den</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Gen.</td><td>des</td><td>der</td><td>des</td><td>der</td></tr>
+                <tbody id="tblArticlesDef"></tbody>
             </table>
         </div>
-        <small style="color:#576177;" data-i18n="kasus_decl_tip">Astuce : seul le masculin change au Nominativ/Akkusativ (der → den). Le Dativ pluriel ajoute toujours -n au nom (den Kindern).</small>
+        <small style="color:#576177;" data-i18n="art_table_def_note">Seul le masculin change entre Nominativ et Akkusativ (der → den). Au Dativ pluriel, le nom prend aussi un -n : den Kindern.</small>
+    </div>
+
+    <div class="card">
+        <strong data-i18n-html="art_table_indef_title">2. Articles indéfinis — <em>ein / eine</em> (un, une)</strong>
+        <div class="info-box" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
+                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                    <td style="padding:8px 4px;"></td>
+                    <td style="padding:8px 4px;">masc.</td>
+                    <td style="padding:8px 4px;">fém.</td>
+                    <td style="padding:8px 4px;">neutre</td>
+                    <td style="padding:8px 4px;">pluriel</td>
+                </tr>
+                <tbody id="tblArticlesIndef"></tbody>
+            </table>
+        </div>
+        <small style="color:#576177;" data-i18n="art_table_indef_note">Pas de pluriel : « ein » n'existe qu'au singulier. Pour un pluriel indéfini, l'allemand ne met rien du tout : Ich sehe Kinder. (Je vois des enfants.)</small>
+    </div>
+
+    <div class="card">
+        <strong data-i18n-html="art_table_neg_title">3. Article négatif — <em>kein / keine</em> (aucun, pas de)</strong>
+        <div class="info-box" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
+                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                    <td style="padding:8px 4px;"></td>
+                    <td style="padding:8px 4px;">masc.</td>
+                    <td style="padding:8px 4px;">fém.</td>
+                    <td style="padding:8px 4px;">neutre</td>
+                    <td style="padding:8px 4px;">pluriel</td>
+                </tr>
+                <tbody id="tblArticlesNeg"></tbody>
+            </table>
+        </div>
+        <small style="color:#576177;" data-i18n="art_table_neg_note">« kein » se décline exactement comme « ein » — avec un pluriel en plus (keine Kinder). C'est la seule différence entre les deux tableaux.</small>
     </div>
 
     <div class="spacer"></div>
     <button class="secondary" onclick="startKasusReconnaissance()" data-i18n="kasus_btn_reconnaitre">M'ENTRAÎNER : RECONNAÎTRE LE CAS →</button>
     <div class="spacer"></div>
-    <button class="secondary" onclick="startKasusArticle()" data-i18n="kasus_btn_article">M'ENTRAÎNER : COMPLÉTER L'ARTICLE →</button>
+    <button class="secondary" onclick="startKasusArticleNominativ()" data-i18n="kasus_btn_art_nom">ARTICLES : NOMINATIV (30) →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKasusArticleAkkusativ()" data-i18n="kasus_btn_art_akk">ARTICLES : AKKUSATIV (30) →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKasusArticleDativ()" data-i18n="kasus_btn_art_dat">ARTICLES : DATIV (30) →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startKasusArticleGenitiv()" data-i18n="kasus_btn_art_gen">ARTICLES : GENITIV (30) →</button>
+    <div class="spacer"></div>
+    <button class="primary" onclick="startKasusArticleMix()" data-i18n="kasus_btn_art_mix">ARTICLES : MÉLANGE DES 4 CAS (50) →</button>
 </section>
 
 <!-- ================= ADJEKTIVE : DÉKLINATION ================= -->
@@ -5239,9 +5349,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div id="hint" style="color:#576177;margin-bottom:15px"></div>
 
         <input id="answer" class="answer" type="text" placeholder="Ta réponse…" data-i18n-placeholder="answer_placeholder">
-        <select id="answerSelect" class="answer hidden">
-            <option value="" data-i18n="choose_case">-- Choisis le cas --</option>
-        </select>
+        <!-- Choix par tuiles (v312). Remplace l'ancien menu deroulant : sur
+             mobile, un <select> ouvre une roulette qui cache la phrase, et on
+             ne voit jamais la forme choisie EN CONTEXTE. Les tuiles restent a
+             l'ecran, et le mot choisi se pose dans le blanc de la phrase. -->
+        <div id="answerOptions" class="option-strip hidden"></div>
 
         <div id="answerChunksWrap" class="hidden">
             <div id="answerChunksBuilt" class="chunk-strip chunk-strip-built"></div>
@@ -5785,8 +5897,8 @@ const I18N = {
         verbenniveau_title_en: "Verben par niveau",
         orb_nomen_title: "Noms",
         orb_nomen_sub: "Thèmes & Vocabulaire",
-        orb_kasus_title: "Cas",
-        orb_kasus_sub: "Nominativ · Akkusativ, etc.",
+        orb_kasus_title: "Cas & articles",
+        orb_kasus_sub: "der · den · dem · ein · kein",
         orb_adjektive_title: "Adjectifs",
         orb_adjektive_sub: "Endungen",
         orb_praep_title: "Prépositions",
@@ -5864,7 +5976,7 @@ const I18N = {
         review_retry_mastered: "Revoir les cartes maîtrisées",
 
         answer_placeholder: "Ta réponse…",
-        choose_case: "-- Choisis le cas --",
+        options_choisis: "Choisis une tuile.",
         verify_button: "VÉRIFIER",
         next_exercise_button: "EXERCICE SUIVANT →",
 
@@ -6018,10 +6130,14 @@ const I18N = {
         op_adjektive_o1_t: "Réviser mes adjectifs",
         op_adjektive_o4_t: "Déclinaison des adjectifs", op_adjektive_o4_d: "Endungen selon l'article & le cas",
 
-        op_kasus_title: "Cas", op_kasus_sub: "Nominativ · Akkusativ · Dativ · Genitiv",
+        op_kasus_title: "Cas & articles", op_kasus_sub: "der · den · dem · ein · kein",
         op_kasus_o1_t: "Comprendre les cas", op_kasus_o1_d: "Fonctions & tableau de déclinaison",
         op_kasus_o2_t: "Reconnaître le cas", op_kasus_o2_d: "Identifier le cas dans une phrase",
-        op_kasus_o3_t: "Compléter l'article", op_kasus_o3_d: "Choisir le bon article/terminaison",
+        op_kasus_art_nom_t: "Articles · Nominativ", op_kasus_art_nom_d: "der · ein · kein — le sujet",
+        op_kasus_art_akk_t: "Articles · Akkusativ", op_kasus_art_akk_d: "den · einen · keinen — l'objet direct",
+        op_kasus_art_dat_t: "Articles · Dativ", op_kasus_art_dat_d: "dem · einem · keinem — l'objet indirect",
+        op_kasus_art_gen_t: "Articles · Genitiv", op_kasus_art_gen_d: "des · eines · keines — la possession",
+        op_kasus_art_mix_t: "Articles · mélange", op_kasus_art_mix_d: "Les 4 cas, sans qu'on te dise lequel",
         op_kasus_o4_t: "Verbes à cas fixe",
         op_relativ_title: "Pronoms relatifs", op_relativ_sub: "der · den · dem · dessen",
         op_relativ_o1_t: "Nominativ, Akkusativ, Dativ", op_relativ_o1_d: "Presque comme les articles définis",
@@ -6047,10 +6163,21 @@ const I18N = {
         kasus_box_akkusativ: `<strong style="color:#3b6fe0;">Akkusativ</strong> — l'objet direct, qui subit l'action.<br><em>Ich sehe den Mann.</em> (Je vois l'homme.)`,
         kasus_box_dativ: `<strong style="color:#3b6fe0;">Dativ</strong> — l'objet indirect, à qui/pour qui.<br><em>Ich gebe dem Mann das Buch.</em> (Je donne le livre à l'homme.)`,
         kasus_box_genitiv: `<strong style="color:#3b6fe0;">Genitiv</strong> — la possession, à qui appartient.<br><em>Das Buch des Mannes.</em> (Le livre de l'homme.)`,
-        kasus_decl_table_title: "Tableau de déclinaison (articles définis)",
-        kasus_decl_tip: "Astuce : seul le masculin change au Nominativ/Akkusativ (der → den). Le Dativ pluriel ajoute toujours -n au nom (den Kindern).",
         kasus_btn_reconnaitre: "M'ENTRAÎNER : RECONNAÎTRE LE CAS →",
-        kasus_btn_article: "M'ENTRAÎNER : COMPLÉTER L'ARTICLE →",
+        art_systeme_title: "Trois familles, un seul jeu de terminaisons",
+        art_systeme_intro: `Le <strong>début</strong> du mot dit seulement de quoi on parle : <strong>d-</strong> (le/la), <strong>ein-</strong> (un/une), <strong>kein-</strong> (aucun), et aussi <strong>mein-, dein-, sein-…</strong> (mon, ton, son).<br>La <strong>terminaison</strong>, elle, porte le cas et le genre : <strong>-n</strong> (masculin Akkusativ), <strong>-m</strong> (Dativ masc./neutre), <strong>-r</strong> (Dativ et Genitiv féminins), <strong>-s</strong> (Genitiv masc./neutre), <strong>-e</strong> (féminin et pluriel).<br>Tu n'as donc pas trois tableaux à retenir, mais un seul — et trois débuts sur lesquels le poser.`,
+        art_systeme_trous: `<strong>Les deux seules cases vides.</strong> « ein » n'a <em>aucune</em> terminaison au masculin Nominativ (<em>ein Mann</em>) ni au neutre Nominativ/Akkusativ (<em>ein Kind</em>), là où « der » et « das » en ont une.<br>Ce n'est pas un détail : c'est exactement pour ça que l'adjectif change de terminaison après « ein » — c'est lui qui doit porter le signal manquant (<em>ein <strong>guter</strong> Mann</em>, mais <em>der gut<strong>e</strong> Mann</em>).`,
+        art_table_def_title: `1. Articles définis — <em>der / die / das</em> (le, la, les)`,
+        art_table_def_note: "Seul le masculin change entre Nominativ et Akkusativ (der → den). Au Dativ pluriel, le nom prend aussi un -n : den Kindern.",
+        art_table_indef_title: `2. Articles indéfinis — <em>ein / eine</em> (un, une)`,
+        art_table_indef_note: "Pas de pluriel : « ein » n'existe qu'au singulier. Pour un pluriel indéfini, l'allemand ne met rien du tout : Ich sehe Kinder. (Je vois des enfants.)",
+        art_table_neg_title: `3. Article négatif — <em>kein / keine</em> (aucun, pas de)`,
+        art_table_neg_note: "« kein » se décline exactement comme « ein » — avec un pluriel en plus (keine Kinder). C'est la seule différence entre les deux tableaux.",
+        kasus_btn_art_nom: "ARTICLES : NOMINATIV (30) →",
+        kasus_btn_art_akk: "ARTICLES : AKKUSATIV (30) →",
+        kasus_btn_art_dat: "ARTICLES : DATIV (30) →",
+        kasus_btn_art_gen: "ARTICLES : GENITIV (30) →",
+        kasus_btn_art_mix: "ARTICLES : MÉLANGE DES 4 CAS (50) →",
 
         adj_decl_title: "Déclinaison des adjectifs",
         adj_decl_intro: "La terminaison de l'adjectif dépend de ce qui le précède : un article défini, un article indéfini, ou rien du tout.",
@@ -6200,7 +6327,11 @@ const I18N = {
         verbentemps_infinitiv: "La forme du dictionnaire, indispensable pour chercher un mot inconnu : à partir d'un verbe conjugué dans une phrase, retrouver son infinitif.<br><em>er spielt → spielen. sie ist gegangen → gehen.</em>",
         verbentemps_infinitiv_btn: "M'ENTRAÎNER (70 exercices) →",
         kicker_kasus_reconnaissance: "Cas · Reconnaître le cas",
-        kicker_kasus_article: "Cas · Compléter l'article",
+        kicker_kasus_art_nom: "Articles · Nominativ",
+        kicker_kasus_art_akk: "Articles · Akkusativ",
+        kicker_kasus_art_dat: "Articles · Dativ",
+        kicker_kasus_art_gen: "Articles · Genitiv",
+        kicker_kasus_art_mix: "Articles · mélange des 4 cas",
         kicker_adjektive_deklination: "Adjectifs · Déclinaison",
         kicker_praep_reconnaissance: "Prépositions · Quel cas ?",
         kicker_praep_wowohin: "Prépositions · Wo oder Wohin?",
@@ -6680,8 +6811,8 @@ const I18N = {
         verbenniveau_title_en: "Verben by level",
         orb_nomen_title: "Nouns",
         orb_nomen_sub: "Themes & Vocabulary",
-        orb_kasus_title: "Cases",
-        orb_kasus_sub: "Nominativ · Akkusativ, etc.",
+        orb_kasus_title: "Cases & articles",
+        orb_kasus_sub: "der · den · dem · ein · kein",
         orb_adjektive_title: "Adjectives",
         orb_adjektive_sub: "Endungen",
         orb_praep_title: "Prepositions",
@@ -6762,7 +6893,7 @@ const I18N = {
         review_retry_mastered: "Review mastered cards",
 
         answer_placeholder: "Your answer…",
-        choose_case: "-- Choose the case --",
+        options_choisis: "Pick a tile.",
         verify_button: "CHECK",
         next_exercise_button: "NEXT EXERCISE →",
 
@@ -6916,10 +7047,14 @@ const I18N = {
         op_adjektive_o1_t: "Review my adjectives",
         op_adjektive_o4_t: "Adjective declension", op_adjektive_o4_d: "Endungen by article & case",
 
-        op_kasus_title: "Cases", op_kasus_sub: "Nominativ · Akkusativ · Dativ · Genitiv",
+        op_kasus_title: "Cases & articles", op_kasus_sub: "Cas & articles · der · ein · kein",
         op_kasus_o1_t: "Understand the cases", op_kasus_o1_d: "Functions & declension table",
         op_kasus_o2_t: "Identify the case", op_kasus_o2_d: "Identify the case in a sentence",
-        op_kasus_o3_t: "Complete the article", op_kasus_o3_d: "Choose the right article/ending",
+        op_kasus_art_nom_t: "Articles · Nominativ", op_kasus_art_nom_d: "der · ein · kein — the subject",
+        op_kasus_art_akk_t: "Articles · Akkusativ", op_kasus_art_akk_d: "den · einen · keinen — the direct object",
+        op_kasus_art_dat_t: "Articles · Dativ", op_kasus_art_dat_d: "dem · einem · keinem — the indirect object",
+        op_kasus_art_gen_t: "Articles · Genitiv", op_kasus_art_gen_d: "des · eines · keines — possession",
+        op_kasus_art_mix_t: "Articles · mix", op_kasus_art_mix_d: "All 4 cases, without being told which",
         op_kasus_o4_t: "Fixed-case verbs",
         op_relativ_title: "Relative pronouns", op_relativ_sub: "der · den · dem · dessen",
         op_relativ_o1_t: "Nominativ, Akkusativ, Dativ", op_relativ_o1_d: "Almost the same as definite articles",
@@ -6945,10 +7080,21 @@ const I18N = {
         kasus_box_akkusativ: `<strong style="color:#3b6fe0;">Akkusativ</strong> — the direct object, who receives the action.<br><em>Ich sehe den Mann.</em> (I see the man.)`,
         kasus_box_dativ: `<strong style="color:#3b6fe0;">Dativ</strong> — the indirect object, to whom/for whom.<br><em>Ich gebe dem Mann das Buch.</em> (I give the book to the man.)`,
         kasus_box_genitiv: `<strong style="color:#3b6fe0;">Genitiv</strong> — possession, to whom something belongs.<br><em>Das Buch des Mannes.</em> (The man's book.)`,
-        kasus_decl_table_title: "Declension table (definite articles)",
-        kasus_decl_tip: "Tip: only the masculine changes in the Nominativ/Akkusativ (der → den). The Dativ plural always adds -n to the noun (den Kindern).",
         kasus_btn_reconnaitre: "PRACTICE: RECOGNIZE THE CASE →",
-        kasus_btn_article: "PRACTICE: COMPLETE THE ARTICLE →",
+        art_systeme_title: "Three families, a single set of endings",
+        art_systeme_intro: `The <strong>beginning</strong> of the word only says what you are talking about: <strong>d-</strong> (the), <strong>ein-</strong> (a/an), <strong>kein-</strong> (no/none), and also <strong>mein-, dein-, sein-…</strong> (my, your, his).<br>The <strong>ending</strong> carries the case and the gender: <strong>-n</strong> (masculine Akkusativ), <strong>-m</strong> (Dativ masc./neuter), <strong>-r</strong> (feminine Dativ and Genitiv), <strong>-s</strong> (Genitiv masc./neuter), <strong>-e</strong> (feminine and plural).<br>So there are not three tables to memorise, only one — and three beginnings to put it on.`,
+        art_systeme_trous: `<strong>The only two empty slots.</strong> « ein » has <em>no</em> ending in the masculine Nominativ (<em>ein Mann</em>) or the neuter Nominativ/Akkusativ (<em>ein Kind</em>), where « der » and « das » do have one.<br>This is not a detail: it is exactly why the adjective changes its ending after « ein » — the adjective has to carry the missing signal (<em>ein <strong>guter</strong> Mann</em>, but <em>der gut<strong>e</strong> Mann</em>).`,
+        art_table_def_title: `1. Definite articles — <em>der / die / das</em> (the)`,
+        art_table_def_note: "Only the masculine changes between Nominativ and Akkusativ (der → den). In the Dativ plural the noun also takes an -n: den Kindern.",
+        art_table_indef_title: `2. Indefinite articles — <em>ein / eine</em> (a, an)`,
+        art_table_indef_note: "No plural: « ein » exists only in the singular. For an indefinite plural, German uses nothing at all: Ich sehe Kinder. (I see children.)",
+        art_table_neg_title: `3. Negative article — <em>kein / keine</em> (no, not a)`,
+        art_table_neg_note: "« kein » declines exactly like « ein » — with a plural on top (keine Kinder). That is the only difference between the two tables.",
+        kasus_btn_art_nom: "ARTICLES: NOMINATIV (30) →",
+        kasus_btn_art_akk: "ARTICLES: AKKUSATIV (30) →",
+        kasus_btn_art_dat: "ARTICLES: DATIV (30) →",
+        kasus_btn_art_gen: "ARTICLES: GENITIV (30) →",
+        kasus_btn_art_mix: "ARTICLES: MIX OF ALL 4 CASES (50) →",
 
         adj_decl_title: "Adjective declension",
         adj_decl_intro: "The adjective's ending depends on what comes before it: a definite article, an indefinite article, or no article at all.",
@@ -7098,7 +7244,11 @@ const I18N = {
         verbentemps_infinitiv: "The dictionary form, essential for looking up an unknown word: from a verb conjugated in a sentence, find its infinitive.<br><em>er spielt → spielen. sie ist gegangen → gehen.</em>",
         verbentemps_infinitiv_btn: "PRACTICE (70 exercises) →",
         kicker_kasus_reconnaissance: "Cases · Recognize the case",
-        kicker_kasus_article: "Cases · Complete the article",
+        kicker_kasus_art_nom: "Articles · Nominativ",
+        kicker_kasus_art_akk: "Articles · Akkusativ",
+        kicker_kasus_art_dat: "Articles · Dativ",
+        kicker_kasus_art_gen: "Articles · Genitiv",
+        kicker_kasus_art_mix: "Articles · mix of all 4 cases",
         kicker_adjektive_deklination: "Adjectives · Declension",
         kicker_praep_reconnaissance: "Prepositions · Which case?",
         kicker_praep_wowohin: "Prepositions · Wo or Wohin?",
@@ -9209,58 +9359,411 @@ const relativGenitivOrderExercises = [
   { topic:"Pronoms relatifs · Genitiv · Ordre", question:"Remets les mots dans le bon ordre :", question_en:"Put the words in the correct order:", hint:"", hint_en:"", translation:"Je rends visite aux étudiants dont les notes sont bonnes.", translation_en:"I'm visiting the students whose grades are good.", chunks:["Ich besuche die Studenten,", "deren Noten", "gut sind."], explanation:"« deren » (pluriel).", explanation_en:"« deren » (plural)." }
 ];
 
-const kasusArticleExercises = [
-  { topic:"Compléter l'article", question:"Ich sehe ___ Mann. (der Mann, Akkusativ)", question_en:"Ich sehe ___ Mann. (der Mann, Akkusativ)", translation:"Je vois l'homme.", translation_en:"I see the man.", hint:"(masculin, Akkusativ)", hint_en:"(masculine, Akkusativ)", answers:["den"], correct:"den", explanation:"Au masculin Akkusativ, « der » devient « den ».", explanation_en:"In the masculine Akkusativ, « der » becomes « den »." },
-  { topic:"Compléter l'article", question:"Ich gebe ___ Frau das Buch. (die Frau, Dativ)", question_en:"Ich gebe ___ Frau das Buch. (die Frau, Dativ)", translation:"Je donne le livre à la femme.", translation_en:"I give the book to the woman.", hint:"(féminin, Dativ)", hint_en:"(feminine, Dativ)", answers:["der"], correct:"der", explanation:"Au féminin Dativ, « die » devient « der ».", explanation_en:"In the feminine Dativ, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Das ist das Haus ___ Kindes. (das Kind, Genitiv)", question_en:"Das ist das Haus ___ Kindes. (das Kind, Genitiv)", translation:"C'est la maison de l'enfant.", translation_en:"This is the child's house.", hint:"(neutre, Genitiv)", hint_en:"(neuter, Genitiv)", answers:["des"], correct:"des", explanation:"Au neutre Genitiv, « das » devient « des » (et le nom prend souvent -s/-es : Kindes).", explanation_en:"In the neuter Genitiv, « das » becomes « des » (and the noun often takes -s/-es: Kindes)." },
-  { topic:"Compléter l'article", question:"___ Buch liegt auf dem Tisch. (das Buch, Nominativ)", question_en:"___ Buch liegt auf dem Tisch. (das Buch, Nominativ)", translation:"Le livre est sur la table.", translation_en:"The book is on the table.", hint:"(neutre, Nominativ)", hint_en:"(neuter, Nominativ)", answers:["das"], correct:"das", explanation:"Au Nominativ, l'article neutre ne change pas : das Buch.", explanation_en:"In the Nominativ, the neuter article doesn't change: das Buch." },
-  { topic:"Compléter l'article", question:"___ Lehrer unterrichtet Deutsch. (der Lehrer, Nominativ)", question_en:"___ Lehrer unterrichtet Deutsch. (der Lehrer, Nominativ)", translation:"Le professeur enseigne l'allemand.", translation_en:"The teacher teaches German.", hint:"(masculin, Nominativ)", hint_en:"(masculine, Nominativ)", answers:["der"], correct:"der", explanation:"Au Nominativ, l'article masculin ne change pas : der reste der.", explanation_en:"In the Nominativ, the masculine article doesn't change: der stays der." },
-  { topic:"Compléter l'article", question:"___ Apfel ist rot. (der Apfel, Nominativ)", question_en:"___ Apfel ist rot. (der Apfel, Nominativ)", translation:"La pomme est rouge.", translation_en:"The apple is red.", hint:"(masculin, Nominativ)", hint_en:"(masculine, Nominativ)", answers:["der"], correct:"der", explanation:"Au Nominativ, l'article masculin ne change pas : der reste der.", explanation_en:"In the Nominativ, the masculine article doesn't change: der stays der." },
-  { topic:"Compléter l'article", question:"___ Zug fährt ab. (der Zug, Nominativ)", question_en:"___ Zug fährt ab. (der Zug, Nominativ)", translation:"Le train part.", translation_en:"The train departs.", hint:"(masculin, Nominativ)", hint_en:"(masculine, Nominativ)", answers:["der"], correct:"der", explanation:"Au Nominativ, l'article masculin ne change pas : der reste der.", explanation_en:"In the Nominativ, the masculine article doesn't change: der stays der." },
-  { topic:"Compléter l'article", question:"___ Frau kocht das Essen. (die Frau, Nominativ)", question_en:"___ Frau kocht das Essen. (die Frau, Nominativ)", translation:"La femme cuisine le repas.", translation_en:"The woman cooks the meal.", hint:"(féminin, Nominativ)", hint_en:"(feminine, Nominativ)", answers:["die"], correct:"die", explanation:"Au Nominativ, l'article féminin ne change pas : die reste die.", explanation_en:"In the Nominativ, the feminine article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"___ Sonne scheint. (die Sonne, Nominativ)", question_en:"___ Sonne scheint. (die Sonne, Nominativ)", translation:"Le soleil brille.", translation_en:"The sun shines.", hint:"(féminin, Nominativ)", hint_en:"(feminine, Nominativ)", answers:["die"], correct:"die", explanation:"Au Nominativ, l'article féminin ne change pas : die reste die.", explanation_en:"In the Nominativ, the feminine article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"___ Schule beginnt um acht. (die Schule, Nominativ)", question_en:"___ Schule beginnt um acht. (die Schule, Nominativ)", translation:"L'école commence à huit heures.", translation_en:"School starts at eight.", hint:"(féminin, Nominativ)", hint_en:"(feminine, Nominativ)", answers:["die"], correct:"die", explanation:"Au Nominativ, l'article féminin ne change pas : die reste die.", explanation_en:"In the Nominativ, the feminine article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"___ Kind lacht laut. (das Kind, Nominativ)", question_en:"___ Kind lacht laut. (das Kind, Nominativ)", translation:"L'enfant rit fort.", translation_en:"The child laughs loudly.", hint:"(neutre, Nominativ)", hint_en:"(neuter, Nominativ)", answers:["das"], correct:"das", explanation:"Au Nominativ, l'article neutre ne change pas : das reste das.", explanation_en:"In the Nominativ, the neuter article doesn't change: das stays das." },
-  { topic:"Compléter l'article", question:"___ Auto ist schnell. (das Auto, Nominativ)", question_en:"___ Auto ist schnell. (das Auto, Nominativ)", translation:"La voiture est rapide.", translation_en:"The car is fast.", hint:"(neutre, Nominativ)", hint_en:"(neuter, Nominativ)", answers:["das"], correct:"das", explanation:"Au Nominativ, l'article neutre ne change pas : das reste das.", explanation_en:"In the Nominativ, the neuter article doesn't change: das stays das." },
-  { topic:"Compléter l'article", question:"___ Kinder spielen draußen. (die Kinder, Nominativ)", question_en:"___ Kinder spielen draußen. (die Kinder, Nominativ)", translation:"Les enfants jouent dehors.", translation_en:"The children play outside.", hint:"(pluriel, Nominativ)", hint_en:"(plural, Nominativ)", answers:["die"], correct:"die", explanation:"Au Nominativ, l'article pluriel ne change pas : die reste die.", explanation_en:"In the Nominativ, the plural article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"___ Bücher sind interessant. (die Bücher, Nominativ)", question_en:"___ Bücher sind interessant. (die Bücher, Nominativ)", translation:"Les livres sont intéressants.", translation_en:"The books are interesting.", hint:"(pluriel, Nominativ)", hint_en:"(plural, Nominativ)", answers:["die"], correct:"die", explanation:"Au Nominativ, l'article pluriel ne change pas : die reste die.", explanation_en:"In the Nominativ, the plural article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"___ Blumen blühen. (die Blumen, Nominativ)", question_en:"___ Blumen blühen. (die Blumen, Nominativ)", translation:"Les fleurs fleurissent.", translation_en:"The flowers bloom.", hint:"(pluriel, Nominativ)", hint_en:"(plural, Nominativ)", answers:["die"], correct:"die", explanation:"Au Nominativ, l'article pluriel ne change pas : die reste die.", explanation_en:"In the Nominativ, the plural article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Ich esse ___ Apfel. (der Apfel, Akkusativ)", question_en:"Ich esse ___ Apfel. (der Apfel, Akkusativ)", translation:"Je mange la pomme.", translation_en:"I'm eating the apple.", hint:"(masculin, Akkusativ)", hint_en:"(masculine, Akkusativ)", answers:["den"], correct:"den", explanation:"Au masculin Akkusativ, « der » devient « den ».", explanation_en:"In the masculine Akkusativ, « der » becomes « den »." },
-  { topic:"Compléter l'article", question:"Wir sehen ___ Zug. (der Zug, Akkusativ)", question_en:"Wir sehen ___ Zug. (der Zug, Akkusativ)", translation:"Nous voyons le train.", translation_en:"We see the train.", hint:"(masculin, Akkusativ)", hint_en:"(masculine, Akkusativ)", answers:["den"], correct:"den", explanation:"Au masculin Akkusativ, « der » devient « den ».", explanation_en:"In the masculine Akkusativ, « der » becomes « den »." },
-  { topic:"Compléter l'article", question:"Ich kaufe ___ Zeitung. (die Zeitung, Akkusativ)", question_en:"Ich kaufe ___ Zeitung. (die Zeitung, Akkusativ)", translation:"J'achète le journal.", translation_en:"I'm buying the newspaper.", hint:"(féminin, Akkusativ)", hint_en:"(feminine, Akkusativ)", answers:["die"], correct:"die", explanation:"Au féminin Akkusativ, l'article ne change pas : die reste die.", explanation_en:"In the feminine Akkusativ, the article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Er liebt ___ Musik. (die Musik, Akkusativ)", question_en:"Er liebt ___ Musik. (die Musik, Akkusativ)", translation:"Il aime la musique.", translation_en:"He loves music.", hint:"(féminin, Akkusativ)", hint_en:"(feminine, Akkusativ)", answers:["die"], correct:"die", explanation:"Au féminin Akkusativ, l'article ne change pas : die reste die.", explanation_en:"In the feminine Akkusativ, the article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Wir besuchen ___ Schule. (die Schule, Akkusativ)", question_en:"Wir besuchen ___ Schule. (die Schule, Akkusativ)", translation:"Nous visitons l'école.", translation_en:"We visit the school.", hint:"(féminin, Akkusativ)", hint_en:"(feminine, Akkusativ)", answers:["die"], correct:"die", explanation:"Au féminin Akkusativ, l'article ne change pas : die reste die.", explanation_en:"In the feminine Akkusativ, the article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Ich lese ___ Buch. (das Buch, Akkusativ)", question_en:"Ich lese ___ Buch. (das Buch, Akkusativ)", translation:"Je lis le livre.", translation_en:"I'm reading the book.", hint:"(neutre, Akkusativ)", hint_en:"(neuter, Akkusativ)", answers:["das"], correct:"das", explanation:"Au neutre Akkusativ, l'article ne change pas : das reste das.", explanation_en:"In the neuter Akkusativ, the article doesn't change: das stays das." },
-  { topic:"Compléter l'article", question:"Er repariert ___ Auto. (das Auto, Akkusativ)", question_en:"Er repariert ___ Auto. (das Auto, Akkusativ)", translation:"Il répare la voiture.", translation_en:"He's fixing the car.", hint:"(neutre, Akkusativ)", hint_en:"(neuter, Akkusativ)", answers:["das"], correct:"das", explanation:"Au neutre Akkusativ, l'article ne change pas : das reste das.", explanation_en:"In the neuter Akkusativ, the article doesn't change: das stays das." },
-  { topic:"Compléter l'article", question:"Wir öffnen ___ Fenster. (das Fenster, Akkusativ)", question_en:"Wir öffnen ___ Fenster. (das Fenster, Akkusativ)", translation:"Nous ouvrons la fenêtre.", translation_en:"We're opening the window.", hint:"(neutre, Akkusativ)", hint_en:"(neuter, Akkusativ)", answers:["das"], correct:"das", explanation:"Au neutre Akkusativ, l'article ne change pas : das reste das.", explanation_en:"In the neuter Akkusativ, the article doesn't change: das stays das." },
-  { topic:"Compléter l'article", question:"Ich sehe ___ Kinder. (die Kinder, Akkusativ)", question_en:"Ich sehe ___ Kinder. (die Kinder, Akkusativ)", translation:"Je vois les enfants.", translation_en:"I see the children.", hint:"(pluriel, Akkusativ)", hint_en:"(plural, Akkusativ)", answers:["die"], correct:"die", explanation:"Au pluriel Akkusativ, l'article ne change pas : die reste die.", explanation_en:"In the plural Akkusativ, the article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Sie kauft ___ Blumen. (die Blumen, Akkusativ)", question_en:"Sie kauft ___ Blumen. (die Blumen, Akkusativ)", translation:"Elle achète les fleurs.", translation_en:"She's buying the flowers.", hint:"(pluriel, Akkusativ)", hint_en:"(plural, Akkusativ)", answers:["die"], correct:"die", explanation:"Au pluriel Akkusativ, l'article ne change pas : die reste die.", explanation_en:"In the plural Akkusativ, the article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Wir lesen ___ Bücher. (die Bücher, Akkusativ)", question_en:"Wir lesen ___ Bücher. (die Bücher, Akkusativ)", translation:"Nous lisons les livres.", translation_en:"We're reading the books.", hint:"(pluriel, Akkusativ)", hint_en:"(plural, Akkusativ)", answers:["die"], correct:"die", explanation:"Au pluriel Akkusativ, l'article ne change pas : die reste die.", explanation_en:"In the plural Akkusativ, the article doesn't change: die stays die." },
-  { topic:"Compléter l'article", question:"Ich helfe ___ Mann. (der Mann, Dativ)", question_en:"Ich helfe ___ Mann. (der Mann, Dativ)", translation:"J'aide l'homme.", translation_en:"I'm helping the man.", hint:"(masculin, Dativ)", hint_en:"(masculine, Dativ)", answers:["dem"], correct:"dem", explanation:"Au masculin Dativ, « der » devient « dem ».", explanation_en:"In the masculine Dativ, « der » becomes « dem »." },
-  { topic:"Compléter l'article", question:"Sie dankt ___ Lehrer. (der Lehrer, Dativ)", question_en:"Sie dankt ___ Lehrer. (der Lehrer, Dativ)", translation:"Elle remercie le professeur.", translation_en:"She thanks the teacher.", hint:"(masculin, Dativ)", hint_en:"(masculine, Dativ)", answers:["dem"], correct:"dem", explanation:"Au masculin Dativ, « der » devient « dem ».", explanation_en:"In the masculine Dativ, « der » becomes « dem »." },
-  { topic:"Compléter l'article", question:"Wir glauben ___ Chef. (der Chef, Dativ)", question_en:"Wir glauben ___ Chef. (der Chef, Dativ)", translation:"Nous croyons le patron.", translation_en:"We believe the boss.", hint:"(masculin, Dativ)", hint_en:"(masculine, Dativ)", answers:["dem"], correct:"dem", explanation:"Au masculin Dativ, « der » devient « dem ».", explanation_en:"In the masculine Dativ, « der » becomes « dem »." },
-  { topic:"Compléter l'article", question:"Er schreibt ___ Freundin. (die Freundin, Dativ)", question_en:"Er schreibt ___ Freundin. (die Freundin, Dativ)", translation:"Il écrit à l'amie.", translation_en:"He writes to the friend.", hint:"(féminin, Dativ)", hint_en:"(feminine, Dativ)", answers:["der"], correct:"der", explanation:"Au féminin Dativ, « die » devient « der ».", explanation_en:"In the feminine Dativ, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Ich folge ___ Ärztin. (die Ärztin, Dativ)", question_en:"Ich folge ___ Ärztin. (die Ärztin, Dativ)", translation:"Je suis le médecin.", translation_en:"I follow the doctor.", hint:"(féminin, Dativ)", hint_en:"(feminine, Dativ)", answers:["der"], correct:"der", explanation:"Au féminin Dativ, « die » devient « der ».", explanation_en:"In the feminine Dativ, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Ich gebe ___ Kind einen Ball. (das Kind, Dativ)", question_en:"Ich gebe ___ Kind einen Ball. (das Kind, Dativ)", translation:"Je donne un ballon à l'enfant.", translation_en:"I give a ball to the child.", hint:"(neutre, Dativ)", hint_en:"(neuter, Dativ)", answers:["dem"], correct:"dem", explanation:"Au neutre Dativ, « das » devient « dem ».", explanation_en:"In the neuter Dativ, « das » becomes « dem »." },
-  { topic:"Compléter l'article", question:"Er hilft ___ Mädchen. (das Mädchen, Dativ)", question_en:"Er hilft ___ Mädchen. (das Mädchen, Dativ)", translation:"Il aide la fille.", translation_en:"He helps the girl.", hint:"(neutre, Dativ)", hint_en:"(neuter, Dativ)", answers:["dem"], correct:"dem", explanation:"Au neutre Dativ, « das » devient « dem ».", explanation_en:"In the neuter Dativ, « das » becomes « dem »." },
-  { topic:"Compléter l'article", question:"Sie zeigt ___ Baby das Bild. (das Baby, Dativ)", question_en:"Sie zeigt ___ Baby das Bild. (das Baby, Dativ)", translation:"Elle montre l'image au bébé.", translation_en:"She shows the picture to the baby.", hint:"(neutre, Dativ)", hint_en:"(neuter, Dativ)", answers:["dem"], correct:"dem", explanation:"Au neutre Dativ, « das » devient « dem ».", explanation_en:"In the neuter Dativ, « das » becomes « dem »." },
-  { topic:"Compléter l'article", question:"Ich helfe ___ Kindern. (die Kinder, Dativ)", question_en:"Ich helfe ___ Kindern. (die Kinder, Dativ)", translation:"J'aide les enfants.", translation_en:"I'm helping the children.", hint:"(pluriel, Dativ)", hint_en:"(plural, Dativ)", answers:["den"], correct:"den", explanation:"Au pluriel Dativ, « die » devient « den » (et le nom prend souvent -n).", explanation_en:"In the plural Dativ, « die » becomes « den » (and the noun often takes -n)." },
-  { topic:"Compléter l'article", question:"Er dankt ___ Gästen. (die Gäste, Dativ)", question_en:"Er dankt ___ Gästen. (die Gäste, Dativ)", translation:"Il remercie les invités.", translation_en:"He thanks the guests.", hint:"(pluriel, Dativ)", hint_en:"(plural, Dativ)", answers:["den"], correct:"den", explanation:"Au pluriel Dativ, « die » devient « den » (et le nom prend souvent -n).", explanation_en:"In the plural Dativ, « die » becomes « den » (and the noun often takes -n)." },
-  { topic:"Compléter l'article", question:"Wir schreiben ___ Freunden. (die Freunde, Dativ)", question_en:"Wir schreiben ___ Freunden. (die Freunde, Dativ)", translation:"Nous écrivons aux amis.", translation_en:"We write to the friends.", hint:"(pluriel, Dativ)", hint_en:"(plural, Dativ)", answers:["den"], correct:"den", explanation:"Au pluriel Dativ, « die » devient « den » (et le nom prend souvent -n).", explanation_en:"In the plural Dativ, « die » becomes « den » (and the noun often takes -n)." },
-  { topic:"Compléter l'article", question:"Das Auto ___ Mannes ist neu. (der Mann, Genitiv)", question_en:"Das Auto ___ Mannes ist neu. (der Mann, Genitiv)", translation:"La voiture de l'homme est neuve.", translation_en:"The man's car is new.", hint:"(masculin, Genitiv)", hint_en:"(masculine, Genitiv)", answers:["des"], correct:"des", explanation:"Au masculin Genitiv, « der » devient « des » (et le nom prend souvent -s/-es).", explanation_en:"In the masculine Genitiv, « der » becomes « des » (and the noun often takes -s/-es)." },
-  { topic:"Compléter l'article", question:"Der Titel ___ Films ist lustig. (der Film, Genitiv)", question_en:"Der Titel ___ Films ist lustig. (der Film, Genitiv)", translation:"Le titre du film est drôle.", translation_en:"The title of the movie is funny.", hint:"(masculin, Genitiv)", hint_en:"(masculine, Genitiv)", answers:["des"], correct:"des", explanation:"Au masculin Genitiv, « der » devient « des » (et le nom prend souvent -s/-es).", explanation_en:"In the masculine Genitiv, « der » becomes « des » (and the noun often takes -s/-es)." },
-  { topic:"Compléter l'article", question:"Die Farbe ___ Himmels ist grau. (der Himmel, Genitiv)", question_en:"Die Farbe ___ Himmels ist grau. (der Himmel, Genitiv)", translation:"La couleur du ciel est grise.", translation_en:"The color of the sky is gray.", hint:"(masculin, Genitiv)", hint_en:"(masculine, Genitiv)", answers:["des"], correct:"des", explanation:"Au masculin Genitiv, « der » devient « des » (et le nom prend souvent -s/-es).", explanation_en:"In the masculine Genitiv, « der » becomes « des » (and the noun often takes -s/-es)." },
-  { topic:"Compléter l'article", question:"Der Name ___ Stadt ist schön. (die Stadt, Genitiv)", question_en:"Der Name ___ Stadt ist schön. (die Stadt, Genitiv)", translation:"Le nom de la ville est joli.", translation_en:"The name of the city is pretty.", hint:"(féminin, Genitiv)", hint_en:"(feminine, Genitiv)", answers:["der"], correct:"der", explanation:"Au féminin Genitiv, « die » devient « der ».", explanation_en:"In the feminine Genitiv, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Die Tür ___ Wohnung ist offen. (die Wohnung, Genitiv)", question_en:"Die Tür ___ Wohnung ist offen. (die Wohnung, Genitiv)", translation:"La porte de l'appartement est ouverte.", translation_en:"The door of the apartment is open.", hint:"(féminin, Genitiv)", hint_en:"(feminine, Genitiv)", answers:["der"], correct:"der", explanation:"Au féminin Genitiv, « die » devient « der ».", explanation_en:"In the feminine Genitiv, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Die Farbe ___ Blume ist rot. (die Blume, Genitiv)", question_en:"Die Farbe ___ Blume ist rot. (die Blume, Genitiv)", translation:"La couleur de la fleur est rouge.", translation_en:"The color of the flower is red.", hint:"(féminin, Genitiv)", hint_en:"(feminine, Genitiv)", answers:["der"], correct:"der", explanation:"Au féminin Genitiv, « die » devient « der ».", explanation_en:"In the feminine Genitiv, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Das Dach ___ Hauses ist alt. (das Haus, Genitiv)", question_en:"Das Dach ___ Hauses ist alt. (das Haus, Genitiv)", translation:"Le toit de la maison est vieux.", translation_en:"The roof of the house is old.", hint:"(neutre, Genitiv)", hint_en:"(neuter, Genitiv)", answers:["des"], correct:"des", explanation:"Au neutre Genitiv, « das » devient « des » (et le nom prend souvent -s/-es).", explanation_en:"In the neuter Genitiv, « das » becomes « des » (and the noun often takes -s/-es)." },
-  { topic:"Compléter l'article", question:"Der Titel ___ Buches ist bekannt. (das Buch, Genitiv)", question_en:"Der Titel ___ Buches ist bekannt. (das Buch, Genitiv)", translation:"Le titre du livre est connu.", translation_en:"The title of the book is well-known.", hint:"(neutre, Genitiv)", hint_en:"(neuter, Genitiv)", answers:["des"], correct:"des", explanation:"Au neutre Genitiv, « das » devient « des » (et le nom prend souvent -s/-es).", explanation_en:"In the neuter Genitiv, « das » becomes « des » (and the noun often takes -s/-es)." },
-  { topic:"Compléter l'article", question:"Die Stimmen ___ Kinder sind laut. (die Kinder, Genitiv)", question_en:"Die Stimmen ___ Kinder sind laut. (die Kinder, Genitiv)", translation:"Les voix des enfants sont fortes.", translation_en:"The children's voices are loud.", hint:"(pluriel, Genitiv)", hint_en:"(plural, Genitiv)", answers:["der"], correct:"der", explanation:"Au pluriel Genitiv, « die » devient « der ».", explanation_en:"In the plural Genitiv, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Die Farben ___ Blumen sind schön. (die Blumen, Genitiv)", question_en:"Die Farben ___ Blumen sind schön. (die Blumen, Genitiv)", translation:"Les couleurs des fleurs sont belles.", translation_en:"The colors of the flowers are beautiful.", hint:"(pluriel, Genitiv)", hint_en:"(plural, Genitiv)", answers:["der"], correct:"der", explanation:"Au pluriel Genitiv, « die » devient « der ».", explanation_en:"In the plural Genitiv, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Der Lärm ___ Autos stört. (die Autos, Genitiv)", question_en:"Der Lärm ___ Autos stört. (die Autos, Genitiv)", translation:"Le bruit des voitures dérange.", translation_en:"The noise of the cars is disturbing.", hint:"(pluriel, Genitiv)", hint_en:"(plural, Genitiv)", answers:["der"], correct:"der", explanation:"Au pluriel Genitiv, « die » devient « der ».", explanation_en:"In the plural Genitiv, « die » becomes « der »." },
-  { topic:"Compléter l'article", question:"Ich habe ___ Bruder. (ein Bruder, Akkusativ)", question_en:"Ich habe ___ Bruder. (ein Bruder, Akkusativ)", translation:"J'ai un frère.", translation_en:"I have a brother.", hint:"(masculin, indéfini, Akkusativ)", hint_en:"(masculine, indefinite, Akkusativ)", answers:["einen"], correct:"einen", explanation:"Au masculin Akkusativ, l'article indéfini « ein » devient « einen ».", explanation_en:"In the masculine Akkusativ, the indefinite article « ein » becomes « einen »." },
-  { topic:"Compléter l'article", question:"Ich helfe ___ Freund. (ein Freund, Dativ)", question_en:"Ich helfe ___ Freund. (ein Freund, Dativ)", translation:"J'aide un ami.", translation_en:"I'm helping a friend.", hint:"(masculin, indéfini, Dativ)", hint_en:"(masculine, indefinite, Dativ)", answers:["einem"], correct:"einem", explanation:"Au masculin/neutre Dativ, l'article indéfini « ein » devient « einem ».", explanation_en:"In the masculine/neuter Dativ, the indefinite article « ein » becomes « einem »." }
+// ============================================================================
+//  ARTICLES : der/die/das, ein/eine, kein/keine, dans les quatre cas
+// ============================================================================
+// Une seule table de formes pour TOUT : les tuiles de reponse des exercices,
+// les corriges, et les trois tableaux de l'ecran "Comprendre les cas" (qui les
+// lit d'ici via remplirTableauxArticles()). Corriger une forme ici la corrige
+// partout ; il est impossible que la lecon et l'exercice se contredisent.
+//
+// Les deux cases absentes de "indef" ne sont pas des oublis : l'article
+// indefini n'a pas de pluriel en allemand ("ein" ne se met pas au pluriel).
+// C'est justement ce que le tableau doit montrer.
+const ARTICLE_FORMES = {
+    def:   { nom:{ m:"der", f:"die", n:"das", pl:"die" },
+             akk:{ m:"den", f:"die", n:"das", pl:"die" },
+             dat:{ m:"dem", f:"der", n:"dem", pl:"den" },
+             gen:{ m:"des", f:"der", n:"des", pl:"der" } },
+    indef: { nom:{ m:"ein", f:"eine", n:"ein" },
+             akk:{ m:"einen", f:"eine", n:"ein" },
+             dat:{ m:"einem", f:"einer", n:"einem" },
+             gen:{ m:"eines", f:"einer", n:"eines" } },
+    neg:   { nom:{ m:"kein", f:"keine", n:"kein", pl:"keine" },
+             akk:{ m:"keinen", f:"keine", n:"kein", pl:"keine" },
+             dat:{ m:"keinem", f:"keiner", n:"keinem", pl:"keinen" },
+             gen:{ m:"keines", f:"keiner", n:"keines", pl:"keiner" } }
+};
+
+// Les tuiles proposees : les six formes de la famille concernee, jamais un
+// melange des trois. Choisir entre "dem" et "den" fait travailler ; choisir
+// entre "dem" et "keiner" ne fait travailler personne.
+const ARTICLE_TUILES = {
+    def:   ["der", "die", "das", "den", "dem", "des"],
+    indef: ["ein", "eine", "einen", "einem", "einer", "eines"],
+    neg:   ["kein", "keine", "keinen", "keinem", "keiner", "keines"]
+};
+
+const ARTICLE_CAS_NOM = { nom:"Nominativ", akk:"Akkusativ", dat:"Dativ", gen:"Genitiv" };
+const ARTICLE_GENRE_FR = { m:"masculin", f:"f\u00e9minin", n:"neutre", pl:"pluriel" };
+const ARTICLE_GENRE_EN = { m:"masculine", f:"feminine", n:"neuter", pl:"plural" };
+const ARTICLE_FAMILLE_FR = { def:"d\u00e9fini", indef:"ind\u00e9fini", neg:"n\u00e9gatif" };
+const ARTICLE_FAMILLE_EN = { def:"definite", indef:"indefinite", neg:"negative" };
+
+// Explication par (famille, cas, genre). Elles disent toutes la meme chose
+// sous un autre angle : la TERMINAISON porte le cas, le debut du mot (d- /
+// ein- / kein-) ne dit que de quoi on parle.
+const ARTICLE_EXPLICATIONS = {
+    "def.nom.m":  ["Nominativ, c'est le sujet. Le masculin y garde la forme du dictionnaire : der.",
+                   "Nominativ is the subject. The masculine keeps its dictionary form: der."],
+    "def.nom.f":  ["Nominativ, c'est le sujet. Le f\u00e9minin y garde la forme du dictionnaire : die.",
+                   "Nominativ is the subject. The feminine keeps its dictionary form: die."],
+    "def.nom.n":  ["Nominativ, c'est le sujet. Le neutre y garde la forme du dictionnaire : das.",
+                   "Nominativ is the subject. The neuter keeps its dictionary form: das."],
+    "def.nom.pl": ["Nominativ, c'est le sujet. Le pluriel y garde la forme du dictionnaire : die.",
+                   "Nominativ is the subject. The plural keeps its dictionary form: die."],
+    "def.akk.m":  ["\u00c0 l'Akkusativ, SEUL le masculin change : der devient den (terminaison -n).",
+                   "In the Akkusativ, ONLY the masculine changes: der becomes den (ending -n)."],
+    "def.akk.f":  ["\u00c0 l'Akkusativ, le f\u00e9minin ne bouge pas : die reste die.",
+                   "In the Akkusativ, the feminine doesn't move: die stays die."],
+    "def.akk.n":  ["\u00c0 l'Akkusativ, le neutre ne bouge pas : das reste das.",
+                   "In the Akkusativ, the neuter doesn't move: das stays das."],
+    "def.akk.pl": ["\u00c0 l'Akkusativ, le pluriel ne bouge pas : die reste die.",
+                   "In the Akkusativ, the plural doesn't move: die stays die."],
+    "def.dat.m":  ["Dativ : la marque du masculin et du neutre est -m. der devient dem.",
+                   "Dativ: the masculine and neuter marker is -m. der becomes dem."],
+    "def.dat.n":  ["Dativ : la marque du masculin et du neutre est -m. das devient dem.",
+                   "Dativ: the masculine and neuter marker is -m. das becomes dem."],
+    "def.dat.f":  ["Dativ : la marque du f\u00e9minin est -r. die devient der.",
+                   "Dativ: the feminine marker is -r. die becomes der."],
+    "def.dat.pl": ["Dativ pluriel : die devient den, ET le nom prend un -n (Kindern, G\u00e4sten).",
+                   "Dativ plural: die becomes den, AND the noun takes an -n (Kindern, G\u00e4sten)."],
+    "def.gen.m":  ["Genitiv masculin : des, et le nom prend -s ou -es (Mannes, Films).",
+                   "Genitiv masculine: des, and the noun takes -s or -es (Mannes, Films)."],
+    "def.gen.n":  ["Genitiv neutre : des, et le nom prend -s ou -es (Hauses, Autos).",
+                   "Genitiv neuter: des, and the noun takes -s or -es (Hauses, Autos)."],
+    "def.gen.f":  ["Genitiv f\u00e9minin : der \u2014 la m\u00eame forme qu'au Dativ f\u00e9minin.",
+                   "Genitiv feminine: der \u2014 the same form as the Dativ feminine."],
+    "def.gen.pl": ["Genitiv pluriel : der. Le nom, lui, ne change pas.",
+                   "Genitiv plural: der. The noun itself doesn't change."],
+
+    "indef.nom.m":  ["Au Nominativ masculin, ein n'a AUCUNE terminaison. C'est l'une des deux seules cases vides de la famille ein- : le -r de der dispara\u00eet.",
+                     "In the masculine Nominativ, ein has NO ending. It's one of only two empty slots in the ein- family: the -r of der disappears."],
+    "indef.nom.f":  ["F\u00e9minin : ein- prend -e, comme le -e de die \u2192 eine.",
+                     "Feminine: ein- takes -e, like the -e of die \u2192 eine."],
+    "indef.nom.n":  ["Au neutre Nominativ, ein n'a AUCUNE terminaison : c'est la deuxi\u00e8me case vide de ein- (le -s de das dispara\u00eet).",
+                     "In the neuter Nominativ, ein has NO ending: the second empty slot of ein- (the -s of das disappears)."],
+    "indef.akk.m":  ["Masculin Akkusativ : ein devient einen. C'est le -n de den, pos\u00e9 sur ein-.",
+                     "Masculine Akkusativ: ein becomes einen. That's the -n of den, placed on ein-."],
+    "indef.akk.f":  ["F\u00e9minin : eine, identique au Nominativ.",
+                     "Feminine: eine, identical to the Nominativ."],
+    "indef.akk.n":  ["Neutre : ein, sans terminaison, identique au Nominativ. La deuxi\u00e8me case vide.",
+                     "Neuter: ein, no ending, identical to the Nominativ. The second empty slot."],
+    "indef.dat.m":  ["Dativ masculin : einem. Le -m de dem, pos\u00e9 sur ein-.",
+                     "Dativ masculine: einem. The -m of dem, placed on ein-."],
+    "indef.dat.n":  ["Dativ neutre : einem \u2014 la m\u00eame forme qu'au masculin.",
+                     "Dativ neuter: einem \u2014 the same form as the masculine."],
+    "indef.dat.f":  ["Dativ f\u00e9minin : einer. Le -r de der, pos\u00e9 sur ein-.",
+                     "Dativ feminine: einer. The -r of der, placed on ein-."],
+    "indef.gen.m":  ["Genitiv masculin : eines, et le nom prend -s ou -es.",
+                     "Genitiv masculine: eines, and the noun takes -s or -es."],
+    "indef.gen.n":  ["Genitiv neutre : eines, et le nom prend -s ou -es.",
+                     "Genitiv neuter: eines, and the noun takes -s or -es."],
+    "indef.gen.f":  ["Genitiv f\u00e9minin : einer \u2014 m\u00eame forme qu'au Dativ f\u00e9minin.",
+                     "Genitiv feminine: einer \u2014 the same form as the Dativ feminine."],
+
+    "neg.nom.m":  ["kein se d\u00e9cline exactement comme ein : au Nominativ masculin, pas de terminaison \u2192 kein.",
+                   "kein declines exactly like ein: in the masculine Nominativ, no ending \u2192 kein."],
+    "neg.nom.f":  ["F\u00e9minin : keine (-e, comme die).",
+                   "Feminine: keine (-e, like die)."],
+    "neg.nom.n":  ["Neutre Nominativ : pas de terminaison \u2192 kein. La m\u00eame case vide que ein.",
+                   "Neuter Nominativ: no ending \u2192 kein. The same empty slot as ein."],
+    "neg.nom.pl": ["kein a un pluriel, contrairement \u00e0 ein : keine. C'est la seule diff\u00e9rence entre les deux.",
+                   "kein has a plural, unlike ein: keine. That's the only difference between the two."],
+    "neg.akk.m":  ["Masculin Akkusativ : keinen (-en, comme einen).",
+                   "Masculine Akkusativ: keinen (-en, like einen)."],
+    "neg.akk.f":  ["F\u00e9minin : keine, identique au Nominativ.",
+                   "Feminine: keine, identical to the Nominativ."],
+    "neg.akk.n":  ["Neutre : kein, sans terminaison, identique au Nominativ.",
+                   "Neuter: kein, no ending, identical to the Nominativ."],
+    "neg.akk.pl": ["Pluriel : keine, identique au Nominativ.",
+                   "Plural: keine, identical to the Nominativ."],
+    "neg.dat.m":  ["Dativ masculin : keinem (-m, comme dem et einem).",
+                   "Dativ masculine: keinem (-m, like dem and einem)."],
+    "neg.dat.n":  ["Dativ neutre : keinem \u2014 m\u00eame forme qu'au masculin.",
+                   "Dativ neuter: keinem \u2014 the same form as the masculine."],
+    "neg.dat.f":  ["Dativ f\u00e9minin : keiner (-r, comme der et einer).",
+                   "Dativ feminine: keiner (-r, like der and einer)."],
+    "neg.dat.pl": ["Dativ pluriel : keinen, et le nom prend un -n (Kindern, G\u00e4sten).",
+                   "Dativ plural: keinen, and the noun takes an -n (Kindern, G\u00e4sten)."],
+    "neg.gen.m":  ["Genitiv masculin : keines, et le nom prend -s ou -es. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
+                   "Genitiv masculine: keines, and the noun takes -s or -es. In speech kein + Genitiv is rare, but the form follows ein- exactly."],
+    "neg.gen.n":  ["Genitiv neutre : keines, et le nom prend -s ou -es. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
+                   "Genitiv neuter: keines, and the noun takes -s or -es. In speech kein + Genitiv is rare, but the form follows ein- exactly."],
+    "neg.gen.f":  ["Genitiv f\u00e9minin : keiner. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
+                   "Genitiv feminine: keiner. In speech kein + Genitiv is rare, but the form follows ein- exactly."],
+    "neg.gen.pl": ["Genitiv pluriel : keiner. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
+                   "Genitiv plural: keiner. In speech kein + Genitiv is rare, but the form follows ein- exactly."]
+};
+
+// Ce qui decide du cas, dans l'exercice de melange : c'est la seule chose que
+// l'indice donne, puisque c'est justement ce qu'on demande de trouver.
+const ARTICLE_DECLENCHEURS = {
+    sujet:       ["(qui fait l'action ?)", "(who is doing the action?)"],
+    objet:       ["(qui subit l'action ?)", "(what receives the action?)"],
+    verbe:       ["(ce verbe impose son cas)", "(this verb imposes its case)"],
+    preposition: ["(apr\u00e8s cette pr\u00e9position)", "(after this preposition)"],
+    possession:  ["(\u00e0 qui / \u00e0 quoi \u00e7a appartient ?)", "(whose? / belonging to what?)"]
+};
+
+// Construit une serie d'exercices a partir des lignes brutes. La reponse n'est
+// jamais ecrite dans les donnees : elle est LUE dans ARTICLE_FORMES, donc elle
+// ne peut pas diverger du tableau que l'ecran d'explication affiche.
+function construireExercicesArticles(cas, famille, lignes){
+    const casNom = ARTICLE_CAS_NOM[cas];
+    return lignes.map(([phrase, genre, fr, en, dico]) => {
+        const rep = ARTICLE_FORMES[famille][cas][genre];
+        const expl = ARTICLE_EXPLICATIONS[famille + "." + cas + "." + genre];
+        const question = phrase + " (" + dico + ", " + casNom + ")";
+        return {
+            topic: "Articles \u00b7 " + casNom,
+            question, question_en: question,
+            translation: fr, translation_en: en,
+            hint: "(" + ARTICLE_GENRE_FR[genre] + " \u00b7 " + ARTICLE_FAMILLE_FR[famille] + " \u00b7 " + casNom + ")",
+            hint_en: "(" + ARTICLE_GENRE_EN[genre] + " \u00b7 " + ARTICLE_FAMILLE_EN[famille] + " \u00b7 " + casNom + ")",
+            answers: [rep], correct: rep, correctEn: rep,
+            explanation: expl[0], explanation_en: expl[1],
+            options: ARTICLE_TUILES[famille]
+        };
+    });
+}
+
+// Serie de melange : l'enonce ne donne PLUS le cas -- c'est ce qu'on cherche.
+// Il ne reste que le nom avec son genre et un indice sur ce qui declenche le
+// cas. C'est le seul exercice qui teste vraiment le raisonnement complet.
+function construireExercicesArticlesMix(lignes){
+    return lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico]) => {
+        const rep = ARTICLE_FORMES[famille][cas][genre];
+        const expl = ARTICLE_EXPLICATIONS[famille + "." + cas + "." + genre];
+        const question = phrase + " (" + dico + ")";
+        const d = ARTICLE_DECLENCHEURS[decl];
+        return {
+            topic: "Articles \u00b7 m\u00e9lange",
+            question, question_en: question,
+            translation: fr, translation_en: en,
+            hint: d[0], hint_en: d[1],
+            answers: [rep], correct: rep, correctEn: rep,
+            explanation: ARTICLE_CAS_NOM[cas] + " \u2014 " + expl[0],
+            explanation_en: ARTICLE_CAS_NOM[cas] + " \u2014 " + expl[1],
+            options: ARTICLE_TUILES[famille]
+        };
+    });
+}
+
+
+const ARTICLES_NOMINATIV_DEF = [
+    ["___ Mann liest die Zeitung.", "m", "L'homme lit le journal.", "The man is reading the newspaper.", "der Mann"],
+    ["___ Zug fährt um acht ab.", "m", "Le train part à huit heures.", "The train leaves at eight.", "der Zug"],
+    ["___ Hund schläft im Garten.", "m", "Le chien dort dans le jardin.", "The dog is sleeping in the garden.", "der Hund"],
+    ["___ Frau kocht das Essen.", "f", "La femme prépare le repas.", "The woman is cooking the meal.", "die Frau"],
+    ["___ Schule beginnt um neun.", "f", "L'école commence à neuf heures.", "School starts at nine.", "die Schule"],
+    ["___ Lampe ist kaputt.", "f", "La lampe est cassée.", "The lamp is broken.", "die Lampe"],
+    ["___ Kind spielt draußen.", "n", "L'enfant joue dehors.", "The child is playing outside.", "das Kind"],
+    ["___ Auto steht vor dem Haus.", "n", "La voiture est devant la maison.", "The car is in front of the house.", "das Auto"],
+    ["___ Kinder lachen laut.", "pl", "Les enfants rient fort.", "The children are laughing loudly.", "die Kinder"],
+    ["___ Bücher liegen auf dem Tisch.", "pl", "Les livres sont sur la table.", "The books are on the table.", "die Bücher"]
 ];
+const ARTICLES_NOMINATIV_INDEF = [
+    ["Das ist ___ Hund.", "m", "C'est un chien.", "That is a dog.", "der Hund"],
+    ["Hier arbeitet ___ Arzt.", "m", "Un médecin travaille ici.", "A doctor works here.", "der Arzt"],
+    ["Das ist ___ Apfel.", "m", "C'est une pomme.", "That is an apple.", "der Apfel"],
+    ["Draußen wartet ___ Freund.", "m", "Un ami attend dehors.", "A friend is waiting outside.", "der Freund"],
+    ["Das ist ___ Frau aus Berlin.", "f", "C'est une femme de Berlin.", "That is a woman from Berlin.", "die Frau"],
+    ["Auf dem Tisch liegt ___ Zeitung.", "f", "Il y a un journal sur la table.", "There is a newspaper on the table.", "die Zeitung"],
+    ["Hier ist ___ Schule.", "f", "Il y a une école ici.", "There is a school here.", "die Schule"],
+    ["Das ist ___ Kind aus meiner Klasse.", "n", "C'est un enfant de ma classe.", "That is a child from my class.", "das Kind"],
+    ["Im Hof steht ___ Auto.", "n", "Il y a une voiture dans la cour.", "There is a car in the yard.", "das Auto"],
+    ["Das ist ___ Buch für dich.", "n", "C'est un livre pour toi.", "That is a book for you.", "das Buch"]
+];
+const ARTICLES_NOMINATIV_NEG = [
+    ["___ Zug fährt heute.", "m", "Aucun train ne circule aujourd'hui.", "No train is running today.", "der Zug"],
+    ["Hier ist ___ Arzt.", "m", "Il n'y a pas de médecin ici.", "There is no doctor here.", "der Arzt"],
+    ["Das ist ___ Hund, das ist eine Katze.", "m", "Ce n'est pas un chien, c'est un chat.", "That is not a dog, that is a cat.", "der Hund"],
+    ["___ Frau war zu Hause.", "f", "Aucune femme n'était à la maison.", "No woman was at home.", "die Frau"],
+    ["Das ist ___ Zeitung, das ist ein Buch.", "f", "Ce n'est pas un journal, c'est un livre.", "That is not a newspaper, that is a book.", "die Zeitung"],
+    ["___ Lampe brennt im Zimmer.", "f", "Aucune lampe n'est allumée dans la pièce.", "No lamp is on in the room.", "die Lampe"],
+    ["Das ist ___ Problem.", "n", "Ce n'est pas un problème.", "That is not a problem.", "das Problem"],
+    ["___ Auto steht vor der Tür.", "n", "Aucune voiture n'est devant la porte.", "No car is in front of the door.", "das Auto"],
+    ["___ Kinder spielen draußen.", "pl", "Aucun enfant ne joue dehors.", "No children are playing outside.", "die Kinder"],
+    ["___ Bücher sind im Regal.", "pl", "Il n'y a aucun livre dans l'étagère.", "There are no books on the shelf.", "die Bücher"]
+];
+const kasusArticleNominativ = construireExercicesArticles("nom", "def", ARTICLES_NOMINATIV_DEF)
+    .concat(construireExercicesArticles("nom", "indef", ARTICLES_NOMINATIV_INDEF))
+    .concat(construireExercicesArticles("nom", "neg", ARTICLES_NOMINATIV_NEG));
+
+const ARTICLES_AKKUSATIV_DEF = [
+    ["Ich sehe ___ Mann.", "m", "Je vois l'homme.", "I see the man.", "der Mann"],
+    ["Wir nehmen ___ Zug.", "m", "Nous prenons le train.", "We take the train.", "der Zug"],
+    ["Ich esse ___ Apfel.", "m", "Je mange la pomme.", "I'm eating the apple.", "der Apfel"],
+    ["Ich kaufe ___ Zeitung.", "f", "J'achète le journal.", "I'm buying the newspaper.", "die Zeitung"],
+    ["Er liebt ___ Musik.", "f", "Il aime la musique.", "He loves the music.", "die Musik"],
+    ["Wir besuchen ___ Schule.", "f", "Nous visitons l'école.", "We're visiting the school.", "die Schule"],
+    ["Ich lese ___ Buch.", "n", "Je lis le livre.", "I'm reading the book.", "das Buch"],
+    ["Sie repariert ___ Auto.", "n", "Elle répare la voiture.", "She's fixing the car.", "das Auto"],
+    ["Ich sehe ___ Kinder.", "pl", "Je vois les enfants.", "I see the children.", "die Kinder"],
+    ["Wir lesen ___ Bücher.", "pl", "Nous lisons les livres.", "We're reading the books.", "die Bücher"]
+];
+const ARTICLES_AKKUSATIV_INDEF = [
+    ["Ich habe ___ Bruder.", "m", "J'ai un frère.", "I have a brother.", "der Bruder"],
+    ["Er kauft ___ Hund.", "m", "Il achète un chien.", "He's buying a dog.", "der Hund"],
+    ["Ich brauche ___ Schlüssel.", "m", "J'ai besoin d'une clé.", "I need a key.", "der Schlüssel"],
+    ["Ich esse ___ Apfel.", "m", "Je mange une pomme.", "I'm eating an apple.", "der Apfel"],
+    ["Ich suche ___ Wohnung.", "f", "Je cherche un appartement.", "I'm looking for an apartment.", "die Wohnung"],
+    ["Sie schreibt ___ Karte.", "f", "Elle écrit une carte.", "She's writing a card.", "die Karte"],
+    ["Sie kauft ___ Lampe.", "f", "Elle achète une lampe.", "She's buying a lamp.", "die Lampe"],
+    ["Wir haben ___ Auto.", "n", "Nous avons une voiture.", "We have a car.", "das Auto"],
+    ["Ich lese ___ Buch.", "n", "Je lis un livre.", "I'm reading a book.", "das Buch"],
+    ["Er trägt ___ Hemd.", "n", "Il porte une chemise.", "He's wearing a shirt.", "das Hemd"]
+];
+const ARTICLES_AKKUSATIV_NEG = [
+    ["Ich habe ___ Hund.", "m", "Je n'ai pas de chien.", "I don't have a dog.", "der Hund"],
+    ["Er trinkt ___ Kaffee.", "m", "Il ne boit pas de café.", "He doesn't drink coffee.", "der Kaffee"],
+    ["Ich brauche ___ Schlüssel.", "m", "Je n'ai pas besoin de clé.", "I don't need a key.", "der Schlüssel"],
+    ["Ich habe ___ Zeit.", "f", "Je n'ai pas le temps.", "I don't have time.", "die Zeit"],
+    ["Sie sucht ___ Wohnung.", "f", "Elle ne cherche pas d'appartement.", "She isn't looking for an apartment.", "die Wohnung"],
+    ["Sie trägt ___ Brille.", "f", "Elle ne porte pas de lunettes.", "She doesn't wear glasses.", "die Brille"],
+    ["Wir haben ___ Auto.", "n", "Nous n'avons pas de voiture.", "We don't have a car.", "das Auto"],
+    ["Ich lese ___ Buch.", "n", "Je ne lis pas de livre.", "I'm not reading a book.", "das Buch"],
+    ["Ich sehe ___ Kinder.", "pl", "Je ne vois aucun enfant.", "I don't see any children.", "die Kinder"],
+    ["Er kauft ___ Bücher.", "pl", "Il n'achète aucun livre.", "He isn't buying any books.", "die Bücher"]
+];
+const kasusArticleAkkusativ = construireExercicesArticles("akk", "def", ARTICLES_AKKUSATIV_DEF)
+    .concat(construireExercicesArticles("akk", "indef", ARTICLES_AKKUSATIV_INDEF))
+    .concat(construireExercicesArticles("akk", "neg", ARTICLES_AKKUSATIV_NEG));
+
+const ARTICLES_DATIV_DEF = [
+    ["Ich helfe ___ Mann.", "m", "J'aide l'homme.", "I'm helping the man.", "der Mann"],
+    ["Sie dankt ___ Lehrer.", "m", "Elle remercie le professeur.", "She thanks the teacher.", "der Lehrer"],
+    ["Wir glauben ___ Arzt.", "m", "Nous croyons le médecin.", "We believe the doctor.", "der Arzt"],
+    ["Er schreibt ___ Freundin.", "f", "Il écrit à l'amie.", "He's writing to the friend.", "die Freundin"],
+    ["Ich folge ___ Ärztin.", "f", "Je suis la médecin.", "I'm following the doctor.", "die Ärztin"],
+    ["Das Buch gehört ___ Lehrerin.", "f", "Le livre appartient à la professeure.", "The book belongs to the teacher.", "die Lehrerin"],
+    ["Ich gebe ___ Kind einen Ball.", "n", "Je donne un ballon à l'enfant.", "I give the child a ball.", "das Kind"],
+    ["Er hilft ___ Mädchen.", "n", "Il aide la fille.", "He's helping the girl.", "das Mädchen"],
+    ["Ich helfe ___ Kindern.", "pl", "J'aide les enfants.", "I'm helping the children.", "die Kinder"],
+    ["Er dankt ___ Gästen.", "pl", "Il remercie les invités.", "He thanks the guests.", "die Gäste"]
+];
+const ARTICLES_DATIV_INDEF = [
+    ["Ich helfe ___ Freund.", "m", "J'aide un ami.", "I'm helping a friend.", "der Freund"],
+    ["Sie dankt ___ Arzt.", "m", "Elle remercie un médecin.", "She thanks a doctor.", "der Arzt"],
+    ["Das gehört ___ Lehrer.", "m", "Cela appartient à un professeur.", "That belongs to a teacher.", "der Lehrer"],
+    ["Er schreibt ___ Freundin.", "f", "Il écrit à une amie.", "He's writing to a friend.", "die Freundin"],
+    ["Ich folge ___ Ärztin.", "f", "Je suis une médecin.", "I'm following a doctor.", "die Ärztin"],
+    ["Ich antworte ___ Frau.", "f", "Je réponds à une femme.", "I'm answering a woman.", "die Frau"],
+    ["Das Auto gehört ___ Nachbarin.", "f", "La voiture appartient à une voisine.", "The car belongs to a neighbour.", "die Nachbarin"],
+    ["Wir geben ___ Kind das Buch.", "n", "Nous donnons le livre à un enfant.", "We give the book to a child.", "das Kind"],
+    ["Sie hilft ___ Mädchen.", "n", "Elle aide une fille.", "She's helping a girl.", "das Mädchen"],
+    ["Er zeigt ___ Kind das Bild.", "n", "Il montre l'image à un enfant.", "He shows the picture to a child.", "das Kind"]
+];
+const ARTICLES_DATIV_NEG = [
+    ["Ich helfe ___ Mann.", "m", "Je n'aide aucun homme.", "I'm not helping any man.", "der Mann"],
+    ["Sie dankt ___ Lehrer.", "m", "Elle ne remercie aucun professeur.", "She doesn't thank any teacher.", "der Lehrer"],
+    ["Ich glaube ___ Arzt.", "m", "Je ne crois aucun médecin.", "I don't believe any doctor.", "der Arzt"],
+    ["Er schreibt ___ Freundin.", "f", "Il n'écrit à aucune amie.", "He isn't writing to any friend.", "die Freundin"],
+    ["Das gehört ___ Frau.", "f", "Cela n'appartient à aucune femme.", "That belongs to no woman.", "die Frau"],
+    ["Sie antwortet ___ Lehrerin.", "f", "Elle ne répond à aucune professeure.", "She doesn't answer any teacher.", "die Lehrerin"],
+    ["Wir geben ___ Kind Geld.", "n", "Nous ne donnons d'argent à aucun enfant.", "We don't give money to any child.", "das Kind"],
+    ["Sie hilft ___ Mädchen.", "n", "Elle n'aide aucune fille.", "She isn't helping any girl.", "das Mädchen"],
+    ["Ich helfe ___ Kindern.", "pl", "Je n'aide aucun enfant.", "I'm not helping any children.", "die Kinder"],
+    ["Er dankt ___ Gästen.", "pl", "Il ne remercie aucun invité.", "He doesn't thank any guests.", "die Gäste"]
+];
+const kasusArticleDativ = construireExercicesArticles("dat", "def", ARTICLES_DATIV_DEF)
+    .concat(construireExercicesArticles("dat", "indef", ARTICLES_DATIV_INDEF))
+    .concat(construireExercicesArticles("dat", "neg", ARTICLES_DATIV_NEG));
+
+const ARTICLES_GENITIV_DEF = [
+    ["Das Auto ___ Mannes ist neu.", "m", "La voiture de l'homme est neuve.", "The man's car is new.", "der Mann"],
+    ["Der Titel ___ Films ist lustig.", "m", "Le titre du film est drôle.", "The title of the film is funny.", "der Film"],
+    ["Die Farbe ___ Himmels ist grau.", "m", "La couleur du ciel est grise.", "The colour of the sky is grey.", "der Himmel"],
+    ["Der Name ___ Stadt ist schön.", "f", "Le nom de la ville est joli.", "The name of the city is pretty.", "die Stadt"],
+    ["Die Tür ___ Wohnung ist offen.", "f", "La porte de l'appartement est ouverte.", "The door of the apartment is open.", "die Wohnung"],
+    ["Die Farbe ___ Blume ist rot.", "f", "La couleur de la fleur est rouge.", "The colour of the flower is red.", "die Blume"],
+    ["Die Meinung ___ Lehrerin ist wichtig.", "f", "L'avis de la professeure est important.", "The teacher's opinion matters.", "die Lehrerin"],
+    ["Das Dach ___ Hauses ist alt.", "n", "Le toit de la maison est vieux.", "The roof of the house is old.", "das Haus"],
+    ["Der Titel ___ Buches ist bekannt.", "n", "Le titre du livre est connu.", "The title of the book is well known.", "das Buch"],
+    ["Die Farbe ___ Autos ist blau.", "n", "La couleur de la voiture est bleue.", "The colour of the car is blue.", "das Auto"],
+    ["Der Schlüssel ___ Zimmers liegt hier.", "n", "La clé de la chambre est ici.", "The key to the room is here.", "das Zimmer"],
+    ["Die Stimmen ___ Kinder sind laut.", "pl", "Les voix des enfants sont fortes.", "The children's voices are loud.", "die Kinder"],
+    ["Die Farben ___ Blumen sind schön.", "pl", "Les couleurs des fleurs sont belles.", "The colours of the flowers are beautiful.", "die Blumen"],
+    ["Der Lärm ___ Autos stört.", "pl", "Le bruit des voitures dérange.", "The noise of the cars is disturbing.", "die Autos"]
+];
+const ARTICLES_GENITIV_INDEF = [
+    ["Das ist das Auto ___ Mannes.", "m", "C'est la voiture d'un homme.", "That is a man's car.", "der Mann"],
+    ["Der Titel ___ Films ist lang.", "m", "Le titre d'un film est long.", "The title of a film is long.", "der Film"],
+    ["Die Meinung ___ Arztes ist wichtig.", "m", "L'avis d'un médecin est important.", "A doctor's opinion matters.", "der Arzt"],
+    ["Das ist die Tür ___ Wohnung.", "f", "C'est la porte d'un appartement.", "That is the door of an apartment.", "die Wohnung"],
+    ["Das ist der Name ___ Stadt in Bayern.", "f", "C'est le nom d'une ville de Bavière.", "That is the name of a city in Bavaria.", "die Stadt"],
+    ["Das ist die Farbe ___ Blume.", "f", "C'est la couleur d'une fleur.", "That is the colour of a flower.", "die Blume"],
+    ["Die Meinung ___ Ärztin ist wichtig.", "f", "L'avis d'une médecin est important.", "A doctor's opinion matters.", "die Ärztin"],
+    ["Das Dach ___ Hauses ist rot.", "n", "Le toit d'une maison est rouge.", "The roof of a house is red.", "das Haus"],
+    ["Die Stimme ___ Kindes ist leise.", "n", "La voix d'un enfant est douce.", "A child's voice is quiet.", "das Kind"],
+    ["Das ist der Schlüssel ___ Zimmers.", "n", "C'est la clé d'une chambre.", "That is the key to a room.", "das Zimmer"]
+];
+const ARTICLES_GENITIV_NEG = [
+    ["Die Meinung ___ Lehrers zählt hier mehr.", "m", "L'avis d'aucun professeur ne compte davantage ici.", "No teacher's opinion counts for more here.", "der Lehrer"],
+    ["Der Name ___ Stadt ist so lang.", "f", "Le nom d'aucune ville n'est aussi long.", "No city's name is that long.", "die Stadt"],
+    ["Der Preis ___ Autos ist so hoch.", "n", "Le prix d'aucune voiture n'est aussi élevé.", "No car's price is that high.", "das Auto"],
+    ["Das Dach ___ Hauses ist so alt.", "n", "Le toit d'aucune maison n'est aussi vieux.", "No house's roof is that old.", "das Haus"],
+    ["Die Stimme ___ Kindes war zu hören.", "n", "La voix d'aucun enfant ne s'entendait.", "No child's voice could be heard.", "das Kind"],
+    ["Die Farbe ___ Blumen gefällt ihm.", "pl", "La couleur d'aucune fleur ne lui plaît.", "He doesn't like the colour of any flowers.", "die Blumen"]
+];
+const kasusArticleGenitiv = construireExercicesArticles("gen", "def", ARTICLES_GENITIV_DEF)
+    .concat(construireExercicesArticles("gen", "indef", ARTICLES_GENITIV_INDEF))
+    .concat(construireExercicesArticles("gen", "neg", ARTICLES_GENITIV_NEG));
+
+const ARTICLES_MIX = [
+    ["___ Hund bellt laut.", "nom", "def", "m", "sujet", "Le chien aboie fort.", "The dog is barking loudly.", "der Hund"],
+    ["Ich sehe ___ Hund.", "akk", "def", "m", "objet", "Je vois le chien.", "I see the dog.", "der Hund"],
+    ["Ich helfe ___ Hund.", "dat", "def", "m", "verbe", "J'aide le chien.", "I'm helping the dog.", "der Hund"],
+    ["Das Fell ___ Hundes ist weiß.", "gen", "def", "m", "possession", "Le pelage du chien est blanc.", "The dog's coat is white.", "der Hund"],
+    ["___ Zeitung liegt auf dem Tisch.", "nom", "def", "f", "sujet", "Le journal est sur la table.", "The newspaper is on the table.", "die Zeitung"],
+    ["Ich kaufe ___ Zeitung.", "akk", "def", "f", "objet", "J'achète le journal.", "I'm buying the newspaper.", "die Zeitung"],
+    ["Wir danken ___ Lehrerin.", "dat", "def", "f", "verbe", "Nous remercions la professeure.", "We thank the teacher.", "die Lehrerin"],
+    ["Das Foto ___ Zeitung ist alt.", "gen", "def", "f", "possession", "La photo du journal est ancienne.", "The newspaper's photo is old.", "die Zeitung"],
+    ["___ Buch ist neu.", "nom", "def", "n", "sujet", "Le livre est neuf.", "The book is new.", "das Buch"],
+    ["Ich lese ___ Buch.", "akk", "def", "n", "objet", "Je lis le livre.", "I'm reading the book.", "das Buch"],
+    ["Ich öffne ___ Fenster.", "akk", "def", "n", "objet", "J'ouvre la fenêtre.", "I'm opening the window.", "das Fenster"],
+    ["Der Titel ___ Buches ist kurz.", "gen", "def", "n", "possession", "Le titre du livre est court.", "The book's title is short.", "das Buch"],
+    ["Ich gebe ___ Mann das Buch.", "dat", "def", "m", "verbe", "Je donne le livre à l'homme.", "I give the man the book.", "der Mann"],
+    ["___ Kinder sind müde.", "nom", "def", "pl", "sujet", "Les enfants sont fatigués.", "The children are tired.", "die Kinder"],
+    ["Ich sehe ___ Kinder.", "akk", "def", "pl", "objet", "Je vois les enfants.", "I see the children.", "die Kinder"],
+    ["Wir helfen ___ Kindern.", "dat", "def", "pl", "verbe", "Nous aidons les enfants.", "We're helping the children.", "die Kinder"],
+    ["Die Stimmen ___ Kinder sind laut.", "gen", "def", "pl", "possession", "Les voix des enfants sont fortes.", "The children's voices are loud.", "die Kinder"],
+    ["Das ist ___ Arzt.", "nom", "indef", "m", "sujet", "C'est un médecin.", "That is a doctor.", "der Arzt"],
+    ["Ich suche ___ Arzt.", "akk", "indef", "m", "objet", "Je cherche un médecin.", "I'm looking for a doctor.", "der Arzt"],
+    ["Ich danke ___ Arzt.", "dat", "indef", "m", "verbe", "Je remercie un médecin.", "I thank a doctor.", "der Arzt"],
+    ["Die Meinung ___ Arztes ist wichtig.", "gen", "indef", "m", "possession", "L'avis d'un médecin est important.", "A doctor's opinion matters.", "der Arzt"],
+    ["Das ist ___ Wohnung.", "nom", "indef", "f", "sujet", "C'est un appartement.", "That is an apartment.", "die Wohnung"],
+    ["Ich suche ___ Wohnung.", "akk", "indef", "f", "objet", "Je cherche un appartement.", "I'm looking for an apartment.", "die Wohnung"],
+    ["Wir wohnen in ___ Wohnung.", "dat", "indef", "f", "preposition", "Nous habitons dans un appartement.", "We live in an apartment.", "die Wohnung"],
+    ["Die Tür ___ Wohnung ist offen.", "gen", "indef", "f", "possession", "La porte d'un appartement est ouverte.", "The door of an apartment is open.", "die Wohnung"],
+    ["Das ist ___ Auto.", "nom", "indef", "n", "sujet", "C'est une voiture.", "That is a car.", "das Auto"],
+    ["Ich kaufe ___ Auto.", "akk", "indef", "n", "objet", "J'achète une voiture.", "I'm buying a car.", "das Auto"],
+    ["Ich fahre mit ___ Auto.", "dat", "indef", "n", "preposition", "Je pars en voiture.", "I'm going by car.", "das Auto"],
+    ["Der Preis ___ Autos ist hoch.", "gen", "indef", "n", "possession", "Le prix d'une voiture est élevé.", "A car's price is high.", "das Auto"],
+    ["Das ist ___ Apfel.", "nom", "indef", "m", "sujet", "C'est une pomme.", "That is an apple.", "der Apfel"],
+    ["Ich esse ___ Apfel.", "akk", "indef", "m", "objet", "Je mange une pomme.", "I'm eating an apple.", "der Apfel"],
+    ["Ich habe ___ Bruder.", "akk", "indef", "m", "objet", "J'ai un frère.", "I have a brother.", "der Bruder"],
+    ["Das ist ___ Kind aus meiner Klasse.", "nom", "indef", "n", "sujet", "C'est un enfant de ma classe.", "That is a child from my class.", "das Kind"],
+    ["Ich helfe ___ Kind.", "dat", "indef", "n", "verbe", "J'aide un enfant.", "I'm helping a child.", "das Kind"],
+    ["Er schreibt ___ Freundin.", "dat", "indef", "f", "verbe", "Il écrit à une amie.", "He's writing to a friend.", "die Freundin"],
+    ["Das ist ___ Hund, das ist eine Katze.", "nom", "neg", "m", "sujet", "Ce n'est pas un chien, c'est un chat.", "That is not a dog, that is a cat.", "der Hund"],
+    ["Ich habe ___ Hund.", "akk", "neg", "m", "objet", "Je n'ai pas de chien.", "I don't have a dog.", "der Hund"],
+    ["Ich helfe ___ Hund.", "dat", "neg", "m", "verbe", "Je n'aide aucun chien.", "I'm not helping any dog.", "der Hund"],
+    ["___ Zug fährt heute.", "nom", "neg", "m", "sujet", "Aucun train ne circule aujourd'hui.", "No train is running today.", "der Zug"],
+    ["Ich nehme ___ Zug.", "akk", "neg", "m", "objet", "Je ne prends pas le train.", "I'm not taking a train.", "der Zug"],
+    ["Ich fahre mit ___ Zug.", "dat", "neg", "m", "preposition", "Je ne pars pas en train.", "I'm not going by train.", "der Zug"],
+    ["Das ist ___ Frau aus Berlin.", "nom", "neg", "f", "sujet", "Ce n'est pas une femme de Berlin.", "That is not a woman from Berlin.", "die Frau"],
+    ["Ich kenne ___ Frau hier.", "akk", "neg", "f", "objet", "Je ne connais aucune femme ici.", "I don't know any woman here.", "die Frau"],
+    ["Ich danke ___ Frau.", "dat", "neg", "f", "verbe", "Je ne remercie aucune femme.", "I don't thank any woman.", "die Frau"],
+    ["Das ist ___ Problem.", "nom", "neg", "n", "sujet", "Ce n'est pas un problème.", "That is not a problem.", "das Problem"],
+    ["Ich habe ___ Auto.", "akk", "neg", "n", "objet", "Je n'ai pas de voiture.", "I don't have a car.", "das Auto"],
+    ["Ich fahre mit ___ Auto.", "dat", "neg", "n", "preposition", "Je ne pars pas en voiture.", "I'm not going by car.", "das Auto"],
+    ["___ Kinder spielen draußen.", "nom", "neg", "pl", "sujet", "Aucun enfant ne joue dehors.", "No children are playing outside.", "die Kinder"],
+    ["Ich sehe ___ Kinder.", "akk", "neg", "pl", "objet", "Je ne vois aucun enfant.", "I don't see any children.", "die Kinder"],
+    ["Ich helfe ___ Kindern.", "dat", "neg", "pl", "verbe", "Je n'aide aucun enfant.", "I'm not helping any children.", "die Kinder"]
+];
+const kasusArticleMix = construireExercicesArticlesMix(ARTICLES_MIX);
 
 const kasusVerbTheme = {
   id: "kasus_verben",
@@ -11708,7 +12211,11 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_kasus_o1_t"), desc:t("op_kasus_o1_d"), primary:true, action:"openKasusInfo" },
                 { icon:"exercice", title:t("op_kasus_o2_t"), desc:t("op_kasus_o2_d"), action:"startKasusReconnaissance" },
-                { icon:"exercice", title:t("op_kasus_o3_t"), desc:t("op_kasus_o3_d"), action:"startKasusArticle" },
+                { icon:"exercice", title:t("op_kasus_art_nom_t"), desc:t("op_kasus_art_nom_d"), count:"30", action:"startKasusArticleNominativ" },
+                { icon:"exercice", title:t("op_kasus_art_akk_t"), desc:t("op_kasus_art_akk_d"), count:"30", action:"startKasusArticleAkkusativ" },
+                { icon:"exercice", title:t("op_kasus_art_dat_t"), desc:t("op_kasus_art_dat_d"), count:"30", action:"startKasusArticleDativ" },
+                { icon:"exercice", title:t("op_kasus_art_gen_t"), desc:t("op_kasus_art_gen_d"), count:"30", action:"startKasusArticleGenitiv" },
+                { icon:"ale", title:t("op_kasus_art_mix_t"), desc:t("op_kasus_art_mix_d"), count:"50", action:"startKasusArticleMix" },
                 { icon:"carte", title:t("op_kasus_o4_t"), desc:"helfen, danken, brauchen…", action:"startKasusVerben" }
             ]
         };
@@ -13121,7 +13628,32 @@ async function toggleUserVhsAccess(uid, enable){
 }
 
 function openKasusInfo(){
+    remplirTableauxArticles();
     showScreen("kasusInfo");
+}
+
+// Les trois tableaux de l'ecran sont ECRITS depuis ARTICLE_FORMES, pas tapes
+// dans le HTML : c'est la meme table qui fournit les corriges des exercices,
+// donc la lecon et l'exercice ne peuvent pas se contredire. Les cases sans
+// forme (l'indefini n'a pas de pluriel) affichent un tiret : l'absence fait
+// partie de la lecon, une case vide passerait pour un bogue.
+function remplirTableauxArticles(){
+    const cas = ["nom", "akk", "dat", "gen"];
+    const etiquettes = { nom:"Nom.", akk:"Akk.", dat:"Dat.", gen:"Gen." };
+    const genres = ["m", "f", "n", "pl"];
+    [["tblArticlesDef", "def"], ["tblArticlesIndef", "indef"], ["tblArticlesNeg", "neg"]].forEach(([id, famille]) => {
+        const corps = document.getElementById(id);
+        if(!corps) return;
+        corps.innerHTML = cas.map(c =>
+            `<tr style="border-top:1px solid #e7ebf3;">` +
+            `<td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">${etiquettes[c]}</td>` +
+            genres.map(g => {
+                const forme = ARTICLE_FORMES[famille][c][g];
+                return forme ? `<td>${forme}</td>` : `<td style="color:#94a3b8;">—</td>`;
+            }).join("") +
+            `</tr>`
+        ).join("");
+    });
 }
 
 function openRelativInfo(){
@@ -15423,7 +15955,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 311;
+const APP_VERSION = 312;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17252,8 +17784,24 @@ function startRelativGenitivOrder(){
     startExerciseSet(shuffleArray(relativGenitivOrderExercises), "kicker_relativ_gen_order", openRelativGenitivInfo, startRelativGenitivOrder);
 }
 
-function startKasusArticle(){
-    startExerciseSet(kasusArticleExercises, "kicker_kasus_article", openKasusInfo, startKasusArticle);
+// Une serie par cas (30 exercices : 10 definis, 10 indefinis, 10 negatifs),
+// plus une serie de melange de 50 ou le cas n'est PLUS donne dans l'enonce.
+// Melangees a chaque lancement : sinon on finit par retenir l'ordre des
+// reponses plutot que les formes.
+function startKasusArticleNominativ(){
+    startExerciseSet(shuffleArray(kasusArticleNominativ), "kicker_kasus_art_nom", openKasusInfo, startKasusArticleNominativ);
+}
+function startKasusArticleAkkusativ(){
+    startExerciseSet(shuffleArray(kasusArticleAkkusativ), "kicker_kasus_art_akk", openKasusInfo, startKasusArticleAkkusativ);
+}
+function startKasusArticleDativ(){
+    startExerciseSet(shuffleArray(kasusArticleDativ), "kicker_kasus_art_dat", openKasusInfo, startKasusArticleDativ);
+}
+function startKasusArticleGenitiv(){
+    startExerciseSet(shuffleArray(kasusArticleGenitiv), "kicker_kasus_art_gen", openKasusInfo, startKasusArticleGenitiv);
+}
+function startKasusArticleMix(){
+    startExerciseSet(shuffleArray(kasusArticleMix), "kicker_kasus_art_mix", openKasusInfo, startKasusArticleMix);
 }
 
 // Etat de l'exercice "remets les mots en ordre" (chunkShuffled = les morceaux
@@ -17334,14 +17882,28 @@ function loadExercise(){
 
     document.getElementById("exerciseTitle").textContent = tf("exercise_number_title", { n: currentExercise + 1 });
     document.getElementById("counter").textContent = `${currentExercise + 1} / ${activeExercises.length}`;
-    document.getElementById("question").textContent = question;
     document.getElementById("questionTranslation").textContent = tf("question_translation_label", { translation });
     document.getElementById("hint").textContent = hint;
 
     const input = document.getElementById("answer");
-    const select = document.getElementById("answerSelect");
+    const optionsWrap = document.getElementById("answerOptions");
     const chunksWrap = document.getElementById("answerChunksWrap");
     const usingChunks = !!(ex.chunks && ex.chunks.length);
+    const usingOptions = !usingChunks && !!(opts && opts.length);
+
+    optionTuiles = usingOptions ? opts : [];
+    optionChoisie = -1;
+    // Question a trous repondue par tuiles : on prepare le blanc comme un
+    // element a part, pour pouvoir y poser le mot choisi sans reconstruire la
+    // phrase. Sinon (texte libre, remise en ordre, question de classement sans
+    // "___"), la question reste du texte simple.
+    if(usingOptions && question.includes("___")){
+        const [avant, apres] = question.split("___");
+        document.getElementById("question").innerHTML =
+            echapperHtml(avant) + `<span id="questionBlank" class="filled-blank vide">___</span>` + echapperHtml(apres);
+    } else {
+        document.getElementById("question").textContent = question;
+    }
 
     if(usingChunks){
         chunkShuffled = shuffleChunksForExercise(ex.chunks, ex.leurres);
@@ -17349,19 +17911,17 @@ function loadExercise(){
         renderChunkAnswerUi();
         chunksWrap.classList.remove("hidden");
         input.classList.add("hidden");
-        select.classList.add("hidden");
-    } else if(opts && opts.length){
-        select.innerHTML = `<option value="">${t("choose_case")}</option>` +
-            opts.map(o => `<option value="${o}">${o}</option>`).join("");
-        select.disabled = false;
-        select.classList.remove("hidden");
+        optionsWrap.classList.add("hidden");
+    } else if(usingOptions){
+        renderOptionTuiles();
+        optionsWrap.classList.remove("hidden");
         input.classList.add("hidden");
         chunksWrap.classList.add("hidden");
     } else {
         input.value = "";
         input.disabled = false;
         input.classList.remove("hidden");
-        select.classList.add("hidden");
+        optionsWrap.classList.add("hidden");
         chunksWrap.classList.add("hidden");
     }
 
@@ -17376,7 +17936,53 @@ function loadExercise(){
     const feedback = document.getElementById("feedback");
     feedback.className = "feedback";
     feedback.innerHTML = "";
-    if(!usingChunks && !(opts && opts.length)) setTimeout(() => input.focus(), 50);
+    if(!usingChunks && !usingOptions) setTimeout(() => input.focus(), 50);
+}
+
+// Etat des tuiles de reponse : la liste affichee et l'index choisi (-1 = rien).
+// Une seule tuile a la fois, contrairement aux tuiles de remise en ordre.
+let optionTuiles = [];
+let optionChoisie = -1;
+
+function echapperHtml(txt){
+    return String(txt == null ? "" : txt)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Le blanc en tout debut de phrase prend une majuscule ("___ Mann liest."
+// -> "Der Mann liest."). Meme regle que pour le remplissage apres reponse.
+function motPourLeBlanc(mot){
+    const ex = activeExercises[currentExercise];
+    if(!ex || !mot) return mot;
+    const q = (getUiLang() === 'en' && ex.question_en) ? ex.question_en : ex.question;
+    if(q && q.indexOf("___") === 0) return mot.charAt(0).toUpperCase() + mot.slice(1);
+    return mot;
+}
+
+function renderOptionTuiles(){
+    const wrap = document.getElementById("answerOptions");
+    if(!wrap) return;
+    wrap.innerHTML = optionTuiles.map((o, i) =>
+        `<button type="button" class="option-pill${i === optionChoisie ? " choisie" : ""}" onclick="choisirOption(${i})">${echapperHtml(o)}</button>`
+    ).join("");
+}
+
+function choisirOption(i){
+    if(answered) return;
+    optionChoisie = i;
+    renderOptionTuiles();
+    const blanc = document.getElementById("questionBlank");
+    if(blanc){
+        blanc.textContent = motPourLeBlanc(optionTuiles[i]);
+        blanc.className = "filled-blank pose";
+    }
+    const fb = document.getElementById("feedback");
+    if(fb && fb.classList.contains("incomplet")){ fb.className = "feedback"; fb.innerHTML = ""; }
+    // Les listes longues (13 nuances de particules) poussent VERIFIER hors de
+    // l'ecran : on le ramene, mais seulement s'il n'est pas deja visible
+    // ("nearest" ne bouge rien quand il l'est deja).
+    const btn = document.getElementById("checkButton");
+    if(btn) try{ btn.scrollIntoView({ block:"nearest", behavior:"smooth" }); }catch(e){}
 }
 
 
@@ -17418,9 +18024,8 @@ function checkAnswer(){
     const useEn = uiLang === 'en';
     const opts = (useEn && ex.optionsEn) ? ex.optionsEn : ex.options;
     const usingChunks = !!(ex.chunks && ex.chunks.length);
-    const usingSelect = !!(opts && opts.length);
+    const usingOptions = !usingChunks && !!(opts && opts.length);
     const input = document.getElementById("answer");
-    const select = document.getElementById("answerSelect");
     let isCorrect;
     if(usingChunks){
         const manquants = ex.chunks.length - chunkBuilt.length;
@@ -17435,8 +18040,19 @@ function checkAnswer(){
         const builtText = chunkBuilt.map(i => chunkShuffled[i].text);
         isCorrect = builtText.every((txt, i) => txt === ex.chunks[i]);
     } else {
-        const rawVal = usingSelect ? select.value.trim() : input.value.trim();
-        if(!rawVal){ if(usingSelect) select.focus(); else input.focus(); return; }
+        const rawVal = usingOptions
+            ? (optionChoisie >= 0 ? String(optionTuiles[optionChoisie]).trim() : "")
+            : input.value.trim();
+        if(!rawVal){
+            // Aucune tuile choisie : on le dit, au lieu de ne rien faire du
+            // tout -- un bouton VERIFIER qui reste muet passe pour un bug.
+            if(usingOptions){
+                const fb = document.getElementById("feedback");
+                fb.className = "feedback show incomplet";
+                fb.innerHTML = `<div class="feedback-title">${t("options_choisis")}</div>`;
+            } else input.focus();
+            return;
+        }
         const val = rawVal.toLowerCase();
         // Les exercices de traduction acceptent une saisie approchante : la
         // ponctuation, la casse et les accents ne sont pas ce qu'on evalue, et
@@ -17498,7 +18114,7 @@ function checkAnswer(){
     // CONTEXTE renforce mieux que de la lire isolee dans le corrige, surtout
     // quand la reponse etait fausse (pas besoin de recoller mentalement le
     // mot dans la phrase du dessus).
-    if(!usingChunks && !usingSelect){
+    if(!usingChunks && !usingOptions){
         const questionText = (useEn && ex.question_en) ? ex.question_en : ex.question;
         if(questionText && questionText.includes("___")){
             let correctWord = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
@@ -17515,7 +18131,22 @@ function checkAnswer(){
         }
     }
     if(usingChunks){ renderChunkAnswerUi(); }
-    else if(usingSelect){ select.disabled = true; }
+    else if(usingOptions){
+        // La bonne tuile passe au vert, celle qu'on avait choisie a tort au
+        // rouge, et le blanc de la phrase recoit la BONNE forme (verte) : meme
+        // apres une erreur, la derniere chose qu'on lit est la phrase juste.
+        const bonne = (useEn && ex.correctEn) ? ex.correctEn : ex.correct;
+        const wrap = document.getElementById("answerOptions");
+        if(wrap) Array.from(wrap.children).forEach((btn, i) => {
+            const val = String(optionTuiles[i]);
+            btn.disabled = true;
+            btn.classList.remove("choisie");
+            if(ex.answers.some(a => String(a).toLowerCase() === val.toLowerCase())) btn.classList.add("juste");
+            else if(i === optionChoisie) btn.classList.add("fausse");
+        });
+        const blanc = document.getElementById("questionBlank");
+        if(blanc && bonne){ blanc.textContent = motPourLeBlanc(bonne); blanc.className = "filled-blank"; }
+    }
     else{ input.disabled = true; }
     document.getElementById("checkButton").classList.add("hidden");
     document.getElementById("nextButton").classList.remove("hidden");
