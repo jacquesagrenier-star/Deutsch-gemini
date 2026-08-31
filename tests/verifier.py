@@ -24,6 +24,7 @@ import sys
 import collections
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Un chemin peut etre passe en argument pour verifier une variante du fichier
 # (utile pour prouver que le filet attrape bien une regression donnee).
 INDEX = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RACINE, "index.html")
@@ -362,6 +363,46 @@ def verifier_version(r, source):
     print("   version         : v%d (etiquette, APP_VERSION et version.json concordent)" % n_badge)
 
 
+
+def verifier_export_csv(r):
+    """Les CSV de export/ sont-ils encore le reflet des JSON ?
+
+    Ce sont des fichiers derives : rien ne les regenere tout seul, et ils
+    avaient pris quatre versions de retard sans que rien ne le signale. Un
+    avertissement, pas une erreur : une donnee modifiee sans avoir encore
+    relance l'export n'est pas une regression, seulement un export a refaire.
+    """
+    try:
+        import exporter
+    except Exception:
+        return                      # exporter.py absent : rien a verifier
+    dossier = os.path.join(RACINE, "export")
+    if not os.path.isdir(dossier):
+        return
+    try:
+        attendus = exporter.produire()
+    except Exception as e:
+        return r.alerte("export", "exporter.py n'a pas pu produire les CSV (%s)" % e)
+    retard = []
+    for nom, contenu in sorted(attendus.items()):
+        r.controle()
+        chemin = os.path.join(dossier, nom)
+        if not os.path.exists(chemin):
+            retard.append(nom)
+            continue
+        actuel = io.open(chemin, encoding="utf-8-sig", newline="").read()
+        if actuel and not actuel.startswith(exporter.BOM):
+            actuel = exporter.BOM + actuel
+        if actuel != contenu:
+            retard.append(nom)
+    if retard:
+        r.alerte("export", "%d CSV en retard sur les JSON (%s) -- relancer : "
+                           "python tests/exporter.py" % (len(retard), ", ".join(retard[:3])
+                                                         + ("..." if len(retard) > 3 else "")))
+    print("   export/         : %d CSV, %s" % (len(attendus),
+          "a jour" if not retard else "%d en retard" % len(retard)))
+
+
 def main():
     if not os.path.exists(INDEX):
         print("index.html introuvable dans %s" % RACINE)
@@ -387,6 +428,7 @@ def main():
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
     verifier_version(r, source)
+    verifier_export_csv(r)
 
     print("\n" + "-" * 62)
     if r.avertissements:

@@ -55,6 +55,7 @@ Structure des fichiers JSON, organisés par niveau CECR (`A1`, `A2`, ...) :
 
 - Respecter la structure existante des entrées JSON (mêmes clés, mêmes niveaux CECR) lors de l'ajout de vocabulaire.
 - Toujours fournir la paire allemand/français (`exemple` + `exemple_fr`, ou équivalent) pour rester cohérent avec les données existantes.
+- Les CSV de `export/` sont **dérivés** des JSON : `python tests/exporter.py` les refait (le vérificateur avertit quand ils ont pris du retard). Ils ne sont pas versionnés.
 - **Avant chaque push, lancer `python tests/verifier.py`** (aucune dépendance, quelques secondes). Il valide les 5 fichiers JSON et analyse `index.html` : clés de traduction en double ou absentes d'une des deux langues, `onclick` vers une fonction inexistante, `showScreen()` vers une section inexistante, action de panneau sans fonction, mode de flashcard sans écran de retour. Voir `tests/README.md`.
 - Le vérificateur ne juge ni la qualité d'une traduction ni une mise en page : valider aussi les changements visuels en ouvrant `index.html` dans un navigateur.
 - Le dossier local du projet est synchronisé via OneDrive (`Desktop/Mes Projets/DeutschAI`) — éviter les opérations git lourdes ou concurrentes qui pourraient entrer en conflit avec la synchronisation OneDrive.
