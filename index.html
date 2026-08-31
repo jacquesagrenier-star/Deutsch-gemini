@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v330</span>
+        <span class="subtitle-version">v331</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -9422,19 +9422,19 @@ function hideGlobalLoadingBar(){
 // allemand reste en tete : c'est celui que l'apprenant retrouvera dans une
 // grammaire ou un cours.
 const ADVERB_CATEGORIES = {
-    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time" },
-    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction" },
-    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency" },
-    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner" },
-    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity" },
-    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence" },
-    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link" },
-    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words" },
+    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman" },
+    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction", tr: "Ort/Richtung \u2014 yer, yön" },
+    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency", tr: "Häufigkeit \u2014 sıklık" },
+    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner", tr: "Art und Weise \u2014 tarz" },
+    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity", tr: "Grad/Menge \u2014 derece, miktar" },
+    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence", tr: "Grund/Folge \u2014 neden, sonuç" },
+    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link", tr: "Verbindung/Logik \u2014 mantıksal bağ" },
+    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words", tr: "Frageadverbien \u2014 soru kelimeleri" },
     // Marqueurs d'attitude plutot que liens logiques : allerdings, zwar,
     // immerhin, ohnehin... Ils ne disent pas comment deux idees s'articulent,
     // ils disent ce que celui qui parle en pense. C'est le role des
     // particules, d'ou leur regroupement avec elles dans "Nuances & ton".
-    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude" }
+    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude", tr: "Nuance/Ton \u2014 tutum" }
 };
 
 // Adverbes charges depuis adverbe.json (meme principe que verbe.json et
@@ -9448,12 +9448,12 @@ const ADVERB_CATEGORIES = {
 // nuancer...) et non par forme : c'est ainsi qu'on va les chercher quand on
 // parle.
 const REDEWENDUNG_CATEGORIES = {
-    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk" },
-    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement" },
-    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions" },
-    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life" },
-    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance" },
-    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun" }
+    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet" },
+    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement", tr: "Meinung \u2014 görüş bildirme" },
+    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions", tr: "Gefühle \u2014 duygular, tepkiler" },
+    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life", tr: "Alltag \u2014 günlük hayat" },
+    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance", tr: "Diskussion \u2014 tartışma, nüans" },
+    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun", tr: "Feste Verbindungen \u2014 fiil + isim" }
 };
 
 // Meme principe que adverbe.json : la donnee vit hors du code. Tuple produit,
@@ -17201,7 +17201,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 330;
+const APP_VERSION = 331;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
