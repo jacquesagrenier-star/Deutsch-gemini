@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v353</span>
+        <span class="subtitle-version">v354</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17242,7 +17242,18 @@ function ecouteJouerEtape(){
     // dans les deux cas : la sequence ne doit jamais rester bloquee sur une
     // etape muette.
     if(et.lang === "de"){
-        direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
+        // FILET DE SECURITE : la sequence ne doit jamais pouvoir se figer.
+        // Tout ce qui est ici depend d'un evenement futur -- fin de lecture,
+        // erreur reseau, refus du systeme. Si quoi que ce soit leve une
+        // exception avant que ces evenements soient armes, `avancer` n'est
+        // jamais appele, la carte reste en place et l'application parait morte,
+        // sans message. Une etape muette vaut mieux qu'une lecture arretee.
+        try{
+            direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
+        }catch(e){
+            noterAudio(et.texte, "ERREUR", String(e && e.message || e));
+            avancer();
+        }
         return;
     }
     if(!("speechSynthesis" in window)){ avancer(); return; }
@@ -17393,7 +17404,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 353;
+const APP_VERSION = 354;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17622,9 +17633,16 @@ function empreinteAudio(texte){
 // a deviner, on fait dire a l'application ce qu'elle joue : d'ou vient chaque
 // son, a quelle vitesse, et si un repli a eu lieu. A retirer une fois la cause
 // trouvee.
+// Quand la synthese vocale s'est tue pour la derniere fois. Voir direAllemand.
+let finSynthese = 0;
+const DELAI_APRES_SYNTHESE = 300;   // ms
+
+function marquerFinSynthese(){ finSynthese = Date.now(); }
+
 const journalAudio = [];
 
 function noterAudio(texte, source, detail){
+  try{
     journalAudio.push({
         h: new Date().toLocaleTimeString(),
         texte: (texte || "").slice(0, 40),
@@ -17632,6 +17650,7 @@ function noterAudio(texte, source, detail){
         detail: detail || ""
     });
     if(journalAudio.length > 20) journalAudio.shift();
+  }catch(e){ /* un journal muet vaut mieux qu'une sequence arretee */ }
 }
 
 function afficherJournalAudio(){
@@ -17762,11 +17781,6 @@ function direAllemand(texte, opts){
     else lancer();
 }
 
-// Quand la synthese vocale s'est tue pour la derniere fois. Voir direAllemand.
-let finSynthese = 0;
-const DELAI_APRES_SYNTHESE = 300;   // ms
-
-function marquerFinSynthese(){ finSynthese = Date.now(); }
 
 function estRefusDeLecture(e){
     const nom = e && e.name;
