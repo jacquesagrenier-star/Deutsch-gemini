@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v342</span>
+        <span class="subtitle-version">v343</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16676,7 +16676,12 @@ function storedVoiceChoice(){
 // Moira (en-IE) articule nettement et sonne moins mecanique que les voix
 // anglaises proposees par defaut sur la plupart des appareils. Un choix
 // explicite fait dans les reglages reste prioritaire sur cette preference.
-const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [] };
+const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [] };
+
+// Etiquette BCP-47 a poser sur l'enonce quand aucune voix installee ne
+// correspond. Une table plutot qu'une cascade de ternaires : la cascade
+// precedente envoyait TOUTE langue inconnue sur "fr-FR", donc le turc aussi.
+const LANGUE_TAG = { de: "de-DE", en: "en-GB", fr: "fr-FR", tr: "tr-TR" };
 
 function pickVoice(prefix){
     const dispo = voicesForLang(prefix);
@@ -16715,7 +16720,8 @@ function testVoice(prefix){
     const extraits = {
         de: "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch.",
         en: "Good morning! I learn a little English every day.",
-        fr: "Bonjour ! J'apprends un peu d'allemand chaque jour."
+        fr: "Bonjour ! J'apprends un peu d'allemand chaque jour.",
+        tr: "Günaydın! Her gün biraz Almanca öğreniyorum."
     };
     const u = new SpeechSynthesisUtterance(extraits[prefix] || extraits.en);
     u.voice = voix;
@@ -16734,8 +16740,15 @@ function renderVoiceSettings(){
         box.innerHTML = `<p style="color:#576177;">${t('voice_unsupported')}</p>`;
         return;
     }
-    const langues = [['de', t('voice_lang_de')], ['en', t('voice_lang_en')],
-                     ['fr', t('voice_lang_fr')]];
+    // La troisieme ligne est la langue CONNUE de l'utilisateur -- celle qui lit
+    // les traductions -- et elle suit donc la langue d'interface. Elle etait
+    // figee sur 'fr' : en turc, l'ecran montrait une liste de voix francaises
+    // sous une etiquette turque, et aucun moyen de choisir sa voix turque.
+    // (La cle voice_lang_fr garde son nom d'origine ; sa valeur, elle, est
+    // traduite dans chaque langue.)
+    const connu = getUiLang();
+    const langues = [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
+    if(connu !== 'de' && connu !== 'en') langues.push([connu, t('voice_lang_fr')]);
     box.innerHTML = langues.map(([prefix, libelle]) => {
         const dispo = voicesForLang(prefix);
         if(!dispo.length){
@@ -17146,7 +17159,20 @@ function ecouteJouerEtape(){
         u.voice = voix;
         u.lang = voix.lang;
     } else {
-        u.lang = et.lang === "de" ? "de-DE" : (et.lang === "en" ? "en-GB" : "fr-FR");
+        // Aucune voix installee pour cette langue sur cet appareil.
+        //
+        // Sur la langue CIBLE on parle quand meme : de l'allemand mal prononce
+        // reste de l'allemand, et l'ecran previent (voice_none).
+        //
+        // Sur la langue CONNUE on saute l'etape. Faire lire du turc par une
+        // voix francaise ne produit pas une traduction, ca produit du charabia
+        // -- et l'utilisateur a le mot sous les yeux, il n'a rien a y gagner.
+        // Le cas n'est pas theorique : un telephone porte la voix de la langue
+        // du SYSTEME, pas celle de son proprietaire. Une turcophone qui suit un
+        // cours en pays germanophone a toutes les chances d'avoir des voix
+        // allemandes et aucune voix turque.
+        if((et.ligne || "").indexOf("Cible") === -1){ avancer(); return; }
+        u.lang = LANGUE_TAG[et.lang] || et.lang;
     }
     u.rate = ecouteVitesse;
     u.onend = avancer;
@@ -17268,7 +17294,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 342;
+const APP_VERSION = 343;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
