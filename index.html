@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v351</span>
+        <span class="subtitle-version">v352</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17254,8 +17254,10 @@ function ecouteJouerEtape(){
         u.lang = LANGUE_TAG[et.lang] || et.lang;
     }
     u.rate = ecouteVitesse;
-    u.onend = avancer;
-    u.onerror = avancer;
+    // marquerFinSynthese avant d'avancer : l'etape suivante est souvent un
+    // fichier allemand, qui doit attendre que l'attenuation d'iOS retombe.
+    u.onend = () => { marquerFinSynthese(); avancer(); };
+    u.onerror = () => { marquerFinSynthese(); avancer(); };
     window.speechSynthesis.speak(u);
 }
 
@@ -17377,7 +17379,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 351;
+const APP_VERSION = 352;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17613,12 +17615,17 @@ function direAllemand(texte, opts){
         const voix = cachedGermanVoice || findGermanVoice();
         if(voix) u.voice = voix;
         u.rate = rate;
-        if(onEnd){ u.onend = onEnd; u.onerror = onEnd; }
+        u.onend = () => { marquerFinSynthese(); if(onEnd) onEnd(); };
+        u.onerror = () => { marquerFinSynthese(); if(onEnd) onEnd(); };
         window.speechSynthesis.speak(u);
     };
 
     arreterAudioPregenere();
-    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    if('speechSynthesis' in window){
+        if(window.speechSynthesis.speaking || window.speechSynthesis.pending)
+            marquerFinSynthese();
+        window.speechSynthesis.cancel();
+    }
     if(!texte){ if(onEnd) onEnd(); return; }
     if(!AUDIO_BASE){ repli(); return; }
 
@@ -17668,11 +17675,37 @@ function direAllemand(texte, opts){
         if(onEnd) onEnd();
     };
     audioEnCours = son;
-    try{
-        const p = son.play();
-        if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e)));
-    }catch(e){ versRepli(!estRefusDeLecture(e)); }
+
+    // LAISSER RETOMBER L'ATTENUATION DE LA SYNTHESE AVANT DE JOUER.
+    //
+    // iOS baisse le volume des autres sons pendant que la synthese vocale
+    // parle, et ne relache cette attenuation qu'un instant apres la fin. Un
+    // fichier lance dans la foulee sort donc plus bas. C'est ce qui se passe en
+    // mode Ecoute : le mot allemand suit IMMEDIATEMENT sa traduction francaise
+    // et sonne faible, tandis que la phrase, plus loin dans la sequence, sort
+    // au bon niveau. Les deux fichiers sont pourtant a la meme sonie -- verifie,
+    // -11,7 contre -11,6 dB de sonie momentanee.
+    //
+    // Attendre n'est possible que parce qu'un seul element sert a tout : il
+    // reste debloque, alors qu'un `new Audio()` differe se verrait refuser la
+    // lecture faute de geste.
+    const lancer = () => {
+        if(jeton !== lectureCourante) return;
+        try{
+            const p = son.play();
+            if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e)));
+        }catch(e){ versRepli(!estRefusDeLecture(e)); }
+    };
+    const depuis = Date.now() - finSynthese;
+    if(depuis < DELAI_APRES_SYNTHESE) setTimeout(lancer, DELAI_APRES_SYNTHESE - depuis);
+    else lancer();
 }
+
+// Quand la synthese vocale s'est tue pour la derniere fois. Voir direAllemand.
+let finSynthese = 0;
+const DELAI_APRES_SYNTHESE = 300;   // ms
+
+function marquerFinSynthese(){ finSynthese = Date.now(); }
 
 function estRefusDeLecture(e){
     const nom = e && e.name;
