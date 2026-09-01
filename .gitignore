@@ -11,3 +11,11 @@ tests/__pycache__/
 EUIPO/backup_codes.txt
 *backup_codes*
 *.secret
+
+# Audio : le manifeste est derive des JSON (python audio/manifest.py --ecrire),
+# et les MP3 se comptent en centaines de megaoctets. Ni l'un ni l'autre n'a sa
+# place dans un depot synchronise par OneDrive -- les fichiers vont sur
+# Firebase Storage, seuls les scripts sont versionnes.
+audio/manifest.json
+audio/mp3/
+audio/__pycache__/
