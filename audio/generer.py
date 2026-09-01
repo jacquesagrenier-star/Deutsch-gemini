@@ -128,6 +128,19 @@ def charger_manifeste():
         return json.load(f)
 
 
+def a_produire(niveaux):
+    """Ce qui manque encore sur le disque, pour ces niveaux.
+
+    Extrait de main() pour que solde.py compte exactement la meme chose : deux
+    facons de repondre a « combien en reste-t-il » finiraient par diverger, et
+    c'est ce chiffre qui decide d'un achat de credits.
+    """
+    voulus = [e for e in charger_manifeste() if e["niveau"] in niveaux]
+    restants = [e for e in voulus
+                if not os.path.exists(os.path.join(SORTIE, e["id"] + ".mp3"))]
+    return voulus, restants
+
+
 def mode_essai(cle):
     """Les memes mots dans les deux modeles, pour comparer a l'oreille."""
     dossier = os.path.join(RACINE, "audio", "essai")
@@ -169,9 +182,7 @@ def main():
     niveaux = a.niveaux.split(",")
     os.makedirs(SORTIE, exist_ok=True)
 
-    voulus = [e for e in charger_manifeste() if e["niveau"] in niveaux]
-    restants = [e for e in voulus
-                if not os.path.exists(os.path.join(SORTIE, e["id"] + ".mp3"))]
+    voulus, restants = a_produire(niveaux)
     cout = int(sum(len(e["texte"]) for e in restants) * taux)
 
     print("  niveaux %s | modele %s | %d entrees, %d deja faites"
