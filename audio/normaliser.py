@@ -40,6 +40,25 @@ EGALISER, PAS SEULEMENT REMONTER
     Meme niveau moyen, variation divisee par deux. C'est l'egalite qui manquait,
     pas le volume.
 
+LES FICHIERS COURTS RECOIVENT PLUS, DELIBEREMENT
+    Mesure faite sur le corpus deja egalise : mots -14,6 LUFS et -15,0 dB RMS,
+    phrases -14,3 et -14,4. Un tiers de decibel d'ecart, inaudible. Et pourtant
+    le mot s'entend plus faible que la phrase qui le suit, de facon constante.
+
+    Ce n'est pas un defaut des fichiers, c'est l'oreille : elle integre la sonie
+    sur environ deux secondes. Un mot d'une seconde ne remplit pas cette
+    fenetre, une phrase de deux si -- a niveau mesure identique, le mot EST
+    percu plus faible. C'est la raison pour laquelle les diffuseurs donnent 2 a
+    3 dB de plus aux elements courts qu'au reste du programme : les mesurer
+    egaux les rendrait inegaux a l'ecoute.
+
+    On vise donc une cible qui depend de la DUREE. Mais l'avantage se donne en
+    BAISSANT LES LONGS, pas en montant les courts : les courts sont deja jammes
+    contre le plafond du limiteur, et pousser davantage ne monte plus rien --
+    mesure faite, +0,4 dB obtenus sur les +2,5 vises. Une attenuation, elle,
+    reussit toujours et ne coute aucune compression. Le corpus sort donc un peu
+    plus bas dans l'ensemble, et equilibre a l'oreille.
+
 LE PRIX A PAYER
     Il faut reencoder, donc perdre une generation. Les sources ElevenLabs ne
     sont plus disponibles -- les regenerer couterait 110 000 credits. On
@@ -68,6 +87,8 @@ CIBLE_LUFS = -12.0      # visee du limiteur ; la sortie retombe vers -14
 CRETE_MAX = -1.5        # dBTP, marge contre la saturation au decodage
 DEBIT = "96k"
 PLAFOND_LIMITEUR = 0.95   # -0,45 dBFS, seuil du limiteur du premier temps
+BONUS_COURT = 2.5       # dB accordes aux fichiers d une seconde ou moins
+SEUIL_LONG = 2.5        # secondes ; au-dela, plus aucun supplement
 
 
 def ffmpeg():
@@ -112,15 +133,42 @@ def _ff(src, dst, filtre):
     return True
 
 
+def duree(chemin):
+    """Duree en secondes, lue dans l'en-tete par ffmpeg."""
+    r = subprocess.run([FF, "-hide_banner", "-nostats", "-i", chemin,
+                        "-f", "null", "-"],
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace")
+    m = re.search(r"Duration:\s*(\d+):(\d+):([\d.]+)", r.stderr)
+    if not m:
+        return 0.0
+    return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
+
+
+def bonus_court(d):
+    """Le supplement, en dB, qu'un fichier court doit avoir SUR un long pour
+    etre percu au meme niveau. Il se realise en attenuant les longs -- voir
+    l'en-tete. Lineaire entre les deux bornes : rien ne justifie une courbe
+    plus savante, et une marche brusque s'entendrait d'une carte a l'autre."""
+    if d <= 1.0:
+        return BONUS_COURT
+    if d >= SEUIL_LONG:
+        return 0.0
+    return BONUS_COURT * (SEUIL_LONG - d) / (SEUIL_LONG - 1.0)
+
+
 def normaliser(chemin, sortie, intermediaire=None):
     """Les deux temps decrits en tete de fichier. Renvoie la mesure d'entree."""
     d = mesurer(chemin)
     if not d:
         return None
     inter = intermediaire or (sortie + ".t1.mp3")
+    # L'avantage est relatif : les courts gardent la cible pleine, les longs
+    # sont attenues d'autant. Monter etant impossible, on descend.
+    cible = CIBLE_LUFS - (BONUS_COURT - bonus_court(duree(chemin)))
 
     # Temps 1 : viser la cible, le limiteur absorbant ce qui depasse.
-    manque = CIBLE_LUFS - float(d["input_i"])
+    manque = cible - float(d["input_i"])
     f1 = ("volume=%.2fdB,alimiter=level_in=1:level_out=1:limit=%.2f"
           ":attack=5:release=60:level=disabled" % (manque, PLAFOND_LIMITEUR))
     if not _ff(chemin, inter, f1):
@@ -130,8 +178,11 @@ def normaliser(chemin, sortie, intermediaire=None):
     m = mesurer(inter)
     if not m:
         return None
-    gain = max(0.0, min(CIBLE_LUFS - float(m["input_i"]),
-                        CRETE_MAX - float(m["input_tp"])))
+    # Pas de plancher a zero : un gain NEGATIF est exactement ce qu'on veut
+    # pour les fichiers longs. La borne de crete ne s'applique qu'a la hausse.
+    vise = cible - float(m["input_i"])
+    marge = CRETE_MAX - float(m["input_tp"])
+    gain = vise if vise < 0 else max(0.0, min(vise, marge))
     ok = _ff(inter, sortie, "volume=%.2fdB" % gain)
     try:
         os.remove(inter)

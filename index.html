@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v360</span>
+        <span class="subtitle-version">v361</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17392,7 +17392,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 360;
+const APP_VERSION = 361;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17507,8 +17507,9 @@ const AUDIO_BASE = "https://deutschai-b6fbb.web.app/";
 //   2  normalisation EBU R128, +7 a +11 dB (v350)
 //   3  limiteur (v351)
 //   4  egalisation en deux temps, etendue 6,0 -> 3,8 dB (v359)
+//   5  phrases attenuees de 1,2 dB sous les mots courts (v361)
 //   3  limiteur par-dessus, +4 a +5 dB de plus (v351)
-const AUDIO_REVISION = "4";
+const AUDIO_REVISION = "5";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
