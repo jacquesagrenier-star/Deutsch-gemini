@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v349</span>
+        <span class="subtitle-version">v350</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17377,7 +17377,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 349;
+const APP_VERSION = 350;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17472,6 +17472,25 @@ async function verifierNouvelleVersion(){
 // elle-meme (regle tenue depuis la v257). Le cache HTTP du navigateur suffit,
 // et Hosting sert ces fichiers en immutable pour un an.
 const AUDIO_BASE = "https://deutschai-b6fbb.web.app/";
+
+// LE NUMERO DE TRAITEMENT DU SON. A INCREMENTER A CHAQUE RETRAITEMENT DES MP3.
+//
+// Le nom du fichier est l'empreinte du TEXTE : deux versions du meme mot, l'une
+// faible et l'autre normalisee, portent donc le meme nom. Or Hosting sert ces
+// fichiers en « immutable, un an » -- ce qui est le bon reglage puisque le
+// contenu d'une URL ne change jamais... sauf le jour ou l'on retraite tout le
+// corpus. Ce jour-la, les appareils qui ont deja telecharge l'ancienne version
+// la gardent DOUZE MOIS, et rien ne le signale : l'utilisateur reinstalle,
+// vide ce qu'il peut, et entend toujours l'ancien son.
+//
+// La chaine ci-dessous est ajoutee a l'URL. Elle ne change pas le fichier servi
+// -- Hosting ignore les parametres inconnus -- mais elle change la CLE de cache
+// du navigateur, donc elle force un vrai retelechargement. C'est le seul geste
+// a faire apres avoir repasse les mp3 dans audio/normaliser.py.
+//
+//   1  generation d'origine (v347)
+//   2  normalisation EBU R128, +7 a +11 dB (v350)
+const AUDIO_REVISION = "2";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -17577,7 +17596,7 @@ function direAllemand(texte, opts){
     const empreinte = empreinteAudio(texte);
     if(!empreinte || audioAbsents.has(empreinte)){ repli(); return; }
 
-    const son = new Audio(AUDIO_BASE + empreinte + ".mp3");
+    const son = new Audio(AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION);
     son.playbackRate = rate;
     let bascule = false;
     // `definitif` distingue deux echecs que la version precedente confondait :
