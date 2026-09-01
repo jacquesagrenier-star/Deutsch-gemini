@@ -18,13 +18,27 @@ POURQUOI
     plateforme meme qui vient de nous couter une version. Le defaut est dans
     les fichiers : c'est la qu'on le corrige, une fois pour toutes.
 
-SONIE, PAS CRETE
-    On vise l'EBU R128 (`loudnorm`), qui mesure la sonie percue en excluant les
-    silences, et non le simple maximum. Une normalisation par la crete rendrait
-    plus faible un mot ou la voix marque une consonne forte, et plus fort un
-    mot murmure -- l'inverse de ce qu'on cherche. `linear=true` demande un gain
-    constant plutot qu'une compression : on remonte le niveau, on n'ecrase pas
-    la dynamique de la voix.
+EGALISER, PAS SEULEMENT REMONTER
+    La premiere version visait la sonie avec `loudnorm linear=true`, un gain
+    constant. Elle remontait bien le niveau moyen, mais elle RENONCAIT des que
+    la crete plafonnait -- et comme le rapport crete/sonie varie enormement d'un
+    mot a l'autre, il restait 6 dB d'ecart entre fichiers. Mesure sur le corpus
+    deposé : « der Traum » a -11,6 LUFS contre « August » a -18,5. Un mot pouvait
+    donc sonner nettement plus faible que la phrase suivante, sans regularite --
+    exactement ce qui etait signale a l'usage, et ce que la moyenne cachait.
+
+    La chaine actuelle procede en deux temps :
+      1. on pousse le gain qui MANQUE pour atteindre la cible, un limiteur
+         absorbant les cretes. C'est lui qui egalise : les fichiers a forte
+         crete cessent d'etre penalises.
+      2. on rend par un gain simple ce que le limiteur a mange, borne par la
+         crete pour ne rien saturer.
+
+    Resultat mesure sur 24 fichiers, moitie mots moitie phrases :
+      en ligne avant   moyenne -13,8   ecart-type 1,3   etendue 6,0 dB
+      apres            moyenne -14,1   ecart-type 0,7   etendue 3,8 dB
+    Meme niveau moyen, variation divisee par deux. C'est l'egalite qui manquait,
+    pas le volume.
 
 LE PRIX A PAYER
     Il faut reencoder, donc perdre une generation. Les sources ElevenLabs ne
@@ -50,10 +64,10 @@ MANIFESTE = os.path.join(RACINE, "audio", "manifest.json")
 # du resultat d une normalisation precedente.
 SOURCE = os.path.join(RACINE, "audio", "mp3_original")
 
-CIBLE_LUFS = -16.0      # standard parole mono
+CIBLE_LUFS = -12.0      # visee du limiteur ; la sortie retombe vers -14
 CRETE_MAX = -1.5        # dBTP, marge contre la saturation au decodage
 DEBIT = "96k"
-GAIN_LIMITEUR = 6      # dB pousses dans le limiteur quand --limiteur est actif
+PLAFOND_LIMITEUR = 0.95   # -0,45 dBFS, seuil du limiteur du premier temps
 
 
 def ffmpeg():
@@ -84,39 +98,46 @@ def mesurer(chemin):
     return json.loads(m.group(0)) if m else None
 
 
-LIMITEUR = False
+def _ff(src, dst, filtre):
+    r = subprocess.run(
+        [FF, "-hide_banner", "-nostats", "-y", "-i", src, "-af", filtre,
+         "-ar", "44100", "-ac", "1", "-c:a", "libmp3lame", "-b:a", DEBIT,
+         # -f mp3 explicite : le fichier intermediaire ne porte pas toujours
+         # l'extension .mp3, et ffmpeg deduit sinon le format du nom.
+         "-f", "mp3", dst],
+        capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if r.returncode != 0 or not os.path.exists(dst):
+        _noter_echec(r.stderr)
+        return False
+    return True
 
 
-def normaliser(chemin, sortie):
-    """Deuxieme passe, gain lineaire calcule sur la mesure."""
+def normaliser(chemin, sortie, intermediaire=None):
+    """Les deux temps decrits en tete de fichier. Renvoie la mesure d'entree."""
     d = mesurer(chemin)
     if not d:
         return None
-    filtre = ("loudnorm=I=%s:TP=%s:linear=true"
-              ":measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s"
-              % (CIBLE_LUFS, CRETE_MAX, d["input_i"], d["input_tp"],
-                 d["input_lra"], d["input_thresh"]))
-    if LIMITEUR:
-        # Le gain lineaire seul bute sur la crete : tous les fichiers finissent
-        # a -1,9 dBTP sans avoir atteint la sonie visee, parce qu'une seule
-        # consonne forte suffit a bloquer le reste. Le limiteur rabote ces
-        # pointes -- inaudibles sur de la parole, elles ne portent aucun sens --
-        # et libere le gain qu'elles retenaient. Attaque et relachement courts,
-        # regles pour la parole ; le niveau de sortie reste sous 0 dBFS.
-        filtre += (",volume=%sdB,alimiter=level_in=1:level_out=1:limit=0.85"
-                   ":attack=5:release=50:level=disabled" % GAIN_LIMITEUR)
-    # -f mp3 explicite : le fichier de sortie du lot s'appelle « ....mp3.norm »
-    # le temps d'etre ecrit, et ffmpeg deduit sinon le format de l'extension.
-    # Sans ce drapeau il refuse les 5 260, un par un, en silence.
-    r = subprocess.run(
-        [FF, "-hide_banner", "-nostats", "-y", "-i", chemin, "-af", filtre,
-         "-ar", "44100", "-ac", "1", "-c:a", "libmp3lame", "-b:a", DEBIT,
-         "-f", "mp3", sortie],
-        capture_output=True, text=True, encoding="utf-8", errors="replace")
-    if r.returncode != 0 or not os.path.exists(sortie):
-        _noter_echec(r.stderr)
+    inter = intermediaire or (sortie + ".t1.mp3")
+
+    # Temps 1 : viser la cible, le limiteur absorbant ce qui depasse.
+    manque = CIBLE_LUFS - float(d["input_i"])
+    f1 = ("volume=%.2fdB,alimiter=level_in=1:level_out=1:limit=%.2f"
+          ":attack=5:release=60:level=disabled" % (manque, PLAFOND_LIMITEUR))
+    if not _ff(chemin, inter, f1):
         return None
-    return d
+
+    # Temps 2 : reprendre ce que le limiteur a mange, sans depasser la crete.
+    m = mesurer(inter)
+    if not m:
+        return None
+    gain = max(0.0, min(CIBLE_LUFS - float(m["input_i"]),
+                        CRETE_MAX - float(m["input_tp"])))
+    ok = _ff(inter, sortie, "volume=%.2fdB" % gain)
+    try:
+        os.remove(inter)
+    except OSError:
+        pass
+    return d if ok else None
 
 
 # La premiere erreur rencontree, gardee pour l'afficher a la fin. Un lot qui
@@ -132,16 +153,13 @@ def _noter_echec(stderr):
 
 
 def main():
-    global FF, LIMITEUR
+    global FF
     p = argparse.ArgumentParser()
     p.add_argument("--niveaux", default="")
-    p.add_argument("--limiteur", action="store_true",
-                   help="rabote les pointes pour gagner encore en sonie")
     p.add_argument("--essai", type=int, default=0,
                    help="ne traiter que N fichiers, dans audio/essai_norm/")
     a = p.parse_args()
     FF = ffmpeg()
-    LIMITEUR = a.limiteur
 
     with open(MANIFESTE, encoding="utf-8") as f:
         entrees = json.load(f)
