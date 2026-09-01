@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v359</span>
+        <span class="subtitle-version">v360</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16808,6 +16808,7 @@ function testVoice(prefix){
         tr: "Günaydın! Her gün biraz Almanca öğreniyorum."
     };
     const u = new SpeechSynthesisUtterance(extraits[prefix] || extraits.en);
+    u.volume = VOLUME_SYNTHESE;
     u.voice = voix;
     u.lang = voix.lang;
     u.rate = 0.9;
@@ -17246,6 +17247,7 @@ function ecouteJouerEtape(){
     }
     if(!("speechSynthesis" in window)){ avancer(); return; }
     const u = new SpeechSynthesisUtterance(et.texte);
+    u.volume = VOLUME_SYNTHESE;
     const voix = pickVoice(et.lang);
     if(voix){
         u.voice = voix;
@@ -17390,7 +17392,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 359;
+const APP_VERSION = 360;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17611,6 +17613,25 @@ function empreinteAudio(texte){
     }catch(e){ return null; }
 }
 
+// LE VOLUME DE LA SYNTHESE, ALIGNE SUR CELUI DES FICHIERS.
+//
+// Generer B1 ne reglerait pas le saut de niveau : cela deplacerait la
+// frontiere. Tant qu'une partie du corpus sort en Nadja et l'autre par la voix
+// de l'appareil, l'ecart demeure -- et il demeurerait pour toujours sur ce
+// qu'on ne generera jamais. Les 5 260 fichiers sont a -14 LUFS, crete -0,9
+// dBTP, alors qu'une voix systeme sort proche du maximum : l'ecart mesure fait
+// 5 a 8 dB, ce qui s'entend franchement.
+//
+// On ne peut pas monter les fichiers, ils sont deja au plafond. On baisse donc
+// la synthese pour la rejoindre. C'est le seul remede qui couvre TOUT le
+// corpus, sans un credit de generation.
+//
+// ATTENTION : plusieurs versions de Safari ignorent purement et simplement
+// `volume` sur un enonce. Si c'est le cas ici, ce reglage ne changera rien et
+// il faudra l'admettre plutot que de le pousser -- ce sera visible au premier
+// essai.
+const VOLUME_SYNTHESE = 0.5;
+
 // JOURNAL DE DIAGNOSTIC -- TEMPORAIRE.
 //
 // Il repond a une seule question, celle qu'aucune oreille ne tranche avec
@@ -17661,12 +17682,16 @@ function direAllemand(texte, opts){
     const repli = () => {
         if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
         const u = new SpeechSynthesisUtterance(texte);
+        u.volume = VOLUME_SYNTHESE;
         u.lang = "de-DE";
         const voix = cachedGermanVoice || findGermanVoice();
         if(voix) u.voice = voix;
         u.rate = rate;
+        // Le volume est note : c'est la seule facon de savoir si Safari a
+        // honore le reglage ou l'a ignore, ce qu'il fait sur certaines versions.
         noterAudio(texte, "SYNTHESE",
-            "voix " + (voix ? voix.name : "par defaut") + ", vitesse " + rate);
+            "voix " + (voix ? voix.name : "par defaut") + ", vitesse " + rate +
+            ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume);
         if(onEnd){ u.onend = onEnd; u.onerror = onEnd; }
         window.speechSynthesis.speak(u);
     };
@@ -17763,6 +17788,7 @@ function speakWord(){
     arreterAudioPregenere();
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.volume = VOLUME_SYNTHESE;
     utterance.lang = 'en-GB';
     const voice = cachedEnglishVoice || findEnglishVoice();
     if(voice) utterance.voice = voice;
@@ -17785,6 +17811,7 @@ function speakDictationText(text, lang){
     arreterAudioPregenere();
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.volume = VOLUME_SYNTHESE;
     utterance.lang = 'en-GB';
     const voice = cachedEnglishVoice || findEnglishVoice();
     if(voice) utterance.voice = voice;
@@ -17876,6 +17903,7 @@ function speakRegisteredSentence(idx){
     arreterAudioPregenere();
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(entry.text);
+    utterance.volume = VOLUME_SYNTHESE;
     utterance.lang = 'en-GB';
     const voice = cachedEnglishVoice || findEnglishVoice();
     if(voice) utterance.voice = voice;
