@@ -46,10 +46,14 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOSSIER = os.path.join(RACINE, "audio", "mp3")
 MANIFESTE = os.path.join(RACINE, "audio", "manifest.json")
+# Les mp3 tels que sortis d ElevenLabs. Toute normalisation part de la, jamais
+# du resultat d une normalisation precedente.
+SOURCE = os.path.join(RACINE, "audio", "mp3_original")
 
 CIBLE_LUFS = -16.0      # standard parole mono
 CRETE_MAX = -1.5        # dBTP, marge contre la saturation au decodage
 DEBIT = "96k"
+GAIN_LIMITEUR = 6      # dB pousses dans le limiteur quand --limiteur est actif
 
 
 def ffmpeg():
@@ -80,6 +84,9 @@ def mesurer(chemin):
     return json.loads(m.group(0)) if m else None
 
 
+LIMITEUR = False
+
+
 def normaliser(chemin, sortie):
     """Deuxieme passe, gain lineaire calcule sur la mesure."""
     d = mesurer(chemin)
@@ -89,6 +96,15 @@ def normaliser(chemin, sortie):
               ":measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s"
               % (CIBLE_LUFS, CRETE_MAX, d["input_i"], d["input_tp"],
                  d["input_lra"], d["input_thresh"]))
+    if LIMITEUR:
+        # Le gain lineaire seul bute sur la crete : tous les fichiers finissent
+        # a -1,9 dBTP sans avoir atteint la sonie visee, parce qu'une seule
+        # consonne forte suffit a bloquer le reste. Le limiteur rabote ces
+        # pointes -- inaudibles sur de la parole, elles ne portent aucun sens --
+        # et libere le gain qu'elles retenaient. Attaque et relachement courts,
+        # regles pour la parole ; le niveau de sortie reste sous 0 dBFS.
+        filtre += (",volume=%sdB,alimiter=level_in=1:level_out=1:limit=0.85"
+                   ":attack=5:release=50:level=disabled" % GAIN_LIMITEUR)
     # -f mp3 explicite : le fichier de sortie du lot s'appelle « ....mp3.norm »
     # le temps d'etre ecrit, et ffmpeg deduit sinon le format de l'extension.
     # Sans ce drapeau il refuse les 5 260, un par un, en silence.
@@ -116,13 +132,16 @@ def _noter_echec(stderr):
 
 
 def main():
-    global FF
+    global FF, LIMITEUR
     p = argparse.ArgumentParser()
     p.add_argument("--niveaux", default="")
+    p.add_argument("--limiteur", action="store_true",
+                   help="rabote les pointes pour gagner encore en sonie")
     p.add_argument("--essai", type=int, default=0,
                    help="ne traiter que N fichiers, dans audio/essai_norm/")
     a = p.parse_args()
     FF = ffmpeg()
+    LIMITEUR = a.limiteur
 
     with open(MANIFESTE, encoding="utf-8") as f:
         entrees = json.load(f)
@@ -137,7 +156,9 @@ def main():
         os.makedirs(dossier, exist_ok=True)
         pas = max(1, len(entrees) // a.essai)
         for e in entrees[::pas][:a.essai]:
-            src = os.path.join(DOSSIER, e["id"] + ".mp3")
+            src = os.path.join(SOURCE, e["id"] + ".mp3")
+            if not os.path.exists(src):
+                src = os.path.join(DOSSIER, e["id"] + ".mp3")
             dst = os.path.join(dossier, e["id"] + ".mp3")
             avant = normaliser(src, dst)
             apres = mesurer(dst)
@@ -158,10 +179,17 @@ def main():
     # gratuitement.
     faits = rates = 0
     def traiter(e):
-        src = os.path.join(DOSSIER, e["id"] + ".mp3")
-        tmp = src + ".norm.mp3"
+        # TOUJOURS repartir de l'original quand il existe. Relire audio/mp3/,
+        # qui contient deja une version normalisee, empilerait une generation
+        # d'encodage a chaque essai de reglage -- et la degradation, elle, ne se
+        # remonte pas.
+        src = os.path.join(SOURCE, e["id"] + ".mp3")
+        if not os.path.exists(src):
+            src = os.path.join(DOSSIER, e["id"] + ".mp3")
+        tmp = os.path.join(DOSSIER, e["id"] + ".mp3.norm.mp3")
+        cible = os.path.join(DOSSIER, e["id"] + ".mp3")
         if normaliser(src, tmp):
-            os.replace(tmp, src)
+            os.replace(tmp, cible)
             return True
         if os.path.exists(tmp):
             os.remove(tmp)

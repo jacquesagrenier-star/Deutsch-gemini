@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v350</span>
+        <span class="subtitle-version">v351</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17377,7 +17377,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 350;
+const APP_VERSION = 351;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17490,16 +17490,45 @@ const AUDIO_BASE = "https://deutschai-b6fbb.web.app/";
 //
 //   1  generation d'origine (v347)
 //   2  normalisation EBU R128, +7 a +11 dB (v350)
-const AUDIO_REVISION = "2";
+//   3  limiteur par-dessus, +4 a +5 dB de plus (v351)
+const AUDIO_REVISION = "3";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
 let audioEnCours = null;
 
+// UN SEUL ELEMENT AUDIO POUR TOUTE L'APPLICATION, REUTILISE INDEFINIMENT.
+//
+// iOS n'accorde pas le droit de jouer un son a la PAGE mais a l'ELEMENT, et
+// seulement s'il demarre dans le prolongement d'un geste de l'utilisateur. Un
+// `new Audio()` par lecture redemande donc cette permission a chaque fois :
+// elle est accordee au premier mot, qu'on touche, et refusee a tous ceux que
+// l'application enchaine seule -- le mode Ecoute, la carte suivante. Chaque
+// refus fait basculer sur la voix du telephone, ce qui donne exactement le
+// symptome observe : le premier mot dans la bonne voix, tout le reste en voix
+// mecanique.
+//
+// Un element unique, lui, reste debloque une fois qu'il a joue dans un geste :
+// on ne change plus que son `src`. C'est la seule facon connue de tenir une
+// file de lectures automatiques sur iOS.
+let lecteurAudio = null;
+let lectureCourante = 0;      // numero de la lecture en cours, voir direAllemand
+
+function obtenirLecteur(){
+    if(!lecteurAudio){
+        lecteurAudio = new Audio();
+        // `preload` a none : on remplace `src` a chaque mot, precharger
+        // l'ancien ne servirait qu'a telecharger ce qu'on s'apprete a jeter.
+        lecteurAudio.preload = "none";
+    }
+    return lecteurAudio;
+}
+
 function arreterAudioPregenere(){
     if(audioEnCours){
         audioEnCours.onended = null;
         audioEnCours.onerror = null;
+        audioEnCours.onplaying = null;
         try{ audioEnCours.pause(); }catch(e){}
         audioEnCours = null;
     }
@@ -17596,7 +17625,14 @@ function direAllemand(texte, opts){
     const empreinte = empreinteAudio(texte);
     if(!empreinte || audioAbsents.has(empreinte)){ repli(); return; }
 
-    const son = new Audio(AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION);
+    const son = obtenirLecteur();
+    // L'element etant reutilise, une erreur declenchee par le mot PRECEDENT
+    // peut encore arriver apres qu'on a change le src. Sans jeton, elle serait
+    // prise pour une erreur du mot courant et ferait parler la synthese
+    // par-dessus. Chaque lecture recoit donc son numero, et les gestionnaires
+    // ignorent tout ce qui ne porte pas le leur.
+    const jeton = ++lectureCourante;
+    son.src = AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION;
     son.playbackRate = rate;
     let bascule = false;
     // `definitif` distingue deux echecs que la version precedente confondait :
@@ -17617,16 +17653,20 @@ function direAllemand(texte, opts){
     // element recycle, particularite d'iOS : si l'on a entendu le fichier, la
     // question de le remplacer ne se pose plus.
     let demarre = false;
-    son.onplaying = () => { demarre = true; };
+    son.onplaying = () => { if(jeton === lectureCourante) demarre = true; };
     const versRepli = (definitif) => {
-        if(bascule || demarre) return;
+        if(bascule || demarre || jeton !== lectureCourante) return;
         bascule = true;
         if(definitif !== false) audioAbsents.add(empreinte);
         audioEnCours = null;
         repli();
     };
     son.onerror = () => versRepli(true);
-    son.onended = () => { audioEnCours = null; if(onEnd) onEnd(); };
+    son.onended = () => {
+        if(jeton !== lectureCourante) return;
+        audioEnCours = null;
+        if(onEnd) onEnd();
+    };
     audioEnCours = son;
     try{
         const p = son.play();
