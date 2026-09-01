@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v352</span>
+        <span class="subtitle-version">v353</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5485,6 +5485,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="voice_title">Voix de lecture</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
         <div id="voiceSettingsBox"></div>
+    </div>
+
+    <div class="card">
+        <strong>Journal audio</strong>
+        <p style="color:#576177; margin-top:6px;">Ce que l'application a
+            reellement joue, pour les vingt derniers sons allemands. Diagnostic
+            temporaire : il dit si chaque son est venu du fichier pre-genere ou
+            de la voix du telephone, et pourquoi.</p>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="afficherJournalAudio()">VOIR LE JOURNAL</button>
+        <pre id="journalAudioBox" style="display:none; white-space:pre-wrap;
+            word-break:break-word; font-size:12px; line-height:1.5;
+            background:#0e131b; color:#d7dde8; padding:12px; border-radius:8px;
+            margin-top:12px; max-height:50vh; overflow:auto;"></pre>
     </div>
 
     <div class="card">
@@ -17379,7 +17393,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 352;
+const APP_VERSION = 353;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17601,6 +17615,40 @@ function empreinteAudio(texte){
 // Joue le fichier pre-genere s'il existe, sinon la synthese du navigateur.
 // `onEnd` est appele dans les deux cas : le mode Ecoute enchaine ses etapes
 // dessus, il ne doit jamais rester bloque parce qu'un fichier manque.
+// JOURNAL DE DIAGNOSTIC -- TEMPORAIRE.
+//
+// Quatre reconstitutions hors de l'application n'ont pas reproduit le defaut
+// signale (le mot allemand plus faible que la phrase). Plutot que de continuer
+// a deviner, on fait dire a l'application ce qu'elle joue : d'ou vient chaque
+// son, a quelle vitesse, et si un repli a eu lieu. A retirer une fois la cause
+// trouvee.
+const journalAudio = [];
+
+function noterAudio(texte, source, detail){
+    journalAudio.push({
+        h: new Date().toLocaleTimeString(),
+        texte: (texte || "").slice(0, 40),
+        source: source,
+        detail: detail || ""
+    });
+    if(journalAudio.length > 20) journalAudio.shift();
+}
+
+function afficherJournalAudio(){
+    const box = document.getElementById("journalAudioBox");
+    if(!box) return;
+    box.style.display = "block";
+    if(!journalAudio.length){
+        box.textContent = "Rien encore. Ecoute quelques mots, puis reviens ici.";
+        return;
+    }
+    const SAUT = String.fromCharCode(10);
+    const lignes = journalAudio.map(e =>
+        e.h + "  " + e.source.padEnd(9) + "  " + e.texte +
+        (e.detail ? SAUT + "            " + e.detail : ""));
+    box.textContent = lignes.join(SAUT);
+}
+
 // SYNCHRONE DU DEBUT A LA FIN, exprès : entre le geste de l'utilisateur et
 // l'appel a play(), il ne doit y avoir aucune attente. Voir sha1Hex().
 function direAllemand(texte, opts){
@@ -17615,6 +17663,8 @@ function direAllemand(texte, opts){
         const voix = cachedGermanVoice || findGermanVoice();
         if(voix) u.voice = voix;
         u.rate = rate;
+        noterAudio(texte, "SYNTHESE",
+            "voix " + (voix ? voix.name : "par defaut") + ", vitesse " + rate);
         u.onend = () => { marquerFinSynthese(); if(onEnd) onEnd(); };
         u.onerror = () => { marquerFinSynthese(); if(onEnd) onEnd(); };
         window.speechSynthesis.speak(u);
@@ -17630,7 +17680,12 @@ function direAllemand(texte, opts){
     if(!AUDIO_BASE){ repli(); return; }
 
     const empreinte = empreinteAudio(texte);
-    if(!empreinte || audioAbsents.has(empreinte)){ repli(); return; }
+    if(!empreinte || audioAbsents.has(empreinte)){
+        noterAudio(texte, "IGNORE", empreinte
+            ? "deja en liste noire (" + empreinte + ")" : "empreinte impossible");
+        repli();
+        return;
+    }
 
     const son = obtenirLecteur();
     // L'element etant reutilise, une erreur declenchee par le mot PRECEDENT
@@ -17665,6 +17720,8 @@ function direAllemand(texte, opts){
         if(bascule || demarre || jeton !== lectureCourante) return;
         bascule = true;
         if(definitif !== false) audioAbsents.add(empreinte);
+        noterAudio(texte, "BASCULE",
+            definitif !== false ? "fichier absent ou illisible" : "lecture refusee");
         audioEnCours = null;
         repli();
     };
@@ -17691,6 +17748,10 @@ function direAllemand(texte, opts){
     // lecture faute de geste.
     const lancer = () => {
         if(jeton !== lectureCourante) return;
+        noterAudio(texte, "FICHIER",
+            "vitesse " + son.playbackRate + ", volume " + son.volume +
+            (son.muted ? ", MUET" : "") +
+            ", attente " + Math.max(0, DELAI_APRES_SYNTHESE - (Date.now() - finSynthese)) + " ms");
         try{
             const p = son.play();
             if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e)));
