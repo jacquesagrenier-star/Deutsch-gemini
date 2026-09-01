@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v354</span>
+        <span class="subtitle-version">v355</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16952,6 +16952,7 @@ let ecouteEtapes = [];
 let ecouteEtape = 0;
 let ecouteJoue = false;
 let ecouteMinuteur = null;
+let ecouteChien = null;      // borne de securite par etape, voir armerChien
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -17227,9 +17228,33 @@ function ecouteJouerEtape(){
     ecouteSurligner(et.ligne || null);
     const jeton = ++ecouteJeton;
     const avancer = () => {
+        clearTimeout(ecouteChien);
         if(jeton !== ecouteJeton || !ecouteJoue) return;
         ecouteEtape++;
         ecouteJouerEtape();
+    };
+    // CHIEN DE GARDE.
+    //
+    // Chaque etape rend la main a `avancer` par un evenement futur : fin de
+    // lecture, fin d'enonce. Sur iOS, ces evenements peuvent ne JAMAIS arriver
+    // -- la synthese vocale devient muette apres qu'un element audio a ouvert
+    // la session sonore, et elle n'emet alors ni `end` ni `error`. La sequence
+    // attend indefiniment un signal qui ne viendra pas, la carte reste en
+    // place, et rien a l'ecran ne dit pourquoi. Le try/catch pose en v354 ne
+    // voyait que les exceptions ; une panne silencieuse lui echappe.
+    //
+    // On borne donc chaque etape. La limite est large : il ne s'agit pas de
+    // couper une lecture normale, mais d'empecher une etape muette de bloquer
+    // toutes les suivantes.
+    const armerChien = (texte) => {
+        clearTimeout(ecouteChien);
+        const limite = Math.min(20000, 4000 + (texte || "").length * 150);
+        ecouteChien = setTimeout(() => {
+            if(jeton !== ecouteJeton || !ecouteJoue) return;
+            noterAudio(texte, "BLOQUE", "aucune fin apres " + limite + " ms");
+            ecouteEtape++;
+            ecouteJouerEtape();
+        }, limite);
     };
     if(et.type === "silence"){
         ecouteEtat(t("ecoute_etat_repete"));
@@ -17248,6 +17273,7 @@ function ecouteJouerEtape(){
         // exception avant que ces evenements soient armes, `avancer` n'est
         // jamais appele, la carte reste en place et l'application parait morte,
         // sans message. Une etape muette vaut mieux qu'une lecture arretee.
+        armerChien(et.texte);
         try{
             direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
         }catch(e){
@@ -17283,6 +17309,9 @@ function ecouteJouerEtape(){
     // fichier allemand, qui doit attendre que l'attenuation d'iOS retombe.
     u.onend = () => { marquerFinSynthese(); avancer(); };
     u.onerror = () => { marquerFinSynthese(); avancer(); };
+    armerChien(et.texte);
+    noterAudio(et.texte, "ENONCE",
+        et.lang + ", voix " + (voix ? voix.name : "par defaut"));
     window.speechSynthesis.speak(u);
 }
 
@@ -17404,7 +17433,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 354;
+const APP_VERSION = 355;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
