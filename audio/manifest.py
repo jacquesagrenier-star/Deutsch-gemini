@@ -58,7 +58,19 @@ def recolter():
     for theme in charger("themes.json")["themes"]:
         niv = theme.get("niveau")
         for m in theme["mots"]:
-            prendre(m.get("mot"), niv, "mot", "nomen")
+            mot = (m.get("mot") or "").strip()
+            genre = (m.get("genre") or "").strip()
+            # Un nom se prononce sous DEUX formes, et il faut les deux fichiers :
+            #   "Mann"      -- la dictee, qui dit justement de ne pas ecrire
+            #                  l'article (voir dictation_hint) ;
+            #   "der Mann"  -- la carte et le mode Ecoute, qui le prononcent
+            #                  avec son article parce que c'est ainsi qu'on
+            #                  retient le genre.
+            # N'en generer qu'une renvoyait l'autre a la voix du telephone,
+            # pour le type de carte le plus utilise de l'application.
+            prendre(mot, niv, "mot", "nomen")
+            if genre and genre != mot:
+                prendre(genre + " " + mot, niv, "mot", "nomen.article")
             prendre(m.get("exemple"), niv, "phrase", "nomen")
 
     verbes = charger("verbe.json")
