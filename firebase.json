@@ -1,5 +1,20 @@
 {
   "functions": {
     "source": "functions"
+  },
+  "hosting": {
+    "public": "audio/mp3",
+    "ignore": ["**/.*"],
+    "headers": [
+      {
+        "source": "**/*.mp3",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      }
+    ]
   }
 }
