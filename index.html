@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v348</span>
+        <span class="subtitle-version">v349</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17377,7 +17377,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 348;
+const APP_VERSION = 349;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17589,8 +17589,18 @@ function direAllemand(texte, opts){
     //     condamnerait le mot pour toute la session sur une circonstance
     //     passagere -- c'est ainsi qu'un seul refus au demarrage rendait
     //     silencieuse la moitie du vocabulaire.
+    // VERROU : une fois que le son a commence, plus AUCUN repli.
+    //
+    // Sans lui, un evenement d'erreur arrivant apres le debut de la lecture
+    // relancait la synthese du navigateur par-dessus : l'utilisateur entendait
+    // la bonne voix dire le mot, puis la voix mecanique le redire. Peu importe
+    // ce qui declenche cet evenement tardif -- requete reseau interrompue,
+    // element recycle, particularite d'iOS : si l'on a entendu le fichier, la
+    // question de le remplacer ne se pose plus.
+    let demarre = false;
+    son.onplaying = () => { demarre = true; };
     const versRepli = (definitif) => {
-        if(bascule) return;
+        if(bascule || demarre) return;
         bascule = true;
         if(definitif !== false) audioAbsents.add(empreinte);
         audioEnCours = null;
