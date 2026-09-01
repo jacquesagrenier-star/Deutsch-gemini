@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v347</span>
+        <span class="subtitle-version">v348</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17377,7 +17377,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 347;
+const APP_VERSION = 348;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17486,17 +17486,63 @@ function arreterAudioPregenere(){
     }
 }
 
-// crypto.subtle n'existe qu'en contexte securise (https). C'est le cas en
-// production ; en ouvrant index.html depuis le disque, l'empreinte echoue et
-// tout retombe simplement sur le repli.
-async function empreinteAudio(texte){
+// SHA-1 ECRIT A LA MAIN, ET C'EST VOULU : IL DOIT ETRE SYNCHRONE.
+//
+// La version precedente appelait crypto.subtle.digest(), qui rend une promesse.
+// direAllemand() devait donc l'attendre avant de lancer la lecture -- et sur
+// iOS, l'autorisation de jouer un son n'y survit pas : Safari n'accorde la
+// lecture que dans le prolongement direct du geste de l'utilisateur, et un
+// `await` rompt ce lien. play() etait refuse, le code basculait sur la voix du
+// telephone, et rien ne signalait l'echec. C'est exactement ce qui s'est
+// produit en v347 : les 5 260 fichiers etaient en ligne et servis, l'app ne
+// les jouait jamais.
+//
+// Un SHA-1 tient en quarante lignes et se calcule sur place. Deux benefices
+// par-dessus le marche : plus besoin de contexte securise, donc l'empreinte
+// marche aussi en ouvrant index.html depuis le disque ; et le calcul est
+// identique a hashlib.sha1() de audio/manifest.py, ce qui reste la seule chose
+// qui doit etre vraie.
+function sha1Hex(texte){
+    const octets = new TextEncoder().encode(texte);
+    const n = octets.length;
+    const blocs = ((n + 8) >> 6) + 1;
+    const mots = new Uint32Array(blocs * 16);
+    for(let i = 0; i < n; i++) mots[i >> 2] |= octets[i] << (24 - (i % 4) * 8);
+    mots[n >> 2] |= 0x80 << (24 - (n % 4) * 8);
+    // Longueur en bits sur le dernier mot : nos textes font quelques dizaines
+    // d'octets, les 32 bits de poids fort resteront toujours a zero.
+    mots[blocs * 16 - 1] = n * 8;
+
+    let h0 = 0x67452301, h1 = 0xEFCDAB89, h2 = 0x98BADCFE,
+        h3 = 0x10325476, h4 = 0xC3D2E1F0;
+    const w = new Uint32Array(80);
+    for(let j = 0; j < blocs * 16; j += 16){
+        for(let i = 0; i < 16; i++) w[i] = mots[j + i];
+        for(let i = 16; i < 80; i++){
+            const v = w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16];
+            w[i] = (v << 1) | (v >>> 31);
+        }
+        let a = h0, b = h1, c = h2, d = h3, e = h4;
+        for(let i = 0; i < 80; i++){
+            let f, k;
+            if(i < 20)      { f = (b & c) | (~b & d);            k = 0x5A827999; }
+            else if(i < 40) { f = b ^ c ^ d;                     k = 0x6ED9EBA1; }
+            else if(i < 60) { f = (b & c) | (b & d) | (c & d);   k = 0x8F1BBCDC; }
+            else            { f = b ^ c ^ d;                     k = 0xCA62C1D6; }
+            const t = (((a << 5) | (a >>> 27)) + f + e + k + w[i]) >>> 0;
+            e = d; d = c; c = ((b << 30) | (b >>> 2)) >>> 0; b = a; a = t;
+        }
+        h0 = (h0 + a) >>> 0; h1 = (h1 + b) >>> 0; h2 = (h2 + c) >>> 0;
+        h3 = (h3 + d) >>> 0; h4 = (h4 + e) >>> 0;
+    }
+    return [h0, h1, h2, h3, h4]
+        .map(x => x.toString(16).padStart(8, "0")).join("");
+}
+
+function empreinteAudio(texte){
     if(audioEmpreintes.has(texte)) return audioEmpreintes.get(texte);
-    if(!(window.crypto && window.crypto.subtle)) return null;
     try{
-        const octets = new TextEncoder().encode(texte);
-        const somme = await window.crypto.subtle.digest("SHA-1", octets);
-        const hex = Array.from(new Uint8Array(somme))
-            .map(o => o.toString(16).padStart(2, "0")).join("").slice(0, 16);
+        const hex = sha1Hex(texte).slice(0, 16);
         audioEmpreintes.set(texte, hex);
         return hex;
     }catch(e){ return null; }
@@ -17505,7 +17551,9 @@ async function empreinteAudio(texte){
 // Joue le fichier pre-genere s'il existe, sinon la synthese du navigateur.
 // `onEnd` est appele dans les deux cas : le mode Ecoute enchaine ses etapes
 // dessus, il ne doit jamais rester bloque parce qu'un fichier manque.
-async function direAllemand(texte, opts){
+// SYNCHRONE DU DEBUT A LA FIN, exprès : entre le geste de l'utilisateur et
+// l'appel a play(), il ne doit y avoir aucune attente. Voir sha1Hex().
+function direAllemand(texte, opts){
     opts = opts || {};
     const rate = opts.rate || 0.9;
     const onEnd = opts.onEnd || null;
@@ -17526,28 +17574,40 @@ async function direAllemand(texte, opts){
     if(!texte){ if(onEnd) onEnd(); return; }
     if(!AUDIO_BASE){ repli(); return; }
 
-    const empreinte = await empreinteAudio(texte);
+    const empreinte = empreinteAudio(texte);
     if(!empreinte || audioAbsents.has(empreinte)){ repli(); return; }
 
     const son = new Audio(AUDIO_BASE + empreinte + ".mp3");
     son.playbackRate = rate;
     let bascule = false;
-    const versRepli = () => {
+    // `definitif` distingue deux echecs que la version precedente confondait :
+    //   - le fichier n'existe pas (404, decodage impossible). Il n'existera pas
+    //     davantage au prochain essai : on l'inscrit dans audioAbsents pour ne
+    //     pas payer un aller-retour a chaque lecture.
+    //   - la lecture a ete REFUSEE (pas de geste utilisateur, onglet en fond).
+    //     La le fichier est parfait, seul le moment ne convenait pas. L'inscrire
+    //     condamnerait le mot pour toute la session sur une circonstance
+    //     passagere -- c'est ainsi qu'un seul refus au demarrage rendait
+    //     silencieuse la moitie du vocabulaire.
+    const versRepli = (definitif) => {
         if(bascule) return;
         bascule = true;
-        // Un fichier absent le reste : on l'inscrit pour ne pas retenter a
-        // chaque lecture, sinon chaque mot non genere coute un aller-retour.
-        audioAbsents.add(empreinte);
+        if(definitif !== false) audioAbsents.add(empreinte);
         audioEnCours = null;
         repli();
     };
-    son.onerror = versRepli;
+    son.onerror = () => versRepli(true);
     son.onended = () => { audioEnCours = null; if(onEnd) onEnd(); };
     audioEnCours = son;
     try{
         const p = son.play();
-        if(p && p.catch) p.catch(versRepli);
-    }catch(e){ versRepli(); }
+        if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e)));
+    }catch(e){ versRepli(!estRefusDeLecture(e)); }
+}
+
+function estRefusDeLecture(e){
+    const nom = e && e.name;
+    return nom === "NotAllowedError" || nom === "AbortError";
 }
 
 function speakWord(){
