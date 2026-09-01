@@ -67,17 +67,25 @@ ESSAI = ["Frühstück", "Mädchen", "Buch", "Tag", "Staat", "Stadt", "Straße",
 
 
 def cle_api():
-    cle = os.environ.get("ELEVENLABS_API_KEY")
-    if cle:
-        return cle.strip()
-    chemin = os.path.join(RACINE, "elevenlabs.secret")
-    if os.path.exists(chemin):
-        with io.open(chemin, encoding="utf-8") as f:
-            return f.read().strip()
-    print("Cle introuvable. Cree elevenlabs.secret a la racine du projet\n"
-          "(une seule ligne, la cle et rien d'autre), ou exporte\n"
-          "ELEVENLABS_API_KEY.")
-    sys.exit(1)
+    cle = (os.environ.get("ELEVENLABS_API_KEY") or "").strip()
+    if not cle:
+        chemin = os.path.join(RACINE, "elevenlabs.secret")
+        if os.path.exists(chemin):
+            with io.open(chemin, encoding="utf-8") as f:
+                cle = f.read().strip()
+    # Le fichier existe souvent avant la cle : on le cree vide pour eviter le
+    # piege de Notepad, qui enregistrerait "elevenlabs.secret.txt".
+    if not cle:
+        print("Cle absente. Ouvre elevenlabs.secret a la racine du projet et\n"
+              "colle la cle dedans, seule, sur une ligne. Ou exporte\n"
+              "ELEVENLABS_API_KEY.")
+        sys.exit(1)
+    if len(cle.split()) > 1 or len(cle) < 20:
+        print("Le contenu d'elevenlabs.secret ne ressemble pas a une cle\n"
+              "(%d caracteres, %d mots). Elle doit y etre seule, sans guillemets\n"
+              "ni prefixe." % (len(cle), len(cle.split())))
+        sys.exit(1)
+    return cle
 
 
 def synthetiser(texte, modele, cle):
