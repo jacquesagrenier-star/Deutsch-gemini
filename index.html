@@ -3588,7 +3588,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v381</span>
+        <span class="subtitle-version">v382</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4866,6 +4866,64 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="spacer"></div>
     <button class="secondary" onclick="startKonjunktionenVokabular()" data-i18n="konjunktionen_btn_vocab">VOCABULAIRE : FLASHCARDS →</button>
     <div id="konjunktionenNiveauBar" class="filters-bar"></div>
+</section>
+
+<!-- ================= COMPRENDRE L'EXAMEN =================
+
+     Le seul ecran de la tuile Preparation qui ne contient aucun exercice.
+
+     Celui qui prepare un examen de langue perd souvent des points non pas
+     faute de vocabulaire, mais faute de savoir de quoi l'epreuve est faite :
+     combien de parties, combien de temps, et ce qui compte comme reussi. Ces
+     informations-la ne s'apprennent pas par coeur, elles se lisent une fois --
+     et elles changent la facon de travailler tout le reste.
+
+     La note finale n'est pas de la prudence decorative : les durees et les
+     baremes bougent d'une session a l'autre, et une application qui les
+     annoncerait comme certains induirait en erreur le jour ou ils changent. -->
+
+<section id="pruefungInfo" class="screen">
+    <button class="back" onclick="openOrbPanel('pruefung')"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="pruefung_kicker">Préparation aux examens</div>
+            <h2 data-i18n="pruefung_info_title">Comprendre l'examen</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="pruefung_info_intro"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="pruefung_info_teile_t">Les quatre parties</strong>
+        <div class="info-box" data-i18n-html="pruefung_info_hoeren"></div>
+        <div class="info-box" data-i18n-html="pruefung_info_lesen"></div>
+        <div class="info-box" data-i18n-html="pruefung_info_schreiben"></div>
+        <div class="info-box" data-i18n-html="pruefung_info_sprechen"></div>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="pruefung_info_regeln_t">Perdre des points sans faute de langue</strong>
+        <div class="info-box" data-i18n-html="pruefung_info_regel1"></div>
+        <div class="info-box" data-i18n-html="pruefung_info_regel2"></div>
+        <div class="info-box" data-i18n-html="pruefung_info_regel3"></div>
+    </div>
+
+    <div class="card">
+        <div class="info-box" data-i18n-html="pruefung_info_note"></div>
+    </div>
+
+    <div class="spacer"></div>
+    <div id="pruefungNiveauBar" class="filters-bar"></div>
+    <button class="secondary" onclick="startPruefungHoeren()" data-i18n="pruefung_info_btn_hoeren">M'ENTRAÎNER : ÉCOUTER →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPruefungLesen()" data-i18n="pruefung_info_btn_lesen">M'ENTRAÎNER : LIRE →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPruefungSchreiben()" data-i18n="pruefung_info_btn_schreiben">M'ENTRAÎNER : ÉCRIRE →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startPruefungSprechen()" data-i18n="pruefung_info_btn_sprechen">M'ENTRAÎNER : PARLER →</button>
 </section>
 
 <!-- ================= STRUCTURE (SATZBAU) ================= -->
@@ -6591,6 +6649,7 @@ const I18N = {
         kicker_pruefung_hoeren: "Examen · Écouter", kicker_pruefung_lesen: "Examen · Lire",
         kicker_pruefung_schreiben: "Examen · Écrire", kicker_pruefung_sprechen: "Examen · Parler",
         pruefung_pas_encore: "Le contenu de l’examen n’est pas encore chargé. Réessaie dans un instant.",
+        pruefung_niveau_vide: "Cette partie n’a rien à ce niveau. Choisis un autre niveau au-dessus des boutons.",
         op_pruefung_noyau_t: "Le noyau", op_pruefung_noyau_d: "Les mots que les trois listes retiennent",
         op_pruefung_a2_t: "Niveau A2", op_pruefung_a2_d: "La liste officielle du Goethe-Zertifikat A2",
         op_pruefung_b1_t: "Niveau B1", op_pruefung_b1_d: "Goethe B1 et DTZ réunis — le même niveau",
@@ -6600,6 +6659,23 @@ const I18N = {
         pruefung_noyau_t: "Le noyau", pruefung_a2_t: "Niveau A2", pruefung_b1_t: "Niveau B1",
         pruefung_c1_t: "Niveau C1", pruefung_null_t: "Vocabulaire d’examen",
         pruefung_aucun: "Aucune carte d’examen n’est encore chargée.",
+        op_pruefung_info_t: "Comprendre l’examen", op_pruefung_info_d: "Les quatre parties, la durée, ce qui fait perdre des points",
+        pruefung_info_title: "Comprendre l’examen",
+        pruefung_info_intro: `Trois examens, un même niveau. Le <strong>Goethe-Zertifikat</strong> (A2 ou B1) et le <strong>DTZ</strong> testent les mêmes quatre compétences, dans le même ordre : écouter, lire, écrire, parler. Le DTZ est celui qui clôt le cours d’intégration — il est co-édité par le Goethe-Institut et telc, et il donne un résultat <em>par compétence</em> : on peut obtenir A2 dans une partie et B1 dans une autre.`,
+        pruefung_info_teile_t: "Les quatre parties",
+        pruefung_info_hoeren: `<strong>Écouter — environ 25 minutes.</strong><br>Des annonces, des messages téléphoniques, de courtes conversations. Chaque passage est court, et <strong>on ne l’entend qu’une ou deux fois</strong>. La question est posée <em>avant</em> l’écoute : lisez-la d’abord, elle vous dit quoi guetter.`,
+        pruefung_info_lesen: `<strong>Lire — environ 45 minutes.</strong><br>Petites annonces, courriels, panneaux, articles courts. Le texte reste sous vos yeux : rien n’est à retenir par cœur. Le piège n’est pas le vocabulaire, c’est la réponse <strong>vraie mais hors sujet</strong> — une information bien présente dans le texte, qui ne répond pas à la question posée.`,
+        pruefung_info_schreiben: `<strong>Écrire — environ 30 minutes.</strong><br>Une lettre ou un courriel : une réclamation, une excuse, une demande. La structure compte autant que la langue — formule d’appel, la nouvelle, la raison, la demande, la salutation, la signature. Oublier la formule d’appel ou la salutation coûte des points <strong>même si le reste est parfait</strong>.`,
+        pruefung_info_sprechen: `<strong>Parler — environ 15 minutes, à deux.</strong><br>Trois moments : se présenter, parler d’une expérience, puis <strong>planifier quelque chose avec l’autre candidat</strong>. C’est ce troisième moment qui surprend le plus : on n’y est pas évalué sur un exposé, mais sur la capacité à proposer, à réagir et à se mettre d’accord. Une réponse parfaite qui ignore l’autre candidat vaut moins qu’une réponse simple qui lui pose une question.`,
+        pruefung_info_regeln_t: "Perdre des points sans faire de faute de langue",
+        pruefung_info_regel1: `<strong>Le mauvais registre.</strong> « Liebe Sofia » à une administration, ou « Sehr geehrte Damen und Herren » à une amie. Se tromper de registre est jugé plus sévèrement qu’une faute de grammaire : le correcteur y voit une erreur de jugement, pas d’apprentissage.`,
+        pruefung_info_regel2: `<strong>La consigne à moitié traitée.</strong> Une tâche d’écriture donne toujours trois ou quatre points à couvrir. Une lettre magnifique qui en oublie un est notée en dessous d’une lettre maladroite qui les traite tous.`,
+        pruefung_info_regel3: `<strong>Le silence à l’oral.</strong> Ne pas savoir quoi dire coûte plus cher que le dire mal. « Das weiß ich nicht genau, aber ich glaube… » vous laisse dans la conversation ; se taire vous en sort.`,
+        pruefung_info_note: `<strong>Les durées et les barèmes bougent d’une session à l’autre.</strong> Ce qui est écrit ici donne la forme de l’épreuve et l’ordre de grandeur. Pour le règlement exact, le nombre de points et les conditions de réussite, fiez-vous au centre d’examen où vous êtes inscrit — jamais à une application.`,
+        pruefung_info_btn_hoeren: "M’ENTRAÎNER : ÉCOUTER →",
+        pruefung_info_btn_lesen: "M’ENTRAÎNER : LIRE →",
+        pruefung_info_btn_schreiben: "M’ENTRAÎNER : ÉCRIRE →",
+        pruefung_info_btn_sprechen: "M’ENTRAÎNER : PARLER →",
         orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Comprendre les expressions", op_redewendungen_o1_d: "6 familles : saluer, nuancer, r\u00e9agir\u2026",
@@ -7542,6 +7618,7 @@ const I18N = {
         kicker_pruefung_hoeren: "Exam · Listening", kicker_pruefung_lesen: "Exam · Reading",
         kicker_pruefung_schreiben: "Exam · Writing", kicker_pruefung_sprechen: "Exam · Speaking",
         pruefung_pas_encore: "The exam content hasn’t loaded yet. Try again in a moment.",
+        pruefung_niveau_vide: "This part has nothing at that level. Pick another level above the buttons.",
         op_pruefung_noyau_t: "The core", op_pruefung_noyau_d: "The words all three lists keep",
         op_pruefung_a2_t: "Level A2", op_pruefung_a2_d: "The official Goethe-Zertifikat A2 list",
         op_pruefung_b1_t: "Level B1", op_pruefung_b1_d: "Goethe B1 and DTZ together — the same level",
@@ -7551,6 +7628,23 @@ const I18N = {
         pruefung_noyau_t: "The core", pruefung_a2_t: "Level A2", pruefung_b1_t: "Level B1",
         pruefung_c1_t: "Level C1", pruefung_null_t: "Exam vocabulary",
         pruefung_aucun: "No exam cards are loaded yet.",
+        op_pruefung_info_t: "Understand the exam", op_pruefung_info_d: "The four parts, the timing, what quietly costs points",
+        pruefung_info_title: "Understand the exam",
+        pruefung_info_intro: `Three exams, one level. The <strong>Goethe-Zertifikat</strong> (A2 or B1) and the <strong>DTZ</strong> test the same four skills, in the same order: listening, reading, writing, speaking. The DTZ is the one that closes the integration course — it is co-published by the Goethe-Institut and telc, and it gives a result <em>per skill</em>: you can be graded A2 in one part and B1 in another.`,
+        pruefung_info_teile_t: "The four parts",
+        pruefung_info_hoeren: `<strong>Listening — about 25 minutes.</strong><br>Announcements, phone messages, short conversations. Each passage is short, and <strong>you hear it only once or twice</strong>. The question comes <em>before</em> the audio: read it first, it tells you what to listen for.`,
+        pruefung_info_lesen: `<strong>Reading — about 45 minutes.</strong><br>Small ads, emails, signs, short articles. The text stays in front of you: nothing has to be memorised. The trap isn't the vocabulary, it's the answer that is <strong>true but off-topic</strong> — a fact that really is in the text, and doesn't answer the question asked.`,
+        pruefung_info_schreiben: `<strong>Writing — about 30 minutes.</strong><br>A letter or an email: a complaint, an apology, a request. The structure counts as much as the language — greeting, the news, the reason, the request, the closing, the signature. Leaving out the greeting or the closing costs points <strong>even when the rest is perfect</strong>.`,
+        pruefung_info_sprechen: `<strong>Speaking — about 15 minutes, in pairs.</strong><br>Three moments: introduce yourself, talk about an experience, then <strong>plan something together with the other candidate</strong>. That third moment is the one that surprises people: you are not graded on a speech, but on your ability to suggest, to react and to reach an agreement. A perfect answer that ignores the other candidate is worth less than a simple one that asks them a question.`,
+        pruefung_info_regeln_t: "Losing points without making a language mistake",
+        pruefung_info_regel1: `<strong>The wrong register.</strong> "Liebe Sofia" to a government office, or "Sehr geehrte Damen und Herren" to a friend. Getting the register wrong is judged more harshly than a grammar mistake: the examiner reads it as an error of judgement, not of learning.`,
+        pruefung_info_regel2: `<strong>The half-answered prompt.</strong> A writing task always lists three or four points to cover. A beautiful letter that misses one scores below a clumsy letter that covers them all.`,
+        pruefung_info_regel3: `<strong>Silence in the speaking part.</strong> Not knowing what to say costs more than saying it badly. "Das weiß ich nicht genau, aber ich glaube…" keeps you in the conversation; silence takes you out of it.`,
+        pruefung_info_note: `<strong>Timings and marking schemes change from one session to the next.</strong> What's written here gives you the shape of the exam and the order of magnitude. For the exact rules, the number of points and the pass conditions, trust the exam centre you registered with — never an app.`,
+        pruefung_info_btn_hoeren: "PRACTISE: LISTENING →",
+        pruefung_info_btn_lesen: "PRACTISE: READING →",
+        pruefung_info_btn_schreiben: "PRACTISE: WRITING →",
+        pruefung_info_btn_sprechen: "PRACTISE: SPEAKING →",
         orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Understand expressions", op_redewendungen_o1_d: "6 families: greeting, hedging, reacting\u2026",
@@ -8497,6 +8591,7 @@ const I18N = {
         kicker_pruefung_hoeren: "Sınav · Dinleme", kicker_pruefung_lesen: "Sınav · Okuma",
         kicker_pruefung_schreiben: "Sınav · Yazma", kicker_pruefung_sprechen: "Sınav · Konuşma",
         pruefung_pas_encore: "Sınav içeriği henüz yüklenmedi. Birazdan tekrar deneyin.",
+        pruefung_niveau_vide: "Bu bölümde o seviyede içerik yok. Düğmelerin üstünden başka bir seviye seçin.",
         op_pruefung_noyau_t: "Çekirdek", op_pruefung_noyau_d: "Üç listenin de tuttuğu kelimeler",
         op_pruefung_a2_t: "A2 seviyesi", op_pruefung_a2_d: "Goethe-Zertifikat A2’nin resmî listesi",
         op_pruefung_b1_t: "B1 seviyesi", op_pruefung_b1_d: "Goethe B1 ve DTZ birlikte — aynı seviye",
@@ -8506,6 +8601,23 @@ const I18N = {
         pruefung_noyau_t: "Çekirdek", pruefung_a2_t: "A2 seviyesi", pruefung_b1_t: "B1 seviyesi",
         pruefung_c1_t: "C1 seviyesi", pruefung_null_t: "Sınav kelimeleri",
         pruefung_aucun: "Henüz sınav kartı yüklenmedi.",
+        op_pruefung_info_t: "Sınavı anlamak", op_pruefung_info_d: "Dört bölüm, süreler ve sessizce puan kaybettiren şeyler",
+        pruefung_info_title: "Sınavı anlamak",
+        pruefung_info_intro: `Üç sınav, tek bir seviye. <strong>Goethe-Zertifikat</strong> (A2 ya da B1) ve <strong>DTZ</strong> aynı dört beceriyi aynı sırayla ölçer: dinleme, okuma, yazma, konuşma. DTZ, entegrasyon kursunu bitiren sınavdır — Goethe-Institut ile telc tarafından birlikte yayımlanır ve sonucu <em>beceri bazında</em> verir: bir bölümde A2, başka bir bölümde B1 alabilirsiniz.`,
+        pruefung_info_teile_t: "Dört bölüm",
+        pruefung_info_hoeren: `<strong>Dinleme — yaklaşık 25 dakika.</strong><br>Anonslar, telefon mesajları, kısa konuşmalar. Her parça kısadır ve <strong>yalnızca bir ya da iki kez dinlenir</strong>. Soru sesten <em>önce</em> gelir: önce onu okuyun, neye kulak vereceğinizi söyler.`,
+        pruefung_info_lesen: `<strong>Okuma — yaklaşık 45 dakika.</strong><br>Küçük ilanlar, e-postalar, tabelalar, kısa yazılar. Metin gözünüzün önünde kalır: ezberlenecek hiçbir şey yoktur. Tuzak kelimeler değil, <strong>doğru ama konu dışı</strong> cevaptır — metinde gerçekten geçen, ama sorulan soruya cevap vermeyen bir bilgi.`,
+        pruefung_info_schreiben: `<strong>Yazma — yaklaşık 30 dakika.</strong><br>Bir mektup ya da e-posta: şikâyet, özür, rica. Yapı en az dil kadar önemlidir — hitap, haber, gerekçe, rica, kapanış, imza. Hitabı ya da kapanışı unutmak, <strong>geri kalanı kusursuz olsa bile</strong> puan kaybettirir.`,
+        pruefung_info_sprechen: `<strong>Konuşma — yaklaşık 15 dakika, iki kişi.</strong><br>Üç aşama: kendinizi tanıtmak, bir deneyimi anlatmak, sonra <strong>diğer adayla birlikte bir şey planlamak</strong>. En çok şaşırtan bu üçüncü aşamadır: burada bir sunum değil, öneri getirme, tepki verme ve anlaşmaya varma beceriniz değerlendirilir. Diğer adayı yok sayan kusursuz bir cevap, ona soru soran basit bir cevaptan daha az değerlidir.`,
+        pruefung_info_regeln_t: "Dil hatası yapmadan puan kaybetmek",
+        pruefung_info_regel1: `<strong>Yanlış üslup.</strong> Bir resmî kuruma "Liebe Sofia", bir arkadaşa "Sehr geehrte Damen und Herren". Üslubu şaşırmak bir dilbilgisi hatasından daha ağır değerlendirilir: değerlendiren kişi bunu öğrenme değil, muhakeme hatası olarak okur.`,
+        pruefung_info_regel2: `<strong>Yarım bırakılan yönerge.</strong> Yazma görevi her zaman üç ya da dört madde sıralar. Bir maddeyi atlayan çok güzel bir mektup, hepsine değinen beceriksiz bir mektubun altında puan alır.`,
+        pruefung_info_regel3: `<strong>Konuşmada sessizlik.</strong> Ne diyeceğini bilememek, kötü söylemekten daha pahalıya mal olur. "Das weiß ich nicht genau, aber ich glaube…" sizi konuşmanın içinde tutar; susmak dışına çıkarır.`,
+        pruefung_info_note: `<strong>Süreler ve puanlama oturumdan oturuma değişir.</strong> Burada yazanlar sınavın biçimini ve büyüklük sırasını verir. Kesin kurallar, puan sayısı ve geçme koşulları için kayıt olduğunuz sınav merkezine güvenin — asla bir uygulamaya değil.`,
+        pruefung_info_btn_hoeren: "ALIŞTIRMA: DİNLEME →",
+        pruefung_info_btn_lesen: "ALIŞTIRMA: OKUMA →",
+        pruefung_info_btn_schreiben: "ALIŞTIRMA: YAZMA →",
+        pruefung_info_btn_sprechen: "ALIŞTIRMA: KONUŞMA →",
         orb_redewendungen_sub: "keine Ahnung · auf jeden Fall",
         op_redewendungen_title: "İfadeler", op_redewendungen_sub: "keine Ahnung · es kommt darauf an",
         op_redewendungen_o1_t: "İfadeleri anlamak", op_redewendungen_o1_d: "6 aile: selamlaşma, çekince, tepki…",
@@ -14840,8 +14952,15 @@ function orbPanelData(id){
                 // elle prepare un examen. Le vocabulaire sert les epreuves,
                 // pas l'inverse -- et celui qui ouvre cette tuile a une date
                 // d'examen en tete, pas une envie de reviser des mots.
+                //
+                // Et avant les epreuves, DE QUOI L'EXAMEN EST FAIT. On perd des
+                // points a ignorer qu'un extrait audio ne passe que deux fois
+                // ou qu'une lettre sans salutation est amputee, et aucune
+                // quantite de vocabulaire ne repare cela.
+                { icon:"dossier", title:t("op_pruefung_info_t"), desc:t("op_pruefung_info_d"),
+                  primary:true, action:"openPruefungInfo" },
                 { icon:"exercice", title:t("op_pruefung_hoeren_t"), desc:t("op_pruefung_hoeren_d"),
-                  primary:true, action:"startPruefungHoeren" },
+                  action:"startPruefungHoeren" },
                 { icon:"exercice", title:t("op_pruefung_lesen_t"), desc:t("op_pruefung_lesen_d"),
                   action:"startPruefungLesen" },
                 { icon:"exercice", title:t("op_pruefung_schreiben_t"), desc:t("op_pruefung_schreiben_d"),
@@ -15499,22 +15618,73 @@ function exercicesHoeren(niveau){
 // Le contenu arrive du reseau : une serie vide veut dire que le fichier n'est
 // pas encore la, pas qu'il n'y a rien a reviser. On le dit plutot que d'ouvrir
 // un ecran d'exercice vide.
+// LE NIVEAU CHOISI VAUT POUR LES QUATRE EPREUVES A LA FOIS. Un candidat
+// prepare UN examen, pas quatre : lui faire redire « A2 » avant chaque partie
+// serait quatre fois la meme question. La barre vit donc sur l'ecran
+// « Comprendre l'examen », au-dessus des quatre boutons qu'elle commande.
+let pruefungNiveau = null;   // null = les deux niveaux
+
+function selectPruefungNiveau(n){
+    pruefungNiveau = (n === "ALL") ? null : n;
+    renderPruefungNiveauBar();
+}
+
+// Le compte annonce ce qu'on obtiendra vraiment : les quatre parties
+// additionnees, et pour la lecture les QUESTIONS, pas les textes -- c'est le
+// nombre d'ecrans que l'usager va traverser.
+function nbEpreuves(niveau){
+    return exercicesHoeren(niveau).length + exercicesLesen(niveau).length
+         + exercicesSchreiben(niveau).length + exercicesSprechen(niveau).length;
+}
+
+function renderPruefungNiveauBar(){
+    const bar = document.getElementById("pruefungNiveauBar");
+    if(!bar) return;
+    const bouton = (val, libelle, n) => {
+        const actif = (val === "ALL") ? (pruefungNiveau === null)
+                                      : (pruefungNiveau === val);
+        const style = actif ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+                            : "flex:1; min-width:0;";
+        return `<button class="secondary" style="${style}" onclick="selectPruefungNiveau('${val}')">${libelle} (${n})</button>`;
+    };
+    let html = bouton("ALL", t('adverbien_level_all'), nbEpreuves(null));
+    ["A2", "B1"].forEach(lvl => {
+        const n = nbEpreuves(lvl);
+        if(n) html += bouton(lvl, lvl, n);
+    });
+    bar.innerHTML = html;
+}
+
 function lancerEpreuve(construire, kicker){
-    const liste = construire(null);
-    if(!liste.length){
-        if(!pruefungData) loadPruefungJson().then(() => {
-            const seconde = construire(null);
-            if(seconde.length) startExerciseSet(shuffleArray(seconde), kicker,
-                                                () => openOrbPanel('pruefung'),
-                                                () => lancerEpreuve(construire, kicker));
-            else showInfoToast(t('pruefung_pas_encore'));
-        });
-        else showInfoToast(t('pruefung_pas_encore'));
-        return;
-    }
-    startExerciseSet(shuffleArray(liste), kicker,
-                     () => openOrbPanel('pruefung'),
-                     () => lancerEpreuve(construire, kicker));
+    const jouer = () => {
+        const liste = construire(pruefungNiveau);
+        if(!liste.length){
+            // DEUX SILENCES DIFFERENTS, DEUX MESSAGES DIFFERENTS. Une liste
+            // vide parce que le fichier n'est pas encore arrive du reseau n'a
+            // rien a voir avec une liste vide parce que cette partie n'a rien
+            // au niveau choisi -- et l'usager ne peut agir que dans le second
+            // cas, en changeant de niveau.
+            showInfoToast(t(pruefungData ? 'pruefung_niveau_vide' : 'pruefung_pas_encore'));
+            return;
+        }
+        startExerciseSet(shuffleArray(liste), kicker,
+                         openPruefungInfo,
+                         () => lancerEpreuve(construire, kicker));
+    };
+    if(!pruefungData) loadPruefungJson().then(jouer);
+    else jouer();
+}
+
+// LE RETOUR DES QUATRE EPREUVES POINTE ICI, PAS SUR LE PANNEAU. L'ecran
+// « Comprendre l'examen » porte les quatre boutons : en sortir d'une epreuve
+// remet donc les trois autres a portee, au lieu de renvoyer l'usager dans une
+// liste ou le vocabulaire occupe les deux tiers de la place.
+function openPruefungInfo(){
+    renderPruefungNiveauBar();
+    showScreen("pruefungInfo");
+    // Le fichier peut n'etre pas encore arrive : la barre afficherait alors
+    // « (0) » partout. On la redessine des qu'il est la.
+    if(!pruefungData) loadPruefungJson().then(renderPruefungNiveauBar);
 }
 
 function startPruefungSprechen(){ lancerEpreuve(exercicesSprechen, "kicker_pruefung_sprechen"); }
@@ -19156,7 +19326,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 381;
+const APP_VERSION = 382;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
