@@ -1,15 +1,20 @@
-# Relecture croisée du turc
+# Relecture croisée — turc
+
+L'outillage vaut pour **toutes les langues cibles** : `--langue uk`, `--langue ru`,
+`--langue pl`. Sans l'option, c'est le turc. Chaque langue a son dossier
+(`relecture_uk/`, `corrections_uk/`…) et tout ce qui dépend de la langue vit dans
+`tests/langue.py` — ajouter une langue tient en une ligne.
 
 Même méthode que pour l'allemand, **même ordre** : le contrôle mécanique
 d'abord, la relecture par un autre modèle ensuite, et n'appliquer que les faits.
 
-Tout est produit par `tests/relecture_tr.py`.
+Tout est produit par `tests/relecture_langue.py`.
 
 ## 1. Le contrôle mécanique — avant toute IA
 
 ```
-python tests/relecture_tr.py --suspects
-python tests/relecture_tr.py --collisions
+python tests/relecture_langue.py --suspects       # --langue uk pour l'ukrainien
+python tests/relecture_langue.py --collisions
 ```
 
 - **`suspects.md`** — les champs turcs qui ne peuvent pas être une traduction :
@@ -37,9 +42,9 @@ perdu, plus aucune collision à trancher.
 ## 2. Les lots à distribuer
 
 ```
-python tests/relecture_tr.py --niveaux A1,A2
-python tests/relecture_tr.py                     # tous les niveaux
-python tests/relecture_tr.py --categories noms   # une seule catégorie
+python tests/relecture_langue.py --niveaux A1,A2
+python tests/relecture_langue.py                     # tous les niveaux
+python tests/relecture_langue.py --categories noms   # une seule catégorie
 ```
 
 Un lot = un fichier `<catégorie>_<niveau>_lot_NN.json`, 100 cartes (40 pour les
@@ -56,7 +61,7 @@ cale, et à 330 cartes par lot aussi.
 Récupérer chaque réponse sous `verdict_<nom du lot>.json` dans ce dossier, puis :
 
 ```
-python tests/relecture_tr.py --rapport
+python tests/relecture_langue.py --rapport
 ```
 
 Produit **`divergences_tr.md`**. Il ne corrige **rien** : l'application est en

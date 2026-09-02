@@ -51,8 +51,19 @@ import os
 import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SORTIE = os.path.join(RACINE, "relecture_tr")
-NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import langue as L                                          # noqa: E402
+
+NIVEAUX = L.NIVEAUX
+
+# LA LANGUE COURANTE, POSEE PAR main(). Tout ce qui en depend -- le suffixe des
+# champs, les dossiers, le nom lisible -- passe par cet objet ; ce fichier ne
+# connait plus le turc.
+LANGUE = None
+
+
+def sortie():
+    return LANGUE.sortie
 
 # Combien de cartes par lot, selon le poids reel d'une carte. Une carte de
 # verbe porte cinq fragments turcs, une carte de nom en porte deux : les
@@ -67,100 +78,6 @@ TAILLE_DEFAUT = 100
 # toujours : cle (le mot allemand, identifiant du signalement), niveau, et les
 # champs a soumettre. La forme des fichiers JSON differe d'une categorie a
 # l'autre -- c'est ici, et seulement ici, que ca se voit.
-
-def _charger(nom):
-    return json.load(io.open(os.path.join(RACINE, nom), encoding="utf-8"))
-
-
-def cartes_noms():
-    d = _charger("themes.json")
-    themes = d.get("themes", d)
-    out = []
-    for t in themes:
-        for m in t.get("mots", []):
-            out.append({
-                "cle": m.get("mot"),
-                "niveau": t.get("niveau"),
-                "theme": t.get("nom_theme"),
-                "allemand": ((m.get("genre") or "") + " " + (m.get("mot") or "")).strip(),
-                "sens_fr": m.get("traduction"),
-                "turc": m.get("traduction_tr"),
-                "phrase_de": m.get("exemple"),
-                "phrase_fr": m.get("exemple_fr"),
-                "phrase_tr": m.get("exemple_tr"),
-            })
-    return out
-
-
-def cartes_simples(fichier, champ_mot="mot"):
-    """adjectif.json, adverbe.json, redewendung.json : meme forme."""
-    d = _charger(fichier)
-    out = []
-    for niveau in NIVEAUX:
-        for m in d.get(niveau, []):
-            out.append({
-                "cle": m.get(champ_mot),
-                "niveau": niveau,
-                "allemand": m.get(champ_mot),
-                "sens_fr": m.get("traduction"),
-                "turc": m.get("traduction_tr"),
-                "phrase_de": m.get("exemple"),
-                "phrase_fr": m.get("exemple_fr"),
-                "phrase_tr": m.get("exemple_tr"),
-            })
-    return out
-
-
-def cartes_verbes():
-    """Un verbe porte quatre temps, chacun avec sa phrase et sa version turque.
-
-    On soumet les quatre : c'est la ou se cachent les erreurs de temps et
-    d'aspect, que le turc rend differemment de l'allemand.
-    """
-    d = _charger("verbe.json")
-    temps = [("exemple", "Präsens"), ("perfekt", "Perfekt"),
-             ("praeteritum", "Präteritum"), ("konjunktiv2", "Konjunktiv II")]
-    out = []
-    for niveau in NIVEAUX:
-        for v in d.get(niveau, []):
-            phrases = []
-            for champ, libelle in temps:
-                de = v.get(champ)
-                if not de:
-                    continue
-                phrases.append({
-                    "temps": libelle,
-                    "champ": champ,
-                    "de": de,
-                    "fr": v.get(champ + "_fr"),
-                    "tr": v.get(champ + "_tr"),
-                })
-            out.append({
-                "cle": v.get("infinitif"),
-                "niveau": niveau,
-                "allemand": v.get("infinitif"),
-                "sens_fr": v.get("traduction"),
-                "turc": v.get("traduction_tr"),
-                "phrases": phrases,
-            })
-    return out
-
-
-CATEGORIES = {
-    "noms": cartes_noms,
-    "verbes": cartes_verbes,
-    "adjectifs": lambda: cartes_simples("adjectif.json"),
-    "adverbes": lambda: cartes_simples("adverbe.json"),
-    "expressions": lambda: cartes_simples("redewendung.json"),
-}
-
-
-def toutes_les_cartes():
-    tout = {}
-    for nom, fn in CATEGORIES.items():
-        tout[nom] = fn()
-    return tout
-
 
 # ------------------------------------------------------- 1. controle mecanique
 
@@ -184,26 +101,26 @@ def _suspects(cartes):
     """
     out = []
     for c in cartes:
-        mot = (c.get("turc") or "").strip()
+        mot = (c.get("cible") or "").strip()
         if len(mot) <= 1:
-            out.append((c, "traduction_tr", mot))
+            out.append((c, LANGUE.champ("traduction"), mot))
         phrases = c.get("phrases")
         if phrases:
             for p in phrases:
-                tr = (p.get("tr") or "").strip()
+                tr = (p.get("cible") or "").strip()
                 if len(tr) < 8:
-                    out.append((c, p["champ"] + "_tr", tr))
+                    out.append((c, LANGUE.champ(p["champ"]), tr))
         else:
-            ph = (c.get("phrase_tr") or "").strip()
+            ph = (c.get("phrase_cible") or "").strip()
             if len(ph) < 8:
-                out.append((c, "exemple_tr", ph))
+                out.append((c, LANGUE.champ("exemple"), ph))
     return out
 
 
 def suspects():
-    tout = toutes_les_cartes()
-    if not os.path.isdir(SORTIE):
-        os.makedirs(SORTIE)
+    tout = LANGUE.toutes_les_cartes()
+    if not os.path.isdir(sortie()):
+        os.makedirs(sortie())
     total = 0
     lignes = []
     for nom in sorted(tout):
@@ -226,10 +143,10 @@ def suspects():
             lignes.append("")
         print("  %-12s %4d champ(s) perdu(s)" % (nom, len(trouves)))
 
-    chemin = os.path.join(SORTIE, "suspects.md")
+    chemin = os.path.join(sortie(), "suspects.md")
     with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
-        f.write("# Champs turcs perdus — le controle mecanique\n\n")
-        f.write("Produit par `python tests/relecture_tr.py --suspects`. ")
+        f.write("# Champs perdus dans la langue cible — le controle mecanique\n\n")
+        f.write("Produit par `python tests/relecture_langue.py --langue %s --suspects`. " % LANGUE.code)
         f.write("**Aucune correction appliquee.**\n\n")
         f.write("Ce ne sont pas des traductions faibles, ce sont des donnees ")
         f.write("perdues : un caractere unique en guise de mot, une phrase de ")
@@ -241,7 +158,7 @@ def suspects():
         f.write("\n".join(lignes))
         f.write("\n")
     print()
-    print("  ecrit : relecture_tr/suspects.md  (%d champs)" % total)
+    print("  ecrit : %s/suspects.md  (%d champs)" % (os.path.basename(sortie()), total))
     return 0
 
 
@@ -300,7 +217,7 @@ def _radical(mot):
 # ligne qu'on ne peut pas justifier devant une locutrice native n'a rien a y
 # faire, et le format l'impose.
 def collisions_acceptees():
-    chemin = os.path.join(SORTIE, "collisions-acceptees.txt")
+    chemin = os.path.join(sortie(), "collisions-acceptees.txt")
     if not os.path.isfile(chemin):
         return {}
     out = {}
@@ -333,7 +250,7 @@ def collisions():
     fondre `das Alter` et `der Alter` cote allemand avait produit 25 faux
     positifs.
     """
-    tout = toutes_les_cartes()
+    tout = LANGUE.toutes_les_cartes()
     total = 0
     lignes = []
     genres = []
@@ -342,7 +259,7 @@ def collisions():
     for nom in sorted(tout):
         par_turc = {}
         for c in tout[nom]:
-            tr = (c.get("turc") or "").strip().lower()
+            tr = (c.get("cible") or "").strip().lower()
             de = (c.get("allemand") or "").strip()
             if not tr or not de:
                 continue
@@ -361,7 +278,7 @@ def collisions():
         if not groupes:
             continue
         total += sum(len(v) for _, v in groupes)
-        lignes.append("\n## %s (%d reponses turques pour %d mots allemands)\n"
+        lignes.append("\n## %s (%d reponses pour %d mots allemands)\n"
                       % (nom, len(groupes), sum(len(v) for _, v in groupes)))
         for tr, v in groupes:
             mots = ", ".join("%s (%s)" % (x["allemand"], x["niveau"]) for x in v)
@@ -371,12 +288,12 @@ def collisions():
                     lignes.append("    - %s : %s" % (x["allemand"], x["sens_fr"]))
         lignes.append("")
 
-    if not os.path.isdir(SORTIE):
-        os.makedirs(SORTIE)
-    chemin = os.path.join(SORTIE, "collisions.md")
+    if not os.path.isdir(sortie()):
+        os.makedirs(sortie())
+    chemin = os.path.join(sortie(), "collisions.md")
     with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
-        f.write("# Collisions turques — le controle mecanique\n\n")
-        f.write("Produit par `python tests/relecture_tr.py --collisions`. ")
+        f.write("# Collisions dans la langue cible — le controle mecanique\n\n")
+        f.write("Produit par `python tests/relecture_langue.py --langue %s --collisions`. " % LANGUE.code)
         f.write("**Aucune correction appliquee.**\n\n")
         f.write("Chaque ligne est un mot turc qui repond a PLUSIEURS mots ")
         f.write("allemands distincts de la meme categorie. La carte devient ")
@@ -414,9 +331,9 @@ def collisions():
                 mots = ", ".join(x["allemand"] for x in v)
                 f.write("- *%s* — **%s** ← %s\n" % (nom, tr, mots))
         f.write("\n")
-    print("  ecrit : relecture_tr/collisions.md  (%d cartes a regarder, "
+    print("  ecrit : %s/collisions.md  (%d cartes a regarder, "
           "%d acceptees + %d paires de genre)"
-          % (total, len(retenues), len(genres)))
+          % (os.path.basename(sortie()), total, len(retenues), len(genres)))
     return 0
 
 
@@ -481,7 +398,7 @@ Un tableau JSON, et rien d'autre. Un objet par signalement :
 Si tu ne trouves rien, reponds `[]`.
 
 Enregistre ta reponse sous `verdict_<nom du lot>.json` dans le dossier
-`relecture_tr/`.
+`relecture_<langue>/`.
 """
 
 
@@ -518,12 +435,10 @@ def mots_corriges():
         cle = d.get("fichier")
         for e in d.get("entrees", []):
             par_fichier.setdefault(cle, set()).add(e.get("mot"))
-    # Des noms de fichier vers les categories de relecture.
-    vers_categorie = {"themes.json": "noms", "verbe.json": "verbes",
-                      "adjectif.json": "adjectifs", "adverbe.json": "adverbes",
-                      "redewendung.json": "expressions"}
-    return {vers_categorie[k]: v for k, v in par_fichier.items()
-            if k in vers_categorie}
+    # Des noms de fichier vers les categories de relecture : la table vit
+    # dans langue.py, avec celle qui dit ou trouver chaque categorie.
+    return {L.VERS_CATEGORIE[k]: v for k, v in par_fichier.items()
+            if k in L.VERS_CATEGORIE}
 
 
 # UN LOT QUI SE COLLE, PARCE QU'UN LOT QUI SE JOINT NE PASSE PAS PARTOUT.
@@ -555,18 +470,18 @@ def lot_en_texte(base, categorie, niveau, cartes):
         if c.get("theme"):
             L.append("    theme       : %s" % c["theme"])
         L.append("    sens (fr)   : %s" % (c.get("sens_fr") or ""))
-        L.append("    TURC        : %s" % (c.get("turc") or ""))
+        L.append("    TURC        : %s" % (c.get("cible") or ""))
         phrases = c.get("phrases")
         if phrases:
             for p in phrases:
                 L.append("    %s" % p.get("temps"))
                 L.append("      DE   : %s" % (p.get("de") or ""))
                 L.append("      fr   : %s" % (p.get("fr") or ""))
-                L.append("      TURC : %s" % (p.get("tr") or ""))
+                L.append("      TURC : %s" % (p.get("cible") or ""))
         else:
             L.append("    phrase DE   : %s" % (c.get("phrase_de") or ""))
             L.append("    phrase fr   : %s" % (c.get("phrase_fr") or ""))
-            L.append("    phrase TURC : %s" % (c.get("phrase_tr") or ""))
+            L.append("    phrase TURC : %s" % (c.get("phrase_cible") or ""))
         L.append("")
     L.append("=" * 70)
     L.append("Rappel : reponds par un tableau JSON, et rien d'autre.")
@@ -578,10 +493,10 @@ def lot_en_texte(base, categorie, niveau, cartes):
 
 def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False,
                en_texte=False):
-    if not os.path.isdir(SORTIE):
-        os.makedirs(SORTIE)
+    if not os.path.isdir(sortie()):
+        os.makedirs(sortie())
 
-    with io.open(os.path.join(SORTIE, "CONSIGNE.md"), "w",
+    with io.open(os.path.join(sortie(), "CONSIGNE.md"), "w",
                  encoding="utf-8", newline="\n") as f:
         f.write(CONSIGNE)
 
@@ -592,8 +507,8 @@ def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False,
 
     total_lots = total_cartes = 0
     for nom in categories:
-        cartes = [c for c in CATEGORIES[nom]()
-                  if c.get("niveau") in niveaux and c.get("turc")]
+        cartes = [c for c in LANGUE.categories()[nom]()
+                  if c.get("niveau") in niveaux and c.get("cible")]
         if neuf is not None:
             cartes = [c for c in cartes if c.get("cle") in neuf.get(nom, ())]
         # Les champs perdus (voir --suspects) sortent des lots : ils ne se
@@ -628,7 +543,7 @@ def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False,
             lots = [cartes[i:i + taille] for i in range(0, len(cartes), taille)]
             for i, lot in enumerate(lots, 1):
                 base = "%s_lot_%02d" % (nom, i)
-                chemin = os.path.join(SORTIE, base + ".txt")
+                chemin = os.path.join(sortie(), base + ".txt")
                 with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
                     f.write(lot_en_texte(base, nom, None, lot))
             n_lots = len(lots)
@@ -647,7 +562,7 @@ def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False,
                         "niveau": niv,
                         "cartes": lot,
                     }
-                    chemin = os.path.join(SORTIE, base + ".json")
+                    chemin = os.path.join(sortie(), base + ".json")
                     with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
                         json.dump(donnees, f, ensure_ascii=False, indent=1)
                         f.write("\n")
@@ -661,23 +576,23 @@ def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False,
     print()
     print("  %d lots, %d cartes, niveaux %s" %
           (total_lots, total_cartes, ",".join(niveaux)))
-    print("  consigne a joindre : relecture_tr/CONSIGNE.md")
+    print("  consigne a joindre : %s/CONSIGNE.md" % os.path.basename(sortie()))
     return 0
 
 
 # ---------------------------------------------------------- 3. depouillement
 
 def rapport():
-    tout = toutes_les_cartes()
+    tout = LANGUE.toutes_les_cartes()
     connus = {c["cle"] for v in tout.values() for c in v if c.get("cle")}
 
     trouvailles, lus = [], 0
-    noms = sorted(os.listdir(SORTIE)) if os.path.isdir(SORTIE) else []
+    noms = sorted(os.listdir(sortie())) if os.path.isdir(sortie()) else []
     for nom in noms:
         if not nom.startswith("verdict_") or not nom.endswith(".json"):
             continue
         try:
-            d = json.load(io.open(os.path.join(SORTIE, nom), encoding="utf-8"))
+            d = json.load(io.open(os.path.join(sortie(), nom), encoding="utf-8"))
         except ValueError as e:
             print("  ! %s illisible : %s" % (nom, e))
             continue
@@ -687,7 +602,7 @@ def rapport():
             trouvailles.append(h)
 
     if not lus:
-        print("Aucun verdict_*.json dans %s." % SORTIE)
+        print("Aucun verdict_*.json dans %s." % sortie())
         return 1
 
     # Un signalement qui porte sur un mot absent du corpus est un mot invente
@@ -707,10 +622,10 @@ def rapport():
     for t in sorted(par_type, key=lambda k: -len(par_type[k])):
         print("  %-24s %3d" % (t, len(par_type[t])))
 
-    chemin = os.path.join(SORTIE, "divergences_tr.md")
+    chemin = os.path.join(sortie(), "divergences_tr.md")
     with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
         f.write("# Divergences de la relecture croisee (turc)\n\n")
-        f.write("Produit par `python tests/relecture_tr.py --rapport`. ")
+        f.write("Produit par `python tests/relecture_langue.py --langue %s --rapport`. " % LANGUE.code)
         f.write("**Aucune correction appliquee.** L'application est en ")
         f.write("service : ce qui remonte ici s'examine, ne s'applique pas ")
         f.write("en bloc.\n\n")
@@ -725,7 +640,7 @@ def rapport():
                     f.write("\n  - suggestion : %s" % h["suggestion"])
                 f.write("\n")
     print()
-    print("  ecrit : relecture_tr/divergences_tr.md")
+    print("  ecrit : %s/divergences.md" % os.path.basename(sortie()))
     return 0
 
 
@@ -733,6 +648,9 @@ def main():
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8",
                                   errors="replace")
     args = sys.argv[1:]
+    # LA LANGUE SE POSE AVANT TOUT LE RESTE : les categories, les dossiers et
+    # les noms de champs en dependent.
+    globals()["LANGUE"] = L.depuis_arguments(args)
     if "--suspects" in args:
         return suspects()
     if "--collisions" in args:
@@ -740,7 +658,7 @@ def main():
     if "--rapport" in args:
         return rapport()
 
-    categories = list(CATEGORIES)
+    categories = list(LANGUE.categories())
     niveaux = list(NIVEAUX)
     taille = None
     for i, a in enumerate(args):
@@ -752,10 +670,10 @@ def main():
             taille = int(args[i + 1])
     seulement_neuf = "--nouveaute" in sys.argv
     en_texte = "--texte" in sys.argv
-    inconnues = [c for c in categories if c not in CATEGORIES]
+    inconnues = [c for c in categories if c not in LANGUE.categories()]
     if inconnues:
         print("Categorie inconnue : %s" % ", ".join(inconnues))
-        print("Disponibles : %s" % ", ".join(sorted(CATEGORIES)))
+        print("Disponibles : %s" % ", ".join(sorted(LANGUE.categories())))
         return 1
     return faire_lots(categories, niveaux, taille, seulement_neuf, en_texte)
 

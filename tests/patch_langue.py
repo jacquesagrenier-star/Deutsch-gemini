@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Repose les champs turcs perdus (voir relecture_tr/suspects.md).
+"""Repose les champs perdus d'une langue cible (voir relecture_<langue>/suspects.md).
 
-    python tests/patch_tr_perdus.py corrections/adverbe_B1.json
-    python tests/patch_tr_perdus.py corrections/*.json --verifier
+    python tests/patch_langue.py corrections_tr/adverbe_B1.json
+    python tests/patch_langue.py --langue uk corrections_uk/*.json --verifier
+
+SANS `--langue`, C'EST LE TURC -- meme regle que relecture_langue.py. La langue
+ne sert ici qu'a reconnaitre les champs a ecrire (`traduction_uk`,
+`perfekt_uk`) ; tout le reste du fichier l'ignore.
 
 CE QU'IL REPARE. 673 entrees d'`adverbe.json` et `redewendung.json`, aux
 niveaux B1, B2 et C1, portent UN SEUL CARACTERE en guise de traduction turque
@@ -53,7 +57,15 @@ import os
 import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import langue as L                                          # noqa: E402
+
+NIVEAUX = L.NIVEAUX
+
+# LA LANGUE COURANTE, POSEE PAR main(). Elle ne sert ici qu'a reconnaitre les
+# champs a ecrire : « traduction_uk », « perfekt_uk »... Le reste du fichier
+# ignore de quelle langue il s'agit.
+LANGUE = None
 
 # Un mot turc d'un seul caractere n'existe pas ; une phrase de moins de huit
 # caracteres non plus. Memes seuils que relecture_tr.py --suspects.
@@ -165,10 +177,10 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
         # verdict de relecture a signale une phrase au preterit. On prend donc
         # ce que le fichier de corrections nomme, quel que soit le champ,
         # plutot qu'une liste figee ici.
-        champs = [k for k in e if k.endswith("_tr")]
+        champs = [k for k in e if k.endswith("_" + LANGUE.code)]
         for cible in cibles:
             for champ in champs:
-                est_phrase = champ != "traduction_tr"
+                est_phrase = champ != LANGUE.champ("traduction")
                 neuf = e.get(champ)
                 if not neuf:
                     continue
@@ -203,7 +215,21 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
 def main():
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8",
                                   errors="replace")
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    brut = sys.argv[1:]
+    # `--langue uk` se lit sur la ligne complete ; il faut ensuite retirer
+    # « uk » AUSSI, sinon la valeur de l'option est prise pour un nom de
+    # fichier de corrections et le script cherche a ouvrir « uk ».
+    globals()["LANGUE"] = L.depuis_arguments(brut)
+    args, sauter = [], False
+    for a in brut:
+        if sauter:
+            sauter = False
+            continue
+        if a == "--langue":
+            sauter = True
+            continue
+        if not a.startswith("--"):
+            args.append(a)
     verifier = "--verifier" in sys.argv
     remplacer = "--remplacer" in sys.argv
     if not args:
