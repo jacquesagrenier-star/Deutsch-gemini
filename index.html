@@ -3588,7 +3588,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v384</span>
+        <span class="subtitle-version">v385</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4919,6 +4919,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="info-box" data-i18n-html="pruefung_info_regel1"></div>
         <div class="info-box" data-i18n-html="pruefung_info_regel2"></div>
         <div class="info-box" data-i18n-html="pruefung_info_regel3"></div>
+    </div>
+
+    <!-- LE C1 EST ANNONCE COMME AUTRE CHOSE, et cette carte le dit avant que
+         l'usager clique. Le Goethe ne publie de Wortliste que jusqu'au B1 :
+         au-dela, aucune liste de reference n'existe et aucun taux de
+         couverture ne peut etre affirme. Le FORMAT de l'epreuve, lui, existe
+         et se prepare -- c'est ce que ces exercices-la couvrent, rien de plus. -->
+    <div class="card">
+        <strong data-i18n="pruefung_info_c1_t">Et le C1 ?</strong>
+        <div class="info-box" data-i18n-html="pruefung_info_c1"></div>
     </div>
 
     <div class="card">
@@ -6683,6 +6693,8 @@ const I18N = {
         pruefung_info_regel1: `<strong>Le mauvais registre.</strong> « Liebe Sofia » à une administration, ou « Sehr geehrte Damen und Herren » à une amie. Se tromper de registre est jugé plus sévèrement qu’une faute de grammaire : le correcteur y voit une erreur de jugement, pas d’apprentissage.`,
         pruefung_info_regel2: `<strong>La consigne à moitié traitée.</strong> Une tâche d’écriture donne toujours trois ou quatre points à couvrir. Une lettre magnifique qui en oublie un est notée en dessous d’une lettre maladroite qui les traite tous.`,
         pruefung_info_regel3: `<strong>Le silence à l’oral.</strong> Ne pas savoir quoi dire coûte plus cher que le dire mal. « Das weiß ich nicht genau, aber ich glaube… » vous laisse dans la conversation ; se taire vous en sort.`,
+        pruefung_info_c1_t: "Et le C1 ?",
+        pruefung_info_c1: `Le Goethe-Institut ne publie de liste de vocabulaire que jusqu’au B1. Au-delà, le lexique est considéré comme <strong>ouvert</strong> : aucune liste officielle n’existe, et personne ne peut donc affirmer la couvrir — nous non plus.<br><br>Le <strong>format</strong>, lui, existe et se prépare. Au C1 on ne vous demande plus de raconter, mais d’<strong>argumenter</strong> : tenir une thèse, concéder un contre-argument avant de le limiter, résumer une discussion sans la trancher. Les exercices marqués C1 travaillent cela — et rien d’autre.`,
         pruefung_info_note: `<strong>Les durées et les barèmes bougent d’une session à l’autre.</strong> Ce qui est écrit ici donne la forme de l’épreuve et l’ordre de grandeur. Pour le règlement exact, le nombre de points et les conditions de réussite, fiez-vous au centre d’examen où vous êtes inscrit — jamais à une application.`,
         pruefung_info_btn_hoeren: "M’ENTRAÎNER : ÉCOUTER →",
         pruefung_info_btn_lesen: "M’ENTRAÎNER : LIRE →",
@@ -7654,6 +7666,8 @@ const I18N = {
         pruefung_info_regel1: `<strong>The wrong register.</strong> "Liebe Sofia" to a government office, or "Sehr geehrte Damen und Herren" to a friend. Getting the register wrong is judged more harshly than a grammar mistake: the examiner reads it as an error of judgement, not of learning.`,
         pruefung_info_regel2: `<strong>The half-answered prompt.</strong> A writing task always lists three or four points to cover. A beautiful letter that misses one scores below a clumsy letter that covers them all.`,
         pruefung_info_regel3: `<strong>Silence in the speaking part.</strong> Not knowing what to say costs more than saying it badly. "Das weiß ich nicht genau, aber ich glaube…" keeps you in the conversation; silence takes you out of it.`,
+        pruefung_info_c1_t: "What about C1?",
+        pruefung_info_c1: `The Goethe-Institut publishes a vocabulary list only up to B1. Above that the lexicon is treated as <strong>open</strong>: no official list exists, so nobody can claim to cover one — us included.<br><br>The <strong>format</strong>, on the other hand, exists and can be prepared. At C1 you're no longer asked to recount but to <strong>argue</strong>: hold a thesis, concede a counter-argument before bounding it, sum up a discussion without settling it. The exercises marked C1 train that — and nothing else.`,
         pruefung_info_note: `<strong>Timings and marking schemes change from one session to the next.</strong> What's written here gives you the shape of the exam and the order of magnitude. For the exact rules, the number of points and the pass conditions, trust the exam centre you registered with — never an app.`,
         pruefung_info_btn_hoeren: "PRACTISE: LISTENING →",
         pruefung_info_btn_lesen: "PRACTISE: READING →",
@@ -8629,6 +8643,8 @@ const I18N = {
         pruefung_info_regel1: `<strong>Yanlış üslup.</strong> Bir resmî kuruma "Liebe Sofia", bir arkadaşa "Sehr geehrte Damen und Herren". Üslubu şaşırmak bir dilbilgisi hatasından daha ağır değerlendirilir: değerlendiren kişi bunu öğrenme değil, muhakeme hatası olarak okur.`,
         pruefung_info_regel2: `<strong>Yarım bırakılan yönerge.</strong> Yazma görevi her zaman üç ya da dört madde sıralar. Bir maddeyi atlayan çok güzel bir mektup, hepsine değinen beceriksiz bir mektubun altında puan alır.`,
         pruefung_info_regel3: `<strong>Konuşmada sessizlik.</strong> Ne diyeceğini bilememek, kötü söylemekten daha pahalıya mal olur. "Das weiß ich nicht genau, aber ich glaube…" sizi konuşmanın içinde tutar; susmak dışına çıkarır.`,
+        pruefung_info_c1_t: "Peki C1?",
+        pruefung_info_c1: `Goethe-Institut yalnızca B1'e kadar kelime listesi yayımlar. Ötesinde söz varlığı <strong>açık</strong> sayılır: resmî bir liste yoktur, dolayısıyla kimse onu kapsadığını iddia edemez — biz de.<br><br><strong>Biçim</strong> ise vardır ve hazırlanabilir. C1'de artık anlatmanız değil, <strong>savunmanız</strong> istenir: bir tez tutmak, karşı savı sınırlamadan önce kabul etmek, tartışmayı kapatmadan özetlemek. C1 işaretli alıştırmalar bunu çalıştırır — başka bir şeyi değil.`,
         pruefung_info_note: `<strong>Süreler ve puanlama oturumdan oturuma değişir.</strong> Burada yazanlar sınavın biçimini ve büyüklük sırasını verir. Kesin kurallar, puan sayısı ve geçme koşulları için kayıt olduğunuz sınav merkezine güvenin — asla bir uygulamaya değil.`,
         pruefung_info_btn_hoeren: "ALIŞTIRMA: DİNLEME →",
         pruefung_info_btn_lesen: "ALIŞTIRMA: OKUMA →",
@@ -15664,7 +15680,10 @@ function renderPruefungNiveauBar(){
         return `<button class="secondary" style="${style}" onclick="selectPruefungNiveau('${val}')">${libelle} (${n})</button>`;
     };
     let html = bouton("ALL", t('adverbien_level_all'), nbEpreuves(null));
-    ["A2", "B1"].forEach(lvl => {
+    // Un niveau sans exercice ne s'affiche pas : un bouton « C1 (0) » ne
+    // promet rien qu'on puisse ouvrir. La liste des niveaux, elle, reste
+    // ecrite ici -- le fichier de contenu ne peut pas en inventer un.
+    ["A2", "B1", "C1"].forEach(lvl => {
         const n = nbEpreuves(lvl);
         if(n) html += bouton(lvl, lvl, n);
     });
@@ -19342,7 +19361,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 384;
+const APP_VERSION = 385;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
