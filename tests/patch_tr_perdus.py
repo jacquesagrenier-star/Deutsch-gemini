@@ -8,6 +8,11 @@ CE QU'IL REPARE. 673 entrees d'`adverbe.json` et `redewendung.json`, aux
 niveaux B1, B2 et C1, portent UN SEUL CARACTERE en guise de traduction turque
 -- « bereits » traduit par « c ». Nees ainsi en v364, jamais correctes.
 
+IL TRAITE LES CINQ FICHIERS. adverbe, adjectif et redewendung ont la meme
+forme ; verbe.json porte son mot sous `infinitif` et non `mot` ; themes.json
+range ses mots dans des themes, et c'est le THEME qui porte le niveau. Voir
+indexer() -- c'est le seul endroit ou cette difference apparait.
+
 LA FORME D'UN FICHIER DE CORRECTIONS
 
     {
@@ -76,6 +81,47 @@ def controle_aller_retour(chemin, donnees):
                       refait[max(0, i - 40):i + 40]))
 
 
+# TROIS FORMES DE FICHIER, UN SEUL POINT OU CA SE VOIT.
+#
+#   adverbe / adjectif / redewendung : { "A1": [ {mot, ...} ], ... }
+#   verbe                            : { "A1": [ {infinitif, ...} ], ... }
+#   themes                           : { "themes": [ {niveau, mots:[...]} ] }
+#
+# Le champ "niveau" du fichier de corrections sert de filtre dans les trois
+# cas ; pour themes.json il filtre les THEMES, la cle etant portee par le
+# theme et non par le mot.
+#
+# UN MOT PEUT FIGURER DANS PLUSIEURS THEMES. On refuse alors de deviner :
+# une correction ambigue est signalee et non appliquee. Le rapport de
+# collisions, lui, dedoublonne par mot allemand -- il n'a pas ce probleme,
+# mais l'ecriture, si.
+def indexer(donnees, nom_fichier, niveau):
+    index = {}
+    if nom_fichier == "themes.json":
+        themes = donnees.get("themes", donnees)
+        vus = {}
+        for t in themes:
+            if t.get("niveau") != niveau:
+                continue
+            for m in t.get("mots", []):
+                cle = m.get("mot")
+                vus[cle] = vus.get(cle, 0) + 1
+                index.setdefault(cle, m)
+        for cle, n in vus.items():
+            if n > 1:
+                index[cle] = None      # ambigu : on ne touchera pas
+        if not index:
+            return None, "aucun theme de niveau %s dans themes.json" % niveau
+        return index, None
+
+    if niveau not in donnees:
+        return None, "niveau %s absent de %s" % (niveau, nom_fichier)
+    champ = "infinitif" if nom_fichier == "verbe.json" else "mot"
+    for m in donnees[niveau]:
+        index.setdefault(m.get(champ), m)
+    return index, None
+
+
 def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
     corr = lire_json(chemin_corrections)
     nom_fichier = corr["fichier"]
@@ -89,16 +135,18 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
         print("    %s" % detail)
         return 1
 
-    if niveau not in donnees:
-        print("  ! niveau %s absent de %s" % (niveau, nom_fichier))
+    index, err = indexer(donnees, nom_fichier, niveau)
+    if err:
+        print("  ! %s" % err)
         return 1
-    index = {}
-    for m in donnees[niveau]:
-        index.setdefault(m.get("mot"), m)
 
     poses = refuses = absents = 0
     for e in corr["entrees"]:
         mot = e.get("mot")
+        if mot in index and index[mot] is None:
+            print("    present dans PLUSIEURS themes, non modifie : %s" % mot)
+            refuses += 1
+            continue
         cible = index.get(mot)
         if cible is None:
             print("    absent du corpus : %s" % mot)
