@@ -3572,7 +3572,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v376</span>
+        <span class="subtitle-version">v377</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6643,6 +6643,8 @@ const I18N = {
         op_konjunktionen_o3_t: "Vocabulaire",
         kicker_adverbien_nuance: "Adverbes · Famille",
         kicker_adverbien_vocab: "Adverbes · Vocabulaire",
+        kicker_konnektoren: "Connecteurs · place du verbe",
+        op_konjunktionen_o4_t: "Où va le verbe ?", op_konjunktionen_o4_d: "weil · denn · deshalb : trois causes, trois ordres",
         kicker_konjunktionen_nuance: "Conjonctions · Type",
         kicker_konjunktionen_vocab: "Conjonctions · Vocabulaire",
         adverbien_info_title: "Comprendre les adverbes",
@@ -7573,6 +7575,8 @@ const I18N = {
         op_konjunktionen_o3_t: "Vocabulary",
         kicker_adverbien_nuance: "Adverbs · Family",
         kicker_adverbien_vocab: "Adverbs · Vocabulary",
+        kicker_konnektoren: "Connectors · verb position",
+        op_konjunktionen_o4_t: "Where does the verb go?", op_konjunktionen_o4_d: "weil · denn · deshalb: three causes, three orders",
         kicker_konjunktionen_nuance: "Conjunctions · Type",
         kicker_konjunktionen_vocab: "Conjunctions · Vocabulary",
         adverbien_info_title: "Understand adverbs",
@@ -8507,6 +8511,8 @@ const I18N = {
         op_konjunktionen_o3_t: "Kelime",
         kicker_adverbien_nuance: "Zarflar · Aile",
         kicker_adverbien_vocab: "Zarflar · Kelime",
+        kicker_konnektoren: "Bağlayıcılar · fiilin yeri",
+        op_konjunktionen_o4_t: "Fiil nereye gider?", op_konjunktionen_o4_d: "weil · denn · deshalb: üç neden, üç sıra",
         kicker_konjunktionen_nuance: "Bağlaçlar · Tür",
         kicker_konjunktionen_vocab: "Bağlaçlar · Kelime",
         adverbien_info_title: "Zarfları anlamak",
@@ -11923,6 +11929,238 @@ const konjunktionenNuanceExercises = [
   { topic:"Conjonctions · Type", question:"Als ich Kind war, wohnte ich in Berlin. Quel type de conjonction est « als » ?", question_en:"Als ich Kind war, wohnte ich in Berlin. What type of conjunction is « als »?", translation:"Quand j'étais enfant, j'habitais à Berlin.", translation_en:"When I was a child, I lived in Berlin.", hint:"(regarde où va « war »)", hint_en:"(look at where « war » goes)", answers:["subordination (verbe à la fin)","subordinating (verb goes to the end)", "yan cümle (fiil sonda)"], correct:"Subordination (verbe à la fin)", correctEn:"Subordinating (verb goes to the end)", explanation:"« als » envoie le verbe à la fin -- subordination.", explanation_en:"« als » sends the verb to the end -- subordinating.", options: KONJUNKTION_TYPE_OPTIONS, optionsEn: KONJUNKTION_TYPE_OPTIONS_EN, question_tr:"Als ich Kind war, wohnte ich in Berlin. « als » ne tür bir bağlaçtır?", translation_tr:"Çocukken Berlin'de oturuyordum.", hint_tr:"(« war » nereye gidiyor, bak)", explanation_tr:"« als » fiili sona gönderir — yan cümle.", correctTr:"Yan cümle (fiil sonda)", optionsTr: KONJUNKTION_TYPE_OPTIONS_TR }
 ];
 
+// ============ CONNECTEURS : OU VA LE VERBE ? ============
+//
+// L'exercice « type de conjonction » qui existe deja n'a que DEUX reponses --
+// coordination ou subordination. Il ne peut donc pas contenir « deshalb »,
+// « trotzdem » ni « daher », qui sont des ADVERBES et forment un troisieme
+// cas : le connecteur occupe la premiere place, et le verbe le suit
+// immediatement.
+//
+//     weil ich krank BIN          subordination -> verbe a la fin
+//     denn ich BIN krank          coordination  -> rien ne bouge
+//     deshalb BIN ich zu Hause    adverbe       -> inversion
+//
+// TROIS FACONS DE DIRE LA MEME CAUSE, TROIS PLACES DU VERBE. Le francais dit
+// « parce que », « car » et « c'est pourquoi » sans jamais toucher a l'ordre
+// des mots ; l'allemand le reorganise a chaque fois. C'est l'obstacle B1 par
+// excellence, et il ne se voit qu'en mettant les trois cote a cote -- ce que
+// fait cet exercice, et ce qu'aucune carte isolee ne peut faire.
+//
+// Les paires sont deliberees : weil/denn/deshalb pour la cause,
+// obwohl/trotzdem pour la concession. Un exercice qui melangerait des mots
+// sans rapport ferait reviser une etiquette ; celui-ci fait choisir entre
+// deux mots qu'on hesite reellement a employer.
+const VERBSTELLUNG_OPTIONS = [
+    "Verbe en 2e position (rien ne bouge)",
+    "Verbe à la fin",
+    "Inversion : verbe juste après le connecteur"
+];
+const VERBSTELLUNG_OPTIONS_EN = [
+    "Verb in 2nd position (nothing moves)",
+    "Verb at the end",
+    "Inversion: verb right after the connector"
+];
+const VERBSTELLUNG_OPTIONS_TR = [
+    "Fiil ikinci sırada (hiçbir şey değişmez)",
+    "Fiil sonda",
+    "Devrik: fiil bağlayıcıdan hemen sonra"
+];
+
+const KONN_C = "Verbe en 2e position (rien ne bouge)";
+const KONN_C_EN = "Verb in 2nd position (nothing moves)";
+const KONN_C_TR = "Fiil ikinci sırada (hiçbir şey değişmez)";
+const KONN_S = "Verbe à la fin";
+const KONN_S_EN = "Verb at the end";
+const KONN_S_TR = "Fiil sonda";
+const KONN_A = "Inversion : verbe juste après le connecteur";
+const KONN_A_EN = "Inversion: verb right after the connector";
+const KONN_A_TR = "Devrik: fiil bağlayıcıdan hemen sonra";
+
+function konnektorUebung(de, fr, en, tr, mot, type, expl, explEn, explTr, indice, indiceEn, indiceTr){
+    const correct = type === "C" ? KONN_C : (type === "S" ? KONN_S : KONN_A);
+    const correctEn = type === "C" ? KONN_C_EN : (type === "S" ? KONN_S_EN : KONN_A_EN);
+    const correctTr = type === "C" ? KONN_C_TR : (type === "S" ? KONN_S_TR : KONN_A_TR);
+    return {
+        topic: "Connecteurs · Place du verbe",
+        question: de + " Où va le verbe après « " + mot + " » ?",
+        question_en: de + " Where does the verb go after « " + mot + " »?",
+        question_tr: de + " « " + mot + " » sonrasında fiil nereye gider?",
+        translation: fr, translation_en: en, translation_tr: tr,
+        hint: indice, hint_en: indiceEn, hint_tr: indiceTr,
+        answers: [correct, correctEn, correctTr],
+        correct: correct, correctEn: correctEn, correctTr: correctTr,
+        explanation: expl, explanation_en: explEn, explanation_tr: explTr,
+        options: VERBSTELLUNG_OPTIONS,
+        optionsEn: VERBSTELLUNG_OPTIONS_EN,
+        optionsTr: VERBSTELLUNG_OPTIONS_TR
+    };
+}
+
+const konnektorenExercises = [
+    // --- La cause, dans ses trois formes. Le trio le plus utile du niveau.
+    konnektorUebung(
+        "Ich bleibe zu Hause, weil ich krank bin.",
+        "Je reste à la maison parce que je suis malade.",
+        "I'm staying at home because I'm ill.",
+        "Hasta olduğum için evde kalıyorum.",
+        "weil", "S",
+        "« weil » est une conjonction de subordination : le verbe conjugué (bin) part tout à la fin.",
+        "« weil » is a subordinating conjunction: the conjugated verb (bin) goes right to the end.",
+        "« weil » bir yan cümle bağlacıdır: çekimli fiil (bin) en sona gider.",
+        "(cherche « bin » dans la phrase)", "(find « bin » in the sentence)", "(cümlede « bin »i bul)"),
+    konnektorUebung(
+        "Ich bleibe zu Hause, denn ich bin krank.",
+        "Je reste à la maison, car je suis malade.",
+        "I'm staying at home, because I'm ill.",
+        "Evde kalıyorum, çünkü hastayım.",
+        "denn", "C",
+        "« denn » dit la même cause que « weil », mais c'est une coordination : la phrase qui suit garde son ordre normal (ich bin).",
+        "« denn » gives the same cause as « weil », but it is coordinating: the clause after it keeps normal order (ich bin).",
+        "« denn », « weil » ile aynı nedeni verir ama sıralama bağlacıdır: sonraki cümle normal sırasını korur (ich bin).",
+        "(compare avec la phrase « weil » juste avant)", "(compare with the « weil » sentence just before)", "(hemen önceki « weil » cümlesiyle karşılaştır)"),
+    konnektorUebung(
+        "Ich bin krank, deshalb bleibe ich zu Hause.",
+        "Je suis malade, c'est pourquoi je reste à la maison.",
+        "I'm ill, that's why I'm staying at home.",
+        "Hastayım, bu yüzden evde kalıyorum.",
+        "deshalb", "A",
+        "« deshalb » n'est pas une conjonction mais un ADVERBE. Il prend la première place, donc le verbe (bleibe) le suit aussitôt et le sujet passe derrière.",
+        "« deshalb » is not a conjunction but an ADVERB. It takes first position, so the verb (bleibe) follows immediately and the subject moves behind it.",
+        "« deshalb » bir bağlaç değil, bir ZARFTIR. İlk sırayı alır, bu yüzden fiil (bleibe) hemen ardından gelir ve özne arkaya geçer.",
+        "(qui vient juste après « deshalb » : « ich » ou « bleibe » ?)",
+        "(what comes right after « deshalb »: « ich » or « bleibe »?)",
+        "(« deshalb »den hemen sonra ne geliyor: « ich » mi « bleibe » mi?)"),
+
+    // --- La concession, dans ses deux formes.
+    konnektorUebung(
+        "Ich gehe raus, obwohl es regnet.",
+        "Je sors, bien qu'il pleuve.",
+        "I'm going out although it's raining.",
+        "Yağmur yağmasına rağmen dışarı çıkıyorum.",
+        "obwohl", "S",
+        "« obwohl » est une subordination : le verbe (regnet) va à la fin.",
+        "« obwohl » is subordinating: the verb (regnet) goes to the end.",
+        "« obwohl » yan cümle bağlacıdır: fiil (regnet) sona gider.",
+        "(cherche « regnet »)", "(find « regnet »)", "(« regnet »i bul)"),
+    konnektorUebung(
+        "Es regnete, trotzdem sind wir spazieren gegangen.",
+        "Il pleuvait, nous sommes quand même allés nous promener.",
+        "It was raining, even so we went for a walk.",
+        "Yağmur yağıyordu, buna rağmen yürüyüşe çıktık.",
+        "trotzdem", "A",
+        "« trotzdem » dit la même chose que « obwohl », mais c'est un adverbe : il occupe la première place et le verbe (sind) le suit.",
+        "« trotzdem » says the same as « obwohl », but it is an adverb: it takes first position and the verb (sind) follows it.",
+        "« trotzdem », « obwohl » ile aynı şeyi söyler ama bir zarftır: ilk sırayı alır ve fiil (sind) onu izler.",
+        "(compare avec la phrase « obwohl » juste avant)",
+        "(compare with the « obwohl » sentence just before)",
+        "(hemen önceki « obwohl » cümlesiyle karşılaştır)"),
+
+    // --- Les autres adverbes connecteurs, une fois la regle vue.
+    konnektorUebung(
+        "Der Bus fiel aus, deswegen kam ich zu spät.",
+        "Le bus a été supprimé, c'est pour cela que je suis arrivé en retard.",
+        "The bus was cancelled, that's why I arrived late.",
+        "Otobüs iptal oldu, bu nedenle geç kaldım.",
+        "deswegen", "A",
+        "Même famille que « deshalb » : adverbe, donc inversion (kam ich).",
+        "Same family as « deshalb »: an adverb, so inversion (kam ich).",
+        "« deshalb » ile aynı aileden: zarf, dolayısıyla devrik (kam ich).",
+        "(« ich kam » ou « kam ich » ?)", "(« ich kam » or « kam ich »?)", "(« ich kam » mı « kam ich » mi?)"),
+    konnektorUebung(
+        "Er wohnt weit weg, daher sehen wir uns selten.",
+        "Il habite loin, de ce fait nous nous voyons rarement.",
+        "He lives far away, hence we rarely see each other.",
+        "Uzakta oturuyor, dolayısıyla nadiren görüşüyoruz.",
+        "daher", "A",
+        "« daher » est un adverbe comme « deshalb » et « deswegen » : le verbe (sehen) vient juste après.",
+        "« daher » is an adverb like « deshalb » and « deswegen »: the verb (sehen) comes right after.",
+        "« daher », « deshalb » ve « deswegen » gibi bir zarftır: fiil (sehen) hemen sonra gelir.",
+        "(regarde qui suit « daher »)", "(look at what follows « daher »)", "(« daher »den sonra ne geldiğine bak)"),
+    konnektorUebung(
+        "Die Wohnung ist schön, allerdings ist sie zu teuer.",
+        "L'appartement est beau, toutefois il est trop cher.",
+        "The flat is lovely, however it's too expensive.",
+        "Daire güzel, ancak çok pahalı.",
+        "allerdings", "A",
+        "« allerdings » est un adverbe : il ouvre la phrase et le verbe (ist) le suit avant le sujet.",
+        "« allerdings » is an adverb: it opens the clause and the verb (ist) follows before the subject.",
+        "« allerdings » bir zarftır: cümleyi açar ve fiil (ist) özneden önce gelir.",
+        "(« sie ist » ou « ist sie » ?)", "(« sie ist » or « ist sie »?)", "(« sie ist » mi « ist sie » mi?)"),
+
+    // --- Retour aux conjonctions, pour que le contraste reste vivant.
+    konnektorUebung(
+        "Ich weiß, dass du recht hast.",
+        "Je sais que tu as raison.",
+        "I know that you're right.",
+        "Haklı olduğunu biliyorum.",
+        "dass", "S",
+        "« dass » envoie le verbe conjugué (hast) à la toute fin.",
+        "« dass » sends the conjugated verb (hast) right to the end.",
+        "« dass » çekimli fiili (hast) en sona gönderir.",
+        "(cherche « hast »)", "(find « hast »)", "(« hast »ı bul)"),
+    konnektorUebung(
+        "Ich bin müde, aber ich arbeite weiter.",
+        "Je suis fatigué, mais je continue à travailler.",
+        "I'm tired, but I keep working.",
+        "Yorgunum ama çalışmaya devam ediyorum.",
+        "aber", "C",
+        "« aber » est une des cinq coordinations (und, oder, aber, denn, sondern) : rien ne bouge.",
+        "« aber » is one of the five coordinating conjunctions (und, oder, aber, denn, sondern): nothing moves.",
+        "« aber », beş sıralama bağlacından biridir (und, oder, aber, denn, sondern): hiçbir şey değişmez.",
+        "(« ich arbeite » : l'ordre est-il normal ?)",
+        "(« ich arbeite »: is the order normal?)",
+        "(« ich arbeite »: sıra normal mi?)"),
+    konnektorUebung(
+        "Ich rufe an, sobald ich zu Hause bin.",
+        "J'appelle dès que je suis à la maison.",
+        "I'll call as soon as I'm home.",
+        "Eve varır varmaz ararım.",
+        "sobald", "S",
+        "« sobald » est une subordination de temps : le verbe (bin) part à la fin.",
+        "« sobald » is a subordinating conjunction of time: the verb (bin) goes to the end.",
+        "« sobald » bir zaman yan cümle bağlacıdır: fiil (bin) sona gider.",
+        "(cherche « bin »)", "(find « bin »)", "(« bin »i bul)"),
+    konnektorUebung(
+        "Die Frist ist abgelaufen, folglich ist der Antrag ungültig.",
+        "Le délai est écoulé, par conséquent la demande n'est pas valable.",
+        "The deadline has passed, consequently the application is invalid.",
+        "Süre doldu, sonuç olarak başvuru geçersiz.",
+        "folglich", "A",
+        "« folglich » est le « deshalb » de la langue écrite -- même famille, même inversion.",
+        "« folglich » is the written-language « deshalb » -- same family, same inversion.",
+        "« folglich », yazı dilinin « deshalb »ıdır -- aynı aile, aynı devriklik.",
+        "(qui suit « folglich » ?)", "(what follows « folglich »?)", "(« folglich »ten sonra ne geliyor?)"),
+    konnektorUebung(
+        "Man lernt eine Sprache, indem man sie spricht.",
+        "On apprend une langue en la parlant.",
+        "You learn a language by speaking it.",
+        "Bir dili konuşarak öğrenirsiniz.",
+        "indem", "S",
+        "« indem » est une subordination : le verbe (spricht) va à la fin.",
+        "« indem » is subordinating: the verb (spricht) goes to the end.",
+        "« indem » yan cümle bağlacıdır: fiil (spricht) sona gider.",
+        "(cherche « spricht »)", "(find « spricht »)", "(« spricht »i bul)"),
+    konnektorUebung(
+        "Alle haben unterschrieben, somit ist der Vertrag gültig.",
+        "Tous ont signé, ainsi le contrat est valable.",
+        "Everyone has signed, thus the contract is valid.",
+        "Herkes imzaladı, böylece sözleşme geçerli.",
+        "somit", "A",
+        "« somit » est un adverbe : première place pour lui, deuxième pour le verbe (ist).",
+        "« somit » is an adverb: first position for it, second for the verb (ist).",
+        "« somit » bir zarftır: ilk sıra onun, ikinci sıra fiilin (ist).",
+        "(« der Vertrag ist » ou « ist der Vertrag » ?)",
+        "(« der Vertrag ist » or « ist der Vertrag »?)",
+        "(« der Vertrag ist » mi « ist der Vertrag » mı?)")
+];
+
+function startKonnektorenUebung(){
+    startExerciseSet(shuffleArray(konnektorenExercises.slice()), "kicker_konnektoren",
+                     openKonjunktionenInfo, startKonnektorenUebung);
+}
+
+
 const partikelnNuanceExercises = [
   { topic:"Particules · Nuance", question:"Mach das doch! Quelle nuance apporte « doch » ici ?", question_en:"Mach das doch! What nuance does « doch » add here?", translation:"Vas-y, fais-le donc !", translation_en:"Go on, just do it!", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["insistance amicale (encouragement)","friendly insistence (encouragement)", "dostça ısrar (teşvik)"], correct:"Insistance amicale (encouragement)", correctEn:"Friendly insistence (encouragement)", explanation:"« doch » pousse gentiment quelqu'un à agir — une insistance amicale.", explanation_en:"« doch » gently pushes someone to act — a friendly insistence.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN, question_tr:"Mach das doch! « doch » burada hangi nüansı katıyor?", translation_tr:"Hadi, yapsana!", hint_tr:"(konuşanın tonu)", explanation_tr:"« doch » birini nazikçe harekete iter — dostça bir ısrar.", correctTr:"Dostça ısrar (teşvik)", optionsTr: PARTIKELN_NUANCE_OPTIONS_TR },
   { topic:"Particules · Nuance", question:"Komm mal her! Quelle nuance apporte « mal » ici ?", question_en:"Komm mal her! What nuance does « mal » add here?", translation:"Viens un peu par ici.", translation_en:"Come here for a sec.", hint:"(ton du locuteur)", hint_en:"(speaker's tone)", answers:["adoucit la demande (plus léger)","softens the request (lighter tone)", "ricayı yumuşatır (daha hafif)"], correct:"Adoucit la demande (plus léger)", correctEn:"Softens the request (lighter tone)", explanation:"« mal » rend la demande plus légère et informelle, moins directe qu'un ordre sec.", explanation_en:"« mal » makes the request lighter and more casual, less direct than a blunt order.", options: PARTIKELN_NUANCE_OPTIONS, optionsEn: PARTIKELN_NUANCE_OPTIONS_EN, question_tr:"Komm mal her! « mal » burada hangi nüansı katıyor?", translation_tr:"Bir gelsene.", hint_tr:"(konuşanın tonu)", explanation_tr:"« mal » ricayı daha hafif ve samimi kılar, sert bir emirden uzaklaştırır.", correctTr:"Ricayı yumuşatır (daha hafif)", optionsTr: PARTIKELN_NUANCE_OPTIONS_TR },
@@ -13797,6 +14035,13 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_konjunktionen_o1_t"), desc:t("op_konjunktionen_o1_d"), primary:true, action:"openKonjunktionenInfo" },
                 { icon:"exercice", title:t("op_konjunktionen_o2_t"), desc:t("op_konjunktionen_o2_d"), action:"startKonjunktionenNuance" },
+                // L'exercice « type de conjonction » ci-dessus n'a que deux
+                // reponses et ne peut donc pas contenir « deshalb », qui est un
+                // adverbe. Celui-ci ouvre le troisieme cas -- l'inversion --
+                // et met les trois cote a cote, ce qu'aucune carte isolee ne
+                // fait : weil / denn / deshalb disent la meme cause avec trois
+                // ordres de mots differents.
+                { icon:"exercice", title:t("op_konjunktionen_o4_t"), desc:t("op_konjunktionen_o4_d"), action:"startKonnektorenUebung" },
                 { icon:"carte", title:t("op_konjunktionen_o3_t"), desc:"und, weil, aber…", action:"startKonjunktionenVokabular" }
             ]
         };
@@ -17771,7 +18016,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 376;
+const APP_VERSION = 377;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
