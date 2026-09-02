@@ -200,6 +200,24 @@ def corpus():
             mot = (c.get("cle") or "").strip()
             if mot:
                 out.add(mot)
+
+    # LES MOTS-OUTILS COMPTENT, et les oublier faussait le chiffre a la
+    # baisse. funktionswort.json n'est pas un des cinq JSON de vocabulaire --
+    # il est range par classe de mot et Langue.toutes_les_cartes() ne le voit
+    # pas -- mais ses 161 entrees SONT des cartes, avec leur cas et leur
+    # phrase. Sans cette boucle, « fuer », « weil » et « dieser » passaient
+    # pour absents du cours alors qu'ils y sont depuis toujours.
+    #
+    # Une entree peut porter deux formes separees par une barre --
+    # « eben / halt » -- que les listes officielles comptent separement.
+    chemin = os.path.join(RACINE, "funktionswort.json")
+    if os.path.isfile(chemin):
+        for liste in json.load(io.open(chemin, encoding="utf-8")).values():
+            for m in liste:
+                for f in (m.get("mot") or "").split("/"):
+                    f = f.strip()
+                    if f:
+                        out.add(f)
     return out
 
 
@@ -239,8 +257,13 @@ def couverture():
     minuscules = {m.lower() for m in corpus_mots}
     reste = {m for m in union
              if m not in corpus_mots and m.lower() not in minuscules and m not in hors}
+    # UN MOT COUVERT N'EST PAS UN MOT ECARTE, meme s'il figure encore dans le
+    # fichier des ecartes. Les deux se sont contredits : 77 mots-outils y
+    # etaient listes comme « pas de carte » alors qu'ils en avaient une. Le
+    # fichier a ete remis d'accord (tests/nettoyer_ecartes.py), mais le compte
+    # ne s'y fie plus -- c'est la donnee qui tranche, pas la liste.
     print("  dont %d ecarte(s) volontairement (mots-outils, bruit d'extraction)"
-          % len(union & hors))
+          % len((union & hors) - corpus_mots))
     print("  reste a faire : %d mot(s)" % len(reste))
     print()
 
