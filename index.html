@@ -3572,7 +3572,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v378</span>
+        <span class="subtitle-version">v379</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6648,6 +6648,12 @@ const I18N = {
         kicker_konnektoren: "Connecteurs · place du verbe",
         kicker_als_wenn: "als ou wenn ?",
         kicker_obwohl_trotzdem: "obwohl ou trotzdem ?",
+        op_verben_o5_t: "wissen ou kennen ?", op_verben_o5_d: "Un seul verbe en français, deux en allemand",
+        op_praep_o6_t: "legen ou liegen ?", op_praep_o6_d: "Wohin → accusatif · Wo → datif",
+        op_pronomen_o7_t: "der-Wörter ou ein-Wörter ?", op_pronomen_o7_d: "dieser suit der · kein suit ein",
+        kicker_der_ein: "der-Wörter ou ein-Wörter ?",
+        kicker_wissen_kennen: "wissen ou kennen ?",
+        kicker_positionsverben: "legen ou liegen ?",
         op_konjunktionen_o4_t: "Où va le verbe ?", op_konjunktionen_o4_d: "weil · denn · deshalb : trois causes, trois ordres",
         op_konjunktionen_o5_t: "als ou wenn ?", op_konjunktionen_o5_d: "Les deux disent « quand » — une seule fois, ou chaque fois",
         op_konjunktionen_o6_t: "obwohl ou trotzdem ?", op_konjunktionen_o6_d: "Les deux disent « malgré » — mais pas du même côté",
@@ -7586,6 +7592,12 @@ const I18N = {
         kicker_konnektoren: "Connectors · verb position",
         kicker_als_wenn: "als or wenn?",
         kicker_obwohl_trotzdem: "obwohl or trotzdem?",
+        op_verben_o5_t: "wissen or kennen?", op_verben_o5_d: "One verb in French, two in German",
+        op_praep_o6_t: "legen or liegen?", op_praep_o6_d: "Wohin → accusative · Wo → dative",
+        op_pronomen_o7_t: "der-words or ein-words?", op_pronomen_o7_d: "dieser follows der · kein follows ein",
+        kicker_der_ein: "der-words or ein-words?",
+        kicker_wissen_kennen: "wissen or kennen?",
+        kicker_positionsverben: "legen or liegen?",
         op_konjunktionen_o4_t: "Where does the verb go?", op_konjunktionen_o4_d: "weil · denn · deshalb: three causes, three orders",
         op_konjunktionen_o5_t: "als or wenn?", op_konjunktionen_o5_d: "Both mean “when” — once, or every time",
         op_konjunktionen_o6_t: "obwohl or trotzdem?", op_konjunktionen_o6_d: "Both mean “despite” — but not on the same side",
@@ -8528,6 +8540,12 @@ const I18N = {
         kicker_konnektoren: "Bağlayıcılar · fiilin yeri",
         kicker_als_wenn: "als mı wenn mi?",
         kicker_obwohl_trotzdem: "obwohl mu trotzdem mi?",
+        op_verben_o5_t: "wissen mi kennen mi?", op_verben_o5_d: "Fransızcada tek fiil, Almancada iki",
+        op_praep_o6_t: "legen mi liegen mi?", op_praep_o6_d: "Wohin → -i hali · Wo → -e hali",
+        op_pronomen_o7_t: "der- mi ein- kelimeleri mi?", op_pronomen_o7_d: "dieser der'i, kein ein'i izler",
+        kicker_der_ein: "der-kelimeleri mi ein-kelimeleri mi?",
+        kicker_wissen_kennen: "wissen mi kennen mi?",
+        kicker_positionsverben: "legen mi liegen mi?",
         op_konjunktionen_o4_t: "Fiil nereye gider?", op_konjunktionen_o4_d: "weil · denn · deshalb: üç neden, üç sıra",
         op_konjunktionen_o5_t: "als mı wenn mi?", op_konjunktionen_o5_d: "İkisi de “-dığında” demek — bir kez mi, her seferinde mi",
         op_konjunktionen_o6_t: "obwohl mu trotzdem mi?", op_konjunktionen_o6_d: "İkisi de “rağmen” demek — ama aynı tarafta değil",
@@ -12472,6 +12490,406 @@ const obwohlTrotzdemExercises = [
         "(ilk yarıda « kenne » nerede?)")
 ];
 
+// ============ TROIS PAIRES DE PLUS ============
+//
+// Meme forme que als/wenn et obwohl/trotzdem : une phrase a trou, deux ou
+// trois formes plausibles, et une explication qui dit la REGLE, pas seulement
+// la reponse. Le fabricant ci-dessous evite de repeter treize champs par
+// question -- les trois series precedentes en avaient chacune un, et ils
+// commencaient a diverger.
+function paireUebung(options, de, fr, en, tr, bon, expl, explEn, explTr, indice, indiceEn, indiceTr, topic){
+    return {
+        topic: topic,
+        question: de, question_en: de, question_tr: de,
+        translation: fr, translation_en: en, translation_tr: tr,
+        hint: indice, hint_en: indiceEn, hint_tr: indiceTr,
+        answers: [bon], correct: bon, correctEn: bon, correctTr: bon,
+        explanation: expl, explanation_en: explEn, explanation_tr: explTr,
+        options: options, optionsEn: options, optionsTr: options
+    };
+}
+
+// ---------------------------------------------------------------- der / ein
+//
+// LE COURS TESTE DEJA der, ein ET kein, un cas a la fois. Ce qui manquait,
+// c'est la REGLE QUI LES RELIE : tous les determinants allemands suivent l'un
+// de deux modeles, et il n'y en a que deux.
+//
+//     dieser, jeder, welcher, mancher   se declinent comme DER
+//     kein, mein, dein, sein, unser     se declinent comme EIN
+//
+// Et la seule vraie difficulte tient en une ligne : les mots en « ein » n'ont
+// PAS de terminaison a trois endroits -- masculin nominatif, neutre nominatif
+// et neutre accusatif. « ein Mann », « kein Kind », « mein Auto ». Partout
+// ailleurs les deux familles prennent la meme chose.
+//
+// Celui qui apprend « kein » comme un mot isole dira « keiner Mann ». Celui
+// qui a vu la famille ne le dira jamais.
+const DER_EIN_OPT_M = ["dieser", "diesen", "diesem"];
+const DER_EIN_OPT_K = ["kein", "keiner", "keinen"];
+
+const derEinExercises = [
+    paireUebung(["dieser", "diesen", "diesem"],
+        "___ Mann wohnt neben uns.",
+        "Cet homme habite à côté de chez nous.",
+        "This man lives next door to us.",
+        "Bu adam bizim yanımızda oturuyor.",
+        "dieser",
+        "Sujet, masculin : comme « der Mann », donc « dieser ». Les mots en dies- suivent der à la lettre.",
+        "Subject, masculine: like « der Mann », so « dieser ». The dies- words follow der exactly.",
+        "Özne, eril: « der Mann » gibi, yani « dieser ». dies- kelimeleri der'i birebir izler.",
+        "(remplace par « der » : quelle forme ?)",
+        "(replace it with « der »: which form?)",
+        "(« der » ile değiştir: hangi biçim?)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["kein", "keiner", "keines"],
+        "Das ist ___ Problem.",
+        "Ce n'est pas un problème.",
+        "That's not a problem.",
+        "Bu bir sorun değil.",
+        "kein",
+        "Neutre, ni sujet ni COD marqué : comme « ein Problem », SANS terminaison. C'est l'un des trois seuls endroits où les mots en ein- restent nus.",
+        "Neuter, in the endingless slot: like « ein Problem », WITHOUT an ending. One of only three places where ein- words stay bare.",
+        "Nötr, çekimsiz konumda: « ein Problem » gibi, EKSİZ. ein- kelimelerinin çıplak kaldığı üç yerden biri.",
+        "(dirais-tu « ein Problem » ou « eines Problem » ?)",
+        "(would you say « ein Problem » or « eines Problem »?)",
+        "(« ein Problem » mi « eines Problem » mi dersin?)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["dieser", "diesen", "diesem"],
+        "Ich kenne ___ Mann nicht.",
+        "Je ne connais pas cet homme.",
+        "I don't know this man.",
+        "Bu adamı tanımıyorum.",
+        "diesen",
+        "COD masculin : « den Mann » devient « diesen Mann ». Le masculin est le seul genre qui change à l'accusatif.",
+        "Masculine direct object: « den Mann » becomes « diesen Mann ». Masculine is the only gender that changes in the accusative.",
+        "Eril nesne: « den Mann », « diesen Mann » olur. Eril, -i halinde değişen tek cinstir.",
+        "(« kennen » demande l'accusatif)",
+        "(« kennen » takes the accusative)",
+        "(« kennen » -i hali ister)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["mein", "meiner", "meinen"],
+        "___ Bruder arbeitet in Wien.",
+        "Mon frère travaille à Vienne.",
+        "My brother works in Vienna.",
+        "Kardeşim Viyana'da çalışıyor.",
+        "mein",
+        "Sujet masculin, mot en ein- : pas de terminaison, comme « ein Bruder ». Là où « dieser » prend -er, « mein » ne prend rien.",
+        "Masculine subject, an ein- word: no ending, like « ein Bruder ». Where « dieser » takes -er, « mein » takes nothing.",
+        "Eril özne, ein- kelimesi: ek yok, « ein Bruder » gibi. « dieser » -er alırken « mein » hiçbir şey almaz.",
+        "(compare : « dieser Bruder » mais « ___ Bruder » ?)",
+        "(compare: « dieser Bruder » but « ___ Bruder »?)",
+        "(karşılaştır: « dieser Bruder » ama « ___ Bruder »?)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["jedem", "jeder", "jeden"],
+        "Ich helfe ___ Kind in der Klasse.",
+        "J'aide chaque enfant de la classe.",
+        "I help every child in the class.",
+        "Sınıftaki her çocuğa yardım ediyorum.",
+        "jedem",
+        "« helfen » demande le datif, et « jed- » suit « der » : « dem Kind » donne « jedem Kind ».",
+        "« helfen » takes the dative, and « jed- » follows « der »: « dem Kind » gives « jedem Kind ».",
+        "« helfen » -e hali ister ve « jed- » « der »i izler: « dem Kind » → « jedem Kind ».",
+        "(« helfen » demande quel cas ?)",
+        "(which case does « helfen » take?)",
+        "(« helfen » hangi hali ister?)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["keine", "kein", "keinen"],
+        "Ich habe ___ Zeit.",
+        "Je n'ai pas le temps.",
+        "I have no time.",
+        "Vaktim yok.",
+        "keine",
+        "« die Zeit » est féminin, et le féminin ne reste jamais nu : « keine Zeit ». La forme sans terminaison est réservée au masculin sujet et au neutre.",
+        "« die Zeit » is feminine, and the feminine is never bare: « keine Zeit ». The endingless form belongs to masculine subject and neuter only.",
+        "« die Zeit » dişildir ve dişil asla çıplak kalmaz: « keine Zeit ». Eksiz biçim yalnızca eril özne ve nötre aittir.",
+        "(quel est le genre de « Zeit » ?)",
+        "(what gender is « Zeit »?)",
+        "(« Zeit »in cinsi nedir?)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["welches", "welcher", "welchem"],
+        "___ Auto gehört dir?",
+        "Quelle voiture est la tienne ?",
+        "Which car is yours?",
+        "Hangi araba senin?",
+        "welches",
+        "« das Auto » est neutre et sujet : « das » donne « welches ». Un mot en der- prend toujours la terminaison, même au neutre.",
+        "« das Auto » is neuter and the subject: « das » gives « welches ». A der- word always takes the ending, even in the neuter.",
+        "« das Auto » nötr ve özne: « das » → « welches ». der- kelimesi nötrde bile daima ek alır.",
+        "(compare avec « kein Auto », qui reste nu)",
+        "(compare with « kein Auto », which stays bare)",
+        "(çıplak kalan « kein Auto » ile karşılaştır)",
+        "der-Wörter / ein-Wörter"),
+    paireUebung(["diesem", "diesen", "dieser"],
+        "Mit ___ Zug fahre ich nie.",
+        "Je ne prends jamais ce train.",
+        "I never take this train.",
+        "Bu trenle hiç gitmem.",
+        "diesem",
+        "« mit » impose le datif : « dem Zug » donne « diesem Zug ».",
+        "« mit » requires the dative: « dem Zug » gives « diesem Zug ».",
+        "« mit » -e hali gerektirir: « dem Zug » → « diesem Zug ».",
+        "(« mit » impose quel cas ?)",
+        "(which case does « mit » impose?)",
+        "(« mit » hangi hali gerektirir?)",
+        "der-Wörter / ein-Wörter")
+];
+
+// ------------------------------------------------------------ wissen / kennen
+//
+// Le francais n'a qu'un verbe, l'allemand deux, et la frontiere est nette :
+//
+//     kennen  une PERSONNE, un LIEU, une CHOSE -- on y a ete expose
+//     wissen  un FAIT -- souvent suivi de dass, ob, wo, wann, ou de « es »
+//
+// « Ich kenne Berlin » (j'y suis alle) contre « Ich weiss, wo Berlin liegt »
+// (je connais le fait). Le test le plus sur : si ce qui suit est une petite
+// phrase, c'est « wissen » ; si c'est un nom seul, c'est « kennen ».
+// Les options portent la forme CONJUGUEE, donc elles changent avec la
+// personne : « weiss / kenne » a la premiere, « Weisst / Kennst » a la
+// deuxieme, « weiss / kennt » a la troisieme. Une seule paire partagee
+// laissait trois questions sans leur bonne reponse parmi les choix --
+// invisible a la lecture, attrape en comparant les boutons dessines.
+const WISSEN_OPT = ["weiß", "kenne"];
+
+const wissenKennenExercises = [
+    paireUebung(WISSEN_OPT,
+        "Ich ___ deinen Bruder gut.",
+        "Je connais bien ton frère.",
+        "I know your brother well.",
+        "Kardeşini iyi tanıyorum.",
+        "kenne",
+        "Une personne : « kennen ». On ne « sait » jamais quelqu'un en allemand.",
+        "A person: « kennen ». You never « know » a person with wissen in German.",
+        "Bir kişi: « kennen ». Almancada kişi asla « wissen » ile bilinmez.",
+        "(une personne, ou un fait ?)", "(a person, or a fact?)", "(kişi mi, olgu mu?)",
+        "wissen ou kennen"),
+    paireUebung(WISSEN_OPT,
+        "Ich ___, dass er morgen kommt.",
+        "Je sais qu'il vient demain.",
+        "I know that he's coming tomorrow.",
+        "Yarın geleceğini biliyorum.",
+        "weiß",
+        "Ce qui suit est une phrase entière (« dass er... ») : c'est un fait, donc « wissen ».",
+        "What follows is a whole clause (« dass er... »): that's a fact, so « wissen ».",
+        "Ardından tam bir cümle geliyor (« dass er... »): bu bir olgu, yani « wissen ».",
+        "(un nom seul, ou une petite phrase ?)",
+        "(a single noun, or a whole clause?)",
+        "(tek bir isim mi, tam bir cümle mi?)",
+        "wissen ou kennen"),
+    paireUebung(["Weißt", "Kennst"],
+        "___ du, wo der Bahnhof ist?",
+        "Sais-tu où est la gare ?",
+        "Do you know where the station is?",
+        "Gar nerede biliyor musun?",
+        "Weißt",
+        "« wo... » est une phrase : c'est un fait, donc « wissen ». Attention, « Weißt du den Bahnhof? » serait faux.",
+        "« wo... » is a clause: a fact, so « wissen ». Note that « Weißt du den Bahnhof? » would be wrong.",
+        "« wo... » bir cümledir: olgu, yani « wissen ». « Weißt du den Bahnhof? » yanlış olurdu.",
+        "(qu'est-ce qui suit : un nom ou une question ?)",
+        "(what follows: a noun or a question?)",
+        "(ardından ne geliyor: isim mi soru mu?)",
+        "wissen ou kennen"),
+    paireUebung(["Weißt", "Kennst"],
+        "___ du den Bahnhof? Er ist ganz neu.",
+        "Tu connais la gare ? Elle est toute neuve.",
+        "Do you know the station? It's brand new.",
+        "Garı biliyor musun? Yepyeni.",
+        "Kennst",
+        "Un lieu, donné comme nom seul : « kennen ». Comparer avec la phrase précédente, où le même mot appelait « wissen » parce qu'il était dans une question indirecte.",
+        "A place, given as a bare noun: « kennen ». Compare with the previous sentence, where the same word needed « wissen » because it sat in an indirect question.",
+        "Bir yer, tek başına isim olarak: « kennen ». Önceki cümleyle karşılaştır: aynı kelime dolaylı soruda « wissen » istiyordu.",
+        "(compare avec la phrase précédente)",
+        "(compare with the previous sentence)",
+        "(önceki cümleyle karşılaştır)",
+        "wissen ou kennen"),
+    paireUebung(WISSEN_OPT,
+        "Ich ___ dieses Lied, meine Mutter hat es gesungen.",
+        "Je connais cette chanson, ma mère la chantait.",
+        "I know this song, my mother used to sing it.",
+        "Bu şarkıyı biliyorum, annem söylerdi.",
+        "kenne",
+        "Une chose qu'on a déjà rencontrée : « kennen ».",
+        "Something you've come across before: « kennen ».",
+        "Daha önce karşılaşılmış bir şey: « kennen ».",
+        "(l'a-t-on déjà rencontrée, ou est-ce un fait ?)",
+        "(have you met it before, or is it a fact?)",
+        "(daha önce karşılaşıldı mı, yoksa bir olgu mu?)",
+        "wissen ou kennen"),
+    paireUebung(WISSEN_OPT,
+        "Niemand ___, warum er gegangen ist.",
+        "Personne ne sait pourquoi il est parti.",
+        "Nobody knows why he left.",
+        "Neden gittiğini kimse bilmiyor.",
+        "weiß",
+        "« warum... » introduit un fait : « wissen ».",
+        "« warum... » introduces a fact: « wissen ».",
+        "« warum... » bir olgu tanıtır: « wissen ».",
+        "(cherche le petit mot interrogatif)",
+        "(look for the little question word)",
+        "(küçük soru kelimesini ara)",
+        "wissen ou kennen"),
+    paireUebung(["weiß", "kennt"],
+        "Er ___ die Stadt wie seine Westentasche.",
+        "Il connaît la ville comme sa poche.",
+        "He knows the city like the back of his hand.",
+        "Şehri avcunun içi gibi biliyor.",
+        "kennt",
+        "Un lieu qu'on a parcouru : « kennen », même quand le français dit « connaître comme sa poche ».",
+        "A place you've walked through: « kennen », even where French says « know like your pocket ».",
+        "Gezilmiş bir yer: « kennen ».",
+        "(un lieu, donc…)", "(a place, so…)", "(bir yer, yani…)",
+        "wissen ou kennen"),
+    paireUebung(WISSEN_OPT,
+        "Ich ___ es nicht, tut mir leid.",
+        "Je ne le sais pas, désolé.",
+        "I don't know, sorry.",
+        "Bilmiyorum, üzgünüm.",
+        "weiß",
+        "« es » remplace ici un fait entier, pas un objet : « wissen ». C'est l'exception qui trompe -- « es » ressemble à un nom mais n'en est pas un.",
+        "« es » here stands for a whole fact, not an object: « wissen ». This is the tricky case -- « es » looks like a noun but isn't one.",
+        "Burada « es » bir nesneyi değil, bütün bir olguyu karşılar: « wissen ». Aldatıcı durum bu -- « es » isme benzer ama isim değildir.",
+        "(que remplace « es » : une chose, ou ce qu'on vient de dire ?)",
+        "(what does « es » stand for: a thing, or what was just said?)",
+        "(« es » neyi karşılıyor: bir şeyi mi, az önce söyleneni mi?)",
+        "wissen ou kennen")
+];
+
+// ------------------------------------------------- legen / liegen et la famille
+//
+// QUATRE PAIRES, UNE SEULE REGLE, et c'est ce qui la rend rentable :
+//
+//     WOHIN ?  mouvement  -> ACCUSATIF + legen, stellen, setzen, haengen (faible)
+//     WO ?     position   -> DATIF     + liegen, stehen, sitzen, haengen (fort)
+//
+// « Ich lege das Buch auf den Tisch » (accusatif, ca bouge) contre « Das Buch
+// liegt auf dem Tisch » (datif, ca ne bouge pas). Les verbes faibles sont
+// transitifs -- on pose QUELQUE CHOSE ; les forts sont intransitifs -- la
+// chose est la.
+//
+// Le cours a deja le vocabulaire de ces verbes et l'exercice Wo/Wohin sur les
+// prepositions. Il manquait celui qui relie les deux : le CHOIX DU VERBE,
+// dont depend le cas.
+const POSVERB_OPT_1 = ["lege", "liege"];
+const POSVERB_OPT_2 = ["stelle", "steht"];
+const POSVERB_OPT_3 = ["setzt", "sitzt"];
+
+const positionsverbenExercises = [
+    paireUebung(["lege", "liegt"],
+        "Ich ___ das Buch auf den Tisch.",
+        "Je pose le livre sur la table.",
+        "I put the book on the table.",
+        "Kitabı masaya koyuyorum.",
+        "lege",
+        "« auf den Tisch » est à l'accusatif : ça bouge, donc le verbe faible « legen ».",
+        "« auf den Tisch » is accusative: movement, so the weak verb « legen ».",
+        "« auf den Tisch » -i halinde: hareket var, yani zayıf fiil « legen ».",
+        "(« den Tisch » : accusatif ou datif ?)",
+        "(« den Tisch »: accusative or dative?)",
+        "(« den Tisch »: -i hali mi -e hali mi?)",
+        "legen ou liegen"),
+    paireUebung(["lege", "liegt"],
+        "Das Buch ___ auf dem Tisch.",
+        "Le livre est posé sur la table.",
+        "The book is lying on the table.",
+        "Kitap masada duruyor.",
+        "liegt",
+        "« auf dem Tisch » est au datif : rien ne bouge, donc le verbe fort « liegen ».",
+        "« auf dem Tisch » is dative: nothing moves, so the strong verb « liegen ».",
+        "« auf dem Tisch » -e halinde: hiçbir şey hareket etmiyor, yani güçlü fiil « liegen ».",
+        "(compare avec la phrase précédente : « den » ou « dem » ?)",
+        "(compare with the previous sentence: « den » or « dem »?)",
+        "(önceki cümleyle karşılaştır: « den » mi « dem » mi?)",
+        "legen ou liegen"),
+    paireUebung(["stelle", "steht"],
+        "Ich ___ die Flasche in den Kühlschrank.",
+        "Je mets la bouteille au réfrigérateur.",
+        "I put the bottle in the fridge.",
+        "Şişeyi buzdolabına koyuyorum.",
+        "stelle",
+        "« in den Kühlschrank » : accusatif, donc mouvement, donc « stellen ». Debout plutôt qu'à plat -- c'est ce qui distingue stellen de legen.",
+        "« in den Kühlschrank »: accusative, so movement, so « stellen ». Upright rather than flat -- that's what separates stellen from legen.",
+        "« in den Kühlschrank »: -i hali, hareket var, yani « stellen ». Yatay değil dikey -- stellen'i legen'den ayıran budur.",
+        "(« den » : quel cas ?)", "(« den »: which case?)", "(« den »: hangi hal?)",
+        "legen ou liegen"),
+    paireUebung(["stelle", "steht"],
+        "Die Flasche ___ im Kühlschrank.",
+        "La bouteille est au réfrigérateur.",
+        "The bottle is in the fridge.",
+        "Şişe buzdolabında.",
+        "steht",
+        "« im » = « in dem », datif : position, donc « stehen ».",
+        "« im » = « in dem », dative: position, so « stehen ».",
+        "« im » = « in dem », -e hali: konum, yani « stehen ».",
+        "(« im » cache quel article ?)",
+        "(what article is hidden in « im »?)",
+        "(« im » hangi tanımlığı gizliyor?)",
+        "legen ou liegen"),
+    paireUebung(["setze", "sitze"],
+        "Ich ___ mich auf den Stuhl.",
+        "Je m'assois sur la chaise.",
+        "I sit down on the chair.",
+        "Sandalyeye oturuyorum.",
+        "setze",
+        "« auf den Stuhl » : accusatif, le mouvement de s'asseoir, donc « sich setzen ».",
+        "« auf den Stuhl »: accusative, the act of sitting down, so « sich setzen ».",
+        "« auf den Stuhl »: -i hali, oturma hareketi, yani « sich setzen ».",
+        "(est-ce l'action de s'asseoir, ou le fait d'être assis ?)",
+        "(is it the act of sitting down, or being seated?)",
+        "(oturma eylemi mi, oturuyor olmak mı?)",
+        "legen ou liegen"),
+    paireUebung(["setze", "sitze"],
+        "Ich ___ auf dem Stuhl und lese.",
+        "Je suis assis sur la chaise et je lis.",
+        "I'm sitting on the chair reading.",
+        "Sandalyede oturmuş okuyorum.",
+        "sitze",
+        "« auf dem Stuhl » : datif, on y est déjà, donc « sitzen ».",
+        "« auf dem Stuhl »: dative, you're already there, so « sitzen ».",
+        "« auf dem Stuhl »: -e hali, zaten oradasın, yani « sitzen ».",
+        "(« dem » : le mouvement est-il fini ?)",
+        "(« dem »: is the movement over?)",
+        "(« dem »: hareket bitti mi?)",
+        "legen ou liegen"),
+    paireUebung(["hänge", "hängt"],
+        "Ich ___ das Bild an die Wand.",
+        "J'accroche le tableau au mur.",
+        "I hang the picture on the wall.",
+        "Tabloyu duvara asıyorum.",
+        "hänge",
+        "« an die Wand » : accusatif. « hängen » est le seul de la famille à s'écrire pareil des deux côtés -- c'est le CAS qui tranche, pas le verbe.",
+        "« an die Wand »: accusative. « hängen » is the only one in the family spelled the same both ways -- the CASE decides, not the verb.",
+        "« an die Wand »: -i hali. « hängen » ailede iki yönde de aynı yazılan tek fiildir -- HAL karar verir, fiil değil.",
+        "(« die Wand » après « an » : quel cas ?)",
+        "(« die Wand » after « an »: which case?)",
+        "(« an »den sonra « die Wand »: hangi hal?)",
+        "legen ou liegen"),
+    paireUebung(["hänge", "hängt"],
+        "Das Bild ___ an der Wand.",
+        "Le tableau est accroché au mur.",
+        "The picture is hanging on the wall.",
+        "Tablo duvarda asılı.",
+        "hängt",
+        "« an der Wand » : datif, donc position. Même verbe à l'infinitif, mais le passé les sépare : hängte (mouvement) contre hing (position).",
+        "« an der Wand »: dative, so position. Same infinitive, but the past tense separates them: hängte (movement) vs hing (position).",
+        "« an der Wand »: -e hali, yani konum. Mastarı aynı ama geçmiş zaman ayırır: hängte (hareket) / hing (konum).",
+        "(« der Wand » : quel cas ?)", "(« der Wand »: which case?)", "(« der Wand »: hangi hal?)",
+        "legen ou liegen")
+];
+
+function startDerEinUebung(){
+    startExerciseSet(shuffleArray(derEinExercises.slice()), "kicker_der_ein",
+                     () => openOrbPanel('pronomen'), startDerEinUebung);
+}
+function startWissenKennenUebung(){
+    startExerciseSet(shuffleArray(wissenKennenExercises.slice()), "kicker_wissen_kennen",
+                     openVerbenNiveau, startWissenKennenUebung);
+}
+function startPositionsverbenUebung(){
+    startExerciseSet(shuffleArray(positionsverbenExercises.slice()), "kicker_positionsverben",
+                     openPraepInfo, startPositionsverbenUebung);
+}
+
 function startObwohlTrotzdemUebung(){
     startExerciseSet(shuffleArray(obwohlTrotzdemExercises.slice()), "kicker_obwohl_trotzdem",
                      openKonjunktionenInfo, startObwohlTrotzdemUebung);
@@ -14223,7 +14641,11 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_verben_o1_t"), desc:t("op_due_desc"), primary:true, action:"startVerbeDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
-                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" }
+                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" },
+                // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
+                // la frontiere est nette : kennen une personne ou un lieu,
+                // wissen un fait. Aucune carte ne peut l'enseigner seule.
+                { icon:"exercice", title:t("op_verben_o5_t"), desc:t("op_verben_o5_d"), action:"startWissenKennenUebung" }
             ]
         };
     }
@@ -14317,7 +14739,12 @@ function orbPanelData(id){
                 // Les deux premieres cartes de cette tuile. Elle n'avait que
                 // des lecons, et les determinants n'avaient aucune porte.
                 { icon:"carte", title:t("op_pronomen_o5_t"), desc:"man · es · sich · wer · selbst…", action:"startPronomenVokabular" },
-                { icon:"carte", title:t("op_pronomen_o6_t"), desc:"der · ein · kein · jeder · dieser…", action:"startArtikelwoerterVokabular" }
+                { icon:"carte", title:t("op_pronomen_o6_t"), desc:"der · ein · kein · jeder · dieser…", action:"startArtikelwoerterVokabular" },
+                // Le cours teste deja der, ein et kein, un cas a la fois. Ce
+                // qui manquait, c'est la regle qui les relie : tout
+                // determinant allemand suit l'un de deux modeles, et il n'y
+                // en a que deux.
+                { icon:"exercice", title:t("op_pronomen_o7_t"), desc:t("op_pronomen_o7_d"), action:"startDerEinUebung" }
             ]
         };
     }
@@ -14418,7 +14845,11 @@ function orbPanelData(id){
                 { icon:"exercice", title:t("op_praep_o2_t"), desc:t("op_praep_o2_d"), action:"startPraepReconnaissance" },
                 { icon:"exercice", title:t("op_praep_o3_t"), desc:t("op_praep_o3_d"), action:"startPraepWoWohin" },
                 { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular" },
-                { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular" }
+                { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular" },
+                // Le cours avait le vocabulaire de ces verbes et l'exercice
+                // Wo/Wohin sur les prepositions. Il manquait celui qui relie
+                // les deux : le CHOIX DU VERBE, dont depend le cas.
+                { icon:"exercice", title:t("op_praep_o6_t"), desc:t("op_praep_o6_d"), action:"startPositionsverbenUebung" }
             ]
         };
     }
@@ -18471,7 +18902,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 378;
+const APP_VERSION = 379;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
