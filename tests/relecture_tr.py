@@ -288,6 +288,32 @@ def _radical(mot):
     return m
 
 
+# CE QU'ON A DECIDE D'ACCEPTER NE DOIT PLUS REMONTER.
+#
+# Deux mots allemands peuvent legitimement partager un mot turc quand la
+# langue n'en a qu'un -- ernst et ernsthaft se disent « ciddi », point. Le
+# premier verdict de relecture l'a etabli en rejetant « vahim » comme
+# contresens. Cette decision-la est prise ; la reafficher a chaque controle
+# la transformerait en bruit, et le bruit finit par cacher les vrais cas.
+#
+# Le fichier porte la RAISON a cote de chaque mot, ce qui est le point : une
+# ligne qu'on ne peut pas justifier devant une locutrice native n'a rien a y
+# faire, et le format l'impose.
+def collisions_acceptees():
+    chemin = os.path.join(SORTIE, "collisions-acceptees.txt")
+    if not os.path.isfile(chemin):
+        return {}
+    out = {}
+    for ligne in io.open(chemin, encoding="utf-8"):
+        ligne = ligne.strip()
+        if not ligne or ligne.startswith("#"):
+            continue
+        bouts = [b.strip() for b in ligne.split("|", 2)]
+        if len(bouts) == 3:
+            out[(bouts[0], bouts[1].lower())] = bouts[2]
+    return out
+
+
 def paire_de_genre(cartes):
     radicaux = {_radical(c.get("allemand")) for c in cartes}
     return len(radicaux) == 1
@@ -311,6 +337,8 @@ def collisions():
     total = 0
     lignes = []
     genres = []
+    acceptees = collisions_acceptees()
+    retenues = []
     for nom in sorted(tout):
         par_turc = {}
         for c in tout[nom]:
@@ -324,8 +352,11 @@ def collisions():
             if de not in [x["allemand"] for x in par_turc[tr]]:
                 par_turc[tr].append(c)
         tous = [(tr, v) for tr, v in par_turc.items() if len(v) > 1]
-        groupes = [g for g in tous if not paire_de_genre(g[1])]
         genres.extend((nom, tr, v) for tr, v in tous if paire_de_genre(v))
+        tous = [g for g in tous if not paire_de_genre(g[1])]
+        retenues.extend((nom, tr, v, acceptees[(nom, tr)])
+                        for tr, v in tous if (nom, tr) in acceptees)
+        groupes = [g for g in tous if (nom, g[0]) not in acceptees]
         groupes.sort(key=lambda g: (-len(g[1]), g[0]))
         if not groupes:
             continue
@@ -357,6 +388,16 @@ def collisions():
         f.write("aucune relecture par lots ne peut les voir : le relecteur ne ")
         f.write("recoit qu'une centaine de cartes a la fois.\n")
         f.write("\n".join(lignes))
+        if retenues:
+            f.write("\n\n---\n\n# Collisions acceptees, avec leur raison\n\n")
+            f.write("Le turc n'a reellement qu'un mot la ou l'allemand en a ")
+            f.write("deux : forcer une difference y produirait un contresens ")
+            f.write("ou une tournure que personne ne dit. Chaque ligne porte ")
+            f.write("sa justification, et vient de ")
+            f.write("`collisions-acceptees.txt`.\n\n")
+            for nom, tr, v, raison in sorted(retenues):
+                mots = ", ".join(x["allemand"] for x in v)
+                f.write("- *%s* — **%s** ← %s\n  - %s\n" % (nom, tr, mots, raison))
         if genres:
             f.write("\n\n---\n\n# Paires de genre — vues, et acceptees\n\n")
             f.write("Ces %d groupes ne sont PAS des collisions a corriger. "
@@ -374,7 +415,8 @@ def collisions():
                 f.write("- *%s* — **%s** ← %s\n" % (nom, tr, mots))
         f.write("\n")
     print("  ecrit : relecture_tr/collisions.md  (%d cartes a regarder, "
-          "%d paires de genre acceptees)" % (total, len(genres)))
+          "%d acceptees + %d paires de genre)"
+          % (total, len(retenues), len(genres)))
     return 0
 
 

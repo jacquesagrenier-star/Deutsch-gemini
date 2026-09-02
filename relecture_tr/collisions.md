@@ -9,6 +9,18 @@ Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legiti
 
 ---
 
+# Collisions acceptees, avec leur raison
+
+Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une difference y produirait un contresens ou une tournure que personne ne dit. Chaque ligne porte sa justification, et vient de `collisions-acceptees.txt`.
+
+- *adjectifs* — **ciddi** ← ernst, ernsthaft
+  - ernst et ernsthaft sont deux quasi-synonymes allemands ; le turc dit « ciddi » pour les deux. La relecture du 2 septembre a rejete « vahim » comme contresens (vahim = grave, desastreux), et il n'existe pas de troisieme mot naturel.
+- *adjectifs* — **resmî** ← offiziell, amtlich
+  - offiziell et amtlich se disent tous deux « resmî ». La relecture du 2 septembre a rejete « devlet onaylı » (= certifie par l'Etat) comme contresens sur « ein amtliches Dokument », qui est simplement « resmî bir belge ».
+
+
+---
+
 # Paires de genre — vues, et acceptees
 
 Ces 37 groupes ne sont PAS des collisions a corriger. Le turc n'a pas de genre grammatical et ne feminise pas le nom de metier : « uzman » est la bonne reponse pour `der Experte` comme pour `die Expertin`. Inventer une forme feminine pour departager les deux cartes enseignerait une regle qui n'existe pas dans la langue.
