@@ -199,6 +199,8 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - ernst et ernsthaft sont deux quasi-synonymes allemands ; le turc dit « ciddi » pour les deux. La relecture du 2 septembre a rejete « vahim » comme contresens (vahim = grave, desastreux), et il n'existe pas de troisieme mot naturel.
 - *adjectifs* — **resmî** ← offiziell, amtlich
   - offiziell et amtlich se disent tous deux « resmî ». La relecture du 2 septembre a rejete « devlet onaylı » (= certifie par l'Etat) comme contresens sur « ein amtliches Dokument », qui est simplement « resmî bir belge ».
+- *expressions* — **korkmak** ← Angst haben, Sich fürchten vor
+  - Angst haben et sich fuerchten vor se disent tous deux « korkmak ». « korku duymak », essaye pour les separer, a ete rejete en relecture comme inutilement lourd -- le verbe simple est le mot naturel.
 - *noms* — **alan** ← der Bereich, die Fläche
   - Bereich (domaine) et Flaeche (superficie) se disent « alan ». « yuzey » designe la surface exterieure d'un objet, pas la superficie d'un terrain.
 - *noms* — **anlam** ← die Bedeutung, der Sinn
