@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v370</span>
+        <span class="subtitle-version">v371</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17125,6 +17125,9 @@ function setEcouteSens(sens){
 // ---- Lecteur ----
 
 function demarrerEcoute(niveau){
+    // Premier geste de la seance : c'est ici, et pas plus tard, que la
+    // synthese peut obtenir le droit de parler. Voir amorcerSynthese().
+    amorcerSynthese();
     const pool = poolEcoute(niveau);
     if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
     // Mêmes cartes que les flashcards : les non maîtrisées d'abord. Si tout est
@@ -17218,6 +17221,44 @@ function ecouteMajBouton(){
     btn.innerHTML = ecouteJoue
         ? '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>'
         : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+}
+
+// AMORCE DE LA SYNTHESE -- A APPELER DANS LE GESTE DE L'UTILISATEUR.
+//
+// Sur iOS, le tout premier speak() d'une page doit partir dans le prolongement
+// DIRECT d'un geste. Sinon il est refuse EN SILENCE : ni `start`, ni `end`, ni
+// `error`. C'est exactement ce que le journal a montre le 2 septembre --
+// MUET puis SAUTE sur toutes les etapes francaises, alors que tout l'allemand
+// jouait.
+//
+// EN MODE ECOUTE, LE GESTE EST DEPENSE AILLEURS. Le tap sur le niveau lance la
+// sequence, et la premiere etape est un FICHIER allemand : c'est lui qui
+// consomme le geste. La voix francaise, elle, arrive une ou deux etapes plus
+// tard, hors geste -- elle n'a jamais eu le droit de parler. Le meme code est
+// donc muet dans Safari et sonore dans l'app installee, qui n'est pas soumise
+// a cette regle : c'est la difference que Jacques observait entre son lien et
+// sa tuile, et qui n'avait rien a voir avec la version.
+//
+// On depense donc une part du geste sur un enonce vide, au volume zero, AVANT
+// tout le reste. Le droit, une fois accorde, vaut pour toute la page.
+//
+// Ce que ca ne touche pas : l'element audio unique de la v351 et son propre
+// deverrouillage, qui fonctionnent et restent intacts.
+let syntheseAmorcee = false;
+function amorcerSynthese(){
+    if(!("speechSynthesis" in window)) return;
+    // Un geste rend sa chance a la synthese : si on l'avait constatee muette,
+    // on refait l'amorce plutot que de rester sur ce constat.
+    const reamorcer = ecouteSyntheseMuette;
+    ecouteSyntheseMuette = false;
+    if(syntheseAmorcee && !reamorcer) return;
+    try{
+        const u = new SpeechSynthesisUtterance(" ");
+        u.volume = 0;
+        window.speechSynthesis.speak(u);
+        syntheseAmorcee = true;
+        noterAudio("(amorce)", "AMORCE", "droit de parler demande dans le geste");
+    }catch(e){}
 }
 
 function ecouteLancer(){
@@ -17379,6 +17420,7 @@ function mettreEcouteEnPause(){
 }
 
 function ecouteBasculer(){
+    amorcerSynthese();
     if(ecouteJoue) mettreEcouteEnPause();
     else ecouteLancer();
 }
@@ -17396,6 +17438,7 @@ function ecouteArreterSon(){
 }
 
 function ecouteAller(i){
+    amorcerSynthese();
     ecouteArreterSon();
     if(i < 0) i = 0;
     if(i >= ecouteCartes.length){ ecouteFin(); return; }
@@ -17489,7 +17532,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 370;
+const APP_VERSION = 371;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
