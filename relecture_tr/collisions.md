@@ -1,12 +1,12 @@
-# Collisions turques — le controle mecanique
+# Collisions dans la langue cible — le controle mecanique
 
-Produit par `python tests/relecture_tr.py --collisions`. **Aucune correction appliquee.**
+Produit par `python tests/relecture_langue.py --langue tr --collisions`. **Aucune correction appliquee.**
 
 Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de la meme categorie. La carte devient indecidable : quoi que l'apprenant reponde, il ne peut pas avoir raison.
 
 Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
 
-## noms (4 reponses turques pour 8 mots allemands)
+## noms (4 reponses pour 8 mots allemands)
 
 - **aşı** ← der Impfstoff (A2), die Impfung (B1)
     - der Impfstoff : vaccin
@@ -22,7 +22,7 @@ Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legiti
     - die Temperatur : température
 
 
-## verbes (51 reponses turques pour 112 mots allemands)
+## verbes (51 reponses pour 112 mots allemands)
 
 - **değiştirmek** ← wechseln (A2), ändern (B1), umtauschen (B1), verändern (B1), auswechseln (B1)
     - wechseln : changer
