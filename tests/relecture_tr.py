@@ -3,7 +3,7 @@
 
     python tests/relecture_tr.py --suspects               # 1a. les champs perdus
     python tests/relecture_tr.py --collisions             # 1b. les collisions
-    python tests/relecture_tr.py --nouveaute              # 2. ce qui vient d'etre ecrit
+    python tests/relecture_tr.py --nouveaute --texte      # 2. ce qui vient d'etre ecrit
     python tests/relecture_tr.py --niveaux A1,A2          #    ou tout un niveau
     python tests/relecture_tr.py --rapport                # 3. le depouillement
 
@@ -484,7 +484,58 @@ def mots_corriges():
             if k in vers_categorie}
 
 
-def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False):
+# UN LOT QUI SE COLLE, PARCE QU'UN LOT QUI SE JOINT NE PASSE PAS PARTOUT.
+#
+# Plusieurs assistants n'acceptent qu'UNE piece jointe, ou aucune sans compte
+# payant. Un lot en JSON + une consigne a part, c'est deja deux fichiers : la
+# relecture s'arrete avant d'avoir commence.
+#
+# `--texte` produit donc un .txt autonome par lot : la consigne en tete, les
+# cartes ensuite, en clair. On le colle d'un bloc dans la conversation, sans
+# rien joindre. Le JSON reste disponible pour les relecteurs qui le prennent.
+def lot_en_texte(base, categorie, niveau, cartes):
+    L = []
+    L.append(CONSIGNE.rstrip())
+    L.append("")
+    L.append("=" * 70)
+    if niveau:
+        L.append("LOT %s — %s, niveau %s — %d cartes"
+                 % (base, categorie, niveau, len(cartes)))
+    else:
+        L.append("LOT %s — %s — %d cartes" % (base, categorie, len(cartes)))
+        L.append("Le niveau (A1 a C1) est indique entre crochets sur chaque")
+        L.append("carte : c'est contre lui que le registre se juge.")
+    L.append("=" * 70)
+    L.append("")
+    for i, c in enumerate(cartes, 1):
+        L.append("--- %d. %s   [%s]" % (i, c.get("allemand") or c.get("cle"),
+                                        c.get("niveau") or "?"))
+        if c.get("theme"):
+            L.append("    theme       : %s" % c["theme"])
+        L.append("    sens (fr)   : %s" % (c.get("sens_fr") or ""))
+        L.append("    TURC        : %s" % (c.get("turc") or ""))
+        phrases = c.get("phrases")
+        if phrases:
+            for p in phrases:
+                L.append("    %s" % p.get("temps"))
+                L.append("      DE   : %s" % (p.get("de") or ""))
+                L.append("      fr   : %s" % (p.get("fr") or ""))
+                L.append("      TURC : %s" % (p.get("tr") or ""))
+        else:
+            L.append("    phrase DE   : %s" % (c.get("phrase_de") or ""))
+            L.append("    phrase fr   : %s" % (c.get("phrase_fr") or ""))
+            L.append("    phrase TURC : %s" % (c.get("phrase_tr") or ""))
+        L.append("")
+    L.append("=" * 70)
+    L.append("Rappel : reponds par un tableau JSON, et rien d'autre.")
+    L.append("Le champ `mot` doit reprendre le mot allemand tel qu'il est")
+    L.append("ecrit ci-dessus, sans l'article. Si tu ne trouves rien : []")
+    L.append("=" * 70)
+    return "\n".join(L) + "\n"
+
+
+def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False,
+               en_texte=False):
     if not os.path.isdir(SORTIE):
         os.makedirs(SORTIE)
 
@@ -523,25 +574,42 @@ def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False):
         # cartes d'un meme theme restent ensemble, ce qui donne le contexte
         # qui fait voir une incoherence entre deux fiches voisines.
         n_lots = 0
-        for niv in niveaux:
-            du_niveau = [c for c in cartes if c.get("niveau") == niv]
-            if not du_niveau:
-                continue
-            lots = [du_niveau[i:i + taille]
-                    for i in range(0, len(du_niveau), taille)]
+        if en_texte:
+            # EN TEXTE, ON REGROUPE. Un lot par niveau donnait ici quatre
+            # fichiers pour vingt-neuf adjectifs -- quatre conversations a
+            # ouvrir pour presque rien. On remplit donc les lots a ras bord,
+            # tous niveaux confondus, et chaque carte porte son niveau : le
+            # relecteur juge toujours le registre CONTRE le niveau annonce,
+            # ce qui etait la seule raison de les separer.
+            ordre = {n: i for i, n in enumerate(NIVEAUX)}
+            cartes = sorted(cartes, key=lambda c: ordre.get(c.get("niveau"), 9))
+            lots = [cartes[i:i + taille] for i in range(0, len(cartes), taille)]
             for i, lot in enumerate(lots, 1):
-                base = "%s_%s_lot_%02d" % (nom, niv, i)
-                donnees = {
-                    "lot": base,
-                    "categorie": nom,
-                    "niveau": niv,
-                    "cartes": lot,
-                }
-                chemin = os.path.join(SORTIE, base + ".json")
+                base = "%s_lot_%02d" % (nom, i)
+                chemin = os.path.join(SORTIE, base + ".txt")
                 with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
-                    json.dump(donnees, f, ensure_ascii=False, indent=1)
-                    f.write("\n")
-            n_lots += len(lots)
+                    f.write(lot_en_texte(base, nom, None, lot))
+            n_lots = len(lots)
+        else:
+            for niv in niveaux:
+                du_niveau = [c for c in cartes if c.get("niveau") == niv]
+                if not du_niveau:
+                    continue
+                lots = [du_niveau[i:i + taille]
+                        for i in range(0, len(du_niveau), taille)]
+                for i, lot in enumerate(lots, 1):
+                    base = "%s_%s_lot_%02d" % (nom, niv, i)
+                    donnees = {
+                        "lot": base,
+                        "categorie": nom,
+                        "niveau": niv,
+                        "cartes": lot,
+                    }
+                    chemin = os.path.join(SORTIE, base + ".json")
+                    with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
+                        json.dump(donnees, f, ensure_ascii=False, indent=1)
+                        f.write("\n")
+                n_lots += len(lots)
         print("  %-12s %2d lot(s) de %3d  — %4d cartes%s"
               % (nom, n_lots, taille, len(cartes),
                  ("  (%d ecartees, perdues)" % exclues) if exclues else ""))
@@ -641,12 +709,13 @@ def main():
         elif a == "--cartes" and i + 1 < len(args):
             taille = int(args[i + 1])
     seulement_neuf = "--nouveaute" in sys.argv
+    en_texte = "--texte" in sys.argv
     inconnues = [c for c in categories if c not in CATEGORIES]
     if inconnues:
         print("Categorie inconnue : %s" % ", ".join(inconnues))
         print("Disponibles : %s" % ", ".join(sorted(CATEGORIES)))
         return 1
-    return faire_lots(categories, niveaux, taille, seulement_neuf)
+    return faire_lots(categories, niveaux, taille, seulement_neuf, en_texte)
 
 
 if __name__ == "__main__":
