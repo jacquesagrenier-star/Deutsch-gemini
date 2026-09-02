@@ -60,10 +60,16 @@ def masculins_possibles(feminin):
     return {m for m in out if len(m) >= 3}
 
 
-def noms_du_cours():
-    """mot -> (theme, entree). Seuls les noms peuvent porter une paire."""
-    chemin = os.path.join(RACINE, "themes.json")
-    donnees = json.load(io.open(chemin, encoding="utf-8"))
+def noms_du_cours(donnees):
+    """mot -> [entrees]. Seuls les noms peuvent porter une paire.
+
+    L'INDEX EST BATI SUR LES DONNEES QU'ON VA ECRIRE, pas sur une seconde
+    lecture du fichier. La premiere version rechargeait themes.json ici : elle
+    posait donc les paires sur un graphe d'objets distinct de celui que la
+    sauvegarde serialisait. Le script annoncait « 15 paires posees » et le
+    fichier ne bougeait pas -- un echec parfaitement silencieux, qui n'a ete vu
+    que parce que les memes feminins revenaient au lot suivant.
+    """
     out = {}
     for t in donnees.get("themes", donnees):
         for m in t.get("mots", []):
@@ -95,7 +101,7 @@ def main():
         print("  ! themes.json ne se reproduit pas a l'identique -- rien ecrit")
         return 1
 
-    cours = noms_du_cours()
+    cours = noms_du_cours(donnees)
     poses, deja, orphelins = 0, 0, []
     for feminin in sorted(union):
         if not feminin.endswith("in") or feminin in cours:
