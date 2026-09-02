@@ -3572,7 +3572,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v377</span>
+        <span class="subtitle-version">v378</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6535,6 +6535,8 @@ const I18N = {
         op_pronomen_o3_t: "Possessifs",
         op_pronomen_o3_d: "mein, dein, unser",
         op_pronomen_o4_t: "Relatifs",
+        op_pronomen_o5_t: "Vocabulaire · pronoms", op_pronomen_o6_t: "Vocabulaire · déterminants",
+        kicker_pronomen_vokabular: "Pronoms · vocabulaire", kicker_artikelwoerter_vokabular: "Déterminants · vocabulaire",
         op_pronomen_o4_d: "der, die, das, dessen",
         op_zahlen_title: "Nombres",
         op_zahlen_sub: "compter, dater, chiffrer",
@@ -6644,7 +6646,11 @@ const I18N = {
         kicker_adverbien_nuance: "Adverbes · Famille",
         kicker_adverbien_vocab: "Adverbes · Vocabulaire",
         kicker_konnektoren: "Connecteurs · place du verbe",
+        kicker_als_wenn: "als ou wenn ?",
+        kicker_obwohl_trotzdem: "obwohl ou trotzdem ?",
         op_konjunktionen_o4_t: "Où va le verbe ?", op_konjunktionen_o4_d: "weil · denn · deshalb : trois causes, trois ordres",
+        op_konjunktionen_o5_t: "als ou wenn ?", op_konjunktionen_o5_d: "Les deux disent « quand » — une seule fois, ou chaque fois",
+        op_konjunktionen_o6_t: "obwohl ou trotzdem ?", op_konjunktionen_o6_d: "Les deux disent « malgré » — mais pas du même côté",
         kicker_konjunktionen_nuance: "Conjonctions · Type",
         kicker_konjunktionen_vocab: "Conjonctions · Vocabulaire",
         adverbien_info_title: "Comprendre les adverbes",
@@ -7467,6 +7473,8 @@ const I18N = {
         op_pronomen_o3_t: "Possessive",
         op_pronomen_o3_d: "mein, dein, unser",
         op_pronomen_o4_t: "Relative",
+        op_pronomen_o5_t: "Vocabulary · pronouns", op_pronomen_o6_t: "Vocabulary · determiners",
+        kicker_pronomen_vokabular: "Pronouns · vocabulary", kicker_artikelwoerter_vokabular: "Determiners · vocabulary",
         op_pronomen_o4_d: "der, die, das, dessen",
         op_zahlen_title: "Nombres",
         op_zahlen_sub: "counting, dates, figures",
@@ -7576,7 +7584,11 @@ const I18N = {
         kicker_adverbien_nuance: "Adverbs · Family",
         kicker_adverbien_vocab: "Adverbs · Vocabulary",
         kicker_konnektoren: "Connectors · verb position",
+        kicker_als_wenn: "als or wenn?",
+        kicker_obwohl_trotzdem: "obwohl or trotzdem?",
         op_konjunktionen_o4_t: "Where does the verb go?", op_konjunktionen_o4_d: "weil · denn · deshalb: three causes, three orders",
+        op_konjunktionen_o5_t: "als or wenn?", op_konjunktionen_o5_d: "Both mean “when” — once, or every time",
+        op_konjunktionen_o6_t: "obwohl or trotzdem?", op_konjunktionen_o6_d: "Both mean “despite” — but not on the same side",
         kicker_konjunktionen_nuance: "Conjunctions · Type",
         kicker_konjunktionen_vocab: "Conjunctions · Vocabulary",
         adverbien_info_title: "Understand adverbs",
@@ -8403,6 +8415,8 @@ const I18N = {
         op_pronomen_o3_t: "İyelik",
         op_pronomen_o3_d: "mein, dein, unser",
         op_pronomen_o4_t: "İlgi",
+        op_pronomen_o5_t: "Kelimeler · zamirler", op_pronomen_o6_t: "Kelimeler · belirteçler",
+        kicker_pronomen_vokabular: "Zamirler · kelimeler", kicker_artikelwoerter_vokabular: "Belirteçler · kelimeler",
         op_pronomen_o4_d: "der, die, das, dessen",
         op_zahlen_title: "Sayılar",
         op_zahlen_sub: "sayma, tarihler, rakamlar",
@@ -8512,7 +8526,11 @@ const I18N = {
         kicker_adverbien_nuance: "Zarflar · Aile",
         kicker_adverbien_vocab: "Zarflar · Kelime",
         kicker_konnektoren: "Bağlayıcılar · fiilin yeri",
+        kicker_als_wenn: "als mı wenn mi?",
+        kicker_obwohl_trotzdem: "obwohl mu trotzdem mi?",
         op_konjunktionen_o4_t: "Fiil nereye gider?", op_konjunktionen_o4_d: "weil · denn · deshalb: üç neden, üç sıra",
+        op_konjunktionen_o5_t: "als mı wenn mi?", op_konjunktionen_o5_d: "İkisi de “-dığında” demek — bir kez mi, her seferinde mi",
+        op_konjunktionen_o6_t: "obwohl mu trotzdem mi?", op_konjunktionen_o6_d: "İkisi de “rağmen” demek — ama aynı tarafta değil",
         kicker_konjunktionen_nuance: "Bağlaçlar · Tür",
         kicker_konjunktionen_vocab: "Bağlaçlar · Kelime",
         adverbien_info_title: "Zarfları anlamak",
@@ -9461,6 +9479,9 @@ async function loadVerbeJson() {
                     // chargeur recopie champ par champ : sans cette ligne, la
                     // marque posee dans verbe.json n'atteindrait jamais l'app.
                     pruefung: Array.isArray(v.pruefung) ? v.pruefung : null,
+                    // Marque d'usage : « ecrit », « familier », ou la variante
+                    // regionale (« oesterreichisch », « schweizerisch »).
+                    registre: v.registre || "",
                     niveau: lvl
                 });
             });
@@ -9516,7 +9537,8 @@ async function loadAdjektiveJson() {
                     w.exemple_en || "",
                     w.traduction_tr || "",   // rang 7
                     w.exemple_tr || "",      // rang 8
-                    Array.isArray(w.pruefung) ? w.pruefung : null   // rang 9
+                    Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 9
+                    w.registre || ""         // rang 10
                 ]);
             });
         });
@@ -9593,7 +9615,9 @@ const FUNKTIONSWORT_THEMES = {
     konjunktionen:  () => konjunktionenTheme,
     zahlen:         () => zahlenTheme,
     partikeln:      () => partikelnTheme,
-    praepositionen: () => praepTheme
+    praepositionen: () => praepTheme,
+    pronomen:       () => pronomenVokabularTheme,
+    artikelwoerter: () => artikelwoerterTheme
 };
 
 async function loadFunktionswoerterJson() {
@@ -9612,7 +9636,9 @@ async function loadFunktionswoerterJson() {
                 w.traduction_en || "", w.exemple_en || "",
                 w.kategorie_en || "", w.niveau || "",
                 w.traduction_tr || "", w.exemple_tr || "",  // rangs 9 et 10
-                w.kategorie_tr || ""                        // rang 11
+                w.kategorie_tr || "",                       // rang 11
+                Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 12
+                w.registre || ""                            // rang 13
             ]);
         });
     } catch (e) {
@@ -9636,7 +9662,8 @@ async function loadRedewendungenJson() {
                     cat.en, lvl, r.kategorie || "",
                     r.traduction_tr || "", r.exemple_tr || "",  // rangs 10 et 11
                     cat.tr || "",                               // rang 12
-                    Array.isArray(r.pruefung) ? r.pruefung : null   // rang 13
+                    Array.isArray(r.pruefung) ? r.pruefung : null,  // rang 13
+                    r.registre || ""         // rang 14
                 ]);
             });
         });
@@ -9662,7 +9689,8 @@ async function loadAdverbienJson() {
                     cat.en, lvl, a.kategorie || "",
                     a.traduction_tr || "", a.exemple_tr || "",  // rangs 10 et 11
                     cat.tr || "",                               // rang 12
-                    Array.isArray(a.pruefung) ? a.pruefung : null   // rang 13
+                    Array.isArray(a.pruefung) ? a.pruefung : null,  // rang 13
+                    a.registre || ""         // rang 14
                 ]);
             });
         });
@@ -12155,6 +12183,305 @@ const konnektorenExercises = [
         "(« der Vertrag ist » mi « ist der Vertrag » mı?)")
 ];
 
+// ============ ALS OU WENN ? ============
+//
+// Les deux se traduisent par « quand ». Le francais ne fait aucune difference,
+// l'allemand en fait une absolue :
+//
+//     als   -> UNE SEULE FOIS, DANS LE PASSE
+//     wenn  -> tout le reste : le present, le futur, et l'habitude au passe
+//
+// « Als ich Kind war » (une seule enfance) contre « Wenn ich Kind war »,
+// qui est faux. Mais « Immer wenn ich Kind war » redevient juste des que
+// l'habitude entre en jeu -- c'est pour cela que « immer », « jedes Mal » et
+// « jeden Sommer » sont les vrais indices, et l'exercice les met en evidence.
+//
+// POURQUOI CETTE PAIRE D'ABORD. C'est la faute la plus couteuse du B1 : elle
+// se produit dans chaque recit au passe, donc a chaque partie orale d'examen,
+// et une carte isolee ne peut pas l'enseigner -- il faut deux phrases
+// presque identiques dont une seule change de mot.
+const ALS_WENN_OPTIONS = ["als", "wenn"];
+
+function alsWennUebung(de, fr, en, tr, bon, expl, explEn, explTr, indice, indiceEn, indiceTr){
+    return {
+        topic: "als ou wenn",
+        question: de,
+        question_en: de,
+        question_tr: de,
+        translation: fr, translation_en: en, translation_tr: tr,
+        hint: indice, hint_en: indiceEn, hint_tr: indiceTr,
+        answers: [bon],
+        correct: bon, correctEn: bon, correctTr: bon,
+        explanation: expl, explanation_en: explEn, explanation_tr: explTr,
+        options: ALS_WENN_OPTIONS,
+        optionsEn: ALS_WENN_OPTIONS,
+        optionsTr: ALS_WENN_OPTIONS
+    };
+}
+
+const alsWennExercises = [
+    alsWennUebung(
+        "___ ich Kind war, wohnte ich in Ankara.",
+        "Quand j'étais enfant, j'habitais à Ankara.",
+        "When I was a child, I lived in Ankara.",
+        "Çocukken Ankara'da oturuyordum.",
+        "als",
+        "Une seule enfance, et elle est passée : « als ».",
+        "One single childhood, and it is over: « als ».",
+        "Tek bir çocukluk, ve geçmişte: « als ».",
+        "(cette enfance a-t-elle eu lieu une fois, ou plusieurs ?)",
+        "(did this childhood happen once, or many times?)",
+        "(bu çocukluk bir kez mi, defalarca mı yaşandı?)"),
+    alsWennUebung(
+        "Immer ___ ich Kind war, fuhren wir ans Meer.",
+        "Chaque fois que j'étais enfant, nous allions à la mer.",
+        "Whenever I was a child, we went to the seaside.",
+        "Çocukken her seferinde denize giderdik.",
+        "wenn",
+        "« immer » annonce une habitude : même au passé, l'habitude prend « wenn ». C'est le seul cas où le passé ne suffit pas à choisir « als ».",
+        "« immer » signals a habit: even in the past, a habit takes « wenn ». This is the one case where being in the past isn't enough to choose « als ».",
+        "« immer » bir alışkanlık işaret eder: geçmişte bile alışkanlık « wenn » alır. Geçmiş olmasının « als » için yetmediği tek durum budur.",
+        "(compare avec la phrase précédente : qu'est-ce qui a changé ?)",
+        "(compare with the previous sentence: what changed?)",
+        "(önceki cümleyle karşılaştır: ne değişti?)"),
+    alsWennUebung(
+        "___ ich morgen Zeit habe, rufe ich dich an.",
+        "Si j'ai le temps demain, je t'appelle.",
+        "If I have time tomorrow, I'll call you.",
+        "Yarın vaktim olursa seni ararım.",
+        "wenn",
+        "Le futur n'est jamais « als » : « als » ne sert qu'au passé.",
+        "The future is never « als »: « als » only serves the past.",
+        "Gelecek asla « als » almaz: « als » sadece geçmiş içindir.",
+        "(demain, donc : passé ou pas ?)",
+        "(tomorrow, so: past or not?)",
+        "(yarın, yani: geçmiş mi değil mi?)"),
+    alsWennUebung(
+        "___ der Zug ankam, regnete es stark.",
+        "Quand le train est arrivé, il pleuvait fort.",
+        "When the train arrived, it was raining hard.",
+        "Tren geldiğinde şiddetli yağmur yağıyordu.",
+        "als",
+        "Le train est arrivé une fois, dans le passé : « als ».",
+        "The train arrived once, in the past: « als ».",
+        "Tren geçmişte bir kez geldi: « als ».",
+        "(le train est-il arrivé plusieurs fois ?)",
+        "(did the train arrive several times?)",
+        "(tren defalarca mı geldi?)"),
+    alsWennUebung(
+        "___ es regnet, nehme ich den Bus.",
+        "Quand il pleut, je prends le bus.",
+        "When it rains, I take the bus.",
+        "Yağmur yağınca otobüse biniyorum.",
+        "wenn",
+        "Présent et habitude : « wenn ».",
+        "Present tense and a habit: « wenn ».",
+        "Şimdiki zaman ve alışkanlık: « wenn ».",
+        "(cela arrive-t-il chaque fois qu'il pleut ?)",
+        "(does this happen every time it rains?)",
+        "(her yağmur yağdığında oluyor mu?)"),
+    alsWennUebung(
+        "___ ich letzte Woche in Wien war, habe ich das Schloss besichtigt.",
+        "Quand j'étais à Vienne la semaine dernière, j'ai visité le château.",
+        "When I was in Vienna last week, I visited the castle.",
+        "Geçen hafta Viyana'dayken şatoyu gezdim.",
+        "als",
+        "« letzte Woche » : un moment précis et unique du passé -- « als ».",
+        "« letzte Woche »: one precise, single moment in the past -- « als ».",
+        "« letzte Woche »: geçmişte belirli ve tek bir an -- « als ».",
+        "(« la semaine dernière » : combien de fois ?)",
+        "(« last week »: how many times?)",
+        "(« geçen hafta »: kaç kez?)"),
+    alsWennUebung(
+        "Jedes Mal, ___ er anrief, war ich beschäftigt.",
+        "Chaque fois qu'il appelait, j'étais occupé.",
+        "Every time he called, I was busy.",
+        "Her aradığında meşguldüm.",
+        "wenn",
+        "« jedes Mal » annonce la répétition, comme « immer » : « wenn », malgré le passé.",
+        "« jedes Mal » signals repetition, like « immer »: « wenn », despite the past.",
+        "« jedes Mal », « immer » gibi tekrarı işaret eder: geçmişe rağmen « wenn ».",
+        "(« chaque fois » : une seule fois ou plusieurs ?)",
+        "(« every time »: once or many times?)",
+        "(« her seferinde »: bir kez mi, çok kez mi?)"),
+    alsWennUebung(
+        "___ ich sechzehn wurde, bekam ich ein Fahrrad.",
+        "Quand j'ai eu seize ans, j'ai reçu un vélo.",
+        "When I turned sixteen, I got a bike.",
+        "On altı yaşıma girdiğimde bisiklet aldım.",
+        "als",
+        "On n'a seize ans qu'une fois : passé et unique, donc « als ».",
+        "You only turn sixteen once: past and single, so « als ».",
+        "İnsan bir kez on altı yaşına girer: geçmiş ve tek, yani « als ».",
+        "(combien de fois a-t-on seize ans ?)",
+        "(how many times do you turn sixteen?)",
+        "(insan kaç kez on altı yaşına girer?)"),
+    alsWennUebung(
+        "___ du fertig bist, sag mir Bescheid.",
+        "Quand tu auras fini, préviens-moi.",
+        "When you're finished, let me know.",
+        "Bitirdiğinde bana haber ver.",
+        "wenn",
+        "L'action n'a pas encore eu lieu : jamais « als ».",
+        "The action hasn't happened yet: never « als ».",
+        "Eylem henüz gerçekleşmedi: asla « als ».",
+        "(est-ce déjà arrivé ?)", "(has it happened yet?)", "(bu daha oldu mu?)"),
+    alsWennUebung(
+        "Früher, ___ wir noch in Berlin wohnten, gingen wir oft ins Theater.",
+        "Autrefois, quand nous habitions encore à Berlin, nous allions souvent au théâtre.",
+        "Back when we still lived in Berlin, we often went to the theatre.",
+        "Eskiden Berlin'de otururken sık sık tiyatroya giderdik.",
+        "als",
+        "Une seule période de la vie, révolue : « als ». « oft » porte sur le théâtre, pas sur le fait d'habiter à Berlin -- on n'y a habité qu'une fois.",
+        "One single, closed period of life: « als ». « oft » applies to the theatre, not to living in Berlin -- that happened only once.",
+        "Hayatın kapanmış tek bir dönemi: « als ». « oft » tiyatroya aittir, Berlin'de oturmaya değil -- orada bir kez oturuldu.",
+        "(attention : « oft » porte sur quoi exactement ?)",
+        "(careful: what exactly does « oft » apply to?)",
+        "(dikkat: « oft » tam olarak neye ait?)")
+];
+
+// ============ OBWOHL OU TROTZDEM ? ============
+//
+// La deuxieme paire du meme genre que als/wenn, et le meme piege : le francais
+// n'oblige a rien, l'allemand oblige a tout.
+//
+// Les deux disent la concession, mais ils ne s'accrochent PAS a la meme
+// moitie de la phrase :
+//
+//     obwohl   introduit l'OBSTACLE      Ich gehe raus, obwohl es regnet.
+//     trotzdem introduit ce qu'on FAIT   Es regnet, trotzdem gehe ich raus.
+//
+// Les deux moities s'echangent. Celui qui apprend « trotzdem = bien que »
+// ecrira « trotzdem es regnet », qui est faux, et il l'ecrira longtemps
+// parce que rien dans sa langue ne l'en empeche.
+//
+// L'EXERCICE DES CONNECTEURS NE COUVRE PAS CELA. Il demande OU VA LE VERBE ;
+// celui-ci demande QUEL MOT. Ce sont deux savoirs distincts : on peut savoir
+// que « trotzdem » entraine l'inversion et le placer quand meme du mauvais
+// cote. La phrase a trou l'oblige a choisir la moitie.
+const OBWOHL_OPTIONS = ["obwohl", "trotzdem"];
+
+function obwohlUebung(de, fr, en, tr, bon, expl, explEn, explTr, indice, indiceEn, indiceTr){
+    return {
+        topic: "obwohl ou trotzdem",
+        question: de, question_en: de, question_tr: de,
+        translation: fr, translation_en: en, translation_tr: tr,
+        hint: indice, hint_en: indiceEn, hint_tr: indiceTr,
+        answers: [bon], correct: bon, correctEn: bon, correctTr: bon,
+        explanation: expl, explanation_en: explEn, explanation_tr: explTr,
+        options: OBWOHL_OPTIONS, optionsEn: OBWOHL_OPTIONS, optionsTr: OBWOHL_OPTIONS
+    };
+}
+
+const obwohlTrotzdemExercises = [
+    obwohlUebung(
+        "Ich gehe spazieren, ___ es regnet.",
+        "Je vais me promener, bien qu'il pleuve.",
+        "I'm going for a walk although it's raining.",
+        "Yağmur yağmasına rağmen yürüyüşe çıkıyorum.",
+        "obwohl",
+        "Le trou introduit l'OBSTACLE (il pleut) : c'est « obwohl ». Et le verbe part à la fin -- « es regnet ».",
+        "The gap introduces the OBSTACLE (it's raining): that's « obwohl ». And the verb goes to the end -- « es regnet ».",
+        "Boşluk ENGELİ tanıtıyor (yağmur yağıyor): « obwohl ». Ve fiil sona gider -- « es regnet ».",
+        "(ce qui suit le trou : l'obstacle, ou ce qu'on fait ?)",
+        "(what follows the gap: the obstacle, or what you do?)",
+        "(boşluktan sonra ne geliyor: engel mi, yapılan şey mi?)"),
+    obwohlUebung(
+        "Es regnet, ___ gehe ich spazieren.",
+        "Il pleut, je vais quand même me promener.",
+        "It's raining, even so I'm going for a walk.",
+        "Yağmur yağıyor, buna rağmen yürüyüşe çıkıyorum.",
+        "trotzdem",
+        "Même idée, phrase retournée : le trou introduit maintenant CE QU'ON FAIT malgré tout -- « trotzdem ». Le verbe le suit aussitôt (gehe ich).",
+        "Same idea, sentence flipped: the gap now introduces WHAT YOU DO anyway -- « trotzdem ». The verb follows it at once (gehe ich).",
+        "Aynı fikir, cümle ters: boşluk şimdi buna rağmen YAPILAN ŞEYİ tanıtıyor -- « trotzdem ». Fiil hemen ardından gelir (gehe ich).",
+        "(compare avec la phrase précédente : les deux moitiés ont changé de place)",
+        "(compare with the previous sentence: the two halves have swapped)",
+        "(önceki cümleyle karşılaştır: iki yarı yer değiştirdi)"),
+    obwohlUebung(
+        "___ er sehr müde war, arbeitete er weiter.",
+        "Bien qu'il fût très fatigué, il continua à travailler.",
+        "Although he was very tired, he kept working.",
+        "Çok yorgun olmasına rağmen çalışmaya devam etti.",
+        "obwohl",
+        "L'obstacle (la fatigue) vient en premier : « obwohl », et le verbe (war) à la fin de sa moitié.",
+        "The obstacle (tiredness) comes first: « obwohl », and the verb (war) at the end of its half.",
+        "Engel (yorgunluk) önce geliyor: « obwohl », ve fiil (war) kendi yarısının sonunda.",
+        "(qu'est-ce qui suit le trou : la fatigue ou le travail ?)",
+        "(what follows the gap: the tiredness or the work?)",
+        "(boşluktan sonra ne geliyor: yorgunluk mu iş mi?)"),
+    obwohlUebung(
+        "Er war sehr müde, ___ arbeitete er weiter.",
+        "Il était très fatigué, il a quand même continué à travailler.",
+        "He was very tired, even so he kept working.",
+        "Çok yorgundu, buna rağmen çalışmaya devam etti.",
+        "trotzdem",
+        "Le trou introduit l'action menée malgré l'obstacle : « trotzdem », suivi du verbe (arbeitete er).",
+        "The gap introduces the action carried out despite the obstacle: « trotzdem », followed by the verb (arbeitete er).",
+        "Boşluk engele rağmen yapılan eylemi tanıtıyor: « trotzdem », ardından fiil (arbeitete er).",
+        "(« er arbeitete » ou « arbeitete er » après le trou ?)",
+        "(« er arbeitete » or « arbeitete er » after the gap?)",
+        "(boşluktan sonra « er arbeitete » mı « arbeitete er » mi?)"),
+    obwohlUebung(
+        "Die Prüfung war schwer. ___ haben alle bestanden.",
+        "L'examen était difficile. Tout le monde a quand même réussi.",
+        "The exam was hard. Even so everyone passed.",
+        "Sınav zordu. Buna rağmen herkes geçti.",
+        "trotzdem",
+        "Le point final coupe la phrase en deux : « obwohl » ne peut pas ouvrir une phrase indépendante, il lui faut la principale à côté. « trotzdem » le peut.",
+        "The full stop cuts the sentence in two: « obwohl » cannot open a standalone sentence, it needs a main clause beside it. « trotzdem » can.",
+        "Nokta cümleyi ikiye böler: « obwohl » bağımsız bir cümleyi açamaz, yanında ana cümle ister. « trotzdem » açabilir.",
+        "(attention au point : est-ce une seule phrase ou deux ?)",
+        "(mind the full stop: is this one sentence or two?)",
+        "(noktaya dikkat: bu tek cümle mi iki cümle mi?)"),
+    obwohlUebung(
+        "Wir sind gefahren, ___ das Wetter schlecht war.",
+        "Nous sommes partis, bien que le temps fût mauvais.",
+        "We set off although the weather was bad.",
+        "Hava kötü olmasına rağmen yola çıktık.",
+        "obwohl",
+        "Après le trou vient l'obstacle (le mauvais temps), et « war » file à la fin : « obwohl ».",
+        "After the gap comes the obstacle (bad weather), and « war » goes to the end: « obwohl ».",
+        "Boşluktan sonra engel geliyor (kötü hava) ve « war » sona gidiyor: « obwohl ».",
+        "(cherche « war » : est-il à la fin ?)",
+        "(find « war »: is it at the end?)",
+        "(« war »ı bul: sonda mı?)"),
+    obwohlUebung(
+        "Das Hotel war teuer. Wir haben ___ gut geschlafen.",
+        "L'hôtel était cher. Nous avons quand même bien dormi.",
+        "The hotel was expensive. We slept well nonetheless.",
+        "Otel pahalıydı. Yine de iyi uyuduk.",
+        "trotzdem",
+        "« trotzdem » n'est pas obligé d'ouvrir la phrase : c'est un adverbe, il peut se placer au milieu. « obwohl » n'a jamais cette liberté.",
+        "« trotzdem » doesn't have to open the sentence: it's an adverb, it can sit in the middle. « obwohl » never has that freedom.",
+        "« trotzdem » cümleyi açmak zorunda değil: bir zarftır, ortada durabilir. « obwohl » bu özgürlüğe hiç sahip değil.",
+        "(le mot est au milieu de la phrase — lequel des deux peut y être ?)",
+        "(the word sits mid-sentence — which of the two can do that?)",
+        "(kelime cümlenin ortasında — hangisi orada durabilir?)"),
+    obwohlUebung(
+        "___ ich ihn gut kenne, verstehe ich seine Entscheidung nicht.",
+        "Bien que je le connaisse bien, je ne comprends pas sa décision.",
+        "Although I know him well, I don't understand his decision.",
+        "Onu iyi tanımama rağmen kararını anlamıyorum.",
+        "obwohl",
+        "La phrase commence par la concession et « kenne » est à la fin de sa moitié : « obwohl ».",
+        "The sentence opens with the concession and « kenne » sits at the end of its half: « obwohl ».",
+        "Cümle tavizle başlıyor ve « kenne » kendi yarısının sonunda: « obwohl ».",
+        "(où est « kenne » dans la première moitié ?)",
+        "(where is « kenne » in the first half?)",
+        "(ilk yarıda « kenne » nerede?)")
+];
+
+function startObwohlTrotzdemUebung(){
+    startExerciseSet(shuffleArray(obwohlTrotzdemExercises.slice()), "kicker_obwohl_trotzdem",
+                     openKonjunktionenInfo, startObwohlTrotzdemUebung);
+}
+
+function startAlsWennUebung(){
+    startExerciseSet(shuffleArray(alsWennExercises.slice()), "kicker_als_wenn",
+                     openKonjunktionenInfo, startAlsWennUebung);
+}
+
 function startKonnektorenUebung(){
     startExerciseSet(shuffleArray(konnektorenExercises.slice()), "kicker_konnektoren",
                      openKonjunktionenInfo, startKonnektorenUebung);
@@ -12302,6 +12629,30 @@ const zahlenTheme = {
   name: "Nombres",
   svg: '<svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 16"/></svg>',
   words: []
+};
+
+// PRONOMS ET DETERMINANTS. Les deux classes n'avaient AUCUNE carte : la tuile
+// Pronoms ne proposait que des lecons, et les determinants n'existaient nulle
+// part. Elles sont ici et pas dans une tuile a part, pour une raison
+// pedagogique : « dieser », « kein » et « jeder » se declinent exactement
+// comme les pronoms -- meme tableau, meme geste. Les separer ferait apprendre
+// deux fois la meme declinaison.
+const pronomenVokabularTheme = {
+  id: "pronomen_vokabular",
+  name: "Pronoms",
+  svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0114 0"/></svg>',
+  words: [
+    ["man", "on", "pronom indéfini", "Hier darf man nicht parken.", "Ici, on n'a pas le droit de se garer.", "one, you", "You may not park here."]
+  ]
+};
+
+const artikelwoerterTheme = {
+  id: "artikelwoerter_vokabular",
+  name: "Déterminants",
+  svg: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10"/><path d="M7 13h6"/></svg>',
+  words: [
+    ["der", "le (masculin)", "article défini", "Der Zug fährt um acht.", "Le train part à huit heures.", "the (masculine)", "The train leaves at eight."]
+  ]
 };
 
 const konjunktionenTheme = {
@@ -13962,7 +14313,11 @@ function orbPanelData(id){
                 { icon:"dossier", title:t("op_pronomen_o1_t"), desc:t("op_pronomen_o1_d"), primary:true, action:"openPersonalpronomenInfo" },
                 { icon:"dossier", title:t("op_pronomen_o2_t"), desc:t("op_pronomen_o2_d"), action:"openDemonstrativInfo" },
                 { icon:"dossier", title:t("op_pronomen_o3_t"), desc:t("op_pronomen_o3_d"), action:"openPossessivInfo" },
-                { icon:"dossier", title:t("op_pronomen_o4_t"), desc:t("op_pronomen_o4_d"), action:"openRelativInfo" }
+                { icon:"dossier", title:t("op_pronomen_o4_t"), desc:t("op_pronomen_o4_d"), action:"openRelativInfo" },
+                // Les deux premieres cartes de cette tuile. Elle n'avait que
+                // des lecons, et les determinants n'avaient aucune porte.
+                { icon:"carte", title:t("op_pronomen_o5_t"), desc:"man · es · sich · wer · selbst…", action:"startPronomenVokabular" },
+                { icon:"carte", title:t("op_pronomen_o6_t"), desc:"der · ein · kein · jeder · dieser…", action:"startArtikelwoerterVokabular" }
             ]
         };
     }
@@ -14042,6 +14397,15 @@ function orbPanelData(id){
                 // fait : weil / denn / deshalb disent la meme cause avec trois
                 // ordres de mots differents.
                 { icon:"exercice", title:t("op_konjunktionen_o4_t"), desc:t("op_konjunktionen_o4_d"), action:"startKonnektorenUebung" },
+                // La faute la plus couteuse du niveau : elle revient dans
+                // chaque recit au passe, donc a chaque partie orale d'examen.
+                { icon:"exercice", title:t("op_konjunktionen_o5_t"), desc:t("op_konjunktionen_o5_d"), action:"startAlsWennUebung" },
+                // Meme famille : deux mots pour une seule idee francaise, et
+                // l'allemand qui oblige a choisir. Celui-ci demande QUEL MOT ;
+                // « Ou va le verbe ? » demande autre chose. On peut savoir que
+                // « trotzdem » entraine l'inversion et le placer quand meme du
+                // mauvais cote de la phrase.
+                { icon:"exercice", title:t("op_konjunktionen_o6_t"), desc:t("op_konjunktionen_o6_d"), action:"startObwohlTrotzdemUebung" },
                 { icon:"carte", title:t("op_konjunktionen_o3_t"), desc:"und, weil, aber…", action:"startKonjunktionenVokabular" }
             ]
         };
@@ -14439,6 +14803,21 @@ function cartesExamen(filtre){
     (redewendungenTheme.words || []).forEach((r, index) => prendre(r[0], r[13], {
         word: r, index: index, themeId: redewendungenTheme.id, mode: 'redewendungen'
     }));
+    // LES MOTS-OUTILS ENTRENT DANS LE PAQUET, et leur absence etait une erreur
+    // de raisonnement, pas un oubli. On les avait ecartes en disant qu'une
+    // carte « fuer = pour » ne teste rien -- mais cette carte n'existe pas.
+    // Celle du cours porte le CAS (« toujours Akkusativ ») et une phrase, et
+    // celle de « weil » montre le verbe rejete a la fin. Ce sont exactement
+    // les cartes dont l'examen a besoin, et la tuile pretendait ne pas les
+    // avoir alors qu'elles etaient la depuis toujours.
+    [[praepTheme, 'praep'], [konjunktionenTheme, 'konjunktionen'],
+     [partikelnTheme, 'partikeln'], [zahlenTheme, 'zahlen'],
+     [pronomenVokabularTheme, 'pronomen'],
+     [artikelwoerterTheme, 'artikelwoerter']].forEach(cfg => {
+        (cfg[0].words || []).forEach((w, index) => prendre(w[0], w[12], {
+            word: w, index: index, themeId: cfg[0].id, mode: cfg[1]
+        }));
+    });
     return out;
 }
 
@@ -15952,6 +16331,39 @@ function startZahlenVokabular(niveau){
     loadFlashcard();
 }
 
+// LA TUILE PRONOMS N'AVAIT AUCUNE CARTE -- seulement quatre lecons. Ces deux
+// paquets sont ses premiers, et ils tiennent ensemble : « dieser », « kein »
+// et « jeder » se declinent comme les pronoms, c'est le meme tableau a
+// apprendre. Les mettre dans une tuile « mots-outils » separee aurait fait
+// reviser deux fois la meme declinaison, dans deux endroits differents.
+function startPronomenVokabular(){
+    flashcardMode = 'pronomen';
+    currentTheme = pronomenVokabularTheme;
+    const items = pronomenVokabularTheme.words.map((word, index) =>
+        ({ word, index, themeId: pronomenVokabularTheme.id }));
+    currentCardsFull = items;
+    currentCards = cartesDeSession(items);
+    if(!currentCards.length) currentCards = items;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_pronomen_vokabular', null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+function startArtikelwoerterVokabular(){
+    flashcardMode = 'artikelwoerter';
+    currentTheme = artikelwoerterTheme;
+    const items = artikelwoerterTheme.words.map((word, index) =>
+        ({ word, index, themeId: artikelwoerterTheme.id }));
+    currentCardsFull = items;
+    currentCards = cartesDeSession(items);
+    if(!currentCards.length) currentCards = items;
+    currentFlashcard = 0;
+    setFlashHeader('kicker_artikelwoerter_vokabular', null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
 function startKonjunktionenVokabular(niveau){
     flashcardMode = 'konjunktionen';
     currentTheme = konjunktionenTheme;
@@ -16496,6 +16908,12 @@ const FLASHCARD_RETURN_SCREENS = {
     redewendungen:   () => openRedewendungenVokabular(),
     konjunktionen:   () => openKonjunktionenInfo(),
     zahlen:          () => openZahlenInfo(),
+    // Les deux paquets de la tuile Pronoms reviennent a leur panneau, pas a
+    // l'accueil : c'est de la qu'on les a ouverts. Sans ces deux lignes le
+    // retour tombait sur « Noms » -- le verificateur l'a signale avant qu'on
+    // puisse s'en rendre compte a l'usage.
+    pronomen:        () => openOrbPanel('pronomen'),
+    artikelwoerter:  () => openOrbPanel('pronomen'),
     monvocab:        () => goHome(),
     englishmodule:   () => openEnglishModule(currentEnglishModule)
 };
@@ -16662,7 +17080,7 @@ function loadFlashcard(){
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
     sentenceRegistry = [];
-    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
+    if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
     }
 
@@ -16684,6 +17102,23 @@ function loadFlashcard(){
     // « Feminin : die Freundin » sous le verbe « sein ».
     if(usageEl) usageEl.classList.add("hidden");
     if(paireEl) paireEl.classList.add("hidden");
+
+    // LA MARQUE D'USAGE EST REMPLIE ICI, POUR TOUS LES MODES, et non dans
+    // chaque branche. Elle ne vivait que sur les noms ; depuis qu'elle porte
+    // aussi les variantes regionales (« surtout en Autriche »), elle a un sens
+    // sur n'importe quelle carte -- « grillieren » est suisse, « Marille »
+    // autrichien, « Mathe » familier. La remplir a un seul endroit evite de
+    // repeter le geste dans les huit branches de rendu, et evite surtout d'en
+    // oublier une : c'est exactement ainsi que la paire masculin/feminin est
+    // restee collee sur la carte suivante jusqu'au premier paquet mixte.
+    if(usageEl && getLearningDirection() !== 'en'){
+        const marque = usageMarkText(registreDeLaCarte(card, flashcardMode),
+                                     flashcardMode === 'nomen' ? (card[11] || "") : "");
+        if(marque){
+            usageEl.textContent = marque;
+            usageEl.classList.remove("hidden");
+        }
+    }
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben' || flashcardMode === 'vhskapitelverben'){
@@ -16938,7 +17373,7 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
-    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapiteladjektive'){
+    } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapiteladjektive'){
         const germanWord = card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
@@ -16952,7 +17387,7 @@ function loadFlashcard(){
         const exampleSentence = card[3];
         const exampleSentenceFr = texteCarte(card, typeCarte, "exemple");
         const label = flashcardMode === 'partikeln' ? t('label_nuance_word')
-            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'redewendungen') ? t('label_word_category')
+            : (flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen') ? t('label_word_category')
             : t('label_case_word');
         if(frontIsFrench){
             document.getElementById("flashWord").textContent = frenchWord;
@@ -17045,14 +17480,12 @@ function loadFlashcard(){
             pluralEl.textContent = `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
             pluralEl.classList.remove("hidden");
         }
-        // La marque d'usage n'a de sens que sur le mot allemand : en direction
-        // anglaise, la cible est l'anglais et le registre allemand ne dit plus
-        // rien de ce qui est affiche.
-        if(usageEl && !learningEnglish){
-            const marque = usageMarkText(card[10] || "", card[11] || "");
-            usageEl.textContent = marque;
-            usageEl.classList.toggle("hidden", !marque);
-        }
+        // La marque d'usage est desormais remplie en haut de loadFlashcard(),
+        // pour tous les modes a la fois. Elle etait ici, dans la seule branche
+        // des noms, du temps ou elle ne disait que le registre. Depuis qu'elle
+        // porte aussi les variantes regionales, elle vaut pour toutes les
+        // cartes -- et deux endroits qui remplissent le meme element finissent
+        // toujours par diverger.
         // Un nom de personne s'apprend par paire : donner "der Arzt" sans
         // "die Ärztin" laisse l'apprenant fabriquer le feminin au jugé -- et il
         // est irregulier une fois sur trois (Arzt/Ärztin, Koch/Köchin).
@@ -17359,6 +17792,28 @@ if('speechSynthesis' in window){
 // Le vocabulaire de linguiste ("registre soutenu", "neutre") est ecarte : il
 // faut deja savoir ce qu'il veut dire pour en tirer quelque chose, et
 // "neutre" serait l'etiquette de la grande majorite des mots.
+// OU VIT LA MARQUE D'USAGE, SELON LA FORME DE LA CARTE. Les cinq formats de
+// donnees ne se ressemblent pas : les verbes sont des objets, tout le reste
+// des tuples, et le rang differe d'un fichier a l'autre. Cette table est le
+// seul endroit qui le sache -- ailleurs, on demande la marque, on ne la
+// cherche pas.
+const RANG_REGISTRE = {
+    nomen: 10,                 // themes.json
+    adjektive: 10,             // adjectif.json
+    adverbien: 14,             // adverbe.json
+    redewendungen: 14,         // redewendung.json
+    praep: 13, konjunktionen: 13, partikeln: 13, zahlen: 13,
+    pronomen: 13, artikelwoerter: 13   // funktionswort.json
+};
+
+function registreDeLaCarte(card, mode){
+    if(!card) return "";
+    // Les verbes portent un champ nomme, pas un rang.
+    if(mode === 'verben' || mode === 'vhskapitelverben') return card.registre || "";
+    const rang = RANG_REGISTRE[mode];
+    return (rang !== undefined && Array.isArray(card)) ? (card[rang] || "") : "";
+}
+
 function usageMarkText(registre, vergleich){
     if(vergleich){
         return tf(registre === "umgangssprachlich" ? "usage_plus_familier" : "usage_plus_formel",
@@ -18016,7 +18471,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 377;
+const APP_VERSION = 378;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

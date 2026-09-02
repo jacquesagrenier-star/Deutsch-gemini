@@ -55,6 +55,51 @@ def serialiser(donnees, saut_final):
     return texte + "\n" if saut_final else texte
 
 
+def marquer_funktionswort(ls, verifier_seulement):
+    """funktionswort.json est range par CLASSE DE MOT, pas par niveau.
+
+    Les cinq JSON de vocabulaire ont leurs entrees sous « A1 », « A2 »... ;
+    celui-ci sous « konjunktionen », « praepositionen »... Le meme parcours ne
+    marche donc pas sur les deux, d'ou cette fonction a part plutot qu'une
+    exception glissee dans la boucle principale.
+    """
+    chemin = os.path.join(RACINE, "funktionswort.json")
+    if not os.path.isfile(chemin):
+        return 0
+    brut = io.open(chemin, encoding="utf-8", newline="").read()
+    donnees = json.loads(brut)
+    saut = brut.endswith("\n")
+    if serialiser(donnees, saut) != brut:
+        print("  ! funktionswort.json ne se reproduit pas a l'identique -- ignore")
+        return 0
+
+    entrees = [m for v in donnees.values() for m in v]
+    poses = 0
+    for m in entrees:
+        mot = (m.get("mot") or "").strip()
+        if not mot:
+            continue
+        # Une entree peut porter deux formes separees par une barre --
+        # « eben / halt », « bloss / nur ». Les listes officielles, elles,
+        # comptent chaque forme separement.
+        formes = {p.strip() for p in mot.split("/")} | {mot}
+        etiquettes = sorted(e for e, s in ls.items() if formes & s)
+        if not etiquettes:
+            if m.pop(CHAMP, None) is not None:
+                poses += 1
+            continue
+        if m.get(CHAMP) != etiquettes:
+            m[CHAMP] = etiquettes
+            poses += 1
+
+    print("  %-18s %4d mot(s) marque(s) sur %d"
+          % ("funktionswort.json", poses, len(entrees)))
+    if not verifier_seulement and poses:
+        with io.open(chemin, "w", encoding="utf-8", newline="") as f:
+            f.write(serialiser(donnees, saut))
+    return poses
+
+
 def marquer(verifier_seulement):
     """Meme garde-fou d'aller-retour que patch_langue.py : si le fichier ne se
     reproduit pas a l'octet pres, on n'ecrit rien. Un reformatage silencieux de
@@ -65,6 +110,13 @@ def marquer(verifier_seulement):
         return 1
 
     total = 0
+    # LES MOTS-OUTILS COMPTENT COMME LES AUTRES, et les oublier etait une
+    # erreur de raisonnement. On avait ecarte « und », « weil » et « fuer » de
+    # la tuile d'examen en disant qu'une carte « fuer = pour » ne teste rien.
+    # Mais cette carte n'existe pas : celle du cours porte le CAS (« toujours
+    # Akkusativ ») et une phrase. Quarante-quatre mots des listes officielles
+    # etaient donc deja enseignes, et la tuile pretendait ne pas les couvrir.
+    total += marquer_funktionswort(ls, verifier_seulement)
     for categorie, (fichier, cle) in L.FICHIERS.items():
         chemin = os.path.join(RACINE, fichier)
         brut = io.open(chemin, encoding="utf-8", newline="").read()
