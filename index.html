@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v369</span>
+        <span class="subtitle-version">v370</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16953,6 +16953,11 @@ let ecouteEtape = 0;
 let ecouteJoue = false;
 let ecouteMinuteur = null;
 let ecouteChien = null;      // borne de securite par etape, voir armerChien
+let ecouteSonde = null;      // detection rapide d'un enonce avale, voir plus bas
+// Vrai des qu'un enonce a ete avale par le systeme sans un son. Tant qu'il
+// l'est, on n'attend plus la synthese : on saute l'etape tout de suite. Voir
+// le bloc SYNTHESE AVALEE dans ecouteJouerEtape.
+let ecouteSyntheseMuette = false;
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -17229,6 +17234,7 @@ function ecouteJouerEtape(){
     const jeton = ++ecouteJeton;
     const avancer = () => {
         clearTimeout(ecouteChien);
+        clearTimeout(ecouteSonde);
         if(jeton !== ecouteJeton || !ecouteJoue) return;
         ecouteEtape++;
         ecouteJouerEtape();
@@ -17282,6 +17288,16 @@ function ecouteJouerEtape(){
         return;
     }
     if(!("speechSynthesis" in window)){ avancer(); return; }
+    // Une fois la synthese constatee muette, on ne lui redonne pas sa chance a
+    // chaque etape : ce sont des secondes de silence par carte, et le mode
+    // Ecoute devient penible bien avant d'etre inutile. On saute tout de suite
+    // et on le note. Le premier enonce qui redemarre pour de bon leve le
+    // drapeau (voir u.onstart), donc rien n'est condamne pour la session.
+    if(ecouteSyntheseMuette){
+        noterAudio(et.texte, "SAUTE", "synthese constatee muette (" + et.lang + ")");
+        avancer();
+        return;
+    }
     const u = new SpeechSynthesisUtterance(et.texte);
     u.volume = VOLUME_SYNTHESE;
     const voix = pickVoice(et.lang);
@@ -17301,12 +17317,25 @@ function ecouteJouerEtape(){
         // du SYSTEME, pas celle de son proprietaire. Une turcophone qui suit un
         // cours en pays germanophone a toutes les chances d'avoir des voix
         // allemandes et aucune voix turque.
-        if((et.ligne || "").indexOf("Cible") === -1){ avancer(); return; }
+        if((et.ligne || "").indexOf("Cible") === -1){
+            // Cette etape disparaissait SANS AUCUNE TRACE : ni son, ni delai,
+            // ni ligne au journal. Impossible a distinguer, a l'oreille, d'un
+            // enonce lance puis avale par le systeme -- or les deux causes
+            // n'ont pas le meme remede. Elle se note desormais.
+            noterAudio(et.texte, "SAUTE", "aucune voix installee pour " + et.lang);
+            avancer();
+            return;
+        }
         u.lang = LANGUE_TAG[et.lang] || et.lang;
     }
     u.rate = ecouteVitesse;
     u.onend = avancer;
     u.onerror = avancer;
+    // `onstart` est le seul signal fiable qui dise qu'un enonce a REELLEMENT
+    // commence. Il sert deux fois : a lever le drapeau de muettete, et a
+    // desarmer la sonde ci-dessous.
+    let aDemarre = false;
+    u.onstart = () => { aDemarre = true; ecouteSyntheseMuette = false; };
     armerChien(et.texte);
     // Le journal ne notait jusqu'ici que l'allemand : une etape de synthese
     // bloquee n'y laissait aucune trace, et c'est justement celle qu'on
@@ -17314,6 +17343,30 @@ function ecouteJouerEtape(){
     noterAudio(et.texte, "ENONCE",
         et.lang + ", voix " + (voix ? voix.name : "par defaut"));
     window.speechSynthesis.speak(u);
+
+    // SYNTHESE AVALEE -- SONDE RAPIDE.
+    //
+    // Sur iOS, un enonce lance apres qu'un fichier audio a ouvert la session
+    // sonore peut etre avale : aucun son, et surtout ni `start`, ni `end`, ni
+    // `error`. Le chien de garde finit par debloquer la sequence, mais il
+    // attend plusieurs secondes par etape -- c'est le silence trop long qu'on
+    // entend entre le mot allemand et la phrase allemande.
+    //
+    // La sonde tranche en une fraction de seconde : si rien n'a demarre et que
+    // la file d'enonces est vide, l'enonce n'existe plus. On avance aussitot.
+    // Une file non vide ou un `start` deja recu la desarment : elle ne peut pas
+    // couper une lecture qui allait se faire.
+    clearTimeout(ecouteSonde);
+    ecouteSonde = setTimeout(() => {
+        if(jeton !== ecouteJeton || !ecouteJoue || aDemarre) return;
+        const synth = window.speechSynthesis;
+        if(synth.speaking || synth.pending) return;
+        ecouteSyntheseMuette = true;
+        noterAudio(et.texte, "MUET", "enonce avale par le systeme (" + et.lang + ")");
+        clearTimeout(ecouteChien);
+        ecouteEtape++;
+        ecouteJouerEtape();
+    }, 800);
 }
 
 // Pause : plutôt que speechSynthesis.pause(), peu fiable sur iOS, on coupe et
@@ -17334,6 +17387,7 @@ function ecouteArreterSon(){
     ecouteJeton++;
     if(ecouteMinuteur){ clearTimeout(ecouteMinuteur); ecouteMinuteur = null; }
     if(ecouteChien){ clearTimeout(ecouteChien); ecouteChien = null; }
+    if(ecouteSonde){ clearTimeout(ecouteSonde); ecouteSonde = null; }
     // Couper les deux sources : la synthese du navigateur ET le fichier
     // pre-genere. N'en couper qu'une laisserait la voix continuer toute seule
     // apres une pause ou un changement de carte.
@@ -17435,7 +17489,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 369;
+const APP_VERSION = 370;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
