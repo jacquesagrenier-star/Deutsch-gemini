@@ -30,6 +30,12 @@ ON NE REMPLACE QUE DU PERDU. Une entree dont le champ turc fait plus d'un
 caractere n'est pas ecrasee, meme si le fichier de corrections en propose une
 autre : ce script repare une perte, il n'arbitre pas une traduction. Ce qu'il
 refuse est affiche, pas avale en silence.
+
+`--remplacer` LEVE CE REFUS, ET N'EST PAS UN CONFORT. Il sert au seul cas ou
+la reparation elle-meme doit etre corrigee : `--collisions` a montre qu'une
+reponse fraichement posee en doublait une autre, et il faut la remplacer. Ne
+jamais l'employer pour un lot entier -- le refus est justement ce qui empeche
+d'ecraser en masse des traductions qui allaient bien.
 """
 import io
 import json
@@ -70,7 +76,7 @@ def controle_aller_retour(chemin, donnees):
                       refait[max(0, i - 40):i + 40]))
 
 
-def appliquer(chemin_corrections, verifier_seulement):
+def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
     corr = lire_json(chemin_corrections)
     nom_fichier = corr["fichier"]
     niveau = corr["niveau"]
@@ -102,7 +108,7 @@ def appliquer(chemin_corrections, verifier_seulement):
             neuf = e.get(champ)
             if not neuf:
                 continue
-            if not perdu(cible.get(champ), est_phrase):
+            if not perdu(cible.get(champ), est_phrase) and not remplacer:
                 print("    deja rempli, non ecrase : %s.%s = %r"
                       % (mot, champ, cible.get(champ)))
                 refuses += 1
@@ -135,12 +141,13 @@ def main():
                                   errors="replace")
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     verifier = "--verifier" in sys.argv
+    remplacer = "--remplacer" in sys.argv
     if not args:
         print(__doc__)
         return 1
     code = 0
     for chemin in args:
-        code = appliquer(chemin, verifier) or code
+        code = appliquer(chemin, verifier, remplacer) or code
     return code
 
 
