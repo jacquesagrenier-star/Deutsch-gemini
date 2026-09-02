@@ -3572,7 +3572,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v374</span>
+        <span class="subtitle-version">v375</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3784,6 +3784,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
+
+        <!-- Preparation a l'examen. La tuile porte le NIVEAU (A2-B1), pas le nom
+             d'un examen : les trois listes officielles -- Goethe A2, Goethe B1,
+             DTZ -- decrivent le meme niveau du meme cadre europeen. Nommer un
+             seul examen attacherait le cours a une institution, et le DTZ en
+             particulier ne parle qu'aux immigrants. Les trois noms figurent dans
+             le sous-titre, la ou ils renseignent sans etiqueter. -->
+        <div class="orb orb-de" data-orbid="pruefung" onclick="openOrbPanel('pruefung')">
+            <div id="badge-pruefung" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg></div>
+            <div>
+                <strong data-i18n="orb_pruefung_title">Préparation A2–B1</strong>
+                <small data-i18n="orb_pruefung_sub">Goethe · telc · DTZ</small>
+            </div>
+        </div>
 
         <!-- Tuile "Chapitres VHS" : contenu specifique au cours B1 de l'utilisatrice
              (Nomen+Verben+Adjektive par chapitre), pas pertinent pour le grand public.
@@ -6548,6 +6563,17 @@ const I18N = {
         zahlen_ordnung: "<strong>Jusqu'à 19 : + <em>-te</em></strong> — <em>der vier<strong>te</strong>, der zehn<strong>te</strong></em>.<br><strong>À partir de 20 : + <em>-ste</em></strong> — <em>der zwanzig<strong>ste</strong>, der hundert<strong>ste</strong></em>.<br><br><strong>Quatre irréguliers</strong> à connaître : <em>der <strong>erste</strong></em> (1<sup>er</sup>), <em>der <strong>dritte</strong></em> (3<sup>e</sup>), <em>der <strong>siebte</strong></em> (7<sup>e</sup>), <em>der <strong>achte</strong></em> (8<sup>e</sup>, un seul t).<br><br>Ils se déclinent comme des adjectifs : <em>am dritt<strong>en</strong> Mai</em> (le 3 mai), <em>die erst<strong>e</strong> Woche</em>.<br><br>À l'écrit, le point remplace la terminaison : <em>am 3. Mai</em> se lit <em>am dritten Mai</em>.",
         zahlen_bruch_title: "Fractions, années et prix",
         zahlen_bruch: "<strong>Fractions :</strong> <em>halb</em> / <em>die Hälfte</em> (la moitié), puis ordinal + <em>-el</em> : <em>ein Drittel</em> (un tiers), <em>ein Viertel</em> (un quart), <em>drei Viertel</em>.<br><br><strong>Années :</strong> jusqu'en 1999, on lit par centaines — <em>1999 = neunzehnhundertneunundneunzig</em>. À partir de 2000, on lit normalement : <em>2026 = zweitausendsechsundzwanzig</em>.<br>Et contrairement au français, <strong>on ne met pas de préposition</strong> : <em>Ich bin 1990 geboren.</em> (pas <em>in 1990</em>) — ou alors <em>im Jahr 1990</em>.<br><br><strong>Prix :</strong> la virgule se dit en séparant les deux parties — <em>3,50 €</em> se lit <em>drei Euro fünfzig</em>.",
+        orb_pruefung_title: "Préparation A2–B1", orb_pruefung_sub: "Goethe · telc · DTZ",
+        op_pruefung_title: "Préparation A2–B1", op_pruefung_sub: "Le vocabulaire des listes officielles",
+        op_pruefung_noyau_t: "Le noyau", op_pruefung_noyau_d: "Les mots que les trois listes retiennent",
+        op_pruefung_a2_t: "Goethe A2", op_pruefung_a2_d: "La liste officielle du Zertifikat A2",
+        op_pruefung_b1_t: "Goethe B1", op_pruefung_b1_d: "La liste officielle du Zertifikat B1",
+        op_pruefung_dtz_t: "DTZ", op_pruefung_dtz_d: "Deutsch-Test für Zuwanderer, A2–B1",
+        op_pruefung_tout_t: "Tout le vocabulaire", op_pruefung_tout_d: "L’union des trois listes",
+        pruefung_kicker: "Préparation A2–B1",
+        pruefung_noyau_t: "Le noyau", pruefung_a2_t: "Goethe A2", pruefung_b1_t: "Goethe B1",
+        pruefung_dtz_t: "DTZ", pruefung_null_t: "Vocabulaire d’examen",
+        pruefung_aucun: "Aucune carte d’examen n’est encore chargée.",
         orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Comprendre les expressions", op_redewendungen_o1_d: "6 familles : saluer, nuancer, r\u00e9agir\u2026",
@@ -7466,6 +7492,17 @@ const I18N = {
         zahlen_ordnung: "<strong>Up to 19: + <em>-te</em></strong> — <em>der vier<strong>te</strong>, der zehn<strong>te</strong></em>.<br><strong>From 20 on: + <em>-ste</em></strong> — <em>der zwanzig<strong>ste</strong>, der hundert<strong>ste</strong></em>.<br><br><strong>Four irregulars</strong> to know: <em>der <strong>erste</strong></em> (1st), <em>der <strong>dritte</strong></em> (3rd), <em>der <strong>siebte</strong></em> (7th), <em>der <strong>achte</strong></em> (8th, single t).<br><br>They decline like adjectives: <em>am dritt<strong>en</strong> Mai</em> (on 3 May), <em>die erst<strong>e</strong> Woche</em>.<br><br>In writing, the full stop replaces the ending: <em>am 3. Mai</em> is read <em>am dritten Mai</em>.",
         zahlen_bruch_title: "Fractions, years and prices",
         zahlen_bruch: "<strong>Fractions:</strong> <em>halb</em> / <em>die Hälfte</em> (the half), then ordinal + <em>-el</em>: <em>ein Drittel</em> (a third), <em>ein Viertel</em> (a quarter), <em>drei Viertel</em>.<br><br><strong>Years:</strong> up to 1999 they are read in hundreds — <em>1999 = neunzehnhundertneunundneunzig</em>. From 2000 on they are read normally: <em>2026 = zweitausendsechsundzwanzig</em>.<br>And <strong>no preposition</strong> is used: <em>Ich bin 1990 geboren.</em> (not <em>in 1990</em>) — or else <em>im Jahr 1990</em>.<br><br><strong>Prices:</strong> the comma is said by separating the two parts — <em>3,50 €</em> is read <em>drei Euro fünfzig</em>.",
+        orb_pruefung_title: "Exam prep A2–B1", orb_pruefung_sub: "Goethe · telc · DTZ",
+        op_pruefung_title: "Exam prep A2–B1", op_pruefung_sub: "The vocabulary of the official lists",
+        op_pruefung_noyau_t: "The core", op_pruefung_noyau_d: "The words all three lists keep",
+        op_pruefung_a2_t: "Goethe A2", op_pruefung_a2_d: "The official Zertifikat A2 list",
+        op_pruefung_b1_t: "Goethe B1", op_pruefung_b1_d: "The official Zertifikat B1 list",
+        op_pruefung_dtz_t: "DTZ", op_pruefung_dtz_d: "Deutsch-Test für Zuwanderer, A2–B1",
+        op_pruefung_tout_t: "All the vocabulary", op_pruefung_tout_d: "The union of the three lists",
+        pruefung_kicker: "Exam prep A2–B1",
+        pruefung_noyau_t: "The core", pruefung_a2_t: "Goethe A2", pruefung_b1_t: "Goethe B1",
+        pruefung_dtz_t: "DTZ", pruefung_null_t: "Exam vocabulary",
+        pruefung_aucun: "No exam cards are loaded yet.",
         orb_redewendungen_sub: "keine Ahnung \u00b7 auf jeden Fall",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Understand expressions", op_redewendungen_o1_d: "6 families: greeting, hedging, reacting\u2026",
@@ -8388,6 +8425,17 @@ const I18N = {
         zahlen_ordnung: "<strong>19'a kadar: + <em>-te</em></strong> — <em>der vier<strong>te</strong>, der zehn<strong>te</strong></em>.<br><strong>20'den itibaren: + <em>-ste</em></strong> — <em>der zwanzig<strong>ste</strong>, der hundert<strong>ste</strong></em>.<br><br>Bilinmesi gereken <strong>dört düzensiz biçim</strong>: <em>der <strong>erste</strong></em> (1.), <em>der <strong>dritte</strong></em> (3.), <em>der <strong>siebte</strong></em> (7.), <em>der <strong>achte</strong></em> (8., tek t).<br><br>Sıfat gibi çekilirler: <em>am dritt<strong>en</strong> Mai</em> (3 Mayıs'ta), <em>die erst<strong>e</strong> Woche</em>.<br><br>Yazıda nokta ekin yerini tutar: <em>am 3. Mai</em>, <em>am dritten Mai</em> diye okunur.",
         zahlen_bruch_title: "Kesirler, yıllar ve fiyatlar",
         zahlen_bruch: "<strong>Kesirler:</strong> <em>halb</em> / <em>die Hälfte</em> (yarım / yarısı), sonra sıra sayısı + <em>-el</em>: <em>ein Drittel</em> (üçte bir), <em>ein Viertel</em> (dörtte bir), <em>drei Viertel</em> (dörtte üç).<br><br><strong>Yıllar:</strong> 1999'a kadar yüzlerle okunur — <em>1999 = neunzehnhundertneunundneunzig</em>. 2000'den itibaren normal okunur: <em>2026 = zweitausendsechsundzwanzig</em>.<br>Ve <strong>edat kullanılmaz</strong>: <em>Ich bin 1990 geboren.</em> (<em>in 1990</em> değil) — ya da <em>im Jahr 1990</em>.<br><br><strong>Fiyatlar:</strong> virgül, iki parçayı ayırarak söylenir — <em>3,50 €</em>, <em>drei Euro fünfzig</em> diye okunur.",
+        orb_pruefung_title: "Sınav hazırlığı A2–B1", orb_pruefung_sub: "Goethe · telc · DTZ",
+        op_pruefung_title: "Sınav hazırlığı A2–B1", op_pruefung_sub: "Resmî listelerin kelimeleri",
+        op_pruefung_noyau_t: "Çekirdek", op_pruefung_noyau_d: "Üç listenin de tuttuğu kelimeler",
+        op_pruefung_a2_t: "Goethe A2", op_pruefung_a2_d: "Zertifikat A2’nin resmî listesi",
+        op_pruefung_b1_t: "Goethe B1", op_pruefung_b1_d: "Zertifikat B1’in resmî listesi",
+        op_pruefung_dtz_t: "DTZ", op_pruefung_dtz_d: "Deutsch-Test für Zuwanderer, A2–B1",
+        op_pruefung_tout_t: "Tüm kelimeler", op_pruefung_tout_d: "Üç listenin birleşimi",
+        pruefung_kicker: "Sınav hazırlığı A2–B1",
+        pruefung_noyau_t: "Çekirdek", pruefung_a2_t: "Goethe A2", pruefung_b1_t: "Goethe B1",
+        pruefung_dtz_t: "DTZ", pruefung_null_t: "Sınav kelimeleri",
+        pruefung_aucun: "Henüz sınav kartı yüklenmedi.",
         orb_redewendungen_sub: "keine Ahnung · auf jeden Fall",
         op_redewendungen_title: "İfadeler", op_redewendungen_sub: "keine Ahnung · es kommt darauf an",
         op_redewendungen_o1_t: "İfadeleri anlamak", op_redewendungen_o1_d: "6 aile: selamlaşma, çekince, tepki…",
@@ -9400,6 +9448,10 @@ async function loadVerbeJson() {
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
                     praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
+                    // Les examens ou ce verbe figure, ["a2","b1","dtz"]. Ce
+                    // chargeur recopie champ par champ : sans cette ligne, la
+                    // marque posee dans verbe.json n'atteindrait jamais l'app.
+                    pruefung: Array.isArray(v.pruefung) ? v.pruefung : null,
                     niveau: lvl
                 });
             });
@@ -9454,7 +9506,8 @@ async function loadAdjektiveJson() {
                     w.traduction_en || "",
                     w.exemple_en || "",
                     w.traduction_tr || "",   // rang 7
-                    w.exemple_tr || ""       // rang 8
+                    w.exemple_tr || "",      // rang 8
+                    Array.isArray(w.pruefung) ? w.pruefung : null   // rang 9
                 ]);
             });
         });
@@ -9573,7 +9626,8 @@ async function loadRedewendungenJson() {
                     r.traduction_en || "", r.exemple_en || "",
                     cat.en, lvl, r.kategorie || "",
                     r.traduction_tr || "", r.exemple_tr || "",  // rangs 10 et 11
-                    cat.tr || ""                                // rang 12
+                    cat.tr || "",                               // rang 12
+                    Array.isArray(r.pruefung) ? r.pruefung : null   // rang 13
                 ]);
             });
         });
@@ -9598,7 +9652,8 @@ async function loadAdverbienJson() {
                     a.traduction_en || "", a.exemple_en || "",
                     cat.en, lvl, a.kategorie || "",
                     a.traduction_tr || "", a.exemple_tr || "",  // rangs 10 et 11
-                    cat.tr || ""                                // rang 12
+                    cat.tr || "",                               // rang 12
+                    Array.isArray(a.pruefung) ? a.pruefung : null   // rang 13
                 ]);
             });
         });
@@ -9759,7 +9814,14 @@ async function loadThemesJson() {
                     // comparaison renvoie vers un mot jamais rencontre.
                     w.vergleich || "",
                     w.traduction_tr || "",   // rang 12
-                    w.exemple_tr || ""       // rang 13
+                    w.exemple_tr || "",      // rang 13
+                    // Rang 14 : les examens ou ce mot figure, ["a2","b1","dtz"].
+                    // Vide sur la plupart des mots. Le champ est POSE SUR LE MOT
+                    // LA OU IL EST, au lieu de sortir les mots d'examen dans un
+                    // theme a part : « Anruf » appartient a la communication,
+                    // « Brille » au corps. La tuile Preparation filtre dessus a
+                    // travers tous les themes -- voir cartesExamen().
+                    Array.isArray(w.pruefung) ? w.pruefung : null   // rang 14
                 ];
             });
 
@@ -13698,6 +13760,34 @@ function orbPanelData(id){
             ]
         };
     }
+    // PREPARATION A L'EXAMEN. La tuile porte le NIVEAU, pas le nom d'une
+    // institution : les trois listes officielles decrivent le meme A2-B1 du
+    // meme cadre europeen et se recouvrent largement. Couvrir l'union, c'est
+    // couvrir les trois -- et ca evite d'attacher le cours a un examen ou a un
+    // public particulier.
+    //
+    // L'ORDRE DES OPTIONS EST L'ORDRE DE VALEUR. « Le noyau » vient en premier
+    // parce que c'est le seul filtre qui repose sur un accord : trois jurys
+    // independants ont retenu ces mots-la. Les filtres par examen viennent
+    // apres, pour celui qui sait deja lequel il passe.
+    if(id === "pruefung"){
+        return {
+            icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_sub"),
+            options:[
+                { icon:"carte", title:t("op_pruefung_noyau_t"), desc:t("op_pruefung_noyau_d"),
+                  primary:true, action:"startExamenNoyau",
+                  count:cartesExamen('noyau').length },
+                { icon:"carte", title:t("op_pruefung_a2_t"), desc:t("op_pruefung_a2_d"),
+                  action:"startExamenA2", count:cartesExamen('a2').length },
+                { icon:"carte", title:t("op_pruefung_b1_t"), desc:t("op_pruefung_b1_d"),
+                  action:"startExamenB1", count:cartesExamen('b1').length },
+                { icon:"carte", title:t("op_pruefung_dtz_t"), desc:t("op_pruefung_dtz_d"),
+                  action:"startExamenDtz", count:cartesExamen('dtz').length },
+                { icon:"carte", title:t("op_pruefung_tout_t"), desc:t("op_pruefung_tout_d"),
+                  action:"startExamenTout", count:cartesExamen(null).length }
+            ]
+        };
+    }
     if(id === "konjunktionen"){
         return {
             icon:"dossier", title:t("op_konjunktionen_title"), sub:t("op_konjunktionen_sub"),
@@ -14044,6 +14134,89 @@ function buildSearchIndex(){
 
     return list;
 }
+
+// ================= VOCABULAIRE D'EXAMEN =================
+//
+// Les listes officielles du Goethe-Institut (A2, B1) et du DTZ decrivent le
+// meme niveau du meme cadre europeen et se recouvrent largement. Chaque carte
+// du cours qui y figure porte une marque -- ["a2","b1","dtz"] -- posee sur le
+// mot LA OU IL EST, dans son propre theme.
+//
+// POURQUOI UNE MARQUE ET PAS UN THEME. Le reflexe serait de creer un theme
+// « Preparation B1 » et d'y ranger les mots. Ce serait appauvrir le cours :
+// « Anruf » appartient a la communication, « Brille » au corps, « Baeckerei »
+// a la ville. Les en sortir casse le sens au profit d'une etiquette -- et
+// personne ne revise « le vocabulaire de l'examen » comme on revise un champ
+// de sens.
+//
+// LA PROGRESSION EST PARTAGEE, ET C'EST LE POINT. Les cartes gardent leur
+// themeId et leur index d'origine, donc maitriser « Anruf » ici le maitrise
+// aussi dans Medien und Technologie. Une tuile qui aurait sa propre
+// progression ferait reviser deux fois les memes mots.
+const EXAMENS = ["a2", "b1", "dtz"];
+
+// Un mot ne doit apparaitre qu'une fois dans le paquet. Les chapitres VHS
+// reprennent des mots des themes de base : sans ce dedoublonnage, « Anruf »
+// sortirait deux fois dans la meme seance, avec deux progressions distinctes.
+function cartesExamen(filtre){
+    const vus = new Set();
+    const out = [];
+    const prendre = (mot, marque, item) => {
+        if(!Array.isArray(marque) || !marque.length) return;
+        if(filtre === 'noyau' && marque.length < EXAMENS.length) return;
+        if(EXAMENS.indexOf(filtre) !== -1 && marque.indexOf(filtre) === -1) return;
+        const cle = (mot || "").toLowerCase();
+        if(!cle || vus.has(cle)) return;
+        vus.add(cle);
+        out.push(item);
+    };
+
+    themesComptes().forEach(theme => {
+        Object.keys(theme.levels || {}).forEach(level => {
+            const lv = theme.levels[level];
+            (lv.words || []).forEach((w, index) => prendre(w[0], w[14], {
+                word: w, index: index, themeId: lv.id, mode: 'nomen'
+            }));
+        });
+    });
+    (verbeTheme.words || []).forEach((v, index) => prendre(v.infinitif, v.pruefung, {
+        word: v, index: index, themeId: verbeTheme.id, mode: 'verben'
+    }));
+    (adjektiveTheme.words || []).forEach((a, index) => prendre(a[0], a[9], {
+        word: a, index: index, themeId: adjektiveTheme.id, mode: 'adjektive'
+    }));
+    (adverbienTheme.words || []).forEach((a, index) => prendre(a[0], a[13], {
+        word: a, index: index, themeId: adverbienTheme.id, mode: 'adverbien'
+    }));
+    (redewendungenTheme.words || []).forEach((r, index) => prendre(r[0], r[13], {
+        word: r, index: index, themeId: redewendungenTheme.id, mode: 'redewendungen'
+    }));
+    return out;
+}
+
+function startExamenDeck(filtre){
+    const pool = cartesExamen(filtre);
+    if(!pool.length){ showInfoToast(t('pruefung_aucun')); return; }
+    shuffleArray(pool);
+    let cartes = cartesDeSession(pool);
+    if(!cartes.length) cartes = pool;
+    if(cartes.length > DUE_SESSION_CAP) cartes = cartes.slice(0, DUE_SESSION_CAP);
+    currentCardsFull = pool;
+    currentCards = cartes;
+    currentTheme = { id: 'pruefung_' + filtre, name: t('pruefung_' + filtre + '_t') };
+    currentFlashcard = 0;
+    setFlashHeader('pruefung_kicker', null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+// orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
+// a donc besoin de sa porte d'entree nommee.
+function startExamenNoyau(){ startExamenDeck('noyau'); }
+function startExamenA2(){ startExamenDeck('a2'); }
+function startExamenB1(){ startExamenDeck('b1'); }
+function startExamenDtz(){ startExamenDeck('dtz'); }
+function startExamenTout(){ startExamenDeck(null); }
 
 // Empreinte bon marche des sources : permet de reconstruire l'index si les
 // donnees ont fini de charger (ou ont ete rechargees) apres une premiere ouverture.
@@ -16229,6 +16402,13 @@ function loadFlashcard(){
     majEcheances();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
+    // UN PAQUET PEUT MELANGER LES TYPES DE CARTES. Le vocabulaire d'examen tire
+    // des noms, des verbes, des adjectifs, des adverbes et des expressions dans
+    // la meme seance ; le rendu, lui, est choisi par flashcardMode. Une carte
+    // qui porte son propre mode l'impose donc ici, avant tout le reste.
+    // Les paquets homogenes ne posent pas ce champ et rien ne change pour eux.
+    // (openSearchCard fait deja ce geste, mais une fois pour une seule carte.)
+    if(item.mode) flashcardMode = item.mode;
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
@@ -16245,10 +16425,17 @@ function loadFlashcard(){
     const pluralEl = document.getElementById("flashPlural");
     const paireEl  = document.getElementById("flashPaire");
     const usageEl  = document.getElementById("flashUsage");
-    // Masquee d'entree : seules les cartes de noms la remplissent, et la meme
+    // Masquees d'entree : seules les cartes de noms les remplissent, et la meme
     // carte HTML sert a tous les modes -- sans ce reglage par defaut, la marque
     // d'un nom resterait affichee sur la carte de verbe suivante.
+    //
+    // La paire masculin/feminin a ete ajoutee ici en v375, avec le paquet
+    // d'examen. Elle n'etait masquee QUE dans la branche des noms, ce qui
+    // suffisait tant qu'un paquet ne melangeait pas les types : un nom etait
+    // toujours suivi d'un nom. Le premier paquet mixte a fait apparaitre
+    // « Feminin : die Freundin » sous le verbe « sein ».
     if(usageEl) usageEl.classList.add("hidden");
+    if(paireEl) paireEl.classList.add("hidden");
     const translationEl = document.getElementById("flashTranslation");
 
     if(flashcardMode === 'verben' || flashcardMode === 'vhskapitelverben'){
@@ -17573,7 +17760,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 374;
+const APP_VERSION = 375;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
