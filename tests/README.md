@@ -46,6 +46,40 @@ ligne CRLF, guillemets seulement quand le contenu l'exige. La preuve tient en
 une ligne : au moment où le script a été écrit, il reproduisait **à l'octet
 près** les huit CSV dont les données sources n'avaient pas changé.
 
+# Ajout d'exercices d'examen
+
+```bash
+python tests/ajouter_pruefung.py mon_lot.json
+```
+
+`pruefung.json` — les quatre épreuves de la tuile Préparation — **ne s'édite
+pas à la main**. Le lot d'entrée a la même forme que le fichier cible (un objet
+dont les clés sont `sprechen`, `schreiben`, `lesen`, `hoeren`) mais ne contient
+que les entrées à ajouter.
+
+Trois défauts de ce contenu-là ne se voient ni au vérificateur ni en relisant
+le JSON, et se paient en jouant la série :
+
+- **un `bon` différent de 0.** Le fichier garde la bonne réponse en première
+  position et le mélange se fait à la construction de l'exercice. Une entrée
+  qui dérogerait resterait juste, mais la prochaine relecture humaine lirait la
+  mauvaise réponse comme la bonne.
+- **des listes d'options de longueurs différentes selon la langue.** L'écran
+  affiche les options de la langue d'interface et les compare au texte de la
+  bonne réponse : une liste plus courte en turc fait disparaître la bonne
+  réponse des boutons — l'exercice devient impossible **dans cette langue
+  seulement**, donc invisible à qui teste en français.
+- **un champ absent.** Le convertisseur d'`index.html` lit `o.erkl_en` sans
+  filet ; un champ manquant s'affiche en « undefined ».
+
+Il refuse aussi une reconstruction de moins de trois blocs (elle se résout au
+hasard) et tout doublon. Le vérificateur du projet ne voit rien de tout cela :
+`pruefung.json` n'est pas un fichier de vocabulaire, il n'a pas la même
+grammaire.
+
+**Le seul vrai contrôle reste de rejouer les séries dans le navigateur**, en
+cliquant, aux trois niveaux.
+
 ## Ce qu'il ne vérifie pas
 
 La qualité d'une traduction, la justesse d'une phrase d'exemple, une mise en
