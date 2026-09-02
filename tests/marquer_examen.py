@@ -86,12 +86,18 @@ def marquer(verifier_seulement):
             mot = (m.get(cle) or "").strip()
             if not mot:
                 continue
-            # LE PLURIEL COMPTE AUTANT QUE LE SINGULIER. Les listes officielles
-            # portent parfois la forme qu'on lit sur un panneau -- « Senioren »,
-            # « Kenntnisse » -- la ou le cours enseigne l'entree de dictionnaire.
-            # Ne comparer que le singulier laissait ces mots eternellement
-            # « manquants », et le deuxieme lot a failli les reecrire.
-            formes = {mot, (m.get("pluriel") or "").strip()} - {"", "—"}
+            # TOUTES LES FORMES QUE LA CARTE ENSEIGNE COMPTENT, pas seulement
+            # l'entree. Les listes officielles portent la forme qu'on lit sur un
+            # panneau -- « Senioren », « Kenntnisse » -- et comptent le feminin
+            # comme une entree a part -- « Autorin » a cote de « Autor ». Or la
+            # carte de « der Autor » AFFICHE « Feminin : die Autorin » : le mot
+            # est enseigne. Ne comparer que l'entree laissait ces formes
+            # eternellement « manquantes », et faisait ecrire des cartes en
+            # double pour un mot deja au dos d'une autre.
+            formes = {mot,
+                      (m.get("pluriel") or "").strip(),
+                      (m.get("feminin") or "").strip(),
+                      (m.get("masculin") or "").strip()} - {"", "—"}
             etiquettes = sorted(e for e, s in ls.items() if formes & s)
             if not etiquettes:
                 # Un mot qui n'y est plus perd sa marque : les listes peuvent

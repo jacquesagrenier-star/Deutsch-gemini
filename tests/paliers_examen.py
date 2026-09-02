@@ -55,28 +55,10 @@ def wikdict():
     return tete
 
 
-def corpus():
-    """Toutes les formes que le cours enseigne, PLURIELS COMPRIS.
-
-    Les listes officielles portent parfois la forme lue sur un panneau --
-    « Senioren », « Kenntnisse » -- la ou le cours enseigne l'entree de
-    dictionnaire. Sans les pluriels, ces mots restent « manquants » a chaque
-    passage et reviennent dans le lot suivant.
-    """
-    out = set()
-    d = json.load(io.open(os.path.join(RACINE, "themes.json"), encoding="utf-8"))
-    for t in d.get("themes", d):
-        for m in t.get("mots", []):
-            for f in ((m.get("mot") or "").strip(), (m.get("pluriel") or "").strip()):
-                if f and f != "—":
-                    out.add(f)
-    lg = L.Langue("tr")          # la langue cible est sans importance ici
-    for nom, cartes in lg.toutes_les_cartes().items():
-        for c in cartes:
-            mot = (c.get("cle") or "").strip()
-            if mot:
-                out.add(mot)
-    return out
+# Le corpus vit dans listes_examen.py, avec le calcul de couverture. Les deux
+# modules l'ont eu chacun de son cote pendant un temps, et ils ont diverge --
+# 2 437 mots couverts d'un cote, 2 596 de l'autre, sans que rien ne le signale.
+corpus = X.corpus
 
 
 def ecartes():
@@ -112,7 +94,15 @@ def ecrire_lot(n, tete):
     A2, les autres sont B1. C'est la seule source de verite disponible, et
     elle vaut mieux qu'un jugement au cas par cas sur 600 mots."""
     mots = paliers()[n]
-    a2 = X.charger().get("goethe_a2", set())
+    listes = X.charger()
+    a2 = listes.get("goethe_a2", set())
+    # QUELLE LISTE RECLAME LE MOT. Au palier 1 c'est la seule information qui
+    # compte : « Auslaenderbehoerde » ne vient que du DTZ et ne servira jamais
+    # a qui prepare le Goethe. Sans cette colonne, on ecrit six cents mots sans
+    # savoir a qui ils servent.
+    ETIQ = {"dtz": "DTZ", "goethe_b1": "B1", "goethe_a2": "A2"}
+    source = lambda m: "+".join(sorted(ETIQ[k] for k, s in listes.items() if m in s))
+
     par_nature = {v: [] for v in NATURES.values()}
     inconnus = []
     for mot in mots:
@@ -121,7 +111,7 @@ def ecrire_lot(n, tete):
         if e is None or nature is None:
             inconnus.append(mot)
             continue
-        par_nature[nature].append((mot, e, "A2" if mot in a2 else "B1"))
+        par_nature[nature].append((mot, e, "A2" if mot in a2 else "B1", source(mot)))
 
     os.makedirs(EXAMENS, exist_ok=True)
     chemin = os.path.join(EXAMENS, "palier%d.txt" % n)
@@ -133,15 +123,16 @@ def ecrire_lot(n, tete):
         f.write("# Les champs proposes par WikDict sont a RELIRE : il s'est\n")
         f.write("# trompe une fois sur vingt sur les pluriels du noyau.\n")
         for nature in ("noms", "verbes", "adjectifs", "adverbes"):
-            f.write("\n## %s (%d)\n" % (nature.upper(), len(par_nature[nature])))
-            for mot, e, niveau in par_nature[nature]:
-                f.write("%s | %s | %s | %s | %s\n" % (
-                    niveau, e.get("g") or "", mot, e.get("pl") or "",
+            entrees = sorted(par_nature[nature], key=lambda x: (x[3], x[0]))
+            f.write("\n## %s (%d)\n" % (nature.upper(), len(entrees)))
+            for mot, e, niveau, src in entrees:
+                f.write("%-7s | %s | %s | %s | %s | %s\n" % (
+                    src, niveau, e.get("g") or "", mot, e.get("pl") or "",
                     ", ".join(e.get("t", [])[:3])))
         f.write("\n## NON RECONNUS -- composes, variantes, bruit d'extraction (%d)\n"
                 % len(inconnus))
-        for mot in inconnus:
-            f.write("%s\n" % mot)
+        for mot in sorted(inconnus, key=lambda x: (source(x), x)):
+            f.write("%-7s | %s\n" % (source(mot), mot))
     print("  ecrit : examens/palier%d.txt" % n)
     for nature in ("noms", "verbes", "adjectifs", "adverbes"):
         print("    %-11s %4d" % (nature, len(par_nature[nature])))

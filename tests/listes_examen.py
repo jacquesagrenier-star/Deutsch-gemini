@@ -172,35 +172,79 @@ def charger():
     return out
 
 
+def corpus():
+    """Toutes les formes que le cours ENSEIGNE : entree, pluriel et paire.
+
+    CETTE FONCTION EST LA SEULE SOURCE DU CHIFFRE DE COUVERTURE, et elle vit
+    ici plutot que dans paliers_examen.py pour une raison precise : les deux
+    modules ont compte differemment pendant un temps, l'un a 2 437 mots
+    couverts et l'autre a 2 596, sans que rien ne le signale. Deux comptes du
+    meme fait divergent toujours ; il n'en reste donc qu'un.
+
+    Les listes officielles portent la forme lue sur un panneau -- « Senioren »,
+    « Kenntnisse » -- et comptent le feminin comme une entree a part --
+    « Autorin » a cote de « Autor ». Or la carte de « der Autor » affiche
+    « Feminin : die Autorin ». Le mot est enseigne, il est couvert.
+    """
+    out = set()
+    d = json.load(io.open(os.path.join(RACINE, "themes.json"), encoding="utf-8"))
+    for t in d.get("themes", d):
+        for m in t.get("mots", []):
+            for cle in ("mot", "pluriel", "feminin", "masculin"):
+                f = (m.get(cle) or "").strip()
+                if f and f != "—":
+                    out.add(f)
+    lg = L.Langue("tr")          # la langue cible est sans importance ici
+    for cartes in lg.toutes_les_cartes().values():
+        for c in cartes:
+            mot = (c.get("cle") or "").strip()
+            if mot:
+                out.add(mot)
+    return out
+
+
 def couverture():
     listes = charger()
     if not listes:
         print("Aucune liste extraite. Lancer --extraire d'abord.")
         return 1
 
-    # Le corpus, tous mots allemands confondus, sans article.
-    lg = L.Langue("tr")          # la langue cible est sans importance ici
-    corpus = set()
-    for cartes in lg.toutes_les_cartes().values():
-        for c in cartes:
-            mot = (c.get("cle") or "").strip()
-            if mot:
-                corpus.add(mot)
-    print("  corpus Wortando : %d mots allemands distincts" % len(corpus))
+    corpus_mots = corpus()
+    print("  corpus Wortando : %d formes allemandes enseignees" % len(corpus_mots))
     print()
 
     union = set()
     for nom, mots in listes.items():
         union |= mots
-        dedans = mots & corpus
+        dedans = mots & corpus_mots
         print("  %-12s %5d mots   couverts %5d   %5.1f %%"
               % (nom, len(mots), len(dedans), 100.0 * len(dedans) / len(mots)))
-    dedans = union & corpus
+    dedans = union & corpus_mots
     print("  %-12s %5d mots   couverts %5d   %5.1f %%"
           % ("UNION", len(union), len(dedans), 100.0 * len(dedans) / len(union)))
     print()
 
-    manquants = sorted(union - corpus)
+    # RECONCILIATION AVEC paliers_examen.py, qui annonce un autre chiffre.
+    #
+    # Les deux ne mesurent pas la meme chose, et sans cette ligne l'ecart passe
+    # pour un defaut : « couverts » compte les mots qu'une carte enseigne ;
+    # « reste a faire » retire en plus les mots-outils deja arbitres et les
+    # variantes de casse (« schade » contre « Schade »). Un mot ecarte n'est ni
+    # couvert ni a faire -- il n'est simplement plus une question.
+    hors = set()
+    chemin_e = os.path.join(RACINE, "ajouts", "noyau-00-ecartes.txt")
+    if os.path.isfile(chemin_e):
+        hors = {l.strip() for l in io.open(chemin_e, encoding="utf-8")
+                if l.strip() and not l.startswith("#")}
+    minuscules = {m.lower() for m in corpus_mots}
+    reste = {m for m in union
+             if m not in corpus_mots and m.lower() not in minuscules and m not in hors}
+    print("  dont %d ecarte(s) volontairement (mots-outils, bruit d'extraction)"
+          % len(union & hors))
+    print("  reste a faire : %d mot(s)" % len(reste))
+    print()
+
+    manquants = sorted(union - corpus_mots)
     chemin = os.path.join(EXAMENS, "manquants.txt")
     with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
         f.write("# Mots des listes officielles absents du cours (%d)\n" % len(manquants))
