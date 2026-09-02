@@ -3,7 +3,8 @@
 
     python tests/relecture_tr.py --suspects               # 1a. les champs perdus
     python tests/relecture_tr.py --collisions             # 1b. les collisions
-    python tests/relecture_tr.py --niveaux A1,A2          # 2. les lots a distribuer
+    python tests/relecture_tr.py --nouveaute              # 2. ce qui vient d'etre ecrit
+    python tests/relecture_tr.py --niveaux A1,A2          #    ou tout un niveau
     python tests/relecture_tr.py --rapport                # 3. le depouillement
 
 MEME METHODE QUE POUR L'ALLEMAND, MEME ORDRE.
@@ -442,7 +443,48 @@ Enregistre ta reponse sous `verdict_<nom du lot>.json` dans le dossier
 """
 
 
-def faire_lots(categories, niveaux, taille_forcee):
+# CE QUI VIENT D'ETRE ECRIT MERITE D'ETRE RELU AVANT LE RESTE.
+#
+# Le corpus entier fait 6 292 cartes, soit 91 lots. Personne ne fait relire
+# 91 lots par deux relecteurs : on n'en verrait jamais la fin, et surtout on
+# depenserait l'essentiel de l'effort sur des traductions posees il y a des
+# semaines, deja vues a l'usage.
+#
+# Ce qui est FRAIS, en revanche, n'a ete vu par personne : les 673 entrees
+# refaites le 2 septembre et les ~200 reponses deplacees pour resoudre des
+# collisions. Ces dernieres sont le lot le plus expose du corpus, et pour une
+# raison precise : elles ont ete choisies SOUS CONTRAINTE -- il fallait un mot
+# different de celui du voisin. C'est exactement la condition qui pousse a
+# prendre un mot juste mais rare, ou un mot correct dans le dictionnaire et
+# bizarre dans la bouche. Un relecteur le verra tout de suite ; une machine,
+# jamais.
+#
+# `--nouveaute` construit donc les lots a partir des mots nommes dans
+# corrections_tr/, c'est-a-dire la trace exacte de ce qui a ete touche.
+def mots_corriges():
+    dossier = os.path.join(RACINE, "corrections_tr")
+    if not os.path.isdir(dossier):
+        return {}
+    par_fichier = {}
+    for nom in sorted(os.listdir(dossier)):
+        if not nom.endswith(".json"):
+            continue
+        try:
+            d = json.load(io.open(os.path.join(dossier, nom), encoding="utf-8"))
+        except ValueError:
+            continue
+        cle = d.get("fichier")
+        for e in d.get("entrees", []):
+            par_fichier.setdefault(cle, set()).add(e.get("mot"))
+    # Des noms de fichier vers les categories de relecture.
+    vers_categorie = {"themes.json": "noms", "verbe.json": "verbes",
+                      "adjectif.json": "adjectifs", "adverbe.json": "adverbes",
+                      "redewendung.json": "expressions"}
+    return {vers_categorie[k]: v for k, v in par_fichier.items()
+            if k in vers_categorie}
+
+
+def faire_lots(categories, niveaux, taille_forcee, seulement_neuf=False):
     if not os.path.isdir(SORTIE):
         os.makedirs(SORTIE)
 
@@ -450,10 +492,17 @@ def faire_lots(categories, niveaux, taille_forcee):
                  encoding="utf-8", newline="\n") as f:
         f.write(CONSIGNE)
 
+    neuf = mots_corriges() if seulement_neuf else None
+    if seulement_neuf and not neuf:
+        print("Aucun fichier de corrections dans corrections_tr/.")
+        return 1
+
     total_lots = total_cartes = 0
     for nom in categories:
         cartes = [c for c in CATEGORIES[nom]()
                   if c.get("niveau") in niveaux and c.get("turc")]
+        if neuf is not None:
+            cartes = [c for c in cartes if c.get("cle") in neuf.get(nom, ())]
         # Les champs perdus (voir --suspects) sortent des lots : ils ne se
         # relisent pas, ils se refont. Les laisser dedans ferait juger a un
         # relecteur des donnees qui n'ont jamais ete une traduction.
@@ -591,12 +640,13 @@ def main():
             niveaux = [n.strip().upper() for n in args[i + 1].split(",")]
         elif a == "--cartes" and i + 1 < len(args):
             taille = int(args[i + 1])
+    seulement_neuf = "--nouveaute" in sys.argv
     inconnues = [c for c in categories if c not in CATEGORIES]
     if inconnues:
         print("Categorie inconnue : %s" % ", ".join(inconnues))
         print("Disponibles : %s" % ", ".join(sorted(CATEGORIES)))
         return 1
-    return faire_lots(categories, niveaux, taille)
+    return faire_lots(categories, niveaux, taille, seulement_neuf)
 
 
 if __name__ == "__main__":
