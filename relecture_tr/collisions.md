@@ -71,6 +71,8 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - öffnen et aufmachen sont le meme verbe a deux registres ; le turc dit « açmak » pour les deux. « açıvermek », essaye pour les distinguer, ajoute une nuance de rapidite que l'allemand n'a pas.
 - *verbes* — **başlamak** ← beginnen, anfangen
   - beginnen et anfangen sont interchangeables en allemand ; le turc dit « başlamak ». « girişmek », essaye pour beginnen, est un contresens : il veut dire s'attaquer a quelque chose avec fougue.
+- *verbes* — **beklemek** ← warten, erwarten
+  - warten (attendre) et erwarten (s'attendre a) sont distincts en allemand ; le turc dit « beklemek » pour les deux, et les quatre phrases d'exemple d'erwarten l'employaient deja. « beklenti içinde olmak », essaye pour les separer, est une periphrase et non une traduction.
 - *verbes* — **kapatmak** ← schließen, zumachen
   - schliessen et zumachen, meme cas. « kapayıvermek » ajoutait la meme nuance parasite.
 - *verbes* — **yapmak** ← machen, tun
