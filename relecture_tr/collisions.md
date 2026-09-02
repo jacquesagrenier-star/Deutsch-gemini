@@ -231,6 +231,12 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - Realitaet et Wirklichkeit se disent « gerçeklik ». « hakikat » est litteraire.
 - *noms* — **hırsız** ← der Dieb, der Einbrecher
   - Dieb et Einbrecher se disent « hırsız ». « soyguncu » est un braqueur a main armee.
+- *noms* — **ihracat** ← der Export, die Ausfuhr
+  - Export et Ausfuhr se disent tous deux « ihracat » ; « dış satım » n'est plus employe.
+- *noms* — **itiraz** ← der Einwand, der Einspruch
+  - Einspruch et Einwand se disent tous deux « itiraz » ; « karşı görüş » est une opinion opposee, pas une objection.
+- *noms* — **kaldırım** ← der Bürgersteig, der Gehweg
+  - Buergersteig et Gehweg designent la meme chose ; le turc dit « kaldırım » pour les deux.
 - *noms* — **kalkış** ← der Start, der Abflug
   - Start et Abflug se disent tous deux « kalkış » ; « havalanma » est l'action de decoller, pas le depart.
 - *noms* — **kanepe** ← das Sofa, die Couch
@@ -243,8 +249,14 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - Angst et Furcht se disent « korku ». « dehşet » est la terreur.
 - *noms* — **manzara** ← die Landschaft, die Aussicht
   - Landschaft et Aussicht se disent « manzara ». « peyzaj » designe l'amenagement paysager.
+- *noms* — **onay** ← das Einverständnis, die Zustimmung
+  - Einverstaendnis et Zustimmung se disent tous deux « onay » ; « muvafakat » est du registre juridique.
 - *noms* — **pazar** ← der Sonntag, der Markt
   - HOMONYME turc : « pazar » veut dire dimanche ET marche.
+- *noms* — **tahmin** ← die Vorhersage, die Schätzung
+  - Vorhersage et Schaetzung se disent tous deux « tahmin » ; « kestirim » est un terme technique.
+- *noms* — **tatlı** ← der Nachtisch, die Nachspeise
+  - Nachtisch et Nachspeise se disent tous deux « tatlı » ; « yemek sonrası tatlı » est une periphrase.
 - *noms* — **uygulama** ← die App, die Anwendung
   - App et Anwendung se disent « uygulama ». « kullanım » veut dire utilisation.
 - *noms* — **uzman** ← der Experte, die Expertin, der Fachmann, die Fachfrau

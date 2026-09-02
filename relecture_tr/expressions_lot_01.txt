@@ -1,0 +1,772 @@
+# Consigne de relecture — traduction turque de Wortando
+
+Tu relis la traduction TURQUE d'un cours d'allemand. Le fichier joint contient
+une centaine de cartes.
+
+## Ce qui est la source, et ce qui ne l'est pas
+
+- **L'allemand est l'original.** C'est lui que la traduction turque doit rendre.
+- **Le francais est donne uniquement pour fixer le sens voulu**, quand le mot
+  allemand est ambigu hors contexte. Ne juge pas la qualite du francais, et ne
+  reproche pas au turc de s'ecarter du francais s'il rend bien l'allemand.
+- **Le turc est ce que tu juges.**
+
+## Ce qu'on te demande de signaler
+
+1. `contresens` — la traduction turque ne veut pas dire ce que dit l'allemand.
+2. `phrase_infidele` — la phrase turque ne dit pas ce que dit la phrase
+   allemande (sens, temps, aspect, personne, negation).
+3. `turc_peu_naturel` — c'est comprehensible mais aucun locuteur ne le dirait
+   ainsi ; donne la formulation naturelle.
+4. `registre` — le turc est trop familier ou trop soutenu pour le niveau
+   annonce (A1 a C1), ou pour la situation de la phrase.
+5. `incoherence` — deux champs de la MEME carte se contredisent (le mot est
+   traduit d'une facon, la phrase d'une autre).
+
+## Ce qu'on ne te demande PAS
+
+- Ne juge pas le genre ni le pluriel allemands : ils ont deja ete verifies.
+- Ne signale pas qu'un mot turc pourrait avoir un synonyme. On ne cherche pas
+  la meilleure variante possible, on cherche ce qui est FAUX ou INUTILISABLE.
+- Ne signale pas les collisions entre deux cartes : elles sont detectees
+  mecaniquement sur le corpus entier, tu n'en vois qu'un fragment.
+- Si tu hesites, ne signale pas. Une liste courte et sure vaut mieux qu'une
+  liste longue a trier.
+
+## Le format de ta reponse
+
+Un tableau JSON, et rien d'autre. Un objet par signalement :
+
+```json
+[
+  {
+    "mot": "Vater",
+    "champ": "traduction_tr",
+    "verdict": "contresens",
+    "suggestion": "baba — « ata » veut dire ancetre, pas pere"
+  }
+]
+```
+
+- `mot` : la valeur du champ `cle` de la carte, recopiee telle quelle.
+- `champ` : `traduction_tr`, `exemple_tr`, ou pour un verbe `perfekt_tr`,
+  `praeteritum_tr`, `konjunktiv2_tr`.
+- `verdict` : un des cinq mots ci-dessus.
+- `suggestion` : la correction, et en une phrase pourquoi.
+
+Si tu ne trouves rien, reponds `[]`.
+
+Enregistre ta reponse sous `verdict_<nom du lot>.json` dans le dossier
+`relecture_tr/`.
+
+======================================================================
+LOT expressions_lot_01 — expressions — 100 cartes
+Le niveau (A1 a C1) est indique entre crochets sur chaque
+carte : c'est contre lui que le registre se juge.
+======================================================================
+
+--- 1. Sich kümmern um   [A2]
+    sens (fr)   : s'occuper de
+    TURC        : -e bakmak
+    phrase DE   : Meine Nachbarin kümmert sich um die Katze.
+    phrase fr   : Ma voisine s'occupe du chat.
+    phrase TURC : Komşum kediye bakıyor.
+
+--- 2. Interesse haben an   [A2]
+    sens (fr)   : s'intéresser à
+    TURC        : -e ilgisi olmak
+    phrase DE   : Er hat großes Interesse an Geschichte.
+    phrase fr   : Il s'intéresse beaucoup à l'histoire.
+    phrase TURC : Tarihe büyük ilgisi var.
+
+--- 3. Sich interessieren für   [A2]
+    sens (fr)   : s'intéresser à
+    TURC        : -e ilgi duymak
+    phrase DE   : Ich interessiere mich für Musik.
+    phrase fr   : Je m'intéresse à la musique.
+    phrase TURC : Müziğe ilgi duyuyorum.
+
+--- 4. es geht um   [B1]
+    sens (fr)   : il s'agit de
+    TURC        : mesele ... olmak
+    phrase DE   : In der Sitzung geht es um das neue Budget.
+    phrase fr   : Lors de la réunion, il s'agit du nouveau budget.
+    phrase TURC : Toplantıda mesele yeni bütçe.
+
+--- 5. im Gegenteil   [B1]
+    sens (fr)   : au contraire
+    TURC        : tam tersine
+    phrase DE   : Es war nicht langweilig, im Gegenteil!
+    phrase fr   : Ce n'était pas ennuyeux, au contraire !
+    phrase TURC : Sıkıcı değildi, tam tersine!
+
+--- 6. einerseits … andererseits   [B1]
+    sens (fr)   : d'une part… d'autre part
+    TURC        : bir yandan … öte yandan
+    phrase DE   : Einerseits ist es teuer, andererseits sehr praktisch.
+    phrase fr   : D'une part c'est cher, d'autre part très pratique.
+    phrase TURC : Bir yandan pahalı, öte yandan çok kullanışlı.
+
+--- 7. das heißt   [B1]
+    sens (fr)   : c'est-à-dire
+    TURC        : yani
+    phrase DE   : Er ist Frührentner, das heißt, er arbeitet nicht mehr.
+    phrase fr   : Il est préretraité, c'est-à-dire qu'il ne travaille plus.
+    phrase TURC : Erken emekli, yani artık çalışmıyor.
+
+--- 8. in der Regel   [B1]
+    sens (fr)   : en règle générale
+    TURC        : genelde
+    phrase DE   : In der Regel dauert das zwei Wochen.
+    phrase fr   : En règle générale, cela prend deux semaines.
+    phrase TURC : Bu genelde iki hafta sürer.
+
+--- 9. unter Umständen   [B1]
+    sens (fr)   : le cas échéant
+    TURC        : duruma göre
+    phrase DE   : Unter Umständen müssen wir den Termin verschieben.
+    phrase fr   : Le cas échéant, nous devrons reporter le rendez-vous.
+    phrase TURC : Duruma göre randevuyu ertelememiz gerekebilir.
+
+--- 10. auf den ersten Blick   [B1]
+    sens (fr)   : à première vue
+    TURC        : ilk bakışta
+    phrase DE   : Auf den ersten Blick wirkt die Wohnung klein.
+    phrase fr   : À première vue, l'appartement paraît petit.
+    phrase TURC : İlk bakışta daire küçük görünüyor.
+
+--- 11. mit anderen Worten   [B1]
+    sens (fr)   : autrement dit
+    TURC        : başka bir deyişle
+    phrase DE   : Mit anderen Worten: Wir fangen von vorne an.
+    phrase fr   : Autrement dit : nous recommençons depuis le début.
+    phrase TURC : Başka bir deyişle: baştan başlıyoruz.
+
+--- 12. eine Rolle spielen   [B1]
+    sens (fr)   : jouer un rôle, compter
+    TURC        : önemi olmak
+    phrase DE   : Der Preis spielt für mich keine Rolle.
+    phrase fr   : Le prix ne compte pas pour moi.
+    phrase TURC : Fiyatın benim için bir önemi yok.
+
+--- 13. in Frage kommen   [B1]
+    sens (fr)   : entrer en ligne de compte
+    TURC        : söz konusu olmak
+    phrase DE   : Ein Umzug kommt für uns nicht in Frage.
+    phrase fr   : Un déménagement n'entre pas en ligne de compte pour nous.
+    phrase TURC : Taşınmak bizim için söz konusu değil.
+
+--- 14. zur Verfügung stehen   [B1]
+    sens (fr)   : être à disposition
+    TURC        : hizmete hazır olmak
+    phrase DE   : Für Fragen stehe ich Ihnen zur Verfügung.
+    phrase fr   : Je reste à votre disposition pour toute question.
+    phrase TURC : Sorularınız için hizmetinizdeyim.
+
+--- 15. in Kontakt bleiben   [B1]
+    sens (fr)   : rester en contact
+    TURC        : iletişimde kalmak
+    phrase DE   : Wir bleiben auf jeden Fall in Kontakt.
+    phrase fr   : Nous restons en contact, c'est sûr.
+    phrase TURC : Her hâlükârda iletişimde kalacağız.
+
+--- 16. eine Rechnung bezahlen   [B1]
+    sens (fr)   : régler une facture
+    TURC        : fatura ödemek
+    phrase DE   : Ich muss noch die Rechnung bezahlen.
+    phrase fr   : Je dois encore régler la facture.
+    phrase TURC : Hâlâ faturayı ödemem gerekiyor.
+
+--- 17. Bescheid geben   [B1]
+    sens (fr)   : faire signe, informer
+    TURC        : bilgi vermek
+    phrase DE   : Gib mir Bescheid, sobald du es weißt.
+    phrase fr   : Fais-moi signe dès que tu le sais.
+    phrase TURC : Öğrenir öğrenmez bana bilgi ver.
+
+--- 18. Verantwortung übernehmen   [B1]
+    sens (fr)   : assumer la responsabilité
+    TURC        : sorumluluğu üstlenmek
+    phrase DE   : Sie hat die Verantwortung für das Projekt übernommen.
+    phrase fr   : Elle a assumé la responsabilité du projet.
+    phrase TURC : Projenin sorumluluğunu üstlendi.
+
+--- 19. einen Antrag stellen   [B1]
+    sens (fr)   : déposer une demande
+    TURC        : başvuruda bulunmak
+    phrase DE   : Sie müssen einen Antrag beim Amt stellen.
+    phrase fr   : Vous devez déposer une demande auprès de l'administration.
+    phrase TURC : Daireye başvuruda bulunmanız gerekiyor.
+
+--- 20. sich Sorgen machen   [B1]
+    sens (fr)   : se faire du souci
+    TURC        : endişelenmek
+    phrase DE   : Mach dir keine Sorgen, alles ist geregelt.
+    phrase fr   : Ne te fais pas de souci, tout est réglé.
+    phrase TURC : Endişelenme, her şey ayarlandı.
+
+--- 21. sich freuen auf   [B1]
+    sens (fr)   : se réjouir de (à venir)
+    TURC        : dört gözle beklemek
+    phrase DE   : Ich freue mich schon auf den Urlaub.
+    phrase fr   : Je me réjouis déjà des vacances.
+    phrase TURC : Tatili şimdiden dört gözle bekliyorum.
+
+--- 22. sich freuen über   [B1]
+    sens (fr)   : se réjouir de (déjà arrivé)
+    TURC        : sevinmek
+    phrase DE   : Sie hat sich sehr über das Geschenk gefreut.
+    phrase fr   : Elle a été très contente du cadeau.
+    phrase TURC : Hediyeye çok sevindi.
+
+--- 23. die Nase voll haben   [B1]
+    sens (fr)   : en avoir assez
+    TURC        : bıkıp usanmak
+    phrase DE   : Ich habe die Nase voll von diesem Lärm.
+    phrase fr   : J'en ai assez de ce bruit.
+    phrase TURC : Bu gürültüden bıktım usandım.
+
+--- 24. auf die Nerven gehen   [B1]
+    sens (fr)   : taper sur les nerfs
+    TURC        : sinirine dokunmak
+    phrase DE   : Das ständige Klingeln geht mir auf die Nerven.
+    phrase fr   : Cette sonnerie continuelle me tape sur les nerfs.
+    phrase TURC : Sürekli çalan zil sinirime dokunuyor.
+
+--- 25. Glück haben   [B1]
+    sens (fr)   : avoir de la chance
+    TURC        : şansı yaver gitmek
+    phrase DE   : Wir haben Glück gehabt: kein Stau.
+    phrase fr   : Nous avons eu de la chance : pas de bouchon.
+    phrase TURC : Şansımız yaver gitti: trafik yoktu.
+
+--- 26. keine Lust haben   [B1]
+    sens (fr)   : ne pas avoir envie
+    TURC        : canı istememek
+    phrase DE   : Heute habe ich keine Lust zu kochen.
+    phrase fr   : Aujourd'hui, je n'ai pas envie de cuisiner.
+    phrase TURC : Bugün yemek yapmak canım istemiyor.
+
+--- 27. Schluss machen   [B1]
+    sens (fr)   : en finir, arrêter
+    TURC        : son vermek
+    phrase DE   : Für heute machen wir Schluss.
+    phrase fr   : Pour aujourd'hui, nous arrêtons.
+    phrase TURC : Bugünlük son veriyoruz.
+
+--- 28. auf dem Laufenden bleiben   [B1]
+    sens (fr)   : se tenir au courant
+    TURC        : güncel kalmak
+    phrase DE   : Ich bleibe über die Nachrichten auf dem Laufenden.
+    phrase fr   : Je me tiens au courant par les informations.
+    phrase TURC : Haberlerle güncel kalıyorum.
+
+--- 29. sich Zeit nehmen   [B1]
+    sens (fr)   : prendre son temps
+    TURC        : vakit ayırmak
+    phrase DE   : Nimm dir Zeit für die Antwort.
+    phrase fr   : Prends ton temps pour la réponse.
+    phrase TURC : Yanıt için kendine vakit ayır.
+
+--- 30. in Anspruch nehmen   [B1]
+    sens (fr)   : faire appel à, mobiliser
+    TURC        : hizmetinden yararlanmak
+    phrase DE   : Sie hat rechtliche Beratung in Anspruch genommen.
+    phrase fr   : Elle a fait appel à un conseil juridique.
+    phrase TURC : Hukuki danışmanlıktan yararlandı.
+
+--- 31. zur Sprache kommen   [B1]
+    sens (fr)   : être abordé (sujet)
+    TURC        : gündeme gelmek
+    phrase DE   : Das Thema kam gestern zur Sprache.
+    phrase fr   : Le sujet a été abordé hier.
+    phrase TURC : Konu dün gündeme geldi.
+
+--- 32. unter vier Augen   [B1]
+    sens (fr)   : en tête-à-tête
+    TURC        : baş başa
+    phrase DE   : Können wir das unter vier Augen besprechen?
+    phrase fr   : Pouvons-nous en parler en tête-à-tête ?
+    phrase TURC : Bunu baş başa konuşabilir miyiz?
+
+--- 33. aus Versehen   [B1]
+    sens (fr)   : par inadvertance
+    TURC        : kazara
+    phrase DE   : Ich habe aus Versehen die falsche Taste gedrückt.
+    phrase fr   : J'ai appuyé par inadvertance sur la mauvaise touche.
+    phrase TURC : Kazara yanlış tuşa bastım.
+
+--- 34. auf dem Weg   [B1]
+    sens (fr)   : en chemin
+    TURC        : yolda
+    phrase DE   : Ich bin schon auf dem Weg zu dir.
+    phrase fr   : Je suis déjà en chemin vers chez toi.
+    phrase TURC : Sana doğru çoktan yoldayım.
+
+--- 35. im Großen und Ganzen   [B1]
+    sens (fr)   : dans l'ensemble
+    TURC        : genel hatlarıyla
+    phrase DE   : Im Großen und Ganzen bin ich zufrieden.
+    phrase fr   : Dans l'ensemble, je suis satisfait.
+    phrase TURC : Genel hatlarıyla memnunum.
+
+--- 36. nach und nach   [B1]
+    sens (fr)   : peu à peu
+    TURC        : giderek
+    phrase DE   : Nach und nach verstehe ich mehr.
+    phrase fr   : Peu à peu, je comprends davantage.
+    phrase TURC : Giderek daha çok anlıyorum.
+
+--- 37. je nachdem   [B1]
+    sens (fr)   : selon les cas
+    TURC        : duruma bağlı olarak
+    phrase DE   : Je nachdem, wie das Wetter wird, fahren wir.
+    phrase fr   : Selon le temps qu'il fera, nous partirons.
+    phrase TURC : Hava nasıl olursa, duruma bağlı olarak yola çıkarız.
+
+--- 38. das kommt darauf an, ob   [B1]
+    sens (fr)   : ça dépend si
+    TURC        : ... olup olmamasına bağlı
+    phrase DE   : Das kommt darauf an, ob du Zeit hast.
+    phrase fr   : Ça dépend si tu as le temps.
+    phrase TURC : Bu, vaktinin olup olmamasına bağlı.
+
+--- 39. Wert legen auf   [B1]
+    sens (fr)   : attacher de l'importance à
+    TURC        : önem vermek
+    phrase DE   : Sie legt großen Wert auf Pünktlichkeit.
+    phrase fr   : Elle attache une grande importance à la ponctualité.
+    phrase TURC : Dakikliğe büyük önem verir.
+
+--- 40. Rücksprache halten   [B1]
+    sens (fr)   : se concerter
+    TURC        : danışmak
+    phrase DE   : Ich halte noch Rücksprache mit dem Team.
+    phrase fr   : Je me concerte encore avec l'équipe.
+    phrase TURC : Bir de ekibe danışacağım.
+
+--- 41. einen Kompromiss finden   [B1]
+    sens (fr)   : trouver un compromis
+    TURC        : uzlaşmaya varmak
+    phrase DE   : Am Ende haben wir einen Kompromiss gefunden.
+    phrase fr   : Finalement, nous avons trouvé un compromis.
+    phrase TURC : Sonunda bir uzlaşmaya vardık.
+
+--- 42. Abstand nehmen von   [B1]
+    sens (fr)   : renoncer à
+    TURC        : vazgeçmek
+    phrase DE   : Wir haben von dem Plan Abstand genommen.
+    phrase fr   : Nous avons renoncé à ce plan.
+    phrase TURC : Bu plandan vazgeçtik.
+
+--- 43. auf dem neuesten Stand   [B1]
+    sens (fr)   : à jour
+    TURC        : en güncel hâlde
+    phrase DE   : Die Software ist auf dem neuesten Stand.
+    phrase fr   : Le logiciel est à jour.
+    phrase TURC : Yazılım en güncel hâlde.
+
+--- 44. Herzlich willkommen   [B1]
+    sens (fr)   : Bienvenue
+    TURC        : Hoş geldiniz
+    phrase DE   : Herzlich willkommen in unserem Verein!
+    phrase fr   : Bienvenue dans notre association !
+    phrase TURC : Derneğimize hoş geldiniz!
+
+--- 45. Alles Gute   [B1]
+    sens (fr)   : Tous mes vœux
+    TURC        : Her şey gönlünce olsun
+    phrase DE   : Alles Gute für deinen neuen Job!
+    phrase fr   : Tous mes vœux pour ton nouveau travail !
+    phrase TURC : Yeni işinde her şey gönlünce olsun!
+
+--- 46. Mach's gut   [B1]
+    sens (fr)   : Porte-toi bien
+    TURC        : Kendine iyi bak
+    phrase DE   : Ich muss los. Mach's gut!
+    phrase fr   : Je dois y aller. Porte-toi bien !
+    phrase TURC : Gitmem lazım. Kendine iyi bak!
+
+--- 47. Wie dem auch sei   [B1]
+    sens (fr)   : Quoi qu'il en soit
+    TURC        : Her neyse
+    phrase DE   : Wie dem auch sei, wir müssen weitermachen.
+    phrase fr   : Quoi qu'il en soit, nous devons continuer.
+    phrase TURC : Her neyse, devam etmeliyiz.
+
+--- 48. Das kann ich mir vorstellen   [B1]
+    sens (fr)   : Je m'en doute
+    TURC        : Tahmin ederim
+    phrase DE   : Der Umzug war anstrengend. – Das kann ich mir vorstellen.
+    phrase fr   : Le déménagement était fatigant. – Je m'en doute.
+    phrase TURC : Taşınmak yorucuydu. – Tahmin ederim.
+
+--- 49. Sich bewerben um   [B1]
+    sens (fr)   : postuler à
+    TURC        : işe başvurmak
+    phrase DE   : Er bewirbt sich um eine Stelle in Berlin.
+    phrase fr   : Il postule à un poste à Berlin.
+    phrase TURC : Berlin'de bir işe başvuruyor.
+
+--- 50. Sich gewöhnen an   [B1]
+    sens (fr)   : s'habituer à
+    TURC        : alışmak
+    phrase DE   : Man gewöhnt sich schnell an das Klima.
+    phrase fr   : On s'habitue vite au climat.
+    phrase TURC : İnsan iklime çabuk alışıyor.
+
+--- 51. Sich erinnern an   [B1]
+    sens (fr)   : se souvenir de
+    TURC        : hatırlamak
+    phrase DE   : Ich erinnere mich gut an diesen Tag.
+    phrase fr   : Je me souviens bien de ce jour.
+    phrase TURC : O günü iyi hatırlıyorum.
+
+--- 52. Sich verlassen auf   [B1]
+    sens (fr)   : compter sur
+    TURC        : güvenmek
+    phrase DE   : Auf ihn kann man sich verlassen.
+    phrase fr   : On peut compter sur lui.
+    phrase TURC : Ona güvenilir.
+
+--- 53. Sich beschäftigen mit   [B1]
+    sens (fr)   : s'occuper de, se pencher sur
+    TURC        : ile meşgul olmak
+    phrase DE   : Sie beschäftigt sich mit alter Musik.
+    phrase fr   : Elle se penche sur la musique ancienne.
+    phrase TURC : Eski müzikle meşgul oluyor.
+
+--- 54. Sich entscheiden für   [B1]
+    sens (fr)   : opter pour
+    TURC        : tercih etmek
+    phrase DE   : Wir haben uns für die kleinere Wohnung entschieden.
+    phrase fr   : Nous avons opté pour le plus petit appartement.
+    phrase TURC : Küçük daireyi tercih ettik.
+
+--- 55. Sich bedanken für   [B1]
+    sens (fr)   : remercier pour
+    TURC        : teşekkür etmek
+    phrase DE   : Ich möchte mich für Ihre Geduld bedanken.
+    phrase fr   : Je voudrais vous remercier pour votre patience.
+    phrase TURC : Sabrınız için teşekkür etmek isterim.
+
+--- 56. Sich entschuldigen für   [B1]
+    sens (fr)   : s'excuser de
+    TURC        : ... için özür dilemek
+    phrase DE   : Er hat sich für die Verspätung entschuldigt.
+    phrase fr   : Il s'est excusé de son retard.
+    phrase TURC : Gecikmesi için özür diledi.
+
+--- 57. Sich vorbereiten auf   [B1]
+    sens (fr)   : se préparer à
+    TURC        : hazırlanmak
+    phrase DE   : Sie bereitet sich auf die Prüfung vor.
+    phrase fr   : Elle se prépare à l'examen.
+    phrase TURC : Sınava hazırlanıyor.
+
+--- 58. Sich beteiligen an   [B1]
+    sens (fr)   : participer à
+    TURC        : katkıda bulunmak
+    phrase DE   : Viele haben sich an der Diskussion beteiligt.
+    phrase fr   : Beaucoup ont participé à la discussion.
+    phrase TURC : Tartışmaya birçok kişi katkıda bulundu.
+
+--- 59. Teilnehmen an   [B1]
+    sens (fr)   : participer à
+    TURC        : katılmak
+    phrase DE   : Er nimmt an einem Sprachkurs teil.
+    phrase fr   : Il participe à un cours de langue.
+    phrase TURC : Bir dil kursuna katılıyor.
+
+--- 60. Abhängen von   [B1]
+    sens (fr)   : dépendre de
+    TURC        : bağlı olmak
+    phrase DE   : Das hängt vom Wetter ab.
+    phrase fr   : Cela dépend du temps.
+    phrase TURC : Bu havaya bağlı.
+
+--- 61. Bestehen aus   [B1]
+    sens (fr)   : être composé de
+    TURC        : oluşmak
+    phrase DE   : Das Team besteht aus fünf Personen.
+    phrase fr   : L'équipe est composée de cinq personnes.
+    phrase TURC : Ekip beş kişiden oluşuyor.
+
+--- 62. Gehören zu   [B1]
+    sens (fr)   : faire partie de
+    TURC        : dâhil olmak
+    phrase DE   : Das gehört zu meinen Aufgaben.
+    phrase fr   : Cela fait partie de mes tâches.
+    phrase TURC : Bu benim görevlerime dâhil.
+
+--- 63. Sorgen für   [B1]
+    sens (fr)   : veiller à
+    TURC        : sağlamak
+    phrase DE   : Bitte sorgen Sie für Ruhe im Raum.
+    phrase fr   : Veuillez veiller au calme dans la salle.
+    phrase TURC : Lütfen salonda sessizliği sağlayın.
+
+--- 64. Warten auf   [B1]
+    sens (fr)   : attendre
+    TURC        : beklemek
+    phrase DE   : Wir warten seit einer Stunde auf den Bus.
+    phrase fr   : Nous attendons le bus depuis une heure.
+    phrase TURC : Bir saattir otobüsü bekliyoruz.
+
+--- 65. Denken an   [B1]
+    sens (fr)   : penser à
+    TURC        : unutmamak
+    phrase DE   : Denk bitte an die Schlüssel!
+    phrase fr   : Pense aux clés, s'il te plaît !
+    phrase TURC : Lütfen anahtarları unutma!
+
+--- 66. Leiden unter   [B1]
+    sens (fr)   : souffrir de
+    TURC        : muzdarip olmak
+    phrase DE   : Viele leiden unter dem Lärm.
+    phrase fr   : Beaucoup souffrent du bruit.
+    phrase TURC : Birçok kişi gürültüden muzdarip.
+
+--- 67. Rechnen mit   [B1]
+    sens (fr)   : s'attendre à
+    TURC        : hesaba katmak
+    phrase DE   : Wir rechnen mit einer Verspätung.
+    phrase fr   : Nous nous attendons à un retard.
+    phrase TURC : Bir gecikmeyi hesaba katıyoruz.
+
+--- 68. Einfluss haben auf   [B1]
+    sens (fr)   : avoir une influence sur
+    TURC        : etkisi olmak
+    phrase DE   : Das Wetter hat Einfluss auf die Ernte.
+    phrase fr   : Le temps a une influence sur la récolte.
+    phrase TURC : Havanın hasat üzerinde etkisi var.
+
+--- 69. Zugang haben zu   [B1]
+    sens (fr)   : avoir accès à
+    TURC        : erişimi olmak
+    phrase DE   : Alle Studenten haben Zugang zur Bibliothek.
+    phrase fr   : Tous les étudiants ont accès à la bibliothèque.
+    phrase TURC : Bütün öğrencilerin kütüphaneye erişimi var.
+
+--- 70. Erfahrung sammeln   [B1]
+    sens (fr)   : acquérir de l'expérience
+    TURC        : deneyim kazanmak
+    phrase DE   : Im Praktikum sammelt man wertvolle Erfahrung.
+    phrase fr   : En stage, on acquiert une expérience précieuse.
+    phrase TURC : Stajda değerli deneyim kazanılır.
+
+--- 71. Kritik üben an   [B1]
+    sens (fr)   : critiquer
+    TURC        : eleştirmek
+    phrase DE   : Die Presse übt Kritik an dem Plan.
+    phrase fr   : La presse critique le plan.
+    phrase TURC : Basın planı eleştiriyor.
+
+--- 72. Eine Ausnahme machen   [B1]
+    sens (fr)   : faire une exception
+    TURC        : istisna yapmak
+    phrase DE   : Heute machen wir eine Ausnahme.
+    phrase fr   : Aujourd'hui, nous faisons une exception.
+    phrase TURC : Bugün bir istisna yapıyoruz.
+
+--- 73. Zu Wort kommen   [B1]
+    sens (fr)   : avoir la parole
+    TURC        : konuşma sırası gelmek
+    phrase DE   : In der Sitzung kam jeder zu Wort.
+    phrase fr   : Lors de la réunion, chacun a eu la parole.
+    phrase TURC : Toplantıda herkese konuşma sırası geldi.
+
+--- 74. Im Wege stehen   [B1]
+    sens (fr)   : faire obstacle à
+    TURC        : engel olmak
+    phrase DE   : Nichts steht dem Projekt mehr im Wege.
+    phrase fr   : Plus rien ne fait obstacle au projet.
+    phrase TURC : Projeye artık hiçbir şey engel değil.
+
+--- 75. Auf sich warten lassen   [B1]
+    sens (fr)   : se faire attendre
+    TURC        : kendini bekletmek
+    phrase DE   : Die Antwort ließ lange auf sich warten.
+    phrase fr   : La réponse s'est fait longtemps attendre.
+    phrase TURC : Yanıt uzun süre kendini bekletti.
+
+--- 76. Den Ton angeben   [B1]
+    sens (fr)   : donner le ton
+    TURC        : havayı belirlemek
+    phrase DE   : In dieser Branche gibt er den Ton an.
+    phrase fr   : Dans ce secteur, c'est lui qui donne le ton.
+    phrase TURC : Bu sektörde havayı o belirliyor.
+
+--- 77. Ins Spiel bringen   [B1]
+    sens (fr)   : mettre sur la table
+    TURC        : ortaya atmak
+    phrase DE   : Sie brachte ein neues Argument ins Spiel.
+    phrase fr   : Elle a mis un nouvel argument sur la table.
+    phrase TURC : Yeni bir savı ortaya attı.
+
+--- 78. Zur Kenntnis nehmen   [B1]
+    sens (fr)   : prendre acte de
+    TURC        : bilgi edinmek
+    phrase DE   : Wir haben Ihre Beschwerde zur Kenntnis genommen.
+    phrase fr   : Nous avons pris acte de votre réclamation.
+    phrase TURC : Şikâyetiniz hakkında bilgi edindik.
+
+--- 79. In Erfahrung bringen   [B1]
+    sens (fr)   : se renseigner sur
+    TURC        : öğrenmeye çalışmak
+    phrase DE   : Ich versuche, den Termin in Erfahrung zu bringen.
+    phrase fr   : J'essaie de me renseigner sur la date.
+    phrase TURC : Randevu tarihini öğrenmeye çalışıyorum.
+
+--- 80. Bezug nehmen auf   [B1]
+    sens (fr)   : faire référence à
+    TURC        : atıfta bulunmak
+    phrase DE   : Ich nehme Bezug auf Ihr Schreiben.
+    phrase fr   : Je fais référence à votre courrier.
+    phrase TURC : Yazınıza atıfta bulunuyorum.
+
+--- 81. Schritt halten mit   [B1]
+    sens (fr)   : suivre le rythme de
+    TURC        : ayak uydurmak
+    phrase DE   : Kleine Firmen können kaum Schritt halten.
+    phrase fr   : Les petites entreprises peinent à suivre le rythme.
+    phrase TURC : Küçük firmalar güçlükle ayak uyduruyor.
+
+--- 82. In gewisser Weise   [B1]
+    sens (fr)   : d'une certaine manière
+    TURC        : bir bakıma
+    phrase DE   : In gewisser Weise hast du recht.
+    phrase fr   : D'une certaine manière, tu as raison.
+    phrase TURC : Bir bakıma haklısın.
+
+--- 83. Mit Sicherheit   [B1]
+    sens (fr)   : à coup sûr
+    TURC        : kesin olarak
+    phrase DE   : Das wird mit Sicherheit funktionieren.
+    phrase fr   : Cela fonctionnera à coup sûr.
+    phrase TURC : Bu kesin olarak işe yarayacak.
+
+--- 84. Unter anderem   [B1]
+    sens (fr)   : entre autres
+    TURC        : diğerlerinin yanı sıra
+    phrase DE   : Wir sprachen unter anderem über die Kosten.
+    phrase fr   : Nous avons parlé entre autres des coûts.
+    phrase TURC : Diğerlerinin yanı sıra maliyetleri konuştuk.
+
+--- 85. Zum einen ... zum anderen   [B1]
+    sens (fr)   : d'une part ... d'autre part
+    TURC        : birincisi ... ikincisi
+    phrase DE   : Zum einen fehlt Geld, zum anderen fehlt Zeit.
+    phrase fr   : D'une part il manque de l'argent, d'autre part du temps.
+    phrase TURC : Birincisi para yok, ikincisi zaman yok.
+
+--- 86. Es sei denn   [B1]
+    sens (fr)   : à moins que
+    TURC        : ... olmadığı sürece
+    phrase DE   : Wir fahren morgen, es sei denn, es schneit.
+    phrase fr   : Nous partons demain, à moins qu'il neige.
+    phrase TURC : Kar yağmadığı sürece yarın yola çıkarız.
+
+--- 87. Abgesehen von   [B1]
+    sens (fr)   : mis à part
+    TURC        : bir yana
+    phrase DE   : Abgesehen vom Preis ist alles perfekt.
+    phrase fr   : Mis à part le prix, tout est parfait.
+    phrase TURC : Fiyat bir yana, her şey kusursuz.
+
+--- 88. Im Vergleich zu   [B1]
+    sens (fr)   : par rapport à
+    TURC        : kıyasla
+    phrase DE   : Im Vergleich zu gestern ist es kalt.
+    phrase fr   : Par rapport à hier, il fait froid.
+    phrase TURC : Düne kıyasla hava soğuk.
+
+--- 89. Was ... betrifft   [B1]
+    sens (fr)   : en ce qui concerne
+    TURC        : ... gelince
+    phrase DE   : Was das Geld betrifft, bin ich vorsichtig.
+    phrase fr   : En ce qui concerne l'argent, je suis prudent.
+    phrase TURC : Paraya gelince, temkinliyim.
+
+--- 90. Nicht zuletzt   [B1]
+    sens (fr)   : notamment
+    TURC        : bilhassa
+    phrase DE   : Nicht zuletzt wegen des Wetters blieben wir zu Hause.
+    phrase fr   : Notamment à cause du temps, nous sommes restés à la maison.
+    phrase TURC : Bilhassa hava yüzünden evde kaldık.
+
+--- 91. In der Tat   [B1]
+    sens (fr)   : en effet
+    TURC        : hakikaten
+    phrase DE   : Das ist in der Tat ein Problem.
+    phrase fr   : C'est en effet un problème.
+    phrase TURC : Bu hakikaten bir sorun.
+
+--- 92. Offen gesagt   [B1]
+    sens (fr)   : franchement
+    TURC        : açıkçası
+    phrase DE   : Offen gesagt gefällt mir der Plan nicht.
+    phrase fr   : Franchement, le plan ne me plaît pas.
+    phrase TURC : Açıkçası plan hoşuma gitmiyor.
+
+--- 93. Ehrlich gesagt   [B1]
+    sens (fr)   : à vrai dire
+    TURC        : doğrusunu söylemek gerekirse
+    phrase DE   : Ehrlich gesagt habe ich es vergessen.
+    phrase fr   : À vrai dire, je l'ai oublié.
+    phrase TURC : Doğrusunu söylemek gerekirse unuttum.
+
+--- 94. Genau genommen   [B1]
+    sens (fr)   : à proprement parler
+    TURC        : aslında
+    phrase DE   : Genau genommen ist das nicht erlaubt.
+    phrase fr   : À proprement parler, ce n'est pas autorisé.
+    phrase TURC : Aslında buna izin verilmiyor.
+
+--- 95. Anders gesagt   [B1]
+    sens (fr)   : autrement dit
+    TURC        : diğer bir ifadeyle
+    phrase DE   : Anders gesagt: wir müssen sparen.
+    phrase fr   : Autrement dit : nous devons économiser.
+    phrase TURC : Diğer bir ifadeyle: tasarruf etmeliyiz.
+
+--- 96. Das Für und Wider   [B1]
+    sens (fr)   : le pour et le contre
+    TURC        : artıları ve eksileri
+    phrase DE   : Wir haben das Für und Wider abgewogen.
+    phrase fr   : Nous avons pesé le pour et le contre.
+    phrase TURC : Artıları ve eksileri tarttık.
+
+--- 97. Auf Anhieb   [B1]
+    sens (fr)   : du premier coup
+    TURC        : ilk denemede
+    phrase DE   : Sie hat die Aufgabe auf Anhieb gelöst.
+    phrase fr   : Elle a résolu l'exercice du premier coup.
+    phrase TURC : Alıştırmayı ilk denemede çözdü.
+
+--- 98. Sich Mühe geben   [B1]
+    sens (fr)   : se donner du mal
+    TURC        : emek vermek
+    phrase DE   : Er gibt sich große Mühe mit dem Text.
+    phrase fr   : Il se donne beaucoup de mal avec le texte.
+    phrase TURC : Metne büyük emek veriyor.
+
+--- 99. Den Kopf verlieren   [B1]
+    sens (fr)   : perdre la tête
+    TURC        : paniklemek
+    phrase DE   : Auch im Stress verliert sie nie den Kopf.
+    phrase fr   : Même sous le stress, elle ne perd jamais la tête.
+    phrase TURC : Stres altında bile asla paniklemez.
+
+--- 100. An die Decke gehen   [B1]
+    sens (fr)   : sortir de ses gonds
+    TURC        : küplere binmek
+    phrase DE   : Als er das hörte, ging er an die Decke.
+    phrase fr   : Quand il a entendu ça, il est sorti de ses gonds.
+    phrase TURC : Bunu duyunca küplere bindi.
+
+======================================================================
+Rappel : reponds par un tableau JSON, et rien d'autre.
+Le champ `mot` doit reprendre le mot allemand tel qu'il est
+ecrit ci-dessus, sans l'article. Si tu ne trouves rien : []
+======================================================================

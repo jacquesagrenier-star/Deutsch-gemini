@@ -1,0 +1,772 @@
+# Consigne de relecture — traduction turque de Wortando
+
+Tu relis la traduction TURQUE d'un cours d'allemand. Le fichier joint contient
+une centaine de cartes.
+
+## Ce qui est la source, et ce qui ne l'est pas
+
+- **L'allemand est l'original.** C'est lui que la traduction turque doit rendre.
+- **Le francais est donne uniquement pour fixer le sens voulu**, quand le mot
+  allemand est ambigu hors contexte. Ne juge pas la qualite du francais, et ne
+  reproche pas au turc de s'ecarter du francais s'il rend bien l'allemand.
+- **Le turc est ce que tu juges.**
+
+## Ce qu'on te demande de signaler
+
+1. `contresens` — la traduction turque ne veut pas dire ce que dit l'allemand.
+2. `phrase_infidele` — la phrase turque ne dit pas ce que dit la phrase
+   allemande (sens, temps, aspect, personne, negation).
+3. `turc_peu_naturel` — c'est comprehensible mais aucun locuteur ne le dirait
+   ainsi ; donne la formulation naturelle.
+4. `registre` — le turc est trop familier ou trop soutenu pour le niveau
+   annonce (A1 a C1), ou pour la situation de la phrase.
+5. `incoherence` — deux champs de la MEME carte se contredisent (le mot est
+   traduit d'une facon, la phrase d'une autre).
+
+## Ce qu'on ne te demande PAS
+
+- Ne juge pas le genre ni le pluriel allemands : ils ont deja ete verifies.
+- Ne signale pas qu'un mot turc pourrait avoir un synonyme. On ne cherche pas
+  la meilleure variante possible, on cherche ce qui est FAUX ou INUTILISABLE.
+- Ne signale pas les collisions entre deux cartes : elles sont detectees
+  mecaniquement sur le corpus entier, tu n'en vois qu'un fragment.
+- Si tu hesites, ne signale pas. Une liste courte et sure vaut mieux qu'une
+  liste longue a trier.
+
+## Le format de ta reponse
+
+Un tableau JSON, et rien d'autre. Un objet par signalement :
+
+```json
+[
+  {
+    "mot": "Vater",
+    "champ": "traduction_tr",
+    "verdict": "contresens",
+    "suggestion": "baba — « ata » veut dire ancetre, pas pere"
+  }
+]
+```
+
+- `mot` : la valeur du champ `cle` de la carte, recopiee telle quelle.
+- `champ` : `traduction_tr`, `exemple_tr`, ou pour un verbe `perfekt_tr`,
+  `praeteritum_tr`, `konjunktiv2_tr`.
+- `verdict` : un des cinq mots ci-dessus.
+- `suggestion` : la correction, et en une phrase pourquoi.
+
+Si tu ne trouves rien, reponds `[]`.
+
+Enregistre ta reponse sous `verdict_<nom du lot>.json` dans le dossier
+`relecture_tr/`.
+
+======================================================================
+LOT expressions_lot_04 — expressions — 100 cartes
+Le niveau (A1 a C1) est indique entre crochets sur chaque
+carte : c'est contre lui que le registre se juge.
+======================================================================
+
+--- 1. Auf dem Prüfstand stehen   [B2]
+    sens (fr)   : être remis en question
+    TURC        : masaya yatırılmak
+    phrase DE   : Das gesamte Konzept steht auf dem Prüfstand.
+    phrase fr   : L'ensemble du concept est remis en question.
+    phrase TURC : Bütün konsept masaya yatırılıyor.
+
+--- 2. Rede und Antwort stehen   [B2]
+    sens (fr)   : rendre des comptes
+    TURC        : hesap vermek
+    phrase DE   : Der Minister musste Rede und Antwort stehen.
+    phrase fr   : Le ministre a dû rendre des comptes.
+    phrase TURC : Bakan hesap vermek zorunda kaldı.
+
+--- 3. Zur Rechenschaft ziehen   [B2]
+    sens (fr)   : demander des comptes à
+    TURC        : hesap sormak
+    phrase DE   : Die Verantwortlichen wurden zur Rechenschaft gezogen.
+    phrase fr   : Les responsables ont eu à rendre des comptes.
+    phrase TURC : Sorumlulardan hesap soruldu.
+
+--- 4. nicht von ungefähr   [C1]
+    sens (fr)   : ce n'est pas un hasard
+    TURC        : boşuna değil
+    phrase DE   : Dass der Vertrag scheiterte, kommt nicht von ungefähr.
+    phrase fr   : Ce n'est pas un hasard si le contrat a échoué.
+    phrase TURC : Sözleşmenin çökmesi boşuna değil.
+
+--- 5. im Zuge dessen   [C1]
+    sens (fr)   : dans la foulée
+    TURC        : bu vesileyle
+    phrase DE   : Die Abteilung zog um; im Zuge dessen wurde die Technik erneuert.
+    phrase fr   : Le service a déménagé ; dans la foulée, le matériel a été renouvelé.
+    phrase TURC : Birim taşındı; bu vesileyle donanım da yenilendi.
+
+--- 6. im Gegenzug   [C1]
+    sens (fr)   : en contrepartie
+    TURC        : buna karşılık olarak
+    phrase DE   : Er übernimmt die Schicht, im Gegenzug bekommt er den Freitag frei.
+    phrase fr   : Il prend le quart, en contrepartie il a son vendredi.
+    phrase TURC : Vardiyayı üstleniyor, buna karşılık olarak cuma günü izinli.
+
+--- 7. bei aller Kritik   [C1]
+    sens (fr)   : malgré toutes les critiques
+    TURC        : bütün eleştirilere rağmen
+    phrase DE   : Bei aller Kritik: Das Projekt hat vieles verbessert.
+    phrase fr   : Malgré toutes les critiques, le projet a amélioré bien des choses.
+    phrase TURC : Bütün eleştirilere rağmen proje pek çok şeyi iyileştirdi.
+
+--- 8. das mag sein, aber   [C1]
+    sens (fr)   : c'est possible, mais
+    TURC        : olabilir, ama
+    phrase DE   : Das mag sein, aber die Zahlen sagen etwas anderes.
+    phrase fr   : C'est possible, mais les chiffres disent autre chose.
+    phrase TURC : Olabilir, ama rakamlar başka şey söylüyor.
+
+--- 9. geschweige denn   [C1]
+    sens (fr)   : et encore moins
+    TURC        : nerede kaldı ki
+    phrase DE   : Er hat nicht angerufen, geschweige denn sich entschuldigt.
+    phrase fr   : Il n'a pas appelé, et encore moins présenté ses excuses.
+    phrase TURC : Aramadı, özür dilemesi nerede kaldı ki.
+
+--- 10. im Grunde genommen   [C1]
+    sens (fr)   : au fond
+    TURC        : esasında
+    phrase DE   : Im Grunde genommen sind wir uns längst einig.
+    phrase fr   : Au fond, nous sommes d'accord depuis longtemps.
+    phrase TURC : Esasında çoktan hemfikiriz.
+
+--- 11. bei näherem Hinsehen   [C1]
+    sens (fr)   : en y regardant de plus près
+    TURC        : dikkatle incelendiğinde
+    phrase DE   : Bei näherem Hinsehen stimmte die Rechnung nicht.
+    phrase fr   : En y regardant de plus près, le compte n'y était pas.
+    phrase TURC : Dikkatle incelendiğinde hesap tutmuyordu.
+
+--- 12. angesichts dessen   [C1]
+    sens (fr)   : au vu de cela
+    TURC        : bunun karşısında
+    phrase DE   : Angesichts dessen wurde die Sitzung verschoben.
+    phrase fr   : Au vu de cela, la séance a été reportée.
+    phrase TURC : Bunun karşısında toplantı ertelendi.
+
+--- 13. vor dem Hintergrund   [C1]
+    sens (fr)   : dans le contexte de
+    TURC        : ... ışığında
+    phrase DE   : Vor dem Hintergrund der Krise wirkt die Summe klein.
+    phrase fr   : Dans le contexte de la crise, la somme paraît faible.
+    phrase TURC : Kriz ışığında bu meblağ küçük görünüyor.
+
+--- 14. in Ermangelung   [C1]
+    sens (fr)   : à défaut de
+    TURC        : yokluğunda
+    phrase DE   : In Ermangelung besserer Vorschläge blieb es beim alten Plan.
+    phrase fr   : À défaut de meilleures propositions, on en est resté à l'ancien plan.
+    phrase TURC : Daha iyi önerilerin yokluğunda eski planda kalındı.
+
+--- 15. nach Lage der Dinge   [C1]
+    sens (fr)   : en l'état des choses
+    TURC        : işlerin gidişine bakılırsa
+    phrase DE   : Nach Lage der Dinge wird das Gesetz nicht kommen.
+    phrase fr   : En l'état des choses, la loi ne verra pas le jour.
+    phrase TURC : İşlerin gidişine bakılırsa yasa çıkmayacak.
+
+--- 16. bei Licht betrachtet   [C1]
+    sens (fr)   : à bien y regarder
+    TURC        : iyice düşünülünce
+    phrase DE   : Bei Licht betrachtet war das Angebot kein Schnäppchen.
+    phrase fr   : À bien y regarder, l'offre n'était pas une aubaine.
+    phrase TURC : İyice düşünülünce teklif bir kelepir değildi.
+
+--- 17. in letzter Konsequenz   [C1]
+    sens (fr)   : en dernière analyse
+    TURC        : son kertede
+    phrase DE   : In letzter Konsequenz entscheidet der Kunde.
+    phrase fr   : En dernière analyse, c'est le client qui décide.
+    phrase TURC : Son kertede karar müşterinin.
+
+--- 18. der Vollständigkeit halber   [C1]
+    sens (fr)   : par souci d'exhaustivité
+    TURC        : eksik kalmasın diye
+    phrase DE   : Der Vollständigkeit halber sei die dritte Variante erwähnt.
+    phrase fr   : Par souci d'exhaustivité, mentionnons la troisième variante.
+    phrase TURC : Eksik kalmasın diye üçüncü seçeneği de analım.
+
+--- 19. ungeachtet dessen   [C1]
+    sens (fr)   : nonobstant cela
+    TURC        : buna aldırmadan
+    phrase DE   : Ungeachtet dessen hielt sie an ihrer Meinung fest.
+    phrase fr   : Nonobstant cela, elle a maintenu son opinion.
+    phrase TURC : Buna aldırmadan görüşünde ısrar etti.
+
+--- 20. im Klartext   [C1]
+    sens (fr)   : en clair
+    TURC        : açık söylemek gerekirse
+    phrase DE   : Im Klartext: Das Geld reicht nicht.
+    phrase fr   : En clair : l'argent ne suffit pas.
+    phrase TURC : Açık söylemek gerekirse: para yetmiyor.
+
+--- 21. im Raum stehen   [C1]
+    sens (fr)   : être en suspens
+    TURC        : havada kalmak
+    phrase DE   : Der Vorwurf steht weiterhin im Raum.
+    phrase fr   : Le reproche reste en suspens.
+    phrase TURC : Suçlama hâlâ havada kalıyor.
+
+--- 22. sich zu Wort melden   [C1]
+    sens (fr)   : demander la parole
+    TURC        : söz istemek
+    phrase DE   : Am Ende der Debatte meldete sich der Bürgermeister zu Wort.
+    phrase fr   : À la fin du débat, le maire a demandé la parole.
+    phrase TURC : Tartışmanın sonunda belediye başkanı söz istedi.
+
+--- 23. ich bin der Auffassung   [C1]
+    sens (fr)   : je suis d'avis
+    TURC        : kanaatindeyim
+    phrase DE   : Ich bin der Auffassung, dass wir zu früh aufgegeben haben.
+    phrase fr   : Je suis d'avis que nous avons abandonné trop tôt.
+    phrase TURC : Çok erken pes ettiğimiz kanaatindeyim.
+
+--- 24. dem kann ich nur beipflichten   [C1]
+    sens (fr)   : je ne peux qu'approuver
+    TURC        : buna ancak hak verebilirim
+    phrase DE   : Dem kann ich nur beipflichten, das war überfällig.
+    phrase fr   : Je ne peux qu'approuver, cela n'avait que trop tardé.
+    phrase TURC : Buna ancak hak verebilirim, çoktan olmalıydı.
+
+--- 25. meines Erachtens   [C1]
+    sens (fr)   : à mon sens
+    TURC        : bana kalırsa
+    phrase DE   : Meines Erachtens fehlt dem Vorschlag die Grundlage.
+    phrase fr   : À mon sens, la proposition manque de fondement.
+    phrase TURC : Bana kalırsa önerinin dayanağı yok.
+
+--- 26. ich neige zu der Ansicht   [C1]
+    sens (fr)   : je penche pour l'idée
+    TURC        : ... görüşüne meylediyorum
+    phrase DE   : Ich neige zu der Ansicht, dass wir warten sollten.
+    phrase fr   : Je penche pour l'idée que nous devrions attendre.
+    phrase TURC : Beklememiz gerektiği görüşüne meylediyorum.
+
+--- 27. ich stehe dem skeptisch gegenüber   [C1]
+    sens (fr)   : je suis sceptique là-dessus
+    TURC        : buna kuşkuyla bakıyorum
+    phrase DE   : Ich stehe dem skeptisch gegenüber, die Zahlen überzeugen mich nicht.
+    phrase fr   : Je suis sceptique là-dessus, les chiffres ne me convainquent pas.
+    phrase TURC : Buna kuşkuyla bakıyorum, rakamlar beni ikna etmiyor.
+
+--- 28. das halte ich für weit hergeholt   [C1]
+    sens (fr)   : je trouve cela tiré par les cheveux
+    TURC        : bunu zorlama buluyorum
+    phrase DE   : Das halte ich für weit hergeholt, dafür gibt es keinen Beleg.
+    phrase fr   : Je trouve cela tiré par les cheveux, rien ne le prouve.
+    phrase TURC : Bunu zorlama buluyorum, hiçbir kanıtı yok.
+
+--- 29. da bin ich ganz bei dir   [C1]
+    sens (fr)   : je te suis entièrement
+    TURC        : sonuna kadar seninle beraberim
+    phrase DE   : Da bin ich ganz bei dir, so geht es nicht weiter.
+    phrase fr   : Je te suis entièrement, cela ne peut pas continuer ainsi.
+    phrase TURC : Sonuna kadar seninle beraberim, böyle devam edemez.
+
+--- 30. das lässt sich hören   [C1]
+    sens (fr)   : voilà qui est intéressant
+    TURC        : kulağa hoş geliyor
+    phrase DE   : Zehn Prozent Rabatt? Das lässt sich hören.
+    phrase fr   : Dix pour cent de remise ? Voilà qui est intéressant.
+    phrase TURC : Yüzde on indirim mi? Kulağa hoş geliyor.
+
+--- 31. das geht mir gegen den Strich   [C1]
+    sens (fr)   : ça me hérisse
+    TURC        : içine sinmemek
+    phrase DE   : Diese Heimlichtuerei geht mir gegen den Strich.
+    phrase fr   : Ces cachotteries me hérissent.
+    phrase TURC : Bu gizli kapaklı iş içime sinmiyor.
+
+--- 32. mir platzt der Kragen   [C1]
+    sens (fr)   : je sors de mes gonds
+    TURC        : tepesi atmak
+    phrase DE   : Wenn er wieder zu spät kommt, platzt mir der Kragen.
+    phrase fr   : S'il arrive encore en retard, je sors de mes gonds.
+    phrase TURC : Yine geç kalırsa tepem atacak.
+
+--- 33. das schlägt dem Fass den Boden aus   [C1]
+    sens (fr)   : c'est la goutte d'eau
+    TURC        : bardağı taşıran son damla
+    phrase DE   : Jetzt auch noch die Gebühr? Das schlägt dem Fass den Boden aus.
+    phrase fr   : Et maintenant les frais en plus ? C'est la goutte d'eau.
+    phrase TURC : Bir de ücret mi? Bu bardağı taşıran son damla.
+
+--- 34. mir fällt ein Stein vom Herzen   [C1]
+    sens (fr)   : cela m'ôte un poids
+    TURC        : içi rahatlamak
+    phrase DE   : Sie ist gut angekommen — mir fällt ein Stein vom Herzen.
+    phrase fr   : Elle est bien arrivée — cela m'ôte un poids.
+    phrase TURC : Sağ salim varmış — içim rahatladı.
+
+--- 35. das ist mir ein Rätsel   [C1]
+    sens (fr)   : c'est un mystère pour moi
+    TURC        : benim için muamma
+    phrase DE   : Wie er das geschafft hat, ist mir ein Rätsel.
+    phrase fr   : Comment il y est arrivé, c'est un mystère pour moi.
+    phrase TURC : Bunu nasıl başardığı benim için muamma.
+
+--- 36. ich bin hin und hergerissen   [C1]
+    sens (fr)   : je suis partagé
+    TURC        : kararsız kalmak
+    phrase DE   : Ich bin hin und hergerissen zwischen den beiden Angeboten.
+    phrase fr   : Je suis partagé entre les deux offres.
+    phrase TURC : İki teklif arasında kararsız kaldım.
+
+--- 37. das lässt mich kalt   [C1]
+    sens (fr)   : cela me laisse froid
+    TURC        : umurunda olmamak
+    phrase DE   : Solche Drohungen lassen mich kalt.
+    phrase fr   : De telles menaces me laissent froid.
+    phrase TURC : Böyle tehditler umurumda değil.
+
+--- 38. es sträubt sich alles in mir   [C1]
+    sens (fr)   : tout en moi se rebiffe
+    TURC        : içi el vermemek
+    phrase DE   : Es sträubt sich alles in mir, das zu unterschreiben.
+    phrase fr   : Tout en moi se rebiffe à l'idée de signer cela.
+    phrase TURC : Bunu imzalamaya içim el vermiyor.
+
+--- 39. ich könnte aus der Haut fahren   [C1]
+    sens (fr)   : je pourrais exploser
+    TURC        : deliye dönmek
+    phrase DE   : Bei so viel Bürokratie könnte ich aus der Haut fahren.
+    phrase fr   : Avec tant de bureaucratie, je pourrais exploser.
+    phrase TURC : Bu kadar bürokrasi karşısında deliye dönebilirim.
+
+--- 40. das raubt mir den letzten Nerv   [C1]
+    sens (fr)   : cela m'achève les nerfs
+    TURC        : sinirlerini bitirmek
+    phrase DE   : Die ständigen Rückfragen rauben mir den letzten Nerv.
+    phrase fr   : Ces questions incessantes m'achèvent les nerfs.
+    phrase TURC : Sürekli sorular sinirlerimi bitiriyor.
+
+--- 41. mir ist es ein Anliegen   [C1]
+    sens (fr)   : cela me tient à cœur
+    TURC        : benim için önemli
+    phrase DE   : Mir ist es ein Anliegen, dass alle gehört werden.
+    phrase fr   : Cela me tient à cœur que tout le monde soit entendu.
+    phrase TURC : Herkesin dinlenmesi benim için önemli.
+
+--- 42. da bin ich überfragt   [C1]
+    sens (fr)   : là, je sèche
+    TURC        : orasını bilemem
+    phrase DE   : Wann das Gesetz gilt? Da bin ich überfragt.
+    phrase fr   : Quand la loi entre en vigueur ? Là, je sèche.
+    phrase TURC : Yasa ne zaman geçerli? Orasını bilemem.
+
+--- 43. es hält sich in Grenzen   [C1]
+    sens (fr)   : cela reste modéré
+    TURC        : ölçülü kalmak
+    phrase DE   : Meine Begeisterung hält sich in Grenzen.
+    phrase fr   : Mon enthousiasme reste modéré.
+    phrase TURC : Heyecanım ölçülü kalıyor.
+
+--- 44. das kommt mir spanisch vor   [C1]
+    sens (fr)   : cela me semble louche
+    TURC        : tuhaf gelmek
+    phrase DE   : Der niedrige Preis kommt mir spanisch vor.
+    phrase fr   : Ce prix si bas me semble louche.
+    phrase TURC : Bu kadar düşük fiyat bana tuhaf geliyor.
+
+--- 45. vor Wut kochen   [C1]
+    sens (fr)   : bouillir de rage
+    TURC        : öfkeden köpürmek
+    phrase DE   : Nach dem Anruf kochte er vor Wut.
+    phrase fr   : Après l'appel, il bouillait de rage.
+    phrase TURC : Telefondan sonra öfkeden köpürüyordu.
+
+--- 46. außer sich sein   [C1]
+    sens (fr)   : être hors de soi
+    TURC        : kendinden geçmek
+    phrase DE   : Sie war außer sich vor Freude.
+    phrase fr   : Elle était hors d'elle de joie.
+    phrase TURC : Sevinçten kendinden geçmişti.
+
+--- 47. zur Sprache bringen   [C1]
+    sens (fr)   : aborder (un sujet)
+    TURC        : konuyu açmak
+    phrase DE   : Er brachte das Thema in der Sitzung zur Sprache.
+    phrase fr   : Il a abordé le sujet en réunion.
+    phrase TURC : Konuyu toplantıda açtı.
+
+--- 48. Anspruch erheben   [C1]
+    sens (fr)   : revendiquer
+    TURC        : hak talep etmek
+    phrase DE   : Beide Seiten erheben Anspruch auf das Grundstück.
+    phrase fr   : Les deux parties revendiquent le terrain.
+    phrase TURC : İki taraf da arsa üzerinde hak talep ediyor.
+
+--- 49. Abstand nehmen   [C1]
+    sens (fr)   : renoncer à
+    TURC        : sarfınazar etmek
+    phrase DE   : Wir nehmen von einer Klage Abstand.
+    phrase fr   : Nous renonçons à porter plainte.
+    phrase TURC : Dava açmaktan sarfınazar ediyoruz.
+
+--- 50. unter Beweis stellen   [C1]
+    sens (fr)   : faire la preuve de
+    TURC        : kanıtlamak
+    phrase DE   : Sie hat ihr Können unter Beweis gestellt.
+    phrase fr   : Elle a fait la preuve de son savoir-faire.
+    phrase TURC : Yeteneğini kanıtladı.
+
+--- 51. zur Rede stellen   [C1]
+    sens (fr)   : demander des comptes à
+    TURC        : izahat istemek
+    phrase DE   : Der Chef stellte ihn wegen der Zahlen zur Rede.
+    phrase fr   : Le patron lui a demandé des comptes sur les chiffres.
+    phrase TURC : Patron rakamlar konusunda ondan izahat istedi.
+
+--- 52. außer Acht lassen   [C1]
+    sens (fr)   : négliger
+    TURC        : ihmal etmek
+    phrase DE   : Die Kosten dürfen wir nicht außer Acht lassen.
+    phrase fr   : Nous ne devons pas négliger les coûts.
+    phrase TURC : Maliyetleri ihmal edemeyiz.
+
+--- 53. Folge leisten   [C1]
+    sens (fr)   : donner suite à
+    TURC        : gereğini yapmak
+    phrase DE   : Er leistete der Aufforderung Folge.
+    phrase fr   : Il a donné suite à la demande.
+    phrase TURC : Talebin gereğini yaptı.
+
+--- 54. Widerstand leisten   [C1]
+    sens (fr)   : opposer une résistance
+    TURC        : direniş göstermek
+    phrase DE   : Die Anwohner leisteten erbitterten Widerstand.
+    phrase fr   : Les riverains ont opposé une résistance acharnée.
+    phrase TURC : Mahalle sakinleri sert bir direniş gösterdi.
+
+--- 55. Klarheit schaffen   [C1]
+    sens (fr)   : faire la lumière
+    TURC        : açıklığa kavuşturmak
+    phrase DE   : Ein Gutachten soll Klarheit schaffen.
+    phrase fr   : Une expertise doit faire la lumière.
+    phrase TURC : Bir bilirkişi raporu durumu açıklığa kavuşturacak.
+
+--- 56. Anstoß erregen   [C1]
+    sens (fr)   : faire scandale
+    TURC        : tepki çekmek
+    phrase DE   : Die Werbung erregte großen Anstoß.
+    phrase fr   : La publicité a fait grand scandale.
+    phrase TURC : Reklam büyük tepki çekti.
+
+--- 57. den Anstoß geben   [C1]
+    sens (fr)   : donner l'impulsion
+    TURC        : öncülük etmek
+    phrase DE   : Ihr Vortrag gab den Anstoß zur Reform.
+    phrase fr   : Son exposé a donné l'impulsion à la réforme.
+    phrase TURC : Sunumu reforma öncülük etti.
+
+--- 58. Schlüsse ziehen   [C1]
+    sens (fr)   : tirer des conclusions
+    TURC        : sonuçlara varmak
+    phrase DE   : Daraus lassen sich klare Schlüsse ziehen.
+    phrase fr   : On peut en tirer des conclusions claires.
+    phrase TURC : Bundan net sonuçlara varılabilir.
+
+--- 59. Stellung beziehen   [C1]
+    sens (fr)   : prendre position
+    TURC        : tutum belirlemek
+    phrase DE   : Der Minister bezog deutlich Stellung.
+    phrase fr   : Le ministre a nettement pris position.
+    phrase TURC : Bakan net bir tutum belirledi.
+
+--- 60. Kritik üben   [C1]
+    sens (fr)   : formuler des critiques
+    TURC        : eleştiri yöneltmek
+    phrase DE   : Der Verband übte scharfe Kritik am Entwurf.
+    phrase fr   : La fédération a formulé de vives critiques sur le projet.
+    phrase TURC : Birlik taslağa sert eleştiriler yöneltti.
+
+--- 61. Druck ausüben   [C1]
+    sens (fr)   : exercer une pression
+    TURC        : baskı yapmak
+    phrase DE   : Die Anleger üben Druck auf den Vorstand aus.
+    phrase fr   : Les investisseurs exercent une pression sur la direction.
+    phrase TURC : Yatırımcılar yönetime baskı yapıyor.
+
+--- 62. Einfluss nehmen   [C1]
+    sens (fr)   : exercer une influence
+    TURC        : etkide bulunmak
+    phrase DE   : Niemand darf auf das Urteil Einfluss nehmen.
+    phrase fr   : Personne ne doit exercer d'influence sur le jugement.
+    phrase TURC : Karara kimse etkide bulunamaz.
+
+--- 63. Zweifel hegen   [C1]
+    sens (fr)   : nourrir des doutes
+    TURC        : şüphe beslemek
+    phrase DE   : Ich hege Zweifel an dieser Darstellung.
+    phrase fr   : Je nourris des doutes sur cette version.
+    phrase TURC : Bu anlatıma şüphe besliyorum.
+
+--- 64. Bedenken äußern   [C1]
+    sens (fr)   : émettre des réserves
+    TURC        : çekince dile getirmek
+    phrase DE   : Mehrere Mitglieder äußerten Bedenken.
+    phrase fr   : Plusieurs membres ont émis des réserves.
+    phrase TURC : Birkaç üye çekincelerini dile getirdi.
+
+--- 65. Vorbehalte haben   [C1]
+    sens (fr)   : avoir des réticences
+    TURC        : çekincesi olmak
+    phrase DE   : Sie hat Vorbehalte gegen den neuen Zeitplan.
+    phrase fr   : Elle a des réticences envers le nouveau calendrier.
+    phrase TURC : Yeni takvime karşı çekinceleri var.
+
+--- 66. Zugeständnisse machen   [C1]
+    sens (fr)   : faire des concessions
+    TURC        : taviz vermek
+    phrase DE   : Beide Seiten mussten Zugeständnisse machen.
+    phrase fr   : Les deux parties ont dû faire des concessions.
+    phrase TURC : İki taraf da taviz vermek zorunda kaldı.
+
+--- 67. Kompromisse eingehen   [C1]
+    sens (fr)   : accepter des compromis
+    TURC        : uzlaşmayı kabul etmek
+    phrase DE   : Wer verhandelt, muss Kompromisse eingehen.
+    phrase fr   : Qui négocie doit accepter des compromis.
+    phrase TURC : Müzakere eden uzlaşmayı kabul etmek zorundadır.
+
+--- 68. ein Risiko eingehen   [C1]
+    sens (fr)   : prendre un risque
+    TURC        : risk almak
+    phrase DE   : Mit dieser Investition geht die Firma ein Risiko ein.
+    phrase fr   : Avec cet investissement, l'entreprise prend un risque.
+    phrase TURC : Bu yatırımla şirket risk alıyor.
+
+--- 69. Rechenschaft ablegen   [C1]
+    sens (fr)   : rendre des comptes
+    TURC        : hesap sunmak
+    phrase DE   : Der Vorstand muss über die Ausgaben Rechenschaft ablegen.
+    phrase fr   : La direction doit rendre des comptes sur les dépenses.
+    phrase TURC : Yönetim harcamaların hesabını sunmalı.
+
+--- 70. einen Vorschlag unterbreiten   [C1]
+    sens (fr)   : soumettre une proposition
+    TURC        : öneri sunmak
+    phrase DE   : Sie unterbreitete dem Rat einen Vorschlag.
+    phrase fr   : Elle a soumis une proposition au conseil.
+    phrase TURC : Konseye bir öneri sundu.
+
+--- 71. Aufmerksamkeit schenken   [C1]
+    sens (fr)   : prêter attention
+    TURC        : dikkat göstermek
+    phrase DE   : Diesem Detail wurde zu wenig Aufmerksamkeit geschenkt.
+    phrase fr   : On a prêté trop peu d'attention à ce détail.
+    phrase TURC : Bu ayrıntıya çok az dikkat gösterildi.
+
+--- 72. Glauben schenken   [C1]
+    sens (fr)   : prêter foi à
+    TURC        : inanmak
+    phrase DE   : Dem Gerücht sollte man keinen Glauben schenken.
+    phrase fr   : Il ne faut pas prêter foi à cette rumeur.
+    phrase TURC : Bu söylentiye inanılmamalı.
+
+--- 73. Gehör finden   [C1]
+    sens (fr)   : trouver une oreille attentive
+    TURC        : kulak verilmek
+    phrase DE   : Ihre Warnung fand endlich Gehör.
+    phrase fr   : Son avertissement a enfin trouvé une oreille attentive.
+    phrase TURC : Uyarısına nihayet kulak verildi.
+
+--- 74. Zustimmung finden   [C1]
+    sens (fr)   : recueillir l'adhésion
+    TURC        : onay görmek
+    phrase DE   : Der Entwurf fand breite Zustimmung.
+    phrase fr   : Le projet a recueilli une large adhésion.
+    phrase TURC : Taslak geniş bir onay gördü.
+
+--- 75. Anwendung finden   [C1]
+    sens (fr)   : s'appliquer, être applicable
+    TURC        : uygulanmak
+    phrase DE   : Die Regel findet nur im Inland Anwendung.
+    phrase fr   : La règle ne s'applique qu'à l'intérieur du pays.
+    phrase TURC : Kural yalnızca yurt içinde uygulanıyor.
+
+--- 76. zum Vorschein kommen   [C1]
+    sens (fr)   : apparaître au grand jour
+    TURC        : gün yüzüne çıkmak
+    phrase DE   : Beim Umbau kamen alte Fresken zum Vorschein.
+    phrase fr   : Lors des travaux, de vieilles fresques sont apparues au grand jour.
+    phrase TURC : Tadilatta eski freskler gün yüzüne çıktı.
+
+--- 77. ins Stocken geraten   [C1]
+    sens (fr)   : s'enliser
+    TURC        : tıkanmak
+    phrase DE   : Die Verhandlungen sind ins Stocken geraten.
+    phrase fr   : Les négociations se sont enlisées.
+    phrase TURC : Müzakereler tıkandı.
+
+--- 78. in Vergessenheit geraten   [C1]
+    sens (fr)   : tomber dans l'oubli
+    TURC        : unutulup gitmek
+    phrase DE   : Das Handwerk ist fast in Vergessenheit geraten.
+    phrase fr   : Ce métier est presque tombé dans l'oubli.
+    phrase TURC : Bu zanaat neredeyse unutulup gitti.
+
+--- 79. in die Wege leiten   [C1]
+    sens (fr)   : mettre en route
+    TURC        : yola koymak
+    phrase DE   : Die Stadt hat den Umbau bereits in die Wege geleitet.
+    phrase fr   : La ville a déjà mis les travaux en route.
+    phrase TURC : Şehir tadilatı çoktan yola koydu.
+
+--- 80. auf den Weg bringen   [C1]
+    sens (fr)   : lancer
+    TURC        : hayata geçirmek
+    phrase DE   : Das Parlament brachte das Gesetz auf den Weg.
+    phrase fr   : Le parlement a lancé la loi.
+    phrase TURC : Meclis yasayı hayata geçirdi.
+
+--- 81. zu Protokoll geben   [C1]
+    sens (fr)   : déclarer au procès-verbal
+    TURC        : tutanağa geçirmek
+    phrase DE   : Der Zeuge gab zu Protokoll, nichts gesehen zu haben.
+    phrase fr   : Le témoin a déclaré au procès-verbal n'avoir rien vu.
+    phrase TURC : Tanık hiçbir şey görmediğini tutanağa geçirdi.
+
+--- 82. Einspruch erheben   [C1]
+    sens (fr)   : faire opposition
+    TURC        : itiraz etmek
+    phrase DE   : Gegen den Bescheid kann man Einspruch erheben.
+    phrase fr   : On peut faire opposition à cette décision.
+    phrase TURC : Karara itiraz edilebilir.
+
+--- 83. in Verzug geraten   [C1]
+    sens (fr)   : prendre du retard
+    TURC        : gecikmeye düşmek
+    phrase DE   : Der Bau ist um Monate in Verzug geraten.
+    phrase fr   : Le chantier a pris des mois de retard.
+    phrase TURC : İnşaat aylarca gecikmeye düştü.
+
+--- 84. sich in Verbindung setzen   [C1]
+    sens (fr)   : prendre contact
+    TURC        : bağlantı kurmak
+    phrase DE   : Bitte setzen Sie sich mit unserem Büro in Verbindung.
+    phrase fr   : Veuillez prendre contact avec notre bureau.
+    phrase TURC : Lütfen büromuzla bağlantı kurun.
+
+--- 85. zur Auflage machen   [C1]
+    sens (fr)   : imposer comme condition
+    TURC        : şart koşmak
+    phrase DE   : Die Behörde machte den Lärmschutz zur Auflage.
+    phrase fr   : L'administration a imposé la protection contre le bruit comme condition.
+    phrase TURC : İdare gürültü önlemini şart koştu.
+
+--- 86. in Rechnung stellen   [C1]
+    sens (fr)   : facturer
+    TURC        : faturaya yansıtmak
+    phrase DE   : Die Anfahrt wird gesondert in Rechnung gestellt.
+    phrase fr   : Le déplacement est facturé à part.
+    phrase TURC : Yol masrafı ayrıca faturaya yansıtılır.
+
+--- 87. Vorsorge treffen   [C1]
+    sens (fr)   : prendre des précautions
+    TURC        : tedbir almak
+    phrase DE   : Für den Notfall sollte man Vorsorge treffen.
+    phrase fr   : Il faut prendre des précautions pour les cas d'urgence.
+    phrase TURC : Acil durumlar için tedbir alınmalı.
+
+--- 88. Bericht erstatten   [C1]
+    sens (fr)   : faire rapport
+    TURC        : rapor vermek
+    phrase DE   : Sie erstattet dem Ausschuss monatlich Bericht.
+    phrase fr   : Elle fait rapport à la commission chaque mois.
+    phrase TURC : Komisyona her ay rapor veriyor.
+
+--- 89. Anzeige erstatten   [C1]
+    sens (fr)   : porter plainte
+    TURC        : şikâyette bulunmak
+    phrase DE   : Nach dem Einbruch erstattete er Anzeige.
+    phrase fr   : Après le cambriolage, il a porté plainte.
+    phrase TURC : Hırsızlıktan sonra şikâyette bulundu.
+
+--- 90. Widerspruch einlegen   [C1]
+    sens (fr)   : former un recours
+    TURC        : kanun yoluna gitmek
+    phrase DE   : Gegen die Kündigung legte sie Widerspruch ein.
+    phrase fr   : Elle a formé un recours contre le licenciement.
+    phrase TURC : İşten çıkarmaya karşı kanun yoluna gitti.
+
+--- 91. Beschwerde einreichen   [C1]
+    sens (fr)   : déposer une réclamation
+    TURC        : şikâyet dilekçesi vermek
+    phrase DE   : Der Kunde reichte eine Beschwerde ein.
+    phrase fr   : Le client a déposé une réclamation.
+    phrase TURC : Müşteri bir şikâyet dilekçesi verdi.
+
+--- 92. in die Tat umsetzen   [C1]
+    sens (fr)   : mettre en pratique
+    TURC        : uygulamaya koymak
+    phrase DE   : Die Idee wurde nie in die Tat umgesetzt.
+    phrase fr   : L'idée n'a jamais été mise en pratique.
+    phrase TURC : Fikir hiçbir zaman uygulamaya konmadı.
+
+--- 93. eine Entscheidung herbeiführen   [C1]
+    sens (fr)   : provoquer une décision
+    TURC        : karara vardırmak
+    phrase DE   : Die Abstimmung soll endlich eine Entscheidung herbeiführen.
+    phrase fr   : Le vote doit enfin provoquer une décision.
+    phrase TURC : Oylama nihayet işi karara vardırmalı.
+
+--- 94. Vorkehrungen treffen   [C1]
+    sens (fr)   : prendre des dispositions
+    TURC        : hazırlık yapmak
+    phrase DE   : Wir haben für den Winter Vorkehrungen getroffen.
+    phrase fr   : Nous avons pris des dispositions pour l'hiver.
+    phrase TURC : Kış için hazırlık yaptık.
+
+--- 95. sehr geehrte Damen und Herren   [C1]
+    sens (fr)   : Madame, Monsieur
+    TURC        : Sayın Yetkili
+    phrase DE   : Sehr geehrte Damen und Herren, hiermit bewerbe ich mich um die Stelle.
+    phrase fr   : Madame, Monsieur, je vous adresse ma candidature pour ce poste.
+    phrase TURC : Sayın Yetkili, bu vesileyle söz konusu göreve başvuruyorum.
+
+--- 96. mit freundlichen Grüßen   [C1]
+    sens (fr)   : cordialement
+    TURC        : Saygılarımla
+    phrase DE   : Mit freundlichen Grüßen, Anna Berger.
+    phrase fr   : Cordialement, Anna Berger.
+    phrase TURC : Saygılarımla, Anna Berger.
+
+--- 97. hochachtungsvoll   [C1]
+    sens (fr)   : veuillez agréer mes salutations distinguées
+    TURC        : Saygılarımı sunarım
+    phrase DE   : Hochachtungsvoll, Dr. Meier.
+    phrase fr   : Veuillez agréer mes salutations distinguées, Dr Meier.
+    phrase TURC : Saygılarımı sunarım, Dr. Meier.
+
+--- 98. vielen Dank im Voraus   [C1]
+    sens (fr)   : merci d'avance
+    TURC        : Şimdiden teşekkürler
+    phrase DE   : Vielen Dank im Voraus für Ihre Rückmeldung.
+    phrase fr   : Merci d'avance pour votre réponse.
+    phrase TURC : Geri bildiriminiz için şimdiden teşekkürler.
+
+--- 99. ich melde mich bezüglich   [C1]
+    sens (fr)   : je vous contacte au sujet de
+    TURC        : ... hakkında yazıyorum
+    phrase DE   : Ich melde mich bezüglich Ihrer Anfrage vom Montag.
+    phrase fr   : Je vous contacte au sujet de votre demande de lundi.
+    phrase TURC : Pazartesi günkü talebiniz hakkında yazıyorum.
+
+--- 100. ich wäre Ihnen dankbar, wenn   [C1]
+    sens (fr)   : je vous serais reconnaissant de
+    TURC        : ... rica etsem sevinirim
+    phrase DE   : Ich wäre Ihnen dankbar, wenn Sie mir die Unterlagen zusenden könnten.
+    phrase fr   : Je vous serais reconnaissant de bien vouloir m'envoyer les documents.
+    phrase TURC : Belgeleri bana göndermenizi rica etsem sevinirim.
+
+======================================================================
+Rappel : reponds par un tableau JSON, et rien d'autre.
+Le champ `mot` doit reprendre le mot allemand tel qu'il est
+ecrit ci-dessus, sans l'article. Si tu ne trouves rien : []
+======================================================================

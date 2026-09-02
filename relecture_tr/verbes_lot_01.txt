@@ -1,0 +1,872 @@
+# Consigne de relecture — traduction turque de Wortando
+
+Tu relis la traduction TURQUE d'un cours d'allemand. Le fichier joint contient
+une centaine de cartes.
+
+## Ce qui est la source, et ce qui ne l'est pas
+
+- **L'allemand est l'original.** C'est lui que la traduction turque doit rendre.
+- **Le francais est donne uniquement pour fixer le sens voulu**, quand le mot
+  allemand est ambigu hors contexte. Ne juge pas la qualite du francais, et ne
+  reproche pas au turc de s'ecarter du francais s'il rend bien l'allemand.
+- **Le turc est ce que tu juges.**
+
+## Ce qu'on te demande de signaler
+
+1. `contresens` — la traduction turque ne veut pas dire ce que dit l'allemand.
+2. `phrase_infidele` — la phrase turque ne dit pas ce que dit la phrase
+   allemande (sens, temps, aspect, personne, negation).
+3. `turc_peu_naturel` — c'est comprehensible mais aucun locuteur ne le dirait
+   ainsi ; donne la formulation naturelle.
+4. `registre` — le turc est trop familier ou trop soutenu pour le niveau
+   annonce (A1 a C1), ou pour la situation de la phrase.
+5. `incoherence` — deux champs de la MEME carte se contredisent (le mot est
+   traduit d'une facon, la phrase d'une autre).
+
+## Ce qu'on ne te demande PAS
+
+- Ne juge pas le genre ni le pluriel allemands : ils ont deja ete verifies.
+- Ne signale pas qu'un mot turc pourrait avoir un synonyme. On ne cherche pas
+  la meilleure variante possible, on cherche ce qui est FAUX ou INUTILISABLE.
+- Ne signale pas les collisions entre deux cartes : elles sont detectees
+  mecaniquement sur le corpus entier, tu n'en vois qu'un fragment.
+- Si tu hesites, ne signale pas. Une liste courte et sure vaut mieux qu'une
+  liste longue a trier.
+
+## Le format de ta reponse
+
+Un tableau JSON, et rien d'autre. Un objet par signalement :
+
+```json
+[
+  {
+    "mot": "Vater",
+    "champ": "traduction_tr",
+    "verdict": "contresens",
+    "suggestion": "baba — « ata » veut dire ancetre, pas pere"
+  }
+]
+```
+
+- `mot` : la valeur du champ `cle` de la carte, recopiee telle quelle.
+- `champ` : `traduction_tr`, `exemple_tr`, ou pour un verbe `perfekt_tr`,
+  `praeteritum_tr`, `konjunktiv2_tr`.
+- `verdict` : un des cinq mots ci-dessus.
+- `suggestion` : la correction, et en une phrase pourquoi.
+
+Si tu ne trouves rien, reponds `[]`.
+
+Enregistre ta reponse sous `verdict_<nom du lot>.json` dans le dossier
+`relecture_tr/`.
+
+======================================================================
+LOT verbes_lot_01 — verbes — 40 cartes
+Le niveau (A1 a C1) est indique entre crochets sur chaque
+carte : c'est contre lui que le registre se juge.
+======================================================================
+
+--- 1. haben   [A1]
+    sens (fr)   : avoir
+    TURC        : -si olmak
+    Präsens
+      DE   : Ich habe einen Bruder.
+      fr   : J'ai un frère.
+      TURC : Bir erkek kardeşim var.
+    Perfekt
+      DE   : Ich habe schon zwei Kaffees gehabt.
+      fr   : J'ai déjà eu deux cafés.
+      TURC : Çoktan iki kahve içtim.
+    Präteritum
+      DE   : Ich hatte gestern keine Zeit.
+      fr   : Je n'avais pas le temps hier.
+      TURC : Dün vaktim yoktu.
+    Konjunktiv II
+      DE   : Wenn ich mehr Zeit hätte, würde ich öfter kochen.
+      fr   : Si j'avais plus de temps, je cuisinerais plus souvent.
+      TURC : Daha çok vaktim olsa daha sık yemek yapardım.
+
+--- 2. beginnen   [A1]
+    sens (fr)   : commencer
+    TURC        : başlamak
+    Präsens
+      DE   : Ich beginne die Arbeit.
+      fr   : Je commence le travail.
+      TURC : İşe başlıyorum.
+    Perfekt
+      DE   : Ich habe die Arbeit begonnen.
+      fr   : J'ai commencé le travail.
+      TURC : İşe başladım.
+    Präteritum
+      DE   : Ich begann die Arbeit.
+      fr   : J'ai commencé le travail.
+      TURC : İşe başladım.
+    Konjunktiv II
+      DE   : Ich würde gern die Arbeit früher beginnen.
+      fr   : J'aimerais commencer le travail plus tôt.
+      TURC : İşe daha erken başlamak isterdim.
+
+--- 3. verdienen   [A1]
+    sens (fr)   : gagner (de l'argent)
+    TURC        : para kazanmak
+    Präsens
+      DE   : Sie verdient gutes Geld.
+      fr   : Elle gagne bien sa vie.
+      TURC : İyi para kazanıyor.
+    Perfekt
+      DE   : Sie hat gutes Geld verdient.
+      fr   : Elle a bien gagné sa vie.
+      TURC : İyi para kazandı.
+    Präteritum
+      DE   : Sie verdiente gutes Geld.
+      fr   : Elle gagnait bien sa vie.
+      TURC : İyi para kazanıyordu.
+    Konjunktiv II
+      DE   : Ich würde gern mehr Geld verdienen.
+      fr   : J'aimerais gagner plus d'argent.
+      TURC : Daha çok para kazanmak isterdim.
+
+--- 4. tun   [A1]
+    sens (fr)   : faire
+    TURC        : yapmak
+    Präsens
+      DE   : Ich tue mein Bestes.
+      fr   : Je fais de mon mieux.
+      TURC : Elimden geleni yapıyorum.
+    Perfekt
+      DE   : Ich habe mein Bestes getan.
+      fr   : J'ai fait de mon mieux.
+      TURC : Elimden geleni yaptım.
+    Präteritum
+      DE   : Ich tat mein Bestes.
+      fr   : J'ai fait de mon mieux.
+      TURC : Elimden geleni yaptım.
+    Konjunktiv II
+      DE   : Das würde ich nicht tun.
+      fr   : Je ne ferais pas ça.
+      TURC : Bunu yapmazdım.
+
+--- 5. aufmachen   [A1]
+    sens (fr)   : ouvrir
+    TURC        : açmak
+    Präsens
+      DE   : Mach bitte das Fenster auf.
+      fr   : Ouvre la fenêtre, s'il te plaît.
+      TURC : Pencereyi aç lütfen.
+    Perfekt
+      DE   : Sie hat den Brief sofort aufgemacht.
+      fr   : Elle a ouvert la lettre tout de suite.
+      TURC : Mektubu hemen açtı.
+    Präteritum
+      DE   : Der Laden machte erst um zehn auf.
+      fr   : Le magasin n'a ouvert qu'à dix heures.
+      TURC : Dükkân ancak onda açıldı.
+    Konjunktiv II
+      DE   : Bei der Hitze würde ich alle Fenster aufmachen.
+      fr   : Avec cette chaleur, j'ouvrirais toutes les fenêtres.
+      TURC : Bu sıcakta bütün pencereleri açardım.
+
+--- 6. zumachen   [A1]
+    sens (fr)   : fermer
+    TURC        : kapatmak
+    Präsens
+      DE   : Mach bitte die Tür zu.
+      fr   : Ferme la porte, s'il te plaît.
+      TURC : Kapıyı kapat lütfen.
+    Perfekt
+      DE   : Er hat den Koffer schnell zugemacht.
+      fr   : Il a vite fermé la valise.
+      TURC : Bavulu çabucak kapattı.
+    Präteritum
+      DE   : Das Café machte um Mitternacht zu.
+      fr   : Le café a fermé à minuit.
+      TURC : Kafe gece yarısı kapandı.
+    Konjunktiv II
+      DE   : Ich würde die Fenster wegen des Lärms zumachen.
+      fr   : Je fermerais les fenêtres à cause du bruit.
+      TURC : Gürültü yüzünden pencereleri kapatırdım.
+
+--- 7. sich interessieren   [A2]
+    sens (fr)   : s'intéresser
+    TURC        : ilgilenmek
+    Präsens
+      DE   : Ich interessiere mich für Musik.
+      fr   : Je m'intéresse à la musique.
+      TURC : Müzikle ilgileniyorum.
+    Perfekt
+      DE   : Ich habe mich dafür interessiert.
+      fr   : Je m'y suis intéressé.
+      TURC : Bununla ilgilendim.
+    Präteritum
+      DE   : Er interessierte sich für Geschichte.
+      fr   : Il s'intéressait à l'histoire.
+      TURC : Tarihle ilgileniyordu.
+    Konjunktiv II
+      DE   : Ich würde mich dafür interessieren.
+      fr   : Je m'y intéresserais.
+      TURC : Bununla ilgilenirdim.
+
+--- 8. gewinnen   [A2]
+    sens (fr)   : gagner
+    TURC        : kazanmak
+    Präsens
+      DE   : Unsere Mannschaft gewinnt das Spiel.
+      fr   : Notre équipe gagne le match.
+      TURC : Takımımız maçı kazanıyor.
+    Perfekt
+      DE   : Ich habe den Preis gewonnen.
+      fr   : J'ai gagné le prix.
+      TURC : Ödülü kazandım.
+    Präteritum
+      DE   : Wir gewannen das Finale.
+      fr   : Nous avons gagné la finale.
+      TURC : Finali kazandık.
+    Konjunktiv II
+      DE   : Ich würde gern das Spiel gewinnen.
+      fr   : J'aimerais gagner le match.
+      TURC : Maçı kazanmak isterdim.
+
+--- 9. erwarten   [A2]
+    sens (fr)   : attendre, s'attendre à
+    TURC        : beklemek
+    Präsens
+      DE   : Ich erwarte eine Antwort.
+      fr   : J'attends une réponse.
+      TURC : Bir cevap bekliyorum.
+    Perfekt
+      DE   : Ich habe das nicht erwartet.
+      fr   : Je ne m'y attendais pas.
+      TURC : Bunu beklemiyordum.
+    Präteritum
+      DE   : Ich erwartete ihn am Bahnhof.
+      fr   : Je l'attendais à la gare.
+      TURC : Onu garda bekliyordum.
+    Konjunktiv II
+      DE   : Ich würde das nicht erwarten.
+      fr   : Je ne m'y attendrais pas.
+      TURC : Bunu beklemezdim.
+
+--- 10. entscheiden   [A2]
+    sens (fr)   : décider
+    TURC        : karar vermek
+    Präsens
+      DE   : Der Chef entscheidet den Fall allein.
+      fr   : Le patron décide de l'affaire seul.
+      TURC : Patron konuda tek başına karara varıyor.
+    Perfekt
+      DE   : Wir haben noch nichts entschieden.
+      fr   : Nous n'avons encore rien décidé.
+      TURC : Henüz bir şeye karar vermedik.
+    Präteritum
+      DE   : Sie entschied den Fall schnell.
+      fr   : Elle a décidé de l'affaire rapidement.
+      TURC : Konuyu çabucak karara bağladı.
+    Konjunktiv II
+      DE   : Ich würde den Fall anders entscheiden.
+      fr   : Je déciderais l'affaire autrement.
+      TURC : Konuyu başka türlü karara bağlardım.
+
+--- 11. besitzen   [A2]
+    sens (fr)   : posséder
+    TURC        : sahip olmak
+    Präsens
+      DE   : Ich besitze ein altes Auto.
+      fr   : Je possède une vieille voiture.
+      TURC : Eski bir arabam var.
+    Perfekt
+      DE   : Sie hat viel Geduld besessen.
+      fr   : Elle a eu beaucoup de patience.
+      TURC : Çok sabırlıydı.
+    Präteritum
+      DE   : Er besaß ein großes Haus.
+      fr   : Il possédait une grande maison.
+      TURC : Büyük bir evi vardı.
+    Konjunktiv II
+      DE   : Ich würde gern ein Haus besitzen.
+      fr   : J'aimerais posséder une maison.
+      TURC : Bir ev sahibi olmak isterdim.
+
+--- 12. bezeichnen   [A2]
+    sens (fr)   : désigner
+    TURC        : adlandırmak
+    Präsens
+      DE   : Man bezeichnet ihn als Experten.
+      fr   : On le désigne comme expert.
+      TURC : Ona uzman deniyor.
+    Perfekt
+      DE   : Ich habe das als wichtig bezeichnet.
+      fr   : J'ai désigné ça comme important.
+      TURC : Bunu önemli olarak nitelendirdim.
+    Präteritum
+      DE   : Sie bezeichnete das als Fehler.
+      fr   : Elle a désigné ça comme une erreur.
+      TURC : Bunu bir hata olarak nitelendirdi.
+    Konjunktiv II
+      DE   : Ich würde das anders bezeichnen.
+      fr   : Je le désignerais autrement.
+      TURC : Bunu başka türlü adlandırırdım.
+
+--- 13. fördern   [A2]
+    sens (fr)   : encourager, promouvoir
+    TURC        : desteklemek
+    Präsens
+      DE   : Die Schule fördert kreative Kinder.
+      fr   : L'école encourage les enfants créatifs.
+      TURC : Okul yaratıcı çocukları destekliyor.
+    Perfekt
+      DE   : Wir haben das Talent gefördert.
+      fr   : Nous avons encouragé le talent.
+      TURC : Yeteneği destekledik.
+    Präteritum
+      DE   : Der Staat förderte das Projekt.
+      fr   : L'État a soutenu le projet.
+      TURC : Devlet projeyi destekledi.
+    Konjunktiv II
+      DE   : Ich würde dieses Projekt fördern.
+      fr   : Je soutiendrais ce projet.
+      TURC : Bu projeyi desteklerdim.
+
+--- 14. sich kümmern   [A2]
+    sens (fr)   : s'occuper de
+    TURC        : ilgilenmek
+    Präsens
+      DE   : Ich kümmere mich um die Kinder.
+      fr   : Je m'occupe des enfants.
+      TURC : Çocuklarla ilgileniyorum.
+    Perfekt
+      DE   : Ich habe mich darum gekümmert.
+      fr   : Je m'en suis occupé.
+      TURC : Bununla ilgilendim.
+    Präteritum
+      DE   : Sie kümmerte sich um den Garten.
+      fr   : Elle s'occupait du jardin.
+      TURC : Bahçeyle ilgileniyordu.
+    Konjunktiv II
+      DE   : Ich würde mich darum kümmern.
+      fr   : Je m'en occuperais.
+      TURC : Bununla ilgilenirdim.
+
+--- 15. spüren   [A2]
+    sens (fr)   : ressentir
+    TURC        : hissetmek
+    Präsens
+      DE   : Ich spüre die Kälte.
+      fr   : Je ressens le froid.
+      TURC : Soğuğu hissediyorum.
+    Perfekt
+      DE   : Ich habe den Schmerz gespürt.
+      fr   : J'ai ressenti la douleur.
+      TURC : Ağrıyı hissettim.
+    Präteritum
+      DE   : Sie spürte seine Nervosität.
+      fr   : Elle a ressenti sa nervosité.
+      TURC : Onun gerginliğini hissetti.
+    Konjunktiv II
+      DE   : Ich würde das sofort spüren.
+      fr   : Je le ressentirais tout de suite.
+      TURC : Bunu hemen hissederdim.
+
+--- 16. steigern   [A2]
+    sens (fr)   : augmenter
+    TURC        : artırmak
+    Präsens
+      DE   : Ich steigere meine Leistung.
+      fr   : J'augmente ma performance.
+      TURC : Performansımı artırıyorum.
+    Perfekt
+      DE   : Wir haben den Absatz gesteigert.
+      fr   : Nous avons augmenté les ventes.
+      TURC : Satışları artırdık.
+    Präteritum
+      DE   : Die Firma steigerte den Umsatz.
+      fr   : L'entreprise a augmenté le chiffre d'affaires.
+      TURC : Şirket cirosunu artırdı.
+    Konjunktiv II
+      DE   : Ich würde die Leistung steigern.
+      fr   : J'augmenterais la performance.
+      TURC : Performansı artırırdım.
+
+--- 17. bewerten   [B1]
+    sens (fr)   : évaluer
+    TURC        : değerlendirmek
+    Präsens
+      DE   : Der Lehrer bewertet die Prüfung.
+      fr   : Le professeur évalue l'examen.
+      TURC : Öğretmen sınavı değerlendiriyor.
+    Perfekt
+      DE   : Ich habe die Arbeit positiv bewertet.
+      fr   : J'ai évalué le travail positivement.
+      TURC : Çalışmayı olumlu değerlendirdim.
+    Präteritum
+      DE   : Er bewertete das Risiko falsch.
+      fr   : Il a mal évalué le risque.
+      TURC : Riski yanlış değerlendirdi.
+    Konjunktiv II
+      DE   : Ich würde das anders bewerten.
+      fr   : J'évaluerais ça différemment.
+      TURC : Bunu farklı değerlendirirdim.
+
+--- 18. mitteilen   [B1]
+    sens (fr)   : communiquer, informer
+    TURC        : bildirmek
+    Präsens
+      DE   : Ich teile dir das Ergebnis mit.
+      fr   : Je te communique le résultat.
+      TURC : Sonucu sana bildiriyorum.
+    Perfekt
+      DE   : Er hat mir seine Entscheidung mitgeteilt.
+      fr   : Il m'a communiqué sa décision.
+      TURC : Bana kararını bildirdi.
+    Präteritum
+      DE   : Sie teilte uns die Neuigkeit mit.
+      fr   : Elle nous a annoncé la nouvelle.
+      TURC : Bize haberi bildirdi.
+    Konjunktiv II
+      DE   : Ich würde dir das sofort mitteilen.
+      fr   : Je te le communiquerais tout de suite.
+      TURC : Bunu sana hemen bildirirdim.
+
+--- 19. sich entschließen   [B1]
+    sens (fr)   : se décider (de façon réfléchie)
+    TURC        : karar vermek
+    Präsens
+      DE   : Ich entschließe mich zum Umzug.
+      fr   : Je me décide pour le déménagement.
+      TURC : Taşınmaya karar veriyorum.
+    Perfekt
+      DE   : Er hat sich zu einem Studium entschlossen.
+      fr   : Il s'est décidé pour des études.
+      TURC : Okumaya karar verdi.
+    Präteritum
+      DE   : Sie entschloss sich zur Reise.
+      fr   : Elle s'est décidée pour le voyage.
+      TURC : Yolculuğa karar verdi.
+    Konjunktiv II
+      DE   : Ich würde mich dazu entschließen.
+      fr   : Je me déciderais pour ça.
+      TURC : Buna karar verirdim.
+
+--- 20. sich auswirken   [B1]
+    sens (fr)   : avoir un effet sur (auf)
+    TURC        : etkisini göstermek
+    Präsens
+      DE   : Das wirkt sich negativ auf die Umwelt aus.
+      fr   : Ça a un effet négatif sur l'environnement.
+      TURC : Bu çevreye olumsuz etki ediyor.
+    Perfekt
+      DE   : Der Stress hat sich auf seine Gesundheit ausgewirkt.
+      fr   : Le stress a eu un effet sur sa santé.
+      TURC : Stres sağlığına etki etti.
+    Präteritum
+      DE   : Die Krise wirkte sich stark auf die Firma aus.
+      fr   : La crise a eu un fort effet sur l'entreprise.
+      TURC : Kriz şirkete güçlü biçimde etki etti.
+    Konjunktiv II
+      DE   : Das würde sich positiv auf die Umwelt auswirken.
+      fr   : Cela aurait un effet positif sur l'environnement.
+      TURC : Bu çevreye olumlu etki ederdi.
+
+--- 21. ändern   [B1]
+    sens (fr)   : changer (quelque chose)
+    TURC        : değiştirmek
+    Präsens
+      DE   : Ich ändere meine Pläne.
+      fr   : Je change mes plans.
+      TURC : Planlarımı değiştiriyorum.
+    Perfekt
+      DE   : Er hat seine Meinung geändert.
+      fr   : Il a changé d'avis.
+      TURC : Fikrini değiştirdi.
+    Präteritum
+      DE   : Sie änderte den Termin.
+      fr   : Elle a changé la date.
+      TURC : Tarihi değiştirdi.
+    Konjunktiv II
+      DE   : Ich würde das gern ändern.
+      fr   : J'aimerais bien changer ça.
+      TURC : Bunu memnuniyetle değiştirirdim.
+
+--- 22. empfinden   [B1]
+    sens (fr)   : ressentir (un sentiment)
+    TURC        : hissetmek
+    Präsens
+      DE   : Ich empfinde große Freude.
+      fr   : Je ressens une grande joie.
+      TURC : Büyük bir sevinç hissediyorum.
+    Perfekt
+      DE   : Sie hat tiefe Trauer empfunden.
+      fr   : Elle a ressenti une profonde tristesse.
+      TURC : Derin bir üzüntü hissetti.
+    Präteritum
+      DE   : Er empfand keine Angst.
+      fr   : Il ne ressentait aucune peur.
+      TURC : Hiç korku hissetmiyordu.
+    Konjunktiv II
+      DE   : Ich würde das genauso empfinden.
+      fr   : Je ressentirais la même chose.
+      TURC : Ben de aynısını hissederdim.
+
+--- 23. abschließen   [B1]
+    sens (fr)   : conclure, terminer
+    TURC        : tamamlamak
+    Präsens
+      DE   : Ich schließe das Studium bald ab.
+      fr   : Je termine bientôt mes études.
+      TURC : Okulumu yakında tamamlıyorum.
+    Perfekt
+      DE   : Er hat den Vertrag abgeschlossen.
+      fr   : Il a conclu le contrat.
+      TURC : Sözleşmeyi tamamladı.
+    Präteritum
+      DE   : Sie schloss das Projekt erfolgreich ab.
+      fr   : Elle a terminé le projet avec succès.
+      TURC : Projeyi başarıyla tamamladı.
+    Konjunktiv II
+      DE   : Ich würde das schnell abschließen.
+      fr   : Je terminerais ça rapidement.
+      TURC : Bunu çabucak tamamlardım.
+
+--- 24. erzeugen   [B1]
+    sens (fr)   : produire, générer
+    TURC        : üretmek
+    Präsens
+      DE   : Die Anlage erzeugt Strom.
+      fr   : L'installation produit de l'électricité.
+      TURC : Tesis elektrik üretiyor.
+    Perfekt
+      DE   : Das hat großes Interesse erzeugt.
+      fr   : Ça a suscité un grand intérêt.
+      TURC : Bu büyük ilgi uyandırdı.
+    Präteritum
+      DE   : Die Fabrik erzeugte Wärme.
+      fr   : L'usine produisait de la chaleur.
+      TURC : Fabrika ısı üretiyordu.
+    Konjunktiv II
+      DE   : Das würde Verwirrung erzeugen.
+      fr   : Ça créerait de la confusion.
+      TURC : Bu kafa karışıklığı yaratırdı.
+
+--- 25. produzieren   [B1]
+    sens (fr)   : produire
+    TURC        : üretmek
+    Präsens
+      DE   : Die Firma produziert Autos.
+      fr   : L'entreprise produit des voitures.
+      TURC : Şirket araba üretiyor.
+    Perfekt
+      DE   : Wir haben tausend Stück produziert.
+      fr   : Nous avons produit mille pièces.
+      TURC : Bin parça ürettik.
+    Präteritum
+      DE   : Sie produzierten weniger als geplant.
+      fr   : Ils produisaient moins que prévu.
+      TURC : Planlanandan az üretiyorlardı.
+    Konjunktiv II
+      DE   : Wir würden mehr produzieren.
+      fr   : Nous produirions davantage.
+      TURC : Daha çok üretirdik.
+
+--- 26. konsumieren   [B1]
+    sens (fr)   : consommer
+    TURC        : tüketmek
+    Präsens
+      DE   : Wir konsumieren zu viel Zucker.
+      fr   : Nous consommons trop de sucre.
+      TURC : Çok fazla şeker tüketiyoruz.
+    Perfekt
+      DE   : Er hat kaum Fleisch konsumiert.
+      fr   : Il a à peine consommé de viande.
+      TURC : Neredeyse hiç et tüketmedi.
+    Präteritum
+      DE   : Sie konsumierten wenig Medien.
+      fr   : Ils consommaient peu de médias.
+      TURC : Az medya tüketiyorlardı.
+    Konjunktiv II
+      DE   : Ich würde das nicht konsumieren.
+      fr   : Je ne consommerais pas ça.
+      TURC : Bunu tüketmezdim.
+
+--- 27. anlegen   [B1]
+    sens (fr)   : investir, placer (de l'argent)
+    TURC        : parayı değerlendirmek
+    Präsens
+      DE   : Ich lege mein Geld in Aktien an.
+      fr   : Je place mon argent en actions.
+      TURC : Paramı hisse senedine yatırıyorum.
+    Perfekt
+      DE   : Sie hat ihr Erspartes gut angelegt.
+      fr   : Elle a bien placé ses économies.
+      TURC : Birikimini iyi değerlendirdi.
+    Präteritum
+      DE   : Er legte sein Geld sicher an.
+      fr   : Il plaçait son argent de façon sûre.
+      TURC : Parasını güvenli biçimde yatırıyordu.
+    Konjunktiv II
+      DE   : Ich würde das Geld anders anlegen.
+      fr   : Je placerais l'argent autrement.
+      TURC : Parayı başka türlü yatırırdım.
+
+--- 28. verwalten   [B1]
+    sens (fr)   : gérer
+    TURC        : yönetmek
+    Präsens
+      DE   : Er verwaltet das Budget.
+      fr   : Il gère le budget.
+      TURC : Bütçeyi o yönetiyor.
+    Perfekt
+      DE   : Sie hat die Firma gut verwaltet.
+      fr   : Elle a bien géré l'entreprise.
+      TURC : Şirketi iyi yönetti.
+    Präteritum
+      DE   : Er verwaltete das Vermögen der Familie.
+      fr   : Il gérait le patrimoine de la famille.
+      TURC : Ailenin varlığını yönetiyordu.
+    Konjunktiv II
+      DE   : Ich würde das Geld verwalten.
+      fr   : Je gérerais l'argent.
+      TURC : Parayı ben yönetirdim.
+
+--- 29. beaufsichtigen   [B1]
+    sens (fr)   : superviser
+    TURC        : gözetmek
+    Präsens
+      DE   : Sie beaufsichtigt die Kinder im Pool.
+      fr   : Elle surveille les enfants à la piscine.
+      TURC : Havuzda çocukları gözetiyor.
+    Perfekt
+      DE   : Er hat die Bauarbeiten beaufsichtigt.
+      fr   : Il a supervisé les travaux.
+      TURC : Çalışmaları denetledi.
+    Präteritum
+      DE   : Sie beaufsichtigte die Prüfung.
+      fr   : Elle surveillait l'examen.
+      TURC : Sınavı gözetliyordu.
+    Konjunktiv II
+      DE   : Ich würde das beaufsichtigen.
+      fr   : Je superviserais ça.
+      TURC : Bunu ben denetlerdim.
+
+--- 30. verwirklichen   [B1]
+    sens (fr)   : concrétiser, réaliser (un rêve, un projet)
+    TURC        : hayata kavuşturmak
+    Präsens
+      DE   : Ich verwirkliche meinen Traum.
+      fr   : Je réalise mon rêve.
+      TURC : Hayalimi gerçekleştiriyorum.
+    Perfekt
+      DE   : Sie hat ihr Ziel verwirklicht.
+      fr   : Elle a réalisé son objectif.
+      TURC : Hedefini gerçekleştirdi.
+    Präteritum
+      DE   : Er verwirklichte seinen Plan.
+      fr   : Il a réalisé son plan.
+      TURC : Planını gerçekleştirdi.
+    Konjunktiv II
+      DE   : Ich würde das gern verwirklichen.
+      fr   : J'aimerais bien concrétiser ça.
+      TURC : Bunu memnuniyetle gerçekleştirirdim.
+
+--- 31. bewältigen   [B1]
+    sens (fr)   : surmonter, gérer (une tâche)
+    TURC        : üstesinden gelmek
+    Präsens
+      DE   : Ich bewältige den Stress gut.
+      fr   : Je gère bien le stress.
+      TURC : Stresin üstesinden iyi geliyorum.
+    Perfekt
+      DE   : Sie hat die Krise bewältigt.
+      fr   : Elle a surmonté la crise.
+      TURC : Krizin üstesinden geldi.
+    Präteritum
+      DE   : Er bewältigte die Aufgabe allein.
+      fr   : Il gérait la tâche seul.
+      TURC : Görevin üstesinden tek başına geldi.
+    Konjunktiv II
+      DE   : Ich würde das gut bewältigen.
+      fr   : Je gérerais bien ça.
+      TURC : Bunun üstesinden iyi gelirdim.
+
+--- 32. führen   [B1]
+    sens (fr)   : mener à, conduire (zu)
+    TURC        : yol açmak
+    Präsens
+      DE   : Der Weg führt zum Bahnhof.
+      fr   : Le chemin mène à la gare.
+      TURC : Yol gara çıkıyor.
+    Perfekt
+      DE   : Das hat zu einem Streit geführt.
+      fr   : Ça a mené à une dispute.
+      TURC : Bu bir tartışmaya yol açtı.
+    Präteritum
+      DE   : Die Entscheidung führte zu Problemen.
+      fr   : La décision menait à des problèmes.
+      TURC : Karar sorunlara yol açıyordu.
+    Konjunktiv II
+      DE   : Das würde zu nichts führen.
+      fr   : Ça ne mènerait à rien.
+      TURC : Bu hiçbir şeye yol açmazdı.
+
+--- 33. belegen   [B1]
+    sens (fr)   : prouver, attester
+    TURC        : belgeyle göstermek
+    Präsens
+      DE   : Diese Zahlen belegen den Trend.
+      fr   : Ces chiffres attestent la tendance.
+      TURC : Bu rakamlar eğilimi belgeliyor.
+    Perfekt
+      DE   : Er hat seine Aussage belegt.
+      fr   : Il a prouvé sa déclaration.
+      TURC : Açıklamasını kanıtladı.
+    Präteritum
+      DE   : Die Fotos belegten den Vorfall.
+      fr   : Les photos attestaient l'incident.
+      TURC : Fotoğraflar olayı belgeliyordu.
+    Konjunktiv II
+      DE   : Das würde die These belegen.
+      fr   : Ça prouverait la thèse.
+      TURC : Bu tezi kanıtlardı.
+
+--- 34. begrüßen   [B1]
+    sens (fr)   : accueillir, saluer
+    TURC        : selamlamak
+    Präsens
+      DE   : Ich begrüße die Gäste an der Tür.
+      fr   : J'accueille les invités à la porte.
+      TURC : Misafirleri kapıda karşılıyorum.
+    Perfekt
+      DE   : Er hat uns freundlich begrüßt.
+      fr   : Il nous a salués amicalement.
+      TURC : Bizi dostça selamladı.
+    Präteritum
+      DE   : Sie begrüßte jeden mit Namen.
+      fr   : Elle saluait chacun par son nom.
+      TURC : Herkesi adıyla selamlıyordu.
+    Konjunktiv II
+      DE   : Ich würde das sehr begrüßen.
+      fr   : J'accueillerais ça très favorablement.
+      TURC : Bunu çok olumlu karşılardım.
+
+--- 35. festlegen   [B1]
+    sens (fr)   : fixer, déterminer
+    TURC        : belirlemek
+    Präsens
+      DE   : Wir legen den Termin fest.
+      fr   : Nous fixons la date.
+      TURC : Tarihi belirliyoruz.
+    Perfekt
+      DE   : Sie haben die Regeln festgelegt.
+      fr   : Ils ont fixé les règles.
+      TURC : Kuralları belirlediler.
+    Präteritum
+      DE   : Er legte den Preis fest.
+      fr   : Il fixait le prix.
+      TURC : Fiyatı belirliyordu.
+    Konjunktiv II
+      DE   : Ich würde das anders festlegen.
+      fr   : Je le fixerais autrement.
+      TURC : Bunu başka türlü belirlerdim.
+
+--- 36. sich widersetzen   [B1]
+    sens (fr)   : s'opposer, résister
+    TURC        : karşı çıkmak
+    Präsens
+      DE   : Ich widersetze mich dieser Regel.
+      fr   : Je m'oppose à cette règle.
+      TURC : Bu kurala karşı çıkıyorum.
+    Perfekt
+      DE   : Er hat sich dem Befehl widersetzt.
+      fr   : Il s'est opposé à l'ordre.
+      TURC : Emre karşı çıktı.
+    Präteritum
+      DE   : Sie widersetzte sich der Entscheidung.
+      fr   : Elle s'opposait à la décision.
+      TURC : Karara karşı çıkıyordu.
+    Konjunktiv II
+      DE   : Ich würde mich dem widersetzen.
+      fr   : Je m'y opposerais.
+      TURC : Buna karşı çıkardım.
+
+--- 37. sich trauen   [B1]
+    sens (fr)   : oser
+    TURC        : cesaret etmek
+    Präsens
+      DE   : Ich traue mich nicht, das zu fragen.
+      fr   : Je n'ose pas demander ça.
+      TURC : Bunu sormaya cesaret edemiyorum.
+    Perfekt
+      DE   : Sie hat sich endlich getraut.
+      fr   : Elle a finalement osé.
+      TURC : Sonunda cesaret etti.
+    Präteritum
+      DE   : Er traute sich nicht zu springen.
+      fr   : Il n'osait pas sauter.
+      TURC : Atlamaya cesaret edemiyordu.
+    Konjunktiv II
+      DE   : Ich würde mich das nicht trauen.
+      fr   : Je n'oserais pas faire ça.
+      TURC : Bunu yapmaya cesaret etmezdim.
+
+--- 38. nachdenken   [B1]
+    sens (fr)   : réfléchir
+    TURC        : düşünmek
+    Präsens
+      DE   : Ich denke über das Problem nach.
+      fr   : Je réfléchis au problème.
+      TURC : Sorun üzerine düşünüyorum.
+    Perfekt
+      DE   : Sie hat lange darüber nachgedacht.
+      fr   : Elle y a longtemps réfléchi.
+      TURC : Uzun süre bunun üzerine düşündü.
+    Präteritum
+      DE   : Er dachte über die Frage nach.
+      fr   : Il réfléchissait à la question.
+      TURC : Soru üzerine düşünüyordu.
+    Konjunktiv II
+      DE   : Ich würde darüber nachdenken.
+      fr   : J'y réfléchirais.
+      TURC : Bunun üzerine düşünürdüm.
+
+--- 39. absolvieren   [B1]
+    sens (fr)   : accomplir, terminer (des études)
+    TURC        : tamamlamak
+    Präsens
+      DE   : Ich absolviere ein Praktikum.
+      fr   : J'accomplis un stage.
+      TURC : Bir staj tamamlıyorum.
+    Perfekt
+      DE   : Er hat sein Studium absolviert.
+      fr   : Il a terminé ses études.
+      TURC : Okulunu tamamladı.
+    Präteritum
+      DE   : Sie absolvierte die Ausbildung erfolgreich.
+      fr   : Elle terminait la formation avec succès.
+      TURC : Eğitimi başarıyla tamamlıyordu.
+    Konjunktiv II
+      DE   : Ich würde das gern absolvieren.
+      fr   : J'aimerais bien accomplir ça.
+      TURC : Bunu memnuniyetle tamamlardım.
+
+--- 40. befolgen   [B1]
+    sens (fr)   : suivre (un conseil, une règle)
+    TURC        : riayet etmek
+    Präsens
+      DE   : Ich befolge die Regeln.
+      fr   : Je suis les règles.
+      TURC : Kurallara uyuyorum.
+    Perfekt
+      DE   : Er hat den Rat befolgt.
+      fr   : Il a suivi le conseil.
+      TURC : Öğüde uydu.
+    Präteritum
+      DE   : Sie befolgte die Anweisungen genau.
+      fr   : Elle suivait précisément les instructions.
+      TURC : Talimatlara tam olarak uyuyordu.
+    Konjunktiv II
+      DE   : Ich würde das befolgen.
+      fr   : Je suivrais ça.
+      TURC : Buna uyardım.
+
+======================================================================
+Rappel : reponds par un tableau JSON, et rien d'autre.
+Le champ `mot` doit reprendre le mot allemand tel qu'il est
+ecrit ci-dessus, sans l'article. Si tu ne trouves rien : []
+======================================================================
