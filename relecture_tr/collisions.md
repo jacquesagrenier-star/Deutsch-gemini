@@ -6,6 +6,188 @@ Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de 
 
 Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
 
+## noms (4 reponses turques pour 8 mots allemands)
+
+- **aşı** ← der Impfstoff (A2), die Impfung (B1)
+    - der Impfstoff : vaccin
+    - die Impfung : vaccination
+- **daire** ← die Wohnung (A1), der Kreis (A1)
+    - die Wohnung : appartement
+    - der Kreis : cercle
+- **dönem** ← der Zeitraum (B1), das Semester (A1)
+    - der Zeitraum : période
+    - das Semester : semestre
+- **sıcaklık** ← die Wärme (A2), die Temperatur (A1)
+    - die Wärme : la chaleur
+    - die Temperatur : température
+
+
+## verbes (51 reponses turques pour 112 mots allemands)
+
+- **değiştirmek** ← wechseln (A2), ändern (B1), umtauschen (B1), verändern (B1), auswechseln (B1)
+    - wechseln : changer
+    - ändern : changer (quelque chose)
+    - umtauschen : échanger (un achat)
+    - verändern : changer, modifier
+    - auswechseln : remplacer, changer
+- **adlandırmak** ← bezeichnen (A2), nennen (A2), benennen (B2)
+    - bezeichnen : désigner
+    - nennen : appeler, nommer
+    - benennen : nommer, désigner
+- **değerlendirmek** ← beurteilen (A2), bewerten (B1), einschätzen (B2)
+    - beurteilen : juger
+    - bewerten : évaluer
+    - einschätzen : évaluer, juger
+- **hissetmek** ← fühlen (A1), spüren (A2), empfinden (B1)
+    - fühlen : sentir, ressentir
+    - spüren : ressentir
+    - empfinden : ressentir (un sentiment)
+- **karar vermek** ← sich entscheiden (A2), entscheiden (A2), sich entschließen (B1)
+    - sich entscheiden : se décider
+    - entscheiden : décider
+    - sich entschließen : se décider (de façon réfléchie)
+- **tamamlamak** ← ergänzen (A2), abschließen (B1), absolvieren (B1)
+    - ergänzen : compléter
+    - abschließen : conclure, terminer
+    - absolvieren : accomplir, terminer (des études)
+- **üretmek** ← herstellen (A2), erzeugen (B1), produzieren (B1)
+    - herstellen : fabriquer
+    - erzeugen : produire, générer
+    - produzieren : produire
+- **üstesinden gelmek** ← überwinden (B1), bewältigen (B1), meistern (C1)
+    - überwinden : surmonter
+    - bewältigen : surmonter, gérer (une tâche)
+    - meistern : maîtriser, venir à bout de
+- **artırmak** ← erhöhen (A2), steigern (A2)
+    - erhöhen : augmenter
+    - steigern : augmenter
+- **başarısız olmak** ← scheitern (B1), misslingen (C1)
+    - scheitern : échouer
+    - misslingen : rater, échouer
+- **belirlemek** ← bestimmen (A2), festlegen (B1)
+    - bestimmen : déterminer
+    - festlegen : fixer, déterminer
+- **bildirmek** ← melden (A2), mitteilen (B1)
+    - melden : signaler
+    - mitteilen : communiquer, informer
+- **bırakmak** ← lassen (A2), loslassen (B1)
+    - lassen : laisser
+    - loslassen : lâcher
+- **cesaret etmek** ← wagen (B1), sich trauen (B1)
+    - wagen : oser
+    - sich trauen : oser
+- **cezalandırmak** ← bestrafen (B1), ahnden (C1)
+    - bestrafen : punir
+    - ahnden : sanctionner, réprimer
+- **desteklemek** ← fördern (A2), unterstützen (B1)
+    - fördern : encourager, promouvoir
+    - unterstützen : soutenir
+- **değmek** ← sich lohnen (A2), wert sein (B1)
+    - sich lohnen : valoir la peine
+    - wert sein : valoir la peine
+- **düşmek** ← fallen (B1), stürzen (B1)
+    - fallen : tomber
+    - stürzen : tomber (chute)
+- **düşünmek** ← denken (A1), nachdenken (B1)
+    - denken : penser
+    - nachdenken : réfléchir
+- **geri ödemek** ← zurückzahlen (B1), erstatten (B1)
+    - zurückzahlen : rembourser
+    - erstatten : rembourser (des frais)
+- **göndermek** ← schicken (A2), versenden (B1)
+    - schicken : envoyer
+    - versenden : expédier
+- **haber vermek** ← benachrichtigen (B1), sich melden (B1)
+    - benachrichtigen : avertir, notifier
+    - sich melden : donner de ses nouvelles, se manifester
+- **hazırlamak** ← vorbereiten (A1), zubereiten (B1)
+    - vorbereiten : préparer
+    - zubereiten : préparer (un repas)
+- **hesaplamak** ← rechnen (A2), berechnen (B1)
+    - rechnen : calculer
+    - berechnen : calculer
+- **ilgilenmek** ← sich interessieren (A2), sich kümmern (A2)
+    - sich interessieren : s'intéresser
+    - sich kümmern : s'occuper de
+- **iyileştirmek** ← verbessern (A2), heilen (B1)
+    - verbessern : améliorer
+    - heilen : guérir (quelqu'un, quelque chose)
+- **karşı çıkmak** ← widersprechen (A2), sich widersetzen (B1)
+    - widersprechen : contredire
+    - sich widersetzen : s'opposer, résister
+- **katkıda bulunmak** ← beitragen (B1), beisteuern (B2)
+    - beitragen : contribuer à (zu)
+    - beisteuern : apporter (sa part)
+- **kiraya vermek** ← vermieten (A2), verpachten (B1)
+    - vermieten : louer (à quelqu'un)
+    - verpachten : affermer, louer (des biens)
+- **kurmak** ← installieren (A2), gründen (B1)
+    - installieren : installer
+    - gründen : fonder
+- **saklamak** ← aufbewahren (B1), behalten (B1)
+    - aufbewahren : conserver, garder
+    - behalten : garder
+- **selamlamak** ← begrüßen (B1), grüßen (B1)
+    - begrüßen : accueillir, saluer
+    - grüßen : saluer
+- **sinirlenmek** ← sich ärgern (A2), sich aufregen (B1)
+    - sich ärgern : s'énerver
+    - sich aufregen : s'énerver, s'exciter
+- **sulamak** ← gießen (B1), bewässern (B2)
+    - gießen : arroser
+    - bewässern : irriguer, arroser
+- **sunmak** ← bieten (B1), vorlegen (B2)
+    - bieten : offrir, proposer
+    - vorlegen : présenter, soumettre
+- **telafi etmek** ← nachholen (B1), kompensieren (C1)
+    - nachholen : rattraper
+    - kompensieren : compenser
+- **tüketmek** ← verbrauchen (B1), konsumieren (B1)
+    - verbrauchen : consommer
+    - konsumieren : consommer
+- **vazgeçmek** ← verzichten (A2), aufgeben (B1)
+    - verzichten : renoncer
+    - aufgeben : abandonner, renoncer
+- **yakalamak** ← fangen (A2), erwischen (B2)
+    - fangen : attraper
+    - erwischen : attraper, surprendre
+- **yakmak** ← verbrennen (B1), anzünden (B1)
+    - verbrennen : brûler (quelque chose)
+    - anzünden : allumer
+- **yasaklamak** ← verbieten (A2), untersagen (B2)
+    - verbieten : interdire
+    - untersagen : interdire (officiellement)
+- **yazdırmak** ← drucken (A2), ausdrucken (B1)
+    - drucken : imprimer
+    - ausdrucken : imprimer
+- **yetiştirmek** ← erziehen (B1), ausbilden (B1)
+    - erziehen : élever (un enfant)
+    - ausbilden : former (professionnellement)
+- **yol açmak** ← verursachen (B1), führen (B1)
+    - verursachen : causer
+    - führen : mener à, conduire (zu)
+- **yönetmek** ← leiten (A2), verwalten (B1)
+    - leiten : diriger
+    - verwalten : gérer
+- **yüklemek** ← laden (A2), verladen (B1)
+    - laden : charger
+    - verladen : charger (des marchandises)
+- **çökmek** ← zusammenbrechen (B1), einstürzen (B1)
+    - zusammenbrechen : s'effondrer
+    - einstürzen : s'effondrer (un bâtiment)
+- **çürütmek** ← widerlegen (B1), entkräften (B2)
+    - widerlegen : réfuter
+    - entkräften : réfuter, invalider
+- **ödüllendirmek** ← belohnen (B1), auszeichnen (C1)
+    - belohnen : récompenser
+    - auszeichnen : distinguer, récompenser
+- **öldürmek** ← töten (B1), umbringen (B1)
+    - töten : tuer
+    - umbringen : tuer, assassiner
+- **şaşırtmak** ← überraschen (B1), verwundern (C1)
+    - überraschen : surprendre
+    - verwundern : étonner
+
 
 ---
 
