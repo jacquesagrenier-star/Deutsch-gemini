@@ -1,0 +1,68 @@
+# Mots des listes officielles qui ne deviendront PAS des cartes
+#
+# Le taux de couverture les compte comme des manques. Ils n'en sont pas : ce
+# sont des mots-outils, et une carte « fuer = pour » ne teste rien. On ne les
+# apprend pas un par un, on les apprend en construisant une phrase -- ce que
+# fait la section grammaire, qui a ses propres modules pour chacun.
+#
+# Ce fichier existe pour que la decision soit relisible, et pour qu'on ne
+# recommence pas le meme arbitrage dans six mois devant la meme liste.
+#
+# MESURE, PAS INTUITION. Chaque mot ci-dessous a ete cherche dans le code de
+# l'app entre guillemets, ce qui attrape les entrees des tables de lecons
+# (praepTheme.words, PRAEP_WECHSEL_WOHIN, les tables de conjonctions) sans
+# attraper la prose. Une premiere mesure ne lisait que les libelles de menu
+# (les cles op_*, 8 000 caracteres) et concluait a tort que 30 de ces mots
+# etaient absents du cours.
+
+## PREPOSITIONS ET CONJONCTIONS -- modules op_praep et op_konjunktionen (18)
+#
+# Toutes ont une entree isolee dans les tables de lecons, la plupart avec
+# leur cas et une phrase d'exemple. « an », « auf », « in », « neben » et
+# « unter » sont meme des Wechselpraepositionen, avec deux phrases chacune
+# (Wo ? au datif, Wohin ? a l'accusatif).
+
+ab
+als
+an
+auf
+bis
+denn
+doch
+durch
+für
+gegen
+in
+mal
+mit
+nach
+neben
+nicht
+und
+unter
+
+## PRONOMS ET DETERMINANTS -- module op_pronomen (3)
+#
+# « man » n'a pas d'equivalent francais simple, « wer » est un interrogatif,
+# « jeder » se decline comme un article. Les trois s'enseignent dans un
+# tableau, pas sur une carte recto-verso.
+
+jeder
+man
+wer
+
+## DEJA AU COURS, SOUS UNE AUTRE CASSE (1)
+#
+# La carte « Schade » existe en expression (redewendung.json, A1) et dit
+# exactement la meme chose. Le controle de doublon compare la casse et ne
+# l'avait pas vue.
+
+schade
+
+# ---------------------------------------------------------------------------
+# 22 mots ecartes. Les 159 autres du noyau sont devenus des cartes :
+#   82 noms, 41 verbes, 21 adjectifs, 15 adverbes.
+#
+# Les mots-outils ci-dessus gardent quand meme leur champ `pruefung` s'ils
+# apparaissent ailleurs au cours : la marque suit la liste officielle, pas
+# cette decision-ci.
