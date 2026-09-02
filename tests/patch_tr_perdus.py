@@ -160,8 +160,15 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
             print("    absent du corpus : %s" % mot)
             absents += 1
             continue
+        # TOUS LES CHAMPS TURCS, PAS SEULEMENT LES DEUX PREMIERS. Une carte de
+        # verbe en porte cinq -- le verbe et ses quatre temps -- et le premier
+        # verdict de relecture a signale une phrase au preterit. On prend donc
+        # ce que le fichier de corrections nomme, quel que soit le champ,
+        # plutot qu'une liste figee ici.
+        champs = [k for k in e if k.endswith("_tr")]
         for cible in cibles:
-            for champ, est_phrase in (("traduction_tr", False), ("exemple_tr", True)):
+            for champ in champs:
+                est_phrase = champ != "traduction_tr"
                 neuf = e.get(champ)
                 if not neuf:
                     continue
