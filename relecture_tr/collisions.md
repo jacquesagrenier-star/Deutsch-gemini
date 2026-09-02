@@ -1,0 +1,1419 @@
+# Collisions turques — le controle mecanique
+
+Produit par `python tests/relecture_tr.py --collisions`. **Aucune correction appliquee.**
+
+Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de la meme categorie. La carte devient indecidable : quoi que l'apprenant reponde, il ne peut pas avoir raison.
+
+Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
+
+## adjectifs (23 reponses turques pour 47 mots allemands)
+
+- **rahat** ← bequem (A2), entspannt (B1), locker (B1)
+    - bequem : confortable
+    - entspannt : détendu
+    - locker : détendu, relâché
+- **açık** ← offen (A1), klar (A2)
+    - offen : ouvert
+    - klar : clair
+- **ciddi** ← ernst (A1), ernsthaft (B1)
+    - ernst : sérieux
+    - ernsthaft : sérieux (véritablement)
+- **dikkatli** ← vorsichtig (A2), aufmerksam (B1)
+    - vorsichtig : prudent
+    - aufmerksam : attentif
+- **dikkatsiz** ← leichtsinnig (A2), unaufmerksam (B1)
+    - leichtsinnig : imprudent
+    - unaufmerksam : inattentif
+- **düz** ← flach (A1), eben (B1)
+    - flach : plat
+    - eben : plat, plan
+- **düzenli** ← ordentlich (A2), organisiert (B1)
+    - ordentlich : ordonné
+    - organisiert : organisé
+- **eksiksiz** ← vollständig (B1), komplett (B1)
+    - vollständig : complet, entier
+    - komplett : complet
+- **gerekli** ← notwendig (A2), nötig (A2)
+    - notwendig : nécessaire
+    - nötig : nécessaire
+- **gönüllü** ← ehrenamtlich (B1), freiwillig (B2)
+    - ehrenamtlich : bénévole
+    - freiwillig : volontaire
+- **güvenilir** ← zuverlässig (B1), verlässlich (B1)
+    - zuverlässig : fiable
+    - verlässlich : fiable
+- **hoşgörülü** ← tolerant (B1), nachsichtig (C1)
+    - tolerant : tolérant
+    - nachsichtig : indulgent
+- **karmaşık** ← kompliziert (A2), komplex (B2)
+    - kompliziert : compliqué
+    - komplex : complexe
+- **komik** ← lustig (A1), witzig (B1)
+    - lustig : drôle
+    - witzig : drôle, amusant
+- **resmî** ← offiziell (B1), amtlich (B2)
+    - offiziell : officiel
+    - amtlich : officiel, administratif
+- **sadık** ← loyal (B1), treu (B1)
+    - loyal : loyal
+    - treu : fidèle
+- **stresli** ← stressig (A2), gestresst (B1)
+    - stressig : stressant
+    - gestresst : stressé
+- **tuhaf** ← seltsam (A2), merkwürdig (B1)
+    - seltsam : bizarre, étrange
+    - merkwürdig : étrange, curieux
+- **yetenekli** ← begabt (B1), talentiert (B1)
+    - begabt : doué
+    - talentiert : talentueux
+- **yetersiz** ← inkompetent (B1), unzureichend (C1)
+    - inkompetent : incompétent
+    - unzureichend : insuffisant
+- **çeşitli** ← abwechslungsreich (A2), vielfältig (B2)
+    - abwechslungsreich : varié
+    - vielfältig : varié
+- **önemli** ← wichtig (A2), bedeutend (B2)
+    - wichtig : important
+    - bedeutend : significatif, important
+- **önemsiz** ← unwichtig (A2), bedeutungslos (B2)
+    - unwichtig : peu important
+    - bedeutungslos : insignifiant
+
+
+## adverbes (23 reponses turques pour 273 mots allemands)
+
+- **b** ← künftig (B1), mittlerweile (B1), hierher (B1), mehrmals (B1), absichtlich (B1), weitgehend (B1), wesentlich (B1), reichlich (B1), somit (B1), infolgedessen (B1), demnach (B1), dementsprechend (B1), daraufhin (B1), ansonsten (B1), hierdurch (B1), darauf (B1), hingegen (B1), dagegen (B1), wiederum (B1), fortan (B2), zwischenzeitlich (B2), von nun an (B2), andernorts (B2), hierzulande (B2), abermals (B2), unauffällig (B2), umsichtig (B2), größtenteils (B2), vollends (B2), demzufolge (B2), insofern (B2), demgemäß (B2), hierfür (B2), aus diesem Grund (B2), einerseits (B2), indessen (B2), gewissermaßen (B2), wahrscheinlich (B2), bekanntlich (B2), hierbei (C1), ferner (C1), hierzu (C1), weswegen (C1), stattdessen (C1), merklich (C1), vorwiegend (C1), unterdessen (C1), unvermittelt (C1)
+    - künftig : à l'avenir
+    - mittlerweile : entre-temps, désormais
+    - hierher : ici (direction)
+    - mehrmals : à plusieurs reprises
+    - absichtlich : exprès
+    - weitgehend : en grande partie
+    - wesentlich : nettement
+    - reichlich : largement, en abondance
+    - somit : ainsi, de ce fait
+    - infolgedessen : en conséquence de quoi
+    - demnach : d'après cela
+    - dementsprechend : en conséquence
+    - daraufhin : là-dessus, à la suite de quoi
+    - ansonsten : à part ça, sinon
+    - hierdurch : par ce biais
+    - darauf : là-dessus, ensuite
+    - hingegen : en revanche
+    - dagegen : par contre
+    - wiederum : à son tour, de nouveau
+    - fortan : désormais
+    - zwischenzeitlich : dans l'intervalle
+    - von nun an : à partir de maintenant
+    - andernorts : ailleurs
+    - hierzulande : dans ce pays, chez nous
+    - abermals : une fois de plus
+    - unauffällig : discrètement
+    - umsichtig : avec circonspection
+    - größtenteils : pour la plupart
+    - vollends : tout à fait, complètement
+    - demzufolge : par suite de quoi
+    - insofern : à cet égard
+    - demgemäß : en conformité avec cela
+    - hierfür : à cette fin
+    - aus diesem Grund : pour cette raison
+    - einerseits : d'une part
+    - indessen : toutefois, pendant ce temps
+    - gewissermaßen : en quelque sorte
+    - wahrscheinlich : vraisemblablement
+    - bekanntlich : comme chacun sait
+    - hierbei : ce faisant, à cette occasion
+    - ferner : en outre
+    - hierzu : à ce sujet
+    - weswegen : raison pour laquelle
+    - stattdessen : au lieu de cela
+    - merklich : sensiblement
+    - vorwiegend : principalement
+    - unterdessen : entre-temps
+    - unvermittelt : brusquement
+- **a** ← vorhin (B1), anschließend (B1), gelegentlich (B1), ausdrücklich (B1), andernfalls (B1), jedoch (B1), ebenfalls (B1), erst (B1), nunmehr (B2), nach und nach (B2), abwärts (B2), unterhalb (B2), dazwischen (B2), bisweilen (B2), hin und wieder (B2), zeitweilig (B2), sinngemäß (B2), schrittweise (B2), übermäßig (B2), vielmehr (B2), mitnichten (B2), überdies (C1), verständlicherweise (C1), des Weiteren (C1), gleichermaßen (C1), gleichsam (C1), überwiegend (C1)
+    - vorhin : tout à l'heure (passé)
+    - anschließend : ensuite
+    - gelegentlich : occasionnellement
+    - ausdrücklich : expressément
+    - andernfalls : faute de quoi
+    - jedoch : cependant
+    - ebenfalls : également
+    - erst : seulement, pas avant
+    - nunmehr : à présent (soutenu)
+    - nach und nach : petit à petit
+    - abwärts : vers le bas
+    - unterhalb : en dessous
+    - dazwischen : entre les deux
+    - bisweilen : de temps à autre
+    - hin und wieder : de temps en temps
+    - zeitweilig : par intermittence
+    - sinngemäß : en substance
+    - schrittweise : par étapes
+    - übermäßig : excessivement
+    - vielmehr : bien plutôt
+    - mitnichten : point du tout
+    - überdies : de surcroît
+    - verständlicherweise : on le comprend
+    - des Weiteren : par ailleurs
+    - gleichermaßen : de la même façon
+    - gleichsam : pour ainsi dire
+    - überwiegend : majoritairement
+- **g** ← kürzlich (B1), nachts (B1), rückwärts (B1), heimlich (B1), mühsam (B1), notfalls (B1), zwar (B1), tatsächlich (B1), offenbar (B1), unlängst (B2), vorübergehend (B2), tagsüber (B2), zusehends (B2), restlos (B2), sicherheitshalber (B2), anscheinend (B2), schwerlich (C1), gemeinhin (C1), nachträglich (C1), insgeheim (C1)
+    - kürzlich : récemment
+    - nachts : la nuit
+    - rückwärts : en marche arrière
+    - heimlich : en cachette
+    - mühsam : péniblement
+    - notfalls : au besoin
+    - zwar : certes
+    - tatsächlich : effectivement
+    - offenbar : apparemment
+    - unlängst : il y a peu
+    - vorübergehend : temporairement
+    - tagsüber : pendant la journée
+    - zusehends : à vue d'œil
+    - restlos : entièrement, jusqu'au bout
+    - sicherheitshalber : par sécurité
+    - anscheinend : à ce qu'il paraît
+    - schwerlich : difficilement
+    - gemeinhin : communément
+    - nachträglich : après coup
+    - insgeheim : en secret
+- **d** ← heraus (B1), hinaus (B1), außen (B1), stets (B1), dauernd (B1), öfter (B1), aufmerksam (B1), folglich (B1), sogleich (B2), auswärts (B2), wiederholt (B2), zögerlich (B2), eingehend (B2), mithin (B2), ergo (B2), erfahrungsgemäß (B2), schlichtweg (B2), naturgemäß (C1), wahrlich (C1)
+    - heraus : dehors (vers moi)
+    - hinaus : dehors (loin de moi)
+    - außen : à l'extérieur
+    - stets : toujours (soutenu)
+    - dauernd : sans arrêt
+    - öfter : plus souvent
+    - aufmerksam : attentivement
+    - folglich : par conséquent
+    - sogleich : aussitôt
+    - auswärts : à l'extérieur, en déplacement
+    - wiederholt : à maintes reprises
+    - zögerlich : avec hésitation
+    - eingehend : de manière approfondie
+    - mithin : partant, donc
+    - ergo : donc (ironique ou soutenu)
+    - erfahrungsgemäß : d'expérience
+    - schlichtweg : tout simplement
+    - naturgemäß : par nature, forcément
+    - wahrlich : vraiment, en vérité
+- **k** ← spontan (B1), selbstständig (B1), teilweise (B1), knapp (B1), durchaus (B1), mitunter (B2), in der Regel (B2), entschlossen (B2), eigenhändig (B2), kurzerhand (B2), wortwörtlich (B2), spärlich (B2), unweigerlich (B2), kurzum (B2), zweifellos (B2), zugegeben (C1), nachweislich (C1), desgleichen (C1), im Übrigen (C1)
+    - spontan : spontanément
+    - selbstständig : de façon autonome
+    - teilweise : en partie
+    - knapp : tout juste
+    - durchaus : tout à fait
+    - mitunter : parfois (soutenu)
+    - in der Regel : en règle générale
+    - entschlossen : avec détermination
+    - eigenhändig : de sa propre main
+    - kurzerhand : sans plus de façons
+    - wortwörtlich : mot pour mot
+    - spärlich : chichement, peu abondamment
+    - unweigerlich : immanquablement
+    - kurzum : bref
+    - zweifellos : sans aucun doute
+    - zugegeben : il faut l'admettre
+    - nachweislich : de façon avérée
+    - desgleichen : de même
+    - im Übrigen : au demeurant
+- **h** ← jederzeit (B1), wochenlang (B1), nirgendwo (B1), jeweils (B1), zügig (B1), gezielt (B1), überhaupt (B1), immerhin (B1), wochentags (B2), nirgends (B2), keineswegs (B2), worin (B2), zumal (C1), keinesfalls (C1), buchstäblich (C1), jedenfalls (C1), allemal (C1), unversehens (C1)
+    - jederzeit : à tout moment
+    - wochenlang : pendant des semaines
+    - nirgendwo : nulle part
+    - jeweils : à chaque fois, respectivement
+    - zügig : rapidement, sans traîner
+    - gezielt : de manière ciblée
+    - überhaupt : du tout, en général
+    - immerhin : au moins, quand même
+    - wochentags : en semaine
+    - nirgends : nulle part
+    - keineswegs : nullement
+    - worin : en quoi
+    - zumal : d'autant plus que
+    - keinesfalls : en aucun cas
+    - buchstäblich : littéralement
+    - jedenfalls : en tout cas
+    - allemal : à coup sûr, largement
+    - unversehens : à l'improviste
+- **y** ← demnächst (B1), jahrelang (B1), unterwegs (B1), seitlich (B1), versehentlich (B1), halbwegs (B1), ausreichend (B1), dennoch (B1), nämlich (B1), allmählich (B2), aufwärts (B2), erneut (B2), unmissverständlich (B2), hinreichend (B2), gleichwohl (B2), beziehungsweise (C1)
+    - demnächst : prochainement
+    - jahrelang : pendant des années
+    - unterwegs : en route
+    - seitlich : sur le côté
+    - versehentlich : par mégarde
+    - halbwegs : à moitié, plus ou moins
+    - ausreichend : suffisamment
+    - dennoch : néanmoins
+    - nämlich : à savoir, en effet
+    - allmählich : peu à peu
+    - aufwärts : vers le haut
+    - erneut : de nouveau
+    - unmissverständlich : sans ambiguïté
+    - hinreichend : suffisamment (soutenu)
+    - gleichwohl : néanmoins (soutenu)
+    - beziehungsweise : ou plutôt, respectivement
+- **s** ← schließlich (B1), morgens (B1), ständig (B1), geduldig (B1), problemlos (B1), äußerst (B1), hinterher (B2), laufend (B2), stillschweigend (B2), rücksichtsvoll (B2), ungemein (B2), letztendlich (B2), erfreulicherweise (C1), jüngst (C1)
+    - schließlich : finalement
+    - morgens : le matin
+    - ständig : constamment
+    - geduldig : patiemment
+    - problemlos : sans problème
+    - äußerst : extrêmement
+    - hinterher : après coup
+    - laufend : en permanence
+    - stillschweigend : tacitement
+    - rücksichtsvoll : avec égards
+    - ungemein : extraordinairement
+    - letztendlich : au bout du compte
+    - erfreulicherweise : heureusement
+    - jüngst : récemment
+- **n** ← allerdings (B1), wieso (B1), weshalb (B1), womit (B1), wofür (B1), nahezu (B2), sowieso (B2), letztlich (B2), worauf (B2), wodurch (B2), inwiefern (B2), indes (C1), bedauerlicherweise (C1)
+    - allerdings : toutefois, cela dit
+    - wieso : comment ça se fait
+    - weshalb : pour quelle raison
+    - womit : avec quoi
+    - wofür : pour quoi, à quoi
+    - nahezu : quasiment
+    - sowieso : de toute manière
+    - letztlich : en définitive
+    - worauf : sur quoi, à quoi
+    - wodurch : par quoi
+    - inwiefern : dans quelle mesure
+    - indes : cependant, entre-temps
+    - bedauerlicherweise : malheureusement
+- **i** ← zunächst (B1), hinein (B1), herein (B1), innen (B1), gründlich (B1), vorwärts (B2), behutsam (B2), wohlwollend (B2), zwangsläufig (B2), angeblich (B2), zugegebenermaßen (C1), ausnahmslos (C1)
+    - zunächst : dans un premier temps
+    - hinein : à l'intérieur (mouvement)
+    - herein : entrez (vers moi)
+    - innen : à l'intérieur
+    - gründlich : à fond
+    - vorwärts : en avant
+    - behutsam : avec précaution
+    - wohlwollend : avec bienveillance
+    - zwangsläufig : forcément
+    - angeblich : soi-disant
+    - zugegebenermaßen : il faut l'admettre
+    - ausnahmslos : sans exception
+- **ö** ← mittags (B1), sorgfältig (B1), erheblich (B1), beispielsweise (B1), insbesondere (B1), vorab (B2), konsequent (B2), gewissenhaft (B2), maßlos (B2), andererseits (B2), eigens (C1)
+    - mittags : à midi
+    - sorgfältig : soigneusement
+    - erheblich : considérablement
+    - beispielsweise : par exemple
+    - insbesondere : en particulier
+    - vorab : au préalable
+    - konsequent : avec constance, rigoureusement
+    - gewissenhaft : consciencieusement
+    - maßlos : démesurément
+    - andererseits : d'autre part
+    - eigens : spécialement
+- **t** ← immer wieder (B1), völlig (B1), ebenso (B1), vorsichtshalber (B2), freilich (B2), sozusagen (B2), streng genommen (B2), regelrecht (C1), ausgerechnet (C1), umgekehrt (C1)
+    - immer wieder : sans cesse, à répétition
+    - völlig : complètement
+    - ebenso : de même
+    - vorsichtshalber : par précaution
+    - freilich : certes, il est vrai
+    - sozusagen : pour ainsi dire
+    - streng genommen : à proprement parler
+    - regelrecht : véritablement
+    - ausgerechnet : justement, comme par hasard
+    - umgekehrt : inversement
+- **o** ← seitdem (B1), dorthin (B1), seither (B2), jahrzehntelang (B2), allenfalls (B2), wohingegen (C1), derweil (C1), seinerzeit (C1), insoweit (C1)
+    - seitdem : depuis lors
+    - dorthin : là-bas (direction)
+    - seither : depuis ce moment
+    - jahrzehntelang : pendant des décennies
+    - allenfalls : tout au plus
+    - wohingegen : tandis que, alors que
+    - derweil : pendant ce temps
+    - seinerzeit : à l'époque
+    - insoweit : dans cette mesure
+- **e** ← einigermaßen (B1), zumindest (B1), daheim (B2), schlussendlich (B2), gewiss (C1), bestenfalls (C1), schlimmstenfalls (C1), vormals (C1)
+    - einigermaßen : assez, tant bien que mal
+    - zumindest : du moins
+    - daheim : à la maison
+    - schlussendlich : en fin de compte
+    - gewiss : certes, assurément
+    - bestenfalls : au mieux
+    - schlimmstenfalls : au pire
+    - vormals : autrefois
+- **ş** ← gegenwärtig (B1), überraschend (B1), vorerst (B2), bislang (B2), bisher (B2), wobei (C1)
+    - gegenwärtig : actuellement (soutenu)
+    - überraschend : de façon surprenante
+    - vorerst : pour l'instant
+    - bislang : jusqu'à présent
+    - bisher : jusqu'ici
+    - wobei : étant entendu que
+- **ç** ← bereits (B1), längst (B2), ringsum (B2), weitaus (B2), minimal (B2)
+    - bereits : déjà (soutenu)
+    - längst : depuis longtemps
+    - ringsum : tout autour
+    - weitaus : de loin
+    - minimal : de façon minime
+- **m** ← notgedrungen (B2), unheimlich (B2), folgerichtig (B2), vermutlich (B2)
+    - notgedrungen : par nécessité, faute de mieux
+    - unheimlich : vachement, terriblement
+    - folgerichtig : logiquement
+    - vermutlich : probablement
+- **z** ← zeitweise (B2), notwendigerweise (B2), ohnehin (B2)
+    - zeitweise : par moments
+    - notwendigerweise : nécessairement
+    - ohnehin : de toute façon
+- **ü** ← zudem (B1), oberhalb (B2), obendrein (C1)
+    - zudem : de surcroît
+    - oberhalb : au-dessus
+    - obendrein : par-dessus le marché
+- **bu yüzden** ← deshalb (A1), darum (A2)
+    - deshalb : c'est pourquoi
+    - darum : c'est pour ça
+- **f** ← überaus (B1), allzu (B2)
+    - überaus : on ne peut plus
+    - allzu : par trop
+- **v** ← rechtzeitig (B1), nachdrücklich (B2)
+    - rechtzeitig : à temps
+    - nachdrücklich : avec insistance
+- **çok** ← sehr (A1), viel (A1)
+    - sehr : très
+    - viel : beaucoup
+
+
+## expressions (24 reponses turques pour 398 mots allemands)
+
+- **b** ← einerseits … andererseits (B1), mit anderen Worten (B1), einen Antrag stellen (B1), sich freuen auf (B1), die Nase voll haben (B1), unter vier Augen (B1), Sich bewerben um (B1), Sich gewöhnen an (B1), Sich erinnern an (B1), Sich verlassen auf (B1), Sich beschäftigen mit (B1), Sich entscheiden für (B1), Sich bedanken für (B1), Sich entschuldigen für (B1), Sich vorbereiten auf (B1), Sich beteiligen an (B1), Teilnehmen an (B1), Abhängen von (B1), Bestehen aus (B1), Gehören zu (B1), Sorgen für (B1), Warten auf (B1), Denken an (B1), Leiden unter (B1), Rechnen mit (B1), Einfluss haben auf (B1), Zugang haben zu (B1), Zur Kenntnis nehmen (B1), In gewisser Weise (B1), Zum einen ... zum anderen (B1), Abgesehen von (B1), Anders gesagt (B1), Sich fürchten vor (B1), Sich wundern über (B1), Sich schwertun mit (B1), Auf Wolke sieben schweben (B1), Jemandem peinlich sein (B1), Etwas in Angriff nehmen (B1), Das leuchtet mir ein (B1), Das steht außer Frage (B1), Ich halte es für (B1), Ich bin dafür (B1), Ich bin dagegen (B1), Es spricht viel dafür (B1), Darüber lässt sich streiten (B1), Das sehe ich genauso (B1), Ich melde mich (B1), Sich Gedanken machen über (B1), Eine Ausrede finden (B1), Sich etwas leisten können (B1), unter Druck stehen (B2), das lässt sich nicht leugnen (B2), das ist Ansichtssache (B2), mit anderen Augen sehen (B2), Anklang finden (B2), Nach sich ziehen (B2), Nichtsdestotrotz (B2), Gleichwohl (B2), Infolgedessen (B2), Bekanntlich (B2), Ganz zu schweigen von (B2), Das ändert nichts daran (B2), Dem ist nichts hinzuzufügen (B2), Daran führt kein Weg vorbei (B2), Das kann man so nicht stehen lassen (B2), Ich teile diese Ansicht (B2), Jemandem den Rücken stärken (B2), Entgegen der Erwartung (B2), Demzufolge (B2), Augenscheinlich (B2), nicht von ungefähr (C1), im Zuge dessen (C1), im Gegenzug (C1), bei aller Kritik (C1), angesichts dessen (C1), ungeachtet dessen (C1), dem kann ich nur beipflichten (C1), meines Erachtens (C1), ich stehe dem skeptisch gegenüber (C1), das halte ich für weit hergeholt (C1), da bin ich ganz bei dir (C1), das geht mir gegen den Strich (C1), das schlägt dem Fass den Boden aus (C1), das ist mir ein Rätsel (C1), das lässt mich kalt (C1), mir ist es ein Anliegen (C1), das kommt mir spanisch vor (C1), Druck ausüben (C1)
+    - einerseits … andererseits : d'une part… d'autre part
+    - mit anderen Worten : autrement dit
+    - einen Antrag stellen : déposer une demande
+    - sich freuen auf : se réjouir de (à venir)
+    - die Nase voll haben : en avoir assez
+    - unter vier Augen : en tête-à-tête
+    - Sich bewerben um : postuler à
+    - Sich gewöhnen an : s'habituer à
+    - Sich erinnern an : se souvenir de
+    - Sich verlassen auf : compter sur
+    - Sich beschäftigen mit : s'occuper de, se pencher sur
+    - Sich entscheiden für : opter pour
+    - Sich bedanken für : remercier pour
+    - Sich entschuldigen für : s'excuser de
+    - Sich vorbereiten auf : se préparer à
+    - Sich beteiligen an : participer à
+    - Teilnehmen an : participer à
+    - Abhängen von : dépendre de
+    - Bestehen aus : être composé de
+    - Gehören zu : faire partie de
+    - Sorgen für : veiller à
+    - Warten auf : attendre
+    - Denken an : penser à
+    - Leiden unter : souffrir de
+    - Rechnen mit : s'attendre à
+    - Einfluss haben auf : avoir une influence sur
+    - Zugang haben zu : avoir accès à
+    - Zur Kenntnis nehmen : prendre acte de
+    - In gewisser Weise : d'une certaine manière
+    - Zum einen ... zum anderen : d'une part ... d'autre part
+    - Abgesehen von : mis à part
+    - Anders gesagt : autrement dit
+    - Sich fürchten vor : avoir peur de
+    - Sich wundern über : s'étonner de
+    - Sich schwertun mit : avoir du mal avec
+    - Auf Wolke sieben schweben : être au septième ciel
+    - Jemandem peinlich sein : être gênant pour quelqu'un
+    - Etwas in Angriff nehmen : s'attaquer à quelque chose
+    - Das leuchtet mir ein : ça me paraît logique
+    - Das steht außer Frage : cela ne fait aucun doute
+    - Ich halte es für : je considère cela comme
+    - Ich bin dafür : je suis pour
+    - Ich bin dagegen : je suis contre
+    - Es spricht viel dafür : il y a de bonnes raisons
+    - Darüber lässt sich streiten : c'est discutable
+    - Das sehe ich genauso : je vois les choses de la même façon
+    - Ich melde mich : je te fais signe
+    - Sich Gedanken machen über : se faire du souci pour
+    - Eine Ausrede finden : trouver une excuse
+    - Sich etwas leisten können : pouvoir se permettre
+    - unter Druck stehen : être sous pression
+    - das lässt sich nicht leugnen : on ne peut le nier
+    - das ist Ansichtssache : c'est une question de point de vue
+    - mit anderen Augen sehen : voir d'un autre œil
+    - Anklang finden : être bien accueilli
+    - Nach sich ziehen : entraîner
+    - Nichtsdestotrotz : néanmoins
+    - Gleichwohl : toutefois
+    - Infolgedessen : par conséquent
+    - Bekanntlich : comme chacun sait
+    - Ganz zu schweigen von : sans parler de
+    - Das ändert nichts daran : cela n'y change rien
+    - Dem ist nichts hinzuzufügen : il n'y a rien à ajouter
+    - Daran führt kein Weg vorbei : on ne peut pas y couper
+    - Das kann man so nicht stehen lassen : on ne peut pas laisser dire cela
+    - Ich teile diese Ansicht : je partage cet avis
+    - Jemandem den Rücken stärken : soutenir quelqu'un
+    - Entgegen der Erwartung : contrairement aux attentes
+    - Demzufolge : d'après cela
+    - Augenscheinlich : manifestement
+    - nicht von ungefähr : ce n'est pas un hasard
+    - im Zuge dessen : dans la foulée
+    - im Gegenzug : en contrepartie
+    - bei aller Kritik : malgré toutes les critiques
+    - angesichts dessen : au vu de cela
+    - ungeachtet dessen : nonobstant cela
+    - dem kann ich nur beipflichten : je ne peux qu'approuver
+    - meines Erachtens : à mon sens
+    - ich stehe dem skeptisch gegenüber : je suis sceptique là-dessus
+    - das halte ich für weit hergeholt : je trouve cela tiré par les cheveux
+    - da bin ich ganz bei dir : je te suis entièrement
+    - das geht mir gegen den Strich : ça me hérisse
+    - das schlägt dem Fass den Boden aus : c'est la goutte d'eau
+    - das ist mir ein Rätsel : c'est un mystère pour moi
+    - das lässt mich kalt : cela me laisse froid
+    - mir ist es ein Anliegen : cela me tient à cœur
+    - das kommt mir spanisch vor : cela me semble louche
+    - Druck ausüben : exercer une pression
+- **s** ← es geht um (B1), in Frage kommen (B1), Verantwortung übernehmen (B1), auf die Nerven gehen (B1), Schluss machen (B1), Zu Wort kommen (B1), Die Fassung verlieren (B1), Eine Frist einhalten (B1), Schön, dich zu sehen (B1), Grüße ausrichten (B1), Zu Ende bringen (B1), Wort halten (B1), Auf die Probe stellen (B1), Das Wort ergreifen (B1), zur Folge haben (B2), den Rahmen sprengen (B2), im Nachhinein (B2), unter dem Strich (B2), das Fazit ziehen (B2), aus dem Häuschen sein (B2), kalte Füße bekommen (B2), den Faden verlieren (B2), in letzter Minute (B2), sich in Grenzen halten (B2), Um es auf den Punkt zu bringen (B2), Schlicht und einfach (B2), Letzten Endes (B2), Etwas in Frage stellen (B2), Wie darf ich Ihnen helfen? (B2), Es freut mich, Sie kennenzulernen (B2), Bleiben Sie gesund (B2), Die Nerven verlieren (B2), Sich in Schweigen hüllen (B2), Die kalte Schulter zeigen (B2), Mit dem Rücken zur Wand stehen (B2), Sich über Wasser halten (B2), Reinen Tisch machen (B2), Auf dem Prüfstand stehen (B2), bei Licht betrachtet (C1), sich zu Wort melden (C1), das raubt mir den letzten Nerv (C1), Schlüsse ziehen (C1), sehr geehrte Damen und Herren (C1), mit freundlichen Grüßen (C1), für Rückfragen stehe ich zur Verfügung (C1)
+    - es geht um : il s'agit de
+    - in Frage kommen : entrer en ligne de compte
+    - Verantwortung übernehmen : assumer la responsabilité
+    - auf die Nerven gehen : taper sur les nerfs
+    - Schluss machen : en finir, arrêter
+    - Zu Wort kommen : avoir la parole
+    - Die Fassung verlieren : perdre son sang-froid
+    - Eine Frist einhalten : respecter un délai
+    - Schön, dich zu sehen : content de te voir
+    - Grüße ausrichten : transmettre le bonjour
+    - Zu Ende bringen : mener à terme
+    - Wort halten : tenir parole
+    - Auf die Probe stellen : mettre à l'épreuve
+    - Das Wort ergreifen : prendre la parole
+    - zur Folge haben : avoir pour conséquence
+    - den Rahmen sprengen : dépasser le cadre
+    - im Nachhinein : rétrospectivement
+    - unter dem Strich : au bout du compte
+    - das Fazit ziehen : tirer le bilan
+    - aus dem Häuschen sein : être fou de joie
+    - kalte Füße bekommen : se dégonfler
+    - den Faden verlieren : perdre le fil
+    - in letzter Minute : à la dernière minute
+    - sich in Grenzen halten : rester limité
+    - Um es auf den Punkt zu bringen : pour résumer l'essentiel
+    - Schlicht und einfach : purement et simplement
+    - Letzten Endes : en fin de compte
+    - Etwas in Frage stellen : remettre en question
+    - Wie darf ich Ihnen helfen? : en quoi puis-je vous aider ?
+    - Es freut mich, Sie kennenzulernen : ravi de faire votre connaissance
+    - Bleiben Sie gesund : portez-vous bien
+    - Die Nerven verlieren : perdre son calme
+    - Sich in Schweigen hüllen : garder le silence
+    - Die kalte Schulter zeigen : battre froid à quelqu'un
+    - Mit dem Rücken zur Wand stehen : être dos au mur
+    - Sich über Wasser halten : se maintenir à flot
+    - Reinen Tisch machen : faire table rase
+    - Auf dem Prüfstand stehen : être remis en question
+    - bei Licht betrachtet : à bien y regarder
+    - sich zu Wort melden : demander la parole
+    - das raubt mir den letzten Nerv : cela m'achève les nerfs
+    - Schlüsse ziehen : tirer des conclusions
+    - sehr geehrte Damen und Herren : Madame, Monsieur
+    - mit freundlichen Grüßen : cordialement
+    - für Rückfragen stehe ich zur Verfügung : je reste à votre disposition
+- **g** ← auf dem Laufenden bleiben (B1), zur Sprache kommen (B1), im Großen und Ganzen (B1), Rücksprache halten (B1), Ins Spiel bringen (B1), In der Tat (B1), Den Überblick behalten (B1), Auf Nummer sicher gehen (B1), Man sieht sich (B1), in Kauf nehmen (B2), in Betracht ziehen (B2), ins Auge fassen (B2), im Handumdrehen (B2), ein Auge zudrücken (B2), Konsequenzen ziehen (B2), Zu Rate ziehen (B2), Angesichts (B2), Vermeintlich (B2), Nicht von der Hand zu weisen (B2), Ein Dorn im Auge sein (B2), Über die Runden kommen (B2), zur Sprache bringen (C1), Folge leisten (C1), zum Vorschein kommen (C1), in Verzug geraten (C1), Vorkehrungen treffen (C1)
+    - auf dem Laufenden bleiben : se tenir au courant
+    - zur Sprache kommen : être abordé (sujet)
+    - im Großen und Ganzen : dans l'ensemble
+    - Rücksprache halten : se concerter
+    - Ins Spiel bringen : mettre sur la table
+    - In der Tat : en effet
+    - Den Überblick behalten : garder une vue d'ensemble
+    - Auf Nummer sicher gehen : jouer la sécurité
+    - Man sieht sich : on se reverra
+    - in Kauf nehmen : accepter (un inconvénient)
+    - in Betracht ziehen : prendre en considération
+    - ins Auge fassen : envisager
+    - im Handumdrehen : en un tournemain
+    - ein Auge zudrücken : fermer les yeux (sur qch)
+    - Konsequenzen ziehen : en tirer les conséquences
+    - Zu Rate ziehen : consulter
+    - Angesichts : compte tenu de
+    - Vermeintlich : prétendument
+    - Nicht von der Hand zu weisen : indéniable
+    - Ein Dorn im Auge sein : être une épine dans le pied
+    - Über die Runden kommen : joindre les deux bouts
+    - zur Sprache bringen : aborder (un sujet)
+    - Folge leisten : donner suite à
+    - zum Vorschein kommen : apparaître au grand jour
+    - in Verzug geraten : prendre du retard
+    - Vorkehrungen treffen : prendre des dispositions
+- **d** ← unter Umständen (B1), je nachdem (B1), Erfahrung sammeln (B1), Unter anderem (B1), Ehrlich gesagt (B1), Von Nachteil sein (B1), zum Ausdruck bringen (B2), In Erwägung ziehen (B2), Zum Tragen kommen (B2), Auf Widerstand stoßen (B2), Wohlgemerkt (B2), Reinen Wein einschenken (B2), Den Kopf in den Sand stecken (B2), Sich auf die Zunge beißen (B2), Das Ruder herumreißen (B2), In Anbetracht (B2), Einhalt gebieten (B2), bei näherem Hinsehen (C1), außer Acht lassen (C1), Widerstand leisten (C1), Klarheit schaffen (C1), Aufmerksamkeit schenken (C1), hochachtungsvoll (C1), ich erlaube mir, Sie darauf hinzuweisen (C1)
+    - unter Umständen : le cas échéant
+    - je nachdem : selon les cas
+    - Erfahrung sammeln : acquérir de l'expérience
+    - Unter anderem : entre autres
+    - Ehrlich gesagt : à vrai dire
+    - Von Nachteil sein : être un inconvénient
+    - zum Ausdruck bringen : exprimer
+    - In Erwägung ziehen : envisager
+    - Zum Tragen kommen : prendre effet
+    - Auf Widerstand stoßen : se heurter à une résistance
+    - Wohlgemerkt : notons-le bien
+    - Reinen Wein einschenken : dire la vérité toute crue
+    - Den Kopf in den Sand stecken : faire l'autruche
+    - Sich auf die Zunge beißen : se mordre la langue
+    - Das Ruder herumreißen : redresser la barre
+    - In Anbetracht : eu égard à
+    - Einhalt gebieten : mettre un terme à
+    - bei näherem Hinsehen : en y regardant de plus près
+    - außer Acht lassen : négliger
+    - Widerstand leisten : opposer une résistance
+    - Klarheit schaffen : faire la lumière
+    - Aufmerksamkeit schenken : prêter attention
+    - hochachtungsvoll : veuillez agréer mes salutations distinguées
+    - ich erlaube mir, Sie darauf hinzuweisen : je me permets de vous signaler
+- **k** ← in der Regel (B1), sich Zeit nehmen (B1), Mach's gut (B1), Auf sich warten lassen (B1), Mit Sicherheit (B1), Im Vergleich zu (B1), An die Decke gehen (B1), Sich durchsetzen (B1), Auf eigene Kosten (B1), in Anspruch genommen werden (B2), aus dem Ruder laufen (B2), ins kalte Wasser springen (B2), auf eigene Faust (B2), Lassen Sie es sich gut gehen (B2), Aus allen Wolken fallen (B2), Den Gürtel enger schnallen (B2), Mit Ach und Krach (B2), im Raum stehen (C1), das lässt sich hören (C1), außer sich sein (C1), unter Beweis stellen (C1), Zweifel hegen (C1), Gehör finden (C1), eine Entscheidung herbeiführen (C1)
+    - in der Regel : en règle générale
+    - sich Zeit nehmen : prendre son temps
+    - Mach's gut : Porte-toi bien
+    - Auf sich warten lassen : se faire attendre
+    - Mit Sicherheit : à coup sûr
+    - Im Vergleich zu : par rapport à
+    - An die Decke gehen : sortir de ses gonds
+    - Sich durchsetzen : s'imposer
+    - Auf eigene Kosten : à ses propres frais
+    - in Anspruch genommen werden : être sollicité
+    - aus dem Ruder laufen : déraper, échapper à tout contrôle
+    - ins kalte Wasser springen : se jeter à l'eau
+    - auf eigene Faust : de son propre chef
+    - Lassen Sie es sich gut gehen : prenez soin de vous
+    - Aus allen Wolken fallen : tomber des nues
+    - Den Gürtel enger schnallen : se serrer la ceinture
+    - Mit Ach und Krach : de justesse
+    - im Raum stehen : être en suspens
+    - das lässt sich hören : voilà qui est intéressant
+    - außer sich sein : être hors de soi
+    - unter Beweis stellen : faire la preuve de
+    - Zweifel hegen : nourrir des doutes
+    - Gehör finden : trouver une oreille attentive
+    - eine Entscheidung herbeiführen : provoquer une décision
+- **a** ← im Gegenteil (B1), Bezug nehmen auf (B1), Schritt halten mit (B1), Offen gesagt (B1), Das Für und Wider (B1), Den Kopf verlieren (B1), Sich Zeit lassen (B1), Auf die Idee kommen (B1), Sich einen Namen machen (B1), Von Vorteil sein (B1), ins Gewicht fallen (B2), sich einig sein (B2), Klartext reden (B2), Eine Lanze brechen für (B2), In Verruf geraten (B2), In den sauren Apfel beißen (B2), Auf die Sprünge helfen (B2), Das dicke Ende kommt noch (B2), Hals über Kopf (B2), Den Karren aus dem Dreck ziehen (B2), im Grunde genommen (C1), im Klartext (C1), ich bin hin und hergerissen (C1)
+    - im Gegenteil : au contraire
+    - Bezug nehmen auf : faire référence à
+    - Schritt halten mit : suivre le rythme de
+    - Offen gesagt : franchement
+    - Das Für und Wider : le pour et le contre
+    - Den Kopf verlieren : perdre la tête
+    - Sich Zeit lassen : prendre son temps
+    - Auf die Idee kommen : avoir l'idée de
+    - Sich einen Namen machen : se faire un nom
+    - Von Vorteil sein : être un avantage
+    - ins Gewicht fallen : peser dans la balance
+    - sich einig sein : être d'accord entre soi
+    - Klartext reden : parler franchement
+    - Eine Lanze brechen für : prendre fait et cause pour
+    - In Verruf geraten : tomber en discrédit
+    - In den sauren Apfel beißen : avaler la pilule
+    - Auf die Sprünge helfen : mettre sur la voie, rafraîchir la mémoire
+    - Das dicke Ende kommt noch : le pire reste à venir
+    - Hals über Kopf : précipitamment
+    - Den Karren aus dem Dreck ziehen : sortir de l'ornière
+    - im Grunde genommen : au fond
+    - im Klartext : en clair
+    - ich bin hin und hergerissen : je suis partagé
+- **t** ← Das kann ich mir vorstellen (B1), Genau genommen (B1), eine Rolle rückwärts machen (B2), auf dem Spiel stehen (B2), Stellung nehmen (B2), über den Berg sein (B2), von Grund auf (B2), in vollem Gange (B2), Zur Debatte stehen (B2), Zur Diskussion stellen (B2), Position beziehen (B2), Den Grundstein legen (B2), Den Ausschlag geben (B2), Im Umkehrschluss (B2), Bei allem Respekt (B2), Am Ball bleiben (B2), Im Alleingang (B2), mir platzt der Kragen (C1), Anstoß erregen (C1), Stellung beziehen (C1), Zugeständnisse machen (C1), ins Stocken geraten (C1), zu Protokoll geben (C1)
+    - Das kann ich mir vorstellen : Je m'en doute
+    - Genau genommen : à proprement parler
+    - eine Rolle rückwärts machen : faire volte-face
+    - auf dem Spiel stehen : être en jeu
+    - Stellung nehmen : prendre position
+    - über den Berg sein : avoir passé le plus dur
+    - von Grund auf : de fond en comble
+    - in vollem Gange : en plein essor, battant son plein
+    - Zur Debatte stehen : être en discussion
+    - Zur Diskussion stellen : soumettre à la discussion
+    - Position beziehen : prendre position
+    - Den Grundstein legen : poser la première pierre
+    - Den Ausschlag geben : faire pencher la balance
+    - Im Umkehrschluss : a contrario
+    - Bei allem Respekt : avec tout le respect que je vous dois
+    - Am Ball bleiben : ne pas lâcher
+    - Im Alleingang : en solitaire
+    - mir platzt der Kragen : je sors de mes gonds
+    - Anstoß erregen : faire scandale
+    - Stellung beziehen : prendre position
+    - Zugeständnisse machen : faire des concessions
+    - ins Stocken geraten : s'enliser
+    - zu Protokoll geben : déclarer au procès-verbal
+- **i** ← auf den ersten Blick (B1), in Kontakt bleiben (B1), Eine Ausnahme machen (B1), Auf Anhieb (B1), Sich Luft machen (B1), Urlaub nehmen (B1), Kontakt aufnehmen (B1), Den Anfang machen (B1), einen Bärendienst erweisen (B2), Den Anschein erwecken (B2), Beachtung finden (B2), Ich wage zu behaupten (B2), Auf die lange Bank schieben (B2), Nägel mit Köpfen machen (B2), In trockenen Tüchern sein (B2), nach Lage der Dinge (C1), mir fällt ein Stein vom Herzen (C1), es sträubt sich alles in mir (C1), den Anstoß geben (C1), Glauben schenken (C1), sich in Verbindung setzen (C1), Widerspruch einlegen (C1)
+    - auf den ersten Blick : à première vue
+    - in Kontakt bleiben : rester en contact
+    - Eine Ausnahme machen : faire une exception
+    - Auf Anhieb : du premier coup
+    - Sich Luft machen : vider son sac
+    - Urlaub nehmen : prendre des congés
+    - Kontakt aufnehmen : prendre contact
+    - Den Anfang machen : ouvrir le bal
+    - einen Bärendienst erweisen : rendre un mauvais service
+    - Den Anschein erwecken : donner l'impression
+    - Beachtung finden : être remarqué
+    - Ich wage zu behaupten : j'ose affirmer
+    - Auf die lange Bank schieben : remettre aux calendes grecques
+    - Nägel mit Köpfen machen : faire les choses à fond
+    - In trockenen Tüchern sein : être dans la poche
+    - nach Lage der Dinge : en l'état des choses
+    - mir fällt ein Stein vom Herzen : cela m'ôte un poids
+    - es sträubt sich alles in mir : tout en moi se rebiffe
+    - den Anstoß geben : donner l'impulsion
+    - Glauben schenken : prêter foi à
+    - sich in Verbindung setzen : prendre contact
+    - Widerspruch einlegen : former un recours
+- **h** ← zur Verfügung stehen (B1), Bescheid geben (B1), Herzlich willkommen (B1), Wie dem auch sei (B1), Den Ton angeben (B1), Sich krankmelden (B1), Lass von dir hören (B1), nach wie vor (B2), in erster Linie (B2), unter den Teppich kehren (B2), Rechnung tragen (B2), Anspruch erheben auf (B2), Alle Hebel in Bewegung setzen (B2), Um nicht zu sagen (B2), Rede und Antwort stehen (B2), Zur Rechenschaft ziehen (B2), Anspruch erheben (C1), zur Rede stellen (C1), auf den Weg bringen (C1)
+    - zur Verfügung stehen : être à disposition
+    - Bescheid geben : faire signe, informer
+    - Herzlich willkommen : Bienvenue
+    - Wie dem auch sei : Quoi qu'il en soit
+    - Den Ton angeben : donner le ton
+    - Sich krankmelden : se déclarer malade
+    - Lass von dir hören : donne de tes nouvelles
+    - nach wie vor : toujours, comme avant
+    - in erster Linie : en premier lieu
+    - unter den Teppich kehren : passer sous silence
+    - Rechnung tragen : tenir compte de
+    - Anspruch erheben auf : revendiquer
+    - Alle Hebel in Bewegung setzen : remuer ciel et terre
+    - Um nicht zu sagen : pour ne pas dire
+    - Rede und Antwort stehen : rendre des comptes
+    - Zur Rechenschaft ziehen : demander des comptes à
+    - Anspruch erheben : revendiquer
+    - zur Rede stellen : demander des comptes à
+    - auf den Weg bringen : lancer
+- **e** ← sich Sorgen machen (B1), auf dem neuesten Stand (B1), Kritik üben an (B1), Im Wege stehen (B1), Ich bin überzeugt (B1), Das Beste daraus machen (B1), Hand anlegen (B1), Hand in Hand arbeiten (B2), über kurz oder lang (B2), Hand aufs Herz (B2), Gelinde gesagt (B2), der Vollständigkeit halber (C1), Kritik üben (C1), Einfluss nehmen (C1), Bedenken äußern (C1), in der Anlage finden Sie (C1)
+    - sich Sorgen machen : se faire du souci
+    - auf dem neuesten Stand : à jour
+    - Kritik üben an : critiquer
+    - Im Wege stehen : faire obstacle à
+    - Ich bin überzeugt : je suis convaincu
+    - Das Beste daraus machen : en tirer le meilleur parti
+    - Hand anlegen : mettre la main à la pâte
+    - Hand in Hand arbeiten : travailler main dans la main
+    - über kurz oder lang : tôt ou tard
+    - Hand aufs Herz : franchement, la main sur le cœur
+    - Gelinde gesagt : c'est le moins qu'on puisse dire
+    - der Vollständigkeit halber : par souci d'exhaustivité
+    - Kritik üben : formuler des critiques
+    - Einfluss nehmen : exercer une influence
+    - Bedenken äußern : émettre des réserves
+    - in der Anlage finden Sie : vous trouverez ci-joint
+- **ş** ← Glück haben (B1), das kommt darauf an, ob (B1), die Daumen drücken (B2), Insofern als (B2), Sofern (B2), ich bin der Auffassung (C1), ich neige zu der Ansicht (C1), zur Auflage machen (C1), Anzeige erstatten (C1), Beschwerde einreichen (C1), vielen Dank im Voraus (C1), ich melde mich bezüglich (C1), ich wäre Ihnen dankbar, wenn (C1)
+    - Glück haben : avoir de la chance
+    - das kommt darauf an, ob : ça dépend si
+    - die Daumen drücken : croiser les doigts
+    - Insofern als : dans la mesure où
+    - Sofern : pour autant que
+    - ich bin der Auffassung : je suis d'avis
+    - ich neige zu der Ansicht : je penche pour l'idée
+    - zur Auflage machen : imposer comme condition
+    - Anzeige erstatten : porter plainte
+    - Beschwerde einreichen : déposer une réclamation
+    - vielen Dank im Voraus : merci d'avance
+    - ich melde mich bezüglich : je vous contacte au sujet de
+    - ich wäre Ihnen dankbar, wenn : je vous serais reconnaissant de
+- **y** ← das heißt (B1), in Anspruch nehmen (B1), aus Versehen (B1), auf dem Weg (B1), nach und nach (B1), In Kraft treten (B2), Außer Kraft setzen (B2), Gebrauch machen von (B2), Bei näherer Betrachtung (B2), in Ermangelung (C1), Rechenschaft ablegen (C1), in die Wege leiten (C1)
+    - das heißt : c'est-à-dire
+    - in Anspruch nehmen : faire appel à, mobiliser
+    - aus Versehen : par inadvertance
+    - auf dem Weg : en chemin
+    - nach und nach : peu à peu
+    - In Kraft treten : entrer en vigueur
+    - Außer Kraft setzen : abroger
+    - Gebrauch machen von : faire usage de
+    - Bei näherer Betrachtung : à y regarder de plus près
+    - in Ermangelung : à défaut de
+    - Rechenschaft ablegen : rendre des comptes
+    - in die Wege leiten : mettre en route
+- **ö** ← Wert legen auf (B1), In Erfahrung bringen (B1), Nicht zuletzt (B1), Prioritäten setzen (B1), Keine Rolle spielen (B1), Maßnahmen ergreifen (B2), es hält sich in Grenzen (C1), vor Wut kochen (C1), einen Vorschlag unterbreiten (C1), Vorsorge treffen (C1)
+    - Wert legen auf : attacher de l'importance à
+    - In Erfahrung bringen : se renseigner sur
+    - Nicht zuletzt : notamment
+    - Prioritäten setzen : définir des priorités
+    - Keine Rolle spielen : ne pas importer
+    - Maßnahmen ergreifen : prendre des mesures
+    - es hält sich in Grenzen : cela reste modéré
+    - vor Wut kochen : bouillir de rage
+    - einen Vorschlag unterbreiten : soumettre une proposition
+    - Vorsorge treffen : prendre des précautions
+- **o** ← sich freuen über (B1), das A und O (B2), Sich erweisen als (B2), Sich niederschlagen in (B2), Es liegt auf der Hand (B2), Das steht auf einem anderen Blatt (B2), das mag sein, aber (C1), da bin ich überfragt (C1), Zustimmung finden (C1)
+    - sich freuen über : se réjouir de (déjà arrivé)
+    - das A und O : l'essentiel, la clé
+    - Sich erweisen als : s'avérer être
+    - Sich niederschlagen in : se traduire par
+    - Es liegt auf der Hand : cela va de soi
+    - Das steht auf einem anderen Blatt : c'est une autre histoire
+    - das mag sein, aber : c'est possible, mais
+    - da bin ich überfragt : là, je sèche
+    - Zustimmung finden : recueillir l'adhésion
+- **u** ← einen Kompromiss finden (B1), auf lange Sicht (B2), In Aussicht stellen (B2), Kompromisse eingehen (C1), Anwendung finden (C1), in Vergessenheit geraten (C1), in die Tat umsetzen (C1)
+    - einen Kompromiss finden : trouver un compromis
+    - auf lange Sicht : à long terme
+    - In Aussicht stellen : faire miroiter
+    - Kompromisse eingehen : accepter des compromis
+    - Anwendung finden : s'appliquer, être applicable
+    - in Vergessenheit geraten : tomber dans l'oubli
+    - in die Tat umsetzen : mettre en pratique
+- **n** ← Was gibt's Neues? (B1), Sich Notizen machen (B1), Im Endeffekt (B2), Auf Biegen und Brechen (B2), geschweige denn (C1), in letzter Konsequenz (C1)
+    - Was gibt's Neues? : quoi de neuf ?
+    - Sich Notizen machen : prendre des notes
+    - Im Endeffekt : au bout du compte
+    - Auf Biegen und Brechen : coûte que coûte
+    - geschweige denn : et encore moins
+    - in letzter Konsequenz : en dernière analyse
+- **r** ← eine Rolle spielen (B1), Den Termin verschieben (B1), Die Weichen stellen (B2), ein Risiko eingehen (C1), Einspruch erheben (C1), Bericht erstatten (C1)
+    - eine Rolle spielen : jouer un rôle, compter
+    - Den Termin verschieben : reporter le rendez-vous
+    - Die Weichen stellen : donner l'orientation
+    - ein Risiko eingehen : prendre un risque
+    - Einspruch erheben : faire opposition
+    - Bericht erstatten : faire rapport
+- **ç** ← Sich Mühe geben (B1), im Zuge (B2), Abhilfe schaffen (B2), Steine in den Weg legen (B2), ich könnte aus der Haut fahren (C1), Vorbehalte haben (C1)
+    - Sich Mühe geben : se donner du mal
+    - im Zuge : dans le cadre de
+    - Abhilfe schaffen : remédier à la situation
+    - Steine in den Weg legen : mettre des bâtons dans les roues
+    - ich könnte aus der Haut fahren : je pourrais exploser
+    - Vorbehalte haben : avoir des réticences
+- **f** ← eine Rechnung bezahlen (B1), Einen Antrag ausfüllen (B1), Überstunden machen (B1), Eine Gelegenheit nutzen (B1), in Rechnung stellen (C1)
+    - eine Rechnung bezahlen : régler une facture
+    - Einen Antrag ausfüllen : remplir un formulaire
+    - Überstunden machen : faire des heures supplémentaires
+    - Eine Gelegenheit nutzen : saisir une occasion
+    - in Rechnung stellen : facturer
+- **m** ← Es sei denn (B1), Bilanz ziehen (B2), Zu Buche schlagen (B2), Unter die Lupe nehmen (B2), Grüß Gott (B2)
+    - Es sei denn : à moins que
+    - Bilanz ziehen : faire le bilan
+    - Zu Buche schlagen : peser dans la balance
+    - Unter die Lupe nehmen : examiner de près
+    - Grüß Gott : bonjour (sud de l'Allemagne, Autriche)
+- **v** ← Abstand nehmen von (B1), Sich ins Zeug legen (B2), Abstand nehmen (C1)
+    - Abstand nehmen von : renoncer à
+    - Sich ins Zeug legen : se démener
+    - Abstand nehmen : renoncer à
+- **-le ilgilenmek** ← Sich kümmern um (A2), Sich interessieren für (A2)
+    - Sich kümmern um : s'occuper de
+    - Sich interessieren für : s'intéresser à
+- **.** ← Was ... betrifft (B1), Ich bezweifle, dass (B1)
+    - Was ... betrifft : en ce qui concerne
+    - Ich bezweifle, dass : je doute que
+- **p** ← im Prinzip (B2), Paradoxerweise (B2)
+    - im Prinzip : en principe
+    - Paradoxerweise : paradoxalement
+
+
+## noms (127 reponses turques pour 260 mots allemands)
+
+- **uzman** ← der Experte (B1), die Expertin (B1), der Fachmann (B1), die Fachfrau (B1)
+    - der Experte : expert
+    - die Expertin : experte
+    - der Fachmann : spécialiste, expert
+    - die Fachfrau : spécialiste (femme)
+- **avukat** ← der Anwalt (B1), der Rechtsanwalt (B1), die Rechtsanwältin (B1)
+    - der Anwalt : avocat
+    - der Rechtsanwalt : avocat
+    - die Rechtsanwältin : avocate
+- **bilet** ← der Fahrschein (A2), die Fahrkarte (B2), das Ticket (A1)
+    - der Fahrschein : titre de transport
+    - die Fahrkarte : titre de transport
+    - das Ticket : billet
+- **malzeme** ← die Zutat (B1), das Material (B1), der Werkstoff (C1)
+    - die Zutat : ingrédient
+    - das Material : matériau
+    - der Werkstoff : matériau
+- **oyuncu** ← der Schauspieler (A2), die Schauspielerin (B1), der Spieler (A1)
+    - der Schauspieler : acteur
+    - die Schauspielerin : actrice
+    - der Spieler : joueur
+- **ab vatandaşı** ← der EU-Bürger (B1), die EU-Bürgerin (B1)
+    - der EU-Bürger : citoyen de l'UE
+    - die EU-Bürgerin : citoyenne de l'UE
+- **ad** ← der Vorname (A1), der Name (A1)
+    - der Vorname : prénom
+    - der Name : le nom
+- **aday** ← der Kandidat (A2), die Kandidatin (B1)
+    - der Kandidat : candidat
+    - die Kandidatin : candidate (femme)
+- **alan** ← der Bereich (B1), die Fläche (B1)
+    - der Bereich : domaine, secteur
+    - die Fläche : surface
+- **anlam** ← die Bedeutung (B1), der Sinn (B1)
+    - die Bedeutung : signification
+    - der Sinn : le sens
+- **araç** ← das Fahrzeug (B1), das Mittel (B1)
+    - das Fahrzeug : véhicule
+    - das Mittel : moyen
+- **araştırma** ← die Studie (B1), die Forschung (B2)
+    - die Studie : étude (recherche)
+    - die Forschung : recherche
+- **ateş** ← das Fieber (A1), das Feuer (B1)
+    - das Fieber : fièvre
+    - das Feuer : feu
+- **ay** ← der Mond (A1), der Monat (A1)
+    - der Mond : la lune
+    - der Monat : mois
+- **ağ** ← das Netz (A2), das Netzwerk (B1)
+    - das Netz : le réseau, le filet
+    - das Netzwerk : réseau
+- **aşçı** ← der Koch (A1), die Köchin (B1)
+    - der Koch : cuisinier
+    - die Köchin : cuisinière
+- **aşı** ← der Impfstoff (A2), die Impfung (B1)
+    - der Impfstoff : vaccin
+    - die Impfung : vaccination
+- **bahane** ← die Ausrede (B1), der Vorwand (C1)
+    - die Ausrede : excuse, prétexte
+    - der Vorwand : prétexte
+- **başvuru** ← die Bewerbung (B2), der Antrag (B1)
+    - die Bewerbung : candidature
+    - der Antrag : demande (formulaire)
+- **belediye başkanı** ← der Bürgermeister (B1), die Bürgermeisterin (B1)
+    - der Bürgermeister : maire
+    - die Bürgermeisterin : mairesse
+- **beslenme alışkanlığı** ← die Essgewohnheit (B1), die Ernährungsgewohnheit (B2)
+    - die Essgewohnheit : habitude alimentaire
+    - die Ernährungsgewohnheit : habitude alimentaire
+- **beslenme danışmanı** ← der Ernährungsberater (B1), die Ernährungsberaterin (B1)
+    - der Ernährungsberater : conseiller en nutrition
+    - die Ernährungsberaterin : conseillère en nutrition
+- **besteci** ← der Komponist (B1), die Komponistin (B1)
+    - der Komponist : compositeur
+    - die Komponistin : compositrice
+- **beyin** ← das Gehirn (B1), das Hirn (B2)
+    - das Gehirn : le cerveau
+    - das Hirn : cerveau
+- **bilim insanı** ← der Wissenschaftler (B1), die Wissenschaftlerin (B1)
+    - der Wissenschaftler : scientifique
+    - die Wissenschaftlerin : scientifique (femme)
+- **daire** ← die Wohnung (A1), der Kreis (A1)
+    - die Wohnung : appartement
+    - der Kreis : cercle
+- **danışman** ← der Berater (B1), der Betreuer (B1)
+    - der Berater : consultant
+    - der Betreuer : encadrant
+- **ders kitabı** ← das Lehrbuch (A2), das Schulbuch (B2)
+    - das Lehrbuch : manuel scolaire
+    - das Schulbuch : manuel scolaire
+- **değişiklik** ← die Änderung (A2), die Veränderung (B1)
+    - die Änderung : la modification
+    - die Veränderung : le changement, la transformation
+- **değişim** ← der Umtausch (A2), der Wechsel (B1)
+    - der Umtausch : échange (achat)
+    - der Wechsel : le changement
+- **dinleyici** ← der Zuhörer (B1), die Zuhörerin (B1)
+    - der Zuhörer : auditeur
+    - die Zuhörerin : auditrice
+- **dosya** ← die Akte (B2), die Datei (B1)
+    - die Akte : dossier
+    - die Datei : fichier
+- **duvar** ← die Wand (A1), die Mauer (A2)
+    - die Wand : mur
+    - die Mauer : le mur
+- **dönem** ← der Zeitraum (B1), das Semester (A1)
+    - der Zeitraum : période
+    - das Semester : semestre
+- **dükkân** ← das Geschäft (A1), der Laden (A1)
+    - das Geschäft : magasin
+    - der Laden : le magasin
+- **düzenleyici** ← der Veranstalter (B1), die Veranstalterin (B1)
+    - der Veranstalter : organisateur
+    - die Veranstalterin : organisatrice
+- **el işi** ← die Bastelarbeit (A2), die Handarbeit (C1)
+    - die Bastelarbeit : bricolage
+    - die Handarbeit : travail à la main
+- **ev sahibi** ← der Vermieter (B1), der Gastgeber (B2)
+    - der Vermieter : bailleur
+    - der Gastgeber : hôte (qui reçoit)
+- **fizyoterapist** ← der Physiotherapeut (B1), die Physiotherapeutin (B1)
+    - der Physiotherapeut : physiothérapeute
+    - die Physiotherapeutin : physiothérapeute (femme)
+- **fiş** ← der Stecker (B1), der Kassenbon (A2)
+    - der Stecker : fiche, prise (mâle)
+    - der Kassenbon : ticket de caisse
+- **fırın** ← der Ofen (A1), der Backofen (B1)
+    - der Ofen : four
+    - der Backofen : four
+- **galip** ← der Sieger (B1), die Siegerin (B1)
+    - der Sieger : vainqueur
+    - die Siegerin : gagnante
+- **garson** ← der Kellner (A1), die Kellnerin (B1)
+    - der Kellner : serveur
+    - die Kellnerin : serveuse
+- **gerginlik** ← die Nervosität (A2), die Spannung (C1)
+    - die Nervosität : nervosité
+    - die Spannung : tension
+- **geri bildirim** ← die Rückmeldung (B1), das Feedback (B1)
+    - die Rückmeldung : retour, réponse
+    - das Feedback : retour, avis
+- **geri dönüşüm** ← das Recycling (A1), die Wiederverwertung (B1)
+    - das Recycling : recyclage
+    - die Wiederverwertung : recyclage
+- **gerçeklik** ← die Realität (B1), die Wirklichkeit (B1)
+    - die Realität : réalité
+    - die Wirklichkeit : réalité
+- **göçmen** ← der Migrant (B1), die Migrantin (B1)
+    - der Migrant : migrant
+    - die Migrantin : migrante
+- **hasta** ← der Patient (B1), die Patientin (B1)
+    - der Patient : patient
+    - die Patientin : patiente
+- **hava durumu** ← das Wetter (A1), die Wetterlage (B2)
+    - das Wetter : temps/météo
+    - die Wetterlage : situation météorologique
+- **hayat arkadaşı** ← der Lebensgefährte (B1), die Lebensgefährtin (B1)
+    - der Lebensgefährte : compagnon (de vie)
+    - die Lebensgefährtin : compagne (de vie)
+- **hizmet içi eğitim** ← die Weiterbildung (B1), die Fortbildung (C1)
+    - die Weiterbildung : formation continue
+    - die Fortbildung : perfectionnement professionnel
+- **hırsız** ← der Dieb (A2), der Einbrecher (B1)
+    - der Dieb : le voleur
+    - der Einbrecher : cambrioleur
+- **ihracat** ← der Export (B1), die Ausfuhr (C1)
+    - der Export : exportation
+    - die Ausfuhr : exportation
+- **ilan** ← die Annonce (B1), die Anzeige (B1)
+    - die Annonce : annonce
+    - die Anzeige : petite annonce
+- **itiraz** ← der Einwand (C1), der Einspruch (C1)
+    - der Einwand : objection
+    - der Einspruch : opposition, recours
+- **iş görüşmesi** ← das Bewerbungsgespräch (B2), das Vorstellungsgespräch (A2)
+    - das Bewerbungsgespräch : entretien d'embauche
+    - das Vorstellungsgespräch : entretien d'embauche
+- **işveren** ← der Arbeitgeber (B1), die Arbeitgeberin (B1)
+    - der Arbeitgeber : employeur
+    - die Arbeitgeberin : employeuse
+- **kaldırım** ← der Bürgersteig (B1), der Gehweg (C1)
+    - der Bürgersteig : trottoir
+    - der Gehweg : trottoir
+- **kaleci** ← der Tormann (B1), die Torfrau (B1)
+    - der Tormann : gardien de but
+    - die Torfrau : gardienne de but
+- **kalkış** ← der Start (A2), der Abflug (B2)
+    - der Start : le départ, le décollage
+    - der Abflug : décollage, départ (avion)
+- **kanepe** ← das Sofa (A1), die Couch (B1)
+    - das Sofa : canapé
+    - die Couch : canapé
+- **kat** ← die Etage (A1), das Vielfache (B1)
+    - die Etage : étage
+    - das Vielfache : multiple
+- **katılımcı** ← der Teilnehmer (B1), die Teilnehmerin (B1)
+    - der Teilnehmer : participant
+    - die Teilnehmerin : participante
+- **kaynak** ← die Quelle (B1), die Ressource (B1)
+    - die Quelle : la source
+    - die Ressource : ressource
+- **korku** ← die Angst (A1), die Furcht (B1)
+    - die Angst : peur
+    - die Furcht : la crainte, la peur
+- **koşucu** ← der Läufer (B1), die Läuferin (B1)
+    - der Läufer : coureur
+    - die Läuferin : coureuse
+- **krem şanti** ← das Schlagobers (B1), die Schlagsahne (B1)
+    - das Schlagobers : crème fouettée (autrichien)
+    - die Schlagsahne : crème fouettée
+- **kuzen** ← der Cousin (B1), die Cousine (B1)
+    - der Cousin : cousin
+    - die Cousine : cousine
+- **kıyı** ← das Ufer (A2), die Küste (B1)
+    - das Ufer : rive
+    - die Küste : côte
+- **makarna** ← die Nudeln (A1), die Pasta (B1)
+    - die Nudeln : pâtes
+    - die Pasta : pâtes
+- **manzara** ← die Landschaft (B1), die Aussicht (B1)
+    - die Landschaft : paysage
+    - die Aussicht : vue, perspective
+- **merdiven** ← die Treppe (A1), die Leiter (B1)
+    - die Treppe : escalier
+    - die Leiter : échelle
+- **merkez** ← das Zentrum (A2), der Mittelpunkt (B1)
+    - das Zentrum : le centre
+    - der Mittelpunkt : centre, point central
+- **mesafe** ← die Entfernung (B1), die Distanz (B1)
+    - die Entfernung : distance
+    - die Distanz : distance
+- **muhabir** ← der Reporter (B1), die Reporterin (B1)
+    - der Reporter : journaliste, reporter
+    - die Reporterin : journaliste (femme)
+- **ocak** ← der Herd (B1), der Januar (A1)
+    - der Herd : cuisinière
+    - der Januar : janvier
+- **onay** ← das Einverständnis (B1), die Zustimmung (C1)
+    - das Einverständnis : accord, consentement
+    - die Zustimmung : approbation, accord
+- **otomatik ödeme talimatı** ← der Dauerauftrag (B1), die Lastschrift (B2)
+    - der Dauerauftrag : virement automatique
+    - die Lastschrift : prélèvement automatique
+- **parti** ← die Party (A1), die Partei (A2)
+    - die Party : fête
+    - die Partei : parti politique
+- **parça** ← das Einzelteil (B1), der Teil (A1)
+    - das Einzelteil : pièce détachée
+    - der Teil : la partie
+- **pazar** ← der Sonntag (A1), der Markt (A1)
+    - der Sonntag : dimanche
+    - der Markt : marché
+- **perde** ← der Vorhang (A1), der Akt (B2)
+    - der Vorhang : rideau
+    - der Akt : l'acte
+- **polis memuru** ← die Polizistin (B1), der Polizist (B1)
+    - die Polizistin : policière
+    - der Polizist : policier
+- **portakal** ← die Orange (A1), die Apfelsine (A2)
+    - die Orange : orange
+    - die Apfelsine : l'orange
+- **rehabilitasyon** ← die Reha (B1), die Rehabilitation (C1)
+    - die Reha : rééducation
+    - die Rehabilitation : rééducation
+- **rüzgâr enerjisi** ← die Windenergie (A2), die Windkraft (B2)
+    - die Windenergie : énergie éolienne
+    - die Windkraft : énergie éolienne
+- **sanatçı** ← die Künstlerin (B1), der Künstler (B1)
+    - die Künstlerin : artiste (femme)
+    - der Künstler : artiste
+- **sonuç** ← das Resultat (B1), das Ergebnis (B2)
+    - das Resultat : résultat
+    - das Ergebnis : résultat
+- **spor dalı** ← die Sportart (B1), die Disziplin (B2)
+    - die Sportart : type de sport
+    - die Disziplin : discipline sportive
+- **spor eğitmeni** ← der Fitnesstrainer (B1), die Fitnesstrainerin (B1)
+    - der Fitnesstrainer : entraîneur sportif
+    - die Fitnesstrainerin : entraîneuse sportive
+- **spor salonu** ← die Turnhalle (A1), das Fitnessstudio (B1)
+    - die Turnhalle : gymnase
+    - das Fitnessstudio : salle de sport
+- **stajyer** ← der Praktikant (B1), die Praktikantin (B1)
+    - der Praktikant : stagiaire
+    - die Praktikantin : stagiaire (femme)
+- **sükûnet** ← die Ruhe (A1), die Gelassenheit (B1)
+    - die Ruhe : calme
+    - die Gelassenheit : calme/sérénité
+- **sıcaklık** ← die Wärme (A2), die Temperatur (A1)
+    - die Wärme : la chaleur
+    - die Temperatur : température
+- **tablo** ← das Bild (A1), das Gemälde (A2)
+    - das Bild : tableau
+    - das Gemälde : peinture/tableau
+- **tahmin** ← die Vorhersage (B1), die Schätzung (B2)
+    - die Vorhersage : prévision
+    - die Schätzung : estimation
+- **tarla** ← das Feld (A1), der Acker (B1)
+    - das Feld : champ
+    - der Acker : le champ
+- **tatlı** ← der Nachtisch (B1), die Nachspeise (C1)
+    - der Nachtisch : dessert
+    - die Nachspeise : dessert
+- **tedavi** ← die Behandlung (A2), die Therapie (B2)
+    - die Behandlung : traitement
+    - die Therapie : thérapie
+- **temel** ← die Basis (B1), die Grundlage (C1)
+    - die Basis : la base
+    - die Grundlage : base, fondement
+- **temizlik ürünü** ← das Reinigungsmittel (B1), das Putzmittel (B2)
+    - das Reinigungsmittel : produit de nettoyage
+    - das Putzmittel : produit d'entretien
+- **tencere** ← der Topf (A1), der Kochtopf (B1)
+    - der Topf : casserole
+    - der Kochtopf : marmite
+- **teslimat** ← die Lieferung (B1), die Zustellung (C1)
+    - die Lieferung : livraison
+    - die Zustellung : livraison, distribution
+- **torun** ← der Enkel (B1), die Enkelin (B1)
+    - der Enkel : petit-fils
+    - die Enkelin : petite-fille
+- **tramvay** ← die Straßenbahn (A1), die Tram (B1)
+    - die Straßenbahn : tramway
+    - die Tram : tramway
+- **tüketici** ← der Verbraucher (B1), die Verbraucherin (B1)
+    - der Verbraucher : consommateur
+    - die Verbraucherin : consommatrice
+- **tıbbi sekreter** ← der Arzthelfer (B1), die Arzthelferin (B1)
+    - der Arzthelfer : assistant médical
+    - die Arzthelferin : assistante médicale
+- **uygulama** ← die App (A1), die Anwendung (B1)
+    - die App : application
+    - die Anwendung : application (logiciel)
+- **vaftiz babası** ← der Patenonkel (B1), der Taufpate (B2)
+    - der Patenonkel : parrain
+    - der Taufpate : parrain de baptême
+- **vatandaş** ← der Bürger (A1), die Bürgerin (B1)
+    - der Bürger : citoyen
+    - die Bürgerin : citoyenne
+- **vatandaşlık** ← die Staatsbürgerschaft (B1), die Staatsangehörigkeit (C1)
+    - die Staatsbürgerschaft : nationalité, citoyenneté
+    - die Staatsangehörigkeit : nationalité
+- **vitrin** ← die Vitrine (B2), das Schaufenster (B1)
+    - die Vitrine : vitrine
+    - das Schaufenster : vitrine
+- **yabancı** ← der Ausländer (B1), die Ausländerin (B1)
+    - der Ausländer : étranger
+    - die Ausländerin : étrangère
+- **yağ** ← das Öl (A2), das Fett (B1)
+    - das Öl : huile
+    - das Fett : graisse, matière grasse
+- **yaşlı bakıcısı** ← der Altenpfleger (B1), die Altenpflegerin (B1)
+    - der Altenpfleger : soignant pour personnes âgées
+    - die Altenpflegerin : soignante pour personnes âgées
+- **yemek** ← das Essen (A1), das Gericht (B1)
+    - das Essen : le repas, la nourriture
+    - das Gericht : plat
+- **yetki alanı** ← die Zuständigkeit (B1), der Zuständigkeitsbereich (C1)
+    - die Zuständigkeit : responsabilité
+    - der Zuständigkeitsbereich : domaine de compétence
+- **yönetmelik** ← die Vorschrift (B1), die Verordnung (C1)
+    - die Vorschrift : règlement, consigne
+    - die Verordnung : règlement, arrêté
+- **yıldız** ← der Star (B1), der Stern (A1)
+    - der Star : star, vedette
+    - der Stern : étoile
+- **çevirmen** ← der Übersetzer (B1), die Übersetzerin (B1)
+    - der Übersetzer : traducteur
+    - die Übersetzerin : traductrice
+- **çiçek** ← die Blume (A1), die Blüte (A2)
+    - die Blume : fleur
+    - die Blüte : la fleur, la floraison
+- **çöp kovası** ← der Mülleimer (A2), die Mülltonne (B1)
+    - der Mülleimer : poubelle
+    - die Mülltonne : poubelle
+- **ölçü** ← der Takt (B1), das Maß (B1)
+    - der Takt : la mesure (musique)
+    - das Maß : la mesure
+- **şehir rehberi** ← der Stadtführer (B1), die Stadtführerin (B1)
+    - der Stadtführer : guide touristique (personne ou livre)
+    - die Stadtführerin : guide touristique (femme)
+- **şirket** ← die Firma (A1), das Unternehmen (B1)
+    - die Firma : entreprise
+    - das Unternehmen : entreprise
+- **şüphe** ← der Zweifel (B1), der Verdacht (C1)
+    - der Zweifel : doute
+    - der Verdacht : soupçon
+
+
+## verbes (69 reponses turques pour 148 mots allemands)
+
+- **değiştirmek** ← wechseln (A2), ändern (B1), umtauschen (B1), verändern (B1), auswechseln (B1)
+    - wechseln : changer
+    - ändern : changer (quelque chose)
+    - umtauschen : échanger (un achat)
+    - verändern : changer, modifier
+    - auswechseln : remplacer, changer
+- **adlandırmak** ← bezeichnen (A2), nennen (A2), benennen (B2)
+    - bezeichnen : désigner
+    - nennen : appeler, nommer
+    - benennen : nommer, désigner
+- **değerlendirmek** ← beurteilen (A2), bewerten (B1), einschätzen (B2)
+    - beurteilen : juger
+    - bewerten : évaluer
+    - einschätzen : évaluer, juger
+- **hissetmek** ← fühlen (A1), spüren (A2), empfinden (B1)
+    - fühlen : sentir, ressentir
+    - spüren : ressentir
+    - empfinden : ressentir (un sentiment)
+- **karar vermek** ← sich entscheiden (A2), entscheiden (A2), sich entschließen (B1)
+    - sich entscheiden : se décider
+    - entscheiden : décider
+    - sich entschließen : se décider (de façon réfléchie)
+- **tamamlamak** ← ergänzen (A2), abschließen (B1), absolvieren (B1)
+    - ergänzen : compléter
+    - abschließen : conclure, terminer
+    - absolvieren : accomplir, terminer (des études)
+- **üretmek** ← herstellen (A2), erzeugen (B1), produzieren (B1)
+    - herstellen : fabriquer
+    - erzeugen : produire, générer
+    - produzieren : produire
+- **üstesinden gelmek** ← überwinden (B1), bewältigen (B1), meistern (C1)
+    - überwinden : surmonter
+    - bewältigen : surmonter, gérer (une tâche)
+    - meistern : maîtriser, venir à bout de
+- **artırmak** ← erhöhen (A2), steigern (A2)
+    - erhöhen : augmenter
+    - steigern : augmenter
+- **açmak** ← öffnen (A1), aufmachen (A1)
+    - öffnen : ouvrir
+    - aufmachen : ouvrir
+- **başarısız olmak** ← scheitern (B1), misslingen (C1)
+    - scheitern : échouer
+    - misslingen : rater, échouer
+- **başlamak** ← beginnen (A1), anfangen (A1)
+    - beginnen : commencer
+    - anfangen : commencer
+- **beklemek** ← warten (A1), erwarten (A2)
+    - warten : attendre
+    - erwarten : attendre, s'attendre à
+- **belgelemek** ← belegen (B1), dokumentieren (B1)
+    - belegen : prouver, attester
+    - dokumentieren : documenter
+- **belirlemek** ← bestimmen (A2), festlegen (B1)
+    - bestimmen : déterminer
+    - festlegen : fixer, déterminer
+- **bildirmek** ← melden (A2), mitteilen (B1)
+    - melden : signaler
+    - mitteilen : communiquer, informer
+- **bırakmak** ← lassen (A2), loslassen (B1)
+    - lassen : laisser
+    - loslassen : lâcher
+- **cesaret etmek** ← wagen (B1), sich trauen (B1)
+    - wagen : oser
+    - sich trauen : oser
+- **cezalandırmak** ← bestrafen (B1), ahnden (C1)
+    - bestrafen : punir
+    - ahnden : sanctionner, réprimer
+- **denetlemek** ← kontrollieren (A2), beaufsichtigen (B1)
+    - kontrollieren : contrôler
+    - beaufsichtigen : superviser
+- **desteklemek** ← fördern (A2), unterstützen (B1)
+    - fördern : encourager, promouvoir
+    - unterstützen : soutenir
+- **değmek** ← sich lohnen (A2), wert sein (B1)
+    - sich lohnen : valoir la peine
+    - wert sein : valoir la peine
+- **düşmek** ← fallen (B1), stürzen (B1)
+    - fallen : tomber
+    - stürzen : tomber (chute)
+- **düşünmek** ← denken (A1), nachdenken (B1)
+    - denken : penser
+    - nachdenken : réfléchir
+- **etki etmek** ← beeinflussen (A2), sich auswirken (B1)
+    - beeinflussen : influencer
+    - sich auswirken : avoir un effet sur (auf)
+- **geri ödemek** ← zurückzahlen (B1), erstatten (B1)
+    - zurückzahlen : rembourser
+    - erstatten : rembourser (des frais)
+- **getirmek** ← mitbringen (A1), bringen (B1)
+    - mitbringen : apporter
+    - bringen : apporter, amener
+- **göndermek** ← schicken (A2), versenden (B1)
+    - schicken : envoyer
+    - versenden : expédier
+- **haber vermek** ← benachrichtigen (B1), sich melden (B1)
+    - benachrichtigen : avertir, notifier
+    - sich melden : donner de ses nouvelles, se manifester
+- **hayata geçirmek** ← umsetzen (B1), verwirklichen (B1)
+    - umsetzen : mettre en œuvre
+    - verwirklichen : concrétiser, réaliser (un rêve, un projet)
+- **hazırlamak** ← vorbereiten (A1), zubereiten (B1)
+    - vorbereiten : préparer
+    - zubereiten : préparer (un repas)
+- **hesaplamak** ← rechnen (A2), berechnen (B1)
+    - rechnen : calculer
+    - berechnen : calculer
+- **ikna etmek** ← überzeugen (B1), überreden (B1)
+    - überzeugen : convaincre
+    - überreden : persuader
+- **ilgilenmek** ← sich interessieren (A2), sich kümmern (A2)
+    - sich interessieren : s'intéresser
+    - sich kümmern : s'occuper de
+- **iyileştirmek** ← verbessern (A2), heilen (B1)
+    - verbessern : améliorer
+    - heilen : guérir (quelqu'un, quelque chose)
+- **kapatmak** ← schließen (A1), zumachen (A1)
+    - schließen : fermer
+    - zumachen : fermer
+- **karşı çıkmak** ← widersprechen (A2), sich widersetzen (B1)
+    - widersprechen : contredire
+    - sich widersetzen : s'opposer, résister
+- **katkıda bulunmak** ← beitragen (B1), beisteuern (B2)
+    - beitragen : contribuer à (zu)
+    - beisteuern : apporter (sa part)
+- **kazanmak** ← verdienen (A1), gewinnen (A2)
+    - verdienen : gagner (de l'argent)
+    - gewinnen : gagner
+- **kiraya vermek** ← vermieten (A2), verpachten (B1)
+    - vermieten : louer (à quelqu'un)
+    - verpachten : affermer, louer (des biens)
+- **korkmak** ← erschrecken (B1), fürchten (B1)
+    - erschrecken : avoir peur, être effrayé
+    - fürchten : craindre
+- **kurmak** ← installieren (A2), gründen (B1)
+    - installieren : installer
+    - gründen : fonder
+- **sahip olmak** ← haben (A1), besitzen (A2)
+    - haben : avoir
+    - besitzen : posséder
+- **saklamak** ← aufbewahren (B1), behalten (B1)
+    - aufbewahren : conserver, garder
+    - behalten : garder
+- **selamlamak** ← begrüßen (B1), grüßen (B1)
+    - begrüßen : accueillir, saluer
+    - grüßen : saluer
+- **sinirlenmek** ← sich ärgern (A2), sich aufregen (B1)
+    - sich ärgern : s'énerver
+    - sich aufregen : s'énerver, s'exciter
+- **sulamak** ← gießen (B1), bewässern (B2)
+    - gießen : arroser
+    - bewässern : irriguer, arroser
+- **sunmak** ← bieten (B1), vorlegen (B2)
+    - bieten : offrir, proposer
+    - vorlegen : présenter, soumettre
+- **telafi etmek** ← nachholen (B1), kompensieren (C1)
+    - nachholen : rattraper
+    - kompensieren : compenser
+- **teslim etmek** ← liefern (B1), zustellen (B1)
+    - liefern : livrer
+    - zustellen : livrer, distribuer
+- **tüketmek** ← verbrauchen (B1), konsumieren (B1)
+    - verbrauchen : consommer
+    - konsumieren : consommer
+- **uymak** ← passen (A2), befolgen (B1)
+    - passen : aller (taille), convenir
+    - befolgen : suivre (un conseil, une règle)
+- **vazgeçmek** ← verzichten (A2), aufgeben (B1)
+    - verzichten : renoncer
+    - aufgeben : abandonner, renoncer
+- **yakalamak** ← fangen (A2), erwischen (B2)
+    - fangen : attraper
+    - erwischen : attraper, surprendre
+- **yakmak** ← verbrennen (B1), anzünden (B1)
+    - verbrennen : brûler (quelque chose)
+    - anzünden : allumer
+- **yapmak** ← machen (A1), tun (A1)
+    - machen : faire
+    - tun : faire
+- **yasaklamak** ← verbieten (A2), untersagen (B2)
+    - verbieten : interdire
+    - untersagen : interdire (officiellement)
+- **yatırım yapmak** ← investieren (A2), anlegen (B1)
+    - investieren : investir
+    - anlegen : investir, placer (de l'argent)
+- **yazdırmak** ← drucken (A2), ausdrucken (B1)
+    - drucken : imprimer
+    - ausdrucken : imprimer
+- **yetiştirmek** ← erziehen (B1), ausbilden (B1)
+    - erziehen : élever (un enfant)
+    - ausbilden : former (professionnellement)
+- **yol açmak** ← verursachen (B1), führen (B1)
+    - verursachen : causer
+    - führen : mener à, conduire (zu)
+- **yönetmek** ← leiten (A2), verwalten (B1)
+    - leiten : diriger
+    - verwalten : gérer
+- **yüklemek** ← laden (A2), verladen (B1)
+    - laden : charger
+    - verladen : charger (des marchandises)
+- **çökmek** ← zusammenbrechen (B1), einstürzen (B1)
+    - zusammenbrechen : s'effondrer
+    - einstürzen : s'effondrer (un bâtiment)
+- **çürütmek** ← widerlegen (B1), entkräften (B2)
+    - widerlegen : réfuter
+    - entkräften : réfuter, invalider
+- **ödüllendirmek** ← belohnen (B1), auszeichnen (C1)
+    - belohnen : récompenser
+    - auszeichnen : distinguer, récompenser
+- **öldürmek** ← töten (B1), umbringen (B1)
+    - töten : tuer
+    - umbringen : tuer, assassiner
+- **şaşırtmak** ← überraschen (B1), verwundern (C1)
+    - überraschen : surprendre
+    - verwundern : étonner
+- **şikâyet etmek** ← sich beschweren (A2), reklamieren (B1)
+    - sich beschweren : se plaindre
+    - reklamieren : réclamer
+
