@@ -1463,6 +1463,22 @@ button{font-family:inherit}
     line-height:1.45;
     margin:25px 0 10px;
     color:#1e2433;
+    /* Les sauts de ligne comptent depuis l'epreuve de lecture : une annonce,
+       un courriel ou un panneau sont MIS EN PAGE, et les aplatir en un seul
+       paragraphe les rend illisibles. `pre-line` garde les retours a la ligne
+       sans garder les espaces d'indentation du JSON. Sans effet sur les
+       questions d'une seule ligne, qui sont toutes les autres. */
+    white-space:pre-line;
+}
+
+/* Un passage de lecture a 25 px remplit l'ecran d'un telephone avant la
+   deuxieme phrase. La classe est posee par loadExercise() selon la LONGUEUR
+   du texte, pas selon le type d'exercice : c'est la place occupee qui pose
+   probleme, et elle ne depend que du nombre de caracteres. */
+.question.question-long{
+    font-size:17px;
+    line-height:1.55;
+    white-space:pre-line;
 }
 
 /* Mot inséré à la place du blanc ("___") une fois qu'on a répondu -- voir
@@ -6568,6 +6584,13 @@ const I18N = {
         zahlen_bruch: "<strong>Fractions :</strong> <em>halb</em> / <em>die Hälfte</em> (la moitié), puis ordinal + <em>-el</em> : <em>ein Drittel</em> (un tiers), <em>ein Viertel</em> (un quart), <em>drei Viertel</em>.<br><br><strong>Années :</strong> jusqu'en 1999, on lit par centaines — <em>1999 = neunzehnhundertneunundneunzig</em>. À partir de 2000, on lit normalement : <em>2026 = zweitausendsechsundzwanzig</em>.<br>Et contrairement au français, <strong>on ne met pas de préposition</strong> : <em>Ich bin 1990 geboren.</em> (pas <em>in 1990</em>) — ou alors <em>im Jahr 1990</em>.<br><br><strong>Prix :</strong> la virgule se dit en séparant les deux parties — <em>3,50 €</em> se lit <em>drei Euro fünfzig</em>.",
         orb_pruefung_title: "Préparation aux examens", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Préparation aux examens", op_pruefung_sub: "Par niveau · Goethe · telc · DTZ",
+        op_pruefung_hoeren_t: "Écouter", op_pruefung_hoeren_d: "Une annonce, un message — puis la question",
+        op_pruefung_lesen_t: "Lire", op_pruefung_lesen_d: "Annonce, courriel, formulaire — et ce qu’on vous demande",
+        op_pruefung_schreiben_t: "Écrire", op_pruefung_schreiben_d: "La lettre officielle, remontée dans l’ordre",
+        op_pruefung_sprechen_t: "Parler", op_pruefung_sprechen_d: "Les questions de l’examinateur, et quoi répondre",
+        kicker_pruefung_hoeren: "Examen · Écouter", kicker_pruefung_lesen: "Examen · Lire",
+        kicker_pruefung_schreiben: "Examen · Écrire", kicker_pruefung_sprechen: "Examen · Parler",
+        pruefung_pas_encore: "Le contenu de l’examen n’est pas encore chargé. Réessaie dans un instant.",
         op_pruefung_noyau_t: "Le noyau", op_pruefung_noyau_d: "Les mots que les trois listes retiennent",
         op_pruefung_a2_t: "Niveau A2", op_pruefung_a2_d: "La liste officielle du Goethe-Zertifikat A2",
         op_pruefung_b1_t: "Niveau B1", op_pruefung_b1_d: "Goethe B1 et DTZ réunis — le même niveau",
@@ -7512,6 +7535,13 @@ const I18N = {
         zahlen_bruch: "<strong>Fractions:</strong> <em>halb</em> / <em>die Hälfte</em> (the half), then ordinal + <em>-el</em>: <em>ein Drittel</em> (a third), <em>ein Viertel</em> (a quarter), <em>drei Viertel</em>.<br><br><strong>Years:</strong> up to 1999 they are read in hundreds — <em>1999 = neunzehnhundertneunundneunzig</em>. From 2000 on they are read normally: <em>2026 = zweitausendsechsundzwanzig</em>.<br>And <strong>no preposition</strong> is used: <em>Ich bin 1990 geboren.</em> (not <em>in 1990</em>) — or else <em>im Jahr 1990</em>.<br><br><strong>Prices:</strong> the comma is said by separating the two parts — <em>3,50 €</em> is read <em>drei Euro fünfzig</em>.",
         orb_pruefung_title: "Exam preparation", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Exam preparation", op_pruefung_sub: "By level · Goethe · telc · DTZ",
+        op_pruefung_hoeren_t: "Listening", op_pruefung_hoeren_d: "An announcement, a message — then the question",
+        op_pruefung_lesen_t: "Reading", op_pruefung_lesen_d: "Advert, email, form — and what you are asked",
+        op_pruefung_schreiben_t: "Writing", op_pruefung_schreiben_d: "The formal letter, put back in order",
+        op_pruefung_sprechen_t: "Speaking", op_pruefung_sprechen_d: "The examiner’s questions, and what to answer",
+        kicker_pruefung_hoeren: "Exam · Listening", kicker_pruefung_lesen: "Exam · Reading",
+        kicker_pruefung_schreiben: "Exam · Writing", kicker_pruefung_sprechen: "Exam · Speaking",
+        pruefung_pas_encore: "The exam content hasn’t loaded yet. Try again in a moment.",
         op_pruefung_noyau_t: "The core", op_pruefung_noyau_d: "The words all three lists keep",
         op_pruefung_a2_t: "Level A2", op_pruefung_a2_d: "The official Goethe-Zertifikat A2 list",
         op_pruefung_b1_t: "Level B1", op_pruefung_b1_d: "Goethe B1 and DTZ together — the same level",
@@ -8460,6 +8490,13 @@ const I18N = {
         zahlen_bruch: "<strong>Kesirler:</strong> <em>halb</em> / <em>die Hälfte</em> (yarım / yarısı), sonra sıra sayısı + <em>-el</em>: <em>ein Drittel</em> (üçte bir), <em>ein Viertel</em> (dörtte bir), <em>drei Viertel</em> (dörtte üç).<br><br><strong>Yıllar:</strong> 1999'a kadar yüzlerle okunur — <em>1999 = neunzehnhundertneunundneunzig</em>. 2000'den itibaren normal okunur: <em>2026 = zweitausendsechsundzwanzig</em>.<br>Ve <strong>edat kullanılmaz</strong>: <em>Ich bin 1990 geboren.</em> (<em>in 1990</em> değil) — ya da <em>im Jahr 1990</em>.<br><br><strong>Fiyatlar:</strong> virgül, iki parçayı ayırarak söylenir — <em>3,50 €</em>, <em>drei Euro fünfzig</em> diye okunur.",
         orb_pruefung_title: "Sınav hazırlığı", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Sınav hazırlığı", op_pruefung_sub: "Seviyeye göre · Goethe · telc · DTZ",
+        op_pruefung_hoeren_t: "Dinleme", op_pruefung_hoeren_d: "Bir anons, bir mesaj — sonra soru",
+        op_pruefung_lesen_t: "Okuma", op_pruefung_lesen_d: "İlan, e-posta, form — ve sizden istenen",
+        op_pruefung_schreiben_t: "Yazma", op_pruefung_schreiben_d: "Resmî mektup, doğru sıraya konmuş",
+        op_pruefung_sprechen_t: "Konuşma", op_pruefung_sprechen_d: "Sınav görevlisinin soruları ve cevapları",
+        kicker_pruefung_hoeren: "Sınav · Dinleme", kicker_pruefung_lesen: "Sınav · Okuma",
+        kicker_pruefung_schreiben: "Sınav · Yazma", kicker_pruefung_sprechen: "Sınav · Konuşma",
+        pruefung_pas_encore: "Sınav içeriği henüz yüklenmedi. Birazdan tekrar deneyin.",
         op_pruefung_noyau_t: "Çekirdek", op_pruefung_noyau_d: "Üç listenin de tuttuğu kelimeler",
         op_pruefung_a2_t: "A2 seviyesi", op_pruefung_a2_d: "Goethe-Zertifikat A2’nin resmî listesi",
         op_pruefung_b1_t: "B1 seviyesi", op_pruefung_b1_d: "Goethe B1 ve DTZ birlikte — aynı seviye",
@@ -9823,6 +9860,7 @@ async function loadThemesJson() {
     await loadVerbeJson();
     await loadAdverbienJson();
     await loadRedewendungenJson();
+    await loadPruefungJson();
     await loadFunktionswoerterJson();
     try {
         const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json'), { cache: 'no-cache' });
@@ -14797,8 +14835,21 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_pruefung_title"), sub:t("op_pruefung_sub"),
             options:[
+                // LES QUATRE EPREUVES D'ABORD, le vocabulaire ensuite. L'ordre
+                // dit ce que la tuile est devenue : elle preparait un lexique,
+                // elle prepare un examen. Le vocabulaire sert les epreuves,
+                // pas l'inverse -- et celui qui ouvre cette tuile a une date
+                // d'examen en tete, pas une envie de reviser des mots.
+                { icon:"exercice", title:t("op_pruefung_hoeren_t"), desc:t("op_pruefung_hoeren_d"),
+                  primary:true, action:"startPruefungHoeren" },
+                { icon:"exercice", title:t("op_pruefung_lesen_t"), desc:t("op_pruefung_lesen_d"),
+                  action:"startPruefungLesen" },
+                { icon:"exercice", title:t("op_pruefung_schreiben_t"), desc:t("op_pruefung_schreiben_d"),
+                  action:"startPruefungSchreiben" },
+                { icon:"exercice", title:t("op_pruefung_sprechen_t"), desc:t("op_pruefung_sprechen_d"),
+                  action:"startPruefungSprechen" },
                 { icon:"carte", title:t("op_pruefung_noyau_t"), desc:t("op_pruefung_noyau_d"),
-                  primary:true, action:"startExamenNoyau",
+                  action:"startExamenNoyau",
                   count:cartesExamen('noyau').length },
                 { icon:"carte", title:t("op_pruefung_a2_t"), desc:t("op_pruefung_a2_d"),
                   action:"startExamenA2", count:cartesExamen('a2').length },
@@ -15292,6 +15343,184 @@ function startExamenDeck(filtre){
     showScreen("flashcards");
     loadFlashcard();
 }
+
+// ============ LES QUATRE EPREUVES DE L'EXAMEN ============
+//
+// La tuile Preparation couvrait le LEXIQUE. Un examen teste aussi un FORMAT :
+// on peut connaitre les 3 000 mots de la liste et echouer parce qu'on ignore
+// qu'une lettre officielle commence par « Sehr geehrte Damen und Herren » et
+// se termine par « Mit freundlichen Gruessen ».
+//
+// TOUT CECI EST BATI SUR DE LA MACHINERIE QUI EXISTAIT DEJA, et c'est ce qui
+// rend l'ajout petit :
+//
+//   - les blocs a remettre dans l'ordre (`chunks`) servaient aux pronoms
+//     relatifs ; ils font ici reconstruire une reponse orale et une lettre.
+//   - la dictee audio (`dictation` + `dictationText`) servait aux noms ; elle
+//     lit ici le passage de comprehension orale.
+//
+// Aucune des deux n'a ete ecrite pour l'examen, et les deux lui vont
+// exactement. Rien de nouveau n'a ete ajoute a l'ecran d'exercice.
+let pruefungData = null;
+
+async function loadPruefungJson(){
+    try {
+        const r = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/pruefung.json'), { cache: 'no-cache' });
+        if(!r.ok) throw new Error("Fichier pruefung.json introuvable");
+        pruefungData = await r.json();
+    } catch(e){
+        console.warn("Chargement de pruefung.json impossible", e);
+        pruefungData = null;
+    }
+}
+
+// Le champ selon la langue d'interface : `frage_fr`, `frage_en`, `frage_tr`.
+// Le francais sert de repli -- c'est la langue dans laquelle le contenu a ete
+// ecrit, donc la seule qui soit sure d'exister.
+function pt(o, base){
+    const l = getUiLang();
+    return o[base + "_" + l] || o[base + "_fr"] || o[base] || "";
+}
+
+// LE MELANGE DES OPTIONS SE FAIT ICI, PAS DANS LE FICHIER. Les donnees
+// gardent la bonne reponse en premiere position : elles se relisent ainsi
+// d'un coup d'oeil, et une erreur de contenu saute aux yeux. Mais servir
+// l'ordre tel quel apprendrait a cliquer sur le premier bouton -- un defaut
+// invisible a la relecture du JSON, et evident des la deuxieme question.
+function pruefungOptions(o, bon){
+    const liste = (pt(o, "options") || []).slice();
+    const texteBon = liste[bon];
+    shuffleArray(liste);
+    return { options: liste, correct: texteBon };
+}
+
+// -- SPRECHEN : les questions que l'examinateur pose vraiment ---------------
+//
+// Une question orale n'a pas de reponse unique, donc rien a corriger au sens
+// habituel. On fait donc RECONSTRUIRE une reponse modele bloc par bloc : la
+// tache est verifiable, et ce que l'usager retient, ce sont les tournures et
+// l'ordre dans lequel un examinateur les attend.
+function exercicesSprechen(niveau){
+    if(!pruefungData || !pruefungData.sprechen) return [];
+    return pruefungData.sprechen
+        .filter(o => !niveau || o.niveau === niveau)
+        .map(o => ({
+            topic: o.teil,
+            question: "« " + o.frage + " »\n" + pt(o, "consigne"),
+            question_en: "« " + o.frage + " »\n" + o.consigne_en,
+            question_tr: "« " + o.frage + " »\n" + o.consigne_tr,
+            translation: o.trad_fr, translation_en: o.trad_en, translation_tr: o.trad_tr,
+            hint: "", hint_en: "", hint_tr: "",
+            chunks: o.chunks.slice(),
+            explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
+        }));
+}
+
+// -- SCHREIBEN : la lettre remontee dans l'ordre ----------------------------
+//
+// C'est la STRUCTURE qu'on apprend, pas les mots. L'ordre d'une lettre
+// officielle allemande ne varie jamais -- formule d'appel, la nouvelle, la
+// raison, la demande, la salutation, la signature -- et c'est cette structure
+// que le correcteur coche.
+function exercicesSchreiben(niveau){
+    if(!pruefungData || !pruefungData.schreiben) return [];
+    return pruefungData.schreiben
+        .filter(o => !niveau || o.niveau === niveau)
+        .map(o => ({
+            topic: o.typ,
+            question: pt(o, "aufgabe"),
+            question_en: o.aufgabe_en, question_tr: o.aufgabe_tr,
+            translation: o.trad_fr, translation_en: o.trad_en, translation_tr: o.trad_tr,
+            hint: "", hint_en: "", hint_tr: "",
+            chunks: o.chunks.slice(),
+            explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
+        }));
+}
+
+// -- LESEN : un texte, plusieurs questions ---------------------------------
+//
+// Le texte est REPETE a chaque question de la meme serie. C'est voulu :
+// l'ecran d'exercice montre une question a la fois, et un texte qui
+// disparaitrait entre deux questions obligerait a le retenir par coeur --
+// ce que l'examen ne demande jamais, puisque la feuille reste sous les yeux.
+function exercicesLesen(niveau){
+    if(!pruefungData || !pruefungData.lesen) return [];
+    const out = [];
+    pruefungData.lesen
+        .filter(o => !niveau || o.niveau === niveau)
+        .forEach(o => {
+            (o.fragen || []).forEach(q => {
+                const { options, correct } = pruefungOptions(q, q.bon);
+                out.push({
+                    topic: o.typ,
+                    question: o.text + "\n\n— " + pt(q, "frage"),
+                    question_en: o.text + "\n\n— " + q.frage_en,
+                    question_tr: o.text + "\n\n— " + q.frage_tr,
+                    translation: "", translation_en: "", translation_tr: "",
+                    hint: "", hint_en: "", hint_tr: "",
+                    answers: [correct], correct: correct, correctEn: correct, correctTr: correct,
+                    options: options, optionsEn: options, optionsTr: options,
+                    explanation: q.erkl_fr, explanation_en: q.erkl_en, explanation_tr: q.erkl_tr
+                });
+            });
+        });
+    return out;
+}
+
+// -- HOEREN : le passage est LU, jamais affiche ----------------------------
+//
+// Si le texte apparaissait a l'ecran, l'epreuve deviendrait de la lecture.
+// Il part donc dans `dictationText` -- que loadExercise() joue a l'ouverture
+// et que le bouton REECOUTER rejoue -- et la question seule est affichee.
+//
+// C'est la seule des quatre epreuves qui depende de la synthese vocale du
+// telephone. Sur un appareil sans voix allemande installee, la question
+// reste lisible mais l'audio se tait : mieux vaut une epreuve muette qu'un
+// ecran bloque.
+function exercicesHoeren(niveau){
+    if(!pruefungData || !pruefungData.hoeren) return [];
+    return pruefungData.hoeren
+        .filter(o => !niveau || o.niveau === niveau)
+        .map(o => {
+            const { options, correct } = pruefungOptions(o, o.bon);
+            return {
+                topic: "Hören",
+                question: pt(o, "frage"), question_en: o.frage_en, question_tr: o.frage_tr,
+                translation: "", translation_en: "", translation_tr: "",
+                hint: "", hint_en: "", hint_tr: "",
+                dictation: true, dictationText: o.audio, dictationLang: "de",
+                answers: [correct], correct: correct, correctEn: correct, correctTr: correct,
+                options: options, optionsEn: options, optionsTr: options,
+                explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
+            };
+        });
+}
+
+// Le contenu arrive du reseau : une serie vide veut dire que le fichier n'est
+// pas encore la, pas qu'il n'y a rien a reviser. On le dit plutot que d'ouvrir
+// un ecran d'exercice vide.
+function lancerEpreuve(construire, kicker){
+    const liste = construire(null);
+    if(!liste.length){
+        if(!pruefungData) loadPruefungJson().then(() => {
+            const seconde = construire(null);
+            if(seconde.length) startExerciseSet(shuffleArray(seconde), kicker,
+                                                () => openOrbPanel('pruefung'),
+                                                () => lancerEpreuve(construire, kicker));
+            else showInfoToast(t('pruefung_pas_encore'));
+        });
+        else showInfoToast(t('pruefung_pas_encore'));
+        return;
+    }
+    startExerciseSet(shuffleArray(liste), kicker,
+                     () => openOrbPanel('pruefung'),
+                     () => lancerEpreuve(construire, kicker));
+}
+
+function startPruefungSprechen(){ lancerEpreuve(exercicesSprechen, "kicker_pruefung_sprechen"); }
+function startPruefungLesen(){ lancerEpreuve(exercicesLesen, "kicker_pruefung_lesen"); }
+function startPruefungSchreiben(){ lancerEpreuve(exercicesSchreiben, "kicker_pruefung_schreiben"); }
+function startPruefungHoeren(){ lancerEpreuve(exercicesHoeren, "kicker_pruefung_hoeren"); }
 
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
 // a donc besoin de sa porte d'entree nommee.
@@ -18927,7 +19156,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 380;
+const APP_VERSION = 381;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -21219,6 +21448,12 @@ function loadExercise(){
             echapperHtml(avant) + `<span id="questionBlank" class="filled-blank vide">___</span>` + echapperHtml(apres);
     } else {
         document.getElementById("question").textContent = question;
+        // Au-dela d'une centaine de caracteres, on n'est plus devant une
+        // question mais devant un texte -- et 25 px le rendraient illisible
+        // sur un telephone. Le seuil vaut mieux qu'un drapeau dans les
+        // donnees : il suit la realite affichee, quelle que soit l'epreuve.
+        document.getElementById("question")
+            .classList.toggle("question-long", (question || "").length > 110);
     }
 
     if(usingChunks){
