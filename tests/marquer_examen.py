@@ -86,7 +86,13 @@ def marquer(verifier_seulement):
             mot = (m.get(cle) or "").strip()
             if not mot:
                 continue
-            etiquettes = sorted(e for e, s in ls.items() if mot in s)
+            # LE PLURIEL COMPTE AUTANT QUE LE SINGULIER. Les listes officielles
+            # portent parfois la forme qu'on lit sur un panneau -- « Senioren »,
+            # « Kenntnisse » -- la ou le cours enseigne l'entree de dictionnaire.
+            # Ne comparer que le singulier laissait ces mots eternellement
+            # « manquants », et le deuxieme lot a failli les reecrire.
+            formes = {mot, (m.get("pluriel") or "").strip()} - {"", "—"}
+            etiquettes = sorted(e for e, s in ls.items() if formes & s)
             if not etiquettes:
                 # Un mot qui n'y est plus perd sa marque : les listes peuvent
                 # etre reextraites, et une marque perimee est pire qu'absente.

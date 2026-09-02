@@ -56,9 +56,22 @@ def wikdict():
 
 
 def corpus():
-    lg = L.Langue("tr")          # la langue cible est sans importance ici
+    """Toutes les formes que le cours enseigne, PLURIELS COMPRIS.
+
+    Les listes officielles portent parfois la forme lue sur un panneau --
+    « Senioren », « Kenntnisse » -- la ou le cours enseigne l'entree de
+    dictionnaire. Sans les pluriels, ces mots restent « manquants » a chaque
+    passage et reviennent dans le lot suivant.
+    """
     out = set()
-    for cartes in lg.toutes_les_cartes().values():
+    d = json.load(io.open(os.path.join(RACINE, "themes.json"), encoding="utf-8"))
+    for t in d.get("themes", d):
+        for m in t.get("mots", []):
+            for f in ((m.get("mot") or "").strip(), (m.get("pluriel") or "").strip()):
+                if f and f != "—":
+                    out.add(f)
+    lg = L.Langue("tr")          # la langue cible est sans importance ici
+    for nom, cartes in lg.toutes_les_cartes().items():
         for c in cartes:
             mot = (c.get("cle") or "").strip()
             if mot:
