@@ -3588,7 +3588,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v385</span>
+        <span class="subtitle-version">v386</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -15599,10 +15599,16 @@ function exercicesLesen(niveau){
     const out = [];
     pruefungData.lesen
         .filter(o => !niveau || o.niveau === niveau)
-        .forEach(o => {
+        .forEach((o, groupe) => {
             (o.fragen || []).forEach(q => {
                 const { options, correct } = pruefungOptions(q, q.bon);
                 out.push({
+                    // LE NUMERO DU TEXTE VOYAGE AVEC LA QUESTION. Sans lui, le
+                    // melange de la serie separerait les trois questions d'un
+                    // meme texte : on relirait le meme panneau d'affichage
+                    // trois fois, a des moments quelconques. Aucun examen ne
+                    // fait cela, et personne ne relit volontiers deux fois.
+                    groupe: groupe,
                     topic: o.typ,
                     question: o.text + "\n\n— " + pt(q, "frage"),
                     question_en: o.text + "\n\n— " + q.frage_en,
@@ -15690,6 +15696,24 @@ function renderPruefungNiveauBar(){
     bar.innerHTML = html;
 }
 
+// ON MELANGE LES TEXTES, PAS LES QUESTIONS QUI PORTENT DESSUS. Les trois
+// questions d'une meme annonce doivent se suivre : ainsi l'usager lit le texte
+// une fois et repond trois fois, exactement comme a l'examen. Un melange plat
+// les eparpillerait dans la serie et lui ferait relire le meme texte a trois
+// moments quelconques -- le genre de defaut qui ne casse rien et qui epuise.
+//
+// Les exercices sans `groupe` (ecoute, oral, ecrit) tombent chacun dans son
+// propre paquet : le melange redevient alors le melange ordinaire.
+function melangerEpreuve(liste){
+    const paquets = new Map();
+    liste.forEach((e, i) => {
+        const cle = (e.groupe === undefined) ? "seul-" + i : "g-" + e.groupe;
+        if(!paquets.has(cle)) paquets.set(cle, []);
+        paquets.get(cle).push(e);
+    });
+    return [].concat(...shuffleArray([...paquets.values()]));
+}
+
 function lancerEpreuve(construire, kicker){
     const jouer = () => {
         const liste = construire(pruefungNiveau);
@@ -15702,7 +15726,7 @@ function lancerEpreuve(construire, kicker){
             showInfoToast(t(pruefungData ? 'pruefung_niveau_vide' : 'pruefung_pas_encore'));
             return;
         }
-        startExerciseSet(shuffleArray(liste), kicker,
+        startExerciseSet(melangerEpreuve(liste), kicker,
                          openPruefungInfo,
                          () => lancerEpreuve(construire, kicker));
     };
@@ -19361,7 +19385,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 385;
+const APP_VERSION = 386;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
