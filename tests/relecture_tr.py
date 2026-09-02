@@ -244,6 +244,54 @@ def suspects():
     return 0
 
 
+# LES PAIRES DE GENRE NE SONT PAS DES COLLISIONS, ET LES SIGNALER SANS FIN
+# EST PIRE QU'INUTILE.
+#
+# « der Experte » et « die Expertin » recoivent tous deux « uzman », et c'est
+# JUSTE : le turc n'a pas de genre grammatical et ne feminise pas le nom de
+# metier. Inventer « kadin uzman » pour departager les deux cartes
+# enseignerait une regle qui n'existe pas dans la langue.
+#
+# Elles sortent donc du decompte et vont dans une section a part, une fois,
+# pour qu'on sache qu'elles ont ete vues et non oubliees. Sans ca, chaque
+# relance du controle les remet dans la pile et on finit par ne plus lire le
+# rapport du tout.
+#
+# La detection est mecanique : on plie les tremas, on retire l'eventuel « in »
+# final, le « e » final, et on ramene -mann/-frau au radical. Si les deux mots
+# se rejoignent, c'est la meme entree au feminin.
+#
+#     Experte / Expertin        -> expert
+#     Koch / Koechin            -> koch
+#     Tormann / Torfrau         -> tor
+#     Cousin / Cousine          -> cousin
+def _radical(mot):
+    m = (mot or "").lower().strip()
+    for article in ("der ", "die ", "das "):
+        if m.startswith(article):
+            m = m[len(article):]
+    for a, b in (("ä", "a"), ("ö", "o"), ("ü", "u"), ("ß", "ss")):
+        m = m.replace(a, b)
+    if m.endswith("frau"):
+        m = m[:-4]
+    elif m.endswith("mann"):
+        m = m[:-4]
+    # LE « E » SE RETIRE AVANT LE « IN », ET L'ORDRE COMPTE. Dans l'autre
+    # sens, Cousin perdait son « in » et devenait « cous » tandis que Cousine
+    # ne perdait que son « e » et restait « cousin » : la paire la plus
+    # evidente du corpus etait la seule a ne pas etre reconnue.
+    if m.endswith("e"):
+        m = m[:-1]
+    if m.endswith("in"):
+        m = m[:-2]
+    return m
+
+
+def paire_de_genre(cartes):
+    radicaux = {_radical(c.get("allemand")) for c in cartes}
+    return len(radicaux) == 1
+
+
 def collisions():
     """Deux mots allemands distincts, une seule reponse turque.
 
@@ -261,6 +309,7 @@ def collisions():
     tout = toutes_les_cartes()
     total = 0
     lignes = []
+    genres = []
     for nom in sorted(tout):
         par_turc = {}
         for c in tout[nom]:
@@ -273,7 +322,9 @@ def collisions():
             # pas une collision, c'est un doublon de corpus.
             if de not in [x["allemand"] for x in par_turc[tr]]:
                 par_turc[tr].append(c)
-        groupes = [(tr, v) for tr, v in par_turc.items() if len(v) > 1]
+        tous = [(tr, v) for tr, v in par_turc.items() if len(v) > 1]
+        groupes = [g for g in tous if not paire_de_genre(g[1])]
+        genres.extend((nom, tr, v) for tr, v in tous if paire_de_genre(v))
         groupes.sort(key=lambda g: (-len(g[1]), g[0]))
         if not groupes:
             continue
@@ -305,8 +356,24 @@ def collisions():
         f.write("aucune relecture par lots ne peut les voir : le relecteur ne ")
         f.write("recoit qu'une centaine de cartes a la fois.\n")
         f.write("\n".join(lignes))
+        if genres:
+            f.write("\n\n---\n\n# Paires de genre — vues, et acceptees\n\n")
+            f.write("Ces %d groupes ne sont PAS des collisions a corriger. "
+                    % len(genres))
+            f.write("Le turc n'a pas de genre grammatical et ne feminise pas ")
+            f.write("le nom de metier : « uzman » est la bonne reponse pour ")
+            f.write("`der Experte` comme pour `die Expertin`. Inventer une ")
+            f.write("forme feminine pour departager les deux cartes ")
+            f.write("enseignerait une regle qui n'existe pas dans la langue.\n\n")
+            f.write("Ils sont reconnus mecaniquement (voir `paire_de_genre`) ")
+            f.write("et sortis du decompte, pour qu'une relance du controle ne ")
+            f.write("les remette pas dans la pile a chaque fois.\n\n")
+            for nom, tr, v in sorted(genres):
+                mots = ", ".join(x["allemand"] for x in v)
+                f.write("- *%s* — **%s** ← %s\n" % (nom, tr, mots))
         f.write("\n")
-    print("  ecrit : relecture_tr/collisions.md  (%d cartes concernees)" % total)
+    print("  ecrit : relecture_tr/collisions.md  (%d cartes a regarder, "
+          "%d paires de genre acceptees)" % (total, len(genres)))
     return 0
 
 

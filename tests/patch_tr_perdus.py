@@ -13,6 +13,11 @@ forme ; verbe.json porte son mot sous `infinitif` et non `mot` ; themes.json
 range ses mots dans des themes, et c'est le THEME qui porte le niveau. Voir
 indexer() -- c'est le seul endroit ou cette difference apparait.
 
+UN MOT PRESENT PLUSIEURS FOIS EST CORRIGE PARTOUT. « Fachmann » figure dans
+« Berufe » et dans le chapitre 15 du manuel : les deux recoivent la meme
+traduction. Lui en donner deux selon le paquet serait un defaut pire que
+celui qu'on repare.
+
 LA FORME D'UN FICHIER DE CORRECTIONS
 
     {
@@ -61,14 +66,20 @@ def lire_json(chemin):
     return json.load(io.open(chemin, encoding="utf-8"))
 
 
-def serialiser(donnees):
-    return json.dumps(donnees, ensure_ascii=False, indent=2) + "\n"
+# LE SAUT DE LIGNE FINAL N'EST PAS LE MEME PARTOUT. Quatre fichiers en ont un,
+# themes.json n'en a pas. Le garde-fou d'aller-retour l'a vu du premier coup --
+# c'est precisement ce qu'on lui demande -- mais l'imposer aurait reecrit le
+# dernier octet du fichier au passage. On releve donc la convention du fichier
+# au lieu d'en decider une.
+def serialiser(donnees, saut_final=True):
+    texte = json.dumps(donnees, ensure_ascii=False, indent=2)
+    return texte + "\n" if saut_final else texte
 
 
-def controle_aller_retour(chemin, donnees):
+def controle_aller_retour(chemin, donnees, saut_final):
     """Le fichier se reproduit-il a l'octet pres ? Sinon on ne touche a rien."""
     sur_disque = io.open(chemin, encoding="utf-8", newline="").read()
-    refait = serialiser(donnees)
+    refait = serialiser(donnees, saut_final)
     if sur_disque == refait:
         return True, ""
     # On dit OU ca diverge : sans ca, le message est inexploitable.
@@ -91,26 +102,26 @@ def controle_aller_retour(chemin, donnees):
 # cas ; pour themes.json il filtre les THEMES, la cle etant portee par le
 # theme et non par le mot.
 #
-# UN MOT PEUT FIGURER DANS PLUSIEURS THEMES. On refuse alors de deviner :
-# une correction ambigue est signalee et non appliquee. Le rapport de
-# collisions, lui, dedoublonne par mot allemand -- il n'a pas ce probleme,
-# mais l'ecriture, si.
+# UN MOT PEUT FIGURER DANS PLUSIEURS THEMES, et c'est frequent : « Fachmann »
+# est a la fois dans « Berufe » et dans le chapitre 15 du manuel. Toutes ses
+# occurrences sont alors modifiees, et c'est le seul comportement correct --
+# un meme mot allemand qui recevrait deux traductions turques selon le paquet
+# ou on le rencontre serait un defaut pire que celui qu'on repare.
+#
+# L'index rend donc TOUJOURS une liste, meme quand elle ne contient qu'un
+# element : c'est ce qui evite d'avoir deux chemins d'ecriture a maintenir.
 def indexer(donnees, nom_fichier, niveau):
     index = {}
     if nom_fichier == "themes.json":
         themes = donnees.get("themes", donnees)
-        vus = {}
+        vu_niveau = False
         for t in themes:
             if t.get("niveau") != niveau:
                 continue
+            vu_niveau = True
             for m in t.get("mots", []):
-                cle = m.get("mot")
-                vus[cle] = vus.get(cle, 0) + 1
-                index.setdefault(cle, m)
-        for cle, n in vus.items():
-            if n > 1:
-                index[cle] = None      # ambigu : on ne touchera pas
-        if not index:
+                index.setdefault(m.get("mot"), []).append(m)
+        if not vu_niveau:
             return None, "aucun theme de niveau %s dans themes.json" % niveau
         return index, None
 
@@ -118,7 +129,7 @@ def indexer(donnees, nom_fichier, niveau):
         return None, "niveau %s absent de %s" % (niveau, nom_fichier)
     champ = "infinitif" if nom_fichier == "verbe.json" else "mot"
     for m in donnees[niveau]:
-        index.setdefault(m.get(champ), m)
+        index.setdefault(m.get(champ), []).append(m)
     return index, None
 
 
@@ -129,7 +140,8 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
     chemin = os.path.join(RACINE, nom_fichier)
 
     donnees = lire_json(chemin)
-    ok, detail = controle_aller_retour(chemin, donnees)
+    saut_final = io.open(chemin, encoding="utf-8", newline="").read().endswith("\n")
+    ok, detail = controle_aller_retour(chemin, donnees, saut_final)
     if not ok:
         print("  ! %s ne se reproduit pas a l'identique -- ABANDON" % nom_fichier)
         print("    %s" % detail)
@@ -143,31 +155,28 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
     poses = refuses = absents = 0
     for e in corr["entrees"]:
         mot = e.get("mot")
-        if mot in index and index[mot] is None:
-            print("    present dans PLUSIEURS themes, non modifie : %s" % mot)
-            refuses += 1
-            continue
-        cible = index.get(mot)
-        if cible is None:
+        cibles = index.get(mot)
+        if not cibles:
             print("    absent du corpus : %s" % mot)
             absents += 1
             continue
-        for champ, est_phrase in (("traduction_tr", False), ("exemple_tr", True)):
-            neuf = e.get(champ)
-            if not neuf:
-                continue
-            if not perdu(cible.get(champ), est_phrase) and not remplacer:
-                print("    deja rempli, non ecrase : %s.%s = %r"
-                      % (mot, champ, cible.get(champ)))
-                refuses += 1
-                continue
-            if perdu(neuf, est_phrase):
-                print("    correction elle-meme trop courte, refusee : %s.%s = %r"
-                      % (mot, champ, neuf))
-                refuses += 1
-                continue
-            cible[champ] = neuf
-            poses += 1
+        for cible in cibles:
+            for champ, est_phrase in (("traduction_tr", False), ("exemple_tr", True)):
+                neuf = e.get(champ)
+                if not neuf:
+                    continue
+                if not perdu(cible.get(champ), est_phrase) and not remplacer:
+                    print("    deja rempli, non ecrase : %s.%s = %r"
+                          % (mot, champ, cible.get(champ)))
+                    refuses += 1
+                    continue
+                if perdu(neuf, est_phrase):
+                    print("    correction elle-meme trop courte, refusee : %s.%s = %r"
+                          % (mot, champ, neuf))
+                    refuses += 1
+                    continue
+                cible[champ] = neuf
+                poses += 1
 
     print("  %-18s %s : %3d champ(s) pose(s)%s%s"
           % (nom_fichier, niveau, poses,
@@ -180,7 +189,7 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
     if not poses:
         return 0
     with io.open(chemin, "w", encoding="utf-8", newline="") as f:
-        f.write(serialiser(donnees))
+        f.write(serialiser(donnees, saut_final))
     return 0
 
 

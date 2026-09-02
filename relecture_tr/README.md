@@ -25,6 +25,15 @@ Toutes les collisions ne sont pas des erreurs : deux quasi-synonymes allemands
 peuvent légitimement partager un mot turc si la langue n'en a pas deux. Mais
 chacune doit être **regardée**.
 
+Les **paires de genre** — `der Experte` / `die Expertin` — sont reconnues
+mécaniquement et sorties du décompte, dans une section à part du rapport. Le
+turc n'a pas de genre grammatical et ne féminise pas le nom de métier :
+« uzman » est la bonne réponse pour les deux, et inventer une forme féminine
+pour les départager enseignerait une règle qui n'existe pas.
+
+**Au 2 septembre 2026, les deux contrôles renvoient zéro** : plus aucun champ
+perdu, plus aucune collision à trancher.
+
 ## 2. Les lots à distribuer
 
 ```

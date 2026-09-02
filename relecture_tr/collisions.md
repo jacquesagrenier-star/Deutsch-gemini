@@ -6,393 +6,50 @@ Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de 
 
 Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
 
-## noms (127 reponses turques pour 260 mots allemands)
 
-- **uzman** ← der Experte (B1), die Expertin (B1), der Fachmann (B1), die Fachfrau (B1)
-    - der Experte : expert
-    - die Expertin : experte
-    - der Fachmann : spécialiste, expert
-    - die Fachfrau : spécialiste (femme)
-- **avukat** ← der Anwalt (B1), der Rechtsanwalt (B1), die Rechtsanwältin (B1)
-    - der Anwalt : avocat
-    - der Rechtsanwalt : avocat
-    - die Rechtsanwältin : avocate
-- **bilet** ← der Fahrschein (A2), die Fahrkarte (B2), das Ticket (A1)
-    - der Fahrschein : titre de transport
-    - die Fahrkarte : titre de transport
-    - das Ticket : billet
-- **malzeme** ← die Zutat (B1), das Material (B1), der Werkstoff (C1)
-    - die Zutat : ingrédient
-    - das Material : matériau
-    - der Werkstoff : matériau
-- **oyuncu** ← der Schauspieler (A2), die Schauspielerin (B1), der Spieler (A1)
-    - der Schauspieler : acteur
-    - die Schauspielerin : actrice
-    - der Spieler : joueur
-- **ab vatandaşı** ← der EU-Bürger (B1), die EU-Bürgerin (B1)
-    - der EU-Bürger : citoyen de l'UE
-    - die EU-Bürgerin : citoyenne de l'UE
-- **ad** ← der Vorname (A1), der Name (A1)
-    - der Vorname : prénom
-    - der Name : le nom
-- **aday** ← der Kandidat (A2), die Kandidatin (B1)
-    - der Kandidat : candidat
-    - die Kandidatin : candidate (femme)
-- **alan** ← der Bereich (B1), die Fläche (B1)
-    - der Bereich : domaine, secteur
-    - die Fläche : surface
-- **anlam** ← die Bedeutung (B1), der Sinn (B1)
-    - die Bedeutung : signification
-    - der Sinn : le sens
-- **araç** ← das Fahrzeug (B1), das Mittel (B1)
-    - das Fahrzeug : véhicule
-    - das Mittel : moyen
-- **araştırma** ← die Studie (B1), die Forschung (B2)
-    - die Studie : étude (recherche)
-    - die Forschung : recherche
-- **ateş** ← das Fieber (A1), das Feuer (B1)
-    - das Fieber : fièvre
-    - das Feuer : feu
-- **ay** ← der Mond (A1), der Monat (A1)
-    - der Mond : la lune
-    - der Monat : mois
-- **ağ** ← das Netz (A2), das Netzwerk (B1)
-    - das Netz : le réseau, le filet
-    - das Netzwerk : réseau
-- **aşçı** ← der Koch (A1), die Köchin (B1)
-    - der Koch : cuisinier
-    - die Köchin : cuisinière
-- **aşı** ← der Impfstoff (A2), die Impfung (B1)
-    - der Impfstoff : vaccin
-    - die Impfung : vaccination
-- **bahane** ← die Ausrede (B1), der Vorwand (C1)
-    - die Ausrede : excuse, prétexte
-    - der Vorwand : prétexte
-- **başvuru** ← die Bewerbung (B2), der Antrag (B1)
-    - die Bewerbung : candidature
-    - der Antrag : demande (formulaire)
-- **belediye başkanı** ← der Bürgermeister (B1), die Bürgermeisterin (B1)
-    - der Bürgermeister : maire
-    - die Bürgermeisterin : mairesse
-- **beslenme alışkanlığı** ← die Essgewohnheit (B1), die Ernährungsgewohnheit (B2)
-    - die Essgewohnheit : habitude alimentaire
-    - die Ernährungsgewohnheit : habitude alimentaire
-- **beslenme danışmanı** ← der Ernährungsberater (B1), die Ernährungsberaterin (B1)
-    - der Ernährungsberater : conseiller en nutrition
-    - die Ernährungsberaterin : conseillère en nutrition
-- **besteci** ← der Komponist (B1), die Komponistin (B1)
-    - der Komponist : compositeur
-    - die Komponistin : compositrice
-- **beyin** ← das Gehirn (B1), das Hirn (B2)
-    - das Gehirn : le cerveau
-    - das Hirn : cerveau
-- **bilim insanı** ← der Wissenschaftler (B1), die Wissenschaftlerin (B1)
-    - der Wissenschaftler : scientifique
-    - die Wissenschaftlerin : scientifique (femme)
-- **daire** ← die Wohnung (A1), der Kreis (A1)
-    - die Wohnung : appartement
-    - der Kreis : cercle
-- **danışman** ← der Berater (B1), der Betreuer (B1)
-    - der Berater : consultant
-    - der Betreuer : encadrant
-- **ders kitabı** ← das Lehrbuch (A2), das Schulbuch (B2)
-    - das Lehrbuch : manuel scolaire
-    - das Schulbuch : manuel scolaire
-- **değişiklik** ← die Änderung (A2), die Veränderung (B1)
-    - die Änderung : la modification
-    - die Veränderung : le changement, la transformation
-- **değişim** ← der Umtausch (A2), der Wechsel (B1)
-    - der Umtausch : échange (achat)
-    - der Wechsel : le changement
-- **dinleyici** ← der Zuhörer (B1), die Zuhörerin (B1)
-    - der Zuhörer : auditeur
-    - die Zuhörerin : auditrice
-- **dosya** ← die Akte (B2), die Datei (B1)
-    - die Akte : dossier
-    - die Datei : fichier
-- **duvar** ← die Wand (A1), die Mauer (A2)
-    - die Wand : mur
-    - die Mauer : le mur
-- **dönem** ← der Zeitraum (B1), das Semester (A1)
-    - der Zeitraum : période
-    - das Semester : semestre
-- **dükkân** ← das Geschäft (A1), der Laden (A1)
-    - das Geschäft : magasin
-    - der Laden : le magasin
-- **düzenleyici** ← der Veranstalter (B1), die Veranstalterin (B1)
-    - der Veranstalter : organisateur
-    - die Veranstalterin : organisatrice
-- **el işi** ← die Bastelarbeit (A2), die Handarbeit (C1)
-    - die Bastelarbeit : bricolage
-    - die Handarbeit : travail à la main
-- **ev sahibi** ← der Vermieter (B1), der Gastgeber (B2)
-    - der Vermieter : bailleur
-    - der Gastgeber : hôte (qui reçoit)
-- **fizyoterapist** ← der Physiotherapeut (B1), die Physiotherapeutin (B1)
-    - der Physiotherapeut : physiothérapeute
-    - die Physiotherapeutin : physiothérapeute (femme)
-- **fiş** ← der Stecker (B1), der Kassenbon (A2)
-    - der Stecker : fiche, prise (mâle)
-    - der Kassenbon : ticket de caisse
-- **fırın** ← der Ofen (A1), der Backofen (B1)
-    - der Ofen : four
-    - der Backofen : four
-- **galip** ← der Sieger (B1), die Siegerin (B1)
-    - der Sieger : vainqueur
-    - die Siegerin : gagnante
-- **garson** ← der Kellner (A1), die Kellnerin (B1)
-    - der Kellner : serveur
-    - die Kellnerin : serveuse
-- **gerginlik** ← die Nervosität (A2), die Spannung (C1)
-    - die Nervosität : nervosité
-    - die Spannung : tension
-- **geri bildirim** ← die Rückmeldung (B1), das Feedback (B1)
-    - die Rückmeldung : retour, réponse
-    - das Feedback : retour, avis
-- **geri dönüşüm** ← das Recycling (A1), die Wiederverwertung (B1)
-    - das Recycling : recyclage
-    - die Wiederverwertung : recyclage
-- **gerçeklik** ← die Realität (B1), die Wirklichkeit (B1)
-    - die Realität : réalité
-    - die Wirklichkeit : réalité
-- **göçmen** ← der Migrant (B1), die Migrantin (B1)
-    - der Migrant : migrant
-    - die Migrantin : migrante
-- **hasta** ← der Patient (B1), die Patientin (B1)
-    - der Patient : patient
-    - die Patientin : patiente
-- **hava durumu** ← das Wetter (A1), die Wetterlage (B2)
-    - das Wetter : temps/météo
-    - die Wetterlage : situation météorologique
-- **hayat arkadaşı** ← der Lebensgefährte (B1), die Lebensgefährtin (B1)
-    - der Lebensgefährte : compagnon (de vie)
-    - die Lebensgefährtin : compagne (de vie)
-- **hizmet içi eğitim** ← die Weiterbildung (B1), die Fortbildung (C1)
-    - die Weiterbildung : formation continue
-    - die Fortbildung : perfectionnement professionnel
-- **hırsız** ← der Dieb (A2), der Einbrecher (B1)
-    - der Dieb : le voleur
-    - der Einbrecher : cambrioleur
-- **ihracat** ← der Export (B1), die Ausfuhr (C1)
-    - der Export : exportation
-    - die Ausfuhr : exportation
-- **ilan** ← die Annonce (B1), die Anzeige (B1)
-    - die Annonce : annonce
-    - die Anzeige : petite annonce
-- **itiraz** ← der Einwand (C1), der Einspruch (C1)
-    - der Einwand : objection
-    - der Einspruch : opposition, recours
-- **iş görüşmesi** ← das Bewerbungsgespräch (B2), das Vorstellungsgespräch (A2)
-    - das Bewerbungsgespräch : entretien d'embauche
-    - das Vorstellungsgespräch : entretien d'embauche
-- **işveren** ← der Arbeitgeber (B1), die Arbeitgeberin (B1)
-    - der Arbeitgeber : employeur
-    - die Arbeitgeberin : employeuse
-- **kaldırım** ← der Bürgersteig (B1), der Gehweg (C1)
-    - der Bürgersteig : trottoir
-    - der Gehweg : trottoir
-- **kaleci** ← der Tormann (B1), die Torfrau (B1)
-    - der Tormann : gardien de but
-    - die Torfrau : gardienne de but
-- **kalkış** ← der Start (A2), der Abflug (B2)
-    - der Start : le départ, le décollage
-    - der Abflug : décollage, départ (avion)
-- **kanepe** ← das Sofa (A1), die Couch (B1)
-    - das Sofa : canapé
-    - die Couch : canapé
-- **kat** ← die Etage (A1), das Vielfache (B1)
-    - die Etage : étage
-    - das Vielfache : multiple
-- **katılımcı** ← der Teilnehmer (B1), die Teilnehmerin (B1)
-    - der Teilnehmer : participant
-    - die Teilnehmerin : participante
-- **kaynak** ← die Quelle (B1), die Ressource (B1)
-    - die Quelle : la source
-    - die Ressource : ressource
-- **korku** ← die Angst (A1), die Furcht (B1)
-    - die Angst : peur
-    - die Furcht : la crainte, la peur
-- **koşucu** ← der Läufer (B1), die Läuferin (B1)
-    - der Läufer : coureur
-    - die Läuferin : coureuse
-- **krem şanti** ← das Schlagobers (B1), die Schlagsahne (B1)
-    - das Schlagobers : crème fouettée (autrichien)
-    - die Schlagsahne : crème fouettée
-- **kuzen** ← der Cousin (B1), die Cousine (B1)
-    - der Cousin : cousin
-    - die Cousine : cousine
-- **kıyı** ← das Ufer (A2), die Küste (B1)
-    - das Ufer : rive
-    - die Küste : côte
-- **makarna** ← die Nudeln (A1), die Pasta (B1)
-    - die Nudeln : pâtes
-    - die Pasta : pâtes
-- **manzara** ← die Landschaft (B1), die Aussicht (B1)
-    - die Landschaft : paysage
-    - die Aussicht : vue, perspective
-- **merdiven** ← die Treppe (A1), die Leiter (B1)
-    - die Treppe : escalier
-    - die Leiter : échelle
-- **merkez** ← das Zentrum (A2), der Mittelpunkt (B1)
-    - das Zentrum : le centre
-    - der Mittelpunkt : centre, point central
-- **mesafe** ← die Entfernung (B1), die Distanz (B1)
-    - die Entfernung : distance
-    - die Distanz : distance
-- **muhabir** ← der Reporter (B1), die Reporterin (B1)
-    - der Reporter : journaliste, reporter
-    - die Reporterin : journaliste (femme)
-- **ocak** ← der Herd (B1), der Januar (A1)
-    - der Herd : cuisinière
-    - der Januar : janvier
-- **onay** ← das Einverständnis (B1), die Zustimmung (C1)
-    - das Einverständnis : accord, consentement
-    - die Zustimmung : approbation, accord
-- **otomatik ödeme talimatı** ← der Dauerauftrag (B1), die Lastschrift (B2)
-    - der Dauerauftrag : virement automatique
-    - die Lastschrift : prélèvement automatique
-- **parti** ← die Party (A1), die Partei (A2)
-    - die Party : fête
-    - die Partei : parti politique
-- **parça** ← das Einzelteil (B1), der Teil (A1)
-    - das Einzelteil : pièce détachée
-    - der Teil : la partie
-- **pazar** ← der Sonntag (A1), der Markt (A1)
-    - der Sonntag : dimanche
-    - der Markt : marché
-- **perde** ← der Vorhang (A1), der Akt (B2)
-    - der Vorhang : rideau
-    - der Akt : l'acte
-- **polis memuru** ← die Polizistin (B1), der Polizist (B1)
-    - die Polizistin : policière
-    - der Polizist : policier
-- **portakal** ← die Orange (A1), die Apfelsine (A2)
-    - die Orange : orange
-    - die Apfelsine : l'orange
-- **rehabilitasyon** ← die Reha (B1), die Rehabilitation (C1)
-    - die Reha : rééducation
-    - die Rehabilitation : rééducation
-- **rüzgâr enerjisi** ← die Windenergie (A2), die Windkraft (B2)
-    - die Windenergie : énergie éolienne
-    - die Windkraft : énergie éolienne
-- **sanatçı** ← die Künstlerin (B1), der Künstler (B1)
-    - die Künstlerin : artiste (femme)
-    - der Künstler : artiste
-- **sonuç** ← das Resultat (B1), das Ergebnis (B2)
-    - das Resultat : résultat
-    - das Ergebnis : résultat
-- **spor dalı** ← die Sportart (B1), die Disziplin (B2)
-    - die Sportart : type de sport
-    - die Disziplin : discipline sportive
-- **spor eğitmeni** ← der Fitnesstrainer (B1), die Fitnesstrainerin (B1)
-    - der Fitnesstrainer : entraîneur sportif
-    - die Fitnesstrainerin : entraîneuse sportive
-- **spor salonu** ← die Turnhalle (A1), das Fitnessstudio (B1)
-    - die Turnhalle : gymnase
-    - das Fitnessstudio : salle de sport
-- **stajyer** ← der Praktikant (B1), die Praktikantin (B1)
-    - der Praktikant : stagiaire
-    - die Praktikantin : stagiaire (femme)
-- **sükûnet** ← die Ruhe (A1), die Gelassenheit (B1)
-    - die Ruhe : calme
-    - die Gelassenheit : calme/sérénité
-- **sıcaklık** ← die Wärme (A2), die Temperatur (A1)
-    - die Wärme : la chaleur
-    - die Temperatur : température
-- **tablo** ← das Bild (A1), das Gemälde (A2)
-    - das Bild : tableau
-    - das Gemälde : peinture/tableau
-- **tahmin** ← die Vorhersage (B1), die Schätzung (B2)
-    - die Vorhersage : prévision
-    - die Schätzung : estimation
-- **tarla** ← das Feld (A1), der Acker (B1)
-    - das Feld : champ
-    - der Acker : le champ
-- **tatlı** ← der Nachtisch (B1), die Nachspeise (C1)
-    - der Nachtisch : dessert
-    - die Nachspeise : dessert
-- **tedavi** ← die Behandlung (A2), die Therapie (B2)
-    - die Behandlung : traitement
-    - die Therapie : thérapie
-- **temel** ← die Basis (B1), die Grundlage (C1)
-    - die Basis : la base
-    - die Grundlage : base, fondement
-- **temizlik ürünü** ← das Reinigungsmittel (B1), das Putzmittel (B2)
-    - das Reinigungsmittel : produit de nettoyage
-    - das Putzmittel : produit d'entretien
-- **tencere** ← der Topf (A1), der Kochtopf (B1)
-    - der Topf : casserole
-    - der Kochtopf : marmite
-- **teslimat** ← die Lieferung (B1), die Zustellung (C1)
-    - die Lieferung : livraison
-    - die Zustellung : livraison, distribution
-- **torun** ← der Enkel (B1), die Enkelin (B1)
-    - der Enkel : petit-fils
-    - die Enkelin : petite-fille
-- **tramvay** ← die Straßenbahn (A1), die Tram (B1)
-    - die Straßenbahn : tramway
-    - die Tram : tramway
-- **tüketici** ← der Verbraucher (B1), die Verbraucherin (B1)
-    - der Verbraucher : consommateur
-    - die Verbraucherin : consommatrice
-- **tıbbi sekreter** ← der Arzthelfer (B1), die Arzthelferin (B1)
-    - der Arzthelfer : assistant médical
-    - die Arzthelferin : assistante médicale
-- **uygulama** ← die App (A1), die Anwendung (B1)
-    - die App : application
-    - die Anwendung : application (logiciel)
-- **vaftiz babası** ← der Patenonkel (B1), der Taufpate (B2)
-    - der Patenonkel : parrain
-    - der Taufpate : parrain de baptême
-- **vatandaş** ← der Bürger (A1), die Bürgerin (B1)
-    - der Bürger : citoyen
-    - die Bürgerin : citoyenne
-- **vatandaşlık** ← die Staatsbürgerschaft (B1), die Staatsangehörigkeit (C1)
-    - die Staatsbürgerschaft : nationalité, citoyenneté
-    - die Staatsangehörigkeit : nationalité
-- **vitrin** ← die Vitrine (B2), das Schaufenster (B1)
-    - die Vitrine : vitrine
-    - das Schaufenster : vitrine
-- **yabancı** ← der Ausländer (B1), die Ausländerin (B1)
-    - der Ausländer : étranger
-    - die Ausländerin : étrangère
-- **yağ** ← das Öl (A2), das Fett (B1)
-    - das Öl : huile
-    - das Fett : graisse, matière grasse
-- **yaşlı bakıcısı** ← der Altenpfleger (B1), die Altenpflegerin (B1)
-    - der Altenpfleger : soignant pour personnes âgées
-    - die Altenpflegerin : soignante pour personnes âgées
-- **yemek** ← das Essen (A1), das Gericht (B1)
-    - das Essen : le repas, la nourriture
-    - das Gericht : plat
-- **yetki alanı** ← die Zuständigkeit (B1), der Zuständigkeitsbereich (C1)
-    - die Zuständigkeit : responsabilité
-    - der Zuständigkeitsbereich : domaine de compétence
-- **yönetmelik** ← die Vorschrift (B1), die Verordnung (C1)
-    - die Vorschrift : règlement, consigne
-    - die Verordnung : règlement, arrêté
-- **yıldız** ← der Star (B1), der Stern (A1)
-    - der Star : star, vedette
-    - der Stern : étoile
-- **çevirmen** ← der Übersetzer (B1), die Übersetzerin (B1)
-    - der Übersetzer : traducteur
-    - die Übersetzerin : traductrice
-- **çiçek** ← die Blume (A1), die Blüte (A2)
-    - die Blume : fleur
-    - die Blüte : la fleur, la floraison
-- **çöp kovası** ← der Mülleimer (A2), die Mülltonne (B1)
-    - der Mülleimer : poubelle
-    - die Mülltonne : poubelle
-- **ölçü** ← der Takt (B1), das Maß (B1)
-    - der Takt : la mesure (musique)
-    - das Maß : la mesure
-- **şehir rehberi** ← der Stadtführer (B1), die Stadtführerin (B1)
-    - der Stadtführer : guide touristique (personne ou livre)
-    - die Stadtführerin : guide touristique (femme)
-- **şirket** ← die Firma (A1), das Unternehmen (B1)
-    - die Firma : entreprise
-    - das Unternehmen : entreprise
-- **şüphe** ← der Zweifel (B1), der Verdacht (C1)
-    - der Zweifel : doute
-    - der Verdacht : soupçon
+---
+
+# Paires de genre — vues, et acceptees
+
+Ces 37 groupes ne sont PAS des collisions a corriger. Le turc n'a pas de genre grammatical et ne feminise pas le nom de metier : « uzman » est la bonne reponse pour `der Experte` comme pour `die Expertin`. Inventer une forme feminine pour departager les deux cartes enseignerait une regle qui n'existe pas dans la langue.
+
+Ils sont reconnus mecaniquement (voir `paire_de_genre`) et sortis du decompte, pour qu'une relance du controle ne les remette pas dans la pile a chaque fois.
+
+- *noms* — **ab vatandaşı** ← der EU-Bürger, die EU-Bürgerin
+- *noms* — **aday** ← der Kandidat, die Kandidatin
+- *noms* — **aktör** ← der Schauspieler, die Schauspielerin
+- *noms* — **aşçı** ← der Koch, die Köchin
+- *noms* — **belediye başkanı** ← der Bürgermeister, die Bürgermeisterin
+- *noms* — **beslenme danışmanı** ← der Ernährungsberater, die Ernährungsberaterin
+- *noms* — **besteci** ← der Komponist, die Komponistin
+- *noms* — **bilim insanı** ← der Wissenschaftler, die Wissenschaftlerin
+- *noms* — **dava vekili** ← der Rechtsanwalt, die Rechtsanwältin
+- *noms* — **dinleyici** ← der Zuhörer, die Zuhörerin
+- *noms* — **düzenleyici** ← der Veranstalter, die Veranstalterin
+- *noms* — **fizyoterapist** ← der Physiotherapeut, die Physiotherapeutin
+- *noms* — **galip** ← der Sieger, die Siegerin
+- *noms* — **garson** ← der Kellner, die Kellnerin
+- *noms* — **göçmen** ← der Migrant, die Migrantin
+- *noms* — **hasta** ← der Patient, die Patientin
+- *noms* — **hayat arkadaşı** ← der Lebensgefährte, die Lebensgefährtin
+- *noms* — **işveren** ← der Arbeitgeber, die Arbeitgeberin
+- *noms* — **kaleci** ← der Tormann, die Torfrau
+- *noms* — **katılımcı** ← der Teilnehmer, die Teilnehmerin
+- *noms* — **koşucu** ← der Läufer, die Läuferin
+- *noms* — **kuzen** ← der Cousin, die Cousine
+- *noms* — **muhabir** ← der Reporter, die Reporterin
+- *noms* — **polis memuru** ← die Polizistin, der Polizist
+- *noms* — **sanatçı** ← die Künstlerin, der Künstler
+- *noms* — **spor eğitmeni** ← der Fitnesstrainer, die Fitnesstrainerin
+- *noms* — **stajyer** ← der Praktikant, die Praktikantin
+- *noms* — **torun** ← der Enkel, die Enkelin
+- *noms* — **tüketici** ← der Verbraucher, die Verbraucherin
+- *noms* — **tıbbi sekreter** ← der Arzthelfer, die Arzthelferin
+- *noms* — **usta** ← der Fachmann, die Fachfrau
+- *noms* — **uzman** ← der Experte, die Expertin
+- *noms* — **vatandaş** ← der Bürger, die Bürgerin
+- *noms* — **yabancı** ← der Ausländer, die Ausländerin
+- *noms* — **yaşlı bakıcısı** ← der Altenpfleger, die Altenpflegerin
+- *noms* — **çevirmen** ← der Übersetzer, die Übersetzerin
+- *noms* — **şehir rehberi** ← der Stadtführer, die Stadtführerin
 
