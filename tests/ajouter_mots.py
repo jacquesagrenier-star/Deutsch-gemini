@@ -97,6 +97,10 @@ def ajouter(lot, verifier_seulement):
 
         deja = {(m.get(cle) or "").strip() for m in existantes}
         requis = champs_obligatoires(existantes, cle)
+        # Tout champ qu'au moins une entree du fichier porte deja. Deduit comme
+        # `requis`, et pour la meme raison : la liste evoluera, la deduction
+        # suivra. `pruefung` est pose apres coup et compte donc comme connu.
+        connus = {k for m in existantes for k in m} | {"pruefung"}
 
         poses = 0
         for e in nouvelles:
@@ -116,6 +120,18 @@ def ajouter(lot, verifier_seulement):
             if manque:
                 print("  ! %-14s %s : champ(s) manquant(s) -- %s"
                       % (fichier, mot, ", ".join(manque)))
+                refus += 1
+                continue
+            # ET LE CHAMP EN TROP, symetrique du champ manquant. Un lot ecrit a
+            # la main finit par contenir une cle inventee -- une faute de
+            # frappe, un reste de copier-coller. Elle ne fait rien planter :
+            # elle s'installe dans le JSON et n'est jamais lue par personne.
+            # Attrape pour la premiere fois sur un « exemple_tr_unused » reste
+            # dans un lot de verbes.
+            inconnus = sorted(set(e) - connus)
+            if inconnus:
+                print("  ! %-14s %s : champ(s) inconnu(s) -- %s"
+                      % (fichier, mot, ", ".join(inconnus)))
                 refus += 1
                 continue
 
