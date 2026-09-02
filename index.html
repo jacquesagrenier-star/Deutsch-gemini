@@ -3539,7 +3539,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v368</span>
+        <span class="subtitle-version">v369</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16952,6 +16952,7 @@ let ecouteEtapes = [];
 let ecouteEtape = 0;
 let ecouteJoue = false;
 let ecouteMinuteur = null;
+let ecouteChien = null;      // borne de securite par etape, voir armerChien
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -17227,9 +17228,43 @@ function ecouteJouerEtape(){
     ecouteSurligner(et.ligne || null);
     const jeton = ++ecouteJeton;
     const avancer = () => {
+        clearTimeout(ecouteChien);
         if(jeton !== ecouteJeton || !ecouteJoue) return;
         ecouteEtape++;
         ecouteJouerEtape();
+    };
+    // CHIEN DE GARDE. Repose (v369) apres avoir ete retire par erreur.
+    //
+    // Chaque etape rend la main a `avancer` par un evenement futur : fin de
+    // lecture du fichier, fin d'enonce de la synthese. Sur iOS, ces evenements
+    // peuvent ne JAMAIS arriver -- la synthese vocale devient muette apres
+    // qu'un element audio a ouvert la session sonore, et elle n'emet alors ni
+    // `end` ni `error`. La sequence attend indefiniment un signal qui ne
+    // viendra pas : on entend le mot allemand, puis plus rien, et la carte
+    // reste en place sans qu'aucune erreur ne soit levee.
+    //
+    // HISTORIQUE, PARCE QU'IL EXPLIQUE POURQUOI IL AVAIT DISPARU. Ce chien de
+    // garde est celui de la v355. La v356 l'a retire en meme temps que deux
+    // autres ajouts de diagnostic, faute de savoir lequel des trois cassait
+    // l'application -- son propre message note qu'il "ne pouvait pourtant rien
+    // casser". La v357 a trouve le vrai coupable : le delai de 300 ms de la
+    // v352, sans rapport. Le chien de garde etait innocent et il manquait
+    // depuis.
+    //
+    // Il n'interrompt RIEN : il ne fait qu'avancer une sequence deja arretee.
+    // La limite est large et suit la vitesse choisie, pour ne jamais couper
+    // une lecture lente qui se deroule normalement.
+    const armerChien = (texte) => {
+        clearTimeout(ecouteChien);
+        const limite = Math.min(
+            25000,
+            Math.round((4000 + (texte || "").length * 150) / ecouteVitesse));
+        ecouteChien = setTimeout(() => {
+            if(jeton !== ecouteJeton || !ecouteJoue) return;
+            noterAudio(texte, "BLOQUE", "aucune fin apres " + limite + " ms");
+            ecouteEtape++;
+            ecouteJouerEtape();
+        }, limite);
     };
     if(et.type === "silence"){
         ecouteEtat(t("ecoute_etat_repete"));
@@ -17242,6 +17277,7 @@ function ecouteJouerEtape(){
     // dans les deux cas : la sequence ne doit jamais rester bloquee sur une
     // etape muette.
     if(et.lang === "de"){
+        armerChien(et.texte);
         direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
         return;
     }
@@ -17271,6 +17307,12 @@ function ecouteJouerEtape(){
     u.rate = ecouteVitesse;
     u.onend = avancer;
     u.onerror = avancer;
+    armerChien(et.texte);
+    // Le journal ne notait jusqu'ici que l'allemand : une etape de synthese
+    // bloquee n'y laissait aucune trace, et c'est justement celle qu'on
+    // soupconne. Elle y figure maintenant, avec la voix reellement employee.
+    noterAudio(et.texte, "ENONCE",
+        et.lang + ", voix " + (voix ? voix.name : "par defaut"));
     window.speechSynthesis.speak(u);
 }
 
@@ -17291,6 +17333,7 @@ function ecouteBasculer(){
 function ecouteArreterSon(){
     ecouteJeton++;
     if(ecouteMinuteur){ clearTimeout(ecouteMinuteur); ecouteMinuteur = null; }
+    if(ecouteChien){ clearTimeout(ecouteChien); ecouteChien = null; }
     // Couper les deux sources : la synthese du navigateur ET le fichier
     // pre-genere. N'en couper qu'une laisserait la voix continuer toute seule
     // apres une pause ou un changement de carte.
@@ -17392,7 +17435,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 368;
+const APP_VERSION = 369;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
