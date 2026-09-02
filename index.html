@@ -6074,6 +6074,7 @@ const I18N = {
         grp_ideen: "Relations entre les id\u00e9es",
         grp_praep: "Verbes & pr\u00e9positions",
         level_b2: "Niveau B2",
+        usage_autriche: "surtout en Autriche", usage_suisse: "surtout en Suisse",
         usage_ecrit: "surtout à l'écrit",
         usage_familier: "familier — à éviter à l'écrit",
         usage_plus_formel: "plus formel que {mot}",
@@ -7003,6 +7004,7 @@ const I18N = {
         grp_ideen: "Linking ideas",
         grp_praep: "Verbs & prepositions",
         level_b2: "Level B2",
+        usage_autriche: "mainly in Austria", usage_suisse: "mainly in Switzerland",
         usage_ecrit: "mostly written",
         usage_familier: "informal — avoid in writing",
         usage_plus_formel: "more formal than {mot}",
@@ -7936,6 +7938,7 @@ const I18N = {
         grp_ideen: "Fikirleri bağlamak",
         grp_praep: "Fiiller ve edatlar",
         level_b2: "B2 seviyesi",
+        usage_autriche: "özellikle Avusturya’da", usage_suisse: "özellikle İsviçre’de",
         usage_ecrit: "çoğunlukla yazılı",
         usage_familier: "samimi — yazıda kullanma",
         usage_plus_formel: "{mot} kelimesinden daha resmî",
@@ -17118,6 +17121,14 @@ function usageMarkText(registre, vergleich){
     }
     if(registre === "schriftlich") return t("usage_ecrit");
     if(registre === "umgangssprachlich") return t("usage_familier");
+    // Variantes regionales, introduites en v376 avec le vocabulaire d'examen.
+    // Les listes officielles marquent ces mots (A) ou (CH), et pour une raison
+    // pratique : « Marille » est un abricot a Vienne et rien du tout a Berlin.
+    // Donner le mot sans la marque, c'est laisser l'apprenant l'employer au
+    // mauvais endroit -- exactement le defaut que la marque « ecrit » evite
+    // deja pour le registre.
+    if(registre === "oesterreichisch") return t("usage_autriche");
+    if(registre === "schweizerisch") return t("usage_suisse");
     return "";
 }
 
