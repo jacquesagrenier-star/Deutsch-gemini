@@ -3588,7 +3588,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v382</span>
+        <span class="subtitle-version">v383</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4902,6 +4902,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="info-box" data-i18n-html="pruefung_info_lesen"></div>
         <div class="info-box" data-i18n-html="pruefung_info_schreiben"></div>
         <div class="info-box" data-i18n-html="pruefung_info_sprechen"></div>
+    </div>
+
+    <!-- LES DEUX EXAMENS NE SE RESSEMBLENT PAS SUR TOUT, et l'ecran le dit
+         maintenant qu'il contient les deux formes. Un candidat au Goethe B1
+         qui ne se serait entraine que sur le DTZ decouvrirait l'expose le jour
+         de l'epreuve -- c'est la partie qui surprend le plus, et la seule qui
+         se prepare vraiment a l'avance. -->
+    <div class="card">
+        <strong data-i18n="pruefung_info_unterschied_t">DTZ ou Goethe B1 : ce qui n’est pas pareil</strong>
+        <div class="info-box" data-i18n-html="pruefung_info_unterschied"></div>
     </div>
 
     <div class="card">
@@ -6667,6 +6677,8 @@ const I18N = {
         pruefung_info_lesen: `<strong>Lire — environ 45 minutes.</strong><br>Petites annonces, courriels, panneaux, articles courts. Le texte reste sous vos yeux : rien n’est à retenir par cœur. Le piège n’est pas le vocabulaire, c’est la réponse <strong>vraie mais hors sujet</strong> — une information bien présente dans le texte, qui ne répond pas à la question posée.`,
         pruefung_info_schreiben: `<strong>Écrire — environ 30 minutes.</strong><br>Une lettre ou un courriel : une réclamation, une excuse, une demande. La structure compte autant que la langue — formule d’appel, la nouvelle, la raison, la demande, la salutation, la signature. Oublier la formule d’appel ou la salutation coûte des points <strong>même si le reste est parfait</strong>.`,
         pruefung_info_sprechen: `<strong>Parler — environ 15 minutes, à deux.</strong><br>Trois moments : se présenter, parler d’une expérience, puis <strong>planifier quelque chose avec l’autre candidat</strong>. C’est ce troisième moment qui surprend le plus : on n’y est pas évalué sur un exposé, mais sur la capacité à proposer, à réagir et à se mettre d’accord. Une réponse parfaite qui ignore l’autre candidat vaut moins qu’une réponse simple qui lui pose une question.`,
+        pruefung_info_unterschied_t: "DTZ ou Goethe B1 : ce qui n’est pas pareil",
+        pruefung_info_unterschied: `Les quatre parties sont les mêmes, mais deux exercices n’existent que dans l’un des deux.<br><br><strong>Au Goethe B1</strong>, l’oral commence par une planification à deux, puis vous <strong>présentez un thème sur quatre diapositives</strong> — votre expérience, la situation dans votre pays, les avantages et les inconvénients, votre avis — et vous réagissez ensuite à l’exposé de l’autre candidat. À l’écrit, une des trois tâches est un <strong>message de forum</strong> où l’on donne son opinion.<br><br><strong>Au DTZ</strong>, il n’y a ni exposé ni forum : l’oral reste une conversation et l’écrit demande une lettre ou un courriel. En revanche, tout y est ancré dans la vie administrative allemande — bail, employeur, école, assurance.<br><br>Les exercices de cette section couvrent les deux formes. Si vous savez déjà lequel vous passez, l’exposé et le message de forum ne concernent que le Goethe B1.`,
         pruefung_info_regeln_t: "Perdre des points sans faire de faute de langue",
         pruefung_info_regel1: `<strong>Le mauvais registre.</strong> « Liebe Sofia » à une administration, ou « Sehr geehrte Damen und Herren » à une amie. Se tromper de registre est jugé plus sévèrement qu’une faute de grammaire : le correcteur y voit une erreur de jugement, pas d’apprentissage.`,
         pruefung_info_regel2: `<strong>La consigne à moitié traitée.</strong> Une tâche d’écriture donne toujours trois ou quatre points à couvrir. Une lettre magnifique qui en oublie un est notée en dessous d’une lettre maladroite qui les traite tous.`,
@@ -7636,6 +7648,8 @@ const I18N = {
         pruefung_info_lesen: `<strong>Reading — about 45 minutes.</strong><br>Small ads, emails, signs, short articles. The text stays in front of you: nothing has to be memorised. The trap isn't the vocabulary, it's the answer that is <strong>true but off-topic</strong> — a fact that really is in the text, and doesn't answer the question asked.`,
         pruefung_info_schreiben: `<strong>Writing — about 30 minutes.</strong><br>A letter or an email: a complaint, an apology, a request. The structure counts as much as the language — greeting, the news, the reason, the request, the closing, the signature. Leaving out the greeting or the closing costs points <strong>even when the rest is perfect</strong>.`,
         pruefung_info_sprechen: `<strong>Speaking — about 15 minutes, in pairs.</strong><br>Three moments: introduce yourself, talk about an experience, then <strong>plan something together with the other candidate</strong>. That third moment is the one that surprises people: you are not graded on a speech, but on your ability to suggest, to react and to reach an agreement. A perfect answer that ignores the other candidate is worth less than a simple one that asks them a question.`,
+        pruefung_info_unterschied_t: "DTZ or Goethe B1: what isn’t the same",
+        pruefung_info_unterschied: `The four parts are the same, but two tasks exist in only one of the two.<br><br><strong>In the Goethe B1</strong>, the oral opens with planning something in pairs, then you <strong>present a topic over four slides</strong> — your own experience, the situation in your country, advantages and drawbacks, your opinion — and then react to the other candidate's talk. In the writing paper, one of the three tasks is a <strong>forum post</strong> giving your opinion.<br><br><strong>In the DTZ</strong> there is no presentation and no forum: the oral stays a conversation and the writing asks for a letter or an email. In exchange, everything is anchored in German administrative life — tenancy, employer, school, insurance.<br><br>The exercises in this section cover both shapes. If you already know which exam you're sitting, the presentation and the forum post concern the Goethe B1 only.`,
         pruefung_info_regeln_t: "Losing points without making a language mistake",
         pruefung_info_regel1: `<strong>The wrong register.</strong> "Liebe Sofia" to a government office, or "Sehr geehrte Damen und Herren" to a friend. Getting the register wrong is judged more harshly than a grammar mistake: the examiner reads it as an error of judgement, not of learning.`,
         pruefung_info_regel2: `<strong>The half-answered prompt.</strong> A writing task always lists three or four points to cover. A beautiful letter that misses one scores below a clumsy letter that covers them all.`,
@@ -8609,6 +8623,8 @@ const I18N = {
         pruefung_info_lesen: `<strong>Okuma — yaklaşık 45 dakika.</strong><br>Küçük ilanlar, e-postalar, tabelalar, kısa yazılar. Metin gözünüzün önünde kalır: ezberlenecek hiçbir şey yoktur. Tuzak kelimeler değil, <strong>doğru ama konu dışı</strong> cevaptır — metinde gerçekten geçen, ama sorulan soruya cevap vermeyen bir bilgi.`,
         pruefung_info_schreiben: `<strong>Yazma — yaklaşık 30 dakika.</strong><br>Bir mektup ya da e-posta: şikâyet, özür, rica. Yapı en az dil kadar önemlidir — hitap, haber, gerekçe, rica, kapanış, imza. Hitabı ya da kapanışı unutmak, <strong>geri kalanı kusursuz olsa bile</strong> puan kaybettirir.`,
         pruefung_info_sprechen: `<strong>Konuşma — yaklaşık 15 dakika, iki kişi.</strong><br>Üç aşama: kendinizi tanıtmak, bir deneyimi anlatmak, sonra <strong>diğer adayla birlikte bir şey planlamak</strong>. En çok şaşırtan bu üçüncü aşamadır: burada bir sunum değil, öneri getirme, tepki verme ve anlaşmaya varma beceriniz değerlendirilir. Diğer adayı yok sayan kusursuz bir cevap, ona soru soran basit bir cevaptan daha az değerlidir.`,
+        pruefung_info_unterschied_t: "DTZ mi Goethe B1 mi: aynı olmayanlar",
+        pruefung_info_unterschied: `Dört bölüm aynıdır, ama iki görev yalnızca birinde vardır.<br><br><strong>Goethe B1'de</strong> sözlü, ikili bir planlamayla başlar; ardından <strong>dört slayt üzerinden bir konu sunarsınız</strong> — kendi deneyiminiz, ülkenizdeki durum, artılar ve eksiler, görüşünüz — sonra da diğer adayın sunumuna tepki verirsiniz. Yazmada üç görevden biri, görüş bildiren bir <strong>forum mesajıdır</strong>.<br><br><strong>DTZ'de</strong> ne sunum ne forum vardır: sözlü bir konuşma olarak kalır, yazmada mektup ya da e-posta istenir. Buna karşılık her şey Alman idari hayatına dayanır — kira, işveren, okul, sigorta.<br><br>Bu bölümdeki alıştırmalar her iki biçimi de kapsar. Hangi sınava gireceğinizi biliyorsanız, sunum ve forum mesajı yalnızca Goethe B1'i ilgilendirir.`,
         pruefung_info_regeln_t: "Dil hatası yapmadan puan kaybetmek",
         pruefung_info_regel1: `<strong>Yanlış üslup.</strong> Bir resmî kuruma "Liebe Sofia", bir arkadaşa "Sehr geehrte Damen und Herren". Üslubu şaşırmak bir dilbilgisi hatasından daha ağır değerlendirilir: değerlendiren kişi bunu öğrenme değil, muhakeme hatası olarak okur.`,
         pruefung_info_regel2: `<strong>Yarım bırakılan yönerge.</strong> Yazma görevi her zaman üç ya da dört madde sıralar. Bir maddeyi atlayan çok güzel bir mektup, hepsine değinen beceriksiz bir mektubun altında puan alır.`,
@@ -19326,7 +19342,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 382;
+const APP_VERSION = 383;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
