@@ -205,18 +205,22 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - Bereich (domaine) et Flaeche (superficie) se disent « alan ». « yuzey » designe la surface exterieure d'un objet, pas la superficie d'un terrain.
 - *noms* — **anlam** ← die Bedeutung, der Sinn
   - Bedeutung et Sinn se disent « anlam ». « mana » est vieilli.
-- *noms* — **araç** ← das Fahrzeug, das Mittel
-  - Fahrzeug et Mittel se disent « araç ». « vasıta » designe un vehicule, ce qui inverse la distinction au lieu de la creer.
 - *noms* — **ateş** ← das Fieber, das Feuer
   - HOMONYME turc : « ateş » veut dire fievre ET feu. « alev » est la flamme, pas le feu.
 - *noms* — **avukat** ← der Anwalt, der Rechtsanwalt, die Rechtsanwältin
   - Anwalt et Rechtsanwalt sont le meme metier ; « dava vekili » est une appellation juridique obsolete.
 - *noms* — **ağ** ← das Netz, das Netzwerk
   - Netz et Netzwerk se disent « ağ ». « şebeke » s'applique aux reseaux electriques ou telephoniques, pas informatiques.
+- *noms* — **başvuru** ← die Bewerbung, der Antrag
+  - Antrag et Bewerbung se disent tous deux « başvuru » ; « iş başvurusu » restreint a l'emploi ce que l'allemand laisse general.
+- *noms* — **bilet** ← die Fahrkarte, das Ticket
+  - Ticket et Fahrkarte se disent tous deux « bilet ». Fahrschein garde « toplu taşıma bileti », qui correspond bien a son sens de titre de transport public.
 - *noms* — **danışman** ← der Berater, der Betreuer
   - Berater et Betreuer se disent « danışman ». « refakatçi » est un accompagnateur de malade.
 - *noms* — **değişiklik** ← die Änderung, die Veränderung
   - Aenderung et Veraenderung se disent « değişiklik ». « başkalaşım » est une metamorphose.
+- *noms* — **dosya** ← die Akte, die Datei
+  - Datei et Akte se disent tous deux « dosya » ; « evrak dosyası » est un dossier de papiers, trop specifique.
 - *noms* — **duvar** ← die Wand, die Mauer
   - Wand et Mauer se disent « duvar ». « taş duvar » (mur en pierre) est inutilement restrictif.
 - *noms* — **geri bildirim** ← die Rückmeldung, das Feedback
@@ -227,6 +231,8 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - Realitaet et Wirklichkeit se disent « gerçeklik ». « hakikat » est litteraire.
 - *noms* — **hırsız** ← der Dieb, der Einbrecher
   - Dieb et Einbrecher se disent « hırsız ». « soyguncu » est un braqueur a main armee.
+- *noms* — **kalkış** ← der Start, der Abflug
+  - Start et Abflug se disent tous deux « kalkış » ; « havalanma » est l'action de decoller, pas le depart.
 - *noms* — **kanepe** ← das Sofa, die Couch
   - Sofa et Couch se disent « kanepe ». « divan » est vieilli.
 - *noms* — **kat** ← die Etage, das Vielfache
@@ -243,6 +249,8 @@ Le turc n'a reellement qu'un mot la ou l'allemand en a deux : forcer une differe
   - App et Anwendung se disent « uygulama ». « kullanım » veut dire utilisation.
 - *noms* — **uzman** ← der Experte, die Expertin, der Fachmann, die Fachfrau
   - Experte, Expertin, Fachmann et Fachfrau : deux paires de genre pour deux quasi-synonymes. « usta » (artisan) a ete rejete comme incoherent avec la phrase.
+- *noms* — **vaftiz babası** ← der Patenonkel, der Taufpate
+  - Patenonkel et Taufpate sont le meme role ; « vaftiz eden » designe celui qui baptise, pas le parrain.
 - *noms* — **yağ** ← das Öl, das Fett
   - HOMONYME turc : « yağ » couvre l'huile et la graisse. « katı yağ » est la margarine.
 - *noms* — **yönetmelik** ← die Vorschrift, die Verordnung
