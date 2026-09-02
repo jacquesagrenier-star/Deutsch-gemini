@@ -31,6 +31,14 @@ ENSEMBLES = {
     "reperes": "Norden S\u00fcden Osten Westen links rechts oben unten vorne hinten",
     "repas": "Fr\u00fchst\u00fcck Mittagessen Abendessen Vorspeise Nachtisch",
     "meteo": "Sonne Regen Schnee Wind Wolke Nebel Gewitter Sturm Eis Hitze K\u00e4lte",
+    # Trouves incomplets au palier 1, apres le calendrier. Les jours en -s
+    # n'avaient que \u00ab montags \u00bb ; les ordinaux d'enumeration manquaient
+    # \u00ab erstens \u00bb, qu'AUCUNE des trois listes ne reclame -- le controle de
+    # couverture ne pouvait donc pas le signaler. Un ensemble ferme se verifie
+    # sur lui-meme, pas contre une liste exterieure.
+    "jours -s": "montags dienstags mittwochs donnerstags freitags samstags sonntags",
+    "ordinaux": "erstens zweitens drittens viertens",
+    "multiples": "einmal zweimal dreimal viermal f\u00fcnfmal",
 }
 
 
