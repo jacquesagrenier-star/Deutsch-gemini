@@ -6,23 +6,6 @@ Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de 
 
 Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
 
-## adverbes (2 reponses turques pour 4 mots allemands)
-
-- **bu yüzden** ← deshalb (A1), darum (A2)
-    - deshalb : c'est pourquoi
-    - darum : c'est pour ça
-- **çok** ← sehr (A1), viel (A1)
-    - sehr : très
-    - viel : beaucoup
-
-
-## expressions (1 reponses turques pour 2 mots allemands)
-
-- **-le ilgilenmek** ← Sich kümmern um (A2), Sich interessieren für (A2)
-    - Sich kümmern um : s'occuper de
-    - Sich interessieren für : s'intéresser à
-
-
 ## noms (127 reponses turques pour 260 mots allemands)
 
 - **uzman** ← der Experte (B1), die Expertin (B1), der Fachmann (B1), die Fachfrau (B1)
