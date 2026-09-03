@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v390</span>
+        <span class="subtitle-version">v391</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5960,6 +5960,14 @@ const LANGUE_ENSEIGNEE = {
     // Vide = tout passe par la synthese du telephone (voir direAllemand).
     audio:   "https://deutschai-b6fbb.web.app/"
 };
+
+// LES RESSOURCES DE L'APPLICATION, QUI NE SONT PAS DE L'ALLEMAND.
+// Distinction ajoutee en meme temps que les videos ci-dessous : le logo,
+// l'icone et les videos de recompense appartiennent a Wortando, pas a la
+// langue enseignee. Les faire suivre LANGUE_ENSEIGNEE.donnees aurait casse
+// un fork espagnol pointant ailleurs -- il aurait perdu des videos qui ne
+// sont pas allemandes pour autant. Deux tables, parce qu'il y a deux choses.
+const ASSETS_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/";
 
 // UN SEUL ENDROIT QUI SAIT OU SONT LES DONNEES.
 // urlDonnees("verbe.json") remplace la chaine complete, treize fois.
@@ -18806,7 +18814,7 @@ function pickVoice(prefix){
     return dispo[0];
 }
 
-function findGermanVoice(){ return pickVoice('de'); }
+function findGermanVoice(){ return pickVoice(LANGUE_ENSEIGNEE.code); }
 function findEnglishVoice(){ return pickVoice('en'); }
 
 function setVoiceChoice(prefix, nom){
@@ -19585,7 +19593,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 390;
+const APP_VERSION = 391;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19893,7 +19901,7 @@ function direAllemand(texte, opts){
         if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
         const u = new SpeechSynthesisUtterance(texte);
         u.volume = VOLUME_SYNTHESE;
-        u.lang = "de-DE";
+        u.lang = LANGUE_ENSEIGNEE.voix;
         const voix = cachedGermanVoice || findGermanVoice();
         if(voix) u.voice = voix;
         u.rate = rate;
@@ -20712,7 +20720,7 @@ function launchConfetti(){
 // *connecté aux bords de l'image* (comme une baguette magique) — ça protège les
 // zones claires de l'animal lui-même (ex. ventre du hibou), même si leur couleur
 // ressemble au fond, puisqu'elles ne touchent jamais le bord de l'image.
-const VIDEO_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/video/";
+const VIDEO_BASE_URL = ASSETS_BASE + "video/";
 // Hibou retiré du tirage (trop proche de la mascotte de Duolingo).
 // dauphin.MP4 retiré temporairement : problème de détourage (le ventre passe du
 // noir au blanc), le fond ne se garde pas bien transparent sur cette vidéo.
