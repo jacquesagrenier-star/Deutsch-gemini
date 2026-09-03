@@ -328,6 +328,60 @@ def verifier_traductions(r, source):
     return fr
 
 
+def verifier_jeux_exercices(r, source):
+    """Tout jeu demande par son nom doit exister dans exercices.json.
+
+    Depuis la v392 le code ne tient plus les exercices : il les demande par
+    leur nom. Le lien entre les deux n'etait verifie nulle part -- un nom mal
+    orthographie ne se voyait qu'a l'ouverture de l'exercice, sur un message
+    d'erreur. Les cinq JSON de vocabulaire avaient ce controle ; celui-ci
+    l'avait perdu en naissant.
+    """
+    chemin = os.path.join(RACINE, "exercices.json")
+    if not os.path.exists(chemin):
+        r.echec("exercices", "exercices.json est absent : tous les exercices "
+                             "sont hors service")
+        return
+    try:
+        with io.open(chemin, encoding="utf-8") as f:
+            jeux = json.load(f).get("jeux", {})
+    except ValueError as e:
+        r.echec("exercices", "exercices.json illisible : %s" % e)
+        return
+
+    demandes = set(re.findall(r'startExerciseSet(?:Melange)?\(\s*"([A-Za-z0-9_]+)"',
+                              source))
+    for nom in sorted(demandes - set(jeux)):
+        r.echec("exercices", "jeu demande par le code mais absent d'exercices.json"
+                             " : %s" % nom)
+    # L'inverse n'est pas une erreur -- un jeu peut etre prepare avant d'etre
+    # branche -- mais il vaut d'etre dit : personne ne le joue.
+    orphelins = sorted(set(jeux) - demandes)
+
+    total = 0
+    for nom, liste in sorted(jeux.items()):
+        if not isinstance(liste, list) or not liste:
+            r.echec("exercices", "%s : liste vide ou mal formee" % nom)
+            continue
+        total += len(liste)
+        for k, ex in enumerate(liste):
+            if not isinstance(ex, dict):
+                r.echec("exercices", "%s[%d] n'est pas un objet" % (nom, k))
+                break
+            # Le rendu lit question/correct ou chunks : sans l'un des deux,
+            # la carte s'affiche vide sans rien signaler.
+            if not ex.get("question") and not ex.get("chunks"):
+                r.echec("exercices", "%s[%d] n'a ni question ni chunks" % (nom, k))
+            if not ex.get("correct") and not ex.get("answers") and not ex.get("chunks"):
+                r.echec("exercices", "%s[%d] n'a pas de reponse" % (nom, k))
+        r.controle(len(liste))
+
+    print("   exercices.json  : %d jeux, %d exercices, %d demandes par le code"
+          % (len(jeux), total, len(demandes)))
+    if orphelins:
+        print("   jeux non joues  : %s" % ", ".join(orphelins))
+
+
 def verifier_cles_utilisees(r, source, cles):
     """Toute cle citee dans le HTML ou via t()/tf() doit exister."""
     citees = set()
@@ -486,6 +540,7 @@ def main():
 
     print("\nCODE ET INTERFACE")
     cles = verifier_traductions(r, source)
+    verifier_jeux_exercices(r, source)
     verifier_cles_utilisees(r, source, cles)
     fonctions = fonctions_definies(source)
     verifier_appels(r, source, fonctions)
