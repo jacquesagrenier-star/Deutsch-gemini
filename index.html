@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v389</span>
+        <span class="subtitle-version">v390</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5929,6 +5929,43 @@ const DEFAULT_UI_LANG = "fr";
 const LEARNING_DIR_KEY = "deutschAI_learningDirection";
 const LEARNING_DIRS = ["de", "en"];
 const DEFAULT_LEARNING_DIR = "de";
+
+
+// ============ LA LANGUE ENSEIGNEE ============
+//
+// ETAPE 1 DE LA MISE EN COMMUN (3 septembre 2026). Jusqu'ici, « allemand »
+// n'etait ecrit nulle part et partout a la fois : l'adresse du depot
+// apparaissait TREIZE FOIS en dur dans les appels reseau, la base audio une
+// quatorzieme, la voix de lecture ailleurs encore. Rien ne les reliait, et
+// rien ne disait qu'ils parlaient tous de la meme chose.
+//
+// CE QUE CETTE TABLE CHANGE, ET CE QU'ELLE NE CHANGE PAS. Elle ne rend pas
+// l'app multilingue -- les 24 ecrans de grammaire et les 29 jeux d'exercices
+// restent ecrits en dur, et ils sont allemands. Elle rend seulement REPERABLE
+// ce qui depend de la langue enseignee. C'est le prealable : on ne peut pas
+// generaliser ce qu'on n'a pas d'abord rassemble.
+//
+// Le comportement est rigoureusement identique : meme depot, meme audio, meme
+// voix. Une seule table remplace quatorze chaines dispersees.
+const LANGUE_ENSEIGNEE = {
+    code:    "de",
+    nom:     "Deutsch",
+    // La langue passee a la synthese vocale et aux voix du telephone.
+    voix:    "de-DE",
+    // Le depot d'ou viennent les cinq JSON de vocabulaire, pruefung.json et
+    // le dictionnaire. Un « git push » ici met les donnees a jour en
+    // production : c'est voulu, et c'est documente dans CLAUDE.md.
+    donnees: "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/",
+    // Les fichiers pre-generes de la voix Nadja, sur Firebase Hosting.
+    // Vide = tout passe par la synthese du telephone (voir direAllemand).
+    audio:   "https://deutschai-b6fbb.web.app/"
+};
+
+// UN SEUL ENDROIT QUI SAIT OU SONT LES DONNEES.
+// urlDonnees("verbe.json") remplace la chaine complete, treize fois.
+function urlDonnees(fichier){
+    return cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + fichier);
+}
 
 // Déclarées tôt (avant I18N/toute fonction) : progressKey()/renderFlipToggleButtons()
 // peuvent être appelées très tôt (init au chargement, callback Firebase asynchrone
@@ -9808,7 +9845,7 @@ function cacheBustedUrl(url){
 
 async function loadVerbeJson() {
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/verbe.json'), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees('verbe.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier verbe.json introuvable");
         const data = await response.json();
         let words = [];
@@ -9871,7 +9908,7 @@ let adjektiveTheme = {
 
 async function loadAdjektiveJson() {
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json'), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees('adjectif.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
         const data = await response.json();
         const levels = ["A1", "A2", "B1", "B2", "C1"];
@@ -9976,7 +10013,7 @@ const FUNKTIONSWORT_THEMES = {
 
 async function loadFunktionswoerterJson() {
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/funktionswort.json'), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees('funktionswort.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier funktionswort.json introuvable");
         const data = await response.json();
         Object.keys(FUNKTIONSWORT_THEMES).forEach(cle => {
@@ -10004,7 +10041,7 @@ async function loadFunktionswoerterJson() {
 
 async function loadRedewendungenJson() {
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/redewendung.json'), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees('redewendung.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier redewendung.json introuvable");
         const data = await response.json();
         const words = [];
@@ -10033,7 +10070,7 @@ async function loadRedewendungenJson() {
 
 async function loadAdverbienJson() {
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adverbe.json'), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees('adverbe.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier adverbe.json introuvable");
         const data = await response.json();
         const words = [];
@@ -10131,7 +10168,7 @@ async function loadEnglishModuleJson(id) {
     if (!mod || englishModulesLoaded[id]) return;
     showGlobalLoadingBar();
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/' + mod.file), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees(mod.file), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier " + mod.file + " introuvable");
         const data = await response.json();
         const words = [];
@@ -10168,7 +10205,7 @@ async function loadThemesJson() {
     await loadPruefungJson();
     await loadFunktionswoerterJson();
     try {
-        const response = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json'), { cache: 'no-cache' });
+        const response = await fetch(urlDonnees('themes.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Erreur themes.json");
         const rawJson = await response.json();
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
@@ -11733,7 +11770,7 @@ const praepWoWohinExercises = [
   { topic:"Verben der Position · Wo oder Wohin?", question:"Sie hängt den Schlüssel an ___ Nagel. (der Nagel)", translation:"Elle accroche la clé au clou.", translation_en:"She's hanging the key on the nail.", hint:"(elle déplace la clé — hängen transitif)", hint_en:"(she's moving the key — transitive hängen)", answers:["wohin (akkusativ)","wohin","akkusativ"], correct:"Wohin (Akkusativ)", explanation:"« hängen » transitif décrit un déplacement → Wohin ? → Akkusativ : an den Nagel.", explanation_en:"The transitive « hängen » describes a movement → Wohin? → Akkusativ: an den Nagel.", options: ["Wo (Dativ)", "Wohin (Akkusativ)"], translation_tr:"Anahtarı çiviye asıyor.", hint_tr:"(anahtarı yer değiştiriyor — geçişli hängen)", explanation_tr:"Geçişli « hängen » bir hareketi anlatır → Wohin? → Akkusativ: an den Nagel." }
 ];
 
-const PREP_DIAGRAM_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/video/prep.JPG";
+const PREP_DIAGRAM_URL = LANGUE_ENSEIGNEE.donnees + "video/prep.JPG";
 
 const praepTheme = {
   id: "praep_vokabular",
@@ -15679,7 +15716,7 @@ let pruefungData = null;
 
 async function loadPruefungJson(){
     try {
-        const r = await fetch(cacheBustedUrl('https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/pruefung.json'), { cache: 'no-cache' });
+        const r = await fetch(urlDonnees('pruefung.json'), { cache: 'no-cache' });
         if(!r.ok) throw new Error("Fichier pruefung.json introuvable");
         pruefungData = await r.json();
     } catch(e){
@@ -16284,7 +16321,7 @@ function openMyVocab(){
 // (1 Ko en mediane, 195 Ko au pire) au lieu des 10 Mo du dictionnaire entier.
 // Le credit d'attribution est affiche sous les resultats, comme l'exige la
 // licence -- ne pas le retirer.
-const DICT_BASE_URL = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/dict/";
+const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees + "dict/";
 // Quatre paires existent ; on n'en interroge que deux, celles qui parlent la
 // langue de l'interface. Un francophone qui cherche "Haus" doit lire "maison",
 // pas "house" -- c'etait le cas avant v231.
@@ -19548,7 +19585,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 389;
+const APP_VERSION = 390;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19658,7 +19695,7 @@ async function verifierNouvelleVersion(){
 // Le service worker ne doit pas s'en meler -- il n'intercepte que la page
 // elle-meme (regle tenue depuis la v257). Le cache HTTP du navigateur suffit,
 // et Hosting sert ces fichiers en immutable pour un an.
-const AUDIO_BASE = "https://deutschai-b6fbb.web.app/";
+const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 
 // LE NUMERO DE TRAITEMENT DU SON. A INCREMENTER A CHAQUE RETRAITEMENT DES MP3.
 //
@@ -19681,7 +19718,7 @@ const AUDIO_BASE = "https://deutschai-b6fbb.web.app/";
 //   4  egalisation en deux temps, etendue 6,0 -> 3,8 dB (v359)
 //   5  phrases attenuees de 1,2 dB sous les mots courts (v361)
 //   3  limiteur par-dessus, +4 a +5 dB de plus (v351)
-const AUDIO_REVISION = "5";
+const AUDIO_REVISION = "6";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
