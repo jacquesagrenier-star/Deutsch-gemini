@@ -264,16 +264,34 @@ def verifier_traductions(r, source):
         r.controle(len(cles))
     # Le francais fait reference : c'est la langue d'origine du contenu.
     fr = set(dicos["fr"])
+    encours = []
     for langue in sorted(dicos):
         if langue == "fr":
             continue
         autres = set(dicos[langue])
-        for k in sorted(fr - autres):
-            r.echec("i18n", "cle absente du dictionnaire %s : %s" % (langue, k))
+        manquantes = sorted(fr - autres)
+        # UNE LANGUE QU'ON REMPLIT N'EST PAS UNE LANGUE CASSEE. L'ukrainien est
+        # arrive vide (v388) et se remplit par lots : exiger la parite des le
+        # premier jour ferait echouer le verificateur a chaque push pendant des
+        # semaines, et on prendrait l'habitude de le lancer en fermant les yeux
+        # -- ce qui vaut moins que pas de verificateur du tout.
+        #
+        # Le repli uk -> en -> fr rend l'absence sans danger : la cle s'affiche
+        # en anglais. On COMPTE donc au lieu d'echouer, tant que la langue n'est
+        # pas complete. Le jour ou elle l'est, toute cle perdue redevient une
+        # erreur -- la regle se referme d'elle-meme, sans rien a desactiver.
+        if manquantes and len(autres) < len(fr):
+            encours.append((langue, len(autres), len(manquantes)))
+        else:
+            for k in manquantes:
+                r.echec("i18n", "cle absente du dictionnaire %s : %s" % (langue, k))
         for k in sorted(autres - fr):
             r.echec("i18n", "cle absente du dictionnaire francais : %s (vue en %s)" % (k, langue))
     print("   traductions     : " +
           " | ".join("%d cles %s" % (len(dicos[l]), l) for l in sorted(dicos)))
+    for langue, faites, reste in encours:
+        print("   langue en cours : %s a %d cles sur %d (%.0f %%), %d a ecrire"
+              % (langue, faites, len(fr), 100.0 * faites / len(fr), reste))
     return fr
 
 

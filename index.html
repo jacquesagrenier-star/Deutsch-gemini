@@ -3553,6 +3553,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span class="setup-choice-flag">🇹🇷</span>
                     <span>Türkçe</span>
                 </button>
+                <button class="setup-choice" id="setupChoiceLangUk" onclick="selectUiLangChoice('uk')">
+                    <span class="setup-choice-flag">🇺🇦</span>
+                    <span>Українська</span>
+                </button>
             </div>
         </div>
         <div class="spacer"></div>
@@ -3588,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v387</span>
+        <span class="subtitle-version">v388</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5619,6 +5623,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span class="setup-choice-flag">🇹🇷</span>
                     <span>Türkçe</span>
                 </button>
+                <button class="setup-choice" onclick="selectUiLangChoice('uk')">
+                    <span class="setup-choice-flag">🇺🇦</span>
+                    <span>Українська</span>
+                </button>
             </div>
         </div>
     </div>
@@ -5911,7 +5919,7 @@ initAppTheme();
 // Le texte généré dynamiquement en JS (ex. libellés de progression) doit passer
 // par t("clé") plutôt que d'avoir sa chaîne écrite en dur.
 const UI_LANG_KEY = "deutschAI_uiLang";
-const UI_LANGS = ["fr", "en", "tr"];
+const UI_LANGS = ["fr", "en", "tr", "uk"];
 const DEFAULT_UI_LANG = "fr";
 
 // Direction d'apprentissage : "de" = apprendre l'allemand (contenu existant),
@@ -8857,6 +8865,48 @@ const I18N = {
         admin_vhs_access_on: "✓ VHS Bölümleri açık",
         admin_vhs_access_off: "VHS Bölümlerini aç",
         admin_user_stats: "{mastered}/{total} kelime öğrenildi · {streak} günlük seri"
+    },
+
+    // ============ UKRAINIEN ============
+    //
+    // Quatrieme langue d'interface (v388). Elle se remplit par lots : le repli
+    // uk -> en -> fr fait qu'une cle pas encore traduite s'affiche en anglais
+    // plutot que vide, donc l'app reste utilisable a tout moment.
+    //
+    // CE QUI CHANGE PAR RAPPORT AU TURC, ET QU'IL NE FAUT PAS TRADUIRE A PLAT :
+    // les explications de grammaire sont ecrites CONTRE LE FRANCAIS. Or
+    // l'ukrainien a sept cas et pas d'article. « Le cas n'existe pas dans votre
+    // langue » est vrai pour un francophone et FAUX pour un ukrainophone -- a
+    // qui il faut dire l'inverse : le systeme vous est familier, ce sont les
+    // articles qui n'ont pas d'equivalent. Voir dico_interface.py.
+    uk: {
+        en_module_britam_cat_desc: "Та сама річ часто має дві назви — залежно від берега Атлантики. Краще знати, яку саме вживаєш, ніж змішувати обидві не помічаючи.",
+        en_module_irregular_cat_desc: "Неправильні дієслова вчаться за взірцями, а не гуртом: ті, у яких усі три форми однакові; ті, у яких минулий час і дієприкметник схожі; і ті, що змінюються тричі.",
+        kasus_box_akkusativ: "<strong style=\"color:#3b6fe0;\">Akkusativ</strong> — знахідний: на кого спрямована дія.<br><em>Ich sehe den Mann.</em> (Я бачу чоловіка.)",
+        kasus_box_dativ: "<strong style=\"color:#3b6fe0;\">Dativ</strong> — давальний: кому, для кого.<br><em>Ich gebe dem Mann das Buch.</em> (Я даю чоловікові книжку.)",
+        kasus_box_genitiv: "<strong style=\"color:#3b6fe0;\">Genitiv</strong> — родовий: кому належить.<br><em>Das Buch des Mannes.</em> (Книжка чоловіка.)",
+        kasus_box_nominativ: "<strong style=\"color:#3b6fe0;\">Nominativ</strong> — називний: хто виконує дію.<br><em>Der Mann liest.</em> (Чоловік читає.)",
+        myvocab_vide_explication: "<strong>Мій словник поки порожній.</strong><br>Це твій особистий запас: слова, які ти зустрічаєш деінде — на занятті, у тексті, у розмові — і яких немає в застосунку.<br><br>Знайди слово вище, а тоді натисни <strong>+</strong> поруч із результатом словника. Воно стане картко́ю для повторення, як і всі інші.",
+        search_none_scope: "Курс охоплює {n} карток, від рівня A1 до B2. Це слово поза програмою — подивись словникову статтю вище й натисни +, щоб додати його до своїх карток.",
+        voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
+        voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
+        voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
+        art_systeme_intro: "<strong>Початок</strong> слова каже лише, про що йдеться: <strong>d-</strong> (означеність), <strong>ein-</strong> (один, якийсь), <strong>kein-</strong> (жодний), а також <strong>mein-, dein-, sein-…</strong> (мій, твій, його).<br><strong>Закінчення</strong> ж несе відмінок і рід: <strong>-n</strong> (чол. Akkusativ), <strong>-m</strong> (Dativ чол./сер.), <strong>-r</strong> (Dativ і Genitiv жін.), <strong>-s</strong> (Genitiv чол./сер.), <strong>-e</strong> (жін. і множина).<br>Відмінкові закінчення тобі не чужі — українська робить те саме. Незвичне тут інше: німецька виносить їх на окреме слівце попереду, якого в українській просто немає. Отже, не три таблиці, а одна — і три початки, на які її накладають.",
+        art_systeme_trous: "<strong>Дві єдині порожні клітинки.</strong> «ein» не має <em>жодного</em> закінчення в чоловічому Nominativ (<em>ein Mann</em>) і в середньому Nominativ/Akkusativ (<em>ein Kind</em>) — там, де «der» і «das» його мають.<br>Це не дрібниця: саме тому прикметник змінює закінчення після «ein» — він мусить понести сигнал, якого бракує (<em>ein <strong>guter</strong> Mann</em>, але <em>der gut<strong>e</strong> Mann</em>).",
+        art_table_def_note: "Лише чоловічий рід змінюється між Nominativ і Akkusativ (der → den). У Dativ множини іменник теж додає -n: den Kindern.",
+        art_table_indef_note: "Множини немає: «ein» існує тільки в однині. Для неозначеної множини німецька не ставить нічого — так само, як українська: Ich sehe Kinder. (Я бачу дітей.)",
+        art_table_neg_note: "«kein» відмінюється точно як «ein» — плюс має множину (keine Kinder). Це єдина різниця між двома таблицями.",
+        praep_box_akkusativ: "<strong style=\"color:#3b6fe0;\">Завжди Akkusativ</strong><br>bis, durch, für, gegen, ohne, um<br><em>Das Geschenk ist für dich.</em> (Подарунок для тебе.)",
+        praep_box_dativ: "<strong style=\"color:#3b6fe0;\">Завжди Dativ</strong><br>ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br><em>Ich komme aus der Schweiz.</em> (Я зі Швейцарії.)",
+        praep_box_genitiv: "<strong style=\"color:#3b6fe0;\">Завжди Genitiv</strong><br>während, trotz, wegen<br><em>Wegen des Regens bleiben wir zu Hause.</em> (Через дощ ми лишаємось удома.)",
+        praep_contract_intro: "Деякі прийменники зливаються з означеним артиклем (dem/das/der), коли на нього не падає окремий наголос — дуже часто і в мовленні, і на письмі.",
+        praep_contract_warn: "⚠️ Злита форма обов'язкова у сталих зворотах (<em>ins Kino</em>, <em>zum Glück</em>) і необов'язкова в решті випадків — незлита форма (<em>in das</em>, <em>zu dem</em>) лишається правильною, але звучить наполегливіше й менш природно в розмові.",
+        praep_position_wo_box: "<strong style=\"color:#3b6fe0;\">Wo? → Dativ</strong><br><em>Das Buch liegt auf dem Tisch.</em> (Книжка лежить на столі — стан, без руху.)",
+        praep_position_wohin_box: "<strong style=\"color:#3b6fe0;\">Wohin? → Akkusativ</strong><br><em>Ich lege das Buch auf den Tisch.</em> (Я кладу книжку на стіл — переміщую її туди.)",
+        praep_wechsel_tip: "Ти вже робиш цю різницю щодня: <em>на стол<strong>і</strong></em> (де?) проти <em>на стіл</em> (куди?). Німецька відрізняє те саме, тільки відмінками Dativ і Akkusativ. Рух — Akkusativ; просто місцеперебування — Dativ.",
+        praep_wo_box: "<strong style=\"color:#3b6fe0;\">Wo? (місце) → Dativ</strong><br><em>Das Buch liegt auf dem Tisch.</em> (Книжка лежить на столі — руху немає.)",
+        praep_wohin_box: "<strong style=\"color:#3b6fe0;\">Wohin? (рух) → Akkusativ</strong><br><em>Ich lege das Buch auf den Tisch.</em> (Я кладу книжку на стіл — переміщення кудись.)",
+        table_header_gender_number: "<td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">чол.</td><td style=\"padding:8px 4px;\">жін.</td><td style=\"padding:8px 4px;\">сер.</td><td style=\"padding:8px 4px;\">множ.</td>",
     }
 };
 
@@ -8895,15 +8945,16 @@ function appliquerLangueDocument(lang){
 // Une ternaire ne se met pas a trois langues : d'ou ces deux fonctions, seuls
 // endroits qui connaissent les suffixes. Ajouter une langue, c'est desormais
 // l'ajouter a UI_LANGS et a REPLI_LANGUE -- plus une seule ternaire a reecrire.
-const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr" };
+const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk" };
 
 // Le drapeau affiche dans l'en-tete. Ce sont des emoji, donc rien a heberger.
-const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷" };
+const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦" };
 
 // Ordre de repli quand la traduction manque. Le turc arrive en dernier et son
 // corpus se remplira progressivement : sans repli, chaque mot pas encore
 // traduit s'afficherait vide.
-const REPLI_LANGUE = { fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"] };
+const REPLI_LANGUE = { fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"],
+                       uk: ["uk", "en", "fr"] };
 
 function langueEtRepli(lang){
     return REPLI_LANGUE[lang || getUiLang()] || REPLI_LANGUE[DEFAULT_UI_LANG];
@@ -8936,7 +8987,7 @@ function texteTraduit(obj, base, lang){
 // options / optionsEn, correct / correctEn. Meme logique de repli, autre
 // convention -- et ils ne portent pas toujours du texte (options est un
 // tableau), d'ou une fonction distincte de texteTraduit.
-const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr" };
+const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk" };
 
 // ============ Ou se trouve chaque langue dans une carte ============
 // Les cartes de vocabulaire sont des TABLEAUX : le rang encode le sens, et il
@@ -8947,12 +8998,12 @@ const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr" };
 // donc aucun des lecteurs positionnels du fichier n'est affecte. Ajouter une
 // langue de plus se fera pareil -- une paire de rangs au bout, une ligne ici.
 const RANGS_CARTE = {
-    nomen:         { traduction: { fr:3, en:4, tr:12 }, exemple: { fr:6, en:7, tr:13 } },
-    adjektive:     { traduction: { fr:1, en:5, tr:7  }, exemple: { fr:4, en:6, tr:8  } },
-    funktionswort: { traduction: { fr:1, en:5, tr:9  }, exemple: { fr:4, en:6, tr:10 },
-                     categorie:  { fr:2, en:7, tr:11 } },
-    expression:    { traduction: { fr:1, en:5, tr:10 }, exemple: { fr:4, en:6, tr:11 },
-                     categorie:  { fr:2, en:7, tr:12 } }
+    nomen:         { traduction: { fr:3, en:4, tr:12, uk:15 }, exemple: { fr:6, en:7, tr:13, uk:16 } },
+    adjektive:     { traduction: { fr:1, en:5, tr:7,  uk:11 }, exemple: { fr:4, en:6, tr:8,  uk:12 } },
+    funktionswort: { traduction: { fr:1, en:5, tr:9,  uk:14 }, exemple: { fr:4, en:6, tr:10, uk:15 },
+                     categorie:  { fr:2, en:7, tr:11, uk:16 } },
+    expression:    { traduction: { fr:1, en:5, tr:10, uk:15 }, exemple: { fr:4, en:6, tr:11, uk:16 },
+                     categorie:  { fr:2, en:7, tr:12, uk:17 } }
 };
 
 // Lit un texte de carte dans la langue voulue, avec le meme repli que
@@ -9031,10 +9082,19 @@ function valeurTraduite(obj, base, lang){
     return obj[base];
 }
 
+// LE REPLI PASSE PAR REPLI_LANGUE, PAS DIRECTEMENT PAR LE FRANCAIS.
+// Cette fonction sautait de la langue active au francais, en ignorant la
+// chaine de repli. Tant que le turc etait complet a 100 %, la ligne sautee ne
+// servait jamais et le defaut restait invisible. L'ukrainien est arrive a
+// 3 % : 97 % de l'interface se serait affichee en FRANCAIS a quelqu'un qui a
+// justement choisi l'ukrainien parce qu'il ne lit pas le francais. L'anglais
+// n'est pas ideal non plus, mais il est le repli qu'annonce REPLI_LANGUE, et
+// c'est celui que le reste de l'app applique deja partout ailleurs.
 function t(key){
-    const lang = getUiLang();
-    if(I18N[lang] && I18N[lang][key] !== undefined) return I18N[lang][key];
-    if(I18N[DEFAULT_UI_LANG] && I18N[DEFAULT_UI_LANG][key] !== undefined) return I18N[DEFAULT_UI_LANG][key];
+    for(const code of langueEtRepli()){
+        const dico = I18N[code];
+        if(dico && dico[key] !== undefined) return dico[key];
+    }
     return key;
 }
 
@@ -9664,12 +9724,12 @@ async function loadVerbeJson() {
             arr.forEach(v => {
                 words.push({
                     infinitif: v.infinitif || "",
-                    traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "",
+                    traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "",
                     praesens: v.praesens || {},
-                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "",
-                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "", praeteritum_tr: v.praeteritum_tr || "",
-                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "", perfekt_tr: v.perfekt_tr || "",
-                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "", konjunktiv2_tr: v.konjunktiv2_tr || "",
+                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "",
+                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "", praeteritum_tr: v.praeteritum_tr || "", praeteritum_uk: v.praeteritum_uk || "",
+                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "", perfekt_tr: v.perfekt_tr || "", perfekt_uk: v.perfekt_uk || "",
+                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "", konjunktiv2_tr: v.konjunktiv2_tr || "", konjunktiv2_uk: v.konjunktiv2_uk || "",
                     imperativ: v.imperativ || null,
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
@@ -9737,7 +9797,9 @@ async function loadAdjektiveJson() {
                     w.traduction_tr || "",   // rang 7
                     w.exemple_tr || "",      // rang 8
                     Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 9
-                    w.registre || ""         // rang 10
+                    w.registre || "",        // rang 10
+                    w.traduction_uk || "",   // rang 11
+                    w.exemple_uk || ""       // rang 12
                 ]);
             });
         });
@@ -9769,19 +9831,19 @@ function hideGlobalLoadingBar(){
 // allemand reste en tete : c'est celui que l'apprenant retrouvera dans une
 // grammaire ou un cours.
 const ADVERB_CATEGORIES = {
-    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman" },
-    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction", tr: "Ort/Richtung \u2014 yer, yön" },
-    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency", tr: "Häufigkeit \u2014 sıklık" },
-    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner", tr: "Art und Weise \u2014 tarz" },
-    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity", tr: "Grad/Menge \u2014 derece, miktar" },
-    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence", tr: "Grund/Folge \u2014 neden, sonuç" },
-    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link", tr: "Verbindung/Logik \u2014 mantıksal bağ" },
-    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words", tr: "Frageadverbien \u2014 soru kelimeleri" },
+    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman", uk: "Zeit \u2014 час" },
+    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction", tr: "Ort/Richtung \u2014 yer, yön", uk: "Ort/Richtung \u2014 місце, напрямок" },
+    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency", tr: "Häufigkeit \u2014 sıklık", uk: "Häufigkeit \u2014 частота" },
+    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner", tr: "Art und Weise \u2014 tarz", uk: "Art und Weise \u2014 спосіб дії" },
+    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity", tr: "Grad/Menge \u2014 derece, miktar", uk: "Grad/Menge \u2014 міра, кількість" },
+    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence", tr: "Grund/Folge \u2014 neden, sonuç", uk: "Grund/Folge \u2014 причина, наслідок" },
+    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link", tr: "Verbindung/Logik \u2014 mantıksal bağ", uk: "Verbindung/Logik \u2014 логічний зв’язок" },
+    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words", tr: "Frageadverbien \u2014 soru kelimeleri", uk: "Frageadverbien \u2014 питальні слова" },
     // Marqueurs d'attitude plutot que liens logiques : allerdings, zwar,
     // immerhin, ohnehin... Ils ne disent pas comment deux idees s'articulent,
     // ils disent ce que celui qui parle en pense. C'est le role des
     // particules, d'ou leur regroupement avec elles dans "Nuances & ton".
-    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude", tr: "Nuance/Ton \u2014 tutum" }
+    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude", tr: "Nuance/Ton \u2014 tutum", uk: "Nuance/Ton \u2014 ставлення" }
 };
 
 // Adverbes charges depuis adverbe.json (meme principe que verbe.json et
@@ -9795,12 +9857,12 @@ const ADVERB_CATEGORIES = {
 // nuancer...) et non par forme : c'est ainsi qu'on va les chercher quand on
 // parle.
 const REDEWENDUNG_CATEGORIES = {
-    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet" },
-    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement", tr: "Meinung \u2014 görüş bildirme" },
-    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions", tr: "Gefühle \u2014 duygular, tepkiler" },
-    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life", tr: "Alltag \u2014 günlük hayat" },
-    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance", tr: "Diskussion \u2014 tartışma, nüans" },
-    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun", tr: "Feste Verbindungen \u2014 fiil + isim" }
+    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet", uk: "Begrüßung \u2014 вітання, світська бесіда" },
+    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement", tr: "Meinung \u2014 görüş bildirme", uk: "Meinung \u2014 висловити думку" },
+    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions", tr: "Gefühle \u2014 duygular, tepkiler", uk: "Gefühle \u2014 почуття, реакції" },
+    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life", tr: "Alltag \u2014 günlük hayat", uk: "Alltag \u2014 повсякдення" },
+    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance", tr: "Diskussion \u2014 tartışma, nüans", uk: "Diskussion \u2014 дискусія, нюанси" },
+    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun", tr: "Feste Verbindungen \u2014 fiil + isim", uk: "Feste Verbindungen \u2014 дієслово + іменник" }
 };
 
 // Meme principe que adverbe.json : la donnee vit hors du code. Tuple produit,
@@ -9837,7 +9899,9 @@ async function loadFunktionswoerterJson() {
                 w.traduction_tr || "", w.exemple_tr || "",  // rangs 9 et 10
                 w.kategorie_tr || "",                       // rang 11
                 Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 12
-                w.registre || ""                            // rang 13
+                w.registre || "",                           // rang 13
+                w.traduction_uk || "", w.exemple_uk || "",  // rangs 14 et 15
+                w.kategorie_uk || ""                        // rang 16
             ]);
         });
     } catch (e) {
@@ -9862,7 +9926,9 @@ async function loadRedewendungenJson() {
                     r.traduction_tr || "", r.exemple_tr || "",  // rangs 10 et 11
                     cat.tr || "",                               // rang 12
                     Array.isArray(r.pruefung) ? r.pruefung : null,  // rang 13
-                    r.registre || ""         // rang 14
+                    r.registre || "",        // rang 14
+                    r.traduction_uk || "", r.exemple_uk || "",  // rangs 15 et 16
+                    cat.uk || ""                                // rang 17
                 ]);
             });
         });
@@ -9889,7 +9955,9 @@ async function loadAdverbienJson() {
                     a.traduction_tr || "", a.exemple_tr || "",  // rangs 10 et 11
                     cat.tr || "",                               // rang 12
                     Array.isArray(a.pruefung) ? a.pruefung : null,  // rang 13
-                    a.registre || ""         // rang 14
+                    a.registre || "",        // rang 14
+                    a.traduction_uk || "", a.exemple_uk || "",  // rangs 15 et 16
+                    cat.uk || ""                                // rang 17
                 ]);
             });
         });
@@ -10058,7 +10126,9 @@ async function loadThemesJson() {
                     // theme a part : « Anruf » appartient a la communication,
                     // « Brille » au corps. La tuile Preparation filtre dessus a
                     // travers tous les themes -- voir cartesExamen().
-                    Array.isArray(w.pruefung) ? w.pruefung : null   // rang 14
+                    Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 14
+                    w.traduction_uk || "",   // rang 15
+                    w.exemple_uk || ""       // rang 16
                 ];
             });
 
@@ -15333,7 +15403,7 @@ function buildSearchIndex(){
             (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben', prio: 2,
                 themeId: lv.id + '__verben', index: index, card: v,
-                de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr
+                de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk
             }));
             (lv.adjektive || []).forEach((a, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_adj', source: src, mode: 'vhskapiteladjektive', prio: 2,
@@ -15347,7 +15417,7 @@ function buildSearchIndex(){
         kindKey: 'search_kind_verb', mode: 'verben', prio: 0,
         source: (t('orb_verben_title') + " \u00b7 " + (v.niveau || "")).trim(),
         themeId: verbeTheme.id, index: index, card: v,
-        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk
     }));
 
     // adjectif.json : [mot, traduction, exemple, niveau, exemple_fr, en, exemple_en]
@@ -15378,7 +15448,7 @@ function buildSearchIndex(){
     (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
         kindKey: 'search_kind_verb', mode: 'positionsverben', prio: 3, source: t('search_src_position'),
         themeId: positionsverbenTheme.id, index: index, card: v,
-        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk
     }));
 
     return list;
@@ -19385,7 +19455,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 387;
+const APP_VERSION = 388;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
