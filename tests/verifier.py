@@ -255,8 +255,38 @@ def blocs_i18n(source):
     return resultat
 
 
+def cles_du_cours():
+    """Les clefs de grammaire.json, par langue.
+
+    Elles faisaient partie du bloc I18N jusqu'a la v393. Elles sont maintenant
+    versees dans I18N au chargement par chargerCours() -- donc, du point de vue
+    de l'app, elles existent. Le verificateur doit voir la meme chose que le
+    navigateur, sinon il proteste contre un fichier qui marche.
+    """
+    chemin = os.path.join(RACINE, "grammaire.json")
+    if not os.path.exists(chemin):
+        return {}
+    with io.open(chemin, encoding="utf-8") as f:
+        return json.load(f).get("textes", {})
+
+
 def verifier_traductions(r, source):
     dicos = blocs_i18n(source)
+    cours = cles_du_cours()
+    for langue, textes in cours.items():
+        if langue not in dicos:
+            r.echec("i18n", "grammaire.json parle %s, absent du dictionnaire" % langue)
+            continue
+        for k in textes:
+            # Definie aux deux endroits : la version de grammaire.json ecrase
+            # celle d'index.html au chargement, sans rien dire. Une des deux
+            # est morte, et on ne sait pas laquelle on lit.
+            if k in dicos[langue]:
+                r.echec("i18n", "%s : %s est defini DANS index.html ET dans "
+                                "grammaire.json (le second ecrase le premier)"
+                        % (langue, k))
+            dicos[langue][k] = 1
+        r.controle(len(textes))
     for langue, cles in dicos.items():
         doublons = [k for k, n in cles.items() if n > 1]
         for k in doublons:
@@ -289,6 +319,9 @@ def verifier_traductions(r, source):
             r.echec("i18n", "cle absente du dictionnaire francais : %s (vue en %s)" % (k, langue))
     print("   traductions     : " +
           " | ".join("%d cles %s" % (len(dicos[l]), l) for l in sorted(dicos)))
+    if cours:
+        print("   dont le cours   : %s (grammaire.json)"
+              % " | ".join("%d %s" % (len(cours[l]), l) for l in sorted(cours)))
     for langue, faites, reste in encours:
         print("   langue en cours : %s a %d cles sur %d (%.0f %%), %d a ecrire"
               % (langue, faites, len(fr), 100.0 * faites / len(fr), reste))
