@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v393</span>
+        <span class="subtitle-version">v394</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -11001,9 +11001,30 @@ function withGermanProgress(fn){
     try{ return fn(); } finally{ progressDirectionOverride = prev; }
 }
 
+// LE PREFIXE DE LA LANGUE ENSEIGNEE (v394).
+//
+// La progression n'etait separee que par DIRECTION : l'allemand d'un cote, le
+// module anglais de l'autre. Rien ne distinguait deux LANGUES ENSEIGNEES. Or
+// le fork espagnol est genere depuis l'app allemande, donc ses identifiants de
+// themes sont les MEMES : un utilisateur des deux, sur le meme compte, aurait
+// vu ses deux progressions se melanger theme par theme, sans aucun signe.
+//
+// L'ALLEMAND N'A PAS DE PREFIXE, ET C'EST VOULU. Toute la progression
+// existante est rangee sans prefixe ; lui en donner un ferait perdre la sienne
+// a chaque testeur, en silence. Le vide est la compatibilite, pas un oubli --
+// ne pas « corriger » ceci en ajoutant "de__".
+//
+// ⚠️ La langue enseignee ne doit jamais valoir "en" tant que le module anglais
+// existe : son prefixe entrerait en collision avec le "en__" de la direction.
+// Le verificateur le refuse.
+function prefixeLangue(){
+    const code = LANGUE_ENSEIGNEE.code;
+    return (!code || code === "de") ? "" : code + "__";
+}
+
 function progressKey(themeId){
     const dir = progressDirectionOverride || getLearningDirection();
-    return dir === 'en' ? `en__${themeId}` : themeId;
+    return dir === 'en' ? `en__${themeId}` : prefixeLangue() + themeId;
 }
 
 // Même principe que progressKey() mais pour une clé localStorage entière
@@ -11015,7 +11036,10 @@ function progressKey(themeId){
 // le streak/objectif/compteur hebdomadaire de l'allemand, et vice-versa.
 function directionScopedKey(baseKey){
     const dir = progressDirectionOverride || getLearningDirection();
-    return dir === 'en' ? `en__${baseKey}` : baseKey;
+    // Meme regle que progressKey : la serie, l'objectif, les badges, le XP et
+    // « mon vocabulaire » appartiennent au COURS, pas a l'application. Un
+    // apprenant d'espagnol ne doit pas heriter de la serie de son allemand.
+    return dir === 'en' ? `en__${baseKey}` : prefixeLangue() + baseKey;
 }
 
 // CLE STABLE D'UN MOT DANS SA LISTE (v315).
@@ -16828,7 +16852,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 393;
+const APP_VERSION = 394;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

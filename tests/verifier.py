@@ -328,6 +328,30 @@ def verifier_traductions(r, source):
     return fr
 
 
+def verifier_langue_enseignee(r, source):
+    """La langue enseignee ne peut pas valoir "en".
+
+    prefixeLangue() rangerait alors la progression sous "en__", exactement le
+    prefixe que la DIRECTION utilise deja pour le module anglais. Les deux se
+    melangeraient sans aucun signe -- le genre de collision qu'on ne voit
+    qu'apres avoir perdu des donnees. Le jour ou quelqu'un ecrira code: "en"
+    dans LANGUE_ENSEIGNEE, il faut que ca s'arrete ici.
+    """
+    m = re.search(r'const LANGUE_ENSEIGNEE = \{.*?code:\s*"([a-z]{2})"',
+                  source, re.S)
+    if not m:
+        r.echec("langue", "LANGUE_ENSEIGNEE.code introuvable")
+        return
+    code = m.group(1)
+    if code == "en":
+        r.echec("langue", 'LANGUE_ENSEIGNEE.code = "en" : son prefixe de '
+                          'progression entrerait en collision avec le "en__" '
+                          'du module anglais')
+    r.controle(1)
+    print("   langue enseignee: %s (prefixe de progression : %s)"
+          % (code, "aucun" if code == "de" else code + "__"))
+
+
 def verifier_jeux_exercices(r, source):
     """Tout jeu demande par son nom doit exister dans exercices.json.
 
@@ -541,6 +565,7 @@ def main():
     print("\nCODE ET INTERFACE")
     cles = verifier_traductions(r, source)
     verifier_jeux_exercices(r, source)
+    verifier_langue_enseignee(r, source)
     verifier_cles_utilisees(r, source, cles)
     fonctions = fonctions_definies(source)
     verifier_appels(r, source, fonctions)
