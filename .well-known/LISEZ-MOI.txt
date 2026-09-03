@@ -1,0 +1,42 @@
+DIGITAL ASSET LINKS -- ce que ce fichier fait, et pourquoi il ne marche pas
+encore.
+
+A QUOI CA SERT. Une TWA (l'application Android qui affiche Wortando) s'ouvre
+avec une barre d'adresse Chrome en haut, sauf si le site prouve qu'il autorise
+cette application precise. La preuve est ce fichier assetlinks.json : il nomme
+le paquet Android et l'empreinte de sa cle de signature.
+
+CE QU'IL FAUT Y METTRE, ET QUAND.
+  - package_name : le nom de paquet choisi lors de la creation de l'app
+    (par exemple com.wortando.app). Il ne changera plus jamais ensuite.
+  - sha256_cert_fingerprints : l'empreinte SHA-256 de la cle qui signe l'app.
+    Avec la signature par Google Play (le defaut), elle se lit dans la Play
+    Console, section « Integrite de l'application » -> « Signature d'app ».
+    Elle n'existe donc qu'APRES avoir cree l'application dans la console.
+
+>>> LE POINT QUI BLOQUE AUJOURD'HUI <<<
+
+Google va chercher ce fichier a la RACINE DU DOMAINE, et nulle part ailleurs :
+
+    https://LE-DOMAINE/.well-known/assetlinks.json
+
+Le site est actuellement servi sur
+    https://jacquesagrenier-star.github.io/Deutsch-gemini/
+La racine de ce domaine est jacquesagrenier-star.github.io, qui appartient a un
+AUTRE depot (le site personnel GitHub Pages). Ce fichier-ci, place dans le
+depot Deutsch-gemini, se retrouve a
+    https://jacquesagrenier-star.github.io/Deutsch-gemini/.well-known/...
+c'est-a-dire pas a la racine : Google ne le trouvera jamais.
+
+De plus github.io figure sur la Public Suffix List, ce qui complique encore la
+verification.
+
+LA SOLUTION : brancher wortando.com (deja achete) sur ce depot, en domaine
+personnalise GitHub Pages. La racine du domaine devient alors ce depot, et
+    https://wortando.com/.well-known/assetlinks.json
+sert ce fichier. C'est aussi ce qui donne une adresse presentable a la
+politique de confidentialite exigee par Google.
+
+LE FICHIER .nojekyll, A LA RACINE DU DEPOT, EST INDISPENSABLE. Sans lui,
+GitHub Pages fait tourner Jekyll, qui IGNORE tout dossier commencant par un
+point -- y compris .well-known. Le fichier existait sans jamais etre publie.
