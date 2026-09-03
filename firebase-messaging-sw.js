@@ -35,6 +35,27 @@ function clePage(){
     return new URL("index.html", self.registration.scope).toString();
 }
 
+// CE QUI EST « LA PAGE », ET CE QUI NE L'EST PAS.
+//
+// Le gestionnaire de fetch annonçait depuis toujours qu'il n'interceptait que
+// la page de l'app. Il ne le vérifiait pas : toute navigation de même origine
+// recevait index.html depuis le cache. Naviguer vers /confidentialite.html
+// affichait donc Wortando -- ce qui aurait fait refuser la soumission au Play
+// Store, Google exigeant une URL de politique de confidentialité lisible.
+//
+// La portée du service worker EST le dossier de l'app. La page, c'est ce
+// dossier lui-même ou son index.html. Tout le reste du domaine passe droit.
+const DOSSIER_APP = new URL(self.registration.scope).pathname;
+
+function estLaPage(url){
+    const p = url.pathname;
+    return p === DOSSIER_APP
+        || p === DOSSIER_APP + "index.html"
+        // « /app » sans barre finale : le navigateur redirige, mais la
+        // première requête porte encore le chemin nu.
+        || p + "/" === DOSSIER_APP;
+}
+
 self.addEventListener("install", (e) => {
     // On remplit le cache dès l'installation plutôt qu'au premier passage :
     // sans ça, il faudrait trois ouvertures avant d'en voir l'effet.
@@ -75,6 +96,10 @@ self.addEventListener("fetch", (e) => {
     let url;
     try{ url = new URL(req.url); }catch(err){ return; }
     if(url.origin !== self.location.origin) return;
+    // LA VERIFICATION QUI MANQUAIT. Sans elle, la politique de
+    // confidentialité, une page de mentions légales ou n'importe quelle autre
+    // page du domaine recevaient l'application à la place d'elles-mêmes.
+    if(!estLaPage(url)) return;
 
     const cle = clePage();
     // « ?v=NNN » est le geste de mise à jour de l'app (verifierNouvelleVersion
