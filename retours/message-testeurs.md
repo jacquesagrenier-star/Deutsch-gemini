@@ -1,0 +1,81 @@
+# Message aux testeurs — WhatsApp, brouillon du 4 septembre 2026
+
+Trois versions du même message court : français, anglais, turc.
+
+⚠️ **En conversation individuelle, jamais en groupe.** Un groupe WhatsApp
+montre le numéro de téléphone de chacun à tous les autres — c'est pire qu'une
+copie conforme par courriel.
+
+**Deux questions, pas trois.** Sur WhatsApp, une liste de questions ne reçoit
+pas de réponse. J'ai gardé celle qui produit une réponse utilisable, et celle
+dont tu as vraiment besoin : qui est sur Android.
+
+---
+
+## Français
+
+> Salut [prénom] 👋
+>
+> Petite nouvelle : ta progression dans Wortando ne se sauvegardait pas — un
+> bug que j'ai trouvé et corrigé aujourd'hui. Si tu avais l'impression que ça
+> ne suivait pas, tu avais raison. Rien n'est perdu.
+>
+> Deux questions rapides :
+> 1. Qu'est-ce que tu as ouvert une fois sans jamais y revenir ?
+> 2. Tu as un téléphone Android ? (je prépare une version Play Store)
+>
+> Merci 🙏 Ton accès reste gratuit quoi qu'il arrive.
+
+---
+
+## English
+
+> Hi [first name] 👋
+>
+> Quick news: your progress in Wortando wasn't being saved — a bug I found and
+> fixed today. If you ever felt it wasn't keeping up, you were right. Nothing
+> was lost.
+>
+> Two quick questions:
+> 1. What did you open once and never go back to?
+> 2. Do you have an Android phone? (I'm preparing a Play Store version)
+>
+> Thanks 🙏 Your access stays free whatever happens.
+
+---
+
+## Türkçe
+
+> Merhaba [ad] 👋
+>
+> Küçük bir haber: Wortando'daki ilerlemen kaydedilmiyordu — bugün bulup
+> düzelttiğim bir hata. Bir şeylerin geride kaldığını hissettiysen haklıydın.
+> Hiçbir şey kaybolmadı.
+>
+> İki kısa soru:
+> 1. Bir kez açıp bir daha hiç dönmediğin şey ne oldu?
+> 2. Android telefonun var mı? (Play Store sürümü hazırlıyorum)
+>
+> Teşekkürler 🙏 Erişimin ne olursa olsun ücretsiz kalacak.
+
+⚠️ Le turc est de moi et n'a pas été relu par un locuteur natif, contrairement
+aux traductions de l'app. Pour un message court le risque est faible ; à toi de
+voir si tu préfères l'anglais avec cette personne.
+
+---
+
+## Ce que j'ai coupé, et pourquoi
+
+- **La liste des nouveautés** (dictionnaire, C1, voix enregistrée, examens).
+  Trop long pour WhatsApp, et ça noie la question qui compte. À garder pour une
+  relance plus tard, ou pour ceux qui répondent.
+- **La troisième question** (« y a-t-il eu un moment où tu as décroché ? »).
+  Excellente au courriel, une de trop ici.
+
+## Des réponses
+
+- Chaque remarque va dans `journal-retours.md` — date, testeur, ce qui est dit,
+  et plus tard le numéro de version qui y répond.
+- Tenir à part **la liste de qui est sur Android**. Il en faut douze pour le
+  test fermé du Play Store, et viser quatorze ou quinze : un seul désistement
+  remet les quatorze jours à zéro.
