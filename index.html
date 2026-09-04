@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v399</span>
+        <span class="subtitle-version">v400</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10841,7 +10841,22 @@ function diagnostiquerSnapshot(s){
         }
     };
     parcourir(s, "", 0);
+    // Firestore indexe AUTOMATIQUEMENT chaque champ, y compris au fond des
+    // maps imbriquees, et plafonne a 40 000 entrees d'index par document. Une
+    // map de plusieurs milliers de mots, chacun avec quelques attributs,
+    // franchit ce plafond bien avant la limite de taille -- et c'est refuse
+    // avec le meme « invalid-argument » qu'un document trop gros. On compte
+    // donc les champs et la profondeur, les deux autres plafonds possibles.
+    let champs = 0, profondeurMax = 0;
+    const compter = (valeur, profondeur) => {
+        if(profondeur > profondeurMax) profondeurMax = profondeur;
+        if(valeur && typeof valeur === "object"){
+            Object.keys(valeur).forEach(c => { champs++; compter(valeur[c], profondeur + 1); });
+        }
+    };
+    compter(s, 0);
     return `total ${Math.round(total / 1024)} ko sur 1024 max — les plus gros : ${gros}`
+         + ` — ${champs} champs (plafond d'index : 40 000), profondeur ${profondeurMax} (max 20)`
          + (indefinis.length ? ` — undefined trouvé : ${indefinis.join(", ")}` : " — aucun undefined");
 }
 
@@ -10908,7 +10923,12 @@ async function syncProgressToCloud(){
         // les règles Firestore ne se voient nulle part.
         dernierEchecSync = {
             quand: new Date(),
-            message: (e && (e.code || e.message)) || String(e),
+            // Le code ET le message. « invalid-argument » est un fourre-tout :
+            // taille, profondeur, nombre d'entrees d'index, nom de champ
+            // reserve... Firestore precise laquelle dans le message, et
+            // l'ancien « e.code || e.message » le jetait des qu'un code
+            // existait -- c'est-a-dire toujours.
+            message: (e && e.code) ? `${e.code} — ${e.message || ""}` : String(e && e.message || e),
             // Seulement pour l'admin : mesurer un snapshot de plusieurs
             // centaines de kilo-octets n'a aucune raison de tourner sur le
             // telephone de quelqu'un qui apprend, et lui seul verra le resultat.
@@ -16942,7 +16962,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 399;
+const APP_VERSION = 400;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
