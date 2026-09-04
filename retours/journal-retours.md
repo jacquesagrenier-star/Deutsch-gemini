@@ -50,6 +50,8 @@ signalé le défaut, jamais lequel — je ne l'invente pas.
 
 | Reçu | Qui | Ce qui est signalé | État |
 |---|---|---|---|
+| 2026-09-04 | Stelios | **Ajouter des langues de traduction** pour élargir le public : *« many people that learn German do not speak English so it would be a good idea to add more languages to translate to »*. | ⚠️ **Confirme une direction déjà engagée, qu'il ignore.** L'app a déjà **quatre** langues d'interface : français, anglais et **turc complets** (1 017 clés chacun), ukrainien à 12 % (120 clés). L'outillage d'ajout d'une langue existe et a été rodé sur le turc. À lui répondre — et lui demander **laquelle** il voudrait : une demande nommée vaut mieux qu'un principe. |
+| 2026-09-04 | Shashwat | A répondu **oui** pour Android, mais pas à la question sur ce qu'il faudrait améliorer. | Relance légère envoyée. Noté comme testeur Android — voir `cle-testeurs.txt`. |
 | 2026-09-04 | Kirsty | *« Honestly I think it's already a lot better for someone like me than multiple others out there. »* Et : elle attend de savoir **quand ce sera compatible Android** pour l'installer sur le téléphone de Peter. | ⚠️ **Malentendu à lever, pas un défaut** : l'app tourne déjà sur Android — c'est une app web, elle s'ouvre dans n'importe quel navigateur et s'installe sur l'écran d'accueil depuis la v258. Rien à attendre. Ce qui viendra plus tard, c'est la version du Play Store. Si une utilisatrice croit devoir attendre, d'autres le croient aussi : **à dire explicitement dans les prochains messages**. Action : générer un code d'invitation pour Peter. |
 | 2026-09-04 | Kirsty | Va utiliser l'app tout le week-end et revenir avec ses remarques. | À relancer lundi si rien n'arrive. |
 
