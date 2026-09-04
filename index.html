@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v398</span>
+        <span class="subtitle-version">v399</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14285,7 +14285,14 @@ async function renderAdminUsersList(){
             // jamais. Timestamp Firestore, d'ou le .toDate() avant timeAgoFr().
             const vuLe = (u.updatedAt && typeof u.updatedAt.toDate === "function") ? u.updatedAt.toDate() : null;
             const joursDepuis = vuLe ? (Date.now() - vuLe.getTime()) / 86400000 : Infinity;
-            const vuTexte = vuLe ? `vu ${timeAgoFr(vuLe)}` : "jamais synchronise";
+            // « derniere sauvegarde », PAS « vu » : updatedAt n'avance que quand
+            // l'ecriture Firestore REUSSIT. Une personne qui utilise l'app tous
+            // les jours reste figee a la date ou ses ecritures ont commence a
+            // etre refusees. Et sur iPhone, l'app installee est suspendue sans
+            // aucun evenement : une session plus courte que le delai de 4 s de
+            // scheduleCloudSync() ne declenche jamais d'envoi. Dans les deux cas
+            // la date est un PLANCHER, jamais la derniere visite.
+            const vuTexte = vuLe ? `dernière sauvegarde ${timeAgoFr(vuLe)}` : "jamais synchronisé";
             return `
             <div class="admin-user-row" style="padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
@@ -16935,7 +16942,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 398;
+const APP_VERSION = 399;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
