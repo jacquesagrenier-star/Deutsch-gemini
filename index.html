@@ -2382,8 +2382,9 @@ body[data-theme="dark"] .registre-note{
     margin-top:0;
     padding-top:10px;
     color:#9aa3b2;
-    font-size:17px;
-    line-height:1;
+    font-size:12px;
+    font-weight:600;
+    line-height:1.3;
 }
 
 .tap-map-half{
@@ -3592,7 +3593,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v400</span>
+        <span class="subtitle-version">v401</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5380,9 +5381,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
-                <div class="tap-map" aria-hidden="true">
-                    <span class="tap-map-half">←</span>
-                    <span class="tap-map-half">→</span>
+                <div class="tap-map">
+                    <span class="tap-map-half" data-i18n="flash_tap_back">← Revoir le mot</span>
+                    <span class="tap-map-half" data-i18n="flash_tap_next">Suivante →</span>
                 </div>
             </div>
         </div>
@@ -6240,6 +6241,8 @@ const I18N = {
 
         flash_tap_hint: "Touche la carte pour voir la réponse",
         flash_skip_hint: "Passer une carte ne compte pas dans ta progression.",
+        flash_tap_back: "← Revoir le mot",
+        flash_tap_next: "Suivante →",
         review_2min: "Revoir dans 2 min",
         review_10min: "Revoir dans 10 min",
         review_tomorrow: "Revoir demain",
@@ -6974,6 +6977,8 @@ const I18N = {
 
         flash_tap_hint: "Tap the card to see the answer",
         flash_skip_hint: "Skipping a card doesn't count toward your progress.",
+        flash_tap_back: "← Back to the word",
+        flash_tap_next: "Next →",
         review_2min: "Review in 2 min",
         review_10min: "Review in 10 min",
         review_tomorrow: "Review tomorrow",
@@ -7712,6 +7717,8 @@ const I18N = {
 
         flash_tap_hint: "Cevabı görmek için karta dokun",
         flash_skip_hint: "Bir kartı atlamak ilerlemene sayılmaz.",
+        flash_tap_back: "← Kelimeye dön",
+        flash_tap_next: "Sonraki →",
         review_2min: "2 dk sonra tekrar",
         review_10min: "10 dk sonra tekrar",
         review_tomorrow: "Yarın tekrar",
@@ -16962,7 +16969,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 400;
+const APP_VERSION = 401;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
