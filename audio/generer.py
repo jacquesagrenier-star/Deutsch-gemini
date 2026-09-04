@@ -54,6 +54,18 @@ VOIX = "8HePnvwzEdJ614CQMPqF"
 # L'ancienne, gardee pour pouvoir revenir sans rien rechercher :
 # Nadja - Authentic and Clear = "iOLZqmXTaFktMrY5oZ2z"
 
+class TexteBloque(RuntimeError):
+    """ElevenLabs refuse CE texte, pas la cle ni le compte.
+
+    Ajoutee le 4 septembre 2026, apres qu'un seul texte de B1 a fait echouer
+    tout le niveau : 2 309 fichiers non produits parce que le 403 remontait
+    comme une panne fatale. Le message est explicite -- « The text you are
+    trying to use may violate our Terms of Service and has been blocked. You
+    have been partially refunded » -- et il ne dit rien sur la validite de la
+    cle. Un texte refuse doit etre saute et note, pas arreter le lot.
+    """
+
+
 MODELES = {
     "v2":    ("eleven_multilingual_v2", 1.0),   # 1 credit par caractere
     "flash": ("eleven_flash_v2_5",      0.5),   # moitie prix
@@ -122,6 +134,11 @@ def synthetiser(texte, modele, cle):
                 print("    HTTP %d, nouvelle tentative dans %ds" % (e.code, attente))
                 time.sleep(attente)
                 continue
+            # 403 + « violate our Terms » vise le TEXTE, pas la cle : le
+            # compte va tres bien, c'est ce mot-la qui est refuse. Sans cette
+            # distinction, un seul terme sensible arrete un niveau entier.
+            if e.code == 403 and ("violate" in detail or "blocked" in detail):
+                raise TexteBloque(detail)
             raise RuntimeError("HTTP %d : %s" % (e.code, detail))
         except urllib.error.URLError as e:
             if essai < 4:
@@ -215,6 +232,7 @@ def main():
     cle = cle_api()
 
     depense, faits, debut = 0, 0, time.time()
+    bloques = []
     try:
         for e in restants:
             prix = len(e["texte"]) * taux
@@ -222,7 +240,15 @@ def main():
                 print("\n  plafond atteint. Relance plus tard, la reprise est"
                       " automatique.")
                 break
-            octets = synthetiser(e["texte"], modele, cle)
+            try:
+                octets = synthetiser(e["texte"], modele, cle)
+            except TexteBloque:
+                # Le mot restera a la voix du telephone. C'est un repli deja
+                # prevu par l'application, et infiniment preferable a un lot
+                # interrompu.
+                bloques.append(e["texte"])
+                print("  ! refuse par ElevenLabs : %s" % e["texte"][:60])
+                continue
             with open(os.path.join(SORTIE, e["id"] + ".mp3"), "wb") as f:
                 f.write(octets)
             depense += prix

@@ -3605,7 +3605,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v406</span>
+        <span class="subtitle-version">v407</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17005,7 +17005,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 406;
+const APP_VERSION = 407;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17138,7 +17138,9 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //   4  egalisation en deux temps, etendue 6,0 -> 3,8 dB (v359)
 //   5  phrases attenuees de 1,2 dB sous les mots courts (v361)
 //   3  limiteur par-dessus, +4 a +5 dB de plus (v351)
-const AUDIO_REVISION = "6";
+//   7  CHANGEMENT DE VOIX : Nadja -> Aurora, et le corpus passe de 5 260 a
+//      25 298 fichiers -- A1 a C1 au lieu de A1-A2 seuls (v407)
+const AUDIO_REVISION = "7";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
