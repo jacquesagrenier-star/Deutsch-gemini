@@ -98,13 +98,17 @@ monde, pas seulement à elle.
 
 > Hi Kirsty 👋
 >
-> That's really kind, thank you — and good news: **it already works on
-> Android.** Wortando is a web app, so it opens in any browser, on any phone.
-> Peter can even add it to his home screen and it behaves like a normal app,
-> offline included.
+> That's really kind of you, thank you. Two bits of news.
 >
-> So no need to wait for me. Whenever suits you both, I'll send an invitation
-> code for Peter and he's in.
+> **The plural now has its own speaker button** — you asked this morning, it's
+> already in. Tap the small speaker next to the plural form and you'll hear it.
+> Thank you for that one: it was a real gap and I hadn't seen it. If you don't
+> see the button yet, close the app and open it again once.
+>
+> **And it already works on Android.** Wortando is a web app, so it opens in
+> any browser, on any phone. Peter can even add it to his home screen and it
+> behaves like a normal app, offline included. So no need to wait for me —
+> whenever suits you both, I'll send an invitation code for Peter and he's in.
 >
 > What's coming later is the Play Store version — same app, just distributed
 > through Google. That's the one that needs a formal testing round, and I'll
