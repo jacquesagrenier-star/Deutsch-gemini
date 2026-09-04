@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v397</span>
+        <span class="subtitle-version">v398</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10814,6 +10814,37 @@ let cloudSyncTimer = null;
 // message ici ne derange personne et repond a « pourquoi la liste est vide ».
 let dernierEchecSync = null;
 
+// Firestore renvoie « invalid-argument » sans jamais dire QUEL champ pose
+// probleme -- le message est le meme pour un document trop gros (limite dure :
+// 1 Mio) et pour une valeur undefined enfouie quelque part. On mesure donc les
+// deux, sinon on en est reduit a deviner champ par champ.
+// JSON.stringify SUPPRIME les undefined au lieu de les signaler : la taille ne
+// peut pas les reveler, d'ou le parcours separe.
+function diagnostiquerSnapshot(s){
+    if(!s) return "snapshot jamais construit";
+    const morceaux = [];
+    let total = 0;
+    Object.keys(s).forEach(cle => {
+        let octets = 0;
+        try{ octets = JSON.stringify(s[cle] === undefined ? null : s[cle]).length; }catch(e){ octets = -1; }
+        if(octets > 0) total += octets;
+        morceaux.push({ cle, octets });
+    });
+    morceaux.sort((a, b) => b.octets - a.octets);
+    const gros = morceaux.slice(0, 3).map(m => `${m.cle} ${Math.round(m.octets / 1024)} ko`).join(", ");
+    const indefinis = [];
+    const parcourir = (valeur, chemin, profondeur) => {
+        if(profondeur > 4 || indefinis.length >= 3) return;
+        if(valeur === undefined){ indefinis.push(chemin || "(racine)"); return; }
+        if(valeur && typeof valeur === "object"){
+            Object.keys(valeur).slice(0, 300).forEach(c => parcourir(valeur[c], chemin + "." + c, profondeur + 1));
+        }
+    };
+    parcourir(s, "", 0);
+    return `total ${Math.round(total / 1024)} ko sur 1024 max — les plus gros : ${gros}`
+         + (indefinis.length ? ` — undefined trouvé : ${indefinis.join(", ")}` : " — aucun undefined");
+}
+
 function isAdminUser(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     return !!(user && user.email && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase());
@@ -10834,6 +10865,7 @@ async function syncProgressToCloud(){
     // dans un stockage neuf (app installee sur l'ecran d'accueil). Dans le
     // doute, on n'ecrit pas.
     if(!cloudRestoreDone) return;
+    let snapshot = null; // hors du try : le diagnostic du catch en a besoin
     try{
         const progress = getProgress();
         let masteredCount = 0, totalCount = 0;
@@ -10846,7 +10878,7 @@ async function syncProgressToCloud(){
                 if(st && st.mastered) masteredCount++;
             });
         });
-        const snapshot = {
+        snapshot = {
             email: user.email,
             masteredCount,
             totalCount,
@@ -10874,7 +10906,14 @@ async function syncProgressToCloud(){
         // réussi, ce n'est pas bloquant. Mais on retient la cause, que le
         // tableau de bord admin affiche -- sans ça, des écritures refusées par
         // les règles Firestore ne se voient nulle part.
-        dernierEchecSync = { quand: new Date(), message: (e && (e.code || e.message)) || String(e) };
+        dernierEchecSync = {
+            quand: new Date(),
+            message: (e && (e.code || e.message)) || String(e),
+            // Seulement pour l'admin : mesurer un snapshot de plusieurs
+            // centaines de kilo-octets n'a aucune raison de tourner sur le
+            // telephone de quelqu'un qui apprend, et lui seul verra le resultat.
+            detail: isAdminUser() ? diagnostiquerSnapshot(snapshot) : ""
+        };
     }
 }
 
@@ -14195,7 +14234,8 @@ async function renderAdminUsersList(){
     if(typeof syncProgressToCloud === "function") await syncProgressToCloud();
     const alerteSync = dernierEchecSync
         ? `<div style="background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c; padding:10px 12px; border-radius:8px; margin-bottom:12px; font-weight:700;">
-               Écriture Firestore refusée (${dernierEchecSync.message}) — la progression ne se sauvegarde PAS dans le cloud. Vérifie les règles de sécurité Firestore.
+               Écriture Firestore refusée : <code>${dernierEchecSync.message}</code> — la progression ne se sauvegarde PAS dans le cloud.
+               <div style="font-weight:400; margin-top:6px; font-size:12px;">${dernierEchecSync.detail || ""}</div>
            </div>`
         : "";
     try{
@@ -16895,7 +16935,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 397;
+const APP_VERSION = 398;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
