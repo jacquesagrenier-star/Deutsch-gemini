@@ -21,7 +21,7 @@ dont tu as vraiment besoin : qui est sur Android.
 > ne suivait pas, tu avais raison. Rien n'est perdu.
 >
 > Deux questions rapides :
-> 1. Si tu pouvais changer une seule chose dans l'app, ce serait quoi ?
+> 1. D'après toi, qu'est-ce qu'on devrait améliorer en premier ?
 > 2. Tu as un téléphone Android ? (je prépare une version Play Store)
 >
 > Merci 🙏 Ton accès reste gratuit quoi qu'il arrive.
@@ -37,7 +37,7 @@ dont tu as vraiment besoin : qui est sur Android.
 > was lost.
 >
 > Two quick questions:
-> 1. If you could change one thing in the app, what would it be?
+> 1. What do you think we should improve first?
 > 2. Do you have an Android phone? (I'm preparing a Play Store version)
 >
 > Thanks 🙏 Your access stays free whatever happens.
@@ -53,7 +53,7 @@ dont tu as vraiment besoin : qui est sur Android.
 > Hiçbir şey kaybolmadı.
 >
 > İki kısa soru:
-> 1. Uygulamada tek bir şeyi değiştirebilseydin, ne olurdu?
+> 1. Sence ilk olarak neyi geliştirmeliyiz?
 > 2. Android telefonun var mı? (Play Store sürümü hazırlıyorum)
 >
 > Teşekkürler 🙏 Erişimin ne olursa olsun ücretsiz kalacak.
@@ -73,8 +73,10 @@ voir si tu préfères l'anglais avec cette personne.
   Excellente au courriel, une de trop ici.
 - **« Qu'as-tu ouvert une fois sans jamais y revenir ? »** — écartée : elle
   demande de se souvenir de ce qu'on n'a PAS fait, ce que personne ne sait
-  faire. « Changer une seule chose » se répond aussi bien après deux séances
-  qu'après deux mois, et rapporte un élément actionnable au lieu d'un constat.
+  faire. « Qu'est-ce qu'on devrait améliorer en premier » se répond aussi bien
+  après deux séances qu'après deux mois. Le « en premier » fait le travail :
+  il demande de choisir, donc il rapporte une chose précise plutôt qu'une
+  liste polie ou un silence.
 
 ## Des réponses
 
