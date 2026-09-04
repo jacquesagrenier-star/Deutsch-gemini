@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v395</span>
+        <span class="subtitle-version">v396</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14204,12 +14204,23 @@ async function renderAdminUsersList(){
             const prenom = (u.firstName || "").trim();
             const titre = prenom || u.email || u.id;
             const emailEnRappel = (prenom && prenomsVus[prenom] > 1) ? (u.email || "") : "";
+            // « Vu il y a... » : updatedAt est ecrit par syncProgressToCloud() a
+            // chaque sauvegarde, donc c'est la derniere fois que la personne a
+            // reellement fait quelque chose dans l'app -- la seule mesure d'activite
+            // qu'on ait. Elle dormait dans Firestore sans etre affichee nulle part.
+            // Au-dela d'une semaine, la ligne passe en orange : un testeur inactif
+            // ne se voit pas dans un compteur de mots maitrises, qui ne redescend
+            // jamais. Timestamp Firestore, d'ou le .toDate() avant timeAgoFr().
+            const vuLe = (u.updatedAt && typeof u.updatedAt.toDate === "function") ? u.updatedAt.toDate() : null;
+            const joursDepuis = vuLe ? (Date.now() - vuLe.getTime()) / 86400000 : Infinity;
+            const vuTexte = vuLe ? `vu ${timeAgoFr(vuLe)}` : "jamais synchronise";
             return `
             <div class="admin-user-row" style="padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
                     <div>
                         <div style="font-weight:700;">${titre}</div>
                         <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
+                        <br><small style="color:${joursDepuis > 7 ? '#d97706' : '#576177'}; font-weight:${joursDepuis > 7 ? '700' : '400'};">${vuTexte}</small>
                     </div>
                     <button class="secondary" style="min-height:auto; padding:6px 10px; font-size:12px; white-space:nowrap;" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
@@ -16852,7 +16863,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 395;
+const APP_VERSION = 396;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
