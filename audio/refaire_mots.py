@@ -43,7 +43,7 @@ import time
 sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from generer import VOIX, FORMAT, REGLAGES, SEED, cle_api          # noqa: E402
+from generer import VOIX, FORMAT, REGLAGES, SEED, MODELES, cle_api  # noqa: E402
 from essai_prononciation import appeler                            # noqa: E402
 from recouper import recouper, Refus                               # noqa: E402
 
@@ -53,7 +53,10 @@ SAUVEGARDE = os.path.join(RACINE, "audio", "mp3_original_avant_porteuse")
 BRUTS = os.path.join(RACINE, "audio", "mp3_porteuse_brut")
 MANIFESTE = os.path.join(RACINE, "audio", "manifest.json")
 REGISTRE = os.path.join(RACINE, "audio", "refaits_porteuse.json")
-MODELE = "eleven_multilingual_v2"
+# Le modele n'est plus en dur : il se choisit en ligne de commande et doit
+# TOUJOURS etre celui du reste du corpus. La table vient de generer.py, pour
+# qu'il n'y ait qu'un seul endroit ou les identifiants de modeles existent.
+MODELE_DEFAUT = "flash"
 
 PORTEUSE_DEFAUT = "Wort: %s."
 
@@ -88,6 +91,8 @@ def main():
                    help="0.80 rend au mot son debit de citation")
     p.add_argument("--plafond", type=int, default=50000,
                    help="credits maximum pour cette execution")
+    p.add_argument("--modele", default=MODELE_DEFAUT, choices=sorted(MODELES),
+                   help="doit etre le meme que celui du corpus")
     p.add_argument("--max", type=int, default=0, help="limiter le nombre de mots")
     p.add_argument("--blanc", action="store_true")
     a = p.parse_args()
@@ -95,14 +100,28 @@ def main():
     if "%s" not in a.porteuse:
         print("La porteuse doit contenir %s a la place du mot."); return 1
 
+    modele_id = MODELES[a.modele][0]
     niveaux = [n.strip() for n in a.niveaux.split(",")]
     with io.open(MANIFESTE, encoding="utf-8") as f:
         manifeste = json.load(f)
 
     reg = registre_lu()
     faits = set(reg["faits"])
+    # LE GENRE « mot » DU MANIFESTE N'EST PAS UN MOT ISOLE. Les expressions de
+    # redewendung.json y sont rangees comme « mot » : « Bis morgen », « Danke,
+    # gut », « Das freut mich ». Sur A1, 235 des 340 refus etaient de celles-la.
+    #
+    # Les emballer dans « Wort: ... » est inutile ET DANGEREUX. Inutile parce
+    # qu'une expression porte deja son contexte : elle n'a jamais eu le probleme
+    # de detection de langue que la porteuse corrige. Dangereux parce que le
+    # decoupage garde tout ce qui suit la plus grande pause -- sur « Wort: Bis
+    # morgen. », il peut ne garder que « morgen » et perdre « Bis ». Le garde-fou
+    # sur la duree en attrape une partie, mais ce n'est pas sa raison d'etre.
+    #
+    # On filtre donc sur l'ESPACE, pas sur le genre declare.
     mots = [e for e in manifeste
             if e["niveau"] in niveaux and e["genre"] == "mot"
+            and " " not in e["texte"].strip()
             and e["id"] not in faits]
     if a.max:
         mots = mots[:a.max]
@@ -147,7 +166,7 @@ def main():
                                 % (e["id"], ("%.2f" % a.vitesse).replace(".", "")))
             if not os.path.exists(brut):
                 with open(brut, "wb") as f:
-                    f.write(appeler(texte, reglages, SEED, cle))
+                    f.write(appeler(texte, reglages, SEED, cle, modele_id))
                 depense += prix
 
             cible = os.path.join(ORIGINAUX, e["id"] + ".mp3")

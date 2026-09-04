@@ -104,8 +104,15 @@ def main():
     return 0
 
 
-def appeler(texte, reglages, graine, cle):
-    """Meme appel que generer.py, mais reglages et graine variables."""
+def appeler(texte, reglages, graine, cle, modele=None):
+    """Meme appel que generer.py, mais reglages, graine ET modele variables.
+
+    `modele` a ete ajoute le 4 septembre 2026 : le corpus bascule sur Flash, et
+    la passe de porteuse doit sortir du MEME modele que le reste. Sans ce
+    parametre elle restait sur multilingual_v2 en dur -- les mots isoles
+    seraient venus d'un autre modele que leurs phrases, au double du prix.
+    """
+    modele = modele or MODELE
     import json
     import urllib.error
     import urllib.request

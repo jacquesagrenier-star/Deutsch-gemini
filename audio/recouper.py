@@ -114,7 +114,24 @@ def parole_totale(chemin):
     return (segs[-1][1] - segs[0][0]) if segs else 0.0
 
 
-ECART_MIN = 0.18        # s, en deca ce n'est pas une pause mais une consonne
+# ABAISSE DE 0,18 A 0,12 LE 4 SEPTEMBRE 2026, avec le passage a la voix Aurora.
+#
+# 0,18 s etait juste pour Nadja, qui marquait une pause nette apres « Wort: ».
+# Aurora enchaine plus fluidement : sur 105 mots isoles, le plus grand ecart
+# tombait entre 0,10 et 0,18 s, et le decoupage refusait TOUT -- 0 reussite sur
+# 105. Un seuil regle pour une voix ne vaut pas pour une autre.
+#
+# Mesure des paliers, sur les enregistrements deja payes des mots refuses :
+#   0,18 s -> 0 %   |   0,15 s -> 61 %   |   0,14 s -> 78 %   |   0,12 s -> 92 %
+#
+# 0,12 retenu apres ECOUTE de six coupes par Jacques -- Adresse, Apotheke,
+# Banane, Bank, Bar, Beruf : mot entier, pas de reste de porteuse. C'est la
+# seule verification qui vaille, le reste n'est que de l'arithmetique.
+#
+# Les deux autres garde-fous sont INCHANGES et c'est ce qui rend l'abaissement
+# supportable : la pause retenue doit toujours dominer les autres d'un facteur
+# 1,5, et la duree du mot doit rester plausible.
+ECART_MIN = 0.12        # s, en deca ce n'est pas une pause mais une consonne
 ECART_RAPPORT = 1.5     # la vraie pause doit dominer nettement les autres
 
 
