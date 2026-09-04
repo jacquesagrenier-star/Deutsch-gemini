@@ -3605,7 +3605,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v405</span>
+        <span class="subtitle-version">v406</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16038,6 +16038,9 @@ function loadFlashcard(){
     }
 
     resizeFlashcard();
+    // La carte est affichee mais pas encore retournee : c'est le moment de
+    // savoir si son fichier existe. Voir preverifierAudioCarte().
+    preverifierAudioCarte();
 }
 
 function flipCard(){
@@ -17002,7 +17005,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 405;
+const APP_VERSION = 406;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17425,19 +17428,77 @@ function speakPlural(){
     direAllemand(texteAudioPluriel, { rate: 0.9 });
 }
 
-function speakWord(){
-    if(!currentCards.length || !('speechSynthesis' in window)) return;
+// Le texte que la carte affichee fera prononcer. Extrait de speakWord() pour
+// que la SONDE ci-dessous vise exactement la meme chaine : l'identifiant d'un
+// fichier etant sha1(texte), un article oublie designerait un autre fichier et
+// la sonde repondrait sur le mauvais.
+function texteCarteAPrononcer(){
     const backWordEl = document.getElementById("flashBackWord");
-    let textToSpeak = backWordEl ? backWordEl.textContent : "";
-    if(!textToSpeak) return;
+    let texte = backWordEl ? backWordEl.textContent : "";
+    if(!texte) return "";
     // Pour les noms allemands, inclure l'article (der/die/das) dans la
     // prononciation quand il est affiché sur la carte -- plus utile pour
     // retenir le genre que le nom seul. flashArticle n'est visible que dans
     // la branche "nomen" en direction allemande (masqué partout ailleurs).
     const articleEl = document.getElementById("flashArticle");
     if(articleEl && !articleEl.classList.contains("hidden") && articleEl.textContent){
-        textToSpeak = `${articleEl.textContent} ${textToSpeak}`;
+        texte = `${articleEl.textContent} ${texte}`;
     }
+    return texte;
+}
+
+// SAVOIR AVANT LE GESTE SI LE FICHIER EXISTE.
+//
+// Le defaut repare ici, observe sur iPhone : une carte sur deux restait muette.
+// Pas les premieres, pas apres un delai -- SELON LA CARTE. Celles qui ont un
+// fichier parlaient, les autres non.
+//
+// La cause : quand le fichier manque, direAllemand() le tente, echoue, puis
+// lance la voix du telephone DEPUIS LE GESTIONNAIRE D'ERREUR -- donc une
+// fraction de seconde apres le geste, dans une autre tache. Or iOS n'autorise
+// la synthese que PENDANT un geste. Le repli etait condamne d'avance, et il
+// l'etait pour toujours sur B1-C1, qui n'ont aucun fichier.
+//
+// Ce qui le rendait insaisissable : au deuxieme appui sur le meme mot, le
+// fichier est deja dans audioAbsents, direAllemand() ne le tente plus et parle
+// SYNCHRONIQUEMENT, dans le geste. Ca marchait. D'ou l'impression d'un moteur
+// qui se reveille.
+//
+// On sonde donc au moment ou la carte s'AFFICHE, bien avant qu'elle soit
+// retournee. Aucune lecture, aucun son : on met le fichier en file et on
+// ecoute l'erreur. Au retournement, audioAbsents sait deja, et la voix part
+// dans le geste.
+const audioSondes = new Set();
+
+function preverifierAudioCarte(){
+    if(!AUDIO_BASE || typeof Audio === "undefined") return;
+    const texte = texteCarteAPrononcer();
+    if(!texte) return;
+    const empreinte = empreinteAudio(texte);
+    if(!empreinte || audioAbsents.has(empreinte) || audioSondes.has(empreinte)) return;
+    audioSondes.add(empreinte);
+    // Un element neuf par sonde : reutiliser le meme ferait arriver l'erreur du
+    // mot precedent sur le gestionnaire du mot courant, et noircirait un
+    // fichier parfaitement valide.
+    const sonde = new Audio();
+    sonde.preload = "metadata";
+    sonde.onerror = () => {
+        // NE PAS noircir sur une panne de reseau. Le code 2 (MEDIA_ERR_NETWORK)
+        // dit que le fichier n'a pas pu etre atteint, pas qu'il n'existe pas --
+        // l'inscrire condamnerait le mot pour toute la session sur un creux de
+        // connexion. Seul un fichier introuvable ou illisible compte.
+        const code = sonde.error && sonde.error.code;
+        if(code === 2) { audioSondes.delete(empreinte); return; }
+        audioAbsents.add(empreinte);
+        noterAudio(texte, "SONDE", "fichier absent -- repli prepare avant le geste");
+    };
+    sonde.src = AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION;
+}
+
+function speakWord(){
+    if(!currentCards.length || !('speechSynthesis' in window)) return;
+    const textToSpeak = texteCarteAPrononcer();
+    if(!textToSpeak) return;
     const learningEnglish = getLearningDirection() === 'en';
     // L'allemand passe par la voix pre-generee ; l'anglais du module pour
     // germanophones n'en a pas et reste a la synthese du navigateur.
