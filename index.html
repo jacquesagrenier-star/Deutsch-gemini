@@ -3605,7 +3605,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v404</span>
+        <span class="subtitle-version">v405</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16718,6 +16718,19 @@ function amorcerSynthese(){
     }catch(e){}
 }
 
+// L'AMORCE NE SERVAIT QUE LE MODE ECOUTE. Elle etait appelee depuis
+// demarrerEcoute(), ecouteBasculer() et ecouteAller(), donc jamais par
+// quelqu'un qui revise ses cartes -- et c'est la que le defaut se voyait :
+// aucun son sur les premieres cartes d'une seance, sur iPhone comme sur
+// portable, puis tout fonctionne.
+//
+// On l'accroche donc au TOUT PREMIER contact avec la page, quel qu'il soit :
+// une tuile, un bouton, une carte. En capture, pour passer avant les
+// gestionnaires des elements eux-memes, et `once` parce qu'un seul suffit.
+if(typeof document !== "undefined"){
+    document.addEventListener("pointerdown", amorcerSynthese, { once: true, capture: true });
+}
+
 function ecouteLancer(){
     ecouteJoue = true;
     ecouteMajBouton();
@@ -16989,7 +17002,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 404;
+const APP_VERSION = 405;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17281,44 +17294,6 @@ function afficherJournalAudio(){
     box.textContent = journalAudio.map(e =>
         e.h + "  " + e.source.padEnd(9) + "  " + e.texte +
         (e.detail ? SAUT + "            " + e.detail : "")).join(SAUT);
-}
-
-// LE MOTEUR DE SYNTHESE EST MUET A FROID.
-//
-// Constate le 4 septembre 2026 : les deux ou trois premieres cartes d'une
-// seance ne produisent AUCUN son, sur iPhone comme sur portable, puis tout
-// fonctionne. Le journal audio montrait pourtant « SYNTHESE, voix Google
-// Deutsch » -- l'enonce partait, avec la bonne voix, et rien ne sortait.
-// Aucune erreur, aucun evenement : c'est ce qui rend le defaut invisible.
-//
-// Deux causes connues, corrigees ensemble parce qu'aucune ne se distingue de
-// l'autre a l'observation :
-//
-//   - le moteur a besoin d'un premier enonce pour demarrer. On lui en donne
-//     un, silencieux, des le premier geste de la personne ;
-//   - sur iOS, la synthese exige un GESTE UTILISATEUR pour son premier enonce,
-//     exactement comme un element <audio>. Un enonce declenche par le
-//     retournement d'une carte en est un, mais l'amorce le garantit plus tot.
-//
-// D'ou l'ecoute sur `pointerdown` en capture : elle attrape le tout premier
-// contact, quel qu'il soit, avant meme le premier retournement de carte.
-let syntheseAmorcee = false;
-
-function amorcerSynthese(){
-    if(syntheseAmorcee || !('speechSynthesis' in window)) return;
-    syntheseAmorcee = true;
-    try{
-        const u = new SpeechSynthesisUtterance(" ");
-        u.volume = 0;   // inaudible : on reveille le moteur, on ne dit rien
-        window.speechSynthesis.speak(u);
-        noterAudio("(amorce)", "AMORCE", "moteur de synthese reveille au premier geste");
-    }catch(e){
-        noterAudio("(amorce)", "AMORCE", "echec : " + (e && e.message || e));
-    }
-}
-
-if(typeof document !== "undefined"){
-    document.addEventListener("pointerdown", amorcerSynthese, { once: true, capture: true });
 }
 
 // Joue le fichier pre-genere s'il existe, sinon la synthese du navigateur.
