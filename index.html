@@ -3605,7 +3605,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v403</span>
+        <span class="subtitle-version">v404</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16989,7 +16989,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 403;
+const APP_VERSION = 404;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17283,6 +17283,44 @@ function afficherJournalAudio(){
         (e.detail ? SAUT + "            " + e.detail : "")).join(SAUT);
 }
 
+// LE MOTEUR DE SYNTHESE EST MUET A FROID.
+//
+// Constate le 4 septembre 2026 : les deux ou trois premieres cartes d'une
+// seance ne produisent AUCUN son, sur iPhone comme sur portable, puis tout
+// fonctionne. Le journal audio montrait pourtant « SYNTHESE, voix Google
+// Deutsch » -- l'enonce partait, avec la bonne voix, et rien ne sortait.
+// Aucune erreur, aucun evenement : c'est ce qui rend le defaut invisible.
+//
+// Deux causes connues, corrigees ensemble parce qu'aucune ne se distingue de
+// l'autre a l'observation :
+//
+//   - le moteur a besoin d'un premier enonce pour demarrer. On lui en donne
+//     un, silencieux, des le premier geste de la personne ;
+//   - sur iOS, la synthese exige un GESTE UTILISATEUR pour son premier enonce,
+//     exactement comme un element <audio>. Un enonce declenche par le
+//     retournement d'une carte en est un, mais l'amorce le garantit plus tot.
+//
+// D'ou l'ecoute sur `pointerdown` en capture : elle attrape le tout premier
+// contact, quel qu'il soit, avant meme le premier retournement de carte.
+let syntheseAmorcee = false;
+
+function amorcerSynthese(){
+    if(syntheseAmorcee || !('speechSynthesis' in window)) return;
+    syntheseAmorcee = true;
+    try{
+        const u = new SpeechSynthesisUtterance(" ");
+        u.volume = 0;   // inaudible : on reveille le moteur, on ne dit rien
+        window.speechSynthesis.speak(u);
+        noterAudio("(amorce)", "AMORCE", "moteur de synthese reveille au premier geste");
+    }catch(e){
+        noterAudio("(amorce)", "AMORCE", "echec : " + (e && e.message || e));
+    }
+}
+
+if(typeof document !== "undefined"){
+    document.addEventListener("pointerdown", amorcerSynthese, { once: true, capture: true });
+}
+
 // Joue le fichier pre-genere s'il existe, sinon la synthese du navigateur.
 // `onEnd` est appele dans les deux cas : le mode Ecoute enchaine ses etapes
 // dessus, il ne doit jamais rester bloque parce qu'un fichier manque.
@@ -17311,7 +17349,14 @@ function direAllemand(texte, opts){
     };
 
     arreterAudioPregenere();
-    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    // cancel() SEULEMENT s'il y a quelque chose a couper. Appele sur un moteur
+    // au repos, il le laisse dans un etat ou l'enonce suivant part sans qu'aucun
+    // son n'en sorte -- et le premier mot d'une seance est justement toujours
+    // dans ce cas.
+    if('speechSynthesis' in window &&
+       (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
+        window.speechSynthesis.cancel();
+    }
     if(!texte){ if(onEnd) onEnd(); return; }
     if(!AUDIO_BASE){ repli(); return; }
 
