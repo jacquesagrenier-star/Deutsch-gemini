@@ -38,9 +38,21 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SORTIE = os.path.join(RACINE, "audio", "mp3")
 MANIFESTE = os.path.join(RACINE, "audio", "manifest.json")
 
-# Nadja - Authentic and Clear. C'est l'identifiant qui fait foi, pas le nom :
-# une voix de la Voice Library peut etre renommee ou retiree par son createur.
-VOIX = "iOLZqmXTaFktMrY5oZ2z"
+# Aurora - Warm Narrator. C'est l'identifiant qui fait foi, pas le nom : une
+# voix de la Voice Library peut etre renommee ou retiree par son createur.
+#
+# CHOISIE PAR BARBARA LE 3 SEPTEMBRE 2026, a l'aveugle, sur six echantillons
+# anonymises dont l'un etait Nadja -- la voix alors en ligne. Elle a donc ete
+# ecartee par une utilisatrice qui ignorait laquelle etait en place, ce qui
+# est le seul verdict qui vaille. Voir audio/a_ecouter_voix/CLE-du-comparatif.json
+#
+# ATTENTION : basculer signifie REGENERER LES 5 260 FICHIERS A1-A2 deja en
+# ligne. Ils sont archives dans la sauvegarde du 4 septembre 2026 -- ne pas
+# lancer une generation sans s'en assurer, ils valent 130 759 credits.
+VOIX = "8HePnvwzEdJ614CQMPqF"
+
+# L'ancienne, gardee pour pouvoir revenir sans rien rechercher :
+# Nadja - Authentic and Clear = "iOLZqmXTaFktMrY5oZ2z"
 
 MODELES = {
     "v2":    ("eleven_multilingual_v2", 1.0),   # 1 credit par caractere

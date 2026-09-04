@@ -71,6 +71,17 @@ def recolter():
             prendre(mot, niv, "mot", "nomen")
             if genre and genre != mot:
                 prendre(genre + " " + mot, niv, "mot", "nomen.article")
+            # LE PLURIEL AUSSI, depuis la v403 : la carte porte un second
+            # haut-parleur a cote de la forme du pluriel (demande de Kirsty).
+            # Sans cette ligne il n'a aucun fichier et sort a la voix du
+            # telephone, juste sous un mot qui, lui, sort en voix enregistree --
+            # l'ecart s'entend d'autant mieux que les deux se suivent.
+            # "die" en toutes lettres parce que c'est ce que la carte affiche
+            # ET ce que speakPlural() envoie : l'identifiant etant sha1(texte),
+            # les deux doivent etre la MEME chaine, au caractere pres.
+            pluriel = (m.get("pluriel") or "").strip()
+            if pluriel and pluriel not in ("—", "-"):
+                prendre("die " + pluriel, niv, "mot", "nomen.pluriel")
             prendre(m.get("exemple"), niv, "phrase", "nomen")
 
     verbes = charger("verbe.json")
