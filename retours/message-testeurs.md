@@ -7,7 +7,7 @@ montre le numéro de téléphone de chacun à tous les autres — c'est pire qu'
 copie conforme par courriel.
 
 **Deux questions, pas trois.** Sur WhatsApp, une liste de questions ne reçoit
-pas de réponse. J'ai gardé celle qui produit une réponse utilisable, et celle
+pas de réponse. J'ai gardé celle à laquelle n'importe qui peut répondre, et celle
 dont tu as vraiment besoin : qui est sur Android.
 
 ---
@@ -21,7 +21,7 @@ dont tu as vraiment besoin : qui est sur Android.
 > ne suivait pas, tu avais raison. Rien n'est perdu.
 >
 > Deux questions rapides :
-> 1. Qu'est-ce que tu as ouvert une fois sans jamais y revenir ?
+> 1. Si tu pouvais changer une seule chose dans l'app, ce serait quoi ?
 > 2. Tu as un téléphone Android ? (je prépare une version Play Store)
 >
 > Merci 🙏 Ton accès reste gratuit quoi qu'il arrive.
@@ -37,7 +37,7 @@ dont tu as vraiment besoin : qui est sur Android.
 > was lost.
 >
 > Two quick questions:
-> 1. What did you open once and never go back to?
+> 1. If you could change one thing in the app, what would it be?
 > 2. Do you have an Android phone? (I'm preparing a Play Store version)
 >
 > Thanks 🙏 Your access stays free whatever happens.
@@ -53,7 +53,7 @@ dont tu as vraiment besoin : qui est sur Android.
 > Hiçbir şey kaybolmadı.
 >
 > İki kısa soru:
-> 1. Bir kez açıp bir daha hiç dönmediğin şey ne oldu?
+> 1. Uygulamada tek bir şeyi değiştirebilseydin, ne olurdu?
 > 2. Android telefonun var mı? (Play Store sürümü hazırlıyorum)
 >
 > Teşekkürler 🙏 Erişimin ne olursa olsun ücretsiz kalacak.
@@ -71,6 +71,10 @@ voir si tu préfères l'anglais avec cette personne.
   relance plus tard, ou pour ceux qui répondent.
 - **La troisième question** (« y a-t-il eu un moment où tu as décroché ? »).
   Excellente au courriel, une de trop ici.
+- **« Qu'as-tu ouvert une fois sans jamais y revenir ? »** — écartée : elle
+  demande de se souvenir de ce qu'on n'a PAS fait, ce que personne ne sait
+  faire. « Changer une seule chose » se répond aussi bien après deux séances
+  qu'après deux mois, et rapporte un élément actionnable au lieu d'un constat.
 
 ## Des réponses
 
