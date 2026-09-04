@@ -3592,7 +3592,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v396</span>
+        <span class="subtitle-version">v397</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10807,6 +10807,12 @@ function saveProgress(progress){
 // fusion au retour).
 const ADMIN_EMAIL = "jacques.a.grenier@gmail.com";
 let cloudSyncTimer = null;
+// Derniere erreur d'ecriture Firestore, gardee pour le tableau de bord admin.
+// syncProgressToCloud() avale volontairement ses exceptions -- c'est le bon
+// choix pour qui apprend, la sauvegarde locale a deja reussi -- mais ce silence
+// rendait une panne d'ecriture TOTALEMENT invisible, y compris a moi. Un
+// message ici ne derange personne et repond a « pourquoi la liste est vide ».
+let dernierEchecSync = null;
 
 function isAdminUser(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
@@ -10862,9 +10868,13 @@ async function syncProgressToCloud(){
             updatedAt: window.fsServerTimestamp()
         };
         await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), snapshot, { merge: true });
+        dernierEchecSync = null;
     }catch(e){
-        // Silencieux : la sauvegarde locale a déjà réussi, ce n'est pas bloquant
-        // pour l'expérience de la personne qui utilise l'app.
+        // Silencieux POUR LA PERSONNE QUI APPREND : la sauvegarde locale a déjà
+        // réussi, ce n'est pas bloquant. Mais on retient la cause, que le
+        // tableau de bord admin affiche -- sans ça, des écritures refusées par
+        // les règles Firestore ne se voient nulle part.
+        dernierEchecSync = { quand: new Date(), message: (e && (e.code || e.message)) || String(e) };
     }
 }
 
@@ -14178,13 +14188,36 @@ async function renderAdminUsersList(){
     if(!container || !isAdminUser()) return;
     if(!window.firestoreDb){ adminEtatErreur(container, renderAdminUsersList); return; }
     container.textContent = t('loading_label');
+    // Sonde : on force une sauvegarde AVANT de lire, pour que le tableau reflete
+    // au moins le compte admin. Si l'ecriture est refusee, dernierEchecSync le
+    // dit juste en dessous -- c'est la difference entre « il n'y a personne » et
+    // « rien ne s'enregistre depuis le debut ».
+    if(typeof syncProgressToCloud === "function") await syncProgressToCloud();
+    const alerteSync = dernierEchecSync
+        ? `<div style="background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c; padding:10px 12px; border-radius:8px; margin-bottom:12px; font-weight:700;">
+               Écriture Firestore refusée (${dernierEchecSync.message}) — la progression ne se sauvegarde PAS dans le cloud. Vérifie les règles de sécurité Firestore.
+           </div>`
+        : "";
     try{
         const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, 'users'));
         const users = [];
         snap.forEach(d => users.push({ id: d.id, ...d.data() }));
         users.sort((a, b) => (b.masteredCount || 0) - (a.masteredCount || 0));
+        // « Mots demandes » est rempli d'ici, et il l'etait APRES le retour
+        // anticipe ci-dessous : zero testeur laissait donc ce bloc bloque sur
+        // « Chargement... » indefiniment, ce qui se lit comme une panne alors
+        // que la reponse etait « rien a montrer ». On le remplit d'abord, avec
+        // la liste vide s'il le faut.
+        renderAdminRequests(users);
         if(users.length === 0){
-            container.textContent = t('admin_no_users');
+            // Une collection 'users' vide n'est PAS une information anodine :
+            // l'app y ecrit a chaque sauvegarde, donc ton propre compte devrait
+            // s'y trouver. Vide = les ecritures echouent (regles Firestore), et
+            // elles echouent en silence des deux cotes (inscription et
+            // syncProgressToCloud avalent leur exception pour ne pas deranger
+            // la personne qui apprend). On le dit ici plutot que de laisser
+            // croire qu'il n'y a personne.
+            container.innerHTML = alerteSync + `<div>${t('admin_no_users')}</div>`;
             return;
         }
         // Identification par le PRENOM (saisi a l'inscription et deja enregistre
@@ -14198,8 +14231,7 @@ async function renderAdminUsersList(){
             const n = (u.firstName || "").trim();
             if(n) prenomsVus[n] = (prenomsVus[n] || 0) + 1;
         });
-        renderAdminRequests(users);
-        container.innerHTML = users.map(u => {
+        container.innerHTML = alerteSync + users.map(u => {
             const vhsOn = u.vhsChaptersEnabled === true;
             const prenom = (u.firstName || "").trim();
             const titre = prenom || u.email || u.id;
@@ -16863,7 +16895,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 396;
+const APP_VERSION = 397;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
