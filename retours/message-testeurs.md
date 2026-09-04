@@ -107,8 +107,11 @@ monde, pas seulement à elle.
 >
 > **And it already works on Android.** Wortando is a web app, so it opens in
 > any browser, on any phone. Peter can even add it to his home screen and it
-> behaves like a normal app, offline included. So no need to wait for me —
-> whenever suits you both, I'll send an invitation code for Peter and he's in.
+> behaves like a normal app, offline included. So no need to wait for me.
+>
+> Here is Peter's invitation code: **[CODE]**
+> He just opens the link, taps "Create an account" and enters it. The code
+> works once, and it's his.
 >
 > What's coming later is the Play Store version — same app, just distributed
 > through Google. That's the one that needs a formal testing round, and I'll
@@ -116,8 +119,14 @@ monde, pas seulement à elle.
 >
 > Enjoy the weekend with it, and don't spare me 🙂
 
-**À faire dans la foulée :** générer un code d'invitation pour Peter
-(⚙️ Réglages → Administration → Tableau de bord → GÉNÉRER UN NOUVEAU CODE),
-et noter dans `cle-testeurs.txt` que Peter est **un testeur Android de plus**
-— il en faut douze, et l'app n'enregistre aucune information d'appareil, donc
-cette liste ne se reconstitue pas toute seule.
+**À faire avant d'envoyer :**
+
+1. **Générer le code** — ⚙️ Réglages → Administration → Tableau de bord →
+   GÉNÉRER UN NOUVEAU CODE, puis remplacer `[CODE]` dans le message.
+2. **Annoter le code** dans le tableau de bord (champ note à côté) : « Peter,
+   via Kirsty ». Sinon, dans trois semaines, personne ne saura à qui il a servi.
+3. **Joindre le lien** — https://jacquesagrenier-star.github.io/Deutsch-gemini/
+4. **Noter Peter comme testeur ANDROID** dans `cle-testeurs.txt`. Il en faut
+   douze pour le test fermé, l'app n'enregistre aucune information d'appareil,
+   et cette liste ne se reconstitue pas toute seule. Peter est le premier
+   confirmé.
