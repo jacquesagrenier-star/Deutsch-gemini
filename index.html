@@ -2186,7 +2186,20 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
     font-size:14px;
     font-weight:600;
     margin:2px 0 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
 }
+
+/* Le haut-parleur du pluriel est plus petit que celui du mot : le pluriel est
+   une precision, pas la reponse. Deux boutons de meme taille se disputeraient
+   l'oeil sur une carte ou un seul compte vraiment. */
+.icon-audio-btn--petit{
+    width:24px;
+    height:24px;
+}
+.icon-audio-btn--petit svg{width:13px; height:13px}
 
 /* Marque d'usage (C1). Elle n'apparait QUE sur les mots qui detonnent -- un
    mot normal n'en porte aucune. C'est deliberé : une mention presente sur trois
@@ -3592,7 +3605,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v402</span>
+        <span class="subtitle-version">v403</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5374,7 +5387,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
-                <div id="flashPlural" class="plural hidden"></div>
+                <div id="flashPlural" class="plural hidden">
+                    <span id="flashPluralText"></span>
+                    <button id="pluralAudioBtn" class="icon-audio-btn icon-audio-btn--petit" onclick="event.stopPropagation(); speakPlural();" aria-label="Écouter le pluriel">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                    </button>
+                </div>
                 <div id="flashPaire" class="plural hidden"></div>
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
@@ -15815,8 +15833,12 @@ function loadFlashcard(){
         // "die" ne vaut que pour un pluriel ALLEMAND : un mot anglais ou
         // francais garde ne prend pas d'article allemand.
         if(card[7]){
-            pluralEl.textContent = t('label_plural') + " "
-                + (langue === "de" ? "die " : "") + card[7];
+            const pluriel = (langue === "de" ? "die " : "") + card[7];
+            document.getElementById("flashPluralText").textContent = t('label_plural') + " " + pluriel;
+            // On ne prononce QUE la forme, jamais l'etiquette « Pluriel : ».
+            // Et seul l'allemand a une voix : un mot anglais ou francais mis de
+            // cote sortirait avec un accent allemand, ce qui enseigne une faute.
+            reglerAudioPluriel(langue === "de" ? pluriel : null);
             pluralEl.classList.remove("hidden");
         } else {
             pluralEl.classList.add("hidden");
@@ -15968,7 +15990,12 @@ function loadFlashcard(){
             // entrees, notes "—") gardent le tiret seul, sans article.
             const pluralForm = (card[2] || "").trim();
             const aUnPluriel = pluralForm && pluralForm !== "—" && pluralForm !== "-";
-            pluralEl.textContent = `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
+            const plurielDit = aUnPluriel ? "die " + pluralForm : null;
+            document.getElementById("flashPluralText").textContent =
+                `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
+            // Les 246 noms sans pluriel affichent « — » : pas de bouton, il n'y a
+            // rien a dire. Un haut-parleur qui ne produit rien se lit comme une panne.
+            reglerAudioPluriel(plurielDit);
             pluralEl.classList.remove("hidden");
         }
         // La marque d'usage est desormais remplie en haut de loadFlashcard(),
@@ -16962,7 +16989,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 402;
+const APP_VERSION = 403;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -17353,6 +17380,29 @@ function direAllemand(texte, opts){
 function estRefusDeLecture(e){
     const nom = e && e.name;
     return nom === "NotAllowedError" || nom === "AbortError";
+}
+
+// Le pluriel se prononce aussi -- demande d'une testeuse : la carte MONTRAIT
+// la forme du pluriel sans permettre de l'entendre, alors que le mot au
+// singulier a son haut-parleur juste au-dessus.
+//
+// Le texte est retenu dans une variable plutot que relu depuis le DOM : la
+// ligne affichee porte l'etiquette traduite (« Pluriel : », « Plural: »,
+// « Çoğul: »), et la prononcer donnerait « Pluriel di Tische ».
+let texteAudioPluriel = null;
+
+function reglerAudioPluriel(texte){
+    texteAudioPluriel = texte || null;
+    const bouton = document.getElementById("pluralAudioBtn");
+    if(bouton) bouton.classList.toggle("hidden", !texteAudioPluriel);
+}
+
+function speakPlural(){
+    if(!texteAudioPluriel) return;
+    // Meme chemin que le mot : fichier pre-genere s'il existe, voix du
+    // navigateur sinon. Les pluriels ne sont pas encore dans le manifeste
+    // audio, donc c'est le repli qui parle aujourd'hui.
+    direAllemand(texteAudioPluriel, { rate: 0.9 });
 }
 
 function speakWord(){
