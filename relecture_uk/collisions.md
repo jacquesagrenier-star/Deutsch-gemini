@@ -6,3 +6,516 @@ Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de 
 
 Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
 
+## adjectifs (19 reponses pour 38 mots allemands)
+
+- **балакучий** ← gesprächig (A2), redselig (C1)
+    - gesprächig : bavard
+    - redselig : loquace, bavard
+- **безкоштовний** ← kostenlos (A2), gratis (B1)
+    - kostenlos : gratuit
+    - gratis : gratuit
+- **визначальний, авторитетний** ← maßgeblich (B2), maßgebend (C1)
+    - maßgeblich : déterminant, faisant autorité
+    - maßgebend : déterminant, faisant autorité
+- **вражаючий** ← eindrucksvoll (B2), beeindruckend (B2)
+    - eindrucksvoll : impressionnant
+    - beeindruckend : impressionnant
+- **готовий** ← fertig (A1), bereit (B1)
+    - fertig : prêt, fini
+    - bereit : prêt, disposé
+- **жахливий** ← furchtbar (A2), schrecklich (A2)
+    - furchtbar : affreux, terrible
+    - schrecklich : affreux, terrible
+- **залежний** ← süchtig (B1), abhängig (B2)
+    - süchtig : dépendant, accro
+    - abhängig : dépendant
+- **надійний** ← zuverlässig (B1), verlässlich (B1)
+    - zuverlässig : fiable
+    - verlässlich : fiable
+- **невиправданий** ← ungerechtfertigt (B2), unvertretbar (C1)
+    - ungerechtfertigt : injustifié
+    - unvertretbar : indéfendable
+- **незаперечний** ← unbestreitbar (B2), unbestritten (C1)
+    - unbestreitbar : indéniable
+    - unbestritten : incontesté
+- **ненавмисний** ← unabsichtlich (B2), unbeabsichtigt (C1)
+    - unabsichtlich : involontaire
+    - unbeabsichtigt : non intentionnel
+- **різноманітний** ← abwechslungsreich (A2), vielfältig (B2)
+    - abwechslungsreich : varié
+    - vielfältig : varié
+- **серйозний** ← ernst (A1), ernsthaft (B1)
+    - ernst : sérieux
+    - ernsthaft : sérieux (véritablement)
+- **слухняний** ← brav (A2), gehorsam (B1)
+    - brav : sage, obéissant
+    - gehorsam : obéissant
+- **сумнівний** ← fragwürdig (B2), zweifelhaft (B2)
+    - fragwürdig : douteux
+    - zweifelhaft : douteux
+- **тихий** ← leise (A1), still (A2)
+    - leise : silencieux, doux
+    - still : silencieux, calme
+- **хибний, недоречний** ← abwegig (C1), unzutreffend (C1)
+    - abwegig : saugrenu, hors de propos
+    - unzutreffend : inexact, sans objet
+- **хмарний** ← wolkig (A1), bewölkt (A2)
+    - wolkig : nuageux
+    - bewölkt : nuageux
+- **чудовий** ← toll (A1), wunderbar (A2)
+    - toll : super, génial
+    - wunderbar : merveilleux
+
+
+## adverbes (27 reponses pour 56 mots allemands)
+
+- **здебільшого** ← meistens (A1), größtenteils (B2), vorwiegend (C1)
+    - meistens : la plupart du temps
+    - größtenteils : pour la plupart
+    - vorwiegend : principalement
+- **нещодавно** ← neulich (A2), kürzlich (B1), unlängst (B2)
+    - neulich : l'autre jour
+    - kürzlich : récemment
+    - unlängst : il y a peu
+- **відповідно до цього** ← dementsprechend (B1), demgemäß (B2)
+    - dementsprechend : en conséquence
+    - demgemäß : en conformité avec cela
+- **відтоді** ← seitdem (B1), seither (B2)
+    - seitdem : depuis lors
+    - seither : depuis ce moment
+- **до того ж** ← zudem (B1), überdies (C1)
+    - zudem : de surcroît
+    - überdies : de surcroît
+- **достатньо** ← genug (A1), ausreichend (B1)
+    - genug : assez, suffisamment
+    - ausreichend : suffisamment
+- **зазвичай** ← normalerweise (A2), üblicherweise (B2)
+    - normalerweise : normalement
+    - üblicherweise : d'ordinaire
+- **мабуть** ← wohl (B1), vermutlich (B2)
+    - wohl : sans doute, probablement
+    - vermutlich : probablement
+- **майже** ← fast (A1), nahezu (B2)
+    - fast : presque
+    - nahezu : quasiment
+- **надзвичайно** ← äußerst (B1), ungemein (B2)
+    - äußerst : extrêmement
+    - ungemein : extraordinairement
+- **натомість** ← hingegen (B1), stattdessen (C1)
+    - hingegen : en revanche
+    - stattdessen : au lieu de cela
+- **ніде** ← nirgendwo (B1), nirgends (B2)
+    - nirgendwo : nulle part
+    - nirgends : nulle part
+- **отже** ← also (A1), ergo (B2)
+    - also : donc
+    - ergo : donc (ironique ou soutenu)
+- **потайки** ← heimlich (B1), insgeheim (C1)
+    - heimlich : en cachette
+    - insgeheim : en secret
+- **приблизно** ← ungefähr (A2), circa (B1)
+    - ungefähr : environ
+    - circa : environ
+- **спочатку** ← zuerst (A1), anfangs (B1)
+    - zuerst : d'abord
+    - anfangs : au début
+- **сюди** ← her (A2), hierher (B1)
+    - her : par ici (vers moi)
+    - hierher : ici (direction)
+- **так само** ← ebenso (B1), desgleichen (C1)
+    - ebenso : de même
+    - desgleichen : de même
+- **також** ← auch (A1), ebenfalls (B1)
+    - auch : aussi
+    - ebenfalls : également
+- **тим часом** ← inzwischen (A2), derweil (C1)
+    - inzwischen : entre-temps
+    - derweil : pendant ce temps
+- **тому** ← deshalb (A1), darum (A2)
+    - deshalb : c'est pourquoi
+    - darum : c'est pour ça
+- **угору** ← hinauf (A2), aufwärts (B2)
+    - hinauf : vers le haut
+    - aufwärts : vers le haut
+- **униз** ← hinunter (A2), abwärts (B2)
+    - hinunter : vers le bas
+    - abwärts : vers le bas
+- **час від часу** ← ab und zu (A2), gelegentlich (B1)
+    - ab und zu : de temps en temps
+    - gelegentlich : occasionnellement
+- **часто** ← oft (A1), häufig (A2)
+    - oft : souvent
+    - häufig : fréquemment
+- **щонайбільше** ← höchstens (A2), allenfalls (B2)
+    - höchstens : tout au plus
+    - allenfalls : tout au plus
+- **інакше** ← sonst (A2), anders (A2)
+    - sonst : sinon
+    - anders : autrement, différemment
+
+
+## expressions (4 reponses pour 8 mots allemands)
+
+- **зв'язатися** ← Kontakt aufnehmen (B1), sich in Verbindung setzen (C1)
+    - Kontakt aufnehmen : prendre contact
+    - sich in Verbindung setzen : prendre contact
+- **на мою думку** ← Meiner Meinung nach (A2), meines Erachtens (C1)
+    - Meiner Meinung nach : À mon avis
+    - meines Erachtens : à mon sens
+- **передусім** ← Vor allem (A2), in erster Linie (B2)
+    - Vor allem : Surtout
+    - in erster Linie : en premier lieu
+- **утратити самовладання** ← Die Fassung verlieren (B1), Die Nerven verlieren (B2)
+    - Die Fassung verlieren : perdre son sang-froid
+    - Die Nerven verlieren : perdre son calme
+
+
+## noms (81 reponses pour 167 mots allemands)
+
+- **гаманець** ← der Geldbeutel (A2), die Geldbörse (A2), das Portemonnaie (B1)
+    - der Geldbeutel : porte-monnaie
+    - die Geldbörse : porte-monnaie
+    - das Portemonnaie : porte-monnaie
+- **десерт** ← der Nachtisch (B1), das Dessert (B1), die Nachspeise (C1)
+    - der Nachtisch : dessert
+    - das Dessert : dessert
+    - die Nachspeise : dessert
+- **дитячий садок** ← die Kindertagesstätte (B1), der Kindergarten (A2), die Kita (B1)
+    - die Kindertagesstätte : crèche, garderie
+    - der Kindergarten : jardin d'enfants
+    - die Kita : crèche, garderie
+- **захід** ← der Westen (A2), die Veranstaltung (B2), die Maßnahme (B1)
+    - der Westen : ouest
+    - die Veranstaltung : manifestation, événement
+    - die Maßnahme : mesure (décision)
+- **оголошення** ← die Annonce (B1), die Ansage (B1), die Anzeige (B1)
+    - die Annonce : annonce
+    - die Ansage : annonce
+    - die Anzeige : petite annonce
+- **адвокат** ← der Anwalt (B1), der Rechtsanwalt (B1)
+    - der Anwalt : avocat
+    - der Rechtsanwalt : avocat
+- **апельсин** ← die Orange (A1), die Apfelsine (A2)
+    - die Orange : orange
+    - die Apfelsine : l'orange
+- **бабуся** ← die Großmutter (A2), die Oma (B1)
+    - die Großmutter : grand-mère
+    - die Oma : mamie, grand-mère
+- **басейн** ← das Schwimmbad (A1), der Swimmingpool (B1)
+    - das Schwimmbad : piscine
+    - der Swimmingpool : piscine (privée)
+- **батьківський комітет** ← der Elternbeirat (B1), die Elternvertretung (C1)
+    - der Elternbeirat : conseil des parents d'élèves
+    - die Elternvertretung : représentation des parents
+- **будинок для літніх людей** ← das Altersheim (B1), das Altenheim (B1)
+    - das Altersheim : maison de retraite
+    - das Altenheim : maison de retraite
+- **бібліотека** ← die Bibliothek (A1), die Bücherei (B1)
+    - die Bibliothek : bibliothèque
+    - die Bücherei : bibliothèque
+- **випробувальний термін** ← die Probezeit (B1), die Bewährung (C1)
+    - die Probezeit : période d'essai
+    - die Bewährung : sursis (avec mise à l'épreuve)
+- **відновлення** ← die Regeneration (C1), die Wiederherstellung (C1)
+    - die Regeneration : récupération
+    - die Wiederherstellung : restauration
+- **громадянство** ← die Staatsbürgerschaft (B1), die Staatsangehörigkeit (C1)
+    - die Staatsbürgerschaft : nationalité, citoyenneté
+    - die Staatsangehörigkeit : nationalité
+- **думка** ← der Gedanke (B1), die Meinung (B1)
+    - der Gedanke : pensée
+    - die Meinung : opinion, avis
+- **духовка** ← der Ofen (A1), der Backofen (B1)
+    - der Ofen : four
+    - der Backofen : four
+- **дідусь** ← der Großvater (A2), der Opa (B1)
+    - der Großvater : grand-père
+    - der Opa : papi, grand-père
+- **заголовок** ← die Überschrift (B1), die Schlagzeile (C1)
+    - die Überschrift : titre (d'un texte)
+    - die Schlagzeile : gros titre
+- **залежність** ← die Sucht (B1), die Abhängigkeit (C1)
+    - die Sucht : dépendance, addiction
+    - die Abhängigkeit : dépendance
+- **залізниця** ← die Bahn (A1), die Eisenbahn (B1)
+    - die Bahn : le train, la voie
+    - die Eisenbahn : chemin de fer
+- **захоплення** ← das Hobby (A1), die Begeisterung (B1)
+    - das Hobby : loisir
+    - die Begeisterung : enthousiasme
+- **зворотний бік** ← die Rückseite (A2), die Kehrseite (C1)
+    - die Rückseite : le dos, le verso
+    - die Kehrseite : revers, envers
+- **зворотний зв'язок** ← das Feedback (B1), die Rückkopplung (C1)
+    - das Feedback : retour, avis
+    - die Rückkopplung : rétroaction
+- **зубна паста** ← die Zahncreme (B1), die Zahnpasta (B1)
+    - die Zahncreme : dentifrice
+    - die Zahnpasta : dentifrice
+- **каструля** ← der Topf (A1), der Kochtopf (B1)
+    - der Topf : casserole
+    - der Kochtopf : marmite
+- **кнедлик** ← der Kloß (B1), der Knödel (B1)
+    - der Kloß : boulette (de pomme de terre)
+    - der Knödel : boulette (de pain, de pomme de terre)
+- **команда** ← das Team (B1), die Mannschaft (A1)
+    - das Team : équipe
+    - die Mannschaft : équipe
+- **конверт** ← der Umschlag (A2), der Briefumschlag (B1)
+    - der Umschlag : l'enveloppe
+    - der Briefumschlag : enveloppe
+- **курка** ← das Hähnchen (A2), das Huhn (A1)
+    - das Hähnchen : poulet
+    - das Huhn : poule
+- **кількість** ← die Menge (A1), die Anzahl (B1)
+    - die Menge : quantité
+    - die Anzahl : nombre total
+- **лікарський кабінет** ← die Praxis (A2), die Arztpraxis (B1)
+    - die Praxis : cabinet médical
+    - die Arztpraxis : cabinet médical
+- **ліфт** ← der Aufzug (A1), der Lift (B1)
+    - der Aufzug : ascenseur
+    - der Lift : ascenseur
+- **мешканець** ← der Bewohner (B1), der Einwohner (B1)
+    - der Bewohner : habitant, résident
+    - der Einwohner : habitant
+- **мобільний телефон** ← das Handy (A1), das Mobiltelefon (B1)
+    - das Handy : téléphone portable
+    - das Mobiltelefon : téléphone portable
+- **модель** ← das Model (A2), das Modell (B1)
+    - das Model : mannequin
+    - das Modell : modèle
+- **мозок** ← das Gehirn (B1), das Hirn (B2)
+    - das Gehirn : le cerveau
+    - das Hirn : cerveau
+- **обмеження швидкості** ← die Geschwindigkeitsbeschränkung (B1), die Geschwindigkeitsbegrenzung (B2)
+    - die Geschwindigkeitsbeschränkung : limitation de vitesse
+    - die Geschwindigkeitsbegrenzung : limitation de vitesse
+- **оновлення** ← die Erneuerung (C1), die Aktualisierung (C1)
+    - die Erneuerung : renouvellement, rénovation
+    - die Aktualisierung : mise à jour
+- **офіціант** ← der Kellner (A1), der Ober (B1)
+    - der Kellner : serveur
+    - der Ober : serveur
+- **пасажир** ← der Fahrgast (A2), der Passagier (B1)
+    - der Fahrgast : passager
+    - der Passagier : passager
+- **перець** ← der Pfeffer (A2), der Paprika (A1)
+    - der Pfeffer : poivre
+    - der Paprika : poivron
+- **перукар** ← der Friseur (A1), der Coiffeur (B1)
+    - der Friseur : coiffeur
+    - der Coiffeur : coiffeur
+- **площа** ← der Platz (A1), die Fläche (B1)
+    - der Platz : place
+    - die Fläche : surface
+- **поверх** ← die Etage (A1), das Stockwerk (B1)
+    - die Etage : étage
+    - das Stockwerk : étage
+- **повідомлення** ← die Nachricht (A1), die Meldung (B1)
+    - die Nachricht : message
+    - die Meldung : message, annonce
+- **порада** ← der Rat (B1), der Ratschlag (B1)
+    - der Rat : conseil (avis)
+    - der Ratschlag : conseil
+- **посудомийна машина** ← die Geschirrspülmaschine (B2), die Spülmaschine (B1)
+    - die Geschirrspülmaschine : lave-vaisselle
+    - die Spülmaschine : lave-vaisselle
+- **початок** ← der Beginn (B1), der Anfang (B1)
+    - der Beginn : début
+    - der Anfang : début
+- **прогноз погоди** ← der Wetterbericht (A2), die Wettervorhersage (B2)
+    - der Wetterbericht : bulletin météo
+    - die Wettervorhersage : prévisions météo
+- **промислова зона** ← das Industriegebiet (B1), das Gewerbegebiet (B2)
+    - das Industriegebiet : zone industrielle
+    - das Gewerbegebiet : zone d'activité
+- **пропозиція** ← das Angebot (A1), der Vorschlag (B1)
+    - das Angebot : offre
+    - der Vorschlag : proposition, suggestion
+- **проїзний квиток** ← der Fahrschein (A2), die Fahrkarte (B2)
+    - der Fahrschein : titre de transport
+    - die Fahrkarte : titre de transport
+- **прізвище** ← der Nachname (A1), der Familienname (B1)
+    - der Nachname : nom de famille
+    - der Familienname : nom de famille
+- **північ** ← der Norden (A2), die Mitternacht (B1)
+    - der Norden : nord
+    - die Mitternacht : minuit
+- **підвищення кваліфікації** ← die Weiterbildung (B1), die Fortbildung (C1)
+    - die Weiterbildung : formation continue
+    - die Fortbildung : perfectionnement professionnel
+- **підручник** ← das Lehrbuch (A2), das Schulbuch (B2)
+    - das Lehrbuch : manuel scolaire
+    - das Schulbuch : manuel scolaire
+- **пісня** ← das Lied (A1), der Song (B1)
+    - das Lied : chanson
+    - der Song : chanson
+- **реабілітація** ← die Reha (B1), die Rehabilitation (C1)
+    - die Reha : rééducation
+    - die Rehabilitation : rééducation
+- **результат** ← das Resultat (B1), das Ergebnis (B2)
+    - das Resultat : résultat
+    - das Ergebnis : résultat
+- **реклама** ← die Werbung (B1), die Reklame (B1)
+    - die Werbung : publicité
+    - die Reklame : réclame, publicité
+- **ремонт** ← die Renovierung (B1), die Reparatur (B1)
+    - die Renovierung : rénovation
+    - die Reparatur : réparation
+- **робочий день** ← der Werktag (B2), der Arbeitstag (A2)
+    - der Werktag : jour ouvrable
+    - der Arbeitstag : jour ouvré
+- **середній бал** ← der Notendurchschnitt (B2), der Notenschnitt (C1)
+    - der Notendurchschnitt : moyenne générale
+    - der Notenschnitt : moyenne
+- **співбесіда** ← das Bewerbungsgespräch (B2), das Vorstellungsgespräch (A2)
+    - das Bewerbungsgespräch : entretien d'embauche
+    - das Vorstellungsgespräch : entretien d'embauche
+- **співчуття** ← das Mitgefühl (B1), das Beileid (C1)
+    - das Mitgefühl : compassion
+    - das Beileid : condoléances
+- **страх** ← die Angst (A1), die Furcht (B1)
+    - die Angst : peur
+    - die Furcht : la crainte, la peur
+- **сума** ← der Betrag (B1), die Summe (A2)
+    - der Betrag : montant
+    - die Summe : somme
+- **сцена** ← die Szene (B1), die Bühne (B2)
+    - die Szene : scène
+    - die Bühne : scène
+- **сімейний стан** ← der Familienstand (A2), der Personenstand (B1)
+    - der Familienstand : situation familiale
+    - der Personenstand : état civil
+- **сірник** ← das Zündholz (B1), das Streichholz (B1)
+    - das Zündholz : allumette
+    - das Streichholz : allumette
+- **термін придатності** ← das Haltbarkeitsdatum (B2), das Verfallsdatum (B1)
+    - das Haltbarkeitsdatum : date de péremption
+    - das Verfallsdatum : date de péremption
+- **трамвай** ← die Straßenbahn (A1), die Tram (B1)
+    - die Straßenbahn : tramway
+    - die Tram : tramway
+- **транспортний засіб** ← das Fahrzeug (B1), das Verkehrsmittel (B1)
+    - das Fahrzeug : véhicule
+    - das Verkehrsmittel : moyen de transport
+- **тротуар** ← der Bürgersteig (B1), der Gehweg (C1)
+    - der Bürgersteig : trottoir
+    - der Gehweg : trottoir
+- **фотоапарат** ← die Kamera (A1), der Fotoapparat (A2)
+    - die Kamera : caméra
+    - der Fotoapparat : appareil photo
+- **харчова добавка** ← die Nahrungsergänzung (B2), der Zusatzstoff (C1)
+    - die Nahrungsergänzung : complément alimentaire
+    - der Zusatzstoff : additif
+- **харчова звичка** ← die Essgewohnheit (B1), die Ernährungsgewohnheit (B2)
+    - die Essgewohnheit : habitude alimentaire
+    - die Ernährungsgewohnheit : habitude alimentaire
+- **хрещений батько** ← der Patenonkel (B1), der Taufpate (B2)
+    - der Patenonkel : parrain
+    - der Taufpate : parrain de baptême
+- **ящик, коробка** ← die Kiste (A2), der Kasten (B1)
+    - die Kiste : la caisse
+    - der Kasten : la caisse, le casier
+- **інструмент** ← das Werkzeug (B1), das Instrument (A1)
+    - das Werkzeug : outil
+    - das Instrument : instrument
+
+
+## verbes (27 reponses pour 56 mots allemands)
+
+- **перевіряти** ← prüfen (A2), überprüfen (B1), checken (B1)
+    - prüfen : vérifier, examiner
+    - überprüfen : vérifier, contrôler
+    - checken : vérifier
+- **пропонувати** ← vorschlagen (B1), bieten (B1), anbieten (B1)
+    - vorschlagen : proposer
+    - bieten : offrir, proposer
+    - anbieten : proposer, offrir
+- **використовувати** ← nutzen (A2), verwenden (B1)
+    - nutzen : utiliser
+    - verwenden : employer, utiliser
+- **вимагати** ← fordern (A2), verlangen (B1)
+    - fordern : exiger
+    - verlangen : exiger, demander
+- **вистачати** ← genügen (B1), ausreichen (B1)
+    - genügen : suffire
+    - ausreichen : suffire
+- **вмикати** ← anmachen (A2), einschalten (B1)
+    - anmachen : allumer
+    - einschalten : allumer, mettre en marche
+- **відчувати** ← fühlen (A1), spüren (A2)
+    - fühlen : sentir, ressentir
+    - spüren : ressentir
+- **дивитися** ← schauen (A1), gucken (B1)
+    - schauen : regarder
+    - gucken : regarder
+- **дивувати** ← wundern (B1), verwundern (C1)
+    - wundern : étonner
+    - verwundern : étonner
+- **дякувати** ← danken (A2), sich bedanken (B1)
+    - danken : remercier
+    - sich bedanken : remercier (pour qch)
+- **записувати** ← notieren (A2), aufschreiben (B1)
+    - notieren : noter
+    - aufschreiben : noter, écrire
+- **затримувати** ← festnehmen (B1), aufhalten (B2)
+    - festnehmen : interpeller, arrêter
+    - aufhalten : retenir, retarder
+- **захищати** ← schützen (A2), verteidigen (B1)
+    - schützen : protéger
+    - verteidigen : défendre
+- **змінювати** ← ändern (B1), verändern (B1)
+    - ändern : changer (quelque chose)
+    - verändern : changer, modifier
+- **малювати** ← malen (A1), zeichnen (A2)
+    - malen : peindre
+    - zeichnen : dessiner
+- **наважуватися** ← wagen (B1), sich trauen (B1)
+    - wagen : oser
+    - sich trauen : oser
+- **пакувати** ← packen (A1), verpacken (B1)
+    - packen : emballer, faire (sa valise)
+    - verpacken : emballer
+- **паркуватися** ← parken (A1), parkieren (B1)
+    - parken : se garer
+    - parkieren : se garer, stationner
+- **платити** ← bezahlen (A1), zahlen (A2)
+    - bezahlen : payer
+    - zahlen : payer
+- **повідомляти** ← melden (A2), mitteilen (B1)
+    - melden : signaler
+    - mitteilen : communiquer, informer
+- **позичати** ← leihen (A2), borgen (B1)
+    - leihen : prêter, emprunter
+    - borgen : prêter, emprunter
+- **потребувати** ← brauchen (A1), benötigen (B1)
+    - brauchen : avoir besoin de
+    - benötigen : avoir besoin de, nécessiter
+- **підробляти** ← jobben (B1), fälschen (C1)
+    - jobben : faire un petit boulot
+    - fälschen : falsifier, contrefaire
+- **смажити на грилі** ← grillen (A2), grillieren (B1)
+    - grillen : griller, faire un barbecue
+    - grillieren : griller, faire un barbecue
+- **спростовувати** ← widerlegen (B1), entkräften (B2)
+    - widerlegen : réfuter
+    - entkräften : réfuter, invalider
+- **ставити під сумнів** ← hinterfragen (B1), anzweifeln (C1)
+    - hinterfragen : remettre en question
+    - anzweifeln : mettre en doute
+- **убивати** ← töten (B1), umbringen (B1)
+    - töten : tuer
+    - umbringen : tuer, assassiner
+
+
+---
+
+# Paires de genre — vues, et acceptees
+
+Ces 1 groupes ne sont PAS des collisions a corriger. Le turc n'a pas de genre grammatical et ne feminise pas le nom de metier : « uzman » est la bonne reponse pour `der Experte` comme pour `die Expertin`. Inventer une forme feminine pour departager les deux cartes enseignerait une regle qui n'existe pas dans la langue.
+
+Ils sont reconnus mecaniquement (voir `paire_de_genre`) et sortis du decompte, pour qu'une relance du controle ne les remette pas dans la pile a chaque fois.
+
+- *adverbes* — **спереду** ← vorne, vorn
+
