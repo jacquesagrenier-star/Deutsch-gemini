@@ -1842,6 +1842,21 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
     transform:translateY(-1px);
 }
 
+/* 16px MINIMUM ici aussi : en dessous, Safari iOS zoome des qu'on touche le
+   champ. C'est la meme raison que pour #wordSearchInput juste en dessous. */
+.search-launch input{
+    flex:1; min-width:0;
+    border:0; background:transparent; outline:none;
+    font-family:inherit; font-size:16px; color:inherit;
+    padding:0;
+}
+.search-launch input::placeholder{color:#8b93a3; opacity:1;}
+.search-launch:focus-within{
+    background:rgba(255,255,255,.85);
+    border-color:rgba(59,111,224,.5);
+}
+body[data-theme="dark"] .search-launch input::placeholder{color:#6f7684;}
+
 /* 16px MINIMUM : en dessous, Safari iOS zoome automatiquement sur le champ des
    qu'on le touche, et l'utilisateur doit rezoomer a la main. Les autres champs
    de l'app (.answer, 18-19px) n'ont jamais eu le probleme ; .filters-bar input
@@ -3779,13 +3794,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          au-dessus de la carte de progression depuis v225 : avec le dictionnaire
          integre, ce n'est plus une action secondaire mais l'usage quotidien --
          la releguer sous 269 px de statistiques la rendait invisible. -->
-    <button class="search-launch" onclick="openWordSearch()">
+    <!-- UN VRAI CHAMP, pas un bouton : sur iOS le clavier ne s'ouvre que dans le
+         geste de l'utilisateur. Un bouton qui menait a un ecran dont le champ
+         se focalisait ensuite obligeait a toucher deux fois. -->
+    <div class="search-launch">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-        <span data-i18n="search_launch">Chercher un mot</span>
-    </button>
+        <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
+               autocorrect="off" spellcheck="false"
+               data-i18n-placeholder="search_launch" placeholder="Chercher un mot"
+               data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
+               onfocus="ouvrirRechercheDepuisAccueil()"
+               oninput="ouvrirRechercheDepuisAccueil(this.value)">
+    </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v433</span>
+        <span class="subtitle-version">v434</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6384,7 +6407,7 @@ const I18N = {
         search_count_total: "{n} cartes",
         search_more: "Seuls les {n} premiers résultats sont affichés — précise ta recherche.",
         search_none_title: "« {q} » ne fait pas partie de tes cartes.",
-        search_none_scope: "Le cours couvre {n} cartes, du niveau A1 au B2. Ce mot est en dehors du programme — regarde l'entrée de dictionnaire ci-dessus, et touche le + pour l'ajouter à tes cartes.",
+        search_none_scope: "Le cours couvre {n} cartes, du niveau {debut} au {fin}. Ce mot est en dehors du programme — regarde l'entrée de dictionnaire ci-dessus, et touche le + pour l'ajouter à tes cartes.",
         search_none_suggest: "Peut-être cherchais-tu :",
         search_exact: "Correspondance exacte",
         adverbien_vocab_title: "Vocabulaire : flashcards",
@@ -7168,7 +7191,7 @@ const I18N = {
         search_count_total: "{n} cards",
         search_more: "Only the first {n} results are shown — narrow your search.",
         search_none_title: "“{q}” is not among your cards.",
-        search_none_scope: "The course covers {n} cards, from A1 to B2. This word is outside the syllabus — see the dictionary entry above, and tap + to add it to your cards.",
+        search_none_scope: "The course covers {n} cards, from {debut} to {fin}. This word is outside the syllabus — see the dictionary entry above, and tap + to add it to your cards.",
         search_none_suggest: "Did you mean:",
         search_exact: "Exact match",
         adverbien_vocab_title: "Vocabulary: flashcards",
@@ -7954,7 +7977,7 @@ const I18N = {
         search_count_total: "{n} kart",
         search_more: "Yalnızca ilk {n} sonuç gösteriliyor — aramanı daralt.",
         search_none_title: "“{q}” kartlarının arasında yok.",
-        search_none_scope: "Kurs, A1'den B2'ye {n} kart kapsıyor. Bu kelime programın dışında — yukarıdaki sözlük kaydına bak ve kartlarına eklemek için + işaretine dokun.",
+        search_none_scope: "Kurs, {debut} seviyesinden {fin} seviyesine {n} kart kapsıyor. Bu kelime programın dışında — yukarıdaki sözlük kaydına bak ve kartlarına eklemek için + işaretine dokun.",
         search_none_suggest: "Şunu mu demek istedin:",
         search_exact: "Tam eşleşme",
         adverbien_vocab_title: "Kelime: kartlar",
@@ -8625,7 +8648,7 @@ const I18N = {
         en_module_britam_cat_desc: "Та сама річ часто має дві назви — залежно від берега Атлантики. Краще знати, яку саме вживаєш, ніж змішувати обидві не помічаючи.",
         en_module_irregular_cat_desc: "Неправильні дієслова вчаться за взірцями, а не гуртом: ті, у яких усі три форми однакові; ті, у яких минулий час і дієприкметник схожі; і ті, що змінюються тричі.",
         myvocab_vide_explication: "<strong>Мій словник поки порожній.</strong><br>Це твій особистий запас: слова, які ти зустрічаєш деінде — на занятті, у тексті, у розмові — і яких немає в застосунку.<br><br>Знайди слово вище, а тоді натисни <strong>+</strong> поруч із результатом словника. Воно стане картко́ю для повторення, як і всі інші.",
-        search_none_scope: "Курс охоплює {n} карток, від рівня A1 до B2. Це слово поза програмою — подивись словникову статтю вище й натисни +, щоб додати його до своїх карток.",
+        search_none_scope: "Курс охоплює {n} карток, від рівня {debut} до {fin}. Це слово поза програмою — подивись словникову статтю вище й натисни +, щоб додати його до своїх карток.",
         voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
         voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
         voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
@@ -13937,6 +13960,31 @@ function ensureSearchIndex(){
 // texte d'accueil habituel.
 let rechercheDepuisVocabVide = false;
 
+// Appelee par le champ de l'accueil, DANS le geste de l'utilisateur. On bascule
+// d'ecran et on redonne le focus au champ de recherche dans le meme instant :
+// le clavier, deja ouvert par le premier champ, ne retombe pas.
+//
+// `valeur` porte ce que la personne a eu le temps de taper avant la bascule --
+// sur un appareil lent, la premiere lettre part parfois dans le champ de
+// l'accueil. Elle ne doit pas se perdre.
+function ouvrirRechercheDepuisAccueil(valeur){
+    const ecran = document.querySelector('.screen.active');
+    if(ecran && ecran.id === 'wordSearch') return;   // deja la : rien a faire
+    openWordSearch(false);
+    const champ = document.getElementById('wordSearchInput');
+    if(!champ) return;
+    champ.focus();
+    if(valeur){
+        champ.value = valeur;
+        // Le meme chemin que la frappe normale, sinon les resultats
+        // n'apparaitraient qu'a la lettre suivante.
+        renderWordSearch(valeur);
+        if(typeof runDictLookup === "function") runDictLookup(valeur);
+    }
+    const accueil = document.getElementById('homeSearchInput');
+    if(accueil) accueil.value = "";
+}
+
 function openWordSearch(depuisVocabVide){
     rechercheDepuisVocabVide = !!depuisVocabVide;
     ensureSearchIndex();
@@ -14549,7 +14597,8 @@ function renderWordSearch(rawQuery){
         const suggestions = findSearchSuggestions(q);
         let html = '<div class="search-empty">'
             + tf('search_none_title', { q: rawQuery.trim() })
-            + '<br><br>' + tf('search_none_scope', { n: all.length })
+            + '<br><br>' + tf('search_none_scope', { n: all.length,
+                                      debut: LEVELS[0], fin: LEVELS[LEVELS.length - 1] })
             + '</div>';
         // Le titre reste exact -- le mot n'est pas dans les CARTES -- mais il ne
         // doit pas laisser croire qu'il n'existe pas : le dictionnaire est
@@ -17961,7 +18010,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 433;
+const APP_VERSION = 434;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
