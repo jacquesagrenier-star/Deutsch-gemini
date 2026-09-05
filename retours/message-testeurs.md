@@ -130,3 +130,84 @@ monde, pas seulement à elle.
    douze pour le test fermé, l'app n'enregistre aucune information d'appareil,
    et cette liste ne se reconstitue pas toute seule. Peter est le premier
    confirmé.
+
+---
+---
+
+# Message aux testeurs — 5 septembre 2026 : la tuile Connecteurs
+
+Court exprès. Une nouvelle, une question. La question sert à faire revenir un
+retour : demander **quel duo manque** est plus facile à répondre que « qu'est-ce
+qu'on devrait améliorer ? » — on répond par un mot.
+
+⚠️ Même règle que le 4 septembre : **en conversation individuelle, jamais en
+groupe.**
+
+La ligne sur la fermeture de l'app n'est pas du remplissage : l'app installée
+sur l'écran d'accueil garde la version en mémoire, et sans ce geste ils ne
+verront rien de nouveau.
+
+---
+
+## English
+
+> Hi [first name] 👋
+>
+> New in Wortando: a **Connectors** tile on the home screen — the little words
+> that hold German sentences together, and decide where the verb lands: weil,
+> obwohl, wenn, ob, deshalb, trotzdem, aber, sondern.
+>
+> 185 exercises in there now. In six of the pairs, both answers put the verb in
+> the *same* place — so word order can't help you, only the meaning can. Three
+> of those are traps English sets for you: one "if" covers wenn and ob, one
+> "when" covers wenn and wann, one "but" covers aber and sondern.
+>
+> Handy if you're taking a course at the moment.
+>
+> If you don't see the tile, close the app completely and open it again.
+>
+> Is there a pair you'd like me to add? Just name it and I'll write the
+> exercises.
+
+---
+
+## Türkçe
+
+> Merhaba [ad] 👋
+>
+> Wortando'da yeni: ana ekranda bir **Bağlayıcılar** kutusu — Almanca cümleleri
+> birbirine bağlayan ve fiilin nereye gideceğini belirleyen küçük sözcükler:
+> weil, obwohl, wenn, ob, deshalb, trotzdem, aber, sondern.
+>
+> Şimdi orada 185 alıştırma var. Altı ikilide her iki seçenek de fiili *aynı*
+> yere koyuyor — yani kelime sırası yardım etmiyor, sadece anlam ayırt ediyor.
+> Bu ikililer İngilizce ya da Fransızca bilenler için özellikle zor: o dillerde
+> tek bir sözcük ikisini birden karşılıyor.
+>
+> Şu anda bir kursa gidiyorsan işine yarar.
+>
+> Kutuyu görmüyorsan uygulamayı tamamen kapatıp yeniden aç.
+>
+> Eklememi istediğin bir ikili var mı? Söyle, alıştırmalarını yazayım.
+
+---
+
+## Français
+
+> Salut [prénom] 👋
+>
+> Nouveau dans Wortando : une tuile **Connecteurs** sur l'écran d'accueil — les
+> petits mots qui tiennent la phrase allemande ensemble et décident où tombe le
+> verbe : weil, obwohl, wenn, ob, deshalb, trotzdem, aber, sondern.
+>
+> 185 exercices dedans. Dans six des duos, les deux réponses mettent le verbe à
+> la *même* place — l'ordre des mots ne t'aide donc pas, seul le sens tranche.
+> Trois d'entre eux sont des pièges que le français te tend : un seul « si »
+> pour wenn et ob, un seul « quand » pour wenn et wann, un seul « mais » pour
+> aber et sondern.
+>
+> Pratique si tu suis un cours en ce moment.
+>
+> Si tu ne vois pas la tuile, ferme complètement l'app et rouvre-la.
+>
+> Il te manque un duo ? Dis-le-moi, je l'écris.
