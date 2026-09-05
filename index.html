@@ -2190,6 +2190,37 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
     .carte-maitrise{animation:none;}
 }
 
+/* La couronne d'etincelles du moment ou le mot est maitrise. Elle ne joue
+   qu'une fois, sur le clic qui l'a gagnee (classe posee par feterLeTrophee).
+   Un anneau qui s'ouvre plutot que des particules : c'est un seul element, ca
+   ne coute rien, et ca reste lisible sur un petit ecran. */
+.carte-maitrise.fete{animation:tropheeFete .85s cubic-bezier(.2,.9,.3,1.3) both;}
+.carte-maitrise.fete::before,
+.carte-maitrise.fete::after{
+    content:""; position:absolute; inset:50% auto auto 50%;
+    width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%;
+    border:2px solid #E8A23A; pointer-events:none;
+    animation:tropheeOnde .85s ease-out both;
+}
+.carte-maitrise.fete::after{animation-delay:.16s; border-color:#f0c274;}
+@keyframes tropheeFete{
+    0%{opacity:0; transform:scale(.4) rotate(-14deg);}
+    45%{opacity:1; transform:scale(1.35) rotate(6deg);}
+    70%{transform:scale(.94) rotate(-2deg);}
+    100%{opacity:1; transform:none;}
+}
+@keyframes tropheeOnde{
+    from{opacity:.85; transform:scale(.5);}
+    to{opacity:0; transform:scale(3.4);}
+}
+@media (prefers-reduced-motion:reduce){
+    .carte-maitrise.fete,
+    .carte-maitrise.fete::before,
+    .carte-maitrise.fete::after{animation:none;}
+    .carte-maitrise.fete::before,
+    .carte-maitrise.fete::after{display:none;}
+}
+
 
 .flashcard-back{
     transform:rotateY(180deg);
@@ -3754,7 +3785,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v432</span>
+        <span class="subtitle-version">v433</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6284,11 +6315,11 @@ const I18N = {
         label_participle: "Participe",
         pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
         echeance_encore: "dans quelques cartes",
-        echeance_10min: "10 min",
+        echeance_10min: "dans {n} minutes",
         echeance_demain: "demain",
-        echeance_jours: "{n} j",
+        echeance_jours: "dans {n} jours",
         echeance_maitrise: "maîtrisé ✓",
-        mastery_toast: "Maîtrisé ! Ce mot reviendra une fois dans {n} jours, pour vérifier.",
+        mastery_toast: "Maîtrisé ! Ce mot revient tous les {n} jours, pour vérifier.",
         settings_revoir_maitrises: "REVOIR LES MOTS MAÎTRISÉS",
         settings_revoir_maitrises_desc: "Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.",
         confirm_revoir_maitrises: "Remettre tous tes mots maîtrisés en révision ? Ta progression et ton pourcentage sont conservés.",
@@ -7068,11 +7099,11 @@ const I18N = {
         label_participle: "Past participle",
         pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
         echeance_encore: "in a few cards",
-        echeance_10min: "10 min",
+        echeance_10min: "in {n} minutes",
         echeance_demain: "tomorrow",
-        echeance_jours: "{n} d",
+        echeance_jours: "in {n} days",
         echeance_maitrise: "mastered ✓",
-        mastery_toast: "Mastered! This word will come back once in {n} days, as a check.",
+        mastery_toast: "Mastered! This word comes back every {n} days, as a check.",
         settings_revoir_maitrises: "REVIEW MASTERED WORDS",
         settings_revoir_maitrises_desc: "Puts mastered words back in circulation, without erasing your progress or your percentage.",
         confirm_revoir_maitrises: "Put all your mastered words back into review? Your progress and percentage are kept.",
@@ -7854,11 +7885,11 @@ const I18N = {
         label_participle: "Geçmiş ortaç",
         pos_n: "isim", pos_v: "fiil", pos_adj: "sıfat", pos_adv: "zarf",
         echeance_encore: "birkaç kart sonra",
-        echeance_10min: "10 dk",
+        echeance_10min: "{n} dakika sonra",
         echeance_demain: "yarın",
-        echeance_jours: "{n} g",
+        echeance_jours: "{n} gün sonra",
         echeance_maitrise: "öğrenildi ✓",
-        mastery_toast: "Öğrenildi! Bu kelime kontrol için {n} gün sonra bir kez geri gelecek.",
+        mastery_toast: "Öğrenildi! Bu kelime kontrol için her {n} günde bir geri gelir.",
         settings_revoir_maitrises: "ÖĞRENİLEN KELİMELERİ TEKRAR ET",
         settings_revoir_maitrises_desc: "Öğrenilmiş kelimeleri, ilerlemeni ve yüzdeni silmeden yeniden dolaşıma sokar.",
         confirm_revoir_maitrises: "Öğrenilmiş tüm kelimelerin tekrara geri konsun mu? İlerlemen ve yüzden korunur.",
@@ -16699,12 +16730,14 @@ function loadFlashcard(){
     // de rendu -- meme raison que la marque d'usage juste au-dessus.
     remplirVoisins(card, flashcardMode);
 
-    // Le trophee suit l'etat du mot, pas le clic : il est la quand la carte
-    // revient se faire verifier, seize jours apres. Le moment de la maitrise,
-    // lui, a deja ses confettis.
+    // Le trophee suit l'etat du mot : il est la des la maitrise, et encore la
+    // quand la carte revient se faire verifier seize jours apres. La classe de
+    // fete, elle, ne dure que le temps du clic qui l'a gagne -- sinon chaque
+    // carte deja maitrisee rejouerait la couronne.
     const trophee = document.getElementById("flashMaitrise");
     if(trophee){
         const maitrise = !!getWordState(item.themeId, item.index).mastered;
+        trophee.classList.remove("fete");
         trophee.classList.toggle("hidden", !maitrise);
         if(maitrise) trophee.title = tf("carte_maitrise_titre", { n: SRS_MAINTENANCE_DAYS });
     }
@@ -17928,7 +17961,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 432;
+const APP_VERSION = 433;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18831,7 +18864,7 @@ function echeanceProchaineReussite(state){
     // deja, que les confettis le fetent, et que le trophee reste ensuite sur la
     // carte. Il ne reste que l'information qu'on ne peut pas deviner : quand.
     if(reussites + 1 >= SRS_PALIERS) return tf("echeance_jours", { n: SRS_MAINTENANCE_DAYS });
-    if(reussites === 0) return t("echeance_10min");
+    if(reussites === 0) return tf("echeance_10min", { n: SRS_PREMIERE_MINUTES });
     const barreau = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
     const jours = SRS_DAILY_LADDER_DAYS[barreau];
     return jours === 1 ? t("echeance_demain") : tf("echeance_jours", { n: jours });
@@ -19810,6 +19843,22 @@ function celebrateMastery(justReachedMultiple, avecToast){
 // suivant de l'echelle du mot (16 jours), pas un chiffre invente.
 const SRS_MAINTENANCE_DAYS = SRS_DAILY_LADDER_DAYS[3] || 16;
 
+// Le trophee se pose sur la carte au moment ou il est gagne, avec une couronne
+// d'etincelles qui s'ouvre autour de lui. Rien de plus : les confettis pleine
+// page jouent deja par-dessus, et deux fetes simultanees ne font pas une fete
+// deux fois plus grande.
+function feterLeTrophee(){
+    const trophee = document.getElementById("flashMaitrise");
+    if(!trophee) return;
+    trophee.title = tf("carte_maitrise_titre", { n: SRS_MAINTENANCE_DAYS });
+    trophee.classList.remove("hidden");
+    // Retire puis remis au prochain repaint : sans cela l'animation ne rejoue
+    // pas quand la classe est deja la.
+    trophee.classList.remove("fete");
+    void trophee.offsetWidth;
+    trophee.classList.add("fete");
+}
+
 function markMastered(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
@@ -19829,6 +19878,11 @@ function markMastered(){
     const justReachedMultiple = recordDailyActivity();
     logMasteryEvent();
     celebrateMastery(justReachedMultiple);
+    // A L'INSTANT MEME, pas au retour de la carte. Il n'apparaissait qu'a la
+    // verification suivante -- seize jours plus tard, quand plus personne ne se
+    // souvient de l'avoir merite. La carte attend deja 1 250 ms avant
+    // d'avancer : le trophee se pose, la couronne s'ouvre, et on passe.
+    feterLeTrophee();
     majEcheances(true);
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard, 1250);
