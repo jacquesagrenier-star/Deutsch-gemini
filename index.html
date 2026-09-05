@@ -3626,7 +3626,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v413</span>
+        <span class="subtitle-version">v414</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16507,9 +16507,23 @@ function chargerVoisins(){
     if(VOISINS_SENS || chargementVoisins) return chargementVoisins;
     chargementVoisins = fetch(urlDonnees('synonymes.json'), { cache: 'no-cache' })
         .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-        .then(d => { VOISINS_SENS = d.voisins || {}; })
+        .then(d => { VOISINS_SENS = d.voisins || {}; rafraichirVoisins(); })
         .catch(() => { chargementVoisins = null; });
     return chargementVoisins;
+}
+
+// LA CARTE EST DEJA DESSINEE QUAND LE FICHIER ARRIVE. Sans ce rappel, la
+// premiere carte d'une session n'affichait jamais ses voisins : elle declenchait
+// le chargement, puis plus personne ne redessinait la ligne. Une carte ouverte
+// SEULE depuis la recherche ne l'affichait donc jamais -- signale par Jacques
+// sur « Wandel », qui a bien un voisin (Veranderung).
+function rafraichirVoisins(){
+    const item = (typeof currentCards !== 'undefined' && currentCards)
+        ? currentCards[currentFlashcard] : null;
+    if(!item) return;
+    remplirVoisins(item.word, item.mode || flashcardMode);
+    // La ligne ajoute une rangee : la carte doit reprendre sa hauteur.
+    if(typeof resizeFlashcard === 'function') resizeFlashcard();
 }
 
 // Le mot allemand, quelle que soit la forme de la carte. Meme raison d'exister
@@ -17219,7 +17233,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 413;
+const APP_VERSION = 414;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
