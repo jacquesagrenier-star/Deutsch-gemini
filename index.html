@@ -227,7 +227,27 @@ html,body{margin:0}
     // l'ecran avant de recharger la page.
     window.ouvertureCouvrir = couvrir;
 
+    // REMBOBINER AVANT DE REMONTRER L'ECRAN, jamais apres (v443). Un <video>
+    // reste affiche sur sa derniere image, ici le logo d'encre de la fin. On
+    // decouvrait donc l'ecran sur la FIN de l'animation, et la remise a zero
+    // qui suivait la faisait sauter a sa version de verre avant de rejouer :
+    // le logo apparaissait fini, reculait, puis repartait. C'est l'eclair
+    // signale par Jacques -- a chaque retour dans l'app, et a chaque mise a
+    // jour silencieuse, qui passe par ici aussi.
+    //
+    // Rembobiner ne se voit pas tant que l'ecran est cache ; c'est donc la
+    // seule chose a faire dans le bon ordre, pas une animation a ajouter.
+    function rembobiner(){
+        // Rembobiner avant que la video ait ses metadonnees annule la lecture
+        // qu'on demanderait au meme instant. Au premier passage elle est deja
+        // a zero : il n'y a rien a rembobiner.
+        try{
+            if(video.readyState > 0 && video.currentTime > 0) video.currentTime = 0;
+        }catch(e){}
+    }
+
     function couvrir(){
+        rembobiner();
         ecran.classList.remove("parti");
         ecran.classList.remove("sortie");
     }
@@ -237,9 +257,10 @@ html,body{margin:0}
         enCours = false;
         if(douce){
             ecran.classList.add("sortie");
-            setTimeout(function(){ ecran.classList.add("parti"); }, 420);
+            setTimeout(function(){ ecran.classList.add("parti"); rembobiner(); }, 420);
         } else {
             ecran.classList.add("parti");   // sans fondu : on ne fait pas attendre
+            rembobiner();
         }
     }
 
@@ -248,13 +269,7 @@ html,body{margin:0}
     function jouer(){
         if(enCours) return;   // deja a l'ecran : on ne la rembobine pas
         enCours = true;
-        couvrir();
-        // Rembobiner AVANT que la video ait ses metadonnees annule la lecture
-        // qu'on demande au meme instant. Au premier passage elle est deja a
-        // zero : il n'y a rien a rembobiner.
-        try{
-            if(video.readyState > 0 && video.currentTime > 0) video.currentTime = 0;
-        }catch(e){}
+        couvrir();                       // rembobine, puis decouvre
         var lecture = video.play();
         // iOS en mode economie d'energie refuse la lecture automatique meme en
         // sourdine. Sans ceci l'app resterait figee sur la premiere image : on
@@ -3808,7 +3823,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v442</span>
+        <span class="subtitle-version">v443</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18917,7 +18932,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 442;
+const APP_VERSION = 443;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
