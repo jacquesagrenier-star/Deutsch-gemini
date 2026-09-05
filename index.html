@@ -3754,7 +3754,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v427</span>
+        <span class="subtitle-version">v428</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6539,6 +6539,8 @@ const I18N = {
         badge_streak_30_title: "Un mois de discipline",
         badge_streak_30_desc: "Trente jours consécutifs d'activité.",
         dictation_start_btn: "🎧 S'ENTRAÎNER : DICTÉE",
+        op_nomen_o5_t: "Dictée",
+        op_nomen_o5_d: "Écouter et écrire — {n} noms",
         dictation_replay_btn: "🔊 RÉÉCOUTER",
         dictation_instruction: "Écoute et écris ce que tu entends.",
         dictation_hint: "Pas besoin d'écrire l'article (der/die/das).",
@@ -7316,6 +7318,8 @@ const I18N = {
         badge_streak_30_title: "A month of discipline",
         badge_streak_30_desc: "Thirty consecutive days of activity.",
         dictation_start_btn: "🎧 PRACTICE: DICTATION",
+        op_nomen_o5_t: "Dictation",
+        op_nomen_o5_d: "Listen and write — {n} nouns",
         dictation_replay_btn: "🔊 REPLAY",
         dictation_instruction: "Listen and write what you hear.",
         dictation_hint: "No need to write the article (der/die/das).",
@@ -8097,6 +8101,8 @@ const I18N = {
         badge_streak_30_title: "Bir ay disiplin",
         badge_streak_30_desc: "Otuz gün üst üste etkinlik.",
         dictation_start_btn: "🎧 ALIŞTIRMA: DİKTE",
+        op_nomen_o5_t: "Dikte",
+        op_nomen_o5_d: "Dinle ve yaz — {n} isim",
         dictation_replay_btn: "🔊 TEKRAR DİNLE",
         dictation_instruction: "Dinle ve duyduğunu yaz.",
         dictation_hint: "Artikeli (der/die/das) yazmana gerek yok.",
@@ -12814,7 +12820,12 @@ function orbPanelData(id){
                 { icon:"reviser", title:t("op_nomen_o1_t"), desc:t("op_due_desc"), primary:true, action:"startDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openNomenNiveau" },
                 { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
-                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" }
+                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
+                // La dictee n'existait qu'a la fin d'un paquet de noms -- donc
+                // jamais en « Mots au hasard », ou le paquet compte jusqu'a
+                // 1 840 cartes et ne finit pas. Une fonction complete derriere
+                // une porte que personne n'emprunte. Signale par Jacques.
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeNoms" }
             ]
         };
     }
@@ -13226,6 +13237,36 @@ function startAllAdjektiveFlashcards(){
     setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
     showScreen("flashcards");
     loadFlashcard();
+}
+
+// Nombre de mots dictes depuis le panneau des Noms. Assez pour que ce soit un
+// exercice, assez peu pour se faire en une pause.
+const DICTEE_NOMS = 20;
+
+// Meme reservoir que « Mots au hasard » -- tous les noms de tous les niveaux --
+// et la meme preference : les mots de la session en cours d'abord, le reste
+// ensuite. On ne touche PAS a currentCards : la dictee recoit sa liste, et le
+// paquet de flashcards eventuellement ouvert reste ou il est.
+function startDicteeNoms(){
+    let pool = [];
+    themesComptes().forEach(theme => {
+        LEVELS.forEach(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return;
+            levelData.words.forEach((word, index) => {
+                pool.push({ word, index, themeId: levelData.id });
+            });
+        });
+    });
+    if(!pool.length){ showInfoToast(t('alert_no_words_available')); return; }
+    pool = sansDoublons(pool);
+    let choix = cartesDeSession(pool);
+    if(!choix.length) choix = pool;
+    shuffleArray(choix);
+    const liste = buildNomenDictationExercises(choix.slice(0, DICTEE_NOMS));
+    if(!liste.length){ showInfoToast(t("alert_no_dictation_available")); return; }
+    startExerciseSet(shuffleArray(liste.slice()), "kicker_dictation_exercise",
+                     () => openOrbPanel('nomen'), startDicteeNoms);
 }
 
 function startRandomMixAll(){
@@ -17783,7 +17824,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 427;
+const APP_VERSION = 428;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18328,12 +18369,17 @@ function replayDictationAudio(){
 // est supporté pour l'instant, les autres catégories (verben/adjektive/...)
 // ont des formes de données trop différentes pour être couvertes en toute
 // sécurité ici sans risquer une régression ailleurs.
-function buildNomenDictationExercises(){
-    if(!currentCards.length) return [];
+// `cartes` est facultatif : sans lui, on dicte le paquet qu'on vient de finir
+// (le bouton de l'ecran de fin). Avec, on dicte n'importe quelle selection --
+// c'est ce qui permet d'y entrer par le panneau des Noms sans avoir a terminer
+// un paquet de 1 840 cartes.
+function buildNomenDictationExercises(cartes){
+    const source = cartes || currentCards;
+    if(!source.length) return [];
     const learningEnglish = getLearningDirection() === 'en';
     const useEn = getUiLang() === 'en';
     const list = [];
-    currentCards.forEach(item => {
+    source.forEach(item => {
         const card = item.word;
         if(!Array.isArray(card)) return;
         const germanWord = card[0];
