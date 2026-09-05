@@ -3405,18 +3405,43 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
     padding:3px 9px; border-radius:8px; background:#fff;
     border:1px solid #e1e6ef; color:#1e293b; font-weight:600; white-space:nowrap;
 }
+/* Du plus pale au vert plein : la seule vraie progression de l'ecran, celle
+   que les quatre « Je savais » font parcourir au mot. */
+.srs-aide .etape.e1{background:#f4f9f6; border-color:#e3ece7; color:#5c7d6d;}
+.srs-aide .etape.e2{background:#eaf5ef; border-color:#d3e7dc; color:#41755c;}
+.srs-aide .etape.e3{background:#e0f2e8; border-color:#bfdfcd; color:#2c6b4e;}
 .srs-aide .etape.fin{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .srs-aide .fleche{color:#b6bcc9}
-.srs-aide-bloc{padding:11px 0; border-top:1px solid #e6eaf2;}
+/* CHAQUE SECTION PORTE LA COULEUR DE SON BOUTON, pas une palette a part : le
+   lien entre l'aide et le bouton se fait sans avoir a le chercher.
+   Et pas de degrade jaune -> orange -> vert d'un bouton a l'autre. Les trois
+   ne sont pas trois etapes d'une meme echelle : « Encore » est un echec,
+   « Je savais » une reussite, « Je connais deja » un RACCOURCI. Un vert de
+   recompense sur le raccourci en ferait le choix le plus desirable -- alors
+   que c'est le seul geste qui peut abimer la revision en silence, touche sur
+   un mot qu'on ne sait pas vraiment. Il reste donc neutre, comme son bouton.
+   La progression, elle, est teintee la ou elle existe : les quatre etapes. */
+.srs-aide-bloc{
+    padding:11px 13px; margin-top:11px; border-radius:10px;
+    border:1px solid transparent; border-left-width:3px;
+}
+.srs-aide-bloc.encore{background:rgba(232,162,58,.09); border-left-color:#E8A23A;}
+.srs-aide-bloc.savais{background:rgba(28,107,71,.07); border-left-color:#9fdcbe;}
+.srs-aide-bloc.connu{background:rgba(105,114,133,.06); border-left-color:#cdd3de;}
 .srs-aide-titre{font-weight:700; color:#1e293b; margin-bottom:4px;}
 .srs-aide-pied{padding-top:11px; border-top:1px solid #e6eaf2; font-style:italic;}
-body[data-theme="dark"] .srs-aide-bloc,
 body[data-theme="dark"] .srs-aide-pied{border-color:#2a3240}
 body[data-theme="dark"] .srs-aide-titre{color:#e6e9ef}
 body[data-theme="dark"] .srs-aide{background:#1b212b; border-color:#2a3240; color:#9aa3b2;}
 body[data-theme="dark"] .srs-aide b{color:#e6e9ef}
 body[data-theme="dark"] .srs-aide .etape{background:#232a35; border-color:#2f3846; color:#e6e9ef;}
+body[data-theme="dark"] .srs-aide .etape.e1{background:#20272f; border-color:#2b333d; color:#8fa79a;}
+body[data-theme="dark"] .srs-aide .etape.e2{background:#1e2b26; border-color:#2c4238; color:#93c4ac;}
+body[data-theme="dark"] .srs-aide .etape.e3{background:#1d3229; border-color:#2d5643; color:#8fd3b1;}
 body[data-theme="dark"] .srs-aide .etape.fin{background:#1d3a2c; border-color:#2f6a4d; color:#8fe0b6;}
+body[data-theme="dark"] .srs-aide-bloc.encore{background:rgba(232,162,58,.12);}
+body[data-theme="dark"] .srs-aide-bloc.savais{background:rgba(143,224,182,.08); border-left-color:#2f6a4d;}
+body[data-theme="dark"] .srs-aide-bloc.connu{background:rgba(255,255,255,.04); border-left-color:#39424f;}
 body[data-theme="dark"] .srs-aide-btn:hover{border-color:#2a3240; color:#c3c9d4;}
 
 /* Voisins de sens, derniere ligne du verso. Discrete par construction : elle
@@ -3711,7 +3736,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v423</span>
+        <span class="subtitle-version">v426</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5570,7 +5595,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 </span>
             </button>
         </div>
-        <button class="judge-known" onclick="markKnownAlready()" data-i18n="review_known">Je connais déjà ce mot — ne plus me le montrer</button>
+        <button class="judge-known" onclick="markKnownAlready()">
+            <span data-i18n="review_known">Je connais déjà ce mot</span>
+            <small class="judge-echeance" id="judgeEcheanceKnown"></small>
+        </button>
         <!-- Le « i » est ICI, dans le bloc qui n'apparait qu'apres la reponse :
              sur la carte, il se lirait comme un indice. -->
         <button class="srs-aide-btn" id="srsAideBtn" onclick="basculerAideSrs()"
@@ -6215,7 +6243,9 @@ const I18N = {
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
         review_good: "Je savais ✓",
-        review_known: "Je connais déjà ce mot — ne plus me le montrer",
+        review_known: "Je connais déjà ce mot",
+        known_echeance: "à revoir dans {n} jours",
+        echeance_maitrise_jours: "maîtrisé ✓ · {n} j",
         flash_end_title: "Paquet terminé",
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
         flash_end_summary_one: "1 carte vue.",
@@ -6992,7 +7022,9 @@ const I18N = {
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
         review_good: "I knew it ✓",
-        review_known: "I already know this word — stop showing it",
+        review_known: "I already know this word",
+        known_echeance: "back in {n} days",
+        echeance_maitrise_jours: "mastered ✓ · {n} d",
         flash_end_title: "Deck finished",
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
         flash_end_summary_one: "1 card seen.",
@@ -7771,7 +7803,9 @@ const I18N = {
         myvocab_how: "Bir kelime ara, sonra sözlük kaydının yanındaki + işaretine dokunarak buraya kaydet.",
         review_again: "↺ Tekrar",
         review_good: "Biliyordum ✓",
-        review_known: "Bu kelimeyi zaten biliyorum — artık gösterme",
+        review_known: "Bu kelimeyi zaten biliyorum",
+        known_echeance: "{n} gün sonra tekrar",
+        echeance_maitrise_jours: "öğrenildi ✓ · {n} g",
         flash_end_title: "Deste bitti",
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
         flash_end_summary_one: "1 kart görüldü.",
@@ -17717,7 +17751,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 423;
+const APP_VERSION = 426;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18484,6 +18518,11 @@ function majEcheances(animerDernier){
     const elA = document.getElementById("judgeEcheanceAgain");
     if(!elA) return;
     elA.textContent = t("echeance_encore");
+    // « ne plus me le montrer » etait faux : markMastered() reprogramme le mot
+    // a SRS_MAINTENANCE_DAYS. Le bouton dit maintenant ce qu'il fait vraiment,
+    // comme les deux autres. Remarque de Jacques.
+    const elK = document.getElementById("judgeEcheanceKnown");
+    if(elK) elK.textContent = tf("known_echeance", { n: SRS_MAINTENANCE_DAYS });
 
     const ladder  = document.getElementById("srsLadder");
     const pipsBox = document.getElementById("srsPips");
@@ -18510,10 +18549,12 @@ function majEcheances(animerDernier){
     }
     pipsBox.innerHTML = pips;
     ladder.classList.toggle("done", fini);
-    // Le palier se nomme, il ne se compte pas : "je progresse" se lit sans
-    // avoir a savoir combien d'etapes compte l'echelle.
-    const noms = ["srs_etat_0", "srs_etat_1", "srs_etat_2", "srs_etat_3", "srs_etat_4"];
-    txt.textContent = t(noms[Math.min(atteints, noms.length - 1)]);
+    // CE QUE CE CLIC PROGRAMME, comme sous le bouton « Encore » d'a cote. Le
+    // bouton disait le palier atteint (« je progresse ») -- mais les pastilles
+    // le disent deja, et rien ne disait la seule chose qu'on ne peut pas
+    // deviner : quand le mot reviendra. La symetrie manquait, les quatre
+    // libelles existaient depuis longtemps sans emploi. Idee de Jacques.
+    txt.textContent = echeanceProchaineReussite(state);
 }
 
 // L'AIDE EST CONSTRUITE A PARTIR DES CONSTANTES, jamais recopiee. Les quatre
@@ -18530,22 +18571,22 @@ function texteAideSrs(){
         // Une section par bouton, dans l'ordre ou ils sont a l'ecran. Le titre
         // est la cle du bouton lui-meme : ce qu'on lit dans l'aide est mot pour
         // mot ce qu'on lit sur le bouton.
-        + '<div class="srs-aide-bloc">'
+        + '<div class="srs-aide-bloc encore">'
         +   '<div class="srs-aide-titre">' + t("review_again") + '</div>'
         +   '<p>' + tf("srs_aide_encore", { n: SRS_CARTES_AVANT_RETOUR }) + '</p>'
         + '</div>'
-        + '<div class="srs-aide-bloc">'
+        + '<div class="srs-aide-bloc savais">'
         +   '<div class="srs-aide-titre">' + t("review_good") + '</div>'
         +   '<p>' + t("srs_aide_echelle") + '</p>'
         +   '<div class="srs-aide-echelle">'
-        +     '<span class="etape">' + tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }) + '</span>'
-        +     '<span class="fleche">\u2192</span><span class="etape">' + jour(j1) + '</span>'
-        +     '<span class="fleche">\u2192</span><span class="etape">' + jour(j2) + '</span>'
+        +     '<span class="etape e1">' + tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape e2">' + jour(j1) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape e3">' + jour(j2) + '</span>'
         +     '<span class="fleche">\u2192</span><span class="etape fin">' + t("srs_aide_maitrise") + '</span>'
         +   '</div>'
         +   '<p>' + tf("srs_aide_pastilles", { n: SRS_PALIERS }) + '</p>'
         + '</div>'
-        + '<div class="srs-aide-bloc">'
+        + '<div class="srs-aide-bloc connu">'
         +   '<div class="srs-aide-titre">' + t("review_known") + '</div>'
         +   '<p>' + t("srs_aide_connu") + '</p>'
         + '</div>'
@@ -18571,6 +18612,22 @@ function fermerAideSrs(){
     const bouton = document.getElementById("srsAideBtn");
     if(boite) boite.classList.add("hidden");
     if(bouton) bouton.setAttribute("aria-expanded", "false");
+}
+
+// L'echeance que le prochain « Je savais » donnera A CETTE CARTE. Elle refait
+// exactement le calcul de reviewGood() et scheduleReview() -- premiere reussite
+// a 10 minutes, puis le barreau courant de l'echelle des jours, puis la
+// maitrise. Deux calculs paralleles finiraient par diverger, et le bouton
+// annoncerait une date que l'app ne tient pas : c'est pire que de ne rien dire.
+function echeanceProchaineReussite(state){
+    const reussites = state.srsHits || 0;
+    // La maitrise n'est pas une sortie : le mot revient verifier. L'echeance
+    // le dit, sinon « maitrise » se lit comme « fini ».
+    if(reussites + 1 >= SRS_PALIERS) return tf("echeance_maitrise_jours", { n: SRS_MAINTENANCE_DAYS });
+    if(reussites === 0) return t("echeance_10min");
+    const barreau = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
+    const jours = SRS_DAILY_LADDER_DAYS[barreau];
+    return jours === 1 ? t("echeance_demain") : tf("echeance_jours", { n: jours });
 }
 
 function reviewAgain(){
