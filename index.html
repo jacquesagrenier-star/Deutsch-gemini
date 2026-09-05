@@ -2173,6 +2173,24 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
     font-size:13px;
 }
 
+/* Trophee du mot maitrise. Coin superieur droit du verso : la ou l'oeil ne
+   cherche rien, donc la ou une recompense se remarque sans gener la lecture.
+   Il apparait en se posant -- une recompense qui surgit brutalement se lit
+   comme une alerte. */
+.carte-maitrise{
+    position:absolute; top:11px; right:14px; z-index:2;
+    font-size:20px; line-height:1; pointer-events:none;
+    animation:trophee .45s cubic-bezier(.2,.9,.3,1.2) both;
+}
+@keyframes trophee{
+    from{opacity:0; transform:translateY(-7px) scale(.72);}
+    to{opacity:1; transform:none;}
+}
+@media (prefers-reduced-motion:reduce){
+    .carte-maitrise{animation:none;}
+}
+
+
 .flashcard-back{
     transform:rotateY(180deg);
     padding:22px;
@@ -3736,7 +3754,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v426</span>
+        <span class="subtitle-version">v427</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5554,6 +5572,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
 
             <div class="flashcard-face flashcard-back">
+                <!-- Le mot est maitrise : un trophee, pas une etiquette. Il
+                     n'apparait qu'au VERSO -- sur le recto il dirait « tu sais
+                     celui-la » avant meme qu'on ait cherche. -->
+                <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row">
                     <div id="flashBackWord" class="back-word">Tisch</div>
@@ -6245,7 +6267,6 @@ const I18N = {
         review_good: "Je savais ✓",
         review_known: "Je connais déjà ce mot",
         known_echeance: "à revoir dans {n} jours",
-        echeance_maitrise_jours: "maîtrisé ✓ · {n} j",
         flash_end_title: "Paquet terminé",
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
         flash_end_summary_one: "1 carte vue.",
@@ -6281,6 +6302,7 @@ const I18N = {
         srs_aide_jour: "{n} jour",
         srs_aide_jours: "{n} jours",
         srs_aide_maitrise: "maîtrisé",
+        carte_maitrise_titre: "Mot maîtrisé — il revient tous les {n} jours pour vérifier",
         srs_aide_encore: "Le mot repart de zéro et revient {n} cartes plus loin, dans cette séance.",
         srs_aide_pastilles: "Les {n} pastilles comptent ces réussites d'affilée.",
         srs_aide_connu: "Le mot passe directement à « maîtrisé », sans faire les quatre étapes. Utile pour un mot déjà su : il sort du paquet sans qu'il faille le juger quatre fois.",
@@ -7024,7 +7046,6 @@ const I18N = {
         review_good: "I knew it ✓",
         review_known: "I already know this word",
         known_echeance: "back in {n} days",
-        echeance_maitrise_jours: "mastered ✓ · {n} d",
         flash_end_title: "Deck finished",
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
         flash_end_summary_one: "1 card seen.",
@@ -7060,6 +7081,7 @@ const I18N = {
         srs_aide_jour: "{n} day",
         srs_aide_jours: "{n} days",
         srs_aide_maitrise: "mastered",
+        carte_maitrise_titre: "Word mastered — it comes back every {n} days to check",
         srs_aide_encore: "The word starts over and comes back {n} cards later, in this session.",
         srs_aide_pastilles: "The {n} dots count those successes in a row.",
         srs_aide_connu: "The word jumps straight to « mastered », skipping the four steps. Handy for a word you already know: it leaves the deck without being judged four times.",
@@ -7805,7 +7827,6 @@ const I18N = {
         review_good: "Biliyordum ✓",
         review_known: "Bu kelimeyi zaten biliyorum",
         known_echeance: "{n} gün sonra tekrar",
-        echeance_maitrise_jours: "öğrenildi ✓ · {n} g",
         flash_end_title: "Deste bitti",
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
         flash_end_summary_one: "1 kart görüldü.",
@@ -7841,6 +7862,7 @@ const I18N = {
         srs_aide_jour: "{n} gün",
         srs_aide_jours: "{n} gün",
         srs_aide_maitrise: "öğrenildi",
+        carte_maitrise_titre: "Kelime öğrenildi — kontrol için her {n} günde bir geri gelir",
         srs_aide_encore: "Kelime sıfırdan başlar ve bu oturumda {n} kart sonra geri gelir.",
         srs_aide_pastilles: "{n} nokta, üst üste gelen bu başarıları sayar.",
         srs_aide_connu: "Kelime dört adımı atlayıp doğrudan « öğrenildi » olur. Zaten bildiğin bir kelime için pratik: dört kez değerlendirilmeden desteden çıkar.",
@@ -16532,6 +16554,16 @@ function loadFlashcard(){
     // de rendu -- meme raison que la marque d'usage juste au-dessus.
     remplirVoisins(card, flashcardMode);
 
+    // Le trophee suit l'etat du mot, pas le clic : il est la quand la carte
+    // revient se faire verifier, seize jours apres. Le moment de la maitrise,
+    // lui, a deja ses confettis.
+    const trophee = document.getElementById("flashMaitrise");
+    if(trophee){
+        const maitrise = !!getWordState(item.themeId, item.index).mastered;
+        trophee.classList.toggle("hidden", !maitrise);
+        if(maitrise) trophee.title = tf("carte_maitrise_titre", { n: SRS_MAINTENANCE_DAYS });
+    }
+
     resizeFlashcard();
     // La carte est affichee mais pas encore retournee : c'est le moment de
     // savoir si son fichier existe. Voir preverifierAudioCarte().
@@ -17751,7 +17783,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 426;
+const APP_VERSION = 427;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18621,9 +18653,12 @@ function fermerAideSrs(){
 // annoncerait une date que l'app ne tient pas : c'est pire que de ne rien dire.
 function echeanceProchaineReussite(state){
     const reussites = state.srsHits || 0;
-    // La maitrise n'est pas une sortie : le mot revient verifier. L'echeance
-    // le dit, sinon « maitrise » se lit comme « fini ».
-    if(reussites + 1 >= SRS_PALIERS) return tf("echeance_maitrise_jours", { n: SRS_MAINTENANCE_DAYS });
+    // LES QUATRE ETAPES SONT QUATRE DELAIS, y compris la derniere : 10 min,
+    // demain, 3 j, 16 j. Le bouton disait « maitrise ✓ · 16 j » -- un mot de
+    // plus qui n'apprenait rien, puisque les quatre pastilles pleines le disent
+    // deja, que les confettis le fetent, et que le trophee reste ensuite sur la
+    // carte. Il ne reste que l'information qu'on ne peut pas deviner : quand.
+    if(reussites + 1 >= SRS_PALIERS) return tf("echeance_jours", { n: SRS_MAINTENANCE_DAYS });
     if(reussites === 0) return t("echeance_10min");
     const barreau = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
     const jours = SRS_DAILY_LADDER_DAYS[barreau];
