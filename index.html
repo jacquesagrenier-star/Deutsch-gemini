@@ -3316,6 +3316,11 @@ body[data-theme="dark"] .flash-end-title{color:#e9ecf1;}
 }
 .dict-add:hover{background:#eef3ff; border-color:#3b6fe0;}
 .dict-add.ajoute{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47; cursor:default;}
+/* Mot deja enseigne par le cours : la fleche ouvre sa carte. Ambre de la
+   marque, pour ne pas se confondre avec le vert du mot mis de cote. */
+.dict-add.au-cours{background:rgba(232,162,58,.14); border-color:rgba(232,162,58,.5); color:#a0700f;}
+.dict-add.au-cours:hover{background:rgba(232,162,58,.26); border-color:#E8A23A;}
+body[data-theme="dark"] .dict-add.au-cours{background:rgba(232,162,58,.16); color:#E8A23A;}
 .dict-row-top{padding-right:36px;}
 body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 
@@ -3605,7 +3610,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v407</span>
+        <span class="subtitle-version">v408</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6035,6 +6040,7 @@ const I18N = {
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
         myvocab_add_title: "Ajouter à mes flashcards",
+        dict_au_cours_title: "Déjà une carte du cours — ouvrir la carte",
         myvocab_freq_high: "très courant",
         myvocab_freq_mid: "courant",
         myvocab_added: "« {mot} » ajouté à tes flashcards.",
@@ -6054,7 +6060,7 @@ const I18N = {
         flash_end_summary_one: "1 carte vue.",
         flash_end_done: "TERMINER",
         dict_section_title: "Dictionnaire",
-        dict_section_note: "Ces mots n'ont pas encore de carte. Touche le + pour en faire une et la retrouver dans Mon vocabulaire.",
+        dict_section_note: "Touche le + pour faire une carte d'un mot et la retrouver dans Mon vocabulaire. La flèche → mène à la carte du cours quand elle existe déjà.",
         search_head_cours: "Cartes de l'app",
         dict_loading: "Recherche dans le dictionnaire…",
         dict_none: "Aucune entrée de dictionnaire pour ce mot.",
@@ -6771,6 +6777,7 @@ const I18N = {
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
         myvocab_add_title: "Add to my flashcards",
+        dict_au_cours_title: "Already a course card — open the card",
         myvocab_freq_high: "very common",
         myvocab_freq_mid: "common",
         myvocab_added: "“{mot}” added to your flashcards.",
@@ -6790,7 +6797,7 @@ const I18N = {
         flash_end_summary_one: "1 card seen.",
         flash_end_done: "DONE",
         dict_section_title: "Dictionary",
-        dict_section_note: "These words have no card yet. Tap + to make one and find it in My vocabulary.",
+        dict_section_note: "Tap + to turn a word into a card and find it in My vocabulary. The arrow → opens the course card when there already is one.",
         search_head_cours: "Cards in the app",
         dict_loading: "Searching the dictionary…",
         dict_none: "No dictionary entry for this word.",
@@ -7509,6 +7516,7 @@ const I18N = {
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
         myvocab_add_title: "Kartlarıma ekle",
+        dict_au_cours_title: "Zaten bir kurs kartı — kartı aç",
         myvocab_freq_high: "çok yaygın",
         myvocab_freq_mid: "yaygın",
         myvocab_added: "“{mot}” kartlarına eklendi.",
@@ -7528,7 +7536,7 @@ const I18N = {
         flash_end_summary_one: "1 kart görüldü.",
         flash_end_done: "BİTTİ",
         dict_section_title: "Sözlük",
-        dict_section_note: "Bu kelimelerin henüz kartı yok. Kart oluşturmak için + işaretine dokun, sonra Kelimelerim'de bul.",
+        dict_section_note: "Bir kelimeden kart yapmak için + işaretine dokun, sonra Kelimelerim'de bul. Kurs kartı zaten varsa → oku onu açar.",
         search_head_cours: "Uygulamadaki kartlar",
         dict_loading: "Sözlükte aranıyor…",
         dict_none: "Bu kelime için sözlük kaydı yok.",
@@ -13549,11 +13557,24 @@ function noterDemande(mot, sens){
 // ou il y entre, la note que la personne s'etait faite n'a plus de raison
 // d'exister. On la marque au lieu de la supprimer : la progression est indexee
 // par position, et retirer une entree decalerait toutes les suivantes.
-function motDejaDansLeCours(mot){
+function entreeDuCoursPour(mot){
     const index = (typeof ensureSearchIndex === "function") ? ensureSearchIndex() : null;
-    if(!index || !index.length) return false;
+    if(!index || !index.length) return null;
     const bas = (mot || "").toLowerCase();
-    return index.some(e => (e.de || "").toLowerCase() === bas);
+    if(!bas) return null;
+    // A pertinence egale, c'est la fiche du cours principal qui doit s'ouvrir --
+    // meme ordre de priorite que la recherche, donc la meme carte.
+    let meilleure = null;
+    for(let i = 0; i < index.length; i++){
+        const e = index[i];
+        if((e.de || "").toLowerCase() !== bas) continue;
+        if(!meilleure || e.prio < meilleure.prio) meilleure = e;
+    }
+    return meilleure;
+}
+
+function motDejaDansLeCours(mot){
+    return !!entreeDuCoursPour(mot);
 }
 
 function saveMyVocab(){
@@ -13832,9 +13853,21 @@ function renderDictSection(liste, total){
             ? '<span class="dict-plural">' + tf("dict_participle", { pp: (o.aux === "sein" ? "ist " : o.aux === "haben" ? "hat " : "") + o.pp }) + '</span>'
             : "";
         const dedans = deja.some(w => w[0] === o.m);
-        const ajout = '<button id="dictAdd' + i + '" class="dict-add' + (dedans ? ' ajoute' : '')
-            + '" onclick="event.stopPropagation(); addToMyVocab(' + i + ');" title="'
-            + t("myvocab_add_title") + '">' + (dedans ? "\u2713" : "+") + '</button>';
+        // Le "+" ne consultait que "Mon vocabulaire" : plus de mille entrees du
+        // dictionnaire l'affichaient alors que le mot est DEJA une carte du cours,
+        // et le refus n'arrivait qu'apres le clic. Le cours est donc interroge ici,
+        // au rendu -- et le bouton, au lieu de proposer un ajout impossible, ouvre
+        // la carte qui existe deja. Seules les paires de-* sont concernees :
+        // ailleurs o.m n'est pas de l'allemand, et un homographe francais ("bar")
+        // ne doit pas passer pour un mot du cours.
+        const auCours = !dedans && x.pair.slice(0, 2) === "de" && motDejaDansLeCours(o.m);
+        const marque = auCours ? "→" : (dedans ? "✓" : "+");
+        const ajout = '<button id="dictAdd' + i + '" class="dict-add'
+            + (auCours ? ' au-cours' : (dedans ? ' ajoute' : ''))
+            + '" onclick="event.stopPropagation(); '
+            + (auCours ? 'ouvrirCarteDuCours(' : 'addToMyVocab(') + i + ');" title="'
+            + t(auCours ? "dict_au_cours_title" : "myvocab_add_title") + '">'
+            + marque + '</button>';
         return '<div class="dict-row">' + ajout + '<div class="dict-row-top">'
             + '<span class="dict-word">' + genre + o.m + '</span>'
             + pron + pos + plur + part + '</div>'
@@ -13953,7 +13986,18 @@ function renderWordSearch(rawQuery){
 // Session d'UNE carte : l'evaluer (ou revenir en arriere) ramene a l'accueil,
 // voir handleFlashcardBack().
 function openSearchCard(i){
-    const entry = searchResults[i];
+    ouvrirEntreeRecherche(searchResults[i]);
+}
+
+// Ouvre la carte du cours qui correspond a une entree du dictionnaire affichee.
+// dictShown est rempli au rendu, comme pour addToMyVocab.
+function ouvrirCarteDuCours(i){
+    const entree = dictShown[i];
+    if(!entree) return;
+    ouvrirEntreeRecherche(entreeDuCoursPour(entree.o.m));
+}
+
+function ouvrirEntreeRecherche(entry){
     if(!entry) return;
     flashcardMode = entry.mode;
     currentTheme = { id: entry.themeId, name: entry.source };
@@ -17005,7 +17049,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 407;
+const APP_VERSION = 408;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
