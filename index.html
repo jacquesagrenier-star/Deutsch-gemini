@@ -3389,6 +3389,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
     padding:1px 7px; border-radius:6px;
     background:rgba(139,147,163,.12); color:#5c6472; font-weight:600;
 }
+.synonymes .syn-region{margin-left:4px; font-weight:500; font-size:10.5px; opacity:.72;}
 body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); color:#c3c9d4;}
 
 /* ============ ACCUEIL RESSERRE (v232) ============
@@ -3666,7 +3667,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v418</span>
+        <span class="subtitle-version">v419</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16749,6 +16750,25 @@ function motAllemandDeLaCarte(card, mode){
 // remplacerait currentCards par une seance d'une seule carte -- le paquet en
 // cours serait perdu au milieu d'une revision de « Mots au hasard ». Le jour ou
 // on voudra ce geste, il faudra d'abord savoir revenir au paquet.
+// UN SYNONYME REGIONAL SANS SA MARQUE EST UN PIEGE. « Rüebli » n'est une
+// carotte qu'en Suisse, « Marille » un abricot qu'en Autriche : donne sans
+// indication a cote du mot de tous les jours, il s'emploie au mauvais endroit.
+// La carte du mot porte deja sa marque quand on l'ouvre ; la ligne des
+// synonymes, elle, ne montrait que le mot nu.
+//
+// (A) et (CH) plutot qu'une phrase : ce sont les abreviations des listes
+// officielles, et trois lignes de synonymes doivent tenir sur une rangee.
+// Demande de Jacques apres que Barbara est tombee sur « parkieren ».
+function marqueRegionale(mot){
+    if(typeof entreeDuCoursPour !== "function") return "";
+    const e = entreeDuCoursPour(mot);
+    if(!e) return "";
+    const registre = registreDeLaCarte(e.card, e.mode);
+    if(registre === "oesterreichisch") return "A";
+    if(registre === "schweizerisch") return "CH";
+    return "";
+}
+
 function remplirVoisins(card, mode){
     const el = document.getElementById("flashSynonymes");
     if(!el) return;
@@ -16764,7 +16784,12 @@ function remplirVoisins(card, mode){
     // au-dessus d'un seul mot se voit.
     el.innerHTML = '<span class="syn-label">'
         + t(liste.length === 1 ? 'label_synonyme' : 'label_synonymes') + '</span>'
-        + liste.map(m => '<span class="syn-mot">' + echapperHtml(m) + '</span>').join("");
+        + liste.map(m => {
+            const marque = marqueRegionale(m);
+            return '<span class="syn-mot">' + echapperHtml(m)
+                + (marque ? '<span class="syn-region">(' + marque + ')</span>' : "")
+                + '</span>';
+        }).join("");
     el.classList.remove("hidden");
 }
 
@@ -17599,7 +17624,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 418;
+const APP_VERSION = 419;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
