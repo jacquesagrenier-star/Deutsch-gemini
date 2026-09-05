@@ -3407,6 +3407,12 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 }
 .srs-aide .etape.fin{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .srs-aide .fleche{color:#b6bcc9}
+.srs-aide-bloc{padding:11px 0; border-top:1px solid #e6eaf2;}
+.srs-aide-titre{font-weight:700; color:#1e293b; margin-bottom:4px;}
+.srs-aide-pied{padding-top:11px; border-top:1px solid #e6eaf2; font-style:italic;}
+body[data-theme="dark"] .srs-aide-bloc,
+body[data-theme="dark"] .srs-aide-pied{border-color:#2a3240}
+body[data-theme="dark"] .srs-aide-titre{color:#e6e9ef}
 body[data-theme="dark"] .srs-aide{background:#1b212b; border-color:#2a3240; color:#9aa3b2;}
 body[data-theme="dark"] .srs-aide b{color:#e6e9ef}
 body[data-theme="dark"] .srs-aide .etape{background:#232a35; border-color:#2f3846; color:#e6e9ef;}
@@ -3705,7 +3711,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v422</span>
+        <span class="subtitle-version">v423</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6245,8 +6251,10 @@ const I18N = {
         srs_aide_jour: "{n} jour",
         srs_aide_jours: "{n} jours",
         srs_aide_maitrise: "maîtrisé",
-        srs_aide_encore: "<b>Encore</b> remet le compteur à zéro : le mot revient {n} cartes plus loin, dans cette séance.",
-        srs_aide_apres: "Un mot maîtrisé n'est pas acquis à vie. Il revient une fois, {n} jours plus tard, pour vérifier.",
+        srs_aide_encore: "Le mot repart de zéro et revient {n} cartes plus loin, dans cette séance.",
+        srs_aide_pastilles: "Les {n} pastilles comptent ces réussites d'affilée.",
+        srs_aide_connu: "Le mot passe directement à « maîtrisé », sans faire les quatre étapes. Utile pour un mot déjà su : il sort du paquet sans qu'il faille le juger quatre fois.",
+        srs_aide_apres: "Dans les deux cas, un mot maîtrisé n'est pas rangé pour de bon : il revient tous les {n} jours, pour vérifier.",
         srs_etat_1: "je commence",
         srs_etat_2: "je progresse",
         srs_etat_3: "j'y suis presque",
@@ -7020,8 +7028,10 @@ const I18N = {
         srs_aide_jour: "{n} day",
         srs_aide_jours: "{n} days",
         srs_aide_maitrise: "mastered",
-        srs_aide_encore: "<b>Again</b> resets the count: the word comes back {n} cards later, in this session.",
-        srs_aide_apres: "A mastered word isn't learnt for life. It comes back once, {n} days later, to check.",
+        srs_aide_encore: "The word starts over and comes back {n} cards later, in this session.",
+        srs_aide_pastilles: "The {n} dots count those successes in a row.",
+        srs_aide_connu: "The word jumps straight to « mastered », skipping the four steps. Handy for a word you already know: it leaves the deck without being judged four times.",
+        srs_aide_apres: "Either way, a mastered word isn't put away for good: it comes back every {n} days, to check.",
         srs_etat_1: "getting started",
         srs_etat_2: "making progress",
         srs_etat_3: "almost there",
@@ -7797,8 +7807,10 @@ const I18N = {
         srs_aide_jour: "{n} gün",
         srs_aide_jours: "{n} gün",
         srs_aide_maitrise: "öğrenildi",
-        srs_aide_encore: "<b>Tekrar</b> sayacı sıfırlar: kelime bu oturumda {n} kart sonra geri gelir.",
-        srs_aide_apres: "Öğrenilen bir kelime ömür boyu bilinmiş sayılmaz. {n} gün sonra bir kez daha, kontrol için gelir.",
+        srs_aide_encore: "Kelime sıfırdan başlar ve bu oturumda {n} kart sonra geri gelir.",
+        srs_aide_pastilles: "{n} nokta, üst üste gelen bu başarıları sayar.",
+        srs_aide_connu: "Kelime dört adımı atlayıp doğrudan « öğrenildi » olur. Zaten bildiğin bir kelime için pratik: dört kez değerlendirilmeden desteden çıkar.",
+        srs_aide_apres: "Her iki durumda da öğrenilen kelime büsbütün kaldırılmaz: kontrol için her {n} günde bir geri gelir.",
         srs_etat_1: "başlıyor",
         srs_etat_2: "ilerliyor",
         srs_etat_3: "neredeyse tamam",
@@ -17705,7 +17717,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 422;
+const APP_VERSION = 423;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18515,15 +18527,29 @@ function texteAideSrs(){
     const j2 = SRS_DAILY_LADDER_DAYS[1];
     const jour = n => tf(n === 1 ? "srs_aide_jour" : "srs_aide_jours", { n: n });
     return '<p>' + t("srs_aide_intro") + '</p>'
-        + '<p>' + t("srs_aide_echelle") + '</p>'
-        + '<div class="srs-aide-echelle">'
-        +   '<span class="etape">' + tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }) + '</span>'
-        +   '<span class="fleche">\u2192</span><span class="etape">' + jour(j1) + '</span>'
-        +   '<span class="fleche">\u2192</span><span class="etape">' + jour(j2) + '</span>'
-        +   '<span class="fleche">\u2192</span><span class="etape fin">' + t("srs_aide_maitrise") + '</span>'
+        // Une section par bouton, dans l'ordre ou ils sont a l'ecran. Le titre
+        // est la cle du bouton lui-meme : ce qu'on lit dans l'aide est mot pour
+        // mot ce qu'on lit sur le bouton.
+        + '<div class="srs-aide-bloc">'
+        +   '<div class="srs-aide-titre">' + t("review_again") + '</div>'
+        +   '<p>' + tf("srs_aide_encore", { n: SRS_CARTES_AVANT_RETOUR }) + '</p>'
         + '</div>'
-        + '<p>' + tf("srs_aide_encore", { n: SRS_CARTES_AVANT_RETOUR }) + '</p>'
-        + '<p>' + tf("srs_aide_apres", { n: SRS_MAINTENANCE_DAYS }) + '</p>';
+        + '<div class="srs-aide-bloc">'
+        +   '<div class="srs-aide-titre">' + t("review_good") + '</div>'
+        +   '<p>' + t("srs_aide_echelle") + '</p>'
+        +   '<div class="srs-aide-echelle">'
+        +     '<span class="etape">' + tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape">' + jour(j1) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape">' + jour(j2) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape fin">' + t("srs_aide_maitrise") + '</span>'
+        +   '</div>'
+        +   '<p>' + tf("srs_aide_pastilles", { n: SRS_PALIERS }) + '</p>'
+        + '</div>'
+        + '<div class="srs-aide-bloc">'
+        +   '<div class="srs-aide-titre">' + t("review_known") + '</div>'
+        +   '<p>' + t("srs_aide_connu") + '</p>'
+        + '</div>'
+        + '<p class="srs-aide-pied">' + tf("srs_aide_apres", { n: SRS_MAINTENANCE_DAYS }) + '</p>';
 }
 
 function basculerAideSrs(){
