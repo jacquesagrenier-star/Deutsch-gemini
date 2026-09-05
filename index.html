@@ -3389,7 +3389,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
     padding:1px 7px; border-radius:6px;
     background:rgba(139,147,163,.12); color:#5c6472; font-weight:600;
 }
-.synonymes .syn-region{margin-left:5px; font-weight:500; font-size:11px; opacity:.7; white-space:nowrap;}
+.synonymes .syn-region{margin-left:5px; font-weight:500; font-size:11px; opacity:.7; font-style:italic;}
 body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); color:#c3c9d4;}
 
 /* ============ ACCUEIL RESSERRE (v232) ============
@@ -3667,7 +3667,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v420</span>
+        <span class="subtitle-version">v421</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6619,8 +6619,6 @@ const I18N = {
         random_nouns_by_level_desc: "Mélange des noms de tous les niveaux disponibles.",
         label_plural: "Pluriel :",
         label_synonyme: "Synonyme",
-        region_autriche: "Autriche",
-        region_suisse: "Suisse",
         label_synonymes: "Synonymes",
         label_feminine: "Féminin :",
         label_masculine: "Masculin :",
@@ -7385,8 +7383,6 @@ const I18N = {
         random_nouns_by_level_desc: "A mix of nouns from all available levels.",
         label_plural: "Plural:",
         label_synonyme: "Synonym",
-        region_autriche: "Austria",
-        region_suisse: "Switzerland",
         label_synonymes: "Synonyms",
         label_feminine: "Feminine:",
         label_masculine: "Masculine:",
@@ -8155,8 +8151,6 @@ const I18N = {
         random_nouns_by_level_desc: "Mevcut tüm seviyelerden isim karışımı.",
         label_plural: "Çoğul:",
         label_synonyme: "Eş anlamlı",
-        region_autriche: "Avusturya",
-        region_suisse: "İsviçre",
         label_synonymes: "Eş anlamlılar",
         label_feminine: "Dişil:",
         label_masculine: "Eril:",
@@ -16762,20 +16756,22 @@ function motAllemandDeLaCarte(card, mode){
 // La carte du mot porte deja sa marque quand on l'ouvre ; la ligne des
 // synonymes, elle, ne montrait que le mot nu.
 //
-// LE PAYS EN TOUTES LETTRES, pas (A) ni (CH). Les abreviations sont celles des
-// listes officielles d'examen, mais elles s'adressent a des correcteurs, pas a
-// quelqu'un qui apprend : « (A) » ne se lit pas, il se devine. « (Autriche) »
-// se comprend sans avoir rien appris. Choix de Jacques, v420.
+// EXACTEMENT LA PHRASE DE LA CARTE : « surtout en Suisse », « surtout en
+// Autriche ». Les memes cles que la marque d'usage (usageMarkText), pas une
+// formulation parallele -- une meme information ecrite de deux facons finit par
+// se lire comme deux informations differentes, et « surtout » porte une nuance
+// qu'un nom de pays seul perd : le mot n'est pas INTERDIT ailleurs, il est
+// simplement d'usage la-bas.
 //
-// C'est une CLE de traduction, pas un texte : le nom du pays suit la langue de
-// l'interface -- Autriche, Austria, Avusturya.
+// Passe par (A)/(CH) en v419 puis par « (Suisse) » en v420 ; c'est Jacques qui
+// a vu que la carte disait deja la bonne chose.
 function marqueRegionale(mot){
     if(typeof entreeDuCoursPour !== "function") return "";
     const e = entreeDuCoursPour(mot);
     if(!e) return "";
     const registre = registreDeLaCarte(e.card, e.mode);
-    if(registre === "oesterreichisch") return t('region_autriche');
-    if(registre === "schweizerisch") return t('region_suisse');
+    if(registre === "oesterreichisch") return t('usage_autriche');
+    if(registre === "schweizerisch") return t('usage_suisse');
     return "";
 }
 
@@ -17634,7 +17630,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 420;
+const APP_VERSION = 421;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
