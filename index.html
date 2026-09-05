@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v447</span>
+        <span class="subtitle-version">v448</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18389,10 +18389,26 @@ let ecouteJoue = false;
 let ecouteMinuteur = null;
 let ecouteChien = null;      // borne de securite par etape, voir armerChien
 let ecouteSonde = null;      // detection rapide d'un enonce avale, voir plus bas
-// Vrai des qu'un enonce a ete avale par le systeme sans un son. Tant qu'il
-// l'est, on n'attend plus la synthese : on saute l'etape tout de suite. Voir
-// le bloc SYNTHESE AVALEE dans ecouteJouerEtape.
-let ecouteSyntheseMuette = false;
+// SYNTHESE AVALEE -- COMPTEUR, ET NON PLUS DRAPEAU (v448).
+//
+// C'etait un booleen : un seul verdict le levait, et RIEN ne pouvait le
+// rabaisser tout seul. La branche qui saute l'etape rend la main AVANT de
+// creer l'enonce, donc `u.onstart` -- le seul endroit qui remettait le
+// drapeau a faux -- n'avait plus aucune chance de s'executer. Le francais
+// restait muet jusqu'a la fin de la seance, et seul un geste sur Pause/Lecture
+// (qui passe par amorcerSynthese) le debloquait. C'est mot pour mot ce que
+// Jacques decrit.
+//
+// Desormais : on compte les enonces avales d'affilee. Il en faut DEUX pour
+// commencer a sauter, et meme alors une tentative sur quatre passe quand meme
+// -- donc un verdict isole se repare tout seul en quelques secondes, sans
+// que personne ait a toucher l'ecran.
+let ecouteAvalees = 0;   // enonces avales consecutifs
+let ecouteSautes = 0;    // etapes sautees depuis la derniere tentative
+// Horodatage de la fin du dernier fichier joue. Sert a deux choses, toutes
+// deux liees a la session sonore d'iOS : allonger la sonde, et laisser un
+// souffle avant de parler. Voir ecouteJouerEtape.
+let ecouteFinFichier = 0;
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -18684,8 +18700,9 @@ function amorcerSynthese(){
     if(!("speechSynthesis" in window)) return;
     // Un geste rend sa chance a la synthese : si on l'avait constatee muette,
     // on refait l'amorce plutot que de rester sur ce constat.
-    const reamorcer = ecouteSyntheseMuette;
-    ecouteSyntheseMuette = false;
+    const reamorcer = ecouteAvalees > 0;
+    ecouteAvalees = 0;
+    ecouteSautes = 0;
     if(syntheseAmorcee && !reamorcer) return;
     try{
         const u = new SpeechSynthesisUtterance(" ");
@@ -18779,14 +18796,22 @@ function ecouteJouerEtape(){
     if(!("speechSynthesis" in window)){ avancer(); return; }
     // Une fois la synthese constatee muette, on ne lui redonne pas sa chance a
     // chaque etape : ce sont des secondes de silence par carte, et le mode
-    // Ecoute devient penible bien avant d'etre inutile. On saute tout de suite
-    // et on le note. Le premier enonce qui redemarre pour de bon leve le
-    // drapeau (voir u.onstart), donc rien n'est condamne pour la session.
-    if(ecouteSyntheseMuette){
-        noterAudio(et.texte, "SAUTE", "synthese constatee muette (" + et.lang + ")");
+    // Ecoute devient penible bien avant d'etre inutile.
+    //
+    // MAIS ON NE LA CONDAMNE PLUS (v448). Il faut deux verdicts d'affilee pour
+    // commencer a sauter, et meme alors une tentative sur quatre passe : c'est
+    // le seul chemin par lequel `u.onstart` peut encore s'executer et tout
+    // remettre a zero. La version precedente sautait DEFINITIVEMENT des le
+    // premier verdict, et se privait par la meme du seul evenement qui aurait
+    // pu la detromper.
+    if(ecouteAvalees >= 2 && (ecouteSautes % 4) !== 0){
+        ecouteSautes++;
+        noterAudio(et.texte, "SAUTE",
+            "synthese avalee " + ecouteAvalees + " fois (" + et.lang + ")");
         avancer();
         return;
     }
+    if(ecouteAvalees >= 2) ecouteSautes++;
     const u = new SpeechSynthesisUtterance(et.texte);
     u.volume = VOLUME_SYNTHESE;
     const voix = pickVoice(et.lang);
@@ -18824,38 +18849,93 @@ function ecouteJouerEtape(){
     // commence. Il sert deux fois : a lever le drapeau de muettete, et a
     // desarmer la sonde ci-dessous.
     let aDemarre = false;
-    u.onstart = () => { aDemarre = true; ecouteSyntheseMuette = false; };
+    u.onstart = () => {
+        aDemarre = true;
+        // Un enonce qui demarre pour de bon efface toute la suspicion.
+        ecouteAvalees = 0;
+        ecouteSautes = 0;
+    };
     armerChien(et.texte);
-    // Le journal ne notait jusqu'ici que l'allemand : une etape de synthese
-    // bloquee n'y laissait aucune trace, et c'est justement celle qu'on
-    // soupconne. Elle y figure maintenant, avec la voix reellement employee.
-    noterAudio(et.texte, "ENONCE",
-        et.lang + ", voix " + (voix ? voix.name : "par defaut"));
-    window.speechSynthesis.speak(u);
 
-    // SYNTHESE AVALEE -- SONDE RAPIDE.
+    // LE SOUFFLE APRES UN FICHIER (v448) -- LES DEUX DEFAUTS SE SOIGNENT ICI.
     //
-    // Sur iOS, un enonce lance apres qu'un fichier audio a ouvert la session
-    // sonore peut etre avale : aucun son, et surtout ni `start`, ni `end`, ni
-    // `error`. Le chien de garde finit par debloquer la sequence, mais il
-    // attend plusieurs secondes par etape -- c'est le silence trop long qu'on
-    // entend entre le mot allemand et la phrase allemande.
+    // L'etape precedente est presque toujours l'allemand, joue depuis un
+    // <audio>. Sur iOS cet element tient la session sonore de l'app, et elle ne
+    // retombe pas a l'instant ou le fichier finit. Un enonce lance dans cette
+    // fenetre subit les deux ennuis que Jacques decrit :
     //
-    // La sonde tranche en une fraction de seconde : si rien n'a demarre et que
-    // la file d'enonces est vide, l'enonce n'existe plus. On avance aussitot.
-    // Une file non vide ou un `start` deja recu la desarment : elle ne peut pas
-    // couper une lecture qui allait se faire.
-    clearTimeout(ecouteSonde);
-    ecouteSonde = setTimeout(() => {
-        if(jeton !== ecouteJeton || !ecouteJoue || aDemarre) return;
-        const synth = window.speechSynthesis;
-        if(synth.speaking || synth.pending) return;
-        ecouteSyntheseMuette = true;
-        noterAudio(et.texte, "MUET", "enonce avale par le systeme (" + et.lang + ")");
-        clearTimeout(ecouteChien);
-        ecouteEtape++;
-        ecouteJouerEtape();
-    }, 800);
+    //   - il peut etre AVALE, sans `start` ni `end` ni `error` -- la sonde
+    //     ci-dessous le prend alors pour une synthese morte ;
+    //   - ou il sort ATTENUE, puis reprend son volume plein quand la session
+    //     retombe enfin. C'est le « ça commence plus bas, puis au milieu de la
+    //     phrase ça devient beaucoup plus fort » : ce n'est pas un reglage de
+    //     volume qui derape, c'est iOS qui cesse d'attenuer en cours de route.
+    //     Une phrase longue traverse la transition, un mot court finit avant.
+    //
+    // On laisse donc retomber la session avant de parler. Le fichier est
+    // desormais relache des sa fin (voir direAllemand), et il reste a attendre
+    // le solde de ce delai -- rien de plus si le temps a deja passe.
+    const depuisFichier = Date.now() - ecouteFinFichier;
+    const souffle = ecouteFinFichier && depuisFichier < 280
+        ? 280 - depuisFichier : 0;
+    // La sonde doit etre plus patiente juste apres un fichier : c'est
+    // exactement la ou un enonce lent a demarrer se fait prendre pour un
+    // enonce avale. C'est ce faux verdict qui rendait le francais muet.
+    const delaiSonde = ecouteFinFichier && depuisFichier < 3000 ? 1800 : 800;
+
+    const parler = () => {
+        if(jeton !== ecouteJeton || !ecouteJoue) return;
+        // Le journal ne notait jusqu'ici que l'allemand : une etape de synthese
+        // bloquee n'y laissait aucune trace, et c'est justement celle qu'on
+        // soupconne. Elle y figure maintenant, avec la voix reellement employee.
+        noterAudio(et.texte, "ENONCE",
+            et.lang + ", voix " + (voix ? voix.name : "par defaut") +
+            ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume +
+            (souffle ? ", apres " + souffle + " ms de souffle" : ""));
+        window.speechSynthesis.speak(u);
+
+        // SYNTHESE AVALEE -- SONDE RAPIDE.
+        //
+        // Sur iOS, un enonce lance apres qu'un fichier audio a ouvert la session
+        // sonore peut etre avale : aucun son, et surtout ni `start`, ni `end`, ni
+        // `error`. Le chien de garde finit par debloquer la sequence, mais il
+        // attend plusieurs secondes par etape -- c'est le silence trop long qu'on
+        // entend entre le mot allemand et la phrase allemande.
+        //
+        // La sonde tranche en une fraction de seconde : si rien n'a demarre et que
+        // la file d'enonces est vide, l'enonce n'existe plus. On avance aussitot.
+        // Une file non vide ou un `start` deja recu la desarment : elle ne peut pas
+        // couper une lecture qui allait se faire.
+        clearTimeout(ecouteSonde);
+        ecouteSonde = setTimeout(() => {
+            if(jeton !== ecouteJeton || !ecouteJoue || aDemarre) return;
+            const synth = window.speechSynthesis;
+            if(synth.speaking || synth.pending) return;
+            // Un enonce declare mort peut encore demarrer plus tard et parler
+            // par-dessus l'etape suivante. On le retire de la file.
+            //
+            // ⚠️ LES GESTIONNAIRES D'ABORD. `cancel()` declenche `onend` sur
+            // l'enonce annule, et `onend` vaut ici `avancer` : sans ce
+            // detachement, la sequence avancerait DEUX fois -- une par
+            // l'annulation, une par les deux lignes qui suivent -- et deux voix
+            // finiraient par se chevaucher. C'est le defaut que le jeton de
+            // sequence documente plus haut ; le jeton ne le rattrape pas ici,
+            // puisqu'il n'a pas encore change.
+            u.onend = null;
+            u.onerror = null;
+            u.onstart = null;
+            try{ synth.cancel(); }catch(e){}
+            ecouteAvalees++;
+            noterAudio(et.texte, "MUET",
+                "enonce avale par le systeme (" + et.lang + "), " +
+                ecouteAvalees + " d'affilee, sonde " + delaiSonde + " ms");
+            clearTimeout(ecouteChien);
+            ecouteEtape++;
+            ecouteJouerEtape();
+        }, delaiSonde);
+    };
+    if(souffle) ecouteMinuteur = setTimeout(parler, souffle);
+    else parler();
 }
 
 // Pause : plutôt que speechSynthesis.pause(), peu fiable sur iOS, on coupe et
@@ -18980,7 +19060,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 447;
+const APP_VERSION = 448;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19148,12 +19228,32 @@ function obtenirLecteur(){
     return lecteurAudio;
 }
 
+// RELACHER L'ELEMENT, ET PAS SEULEMENT L'ARRETER (v448).
+//
+// `pause()` arrete le son ; il ne rend pas la session sonore. Tant que
+// l'element garde une source chargee, iOS considere que l'app joue encore un
+// media et ATTENUE la synthese vocale qui demarre ensuite -- puis cesse de
+// l'attenuer quand la session retombe enfin, en plein milieu de la phrase.
+// C'est le defaut de volume signale par Jacques, et il n'avait aucune chance
+// de se voir en developpement : sur portable, la synthese ne passe pas par la
+// meme session.
+//
+// Retirer l'attribut puis `load()` est la maniere normale de relacher un
+// <audio>. Cela peut lever un `error` tardif ; les gestionnaires sont nuls a
+// ce moment-la, et `versRepli` refuse de toute facon d'agir une fois que le
+// son a demarre.
+function relacherLecteur(son){
+    if(!son) return;
+    son.onended = null;
+    son.onerror = null;
+    son.onplaying = null;
+    try{ son.pause(); }catch(e){}
+    try{ son.removeAttribute("src"); son.load(); }catch(e){}
+}
+
 function arreterAudioPregenere(){
     if(audioEnCours){
-        audioEnCours.onended = null;
-        audioEnCours.onerror = null;
-        audioEnCours.onplaying = null;
-        try{ audioEnCours.pause(); }catch(e){}
+        relacherLecteur(audioEnCours);
         audioEnCours = null;
     }
 }
@@ -19364,7 +19464,12 @@ function direAllemand(texte, opts){
     son.onerror = () => versRepli(true);
     son.onended = () => {
         if(jeton !== lectureCourante) return;
+        // On relache AVANT de rendre la main : l'etape suivante est souvent un
+        // enonce de synthese, et c'est precisement pendant que cet element
+        // tient encore la session sonore qu'il se fait avaler ou attenuer.
+        relacherLecteur(son);
         audioEnCours = null;
+        ecouteFinFichier = Date.now();
         if(onEnd) onEnd();
     };
     audioEnCours = son;
