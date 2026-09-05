@@ -3610,7 +3610,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v409</span>
+        <span class="subtitle-version">v410</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6658,6 +6658,8 @@ const I18N = {
         kicker_konnektoren: "Connecteurs · place du verbe",
         kicker_als_wenn: "als ou wenn ?",
         kicker_obwohl_trotzdem: "obwohl ou trotzdem ?",
+        kicker_weil_obwohl: "weil ou obwohl ?",
+        kicker_deshalb_trotzdem: "deshalb ou trotzdem ?",
         op_verben_o5_t: "wissen ou kennen ?", op_verben_o5_d: "Un seul verbe en français, deux en allemand",
         op_praep_o6_t: "legen ou liegen ?", op_praep_o6_d: "Wohin → accusatif · Wo → datif",
         op_pronomen_o7_t: "der-Wörter ou ein-Wörter ?", op_pronomen_o7_d: "dieser suit der · kein suit ein",
@@ -6667,6 +6669,8 @@ const I18N = {
         op_konjunktionen_o4_t: "Où va le verbe ?", op_konjunktionen_o4_d: "weil · denn · deshalb : trois causes, trois ordres",
         op_konjunktionen_o5_t: "als ou wenn ?", op_konjunktionen_o5_d: "Les deux disent « quand » — une seule fois, ou chaque fois",
         op_konjunktionen_o6_t: "obwohl ou trotzdem ?", op_konjunktionen_o6_d: "Les deux disent « malgré » — mais pas du même côté",
+        op_konjunktionen_o7_t: "weil ou obwohl ?", op_konjunktionen_o7_d: "Même place du verbe — seul le sens tranche",
+        op_konjunktionen_o8_t: "deshalb ou trotzdem ?", op_konjunktionen_o8_d: "La conséquence, ou l'obstacle franchi",
         kicker_konjunktionen_nuance: "Conjonctions · Type",
         kicker_konjunktionen_vocab: "Conjonctions · Vocabulaire",
         vhs_kapitel_tile_title: "Chapitres VHS",
@@ -7393,6 +7397,8 @@ const I18N = {
         kicker_konnektoren: "Connectors · verb position",
         kicker_als_wenn: "als or wenn?",
         kicker_obwohl_trotzdem: "obwohl or trotzdem?",
+        kicker_weil_obwohl: "weil or obwohl?",
+        kicker_deshalb_trotzdem: "deshalb or trotzdem?",
         op_verben_o5_t: "wissen or kennen?", op_verben_o5_d: "One verb in French, two in German",
         op_praep_o6_t: "legen or liegen?", op_praep_o6_d: "Wohin → accusative · Wo → dative",
         op_pronomen_o7_t: "der-words or ein-words?", op_pronomen_o7_d: "dieser follows der · kein follows ein",
@@ -7402,6 +7408,8 @@ const I18N = {
         op_konjunktionen_o4_t: "Where does the verb go?", op_konjunktionen_o4_d: "weil · denn · deshalb: three causes, three orders",
         op_konjunktionen_o5_t: "als or wenn?", op_konjunktionen_o5_d: "Both mean “when” — once, or every time",
         op_konjunktionen_o6_t: "obwohl or trotzdem?", op_konjunktionen_o6_d: "Both mean “despite” — but not on the same side",
+        op_konjunktionen_o7_t: "weil or obwohl?", op_konjunktionen_o7_d: "Same verb position — only meaning decides",
+        op_konjunktionen_o8_t: "deshalb or trotzdem?", op_konjunktionen_o8_d: "The consequence, or the obstacle overcome",
         kicker_konjunktionen_nuance: "Conjunctions · Type",
         kicker_konjunktionen_vocab: "Conjunctions · Vocabulary",
         vhs_kapitel_tile_title: "VHS Chapters",
@@ -8132,6 +8140,8 @@ const I18N = {
         kicker_konnektoren: "Bağlayıcılar · fiilin yeri",
         kicker_als_wenn: "als mı wenn mi?",
         kicker_obwohl_trotzdem: "obwohl mu trotzdem mi?",
+        kicker_weil_obwohl: "weil mi obwohl mu?",
+        kicker_deshalb_trotzdem: "deshalb mi trotzdem mi?",
         op_verben_o5_t: "wissen mi kennen mi?", op_verben_o5_d: "Fransızcada tek fiil, Almancada iki",
         op_praep_o6_t: "legen mi liegen mi?", op_praep_o6_d: "Wohin → -i hali · Wo → -e hali",
         op_pronomen_o7_t: "der- mi ein- kelimeleri mi?", op_pronomen_o7_d: "dieser der'i, kein ein'i izler",
@@ -8141,6 +8151,8 @@ const I18N = {
         op_konjunktionen_o4_t: "Fiil nereye gider?", op_konjunktionen_o4_d: "weil · denn · deshalb: üç neden, üç sıra",
         op_konjunktionen_o5_t: "als mı wenn mi?", op_konjunktionen_o5_d: "İkisi de “-dığında” demek — bir kez mi, her seferinde mi",
         op_konjunktionen_o6_t: "obwohl mu trotzdem mi?", op_konjunktionen_o6_d: "İkisi de “rağmen” demek — ama aynı tarafta değil",
+        op_konjunktionen_o7_t: "weil mi obwohl mu?", op_konjunktionen_o7_d: "Fiilin yeri aynı — yalnızca anlam belirler",
+        op_konjunktionen_o8_t: "deshalb mi trotzdem mi?", op_konjunktionen_o8_d: "Sonuç mu, aşılan engel mi",
         kicker_konjunktionen_nuance: "Bağlaçlar · Tür",
         kicker_konjunktionen_vocab: "Bağlaçlar · Kelime",
         vhs_kapitel_tile_title: "VHS Bölümleri",
@@ -10596,6 +10608,20 @@ function startPositionsverbenUebung(){
                      openPraepInfo, startPositionsverbenUebung);
 }
 
+// Le SENS, pas la place du verbe. weil et obwohl renvoient tous deux le verbe
+// a la fin ; deshalb et trotzdem provoquent tous deux l'inversion. Dans chaque
+// duo, l'ordre des mots ne departage rien -- seule la relation entre les deux
+// moities le fait. C'est l'exercice que Jacques faisait dans son cahier.
+function startWeilObwohlUebung(){
+    startExerciseSetMelange("weilObwohlExercises", "kicker_weil_obwohl",
+                     openKonjunktionenPanel, startWeilObwohlUebung);
+}
+
+function startDeshalbTrotzdemUebung(){
+    startExerciseSetMelange("deshalbTrotzdemExercises", "kicker_deshalb_trotzdem",
+                     openKonjunktionenPanel, startDeshalbTrotzdemUebung);
+}
+
 function startObwohlTrotzdemUebung(){
     startExerciseSetMelange("obwohlTrotzdemExercises", "kicker_obwohl_trotzdem",
                      openKonjunktionenInfo, startObwohlTrotzdemUebung);
@@ -12589,6 +12615,11 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_konjunktionen_o1_t"), desc:t("op_konjunktionen_o1_d"), primary:true, action:"openKonjunktionenInfo" },
                 { icon:"exercice", title:t("op_konjunktionen_o2_t"), desc:t("op_konjunktionen_o2_d"), action:"startKonjunktionenNuance" },
+                // Choisir PAR LE SENS, dans chacune des deux constructions. Les series
+                // voisines demandent ou va le verbe ; celles-ci demandent ce que les deux
+                // moities se disent -- une cause, ou un obstacle franchi.
+                { icon:"exercice", title:t("op_konjunktionen_o7_t"), desc:t("op_konjunktionen_o7_d"), action:"startWeilObwohlUebung" },
+                { icon:"exercice", title:t("op_konjunktionen_o8_t"), desc:t("op_konjunktionen_o8_d"), action:"startDeshalbTrotzdemUebung" },
                 // L'exercice « type de conjonction » ci-dessus n'a que deux
                 // reponses et ne peut donc pas contenir « deshalb », qui est un
                 // adverbe. Celui-ci ouvre le troisieme cas -- l'inversion --
@@ -17069,7 +17100,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 409;
+const APP_VERSION = 410;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
