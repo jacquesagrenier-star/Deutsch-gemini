@@ -1646,9 +1646,15 @@ body[data-theme="dark"] .option-pill.fausse{ background:rgba(239,68,68,.20); bor
     background:rgba(255,255,255,.4);
 }
 .chunk-pill{
-    display:inline-flex; align-items:center;
+    display:inline-flex; align-items:center; justify-content:center;
     padding:9px 14px;
     min-height:44px;
+    /* Une tuile ne descend pas sous la cible tactile de 44 px, meme quand elle
+       ne porte qu'un signe. Depuis que la virgule est un bloc a elle seule
+       (v446), la plus etroite fait un caractere de large -- et « ich », « es »
+       ou « an » n'en etaient pas loin. La regle vaut pour toutes : singulariser
+       la virgule reviendrait a la designer. */
+    min-width:44px;
     border-radius:12px;
     border:1px solid rgba(30,41,59,.22);
     background:#fff;
@@ -3823,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v445</span>
+        <span class="subtitle-version">v446</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18940,7 +18946,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 445;
+const APP_VERSION = 446;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
