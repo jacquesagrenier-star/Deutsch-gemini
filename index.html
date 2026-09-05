@@ -3666,7 +3666,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v417</span>
+        <span class="subtitle-version">v418</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5881,6 +5881,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div id="adminCodesList"></div>
     </div>
 
+    <!-- TEMPORAIRE (v418) : les verdicts de la relecture des synonymes. -->
+    <div class="card">
+        <strong data-i18n="admin_relecture_title">Relecture des synonymes</strong>
+        <div class="info-box" data-i18n="admin_relecture_desc">Les paires que les relecteurs ont marquées « pas un synonyme ». Retirer une paire, c'est enlever le mot des deux listes dans synonymes.json.</div>
+        <div class="spacer"></div>
+        <div id="adminRelectureList" class="info-box" data-i18n="loading_label">Chargement...</div>
+    </div>
+
     <div class="card">
         <strong data-i18n="admin_requests_title">Mots demandés</strong>
         <div class="info-box" data-i18n="admin_requests_desc">Les mots que tes testeurs ont cherchés puis mis de côté. Les plus demandés méritent une vraie fiche dans le cours.</div>
@@ -6708,6 +6716,10 @@ const I18N = {
         rel_copie: "Copié. Colle-le dans WhatsApp.",
         rel_rien: "Rien d'écarté pour l'instant.",
         rel_entete: "Pas des synonymes ({n}) :",
+        admin_relecture_title: "Relecture des synonymes",
+        admin_relecture_desc: "Les paires que les relecteurs ont marquées « pas un synonyme ». Retirer une paire, c'est enlever le mot des deux listes dans synonymes.json.",
+        admin_relecture_none: "Aucune paire écartée pour l'instant.",
+        admin_relecture_compte: "paires écartées par {relecteurs} relecteur(s)",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Écouter", orb_ecouter_sub: "mains libres · A1 → C1",
         ecoute_menu_title: "Écouter et répéter",
@@ -7468,6 +7480,10 @@ const I18N = {
         rel_copie: "Copied. Paste it into WhatsApp.",
         rel_rien: "Nothing rejected yet.",
         rel_entete: "Not synonyms ({n}):",
+        admin_relecture_title: "Synonym review",
+        admin_relecture_desc: "The pairs reviewers marked as « not a synonym ». Removing a pair means taking the word out of both lists in synonymes.json.",
+        admin_relecture_none: "No pair rejected yet.",
+        admin_relecture_compte: "pairs rejected by {relecteurs} reviewer(s)",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Listen", orb_ecouter_sub: "hands-free · A1 → C1",
         ecoute_menu_title: "Listen and repeat",
@@ -8232,6 +8248,10 @@ const I18N = {
         rel_copie: "Kopyalandı. WhatsApp'a yapıştır.",
         rel_rien: "Henüz hiçbir şey elenmedi.",
         rel_entete: "Eş anlamlı değil ({n}):",
+        admin_relecture_title: "Eş anlamlı gözden geçirme",
+        admin_relecture_desc: "Gözden geçirenlerin « eş anlamlı değil » olarak işaretlediği çiftler. Bir çifti kaldırmak, kelimeyi synonymes.json içindeki iki listeden de çıkarmak demektir.",
+        admin_relecture_none: "Henüz elenen çift yok.",
+        admin_relecture_compte: "çift, {relecteurs} kişi tarafından elendi",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Dinle", orb_ecouter_sub: "eller serbest · A1 → C1",
         ecoute_menu_title: "Dinle ve tekrarla",
@@ -14568,6 +14588,41 @@ function renderAdminRequests(users){
         + (liste.length > 60 ? `<div class="spacer"></div><small style="color:#8b93a3;">${tf("admin_requests_more", { n: liste.length - 60 })}</small>` : "");
 }
 
+// TEMPORAIRE (v418) : ce que les relecteurs ont ecarte. Une paire signalee par
+// deux personnes passe devant -- meme regle que les mots demandes : l'accord
+// vaut plus que l'avis isole.
+function renderAdminRelecture(users){
+    const box = document.getElementById("adminRelectureList");
+    if(!box) return;
+    const compte = {};
+    let relecteurs = 0;
+    (users || []).forEach(u => {
+        const brut = (u.synonymesEcartes || "").trim();
+        if(!brut) return;
+        relecteurs++;
+        const prenom = (u.firstName || u.email || "?").trim();
+        brut.split(";").filter(Boolean).forEach(paire => {
+            if(!compte[paire]) compte[paire] = { paire: paire, qui: [] };
+            if(compte[paire].qui.indexOf(prenom) === -1) compte[paire].qui.push(prenom);
+        });
+    });
+    const liste = Object.values(compte).sort((a, b) =>
+        b.qui.length - a.qui.length || a.paire.localeCompare(b.paire, "de"));
+    if(!liste.length){ box.textContent = t("admin_relecture_none"); return; }
+    box.innerHTML = `<div style="margin-bottom:8px;"><strong>${liste.length}</strong> <span style="color:#576177;">${
+        tf("admin_relecture_compte", { relecteurs: relecteurs })}</span></div>`
+        + liste.map(d => {
+            const mots = d.paire.split("|");
+            return `
+        <div style="padding:7px 0; border-top:1px solid rgba(30,41,59,.1);">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;">
+                <strong>${echapperHtml(mots[0] || "")} <span style="color:#8b93a3; font-weight:400;">\u21c4</span> ${echapperHtml(mots[1] || "")}</strong>
+                <small style="color:#3b6fe0; font-weight:700; white-space:nowrap;">${d.qui.length}\u00d7</small>
+            </div>
+            <small style="color:#8b93a3;">${echapperHtml(d.qui.join(", "))}</small>
+        </div>`; }).join("");
+}
+
 async function renderAdminUsersList(){
     const container = document.getElementById("adminUsersList");
     if(!container || !isAdminUser()) return;
@@ -14595,6 +14650,7 @@ async function renderAdminUsersList(){
         // que la reponse etait « rien a montrer ». On le remplit d'abord, avec
         // la liste vide s'il le faut.
         renderAdminRequests(users);
+        renderAdminRelecture(users);
         if(users.length === 0){
             // Une collection 'users' vide n'est PAS une information anodine :
             // l'app y ecrit a chaque sauvegarde, donc ton propre compte devrait
@@ -17543,7 +17599,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 417;
+const APP_VERSION = 418;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
