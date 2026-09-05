@@ -3754,7 +3754,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v428</span>
+        <span class="subtitle-version">v431</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6540,7 +6540,7 @@ const I18N = {
         badge_streak_30_desc: "Trente jours consécutifs d'activité.",
         dictation_start_btn: "🎧 S'ENTRAÎNER : DICTÉE",
         op_nomen_o5_t: "Dictée",
-        op_nomen_o5_d: "Écouter et écrire — {n} noms",
+        op_nomen_o5_d: "Écouter et écrire — {n} mots",
         dictation_replay_btn: "🔊 RÉÉCOUTER",
         dictation_instruction: "Écoute et écris ce que tu entends.",
         dictation_hint: "Pas besoin d'écrire l'article (der/die/das).",
@@ -6612,7 +6612,10 @@ const I18N = {
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
 
-        op_due_desc: "Basé sur la répétition espacée",
+        op_due_desc: "{n} cartes à revoir maintenant",
+        op_due_desc_one: "1 carte à revoir maintenant",
+        op_due_desc_zero: "Rien à revoir pour l'instant",
+        op_due_desc_attente: "Un instant, je compte…",
         op_by_level: "Parcourir par niveau",
         op_by_theme: "Parcourir par thème",
         op_words_random: "Mots aléatoires",
@@ -7319,7 +7322,7 @@ const I18N = {
         badge_streak_30_desc: "Thirty consecutive days of activity.",
         dictation_start_btn: "🎧 PRACTICE: DICTATION",
         op_nomen_o5_t: "Dictation",
-        op_nomen_o5_d: "Listen and write — {n} nouns",
+        op_nomen_o5_d: "Listen and write — {n} words",
         dictation_replay_btn: "🔊 REPLAY",
         dictation_instruction: "Listen and write what you hear.",
         dictation_hint: "No need to write the article (der/die/das).",
@@ -7391,7 +7394,10 @@ const I18N = {
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
 
-        op_due_desc: "Based on spaced repetition",
+        op_due_desc: "{n} cards due now",
+        op_due_desc_one: "1 card due now",
+        op_due_desc_zero: "Nothing due right now",
+        op_due_desc_attente: "One moment, counting…",
         op_by_level: "Browse by level",
         op_by_theme: "Browse by theme",
         op_words_random: "Random words",
@@ -8102,7 +8108,7 @@ const I18N = {
         badge_streak_30_desc: "Otuz gün üst üste etkinlik.",
         dictation_start_btn: "🎧 ALIŞTIRMA: DİKTE",
         op_nomen_o5_t: "Dikte",
-        op_nomen_o5_d: "Dinle ve yaz — {n} isim",
+        op_nomen_o5_d: "Dinle ve yaz — {n} kelime",
         dictation_replay_btn: "🔊 TEKRAR DİNLE",
         dictation_instruction: "Dinle ve duyduğunu yaz.",
         dictation_hint: "Artikeli (der/die/das) yazmana gerek yok.",
@@ -8174,7 +8180,10 @@ const I18N = {
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
 
-        op_due_desc: "Aralıklı tekrara göre",
+        op_due_desc: "Şimdi tekrar edilecek {n} kart",
+        op_due_desc_one: "Şimdi tekrar edilecek 1 kart",
+        op_due_desc_zero: "Şu an tekrar edilecek bir şey yok",
+        op_due_desc_attente: "Bir saniye, sayıyorum…",
         op_by_level: "Seviyeye göre",
         op_by_theme: "Konuya göre",
         op_words_random: "Rastgele kelimeler",
@@ -11688,10 +11697,16 @@ function themesComptes(){
 // n'en garde qu'un dans une pioche -- et de preference celui qui reste a
 // apprendre : garder aveuglement le premier masquerait une carte non maitrisee
 // derriere une copie deja acquise.
+// ATTENTION A LA CLE. Elle etait « item.word[0] » -- juste tant que la fonction
+// ne voyait que des noms, qui sont des tableaux. Un verbe est un OBJET : word[0]
+// y vaut undefined, et les 1 314 verbes s'ecrasaient en une seule entree. Le
+// defaut n'est apparu que le jour ou la dictee a servi aux verbes (v431), et il
+// etait silencieux : une seule carte au lieu de vingt, sans la moindre erreur.
 function sansDoublons(pool){
     const gardes = new Map();
     pool.forEach(item => {
-        const cle = item.word[0];
+        const cle = Array.isArray(item.word) ? item.word[0]
+                  : (item.word && (item.word.infinitif || item.word.mot));
         const acquis = !!getWordState(item.themeId, item.index).mastered;
         const deja = gardes.get(cle);
         if(!deja || (deja.acquis && !acquis)) gardes.set(cle, { item, acquis });
@@ -12788,13 +12803,29 @@ const ORB_ICONS = {
     bientot: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>'
 };
 
+// « Base sur la repetition espacee » nommait la METHODE. Personne ne revise
+// pour de la repetition espacee : on revise ce qui attend. La ligne dit donc
+// combien de cartes attendent -- et quand il n'y en a aucune, elle le dit
+// aussi, ce qui evite d'ouvrir une seance vide. Remarque de Jacques.
+function texteDus(n, total){
+    // AUCUNE CARTE DU TOUT = les donnees ne sont pas encore la, pas « tu n'as
+    // rien a revoir ». Le panneau peut s'ouvrir avant la fin du chargement, et
+    // annoncer zero serait un mensonge -- exactement le defaut de la v321, ou
+    // le tableau de bord affichait une liste vide au lieu de dire qu'il n'avait
+    // pas pu lire. Le panneau se redessine quand le cours arrive (openOrbPanel).
+    if(!total) return t("op_due_desc_attente");
+    if(!n) return t("op_due_desc_zero");
+    return tf(n === 1 ? "op_due_desc_one" : "op_due_desc", { n: n });
+}
+
 function orbPanelData(id){
     if(id === "verben"){
         return {
             icon:"reviser", title:t("op_verben_title"), sub:t("op_verben_sub"),
             options:[
-                { icon:"reviser", title:t("op_verben_o1_t"), desc:t("op_due_desc"), primary:true, action:"startVerbeDueReview" },
+                { icon:"reviser", title:t("op_verben_o1_t"), desc:texteDus(getVerbeDueItemsAll().length, (verbeTheme.words || []).length), primary:true, action:"startVerbeDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeVerbes" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
                 { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" },
                 // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
@@ -12817,7 +12848,7 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_nomen_title"), sub:t("op_nomen_sub"),
             options:[
-                { icon:"reviser", title:t("op_nomen_o1_t"), desc:t("op_due_desc"), primary:true, action:"startDueReview" },
+                { icon:"reviser", title:t("op_nomen_o1_t"), desc:texteDus(getDueItems().length, getAllNomenItems().length), primary:true, action:"startDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openNomenNiveau" },
                 { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
@@ -12833,8 +12864,9 @@ function orbPanelData(id){
         return {
             icon:"carte", title:t("op_adjektive_title"), sub:t("op_adjektive_sub"),
             options:[
-                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:t("op_due_desc"), primary:true, action:"startAdjektiveDueReview" },
+                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:texteDus(getAdjektiveDueItemsAll().length, (adjektiveTheme.words || []).length), primary:true, action:"startAdjektiveDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openAdjektive" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdjektifs" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix" },
                 { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination" }
             ]
@@ -12870,7 +12902,8 @@ function orbPanelData(id){
             options:[
                 { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:t("op_adverbien_o2_d"), action:"startAdverbienNuance" },
-                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" }
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes" }
             ]
         };
     }
@@ -13090,6 +13123,12 @@ function openOrbPanel(id){
     openOrbId = id;
     renderOrbPanel();
     showScreen("orbPanel");
+    // Le panneau compte des cartes ; ouvert avant la fin du chargement, il
+    // compterait zero. showScreen() a lance le chargement -- on redessine quand
+    // il aboutit, si le panneau est toujours celui-la.
+    if(!COURS_CHARGE){
+        chargerCours().then(() => { if(openOrbId === id) renderOrbPanel(); });
+    }
 }
 
 // ============ Contenu anglais (fusion de english/index.html) ============
@@ -13247,8 +13286,22 @@ const DICTEE_NOMS = 20;
 // et la meme preference : les mots de la session en cours d'abord, le reste
 // ensuite. On ne touche PAS a currentCards : la dictee recoit sa liste, et le
 // paquet de flashcards eventuellement ouvert reste ou il est.
+// Une seule dictee, quatre reservoirs. Le mode voyage avec la liste : c'est lui
+// qui dit ou lire le mot allemand et sa traduction.
+function lancerDictee(mode, pool, orbe, relance){
+    if(!pool || !pool.length){ showInfoToast(t('alert_no_words_available')); return; }
+    pool = sansDoublons(pool);
+    let choix = cartesDeSession(pool);
+    if(!choix.length) choix = pool;
+    shuffleArray(choix);
+    const liste = buildDictationExercises(choix.slice(0, DICTEE_NOMS), mode);
+    if(!liste.length){ showInfoToast(t("alert_no_dictation_available")); return; }
+    startExerciseSet(shuffleArray(liste.slice()), "kicker_dictation_exercise",
+                     () => openOrbPanel(orbe), relance);
+}
+
 function startDicteeNoms(){
-    let pool = [];
+    const pool = [];
     themesComptes().forEach(theme => {
         LEVELS.forEach(lvl => {
             const levelData = theme.levels[lvl];
@@ -13258,15 +13311,22 @@ function startDicteeNoms(){
             });
         });
     });
-    if(!pool.length){ showInfoToast(t('alert_no_words_available')); return; }
-    pool = sansDoublons(pool);
-    let choix = cartesDeSession(pool);
-    if(!choix.length) choix = pool;
-    shuffleArray(choix);
-    const liste = buildNomenDictationExercises(choix.slice(0, DICTEE_NOMS));
-    if(!liste.length){ showInfoToast(t("alert_no_dictation_available")); return; }
-    startExerciseSet(shuffleArray(liste.slice()), "kicker_dictation_exercise",
-                     () => openOrbPanel('nomen'), startDicteeNoms);
+    lancerDictee('nomen', pool, 'nomen', startDicteeNoms);
+}
+
+function startDicteeVerbes(){
+    const pool = (verbeTheme.words || []).map((word, index) => ({ word, index, themeId: verbeTheme.id }));
+    lancerDictee('verben', pool, 'verben', startDicteeVerbes);
+}
+
+function startDicteeAdjektifs(){
+    const pool = (adjektiveTheme.words || []).map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
+    lancerDictee('adjektive', pool, 'adjektive', startDicteeAdjektifs);
+}
+
+function startDicteeAdverbes(){
+    const pool = (adverbienTheme.words || []).map((word, index) => ({ word, index, themeId: adverbienTheme.id }));
+    lancerDictee('adverbien', pool, 'adverbien', startDicteeAdverbes);
 }
 
 function startRandomMixAll(){
@@ -17824,7 +17884,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 428;
+const APP_VERSION = 431;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18369,21 +18429,39 @@ function replayDictationAudio(){
 // est supporté pour l'instant, les autres catégories (verben/adjektive/...)
 // ont des formes de données trop différentes pour être couvertes en toute
 // sécurité ici sans risquer une régression ailleurs.
-// `cartes` est facultatif : sans lui, on dicte le paquet qu'on vient de finir
-// (le bouton de l'ecran de fin). Avec, on dicte n'importe quelle selection --
-// c'est ce qui permet d'y entrer par le panneau des Noms sans avoir a terminer
-// un paquet de 1 840 cartes.
-function buildNomenDictationExercises(cartes){
+// La traduction d'une carte, quel que soit son type. Meme partage que partout
+// ailleurs : les verbes portent des champs nommes, tout le reste des rangs.
+function traductionDeLaCarte(card, mode){
+    if(!card) return "";
+    if(mode === 'verben' || mode === 'vhskapitelverben') return texteTraduit(card, "traduction");
+    return texteCarte(card, TYPE_CARTE_PAR_MODE[mode] || "funktionswort", "traduction");
+}
+
+// `cartes` et `mode` sont facultatifs : sans eux, on dicte le paquet qu'on
+// vient de finir (le bouton de l'ecran de fin). Avec, n'importe quelle
+// selection -- c'est ce qui permet d'y entrer par un panneau sans avoir a
+// terminer un paquet de 1 840 cartes.
+//
+// LE MOT ALLEMAND ET SA TRADUCTION SONT LUS SELON LE MODE, plus « card[0] » et
+// « nomen » en dur. C'etait la seule chose qui limitait la dictee aux noms --
+// les verbes, adjectifs, adverbes et expressions marchaient deja, personne ne
+// le leur avait demande. Signale par Jacques.
+function buildDictationExercises(cartes, mode){
     const source = cartes || currentCards;
+    const type = mode || flashcardMode;
     if(!source.length) return [];
+    const nomsSeuls = (TYPE_CARTE_PAR_MODE[type] || "") === "nomen";
     const learningEnglish = getLearningDirection() === 'en';
     const useEn = getUiLang() === 'en';
     const list = [];
     source.forEach(item => {
         const card = item.word;
-        if(!Array.isArray(card)) return;
-        const germanWord = card[0];
-        const frenchWord = learningEnglish ? (card[4] || card[3]) : texteCarte(card, "nomen", "traduction");
+        if(!card) return;
+        const modeCarte = item.mode || type;
+        const germanWord = motAllemandDeLaCarte(card, modeCarte);
+        const frenchWord = learningEnglish
+            ? (Array.isArray(card) ? (card[4] || card[3]) : texteTraduit(card, "traduction", "en"))
+            : traductionDeLaCarte(card, modeCarte);
         const targetWord = learningEnglish ? frenchWord : germanWord;
         const knownWord = learningEnglish ? germanWord : frenchWord;
         if(!targetWord) return;
@@ -18393,8 +18471,12 @@ function buildNomenDictationExercises(cartes){
             question_en: I18N.en.dictation_instruction,
             translation: knownWord,
             translation_en: knownWord,
-            hint: I18N.fr.dictation_hint,
-            hint_en: I18N.en.dictation_hint,
+            // « Pas besoin d'ecrire l'article » ne vaut que pour les noms. Sur
+            // un verbe ou un adverbe, c'est une phrase qui occupe la place sans
+            // rien dire -- et qui laisse croire qu'il y avait un article a
+            // ecrire.
+            hint: nomsSeuls ? I18N.fr.dictation_hint : "",
+            hint_en: nomsSeuls ? I18N.en.dictation_hint : "",
             answers: [targetWord],
             correct: targetWord,
             correctEn: targetWord,
@@ -18409,7 +18491,7 @@ function buildNomenDictationExercises(cartes){
 }
 
 function startDictationExercise(){
-    const list = buildNomenDictationExercises();
+    const list = buildDictationExercises();
     if(!list.length){ showInfoToast(t("alert_no_dictation_available")); return; }
     startExerciseSet(shuffleArray(list.slice()), "kicker_dictation_exercise", handleFlashcardBack, startDictationExercise);
 }
@@ -18794,8 +18876,11 @@ function showFlashcardEnd(){
     const resume = document.getElementById("flashEndSummary");
     if(resume) resume.textContent = tf(sessionVues === 1 ? "flash_end_summary_one" : "flash_end_summary",
                                        { vues: sessionVues, sues: sessionSues });
+    // Le bouton apparaissait apres les noms SEULEMENT. Il apparait maintenant
+    // des que le paquet donne au moins une dictee possible -- verbes,
+    // adjectifs, adverbes, expressions y compris.
     const dictee = document.getElementById("dictationStartBtn");
-    if(dictee) dictee.classList.toggle("hidden", flashcardMode !== 'nomen');
+    if(dictee) dictee.classList.toggle("hidden", buildDictationExercises().length === 0);
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
     return true;
