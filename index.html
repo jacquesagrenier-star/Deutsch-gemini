@@ -3626,7 +3626,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v414</span>
+        <span class="subtitle-version">v415</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6540,7 +6540,8 @@ const I18N = {
         random_adj_desc: "Mélange des adjectifs de tous les niveaux.",
         random_nouns_by_level_desc: "Mélange des noms de tous les niveaux disponibles.",
         label_plural: "Pluriel :",
-        label_voisins: "Aussi",
+        label_synonyme: "Synonyme",
+        label_synonymes: "Synonymes",
         label_feminine: "Féminin :",
         label_masculine: "Masculin :",
         label_case_word: "Cas",
@@ -7286,7 +7287,8 @@ const I18N = {
         random_adj_desc: "A mix of adjectives from all levels.",
         random_nouns_by_level_desc: "A mix of nouns from all available levels.",
         label_plural: "Plural:",
-        label_voisins: "Also",
+        label_synonyme: "Synonym",
+        label_synonymes: "Synonyms",
         label_feminine: "Feminine:",
         label_masculine: "Masculine:",
         label_case_word: "Case",
@@ -8036,7 +8038,8 @@ const I18N = {
         random_adj_desc: "Tüm seviyelerden sıfat karışımı.",
         random_nouns_by_level_desc: "Mevcut tüm seviyelerden isim karışımı.",
         label_plural: "Çoğul:",
-        label_voisins: "Ayrıca",
+        label_synonyme: "Eş anlamlı",
+        label_synonymes: "Eş anlamlılar",
         label_feminine: "Dişil:",
         label_masculine: "Eril:",
         label_case_word: "Hal",
@@ -16550,7 +16553,10 @@ function remplirVoisins(card, mode){
     if(!VOISINS_SENS){ chargerVoisins(); return; }
     const liste = VOISINS_SENS[mot];
     if(!liste || !liste.length) return;
-    el.innerHTML = '<span class="syn-label">' + t('label_voisins') + '</span>'
+    // L'etiquette s'accorde : la ligne porte de un a trois mots, et « Synonymes »
+    // au-dessus d'un seul mot se voit.
+    el.innerHTML = '<span class="syn-label">'
+        + t(liste.length === 1 ? 'label_synonyme' : 'label_synonymes') + '</span>'
         + liste.map(m => '<span class="syn-mot">' + echapperHtml(m) + '</span>').join("");
     el.classList.remove("hidden");
 }
@@ -17233,7 +17239,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 414;
+const APP_VERSION = 415;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
