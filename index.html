@@ -3823,7 +3823,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v444</span>
+        <span class="subtitle-version">v445</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12087,7 +12087,15 @@ const konjunktionenTheme = {
   // etaient la depuis le debut. Les gloses different a dessein : deux cartes
   // qui repondraient « depuis que » deviendraient indecidables.
   ["seit", "depuis que (point de départ)", "conjonction de subordination", "Seit ich hier wohne, spreche ich besser Deutsch.", "Depuis que j'habite ici, je parle mieux allemand.", "since", "Since I've lived here, I speak better German."],
-  ["seitdem", "depuis ce moment-là", "conjonction de subordination", "Seitdem er in Wien arbeitet, sehen wir ihn selten.", "Depuis qu'il travaille à Vienne, on le voit rarement.", "since then", "Since he started working in Vienna, we rarely see him."]
+  ["seitdem", "depuis ce moment-là", "conjonction de subordination", "Seitdem er in Wien arbeitet, sehen wir ihn selten.", "Depuis qu'il travaille à Vienne, on le voit rarement.", "since then", "Since he started working in Vienna, we rarely see him."],
+  // sobald, falls et solange etaient DEJA testes par les exercices alors
+  // que l'app ne les enseignait nulle part : la fuite dans l'autre sens.
+  // Les gloses les separent de leurs voisines -- « des que » contre « apres
+  // que » (nachdem), « au cas ou » contre « si » (wenn), « tant que »
+  // contre « jusqu'a ce que » (bis).
+  ["sobald", "dès que", "conjonction de subordination", "Ich rufe dich an, sobald ich ankomme.", "Je t'appelle dès que j'arrive.", "as soon as", "I'll call you as soon as I arrive."],
+  ["falls", "au cas où", "conjonction de subordination", "Falls es regnet, bleiben wir zu Hause.", "Au cas où il pleuvrait, nous restons à la maison.", "in case", "In case it rains, we'll stay at home."],
+  ["solange", "tant que", "conjonction de subordination", "Du darfst bleiben, solange du willst.", "Tu peux rester tant que tu veux.", "as long as", "You may stay as long as you want."]
   ]
 };
 
@@ -18932,7 +18940,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 444;
+const APP_VERSION = 445;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
