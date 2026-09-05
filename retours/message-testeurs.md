@@ -147,6 +147,11 @@ La ligne sur la fermeture de l'app n'est pas du remplissage : l'app installée
 sur l'écran d'accueil garde la version en mémoire, et sans ce geste ils ne
 verront rien de nouveau.
 
+**« notre cours », pas « un cours ».** Ces testeurs suivent le même cours
+d'allemand que Jacques, en ce moment. Écrire « si tu suis un cours » les
+traite comme des inconnus et affaiblit la nouvelle : la tuile sert à ce
+qu'ils font cette semaine.
+
 ---
 
 ## English
@@ -162,7 +167,7 @@ verront rien de nouveau.
 > of those are traps English sets for you: one "if" covers wenn and ob, one
 > "when" covers wenn and wann, one "but" covers aber and sondern.
 >
-> Handy if you're taking a course at the moment.
+> Should come in handy for our course.
 >
 > If you don't see the tile, close the app completely and open it again.
 >
@@ -184,7 +189,7 @@ verront rien de nouveau.
 > Bu ikililer İngilizce ya da Fransızca bilenler için özellikle zor: o dillerde
 > tek bir sözcük ikisini birden karşılıyor.
 >
-> Şu anda bir kursa gidiyorsan işine yarar.
+> Kursumuz için işimize yarar.
 >
 > Kutuyu görmüyorsan uygulamayı tamamen kapatıp yeniden aç.
 >
@@ -206,7 +211,7 @@ verront rien de nouveau.
 > pour wenn et ob, un seul « quand » pour wenn et wann, un seul « mais » pour
 > aber et sondern.
 >
-> Pratique si tu suis un cours en ce moment.
+> Pratique pour notre cours.
 >
 > Si tu ne vois pas la tuile, ferme complètement l'app et rouvre-la.
 >
