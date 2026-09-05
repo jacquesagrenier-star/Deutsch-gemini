@@ -130,6 +130,15 @@ def motif_exclusion(a, b):
         for p in PREFIXES:
             if long_ == p + court:
                 return 'préfixe (' + p + '-)'
+    # UN MOT QUI EN CONTIENT UN AUTRE EST UN RACCOURCI, PAS UN SYNONYME.
+    # Verdict d'une germanophone, le 5 septembre 2026, sur les dix-sept paires
+    # que j'avais gardees : Backofen/Ofen, Netz/Netzwerk, Reha/Rehabilitation,
+    # Anwalt/Rechtsanwalt... On abrege le meme mot, on n'en choisit pas un autre.
+    # Le montrer comme « voisin de sens » n'apprend rien : qui connait
+    # Rechtsanwalt sait deja Anwalt. La regle remplace la liste, pour que les
+    # suivantes tombent sans qu'on ait a les rejuger.
+    if court in long_:
+        return 'raccourci'
     return None
 
 exclues = collections.defaultdict(list)
@@ -147,9 +156,7 @@ print('exclues automatiquement :', sum(len(v) for v in exclues.values()),
 print('paires retenues :', len(restantes))
 
 # ce qui reste a regarder a l'oeil : les noms composes (un mot contient l'autre)
-composes = [(a, b, i) for (a, b), i in restantes.items()
-            if mots[a][3] == 'nom' and (a in b or b in a)]
-print('noms composés à trancher à l\'œil :', len(composes))
+composes = []   # plus rien a trancher : la regle « raccourci » s'en charge
 
 voisins = collections.defaultdict(set)
 for (a, b) in restantes:
@@ -161,8 +168,8 @@ donnees = {
            "les deux mots partagent une traduction en francais ET en anglais : sur le "
            "francais seul, « voler » reunirait fliegen et stehlen. Sont ecartes "
            "automatiquement les feminins (Journalistin), les reflechis (sich anmelden), "
-           "les pluriels (Nudeln) et les verbes a prefixe (anrufen / rufen), qui ne sont "
-           "pas des synonymes mais des formes. Genere par tests/synonymes.py puis relu : "
+           "les pluriels (Nudeln) les verbes a prefixe (anrufen / rufen) et les raccourcis "
+           "(Reha / Rehabilitation, Backofen / Ofen) : des formes du meme mot, pas d'autres mots. Genere par tests/synonymes.py puis relu : "
            "pour retirer une paire, enlever le mot des deux listes."),
  "voisins": {k: sorted(v)[:3] for k, v in sorted(voisins.items())}
 }

@@ -3335,6 +3335,22 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 
 .dict-plural{font-size:12px; color:#8b93a3; font-style:italic;}
 
+/* Voisins de sens, derniere ligne du verso. Discrete par construction : elle
+   n'apparait que sur 17 % des cartes, et n'a jamais a etre lue pour repondre.
+   Pas de traduction a cote des mots -- ils partagent celle de la carte, c'est
+   precisement ce qui en fait des voisins. */
+.synonymes{
+    margin-top:10px; font-size:12px; color:#8b93a3;
+    display:flex; flex-wrap:wrap; align-items:baseline;
+    justify-content:center; gap:4px 6px;
+}
+.synonymes .syn-label{letter-spacing:.04em; text-transform:uppercase; font-size:10px; opacity:.75;}
+.synonymes .syn-mot{
+    padding:1px 7px; border-radius:6px;
+    background:rgba(139,147,163,.12); color:#5c6472; font-weight:600;
+}
+body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); color:#c3c9d4;}
+
 /* ============ ACCUEIL RESSERRE (v232) ============
    L'accueil consacrait 620 px sur 844 -- 73 % de l'ecran d'un iPhone -- a un
    titre, un sous-titre et des statistiques, avant la premiere tuile. Le
@@ -3610,7 +3626,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v412</span>
+        <span class="subtitle-version">v413</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5416,6 +5432,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
+                <div id="flashSynonymes" class="synonymes hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
                 <div class="tap-map" aria-hidden="true">
                     <span class="tap-map-half">←</span>
@@ -6523,6 +6540,7 @@ const I18N = {
         random_adj_desc: "Mélange des adjectifs de tous les niveaux.",
         random_nouns_by_level_desc: "Mélange des noms de tous les niveaux disponibles.",
         label_plural: "Pluriel :",
+        label_voisins: "Aussi",
         label_feminine: "Féminin :",
         label_masculine: "Masculin :",
         label_case_word: "Cas",
@@ -7268,6 +7286,7 @@ const I18N = {
         random_adj_desc: "A mix of adjectives from all levels.",
         random_nouns_by_level_desc: "A mix of nouns from all available levels.",
         label_plural: "Plural:",
+        label_voisins: "Also",
         label_feminine: "Feminine:",
         label_masculine: "Masculine:",
         label_case_word: "Case",
@@ -8017,6 +8036,7 @@ const I18N = {
         random_adj_desc: "Tüm seviyelerden sıfat karışımı.",
         random_nouns_by_level_desc: "Mevcut tüm seviyelerden isim karışımı.",
         label_plural: "Çoğul:",
+        label_voisins: "Ayrıca",
         label_feminine: "Dişil:",
         label_masculine: "Eril:",
         label_case_word: "Hal",
@@ -16177,6 +16197,10 @@ function loadFlashcard(){
         }
     }
 
+    // Remplie ici, pour TOUS les modes a la fois, et non dans les huit branches
+    // de rendu -- meme raison que la marque d'usage juste au-dessus.
+    remplirVoisins(card, flashcardMode);
+
     resizeFlashcard();
     // La carte est affichee mais pas encore retournee : c'est le moment de
     // savoir si son fichier existe. Voir preverifierAudioCarte().
@@ -16466,6 +16490,56 @@ const RANG_REGISTRE = {
     praep: 13, konjunktionen: 13, partikeln: 13, zahlen: 13,
     pronomen: 13, artikelwoerter: 13   // funktionswort.json
 };
+
+// VOISINS DE SENS (v413, suggestion de Barbara). Les mots du cours qui disent a
+// peu pres la meme chose -- Etage/Stockwerk, redselig/gesprachig. Ils sont
+// calcules hors ligne par tests/synonymes.py et livres dans synonymes.json :
+// deux mots n'y sont voisins que s'ils partagent une traduction en francais ET
+// en anglais (sur le francais seul, « voler » reunirait fliegen et stehlen).
+//
+// Charge a la premiere carte, pas au demarrage : 30 ko qui ne servent qu'a qui
+// retourne une carte. Un echec reste silencieux -- la ligne ne s'affiche pas,
+// et c'est tout ce que ca change.
+let VOISINS_SENS = null;
+let chargementVoisins = null;
+
+function chargerVoisins(){
+    if(VOISINS_SENS || chargementVoisins) return chargementVoisins;
+    chargementVoisins = fetch(urlDonnees('synonymes.json'), { cache: 'no-cache' })
+        .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(d => { VOISINS_SENS = d.voisins || {}; })
+        .catch(() => { chargementVoisins = null; });
+    return chargementVoisins;
+}
+
+// Le mot allemand, quelle que soit la forme de la carte. Meme raison d'exister
+// que registreDeLaCarte juste en dessous : les verbes portent un champ nomme,
+// tout le reste un rang.
+function motAllemandDeLaCarte(card, mode){
+    if(!card) return "";
+    if(mode === 'verben' || mode === 'vhskapitelverben') return card.infinitif || "";
+    return Array.isArray(card) ? (card[0] || "") : "";
+}
+
+// LES MOTS NE SONT PAS TOUCHABLES, ET C'EST VOULU. Ouvrir la carte du voisin
+// remplacerait currentCards par une seance d'une seule carte -- le paquet en
+// cours serait perdu au milieu d'une revision de « Mots au hasard ». Le jour ou
+// on voudra ce geste, il faudra d'abord savoir revenir au paquet.
+function remplirVoisins(card, mode){
+    const el = document.getElementById("flashSynonymes");
+    if(!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+    if(getLearningDirection() === 'en') return;
+    const mot = motAllemandDeLaCarte(card, mode);
+    if(!mot) return;
+    if(!VOISINS_SENS){ chargerVoisins(); return; }
+    const liste = VOISINS_SENS[mot];
+    if(!liste || !liste.length) return;
+    el.innerHTML = '<span class="syn-label">' + t('label_voisins') + '</span>'
+        + liste.map(m => '<span class="syn-mot">' + echapperHtml(m) + '</span>').join("");
+    el.classList.remove("hidden");
+}
 
 function registreDeLaCarte(card, mode){
     if(!card) return "";
@@ -17145,7 +17219,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 412;
+const APP_VERSION = 413;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
