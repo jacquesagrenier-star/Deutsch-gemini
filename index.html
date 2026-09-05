@@ -723,6 +723,46 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="konjunktionen"] .orb-icon svg{stroke:#0ea5e9;}
 .orb[data-orbid="konjunktionen"] .orb-badge{background:#0ea5e9; box-shadow:0 2px 6px rgba(14,165,233,.35);}
 
+/* Tuile de relecture (temporaire) : ambre de la marque. Elle ne fait pas
+   apprendre, elle demande un service -- elle ne doit donc ressembler a aucune
+   des autres. */
+.orb[data-orbid="relecture"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.35);}
+.orb[data-orbid="relecture"] .orb-icon svg{stroke:#E8A23A;}
+
+/* ---- Ecran de relecture ---- */
+.rel-tete{margin-bottom:14px}
+/* Pas de flex ici : le <b> du compteur devenait un element de rangee et la
+   phrase se coupait en deux lignes -- « 1 » puis « paires ecartees sur 661 ». */
+.rel-compte{
+    font-size:13px; color:#8b93a3; font-variant-numeric:tabular-nums;
+    margin:2px 0 6px;
+}
+.rel-compte b{color:#3b6fe0; font-weight:700}
+.rel-niveau{
+    margin:22px 0 6px; padding-bottom:6px; border-bottom:1px solid #e6eaf2;
+    font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:#8b93a3;
+}
+.rel-paire{
+    display:flex; align-items:center; gap:12px;
+    padding:10px 2px; border-bottom:1px solid #eef1f6;
+}
+.rel-mots{flex:1; min-width:0}
+.rel-mots strong{font-size:16px; font-weight:700}
+.rel-mots .fl{color:#b6bcc9; font-weight:400; margin:0 6px}
+.rel-mots small{display:block; font-size:12px; color:#8b93a3; font-style:italic}
+.rel-non{
+    flex:0 0 auto; font-size:12px; font-weight:700; cursor:pointer;
+    padding:6px 12px; border-radius:9px;
+    border:1px solid #dfe4ec; background:#fff; color:#8b93a3;
+}
+.rel-non[aria-pressed="true"]{background:#fde8e2; border-color:#e8b3a3; color:#9c3b24;}
+.rel-paire.ecartee .rel-mots strong{text-decoration:line-through; text-decoration-color:#9c3b24;}
+body[data-theme="dark"] .rel-niveau{border-color:#2a3240}
+body[data-theme="dark"] .rel-paire{border-color:#242b36}
+body[data-theme="dark"] .rel-non{background:#1b212b; border-color:#2a3240}
+body[data-theme="dark"] .rel-non[aria-pressed="true"]{background:#3a1f18; border-color:#7a3a28; color:#e8a58f;}
+
 .orb[data-orbid="vhskapitel"] .orb-icon{
     background:rgba(245,158,11,.14);
     border-color:rgba(245,158,11,.28);
@@ -3626,7 +3666,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v415</span>
+        <span class="subtitle-version">v416</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3874,6 +3914,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              comptes testeurs autorises via le tableau de bord admin (voir
              updateVhsKapitelTileVisibility()). Va directement a l'ecran de la liste des
              chapitres (pas de panneau intermediaire : il n'y a qu'une seule action ici). -->
+        <!-- TEMPORAIRE (v416) : relecture des synonymes. Barbara a propose la
+             fonction, c'est a elle de dire quelles paires ne vont pas. A retirer
+             une fois la relecture faite -- avec l'ecran et les fonctions. -->
+        <div class="orb orb-de hidden" id="relectureTile" data-orbid="relecture" onclick="ouvrirRelectureSynonymes()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h9"/><path d="M17 17l2 2 4-4"/></svg></div>
+            <div>
+                <strong data-i18n="orb_relecture_title">Relecture</strong>
+                <small data-i18n="orb_relecture_sub">un coup de main ?</small>
+            </div>
+        </div>
+
         <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" onclick="openVhsKapitelListe()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
             <div>
@@ -4877,6 +4928,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 </section>
 
 <!-- ================= CONJONCTIONS ================= -->
+
+<!-- TEMPORAIRE (v416) : relecture des synonymes, voir ouvrirRelectureSynonymes(). -->
+<section id="relectureSynonymes" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="section-head">
+        <div>
+            <div class="kicker" data-i18n="rel_kicker">Coup de main demandé</div>
+            <h2 data-i18n="rel_title">Ces mots sont-ils vraiment synonymes ?</h2>
+        </div>
+    </div>
+    <div class="info-box" data-i18n-html="rel_intro"></div>
+    <div class="rel-tete">
+        <div class="rel-compte" id="relCompte"></div>
+    </div>
+    <div id="relListe"></div>
+    <button class="secondary" onclick="copierRelecture()" data-i18n="rel_copier">COPIER MA LISTE</button>
+    <div class="rel-compte" id="relEtat"></div>
+</section>
 
 <section id="konjunktionenInfo" class="screen">
     <button class="back" onclick="openOrbPanel('konjunktionen')"><span data-i18n="back_button">‹ Retour</span></button>
@@ -6626,6 +6695,19 @@ const I18N = {
         search_src_redewendungen: "Expressions",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Connecteurs",
+        orb_relecture_title: "Relecture",
+        orb_relecture_sub: "un coup de main ?",
+        rel_kicker: "Coup de main demandé",
+        rel_title: "Ces mots sont-ils vraiment synonymes ?",
+        rel_intro: "L'app propose maintenant, au verso des cartes, les mots du cours qui disent à peu près la même chose. Ces paires ont été trouvées <strong>automatiquement</strong> : deux mots sont retenus s'ils partagent une traduction en français et en anglais.<br><br>La machine ne sait pas tout. <strong>Touche « pas un synonyme » sur les paires qui ne vont pas</strong> — inutile de marquer les bonnes, seules les mauvaises comptent. Tes réponses sont gardées au fur et à mesure.",
+        rel_compte: "{n} paires écartées sur {total}",
+        rel_non: "Pas un synonyme",
+        rel_sans_niveau: "Sans niveau",
+        rel_chargement: "Un instant, je rassemble les paires…",
+        rel_copier: "COPIER MA LISTE",
+        rel_copie: "Copié. Colle-le dans WhatsApp.",
+        rel_rien: "Rien d'écarté pour l'instant.",
+        rel_entete: "Pas des synonymes ({n}) :",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Écouter", orb_ecouter_sub: "mains libres · A1 → C1",
         ecoute_menu_title: "Écouter et répéter",
@@ -7373,6 +7455,19 @@ const I18N = {
         search_src_redewendungen: "Expressions",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Connectors",
+        orb_relecture_title: "Review",
+        orb_relecture_sub: "lend a hand?",
+        rel_kicker: "A hand, please",
+        rel_title: "Are these really synonyms?",
+        rel_intro: "Cards now show the words in the course that mean roughly the same thing. These pairs were found <strong>automatically</strong>: two words are kept if they share a translation in both French and English.<br><br>The machine doesn't know everything. <strong>Tap « not a synonym » on the pairs that are wrong</strong> — no need to mark the good ones, only the bad ones count. Your answers are saved as you go.",
+        rel_compte: "{n} pairs rejected out of {total}",
+        rel_non: "Not a synonym",
+        rel_sans_niveau: "No level",
+        rel_chargement: "One moment, gathering the pairs…",
+        rel_copier: "COPY MY LIST",
+        rel_copie: "Copied. Paste it into WhatsApp.",
+        rel_rien: "Nothing rejected yet.",
+        rel_entete: "Not synonyms ({n}):",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Listen", orb_ecouter_sub: "hands-free · A1 → C1",
         ecoute_menu_title: "Listen and repeat",
@@ -8124,6 +8219,19 @@ const I18N = {
         search_src_redewendungen: "İfadeler",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Bağlayıcılar",
+        orb_relecture_title: "Gözden geçirme",
+        orb_relecture_sub: "yardım eder misin?",
+        rel_kicker: "Bir el atar mısın",
+        rel_title: "Bunlar gerçekten eş anlamlı mı?",
+        rel_intro: "Kartların arkasında artık kursta aşağı yukarı aynı şeyi söyleyen kelimeler görünüyor. Bu çiftler <strong>otomatik olarak</strong> bulundu: iki kelime hem Fransızcada hem İngilizcede aynı çeviriyi paylaşıyorsa alınıyor.<br><br>Makine her şeyi bilmez. <strong>Uymayan çiftlerde « eş anlamlı değil »e dokun</strong> — doğruları işaretlemene gerek yok, yalnızca yanlışlar sayılır. Cevapların anında kaydedilir.",
+        rel_compte: "{total} çiftten {n} tanesi elendi",
+        rel_non: "Eş anlamlı değil",
+        rel_sans_niveau: "Seviyesiz",
+        rel_chargement: "Bir saniye, çiftler toplanıyor…",
+        rel_copier: "LİSTEMİ KOPYALA",
+        rel_copie: "Kopyalandı. WhatsApp'a yapıştır.",
+        rel_rien: "Henüz hiçbir şey elenmedi.",
+        rel_entete: "Eş anlamlı değil ({n}):",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Dinle", orb_ecouter_sub: "eller serbest · A1 → C1",
         ecoute_menu_title: "Dinle ve tekrarla",
@@ -11039,6 +11147,14 @@ async function syncProgressToCloud(){
             // qu'on les devine depuis un corpus.
             vocabDemandes: loadMyRequests().slice(-150),
             vocabCartes: loadMyVocab().filter(w => w[10] !== "1").map(w => w[0]).slice(-150),
+            // TEMPORAIRE (v416) : les paires de synonymes ecartees a la
+            // relecture. UNE SEULE CHAINE, pas un tableau : Firestore indexe
+            // chaque entree d'un tableau, et le plafond des 40 000 a deja fait
+            // echouer les sauvegardes en silence (v396-v400).
+            synonymesEcartes: (function(){
+                try{ return localStorage.getItem("deutschAI_synonymesEcartes") || ""; }
+                catch(e){ return ""; }
+            })(),
             progress,
             updatedAt: window.fsServerTimestamp()
         };
@@ -11163,6 +11279,38 @@ let vhsKapitelAccess = false;
 function updateVhsKapitelTileVisibility(){
     const tile = document.getElementById("vhsKapitelTile");
     if(tile) tile.classList.toggle("hidden", !(isAdminUser() || vhsKapitelAccess));
+    majTuileRelecture();
+}
+
+// TEMPORAIRE (v416) : la tuile de relecture ne s'affiche que pour l'admin et
+// pour les relecteurs invites.
+//
+// CE SONT DES EMPREINTES, PAS DES ADRESSES. Le depot est public : ecrire
+// l'adresse d'une testeuse dans index.html la publierait sur GitHub, ce que la
+// cle des testeurs evite deja en restant gitignoree. On compare donc le SHA-256
+// de l'adresse, qui suffit largement -- la tuile n'est pas un secret, elle est
+// seulement inutile pour les autres.
+const RELECTEURS = [
+    // (empreinte de l'adresse de Barbara, a ajouter)
+];
+let empreinteCourante = null;
+
+async function empreinteDe(texte){
+    if(!(window.crypto && window.crypto.subtle)) return null;
+    const octets = new TextEncoder().encode(texte.trim().toLowerCase());
+    const brut = await window.crypto.subtle.digest("SHA-256", octets);
+    return Array.from(new Uint8Array(brut))
+        .map(o => o.toString(16).padStart(2, "0")).join("");
+}
+
+async function majTuileRelecture(){
+    const tile = document.getElementById("relectureTile");
+    if(!tile) return;
+    if(isAdminUser()){ tile.classList.remove("hidden"); return; }
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!user || !user.email){ tile.classList.add("hidden"); return; }
+    if(empreinteCourante === null) empreinteCourante = await empreinteDe(user.email);
+    tile.classList.toggle("hidden", !RELECTEURS.includes(empreinteCourante));
 }
 
 async function loadVhsKapitelAccessFlag(){
@@ -16561,6 +16709,159 @@ function remplirVoisins(card, mode){
     el.classList.remove("hidden");
 }
 
+// ============ RELECTURE DES SYNONYMES (TEMPORAIRE, v416) ============
+//
+// Barbara a propose d'afficher les synonymes ; c'est donc a elle de dire
+// lesquels ne vont pas. La relecture se fait DANS L'APP, pas sur une page a
+// part : elle l'a deja installee, il n'y a ni lien a ouvrir ni compte a creer.
+//
+// Rien de neuf n'est telecharge. Les paires viennent de synonymes.json, deja
+// charge pour la ligne du verso ; la traduction et le niveau viennent de
+// l'index de recherche, deja construit.
+//
+// A RETIRER quand ce sera fait : la tuile, l'ecran, ces fonctions, les cles
+// rel_* et le champ synonymesEcartes du snapshot.
+const REL_CLE = "deutschAI_synonymesEcartes";
+
+function relCharger(){
+    try{
+        const brut = localStorage.getItem(REL_CLE) || "";
+        return new Set(brut ? brut.split(";").filter(Boolean) : []);
+    }catch(e){ return new Set(); }
+}
+
+function relGarder(ens){
+    try{ localStorage.setItem(REL_CLE, Array.from(ens).join(";")); }catch(e){}
+    // Un seul champ, une seule chaine : Firestore indexe chaque entree d'un
+    // tableau ou d'une carte, et le plafond des 40 000 entrees a deja fait
+    // echouer les sauvegardes en silence une fois (v396-v400).
+    scheduleCloudSync();
+}
+
+// Les paires, mises a plat une seule fois : « Etage|Stockwerk » une fois, pas
+// deux. On y joint la traduction et le niveau, pris dans l'index de recherche.
+function relPaires(){
+    const index = ensureSearchIndex();
+    const fiche = {};
+    for(const e of index){
+        if(!fiche[e.de]) fiche[e.de] = e;
+    }
+    const vues = new Set();
+    const paires = [];
+    Object.keys(VOISINS_SENS || {}).forEach(mot => {
+        (VOISINS_SENS[mot] || []).forEach(voisin => {
+            const id = [mot, voisin].sort().join("|");
+            if(vues.has(id)) return;
+            vues.add(id);
+            const fa = fiche[mot], fb = fiche[voisin];
+            const src = (fa && fa.source) || (fb && fb.source) || "";
+            const niveau = (src.match(/([ABC][12])\s*$/) || [])[1] || "?";
+            paires.push({
+                id: id, a: mot, b: voisin,
+                trad: (fa && fa.fr) || (fb && fb.fr) || "",
+                niveau: niveau
+            });
+        });
+    });
+    const rang = { A1:1, A2:2, B1:3, B2:4, C1:5, "?":9 };
+    paires.sort((x, y) => (rang[x.niveau] - rang[y.niveau])
+        || x.a.localeCompare(y.a, "de"));
+    return paires;
+}
+
+async function ouvrirRelectureSynonymes(){
+    showScreen("relectureSynonymes");
+    document.getElementById("relListe").innerHTML =
+        '<div class="search-empty">' + t('rel_chargement') + '</div>';
+    if(!COURS_CHARGE) await chargerCours();
+    if(!VOISINS_SENS) await chargerVoisins();
+    if(!VOISINS_SENS){
+        document.getElementById("relListe").innerHTML =
+            '<div class="search-empty">' + t('cours_indisponible') + '</div>';
+        return;
+    }
+    dessinerRelecture();
+}
+
+function dessinerRelecture(){
+    const paires = relPaires();
+    const ecartes = relCharger();
+    let html = "";
+    let niveauCourant = null;
+    for(const p of paires){
+        if(p.niveau !== niveauCourant){
+            niveauCourant = p.niveau;
+            html += '<div class="rel-niveau">' + (niveauCourant === "?" ? t('rel_sans_niveau') : niveauCourant) + '</div>';
+        }
+        const off = ecartes.has(p.id);
+        html += '<div class="rel-paire' + (off ? ' ecartee' : '') + '" id="rel-' + relId(p.id) + '">'
+            + '<div class="rel-mots"><strong>' + echapperHtml(p.a) + '</strong>'
+            + '<span class="fl">\u21c4</span><strong>' + echapperHtml(p.b) + '</strong>'
+            + '<small>' + echapperHtml(p.trad) + '</small></div>'
+            + '<button class="rel-non" aria-pressed="' + off + '" onclick="basculerRelecture(\'' + relId(p.id) + '\')">'
+            + t('rel_non') + '</button></div>';
+    }
+    document.getElementById("relListe").innerHTML = html;
+    majCompteRelecture(paires.length);
+}
+
+// L'identifiant sert d'attribut HTML : on ne garde que ce qui passe partout, et
+// on retrouve la paire par sa position dans la liste plutot qu'en tentant de
+// reconstruire les mots.
+let REL_INDEX = {};
+function relId(id){
+    const propre = "p" + Object.keys(REL_INDEX).length;
+    if(!REL_INDEX.__inverse) REL_INDEX.__inverse = {};
+    if(REL_INDEX.__inverse[id]) return REL_INDEX.__inverse[id];
+    REL_INDEX[propre] = id;
+    REL_INDEX.__inverse[id] = propre;
+    return propre;
+}
+
+function basculerRelecture(cle){
+    const id = REL_INDEX[cle];
+    if(!id) return;
+    const ecartes = relCharger();
+    if(ecartes.has(id)) ecartes.delete(id); else ecartes.add(id);
+    relGarder(ecartes);
+    const ligne = document.getElementById("rel-" + cle);
+    if(ligne){
+        const off = ecartes.has(id);
+        ligne.classList.toggle("ecartee", off);
+        const b = ligne.querySelector(".rel-non");
+        if(b) b.setAttribute("aria-pressed", String(off));
+    }
+    majCompteRelecture();
+}
+
+function majCompteRelecture(total){
+    const el = document.getElementById("relCompte");
+    if(!el) return;
+    if(total !== undefined) el.dataset.total = total;
+    const n = relCharger().size;
+    el.innerHTML = tf('rel_compte', { n: '<b>' + n + '</b>', total: el.dataset.total || "" });
+}
+
+function texteRelecture(){
+    const ecartes = relCharger();
+    if(!ecartes.size) return "";
+    return Array.from(ecartes).map(id => id.split("|").join(" / ")).join("\n");
+}
+
+function copierRelecture(){
+    const texte = texteRelecture();
+    const etat = document.getElementById("relEtat");
+    if(!texte){ if(etat) etat.textContent = t('rel_rien'); return; }
+    const entete = tf('rel_entete', { n: relCharger().size }) + "\n\n";
+    if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(entete + texte)
+            .then(() => { if(etat) etat.textContent = t('rel_copie'); })
+            .catch(() => { if(etat) etat.textContent = entete + texte; });
+    } else if(etat){
+        etat.textContent = entete + texte;
+    }
+}
+
 function registreDeLaCarte(card, mode){
     if(!card) return "";
     // Les verbes portent un champ nomme, pas un rang.
@@ -17239,7 +17540,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 415;
+const APP_VERSION = 416;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

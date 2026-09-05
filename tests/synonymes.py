@@ -41,6 +41,7 @@ A_ECARTER = {
     ('speicher', 'speicherung'): "l'endroit n'est pas l'action de ranger",
     ('stand', 'zustand'):      "Stand est un etal, un rang, un niveau -- trop de sens",
     ('stand', 'staat'):        "faux couple sur « etat » : l'Etat et l'etat",
+    ('staat', 'zustand'):      "meme faux couple, vu en mettant la liste a plat",
     ('lager', 'lagerbestand'): "Lager est aussi un camp et un entrepot",
     ('kuchen', 'torte'):       "une Torte n'est pas un Kuchen, un patissier corrigerait",
     ('tor', 'ziel'):           "Tor est une porte avant d'etre un but",
@@ -120,8 +121,21 @@ print('paires partageant un sens fr ET en :', len(brutes), '| rejetees par l ang
 def motif_exclusion(a, b):
     A, B = mots[a], mots[b]
     court, long_ = (a, b) if len(a) <= len(b) else (b, a)
-    if long_ == court + 'in' or long_ == court + 'innen':
-        return 'féminin'
+    # LE FEMININ PEUT INFLECHIR LA VOYELLE : Arzt -> Aerztin, Koch -> Koechin,
+    # Bauer -> Baeuerin. Comparer les chaines brutes laissait passer ces
+    # paires-la, et « Arzt, synonyme de Aerztin » se lisait sur la carte -- qui
+    # porte deja une ligne « Feminin : die Aerztin ». Trouve en mettant la liste
+    # a plat pour Barbara : c'etait la premiere ligne.
+    def sans_inflexion(x):
+        return x.replace('ä', 'a').replace('ö', 'o').replace('ü', 'u')
+    # Le masculin perd aussi son -e final : Kollege -> Kollegin, Kunde -> Kundin.
+    for suffixe in ('in', 'innen'):
+        if not long_.endswith(suffixe):
+            continue
+        radical = sans_inflexion(long_[:-len(suffixe)])
+        base = sans_inflexion(court)
+        if radical == base or radical == base.rstrip('e'):
+            return 'féminin'
     if long_ == 'sich ' + court:
         return 'réfléchi'
     if A[3] == 'nom' and long_ in (court + 'n', court + 'en', court + 'e', court + 's'):
