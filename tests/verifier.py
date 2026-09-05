@@ -406,6 +406,63 @@ def verifier_jeux_exercices(r, source):
         print("   jeux non joues  : %s" % ", ".join(orphelins))
 
 
+# Series ou l'indice est l'ENONCE du drill, pas une fuite : la question donne
+# le cas et le genre, l'eleve doit produire le pronom. Sans l'indice, il n'y a
+# tout simplement plus d'exercice.
+INDICES_QUI_SONT_L_ENONCE = {
+    "relativReconNomAkk", "relativReconDativ", "relativReconMixed",
+    "relativGenitivReconnaissanceExercises",
+}
+
+
+def verifier_indices_revelateurs(r):
+    """Un indice partage ne doit pas annoncer la reponse.
+
+    Le defaut, signale par Jacques sur weil/obwohl : la serie portait DEUX
+    indices, un par reponse. Les 14 « weil » avaient le leur, les 14
+    « obwohl » l'autre. Reconnaitre l'indice suffisait -- la phrase allemande
+    devenait decorative, et l'exercice ne mesurait plus rien.
+
+    Rien ne le signalait : chaque exercice, pris seul, avait un indice juste.
+    La fuite n'existe qu'a l'echelle de la serie, et c'est exactement ce
+    qu'un controle voit mieux qu'une relecture.
+
+    Ce qui declenche : un choix ferme (2 a 4 reponses possibles) ou un meme
+    indice, partage par au moins trois exercices, ne va JAMAIS qu'avec une
+    seule reponse.
+    """
+    chemin = os.path.join(RACINE, "exercices.json")
+    if not os.path.exists(chemin):
+        return
+    try:
+        jeux = json.load(io.open(chemin, encoding="utf-8")).get("jeux", {})
+    except ValueError:
+        return
+
+    for nom, liste in sorted(jeux.items()):
+        if nom in INDICES_QUI_SONT_L_ENONCE:
+            continue
+        if not isinstance(liste, list):
+            continue
+        reponses = set(ex.get("correct") for ex in liste if isinstance(ex, dict))
+        if not (2 <= len(reponses) <= 4):
+            continue          # pas un choix ferme : l'indice ne peut rien trahir
+        par_indice = {}
+        for ex in liste:
+            if not isinstance(ex, dict):
+                continue
+            h = ex.get("hint")
+            if h:
+                par_indice.setdefault(h, []).append(ex.get("correct"))
+        for h, rs in sorted(par_indice.items()):
+            r.controle()
+            if len(rs) >= 3 and len(set(rs)) == 1:
+                r.echec("exercices",
+                        "%s : l'indice %s revient %d fois et ne va qu'avec "
+                        "« %s » -- il donne la reponse"
+                        % (nom, h[:48], len(rs), rs[0]))
+
+
 def verifier_cles_utilisees(r, source, cles):
     """Toute cle citee dans le HTML ou via t()/tf() doit exister."""
     citees = set()
@@ -565,6 +622,7 @@ def main():
     print("\nCODE ET INTERFACE")
     cles = verifier_traductions(r, source)
     verifier_jeux_exercices(r, source)
+    verifier_indices_revelateurs(r)
     verifier_langue_enseignee(r, source)
     verifier_cles_utilisees(r, source, cles)
     fonctions = fonctions_definies(source)
