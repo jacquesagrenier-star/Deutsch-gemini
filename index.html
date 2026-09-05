@@ -3375,6 +3375,44 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 
 .dict-plural{font-size:12px; color:#8b93a3; font-style:italic;}
 
+/* ---- « Quand ce mot reviendra-t-il ? » ---- */
+.srs-aide-btn{
+    display:flex; align-items:center; gap:8px; margin:10px auto 0;
+    padding:6px 12px; border-radius:999px; cursor:pointer;
+    border:1px solid transparent; background:transparent;
+    font-size:12.5px; color:#8b93a3;
+}
+.srs-aide-btn:hover{border-color:#e1e6ef; color:#576177;}
+.srs-aide-btn span[aria-hidden]{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:17px; height:17px; border-radius:50%; flex:none;
+    border:1px solid currentColor; font-size:11px; font-weight:700;
+    font-family:Georgia, "Times New Roman", serif; font-style:italic; line-height:1;
+}
+.srs-aide{
+    margin-top:10px; padding:14px 16px; border-radius:12px;
+    background:#f5f7fb; border:1px solid #e6eaf2;
+    font-size:13px; line-height:1.6; color:#576177; text-align:left;
+}
+.srs-aide p{margin:0 0 9px}
+.srs-aide p:last-child{margin-bottom:0}
+.srs-aide b{color:#1e293b}
+.srs-aide .srs-aide-echelle{
+    display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+    margin:2px 0 11px; font-size:12.5px;
+}
+.srs-aide .etape{
+    padding:3px 9px; border-radius:8px; background:#fff;
+    border:1px solid #e1e6ef; color:#1e293b; font-weight:600; white-space:nowrap;
+}
+.srs-aide .etape.fin{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+.srs-aide .fleche{color:#b6bcc9}
+body[data-theme="dark"] .srs-aide{background:#1b212b; border-color:#2a3240; color:#9aa3b2;}
+body[data-theme="dark"] .srs-aide b{color:#e6e9ef}
+body[data-theme="dark"] .srs-aide .etape{background:#232a35; border-color:#2f3846; color:#e6e9ef;}
+body[data-theme="dark"] .srs-aide .etape.fin{background:#1d3a2c; border-color:#2f6a4d; color:#8fe0b6;}
+body[data-theme="dark"] .srs-aide-btn:hover{border-color:#2a3240; color:#c3c9d4;}
+
 /* Voisins de sens, derniere ligne du verso. Discrete par construction : elle
    n'apparait que sur 17 % des cartes, et n'a jamais a etre lue pour repondre.
    Pas de traduction a cote des mots -- ils partagent celle de la carte, c'est
@@ -3667,7 +3705,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v421</span>
+        <span class="subtitle-version">v422</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5527,6 +5565,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </button>
         </div>
         <button class="judge-known" onclick="markKnownAlready()" data-i18n="review_known">Je connais déjà ce mot — ne plus me le montrer</button>
+        <!-- Le « i » est ICI, dans le bloc qui n'apparait qu'apres la reponse :
+             sur la carte, il se lirait comme un indice. -->
+        <button class="srs-aide-btn" id="srsAideBtn" onclick="basculerAideSrs()"
+                aria-expanded="false" aria-controls="srsAide">
+            <span aria-hidden="true">i</span>
+            <span data-i18n="srs_aide_bouton">Quand ce mot reviendra-t-il ?</span>
+        </button>
+        <div id="srsAide" class="srs-aide hidden"></div>
     </div>
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
@@ -6192,6 +6238,15 @@ const I18N = {
         alert_maitrises_revoir: "{n} mots maîtrisés reviennent en révision.",
         alert_maitrises_aucun: "Aucun mot maîtrisé pour l'instant.",
         srs_etat_0: "nouveau mot",
+        srs_aide_bouton: "Quand ce mot reviendra-t-il ?",
+        srs_aide_intro: "Tu réponds une seule chose — si le mot t'est revenu. C'est l'app qui en déduit la date.",
+        srs_aide_echelle: "Chaque « Je savais » d'affilée éloigne le mot un peu plus :",
+        srs_aide_minutes: "{n} min",
+        srs_aide_jour: "{n} jour",
+        srs_aide_jours: "{n} jours",
+        srs_aide_maitrise: "maîtrisé",
+        srs_aide_encore: "<b>Encore</b> remet le compteur à zéro : le mot revient {n} cartes plus loin, dans cette séance.",
+        srs_aide_apres: "Un mot maîtrisé n'est pas acquis à vie. Il revient une fois, {n} jours plus tard, pour vérifier.",
         srs_etat_1: "je commence",
         srs_etat_2: "je progresse",
         srs_etat_3: "j'y suis presque",
@@ -6958,6 +7013,15 @@ const I18N = {
         alert_maitrises_revoir: "{n} mastered words are back in review.",
         alert_maitrises_aucun: "No mastered words yet.",
         srs_etat_0: "new word",
+        srs_aide_bouton: "When will this word come back?",
+        srs_aide_intro: "You answer one thing only — whether the word came back to you. The app works out the date.",
+        srs_aide_echelle: "Each « I knew it » in a row pushes the word further away:",
+        srs_aide_minutes: "{n} min",
+        srs_aide_jour: "{n} day",
+        srs_aide_jours: "{n} days",
+        srs_aide_maitrise: "mastered",
+        srs_aide_encore: "<b>Again</b> resets the count: the word comes back {n} cards later, in this session.",
+        srs_aide_apres: "A mastered word isn't learnt for life. It comes back once, {n} days later, to check.",
         srs_etat_1: "getting started",
         srs_etat_2: "making progress",
         srs_etat_3: "almost there",
@@ -7726,6 +7790,15 @@ const I18N = {
         alert_maitrises_revoir: "{n} öğrenilmiş kelime tekrara döndü.",
         alert_maitrises_aucun: "Henüz öğrenilmiş kelime yok.",
         srs_etat_0: "yeni kelime",
+        srs_aide_bouton: "Bu kelime ne zaman geri gelecek?",
+        srs_aide_intro: "Tek bir şey söylüyorsun — kelime aklına geldi mi. Tarihi uygulama hesaplar.",
+        srs_aide_echelle: "Üst üste her « Biliyordum » kelimeyi biraz daha uzağa iter:",
+        srs_aide_minutes: "{n} dk",
+        srs_aide_jour: "{n} gün",
+        srs_aide_jours: "{n} gün",
+        srs_aide_maitrise: "öğrenildi",
+        srs_aide_encore: "<b>Tekrar</b> sayacı sıfırlar: kelime bu oturumda {n} kart sonra geri gelir.",
+        srs_aide_apres: "Öğrenilen bir kelime ömür boyu bilinmiş sayılmaz. {n} gün sonra bir kez daha, kontrol için gelir.",
         srs_etat_1: "başlıyor",
         srs_etat_2: "ilerliyor",
         srs_etat_3: "neredeyse tamam",
@@ -15959,6 +16032,7 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
+    fermerAideSrs();
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
@@ -16457,6 +16531,7 @@ function unflipCard(){
     // Les boutons de jugement se retirent avec la reponse : juger une carte
     // qu'on ne voit plus n'aurait aucun sens.
     document.getElementById("flashcardActions").classList.add("hidden");
+    fermerAideSrs();
     // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
     // voix continue de dire une reponse qui n'est plus a l'ecran.
     if("speechSynthesis" in window) window.speechSynthesis.cancel();
@@ -17630,7 +17705,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 421;
+const APP_VERSION = 422;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -18366,6 +18441,11 @@ const SRS_PALIERS = 4;
 // paquet (cartesEncoreEnAttente). Les voir diverger rendrait le rattrapage
 // muet, et le defaut serait invisible.
 const SRS_ENCORE_MINUTES = 2;
+// Delai de la PREMIERE reussite : on revoit le mot avant la fin de la seance.
+// Nomme pour la meme raison que celui du dessus -- deux endroits en dependent
+// desormais, reviewGood() et l'aide qui explique l'echelle a l'usager. Un
+// chiffre recopie dans un texte finit toujours par mentir.
+const SRS_PREMIERE_MINUTES = 10;
 // Nombre de cartes vues AVANT de revoir un mot rate. Le mot est remis dans la
 // file de la seance, quelques rangs plus loin, au lieu d'attendre la fin du
 // paquet.
@@ -18424,6 +18504,49 @@ function majEcheances(animerDernier){
     txt.textContent = t(noms[Math.min(atteints, noms.length - 1)]);
 }
 
+// L'AIDE EST CONSTRUITE A PARTIR DES CONSTANTES, jamais recopiee. Les quatre
+// echeances sont celles que reviewGood() et scheduleReview() appliquent
+// vraiment : 10 min, puis les deux premiers barreaux de SRS_DAILY_LADDER_DAYS,
+// puis la maitrise. Si l'echelle change, la phrase change avec elle -- sinon
+// elle se met a mentir, et une regle expliquee de travers vaut moins que pas
+// d'explication du tout.
+function texteAideSrs(){
+    const j1 = SRS_DAILY_LADDER_DAYS[0];
+    const j2 = SRS_DAILY_LADDER_DAYS[1];
+    const jour = n => tf(n === 1 ? "srs_aide_jour" : "srs_aide_jours", { n: n });
+    return '<p>' + t("srs_aide_intro") + '</p>'
+        + '<p>' + t("srs_aide_echelle") + '</p>'
+        + '<div class="srs-aide-echelle">'
+        +   '<span class="etape">' + tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }) + '</span>'
+        +   '<span class="fleche">\u2192</span><span class="etape">' + jour(j1) + '</span>'
+        +   '<span class="fleche">\u2192</span><span class="etape">' + jour(j2) + '</span>'
+        +   '<span class="fleche">\u2192</span><span class="etape fin">' + t("srs_aide_maitrise") + '</span>'
+        + '</div>'
+        + '<p>' + tf("srs_aide_encore", { n: SRS_CARTES_AVANT_RETOUR }) + '</p>'
+        + '<p>' + tf("srs_aide_apres", { n: SRS_MAINTENANCE_DAYS }) + '</p>';
+}
+
+function basculerAideSrs(){
+    const boite = document.getElementById("srsAide");
+    const bouton = document.getElementById("srsAideBtn");
+    if(!boite) return;
+    const ouvert = boite.classList.contains("hidden");
+    if(ouvert && !boite.innerHTML) boite.innerHTML = texteAideSrs();
+    boite.classList.toggle("hidden", !ouvert);
+    if(bouton) bouton.setAttribute("aria-expanded", String(ouvert));
+    // La carte grandit d'un bloc : sans cela le panneau deborde sous le pli.
+    if(typeof resizeFlashcard === "function") resizeFlashcard();
+}
+
+// Refermee a chaque carte : laissee ouverte, elle repousserait les boutons de
+// jugement hors de l'ecran sur la carte suivante.
+function fermerAideSrs(){
+    const boite = document.getElementById("srsAide");
+    const bouton = document.getElementById("srsAideBtn");
+    if(boite) boite.classList.add("hidden");
+    if(bouton) bouton.setAttribute("aria-expanded", "false");
+}
+
 function reviewAgain(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
@@ -18476,7 +18599,7 @@ function reviewGood(){
         // faisait l'ancien bouton "10 min". Aucun palier gagne ici -- donc pas
         // de confettis : une recompense qui ne correspond a rien se decouvre
         // vite, et devient du bruit.
-        scheduleReview(10, true);
+        scheduleReview(SRS_PREMIERE_MINUTES, true);
         celebrerPalier(true);
         return;
     }
