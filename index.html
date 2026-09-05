@@ -3754,7 +3754,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </button>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v431</span>
+        <span class="subtitle-version">v432</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6612,8 +6612,8 @@ const I18N = {
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
 
-        op_due_desc: "{n} cartes à revoir maintenant",
-        op_due_desc_one: "1 carte à revoir maintenant",
+        op_due_desc: "Une séance de {n} cartes · {r} à revoir",
+        op_due_desc_neufs: "Une séance de {n} cartes",
         op_due_desc_zero: "Rien à revoir pour l'instant",
         op_due_desc_attente: "Un instant, je compte…",
         op_by_level: "Parcourir par niveau",
@@ -7394,8 +7394,8 @@ const I18N = {
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
 
-        op_due_desc: "{n} cards due now",
-        op_due_desc_one: "1 card due now",
+        op_due_desc: "A {n}-card session · {r} to review",
+        op_due_desc_neufs: "A {n}-card session",
         op_due_desc_zero: "Nothing due right now",
         op_due_desc_attente: "One moment, counting…",
         op_by_level: "Browse by level",
@@ -8180,8 +8180,8 @@ const I18N = {
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
 
-        op_due_desc: "Şimdi tekrar edilecek {n} kart",
-        op_due_desc_one: "Şimdi tekrar edilecek 1 kart",
+        op_due_desc: "{n} kartlık bir oturum · {r} tekrar",
+        op_due_desc_neufs: "{n} kartlık bir oturum",
         op_due_desc_zero: "Şu an tekrar edilecek bir şey yok",
         op_due_desc_attente: "Bir saniye, sayıyorum…",
         op_by_level: "Seviyeye göre",
@@ -12591,7 +12591,10 @@ function startVerbeDueReview(){
     flashcardMode = 'verben';
     let dueItems = getVerbeDueItemsAll();
     if(dueItems.length === 0){ showInfoToast(t('alert_no_verbs_due')); return; }
-    shuffleArray(dueItems);
+    // Les revisions d'abord : sur trente cartes tirees au hasard dans un
+    // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
+    // chance d'y figurer.
+    dueItems = prioriserRevisions(dueItems);
     if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
     currentCards = dueItems;
@@ -12738,7 +12741,10 @@ function startAdjektiveDueReview(){
     flashcardMode = 'adjektive';
     let dueItems = getAdjektiveDueItemsAll();
     if(dueItems.length === 0){ showInfoToast(t('alert_no_adj_due')); return; }
-    shuffleArray(dueItems);
+    // Les revisions d'abord : sur trente cartes tirees au hasard dans un
+    // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
+    // chance d'y figurer.
+    dueItems = prioriserRevisions(dueItems);
     if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
     currentCards = dueItems;
@@ -12807,15 +12813,50 @@ const ORB_ICONS = {
 // pour de la repetition espacee : on revise ce qui attend. La ligne dit donc
 // combien de cartes attendent -- et quand il n'y en a aucune, elle le dit
 // aussi, ce qui evite d'ouvrir une seance vide. Remarque de Jacques.
-function texteDus(n, total){
+// Un mot DEJA VU dont l'echeance est passee : la vraie dette de revision. Un
+// mot jamais rencontre n'en fait pas partie, meme si l'app le considere « du »
+// faute d'echeance.
+function estUneRevision(item){
+    const st = getWordState(item.themeId, item.index);
+    return !!(st.due || (st.reviews || 0) > 0);
+}
+
+// Les revisions d'abord, les mots neufs ensuite. C'est l'ordre qui compte quand
+// on ne prend que trente cartes : sinon le mot qu'on allait oublier reste dans
+// le reservoir pendant qu'on decouvre du vocabulaire neuf.
+function prioriserRevisions(items){
+    const revoir = [], neufs = [];
+    items.forEach(it => (estUneRevision(it) ? revoir : neufs).push(it));
+    shuffleArray(revoir);
+    shuffleArray(neufs);
+    return revoir.concat(neufs);
+}
+
+function compterRevisions(items){
+    return items.filter(estUneRevision).length;
+}
+
+// ON ANNONCE LA SEANCE, PAS LE RESERVOIR. « 3 577 cartes a revoir » etait vrai
+// au sens du code et faux au sens de la personne : un mot jamais vu n'a pas
+// d'echeance, il compte donc comme du. Le chiffre decourageait sans rien
+// apprendre -- signale par Jacques.
+//
+// La seance en fait trente au plus. C'est ca qu'il faut dire : combien de temps
+// ca va prendre. Et s'il y a une vraie dette de revision, on la nomme -- c'est
+// le seul chiffre qui merite d'inquieter.
+function texteDus(dus, total){
     // AUCUNE CARTE DU TOUT = les donnees ne sont pas encore la, pas « tu n'as
     // rien a revoir ». Le panneau peut s'ouvrir avant la fin du chargement, et
     // annoncer zero serait un mensonge -- exactement le defaut de la v321, ou
     // le tableau de bord affichait une liste vide au lieu de dire qu'il n'avait
     // pas pu lire. Le panneau se redessine quand le cours arrive (openOrbPanel).
     if(!total) return t("op_due_desc_attente");
-    if(!n) return t("op_due_desc_zero");
-    return tf(n === 1 ? "op_due_desc_one" : "op_due_desc", { n: n });
+    const items = Array.isArray(dus) ? dus : [];
+    if(!items.length) return t("op_due_desc_zero");
+    const seance = Math.min(items.length, DUE_SESSION_CAP);
+    const revisions = Math.min(compterRevisions(items), seance);
+    if(!revisions) return tf("op_due_desc_neufs", { n: seance });
+    return tf("op_due_desc", { n: seance, r: revisions });
 }
 
 function orbPanelData(id){
@@ -12823,7 +12864,7 @@ function orbPanelData(id){
         return {
             icon:"reviser", title:t("op_verben_title"), sub:t("op_verben_sub"),
             options:[
-                { icon:"reviser", title:t("op_verben_o1_t"), desc:texteDus(getVerbeDueItemsAll().length, (verbeTheme.words || []).length), primary:true, action:"startVerbeDueReview" },
+                { icon:"reviser", title:t("op_verben_o1_t"), desc:texteDus(getVerbeDueItemsAll(), (verbeTheme.words || []).length), primary:true, action:"startVerbeDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeVerbes" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
@@ -12848,7 +12889,7 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_nomen_title"), sub:t("op_nomen_sub"),
             options:[
-                { icon:"reviser", title:t("op_nomen_o1_t"), desc:texteDus(getDueItems().length, getAllNomenItems().length), primary:true, action:"startDueReview" },
+                { icon:"reviser", title:t("op_nomen_o1_t"), desc:texteDus(getDueItems(), getAllNomenItems().length), primary:true, action:"startDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openNomenNiveau" },
                 { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
@@ -12864,7 +12905,7 @@ function orbPanelData(id){
         return {
             icon:"carte", title:t("op_adjektive_title"), sub:t("op_adjektive_sub"),
             options:[
-                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:texteDus(getAdjektiveDueItemsAll().length, (adjektiveTheme.words || []).length), primary:true, action:"startAdjektiveDueReview" },
+                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:texteDus(getAdjektiveDueItemsAll(), (adjektiveTheme.words || []).length), primary:true, action:"startAdjektiveDueReview" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openAdjektive" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdjektifs" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix" },
@@ -15670,7 +15711,10 @@ function startDueReview(){
     nomenReturnScreen = 'nomen';
     let dueItems = getDueItems();
     if(dueItems.length === 0){ showInfoToast(t('alert_no_words_due')); return; }
-    shuffleArray(dueItems);
+    // Les revisions d'abord : sur trente cartes tirees au hasard dans un
+    // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
+    // chance d'y figurer.
+    dueItems = prioriserRevisions(dueItems);
     if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
     currentCardsFull = dueItems;
     currentCards = dueItems;
@@ -17884,7 +17928,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 431;
+const APP_VERSION = 432;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
