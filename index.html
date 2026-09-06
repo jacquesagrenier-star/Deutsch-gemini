@@ -3807,7 +3807,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v461</span>
+        <span class="subtitle-version">v462</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5910,6 +5910,29 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         </div>
     </div>
 
+    <!-- CREDITS. Trois obligations d'attribution reunies au meme endroit,
+         parce qu'elles vivaient jusqu'ici a trois endroits differents ou pas
+         du tout :
+           - WikDict / CC BY-SA : la licence EXIGE l'attribution. Elle est deja
+             affichee sous les resultats du dictionnaire ; elle est reprise ici
+             pour que quelqu'un qui cherche « d'ou vient ce contenu » la trouve
+             sans avoir a faire une recherche.
+           - ElevenLabs : pas une obligation, une honnetete.
+           - Grok : les conditions grand public de xAI demandent d'attribuer
+             l'Output au service, de facon lisible et visible, selon leurs
+             lignes directrices de marque. Ce n'etait fait NULLE PART avant la
+             v462. L'ecran d'ouverture dure trois secondes : y poser une mention
+             le denaturerait, et personne ne la lirait. Elle est donc ici, dans
+             le seul endroit de l'app ou l'on va chercher ce genre de chose.
+         ⚠️ Si xAI exige un jour la mention SUR la video, cet emplacement ne
+         suffira plus -- ce sera le moment de changer de source. -->
+    <div class="card">
+        <strong data-i18n="credits_title">Crédits</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="credits_voix">Voix allemande : Aurora, générée avec ElevenLabs.</p>
+        <p style="color:#576177; margin-top:4px;" data-i18n="credits_dict">Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.</p>
+        <p style="color:#576177; margin-top:4px;" data-i18n="credits_video">Animation d'ouverture : Created with Grok.</p>
+    </div>
+
     <div class="card">
         <strong data-i18n="voice_title">Voix de lecture</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
@@ -6352,6 +6375,10 @@ const I18N = {
         dict_count: "{n} entrées",
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
+        credits_title: "Crédits",
+        credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
+        credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
+        credits_video: "Animation d'ouverture : Created with Grok.",
         dict_plural: "pl. {pl}",
         dict_participle: "part. {pp}",
         label_participle: "Participe",
@@ -7148,6 +7175,10 @@ const I18N = {
         dict_count: "{n} entries",
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
+        credits_title: "Credits",
+        credits_voix: "German voice: Aurora, generated with ElevenLabs.",
+        credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
+        credits_video: "Opening animation: Created with Grok.",
         dict_plural: "pl. {pl}",
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
@@ -7946,6 +7977,10 @@ const I18N = {
         dict_count: "{n} kayıt",
         dict_count_one: "1 kayıt",
         dict_credit: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
+        credits_title: "Kaynaklar",
+        credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
+        credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
+        credits_video: "Açılış animasyonu: Created with Grok.",
         dict_plural: "çoğul {pl}",
         dict_participle: "geçmiş ort. {pp}",
         label_participle: "Geçmiş ortaç",
@@ -8979,6 +9014,10 @@ const I18N = {
         dict_count: "{n} записів",
         dict_count_one: "1 запис",
         dict_credit: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
+        credits_title: "Подяки",
+        credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
+        credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
+        credits_video: "Анімація заставки: Created with Grok.",
         dict_plural: "мн. {pl}",
         dict_participle: "дієприкм. {pp}",
         dict_au_cours_title: "Уже картка курсу — відкрити картку",
@@ -19455,7 +19494,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 461;
+const APP_VERSION = 462;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
