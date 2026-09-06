@@ -1305,7 +1305,16 @@ body[data-theme="dark"] .auth-value-row{
     font:inherit; font-size:12px; font-weight:700; line-height:1.25;
     display:flex; align-items:center; justify-content:center; gap:5px;
 }
-.portee-bar button svg{display:block; flex:0 0 auto;}
+/* LA CLE EST TOUJOURS BLEUE, SAUF SUR LE SEGMENT CHOISI (v473).
+   Elle heritait de `currentColor`, donc du GRIS du texte tant que le segment
+   n'etait pas selectionne -- et elle devenait blanche une fois selectionne.
+   Autrement dit elle n'etait jamais bleue, alors que c'est le bleu qui la
+   relie a la cle des cartes. Elle porte maintenant sa couleur, et ne bascule
+   au blanc que la ou le fond est bleu. */
+.portee-bar button svg{display:block; flex:0 0 auto; color:#3b6fe0;}
+.portee-bar button.active svg{color:#ffffff;}
+body[data-theme="dark"] .portee-bar button svg{color:#7fa3f0;}
+body[data-theme="dark"] .portee-bar button.active svg{color:#ffffff;}
 .portee-bar button.active{
     background:#3b6fe0; color:#ffffff;
     box-shadow:0 1px 3px rgba(30,41,59,.18);
@@ -3867,7 +3876,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v472</span>
+        <span class="subtitle-version">v473</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16878,7 +16887,7 @@ function renderNomenPorteeBar(){
     const actuel = porteeNoms();
     // La cle sur le segment « essentiel » : c'est le meme signe que sur les
     // cartes, et c'est ce qui relie les deux endroits sans une phrase.
-    const CLE = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">' +
+    const CLE = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">' +
         '<circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/>' +
         '<rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/>' +
         '<rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/>' +
@@ -19682,7 +19691,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 472;
+const APP_VERSION = 473;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
