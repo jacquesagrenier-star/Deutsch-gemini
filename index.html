@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v479</span>
+        <span class="subtitle-version">v480</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5952,6 +5952,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="spacer"></div>
         <button id="checkButton" class="primary" onclick="checkAnswer()" data-i18n="verify_button">VÉRIFIER</button>
         <div id="feedback" class="feedback"></div>
+        <!-- La phrase allemande une fois l'exercice repondu. Elle n'existe
+             qu'apres la reponse : avant, la faire entendre donnerait la
+             solution. Voir phraseAllemandeDeLExercice(). -->
+        <button id="feedbackSpeakBtn" class="secondary hidden" style="margin:10px 0 0;"
+                onclick="direPhraseExercice()" data-i18n="exercice_ecouter_btn">🔊 ENTENDRE LA PHRASE</button>
 
         <div class="spacer"></div>
         <button id="nextButton" class="secondary hidden" onclick="nextExercise()" data-i18n="next_exercise_button">EXERCICE SUIVANT →</button>
@@ -6824,6 +6829,7 @@ const I18N = {
         op_nomen_o5_t: "Dictée",
         op_nomen_o5_d: "Écouter et écrire — {n} mots",
         dictation_replay_btn: "🔊 RÉÉCOUTER",
+        exercice_ecouter_btn: "🔊 ENTENDRE LA PHRASE",
         dictation_instruction: "Écoute et écris ce que tu entends.",
         dictation_hint: "Pas besoin d'écrire l'article (der/die/das).",
         dictation_explanation_prefix: "Le mot était :",
@@ -7648,6 +7654,7 @@ const I18N = {
         op_nomen_o5_t: "Dictation",
         op_nomen_o5_d: "Listen and write — {n} words",
         dictation_replay_btn: "🔊 REPLAY",
+        exercice_ecouter_btn: "🔊 HEAR THE SENTENCE",
         dictation_instruction: "Listen and write what you hear.",
         dictation_hint: "No need to write the article (der/die/das).",
         dictation_explanation_prefix: "The word was:",
@@ -8476,6 +8483,7 @@ const I18N = {
         op_nomen_o5_t: "Dikte",
         op_nomen_o5_d: "Dinle ve yaz — {n} kelime",
         dictation_replay_btn: "🔊 TEKRAR DİNLE",
+        exercice_ecouter_btn: "🔊 CÜMLEYİ DİNLE",
         dictation_instruction: "Dinle ve duyduğunu yaz.",
         dictation_hint: "Artikeli (der/die/das) yazmana gerek yok.",
         dictation_explanation_prefix: "Kelime şuydu:",
@@ -9174,6 +9182,7 @@ const I18N = {
         next_badge_unit_xp: "очок",
         dictation_start_btn: "🎧 ПОТРЕНУВАТИСЯ: ДИКТАНТ",
         dictation_replay_btn: "🔊 ПРОСЛУХАТИ ЩЕ РАЗ",
+        exercice_ecouter_btn: "🔊 ПРОСЛУХАТИ ФРАЗУ",
         dictation_instruction: "Слухай і пиши те, що чуєш.",
         dictation_hint: "Артикль (der/die/das) писати не потрібно.",
         dictation_explanation_prefix: "Це було слово:",
@@ -15104,6 +15113,10 @@ function exercicesSprechen(niveau){
             translation: o.trad_fr, translation_en: o.trad_en, translation_tr: o.trad_tr,
             hint: "", hint_en: "", hint_tr: "",
             chunks: o.chunks.slice(),
+            // La question de l'examinateur PUIS la reponse modele : dans un
+            // oral, les deux s'entendent, et c'est l'enchainement qu'on
+            // apprend a reconnaitre.
+            audioDe: o.frage + " " + o.chunks.join(" "),
             explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
         }));
 }
@@ -15125,6 +15138,7 @@ function exercicesSchreiben(niveau){
             translation: o.trad_fr, translation_en: o.trad_en, translation_tr: o.trad_tr,
             hint: "", hint_en: "", hint_tr: "",
             chunks: o.chunks.slice(),
+            audioDe: o.chunks.join(" "),
             explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
         }));
 }
@@ -15151,6 +15165,13 @@ function exercicesLesen(niveau){
                     // fait cela, et personne ne relit volontiers deux fois.
                     groupe: groupe,
                     topic: o.typ,
+                    // LE TEXTE SEUL. La question qui suit est redigee dans
+                    // la langue de l'usager ; l'ajouter ferait lire du
+                    // francais par une voix allemande. Et le bouton
+                    // n'apparait qu'APRES la reponse : entendre le texte
+                    // avant de repondre transformerait une epreuve de
+                    // lecture en epreuve d'ecoute.
+                    audioDe: o.text,
                     question: o.text + "\n\n— " + pt(q, "frage"),
                     question_en: o.text + "\n\n— " + q.frage_en,
                     question_tr: o.text + "\n\n— " + q.frage_tr,
@@ -15171,10 +15192,12 @@ function exercicesLesen(niveau){
 // Il part donc dans `dictationText` -- que loadExercise() joue a l'ouverture
 // et que le bouton REECOUTER rejoue -- et la question seule est affichee.
 //
-// C'est la seule des quatre epreuves qui depende de la synthese vocale du
-// telephone. Sur un appareil sans voix allemande installee, la question
-// reste lisible mais l'audio se tait : mieux vaut une epreuve muette qu'un
-// ecran bloque.
+// Ses 120 passages ont leur fichier en voix d'Aurora depuis la v480 (ils
+// etaient absents du manifeste, donc rendus par la voix du telephone -- sur
+// la seule epreuve ou le son EST la competence evaluee). Si le fichier manque,
+// direAllemand() bascule sur la synthese ; et si l'appareil n'a aucune voix
+// allemande, la question reste lisible et l'audio se tait : mieux vaut une
+// epreuve muette qu'un ecran bloque.
 function exercicesHoeren(niveau){
     if(!pruefungData || !pruefungData.hoeren) return [];
     return pruefungData.hoeren
@@ -19987,7 +20010,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 479;
+const APP_VERSION = 480;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -21053,6 +21076,50 @@ function replayDictationAudio(){
     const ex = activeExercises[currentExercise];
     if(!ex || !ex.dictationText) return;
     speakDictationText(ex.dictationText, ex.dictationLang || "de");
+}
+
+// LA PHRASE ALLEMANDE D'UN EXERCICE, une fois celui-ci repondu.
+//
+// Un exercice de grammaire se termine sur une phrase juste -- et jusqu'ici on
+// pouvait la LIRE sans jamais l'entendre. C'est la moitie manquante : la forme
+// « dem Mann » ne s'apprend pas seulement a l'oeil, elle a un son.
+//
+// Trois cas seulement, et aucun ne devine :
+//   - `audioDe` pose par les donnees (les epreuves de l'examen : le modele
+//     oral, la lettre, le texte de lecture) ;
+//   - des blocs a remettre en ordre -> la suite des blocs DANS L'ORDRE JUSTE,
+//     qui est par construction de l'allemand ;
+//   - un blanc dans l'enonce -> l'enonce avec la bonne forme dedans.
+// Tout le reste renvoie "" : un enonce de type « Quel cas ? » est redige dans
+// la langue de l'usager, et le faire dire par une voix allemande donnerait un
+// charabia. Mieux vaut pas de bouton qu'un bouton qui deraille.
+function phraseAllemandeDeLExercice(ex){
+    if(!ex) return "";
+    if(ex.audioDe) return String(ex.audioDe).trim();
+    if(ex.chunks && ex.chunks.length) return ex.chunks.join(" ").trim();
+    const enonce = ex.question || "";
+    if(enonce.indexOf("___") < 0) return "";
+    let bon = ex.correct || (ex.answers && ex.answers[0]) || "";
+    if(!bon) return "";
+    bon = String(bon);
+    if(enonce.indexOf("___") === 0) bon = bon.charAt(0).toUpperCase() + bon.slice(1);
+    return enonce.replace("___", bon).trim();
+}
+
+function direPhraseExercice(){
+    const phrase = phraseAllemandeDeLExercice(activeExercises[currentExercise]);
+    if(phrase) direAllemand(phrase, { rate: 0.9 });
+}
+
+// Montre ou cache le bouton. Appele deux fois : a l'ouverture de l'exercice
+// pour le CACHER (l'entendre avant d'avoir repondu, c'est la reponse), et a la
+// correction pour le montrer.
+function reglerBoutonPhraseExercice(visible){
+    const b = document.getElementById("feedbackSpeakBtn");
+    if(!b) return;
+    const phrase = visible
+        ? phraseAllemandeDeLExercice(activeExercises[currentExercise]) : "";
+    b.classList.toggle("hidden", !phrase);
 }
 
 // Construit une série d'exercices de dictée à partir des cartes actuellement
@@ -22656,6 +22723,7 @@ function loadExercise(){
         dictationReplayBtn.classList.toggle("hidden", !ex.dictation);
         if(ex.dictation) speakDictationText(ex.dictationText, ex.dictationLang || "de");
     }
+    reglerBoutonPhraseExercice(false);
 
     document.getElementById("checkButton").classList.remove("hidden");
     document.getElementById("nextButton").classList.add("hidden");
@@ -22888,6 +22956,7 @@ function checkAnswer(){
         if(blanc && bonne){ blanc.textContent = motPourLeBlanc(bonne); blanc.className = "filled-blank"; }
     }
     else{ input.disabled = true; }
+    reglerBoutonPhraseExercice(true);
     document.getElementById("checkButton").classList.add("hidden");
     document.getElementById("nextButton").classList.remove("hidden");
 }

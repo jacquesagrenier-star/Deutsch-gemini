@@ -124,6 +124,31 @@ def recolter():
     for x in charger("pruefung.json")["hoeren"]:
         prendre(x.get("audio"), x.get("niveau"), "phrase", "pruefung.hoeren")
 
+    # LES TROIS AUTRES EPREUVES. Elles n'avaient aucun son du tout -- pas meme
+    # celui du telephone : rien dans l'application ne les prononcait. Ce qu'on
+    # ajoute ici est exactement ce que le bouton « entendre la phrase » joue,
+    # une fois l'exercice repondu (voir phraseAllemandeDeLExercice).
+    #
+    #   sprechen  : la question de l'examinateur PUIS la reponse modele. Une
+    #               epreuve d'expression orale sans modele entendu manquait sa
+    #               competence de la meme facon que Hoeren manquait la sienne.
+    #   schreiben : la lettre remise dans l'ordre.
+    #   lesen     : le texte SEUL. La question qui l'accompagne est redigee
+    #               dans la langue de l'usager et n'a rien a faire ici.
+    pruefung = charger("pruefung.json")
+    for x in pruefung["sprechen"]:
+        blocs = x.get("chunks") or []
+        if blocs:
+            prendre((x.get("frage") or "") + " " + " ".join(blocs),
+                    x.get("niveau"), "phrase", "pruefung.sprechen")
+    for x in pruefung["schreiben"]:
+        blocs = x.get("chunks") or []
+        if blocs:
+            prendre(" ".join(blocs), x.get("niveau"), "phrase",
+                    "pruefung.schreiben")
+    for x in pruefung["lesen"]:
+        prendre(x.get("text"), x.get("niveau"), "phrase", "pruefung.lesen")
+
     return out
 
 
