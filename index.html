@@ -1277,6 +1277,43 @@ body[data-theme="dark"] .auth-value-row{
     flex-wrap: wrap;
 }
 
+/* LE CHOIX DE PORTEE. Il ressemblait aux autres boutons gris de l'ecran -- et
+   Jacques est passe droit : « mon oeil est alle tout de suite sur le niveau
+   A1 ». Trois raisons, toutes corrigees ici :
+     - AUCUN segment ne paraissait choisi. La classe `active` etait posee, mais
+       `.secondary.active` n'existait pas dans la feuille de style. Les trois
+       boutons etaient donc identiques, et un choix dont on ne voit pas l'etat
+       n'est pas un choix.
+     - la barre n'avait pas de titre : trois etiquettes anonymes sous une autre
+       barre de reglages.
+     - elle avait exactement l'aspect du bouton « Sens : FR -> DE » juste
+       au-dessus, donc elle se lisait comme un reglage et non comme la question
+       « qu'est-ce que je revise ? ».
+   Le segment choisi prend le BLEU DE LA CLE, celui des cartes : c'est la meme
+   information a deux endroits, elle doit avoir la meme couleur. */
+.portee-titre{
+    font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:#7c8698; margin:18px 0 8px;
+}
+.portee-bar{
+    display:flex; gap:6px; padding:4px;
+    background:rgba(30,41,59,.05); border-radius:14px;
+}
+.portee-bar button{
+    flex:1; padding:9px 6px; border-radius:11px; border:1px solid transparent;
+    background:transparent; color:#576177; cursor:pointer;
+    font:inherit; font-size:12px; font-weight:700; line-height:1.25;
+    display:flex; align-items:center; justify-content:center; gap:5px;
+}
+.portee-bar button svg{display:block; flex:0 0 auto;}
+.portee-bar button.active{
+    background:#3b6fe0; color:#ffffff;
+    box-shadow:0 1px 3px rgba(30,41,59,.18);
+}
+body[data-theme="dark"] .portee-bar{background:rgba(255,255,255,.07);}
+body[data-theme="dark"] .portee-bar button{color:#a8b0bf;}
+body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff;}
+
 .due-banner{
     display:flex;
     justify-content:space-between;
@@ -3830,7 +3867,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v471</span>
+        <span class="subtitle-version">v472</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4355,7 +4392,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          dans les mots, ca ne me donne pas le choix ».
          Il est ici, au-dessus des niveaux : on choisit une fois, et les
          compteurs de chaque niveau suivent. -->
-    <div class="filters-bar" id="nomenPorteeBar"></div>
+    <div class="portee-titre" data-i18n="portee_titre">Que réviser ?</div>
+    <div class="portee-bar" id="nomenPorteeBar"></div>
 
     <div class="card" style="margin-top:15px;">
         <div class="theme-list" id="nomenLevelList"></div>
@@ -6453,6 +6491,9 @@ const I18N = {
         op_plusloin_t: "Le vocabulaire pour aller plus loin",
         op_plusloin_d: "Ce qui élargit, au-delà de ce que les programmes retiennent",
         portee_tout: "Tout",
+        portee_titre: "Que réviser ?",
+        portee_essentiel: "L'essentiel",
+        portee_plusloin: "Pour aller plus loin",
         credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
         credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
@@ -7265,6 +7306,9 @@ const I18N = {
         op_plusloin_t: "Vocabulary to go further",
         op_plusloin_d: "What widens, beyond what the syllabuses list",
         portee_tout: "All",
+        portee_titre: "What to revise?",
+        portee_essentiel: "The essentials",
+        portee_plusloin: "To go further",
         credits_voix: "German voice: Aurora, generated with ElevenLabs.",
         credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
@@ -8079,6 +8123,9 @@ const I18N = {
         op_plusloin_t: "Daha ileri gitmek için kelimeler",
         op_plusloin_d: "Programların listelediğinin ötesinde, genişletenler",
         portee_tout: "Tümü",
+        portee_titre: "Ne tekrar edilsin?",
+        portee_essentiel: "Temel",
+        portee_plusloin: "Daha ileri",
         credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
         credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
@@ -9128,6 +9175,9 @@ const I18N = {
         op_plusloin_t: "Лексика, щоб йти далі",
         op_plusloin_d: "Те, що розширює, понад те, що містять програми",
         portee_tout: "Усе",
+        portee_titre: "Що повторювати?",
+        portee_essentiel: "Головне",
+        portee_plusloin: "Далі",
         credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
         credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
@@ -16826,14 +16876,20 @@ function renderNomenPorteeBar(){
     const bar = document.getElementById("nomenPorteeBar");
     if(!bar) return;
     const actuel = porteeNoms();
-    const choix = [["tout", t("portee_tout")],
-                   ["essentiel", t("op_essentiel_t")],
-                   ["plusloin", t("op_plusloin_t")]];
+    // La cle sur le segment « essentiel » : c'est le meme signe que sur les
+    // cartes, et c'est ce qui relie les deux endroits sans une phrase.
+    const CLE = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">' +
+        '<circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/>' +
+        '<rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/>' +
+        '<rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/>' +
+        '<rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg>';
+    const choix = [["tout", t("portee_tout"), ""],
+                   ["essentiel", t("portee_essentiel"), CLE],
+                   ["plusloin", t("portee_plusloin"), ""]];
     bar.innerHTML = choix.map(c =>
-        '<button class="secondary' + (c[0] === actuel ? ' active' : '') +
-        '" style="flex:1; font-size:12px; padding:8px 6px;"' +
-        ' onclick="choisirPorteeNoms(&quot;' + c[0] + '&quot;)">' +
-        c[1] + '</button>').join("");
+        '<button type="button" class="' + (c[0] === actuel ? 'active' : '') +
+        '" onclick="choisirPorteeNoms(&quot;' + c[0] + '&quot;)">' +
+        c[2] + '<span>' + c[1] + '</span></button>').join("");
 }
 
 function renderNomenLevels(){
@@ -19626,7 +19682,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 471;
+const APP_VERSION = 472;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
