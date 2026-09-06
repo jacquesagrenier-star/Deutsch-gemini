@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v455</span>
+        <span class="subtitle-version">v456</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18984,9 +18984,29 @@ function ecouteJouerEtape(){
         // s'applique jamais au premier son d'une seance : amorcerSynthese, qui
         // marque le geste de l'utilisateur, remet l'horodatage a zero. La regle
         // « aucune attente entre le geste et play() » reste donc respectee.
+        // COMBIEN DE TEMPS LAISSER RETOMBER LA SESSION DE LA SYNTHESE (v456).
+        //
+        // 280 ms suffisaient dans l'app installee. Ils ne suffisent PAS dans
+        // l'onglet Safari : Jacques, le 6 septembre, une fois la voix francaise
+        // enfin revenue -- « depuis la tuile, tout est normal ; depuis le lien,
+        // sur la phrase en allemand le niveau est plus bas au debut et remonte
+        // vers le milieu ». C'est l'attenuation d'iOS qui n'a pas fini de se
+        // relacher quand le fichier demarre, et qui cesse en cours de lecture.
+        // Une phrase longue traverse la transition, un mot court finit avant.
+        //
+        // On attend donc plus longtemps, MAIS SEULEMENT LA OU C'EST NECESSAIRE.
+        // Faire payer ce delai a l'app installee ajouterait un demi-silence par
+        // carte a quelqu'un qui n'a pas le defaut.
+        //
+        // ⚠️ CE CHIFFRE EST EMPIRIQUE, il n'y a aucun evenement qui dise « la
+        // session est relachee ». S'il en reste quelque chose a l'oreille, le
+        // seul geste est de l'augmenter -- et l'ecart reel se lit dans le
+        // journal, colonne des millisecondes, entre la ligne FIN et la ligne
+        // FICHIER qui suit.
+        const SOUFFLE_AVANT_FICHIER = estAppInstallee() ? 280 : 700;
         const depuisEnonce = Date.now() - ecouteFinEnonce;
-        const souffleDe = ecouteFinEnonce && depuisEnonce < 280
-            ? 280 - depuisEnonce : 0;
+        const souffleDe = ecouteFinEnonce && depuisEnonce < SOUFFLE_AVANT_FICHIER
+            ? SOUFFLE_AVANT_FICHIER - depuisEnonce : 0;
         const jouer = () => {
             if(jeton !== ecouteJeton || !ecouteJoue) return;
             direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
@@ -19365,7 +19385,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 455;
+const APP_VERSION = 456;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19795,13 +19815,18 @@ function afficherJournalAudio(){
 // Safari ne traite pas pareil -- l'app installee n'est pas soumise aux memes
 // regles de geste que l'onglet. Le journal doit donc dire lequel des deux il a
 // enregistre, sinon deux journaux contradictoires se confondent.
+function estAppInstallee(){
+    try{
+        if(navigator.standalone) return true;
+        return !!(window.matchMedia &&
+                  window.matchMedia("(display-mode: standalone)").matches);
+    }catch(e){ return false; }
+}
+
 function modeLancement(){
     try{
         if(navigator.standalone) return "TUILE (app installee, navigator.standalone)";
-        if(window.matchMedia &&
-           window.matchMedia("(display-mode: standalone)").matches){
-            return "TUILE (app installee, display-mode)";
-        }
+        if(estAppInstallee()) return "TUILE (app installee, display-mode)";
         return "LIEN (onglet Safari)";
     }catch(e){ return "?"; }
 }
