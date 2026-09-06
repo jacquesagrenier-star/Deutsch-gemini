@@ -3201,6 +3201,17 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 /* ===== Mode Écoute ===== */
 .ecoute-stage{ text-align:center; padding:26px 18px; }
 .ecoute-ligne{ opacity:.32; transition:opacity .25s ease; overflow-wrap:anywhere; }
+/* LA LIGNE QU'ON ENTEND, AU VERSO D'UNE CARTE (v458).
+   Reprise du mode Ecoute, avec une difference qui compte : la-bas les lignes
+   inactives tombent a 32 %, ce qui convient a un ecran d'ecoute passive. Le
+   verso d'une carte est une surface de LECTURE -- il faut voir l'ensemble pour
+   se juger -- et a 32 % la carte paraitrait delavee au moment precis ou l'on
+   doit decider « je savais / je ne savais pas ». On attenue donc a peine, et
+   tout revient a la normale des que la chaine finit : la classe est posee sur
+   le verso pendant la prononciation, puis retiree. */
+.flashcard-back .dit-ligne{ transition:opacity .2s ease; }
+.flashcard-back.dit-en-cours .dit-ligne{ opacity:.55; }
+.flashcard-back.dit-en-cours .dit-ligne.dit-actif{ opacity:1; }
 .ecoute-ligne.actif{ opacity:1; }
 .ecoute-mot{ font-size:34px; font-weight:800; color:#1e2433; line-height:1.15; margin-top:4px; }
 .ecoute-trad{ font-size:19px; color:#576177; font-weight:600; }
@@ -3829,7 +3840,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v457</span>
+        <span class="subtitle-version">v458</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5651,14 +5662,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      n'apparait qu'au VERSO -- sur le recto il dirait « tu sais
                      celui-la » avant meme qu'on ait cherche. -->
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
-                <div id="flashArticle" class="article hidden"></div>
-                <div class="word-audio-row">
+                <div id="flashArticle" class="article hidden dit-ligne"></div>
+                <div class="word-audio-row dit-ligne" id="flashMotRow">
                     <div id="flashBackWord" class="back-word">Tisch</div>
                     <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
-                <div id="flashPlural" class="plural hidden">
+                <div id="flashPlural" class="plural hidden dit-ligne">
                     <span id="flashPluralText"></span>
                     <button id="pluralAudioBtn" class="icon-audio-btn icon-audio-btn--petit" onclick="event.stopPropagation(); speakPlural();" aria-label="Écouter le pluriel">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
@@ -5667,7 +5678,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashPaire" class="plural hidden"></div>
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
-                <div id="flashVerbDetails" class="verb-details hidden"></div>
+                <div id="flashVerbDetails" class="verb-details hidden dit-ligne"></div>
                 <div id="flashSynonymes" class="synonymes hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
                 <div class="tap-map" aria-hidden="true">
@@ -5936,6 +5947,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="voice_title">Voix de lecture</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
         <div id="voiceSettingsBox"></div>
+    </div>
+
+    <!-- L'ETIQUETTE DOIT DIRE EXACTEMENT CE QUE LE REGLAGE FAIT, y compris ce
+         qu'il COUTE -- demande explicite de Jacques : « il faut que ce soit
+         parfaitement clair, qu'est-ce qu'on est en train de faire ». Un
+         reglage dont on ne comprend pas l'effet est un piege, pas un choix. -->
+    <div class="card">
+        <strong data-i18n="carte_phrase_titre">Dire aussi la phrase d'exemple</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="carte_phrase_desc">Au verso d'une carte, l'allemand se dit tout seul : le mot avec son article, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de deux à trois secondes avant que tu puisses te juger. Sans ce réglage, la phrase reste affichée et son haut-parleur fonctionne comme avant.</p>
+        <div class="spacer"></div>
+        <button class="secondary" id="cartePhraseBtn" onclick="basculerCartePhrase()">Non — mot et pluriel seulement</button>
     </div>
 
     <!-- Reserve a l'administrateur (v374). L'outil a fait son travail -- c'est
@@ -6599,6 +6621,10 @@ const I18N = {
         voice_test: "\u00c9couter",
         voice_none: "Aucune voix install\u00e9e pour cette langue sur cet appareil. Les phrases seront lues avec la voix par d\u00e9faut, donc avec un mauvais accent. Ajoute-la dans les r\u00e9glages de ton t\u00e9l\u00e9phone (Accessibilit\u00e9 \u203a Contenu parl\u00e9 \u203a Voix).",
         voice_only_one: "Une seule voix install\u00e9e. Tu peux en ajouter une am\u00e9lior\u00e9e dans les r\u00e9glages de ton t\u00e9l\u00e9phone, puis revenir la choisir ici.",
+        carte_phrase_titre: "Dire aussi la phrase d'exemple",
+        carte_phrase_desc: "Au verso d'une carte, l'allemand se dit tout seul : le mot avec son article, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de deux à trois secondes avant que tu puisses te juger. Sans ce réglage, la phrase reste affichée et son haut-parleur fonctionne comme avant.",
+        carte_phrase_oui: "Oui — la phrase est lue",
+        carte_phrase_non: "Non — mot et pluriel seulement",
         voice_unsupported: "Ce navigateur ne propose pas de synth\u00e8se vocale.",
         settings_title: "Révision",
         settings_global_progress: "Progression globale",
@@ -7389,6 +7415,10 @@ const I18N = {
         voice_test: "Listen",
         voice_none: "No voice installed for this language on this device. Sentences will be read with the default voice, and therefore with the wrong accent. Add one in your phone settings (Accessibility \u203a Spoken Content \u203a Voices).",
         voice_only_one: "Only one voice installed. You can add an enhanced one in your phone settings, then come back and pick it here.",
+        carte_phrase_titre: "Also read the example sentence",
+        carte_phrase_desc: "On the back of a card, the German is spoken on its own: the word with its article, then its plural. With this setting on, the example sentence is read next. It teaches the word in context, but it adds two to three seconds to every card before you can rate yourself. With it off, the sentence stays on screen and its speaker button works as before.",
+        carte_phrase_oui: "Yes — the sentence is read",
+        carte_phrase_non: "No — word and plural only",
         voice_unsupported: "This browser does not provide speech synthesis.",
         settings_title: "Review",
         settings_global_progress: "Overall progress",
@@ -8183,6 +8213,10 @@ const I18N = {
         voice_test: "Dinle",
         voice_none: "Bu cihazda bu dil için yüklü ses yok. Cümleler varsayılan sesle, yani yanlış aksanla okunacak. Telefon ayarlarından bir tane ekle (Erişilebilirlik › Sözlü İçerik › Sesler).",
         voice_only_one: "Yalnızca bir ses yüklü. Telefon ayarlarından gelişmiş bir tane ekleyip buraya dönerek onu seçebilirsin.",
+        carte_phrase_titre: "Örnek cümleyi de oku",
+        carte_phrase_desc: "Kartın arka yüzünde Almanca kendiliğinden okunur: sözcük artikeliyle, sonra çoğulu. Bu ayar açıkken örnek cümle de ardından okunur. Sözcüğü bağlam içinde öğretir, ama kendini değerlendirmeden önce her karta iki üç saniye ekler. Kapalıyken cümle ekranda kalır ve hoparlör düğmesi eskisi gibi çalışır.",
+        carte_phrase_oui: "Evet — cümle okunur",
+        carte_phrase_non: "Hayır — yalnızca sözcük ve çoğul",
         voice_unsupported: "Bu tarayıcı konuşma sentezi sunmuyor.",
         settings_title: "Tekrar",
         settings_global_progress: "Genel ilerleme",
@@ -9540,6 +9574,10 @@ const I18N = {
         voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
         voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
         voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
+        carte_phrase_titre: "Читати також речення-приклад",
+        carte_phrase_desc: "На звороті картки німецька звучить сама: слово з артиклем, потім множина. З цим налаштуванням далі читається речення-приклад. Воно вчить слово в контексті, але додає дві–три секунди до кожної картки, перш ніж ти зможеш себе оцінити. Без нього речення лишається на екрані, а його кнопка динаміка працює як раніше.",
+        carte_phrase_oui: "Так — речення читається",
+        carte_phrase_non: "Ні — лише слово й множина",
         table_header_gender_number: "<td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">чол.</td><td style=\"padding:8px 4px;\">жін.</td><td style=\"padding:8px 4px;\">сер.</td><td style=\"padding:8px 4px;\">множ.</td>",
         ecoute_menu_desc: "Заняття без рук: застосунок промовляє слово, лишає паузу, щоб ти повторив його вголос, а тоді читає речення-приклад. Не давай екрану згаснути — голос замовкає, щойно телефон блокується.",
         tuiles_menu_desc: "Тобі дають речення рідною мовою й німецькі слова врозсип. Торкайся їх у правильному порядку — без клавіатури. На лаві є одне-два зайві слова, підібрані з тієї самої родини, що й потрібні: саме в цьому вся вправа.",
@@ -15745,6 +15783,7 @@ function openSettings(){
     // incapable de satisfaire.
     const inviteCard = document.getElementById("inviteCard");
     if(inviteCard) inviteCard.classList.toggle("hidden", !isAdminUser());
+    renderCartePhraseSetting();
     const journalCard = document.getElementById("journalAudioCard");
     if(journalCard) journalCard.classList.toggle("hidden", !isAdminUser());
     showScreen("settings");
@@ -17290,6 +17329,13 @@ function setFlashHeader(kickerKey, titleKey){
 function loadFlashcard(){
     updateXpComboDisplay();
     hideFlashcardEnd();
+    // La phrase a prononcer appartient a la carte qu'on affiche, et a elle
+    // seule. Remise a zero ICI, avant que la moindre branche de rendu ne
+    // s'execute : sinon une carte sans phrase heriterait de celle d'avant --
+    // c'est le defaut latent que texteAudioPluriel a deja, faute d'etre remis
+    // a zero dans les six branches qui ne le posent pas.
+    texteAudioExemple = null;
+    arreterChaineCarte(true);
     majEcheances();
     const item = currentCards[currentFlashcard];
     if(!item){ handleFlashcardBack(); return; }
@@ -17749,6 +17795,10 @@ function loadFlashcard(){
                     : `${exampleSentence}${nomenSpeakBtn}\n${exampleSentenceFr}`)
                 : `${exampleSentence}${nomenSpeakBtn}`;
             verbDetailsEl.classList.remove("hidden");
+            // Retenue pour la chaine du retournement. Seul l'allemand a des
+            // fichiers pre-generes : en direction anglaise on ne pose rien, la
+            // chaine s'arretera au mot.
+            if(!learningEnglish) texteAudioExemple = exampleSentence;
         } else {
             verbDetailsEl.classList.add("hidden");
         }
@@ -17781,12 +17831,13 @@ function flipCard(){
     flashcardEl.classList.add("flipped");
     document.getElementById("flashcardActions").classList.remove("hidden");
     resizeFlashcard();
-    // Prononcer automatiquement le mot (avec son article pour les noms
-    // allemands) dès que la carte se retourne, sans attendre un clic sur
-    // le bouton d'écoute -- speakWord() lit déjà flashBackWord/flashArticle,
-    // qui sont à jour à ce stade puisque loadFlashcard() s'exécute avant tout
-    // retournement possible.
-    speakWord();
+    // Prononcer automatiquement dès que la carte se retourne, sans attendre un
+    // clic sur le bouton d'écoute. Les textes sont à jour à ce stade, puisque
+    // loadFlashcard() s'exécute avant tout retournement possible.
+    //
+    // Ce n'est plus le mot seul depuis la v458 : le mot avec son article, puis
+    // son pluriel, et la phrase si le réglage le demande. Voir direChaineCarte.
+    direChaineCarte();
 }
 
 let cardBusy = false;
@@ -17817,8 +17868,10 @@ function unflipCard(){
     document.getElementById("flashcardActions").classList.add("hidden");
     fermerAideSrs();
     // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
-    // voix continue de dire une reponse qui n'est plus a l'ecran.
-    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    // voix continue de dire une reponse qui n'est plus a l'ecran. La chaine
+    // entiere s'arrete, pas seulement l'etape en cours -- sans quoi le pluriel
+    // se dirait par-dessus le recto.
+    arreterChaineCarte(true);
     resizeFlashcard();
 }
 
@@ -17883,6 +17936,39 @@ let cachedGermanVoice = null;
 let cachedEnglishVoice = null;
 
 const VOICE_CHOICE_KEY = "deutschAI_voiceChoice";
+
+// DIRE AUSSI LA PHRASE D'EXEMPLE AU VERSO -- DEFAUT : NON (v458).
+//
+// Pourquoi non par defaut. Le retournement d'une carte est le moment du VERDICT
+// sur un essai de rappel, et un verdict doit etre court : c'est la que la
+// personne decide « je savais / je ne savais pas ». Une phrase double a peu
+// pres la duree de la chaine, et la valeur d'une seance de cartes se compte en
+// nombre de rappels, pas en minutes. Le mode Ecoute, lui, dit deja mot ET
+// phrase sans les mains -- c'est sa raison d'etre.
+//
+// Pourquoi le reglage existe quand meme. Entendre le mot en contexte apporte la
+// prosodie et la grammaire (le cas, la place du verbe) : c'est de l'encodage
+// qui transfere vers l'USAGE et pas seulement vers la reconnaissance. Certains
+// le voudront, et la phrase est deja la, deja generee, deja affichee.
+const CARTE_PHRASE_KEY = "deutschAI_carteDirePhrase";
+
+function carteDitLaPhrase(){
+    try{ return localStorage.getItem(CARTE_PHRASE_KEY) === "1"; }
+    catch(e){ return false; }
+}
+
+function basculerCartePhrase(){
+    try{
+        localStorage.setItem(CARTE_PHRASE_KEY, carteDitLaPhrase() ? "0" : "1");
+    }catch(e){}
+    renderCartePhraseSetting();
+}
+
+function renderCartePhraseSetting(){
+    const b = document.getElementById("cartePhraseBtn");
+    if(!b) return;
+    b.textContent = carteDitLaPhrase() ? t("carte_phrase_oui") : t("carte_phrase_non");
+}
 
 // Un meme appareil expose souvent DEUX voix pour la meme langue : une voix
 // "compacte" (celle qui sonne mecanique) et une voix amelioree ou neurale, bien
@@ -19403,7 +19489,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 457;
+const APP_VERSION = 458;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20043,6 +20129,130 @@ function estRefusDeLecture(e){
 // ligne affichee porte l'etiquette traduite (« Pluriel : », « Plural: »,
 // « Çoğul: »), et la prononcer donnerait « Pluriel di Tische ».
 let texteAudioPluriel = null;
+// La phrase d'exemple de la carte affichee, quand elle doit se dire. Voir
+// direChaineCarte et le reglage carte_phrase.
+let texteAudioExemple = null;
+
+// ============ La chaine prononcee au retournement d'une carte ============
+//
+// CE QUE CETTE CHAINE APPREND, ET POURQUOI ELLE EXISTE (v458, demande d'une
+// usagere relayee par Jacques).
+//
+// Un nom allemand ne s'apprend pas sans son genre NI son pluriel : les deux
+// sont imprevisibles et doivent etre stockes avec le mot. L'article se disait
+// deja avec le nom, pour cette raison exacte. Le pluriel, lui, n'avait qu'un
+// haut-parleur a toucher -- et c'est justement ce qui le rendait inutile :
+//
+//   LA VALEUR EST DANS LE CONTRASTE, ET UN CONTRASTE N'EXISTE QUE SI LES DEUX
+//   FORMES SONT ADJACENTES. « der Vater / die Vaeter » : l'inflexion s'entend.
+//   Lue, c'est un trema qu'on survole. Separee par un appui sur un bouton, la
+//   paire ne se forme jamais dans l'oreille.
+//
+// ON DIT LE PLURIEL MEME QUAND LA FORME NE CHANGE PAS. C'etait la question de
+// Jacques, et le comptage lui a donne tort avant qu'il ne se ravise lui-meme :
+// sur les 3 396 noms qui ont un pluriel, 451 ont une forme identique -- mais
+// 430 d'entre eux CHANGENT D'ARTICLE (« der Onkel -> die Onkel »,
+// « das Maedchen -> die Maedchen »). Le pluriel s'entend donc, porte par
+// l'article seul, et ce sont precisement les cas que l'apprenant rate en
+// inventant une terminaison. Se taire la enseignerait « pluriel = le mot
+// change », et l'eleve dirait « die Onkeln ».
+//
+// C'est mot pour mot le raisonnement de la v445 : la serie des connecteurs a du
+// inclure les familles qui ne changent RIEN (und, oder), sinon elle aurait
+// enseigne « connecteur = inversion ». Restent 21 noms vraiment identiques a
+// l'oreille (die Eltern, die Geschwister, die Nudeln) : on les dit aussi, parce
+// qu'entendre deux fois la meme forme APPREND que ce mot ne change pas -- et
+// parce qu'une regle sans exception est une regle que l'app peut tenir partout.
+let chaineCarteJeton = 0;
+let chaineCarteMinuteur = null;
+
+// Les zones du verso qui peuvent s'eclairer, et l'ordre ou on les dit.
+const CHAINE_GROUPES = {
+    mot:     ["flashArticle", "flashMotRow"],
+    pluriel: ["flashPlural"],
+    phrase:  ["flashVerbDetails"]
+};
+
+function eclairerLigneCarte(groupe){
+    Object.keys(CHAINE_GROUPES).forEach(nom => {
+        CHAINE_GROUPES[nom].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.classList.toggle("dit-actif", nom === groupe);
+        });
+    });
+}
+
+function finChaineCarte(){
+    clearTimeout(chaineCarteMinuteur);
+    const dos = document.querySelector(".flashcard-back");
+    if(dos) dos.classList.remove("dit-en-cours");
+    eclairerLigneCarte(null);
+}
+
+// A appeler avant tout ce qui remplace ou cache la carte : le jeton invalide
+// la chaine en cours, sinon une etape en retard parlerait par-dessus la carte
+// suivante -- et eclairerait une ligne qui ne lui appartient plus.
+function arreterChaineCarte(couper){
+    chaineCarteJeton++;
+    if(couper){
+        arreterAudioPregenere();
+        // Meme precaution qu'ailleurs (v449) : ne couper la synthese que s'il y
+        // a quelque chose a couper. Sur un moteur au repos, cancel() rend muet
+        // l'enonce suivant.
+        libererMoteur();
+    }
+    finChaineCarte();
+}
+
+function etapesChaineCarte(){
+    const etapes = [];
+    const mot = texteCarteAPrononcer();
+    if(mot) etapes.push({ groupe: "mot", texte: mot });
+    // Le pluriel n'est propose que si la carte l'affiche : texteAudioPluriel
+    // n'est pas remis a zero par les branches qui ne le posent pas, et un nom
+    // suivi d'un verbe ferait sinon dire le pluriel du nom precedent.
+    const plurielEl = document.getElementById("flashPlural");
+    if(texteAudioPluriel && plurielEl && !plurielEl.classList.contains("hidden")){
+        etapes.push({ groupe: "pluriel", texte: texteAudioPluriel });
+    }
+    if(texteAudioExemple && carteDitLaPhrase()){
+        etapes.push({ groupe: "phrase", texte: texteAudioExemple });
+    }
+    return etapes;
+}
+
+function direChaineCarte(){
+    if(!currentCards.length) return;
+    // Direction anglaise : la cible est l'anglais, qui n'a aucun fichier
+    // pre-genere et passe par la synthese. direAllemand() n'irait pas y
+    // chercher la bonne voix -- on garde le chemin d'origine, inchange.
+    if(getLearningDirection() === "en"){ speakWord(); return; }
+    arreterChaineCarte(true);
+    const etapes = etapesChaineCarte();
+    if(!etapes.length) return;
+    const jeton = chaineCarteJeton;
+    // Une seule etape : rien a eclairer, et attenuer le reste n'apprendrait
+    // rien. L'ancien comportement (le mot, point) reste exactement lui-meme.
+    if(etapes.length > 1){
+        const dos = document.querySelector(".flashcard-back");
+        if(dos) dos.classList.add("dit-en-cours");
+    }
+    let i = 0;
+    const suivante = () => {
+        if(jeton !== chaineCarteJeton) return;
+        if(i >= etapes.length){ finChaineCarte(); return; }
+        const et = etapes[i++];
+        if(etapes.length > 1) eclairerLigneCarte(et.groupe);
+        direAllemand(et.texte, { rate: 0.9, onEnd: () => {
+            if(jeton !== chaineCarteJeton) return;
+            // Un souffle entre deux etapes. Il sert deux choses : laisser l'oeil
+            // suivre le deplacement de la lumiere, et laisser la session sonore
+            // se reposer -- meme raison qu'en mode Ecoute.
+            chaineCarteMinuteur = setTimeout(suivante, 300);
+        }});
+    };
+    suivante();
+}
 
 function reglerAudioPluriel(texte){
     texteAudioPluriel = texte || null;
@@ -20053,8 +20263,12 @@ function reglerAudioPluriel(texte){
 function speakPlural(){
     if(!texteAudioPluriel) return;
     // Meme chemin que le mot : fichier pre-genere s'il existe, voix du
-    // navigateur sinon. Les pluriels ne sont pas encore dans le manifeste
-    // audio, donc c'est le repli qui parle aujourd'hui.
+    // navigateur sinon. CORRIGE (v458) : le commentaire precedent affirmait que
+    // « les pluriels ne sont pas encore dans le manifeste audio ». C'est faux
+    // depuis longtemps -- audio/manifest.py genere « die » + pluriel (source
+    // nomen.pluriel), et les fichiers sont en ligne dans la voix d'Aurora.
+    // Verifie cote serveur le 6 septembre 2026 sur « die Vaeter » et
+    // « die Muetter ».
     direAllemand(texteAudioPluriel, { rate: 0.9 });
 }
 
