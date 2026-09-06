@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v481</span>
+        <span class="subtitle-version">v482</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5846,6 +5846,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="ecoute_level_title">Choisir un niveau</strong>
         <div id="ecouteLevelBar" class="filters-bar" style="margin-top:10px;"></div>
     </div>
+
+    <!-- L'echelon entre le mot entendu et l'examen. Separe de la seance
+         mains libres au-dessus parce que ce n'est pas la meme chose : celle-ci
+         est passive et ne touche pas la progression, celle-la est un exercice
+         qui compte. -->
+    <div class="card">
+        <strong data-i18n="ecoute_phrase_title">Comprendre à l'oreille</strong>
+        <p style="color:#576177; line-height:1.5; margin:8px 0 0;" data-i18n="ecoute_phrase_desc">Une phrase est dite, jamais écrite : choisis ce qu'elle veut dire. Elle s'affiche ensuite, à relire en la réécoutant. Cet exercice-ci compte dans ta progression.</p>
+        <div id="ecoutePhraseLevelBar" class="filters-bar" style="margin-top:10px;"></div>
+    </div>
 </section>
 
 <section id="ecoute" class="screen">
@@ -7139,6 +7149,10 @@ const I18N = {
         ecoute_sens_cible_connu: "Allemand d'abord",
         ecoute_sens_cible_connu_d: "tu reconnais, puis tu vérifies",
         ecoute_level_title: "Choisir un niveau",
+        ecoute_phrase_title: "Comprendre à l'oreille",
+        ecoute_phrase_desc: "Une phrase est dite, jamais écrite : choisis ce qu'elle veut dire. Elle s'affiche ensuite, à relire en la réécoutant. Cet exercice-ci compte dans ta progression.",
+        ecoute_phrase_topic: "Écoute",
+        ecoute_phrase_question: "Qu'est-ce que tu viens d'entendre ?",
         ecoute_level_all: "Tous",
         ecoute_title: "Écouter et répéter",
         ecoute_reglages_title: "Réglages",
@@ -7964,6 +7978,10 @@ const I18N = {
         ecoute_sens_cible_connu: "German first",
         ecoute_sens_cible_connu_d: "you recognise, then you check",
         ecoute_level_title: "Choose a level",
+        ecoute_phrase_title: "Understand by ear",
+        ecoute_phrase_desc: "A sentence is spoken, never written: choose what it means. It appears afterwards, to reread while playing it again. This one does count towards your progress.",
+        ecoute_phrase_topic: "Listening",
+        ecoute_phrase_question: "What did you just hear?",
         ecoute_level_all: "All",
         ecoute_title: "Listen and repeat",
         ecoute_reglages_title: "Settings",
@@ -8793,6 +8811,10 @@ const I18N = {
         ecoute_sens_cible_connu: "Önce Almanca",
         ecoute_sens_cible_connu_d: "tanıyorsun, sonra kontrol ediyorsun",
         ecoute_level_title: "Bir seviye seç",
+        ecoute_phrase_title: "Kulaktan anlama",
+        ecoute_phrase_desc: "Bir cümle söylenir, hiç yazılmaz: ne anlama geldiğini seç. Sonra ekranda çıkar, tekrar dinlerken okuyabilirsin. Bu alıştırma ilerlemene sayılır.",
+        ecoute_phrase_topic: "Dinleme",
+        ecoute_phrase_question: "Az önce ne duydun?",
         ecoute_level_all: "Tümü",
         ecoute_title: "Dinle ve tekrarla",
         ecoute_reglages_title: "Ayarlar",
@@ -9026,6 +9048,10 @@ const I18N = {
         ecoute_sens_cible_connu: "Спочатку німецька",
         ecoute_sens_cible_connu_d: "ти впізнаєш, а потім перевіряєш",
         ecoute_level_title: "Обрати рівень",
+        ecoute_phrase_title: "Розуміти на слух",
+        ecoute_phrase_desc: "Речення звучить, але ніколи не показується: обери, що воно означає. Потім воно з'явиться — перечитай, слухаючи ще раз. Ця вправа рахується в прогресі.",
+        ecoute_phrase_topic: "Слухання",
+        ecoute_phrase_question: "Що ти щойно почув?",
         ecoute_level_all: "Усі",
         ecoute_reglages_title: "Налаштування",
         ecoute_vitesse_label: "Швидкість голосу",
@@ -19241,6 +19267,22 @@ function renderEcouteMenu(){
         });
         bar.innerHTML = html;
     }
+    const barPhrase = document.getElementById("ecoutePhraseLevelBar");
+    if(barPhrase){
+        // Le compte affiche est celui des PHRASES, pas des cartes : la barre du
+        // dessus compte des mots a ecouter, celle-ci des phrases a comprendre,
+        // et les deux nombres n'ont aucune raison de coincider.
+        const total = phrasesEcoutables("ALL").length;
+        let html = ecouteBoutonBarre(false, "startEcoutePhrase('ALL')",
+            `${t("ecoute_level_all")} (${total})`, "", "flex:1 1 100%;");
+        LEVELS.forEach(lvl => {
+            const n = phrasesEcoutables(lvl).length;
+            if(n >= ECOUTE_PHRASE_CHOIX) html += ecouteBoutonBarre(false,
+                `startEcoutePhrase('${lvl}')`, `${lvl} (${n})`, "",
+                "flex:1 1 46%; min-width:0;");
+        });
+        barPhrase.innerHTML = html;
+    }
 }
 
 function setEcouteSens(sens){
@@ -20020,7 +20062,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 481;
+const APP_VERSION = 482;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -22310,6 +22352,154 @@ function phrasesTraduisibles(niveau){
 }
 
 const SCHREIBEN_TAILLE_SERIE = 15;
+
+
+// ==================== Comprendre a l'oreille ====================
+//
+// LE BARREAU QUI MANQUAIT A L'ECHELLE. L'application faisait entendre des MOTS
+// (la dictee) et faisait passer un EXAMEN d'ecoute -- entre les deux, rien. On
+// passait d'un nom de trois syllabes a un passage de vingt secondes suivi d'une
+// question a choix multiple, sans jamais avoir travaille l'echelon du milieu :
+// une phrase entiere, entendue une fois, comprise.
+//
+// Il ne coute AUCUN credit de generation : les phrases d'exemple du vocabulaire
+// ont deja leur fichier en voix d'Aurora, et leur traduction dans les quatre
+// langues d'interface. C'est le meme corpus, interroge autrement.
+//
+// Ce que l'exercice demande vraiment : le sens, pas l'orthographe. On entend la
+// phrase allemande -- jamais ecrite -- et on choisit ce qu'elle veut dire. La
+// phrase allemande n'apparait qu'APRES la reponse, dans l'explication, et le
+// bouton « entendre la phrase » de la v480 permet alors de la reecouter en la
+// lisant. C'est la que le son se raccroche a l'ecrit.
+const ECOUTE_PHRASE_TAILLE_SERIE = 10;
+const ECOUTE_PHRASE_CHOIX = 4;
+
+// Le vivier, avec les QUATRE langues. phrasesTraduisibles() n'en porte que deux
+// (fr et en) parce que l'exercice de frappe montre la traduction et attend
+// l'allemand : la langue de la consigne y suffit. Ici les traductions sont les
+// REPONSES -- un turcophone qui doit choisir entre quatre phrases francaises ne
+// fait plus l'exercice d'ecoute, il fait un exercice de francais.
+//
+// Les rangs viennent de RANGS_CARTE, seul endroit du fichier qui sache ou vit
+// chaque langue dans un tableau de carte.
+function phrasesEcoutables(niveau){
+    const sorties = [];
+    const vus = new Set();
+    const ajouter = (de, trad, source) => {
+        // Une phrase de moins de dix caracteres ne s'ecoute pas : le temps de
+        // comprendre qu'on ecoute, elle est finie.
+        if(!de || de.length < 10 || vus.has(de)) return;
+        if(!trad || !(trad.fr || trad.en || trad.tr || trad.uk)) return;
+        vus.add(de);
+        sorties.push({ de: de, trad: trad, source: source });
+    };
+    const bonNiveau = (n) => niveau === "ALL" || n === niveau;
+    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk] });
+
+    themesComptes().forEach(theme => {
+        Object.keys(theme.levels || {}).forEach(lvl => {
+            if(!bonNiveau(lvl)) return;
+            const lv = theme.levels[lvl];
+            (lv.words || []).forEach(w =>
+                ajouter(w[5], rangs(w, RANGS_CARTE.nomen.exemple), theme.name));
+            (lv.verben || []).forEach(v => ajouter(v.exemple, {
+                fr: v.exemple_fr, en: v.exemple_en,
+                tr: v.exemple_tr, uk: v.exemple_uk }, theme.name));
+        });
+    });
+
+    (verbeTheme.words || []).forEach(v => {
+        if(!bonNiveau(v.niveau)) return;
+        ajouter(v.exemple, { fr: v.exemple_fr, en: v.exemple_en,
+                             tr: v.exemple_tr, uk: v.exemple_uk },
+                t('orb_verben_title'));
+    });
+
+    // ⚠️ PAS D'ADJECTIFS ICI, ET C'EST DELIBERE. Ils existent sous DEUX
+    // dispositions differentes -- dans un theme, la phrase allemande est au
+    // rang 3 et il n'y a ni turc ni ukrainien ; dans le paquet autonome
+    // (adjektiveTheme), elle est au rang 2, le rang 3 portant le NIVEAU.
+    // Confondre les deux ferait lire un niveau (« A1 ») a voix haute comme une
+    // phrase, sans la moindre erreur nulle part. Noms et verbes donnent deja
+    // plus de 5 000 phrases avec leurs quatre traductions : le peu que les
+    // adjectifs ajouteraient ne vaut pas ce risque-la.
+
+    return sorties;
+}
+
+// La traduction dans la langue active, en suivant la chaine de repli. Un
+// ukrainophone doit lire de l'ukrainien s'il existe, de l'anglais sinon --
+// jamais du francais par defaut, c'est la lecon de valeurTraduite().
+function traductionActive(p){
+    for(const code of langueEtRepli()){
+        if(p.trad[code]) return p.trad[code];
+    }
+    return p.trad.fr || p.trad.en || "";
+}
+
+function startEcoutePhrase(niveau){
+    // Premier geste de la seance : c'est ici que la synthese peut obtenir le
+    // droit de parler, si un fichier venait a manquer. Voir amorcerSynthese().
+    amorcerSynthese();
+    const vivier = phrasesEcoutables(niveau || "ALL");
+    if(vivier.length < ECOUTE_PHRASE_CHOIX){
+        showInfoToast(t('alert_level_unavailable'));
+        return;
+    }
+    const melange = vivier.slice();
+    shuffleArray(melange);
+    const liste = [];
+    melange.slice(0, ECOUTE_PHRASE_TAILLE_SERIE).forEach(ph => {
+        const bonne = traductionActive(ph);
+        if(!bonne) return;
+        // LES LEURRES VIENNENT DU MEME THEME QUAND C'EST POSSIBLE. Tires au
+        // hasard dans tout le corpus, ils parlent d'autre chose et la bonne
+        // reponse se devine sans avoir rien compris : il suffit d'attraper un
+        // mot. Pris dans le meme theme, il faut ecouter la phrase entiere.
+        const memeTheme = vivier.filter(x => x.source === ph.source && x.de !== ph.de);
+        const reste = vivier.filter(x => x.source !== ph.source);
+        shuffleArray(memeTheme);
+        shuffleArray(reste);
+        const choix = [ph];
+        const vus = new Set([bonne]);
+        for(const cand of memeTheme.concat(reste)){
+            if(choix.length >= ECOUTE_PHRASE_CHOIX) break;
+            const txt = traductionActive(cand);
+            // Deux options identiques rendraient la question insoluble : deux
+            // phrases allemandes differentes peuvent tres bien avoir la meme
+            // traduction.
+            if(!txt || vus.has(txt)) continue;
+            vus.add(txt);
+            choix.push(cand);
+        }
+        if(choix.length < ECOUTE_PHRASE_CHOIX) return;
+        shuffleArray(choix);
+        const options = choix.map(traductionActive);
+        liste.push({
+            topic: t('ecoute_phrase_topic') + " · " + ph.source,
+            question: t('ecoute_phrase_question'),
+            question_en: t('ecoute_phrase_question'),
+            question_tr: t('ecoute_phrase_question'),
+            // La phrase est LUE, jamais ecrite : l'afficher ferait de l'epreuve
+            // un exercice de lecture. Meme regle que pour le Hoeren de l'examen.
+            dictation: true, dictationText: ph.de, dictationLang: "de",
+            translation: "", translation_en: "", translation_tr: "",
+            hint: "", hint_en: "", hint_tr: "",
+            answers: [bonne], correct: bonne, correctEn: bonne,
+            correctTr: bonne, correctUk: bonne,
+            options: options, optionsEn: options,
+            optionsTr: options, optionsUk: options,
+            // LA RECOMPENSE : la phrase allemande apparait enfin, et le bouton
+            // « entendre la phrase » (v480) la rejoue pendant qu'on la lit.
+            audioDe: ph.de,
+            explanation: ph.de, explanation_en: ph.de,
+            explanation_tr: ph.de, explanation_uk: ph.de
+        });
+    });
+    if(!liste.length){ showInfoToast(t('alert_level_unavailable')); return; }
+    startExerciseSet(liste, 'ecoute_phrase_topic',
+                     ouvrirEcouteMenu, () => startEcoutePhrase(niveau));
+}
 
 
 // ==================== Construire la phrase (tuiles) ====================
