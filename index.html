@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v477</span>
+        <span class="subtitle-version">v478</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6063,6 +6063,25 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div id="voiceSettingsBox"></div>
     </div>
 
+    <!-- SIGNALER QUELQUE CHOSE. Suggestion d'usagers, relayee par Jacques.
+         Elle repare un desequilibre : l'app demande beaucoup de retours et
+         n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
+         defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
+         qu'il faisait -- donc la plupart ne disaient rien.
+         Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
+         lien) : c'est exactement ce qui a manque toute la journee du 6
+         septembre pour diagnostiquer le son. -->
+    <div class="card">
+        <strong data-i18n="retour_titre">Signaler un problème ou une idée</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
+        <div class="spacer"></div>
+        <textarea id="retourTexte" rows="4" maxlength="600"
+                  style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:14px;
+                         border:1px solid rgba(30,41,59,.2); background:transparent; color:inherit;"></textarea>
+        <div class="spacer"></div>
+        <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
+    </div>
+
     <!-- L'ETIQUETTE DOIT DIRE EXACTEMENT CE QUE LE REGLAGE FAIT, y compris ce
          qu'il COUTE -- demande explicite de Jacques : « il faut que ce soit
          parfaitement clair, qu'est-ce qu'on est en train de faire ». Un
@@ -6763,6 +6782,11 @@ const I18N = {
         voice_test: "\u00c9couter",
         voice_none: "Aucune voix install\u00e9e pour cette langue sur cet appareil. Les phrases seront lues avec la voix par d\u00e9faut, donc avec un mauvais accent. Ajoute-la dans les r\u00e9glages de ton t\u00e9l\u00e9phone (Accessibilit\u00e9 \u203a Contenu parl\u00e9 \u203a Voix).",
         voice_only_one: "Une seule voix install\u00e9e. Tu peux en ajouter une am\u00e9lior\u00e9e dans les r\u00e9glages de ton t\u00e9l\u00e9phone, puis revenir la choisir ici.",
+        retour_titre: "Signaler un problème ou une idée",
+        retour_desc: "Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.",
+        retour_envoyer: "ENVOYER",
+        retour_vide: "Écris quelque chose d'abord.",
+        retour_merci: "Merci — c'est noté ✓",
         carte_dire_titre: "Ce que la carte prononce",
         carte_dire_desc: "Au verso d'une carte, l'allemand se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.",
         carte_dire_mot: "Le mot avec son article",
@@ -7582,6 +7606,11 @@ const I18N = {
         voice_test: "Listen",
         voice_none: "No voice installed for this language on this device. Sentences will be read with the default voice, and therefore with the wrong accent. Add one in your phone settings (Accessibility \u203a Spoken Content \u203a Voices).",
         voice_only_one: "Only one voice installed. You can add an enhanced one in your phone settings, then come back and pick it here.",
+        retour_titre: "Report a problem or an idea",
+        retour_desc: "A word that sounds wrong, a button that does nothing, an idea: write it here. The app version and the screen you were on are attached automatically — you have nothing to note down.",
+        retour_envoyer: "SEND",
+        retour_vide: "Write something first.",
+        retour_merci: "Thank you — noted ✓",
         carte_dire_titre: "What the card says out loud",
         carte_dire_desc: "On the back of a card, the German is spoken on its own. Choose what you want to hear. Whatever you remove stays on screen, and its speaker button still works — you can play it whenever you decide to.",
         carte_dire_mot: "The word with its article",
@@ -8405,6 +8434,11 @@ const I18N = {
         voice_test: "Dinle",
         voice_none: "Bu cihazda bu dil için yüklü ses yok. Cümleler varsayılan sesle, yani yanlış aksanla okunacak. Telefon ayarlarından bir tane ekle (Erişilebilirlik › Sözlü İçerik › Sesler).",
         voice_only_one: "Yalnızca bir ses yüklü. Telefon ayarlarından gelişmiş bir tane ekleyip buraya dönerek onu seçebilirsin.",
+        retour_titre: "Bir sorun ya da fikir bildir",
+        retour_desc: "Kötü duyulan bir kelime, yanıt vermeyen bir düğme, bir fikir: buraya yaz. Uygulama sürümü ve bulunduğun ekran otomatik eklenir — not almana gerek yok.",
+        retour_envoyer: "GÖNDER",
+        retour_vide: "Önce bir şey yaz.",
+        retour_merci: "Teşekkürler — kaydedildi ✓",
         carte_dire_titre: "Kartın sesli okuduğu",
         carte_dire_desc: "Kartın arka yüzünde Almanca kendiliğinden okunur. Ne duymak istediğini seç. Çıkardığın şey ekranda kalır ve hoparlör düğmesi çalışmaya devam eder — istediğin an dinleyebilirsin.",
         carte_dire_mot: "Artikeliyle birlikte sözcük",
@@ -9791,6 +9825,11 @@ const I18N = {
         voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
         voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
         voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
+        retour_titre: "Повідомити про проблему або ідею",
+        retour_desc: "Слово, що звучить не так, кнопка, яка не працює, ідея — напиши тут. Версія застосунку та екран додаються автоматично — тобі нічого не треба записувати.",
+        retour_envoyer: "НАДІСЛАТИ",
+        retour_vide: "Спочатку напиши щось.",
+        retour_merci: "Дякую — записано ✓",
         carte_dire_titre: "Що картка озвучує",
         carte_dire_desc: "На звороті картки німецька звучить сама. Обери, що ти хочеш чути. Те, що ти вимкнеш, лишається на екрані, а його кнопка динаміка працює як раніше.",
         carte_dire_mot: "Слово з артиклем",
@@ -12686,6 +12725,10 @@ async function syncProgressToCloud(){
             // relecture. UNE SEULE CHAINE, pas un tableau : Firestore indexe
             // chaque entree d'un tableau, et le plafond des 40 000 a deja fait
             // echouer les sauvegardes en silence (v396-v400).
+            retoursUsager: (function(){
+                try{ return localStorage.getItem("deutschAI_retours") || ""; }
+                catch(e){ return ""; }
+            })(),
             synonymesEcartes: (function(){
                 try{ return localStorage.getItem("deutschAI_synonymesEcartes") || ""; }
                 catch(e){ return ""; }
@@ -16386,6 +16429,7 @@ async function renderAdminUsersList(){
                         <div style="font-weight:700;">${titre}</div>
                         <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
                         <br><small style="color:${joursDepuis > 7 ? '#d97706' : '#576177'}; font-weight:${joursDepuis > 7 ? '700' : '400'};">${vuTexte}</small>
+                        ${u.retoursUsager ? `<div style="margin-top:8px; padding:8px 10px; border-radius:8px; background:rgba(59,111,224,.08); font-size:12px; color:#1e2433; white-space:pre-wrap; word-break:break-word;">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : ""}
                     </div>
                     <button class="secondary" style="min-height:auto; padding:6px 10px; font-size:12px; white-space:nowrap;" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
@@ -18336,6 +18380,48 @@ const VOICE_CHOICE_KEY = "deutschAI_voiceChoice";
 //
 // Ce qu'on retire n'est jamais perdu : le texte reste affiche et son
 // haut-parleur repond toujours au doigt.
+// LES RETOURS DES USAGERS.
+//
+// ⚠️ UNE SEULE CHAINE, PAS UN TABLEAU, et c'est la meme raison que pour
+// synonymesEcartes : Firestore indexe chaque entree d'un tableau, et le plafond
+// des 40 000 index a deja fait echouer les sauvegardes en silence (v396-v400).
+// Le document en compte deja 45 695 -- on n'en ajoute pas un par retour.
+//
+// Ils voyagent dans le document de l'usager, que les regles de securite
+// autorisent deja a ecrire. Une collection separee serait plus propre, mais
+// demanderait une regle de plus dans la console Firebase : un envoi refuse
+// silencieusement vaudrait moins qu'un stockage un peu moins elegant.
+const RETOURS_KEY = "deutschAI_retours";
+const RETOURS_MAX = 4000;   // caractere, pas nombre : c'est la taille qui compte
+
+function envoyerRetour(){
+    const zone = document.getElementById("retourTexte");
+    const bouton = document.getElementById("retourBtn");
+    if(!zone) return;
+    const texte = (zone.value || "").trim();
+    if(!texte){ showInfoToast(t("retour_vide")); return; }
+    // LE CONTEXTE EST JOINT TOUT SEUL. C'est le coeur de l'idee : personne ne
+    // pense a noter sa version ni par quel chemin il a ouvert l'app, et c'est
+    // precisement ce qui manquait toute la journee du 6 septembre pour
+    // diagnostiquer le son.
+    const entree = "[" + new Date().toISOString().slice(0, 16) + " | v" + APP_VERSION
+                 + " | " + getUiLang() + " | " + modeLancement().split(" ")[0] + "] " + texte;
+    let tout = "";
+    try{ tout = localStorage.getItem(RETOURS_KEY) || ""; }catch(e){}
+    tout = (tout ? tout + String.fromCharCode(10) : "") + entree;
+    // On garde la FIN : les derniers retours valent mieux que les premiers.
+    if(tout.length > RETOURS_MAX) tout = tout.slice(tout.length - RETOURS_MAX);
+    try{ localStorage.setItem(RETOURS_KEY, tout); }catch(e){}
+    zone.value = "";
+    if(bouton){
+        bouton.textContent = t("retour_merci");
+        setTimeout(() => { bouton.textContent = t("retour_envoyer"); }, 3000);
+    }
+    // Part avec la prochaine sauvegarde, comme le reste. Rien ne bloque, et un
+    // reseau absent ne perd rien : le texte est deja sur l'appareil.
+    scheduleCloudSync();
+}
+
 const CARTE_MOT_KEY = "deutschAI_carteDitMot";
 const CARTE_PLURIEL_KEY = "deutschAI_carteDitPluriel";
 const CARTE_PHRASE_KEY = "deutschAI_carteDirePhrase";
@@ -19894,7 +19980,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 477;
+const APP_VERSION = 478;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
