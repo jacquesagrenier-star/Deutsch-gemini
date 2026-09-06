@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v453</span>
+        <span class="subtitle-version">v454</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17984,7 +17984,11 @@ function testVoice(prefix){
     if(!('speechSynthesis' in window)) return;
     const voix = pickVoice(prefix);
     if(!voix) return;
-    window.speechSynthesis.cancel();
+    // cancel() SEULEMENT s'il y a quelque chose a couper : sur un moteur au
+    // repos il rend muet l'enonce suivant. C'est la lecon de la v449, et cette
+    // ligne-ci l'ignorait encore -- donc le bouton d'essai pouvait se rendre
+    // muet lui-meme, et l'essai ne prouvait plus rien.
+    libererMoteur();
     const extraits = {
         de: "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch.",
         en: "Good morning! I learn a little English every day.",
@@ -17996,7 +18000,26 @@ function testVoice(prefix){
     u.voice = voix;
     u.lang = voix.lang;
     u.rate = 0.9;
+    // LE BOUTON D'ESSAI EST LE SEUL ENONCE QUI PARTE DIRECTEMENT D'UN CLIC.
+    //
+    // Tout le reste du mode Ecoute parle hors geste, une ou plusieurs etapes
+    // apres celui-ci. L'essai, lui, est dans le clic : s'il se tait AUSSI, la
+    // question du geste ne se pose plus et le probleme est ailleurs -- une voix
+    // qui n'est pas reellement installee, par exemple. S'il parle alors que le
+    // mode Ecoute se tait, c'est bien le droit de parler hors geste qui manque.
+    // Cette distinction ne coute qu'un bouton deja present, encore fallait-il
+    // qu'il laisse une trace.
+    u.onstart = () => noterAudio(voix.name, "ESSAI-OK",
+        "la voix a REELLEMENT parle (" + prefix + ")");
+    u.onend = () => noterAudio(voix.name, "ESSAI-FIN", "essai termine");
+    u.onerror = (e) => noterAudio(voix.name, "ESSAI-ERR",
+        (e && e.error) || "erreur sans nom");
     window.speechSynthesis.speak(u);
+    noterAudio(voix.name, "ESSAI",
+        "essai demande dans le clic : " + decrireVoix(voix) +
+        ", moteur " + etatSynthese());
+    setTimeout(() => noterAudio(voix.name, "ESSAI-250",
+        "250 ms apres, moteur " + etatSynthese()), 250);
 }
 
 // Liste des voix disponibles, dans les reglages. Sert autant a choisir qu'a
@@ -18441,6 +18464,16 @@ let ecouteFinFichier = 0;
 // Horodatage de la fin du dernier enonce de synthese. Symetrique du precedent,
 // et pour la meme raison retournee : voir le souffle dans ecouteJouerEtape.
 let ecouteFinEnonce = 0;
+// L'etape pour laquelle on refait un essai SANS imposer la voix choisie.
+// Voir le bloc MUET dans ecouteJouerEtape : sur iOS, une voix listee par
+// getVoices() mais absente de l'appareil fait disparaitre l'enonce en silence.
+let ecouteSansVoixPour = -1;
+// Les langues dont la voix choisie s'est revelee MUETTE une fois qu'on la
+// nomme, alors que le systeme parle tres bien quand on le laisse choisir. On
+// n'impose plus la voix pour ces langues-la de toute la seance : sans cette
+// memoire, chaque etape repayerait la seconde et demie de la sonde avant de
+// retomber sur la meme conclusion.
+const ecouteVoixMortes = new Set();
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -18728,7 +18761,11 @@ function ecouteMajBouton(){
 // Ce que ca ne touche pas : l'element audio unique de la v351 et son propre
 // deverrouillage, qui fonctionnent et restent intacts.
 let syntheseAmorcee = false;
-function amorcerSynthese(){
+// Vrai uniquement quand une amorce a produit un `onstart`. C'est la seule
+// preuve que le droit de parler a ete accorde -- `speak()` sans erreur n'en
+// est pas une, le journal du 6 septembre l'a montre deux fois.
+let amorceConfirmee = false;
+function amorcerSynthese(origine){
     if(!("speechSynthesis" in window)) return;
     // Un geste rend sa chance a la synthese : si on l'avait constatee muette,
     // on refait l'amorce plutot que de rester sur ce constat.
@@ -18739,7 +18776,12 @@ function amorcerSynthese(){
     // aucun souffle, sans quoi iOS refuserait la lecture hors geste.
     ecouteFinEnonce = 0;
     ecouteFinFichier = 0;
-    if(syntheseAmorcee && !reamorcer) return;
+    // TANT QU'AUCUNE AMORCE N'A PARLE, ON RECOMMENCE A CHAQUE GESTE (v454).
+    //
+    // `syntheseAmorcee` ne disait que « on a appele speak() une fois », ce qui
+    // ne prouve rien. On s'arrete desormais sur la seule preuve qui vaille :
+    // une amorce qui a emis `onstart`.
+    if(amorceConfirmee && !reamorcer) return;
     try{
         // UN TEXTE REEL, ET NON PLUS UNE ESPACE (v453).
         //
@@ -18772,8 +18814,12 @@ function amorcerSynthese(){
         // ET ON VERIFIE, plutot que de le supposer. Jusqu'ici le journal notait
         // qu'on avait DEMANDE le droit de parler, jamais s'il avait ete
         // accorde -- c'est la meme cecite qui a coute les v448 et v449.
-        u.onstart = () => noterAudio("(amorce)", "AMORCE-OK",
-            "l'amorce a REELLEMENT parle : le droit est accorde");
+        u.onstart = () => {
+            amorceConfirmee = true;
+            noterAudio("(amorce)", "AMORCE-OK",
+                "l'amorce a REELLEMENT parle par « " + (origine || "?") +
+                " » : le droit est accorde");
+        };
         u.onend = () => noterAudio("(amorce)", "AMORCE-FIN",
             "amorce terminee, moteur " + etatSynthese());
         u.onerror = (e) => noterAudio("(amorce)", "AMORCE-ERR",
@@ -18781,7 +18827,7 @@ function amorcerSynthese(){
         window.speechSynthesis.speak(u);
         syntheseAmorcee = true;
         noterAudio("(amorce)", "AMORCE",
-            "droit de parler demande dans le geste, moteur " + etatSynthese() +
+            "sur « " + (origine || "?") + " », moteur " + etatSynthese() +
             (reamorcer ? ", REAMORCE apres un enonce avale" : ""));
         // Un second releve, hors du fil synchrone : certains moteurs ne mettent
         // a jour leur etat qu'au tour suivant. Sans lui, un « -/-/- » lu trop
@@ -18809,8 +18855,25 @@ function amorcerSynthese(){
 // depuis le lien de ses notes. Rearmer a chaque geste ne coute rien (un enonce
 // vide au volume zero, et seulement si le moteur est au repos) et couvre le cas
 // ou le droit expire.
+// TROIS GESTES, PAS UN SEUL -- ET LE JOURNAL DIRA LEQUEL MARCHE (v454).
+//
+// L'amorce n'etait accrochee qu'a `pointerdown`. Or WebKit n'accorde pas son
+// « activation utilisateur » sur pointerdown/touchstart : il l'accorde sur
+// touchend et sur click. Une amorce posee au DEBUT du toucher tombe donc hors
+// activation, et c'est ce que le journal montre -- `speak()` n'y met jamais
+// rien en file, pas meme un texte reel.
+//
+// Ce n'est encore qu'une hypothese, mais elle se verifie toute seule : les
+// trois gestes sont accroches, chacun se nomme dans le journal, et la ligne
+// AMORCE-OK dira lequel a obtenu le droit. Si aucun ne l'obtient, l'hypothese
+// tombe a son tour et le probleme n'est pas dans le type de geste.
+//
+// Le cout est nul : une fois qu'une amorce a parle, les suivantes ne font plus
+// rien (voir amorceConfirmee).
 if(typeof document !== "undefined"){
-    document.addEventListener("pointerdown", amorcerSynthese, { capture: true });
+    ["click", "touchend", "pointerdown"].forEach(nom => {
+        document.addEventListener(nom, () => amorcerSynthese(nom), { capture: true });
+    });
 }
 
 function ecouteLancer(){
@@ -18829,6 +18892,7 @@ function ecouteJouerEtape(){
         clearTimeout(ecouteChien);
         clearTimeout(ecouteSonde);
         if(jeton !== ecouteJeton || !ecouteJoue) return;
+        ecouteSansVoixPour = -1;
         ecouteEtape++;
         ecouteJouerEtape();
     };
@@ -18870,6 +18934,7 @@ function ecouteJouerEtape(){
             noterAudio(texte, "BLOQUE", "aucune fin apres " + limite + " ms" +
                 (decrire ? ", " + decrire() : "") +
                 (libere ? ", moteur libere" : ""));
+            ecouteSansVoixPour = -1;
             ecouteEtape++;
             ecouteJouerEtape();
         }, limite);
@@ -18948,9 +19013,16 @@ function ecouteJouerEtape(){
     const u = new SpeechSynthesisUtterance(et.texte);
     u.volume = VOLUME_SYNTHESE;
     const voix = pickVoice(et.lang);
-    if(voix){
+    // RETENTATIVE SANS VOIX IMPOSEE (v454) -- voir le bloc MUET plus bas.
+    const sansVoix = (ecouteSansVoixPour === ecouteEtape) ||
+                     ecouteVoixMortes.has(et.lang);
+    if(voix && !sansVoix){
         u.voice = voix;
         u.lang = voix.lang;
+    } else if(voix){
+        // La voix existe, on la met VOLONTAIREMENT de cote : on ne pose que
+        // l'etiquette de langue et on laisse le systeme choisir lui-meme.
+        u.lang = voix.lang || LANGUE_TAG[et.lang] || et.lang;
     } else {
         // Aucune voix installee pour cette langue sur cet appareil.
         //
@@ -18991,6 +19063,16 @@ function ecouteJouerEtape(){
     let aDemarre = false;
     u.onstart = () => {
         aDemarre = true;
+        // LA LECON RETENUE POUR LA SEANCE. Si l'enonce n'a demarre qu'une fois
+        // la voix mise de cote, c'est cette voix qui bloquait -- inutile de la
+        // reessayer a chaque etape et de repayer la sonde a chaque fois.
+        if(sansVoix && voix && !ecouteVoixMortes.has(et.lang)){
+            ecouteVoixMortes.add(et.lang);
+            noterAudio(voix.name, "VOIX-MORTE",
+                "nommer cette voix rend l'enonce muet ; le systeme parle quand" +
+                " on le laisse choisir. On ne l'impose plus pour « " +
+                et.lang + " » de toute la seance.");
+        }
         noterAudio(et.texte, "DEBUT", "la voix a commence (" + et.lang + ")");
         // Un enonce qui demarre pour de bon efface toute la suspicion.
         ecouteAvalees = 0;
@@ -19030,7 +19112,8 @@ function ecouteJouerEtape(){
         // bloquee n'y laissait aucune trace, et c'est justement celle qu'on
         // soupconne. Elle y figure maintenant, avec la voix reellement employee.
         noterAudio(et.texte, "ENONCE",
-            et.lang + ", voix " + decrireVoix(voix) +
+            et.lang + ", voix " + (u.voice ? decrireVoix(voix)
+                : "AUCUNE IMPOSEE, systeme en " + u.lang) +
             ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume +
             ", moteur " + etatSynthese() +
             (souffle ? ", apres " + souffle + " ms de souffle" : ""));
@@ -19121,10 +19204,34 @@ function ecouteJouerEtape(){
                 try{ synth.resume(); }catch(e){}
                 noterAudio(et.texte, "MUET",
                     "enonce refuse sans le dire (" + et.lang + "), " +
-                    attendu + " ms, moteur au repos");
+                    attendu + " ms, moteur au repos" +
+                    (sansVoix ? ", ET SANS VOIX IMPOSEE" : ""));
+                // UN DERNIER ESSAI, SANS IMPOSER LA VOIX (v454).
+                //
+                // Jacques, le 6 septembre : « quand la voix revenait, ce
+                // n'etait pas Thomas, c'etait la voix de la femme. » Autrement
+                // dit, ce qui a parle n'etait PAS la voix que nous assignons.
+                // Sur iOS, getVoices() liste des voix qui ne sont pas toutes
+                // reellement installees ; en assigner une absente fait
+                // disparaitre l'enonce sans erreur -- ce que le journal montre
+                // exactement (« moteur au repos », ni start, ni end, ni error).
+                //
+                // On refait donc l'essai en ne posant que la LANGUE, et en
+                // laissant le systeme prendre sa voix par defaut. Une fois par
+                // etape : si ca echoue encore, la cause est ailleurs, et la
+                // ligne « ET SANS VOIX IMPOSEE » du journal le dira.
+                if(voix && !sansVoix){
+                    ecouteSansVoixPour = ecouteEtape;
+                    noterAudio(et.texte, "SANS-VOIX",
+                        "on refait l'essai sans imposer « " + voix.name + " »");
+                    clearTimeout(ecouteChien);
+                    ecouteJouerEtape();
+                    return;
+                }
             }
             ecouteAvalees++;
             clearTimeout(ecouteChien);
+            ecouteSansVoixPour = -1;
             ecouteEtape++;
             ecouteJouerEtape();
         };
@@ -19263,7 +19370,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 453;
+const APP_VERSION = 454;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
