@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v448</span>
+        <span class="subtitle-version">v449</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18409,6 +18409,9 @@ let ecouteSautes = 0;    // etapes sautees depuis la derniere tentative
 // deux liees a la session sonore d'iOS : allonger la sonde, et laisser un
 // souffle avant de parler. Voir ecouteJouerEtape.
 let ecouteFinFichier = 0;
+// Horodatage de la fin du dernier enonce de synthese. Symetrique du precedent,
+// et pour la meme raison retournee : voir le souffle dans ecouteJouerEtape.
+let ecouteFinEnonce = 0;
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -18703,6 +18706,10 @@ function amorcerSynthese(){
     const reamorcer = ecouteAvalees > 0;
     ecouteAvalees = 0;
     ecouteSautes = 0;
+    // Un geste repart de zero : le premier son qui le suit ne doit attendre
+    // aucun souffle, sans quoi iOS refuserait la lecture hors geste.
+    ecouteFinEnonce = 0;
+    ecouteFinFichier = 0;
     if(syntheseAmorcee && !reamorcer) return;
     try{
         const u = new SpeechSynthesisUtterance(" ");
@@ -18790,7 +18797,34 @@ function ecouteJouerEtape(){
     // etape muette.
     if(et.lang === "de"){
         armerChien(et.texte);
-        direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
+        // LE SOUFFLE, DANS L'AUTRE SENS (v449).
+        //
+        // La v448 avait vu la moitie du probleme : elle laissait retomber la
+        // session sonore du <audio> avant de faire parler la synthese. Mais la
+        // sequence traverse la frontiere DANS LES DEUX SENS -- le mot francais
+        // est suivi immediatement du mot allemand -- et l'autre moitie n'avait
+        // pas ete traitee.
+        //
+        // C'est celle-la qu'on entend le plus : iOS attenue le FICHIER qui
+        // demarre pendant que la session de la synthese finit de retomber, puis
+        // cesse de l'attenuer en cours de lecture. Le mot ou la phrase commence
+        // bas et devient d'un coup beaucoup plus fort au milieu -- une phrase
+        // longue traverse la transition, un mot court finit avant elle. Ce
+        // n'est pas un volume qui derape, c'est une attenuation qui s'arrete.
+        //
+        // Le souffle ne coute rien quand il n'y a rien a attendre, et il ne
+        // s'applique jamais au premier son d'une seance : amorcerSynthese, qui
+        // marque le geste de l'utilisateur, remet l'horodatage a zero. La regle
+        // « aucune attente entre le geste et play() » reste donc respectee.
+        const depuisEnonce = Date.now() - ecouteFinEnonce;
+        const souffleDe = ecouteFinEnonce && depuisEnonce < 280
+            ? 280 - depuisEnonce : 0;
+        const jouer = () => {
+            if(jeton !== ecouteJeton || !ecouteJoue) return;
+            direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
+        };
+        if(souffleDe) ecouteMinuteur = setTimeout(jouer, souffleDe);
+        else jouer();
         return;
     }
     if(!("speechSynthesis" in window)){ avancer(); return; }
@@ -18843,8 +18877,11 @@ function ecouteJouerEtape(){
         u.lang = LANGUE_TAG[et.lang] || et.lang;
     }
     u.rate = ecouteVitesse;
-    u.onend = avancer;
-    u.onerror = avancer;
+    // La fin de l'enonce est horodatee : c'est elle qui ouvre le souffle avant
+    // le fichier allemand suivant (voir la branche "de" plus haut).
+    const finEnonce = () => { ecouteFinEnonce = Date.now(); avancer(); };
+    u.onend = finEnonce;
+    u.onerror = finEnonce;
     // `onstart` est le seul signal fiable qui dise qu'un enonce a REELLEMENT
     // commence. Il sert deux fois : a lever le drapeau de muettete, et a
     // desarmer la sonde ci-dessous.
@@ -18911,20 +18948,36 @@ function ecouteJouerEtape(){
             if(jeton !== ecouteJeton || !ecouteJoue || aDemarre) return;
             const synth = window.speechSynthesis;
             if(synth.speaking || synth.pending) return;
-            // Un enonce declare mort peut encore demarrer plus tard et parler
-            // par-dessus l'etape suivante. On le retire de la file.
+            // ⚠️ PAS DE cancel() ICI. C'ETAIT LE DEFAUT DE LA v448 (v449).
             //
-            // ⚠️ LES GESTIONNAIRES D'ABORD. `cancel()` declenche `onend` sur
-            // l'enonce annule, et `onend` vaut ici `avancer` : sans ce
-            // detachement, la sequence avancerait DEUX fois -- une par
-            // l'annulation, une par les deux lignes qui suivent -- et deux voix
-            // finiraient par se chevaucher. C'est le defaut que le jeton de
-            // sequence documente plus haut ; le jeton ne le rattrape pas ici,
-            // puisqu'il n'a pas encore change.
+            // Les deux lignes au-dessus viennent de prouver que le moteur est
+            // AU REPOS : ni `speaking`, ni `pending`. Or ce fichier documente
+            // deja, dans direAllemand, ce que fait `cancel()` sur un moteur au
+            // repos -- « il le laisse dans un etat ou l'enonce suivant part sans
+            // qu'aucun son n'en sorte ». La v448 l'appelait quand meme, pour
+            // retirer de la file un enonce qui, par construction, n'y est plus.
+            //
+            // Le resultat etait une BOUCLE QUI SE NOURRIT D'ELLE-MEME : un
+            // enonce avale (cela arrive apres un fichier) fait tirer la sonde,
+            // la sonde casse le moteur, l'enonce suivant est donc muet lui
+            // aussi, la sonde tire encore et casse encore. Le compteur de la
+            // v448 retentait bien une fois sur quatre -- mais il retentait sur
+            // un moteur que la tentative precedente venait de casser. Rien ne
+            // pouvait plus sortir, et seul un geste sur Pause/Lecture, qui
+            // repasse par amorcerSynthese, remettait la voix francaise en
+            // marche. C'est exactement ce que le retour decrit : l'allemand
+            // seul, carte apres carte, jusqu'a ce qu'on touche l'ecran.
+            //
+            // Detacher les gestionnaires suffit : si l'enonce reprenait vie
+            // plus tard, il ne ferait plus avancer la sequence.
             u.onend = null;
             u.onerror = null;
             u.onstart = null;
-            try{ synth.cancel(); }catch(e){}
+            // resume() est sans effet sur un moteur qui n'est pas en pause.
+            // Il est ici pour le seul cas ou Safari a laisse la synthese en
+            // pause apres une interruption de la session sonore -- l'etat rend
+            // le moteur muet sans qu'aucun evenement ne le dise.
+            try{ synth.resume(); }catch(e){}
             ecouteAvalees++;
             noterAudio(et.texte, "MUET",
                 "enonce avale par le systeme (" + et.lang + "), " +
@@ -18962,7 +19015,14 @@ function ecouteArreterSon(){
     // pre-genere. N'en couper qu'une laisserait la voix continuer toute seule
     // apres une pause ou un changement de carte.
     arreterAudioPregenere();
-    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    // Meme precaution que dans direAllemand et dans la sonde (v449) : cancel()
+    // sur un moteur au repos le laisse muet pour l'enonce suivant. Ici il n'y a
+    // souvent RIEN a couper -- une pause tombe la plupart du temps pendant un
+    // silence ou un fichier -- et on cassait la voix pour rien.
+    if("speechSynthesis" in window &&
+       (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
+        window.speechSynthesis.cancel();
+    }
 }
 
 function ecouteAller(i){
@@ -19060,7 +19120,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 448;
+const APP_VERSION = 449;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
