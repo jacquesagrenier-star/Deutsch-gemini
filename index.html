@@ -1277,6 +1277,14 @@ body[data-theme="dark"] .auth-value-row{
     flex-wrap: wrap;
 }
 
+/* L'ICONE DU SENS DE LECTURE, deux fois plus grosse que son libelle.
+   Le bouton devient une boite flexible : sans cela l'emoji agrandi decalerait
+   la ligne de base du texte a cote de lui. */
+.flip-toggle-btn{
+    display:flex; align-items:center; justify-content:center; gap:9px;
+}
+.flip-ico{font-size:2em; line-height:1;}
+
 /* LE CHOIX DE PORTEE. Il ressemblait aux autres boutons gris de l'ecran -- et
    Jacques est passe droit : « mon oeil est alle tout de suite sur le niveau
    A1 ». Trois raisons, toutes corrigees ici :
@@ -3876,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v473</span>
+        <span class="subtitle-version">v474</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12385,12 +12393,31 @@ function renderFlipToggleButtons(){
     const learningEnglish = getLearningDirection() === 'en';
     document.querySelectorAll(".flip-toggle-btn").forEach(btn => {
         btn.classList.remove("hidden");
-        if(learningEnglish){
+        const brut = learningEnglish
             // frontIsFrench=true -> connu (allemand) au recto -> libellé "DE → EN".
-            btn.textContent = frontIsFrench ? t("flip_direction_de_to_en") : t("flip_direction_en_to_de");
-        } else {
-            btn.textContent = frontIsFrench ? t("flip_direction_fr") : t("flip_direction_de");
-        }
+            ? (frontIsFrench ? t("flip_direction_de_to_en") : t("flip_direction_en_to_de"))
+            : (frontIsFrench ? t("flip_direction_fr") : t("flip_direction_de"));
+        // L'ICONE EST SORTIE DU TEXTE POUR POUVOIR GROSSIR (v474). Elle vit
+        // dans la chaine traduite -- « 🔁 Sens : FR -> DE » -- donc tant
+        // qu'elle etait posee par textContent, elle avait forcement la taille du
+        // libelle. On la detache ici plutot que de la retirer des seize
+        // traductions : seize modifications pour un effet visuel ne valent pas
+        // leur risque, et une chaine sans icone se lirait mal si ce bouton
+        // s'affichait un jour ailleurs.
+        //
+        // Construit en NOEUDS et non en innerHTML : le libelle vient d'une
+        // table de traductions, et rien ne justifie de l'interpreter comme du
+        // HTML pour changer une taille de police.
+        const ico = "🔁";
+        btn.textContent = "";
+        const pastille = document.createElement("span");
+        pastille.className = "flip-ico";
+        pastille.setAttribute("aria-hidden", "true");
+        pastille.textContent = ico;
+        const libelle = document.createElement("span");
+        libelle.textContent = brut.split(ico).join("").trim();
+        btn.appendChild(pastille);
+        btn.appendChild(libelle);
     });
 }
 
@@ -16887,7 +16914,7 @@ function renderNomenPorteeBar(){
     const actuel = porteeNoms();
     // La cle sur le segment « essentiel » : c'est le meme signe que sur les
     // cartes, et c'est ce qui relie les deux endroits sans une phrase.
-    const CLE = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">' +
+    const CLE = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">' +
         '<circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/>' +
         '<rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/>' +
         '<rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/>' +
@@ -19691,7 +19718,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 473;
+const APP_VERSION = 474;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
