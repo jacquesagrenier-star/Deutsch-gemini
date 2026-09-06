@@ -114,6 +114,16 @@ def recolter():
             prendre(x.get("mot"), niv, "mot", "funktionswort." + section)
             prendre(x.get("exemple"), niv, "phrase", "funktionswort." + section)
 
+    # L'EPREUVE D'ECOUTE DE L'EXAMEN. Elle etait absente de ce manifeste, et
+    # personne ne l'avait vu : ses 120 passages passaient donc par la voix de
+    # synthese du telephone -- la seule epreuve ou le son EST la competence
+    # evaluee, entrainee sur une voix qui n'existe pas.
+    #
+    # Le champ s'appelle `audio` et non `exemple` : c'est un passage lu a voix
+    # haute, jamais affiche a l'ecran. Le niveau vient de l'entree elle-meme.
+    for x in charger("pruefung.json")["hoeren"]:
+        prendre(x.get("audio"), x.get("niveau"), "phrase", "pruefung.hoeren")
+
     return out
 
 
