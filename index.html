@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v451</span>
+        <span class="subtitle-version">v452</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17897,9 +17897,29 @@ function voiceQualityScore(v){
     let score = 0;
     VOICE_GOOD_HINTS.forEach(h => { if(nom.indexOf(h) !== -1) score += 10; });
     VOICE_POOR_HINTS.forEach(h => { if(nom.indexOf(h) !== -1) score -= 10; });
-    // Une voix distante est presque toujours neurale ; une voix locale marche
-    // hors connexion. On privilegie legerement la qualite, le repli restant local.
-    if(v && v.localService === false) score += 3;
+    // UNE VOIX DISTANTE NE PASSE QU'A DEFAUT (v452). C'ETAIT UN BONUS.
+    //
+    // Le raisonnement d'origine se tient sur le papier : une voix distante est
+    // presque toujours neurale, donc meilleure. Il oublie qu'elle doit ALLER
+    // CHERCHER son audio sur un serveur, et le journal du 6 septembre montre ce
+    // que ca donne quand la requete traine. Chrome sur portable, voix
+    // « Google francais », mode Ecoute :
+    //
+    //   ENONCE fraise   -> le moteur passe a « parle » des l'appel
+    //   BLOQUE fraise   -> 5 765 ms plus tard, toujours ni start ni end
+    //   ... et ainsi de suite sur six etapes d'affilee
+    //   puis, enfin :   -> DEBUT apres 2 334 ms d'attente
+    //
+    // Six blocages de cinq a dix secondes avant que la voix consente a parler.
+    // Une voix locale n'a jamais ce probleme : elle est deja sur l'appareil.
+    // Et le pire est invisible dans le classement -- une voix qui ne parle pas
+    // est pire que n'importe quelle voix qui parle, si mecanique soit-elle.
+    //
+    // Le malus est donc plus grand que tous les bonus reunis : une voix
+    // distante n'est retenue que s'il n'existe AUCUNE voix locale pour cette
+    // langue. Sur Android, les voix Google sont locales -- elles gardent leur
+    // bonus de nom et ne sont pas touchees par cette ligne.
+    if(v && v.localService === false) score -= 100;
     // Allemand et anglais standard avant les variantes regionales.
     const lang = ((v && v.lang) || "").toLowerCase();
     if(lang === "de-de" || lang === "en-gb" || lang === "en-us") score += 2;
@@ -18793,14 +18813,23 @@ function ecouteJouerEtape(){
     // Il n'interrompt RIEN : il ne fait qu'avancer une sequence deja arretee.
     // La limite est large et suit la vitesse choisie, pour ne jamais couper
     // une lecture lente qui se deroule normalement.
-    const armerChien = (texte) => {
+    const armerChien = (texte, decrire) => {
         clearTimeout(ecouteChien);
         const limite = Math.min(
             25000,
             Math.round((4000 + (texte || "").length * 150) / ecouteVitesse));
         ecouteChien = setTimeout(() => {
             if(jeton !== ecouteJeton || !ecouteJoue) return;
-            noterAudio(texte, "BLOQUE", "aucune fin apres " + limite + " ms");
+            // NETTOYER AVANT D'AVANCER (v452). Le chien se contentait de passer
+            // a la suite, en laissant dans le moteur l'enonce qui n'a jamais
+            // commence. L'etape suivante se mettait donc EN FILE derriere un
+            // mort -- le journal du 6 septembre le montre noir sur blanc :
+            // « ENONCE petit ... moteur parle/-/- » puis « APRES : parle/file ».
+            // Le blocage se propageait de proche en proche.
+            const libere = libererMoteur();
+            noterAudio(texte, "BLOQUE", "aucune fin apres " + limite + " ms" +
+                (decrire ? ", " + decrire() : "") +
+                (libere ? ", moteur libere" : ""));
             ecouteEtape++;
             ecouteJouerEtape();
         }, limite);
@@ -18816,7 +18845,17 @@ function ecouteJouerEtape(){
     // dans les deux cas : la sequence ne doit jamais rester bloquee sur une
     // etape muette.
     if(et.lang === "de"){
-        armerChien(et.texte);
+        // Un fichier qui bloque ne dit rien de lui-meme. readyState et
+        // networkState distinguent « toujours en train de telecharger » de
+        // « charge mais arrete » -- deux causes sans rapport, meme silence.
+        armerChien(et.texte, () => {
+            try{
+                const a = obtenirLecteur();
+                return "lecteur readyState " + a.readyState +
+                       ", networkState " + a.networkState +
+                       ", position " + a.currentTime.toFixed(2) + " s";
+            }catch(e){ return "lecteur illisible"; }
+        });
         // LE SOUFFLE, DANS L'AUTRE SENS (v449).
         //
         // La v448 avait vu la moitie du probleme : elle laissait retomber la
@@ -18955,6 +18994,7 @@ function ecouteJouerEtape(){
             ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume +
             ", moteur " + etatSynthese() +
             (souffle ? ", apres " + souffle + " ms de souffle" : ""));
+        const lanceA = Date.now();
         window.speechSynthesis.speak(u);
         // L'ETAT JUSTE APRES speak(). Un moteur qui a accepte l'enonce le met
         // en file : `file` ou `parle` doit apparaitre. S'il reste au repos, la
@@ -18974,11 +19014,35 @@ function ecouteJouerEtape(){
         // la file d'enonces est vide, l'enonce n'existe plus. On avance aussitot.
         // Une file non vide ou un `start` deja recu la desarment : elle ne peut pas
         // couper une lecture qui allait se faire.
+        // DEUX SILENCES, DEUX VERDICTS (v452). La sonde n'en connaissait qu'un.
+        //
+        // Elle rendait la main des que le moteur se disait occupe -- « il
+        // travaille, laissons-le ». Le journal du 6 septembre montre que c'est
+        // precisement l'autre panne : le moteur passe a « parle » a l'appel et
+        // n'en sort jamais. La sonde s'effacait donc devant le cas le plus
+        // long, et seul le chien de garde debloquait, cinq a dix secondes plus
+        // tard, six fois de suite.
+        //
+        //   MOTEUR AU REPOS  -> l'enonce a ete REFUSE sans le dire. Ne rien
+        //                       annuler : c'est la lecon de la v449.
+        //   MOTEUR OCCUPE    -> l'enonce est ENLISE. Ici cancel() est legitime
+        //                       et necessaire : il y a vraiment quelque chose
+        //                       a retirer, et le laisser bloque toute la suite.
+        //
+        // Le seuil d'enlisement tient compte d'une mesure du meme journal : la
+        // voix distante a mis 2 334 ms a demarrer pour de vrai. On attend donc
+        // nettement plus avant de la declarer morte, et bien moins que le chien.
+        const DELAI_ENLISE = 3500;
         clearTimeout(ecouteSonde);
-        ecouteSonde = setTimeout(() => {
+        const verdict = () => {
             if(jeton !== ecouteJeton || !ecouteJoue || aDemarre) return;
             const synth = window.speechSynthesis;
-            if(synth.speaking || synth.pending) return;
+            const occupe = synth.speaking || synth.pending;
+            const attendu = Date.now() - lanceA;
+            if(occupe && attendu < DELAI_ENLISE){
+                ecouteSonde = setTimeout(verdict, DELAI_ENLISE - attendu);
+                return;
+            }
             // ⚠️ PAS DE cancel() ICI. C'ETAIT LE DEFAUT DE LA v448 (v449).
             //
             // Les deux lignes au-dessus viennent de prouver que le moteur est
@@ -19004,19 +19068,27 @@ function ecouteJouerEtape(){
             u.onend = null;
             u.onerror = null;
             u.onstart = null;
-            // resume() est sans effet sur un moteur qui n'est pas en pause.
-            // Il est ici pour le seul cas ou Safari a laisse la synthese en
-            // pause apres une interruption de la session sonore -- l'etat rend
-            // le moteur muet sans qu'aucun evenement ne le dise.
-            try{ synth.resume(); }catch(e){}
+            if(occupe){
+                libererMoteur();
+                noterAudio(et.texte, "ENLISE",
+                    "le moteur retenait l'enonce sans le commencer (" +
+                    et.lang + "), " + attendu + " ms, moteur libere");
+            } else {
+                // resume() est sans effet sur un moteur qui n'est pas en pause.
+                // Il est ici pour le seul cas ou Safari a laisse la synthese en
+                // pause apres une interruption de la session sonore -- l'etat
+                // rend le moteur muet sans qu'aucun evenement ne le dise.
+                try{ synth.resume(); }catch(e){}
+                noterAudio(et.texte, "MUET",
+                    "enonce refuse sans le dire (" + et.lang + "), " +
+                    attendu + " ms, moteur au repos");
+            }
             ecouteAvalees++;
-            noterAudio(et.texte, "MUET",
-                "enonce avale par le systeme (" + et.lang + "), " +
-                ecouteAvalees + " d'affilee, sonde " + delaiSonde + " ms");
             clearTimeout(ecouteChien);
             ecouteEtape++;
             ecouteJouerEtape();
-        }, delaiSonde);
+        };
+        ecouteSonde = setTimeout(verdict, delaiSonde);
     };
     if(souffle) ecouteMinuteur = setTimeout(parler, souffle);
     else parler();
@@ -19151,7 +19223,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 451;
+const APP_VERSION = 452;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19534,6 +19606,24 @@ function decrireVoix(v){
     if(!v) return "par defaut";
     return v.name + " (" + (v.lang || "?") + ", " +
            (v.localService === false ? "DISTANTE" : "locale") + ")";
+}
+
+// LE SEUL ENDROIT QUI A LE DROIT D'APPELER cancel(), ET SA CONDITION.
+//
+// La v448 avait appele cancel() sur un moteur AU REPOS et rendu la synthese
+// muette jusqu'au geste suivant ; la v449 l'a retire. Mais l'inverse existe
+// aussi, et le journal du 6 septembre le montre : un moteur qui dit « parle »
+// en retenant un enonce qui ne commencera jamais. La ligne suivante partait
+// alors se mettre EN FILE derriere un mort (« APRES : moteur parle/file »).
+//
+// La condition est donc la meme des deux cotes, simplement lue dans l'autre
+// sens : on n'annule que s'il y a quelque chose a annuler.
+function libererMoteur(){
+    try{
+        const synth = window.speechSynthesis;
+        if(synth.speaking || synth.pending){ synth.cancel(); return true; }
+    }catch(e){}
+    return false;
 }
 
 function etatSynthese(){
