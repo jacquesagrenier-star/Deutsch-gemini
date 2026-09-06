@@ -3202,20 +3202,25 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 .ecoute-stage{ text-align:center; padding:26px 18px; }
 .ecoute-ligne{ opacity:.32; transition:opacity .25s ease; overflow-wrap:anywhere; }
 /* LA LIGNE QU'ON ENTEND, AU VERSO D'UNE CARTE (v458, refait en v459).
-   J'avais attenue a 55 % seulement, par crainte de delaver une surface de
-   LECTURE au moment ou l'on doit se juger. Jacques a regarde : « visuellement,
-   ca ne fonctionne pas. » Il avait raison, et pour DEUX raisons cumulees --
-   l'ecart etait trop faible, ET le mot au singulier etant la PREMIERE etape, il
-   passait a pleine encre immediatement : il n'etait jamais pale. Rien ne
-   bougeait a l'ecran, sauf la petite ligne du pluriel.
-   On reprend donc le contraste du mode Ecoute (35 %), et le verso s'ouvre
-   ATTENUE : chaque ligne s'eclaire au moment ou on la dit, le singulier
-   compris. Tout revient a la normale des que la chaine finit.
+   Jacques : « visuellement, ca ne fonctionne pas. » J'ai d'abord cru a DEUX
+   causes, et je me suis trompe sur la seconde -- il a verifie lui-meme et l'a
+   dit : « non, le pluriel etait ok. » 55 % SE VOIT. La valeur reste donc celle
+   qu'il a regardee ; changer un chiffre valide sur une premisse qu'il venait
+   de demolir aurait ete exactement la faute de la journee.
+   LES DEUX VRAIES CAUSES, alors :
+   (1) le mot au singulier etant la PREMIERE etape, il passait a pleine encre du
+       premier instant : il n'etait jamais pale. Le verso s'ouvre desormais
+       ATTENUE et chaque ligne s'eclaire quand on la dit, le singulier compris.
+   (2) la bascule de la carte dure 550 ms (transition de .flashcard). Eclairer
+       a 220 ms tombait EN PLEIN RETOURNEMENT, quand la carte est encore de
+       profil : l'etat pale existait bel et bien, et restait invisible. La
+       lumiere attend maintenant que la carte soit posee.
+   Tout revient a la normale des que la chaine finit.
    Seules les lignes REELLEMENT dites portent la classe -- posee par la chaine,
    pas dans le HTML : sur une carte de verbe, attenuer le bloc des temps qui ne
    sera jamais eclaire ne serait qu'un eclair de gris. */
 .flashcard-back .dit-ligne{ transition:opacity .28s ease; }
-.flashcard-back.dit-en-cours .dit-ligne{ opacity:.35; }
+.flashcard-back.dit-en-cours .dit-ligne{ opacity:.55; }
 .flashcard-back.dit-en-cours .dit-ligne.dit-actif{ opacity:1; }
 .ecoute-ligne.actif{ opacity:1; }
 .ecoute-mot{ font-size:34px; font-weight:800; color:#1e2433; line-height:1.15; margin-top:4px; }
@@ -3845,7 +3850,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v459</span>
+        <span class="subtitle-version">v460</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -19494,7 +19499,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 459;
+const APP_VERSION = 460;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20170,6 +20175,10 @@ let texteAudioExemple = null;
 // parce qu'une regle sans exception est une regle que l'app peut tenir partout.
 let chaineCarteJeton = 0;
 let chaineCarteMinuteur = null;
+// La duree de la bascule de la carte, en millisecondes. DOIT SUIVRE la
+// transition de `.flashcard` dans le CSS (transform .55s) : c'est elle qui dit
+// a partir de quand le verso est reellement lisible.
+const DELAI_BASCULE = 550;
 
 // Les zones du verso qui peuvent s'eclairer, et l'ordre ou on les dit.
 const CHAINE_GROUPES = {
@@ -20267,18 +20276,23 @@ function direChaineCarte(){
         if(jeton !== chaineCarteJeton) return;
         if(i >= etapes.length){ finChaineCarte(); return; }
         const et = etapes[i++];
-        // LA LUMIERE ARRIVE APRES LE SON, ET C'EST VOULU POUR LA PREMIERE ETAPE.
+        // LA PREMIERE LUMIERE ATTEND QUE LA CARTE SOIT POSEE (v460).
         //
-        // On ne peut pas retarder le son : sur iOS, l'element audio n'a le droit
+        // On ne peut pas retarder le SON : sur iOS, l'element audio n'a le droit
         // de jouer que dans le prolongement direct du geste, et une attente
-        // rompt ce lien (c'est ecrit en toutes lettres dans direAllemand). On
-        // lance donc le fichier tout de suite et on eclaire un souffle plus
-        // tard -- ce qui donne exactement l'effet demande : la carte arrive
-        // pale, puis le mot se fonce.
+        // rompt ce lien (c'est ecrit en toutes lettres dans direAllemand). Le
+        // fichier part donc tout de suite.
+        //
+        // Mais la LUMIERE, elle, doit attendre. La bascule de la carte dure
+        // 550 ms (transition de .flashcard) : eclairer avant, c'est eclairer une
+        // carte encore de profil -- l'etat pale existe et personne ne le voit.
+        // C'est ce que Jacques decrivait sans pouvoir le nommer. On eclaire donc
+        // juste apres que la carte s'est posee, et l'effet demande apparait :
+        // elle arrive pale, puis le mot se fonce.
         const eclairer = () => {
             if(jeton === chaineCarteJeton) eclairerLigneCarte(et.groupe);
         };
-        if(premiere){ premiere = false; setTimeout(eclairer, 220); }
+        if(premiere){ premiere = false; setTimeout(eclairer, DELAI_BASCULE + 70); }
         else eclairer();
         direAllemand(et.texte, { rate: 0.9, onEnd: () => {
             if(jeton !== chaineCarteJeton) return;
