@@ -3430,26 +3430,28 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 .orb[data-orbid="monvocab"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.3);}
 .orb[data-orbid="monvocab"] .orb-icon svg{stroke:#E8A23A;}
 
-/* LA PASTILLE « ESSENTIEL ». Elle emprunte au chip de frequence sa couleur et
-   sa forme -- c'est la meme famille d'information, et deux dessins differents
-   pour deux etiquettes cote a cote feraient du bruit. */
-.examen-ligne{margin:2px 0 8px;}
-.examen-chip{
-    display:inline-flex; align-items:center; gap:5px;
-    font:inherit; font-size:11px; font-weight:700; letter-spacing:.03em;
-    padding:3px 9px; border-radius:6px; border:none; cursor:pointer;
-    background:rgba(59,111,224,.12); color:#3b6fe0;
-}
-.examen-chip svg{display:block;}
-/* Dans le coin : un STATUT de la carte, pas une information dans le fil de
-   lecture. Le trophee occupe le haut au centre, les deux ne se genent pas. */
+/* LA MARQUE « ESSENTIEL » -- TOUJOURS AU MEME ENDROIT (v469).
+   Elle vivait d'abord sous le pluriel pendant la phase d'apprentissage, puis
+   sautait dans le coin. Jacques : « pourquoi on ne le voit pas plutot dans le
+   coin en haut a gauche, ou se retrouve la cle en temps normal ? » Il a raison,
+   et c'etait un defaut de conception : on apprenait une pastille a un endroit
+   et elle apparaissait ensuite a un autre -- l'association ne se faisait pas.
+   La cle ne bouge plus. Elle perd seulement son mot.
+   Le trophee occupe le haut au CENTRE : les deux ne se genent pas, meme quand
+   le mot est la. */
 .examen-coin{
     position:absolute; top:10px; left:12px; z-index:2;
-    display:flex; align-items:center;
+    display:flex; align-items:center; gap:5px;
     background:none; border:none; padding:4px; cursor:pointer;
-    border-radius:8px; color:#3b6fe0; line-height:0;
+    border-radius:999px; color:#3b6fe0; line-height:0;
+    font:inherit; font-size:11px; font-weight:700; letter-spacing:.03em;
 }
-.examen-coin svg{display:block;}
+.examen-coin svg{display:block; flex:0 0 auto;}
+/* Avec le mot : la meme pastille bleue pale que le chip de frequence -- c'est
+   la meme famille d'information, deux dessins differents feraient du bruit. */
+.examen-coin.avec-mot{
+    background:rgba(59,111,224,.12); padding:3px 9px 3px 7px;
+}
 
 .freq-chip{
     display:inline-block; padding:1px 7px; border-radius:6px;
@@ -3828,7 +3830,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v468</span>
+        <span class="subtitle-version">v469</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5691,18 +5693,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
-                <!-- LA MARQUE « ESSENTIEL », EN DEUX TEMPS (v463).
-                     Les premieres fois, la pastille porte son texte : on
-                     comprend en lisant sa carte, sans rien toucher. Passe le
-                     seuil, il ne reste que la cle dans le coin -- la carte
-                     redevient calme, et un appui rouvre l'explication.
-                     Voir reglerPastilleExamen. -->
-                <div id="flashExamenLigne" class="examen-ligne hidden">
-                    <button type="button" class="examen-chip"
-                            onclick="event.stopPropagation(); ouvrirAideExamen();">
-                        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg><span data-i18n="examen_essentiel">Essentiel</span>
-                    </button>
-                </div>
                 <div id="flashPaire" class="plural hidden"></div>
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
@@ -6033,6 +6023,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 onclick="copierJournalAudio()">COPIER LE JOURNAL</button>
         <div class="spacer"></div>
         <button class="secondary" onclick="viderJournalAudio()">VIDER LE JOURNAL</button>
+        <div class="spacer"></div>
+        <!-- Reserve a l'admin, comme le reste de cette carte : rejoue les cinq
+             cartes ou la cle porte son mot. Voir rejouerApprentissageCle. -->
+        <button class="secondary" onclick="rejouerApprentissageCle()"
+                data-i18n="examen_rejouer">Revoir la phase d'apprentissage de la clé</button>
         <pre id="journalAudioBox" style="display:none; white-space:pre-wrap;
             word-break:break-word; font-size:12px; line-height:1.5;
             background:#0e131b; color:#d7dde8; padding:12px; border-radius:8px;
@@ -6442,6 +6437,8 @@ const I18N = {
         examen_aide_1: "Trois référentiels d'allemand publient la liste du vocabulaire à connaître à chaque niveau, et ce mot y figure. C'est utile que tu prépares un examen ou que tu partes en voyage : ce sont les mots sur lesquels ceux qui conçoivent les cours sont d'accord.",
         examen_aide_2: "Les mots sans cette marque ne sont pas moins bons — ils élargissent, là où ceux-ci font le socle. Et au-delà du B1, aucune liste officielle n'existe : l'absence de marque n'y veut plus rien dire.",
         examen_aide_retour: "REVENIR À LA CARTE",
+        examen_rejouer: "Revoir la phase d'apprentissage de la clé",
+        examen_rejouer_fait: "Le mot « Essentiel » reviendra sur les cinq prochaines cartes marquées.",
         credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
         credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
@@ -7247,6 +7244,8 @@ const I18N = {
         examen_aide_1: "Three German reference frameworks publish the vocabulary to know at each level, and this word is on them. That matters whether you are sitting an exam or going travelling: these are the words the people who design courses agree on.",
         examen_aide_2: "Words without this mark are no worse — they widen, where these ones form the base. And beyond B1 no official list exists: there, the absence of a mark means nothing at all.",
         examen_aide_retour: "BACK TO THE CARD",
+        examen_rejouer: "Replay the key's learning phase",
+        examen_rejouer_fait: "The word “Essential” will come back on the next five marked cards.",
         credits_voix: "German voice: Aurora, generated with ElevenLabs.",
         credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
@@ -8054,6 +8053,8 @@ const I18N = {
         examen_aide_1: "Üç Almanca başvuru çerçevesi her seviyede bilinmesi gereken kelime listesini yayımlar ve bu kelime o listelerde var. Sınava hazırlansan da yolculuğa çıksan da işine yarar: dersleri tasarlayanların üzerinde anlaştığı kelimelerdir.",
         examen_aide_2: "Bu işareti taşımayan kelimeler daha kötü değildir — bunlar temeli kurarken onlar genişletir. Ayrıca B1'in üstünde hiçbir resmi liste yoktur: orada işaretin yokluğu hiçbir şey anlatmaz.",
         examen_aide_retour: "KARTA DÖN",
+        examen_rejouer: "Anahtarın tanıtım aşamasını tekrarla",
+        examen_rejouer_fait: "« Temel » kelimesi sonraki beş işaretli kartta yeniden görünecek.",
         credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
         credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
@@ -9096,6 +9097,8 @@ const I18N = {
         examen_aide_1: "Три німецькі довідкові системи публікують список лексики для кожного рівня, і це слово там є. Це корисно й для іспиту, й для подорожі: це слова, щодо яких укладачі курсів згодні.",
         examen_aide_2: "Слова без цієї позначки не гірші — вони розширюють там, де ці створюють основу. А понад B1 жодного офіційного списку не існує: там відсутність позначки нічого не означає.",
         examen_aide_retour: "ПОВЕРНУТИСЯ ДО КАРТКИ",
+        examen_rejouer: "Повторити навчання ключа",
+        examen_rejouer_fait: "Слово «Головне» знову з’явиться на наступних п’яти позначених картках.",
         credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
         credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
@@ -19580,7 +19583,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 468;
+const APP_VERSION = 469;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20430,7 +20433,7 @@ function speakPlural(){
 // les cinq cartes d'apprentissage ont ete depensees a vide pendant qu'on
 // cherchait le defaut. Changer le nom les rend a tout le monde -- la marque a
 // une heure, personne n'a encore rien appris d'elle.
-const CLE_VUES_KEY = "deutschAI_cleVues2";
+const CLE_VUES_KEY = "deutschAI_cleVues3";
 // Nombre de cartes portant la cle qu'on montre AVEC son texte avant de passer
 // a la cle seule. Compte une fois pour toutes, pas par seance : un usager
 // quotidien relirait sinon la meme etiquette tous les jours pendant un an.
@@ -20439,6 +20442,19 @@ const CLE_PHASE_TEXTE = 5;
 function cleVues(){
     try{ return parseInt(localStorage.getItem(CLE_VUES_KEY) || "0", 10) || 0; }
     catch(e){ return CLE_PHASE_TEXTE; }   // illisible : on passe en mode discret
+}
+
+// REJOUER LA PHASE D'APPRENTISSAGE, POUR L'ADMINISTRATEUR (v469).
+//
+// Le compte a ete brule deux fois de suite pendant la mise au point -- une fois
+// par un defaut d'affichage, une fois par les essais eux-memes -- et j'ai
+// change le nom de la cle de stockage a chaque fois pour le rendre. Ca ne peut
+// pas etre la methode : un jour ce nom changera dans une version qui n'en avait
+// pas besoin, et tout le monde reverra le texte sans raison.
+// Le bouton vit dans la carte du journal audio, deja reservee a l'admin.
+function rejouerApprentissageCle(){
+    try{ localStorage.removeItem(CLE_VUES_KEY); }catch(e){}
+    showInfoToast(t("examen_rejouer_fait"));
 }
 
 function noterCleVue(){
@@ -20468,13 +20484,22 @@ function marqueExamenCarte(card, mode){
 let carteEstEssentielle = false;
 function reglerPastilleExamen(card, mode){
     carteEstEssentielle = marqueExamenCarte(card, mode);
-    const ligne = document.getElementById("flashExamenLigne");
     const coin = document.getElementById("flashExamenCoin");
-    const enTexte = carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE;
-    if(ligne) ligne.classList.toggle("hidden", !enTexte);
+    const avecMot = carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE;
     if(coin){
-        coin.classList.toggle("hidden", !(carteEstEssentielle && !enTexte));
-        if(!coin.innerHTML) coin.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg>';
+        coin.classList.toggle("hidden", !carteEstEssentielle);
+        coin.classList.toggle("avec-mot", avecMot);
+        // Le mot est REECRIT a chaque carte plutot que pose une fois : la
+        // langue de l'interface peut changer en cours de seance, et un libelle
+        // fige mentirait a partir de la carte suivante.
+        coin.innerHTML =
+            '<svg viewBox="0 0 24 24" width="' + (avecMot ? 17 : 24) + '" height="' +
+            (avecMot ? 17 : 24) + '" aria-hidden="true">' +
+            '<circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/>' +
+            '<rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/>' +
+            '<rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/>' +
+            '<rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg>' +
+            (avecMot ? '<span>' + t("examen_essentiel") + '</span>' : '');
         coin.setAttribute("aria-label", t("examen_essentiel"));
     }
 }
