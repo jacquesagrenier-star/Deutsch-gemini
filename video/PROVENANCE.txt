@@ -51,8 +51,34 @@ Droits     : A VERIFIER PAR JACQUES, directement dans les conditions de xAI --
                   produits restent utilisables ensuite.)
                3. l'attribution a Grok est-elle une DEMANDE ou une CONDITION ?
 
-             Tant que le point 2 n'est pas verifie noir sur blanc, considerer
-             la question comme ouverte.
+             LE POINT 2 A RECU UNE REPONSE (6 sept. 2026, via ChatGPT, non
+             verifiee dans le texte original) : la propriete porterait sur les
+             Outputs eux-memes et non sur l'abonnement -- des videos produites
+             pendant l'abonnement resteraient donc exploitables apres sa
+             resiliation. C'est aussi ce que laissent entendre les sources
+             consultees ici. A CONFIRMER par lecture directe : deux assistants
+             qui concordent ne valent pas une clause lue.
+
+             ET DEUX POINTS QU'AUCUNE DE MES SOURCES N'AVAIT VUS, apportes par
+             la meme reponse -- ce sont les plus concrets de tous :
+
+               A. ATTRIBUTION. Les Brand Guidelines de xAI demanderaient une
+                  mention du type « Created with Grok » sur un contenu genere
+                  avec Grok lorsqu'il est publie ou distribue. Si c'est une
+                  CONDITION et non une demande, elle n'est pas remplie
+                  aujourd'hui : rien dans l'application ne le mentionne.
+                  Ou la mettre si besoin : la page de confidentialite ou un
+                  ecran « A propos ». Pas sur la video elle-meme -- c'est un
+                  ecran d'ouverture de trois secondes.
+
+               B. FILIGRANE. Les videos generees peuvent porter un filigrane
+                  Grok, qu'il serait interdit de supprimer, masquer ou modifier.
+                  ⚠️ C'EST LE POINT A VERIFIER EN PREMIER, et il est propre a
+                  notre cas : la video d'ouverture a ete RECOUPEE et
+                  RECOMPRESSEE avec ffmpeg, et elle est embarquee en base64
+                  dans index.html. Si un recadrage a fait sauter un filigrane,
+                  la regle est enfreinte -- sans que personne l'ait voulu.
+                  Comparer l'export d'origine de Grok avec ce qui est publie.
 
 Capture    : archiver une copie datee de la page des conditions le jour de la
              verification. Des conditions changent ; ce qui protege, c'est
@@ -86,8 +112,17 @@ sont toujours sur le disque local, seulement plus suivis.
 IMAGES
 -----------------------------------------------------------------------------
 prep.JPG        : suivi par git, donc publie. Source A ETABLIR.
-manga.JPG       : NON suivi par git, donc jamais publie. Reste local.
+manga.JPG       : non suivi. Reste local.
 Prepanglais.jpeg, Prepfrancais.jpeg : non suivis. Restent locaux.
+
+⚠️ INCIDENT DU 6 SEPTEMBRE 2026, garde ici parce qu'il illustre exactement le
+risque que ce fichier combat. Un « git add -A video » a ajoute a l'index sept
+fichiers volontairement non suivis -- manga.JPG, les quatre sources .MOV des
+personnages, les deux images de preparation -- et les a POUSSES. Ce fichier
+affirmait au meme moment qu'ils n'etaient pas publies : il disait faux.
+Depublies dans l'heure, et une regle de .gitignore empeche desormais le geste.
+Ce qui a ete pousse une fois reste dans l'historique git ; seule la publication
+courante a ete corrigee.
 
 Le logo et les icones ne sont PAS ici : ils vivent dans branding/, ils sont
 originaux, et leur conception est documentee dans CLAUDE.md.
