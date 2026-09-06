@@ -3828,7 +3828,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v463</span>
+        <span class="subtitle-version">v464</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -19554,7 +19554,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 463;
+const APP_VERSION = 464;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20440,6 +20440,19 @@ function reglerPastilleExamen(card, mode){
     const ligne = document.getElementById("flashExamenLigne");
     const coin = document.getElementById("flashExamenCoin");
     const enTexte = carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE;
+    // TRACE TEMPORAIRE (v464). La pastille ne s'affiche pas chez Jacques alors
+    // que la donnee, la logique et le fichier servi sont tous corrects --
+    // verifies un par un. Plutot que de deviner une quatrieme fois, on note ce
+    // que cette fonction a REELLEMENT vu et decide, dans le journal audio.
+    // A retirer des que le defaut est nomme.
+    noterAudio(String((card && (card[0] || card.infinitif)) || "?"), "PASTILLE",
+        "mode " + mode +
+        ", marque " + JSON.stringify(card && card[14] !== undefined ? card[14] : (card && card.pruefung)) +
+        ", essentiel " + carteEstEssentielle +
+        ", vues " + cleVues() +
+        ", ligne " + (ligne ? "trouvee" : "ABSENTE") +
+        ", coin " + (coin ? "trouve" : "ABSENT") +
+        " -> " + (enTexte ? "TEXTE" : (carteEstEssentielle ? "COIN" : "rien")));
     if(ligne) ligne.classList.toggle("hidden", !enTexte);
     if(coin){
         coin.classList.toggle("hidden", !(carteEstEssentielle && !enTexte));
