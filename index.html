@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v476</span>
+        <span class="subtitle-version">v477</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12550,6 +12550,47 @@ let dernierEchecSync = null;
 // deux, sinon on en est reduit a deviner champ par champ.
 // JSON.stringify SUPPRIME les undefined au lieu de les signaler : la taille ne
 // peut pas les reveler, d'ou le parcours separe.
+// UN CHAMP FAUTIF NE DOIT PAS EMPORTER TOUT LE DOCUMENT (v477).
+//
+// Firestore rejette l'ecriture ENTIERE des qu'une valeur vaut undefined,
+// n'importe ou dans l'objet. C'est arrive deux fois : la progression cessait
+// d'etre sauvegardee, en silence, pour un seul champ mal calcule.
+//
+// On retire donc les undefined avant d'ecrire, et on RETIENT lesquels : les
+// laisser disparaitre sans trace remplacerait une panne visible par une panne
+// invisible, ce qui serait pire. Le tableau de bord les affiche.
+//
+// Les cles retirees ne sont pas ecrasees cote serveur : l'ecriture se fait avec
+// merge, donc une valeur deja stockee survit a un calcul rate.
+let champsRetiresSync = [];
+function sansIndefinis(valeur, chemin){
+    // ⚠️ LES TABLEAUX AUSSI. Un `map` seul laissait passer l'element undefined --
+    // Firestore le refuse tout autant qu'un champ. Il est RETIRE, pas remplace
+    // par null : un trou dans une liste de mots vaut mieux qu'un mot vide.
+    if(Array.isArray(valeur)){
+        const out = [];
+        valeur.forEach((v, i) => {
+            const ou = chemin + "[" + i + "]";
+            if(v === undefined){ champsRetiresSync.push(ou); return; }
+            out.push(sansIndefinis(v, ou));
+        });
+        return out;
+    }
+    if(valeur && typeof valeur === "object" && !(valeur instanceof Date)){
+        // Les sentinelles Firestore (serverTimestamp) sont des objets opaques :
+        // les parcourir les casserait. On ne descend que dans les objets nus.
+        if(Object.getPrototypeOf(valeur) !== Object.prototype) return valeur;
+        const out = {};
+        Object.keys(valeur).forEach(c => {
+            const v = valeur[c];
+            if(v === undefined){ champsRetiresSync.push((chemin ? chemin + "." : "") + c); return; }
+            out[c] = sansIndefinis(v, (chemin ? chemin + "." : "") + c);
+        });
+        return out;
+    }
+    return valeur;
+}
+
 function diagnostiquerSnapshot(s){
     if(!s) return "snapshot jamais construit";
     const morceaux = [];
@@ -12652,8 +12693,18 @@ async function syncProgressToCloud(){
             progress,
             updatedAt: window.fsServerTimestamp()
         };
-        await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), snapshot, { merge: true });
-        dernierEchecSync = null;
+        champsRetiresSync = [];
+        const aEcrire = sansIndefinis(snapshot, "");
+        await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), aEcrire, { merge: true });
+        // Une ecriture reussie mais amputee n'est pas un succes silencieux : le
+        // tableau de bord doit le dire, sinon un champ mal calcule disparaitrait
+        // pour toujours sans que personne le sache.
+        dernierEchecSync = champsRetiresSync.length ? {
+            message: "champ(s) ignore(s) : " + champsRetiresSync.slice(0, 5).join(", "),
+            detail: "L'ecriture a REUSSI sans eux. Une valeur undefined aurait fait "
+                  + "rejeter tout le document ; elle est retiree, mais le calcul "
+                  + "qui la produit reste a corriger."
+        } : null;
     }catch(e){
         // Silencieux POUR LA PERSONNE QUI APPREND : la sauvegarde locale a déjà
         // réussi, ce n'est pas bloquant. Mais on retient la cause, que le
@@ -13400,10 +13451,20 @@ function getDailyActivityCount(){
     return (daily && daily.date === today) ? daily.count : 0;
 }
 
+// ⚠️ RENVOIE TOUJOURS UN NOMBRE (v477). L'ancienne version se protegeait de
+// `null` mais pas d'un objet de serie SANS `count` -- « streak ? streak.count :
+// 0 » rend alors `undefined`. Firestore refuse toute valeur undefined et rejette
+// LE DOCUMENT ENTIER pour un seul champ : la sauvegarde cloud de Jacques etait
+// bloquee, et le tableau de bord admin affichait « invalid-argument ... found in
+// field streak ».
+//
+// Un objet sans `count` n'est pas theorique : c'est ce que laisse une version
+// anterieure du format, ou une ecriture interrompue.
 function getStreakCount(){
     let streak;
     try{ streak = JSON.parse(localStorage.getItem(directionScopedKey(STREAK_KEY)) || "null"); }catch(e){ streak = null; }
-    return streak ? streak.count : 0;
+    const n = streak ? Number(streak.count) : 0;
+    return Number.isFinite(n) ? n : 0;
 }
 
 // Vélocité récente : nombre d'éléments maîtrisés dans les 7 derniers jours.
@@ -19833,7 +19894,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 476;
+const APP_VERSION = 477;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
