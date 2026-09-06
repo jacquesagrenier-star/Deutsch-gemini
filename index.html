@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v480</span>
+        <span class="subtitle-version">v481</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14366,15 +14366,13 @@ function orbPanelData(id){
             ]
         };
     }
-    if(id === "relativ"){
-        return {
-            icon:"dossier", title:t("op_relativ_title"), sub:t("op_relativ_sub"),
-            options:[
-                { icon:"dossier", title:t("op_relativ_o1_t"), desc:t("op_relativ_o1_d"), primary:true, action:"openRelativInfo" },
-                { icon:"dossier", title:t("op_relativ_o2_t"), desc:t("op_relativ_o2_d"), action:"openRelativGenitivInfo" }
-            ]
-        };
-    }
+    // LES PANNEAUX « relativ » ET « possessiv » ONT ETE RETIRES (v481).
+    // Ils dupliquaient ce que le panneau « pronomen » offre deja -- et rien,
+    // nulle part, ne les ouvrait : ni tuile, ni bouton, ni action. Du code mort
+    // qui ressemblait a du code vivant, donc un piege : on serait alle corriger
+    // une lecon dans le panneau que personne ne voit. Leur seule option
+    // introuvable ailleurs, le genitif des relatives, est passee dans
+    // « pronomen », a cote des relatives.
     if(id === "adverbien"){
         return {
             icon:"dossier", title:t("op_adverbien_title"), sub:t("op_adverbien_sub"),
@@ -14408,6 +14406,11 @@ function orbPanelData(id){
                 { icon:"dossier", title:t("op_pronomen_o2_t"), desc:t("op_pronomen_o2_d"), action:"openDemonstrativInfo" },
                 { icon:"dossier", title:t("op_pronomen_o3_t"), desc:t("op_pronomen_o3_d"), action:"openPossessivInfo" },
                 { icon:"dossier", title:t("op_pronomen_o4_t"), desc:t("op_pronomen_o4_d"), action:"openRelativInfo" },
+                // Le GENITIF des relatives -- « dessen », « deren » -- avec sa
+                // lecon et ses 59 exercices. Il ne figurait que dans un panneau
+                // « relativ » que RIEN n'ouvrait : les relatives se prennent
+                // ici, et cette moitie-la n'existait pour personne.
+                { icon:"dossier", title:t("op_relativ_o2_t"), desc:t("op_relativ_o2_d"), action:"openRelativGenitivInfo" },
                 // Les deux premieres cartes de cette tuile. Elle n'avait que
                 // des lecons, et les determinants n'avaient aucune porte.
                 { icon:"carte", title:t("op_pronomen_o5_t"), desc:"man · es · sich · wer · selbst…", action:"startPronomenVokabular" },
@@ -14444,7 +14447,13 @@ function orbPanelData(id){
                 { icon:"carte", title:t("grp_meinung"), desc:"meiner Meinung nach \u00b7 auf jeden Fall",
                   primary:true, action:"ausdrueckeMeinung" },
                 { icon:"carte", title:t("grp_diskussion"), desc:"es geht um \u00b7 im Gegenteil", action:"ausdrueckeDiskussion" },
-                { icon:"carte", title:t("grp_ton"), desc:"doch \u00b7 ja \u00b7 mal \u00b7 eben", action:"startPartikelnVokabular" },
+                // La PORTE DES PARTICULES, et la seule. Cette option ouvrait
+                // le paquet de cartes tout seul ; la lecon et les 50 exercices
+                // du panneau n'etaient atteignables qu'en revenant en arriere
+                // depuis ces cartes. Elle ouvre maintenant le panneau, dont le
+                // paquet de cartes est la troisieme option -- rien n'est perdu,
+                // et deux contenus cessent d'etre invisibles.
+                { icon:"dossier", title:t("grp_ton"), desc:"doch \u00b7 ja \u00b7 mal \u00b7 eben", action:"openPartikelnPanel" },
                 { icon:"carte", title:t("grp_ton_adv"), desc:"allerdings \u00b7 zwar \u00b7 immerhin", action:"ausdrueckeTonAdverbien" },
                 { icon:"carte", title:t("grp_verbindungen"), desc:"eine Entscheidung treffen", action:"ausdrueckeVerbindungen" },
                 { icon:"carte", title:t("grp_gefuehle"), desc:"keine Ahnung \u00b7 zum Gl\u00fcck", action:"ausdrueckeGefuehle" },
@@ -14589,15 +14598,6 @@ function orbPanelData(id){
             icon:"dossier", title:t("orb_wortstellung_title"), sub:t("orb_wortstellung_sub"),
             options:[
                 { icon:"dossier", title:t("op_wortstellung_o1_t"), desc:"V2 · TeKaMoLo · nicht", primary:true, action:"openWortstellungInfo" }
-            ]
-        };
-    }
-    if(id === "possessiv"){
-        return {
-            icon:"dossier", title:t("orb_possessiv_title"), sub:t("orb_possessiv_sub"),
-            options:[
-                { icon:"dossier", title:t("possessiv_base_title"), desc:"mein · dein · sein · ihr…", primary:true, action:"openPossessivInfo" },
-                { icon:"exercice", title:t("op_possessiv_o2_t"), desc:t("op_possessiv_o2_d"), action:"startPossessivExercise" }
             ]
         };
     }
@@ -16936,6 +16936,16 @@ function renderNiveauBarFonctionnel(barId, theme, fonction){
 // portes (explication, tri, place du verbe, als/wenn, obwohl/trotzdem, cartes).
 function openKonjunktionenPanel(){
     openOrbPanel('konjunktionen');
+}
+
+// Le panneau des particules avait un contenu complet -- une lecon, 50
+// exercices, un paquet de cartes -- et AUCUNE PORTE. La seule entree etait le
+// bouton « Retour » de sa propre page d'explication, elle-meme inatteignable :
+// on n'y arrivait qu'en ouvrant les cartes depuis Expressions puis en revenant
+// en arriere. Meme defaut qu'en v409, trouve cette fois par tests/chemins.py
+// et non par un usager.
+function openPartikelnPanel(){
+    openOrbPanel('partikeln');
 }
 
 function openKonjunktionenInfo(){
@@ -20010,7 +20020,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 480;
+const APP_VERSION = 481;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

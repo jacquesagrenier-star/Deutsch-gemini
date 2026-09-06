@@ -563,6 +563,39 @@ def verifier_version(r, source):
 
 
 
+def verifier_chemins(r):
+    """Chaque ecran, panneau et jeu est-il ATTEIGNABLE depuis l'accueil ?
+
+    Le reste de ce fichier repond a « la cible existe-t-elle ? ». Cette
+    question-la est differente, et la difference a deja coute une version : en
+    v409, un ecran, 45 exercices et 18 cartes existaient depuis des mois, tous
+    valides ici -- et aucune tuile ne les portait. C'est un usager qui l'a
+    trouve. Le parcours du graphe vit dans tests/chemins.py, qui s'execute
+    aussi seul et sait montrer le chemin complet de chaque cible.
+    """
+    try:
+        import chemins
+    except ImportError as e:
+        r.alerte("chemins", "tests/chemins.py introuvable : %s" % e)
+        return
+    source = chemins.lire()
+    _, liens = chemins.graphe(source)
+    joignables = chemins.parcourir(liens, chemins.DEPART)
+    cibles = ([("ecran:" + x) for x in chemins.ecrans(source)]
+              + [("panneau:" + x) for x in chemins.panneaux(source)])
+    try:
+        with io.open(os.path.join(RACINE, "exercices.json"), encoding="utf-8") as f:
+            cibles += ["jeu:" + x for x in json.load(f).get("jeux", {})]
+    except (IOError, ValueError):
+        pass
+    perdus = [c for c in sorted(cibles)
+              if c not in joignables and c not in chemins.HORS_CLIC]
+    for c in perdus:
+        r.echec("chemins", "aucun chemin depuis l'accueil vers %s" % c)
+    r.controle(len(cibles))
+    print("   chemins d'acces : %d cibles, %d sans chemin" % (len(cibles), len(perdus)))
+
+
 def verifier_export_csv(r):
     """Les CSV de export/ sont-ils encore le reflet des JSON ?
 
@@ -630,6 +663,7 @@ def main():
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
     verifier_version(r, source)
+    verifier_chemins(r)
     verifier_export_csv(r)
 
     print("\n" + "-" * 62)
