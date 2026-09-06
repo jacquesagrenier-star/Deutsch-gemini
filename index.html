@@ -3830,7 +3830,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v469</span>
+        <span class="subtitle-version">v470</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6439,6 +6439,7 @@ const I18N = {
         examen_aide_retour: "REVENIR À LA CARTE",
         examen_rejouer: "Revoir la phase d'apprentissage de la clé",
         examen_rejouer_fait: "Le mot « Essentiel » reviendra sur les cinq prochaines cartes marquées.",
+        op_essentiel_d: "Les mots que les programmes officiels retiennent en premier",
         credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
         credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
@@ -7246,6 +7247,7 @@ const I18N = {
         examen_aide_retour: "BACK TO THE CARD",
         examen_rejouer: "Replay the key's learning phase",
         examen_rejouer_fait: "The word “Essential” will come back on the next five marked cards.",
+        op_essentiel_d: "The words the official syllabuses list first",
         credits_voix: "German voice: Aurora, generated with ElevenLabs.",
         credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
@@ -8055,6 +8057,7 @@ const I18N = {
         examen_aide_retour: "KARTA DÖN",
         examen_rejouer: "Anahtarın tanıtım aşamasını tekrarla",
         examen_rejouer_fait: "« Temel » kelimesi sonraki beş işaretli kartta yeniden görünecek.",
+        op_essentiel_d: "Resmi programların ilk sıraya koyduğu kelimeler",
         credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
         credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
@@ -9099,6 +9102,7 @@ const I18N = {
         examen_aide_retour: "ПОВЕРНУТИСЯ ДО КАРТКИ",
         examen_rejouer: "Повторити навчання ключа",
         examen_rejouer_fait: "Слово «Головне» знову з’явиться на наступних п’яти позначених картках.",
+        op_essentiel_d: "Слова, які офіційні програми ставлять на перше місце",
         credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
         credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
@@ -10938,7 +10942,7 @@ async function loadThemesJson() {
                     // LA OU IL EST, au lieu de sortir les mots d'examen dans un
                     // theme a part : « Anruf » appartient a la communication,
                     // « Brille » au corps. La tuile Preparation filtre dessus a
-                    // travers tous les themes -- voir cartesExamen().
+                    // travers tous les themes -- voir cartesEssentielles().
                     Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 14
                     w.traduction_uk || "",   // rang 15
                     w.exemple_uk || ""       // rang 16
@@ -14195,21 +14199,29 @@ function orbPanelData(id){
                   action:"startPruefungSchreiben" },
                 { icon:"exercice", title:t("op_pruefung_sprechen_t"), desc:t("op_pruefung_sprechen_d"),
                   action:"startPruefungSprechen" },
-                { icon:"carte", title:t("op_pruefung_noyau_t"), desc:t("op_pruefung_noyau_d"),
-                  action:"startExamenNoyau",
-                  count:cartesExamen('noyau').length },
-                { icon:"carte", title:t("op_pruefung_a2_t"), desc:t("op_pruefung_a2_d"),
-                  action:"startExamenA2", count:cartesExamen('a2').length },
-                { icon:"carte", title:t("op_pruefung_b1_t"), desc:t("op_pruefung_b1_d"),
-                  action:"startExamenB1", count:cartesExamen('b1').length },
-                // Le C1 est ANNONCE COMME DIFFERENT, et sa description le dit.
-                // Le Goethe ne publie de Wortliste que jusqu'au B1 ; au-dela,
-                // le vocabulaire est ouvert. Cette option offre donc les cartes
-                // que le cours classe en C1 -- pas une couverture d'examen.
-                { icon:"carte", title:t("op_pruefung_c1_t"), desc:t("op_pruefung_c1_d"),
-                  action:"startExamenC1", count:cartesExamen('c1').length },
-                { icon:"carte", title:t("op_pruefung_tout_t"), desc:t("op_pruefung_tout_d"),
-                  action:"startExamenTout", count:cartesExamen(null).length }
+                // UN SEUL PAQUET DE VOCABULAIRE, ET IL NE NOMME PLUS PERSONNE.
+                //
+                // Il y en avait CINQ : « Le noyau », « Niveau A2 », « Niveau
+                // B1 », « Niveau C1 », « Vocabulaire d'examen ». Deux raisons
+                // de n'en garder qu'un, et elles pointent au meme endroit.
+                //
+                // L'USAGE. Ces paquets formaient un monde parallele : les
+                // memes cartes que le cours, filtrees autrement, sur un ecran
+                // qui ressemblait a un second vocabulaire. Rien ne le disait.
+                //
+                // LE DROIT. Trois d'entre eux extrayaient une liste officielle
+                // PRECISE -- Goethe A2, Goethe B1, le test d'integration. Une
+                // liste peut relever du droit des bases de donnees, et l'app
+                // en offrait l'extraction en un bouton. Il ne reste qu'un
+                // agregat : les mots retenus par AU MOINS un programme, ce qui
+                // ne reconstitue aucune liste en particulier.
+                //
+                // Ce que le candidat perd : la possibilite de reviser
+                // exactement le perimetre du DTZ. Mesure : 95,3 % de ce
+                // perimetre est deja dans A1-B1 du cours. Il perd la
+                // concentration, pas la couverture.
+                { icon:"carte", title:t("examen_essentiel"), desc:t("op_essentiel_d"),
+                  action:"startEssentiel", count:cartesEssentielles().length }
             ]
         };
     }
@@ -14682,39 +14694,29 @@ function buildSearchIndex(){
 // themeId et leur index d'origine, donc maitriser « Anruf » ici le maitrise
 // aussi dans Medien und Technologie. Une tuile qui aurait sa propre
 // progression ferait reviser deux fois les memes mots.
-const EXAMENS = ["a2", "b1", "dtz"];
 
 // Un mot ne doit apparaitre qu'une fois dans le paquet. Les chapitres VHS
 // reprennent des mots des themes de base : sans ce dedoublonnage, « Anruf »
 // sortirait deux fois dans la meme seance, avec deux progressions distinctes.
-function cartesExamen(filtre){
+// TOUTES LES CARTES QUE LES PROGRAMMES OFFICIELS RETIENNENT, TOUS TYPES
+// CONFONDUS -- noms, verbes, adjectifs, adverbes, expressions.
+//
+// ⚠️ CETTE FONCTION SAVAIT AUTREFOIS FILTRER PAR LISTE : « la liste Goethe A2 »,
+// « Goethe B1 et le DTZ », « les mots que les trois retiennent ». Elle ne le
+// sait plus, et c'est le point du changement (v470). Extraire une liste
+// officielle precise, c'est reproduire une base de donnees que quelqu'un a
+// constituee ; en offrir l'extraction par un bouton, c'est la republier. Il ne
+// reste qu'un AGREGAT -- les mots retenus par au moins un programme -- qui ne
+// reconstitue aucune liste en particulier.
+//
+// Ne pas remettre le parametre. Si un jour il faut mesurer la couverture par
+// examen, cela se fait hors de l'application, sur les fichiers, avec les
+// outils de tests/ -- pas dans un ecran que tout le monde peut ouvrir.
+function cartesEssentielles(){
     const vus = new Set();
     const out = [];
-    // LE FILTRE SE LIT PAR NIVEAU, et c'est un choix d'interface autant que de
-    // donnees. « Goethe A2 » et « DTZ » sont des etiquettes d'EDITEUR :
-    // l'apprenant sait quel niveau il prepare, il ne sait pas -- et n'a pas a
-    // savoir -- laquelle des trois listes est publiee par qui.
-    //
-    //     noyau   les mots que les TROIS listes retiennent
-    //     a2      la liste Goethe A2
-    //     b1      Goethe B1 et le DTZ reunis : les deux decrivent le meme
-    //             niveau, et personne ne prepare « le B1 sauf le DTZ »
-    //     c1      IL N'Y A PAS DE LISTE. Le Goethe ne publie de Wortliste que
-    //             jusqu'au B1 ; au-dela le vocabulaire est ouvert. Ce filtre
-    //             prend donc les cartes que LE COURS classe en C1, et l'option
-    //             le dit -- promettre une couverture C1 serait mentir.
-    //     null    tout ce qui porte une marque
     const prendre = (mot, marque, item) => {
-        if(filtre === 'c1'){
-            // Seul filtre qui ignore la marque d'examen : il n'y en a pas.
-            if(item.niveau !== 'C1') return;
-        } else {
-            if(!Array.isArray(marque) || !marque.length) return;
-            if(filtre === 'noyau' && marque.length < EXAMENS.length) return;
-            if(filtre === 'a2' && marque.indexOf('a2') === -1) return;
-            if(filtre === 'b1' && marque.indexOf('b1') === -1
-                               && marque.indexOf('dtz') === -1) return;
-        }
+        if(!Array.isArray(marque) || !marque.length) return;
         const cle = (mot || "").toLowerCase();
         if(!cle || vus.has(cle)) return;
         vus.add(cle);
@@ -14759,8 +14761,8 @@ function cartesExamen(filtre){
     return out;
 }
 
-function startExamenDeck(filtre){
-    const pool = cartesExamen(filtre);
+function startEssentiel(){
+    const pool = cartesEssentielles();
     if(!pool.length){ showInfoToast(t('pruefung_aucun')); return; }
     shuffleArray(pool);
     let cartes = cartesDeSession(pool);
@@ -14768,9 +14770,9 @@ function startExamenDeck(filtre){
     if(cartes.length > DUE_SESSION_CAP) cartes = cartes.slice(0, DUE_SESSION_CAP);
     currentCardsFull = pool;
     currentCards = cartes;
-    currentTheme = { id: 'pruefung_' + filtre, name: t('pruefung_' + filtre + '_t') };
+    currentTheme = { id: 'essentiel', name: t('examen_essentiel') };
     currentFlashcard = 0;
-    setFlashHeader('pruefung_kicker', null);
+    setFlashHeader('examen_essentiel', null);
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -15033,11 +15035,6 @@ function startPruefungHoeren(){ lancerEpreuve(exercicesHoeren, "kicker_pruefung_
 
 // orbAction() appelle window[action] SANS ARGUMENT : chaque option du panneau
 // a donc besoin de sa porte d'entree nommee.
-function startExamenNoyau(){ startExamenDeck('noyau'); }
-function startExamenA2(){ startExamenDeck('a2'); }
-function startExamenB1(){ startExamenDeck('b1'); }
-function startExamenC1(){ startExamenDeck('c1'); }
-function startExamenTout(){ startExamenDeck(null); }
 
 // Empreinte bon marche des sources : permet de reconstruire l'index si les
 // donnees ont fini de charger (ou ont ete rechargees) apres une premiere ouverture.
@@ -19583,7 +19580,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 469;
+const APP_VERSION = 470;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20461,7 +20458,7 @@ function noterCleVue(){
     try{ localStorage.setItem(CLE_VUES_KEY, String(cleVues() + 1)); }catch(e){}
 }
 
-// OU VIT LA MARQUE, SELON LA FORME DE LA CARTE. Memes rangs que cartesExamen()
+// OU VIT LA MARQUE, SELON LA FORME DE LA CARTE. Memes rangs que cartesEssentielles()
 // -- les cinq formats de donnees ne se ressemblent pas, et ce tableau est le
 // seul endroit qui le sache ici. Un rang qui change ailleurs sans changer ici
 // ne casserait rien : la pastille disparaitrait, en silence. C'est pour ca que
