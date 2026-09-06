@@ -3828,7 +3828,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v467</span>
+        <span class="subtitle-version">v468</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5624,6 +5624,32 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 <!-- ================= FLASHCARDS ================= -->
 
+<!-- L'EXPLICATION DE LA CLE, SUR SON PROPRE ECRAN (v468).
+     C'etait un panneau qui se depliait sous la carte. Deux defauts, tous deux
+     signales a l'usage : il s'ouvrait sous le pli sur un telephone, et il ne
+     se fermait qu'en retouchant la pastille -- « je ne sais pas si l'usager va
+     penser a recliquer sur la cle ».
+     Un ecran avec un Retour ne pose aucune de ces deux questions. Et il ne
+     coute rien : l'ecran des cartes n'est pas detruit quand on en sort, il est
+     seulement masque -- on revient donc sur la MEME carte, toujours retournee,
+     au meme rang du paquet. -->
+<section id="examenInfo" class="screen">
+    <button class="back" onclick="retourDepuisAideExamen()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="examen_essentiel">Essentiel</div>
+            <h2 data-i18n="examen_aide_titre">Les mots que les programmes officiels retiennent en premier.</h2>
+        </div>
+    </div>
+
+    <div class="info-box" data-i18n="examen_aide_1"></div>
+    <div class="spacer"></div>
+    <div class="info-box" data-i18n="examen_aide_2"></div>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="retourDepuisAideExamen()" data-i18n="examen_aide_retour">REVENIR À LA CARTE</button>
+</section>
+
 <section id="flashcards" class="screen">
     <button class="back" onclick="handleFlashcardBack()"><span data-i18n="back_button">‹ Retour</span></button>
 
@@ -5651,7 +5677,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      celui-la » avant meme qu'on ait cherche. -->
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
-                        onclick="event.stopPropagation(); basculerAideExamen();"></button>
+                        onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row" id="flashMotRow">
                     <div id="flashBackWord" class="back-word">Tisch</div>
@@ -5673,7 +5699,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      Voir reglerPastilleExamen. -->
                 <div id="flashExamenLigne" class="examen-ligne hidden">
                     <button type="button" class="examen-chip"
-                            onclick="event.stopPropagation(); basculerAideExamen();">
+                            onclick="event.stopPropagation(); ouvrirAideExamen();">
                         <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg><span data-i18n="examen_essentiel">Essentiel</span>
                     </button>
                 </div>
@@ -5692,14 +5718,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
-        <!-- L'EXPLICATION DE LA CLE, JUSTE SOUS LA CARTE (v466).
-             Elle etait placee tout en bas du bloc, apres les deux boutons de
-             jugement, le bouton « je connais deja » et l'aide du SRS : sur un
-             telephone elle s'ouvrait HORS DE L'ECRAN. On touchait la cle en
-             haut de la carte et il ne se passait rien de visible.
-             Elle est desormais la premiere chose sous la carte -- a l'endroit
-             ou le regard revient apres avoir touche la pastille. -->
-        <div id="examenAide" class="srs-aide hidden"></div>
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
                 <span data-i18n="review_again">↺ Encore</span>
@@ -6423,6 +6441,7 @@ const I18N = {
         examen_aide_titre: "Les mots que les programmes officiels retiennent en premier.",
         examen_aide_1: "Trois référentiels d'allemand publient la liste du vocabulaire à connaître à chaque niveau, et ce mot y figure. C'est utile que tu prépares un examen ou que tu partes en voyage : ce sont les mots sur lesquels ceux qui conçoivent les cours sont d'accord.",
         examen_aide_2: "Les mots sans cette marque ne sont pas moins bons — ils élargissent, là où ceux-ci font le socle. Et au-delà du B1, aucune liste officielle n'existe : l'absence de marque n'y veut plus rien dire.",
+        examen_aide_retour: "REVENIR À LA CARTE",
         credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
         credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
@@ -7227,6 +7246,7 @@ const I18N = {
         examen_aide_titre: "The words the official syllabuses list first.",
         examen_aide_1: "Three German reference frameworks publish the vocabulary to know at each level, and this word is on them. That matters whether you are sitting an exam or going travelling: these are the words the people who design courses agree on.",
         examen_aide_2: "Words without this mark are no worse — they widen, where these ones form the base. And beyond B1 no official list exists: there, the absence of a mark means nothing at all.",
+        examen_aide_retour: "BACK TO THE CARD",
         credits_voix: "German voice: Aurora, generated with ElevenLabs.",
         credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
@@ -8033,6 +8053,7 @@ const I18N = {
         examen_aide_titre: "Resmi programların ilk sıraya koyduğu kelimeler.",
         examen_aide_1: "Üç Almanca başvuru çerçevesi her seviyede bilinmesi gereken kelime listesini yayımlar ve bu kelime o listelerde var. Sınava hazırlansan da yolculuğa çıksan da işine yarar: dersleri tasarlayanların üzerinde anlaştığı kelimelerdir.",
         examen_aide_2: "Bu işareti taşımayan kelimeler daha kötü değildir — bunlar temeli kurarken onlar genişletir. Ayrıca B1'in üstünde hiçbir resmi liste yoktur: orada işaretin yokluğu hiçbir şey anlatmaz.",
+        examen_aide_retour: "KARTA DÖN",
         credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
         credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
@@ -9074,6 +9095,7 @@ const I18N = {
         examen_aide_titre: "Слова, які офіційні програми ставлять на перше місце.",
         examen_aide_1: "Три німецькі довідкові системи публікують список лексики для кожного рівня, і це слово там є. Це корисно й для іспиту, й для подорожі: це слова, щодо яких укладачі курсів згодні.",
         examen_aide_2: "Слова без цієї позначки не гірші — вони розширюють там, де ці створюють основу. А понад B1 жодного офіційного списку не існує: там відсутність позначки нічого не означає.",
+        examen_aide_retour: "ПОВЕРНУТИСЯ ДО КАРТКИ",
         credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
         credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
@@ -17415,17 +17437,6 @@ function loadFlashcard(){
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
     fermerAideSrs();
-    // L'explication de la cle se referme AU CHANGEMENT DE CARTE (v467).
-    //
-    // Elle ne se fermait qu'en retouchant la pastille -- un geste que personne
-    // ne devine, comme Jacques l'a dit : « je ne sais pas si l'usager va penser
-    // a recliquer sur la cle ». Elle restait donc ouverte sous la carte
-    // suivante, ou elle ne voulait plus rien dire.
-    //
-    // Meme raison que pour l'aide du SRS juste au-dessus, et meme endroit :
-    // c'est le seul point par lequel TOUTES les cartes passent, quel que soit
-    // le chemin -- suivant, passer, revenir, changer de paquet.
-    fermerAideExamen();
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
@@ -17947,7 +17958,6 @@ function unflipCard(){
     // qu'on ne voit plus n'aurait aucun sens.
     document.getElementById("flashcardActions").classList.add("hidden");
     fermerAideSrs();
-    fermerAideExamen();
     // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
     // voix continue de dire une reponse qui n'est plus a l'ecran. La chaine
     // entiere s'arrete, pas seulement l'etape en cours -- sans quoi le pluriel
@@ -19570,7 +19580,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 467;
+const APP_VERSION = 468;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20476,28 +20486,29 @@ function noterPastilleExamenVue(){
     if(carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE) noterCleVue();
 }
 
-function texteAideExamen(){
-    return "<p><b>" + t("examen_aide_titre") + "</b> " + t("examen_aide_1") + "</p>"
-         + "<p>" + t("examen_aide_2") + "</p>";
+// ⚠️ CE QU'IL FAUT SAUVER PENDANT L'ALLER-RETOUR. showScreen() remet a zero
+// deux drapeaux au passage : `flashcardFromSearch` des qu'on quitte les cartes,
+// et `panneauAvantFlashcards` des qu'on y revient -- il le recalcule depuis
+// l'ecran actif, qui serait ici « examenInfo » et non le panneau d'origine.
+// Sans cette garde, ouvrir l'explication en cours de seance ferait atterrir le
+// « Retour » de fin de paquet au mauvais endroit. Le defaut ne se verrait qu'a
+// la fin du paquet, longtemps apres la cause.
+let gardeOrigineCartes = null;
+
+function ouvrirAideExamen(){
+    gardeOrigineCartes = { panneau: panneauAvantFlashcards, recherche: flashcardFromSearch };
+    // La carte continue de se prononcer sinon, par-dessus l'ecran d'explication.
+    arreterChaineCarte(true);
+    showScreen("examenInfo");
 }
 
-function basculerAideExamen(){
-    const boite = document.getElementById("examenAide");
-    if(!boite) return;
-    const ouvert = boite.classList.contains("hidden");
-    if(ouvert) boite.innerHTML = texteAideExamen();
-    boite.classList.toggle("hidden", !ouvert);
-    if(typeof resizeFlashcard === "function") resizeFlashcard();
-    // Une carte longue peut encore repousser la boite sous le pli : on l'amene
-    // sous les yeux plutot que d'esperer qu'elle y soit.
-    if(ouvert && boite.scrollIntoView){
-        try{ boite.scrollIntoView({ behavior: "smooth", block: "nearest" }); }catch(e){}
+function retourDepuisAideExamen(){
+    showScreen("flashcards");
+    if(gardeOrigineCartes){
+        panneauAvantFlashcards = gardeOrigineCartes.panneau;
+        flashcardFromSearch = gardeOrigineCartes.recherche;
+        gardeOrigineCartes = null;
     }
-}
-
-function fermerAideExamen(){
-    const boite = document.getElementById("examenAide");
-    if(boite) boite.classList.add("hidden");
 }
 
 // Le texte que la carte affichee fera prononcer. Extrait de speakWord() pour
