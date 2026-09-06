@@ -3430,6 +3430,27 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 .orb[data-orbid="monvocab"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.3);}
 .orb[data-orbid="monvocab"] .orb-icon svg{stroke:#E8A23A;}
 
+/* LA PASTILLE « ESSENTIEL ». Elle emprunte au chip de frequence sa couleur et
+   sa forme -- c'est la meme famille d'information, et deux dessins differents
+   pour deux etiquettes cote a cote feraient du bruit. */
+.examen-ligne{margin:2px 0 8px;}
+.examen-chip{
+    display:inline-flex; align-items:center; gap:5px;
+    font:inherit; font-size:11px; font-weight:700; letter-spacing:.03em;
+    padding:3px 9px; border-radius:6px; border:none; cursor:pointer;
+    background:rgba(59,111,224,.12); color:#3b6fe0;
+}
+.examen-chip svg{display:block;}
+/* Dans le coin : un STATUT de la carte, pas une information dans le fil de
+   lecture. Le trophee occupe le haut au centre, les deux ne se genent pas. */
+.examen-coin{
+    position:absolute; top:10px; left:12px; z-index:2;
+    display:flex; align-items:center;
+    background:none; border:none; padding:4px; cursor:pointer;
+    border-radius:8px; color:#3b6fe0; line-height:0;
+}
+.examen-coin svg{display:block;}
+
 .freq-chip{
     display:inline-block; padding:1px 7px; border-radius:6px;
     background:rgba(59,111,224,.12); color:#3b6fe0;
@@ -3807,7 +3828,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v462</span>
+        <span class="subtitle-version">v463</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5629,6 +5650,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      n'apparait qu'au VERSO -- sur le recto il dirait « tu sais
                      celui-la » avant meme qu'on ait cherche. -->
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
+                <button type="button" id="flashExamenCoin" class="examen-coin hidden"
+                        onclick="event.stopPropagation(); basculerAideExamen();"></button>
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row" id="flashMotRow">
                     <div id="flashBackWord" class="back-word">Tisch</div>
@@ -5640,6 +5663,18 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span id="flashPluralText"></span>
                     <button id="pluralAudioBtn" class="icon-audio-btn icon-audio-btn--petit" onclick="event.stopPropagation(); speakPlural();" aria-label="Écouter le pluriel">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                    </button>
+                </div>
+                <!-- LA MARQUE « ESSENTIEL », EN DEUX TEMPS (v463).
+                     Les premieres fois, la pastille porte son texte : on
+                     comprend en lisant sa carte, sans rien toucher. Passe le
+                     seuil, il ne reste que la cle dans le coin -- la carte
+                     redevient calme, et un appui rouvre l'explication.
+                     Voir reglerPastilleExamen. -->
+                <div id="flashExamenLigne" class="examen-ligne hidden">
+                    <button type="button" class="examen-chip"
+                            onclick="event.stopPropagation(); basculerAideExamen();">
+                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg><span data-i18n="examen_essentiel">Essentiel</span>
                     </button>
                 </div>
                 <div id="flashPaire" class="plural hidden"></div>
@@ -5682,6 +5717,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <span data-i18n="srs_aide_bouton">Quand ce mot reviendra-t-il ?</span>
         </button>
         <div id="srsAide" class="srs-aide hidden"></div>
+        <!-- Meme boite que l'aide du SRS, meme style : c'est le geste que
+             l'usager connait deja. Ouverte par la pastille « Essentiel ». -->
+        <div id="examenAide" class="srs-aide hidden"></div>
     </div>
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
@@ -6376,6 +6414,10 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
+        examen_essentiel: "Essentiel",
+        examen_aide_titre: "Les mots que les programmes officiels retiennent en premier.",
+        examen_aide_1: "Trois référentiels d'allemand publient la liste du vocabulaire à connaître à chaque niveau, et ce mot y figure. C'est utile que tu prépares un examen ou que tu partes en voyage : ce sont les mots sur lesquels ceux qui conçoivent les cours sont d'accord.",
+        examen_aide_2: "Les mots sans cette marque ne sont pas moins bons — ils élargissent, là où ceux-ci font le socle. Et au-delà du B1, aucune liste officielle n'existe : l'absence de marque n'y veut plus rien dire.",
         credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
         credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
@@ -7176,6 +7218,10 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
+        examen_essentiel: "Essential",
+        examen_aide_titre: "The words the official syllabuses list first.",
+        examen_aide_1: "Three German reference frameworks publish the vocabulary to know at each level, and this word is on them. That matters whether you are sitting an exam or going travelling: these are the words the people who design courses agree on.",
+        examen_aide_2: "Words without this mark are no worse — they widen, where these ones form the base. And beyond B1 no official list exists: there, the absence of a mark means nothing at all.",
         credits_voix: "German voice: Aurora, generated with ElevenLabs.",
         credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
@@ -7978,6 +8024,10 @@ const I18N = {
         dict_count_one: "1 kayıt",
         dict_credit: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_title: "Kaynaklar",
+        examen_essentiel: "Temel",
+        examen_aide_titre: "Resmi programların ilk sıraya koyduğu kelimeler.",
+        examen_aide_1: "Üç Almanca başvuru çerçevesi her seviyede bilinmesi gereken kelime listesini yayımlar ve bu kelime o listelerde var. Sınava hazırlansan da yolculuğa çıksan da işine yarar: dersleri tasarlayanların üzerinde anlaştığı kelimelerdir.",
+        examen_aide_2: "Bu işareti taşımayan kelimeler daha kötü değildir — bunlar temeli kurarken onlar genişletir. Ayrıca B1'in üstünde hiçbir resmi liste yoktur: orada işaretin yokluğu hiçbir şey anlatmaz.",
         credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
         credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
@@ -9015,6 +9065,10 @@ const I18N = {
         dict_count_one: "1 запис",
         dict_credit: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_title: "Подяки",
+        examen_essentiel: "Головне",
+        examen_aide_titre: "Слова, які офіційні програми ставлять на перше місце.",
+        examen_aide_1: "Три німецькі довідкові системи публікують список лексики для кожного рівня, і це слово там є. Це корисно й для іспиту, й для подорожі: це слова, щодо яких укладачі курсів згодні.",
+        examen_aide_2: "Слова без цієї позначки не гірші — вони розширюють там, де ці створюють основу. А понад B1 жодного офіційного списку не існує: там відсутність позначки нічого не означає.",
         credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
         credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
@@ -17809,6 +17863,10 @@ function loadFlashcard(){
         }
     }
 
+    // Posee ici, pour TOUS les modes a la fois, et non dans les huit branches
+    // de rendu -- meme raison que la marque d'usage juste au-dessus.
+    reglerPastilleExamen(card, flashcardMode);
+
     // Remplie ici, pour TOUS les modes a la fois, et non dans les huit branches
     // de rendu -- meme raison que la marque d'usage juste au-dessus.
     remplirVoisins(card, flashcardMode);
@@ -17843,6 +17901,7 @@ function flipCard(){
     // Ce n'est plus le mot seul depuis la v458 : le mot avec son article, puis
     // son pluriel, et la phrase si le réglage le demande. Voir direChaineCarte.
     direChaineCarte();
+    noterPastilleExamenVue();
 }
 
 let cardBusy = false;
@@ -17872,6 +17931,7 @@ function unflipCard(){
     // qu'on ne voit plus n'aurait aucun sens.
     document.getElementById("flashcardActions").classList.add("hidden");
     fermerAideSrs();
+    fermerAideExamen();
     // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
     // voix continue de dire une reponse qui n'est plus a l'ecran. La chaine
     // entiere s'arrete, pas seulement l'etape en cours -- sans quoi le pluriel
@@ -19494,7 +19554,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 462;
+const APP_VERSION = 463;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20316,6 +20376,102 @@ function speakPlural(){
     // Verifie cote serveur le 6 septembre 2026 sur « die Vaeter » et
     // « die Muetter ».
     direAllemand(texteAudioPluriel, { rate: 0.9 });
+}
+
+// ============ La marque « Essentiel » ============
+//
+// CE QU'ELLE DIT, ET POURQUOI ELLE NE PARLE PAS D'EXAMEN (v463).
+//
+// Chaque mot du cours porte, dans les fichiers, la trace des listes officielles
+// ou il figure -- Goethe A2, Goethe B1, test d'integration. Mais « mot
+// d'examen » ne veut rien dire pour quelqu'un qui apprend l'allemand pour
+// voyager, et c'est la moitie des usagers. Or l'information, elle, le sert
+// AUTANT : ces listes sont ce que trois equipes independantes ont juge
+// indispensable a ce niveau. Devant 1 840 cartes et trois semaines avant le
+// depart, c'est le meilleur point de depart qu'on puisse offrir.
+//
+// La pastille dit donc « Essentiel », pas « examen ». L'examen n'est pas le
+// SENS de l'information, il en est seulement la SOURCE.
+//
+// UNE SEULE MARQUE, ET C'EST DELIBERE. On avait envisage une seconde pastille
+// pour les mots hors liste. Elle a ete abandonnee : au-dela du B1 il n'existe
+// AUCUNE liste officielle (le Goethe n'en publie pas), donc marquer ces
+// cartes « pour aller plus loin » affirmerait qu'elles sont en marge d'un
+// programme qui n'existe pas. Le silence des listes n'est pas un jugement sur
+// les mots. L'explication, elle, dit les deux cotes en deux phrases.
+const CLE_VUES_KEY = "deutschAI_cleVues";
+// Nombre de cartes portant la cle qu'on montre AVEC son texte avant de passer
+// a la cle seule. Compte une fois pour toutes, pas par seance : un usager
+// quotidien relirait sinon la meme etiquette tous les jours pendant un an.
+const CLE_PHASE_TEXTE = 5;
+
+function cleVues(){
+    try{ return parseInt(localStorage.getItem(CLE_VUES_KEY) || "0", 10) || 0; }
+    catch(e){ return CLE_PHASE_TEXTE; }   // illisible : on passe en mode discret
+}
+
+function noterCleVue(){
+    try{ localStorage.setItem(CLE_VUES_KEY, String(cleVues() + 1)); }catch(e){}
+}
+
+// OU VIT LA MARQUE, SELON LA FORME DE LA CARTE. Memes rangs que cartesExamen()
+// -- les cinq formats de donnees ne se ressemblent pas, et ce tableau est le
+// seul endroit qui le sache ici. Un rang qui change ailleurs sans changer ici
+// ne casserait rien : la pastille disparaitrait, en silence. C'est pour ca que
+// tests/verifier.py compte les cartes marquees.
+function marqueExamenCarte(card, mode){
+    if(!card) return false;
+    try{
+        if(mode === "verben")        return !!(card.pruefung && card.pruefung.length);
+        if(mode === "nomen")         return !!(card[14] && card[14].length);
+        if(mode === "adjektive")     return !!(card[9] && card[9].length);
+        if(mode === "adverbien")     return !!(card[13] && card[13].length);
+        if(mode === "redewendungen") return !!(card[13] && card[13].length);
+    }catch(e){}
+    return false;
+}
+
+// Pose la marque sur la carte affichee : rien, la pastille avec son texte, ou
+// la cle seule dans le coin. Appelee par loadFlashcard pour CHAQUE carte --
+// sans quoi la marque d'une carte resterait sur la suivante.
+let carteEstEssentielle = false;
+function reglerPastilleExamen(card, mode){
+    carteEstEssentielle = marqueExamenCarte(card, mode);
+    const ligne = document.getElementById("flashExamenLigne");
+    const coin = document.getElementById("flashExamenCoin");
+    const enTexte = carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE;
+    if(ligne) ligne.classList.toggle("hidden", !enTexte);
+    if(coin){
+        coin.classList.toggle("hidden", !(carteEstEssentielle && !enTexte));
+        if(!coin.innerHTML) coin.innerHTML = '<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg>';
+        coin.setAttribute("aria-label", t("examen_essentiel"));
+    }
+}
+
+// Le compte n'avance qu'au RETOURNEMENT, pas au chargement : une carte passee
+// sans etre retournee n'a jamais montre sa pastille, et la compter volerait
+// une des cinq occasions d'apprendre.
+function noterPastilleExamenVue(){
+    if(carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE) noterCleVue();
+}
+
+function texteAideExamen(){
+    return "<p><b>" + t("examen_aide_titre") + "</b> " + t("examen_aide_1") + "</p>"
+         + "<p>" + t("examen_aide_2") + "</p>";
+}
+
+function basculerAideExamen(){
+    const boite = document.getElementById("examenAide");
+    if(!boite) return;
+    const ouvert = boite.classList.contains("hidden");
+    if(ouvert) boite.innerHTML = texteAideExamen();
+    boite.classList.toggle("hidden", !ouvert);
+    if(typeof resizeFlashcard === "function") resizeFlashcard();
+}
+
+function fermerAideExamen(){
+    const boite = document.getElementById("examenAide");
+    if(boite) boite.classList.add("hidden");
 }
 
 // Le texte que la carte affichee fera prononcer. Extrait de speakWord() pour
