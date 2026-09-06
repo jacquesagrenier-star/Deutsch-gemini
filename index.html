@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v454</span>
+        <span class="subtitle-version">v455</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18468,12 +18468,6 @@ let ecouteFinEnonce = 0;
 // Voir le bloc MUET dans ecouteJouerEtape : sur iOS, une voix listee par
 // getVoices() mais absente de l'appareil fait disparaitre l'enonce en silence.
 let ecouteSansVoixPour = -1;
-// Les langues dont la voix choisie s'est revelee MUETTE une fois qu'on la
-// nomme, alors que le systeme parle tres bien quand on le laisse choisir. On
-// n'impose plus la voix pour ces langues-la de toute la seance : sans cette
-// memoire, chaque etape repayerait la seconde et demie de la sonde avant de
-// retomber sur la meme conclusion.
-const ecouteVoixMortes = new Set();
 let ecouteWakeLock = null;
 let ecouteSens = "connu-cible";
 let ecouteVitesse = 0.85;
@@ -18855,18 +18849,28 @@ function amorcerSynthese(origine){
 // depuis le lien de ses notes. Rearmer a chaque geste ne coute rien (un enonce
 // vide au volume zero, et seulement si le moteur est au repos) et couvre le cas
 // ou le droit expire.
-// TROIS GESTES, PAS UN SEUL -- ET LE JOURNAL DIRA LEQUEL MARCHE (v454).
+// TROIS GESTES, PAS UN SEUL -- ET LE JOURNAL A TRANCHE (v454, confirme v455).
 //
-// L'amorce n'etait accrochee qu'a `pointerdown`. Or WebKit n'accorde pas son
+// L'amorce n'etait accrochee qu'a `pointerdown`. WebKit n'accorde pas son
 // « activation utilisateur » sur pointerdown/touchstart : il l'accorde sur
 // touchend et sur click. Une amorce posee au DEBUT du toucher tombe donc hors
-// activation, et c'est ce que le journal montre -- `speak()` n'y met jamais
-// rien en file, pas meme un texte reel.
+// activation, et `speak()` n'y met jamais rien en file -- pas meme un texte
+// reel, ce qui avait fait tomber l'hypothese precedente.
 //
-// Ce n'est encore qu'une hypothese, mais elle se verifie toute seule : les
-// trois gestes sont accroches, chacun se nomme dans le journal, et la ligne
-// AMORCE-OK dira lequel a obtenu le droit. Si aucun ne l'obtient, l'hypothese
-// tombe a son tour et le probleme n'est pas dans le type de geste.
+// ⚠️ CE N'EST PLUS UNE HYPOTHESE. Le journal du 6 septembre porte les trois
+// lignes, sur LE MEME TOUCHER, a 74 ms d'intervalle :
+//
+//   AMORCE    | sur « pointerdown », moteur -/-/-
+//   AMORCE    | sur « touchend »,    moteur parle/-/-
+//   AMORCE-OK | l'amorce a REELLEMENT parle par « touchend »
+//
+// Et apres cette ligne, TOUTES les etapes francaises parlent : `APRES` a
+// « parle », `DEBUT` entre 11 et 22 ms. Plus un seul MUET de la seance.
+//
+// NE PAS RETIRER `touchend` NI `click` AU MOTIF QUE `pointerdown` LES COUVRE :
+// c'est exactement l'erreur qui a coute six versions, de la v371 a la v454. La
+// piste etait juste depuis le debut -- le droit de parler hors geste -- et elle
+// echouait sur le choix de l'evenement, que rien dans le code ne trahissait.
 //
 // Le cout est nul : une fois qu'une amorce a parle, les suivantes ne font plus
 // rien (voir amorceConfirmee).
@@ -19014,8 +19018,7 @@ function ecouteJouerEtape(){
     u.volume = VOLUME_SYNTHESE;
     const voix = pickVoice(et.lang);
     // RETENTATIVE SANS VOIX IMPOSEE (v454) -- voir le bloc MUET plus bas.
-    const sansVoix = (ecouteSansVoixPour === ecouteEtape) ||
-                     ecouteVoixMortes.has(et.lang);
+    const sansVoix = (ecouteSansVoixPour === ecouteEtape);
     if(voix && !sansVoix){
         u.voice = voix;
         u.lang = voix.lang;
@@ -19063,16 +19066,6 @@ function ecouteJouerEtape(){
     let aDemarre = false;
     u.onstart = () => {
         aDemarre = true;
-        // LA LECON RETENUE POUR LA SEANCE. Si l'enonce n'a demarre qu'une fois
-        // la voix mise de cote, c'est cette voix qui bloquait -- inutile de la
-        // reessayer a chaque etape et de repayer la sonde a chaque fois.
-        if(sansVoix && voix && !ecouteVoixMortes.has(et.lang)){
-            ecouteVoixMortes.add(et.lang);
-            noterAudio(voix.name, "VOIX-MORTE",
-                "nommer cette voix rend l'enonce muet ; le systeme parle quand" +
-                " on le laisse choisir. On ne l'impose plus pour « " +
-                et.lang + " » de toute la seance.");
-        }
         noterAudio(et.texte, "DEBUT", "la voix a commence (" + et.lang + ")");
         // Un enonce qui demarre pour de bon efface toute la suspicion.
         ecouteAvalees = 0;
@@ -19208,18 +19201,20 @@ function ecouteJouerEtape(){
                     (sansVoix ? ", ET SANS VOIX IMPOSEE" : ""));
                 // UN DERNIER ESSAI, SANS IMPOSER LA VOIX (v454).
                 //
-                // Jacques, le 6 septembre : « quand la voix revenait, ce
-                // n'etait pas Thomas, c'etait la voix de la femme. » Autrement
-                // dit, ce qui a parle n'etait PAS la voix que nous assignons.
-                // Sur iOS, getVoices() liste des voix qui ne sont pas toutes
-                // reellement installees ; en assigner une absente fait
-                // disparaitre l'enonce sans erreur -- ce que le journal montre
-                // exactement (« moteur au repos », ni start, ni end, ni error).
+                // ⚠️ CE N'EST PAS CE QUI A REGLE LE DEFAUT, et il faut le dire
+                // ici pour que personne ne le croie. La v454 portait DEUX
+                // corrections ; le journal du 6 septembre montre que c'est
+                // l'autre qui a agi (l'amorce sur `touchend`). L'hypothese qui
+                // a motive ce bloc -- une voix listee mais pas installee --
+                // est FAUSSE : Thomas parle tres bien, et le bouton d'essai
+                // confirme Amelie aussi.
                 //
-                // On refait donc l'essai en ne posant que la LANGUE, et en
-                // laissant le systeme prendre sa voix par defaut. Une fois par
-                // etape : si ca echoue encore, la cause est ailleurs, et la
-                // ligne « ET SANS VOIX IMPOSEE » du journal le dira.
+                // Ce qui reste est un filet, et il le reste a une condition :
+                // UNE SEULE FOIS PAR ETAPE. La v454 retenait la lecon pour
+                // toute la seance -- c'etait trop, sur une seule observation :
+                // un MUET passager aurait suffi a abandonner en silence le
+                // choix de voix de l'utilisateur pour le reste de la seance,
+                // sans que rien ne le lui dise. Retire en v455.
                 if(voix && !sansVoix){
                     ecouteSansVoixPour = ecouteEtape;
                     noterAudio(et.texte, "SANS-VOIX",
@@ -19370,7 +19365,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 454;
+const APP_VERSION = 455;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
