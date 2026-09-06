@@ -11070,8 +11070,28 @@ async function loadThemesJson() {
                     // Vide sur la plupart des mots. Le champ est POSE SUR LE MOT
                     // LA OU IL EST, au lieu de sortir les mots d'examen dans un
                     // theme a part : « Anruf » appartient a la communication,
-                    // « Brille » au corps. La tuile Preparation filtre dessus a
-                    // travers tous les themes -- voir cartesParMarque().
+                    // « Brille » au corps. Voir cartesParMarque().
+                    //
+                    // ⚠️ A FAIRE AVANT TOUTE MISE EN VENTE (decide le 6 sept.
+                    // 2026). Le DETAIL par liste ne doit plus etre publie : les
+                    // JSON sont servis depuis GitHub, et 1 047 marques « a2 »,
+                    // 2 917 « b1 » et 2 529 « dtz » permettent de reconstituer
+                    // un tiers a la moitie de chaque liste officielle. C'est
+                    // une partie substantielle au sens du droit europeen des
+                    // bases de donnees -- sans consequence entre camarades de
+                    // cours, tout autre chose pour un produit vendu.
+                    //
+                    // Ce qu'il faudra faire, et rien de plus : remplacer le
+                    // tableau par un simple `true` dans les fichiers publies.
+                    // RIEN N'EST PERDU -- la marque est CALCULEE, c'est
+                    // l'intersection entre examens/*.txt (les listes
+                    // officielles, non publiees) et le vocabulaire du cours. Un
+                    // script de tests/ la recalcule quand on veut mesurer la
+                    // couverture. Ne pas deplacer le detail dans un fichier a
+                    // part : il sortirait du controle de version pour rien.
+                    //
+                    // L'application, elle, n'a plus besoin du detail depuis la
+                    // v470 : elle ne lit que « marque ou pas ».
                     Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 14
                     w.traduction_uk || "",   // rang 15
                     w.exemple_uk || ""       // rang 16
