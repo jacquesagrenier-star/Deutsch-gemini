@@ -3828,7 +3828,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v465</span>
+        <span class="subtitle-version">v466</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5692,6 +5692,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
+        <!-- L'EXPLICATION DE LA CLE, JUSTE SOUS LA CARTE (v466).
+             Elle etait placee tout en bas du bloc, apres les deux boutons de
+             jugement, le bouton « je connais deja » et l'aide du SRS : sur un
+             telephone elle s'ouvrait HORS DE L'ECRAN. On touchait la cle en
+             haut de la carte et il ne se passait rien de visible.
+             Elle est desormais la premiere chose sous la carte -- a l'endroit
+             ou le regard revient apres avoir touche la pastille. -->
+        <div id="examenAide" class="srs-aide hidden"></div>
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
                 <span data-i18n="review_again">↺ Encore</span>
@@ -5717,9 +5725,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <span data-i18n="srs_aide_bouton">Quand ce mot reviendra-t-il ?</span>
         </button>
         <div id="srsAide" class="srs-aide hidden"></div>
-        <!-- Meme boite que l'aide du SRS, meme style : c'est le geste que
-             l'usager connait deja. Ouverte par la pastille « Essentiel ». -->
-        <div id="examenAide" class="srs-aide hidden"></div>
     </div>
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
@@ -19554,7 +19559,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 465;
+const APP_VERSION = 466;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20472,6 +20477,11 @@ function basculerAideExamen(){
     if(ouvert) boite.innerHTML = texteAideExamen();
     boite.classList.toggle("hidden", !ouvert);
     if(typeof resizeFlashcard === "function") resizeFlashcard();
+    // Une carte longue peut encore repousser la boite sous le pli : on l'amene
+    // sous les yeux plutot que d'esperer qu'elle y soit.
+    if(ouvert && boite.scrollIntoView){
+        try{ boite.scrollIntoView({ behavior: "smooth", block: "nearest" }); }catch(e){}
+    }
 }
 
 function fermerAideExamen(){
