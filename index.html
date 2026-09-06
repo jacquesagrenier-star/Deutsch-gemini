@@ -3828,7 +3828,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v466</span>
+        <span class="subtitle-version">v467</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17415,6 +17415,17 @@ function loadFlashcard(){
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
     fermerAideSrs();
+    // L'explication de la cle se referme AU CHANGEMENT DE CARTE (v467).
+    //
+    // Elle ne se fermait qu'en retouchant la pastille -- un geste que personne
+    // ne devine, comme Jacques l'a dit : « je ne sais pas si l'usager va penser
+    // a recliquer sur la cle ». Elle restait donc ouverte sous la carte
+    // suivante, ou elle ne voulait plus rien dire.
+    //
+    // Meme raison que pour l'aide du SRS juste au-dessus, et meme endroit :
+    // c'est le seul point par lequel TOUTES les cartes passent, quel que soit
+    // le chemin -- suivant, passer, revenir, changer de paquet.
+    fermerAideExamen();
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
@@ -19559,7 +19570,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 466;
+const APP_VERSION = 467;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
