@@ -14,11 +14,25 @@ sans provenance est un fichier qu'on ne peut pas defendre.
 -----------------------------------------------------------------------------
 VIDEO D'OUVERTURE
 -----------------------------------------------------------------------------
-Fichiers   : ouverture.MP4, ouverture-3s.mp4, ouverture-final-2s.mp4,
-             ouverture-final-3s.mp4, ouverture-nouveau-crf26.mp4,
-             wortando-demarrage-fr.mp4
-             (les variantes sont des recoupes/recompressions locales du meme
-             materiau, faites avec ffmpeg -- voir la chaine video du projet)
+Fichiers   : TROIS LIGNEES DISTINCTES, identifiees par leur signature de
+             provenance le 6 septembre 2026 -- ce ne sont pas des variantes
+             d'un meme materiau, contrairement a ce que leurs noms suggerent :
+
+               signature DJX03fZZ...  FinalOuverture.MP4 (source, 6,04 s)
+                                      -> ouverture-final-3s.mp4  <= PUBLIEE,
+                                         c'est elle qui est en base64 dans
+                                         index.html (le W en verre, 3 s)
+                                      -> ouverture-final-2s.mp4
+               signature YUz2t+T4...  ouverture.MP4 -> ouverture-3s.mp4
+                                      (ancienne lignee, 624 x 480)
+               signature +K9uBFRG...  Nouveauvideoouverture.MP4
+                                      -> ouverture-nouveau-crf26.mp4
+                                      (animation differente : un livre qui
+                                      s'ouvre sur une maquette de l'app)
+
+             wortando-demarrage-fr.mp4 (47 s, 1080x1920) N'A AUCUNE signature :
+             c'est la video narree fabriquee localement -- capture headless,
+             voix fr-CA gratuite, ffmpeg -- et non un contenu genere.
 
 Source     : GENEREE PAR GROK (xAI), sur un abonnement payant d'un mois,
              septembre 2026. Declare par Jacques Grenier le 6 septembre 2026.
@@ -71,14 +85,48 @@ Droits     : A VERIFIER PAR JACQUES, directement dans les conditions de xAI --
                   ecran « A propos ». Pas sur la video elle-meme -- c'est un
                   ecran d'ouverture de trois secondes.
 
-               B. FILIGRANE. Les videos generees peuvent porter un filigrane
-                  Grok, qu'il serait interdit de supprimer, masquer ou modifier.
-                  ⚠️ C'EST LE POINT A VERIFIER EN PREMIER, et il est propre a
-                  notre cas : la video d'ouverture a ete RECOUPEE et
-                  RECOMPRESSEE avec ffmpeg, et elle est embarquee en base64
-                  dans index.html. Si un recadrage a fait sauter un filigrane,
-                  la regle est enfreinte -- sans que personne l'ait voulu.
-                  Comparer l'export d'origine de Grok avec ce qui est publie.
+               B. FILIGRANE -- VERIFIE LE 6 SEPTEMBRE 2026, RIEN N'A ETE RETIRE.
+                  Les videos generees peuvent porter un filigrane qu'il serait
+                  interdit de supprimer, masquer ou modifier. Notre ouverture
+                  ayant ete recoupee avec ffmpeg puis embarquee en base64, la
+                  question se posait vraiment. Quatre controles :
+
+                  1. AUCUN RECADRAGE. L'export d'origine (FinalOuverture.MP4)
+                     et le fichier publie font tous deux 592 x 496. Seule la
+                     DUREE change, 6,04 s -> 3,00 s. Un filigrane de coin
+                     n'aurait donc pas pu etre coupe : il n'y a pas eu de coupe
+                     dans l'image, seulement dans le temps.
+
+                  2. LE FICHIER PUBLIE EST IDENTIFIE SANS DOUTE POSSIBLE. Le
+                     base64 d'index.html decode en 62 816 octets, exactement la
+                     taille de video/ouverture-final-3s.mp4.
+
+                  3. AUCUN FILIGRANE VISIBLE. Images echantillonnees sur toute
+                     la duree de l'original, y compris dans le segment 3-6 s que
+                     la coupe retire, et bande basse de la derniere image
+                     examinee a part : rien.
+
+                  4. ET SURTOUT -- LA SIGNATURE DE PROVENANCE A SURVECU.
+                     L'original porte dans ses metadonnees un tag
+                     « comment = Signature: ... », 1 015 caracteres, qui est une
+                     signature cryptographique de provenance. Le fichier publie
+                     porte LA MEME, caractere pour caractere. Les deux autres
+                     lignees presentes sur le disque ont chacune la leur, elle
+                     aussi conservee par la coupe.
+                     (ffmpeg recopie les metadonnees par defaut ; c'est ce qui
+                     nous sauve ici, et c'est fragile -- un futur traitement
+                     avec -map_metadata -1 la retirerait EN SILENCE.)
+
+                  ⚠️ CE QUI A ETE PERDU, ET CE QUE JE N'EN SAIS PAS : l'original
+                  porte une piste mjpeg (une vignette de couverture) que la
+                  coupe ne conserve pas. C'est une image d'apercu, pas un
+                  filigrane -- mais je ne peux pas affirmer qu'elle n'en portait
+                  pas un. Elle est recuperable dans FinalOuverture.MP4.
+
+                  A RETENIR POUR LA SUITE : toute future manipulation d'une
+                  video generee doit CONSERVER les metadonnees. Verifier apres
+                  coup avec :
+                    ffprobe -v error -show_entries format_tags=comment                             -of default=nw=1:nk=1 fichier.mp4
 
 Capture    : archiver une copie datee de la page des conditions le jour de la
              verification. Des conditions changent ; ce qui protege, c'est
