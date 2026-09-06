@@ -3830,7 +3830,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v470</span>
+        <span class="subtitle-version">v471</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4347,6 +4347,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="filters-bar">
         <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
     </div>
+
+    <!-- LE CHOIX DE PORTEE, AU MOMENT OU L'ON CHOISIT SON NIVEAU (v471).
+         Il vivait d'abord dans le panneau de la tuile « Noms », a cote de
+         « Parcourir par niveau » -- donc AVANT d'avoir choisi son niveau, et
+         Jacques ne l'y trouvait pas : « si je fais A1, je vais tout de suite
+         dans les mots, ca ne me donne pas le choix ».
+         Il est ici, au-dessus des niveaux : on choisit une fois, et les
+         compteurs de chaque niveau suivent. -->
+    <div class="filters-bar" id="nomenPorteeBar"></div>
 
     <div class="card" style="margin-top:15px;">
         <div class="theme-list" id="nomenLevelList"></div>
@@ -6440,6 +6449,10 @@ const I18N = {
         examen_rejouer: "Revoir la phase d'apprentissage de la clé",
         examen_rejouer_fait: "Le mot « Essentiel » reviendra sur les cinq prochaines cartes marquées.",
         op_essentiel_d: "Les mots que les programmes officiels retiennent en premier",
+        op_essentiel_t: "L'essentiel du vocabulaire",
+        op_plusloin_t: "Le vocabulaire pour aller plus loin",
+        op_plusloin_d: "Ce qui élargit, au-delà de ce que les programmes retiennent",
+        portee_tout: "Tout",
         credits_voix: "Voix allemande : Aurora, générée avec ElevenLabs.",
         credits_dict: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_video: "Animation d'ouverture : Created with Grok.",
@@ -7248,6 +7261,10 @@ const I18N = {
         examen_rejouer: "Replay the key's learning phase",
         examen_rejouer_fait: "The word “Essential” will come back on the next five marked cards.",
         op_essentiel_d: "The words the official syllabuses list first",
+        op_essentiel_t: "The essential vocabulary",
+        op_plusloin_t: "Vocabulary to go further",
+        op_plusloin_d: "What widens, beyond what the syllabuses list",
+        portee_tout: "All",
         credits_voix: "German voice: Aurora, generated with ElevenLabs.",
         credits_dict: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_video: "Opening animation: Created with Grok.",
@@ -8058,6 +8075,10 @@ const I18N = {
         examen_rejouer: "Anahtarın tanıtım aşamasını tekrarla",
         examen_rejouer_fait: "« Temel » kelimesi sonraki beş işaretli kartta yeniden görünecek.",
         op_essentiel_d: "Resmi programların ilk sıraya koyduğu kelimeler",
+        op_essentiel_t: "Temel kelime hazinesi",
+        op_plusloin_t: "Daha ileri gitmek için kelimeler",
+        op_plusloin_d: "Programların listelediğinin ötesinde, genişletenler",
+        portee_tout: "Tümü",
         credits_voix: "Almanca ses: Aurora, ElevenLabs ile üretildi.",
         credits_dict: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_video: "Açılış animasyonu: Created with Grok.",
@@ -9103,6 +9124,10 @@ const I18N = {
         examen_rejouer: "Повторити навчання ключа",
         examen_rejouer_fait: "Слово «Головне» знову з’явиться на наступних п’яти позначених картках.",
         op_essentiel_d: "Слова, які офіційні програми ставлять на перше місце",
+        op_essentiel_t: "Головна лексика",
+        op_plusloin_t: "Лексика, щоб йти далі",
+        op_plusloin_d: "Те, що розширює, понад те, що містять програми",
+        portee_tout: "Усе",
         credits_voix: "Німецький голос: Aurora, створено за допомогою ElevenLabs.",
         credits_dict: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_video: "Анімація заставки: Created with Grok.",
@@ -10942,7 +10967,7 @@ async function loadThemesJson() {
                     // LA OU IL EST, au lieu de sortir les mots d'examen dans un
                     // theme a part : « Anruf » appartient a la communication,
                     // « Brille » au corps. La tuile Preparation filtre dessus a
-                    // travers tous les themes -- voir cartesEssentielles().
+                    // travers tous les themes -- voir cartesParMarque().
                     Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 14
                     w.traduction_uk || "",   // rang 15
                     w.exemple_uk || ""       // rang 16
@@ -14198,30 +14223,20 @@ function orbPanelData(id){
                 { icon:"exercice", title:t("op_pruefung_schreiben_t"), desc:t("op_pruefung_schreiben_d"),
                   action:"startPruefungSchreiben" },
                 { icon:"exercice", title:t("op_pruefung_sprechen_t"), desc:t("op_pruefung_sprechen_d"),
-                  action:"startPruefungSprechen" },
-                // UN SEUL PAQUET DE VOCABULAIRE, ET IL NE NOMME PLUS PERSONNE.
+                  action:"startPruefungSprechen" }
+                // AUCUN PAQUET DE VOCABULAIRE ICI, ET C'EST LE POINT (v471).
                 //
-                // Il y en avait CINQ : « Le noyau », « Niveau A2 », « Niveau
-                // B1 », « Niveau C1 », « Vocabulaire d'examen ». Deux raisons
-                // de n'en garder qu'un, et elles pointent au meme endroit.
+                // Il y en avait cinq, puis un. Jacques : « ca donne
+                // l'impression qu'avec seulement ces mots-la on va etre
+                // prepare. » Il a raison, et l'app ne peut pas soutenir cette
+                // promesse : la couverture mesuree va de 87 a 94 % selon
+                // l'examen, et surtout un examen teste un FORMAT -- c'est ce
+                // que les quatre epreuves ci-dessus enseignent, et c'est la
+                // seule chose que cet ecran sait vraiment faire.
                 //
-                // L'USAGE. Ces paquets formaient un monde parallele : les
-                // memes cartes que le cours, filtrees autrement, sur un ecran
-                // qui ressemblait a un second vocabulaire. Rien ne le disait.
-                //
-                // LE DROIT. Trois d'entre eux extrayaient une liste officielle
-                // PRECISE -- Goethe A2, Goethe B1, le test d'integration. Une
-                // liste peut relever du droit des bases de donnees, et l'app
-                // en offrait l'extraction en un bouton. Il ne reste qu'un
-                // agregat : les mots retenus par AU MOINS un programme, ce qui
-                // ne reconstitue aucune liste en particulier.
-                //
-                // Ce que le candidat perd : la possibilite de reviser
-                // exactement le perimetre du DTZ. Mesure : 95,3 % de ce
-                // perimetre est deja dans A1-B1 du cours. Il perd la
-                // concentration, pas la couverture.
-                { icon:"carte", title:t("examen_essentiel"), desc:t("op_essentiel_d"),
-                  action:"startEssentiel", count:cartesEssentielles().length }
+                // Le vocabulaire vit desormais la ou il a toujours vecu : dans
+                // les paquets de mots, ou l'on trouve « L'essentiel du
+                // vocabulaire » et « Le vocabulaire pour aller plus loin ».
             ]
         };
     }
@@ -14712,11 +14727,13 @@ function buildSearchIndex(){
 // Ne pas remettre le parametre. Si un jour il faut mesurer la couverture par
 // examen, cela se fait hors de l'application, sur les fichiers, avec les
 // outils de tests/ -- pas dans un ecran que tout le monde peut ouvrir.
-function cartesEssentielles(){
+function cartesParMarque(source, veutMarque){
     const vus = new Set();
     const out = [];
     const prendre = (mot, marque, item) => {
-        if(!Array.isArray(marque) || !marque.length) return;
+        if(source && item.mode !== source) return;
+        const marquee = Array.isArray(marque) && marque.length > 0;
+        if(marquee !== veutMarque) return;
         const cle = (mot || "").toLowerCase();
         if(!cle || vus.has(cle)) return;
         vus.add(cle);
@@ -14761,21 +14778,7 @@ function cartesEssentielles(){
     return out;
 }
 
-function startEssentiel(){
-    const pool = cartesEssentielles();
-    if(!pool.length){ showInfoToast(t('pruefung_aucun')); return; }
-    shuffleArray(pool);
-    let cartes = cartesDeSession(pool);
-    if(!cartes.length) cartes = pool;
-    if(cartes.length > DUE_SESSION_CAP) cartes = cartes.slice(0, DUE_SESSION_CAP);
-    currentCardsFull = pool;
-    currentCards = cartes;
-    currentTheme = { id: 'essentiel', name: t('examen_essentiel') };
-    currentFlashcard = 0;
-    setFlashHeader('examen_essentiel', null);
-    showScreen("flashcards");
-    loadFlashcard();
-}
+
 
 // ============ LES QUATRE EPREUVES DE L'EXAMEN ============
 //
@@ -16797,10 +16800,48 @@ function openNomenNiveau(){
     showScreen("nomenNiveau");
 }
 
+// LA PORTEE CHOISIE : tout le vocabulaire, l'essentiel, ou ce qui va au-dela.
+// Retenue d'une visite a l'autre -- quelqu'un qui a decide de commencer par
+// l'essentiel ne veut pas le redire chaque fois qu'il ouvre l'ecran.
+const PORTEE_KEY = "deutschAI_porteeNoms";
+function porteeNoms(){
+    try{ return localStorage.getItem(PORTEE_KEY) || "tout"; }catch(e){ return "tout"; }
+}
+function choisirPorteeNoms(p){
+    try{ localStorage.setItem(PORTEE_KEY, p); }catch(e){}
+    renderNomenLevels();
+}
+
+// Le filtre applique a un mot. UN SEUL ENDROIT, pour que la barre, les
+// compteurs et le paquet reellement ouvert ne puissent pas diverger : trois
+// calculs paralleles finiraient par ne plus dire la meme chose, et un compteur
+// annoncerait un paquet que l'app n'ouvre pas.
+function motDansPortee(mot, portee){
+    if(portee === "tout") return true;
+    const marque = marqueExamenCarte(mot, "nomen");
+    return portee === "essentiel" ? marque : !marque;
+}
+
+function renderNomenPorteeBar(){
+    const bar = document.getElementById("nomenPorteeBar");
+    if(!bar) return;
+    const actuel = porteeNoms();
+    const choix = [["tout", t("portee_tout")],
+                   ["essentiel", t("op_essentiel_t")],
+                   ["plusloin", t("op_plusloin_t")]];
+    bar.innerHTML = choix.map(c =>
+        '<button class="secondary' + (c[0] === actuel ? ' active' : '') +
+        '" style="flex:1; font-size:12px; padding:8px 6px;"' +
+        ' onclick="choisirPorteeNoms(&quot;' + c[0] + '&quot;)">' +
+        c[1] + '</button>').join("");
+}
+
 function renderNomenLevels(){
     const container = document.getElementById("nomenLevelList");
     const pill = document.getElementById("nomenLevelCountPill");
     if(!container) return;
+    renderNomenPorteeBar();
+    const portee = porteeNoms();
     container.innerHTML = "";
 
     const levelsPresent = LEVELS.filter(lvl => themes.some(th => th.levels[lvl]));
@@ -16820,7 +16861,7 @@ function renderNomenLevels(){
         </div>
         <div style="color:#576177; font-size:12px; margin-top:10px;">${t('random_nouns_by_level_desc')}</div>
     `;
-    randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix("ALL"); });
+    randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix("ALL", portee); });
     container.appendChild(randomItem);
 
     levelsPresent.forEach(lvl => {
@@ -16828,8 +16869,9 @@ function renderNomenLevels(){
         themesComptes().forEach(th => {
             const levelData = th.levels[lvl];
             if(!levelData) return;
-            total += levelData.words.length;
             levelData.words.forEach((w, i) => {
+                if(!motDansPortee(w, portee)) return;
+                total++;
                 if(getWordState(levelData.id, i).mastered) mastered++;
             });
         });
@@ -16855,7 +16897,7 @@ function renderNomenLevels(){
                 <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
             </div>
         `;
-        item.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix(lvl); });
+        item.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix(lvl, portee); });
         container.appendChild(item);
     });
 }
@@ -17211,8 +17253,11 @@ function startThemeAdjektive(themeId, level, returnScreen){
     loadFlashcard();
 }
 
-function startRandomMix(level){
+// `portee` : "tout" (defaut), "essentiel" ou "plusloin". Absente, le paquet est
+// complet -- c'est le cas de tous les autres appelants.
+function startRandomMix(level, portee){
     flashcardMode = 'nomen';
+    portee = portee || "tout";
     const levelsToUse = (level === "ALL") ? LEVELS : [level];
     let pool = [];
     themesComptes().forEach(theme => {
@@ -17224,6 +17269,7 @@ function startRandomMix(level){
             });
         });
     });
+    if(portee !== "tout") pool = pool.filter(it => motDansPortee(it.word, portee));
     if(pool.length === 0){ showInfoToast(t('alert_no_words_available')); return; }
     pool = sansDoublons(pool);
     shuffleArray(pool);
@@ -19580,7 +19626,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 470;
+const APP_VERSION = 471;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20458,7 +20504,7 @@ function noterCleVue(){
     try{ localStorage.setItem(CLE_VUES_KEY, String(cleVues() + 1)); }catch(e){}
 }
 
-// OU VIT LA MARQUE, SELON LA FORME DE LA CARTE. Memes rangs que cartesEssentielles()
+// OU VIT LA MARQUE, SELON LA FORME DE LA CARTE. Memes rangs que cartesParMarque()
 // -- les cinq formats de donnees ne se ressemblent pas, et ce tableau est le
 // seul endroit qui le sache ici. Un rang qui change ailleurs sans changer ici
 // ne casserait rien : la pastille disparaitrait, en silence. C'est pour ca que
