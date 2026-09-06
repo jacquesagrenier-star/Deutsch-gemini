@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v475</span>
+        <span class="subtitle-version">v476</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6068,10 +6068,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          parfaitement clair, qu'est-ce qu'on est en train de faire ». Un
          reglage dont on ne comprend pas l'effet est un piege, pas un choix. -->
     <div class="card">
-        <strong data-i18n="carte_phrase_titre">Dire aussi la phrase d'exemple</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="carte_phrase_desc">Au verso d'une carte, l'allemand se dit tout seul : le mot avec son article, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de deux à trois secondes avant que tu puisses te juger. Sans ce réglage, la phrase reste affichée et son haut-parleur fonctionne comme avant.</p>
+        <strong data-i18n="carte_dire_titre">Ce que la carte prononce</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="carte_dire_desc">Au verso d'une carte, l'allemand se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.</p>
         <div class="spacer"></div>
-        <button class="secondary" id="cartePhraseBtn" onclick="basculerCartePhrase()">Non — mot et pluriel seulement</button>
+        <button class="secondary" id="carteMotBtn" onclick="basculerCarteMot()">Le mot avec son article</button>
+        <div class="spacer"></div>
+        <button class="secondary" id="cartePlurielBtn" onclick="basculerCartePluriel()">Le pluriel</button>
+        <div class="spacer"></div>
+        <button class="secondary" id="cartePhraseBtn" onclick="basculerCartePhrase()">La phrase d'exemple</button>
     </div>
 
     <!-- Reserve a l'administrateur (v374). L'outil a fait son travail -- c'est
@@ -6759,6 +6763,12 @@ const I18N = {
         voice_test: "\u00c9couter",
         voice_none: "Aucune voix install\u00e9e pour cette langue sur cet appareil. Les phrases seront lues avec la voix par d\u00e9faut, donc avec un mauvais accent. Ajoute-la dans les r\u00e9glages de ton t\u00e9l\u00e9phone (Accessibilit\u00e9 \u203a Contenu parl\u00e9 \u203a Voix).",
         voice_only_one: "Une seule voix install\u00e9e. Tu peux en ajouter une am\u00e9lior\u00e9e dans les r\u00e9glages de ton t\u00e9l\u00e9phone, puis revenir la choisir ici.",
+        carte_dire_titre: "Ce que la carte prononce",
+        carte_dire_desc: "Au verso d'une carte, l'allemand se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.",
+        carte_dire_mot: "Le mot avec son article",
+        carte_dire_pluriel: "Le pluriel",
+        carte_dire_phrase: "La phrase d'exemple",
+        carte_dire_non: "non",
         carte_phrase_titre: "Dire aussi la phrase d'exemple",
         carte_phrase_desc: "Au verso d'une carte, l'allemand se dit tout seul : le mot avec son article, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de deux à trois secondes avant que tu puisses te juger. Sans ce réglage, la phrase reste affichée et son haut-parleur fonctionne comme avant.",
         carte_phrase_oui: "Oui — la phrase est lue",
@@ -7572,6 +7582,12 @@ const I18N = {
         voice_test: "Listen",
         voice_none: "No voice installed for this language on this device. Sentences will be read with the default voice, and therefore with the wrong accent. Add one in your phone settings (Accessibility \u203a Spoken Content \u203a Voices).",
         voice_only_one: "Only one voice installed. You can add an enhanced one in your phone settings, then come back and pick it here.",
+        carte_dire_titre: "What the card says out loud",
+        carte_dire_desc: "On the back of a card, the German is spoken on its own. Choose what you want to hear. Whatever you remove stays on screen, and its speaker button still works — you can play it whenever you decide to.",
+        carte_dire_mot: "The word with its article",
+        carte_dire_pluriel: "The plural",
+        carte_dire_phrase: "The example sentence",
+        carte_dire_non: "off",
         carte_phrase_titre: "Also read the example sentence",
         carte_phrase_desc: "On the back of a card, the German is spoken on its own: the word with its article, then its plural. With this setting on, the example sentence is read next. It teaches the word in context, but it adds two to three seconds to every card before you can rate yourself. With it off, the sentence stays on screen and its speaker button works as before.",
         carte_phrase_oui: "Yes — the sentence is read",
@@ -8389,6 +8405,12 @@ const I18N = {
         voice_test: "Dinle",
         voice_none: "Bu cihazda bu dil için yüklü ses yok. Cümleler varsayılan sesle, yani yanlış aksanla okunacak. Telefon ayarlarından bir tane ekle (Erişilebilirlik › Sözlü İçerik › Sesler).",
         voice_only_one: "Yalnızca bir ses yüklü. Telefon ayarlarından gelişmiş bir tane ekleyip buraya dönerek onu seçebilirsin.",
+        carte_dire_titre: "Kartın sesli okuduğu",
+        carte_dire_desc: "Kartın arka yüzünde Almanca kendiliğinden okunur. Ne duymak istediğini seç. Çıkardığın şey ekranda kalır ve hoparlör düğmesi çalışmaya devam eder — istediğin an dinleyebilirsin.",
+        carte_dire_mot: "Artikeliyle birlikte sözcük",
+        carte_dire_pluriel: "Çoğul",
+        carte_dire_phrase: "Örnek cümle",
+        carte_dire_non: "kapalı",
         carte_phrase_titre: "Örnek cümleyi de oku",
         carte_phrase_desc: "Kartın arka yüzünde Almanca kendiliğinden okunur: sözcük artikeliyle, sonra çoğulu. Bu ayar açıkken örnek cümle de ardından okunur. Sözcüğü bağlam içinde öğretir, ama kendini değerlendirmeden önce her karta iki üç saniye ekler. Kapalıyken cümle ekranda kalır ve hoparlör düğmesi eskisi gibi çalışır.",
         carte_phrase_oui: "Evet — cümle okunur",
@@ -9769,6 +9791,12 @@ const I18N = {
         voice_desc: "Твій пристрій іноді пропонує кілька голосів для однієї мови: стиснутий, механічний, і покращений — значно природніший. Зірочка позначає найкращі.",
         voice_none: "Для цієї мови на пристрої не встановлено жодного голосу. Речення читатиме типовий голос, тобто з поганою вимовою. Додай голос у налаштуваннях телефона (Доступність › Вимовляння › Голос).",
         voice_only_one: "Встановлено лише один голос. Ти можеш додати покращений у налаштуваннях телефона, а тоді повернутися сюди й обрати його.",
+        carte_dire_titre: "Що картка озвучує",
+        carte_dire_desc: "На звороті картки німецька звучить сама. Обери, що ти хочеш чути. Те, що ти вимкнеш, лишається на екрані, а його кнопка динаміка працює як раніше.",
+        carte_dire_mot: "Слово з артиклем",
+        carte_dire_pluriel: "Множина",
+        carte_dire_phrase: "Речення-приклад",
+        carte_dire_non: "вимк",
         carte_phrase_titre: "Читати також речення-приклад",
         carte_phrase_desc: "На звороті картки німецька звучить сама: слово з артиклем, потім множина. З цим налаштуванням далі читається речення-приклад. Воно вчить слово в контексті, але додає дві–три секунди до кожної картки, перш ніж ти зможеш себе оцінити. Без нього речення лишається на екрані, а його кнопка динаміка працює як раніше.",
         carte_phrase_oui: "Так — речення читається",
@@ -18212,24 +18240,58 @@ const VOICE_CHOICE_KEY = "deutschAI_voiceChoice";
 // prosodie et la grammaire (le cas, la place du verbe) : c'est de l'encodage
 // qui transfere vers l'USAGE et pas seulement vers la reconnaissance. Certains
 // le voudront, et la phrase est deja la, deja generee, deja affichee.
+// TROIS REGLAGES, PAS UN (v476). Demande d'une usagere, relayee par Jacques :
+// « par defaut on mettrait pluriel et singulier, mais il faudrait pouvoir
+// enlever le son sur le pluriel, ou sur le singulier ».
+//
+// Elle a raison, et le reglage isole de la phrase etait la moitie d'une idee :
+// si l'on peut ajouter une etape, on doit pouvoir en retirer une. Quelqu'un qui
+// connait deja ses genres n'a pas besoin d'entendre l'article a chaque carte ;
+// quelqu'un qui travaille les pluriels veut peut-etre le pluriel SEUL.
+//
+// LES DEFAUTS RESTENT CE QU'ILS ETAIENT : le mot et le pluriel oui, la phrase
+// non -- le retournement est le moment du verdict, et un verdict doit etre
+// court.
+//
+// Ce qu'on retire n'est jamais perdu : le texte reste affiche et son
+// haut-parleur repond toujours au doigt.
+const CARTE_MOT_KEY = "deutschAI_carteDitMot";
+const CARTE_PLURIEL_KEY = "deutschAI_carteDitPluriel";
 const CARTE_PHRASE_KEY = "deutschAI_carteDirePhrase";
 
-function carteDitLaPhrase(){
-    try{ return localStorage.getItem(CARTE_PHRASE_KEY) === "1"; }
-    catch(e){ return false; }
-}
-
-function basculerCartePhrase(){
+// Le mot et le pluriel sont ACTIFS par defaut, la phrase non : la valeur
+// absente ne veut donc pas dire la meme chose selon le reglage.
+function reglageCarte(cle, defaut){
     try{
-        localStorage.setItem(CARTE_PHRASE_KEY, carteDitLaPhrase() ? "0" : "1");
-    }catch(e){}
+        const v = localStorage.getItem(cle);
+        return v === null ? defaut : v === "1";
+    }catch(e){ return defaut; }
+}
+function carteDitLeMot(){ return reglageCarte(CARTE_MOT_KEY, true); }
+function carteDitLePluriel(){ return reglageCarte(CARTE_PLURIEL_KEY, true); }
+function carteDitLaPhrase(){ return reglageCarte(CARTE_PHRASE_KEY, false); }
+
+function basculerReglageCarte(cle, valeur){
+    try{ localStorage.setItem(cle, valeur ? "0" : "1"); }catch(e){}
     renderCartePhraseSetting();
 }
+function basculerCarteMot(){ basculerReglageCarte(CARTE_MOT_KEY, carteDitLeMot()); }
+function basculerCartePluriel(){ basculerReglageCarte(CARTE_PLURIEL_KEY, carteDitLePluriel()); }
+function basculerCartePhrase(){ basculerReglageCarte(CARTE_PHRASE_KEY, carteDitLaPhrase()); }
 
 function renderCartePhraseSetting(){
-    const b = document.getElementById("cartePhraseBtn");
-    if(!b) return;
-    b.textContent = carteDitLaPhrase() ? t("carte_phrase_oui") : t("carte_phrase_non");
+    const lignes = [["carteMotBtn", carteDitLeMot(), "carte_dire_mot"],
+                    ["cartePlurielBtn", carteDitLePluriel(), "carte_dire_pluriel"],
+                    ["cartePhraseBtn", carteDitLaPhrase(), "carte_dire_phrase"]];
+    lignes.forEach(l => {
+        const b = document.getElementById(l[0]);
+        if(!b) return;
+        // L'etat est dit en toutes lettres plutot que par une coche : un bouton
+        // qui affiche « oui » ne laisse pas se demander si l'on regarde l'etat
+        // actuel ou l'action a declencher.
+        b.textContent = (l[1] ? "✓  " : "—  ") + t(l[2]) +
+                        (l[1] ? "" : "  ·  " + t("carte_dire_non"));
+    });
 }
 
 // Un meme appareil expose souvent DEUX voix pour la meme langue : une voix
@@ -19751,7 +19813,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 475;
+const APP_VERSION = 476;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20490,12 +20552,12 @@ function arreterChaineCarte(couper){
 function etapesChaineCarte(){
     const etapes = [];
     const mot = texteCarteAPrononcer();
-    if(mot) etapes.push({ groupe: "mot", texte: mot });
+    if(mot && carteDitLeMot()) etapes.push({ groupe: "mot", texte: mot });
     // Le pluriel n'est propose que si la carte l'affiche : texteAudioPluriel
     // n'est pas remis a zero par les branches qui ne le posent pas, et un nom
     // suivi d'un verbe ferait sinon dire le pluriel du nom precedent.
     const plurielEl = document.getElementById("flashPlural");
-    if(texteAudioPluriel && plurielEl && !plurielEl.classList.contains("hidden")){
+    if(texteAudioPluriel && carteDitLePluriel() && plurielEl && !plurielEl.classList.contains("hidden")){
         etapes.push({ groupe: "pluriel", texte: texteAudioPluriel });
     }
     if(texteAudioExemple && carteDitLaPhrase()){
