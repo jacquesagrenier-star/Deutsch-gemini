@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v456</span>
+        <span class="subtitle-version">v457</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -19003,7 +19003,18 @@ function ecouteJouerEtape(){
         // seul geste est de l'augmenter -- et l'ecart reel se lit dans le
         // journal, colonne des millisecondes, entre la ligne FIN et la ligne
         // FICHIER qui suit.
-        const SOUFFLE_AVANT_FICHIER = estAppInstallee() ? 280 : 700;
+        //
+        // 700 -> 1600 ms (v457). A 700, Jacques entend « toujours
+        // l'augmentation au milieu de la phrase, peut-etre un peu moins ». Son
+        // « au milieu » situe la fin de l'attenuation autour de 1,5 a 2 s apres
+        // la fin de l'enonce : 700 ms n'en couvraient donc que la moitie.
+        //
+        // C'EST UN VRAI SILENCE ET IL S'ENTENDRA. Il tombe au moins a un
+        // endroit ou il ne gene pas la pedagogie : entre la traduction
+        // francaise et la phrase allemande. Le but reste de le RECUPERER --
+        // voir la note sur relacherLecteur, qui est la piste suivante et qui,
+        // si elle tient, rendrait ce delai inutile.
+        const SOUFFLE_AVANT_FICHIER = estAppInstallee() ? 280 : 1600;
         const depuisEnonce = Date.now() - ecouteFinEnonce;
         const souffleDe = ecouteFinEnonce && depuisEnonce < SOUFFLE_AVANT_FICHIER
             ? SOUFFLE_AVANT_FICHIER - depuisEnonce : 0;
@@ -19011,8 +19022,15 @@ function ecouteJouerEtape(){
             if(jeton !== ecouteJeton || !ecouteJoue) return;
             direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
         };
-        if(souffleDe) ecouteMinuteur = setTimeout(jouer, souffleDe);
-        else jouer();
+        if(souffleDe){
+            // Le souffle se note : c'est le seul chiffre de cette serie qu'on
+            // puisse regler en le MESURANT, et il faut donc pouvoir le lire.
+            noterAudio(et.texte, "SOUFFLE",
+                souffleDe + " ms avant le fichier (" +
+                (estAppInstallee() ? "tuile" : "onglet") + ", cible " +
+                SOUFFLE_AVANT_FICHIER + " ms)");
+            ecouteMinuteur = setTimeout(jouer, souffleDe);
+        } else jouer();
         return;
     }
     if(!("speechSynthesis" in window)){ avancer(); return; }
@@ -19385,7 +19403,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 456;
+const APP_VERSION = 457;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19557,6 +19575,24 @@ function obtenirLecteur(){
     return lecteurAudio;
 }
 
+// ⚠️ PISTE SUIVANTE, PAS ENCORE ESSAYEE (note de la v457).
+//
+// Ce relachement a ete ajoute en v448 sur une theorie qui a depuis ete
+// DEMENTIE : on croyait que l'element retenant la session sonore attenuait la
+// synthese. La vraie cause du francais muet etait ailleurs (l'amorce accrochee
+// a `pointerdown` au lieu de `touchend`, voir la v455).
+//
+// Or relacher l'element oblige a REOUVRIR la session sonore a chaque fichier --
+// et c'est precisement au moment de cette reouverture qu'iOS attenue. Garder
+// l'element charge pendant toute la sequence pourrait donc supprimer
+// l'attenuation, et rendre inutile le silence de 1,6 s que la v457 vient
+// d'imposer dans l'onglet.
+//
+// CE N'EST PAS FAIT DANS LA MEME VERSION, EXPRES. Le silence de 1,6 s est sur,
+// il ne peut rien casser ; ce changement-ci pourrait faire revenir le francais
+// muet. Les enchainer rendrait le journal illisible -- c'est l'erreur de la
+// v454, qui portait deux corrections et ne disait pas laquelle avait agi.
+//
 // RELACHER L'ELEMENT, ET PAS SEULEMENT L'ARRETER (v448).
 //
 // `pause()` arrete le son ; il ne rend pas la session sonore. Tant que
