@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v482</span>
+        <span class="subtitle-version">v483</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5856,6 +5856,46 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <p style="color:#576177; line-height:1.5; margin:8px 0 0;" data-i18n="ecoute_phrase_desc">Une phrase est dite, jamais écrite : choisis ce qu'elle veut dire. Elle s'affiche ensuite, à relire en la réécoutant. Cet exercice-ci compte dans ta progression.</p>
         <div id="ecoutePhraseLevelBar" class="filters-bar" style="margin-top:10px;"></div>
     </div>
+
+    <div class="card">
+        <strong data-i18n="parler_title">S'entendre le dire</strong>
+        <p style="color:#576177; line-height:1.5; margin:8px 0 0;" data-i18n="parler_desc">Le modèle, puis toi, l'un après l'autre. C'est de s'entendre qui fait entendre l'écart — l'écouter en répétant ne suffit pas. Rien n'est noté et rien n'est envoyé : l'enregistrement reste sur l'appareil et disparaît à la phrase suivante.</p>
+        <div id="parlerLevelBar" class="filters-bar" style="margin-top:10px;"></div>
+    </div>
+</section>
+
+<!-- ================= PRODUCTION ORALE ================= -->
+<section id="parler" class="screen">
+    <button class="back" onclick="quitterParler()"><span data-i18n="back_button">‹ Retour</span></button>
+
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="parler_kicker">Parler</div>
+            <h2 data-i18n="parler_title">S'entendre le dire</h2>
+        </div>
+        <div class="title-row-pills">
+            <div class="pill" id="parlerCounter">1 / 10</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div id="parlerPhrase" style="font-size:20px; font-weight:600; line-height:1.4;"></div>
+        <div id="parlerTrad" style="color:#576177; margin-top:8px; line-height:1.4;"></div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="parlerJouerModele()" data-i18n="parler_modele_btn">🔊 LE MODÈLE</button>
+    </div>
+
+    <div class="card">
+        <button class="primary" id="parlerRecBtn" onclick="parlerBasculerEnregistrement()" data-i18n="parler_rec_btn">🎙 M'ENREGISTRER</button>
+        <div id="parlerEtat" style="color:#576177; margin-top:10px; font-size:13px; min-height:18px;"></div>
+        <div id="parlerRejouer" class="hidden">
+            <div class="spacer"></div>
+            <button class="secondary" onclick="parlerJouerEssai()" data-i18n="parler_essai_btn">▶ MON ESSAI</button>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <button class="secondary" onclick="parlerSuivant()" data-i18n="parler_suivant_btn">PHRASE SUIVANTE →</button>
 </section>
 
 <section id="ecoute" class="screen">
@@ -7153,6 +7193,19 @@ const I18N = {
         ecoute_phrase_desc: "Une phrase est dite, jamais écrite : choisis ce qu'elle veut dire. Elle s'affiche ensuite, à relire en la réécoutant. Cet exercice-ci compte dans ta progression.",
         ecoute_phrase_topic: "Écoute",
         ecoute_phrase_question: "Qu'est-ce que tu viens d'entendre ?",
+        parler_kicker: "Parler",
+        parler_title: "S'entendre le dire",
+        parler_desc: "Le modèle, puis toi, l'un après l'autre. C'est de s'entendre qui fait entendre l'écart — l'écouter en répétant ne suffit pas. Rien n'est noté et rien n'est envoyé : l'enregistrement reste sur l'appareil et disparaît à la phrase suivante.",
+        parler_modele_btn: "🔊 LE MODÈLE",
+        parler_rec_btn: "🎙 M'ENREGISTRER",
+        parler_stop_btn: "⏹ ARRÊTER",
+        parler_essai_btn: "▶ MON ESSAI",
+        parler_suivant_btn: "PHRASE SUIVANTE →",
+        parler_en_cours: "J'écoute… touche ARRÊTER quand tu as fini.",
+        parler_pret: "C'est enregistré. Écoute le modèle, puis ton essai.",
+        parler_rien_entendu: "Rien n'a été enregistré. Réessaie en parlant un peu plus fort.",
+        parler_micro_refuse: "Le micro n'a pas été autorisé. Tu peux l'autoriser dans les réglages du navigateur.",
+        parler_sans_micro: "Cet appareil ne permet pas l'enregistrement ici. Écoute le modèle et répète à voix haute.",
         ecoute_level_all: "Tous",
         ecoute_title: "Écouter et répéter",
         ecoute_reglages_title: "Réglages",
@@ -7982,6 +8035,19 @@ const I18N = {
         ecoute_phrase_desc: "A sentence is spoken, never written: choose what it means. It appears afterwards, to reread while playing it again. This one does count towards your progress.",
         ecoute_phrase_topic: "Listening",
         ecoute_phrase_question: "What did you just hear?",
+        parler_kicker: "Speaking",
+        parler_title: "Hear yourself say it",
+        parler_desc: "The model, then you, one after the other. Hearing yourself is what makes the gap audible — listening while repeating does not. Nothing is graded and nothing is sent: the recording stays on the device and is dropped at the next sentence.",
+        parler_modele_btn: "🔊 THE MODEL",
+        parler_rec_btn: "🎙 RECORD ME",
+        parler_stop_btn: "⏹ STOP",
+        parler_essai_btn: "▶ MY ATTEMPT",
+        parler_suivant_btn: "NEXT SENTENCE →",
+        parler_en_cours: "Listening… tap STOP when you are done.",
+        parler_pret: "Recorded. Play the model, then your attempt.",
+        parler_rien_entendu: "Nothing was recorded. Try again, a little louder.",
+        parler_micro_refuse: "The microphone was not allowed. You can enable it in your browser settings.",
+        parler_sans_micro: "This device does not allow recording here. Play the model and repeat aloud.",
         ecoute_level_all: "All",
         ecoute_title: "Listen and repeat",
         ecoute_reglages_title: "Settings",
@@ -8815,6 +8881,19 @@ const I18N = {
         ecoute_phrase_desc: "Bir cümle söylenir, hiç yazılmaz: ne anlama geldiğini seç. Sonra ekranda çıkar, tekrar dinlerken okuyabilirsin. Bu alıştırma ilerlemene sayılır.",
         ecoute_phrase_topic: "Dinleme",
         ecoute_phrase_question: "Az önce ne duydun?",
+        parler_kicker: "Konuşma",
+        parler_title: "Kendini söylerken duy",
+        parler_desc: "Önce örnek, sonra sen. Farkı duyuran şey kendini dinlemektir — tekrar ederken dinlemek yetmez. Not verilmez ve hiçbir şey gönderilmez: kayıt cihazda kalır ve sonraki cümlede silinir.",
+        parler_modele_btn: "🔊 ÖRNEK",
+        parler_rec_btn: "🎙 BENİ KAYDET",
+        parler_stop_btn: "⏹ DURDUR",
+        parler_essai_btn: "▶ BENİM DENEMEM",
+        parler_suivant_btn: "SONRAKİ CÜMLE →",
+        parler_en_cours: "Dinliyorum… bitince DURDUR'a dokun.",
+        parler_pret: "Kaydedildi. Önce örneği, sonra kendini dinle.",
+        parler_rien_entendu: "Hiçbir şey kaydedilmedi. Biraz daha yüksek sesle dene.",
+        parler_micro_refuse: "Mikrofona izin verilmedi. Tarayıcı ayarlarından açabilirsin.",
+        parler_sans_micro: "Bu cihazda burada kayıt yapılamıyor. Örneği dinle ve yüksek sesle tekrar et.",
         ecoute_level_all: "Tümü",
         ecoute_title: "Dinle ve tekrarla",
         ecoute_reglages_title: "Ayarlar",
@@ -9052,6 +9131,19 @@ const I18N = {
         ecoute_phrase_desc: "Речення звучить, але ніколи не показується: обери, що воно означає. Потім воно з'явиться — перечитай, слухаючи ще раз. Ця вправа рахується в прогресі.",
         ecoute_phrase_topic: "Слухання",
         ecoute_phrase_question: "Що ти щойно почув?",
+        parler_kicker: "Мовлення",
+        parler_title: "Почути себе",
+        parler_desc: "Спочатку зразок, потім ти. Саме власний голос робить різницю чутною — слухати, повторюючи, не достатньо. Ніяких оцінок і нічого не надсилається: запис залишається на пристрої і зникає на наступній фразі.",
+        parler_modele_btn: "🔊 ЗРАЗОК",
+        parler_rec_btn: "🎙 ЗАПИСАТИ СЕБЕ",
+        parler_stop_btn: "⏹ ЗУПИНИТИ",
+        parler_essai_btn: "▶ МОЯ СПРОБА",
+        parler_suivant_btn: "НАСТУПНА ФРАЗА →",
+        parler_en_cours: "Слухаю… торкнися ЗУПИНИТИ, коли закінчиш.",
+        parler_pret: "Записано. Послухай зразок, потім себе.",
+        parler_rien_entendu: "Нічого не записано. Спробуй ще раз, гучніше.",
+        parler_micro_refuse: "Мікрофон не дозволено. Його можна увімкнути в налаштуваннях браузера.",
+        parler_sans_micro: "Цей пристрій тут не дозволяє запис. Послухай зразок і повтори вголос.",
         ecoute_level_all: "Усі",
         ecoute_reglages_title: "Налаштування",
         ecoute_vitesse_label: "Швидкість голосу",
@@ -19283,6 +19375,18 @@ function renderEcouteMenu(){
         });
         barPhrase.innerHTML = html;
     }
+    const barParler = document.getElementById("parlerLevelBar");
+    if(barParler){
+        const total = phrasesEcoutables("ALL").length;
+        let html = ecouteBoutonBarre(false, "startParler('ALL')",
+            `${t("ecoute_level_all")} (${total})`, "", "flex:1 1 100%;");
+        LEVELS.forEach(lvl => {
+            const n = phrasesEcoutables(lvl).length;
+            if(n) html += ecouteBoutonBarre(false, `startParler('${lvl}')`,
+                `${lvl} (${n})`, "", "flex:1 1 46%; min-width:0;");
+        });
+        barParler.innerHTML = html;
+    }
 }
 
 function setEcouteSens(sens){
@@ -20062,7 +20166,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 482;
+const APP_VERSION = 483;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -22499,6 +22603,170 @@ function startEcoutePhrase(niveau){
     if(!liste.length){ showInfoToast(t('alert_level_unavailable')); return; }
     startExerciseSet(liste, 'ecoute_phrase_topic',
                      ouvrirEcouteMenu, () => startEcoutePhrase(niveau));
+}
+
+
+// ==================== S'entendre le dire ====================
+//
+// LA PRODUCTION ORALE, ET CE QU'ELLE AJOUTE VRAIMENT.
+//
+// Le mode Ecoute fait deja « ecouter, puis repeter dans le silence ». Ce qu'il
+// ne fait pas -- et c'est tout ce qui manquait -- c'est de RENDRE la voix de
+// l'usager. On n'entend pas son propre accent en parlant : on l'entend en se
+// reecoutant. Le modele et l'essai, l'un apres l'autre, sur la meme phrase.
+//
+// ⚠️ AUCUNE NOTE, ET C'EST UN CHOIX, PAS UNE FACILITE. Faire juger la
+// prononciation par une reconnaissance vocale serait techniquement possible
+// (webkitSpeechRecognition existe sur Safari) et pedagogiquement mauvais : ces
+// moteurs sont entraines sur des locuteurs natifs et refusent regulierement une
+// phrase correcte dite avec un accent francais. Un « faux » injustifie, sur la
+// competence ou l'on est deja le plus vulnerable, decourage plus qu'il
+// n'enseigne. L'oreille de l'usager tranche mieux que le moteur, une fois
+// qu'elle a les deux versions cote a cote.
+//
+// RIEN NE SORT DE L'APPAREIL. Pas de televersement, pas de stockage : le blob
+// vit en memoire et l'URL est revoquee des la phrase suivante. C'est la seule
+// facon de proposer un micro sans avoir a promettre quoi que ce soit.
+let parlerListe = [];
+let parlerIndex = 0;
+let parlerRecorder = null;
+let parlerFlux = null;
+let parlerMorceaux = [];
+let parlerUrl = null;
+let parlerLecteur = null;
+
+function startParler(niveau){
+    amorcerSynthese();
+    const vivier = phrasesEcoutables(niveau || "ALL");
+    if(!vivier.length){ showInfoToast(t('alert_level_unavailable')); return; }
+    const liste = vivier.slice();
+    shuffleArray(liste);
+    parlerListe = liste.slice(0, ECOUTE_PHRASE_TAILLE_SERIE);
+    parlerIndex = 0;
+    showScreen("parler");
+    parlerAfficher();
+}
+
+function parlerAfficher(){
+    parlerOublierEssai();
+    const p = parlerListe[parlerIndex];
+    if(!p) return;
+    document.getElementById("parlerPhrase").textContent = p.de;
+    document.getElementById("parlerTrad").textContent = traductionActive(p);
+    document.getElementById("parlerCounter").textContent =
+        (parlerIndex + 1) + " / " + parlerListe.length;
+    document.getElementById("parlerEtat").textContent = "";
+}
+
+function parlerJouerModele(){
+    const p = parlerListe[parlerIndex];
+    if(p) direAllemand(p.de, { rate: 0.9 });
+}
+
+function parlerSuivant(){
+    parlerArreterEnregistrement();
+    parlerIndex++;
+    if(parlerIndex >= parlerListe.length){ parlerIndex = 0; }
+    parlerAfficher();
+}
+
+function quitterParler(){
+    parlerArreterEnregistrement();
+    parlerOublierEssai();
+    ouvrirEcouteMenu();
+}
+
+// L'essai precedent est jete DES qu'on change de phrase. Sans revoquer l'URL,
+// chaque enregistrement resterait en memoire jusqu'a la fermeture de l'onglet.
+function parlerOublierEssai(){
+    if(parlerUrl){ try{ URL.revokeObjectURL(parlerUrl); }catch(e){} parlerUrl = null; }
+    const rejouer = document.getElementById("parlerRejouer");
+    if(rejouer) rejouer.classList.add("hidden");
+}
+
+// ⚠️ LE MICRO SE RELACHE, TOUJOURS. Une piste laissee ouverte garde le
+// temoin d'enregistrement allume sur le telephone -- et personne ne
+// pardonnerait ca a une application de vocabulaire.
+function parlerArreterEnregistrement(){
+    if(parlerRecorder && parlerRecorder.state === "recording"){
+        try{ parlerRecorder.stop(); }catch(e){}
+    }
+    parlerRecorder = null;
+    if(parlerFlux){
+        try{ parlerFlux.getTracks().forEach(p => p.stop()); }catch(e){}
+        parlerFlux = null;
+    }
+    const btn = document.getElementById("parlerRecBtn");
+    if(btn) btn.textContent = t("parler_rec_btn");
+}
+
+async function parlerBasculerEnregistrement(){
+    const etat = document.getElementById("parlerEtat");
+    const btn = document.getElementById("parlerRecBtn");
+    if(parlerRecorder && parlerRecorder.state === "recording"){
+        parlerArreterEnregistrement();
+        return;
+    }
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia ||
+       typeof MediaRecorder === "undefined"){
+        // Le cas existe pour de bon : l'enregistrement a longtemps ete refuse
+        // aux applications ajoutees a l'ecran d'accueil sur iOS. On le DIT, au
+        // lieu de laisser un bouton qui ne fait rien.
+        etat.textContent = t("parler_sans_micro");
+        return;
+    }
+    parlerOublierEssai();
+    try{
+        parlerFlux = await navigator.mediaDevices.getUserMedia({ audio: true });
+    }catch(e){
+        etat.textContent = t("parler_micro_refuse");
+        return;
+    }
+    parlerMorceaux = [];
+    try{
+        parlerRecorder = new MediaRecorder(parlerFlux);
+    }catch(e){
+        etat.textContent = t("parler_sans_micro");
+        parlerArreterEnregistrement();
+        return;
+    }
+    parlerRecorder.ondataavailable = ev => {
+        if(ev.data && ev.data.size) parlerMorceaux.push(ev.data);
+    };
+    parlerRecorder.onstop = () => {
+        if(parlerFlux){
+            try{ parlerFlux.getTracks().forEach(p => p.stop()); }catch(e){}
+            parlerFlux = null;
+        }
+        if(!parlerMorceaux.length){ etat.textContent = t("parler_rien_entendu"); return; }
+        const blob = new Blob(parlerMorceaux, { type: parlerMorceaux[0].type || "audio/webm" });
+        parlerUrl = URL.createObjectURL(blob);
+        document.getElementById("parlerRejouer").classList.remove("hidden");
+        etat.textContent = t("parler_pret");
+    };
+    parlerRecorder.start();
+    btn.textContent = t("parler_stop_btn");
+    etat.textContent = t("parler_en_cours");
+}
+
+// Un element a part, jamais celui des fichiers pre-generes : le lecteur partage
+// change de `src` a chaque mot, et l'essai serait efface par le premier appui
+// sur « le modele ».
+// FILET DE SECURITE. Le bouton Retour relache le micro, mais il n'est pas le
+// seul moyen de quitter : verrouiller le telephone, changer d'application ou
+// fermer l'onglet passent a cote. Un micro laisse ouvert garde le temoin
+// d'enregistrement allume, et c'est le genre de detail qui fait desinstaller
+// une application de vocabulaire.
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden) parlerArreterEnregistrement();
+});
+
+function parlerJouerEssai(){
+    if(!parlerUrl) return;
+    arreterAudioPregenere();
+    if(!parlerLecteur){ parlerLecteur = new Audio(); parlerLecteur.preload = "none"; }
+    parlerLecteur.src = parlerUrl;
+    parlerLecteur.play().catch(() => {});
 }
 
 
