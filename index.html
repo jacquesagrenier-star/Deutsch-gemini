@@ -2620,49 +2620,6 @@ body[data-theme="dark"] .registre-note{
     100%{ opacity:0; transform:translate(-50%,-85%) scale(.92) rotate(0deg); }
 }
 
-.mastery-video{
-    position:fixed;
-    left:50%;
-    top:24%;
-    transform:translate(-50%,-50%);
-    width:150px;
-    height:150px;
-    pointer-events:none;
-    z-index:10001;
-    filter:drop-shadow(0 10px 18px rgba(30,41,59,.25));
-    animation:masteryVideoPop 1.8s cubic-bezier(.22,.85,.35,1) forwards;
-}
-
-@keyframes masteryVideoPop{
-    0%{ transform:translate(-50%,-50%) scale(.5); opacity:0; }
-    15%{ opacity:1; transform:translate(-50%,-50%) scale(1.06); }
-    30%{ transform:translate(-50%,-50%) scale(1); }
-    80%{ opacity:1; transform:translate(-50%,-62%) scale(1); }
-    100%{ opacity:0; transform:translate(-50%,-78%) scale(.92); }
-}
-
-/* Célébration "objectif du jour atteint" (personnage) : plus gros, reste plus
-   longtemps. Durée = longueur de la vidéo (6.0s, recadrée pour retirer le
-   filigrane CapCut ajouté en fin d'export ; sans boucle -- elle se fige
-   naturellement sur sa dernière image une fois finie) + 1s d'arrêt sur image
-   supplémentaire avant de s'effacer, pour bien voir le personnage immobile à
-   la fin du jonglage plutôt que de le faire disparaître en pleine action. */
-.mastery-video-big{
-    width:260px;
-    height:260px;
-    filter:drop-shadow(0 16px 34px rgba(30,41,59,.32));
-    animation-name:dailyGoalVideoPop;
-    animation-duration:7.7s;
-}
-
-@keyframes dailyGoalVideoPop{
-    0%{ transform:translate(-50%,-50%) scale(.5); opacity:0; }
-    8%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
-    17%{ transform:translate(-50%,-50%) scale(1); }
-    91%{ opacity:1; transform:translate(-50%,-56%) scale(1); }
-    100%{ opacity:0; transform:translate(-50%,-68%) scale(.94); }
-}
-
 @media(max-width:390px){
     h1{font-size:36px}
     .grid{gap:10px}
@@ -3850,7 +3807,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v460</span>
+        <span class="subtitle-version">v461</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12792,7 +12749,6 @@ const STREAK_KEY = "deutschAI_streak";
 const STREAK_FREEZE_KEY = "deutschAI_streakFreezes";
 const STREAK_FREEZE_STARTING_COUNT = 1; // offert dès le départ, comme un "essai gratuit" de la mécanique
 const STREAK_FREEZE_MAX = 3; // évite d'accumuler indéfiniment
-const DAILY_GOAL_VIDEO_ROTATION_KEY = "deutschAI_dailyGoalVideoRotation";
 const MASTERY_LOG_KEY = "deutschAI_masteryLog";
 const DAILY_GOAL_STORAGE_KEY = "deutschAI_dailyGoalTarget";
 const DEFAULT_DAILY_GOAL_TARGET = 30;
@@ -19499,7 +19455,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 460;
+const APP_VERSION = 461;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -21220,458 +21176,36 @@ function launchConfetti(){
     }
 }
 
-// Petit animal vidéo (muet) qui apparaît lorsqu'une carte est maîtrisée, pour
-// donner un encouragement visuel. Un animal est tiré au sort à chaque fois parmi
-// une petite ménagerie ; le lion est réservé à un événement spécial (objectif du
-// jour atteint), plus gros et plus long, avec sa propre fanfare.
+// ============ Celebrations ============
 //
-// Les clips ont un fond blanc uni sans canal alpha (les vidéos MP4/H.264 ne peuvent
-// pas en avoir, et même un vrai canal alpha ne serait pas rendu par <video> dans un
-// navigateur — c'est une limitation du web). mix-blend-mode sur <video> s'est avéré
-// peu fiable sur iOS Safari. Solution robuste : on dessine chaque image de la vidéo
-// sur un <canvas> caché et on rend transparent, pixel par pixel, tout le fond blanc
-// *connecté aux bords de l'image* (comme une baguette magique) — ça protège les
-// zones claires de l'animal lui-même (ex. ventre du hibou), même si leur couleur
-// ressemble au fond, puisqu'elles ne touchent jamais le bord de l'image.
+// LES VIDEOS SONT RETIREES (v461, decision de Jacques). Il restait ici tout
+// l'appareillage d'une gratification video : neuf animaux tires au sort a
+// chaque mot maitrise, quatre personnages pour les paliers de l'objectif du
+// jour, et surtout 330 lignes de detourage -- chaque image dessinee sur un
+// canvas cache, le fond rendu transparent pixel par pixel comme une baguette
+// magique, des seuils differents selon la generation de clip, une recoloration
+// du noir en bleu marine pour le theme sombre.
+//
+// Rien de tout cela ne jouait plus : un drapeau (VIDEO_GRATIFICATION_ACTIVE)
+// les avait deja eteintes. C'etait donc du code mort qui restait a maintenir,
+// et surtout dix-sept fichiers video PUBLIES dont personne ne savait plus
+// d'ou ils venaient -- le seul point du dossier juridique que le temps rend
+// irreparable (voir video/PROVENANCE.txt).
+//
+// CE QUI RESTE, ET QUI SUFFIT : le trophee sur la carte, les confettis, le
+// son de reussite, la fanfare et le bandeau « +N ! » des paliers. La seule
+// video de l'application est desormais celle d'ouverture, dont la provenance
+// est connue et ecrite.
 const VIDEO_BASE_URL = ASSETS_BASE + "video/";
-// Hibou retiré du tirage (trop proche de la mascotte de Duolingo).
-// dauphin.MP4 retiré temporairement : problème de détourage (le ventre passe du
-// noir au blanc), le fond ne se garde pas bien transparent sur cette vidéo.
-const CELEBRATION_ANIMAL_FILES = ["chien.MP4", "elephant.MP4", "koala.MP4", "chat.MP4", "poussin.MP4", "cheval.MP4", "girafe.MP4", "coq.MP4", "herisson.MP4"];
-// Célébration de l'objectif du jour : une vidéo par palier atteint (1x, 2x, 3x,
-// 4x l'objectif), au-delà on répète la dernière (voir triggerDailyGoalCelebration).
+
+// Coupe net l'annonce de palier en cours (le bandeau « +N ! »). Appelee quand
+// l'utilisateur touche l'ecran pour continuer : la gratification a joue son
+// role, la laisser par-dessus la carte suivante n'apporte plus rien.
 //
-// Historique (pour comprendre pourquoi la détection ci-dessous est si simple) :
-// la 1re génération de ces vidéos (personnage.MP4 vert, puis personnage2/3/4.MP4
-// bleu) traçait un anneau de couleur vif autour du personnage sur fond noir, et
-// il fallait deviner pixel par pixel si une couleur donnée appartenait au fond
-// ou au personnage -- seuils loose/strong/pontage, plusieurs correctifs ratés
-// (liseré résiduel, puis morceaux de vrai tissu mangés). Le 2026-08-23,
-// l'utilisateur a retrouvé dans CapCut Pro un outil de découpage par IA
-// ("Auto Removal", sans fond vert/bleu) et a refait les 4 vidéos avec : fond
-// NOIR UNI, aucun anneau de couleur, bords déjà nets. Ça élimine le problème à
-// la racine -- plus besoin de reconnaître une couleur de liseré, juste
-// "retirer le noir connecté au bord de l'image" suffit (voir
-// computeBackgroundMask, branche par défaut). Le fond vert reste utile pour
-// les vidéos d'animaux (CELEBRATION_ANIMAL_FILES, qui ont encore l'ancien
-// style avec liseré), d'où la branche "green" conservée à part.
-//
-// muted:false partout -- les 4 clips ont leur propre son (trompette,
-// applaudissements...), on saute donc la fanfare synthétisée pour eux (voir
-// triggerDailyGoalCelebration : if(video.muted){...}).
-// durationS : longueur réelle du clip, pour calibrer l'animation CSS par vidéo
-// (voir triggerDailyGoalCelebration) -- sans ça, un clip plus court qu'un autre
-// resterait figé sur sa dernière image plusieurs secondes de trop.
-const DAILY_GOAL_VIDEOS = [
-    { file: "personnage1.MP4", muted: false, durationS: 6.0 },
-    { file: "personnage2.MP4", muted: false, durationS: 6.0 },
-    { file: "personnage3.MP4", muted: false, durationS: 5.9 },
-    { file: "personnage4.MP4", muted: false, durationS: 6.0 },
-];
-// MISE EN RETRAIT (v290), a la demande de l'utilisateur : les videos de
-// gratification de l'objectif du jour ne se jouent plus. Meme procede que
-// VIDEO_ACCUEIL_ACTIVE plus haut -- tout le code, les quatre clips et le rendu
-// restent en place, seul ce drapeau les eteint. Le remettre a true les rouvre
-// sans autre modification.
-//
-// Le palier reste annonce : le texte et la fanfare continuent de se jouer (voir
-// triggerDailyGoalCelebration). Sans cela le moment deviendrait entierement
-// muet, puisque les quatre clips portent leur propre son.
-const VIDEO_GRATIFICATION_ACTIVE = false;
-
-const MASTERY_VIDEO_SIZE = 150;
-const DAILY_GOAL_VIDEO_SIZE = 260;
-// Fond NOIR + liseré VERT vif tracé autour du personnage/des animaux (ajouté
-// par l'outil de montage) -- utilisé par les vidéos d'animaux
-// (CELEBRATION_ANIMAL_FILES). Deux niveaux de confiance :
-// - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord de
-//   l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il est très
-//   sombre OU nettement verdâtre.
-// - "strong" (signal très fort, vert vif) est retiré SANS exiger de
-//   connectivité -- au cas où l'anneau le plus lumineux soit isolé du fond
-//   connecté par une fine bande de transition trop faible en signal pour la
-//   connectivité seule.
-const MASTERY_LOOSE_DARK_MAX = 26;
-const MASTERY_LOOSE_OUTLINE_THRESH = 25;
-const MASTERY_STRONG_OUTLINE_THRESH = 90;
-const MASTERY_ERODE_RADIUS = 3;
-const MASTERY_DILATE_RADIUS = 8;
-const MASTERY_CLOSE_RADIUS = 3;
-// Fond NOIR UNI SANS liseré (personnage1-4.MP4, détourés par IA dans CapCut --
-// voir commentaire de DAILY_GOAL_VIDEOS). Un seuil plus strict que
-// MASTERY_LOOSE_DARK_MAX (12 contre 26) suffit puisqu'il n'y a plus besoin de
-// laisser de marge pour un anneau de couleur -- vérifié sans aucune perte sur
-// plusieurs poses (mains/trompette, chute/roulé-boulé, jonglage, trophée).
-const MASTERY_SIMPLE_DARK_MAX = 12;
-const MASTERY_SIMPLE_ERODE_RADIUS = 2;
-const MASTERY_SIMPLE_DILATE_RADIUS = 3;
-
-// En thème sombre, le noir du personnage (casquette, etc.) se fond dans le fond
-// noir de l'appli : on le remplace par un bleu marine assez foncé mais visible.
-// DARK_RECOLOR_THRESHOLD : luminosité (max R/G/B) en dessous de laquelle un pixel
-// est considéré "noir" et recoloré ; BASE/SPAN définissent le dégradé de bleu
-// (BASE = noir pur d'origine, BASE+SPAN = luminosité = seuil).
-const DARK_RECOLOR_THRESHOLD = 70;
-const DARK_RECOLOR_BASE = { r: 14, g: 20, b: 48 };
-const DARK_RECOLOR_SPAN = { r: 46, g: 46, b: 78 };
-
-// Tirage aléatoire, mais jamais deux fois le même animal d'affilée.
-let lastCelebrationAnimalFile = null;
-function pickRandomCelebrationVideo(){
-    let candidates = CELEBRATION_ANIMAL_FILES;
-    if(CELEBRATION_ANIMAL_FILES.length > 1){
-        candidates = CELEBRATION_ANIMAL_FILES.filter(f => f !== lastCelebrationAnimalFile);
-    }
-    const file = candidates[Math.floor(Math.random() * candidates.length)];
-    lastCelebrationAnimalFile = file;
-    return VIDEO_BASE_URL + file;
-}
-
-// outlineColor : "green" (défaut, historique) ou "blue" (personnage2/3/4.MP4) --
-// détermine quel canal domine dans computeBackgroundMask(). playAudio : true
-// pour laisser le son natif de la vidéo jouer (personnage2/3/4.MP4) plutôt que
-// de forcer le mode muet (comportement historique, toujours utilisé pour les
-// animaux et personnage.MP4 dont le son est remplacé par la fanfare synthétisée).
-// holdSeconds (variante "big" seulement) : durée totale de l'animation CSS
-// (clip + arrêt sur image + fondu), calibrée par appelant à partir de la
-// durée réelle du clip -- voir DAILY_GOAL_VIDEOS.durationS. Repli sur la
-// durée par défaut de .mastery-video-big (7.7s, calibrée pour personnage.MP4)
-// si non fournie.
-// Celebrations en cours : permet de les interrompre depuis l'exterieur (voir
-// stopMasteryCelebrations). Plusieurs peuvent se superposer -- un palier de
-// l'objectif du jour declenche une sequence de plusieurs videos.
-let activeCelebrationStops = [];
-
-function showMasteryCharacter(videoUrl, big, outlineColor, playAudio, holdSeconds){
-    const container = document.getElementById("confettiContainer");
-    if(!container) return;
-    const size = big ? DAILY_GOAL_VIDEO_SIZE : MASTERY_VIDEO_SIZE;
-
-    const video = document.createElement("video");
-    video.crossOrigin = "anonymous"; // requis pour lire les pixels du canvas (raw.githubusercontent.com envoie déjà Access-Control-Allow-Origin: *)
-    video.src = videoUrl;
-    if(!playAudio){
-        video.muted = true;
-        video.defaultMuted = true;
-        video.setAttribute("muted", "");
-    }
-    video.setAttribute("playsinline", "");
-    video.setAttribute("webkit-playsinline", "");
-    video.setAttribute("aria-hidden", "true");
-    // Caché via opacity plutôt que déplacé hors écran en 1x1px : ce dernier motif
-    // ressemble à un pixel de pistage et peut être bloqué par des bloqueurs de
-    // publicité (ex. uBlock Origin), ce qui empêchait la vidéo de démarrer sur
-    // certains navigateurs desktop.
-    video.style.position = "fixed";
-    video.style.left = "50%";
-    video.style.top = "42%";
-    video.style.width = size + "px";
-    video.style.height = size + "px";
-    video.style.opacity = "0";
-    video.style.pointerEvents = "none";
-
-    const canvas = document.createElement("canvas");
-    canvas.className = big ? "mastery-video mastery-video-big" : "mastery-video";
-    canvas.width = size;
-    canvas.height = size;
-    canvas.setAttribute("aria-hidden", "true");
-    if(big && holdSeconds) canvas.style.animationDuration = holdSeconds + "s";
-
-    // Ancre l'animal sur le coin supérieur droit de la carte (comme s'il s'y
-    // tenait en équilibre) plutôt qu'au centre de l'écran : on mesure la
-    // position réelle de la carte à l'instant du déclenchement, ce qui reste
-    // correct quelle que soit la taille d'écran. Repli sur la position CSS
-    // par défaut (centrée) si la carte n'est pas trouvée -- OU si elle existe
-    // dans le DOM mais n'est pas visible (offsetParent === null tant qu'un
-    // ancêtre a display:none) : l'écran #flashcards reste présent dans le DOM
-    // même une fois quitté (juste masqué par la classe .screen sans .active),
-    // donc getElementById le retrouve toujours. Sans cette vérification, une
-    // célébration déclenchée depuis l'écran d'exercices (ajoutée en v116 :
-    // une bonne réponse compte aussi pour l'objectif du jour) se positionnait
-    // sur les coordonnées obsolètes de la dernière carte affichée -- souvent
-    // hors écran -- rendant le personnage invisible malgré un déclenchement
-    // réussi (confirmé : la célébration se déclenchait bien, seule la
-    // position était fausse).
-    const flashcardEl = document.getElementById("flashcard");
-    if(flashcardEl && flashcardEl.offsetParent !== null){
-        const rect = flashcardEl.getBoundingClientRect();
-        // On décale vers l'intérieur (55 % de la taille de l'icône, un peu plus
-        // que la moitié) plutôt que de centrer pile sur le coin, pour que l'icône
-        // reste entièrement dans la largeur de la carte (juste le haut déborde
-        // au-dessus) et ne se fasse pas couper sur les téléphones étroits (ex.
-        // iPhone). Marge de sécurité supplémentaire : jamais plus près du bord
-        // droit de l'écran que size/2 + 8px.
-        const desiredLeft = rect.right - size * 0.55;
-        const maxLeft = window.innerWidth - size / 2 - 8;
-        canvas.style.left = Math.min(desiredLeft, maxLeft) + "px";
-        canvas.style.top = rect.top + "px";
-    }
-
-    let ctx;
-    try{ ctx = canvas.getContext("2d", { willReadFrequently: true }); }catch(e){ ctx = null; }
-    if(!ctx){ return; } // pas de support canvas : on saute simplement l'effet, la fête continue avec confettis
-
-    container.appendChild(video);
-    container.appendChild(canvas);
-
-    let rafId = null;
-    let stopped = false;
-
-    // Fin de vie unique de la celebration, quelle qu'en soit la cause : fin de
-    // l'animation, erreur de chargement, ou interruption par l'utilisateur
-    // (stopMasteryCelebrations). Enregistree dans activeCelebrationStops pour
-    // qu'un appui sur l'ecran puisse l'appeler de l'exterieur.
-    function teardown(){
-        if(stopped) return;
-        stopped = true;
-        if(rafId) cancelAnimationFrame(rafId);
-        try{ video.pause(); }catch(e){}
-        video.remove();
-        canvas.remove();
-        const i = activeCelebrationStops.indexOf(teardown);
-        if(i !== -1) activeCelebrationStops.splice(i, 1);
-    }
-    activeCelebrationStops.push(teardown);
-
-    // Filtre min/max séparable (passe horizontale puis verticale) : équivalent à
-    // une érosion/dilatation carrée classique mais en O(rayon) par pixel au lieu
-    // de O(rayon²) -- important pour rester fluide en animation temps réel.
-    function erodeMask(mask, w, h, radius){
-        const tmp = new Uint8Array(w * h);
-        for(let y = 0; y < h; y++){
-            const base = y * w;
-            for(let x = 0; x < w; x++){
-                let v = 1;
-                for(let dx = -radius; dx <= radius; dx++){
-                    const nx = x + dx;
-                    if(nx < 0 || nx >= w) continue; // hors cadre : aucune contrainte
-                    if(!mask[base + nx]){ v = 0; break; }
-                }
-                tmp[base + x] = v;
-            }
-        }
-        const out = new Uint8Array(w * h);
-        for(let x = 0; x < w; x++){
-            for(let y = 0; y < h; y++){
-                let v = 1;
-                for(let dy = -radius; dy <= radius; dy++){
-                    const ny = y + dy;
-                    if(ny < 0 || ny >= h) continue;
-                    if(!tmp[ny * w + x]){ v = 0; break; }
-                }
-                out[y * w + x] = v;
-            }
-        }
-        return out;
-    }
-
-    function dilateMask(mask, w, h, radius){
-        const tmp = new Uint8Array(w * h);
-        for(let y = 0; y < h; y++){
-            const base = y * w;
-            for(let x = 0; x < w; x++){
-                let v = 0;
-                for(let dx = -radius; dx <= radius; dx++){
-                    const nx = x + dx;
-                    if(nx < 0 || nx >= w) continue;
-                    if(mask[base + nx]){ v = 1; break; }
-                }
-                tmp[base + x] = v;
-            }
-        }
-        const out = new Uint8Array(w * h);
-        for(let x = 0; x < w; x++){
-            for(let y = 0; y < h; y++){
-                let v = 0;
-                for(let dy = -radius; dy <= radius; dy++){
-                    const ny = y + dy;
-                    if(ny < 0 || ny >= h) continue;
-                    if(tmp[ny * w + x]){ v = 1; break; }
-                }
-                out[y * w + x] = v;
-            }
-        }
-        return out;
-    }
-
-    // Fond noir + liseré vert (voir constantes MASTERY_* plus haut). Deux masques
-    // combinés par une union (OR) :
-    // - mask1 : remplissage depuis le bord de l'image ("baguette magique"), à
-    //   travers le filet large (loose) rongé par érosion -- protège les zones
-    //   claires/sombres du personnage qui NE SONT PAS reliées au bord (ex. reflet
-    //   dans l'œil), tout en couvrant largement le fond et son dégradé.
-    // - mask2 : le signal vert très fort, retiré sans condition de connectivité
-    //   (fermeture morphologique pour lisser), au cas où l'anneau le plus vif
-    //   soit isolé du fond connecté par une fine bande de transition.
-    // outlineColor "green" = animaux (fond noir + liseré vert, voir constantes
-    // MASTERY_LOOSE_*/STRONG_*) ; tout le reste (défaut) = personnage1-4.MP4
-    // (fond noir uni sans liseré, détourage IA -- voir MASTERY_SIMPLE_*).
-    function computeBackgroundMask(d, w, h, outlineColor){
-        if(outlineColor === "green") return computeBackgroundMaskGreen(d, w, h);
-        return computeBackgroundMaskSimple(d, w, h);
-    }
-
-    // Fond noir uni SANS aucun liseré (voir commentaire de DAILY_GOAL_VIDEOS) :
-    // remplissage depuis le bord de l'image à travers les pixels très sombres,
-    // avec une petite marge de dilatation pour la transition anti-aliasée --
-    // pas de canal de couleur à interpréter, donc pas de risque de manger du
-    // vrai tissu (contrairement au liseré coloré des anciennes vidéos).
-    function computeBackgroundMaskSimple(d, w, h){
-        const n = w * h;
-        const dark = new Uint8Array(n);
-        for(let p = 0; p < n; p++){
-            const i = p * 4;
-            const mx = Math.max(d[i], d[i+1], d[i+2]);
-            if(mx < MASTERY_SIMPLE_DARK_MAX) dark[p] = 1;
-        }
-        const core = erodeMask(dark, w, h, MASTERY_SIMPLE_ERODE_RADIUS);
-        const seedMask = new Uint8Array(n);
-        const queue = new Int32Array(n);
-        let qLen = 0;
-        function seed(x, y){
-            const p = y * w + x;
-            if(core[p] && !seedMask[p]){ seedMask[p] = 1; queue[qLen++] = p; }
-        }
-        for(let x = 0; x < w; x++){ seed(x, 0); seed(x, h - 1); }
-        for(let y = 0; y < h; y++){ seed(0, y); seed(w - 1, y); }
-        let qi = 0;
-        while(qi < qLen){
-            const p = queue[qi++];
-            const x = p % w, y = (p / w) | 0;
-            if(x > 0) seed(x - 1, y);
-            if(x < w - 1) seed(x + 1, y);
-            if(y > 0) seed(x, y - 1);
-            if(y < h - 1) seed(x, y + 1);
-        }
-        const dilated = dilateMask(seedMask, w, h, MASTERY_SIMPLE_DILATE_RADIUS);
-        const finalMask = new Uint8Array(n);
-        for(let p = 0; p < n; p++) finalMask[p] = (dilated[p] && dark[p]) ? 1 : 0;
-        return finalMask;
-    }
-
-    // Fond noir + liseré VERT vif (animaux, voir commentaire des constantes
-    // MASTERY_LOOSE_*/STRONG_*). Deux niveaux de confiance :
-    // - "loose" (large filet) sert à la CONNECTIVITÉ (remplissage depuis le bord
-    //   de l'image, avec érosion anti-fuite) : un pixel est fond-candidat s'il
-    //   est très sombre OU nettement verdâtre.
-    // - "strong" (signal très fort, vert vif) est retiré SANS exiger de
-    //   connectivité -- au cas où l'anneau le plus lumineux soit isolé du fond
-    //   connecté par une fine bande de transition trop faible en signal pour la
-    //   connectivité seule.
-    function computeBackgroundMaskGreen(d, w, h){
-        const n = w * h;
-        const looseCand = new Uint8Array(n);
-        const strongCand = new Uint8Array(n);
-        for(let p = 0; p < n; p++){
-            const i = p * 4;
-            const r = d[i], g = d[i+1], b = d[i+2];
-            const mx = Math.max(r, g, b);
-            const greenness = g - Math.max(r, b);
-            if(mx < MASTERY_LOOSE_DARK_MAX || greenness > MASTERY_LOOSE_OUTLINE_THRESH) looseCand[p] = 1;
-            if(greenness > MASTERY_STRONG_OUTLINE_THRESH) strongCand[p] = 1;
-        }
-
-        const core = erodeMask(looseCand, w, h, MASTERY_ERODE_RADIUS);
-        const mask1seed = new Uint8Array(n);
-        const queue = new Int32Array(n);
-        let qLen = 0;
-        function seed(x, y){
-            const p = y * w + x;
-            if(core[p] && !mask1seed[p]){ mask1seed[p] = 1; queue[qLen++] = p; }
-        }
-        for(let x = 0; x < w; x++){ seed(x, 0); seed(x, h - 1); }
-        for(let y = 0; y < h; y++){ seed(0, y); seed(w - 1, y); }
-        let qi = 0;
-        while(qi < qLen){
-            const p = queue[qi++];
-            const x = p % w, y = (p / w) | 0;
-            if(x > 0) seed(x - 1, y);
-            if(x < w - 1) seed(x + 1, y);
-            if(y > 0) seed(x, y - 1);
-            if(y < h - 1) seed(x, y + 1);
-        }
-        const dilated1 = dilateMask(mask1seed, w, h, MASTERY_DILATE_RADIUS);
-
-        const mask2 = erodeMask(dilateMask(strongCand, w, h, MASTERY_CLOSE_RADIUS), w, h, MASTERY_CLOSE_RADIUS);
-
-        const finalMask = new Uint8Array(n);
-        for(let p = 0; p < n; p++){
-            const inMask1 = dilated1[p] && looseCand[p];
-            const inMask2 = mask2[p] && strongCand[p]; // ne jamais depasser le signal fort d'origine
-            finalMask[p] = (inMask1 || inMask2) ? 1 : 0;
-        }
-        return finalMask;
-    }
-
-    function drawFrame(){
-        if(stopped) return;
-        if(video.readyState >= 2 && video.videoWidth){
-            const vw = video.videoWidth, vh = video.videoHeight;
-            const scale = Math.max(size / vw, size / vh);
-            const dw = vw * scale, dh = vh * scale;
-            const dx = (size - dw) / 2, dy = (size - dh) / 2;
-            ctx.clearRect(0, 0, size, size);
-            ctx.drawImage(video, dx, dy, dw, dh);
-            try{
-                const frame = ctx.getImageData(0, 0, size, size);
-                const d = frame.data;
-                const mask = computeBackgroundMask(d, size, size, outlineColor);
-                const darkTheme = document.body.getAttribute("data-theme") === "dark";
-                for(let p = 0; p < mask.length; p++){
-                    const i = p * 4;
-                    if(mask[p]){
-                        d[i+3] = 0;
-                        continue;
-                    }
-                    // Thème sombre : le noir du personnage (casquette, etc.) se fond
-                    // dans le fond noir de l'appli -- on le remplace par un bleu marine
-                    // visible, en préservant le dégradé d'origine (ombres/reflets).
-                    if(darkTheme){
-                        const lum = Math.max(d[i], d[i+1], d[i+2]);
-                        if(lum < DARK_RECOLOR_THRESHOLD){
-                            const t = lum / DARK_RECOLOR_THRESHOLD;
-                            d[i]   = Math.round(DARK_RECOLOR_BASE.r + t * DARK_RECOLOR_SPAN.r);
-                            d[i+1] = Math.round(DARK_RECOLOR_BASE.g + t * DARK_RECOLOR_SPAN.g);
-                            d[i+2] = Math.round(DARK_RECOLOR_BASE.b + t * DARK_RECOLOR_SPAN.b);
-                        }
-                    }
-                }
-                ctx.putImageData(frame, 0, 0);
-            }catch(e){ /* p.ex. canvas "tainted" par CORS : on garde l'image opaque telle quelle */ }
-        }
-        rafId = requestAnimationFrame(drawFrame);
-    }
-
-    video.addEventListener("loadeddata", () => {
-        // Certains navigateurs bloquent la lecture automatique AVEC son même
-        // depuis un clic (politique d'autoplay) : si la lecture non muette est
-        // rejetée, on retente aussitôt en muet plutôt que de perdre l'animation
-        // entière (mieux vaut l'effet visuel sans son que rien du tout).
-        const playPromise = video.play();
-        if(playPromise && typeof playPromise.catch === "function"){
-            playPromise.catch(() => {
-                if(!video.muted){
-                    video.muted = true;
-                    video.play().catch(() => {});
-                }
-            });
-        }
-        drawFrame();
-    });
-    video.addEventListener("error", teardown);
-    canvas.addEventListener("animationend", teardown);
-}
-
-// Coupe net la ou les celebrations en cours (video du personnage + bandeau
-// "+N !"). Appelee quand l'utilisateur touche l'ecran pour continuer : la
-// gratification a alors joue son role, la laisser tourner par-dessus la carte
-// suivante n'apporte plus rien. Sans interaction, rien n'est coupe et la video
-// va jusqu'au bout de son animation, comme avant.
+// Elle coupait aussi les videos avant la v461. Le nom reste : c'est encore lui
+// qu'appelle handleCardTap, et le renommer pour une fonction qui fait moins ne
+// changerait rien a ce qu'elle sert.
 function stopMasteryCelebrations(){
-    if(activeCelebrationStops.length){
-        activeCelebrationStops.slice().forEach(fn => { try{ fn(); }catch(e){} });
-        activeCelebrationStops.length = 0;
-    }
     const container = document.getElementById("confettiContainer");
     if(container){
         container.querySelectorAll(".daily-goal-text").forEach(el => el.remove());
@@ -21691,62 +21225,18 @@ function showDailyGoalText(threshold){
     el.addEventListener("animationend", () => el.remove());
 }
 
-// Fait tourner, un jour calendaire à la fois, quelle vidéo de DAILY_GOAL_VIDEOS
-// ouvre la séquence de célébrations du jour (mémorisé plutôt que random, pour
-// ne jamais retomber deux jours de suite sur la même -- demande explicite de
-// l'utilisateur). Le jour 1 démarre à l'index 0 (personnage.MP4), le jour 2 à
-// l'index 1, etc., en bouclant sur les 4 vidéos. N'avance que lors du premier
-// appel d'un nouveau jour (comparaison de date), reste stable pour tous les
-// paliers célébrés le même jour.
-function getDailyGoalVideoStartIndex(){
-    let rot;
-    try{ rot = JSON.parse(localStorage.getItem(DAILY_GOAL_VIDEO_ROTATION_KEY) || "null"); }catch(e){ rot = null; }
-    const today = getTodayStr();
-    const n = DAILY_GOAL_VIDEOS.length;
-    if(!rot || typeof rot.startIndex !== "number"){
-        rot = { date: today, startIndex: 0 };
-    } else if(rot.date !== today){
-        rot = { date: today, startIndex: (rot.startIndex + 1) % n };
-    }
-    try{ localStorage.setItem(DAILY_GOAL_VIDEO_ROTATION_KEY, JSON.stringify(rot)); }catch(e){}
-    return rot.startIndex;
-}
-
-// Grande célébration (personnage agrandi + "+N !") : appelée à chaque palier
-// de l'objectif du jour franchi (1x, 2x, 3x, 4x...), peu importe l'action qui
-// a déclenché le franchissement (voir recordDailyActivity). `multiple` est le
-// numéro du palier (1 = objectif atteint, 2 = doublé, etc.) ; au-delà de la
-// 4e vidéo, on répète la dernière plutôt que de célébrer sans vidéo.
-// La vidéo qui ouvre la séquence tourne d'un jour à l'autre (voir
-// getDailyGoalVideoStartIndex) : ex. jour 1 -> 1x=personnage, 2x=personnage2...
-// jour 2 -> 1x=personnage2, 2x=personnage3... personnage.MP4 (vert) garde son
-// comportement historique (muette + fanfare synthétisée) ; personnage2/3/4.MP4
-// (bleu) gardent leur propre son et sautent la fanfare pour ne pas superposer
-// les deux (voir DAILY_GOAL_VIDEOS).
+// Palier de l'objectif du jour franchi (1x, 2x, 3x...) : le bandeau « +N ! »,
+// la fanfare, puis le cri de foule. Appelee quelle que soit l'action qui a
+// fait franchir le seuil -- voir recordDailyActivity.
+//
+// Le personnage agrandi qui accompagnait ce moment est retire depuis la v461.
+// La fanfare est jouee inconditionnellement : elle etait auparavant branchee
+// sur le fait que le clip soit muet ou non, et sans clip cette condition
+// n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
-    // Videos retirees : on garde l'annonce du palier -- texte + fanfare + cri de
-    // foule -- et on saute le personnage. Les clips actifs ne sont pas "muted",
-    // donc la fanfare doit etre jouee explicitement ici : la brancher sur
-    // video.muted comme plus bas laisserait le palier sans aucun son.
-    if(!VIDEO_GRATIFICATION_ACTIVE){
-        showDailyGoalText(getDailyGoalTarget() * multiple);
-        playDailyGoalFanfare();
-        setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
-        return;
-    }
-    const n = DAILY_GOAL_VIDEOS.length;
-    const startIdx = getDailyGoalVideoStartIndex();
-    const seqIndex = Math.min(multiple, n) - 1; // répète la dernière au-delà du palier n
-    const video = DAILY_GOAL_VIDEOS[(startIdx + seqIndex) % n];
-    // Arrêt sur image (1s) + marge de fondu (0.7s) après la fin réelle du clip,
-    // mêmes proportions que le calibrage d'origine de personnage.MP4 (6.0s -> 7.7s).
-    const holdSeconds = (video.durationS || 6.0) + 1.7;
-    showMasteryCharacter(VIDEO_BASE_URL + video.file, true, video.outline, !video.muted, holdSeconds);
     showDailyGoalText(getDailyGoalTarget() * multiple);
-    if(video.muted){
-        playDailyGoalFanfare();
-        setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
-    }
+    playDailyGoalFanfare();
+    setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
 }
 
 // `avecToast` : le message « Maîtrisé ! Ce mot reviendra dans N jours » ne dit
