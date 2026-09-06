@@ -149,6 +149,42 @@ def recolter():
     for x in pruefung["lesen"]:
         prendre(x.get("text"), x.get("niveau"), "phrase", "pruefung.lesen")
 
+    # LES 1 682 EXERCICES DE GRAMMAIRE. Un exercice se termine sur une phrase
+    # allemande JUSTE, et jusqu'a la v480 on pouvait la lire sans jamais
+    # l'entendre -- « dem Mann » ne s'apprend pas seulement a l'oeil.
+    #
+    # ⚠️ CE BLOC DOIT RENDRE EXACTEMENT CE QUE RENVOIE
+    # phraseAllemandeDeLExercice() DANS index.html, AU CARACTERE PRES.
+    # L'identifiant etant sha1(texte), un espace de difference produit un
+    # fichier orphelin ici et un fichier manquant la-bas -- sans aucune erreur
+    # nulle part. Les trois cas, dans le meme ordre que le code JS :
+    #   - des blocs a remettre en ordre -> les blocs joints par un espace ;
+    #   - un blanc dans l'enonce -> l'enonce avec la bonne forme dedans,
+    #     capitalisee si le blanc ouvre la phrase ;
+    #   - tout le reste -> RIEN. Un enonce de type « Quel cas ? » est redige
+    #     dans la langue de l'usager et n'a pas de bouton dans l'app non plus.
+    #
+    # Le niveau : ces exercices n'en portent aucun, et il ne sert ici qu'a
+    # decider de l'ORDRE de generation. B1 est le milieu honnete d'un ensemble
+    # qui va de A2 a B2.
+    for nom, liste in charger("exercices.json")["jeux"].items():
+        for x in liste:
+            blocs = x.get("chunks") or []
+            if blocs:
+                prendre(" ".join(blocs), "B1", "phrase", "exercices." + nom)
+                continue
+            enonce = x.get("question") or ""
+            if "___" not in enonce:
+                continue
+            bon = x.get("correct") or (x.get("answers") or [""])[0]
+            if not bon:
+                continue
+            bon = str(bon)
+            if enonce.index("___") == 0:
+                bon = bon[0].upper() + bon[1:]
+            prendre(enonce.replace("___", bon, 1), "B1", "phrase",
+                    "exercices." + nom)
+
     return out
 
 
