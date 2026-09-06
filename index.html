@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v452</span>
+        <span class="subtitle-version">v453</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18741,13 +18741,53 @@ function amorcerSynthese(){
     ecouteFinFichier = 0;
     if(syntheseAmorcee && !reamorcer) return;
     try{
-        const u = new SpeechSynthesisUtterance(" ");
+        // UN TEXTE REEL, ET NON PLUS UNE ESPACE (v453).
+        //
+        // CE QUE LE JOURNAL DE L'IPHONE A MONTRE, ET QUE PERSONNE N'AVAIT
+        // REGARDE. La toute premiere ligne de la seance :
+        //
+        //   AMORCE (amorce) | droit de parler demande dans le geste,
+        //                     moteur -/-/-
+        //
+        // Ce « -/-/- » est note APRES l'appel a speak(). Un moteur qui accepte
+        // un enonce le met en file : il devrait afficher « parle » ou « file ».
+        // Il est AU REPOS. Autrement dit L'AMORCE ELLE-MEME N'A JAMAIS ETE
+        // MISE EN FILE -- a un moment ou l'on est dans le geste de
+        // l'utilisateur et ou aucun fichier audio n'a encore joue. Ce n'est
+        // donc ni la session sonore de l'element <audio>, ni le geste dépensé
+        // ailleurs : les deux pistes suivies depuis la v371 visaient a cote.
+        //
+        // L'explication qui reste : WebKit laisse tomber un enonce dont le
+        // texte ne contient RIEN A PRONONCER. Le notre etait une espace. Si
+        // c'est cela, l'amorce de la v371 est inerte depuis le premier jour --
+        // ce qui expliquerait tout d'un coup : l'app installee n'exige pas de
+        // geste et parle, l'onglet Safari l'exige, ne l'obtient jamais, et se
+        // tait. C'est exactement l'ecart entre sa tuile et le lien de ses notes.
+        //
+        // On prononce donc une VRAIE lettre, au volume zero et a la vitesse
+        // maximale : inaudible, mais ce n'est plus « rien ».
+        const u = new SpeechSynthesisUtterance("a");
         u.volume = 0;
+        u.rate = 10;
+        // ET ON VERIFIE, plutot que de le supposer. Jusqu'ici le journal notait
+        // qu'on avait DEMANDE le droit de parler, jamais s'il avait ete
+        // accorde -- c'est la meme cecite qui a coute les v448 et v449.
+        u.onstart = () => noterAudio("(amorce)", "AMORCE-OK",
+            "l'amorce a REELLEMENT parle : le droit est accorde");
+        u.onend = () => noterAudio("(amorce)", "AMORCE-FIN",
+            "amorce terminee, moteur " + etatSynthese());
+        u.onerror = (e) => noterAudio("(amorce)", "AMORCE-ERR",
+            (e && e.error) || "erreur sans nom");
         window.speechSynthesis.speak(u);
         syntheseAmorcee = true;
         noterAudio("(amorce)", "AMORCE",
             "droit de parler demande dans le geste, moteur " + etatSynthese() +
             (reamorcer ? ", REAMORCE apres un enonce avale" : ""));
+        // Un second releve, hors du fil synchrone : certains moteurs ne mettent
+        // a jour leur etat qu'au tour suivant. Sans lui, un « -/-/- » lu trop
+        // tot passerait pour un refus.
+        setTimeout(() => noterAudio("(amorce)", "AMORCE-250",
+            "250 ms apres, moteur " + etatSynthese()), 250);
     }catch(e){}
 }
 
@@ -19223,7 +19263,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 452;
+const APP_VERSION = 453;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
