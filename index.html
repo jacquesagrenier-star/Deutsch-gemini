@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v478</span>
+        <span class="subtitle-version">v479</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18521,12 +18521,19 @@ function storedVoiceChoice(){
 // Moira (en-IE) articule nettement et sonne moins mecanique que les voix
 // anglaises proposees par defaut sur la plupart des appareils. Un choix
 // explicite fait dans les reglages reste prioritaire sur cette preference.
-const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [] };
+const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [] };
 
 // Etiquette BCP-47 a poser sur l'enonce quand aucune voix installee ne
 // correspond. Une table plutot qu'une cascade de ternaires : la cascade
 // precedente envoyait TOUTE langue inconnue sur "fr-FR", donc le turc aussi.
-const LANGUE_TAG = { de: "de-DE", en: "en-GB", fr: "fr-FR", tr: "tr-TR" };
+// ⚠️ TOUTE LANGUE D'INTERFACE DOIT FIGURER ICI. L'ukrainien manquait depuis son
+// ajout (5 septembre 2026) : `LANGUE_TAG["uk"]` valait undefined, et l'enonce
+// recevait alors l'etiquette nue « uk » au lieu de « uk-UA ». Le defaut ne se
+// voyait pas -- il ne produit ni erreur ni message, juste une prononciation
+// eventuellement fausse chez qui n'a pas de voix ukrainienne installee.
+// C'est exactement le piege deja nomme pour le turc : poser la donnee sans
+// mettre a jour les tables qui la lisent.
+const LANGUE_TAG = { de: "de-DE", en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA" };
 
 function pickVoice(prefix){
     const dispo = voicesForLang(prefix);
@@ -19980,7 +19987,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 478;
+const APP_VERSION = 479;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
