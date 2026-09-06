@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v449</span>
+        <span class="subtitle-version">v450</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5948,9 +5948,18 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong>Journal audio</strong>
         <p style="color:#576177; margin-top:6px;">Ce que l'application a
             reellement joue, pour les vingt derniers sons allemands : le fichier
-            de Nadja, ou la voix de l'appareil. Diagnostic temporaire.</p>
+            d'Aurora, ou la voix de l'appareil. Diagnostic temporaire.</p>
         <div class="spacer"></div>
         <button class="secondary" onclick="afficherJournalAudio()">VOIR LE JOURNAL</button>
+        <div class="spacer"></div>
+        <!-- COPIER, parce qu'un journal qu'il faut retranscrire a la main
+             depuis un iPhone n'est pas un journal qu'on lit. VIDER, pour
+             partir d'une page blanche juste avant de reproduire le defaut :
+             sans ca, les lignes utiles sont noyees dans celles d'avant. -->
+        <button class="secondary" id="journalCopieBtn"
+                onclick="copierJournalAudio()">COPIER LE JOURNAL</button>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="viderJournalAudio()">VIDER LE JOURNAL</button>
         <pre id="journalAudioBox" style="display:none; white-space:pre-wrap;
             word-break:break-word; font-size:12px; line-height:1.5;
             background:#0e131b; color:#d7dde8; padding:12px; border-radius:8px;
@@ -6265,7 +6274,7 @@ const LANGUE_ENSEIGNEE = {
     // le dictionnaire. Un « git push » ici met les donnees a jour en
     // production : c'est voulu, et c'est documente dans CLAUDE.md.
     donnees: "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/",
-    // Les fichiers pre-generes de la voix Nadja, sur Firebase Hosting.
+    // Les fichiers pre-generes de la voix Aurora, sur Firebase Hosting.
     // Vide = tout passe par la synthese du telephone (voir direAllemand).
     audio:   "https://deutschai-b6fbb.web.app/"
 };
@@ -18716,7 +18725,9 @@ function amorcerSynthese(){
         u.volume = 0;
         window.speechSynthesis.speak(u);
         syntheseAmorcee = true;
-        noterAudio("(amorce)", "AMORCE", "droit de parler demande dans le geste");
+        noterAudio("(amorce)", "AMORCE",
+            "droit de parler demande dans le geste, moteur " + etatSynthese() +
+            (reamorcer ? ", REAMORCE apres un enonce avale" : ""));
     }catch(e){}
 }
 
@@ -18729,8 +18740,17 @@ function amorcerSynthese(){
 // On l'accroche donc au TOUT PREMIER contact avec la page, quel qu'il soit :
 // une tuile, un bouton, une carte. En capture, pour passer avant les
 // gestionnaires des elements eux-memes, et `once` parce qu'un seul suffit.
+// CHAQUE geste rearme, et non plus seulement le premier (v450).
+//
+// Le `once` reposait sur l'hypothese ecrite juste au-dessus : « le droit, une
+// fois accorde, vaut pour toute la page ». C'est vrai dans l'app installee.
+// Ce que Jacques observe le 6 septembre met cette hypothese en doute pour
+// l'ONGLET Safari -- meme code, meme version, sonore depuis la tuile et muet
+// depuis le lien de ses notes. Rearmer a chaque geste ne coute rien (un enonce
+// vide au volume zero, et seulement si le moteur est au repos) et couvre le cas
+// ou le droit expire.
 if(typeof document !== "undefined"){
-    document.addEventListener("pointerdown", amorcerSynthese, { once: true, capture: true });
+    document.addEventListener("pointerdown", amorcerSynthese, { capture: true });
 }
 
 function ecouteLancer(){
@@ -18879,15 +18899,20 @@ function ecouteJouerEtape(){
     u.rate = ecouteVitesse;
     // La fin de l'enonce est horodatee : c'est elle qui ouvre le souffle avant
     // le fichier allemand suivant (voir la branche "de" plus haut).
-    const finEnonce = () => { ecouteFinEnonce = Date.now(); avancer(); };
-    u.onend = finEnonce;
-    u.onerror = finEnonce;
+    const finEnonce = (quoi) => {
+        noterAudio(et.texte, quoi, aDemarre ? "" : "SANS avoir jamais commence");
+        ecouteFinEnonce = Date.now();
+        avancer();
+    };
+    u.onend = () => finEnonce("FIN");
+    u.onerror = (e) => finEnonce("ERREUR" + (e && e.error ? " " + e.error : ""));
     // `onstart` est le seul signal fiable qui dise qu'un enonce a REELLEMENT
     // commence. Il sert deux fois : a lever le drapeau de muettete, et a
     // desarmer la sonde ci-dessous.
     let aDemarre = false;
     u.onstart = () => {
         aDemarre = true;
+        noterAudio(et.texte, "DEBUT", "la voix a commence (" + et.lang + ")");
         // Un enonce qui demarre pour de bon efface toute la suspicion.
         ecouteAvalees = 0;
         ecouteSautes = 0;
@@ -18928,8 +18953,14 @@ function ecouteJouerEtape(){
         noterAudio(et.texte, "ENONCE",
             et.lang + ", voix " + (voix ? voix.name : "par defaut") +
             ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume +
+            ", moteur " + etatSynthese() +
             (souffle ? ", apres " + souffle + " ms de souffle" : ""));
         window.speechSynthesis.speak(u);
+        // L'ETAT JUSTE APRES speak(). Un moteur qui a accepte l'enonce le met
+        // en file : `file` ou `parle` doit apparaitre. S'il reste au repos, la
+        // demande a ete refusee SANS LE DIRE -- et c'est une cause differente
+        // d'un enonce accepte puis avale, qu'aucun journal ne distinguait.
+        noterAudio(et.texte, "APRES", "moteur " + etatSynthese());
 
         // SYNTHESE AVALEE -- SONDE RAPIDE.
         //
@@ -19120,7 +19151,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 449;
+const APP_VERSION = 450;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19211,8 +19242,11 @@ async function verifierNouvelleVersion(){
 //
 // L'allemand est la langue CIBLE : c'est le modele que l'utilisateur imite,
 // il doit etre irreprochable. Les fichiers sont fabriques d'avance par
-// audio/generer.py (voix Nadja, modele eleven_multilingual_v2) et deposes en
-// ligne. Les langues connues -- francais, anglais, turc -- restent a la
+// audio/generer.py (voix Aurora - Warm Narrator, modele Flash) et deposes en
+// ligne. La voix a change en v407 : elle a ete choisie A L'AVEUGLE par une
+// testeuse, sur six echantillons anonymises dont l'un etait Nadja, la voix
+// alors en place -- qu'elle a donc ecartee sans savoir laquelle etait la
+// notre. C'est l'identifiant qui fait foi, pas le nom : voir audio/generer.py. Les langues connues -- francais, anglais, turc -- restent a la
 // synthese du navigateur : elles etiquettent, elles n'enseignent pas.
 //
 // LE NOM DU FICHIER EST UNE EMPREINTE DE SON TEXTE. Aucune donnee n'a donc ete
@@ -19220,12 +19254,13 @@ async function verifierNouvelleVersion(){
 // empreinte que le script Python (sha1 du texte en UTF-8, seize caracteres).
 // Ajouter un mot au cours revient a deposer un fichier de plus.
 //
-// LE REPLI RESTE INDISPENSABLE MAINTENANT QUE L'ADRESSE EST POSEE. Seuls A1 et
-// A2 sont en ligne (5 260 fichiers, v347) : tout le vocabulaire B1, B2 et C1
-// passe encore par la voix du telephone, et un mot ajoute au cours est muet
-// jusqu'a sa generation. Un fichier absent n'est donc pas une anomalie, c'est
-// l'etat normal d'une partie du corpus -- direAllemand() bascule sans bruit et
-// retient l'empreinte pour ne pas redemander a chaque lecture.
+// LE REPLI RESTE INDISPENSABLE, MAIS IL N'EST PLUS LA NORME. Depuis la v407 le
+// cours est prononce EN ENTIER : 25 298 fichiers, A1 a C1, contre 5 260 pour
+// A1-A2 seuls a la v347. Le repli ne sert donc plus qu'a trois cas, tous rares
+// et tous normaux -- un mot ajoute au cours depuis la derniere generation, le
+// seul texte refuse par le filtre de contenu d'ElevenLabs (l'imperatif de
+// « toten »), et un telechargement qui echoue. direAllemand() bascule sans
+// bruit et retient l'empreinte pour ne pas redemander a chaque lecture.
 //
 // Le service worker ne doit pas s'en meler -- il n'intercepte que la page
 // elle-meme (regle tenue depuis la v257). Le cache HTTP du navigateur suffit,
@@ -19382,12 +19417,21 @@ function empreinteAudio(texte){
 
 // LE VOLUME DE LA SYNTHESE, ALIGNE SUR CELUI DES FICHIERS.
 //
-// Generer B1 ne reglerait pas le saut de niveau : cela deplacerait la
-// frontiere. Tant qu'une partie du corpus sort en Nadja et l'autre par la voix
-// de l'appareil, l'ecart demeure -- et il demeurerait pour toujours sur ce
-// qu'on ne generera jamais. Les 5 260 fichiers sont a -14 LUFS, crete -0,9
-// dBTP, alors qu'une voix systeme sort proche du maximum : l'ecart mesure fait
-// 5 a 8 dB, ce qui s'entend franchement.
+// LA FRONTIERE N'EST PLUS CELLE QU'ON CROYAIT, ET ELLE EST PERMANENTE. Le
+// raisonnement d'origine disait : tant qu'une partie de l'ALLEMAND sort en
+// fichier et l'autre par la voix de l'appareil, l'ecart demeure. Depuis la
+// v407 l'allemand est couvert en entier (A1 a C1), donc cette frontiere-la a
+// disparu. Celle qui reste ne disparaitra jamais : les langues CONNUES --
+// francais, anglais, turc, ukrainien -- passeront toujours par la voix de
+// l'appareil, et le mode Ecoute alterne les deux a chaque carte.
+//
+// LE CHIFFRE, ET CE QU'IL VAUT AUJOURD'HUI. Mesure faite sur le corpus de
+// Nadja : fichiers a -14 LUFS, crete -0,9 dBTP (la cible d'audio/normaliser.py)
+// contre une voix systeme proche du maximum -- 5 a 8 dB d'ecart, ce qui
+// s'entend franchement. ⚠️ Cette mesure N'A PAS ETE REFAITE sur le corpus
+// d'Aurora. Si l'ecart a change, 0,5 n'est plus le bon chiffre, et cela
+// s'entendra a l'oreille avant de se mesurer : c'est un reglage a revoir, pas
+// un defaut a chercher.
 //
 // On ne peut pas monter les fichiers, ils sont deja au plafond. On baisse donc
 // la synthese pour la rejoindre. C'est le seul remede qui couvre TOUT le
@@ -19402,24 +19446,81 @@ const VOLUME_SYNTHESE = 0.5;
 // JOURNAL DE DIAGNOSTIC -- TEMPORAIRE.
 //
 // Il repond a une seule question, celle qu'aucune oreille ne tranche avec
-// certitude : ce mot-la est-il sorti du fichier de Nadja ou de la voix de
+// certitude : ce mot-la est-il sorti du fichier d'Aurora ou de la voix de
 // l'appareil ? Un repli ne produit aucune erreur, aucun message -- il change
 // juste de voix, et sur un mot d'une seconde cela se remarque a peine.
 //
 // noterAudio ne peut pas lever d'exception : un diagnostic qui casse ce qu'il
 // observe est pire que pas de diagnostic.
+//
+// CE QUI A CHANGE EN v450, ET POURQUOI. Deux versions de suite ont corrige ce
+// mode en RAISONNANT sur le code, et deux fois le defaut est reste. Le journal
+// existait, mais il etait inutilisable pour ca :
+//
+//   - VINGT lignes. Une seule carte en produit six a huit : on ne voyait donc
+//     que les trois dernieres cartes, jamais le MOMENT OU CA BASCULE, qui est
+//     la seule chose qui compte.
+//   - une heure a la seconde. Or tout se joue ici sur des dizaines de
+//     millisecondes -- l'ecart entre la fin d'un son et le debut du suivant.
+//   - rien a faire du resultat : il fallait le recopier a la main d'un iPhone.
+//   - et surtout AUCUNE trace des evenements. On notait qu'on avait DEMANDE la
+//     parole, jamais si elle avait ete accordee. C'est precisement l'inconnue.
+//
+// Desormais : 400 lignes, l'ecart en ms depuis la ligne precedente, l'etat du
+// moteur avant chaque demande, et une ligne DEBUT / FIN par evenement recu.
+// Le tout se copie d'un bouton.
+const JOURNAL_MAX = 400;
 const journalAudio = [];
+let journalDernier = 0;
+let journalEcriture = null;
+
+// Le journal survit a un redemarrage de l'app. iOS peut la suspendre puis la
+// recharger sans rien dire (c'est note dans nos essais) : sans cela, le
+// journal serait vide au moment meme ou l'on va le lire.
+const JOURNAL_CLE = "deutschAI_journal_audio";
+try{
+    const garde = JSON.parse(localStorage.getItem(JOURNAL_CLE) || "[]");
+    if(Array.isArray(garde)) journalAudio.push(...garde.slice(-JOURNAL_MAX));
+}catch(e){}
+
+function journalEnregistrer(){
+    clearTimeout(journalEcriture);
+    journalEcriture = setTimeout(() => {
+        try{ localStorage.setItem(JOURNAL_CLE, JSON.stringify(journalAudio)); }
+        catch(e){}
+    }, 1500);
+}
 
 function noterAudio(texte, source, detail){
   try{
+    const t = Date.now();
     journalAudio.push({
         h: new Date().toLocaleTimeString(),
+        // L'ecart depuis la ligne precedente. C'est LUI qui raconte l'histoire :
+        // un enonce avale ne laisse qu'un trou, et un trou ne se voit que si on
+        // le mesure. Le premier de la seance n'en a pas.
+        d: journalDernier ? (t - journalDernier) : 0,
         texte: (texte || "").slice(0, 40),
         source: source,
         detail: detail || ""
     });
-    if(journalAudio.length > 20) journalAudio.shift();
+    journalDernier = t;
+    if(journalAudio.length > JOURNAL_MAX) journalAudio.shift();
+    journalEnregistrer();
   }catch(e){ /* un journal muet vaut mieux qu'une lecture cassee */ }
+}
+
+// L'etat du moteur de synthese, en trois lettres. Note AVANT chaque demande de
+// parole : c'est la seule facon de distinguer « le moteur a refuse » de « le
+// moteur etait deja occupe » de « le moteur etait en pause », trois causes qui
+// donnent le meme silence.
+function etatSynthese(){
+    try{
+        const s = window.speechSynthesis;
+        return (s.speaking ? "parle" : "-") + "/" +
+               (s.pending ? "file" : "-") + "/" +
+               (s.paused ? "PAUSE" : "-");
+    }catch(e){ return "?"; }
 }
 
 function afficherJournalAudio(){
@@ -19431,9 +19532,81 @@ function afficherJournalAudio(){
         return;
     }
     const SAUT = String.fromCharCode(10);
-    box.textContent = journalAudio.map(e =>
-        e.h + "  " + e.source.padEnd(9) + "  " + e.texte +
-        (e.detail ? SAUT + "            " + e.detail : "")).join(SAUT);
+    box.textContent = journalTexte();
+}
+
+// D'OU L'APPLICATION A-T-ELLE ETE LANCEE ? Jacques a observe, le 6 septembre,
+// que le mode Ecoute parle quand il part de la TUILE de l'ecran d'accueil et
+// reste muet quand il part du LIEN dans ses notes. Ce sont deux contextes que
+// Safari ne traite pas pareil -- l'app installee n'est pas soumise aux memes
+// regles de geste que l'onglet. Le journal doit donc dire lequel des deux il a
+// enregistre, sinon deux journaux contradictoires se confondent.
+function modeLancement(){
+    try{
+        if(navigator.standalone) return "TUILE (app installee, navigator.standalone)";
+        if(window.matchMedia &&
+           window.matchMedia("(display-mode: standalone)").matches){
+            return "TUILE (app installee, display-mode)";
+        }
+        return "LIEN (onglet Safari)";
+    }catch(e){ return "?"; }
+}
+
+function journalTexte(){
+    const SAUT = String.fromCharCode(10);
+    const entete = "DeutschAI v" + APP_VERSION + " -- journal audio -- " +
+        journalAudio.length + " lignes" + SAUT +
+        "lancement : " + modeLancement() + SAUT +
+        navigator.userAgent + SAUT +
+        "-".repeat(60);
+    return entete + SAUT + journalAudio.map(e =>
+        e.h + " " + (("+" + (e.d || 0) + "ms").padStart(9)) + "  " +
+        (e.source || "").padEnd(9) + "  " + e.texte +
+        (e.detail ? SAUT + "                       " + e.detail : "")).join(SAUT);
+}
+
+// COPIER PLUTOT QUE RECOPIER. Sans ce bouton, lire le journal veut dire le
+// retranscrire a la main depuis un iPhone -- ce qui revient a ne pas le lire.
+// L'ecriture dans le presse-papiers doit partir du geste : pas d'await avant.
+function copierJournalAudio(){
+    const btn = document.getElementById("journalCopieBtn");
+    const dire = (txt) => { if(btn) btn.textContent = txt; };
+    const texte = journalTexte();
+    const fini = () => {
+        dire("COPIE ✓");
+        setTimeout(() => dire("COPIER LE JOURNAL"), 2500);
+    };
+    try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(texte).then(fini, () => secours(texte, fini, dire));
+            return;
+        }
+    }catch(e){}
+    secours(texte, fini, dire);
+}
+
+// Repli pour les Safari qui refusent l'API presse-papiers hors HTTPS ou hors
+// geste reconnu : on selectionne un champ hors ecran et on laisse execCommand.
+function secours(texte, fini, dire){
+    try{
+        const zone = document.createElement("textarea");
+        zone.value = texte;
+        zone.style.cssText = "position:fixed; top:0; left:0; opacity:0;";
+        document.body.appendChild(zone);
+        zone.focus();
+        zone.setSelectionRange(0, texte.length);
+        const ok = document.execCommand("copy");
+        document.body.removeChild(zone);
+        if(ok){ fini(); return; }
+    }catch(e){}
+    dire("COPIE IMPOSSIBLE -- selectionne le texte");
+}
+
+function viderJournalAudio(){
+    journalAudio.length = 0;
+    journalDernier = 0;
+    try{ localStorage.removeItem(JOURNAL_CLE); }catch(e){}
+    afficherJournalAudio();
 }
 
 // Joue le fichier pre-genere s'il existe, sinon la synthese du navigateur.
