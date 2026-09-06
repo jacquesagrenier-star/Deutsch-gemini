@@ -3829,7 +3829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v450</span>
+        <span class="subtitle-version">v451</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -18951,7 +18951,7 @@ function ecouteJouerEtape(){
         // bloquee n'y laissait aucune trace, et c'est justement celle qu'on
         // soupconne. Elle y figure maintenant, avec la voix reellement employee.
         noterAudio(et.texte, "ENONCE",
-            et.lang + ", voix " + (voix ? voix.name : "par defaut") +
+            et.lang + ", voix " + decrireVoix(voix) +
             ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume +
             ", moteur " + etatSynthese() +
             (souffle ? ", apres " + souffle + " ms de souffle" : ""));
@@ -19151,7 +19151,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 450;
+const APP_VERSION = 451;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -19514,6 +19514,28 @@ function noterAudio(texte, source, detail){
 // parole : c'est la seule facon de distinguer « le moteur a refuse » de « le
 // moteur etait deja occupe » de « le moteur etait en pause », trois causes qui
 // donnent le meme silence.
+// LE NOM D'UNE VOIX NE SUFFIT PAS A LA JUGER. Deux choses manquent au journal
+// et elles peuvent l'une comme l'autre expliquer un silence :
+//
+//   - SA LANGUE REELLE. « Amelie » est fr-CA, « Thomas » fr-FR. Le classement
+//     de voiceQualityScore ne donne son bonus de variante standard qu'a
+//     l'allemand et a l'anglais (de-DE, en-GB, en-US) : pour le francais,
+//     aucune des deux n'est favorisee, et c'est l'ordre alphabetique qui
+//     tranche. Ce n'est pas un defaut, mais il faut le savoir en lisant.
+//
+//   - LOCALE OU DISTANTE. `voiceQualityScore` accorde +3 a une voix
+//     `localService === false`, au motif qu'une voix distante est presque
+//     toujours neurale. Une voix distante doit etre allee CHERCHER son audio
+//     sur un serveur -- si la requete echoue ou tarde, l'enonce ne sort pas, et
+//     il ne sort pas de la meme facon qu'un enonce refuse. Sur iPhone toutes
+//     les voix sont locales et la question ne se pose pas ; dans Chrome sur le
+//     portable, « Google francais » est distante et serait choisie.
+function decrireVoix(v){
+    if(!v) return "par defaut";
+    return v.name + " (" + (v.lang || "?") + ", " +
+           (v.localService === false ? "DISTANTE" : "locale") + ")";
+}
+
 function etatSynthese(){
     try{
         const s = window.speechSynthesis;
@@ -19630,7 +19652,7 @@ function direAllemand(texte, opts){
         // Le volume est note : c'est la seule facon de savoir si Safari a
         // honore le reglage ou l'a ignore, ce qu'il fait sur certaines versions.
         noterAudio(texte, "SYNTHESE",
-            "voix " + (voix ? voix.name : "par defaut") + ", vitesse " + rate +
+            "voix " + decrireVoix(voix) + ", vitesse " + rate +
             ", volume demande " + VOLUME_SYNTHESE + " -> retenu " + u.volume);
         if(onEnd){ u.onend = onEnd; u.onerror = onEnd; }
         window.speechSynthesis.speak(u);
