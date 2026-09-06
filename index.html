@@ -3828,7 +3828,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v464</span>
+        <span class="subtitle-version">v465</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5674,7 +5674,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashExamenLigne" class="examen-ligne hidden">
                     <button type="button" class="examen-chip"
                             onclick="event.stopPropagation(); basculerAideExamen();">
-                        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg><span data-i18n="examen_essentiel">Essentiel</span>
+                        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg><span data-i18n="examen_essentiel">Essentiel</span>
                     </button>
                 </div>
                 <div id="flashPaire" class="plural hidden"></div>
@@ -19554,7 +19554,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 464;
+const APP_VERSION = 465;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20399,7 +20399,12 @@ function speakPlural(){
 // cartes « pour aller plus loin » affirmerait qu'elles sont en marge d'un
 // programme qui n'existe pas. Le silence des listes n'est pas un jugement sur
 // les mots. L'explication, elle, dit les deux cotes en deux phrases.
-const CLE_VUES_KEY = "deutschAI_cleVues";
+// ⚠️ LE NOM DE LA CLE A CHANGE EN v465, ET C'EST VOLONTAIRE. En v463 la marque
+// ne s'affichait pas, mais le compteur, lui, avancait a chaque retournement :
+// les cinq cartes d'apprentissage ont ete depensees a vide pendant qu'on
+// cherchait le defaut. Changer le nom les rend a tout le monde -- la marque a
+// une heure, personne n'a encore rien appris d'elle.
+const CLE_VUES_KEY = "deutschAI_cleVues2";
 // Nombre de cartes portant la cle qu'on montre AVEC son texte avant de passer
 // a la cle seule. Compte une fois pour toutes, pas par seance : un usager
 // quotidien relirait sinon la meme etiquette tous les jours pendant un an.
@@ -20440,23 +20445,10 @@ function reglerPastilleExamen(card, mode){
     const ligne = document.getElementById("flashExamenLigne");
     const coin = document.getElementById("flashExamenCoin");
     const enTexte = carteEstEssentielle && cleVues() < CLE_PHASE_TEXTE;
-    // TRACE TEMPORAIRE (v464). La pastille ne s'affiche pas chez Jacques alors
-    // que la donnee, la logique et le fichier servi sont tous corrects --
-    // verifies un par un. Plutot que de deviner une quatrieme fois, on note ce
-    // que cette fonction a REELLEMENT vu et decide, dans le journal audio.
-    // A retirer des que le defaut est nomme.
-    noterAudio(String((card && (card[0] || card.infinitif)) || "?"), "PASTILLE",
-        "mode " + mode +
-        ", marque " + JSON.stringify(card && card[14] !== undefined ? card[14] : (card && card.pruefung)) +
-        ", essentiel " + carteEstEssentielle +
-        ", vues " + cleVues() +
-        ", ligne " + (ligne ? "trouvee" : "ABSENTE") +
-        ", coin " + (coin ? "trouve" : "ABSENT") +
-        " -> " + (enTexte ? "TEXTE" : (carteEstEssentielle ? "COIN" : "rien")));
     if(ligne) ligne.classList.toggle("hidden", !enTexte);
     if(coin){
         coin.classList.toggle("hidden", !(carteEstEssentielle && !enTexte));
-        if(!coin.innerHTML) coin.innerHTML = '<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg>';
+        if(!coin.innerHTML) coin.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="6.4" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2.3"/><rect x="9" y="10.6" width="12.4" height="2.8" rx="1.4" fill="currentColor"/><rect x="16.2" y="13.4" width="2.1" height="3" rx=".9" fill="currentColor"/><rect x="19.3" y="13.4" width="2.1" height="2.2" rx=".9" fill="currentColor"/></svg>';
         coin.setAttribute("aria-label", t("examen_essentiel"));
     }
 }
