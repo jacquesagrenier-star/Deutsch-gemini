@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v474</span>
+        <span class="subtitle-version">v475</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4334,6 +4334,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
     </div>
 
+    <div class="portee-titre" data-i18n="portee_titre">Que réviser ?</div>
+    <div class="portee-bar" id="verbenPorteeBar"></div>
+
     <div class="card" style="margin-top:15px;">
         <div class="theme-list" id="verbLevelList"></div>
     </div>
@@ -4451,6 +4454,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="filters-bar">
         <button class="secondary flip-toggle-btn" style="flex:1;" onclick="toggleFlipDirection()">🔁 Sens : FR → DE</button>
     </div>
+
+    <div class="portee-titre" data-i18n="portee_titre">Que réviser ?</div>
+    <div class="portee-bar" id="adjPorteeBar"></div>
 
     <div class="card" style="margin-top:15px;">
         <div class="theme-list" id="adjLevelList"></div>
@@ -5109,6 +5115,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="adverbien_level_title">Choisir un niveau</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="adverbien_vocab_desc">Choisis d'abord un niveau : la liste des familles juste en dessous s'ajuste au niveau choisi.</p>
         <div id="adverbienLevelBar" class="filters-bar"></div>
+
+    <div class="portee-titre" data-i18n="portee_titre">Que réviser ?</div>
+    <div class="portee-bar" id="adverbienPorteeBar"></div>
     </div>
 
     <div class="card">
@@ -13788,6 +13797,8 @@ function renderVerbeLevels(){
     const container = document.getElementById("verbLevelList");
     const pill = document.getElementById("verbLevelCountPill");
     if(!container) return;
+    renderNomenPorteeBar("verbenPorteeBar");
+    const portee = porteeNoms();
     container.innerHTML = "";
 
     const levelsPresent = getVerbeLevelsPresent();
@@ -13813,7 +13824,8 @@ function renderVerbeLevels(){
     levelsPresent.forEach(lvl => {
         const items = verbeTheme.words
             .map((word, index) => ({ word, index }))
-            .filter(it => it.word.niveau === lvl);
+            .filter(it => it.word.niveau === lvl)
+            .filter(it => motDansPortee(it.word, portee, "verben"));
         const total = items.length;
         let mastered = 0;
         items.forEach(it => {
@@ -13869,7 +13881,8 @@ function startVerbeLevel(level){
     const now = Date.now();
     const allItems = verbeTheme.words
         .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
-        .filter(it => it.word.niveau === level);
+        .filter(it => it.word.niveau === level)
+        .filter(it => motDansPortee(it.word, porteeNoms(), "verben"));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
@@ -13885,7 +13898,8 @@ function startVerbeLevel(level){
 
 function startVerbeRandomMix(){
     flashcardMode = 'verben';
-    let pool = verbeTheme.words.map((word, index) => ({ word, index, themeId: verbeTheme.id }));
+    let pool = verbeTheme.words.map((word, index) => ({ word, index, themeId: verbeTheme.id }))
+        .filter(it => motDansPortee(it.word, porteeNoms(), "verben"));
     if(pool.length === 0){ showInfoToast(t('alert_no_verbs_available')); return; }
     shuffleArray(pool);
 
@@ -13938,6 +13952,8 @@ function renderAdjektiveLevels(){
     const container = document.getElementById("adjLevelList");
     const pill = document.getElementById("adjLevelCountPill");
     if(!container) return;
+    renderNomenPorteeBar("adjPorteeBar");
+    const portee = porteeNoms();
     container.innerHTML = "";
 
     const levelsPresent = getAdjektiveLevelsPresent();
@@ -14019,7 +14035,8 @@ function startAdjektiveLevel(level){
     const now = Date.now();
     const allItems = adjektiveTheme.words
         .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
-        .filter(it => it.word[3] === level);
+        .filter(it => it.word[3] === level)
+        .filter(it => motDansPortee(it.word, porteeNoms(), "adjektive"));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
@@ -14035,7 +14052,8 @@ function startAdjektiveLevel(level){
 
 function startAdjektiveRandomMix(){
     flashcardMode = 'adjektive';
-    let pool = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
+    let pool = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
+        .filter(it => motDansPortee(it.word, porteeNoms(), "adjektive"));
     if(pool.length === 0){ showInfoToast(t('alert_no_adj_available')); return; }
     shuffleArray(pool);
 
@@ -16522,7 +16540,11 @@ function openAdverbienVokabular(){
 }
 
 function renderAdverbienLevelBar(){
-    const mots = adverbienTheme.words || [];
+    renderNomenPorteeBar("adverbienPorteeBar");
+    const portee = porteeNoms();
+    // La portee filtre AVANT le niveau et la famille : les compteurs des deux
+    // barres en dessous doivent annoncer ce que le paquet contiendra vraiment.
+    const mots = (adverbienTheme.words || []).filter(w => motDansPortee(w, portee, "adverbien"));
     const niveauOk = (w) => adverbienSelectedLevel === "ALL" || (w[8] || "") === adverbienSelectedLevel;
 
     const bar = document.getElementById("adverbienLevelBar");
@@ -16573,7 +16595,8 @@ function renderAdverbienLevelBar(){
 function startAdverbienVokabular(level, kategorie){
     flashcardMode = 'adverbien';
     currentTheme = adverbienTheme;
-    let allItems = adverbienTheme.words.map((word, index) => ({ word, index, themeId: adverbienTheme.id }));
+    let allItems = adverbienTheme.words.map((word, index) => ({ word, index, themeId: adverbienTheme.id }))
+        .filter(it => motDansPortee(it.word, porteeNoms(), "adverbien"));
     if(level && level !== "ALL"){
         allItems = allItems.filter(it => (it.word[8] || "") === level);
     }
@@ -16893,23 +16916,33 @@ const PORTEE_KEY = "deutschAI_porteeNoms";
 function porteeNoms(){
     try{ return localStorage.getItem(PORTEE_KEY) || "tout"; }catch(e){ return "tout"; }
 }
+
+// UN SEUL CHOIX POUR LES QUATRE TYPES DE MOTS, et c'est voulu : quelqu'un qui a
+// decide de commencer par l'essentiel le veut pour ses noms comme pour ses
+// verbes. Un reglage par type l'obligerait a le redire quatre fois et a s'en
+// souvenir. On redessine l'ecran ouvert, quel qu'il soit.
 function choisirPorteeNoms(p){
     try{ localStorage.setItem(PORTEE_KEY, p); }catch(e){}
-    renderNomenLevels();
+    const actif = document.querySelector(".screen.active");
+    const id = actif ? actif.id : "";
+    if(id === "verbenNiveau") renderVerbeLevels();
+    else if(id === "adjektive") renderAdjektiveLevels();
+    else if(id === "adverbienVokabular") renderAdverbienLevelBar();
+    else renderNomenLevels();
 }
 
 // Le filtre applique a un mot. UN SEUL ENDROIT, pour que la barre, les
 // compteurs et le paquet reellement ouvert ne puissent pas diverger : trois
 // calculs paralleles finiraient par ne plus dire la meme chose, et un compteur
 // annoncerait un paquet que l'app n'ouvre pas.
-function motDansPortee(mot, portee){
+function motDansPortee(mot, portee, mode){
     if(portee === "tout") return true;
-    const marque = marqueExamenCarte(mot, "nomen");
+    const marque = marqueExamenCarte(mot, mode || "nomen");
     return portee === "essentiel" ? marque : !marque;
 }
 
-function renderNomenPorteeBar(){
-    const bar = document.getElementById("nomenPorteeBar");
+function renderNomenPorteeBar(idBarre){
+    const bar = document.getElementById(idBarre || "nomenPorteeBar");
     if(!bar) return;
     const actuel = porteeNoms();
     // La cle sur le segment « essentiel » : c'est le meme signe que sur les
@@ -16962,7 +16995,7 @@ function renderNomenLevels(){
             const levelData = th.levels[lvl];
             if(!levelData) return;
             levelData.words.forEach((w, i) => {
-                if(!motDansPortee(w, portee)) return;
+                if(!motDansPortee(w, portee, "nomen")) return;
                 total++;
                 if(getWordState(levelData.id, i).mastered) mastered++;
             });
@@ -17361,7 +17394,7 @@ function startRandomMix(level, portee){
             });
         });
     });
-    if(portee !== "tout") pool = pool.filter(it => motDansPortee(it.word, portee));
+    if(portee !== "tout") pool = pool.filter(it => motDansPortee(it.word, portee, "nomen"));
     if(pool.length === 0){ showInfoToast(t('alert_no_words_available')); return; }
     pool = sansDoublons(pool);
     shuffleArray(pool);
@@ -19718,7 +19751,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 474;
+const APP_VERSION = 475;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
