@@ -3201,16 +3201,21 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 /* ===== Mode Écoute ===== */
 .ecoute-stage{ text-align:center; padding:26px 18px; }
 .ecoute-ligne{ opacity:.32; transition:opacity .25s ease; overflow-wrap:anywhere; }
-/* LA LIGNE QU'ON ENTEND, AU VERSO D'UNE CARTE (v458).
-   Reprise du mode Ecoute, avec une difference qui compte : la-bas les lignes
-   inactives tombent a 32 %, ce qui convient a un ecran d'ecoute passive. Le
-   verso d'une carte est une surface de LECTURE -- il faut voir l'ensemble pour
-   se juger -- et a 32 % la carte paraitrait delavee au moment precis ou l'on
-   doit decider « je savais / je ne savais pas ». On attenue donc a peine, et
-   tout revient a la normale des que la chaine finit : la classe est posee sur
-   le verso pendant la prononciation, puis retiree. */
-.flashcard-back .dit-ligne{ transition:opacity .2s ease; }
-.flashcard-back.dit-en-cours .dit-ligne{ opacity:.55; }
+/* LA LIGNE QU'ON ENTEND, AU VERSO D'UNE CARTE (v458, refait en v459).
+   J'avais attenue a 55 % seulement, par crainte de delaver une surface de
+   LECTURE au moment ou l'on doit se juger. Jacques a regarde : « visuellement,
+   ca ne fonctionne pas. » Il avait raison, et pour DEUX raisons cumulees --
+   l'ecart etait trop faible, ET le mot au singulier etant la PREMIERE etape, il
+   passait a pleine encre immediatement : il n'etait jamais pale. Rien ne
+   bougeait a l'ecran, sauf la petite ligne du pluriel.
+   On reprend donc le contraste du mode Ecoute (35 %), et le verso s'ouvre
+   ATTENUE : chaque ligne s'eclaire au moment ou on la dit, le singulier
+   compris. Tout revient a la normale des que la chaine finit.
+   Seules les lignes REELLEMENT dites portent la classe -- posee par la chaine,
+   pas dans le HTML : sur une carte de verbe, attenuer le bloc des temps qui ne
+   sera jamais eclaire ne serait qu'un eclair de gris. */
+.flashcard-back .dit-ligne{ transition:opacity .28s ease; }
+.flashcard-back.dit-en-cours .dit-ligne{ opacity:.35; }
 .flashcard-back.dit-en-cours .dit-ligne.dit-actif{ opacity:1; }
 .ecoute-ligne.actif{ opacity:1; }
 .ecoute-mot{ font-size:34px; font-weight:800; color:#1e2433; line-height:1.15; margin-top:4px; }
@@ -3840,7 +3845,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v458</span>
+        <span class="subtitle-version">v459</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -5662,14 +5667,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      n'apparait qu'au VERSO -- sur le recto il dirait « tu sais
                      celui-la » avant meme qu'on ait cherche. -->
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
-                <div id="flashArticle" class="article hidden dit-ligne"></div>
-                <div class="word-audio-row dit-ligne" id="flashMotRow">
+                <div id="flashArticle" class="article hidden"></div>
+                <div class="word-audio-row" id="flashMotRow">
                     <div id="flashBackWord" class="back-word">Tisch</div>
                     <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
-                <div id="flashPlural" class="plural hidden dit-ligne">
+                <div id="flashPlural" class="plural hidden">
                     <span id="flashPluralText"></span>
                     <button id="pluralAudioBtn" class="icon-audio-btn icon-audio-btn--petit" onclick="event.stopPropagation(); speakPlural();" aria-label="Écouter le pluriel">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
@@ -5678,7 +5683,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashPaire" class="plural hidden"></div>
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
-                <div id="flashVerbDetails" class="verb-details hidden dit-ligne"></div>
+                <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashSynonymes" class="synonymes hidden"></div>
                 <div class="skip-hint" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
                 <div class="tap-map" aria-hidden="true">
@@ -19489,7 +19494,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 458;
+const APP_VERSION = 459;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -20173,6 +20178,19 @@ const CHAINE_GROUPES = {
     phrase:  ["flashVerbDetails"]
 };
 
+// Seules les lignes que la chaine va REELLEMENT dire s'attenuent. Poser la
+// classe dans le HTML attenuait aussi ce qui ne s'eclaire jamais -- le bloc des
+// temps d'un verbe, par exemple, qui n'aurait fait qu'un eclair de gris.
+function marquerLignesChaine(etapes){
+    Object.keys(CHAINE_GROUPES).forEach(nom => {
+        const dedans = etapes.some(e => e.groupe === nom);
+        CHAINE_GROUPES[nom].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.classList.toggle("dit-ligne", dedans);
+        });
+    });
+}
+
 function eclairerLigneCarte(groupe){
     Object.keys(CHAINE_GROUPES).forEach(nom => {
         CHAINE_GROUPES[nom].forEach(id => {
@@ -20184,6 +20202,10 @@ function eclairerLigneCarte(groupe){
 
 function finChaineCarte(){
     clearTimeout(chaineCarteMinuteur);
+    // On retire l'ATTENUATION, pas la classe `dit-ligne` : c'est elle qui porte
+    // la transition, et la retirer ici ferait revenir les lignes d'un coup au
+    // lieu de les laisser remonter en fondu. Elle sera reposee (ou retiree) par
+    // la chaine suivante.
     const dos = document.querySelector(".flashcard-back");
     if(dos) dos.classList.remove("dit-en-cours");
     eclairerLigneCarte(null);
@@ -20231,18 +20253,33 @@ function direChaineCarte(){
     const etapes = etapesChaineCarte();
     if(!etapes.length) return;
     const jeton = chaineCarteJeton;
-    // Une seule etape : rien a eclairer, et attenuer le reste n'apprendrait
-    // rien. L'ancien comportement (le mot, point) reste exactement lui-meme.
-    if(etapes.length > 1){
-        const dos = document.querySelector(".flashcard-back");
-        if(dos) dos.classList.add("dit-en-cours");
-    }
+    // LE VERSO S'OUVRE ATTENUE, MEME POUR UNE SEULE ETAPE (v459). Sans cela, le
+    // mot au singulier -- toujours la premiere etape -- n'etait jamais pale : il
+    // passait a pleine encre du premier instant, et il ne se passait donc rien a
+    // l'ecran. C'est le defaut que Jacques a vu. Une seule etape merite aussi
+    // son eclairage : elle montre CE QU'ON EST EN TRAIN DE DIRE.
+    marquerLignesChaine(etapes);
+    const dos = document.querySelector(".flashcard-back");
+    if(dos) dos.classList.add("dit-en-cours");
     let i = 0;
+    let premiere = true;
     const suivante = () => {
         if(jeton !== chaineCarteJeton) return;
         if(i >= etapes.length){ finChaineCarte(); return; }
         const et = etapes[i++];
-        if(etapes.length > 1) eclairerLigneCarte(et.groupe);
+        // LA LUMIERE ARRIVE APRES LE SON, ET C'EST VOULU POUR LA PREMIERE ETAPE.
+        //
+        // On ne peut pas retarder le son : sur iOS, l'element audio n'a le droit
+        // de jouer que dans le prolongement direct du geste, et une attente
+        // rompt ce lien (c'est ecrit en toutes lettres dans direAllemand). On
+        // lance donc le fichier tout de suite et on eclaire un souffle plus
+        // tard -- ce qui donne exactement l'effet demande : la carte arrive
+        // pale, puis le mot se fonce.
+        const eclairer = () => {
+            if(jeton === chaineCarteJeton) eclairerLigneCarte(et.groupe);
+        };
+        if(premiere){ premiere = false; setTimeout(eclairer, 220); }
+        else eclairer();
         direAllemand(et.texte, { rate: 0.9, onEnd: () => {
             if(jeton !== chaineCarteJeton) return;
             // Un souffle entre deux etapes. Il sert deux choses : laisser l'oeil
