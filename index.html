@@ -3849,6 +3849,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span class="setup-choice-flag">🇺🇦</span>
                     <span>Українська</span>
                 </button>
+                <button class="setup-choice" id="setupChoiceLangFa" onclick="selectUiLangChoice('fa')">
+                    <span class="setup-choice-flag">🇮🇷</span>
+                    <span>فارسی</span>
+                </button>
             </div>
         </div>
         <div class="spacer"></div>
@@ -3892,7 +3896,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v496</span>
+        <span class="subtitle-version">v497</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6093,6 +6097,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span class="setup-choice-flag">🇺🇦</span>
                     <span>Українська</span>
                 </button>
+                <button class="setup-choice" onclick="selectUiLangChoice('fa')">
+                    <span class="setup-choice-flag">🇮🇷</span>
+                    <span>فارسی</span>
+                </button>
             </div>
         </div>
     </div>
@@ -6464,7 +6472,7 @@ initAppTheme();
 // Le texte généré dynamiquement en JS (ex. libellés de progression) doit passer
 // par t("clé") plutôt que d'avoir sa chaîne écrite en dur.
 const UI_LANG_KEY = "deutschAI_uiLang";
-const UI_LANGS = ["fr", "en", "tr", "uk"];
+const UI_LANGS = ["fr", "en", "tr", "uk", "fa"];
 const DEFAULT_UI_LANG = "fr";
 
 // Direction d'apprentissage : "de" = apprendre l'allemand (contenu existant),
@@ -21207,7 +21215,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 496;
+const APP_VERSION = 497;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
