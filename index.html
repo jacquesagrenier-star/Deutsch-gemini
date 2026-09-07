@@ -3896,7 +3896,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v498</span>
+        <span class="subtitle-version">v499</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12362,6 +12362,8 @@ const ARTICLE_GENRE_FR = { m:"masculin", f:"f\u00e9minin", n:"neutre", pl:"pluri
 const ARTICLE_GENRE_EN = { m:"masculine", f:"feminine", n:"neuter", pl:"plural" };
 const ARTICLE_GENRE_TR = {"m": "eril", "f": "dişil", "n": "nötr", "pl": "çoğul"};
 const ARTICLE_FAMILLE_TR = {"def": "belirli", "indef": "belirsiz", "neg": "olumsuz"};
+const ARTICLE_GENRE_FA = { m:"مذکر", f:"مؤنث", n:"خنثی", pl:"جمع" };
+const ARTICLE_FAMILLE_FA = { def:"معین", indef:"نامعین", neg:"منفی" };
 const ARTICLE_FAMILLE_FR = { def:"d\u00e9fini", indef:"ind\u00e9fini", neg:"n\u00e9gatif" };
 const ARTICLE_FAMILLE_EN = { def:"definite", indef:"indefinite", neg:"negative" };
 
@@ -12371,153 +12373,197 @@ const ARTICLE_FAMILLE_EN = { def:"definite", indef:"indefinite", neg:"negative" 
 const ARTICLE_EXPLICATIONS = {
     "def.nom.m":  ["Nominativ, c'est le sujet. Le masculin y garde la forme du dictionnaire : der.",
                    "Nominativ is the subject. The masculine keeps its dictionary form: der.",
-                   "Nominativ öznedir. Eril, orada sözlükteki biçimini korur: der."],
+                   "Nominativ öznedir. Eril, orada sözlükteki biçimini korur: der.",
+                   "Nominativ فاعل است. مذکر در آن شکل فرهنگ‌نامه‌ای خود را نگه می‌دارد: der."],
     "def.nom.f":  ["Nominativ, c'est le sujet. Le f\u00e9minin y garde la forme du dictionnaire : die.",
                    "Nominativ is the subject. The feminine keeps its dictionary form: die.",
-                   "Nominativ öznedir. Dişil, orada sözlükteki biçimini korur: die."],
+                   "Nominativ öznedir. Dişil, orada sözlükteki biçimini korur: die.",
+                   "Nominativ فاعل است. مؤنث در آن شکل فرهنگ‌نامه‌ای خود را نگه می‌دارد: die."],
     "def.nom.n":  ["Nominativ, c'est le sujet. Le neutre y garde la forme du dictionnaire : das.",
                    "Nominativ is the subject. The neuter keeps its dictionary form: das.",
-                   "Nominativ öznedir. Nötr, orada sözlükteki biçimini korur: das."],
+                   "Nominativ öznedir. Nötr, orada sözlükteki biçimini korur: das.",
+                   "Nominativ فاعل است. خنثی در آن شکل فرهنگ‌نامه‌ای خود را نگه می‌دارد: das."],
     "def.nom.pl": ["Nominativ, c'est le sujet. Le pluriel y garde la forme du dictionnaire : die.",
                    "Nominativ is the subject. The plural keeps its dictionary form: die.",
-                   "Nominativ öznedir. Çoğul, orada sözlükteki biçimini korur: die."],
+                   "Nominativ öznedir. Çoğul, orada sözlükteki biçimini korur: die.",
+                   "Nominativ فاعل است. جمع در آن شکل فرهنگ‌نامه‌ای خود را نگه می‌دارد: die."],
     "def.akk.m":  ["\u00c0 l'Akkusativ, SEUL le masculin change : der devient den (terminaison -n).",
                    "In the Akkusativ, ONLY the masculine changes: der becomes den (ending -n).",
-                   "Akkusativ'de YALNIZCA eril değişir: der, den olur (-n eki)."],
+                   "Akkusativ'de YALNIZCA eril değişir: der, den olur (-n eki).",
+                   "در Akkusativ تنها مذکر تغییر می‌کند: der به den بدل می‌شود (پایانهٔ ‎-n‎)."],
     "def.akk.f":  ["\u00c0 l'Akkusativ, le f\u00e9minin ne bouge pas : die reste die.",
                    "In the Akkusativ, the feminine doesn't move: die stays die.",
-                   "Akkusativ'de dişil değişmez: die, die olarak kalır."],
+                   "Akkusativ'de dişil değişmez: die, die olarak kalır.",
+                   "در Akkusativ مؤنث تکان نمی‌خورد: die همان die می‌ماند."],
     "def.akk.n":  ["\u00c0 l'Akkusativ, le neutre ne bouge pas : das reste das.",
                    "In the Akkusativ, the neuter doesn't move: das stays das.",
-                   "Akkusativ'de nötr değişmez: das, das olarak kalır."],
+                   "Akkusativ'de nötr değişmez: das, das olarak kalır.",
+                   "در Akkusativ خنثی تکان نمی‌خورد: das همان das می‌ماند."],
     "def.akk.pl": ["\u00c0 l'Akkusativ, le pluriel ne bouge pas : die reste die.",
                    "In the Akkusativ, the plural doesn't move: die stays die.",
-                   "Akkusativ'de çoğul değişmez: die, die olarak kalır."],
+                   "Akkusativ'de çoğul değişmez: die, die olarak kalır.",
+                   "در Akkusativ جمع تکان نمی‌خورد: die همان die می‌ماند."],
     "def.dat.m":  ["Dativ : la marque du masculin et du neutre est -m. der devient dem.",
                    "Dativ: the masculine and neuter marker is -m. der becomes dem.",
-                   "Dativ: eril ve nötrün işareti -m'dir. der, dem olur."],
+                   "Dativ: eril ve nötrün işareti -m'dir. der, dem olur.",
+                   "Dativ: نشانهٔ مذکر و خنثی ‎-m‎ است. der به dem بدل می‌شود."],
     "def.dat.n":  ["Dativ : la marque du masculin et du neutre est -m. das devient dem.",
                    "Dativ: the masculine and neuter marker is -m. das becomes dem.",
-                   "Dativ: eril ve nötrün işareti -m'dir. das, dem olur."],
+                   "Dativ: eril ve nötrün işareti -m'dir. das, dem olur.",
+                   "Dativ: نشانهٔ مذکر و خنثی ‎-m‎ است. das به dem بدل می‌شود."],
     "def.dat.f":  ["Dativ : la marque du f\u00e9minin est -r. die devient der.",
                    "Dativ: the feminine marker is -r. die becomes der.",
-                   "Dativ: dişilin işareti -r'dir. die, der olur."],
+                   "Dativ: dişilin işareti -r'dir. die, der olur.",
+                   "Dativ: نشانهٔ مؤنث ‎-r‎ است. die به der بدل می‌شود."],
     "def.dat.pl": ["Dativ pluriel : die devient den, ET le nom prend un -n (Kindern, G\u00e4sten).",
                    "Dativ plural: die becomes den, AND the noun takes an -n (Kindern, G\u00e4sten).",
-                   "Dativ çoğul: die, den olur VE isim bir -n alır (Kindern, Gästen)."],
+                   "Dativ çoğul: die, den olur VE isim bir -n alır (Kindern, Gästen).",
+                   "Dativ جمع: die به den بدل می‌شود و اسم هم ‎-n‎ می‌گیرد (Kindern، Gästen)."],
     "def.gen.m":  ["Genitiv masculin : des, et le nom prend -s ou -es (Mannes, Films).",
                    "Genitiv masculine: des, and the noun takes -s or -es (Mannes, Films).",
-                   "Genitiv eril: des, ve isim -s ya da -es alır (Mannes, Films)."],
+                   "Genitiv eril: des, ve isim -s ya da -es alır (Mannes, Films).",
+                   "Genitiv مذکر: des، و اسم ‎-s‎ یا ‎-es‎ می‌گیرد (Mannes، Films)."],
     "def.gen.n":  ["Genitiv neutre : des, et le nom prend -s ou -es (Hauses, Autos).",
                    "Genitiv neuter: des, and the noun takes -s or -es (Hauses, Autos).",
-                   "Genitiv nötr: des, ve isim -s ya da -es alır (Hauses, Autos)."],
+                   "Genitiv nötr: des, ve isim -s ya da -es alır (Hauses, Autos).",
+                   "Genitiv خنثی: des، و اسم ‎-s‎ یا ‎-es‎ می‌گیرد (Hauses، Autos)."],
     "def.gen.f":  ["Genitiv f\u00e9minin : der \u2014 la m\u00eame forme qu'au Dativ f\u00e9minin.",
                    "Genitiv feminine: der \u2014 the same form as the Dativ feminine.",
-                   "Genitiv dişil: der — Dativ dişildeki biçimin aynısı."],
+                   "Genitiv dişil: der — Dativ dişildeki biçimin aynısı.",
+                   "Genitiv مؤنث: der — همان شکل Dativ مؤنث."],
     "def.gen.pl": ["Genitiv pluriel : der. Le nom, lui, ne change pas.",
                    "Genitiv plural: der. The noun itself doesn't change.",
-                   "Genitiv çoğul: der. İsmin kendisi ise değişmez."],
+                   "Genitiv çoğul: der. İsmin kendisi ise değişmez.",
+                   "Genitiv جمع: der. اسم خود تغییری نمی‌کند."],
 
     "indef.nom.m":  ["Au Nominativ masculin, ein n'a AUCUNE terminaison. C'est l'une des deux seules cases vides de la famille ein- : le -r de der dispara\u00eet.",
                      "In the masculine Nominativ, ein has NO ending. It's one of only two empty slots in the ein- family: the -r of der disappears.",
-                   "Eril Nominativ'de ein HİÇBİR ek almaz. Bu, ein- ailesinin yalnızca iki boş kutusundan biridir: der'in -r'si kaybolur."],
+                   "Eril Nominativ'de ein HİÇBİR ek almaz. Bu, ein- ailesinin yalnızca iki boş kutusundan biridir: der'in -r'si kaybolur.",
+                   "در Nominativ مذکر، ein هیچ پایانه‌ای ندارد. این یکی از دو خانهٔ خالی خانوادهٔ ‎ein-‎ است: ‎-r‎ از der ناپدید می‌شود."],
     "indef.nom.f":  ["F\u00e9minin : ein- prend -e, comme le -e de die \u2192 eine.",
                      "Feminine: ein- takes -e, like the -e of die \u2192 eine.",
-                   "Dişil: ein- bir -e alır, tıpkı die'nin -e'si gibi → eine."],
+                   "Dişil: ein- bir -e alır, tıpkı die'nin -e'si gibi → eine.",
+                   "مؤنث: ‎ein-‎ پایانهٔ ‎-e‎ می‌گیرد، مانند ‎-e‎ در die ← eine."],
     "indef.nom.n":  ["Au neutre Nominativ, ein n'a AUCUNE terminaison : c'est la deuxi\u00e8me case vide de ein- (le -s de das dispara\u00eet).",
                      "In the neuter Nominativ, ein has NO ending: the second empty slot of ein- (the -s of das disappears).",
-                   "Nötr Nominativ'de ein HİÇBİR ek almaz: bu, ein-'in ikinci boş kutusudur (das'ın -s'si kaybolur)."],
+                   "Nötr Nominativ'de ein HİÇBİR ek almaz: bu, ein-'in ikinci boş kutusudur (das'ın -s'si kaybolur).",
+                   "در Nominativ خنثی، ein هیچ پایانه‌ای ندارد: خانهٔ خالی دوم ‎ein-‎ (‎-s‎ از das ناپدید می‌شود)."],
     "indef.akk.m":  ["Masculin Akkusativ : ein devient einen. C'est le -n de den, pos\u00e9 sur ein-.",
                      "Masculine Akkusativ: ein becomes einen. That's the -n of den, placed on ein-.",
-                   "Eril Akkusativ: ein, einen olur. Bu, den'in -n'sinin ein- üzerine konmasıdır."],
+                   "Eril Akkusativ: ein, einen olur. Bu, den'in -n'sinin ein- üzerine konmasıdır.",
+                   "مذکر Akkusativ: ein به einen بدل می‌شود. همان ‎-n‎ از den، نشانده بر ‎ein-‎."],
     "indef.akk.f":  ["F\u00e9minin : eine, identique au Nominativ.",
                      "Feminine: eine, identical to the Nominativ.",
-                   "Dişil: eine, Nominativ ile aynı."],
+                   "Dişil: eine, Nominativ ile aynı.",
+                   "مؤنث: eine، همانند Nominativ."],
     "indef.akk.n":  ["Neutre : ein, sans terminaison, identique au Nominativ. La deuxi\u00e8me case vide.",
                      "Neuter: ein, no ending, identical to the Nominativ. The second empty slot.",
-                   "Nötr: ein, eksiz, Nominativ ile aynı. İkinci boş kutu."],
+                   "Nötr: ein, eksiz, Nominativ ile aynı. İkinci boş kutu.",
+                   "خنثی: ein، بی پایانه، همانند Nominativ. خانهٔ خالی دوم."],
     "indef.dat.m":  ["Dativ masculin : einem. Le -m de dem, pos\u00e9 sur ein-.",
                      "Dativ masculine: einem. The -m of dem, placed on ein-.",
-                   "Dativ eril: einem. dem'in -m'si, ein- üzerine konmuş."],
+                   "Dativ eril: einem. dem'in -m'si, ein- üzerine konmuş.",
+                   "Dativ مذکر: einem. همان ‎-m‎ از dem، نشانده بر ‎ein-‎."],
     "indef.dat.n":  ["Dativ neutre : einem \u2014 la m\u00eame forme qu'au masculin.",
                      "Dativ neuter: einem \u2014 the same form as the masculine.",
-                   "Dativ nötr: einem — erildeki biçimin aynısı."],
+                   "Dativ nötr: einem — erildeki biçimin aynısı.",
+                   "Dativ خنثی: einem — همان شکل مذکر."],
     "indef.dat.f":  ["Dativ f\u00e9minin : einer. Le -r de der, pos\u00e9 sur ein-.",
                      "Dativ feminine: einer. The -r of der, placed on ein-.",
-                   "Dativ dişil: einer. der'in -r'si, ein- üzerine konmuş."],
+                   "Dativ dişil: einer. der'in -r'si, ein- üzerine konmuş.",
+                   "Dativ مؤنث: einer. همان ‎-r‎ از der، نشانده بر ‎ein-‎."],
     "indef.gen.m":  ["Genitiv masculin : eines, et le nom prend -s ou -es.",
                      "Genitiv masculine: eines, and the noun takes -s or -es.",
-                   "Genitiv eril: eines, ve isim -s ya da -es alır."],
+                   "Genitiv eril: eines, ve isim -s ya da -es alır.",
+                   "Genitiv مذکر: eines، و اسم ‎-s‎ یا ‎-es‎ می‌گیرد."],
     "indef.gen.n":  ["Genitiv neutre : eines, et le nom prend -s ou -es.",
                      "Genitiv neuter: eines, and the noun takes -s or -es.",
-                   "Genitiv nötr: eines, ve isim -s ya da -es alır."],
+                   "Genitiv nötr: eines, ve isim -s ya da -es alır.",
+                   "Genitiv خنثی: eines، و اسم ‎-s‎ یا ‎-es‎ می‌گیرد."],
     "indef.gen.f":  ["Genitiv f\u00e9minin : einer \u2014 m\u00eame forme qu'au Dativ f\u00e9minin.",
                      "Genitiv feminine: einer \u2014 the same form as the Dativ feminine.",
-                   "Genitiv dişil: einer — Dativ dişildeki biçimin aynısı."],
+                   "Genitiv dişil: einer — Dativ dişildeki biçimin aynısı.",
+                   "Genitiv مؤنث: einer — همان شکل Dativ مؤنث."],
 
     "neg.nom.m":  ["kein se d\u00e9cline exactement comme ein : au Nominativ masculin, pas de terminaison \u2192 kein.",
                    "kein declines exactly like ein: in the masculine Nominativ, no ending \u2192 kein.",
-                   "kein tam olarak ein gibi çekilir: eril Nominativ'de ek yok → kein."],
+                   "kein tam olarak ein gibi çekilir: eril Nominativ'de ek yok → kein.",
+                   "kein درست مانند ein صرف می‌شود: در Nominativ مذکر بی پایانه ← kein."],
     "neg.nom.f":  ["F\u00e9minin : keine (-e, comme die).",
                    "Feminine: keine (-e, like die).",
-                   "Dişil: keine (-e, tıpkı die gibi)."],
+                   "Dişil: keine (-e, tıpkı die gibi).",
+                   "مؤنث: keine (‎-e‎، مانند die)."],
     "neg.nom.n":  ["Neutre Nominativ : pas de terminaison \u2192 kein. La m\u00eame case vide que ein.",
                    "Neuter Nominativ: no ending \u2192 kein. The same empty slot as ein.",
-                   "Nötr Nominativ: ek yok → kein. ein ile aynı boş kutu."],
+                   "Nötr Nominativ: ek yok → kein. ein ile aynı boş kutu.",
+                   "Nominativ خنثی: بی پایانه ← kein. همان خانهٔ خالی ein."],
     "neg.nom.pl": ["kein a un pluriel, contrairement \u00e0 ein : keine. C'est la seule diff\u00e9rence entre les deux.",
                    "kein has a plural, unlike ein: keine. That's the only difference between the two.",
-                   "ein'in aksine kein'in bir çoğulu vardır: keine. İkisi arasındaki tek fark budur."],
+                   "ein'in aksine kein'in bir çoğulu vardır: keine. İkisi arasındaki tek fark budur.",
+                   "kein برخلاف ein جمع دارد: keine. تنها تفاوت میان آن دو همین است."],
     "neg.akk.m":  ["Masculin Akkusativ : keinen (-en, comme einen).",
                    "Masculine Akkusativ: keinen (-en, like einen).",
-                   "Eril Akkusativ: keinen (-en, tıpkı einen gibi)."],
+                   "Eril Akkusativ: keinen (-en, tıpkı einen gibi).",
+                   "مذکر Akkusativ: keinen (‎-en‎، مانند einen)."],
     "neg.akk.f":  ["F\u00e9minin : keine, identique au Nominativ.",
                    "Feminine: keine, identical to the Nominativ.",
-                   "Dişil: keine, Nominativ ile aynı."],
+                   "Dişil: keine, Nominativ ile aynı.",
+                   "مؤنث: keine، همانند Nominativ."],
     "neg.akk.n":  ["Neutre : kein, sans terminaison, identique au Nominativ.",
                    "Neuter: kein, no ending, identical to the Nominativ.",
-                   "Nötr: kein, eksiz, Nominativ ile aynı."],
+                   "Nötr: kein, eksiz, Nominativ ile aynı.",
+                   "خنثی: kein، بی پایانه، همانند Nominativ."],
     "neg.akk.pl": ["Pluriel : keine, identique au Nominativ.",
                    "Plural: keine, identical to the Nominativ.",
-                   "Çoğul: keine, Nominativ ile aynı."],
+                   "Çoğul: keine, Nominativ ile aynı.",
+                   "جمع: keine، همانند Nominativ."],
     "neg.dat.m":  ["Dativ masculin : keinem (-m, comme dem et einem).",
                    "Dativ masculine: keinem (-m, like dem and einem).",
-                   "Dativ eril: keinem (-m, tıpkı dem ve einem gibi)."],
+                   "Dativ eril: keinem (-m, tıpkı dem ve einem gibi).",
+                   "Dativ مذکر: keinem (‎-m‎، مانند dem و einem)."],
     "neg.dat.n":  ["Dativ neutre : keinem \u2014 m\u00eame forme qu'au masculin.",
                    "Dativ neuter: keinem \u2014 the same form as the masculine.",
-                   "Dativ nötr: keinem — erildeki biçimin aynısı."],
+                   "Dativ nötr: keinem — erildeki biçimin aynısı.",
+                   "Dativ خنثی: keinem — همان شکل مذکر."],
     "neg.dat.f":  ["Dativ f\u00e9minin : keiner (-r, comme der et einer).",
                    "Dativ feminine: keiner (-r, like der and einer).",
-                   "Dativ dişil: keiner (-r, tıpkı der ve einer gibi)."],
+                   "Dativ dişil: keiner (-r, tıpkı der ve einer gibi).",
+                   "Dativ مؤنث: keiner (‎-r‎، مانند der و einer)."],
     "neg.dat.pl": ["Dativ pluriel : keinen, et le nom prend un -n (Kindern, G\u00e4sten).",
                    "Dativ plural: keinen, and the noun takes an -n (Kindern, G\u00e4sten).",
-                   "Dativ çoğul: keinen, ve isim bir -n alır (Kindern, Gästen)."],
+                   "Dativ çoğul: keinen, ve isim bir -n alır (Kindern, Gästen).",
+                   "Dativ جمع: keinen، و اسم ‎-n‎ می‌گیرد (Kindern، Gästen)."],
     "neg.gen.m":  ["Genitiv masculin : keines, et le nom prend -s ou -es. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
                    "Genitiv masculine: keines, and the noun takes -s or -es. In speech kein + Genitiv is rare, but the form follows ein- exactly.",
-                   "Genitiv eril: keines, ve isim -s ya da -es alır. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler."],
+                   "Genitiv eril: keines, ve isim -s ya da -es alır. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler.",
+                   "Genitiv مذکر: keines، و اسم ‎-s‎ یا ‎-es‎ می‌گیرد. در گفتار kein + Genitiv کم‌یاب است، اما شکل آن دقیقاً از ‎ein-‎ پیروی می‌کند."],
     "neg.gen.n":  ["Genitiv neutre : keines, et le nom prend -s ou -es. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
                    "Genitiv neuter: keines, and the noun takes -s or -es. In speech kein + Genitiv is rare, but the form follows ein- exactly.",
-                   "Genitiv nötr: keines, ve isim -s ya da -es alır. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler."],
+                   "Genitiv nötr: keines, ve isim -s ya da -es alır. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler.",
+                   "Genitiv خنثی: keines، و اسم ‎-s‎ یا ‎-es‎ می‌گیرد. در گفتار kein + Genitiv کم‌یاب است، اما شکل آن دقیقاً از ‎ein-‎ پیروی می‌کند."],
     "neg.gen.f":  ["Genitiv f\u00e9minin : keiner. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
                    "Genitiv feminine: keiner. In speech kein + Genitiv is rare, but the form follows ein- exactly.",
-                   "Genitiv dişil: keiner. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler."],
+                   "Genitiv dişil: keiner. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler.",
+                   "Genitiv مؤنث: keiner. در گفتار kein + Genitiv کم‌یاب است، اما شکل آن دقیقاً از ‎ein-‎ پیروی می‌کند."],
     "neg.gen.pl": ["Genitiv pluriel : keiner. \u00c0 l'oral, kein + Genitiv est rare, mais la forme suit exactement celle de ein-.",
                    "Genitiv plural: keiner. In speech kein + Genitiv is rare, but the form follows ein- exactly.",
-                   "Genitiv çoğul: keiner. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler."]
+                   "Genitiv çoğul: keiner. Konuşmada kein + Genitiv nadirdir, ama biçim tam olarak ein-'i izler.",
+                   "Genitiv جمع: keiner. در گفتار kein + Genitiv کم‌یاب است، اما شکل آن دقیقاً از ‎ein-‎ پیروی می‌کند."]
 };
 
 // Ce qui decide du cas, dans l'exercice de melange : c'est la seule chose que
 // l'indice donne, puisque c'est justement ce qu'on demande de trouver.
 const ARTICLE_DECLENCHEURS = {
     sujet:       ["(qui fait l'action ?)", "(who is doing the action?)",
-                   "(eylemi kim yapıyor?)"],
+                   "(eylemi kim yapıyor?)", "(کار را که انجام می‌دهد؟)"],
     objet:       ["(qui subit l'action ?)", "(what receives the action?)",
-                   "(eylemi ne alıyor?)"],
+                   "(eylemi ne alıyor?)", "(کار بر چه واقع می‌شود؟)"],
     verbe:       ["(ce verbe impose son cas)", "(this verb imposes its case)",
-                   "(bu fiil halini kendisi belirler)"],
+                   "(bu fiil halini kendisi belirler)", "(حالت را همین فعل تعیین می‌کند)"],
     preposition: ["(apr\u00e8s cette pr\u00e9position)", "(after this preposition)",
-                   "(bu edattan sonra)"],
+                   "(bu edattan sonra)", "(پس از این حرف اضافه)"],
     possession:  ["(\u00e0 qui / \u00e0 quoi \u00e7a appartient ?)", "(whose? / belonging to what?)",
-                   "(kime / neye ait?)"]
+                   "(kime / neye ait?)", "(از آن که یا از آن چه؟)"]
 };
 
 // Construit une serie d'exercices a partir des lignes brutes. La reponse n'est
@@ -12525,19 +12571,20 @@ const ARTICLE_DECLENCHEURS = {
 // ne peut pas diverger du tableau que l'ecran d'explication affiche.
 function construireExercicesArticles(cas, famille, lignes){
     const casNom = ARTICLE_CAS_NOM[cas];
-    return lignes.map(([phrase, genre, fr, en, dico, tr]) => {
+    return lignes.map(([phrase, genre, fr, en, dico, tr, fa]) => {
         const rep = ARTICLE_FORMES[famille][cas][genre];
         const expl = ARTICLE_EXPLICATIONS[famille + "." + cas + "." + genre];
         const question = phrase + " (" + dico + ", " + casNom + ")";
         return {
             topic: "Articles \u00b7 " + casNom,
             question, question_en: question,
-            translation: fr, translation_en: en, translation_tr: tr,
+            translation: fr, translation_en: en, translation_tr: tr, translation_fa: fa || "",
             hint: "(" + ARTICLE_GENRE_FR[genre] + " \u00b7 " + ARTICLE_FAMILLE_FR[famille] + " \u00b7 " + casNom + ")",
             hint_en: "(" + ARTICLE_GENRE_EN[genre] + " \u00b7 " + ARTICLE_FAMILLE_EN[famille] + " \u00b7 " + casNom + ")",
             hint_tr: "(" + ARTICLE_GENRE_TR[genre] + " \u00b7 " + ARTICLE_FAMILLE_TR[famille] + " \u00b7 " + casNom + ")",
+            hint_fa: "(" + ARTICLE_GENRE_FA[genre] + " \u00b7 " + ARTICLE_FAMILLE_FA[famille] + " \u00b7 " + casNom + ")",
             answers: [rep], correct: rep, correctEn: rep,
-            explanation: expl[0], explanation_en: expl[1], explanation_tr: expl[2],
+            explanation: expl[0], explanation_en: expl[1], explanation_tr: expl[2], explanation_fa: expl[3] || "",
             options: ARTICLE_TUILES[famille]
         };
     });
@@ -12547,7 +12594,7 @@ function construireExercicesArticles(cas, famille, lignes){
 // Il ne reste que le nom avec son genre et un indice sur ce qui declenche le
 // cas. C'est le seul exercice qui teste vraiment le raisonnement complet.
 function construireExercicesArticlesMix(lignes){
-    return lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr]) => {
+    return lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa]) => {
         const rep = ARTICLE_FORMES[famille][cas][genre];
         const expl = ARTICLE_EXPLICATIONS[famille + "." + cas + "." + genre];
         const question = phrase + " (" + dico + ")";
@@ -12555,12 +12602,13 @@ function construireExercicesArticlesMix(lignes){
         return {
             topic: "Articles \u00b7 m\u00e9lange",
             question, question_en: question,
-            translation: fr, translation_en: en, translation_tr: tr,
-            hint: d[0], hint_en: d[1], hint_tr: d[2],
+            translation: fr, translation_en: en, translation_tr: tr, translation_fa: fa || "",
+            hint: d[0], hint_en: d[1], hint_tr: d[2], hint_fa: d[3] || "",
             answers: [rep], correct: rep, correctEn: rep,
             explanation: ARTICLE_CAS_NOM[cas] + " \u2014 " + expl[0],
             explanation_en: ARTICLE_CAS_NOM[cas] + " \u2014 " + expl[1],
             explanation_tr: ARTICLE_CAS_NOM[cas] + " \u2014 " + expl[2],
+            explanation_fa: expl[3] ? ARTICLE_CAS_NOM[cas] + " \u2014 " + expl[3] : "",
             options: ARTICLE_TUILES[famille]
         };
     });
@@ -12568,216 +12616,216 @@ function construireExercicesArticlesMix(lignes){
 
 
 const ARTICLES_NOMINATIV_DEF = [
-    ["___ Mann liest die Zeitung.", "m", "L'homme lit le journal.", "The man is reading the newspaper.", "der Mann", "Adam gazete okuyor."],
-    ["___ Zug fährt um acht ab.", "m", "Le train part à huit heures.", "The train leaves at eight.", "der Zug", "Tren sekizde kalkıyor."],
-    ["___ Hund schläft im Garten.", "m", "Le chien dort dans le jardin.", "The dog is sleeping in the garden.", "der Hund", "Köpek bahçede uyuyor."],
-    ["___ Frau kocht das Essen.", "f", "La femme prépare le repas.", "The woman is cooking the meal.", "die Frau", "Kadın yemeği pişiriyor."],
-    ["___ Schule beginnt um neun.", "f", "L'école commence à neuf heures.", "School starts at nine.", "die Schule", "Okul dokuzda başlıyor."],
-    ["___ Lampe ist kaputt.", "f", "La lampe est cassée.", "The lamp is broken.", "die Lampe", "Lamba bozuk."],
-    ["___ Kind spielt draußen.", "n", "L'enfant joue dehors.", "The child is playing outside.", "das Kind", "Çocuk dışarıda oynuyor."],
-    ["___ Auto steht vor dem Haus.", "n", "La voiture est devant la maison.", "The car is in front of the house.", "das Auto", "Araba evin önünde duruyor."],
-    ["___ Kinder lachen laut.", "pl", "Les enfants rient fort.", "The children are laughing loudly.", "die Kinder", "Çocuklar yüksek sesle gülüyor."],
-    ["___ Bücher liegen auf dem Tisch.", "pl", "Les livres sont sur la table.", "The books are on the table.", "die Bücher", "Kitaplar masanın üstünde."]
+    ["___ Mann liest die Zeitung.", "m", "L'homme lit le journal.", "The man is reading the newspaper.", "der Mann", "Adam gazete okuyor.", "آن مرد روزنامه می‌خواند."],
+    ["___ Zug fährt um acht ab.", "m", "Le train part à huit heures.", "The train leaves at eight.", "der Zug", "Tren sekizde kalkıyor.", "آن قطار ساعت هشت راه می‌افتد."],
+    ["___ Hund schläft im Garten.", "m", "Le chien dort dans le jardin.", "The dog is sleeping in the garden.", "der Hund", "Köpek bahçede uyuyor.", "آن سگ در باغ می‌خوابد."],
+    ["___ Frau kocht das Essen.", "f", "La femme prépare le repas.", "The woman is cooking the meal.", "die Frau", "Kadın yemeği pişiriyor.", "آن زن غذا می‌پزد."],
+    ["___ Schule beginnt um neun.", "f", "L'école commence à neuf heures.", "School starts at nine.", "die Schule", "Okul dokuzda başlıyor.", "آن مدرسه ساعت نه آغاز می‌شود."],
+    ["___ Lampe ist kaputt.", "f", "La lampe est cassée.", "The lamp is broken.", "die Lampe", "Lamba bozuk.", "آن چراغ خراب است."],
+    ["___ Kind spielt draußen.", "n", "L'enfant joue dehors.", "The child is playing outside.", "das Kind", "Çocuk dışarıda oynuyor.", "آن کودک بیرون بازی می‌کند."],
+    ["___ Auto steht vor dem Haus.", "n", "La voiture est devant la maison.", "The car is in front of the house.", "das Auto", "Araba evin önünde duruyor.", "آن خودرو جلوی خانه ایستاده است."],
+    ["___ Kinder lachen laut.", "pl", "Les enfants rient fort.", "The children are laughing loudly.", "die Kinder", "Çocuklar yüksek sesle gülüyor.", "آن کودکان بلند می‌خندند."],
+    ["___ Bücher liegen auf dem Tisch.", "pl", "Les livres sont sur la table.", "The books are on the table.", "die Bücher", "Kitaplar masanın üstünde.", "آن کتاب‌ها روی میز است."]
 ];
 const ARTICLES_NOMINATIV_INDEF = [
-    ["Das ist ___ Hund.", "m", "C'est un chien.", "That is a dog.", "der Hund", "Bu bir köpek."],
-    ["Hier arbeitet ___ Arzt.", "m", "Un médecin travaille ici.", "A doctor works here.", "der Arzt", "Burada bir doktor çalışıyor."],
-    ["Das ist ___ Apfel.", "m", "C'est une pomme.", "That is an apple.", "der Apfel", "Bu bir elma."],
-    ["Draußen wartet ___ Freund.", "m", "Un ami attend dehors.", "A friend is waiting outside.", "der Freund", "Dışarıda bir arkadaş bekliyor."],
-    ["Das ist ___ Frau aus Berlin.", "f", "C'est une femme de Berlin.", "That is a woman from Berlin.", "die Frau", "Bu, Berlinli bir kadın."],
-    ["Auf dem Tisch liegt ___ Zeitung.", "f", "Il y a un journal sur la table.", "There is a newspaper on the table.", "die Zeitung", "Masanın üstünde bir gazete duruyor."],
-    ["Hier ist ___ Schule.", "f", "Il y a une école ici.", "There is a school here.", "die Schule", "Burada bir okul var."],
-    ["Das ist ___ Kind aus meiner Klasse.", "n", "C'est un enfant de ma classe.", "That is a child from my class.", "das Kind", "Bu, sınıfımdan bir çocuk."],
-    ["Im Hof steht ___ Auto.", "n", "Il y a une voiture dans la cour.", "There is a car in the yard.", "das Auto", "Avluda bir araba duruyor."],
-    ["Das ist ___ Buch für dich.", "n", "C'est un livre pour toi.", "That is a book for you.", "das Buch", "Bu, senin için bir kitap."]
+    ["Das ist ___ Hund.", "m", "C'est un chien.", "That is a dog.", "der Hund", "Bu bir köpek.", "این یک سگ است."],
+    ["Hier arbeitet ___ Arzt.", "m", "Un médecin travaille ici.", "A doctor works here.", "der Arzt", "Burada bir doktor çalışıyor.", "پزشکی اینجا کار می‌کند."],
+    ["Das ist ___ Apfel.", "m", "C'est une pomme.", "That is an apple.", "der Apfel", "Bu bir elma.", "این یک سیب است."],
+    ["Draußen wartet ___ Freund.", "m", "Un ami attend dehors.", "A friend is waiting outside.", "der Freund", "Dışarıda bir arkadaş bekliyor.", "دوستی بیرون منتظر است."],
+    ["Das ist ___ Frau aus Berlin.", "f", "C'est une femme de Berlin.", "That is a woman from Berlin.", "die Frau", "Bu, Berlinli bir kadın.", "این زنی از برلین است."],
+    ["Auf dem Tisch liegt ___ Zeitung.", "f", "Il y a un journal sur la table.", "There is a newspaper on the table.", "die Zeitung", "Masanın üstünde bir gazete duruyor.", "روی میز روزنامه‌ای هست."],
+    ["Hier ist ___ Schule.", "f", "Il y a une école ici.", "There is a school here.", "die Schule", "Burada bir okul var.", "اینجا مدرسه‌ای هست."],
+    ["Das ist ___ Kind aus meiner Klasse.", "n", "C'est un enfant de ma classe.", "That is a child from my class.", "das Kind", "Bu, sınıfımdan bir çocuk.", "این کودکی از کلاس من است."],
+    ["Im Hof steht ___ Auto.", "n", "Il y a une voiture dans la cour.", "There is a car in the yard.", "das Auto", "Avluda bir araba duruyor.", "در حیاط خودرویی ایستاده است."],
+    ["Das ist ___ Buch für dich.", "n", "C'est un livre pour toi.", "That is a book for you.", "das Buch", "Bu, senin için bir kitap.", "این کتابی برای توست."]
 ];
 const ARTICLES_NOMINATIV_NEG = [
-    ["___ Zug fährt heute.", "m", "Aucun train ne circule aujourd'hui.", "No train is running today.", "der Zug", "Bugün hiçbir tren kalkmıyor."],
-    ["Hier ist ___ Arzt.", "m", "Il n'y a pas de médecin ici.", "There is no doctor here.", "der Arzt", "Burada doktor yok."],
-    ["Das ist ___ Hund, das ist eine Katze.", "m", "Ce n'est pas un chien, c'est un chat.", "That is not a dog, that is a cat.", "der Hund", "Bu bir köpek değil, bir kedi."],
-    ["___ Frau war zu Hause.", "f", "Aucune femme n'était à la maison.", "No woman was at home.", "die Frau", "Hiçbir kadın evde değildi."],
-    ["Das ist ___ Zeitung, das ist ein Buch.", "f", "Ce n'est pas un journal, c'est un livre.", "That is not a newspaper, that is a book.", "die Zeitung", "Bu bir gazete değil, bir kitap."],
-    ["___ Lampe brennt im Zimmer.", "f", "Aucune lampe n'est allumée dans la pièce.", "No lamp is on in the room.", "die Lampe", "Odada hiçbir lamba yanmıyor."],
-    ["Das ist ___ Problem.", "n", "Ce n'est pas un problème.", "That is not a problem.", "das Problem", "Bu bir sorun değil."],
-    ["___ Auto steht vor der Tür.", "n", "Aucune voiture n'est devant la porte.", "No car is in front of the door.", "das Auto", "Kapının önünde hiç araba yok."],
-    ["___ Kinder spielen draußen.", "pl", "Aucun enfant ne joue dehors.", "No children are playing outside.", "die Kinder", "Dışarıda hiçbir çocuk oynamıyor."],
-    ["___ Bücher sind im Regal.", "pl", "Il n'y a aucun livre dans l'étagère.", "There are no books on the shelf.", "die Bücher", "Rafta hiç kitap yok."]
+    ["___ Zug fährt heute.", "m", "Aucun train ne circule aujourd'hui.", "No train is running today.", "der Zug", "Bugün hiçbir tren kalkmıyor.", "امروز هیچ قطاری راه نمی‌افتد."],
+    ["Hier ist ___ Arzt.", "m", "Il n'y a pas de médecin ici.", "There is no doctor here.", "der Arzt", "Burada doktor yok.", "اینجا هیچ پزشکی نیست."],
+    ["Das ist ___ Hund, das ist eine Katze.", "m", "Ce n'est pas un chien, c'est un chat.", "That is not a dog, that is a cat.", "der Hund", "Bu bir köpek değil, bir kedi.", "این سگ نیست، گربه است."],
+    ["___ Frau war zu Hause.", "f", "Aucune femme n'était à la maison.", "No woman was at home.", "die Frau", "Hiçbir kadın evde değildi.", "هیچ زنی در خانه نبود."],
+    ["Das ist ___ Zeitung, das ist ein Buch.", "f", "Ce n'est pas un journal, c'est un livre.", "That is not a newspaper, that is a book.", "die Zeitung", "Bu bir gazete değil, bir kitap.", "این روزنامه نیست، کتاب است."],
+    ["___ Lampe brennt im Zimmer.", "f", "Aucune lampe n'est allumée dans la pièce.", "No lamp is on in the room.", "die Lampe", "Odada hiçbir lamba yanmıyor.", "هیچ چراغی در اتاق روشن نیست."],
+    ["Das ist ___ Problem.", "n", "Ce n'est pas un problème.", "That is not a problem.", "das Problem", "Bu bir sorun değil.", "این مشکلی نیست."],
+    ["___ Auto steht vor der Tür.", "n", "Aucune voiture n'est devant la porte.", "No car is in front of the door.", "das Auto", "Kapının önünde hiç araba yok.", "هیچ خودرویی جلوی در نیست."],
+    ["___ Kinder spielen draußen.", "pl", "Aucun enfant ne joue dehors.", "No children are playing outside.", "die Kinder", "Dışarıda hiçbir çocuk oynamıyor.", "هیچ کودکی بیرون بازی نمی‌کند."],
+    ["___ Bücher sind im Regal.", "pl", "Il n'y a aucun livre dans l'étagère.", "There are no books on the shelf.", "die Bücher", "Rafta hiç kitap yok.", "هیچ کتابی در قفسه نیست."]
 ];
 const kasusArticleNominativ = construireExercicesArticles("nom", "def", ARTICLES_NOMINATIV_DEF)
     .concat(construireExercicesArticles("nom", "indef", ARTICLES_NOMINATIV_INDEF))
     .concat(construireExercicesArticles("nom", "neg", ARTICLES_NOMINATIV_NEG));
 
 const ARTICLES_AKKUSATIV_DEF = [
-    ["Ich sehe ___ Mann.", "m", "Je vois l'homme.", "I see the man.", "der Mann", "Adamı görüyorum."],
-    ["Wir nehmen ___ Zug.", "m", "Nous prenons le train.", "We take the train.", "der Zug", "Treni alıyoruz."],
-    ["Ich esse ___ Apfel.", "m", "Je mange la pomme.", "I'm eating the apple.", "der Apfel", "Elmayı yiyorum."],
-    ["Ich kaufe ___ Zeitung.", "f", "J'achète le journal.", "I'm buying the newspaper.", "die Zeitung", "Gazeteyi satın alıyorum."],
-    ["Er liebt ___ Musik.", "f", "Il aime la musique.", "He loves the music.", "die Musik", "Müziği seviyor."],
-    ["Wir besuchen ___ Schule.", "f", "Nous visitons l'école.", "We're visiting the school.", "die Schule", "Okulu ziyaret ediyoruz."],
-    ["Ich lese ___ Buch.", "n", "Je lis le livre.", "I'm reading the book.", "das Buch", "Kitabı okuyorum."],
-    ["Sie repariert ___ Auto.", "n", "Elle répare la voiture.", "She's fixing the car.", "das Auto", "Arabayı tamir ediyor."],
-    ["Ich sehe ___ Kinder.", "pl", "Je vois les enfants.", "I see the children.", "die Kinder", "Çocukları görüyorum."],
-    ["Wir lesen ___ Bücher.", "pl", "Nous lisons les livres.", "We're reading the books.", "die Bücher", "Kitapları okuyoruz."]
+    ["Ich sehe ___ Mann.", "m", "Je vois l'homme.", "I see the man.", "der Mann", "Adamı görüyorum.", "آن مرد را می‌بینم."],
+    ["Wir nehmen ___ Zug.", "m", "Nous prenons le train.", "We take the train.", "der Zug", "Treni alıyoruz.", "آن قطار را می‌گیریم."],
+    ["Ich esse ___ Apfel.", "m", "Je mange la pomme.", "I'm eating the apple.", "der Apfel", "Elmayı yiyorum.", "آن سیب را می‌خورم."],
+    ["Ich kaufe ___ Zeitung.", "f", "J'achète le journal.", "I'm buying the newspaper.", "die Zeitung", "Gazeteyi satın alıyorum.", "آن روزنامه را می‌خرم."],
+    ["Er liebt ___ Musik.", "f", "Il aime la musique.", "He loves the music.", "die Musik", "Müziği seviyor.", "او آن موسیقی را دوست دارد."],
+    ["Wir besuchen ___ Schule.", "f", "Nous visitons l'école.", "We're visiting the school.", "die Schule", "Okulu ziyaret ediyoruz.", "از آن مدرسه دیدن می‌کنیم."],
+    ["Ich lese ___ Buch.", "n", "Je lis le livre.", "I'm reading the book.", "das Buch", "Kitabı okuyorum.", "آن کتاب را می‌خوانم."],
+    ["Sie repariert ___ Auto.", "n", "Elle répare la voiture.", "She's fixing the car.", "das Auto", "Arabayı tamir ediyor.", "او آن خودرو را تعمیر می‌کند."],
+    ["Ich sehe ___ Kinder.", "pl", "Je vois les enfants.", "I see the children.", "die Kinder", "Çocukları görüyorum.", "آن کودکان را می‌بینم."],
+    ["Wir lesen ___ Bücher.", "pl", "Nous lisons les livres.", "We're reading the books.", "die Bücher", "Kitapları okuyoruz.", "آن کتاب‌ها را می‌خوانیم."]
 ];
 const ARTICLES_AKKUSATIV_INDEF = [
-    ["Ich habe ___ Bruder.", "m", "J'ai un frère.", "I have a brother.", "der Bruder", "Bir erkek kardeşim var."],
-    ["Er kauft ___ Hund.", "m", "Il achète un chien.", "He's buying a dog.", "der Hund", "Bir köpek satın alıyor."],
-    ["Ich brauche ___ Schlüssel.", "m", "J'ai besoin d'une clé.", "I need a key.", "der Schlüssel", "Bir anahtara ihtiyacım var."],
-    ["Ich esse ___ Apfel.", "m", "Je mange une pomme.", "I'm eating an apple.", "der Apfel", "Bir elma yiyorum."],
-    ["Ich suche ___ Wohnung.", "f", "Je cherche un appartement.", "I'm looking for an apartment.", "die Wohnung", "Bir daire arıyorum."],
-    ["Sie schreibt ___ Karte.", "f", "Elle écrit une carte.", "She's writing a card.", "die Karte", "Bir kart yazıyor."],
-    ["Sie kauft ___ Lampe.", "f", "Elle achète une lampe.", "She's buying a lamp.", "die Lampe", "Bir lamba satın alıyor."],
-    ["Wir haben ___ Auto.", "n", "Nous avons une voiture.", "We have a car.", "das Auto", "Bir arabamız var."],
-    ["Ich lese ___ Buch.", "n", "Je lis un livre.", "I'm reading a book.", "das Buch", "Bir kitap okuyorum."],
-    ["Er trägt ___ Hemd.", "n", "Il porte une chemise.", "He's wearing a shirt.", "das Hemd", "Bir gömlek giyiyor."]
+    ["Ich habe ___ Bruder.", "m", "J'ai un frère.", "I have a brother.", "der Bruder", "Bir erkek kardeşim var.", "برادری دارم."],
+    ["Er kauft ___ Hund.", "m", "Il achète un chien.", "He's buying a dog.", "der Hund", "Bir köpek satın alıyor.", "او سگی می‌خرد."],
+    ["Ich brauche ___ Schlüssel.", "m", "J'ai besoin d'une clé.", "I need a key.", "der Schlüssel", "Bir anahtara ihtiyacım var.", "کلیدی لازم دارم."],
+    ["Ich esse ___ Apfel.", "m", "Je mange une pomme.", "I'm eating an apple.", "der Apfel", "Bir elma yiyorum.", "سیبی می‌خورم."],
+    ["Ich suche ___ Wohnung.", "f", "Je cherche un appartement.", "I'm looking for an apartment.", "die Wohnung", "Bir daire arıyorum.", "دنبال آپارتمانی می‌گردم."],
+    ["Sie schreibt ___ Karte.", "f", "Elle écrit une carte.", "She's writing a card.", "die Karte", "Bir kart yazıyor.", "او کارتی می‌نویسد."],
+    ["Sie kauft ___ Lampe.", "f", "Elle achète une lampe.", "She's buying a lamp.", "die Lampe", "Bir lamba satın alıyor.", "او چراغی می‌خرد."],
+    ["Wir haben ___ Auto.", "n", "Nous avons une voiture.", "We have a car.", "das Auto", "Bir arabamız var.", "خودرویی داریم."],
+    ["Ich lese ___ Buch.", "n", "Je lis un livre.", "I'm reading a book.", "das Buch", "Bir kitap okuyorum.", "کتابی می‌خوانم."],
+    ["Er trägt ___ Hemd.", "n", "Il porte une chemise.", "He's wearing a shirt.", "das Hemd", "Bir gömlek giyiyor.", "او پیراهنی به تن دارد."]
 ];
 const ARTICLES_AKKUSATIV_NEG = [
-    ["Ich habe ___ Hund.", "m", "Je n'ai pas de chien.", "I don't have a dog.", "der Hund", "Hiç köpeğim yok."],
-    ["Er trinkt ___ Kaffee.", "m", "Il ne boit pas de café.", "He doesn't drink coffee.", "der Kaffee", "Hiç kahve içmiyor."],
-    ["Ich brauche ___ Schlüssel.", "m", "Je n'ai pas besoin de clé.", "I don't need a key.", "der Schlüssel", "Hiçbir anahtara ihtiyacım yok."],
-    ["Ich habe ___ Zeit.", "f", "Je n'ai pas le temps.", "I don't have time.", "die Zeit", "Hiç vaktim yok."],
-    ["Sie sucht ___ Wohnung.", "f", "Elle ne cherche pas d'appartement.", "She isn't looking for an apartment.", "die Wohnung", "Hiçbir daire aramıyor."],
-    ["Sie trägt ___ Brille.", "f", "Elle ne porte pas de lunettes.", "She doesn't wear glasses.", "die Brille", "Hiç gözlük takmıyor."],
-    ["Wir haben ___ Auto.", "n", "Nous n'avons pas de voiture.", "We don't have a car.", "das Auto", "Hiç arabamız yok."],
-    ["Ich lese ___ Buch.", "n", "Je ne lis pas de livre.", "I'm not reading a book.", "das Buch", "Hiç kitap okumuyorum."],
-    ["Ich sehe ___ Kinder.", "pl", "Je ne vois aucun enfant.", "I don't see any children.", "die Kinder", "Hiçbir çocuk görmüyorum."],
-    ["Er kauft ___ Bücher.", "pl", "Il n'achète aucun livre.", "He isn't buying any books.", "die Bücher", "Hiç kitap satın almıyor."]
+    ["Ich habe ___ Hund.", "m", "Je n'ai pas de chien.", "I don't have a dog.", "der Hund", "Hiç köpeğim yok.", "سگی ندارم."],
+    ["Er trinkt ___ Kaffee.", "m", "Il ne boit pas de café.", "He doesn't drink coffee.", "der Kaffee", "Hiç kahve içmiyor.", "او قهوه نمی‌نوشد."],
+    ["Ich brauche ___ Schlüssel.", "m", "Je n'ai pas besoin de clé.", "I don't need a key.", "der Schlüssel", "Hiçbir anahtara ihtiyacım yok.", "کلیدی لازم ندارم."],
+    ["Ich habe ___ Zeit.", "f", "Je n'ai pas le temps.", "I don't have time.", "die Zeit", "Hiç vaktim yok.", "وقت ندارم."],
+    ["Sie sucht ___ Wohnung.", "f", "Elle ne cherche pas d'appartement.", "She isn't looking for an apartment.", "die Wohnung", "Hiçbir daire aramıyor.", "او دنبال هیچ آپارتمانی نمی‌گردد."],
+    ["Sie trägt ___ Brille.", "f", "Elle ne porte pas de lunettes.", "She doesn't wear glasses.", "die Brille", "Hiç gözlük takmıyor.", "او عینک نمی‌زند."],
+    ["Wir haben ___ Auto.", "n", "Nous n'avons pas de voiture.", "We don't have a car.", "das Auto", "Hiç arabamız yok.", "خودرویی نداریم."],
+    ["Ich lese ___ Buch.", "n", "Je ne lis pas de livre.", "I'm not reading a book.", "das Buch", "Hiç kitap okumuyorum.", "کتابی نمی‌خوانم."],
+    ["Ich sehe ___ Kinder.", "pl", "Je ne vois aucun enfant.", "I don't see any children.", "die Kinder", "Hiçbir çocuk görmüyorum.", "هیچ کودکی نمی‌بینم."],
+    ["Er kauft ___ Bücher.", "pl", "Il n'achète aucun livre.", "He isn't buying any books.", "die Bücher", "Hiç kitap satın almıyor.", "او هیچ کتابی نمی‌خرد."]
 ];
 const kasusArticleAkkusativ = construireExercicesArticles("akk", "def", ARTICLES_AKKUSATIV_DEF)
     .concat(construireExercicesArticles("akk", "indef", ARTICLES_AKKUSATIV_INDEF))
     .concat(construireExercicesArticles("akk", "neg", ARTICLES_AKKUSATIV_NEG));
 
 const ARTICLES_DATIV_DEF = [
-    ["Ich helfe ___ Mann.", "m", "J'aide l'homme.", "I'm helping the man.", "der Mann", "Adama yardım ediyorum."],
-    ["Sie dankt ___ Lehrer.", "m", "Elle remercie le professeur.", "She thanks the teacher.", "der Lehrer", "Öğretmene teşekkür ediyor."],
-    ["Wir glauben ___ Arzt.", "m", "Nous croyons le médecin.", "We believe the doctor.", "der Arzt", "Doktora inanıyoruz."],
-    ["Er schreibt ___ Freundin.", "f", "Il écrit à l'amie.", "He's writing to the friend.", "die Freundin", "Arkadaşına yazıyor."],
-    ["Ich folge ___ Ärztin.", "f", "Je suis la médecin.", "I'm following the doctor.", "die Ärztin", "Doktoru takip ediyorum."],
-    ["Das Buch gehört ___ Lehrerin.", "f", "Le livre appartient à la professeure.", "The book belongs to the teacher.", "die Lehrerin", "Kitap öğretmene ait."],
-    ["Ich gebe ___ Kind einen Ball.", "n", "Je donne un ballon à l'enfant.", "I give the child a ball.", "das Kind", "Çocuğa bir top veriyorum."],
-    ["Er hilft ___ Mädchen.", "n", "Il aide la fille.", "He's helping the girl.", "das Mädchen", "Kıza yardım ediyor."],
-    ["Ich helfe ___ Kindern.", "pl", "J'aide les enfants.", "I'm helping the children.", "die Kinder", "Çocuklara yardım ediyorum."],
-    ["Er dankt ___ Gästen.", "pl", "Il remercie les invités.", "He thanks the guests.", "die Gäste", "Misafirlere teşekkür ediyor."]
+    ["Ich helfe ___ Mann.", "m", "J'aide l'homme.", "I'm helping the man.", "der Mann", "Adama yardım ediyorum.", "به آن مرد یاری می‌دهم."],
+    ["Sie dankt ___ Lehrer.", "m", "Elle remercie le professeur.", "She thanks the teacher.", "der Lehrer", "Öğretmene teşekkür ediyor.", "او از آن آموزگار سپاسگزاری می‌کند."],
+    ["Wir glauben ___ Arzt.", "m", "Nous croyons le médecin.", "We believe the doctor.", "der Arzt", "Doktora inanıyoruz.", "به آن پزشک باور داریم."],
+    ["Er schreibt ___ Freundin.", "f", "Il écrit à l'amie.", "He's writing to the friend.", "die Freundin", "Arkadaşına yazıyor.", "او به آن دوست دختر نامه می‌نویسد."],
+    ["Ich folge ___ Ärztin.", "f", "Je suis la médecin.", "I'm following the doctor.", "die Ärztin", "Doktoru takip ediyorum.", "پی آن پزشک زن می‌روم."],
+    ["Das Buch gehört ___ Lehrerin.", "f", "Le livre appartient à la professeure.", "The book belongs to the teacher.", "die Lehrerin", "Kitap öğretmene ait.", "آن کتاب از آنِ آن آموزگار زن است."],
+    ["Ich gebe ___ Kind einen Ball.", "n", "Je donne un ballon à l'enfant.", "I give the child a ball.", "das Kind", "Çocuğa bir top veriyorum.", "به آن کودک توپی می‌دهم."],
+    ["Er hilft ___ Mädchen.", "n", "Il aide la fille.", "He's helping the girl.", "das Mädchen", "Kıza yardım ediyor.", "او به آن دختر یاری می‌دهد."],
+    ["Ich helfe ___ Kindern.", "pl", "J'aide les enfants.", "I'm helping the children.", "die Kinder", "Çocuklara yardım ediyorum.", "به آن کودکان یاری می‌دهم."],
+    ["Er dankt ___ Gästen.", "pl", "Il remercie les invités.", "He thanks the guests.", "die Gäste", "Misafirlere teşekkür ediyor.", "او از آن میهمانان سپاسگزاری می‌کند."]
 ];
 const ARTICLES_DATIV_INDEF = [
-    ["Ich helfe ___ Freund.", "m", "J'aide un ami.", "I'm helping a friend.", "der Freund", "Bir arkadaşa yardım ediyorum."],
-    ["Sie dankt ___ Arzt.", "m", "Elle remercie un médecin.", "She thanks a doctor.", "der Arzt", "Bir doktora teşekkür ediyor."],
-    ["Das gehört ___ Lehrer.", "m", "Cela appartient à un professeur.", "That belongs to a teacher.", "der Lehrer", "Bu bir öğretmene ait."],
-    ["Er schreibt ___ Freundin.", "f", "Il écrit à une amie.", "He's writing to a friend.", "die Freundin", "Bir arkadaşına yazıyor."],
-    ["Ich folge ___ Ärztin.", "f", "Je suis une médecin.", "I'm following a doctor.", "die Ärztin", "Bir doktoru takip ediyorum."],
-    ["Ich antworte ___ Frau.", "f", "Je réponds à une femme.", "I'm answering a woman.", "die Frau", "Bir kadına cevap veriyorum."],
-    ["Das Auto gehört ___ Nachbarin.", "f", "La voiture appartient à une voisine.", "The car belongs to a neighbour.", "die Nachbarin", "Araba bir komşuya ait."],
-    ["Wir geben ___ Kind das Buch.", "n", "Nous donnons le livre à un enfant.", "We give the book to a child.", "das Kind", "Bir çocuğa kitabı veriyoruz."],
-    ["Sie hilft ___ Mädchen.", "n", "Elle aide une fille.", "She's helping a girl.", "das Mädchen", "Bir kıza yardım ediyor."],
-    ["Er zeigt ___ Kind das Bild.", "n", "Il montre l'image à un enfant.", "He shows the picture to a child.", "das Kind", "Bir çocuğa resmi gösteriyor."]
+    ["Ich helfe ___ Freund.", "m", "J'aide un ami.", "I'm helping a friend.", "der Freund", "Bir arkadaşa yardım ediyorum.", "به دوستی یاری می‌دهم."],
+    ["Sie dankt ___ Arzt.", "m", "Elle remercie un médecin.", "She thanks a doctor.", "der Arzt", "Bir doktora teşekkür ediyor.", "او از پزشکی سپاسگزاری می‌کند."],
+    ["Das gehört ___ Lehrer.", "m", "Cela appartient à un professeur.", "That belongs to a teacher.", "der Lehrer", "Bu bir öğretmene ait.", "این از آنِ آموزگاری است."],
+    ["Er schreibt ___ Freundin.", "f", "Il écrit à une amie.", "He's writing to a friend.", "die Freundin", "Bir arkadaşına yazıyor.", "او به دوست دختری نامه می‌نویسد."],
+    ["Ich folge ___ Ärztin.", "f", "Je suis une médecin.", "I'm following a doctor.", "die Ärztin", "Bir doktoru takip ediyorum.", "پی پزشک زنی می‌روم."],
+    ["Ich antworte ___ Frau.", "f", "Je réponds à une femme.", "I'm answering a woman.", "die Frau", "Bir kadına cevap veriyorum.", "به زنی پاسخ می‌دهم."],
+    ["Das Auto gehört ___ Nachbarin.", "f", "La voiture appartient à une voisine.", "The car belongs to a neighbour.", "die Nachbarin", "Araba bir komşuya ait.", "آن خودرو از آنِ همسایه‌ای است."],
+    ["Wir geben ___ Kind das Buch.", "n", "Nous donnons le livre à un enfant.", "We give the book to a child.", "das Kind", "Bir çocuğa kitabı veriyoruz.", "آن کتاب را به کودکی می‌دهیم."],
+    ["Sie hilft ___ Mädchen.", "n", "Elle aide une fille.", "She's helping a girl.", "das Mädchen", "Bir kıza yardım ediyor.", "او به دختری یاری می‌دهد."],
+    ["Er zeigt ___ Kind das Bild.", "n", "Il montre l'image à un enfant.", "He shows the picture to a child.", "das Kind", "Bir çocuğa resmi gösteriyor.", "او آن تصویر را به کودکی نشان می‌دهد."]
 ];
 const ARTICLES_DATIV_NEG = [
-    ["Ich helfe ___ Mann.", "m", "Je n'aide aucun homme.", "I'm not helping any man.", "der Mann", "Hiçbir adama yardım etmiyorum."],
-    ["Sie dankt ___ Lehrer.", "m", "Elle ne remercie aucun professeur.", "She doesn't thank any teacher.", "der Lehrer", "Hiçbir öğretmene teşekkür etmiyor."],
-    ["Ich glaube ___ Arzt.", "m", "Je ne crois aucun médecin.", "I don't believe any doctor.", "der Arzt", "Hiçbir doktora inanmıyorum."],
-    ["Er schreibt ___ Freundin.", "f", "Il n'écrit à aucune amie.", "He isn't writing to any friend.", "die Freundin", "Hiçbir arkadaşına yazmıyor."],
-    ["Das gehört ___ Frau.", "f", "Cela n'appartient à aucune femme.", "That belongs to no woman.", "die Frau", "Bu hiçbir kadına ait değil."],
-    ["Sie antwortet ___ Lehrerin.", "f", "Elle ne répond à aucune professeure.", "She doesn't answer any teacher.", "die Lehrerin", "Hiçbir öğretmene cevap vermiyor."],
-    ["Wir geben ___ Kind Geld.", "n", "Nous ne donnons d'argent à aucun enfant.", "We don't give money to any child.", "das Kind", "Hiçbir çocuğa para vermiyoruz."],
-    ["Sie hilft ___ Mädchen.", "n", "Elle n'aide aucune fille.", "She isn't helping any girl.", "das Mädchen", "Hiçbir kıza yardım etmiyor."],
-    ["Ich helfe ___ Kindern.", "pl", "Je n'aide aucun enfant.", "I'm not helping any children.", "die Kinder", "Hiçbir çocuğa yardım etmiyorum."],
-    ["Er dankt ___ Gästen.", "pl", "Il ne remercie aucun invité.", "He doesn't thank any guests.", "die Gäste", "Hiçbir misafire teşekkür etmiyor."]
+    ["Ich helfe ___ Mann.", "m", "Je n'aide aucun homme.", "I'm not helping any man.", "der Mann", "Hiçbir adama yardım etmiyorum.", "به هیچ مردی یاری نمی‌دهم."],
+    ["Sie dankt ___ Lehrer.", "m", "Elle ne remercie aucun professeur.", "She doesn't thank any teacher.", "der Lehrer", "Hiçbir öğretmene teşekkür etmiyor.", "او از هیچ آموزگاری سپاسگزاری نمی‌کند."],
+    ["Ich glaube ___ Arzt.", "m", "Je ne crois aucun médecin.", "I don't believe any doctor.", "der Arzt", "Hiçbir doktora inanmıyorum.", "به هیچ پزشکی باور ندارم."],
+    ["Er schreibt ___ Freundin.", "f", "Il n'écrit à aucune amie.", "He isn't writing to any friend.", "die Freundin", "Hiçbir arkadaşına yazmıyor.", "او به هیچ دوست دختری نامه نمی‌نویسد."],
+    ["Das gehört ___ Frau.", "f", "Cela n'appartient à aucune femme.", "That belongs to no woman.", "die Frau", "Bu hiçbir kadına ait değil.", "این از آنِ هیچ زنی نیست."],
+    ["Sie antwortet ___ Lehrerin.", "f", "Elle ne répond à aucune professeure.", "She doesn't answer any teacher.", "die Lehrerin", "Hiçbir öğretmene cevap vermiyor.", "او به هیچ آموزگار زنی پاسخ نمی‌دهد."],
+    ["Wir geben ___ Kind Geld.", "n", "Nous ne donnons d'argent à aucun enfant.", "We don't give money to any child.", "das Kind", "Hiçbir çocuğa para vermiyoruz.", "به هیچ کودکی پول نمی‌دهیم."],
+    ["Sie hilft ___ Mädchen.", "n", "Elle n'aide aucune fille.", "She isn't helping any girl.", "das Mädchen", "Hiçbir kıza yardım etmiyor.", "او به هیچ دختری یاری نمی‌دهد."],
+    ["Ich helfe ___ Kindern.", "pl", "Je n'aide aucun enfant.", "I'm not helping any children.", "die Kinder", "Hiçbir çocuğa yardım etmiyorum.", "به هیچ کودکی یاری نمی‌دهم."],
+    ["Er dankt ___ Gästen.", "pl", "Il ne remercie aucun invité.", "He doesn't thank any guests.", "die Gäste", "Hiçbir misafire teşekkür etmiyor.", "او از هیچ میهمانی سپاسگزاری نمی‌کند."]
 ];
 const kasusArticleDativ = construireExercicesArticles("dat", "def", ARTICLES_DATIV_DEF)
     .concat(construireExercicesArticles("dat", "indef", ARTICLES_DATIV_INDEF))
     .concat(construireExercicesArticles("dat", "neg", ARTICLES_DATIV_NEG));
 
 const ARTICLES_GENITIV_DEF = [
-    ["Das Auto ___ Mannes ist neu.", "m", "La voiture de l'homme est neuve.", "The man's car is new.", "der Mann", "Adamın arabası yeni."],
-    ["Der Titel ___ Films ist lustig.", "m", "Le titre du film est drôle.", "The title of the film is funny.", "der Film", "Filmin adı komik."],
-    ["Die Farbe ___ Himmels ist grau.", "m", "La couleur du ciel est grise.", "The colour of the sky is grey.", "der Himmel", "Gökyüzünün rengi gri."],
-    ["Der Name ___ Stadt ist schön.", "f", "Le nom de la ville est joli.", "The name of the city is pretty.", "die Stadt", "Şehrin adı güzel."],
-    ["Die Tür ___ Wohnung ist offen.", "f", "La porte de l'appartement est ouverte.", "The door of the apartment is open.", "die Wohnung", "Dairenin kapısı açık."],
-    ["Die Farbe ___ Blume ist rot.", "f", "La couleur de la fleur est rouge.", "The colour of the flower is red.", "die Blume", "Çiçeğin rengi kırmızı."],
-    ["Die Meinung ___ Lehrerin ist wichtig.", "f", "L'avis de la professeure est important.", "The teacher's opinion matters.", "die Lehrerin", "Öğretmenin görüşü önemli."],
-    ["Das Dach ___ Hauses ist alt.", "n", "Le toit de la maison est vieux.", "The roof of the house is old.", "das Haus", "Evin çatısı eski."],
-    ["Der Titel ___ Buches ist bekannt.", "n", "Le titre du livre est connu.", "The title of the book is well known.", "das Buch", "Kitabın adı biliniyor."],
-    ["Die Farbe ___ Autos ist blau.", "n", "La couleur de la voiture est bleue.", "The colour of the car is blue.", "das Auto", "Arabanın rengi mavi."],
-    ["Der Schlüssel ___ Zimmers liegt hier.", "n", "La clé de la chambre est ici.", "The key to the room is here.", "das Zimmer", "Odanın anahtarı burada."],
-    ["Die Stimmen ___ Kinder sind laut.", "pl", "Les voix des enfants sont fortes.", "The children's voices are loud.", "die Kinder", "Çocukların sesleri yüksek."],
-    ["Die Farben ___ Blumen sind schön.", "pl", "Les couleurs des fleurs sont belles.", "The colours of the flowers are beautiful.", "die Blumen", "Çiçeklerin renkleri güzel."],
-    ["Der Lärm ___ Autos stört.", "pl", "Le bruit des voitures dérange.", "The noise of the cars is disturbing.", "die Autos", "Arabaların gürültüsü rahatsız ediyor."]
+    ["Das Auto ___ Mannes ist neu.", "m", "La voiture de l'homme est neuve.", "The man's car is new.", "der Mann", "Adamın arabası yeni.", "خودروی آن مرد نو است."],
+    ["Der Titel ___ Films ist lustig.", "m", "Le titre du film est drôle.", "The title of the film is funny.", "der Film", "Filmin adı komik.", "عنوان آن فیلم خنده‌دار است."],
+    ["Die Farbe ___ Himmels ist grau.", "m", "La couleur du ciel est grise.", "The colour of the sky is grey.", "der Himmel", "Gökyüzünün rengi gri.", "رنگ آن آسمان خاکستری است."],
+    ["Der Name ___ Stadt ist schön.", "f", "Le nom de la ville est joli.", "The name of the city is pretty.", "die Stadt", "Şehrin adı güzel.", "نام آن شهر زیباست."],
+    ["Die Tür ___ Wohnung ist offen.", "f", "La porte de l'appartement est ouverte.", "The door of the apartment is open.", "die Wohnung", "Dairenin kapısı açık.", "در آن آپارتمان باز است."],
+    ["Die Farbe ___ Blume ist rot.", "f", "La couleur de la fleur est rouge.", "The colour of the flower is red.", "die Blume", "Çiçeğin rengi kırmızı.", "رنگ آن گل سرخ است."],
+    ["Die Meinung ___ Lehrerin ist wichtig.", "f", "L'avis de la professeure est important.", "The teacher's opinion matters.", "die Lehrerin", "Öğretmenin görüşü önemli.", "نظر آن آموزگار زن مهم است."],
+    ["Das Dach ___ Hauses ist alt.", "n", "Le toit de la maison est vieux.", "The roof of the house is old.", "das Haus", "Evin çatısı eski.", "بام آن خانه کهنه است."],
+    ["Der Titel ___ Buches ist bekannt.", "n", "Le titre du livre est connu.", "The title of the book is well known.", "das Buch", "Kitabın adı biliniyor.", "عنوان آن کتاب شناخته‌شده است."],
+    ["Die Farbe ___ Autos ist blau.", "n", "La couleur de la voiture est bleue.", "The colour of the car is blue.", "das Auto", "Arabanın rengi mavi.", "رنگ آن خودرو آبی است."],
+    ["Der Schlüssel ___ Zimmers liegt hier.", "n", "La clé de la chambre est ici.", "The key to the room is here.", "das Zimmer", "Odanın anahtarı burada.", "کلید آن اتاق اینجاست."],
+    ["Die Stimmen ___ Kinder sind laut.", "pl", "Les voix des enfants sont fortes.", "The children's voices are loud.", "die Kinder", "Çocukların sesleri yüksek.", "صدای آن کودکان بلند است."],
+    ["Die Farben ___ Blumen sind schön.", "pl", "Les couleurs des fleurs sont belles.", "The colours of the flowers are beautiful.", "die Blumen", "Çiçeklerin renkleri güzel.", "رنگ‌های آن گل‌ها زیباست."],
+    ["Der Lärm ___ Autos stört.", "pl", "Le bruit des voitures dérange.", "The noise of the cars is disturbing.", "die Autos", "Arabaların gürültüsü rahatsız ediyor.", "سروصدای آن خودروها آزار می‌دهد."]
 ];
 const ARTICLES_GENITIV_INDEF = [
-    ["Das ist das Auto ___ Mannes.", "m", "C'est la voiture d'un homme.", "That is a man's car.", "der Mann", "Bu, bir adamın arabası."],
-    ["Der Titel ___ Films ist lang.", "m", "Le titre d'un film est long.", "The title of a film is long.", "der Film", "Bir filmin adı uzun."],
-    ["Die Meinung ___ Arztes ist wichtig.", "m", "L'avis d'un médecin est important.", "A doctor's opinion matters.", "der Arzt", "Bir doktorun görüşü önemli."],
-    ["Das ist die Tür ___ Wohnung.", "f", "C'est la porte d'un appartement.", "That is the door of an apartment.", "die Wohnung", "Bu, bir dairenin kapısı."],
-    ["Das ist der Name ___ Stadt in Bayern.", "f", "C'est le nom d'une ville de Bavière.", "That is the name of a city in Bavaria.", "die Stadt", "Bu, Bavyera'daki bir şehrin adı."],
-    ["Das ist die Farbe ___ Blume.", "f", "C'est la couleur d'une fleur.", "That is the colour of a flower.", "die Blume", "Bu, bir çiçeğin rengi."],
-    ["Die Meinung ___ Ärztin ist wichtig.", "f", "L'avis d'une médecin est important.", "A doctor's opinion matters.", "die Ärztin", "Bir doktorun görüşü önemli."],
-    ["Das Dach ___ Hauses ist rot.", "n", "Le toit d'une maison est rouge.", "The roof of a house is red.", "das Haus", "Bir evin çatısı kırmızı."],
-    ["Die Stimme ___ Kindes ist leise.", "n", "La voix d'un enfant est douce.", "A child's voice is quiet.", "das Kind", "Bir çocuğun sesi kısık."],
-    ["Das ist der Schlüssel ___ Zimmers.", "n", "C'est la clé d'une chambre.", "That is the key to a room.", "das Zimmer", "Bu, bir odanın anahtarı."]
+    ["Das ist das Auto ___ Mannes.", "m", "C'est la voiture d'un homme.", "That is a man's car.", "der Mann", "Bu, bir adamın arabası.", "این خودروی مردی است."],
+    ["Der Titel ___ Films ist lang.", "m", "Le titre d'un film est long.", "The title of a film is long.", "der Film", "Bir filmin adı uzun.", "عنوان فیلمی دراز است."],
+    ["Die Meinung ___ Arztes ist wichtig.", "m", "L'avis d'un médecin est important.", "A doctor's opinion matters.", "der Arzt", "Bir doktorun görüşü önemli.", "نظر پزشکی مهم است."],
+    ["Das ist die Tür ___ Wohnung.", "f", "C'est la porte d'un appartement.", "That is the door of an apartment.", "die Wohnung", "Bu, bir dairenin kapısı.", "این در آپارتمانی است."],
+    ["Das ist der Name ___ Stadt in Bayern.", "f", "C'est le nom d'une ville de Bavière.", "That is the name of a city in Bavaria.", "die Stadt", "Bu, Bavyera'daki bir şehrin adı.", "این نام شهری در بایرن است."],
+    ["Das ist die Farbe ___ Blume.", "f", "C'est la couleur d'une fleur.", "That is the colour of a flower.", "die Blume", "Bu, bir çiçeğin rengi.", "این رنگ گلی است."],
+    ["Die Meinung ___ Ärztin ist wichtig.", "f", "L'avis d'une médecin est important.", "A doctor's opinion matters.", "die Ärztin", "Bir doktorun görüşü önemli.", "نظر پزشک زنی مهم است."],
+    ["Das Dach ___ Hauses ist rot.", "n", "Le toit d'une maison est rouge.", "The roof of a house is red.", "das Haus", "Bir evin çatısı kırmızı.", "بام خانه‌ای سرخ است."],
+    ["Die Stimme ___ Kindes ist leise.", "n", "La voix d'un enfant est douce.", "A child's voice is quiet.", "das Kind", "Bir çocuğun sesi kısık.", "صدای کودکی آرام است."],
+    ["Das ist der Schlüssel ___ Zimmers.", "n", "C'est la clé d'une chambre.", "That is the key to a room.", "das Zimmer", "Bu, bir odanın anahtarı.", "این کلید اتاقی است."]
 ];
 const ARTICLES_GENITIV_NEG = [
-    ["Die Meinung ___ Lehrers zählt hier mehr.", "m", "L'avis d'aucun professeur ne compte davantage ici.", "No teacher's opinion counts for more here.", "der Lehrer", "Burada hiçbir öğretmenin görüşü daha fazla sayılmaz."],
-    ["Der Name ___ Stadt ist so lang.", "f", "Le nom d'aucune ville n'est aussi long.", "No city's name is that long.", "die Stadt", "Hiçbir şehrin adı bu kadar uzun değil."],
-    ["Der Preis ___ Autos ist so hoch.", "n", "Le prix d'aucune voiture n'est aussi élevé.", "No car's price is that high.", "das Auto", "Hiçbir arabanın fiyatı bu kadar yüksek değil."],
-    ["Das Dach ___ Hauses ist so alt.", "n", "Le toit d'aucune maison n'est aussi vieux.", "No house's roof is that old.", "das Haus", "Hiçbir evin çatısı bu kadar eski değil."],
-    ["Die Stimme ___ Kindes war zu hören.", "n", "La voix d'aucun enfant ne s'entendait.", "No child's voice could be heard.", "das Kind", "Hiçbir çocuğun sesi duyulmuyordu."],
-    ["Die Farbe ___ Blumen gefällt ihm.", "pl", "La couleur d'aucune fleur ne lui plaît.", "He doesn't like the colour of any flowers.", "die Blumen", "Hiçbir çiçeğin rengi onun hoşuna gitmiyor."]
+    ["Die Meinung ___ Lehrers zählt hier mehr.", "m", "L'avis d'aucun professeur ne compte davantage ici.", "No teacher's opinion counts for more here.", "der Lehrer", "Burada hiçbir öğretmenin görüşü daha fazla sayılmaz.", "نظر هیچ آموزگاری اینجا بیشتر به شمار نمی‌آید."],
+    ["Der Name ___ Stadt ist so lang.", "f", "Le nom d'aucune ville n'est aussi long.", "No city's name is that long.", "die Stadt", "Hiçbir şehrin adı bu kadar uzun değil.", "نام هیچ شهری این‌قدر دراز نیست."],
+    ["Der Preis ___ Autos ist so hoch.", "n", "Le prix d'aucune voiture n'est aussi élevé.", "No car's price is that high.", "das Auto", "Hiçbir arabanın fiyatı bu kadar yüksek değil.", "بهای هیچ خودرویی این‌قدر بالا نیست."],
+    ["Das Dach ___ Hauses ist so alt.", "n", "Le toit d'aucune maison n'est aussi vieux.", "No house's roof is that old.", "das Haus", "Hiçbir evin çatısı bu kadar eski değil.", "بام هیچ خانه‌ای این‌قدر کهنه نیست."],
+    ["Die Stimme ___ Kindes war zu hören.", "n", "La voix d'aucun enfant ne s'entendait.", "No child's voice could be heard.", "das Kind", "Hiçbir çocuğun sesi duyulmuyordu.", "صدای هیچ کودکی شنیده نمی‌شد."],
+    ["Die Farbe ___ Blumen gefällt ihm.", "pl", "La couleur d'aucune fleur ne lui plaît.", "He doesn't like the colour of any flowers.", "die Blumen", "Hiçbir çiçeğin rengi onun hoşuna gitmiyor.", "رنگ هیچ گلی خوشایند او نیست."]
 ];
 const kasusArticleGenitiv = construireExercicesArticles("gen", "def", ARTICLES_GENITIV_DEF)
     .concat(construireExercicesArticles("gen", "indef", ARTICLES_GENITIV_INDEF))
     .concat(construireExercicesArticles("gen", "neg", ARTICLES_GENITIV_NEG));
 
 const ARTICLES_MIX = [
-    ["___ Hund bellt laut.", "nom", "def", "m", "sujet", "Le chien aboie fort.", "The dog is barking loudly.", "der Hund", "Köpek yüksek sesle havlıyor."],
-    ["Ich sehe ___ Hund.", "akk", "def", "m", "objet", "Je vois le chien.", "I see the dog.", "der Hund", "Köpeği görüyorum."],
-    ["Ich helfe ___ Hund.", "dat", "def", "m", "verbe", "J'aide le chien.", "I'm helping the dog.", "der Hund", "Köpeğe yardım ediyorum."],
-    ["Das Fell ___ Hundes ist weiß.", "gen", "def", "m", "possession", "Le pelage du chien est blanc.", "The dog's coat is white.", "der Hund", "Köpeğin tüyü beyaz."],
-    ["___ Zeitung liegt auf dem Tisch.", "nom", "def", "f", "sujet", "Le journal est sur la table.", "The newspaper is on the table.", "die Zeitung", "Gazete masanın üstünde duruyor."],
-    ["Ich kaufe ___ Zeitung.", "akk", "def", "f", "objet", "J'achète le journal.", "I'm buying the newspaper.", "die Zeitung", "Gazeteyi satın alıyorum."],
-    ["Wir danken ___ Lehrerin.", "dat", "def", "f", "verbe", "Nous remercions la professeure.", "We thank the teacher.", "die Lehrerin", "Öğretmene teşekkür ediyoruz."],
-    ["Das Foto ___ Zeitung ist alt.", "gen", "def", "f", "possession", "La photo du journal est ancienne.", "The newspaper's photo is old.", "die Zeitung", "Gazetenin fotoğrafı eski."],
-    ["___ Buch ist neu.", "nom", "def", "n", "sujet", "Le livre est neuf.", "The book is new.", "das Buch", "Kitap yeni."],
-    ["Ich lese ___ Buch.", "akk", "def", "n", "objet", "Je lis le livre.", "I'm reading the book.", "das Buch", "Kitabı okuyorum."],
-    ["Ich öffne ___ Fenster.", "akk", "def", "n", "objet", "J'ouvre la fenêtre.", "I'm opening the window.", "das Fenster", "Pencereyi açıyorum."],
-    ["Der Titel ___ Buches ist kurz.", "gen", "def", "n", "possession", "Le titre du livre est court.", "The book's title is short.", "das Buch", "Kitabın adı kısa."],
-    ["Ich gebe ___ Mann das Buch.", "dat", "def", "m", "verbe", "Je donne le livre à l'homme.", "I give the man the book.", "der Mann", "Adama kitabı veriyorum."],
-    ["___ Kinder sind müde.", "nom", "def", "pl", "sujet", "Les enfants sont fatigués.", "The children are tired.", "die Kinder", "Çocuklar yorgun."],
-    ["Ich sehe ___ Kinder.", "akk", "def", "pl", "objet", "Je vois les enfants.", "I see the children.", "die Kinder", "Çocukları görüyorum."],
-    ["Wir helfen ___ Kindern.", "dat", "def", "pl", "verbe", "Nous aidons les enfants.", "We're helping the children.", "die Kinder", "Çocuklara yardım ediyoruz."],
-    ["Die Stimmen ___ Kinder sind laut.", "gen", "def", "pl", "possession", "Les voix des enfants sont fortes.", "The children's voices are loud.", "die Kinder", "Çocukların sesleri yüksek."],
-    ["Das ist ___ Arzt.", "nom", "indef", "m", "sujet", "C'est un médecin.", "That is a doctor.", "der Arzt", "Bu bir doktor."],
-    ["Ich suche ___ Arzt.", "akk", "indef", "m", "objet", "Je cherche un médecin.", "I'm looking for a doctor.", "der Arzt", "Bir doktor arıyorum."],
-    ["Ich danke ___ Arzt.", "dat", "indef", "m", "verbe", "Je remercie un médecin.", "I thank a doctor.", "der Arzt", "Bir doktora teşekkür ediyorum."],
-    ["Die Meinung ___ Arztes ist wichtig.", "gen", "indef", "m", "possession", "L'avis d'un médecin est important.", "A doctor's opinion matters.", "der Arzt", "Bir doktorun görüşü önemli."],
-    ["Das ist ___ Wohnung.", "nom", "indef", "f", "sujet", "C'est un appartement.", "That is an apartment.", "die Wohnung", "Bu bir daire."],
-    ["Ich suche ___ Wohnung.", "akk", "indef", "f", "objet", "Je cherche un appartement.", "I'm looking for an apartment.", "die Wohnung", "Bir daire arıyorum."],
-    ["Wir wohnen in ___ Wohnung.", "dat", "indef", "f", "preposition", "Nous habitons dans un appartement.", "We live in an apartment.", "die Wohnung", "Bir dairede oturuyoruz."],
-    ["Die Tür ___ Wohnung ist offen.", "gen", "indef", "f", "possession", "La porte d'un appartement est ouverte.", "The door of an apartment is open.", "die Wohnung", "Bir dairenin kapısı açık."],
-    ["Das ist ___ Auto.", "nom", "indef", "n", "sujet", "C'est une voiture.", "That is a car.", "das Auto", "Bu bir araba."],
-    ["Ich kaufe ___ Auto.", "akk", "indef", "n", "objet", "J'achète une voiture.", "I'm buying a car.", "das Auto", "Bir araba satın alıyorum."],
-    ["Ich fahre mit ___ Auto.", "dat", "indef", "n", "preposition", "Je pars en voiture.", "I'm going by car.", "das Auto", "Arabayla gidiyorum."],
-    ["Der Preis ___ Autos ist hoch.", "gen", "indef", "n", "possession", "Le prix d'une voiture est élevé.", "A car's price is high.", "das Auto", "Bir arabanın fiyatı yüksek."],
-    ["Das ist ___ Apfel.", "nom", "indef", "m", "sujet", "C'est une pomme.", "That is an apple.", "der Apfel", "Bu bir elma."],
-    ["Ich esse ___ Apfel.", "akk", "indef", "m", "objet", "Je mange une pomme.", "I'm eating an apple.", "der Apfel", "Bir elma yiyorum."],
-    ["Ich habe ___ Bruder.", "akk", "indef", "m", "objet", "J'ai un frère.", "I have a brother.", "der Bruder", "Bir erkek kardeşim var."],
-    ["Das ist ___ Kind aus meiner Klasse.", "nom", "indef", "n", "sujet", "C'est un enfant de ma classe.", "That is a child from my class.", "das Kind", "Bu, sınıfımdan bir çocuk."],
-    ["Ich helfe ___ Kind.", "dat", "indef", "n", "verbe", "J'aide un enfant.", "I'm helping a child.", "das Kind", "Bir çocuğa yardım ediyorum."],
-    ["Er schreibt ___ Freundin.", "dat", "indef", "f", "verbe", "Il écrit à une amie.", "He's writing to a friend.", "die Freundin", "Bir arkadaşına yazıyor."],
-    ["Das ist ___ Hund, das ist eine Katze.", "nom", "neg", "m", "sujet", "Ce n'est pas un chien, c'est un chat.", "That is not a dog, that is a cat.", "der Hund", "Bu bir köpek değil, bir kedi."],
-    ["Ich habe ___ Hund.", "akk", "neg", "m", "objet", "Je n'ai pas de chien.", "I don't have a dog.", "der Hund", "Hiç köpeğim yok."],
-    ["Ich helfe ___ Hund.", "dat", "neg", "m", "verbe", "Je n'aide aucun chien.", "I'm not helping any dog.", "der Hund", "Hiçbir köpeğe yardım etmiyorum."],
-    ["___ Zug fährt heute.", "nom", "neg", "m", "sujet", "Aucun train ne circule aujourd'hui.", "No train is running today.", "der Zug", "Bugün hiçbir tren kalkmıyor."],
-    ["Ich nehme ___ Zug.", "akk", "neg", "m", "objet", "Je ne prends pas le train.", "I'm not taking a train.", "der Zug", "Trene binmiyorum."],
-    ["Ich fahre mit ___ Zug.", "dat", "neg", "m", "preposition", "Je ne pars pas en train.", "I'm not going by train.", "der Zug", "Trenle gitmiyorum."],
-    ["Das ist ___ Frau aus Berlin.", "nom", "neg", "f", "sujet", "Ce n'est pas une femme de Berlin.", "That is not a woman from Berlin.", "die Frau", "Bu, Berlinli bir kadın değil."],
-    ["Ich kenne ___ Frau hier.", "akk", "neg", "f", "objet", "Je ne connais aucune femme ici.", "I don't know any woman here.", "die Frau", "Burada hiçbir kadını tanımıyorum."],
-    ["Ich danke ___ Frau.", "dat", "neg", "f", "verbe", "Je ne remercie aucune femme.", "I don't thank any woman.", "die Frau", "Hiçbir kadına teşekkür etmiyorum."],
-    ["Das ist ___ Problem.", "nom", "neg", "n", "sujet", "Ce n'est pas un problème.", "That is not a problem.", "das Problem", "Bu bir sorun değil."],
-    ["Ich habe ___ Auto.", "akk", "neg", "n", "objet", "Je n'ai pas de voiture.", "I don't have a car.", "das Auto", "Hiç arabam yok."],
-    ["Ich fahre mit ___ Auto.", "dat", "neg", "n", "preposition", "Je ne pars pas en voiture.", "I'm not going by car.", "das Auto", "Arabayla gitmiyorum."],
-    ["___ Kinder spielen draußen.", "nom", "neg", "pl", "sujet", "Aucun enfant ne joue dehors.", "No children are playing outside.", "die Kinder", "Dışarıda hiçbir çocuk oynamıyor."],
-    ["Ich sehe ___ Kinder.", "akk", "neg", "pl", "objet", "Je ne vois aucun enfant.", "I don't see any children.", "die Kinder", "Hiçbir çocuk görmüyorum."],
-    ["Ich helfe ___ Kindern.", "dat", "neg", "pl", "verbe", "Je n'aide aucun enfant.", "I'm not helping any children.", "die Kinder", "Hiçbir çocuğa yardım etmiyorum."]
+    ["___ Hund bellt laut.", "nom", "def", "m", "sujet", "Le chien aboie fort.", "The dog is barking loudly.", "der Hund", "Köpek yüksek sesle havlıyor.", "آن سگ بلند پارس می‌کند."],
+    ["Ich sehe ___ Hund.", "akk", "def", "m", "objet", "Je vois le chien.", "I see the dog.", "der Hund", "Köpeği görüyorum.", "آن سگ را می‌بینم."],
+    ["Ich helfe ___ Hund.", "dat", "def", "m", "verbe", "J'aide le chien.", "I'm helping the dog.", "der Hund", "Köpeğe yardım ediyorum.", "به آن سگ یاری می‌دهم."],
+    ["Das Fell ___ Hundes ist weiß.", "gen", "def", "m", "possession", "Le pelage du chien est blanc.", "The dog's coat is white.", "der Hund", "Köpeğin tüyü beyaz.", "پشم آن سگ سفید است."],
+    ["___ Zeitung liegt auf dem Tisch.", "nom", "def", "f", "sujet", "Le journal est sur la table.", "The newspaper is on the table.", "die Zeitung", "Gazete masanın üstünde duruyor.", "آن روزنامه روی میز است."],
+    ["Ich kaufe ___ Zeitung.", "akk", "def", "f", "objet", "J'achète le journal.", "I'm buying the newspaper.", "die Zeitung", "Gazeteyi satın alıyorum.", "آن روزنامه را می‌خرم."],
+    ["Wir danken ___ Lehrerin.", "dat", "def", "f", "verbe", "Nous remercions la professeure.", "We thank the teacher.", "die Lehrerin", "Öğretmene teşekkür ediyoruz.", "از آن آموزگار زن سپاسگزاری می‌کنیم."],
+    ["Das Foto ___ Zeitung ist alt.", "gen", "def", "f", "possession", "La photo du journal est ancienne.", "The newspaper's photo is old.", "die Zeitung", "Gazetenin fotoğrafı eski.", "عکس آن روزنامه کهنه است."],
+    ["___ Buch ist neu.", "nom", "def", "n", "sujet", "Le livre est neuf.", "The book is new.", "das Buch", "Kitap yeni.", "آن کتاب نو است."],
+    ["Ich lese ___ Buch.", "akk", "def", "n", "objet", "Je lis le livre.", "I'm reading the book.", "das Buch", "Kitabı okuyorum.", "آن کتاب را می‌خوانم."],
+    ["Ich öffne ___ Fenster.", "akk", "def", "n", "objet", "J'ouvre la fenêtre.", "I'm opening the window.", "das Fenster", "Pencereyi açıyorum.", "آن پنجره را باز می‌کنم."],
+    ["Der Titel ___ Buches ist kurz.", "gen", "def", "n", "possession", "Le titre du livre est court.", "The book's title is short.", "das Buch", "Kitabın adı kısa.", "عنوان آن کتاب کوتاه است."],
+    ["Ich gebe ___ Mann das Buch.", "dat", "def", "m", "verbe", "Je donne le livre à l'homme.", "I give the man the book.", "der Mann", "Adama kitabı veriyorum.", "آن کتاب را به آن مرد می‌دهم."],
+    ["___ Kinder sind müde.", "nom", "def", "pl", "sujet", "Les enfants sont fatigués.", "The children are tired.", "die Kinder", "Çocuklar yorgun.", "آن کودکان خسته‌اند."],
+    ["Ich sehe ___ Kinder.", "akk", "def", "pl", "objet", "Je vois les enfants.", "I see the children.", "die Kinder", "Çocukları görüyorum.", "آن کودکان را می‌بینم."],
+    ["Wir helfen ___ Kindern.", "dat", "def", "pl", "verbe", "Nous aidons les enfants.", "We're helping the children.", "die Kinder", "Çocuklara yardım ediyoruz.", "به آن کودکان یاری می‌دهیم."],
+    ["Die Stimmen ___ Kinder sind laut.", "gen", "def", "pl", "possession", "Les voix des enfants sont fortes.", "The children's voices are loud.", "die Kinder", "Çocukların sesleri yüksek.", "صدای آن کودکان بلند است."],
+    ["Das ist ___ Arzt.", "nom", "indef", "m", "sujet", "C'est un médecin.", "That is a doctor.", "der Arzt", "Bu bir doktor.", "این یک پزشک است."],
+    ["Ich suche ___ Arzt.", "akk", "indef", "m", "objet", "Je cherche un médecin.", "I'm looking for a doctor.", "der Arzt", "Bir doktor arıyorum.", "دنبال پزشکی می‌گردم."],
+    ["Ich danke ___ Arzt.", "dat", "indef", "m", "verbe", "Je remercie un médecin.", "I thank a doctor.", "der Arzt", "Bir doktora teşekkür ediyorum.", "از پزشکی سپاسگزاری می‌کنم."],
+    ["Die Meinung ___ Arztes ist wichtig.", "gen", "indef", "m", "possession", "L'avis d'un médecin est important.", "A doctor's opinion matters.", "der Arzt", "Bir doktorun görüşü önemli.", "نظر پزشکی مهم است."],
+    ["Das ist ___ Wohnung.", "nom", "indef", "f", "sujet", "C'est un appartement.", "That is an apartment.", "die Wohnung", "Bu bir daire.", "این یک آپارتمان است."],
+    ["Ich suche ___ Wohnung.", "akk", "indef", "f", "objet", "Je cherche un appartement.", "I'm looking for an apartment.", "die Wohnung", "Bir daire arıyorum.", "دنبال آپارتمانی می‌گردم."],
+    ["Wir wohnen in ___ Wohnung.", "dat", "indef", "f", "preposition", "Nous habitons dans un appartement.", "We live in an apartment.", "die Wohnung", "Bir dairede oturuyoruz.", "در آپارتمانی زندگی می‌کنیم."],
+    ["Die Tür ___ Wohnung ist offen.", "gen", "indef", "f", "possession", "La porte d'un appartement est ouverte.", "The door of an apartment is open.", "die Wohnung", "Bir dairenin kapısı açık.", "در آپارتمانی باز است."],
+    ["Das ist ___ Auto.", "nom", "indef", "n", "sujet", "C'est une voiture.", "That is a car.", "das Auto", "Bu bir araba.", "این یک خودرو است."],
+    ["Ich kaufe ___ Auto.", "akk", "indef", "n", "objet", "J'achète une voiture.", "I'm buying a car.", "das Auto", "Bir araba satın alıyorum.", "خودرویی می‌خرم."],
+    ["Ich fahre mit ___ Auto.", "dat", "indef", "n", "preposition", "Je pars en voiture.", "I'm going by car.", "das Auto", "Arabayla gidiyorum.", "با خودرویی می‌روم."],
+    ["Der Preis ___ Autos ist hoch.", "gen", "indef", "n", "possession", "Le prix d'une voiture est élevé.", "A car's price is high.", "das Auto", "Bir arabanın fiyatı yüksek.", "بهای خودرویی بالاست."],
+    ["Das ist ___ Apfel.", "nom", "indef", "m", "sujet", "C'est une pomme.", "That is an apple.", "der Apfel", "Bu bir elma.", "این یک سیب است."],
+    ["Ich esse ___ Apfel.", "akk", "indef", "m", "objet", "Je mange une pomme.", "I'm eating an apple.", "der Apfel", "Bir elma yiyorum.", "سیبی می‌خورم."],
+    ["Ich habe ___ Bruder.", "akk", "indef", "m", "objet", "J'ai un frère.", "I have a brother.", "der Bruder", "Bir erkek kardeşim var.", "برادری دارم."],
+    ["Das ist ___ Kind aus meiner Klasse.", "nom", "indef", "n", "sujet", "C'est un enfant de ma classe.", "That is a child from my class.", "das Kind", "Bu, sınıfımdan bir çocuk.", "این کودکی از کلاس من است."],
+    ["Ich helfe ___ Kind.", "dat", "indef", "n", "verbe", "J'aide un enfant.", "I'm helping a child.", "das Kind", "Bir çocuğa yardım ediyorum.", "به کودکی یاری می‌دهم."],
+    ["Er schreibt ___ Freundin.", "dat", "indef", "f", "verbe", "Il écrit à une amie.", "He's writing to a friend.", "die Freundin", "Bir arkadaşına yazıyor.", "او به دوست دختری نامه می‌نویسد."],
+    ["Das ist ___ Hund, das ist eine Katze.", "nom", "neg", "m", "sujet", "Ce n'est pas un chien, c'est un chat.", "That is not a dog, that is a cat.", "der Hund", "Bu bir köpek değil, bir kedi.", "این سگ نیست، گربه است."],
+    ["Ich habe ___ Hund.", "akk", "neg", "m", "objet", "Je n'ai pas de chien.", "I don't have a dog.", "der Hund", "Hiç köpeğim yok.", "سگی ندارم."],
+    ["Ich helfe ___ Hund.", "dat", "neg", "m", "verbe", "Je n'aide aucun chien.", "I'm not helping any dog.", "der Hund", "Hiçbir köpeğe yardım etmiyorum.", "به هیچ سگی یاری نمی‌دهم."],
+    ["___ Zug fährt heute.", "nom", "neg", "m", "sujet", "Aucun train ne circule aujourd'hui.", "No train is running today.", "der Zug", "Bugün hiçbir tren kalkmıyor.", "امروز هیچ قطاری راه نمی‌افتد."],
+    ["Ich nehme ___ Zug.", "akk", "neg", "m", "objet", "Je ne prends pas le train.", "I'm not taking a train.", "der Zug", "Trene binmiyorum.", "آن قطار را نمی‌گیرم."],
+    ["Ich fahre mit ___ Zug.", "dat", "neg", "m", "preposition", "Je ne pars pas en train.", "I'm not going by train.", "der Zug", "Trenle gitmiyorum.", "با هیچ قطاری نمی‌روم."],
+    ["Das ist ___ Frau aus Berlin.", "nom", "neg", "f", "sujet", "Ce n'est pas une femme de Berlin.", "That is not a woman from Berlin.", "die Frau", "Bu, Berlinli bir kadın değil.", "این زنی از برلین نیست."],
+    ["Ich kenne ___ Frau hier.", "akk", "neg", "f", "objet", "Je ne connais aucune femme ici.", "I don't know any woman here.", "die Frau", "Burada hiçbir kadını tanımıyorum.", "هیچ زنی را اینجا نمی‌شناسم."],
+    ["Ich danke ___ Frau.", "dat", "neg", "f", "verbe", "Je ne remercie aucune femme.", "I don't thank any woman.", "die Frau", "Hiçbir kadına teşekkür etmiyorum.", "از هیچ زنی سپاسگزاری نمی‌کنم."],
+    ["Das ist ___ Problem.", "nom", "neg", "n", "sujet", "Ce n'est pas un problème.", "That is not a problem.", "das Problem", "Bu bir sorun değil.", "این مشکلی نیست."],
+    ["Ich habe ___ Auto.", "akk", "neg", "n", "objet", "Je n'ai pas de voiture.", "I don't have a car.", "das Auto", "Hiç arabam yok.", "خودرویی ندارم."],
+    ["Ich fahre mit ___ Auto.", "dat", "neg", "n", "preposition", "Je ne pars pas en voiture.", "I'm not going by car.", "das Auto", "Arabayla gitmiyorum.", "با هیچ خودرویی نمی‌روم."],
+    ["___ Kinder spielen draußen.", "nom", "neg", "pl", "sujet", "Aucun enfant ne joue dehors.", "No children are playing outside.", "die Kinder", "Dışarıda hiçbir çocuk oynamıyor.", "هیچ کودکی بیرون بازی نمی‌کند."],
+    ["Ich sehe ___ Kinder.", "akk", "neg", "pl", "objet", "Je ne vois aucun enfant.", "I don't see any children.", "die Kinder", "Hiçbir çocuk görmüyorum.", "هیچ کودکی نمی‌بینم."],
+    ["Ich helfe ___ Kindern.", "dat", "neg", "pl", "verbe", "Je n'aide aucun enfant.", "I'm not helping any children.", "die Kinder", "Hiçbir çocuğa yardım etmiyorum.", "به هیچ کودکی یاری نمی‌دهم."]
 ];
 const kasusArticleMix = construireExercicesArticlesMix(ARTICLES_MIX);
 
@@ -21225,7 +21273,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 498;
+const APP_VERSION = 499;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
