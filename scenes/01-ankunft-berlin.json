@@ -5,7 +5,8 @@
     "plan.mots": "[[mot, debut, fin]] en secondes, VENANT D'ELEVENLABS (endpoint dialogue with-timestamps). Absent tant que l'audio n'est pas genere : le lecteur estime alors le decoupage, et le dit.",
     "chronometrage": "estime | elevenlabs -- ne jamais laisser croire qu'une estimation vient du moteur.",
     "langues": "Le fichier porte l'allemand une fois et les traductions pour toutes les langues d'interface. Une seule video sert tout le monde.",
-    "serie": "Episode 1. Mark arrive a Berlin pour s'y installer ; chaque episode est une demarche du quotidien. La derniere replique d'un episode amorce le suivant -- ici l'Anmeldung au Buergeramt, qui est l'episode 2."
+    "serie": "Episode 1. Mark arrive a Berlin pour s'y installer ; chaque episode est une demarche du quotidien. La derniere replique d'un episode amorce le suivant -- ici l'Anmeldung au Buergeramt, qui est l'episode 2.",
+    "duree": "duree = duree_audio arrondie au-dessus + 1 s de marge. duree_audio est MESUREE sur le fichier produit, pas estimee : les estimations d'origine etaient deux fois trop longues, et un clip tourne sur une duree inventee est un clip a refaire."
   },
   "id": "ankunft_berlin",
   "episode": 1,
@@ -19,8 +20,8 @@
     "fa": "ورود به برلین"
   },
   "niveau": "A2",
-  "duree": 107,
-  "chronometrage": "estime",
+  "duree": 84,
+  "chronometrage": "elevenlabs",
   "vol": {
     "sens": "Ankunft",
     "numero": "AC 876",
@@ -41,7 +42,7 @@
       "nom": "Mark",
       "avatar": "Mark",
       "voix": "mark-vd-03",
-      "_voix": "PROVISOIRE, retenue par Jacques le 7 septembre 2026 pour l'essai HeyGen. Ce n'est PAS le verdict d'un comparatif a l'aveugle : elle a ete choisie a l'oreille, en sachant laquelle etait laquelle, sur une seule replique et sans point de comparaison exterieur aux trois soeurs nees de la meme description. Si le comparatif n'a jamais lieu, elle restera la voix de Mark -- ce qui est acceptable, mais doit rester une decision et pas un oubli. audio/comparatif_voix.py --personnage mark le fait quand on veut.",
+      "_voix": "Mark-VD-03, J8ovlSvQ5WTDCCxIM8U0, retenue par Jacques le 7 septembre 2026 apres ecoute des trois candidates sur la meme replique. CE N'EST PAS UN VERDICT A L'AVEUGLE : il savait laquelle etait laquelle, l'echantillon durait 2,3 s, et aucune voix de bibliotheque ne servait de point de comparaison exterieur. La decision tient, mais elle ne vaut pas celle qui a donne Aurora. audio/comparatif_voix.py --personnage mark refait le test proprement -- six repliques, sonie egalisee, une voix en double comme controle -- le jour ou l'on veut en avoir le coeur net.",
       "voice_id": "J8ovlSvQ5WTDCCxIM8U0",
       "avatar_id": "1b1da3af0612431cae2349395b6b6870",
       "_avatar": "« Mark » est le nom AFFICHE dans le compte HeyGen, et il ne sert qu'a l'oeil. C'est avatar_id que l'API reclame, et lui ne se lit que dans l'URL de la page de l'avatar : l'interface ne l'ecrit nulle part ailleurs. Le champ portait « wortando_mark », un nom invente avant que l'avatar existe -- le fichier decrivait une intention, plus la realite."
@@ -59,236 +60,255 @@
       "n": 1,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 4,
+      "duree": 5,
       "image": "ber_landung.jpg",
       "de": "Achtzehn Uhr dreißig. Der Flug aus Montreal landet.",
       "fr": "Dix-huit heures trente. Le vol en provenance de Montréal atterrit.",
       "en": "Half past six. The flight from Montreal lands.",
       "tr": "On sekiz otuz. Montreal'den gelen uçuş iniyor.",
       "uk": "Вісімнадцята тридцять. Рейс із Монреаля приземляється.",
-      "fa": "ساعت هجده و سی دقیقه. پرواز مونترال به زمین می‌نشیند."
+      "fa": "ساعت هجده و سی دقیقه. پرواز مونترال به زمین می‌نشیند.",
+      "duree_audio": 3.99
     },
     {
       "n": 2,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 6,
+      "duree": 7,
       "image": "ber_ankunftshalle.jpg",
       "de": "Berlin Brandenburg, halb sieben am Abend. Mark kommt mit zwei Koffern an.",
       "fr": "Berlin Brandebourg, six heures et demie du soir. Mark arrive avec deux valises.",
       "en": "Berlin Brandenburg, half past six in the evening. Mark arrives with two suitcases.",
       "tr": "Berlin Brandenburg, akşam altı buçuk. Mark iki bavulla geliyor.",
       "uk": "Берлін-Бранденбург, пів на сьому вечора. Марк прибуває з двома валізами.",
-      "fa": "برلین براندنبورگ، ساعت شش و نیم عصر. مارک با دو چمدان می‌رسد."
+      "fa": "برلین براندنبورگ، ساعت شش و نیم عصر. مارک با دو چمدان می‌رسد.",
+      "duree_audio": 5.53
     },
     {
       "n": 3,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 7,
+      "duree": 5,
       "image": "ber_gepaeckband.jpg",
       "de": "Er wird hier wohnen und arbeiten. Alles ist neu für ihn.",
       "fr": "Il va vivre et travailler ici. Tout est nouveau pour lui.",
       "en": "He is going to live and work here. Everything is new to him.",
       "tr": "Burada yaşayıp çalışacak. Onun için her şey yeni.",
       "uk": "Він житиме і працюватиме тут. Усе для нього нове.",
-      "fa": "او قرار است اینجا زندگی و کار کند. همه‌چیز برایش تازه است."
+      "fa": "او قرار است اینجا زندگی و کار کند. همه‌چیز برایش تازه است.",
+      "duree_audio": 3.9
     },
     {
       "n": 4,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 3,
+      "duree": 4,
       "image": "ber_suche.jpg",
       "de": "Mark sucht die Gepäckausgabe.",
       "fr": "Mark cherche la livraison des bagages.",
       "en": "Mark looks for the baggage claim.",
       "tr": "Mark bagaj teslim yerini arıyor.",
       "uk": "Марк шукає видачу багажу.",
-      "fa": "مارک دنبال تحویل بار می‌گردد."
+      "fa": "مارک دنبال تحویل بار می‌گردد.",
+      "duree_audio": 2.04
     },
     {
       "n": 5,
       "type": "replique",
       "locuteur": "mark",
-      "duree": 7,
+      "duree": 4,
       "de": "Entschuldigung, wo ist die Gepäckausgabe?",
       "fr": "Excusez-moi, où est la livraison des bagages ?",
       "en": "Excuse me, where is the baggage claim?",
       "tr": "Affedersiniz, bagaj teslim yeri nerede?",
       "uk": "Перепрошую, де видача багажу?",
-      "fa": "ببخشید، تحویل بار کجاست؟"
+      "fa": "ببخشید، تحویل بار کجاست؟",
+      "duree_audio": 2.28
     },
     {
       "n": 6,
       "type": "replique",
       "locuteur": "anna",
-      "duree": 6,
+      "duree": 4,
       "de": "Gleich hier rechts. Welchen Flug hatten Sie?",
       "fr": "Juste ici à droite. Quel vol aviez-vous ?",
       "en": "Just here on the right. Which flight were you on?",
       "tr": "Hemen burada sağda. Hangi uçuşla geldiniz?",
       "uk": "Одразу тут праворуч. Яким рейсом ви прилетіли?",
-      "fa": "همین‌جا سمت راست. با کدام پرواز آمدید؟"
+      "fa": "همین‌جا سمت راست. با کدام پرواز آمدید؟",
+      "duree_audio": 2.74
     },
     {
       "n": 7,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 3,
+      "duree": 4,
       "image": "ber_band4.jpg",
       "de": "Auf Band vier drehen sich die Koffer.",
       "fr": "Sur le tapis quatre, les valises tournent.",
       "en": "On belt four the suitcases go round.",
       "tr": "Dört numaralı bantta bavullar dönüyor.",
       "uk": "На стрічці номер чотири крутяться валізи.",
-      "fa": "روی نوار شمارهٔ چهار، چمدان‌ها می‌چرخند."
+      "fa": "روی نوار شمارهٔ چهار، چمدان‌ها می‌چرخند.",
+      "duree_audio": 2.37
     },
     {
       "n": 8,
       "type": "replique",
       "locuteur": "mark",
-      "duree": 6,
+      "duree": 4,
       "de": "Aus Montreal. Ich ziehe nach Berlin um.",
       "fr": "De Montréal. Je déménage à Berlin.",
       "en": "From Montreal. I'm moving to Berlin.",
       "tr": "Montreal'den. Berlin'e taşınıyorum.",
       "uk": "З Монреаля. Я переїжджаю до Берліна.",
-      "fa": "از مونترال. دارم به برلین نقل مکان می‌کنم."
+      "fa": "از مونترال. دارم به برلین نقل مکان می‌کنم.",
+      "duree_audio": 2.37
     },
     {
       "n": 9,
       "type": "replique",
       "locuteur": "anna",
-      "duree": 5,
+      "duree": 4,
       "de": "Herzlich willkommen! Bleiben Sie länger?",
       "fr": "Bienvenue ! Vous restez longtemps ?",
       "en": "Welcome! Are you staying long?",
       "tr": "Hoş geldiniz! Uzun kalacak mısınız?",
       "uk": "Ласкаво просимо! Ви надовго?",
-      "fa": "خوش آمدید! مدت زیادی می‌مانید؟"
+      "fa": "خوش آمدید! مدت زیادی می‌مانید؟",
+      "duree_audio": 2.55
     },
     {
       "n": 10,
       "type": "replique",
       "locuteur": "mark",
-      "duree": 7,
+      "duree": 4,
       "de": "Ja, ich fange nächste Woche einen neuen Job an.",
       "fr": "Oui, je commence un nouvel emploi la semaine prochaine.",
       "en": "Yes, I'm starting a new job next week.",
       "tr": "Evet, gelecek hafta yeni bir işe başlıyorum.",
       "uk": "Так, наступного тижня починаю нову роботу.",
-      "fa": "بله، هفتهٔ آینده کار تازه‌ای را شروع می‌کنم."
+      "fa": "بله، هفتهٔ آینده کار تازه‌ای را شروع می‌کنم.",
+      "duree_audio": 2.51
     },
     {
       "n": 11,
       "type": "replique",
       "locuteur": "anna",
-      "duree": 6,
+      "duree": 5,
       "de": "Dann brauchen Sie bald eine Anmeldung beim Bürgeramt.",
       "fr": "Alors il vous faudra bientôt faire votre déclaration de domicile au Bürgeramt.",
       "en": "Then you'll soon need to register your address at the citizens' office.",
       "tr": "O zaman yakında vatandaş bürosunda adres kaydı yaptırmanız gerekecek.",
       "uk": "Тоді вам скоро знадобиться реєстрація місця проживання в бюро громадян.",
-      "fa": "پس به‌زودی باید در ادارهٔ شهروندان نشانی‌تان را ثبت کنید."
+      "fa": "پس به‌زودی باید در ادارهٔ شهروندان نشانی‌تان را ثبت کنید.",
+      "duree_audio": 3.16
     },
     {
       "n": 12,
       "type": "replique",
       "locuteur": "mark",
-      "duree": 6,
+      "duree": 3,
       "de": "Und wie komme ich jetzt in die Innenstadt?",
       "fr": "Et comment est-ce que je vais au centre-ville maintenant ?",
       "en": "And how do I get into the city centre now?",
       "tr": "Peki şimdi şehir merkezine nasıl giderim?",
       "uk": "А як мені тепер дістатися до центру міста?",
-      "fa": "و حالا چطور به مرکز شهر بروم؟"
+      "fa": "و حالا چطور به مرکز شهر بروم؟",
+      "duree_audio": 1.81
     },
     {
       "n": 13,
       "type": "replique",
       "locuteur": "anna",
-      "duree": 9,
+      "duree": 7,
       "de": "Nehmen Sie die S-Bahn. Die Fahrkarte kaufen Sie am Automaten, unten in der Halle.",
       "fr": "Prenez le S-Bahn. Le billet, vous l'achetez au distributeur, en bas dans le hall.",
       "en": "Take the S-Bahn. You buy the ticket at the machine, downstairs in the hall.",
       "tr": "S-Bahn'a binin. Bileti aşağıda, salondaki otomattan alırsınız.",
       "uk": "Їдьте S-Bahn. Квиток купіть в автоматі, унизу в залі.",
-      "fa": "با اس‌بان بروید. بلیت را از دستگاه، پایین در سالن، می‌خرید."
+      "fa": "با اس‌بان بروید. بلیت را از دستگاه، پایین در سالن، می‌خرید.",
+      "duree_audio": 5.48
     },
     {
       "n": 14,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 3,
+      "duree": 5,
       "image": "ber_automat.jpg",
       "de": "Unten in der Halle steht der Fahrkartenautomat.",
       "fr": "En bas dans le hall se trouve le distributeur de billets.",
       "en": "Downstairs in the hall stands the ticket machine.",
       "tr": "Aşağıda salonda bilet otomatı duruyor.",
       "uk": "Унизу в залі стоїть квитковий автомат.",
-      "fa": "پایین در سالن، دستگاه بلیت‌فروشی قرار دارد."
+      "fa": "پایین در سالن، دستگاه بلیت‌فروشی قرار دارد.",
+      "duree_audio": 3.11
     },
     {
       "n": 15,
       "type": "replique",
       "locuteur": "mark",
-      "duree": 7,
+      "duree": 3,
       "de": "Wie lange dauert die Fahrt ungefähr?",
       "fr": "Combien de temps dure le trajet à peu près ?",
       "en": "About how long does the journey take?",
       "tr": "Yolculuk yaklaşık ne kadar sürer?",
       "uk": "Скільки приблизно триває поїздка?",
-      "fa": "سفر تقریباً چقدر طول می‌کشد؟"
+      "fa": "سفر تقریباً چقدر طول می‌کشد؟",
+      "duree_audio": 1.86
     },
     {
       "n": 16,
       "type": "replique",
       "locuteur": "anna",
-      "duree": 8,
+      "duree": 4,
       "de": "Etwa vierzig Minuten bis zum Hauptbahnhof.",
       "fr": "Environ quarante minutes jusqu'à la gare centrale.",
       "en": "About forty minutes to the main station.",
       "tr": "Ana gara kadar yaklaşık kırk dakika.",
       "uk": "Приблизно сорок хвилин до головного вокзалу.",
-      "fa": "تا ایستگاه مرکزی حدود چهل دقیقه."
+      "fa": "تا ایستگاه مرکزی حدود چهل دقیقه.",
+      "duree_audio": 2.83
     },
     {
       "n": 17,
       "type": "replique",
       "locuteur": "mark",
-      "duree": 5,
+      "duree": 3,
       "de": "Vielen Dank für Ihre Hilfe!",
       "fr": "Merci beaucoup pour votre aide !",
       "en": "Thank you very much for your help!",
       "tr": "Yardımınız için çok teşekkürler!",
       "uk": "Щиро дякую за вашу допомогу!",
-      "fa": "بابت کمکتان خیلی ممنون!"
+      "fa": "بابت کمکتان خیلی ممنون!",
+      "duree_audio": 1.53
     },
     {
       "n": 18,
       "type": "replique",
       "locuteur": "anna",
-      "duree": 5,
+      "duree": 4,
       "de": "Gern geschehen. Viel Glück in Berlin!",
       "fr": "Je vous en prie. Bonne chance à Berlin !",
       "en": "You're welcome. Good luck in Berlin!",
       "tr": "Rica ederim. Berlin'de bol şans!",
       "uk": "Прошу. Успіхів у Берліні!",
-      "fa": "خواهش می‌کنم. در برلین موفق باشید!"
+      "fa": "خواهش می‌کنم. در برلین موفق باشید!",
+      "duree_audio": 2.65
     },
     {
       "n": 19,
       "type": "decor",
       "locuteur": "erzaehler",
-      "duree": 4,
+      "duree": 5,
       "image": "ber_ausgang_nacht.jpg",
       "de": "Draußen ist es dunkel. Berlin fängt an.",
       "fr": "Dehors il fait sombre. Berlin commence.",
       "en": "Outside it is dark. Berlin begins.",
       "tr": "Dışarısı karanlık. Berlin başlıyor.",
       "uk": "Надворі темно. Берлін починається.",
-      "fa": "بیرون تاریک است. برلین آغاز می‌شود."
+      "fa": "بیرون تاریک است. برلین آغاز می‌شود.",
+      "duree_audio": 3.11
     }
   ],
   "lexique": {
