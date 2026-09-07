@@ -47,8 +47,15 @@ def entrees(fichier, niveau=None, theme=None):
                 continue
             if theme and t.get("nom_theme") != theme:
                 continue
+            # Les trois listes d'un theme, pas seulement « mots » : les
+            # chapitres VHS portent aussi des verbes et des adjectifs, restes
+            # invisibles a l'outillage jusqu'au 7 septembre 2026.
             for m in t.get("mots", []):
                 out.append((m, t.get("niveau"), t.get("nom_theme")))
+            for m in t.get("adjektive", []):
+                out.append((m, t.get("niveau"), t.get("nom_theme")))
+            for v in t.get("verben", []):
+                out.append((v, t.get("niveau"), t.get("nom_theme")))
     elif fichier == "funktionswort.json":
         for classe, liste in d.items():
             if not isinstance(liste, list):

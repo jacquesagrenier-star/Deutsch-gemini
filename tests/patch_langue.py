@@ -131,8 +131,19 @@ def indexer(donnees, nom_fichier, niveau):
             if t.get("niveau") != niveau:
                 continue
             vu_niveau = True
+            # TROIS LISTES PAR THEME, PAS UNE. Les chapitres VHS portent aussi
+            # « verben » et « adjektive ». Tant que cette boucle ne lisait que
+            # « mots », 299 entrees n'etaient vues par AUCUN outil : le
+            # compteur annoncait 100 % sur un corpus dont il ignorait un
+            # morceau, et personne ne pouvait poser une traduction dessus.
+            # Trouve a l'usage par Hatice le 7 septembre 2026, pas par un
+            # controle.
             for m in t.get("mots", []):
                 index.setdefault(m.get("mot"), []).append(m)
+            for m in t.get("adjektive", []):
+                index.setdefault(m.get("mot"), []).append(m)
+            for v in t.get("verben", []):
+                index.setdefault(v.get("infinitif"), []).append(v)
         if not vu_niveau:
             return None, "aucun theme de niveau %s dans themes.json" % niveau
         return index, None
