@@ -117,7 +117,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--personnage", required=True,
                     help="cle du locuteur dans la scene, p. ex. marc")
-    ap.add_argument("--scene", default="flughafen")
+    ap.add_argument("--scene", default="01-ankunft-berlin")
     ap.add_argument("--modele", default="v2", choices=sorted(generer.MODELES))
     ap.add_argument("--sans-doublon", action="store_true",
                     help="retirer le controle de coherence (deconseille)")
