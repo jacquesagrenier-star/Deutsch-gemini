@@ -137,6 +137,25 @@ def indexer(donnees, nom_fichier, niveau):
             return None, "aucun theme de niveau %s dans themes.json" % niveau
         return index, None
 
+    # QUATRIEME FORME : funktionswort.json est range par CATEGORIE
+    # (konjunktionen, partikeln, praepositionen, zahlen, pronomen,
+    # artikelwoerter), et c'est chaque ENTREE qui porte son niveau -- ni le
+    # fichier comme adverbe.json, ni le groupe comme themes.json. On parcourt
+    # donc toutes les categories et on filtre entree par entree.
+    if nom_fichier == "funktionswort.json":
+        vu_niveau = False
+        for entrees in donnees.values():
+            if not isinstance(entrees, list):
+                continue
+            for m in entrees:
+                if m.get("niveau") != niveau:
+                    continue
+                vu_niveau = True
+                index.setdefault(m.get("mot"), []).append(m)
+        if not vu_niveau:
+            return None, "aucun mot-outil de niveau %s dans funktionswort.json" % niveau
+        return index, None
+
     if niveau not in donnees:
         return None, "niveau %s absent de %s" % (niveau, nom_fichier)
     champ = "infinitif" if nom_fichier == "verbe.json" else "mot"
@@ -189,9 +208,18 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
                           % (mot, champ, cible.get(champ)))
                     refuses += 1
                     continue
-                if perdu(neuf, est_phrase):
+                # ⚠️ UN MOT D'UN SEUL CARACTERE EXISTE DANS CERTAINES LANGUES,
+                # et le seuil a ete regle sur le turc, ou il n'en existe pas.
+                # Le persan ecrit « و » (et) avec une seule lettre. Plutot que
+                # d'abaisser le seuil pour tout le monde -- ce qui rendrait
+                # invisible l'accident de 673 entrees qu'il sert a attraper --
+                # le fichier de corrections DECLARE l'exception, mot par mot,
+                # avec "court_ok": true. Elle reste donc lisible dans le diff,
+                # et un caractere pose par erreur continue d'etre refuse.
+                if perdu(neuf, est_phrase) and not e.get("court_ok"):
                     print("    correction elle-meme trop courte, refusee : %s.%s = %r"
                           % (mot, champ, neuf))
+                    print("      (si c'est un vrai mot, ajouter \"court_ok\": true a l'entree)")
                     refuses += 1
                     continue
                 cible[champ] = neuf
