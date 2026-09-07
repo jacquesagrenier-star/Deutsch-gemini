@@ -349,3 +349,79 @@ ou faux, pour la seule raison qu'il fallait deux reponses differentes. Ici :
 Le **persan** porte 14 collisions preexistantes (non demandees, non touchees).
 Elles sont anterieures a ce travail, comme l'etaient celles du turc et de
 l'ukrainien avant aujourd'hui.
+
+---
+
+## 7 septembre 2026 (soir) — Le chantier vidéo : ce qui marche, ce qui coûte
+
+Jacques veut des scènes filmées avec des personnages qui bougent dans des
+lieux réels, à la manière d'un compte Instagram allemand qu'il m'a montré.
+Une journée entière d'essais. Voici l'état, sans arrondir.
+
+### La chaîne, validée de bout en bout
+
+**Artlist Studio** (personnages, lieux, images, mise en mouvement) →
+**ElevenLabs** (les voix, depuis NOTRE compte) → **sync.so** (le lip-sync) →
+**le lecteur Wortando** (surlignage, six langues).
+
+Le test décisif est passé : un personnage GÉNÉRÉ, une voix fabriquée par nos
+scripts, et la bouche tombe juste sur `Gepäckausgabe` — composé de quatre
+syllabes, umlaut, groupe `ck`, choisi exactement parce que c'est là que ça
+casse.
+
+**HeyGen est écarté.** Ses avatars ne savent pas bouger dans un lieu, ce qui
+était toute la demande. Son lip-sync existe mais est enfoui sous « traduire
+une vidéo », et sync.so fait le même travail à 0,04 $/s avec une API.
+
+### Ce qui est acquis, et qui ne se repaiera pas
+
+Mark et Anna existent comme personnages réutilisables. Le hall d'arrivée
+aussi. La voix de Mark est arrêtée (`Mark-VD-03`). L'épisode 1 est écrit,
+traduit en six langues, avec 26 entrées de lexique. Les 19 répliques audio
+sont générées et égalisées d'un bloc. Douze segments vidéo sont taillés.
+
+### Ce qui bloque
+
+**sync.so plafonne le gratuit à 3 générations par mois.** Deux plans sur
+douze sont synchronisés. Finir l'épisode demande un abonnement : Hobbyist
+à 5 $/mois + 2 $ d'usage, ou Creator à 19 $ si Hobbyist pose un filigrane —
+à vérifier sur les deux clips livrés.
+
+### Et le vrai sujet : le coût
+
+**Jacques a épuisé presque tout son mois d'Artlist en une journée, sans
+un seul épisode fini.** Sa réserve est légitime.
+
+Une part du gaspillage vient de MA méthode, et il faut l'écrire : j'ai fait
+itérer six portraits de Mark, puis des corrections, puis tous les angles,
+puis Anna, puis deux cadres repris plusieurs fois — chaque passage a coûté
+des crédits, alors que l'abonnement inclut des générations ILLIMITÉES sur
+certains modèles. La discipline à tenir : **chercher sur l'illimité, ne
+sortir les crédits que pour la prise qu'on garde.**
+
+L'autre part est structurelle : trois abonnements pour un produit (Artlist,
+sync.so, ElevenLabs), et une facture qui monte avant le premier épisode.
+
+### La question laissée ouverte pour demain
+
+Le lecteur audio fonctionne déjà — texte allemand surligné mot à mot,
+traduction en six langues, chaque réplique rejouable. **Il n'a rien coûté.**
+
+Je disais le matin même que la vidéo ajoute l'immersion, pas la
+compréhension, puis j'ai passé la journée à construire de la vidéo sans y
+revenir. Le geste le moins cher et le plus informatif reste de montrer la
+version audio au groupe cette semaine : ce qu'ils en diront décidera si
+l'immersion vidéo mérite trois abonnements.
+
+### Détails techniques à ne pas redécouvrir
+
+- Cloudflare refuse la signature d'`urllib` (403, code 1010) : un en-tête
+  d'agent ordinaire suffit.
+- Artlist n'accepte AUCUN fichier audio : sa voix automatique ou celle du
+  personnage, rien d'autre. La synchronisation se fera toujours dehors.
+- Mes estimations de durée étaient DEUX fois trop longues. L'audio mesuré
+  fait 55,8 s là où j'avais écrit 107. Ne jamais tourner sur une durée
+  estimée.
+- Deux clips de 5 s suffisent pour douze plans : aller-retour et découpage.
+- On duplique des PLANS, jamais des personnages — un second Mark n'est pas
+  Mark.
