@@ -26,6 +26,11 @@ import sys
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+# LE MEME radical que relecture_langue.py, importe et non recopie : deux
+# definitions du mot « paire de genre » finiraient par diverger, et le rapport
+# ne dirait plus la meme chose que l'outil qui le corrige.
+from relecture_langue import _radical                       # noqa: E402
+
 # Ou vit chaque categorie du rapport de collisions, et sous quelle cle.
 CATEGORIES = {
     "adjectifs": ("adjectif.json", "adjektive", "mot"),
@@ -69,6 +74,8 @@ def main():
     ap.add_argument("--categorie", required=True, choices=sorted(CATEGORIES))
     ap.add_argument("--debut", type=int, default=0)
     ap.add_argument("--taille", type=int, default=25)
+    ap.add_argument("--genre", choices=["seules", "sans"],
+                    help="ne montrer QUE les paires de genre, ou les exclure")
     a = ap.parse_args()
 
     _, _, champ = CATEGORIES[a.categorie]
@@ -97,8 +104,19 @@ def main():
     groupes = []
     for rep, liste in par_reponse.items():
         mots = {m.get(champ) for _, _, m in liste}
-        if len(mots) > 1 and (a.categorie, rep) not in acceptees:
-            groupes.append((rep, liste))
+        if len(mots) <= 1 or (a.categorie, rep) in acceptees:
+            continue
+        # UNE PAIRE DE GENRE N'EST PAS UNE COLLISION ORDINAIRE. « Zuhoerer » et
+        # « Zuhoererin » sont le MEME mot ; le turc n'ayant pas de genre
+        # grammatical, la reponse est forcement la meme. Elles se traitent en
+        # bloc, par script -- jamais une par une, ou l'une recevrait une
+        # tournure et l'autre une autre.
+        est_genre = len({_radical(m) for m in mots}) == 1
+        if a.genre == "seules" and not est_genre:
+            continue
+        if a.genre == "sans" and est_genre:
+            continue
+        groupes.append((rep, liste))
     groupes.sort(key=lambda g: (-len(g[1]), g[0]))
 
     print("# %s / %s : %d collisions" % (a.langue, a.categorie, len(groupes)))
