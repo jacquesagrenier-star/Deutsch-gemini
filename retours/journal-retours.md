@@ -249,3 +249,45 @@ identifiant et non du texte.
 - `pruefung.json` : ni ukrainien ni persan (542 champs par langue). Le turc l'a.
 - `verbe.json`, `adjectif.json`, `adverbe.json`, `redewendung.json`,
   `grammaire.json`, `synonymes.json` : complets.
+
+**TRAITE (v501, 7 sept. 2026).** Les 299 entrees sont traduites dans les TROIS
+langues : 115 adjectifs + 184 verbes, 3 450 champs. `themes.json` est complet,
+et `lot_langue.py --etat` affiche desormais 8 000 cartes au lieu de 7 701 --
+100 % en turc, en ukrainien et en persan.
+
+Trois corrections d'outillage au passage, chacune sur un defaut qui ne pouvait
+pas se voir :
+
+1. `patch_langue.py` et `lot_langue.py` lisent les TROIS listes d'un theme.
+2. `patch_langue.py` accepte `cle_exemple` pour viser une occurrence precise.
+   « halten » figure trois fois dans les chapitres -- arreter le ballon,
+   considerer, tenir un discours -- et l'index rendait les trois pour une seule
+   entree : « annehmen » du chapitre 15 avait deja recu la phrase du chapitre 1.
+   Repare, et l'outil REFUSE maintenant une entree ambigue au lieu d'ecraser en
+   silence.
+3. `tests/trous_langue.py` balaye tous les fichiers de donnees.
+
+Controle de non-regression : compare a l'etat d'avant, mon travail avait
+introduit quatre collisions -- « sakin » et « teknik » en turc, « آینده » et
+« گردشگری » en persan. Toutes levees. Zero collision nouvelle dans les trois
+langues.
+
+## Ce que le balayage a trouve ailleurs — A DECIDER PAR JACQUES
+
+Etat au 7 septembre 2026, apres la correction des chapitres VHS :
+
+| fichier | ce qui manque |
+|---------|---------------|
+| `exercices.json` | l'ukrainien n'a **rien** : 1 682 exercices, ~6 500 champs |
+| `pruefung.json` | ni ukrainien ni persan : 542 champs par langue (le turc les a) |
+| `exercices.json` | turc et persan : 152 a 494 champs selon le champ |
+| `funktionswort.json` | 130 categories sans ukrainien |
+
+Le reste est complet : `themes.json`, `verbe.json`, `adjectif.json`,
+`adverbe.json`, `redewendung.json`, `grammaire.json`, `synonymes.json`.
+
+**Autre chose, non demandee mais trouvee en verifiant :** le turc porte 219
+collisions preexistantes dans themes.json, l'ukrainien 81 (le persan zero).
+Elles sont anterieures a ce travail. C'est le meme controle qui a servi pour le
+persan -- `relecture_langue.py --collisions` -- et personne ne l'a jamais passe
+sur le turc ni sur l'ukrainien.
