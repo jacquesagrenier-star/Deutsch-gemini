@@ -205,3 +205,47 @@ c'est l'echeance de retour du mot et son pourcentage de maitrise, jamais le
 compteur du jour. Et comme « Encore » remet la carte dans la file de la MEME
 seance, le meme mot peut compter plusieurs fois : la barre compte des REPONSES,
 pas des mots distincts. « 30/30 » ne veut donc pas dire trente mots differents.
+
+## 7 septembre 2026 — Hatice : les verbes et adjectifs des chapitres VHS ne sont pas traduits
+
+**Retour de Hatice, rapporte par Jacques.** Dans la tuile « Chapitres VHS », les
+NOMS sont traduits, mais pas les verbes ni les adjectifs.
+
+**Verifie : elle a raison, et c'est pire que le turc seul.** Sur les 16 chapitres
+de `themes.json` :
+
+| liste       | total | manquants tr / uk / fa |
+|-------------|-------|------------------------|
+| mots (noms) |   500 |    0    0    0         |
+| verben      |   184 |  184  184  184         |
+| adjektive   |   115 |  115  115  115         |
+
+299 entrees sans **aucune** des trois langues. Avec les exemples et les temps
+(perfekt, praeteritum, konjunktiv2), cela fait 3 450 champs.
+
+**LA CAUSE, et c'est elle qui compte.** `patch_langue.py` et `lot_langue.py` ne
+lisent qu'une seule des trois listes d'un theme :
+
+    for m in t.get("mots", []):
+
+`verben` et `adjektive` ne sont VUS PAR AUCUN OUTIL. Le compteur annoncait donc
+« 7 701/7 701, 100 % » en toute bonne foi, sur un corpus dont il ignorait 299
+entrees. C'est le meme motif que le piege des lecteurs `_fa` de la v498 : la
+donnee existe, personne ne la regarde. Ici c'est l'inverse -- la donnee manque,
+et personne ne le voit.
+
+**Ajoute : `tests/trous_langue.py`**, qui balaye TOUS les fichiers de donnees au
+lieu des cinq que connaissait lot_langue.py. Sa regle : un champ est du a la
+traduction quand son FRANCAIS et son ANGLAIS existent tous deux -- l'anglais
+sert de preuve que le champ est traduisible, sans quoi l'outil reclamait 470
+traductions pour « kategorie » d'adverbe.json, dont la valeur est « Zeit », un
+identifiant et non du texte.
+
+**Ce que le balayage a trouve d'autre** (etat au 7 sept. 2026, avant correction) :
+
+- `funktionswort.json` : 130 categories sans ukrainien.
+- `exercices.json` : l'ukrainien n'a **rien** (1 682 exercices) ; le turc et le
+  persan ont chacun 152 a 494 champs manquants selon le champ.
+- `pruefung.json` : ni ukrainien ni persan (542 champs par langue). Le turc l'a.
+- `verbe.json`, `adjectif.json`, `adverbe.json`, `redewendung.json`,
+  `grammaire.json`, `synonymes.json` : complets.
