@@ -3356,10 +3356,18 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
     color:#8b93a3; border:1px solid #e6e9ef; border-radius:5px; padding:1px 5px;
 }
 .dict-trans{margin-top:3px; color:#576177; font-size:14px;}
+/* Zone d'usage d'un mot regional (CH, AT). Discret mais lisible : c'est une
+   information sur le mot, pas une mise en garde. */
+.dict-zone{
+    font-size:10px; font-weight:700; letter-spacing:.04em;
+    color:#8b93a3; border:1px solid #e6e9ef; border-radius:5px; padding:0 4px;
+    margin-left:2px; white-space:nowrap;
+}
 .dict-credit{margin-top:12px; font-size:11px; color:#9aa2b1; line-height:1.5;}
 .dict-credit a{color:#9aa2b1;}
 .dict-loading{font-size:13px; color:#8b93a3; padding:6px 2px;}
 body[data-theme="dark"] .dict-row{background:#161a22; border-color:#252c38;}
+body[data-theme="dark"] .dict-zone{border-color:#2b3342; color:#7c8698;}
 body[data-theme="dark"] .dict-word{color:#e9ecf1;}
 body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 
@@ -3884,7 +3892,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v484</span>
+        <span class="subtitle-version">v485</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -15749,7 +15757,10 @@ function addToMyVocab(i){
     if(!entree) return;
     const o = entree.o;
     loadMyVocab();
-    noterDemande(o.m, (o.t || []).join(", "));
+    // Meme ordre que l'affichage -- sans l'etiquette de zone, qui serait du
+    // bruit sur une carte au moment de reviser.
+    const trads = traductionsDict(o, entree.pair).join(", ");
+    noterDemande(o.m, trads);
 
     if(monVocabTheme.words.some(w => w[0] === o.m)){
         showInfoToast(tf("myvocab_already", { mot: o.m }));
@@ -15771,7 +15782,7 @@ function addToMyVocab(i){
         return;
     }
     monVocabTheme.words.push([
-        o.m, (o.t || []).join(", "), o.g || "", o.i || "", o.p || "",
+        o.m, trads, o.g || "", o.i || "", o.p || "",
         entree.pair.slice(0, 2), o.r || 0, o.pl || "", o.pp || "", o.aux || ""
     ]);
     saveMyVocab();
@@ -15847,6 +15858,75 @@ const DICT_PAIRS_PAR_LANGUE = {
 function dictPairs(){
     return DICT_PAIRS_PAR_LANGUE[getUiLang()] || DICT_PAIRS_PAR_LANGUE.en;
 }
+// L'ORDRE DES TRADUCTIONS ALLEMANDES. Signale par Jacques : « concierge »
+// sortait « Concierge · Hausmeister · Hauswart » -- l'emprunt rare d'abord, le
+// mot courant en deuxieme, et le terme suisse sans que rien ne le dise.
+//
+// ⚠️ TROIS REGLES AUTOMATIQUES ONT ETE ESSAYEES ET REJETEES, mesures a l'appui
+// sur les 46 313 entrees a plusieurs traductions. Trier par frequence du mot
+// allemand (le champ `r` des paires de-*) change la tete de 28 % des entrees et
+// en casse une bonne part : « alene » sortait Ort, « alienation » sortait
+// Wahnsinn, et « a la francaise » se traduisait par « a la francaise ».
+// Releguer l'emprunt identique au mot source touche 778 entrees et donne
+// « clown -> Trottel » et « audit -> kontrollieren ». La frequence d'un mot
+// allemand ne dit RIEN du sens qui correspond au mot francais : les donnees ne
+// portent pas cet alignement. D'ou une liste verifiee a la main.
+//
+// ⚠️ LES HOMOGRAPHES SONT LE PIEGE. Un mot regional s'ecrit souvent comme un
+// mot standard d'un autre sens : Stelze (echasse), Estrich (chape), Stiege
+// (vingtaine), Finken (pinsons), Occasion (aubaine). Marquer ceux-la « (AT) »
+// serait une faute nouvelle -- ils sont volontairement absents de la liste.
+// Aucun filtre automatique ne les distingue : la frequence les classe comme
+// les autres.
+const DICT_REGIONAL = {
+    // Suisse
+    "Abwart": "CH", "Hauswart": "CH", "Velo": "CH", "Velofahrer": "CH", "Natel": "CH",
+    "Billett": "CH", "Retourbillett": "CH", "Trottoir": "CH", "Perron": "CH",
+    "Znüni": "CH", "Zvieri": "CH", "Znacht": "CH", "Zmorgen": "CH", "Zmittag": "CH",
+    "Guetzli": "CH", "Guetsli": "CH", "Rüebli": "CH", "Anken": "CH", "Nastuch": "CH",
+    "Unterbruch": "CH", "Vernehmlassung": "CH", "parkieren": "CH", "grillieren": "CH",
+    "Sackmesser": "CH", "Kehricht": "CH", "Kehrichtabfuhr": "CH", "Traktandum": "CH",
+    "Traktandenliste": "CH", "Glacé": "CH", "Trottinett": "CH", "Serviertochter": "CH",
+    "Kondukteur": "CH", "Götti": "CH", "Gotte": "CH", "Nüsslisalat": "CH", "Salär": "CH",
+    "Blache": "CH", "Morgenessen": "CH", "Nachtessen": "CH", "Müesli": "CH",
+    "Zmorge": "CH", "Hauswartin": "CH",
+    // Autriche (Spital et Matura se disent des deux cotes)
+    "Spital": "AT/CH", "Matura": "AT/CH", "Maturität": "CH",
+    "Jänner": "AT", "Feber": "AT", "Marille": "AT", "Paradeiser": "AT", "Erdapfel": "AT",
+    "Erdäpfel": "AT", "Karfiol": "AT", "Fisole": "AT", "Fisolen": "AT", "Obers": "AT",
+    "Schlagobers": "AT", "Topfen": "AT", "Palatschinke": "AT", "Palatschinken": "AT",
+    "Sackerl": "AT", "Trafik": "AT", "Trafikant": "AT", "Jause": "AT", "Faschiertes": "AT",
+    "Kren": "AT", "Powidl": "AT", "Ribisel": "AT", "Zwetschke": "AT", "Melanzani": "AT",
+    "Beisl": "AT", "Rauchfangkehrer": "AT", "Gelse": "AT", "Selchfleisch": "AT",
+    "Nachtmahl": "AT", "Bankomat": "AT", "Schwammerl": "AT", "Kukuruz": "AT",
+    "Bub": "AT", "Semmel": "AT", "Plache": "AT", "Krehn": "AT",
+    "Tabaktrafik": "AT", "Ribiselstaude": "AT", "Bramburi": "AT"
+};
+
+// Emprunts identiques au mot cherche, verifies UN PAR UN. Ils n'apprennent rien
+// -- un francophone qui cherche « concierge » n'a pas besoin qu'on lui reponde
+// « Concierge » -- mais aucune regle generale ne sait les reconnaitre sans
+// abimer des entrees justes. Cette liste ne grandit qu'a la main.
+const DICT_RELEGUES = new Set(["Concierge"]);
+
+// Rien n'est SUPPRIME : les mots regionaux passent a la fin et portent leur
+// zone. Les cacher priverait un apprenant qui part vivre a Vienne ou a Zurich
+// du mot qu'il entendra tous les jours ; les laisser en tete sans rien dire lui
+// fait apprendre « Jänner » pour l'Allemagne. La place ET l'etiquette.
+function traductionsDict(o, pair){
+    const t = o.t || [];
+    if(t.length < 2 || pair.slice(3, 5) !== "de") return t;
+    const bas = w => !!DICT_REGIONAL[w] || DICT_RELEGUES.has(w);
+    const tete = t.filter(w => !bas(w));
+    // Une entree dont TOUTES les traductions sont regionales garde son ordre :
+    // reculer le seul mot disponible n'aurait aucun sens.
+    return tete.length ? tete.concat(t.filter(bas)) : t;
+}
+function etiquetteRegion(w){
+    const zone = DICT_REGIONAL[w];
+    return zone ? w + ' <span class="dict-zone">' + zone + '</span>' : w;
+}
+
 const DICT_MAX_RESULTS = 12;
 
 const dictBuckets = {};
@@ -16021,7 +16101,9 @@ function renderDictSection(liste, total){
         return '<div class="dict-row">' + ajout + '<div class="dict-row-top">'
             + '<span class="dict-word">' + genre + o.m + '</span>'
             + pron + pos + plur + part + '</div>'
-            + '<div class="dict-trans">' + o.t.join(" · ") + '</div></div>';
+            + '<div class="dict-trans">'
+            + traductionsDict(o, x.pair).map(etiquetteRegion).join(" · ")
+            + '</div></div>';
     }).join("");
     const pill = '<span class="dict-section-title">'
         + tf(total === 1 ? "dict_count_one" : "dict_count", { n: total }) + '</span>';
@@ -20202,7 +20284,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 484;
+const APP_VERSION = 485;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
