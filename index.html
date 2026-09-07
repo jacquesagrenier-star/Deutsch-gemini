@@ -3884,7 +3884,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v483</span>
+        <span class="subtitle-version">v484</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16170,6 +16170,12 @@ function ouvrirEntreeRecherche(entry){
 let panneauAvantFlashcards = null;
 
 function showScreen(id){
+    // L'ECRAN OU L'ON ETAIT, PAS CELUI D'OU L'ON ECRIT. Le formulaire « Signaler
+    // un probleme » vit dans <section id="settings"> : au moment de l'envoi,
+    // l'ecran actif est TOUJOURS `settings`. Joindre l'ecran actif dirait donc
+    // « reglages » a tout le monde -- pire que rien, puisque ca a l'air d'une
+    // information. On retient le dernier ecran qui n'est pas les reglages.
+    if(id !== "settings") ecranAvantReglages = id;
     // Un ecran de grammaire ouvert avant l'arrivee de grammaire.json serait une
     // suite de cadres vides. On declenche le chargement (il a normalement deja
     // eu lieu au demarrage) et on previent si le reseau a lache -- un ecran
@@ -18542,6 +18548,35 @@ const VOICE_CHOICE_KEY = "deutschAI_voiceChoice";
 // autorisent deja a ecrire. Une collection separee serait plus propre, mais
 // demanderait une regle de plus dans la console Firebase : un envoi refuse
 // silencieusement vaudrait moins qu'un stockage un peu moins elegant.
+let ecranAvantReglages = "";
+
+// CE QU'ON FAISAIT, PAS SEULEMENT OU L'ON ETAIT. « exercice » ne suffit pas :
+// il y a 1 682 exercices dans 40 jeux, et un retour comme « la reponse devrait
+// etre au parfait » est inexploitable sans savoir LEQUEL. Le numero et le debut
+// de la question identifient l'exercice a coup sur. Meme raison pour les
+// cartes : le mot affiche vaut mieux que le nom du paquet.
+function contexteEcran(){
+    const ecran = ecranAvantReglages || "?";
+    try{
+        if(ecran === "exercise" && activeExercises[currentExercise]){
+            const q = String(texteTraduit(activeExercises[currentExercise], "question") || "")
+                        .replace(/\s+/g, " ").slice(0, 60);
+            return "exercice " + (exerciseKickerKey || "?") + " "
+                 + (currentExercise + 1) + "/" + activeExercises.length
+                 + (q ? " « " + q + " »" : "");
+        }
+        if(ecran === "flashcards" && currentCards[currentFlashcard]){
+            const w = currentCards[currentFlashcard].word;
+            const mot = Array.isArray(w) ? w[0] : (typeof w === "string" ? w : "");
+            return "carte " + flashcardMode + " "
+                 + (currentFlashcard + 1) + "/" + currentCards.length
+                 + (mot ? " « " + mot + " »" : "");
+        }
+        if(ecran === "orbPanel" && openOrbId) return "panneau " + openOrbId;
+    }catch(e){}   // Un contexte incomplet ne doit JAMAIS empecher un envoi.
+    return ecran;
+}
+
 const RETOURS_KEY = "deutschAI_retours";
 const RETOURS_MAX = 4000;   // caractere, pas nombre : c'est la taille qui compte
 
@@ -18556,7 +18591,8 @@ function envoyerRetour(){
     // precisement ce qui manquait toute la journee du 6 septembre pour
     // diagnostiquer le son.
     const entree = "[" + new Date().toISOString().slice(0, 16) + " | v" + APP_VERSION
-                 + " | " + getUiLang() + " | " + modeLancement().split(" ")[0] + "] " + texte;
+                 + " | " + getUiLang() + " | " + modeLancement().split(" ")[0]
+                 + " | " + contexteEcran() + "] " + texte;
     let tout = "";
     try{ tout = localStorage.getItem(RETOURS_KEY) || ""; }catch(e){}
     tout = (tout ? tout + String.fromCharCode(10) : "") + entree;
@@ -20166,7 +20202,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 483;
+const APP_VERSION = 484;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
