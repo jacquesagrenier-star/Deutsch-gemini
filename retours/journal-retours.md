@@ -124,3 +124,34 @@ signalé le défaut, jamais lequel — je ne l'invente pas.
    - **v410 — Jacques, demande et non défaut.** Il voulait l'exercice de son cahier : choisir entre *weil* et *obwohl*. Deux séries de 28 ont été écrites, et les connecteurs sont passés de 45 à 101 exercices. Utile pour montrer que le journal recueille aussi ce que les gens **veulent apprendre**, pas seulement ce qui casse.
 
 ⚠️ Ce que ce journal **ne remplace pas** : le compteur des 12 testeurs pendant 14 jours consécutifs se mesure uniquement dans la Play Console, sur la piste de test fermé. Rien de ce qui précède n'y compte. Ce fichier ne sert qu'aux questions rédigées du formulaire — mais c'est là que se jouent les refus.
+
+## 7 septembre 2026 — Persan : la traduction complete de l'application
+
+**Demande de Jacques (avant de partir pour quatre heures) :** « tu prendras le
+drapeau iranien.. je te demande mainetant de continuer sans arret la traduction
+en persan de toute l application. »
+
+**Fait, en trois chantiers.**
+
+1. **Le corpus de vocabulaire** — 7 701 / 7 701 cartes (v497). Le C1 restait :
+   291 adjectifs, 52 adverbes, 100 expressions. Zero collision a l'arrivee.
+
+2. **Les lecteurs** (v498) — LE POINT QUI COMPTE. Le corpus persan etait complet
+   dans les JSON, et AUCUN lecteur de index.html ne lisait un champ `_fa` :
+   RANGS_CARTE connaissait deja les rangs persans, les six chargeurs ne les
+   posaient jamais. Le piege deja nomme pour le turc et l'ukrainien, une
+   troisieme fois. Poses au passage : les libelles de categorie, l'index de
+   recherche, `LANGUE_TAG` (fa-IR), l'ecoute de phrases. L'ukrainien manquait
+   aussi dans la recherche pour les noms et les adjectifs : ajoute.
+
+3. **Les exercices de grammaire** — 170 phrases d'articles dans index.html
+   (v499), puis les 1 682 exercices de `exercices.json` (v500). Nouvel outil
+   `tests/lot_exos.py`, sur le modele de lot_langue.py.
+
+**Etat : le persan est la langue la plus completement servie apres le francais.**
+Ni le turc ni l'ukrainien n'ont les trois — l'ukrainien n'a aucun exercice de
+grammaire, le turc n'a pas les categories de mots-outils.
+
+**Ce qui reste, et que je ne peux pas faire :** un relecteur persanophone. Aucun
+controle mecanique ne juge le registre (تو / شما, ecrit contre parle) ni le
+naturel d'une tournure. C'est le meme manque que pour le turc et l'ukrainien.
