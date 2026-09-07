@@ -155,3 +155,46 @@ grammaire, le turc n'a pas les categories de mots-outils.
 **Ce qui reste, et que je ne peux pas faire :** un relecteur persanophone. Aucun
 controle mecanique ne juge le registre (تو / شما, ecrit contre parle) ni le
 naturel d'une tournure. C'est le meme manque que pour le turc et l'ukrainien.
+
+## 7 septembre 2026 — Hatice : l'objectif du jour n'a pas l'air d'avancer
+
+**Retour de Hatice, rapporte par Jacques, qui le constate aussi.** Deux plaintes
+distinctes dans la meme phrase :
+
+1. **Cote usager** : la barre « Objectif du jour » ne semble pas bouger quand on
+   travaille. Ce n'est pas motivant. Sa question : est-ce que ca ne compte que
+   lorsqu'un mot est MAITRISE ?
+2. **Cote Jacques** : le tableau de bord admin ne lui donne pas de visibilite sur
+   l'utilisation reelle.
+
+**La regle, verifiee dans le code (v500) — reponse a sa question : NON.**
+
+`recordDailyActivity()` n'a que trois appelants :
+
+- `scheduleReview()` — **toute** carte repondue, quel que soit le bouton :
+  « Encore », « Je savais » (1re, 2e, 3e reussite). +1 a chaque fois.
+- `markMastered()` — la 4e reussite, et « Je le sais deja ». +1.
+- `checkAnswer()` — les exercices, **uniquement si la reponse est bonne**, et
+  hors rattrapage de fin de serie.
+
+Donc en flashcards la maitrise n'est PAS requise : chaque clic compte. Son
+intuition est fausse, mais le fait qu'elle l'ait eue est le vrai probleme —
+rien dans l'ecran ne le dit.
+
+**Deux trous reels trouves en verifiant :**
+
+- Le mode **« Parler »** (production orale, v483) ne compte **rien**. On
+  s'enregistre, on se reecoute, la barre ne bouge pas d'un cran. C'est
+  probablement une part directe de ce qu'elle ressent.
+- `dailyActivityToday` et `dailyActivityDate` **sont deja envoyes dans
+  Firestore** a chaque sauvegarde — et le tableau de bord admin ne les affiche
+  nulle part. Il ne montre que « X/Y mots maitrises · serie de N jour(s) » et
+  « derniere sauvegarde il y a... ». La donnee dort, exactement comme
+  `updatedAt` dormait avant d'etre affichee.
+
+Et « mots maitrises » monte lentement par construction (quatre « Je savais »
+d'affilee) : c'est le seul chiffre du tableau de bord, et c'est le plus lent de
+tous. Quelqu'un qui travaille tous les jours y parait immobile.
+
+**Etat : regle etablie et rapportee a Jacques. Aucune modification encore —
+il a demande la regle d'abord.**
