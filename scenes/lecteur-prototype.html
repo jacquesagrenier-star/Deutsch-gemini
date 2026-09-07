@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>Am Flughafen</title>
+<title>Marc in Berlin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Vazirmatn:wght@400;600&display=swap">
@@ -110,7 +110,7 @@ body{
 .tafel-grille .val.barre{color:#6D8095;text-decoration:line-through;font-weight:400}
 .tafel-grille .val.retard{color:var(--amber)}
 .puce-retard{
-  display:inline-block;background:var(--alert);color:#fff;border-radius:4px;
+  display:inline-block;background:var(--ok);color:#fff;border-radius:4px;
   padding:2px 8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
 }
 @media (max-width:640px){
@@ -279,7 +279,7 @@ tbody tr[aria-current="true"]{background:rgba(232,162,58,.11);box-shadow:inset 3
 
   <header class="chapeau">
     <span class="marque">Wortando<b>··</b></span>
-    <h1>Am Flughafen</h1>
+    <h1 id="titreScene">Ankunft in Berlin</h1>
     <span class="jeton">A2</span>
     <span class="jeton" id="jetonVoix">voix…</span>
     <span class="sous">Prototype de lecteur — son de synthèse, en attendant ElevenLabs et HeyGen.</span>
@@ -287,13 +287,13 @@ tbody tr[aria-current="true"]{background:rgba(232,162,58,.11);box-shadow:inset 3
 
   <!-- La bande porte exactement l'information dont le dialogue parle. -->
   <section class="tafel" aria-label="Informations de vol">
-    <div class="tafel-titre"><span>Abflug · Départs</span><span id="tafelHeure">08:00</span></div>
+    <div class="tafel-titre"><span id="tafelSens">Ankunft · Arrivées</span><span id="tafelHeure">18:30</span></div>
     <div class="tafel-grille">
-      <div><span class="cle">Flug</span><span class="val" id="tflug">LH 2043</span></div>
-      <div><span class="cle">Nach</span><span class="val" id="tnach">München</span></div>
-      <div><span class="cle">Geplant</span><span class="val barre" id="tprevu">09:30</span></div>
-      <div><span class="cle">Neu</span><span class="val retard" id="treel">10:00</span></div>
-      <div><span class="cle">Flugsteig</span><span class="val" id="tgate">B12</span></div>
+      <div><span class="cle" id="ktflug">Flug</span><span class="val" id="tflug">LH 2043</span></div>
+      <div><span class="cle" id="ktnach">Von</span><span class="val" id="tnach">München</span></div>
+      <div><span class="cle" id="ktprevu">Geplant</span><span class="val barre" id="tprevu">09:30</span></div>
+      <div><span class="cle" id="ktreel">Gelandet</span><span class="val retard" id="treel">10:00</span></div>
+      <div><span class="cle" id="ktgate">Gepäckband</span><span class="val" id="tgate">B12</span></div>
     </div>
     <div class="tafel-titre" style="border-bottom:0;border-top:1px solid var(--board-line)">
       <span class="puce-retard" id="tstatut">Verspätung</span>
@@ -311,7 +311,7 @@ tbody tr[aria-current="true"]{background:rgba(232,162,58,.11);box-shadow:inset 3
     <div class="scene-tete">
       <span class="pastille dekor" id="pastille">Dekor</span>
       <span class="locuteur" id="locuteur">Erzähler</span>
-      <span class="horloge"><span id="hPlan">1</span>/14 · <span id="hTemps">0:00</span> / 1:30</span>
+      <span class="horloge"><span id="hPlan">1</span>/<span id="hTotal">14</span> · <span id="hTemps">0:00</span> / <span id="hFin">1:30</span></span>
     </div>
 
     <p class="texte-de" id="texteDe" lang="de"></p>
@@ -380,136 +380,402 @@ tbody tr[aria-current="true"]{background:rgba(232,162,58,.11);box-shadow:inset 3
 /* La situation. Meme objet que scenes/flughafen.json dans le depot : ce
    prototype lit le format de production, il ne s'en invente pas un autre. */
 const SCENE = {
-  id:"flughafen_gate", situation:"Am Flughafen", niveau:"A2", duree:90,
-  chronometrage:"estime",
-  vol:{numero:"LH 2043",destination:"München",heure_prevue:"09:30",heure_reelle:"10:00",flugsteig:"B12",statut:"Verspätung"},
-  locuteurs:{
-    erzaehler:{nom:"Erzähler",avatar:null},
-    anna:{nom:"Anna",avatar:"wortando_anna"},
-    lukas:{nom:"Lukas",avatar:"wortando_lukas"}
+ "id": "ankunft_berlin",
+ "episode": 1,
+ "serie": "Marc in Berlin",
+ "situation": "Ankunft in Berlin",
+ "titre": {
+  "fr": "Arrivée à Berlin",
+  "en": "Arrival in Berlin",
+  "tr": "Berlin'e varış",
+  "uk": "Прибуття до Берліна",
+  "fa": "ورود به برلین"
+ },
+ "niveau": "A2",
+ "duree": 90,
+ "chronometrage": "estime",
+ "vol": {
+  "sens": "Ankunft",
+  "numero": "AC 876",
+  "provenance": "Montréal",
+  "heure_prevue": "18:15",
+  "heure_reelle": "18:30",
+  "gepaeckband": "4",
+  "statut": "Gelandet"
+ },
+ "locuteurs": {
+  "erzaehler": {
+   "nom": "Erzähler",
+   "avatar": null,
+   "voix": "aurora",
+   "voice_id": "8HePnvwzEdJ614CQMPqF"
   },
-  plans:[
-   {n:1,type:"decor",locuteur:"erzaehler",duree:6,image:"flughafen_abflughalle.jpg",
-    de:"Es ist acht Uhr morgens. Die Abflughalle ist schon voll.",
-    fr:"Il est huit heures du matin. Le hall des départs est déjà plein.",
-    en:"It is eight in the morning. The departure hall is already full.",
-    tr:"Sabahın sekizi. Giden yolcu salonu şimdiden dolu.",
-    uk:"Восьма година ранку. Зала вильотів уже переповнена.",
-    fa:"ساعت هشت صبح است. سالن پروازهای خروجی از همین حالا شلوغ است."},
-   {n:2,type:"decor",locuteur:"erzaehler",duree:7,image:"flughafen_anzeigetafel.jpg",
-    de:"Auf der Anzeigetafel stehen die Abflüge und die Ankünfte.",
-    fr:"Sur le tableau d'affichage figurent les départs et les arrivées.",
-    en:"The display board shows the departures and the arrivals.",
-    tr:"Bilgi ekranında gidiş ve varışlar yazıyor.",
-    uk:"На табло — вильоти та прильоти.",
-    fa:"روی تابلوی اطلاعات، پروازهای خروجی و ورودی نوشته شده است."},
-   {n:3,type:"replique",locuteur:"anna",duree:7,
-    de:"Entschuldigung, ich finde meinen Flugsteig nicht. Können Sie mir helfen?",
-    fr:"Excusez-moi, je ne trouve pas ma porte d'embarquement. Pouvez-vous m'aider ?",
-    en:"Excuse me, I can't find my gate. Could you help me?",
-    tr:"Affedersiniz, biniş kapımı bulamıyorum. Bana yardım edebilir misiniz?",
-    uk:"Перепрошую, я не можу знайти свій вихід на посадку. Ви можете мені допомогти?",
-    fa:"ببخشید، دروازهٔ پروازم را پیدا نمی‌کنم. می‌توانید کمکم کنید؟"},
-   {n:4,type:"replique",locuteur:"lukas",duree:5,
-    de:"Natürlich. Haben Sie Ihre Bordkarte dabei?",
-    fr:"Bien sûr. Avez-vous votre carte d'embarquement sur vous ?",
-    en:"Of course. Do you have your boarding pass with you?",
-    tr:"Elbette. Biniş kartınız yanınızda mı?",
-    uk:"Звісно. Ви маєте із собою посадковий талон?",
-    fa:"البته. کارت پروازتان همراهتان است؟"},
-   {n:5,type:"replique",locuteur:"anna",duree:6,
-    de:"Ja, hier. Der Flug nach München um neun Uhr dreißig.",
-    fr:"Oui, la voici. Le vol pour Munich à neuf heures trente.",
-    en:"Yes, here it is. The flight to Munich at nine thirty.",
-    tr:"Evet, buyurun. Münih uçuşu, dokuz otuzda.",
-    uk:"Так, ось. Рейс до Мюнхена о дев'ятій тридцять.",
-    fa:"بله، بفرمایید. پرواز مونیخ، ساعت نُه و نیم."},
-   {n:6,type:"replique",locuteur:"lukas",duree:9,
-    de:"Einen Moment. Ihr Flug hat leider dreißig Minuten Verspätung. Der Abflug ist jetzt um zehn Uhr.",
-    fr:"Un instant. Votre vol a malheureusement trente minutes de retard. Le départ est maintenant à dix heures.",
-    en:"One moment. Your flight is unfortunately thirty minutes late. Departure is now at ten o'clock.",
-    tr:"Bir saniye. Uçuşunuz maalesef otuz dakika rötarlı. Kalkış şimdi saat onda.",
-    uk:"Хвилинку. На жаль, ваш рейс затримується на тридцять хвилин. Виліт тепер о десятій.",
-    fa:"یک لحظه. متأسفانه پرواز شما سی دقیقه تأخیر دارد. خروج حالا ساعت ده است."},
-   {n:7,type:"replique",locuteur:"anna",duree:5,
-    de:"Oh nein. Und wo ist das Gate?",
-    fr:"Oh non. Et où est la porte ?",
-    en:"Oh no. And where is the gate?",
-    tr:"Olamaz. Peki kapı nerede?",
-    uk:"О ні. А де вихід на посадку?",
-    fa:"وای نه. و دروازه کجاست؟"},
-   {n:8,type:"replique",locuteur:"lukas",duree:9,
-    de:"Gate B12. Gehen Sie geradeaus, dann durch die Sicherheitskontrolle und danach rechts.",
-    fr:"Porte B12. Allez tout droit, puis passez le contrôle de sécurité et ensuite à droite.",
-    en:"Gate B12. Go straight ahead, then through security and after that to the right.",
-    tr:"B12 kapısı. Doğru gidin, sonra güvenlik kontrolünden geçin ve ardından sağa.",
-    uk:"Вихід B12. Ідіть прямо, потім через контроль безпеки, а далі праворуч.",
-    fa:"دروازهٔ B12. مستقیم بروید، بعد از کنترل امنیتی رد شوید و سپس به راست."},
-   {n:9,type:"replique",locuteur:"anna",duree:6,
-    de:"Und bin ich hier im richtigen Terminal?",
-    fr:"Et suis-je dans le bon terminal ?",
-    en:"And am I in the right terminal?",
-    tr:"Peki doğru terminalde miyim?",
-    uk:"А я в правильному терміналі?",
-    fa:"و آیا در ترمینال درست هستم؟"},
-   {n:10,type:"replique",locuteur:"lukas",duree:6,
-    de:"Ja, Terminal eins. Der Ausgang zum Flugsteig ist dort hinten.",
-    fr:"Oui, terminal un. La sortie vers la porte d'embarquement est là-bas au fond.",
-    en:"Yes, terminal one. The exit to the gate is back there.",
-    tr:"Evet, terminal bir. Biniş kapısına çıkış şurada arkada.",
-    uk:"Так, термінал один. Прохід до гейта — он там, у глибині.",
-    fa:"بله، ترمینال یک. خروجی به سمت دروازهٔ پرواز آن‌طرف، ته سالن است."},
-   {n:11,type:"replique",locuteur:"anna",duree:6,
-    de:"Muss ich meinen Koffer noch aufgeben?",
-    fr:"Dois-je encore enregistrer ma valise ?",
-    en:"Do I still have to check in my suitcase?",
-    tr:"Bavulumu yine de teslim etmem gerekiyor mu?",
-    uk:"Мені ще треба здати валізу?",
-    fa:"آیا هنوز باید چمدانم را تحویل بدهم؟"},
-   {n:12,type:"replique",locuteur:"lukas",duree:8,
-    de:"Nein, Sie haben schon eingecheckt. Sie können ihn als Handgepäck mitnehmen.",
-    fr:"Non, vous avez déjà fait l'enregistrement. Vous pouvez la prendre comme bagage à main.",
-    en:"No, you have already checked in. You can take it as hand luggage.",
-    tr:"Hayır, çoktan check-in yaptınız. Onu el bagajı olarak yanınıza alabilirsiniz.",
-    uk:"Ні, ви вже зареєструвалися. Можете взяти її як ручну поклажу.",
-    fa:"نه، شما قبلاً پذیرش را انجام داده‌اید. می‌توانید آن را به‌عنوان بار دستی همراه ببرید."},
-   {n:13,type:"replique",locuteur:"anna",duree:5,
-    de:"Vielen Dank für Ihre Hilfe!",
-    fr:"Merci beaucoup pour votre aide !",
-    en:"Thank you very much for your help!",
-    tr:"Yardımınız için çok teşekkürler!",
-    uk:"Щиро дякую за вашу допомогу!",
-    fa:"بابت کمکتان خیلی ممنون!"},
-   {n:14,type:"replique",locuteur:"lukas",duree:5,
-    de:"Gern geschehen. Guten Flug!",
-    fr:"Je vous en prie. Bon vol !",
-    en:"You're welcome. Have a good flight!",
-    tr:"Rica ederim. İyi uçuşlar!",
-    uk:"Прошу. Гарного польоту!",
-    fa:"خواهش می‌کنم. پرواز خوبی داشته باشید!"}
-  ],
-  lexique:{
-   "Abflughalle":{lemme:"die Abflughalle",pluriel:"die Abflughallen",fr:"le hall des départs",en:"departure hall",tr:"giden yolcu salonu",uk:"зала вильотів",fa:"سالن پروازهای خروجی"},
-   "Anzeigetafel":{lemme:"die Anzeigetafel",pluriel:"die Anzeigetafeln",fr:"le tableau d'affichage",en:"display board",tr:"bilgi ekranı",uk:"табло",fa:"تابلوی اطلاعات"},
-   "Abflüge":{lemme:"der Abflug",pluriel:"die Abflüge",fr:"le départ (vol)",en:"departure",tr:"gidiş",uk:"виліт",fa:"پرواز خروجی"},
-   "Abflug":{lemme:"der Abflug",pluriel:"die Abflüge",fr:"le départ (vol)",en:"departure",tr:"kalkış",uk:"виліт",fa:"خروج پرواز"},
-   "Ankünfte":{lemme:"die Ankunft",pluriel:"die Ankünfte",fr:"l'arrivée",en:"arrival",tr:"varış",uk:"приліт",fa:"ورود"},
-   "Flugsteig":{lemme:"der Flugsteig",pluriel:"die Flugsteige",fr:"la porte d'embarquement",en:"gate",tr:"biniş kapısı",uk:"вихід на посадку",fa:"دروازهٔ پرواز"},
-   "Gate":{lemme:"das Gate",pluriel:"die Gates",fr:"la porte (anglicisme courant)",en:"gate",tr:"kapı",uk:"гейт",fa:"دروازه"},
-   "Bordkarte":{lemme:"die Bordkarte",pluriel:"die Bordkarten",fr:"la carte d'embarquement",en:"boarding pass",tr:"biniş kartı",uk:"посадковий талон",fa:"کارت پرواز"},
-   "Flug":{lemme:"der Flug",pluriel:"die Flüge",fr:"le vol",en:"flight",tr:"uçuş",uk:"рейс",fa:"پرواز"},
-   "Verspätung":{lemme:"die Verspätung",pluriel:"die Verspätungen",fr:"le retard",en:"delay",tr:"rötar",uk:"затримка",fa:"تأخیر"},
-   "Sicherheitskontrolle":{lemme:"die Sicherheitskontrolle",pluriel:"die Sicherheitskontrollen",fr:"le contrôle de sécurité",en:"security check",tr:"güvenlik kontrolü",uk:"контроль безпеки",fa:"کنترل امنیتی"},
-   "Koffer":{lemme:"der Koffer",pluriel:"die Koffer",fr:"la valise",en:"suitcase",tr:"bavul",uk:"валіза",fa:"چمدان"},
-   "Handgepäck":{lemme:"das Handgepäck",pluriel:"— (indénombrable)",fr:"le bagage à main",en:"hand luggage",tr:"el bagajı",uk:"ручна поклажа",fa:"بار دستی"},
-   "aufgeben":{lemme:"aufgeben",pluriel:"gab auf · hat aufgegeben",fr:"enregistrer (un bagage)",en:"to check in (luggage)",tr:"teslim etmek",uk:"здавати",fa:"تحویل دادن"},
-   "eingecheckt":{lemme:"einchecken",pluriel:"checkte ein · hat eingecheckt",fr:"faire l'enregistrement",en:"to check in",tr:"check-in yapmak",uk:"реєструватися",fa:"پذیرش انجام دادن"},
-   "geradeaus":{lemme:"geradeaus",pluriel:"— (adverbe)",fr:"tout droit",en:"straight ahead",tr:"doğru",uk:"прямо",fa:"مستقیم"},
-   "rechts":{lemme:"rechts",pluriel:"— (adverbe)",fr:"à droite",en:"on the right",tr:"sağa",uk:"праворуч",fa:"به راست"},
-   "Terminal":{lemme:"das Terminal",pluriel:"die Terminals",fr:"le terminal",en:"terminal",tr:"terminal",uk:"термінал",fa:"ترمینال"},
-   "Ausgang":{lemme:"der Ausgang",pluriel:"die Ausgänge",fr:"la sortie",en:"exit",tr:"çıkış",uk:"вихід",fa:"خروجی"},
-   "helfen":{lemme:"helfen (+ Dativ)",pluriel:"half · hat geholfen",fr:"aider",en:"to help",tr:"yardım etmek",uk:"допомагати",fa:"کمک کردن"}
+  "marc": {
+   "nom": "Marc",
+   "avatar": "wortando_marc",
+   "voix": null
+  },
+  "anna": {
+   "nom": "Anna",
+   "avatar": "wortando_anna",
+   "voix": "aurora",
+   "voice_id": "8HePnvwzEdJ614CQMPqF"
   }
+ },
+ "plans": [
+  {
+   "n": 1,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 6,
+   "image": "ber_ankunftshalle.jpg",
+   "de": "Berlin Brandenburg, halb sieben am Abend. Marc kommt mit zwei Koffern an.",
+   "fr": "Berlin Brandebourg, six heures et demie du soir. Marc arrive avec deux valises.",
+   "en": "Berlin Brandenburg, half past six in the evening. Marc arrives with two suitcases.",
+   "tr": "Berlin Brandenburg, akşam altı buçuk. Marc iki bavulla geliyor.",
+   "uk": "Берлін-Бранденбург, пів на сьому вечора. Марк прибуває з двома валізами.",
+   "fa": "برلین براندنبورگ، ساعت شش و نیم عصر. مارک با دو چمدان می‌رسد."
+  },
+  {
+   "n": 2,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 7,
+   "image": "ber_gepaeckband.jpg",
+   "de": "Er wird hier wohnen und arbeiten. Alles ist neu für ihn.",
+   "fr": "Il va vivre et travailler ici. Tout est nouveau pour lui.",
+   "en": "He is going to live and work here. Everything is new to him.",
+   "tr": "Burada yaşayıp çalışacak. Onun için her şey yeni.",
+   "uk": "Він житиме і працюватиме тут. Усе для нього нове.",
+   "fa": "او قرار است اینجا زندگی و کار کند. همه‌چیز برایش تازه است."
+  },
+  {
+   "n": 3,
+   "type": "replique",
+   "locuteur": "marc",
+   "duree": 7,
+   "de": "Entschuldigung, wo ist die Gepäckausgabe?",
+   "fr": "Excusez-moi, où est la livraison des bagages ?",
+   "en": "Excuse me, where is the baggage claim?",
+   "tr": "Affedersiniz, bagaj teslim yeri nerede?",
+   "uk": "Перепрошую, де видача багажу?",
+   "fa": "ببخشید، تحویل بار کجاست؟"
+  },
+  {
+   "n": 4,
+   "type": "replique",
+   "locuteur": "anna",
+   "duree": 6,
+   "de": "Gleich hier rechts. Welchen Flug hatten Sie?",
+   "fr": "Juste ici à droite. Quel vol aviez-vous ?",
+   "en": "Just here on the right. Which flight were you on?",
+   "tr": "Hemen burada sağda. Hangi uçuşla geldiniz?",
+   "uk": "Одразу тут праворуч. Яким рейсом ви прилетіли?",
+   "fa": "همین‌جا سمت راست. با کدام پرواز آمدید؟"
+  },
+  {
+   "n": 5,
+   "type": "replique",
+   "locuteur": "marc",
+   "duree": 6,
+   "de": "Aus Montreal. Ich ziehe nach Berlin um.",
+   "fr": "De Montréal. Je déménage à Berlin.",
+   "en": "From Montreal. I'm moving to Berlin.",
+   "tr": "Montreal'den. Berlin'e taşınıyorum.",
+   "uk": "З Монреаля. Я переїжджаю до Берліна.",
+   "fa": "از مونترال. دارم به برلین نقل مکان می‌کنم."
+  },
+  {
+   "n": 6,
+   "type": "replique",
+   "locuteur": "anna",
+   "duree": 5,
+   "de": "Herzlich willkommen! Bleiben Sie länger?",
+   "fr": "Bienvenue ! Vous restez longtemps ?",
+   "en": "Welcome! Are you staying long?",
+   "tr": "Hoş geldiniz! Uzun kalacak mısınız?",
+   "uk": "Ласкаво просимо! Ви надовго?",
+   "fa": "خوش آمدید! مدت زیادی می‌مانید؟"
+  },
+  {
+   "n": 7,
+   "type": "replique",
+   "locuteur": "marc",
+   "duree": 7,
+   "de": "Ja, ich fange nächste Woche einen neuen Job an.",
+   "fr": "Oui, je commence un nouvel emploi la semaine prochaine.",
+   "en": "Yes, I'm starting a new job next week.",
+   "tr": "Evet, gelecek hafta yeni bir işe başlıyorum.",
+   "uk": "Так, наступного тижня починаю нову роботу.",
+   "fa": "بله، هفتهٔ آینده کار تازه‌ای را شروع می‌کنم."
+  },
+  {
+   "n": 8,
+   "type": "replique",
+   "locuteur": "anna",
+   "duree": 6,
+   "de": "Dann brauchen Sie bald eine Anmeldung beim Bürgeramt.",
+   "fr": "Alors il vous faudra bientôt faire votre déclaration de domicile au Bürgeramt.",
+   "en": "Then you'll soon need to register your address at the citizens' office.",
+   "tr": "O zaman yakında vatandaş bürosunda adres kaydı yaptırmanız gerekecek.",
+   "uk": "Тоді вам скоро знадобиться реєстрація місця проживання в бюро громадян.",
+   "fa": "پس به‌زودی باید در ادارهٔ شهروندان نشانی‌تان را ثبت کنید."
+  },
+  {
+   "n": 9,
+   "type": "replique",
+   "locuteur": "marc",
+   "duree": 6,
+   "de": "Und wie komme ich jetzt in die Innenstadt?",
+   "fr": "Et comment est-ce que je vais au centre-ville maintenant ?",
+   "en": "And how do I get into the city centre now?",
+   "tr": "Peki şimdi şehir merkezine nasıl giderim?",
+   "uk": "А як мені тепер дістатися до центру міста?",
+   "fa": "و حالا چطور به مرکز شهر بروم؟"
+  },
+  {
+   "n": 10,
+   "type": "replique",
+   "locuteur": "anna",
+   "duree": 9,
+   "de": "Nehmen Sie die S-Bahn. Die Fahrkarte kaufen Sie am Automaten, unten in der Halle.",
+   "fr": "Prenez le S-Bahn. Le billet, vous l'achetez au distributeur, en bas dans le hall.",
+   "en": "Take the S-Bahn. You buy the ticket at the machine, downstairs in the hall.",
+   "tr": "S-Bahn'a binin. Bileti aşağıda, salondaki otomattan alırsınız.",
+   "uk": "Їдьте S-Bahn. Квиток купіть в автоматі, унизу в залі.",
+   "fa": "با اس‌بان بروید. بلیت را از دستگاه، پایین در سالن، می‌خرید."
+  },
+  {
+   "n": 11,
+   "type": "replique",
+   "locuteur": "marc",
+   "duree": 7,
+   "de": "Wie lange dauert die Fahrt ungefähr?",
+   "fr": "Combien de temps dure le trajet à peu près ?",
+   "en": "About how long does the journey take?",
+   "tr": "Yolculuk yaklaşık ne kadar sürer?",
+   "uk": "Скільки приблизно триває поїздка?",
+   "fa": "سفر تقریباً چقدر طول می‌کشد؟"
+  },
+  {
+   "n": 12,
+   "type": "replique",
+   "locuteur": "anna",
+   "duree": 8,
+   "de": "Etwa vierzig Minuten bis zum Hauptbahnhof.",
+   "fr": "Environ quarante minutes jusqu'à la gare centrale.",
+   "en": "About forty minutes to the main station.",
+   "tr": "Ana gara kadar yaklaşık kırk dakika.",
+   "uk": "Приблизно сорок хвилин до головного вокзалу.",
+   "fa": "تا ایستگاه مرکزی حدود چهل دقیقه."
+  },
+  {
+   "n": 13,
+   "type": "replique",
+   "locuteur": "marc",
+   "duree": 5,
+   "de": "Vielen Dank für Ihre Hilfe!",
+   "fr": "Merci beaucoup pour votre aide !",
+   "en": "Thank you very much for your help!",
+   "tr": "Yardımınız için çok teşekkürler!",
+   "uk": "Щиро дякую за вашу допомогу!",
+   "fa": "بابت کمکتان خیلی ممنون!"
+  },
+  {
+   "n": 14,
+   "type": "replique",
+   "locuteur": "anna",
+   "duree": 5,
+   "de": "Gern geschehen. Viel Glück in Berlin!",
+   "fr": "Je vous en prie. Bonne chance à Berlin !",
+   "en": "You're welcome. Good luck in Berlin!",
+   "tr": "Rica ederim. Berlin'de bol şans!",
+   "uk": "Прошу. Успіхів у Берліні!",
+   "fa": "خواهش می‌کنم. در برلین موفق باشید!"
+  }
+ ],
+ "lexique": {
+  "ankommen": {
+   "lemme": "ankommen",
+   "pluriel": "kam an · ist angekommen",
+   "fr": "arriver",
+   "en": "to arrive",
+   "tr": "varmak",
+   "uk": "прибувати",
+   "fa": "رسیدن"
+  },
+  "Koffern": {
+   "lemme": "der Koffer",
+   "pluriel": "die Koffer",
+   "fr": "la valise",
+   "en": "suitcase",
+   "tr": "bavul",
+   "uk": "валіза",
+   "fa": "چمدان"
+  },
+  "wohnen": {
+   "lemme": "wohnen",
+   "pluriel": "wohnte · hat gewohnt",
+   "fr": "habiter",
+   "en": "to live, to reside",
+   "tr": "oturmak",
+   "uk": "мешкати",
+   "fa": "سکونت داشتن"
+  },
+  "arbeiten": {
+   "lemme": "arbeiten",
+   "pluriel": "arbeitete · hat gearbeitet",
+   "fr": "travailler",
+   "en": "to work",
+   "tr": "çalışmak",
+   "uk": "працювати",
+   "fa": "کار کردن"
+  },
+  "Gepäckausgabe": {
+   "lemme": "die Gepäckausgabe",
+   "pluriel": "die Gepäckausgaben",
+   "fr": "la livraison des bagages",
+   "en": "baggage claim",
+   "tr": "bagaj teslim yeri",
+   "uk": "видача багажу",
+   "fa": "تحویل بار"
+  },
+  "Flug": {
+   "lemme": "der Flug",
+   "pluriel": "die Flüge",
+   "fr": "le vol",
+   "en": "flight",
+   "tr": "uçuş",
+   "uk": "рейс",
+   "fa": "پرواز"
+  },
+  "umziehen": {
+   "lemme": "umziehen",
+   "pluriel": "zog um · ist umgezogen",
+   "fr": "déménager",
+   "en": "to move house",
+   "tr": "taşınmak",
+   "uk": "переїжджати",
+   "fa": "نقل مکان کردن"
+  },
+  "willkommen": {
+   "lemme": "willkommen",
+   "pluriel": "— (adjectif)",
+   "fr": "bienvenu",
+   "en": "welcome",
+   "tr": "hoş geldiniz",
+   "uk": "ласкаво просимо",
+   "fa": "خوش آمدید"
+  },
+  "Job": {
+   "lemme": "der Job",
+   "pluriel": "die Jobs",
+   "fr": "l'emploi",
+   "en": "job",
+   "tr": "iş",
+   "uk": "робота",
+   "fa": "شغل"
+  },
+  "anfangen": {
+   "lemme": "anfangen",
+   "pluriel": "fing an · hat angefangen",
+   "fr": "commencer",
+   "en": "to start",
+   "tr": "başlamak",
+   "uk": "починати",
+   "fa": "شروع کردن"
+  },
+  "Anmeldung": {
+   "lemme": "die Anmeldung",
+   "pluriel": "die Anmeldungen",
+   "fr": "la déclaration de domicile",
+   "en": "address registration",
+   "tr": "adres kaydı",
+   "uk": "реєстрація місця проживання",
+   "fa": "ثبت نشانی"
+  },
+  "Bürgeramt": {
+   "lemme": "das Bürgeramt",
+   "pluriel": "die Bürgerämter",
+   "fr": "le bureau des citoyens (mairie de quartier)",
+   "en": "citizens' office",
+   "tr": "vatandaş bürosu",
+   "uk": "бюро громадян",
+   "fa": "ادارهٔ شهروندان"
+  },
+  "Innenstadt": {
+   "lemme": "die Innenstadt",
+   "pluriel": "die Innenstädte",
+   "fr": "le centre-ville",
+   "en": "city centre",
+   "tr": "şehir merkezi",
+   "uk": "центр міста",
+   "fa": "مرکز شهر"
+  },
+  "S-Bahn": {
+   "lemme": "die S-Bahn",
+   "pluriel": "die S-Bahnen",
+   "fr": "le train urbain",
+   "en": "city rail",
+   "tr": "şehir treni",
+   "uk": "міська електричка",
+   "fa": "قطار شهری"
+  },
+  "Fahrkarte": {
+   "lemme": "die Fahrkarte",
+   "pluriel": "die Fahrkarten",
+   "fr": "le billet",
+   "en": "ticket",
+   "tr": "bilet",
+   "uk": "квиток",
+   "fa": "بلیت"
+  },
+  "Automaten": {
+   "lemme": "der Automat",
+   "pluriel": "die Automaten",
+   "fr": "le distributeur",
+   "en": "vending machine",
+   "tr": "otomat",
+   "uk": "автомат",
+   "fa": "دستگاه خودکار"
+  },
+  "Halle": {
+   "lemme": "die Halle",
+   "pluriel": "die Hallen",
+   "fr": "le hall",
+   "en": "hall",
+   "tr": "salon",
+   "uk": "зала",
+   "fa": "سالن"
+  },
+  "Fahrt": {
+   "lemme": "die Fahrt",
+   "pluriel": "die Fahrten",
+   "fr": "le trajet",
+   "en": "journey, ride",
+   "tr": "yolculuk",
+   "uk": "поїздка",
+   "fa": "سفر"
+  },
+  "dauert": {
+   "lemme": "dauern",
+   "pluriel": "dauerte · hat gedauert",
+   "fr": "durer",
+   "en": "to last",
+   "tr": "sürmek",
+   "uk": "тривати",
+   "fa": "طول کشیدن"
+  },
+  "Hauptbahnhof": {
+   "lemme": "der Hauptbahnhof",
+   "pluriel": "die Hauptbahnhöfe",
+   "fr": "la gare centrale",
+   "en": "main station",
+   "tr": "ana gar",
+   "uk": "головний вокзал",
+   "fa": "ایستگاه مرکزی"
+  }
+ }
 };
 
 const LANGUES = [
@@ -807,13 +1073,26 @@ LANGUES.forEach(l => {
 });
 
 /* ---------- demarrage : la page s'ouvre sur le plan 1, lisible, a l'arret ---------- */
-$("tflug").textContent = SCENE.vol.numero;
-$("tnach").textContent = SCENE.vol.destination;
-$("tprevu").textContent = SCENE.vol.heure_prevue;
-$("treel").textContent = SCENE.vol.heure_reelle;
-$("tgate").textContent = SCENE.vol.flugsteig;
-$("tstatut").textContent = SCENE.vol.statut;
+/* Le bandeau lit la scene : un depart dit « Nach » et un flugsteig, une
+   arrivee dit « Von » et un gepaeckband. Un seul gabarit pour les deux. */
+const V = SCENE.vol, arrivee = V.sens === "Ankunft";
+$("titreScene").textContent = SCENE.situation;
+$("tafelSens").textContent = arrivee ? "Ankunft · Arrivées" : "Abflug · Départs";
+$("tafelHeure").textContent = V.heure_reelle || V.heure_prevue;
+$("ktnach").textContent = arrivee ? "Von" : "Nach";
+$("ktreel").textContent = arrivee ? "Gelandet" : "Neu";
+$("ktgate").textContent = arrivee ? "Gepäckband" : "Flugsteig";
+$("tflug").textContent = V.numero;
+$("tnach").textContent = V.provenance || V.destination;
+$("tprevu").textContent = V.heure_prevue;
+$("treel").textContent = V.heure_reelle;
+$("tgate").textContent = V.gepaeckband || V.flugsteig;
+$("tstatut").textContent = V.statut;
+$("tinfo").textContent = arrivee
+    ? "Gepäckband " + (V.gepaeckband || "—")
+    : "30 Minuten später";
 $("hPlan").textContent = "1";
+$("hTotal").textContent = SCENE.plans.length;
 
 chiffrer();
 afficherPlan(0);
