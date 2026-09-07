@@ -198,16 +198,36 @@ def appliquer(chemin_corrections, verifier_seulement, remplacer=False):
     for e in corr["entrees"]:
         mot = e.get("mot")
         cibles = index.get(mot)
+        # UN MEME INFINITIF, DEUX SENS DIFFERENTS. « halten » figure trois fois
+        # dans les chapitres VHS -- arreter le ballon, considerer, tenir un
+        # discours -- avec trois phrases d'exemple differentes. Poser la meme
+        # traduction partout est le bon defaut quand c'est LE MEME mot ; ici
+        # ce n'en est pas un, et l'ecrasement silencieux a deja donne au
+        # chapitre 15 la phrase du chapitre 1. « cle_exemple » nomme alors la
+        # phrase ALLEMANDE visee, qui, elle, distingue.
+        if cibles and e.get("cle_exemple"):
+            cibles = [c for c in cibles if c.get("exemple") == e["cle_exemple"]]
         if not cibles:
-            print("    absent du corpus : %s" % mot)
+            print("    absent du corpus : %s%s" % (mot,
+                  (" || " + e["cle_exemple"]) if e.get("cle_exemple") else ""))
             absents += 1
             continue
+        # Refus plutot qu'ecrasement muet : sans discriminant, une entree qui
+        # vise plusieurs cibles aux exemples DIFFERENTS est une erreur.
+        if len(cibles) > 1 and not e.get("cle_exemple"):
+            exemples = {c.get("exemple") for c in cibles}
+            if len(exemples) > 1:
+                print("    %s vise %d entrees aux exemples differents -- "
+                      "ajouter \"cle_exemple\"" % (mot, len(cibles)))
+                refuses += 1
+                continue
         # TOUS LES CHAMPS TURCS, PAS SEULEMENT LES DEUX PREMIERS. Une carte de
         # verbe en porte cinq -- le verbe et ses quatre temps -- et le premier
         # verdict de relecture a signale une phrase au preterit. On prend donc
         # ce que le fichier de corrections nomme, quel que soit le champ,
         # plutot qu'une liste figee ici.
-        champs = [k for k in e if k.endswith("_" + LANGUE.code)]
+        champs = [k for k in e if k.endswith("_" + LANGUE.code)
+                  and k != "cle_exemple"]
         for cible in cibles:
             for champ in champs:
                 est_phrase = champ != LANGUE.champ("traduction")
