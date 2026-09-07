@@ -181,12 +181,14 @@ def recopier_formes(donnees, brut, langue):
     cela suppose. On recopie donc, et on ne laisse au traducteur que les
     tuiles REELLEMENT traduites."""
     poses = 0
+    paires = ([(b, cle_souligne, cle_souligne) for b in CHAMPS_SOULIGNE]
+              + [(b, cle_chameau, cle_chameau) for b in CHAMPS_CHAMEAU])
     for liste in donnees["jeux"].values():
         for exo in liste:
-            for base in CHAMPS_CHAMEAU:
+            for base, _, cle in paires:
                 fr = exo.get(base)
-                tr = exo.get(cle_chameau(base, "tr"))
-                cible = cle_chameau(base, langue)
+                tr = exo.get(cle(base, "tr"))
+                cible = cle(base, langue)
                 if fr is None or tr is None or exo.get(cible):
                     continue
                 if tr == fr:
