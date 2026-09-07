@@ -42,10 +42,16 @@ def main():
         remplacees = {k: v for k, v in lot.items() if k in deja and deja[k] != v}
         for k in remplacees:
             # Retire l'ancienne ligne de la cle, ou qu'elle soit dans le bloc.
+            #
+            # ⚠️ LA CHAINE PEUT CONTENIR SON PROPRE GUILLEMET, echappe. D'ou
+            # « une suite de (echappement | tout sauf guillemet et antislash) »
+            # plutot qu'un [^"]* naif, qui s'arreterait au premier \" et
+            # laisserait une demi-ligne de JavaScript dans le fichier.
             fin = s.index("\n    }", pos)
             avant, dedans = s[:pos], s[pos:fin]
-            dedans = re.sub(r"\n        %s: (\"(\.|[^\"\])*\"|'(\.|[^'\])*'),"
-                            % re.escape(k), "", dedans)
+            motif = ("\n        " + re.escape(k) + r": (\"(\\.|[^\"\\])*\""
+                     + r"|'(\\.|[^'\\])*'),")
+            dedans = re.sub(motif, "", dedans)
             s = avant + dedans + s[fin:]
         a_ecrire = dict(neuves); a_ecrire.update(remplacees)
     else:
