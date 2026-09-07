@@ -118,6 +118,11 @@ def extraire(donnees, langue, jeu, taille):
     print("# %s : %d a faire" % (jeu, len(manquants)))
     for exo in manquants[:taille]:
         bouts = ["Q: " + exo.get("question", "")]
+        # Une question identique d'un exercice a l'autre (« Remets les mots
+        # dans le bon ordre ») ne peut pas servir de cle a elle seule : on
+        # ajoute la traduction francaise, qui, elle, distingue.
+        if len([e for e in liste if e.get("question") == exo.get("question")]) > 1:
+            bouts.append("CLE-TRAN: " + exo.get("translation", ""))
         for base in CHAMPS_SOULIGNE[1:]:
             fr = exo.get(base, "")
             if exo.get(cle_souligne(base, "tr")) and fr:
@@ -145,10 +150,19 @@ def poser(donnees, brut, langue, chemin_corr, remplacer):
     absents = []
     for entree in corr["entrees"]:
         q = entree["question"]
-        cibles = par_question.get(q)
+        cibles = par_question.get(q) or []
+        # « cle_translation » est la traduction FRANCAISE, utilisee comme
+        # second discriminant la ou la question se repete a l'identique.
+        if entree.get("cle_translation"):
+            cibles = [e for e in cibles if e.get("translation") == entree["cle_translation"]]
         if not cibles:
-            absents.append(q)
+            absents.append(q + (" || " + entree["cle_translation"]
+                                if entree.get("cle_translation") else ""))
             continue
+        if len(cibles) > 1 and not entree.get("cle_translation"):
+            print("QUESTION AMBIGUE (%d exercices), ajoute \"cle_translation\" : %s"
+                  % (len(cibles), q))
+            sys.exit(1)
         for exo in cibles:
             for base in CHAMPS_SOULIGNE:
                 k = base + "_" + langue
