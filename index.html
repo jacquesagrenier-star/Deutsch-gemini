@@ -3896,7 +3896,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v497</span>
+        <span class="subtitle-version">v498</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -10175,7 +10175,7 @@ const I18N = {
         op_konjunktionen_o9_t: "wenn یا ob؟",
         op_konjunktionen_o9_d: "شرط، یا پرسش غیرمستقیم؟",
         op_konjunktionen_o10_t: "wenn یا wann؟",
-        op_konjunktionen_o10_d: "زمان، یا پرسش؟",
+        op_konjunktionen_o10_d: "در فارسی یک «وقتی» — در آلمانی دو واژه",
         op_konjunktionen_o11_t: "aber یا sondern؟",
         op_konjunktionen_o11_d: "پس از جملهٔ منفی، پیونددهندهٔ دیگری لازم است",
         op_konjunktionen_o12_d: "آنچه جلو می‌آید فعل را می‌راند — و نهاد را پشت آن",
@@ -11775,12 +11775,12 @@ async function loadVerbeJson() {
             arr.forEach(v => {
                 words.push({
                     infinitif: v.infinitif || "",
-                    traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "",
+                    traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "", traduction_fa: v.traduction_fa || "",
                     praesens: v.praesens || {},
-                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "",
-                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "", praeteritum_tr: v.praeteritum_tr || "", praeteritum_uk: v.praeteritum_uk || "",
-                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "", perfekt_tr: v.perfekt_tr || "", perfekt_uk: v.perfekt_uk || "",
-                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "", konjunktiv2_tr: v.konjunktiv2_tr || "", konjunktiv2_uk: v.konjunktiv2_uk || "",
+                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "",
+                    praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "", praeteritum_tr: v.praeteritum_tr || "", praeteritum_uk: v.praeteritum_uk || "", praeteritum_fa: v.praeteritum_fa || "",
+                    perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "", perfekt_tr: v.perfekt_tr || "", perfekt_uk: v.perfekt_uk || "", perfekt_fa: v.perfekt_fa || "",
+                    konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "", konjunktiv2_tr: v.konjunktiv2_tr || "", konjunktiv2_uk: v.konjunktiv2_uk || "", konjunktiv2_fa: v.konjunktiv2_fa || "",
                     imperativ: v.imperativ || null,
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
@@ -11850,7 +11850,9 @@ async function loadAdjektiveJson() {
                     Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 9
                     w.registre || "",        // rang 10
                     w.traduction_uk || "",   // rang 11
-                    w.exemple_uk || ""       // rang 12
+                    w.exemple_uk || "",      // rang 12
+                    w.traduction_fa || "",   // rang 13
+                    w.exemple_fa || ""       // rang 14
                 ]);
             });
         });
@@ -11882,19 +11884,19 @@ function hideGlobalLoadingBar(){
 // allemand reste en tete : c'est celui que l'apprenant retrouvera dans une
 // grammaire ou un cours.
 const ADVERB_CATEGORIES = {
-    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman", uk: "Zeit \u2014 час" },
-    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction", tr: "Ort/Richtung \u2014 yer, yön", uk: "Ort/Richtung \u2014 місце, напрямок" },
-    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency", tr: "Häufigkeit \u2014 sıklık", uk: "Häufigkeit \u2014 частота" },
-    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner", tr: "Art und Weise \u2014 tarz", uk: "Art und Weise \u2014 спосіб дії" },
-    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity", tr: "Grad/Menge \u2014 derece, miktar", uk: "Grad/Menge \u2014 міра, кількість" },
-    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence", tr: "Grund/Folge \u2014 neden, sonuç", uk: "Grund/Folge \u2014 причина, наслідок" },
-    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link", tr: "Verbindung/Logik \u2014 mantıksal bağ", uk: "Verbindung/Logik \u2014 логічний зв’язок" },
-    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words", tr: "Frageadverbien \u2014 soru kelimeleri", uk: "Frageadverbien \u2014 питальні слова" },
+    "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman", uk: "Zeit \u2014 час" , fa: "Zeit \u2014 زمان" },
+    "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction", tr: "Ort/Richtung \u2014 yer, yön", uk: "Ort/Richtung \u2014 місце, напрямок" , fa: "Ort/Richtung \u2014 مکان و جهت" },
+    "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency", tr: "Häufigkeit \u2014 sıklık", uk: "Häufigkeit \u2014 частота" , fa: "H\u00e4ufigkeit \u2014 بسامد" },
+    "Art und Weise":    { fr: "Art und Weise \u2014 mani\u00e8re",        en: "Art und Weise \u2014 manner", tr: "Art und Weise \u2014 tarz", uk: "Art und Weise \u2014 спосіб дії" , fa: "Art und Weise \u2014 چگونگی" },
+    "Grad/Menge":       { fr: "Grad/Menge \u2014 degr\u00e9, quantit\u00e9",  en: "Grad/Menge \u2014 degree, quantity", tr: "Grad/Menge \u2014 derece, miktar", uk: "Grad/Menge \u2014 міра, кількість" , fa: "Grad/Menge \u2014 اندازه و مقدار" },
+    "Grund/Folge":      { fr: "Grund/Folge \u2014 cause, cons\u00e9quence", en: "Grund/Folge \u2014 cause, consequence", tr: "Grund/Folge \u2014 neden, sonuç", uk: "Grund/Folge \u2014 причина, наслідок" , fa: "Grund/Folge \u2014 سبب و پیامد" },
+    "Verbindung/Logik": { fr: "Verbindung/Logik \u2014 lien logique",  en: "Verbindung/Logik \u2014 logical link", tr: "Verbindung/Logik \u2014 mantıksal bağ", uk: "Verbindung/Logik \u2014 логічний зв’язок" , fa: "Verbindung/Logik \u2014 پیوند منطقی" },
+    "Frageadverbien":   { fr: "Frageadverbien \u2014 interrogation",   en: "Frageadverbien \u2014 question words", tr: "Frageadverbien \u2014 soru kelimeleri", uk: "Frageadverbien \u2014 питальні слова" , fa: "Frageadverbien \u2014 واژه‌های پرسشی" },
     // Marqueurs d'attitude plutot que liens logiques : allerdings, zwar,
     // immerhin, ohnehin... Ils ne disent pas comment deux idees s'articulent,
     // ils disent ce que celui qui parle en pense. C'est le role des
     // particules, d'ou leur regroupement avec elles dans "Nuances & ton".
-    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude", tr: "Nuance/Ton \u2014 tutum", uk: "Nuance/Ton \u2014 ставлення" }
+    "Nuance/Ton":       { fr: "Nuance/Ton \u2014 attitude",             en: "Nuance/Ton \u2014 attitude", tr: "Nuance/Ton \u2014 tutum", uk: "Nuance/Ton \u2014 ставлення" , fa: "Nuance/Ton \u2014 نگرش گوینده" }
 };
 
 // Adverbes charges depuis adverbe.json (meme principe que verbe.json et
@@ -11908,12 +11910,12 @@ const ADVERB_CATEGORIES = {
 // nuancer...) et non par forme : c'est ainsi qu'on va les chercher quand on
 // parle.
 const REDEWENDUNG_CATEGORIES = {
-    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet", uk: "Begrüßung \u2014 вітання, світська бесіда" },
-    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement", tr: "Meinung \u2014 görüş bildirme", uk: "Meinung \u2014 висловити думку" },
-    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions", tr: "Gefühle \u2014 duygular, tepkiler", uk: "Gefühle \u2014 почуття, реакції" },
-    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life", tr: "Alltag \u2014 günlük hayat", uk: "Alltag \u2014 повсякдення" },
-    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance", tr: "Diskussion \u2014 tartışma, nüans", uk: "Diskussion \u2014 дискусія, нюанси" },
-    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun", tr: "Feste Verbindungen \u2014 fiil + isim", uk: "Feste Verbindungen \u2014 дієслово + іменник" }
+    "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet", uk: "Begrüßung \u2014 вітання, світська бесіда" , fa: "Begrüßung \u2014 سلام و احوال‌پرسی" },
+    "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement", tr: "Meinung \u2014 görüş bildirme", uk: "Meinung \u2014 висловити думку" , fa: "Meinung \u2014 بیان نظر" },
+    "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions", tr: "Gefühle \u2014 duygular, tepkiler", uk: "Gefühle \u2014 почуття, реакції" , fa: "Gefühle \u2014 احساس‌ها و واکنش‌ها" },
+    "Alltag/Organisation":  { fr: "Alltag \u2014 la vie pratique",           en: "Alltag \u2014 everyday life", tr: "Alltag \u2014 günlük hayat", uk: "Alltag \u2014 повсякдення" , fa: "Alltag \u2014 زندگی روزمره" },
+    "Diskussion/Nuance":    { fr: "Diskussion \u2014 nuancer, argumenter",   en: "Diskussion \u2014 arguing, nuance", tr: "Diskussion \u2014 tartışma, nüans", uk: "Diskussion \u2014 дискусія, нюанси" , fa: "Diskussion \u2014 بحث و ظرافت" },
+    "Feste Verbindungen":   { fr: "Feste Verbindungen \u2014 verbe + nom",   en: "Feste Verbindungen \u2014 verb + noun", tr: "Feste Verbindungen \u2014 fiil + isim", uk: "Feste Verbindungen \u2014 дієслово + іменник" , fa: "Feste Verbindungen \u2014 فعل + اسم" }
 };
 
 // Meme principe que adverbe.json : la donnee vit hors du code. Tuple produit,
@@ -11952,7 +11954,9 @@ async function loadFunktionswoerterJson() {
                 Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 12
                 w.registre || "",                           // rang 13
                 w.traduction_uk || "", w.exemple_uk || "",  // rangs 14 et 15
-                w.kategorie_uk || ""                        // rang 16
+                w.kategorie_uk || "",                       // rang 16
+                w.traduction_fa || "", w.exemple_fa || "",  // rangs 17 et 18
+                w.kategorie_fa || ""                        // rang 19
             ]);
         });
     } catch (e) {
@@ -11979,7 +11983,9 @@ async function loadRedewendungenJson() {
                     Array.isArray(r.pruefung) ? r.pruefung : null,  // rang 13
                     r.registre || "",        // rang 14
                     r.traduction_uk || "", r.exemple_uk || "",  // rangs 15 et 16
-                    cat.uk || ""                                // rang 17
+                    cat.uk || "",                               // rang 17
+                    r.traduction_fa || "", r.exemple_fa || "",  // rangs 18 et 19
+                    cat.fa || ""                                // rang 20
                 ]);
             });
         });
@@ -12008,7 +12014,9 @@ async function loadAdverbienJson() {
                     Array.isArray(a.pruefung) ? a.pruefung : null,  // rang 13
                     a.registre || "",        // rang 14
                     a.traduction_uk || "", a.exemple_uk || "",  // rangs 15 et 16
-                    cat.uk || ""                                // rang 17
+                    cat.uk || "",                               // rang 17
+                    a.traduction_fa || "", a.exemple_fa || "",  // rangs 18 et 19
+                    cat.fa || ""                                // rang 20
                 ]);
             });
         });
@@ -12199,7 +12207,9 @@ async function loadThemesJson() {
                     // v470 : elle ne lit que « marque ou pas ».
                     Array.isArray(w.pruefung) ? w.pruefung : null,  // rang 14
                     w.traduction_uk || "",   // rang 15
-                    w.exemple_uk || ""       // rang 16
+                    w.exemple_uk || "",      // rang 16
+                    w.traduction_fa || "",   // rang 17
+                    w.exemple_fa || ""       // rang 18
                 ];
             });
 
@@ -15957,17 +15967,17 @@ function buildSearchIndex(){
             (lv.words || []).forEach((w, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_noun', source: src, mode: 'nomen',
                 themeId: lv.id, index: index, card: w,
-                de: w[0], fr: w[3], en: w[4], tr: w[12], alt: w[8]
+                de: w[0], fr: w[3], en: w[4], tr: w[12], uk: w[15], fa: w[17], alt: w[8]
             }));
             (lv.verben || []).forEach((v, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_verb', source: src, mode: 'vhskapitelverben', prio: 2,
                 themeId: lv.id + '__verben', index: index, card: v,
-                de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk
+                de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk, fa: v.traduction_fa
             }));
             (lv.adjektive || []).forEach((a, index) => pushSearchEntry(list, {
                 kindKey: 'search_kind_adj', source: src, mode: 'vhskapiteladjektive', prio: 2,
                 themeId: lv.id + '__adjektive', index: index, card: a,
-                de: a[0], fr: a[1], en: a[5], tr: a[7]
+                de: a[0], fr: a[1], en: a[5], tr: a[7], uk: a[11], fa: a[13]
             }));
         });
     });
@@ -15976,7 +15986,7 @@ function buildSearchIndex(){
         kindKey: 'search_kind_verb', mode: 'verben', prio: 0,
         source: (t('orb_verben_title') + " \u00b7 " + (v.niveau || "")).trim(),
         themeId: verbeTheme.id, index: index, card: v,
-        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk, fa: v.traduction_fa
     }));
 
     // adjectif.json : [mot, traduction, exemple, niveau, exemple_fr, en, exemple_en]
@@ -15984,30 +15994,30 @@ function buildSearchIndex(){
         kindKey: 'search_kind_adj', mode: 'adjektive', prio: 0,
         source: (t('orb_adjektive_title') + " \u00b7 " + (a[3] || "")).trim(),
         themeId: adjektiveTheme.id, index: index, card: a,
-        de: a[0], fr: a[1], en: a[5], tr: a[7]
+        de: a[0], fr: a[1], en: a[5], tr: a[7], uk: a[11], fa: a[13]
     }));
 
     // Themes de grammaire definis dans ce fichier : tuples
     // [de, fr, categorie, exempleDE, exempleFR, en, exempleEN, categorie_en].
     [
-        [praepTheme, 'search_kind_prep', 'search_src_praep', 'praep', 9],
-        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb', 'adverbien', 10],
-        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj', 'konjunktionen', 9],
-        [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln', 9],
-        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben', 9],
-        [redewendungenTheme, 'search_kind_expr', 'search_src_redewendungen', 'redewendungen', 10]
+        [praepTheme, 'search_kind_prep', 'search_src_praep', 'praep', 9, 14, 17],
+        [adverbienTheme, 'search_kind_adverb', 'search_src_adverb', 'adverbien', 10, 15, 18],
+        [konjunktionenTheme, 'search_kind_conj', 'search_src_conj', 'konjunktionen', 9, 14, 17],
+        [partikelnTheme, 'search_kind_particle', 'search_src_particle', 'partikeln', 9, 14, 17],
+        [kasusVerbTheme, 'search_kind_verb', 'search_src_kasus', 'kasusverben', 9, 14, 17],
+        [redewendungenTheme, 'search_kind_expr', 'search_src_redewendungen', 'redewendungen', 10, 15, 18]
     ].forEach(cfg => {
         (cfg[0].words || []).forEach((w, index) => pushSearchEntry(list, {
             kindKey: cfg[1], source: t(cfg[2]), mode: cfg[3], prio: 3,
             themeId: cfg[0].id, index: index, card: w,
-            de: w[0], fr: w[1], en: w[5], tr: w[cfg[4]]
+            de: w[0], fr: w[1], en: w[5], tr: w[cfg[4]], uk: w[cfg[5]], fa: w[cfg[6]]
         }));
     });
 
     (positionsverbenTheme.words || []).forEach((v, index) => pushSearchEntry(list, {
         kindKey: 'search_kind_verb', mode: 'positionsverben', prio: 3, source: t('search_src_position'),
         themeId: positionsverbenTheme.id, index: index, card: v,
-        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk
+        de: v.infinitif, fr: v.traduction, en: v.traduction_en, tr: v.traduction_tr, uk: v.traduction_uk, fa: v.traduction_fa
     }));
 
     return list;
@@ -19721,7 +19731,7 @@ function storedVoiceChoice(){
 // Moira (en-IE) articule nettement et sonne moins mecanique que les voix
 // anglaises proposees par defaut sur la plupart des appareils. Un choix
 // explicite fait dans les reglages reste prioritaire sur cette preference.
-const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [] };
+const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [], fa: [] };
 
 // Etiquette BCP-47 a poser sur l'enonce quand aucune voix installee ne
 // correspond. Une table plutot qu'une cascade de ternaires : la cascade
@@ -19733,7 +19743,7 @@ const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [] };
 // eventuellement fausse chez qui n'a pas de voix ukrainienne installee.
 // C'est exactement le piege deja nomme pour le turc : poser la donnee sans
 // mettre a jour les tables qui la lisent.
-const LANGUE_TAG = { de: "de-DE", en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA" };
+const LANGUE_TAG = { de: "de-DE", en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR" };
 
 function pickVoice(prefix){
     const dispo = voicesForLang(prefix);
@@ -21215,7 +21225,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 497;
+const APP_VERSION = 498;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23542,12 +23552,12 @@ function phrasesEcoutables(niveau){
         // Une phrase de moins de dix caracteres ne s'ecoute pas : le temps de
         // comprendre qu'on ecoute, elle est finie.
         if(!de || de.length < 10 || vus.has(de)) return;
-        if(!trad || !(trad.fr || trad.en || trad.tr || trad.uk)) return;
+        if(!trad || !(trad.fr || trad.en || trad.tr || trad.uk || trad.fa)) return;
         vus.add(de);
         sorties.push({ de: de, trad: trad, source: source });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
-    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk] });
+    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk], fa: w[r.fa] });
 
     themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(lvl => {
@@ -23557,14 +23567,14 @@ function phrasesEcoutables(niveau){
                 ajouter(w[5], rangs(w, RANGS_CARTE.nomen.exemple), theme.name));
             (lv.verben || []).forEach(v => ajouter(v.exemple, {
                 fr: v.exemple_fr, en: v.exemple_en,
-                tr: v.exemple_tr, uk: v.exemple_uk }, theme.name));
+                tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa }, theme.name));
         });
     });
 
     (verbeTheme.words || []).forEach(v => {
         if(!bonNiveau(v.niveau)) return;
         ajouter(v.exemple, { fr: v.exemple_fr, en: v.exemple_en,
-                             tr: v.exemple_tr, uk: v.exemple_uk },
+                             tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa },
                 t('orb_verben_title'));
     });
 
@@ -23639,14 +23649,14 @@ function startEcoutePhrase(niveau){
             translation: "", translation_en: "", translation_tr: "",
             hint: "", hint_en: "", hint_tr: "",
             answers: [bonne], correct: bonne, correctEn: bonne,
-            correctTr: bonne, correctUk: bonne,
+            correctTr: bonne, correctUk: bonne, correctFa: bonne,
             options: options, optionsEn: options,
-            optionsTr: options, optionsUk: options,
+            optionsTr: options, optionsUk: options, optionsFa: options,
             // LA RECOMPENSE : la phrase allemande apparait enfin, et le bouton
             // « entendre la phrase » (v480) la rejoue pendant qu'on la lit.
             audioDe: ph.de,
             explanation: ph.de, explanation_en: ph.de,
-            explanation_tr: ph.de, explanation_uk: ph.de
+            explanation_tr: ph.de, explanation_uk: ph.de, explanation_fa: ph.de
         });
     });
     if(!liste.length){ showInfoToast(t('alert_level_unavailable')); return; }
