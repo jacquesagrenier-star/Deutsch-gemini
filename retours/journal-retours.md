@@ -198,3 +198,10 @@ tous. Quelqu'un qui travaille tous les jours y parait immobile.
 
 **Etat : regle etablie et rapportee a Jacques. Aucune modification encore —
 il a demande la regle d'abord.**
+
+**Precision demandee par Jacques le meme jour :** « Encore » et « Je savais »
+font tous deux exactement +1, sans aucune difference. Ce qui change entre eux,
+c'est l'echeance de retour du mot et son pourcentage de maitrise, jamais le
+compteur du jour. Et comme « Encore » remet la carte dans la file de la MEME
+seance, le meme mot peut compter plusieurs fois : la barre compte des REPONSES,
+pas des mots distincts. « 30/30 » ne veut donc pas dire trente mots differents.
