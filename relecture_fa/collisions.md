@@ -6,3 +6,9 @@ Chaque ligne est un mot turc qui repond a PLUSIEURS mots allemands distincts de 
 
 Toutes ne sont pas des erreurs — deux quasi-synonymes allemands peuvent legitimement partager un mot turc si la langue n'en a pas deux. Mais chacune doit etre REGARDEE, et aucune relecture par lots ne peut les voir : le relecteur ne recoit qu'une centaine de cartes a la fois.
 
+## adjectifs (1 reponses pour 2 mots allemands)
+
+- **جذاب** ← attraktiv (A2), faszinierend (B1)
+    - attraktiv : attirant, séduisant
+    - faszinierend : fascinant
+
