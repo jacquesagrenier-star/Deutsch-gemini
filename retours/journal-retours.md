@@ -291,3 +291,61 @@ collisions preexistantes dans themes.json, l'ukrainien 81 (le persan zero).
 Elles sont anterieures a ce travail. C'est le meme controle qui a servi pour le
 persan -- `relecture_langue.py --collisions` -- et personne ne l'a jamais passe
 sur le turc ni sur l'ukrainien.
+
+---
+
+## 7 septembre 2026 — Les collisions turques et ukrainiennes, corrigees
+
+Demande de Jacques, suite directe du releve ci-dessus : « Corrige les 219
+collisions turques et les 81 ukrainiennes. » Le compte reel etait de 184 pour
+le turc en noms (219 toutes categories confondues, dont adjectifs, adverbes,
+verbes et expressions deja traites plus haut) et de 167 pour l'ukrainien.
+
+**Resultat : zero collision dans les deux langues, sur les cinq categories.**
+Huit groupes sont acceptes et inscrits avec leur raison -- deux en turc,
+six en ukrainien.
+
+### Ce qu'une collision coute a l'usager
+
+Deux mots allemands differents qui rendent la meme reponse : la carte devient
+indecidable. On voit « garson » et on ne peut pas savoir si l'attendu etait
+Kellner, Ober ou Kellnerin. L'usager se trompe sans avoir tort.
+
+### La methode, et pourquoi elle n'est pas celle d'avant
+
+Le troisieme verdict de relecture turque (2 septembre) avait montre que la
+passe de collisions precedente remplacait des mots JUSTES par des mots rares
+ou faux, pour la seule raison qu'il fallait deux reponses differentes. Ici :
+
+- le mot naturel reste, et une parenthese departage -- « kayısı (Avusturya) »
+  pour Marille, « сірник (Австрія) » pour Zuendholz. C'est deja la convention
+  du corpus : « krem şanti (Avusturya) », « dil (organ) » ;
+- quand les deux mots allemands sont reellement distincts, deux mots courants
+  de la langue cible, jamais un mot rare tire pour ecarter l'autre ;
+- quand ils ne le sont pas, la collision est ACCEPTEE et ecrite, pas maquillee.
+
+### Trois choses que ce travail a mises au jour
+
+1. **Trente des collisions turques n'etaient que des paires de genre.**
+   « Zuhoerer » et « Zuhoererin » se disent tous deux « dinleyici » -- le turc
+   n'a pas de genre grammatical. L'ukrainien, lui, a des formes feminines
+   propres : il n'en avait aucune. `tests/lot_collisions.py` gagne
+   `--genre seules|sans` pour separer les deux populations.
+
+2. **Le corpus turc portait DEUX conventions pour la meme marque de genre** :
+   « kadın patron » posee en A2 lors d'une passe precedente, et « doktor
+   (kadın) ». Deux mots avaient recu chacune une fois -- « Enkelin » etait a
+   la fois « torun (kız) » et « kadın torun ». Tout est ramene a la
+   parenthese, qui est le mecanisme de precision du reste du corpus.
+
+3. **Corriger une collision en cree d'autres.** « Folge » avait recu
+   « netice », qui appartenait deja a « Ergebnis » ; « festnehmen » avait recu
+   « заарештовувати », deja pris par « verhaften ». Trois passes pour les noms
+   turcs, deux pour l'ukrainien. Le compte est verifie apres chacune, et la
+   boucle tourne jusqu'a zero -- pas une fois.
+
+### Ce qui reste
+
+Le **persan** porte 14 collisions preexistantes (non demandees, non touchees).
+Elles sont anterieures a ce travail, comme l'etaient celles du turc et de
+l'ukrainien avant aujourd'hui.
