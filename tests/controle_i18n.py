@@ -71,6 +71,16 @@ def main():
     # 55 faux positifs sur l'ukrainien, et un outil bruyant ne sert personne.
     intraduits = {k for k, v in fr.items() if d.get("en", {}).get(k) == v}
 
+    # ⚠️ CHAQUE LANGUE A SA LONGUEUR, et comparer au francais avec un rapport
+    # fixe punit celles qui sont compactes. Le persan ecrit « ورود » (4) la ou
+    # le francais met « Se connecter » (12) : parfaitement juste, signale a
+    # tort. On mesure donc le rapport MEDIAN de la langue, et on ne signale que
+    # ce qui s'en ecarte franchement. La regle se calibre ainsi toute seule,
+    # sans seuil a retoucher pour chaque langue ajoutee.
+    rapports = sorted(len(v) / len(fr[k]) for k, v in cible.items()
+                      if k in fr and k not in intraduits and len(fr[k]) >= 12 and v)
+    median = rapports[len(rapports) // 2] if rapports else 1.0
+
     for k, v in cible.items():
         src = fr.get(k)
         if k in intraduits: continue
@@ -84,16 +94,23 @@ def main():
         # Une chaine faite QUE de symboles, chiffres ou noms propres latins est
         # legitime (« GB / US », « flat · apartment ») : on n'exige l'ecriture
         # que si le francais, lui, portait des lettres.
-        if ecriture and re.search(r"[A-Za-zÀ-ÿ]{3}", src):
+        # Une chaine qui n'est qu'une liste d'exemples (« der · den · dem »)
+        # n'est pas du texte a traduire, meme si l'anglais l'a legerement
+        # reformulee : le point median la trahit mieux qu'une liste d'exceptions.
+        exemples = "·" in src and not re.search(r"[.!?]", src)
+        if ecriture and not exemples and re.search(r"[A-Za-zÀ-ÿ]{3}", src):
             lo, hi = ecriture[1]
             if not any(lo <= ord(c) <= hi for c in v):
                 pb["ecriture"].append((k, ecriture[0], v[:60]))
         if a.langue == "fa":
             trouves = sorted({SOSIES_ARABES[c] for c in v if c in SOSIES_ARABES})
             if trouves: pb["sosies"].append((k, " ".join(trouves), v[:60]))
-        if len(src) >= 12 and (len(v) < len(src) * 0.35 or len(v) > len(src) * 2.6):
-            pb["longueur"].append((k, "fr %d / %s %d" % (len(src), a.langue, len(v)), v[:50]))
-        if v.strip() and v.strip() == src.strip() and re.search(r"[A-Za-zÀ-ÿ]{4}", src):
+        if len(src) >= 12 and v:
+            r = len(v) / len(src)
+            if r < median * 0.45 or r > median * 2.2:
+                pb["longueur"].append((k, "fr %d / %s %d  (rapport %.2f, median %.2f)"
+                                       % (len(src), a.langue, len(v), r, median), v[:50]))
+        if v.strip() and v.strip() == src.strip() and not exemples            and re.search(r"[A-Za-zÀ-ÿ]{4}", src):
             pb["identique"].append((k, "identique au francais", v[:60]))
 
     total = sum(len(x) for x in pb.values())
