@@ -57,6 +57,16 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTILS = os.environ.get("WORTANDO_OUTILS", "C:/Users/jacqu/.wortando")
 LOT = 40                 # textes par appel
 SEUIL = 0.42             # en dessous, l'ecart est franc
+LONGUEUR_MIN = 30        # en deca, un aller-retour ne prouve rien
+
+# ⚠️ POURQUOI UNE LONGUEUR MINIMALE, ET POURQUOI CE CHIFFRE. Mesure du
+# 7 septembre 2026, premiere vraie sortie de cet outil : 803 cles persanes,
+# 91 ecarts signales, dont 74 sur des chaines de MOINS DE 28 SIGNES -- et
+# aucun n'etait une faute. « Cas » revenait « Mode », « ملکی‌ها » revenait
+# « Malekiha » : sur une etiquette d'un mot, le moteur n'a aucun contexte, et
+# un synonyme correct y est indiscernable d'une erreur. Ces 74 lignes ne
+# coutaient pas seulement du bruit -- elles noyaient les 17 autres, les seules
+# ou un ecart de sens serait visible.
 
 GABARIT = re.compile(r"\{[a-zA-Z_][a-zA-Z0-9_]*\}")
 BALISE = re.compile(r"<[^>]+>")
@@ -77,10 +87,14 @@ def lire_cle(nom):
 
 # ------------------------------------------------------------------ moteurs
 
-def google(textes, source, cible, cle):
-    """Cloud Translation v2. Une cle API suffit, pas de compte de service."""
+def google(textes, source, cible, cles):
+    """Cloud Translation v2. Une cle API suffit, pas de compte de service.
+
+    `cles` est la LISTE des lignes du fichier, comme pour Azure : les deux
+    moteurs recoivent la meme chose, seul Azure se sert de la deuxieme ligne.
+    """
     import urllib.request
-    url = "https://translation.googleapis.com/language/translate/v2?key=" + cle
+    url = "https://translation.googleapis.com/language/translate/v2?key=" + cles[0]
     out = []
     for i in range(0, len(textes), LOT):
         corps = json.dumps({"q": textes[i:i + LOT], "source": source,
@@ -189,8 +203,10 @@ def ecrire_rapport(langue, moteur, lignes, examines):
                 "juge pas : une formulation differente est souvent aussi juste. "
                 "Et il ne voit RIEN du registre -- tutoiement, langue ecrite ou "
                 "parlee -- qui reste a un relecteur humain.\n\n")
-        f.write("%d cles examinees, %d ecarts francs (proximite < %.2f).\n\n"
-                % (examines, len(lignes), SEUIL))
+        f.write("%d cles examinees -- celles d'au moins %d signes, en deca un "
+                "aller-retour ne prouve rien --, %d ecarts francs "
+                "(proximite < %.2f).\n\n"
+                % (examines, LONGUEUR_MIN, len(lignes), SEUIL))
         for e in sorted(lignes, key=lambda x: x["proximite"]):
             f.write("### `%s`  (proximite %.2f)\n\n" % (e["cle"], e["proximite"]))
             f.write("| | |\n|---|---|\n")
@@ -219,7 +235,8 @@ def main():
 
     # Ce qui n'est traduit dans aucune langue n'a rien a faire ici.
     intraduits = {k for k, v in fr.items() if d.get("en", {}).get(k) == v}
-    cles = [k for k in cible if k in fr and k not in intraduits]
+    cles = [k for k in cible if k in fr and k not in intraduits
+            and len(fr[k]) >= LONGUEUR_MIN]
     cles.sort()
     if a.essai:
         cles = cles[:a.essai]
