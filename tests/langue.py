@@ -36,6 +36,11 @@ LANGUES = {
     "pl": ("polonais", "PL"),
     "ro": ("roumain", "RO"),
     "ar": ("arabe", "AR"),
+    # ⚠️ DeepL NE TRADUIT PAS LE PERSAN. Le code source vaut None : la relecture
+    # croisee par traduction inverse (contraste_deepl.py) ne marchera pas pour
+    # cette langue, il faudra un autre controle. Les autres outils
+    # (--suspects, --collisions) ne dependent pas de DeepL et fonctionnent.
+    "fa": ("persan", None),
 }
 
 NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
