@@ -1,0 +1,822 @@
+<meta charset="utf-8">
+<title>Am Flughafen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Vazirmatn:wght@400;600&display=swap">
+
+<style>
+/* ------------------------------------------------------------------
+   Le tableau d'affichage allemand comme principe visuel. L'encre et
+   l'ambre de Wortando (#1C2430 / #E8A23A) sont deja, a peu de chose
+   pres, les couleurs d'une Abflugtafel : on ne plaque pas un theme,
+   on se sert de celui que le sujet possede.
+   L'ambre ne sert qu'a UNE chose : le mot prononce a l'instant.
+   ------------------------------------------------------------------ */
+:root{
+  --board:#0E141C;
+  --board-2:#18212C;
+  --board-line:#27313E;
+  --on-board:#AEBDCB;
+  --on-board-fort:#F0F5F9;
+  --ink:#1C2430;
+  --paper:#EDF1F4;
+  --surface:#FFFFFF;
+  --surface-2:#F5F8FA;
+  --rule:#CDD6DE;
+  --muted:#5A6875;
+  --text:#1C2430;
+  --amber:#E8A23A;
+  --amber-encre:#8A5D12;
+  --alert:#C2493C;
+  --ok:#3E7D5A;
+  --ombre:0 1px 2px rgba(28,36,48,.06), 0 8px 24px rgba(28,36,48,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111820;
+    --surface:#1A222C;
+    --surface-2:#212B36;
+    --rule:#2E3945;
+    --muted:#94A3B1;
+    --text:#E3EAF1;
+    --amber-encre:#E8A23A;
+    --ombre:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111820;
+  --surface:#1A222C;
+  --surface-2:#212B36;
+  --rule:#2E3945;
+  --muted:#94A3B1;
+  --text:#E3EAF1;
+  --amber-encre:#E8A23A;
+  --ombre:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--text);
+  font-family:Archivo,"Segoe UI",system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+}
+.enveloppe{max-width:1000px;margin:0 auto;padding:24px 20px 64px;display:flex;flex-direction:column;gap:22px}
+
+/* ---------- en-tete ---------- */
+.chapeau{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px}
+.marque{
+  font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+}
+.marque b{color:var(--amber-encre);font-weight:700}
+.chapeau h1{
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:clamp(26px,4.4vw,38px);font-weight:600;margin:0;line-height:1.1;
+  text-wrap:balance;
+}
+.chapeau .sous{color:var(--muted);font-size:14px}
+.jeton{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--rule);border-radius:999px;padding:3px 10px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);background:var(--surface);
+}
+
+/* ---------- la bande d'affichage : l'information dont parle le dialogue ---------- */
+.tafel{
+  background:var(--board);border-radius:10px;overflow:hidden;
+  border:1px solid var(--board-line);
+}
+.tafel-titre{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:9px 16px;border-bottom:1px solid var(--board-line);
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  color:#6D8095;
+}
+.tafel-grille{
+  display:grid;grid-template-columns:auto 1fr auto auto auto;
+  gap:4px 20px;padding:14px 16px;align-items:center;
+}
+.tafel-grille .cle{
+  grid-row:1;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5F7186;
+}
+.tafel-grille .val{
+  grid-row:2;font-size:clamp(15px,2.4vw,20px);font-weight:600;
+  color:var(--on-board-fort);font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.tafel-grille .val.barre{color:#6D8095;text-decoration:line-through;font-weight:400}
+.tafel-grille .val.retard{color:var(--amber)}
+.puce-retard{
+  display:inline-block;background:var(--alert);color:#fff;border-radius:4px;
+  padding:2px 8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+}
+@media (max-width:640px){
+  .tafel-grille{grid-template-columns:repeat(2,1fr);gap:12px 16px}
+  .tafel-grille .cle,.tafel-grille .val{grid-row:auto}
+  .tafel-grille>div{display:flex;flex-direction:column;gap:2px}
+}
+
+/* ---------- la scene ---------- */
+.scene{
+  background:var(--board);border:1px solid var(--board-line);border-radius:12px;
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.bande-image{
+  height:64px;position:relative;
+  background:
+    repeating-linear-gradient(135deg,transparent 0 9px,rgba(174,189,203,.05) 9px 10px),
+    linear-gradient(180deg,#141C26,#0E141C);
+  border-bottom:1px solid var(--board-line);
+  display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#5F7186;font-weight:600;
+}
+.scene-tete{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  padding:14px 18px 0;
+}
+.pastille{
+  display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  padding:4px 11px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.pastille.replik{background:rgba(232,162,58,.14);color:var(--amber);border:1px solid rgba(232,162,58,.3)}
+.pastille.dekor{background:rgba(174,189,203,.1);color:var(--on-board);border:1px solid var(--board-line)}
+.locuteur{color:var(--on-board-fort);font-weight:600;font-size:14px}
+.horloge{
+  margin-left:auto;color:#5F7186;font-size:12px;font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+}
+.texte-de{
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:clamp(20px,3.5vw,29px);line-height:1.5;font-weight:400;
+  color:var(--on-board);padding:14px 18px 20px;margin:0;
+  min-height:132px;
+}
+.mot{
+  font:inherit;color:inherit;background:none;border:0;padding:1px 2px;margin:0 -1px;
+  border-radius:4px;cursor:pointer;border-bottom:1px solid transparent;
+}
+@media (prefers-reduced-motion:no-preference){
+  .mot{transition:color .09s linear,background-color .09s linear}
+}
+.mot.connu{border-bottom-color:rgba(232,162,58,.32)}
+.mot:hover,.mot:focus-visible{background:rgba(174,189,203,.13);color:var(--on-board-fort)}
+.mot:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+.mot.vif{color:var(--amber);background:rgba(232,162,58,.13);font-weight:600}
+.mot.dit{color:var(--on-board-fort)}
+.jauge{height:3px;background:var(--board-line);position:relative;overflow:hidden}
+.jauge>span{display:block;height:100%;background:var(--amber);width:0}
+
+/* ---------- commandes ---------- */
+.commandes{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  background:var(--board-2);padding:11px 14px;border-top:1px solid var(--board-line);
+}
+.bouton{
+  font:inherit;font-size:13px;font-weight:600;
+  background:transparent;color:var(--on-board);
+  border:1px solid var(--board-line);border-radius:7px;padding:7px 13px;cursor:pointer;
+}
+.bouton:hover{background:rgba(174,189,203,.09);color:var(--on-board-fort)}
+.bouton:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.bouton.primaire{background:var(--amber);border-color:var(--amber);color:#221703}
+.bouton.primaire:hover{background:#F0B155}
+.vitesse{margin-left:auto;display:flex;align-items:center;gap:6px;color:#5F7186;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.vitesse button{
+  font:inherit;font-size:12px;letter-spacing:0;text-transform:none;
+  background:transparent;border:1px solid var(--board-line);color:var(--on-board);
+  border-radius:6px;padding:4px 9px;cursor:pointer;font-variant-numeric:tabular-nums;
+}
+.vitesse button[aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:#221703}
+
+/* ---------- traduction ---------- */
+.traduction{
+  background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:var(--ombre);overflow:hidden;
+}
+.langues{display:flex;flex-wrap:wrap;gap:2px;padding:8px 10px;border-bottom:1px solid var(--rule);
+  background:var(--surface-2)}
+.langues button{
+  font:inherit;font-size:12.5px;font-weight:600;background:transparent;border:0;
+  color:var(--muted);border-radius:7px;padding:6px 11px;cursor:pointer;
+}
+.langues button:hover{background:var(--paper);color:var(--text)}
+.langues button[aria-pressed="true"]{background:var(--ink);color:#F0F5F9}
+:root[data-theme="dark"] .langues button[aria-pressed="true"],
+:root:not([data-theme="light"]) .langues button[aria-pressed="true"]{background:var(--amber);color:#221703}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .langues button[aria-pressed="true"]{background:var(--ink);color:#F0F5F9}
+}
+.texte-trad{
+  font-family:"Source Serif 4",Georgia,serif;font-size:clamp(16px,2.3vw,19px);
+  line-height:1.55;padding:16px 18px;margin:0;min-height:76px;
+}
+.texte-trad[lang="fa"]{font-family:Vazirmatn,"Segoe UI",Tahoma,sans-serif;direction:rtl;text-align:right}
+.texte-trad[lang="uk"]{font-family:"Source Serif 4",Georgia,serif}
+
+/* ---------- fiche de mot ---------- */
+.fiche{
+  background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--amber);
+  border-radius:10px;box-shadow:var(--ombre);padding:15px 17px;
+  display:flex;flex-direction:column;gap:9px;
+}
+.fiche .lemme{font-family:"Source Serif 4",Georgia,serif;font-size:21px;font-weight:600;line-height:1.2}
+.fiche .ligne{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--muted)}
+.fiche .ligne b{color:var(--text);font-weight:600}
+.fiche .sens{font-family:"Source Serif 4",Georgia,serif;font-size:17px}
+.fiche .sens[lang="fa"]{font-family:Vazirmatn,"Segoe UI",Tahoma,sans-serif;direction:rtl;text-align:right}
+.fiche .vide{color:var(--muted);font-size:14px}
+
+/* ---------- feuille de plans ---------- */
+.feuille{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:var(--ombre);overflow:hidden}
+.feuille h2{
+  margin:0;padding:13px 16px;border-bottom:1px solid var(--rule);background:var(--surface-2);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.defile{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{
+  text-align:left;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;padding:9px 12px;border-bottom:1px solid var(--rule);
+  white-space:nowrap;
+}
+td{padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--surface-2)}
+tbody tr[aria-current="true"]{background:rgba(232,162,58,.11);box-shadow:inset 3px 0 0 var(--amber)}
+.num{font-variant-numeric:tabular-nums;color:var(--muted);width:1%;white-space:nowrap}
+.sec{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.repl-de{font-family:"Source Serif 4",Georgia,serif;font-size:14.5px}
+.marque-rendu{
+  display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--amber);
+  vertical-align:middle;margin-right:7px;
+}
+.marque-rendu.libre{background:transparent;border:1px solid var(--rule)}
+.bilan{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--rule);border-top:1px solid var(--rule);
+}
+.bilan div{background:var(--surface);padding:12px 16px;display:flex;flex-direction:column;gap:3px}
+.bilan .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.bilan .v{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}
+.bilan .v small{font-size:12px;font-weight:500;color:var(--muted)}
+
+.note{font-size:12.5px;color:var(--muted);line-height:1.6}
+.note b{color:var(--text);font-weight:600}
+.note code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;
+  background:var(--surface-2);border:1px solid var(--rule);border-radius:4px;padding:1px 5px;
+}
+</style>
+
+<div class="enveloppe">
+
+  <header class="chapeau">
+    <span class="marque">Wortando<b>··</b></span>
+    <h1>Am Flughafen</h1>
+    <span class="jeton">A2</span>
+    <span class="jeton" id="jetonVoix">voix…</span>
+    <span class="sous">Prototype de lecteur — son de synthèse, en attendant ElevenLabs et HeyGen.</span>
+  </header>
+
+  <!-- La bande porte exactement l'information dont le dialogue parle. -->
+  <section class="tafel" aria-label="Informations de vol">
+    <div class="tafel-titre"><span>Abflug · Départs</span><span id="tafelHeure">08:00</span></div>
+    <div class="tafel-grille">
+      <div><span class="cle">Flug</span><span class="val" id="tflug">LH 2043</span></div>
+      <div><span class="cle">Nach</span><span class="val" id="tnach">München</span></div>
+      <div><span class="cle">Geplant</span><span class="val barre" id="tprevu">09:30</span></div>
+      <div><span class="cle">Neu</span><span class="val retard" id="treel">10:00</span></div>
+      <div><span class="cle">Flugsteig</span><span class="val" id="tgate">B12</span></div>
+    </div>
+    <div class="tafel-titre" style="border-bottom:0;border-top:1px solid var(--board-line)">
+      <span class="puce-retard" id="tstatut">Verspätung</span>
+      <span id="tinfo">30 Minuten später</span>
+    </div>
+  </section>
+
+  <!-- La scène -->
+  <section class="scene" aria-label="Lecteur de scène">
+    <div class="bande-image">
+      <span id="bandeImage">Bildspur · l'image viendra ici</span>
+      <span>rendu HeyGen — non produit</span>
+    </div>
+
+    <div class="scene-tete">
+      <span class="pastille dekor" id="pastille">Dekor</span>
+      <span class="locuteur" id="locuteur">Erzähler</span>
+      <span class="horloge"><span id="hPlan">1</span>/14 · <span id="hTemps">0:00</span> / 1:30</span>
+    </div>
+
+    <p class="texte-de" id="texteDe" lang="de"></p>
+
+    <div class="jauge" aria-hidden="true"><span id="jauge"></span></div>
+
+    <div class="commandes">
+      <button class="bouton primaire" id="bLire">▶ Lire la scène</button>
+      <button class="bouton" id="bPrec">← Plan</button>
+      <button class="bouton" id="bRejouer">↻ Cette réplique</button>
+      <button class="bouton" id="bSuiv">Plan →</button>
+      <span class="vitesse">
+        Vitesse
+        <button data-v="0.75">0,75</button>
+        <button data-v="0.9" aria-pressed="true">0,9</button>
+        <button data-v="1">1,0</button>
+      </span>
+    </div>
+  </section>
+
+  <!-- Traduction -->
+  <section class="traduction" aria-label="Traduction">
+    <div class="langues" id="langues" role="group" aria-label="Langue de l'apprenant"></div>
+    <p class="texte-trad" id="texteTrad" lang="fr"></p>
+  </section>
+
+  <!-- Fiche de mot -->
+  <section class="fiche" id="fiche" aria-live="polite">
+    <div class="vide">Touchez un mot allemand pour ouvrir sa fiche. Les mots soulignés d'ambre appartiennent au vocabulaire de l'aéroport.</div>
+  </section>
+
+  <!-- Feuille de plans = document de production -->
+  <section class="feuille" aria-label="Feuille de plans">
+    <h2><span>Feuille de plans</span><span>■ facturé chez HeyGen · □ image fixe, gratuit</span></h2>
+    <div class="defile">
+      <table>
+        <thead>
+          <tr><th>Plan</th><th>Type</th><th>Locuteur</th><th>Réplique</th><th class="sec">Durée</th></tr>
+        </thead>
+        <tbody id="feuilleCorps"></tbody>
+      </table>
+    </div>
+    <div class="bilan">
+      <div><span class="k">Durée</span><span class="v" id="bDuree">90 s</span></div>
+      <div><span class="k">Rendu avatar</span><span class="v" id="bFact">77 s</span></div>
+      <div><span class="k">Avatar III</span><span class="v" id="bIII">1,29 $</span></div>
+      <div><span class="k">Avatar IV</span><span class="v" id="bIV">5,14 $</span></div>
+      <div><span class="k">ElevenLabs</span><span class="v" id="bEL">0,08 $</span></div>
+    </div>
+  </section>
+
+  <p class="note">
+    <b>Ce que ce prototype prouve, et ce qu'il ne prouve pas.</b> Le surlignage, la traduction et la
+    fiche de mot fonctionnent — c'est la couche qui appartient à Wortando, et elle ne coûte rien.
+    La voix est celle du navigateur : elle sert à voir le mécanisme, pas à enseigner. En production,
+    l'audio vient d'ElevenLabs (voix Aurora et Nadja, celles que les apprenants connaissent déjà) et
+    les vraies bornes de chaque mot arrivent avec lui, dans <code>plan.mots</code>. Ici elles sont
+    <b>estimées</b> quand le navigateur ne les fournit pas — jamais présentées comme mesurées.
+  </p>
+
+</div>
+
+<script>
+"use strict";
+
+/* La situation. Meme objet que scenes/flughafen.json dans le depot : ce
+   prototype lit le format de production, il ne s'en invente pas un autre. */
+const SCENE = {
+  id:"flughafen_gate", situation:"Am Flughafen", niveau:"A2", duree:90,
+  chronometrage:"estime",
+  vol:{numero:"LH 2043",destination:"München",heure_prevue:"09:30",heure_reelle:"10:00",flugsteig:"B12",statut:"Verspätung"},
+  locuteurs:{
+    erzaehler:{nom:"Erzähler",avatar:null},
+    anna:{nom:"Anna",avatar:"wortando_anna"},
+    weber:{nom:"Herr Weber",avatar:"wortando_weber"}
+  },
+  plans:[
+   {n:1,type:"decor",locuteur:"erzaehler",duree:6,image:"flughafen_abflughalle.jpg",
+    de:"Es ist acht Uhr morgens. Die Abflughalle ist schon voll.",
+    fr:"Il est huit heures du matin. Le hall des départs est déjà plein.",
+    en:"It is eight in the morning. The departure hall is already full.",
+    tr:"Sabahın sekizi. Giden yolcu salonu şimdiden dolu.",
+    uk:"Восьма година ранку. Зала вильотів уже переповнена.",
+    fa:"ساعت هشت صبح است. سالن پروازهای خروجی از همین حالا شلوغ است."},
+   {n:2,type:"decor",locuteur:"erzaehler",duree:7,image:"flughafen_anzeigetafel.jpg",
+    de:"Auf der Anzeigetafel stehen die Abflüge und die Ankünfte.",
+    fr:"Sur le tableau d'affichage figurent les départs et les arrivées.",
+    en:"The display board shows the departures and the arrivals.",
+    tr:"Bilgi ekranında gidiş ve varışlar yazıyor.",
+    uk:"На табло — вильоти та прильоти.",
+    fa:"روی تابلوی اطلاعات، پروازهای خروجی و ورودی نوشته شده است."},
+   {n:3,type:"replique",locuteur:"anna",duree:7,
+    de:"Entschuldigung, ich finde meinen Flugsteig nicht. Können Sie mir helfen?",
+    fr:"Excusez-moi, je ne trouve pas ma porte d'embarquement. Pouvez-vous m'aider ?",
+    en:"Excuse me, I can't find my gate. Could you help me?",
+    tr:"Affedersiniz, biniş kapımı bulamıyorum. Bana yardım edebilir misiniz?",
+    uk:"Перепрошую, я не можу знайти свій вихід на посадку. Ви можете мені допомогти?",
+    fa:"ببخشید، دروازهٔ پروازم را پیدا نمی‌کنم. می‌توانید کمکم کنید؟"},
+   {n:4,type:"replique",locuteur:"weber",duree:5,
+    de:"Natürlich. Haben Sie Ihre Bordkarte dabei?",
+    fr:"Bien sûr. Avez-vous votre carte d'embarquement sur vous ?",
+    en:"Of course. Do you have your boarding pass with you?",
+    tr:"Elbette. Biniş kartınız yanınızda mı?",
+    uk:"Звісно. Ви маєте із собою посадковий талон?",
+    fa:"البته. کارت پروازتان همراهتان است؟"},
+   {n:5,type:"replique",locuteur:"anna",duree:6,
+    de:"Ja, hier. Der Flug nach München um neun Uhr dreißig.",
+    fr:"Oui, la voici. Le vol pour Munich à neuf heures trente.",
+    en:"Yes, here it is. The flight to Munich at nine thirty.",
+    tr:"Evet, buyurun. Münih uçuşu, dokuz otuzda.",
+    uk:"Так, ось. Рейс до Мюнхена о дев'ятій тридцять.",
+    fa:"بله، بفرمایید. پرواز مونیخ، ساعت نُه و نیم."},
+   {n:6,type:"replique",locuteur:"weber",duree:9,
+    de:"Einen Moment. Ihr Flug hat leider dreißig Minuten Verspätung. Der Abflug ist jetzt um zehn Uhr.",
+    fr:"Un instant. Votre vol a malheureusement trente minutes de retard. Le départ est maintenant à dix heures.",
+    en:"One moment. Your flight is unfortunately thirty minutes late. Departure is now at ten o'clock.",
+    tr:"Bir saniye. Uçuşunuz maalesef otuz dakika rötarlı. Kalkış şimdi saat onda.",
+    uk:"Хвилинку. На жаль, ваш рейс затримується на тридцять хвилин. Виліт тепер о десятій.",
+    fa:"یک لحظه. متأسفانه پرواز شما سی دقیقه تأخیر دارد. خروج حالا ساعت ده است."},
+   {n:7,type:"replique",locuteur:"anna",duree:5,
+    de:"Oh nein. Und wo ist das Gate?",
+    fr:"Oh non. Et où est la porte ?",
+    en:"Oh no. And where is the gate?",
+    tr:"Olamaz. Peki kapı nerede?",
+    uk:"О ні. А де вихід на посадку?",
+    fa:"وای نه. و دروازه کجاست؟"},
+   {n:8,type:"replique",locuteur:"weber",duree:9,
+    de:"Gate B12. Gehen Sie geradeaus, dann durch die Sicherheitskontrolle und danach rechts.",
+    fr:"Porte B12. Allez tout droit, puis passez le contrôle de sécurité et ensuite à droite.",
+    en:"Gate B12. Go straight ahead, then through security and after that to the right.",
+    tr:"B12 kapısı. Doğru gidin, sonra güvenlik kontrolünden geçin ve ardından sağa.",
+    uk:"Вихід B12. Ідіть прямо, потім через контроль безпеки, а далі праворуч.",
+    fa:"دروازهٔ B12. مستقیم بروید، بعد از کنترل امنیتی رد شوید و سپس به راست."},
+   {n:9,type:"replique",locuteur:"anna",duree:6,
+    de:"Und bin ich hier im richtigen Terminal?",
+    fr:"Et suis-je dans le bon terminal ?",
+    en:"And am I in the right terminal?",
+    tr:"Peki doğru terminalde miyim?",
+    uk:"А я в правильному терміналі?",
+    fa:"و آیا در ترمینال درست هستم؟"},
+   {n:10,type:"replique",locuteur:"weber",duree:6,
+    de:"Ja, Terminal eins. Der Ausgang zum Flugsteig ist dort hinten.",
+    fr:"Oui, terminal un. La sortie vers la porte d'embarquement est là-bas au fond.",
+    en:"Yes, terminal one. The exit to the gate is back there.",
+    tr:"Evet, terminal bir. Biniş kapısına çıkış şurada arkada.",
+    uk:"Так, термінал один. Прохід до гейта — он там, у глибині.",
+    fa:"بله، ترمینال یک. خروجی به سمت دروازهٔ پرواز آن‌طرف، ته سالن است."},
+   {n:11,type:"replique",locuteur:"anna",duree:6,
+    de:"Muss ich meinen Koffer noch aufgeben?",
+    fr:"Dois-je encore enregistrer ma valise ?",
+    en:"Do I still have to check in my suitcase?",
+    tr:"Bavulumu yine de teslim etmem gerekiyor mu?",
+    uk:"Мені ще треба здати валізу?",
+    fa:"آیا هنوز باید چمدانم را تحویل بدهم؟"},
+   {n:12,type:"replique",locuteur:"weber",duree:8,
+    de:"Nein, Sie haben schon eingecheckt. Sie können ihn als Handgepäck mitnehmen.",
+    fr:"Non, vous avez déjà fait l'enregistrement. Vous pouvez la prendre comme bagage à main.",
+    en:"No, you have already checked in. You can take it as hand luggage.",
+    tr:"Hayır, çoktan check-in yaptınız. Onu el bagajı olarak yanınıza alabilirsiniz.",
+    uk:"Ні, ви вже зареєструвалися. Можете взяти її як ручну поклажу.",
+    fa:"نه، شما قبلاً پذیرش را انجام داده‌اید. می‌توانید آن را به‌عنوان بار دستی همراه ببرید."},
+   {n:13,type:"replique",locuteur:"anna",duree:5,
+    de:"Vielen Dank für Ihre Hilfe!",
+    fr:"Merci beaucoup pour votre aide !",
+    en:"Thank you very much for your help!",
+    tr:"Yardımınız için çok teşekkürler!",
+    uk:"Щиро дякую за вашу допомогу!",
+    fa:"بابت کمکتان خیلی ممنون!"},
+   {n:14,type:"replique",locuteur:"weber",duree:5,
+    de:"Gern geschehen. Guten Flug!",
+    fr:"Je vous en prie. Bon vol !",
+    en:"You're welcome. Have a good flight!",
+    tr:"Rica ederim. İyi uçuşlar!",
+    uk:"Прошу. Гарного польоту!",
+    fa:"خواهش می‌کنم. پرواز خوبی داشته باشید!"}
+  ],
+  lexique:{
+   "Abflughalle":{lemme:"die Abflughalle",pluriel:"die Abflughallen",fr:"le hall des départs",en:"departure hall",tr:"giden yolcu salonu",uk:"зала вильотів",fa:"سالن پروازهای خروجی"},
+   "Anzeigetafel":{lemme:"die Anzeigetafel",pluriel:"die Anzeigetafeln",fr:"le tableau d'affichage",en:"display board",tr:"bilgi ekranı",uk:"табло",fa:"تابلوی اطلاعات"},
+   "Abflüge":{lemme:"der Abflug",pluriel:"die Abflüge",fr:"le départ (vol)",en:"departure",tr:"gidiş",uk:"виліт",fa:"پرواز خروجی"},
+   "Abflug":{lemme:"der Abflug",pluriel:"die Abflüge",fr:"le départ (vol)",en:"departure",tr:"kalkış",uk:"виліт",fa:"خروج پرواز"},
+   "Ankünfte":{lemme:"die Ankunft",pluriel:"die Ankünfte",fr:"l'arrivée",en:"arrival",tr:"varış",uk:"приліт",fa:"ورود"},
+   "Flugsteig":{lemme:"der Flugsteig",pluriel:"die Flugsteige",fr:"la porte d'embarquement",en:"gate",tr:"biniş kapısı",uk:"вихід на посадку",fa:"دروازهٔ پرواز"},
+   "Gate":{lemme:"das Gate",pluriel:"die Gates",fr:"la porte (anglicisme courant)",en:"gate",tr:"kapı",uk:"гейт",fa:"دروازه"},
+   "Bordkarte":{lemme:"die Bordkarte",pluriel:"die Bordkarten",fr:"la carte d'embarquement",en:"boarding pass",tr:"biniş kartı",uk:"посадковий талон",fa:"کارت پرواز"},
+   "Flug":{lemme:"der Flug",pluriel:"die Flüge",fr:"le vol",en:"flight",tr:"uçuş",uk:"рейс",fa:"پرواز"},
+   "Verspätung":{lemme:"die Verspätung",pluriel:"die Verspätungen",fr:"le retard",en:"delay",tr:"rötar",uk:"затримка",fa:"تأخیر"},
+   "Sicherheitskontrolle":{lemme:"die Sicherheitskontrolle",pluriel:"die Sicherheitskontrollen",fr:"le contrôle de sécurité",en:"security check",tr:"güvenlik kontrolü",uk:"контроль безпеки",fa:"کنترل امنیتی"},
+   "Koffer":{lemme:"der Koffer",pluriel:"die Koffer",fr:"la valise",en:"suitcase",tr:"bavul",uk:"валіза",fa:"چمدان"},
+   "Handgepäck":{lemme:"das Handgepäck",pluriel:"— (indénombrable)",fr:"le bagage à main",en:"hand luggage",tr:"el bagajı",uk:"ручна поклажа",fa:"بار دستی"},
+   "aufgeben":{lemme:"aufgeben",pluriel:"gab auf · hat aufgegeben",fr:"enregistrer (un bagage)",en:"to check in (luggage)",tr:"teslim etmek",uk:"здавати",fa:"تحویل دادن"},
+   "eingecheckt":{lemme:"einchecken",pluriel:"checkte ein · hat eingecheckt",fr:"faire l'enregistrement",en:"to check in",tr:"check-in yapmak",uk:"реєструватися",fa:"پذیرش انجام دادن"},
+   "geradeaus":{lemme:"geradeaus",pluriel:"— (adverbe)",fr:"tout droit",en:"straight ahead",tr:"doğru",uk:"прямо",fa:"مستقیم"},
+   "rechts":{lemme:"rechts",pluriel:"— (adverbe)",fr:"à droite",en:"on the right",tr:"sağa",uk:"праворуч",fa:"به راست"},
+   "Terminal":{lemme:"das Terminal",pluriel:"die Terminals",fr:"le terminal",en:"terminal",tr:"terminal",uk:"термінал",fa:"ترمینال"},
+   "Ausgang":{lemme:"der Ausgang",pluriel:"die Ausgänge",fr:"la sortie",en:"exit",tr:"çıkış",uk:"вихід",fa:"خروجی"},
+   "helfen":{lemme:"helfen (+ Dativ)",pluriel:"half · hat geholfen",fr:"aider",en:"to help",tr:"yardım etmek",uk:"допомагати",fa:"کمک کردن"}
+  }
+};
+
+const LANGUES = [
+  {code:"fr",nom:"Français"},{code:"en",nom:"English"},{code:"tr",nom:"Türkçe"},
+  {code:"uk",nom:"Українська"},{code:"fa",nom:"فارسی"}
+];
+const TARIF = {avatarIII:0.0167, avatarIV:0.0667, elevenlabs:0.10/1000};
+
+/* ---------- etat ---------- */
+let langue = "fr", plan = 0, vitesse = 0.9;
+let enLecture = false, enChaine = false;
+let motsDom = [], bornes = [], debutsChar = [];
+let tickId = null, utter = null, voixDe = null, boundaryVue = false;
+
+const $ = id => document.getElementById(id);
+
+/* ---------- decoupage du texte allemand ----------
+   Chaque mot devient un bouton, et on retient sa position en caracteres :
+   c'est ce qui permet de faire correspondre l'evenement `boundary` du
+   navigateur -- qui donne un index de caractere, pas un numero de mot --
+   au bon jeton. */
+function decouper(texte){
+  const jetons = [];
+  const re = /[\p{L}\p{M}\p{N}]+(?:['’-][\p{L}\p{M}\p{N}]+)*/gu;
+  let dernier = 0, m;
+  while((m = re.exec(texte)) !== null){
+    if(m.index > dernier) jetons.push({mot:false, t:texte.slice(dernier, m.index)});
+    jetons.push({mot:true, t:m[0], c:m.index});
+    dernier = m.index + m[0].length;
+  }
+  if(dernier < texte.length) jetons.push({mot:false, t:texte.slice(dernier)});
+  return jetons;
+}
+
+/* Estimation des bornes quand le moteur ne les donne pas.
+   Le poids d'un mot suit sa longueur, et la ponctuation ajoute un souffle :
+   c'est grossier, et c'est pourquoi l'interface le DIT. */
+function estimerBornes(jetons, duree){
+  const poids = [];
+  let total = 0;
+  jetons.forEach((j,i) => {
+    if(!j.mot) return;
+    let p = j.t.length + 1.6;
+    const suite = jetons[i+1];
+    if(suite && !suite.mot){
+      if(/[.!?]/.test(suite.t)) p += 5.5;
+      else if(/[,;:]/.test(suite.t)) p += 2.6;
+    }
+    poids.push(p); total += p;
+  });
+  const b = []; let t = 0;
+  poids.forEach(p => { const d = duree * p / total; b.push([t, t + d]); t += d; });
+  return b;
+}
+
+/* ---------- rendu d'un plan ---------- */
+function afficherPlan(i){
+  plan = i;
+  const p = SCENE.plans[i];
+  const loc = SCENE.locuteurs[p.locuteur];
+
+  $("pastille").textContent = p.type === "decor" ? "Dekor" : "Replik";
+  $("pastille").className = "pastille " + (p.type === "decor" ? "dekor" : "replik");
+  $("locuteur").textContent = loc.nom;
+  $("hPlan").textContent = p.n;
+  $("bandeImage").textContent = p.type === "decor"
+    ? "Bildspur · " + (p.image || "image fixe")
+    : "Bildspur · avatar « " + loc.avatar + " »";
+
+  const jetons = decouper(p.de);
+  bornes = estimerBornes(jetons, p.duree);
+  motsDom = []; debutsChar = [];
+  const hote = $("texteDe");
+  hote.textContent = "";
+  jetons.forEach(j => {
+    if(!j.mot){ hote.appendChild(document.createTextNode(j.t)); return; }
+    const b = document.createElement("button");
+    b.className = "mot" + (SCENE.lexique[j.t] ? " connu" : "");
+    b.type = "button";
+    b.textContent = j.t;
+    b.dataset.i = motsDom.length;
+    b.addEventListener("click", () => { montrerFiche(j.t); marquer(Number(b.dataset.i)); });
+    hote.appendChild(b);
+    motsDom.push(b); debutsChar.push(j.c);
+  });
+
+  $("texteTrad").textContent = p[langue] || "";
+  $("texteTrad").lang = langue;
+  $("jauge").style.width = "0%";
+  majFeuille();
+  majHorloge(0);
+}
+
+function marquer(k){
+  motsDom.forEach((el,i) => {
+    el.classList.toggle("vif", i === k);
+    el.classList.toggle("dit", i < k);
+  });
+}
+
+function majHorloge(dansPlan){
+  let t = 0;
+  for(let i = 0; i < plan; i++) t += SCENE.plans[i].duree;
+  t += dansPlan;
+  const s = Math.min(SCENE.duree, Math.round(t));
+  $("hTemps").textContent = Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
+}
+
+/* ---------- fiche de mot ---------- */
+function montrerFiche(mot){
+  const e = SCENE.lexique[mot];
+  const f = $("fiche");
+  f.textContent = "";
+  if(!e){
+    const d = document.createElement("div");
+    d.className = "vide";
+    d.innerHTML = "<b style='font-family:\"Source Serif 4\",Georgia,serif;font-size:19px'>" +
+      mot + "</b> — pas encore dans le lexique de cette scène. " +
+      "En production, la recherche irait dans le dictionnaire intégré de Wortando.";
+    f.appendChild(d);
+    return;
+  }
+  const l = document.createElement("div"); l.className = "lemme"; l.lang = "de"; l.textContent = e.lemme;
+  const g = document.createElement("div"); g.className = "ligne";
+  g.innerHTML = "<span>Pluriel · formes <b lang='de'>" + e.pluriel + "</b></span>" +
+                "<span>Vocabulaire de l'aéroport</span>";
+  const s = document.createElement("div"); s.className = "sens"; s.lang = langue; s.textContent = e[langue];
+  f.append(l, g, s);
+}
+
+/* ---------- feuille de plans ---------- */
+function majFeuille(){
+  const corps = $("feuilleCorps");
+  corps.textContent = "";
+  SCENE.plans.forEach((p, i) => {
+    const tr = document.createElement("tr");
+    if(i === plan) tr.setAttribute("aria-current", "true");
+    tr.addEventListener("click", () => { arreter(); afficherPlan(i); });
+    const facture = p.type === "replique";
+    tr.innerHTML =
+      "<td class='num'>" + p.n + "</td>" +
+      "<td><span class='marque-rendu" + (facture ? "" : " libre") + "'></span>" +
+        (facture ? "Replik" : "Dekor") + "</td>" +
+      "<td>" + SCENE.locuteurs[p.locuteur].nom + "</td>" +
+      "<td class='repl-de' lang='de'>" + p.de + "</td>" +
+      "<td class='sec'>" + p.duree + " s</td>";
+    corps.appendChild(tr);
+  });
+}
+
+function chiffrer(){
+  const total = SCENE.plans.reduce((a,p) => a + p.duree, 0);
+  const fact = SCENE.plans.filter(p => p.type === "replique").reduce((a,p) => a + p.duree, 0);
+  const car = SCENE.plans.reduce((a,p) => a + p.de.length, 0);
+  const eur = n => n.toFixed(2).replace(".", ",") + " $";
+  $("bDuree").textContent = total + " s";
+  $("bFact").innerHTML = fact + " s <small>/ " + total + "</small>";
+  $("bIII").textContent = eur(fact * TARIF.avatarIII);
+  $("bIV").textContent = eur(fact * TARIF.avatarIV);
+  $("bEL").innerHTML = eur(car * TARIF.elevenlabs) + " <small>" + car + " car.</small>";
+}
+
+/* ---------- lecture ----------
+   Trois sources de chronometrage, dans cet ordre :
+     1. plan.mots venu d'ElevenLabs  (absent ici)
+     2. l'evenement `boundary` du navigateur, qui donne la verite de CE son
+     3. l'estimation, quand rien d'autre ne parle
+   La bascule 2 -> 3 se fait a l'aveugle sur certains Safari, ou boundary
+   n'arrive jamais : on lance donc le repli des le depart et on l'eteint
+   au premier boundary recu. */
+function trouverVoixDe(){
+  if(!("speechSynthesis" in window)) return null;
+  const v = speechSynthesis.getVoices().filter(x => (x.lang || "").toLowerCase().startsWith("de"));
+  if(!v.length) return null;
+  return v.find(x => /google|natural|premium|enhanced/i.test(x.name)) || v[0];
+}
+
+function majJetonVoix(){
+  voixDe = trouverVoixDe();
+  $("jetonVoix").textContent = voixDe
+    ? "voix " + voixDe.name.replace(/^(Microsoft|Google)\s+/, "").split(" ")[0]
+    : "sans voix allemande";
+}
+
+function arreter(){
+  enLecture = false; enChaine = false;
+  if(tickId){ cancelAnimationFrame(tickId); tickId = null; }
+  if("speechSynthesis" in window && (speechSynthesis.speaking || speechSynthesis.pending)){
+    speechSynthesis.cancel();
+  }
+  utter = null;
+  $("bLire").textContent = "▶ Lire la scène";
+}
+
+function lirePlan(i, chaine){
+  arreter();
+  afficherPlan(i);
+  enLecture = true; enChaine = !!chaine;
+  $("bLire").textContent = "■ Arrêter";
+
+  const p = SCENE.plans[i];
+  const dureeMs = p.duree * 1000 * (0.9 / vitesse);
+  const t0 = performance.now();
+  boundaryVue = false;
+
+  const fin = () => {
+    if(!enLecture) return;
+    marquer(motsDom.length);
+    $("jauge").style.width = "100%";
+    majHorloge(p.duree);
+    if(enChaine && i + 1 < SCENE.plans.length){
+      setTimeout(() => { if(enLecture) lirePlan(i + 1, true); }, 420);
+    }else{
+      enLecture = false; enChaine = false;
+      $("bLire").textContent = "▶ Lire la scène";
+    }
+  };
+
+  // Repli chronometre : tourne toujours, sert d'horloge a la jauge, et
+  // cede le surlignage des qu'un vrai boundary arrive.
+  const tick = () => {
+    if(!enLecture) return;
+    const ecoule = (performance.now() - t0) / dureeMs * p.duree;
+    $("jauge").style.width = Math.min(100, ecoule / p.duree * 100) + "%";
+    majHorloge(Math.min(p.duree, ecoule));
+    if(!boundaryVue){
+      let k = bornes.findIndex(b => ecoule >= b[0] && ecoule < b[1]);
+      if(k === -1) k = ecoule >= p.duree ? motsDom.length : 0;
+      marquer(k);
+    }
+    if(ecoule >= p.duree && !(utter && "speechSynthesis" in window && speechSynthesis.speaking)){
+      tickId = null; fin(); return;
+    }
+    tickId = requestAnimationFrame(tick);
+  };
+  tickId = requestAnimationFrame(tick);
+
+  if(!("speechSynthesis" in window)) return;
+  if(!voixDe) majJetonVoix();
+
+  const u = new SpeechSynthesisUtterance(p.de);
+  u.lang = "de-DE";
+  if(voixDe) u.voice = voixDe;
+  u.rate = vitesse;
+  u.volume = 1;
+  u.onboundary = e => {
+    if(!enLecture) return;
+    if(e.name && e.name !== "word") return;
+    boundaryVue = true;
+    const c = e.charIndex || 0;
+    let k = 0;
+    for(let j = 0; j < debutsChar.length; j++){ if(debutsChar[j] <= c) k = j; else break; }
+    marquer(k);
+  };
+  u.onend = () => { if(enLecture){ if(tickId){cancelAnimationFrame(tickId); tickId=null;} fin(); } };
+  u.onerror = () => { /* le repli chronometre continue tout seul */ };
+  utter = u;
+  speechSynthesis.speak(u);
+}
+
+/* ---------- commandes ---------- */
+$("bLire").addEventListener("click", () => {
+  if(enLecture) arreter();
+  else lirePlan(enChaine ? plan : (plan >= SCENE.plans.length - 1 ? 0 : plan), true);
+});
+$("bRejouer").addEventListener("click", () => lirePlan(plan, false));
+$("bPrec").addEventListener("click", () => { const i = Math.max(0, plan - 1); arreter(); afficherPlan(i); });
+$("bSuiv").addEventListener("click", () => { const i = Math.min(SCENE.plans.length - 1, plan + 1); arreter(); afficherPlan(i); });
+
+document.querySelectorAll(".vitesse button").forEach(b => {
+  b.addEventListener("click", () => {
+    vitesse = Number(b.dataset.v);
+    document.querySelectorAll(".vitesse button")
+      .forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    if(enLecture) lirePlan(plan, enChaine);
+  });
+});
+
+const boiteLangues = $("langues");
+LANGUES.forEach(l => {
+  const b = document.createElement("button");
+  b.type = "button"; b.textContent = l.nom; b.lang = l.code;
+  b.setAttribute("aria-pressed", String(l.code === langue));
+  b.addEventListener("click", () => {
+    langue = l.code;
+    boiteLangues.querySelectorAll("button")
+      .forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    const p = SCENE.plans[plan];
+    $("texteTrad").textContent = p[langue] || "";
+    $("texteTrad").lang = langue;
+    const vif = motsDom.find(m => m.classList.contains("vif"));
+    if($("fiche").querySelector(".lemme") && vif) montrerFiche(vif.textContent);
+  });
+  boiteLangues.appendChild(b);
+});
+
+/* ---------- demarrage : la page s'ouvre sur le plan 1, lisible, a l'arret ---------- */
+$("tflug").textContent = SCENE.vol.numero;
+$("tnach").textContent = SCENE.vol.destination;
+$("tprevu").textContent = SCENE.vol.heure_prevue;
+$("treel").textContent = SCENE.vol.heure_reelle;
+$("tgate").textContent = SCENE.vol.flugsteig;
+$("tstatut").textContent = SCENE.vol.statut;
+$("hPlan").textContent = "1";
+
+chiffrer();
+afficherPlan(0);
+majJetonVoix();
+if("speechSynthesis" in window) speechSynthesis.onvoiceschanged = majJetonVoix;
+</script>
