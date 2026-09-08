@@ -341,7 +341,32 @@ BOUCHE = ("TIMING OF THE MOUTH - this matters more than anything else here, "
           "engaged at every moment, whether speaking or not.")
 
 
-def bouche(p):
+def duree_voix(p, scene=None):
+    """La duree de la replique, MESUREE sur le mp3 quand il existe.
+
+    LE CHAMP duree_audio NE FAIT PAS FOI. Le 8 septembre 2026 au soir, quinze
+    des dix-neuf valeurs de l'episode 1 etaient fausses -- le plan 13 de
+    1,60 s. Elles avaient ete ecrites une fois puis n'avaient plus suivi les
+    fichiers, et rien dans la chaine ne s'en plaignait.
+
+    Une fenetre de parole calculee sur une valeur perimee produit un clip a
+    refaire : deux cents credits, et le defaut ne se voit qu'a la prise.
+    On lit donc le fichier ; le champ ne sert que de dernier recours, et on
+    le dit alors a l'ecran.
+    """
+    if scene:
+        f = os.path.join(RACINE, "audio", "scenes", scene,
+                         "%02d-%s.mp3" % (p["n"], p["locuteur"]))
+        if os.path.exists(f):
+            sys.path.insert(0, os.path.join(RACINE, "video"))
+            import montage as M                             # noqa: E402
+            mesure = M.duree(M.ffmpeg(), f)
+            if mesure:
+                return round(mesure, 2)
+    return p.get("duree_audio") or p["duree"]
+
+
+def bouche(p, scene=None):
     """Le bloc de minutage de la bouche pour CE plan, en secondes reelles.
 
     La fenetre de parole est celle de la voix : elle commence a l'amorce du
@@ -350,21 +375,28 @@ def bouche(p):
     qu'on passe la journee a chasser.
     """
     debut = 0.5                        # l'amorce du montage, arrondie
-    fin = debut + (p.get("duree_audio") or p["duree"])
+    fin = debut + duree_voix(p, scene)
     return BOUCHE.format(debut="%.1f" % debut, fin="%.1f" % fin)
 
 
-def duree_a_generer(p):
+def duree_a_generer(p, scene=None):
     """Combien de secondes demander a Seedance pour ce plan.
 
-    Cinq secondes par defaut -- l'entre-deux retenu a l'oeil le 8 septembre.
-    Plus long seulement si la replique ne rentre pas : il faut la fenetre de
-    parole, plus une seconde de silence apres, plus l'amorce.
+    CINQ SECONDES par defaut, et le chiffre est mesure, pas choisi. Quatre
+    prises du plan 5 le 8 septembre au soir, meme consigne de minutage :
+        a 4 s  il demarre a l'heure, mais la fenetre de parole est etroite
+        a 6 s  il ne commence qu'a 1,9 s au lieu de 1,0 -- Jacques : << le
+               mouvement d'ouverture de bouche dure un peu trop longtemps >>
+    Cinq est l'entre-deux, retenu a l'oeil.
+
+    Plus long seulement quand la replique ne rentre pas : il faut la fenetre
+    de parole, l'amorce avant, et une seconde de silence apres pour que la
+    bouche ait le temps de se refermer a l'image.
     """
-    return max(5, int(round(0.5 + (p.get("duree_audio") or p["duree"]) + 1.5)))
+    return max(5, int(round(0.5 + duree_voix(p, scene) + 1.5)))
 
 
-def video_prompt(m, p=None):
+def video_prompt(m, p=None, scene=None):
     """Le prompt de Directing. Le mouvement de camera d'abord, l'action
     ensuite, et le minutage de la bouche en dernier.
 
@@ -373,7 +405,7 @@ def video_prompt(m, p=None):
     omis plutot qu'invente avec des chiffres au hasard."""
     bloc = [ZOOM if m.get("zoom") else FIXE, m["action"]]
     if "pose" in m and p:               # un decor n'a pas de visage
-        bloc.append(bouche(p))
+        bloc.append(bouche(p, scene))
     return "\n\n".join(bloc)
 
 
@@ -458,7 +490,7 @@ effacer sans preavis (voir <code>video/PROVENANCE.txt</code>).</li>
         o.append("<h3>1. Framing &mdash; l'image de depart</h3>")
         o.append("<pre>%s</pre>" % e(image_prompt(p, m)))
         o.append("<h3>2. Directing &mdash; l'animation</h3>")
-        o.append("<pre>%s</pre>" % e(video_prompt(m, p)))
+        o.append("<pre>%s</pre>" % e(video_prompt(m, p, scene)))
         gen = max(4, p["duree"])   # Seedance 2.0 Mini ne descend pas sous 4 s
         sup = ('' if gen == p["duree"] else
                ' <b>(le plan fait %s s : la seconde en trop se coupe au montage)</b>' % p["duree"])

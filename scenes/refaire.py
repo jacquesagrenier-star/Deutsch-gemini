@@ -150,7 +150,7 @@ def main():
         o.append("-" * 62)
         o.append("PLAN %02d   %s   %s   GENERER A %d SECONDES%s"
                  % (p["n"], p["locuteur"], m["taille"],
-                    P.duree_a_generer(p),
+                    P.duree_a_generer(p, a.scene),
                     "   (zoom)" if m.get("zoom") else ""))
         o.append("  replique de %.2f s, parole demandee de 0,5 a %.1f s"
                  % (p.get("duree_audio") or p["duree"],
