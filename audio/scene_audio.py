@@ -65,6 +65,12 @@ CIBLE_LUFS = -14.0
 DIALOGUE = {"stability": 0.40, "similarity_boost": 0.75,
             "style": 0.45, "use_speaker_boost": True}
 
+# v3 ne lit pas stability comme une glissiere continue mais comme trois
+# regimes : 0.0 Creative, 0.5 Natural, 1.0 Robust. Creative est le plus
+# expressif ET le plus sensible aux balises -- c'est pour ca qu'on y va.
+DIALOGUE_V3 = {"stability": 0.0, "similarity_boost": 0.75,
+               "style": 0.45, "use_speaker_boost": True}
+
 def gain_de_la_scene(morceaux, dossier):
     """Le gain unique qui met la scene entiere a la cible."""
     liste = os.path.join(dossier, "_concat.txt")
@@ -128,7 +134,7 @@ def main():
     os.makedirs(brut, exist_ok=True)
     cle_api = generer.cle_api()
     if not a.reglages_du_cours:
-        generer.REGLAGES = DIALOGUE
+        generer.REGLAGES = DIALOGUE_V3 if a.modele == "v3" else DIALOGUE
 
     bruts = []
     for p in plans:
@@ -138,7 +144,14 @@ def main():
         avant = generer.VOIX
         generer.VOIX = locuteurs[p["locuteur"]]["voice_id"]
         try:
-            octets = generer.synthetiser(p["de"], modele, cle_api)
+            # LA BALISE NE VIT PAS DANS LE CHAMP "de". Ce texte allemand sert
+            # aussi aux sous-titres et au lexique : [warmly] s'y afficherait a
+            # l'ecran. Elle a son propre champ et ne rejoint le texte qu'ici.
+            # Et seulement sous v3 -- v2 la prononcerait.
+            texte = p["de"]
+            if a.modele == "v3" and p.get("balise"):
+                texte = p["balise"] + " " + texte
+            octets = generer.synthetiser(texte, modele, cle_api)
         except generer.TexteBloque:
             sys.exit("\n  Texte refuse par ElevenLabs au plan %d. Rien n'est "
                      "utilisable tant que la scene est incomplete." % p["n"])

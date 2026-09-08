@@ -69,6 +69,10 @@ class TexteBloque(RuntimeError):
 MODELES = {
     "v2":    ("eleven_multilingual_v2", 1.0),   # 1 credit par caractere
     "flash": ("eleven_flash_v2_5",      0.5),   # moitie prix
+    # v3 est le SEUL a lire les balises entre crochets -- [warmly], [sighs] --
+    # comme une direction de jeu. v2 les prononcerait. Reserve au DIALOGUE :
+    # le corpus du cours reste en v2, homogene avec ses 25 298 fichiers.
+    "v3":    ("eleven_v3",              1.0),
 }
 
 # 64 kbit/s mono suffit pour de la parole et divise le poids par deux face au
