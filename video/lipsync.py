@@ -27,6 +27,8 @@ import io
 import json
 import mimetypes
 import os
+import re
+import subprocess
 import sys
 import time
 import urllib.error
@@ -35,7 +37,32 @@ import uuid
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://api.sync.so/v2/generate"
-TARIF = {"lipsync-2": 0.04, "lipsync-2-pro": 0.08}
+
+# SYNC FACTURE A L'IMAGE, PAS A LA SECONDE. Leur page de tarifs affiche un
+# prix a la seconde calcule sur 25 im/s ; nos clips Seedance sont a 24, donc
+# la seconde nous coute 4 % de moins que l'affiche. Releve sur sync.so/pricing
+# le 8 septembre 2026, tarif des forfaits Hobbyist et Creator (Growth -5 %,
+# Scale -20 %).
+PAR_IMAGE = {"lipsync-1.9.0": 0.001, "lipsync-2": 0.002,
+             "lipsync-2-pro": 0.00333, "sync-3": 0.00534, "react-1": 0.00667}
+TARIF = PAR_IMAGE
+
+
+def _sonde(chemin):
+    import imageio_ffmpeg
+    return subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner",
+                           "-i", chemin], capture_output=True, text=True,
+                          errors="replace").stderr
+
+
+def duree_clip(chemin):
+    m = re.search(r"Duration: \d+:(\d+):([\d.]+)", _sonde(chemin))
+    return int(m.group(1)) * 60 + float(m.group(2)) if m else 0.0
+
+
+def images_par_seconde(chemin):
+    m = re.search(r"([\d.]+) fps", _sonde(chemin))
+    return float(m.group(1)) if m else None
 
 
 def cle():
@@ -120,14 +147,19 @@ def main():
             sys.exit("  audio manquant : %s" % os.path.basename(s))
         travail.append((p, v, s))
 
-    secondes = sum(p["duree"] for p, _, _ in travail)
+    # On mesure les clips au lieu de croire le champ "duree" de la scene :
+    # c'est le fichier envoye qui est facture, pas le plan prevu.
+    ips = images_par_seconde(travail[0][1]) or 24.0
+    total = sum(duree_clip(v) for _, v, _ in travail)
+    images = int(round(total * ips))
     print("  %s — %d plans a synchroniser sur %d"
           % (d["situation"], len(travail), len(d["plans"])))
-    for p, _, _ in travail:
-        print("    plan%02d  %-5s %2d s  %s"
-              % (p["n"], p["locuteur"], p["duree"], p.get("de", "")[:46]))
-    print("  %d s au total — modele %s : environ %.2f $"
-          % (secondes, a.modele, secondes * TARIF[a.modele]))
+    for p, v, _ in travail:
+        print("    plan%02d  %-5s %5.2f s  %s"
+              % (p["n"], p["locuteur"], duree_clip(v), p.get("de", "")[:44]))
+    print("  %.1f s a %.0f im/s = %d images" % (total, ips, images))
+    print("  modele %s : %.5f $/image, soit environ %.2f $"
+          % (a.modele, TARIF[a.modele], images * TARIF[a.modele]))
     if not a.pour_de_vrai:
         print("\n  Essai a blanc. Relancer avec --pour-de-vrai pour depenser.")
         return
