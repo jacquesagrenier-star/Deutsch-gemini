@@ -265,23 +265,44 @@ def image_prompt(p, m):
 # secondes, il continue de mastiquer sous des levres refaites, et aucun modele
 # de lip-sync ne peut defaire ca : ce n'est pas dans les levres.
 #
-# D'ou la regle, qui vaut pour les vingt-neuf episodes a venir : l'animation
-# ne fait JAMAIS parler le personnage. Elle le fait ecouter, respirer, tourner
-# la tete -- bouche fermee. Toute la parole vient du lip-sync par-dessus.
-MUET = ("The character does NOT speak in this clip. His or her mouth stays "
-        "CLOSED throughout - no talking, no jaw movement, no lip movement, "
-        "not even a single word at any point. Lips together and relaxed. "
-        "Everything else lives: the eyes, the blinking, a small natural head "
-        "movement, the breathing, the shoulders. The face is alert and "
-        "present, simply not speaking.")
+# PREMIERE VERSION DE LA REGLE, ET POURQUOI ELLE ALLAIT TROP LOIN
+#     On a d'abord ecrit : le personnage ne parle JAMAIS, bouche fermee d'un
+#     bout a l'autre. Un autre modele, consulte le meme jour, a fait remarquer
+#     qu'un lip-sync travaille mieux sur un visage qui porte deja un mouvement
+#     de parole -- une bouche figee risque l'effet colle. C'est juste.
+#
+#     Ce qu'il faut retirer n'est pas la parole : c'est la parole PENDANT LE
+#     SILENCE. Le personnage parle donc au debut du plan, le temps de la
+#     replique, puis termine, ferme la bouche et reste la. La machoire bouge
+#     ou l'oreille entend une voix, et se tait ou la voix se tait.
+#
+# ET POURQUOI ON NE PEUT PAS SIMPLEMENT RACCOURCIR LE CLIP
+#     Ce serait plus simple : un plan de la longueur de la replique, sans
+#     surplus. Mais Seedance 2.0 Mini NE DESCEND PAS SOUS 4 SECONDES, et nos
+#     repliques font 1,5 a 2,7 s. Pour onze plans sur douze il n'existe aucune
+#     duree de clip qui colle a l'audio -- le surplus est structurel.
+#
+# CE QUE CETTE REGLE N'A PAS ENCORE PROUVE
+#     Elle n'a pas ete tournee. C'est une hypothese mieux argumentee que la
+#     precedente, pas un resultat. Un plan suffit a la juger : 200 credits et
+#     19 cents de lip-sync.
+BOUCHE = ("TIMING OF THE MOUTH, and this matters more than anything else "
+          "here: the character speaks ONLY during the FIRST HALF of the clip, "
+          "then clearly finishes, closes the mouth, and keeps it closed and "
+          "relaxed for the whole rest of the shot. The ending is the "
+          "important part - once the mouth has closed it does NOT open again, "
+          "not once, not slightly. During that closed-mouth part everything "
+          "else still lives: the eyes, a blink, a small natural head "
+          "movement, the breathing. The face stays present and engaged, "
+          "simply no longer speaking.")
 
 
 def video_prompt(m):
     """Le prompt de Directing. Le mouvement de camera d'abord, l'action
-    ensuite, et la bouche fermee en dernier -- voir MUET plus haut."""
+    ensuite, et le minutage de la bouche en dernier -- voir BOUCHE plus haut."""
     bloc = [ZOOM if m.get("zoom") else FIXE, m["action"]]
     if "pose" in m:                     # un decor n'a pas de visage
-        bloc.append(MUET)
+        bloc.append(BOUCHE)
     return "\n\n".join(bloc)
 
 

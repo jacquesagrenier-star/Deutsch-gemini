@@ -17,10 +17,21 @@ IL REPREND OU IL S'ETAIT ARRETE, ET C'EST LE POINT IMPORTANT
     fait, et sans le savoir.
 
 CE QUE FAIT LE LIP-SYNC, ET CE QU'IL NE FAIT PAS
-    Il reecrit la bouche du personnage pour qu'elle suive l'audio fourni. Le
-    reste de l'image ne bouge pas. C'est pour cela que nos clips sont muets et
-    que le personnage n'y « dit » rien : ce qu'il semblait articuler n'a aucune
-    importance, seule compte la nettete de son visage.
+    Il REPEINT LES LEVRES pour qu'elles suivent l'audio fourni. Le reste de
+    l'image est celui du clip source, y compris LA MACHOIRE, le menton et les
+    joues. C'est pour cela que la piste sonore de nos clips est jetee des le
+    rapatriement : ce que le personnage semblait articuler n'a aucune
+    importance.
+
+    Mais ce qu'il semblait articuler AVEC LA MACHOIRE, si. Verifie le
+    8 septembre 2026 sur le plan 5 : une bouche qui s'ouvre en plein silence,
+    a l'image pres, dans le clip d'origine comme dans le synchronise, et
+    identique sous lipsync-2 et lipsync-2-pro. Aucun modele ne peut la
+    refermer -- ce n'est pas dans les levres.
+
+    D'ou la regle du tournage, dans scenes/production.py (bloc BOUCHE) : le
+    personnage parle au debut du plan, puis ferme la bouche et ne la rouvre
+    plus. La machoire bouge ou l'oreille entend une voix.
 """
 import argparse
 import io
@@ -103,6 +114,33 @@ def calibrer(voix, clip, sortie, amorce):
     return sortie
 
 
+def raccourcir(clip, sortie, fin):
+    """Coupe le clip a `fin` secondes, sans reencoder.
+
+    POURQUOI AVANT L'ENVOI ET PAS APRES
+        Sync facture a l'image. Envoyer la queue de silence, c'est payer pour
+        synchroniser des images qu'on jettera au montage -- 35 % du metrage de
+        l'episode 1. Couper d'abord coute zero et enleve la ligne de la
+        facture.
+
+        L'idee vient d'un conseil de Gemini le 8 septembre 2026. Elle differe
+        de celle de ChatGPT le meme jour -- generer un clip plus court chez
+        Seedance -- qui ne marche pas ici : le modele ne descend pas sous 4 s
+        et nos repliques font 1,5 a 2,7 s.
+
+        A NE FAIRE QU'UNE FOIS LE MONTAGE DECIDE. Un clip raccourci ne se
+        rallonge pas, et la version aeree ne serait plus possible.
+    """
+    import imageio_ffmpeg
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner",
+                        "-nostats", "-loglevel", "error", "-y", "-i", clip,
+                        "-t", "%.3f" % fin, "-c", "copy", "-an", sortie],
+                       capture_output=True, text=True, errors="replace")
+    if r.returncode != 0:
+        sys.exit("  raccourcissement echoue :\n%s" % r.stderr[-500:])
+    return sortie
+
+
 def cle():
     chemin = os.path.join(RACINE, "sync.secret")
     c = (os.environ.get("SYNC_API_KEY") or "").strip()
@@ -162,6 +200,9 @@ def main():
     ap.add_argument("--modele", default="lipsync-2", choices=sorted(TARIF))
     ap.add_argument("--plans", help="n'en faire que ceux-la : 5 ou 5,6,8. "
                                     "A defaut, tous les plans parlants.")
+    ap.add_argument("--queue", type=float, default=None, metavar="SECONDES",
+                    help="couper le clip SECONDES apres la fin de la replique "
+                         "AVANT de l'envoyer -- meme valeur que montage.py")
     ap.add_argument("--essai", action="store_true",
                     help="ecrire dans _essais/<modele>-planNN.mp4 sans toucher "
                          "a etat.json ni au plan retenu -- pour comparer deux "
@@ -192,6 +233,8 @@ def main():
     dst = os.path.join(RACINE, "video", "episode-" + a.scene, "04-lipsync")
     os.makedirs(dst, exist_ok=True)
 
+    courts = os.path.join(RACINE, "video", "episode-" + a.scene,
+                          "04-lipsync", "_clips-coupes")
     travail = []
     for p in plans:
         v = os.path.join(src, "plan%02d.mp4" % p["n"])
@@ -200,6 +243,12 @@ def main():
             sys.exit("  video manquante : 03-final/%s" % os.path.basename(v))
         if not os.path.exists(s):
             sys.exit("  audio manquant : %s" % os.path.basename(s))
+        if a.queue is not None:
+            fin = min(duree_clip(v), AMORCE + duree_clip(s) + a.queue)
+            if fin < duree_clip(v) - 0.02:
+                os.makedirs(courts, exist_ok=True)
+                v = raccourcir(v, os.path.join(
+                    courts, "plan%02d.mp4" % p["n"]), fin)
         travail.append((p, v, s))
 
     # On mesure les clips au lieu de croire le champ "duree" de la scene :
