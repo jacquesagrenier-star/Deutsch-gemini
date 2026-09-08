@@ -101,24 +101,33 @@ def main():
     d = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"), encoding="utf-8"))
     plans = [p for p in d["plans"] if p["type"] == "replique"]
 
-    src = os.path.join(RACINE, "video", a.scene)
+    # L'arborescence de l'episode : les clips muets retenus sont dans
+    # 03-final/, les plans synchronises vont a cote dans 04-lipsync/. On ne
+    # remplace jamais un clip d'origine -- une prise Artlist ne se refait pas
+    # a l'identique, et un lip-sync rate ne doit rien pouvoir ecraser.
+    src = os.path.join(RACINE, "video", "episode-" + a.scene, "03-final")
     aud = os.path.join(RACINE, "audio", "scenes", a.scene)
-    dst = os.path.join(src, "final")
+    dst = os.path.join(RACINE, "video", "episode-" + a.scene, "04-lipsync")
     os.makedirs(dst, exist_ok=True)
 
     travail = []
     for p in plans:
-        v = os.path.join(src, "plan%02d-%s.mp4" % (p["n"], p["locuteur"]))
+        v = os.path.join(src, "plan%02d.mp4" % p["n"])
         s = os.path.join(aud, "%02d-%s.mp3" % (p["n"], p["locuteur"]))
         if not os.path.exists(v):
-            sys.exit("  video manquante : %s" % os.path.basename(v))
+            sys.exit("  video manquante : 03-final/%s" % os.path.basename(v))
         if not os.path.exists(s):
             sys.exit("  audio manquant : %s" % os.path.basename(s))
         travail.append((p, v, s))
 
     secondes = sum(p["duree"] for p, _, _ in travail)
-    print("  %s — %d plans, %d s" % (d["situation"], len(travail), secondes))
-    print("  modele %s : environ %.2f $" % (a.modele, secondes * TARIF[a.modele]))
+    print("  %s — %d plans a synchroniser sur %d"
+          % (d["situation"], len(travail), len(d["plans"])))
+    for p, _, _ in travail:
+        print("    plan%02d  %-5s %2d s  %s"
+              % (p["n"], p["locuteur"], p["duree"], p.get("de", "")[:46]))
+    print("  %d s au total — modele %s : environ %.2f $"
+          % (secondes, a.modele, secondes * TARIF[a.modele]))
     if not a.pour_de_vrai:
         print("\n  Essai a blanc. Relancer avec --pour-de-vrai pour depenser.")
         return
@@ -174,8 +183,10 @@ def main():
             print("  ->  toujours en cours apres 15 min, on passe")
 
     faits = [x for x in etat.values() if x.get("fichier")]
-    print("\n  %d/%d plans synchronises dans video/%s/final/"
+    print("\n  %d/%d plans synchronises dans video/episode-%s/04-lipsync/"
           % (len(faits), len(travail), a.scene))
+    if len(faits) == len(travail):
+        print("  montage.py les prend tout seul : il regarde 04-lipsync avant 03-final.")
     for n, x in sorted(etat.items(), key=lambda y: int(y[0])):
         if not x.get("fichier"):
             print("     plan%02s : %s" % (n, x.get("erreur") or x.get("statut")))

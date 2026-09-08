@@ -74,9 +74,19 @@ def main():
     os.makedirs(tmp, exist_ok=True)
 
     morceaux = []
+    synchro = 0
     print("  plan   clip    voix   %s" % "assemblage")
     for p in d["plans"]:
-        v = os.path.join(dv, "03-final", "plan%02d.mp4" % p["n"])
+        # LE PLAN SYNCHRONISE PASSE AVANT L'ORIGINAL. lipsync.py ecrit dans
+        # 04-lipsync sans jamais toucher a 03-final : on peut donc remonter
+        # l'episode avant, pendant et apres la synchro, et il prend a chaque
+        # fois ce qui existe de mieux. Un plan absent de 04-lipsync -- les
+        # decors, qui n'ont pas de visage -- retombe sur son clip d'origine.
+        v = os.path.join(dv, "04-lipsync", "plan%02d.mp4" % p["n"])
+        if os.path.exists(v):
+            synchro += 1
+        else:
+            v = os.path.join(dv, "03-final", "plan%02d.mp4" % p["n"])
         s = os.path.join(da, "%02d-%s.mp3" % (p["n"], p["locuteur"]))
         if not os.path.exists(v):
             sys.exit("  Plan %02d : clip manquant (%s)" % (p["n"], os.path.basename(v)))
@@ -98,7 +108,9 @@ def main():
             "-c:a", "aac", "-b:a", "128k", "-ar", "44100"]
            + borne + [out], "plan %02d" % p["n"])
         morceaux.append(out)
-        print("  %02d    %5.2f  %5.2f   +%.2f%s" % (p["n"], dv_, da_, amorce, note))
+        lab = "  sync" if "04-lipsync" in v else ""
+        print("  %02d    %5.2f  %5.2f   +%.2f%s%s"
+              % (p["n"], dv_, da_, amorce, lab, note))
 
     liste = os.path.join(tmp, "_liste.txt")
     io.open(liste, "w", encoding="utf-8", newline="").write(
@@ -113,6 +125,10 @@ def main():
 
     print("\n  %s" % os.path.relpath(final, RACINE))
     print("  %.1f secondes, %d plans" % (duree(F, final), len(morceaux)))
+    parlants = sum(1 for p in d["plans"] if p["type"] == "replique")
+    if synchro < parlants:
+        print("  %d/%d plans parlants passes au lip-sync -- les autres bougent"
+              " encore les levres au hasard." % (synchro, parlants))
 
 
 if __name__ == "__main__":
