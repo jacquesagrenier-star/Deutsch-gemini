@@ -326,7 +326,8 @@ def image_prompt(p, m):
 # L'idee du silence AU DEBUT vient de Jacques, et elle valait mieux que la
 # mienne : un silence initial se verifie d'un coup d'oeil, une fermeture
 # finale demande de comparer des courbes.
-BOUCHE = ("TIMING OF THE MOUTH - this matters more than anything else here, "
+BOUCHE = ("Total clip duration: {total} seconds.\n"
+          "TIMING OF THE MOUTH - this matters more than anything else here, "
           "and the numbers are exact:\n"
           "1. From 0 to {debut} seconds his or her mouth is CLOSED. Not "
           "speaking yet, just settling and looking at the other person. Do "
@@ -376,7 +377,11 @@ def bouche(p, scene=None):
     """
     debut = 0.5                        # l'amorce du montage, arrondie
     fin = debut + duree_voix(p, scene)
-    return BOUCHE.format(debut="%.1f" % debut, fin="%.1f" % fin)
+    # La duree totale est annoncee en tete : les trois bornes n'ont de sens
+    # que dans un cadre, et le modele ne connait pas celui qu'on choisit dans
+    # l'interface d'Artlist.
+    return BOUCHE.format(debut="%.1f" % debut, fin="%.1f" % fin,
+                         total=duree_a_generer(p, scene))
 
 
 def duree_a_generer(p, scene=None):
