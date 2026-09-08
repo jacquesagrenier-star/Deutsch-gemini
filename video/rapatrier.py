@@ -25,6 +25,7 @@ PLUSIEURS PRISES PAR PLAN, ET C'EST VOULU
 """
 import argparse
 import glob
+import hashlib
 import io
 import json
 import os
@@ -99,6 +100,23 @@ def main():
         n += 1
     out = os.path.join(dst, "plan%02d-%02d.mp4" % (a.plan, n))
 
+    # DEJA RAPATRIE ? Le 8 septembre, faute d avoir telecharge la nouvelle prise,
+    # le clip du plan 3 a ete classe une deuxieme fois sous le plan 7 : meme
+    # fichier, deux numeros, et une planche de controle qui montrait le mauvais
+    # plan. On garde donc l empreinte de chaque source rapatriee.
+    registre = os.path.join(dst, "_sources.txt")
+    emp = hashlib.md5(open(src, "rb").read()).hexdigest()
+    deja = {}
+    if os.path.exists(registre):
+        for ligne in io.open(registre, encoding="utf-8"):
+            if " " in ligne:
+                h, q = ligne.strip().split(" ", 1)
+                deja[h] = q
+    if emp in deja:
+        sys.exit("  DEJA RANGE sous %s -- la nouvelle prise n a pas ete "
+                 "telechargee. Clique Download dans Artlist, puis relance."
+                 % deja[emp])
+
     r = subprocess.run([ffmpeg(), "-hide_banner", "-nostats", "-loglevel", "error",
                         "-y", "-i", src, "-c", "copy", "-an", out],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -108,6 +126,7 @@ def main():
     print("  %s  ->  video/episode-%s/02-prises/%s  (%d Ko, muet)"
           % (os.path.basename(src), a.scene, os.path.basename(out),
              os.path.getsize(out) // 1024))
+    io.open(registre, "a", encoding="utf-8", newline="").write(emp + " " + os.path.basename(out) + chr(10))
     print("  L'original reste dans les telechargements : rien n'est efface.")
 
 
