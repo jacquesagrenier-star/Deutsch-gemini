@@ -64,6 +64,9 @@ def ff(cmd, quoi):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="01-ankunft-berlin")
+    ap.add_argument("--queue", type=float, default=None, metavar="SECONDES",
+                    help="couper chaque plan parlant SECONDES apres la fin de "
+                         "la replique. Sans lui, le plan va jusqu'au bout.")
     a = ap.parse_args()
 
     F = ffmpeg()
@@ -97,6 +100,20 @@ def main():
         dv_, da_ = duree(F, v), duree(F, s)
         out = os.path.join(tmp, "plan%02d.mp4" % p["n"])
 
+        # COUPER PLUTOT QU'ETIRER. Le 8 septembre, cherchant a supprimer le
+        # silence ou la bouche du clip s'agite pour rien, on a mesure ce qu'il
+        # faudrait pour le combler avec la voix : un ralenti de 0,40 a 0,64
+        # fois selon les plans -- 55 a 150 % plus long. Une diction d'endormi,
+        # et ElevenLabs v3 ignore de toute facon le reglage de vitesse.
+        #
+        # La queue, elle, ne coute rien : on garde l'amorce, la replique, et
+        # le temps demande apres elle. Ce qu'on perd est la respiration du
+        # plan ; ce qu'on gagne est de ne plus montrer une machoire qui parle
+        # sur du silence. C'est un choix de rythme, donc il se regarde.
+        fin = dv_
+        if a.queue is not None and p["type"] == "replique":
+            fin = min(dv_, AMORCE + da_ + a.queue)
+
         if synchronise:
             # LE PLAN SYNCHRONISE PORTE DEJA SA VOIX, ET AU BON ENDROIT.
             # lipsync.py lui a envoye une piste calee sur la duree du clip,
@@ -105,21 +122,23 @@ def main():
             amorce, note = AMORCE, "  sync"
             ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
                 "-i", v, "-map", "0:v", "-map", "0:a", "-c:v", "copy",
-                "-c:a", "aac", "-b:a", "128k", "-ar", "44100", out],
-               "plan %02d" % p["n"])
+                "-c:a", "aac", "-b:a", "128k", "-ar", "44100",
+                "-t", "%.3f" % fin, out], "plan %02d" % p["n"])
         else:
             # La voix tient-elle avec l'amorce ? Sinon on la colle au debut.
             amorce = AMORCE if (da_ + AMORCE) <= dv_ else 0.0
             note = "" if amorce else "  <- voix au ras, la replique remplit le plan"
             # La replique deborde-t-elle du clip ? Alors on garde toute la voix
             # et l'image tient jusqu'a sa fin ; sinon on coupe a la duree du clip.
-            borne = ["-shortest"] if (da_ + amorce) > dv_ else ["-t", "%.3f" % dv_]
+            borne = ["-shortest"] if (da_ + amorce) > fin else ["-t", "%.3f" % fin]
             ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
                 "-i", v, "-itsoffset", "%.3f" % amorce, "-i", s,
                 "-map", "0:v", "-map", "1:a", "-c:v", "copy",
                 "-c:a", "aac", "-b:a", "128k", "-ar", "44100"]
                + borne + [out], "plan %02d" % p["n"])
         morceaux.append(out)
+        if fin < dv_ - 0.02:
+            note += "  coupe a %.2f s (-%.2f)" % (fin, dv_ - fin)
         print("  %02d    %5.2f  %5.2f   +%.2f%s"
               % (p["n"], dv_, da_, amorce, note))
 
