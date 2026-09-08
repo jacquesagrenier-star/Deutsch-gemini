@@ -25,6 +25,32 @@ POURQUOI IL EXISTE
 
     Une impression ne se compare pas d'un essai a l'autre. Un chiffre, oui.
 
+CE QU'IL NE SAIT PAS FAIRE -- MESURE LE SOIR MEME, ET C'EST UNE LIMITE
+    Trois prises du plan 5, meme voix, meme image de depart, passees au meme
+    lip-sync :
+
+        0,53   Seedance parle du debut a la fin (la prise DEFECTUEUSE)
+        0,40   trois phases minutees : ferme, parle, ferme
+        0,09   bouche fermee des la fin de la replique
+
+    La prise dont Jacques avait vu le defaut obtient la MEILLEURE note. La
+    raison est mecanique : une bouche tres agitee pendant que la voix porte
+    correle bien avec l'enveloppe sonore, meme si elle articule un charabia.
+    Une bouche calme a peu de signal a correler.
+
+    CE SCRIPT NE PEUT DONC PAS ARBITRER LA QUALITE D'UN LIP-SYNC. C'est
+    l'oeil qui tranche, sur les clips cote a cote.
+
+    Ce a quoi il sert encore, et ou il a ete decisif :
+      - COMPARER une serie a elle-meme. Les douze plans allaient de 0,53 a
+        -0,31 ; une correlation negative veut dire que la bouche bouge quand
+        la voix se tait, et ca, c'est un fait, pas une echelle.
+      - MESURER QUAND la bouche s'ouvre. C'est la courbe, pas la correlation.
+        Elle a montre que Seedance OBEIT a un minutage explicite : demande
+        << ferme 0-1 s, parle 1-3,5 s, ferme ensuite >>, le pic tombe a
+        0,96 s et l'amplitude retombe apres 3,6 s. C'etait la question
+        ouverte de la journee, et elle est reglee.
+
 CE QU'IL NE DIT PAS
     Il ne juge pas la beaute d'un plan, ni si la bouche est CREDIBLE. Il dit
     si le mouvement et le son vont ensemble. Une bouche parfaitement immobile
