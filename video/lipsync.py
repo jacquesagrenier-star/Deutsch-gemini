@@ -68,9 +68,19 @@ def multipart(champs, fichiers):
     return b"".join(out), "multipart/form-data; boundary=" + b
 
 
+# Cloudflare renvoie 403 « error code: 1010 » sur la signature par defaut
+# d'urllib -- « Python-urllib/3.x ». Ce n'est pas la cle qui est refusee, c'est
+# le client : un agent ordinaire suffit a passer, et rien n'est soumis tant
+# qu'on ne passe pas, donc l'echec ne coute rien.
+AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+         "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
+
+
 def appel(url, cle_api, corps=None, typ=None, methode="GET"):
     req = urllib.request.Request(url, data=corps, method=methode,
-                                 headers={"x-api-key": cle_api})
+                                 headers={"x-api-key": cle_api,
+                                          "User-Agent": AGENT,
+                                          "Accept": "application/json"})
     if typ:
         req.add_header("Content-Type", typ)
     try:
@@ -121,42 +131,47 @@ def main():
         io.open(etat_f, "w", encoding="utf-8", newline="").write(
             json.dumps(etat, ensure_ascii=False, indent=2) + "\n")
 
-    # 1. soumettre ce qui ne l'est pas encore
-    for p, v, s in travail:
+    # UN PLAN A LA FOIS. Le plan gratuit de sync.so n'autorise qu'une
+    # generation simultanee : envoyer les douze d'un coup fait echouer la
+    # deuxieme sur un 429, et les dix suivantes avec elle. On soumet donc,
+    # on attend, on rapatrie, puis on passe au suivant.
+    for p, v, s_aud in travail:
         n = str(p["n"])
-        if etat.get(n, {}).get("id"):
+        if etat.get(n, {}).get("fichier"):
+            print("  plan%02d  deja fait" % p["n"])
             continue
-        corps, typ = multipart({"model": a.modele}, {"video": v, "audio": s})
-        print("  plan%02d envoi..." % p["n"], end="", flush=True)
-        r = appel(API, k, corps, typ, "POST")
-        etat[n] = {"id": r.get("id"), "statut": r.get("status")}
-        sauver()   # AVANT toute autre chose : un identifiant perdu est une generation payee deux fois
-        print(" %s" % r.get("id", "?")[:8])
 
-    # 2. attendre, puis rapatrier
-    restants = {n for n, x in etat.items() if not x.get("fichier")}
-    print("\n  attente de %d generation(s)" % len(restants))
-    debut = time.time()
-    while restants and time.time() - debut < 1800:
-        for n in sorted(restants, key=int):
+        if not etat.get(n, {}).get("id"):
+            corps, typ = multipart({"model": a.modele}, {"video": v, "audio": s_aud})
+            print("  plan%02d envoi..." % p["n"], end="", flush=True)
+            r = appel(API, k, corps, typ, "POST")
+            etat[n] = {"id": r.get("id"), "statut": r.get("status")}
+            sauver()   # AVANT tout le reste : un identifiant perdu est une generation payee deux fois
+            print(" %s" % (r.get("id") or "?")[:8], end="", flush=True)
+
+        debut = time.time()
+        while time.time() - debut < 900:
+            time.sleep(10)
             r = appel(API + "/" + etat[n]["id"], k)
             st = r.get("status")
             etat[n]["statut"] = st
+            sauver()
             if st == "COMPLETED" and r.get("outputUrl"):
-                p = next(x for x in plans if x["n"] == int(n))
                 f = os.path.join(dst, "plan%02d.mp4" % p["n"])
-                with urllib.request.urlopen(r["outputUrl"], timeout=300) as w:
+                dl = urllib.request.Request(r["outputUrl"], headers={"User-Agent": AGENT})
+                with urllib.request.urlopen(dl, timeout=300) as w:
                     open(f, "wb").write(w.read())
                 etat[n]["fichier"] = os.path.basename(f)
-                restants.discard(n)
-                print("  plan%02d  %d Ko" % (p["n"], os.path.getsize(f) // 1024))
-            elif st in ("FAILED", "REJECTED"):
+                sauver()
+                print("  ->  %d Ko" % (os.path.getsize(f) // 1024))
+                break
+            if st in ("FAILED", "REJECTED"):
                 etat[n]["erreur"] = r.get("error") or st
-                restants.discard(n)
-                print("  plan%02s  ECHEC : %s" % (n, etat[n]["erreur"]))
-            sauver()
-        if restants:
-            time.sleep(15)
+                sauver()
+                print("  ->  ECHEC : %s" % etat[n]["erreur"])
+                break
+        else:
+            print("  ->  toujours en cours apres 15 min, on passe")
 
     faits = [x for x in etat.values() if x.get("fichier")]
     print("\n  %d/%d plans synchronises dans video/%s/final/"

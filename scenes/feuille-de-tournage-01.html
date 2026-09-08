@@ -1,0 +1,103 @@
+<meta charset="utf-8">
+<title>Feuille de tournage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{--board:#0E141C;--board-line:#27313E;--on-board:#AEBDCB;--on-board-fort:#F0F5F9;
+ --paper:#EDF1F4;--surface:#FFF;--surface-2:#F5F8FA;--rule:#CDD6DE;--muted:#5A6875;
+ --text:#1C2430;--amber:#E8A23A;--amber-encre:#8A5D12;
+ --ombre:0 1px 2px rgba(28,36,48,.06),0 8px 24px rgba(28,36,48,.07);}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#111820;--surface:#1A222C;--surface-2:#212B36;--rule:#2E3945;--muted:#94A3B1;
+ --text:#E3EAF1;--amber-encre:#E8A23A;--ombre:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);}}
+:root[data-theme="dark"]{--paper:#111820;--surface:#1A222C;--surface-2:#212B36;--rule:#2E3945;
+ --muted:#94A3B1;--text:#E3EAF1;--amber-encre:#E8A23A;
+ --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--text);font-family:Archivo,"Segoe UI",system-ui,sans-serif;
+ font-size:15px;line-height:1.55}
+.env{max-width:800px;margin:0 auto;padding:26px 18px 60px;display:flex;flex-direction:column;gap:26px}
+.marque{font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.marque b{color:var(--amber-encre)}
+h1{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(27px,4.6vw,37px);font-weight:600;
+ margin:0;line-height:1.1}
+h2{font-family:"Source Serif 4",Georgia,serif;font-size:24px;font-weight:600;margin:0 0 4px}
+h3{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+ font-weight:700;margin:20px 0 8px}
+.regles{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--amber);
+ border-radius:10px;padding:15px 17px;box-shadow:var(--ombre);font-size:14px}
+.regles ul{margin:8px 0 0;padding-left:20px}
+.regles li{margin:5px 0}
+.regles b{color:var(--amber-encre)}
+.acteur{display:flex;flex-direction:column}
+.plan{background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+ padding:13px 15px;margin-bottom:10px;box-shadow:var(--ombre)}
+.plan header{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.num{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.duree{background:var(--amber);color:#221703;border-radius:5px;padding:2px 9px;
+ font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.audio{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.de{font-family:"Source Serif 4",Georgia,serif;font-size:18px;margin:9px 0 11px;line-height:1.4}
+.prompt{position:relative;background:var(--board);border:1px solid var(--board-line);
+ border-radius:8px;padding:12px 14px}
+pre{margin:0;white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+ font-size:12.5px;line-height:1.6;color:var(--on-board)}
+.copier{position:absolute;top:8px;right:8px;font:inherit;font-size:11.5px;font-weight:700;
+ background:var(--amber);color:#221703;border:0;border-radius:6px;padding:5px 12px;cursor:pointer}
+.copier:hover{background:#F0B155}
+.copier:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.tableau{background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+ box-shadow:var(--ombre);overflow:hidden}
+.defile{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{text-align:left;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+ font-weight:700;padding:9px 14px;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:8px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num{width:1%;white-space:nowrap;font-variant-numeric:tabular-nums}
+td.de{font-size:14.5px;margin:0}
+td.sec{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.img{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--muted)}
+</style>
+<div class="env">
+ <span class="marque">Wortando<b>··</b></span>
+ <h1>Feuille de tournage — épisode 1</h1>
+
+ <div class="regles">
+  <b>Trois règles qui valent pour tous les plans parlés.</b>
+  <ul>
+   <li><b>Un seul cadre par personnage.</b> Mark dit ses six répliques depuis la même
+       image de départ, Anna les siennes depuis la sienne. On ne change que la durée
+       et le geste.</li>
+   <li><b>Mark regarde à gauche, Anna à droite.</b> C'est ce qui fait croire qu'ils se
+       regardent alors qu'ils sont dans deux plans séparés. Si les deux regardent du
+       même côté, ils ont l'air de fixer une troisième personne.</li>
+   <li><b>Les mains restent sous le menton.</b> Une main qui passe devant la bouche fait
+       perdre la synchronisation à sync.so.</li>
+  </ul>
+ </div>
+
+ <section class="acteur"><h2>Mark — 6 répliques</h2><h3>Son cadre, à faire une seule fois</h3><div class="prompt"><pre id="pmark">A medium close-up from the chest up. He stands at a single information counter in the arrivals hall; the counter is on his left and he leans one forearm on it, turned slightly toward it. His gaze is fixed steadily on the person standing behind the counter, just off the left edge of the camera. His right hand rests on the handle of his suitcase. Warm evening light, travellers blurred far behind him. Shallow depth of field.</pre><button class="copier" data-cible="pmark">copier</button></div><h3>Ses passages en <code>Directing</code></h3><article class="plan"><header><span class="num">plan 5</span><span class="duree">4 s</span><span class="audio">audio 2.3 s</span></header><p class="de" lang="de">Entschuldigung, wo ist die Gepäckausgabe?</p><div class="prompt"><pre id="p5">He speaks to the person on his left, his gaze staying on them throughout. He leans in slightly as he asks, with a small questioning tilt of the head. He does not look around. The camera holds still.</pre><button class="copier" data-cible="p5">copier</button></div></article><article class="plan"><header><span class="num">plan 8</span><span class="duree">4 s</span><span class="audio">audio 2.4 s</span></header><p class="de" lang="de">Aus Montreal. Ich ziehe nach Berlin um.</p><div class="prompt"><pre id="p8">He speaks to the person on his left, his gaze staying on them throughout. He gives a small nod and relaxes a little as he answers. He does not look around. The camera holds still.</pre><button class="copier" data-cible="p8">copier</button></div></article><article class="plan"><header><span class="num">plan 10</span><span class="duree">4 s</span><span class="audio">audio 2.5 s</span></header><p class="de" lang="de">Ja, ich fange nächste Woche einen neuen Job an.</p><div class="prompt"><pre id="p10">He speaks to the person on his left, his gaze staying on them throughout. A brief smile crosses his face as he says it. He does not look around. The camera holds still.</pre><button class="copier" data-cible="p10">copier</button></div></article><article class="plan"><header><span class="num">plan 12</span><span class="duree">3 s</span><span class="audio">audio 1.8 s</span></header><p class="de" lang="de">Und wie komme ich jetzt in die Innenstadt?</p><div class="prompt"><pre id="p12">He speaks to the person on his left, his gaze staying on them throughout. He leans in again, questioning. He does not look around. The camera holds still.</pre><button class="copier" data-cible="p12">copier</button></div></article><article class="plan"><header><span class="num">plan 15</span><span class="duree">3 s</span><span class="audio">audio 1.9 s</span></header><p class="de" lang="de">Wie lange dauert die Fahrt ungefähr?</p><div class="prompt"><pre id="p15">He speaks to the person on his left, his gaze staying on them throughout. A slight tilt of the head as he asks. He does not look around. The camera holds still.</pre><button class="copier" data-cible="p15">copier</button></div></article><article class="plan"><header><span class="num">plan 17</span><span class="duree">3 s</span><span class="audio">audio 1.5 s</span></header><p class="de" lang="de">Vielen Dank für Ihre Hilfe!</p><div class="prompt"><pre id="p17">He speaks to the person on his left, his gaze staying on them throughout. A nod of thanks; he straightens up a little. He does not look around. The camera holds still.</pre><button class="copier" data-cible="p17">copier</button></div></article></section><section class="acteur"><h2>Anna — 6 répliques</h2><h3>Son cadre, à faire une seule fois</h3><div class="prompt"><pre id="panna">A medium close-up from the chest up. She stands behind a single information counter in the arrivals hall, turned slightly toward the traveller on her right. Her gaze is fixed steadily on him, just off the right edge of the camera. Both hands rest on the counter. Warm evening light, the arrivals hall softly out of focus behind her. Shallow depth of field.</pre><button class="copier" data-cible="panna">copier</button></div><h3>Ses passages en <code>Directing</code></h3><article class="plan"><header><span class="num">plan 6</span><span class="duree">4 s</span><span class="audio">audio 2.7 s</span></header><p class="de" lang="de">Gleich hier rechts. Welchen Flug hatten Sie?</p><div class="prompt"><pre id="p6">She speaks to the traveller on her right, her gaze staying on him throughout. She gestures once to her right with one hand, then rests it back on the counter. She does not look around. The camera holds still.</pre><button class="copier" data-cible="p6">copier</button></div></article><article class="plan"><header><span class="num">plan 9</span><span class="duree">4 s</span><span class="audio">audio 2.5 s</span></header><p class="de" lang="de">Herzlich willkommen! Bleiben Sie länger?</p><div class="prompt"><pre id="p9">She speaks to the traveller on her right, her gaze staying on him throughout. Her smile widens slightly, welcoming. She does not look around. The camera holds still.</pre><button class="copier" data-cible="p9">copier</button></div></article><article class="plan"><header><span class="num">plan 11</span><span class="duree">5 s</span><span class="audio">audio 3.2 s</span></header><p class="de" lang="de">Dann brauchen Sie bald eine Anmeldung beim Bürgeramt.</p><div class="prompt"><pre id="p11">She speaks to the traveller on her right, her gaze staying on him throughout. A slight informative nod as she explains. She does not look around. The camera holds still.</pre><button class="copier" data-cible="p11">copier</button></div></article><article class="plan"><header><span class="num">plan 13</span><span class="duree">7 s</span><span class="audio">audio 5.5 s</span></header><p class="de" lang="de">Nehmen Sie die S-Bahn. Die Fahrkarte kaufen Sie am Automaten, unten in der Halle.</p><div class="prompt"><pre id="p13">She speaks to the traveller on her right, her gaze staying on him throughout. She gestures downward once to indicate the level below, then rests her hand on the counter. She does not look around. The camera holds still.</pre><button class="copier" data-cible="p13">copier</button></div></article><article class="plan"><header><span class="num">plan 16</span><span class="duree">4 s</span><span class="audio">audio 2.8 s</span></header><p class="de" lang="de">Etwa vierzig Minuten bis zum Hauptbahnhof.</p><div class="prompt"><pre id="p16">She speaks to the traveller on her right, her gaze staying on him throughout. A small confirming nod. She does not look around. The camera holds still.</pre><button class="copier" data-cible="p16">copier</button></div></article><article class="plan"><header><span class="num">plan 18</span><span class="duree">4 s</span><span class="audio">audio 2.6 s</span></header><p class="de" lang="de">Gern geschehen. Viel Glück in Berlin!</p><div class="prompt"><pre id="p18">She speaks to the traveller on her right, her gaze staying on him throughout. A warmer smile and a small friendly nod. She does not look around. The camera holds still.</pre><button class="copier" data-cible="p18">copier</button></div></article></section>
+
+ <section>
+  <h2>Les plans de décor</h2>
+  <p style="margin:0 0 12px;color:var(--muted);font-size:14px">Aucune vidéo à générer :
+   une image fixe suffit, le lecteur l'affiche pendant que la narratrice parle.</p>
+  <div class="tableau"><div class="defile"><table>
+   <thead><tr><th>Plan</th><th>Narration</th><th>Durée</th><th>Image</th></tr></thead>
+   <tbody><tr><td class="num">1</td><td class="de" lang="de">Achtzehn Uhr dreißig. Der Flug aus Montreal landet.</td><td class="sec">5 s</td><td class="img">ber_landung.jpg</td></tr><tr><td class="num">2</td><td class="de" lang="de">Berlin Brandenburg, halb sieben am Abend. Mark kommt mit zwei Koffern an.</td><td class="sec">7 s</td><td class="img">ber_ankunftshalle.jpg</td></tr><tr><td class="num">3</td><td class="de" lang="de">Er wird hier wohnen und arbeiten. Alles ist neu für ihn.</td><td class="sec">5 s</td><td class="img">ber_gepaeckband.jpg</td></tr><tr><td class="num">4</td><td class="de" lang="de">Mark sucht die Gepäckausgabe.</td><td class="sec">4 s</td><td class="img">ber_suche.jpg</td></tr><tr><td class="num">7</td><td class="de" lang="de">Auf Band vier drehen sich die Koffer.</td><td class="sec">4 s</td><td class="img">ber_band4.jpg</td></tr><tr><td class="num">14</td><td class="de" lang="de">Unten in der Halle steht der Fahrkartenautomat.</td><td class="sec">5 s</td><td class="img">ber_automat.jpg</td></tr><tr><td class="num">19</td><td class="de" lang="de">Draußen ist es dunkel. Berlin fängt an.</td><td class="sec">5 s</td><td class="img">ber_ausgang_nacht.jpg</td></tr></tbody>
+  </table></div></div>
+ </section>
+</div>
+<script>
+document.querySelectorAll(".copier").forEach(function(b){
+  b.addEventListener("click", function(){
+    var t = document.getElementById(b.dataset.cible).textContent;
+    navigator.clipboard.writeText(t).then(function(){
+      b.textContent = "copi\u00e9";
+      setTimeout(function(){ b.textContent = "copier"; }, 1400);
+    }).catch(function(){ b.textContent = "\u00e9chec"; });
+  });
+});
+</script>

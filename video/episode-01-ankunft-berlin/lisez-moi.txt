@@ -1,0 +1,130 @@
+EPISODE 01 -- ANKUNFT IN BERLIN
+===============================
+Theme : Reisen und Urlaub (A2)   |   19 plans, 84 s   |   format vertical 9:16
+
+Mark atterrit a Berlin, cherche ses bagages, et demande son chemin a Anna,
+employee au guichet d'information. C'est leur premiere rencontre.
+
+Le scenario, les repliques et le lexique vivent dans scenes/01-ankunft-berlin.json
+Les prompts de tournage, plan par plan : scenes/production-01.html
+
+
+LES DOSSIERS, DANS L'ORDRE DE FABRICATION
+-----------------------------------------
+01-images/   Les images de depart. Une par personnage ET par taille de plan.
+             Le nom dit qui et quelle taille -- jamais le numero de plan, parce
+             qu'une image sert a plusieurs plans. Voir 01-images/lisez-moi.txt.
+
+02-prises/   Tous les essais, planNN-MM.mp4. Le son est deja coupe.
+             On garde les ratees : elles coutent 480 credits et ne se refont
+             jamais a l'identique.
+
+03-final/    LES PLANS RETENUS, un seul par numero : planNN.mp4
+             C'est ce dossier qui sera monte. Un fichier marque -provisoire
+             attend d'etre remplace.
+
+99-abandonne-16x9/
+             Toute la premiere tentative, horizontale, du 7 septembre : douze
+             segments decoupes dans deux clips de cinq secondes, plus les deux
+             plans deja lip-syncs chez sync.so. Abandonnee au passage au
+             vertical. Conservee -- elle a coute deux des trois generations
+             sync.so gratuites du mois.
+
+
+LA FABRICATION D'UN PLAN, EN DEUX ETAPES
+----------------------------------------
+1. FRAMING (mode Image)     -> une image fixe, dans 01-images/
+   Elle porte le cadrage, le decor, la lumiere, la place du personnage.
+   C'est elle qui tient l'identite.
+
+2. DIRECTING (mode Video)   -> le clip, dans 02-prises/
+   L'image en Start Frame. Le prompt ne decrit QUE le mouvement.
+
+Puis :  python video/rapatrier.py --plan NN
+        (coupe le son, numerote la prise, la classe dans 02-prises/)
+
+
+REGLAGES QUI NE CHANGENT PAS
+----------------------------
+  Modele       Seedance 2.0 Mini
+  Format       9:16   -- A VERIFIER A CHAQUE FOIS, il s'est reinitialise en
+                        16:9 tout seul le 8 septembre
+  Resolution   720p   -- le maximum du modele
+  Duree        celle du plan, MINIMUM 4 s
+  Audio        coupe
+  Images       9:16 / 1K / 4 images  -- le 2K est inutile, la video plafonne
+                                        a 720p
+
+Ce qui reste a faire et ce qui est fait : voir 03-final/.
+
+
+LES BAGAGES DE MARK -- UNE CONTINUITE A TENIR PLAN PAR PLAN
+-----------------------------------------------------------
+Repere par Jacques le 8 septembre en regardant l'image du plan 4 : Mark y
+cherchait la livraison des bagages avec ses deux valises deja a ses pieds.
+S'il les a, il n'a rien a chercher, et le tapis du plan 7 ne sert a rien.
+
+  plans 1 a 6     UN SEUL bagage cabine a roulettes, poignee grise sortie.
+                  Pas de grosse valise. Il ne les a pas encore recuperees --
+                  c'est justement ce qu'il cherche.
+  plan 7          le tapis quatre lui rend ses deux valises.
+  plans 8 a 19    il peut avoir les trois.
+
+POURQUOI LE BAGAGE CABINE PLUTOT QUE RIEN : quelqu'un qui descend d'un vol
+transatlantique les mains vides est plus etrange qu'un homme qui tire une
+valise cabine. Et ca raccorde avec la poignee grise deja visible en bas de
+cadre dans ses plans au comptoir (5, 8, 10, 12, 15).
+
+LA REPLIQUE DU PLAN 2 A CHANGE -- ET C'EST ELLE QUI AVAIT TORT
+---------------------------------------------------------------
+Elle disait << Mark kommt mit zwei Koffern an >>. On a d'abord defendu ce
+texte : le narrateur dit qu'il arrive A BERLIN avec deux valises, qu'il
+demenage, pas qu'il les porte a cet instant. Sur le papier, c'est tenable.
+A l'ecran, non. Jacques, le 8 septembre, en regardant le montage : on entend
+deux valises, on en voit une, << ca ne fait pas de sens >>. Une lecture qu'il
+faut expliquer pour la sauver n'est pas une lecture, c'est une excuse.
+
+  desormais    Berlin Brandenburg, halb sieben am Abend. Mark ist endlich da.
+               Berlin Brandebourg, six heures et demie du soir.
+               Mark est enfin arrive.
+
+Aucune contradiction possible avec l'image, quel que soit le nombre de sacs,
+et << endlich >> ajoute le soulagement d'apres un vol de sept heures.
+
+CE QUE CA A DEPLACE DANS LE LEXIQUE
+  Koffern -> Koffer   la cle portait la forme flechie du plan 2 ; c'est le
+                      plan 7 qui porte le mot maintenant (<< die Koffer >>).
+  ankommen  RETIRE    plus prononce nulle part dans l'episode. Une entree de
+                      lexique pour un mot jamais dit est du decor.
+  endlich   AJOUTE    il est dans adverbe.json (a2, b1, dtz) avec les six
+                      traductions : rien d'invente.
+  Le lexique reste a 26 entrees.
+
+UN SEUL FICHIER ELEVENLABS REFAIT. audio/refaire_plan.py --plan 2, ecrit ce
+jour-la pour ca : il regenere une replique au gain de scene deja mesure
+(+1,27 dB, lu dans manifeste.json) au lieu de remesurer sur un fichier seul,
+ce qui l'aurait pose au niveau moyen et aurait ecrase l'ecart voulu entre les
+repliques. Les dix-huit autres prises, approuvees, ne sont pas touchees --
+v3 a stabilite 0.0 ne rend jamais deux fois la meme chose.
+
+CE QUI RESTE A CORRIGER : le plan 2 le montre entrer en tirant DEUX grosses
+valises. A refaire avec le bagage cabine seul.
+
+
+LE PANNEAU DU PLAN 4 -- POURQUOI IL NE DOIT RIEN DIRE
+-----------------------------------------------------
+Un panneau lisible qui indique GEPAECKAUSGABE rendrait absurde la question du
+plan 5 : << Entschuldigung, wo ist die Gepaeckausgabe ? >> Il aurait la
+reponse sous les yeux.
+
+Il doit donc CHERCHER SANS TROUVER. Les panneaux sont hauts, lointains et
+flous -- des formes et des fleches, jamais un mot.
+
+Effet de bord heureux : plus aucun texte a ecrire, donc plus aucun risque
+d'orthographe. Les modeles ne savent pas ecrire, et un mot allemand ecorche
+dans un cours de langue est une faute que l'apprenant recopiera.
+
+A RETENIR POUR TOUS LES PLANS : ne jamais decrire un texte par sa fonction.
+Le prompt disait << a second line suggesting an English translation >> et le
+modele a ecrit, en toutes lettres, << Suppgested translation >>. Soit on
+donne la chaine exacte, soit on dit qu'il n'y a pas de texte.
