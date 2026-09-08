@@ -91,7 +91,7 @@ def main():
         if p.get("de"):
             print("  << %s >>" % p["de"])
 
-    dst = os.path.join(RACINE, "video", a.scene, "_prises")
+    dst = os.path.join(RACINE, "video", "episode-" + a.scene, "02-prises")
     if not os.path.isdir(dst):
         os.makedirs(dst)
     n = 1
@@ -105,7 +105,7 @@ def main():
     if r.returncode != 0:
         sys.exit("  echec ffmpeg :\n%s" % r.stderr[-600:])
 
-    print("  %s  ->  video/%s/_prises/%s  (%d Ko, muet)"
+    print("  %s  ->  video/episode-%s/02-prises/%s  (%d Ko, muet)"
           % (os.path.basename(src), a.scene, os.path.basename(out),
              os.path.getsize(out) // 1024))
     print("  L'original reste dans les telechargements : rien n'est efface.")
