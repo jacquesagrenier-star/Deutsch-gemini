@@ -65,6 +65,31 @@ FIXE = "Locked-off camera. No zoom, no push-in, no camera movement of any kind."
 ZOOM = "A very slow, subtle push-in throughout the shot, ending on the face."
 
 # --------------------------------------------------------------------------
+# LES TROIS TAILLES DE PLAN, ET POURQUOI ELLES CHANGENT EN COURS DE SCENE.
+#
+# Douze repliques au meme cadrage donnent un diaporama de tetes parlantes. Le
+# cinema fait varier la taille des plans -- c'est ce qui evite la monotonie
+# d'un dialogue, bien plus que des mouvements de camera ajoutes au hasard.
+#
+# Ici la progression raconte quelque chose : ils commencent a distance,
+# etrangers et vouvoyes, et finissent proches. LE CADRAGE SUIT LA RELATION.
+#
+#   plans 5-6    moyen        deux inconnus, la distance polie
+#   plans 8-11   moyen serre  la conversation s'installe
+#   plans 12-13  serre        le coeur pratique de la scene
+#   plans 15-16  moyen serre  on respire, echange bref
+#   plans 17-18  serre        l'adieu, le moment le plus chaleureux
+# --------------------------------------------------------------------------
+TAILLES = {
+    "moyen": ("Medium shot, from the waist up, the figure occupying about half "
+              "the frame height."),
+    "moyen serre": ("Medium close shot, chest up, the face filling the upper "
+                    "third of the frame."),
+    "serre": ("Close shot, head and shoulders, the face filling the upper half "
+              "of the frame."),
+}
+
+# --------------------------------------------------------------------------
 # LA MISE EN SCENE, plan par plan. C'est le coeur du fichier.
 #   cadre  -- ce qui s'ajoute a la pose type, pour l'image fixe
 #   action -- le prompt d'animation. QUE du mouvement.
@@ -104,13 +129,13 @@ MISE_EN_SCENE = {
                    "settles on one direction. His shoulders shift as he decides. "
                    "The camera stays still."),
 
-    5: dict(pose="mark", coin="left",
+    5: dict(pose="mark", coin="left", taille="moyen",
             action="He leans in very slightly and asks his question, polite and "
                    "a little tired from the flight. His eyebrows lift on the "
                    "question and stay up as he waits. One small open-hand "
                    "gesture of enquiry, close to his body."),
 
-    6: dict(pose="anna", coin="right",
+    6: dict(pose="anna", coin="right", taille="moyen",
             action="She answers immediately, without hesitating. A small open "
                    "hand indicates a direction just past him, low and close to "
                    "her body, then returns to the desk. Her head tilts slightly "
@@ -122,32 +147,32 @@ MISE_EN_SCENE = {
             action="The suitcases turn steadily past the camera, one after "
                    "another. The camera stays still."),
 
-    8: dict(pose="mark", coin="left",
+    8: dict(pose="mark", coin="left", taille="moyen serre",
             action="He answers simply, a small settling of the shoulders. On the "
                    "second half a quiet pride comes into his face, and the "
                    "beginning of a smile. He holds her eye throughout."),
 
-    9: dict(pose="anna", coin="right",
+    9: dict(pose="anna", coin="right", taille="moyen serre",
             action="Her face opens with genuine warmth and she gives a small "
                    "welcoming nod. Then curiosity: her eyebrows lift and her "
                    "head tilts a little as she asks."),
 
-    10: dict(pose="mark", coin="left",
+    10: dict(pose="mark", coin="left", taille="moyen serre",
              action="He nods once and answers, the smile widening. A small lift "
                     "of the chin - confidence with a trace of nervousness under "
                     "it. He holds her eye."),
 
-    11: dict(pose="anna", coin="right",
+    11: dict(pose="anna", coin="right", taille="moyen serre",
              action="She becomes practical. A small precise gesture of one hand, "
                     "kept close to her body, as she names the office. Her "
                     "eyebrows lift at the end to check he has followed."),
 
-    12: dict(pose="mark", coin="left",
+    12: dict(pose="mark", coin="left", taille="serre",
              action="He glances briefly away, orienting himself in the hall, "
                     "then back to her as he asks. A slight forward lean on the "
                     "question."),
 
-    13: dict(pose="anna", coin="right", zoom=True,
+    13: dict(pose="anna", coin="right", taille="serre", zoom=True,
              action="EARLY in the shot, while the framing is still wide, she "
                     "lifts one hand and indicates DOWN and to her LEFT - away "
                     "from him, into the depth of the hall behind her - a small "
@@ -163,20 +188,20 @@ MISE_EN_SCENE = {
                     "walks on. The lit screen flickers gently. The camera stays "
                     "still."),
 
-    15: dict(pose="mark", coin="left",
+    15: dict(pose="mark", coin="left", taille="moyen serre",
              action="A short simple question. His head tilts slightly, eyebrows "
                     "raised, waiting. Nothing else moves."),
 
-    16: dict(pose="anna", coin="right",
+    16: dict(pose="anna", coin="right", taille="moyen serre",
              action="She answers precisely, factually. A tiny nod on the number. "
                     "Her hand stays on the desk."),
 
-    17: dict(pose="mark", coin="left",
+    17: dict(pose="mark", coin="left", taille="serre",
              action="Warm and genuine. A small nod of thanks, his shoulders "
                     "loosening now that he knows where to go. A real smile at "
                     "the end."),
 
-    18: dict(pose="anna", coin="right", zoom=True,
+    18: dict(pose="anna", coin="right", taille="serre", zoom=True,
              action="The warmest moment of the scene. She answers easily, and as "
                     "the camera closes in a real smile reaches her eyes. A small "
                     "nod of farewell at the end. She keeps looking at him after "
@@ -198,8 +223,7 @@ def image_prompt(p, m):
     if "cadre" in m:
         return m["cadre"] + "\n\n" + FIN_IMAGE
     qui = "@Anna" if m["pose"] == "anna" else "@Mark"
-    tete = ("Vertical 9:16. Close shot of %s, head and shoulders, the face "
-            "filling the upper half of the frame." % qui)
+    tete = "Vertical 9:16. %s of %s." % (TAILLES[m["taille"]].rstrip("."), qui)
     pose = ANNA_POSE if m["pose"] == "anna" else MARK_POSE
     return "\n\n".join([tete, pose, FOND, EPAULE.format(coin=m["coin"]), FIN_IMAGE])
 
@@ -281,7 +305,8 @@ effacer sans preavis (voir <code>video/PROVENANCE.txt</code>).</li>
         o.append('<h2 class="plan">Plan %02d &mdash; %s%s</h2>' % (p["n"], e(p["locuteur"]), badge))
         o.append('<p class="meta">%s &middot; %s s &middot; audio %s s%s</p>'
                  % (e(p["type"]), p["duree"], p.get("duree_audio", "?"),
-                    " &middot; rapprochement" if m.get("zoom") else ""))
+                    (" &middot; " + m["taille"] if "taille" in m else "")
+                    + (" &middot; rapprochement" if m.get("zoom") else "")))
         if p.get("de"):
             o.append('<p class="de">%s</p><p class="fr">%s</p>' % (e(p["de"]), e(p.get("fr", ""))))
         o.append("<h3>1. Framing &mdash; l'image de depart</h3>")
