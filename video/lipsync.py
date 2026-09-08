@@ -100,6 +100,14 @@ def calibrer(voix, clip, sortie, amorce):
 
         C'est meme meilleur : pendant le silence, sync sait que la bouche doit
         etre fermee. Avec une piste tronquee, il n'en savait rien.
+
+    L'AMORCE TOMBE QUAND LA VOIX NE TIENT PAS
+        Le plan 13 dure 7,04 s et la replique d'Anna 7,08. Avec l'amorce, la
+        piste faisait 7,43 s, coupee a 7,04 : quatre dixiemes de sa phrase
+        partaient a la poubelle -- et le lip-sync s'est fait sur la version
+        amputee. montage.py a toujours su ca (amorce = 0 quand ca ne rentre
+        pas) ; ce script ne le savait pas encore, et rien ne s'en est plaint.
+        C'est l'appelant qui decide maintenant, avec le meme calcul.
     """
     import imageio_ffmpeg
     ms = int(round(amorce * 1000))
@@ -299,8 +307,14 @@ def main():
             continue
 
         if not etat.get(n, {}).get("id"):
+            # Meme calcul que montage.py : l'amorce saute des que la
+            # replique ne tient plus dans le clip, sinon on lui coupe
+            # la fin -- et le lip-sync se ferait sur la phrase amputee.
+            am = AMORCE if duree_clip(s_aud) + AMORCE <= duree_clip(v) else 0.0
+            if not am:
+                print("  (amorce retiree, la replique remplit le plan)")
             cale = calibrer(s_aud, v, os.path.join(cales, "%02d.wav" % p["n"]),
-                            AMORCE)
+                            am)
             corps, typ = multipart({"model": a.modele}, {"video": v, "audio": cale})
             print("  plan%02d envoi..." % p["n"], end="", flush=True)
             r = appel(API, k, corps, typ, "POST")
