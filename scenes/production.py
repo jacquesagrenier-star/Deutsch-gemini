@@ -81,12 +81,12 @@ ZOOM = "A very slow, subtle push-in throughout the shot, ending on the face."
 #   plans 17-18  serre        l'adieu, le moment le plus chaleureux
 # --------------------------------------------------------------------------
 TAILLES = {
-    "moyen": ("Medium shot, from the waist up, the figure occupying about half "
-              "the frame height."),
-    "moyen serre": ("Medium close shot, chest up, the face filling the upper "
-                    "third of the frame."),
-    "serre": ("Close shot, head and shoulders, the face filling the upper half "
-              "of the frame."),
+    "moyen": ("Medium shot of {qui}, from the waist up, the figure occupying "
+              "about half the frame height."),
+    "moyen serre": ("Medium close shot of {qui}, chest up, the face filling the "
+                    "upper third of the frame."),
+    "serre": ("Close shot of {qui}, head and shoulders, the face filling the "
+              "upper half of the frame."),
 }
 
 # --------------------------------------------------------------------------
@@ -241,7 +241,7 @@ def image_prompt(p, m):
     if "cadre" in m:
         return m["cadre"] + "\n\n" + FIN_IMAGE
     qui = "@Anna" if m["pose"] == "anna" else "@Mark"
-    tete = "Vertical 9:16. %s of %s." % (TAILLES[m["taille"]].rstrip("."), qui)
+    tete = "Vertical 9:16. " + TAILLES[m["taille"]].format(qui=qui)
     pose = ANNA_POSE if m["pose"] == "anna" else MARK_POSE
     return "\n\n".join([tete, pose, FOND, EPAULE.format(coin=m["coin"]), FIN_IMAGE])
 
