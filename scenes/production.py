@@ -282,6 +282,21 @@ def image_prompt(p, m):
 #     repliques font 1,5 a 2,7 s. Pour onze plans sur douze il n'existe aucune
 #     duree de clip qui colle a l'audio -- le surplus est structurel.
 #
+# CE QU'ON NE FERA PAS, ET C'EST UNE REGLE DE FOND
+#     Copilot, consulte le 8 septembre : << ajoute 1-2 mots neutres a la fin
+#     du texte >> pour que la voix remplisse le plan. Non.
+#
+#     Le dialogue de cette serie N'EST PAS de la bande-son : c'est la matiere
+#     du cours. Chaque mot allemand arrive dans les sous-titres, dans le
+#     lexique, dans les six traductions, et sera relu par quelqu'un qui
+#     apprend. Ajouter << das ist alles >> parce qu'un clip fait deux secondes
+#     de trop, c'est faire apprendre du remplissage a un debutant pour arranger
+#     un rendu.
+#
+#     La contrainte technique s'incline devant la lecon, jamais l'inverse. Si
+#     un plan est trop long pour sa replique, on coupe le plan (montage.py
+#     --queue) -- on n'allonge pas la replique.
+#
 # CE QUE CETTE REGLE N'A PAS ENCORE PROUVE
 #     Elle n'a pas ete tournee. C'est une hypothese mieux argumentee que la
 #     precedente, pas un resultat. Un plan suffit a la juger : 200 credits et
