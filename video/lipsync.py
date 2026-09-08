@@ -208,6 +208,10 @@ def main():
     ap.add_argument("--modele", default="lipsync-2", choices=sorted(TARIF))
     ap.add_argument("--plans", help="n'en faire que ceux-la : 5 ou 5,6,8. "
                                     "A defaut, tous les plans parlants.")
+    ap.add_argument("--amorce", type=float, default=None, metavar="SECONDES",
+                    help="retard de la voix, au lieu des %.2f s de "
+                         "montage.py. Sert quand la fenetre de parole du "
+                         "clip ne tombe pas au debut." % AMORCE)
     ap.add_argument("--queue", type=float, default=None, metavar="SECONDES",
                     help="couper le clip SECONDES apres la fin de la replique "
                          "AVANT de l'envoyer -- meme valeur que montage.py")
@@ -310,7 +314,8 @@ def main():
             # Meme calcul que montage.py : l'amorce saute des que la
             # replique ne tient plus dans le clip, sinon on lui coupe
             # la fin -- et le lip-sync se ferait sur la phrase amputee.
-            am = AMORCE if duree_clip(s_aud) + AMORCE <= duree_clip(v) else 0.0
+            voulue = AMORCE if a.amorce is None else a.amorce
+            am = voulue if duree_clip(s_aud) + voulue <= duree_clip(v) else 0.0
             if not am:
                 print("  (amorce retiree, la replique remplit le plan)")
             cale = calibrer(s_aud, v, os.path.join(cales, "%02d.wav" % p["n"]),

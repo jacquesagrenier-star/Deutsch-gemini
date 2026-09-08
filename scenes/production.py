@@ -301,23 +301,79 @@ def image_prompt(p, m):
 #     Elle n'a pas ete tournee. C'est une hypothese mieux argumentee que la
 #     precedente, pas un resultat. Un plan suffit a la juger : 200 credits et
 #     19 cents de lip-sync.
-BOUCHE = ("TIMING OF THE MOUTH, and this matters more than anything else "
-          "here: the character speaks ONLY during the FIRST HALF of the clip, "
-          "then clearly finishes, closes the mouth, and keeps it closed and "
-          "relaxed for the whole rest of the shot. The ending is the "
-          "important part - once the mouth has closed it does NOT open again, "
-          "not once, not slightly. During that closed-mouth part everything "
-          "else still lives: the eyes, a blink, a small natural head "
-          "movement, the breathing. The face stays present and engaged, "
-          "simply no longer speaking.")
+# CE QUE LES ESSAIS DU 8 SEPTEMBRE AU SOIR ONT APPRIS
+#     Quatre prises du plan 5, la meme, avec des consignes de bouche
+#     differentes. Mesurees image par image (video/controler_bouche.py).
+#
+#     << la premiere moitie du plan >>  -- MAUVAISE FORMULE. Elle suit la duree
+#         du clip : 2 s de parole a 4 s, 3 s a 6 s. Mais la replique fait
+#         2,27 s quoi qu'il arrive. L'instruction derivait avec un chiffre qui
+#         n'a rien a voir avec elle.
+#
+#     DES SECONDES ABSOLUES -- ca marche. Demande << ferme 0-1 s, parle
+#         1-3,5 s, ferme ensuite >> sur un clip de 4 s : le pic tombe a 0,96 s
+#         et l'amplitude retombe apres 3,6 s. Seedance OBEIT a un minutage.
+#         C'etait la question ouverte de la journee.
+#
+#     LA DUREE DU CLIP CHANGE L'OBEISSANCE. Meme consigne a 6 s : il ne
+#         commence qu'a 1,9 s au lieu de 1,0. Jacques : << le mouvement
+#         d'ouverture de bouche dure un petit peu trop longtemps >>. A 4 s il
+#         demarre a l'heure mais la fenetre est etroite. CINQ SECONDES est
+#         l'entre-deux, choisi a l'oeil.
+#
+#     LA FIN EST BONNE DANS TOUS LES CAS. C'est le debut qui se regle.
+#
+# L'idee du silence AU DEBUT vient de Jacques, et elle valait mieux que la
+# mienne : un silence initial se verifie d'un coup d'oeil, une fermeture
+# finale demande de comparer des courbes.
+BOUCHE = ("TIMING OF THE MOUTH - this matters more than anything else here, "
+          "and the numbers are exact:\n"
+          "1. From 0 to {debut} seconds his or her mouth is CLOSED. Not "
+          "speaking yet, just settling and looking at the other person. Do "
+          "not begin a slow mouth-opening during this time - the mouth simply "
+          "rests closed, then opens to speak.\n"
+          "2. From {debut} to {fin} seconds: speaking. Natural, unhurried.\n"
+          "3. From {fin} seconds to the end of the clip: finished. The mouth "
+          "CLOSES and stays closed - it does not open again, not once, not "
+          "slightly.\n"
+          "Through all three phases the rest of the face lives: the eyes, a "
+          "blink, a small natural head movement, the breathing. Present and "
+          "engaged at every moment, whether speaking or not.")
 
 
-def video_prompt(m):
+def bouche(p):
+    """Le bloc de minutage de la bouche pour CE plan, en secondes reelles.
+
+    La fenetre de parole est celle de la voix : elle commence a l'amorce du
+    montage et dure exactement ce que dure le fichier ElevenLabs. Demander
+    autre chose ferait articuler la machoire a cote de la voix -- le defaut
+    qu'on passe la journee a chasser.
+    """
+    debut = 0.5                        # l'amorce du montage, arrondie
+    fin = debut + (p.get("duree_audio") or p["duree"])
+    return BOUCHE.format(debut="%.1f" % debut, fin="%.1f" % fin)
+
+
+def duree_a_generer(p):
+    """Combien de secondes demander a Seedance pour ce plan.
+
+    Cinq secondes par defaut -- l'entre-deux retenu a l'oeil le 8 septembre.
+    Plus long seulement si la replique ne rentre pas : il faut la fenetre de
+    parole, plus une seconde de silence apres, plus l'amorce.
+    """
+    return max(5, int(round(0.5 + (p.get("duree_audio") or p["duree"]) + 1.5)))
+
+
+def video_prompt(m, p=None):
     """Le prompt de Directing. Le mouvement de camera d'abord, l'action
-    ensuite, et le minutage de la bouche en dernier -- voir BOUCHE plus haut."""
+    ensuite, et le minutage de la bouche en dernier.
+
+    `p` est le plan de la scene. Sans lui on ne connait pas la duree de la
+    replique, donc pas la fenetre de parole : le bloc de minutage est alors
+    omis plutot qu'invente avec des chiffres au hasard."""
     bloc = [ZOOM if m.get("zoom") else FIXE, m["action"]]
-    if "pose" in m:                     # un decor n'a pas de visage
-        bloc.append(BOUCHE)
+    if "pose" in m and p:               # un decor n'a pas de visage
+        bloc.append(bouche(p))
     return "\n\n".join(bloc)
 
 
@@ -402,7 +458,7 @@ effacer sans preavis (voir <code>video/PROVENANCE.txt</code>).</li>
         o.append("<h3>1. Framing &mdash; l'image de depart</h3>")
         o.append("<pre>%s</pre>" % e(image_prompt(p, m)))
         o.append("<h3>2. Directing &mdash; l'animation</h3>")
-        o.append("<pre>%s</pre>" % e(video_prompt(m)))
+        o.append("<pre>%s</pre>" % e(video_prompt(m, p)))
         gen = max(4, p["duree"])   # Seedance 2.0 Mini ne descend pas sous 4 s
         sup = ('' if gen == p["duree"] else
                ' <b>(le plan fait %s s : la seconde en trop se coupe au montage)</b>' % p["duree"])

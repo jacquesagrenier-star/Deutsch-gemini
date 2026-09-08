@@ -16,6 +16,18 @@ POURQUOI UNE FEUILLE A PART
     sont validees, et elles coutent 130 credits les quatre. Seule l'animation
     est a relancer -- 200 credits par plan.
 
+LES SECONDES VIENNENT DU FICHIER, PAS DU SCENARIO
+    La fenetre de parole demandee a Seedance est celle de la voix : elle
+    commence a l'amorce du montage et dure ce que dure le mp3. Le script lit
+    donc duree_audio -- et le 8 septembre au soir, QUINZE des dix-neuf valeurs
+    etaient fausses, le plan 13 de 1,60 s. La feuille aurait demande une
+    fenetre trop courte d'une seconde et demie, sur douze plans, sans que rien
+    ne s'en plaigne.
+
+    Le script mesure donc les mp3 et refuse de travailler sur une valeur
+    perimee. Une duree inventee coute deux cents credits et une prise a
+    refaire.
+
 LE PIEGE DE LA REPETITION
     Deux plans de la meme taille qui partent de la MEME image au pixel pres
     ramenent le personnage a la position identique, et ca se voit. Le script
@@ -69,6 +81,27 @@ def main():
     if not plans:
         sys.exit("  Aucun plan a refaire.")
 
+    # LES DUREES DOIVENT ETRE CELLES DES FICHIERS. Voir l'en-tete.
+    sys.path.insert(0, os.path.join(RACINE, "video"))
+    import montage as M                                    # noqa: E402
+    F = M.ffmpeg()
+    perimes = []
+    for p in plans:
+        f = os.path.join(RACINE, "audio", "scenes", a.scene,
+                         "%02d-%s.mp3" % (p["n"], p["locuteur"]))
+        if not os.path.exists(f):
+            sys.exit("  Plan %02d : voix manquante (%s)"
+                     % (p["n"], os.path.basename(f)))
+        vrai = round(M.duree(F, f), 2)
+        if abs(vrai - (p.get("duree_audio") or 0)) > 0.05:
+            perimes.append((p["n"], p.get("duree_audio"), vrai))
+        p["duree_audio"] = vrai
+    if perimes:
+        print("  duree_audio perimee dans la scene, corrigee ici :")
+        for n, vieux, vrai in perimes:
+            print("    plan %02d  %s -> %.2f s" % (n, vieux, vrai))
+        print("  Reporter ces valeurs dans scenes/%s.json." % a.scene)
+
     # Distribuer les variantes d'image : une par plan de la meme taille.
     servi, manque = {}, []
     for p in plans:
@@ -115,13 +148,17 @@ def main():
     for p in plans:
         m = P.MISE_EN_SCENE[p["n"]]
         o.append("-" * 62)
-        o.append("PLAN %02d   %s   %s   %d s%s"
-                 % (p["n"], p["locuteur"], m["taille"], p["duree"],
+        o.append("PLAN %02d   %s   %s   GENERER A %d SECONDES%s"
+                 % (p["n"], p["locuteur"], m["taille"],
+                    P.duree_a_generer(p),
                     "   (zoom)" if m.get("zoom") else ""))
+        o.append("  replique de %.2f s, parole demandee de 0,5 a %.1f s"
+                 % (p.get("duree_audio") or p["duree"],
+                    0.5 + (p.get("duree_audio") or p["duree"])))
         o.append("  << %s >>" % p["de"])
         o.append("  Start Frame : %s" % p["_image"])
         o.append("")
-        o.append(P.video_prompt(m))
+        o.append(P.video_prompt(m, p))
         o.append("")
 
     io.open(out, "w", encoding="utf-8", newline=nl).write(nl.join(o) + nl)
