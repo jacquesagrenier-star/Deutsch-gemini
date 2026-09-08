@@ -46,6 +46,25 @@ import normaliser                                         # noqa: E402
 CIBLE_LUFS = -14.0
 
 
+# --------------------------------------------------------------------------
+# LE DIALOGUE N'OBEIT PAS AUX MEMES REGLES QUE LE VOCABULAIRE.
+#
+# generer.REGLAGES resserre volontairement la distribution : stability 0.75,
+# style 0.0. C'est juste pour les 25 298 mots isolés du cours -- « der Bahnhof »
+# et « die Krankenversicherung » doivent sonner pareil, et personne ne peut
+# reecouter 25 000 fichiers pour trier les bonnes prises.
+#
+# Applique a une SCENE, ce reglage fait exactement ce qu'on ne veut pas : il
+# aplatit. Jacques l'a entendu avant qu'on l'explique -- « ca manque un peu
+# d'expression ». Ce n'etait pas la voix, c'etait le reglage.
+#
+# On abaisse donc la stabilite (la voix varie d'une phrase a l'autre) et on
+# leve le style (l'intention devient audible). ON NE TOUCHE PAS A generer.py :
+# le corpus du cours doit rester homogene avec ce qui a deja ete produit.
+# --------------------------------------------------------------------------
+DIALOGUE = {"stability": 0.40, "similarity_boost": 0.75,
+            "style": 0.45, "use_speaker_boost": True}
+
 def gain_de_la_scene(morceaux, dossier):
     """Le gain unique qui met la scene entiere a la cible."""
     liste = os.path.join(dossier, "_concat.txt")
@@ -70,6 +89,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="01-ankunft-berlin")
     ap.add_argument("--modele", default="v2", choices=sorted(generer.MODELES))
+    ap.add_argument("--reglages-du-cours", action="store_true",
+                    help="utiliser la stabilite haute du corpus au lieu de celle du dialogue")
     ap.add_argument("--pour-de-vrai", action="store_true",
                     help="depenser reellement les credits")
     a = ap.parse_args()
@@ -106,6 +127,8 @@ def main():
     brut = os.path.join(dossier, "_brut")
     os.makedirs(brut, exist_ok=True)
     cle_api = generer.cle_api()
+    if not a.reglages_du_cours:
+        generer.REGLAGES = DIALOGUE
 
     bruts = []
     for p in plans:
