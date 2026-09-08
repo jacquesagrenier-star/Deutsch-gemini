@@ -77,8 +77,8 @@ ZOOM = "A very slow, subtle push-in throughout the shot, ending on the face."
 #   plans 5-6    moyen        deux inconnus, la distance polie
 #   plans 8-11   moyen serre  la conversation s'installe
 #   plans 12-13  serre        le coeur pratique de la scene
-#   plans 15-16  moyen serre  on respire, echange bref
-#   plans 17-18  serre        l'adieu, le moment le plus chaleureux
+#   plans 14-15  moyen serre  on respire, echange bref
+#   plans 16-17  serre        l'adieu, le moment le plus chaleureux
 # --------------------------------------------------------------------------
 TAILLES = {
     "moyen": ("Medium shot of {qui}, from the waist up, the figure occupying "
@@ -198,7 +198,7 @@ MISE_EN_SCENE = {
                     "hand briefly, then return to him and stay there as the "
                     "camera closes in. A small nod at the end."),
 
-    14: dict(cadre="Vertical 9:16. A ticket machine standing in a lower "
+    18: dict(cadre="Vertical 9:16. A ticket machine standing in a lower "
                    "concourse of an airport, screen lit, seen straight on from a "
                    "few steps away. The hall around it warm and softly out of "
                    "focus, a few travellers passing.",
@@ -206,20 +206,20 @@ MISE_EN_SCENE = {
                     "walks on. The lit screen flickers gently. The camera stays "
                     "still."),
 
-    15: dict(pose="mark", coin="left", taille="moyen serre",
+    14: dict(pose="mark", coin="left", taille="moyen serre",
              action="A short simple question. His head tilts slightly, eyebrows "
                     "raised, waiting. Nothing else moves."),
 
-    16: dict(pose="anna", coin="right", taille="moyen serre",
+    15: dict(pose="anna", coin="right", taille="moyen serre",
              action="She answers precisely, factually. A tiny nod on the number. "
                     "Her hand stays on the desk."),
 
-    17: dict(pose="mark", coin="left", taille="serre",
+    16: dict(pose="mark", coin="left", taille="serre",
              action="Warm and genuine. A small nod of thanks, his shoulders "
                     "loosening now that he knows where to go. A real smile at "
                     "the end."),
 
-    18: dict(pose="anna", coin="right", taille="serre", zoom=True,
+    17: dict(pose="anna", coin="right", taille="serre", zoom=True,
              action="The warmest moment of the scene. She answers easily, and as "
                     "the camera closes in a real smile reaches her eyes. A small "
                     "nod of farewell at the end. She keeps looking at him after "
