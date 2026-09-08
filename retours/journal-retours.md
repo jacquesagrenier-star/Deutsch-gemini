@@ -425,3 +425,163 @@ l'immersion vidéo mérite trois abonnements.
 - Deux clips de 5 s suffisent pour douze plans : aller-retour et découpage.
 - On duplique des PLANS, jamais des personnages — un second Mark n'est pas
   Mark.
+
+---
+
+## 8 septembre 2026 — La journée où le lip-sync a marché, et où on a compris pourquoi il ne suffit pas
+
+### Ce qui a été livré
+
+L'épisode 1 a été **monté pour la première fois** : 19 plans, les voix posées,
+88,8 secondes. Puis remonté quatre fois dans la journée, chaque fois parce que
+Jacques avait vu quelque chose.
+
+Le lip-sync **fonctionne de bout en bout**. La chaîne complète — Artlist →
+ElevenLabs → sync.so → ffmpeg — a produit un plan dont les lèvres disent
+vraiment l'allemand. Verdict de Jacques sur le plan 5 : « définitivement
+mieux ».
+
+### Trois choses qu'il a vues et que je n'avais pas vues
+
+**Les deux valises.** Le narrateur disait « Mark kommt mit zwei Koffern an »,
+l'image montrait un bagage cabine. J'avais défendu le texte la veille : il
+arrive *à Berlin* avec deux valises, en soute, il ne les porte pas. Sur le
+papier c'est tenable ; à l'écran, non. Une lecture qu'il faut expliquer pour
+la sauver n'est pas une lecture. La réplique dit maintenant « Mark ist endlich
+da ».
+
+**Le narrateur au mauvais endroit.** Anna envoie Mark chercher son billet en
+bas, la voix du narrateur nous y emmène — puis on remonte au comptoir lui
+parler encore quatre fois. Ce n'était pas un problème de répliques mais de
+géographie. Le plan est passé après l'au revoir : comptoir, hall, dehors.
+
+**La bouche qui s'ouvre sur du silence.** Sur le plan 5 synchronisé : « la
+bouche s'ouvre une dernière fois après avoir terminé de parler ». C'est la
+trouvaille de la journée, et elle a demandé trois mesures pour être comprise.
+
+### La cause, et pourquoi personne ne l'a trouvée sans les fichiers
+
+| mesure | résultat |
+|---|---|
+| l'audio à cet instant | **-91 dB**, du silence numérique |
+| `lipsync-2-pro`, même plan | ouvre la bouche **aux mêmes images** |
+| le clip **d'origine** | les ouvre aussi : 3,10 s, 3,20 s, 3,70 s |
+
+**Le lip-sync repeint les lèvres. La mâchoire, le menton et les joues restent
+ceux du clip source.** Seedance faisait parler Mark pendant quatre secondes ;
+il continue de mastiquer sous des lèvres refaites, et aucun modèle ne peut
+défaire ça — ce n'est pas dans les lèvres.
+
+D'où la règle, qui vaut pour les 29 épisodes à venir : **le personnage parle au
+début du plan, puis ferme la bouche et ne la rouvre plus.** La mâchoire bouge
+où l'oreille entend une voix.
+
+### Trois modèles consultés, et ce qu'ils valent
+
+Jacques a soumis le problème à ChatGPT, Gemini et Copilot.
+
+**Les trois se trompent sur la cause.** Tous l'attribuent à un écart de durée :
+sync ignorerait que la fin du plan est du silence. Il ne l'ignore pas — on lui
+envoie -91 dB. Leur raisonnement s'arrête une couche au-dessus du problème,
+faute d'avoir les fichiers.
+
+**ChatGPT a raison contre moi**, et c'est le meilleur apport de la journée :
+ne pas chercher une bouche complètement figée, qui risque l'effet collé. Ce
+qu'il faut retirer n'est pas la parole, c'est la parole *pendant le silence*.
+Ma première règle allait trop loin ; elle a été réécrite.
+
+**Gemini apporte l'économie** : couper le clip *avant* l'envoi. Sync facture à
+l'image ; la queue de silence, c'est payer pour synchroniser des images qu'on
+jettera. 2,52 $ deviennent 1,96 $.
+
+**Copilot n'apporte rien de neuf**, et une idée à écarter : ajouter des mots
+neutres à la fin du texte pour remplir le plan. Non. Le dialogue de cette série
+n'est pas de la bande-son, c'est la matière du cours — chaque mot arrive dans
+les sous-titres, le lexique et six traductions. **La contrainte technique
+s'incline devant la leçon, jamais l'inverse.**
+
+Aucun des trois ne pouvait savoir que **Seedance 2.0 Mini ne descend pas sous
+4 secondes** alors que nos répliques font 1,5 à 2,7 s. C'est ce plancher qui
+rend le surplus structurel, et qui condamne leur solution commune — générer un
+clip à la longueur de la phrase.
+
+### Deux mesures qui remplacent deux croyances
+
+**`speed` n'existe pas sous `eleven_v3`.** Même voix, même phrase, même seed :
+`multilingual_v2` passe de 2,60 s à 3,25 s (+25 %, l'effet attendu), `v3` reste
+à 2,32 s. Le champ est **accepté sans erreur** dans les deux cas. C'est le pire
+des cas : on croit régler un débit, on ne règle rien, et rien ne détrompe.
+
+**Sync facture à l'image, pas à la seconde.** Le tarif était codé en dur à
+0,04 $/s — le prix du forfait Scale, à 249 $/mois, que nous n'avons pas. Et
+l'affichage à la seconde suppose 25 im/s ; nos clips sont à 24.
+
+### Ce qui a été décidé
+
+**Forfait sync.so Creator, 19 $/mois.** Une seule ligne le justifie :
+« no watermark », absent de Hobbyist à 5 $. Pour des vidéos destinées à l'app
+et à TikTok, un filigrane est éliminatoire.
+
+**Le montage serré.** Combler le silence en ralentissant la voix demanderait
+un ×0,40 à ×0,64 selon les plans — une diction d'endormi. On coupe donc chaque
+plan parlant une demi-seconde après la réplique : 88,8 s deviennent 76,1 s,
+sans un crédit ni un clip refait. Aucun mot n'est perdu, les 7 plans de décor
+sont intacts.
+
+C'est un pansement, et il faut le dire : si les douze plans sont retournés avec
+la bouche qui se ferme, le silence redevient utilisable et le rythme aéré
+redevient possible.
+
+### Ce que la journée a coûté
+
+| | |
+|---|---|
+| crédits Artlist | **zéro** |
+| sync.so | ~2,50 $ d'usage + 19 $/mois |
+| ElevenLabs | ~1 000 caractères |
+
+**Contraste voulu avec la veille**, où un mois d'Artlist était parti en une
+journée. La discipline tenue aujourd'hui : mesurer avant de dépenser, un plan
+d'essai avant les douze, et l'essai à blanc par défaut sur chaque script qui
+facture.
+
+Les 0,19 $ du premier envoi ont été perdus — sync avait rendu 2,25 s pour un
+clip de 4,04. Ils ont acheté la découverte que `cut_off` est son mode par
+défaut, ce qui valait bien plus.
+
+### Une erreur de méthode à ne pas refaire
+
+Pour lui faire juger la coupe, je lui ai montré le **plan 16 — qui n'a jamais
+été passé au lip-sync**. Les lèvres y disent forcément n'importe quoi. Il a
+répondu, à juste titre, qu'on ne voyait rien de ce qu'on lui demandait de
+juger. Une comparaison ne vaut que si elle isole la variable qu'on teste ;
+celle-là en mélangeait deux.
+
+### Ce qui reste
+
+- **Les 12 plans à retourner** sous la nouvelle règle : 2 400 crédits, aucune
+  image à refaire. La feuille est prête (`scenes/refaire.py --muets`).
+- **Le plan 17 n'a pas de variante d'image propre** — il repartirait de celle
+  du plan 13 au pixel près, et la position identique se voit.
+- **Les sous-titres mot à mot.** `POST /v1/forced-alignment` prend un audio
+  existant et son texte, et rend chaque mot minuté : les prises validées ne
+  sont pas à regénérer. Reste le lecteur dans l'app, qui n'existe pas encore.
+- **Trois retours de testeurs non traités**, en attente depuis ce matin.
+- **La question d'hier est toujours ouverte** : montrer la version audio au
+  groupe. Elle n'a rien coûté et personne ne l'a encore vue.
+
+### Détails techniques à ne pas redécouvrir
+
+- Sync **coupe la vidéo à la longueur de l'audio** (`cut_off` par défaut). On
+  cale donc l'audio nous-mêmes sur la durée exacte du clip : amorce, voix,
+  silence. La durée est bonne parce que nous l'avons faite.
+- **Le numéro de plan est une clé d'identité**, pas une position : il nomme le
+  clip, la voix, les prises, l'image de décor, la ligne du manifeste et
+  l'entrée de mise en scène. Le déplacer dans le seul fichier de scène ferait
+  lire au montage le mauvais clip, sans erreur et sans avertissement.
+- **Un déplacement de plan forme un cycle** (14 vers 18, mais 18 vers 17…) :
+  renommer dans l'ordre écraserait un fichier à chaque pas.
+- Un fichier de scène qui annonce `chronometrage: elevenlabs` alors qu'aucun
+  plan ne porte de mots minutés est **pire qu'une estimation**.
+- `ankommen` est sorti du lexique le jour où plus personne ne le prononçait.
+  Une entrée pour un mot jamais dit est du décor.
