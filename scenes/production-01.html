@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
+<title>Production &mdash; 01-ankunft-berlin</title><style>
+:root{color-scheme:light}
+body{margin:0;background:#F2EEE2;color:#1C2430;
+ font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:56rem;margin:0 auto;padding:2rem 1.25rem 5rem}
+h1{font-size:1.6rem;margin:0 0 .25rem}
+.sous{color:#6b6558;margin:0 0 2rem}
+.regles{background:#fff;border:1px solid #e2dcc9;border-radius:10px;
+ padding:1rem 1.25rem;margin-bottom:2.5rem}
+.regles h2{font-size:1rem;margin:0 0 .6rem;text-transform:uppercase;
+ letter-spacing:.05em;color:#6b6558}
+.regles ul{margin:0;padding-left:1.1rem}.regles li{margin:.25rem 0}
+article{background:#fff;border:1px solid #e2dcc9;border-radius:10px;
+ padding:1.1rem 1.25rem;margin-bottom:1.5rem}
+article.fait{border-color:#7a9a5b;background:#f6faf2}
+h2.plan{font-size:1.15rem;margin:0 0 .1rem}
+.meta{color:#6b6558;font-size:.85rem;margin:0 0 .8rem}
+.de{font-size:1.05rem;margin:.2rem 0}
+.fr{color:#6b6558;margin:0 0 1rem}
+h3{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;
+ color:#6b6558;margin:1.1rem 0 .35rem}
+pre{background:#1C2430;color:#e8e4d8;border-radius:8px;padding:.85rem 1rem;
+ overflow-x:auto;white-space:pre-wrap;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:0}
+.reglage{font:13px ui-monospace,Menlo,Consolas,monospace;color:#6b6558;margin:.4rem 0 0}
+.badge{display:inline-block;background:#E8A23A;color:#1C2430;border-radius:4px;
+ padding:.05rem .4rem;font-size:.72rem;font-weight:600;vertical-align:.1em}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background:#15181d;color:#e8e4d8}
+:root:not([data-theme="light"]) article,:root:not([data-theme="light"]) .regles{background:#1e232a;border-color:#2e353f}
+:root:not([data-theme="light"]) .fr,:root:not([data-theme="light"]) .meta,
+:root:not([data-theme="light"]) .sous,:root:not([data-theme="light"]) h3,
+:root:not([data-theme="light"]) .reglage,:root:not([data-theme="light"]) .regles h2{color:#9aa3ae}
+:root:not([data-theme="light"]) article.fait{background:#1b2620;border-color:#4a6b3a}}
+</style></head><body><main>
+<h1>Feuille de production &mdash; 01-ankunft-berlin</h1>
+<p class="sous">19 plans &middot; 84 s de video &middot; genere par <code>scenes/production.py</code></p>
+<div class="regles"><h2>La marche a suivre</h2><ul>
+<li><b>Deux etapes par plan.</b> D'abord <b>Framing</b> (l'image fixe), puis
+<b>Directing</b> (l'animation), avec l'image en <b>Start Frame</b>.</li>
+<li><b>Images :</b> 9:16 &middot; 1K &middot; 4 images &mdash; 130 credits les quatre.
+Le 2K est inutile : la video plafonne a 720p.</li>
+<li><b>Video :</b> Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; audio
+<b>coupe</b> &middot; duree du plan.</li>
+<li><b>N'attachez que les visages qui doivent etre reconnaissables.</b>
+<code>@Anna</code>, <code>@Mark</code>. Une personne vue de dos ne s'attache pas :
+l'attacher inviterait le modele a lui montrer le visage.</li>
+<li><b>En Directing, aucun personnage attache.</b> Ils sont deja dans l'image.</li>
+<li><b>Regard :</b> Mark vers la GAUCHE, Anna vers la DROITE. C'est ce qui donne
+l'impression qu'ils se regardent.</li>
+<li><b>Un seul visage ancre par plan.</b> L'autre n'est qu'une epaule floue.</li>
+<li><b>Telechargez chaque prise gardee tout de suite</b> &mdash; Artlist peut
+effacer sans preavis (voir <code>video/PROVENANCE.txt</code>).</li>
+<li>Puis <code>python video/rapatrier.py --plan N</code> : son coupe, prise classee.</li>
+</ul></div>
+<article>
+<h2 class="plan">Plan 01 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 5 s &middot; audio 3.99 s</p>
+<p class="de">Achtzehn Uhr dreißig. Der Flug aus Montreal landet.</p><p class="fr">Dix-huit heures trente. Le vol en provenance de Montréal atterrit.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Seen from inside the terminal, through a tall glass wall: an aircraft on the apron at dusk, ground vehicles around it, warm low sun. No people in the foreground. The glass reflects the interior faintly.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+Almost still. The faintest drift of the camera. Ground vehicles move slowly in the distance, light shifts on the glass. Nothing dramatic.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 5 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 02 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 7 s &middot; audio 5.53 s</p>
+<p class="de">Berlin Brandenburg, halb sieben am Abend. Mark kommt mit zwei Koffern an.</p><p class="fr">Berlin Brandebourg, six heures et demie du soir. Mark arrive avec deux valises.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Wide shot of a busy airport arrivals hall, warm evening light. Small in the frame and seen FROM BEHIND, a young man in a dark technical shell jacket walks in pulling two suitcases. His face is not visible. Travellers pass in soft focus.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+He walks slowly away from the camera into the hall, pulling the two suitcases. Travellers cross the frame around him. The camera stays still.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 7 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 03 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 5 s &middot; audio 3.9 s</p>
+<p class="de">Er wird hier wohnen und arbeiten. Alles ist neu für ihn.</p><p class="fr">Il va vivre et travailler ici. Tout est nouveau pour lui.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. A baggage carousel turning, suitcases going round, seen close and slightly from above. Warm terminal light, the hall behind thrown out of focus. No faces.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+The carousel turns steadily, suitcases sliding past the camera. A hand reaches in at the edge of frame and lifts one away. The camera stays still.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 5 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 04 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 4 s &middot; audio 2.04 s</p>
+<p class="de">Mark sucht die Gepäckausgabe.</p><p class="fr">Mark cherche la livraison des bagages.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. A young man in a dark technical shell jacket, seen from BEHIND and slightly to the side, standing still in the hall and looking up at the overhead signs. His face is not visible. Two suitcases beside him. Signs and travellers softly out of focus.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+He turns his head slowly, scanning the overhead signs, then settles on one direction. His shoulders shift as he decides. The camera stays still.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 05 &mdash; mark</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.28 s &middot; moyen</p>
+<p class="de">Entschuldigung, wo ist die Gepäckausgabe?</p><p class="fr">Excusez-moi, où est la livraison des bagages ?</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium shot, from the waist up, the figure occupying about half the frame height of @Mark.
+
+He is placed RIGHT of centre and looks toward the LEFT of frame and slightly downward, with open space in front of his gaze. He stands in front of an information desk in an airport arrivals hall, the pale edge of the desk crossing the lower left corner. He wears a dark technical shell jacket over a plain dark t-shirt, slightly rumpled from travelling. The handle of a suitcase is visible at the very bottom of the frame.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower left corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+He leans in very slightly and asks his question, polite and a little tired from the flight. His eyebrows lift on the question and stay up as he waits. One small open-hand gesture of enquiry, close to his body.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 06 &mdash; anna</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.74 s &middot; moyen</p>
+<p class="de">Gleich hier rechts. Welchen Flug hatten Sie?</p><p class="fr">Juste ici à droite. Quel vol aviez-vous ?</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium shot, from the waist up, the figure occupying about half the frame height of @Anna.
+
+She is placed LEFT of centre and looks toward the RIGHT of frame and slightly upward, with open space in front of her gaze. She stands at an OPEN information desk in an airport arrivals hall - no glass partition, no booth, no screen. The pale desk crosses the lower third of the frame, close to the camera, with a dark tablet and a few leaflets on it. One of her hands rests on the desk beside them.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower right corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+She answers immediately, without hesitating. A small open hand indicates a direction just past him, low and close to her body, then returns to the desk. Her head tilts slightly as she asks her own question in return.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 07 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 4 s &middot; audio 2.37 s</p>
+<p class="de">Auf Band vier drehen sich die Koffer.</p><p class="fr">Sur le tapis quatre, les valises tournent.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Close on a baggage carousel, the number FOUR on a sign above it out of focus in the upper frame. Suitcases turn past the camera. Warm terminal light. No faces.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+The suitcases turn steadily past the camera, one after another. The camera stays still.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 08 &mdash; mark</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.37 s &middot; moyen serre</p>
+<p class="de">Aus Montreal. Ich ziehe nach Berlin um.</p><p class="fr">De Montréal. Je déménage à Berlin.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium close shot, chest up, the face filling the upper third of the frame of @Mark.
+
+He is placed RIGHT of centre and looks toward the LEFT of frame and slightly downward, with open space in front of his gaze. He stands in front of an information desk in an airport arrivals hall, the pale edge of the desk crossing the lower left corner. He wears a dark technical shell jacket over a plain dark t-shirt, slightly rumpled from travelling. The handle of a suitcase is visible at the very bottom of the frame.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower left corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+He answers simply, a small settling of the shoulders. On the second half a quiet pride comes into his face, and the beginning of a smile. He holds her eye throughout.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 09 &mdash; anna</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.55 s &middot; moyen serre</p>
+<p class="de">Herzlich willkommen! Bleiben Sie länger?</p><p class="fr">Bienvenue ! Vous restez longtemps ?</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium close shot, chest up, the face filling the upper third of the frame of @Anna.
+
+She is placed LEFT of centre and looks toward the RIGHT of frame and slightly upward, with open space in front of her gaze. She stands at an OPEN information desk in an airport arrivals hall - no glass partition, no booth, no screen. The pale desk crosses the lower third of the frame, close to the camera, with a dark tablet and a few leaflets on it. One of her hands rests on the desk beside them.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower right corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+Her face opens with genuine warmth and she gives a small welcoming nod. Then curiosity: her eyebrows lift and her head tilts a little as she asks.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 10 &mdash; mark</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.51 s &middot; moyen serre</p>
+<p class="de">Ja, ich fange nächste Woche einen neuen Job an.</p><p class="fr">Oui, je commence un nouvel emploi la semaine prochaine.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium close shot, chest up, the face filling the upper third of the frame of @Mark.
+
+He is placed RIGHT of centre and looks toward the LEFT of frame and slightly downward, with open space in front of his gaze. He stands in front of an information desk in an airport arrivals hall, the pale edge of the desk crossing the lower left corner. He wears a dark technical shell jacket over a plain dark t-shirt, slightly rumpled from travelling. The handle of a suitcase is visible at the very bottom of the frame.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower left corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+He nods once and answers, the smile widening. A small lift of the chin - confidence with a trace of nervousness under it. He holds her eye.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 11 &mdash; anna</h2>
+<p class="meta">replique &middot; 5 s &middot; audio 3.16 s &middot; moyen serre</p>
+<p class="de">Dann brauchen Sie bald eine Anmeldung beim Bürgeramt.</p><p class="fr">Alors il vous faudra bientôt faire votre déclaration de domicile au Bürgeramt.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium close shot, chest up, the face filling the upper third of the frame of @Anna.
+
+She is placed LEFT of centre and looks toward the RIGHT of frame and slightly upward, with open space in front of her gaze. She stands at an OPEN information desk in an airport arrivals hall - no glass partition, no booth, no screen. The pale desk crosses the lower third of the frame, close to the camera, with a dark tablet and a few leaflets on it. One of her hands rests on the desk beside them.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower right corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+She becomes practical, naming the office matter-of-factly. On the word Buergeramt the smallest flicker crosses her face - a quarter-second wince of sympathy, one eyebrow lifting, gone almost before it appears, as if she knows exactly what he is in for. Then she is helpful again immediately. A small precise gesture of one hand, kept close to her body. Her eyebrows lift at the end to check he has followed.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 5 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 12 &mdash; mark</h2>
+<p class="meta">replique &middot; 3 s &middot; audio 1.81 s &middot; serre</p>
+<p class="de">Und wie komme ich jetzt in die Innenstadt?</p><p class="fr">Et comment est-ce que je vais au centre-ville maintenant ?</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Close shot, head and shoulders, the face filling the upper half of the frame of @Mark.
+
+He is placed RIGHT of centre and looks toward the LEFT of frame and slightly downward, with open space in front of his gaze. He stands in front of an information desk in an airport arrivals hall, the pale edge of the desk crossing the lower left corner. He wears a dark technical shell jacket over a plain dark t-shirt, slightly rumpled from travelling. The handle of a suitcase is visible at the very bottom of the frame.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower left corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+He glances briefly away, orienting himself in the hall, then back to her as he asks. A slight forward lean on the question.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 3 sec &middot; audio coupe</p>
+</article>
+<article class="fait">
+<h2 class="plan">Plan 13 &mdash; anna <span class="badge">FAIT</span></h2>
+<p class="meta">replique &middot; 7 s &middot; audio 5.48 s &middot; serre &middot; rapprochement</p>
+<p class="de">Nehmen Sie die S-Bahn. Die Fahrkarte kaufen Sie am Automaten, unten in der Halle.</p><p class="fr">Prenez le S-Bahn. Le billet, vous l'achetez au distributeur, en bas dans le hall.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Close shot, head and shoulders, the face filling the upper half of the frame of @Anna.
+
+She is placed LEFT of centre and looks toward the RIGHT of frame and slightly upward, with open space in front of her gaze. She stands at an OPEN information desk in an airport arrivals hall - no glass partition, no booth, no screen. The pale desk crosses the lower third of the frame, close to the camera, with a dark tablet and a few leaflets on it. One of her hands rests on the desk beside them.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower right corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>A very slow, subtle push-in throughout the shot, ending on the face.
+
+EARLY in the shot, while the framing is still wide, she lifts one hand and indicates DOWN and to her LEFT - away from him, into the depth of the hall behind her - a small precise gesture, not a broad sweep. Her eyes follow her hand briefly, then return to him and stay there as the camera closes in. A small nod at the end.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 7 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 14 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 5 s &middot; audio 3.11 s</p>
+<p class="de">Unten in der Halle steht der Fahrkartenautomat.</p><p class="fr">En bas dans le hall se trouve le distributeur de billets.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. A ticket machine standing in a lower concourse of an airport, screen lit, seen straight on from a few steps away. The hall around it warm and softly out of focus, a few travellers passing.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+A traveller crosses the frame in front of the machine and walks on. The lit screen flickers gently. The camera stays still.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 5 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 15 &mdash; mark</h2>
+<p class="meta">replique &middot; 3 s &middot; audio 1.86 s &middot; moyen serre</p>
+<p class="de">Wie lange dauert die Fahrt ungefähr?</p><p class="fr">Combien de temps dure le trajet à peu près ?</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium close shot, chest up, the face filling the upper third of the frame of @Mark.
+
+He is placed RIGHT of centre and looks toward the LEFT of frame and slightly downward, with open space in front of his gaze. He stands in front of an information desk in an airport arrivals hall, the pale edge of the desk crossing the lower left corner. He wears a dark technical shell jacket over a plain dark t-shirt, slightly rumpled from travelling. The handle of a suitcase is visible at the very bottom of the frame.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower left corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+A short simple question. His head tilts slightly, eyebrows raised, waiting. Nothing else moves.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 3 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 16 &mdash; anna</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.83 s &middot; moyen serre</p>
+<p class="de">Etwa vierzig Minuten bis zum Hauptbahnhof.</p><p class="fr">Environ quarante minutes jusqu'à la gare centrale.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Medium close shot, chest up, the face filling the upper third of the frame of @Anna.
+
+She is placed LEFT of centre and looks toward the RIGHT of frame and slightly upward, with open space in front of her gaze. She stands at an OPEN information desk in an airport arrivals hall - no glass partition, no booth, no screen. The pale desk crosses the lower third of the frame, close to the camera, with a dark tablet and a few leaflets on it. One of her hands rests on the desk beside them.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower right corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+She answers precisely, factually. A tiny nod on the number. Her hand stays on the desk.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 17 &mdash; mark</h2>
+<p class="meta">replique &middot; 3 s &middot; audio 1.53 s &middot; serre</p>
+<p class="de">Vielen Dank für Ihre Hilfe!</p><p class="fr">Merci beaucoup pour votre aide !</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Close shot, head and shoulders, the face filling the upper half of the frame of @Mark.
+
+He is placed RIGHT of centre and looks toward the LEFT of frame and slightly downward, with open space in front of his gaze. He stands in front of an information desk in an airport arrivals hall, the pale edge of the desk crossing the lower left corner. He wears a dark technical shell jacket over a plain dark t-shirt, slightly rumpled from travelling. The handle of a suitcase is visible at the very bottom of the frame.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower left corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+Warm and genuine. A small nod of thanks, his shoulders loosening now that he knows where to go. A real smile at the end.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 3 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 18 &mdash; anna</h2>
+<p class="meta">replique &middot; 4 s &middot; audio 2.65 s &middot; serre &middot; rapprochement</p>
+<p class="de">Gern geschehen. Viel Glück in Berlin!</p><p class="fr">Je vous en prie. Bonne chance à Berlin !</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. Close shot, head and shoulders, the face filling the upper half of the frame of @Anna.
+
+She is placed LEFT of centre and looks toward the RIGHT of frame and slightly upward, with open space in front of her gaze. She stands at an OPEN information desk in an airport arrivals hall - no glass partition, no booth, no screen. The pale desk crosses the lower third of the frame, close to the camera, with a dark tablet and a few leaflets on it. One of her hands rests on the desk beside them.
+
+Soft, even light on the face. Behind, the open depth of the hall - warm interior lighting, distant travellers - thrown STRONGLY out of focus, heavy bokeh. No bright window behind the head, no vertical pillar close to the head.
+
+In the lower right corner, only a soft dark blurred shape suggests the other person's shoulder. No second face.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>A very slow, subtle push-in throughout the shot, ending on the face.
+
+The warmest moment of the scene. She answers easily, and as the camera closes in a real smile reaches her eyes. A small nod of farewell at the end. She keeps looking at him after she has finished speaking.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 4 sec &middot; audio coupe</p>
+</article>
+<article>
+<h2 class="plan">Plan 19 &mdash; erzaehler</h2>
+<p class="meta">decor &middot; 5 s &middot; audio 3.11 s</p>
+<p class="de">Draußen ist es dunkel. Berlin fängt an.</p><p class="fr">Dehors il fait sombre. Berlin commence.</p>
+<h3>1. Framing &mdash; l'image de depart</h3>
+<pre>Vertical 9:16. The terminal exit at night, seen from inside: dark glass doors, city lights and headlights beyond, wet tarmac reflecting them. A figure in silhouette walks out, small in the frame, face not visible.
+
+Natural skin texture, realistic lighting, photorealistic, no stylization.</pre>
+<h3>2. Directing &mdash; l'animation</h3>
+<pre>Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+
+The figure walks out through the doors and away into the night. Headlights pass beyond the glass. The camera stays still.</pre>
+<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; 5 sec &middot; audio coupe</p>
+</article>
+</main></body></html>

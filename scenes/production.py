@@ -162,10 +162,28 @@ MISE_EN_SCENE = {
                     "of the chin - confidence with a trace of nervousness under "
                     "it. He holds her eye."),
 
+    # Le seul trait d'humour de l'episode, et il tient en un quart de seconde.
+    # Anna porte << a dry sense of humour >> dans sa fiche et aucun plan ne s'en
+    # servait. Il joue sur le Buergeramt parce que tout etranger en Allemagne a
+    # une histoire de Buergeramt -- le rendez-vous dans trois mois, le guichet
+    # qui ferme a midi et demi.
+    #
+    # IL DOIT RESTER MINUSCULE. L'humour verbal est le dernier acquis d'une
+    # langue : une blague qu'on ne comprend pas a A2 est PIRE que pas de blague,
+    # elle produit le sentiment d'exclusion que le debutant redoute deja. Celui
+    # qui ne connait pas encore le Buergeramt voit seulement quelqu'un de
+    # gentil ; celui qui y est deja alle rit. Les deux comprennent la phrase.
+    #
+    # Rien n'est change au dialogue ni a l'audio : ca se joue dans le prompt.
     11: dict(pose="anna", coin="right", taille="moyen serre",
-             action="She becomes practical. A small precise gesture of one hand, "
-                    "kept close to her body, as she names the office. Her "
-                    "eyebrows lift at the end to check he has followed."),
+             action="She becomes practical, naming the office matter-of-factly. "
+                    "On the word Buergeramt the smallest flicker crosses her "
+                    "face - a quarter-second wince of sympathy, one eyebrow "
+                    "lifting, gone almost before it appears, as if she knows "
+                    "exactly what he is in for. Then she is helpful again "
+                    "immediately. A small precise gesture of one hand, kept "
+                    "close to her body. Her eyebrows lift at the end to check "
+                    "he has followed."),
 
     12: dict(pose="mark", coin="left", taille="serre",
              action="He glances briefly away, orienting himself in the hall, "
