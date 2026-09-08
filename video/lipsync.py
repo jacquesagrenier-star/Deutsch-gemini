@@ -38,6 +38,12 @@ import uuid
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://api.sync.so/v2/generate"
 
+# Le meme retard de voix que montage.py : l'audio cale ici doit tomber la ou
+# le montage l'aurait pose, sinon la bouche suit une piste et l'oreille une
+# autre. Une seule valeur, importee, plutot que deux qui derivent.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from montage import AMORCE                                  # noqa: E402
+
 # SYNC FACTURE A L'IMAGE, PAS A LA SECONDE. Leur page de tarifs affiche un
 # prix a la seconde calcule sur 25 im/s ; nos clips Seedance sont a 24, donc
 # la seconde nous coute 4 % de moins que l'affiche. Releve sur sync.so/pricing
@@ -63,6 +69,38 @@ def duree_clip(chemin):
 def images_par_seconde(chemin):
     m = re.search(r"([\d.]+) fps", _sonde(chemin))
     return float(m.group(1)) if m else None
+
+
+def calibrer(voix, clip, sortie, amorce):
+    """Ecrit une piste aussi longue que le clip : amorce de silence, la voix,
+    puis du silence jusqu'au bout.
+
+    POURQUOI, ET CE QUE CA A COUTE DE L'APPRENDRE
+        Le 8 septembre 2026, premier envoi du plan 5 : clip de 4,04 s, voix de
+        2,27 s, sync a renvoye 2,25 s. Il COUPE la video a la longueur de
+        l'audio. Envoyes tels quels, les douze plans auraient perdu leur
+        respiration -- ce silence avant et apres la replique qui fait qu'un
+        plan ne commence pas sur la premiere syllabe.
+
+        On aurait pu chercher un sync_mode dans leur API. Mais un parametre
+        mal nomme y passe sans erreur, comme speed chez ElevenLabs, et on ne
+        l'apprendrait qu'en regardant le resultat. Caler l'audio nous-memes ne
+        depend de rien : la duree est la bonne parce que nous l'avons faite.
+
+        C'est meme meilleur : pendant le silence, sync sait que la bouche doit
+        etre fermee. Avec une piste tronquee, il n'en savait rien.
+    """
+    import imageio_ffmpeg
+    ms = int(round(amorce * 1000))
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner",
+                        "-nostats", "-loglevel", "error", "-y", "-i", voix,
+                        "-af", "adelay=%d:all=1,apad" % ms,
+                        "-t", "%.3f" % duree_clip(clip),
+                        "-ar", "44100", "-ac", "1", sortie],
+                       capture_output=True, text=True, errors="replace")
+    if r.returncode != 0:
+        sys.exit("  calage audio echoue :\n%s" % r.stderr[-500:])
+    return sortie
 
 
 def cle():
@@ -122,11 +160,24 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="01-ankunft-berlin")
     ap.add_argument("--modele", default="lipsync-2", choices=sorted(TARIF))
+    ap.add_argument("--plans", help="n'en faire que ceux-la : 5 ou 5,6,8. "
+                                    "A defaut, tous les plans parlants.")
     ap.add_argument("--pour-de-vrai", action="store_true")
     a = ap.parse_args()
 
     d = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"), encoding="utf-8"))
     plans = [p for p in d["plans"] if p["type"] == "replique"]
+
+    # UN PLAN D'ABORD, LES ONZE AUTRES ENSUITE. Le lip-sync se juge a l'oeil,
+    # sur un visage, pas sur une facture : douze plans envoyes d'un coup se
+    # paient avant qu'on sache si le modele tient sur des gros plans.
+    if a.plans:
+        voulus = {int(x) for x in a.plans.replace(" ", "").split(",") if x}
+        inconnus = voulus - {p["n"] for p in plans}
+        if inconnus:
+            sys.exit("  Ces plans ne parlent pas, ou n'existent pas : %s"
+                     % ", ".join(str(x) for x in sorted(inconnus)))
+        plans = [p for p in plans if p["n"] in voulus]
 
     # L'arborescence de l'episode : les clips muets retenus sont dans
     # 03-final/, les plans synchronises vont a cote dans 04-lipsync/. On ne
@@ -165,6 +216,8 @@ def main():
         return
 
     k = cle()
+    cales = os.path.join(dst, "_audio-cale")
+    os.makedirs(cales, exist_ok=True)
     etat_f = os.path.join(dst, "etat.json")
     etat = json.load(io.open(etat_f, encoding="utf-8")) if os.path.exists(etat_f) else {}
 
@@ -183,7 +236,9 @@ def main():
             continue
 
         if not etat.get(n, {}).get("id"):
-            corps, typ = multipart({"model": a.modele}, {"video": v, "audio": s_aud})
+            cale = calibrer(s_aud, v, os.path.join(cales, "%02d.wav" % p["n"]),
+                            AMORCE)
+            corps, typ = multipart({"model": a.modele}, {"video": v, "audio": cale})
             print("  plan%02d envoi..." % p["n"], end="", flush=True)
             r = appel(API, k, corps, typ, "POST")
             etat[n] = {"id": r.get("id"), "statut": r.get("status")}

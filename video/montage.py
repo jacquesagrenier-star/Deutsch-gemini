@@ -83,7 +83,8 @@ def main():
         # fois ce qui existe de mieux. Un plan absent de 04-lipsync -- les
         # decors, qui n'ont pas de visage -- retombe sur son clip d'origine.
         v = os.path.join(dv, "04-lipsync", "plan%02d.mp4" % p["n"])
-        if os.path.exists(v):
+        synchronise = os.path.exists(v)
+        if synchronise:
             synchro += 1
         else:
             v = os.path.join(dv, "03-final", "plan%02d.mp4" % p["n"])
@@ -94,23 +95,33 @@ def main():
             sys.exit("  Plan %02d : replique manquante (%s)" % (p["n"], os.path.basename(s)))
 
         dv_, da_ = duree(F, v), duree(F, s)
-        # La voix tient-elle avec l'amorce ? Sinon on la colle au debut.
-        amorce = AMORCE if (da_ + AMORCE) <= dv_ else 0.0
-        note = "" if amorce else "  <- voix au ras, la replique remplit le plan"
-
         out = os.path.join(tmp, "plan%02d.mp4" % p["n"])
-        # La replique deborde-t-elle du clip ? Alors on garde toute la voix et
-        # l'image tient jusqu'a sa fin ; sinon on coupe a la duree du clip.
-        borne = ["-shortest"] if (da_ + amorce) > dv_ else ["-t", "%.3f" % dv_]
-        ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
-            "-i", v, "-itsoffset", "%.3f" % amorce, "-i", s,
-            "-map", "0:v", "-map", "1:a", "-c:v", "copy",
-            "-c:a", "aac", "-b:a", "128k", "-ar", "44100"]
-           + borne + [out], "plan %02d" % p["n"])
+
+        if synchronise:
+            # LE PLAN SYNCHRONISE PORTE DEJA SA VOIX, ET AU BON ENDROIT.
+            # lipsync.py lui a envoye une piste calee sur la duree du clip,
+            # amorce comprise : c'est exactement celle que le montage aurait
+            # posee. La reposer par-dessus ferait un doublon decale.
+            amorce, note = AMORCE, "  sync"
+            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                "-i", v, "-map", "0:v", "-map", "0:a", "-c:v", "copy",
+                "-c:a", "aac", "-b:a", "128k", "-ar", "44100", out],
+               "plan %02d" % p["n"])
+        else:
+            # La voix tient-elle avec l'amorce ? Sinon on la colle au debut.
+            amorce = AMORCE if (da_ + AMORCE) <= dv_ else 0.0
+            note = "" if amorce else "  <- voix au ras, la replique remplit le plan"
+            # La replique deborde-t-elle du clip ? Alors on garde toute la voix
+            # et l'image tient jusqu'a sa fin ; sinon on coupe a la duree du clip.
+            borne = ["-shortest"] if (da_ + amorce) > dv_ else ["-t", "%.3f" % dv_]
+            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                "-i", v, "-itsoffset", "%.3f" % amorce, "-i", s,
+                "-map", "0:v", "-map", "1:a", "-c:v", "copy",
+                "-c:a", "aac", "-b:a", "128k", "-ar", "44100"]
+               + borne + [out], "plan %02d" % p["n"])
         morceaux.append(out)
-        lab = "  sync" if "04-lipsync" in v else ""
-        print("  %02d    %5.2f  %5.2f   +%.2f%s%s"
-              % (p["n"], dv_, da_, amorce, lab, note))
+        print("  %02d    %5.2f  %5.2f   +%.2f%s"
+              % (p["n"], dv_, da_, amorce, note))
 
     liste = os.path.join(tmp, "_liste.txt")
     io.open(liste, "w", encoding="utf-8", newline="").write(
