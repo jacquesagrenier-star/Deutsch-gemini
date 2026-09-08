@@ -110,37 +110,87 @@ def main():
         # le temps demande apres elle. Ce qu'on perd est la respiration du
         # plan ; ce qu'on gagne est de ne plus montrer une machoire qui parle
         # sur du silence. C'est un choix de rythme, donc il se regarde.
+        # ON NE COUPE PAS DEUX FOIS. Quand le plan vient de 04-lipsync, il a
+        # DEJA ete raccourci par lipsync.py avant l'envoi -- le recouper ici
+        # rognerait un dixieme de plus, et surtout :
+        #
+        # -c:v copy NE COUPE PAS A LA MILLISECONDE. Il garde des paquets
+        # entiers, donc l'image tombe ou elle peut (2,83 s) pendant que
+        # l'audio, lui, est coupe net (2,73 s). L'ecart de 0,10 s par plan
+        # revenait par la fenetre apres qu'on l'ait chasse par la porte.
+        #
+        # La duree du plan est donc CELLE DU FICHIER, mesuree, et l'audio se
+        # cale dessus. Jamais l'inverse.
         fin = dv_
-        if a.queue is not None and p["type"] == "replique":
-            fin = min(dv_, AMORCE + da_ + a.queue)
+        if a.queue is not None and p["type"] == "replique" and not synchronise:
+            vise = min(dv_, AMORCE + da_ + a.queue)
+            if vise < dv_ - 0.02:
+                coupe = os.path.join(tmp, "_coupe%02d.mp4" % p["n"])
+                ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                    "-i", v, "-t", "%.3f" % vise, "-c", "copy", "-an", coupe],
+                   "coupe du plan %02d" % p["n"])
+                v, fin = coupe, duree(F, coupe)
 
+        # APAD N'EST PAS UN DETAIL DE CONFORT, C'EST CE QUI TIENT LE MONTAGE.
+        #
+        # Une replique de 2,4 s dans un plan de 5 s laissait une piste audio
+        # PLUS COURTE QUE L'IMAGE. Le demultiplexeur concat assemble les deux
+        # flux separement : chaque trou d'audio remonte tout ce qui suit. Sur
+        # l'episode 1, le decalage atteignait +4,7 s au comptoir et +9,9 s a
+        # la fin -- la voix d'Anna arrivait avant que Mark ne soit devant elle.
+        #
+        # Repere par Jacques le 8 septembre : « la discussion arrive plusieurs
+        # secondes avant que Marc arrive au comptoir ». Le defaut etait dans
+        # TOUS les montages de la journee, et rien ne l'avait signale : ffmpeg
+        # ne s'en plaint pas, les durees totales sont justes, et le tableau a
+        # l'ecran montrait des plans parfaitement normaux.
+        #
+        # On complete donc chaque piste par du silence jusqu'a la derniere
+        # image du plan. Image et son font exactement la meme longueur, et le
+        # collage ne peut plus deriver.
         if synchronise:
             # LE PLAN SYNCHRONISE PORTE DEJA SA VOIX, ET AU BON ENDROIT.
             # lipsync.py lui a envoye une piste calee sur la duree du clip,
             # amorce comprise : c'est exactement celle que le montage aurait
             # posee. La reposer par-dessus ferait un doublon decale.
             amorce, note = AMORCE, "  sync"
-            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
-                "-i", v, "-map", "0:v", "-map", "0:a", "-c:v", "copy",
-                "-c:a", "aac", "-b:a", "128k", "-ar", "44100",
-                "-t", "%.3f" % fin, out], "plan %02d" % p["n"])
+            entree = ["-i", v, "-map", "0:v", "-map", "0:a"]
         else:
             # La voix tient-elle avec l'amorce ? Sinon on la colle au debut.
             amorce = AMORCE if (da_ + AMORCE) <= dv_ else 0.0
             note = "" if amorce else "  <- voix au ras, la replique remplit le plan"
-            # La replique deborde-t-elle du clip ? Alors on garde toute la voix
-            # et l'image tient jusqu'a sa fin ; sinon on coupe a la duree du clip.
-            borne = ["-shortest"] if (da_ + amorce) > fin else ["-t", "%.3f" % fin]
-            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
-                "-i", v, "-itsoffset", "%.3f" % amorce, "-i", s,
-                "-map", "0:v", "-map", "1:a", "-c:v", "copy",
-                "-c:a", "aac", "-b:a", "128k", "-ar", "44100"]
-               + borne + [out], "plan %02d" % p["n"])
+            entree = ["-i", v, "-itsoffset", "%.3f" % amorce, "-i", s,
+                      "-map", "0:v", "-map", "1:a"]
+        ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y"]
+           + entree
+           + ["-af", "apad", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+              "-ar", "44100", "-t", "%.3f" % fin, out],
+           "plan %02d" % p["n"])
         morceaux.append(out)
         if fin < dv_ - 0.02:
             note += "  coupe a %.2f s (-%.2f)" % (fin, dv_ - fin)
         print("  %02d    %5.2f  %5.2f   +%.2f%s"
               % (p["n"], dv_, da_, amorce, note))
+
+    # LE CONTROLE QUI AURAIT ATTRAPE LA DERIVE. Un segment dont le son est
+    # plus court que l'image decale tout ce qui suit, et rien d'autre ne le
+    # dit. On le verifie donc a chaque montage, sur chaque segment.
+    boiteux = []
+    for m in morceaux:
+        r = subprocess.run([F, "-hide_banner", "-i", m, "-map", "0:a",
+                            "-c", "copy", "-f", "null", "-"],
+                           capture_output=True, text=True, errors="replace")
+        t = re.search(r"time=\d+:(\d+):([\d.]+)", r.stderr)
+        son = int(t.group(1)) * 60 + float(t.group(2)) if t else 0.0
+        img = duree(F, m)
+        if abs(img - son) > 0.05:
+            boiteux.append((os.path.basename(m), img, son))
+    if boiteux:
+        print("\n  DERIVE : ces segments n'ont pas la meme duree d'image et de")
+        print("  son. Le collage fera remonter tout ce qui les suit.")
+        for nom, img, son in boiteux:
+            print("    %s  image %.2f  son %.2f  (%+.2f)" % (nom, img, son, img - son))
+        sys.exit("  Montage abandonne.")
 
     liste = os.path.join(tmp, "_liste.txt")
     io.open(liste, "w", encoding="utf-8", newline="").write(
@@ -155,6 +205,7 @@ def main():
 
     print("\n  %s" % os.path.relpath(final, RACINE))
     print("  %.1f secondes, %d plans" % (duree(F, final), len(morceaux)))
+    print("  image et son de meme duree sur les %d segments." % len(morceaux))
     parlants = sum(1 for p in d["plans"] if p["type"] == "replique")
     if synchro < parlants:
         print("  %d/%d plans parlants passes au lip-sync -- les autres bougent"
