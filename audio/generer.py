@@ -87,6 +87,15 @@ REGLAGES = {"stability": 0.75, "similarity_boost": 0.75,
             "style": 0.0, "use_speaker_boost": True}
 SEED = 20260901          # rend une prise reproductible a l'identique
 
+# SPEED N'EXISTE PAS SOUS eleven_v3, ET L'API NE LE DIT PAS.
+# Mesure le 8 septembre 2026, meme voix, meme phrase, meme seed, speed=0.80 :
+#     eleven_multilingual_v2   2,60 s  ->  3,25 s   (+25 %, l'effet attendu)
+#     eleven_v3                2,32 s  ->  2,32 s   (rien)
+# Le champ est ACCEPTE sans erreur dans les deux cas. C'est le pire des cas :
+# on croit regler un debit, on ne regle rien, et aucun message ne detrompe.
+# Sous v3 le debit se travaille par le TEXTE -- ponctuation, points de
+# suspension, longueur des phrases -- et par les balises, pas par un curseur.
+
 # Les mots ou une synthese allemande se casse : umlaut, les deux ch, le
 # durcissement final, la longueur de voyelle, le ss, un compose long.
 ESSAI = ["Frühstück", "Mädchen", "Buch", "Tag", "Staat", "Stadt", "Straße",
