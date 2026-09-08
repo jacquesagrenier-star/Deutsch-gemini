@@ -162,6 +162,10 @@ def main():
     ap.add_argument("--modele", default="lipsync-2", choices=sorted(TARIF))
     ap.add_argument("--plans", help="n'en faire que ceux-la : 5 ou 5,6,8. "
                                     "A defaut, tous les plans parlants.")
+    ap.add_argument("--essai", action="store_true",
+                    help="ecrire dans _essais/<modele>-planNN.mp4 sans toucher "
+                         "a etat.json ni au plan retenu -- pour comparer deux "
+                         "modeles sur le meme plan avant d'engager les douze")
     ap.add_argument("--pour-de-vrai", action="store_true")
     a = ap.parse_args()
 
@@ -218,10 +222,20 @@ def main():
     k = cle()
     cales = os.path.join(dst, "_audio-cale")
     os.makedirs(cales, exist_ok=True)
+    # UN ESSAI NE S'INSTALLE PAS. Il ecrit a part et ne note rien : on compare
+    # donc deux modeles sur le meme plan sans que le montage ramasse l'un ou
+    # l'autre au passage, et sans qu'une relance croie le travail deja fait.
+    if a.essai:
+        dst = os.path.join(dst, "_essais")
+        os.makedirs(dst, exist_ok=True)
     etat_f = os.path.join(dst, "etat.json")
-    etat = json.load(io.open(etat_f, encoding="utf-8")) if os.path.exists(etat_f) else {}
+    etat = ({} if a.essai else
+            json.load(io.open(etat_f, encoding="utf-8"))
+            if os.path.exists(etat_f) else {})
 
     def sauver():
+        if a.essai:
+            return
         io.open(etat_f, "w", encoding="utf-8", newline="").write(
             json.dumps(etat, ensure_ascii=False, indent=2) + "\n")
 
@@ -253,7 +267,8 @@ def main():
             etat[n]["statut"] = st
             sauver()
             if st == "COMPLETED" and r.get("outputUrl"):
-                f = os.path.join(dst, "plan%02d.mp4" % p["n"])
+                f = os.path.join(dst, ("%s-plan%02d.mp4" % (a.modele, p["n"]))
+                                 if a.essai else "plan%02d.mp4" % p["n"])
                 dl = urllib.request.Request(r["outputUrl"], headers={"User-Agent": AGENT})
                 with urllib.request.urlopen(dl, timeout=300) as w:
                     open(f, "wb").write(w.read())

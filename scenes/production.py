@@ -107,10 +107,12 @@ MISE_EN_SCENE = {
     2: dict(cadre="Vertical 9:16. Wide shot of a busy airport arrivals hall, "
                   "warm evening light. Small in the frame and seen FROM BEHIND, "
                   "a young man in a dark technical shell jacket walks in pulling "
-                  "two suitcases. His face is not visible. Travellers pass in "
+                  "ONE small cabin case on wheels, grey handle extended. No large "
+                  "suitcase - he has not collected them yet. His face is not "
+                  "visible. Travellers pass in "
                   "soft focus.",
             action="He walks slowly away from the camera into the hall, pulling "
-                   "the two suitcases. Travellers cross the frame around him. "
+                   "the cabin case. Travellers cross the frame around him. "
                    "The camera stays still."),
 
     3: dict(cadre="Vertical 9:16. A baggage carousel turning, suitcases going "
@@ -123,23 +125,25 @@ MISE_EN_SCENE = {
     4: dict(cadre="Vertical 9:16. A young man in a dark technical shell jacket, "
                   "seen from BEHIND and slightly to the side, standing still in "
                   "the hall and looking up at the overhead signs. His face is "
-                  "not visible. Two suitcases beside him. Signs and travellers "
+                  "not visible. ONE small cabin case beside him, nothing else - "
+                  "he is looking for the baggage claim. Signs and travellers "
                   "softly out of focus.",
             action="He turns his head slowly, scanning the overhead signs, then "
                    "settles on one direction. His shoulders shift as he decides. "
                    "The camera stays still."),
 
     5: dict(pose="mark", coin="left", taille="moyen",
-            action="He leans in very slightly and asks his question, polite and "
-                   "a little tired from the flight. His eyebrows lift on the "
-                   "question and stay up as he waits. One small open-hand "
+            action="He leans in very slightly, polite and a little tired from "
+                   "the flight. His eyebrows lift as if putting a question, and "
+                   "stay up as he waits for an answer. One small open-hand "
                    "gesture of enquiry, close to his body."),
 
     6: dict(pose="anna", coin="right", taille="moyen",
-            action="She answers immediately, without hesitating. A small open "
+            action="She reacts immediately, without hesitating. A small open "
                    "hand indicates a direction just past him, low and close to "
                    "her body, then returns to the desk. Her head tilts slightly "
-                   "as she asks her own question in return."),
+                   "at the end, eyebrows lifting as if putting a question back "
+                   "to him."),
 
     7: dict(cadre="Vertical 9:16. Close on a baggage carousel, the number FOUR "
                   "on a sign above it out of focus in the upper frame. Suitcases "
@@ -148,17 +152,17 @@ MISE_EN_SCENE = {
                    "another. The camera stays still."),
 
     8: dict(pose="mark", coin="left", taille="moyen serre",
-            action="He answers simply, a small settling of the shoulders. On the "
-                   "second half a quiet pride comes into his face, and the "
-                   "beginning of a smile. He holds her eye throughout."),
+            action="A small settling of the shoulders. On the second half a "
+                   "quiet pride comes into his face, and the beginning of a "
+                   "smile. He holds her eye throughout."),
 
     9: dict(pose="anna", coin="right", taille="moyen serre",
             action="Her face opens with genuine warmth and she gives a small "
                    "welcoming nod. Then curiosity: her eyebrows lift and her "
-                   "head tilts a little as she asks."),
+                   "head tilts a little, as if asking."),
 
     10: dict(pose="mark", coin="left", taille="moyen serre",
-             action="He nods once and answers, the smile widening. A small lift "
+             action="He nods once, the smile widening. A small lift "
                     "of the chin - confidence with a trace of nervousness under "
                     "it. He holds her eye."),
 
@@ -176,8 +180,8 @@ MISE_EN_SCENE = {
     #
     # Rien n'est change au dialogue ni a l'audio : ca se joue dans le prompt.
     11: dict(pose="anna", coin="right", taille="moyen serre",
-             action="She becomes practical, naming the office matter-of-factly. "
-                    "On the word Buergeramt the smallest flicker crosses her "
+             action="She becomes practical and matter-of-fact. A third of the "
+                    "way in, the smallest flicker crosses her "
                     "face - a quarter-second wince of sympathy, one eyebrow "
                     "lifting, gone almost before it appears, as if she knows "
                     "exactly what he is in for. Then she is helpful again "
@@ -187,8 +191,8 @@ MISE_EN_SCENE = {
 
     12: dict(pose="mark", coin="left", taille="serre",
              action="He glances briefly away, orienting himself in the hall, "
-                    "then back to her as he asks. A slight forward lean on the "
-                    "question."),
+                    "then back to her. A slight forward lean, eyebrows raised "
+                    "in question."),
 
     13: dict(pose="anna", coin="right", taille="serre", zoom=True,
              action="EARLY in the shot, while the framing is still wide, she "
@@ -207,12 +211,12 @@ MISE_EN_SCENE = {
                     "still."),
 
     14: dict(pose="mark", coin="left", taille="moyen serre",
-             action="A short simple question. His head tilts slightly, eyebrows "
-                    "raised, waiting. Nothing else moves."),
+             action="His head tilts slightly, eyebrows raised, waiting - a "
+                    "question held in the face. Nothing else moves."),
 
     15: dict(pose="anna", coin="right", taille="moyen serre",
-             action="She answers precisely, factually. A tiny nod on the number. "
-                    "Her hand stays on the desk."),
+             action="Precise and factual. A tiny nod partway through, as if "
+                    "landing on a number. Her hand stays on the desk."),
 
     16: dict(pose="mark", coin="left", taille="serre",
              action="Warm and genuine. A small nod of thanks, his shoulders "
@@ -220,10 +224,9 @@ MISE_EN_SCENE = {
                     "the end."),
 
     17: dict(pose="anna", coin="right", taille="serre", zoom=True,
-             action="The warmest moment of the scene. She answers easily, and as "
-                    "the camera closes in a real smile reaches her eyes. A small "
-                    "nod of farewell at the end. She keeps looking at him after "
-                    "she has finished speaking."),
+             action="The warmest moment of the scene. As the camera closes in a "
+                    "real smile reaches her eyes. A small nod of farewell at "
+                    "the end. She keeps looking at him, easy and unhurried."),
 
     19: dict(cadre="Vertical 9:16. The terminal exit at night, seen from inside: "
                    "dark glass doors, city lights and headlights beyond, wet "
@@ -246,9 +249,40 @@ def image_prompt(p, m):
     return "\n\n".join([tete, pose, FOND, EPAULE.format(coin=m["coin"]), FIN_IMAGE])
 
 
+# LA REGLE LA PLUS CHERE DE LA JOURNEE : ON TOURNE LES PERSONNAGES MUETS.
+#
+# Le 8 septembre 2026, plan 5 passe au lip-sync. Jacques : << la bouche
+# s'ouvre une derniere fois apres avoir termine de parler >>. L'audio a cet
+# instant est a -91 dB -- du silence numerique. Ce n'etait donc ni la voix ni
+# le calage.
+#
+# Ce n'etait pas sync non plus : lipsync-2-pro, essaye sur le meme plan, ouvre
+# la bouche aux memes images. Et le clip D'ORIGINE, mesure image par image,
+# les ouvre aussi -- a 3,10 s, 3,20 s, 3,70 s, exactement la ou on les voit.
+#
+# Le lip-sync REPEINT LES LEVRES. La machoire, le menton et les joues restent
+# ceux du clip source. Si Seedance a fait parler le personnage pendant quatre
+# secondes, il continue de mastiquer sous des levres refaites, et aucun modele
+# de lip-sync ne peut defaire ca : ce n'est pas dans les levres.
+#
+# D'ou la regle, qui vaut pour les vingt-neuf episodes a venir : l'animation
+# ne fait JAMAIS parler le personnage. Elle le fait ecouter, respirer, tourner
+# la tete -- bouche fermee. Toute la parole vient du lip-sync par-dessus.
+MUET = ("The character does NOT speak in this clip. His or her mouth stays "
+        "CLOSED throughout - no talking, no jaw movement, no lip movement, "
+        "not even a single word at any point. Lips together and relaxed. "
+        "Everything else lives: the eyes, the blinking, a small natural head "
+        "movement, the breathing, the shoulders. The face is alert and "
+        "present, simply not speaking.")
+
+
 def video_prompt(m):
-    """Le prompt de Directing. Le mouvement de camera d'abord, l'action ensuite."""
-    return (ZOOM if m.get("zoom") else FIXE) + "\n\n" + m["action"]
+    """Le prompt de Directing. Le mouvement de camera d'abord, l'action
+    ensuite, et la bouche fermee en dernier -- voir MUET plus haut."""
+    bloc = [ZOOM if m.get("zoom") else FIXE, m["action"]]
+    if "pose" in m:                     # un decor n'a pas de visage
+        bloc.append(MUET)
+    return "\n\n".join(bloc)
 
 
 def html(d, scene):
