@@ -585,3 +585,184 @@ celle-là en mélangeait deux.
   plan ne porte de mots minutés est **pire qu'une estimation**.
 - `ankommen` est sorti du lexique le jour où plus personne ne le prononçait.
   Une entrée pour un mot jamais dit est du décor.
+
+---
+
+## 8 septembre 2026, la soirée — quatre défauts que rien n'aurait signalés
+
+L'entrée précédente s'arrête à la découverte de la mâchoire. Tout ce qui suit
+a été trouvé après, et chaque fois par l'œil ou l'oreille de Jacques sur un
+fichier que tous les contrôles automatiques avaient laissé passer.
+
+### 1. La phrase d'Anna amputée de quatre dixièmes
+
+Le plan 13 dure 7,04 s, sa réplique 7,08. Avec l'amorce de 0,35 s, la piste
+calée envoyée à sync faisait 7,43 s — **coupée à 7,04**, et le lip-sync s'est
+fait sur une phrase tronquée.
+
+`montage.py` savait ça depuis toujours : l'amorce tombe dès que la voix ne
+rentre plus. `lipsync.py` ne le savait pas. **Deux scripts, deux règles, et
+aucune alerte.** Même calcul dans les deux maintenant, et le script l'annonce
+à l'écran quand il retire l'amorce.
+
+### 2. La voix avait dix secondes d'avance à la fin
+
+Jacques : *« la discussion arrive plusieurs secondes avant que Marc arrive au
+comptoir »*.
+
+Une réplique de 2,4 s dans un plan de 5 s laissait une piste audio **plus
+courte que l'image**. Le démultiplexeur `concat` assemble les deux flux
+séparément : chaque trou d'audio remonte tout ce qui suit.
+
+    plan 01   image 5,04   son 4,04   cumul +1,0
+    plan 04   image 5,04   son 2,76   cumul +4,6   <- le comptoir
+    plan 19   image 5,04   son 3,64   cumul +9,9
+
+**Le défaut était dans TOUS les montages de la journée**, y compris ceux qu'il
+avait jugés. ffmpeg ne s'en plaint pas, la durée totale est juste, et le
+tableau à l'écran montrait dix-neuf plans normaux.
+
+Chaque piste est désormais complétée par du silence jusqu'à la dernière image
+(`apad`), et **un contrôle mesure image et son sur chaque segment avant le
+collage** : plus de 0,05 s d'écart et le montage s'arrête.
+
+Ce contrôle a attrapé un second défaut dans la foulée : `-c:v copy` ne coupe
+pas à la milliseconde, il garde des paquets entiers. L'image tombait à 2,83 s
+pendant que l'audio était coupé net à 2,73. **La durée d'un plan est celle du
+FICHIER, mesurée après coupe, et l'audio se cale dessus — jamais l'inverse.**
+
+### 3. Ma mesure donnait la meilleure note au plan défectueux
+
+`video/controler_bouche.py` corrèle le mouvement de la bouche avec l'énergie
+de la voix. Sur les douze plans synchronisés : de 0,53 à **-0,31** — une
+corrélation négative veut dire que la bouche bouge quand la voix se tait.
+
+Puis trois prises du plan 5, même voix, même image de départ, même lip-sync :
+
+    0,53   Seedance parle du début à la fin -- LA PRISE DÉFECTUEUSE
+    0,40   trois phases minutées
+    0,09   bouche fermée dès la fin de la réplique
+
+**Celle dont Jacques avait vu le défaut gagne.** La raison est mécanique : une
+bouche très agitée pendant que la voix porte corrèle bien avec l'enveloppe
+sonore, même quand elle articule un charabia. Une bouche calme a peu de signal.
+
+Je l'avais écrit dans le script le matin même — *« une bouche immobile donnerait
+une corrélation basse elle aussi »* — sans en tirer les conséquences quand les
+chiffres sont tombés.
+
+**Une mesure qui n'a jamais été confrontée à un cas connu-bon et à un
+connu-mauvais ne peut pas arbitrer.** Elle reste bonne pour comparer une série
+à elle-même et pour dire QUAND la bouche s'ouvre ; pas pour juger la qualité.
+
+### 4. Quinze durées audio sur dix-neuf étaient fausses
+
+Découvert en branchant les prompts Seedance sur `duree_audio`. Le plan 13 était
+faux de **1,60 s**.
+
+La feuille aurait demandé à Seedance une fenêtre de parole trop courte d'une
+seconde et demie, **sur douze plans**, et personne ne s'en serait aperçu avant
+de regarder les prises — 200 crédits chacune.
+
+Les dix-neuf sont recalées sur les fichiers. Et surtout : `refaire.py` **et**
+`production.py` mesurent désormais les mp3 au lieu de croire le scénario. Le
+champ ne sert plus que de dernier recours, quand le fichier n'existe pas encore.
+
+### Ce qu'on a appris sur Seedance, et qui vaut pour les 29 épisodes
+
+**Il obéit à un minutage explicite.** C'était la question ouverte de la journée.
+Quatre prises du plan 5, mesurées image par image :
+
+- « la première moitié du plan » est une **mauvaise formule** : elle suit la
+  durée du clip, pas celle de la voix. La réplique fait 2,27 s quoi qu'il
+  arrive.
+- des **secondes absolues** marchent : demandé « fermée 0-1 s, parle 1-3,5 s,
+  fermée ensuite » sur un clip de 4 s, le pic tombe à 0,96 s et l'amplitude
+  retombe après 3,6 s.
+- **la durée du clip change l'obéissance** : même consigne à 6 s, il ne
+  commence qu'à 1,9 s. Jacques : *« le mouvement d'ouverture de bouche dure un
+  petit peu trop longtemps »*. À 4 s il démarre à l'heure mais la fenêtre est
+  étroite. **Cinq secondes**, choisi à l'œil.
+- **la fin est bonne dans tous les cas.** C'est le début qui se règle.
+
+L'idée du **silence au début** vient de Jacques, et elle valait mieux que la
+mienne : un silence initial se vérifie d'un coup d'œil, une fermeture finale
+demande de comparer des courbes.
+
+### Six consultations de modèles, et ce qu'elles ont donné
+
+ChatGPT, Gemini et Copilot, plusieurs tours chacun.
+
+**Aucun n'a trouvé la cause.** Tous parlent d'un écart de durée entre vidéo et
+audio ; on envoie -91 dB sur la portion silencieuse depuis le matin. Leur
+raisonnement s'arrête une couche au-dessus du problème, faute d'avoir les
+fichiers.
+
+**Ce qu'ils ont apporté :**
+- ChatGPT, contre moi : ne pas figer complètement la bouche — un lip-sync
+  travaille mieux sur un visage qui porte déjà du mouvement de parole. Ma
+  première règle allait trop loin, elle a été réécrite.
+- Gemini : couper le clip **avant** l'envoi. Sync facture à l'image ; la queue
+  de silence, c'est payer pour synchroniser des images qu'on jettera.
+  2,52 $ → 1,96 $.
+- Annoncer la durée totale en tête du bloc de minutage.
+
+**Ce qu'on a refusé, et pourquoi :**
+- *Allonger une réplique avec des mots neutres pour remplir un plan.* Le
+  dialogue est la matière du cours, pas de la bande-son. Chaque mot arrive dans
+  les sous-titres, le lexique et six traductions. **La contrainte technique
+  s'incline devant la leçon, jamais l'inverse.**
+- *Stocker `debut_parole`, `fin_parole`, `duree_video` dans la scène.* Ce sont
+  des valeurs **dérivées**, et `duree_audio` en était une aussi — quinze avaient
+  dérivé du fichier sans que rien ne le signale. La leçon n'est pas « mieux
+  stocker », c'est **« mesurer le fichier à chaque fois »**.
+- *`mutagen` / `pydub` pour lire une durée.* ffmpeg est déjà là pour le montage
+  et le lip-sync. Deux paquets de plus à installer sur chaque machine pour une
+  capacité qu'on a déjà.
+- *Générer un clip à la longueur de la phrase.* Conseillé quatre fois par trois
+  modèles. Seedance ne descend pas sous 4 s et nos répliques font 1,5 à 2,7 s :
+  **il n'y a aucune durée à choisir.**
+- *Le freeze frame sur la fin du plan.* 1,7 s d'arrêt sur image devant un fond
+  d'aéroport vivant se voit comme une panne.
+
+### Le coût de la journée
+
+    crédits Artlist        200 (une prise d'essai) + 200 (une seconde)
+    sync.so                ~3,00 $ d'usage + 19 $/mois (forfait Creator)
+    ElevenLabs             ~1 100 caractères
+
+Le forfait Creator a été pris pour **une seule ligne** : « no watermark »,
+absent du forfait à 5 $. Pour des vidéos destinées à l'app et à TikTok, un
+filigrane est éliminatoire.
+
+Les 2,66 $ de lip-sync des douze plans sont perdus — ils seront à refaire après
+le re-tournage. Ils ont acheté la certitude qu'il fallait retourner, au lieu de
+la découvrir après trente épisodes.
+
+### Ce qui reste, au 8 septembre au soir
+
+- **Les 12 plans à retourner**, 2 400 crédits, aucune image à refaire. La
+  feuille porte pour chaque plan sa durée à générer et sa fenêtre de parole en
+  secondes, mesurées sur son mp3. Faire le plan 5 en premier et le regarder :
+  c'est le seul dont on connaisse quatre versions.
+- **Le plan 17 n'a pas de variante d'image propre** — il repartirait de celle du
+  plan 13 au pixel près. 130 crédits donnent quatre images.
+- **Les sous-titres mot à mot.** `POST /v1/forced-alignment` prend un audio
+  existant et son texte : les prises validées ne sont pas à regénérer. Reste le
+  lecteur dans l'app, qui n'existe pas.
+- **Trois retours de testeurs** non traités depuis le matin.
+- **La question du 7 septembre est toujours ouverte** : montrer la version
+  audio au groupe. Elle n'a rien coûté et personne ne l'a encore vue.
+
+### La règle qui résume la journée
+
+**Ce qui n'est pas mesuré sur le fichier lui-même finira par mentir.** La durée
+d'une réplique, la longueur d'une piste dans un segment, le moment où une
+bouche s'ouvre : chaque fois qu'une valeur a été écrite une fois puis relue,
+elle avait dérivé. Chaque fois qu'on a ouvert le fichier, on a eu le bon
+chiffre.
+
+Et son corollaire, plus dur : **un contrôle automatique ne remplace pas un
+regard.** Les quatre défauts de la soirée ont tous été vus par Jacques d'abord,
+et mesurés ensuite. La mesure sert à comprendre et à ne pas répéter — pas à
+détecter.
