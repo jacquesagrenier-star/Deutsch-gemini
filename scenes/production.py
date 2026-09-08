@@ -300,7 +300,9 @@ pre{background:#1C2430;color:#e8e4d8;border-radius:8px;padding:.85rem 1rem;
 <li><b>Images :</b> 9:16 &middot; 1K &middot; 4 images &mdash; 130 credits les quatre.
 Le 2K est inutile : la video plafonne a 720p.</li>
 <li><b>Video :</b> Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; audio
-<b>coupe</b> &middot; duree du plan.</li>
+<b>coupe</b> &middot; duree du plan, avec un <b>minimum de 4 secondes</b> : le modele
+ne descend pas plus bas. Les plans de 3 s se generent donc en 4 s et se coupent au
+montage &mdash; la seconde en trop est une marge, pas une perte.</li>
 <li><b>N'attachez que les visages qui doivent etre reconnaissables.</b>
 <code>@Anna</code>, <code>@Mark</code>. Une personne vue de dos ne s'attache pas :
 l'attacher inviterait le modele a lui montrer le visage.</li>
@@ -331,8 +333,11 @@ effacer sans preavis (voir <code>video/PROVENANCE.txt</code>).</li>
         o.append("<pre>%s</pre>" % e(image_prompt(p, m)))
         o.append("<h3>2. Directing &mdash; l'animation</h3>")
         o.append("<pre>%s</pre>" % e(video_prompt(m)))
-        o.append('<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; %s sec &middot; audio coupe</p>'
-                 % p["duree"])
+        gen = max(4, p["duree"])   # Seedance 2.0 Mini ne descend pas sous 4 s
+        sup = ('' if gen == p["duree"] else
+               ' <b>(le plan fait %s s : la seconde en trop se coupe au montage)</b>' % p["duree"])
+        o.append('<p class="reglage">Seedance 2.0 Mini &middot; 9:16 &middot; 720p &middot; '
+                 '<b>%s sec</b> &middot; audio coupe%s</p>' % (gen, sup))
         o.append("</article>")
 
     o.append("</main></body></html>")
