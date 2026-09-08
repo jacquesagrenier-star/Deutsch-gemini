@@ -140,6 +140,50 @@ Ce qu'il ne sait pas faire : les commentaires de production.py qui citent
 des numeros en toutes lettres. Il le dit, et on les relit a la main.
 
 
+LA BOUCHE QUI S'OUVRE SUR DU SILENCE -- ET POURQUOI ON TOURNERA MUET
+---------------------------------------------------------------------
+Le plan 5 est passe au lip-sync le 8 septembre. Jacques, en le regardant :
+<< la bouche s'ouvre une derniere fois apres avoir termine de parler >>.
+
+  l'audio a cet instant     -91 dB, du silence numerique
+  lipsync-2-pro, meme plan  ouvre la bouche aux memes images
+  le clip D'ORIGINE         les ouvre aussi : 3,10 s, 3,20 s, 3,70 s
+
+Le lip-sync REPEINT LES LEVRES. La machoire, le menton et les joues restent
+ceux du clip source. Seedance faisait parler Mark pendant quatre secondes ;
+il continue de mastiquer sous des levres refaites, et aucun modele ne peut
+defaire ca -- ce n'est pas dans les levres.
+
+LA REGLE, pour les vingt-neuf episodes a venir : on tourne les personnages
+MUETS. L'animation les fait ecouter, respirer, tourner la tete, bouche
+fermee ; toute la parole vient du lip-sync par-dessus. C'est le bloc MUET de
+scenes/production.py, ajoute aux seuls plans qui ont un visage. Les dix
+prompts d'action qui disaient << she answers >> ou << he asks >> ont ete
+reecrits : gestes et expressions conserves mot pour mot, verbes de parole
+retires. Deux prompts qui se contredisent donnent un resultat qu'on ne
+choisit pas.
+
+CE QUI EST EN ATTENTE, ET CE QUE CA COUTE
+  Les 12 plans parlants sont a retourner sous la regle MUET : 200 credits
+  piece, 2 400 en tout. AUCUNE image a refaire -- elles portent l'identite,
+  elles sont validees, seule l'animation change. La feuille est prete :
+      python scenes/refaire.py --scene 01-ankunft-berlin --muets
+  qui ecrit A-REFAIRE.txt : prompt pret a coller, Start Frame nommee.
+  Regarder le premier avant de faire les onze autres.
+
+  Le plan 17 n'a pas de variante d'image propre : anna-serre.png sert deja
+  au plan 13. Meme image au pixel pres = meme position de depart, et ca se
+  voit. 130 credits de plus donnent quatre images.
+
+  Le lip-sync du plan 5 (04-lipsync/plan05.mp4) reste valable comme preuve
+  que la chaine marche ; il sera a refaire avec le nouveau clip.
+
+CE QUI EST DEJA REGLE et ne se repose pas
+  sync coupe la video a la longueur de l'audio. lipsync.py cale donc la
+  piste sur la duree exacte du clip -- amorce, voix, silence -- avant
+  d'envoyer. Retour verifie : 4,04 s pour 4,04 s.
+
+
 LE PANNEAU DU PLAN 4 -- POURQUOI IL NE DOIT RIEN DIRE
 -----------------------------------------------------
 Un panneau lisible qui indique GEPAECKAUSGABE rendrait absurde la question du
