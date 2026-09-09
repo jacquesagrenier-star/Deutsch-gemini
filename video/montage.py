@@ -42,6 +42,7 @@ ON NE REENCODE LA VIDEO QU'UNE FOIS
     exige un flux continu.
 """
 import argparse
+import array
 import io
 import json
 import os
@@ -66,6 +67,55 @@ def duree(ff, chemin):
                        capture_output=True, text=True, errors="replace")
     m = re.search(r"Duration: \d+:(\d+):([\d.]+)", r.stderr)
     return int(m.group(1)) * 60 + float(m.group(2)) if m else None
+
+
+def parole(ff_, mp3):
+    """(debut, fin, duree du fichier) -- ou la VOIX porte, en secondes.
+
+    POURQUOI ON NE SE FIE PLUS A LA DUREE DU FICHIER (9 septembre 2026)
+        Jacques, sur le plan 05 synchronise : « la bouche continue un petit
+        peu, elle n'est pas synchro ». Mesure : la machoire est en retard de
+        208 ms sur la voix a la fin de la phrase, et bouge encore 0,62 s apres
+        le dernier mot.
+
+        La cause n'etait ni Seedance ni sync.so. La feuille de tournage
+        demandait de parler pendant LA DUREE DU FICHIER mp3 -- or un mp3 ne
+        parle pas tout du long. Mesure sur les dix-neuf repliques : 0,10 s de
+        silence en tete, 0,19 s en queue, soit 0,29 s de machoire de trop par
+        plan. La machoire parlait donc plus longtemps que la voix, et l'ecart
+        grandissait jusqu'au dernier mot.
+
+        Le plan 13 est l'exemple extreme : fichier de 7,04 s, voix qui
+        s'arrete a 4,71 s, puis du silence numerique pur (niveau 2 sur 18 912,
+        verifie a quatre seuils). Son clip a ete genere a NEUF secondes pour
+        une replique de 4,6 s.
+
+        Toute duree tiree d'une replique passe donc par ici.
+
+    LE SEUIL
+        4 % du maximum, sur des fenetres de 10 ms. Sur nos fichiers le choix
+        ne change rien -- de 1 % a 10 %, le plan 13 donne 4,71 / 4,64 s. Une
+        voix ElevenLabs sur fond numerique n'a pas de zone grise.
+    """
+    r = subprocess.run([ff_, "-hide_banner", "-nostats", "-loglevel", "error",
+                        "-i", mp3, "-map", "0:a", "-ac", "1", "-ar", "24000",
+                        "-f", "s16le", "-"], capture_output=True)
+    n = len(r.stdout) // 2
+    if n < 240:
+        return 0.0, 0.0, 0.0
+    ech = array.array("h")
+    ech.frombytes(r.stdout[:n * 2])
+    par = 240                                          # 10 ms
+    env = [sum(abs(v) for v in ech[i * par:(i + 1) * par]) / float(par)
+           for i in range(n // par)]
+    haut = max(env) if env else 0.0
+    if haut <= 0:
+        return 0.0, n / 24000.0, n / 24000.0
+    seuil = haut * 0.04
+    ou = [i for i, v in enumerate(env) if v > seuil]
+    if not ou:
+        return 0.0, n / 24000.0, n / 24000.0
+    return ou[0] / 100.0, (ou[-1] + 1) / 100.0, n / 24000.0
 
 
 def ff(cmd, quoi):

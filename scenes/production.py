@@ -343,7 +343,7 @@ BOUCHE = ("Total clip duration: {total} seconds.\n"
 
 
 def duree_voix(p, scene=None):
-    """La duree de la replique, MESUREE sur le mp3 quand il existe.
+    """La duree pendant laquelle la VOIX PORTE, mesuree sur le mp3.
 
     LE CHAMP duree_audio NE FAIT PAS FOI. Le 8 septembre 2026 au soir, quinze
     des dix-neuf valeurs de l'episode 1 etaient fausses -- le plan 13 de
@@ -354,6 +354,24 @@ def duree_voix(p, scene=None):
     refaire : deux cents credits, et le defaut ne se voit qu'a la prise.
     On lit donc le fichier ; le champ ne sert que de dernier recours, et on
     le dit alors a l'ecran.
+
+    ⚠️ ET LA DUREE DU FICHIER NE FAIT PAS FOI NON PLUS (9 septembre 2026)
+        On mesurait le fichier. Un mp3 ne parle pas tout du long : nos
+        dix-neuf repliques portent 0,10 s de silence en tete et 0,19 s en
+        queue. On demandait donc a Seedance de faire articuler la machoire
+        0,29 s de plus que la voix, en moyenne, et l'ecart grandissait
+        jusqu'au dernier mot -- 208 ms de retard mesures sur le plan 05
+        synchronise, plus 0,62 s de machoire apres le silence.
+
+        Jacques l'a vu avant toute mesure : « la bouche continue un petit
+        peu, elle n'est pas synchro ».
+
+        Le plan 13 est le cas extreme : fichier de 7,04 s, voix qui s'arrete
+        a 4,71 s, 2,33 s de silence numerique ensuite. duree_a_generer
+        demandait NEUF secondes de clip pour une replique de 4,6 s.
+
+        On mesure donc la parole, pas le fichier. Le montage, lui, garde le
+        fichier entier : c'est la fenetre demandee au modele qui change.
     """
     if scene:
         f = os.path.join(RACINE, "audio", "scenes", scene,
@@ -361,9 +379,9 @@ def duree_voix(p, scene=None):
         if os.path.exists(f):
             sys.path.insert(0, os.path.join(RACINE, "video"))
             import montage as M                             # noqa: E402
-            mesure = M.duree(M.ffmpeg(), f)
-            if mesure:
-                return round(mesure, 2)
+            debut, fin, _ = M.parole(M.ffmpeg(), f)
+            if fin > debut:
+                return round(fin - debut, 2)
     return p.get("duree_audio") or p["duree"]
 
 

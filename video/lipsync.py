@@ -53,7 +53,13 @@ API = "https://api.sync.so/v2/generate"
 # le montage l'aurait pose, sinon la bouche suit une piste et l'oreille une
 # autre. Une seule valeur, importee, plutot que deux qui derivent.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from montage import AMORCE                                  # noqa: E402
+import montage as M                                         # noqa: E402
+AMORCE = M.AMORCE
+
+# LE DEBUT DE LA FENETRE DE PAROLE ECRITE DANS LE PROMPT. production.bouche
+# arrondit l'amorce du montage a 0,5 s pour la dire au modele ; c'est donc 0,5
+# que la machoire a recu, et c'est de ce repere que part le calage.
+FENETRE = 0.5
 
 # SYNC FACTURE A L'IMAGE, PAS A LA SECONDE. Leur page de tarifs affiche un
 # prix a la seconde calcule sur 25 im/s ; nos clips Seedance sont a 24, donc
@@ -333,10 +339,51 @@ def main():
             # Meme calcul que montage.py : l'amorce saute des que la
             # replique ne tient plus dans le clip, sinon on lui coupe
             # la fin -- et le lip-sync se ferait sur la phrase amputee.
+            #
+            # ⚠️ L'AMORCE SE CALCULE SUR LA PAROLE, PAS SUR LE FICHIER.
+            #
+            # Le clip a ete tourne avec une consigne : bouche fermee jusqu'a
+            # 0,5 s, parole ensuite pendant la duree du mp3. Cette duree
+            # comptait le silence des deux bouts -- 0,29 s de trop par plan en
+            # moyenne, 2,33 s sur le plan 13. La machoire de Seedance parle
+            # donc plus longtemps que la voix, et poser la voix au ras du
+            # debut laisse tout l'ecart s'accumuler A LA FIN, la ou Jacques
+            # l'a vu : « la bouche continue un petit peu ».
+            #
+            # On ne peut pas retimer une machoire deja tournee. On peut la
+            # CENTRER : la parole est placee au milieu de la fenetre que le
+            # modele a recue, ce qui coupe l'ecart en deux et le partage entre
+            # le debut et la fin. Une machoire qui demarre un dixieme trop tot
+            # se lit comme une inspiration ; une machoire qui continue apres
+            # le dernier mot se lit comme un defaut.
+            #
+            # Quand le clip aura ete tourne avec la fenetre corrigee (voir
+            # production.duree_voix), l'ecart sera nul et ce calcul rendra
+            # simplement l'amorce d'origine.
+            # LE REPERE EST 0,5 s, PAS L'AMORCE. C'est le chiffre ecrit dans
+            # le prompt (production.bouche : « from 0.5 to X seconds:
+            # speaking »), donc celui que la machoire a recu. L'amorce du
+            # montage, elle, vaut 0,35 -- deux nombres differents pour deux
+            # choses differentes, et les confondre decale la voix du mauvais
+            # cote. La fenetre de la machoire est donc [0,5 ; 0,5 + fichier].
             voulue = AMORCE if a.amorce is None else a.amorce
-            am = voulue if duree_clip(s_aud) + voulue <= duree_clip(v) else 0.0
-            if not am:
+            tete, queue, fichier = M.parole(M.ffmpeg(), s_aud)
+            parlee = queue - tete
+            ecart = max(0.0, fichier - parlee)
+            if a.amorce is None and ecart > 0.05:
+                debut_voix = FENETRE + ecart / 2.0     # centree dans la fenetre
+                am = debut_voix - tete                 # adelay porte le FICHIER
+            else:
+                am = voulue
+            if duree_clip(s_aud) + max(am, 0.0) > duree_clip(v):
+                am = 0.0
                 print("  (amorce retiree, la replique remplit le plan)")
+            elif am < 0:
+                am = 0.0
+            if ecart > 0.05:
+                print("  plan%02d  voix %.2f s dans un fichier de %.2f s :"
+                      " la parole tombe a %.2f s (amorce %.2f)"
+                      % (p["n"], parlee, fichier, am + tete, am))
             cale = calibrer(s_aud, v, os.path.join(cales, "%02d.wav" % p["n"]),
                             am)
             corps, typ = multipart({"model": a.modele}, {"video": v, "audio": cale})

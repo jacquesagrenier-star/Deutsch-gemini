@@ -92,7 +92,11 @@ def main():
         if not os.path.exists(f):
             sys.exit("  Plan %02d : voix manquante (%s)"
                      % (p["n"], os.path.basename(f)))
-        vrai = round(M.duree(F, f), 2)
+        # LA PAROLE, PAS LE FICHIER. Voir production.duree_voix : un mp3
+        # porte du silence aux deux bouts, et la machoire le prenait pour de
+        # la parole. C'est la fenetre demandee au modele qui se mesure ici.
+        deb, fi, _tot = M.parole(F, f)
+        vrai = round(fi - deb, 2)
         if abs(vrai - (p.get("duree_audio") or 0)) > 0.05:
             perimes.append((p["n"], p.get("duree_audio"), vrai))
         p["duree_audio"] = vrai
@@ -183,7 +187,7 @@ def main():
                  % (p["n"], p["locuteur"], m.get("taille", "decor"),
                     P.duree_a_generer(p, a.scene),
                     "   (zoom)" if m.get("zoom") else ""))
-        o.append("  replique de %.2f s, parole demandee de 0,5 a %.1f s"
+        o.append("  parole de %.2f s, fenetre demandee de 0,5 a %.1f s"
                  % (p.get("duree_audio") or p["duree"],
                     0.5 + (p.get("duree_audio") or p["duree"])))
         o.append("  << %s >>" % p["de"])
