@@ -3961,7 +3961,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v510</span>
+        <span class="subtitle-version">v511</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -20930,6 +20930,53 @@ function demarrerEcoute(niveau){
     ecouteChargerCarte(true);
 }
 
+// UN MOT VEDETTE NE DOIT PAS FINIR PAR UNE LETTRE SEULE A LA LIGNE.
+//
+// Signale par Jacques le 9 septembre 2026 : « une lettre du mot deborde sur
+// une autre ligne ». Mesure sur les 1 385 mots de plus de 13 lettres du
+// corpus, a 375 px : 177 laissent TROIS LETTRES OU MOINS sur la seconde
+// ligne, et plusieurs une seule -- Abschlussprüfung donne « g »,
+// Alarmbereitschaft « t », Anrufbeantworter « r ».
+//
+// La cause est `overflow-wrap:anywhere` sur .ecoute-ligne : il autorise la
+// coupure N'IMPORTE OU. On le garde -- c'est lui qui empeche un mot de sortir
+// de la carte -- mais on evite d'en arriver la, en retrecissant le mot
+// jusqu'a ce qu'il tienne sur une ligne.
+//
+// ⚠️ PLANCHER A 19 px, LA TAILLE DE LA TRADUCTION AU-DESSUS. En dessous, le
+// mot vedette deviendrait plus petit que sa traduction et la hierarchie de la
+// carte s'inverserait ; a egalite, sa graisse (800 contre 600) le distingue
+// encore. Mesure : le plancher etait a 20 px, et DEUX mots du corpus tenaient
+// a 19 -- Auslandskrankenversicherung et Geschwindigkeitsbeschränkung, qui
+// laissaient sinon « g » et « ng » seuls a la ligne.
+//
+// Un seul mot du corpus coupe encore : « englischsprachig/deutschsprachig »,
+// qui tiendrait a 17 px. C'est une PAIRE separee par une barre oblique, pas
+// un mot : la couper reste lisible, et descendre a 17 pour ce cas unique
+// rapetisserait la vedette sous sa traduction.
+const ECOUTE_MOT_MAX = 34;   // la valeur de .ecoute-mot dans le CSS
+const ECOUTE_MOT_MIN = 19;   // la valeur de .ecoute-trad
+
+function ajusterMotEcoute(){
+    const el = document.getElementById("ecouteLigneCible");
+    if(!el) return;
+    el.style.fontSize = "";
+    const texte = (el.textContent || "").trim();
+    // Un mot qui contient une espace se coupe deja proprement entre ses mots.
+    if(!texte || texte.indexOf(" ") >= 0) return;
+    let taille = ECOUTE_MOT_MAX;
+    el.style.fontSize = taille + "px";
+    // Une ligne = la hauteur de ligne. On descend tant qu'on en occupe deux.
+    const uneLigne = () => {
+        const lh = parseFloat(getComputedStyle(el).lineHeight) || (taille * 1.15);
+        return el.scrollHeight < lh * 1.6;
+    };
+    while(!uneLigne() && taille > ECOUTE_MOT_MIN){
+        taille -= 1;
+        el.style.fontSize = taille + "px";
+    }
+}
+
 function ecouteChargerCarte(joue){
     const item = ecouteCartes[ecouteIndex];
     if(!item){ ecouteFin(); return; }
@@ -20942,6 +20989,7 @@ function ecouteChargerCarte(joue){
     };
     poser("ecouteLigneConnu", c.connuMot);
     poser("ecouteLigneCible", c.cibleMot);
+    ajusterMotEcoute();
     poser("ecouteLignePhraseCible", c.ciblePhrase);
     poser("ecouteLignePhraseConnu", c.connuPhrase);
     ecouteEtapes = ecouteConstruireSequence(c);
@@ -21671,7 +21719,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 510;
+const APP_VERSION = 511;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
