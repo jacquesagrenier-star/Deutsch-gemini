@@ -128,6 +128,51 @@ def parole(ff_, mp3, seuil=0.04):
     return ou[0] / 100.0, (ou[-1] + 1) / 100.0, n / 24000.0
 
 
+def parole_nette(ff_, mp3, seuil=0.04):
+    """Comme parole(), mais SANS le bruit isole qui suit parfois la phrase.
+
+    POURQUOI (9 septembre 2026)
+        ElevenLabs laisse parfois repartir un souffle ou un bruit de bouche un
+        dixieme de seconde apres le dernier mot, et termine le fichier en plein
+        milieu. Une coupure nette dans un son en cours, c'est un clic. Jacques,
+        sur le plan 11 conforme : « juste a la fin il y a un petit tss ».
+
+        Trois fichiers sur dix-neuf le portent -- 01, 11 et 18 -- et deux sont
+        coupes net dessus. Le defaut dormait dans les mp3 depuis leur
+        fabrication : rien ne l'ecoutait apres le dernier mot.
+
+        On ecarte donc un dernier segment COURT (moins de 0,2 s) precede d'un
+        vrai silence (plus de 60 ms). Une syllabe finale normale n'est jamais
+        separee du mot par un silence pareil.
+    """
+    r = subprocess.run([ff_, "-hide_banner", "-nostats", "-loglevel", "error",
+                        "-i", mp3, "-map", "0:a", "-ac", "1", "-ar", "24000",
+                        "-f", "s16le", "-"], capture_output=True)
+    n = len(r.stdout) // 2
+    if n < 240:
+        return 0.0, 0.0, 0.0
+    ech = array.array("h")
+    ech.frombytes(r.stdout[:n * 2])
+    par = 240
+    env = [sum(abs(v) for v in ech[i * par:(i + 1) * par]) / float(par)
+           for i in range(n // par)]
+    haut = max(env) if env else 0.0
+    if haut <= 0:
+        return 0.0, n / 24000.0, n / 24000.0
+    ou = [i for i, v in enumerate(env) if v > haut * seuil]
+    if not ou:
+        return 0.0, n / 24000.0, n / 24000.0
+    seg = [[ou[0], ou[0]]]
+    for i in ou[1:]:
+        if i - seg[-1][1] > 6:            # 60 ms de silence
+            seg.append([i, i])
+        else:
+            seg[-1][1] = i
+    while len(seg) > 1 and (seg[-1][1] - seg[-1][0] + 1) < 20:
+        seg.pop()
+    return seg[0][0] / 100.0, (seg[-1][1] + 1) / 100.0, n / 24000.0
+
+
 def ff(cmd, quoi):
     r = subprocess.run(cmd, capture_output=True, text=True, errors="replace")
     if r.returncode != 0:

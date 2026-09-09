@@ -137,7 +137,7 @@ def main():
     sys.path.insert(0, os.path.join(RACINE, "video"))
     import montage as MM                                    # noqa: E402
     # 10 % : la piste de Seedance porte l'ambiance du hall. Voir montage.parole.
-    b0, b1, _ = MM.parole(ffmpeg(), src, seuil=0.10)
+    b0, b1, _ = MM.parole_nette(ffmpeg(), src, seuil=0.10)
     mp3 = os.path.join(RACINE, "audio", "scenes", a.scene,
                        "%02d-%s.mp3" % (a.plan, p["locuteur"])) if p else None
     v0 = v1 = None
