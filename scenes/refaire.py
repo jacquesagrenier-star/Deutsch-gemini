@@ -103,9 +103,22 @@ def main():
         print("  Reporter ces valeurs dans scenes/%s.json." % a.scene)
 
     # Distribuer les variantes d'image : une par plan de la meme taille.
+    #
+    # ⚠️ LES PLANS DE DECOR N'ONT NI POSE NI TAILLE. Ils portent « cadre » et
+    # « action », pas un personnage : le hall, l'automate, la sortie de nuit.
+    # Le script plantait sur eux avec KeyError('pose') -- decouvert le 9
+    # septembre 2026 en voulant refaire la fiche du plan 19, qui est un decor.
+    #
+    # Ils n'ont pas de variante d'image a distribuer, et surtout : ils n'ont
+    # PAS DE BOUCHE. Toute la contrainte de synchronisation labiale, qui est
+    # la raison d'etre de ce re-tournage, ne les concerne pas. Un decor ne se
+    # retourne que si son clip est trop court pour la voix off.
     servi, manque = {}, []
     for p in plans:
         m = P.MISE_EN_SCENE[p["n"]]
+        if "pose" not in m:
+            p["_image"] = "(decor -- pas d'image de personnage)"
+            continue
         cle = (m["pose"], m["taille"])
         dispo = images(dim, *cle)
         rang = servi.setdefault(cle, 0)
@@ -117,6 +130,24 @@ def main():
         servi[cle] = rang + 1
 
     out = os.path.join(RACINE, "video", "episode-" + a.scene, "A-REFAIRE.txt")
+    # ⚠️ CE FICHIER EST REECRIT EN ENTIER, PAS COMPLETE. Le 9 septembre 2026,
+    # un `--plans 19` a remplace une feuille de douze plans par une feuille
+    # d'un seul, et il a fallu la regenerer de memoire. La fiche n'est pas
+    # versionnee : rien ne l'aurait rendue.
+    #
+    # On le dit avant d'ecrire, pas apres. Regenerer la feuille complete se
+    # fait sans --plans, ou en listant TOUS les plans a retourner.
+    if os.path.exists(out):
+        ancien = io.open(out, encoding="utf-8").read().count(chr(10) + "PLAN ")
+        if ancien > len(plans):
+            print("  ATTENTION : la feuille en place decrit %d plans, celle-ci"
+                  " n'en decrira que %d." % (ancien, len(plans)))
+            print("  Elle est REMPLACEE, pas completee. Ctrl-C pour annuler,"
+                  " Entree pour continuer.")
+            try:
+                input()
+            except (EOFError, KeyboardInterrupt):
+                sys.exit("\n  annule, la feuille est intacte.")
     o = []
     nl = chr(10)
     o.append("RE-TOURNAGE -- %s" % d["situation"])
@@ -149,7 +180,7 @@ def main():
         m = P.MISE_EN_SCENE[p["n"]]
         o.append("-" * 62)
         o.append("PLAN %02d   %s   %s   GENERER A %d SECONDES%s"
-                 % (p["n"], p["locuteur"], m["taille"],
+                 % (p["n"], p["locuteur"], m.get("taille", "decor"),
                     P.duree_a_generer(p, a.scene),
                     "   (zoom)" if m.get("zoom") else ""))
         o.append("  replique de %.2f s, parole demandee de 0,5 a %.1f s"
