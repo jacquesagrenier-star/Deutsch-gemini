@@ -152,7 +152,12 @@ def main():
         print("  Rien a verifier.")
         return 0
 
-    defauts = 0
+    # Une prise ratee dont on a deja refait une bonne n'est plus un probleme :
+    # elle reste sur le disque parce qu'une prise coute 200 credits et ne se
+    # refait pas a l'identique, pas parce qu'elle attend quelque chose. Le
+    # script le dit et ne la compte pas -- sinon le bilan reste rouge pour
+    # toujours et on cesse de le lire.
+    lignes = []          # (plan, conforme, texte)
     for n, chemin in clips:
         nom = os.path.basename(chemin)
         d = duree(F, chemin)
@@ -168,9 +173,9 @@ def main():
         proches = [r for v, r in notes if note - v < 2.0]
 
         if note < SEUIL:
-            print("  %-34s  aucune image de depart reconnue (%.1f dB au mieux,"
-                  " %s)" % (nom, note, trouvee))
-            defauts += 1
+            lignes.append((n, False,
+                           "  %-34s  aucune image de depart reconnue (%.1f dB "
+                           "au mieux, %s)" % (nom, note, trouvee)))
             continue
 
         # De quel plan cette image de depart est-elle celle ? Une image
@@ -185,6 +190,7 @@ def main():
             # passait a la suite -- la prise aurait ete rangee.
             duree_ok = [k for k in candidats
                         if abs(d - (table[k][1] or 0)) < 0.3]
+            conforme = True
             if duree_ok:
                 verdict = "plan %s" % " ou ".join("%02d" % k for k in duree_ok)
             elif candidats:
@@ -192,11 +198,12 @@ def main():
                            " de %s s -- a jeter"
                            % (" ou ".join("%02d" % k for k in candidats), d,
                               " ou ".join(str(table[k][1]) for k in candidats)))
-                defauts += 1
+                conforme = False
             else:
                 verdict = "%s : aucun plan ne demande cette image" % trouvee
-                defauts += 1
-            print("  %-34s  %.2f s  %-24s  %s" % (nom, d, trouvee, verdict))
+                conforme = False
+            lignes.append((None, conforme, "  %-34s  %.2f s  %-24s  %s"
+                           % (nom, d, trouvee, verdict)))
             continue
 
         attendu_img, attendu_duree = table.get(n, (None, None))
@@ -206,15 +213,31 @@ def main():
         if attendu_duree and abs(d - attendu_duree) > 0.3:
             ecarts.append("DUREE : %.2f s au lieu de %d s" % (d, attendu_duree))
         if ecarts:
-            defauts += 1
-            print("  %-16s  %s" % (nom, " ; ".join(ecarts)))
+            lignes.append((n, False, "  %-16s  %s" % (nom, " ; ".join(ecarts))))
         else:
             confusion = ""
             if len(proches) > 1:
                 confusion = "   (indiscernable de %s)" % ", ".join(
                     r for r in proches if r != attendu_img)
-            print("  %-16s  ok   %s   %.2f s   (%.1f dB)%s"
-                  % (nom, attendu_img or trouvee, d, note, confusion))
+            lignes.append((n, True, "  %-16s  ok   %s   %.2f s   (%.1f dB)%s"
+                           % (nom, attendu_img or trouvee, d, note, confusion)))
+
+    # ⚠️ UNE PRISE RATEE DONT ON A REFAIT UNE BONNE N'EST PLUS UN PROBLEME.
+    # plan05-05 dure 4 s au lieu de 5 ; Jacques l'a refaite le meme jour en
+    # plan05-06, qui est conforme. Le fichier reste sur le disque parce qu'une
+    # prise coute 200 credits et ne se refait pas a l'identique, pas parce
+    # qu'elle attend quelque chose. Un bilan qui reste rouge pour toujours
+    # cesse d'etre lu -- et c'est precisement le jour ou il aurait servi.
+    reparees = {n for n, ok, _ in lignes if ok and n is not None}
+    defauts = 0
+    for n, ok, texte in lignes:
+        if not ok and n in reparees:
+            print(texte + "   -- perimee, une prise conforme existe")
+        elif not ok:
+            defauts += 1
+            print(texte)
+        else:
+            print(texte)
 
     print()
     if defauts:
