@@ -766,3 +766,73 @@ Et son corollaire, plus dur : **un contrôle automatique ne remplace pas un
 regard.** Les quatre défauts de la soirée ont tous été vus par Jacques d'abord,
 et mesurés ensuite. La mesure sert à comprendre et à ne pas répéter — pas à
 détecter.
+
+---
+
+## 9 septembre 2026 — cinq retours mis à l'abri, et le mécanisme qui en perd
+
+**Pourquoi cette section existe avant tout correctif :** Jacques signale qu'il a
+envoyé **plus de retours qu'il n'en arrive**. Les cinq ci-dessous sont donc
+recopiés ici *avant* toute nouvelle synchronisation — le champ Firestore qui les
+porte est réécrit en entier à chaque sauvegarde, et rien ne garantissait qu'ils
+survivent à la manipulation suivante.
+
+Horodatage **tel qu'enregistré, donc en UTC** (voir le défaut 2 plus bas) :
+
+| Enregistré (UTC) | Version | Écran | Ce qui est signalé |
+|---|---|---|---|
+| 2026-09-06 12:56 | v478 | (lien) | *Hausmeister* devrait sortir en premier — *Abwart* est suisse. |
+| 2026-09-06 20:07 | v483 | (lien) | « La réponse être au Perfekt. » |
+| 2026-09-06 20:23 | v483 | (lien) | Quand le mot est choisi, sa traduction devrait être ajoutée à la phrase française. |
+| 2026-09-09 03:50 | v501 | adverbienVokabular | Plusieurs touchers sur « encore » sans effet ; puis retour au W de l'ouverture, puis retour au mot en cours. |
+| 2026-09-09 03:51 | v501 | adverbienVokabular | Les quantités par niveau sont décentrées. |
+
+**Aucun n'est corrigé à ce stade.** Ils restent non marqués (`--vu` n'a pas été
+lancé).
+
+### Défaut 1 — des retours écrits sur l'appareil n'arrivent jamais
+
+`envoyerRetour()` écrit dans `localStorage` **immédiatement**, puis appelle
+`scheduleCloudSync()`, qui **diffère la sauvegarde de 4 secondes** et remet ce
+délai à zéro à chaque nouvel appel :
+
+```js
+clearTimeout(cloudSyncTimer);
+cloudSyncTimer = setTimeout(syncProgressToCloud, 4000);
+```
+
+Sur l'app installée, **iOS suspend sans émettre `blur`, `pagehide` ni
+`visibilitychange`** (voir la note de projet sur les tests iPhone). Un retour
+écrit juste avant de poser le téléphone laisse donc un `setTimeout` qui ne se
+déclenche jamais. C'est structurellement **le dernier retour d'une série** qui
+se perd — celui qu'on écrit avant de fermer l'app.
+
+Le retour de 03:50 décrit d'ailleurs un retour au splash en pleine session :
+tout rechargement dans cette fenêtre de 4 s a le même effet.
+
+**Ce qui est rassurant, et qui n'a pas encore été vérifié sur l'appareil :**
+`setItem` étant synchrone et antérieur au minuteur, **les retours perdus
+devraient être encore dans le `localStorage` du téléphone**. Une sauvegarde
+réussie depuis ce même contexte les enverrait tous.
+
+### Défaut 2 — l'heure enregistrée n'est pas l'heure qu'il était
+
+```js
+"[" + new Date().toISOString().slice(0, 16) + " | v" + APP_VERSION
+```
+
+`toISOString()` rend toujours de l'UTC. Les 03:50 et 03:51 ci-dessus ont été
+écrits vers 05:50 heure locale — Jacques l'a relevé de lui-même. Un horodatage
+qu'il faut corriger de tête pour situer un incident est une aide à moitié.
+
+### Défaut 3 — le champ de retours est remplacé, jamais fusionné
+
+`retoursUsager` part à chaque sauvegarde comme **la valeur complète** du
+`localStorage` local. L'app installée et le lien Safari ayant **des conteneurs
+de données séparés**, une sauvegarde depuis l'un écrase les retours envoyés
+depuis l'autre. Un `localStorage` purgé par Safari (ce qu'il fait après environ
+sept jours sans visite) écraserait le tout par une chaîne vide.
+
+Ce défaut n'explique **pas** les manquants du 9 septembre — ils viennent du même
+formulaire, du même contexte et de la même minute que les deux qui sont arrivés.
+Il reste une perte à venir, à corriger indépendamment.
