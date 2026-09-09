@@ -22,6 +22,19 @@ LE SILENCE AVANT ET APRES CHAQUE REPLIQUE
     part a zero et on laisse deborder : mieux vaut une fin serree qu'une
     phrase coupee.
 
+LA QUEUE SE COUPE ICI, APRES LE LIP-SYNC
+    --queue coupe chaque plan parlant un temps donne apres la fin de sa
+    replique, et il le fait MAINTENANT QUE LE PLAN EST SYNCHRONISE. On peut
+    donc rejouer le montage a 0,2 s, a 0,6 s, a 1 s, et regarder.
+
+    L'autre ordre -- couper d'abord, synchroniser ensuite -- economise 0,89 $
+    chez sync.so sur l'episode, puisqu'on ne paie pas les images jetees. Mais
+    un clip raccourci ne se rallonge plus : rendre son air a un plan
+    obligerait a repayer toute la synchro. Le rythme d'une scene ne se decide
+    pas avant de l'avoir vue.
+
+    lipsync.py --queue existe toujours pour le jour ou le montage est fige.
+
 ON NE REENCODE LA VIDEO QU'UNE FOIS
     Chaque plan est mux avec son audio sans toucher au flux video (-c:v copy).
     Le seul reencodage a lieu au collage final, et il est inevitable : les
@@ -66,7 +79,8 @@ def main():
     ap.add_argument("--scene", default="01-ankunft-berlin")
     ap.add_argument("--queue", type=float, default=None, metavar="SECONDES",
                     help="couper chaque plan parlant SECONDES apres la fin de "
-                         "la replique. Sans lui, le plan va jusqu'au bout.")
+                         "la replique, synchronise ou non. Se rejoue autant "
+                         "de fois qu'on veut. Sans lui, le plan va au bout.")
     a = ap.parse_args()
 
     F = ffmpeg()
@@ -78,6 +92,7 @@ def main():
 
     morceaux = []
     synchro = 0
+    perimes = []
     print("  plan   clip    voix   %s" % "assemblage")
     for p in d["plans"]:
         # LE PLAN SYNCHRONISE PASSE AVANT L'ORIGINAL. lipsync.py ecrit dans
@@ -85,12 +100,31 @@ def main():
         # l'episode avant, pendant et apres la synchro, et il prend a chaque
         # fois ce qui existe de mieux. Un plan absent de 04-lipsync -- les
         # decors, qui n'ont pas de visage -- retombe sur son clip d'origine.
+        #
+        # ⚠️ ENCORE FAUT-IL QUE LA SYNCHRO SOIT CELLE DE LA PRISE EN PLACE.
+        # Le 9 septembre 2026, douze plans ont ete retournes : 03-final a recu
+        # les nouvelles prises, et 04-lipsync gardait la synchro des anciennes,
+        # au meme nom, sans une ligne pour le dire. Le montage aurait repris
+        # les vieux plans en silence -- apres 2 400 credits de re-tournage.
+        #
+        # lipsync.py porte deja cette garde depuis le matin ; le montage, non,
+        # et c'est lui qu'on lance en premier pour regarder. On compare donc
+        # les dates ici aussi : une source plus recente que sa synchro rend
+        # celle-ci perimee, et le plan retombe sur 03-final -- ou l'on voit
+        # bouger des levres au hasard, ce qui SE VOIT, au lieu de revoir sans
+        # le savoir la prise qu'on vient de remplacer.
+        origine = os.path.join(dv, "03-final", "plan%02d.mp4" % p["n"])
         v = os.path.join(dv, "04-lipsync", "plan%02d.mp4" % p["n"])
         synchronise = os.path.exists(v)
+        perime = (synchronise and os.path.exists(origine)
+                  and os.path.getmtime(origine) > os.path.getmtime(v))
+        if perime:
+            synchronise = False
+            perimes.append(p["n"])
         if synchronise:
             synchro += 1
         else:
-            v = os.path.join(dv, "03-final", "plan%02d.mp4" % p["n"])
+            v = origine
         s = os.path.join(da, "%02d-%s.mp3" % (p["n"], p["locuteur"]))
         if not os.path.exists(v):
             sys.exit("  Plan %02d : clip manquant (%s)" % (p["n"], os.path.basename(v)))
@@ -110,9 +144,27 @@ def main():
         # le temps demande apres elle. Ce qu'on perd est la respiration du
         # plan ; ce qu'on gagne est de ne plus montrer une machoire qui parle
         # sur du silence. C'est un choix de rythme, donc il se regarde.
-        # ON NE COUPE PAS DEUX FOIS. Quand le plan vient de 04-lipsync, il a
-        # DEJA ete raccourci par lipsync.py avant l'envoi -- le recouper ici
-        # rognerait un dixieme de plus, et surtout :
+        #
+        # ON COUPE APRES LE LIP-SYNC, ET C'EST UN CHOIX PAYANT (9 sept. 2026)
+        #     Ce bloc refusait de toucher a un plan venu de 04-lipsync : il
+        #     avait deja ete raccourci par lipsync.py avant l'envoi, pour ne
+        #     pas payer sync.so sur des images qu'on jette.
+        #
+        #     Jacques : synchroniser le clip ENTIER coute 0,89 $ de plus sur
+        #     l'episode, et laisse le rythme reglable jusqu'au bout. Un clip
+        #     raccourci avant l'envoi, lui, ne se rallonge plus -- pour
+        #     rendre l'air a un plan il faut repayer la synchro complete.
+        #     Quatre-vingt-neuf cents contre un aller-retour : il a raison.
+        #
+        #     La coupe vit donc ici, ou elle se refait autant de fois qu'on
+        #     veut. lipsync.py --queue reste possible, mais c'est le geste de
+        #     la fin, quand le montage ne bougera plus.
+        #
+        # LA CIBLE EST ABSOLUE, PAS RELATIVE -- c'est ce qui rend la coupe
+        # rejouable. On vise AMORCE + replique + queue, mesure depuis le debut
+        # du plan. Si le fichier est deja plus court (lipsync.py est passe
+        # avec une queue plus serree), on ne peut pas le rallonger : on le dit
+        # au lieu de couper une deuxieme fois.
         #
         # -c:v copy NE COUPE PAS A LA MILLISECONDE. Il garde des paquets
         # entiers, donc l'image tombe ou elle peut (2,83 s) pendant que
@@ -120,16 +172,21 @@ def main():
         # revenait par la fenetre apres qu'on l'ait chasse par la porte.
         #
         # La duree du plan est donc CELLE DU FICHIER, mesuree, et l'audio se
-        # cale dessus. Jamais l'inverse.
-        fin = dv_
-        if a.queue is not None and p["type"] == "replique" and not synchronise:
-            vise = min(dv_, AMORCE + da_ + a.queue)
+        # cale dessus. Jamais l'inverse. L'image coupee et la piste sonore
+        # entrent separement dans le mux qui suit, et c'est -t fin qui les
+        # ramene a la meme longueur.
+        fin, image, trop_court = dv_, v, ""
+        if a.queue is not None and p["type"] == "replique":
+            vise = AMORCE + da_ + a.queue
             if vise < dv_ - 0.02:
                 coupe = os.path.join(tmp, "_coupe%02d.mp4" % p["n"])
                 ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
-                    "-i", v, "-t", "%.3f" % vise, "-c", "copy", "-an", coupe],
+                    "-i", v, "-t", "%.3f" % vise, "-c:v", "copy", "-an", coupe],
                    "coupe du plan %02d" % p["n"])
-                v, fin = coupe, duree(F, coupe)
+                image, fin = coupe, duree(F, coupe)
+            elif dv_ < vise - 0.02:
+                trop_court = ("  <- %.2f s seulement, la queue demandee en "
+                              "voudrait %.2f" % (dv_, vise))
 
         # APAD N'EST PAS UN DETAIL DE CONFORT, C'EST CE QUI TIENT LE MONTAGE.
         #
@@ -153,14 +210,22 @@ def main():
             # lipsync.py lui a envoye une piste calee sur la duree du clip,
             # amorce comprise : c'est exactement celle que le montage aurait
             # posee. La reposer par-dessus ferait un doublon decale.
+            #
+            # L'IMAGE VIENT DU FICHIER COUPE, LA VOIX DU FICHIER ENTIER. Si on
+            # prenait les deux dans le coupe, on n'aurait rien : la coupe se
+            # fait en -c:v copy -an, elle jette le son. La piste synchronisee
+            # est donc relue depuis l'original et ramenee a `fin` par -t.
             amorce, note = AMORCE, "  sync"
-            entree = ["-i", v, "-map", "0:v", "-map", "0:a"]
+            entree = ["-i", image, "-i", v, "-map", "0:v", "-map", "1:a"]
         else:
             # La voix tient-elle avec l'amorce ? Sinon on la colle au debut.
             amorce = AMORCE if (da_ + AMORCE) <= dv_ else 0.0
             note = "" if amorce else "  <- voix au ras, la replique remplit le plan"
-            entree = ["-i", v, "-itsoffset", "%.3f" % amorce, "-i", s,
+            entree = ["-i", image, "-itsoffset", "%.3f" % amorce, "-i", s,
                       "-map", "0:v", "-map", "1:a"]
+        note += trop_court
+        if p["n"] in perimes:
+            note += "  <- synchro PERIMEE, on montre le clip brut"
         ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y"]
            + entree
            + ["-af", "apad", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
@@ -206,6 +271,14 @@ def main():
     print("\n  %s" % os.path.relpath(final, RACINE))
     print("  %.1f secondes, %d plans" % (duree(F, final), len(morceaux)))
     print("  image et son de meme duree sur les %d segments." % len(morceaux))
+    if perimes:
+        print("  SYNCHRO PERIMEE sur %d plan(s) : %s"
+              % (len(perimes), ", ".join("%02d" % n for n in perimes)))
+        print("  Leur clip de 03-final est plus recent que 04-lipsync : ce"
+              " montage montre")
+        print("  les prises neuves SANS synchro. Refaire la synchro de ces"
+              " plans avant de")
+        print("  juger les levres -- le rythme, lui, se juge des maintenant.")
     parlants = sum(1 for p in d["plans"] if p["type"] == "replique")
     if synchro < parlants:
         print("  %d/%d plans parlants passes au lip-sync -- les autres bougent"
