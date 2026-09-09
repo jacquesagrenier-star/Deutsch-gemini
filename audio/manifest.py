@@ -30,6 +30,7 @@ import hashlib
 import io
 import json
 import os
+import subprocess
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -185,7 +186,41 @@ def recolter():
             prendre(enonce.replace("___", bon, 1), "B1", "phrase",
                     "exercices." + nom)
 
+    # LES EXERCICES D'ARTICLES NE SONT PAS DANS exercices.json : ils sont
+    # FABRIQUES PAR LE CODE, dans index.html. Ce manifeste ne les voyait donc
+    # pas, aucun mp3 n'a jamais ete genere pour eux, et l'app retombait sur la
+    # voix de synthese du telephone. Signale par Jacques le 9 septembre 2026 :
+    # « c'est pas ta voix Aurora, c'est ta voix du iPhone ». 146 phrases
+    # manquaient sur 152.
+    #
+    # On les demande au code lui-meme (node evalue index.html) plutot que de
+    # les recopier ici : une donnee recopiee derive, celle-ci est lue a la
+    # source a chaque passage. Meme procede que tests/i18n_dump.js.
+    for phrase in phrases_des_articles():
+        prendre(phrase, "B1", "phrase", "exercices.articles")
+
     return out
+
+
+def phrases_des_articles():
+    """Les phrases allemandes des exercices d'articles, lues dans index.html.
+
+    ⚠️ ARRET SI NODE ECHOUE. Un manifeste amput. de 146 phrases se
+    regenererait sans un mot et laisserait ces exercices muets une seconde
+    fois -- exactement le defaut qu'on repare ici.
+    """
+    script = os.path.join(RACINE, "tests", "phrases_articles.js")
+    if not os.path.exists(script):
+        sys.exit("  tests/phrases_articles.js manquant : les exercices "
+                 "d'articles seraient omis du manifeste.")
+    r = subprocess.run(["node", script], capture_output=True, text=True,
+                       encoding="utf-8")
+    if r.returncode != 0:
+        sys.exit("  tests/phrases_articles.js a echoue :\n" + (r.stderr or ""))
+    lignes = [l for l in (r.stdout or "").split("\n") if l.strip()]
+    if not lignes:
+        sys.exit("  tests/phrases_articles.js n'a rien rendu.")
+    return lignes
 
 
 def dedoublonner(occurrences):
