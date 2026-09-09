@@ -1388,7 +1388,10 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     color: #1e2433;
-    font-size: 14px;
+    /* 16px, voir la note pres de #wordSearchInput : en dessous, Safari iOS
+       zoome des qu'on touche le champ ET NE DEZOOME PLUS. L'app deborde
+       ensuite de l'ecran et il faut pincer a deux doigts pour revenir. */
+    font-size: 16px;
     outline: none;
     font-family: inherit;
 }
@@ -1932,14 +1935,55 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
 }
 body[data-theme="dark"] .search-launch input::placeholder{color:#6f7684;}
 
-/* 16px MINIMUM : en dessous, Safari iOS zoome automatiquement sur le champ des
-   qu'on le touche, et l'utilisateur doit rezoomer a la main. Les autres champs
-   de l'app (.answer, 18-19px) n'ont jamais eu le probleme ; .filters-bar input
-   est a 14px. Corrige ici plutot que par maximum-scale sur le viewport, qui
-   desactiverait le zoom manuel dans toute l'app. */
+/* 16px MINIMUM, ET C'EST VALABLE POUR TOUT CHAMP DE SAISIE DE L'APP. En
+   dessous, Safari iOS zoome automatiquement des qu'on touche le champ et NE
+   DEZOOME PAS ensuite : l'app reste plus large que l'ecran, et il faut pincer
+   a deux doigts pour revenir. Signale le 9 septembre 2026 apres l'envoi d'un
+   retour depuis les reglages.
+   Corrige champ par champ plutot que par maximum-scale sur le viewport, qui
+   desactiverait le zoom manuel dans toute l'app -- y compris pour quelqu'un
+   qui en a besoin pour lire.
+   ⚠️ Tout nouveau input/textarea/select doit naitre a 16px au moins. Les
+   trois qui etaient en dessous sont corriges : .filters-bar (14),
+   #retourTexte (14), .admin-code-note (13). */
 #wordSearchInput{
     font-size:16px;
 }
+
+/* Le « i » qui explique le pourcentage. Discret par defaut : il accompagne le
+   chiffre, il ne se dispute pas avec lui. La zone tactile fait 28px alors que
+   le glyphe en fait 15 -- une cible plus petite se rate au pouce. */
+.info-progression{
+    -webkit-appearance:none; appearance:none;
+    border:0; background:transparent; cursor:pointer;
+    font:inherit; font-size:15px; line-height:1;
+    color:#3b6fe0; opacity:.75;
+    min-width:28px; min-height:28px; padding:0 4px;
+    vertical-align:middle;
+}
+.info-progression:hover{ opacity:1; }
+.info-progression[aria-expanded="true"]{ opacity:1; }
+
+.info-progression-box{
+    margin-top:10px; padding:12px 14px;
+    border-radius:14px;
+    background:rgba(59,111,224,.07);
+    border:1px solid rgba(59,111,224,.18);
+    text-align:left;
+}
+.info-progression-box strong{ font-size:13px; }
+.info-progression-box p{
+    margin:6px 0 0;
+    font-size:13px; line-height:1.55; color:#576177;
+    /* Le texte porte ses propres sauts de ligne : data-i18n ecrit du
+       textContent, pas du HTML. */
+    white-space:pre-line;
+}
+body[data-theme="dark"] .info-progression-box{
+    background:rgba(255,255,255,.06);
+    border-color:rgba(255,255,255,.14);
+}
+body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 
 .search-launch svg{
     width:18px; height:18px; flex:none;
@@ -3896,7 +3940,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v502</span>
+        <span class="subtitle-version">v503</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -3938,7 +3982,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <p id="nextBadgeProgress" class="next-badge-progress"></p>
             </div>
         </div>
-        <div class="home-level-hint"><span data-i18n="home_ring_hint">Touche le cercle pour changer de niveau</span> (<span id="homeRingLevels"></span>)</div>
+        <div class="home-level-hint"><span data-i18n="home_ring_hint">Touche le cercle pour changer de niveau</span> (<span id="homeRingLevels"></span>)
+            <!-- DEMANDE DE JACQUES (9 septembre 2026) : « qu'on puisse comprendre
+                 qu'est-ce qui fait bouger la progression ». Un pourcentage qu'on
+                 ne sait pas lire ne motive pas, il inquiete -- surtout quand il
+                 REDESCEND apres un « Je ne savais pas » et que rien ne dit
+                 pourquoi. L'explication est DANS la carte, a cote du chiffre
+                 qu'elle explique : une aide rangee ailleurs n'est jamais lue. -->
+            <button type="button" class="info-progression" onclick="basculerInfoProgression()"
+                    aria-expanded="false" aria-controls="infoProgressionBox"
+                    data-i18n-aria-label="progress_info_titre" aria-label="Ce qui fait bouger ce pourcentage">&#9432;</button>
+        </div>
+        <div id="infoProgressionBox" class="info-progression-box hidden">
+            <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
+            <p data-i18n="progress_info_texte"></p>
+        </div>
         <div class="home-daily-goal">
             <div class="home-daily-goal-row">
                 <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
@@ -6147,7 +6205,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <p style="color:#576177; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
         <div class="spacer"></div>
         <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
-                  style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:14px;
+                  style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
                          border:1px solid rgba(30,41,59,.2); background:transparent; color:inherit;"></textarea>
         <div class="spacer"></div>
         <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
@@ -6678,6 +6736,8 @@ const I18N = {
         home_title_2_en_dir: "mot par mot.",
         home_subtitle_en_dir: "Ton tuteur personnel pour la grammaire anglaise et le vocabulaire.",
         home_ring_hint: "Touche le cercle pour changer de niveau",
+        progress_info_titre: "Ce qui fait bouger ce pourcentage",
+        progress_info_texte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.\n\nUn mot devient maîtrisé après quatre « Je savais » d'affilée — revu d'abord dans la séance, puis après 1 jour, 3 jours, 7 jours. « Je le sais déjà » le marque tout de suite.\n\n« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
 
         // --- Recherche dans les flashcards (v188) ---
         search_launch: "Chercher un mot",
@@ -7522,6 +7582,8 @@ const I18N = {
         home_title_2_en_dir: "word by word.",
         home_subtitle_en_dir: "Your personal tutor for English grammar and vocabulary.",
         home_ring_hint: "Tap the circle to change level",
+        progress_info_titre: "What moves this percentage",
+        progress_info_texte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.\n\nA word becomes mastered after four “I knew it” in a row — seen again within the session first, then after 1 day, 3 days, 7 days. “I already know this” marks it straight away.\n\n“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
 
         // --- Flashcard search (v188) ---
         search_launch: "Look up a word",
@@ -8368,6 +8430,8 @@ const I18N = {
         home_title_2_en_dir: "kelime kelime.",
         home_subtitle_en_dir: "İngilizce dilbilgisi ve kelime için kişisel öğretmenin.",
         home_ring_hint: "Seviyeyi değiştirmek için daireye dokun",
+        progress_info_titre: "Bu yüzdeyi ne değiştirir",
+        progress_info_texte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.\n\nBir kelime, arka arkaya dört kez « Biliyordum » dedikten sonra öğrenilmiş sayılır — önce aynı oturumda, sonra 1 gün, 3 gün, 7 gün sonra. « Bunu zaten biliyorum » onu hemen işaretler.\n\n« Bilmiyordum » bu durumu geri alır ve yüzde düşer.\n\nÖğrenilmiş bir kelime kontrol için 16 günde bir geri gelir, bu sırada sayılmaya devam eder.",
 
         // --- Flashcard search (v188) ---
         search_launch: "Bir kelime ara",
@@ -9829,6 +9893,8 @@ const I18N = {
         home_title_2_en_dir: "слово за словом.",
         home_subtitle_en_dir: "Твій особистий репетитор з англійської граматики та лексики.",
         home_ring_hint: "Торкнись кола, щоб змінити рівень",
+        progress_info_titre: "Що змінює цей відсоток",
+        progress_info_texte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.\n\nСлово стає засвоєним після чотирьох « Я знав » поспіль — спершу воно повертається в тому ж занятті, потім через 1 день, 3 дні, 7 днів. « Я це вже знаю » позначає його одразу.\n\n« Я не знав » знімає засвоєння, і відсоток знижується.\n\nЗасвоєне слово повертається кожні 16 днів для перевірки й далі зараховується.",
         home_streak_unit: "днів",
         home_week_unit: "цього тижня",
         home_daily_goal_label: "🎯 Ціль на день",
@@ -10679,6 +10745,8 @@ const I18N = {
         home_title_2_en_dir: "واژه به واژه.",
         home_subtitle_en_dir: "آموزگار شخصی تو برای دستور زبان و واژگان انگلیسی.",
         home_ring_hint: "برای تغییر سطح، دایره را لمس کن",
+        progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
+        progress_info_texte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.\n\nیک واژه پس از چهار بار پشت‌سرهم «می‌دانستم» آموخته شمرده می‌شود — نخست در همان جلسه بازمی‌گردد، سپس پس از ۱ روز، ۳ روز و ۷ روز. «این را از قبل می‌دانم» آن را بی‌درنگ ثبت می‌کند.\n\n«نمی‌دانستم» این وضعیت را پس می‌گیرد و درصد پایین می‌آید.\n\nواژهٔ آموخته‌شده هر ۱۶ روز برای بررسی بازمی‌گردد و در این مدت شمرده می‌شود.",
         home_daily_goal_label: "🎯 هدف امروز",
         home_week_zero: "این هفته: 0",
         home_week_positive: "‎+{n} این هفته",
@@ -14611,6 +14679,16 @@ function showStreakFreezeDetail(){
     showToast("❄️", t("streak_freeze_hint"));
 }
 
+// Deplie l'explication du pourcentage. Volontairement en place plutot qu'en
+// fenetre : l'anneau reste visible pendant qu'on lit ce qui le fait bouger.
+function basculerInfoProgression(){
+    const box = document.getElementById("infoProgressionBox");
+    const btn = document.querySelector(".info-progression");
+    if(!box) return;
+    const ouvert = box.classList.toggle("hidden") === false;
+    if(btn) btn.setAttribute("aria-expanded", ouvert ? "true" : "false");
+}
+
 function getDailyActivityCount(){
     let daily;
     try{ daily = JSON.parse(localStorage.getItem(directionScopedKey(DAILY_ACTIVITY_KEY)) || "null"); }catch(e){ daily = null; }
@@ -17495,7 +17573,7 @@ async function renderAdminCodesList(){
                 <div style="flex:1; min-width:0;">
                     <div style="font-weight:800; letter-spacing:1px;">${c.id}</div>
                     <small style="color:#576177;">${c.used ? t('admin_code_used') : t('admin_code_available')}</small>
-                    <input type="text" class="admin-code-note" placeholder="${t('admin_code_note_placeholder')}" value="${(c.note || "").replace(/"/g, "&quot;")}" onblur="updateInviteCodeNote('${c.id}', this.value)" style="display:block; width:100%; margin-top:6px; padding:8px 10px; font-size:13px; border:1px solid rgba(30,41,59,.15); border-radius:8px; background:transparent; color:inherit; min-height:36px;">
+                    <input type="text" class="admin-code-note" placeholder="${t('admin_code_note_placeholder')}" value="${(c.note || "").replace(/"/g, "&quot;")}" onblur="updateInviteCodeNote('${c.id}', this.value)" style="display:block; width:100%; margin-top:6px; padding:8px 10px; font-size:16px; border:1px solid rgba(30,41,59,.15); border-radius:8px; background:transparent; color:inherit; min-height:36px;">
                 </div>
                 <button class="secondary danger" style="width:auto; padding:8px 14px; font-size:12px; flex:none;" onclick="deleteInviteCode('${c.id}')" data-i18n="admin_delete_code_btn">SUPPRIMER</button>
             </div>
@@ -21310,7 +21388,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 502;
+const APP_VERSION = 503;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

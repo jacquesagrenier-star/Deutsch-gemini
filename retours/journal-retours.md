@@ -880,3 +880,57 @@ rapport du défaut le plus grave.
 piste la moins risquée est un document de résumé léger écrit en même temps que
 la sauvegarde (adresse, compteurs, retours), le tableau de bord ne lisant plus
 que celui-là. Additif, réversible, sans migration.
+
+### Trois demandes du 9 septembre, traitées en v503
+
+**1. L'app débordait de l'écran après un envoi de retour.** « Je dois prendre mes
+deux doigts pour rapetisser l'écran. » Ce n'était pas une mise en page trop
+large : **Safari iOS zoome automatiquement sur tout champ de saisie dont la
+police fait moins de 16 px, et ne dézoome jamais après.** Le défaut était déjà
+connu et corrigé — pour un seul champ, `#wordSearchInput`, avec une note à côté
+qui signalait même que `.filters-bar input` restait à 14 px.
+
+Les trois champs restés sous la barre sont passés à 16 px : la zone de retour
+(14), la barre de filtres (14) et la note d'un code d'invitation dans le tableau
+de bord (13). La note en marge dit maintenant que la règle vaut pour **tout**
+champ à naître. Corriger par `maximum-scale` sur le viewport reste exclu : ça
+retirerait le zoom manuel à ceux qui en ont besoin pour lire.
+
+**2. Un « i » sur la carte de progression.** Demande : « qu'on puisse comprendre
+qu'est-ce qui fait bouger la progression ». L'explication se déplie **dans la
+carte**, sous l'anneau, en cinq langues. Elle dit ce que le code fait vraiment :
+le pourcentage compte les mots maîtrisés sur tous les mots du niveau affiché
+(thèmes + verbes + adjectifs) ; un mot est maîtrisé après **quatre « Je savais »
+d'affilée** (revu dans la séance, puis à 1, 3 et 7 jours) ou d'un coup par « Je
+le sais déjà » ; « Je ne savais pas » retire la maîtrise et **le pourcentage
+redescend** ; un mot maîtrisé revient tous les 16 jours sans cesser d'être
+compté.
+
+**3. « Est-ce que le pourcentage marche ailleurs qu'en A1 ? »** Oui — vérifié en
+recalculant l'anneau hors de l'app, sur les vraies données et la vraie
+progression :
+
+| niv | maîtrisés | total | % | (verbes / adjectifs / thèmes) |
+|---|---|---|---|---|
+| A1 | 106 | 677 | 16 % | 97 / 0 / 9 |
+| A2 | 7 | 951 | 1 % | 2 / 0 / 5 |
+| B1 | 5 | 2 136 | 0 % | 0 / 0 / 5 |
+| B2 | 2 | 729 | 0 % | 0 / 0 / 2 |
+| C1 | 0 | 1 511 | 0 % | 0 / 0 / 0 |
+
+Aucun niveau n'est mort : les totaux sont justes partout, C1 compris. Ce qui ne
+bougeait qu'en A1, c'est simplement que les verbes déjà maîtrisés sont des
+verbes A1.
+
+⚠️ **Au passage, une anomalie qui n'était pas cherchée : la colonne adjectifs
+est à zéro pour les onze testeurs.** Personne n'a jamais maîtrisé un seul
+adjectif. Soit personne n'ouvre ce paquet, soit la maîtrise ne s'y enregistre
+pas. **Non élucidé.**
+
+⚠️ **Et une seconde, dans la progression des verbes :** `cleMot()` range les
+verbes par lemme, mais **retombe sur la position quand `verbeTheme.words` n'est
+pas encore chargé**. Résultat : 450 entrées fantômes sous des clés numériques
+chez Jacques (600 chez un autre, 450 chez deux autres), invisibles pour le
+compte et jamais relues. Elles ne faussent pas le pourcentage — toutes à
+`mastered:false` — mais elles gonflent le document, et **un mot marqué maîtrisé
+pendant cette fenêtre serait perdu**. **Non corrigé.**
