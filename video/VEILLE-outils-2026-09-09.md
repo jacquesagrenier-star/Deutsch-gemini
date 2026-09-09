@@ -299,3 +299,142 @@ mériteraient le meilleur.
 AI Toolkit FAQ, Artlist MCP), CrePal, Seedance.tv, MindStudio, Mirrorize,
 Higgsfield, Atlas Cloud, LTX, StudioBinder, lipsync.com, Hedra, Percify,
 ScreenWeaver, Magic Hour.*
+
+---
+---
+
+# Deuxième passe — plus profonde
+### La même soirée, après une demande de creuser davantage
+
+La première passe visait le paysage. Celle-ci vise les trous : les outils
+**pilotés par l'audio**, les sources non commerciales, et le cas de l'allemand.
+
+## 10. La découverte qui change tout : c'est déjà dans votre abonnement
+
+Je cherchais des outils à acheter. Ils sont déjà chez vous. Documentation
+Artlist, page « AI Toolkit: Generating Avatars » [éditeur] :
+
+> « Our **Avatar models** allow you to generate a realistic talking avatar
+> **from a single image and audio file**. »
+>
+> Modèles disponibles : **Fabric 1.0**, **Fabric 1.0 Fast**, **Creatify
+> Aurora**, **OmniHuman 1.5**, **HeyGen Avatar 4**.
+> Lip-sync : **Lipsync v2 Pro**. Doublage : **HeyGen Translate V2**,
+> **ElevenLabs Dubbing**.
+
+Toute la famille que je décrivais comme « à essayer ailleurs » est dans le même
+menu que Seedance. **Aucun abonnement à prendre.**
+
+### OmniHuman 1.5 — la fiche, mot pour mot [éditeur]
+
+> « ByteDance's Omnihuman 1.5 AI Avatar model transforms static images into
+> talking videos, **prioritizing lip-sync precision over general motion**. The
+> model is **audio-driven**: it accepts any image and audio as inputs, and
+> animates the image to match the speech. »
+>
+> - **Audio-Driven Lip Synchronization** : « Precisely matches mouth movements
+>   to **the phonetics and timing of the input audio** »
+> - **Continuous Camera Movement** : « highly dynamic motion and continuous
+>   camera movement, enhancing cinematic quality »
+> - **Text Directions** : accepte un prompt en plus de l'audio
+> - Modalités : image + audio → vidéo · Résolution : 720p, 1080p
+> - Durée : **jusqu'à 30 secondes** · **Langues : toutes**
+> - Limite : **un seul locuteur**
+
+**Point par point, c'est notre cas :**
+
+| notre besoin | OmniHuman 1.5 |
+|---|---|
+| la voix ElevenLabs doit rester intacte | c'est elle qui entre, et elle ressort telle quelle |
+| la bouche doit suivre **notre** voix | « phonetics and timing of the input audio » |
+| l'allemand | « all languages » |
+| un seul personnage par plan | « single-speaker only » — exactement nos douze plans |
+| l'image de départ | c'est l'entrée du modèle |
+| des répliques de 1 à 5 s | jusqu'à 30 s |
+
+Et le mode d'emploi confirme qu'un **fichier audio est obligatoire** — on ne
+peut pas lui taper un script : *« An audio file must be uploaded. Scripts are
+not supported. »* C'est exactement la contrainte qu'on voulait.
+
+**Ce qu'il reste à vérifier, et vous seul le pouvez :** le coût en crédits, au
+survol de Generate.
+
+---
+
+## 11. Les modèles pilotés par l'audio — le vrai classement
+
+C'est la famille qu'on n'avait pas explorée. Voici ce qu'en disent ceux qui les
+comparent [blog], avec la contradiction entre sources signalée.
+
+| modèle | ce qu'on en dit | disponible chez vous |
+|---|---|---|
+| **OmniHuman 1.5** | « **pour la constance du lip-sync, OmniHuman mène** » | ✅ Artlist |
+| **InfiniteTalk** | « le meilleur équilibre naturel/stabilité [...] micro-expressions plus fines » ; « lag légèrement sur certains phonèmes » | open source, local |
+| **Kling Avatar 2.0** | « bon lip-sync, mais **paraît raide, gamme émotionnelle limitée** » ; jusqu'à 5 min, « Unified Character Memory » | kling.ai |
+| **Hedra Character-3** | contradiction franche : « le nouveau roi des têtes parlantes » chez l'un, « **le plus rapide mais résultats flous, lip-sync parfois défaillant** » chez l'autre | hedra.com |
+| **VEED Fabric 1.0** | 0,08 $/s en 480p | ✅ Artlist |
+| **Wan 2.2-S2V** | « portrait + audio → vidéo lip-syncée naturelle » ; tourne **en local** sous ComfyUI, jusqu'à 8 Go de VRAM en version allégée | gratuit, votre machine |
+
+**La contradiction sur Hedra est instructive** : deux blogs, deux verdicts
+opposés, chacun hébergé par un éditeur d'outils. C'est la limite de ce genre de
+source, et la raison pour laquelle je marque les niveaux de confiance.
+
+---
+
+## 12. L'allemand — la seule source académique de cette veille
+
+Un article de recherche, pas un blog. C'est la source la plus solide ici :
+
+> « Current talking-face-synthesis models **perform well in English but
+> unsatisfactorily in non-English languages, producing wrong mouth shapes and
+> rigid facial expressions**. Different languages use different phoneme sets,
+> and some sounds that exist in one language have **no equivalent mouth shape**
+> in another. » — *MuEx, Phoneme-Guided Mixture-of-Experts*
+
+Et sur l'allemand en particulier [blog, test HeyGen] :
+
+> « **German syncs with a steady beat**, the face following the audio with
+> confident pacing and lips behaving logically. »
+
+**Traduction pour Wortando :** l'allemand n'est pas le pire cas — il est
+alphabétique, ses phonèmes ont des équivalents visuels, et il se comporte
+mieux que le japonais ou le coréen. Mais il n'est pas l'anglais, et **c'est un
+handicap structurel de tous ces modèles**, pas un défaut de nos prompts.
+
+Un point technique utile : les meilleurs outils travaillent **sur les phonèmes
+bruts de l'audio** plutôt que sur une transcription de texte, ce qui les rend
+indépendants de la langue. C'est un critère de choix.
+
+---
+
+## 13. Ce que je referais autrement, maintenant que je sais
+
+**L'ordre des essais de demain, du gratuit au payant :**
+
+1. **Le montage en J-cut** sur les cinq plans acquis. Zéro crédit. Ça pourrait
+   masquer une partie des queues de bouche sans rien régénérer.
+2. **OmniHuman 1.5**, un plan. L'image de départ + le mp3 ElevenLabs. C'est la
+   piste la plus prometteuse de toute la veille, et elle est à un clic.
+3. **Lipsync v2 Pro** sur un plan Seedance déjà tourné — c'est le sync.so qu'on
+   connaît, mais on n'a jamais essayé leur version « pro » sur une prise dont la
+   mâchoire dit les bons mots.
+4. **Wan 2.2-S2V en local**, si vous avez une carte graphique correcte. Gratuit
+   à l'usage, illimité, et il ne dépend d'aucun abonnement.
+
+**Ce que je ne referais plus :** forcer Seedance à suivre notre voix. On a
+mesuré qu'il n'y arrive qu'à peu près, la documentation dit pourquoi — l'audio
+lui sert de métronome, pas de bande-son — et il existe cinq modèles, dans le
+même menu, faits exactement pour ça.
+
+---
+
+## 14. Ce que cette deuxième passe n'a pas résolu
+
+- **Les prix.** Toujours pas. Le coût d'un avatar OmniHuman de 5 secondes chez
+  vous est le seul chiffre qui manque, et il décide de tout.
+- **La qualité en allemand des modèles avatar.** Aucune source ne la teste.
+  Un essai à un plan la donnera mieux que dix blogs.
+- **Le rendu « cinéma ».** Un modèle avatar anime une image fixe. Nos plans ont
+  un hall vivant derrière. La fiche d'OmniHuman promet des mouvements de caméra
+  continus, mais promettre n'est pas montrer. **C'est le vrai risque de cette
+  piste**, et il ne se juge qu'à l'œil.
