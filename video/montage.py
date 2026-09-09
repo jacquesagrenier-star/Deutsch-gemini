@@ -69,7 +69,7 @@ def duree(ff, chemin):
     return int(m.group(1)) * 60 + float(m.group(2)) if m else None
 
 
-def parole(ff_, mp3):
+def parole(ff_, mp3, seuil=0.04):
     """(debut, fin, duree du fichier) -- ou la VOIX porte, en secondes.
 
     POURQUOI ON NE SE FIE PLUS A LA DUREE DU FICHIER (9 septembre 2026)
@@ -92,10 +92,20 @@ def parole(ff_, mp3):
 
         Toute duree tiree d'une replique passe donc par ici.
 
-    LE SEUIL
-        4 % du maximum, sur des fenetres de 10 ms. Sur nos fichiers le choix
-        ne change rien -- de 1 % a 10 %, le plan 13 donne 4,71 / 4,64 s. Une
-        voix ElevenLabs sur fond numerique n'a pas de zone grise.
+    LE SEUIL, ET POURQUOI IL N'EST PAS LE MEME PARTOUT
+        4 % du maximum par defaut, sur des fenetres de 10 ms. Sur nos mp3
+        ElevenLabs le choix ne change rien -- de 1 % a 10 %, le plan 13 donne
+        4,71 / 4,64 s : une voix sur fond numerique n'a pas de zone grise.
+
+        UNE PISTE GENEREE PAR SEEDANCE, SI. Elle porte l'ambiance du hall
+        d'aeroport sous la voix, et a 4 % le brouhaha compte comme de la
+        parole : le plan 16 donnait 4,49 s d'articulation pour une replique de
+        1,12 s, un faux positif qui aurait condamne une prise que Jacques
+        venait de juger bonne. A 10 %, les trois prises mesurees tombent
+        juste -- 1,11 / 1,42 / 3,07 contre 1,12 / 1,47 / 2,47.
+
+        On passe donc seuil=0.10 pour une piste generee, et on garde 4 % pour
+        les notres.
     """
     r = subprocess.run([ff_, "-hide_banner", "-nostats", "-loglevel", "error",
                         "-i", mp3, "-map", "0:a", "-ac", "1", "-ar", "24000",
@@ -111,7 +121,7 @@ def parole(ff_, mp3):
     haut = max(env) if env else 0.0
     if haut <= 0:
         return 0.0, n / 24000.0, n / 24000.0
-    seuil = haut * 0.04
+    seuil = haut * seuil
     ou = [i for i, v in enumerate(env) if v > seuil]
     if not ou:
         return 0.0, n / 24000.0, n / 24000.0

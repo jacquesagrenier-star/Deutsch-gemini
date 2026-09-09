@@ -58,6 +58,30 @@ import montage as M                                         # noqa: E402
 
 FENETRE = 0.5          # le silence d'amorce, en tete de la piste de reference
 
+# CE QUI DOIT RESTER DANS LE CADRE, PAR TAILLE DE PLAN.
+#
+# 9 septembre 2026, plan 05 : sans un mot sur le cadrage, Seedance est revenu
+# en gros plan sur un plan MOYEN -- 18 dB, sous le seuil. Le reflexe du modele
+# pour une tete parlante est le gros plan, et rien ne l'en empechait.
+#
+# Ca n'avait pas gene au plan 16 parce que le plan 16 EST un gros plan : la
+# derive etait invisible. Un seul plan valide ne valide pas une recette.
+#
+# On ne redecrit pas la TAILLE -- c'est ce qui avait tout casse au premier
+# essai, les mots l'emportant sur l'image. On nomme ce qui doit rester VISIBLE,
+# ce qui se verifie dans @img1 au lieu de le concurrencer.
+VISIBLE = {
+    "moyen": ("The person is seen from the waist up, and the front edge of "
+              "the information desk crosses the lower part of the frame. Both "
+              "stay visible for the whole clip."),
+    "moyen serre": ("The person is seen from the chest up, with the top of "
+                    "the information desk still in the lower part of the "
+                    "frame."),
+    "serre": "The person is seen head and shoulders.",
+}
+PAS_DE_ZOOM = ("Do not push in at any point. The shot stays exactly as wide "
+               "as @img1 from the first frame to the last.")
+
 
 def piste(F, scene, p, duree, dossiers):
     """Construit la piste de reference : silence, la voix nue, silence.
@@ -92,6 +116,7 @@ def prompt(m, p, debut, fin, duree):
     bloc.append(
         "The person is the one in @img1 - same face, same clothes, same "
         "airport setting behind them.")
+    bloc.append(VISIBLE[m["taille"]] + ("" if m.get("zoom") else " " + PAS_DE_ZOOM))
     bloc.append(P.ZOOM if m.get("zoom") else P.FIXE)
     bloc.append(
         "They speak one short line in German. The words and their exact "

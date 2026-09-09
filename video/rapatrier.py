@@ -117,6 +117,33 @@ def main():
                  "telechargee. Clique Download dans Artlist, puis relance."
                  % deja[emp])
 
+    # ⚠️ MESURER LA VOIX DE SEEDANCE AVANT DE LA JETER (9 septembre 2026)
+    #
+    # Depuis qu'on lui donne la voix en reference, Seedance ne la place PAS ou
+    # on la lui donne : il decale l'attaque d'environ 0,35 s, et sur les
+    # longues repliques il ETIRE l'articulation. Sa piste generee est le seul
+    # temoin exact de sa machoire -- les deux naissent dans la meme passe.
+    #
+    # Elle est coupee une ligne plus bas et ne revient jamais. On la mesure
+    # donc ici, une fois, et on ecrit le resultat a cote de la prise :
+    #
+    #   plan 11   piste donnee 0,51-2,97   Seedance a mis 0,87-3,99
+    #   plan 14   piste donnee 0,50-1,97   Seedance a mis 0,84-2,27
+    #
+    # Le decalage se rattrape au montage. L'ETIREMENT, NON : au plan 11 la
+    # bouche articule 3,12 s pour une replique de 2,47 -- Jacques : « la bouche
+    # d'Anna continue a bouger apres qu'elle a arrete de parler ». Un plan
+    # etire est a refaire, pas a recaler, et ce script le dit maintenant.
+    sys.path.insert(0, os.path.join(RACINE, "video"))
+    import montage as MM                                    # noqa: E402
+    # 10 % : la piste de Seedance porte l'ambiance du hall. Voir montage.parole.
+    b0, b1, _ = MM.parole(ffmpeg(), src, seuil=0.10)
+    mp3 = os.path.join(RACINE, "audio", "scenes", a.scene,
+                       "%02d-%s.mp3" % (a.plan, p["locuteur"])) if p else None
+    v0 = v1 = None
+    if mp3 and os.path.exists(mp3):
+        v0, v1, _ = MM.parole(ffmpeg(), mp3)
+
     r = subprocess.run([ffmpeg(), "-hide_banner", "-nostats", "-loglevel", "error",
                         "-y", "-i", src, "-c", "copy", "-an", out],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -127,6 +154,28 @@ def main():
           % (os.path.basename(src), a.scene, os.path.basename(out),
              os.path.getsize(out) // 1024))
     io.open(registre, "a", encoding="utf-8", newline="").write(emp + " " + os.path.basename(out) + chr(10))
+
+    # La fiche de parole, a cote des prises. montage.py y lira ou poser la voix.
+    fiche = os.path.join(dst, "_parole.json")
+    tout = {}
+    if os.path.exists(fiche):
+        tout = json.load(io.open(fiche, encoding="utf-8"))
+    tout[os.path.basename(out)] = {"bouche": [round(b0, 2), round(b1, 2)]}
+    io.open(fiche, "w", encoding="utf-8", newline=chr(10)).write(
+        json.dumps(tout, ensure_ascii=False, indent=1, sort_keys=True) + chr(10))
+
+    print("  bouche de %.2f a %.2f s" % (b0, b1), end="")
+    if v0 is not None:
+        parle, dit = b1 - b0, v1 - v0
+        print("   (la replique dure %.2f s, la bouche articule %.2f s)"
+              % (dit, parle))
+        if parle - dit > 0.15:
+            print("  ⚠️ ETIREE de %.2f s : la bouche continuera de bouger apres"
+                  " le dernier mot." % (parle - dit))
+            print("     Un decalage se recale au montage, un etirement non."
+                  " Cette prise est a refaire.")
+    else:
+        print()
     print("  L'original reste dans les telechargements : rien n'est efface.")
 
 
