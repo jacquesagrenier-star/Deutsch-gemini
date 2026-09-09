@@ -425,29 +425,39 @@ def duree_a_generer(p, scene=None):
     de parole, l'amorce avant, et une seconde de silence apres pour que la
     bouche ait le temps de se refermer a l'image.
 
-    ⚠️ ET ASSEZ LONG POUR LE NOMBRE DE MOTS (9 septembre 2026)
+    ⚠️ ET PROPORTIONNE A LA REPLIQUE (9 septembre 2026, sept essais)
         Depuis qu'on donne la voix en reference, Seedance ETIRE l'articulation
-        quand la replique est trop dense pour le clip. Plan 11, huit mots dans
-        cinq secondes : la bouche articule 3,07 s pour une phrase de 2,47.
-        Jacques : « la bouche d'Anna continue a bouger apres qu'elle a arrete
-        de parler ». Un etirement ne se recale pas au montage.
+        quand le rapport entre le clip et la replique sort d'une bande etroite.
+        Trop court, il ralentit pour tenir ; trop long, il ralentit pour
+        remplir. Les sept prises mesurees, rangees par duree de replique :
 
-        Le budget qui circule chez ceux qui montent des films avec ce modele --
-        environ 12 mots pour 10 secondes, 20 pour 15 -- soit 1,2 mot par
-        seconde. Nos trois prises mesurees lui donnent raison sans exception :
+            plan 16   1,12 s de voix   clip 5 s  (x4,5)   -0,01   OK
+            plan 14   1,47 s           clip 6 s  (x4,1)   +0,10   OK
+            plan 12   1,67 s           clip 9 s  (x5,4)   +2,32   ETIREE
+            plan 17   2,01 s           clip 6 s  (x3,0)   -0,05   OK
+            plan 10   2,15 s           clip 9 s  (x4,2)   -0,17   OK
+            plan 11   2,47 s           clip 5 s  (x2,0)   +0,60   ETIREE
+            plan 13   4,57 s           clip 13 s (x2,9)   +3,12   ETIREE
 
-            plan 16   5 mots, marge +1,0   ->  parfait
-            plan 14   6 mots, marge  0,0   ->  duree juste
-            plan 11   8 mots, marge -2,0   ->  ETIREE de 0,60 s
+        Les quatre reussites tiennent entre x3,0 et x4,5. On vise donc x3,5.
 
-        On demande donc au moins mots/1,2 secondes, et une de plus pour
-        respirer. Le surplus se coupe au montage : il ne coute que des credits,
-        alors qu'une prise etiree coute la prise entiere.
+        PREMIERE VERSION DE CETTE REGLE, ET POURQUOI ELLE ETAIT FAUSSE
+            On avait d'abord pris un budget de mots -- 1,2 mot par seconde --
+            qui collait aux trois premieres mesures. Il poussait le plan 13 a
+            treize secondes pour quatorze mots. Jacques : « treize secondes,
+            ca n'a comme pas de sens ». Il avait raison, et le plan 12 l'a
+            prouve le meme soir : neuf secondes pour 1,67 s de texte, etire de
+            2,32 s. Une regle batie sur trois points casse au quatrieme.
+
+        CE QU'AUCUNE DUREE NE SAUVE
+            Une replique de plus de 2,2 s environ. Les deux seules qui
+            depassent ce seuil se sont etirees, a des rapports pourtant
+            differents. Le plan 13, 4,57 s de parole, demanderait seize
+            secondes -- au-dela du plafond de quinze du modele. Il doit etre
+            COUPE EN DEUX, ce que conseillent aussi ceux qui montent des films
+            avec ce modele. C'est une decision de scenario, pas de technique.
     """
-    mots = len((p.get("de") or "").split())
-    return min(15, max(5,
-                       int(round(0.5 + duree_voix(p, scene) + 1.5)),
-                       int(math.ceil(mots / 1.2)) + 1))
+    return min(15, max(5, int(round(duree_voix(p, scene) * 3.5))))
 
 
 def video_prompt(m, p=None, scene=None):

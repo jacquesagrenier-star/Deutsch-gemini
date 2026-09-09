@@ -82,6 +82,30 @@ VISIBLE = {
 PAS_DE_ZOOM = ("Do not push in at any point. The shot stays exactly as wide "
                "as @img1 from the first frame to the last.")
 
+# LA DIRECTION DU REGARD, ET POURQUOI ELLE DOIT ETRE ECRITE.
+#
+# En retirant toute description du cadrage -- ce qui a repare la derive -- on a
+# retire le regard avec. Le 9 septembre 2026, Jacques : « meme la derniere,
+# Mark ne regarde plus dans la bonne direction ».
+#
+# Ce n'est pas un detail de rendu : c'est le champ-contrechamp. Mark regarde
+# vers la GAUCHE du cadre, Anna vers la DROITE ; s'ils regardent du meme cote,
+# ils ne se parlent plus, ils parlent chacun dans le vide, et la scene ne tient
+# plus. Deux personnages qui dialoguent doivent se regarder A TRAVERS l'axe.
+#
+# Une direction n'est pas une taille de plan : elle decrit ce qui se passe dans
+# l'image, pas comment la cadrer. Elle ne concurrence donc pas @img1.
+REGARD = {
+    "mark": ("He is placed right of centre and looks toward the LEFT of the "
+             "frame, at the person he is talking to, off screen. He keeps "
+             "looking that way for the whole clip - he never turns to face the "
+             "camera."),
+    "anna": ("She is placed left of centre and looks toward the RIGHT of the "
+             "frame, at the person she is talking to, off screen. She keeps "
+             "looking that way for the whole clip - she never turns to face "
+             "the camera."),
+}
+
 
 def piste(F, scene, p, duree, dossiers):
     """Construit la piste de reference : silence, la voix nue, silence.
@@ -116,6 +140,7 @@ def prompt(m, p, debut, fin, duree):
     bloc.append(
         "The person is the one in @img1 - same face, same clothes, same "
         "airport setting behind them.")
+    bloc.append(REGARD[m["pose"]])
     bloc.append(VISIBLE[m["taille"]] + ("" if m.get("zoom") else " " + PAS_DE_ZOOM))
     bloc.append(P.ZOOM if m.get("zoom") else P.FIXE)
     # ⚠️ LE TEXTE EST OBLIGATOIRE. On l'avait retire le 9 septembre parce que
