@@ -1136,3 +1136,27 @@ traduction.
 réponse vaut « temporel », « causal », « modal » — **en français, pour toutes
 les langues**. `correctEn`, `correctTr`, `correctFa` sont tous absents. Le trou
 est en amont de l'ukrainien.
+
+### Quatre retours de plus, en v507
+
+| Enregistré (UTC) | Écran | Ce qui est signalé | État |
+|---|---|---|---|
+| 06:25 | exercice kicker_kasus_art_dat | « Quand on écoute la phrase, ce n'est pas la voix Aurora, c'est la voix de l'iPhone. » | **non traité** |
+| 06:27 | home | « Si je suis dans adjectif et que je clique sur administration, une fois le retour envoyé je ne reviens pas sur l'adjectif. » | **non traité** — même défaut que le 04:09 |
+| 06:32 | exercice kicker_zuinf | « Le i information n'apparaît pas dans le rectangle de progression. » | **corrigé en v508** |
+| 07:03 | écoute | « Une lettre du mot déborde sur une autre ligne. » | **non traité** |
+
+**Le « i » invisible, et ce que ça dit de ma méthode.** Le bouton était dans le
+DOM depuis la v503 — mais posé dans `.home-level-hint`, que le CSS masque par
+`display:none !important`. Cette ligne d'aide ne sert qu'une fois ; ses éléments
+ne restent dans le DOM que pour que le JS puisse y écrire sans planter. Personne
+ne pouvait donc l'ouvrir pendant **cinq versions**.
+
+J'avais vérifié la syntaxe, le vérificateur, les clés de traduction dans les
+cinq langues — **et jamais le rendu**. Le `CLAUDE.md` le demande en toutes
+lettres, et le banc d'essai existait depuis la v506. Le défaut n'était pas
+subtil : il suffisait de regarder l'écran.
+
+**La coupe annoncée a servi le jour même.** Le champ de retours a affiché
+`[COUPE] 160 caractères plus anciens ont été retirés, faute de place` — la
+troncature qui, la veille encore, aurait emporté ces 160 caractères en silence.
