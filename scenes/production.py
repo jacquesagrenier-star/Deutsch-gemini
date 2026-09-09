@@ -210,9 +210,17 @@ MISE_EN_SCENE = {
                     "walks on. The lit screen flickers gently. The camera stays "
                     "still."),
 
+    # « Nothing else moves » a ete pris au mot : la prise du 9 septembre est
+    # d'une neutralite de guichet. Jacques : « je trouve qu'il manque de
+    # sourire ». On garde la question dans le visage -- c'en est une, pratique,
+    # pas un moment chaleureux -- mais on lui rend l'aisance de quelqu'un qui
+    # se sent bien accueilli. Un consigne d'immobilite est prise au pied de la
+    # lettre par le modele ; ne l'ecrire que quand on la veut vraiment.
     14: dict(pose="mark", coin="left", taille="moyen serre",
-             action="His head tilts slightly, eyebrows raised, waiting - a "
-                    "question held in the face. Nothing else moves."),
+             action="He asks lightly, easy and friendly - a warm half-smile "
+                    "already on his face as he speaks, and it stays there "
+                    "while he waits for the answer. His head tilts slightly, "
+                    "eyebrows raised. He is enjoying the exchange."),
 
     15: dict(pose="anna", coin="right", taille="moyen serre",
              action="Precise and factual. A tiny nod partway through, as if "

@@ -118,11 +118,26 @@ def prompt(m, p, debut, fin, duree):
         "airport setting behind them.")
     bloc.append(VISIBLE[m["taille"]] + ("" if m.get("zoom") else " " + PAS_DE_ZOOM))
     bloc.append(P.ZOOM if m.get("zoom") else P.FIXE)
+    # ⚠️ LE TEXTE EST OBLIGATOIRE. On l'avait retire le 9 septembre parce que
+    # le modele bafouillait sur un mot -- « ihrere Hilfe » au lieu de « Ihre
+    # Hilfe » -- en croyant que le texte ecrit et @aud1 se disputaient.
+    #
+    # Sans le texte, c'est bien pire : Seedance doit deviner les mots au son
+    # seul. Au plan 14 il attrape « Wie lange dauert... » puis decroche et
+    # invente -- Jacques : « il dit quelque chose comme eine findungdung ». Et
+    # les levres suivent le charabia, puisque voix et bouche naissent ensemble.
+    #
+    # La mesure de l'etirement ne voyait rien : elle compte la DUREE de
+    # l'articulation, pas les mots. 1,42 s contre 1,47 -- juste, et faux.
+    #
+    # Le texte donne les MOTS, @aud1 donne le RYTHME. Les deux, chacun son
+    # role nomme.
+    bloc.append("They say, in German: \"%s\"" % p["de"])
     bloc.append(
-        "They speak one short line in German. The words and their exact "
-        "timing are in @aud1 - take both from @aud1 alone. Do not invent "
-        "words, do not repeat, stretch or hesitate on any syllable. Their "
-        "mouth follows @aud1 and nothing else.")
+        "@aud1 is a recording of exactly that sentence. Take the timing of "
+        "every syllable from @aud1. Do not add, repeat, stretch or hesitate "
+        "on any syllable, and do not say anything that is not in that "
+        "sentence. Their mouth follows @aud1.")
     bloc.append(
         "Total clip duration: %d seconds. Their mouth is closed from 0 to "
         "%.1f seconds. They speak from %.1f to %.1f seconds. From %.1f "
