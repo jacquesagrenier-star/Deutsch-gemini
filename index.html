@@ -3961,7 +3961,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v509</span>
+        <span class="subtitle-version">v510</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6141,7 +6141,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <!-- ================= SETTINGS ================= -->
 
 <section id="settings" class="screen">
-    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="quitterReglages()"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -6365,7 +6365,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <!-- ================= ADMIN DASHBOARD ================= -->
 
 <section id="adminDashboard" class="screen">
-    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="openSettings()"><span data-i18n="back_button">‹ Retour</span></button>
 
     <div class="title-row">
         <div>
@@ -19941,6 +19941,30 @@ let ecranAvantReglages = "";
 // etre au parfait » est inexploitable sans savoir LEQUEL. Le numero et le debut
 // de la question identifient l'exercice a coup sur. Meme raison pour les
 // cartes : le mot affiche vaut mieux que le nom du paquet.
+// QUITTER LES REGLAGES REVIENT D'OU L'ON VIENT, pas a l'accueil.
+//
+// Signale deux fois par Jacques le 9 septembre 2026 : « quand je clique sur
+// le retour, ca devrait toujours me ramener exactement ou je me trouvais
+// avant », puis « si je suis dans adjectif et que je clique sur
+// administration, une fois le retour envoye je ne reviens pas sur
+// l'adjectif ». Le bouton appelait goHome() : il ramenait TOUJOURS a
+// l'accueil.
+//
+// L'ecran de depart etait deja connu -- `ecranAvantReglages`, pose par
+// showScreen(). Il ne servait qu'a etiqueter les retours de testeurs. Il
+// sert maintenant aussi a revenir.
+//
+// ⚠️ On verifie que la section existe encore avant d'y aller : une section
+// disparue laisserait un ecran vide, pire que l'accueil.
+function quitterReglages(){
+    const id = ecranAvantReglages;
+    if(id && id !== "settings" && document.getElementById(id)){
+        showScreen(id);
+        return;
+    }
+    goHome();
+}
+
 function contexteEcran(){
     const ecran = ecranAvantReglages || "?";
     try{
@@ -21647,7 +21671,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 509;
+const APP_VERSION = 510;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
