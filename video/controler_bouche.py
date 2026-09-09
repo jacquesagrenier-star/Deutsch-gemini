@@ -163,3 +163,39 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# =============================================================================
+# 9 SEPTEMBRE 2026 -- QUATRIEME FOIS QUE CETTE MESURE SE TROMPE. A LIRE AVANT
+# DE S'EN SERVIR POUR ARBITRER QUOI QUE CE SOIT.
+#
+# L'en-tete disait deja qu'elle ne peut pas juger la qualite d'un lip-sync. La
+# journee du 9 septembre l'a confirme quatre fois, dans les quatre sens :
+#
+#   1. Plan 05 resynchronise : elle annonce « 208 ms -> 83 ms, la bouche est a
+#      la limite de ce que l'oeil detecte ». La courbe de correlation, tracee
+#      ensuite, montrait un pic mou avec une deuxieme bosse : le 83 ms ne
+#      voulait rien dire. 50 images, incertitude +-0,11.
+#
+#   2. Onze plans mesures d'un coup, verdict « le lip-sync ne marche nulle
+#      part ». Les fenetres de mesure etaient posees sur l'oeil et le nez, pas
+#      sur la bouche -- une etait sur l'arriere-plan. Chiffres jetes.
+#
+#   3. Prise a bouche fermee contre prise a bouche ouverte : 0,42 des deux
+#      cotes. L'hypothese qu'elle devait departager est morte sans conclusion,
+#      200 credits et 0,24 $.
+#
+#   4. Seedance avec la voix en reference contre sync.so, meme plan, meme
+#      replique : 0,26 contre 0,44. La mesure prefere sync.so. Jacques regarde
+#      les deux cote a cote : « a gauche il n'y a rien qui se passe, a droite
+#      c'est parfait ». Il a raison, et on a bascule toute la chaine sur
+#      Seedance.
+#
+# CE QU'ELLE SAIT ENCORE FAIRE, ET C'EST TOUT :
+#   - dire QUAND la bouche bouge (la courbe, pas la correlation) ;
+#   - signaler une correlation NEGATIVE, qui veut dire que la bouche s'agite
+#     pendant le silence -- ca, c'est un fait.
+#
+# CE QU'ELLE NE FERA JAMAIS : choisir entre deux prises. On monte les deux
+# cote a cote, avec la vraie voix par-dessus, et on regarde.
+# =============================================================================
