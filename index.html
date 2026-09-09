@@ -3955,7 +3955,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v506</span>
+        <span class="subtitle-version">v507</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6402,6 +6402,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="spacer"></div>
         <button class="secondary" id="adminRebuildBtn" onclick="reconstruireResumes()" data-i18n="admin_rebuild_btn">RECONSTRUIRE LES RÉSUMÉS →</button>
         <div class="spacer"></div>
+        <button class="secondary" onclick="viderMesRetours()" data-i18n="admin_vider_retours_btn">VIDER MES RETOURS ENVOYÉS →</button>
+        <div class="spacer"></div>
         <div id="adminUsersList" class="info-box" data-i18n="loading_label">Chargement...</div>
     </div>
 </section>
@@ -6762,6 +6764,9 @@ const I18N = {
         admin_resumes_desc: "Le tableau lit des résumés légers. Un testeur y apparaît dès sa première sauvegarde ; ceux inscrits avant cette version arrivent d'un coup avec le bouton ci-dessous.",
         admin_rebuild_btn: "RECONSTRUIRE LES RÉSUMÉS →",
         admin_rebuild_running: "RECONSTRUCTION…",
+        admin_vider_retours_btn: "VIDER MES RETOURS ENVOYÉS →",
+        confirm_vider_retours: "Effacer les retours envoyés depuis cet appareil ? Le champ se remplit vite et garde seulement la fin : le vider une fois les retours traités évite qu'ils se mangent entre eux. Irréversible.",
+        admin_vider_retours_done: "Retours effacés et sauvegarde faite.",
         admin_rebuild_done: "{n} résumé(s) reconstruit(s).",
         admin_rebuild_refuse: "Écriture refusée ({code}). La règle Firestore sur la collection « resumes » n'est pas encore publiée — Firestore lui-même fonctionne.",
         admin_rebuild_echec: "Échec de la reconstruction ({code}).",
@@ -7615,6 +7620,9 @@ const I18N = {
         admin_resumes_desc: "The table reads lightweight summaries. A tester appears as soon as they save once; those who signed up before this version arrive all at once with the button below.",
         admin_rebuild_btn: "REBUILD SUMMARIES →",
         admin_rebuild_running: "REBUILDING…",
+        admin_vider_retours_btn: "CLEAR MY SENT FEEDBACK →",
+        confirm_vider_retours: "Erase the feedback sent from this device? The field fills up fast and only keeps the end: clearing it once the feedback is handled stops it from eating itself. This cannot be undone.",
+        admin_vider_retours_done: "Feedback cleared and saved.",
         admin_rebuild_done: "{n} summary/summaries rebuilt.",
         admin_rebuild_refuse: "Write refused ({code}). The Firestore rule for the “resumes” collection has not been published yet — Firestore itself is working.",
         admin_rebuild_echec: "Rebuild failed ({code}).",
@@ -8470,6 +8478,9 @@ const I18N = {
         admin_resumes_desc: "Tablo hafif özetleri okur. Bir test kullanıcısı ilk kaydıyla birlikte görünür; bu sürümden önce kaydolanlar aşağıdaki düğmeyle bir defada gelir.",
         admin_rebuild_btn: "ÖZETLERİ YENİDEN OLUŞTUR →",
         admin_rebuild_running: "YENİDEN OLUŞTURULUYOR…",
+        admin_vider_retours_btn: "GÖNDERDİĞİM GERİ BİLDİRİMLERİ TEMİZLE →",
+        confirm_vider_retours: "Bu cihazdan gönderilen geri bildirimler silinsin mi? Alan hızla dolar ve yalnızca sonunu saklar: işlendikten sonra temizlemek, birbirlerini yemelerini önler. Geri alınamaz.",
+        admin_vider_retours_done: "Geri bildirimler silindi ve kaydedildi.",
         admin_rebuild_done: "{n} özet yeniden oluşturuldu.",
         admin_rebuild_refuse: "Yazma reddedildi ({code}). « resumes » koleksiyonu için Firestore kuralı henüz yayınlanmadı — Firestore'un kendisi çalışıyor.",
         admin_rebuild_echec: "Yeniden oluşturma başarısız ({code}).",
@@ -9940,6 +9951,9 @@ const I18N = {
         admin_resumes_desc: "Таблиця читає легкі зведення. Тестер з’являється тут після першого збереження; ті, хто зареєструвався раніше, появляються водночас через кнопку нижче.",
         admin_rebuild_btn: "ПЕРЕБУДУВАТИ ЗВЕДЕННЯ →",
         admin_rebuild_running: "ПЕРЕБУДОВА…",
+        admin_vider_retours_btn: "ОЧИСТИТИ МОЇ ВІДГУКИ →",
+        confirm_vider_retours: "Стерти відгуки, надіслані з цього пристрою? Поле швидко заповнюється й зберігає лише кінець: очищення після опрацювання не дає їм з'їдати одне одного. Незворотно.",
+        admin_vider_retours_done: "Відгуки очищено й збережено.",
         admin_rebuild_done: "Перебудовано зведень: {n}.",
         admin_rebuild_refuse: "Запис відхилено ({code}). Правило Firestore для колекції « resumes » ще не опубліковане — сам Firestore працює.",
         admin_rebuild_echec: "Перебудова не вдалася ({code}).",
@@ -10799,6 +10813,9 @@ const I18N = {
         admin_resumes_desc: "جدول خلاصه‌های سبک را می‌خواند. هر آزمونگر پس از نخستین ذخیره در آن دیده می‌شود؛ کسانی که پیش از این نسخه ثبت‌نام کرده‌اند، با دکمهٔ زیر یکجا می‌آیند.",
         admin_rebuild_btn: "بازسازی خلاصه‌ها →",
         admin_rebuild_running: "در حال بازسازی…",
+        admin_vider_retours_btn: "پاک‌کردن بازخوردهای فرستاده‌شده →",
+        confirm_vider_retours: "بازخوردهای فرستاده‌شده از این دستگاه پاک شود؟ این فیلد زود پر می‌شود و فقط پایان آن را نگه می‌دارد: پاک‌کردن پس از رسیدگی مانع از بین رفتنشان می‌شود. برگشت‌ناپذیر است.",
+        admin_vider_retours_done: "بازخوردها پاک و ذخیره شد.",
         admin_rebuild_done: "{n} خلاصه بازسازی شد.",
         admin_rebuild_refuse: "نوشتن رد شد ({code}). قاعدهٔ Firestore برای مجموعهٔ «resumes» هنوز منتشر نشده است — خود Firestore کار می‌کند.",
         admin_rebuild_echec: "بازسازی ناکام ماند ({code}).",
@@ -17845,6 +17862,26 @@ async function renderAdminUsersList(){
 // Remplit `resumes` a partir des documents complets. C'est la seule lecture
 // lourde qui reste (2,53 Mo pour douze testeurs), d'ou le bouton : on
 // l'assume une fois, on ne la subit pas a chaque ouverture.
+// Vide les retours DE CET APPAREIL. Reserve a l'admin, et pour son propre
+// compte : le texte fait autorite dans `localStorage`, donc effacer ailleurs
+// ne servirait a rien -- la sauvegarde suivante le reecrirait.
+//
+// A quoi ca sert : le champ se remplit vite si l'on y colle quelque chose, et
+// il garde la FIN. Le vider une fois les retours consignes vaut mieux que de
+// les laisser se manger entre eux.
+async function viderMesRetours(){
+    if(!isAdminUser()) return;
+    if(!confirm(t("confirm_vider_retours"))) return;
+    try{ localStorage.removeItem(RETOURS_KEY); }catch(e){}
+    try{
+        if(typeof syncProgressToCloud === "function") await syncProgressToCloud();
+        showInfoToast(t("admin_vider_retours_done"));
+        renderAdminUsersList();
+    }catch(e){
+        showInfoToast(t("admin_action_failed"));
+    }
+}
+
 async function reconstruireResumes(){
     if(!isAdminUser()) return;
     const btn = document.getElementById("adminRebuildBtn");
@@ -19901,14 +19938,32 @@ function envoyerRetour(){
     // pense a noter sa version ni par quel chemin il a ouvert l'app, et c'est
     // precisement ce qui manquait toute la journee du 6 septembre pour
     // diagnostiquer le son.
+    // ⚠️ LE TEXTE DE LA PERSONNE NE DOIT PAS POUVOIR IMITER UN EN-TETE.
+    // Le lecteur (tests/retours.js) separe les retours sur « [date | version
+    // | ... ] » EN DEBUT DE LIGNE. Le 9 septembre 2026, Jacques a colle son
+    // propre historique de retours dans ce champ pour me le transmettre : ses
+    // horodatages ont ete relus comme de vraies entrees, et 13 envois se sont
+    // lus comme 25. Un espace en tete suffit a desamorcer, et ne change rien
+    // a ce qu'on lit.
+    const propre = texte.replace(/^\[(?=\d{4}-\d{2}-\d{2}T\d{2}:\d{2})/gm, " [");
     const entree = "[" + new Date().toISOString().slice(0, 16) + " | v" + APP_VERSION
                  + " | " + getUiLang() + " | " + modeLancement().split(" ")[0]
-                 + " | " + contexteEcran() + "] " + texte;
+                 + " | " + contexteEcran() + "] " + propre;
     let tout = "";
     try{ tout = localStorage.getItem(RETOURS_KEY) || ""; }catch(e){}
     tout = (tout ? tout + String.fromCharCode(10) : "") + entree;
     // On garde la FIN : les derniers retours valent mieux que les premiers.
-    if(tout.length > RETOURS_MAX) tout = tout.slice(tout.length - RETOURS_MAX);
+    // ⚠️ MAIS LA COUPE LAISSE UNE TRACE. Elle etait muette : les plus anciens
+    // retours disparaissaient sans que personne, ni l'auteur ni le lecteur,
+    // puisse le savoir. Le champ etait a 3 462 caracteres sur 4 000 le 9
+    // septembre 2026 -- deux collages de plus et les retours du 6 septembre
+    // etaient perdus en silence. Une perte annoncee se rattrape ; une perte
+    // muette ne se decouvre jamais.
+    if(tout.length > RETOURS_MAX){
+        const perdus = tout.length - RETOURS_MAX;
+        tout = "[COUPE] " + perdus + " caracteres plus anciens ont ete retires, faute de place."
+             + String.fromCharCode(10) + tout.slice(perdus);
+    }
     try{ localStorage.setItem(RETOURS_KEY, tout); }catch(e){}
     zone.value = "";
     oublierBrouillonRetour();
@@ -21554,7 +21609,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 506;
+const APP_VERSION = 507;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
