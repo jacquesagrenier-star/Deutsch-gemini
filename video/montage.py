@@ -225,9 +225,26 @@ def main():
         # cale dessus. Jamais l'inverse. L'image coupee et la piste sonore
         # entrent separement dans le mux qui suit, et c'est -t fin qui les
         # ramene a la meme longueur.
+        #
+        # ⚠️ « SECONDES APRES LA REPLIQUE » VEUT DIRE APRES LE DERNIER MOT.
+        # On visait AMORCE + la duree du FICHIER + la queue. Un mp3 porte du
+        # silence aux deux bouts (0,19 s en queue en moyenne, 2,33 s sur le
+        # plan 13) : --queue 0.6 laissait donc 0,8 s de plan apres le dernier
+        # mot, et bien plus sur le 13. C'est la meme confusion fichier/voix
+        # qui faisait articuler la machoire trop longtemps.
+        #
+        # Pour un plan synchronise, la voix est DANS le clip, et lipsync.py
+        # l'a centree lui-meme : on mesure donc le clip. Pour les autres, on
+        # sait ou on va la poser.
+        if synchronise:
+            _dv, fin_voix, _fv = parole(F, v)
+        else:
+            _dv, fv, _fv = parole(F, s)
+            fin_voix = (AMORCE if (da_ + AMORCE) <= dv_ else 0.0) + fv
+
         fin, image, trop_court = dv_, v, ""
         if a.queue is not None and p["type"] == "replique":
-            vise = AMORCE + da_ + a.queue
+            vise = fin_voix + a.queue
             if vise < dv_ - 0.02:
                 coupe = os.path.join(tmp, "_coupe%02d.mp4" % p["n"])
                 ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
