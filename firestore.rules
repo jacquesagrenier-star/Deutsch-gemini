@@ -1,0 +1,74 @@
+// Regles de securite Firestore du projet deutschai-b6fbb.
+//
+// ⚠️ CE FICHIER N'EST PAS DEPLOYE AUTOMATIQUEMENT. Il n'y a pas de Firebase CLI
+// dans ce projet : les regles vivent dans la console Firebase, et ce fichier en
+// est la COPIE. Apres toute modification ici, il faut aller les coller dans
+//   https://console.firebase.google.com/project/deutschai-b6fbb/firestore/rules
+// puis cliquer « Publier ». L'inverse est vrai aussi : une regle changee dans la
+// console et pas recopiee ici fait mentir ce fichier.
+//
+// Pourquoi le versionner malgre ca : jusqu'au 9 septembre 2026 ces regles
+// n'existaient qu'a un seul endroit, sans copie. Un projet Firebase perdu ou une
+// modification malheureuse et rien n'aurait permis de les reconstituer.
+//
+// L'adresse de l'administrateur est deja publique (ADMIN_EMAIL dans index.html,
+// et la cle Firebase web l'est par nature) : la mettre ici n'expose rien de plus.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'jacques.a.grenier@gmail.com';
+    }
+
+    match /inviteCodes/{code} {
+      allow get: if true;
+      allow list: if isAdmin();
+      allow create: if isAdmin();
+      allow delete: if isAdmin();
+      // Un code se consomme une seule fois, et celui qui le consomme ne peut
+      // toucher qu'aux trois champs de sa consommation.
+      allow update: if request.auth != null
+                    && resource.data.used == false
+                    && request.resource.data.used == true
+                    && request.resource.data.usedBy == request.auth.uid
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['used', 'usedAt', 'usedBy']);
+      allow update: if isAdmin()
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['note']);
+    }
+
+    match /users/{uid} {
+      allow get: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow list: if isAdmin();
+      allow write: if request.auth != null && request.auth.uid == uid;
+      // L'admin ne peut modifier QUE l'acces aux chapitres VHS chez autrui :
+      // il n'a aucune raison de toucher a la progression de quelqu'un.
+      allow update: if isAdmin()
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['vhsChaptersEnabled']);
+    }
+
+    // AJOUTE LE 9 SEPTEMBRE 2026 (app v504).
+    //
+    // Le tableau de bord affichait la liste des testeurs en lisant `users` en
+    // entier : 2,53 Mo pour douze personnes, dont 100 % du champ `progress`,
+    // qu'il n'affiche jamais. Le SDK web ne sait pas ne demander que quelques
+    // champs -- c'est le document entier ou rien. Sur iPhone, cette lecture
+    // gelait l'app plus de cinq secondes avant qu'iOS ne la redemarre.
+    //
+    // `resumes` porte donc UNIQUEMENT les dix champs que le tableau affiche
+    // (adresse, prenom, deux compteurs, serie, retours, mots demandes,
+    // synonymes ecartes, acces VHS, date). Quelques kilo-octets par testeur au
+    // lieu de quelques centaines. C'est une vitrine derivee, reconstructible a
+    // tout moment depuis `users` -- jamais une source de verite.
+    match /resumes/{uid} {
+      // Personne d'autre que l'admin n'a de raison de lire ces resumes : ils
+      // nomment des testeurs et portent leurs retours. Chacun garde ses
+      // propres donnees dans `users/{uid}`, qu'il lit deja.
+      allow get, list: if isAdmin();
+      // Chacun ecrit le sien a chaque sauvegarde. L'admin ecrit ceux des
+      // autres : « Reconstruire les resumes » les remplit tous d'un coup, et
+      // le bouton d'acces VHS doit s'y refleter.
+      allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
+    }
+  }
+}
