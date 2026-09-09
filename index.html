@@ -3940,7 +3940,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v503</span>
+        <span class="subtitle-version">v504</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6378,6 +6378,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <div class="card">
         <strong data-i18n="admin_users_title">Testeurs</strong>
+        <!-- La reconstruction est le SEUL endroit de l'app qui telecharge
+             encore tous les documents complets. Volontairement derriere un
+             bouton, et pas au chargement : c'est une operation lourde, elle
+             doit etre demandee. Elle ne sert qu'une fois, et apres l'ajout
+             d'un testeur d'avant la v504. -->
+        <div class="info-box" data-i18n="admin_resumes_desc">Le tableau lit des résumés légers. Un testeur y apparaît dès sa première sauvegarde ; ceux inscrits avant cette version arrivent d'un coup avec le bouton ci-dessous.</div>
+        <div class="spacer"></div>
+        <button class="secondary" id="adminRebuildBtn" onclick="reconstruireResumes()" data-i18n="admin_rebuild_btn">RECONSTRUIRE LES RÉSUMÉS →</button>
+        <div class="spacer"></div>
         <div id="adminUsersList" class="info-box" data-i18n="loading_label">Chargement...</div>
     </div>
 </section>
@@ -6735,6 +6744,11 @@ const I18N = {
         home_title_1_en_dir: "Apprends l'anglais",
         home_title_2_en_dir: "mot par mot.",
         home_subtitle_en_dir: "Ton tuteur personnel pour la grammaire anglaise et le vocabulaire.",
+        admin_resumes_desc: "Le tableau lit des résumés légers. Un testeur y apparaît dès sa première sauvegarde ; ceux inscrits avant cette version arrivent d'un coup avec le bouton ci-dessous.",
+        admin_rebuild_btn: "RECONSTRUIRE LES RÉSUMÉS →",
+        admin_rebuild_running: "RECONSTRUCTION…",
+        admin_rebuild_done: "{n} résumé(s) reconstruit(s).",
+        admin_no_resumes: "Aucun résumé. Soit ils n'ont pas encore été construits — touche « Reconstruire les résumés » — soit les écritures Firestore sont refusées, et rien ne se sauvegarde depuis le début.",
         home_ring_hint: "Touche le cercle pour changer de niveau",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
         progress_info_texte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.\n\nUn mot devient maîtrisé après quatre « Je savais » d'affilée — revu d'abord dans la séance, puis après 1 jour, 3 jours, 7 jours. « Je le sais déjà » le marque tout de suite.\n\n« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
@@ -7581,6 +7595,11 @@ const I18N = {
         home_title_1_en_dir: "Learn English",
         home_title_2_en_dir: "word by word.",
         home_subtitle_en_dir: "Your personal tutor for English grammar and vocabulary.",
+        admin_resumes_desc: "The table reads lightweight summaries. A tester appears as soon as they save once; those who signed up before this version arrive all at once with the button below.",
+        admin_rebuild_btn: "REBUILD SUMMARIES →",
+        admin_rebuild_running: "REBUILDING…",
+        admin_rebuild_done: "{n} summary/summaries rebuilt.",
+        admin_no_resumes: "No summaries. Either they have not been built yet — tap “Rebuild summaries” — or Firestore writes are being refused, and nothing has been saving at all.",
         home_ring_hint: "Tap the circle to change level",
         progress_info_titre: "What moves this percentage",
         progress_info_texte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.\n\nA word becomes mastered after four “I knew it” in a row — seen again within the session first, then after 1 day, 3 days, 7 days. “I already know this” marks it straight away.\n\n“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
@@ -8429,6 +8448,11 @@ const I18N = {
         home_title_1_en_dir: "İngilizce öğren",
         home_title_2_en_dir: "kelime kelime.",
         home_subtitle_en_dir: "İngilizce dilbilgisi ve kelime için kişisel öğretmenin.",
+        admin_resumes_desc: "Tablo hafif özetleri okur. Bir test kullanıcısı ilk kaydıyla birlikte görünür; bu sürümden önce kaydolanlar aşağıdaki düğmeyle bir defada gelir.",
+        admin_rebuild_btn: "ÖZETLERİ YENİDEN OLUŞTUR →",
+        admin_rebuild_running: "YENİDEN OLUŞTURULUYOR…",
+        admin_rebuild_done: "{n} özet yeniden oluşturuldu.",
+        admin_no_resumes: "Özet yok. Ya henüz oluşturulmadılar — « Özetleri yeniden oluştur » düğmesine dokun — ya da Firestore yazmaları reddediliyor ve başından beri hiçbir şey kaydedilmiyor.",
         home_ring_hint: "Seviyeyi değiştirmek için daireye dokun",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
         progress_info_texte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.\n\nBir kelime, arka arkaya dört kez « Biliyordum » dedikten sonra öğrenilmiş sayılır — önce aynı oturumda, sonra 1 gün, 3 gün, 7 gün sonra. « Bunu zaten biliyorum » onu hemen işaretler.\n\n« Bilmiyordum » bu durumu geri alır ve yüzde düşer.\n\nÖğrenilmiş bir kelime kontrol için 16 günde bir geri gelir, bu sırada sayılmaya devam eder.",
@@ -9892,6 +9916,11 @@ const I18N = {
         home_title_1_en_dir: "Вивчай англійську",
         home_title_2_en_dir: "слово за словом.",
         home_subtitle_en_dir: "Твій особистий репетитор з англійської граматики та лексики.",
+        admin_resumes_desc: "Таблиця читає легкі зведення. Тестер з’являється тут після першого збереження; ті, хто зареєструвався раніше, появляються водночас через кнопку нижче.",
+        admin_rebuild_btn: "ПЕРЕБУДУВАТИ ЗВЕДЕННЯ →",
+        admin_rebuild_running: "ПЕРЕБУДОВА…",
+        admin_rebuild_done: "Перебудовано зведень: {n}.",
+        admin_no_resumes: "Зведень немає. Або їх ще не побудовано — торкнись « Перебудувати зведення » — або записи в Firestore відхиляються, і нічого не зберігається від початку.",
         home_ring_hint: "Торкнись кола, щоб змінити рівень",
         progress_info_titre: "Що змінює цей відсоток",
         progress_info_texte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.\n\nСлово стає засвоєним після чотирьох « Я знав » поспіль — спершу воно повертається в тому ж занятті, потім через 1 день, 3 дні, 7 днів. « Я це вже знаю » позначає його одразу.\n\n« Я не знав » знімає засвоєння, і відсоток знижується.\n\nЗасвоєне слово повертається кожні 16 днів для перевірки й далі зараховується.",
@@ -10744,6 +10773,11 @@ const I18N = {
         home_title_1_en_dir: "انگلیسی یاد بگیر",
         home_title_2_en_dir: "واژه به واژه.",
         home_subtitle_en_dir: "آموزگار شخصی تو برای دستور زبان و واژگان انگلیسی.",
+        admin_resumes_desc: "جدول خلاصه‌های سبک را می‌خواند. هر آزمونگر پس از نخستین ذخیره در آن دیده می‌شود؛ کسانی که پیش از این نسخه ثبت‌نام کرده‌اند، با دکمهٔ زیر یکجا می‌آیند.",
+        admin_rebuild_btn: "بازسازی خلاصه‌ها →",
+        admin_rebuild_running: "در حال بازسازی…",
+        admin_rebuild_done: "{n} خلاصه بازسازی شد.",
+        admin_no_resumes: "هیچ خلاصه‌ای نیست. یا هنوز ساخته نشده‌اند — «بازسازی خلاصه‌ها» را لمس کن — یا نوشتن در Firestore رد می‌شود و از ابتدا چیزی ذخیره نمی‌شود.",
         home_ring_hint: "برای تغییر سطح، دایره را لمس کن",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
         progress_info_texte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.\n\nیک واژه پس از چهار بار پشت‌سرهم «می‌دانستم» آموخته شمرده می‌شود — نخست در همان جلسه بازمی‌گردد، سپس پس از ۱ روز، ۳ روز و ۷ روز. «این را از قبل می‌دانم» آن را بی‌درنگ ثبت می‌کند.\n\n«نمی‌دانستم» این وضعیت را پس می‌گیرد و درصد پایین می‌آید.\n\nواژهٔ آموخته‌شده هر ۱۶ روز برای بررسی بازمی‌گردد و در این مدت شمرده می‌شود.",
@@ -13931,6 +13965,42 @@ async function syncProgressToCloud(){
         champsRetiresSync = [];
         const aEcrire = sansIndefinis(snapshot, "");
         await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), aEcrire, { merge: true });
+
+        // ---- LE RESUME LEGER, pour le tableau de bord ----
+        // Le tableau de bord n'affiche que dix champs, mais
+        // `collection('users').get()` ramene les documents ENTIERS : 2,53 Mo
+        // pour douze testeurs le 9 septembre 2026, dont 100 % de `progress`,
+        // qu'il n'affiche jamais. Sur iPhone ca gelait l'app plus de cinq
+        // secondes, puis iOS la redemarrait -- et le texte tape dans le
+        // formulaire de retour partait avec elle.
+        //
+        // Le SDK web NE SAIT PAS projeter de champs : la seule facon de ne pas
+        // telecharger `progress` est de ne pas le mettre dans le document
+        // qu'on lit. D'ou ce doublon volontaire, quelques kilo-octets par
+        // testeur au lieu de quelques centaines.
+        //
+        // ⚠️ `vhsChaptersEnabled` n'est PAS ecrit ici : il appartient a
+        // l'admin (toggleUserVhsAccess), et l'inclure l'effacerait a chaque
+        // sauvegarde de la personne.
+        try{
+            await window.fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, user.uid), {
+                email: aEcrire.email,
+                // Pose a l'inscription par updateProfile() : disponible sans
+                // aucune lecture Firestore.
+                firstName: user.displayName || "",
+                masteredCount: aEcrire.masteredCount,
+                totalCount: aEcrire.totalCount,
+                streak: aEcrire.streak,
+                retoursUsager: aEcrire.retoursUsager || "",
+                vocabDemandes: aEcrire.vocabDemandes || [],
+                synonymesEcartes: aEcrire.synonymesEcartes || "",
+                updatedAt: window.fsServerTimestamp()
+            }, { merge: true });
+        }catch(e){
+            // Un resume absent se voit dans le tableau de bord et se repare
+            // avec « Reconstruire les resumes ». Il ne doit JAMAIS faire
+            // echouer la sauvegarde de la progression, qui vient de reussir.
+        }
         // Une ecriture reussie mais amputee n'est pas un succes silencieux : le
         // tableau de bord doit le dire, sinon un champ mal calcule disparaitrait
         // pour toujours sans que personne le sache.
@@ -17664,7 +17734,11 @@ async function renderAdminUsersList(){
            </div>`
         : "";
     try{
-        const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, 'users'));
+        // On lit les RESUMES, pas les documents complets : voir le
+        // commentaire dans syncProgressToCloud. Un testeur y apparait des sa
+        // premiere sauvegarde ; ceux d'avant la v504 arrivent d'un coup avec
+        // « Reconstruire les resumes ».
+        const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, RESUMES_COLL));
         const users = [];
         snap.forEach(d => users.push({ id: d.id, ...d.data() }));
         users.sort((a, b) => (b.masteredCount || 0) - (a.masteredCount || 0));
@@ -17683,7 +17757,11 @@ async function renderAdminUsersList(){
             // syncProgressToCloud avalent leur exception pour ne pas deranger
             // la personne qui apprend). On le dit ici plutot que de laisser
             // croire qu'il n'y a personne.
-            container.innerHTML = alerteSync + `<div>${t('admin_no_users')}</div>`;
+            // Avant la v504 ce vide signifiait « les ecritures echouent ».
+            // Maintenant il peut aussi vouloir dire « les resumes ne sont pas
+            // encore construits » -- deux causes opposees derriere le meme
+            // ecran vide. On nomme les deux plutot que d'en supposer une.
+            container.innerHTML = alerteSync + `<div>${t('admin_no_resumes')}</div>`;
             return;
         }
         // Identification par le PRENOM (saisi a l'inscription et deja enregistre
@@ -17739,10 +17817,59 @@ async function renderAdminUsersList(){
     }
 }
 
+// Remplit `resumes` a partir des documents complets. C'est la seule lecture
+// lourde qui reste (2,53 Mo pour douze testeurs), d'ou le bouton : on
+// l'assume une fois, on ne la subit pas a chaque ouverture.
+async function reconstruireResumes(){
+    if(!isAdminUser()) return;
+    const btn = document.getElementById("adminRebuildBtn");
+    const libelle = btn ? btn.textContent : "";
+    if(btn){ btn.disabled = true; btn.textContent = t("admin_rebuild_running"); }
+    try{
+        const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, 'users'));
+        const docs = [];
+        snap.forEach(d => docs.push({ id: d.id, data: d.data() }));
+        let ecrits = 0;
+        for(const d of docs){
+            const u = d.data || {};
+            // Un document sans adresse n'est pas un testeur : c'est un reste.
+            if(!u.email) continue;
+            await window.fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, d.id), {
+                email: u.email,
+                firstName: u.firstName || "",
+                masteredCount: u.masteredCount || 0,
+                totalCount: u.totalCount || 0,
+                streak: u.streak || 0,
+                retoursUsager: u.retoursUsager || "",
+                vocabDemandes: u.vocabDemandes || [],
+                synonymesEcartes: u.synonymesEcartes || "",
+                vhsChaptersEnabled: !!u.vhsChaptersEnabled,
+                // La date du document complet, PAS l'heure de la
+                // reconstruction : sinon tous les testeurs paraitraient
+                // actifs a l'instant.
+                updatedAt: u.updatedAt || null
+            }, { merge: true });
+            ecrits++;
+        }
+        showInfoToast(tf("admin_rebuild_done", { n: ecrits }));
+        renderAdminUsersList();
+    }catch(e){
+        showInfoToast(t("admin_action_failed"));
+    }finally{
+        if(btn){ btn.disabled = false; btn.textContent = libelle || t("admin_rebuild_btn"); }
+    }
+}
+
 async function toggleUserVhsAccess(uid, enable){
     if(!isAdminUser()) return;
     try{
         await window.fsUpdateDoc(window.fsDoc(window.firestoreDb, 'users', uid), { vhsChaptersEnabled: enable });
+        // Le tableau de bord lit le resume : sans cette seconde ecriture, le
+        // bouton basculerait a l'ecran et reviendrait a l'etat d'avant au
+        // rechargement suivant. L'app de la personne, elle, lit son propre
+        // document complet -- c'est lui qui fait autorite.
+        await window.fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, uid),
+                              { vhsChaptersEnabled: enable }, { merge: true });
         renderAdminUsersList();
     }catch(e){
         showInfoToast(t('admin_action_failed'));
@@ -19795,6 +19922,11 @@ function restaurerBrouillonRetour(){
     }catch(e){}
 }
 
+// Collection des resumes de testeurs. Voir le commentaire dans
+// syncProgressToCloud : elle existe pour que le tableau de bord n'ait plus a
+// telecharger le champ `progress` de tout le monde.
+const RESUMES_COLL = "resumes";
+
 const CARTE_MOT_KEY = "deutschAI_carteDitMot";
 const CARTE_PLURIEL_KEY = "deutschAI_carteDitPluriel";
 const CARTE_PHRASE_KEY = "deutschAI_carteDirePhrase";
@@ -21388,7 +21520,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 503;
+const APP_VERSION = 504;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

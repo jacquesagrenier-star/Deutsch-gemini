@@ -934,3 +934,38 @@ chez Jacques (600 chez un autre, 450 chez deux autres), invisibles pour le
 compte et jamais relues. Elles ne faussent pas le pourcentage — toutes à
 `mastered:false` — mais elles gonflent le document, et **un mot marqué maîtrisé
 pendant cette fenêtre serait perdu**. **Non corrigé.**
+
+### v504 — le tableau de bord ne télécharge plus la progression de personne
+
+**Le défaut, mesuré :** `collection('users').get()` ramenait **2,53 Mo pour douze
+testeurs, dont 100 % de `progress`**, un champ que le tableau n'affiche jamais.
+Le SDK web ne sait pas projeter de champs — la seule façon de ne pas télécharger
+`progress` est de **ne pas le mettre dans le document qu'on lit**.
+
+**Ce qui change :** chaque sauvegarde écrit désormais, en plus du document
+complet, un résumé de quelques kilo-octets dans `resumes/{uid}` — les dix
+champs que le tableau affiche réellement (adresse, prénom, deux compteurs,
+série, retours, mots demandés, synonymes écartés, date). Le tableau de bord lit
+cette collection.
+
+Trois pièges traités en chemin :
+
+- **`vhsChaptersEnabled` n'est pas écrit par la sauvegarde de la personne.** Il
+  appartient à l'admin ; l'inclure l'aurait effacé à chaque synchronisation.
+  `toggleUserVhsAccess()` écrit maintenant dans les deux documents.
+- **Le prénom vient de `user.displayName`**, posé à l'inscription par
+  `updateProfile()` — donc disponible sans aucune lecture Firestore.
+- **Un écran vide ne veut plus dire la même chose.** Avant, il signifiait « les
+  écritures échouent ». Il peut maintenant signifier « les résumés ne sont pas
+  encore construits ». Le message nomme les deux causes au lieu d'en supposer
+  une.
+
+**La migration est un bouton, pas un chargement.** « Reconstruire les résumés »
+est le seul endroit de l'app qui télécharge encore les documents complets : une
+opération lourde qu'on assume une fois, au lieu de la subir à chaque ouverture.
+Elle recopie `updatedAt` du document d'origine, pas l'heure de la
+reconstruction — sinon tous les testeurs paraîtraient actifs à l'instant.
+
+⚠️ **Une règle Firestore est nécessaire pour `resumes`** : sans elle, l'écriture
+du résumé échoue (en silence, sans gêner la sauvegarde) et le tableau reste
+vide.
