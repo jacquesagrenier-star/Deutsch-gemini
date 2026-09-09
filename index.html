@@ -3961,7 +3961,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v511</span>
+        <span class="subtitle-version">v512</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -17468,13 +17468,26 @@ function ouvrirEntreeRecherche(entry){
 // traverse -- et il ne retrouvait plus la porte d'ou il venait.
 let panneauAvantFlashcards = null;
 
+// LES ECRANS DE LA FAMILLE « REGLAGES ». Aucun ne doit devenir l'ecran ou le
+// bouton Retour ramene, sinon on tourne en rond entre eux.
+//
+// ⚠️ REGRESSION DE LA v510, SIGNALEE PAR JACQUES LE JOUR MEME : « il tourne en
+// rond, il passe du tableau de bord dans administration [...] et il ne me
+// ramene plus a la page d'accueil ». La condition ne comparait qu'a
+// « settings » : ouvrir le tableau de bord posait donc ecranAvantReglages =
+// "adminDashboard", et le Retour des reglages y revenait indefiniment.
+//
+// Tout ecran qu'on ouvre DEPUIS les reglages et dont le Retour revient aux
+// reglages doit figurer ici.
+const ECRANS_DES_REGLAGES = new Set(["settings", "adminDashboard"]);
+
 function showScreen(id){
     // L'ECRAN OU L'ON ETAIT, PAS CELUI D'OU L'ON ECRIT. Le formulaire « Signaler
     // un probleme » vit dans <section id="settings"> : au moment de l'envoi,
     // l'ecran actif est TOUJOURS `settings`. Joindre l'ecran actif dirait donc
     // « reglages » a tout le monde -- pire que rien, puisque ca a l'air d'une
     // information. On retient le dernier ecran qui n'est pas les reglages.
-    if(id !== "settings") ecranAvantReglages = id;
+    if(!ECRANS_DES_REGLAGES.has(id)) ecranAvantReglages = id;
     // Un ecran de grammaire ouvert avant l'arrivee de grammaire.json serait une
     // suite de cadres vides. On declenche le chargement (il a normalement deja
     // eu lieu au demarrage) et on previent si le reseau a lache -- un ecran
@@ -19958,7 +19971,13 @@ let ecranAvantReglages = "";
 // disparue laisserait un ecran vide, pire que l'accueil.
 function quitterReglages(){
     const id = ecranAvantReglages;
-    if(id && id !== "settings" && document.getElementById(id)){
+    // ⚠️ LE SECOND VERROU, ET IL COMPTE. Meme si un ecran de la famille
+    // « reglages » finissait un jour par se glisser dans ecranAvantReglages --
+    // un ecran ajoute plus tard et oublie dans ECRANS_DES_REGLAGES --, on
+    // n'y revient pas : on rentre a l'accueil. Une liste a tenir a jour finit
+    // toujours par ne plus l'etre ; la boucle de la v510 ne doit pas pouvoir
+    // revenir par cette porte.
+    if(id && !ECRANS_DES_REGLAGES.has(id) && document.getElementById(id)){
         showScreen(id);
         return;
     }
@@ -21719,7 +21738,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 511;
+const APP_VERSION = 512;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
