@@ -1968,6 +1968,12 @@ input, textarea, select{
 /* Le « i » qui explique le pourcentage. Discret par defaut : il accompagne le
    chiffre, il ne se dispute pas avec lui. La zone tactile fait 28px alors que
    le glyphe en fait 15 -- une cible plus petite se rate au pouce. */
+.info-progression-ligne{
+    display:flex;
+    justify-content:center;
+    margin-top:2px;
+}
+
 .info-progression{
     -webkit-appearance:none; appearance:none;
     border:0; background:transparent; cursor:pointer;
@@ -3955,7 +3961,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v507</span>
+        <span class="subtitle-version">v508</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4004,6 +4010,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  REDESCEND apres un « Je ne savais pas » et que rien ne dit
                  pourquoi. L'explication est DANS la carte, a cote du chiffre
                  qu'elle explique : une aide rangee ailleurs n'est jamais lue. -->
+        </div>
+        <!-- ⚠️ CE BOUTON DOIT RESTER HORS DE .home-level-hint. Il y etait en
+             v503-v507 et personne ne pouvait le voir : cette ligne d'aide est
+             masquee par `display:none !important` (voir plus haut dans le CSS),
+             et ses elements ne restent dans le DOM que pour que le JS puisse y
+             ecrire sans planter. Signale par Jacques : « le i information
+             n'apparait pas dans le rectangle de progression ». -->
+        <div class="info-progression-ligne">
             <button type="button" class="info-progression" onclick="basculerInfoProgression()"
                     aria-expanded="false" aria-controls="infoProgressionBox"
                     data-i18n-aria-label="progress_info_titre" aria-label="Ce qui fait bouger ce pourcentage">&#9432;</button>
@@ -21609,7 +21623,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 507;
+const APP_VERSION = 508;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
