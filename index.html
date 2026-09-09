@@ -3961,7 +3961,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v508</span>
+        <span class="subtitle-version">v509</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12724,6 +12724,15 @@ const ARTICLE_DECLENCHEURS = {
                    "(kime / neye ait?)", "(از آن که یا از آن چه؟)"]
 };
 
+// La phrase seule, sans l'indication entre parentheses, avec la bonne forme a
+// la place du blanc. Meme regle de majuscule que phraseAllemandeDeLExercice() :
+// un blanc qui ouvre la phrase prend la capitale.
+function phraseSeuleArticle(phrase, rep){
+    let bon = String(rep);
+    if(phrase.indexOf("___") === 0) bon = bon.charAt(0).toUpperCase() + bon.slice(1);
+    return phrase.replace("___", bon).trim();
+}
+
 // Construit une serie d'exercices a partir des lignes brutes. La reponse n'est
 // jamais ecrite dans les donnees : elle est LUE dans ARTICLE_FORMES, donc elle
 // ne peut pas diverger du tableau que l'ecran d'explication affiche.
@@ -12733,7 +12742,21 @@ function construireExercicesArticles(cas, famille, lignes){
         const rep = ARTICLE_FORMES[famille][cas][genre];
         const expl = ARTICLE_EXPLICATIONS[famille + "." + cas + "." + genre];
         const question = phrase + " (" + dico + ", " + casNom + ")";
+        // LA VOIX NE DOIT PAS LIRE L'INDICATION ENTRE PARENTHESES. L'enonce
+        // porte « Ich glaube ___ Arzt. (der Arzt, Dativ) » : la parenthese
+        // aide l'oeil, mais lue a voix haute elle donne « Ich glaube dem
+        // Arzt, der Arzt, Dativ ». Signale par Jacques le 9 septembre 2026.
+        //
+        // `audioDe` est le champ que phraseAllemandeDeLExercice() consulte EN
+        // PREMIER : il existait deja, personne ne le posait ici.
+        //
+        // ⚠️ Ces 120 exercices sont FABRIQUES PAR LE CODE, pas lus dans
+        // exercices.json : audio/manifest.py ne les voit donc pas, et aucun
+        // mp3 n'existe pour eux. Meme avec `audioDe`, la lecture reste en voix
+        // de synthese tant que ces phrases ne sont pas dans le manifeste. Ce
+        // champ rend au moins la phrase lue CORRECTE.
         return {
+            audioDe: phraseSeuleArticle(phrase, rep),
             topic: "Articles \u00b7 " + casNom,
             question, question_en: question,
             translation: fr, translation_en: en, translation_tr: tr, translation_fa: fa || "",
@@ -12758,6 +12781,7 @@ function construireExercicesArticlesMix(lignes){
         const question = phrase + " (" + dico + ")";
         const d = ARTICLE_DECLENCHEURS[decl];
         return {
+            audioDe: phraseSeuleArticle(phrase, rep),
             topic: "Articles \u00b7 m\u00e9lange",
             question, question_en: question,
             translation: fr, translation_en: en, translation_tr: tr, translation_fa: fa || "",
@@ -21623,7 +21647,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 508;
+const APP_VERSION = 509;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
