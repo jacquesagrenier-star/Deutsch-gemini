@@ -3940,7 +3940,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v504</span>
+        <span class="subtitle-version">v505</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6748,6 +6748,8 @@ const I18N = {
         admin_rebuild_btn: "RECONSTRUIRE LES RÉSUMÉS →",
         admin_rebuild_running: "RECONSTRUCTION…",
         admin_rebuild_done: "{n} résumé(s) reconstruit(s).",
+        admin_rebuild_refuse: "Écriture refusée ({code}). La règle Firestore sur la collection « resumes » n'est pas encore publiée — Firestore lui-même fonctionne.",
+        admin_rebuild_echec: "Échec de la reconstruction ({code}).",
         admin_no_resumes: "Aucun résumé. Soit ils n'ont pas encore été construits — touche « Reconstruire les résumés » — soit les écritures Firestore sont refusées, et rien ne se sauvegarde depuis le début.",
         home_ring_hint: "Touche le cercle pour changer de niveau",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
@@ -7599,6 +7601,8 @@ const I18N = {
         admin_rebuild_btn: "REBUILD SUMMARIES →",
         admin_rebuild_running: "REBUILDING…",
         admin_rebuild_done: "{n} summary/summaries rebuilt.",
+        admin_rebuild_refuse: "Write refused ({code}). The Firestore rule for the “resumes” collection has not been published yet — Firestore itself is working.",
+        admin_rebuild_echec: "Rebuild failed ({code}).",
         admin_no_resumes: "No summaries. Either they have not been built yet — tap “Rebuild summaries” — or Firestore writes are being refused, and nothing has been saving at all.",
         home_ring_hint: "Tap the circle to change level",
         progress_info_titre: "What moves this percentage",
@@ -8452,6 +8456,8 @@ const I18N = {
         admin_rebuild_btn: "ÖZETLERİ YENİDEN OLUŞTUR →",
         admin_rebuild_running: "YENİDEN OLUŞTURULUYOR…",
         admin_rebuild_done: "{n} özet yeniden oluşturuldu.",
+        admin_rebuild_refuse: "Yazma reddedildi ({code}). « resumes » koleksiyonu için Firestore kuralı henüz yayınlanmadı — Firestore'un kendisi çalışıyor.",
+        admin_rebuild_echec: "Yeniden oluşturma başarısız ({code}).",
         admin_no_resumes: "Özet yok. Ya henüz oluşturulmadılar — « Özetleri yeniden oluştur » düğmesine dokun — ya da Firestore yazmaları reddediliyor ve başından beri hiçbir şey kaydedilmiyor.",
         home_ring_hint: "Seviyeyi değiştirmek için daireye dokun",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
@@ -9920,6 +9926,8 @@ const I18N = {
         admin_rebuild_btn: "ПЕРЕБУДУВАТИ ЗВЕДЕННЯ →",
         admin_rebuild_running: "ПЕРЕБУДОВА…",
         admin_rebuild_done: "Перебудовано зведень: {n}.",
+        admin_rebuild_refuse: "Запис відхилено ({code}). Правило Firestore для колекції « resumes » ще не опубліковане — сам Firestore працює.",
+        admin_rebuild_echec: "Перебудова не вдалася ({code}).",
         admin_no_resumes: "Зведень немає. Або їх ще не побудовано — торкнись « Перебудувати зведення » — або записи в Firestore відхиляються, і нічого не зберігається від початку.",
         home_ring_hint: "Торкнись кола, щоб змінити рівень",
         progress_info_titre: "Що змінює цей відсоток",
@@ -10777,6 +10785,8 @@ const I18N = {
         admin_rebuild_btn: "بازسازی خلاصه‌ها →",
         admin_rebuild_running: "در حال بازسازی…",
         admin_rebuild_done: "{n} خلاصه بازسازی شد.",
+        admin_rebuild_refuse: "نوشتن رد شد ({code}). قاعدهٔ Firestore برای مجموعهٔ «resumes» هنوز منتشر نشده است — خود Firestore کار می‌کند.",
+        admin_rebuild_echec: "بازسازی ناکام ماند ({code}).",
         admin_no_resumes: "هیچ خلاصه‌ای نیست. یا هنوز ساخته نشده‌اند — «بازسازی خلاصه‌ها» را لمس کن — یا نوشتن در Firestore رد می‌شود و از ابتدا چیزی ذخیره نمی‌شود.",
         home_ring_hint: "برای تغییر سطح، دایره را لمس کن",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
@@ -17854,7 +17864,16 @@ async function reconstruireResumes(){
         showInfoToast(tf("admin_rebuild_done", { n: ecrits }));
         renderAdminUsersList();
     }catch(e){
-        showInfoToast(t("admin_action_failed"));
+        // « Verifie que Firestore est activé » etait un mauvais conseil : le
+        // premier echec de cette action n'est pas un service eteint, c'est
+        // une REGLE MANQUANTE sur `resumes` -- et les deux causes ne se
+        // reparent pas au meme endroit. Le code d'erreur du SDK le dit
+        // exactement ; le cacher oblige a deviner.
+        const code = String((e && (e.code || e.message)) || "?");
+        showInfoToast(code.indexOf("permission") !== -1
+            ? tf("admin_rebuild_refuse", { code: code })
+            : tf("admin_rebuild_echec", { code: code }));
+        console.warn("reconstruireResumes", e);
     }finally{
         if(btn){ btn.disabled = false; btn.textContent = libelle || t("admin_rebuild_btn"); }
     }
@@ -21520,7 +21539,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 504;
+const APP_VERSION = 505;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
