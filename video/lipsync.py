@@ -307,6 +307,25 @@ def main():
     for p, v, s_aud in travail:
         n = str(p["n"])
         if etat.get(n, {}).get("fichier"):
+            # ⚠️ « DEJA FAIT » NE VEUT RIEN DIRE SI LE CLIP SOURCE A CHANGE.
+            #
+            # Le 9 septembre 2026, le plan 05 a ete retourne : 03-final a recu
+            # une nouvelle prise, mais etat.json disait encore COMPLETED et
+            # 04-lipsync gardait l'ancienne. Une relance aurait saute le plan
+            # en silence, et le montage aurait repris la vieille version --
+            # apres 200 credits de re-tournage payes pour rien.
+            #
+            # On compare donc les dates : une source plus recente que le
+            # resultat rend le travail perime. On ne l'efface pas tout seul,
+            # une generation payee ne se jette pas sans qu'on le dise.
+            fait = os.path.join(dst, etat[n]["fichier"])
+            if os.path.exists(fait) and os.path.getmtime(v) > os.path.getmtime(fait):
+                print("  plan%02d  PERIME : le clip de 03-final est plus recent"
+                      " que le plan synchronise." % p["n"])
+                print("           Pour le refaire : retirer l'entree \"%s\" de"
+                      " 04-lipsync/etat.json" % n)
+                print("           et supprimer 04-lipsync/%s" % etat[n]["fichier"])
+                continue
             print("  plan%02d  deja fait" % p["n"])
             continue
 

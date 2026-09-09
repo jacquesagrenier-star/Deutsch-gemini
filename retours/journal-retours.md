@@ -1189,3 +1189,55 @@ Le défaut n'était pas subtil : il suffisait de regarder l'écran. Les quatre
 correctifs ci-dessus ont tous été vus à l'écran avant d'être poussés, et deux
 d'entre eux ont changé à cause de ce qu'on y a mesuré — le plancher du mode
 Écoute est passé de 20 à 19 px parce que deux mots tenaient à 19.
+
+## 9 septembre 2026 — le re-tournage est validé sur un plan
+
+**La question posée au plan 05 :** la mâchoire se ferme-t-elle quand la voix
+s'arrête ? Elle n'a rien à voir avec les lèvres — sync.so les repeint de toute
+façon, mais **il ne peut pas refermer une mâchoire**, c'est écrit dans
+`lipsync.py` depuis le 8 septembre.
+
+**Réponse mesurée**, une image tous les 0,2 s entre 2,7 s et 3,7 s :
+
+| | 2,7 s | 2,9 s | 3,1 s | 3,3 s | 3,5 s |
+|---|---|---|---|---|---|
+| ancienne prise | ouverte | ouverte | ouverte | ouverte | ouverte |
+| **nouvelle** | ouverte | ouverte | entrouverte | se ferme | **fermée** |
+
+La consigne fonctionne, avec **environ 0,6 s de latence** : la fermeture
+demandée à 2,8 s se produit vers 3,4 s. Seedance ne prend pas les chiffres au
+pied de la lettre, mais il comprend l'intention — et c'est ce qui manquait
+entièrement avant.
+
+**Verdict de Jacques, sur les vidéos synchronisées :** la version à 5 s a trop
+d'air, l'ancienne à 4 s est mauvaise (la bouche continue), **celle coupée à
+3,52 s est la bonne**.
+
+### Les deux réglages qui en découlent
+
+- **Générer à 5 secondes**, toujours. L'air en trop n'est pas un défaut : c'est
+  la marge dont Seedance a besoin pour refermer la bouche. Générer à 3,5 s
+  donnerait une bouche qui parle encore à la coupe.
+- **Couper au montage avec `--queue 0.9`** : 0,35 d'amorce + la réplique + 0,9.
+
+### Mon erreur de méthode, et ce qu'elle a appris
+
+J'ai d'abord envoyé les prises **brutes** en disant « avec la voix posée, comme
+au montage ». Jacques : « la voix n'est pas du tout synchronisée. » Il avait
+raison — un clip Seedance fait articuler des mots INVENTÉS, et je sautais
+l'étape sync.so. Ce qu'il jugeait n'était pas ce que le test devait démontrer.
+
+**Deux étapes distinctes, que j'avais confondues :** la mâchoire vient de la
+génération, les lèvres du lip-sync. Le re-tournage ne sert qu'à la première.
+
+### ⚠️ Un piège qui aurait coûté 200 crédits pour rien
+
+`etat.json` marquait le plan 05 `COMPLETED` et `04-lipsync/` gardait l'ancienne
+version — alors que `03-final/` venait de recevoir la nouvelle prise. Une
+relance aurait **sauté le plan en silence**, et le montage aurait repris la
+vieille version, après un re-tournage payé pour rien.
+
+`lipsync.py` compare désormais les dates : une source plus récente que le
+résultat rend le travail **périmé**, et il le dit au lieu de sauter. Il
+n'efface rien tout seul — une génération payée ne se jette pas sans qu'on le
+dise. Vérifié : le garde-fou se déclenche sur le plan 05.
