@@ -1013,3 +1013,40 @@ la régression fabriquée qui l'a montré, pas la relecture.
 **Vérifié sur banc d'essai après correction** : sélecteur de voix à 16 px dans
 la police de l'app, **aucun champ sous 16 px dans les 42 écrans**, et aucun
 écran ne déborde à 375 px de large.
+
+### Les quatre retours du matin, et le champ qui allait déborder
+
+Retrouvés le 9 septembre : ils avaient été écrits sur l'appareil mais n'étaient
+jamais montés (voir le défaut 1 plus haut). Une sauvegarde les a emportés depuis.
+
+| Enregistré (UTC) | Version | Écran | Ce qui est signalé |
+|---|---|---|---|
+| 03:59 | v501 | carte adverbien 48/71 « meistens » | « Parfois sans raison il retourne au vidéo d'ouverture et revient ensuite dans l'écran où j'étais. » |
+| 04:05 | v501 | carte adverbien 26/32 « also » | « Système gèle, je clique plusieurs fois sur une carte et rien ne se passe. Ensuite retour au vidéo d'accueil et revient à la carte. » |
+| 04:07 | v501 | carte adverbien 26/32 « also » | « Surtout quand je soulève un problème et que je clique sur envoyer. Ensuite l'écran devient comme plus gros, je dois rabaisser avec mes doigts ; ça devrait toujours revenir au format de mon cellulaire. » |
+| 04:09 | v501 | adverbienVokabular | « Lorsque je clique sur le retour, ça devrait toujours me ramener exactement où je me trouvais avant, mais ce n'est pas toujours le cas. » |
+
+**État :** 03:59 et 04:05 décrivent le gel attaqué en v504. **04:07 est corrigé**
+(v503 puis v506 — voir plus bas). **04:09 n'est pas traité** : c'est un défaut
+de navigation distinct, et le seul des retours du matin qui reste entier.
+
+### Le champ des retours pouvait se dévorer lui-même
+
+Mesuré le 9 septembre : **3 462 caractères sur un plafond de 4 000**, et le champ
+garde la FIN. Encore un peu et les retours du 6 septembre disparaissaient.
+
+La cause n'est pas le volume normal : Jacques a collé son propre historique de
+retours dans le champ de retour, trois fois de suite, pour me le transmettre.
+Chaque collage a réécrit les anciens retours à l'intérieur du champ — quatre
+copies de certains.
+
+**Deux défauts réels que ce geste a mis au jour :**
+
+1. **Un texte collé casse le découpage.** `tests/retours.js` sépare les entrées
+   sur un horodatage **en début de ligne**. Un texte qui en contient est donc
+   débité en faux retours : 25 entrées lues pour 13 envois réels. Ce n'est pas
+   une bizarrerie de lecteur — c'est le format qui n'a aucune défense contre son
+   propre motif.
+2. **Rien ne prévient de l'approche du plafond**, et le silence est total : les
+   plus anciens retours sont coupés sans le moindre signe. Le lecteur, lui, ne
+   peut pas savoir qu'il manque quelque chose.
