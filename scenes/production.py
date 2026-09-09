@@ -27,6 +27,7 @@ LES DEUX PROMPTS, ET POURQUOI ILS SONT SEPARES
 import argparse
 import io
 import json
+import math
 import os
 import sys
 
@@ -423,8 +424,30 @@ def duree_a_generer(p, scene=None):
     Plus long seulement quand la replique ne rentre pas : il faut la fenetre
     de parole, l'amorce avant, et une seconde de silence apres pour que la
     bouche ait le temps de se refermer a l'image.
+
+    ⚠️ ET ASSEZ LONG POUR LE NOMBRE DE MOTS (9 septembre 2026)
+        Depuis qu'on donne la voix en reference, Seedance ETIRE l'articulation
+        quand la replique est trop dense pour le clip. Plan 11, huit mots dans
+        cinq secondes : la bouche articule 3,07 s pour une phrase de 2,47.
+        Jacques : « la bouche d'Anna continue a bouger apres qu'elle a arrete
+        de parler ». Un etirement ne se recale pas au montage.
+
+        Le budget qui circule chez ceux qui montent des films avec ce modele --
+        environ 12 mots pour 10 secondes, 20 pour 15 -- soit 1,2 mot par
+        seconde. Nos trois prises mesurees lui donnent raison sans exception :
+
+            plan 16   5 mots, marge +1,0   ->  parfait
+            plan 14   6 mots, marge  0,0   ->  duree juste
+            plan 11   8 mots, marge -2,0   ->  ETIREE de 0,60 s
+
+        On demande donc au moins mots/1,2 secondes, et une de plus pour
+        respirer. Le surplus se coupe au montage : il ne coute que des credits,
+        alors qu'une prise etiree coute la prise entiere.
     """
-    return max(5, int(round(0.5 + duree_voix(p, scene) + 1.5)))
+    mots = len((p.get("de") or "").split())
+    return min(15, max(5,
+                       int(round(0.5 + duree_voix(p, scene) + 1.5)),
+                       int(math.ceil(mots / 1.2)) + 1))
 
 
 def video_prompt(m, p=None, scene=None):
