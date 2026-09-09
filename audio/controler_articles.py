@@ -23,6 +23,7 @@ import argparse
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.error
@@ -41,13 +42,16 @@ def base_audio():
     ailleurs que l'application, et le controle dirait alors le contraire de la
     verite.
     """
+    # ⚠️ AUDIO_BASE n'est PAS une URL ecrite en dur : c'est
+    # `LANGUE_ENSEIGNEE.audio`, et l'adresse vit dans la table de la langue
+    # enseignee. Chercher « AUDIO_BASE » suivi de « http » ne trouvait donc
+    # rien -- le premier jet de ce script s'arretait la.
     src = io.open(os.path.join(RACINE, "index.html"), encoding="utf-8").read()
-    for ligne in src.splitlines():
-        if "AUDIO_BASE" in ligne and "http" in ligne:
-            d = ligne.index("\"") + 1
-            f = ligne.index("\"", d)
-            return ligne[d:f]
-    sys.exit("  AUDIO_BASE introuvable dans index.html.")
+    m = re.search(r'audio:\s*"(https?://[^"]+)"', src)
+    if not m:
+        sys.exit("  L'adresse audio (LANGUE_ENSEIGNEE.audio) est introuvable "
+                 "dans index.html.")
+    return m.group(1)
 
 
 def phrases():
