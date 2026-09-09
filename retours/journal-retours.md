@@ -1160,3 +1160,32 @@ subtil : il suffisait de regarder l'écran.
 **La coupe annoncée a servi le jour même.** Le champ de retours a affiché
 `[COUPE] 160 caractères plus anciens ont été retirés, faute de place` — la
 troncature qui, la veille encore, aurait emporté ces 160 caractères en silence.
+
+### Les quatre retours de la v507, traités (v508 → v511)
+
+| Signalé | Cause trouvée | Version |
+|---|---|---|
+| Le « i » n'apparaît pas | Le bouton était dans `.home-level-hint`, masqué par `display:none !important` — depuis la v503 | **v508** |
+| Ce n'est pas la voix Aurora | Les 120 exercices d'articles sont **fabriqués par le code**, pas dans `exercices.json` : le manifeste audio ne les voyait pas, aucun mp3 n'existait | **v509** + manifeste |
+| Le Retour ne ramène pas où j'étais | Le bouton appelait `goHome()` ; l'écran de départ était déjà connu mais ne servait qu'à étiqueter les retours | **v510** |
+| Une lettre déborde sur une autre ligne | `overflow-wrap:anywhere` coupe n'importe où : 177 mots sur 1 385 laissaient ≤ 3 lettres seules | **v511** |
+
+**Sur la voix, la moitié seulement est réglée.** La phrase lue est désormais
+correcte — elle ne dit plus « Ich glaube dem Arzt, der Arzt, Dativ », la
+parenthèse d'indication étant écartée par le champ `audioDe`, qui existait déjà
+et que personne ne posait ici. Mais **la voix reste celle du téléphone** tant
+que les 146 fichiers manquants ne sont pas générés : 3 769 caractères, 3,1 %
+d'un mois de forfait Creator.
+
+Le manifeste demande maintenant ces phrases **au code lui-même** (node évalue
+`index.html`, même procédé que `tests/i18n_dump.js`) plutôt que de les recopier,
+et **s'arrête si node échoue** — un manifeste amputé de 146 phrases se
+regénérerait sans un mot et laisserait ces exercices muets une seconde fois.
+
+**Ce que le « i » invisible dit de ma méthode.** J'avais vérifié la syntaxe, le
+vérificateur, les clés dans les cinq langues — **et jamais le rendu**, que le
+`CLAUDE.md` demande en toutes lettres. Le banc d'essai existait depuis la v506.
+Le défaut n'était pas subtil : il suffisait de regarder l'écran. Les quatre
+correctifs ci-dessus ont tous été vus à l'écran avant d'être poussés, et deux
+d'entre eux ont changé à cause de ce qu'on y a mesuré — le plancher du mode
+Écoute est passé de 20 à 19 px parce que deux mots tenaient à 19.
