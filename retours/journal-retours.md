@@ -1050,3 +1050,89 @@ copies de certains.
 2. **Rien ne prévient de l'approche du plafond**, et le silence est total : les
    plus anciens retours sont coupés sans le moindre signe. Le lecteur, lui, ne
    peut pas savoir qu'il manque quelque chose.
+
+## 9 septembre 2026 — le turc était fini, l'ukrainien ne l'était pas
+
+**Le turc est complet**, vérifié sur les trois plans le même jour : corpus
+8 003/8 003, exercices 1 682/1 682, interface 911/911, zéro gabarit perdu, zéro
+balise cassée, zéro chaîne restée en français. Ce que mes notes disaient
+manquer — les libellés de catégorie des mots-outils — était fait depuis.
+
+**L'ukrainien, non**, et l'écart ne se voyait sur aucun compteur d'entrées :
+
+| | corpus | interface | exercices | catégories des mots-outils |
+|---|---|---|---|---|
+| turc | 8 003 ✔ | 911 ✔ | 1 682 ✔ | 161 ✔ |
+| **ukrainien** | 8 003 ✔ | 911 ✔ | **152 / 1 682** | **0 / 161** |
+
+Un ukrainophone ouvrant un exercice de grammaire voyait l'anglais, **sans que
+rien ne le signale** : le champ manquant, l'app replie en silence. C'est le
+piège déjà nommé pour le turc, l'ukrainien et le persan — rencontré cette fois
+non pas sur le câblage des lecteurs, mais sur **une catégorie de contenu
+entière que personne ne comptait**.
+
+### Ce qui est fait
+
+- **Les 161 catégories de mots-outils**, plus 31 libellés anglais qui étaient
+  présents mais vides — ce qu'aucun compteur d'entrées ne voit non plus.
+- **1 037 exercices sur 1 682 (62 %)**, en dix-neuf jeux.
+
+### La méthode, et pourquoi elle tient
+
+Les explications d'un jeu ne sont presque jamais uniques : ce sont quelques
+**moules** avec des trous. Les 145 exercices du Perfekt tiennent en **huit**
+moules ; les 70 de relativOrder en **deux**. On traduit les moules une fois, un
+script lit les trous dans le français et remplit. Recopier 145 fois la même
+règle à la main l'aurait fait finir dite de huit façons différentes.
+
+Seules les **phrases d'exemple** sont traduites une par une : aucun moule ne
+les couvre, et c'est là qu'est le vrai travail.
+
+### Le garde-fou, et les trois choses qu'il a trouvées
+
+Chaque script **refuse d'écrire** s'il reste du français dans le résultat. Une
+explication à moitié traduite passerait tous les contrôles existants — le champ
+existe et n'est pas vide. Il a servi trois fois :
+
+1. **Il refusait les 140 explications, toutes correctes** : sa liste de mots
+   français contenait « du » et « le », et il prenait le « du warst » allemand
+   pour du français. *Un filet qui attrape tout n'attrape rien* — il liste
+   désormais des mots **distinctifs**.
+2. **Trois suffixes manqués par mon relevé** (« forme polie pour une
+   demande »), sur quatre exercices du Konjunktiv II.
+3. **Un fragment remplacé avant celui qui le contient** : « + infinitif »
+   mangeait l'intérieur d'un suffixe plus long, qui repartait à moitié en
+   français.
+
+Aucune des trois n'aurait été vue à la relecture.
+
+### Choix de langue assumés
+
+L'ukrainien **distingue** ce que le français confond : `wenn`/`ob` donne
+« якщо »/« чи », `aber`/`sondern` donne « але »/« а ». La traduction fidèle
+donne donc la réponse. Choix assumé, le même qu'en persan : mieux vaut montrer
+à quelqu'un que sa langue fait déjà la distinction que l'allemand demande,
+plutôt qu'une tournure tordue pour préserver un piège qui n'est pas le sien.
+En revanche `wenn`/`wann` se disent tous deux « коли » : **ce piège-là reste
+entier**, et l'effacer par symétrie serait la faute inverse.
+
+### Ce qui reste — 645 exercices, onze jeux
+
+`blocsConnecteurs` (120), `possessiv` (70), `ordreInverse` (54),
+`relativGenitivReconnaissance` (51), `adjektiveDeklination` (50), `exercises`
+(50), `kasusReconnaissance` (50), `partikelnNuance` (50),
+`praepReconnaissance` (50), `praepWoWohin` (50), `wortstellungNicht` (50).
+
+`blocsConnecteurs` est le plus difficile : ses 120 explications sont faites de
+**blocs recombinés**, pas d'un moule unique — il en faudra une douzaine, plus
+une vingtaine d'explications qui ne servent qu'une fois.
+
+⚠️ **Ce qu'aucun de ces contrôles ne juge, ici comme pour le turc et le
+persan : un relecteur ukrainophone.** Le registre, le naturel d'une tournure.
+Une phrase peut être exacte, cohérente, bien câblée, et sonner comme une
+traduction.
+
+⚠️ **Anomalie trouvée en chemin, non corrigée** : dans TeKaMoLo, la tuile de
+réponse vaut « temporel », « causal », « modal » — **en français, pour toutes
+les langues**. `correctEn`, `correctTr`, `correctFa` sont tous absents. Le trou
+est en amont de l'ukrainien.
