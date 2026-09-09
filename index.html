@@ -1946,6 +1946,21 @@ body[data-theme="dark"] .search-launch input::placeholder{color:#6f7684;}
    ⚠️ Tout nouveau input/textarea/select doit naitre a 16px au moins. Les
    trois qui etaient en dessous sont corriges : .filters-bar (14),
    #retourTexte (14), .admin-code-note (13). */
+/* LA REGLE DE BASE, celle qui protege les champs qu'on n'a pas encore ecrits.
+   Corriger champ par champ ne suffisait pas : le selecteur de voix des
+   reglages est cree par JavaScript SANS AUCUN STYLE, et un <select> nu
+   n'herite ni de la taille ni de la police du body -- il prend celles du
+   navigateur, mesurees a 13,33px en Arial. Aucune recherche de « font-size »
+   ne pouvait le trouver, puisque sa taille n'est ecrite nulle part.
+   Ces trois selecteurs d'element ont la specificite la plus faible qui soit :
+   toute regle existante (.answer a 18px, #wordSearchInput, .filters-bar)
+   continue de gagner. Ils ne font que poser un plancher pour ce qui n'a rien
+   demande. */
+input, textarea, select{
+    font-size:16px;
+    font-family:inherit;
+}
+
 #wordSearchInput{
     font-size:16px;
 }
@@ -3940,7 +3955,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v505</span>
+        <span class="subtitle-version">v506</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -21539,7 +21554,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 505;
+const APP_VERSION = 506;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

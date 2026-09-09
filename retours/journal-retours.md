@@ -969,3 +969,47 @@ reconstruction — sinon tous les testeurs paraîtraient actifs à l'instant.
 ⚠️ **Une règle Firestore est nécessaire pour `resumes`** : sans elle, l'écriture
 du résumé échoue (en silence, sans gêner la sauvegarde) et le tableau reste
 vide.
+
+### L'élargissement de l'écran, deuxième couche — v506
+
+Signalé une deuxième fois **après** le correctif de la v503 : « l'écran perd son
+format, sa grosseur aussi ». La v503 était juste mais incomplète, et la raison
+mérite d'être retenue.
+
+**Ce que la v503 avait corrigé** : trois champs dont la taille écrite était sous
+16 px. **Ce qu'elle ne pouvait pas voir** : un champ dont la taille n'est écrite
+nulle part. Le sélecteur de voix des Réglages est créé par JavaScript **sans
+aucun style**, et un `<select>` nu **n'hérite ni de la taille ni de la police du
+body** — il prend celles du navigateur. Mesuré sur banc d'essai :
+
+```
+select de voix : 13.3333px, police Arial
+zone de retour : 16px  (corrigée en v503)
+```
+
+13,33 px : Safari iOS zoome au premier toucher et ne dézoome jamais. Et il est
+dans les Réglages, **juste au-dessus du formulaire de retour** — sur le chemin
+exact de la personne qui vient signaler quelque chose.
+
+**Aucune recherche de texte ne pouvait trouver ce défaut : il n'y avait rien à
+chercher.** C'est ce qui a rendu la v503 incomplète, et c'est pourquoi la v506
+répond autrement — par une règle de base sur `input, textarea, select`, la
+spécificité la plus faible possible, qui pose un plancher pour tout ce qui n'a
+rien demandé sans toucher aux règles existantes (`.answer` à 18 px reste à 18).
+
+**Demande explicite de Jacques : « il faudrait s'assurer que la règle s'applique
+pour tous les champs qu'on crée ».** D'où un contrôle dans `tests/verifier.py`,
+qui refuse désormais un `push` si :
+
+- un champ porte une taille écrite sous 16 px ;
+- **ou la règle de base a disparu** — sans elle, le prochain champ créé sans
+  style repart à 13 px, en silence.
+
+Les deux régressions ont été **fabriquées et vues échouer** avant d'être
+gardées : un filet qu'on n'a pas vu attraper quelque chose n'est pas un filet.
+La première tentative de contrôle laissait d'ailleurs passer le cas (a) — c'est
+la régression fabriquée qui l'a montré, pas la relecture.
+
+**Vérifié sur banc d'essai après correction** : sélecteur de voix à 16 px dans
+la police de l'app, **aucun champ sous 16 px dans les 42 écrans**, et aucun
+écran ne déborde à 375 px de large.

@@ -538,6 +538,52 @@ def verifier_retours_flashcards(r, source):
 
 # --------------------------------------------------------------------------
 
+def verifier_taille_des_champs(r, source):
+    """Aucun champ de saisie ne doit descendre sous 16px.
+
+    En dessous, Safari iOS zoome sur le champ des qu'on le touche ET NE
+    DEZOOME PAS : l'app reste plus large que l'ecran, et il faut pincer a deux
+    doigts pour revenir. Signale trois fois par le meme testeur avant qu'on
+    trouve d'ou ca venait (v503 puis v506).
+
+    Deux failles distinctes, et ce controle ferme les deux :
+      - une taille ECRITE sous 16px (le cas de .filters-bar, #retourTexte et
+        .admin-code-note, corriges en v503) ;
+      - une taille ABSENTE, donc heritee du navigateur -- le cas du selecteur
+        de voix, mesure a 13,33px. C'est celui qu'aucune recherche de texte
+        n'attrape : il n'y a rien a chercher. D'ou la regle de base
+        `input, textarea, select` dans le CSS, dont l'absence est un echec
+        ici : sans elle, le prochain champ cree sans style repart a 13px.
+    """
+    # a) La regle de base doit exister, sinon le filet a un trou.
+    if not re.search(r"input,\s*textarea,\s*select\s*\{[^}]*font-size:\s*16px", source):
+        r.echec("interface",
+                "la regle de base `input, textarea, select { font-size:16px }` a disparu -- "
+                "tout champ cree sans style repartira a 13px et fera zoomer Safari iOS")
+    r.controle()
+
+    # b) Aucune taille explicite sous 16px sur un champ, inline ou en CSS.
+    fautes = []
+    for m in re.finditer(r"<(input|textarea|select)\b[^>]*style=\"([^\"]*)\"", source):
+        px = re.search(r"font-size:\s*(\d+(?:\.\d+)?)px", m.group(2))
+        if px and float(px.group(1)) < 16:
+            fautes.append("<%s style=\"...font-size:%spx...\">" % (m.group(1), px.group(1)))
+    # Les blocs CSS dont le selecteur nomme un champ.
+    for m in re.finditer(r"([^{}]*(?:input|textarea|select)[^{}]*)\{([^}]*)\}", source):
+        sel = m.group(1).strip().splitlines()[-1].strip()
+        if sel.startswith("/*") or "::placeholder" in sel:
+            continue
+        px = re.search(r"font-size:\s*(\d+(?:\.\d+)?)px", m.group(2))
+        if px and float(px.group(1)) < 16:
+            fautes.append("%s { font-size:%spx }" % (sel, px.group(1)))
+    for f in fautes:
+        r.echec("interface",
+                "champ de saisie sous 16px -- Safari iOS zoomera dessus sans dezoomer : %s" % f)
+    r.controle(max(1, len(fautes)))
+    print("   champs de saisie: plancher de 16px respecte (%d faute%s)"
+          % (len(fautes), "s" if len(fautes) > 1 else ""))
+
+
 def verifier_version(r, source):
     """Le numero de version vit a trois endroits : l'etiquette affichee, la
     constante APP_VERSION et version.json, que l'app distante consulte pour
@@ -662,6 +708,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_taille_des_champs(r, source)
     verifier_version(r, source)
     verifier_chemins(r)
     verifier_export_csv(r)
