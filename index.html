@@ -3896,7 +3896,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v501</span>
+        <span class="subtitle-version">v502</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6146,7 +6146,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="retour_titre">Signaler un problème ou une idée</strong>
         <p style="color:#576177; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
         <div class="spacer"></div>
-        <textarea id="retourTexte" rows="4" maxlength="600"
+        <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
                   style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:14px;
                          border:1px solid rgba(30,41,59,.2); background:transparent; color:inherit;"></textarea>
         <div class="spacer"></div>
@@ -17349,6 +17349,7 @@ function openSettings(){
     renderCartePhraseSetting();
     const journalCard = document.getElementById("journalAudioCard");
     if(journalCard) journalCard.classList.toggle("hidden", !isAdminUser());
+    restaurerBrouillonRetour();
     showScreen("settings");
 }
 
@@ -19671,6 +19672,7 @@ function envoyerRetour(){
     if(tout.length > RETOURS_MAX) tout = tout.slice(tout.length - RETOURS_MAX);
     try{ localStorage.setItem(RETOURS_KEY, tout); }catch(e){}
     zone.value = "";
+    oublierBrouillonRetour();
     if(bouton){
         bouton.textContent = t("retour_merci");
         setTimeout(() => { bouton.textContent = t("retour_envoyer"); }, 3000);
@@ -19678,6 +19680,41 @@ function envoyerRetour(){
     // Part avec la prochaine sauvegarde, comme le reste. Rien ne bloque, et un
     // reseau absent ne perd rien : le texte est deja sur l'appareil.
     scheduleCloudSync();
+}
+
+// LE BROUILLON SURVIT AU REDEMARRAGE. Constate le 9 septembre 2026 : l'app
+// gele quelques secondes puis repart au W de l'ouverture, et le texte tape
+// dans la zone ci-dessus disparait avec elle. Plusieurs retours ont ete
+// perdus comme ca -- ils n'ont JAMAIS atteint `localStorage`, la mesure du
+// document Firestore l'a montre (une sauvegarde reussie ne les portait pas).
+//
+// Ce n'est PAS un correctif du gel, dont la cause reste a etablir. C'est un
+// filet : le texte est ecrit a chaque frappe, donc au pire on retrouve ce
+// qu'on avait commence a dire au lieu de devoir s'en souvenir. Un formulaire
+// dont le contenu depend de la survie de la page est un formulaire qui perd
+// exactement ce qui compte -- le rapport du defaut le plus grave.
+const BROUILLON_KEY = "deutschAI_retourBrouillon";
+
+function sauverBrouillonRetour(){
+    const zone = document.getElementById("retourTexte");
+    if(!zone) return;
+    try{ localStorage.setItem(BROUILLON_KEY, zone.value || ""); }catch(e){}
+}
+
+function oublierBrouillonRetour(){
+    try{ localStorage.removeItem(BROUILLON_KEY); }catch(e){}
+}
+
+// Appelee a l'ouverture des reglages. Elle ne PIETINE JAMAIS une zone deja
+// remplie : si la personne est en train d'ecrire et rouvre le panneau, son
+// texte en cours vaut mieux que celui d'avant.
+function restaurerBrouillonRetour(){
+    const zone = document.getElementById("retourTexte");
+    if(!zone || (zone.value || "").trim()) return;
+    try{
+        const garde = localStorage.getItem(BROUILLON_KEY) || "";
+        if(garde) zone.value = garde;
+    }catch(e){}
 }
 
 const CARTE_MOT_KEY = "deutschAI_carteDitMot";
@@ -21273,7 +21310,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 501;
+const APP_VERSION = 502;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

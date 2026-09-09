@@ -836,3 +836,47 @@ sept jours sans visite) écraserait le tout par une chaîne vide.
 Ce défaut n'explique **pas** les manquants du 9 septembre — ils viennent du même
 formulaire, du même contexte et de la même minute que les deux qui sont arrivés.
 Il reste une perte à venir, à corriger indépendamment.
+
+### Ce que la mesure a écarté, puis trouvé (9 septembre 2026, v502)
+
+**Trois hypothèses tirées de la lecture du code, toutes fausses**, et c'est la
+mesure qui les a tuées à chaque fois :
+
+1. *Le conflit tuile / lien.* `contexteEcran()` renvoie l'écran **de fond**, pas
+   le panneau : les retours envoyés depuis les Réglages portent le nom de
+   l'écran d'où l'on vient. Les manquants sortent du même formulaire, du même
+   contexte et de la même minute que ceux qui sont arrivés.
+2. *Le minuteur de 4 secondes.* `updatedAt` mesuré à deux minutes près : la
+   sauvegarde **part et réussit**.
+3. *Le coût de la sauvegarde.* Chronométré sur les vraies données — 390 groupes,
+   11 290 mots, 527 Ko : `0,6 ms` de comptage, `3,3 ms` de `sansIndefinis`,
+   `2,2 ms` de `JSON.stringify`. Une trentaine de millisecondes sur un iPhone.
+   Ça ne gèle rien.
+
+**Ce que la mesure a trouvé, et qui n'était dans aucune de mes hypothèses :**
+
+    documents dans users : 12
+    poids TOTAL telecharge par le tableau de bord : 2,53 Mo
+    dont le seul champ `progress` : 2,53 Mo  (100 %)
+
+`collection("users").get()` ramène les documents **entiers**, et le SDK web ne
+sait pas projeter de champs. Le tableau de bord affiche l'adresse, deux
+compteurs et les retours — **il télécharge 2,53 Mo de `progress` qu'il n'affiche
+jamais**, et que le cache du SDK garde ensuite en mémoire pour la suite de la
+session.
+
+Ça concorde avec les trois observations de Jacques : jamais au démarrage,
+après un moment d'usage, et **dans l'administration** précisément. Le volume
+croît avec chaque testeur et chaque jour de progression : c'est un mur qui
+avance tout seul.
+
+**Le filet posé en v502 (et ce qu'il n'est pas).** Le brouillon du formulaire de
+retour est écrit dans `localStorage` à chaque frappe et restauré à l'ouverture
+des Réglages. Ce **n'est pas** un correctif du gel — la cause reste à établir
+sur l'appareil. C'est le refus de continuer à perdre, à chaque incident, le
+rapport du défaut le plus grave.
+
+**Reste à décider :** sortir `progress` de ce que le tableau de bord lit. La
+piste la moins risquée est un document de résumé léger écrit en même temps que
+la sauvegarde (adresse, compteurs, retours), le tableau de bord ne lisant plus
+que celui-là. Additif, réversible, sans migration.
