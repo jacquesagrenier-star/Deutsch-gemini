@@ -4257,7 +4257,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v536</span>
+        <span class="subtitle-version">v537</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4378,10 +4378,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             </div>
             <ul class="info-legende">
-                <li data-i18n="legende_serie"></li>
                 <li data-i18n="legende_cercle"></li>
-                <li data-i18n="legende_semaine"></li>
                 <li data-i18n="legende_objectif"></li>
+                <li data-i18n="legende_serie"></li>
+                <li data-i18n="legende_rencontres"></li>
+                <li data-i18n="legende_maitrises"></li>
+                <li data-i18n="legende_grammaire"></li>
             </ul>
             <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
             <p data-i18n="progress_info_compte"></p>
@@ -7205,10 +7207,13 @@ const I18N = {
         admin_no_resumes: "Aucun résumé. Soit ils n'ont pas encore été construits — touche « Reconstruire les résumés » — soit les écritures Firestore sont refusées, et rien ne se sauvegarde depuis le début.",
         home_ring_hint: "Touche le cercle pour changer de niveau",
         carte_info_titre: "Comment lire cette carte",
-        legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as fait au moins une carte. Un jour sauté le ramène à zéro.",
-        legende_cercle: "◯ le cercle — ta progression sur le niveau affiché (A1, A2…). Touche-le pour passer d'un niveau à l'autre.",
+        legende_grammaire: "Exercices de grammaire — sur les 40 que compte l'app, ceux que tu as réussis deux fois sans aucune faute.",
+        legende_maitrises: "Mots maîtrisés — quatre bonnes réponses étalées sur onze jours. Il peut redescendre d'un ou deux si un mot est oublié à son contrôle.",
+        legende_rencontres: "Mots rencontrés — tous les mots que tu as vus au moins une fois, même sans les savoir. Ce nombre ne redescend jamais.",
+        legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as travaillé, vocabulaire ou grammaire. Un jour sauté le ramène à zéro.",
+        legende_cercle: "◯ le cercle ci-dessus — où tu en es d'un niveau entier. Il avance de 0,2 % par mot et ne bouge pas avant le 11ᵉ jour : c'est normal, et c'est pour ça qu'il est rangé ici plutôt qu'à l'accueil. Touche-le pour changer de niveau.",
         legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
-        legende_objectif: "🎯 objectif du jour — les cartes et exercices faits aujourd'hui, quelle que soit la réponse. Le nombre visé se change dans les réglages.",
+        legende_objectif: "La barre « Aujourd'hui » — les cartes faites depuis ce matin, sur ton objectif. Elle repart à zéro chaque jour. Le nombre visé se change dans les réglages, et il donne aussi la taille de ta séance.",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
         progress_info_compte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.",
         progress_info_deja: "« Je le sais déjà » saute toute l'échelle et le marque maîtrisé tout de suite.",
@@ -8084,10 +8089,13 @@ const I18N = {
         admin_no_resumes: "No summaries. Either they have not been built yet — tap “Rebuild summaries” — or Firestore writes are being refused, and nothing has been saving at all.",
         home_ring_hint: "Tap the circle to change level",
         carte_info_titre: "How to read this card",
-        legende_serie: "🔥 days — the number of days in a row you have done at least one card. A missed day sends it back to zero.",
-        legende_cercle: "◯ the ring — your progress on the level shown (A1, A2…). Tap it to switch levels.",
+        legende_grammaire: "Grammar exercises — out of the 40 in the app, those you have completed twice with no mistake.",
+        legende_maitrises: "Words mastered — four correct answers spread over eleven days. It can drop by one or two if a word is forgotten at its check.",
+        legende_rencontres: "Words met — every word you have seen at least once, even without knowing it. This number never goes down.",
+        legende_serie: "🔥 days — days in a row you have worked, vocabulary or grammar. Miss a day and it goes back to zero.",
+        legende_cercle: "◯ the ring above — how far you are through a whole level. It moves 0.2 % per word and stays at zero until day 11: that's normal, and it's why it lives here rather than on the home card. Tap it to switch level.",
         legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
-        legende_objectif: "🎯 daily goal — the cards and exercises you have done today, whatever the answer. The target is set in the settings.",
+        legende_objectif: "The “Today” bar — cards done since this morning, out of your goal. It resets every day. The target is set in the settings, and it also sets the size of your session.",
         progress_info_titre: "What moves this percentage",
         progress_info_compte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.",
         progress_info_deja: "“I already know this” skips the whole ladder and marks it mastered straight away.",
@@ -8965,10 +8973,13 @@ const I18N = {
         admin_no_resumes: "Özet yok. Ya henüz oluşturulmadılar — « Özetleri yeniden oluştur » düğmesine dokun — ya da Firestore yazmaları reddediliyor ve başından beri hiçbir şey kaydedilmiyor.",
         home_ring_hint: "Seviyeyi değiştirmek için daireye dokun",
         carte_info_titre: "Bu kartı nasıl okumalı",
-        legende_serie: "🔥 gün — arka arkaya en az bir kart yaptığın gün sayısı. Atlanan bir gün onu sıfıra döndürür.",
-        legende_cercle: "◯ halka — gösterilen seviyedeki ilerlemen (A1, A2…). Seviye değiştirmek için dokun.",
+        legende_grammaire: "Dilbilgisi alıştırmaları — uygulamadaki 40 tanesinden, hatasız olarak iki kez tamamladıkların.",
+        legende_maitrises: "Öğrenilen kelime — on bir güne yayılmış dört doğru cevap. Bir kelime kontrolünde unutulursa bir iki azalabilir.",
+        legende_rencontres: "Karşılaşılan kelime — en az bir kez gördüğün her kelime, bilmesen bile. Bu sayı asla düşmez.",
+        legende_serie: "🔥 gün — kelime ya da dilbilgisi, üst üste çalıştığın gün sayısı. Bir gün atlarsan sıfırlanır.",
+        legende_cercle: "◯ yukarıdaki halka — bir seviyenin neresindesin. Kelime başına %0,2 ilerler ve 11. güne kadar sıfırda kalır: bu normaldir, ve bu yüzden ana kartta değil burada durur. Seviyeyi değiştirmek için dokun.",
         legende_semaine: "📈 bu hafta — son yedi günde öğrendiğin kelimeler. Bu, toplam değil, son hızındır.",
-        legende_objectif: "🎯 günlük hedef — bugün yaptığın kartlar ve alıştırmalar, cevap ne olursa olsun. Hedef sayısı ayarlardan değiştirilir.",
+        legende_objectif: "“Bugün” çubuğu — bu sabahtan beri yapılan kartlar, hedefine oranla. Her gün sıfırlanır. Hedef ayarlardan değişir ve oturumunun boyutunu da belirler.",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
         progress_info_compte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.",
         progress_info_deja: "« Bunu zaten biliyorum » tüm basamakları atlar ve kelimeyi hemen öğrenilmiş sayar.",
@@ -10461,10 +10472,13 @@ const I18N = {
         admin_no_resumes: "Зведень немає. Або їх ще не побудовано — торкнись « Перебудувати зведення » — або записи в Firestore відхиляються, і нічого не зберігається від початку.",
         home_ring_hint: "Торкнись кола, щоб змінити рівень",
         carte_info_titre: "Як читати цю картку",
-        legende_serie: "🔥 днів — скільки днів поспіль ти зробив принаймні одну картку. Пропущений день повертає лічильник до нуля.",
-        legende_cercle: "◯ коло — твій поступ на показаному рівні (A1, A2…). Торкнися, щоб змінити рівень.",
+        legende_grammaire: "Вправи з граматики — із 40, що є в застосунку, ті, які ти пройшов двічі без жодної помилки.",
+        legende_maitrises: "Слів засвоєно — чотири правильні відповіді за одинадцять днів. Може зменшитись на одне-два, якщо слово забуто на перевірці.",
+        legende_rencontres: "Слів побачено — усі слова, які ти бачив хоча б раз, навіть не знаючи їх. Це число ніколи не зменшується.",
+        legende_serie: "🔥 днів — скільки днів поспіль ти працював, лексика чи граматика. Пропущений день повертає до нуля.",
+        legende_cercle: "◯ коло вгорі — де ти на цілому рівні. Воно рухається на 0,2 % за слово і не зрушить до 11-го дня: це нормально, і саме тому воно тут, а не на головній картці. Торкнись, щоб змінити рівень.",
         legende_semaine: "📈 цього тижня — слова, які ти засвоїв за останні сім днів. Це твоя нинішня швидкість, а не загальна сума.",
-        legende_objectif: "🎯 ціль на день — картки та вправи, зроблені сьогодні, хай якою була відповідь. Число змінюється в налаштуваннях.",
+        legende_objectif: "Смужка «Сьогодні» — картки, зроблені від ранку, з твоєї цілі. Щодня обнуляється. Ціль змінюється в налаштуваннях і водночас задає розмір сеансу.",
         progress_info_titre: "Що змінює цей відсоток",
         progress_info_compte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.",
         progress_info_deja: "« Я вже це знаю » пропускає всі щаблі й одразу позначає слово засвоєним.",
@@ -11332,10 +11346,13 @@ const I18N = {
         admin_no_resumes: "هیچ خلاصه‌ای نیست. یا هنوز ساخته نشده‌اند — «بازسازی خلاصه‌ها» را لمس کن — یا نوشتن در Firestore رد می‌شود و از ابتدا چیزی ذخیره نمی‌شود.",
         home_ring_hint: "برای تغییر سطح، دایره را لمس کن",
         carte_info_titre: "چگونه این کارت را بخوانیم",
-        legende_serie: "🔥 روز — شمار روزهای پیاپی که دست‌کم یک کارت انجام داده‌ای. یک روز از دست‌رفته آن را به صفر بازمی‌گرداند.",
-        legende_cercle: "◯ حلقه — پیشرفت تو در سطح نمایش‌داده‌شده (A1، A2…). برای تغییر سطح روی آن بزن.",
+        legende_grammaire: "تمرین‌های دستور — از ۴۰ تمرین برنامه، آن‌هایی که دو بار بدون هیچ اشتباهی انجام داده‌ای.",
+        legende_maitrises: "واژه‌های آموخته — چهار پاسخ درست در طول یازده روز. اگر واژه‌ای در بررسی فراموش شود، یکی دو تا کم می‌شود.",
+        legende_rencontres: "واژه‌های دیده‌شده — هر واژه‌ای که دست‌کم یک بار دیده‌ای، حتی بدون دانستنش. این عدد هرگز کم نمی‌شود.",
+        legende_serie: "🔥 روز — چند روز پیاپی کار کرده‌ای، واژگان یا دستور. یک روز غیبت آن را به صفر برمی‌گرداند.",
+        legende_cercle: "◯ حلقهٔ بالا — تا کجای یک سطح کامل رسیده‌ای. برای هر واژه ۰٫۲٪ پیش می‌رود و تا روز یازدهم تکان نمی‌خورد: این طبیعی است، و برای همین اینجاست نه در کارت خانه. برای تغییر سطح لمس کن.",
         legende_semaine: "📈 این هفته — واژه‌هایی که در هفت روز گذشته آموخته‌ای. این سرعت کنونی توست، نه یک جمع کل.",
-        legende_objectif: "🎯 هدف امروز — کارت‌ها و تمرین‌هایی که امروز انجام داده‌ای، هر پاسخی که داده باشی. شمار هدف در تنظیمات تغییر می‌کند.",
+        legende_objectif: "نوار «امروز» — کارت‌هایی که از صبح انجام داده‌ای، از هدف تو. هر روز صفر می‌شود. هدف در تنظیمات تغییر می‌کند و اندازهٔ جلسه را هم تعیین می‌کند.",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
         progress_info_compte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.",
         progress_info_deja: "«این را از قبل می‌دانم» همهٔ پله‌ها را رد می‌کند و واژه را بی‌درنگ آموخته‌شده نشان می‌دهد.",
@@ -22502,7 +22519,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 536;
+const APP_VERSION = 537;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
