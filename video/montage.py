@@ -186,6 +186,11 @@ def main():
                     help="couper chaque plan parlant SECONDES apres la fin de "
                          "la replique, synchronise ou non. Se rejoue autant "
                          "de fois qu'on veut. Sans lui, le plan va au bout.")
+    ap.add_argument("--jcut", type=float, default=None, metavar="SECONDES",
+                    help="faire entendre la replique du plan suivant SECONDES "
+                         "avant qu'on le voie -- le J-cut des monteurs. 0,4 "
+                         "est un bon premier essai. Se rejoue autant de fois "
+                         "qu'on veut.")
     a = ap.parse_args()
 
     F = ffmpeg()
@@ -196,6 +201,7 @@ def main():
     os.makedirs(tmp, exist_ok=True)
 
     morceaux = []
+    segments = []
     synchro = 0
     perimes = []
     print("  plan   clip    voix   %s" % "assemblage")
@@ -230,13 +236,14 @@ def main():
             synchro += 1
         else:
             v = origine
-        s = os.path.join(da, "%02d-%s.mp3" % (p["n"], p["locuteur"]))
+        s_mp3 = os.path.join(da, "%02d-%s.mp3" % (p["n"], p["locuteur"]))
         if not os.path.exists(v):
             sys.exit("  Plan %02d : clip manquant (%s)" % (p["n"], os.path.basename(v)))
-        if not os.path.exists(s):
-            sys.exit("  Plan %02d : replique manquante (%s)" % (p["n"], os.path.basename(s)))
+        if not os.path.exists(s_mp3):
+            sys.exit("  Plan %02d : replique manquante (%s)"
+                     % (p["n"], os.path.basename(s_mp3)))
 
-        dv_, da_ = duree(F, v), duree(F, s)
+        dv_, da_ = duree(F, v), duree(F, s_mp3)
         out = os.path.join(tmp, "plan%02d.mp4" % p["n"])
 
         # COUPER PLUTOT QU'ETIRER. Le 8 septembre, cherchant a supprimer le
@@ -294,7 +301,7 @@ def main():
         if synchronise:
             _dv, fin_voix, _fv = parole(F, v)
         else:
-            _dv, fv, _fv = parole(F, s)
+            _dv, fv, _fv = parole(F, s_mp3)
             fin_voix = (AMORCE if (da_ + AMORCE) <= dv_ else 0.0) + fv
 
         fin, image, trop_court = dv_, v, ""
@@ -338,26 +345,127 @@ def main():
             # fait en -c:v copy -an, elle jette le son. La piste synchronisee
             # est donc relue depuis l'original et ramenee a `fin` par -t.
             amorce, note = AMORCE, "  sync"
-            entree = ["-i", image, "-i", v, "-map", "0:v", "-map", "1:a"]
         else:
             # La voix tient-elle avec l'amorce ? Sinon on la colle au debut.
             amorce = AMORCE if (da_ + AMORCE) <= dv_ else 0.0
             note = "" if amorce else "  <- voix au ras, la replique remplit le plan"
-            entree = ["-i", image, "-itsoffset", "%.3f" % amorce, "-i", s,
-                      "-map", "0:v", "-map", "1:a"]
         note += trop_court
         if p["n"] in perimes:
             note += "  <- synchro PERIMEE, on montre le clip brut"
-        ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y"]
-           + entree
-           + ["-af", "apad", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
-              "-ar", "44100", "-t", "%.3f" % fin, out],
-           "plan %02d" % p["n"])
-        morceaux.append(out)
         if fin < dv_ - 0.02:
             note += "  coupe a %.2f s (-%.2f)" % (fin, dv_ - fin)
+
+        # LA PISTE DU SEGMENT DEVIENT UN FICHIER, ET LE MUX ATTEND.
+        #
+        # Image et son se muxaient d'un trait. Le J-cut a besoin de manipuler
+        # le son SEUL -- lui prendre sa tete, la melanger a la queue du plan
+        # d'avant -- donc on l'ecrit d'abord, exactement a la longueur du
+        # segment, et on mux dans une seconde passe. Sans --jcut, le resultat
+        # est le meme a la ligne pres : meme apad, meme -t.
+        sonf = os.path.join(tmp, "_son%02d.wav" % p["n"])
+        ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y"]
+           + (["-i", v] if synchronise
+              else ["-itsoffset", "%.3f" % amorce, "-i", s_mp3])
+           + ["-map", "0:a", "-af", "apad", "-ac", "1", "-ar", "44100",
+              "-t", "%.3f" % fin, sonf],
+           "piste du plan %02d" % p["n"])
+
+        segments.append({"n": p["n"], "type": p["type"], "image": image,
+                         "son": sonf, "fin": fin, "out": out, "note": note,
+                         "dv": dv_, "da": da_, "amorce": amorce,
+                         "synchronise": synchronise})
+
+    # ============ LE J-CUT ============
+    #
+    # CE QU'IL FAIT. On entend la replique du plan suivant AVANT de le voir :
+    # sa premiere syllabe tombe pendant qu'on regarde encore celui qui ecoute.
+    # C'est la grammaire ordinaire du champ-contrechamp, et son absence est
+    # exactement ce que les monteurs appellent un montage robotique -- douze
+    # repliques posees bout a bout, chacune separee de la suivante.
+    #
+    # ⚠️ LA CONTRAINTE QUI PASSE AVANT LE RYTHME : JAMAIS DEUX VOIX A LA FOIS.
+    # Au cinema, un J-cut peut chevaucher la fin d'une replique -- ca se fait,
+    # et ca sonne vivant. ICI, NON : c'est une video pour apprendre l'allemand,
+    # et deux voix qui se superposent rendent la phrase incomprehensible pile
+    # au moment ou elle doit s'entendre. Le chevauchement ne mord donc que sur
+    # le SILENCE de la queue du plan precedent, avec une respiration en plus.
+    # Quand la queue est trop courte, le J-cut est reduit -- ou saute, et on
+    # le dit.
+    #
+    # COMMENT. Pour faire entendre la voix de B `S` secondes avant l'image de
+    # B, on coupe la tete de B de h = (silence de tete de B) + S, et on
+    # melange ces h secondes a la fin du segment A. Le segment garde image et
+    # son de meme longueur -- le collage concat et son controle de derive ne
+    # changent pas d'un iota.
+    #
+    # L'image de B est RECODEE pour cette coupe : « -c:v copy » ne coupe pas
+    # une tete a la milliseconde, il tombe sur l'image-cle la plus proche, et
+    # un J-cut de 0,4 s ne survit pas a une erreur d'un demi-tiers de seconde.
+    RESPIRATION = 0.15         # entre la fin d'une voix et le debut de l'autre
+
+    if a.jcut:
+        print("\n  J-CUT : la voix du plan suivant %.2f s avant son image" % a.jcut)
+        for i in range(len(segments) - 1):
+            A, B = segments[i], segments[i + 1]
+            if B["type"] != "replique":
+                continue
+            teteB, _f, _d = parole_nette(F, B["son"])
+            _t, finA, _d2 = parole_nette(F, A["son"])
+            queueA = A["fin"] - finA
+            S = min(a.jcut, queueA - RESPIRATION)
+            if S < 0.10:
+                print("    %02d -> %02d  saute : la queue du plan %02d ne laisse"
+                      " que %.2f s" % (A["n"], B["n"], A["n"], queueA))
+                continue
+            h = teteB + S
+            if h > B["fin"] - 0.60:
+                print("    %02d -> %02d  saute : couper %.2f s ne laisserait"
+                      " que %.2f s au plan %02d"
+                      % (A["n"], B["n"], h, B["fin"] - h, B["n"]))
+                continue
+
+            tete = os.path.join(tmp, "_jtete%02d.wav" % B["n"])
+            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                "-i", B["son"], "-t", "%.3f" % h, tete], "tete du plan %02d" % B["n"])
+            melange = os.path.join(tmp, "_jmix%02d.wav" % A["n"])
+            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                "-i", A["son"], "-i", tete, "-filter_complex",
+                "[1:a]adelay=%d:all=1[t];[0:a][t]amix=inputs=2:duration=first:"
+                "normalize=0[m]" % int(round((A["fin"] - h) * 1000)),
+                "-map", "[m]", "-ac", "1", "-ar", "44100",
+                "-t", "%.3f" % A["fin"], melange], "melange du plan %02d" % A["n"])
+            A["son"] = melange
+
+            imageB = os.path.join(tmp, "_jimg%02d.mp4" % B["n"])
+            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                "-ss", "%.3f" % h, "-i", B["image"], "-an",
+                "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+                "-pix_fmt", "yuv420p", imageB], "tete d'image du plan %02d" % B["n"])
+            sonB = os.path.join(tmp, "_json%02d.wav" % B["n"])
+            ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+                "-ss", "%.3f" % h, "-i", B["son"], "-ac", "1", "-ar", "44100",
+                sonB], "queue de piste du plan %02d" % B["n"])
+            B["image"], B["son"] = imageB, sonB
+            B["fin"] = duree(F, imageB)
+            # Le tableau plus bas est ecrit AVANT le J-cut : sans cette ligne
+            # il annoncerait la longueur d'avant la coupe, et on chercherait
+            # longtemps pourquoi l'episode est plus court que la somme de ses
+            # plans.
+            B["note"] += "  J-cut -%.2f s en tete" % h
+            print("    %02d -> %02d  %.2f s d'avance (tete coupee %.2f, queue"
+                  " libre %.2f)" % (A["n"], B["n"], S, h, queueA))
+        print("")
+
+    # ============ LE MUX, UNE FOIS TOUT DECIDE ============
+    for g in segments:
+        ff([F, "-hide_banner", "-nostats", "-loglevel", "error", "-y",
+            "-i", g["image"], "-i", g["son"], "-map", "0:v", "-map", "1:a",
+            "-af", "apad", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+            "-ar", "44100", "-t", "%.3f" % g["fin"], g["out"]],
+           "plan %02d" % g["n"])
+        morceaux.append(g["out"])
         print("  %02d    %5.2f  %5.2f   +%.2f%s"
-              % (p["n"], dv_, da_, amorce, note))
+              % (g["n"], g["dv"], g["da"], g["amorce"], g["note"]))
 
     # LE CONTROLE QUI AURAIT ATTRAPE LA DERIVE. Un segment dont le son est
     # plus court que l'image decale tout ce qui suit, et rien d'autre ne le
