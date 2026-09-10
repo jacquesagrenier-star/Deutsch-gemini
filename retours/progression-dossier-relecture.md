@@ -425,8 +425,32 @@ cases dont 2 sont déjà tamponnées est complétée par **34 %** des clients, c
 *Kivetz, Urminsky, Zheng, « The Goal-Gradient Hypothesis Resurrected »,
 Journal of Marketing Research, 2006.*
 
+**Ce que font deux outils de référence — vérifié, et l'un des deux contredit
+notre penchant.**
+
+*Anki sépare trois piles sur son écran d'accueil* : New, Learning, To Review,
+par paquet et pour la journée. C'est précisément la séparation qui manque à
+Wortando (§3.1) — chez nous un mot jamais vu compte comme dû, d'où les 462
+cartes servies d'un coup.
+*Anki Manual, « Studying », docs.ankiweb.net.*
+
+*Duolingo a RETIRÉ son indicateur qui recule.* Les compétences « fêlées » —
+une compétence dont la dorure se craquelait quand elle n'était plus pratiquée —
+ont disparu avec la refonte du parcours, déployée jusqu'en novembre 2022 : la
+révision est désormais intégrée au chemin lui-même. Et les niveaux
+« légendaires » ne se cassent plus une fois obtenus.
+*Duolingo, « A new home screen design », blog.duolingo.com, 2022.*
+
+⚠️ **C'est un précédent qui joue CONTRE notre penchant pour l'option B** (§4.1).
+Le plus gros acteur du domaine a rencontré la même question — faut-il montrer
+la dégradation ? — et a répondu non : il a supprimé l'affichage qui recule et
+déplacé la révision ailleurs. Ce n'est pas une preuve, c'est une décision de
+produit sans résultat publié. Mais elle mérite d'être connue avant qu'on
+tranche la question 1(c).
+
 ⚠️ **Toujours pas vérifié** : que les applications grand public utilisent des
-doses plus faibles (5 à 12 items neufs par jour).
+doses plus faibles (5 à 12 items neufs par jour) ; et qu'aucune n'affiche de
+pourcentage calculé sur l'ensemble d'une langue.
 
 ---
 
