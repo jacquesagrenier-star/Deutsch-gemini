@@ -1626,3 +1626,52 @@ ne redescende jamais. Plus `verifier.py`, 14 033 contrôles.
 **Reste ouvert :** le NOM du troisième bouton. Il s'appelle encore « Je connais
 déjà ce mot », qui se confond avec « Je savais ». Proposé : « Je le sais par
 cœur », ou « Trop facile ». Non tranché.
+
+---
+
+## 10 septembre 2026 — l'absence ne punit plus (v523)
+
+**Ce qui a déclenché ça :** *« ça peut nous mener à décourageant, parce qu'après
+plusieurs jours le paquet est vraiment gros »*. J'ai mesuré au lieu d'en
+discuter — `tests/charge.py`, nouveau : après 30 jours de travail régulier sur
+l'A1, **une semaine d'absence laisse 285 cartes échues**, deux semaines en
+laissent 390, et au-delà ça plafonne à 405 (tout ce qui est commencé). Trente-
+cinq minutes sans respirer : c'est le mur qui fait fermer l'application.
+
+⚠️ **Au passage, la même mesure a corrigé un chiffre que j'avais avancé au doigt
+mouillé.** J'avais annoncé « 120 à 150 cartes par jour en régime établi » sur
+l'A1. C'est faux : la journée la plus chargée fait **75 cartes** (jour 28), et
+la moyenne après le premier mois tombe à **24**. L'écart avec les 200 cartes
+d'Anki s'explique : leur avertissement vise un paquet **sans fin**, alors qu'un
+niveau est fini — l'A1 s'épuise au 54ᵉ jour à 15 mots neufs. **Le chemin par
+niveau ne rend pas seulement la progression lisible : il plafonne la charge par
+construction.**
+
+**La solution retenue est celle de Jacques, et elle vaut mieux que la mienne.**
+Je proposais un plafond de révisions ; lui a déplacé la question : *« augmenter
+le paquet seulement lorsque je viens, et non automatiquement quand on ne se
+connecte pas pendant quelques jours »*. Mécaniquement, **l'échéance cesse d'être
+une quantité pour devenir un ordre de priorité**. La séance fait toujours
+40 cartes, qu'on revienne après un jour ou après un mois. Le nombre 285
+n'apparaît jamais.
+
+- `cartesDeSession()` sert les échues **les plus en retard d'abord**, plafonnées
+  à 40, puis complète avec des mots neufs **seulement s'il reste de la place**.
+- `retardEnAttente()` compte ce qui n'est pas entré. ⚠️ **Ce nombre ne va pas à
+  l'accueil** — c'est exactement le chiffre qui punit. Il est destiné au ⓘ.
+- « **En faire 20 de plus** » sur l'écran de fin, avec la même priorité : le
+  retard d'abord, les mots neufs seulement s'il n'y en a plus. Éponger du retard
+  ne consomme pas la dose du jour — ce sont des mots déjà rencontrés.
+
+⚠️ **Et les libellés ont dû changer de nature, sur une remarque de Jacques.**
+Avec une séance plafonnée, l'app **ne peut plus promettre « demain »** : un mot
+échu demain peut ne pas passer s'il y a 40 cartes plus en retard devant lui. La
+date n'est plus une promesse, c'est un **plancher** — d'où « pas avant 3 jours »,
+et « **pas avant la prochaine séance** » au palier de +1 jour, qui parle en
+séances comme l'apprenant les vit. Aux paliers suivants, « prochaine séance »
+serait faux : la séance de demain ne verra pas un mot programmé à 7 jours.
+
+**Vérifié :** `tests/essai_plafond.js` porte 31 contrôles — dont les 300 cartes
+en retard ramenées à 40, l'ordre du plus en retard d'abord, le supplément qui ne
+resert pas ce qui vient d'être vu, et le fait qu'il bascule sur des mots neufs
+quand le retard est épongé. Plus `verifier.py`, 14 033 contrôles.

@@ -24,13 +24,20 @@ const etats = {};
 globalThis.getWordState = (t, i2) => etats[t + ":" + i2] || {};
 const poser = (n, etat) => { for (let x = 0; x < n; x++) etats["t:" + x] = etat; };
 
+globalThis.currentCards = [];
+globalThis.currentCardsFull = [];
+
 eval(BLOC + "\nglobalThis.cartesDeSession = cartesDeSession;"
    + "\nglobalThis.cartesCommencees = cartesCommencees;"
    + "\nglobalThis.placeNeufsRestante = placeNeufsRestante;"
    + "\nglobalThis.noterMotNeuf = noterMotNeuf;"
    + "\nglobalThis.ajouterSerieNeufs = ajouterSerieNeufs;"
    + "\nglobalThis.estNeuf = estNeuf;"
-   + "\nglobalThis.PLAFOND_NEUFS = PLAFOND_NEUFS;");
+   + "\nglobalThis.retardEnAttente = retardEnAttente;"
+   + "\nglobalThis.trancheSupplementaire = trancheSupplementaire;"
+   + "\nglobalThis.PLAFOND_NEUFS = PLAFOND_NEUFS;"
+   + "\nglobalThis.TAILLE_SEANCE = TAILLE_SEANCE;"
+   + "\nglobalThis.SUPPLEMENT_SEANCE = SUPPLEMENT_SEANCE;");
 
 let ko = 0;
 const ok = (n, v) => { console.log("  " + (v ? "OK   " : "ECHEC") + "  " + n); if (!v) ko++; };
@@ -43,13 +50,41 @@ vider();
 ok("un paquet neuf de 462 n'en sert que " + PLAFOND_NEUFS,
    cartesDeSession(paquet(462)).length === PLAFOND_NEUFS);
 
-console.log("\nLES ECHEANCES PASSENT AVANT, ET NE SONT JAMAIS PLAFONNEES");
+console.log("\nLES ECHEANCES PASSENT AVANT, ET REMPLISSENT LA SEANCE");
 vider();
 poser(462, {});                                   // tout est neuf
-for (let x = 0; x < 40; x++) etats["t:" + x] = { srsHits: 2, due: 1000 };  // 40 dues
-const s = cartesDeSession(paquet(462));
-ok("40 echeances + " + PLAFOND_NEUFS + " neufs", s.length === 40 + PLAFOND_NEUFS);
-ok("les echeances sont en tete", s.slice(0, 40).every(it => it.index < 40));
+for (let x = 0; x < 10; x++) etats["t:" + x] = { srsHits: 2, due: 1000 };  // 10 dues
+let s = cartesDeSession(paquet(462));
+ok("10 echeances + " + PLAFOND_NEUFS + " neufs", s.length === 10 + PLAFOND_NEUFS);
+ok("les echeances sont en tete", s.slice(0, 10).every(it => it.index < 10));
+
+console.log("\nLA SEANCE A UNE TAILLE FIXE, MEME APRES UNE LONGUE ABSENCE");
+vider();
+poser(462, {});
+for (let x = 0; x < 300; x++) etats["t:" + x] = { srsHits: 2, due: 5000 - x };
+s = cartesDeSession(paquet(462));
+ok("300 cartes en retard : la seance en fait " + TAILLE_SEANCE,
+   s.length === TAILLE_SEANCE);
+ok("aucun mot neuf tant que le retard remplit la seance",
+   s.every(it => it.index < 300));
+ok("les PLUS EN RETARD d'abord",
+   s[0].index === 299 && s[1].index === 298);
+ok("le reste attend, et se compte pour le panneau d'information",
+   retardEnAttente(paquet(462)) === 300 - TAILLE_SEANCE);
+
+console.log("\n« EN FAIRE PLUS » : LE RETARD D'ABORD, LES NEUFS ENSUITE");
+globalThis.currentCardsFull = paquet(462);
+globalThis.currentCards = s;
+let t2 = trancheSupplementaire();
+ok("la tranche suivante prend du retard, pas du neuf", t2.neufs === false);
+ok("elle fait " + SUPPLEMENT_SEANCE + " cartes", t2.cartes.length === SUPPLEMENT_SEANCE);
+ok("et ne redonne pas ce qui vient d'etre servi",
+   t2.cartes.every(it => !s.some(x => x.index === it.index)));
+vider();
+poser(462, {});                                   // plus aucun retard
+globalThis.currentCards = cartesDeSession(paquet(462));
+t2 = trancheSupplementaire();
+ok("sans retard, la tranche est faite de mots neufs", t2.neufs === true);
 
 console.log("\nLA DOSE SE CONSOMME, ET ELLE TIENT LA JOURNEE");
 vider();
