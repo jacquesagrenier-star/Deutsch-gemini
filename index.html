@@ -4230,7 +4230,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v533</span>
+        <span class="subtitle-version">v534</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -15266,7 +15266,19 @@ function getTodayStr(d){
 // palier -> vidéo. Remplace l'ancien booléen "goalCelebrated" (un seul
 // palier possible par jour) par un compteur "milestonesCelebrated", pour
 // pouvoir célébrer plusieurs fois dans la même journée.
-function recordDailyActivity(){
+// ⚠️ DEUX EFFETS DANS UNE SEULE FONCTION, et ils se separent depuis la v534 :
+// le COMPTE DU JOUR (la barre « 7 / 100 ») et la SERIE DE JOURS.
+//
+// Demande de Jacques : « exercice de grammaire, c'est un plus, ce n'est pas une
+// obligation a chaque jour ». L'objectif du jour redevient donc l'engagement de
+// VOCABULAIRE seul -- sinon une journee de grammaire remplissait une barre qui
+// annonce des cartes, et la seance du lendemain s'en trouvait raccourcie.
+//
+// Mais la SERIE, elle, compte toujours la grammaire : quelqu'un qui a travaille
+// une heure sur le Perfekt a travaille. Lui casser sa serie parce qu'il n'a pas
+// touche au vocabulaire serait une punition pour avoir choisi l'autre porte.
+// D'ou le parametre : `false` alimente la serie sans toucher a l'objectif.
+function recordDailyActivity(compteDansObjectif){
     let daily;
     const dailyKey = directionScopedKey(DAILY_ACTIVITY_KEY);
     try{ daily = JSON.parse(localStorage.getItem(dailyKey) || "null"); }catch(e){ daily = null; }
@@ -15281,7 +15293,7 @@ function recordDailyActivity(){
     }
     delete daily.goalCelebrated;
     const target = getDailyGoalTarget();
-    daily.count += 1;
+    if(compteDansObjectif !== false) daily.count += 1;
 
     let justReachedMultiple = 0;
     const multiplesReached = target > 0 ? Math.floor(daily.count / target) : 0;
@@ -22359,7 +22371,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 533;
+const APP_VERSION = 534;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23763,7 +23775,40 @@ function encoreDesMotsNeufs(){
 // La correction, proposee par Jacques : l'echeance cesse d'etre une QUANTITE
 // pour devenir un ORDRE DE PRIORITE. La seance fait toujours la meme taille,
 // qu'on revienne apres un jour ou apres un mois. Rien ne s'accumule a l'ecran.
-const TAILLE_SEANCE = 40;
+// ⚠️ LA SEANCE FAIT LA TAILLE DE L'OBJECTIF DU JOUR, et ce n'est plus un
+// nombre invente. La v523 posait 40 en dur, a cote d'un objectif quotidien
+// reglable que l'app affichait deja : deux nombres qui s'ignoraient. Quelqu'un
+// dont l'objectif etait a 100 voyait « 7 / 100 » sur une seance qui s'arretait
+// a 40 -- l'app fixait une cible et empechait de l'atteindre.
+//
+// Un seul curseur commande donc le rythme, et le dénominateur affiche
+// TOUJOURS ce que la seance contient vraiment. « En faire 20 de plus »
+// allonge la barre au lieu d'eloigner la cible.
+//
+// Le plafond dur reste, mais tres haut : il n'existe que pour empecher qu'un
+// reglage extreme remette le mur du retour d'absence -- 285 cartes apres une
+// semaine, mesure dans tests/charge.py.
+const TAILLE_SEANCE_MAX = 140;
+
+// ⚠️ CE QUI RESTE DE L'OBJECTIF, pas l'objectif entier. L'objectif du jour
+// compte DEJA tout : les flashcards ET les exercices de grammaire --
+// checkAnswer() appelle recordDailyActivity() pour n'importe quel exercice.
+// Dimensionner la seance de vocabulaire sur l'objectif COMPLET la faisait donc
+// remplir seule un compteur que la grammaire alimente aussi : l'objectif aurait
+// ete depasse avant la fin de la seance, et les deux nombres se seraient
+// contredits une deuxieme fois.
+//
+// La seance prend donc le solde. Quarante exercices de grammaire faits ce
+// matin, objectif a cent : la seance en sert soixante. Un seul nombre commande
+// la journee, quelle que soit la porte par laquelle on travaille.
+function tailleSeance(){
+    let cible = DEFAULT_DAILY_GOAL_TARGET, fait = 0;
+    try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    // Un plancher de 5 : l'objectif atteint, on ne ferme pas la porte au nez de
+    // quelqu'un qui veut continuer -- « en faire 20 de plus » prend le relais.
+    return Math.max(5, Math.min(TAILLE_SEANCE_MAX, cible - fait));
+}
 const SUPPLEMENT_SEANCE = 20;
 
 function cle(it){ return it.themeId + ":" + it.index; }
@@ -23914,19 +23959,19 @@ function ordonnerParFrequence(items){
 // le plafond existe precisement pour empecher.
 function cartesDeSeance(poolTout, poolNeufs){
     const dues = cartesEchuesTriees((poolTout || []).filter(
-        it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, TAILLE_SEANCE);
+        it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, tailleSeance());
     const neufs = (poolNeufs || []).filter(
         it => estNeuf(getWordState(it.themeId, it.index)));
-    const place = Math.min(TAILLE_SEANCE - dues.length, placeNeufsRestante());
+    const place = Math.min(tailleSeance() - dues.length, placeNeufsRestante());
     return dues.concat(ordonnerParFrequence(neufs).slice(0, Math.max(0, place)));
 }
 
 function cartesDeSession(items){
     const p = separer(items);
-    const dues = p.dues.slice(0, TAILLE_SEANCE);
+    const dues = p.dues.slice(0, tailleSeance());
     // Les mots neufs ne prennent que la place qui RESTE. Sans cela on
     // creuserait le trou pendant qu'on essaie de le combler.
-    const place = Math.min(TAILLE_SEANCE - dues.length, placeNeufsRestante());
+    const place = Math.min(tailleSeance() - dues.length, placeNeufsRestante());
     return dues.concat(ordonnerParFrequence(p.neufs).slice(0, Math.max(0, place)));
 }
 
@@ -24056,7 +24101,7 @@ function ouvrirThemesDuNiveau(){
 // l'accueil : c'est exactement le chiffre qui punit. Il vit dans le panneau
 // d'information, pour qui vient le chercher.
 function retardEnAttente(items){
-    return Math.max(0, separer(items).dues.length - TAILLE_SEANCE);
+    return Math.max(0, separer(items).dues.length - tailleSeance());
 }
 
 // « En faire 20 de plus », sur l'ecran de fin. Meme priorite que la seance
@@ -24945,6 +24990,21 @@ function nextFlashcard(){
 
 function skipFlashcard(){
     // Passe à la carte suivante sans enregistrer d'évaluation (utilisé par le swipe)
+    //
+    // ⚠️ MAIS LE MOT A ETE RENCONTRE, et il doit compter comme tel. Remarque de
+    // Jacques. On pose donc `vu`, et RIEN D'AUTRE : ni `due`, ni `srsHits`.
+    // C'est ce qui permet aux deux comptes de rester d'accord -- l'echelle de
+    // memorisation continue de considerer ce mot comme neuf, puisqu'il n'a
+    // jamais ete juge, et il reviendra ; mais le compteur « mots rencontres »
+    // reconnait l'exposition. Le balayage ne consomme pas la dose du jour non
+    // plus : noterMotNeuf() n'est appelee que sur une vraie reponse.
+    if(currentCards.length){
+        const it = currentCards[currentFlashcard];
+        if(it){
+            const st = getWordState(it.themeId, it.index);
+            if(!st.vu){ st.vu = Date.now(); setWordState(it.themeId, it.index, st); }
+        }
+    }
     currentFlashcard++;
     if(currentFlashcard >= currentCards.length){
         showInfoToast(t('alert_session_ended'));
@@ -26079,7 +26139,10 @@ function checkAnswer(){
         // normal) et grande célébration vidéo (si un palier vient d'être
         // franchi) -- comportement identique à une carte maîtrisée.
         if(!enRattrapage){
-            const justReachedMultiple = recordDailyActivity();
+            // `false` : la serie oui, l'objectif du jour non (voir
+            // recordDailyActivity). La grammaire a son propre compteur depuis
+            // la v519 -- elle n'est plus invisible, elle est juste ailleurs.
+            const justReachedMultiple = recordDailyActivity(false);
             logMasteryEvent();
             // Sans le toast : un exercice ne programme aucune revision, la
             // phrase « ce mot reviendra dans N jours » n'aurait rien decrit.

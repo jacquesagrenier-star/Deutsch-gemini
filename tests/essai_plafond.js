@@ -18,6 +18,12 @@ globalThis.localStorage = {
 };
 let AUJOURD_HUI = "2026-09-10";
 globalThis.getTodayStr = () => AUJOURD_HUI;
+// La taille de seance suit l'objectif du jour MOINS ce qui est deja fait : le
+// banc doit donc fournir les deux, comme l'app.
+globalThis.DEFAULT_DAILY_GOAL_TARGET = 30;
+let OBJECTIF = 40, FAIT_AUJOURD_HUI = 0;
+globalThis.getDailyGoalTarget = () => OBJECTIF;
+globalThis.getDailyActivityCount = () => FAIT_AUJOURD_HUI;
 
 // Le magasin de progression, reduit a ce que ces fonctions lisent.
 const etats = {};
@@ -36,7 +42,7 @@ eval(BLOC + "\nglobalThis.cartesDeSession = cartesDeSession;"
    + "\nglobalThis.retardEnAttente = retardEnAttente;"
    + "\nglobalThis.trancheSupplementaire = trancheSupplementaire;"
    + "\nglobalThis.PLAFOND_NEUFS = PLAFOND_NEUFS;"
-   + "\nglobalThis.TAILLE_SEANCE = TAILLE_SEANCE;"
+   + "\nglobalThis.tailleSeance = tailleSeance;"
    + "\nglobalThis.SUPPLEMENT_SEANCE = SUPPLEMENT_SEANCE;");
 
 let ko = 0;
@@ -63,14 +69,14 @@ vider();
 poser(462, {});
 for (let x = 0; x < 300; x++) etats["t:" + x] = { srsHits: 2, due: 5000 - x };
 s = cartesDeSession(paquet(462));
-ok("300 cartes en retard : la seance en fait " + TAILLE_SEANCE,
-   s.length === TAILLE_SEANCE);
+ok("300 cartes en retard : la seance en fait " + tailleSeance(),
+   s.length === tailleSeance());
 ok("aucun mot neuf tant que le retard remplit la seance",
    s.every(it => it.index < 300));
 ok("les PLUS EN RETARD d'abord",
    s[0].index === 299 && s[1].index === 298);
 ok("le reste attend, et se compte pour le panneau d'information",
-   retardEnAttente(paquet(462)) === 300 - TAILLE_SEANCE);
+   retardEnAttente(paquet(462)) === 300 - tailleSeance());
 
 console.log("\n« EN FAIRE PLUS » : LE RETARD D'ABORD, LES NEUFS ENSUITE");
 globalThis.currentCardsFull = paquet(462);
@@ -127,6 +133,27 @@ console.log("\nSTOCKAGE ILLISIBLE");
 magasin["deutschAI_neufsDuJour"] = "{pas du JSON";
 ok("la dose repart entiere plutot que de jeter",
    placeNeufsRestante() === PLAFOND_NEUFS);
+
+console.log("\nLA SEANCE PREND LE SOLDE DE L'OBJECTIF DU JOUR");
+vider();
+poser(462, {});
+for (let x = 0; x < 300; x++) etats["t:" + x] = { srsHits: 2, due: 5000 - x };
+OBJECTIF = 100; FAIT_AUJOURD_HUI = 0;
+ok("objectif 100, rien de fait : 100 cartes",
+   cartesDeSession(paquet(462)).length === 100);
+FAIT_AUJOURD_HUI = 40;
+ok("40 cartes deja faites : la seance en sert 60",
+   cartesDeSession(paquet(462)).length === 60);
+FAIT_AUJOURD_HUI = 100;
+ok("objectif atteint : un plancher de 5, pas une porte fermee",
+   cartesDeSession(paquet(462)).length === 5);
+FAIT_AUJOURD_HUI = 500;
+ok("objectif largement depasse : toujours 5, jamais un nombre negatif",
+   cartesDeSession(paquet(462)).length === 5);
+OBJECTIF = 9000; FAIT_AUJOURD_HUI = 0;
+ok("un reglage extreme reste borne par le plafond dur",
+   cartesDeSession(paquet(462)).length === 140);
+OBJECTIF = 40; FAIT_AUJOURD_HUI = 0;
 
 console.log("\nL'ENTRETIEN S'ELOIGNE AU LIEU DE TOURNER EN ROND");
 const a2 = src.indexOf("const SRS_ENTRETIEN_JOURS = ");
