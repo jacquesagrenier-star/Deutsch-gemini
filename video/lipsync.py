@@ -58,8 +58,115 @@ AMORCE = M.AMORCE
 
 # LE DEBUT DE LA FENETRE DE PAROLE ECRITE DANS LE PROMPT. production.bouche
 # arrondit l'amorce du montage a 0,5 s pour la dire au modele ; c'est donc 0,5
-# que la machoire a recu, et c'est de ce repere que part le calage.
+# que la machoire a RECU.
+#
+# ⚠️ CE N'EST PAS CELLE QU'ELLE REND (mesure du 10 septembre 2026).
+#
+# Six prises tournees avec la voix en reference, mesurees par
+# video/mesurer_decalage.py : la machoire demarre de +0,11 a +1,96 s APRES la
+# voix qu'on a donnee. Jamais avant, pas une fois -- donc au montage le son
+# arrive toujours EN AVANCE sur l'image, le cote que l'UIT-R BT.1359-1 tolere
+# le moins (45 ms, contre 125 ms pour un son en retard).
+#
+# Et l'ecart n'est pas une constante : 1,85 s d'etendue sur six prises. Il n'y
+# a donc rien a compenser d'un chiffre fixe. La seule valeur juste est la
+# fenetre MESUREE de la prise, que rapatrier.py ecrit dans
+# 02-prises/_parole.json depuis le 9 septembre -- et que ce script ignorait.
+#
+# FENETRE ne sert donc plus que de REPLI, pour les prises tournees avant que
+# la mesure existe. Le calage y reste une supposition, et il le dit.
 FENETRE = 0.5
+
+# On preferera toujours mettre le son en RETARD sur l'image plutot qu'en
+# avance : les seuils de l'UIT ne sont pas symetriques. Voir mesurer_decalage.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import mesurer_decalage as MD                               # noqa: E402
+TOLERANCE_RETARD = -MD.ITU_DETECTABLE[1]     # 0,125 s
+
+
+def fenetres_machoire(base):
+    """Ou la machoire parle VRAIMENT, plan par plan, pour la prise retenue.
+
+    Deux fichiers se rejoignent ici, et aucun des deux ne suffit seul :
+      03-final/_retenues.txt  dit QUELLE prise est dans 03-final
+      02-prises/_parole.json  dit ou sa machoire parle
+
+    Une prise absente du second est une prise d'avant la mesure : sa piste a
+    ete coupee a l'archivage et sa machoire n'est plus observable. On ne
+    devine pas -- on retombe sur FENETRE et on le signale.
+    """
+    prises = {}
+    ret = os.path.join(base, "03-final", "_retenues.txt")
+    if os.path.exists(ret):
+        for ligne in io.open(ret, encoding="utf-8"):
+            m = re.match(r"\s*\d{4}-\d\d-\d\d \d\d:\d\d\s+plan(\d+)\s+(\S+\.mp4)",
+                         ligne)
+            if m:
+                prises[int(m.group(1))] = m.group(2)   # la derniere ligne gagne
+    pj = os.path.join(base, "02-prises", "_parole.json")
+    mesures = (json.load(io.open(pj, encoding="utf-8"))
+               if os.path.exists(pj) else {})
+    out = {}
+    for n, prise in prises.items():
+        b = (mesures.get(prise) or {}).get("bouche")
+        if b and len(b) == 2 and b[1] > b[0]:
+            out[n] = (float(b[0]), float(b[1]), prise)
+    return out
+
+
+def placer_voix(s_aud, amorce_forcee, fenetre):
+    """(retard a appliquer a la voix, ligne de diagnostic).
+
+    LA REGLE, ET D'OU ELLE VIENT
+        On cale l'ATTAQUE, pas le milieu. Quand la machoire parle plus
+        longtemps que la voix, le jeu va d'abord au DEBUT -- jusqu'a 125 ms,
+        la ou l'UIT laisse passer un son en retard. Une machoire qui s'ouvre
+        un dixieme avant la voix se lit comme une inspiration ; une voix qui
+        part avant la machoire, elle, est le defaut que l'oreille attrape a
+        45 ms.
+
+        Le reste du jeu tombe a la fin, et c'est la bouche qui traine --
+        « la bouche d'Anna continue a bouger apres qu'elle a arrete de
+        parler ». Ce defaut-la ne se cale pas, il se CONFORME
+        (audio/conformer.py) ou se retourne. Le diagnostic le chiffre plutot
+        que de le repartir en silence.
+
+        Quand la machoire parle MOINS longtemps que la voix, il n'y a plus de
+        jeu : on aligne les attaques, ce qui met l'ecart entier a la fin et
+        garde l'attaque juste.
+    """
+    tete, queue, fichier = M.parole(M.ffmpeg(), s_aud)
+    parlee = queue - tete
+    if amorce_forcee is not None:
+        return amorce_forcee, tete, parlee, "amorce imposee : %.2f s" % amorce_forcee
+    if fenetre:
+        s0, s1, prise = fenetre
+        jeu = (s1 - s0) - parlee
+        debut_voix = s0 + max(0.0, min(jeu, TOLERANCE_RETARD))
+        # Convention de mesurer_decalage : positif = son en avance sur l'image.
+        ecart = s0 - debut_voix
+        traine = s1 - (debut_voix + parlee)
+        diag = ("machoire mesuree %.2f-%.2f (%s) -> %s"
+                % (s0, s1, prise, MD.verdict(ecart)))
+        if traine > 0.08:
+            diag += " ; bouche qui traine %.2f s -- a conformer" % traine
+        elif traine < -0.08:
+            # L'inverse, et il est tout aussi visible : la bouche se referme
+            # pendant que la voix parle encore. conformer.py sait aussi
+            # comprimer -- c'est le meme geste, dans l'autre sens.
+            diag += (" ; bouche fermee %.2f s avant la fin de la voix"
+                     " -- a conformer" % -traine)
+        return debut_voix - tete, tete, parlee, diag
+    # REPLI : la machoire n'a pas ete mesuree. On centre la voix dans la
+    # fenetre DEMANDEE, comme avant le 10 septembre -- en sachant maintenant
+    # que le modele ne l'honore pas, et en le disant.
+    ecart = max(0.0, fichier - parlee)
+    if ecart > 0.05:
+        am = FENETRE + ecart / 2.0 - tete
+    else:
+        am = AMORCE
+    return am, tete, parlee, ("machoire NON MESUREE (prise d'avant le 9 sept.)"
+                              " : calage suppose sur la fenetre demandee")
 
 # SYNC FACTURE A L'IMAGE, PAS A LA SECONDE. Leur page de tarifs affiche un
 # prix a la seconde calcule sur 25 im/s ; nos clips Seedance sont a 24, donc
@@ -246,7 +353,8 @@ def main():
     # 03-final/, les plans synchronises vont a cote dans 04-lipsync/. On ne
     # remplace jamais un clip d'origine -- une prise Artlist ne se refait pas
     # a l'identique, et un lip-sync rate ne doit rien pouvoir ecraser.
-    src = os.path.join(RACINE, "video", "episode-" + a.scene, "03-final")
+    base = os.path.join(RACINE, "video", "episode-" + a.scene)
+    src = os.path.join(base, "03-final")
     aud = os.path.join(RACINE, "audio", "scenes", a.scene)
     dst = os.path.join(RACINE, "video", "episode-" + a.scene, "04-lipsync")
     os.makedirs(dst, exist_ok=True)
@@ -276,9 +384,16 @@ def main():
     images = int(round(total * ips))
     print("  %s — %d plans a synchroniser sur %d"
           % (d["situation"], len(travail), len(d["plans"])))
-    for p, v, _ in travail:
+    fenetres = fenetres_machoire(base)
+    for p, v, s_aud in travail:
         print("    plan%02d  %-5s %5.2f s  %s"
               % (p["n"], p["locuteur"], duree_clip(v), p.get("de", "")[:44]))
+        # LE VERDICT AVANT LA DEPENSE. Le calage se decidait au moment de
+        # l'envoi, donc apres avoir paye : on ne savait qu'un plan partait
+        # decale qu'en regardant le resultat. Il est calcule ici, dans l'essai
+        # a blanc, ou il ne coute rien et ou il peut encore faire renoncer.
+        _, _, _, diag = placer_voix(s_aud, a.amorce, fenetres.get(p["n"]))
+        print("            %s" % diag)
     print("  %.1f s a %.0f im/s = %d images" % (total, ips, images))
     print("  modele %s : %.5f $/image, soit environ %.2f $"
           % (a.modele, TARIF[a.modele], images * TARIF[a.modele]))
@@ -366,24 +481,15 @@ def main():
             # montage, elle, vaut 0,35 -- deux nombres differents pour deux
             # choses differentes, et les confondre decale la voix du mauvais
             # cote. La fenetre de la machoire est donc [0,5 ; 0,5 + fichier].
-            voulue = AMORCE if a.amorce is None else a.amorce
-            tete, queue, fichier = M.parole(M.ffmpeg(), s_aud)
-            parlee = queue - tete
-            ecart = max(0.0, fichier - parlee)
-            if a.amorce is None and ecart > 0.05:
-                debut_voix = FENETRE + ecart / 2.0     # centree dans la fenetre
-                am = debut_voix - tete                 # adelay porte le FICHIER
-            else:
-                am = voulue
+            am, tete, parlee, diag = placer_voix(s_aud, a.amorce,
+                                                 fenetres.get(p["n"]))
             if duree_clip(s_aud) + max(am, 0.0) > duree_clip(v):
                 am = 0.0
                 print("  (amorce retiree, la replique remplit le plan)")
             elif am < 0:
                 am = 0.0
-            if ecart > 0.05:
-                print("  plan%02d  voix %.2f s dans un fichier de %.2f s :"
-                      " la parole tombe a %.2f s (amorce %.2f)"
-                      % (p["n"], parlee, fichier, am + tete, am))
+            print("  plan%02d  la parole tombe a %.2f s (amorce %.2f) -- %s"
+                  % (p["n"], am + tete, am, diag))
             cale = calibrer(s_aud, v, os.path.join(cales, "%02d.wav" % p["n"]),
                             am)
             corps, typ = multipart({"model": a.modele}, {"video": v, "audio": cale})
