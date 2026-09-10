@@ -219,6 +219,7 @@ html,body{margin:0}
 
     var DELAI_ABSENCE = 5000;
     var enCours = false;
+    var estParti = false;   // un evenement de depart a-t-il eu lieu ? voir traiterBattue
     var minuterie = null;
     var derniereBattue = Date.now();
     var debutPage = Date.now();
@@ -311,6 +312,7 @@ html,body{margin:0}
     // "blur" arrive pendant que la page dessine encore ; pagehide et freeze
     // couvrent le cas ou l'app est carrement dechargee.
     function veille(){
+        estParti = true;                 // corrobore une absence, ne la contredit jamais
         if(enCours) return;              // l'ouverture couvre deja l'ecran
         if(minuterie){ clearTimeout(minuterie); minuterie = null; }
         try{ video.pause(); }catch(e){}
@@ -318,6 +320,7 @@ html,body{margin:0}
     }
 
     function retour(){
+        estParti = false;
         var absence = Date.now() - derniereBattue;
         derniereBattue = Date.now();
         // L'ouverture joue encore : passer au premier plan a pu mettre la video
@@ -334,16 +337,145 @@ html,body{margin:0}
         else decouvrir(false);
     }
 
-    setInterval(function(){
-        var absence = Date.now() - derniereBattue;
-        derniereBattue = Date.now();
+    // ---- CE QUE LE POULS CONFONDAIT AVEC UNE ABSENCE (v513) -------------
+    //
+    // Le pouls estampillait l'heure toutes les 300 ms DEPUIS LE FIL PRINCIPAL,
+    // et lisait tout trou de cinq secondes comme une mise en veille. Or un fil
+    // principal BLOQUE laisse exactement le meme trou : un minuteur ne tourne
+    // pas davantage quand l'app travaille que quand elle dort. Les deux etats
+    // etaient indiscernables, et l'un etait pris pour l'autre.
+    //
+    // C'est le defaut signale les 9 et 10 septembre 2026, mot pour mot : « le
+    // systeme gele, je clique plusieurs fois et rien ne se passe, ensuite
+    // retour au video d'ouverture et reviens a la carte ». L'app n'avait
+    // jamais redemarre -- elle rejouait son ouverture parce qu'on le lui
+    // demandait, et le retour « a la carte ou j'etais » n'etait pas une
+    // restauration : la page n'avait pas bouge.
+    //
+    // LE POULS BAT DESORMAIS DANS UN FIL SEPARE. Un Worker a son propre fil :
+    // il continue de battre pendant que le fil principal est pris, et il
+    // s'arrete avec l'app quand iOS la suspend. Les deux etats se distinguent
+    // enfin, sans rien demander au systeme :
+    //
+    //   - FIL BLOQUE : l'ouvrier a battu pendant tout le trou, ses messages
+    //     attendaient dans la file. Ils arrivent tard mais espaces de 300 ms
+    //     -- aucune absence, et leur RETARD mesure le gel.
+    //   - APP SUSPENDUE : l'ouvrier dormait aussi. La premiere battue au
+    //     reveil est fraiche et porte tout le trou -- vraie absence.
+    //
+    // CE N'EST PAS UN SERVICE WORKER. En enregistrer un second remplacerait
+    // celui des notifications, sans un message d'erreur. Un Worker dedie n'a
+    // pas de portee, n'intercepte rien, et meurt avec la page. Il est fabrique
+    // depuis une chaine de caracteres : l'app reste en un seul fichier.
+    var POULS_MS = 300;
+    var SEUIL_GEL = 1500;   // en deca, c'est le bruit ordinaire du fil
+    var gelSignale = 0;
+
+    function ouSuisJe(){
+        try{
+            var actif = document.querySelector(".screen.active");
+            var ou = (actif && actif.id) ? actif.id : "?";
+            // Le compteur de cartes garde son dernier texte quand on quitte
+            // les cartes : ne le joindre que sur l'ecran auquel il appartient,
+            // sinon le journal situe un gel « auth 1/10 ».
+            if(ou !== "flashcards") return ou;
+            var compteur = document.getElementById("flashCounter");
+            var n = compteur ? (compteur.textContent || "").replace(/\s+/g, "") : "";
+            return n ? ou + " " + n : ou;
+        }catch(e){ return "?"; }
+    }
+
+    // LE JOURNAL DU GEL. Il survit au rechargement, comme celui du son et pour
+    // la meme raison : le defaut qu'on veut lire est justement celui qui peut
+    // emporter la page. Une ligne dit COMBIEN de temps le fil est reste pris,
+    // OU l'on etait, et -- quand le travail en cause s'est annonce -- LEQUEL.
+    var GEL_CLE = "deutschAI_journal_gel";
+    var GEL_MAX = 60;
+
+    function noterGel(ms, quoi){
+        try{
+            var liste = JSON.parse(localStorage.getItem(GEL_CLE) || "[]");
+            if(!Array.isArray(liste)) liste = [];
+            liste.push({ h: new Date().toLocaleTimeString(), ms: Math.round(ms),
+                         ou: ouSuisJe(), quoi: quoi || "?" });
+            while(liste.length > GEL_MAX) liste.shift();
+            localStorage.setItem(GEL_CLE, JSON.stringify(liste));
+        }catch(e){}
+    }
+
+    // MARQUER LE TRAVAIL SUSPECT. Le retard d'une battue dit QU'ON a gele ; il
+    // ne dit pas a cause de quoi. Le code qui fait un travail SYNCHRONE long
+    // s'annonce donc ici, et si sa duree depasse le seuil elle entre au
+    // journal AVEC SON NOM. Un gel nomme se repare ; un gel anonyme se devine,
+    // et ce defaut a deja ete devine trois fois.
+    var occupation = null, occupationDebut = 0, finGelNomme = 0;
+    window.marquerOccupation = function(nom){
+        try{
+            if(nom){ occupation = nom; occupationDebut = Date.now(); return; }
+            if(occupation){
+                var duree = Date.now() - occupationDebut;
+                if(duree >= SEUIL_GEL){
+                    noterGel(duree, occupation);
+                    // Le pouls va mesurer LE MEME blocage par le retard de ses
+                    // battues et l'ecrire une seconde fois, sans nom. On note
+                    // donc jusqu'ou va l'explication : les battues emises avant
+                    // cet instant sont deja rendues.
+                    finGelNomme = Date.now();
+                }
+                occupation = null;
+            }
+        }catch(e){}
+    };
+
+    function traiterBattue(t){
+        var maintenant = Date.now();
+        // LE RETARD : le temps que cette battue a passe dans la file d'attente
+        // du fil principal. Elle a ete emise a l'heure, elle est lue en
+        // retard ; l'ecart est la mesure directe du gel. Elle n'existait pas
+        // -- un fil bloque ne peut pas se chronometrer lui-meme.
+        var retard = maintenant - t;
+        var absence = t - derniereBattue;
+        derniereBattue = t;
+        if(retard >= SEUIL_GEL){
+            // Une seule ligne par gel : on retient le pire des messages de la
+            // rafale, on l'ecrit quand le fil est redevenu normal. Les battues
+            // qu'une ligne nommee explique deja ne comptent pas.
+            if(t >= finGelNomme && retard > gelSignale) gelSignale = retard;
+        } else if(gelSignale){
+            noterGel(gelSignale, null);
+            gelSignale = 0;
+        }
         if(enCours) return;
         // Le demarrage est exclu : c'est la seule periode ou le fil principal
         // peut rester bloque assez longtemps pour ressembler a une absence
         // (chargement et indexation du vocabulaire).
-        if(Date.now() - debutPage < 6000) return;
-        if(absence >= DELAI_ABSENCE) jouer();
-    }, 300);
+        if(maintenant - debutPage < 6000) return;
+        if(absence < DELAI_ABSENCE) return;
+        // Le trou est la ; reste a savoir qui dormait. Une battue FRAICHE
+        // malgre le trou veut dire que l'ouvrier s'est arrete avec l'app :
+        // absence reelle, on rejoue l'ouverture. Une battue EN RETARD veut
+        // dire qu'il a battu tout du long et qu'on ne l'ecoutait pas : gel.
+        // CEINTURE : si un evenement de depart a bel et bien eu lieu, on
+        // rejoue quand meme. Sur un appareil ou l'ouvrier survivrait a la mise
+        // en veille, mieux vaut revoir l'ouverture pour rien que ne plus
+        // jamais la revoir.
+        if(retard < SEUIL_GEL || estParti) jouer();
+    }
+
+    var ouvrier = null;
+    try{
+        var sourceOuvrier = "var d=" + POULS_MS
+            + ";setInterval(function(){postMessage(Date.now());},d);";
+        ouvrier = new Worker(URL.createObjectURL(
+            new Blob([sourceOuvrier], { type: "text/javascript" })));
+        ouvrier.onmessage = function(ev){ traiterBattue(ev.data); };
+    }catch(e){ ouvrier = null; }
+
+    // REPLI. Sans Worker (navigateur ancien, contexte restreint), on retombe
+    // sur le pouls d'avant : il confond de nouveau gel et absence -- c'est le
+    // comportement de la v512, pas une regression -- mais l'ouverture continue
+    // de revenir apres une vraie mise en veille, ce qui est sa raison d'etre.
+    if(!ouvrier) setInterval(function(){ traiterBattue(Date.now()); }, POULS_MS);
 
     window.addEventListener("blur", veille);
     window.addEventListener("pagehide", veille);
@@ -3961,7 +4093,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v512</span>
+        <span class="subtitle-version">v513</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6263,9 +6395,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retirer : la retirer obligerait a la reecrire au prochain defaut. -->
     <div class="card hidden" id="journalAudioCard">
         <strong>Journal audio</strong>
-        <p style="color:#576177; margin-top:6px;">Ce que l'application a
-            reellement joue, pour les vingt derniers sons allemands : le fichier
-            d'Aurora, ou la voix de l'appareil. Diagnostic temporaire.</p>
+        <p style="color:#576177; margin-top:6px;">Les GELS d'abord -- chaque
+            blocage du fil principal d'au moins 1,5 s, avec sa duree, l'ecran
+            et le travail en cause quand il est connu. Ensuite le son : ce que
+            l'application a reellement joue, le fichier d'Aurora ou la voix de
+            l'appareil. Diagnostic temporaire.</p>
         <div class="spacer"></div>
         <button class="secondary" onclick="afficherJournalAudio()">VOIR LE JOURNAL</button>
         <div class="spacer"></div>
@@ -13864,13 +13998,67 @@ function getProgress(){
     return progressCache;
 }
 
+// Le marqueur du journal du gel vit dans le script de l'ouverture, en tete du
+// body. Il peut manquer -- cet ecran se retire tout seul si sa video est
+// absente -- et un diagnostic qui casse ce qu'il observe est pire que pas de
+// diagnostic.
+function marquerGel(nom){
+    try{ if(typeof window.marquerOccupation === "function") window.marquerOccupation(nom); }
+    catch(e){}
+}
+
+// L'ECRITURE SUR DISQUE EST DIFFEREE (v513). ELLE ETAIT SYNCHRONE, A CHAQUE
+// MOT JUGE.
+//
+// saveProgress() est appelee par setWordState(), donc une fois par carte
+// jugee. Elle re-serialisait TOUTE la progression -- des milliers de mots,
+// tous niveaux et les deux directions dans un seul objet -- puis la reecrivait
+// dans localStorage, qui est synchrone et va au disque. Le cout ne depend pas
+// du mot qu'on vient de juger mais de tout ce qui a ete appris avant : il
+// grandit de semaine en semaine, sur le fil qui doit repondre au doigt.
+//
+// C'est le meme piege que la v100 (getWordState en O(n^2)) : un travail
+// proportionnel a la progression pose dans un geste repete. Et il correspond
+// au retour du 10 septembre 2026 -- « c'est arrive alors que j'etais tres
+// actif, sans pause » : plus les cartes s'enchainent, plus souvent ca passe.
+//
+// Le cache memoire reste la verite immediate -- getProgress() le rend -- donc
+// aucun lecteur ne voit le moindre retard. Seul le depot sur disque attend.
+//
+// CE QUI EST MIS EN JEU : si la page mourait pendant le delai, le dernier mot
+// juge serait perdu. On ecrit donc AUSSI a chaque depart connu (pagehide,
+// freeze, passage en arriere-plan), les seuls moments ou iOS previent. Au pire
+// on perd une carte ; avant, on ne perdait rien mais on payait la seance
+// entiere pour cette garantie.
+const ECRITURE_DELAI_MS = 800;
+let ecritureProgression = null;
+
+function ecrireProgressionMaintenant(){
+    if(ecritureProgression){ clearTimeout(ecritureProgression); ecritureProgression = null; }
+    if(!progressCache) return;
+    marquerGel("progression -> localStorage");
+    try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progressCache));
+    }catch(e){}
+    marquerGel(null);
+}
+
+function annulerEcritureProgression(){
+    if(ecritureProgression){ clearTimeout(ecritureProgression); ecritureProgression = null; }
+}
+
 function saveProgress(progress){
     progressCache = progress;
-    try{
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-    }catch(e){}
+    clearTimeout(ecritureProgression);
+    ecritureProgression = setTimeout(ecrireProgressionMaintenant, ECRITURE_DELAI_MS);
     scheduleCloudSync();
 }
+
+window.addEventListener("pagehide", ecrireProgressionMaintenant);
+document.addEventListener("freeze", ecrireProgressionMaintenant);
+document.addEventListener("visibilitychange", function(){
+    if(document.hidden) ecrireProgressionMaintenant();
+});
 
 // ============ Synchronisation cloud de la progression (Firestore) ============
 // La progression reste la source de vérité en local (localStorage, comme avant) ;
@@ -14043,8 +14231,17 @@ async function syncProgressToCloud(){
             updatedAt: window.fsServerTimestamp()
         };
         champsRetiresSync = [];
+        // MARQUE (v513) : la copie profonde de la progression, puis la
+        // serialisation que le SDK Firestore fait AVANT de rendre la main.
+        // C'est le meme objet a dizaines de milliers de champs dont le
+        // tableau de bord note plus bas qu'il figeait l'app plus de cinq
+        // secondes sur iPhone. `await` vient APRES la marque : on ne
+        // chronometre que la part synchrone, la seule qui puisse geler.
+        marquerGel("progression -> Firestore");
         const aEcrire = sansIndefinis(snapshot, "");
-        await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), aEcrire, { merge: true });
+        const envoi = window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), aEcrire, { merge: true });
+        marquerGel(null);
+        await envoi;
 
         // ---- LE RESUME LEGER, pour le tableau de bord ----
         // Le tableau de bord n'affiche que dix champs, mais
@@ -21738,7 +21935,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 512;
+const APP_VERSION = 513;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -22173,11 +22370,9 @@ function afficherJournalAudio(){
     const box = document.getElementById("journalAudioBox");
     if(!box) return;
     box.style.display = "block";
-    if(!journalAudio.length){
-        box.textContent = "Rien encore. Ecoute quelques mots, puis reviens ici.";
-        return;
-    }
-    const SAUT = String.fromCharCode(10);
+    // PLUS DE SORTIE ANTICIPEE QUAND LE SON N'A RIEN NOTE (v513) : le journal
+    // du gel, lui, peut etre plein. Un ecran « Rien encore » aurait cache
+    // exactement ce qu'on vient ouvrir.
     box.textContent = journalTexte();
 }
 
@@ -22203,13 +22398,37 @@ function modeLancement(){
     }catch(e){ return "?"; }
 }
 
+// LES GELS EN TETE DU JOURNAL, avant le son. C'est le defaut ouvert : un
+// blocage du fil principal d'au moins 1,5 s, mesure depuis le fil separe du
+// pouls (voir le script de l'ouverture). « quoi » nomme le travail en cause
+// quand il s'est annonce, et vaut « ? » quand le gel vient d'ailleurs -- cette
+// distinction est tout l'interet du journal.
+function journalGelTexte(){
+    const SAUT = String.fromCharCode(10);
+    let liste = [];
+    try{ liste = JSON.parse(localStorage.getItem("deutschAI_journal_gel") || "[]"); }
+    catch(e){ liste = []; }
+    if(!Array.isArray(liste) || !liste.length){
+        return "GELS : aucun. (Un gel = le fil principal pris 1,5 s ou plus.)";
+    }
+    return "GELS -- " + liste.length + " (le plus recent en bas)" + SAUT +
+        liste.map(e => e.h + "  " + String((e.ms || 0) + " ms").padStart(9) +
+                       "  " + String(e.quoi || "?").padEnd(26) +
+                       "  " + (e.ou || "?")).join(SAUT);
+}
+
 function journalTexte(){
     const SAUT = String.fromCharCode(10);
     const entete = "DeutschAI v" + APP_VERSION + " -- journal audio -- " +
         journalAudio.length + " lignes" + SAUT +
         "lancement : " + modeLancement() + SAUT +
         navigator.userAgent + SAUT +
+        "-".repeat(60) + SAUT +
+        journalGelTexte() + SAUT +
         "-".repeat(60);
+    if(!journalAudio.length){
+        return entete + SAUT + "SON : rien encore. Ecoute quelques mots, puis reviens ici.";
+    }
     return entete + SAUT + journalAudio.map(e =>
         e.h + " " + (("+" + (e.d || 0) + "ms").padStart(9)) + "  " +
         (e.source || "").padEnd(9) + "  " + e.texte +
@@ -22257,6 +22476,10 @@ function viderJournalAudio(){
     journalAudio.length = 0;
     journalDernier = 0;
     try{ localStorage.removeItem(JOURNAL_CLE); }catch(e){}
+    // Les gels partent avec le reste : le bouton sert a partir d'une page
+    // blanche juste avant de reproduire un defaut, et un journal a moitie
+    // vide serait pire qu'un journal plein.
+    try{ localStorage.removeItem("deutschAI_journal_gel"); }catch(e){}
     afficherJournalAudio();
 }
 
@@ -23878,6 +24101,9 @@ function resetCurrentThemeConfirm(){
 function resetAllConfirm(){
     if(!confirm(t('confirm_reset_all_progress'))) return;
     localStorage.removeItem(STORAGE_KEY);
+    // Sinon l'ecriture differee (v513) reposerait l'ancienne progression sur
+    // le disque une seconde apres l'avoir effacee.
+    annulerEcritureProgression();
     progressCache = {}; // sinon getProgress() renverrait encore l'ancien cache mémoire
     // "Toute la progression" = les deux directions -- efface explicitement les
     // deux compartiments (allemand et en__) plutôt que seulement celui actif,

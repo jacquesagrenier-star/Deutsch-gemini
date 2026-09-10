@@ -1241,3 +1241,64 @@ vieille version, après un re-tournage payé pour rien.
 résultat rend le travail **périmé**, et il le dit au lieu de sauter. Il
 n'efface rien tout seul — une génération payée ne se jette pas sans qu'on le
 dise. Vérifié : le garde-fou se déclenche sur le plan 05.
+
+## 10 septembre 2026 — le gel, et ce que l'app faisait d'elle-même
+
+**Signalé le 9 septembre (v512, carte nomen 33/55 « Fertiggericht ») :**
+« L'application gèle encore et reviens au vidéo d'ouverture pour ensuite
+revenir à l'application. » Déjà dit deux fois le 9 en v501, sur d'autres
+cartes. Précision donnée le 10 : **« c'est arrivé alors que j'étais très
+actif, sans pause ».**
+
+### Le retour au vidéo d'ouverture n'était pas un redémarrage
+
+Le pouls de l'écran d'ouverture (v259) estampille l'heure toutes les 300 ms et
+lit tout trou de cinq secondes comme une mise en veille. **Un fil principal
+bloqué laisse exactement le même trou** : un minuteur ne tourne pas davantage
+quand l'app travaille que quand elle dort. Les deux états étaient
+indiscernables, et l'app rejouait son ouverture à chaque gel de 5 s. Le
+« retour à la carte où j'étais » n'était pas une restauration : la page
+n'avait jamais bougé.
+
+**Le pouls bat maintenant dans un fil séparé** (un Worker dédié — pas un
+service worker, il n'a pas de portée et ne touche pas à celui des
+notifications). Il continue de battre quand le fil principal est pris, et il
+s'arrête avec l'app quand iOS la suspend. Les deux états se distinguent enfin :
+
+| | ouvrier | verdict |
+|---|---|---|
+| fil principal bloqué | a battu tout du long, messages en attente | gel — pas d'ouverture |
+| app suspendue | dormait aussi | absence — on rejoue l'ouverture |
+
+Mesuré au banc : 7 s de fil bloqué, l'ouverture ne revient plus, et le retard
+des battues donne **6 766 ms**.
+
+### Le gel lui-même : un suspect, et un instrument
+
+« Très actif, sans pause » écarte la sauvegarde Firestore, qui part quatre
+secondes après la **dernière** carte — donc jamais quand on enchaîne. Ce qui
+tourne à chaque carte jugée, lui, c'est `saveProgress()` : un `JSON.stringify`
+de **toute** la progression suivi d'un `localStorage.setItem`, synchrones. Le
+coût ne dépend pas du mot qu'on vient de juger mais de tout ce qui a été
+appris avant. C'est le piège de la v100 (`getWordState` en O(n²)) une seconde
+fois : un travail proportionnel à la progression posé dans un geste répété.
+
+L'écriture est **différée de 800 ms**, avec vidage sur `pagehide`, `freeze` et
+passage en arrière-plan. Le cache mémoire reste la vérité immédiate : aucun
+lecteur ne voit de retard. ⚠️ Ce qui est mis en jeu : une page qui mourrait
+pendant le délai perdrait **la dernière carte jugée**, pas davantage.
+
+**Mais je ne sais toujours pas si c'était la cause**, et ce défaut a déjà été
+deviné trois fois. D'où le **journal du gel**, dans la carte admin « Journal
+audio », qui survit au redémarrage et se copie d'un bouton : une ligne par
+blocage d'au moins 1,5 s, avec sa durée, l'écran, et **le nom du travail en
+cause quand il s'est annoncé**. Deux travaux s'annoncent (`progression ->
+localStorage`, `progression -> Firestore`) ; un gel qui sort `?` vient
+d'ailleurs, et c'est justement l'information qui manquait.
+
+### Ce qu'il faut pour clore
+
+Une séance de cartes en v513, puis COPIER LE JOURNAL. Si les lignes disent
+`progression -> localStorage`, c'était bien ça et le différé l'a réglé. Si
+elles disent `?`, la cause est ailleurs et le journal dira où — sans avoir à
+deviner une quatrième fois.
