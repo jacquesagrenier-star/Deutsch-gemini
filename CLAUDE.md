@@ -49,6 +49,10 @@ Structure des fichiers JSON, organisés par niveau CECR (`A1`, `A2`, ...) :
 - **`verbe.json`** : liste de verbes — `infinitif`, `traduction`, conjugaisons (`praesens`, `perfekt`, `praeteritum`, `konjunktiv2`), `exemple`/`exemple_fr` pour chaque temps.
 - **`themes.json`** : thèmes de vocabulaire (ex. `Familie`) avec un id, un niveau, une icône SVG inline, et une liste de `mots`.
 
+- **`frequence.json`** (v520) : le classement de nos 7 704 entrées **par fréquence d'usage**, une liste ordonnée par catégorie. **Fichier dérivé** — le refaire avec `python tests/frequence.py --ecrire`, jamais à la main. Il vient des listes de la **Leipzig Corpora Collection**, sous **CC BY** : usage commercial permis, mais l'attribution est **obligatoire** et vit dans la carte « Crédits » des réglages, à côté de celle de WikDict. Les archives brutes (100 Mo) restent hors du dépôt, dans `C:/Users/jacqu/.wortando/frequence`.
+  - ⚠️ **Le classement ne vaut qu'À L'INTÉRIEUR d'une catégorie**, jamais entre deux : ces listes comptent des formes et non des lemmes, ce qui pénalise verbes et adjectifs face aux noms. Le script explique les trois corrections qu'il applique (formes du présent, déclinaisons, verbes séparables ×2,82).
+  - ⚠️ **Et la fréquence d'un corpus écrit n'est pas l'utilité pour un apprenant** : `duschen` et `putzen` finissent derniers des verbes A1. Le niveau CECR doit rester l'organisateur principal, la fréquence n'étant qu'un affinage à l'intérieur d'un niveau.
+
 ⚠️ **`Indexbackup.json`** malgré son extension `.json`, contient en fait du HTML (une ancienne sauvegarde de `index.html`). Ne pas essayer de le parser comme du JSON.
 
 ## Retours des testeurs

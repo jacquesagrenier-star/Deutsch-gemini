@@ -1468,3 +1468,61 @@ deux sens de la fusion et le champ distant corrompu. Plus `tests/verifier.py`,
 
 **Reste à faire :** rien n'affiche encore cet historique. C'est délibéré —
 l'écran dépend du critère « solide », qui n'est pas fixé.
+
+---
+
+## 10 septembre 2026 — les mots classés par fréquence d'usage (v520)
+
+**Demande, de Jacques :** *« cherche une liste de mots par fréquence, libre de
+droits »*, pour ordonner les étapes du chemin.
+
+**La source retenue :** Leipzig Corpora Collection, sous **CC BY** — usage
+commercial permis, et **pas de partage à l'identique**, donc moins contraignant
+que le CC BY-SA de WikDict que le dépôt porte déjà. Deux corpus, ramenés chacun
+à une fréquence par million avant d'être additionnés : `mixed-typical_2011`
+(registre équilibré) et `news_2023` (vocabulaire d'aujourd'hui). Écarté :
+`hermitdave/FrequencyWords`, en CC BY-SA et tiré de sous-titres de films.
+
+**Le piège central :** ces listes comptent des **formes**, pas des lemmes. La
+fréquence de *gehen* est portée par *geht*, *ging*, *gegangen* — l'infinitif
+lui-même est rare. Un appariement naïf faisait descendre tous les verbes et
+tous les adjectifs face aux noms.
+
+**Trois corrections, toutes mesurées avant d'être adoptées :**
+
+- **Les verbes** : on additionne l'infinitif et les six personnes du présent,
+  que nos fiches portent déjà.
+- **Les pronominaux** : `sich erinnern` s'écrit en deux mots, infinitif comme
+  présent — **aucune** forme n'était trouvée. Retirer le pronom a fait tomber
+  les verbes muets de 124 à 21.
+- **Les séparables** : `anrufen` se dit *rufe an*. On ne peut pas retirer la
+  particule (*rufe* donnerait la fréquence de *rufen*), donc on va chercher le
+  **participe** dans la phrase d'exemple du parfait. Il restait un biais — rang
+  médian 872 contre 553 — corrigé par un facteur **×2,82** estimé sur le
+  rapport des médianes.
+- **Les adjectifs** : les formes déclinées d'abord, la forme nue seulement en
+  dernier recours **et signalée** (`approx`). Compter la forme nue hissait
+  « zu » au premier rang des adjectifs — la fréquence de la préposition.
+
+⚠️ **Une piste écartée après mesure.** Fondre séparables et non-séparables par
+**percentile** égalisait parfaitement les rangs médians (657 contre 656) mais
+cassait la tête du classement : *annehmen* et *anbieten* passaient devant
+*haben* et *können*. Le percentile suppose deux distributions de même forme ; le
+sommet de la fréquence allemande est tenu par des auxiliaires sans équivalent
+séparable. Le facteur multiplicatif préserve la forme de la distribution.
+
+**La couverture obtenue :** noms 98,4 %, adverbes 98,3 %, adjectifs 98,0 %,
+verbes 98,4 %, mots-outils 87,6 %. **Les expressions : 20,9 %** — une suite de
+mots n'est dans aucune liste de fréquence, et elles sont rangées en queue par
+ordre alphabétique plutôt que de recevoir un rang inventé.
+
+⚠️ **Ce que le chiffre ne dit pas, et qui compte pour la suite :** la fréquence
+d'un corpus **écrit** n'est pas l'utilité pour un apprenant. `duschen` et
+`putzen` finissent derniers des verbes A1. C'est un argument de plus pour que le
+**niveau CECR reste l'organisateur principal**, la fréquence n'étant qu'un
+affinage à l'intérieur d'un niveau — ce qui est exactement le chemin décidé.
+
+**Livré :** `tests/frequence.py` (le script, seule source lisible) et
+`frequence.json` (282 ko, 7 704 entrées, dérivé). L'attribution CC BY est dans
+la carte « Crédits » des réglages, **dans les cinq langues**. Rien ne consomme
+encore ce fichier.
