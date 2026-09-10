@@ -225,7 +225,10 @@ La question ouverte n'est donc pas dans le calcul, elle est dans l'**affichage**
 du compteur :
 
 - **suivre le code (B)** : le compteur peut baisser, il est exact, et il baisse
-  de quelques mots à la fois — pas de 50 points ;
+  de quelques mots à la fois — pas de 50 points. Une relecture ajoute une
+  condition qui coûte peu : **ne jamais décrémenter en silence**. Si « acquis »
+  passe de 98 à 96, l'écran dit pourquoi — « 2 mots à reconsolider » — au lieu
+  de laisser l'utilisateur découvrir un chiffre plus bas sans explication ;
 - **afficher un cumul (A)** : il ne baisse jamais, mais il affirme une maîtrise
   qui n'est plus vraie.
 
@@ -396,6 +399,41 @@ sont ici pour être confirmés ou écartés, pas pour servir d'appui.
 
 ---
 
+## 4.7 ⚠️ Ce que quatre relectures par IA ont donné — et n'ont pas donné
+
+Ce dossier a été soumis quatre fois à des modèles de langue (ChatGPT, Gemini,
+Copilot) avant d'atteindre un lecteur humain. Le bilan est utile à qui le lira
+ensuite.
+
+**Ce qu'elles ont apporté, et qui a été intégré :** le mot « couverture », qui
+surpromettait ; le recadrage du 11ᵉ jour ; l'arithmétique qui a tué la barre sur
+les mots commencés (§4.1) ; la nuance de la règle d'or ; la séparation
+découverte/révision (question 5) ; la décrémentation non silencieuse.
+
+**Ce qu'elles n'ont pas apporté : une seule fois, la question 8 a produit un
+défaut que nous n'avions pas déjà écrit.** Les trois « angles morts » les plus
+souvent cités — pas de distinction entre carte neuve et carte échue, séances
+sans fin, grammaire sans trace — sont les §3.1, §1.2 et §3.4 de ce document,
+que les relecteurs venaient de lire. **Elles nous renvoient nos propres
+constats comme des découvertes.**
+
+⚠️ **Conséquence pour le lecteur suivant.** Si vous êtes un praticien ou un
+chercheur : la valeur que nous cherchons n'est pas une validation de la
+cohérence interne — quatre modèles l'ont déjà confirmée, et c'est le genre de
+chose qu'ils confirment bien. C'est **le désaccord** qui nous intéresse, et
+tout particulièrement un désaccord appuyé sur des données d'usage ou des
+résultats publiés que nous n'avons pas.
+
+**Deux affirmations sont revenues plusieurs fois sans que nous puissions les
+vérifier**, et elles restent hors du raisonnement : que 20 mots neufs par jour
+conduisent à 120-200 révisions quotidiennes après trois ou quatre semaines
+(plusieurs relecteurs, chiffres voisins, aucune source) ; et que les
+applications grand public ne font jamais baisser un score global à l'accueil
+(plausible, invérifié). Si l'une des deux est établie quelque part, le dire
+serait plus utile que tout le reste de cette section.
+
+---
+
 ## 5. Contraintes à respecter
 
 - **Ne pas assouplir l'échelle à quatre succès.** C'est elle qui fait tenir la
@@ -454,6 +492,10 @@ sont ici pour être confirmés ou écartés, pas pour servir d'appui.
    **coût de bascule attentionnelle**. Faut-il conserver le mélange global, et
    n'introduire une contrainte de niveau que si les données d'usage montrent
    un problème ?
+   Une piste proposée en relecture, qui réconcilie les deux effets : **séparer
+   les niveaux en DÉCOUVERTE, ne les mélanger qu'en RÉVISION**. L'entrelacement
+   porterait alors sur ce qu'on revoit, jamais sur ce qu'on rencontre pour la
+   première fois. Est-ce le bon partage ?
 6. **Le plafond peut-il agacer ?** Bloquer l'entrée de mots neufs quand la
    charge de révision est lourde risque-t-il d'exaspérer quelqu'un qui veut
    « avancer dans le programme » à tout prix ?
