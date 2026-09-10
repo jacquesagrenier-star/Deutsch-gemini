@@ -3883,12 +3883,22 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    rien dire de plus que le titre. */
 .orb-seance{
     grid-column:1 / -1;
+    /* ⚠️ SANS CECI, LE BANDEAU EST UN CARRE DE LA LARGEUR DE LA PAGE. La classe
+       .orb impose aspect-ratio:1, ce qui convient a une tuile d'un tiers de
+       largeur ; etendue aux trois colonnes, elle en fait un bloc aussi haut que
+       large -- pres de la moitie de l'ecran. Aucun reglage de padding ne pouvait
+       le rattraper. */
+    aspect-ratio:auto;
     display:block;
-    padding:8px 12px 9px;
+    padding:9px 12px 10px;
+    border-radius:14px;
+    text-align:start;
+    box-shadow:none;
     border-color:rgba(59,111,224,.42);
     background:rgba(59,111,224,.055);
     cursor:pointer;
 }
+.orb-seance:hover{transform:none; box-shadow:none;}
 .seance-haut{display:flex; align-items:baseline; gap:8px;}
 .orb-seance strong{font-size:14px; line-height:1.2; flex:0 0 auto;}
 .seance-sub{font-size:12px; color:#5b6b86; flex:1 1 auto; min-width:0;}
@@ -4181,7 +4191,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v529</span>
+        <span class="subtitle-version">v530</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -22308,7 +22318,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 529;
+const APP_VERSION = 530;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
