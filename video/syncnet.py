@@ -94,6 +94,14 @@ def verdict_lse(d, c):
     return "LSE-D %.3f %s ; LSE-C %.3f" % (d, q, c)
 
 
+def a_du_son(clip):
+    """Un clip muet n'est pas mesurable : autant le dire ici."""
+    import imageio_ffmpeg
+    r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner", "-i", clip],
+                       capture_output=True, text=True, errors="replace")
+    return "Audio:" in r.stderr
+
+
 def mesurer(clip, garder=None):
     """(offset en images, LSE-D, LSE-C) pour un clip. None si aucun visage."""
     if not os.path.isdir(SYNCNET):
@@ -106,7 +114,15 @@ def mesurer(clip, garder=None):
         for etape in ("run_pipeline.py", "run_syncnet.py"):
             r = subprocess.run(
                 [sys.executable, etape, "--videofile", os.path.abspath(clip),
-                 "--reference", ref, "--data_dir", tmp],
+                 "--reference", ref, "--data_dir", tmp,
+                 # ⚠️ NOS PLANS SONT PLUS COURTS QUE CE QUE SYNCNET ATTEND.
+                 # Son defaut exige une piste de visage de 100 images -- quatre
+                 # secondes a 25 im/s. Coupes a --queue 0.9, nos plans font 2,6
+                 # a 4 s : le suivi les rejetait tous, et l'outil repondait
+                 # « aucun visage suivi » sur des plans ou le visage occupe la
+                 # moitie du cadre. Une seconde suffit a mesurer.
+                 # run_syncnet.py, lui, ne connait pas cette option.
+                 ] + (["--min_track", "25"] if etape == "run_pipeline.py" else []),
                 cwd=SYNCNET, capture_output=True, text=True, errors="replace")
             if r.returncode != 0:
                 print(r.stdout[-1500:]); print(r.stderr[-1500:])
@@ -140,16 +156,32 @@ def main():
     if a.fichier:
         cibles = [(os.path.basename(a.fichier), a.fichier)]
     else:
+        # ⚠️ LES CLIPS DE 03-final SONT MUETS. rapatrier.py coupe la piste de
+        # Seedance a l'archivage : SyncNet n'a alors rien a comparer, et
+        # ffmpeg echoue trois ecrans plus bas sur « Output file does not
+        # contain any stream ».
+        #
+        # On mesure donc, dans l'ordre : le SEGMENT DE MONTAGE (l'image du
+        # plan avec notre voix posee dessus -- c'est ce que le spectateur voit
+        # et entend), sinon le plan synchronise. Un plan sans aucune des deux
+        # n'est pas mesurable, et on le dit au lieu de planter.
+        import json
         dv = os.path.join(RACINE, "video", "episode-" + a.scene)
-        nums = ([a.plan] if a.plan else
-                sorted(int(re.search(r"plan(\d+)", f).group(1))
-                       for f in glob.glob(os.path.join(dv, "03-final", "plan*.mp4"))))
+        d = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"),
+                              encoding="utf-8"))
+        parlants = [p["n"] for p in d["plans"] if p["type"] == "replique"]
+        nums = [a.plan] if a.plan else parlants
         for n in nums:
-            sync = os.path.join(dv, "04-lipsync", "plan%02d.mp4" % n)
-            brut = os.path.join(dv, "03-final", "plan%02d.mp4" % n)
-            c = sync if os.path.exists(sync) else brut
-            if os.path.exists(c):
-                cibles.append(("plan%02d%s" % (n, " (synchro)" if c == sync else ""), c))
+            # Le plan synchronise d'abord : il est ENTIER, la ou le segment
+            # de montage est deja coupe a la queue -- moins d'images pour la
+            # meme mesure, et sur les plans les plus courts ca compte.
+            for etiquette, c in (("synchro", os.path.join(dv, "04-lipsync", "plan%02d.mp4" % n)),
+                                 ("montage", os.path.join(dv, "_montage", "plan%02d.mp4" % n))):
+                if os.path.exists(c) and a_du_son(c):
+                    cibles.append(("plan%02d (%s)" % (n, etiquette), c))
+                    break
+            else:
+                cibles.append(("plan%02d" % n, None))
         if not a.plan and not a.tous:
             sys.exit("  Preciser --plan N, --fichier F, ou --tous.")
 
@@ -157,6 +189,10 @@ def main():
           % ("clip", "offset", "LSE-D", "LSE-C", "verdict"))
     print("  " + "-" * 96)
     for nom, chemin in cibles:
+        if chemin is None:
+            print("  %-22s pas de clip sonore (03-final est muet : monter la"
+                  " scene, ou synchroniser)" % nom)
+            continue
         r = mesurer(chemin)
         if not r:
             print("  %-22s aucun visage suivi" % nom)
