@@ -160,151 +160,122 @@ fraction, elle décourage — indépendamment de tout découpage en blocs.
 
 ## 4. Ce qui est proposé
 
-### 4.1 Mesurer ce qui est COMMENCÉ et ce qui est ACQUIS
+### 4.1 ⚠️ CHANGEMENT DE CONCEPT — un chemin fermé, et non un buffet ouvert
 
-Trois états par mot au lieu de deux :
+**Cette section a été entièrement réécrite le 10 septembre 2026, après six
+relectures de la version précédente.** Elle ne la corrige pas : elle la
+remplace. Le raisonnement écarté est conservé au §4.2 bis, parce qu'il est plus
+instructif que la conclusion.
 
-| état | définition exacte |
-|---|---|
-| jamais touché | aucune tentative |
-| **en cours** | **au moins une tentative sur ce mot**, l'échelle n'est pas terminée |
-| **acquis** | les **quatre** succès consécutifs sont faits |
+Aujourd'hui, l'application est un **buffet** : l'utilisateur choisit un niveau,
+puis un type (noms, verbes, adjectifs, adverbes, expressions), puis un thème ou
+« au hasard ». Toutes les portes sont ouvertes en permanence, sur 8 003 entrées.
 
-⚠️ **Le mot « couverture » a été écarté après une première relecture**, et la
-critique était juste : quelqu'un qui ouvre un mot, répond « Encore » et ne le
-revoit jamais n'a rien « couvert ». « Commencé » est une affirmation vraie — on
-ne prétend pas qu'il connaît le mot, on constate qu'il a commencé. C'est
-exactement le principe que ce document se donne, et que la première version
-enfreignait.
+**Proposition : fermer les portes et servir.** L'application distribue des
+**étapes fermées d'environ 30 items**, mélangeant noms, verbes et adjectifs.
+Quand l'étape est acquise, la suivante s'ouvre. L'utilisateur ne choisit ni
+niveau, ni type, ni thème — il n'a qu'une séance devant lui.
 
-### AUCUNE FRACTION À L'ACCUEIL — deux comptes, et c'est tout
+Ce que ça règle, et qu'aucun compteur n'avait réglé :
 
-Une étape intermédiaire a été proposée puis **écartée en cours de relecture**,
-et elle mérite d'être racontée parce que l'erreur est instructive.
+- **La fatigue de décision disparaît.** Plus rien à choisir avant de commencer.
+- **Le dénominateur écrasant disparaît réellement**, au lieu d'être déplacé :
+  les 8 003 mots existent, ne sont jamais affichés, et ne se choisissent pas.
+- **La variété devient une propriété du contenu, pas un choix de l'utilisateur.**
+  L'étape mélange les types d'elle-même. C'était l'objection de l'auteur :
+  *« je ne suis pas sûr que les étudiants s'intéressent à un thème en
+  particulier ; de réflexe, je pense qu'ils vont vouloir varier. »*
+- **Le cadre de référence, qui manquait à tout le reste, existe enfin :**
+  l'étape EST le comparateur (§4.6). « Étape 7 » se comprend sans explication ;
+  « 98 mots acquis » ne se compare à rien.
 
-L'idée était de garder une barre, mais de changer son dénominateur : mesurer la
-maîtrise non plus sur les 8 003 mots du corpus, mais sur **les seuls mots
-commencés** — somme des paliers atteints ÷ (4 × mots commencés). Elle bougeait
-dès la première séance et 100 % devenait atteignable.
+**L'étape s'affiche seule, sans total.** « Étape 7 », jamais « étape 7 sur 27 ».
+Un relecteur a proposé « étape 3 / 12 du niveau A1 » : le chiffre est faux — le
+niveau A1 compte **797 entrées** (462 noms, 111 verbes, 104 adjectifs, 52
+adverbes, 68 expressions), soit **27 étapes de 30** — et surtout il réintroduit
+le dénominateur qu'on vient de retirer.
 
-**Un relecteur a produit l'arithmétique qui la tue.** 20 mots menés à 4/4 =
-80/80 = 100 %. On ouvre 20 mots neufs : 80/160 = **50 %**. La barre s'effondre
-de moitié le jour où l'utilisateur a le plus travaillé. Le problème du
-dénominateur n'avait pas été résolu, seulement déplacé — et rendu plus violent,
-puisque la chute est maximale quand la base est petite, c'est-à-dire pendant les
-premières semaines, exactement la période qu'on cherche à réparer. (À 312 mots
-commencés, la même dose de 20 ne coûte que 3 points ; à 20 mots commencés, elle
-en coûte 50.)
+⚠️ **Et « Étape 7 » n'est pas un rang de jeu.** La distinction est essentielle,
+parce que la critique la mieux établie contre les tableaux de bord
+d'apprentissage vise exactement les rangs et les XP : des mesures d'engagement
+déguisées en mesures de compétence. Ici le 7 n'est pas un score attribué pour de
+l'activité — c'est **210 mots réellement passés par les quatre paliers**. Le
+nombre ne peut pas monter sans que la mémoire ait suivi.
 
-**Mettre cette fraction en pixels ne la sauve pas** : un segment foncé qui
-rétrécit alors qu'aucun mot n'a été perdu ment de la même façon.
+**Trois trous à boucher avant d'écrire une ligne de code :**
 
-**Conclusion retenue : l'accueil ne porte AUCUNE fraction.** Deux comptes, qui
-ne se divisent par rien :
+1. **Le mot récalcitrant.** Vingt-neuf mots acquis, un qui retombe à zéro tous
+   les trois jours, et l'étape ne se ferme jamais — l'infini recréé en plus
+   petit. Il faut une porte de sortie : l'étape se ferme au bout de N jours et
+   le mot têtu passe à l'étape suivante.
+2. **L'apprenant qui a déjà des bases** se retrouverait à l'étape 1 devant des
+   mots qu'il connaît. La soupape existe déjà dans le code — « je le sais
+   déjà » (`markKnownAlready`) saute les quatre paliers d'un coup — mais elle
+   devient centrale au lieu d'être un raccourci.
+3. **L'ordre des étapes.** Voir §4.2.
 
-| | ce que c'est | premier mouvement |
-|---|---|---|
-| **mots commencés** | cartes uniques ayant reçu au moins une tentative | la 1ʳᵉ carte |
-| **mots acquis** | cartes ayant les quatre succès | le 11ᵉ jour |
+**Ce que ça coûte, et il faut le dire :** c'est la façon dont l'auteur lui-même
+utilise l'application qui disparaît. Il révise en « mots au hasard » après avoir
+choisi son niveau — précisément la porte qu'on ferme. C'est peut-être la bonne
+décision (il connaît l'app par cœur, il n'est pas l'utilisateur type), mais
+c'est une décision prise contre un usage réel et observé.
 
-La barre n'existait que pour donner du mouvement avant le 11ᵉ jour. **« Mots
-commencés » le donne déjà**, dès la première carte, et monte d'environ 20 par
-séance. La fraction était une réponse à un problème que le premier compteur
-résout mieux.
+### 4.2 L'ordre des étapes — ce qu'on voudrait, et ce qu'on a
 
-### ⚠️ Une question que le code tranche déjà à moitié : A ou B ?
+L'intention est de servir **les mots les plus utiles d'abord**. ⚠️ **Vérifié :
+il n'existe aucune donnée de fréquence dans la base** — zéro champ de ce type
+sur les 4 209 noms, ni sur les verbes, ni sur les adjectifs. « Les 30 mots les
+plus utilisés » n'est pas calculable aujourd'hui.
 
-Un relecteur demande si « acquis » veut dire **(A)** « a atteint 4/4 au moins
-une fois » ou **(B)** « est actuellement à 4/4 ». **Vérifié dans le code, et
-c'est B :** « Je ne savais pas » appelle `reviewAgain()`, qui remet
-`srsHits = 0`, puis `scheduleReview()`, qui remet `mastered = false`. Un mot
-maîtrisé qui rate son contrôle à 16 jours **perd sa maîtrise et repart à zéro**
-— et le panneau d'aide le dit déjà à l'utilisateur.
+Ce que nous avons en revanche : **les listes officielles d'examen**, déjà dans
+le dépôt — Goethe A2 (1 092 mots), Goethe B1 (2 779), DTZ (2 439). Pour des
+apprenants qui préparent ces épreuves, c'est un meilleur critère que la
+fréquence brute : ce ne sont pas les mots les plus fréquents de la langue, ce
+sont ceux qu'on leur demandera. Manquent la liste A1, et tout ordre à
+l'intérieur des listes, qui sont alphabétiques.
 
-La question ouverte n'est donc pas dans le calcul, elle est dans l'**affichage**
-du compteur :
+**Décision de méthode : ne pas attacher le concept à cette donnée.** La question
+posée n'est pas « quel est le meilleur ordre » mais « un chemin fermé vaut-il
+mieux qu'un buffet ouvert ». L'ordre actuel suffit pour y répondre. Lier les
+deux, c'est ne rien pouvoir essayer avant qu'un projet de données aboutisse — et
+il peut échouer sur une licence, comme nous l'avons frôlé avec le dictionnaire.
 
-- **suivre le code (B)** : le compteur peut baisser, il est exact, et il baisse
-  de quelques mots à la fois — pas de 50 points. Une relecture ajoute une
-  condition qui coûte peu : **ne jamais décrémenter en silence**. Si « acquis »
-  passe de 98 à 96, l'écran dit pourquoi — « 2 mots à reconsolider » — au lieu
-  de laisser l'utilisateur découvrir un chiffre plus bas sans explication ;
-- **afficher un cumul (A)** : il ne baisse jamais, mais il affirme une maîtrise
-  qui n'est plus vraie.
+### 4.2 bis Le raisonnement écarté, conservé parce qu'il est instructif
 
-Nous penchons pour **B**, par cohérence avec le principe de ce document. Mais
-c'est un choix, et il est soumis à la relecture.
+Avant le chemin, trois modèles ont été proposés puis abandonnés, dans cet ordre.
+Chacun échoue pour une raison différente, et un lecteur extérieur jugera mieux
+la proposition finale en voyant ce qu'elle remplace.
 
-**Un troisième indicateur a été proposé, et refusé.** Deux relecteurs ont
-suggéré d'ajouter une « consolidation actuelle » à côté des deux comptes. Sous
-B elle est déjà égale à « mots acquis » ; sous A elle est un ratio dont le
-dénominateur est le nombre de mots commencés — donc **exactement la fraction
-qu'on vient de retirer**, sous un autre nom. Et la contrainte qui gouverne tout
-ce chantier est venue de l'utilisateur lui-même : *« pour que ce soit simple et
-clair pour l'étudiant »*. Trois nombres abstraits sur une carte d'accueil sont
-le défaut qu'on répare, pas la réparation.
+**1. Le pourcentage par niveau (l'existant).** 0,22 % par mot, rien avant le
+11ᵉ jour, et il recule quand on oublie. Écarté : il demande à un indicateur de
+maîtrise de jouer le rôle d'un indicateur de progression quotidienne.
 
-**Ce refus ne porte que sur l'accueil.** Si un relecteur juge qu'un état de
-consolidation apporte une information utile, il a sa place dans le panneau ⓘ ou
-dans un écran de détail — là où quelqu'un vient chercher une réponse précise,
-et non là où il ouvre l'app pour savoir s'il a avancé.
-**« Commencé » reste une affirmation vraie** : elle dit « j'ai commencé à
-travailler ce mot », ce qui est un fait sur l'apprenant — pas un compteur
-d'activité. Et la distinction **commencé ≠ acquis** doit rester visible : deux
-nombres séparés, jamais un seul chiffre qui mélange les deux.
+**2. Une barre sur les mots commencés.** Mesurer la maîtrise non plus sur les
+8 003 mots mais sur le sous-ensemble ouvert : somme des paliers ÷ (4 × mots
+commencés). Écarté par l'arithmétique d'un relecteur : 20 mots menés à 4/4 font
+80/80 = 100 % ; on ouvre 20 mots neufs et l'on tombe à 80/160 = **50 %**. La
+barre s'effondre le jour où l'utilisateur a le plus travaillé, et la chute est
+maximale quand la base est petite — donc pendant les premières semaines,
+exactement la période qu'on cherchait à réparer. **Le problème du dénominateur
+n'avait pas été résolu, seulement déplacé — et rendu plus violent.**
 
-⚠️ **La règle qui sort de tout ceci, et qui vaut plus que le détail des
-compteurs : aucun indicateur d'accueil ne doit se dégrader quand
-l'utilisateur travaille.** C'est le critère qui a éliminé le pourcentage
-global, puis la barre sur les mots commencés. Toute proposition future se juge
-là-dessus d'abord.
+**3. Deux comptes absolus** — « mots commencés » et « mots acquis », sans
+aucune fraction. Corrects, honnêtes, et **insuffisants** : c'est le verdict de
+l'auteur, et il est juste. 98 mots acquis sur un total non dit reste 98 sur
+l'infini. Retirer le dénominateur retire la douleur ; ça n'apporte pas la
+satisfaction, parce qu'il manque toujours **quelque chose qui se termine**.
 
-**La nuance sans laquelle la règle a l'air violée, et un relecteur l'a
-relevé :** « mots acquis » PEUT baisser, puisqu'il suit l'état réel (B
-ci-dessus). Il n'y a contradiction qu'en apparence — la règle interdit qu'un
-indicateur recule **en réponse à l'effort**, et c'est bien ce qui est obtenu :
-ouvrir vingt mots neufs, se tromper sur une carte, ouvrir un niveau plus
-difficile ne font baisser ni l'un ni l'autre des deux compteurs. La seule chose
-qui retire un mot du compte « acquis » est **un oubli constaté au contrôle de
-16 jours** — pas un geste de travail, mais un résultat de mémoire.
+⚠️ **La règle née de ces trois échecs, et qui gouverne le reste : aucun
+indicateur d'accueil ne doit se dégrader quand l'utilisateur travaille.** C'est
+elle qui a éliminé le pourcentage global puis la barre. Le chemin la respecte :
+franchir une étape ne peut rien faire reculer.
 
-Cela dit, l'utilisateur ne fait pas cette distinction en regardant son écran :
-il voit un nombre qui a baissé. **C'est précisément l'objet de la question 1(c)**,
-et nous ne tranchons pas ici.
-
-Raisonnement écarté : un compteur d'**effort** (cartes vues, minutes, XP)
-monte tous les jours mais ne dit rien de ce qu'on sait ; un compteur de
-**maîtrise** seule est vrai mais lointain et il recule.
-
-### 4.2 Trois indicateurs, aucun dénominateur — deux pour le vocabulaire, un pour la grammaire
-
-Ils montent quelle que soit la porte choisie, et additionnent tous les niveaux
-et tous les types :
-
-| | monte quand | premier mouvement |
-|---|---|---|
-| **mots commencés** | il touche un mot neuf | la 1ʳᵉ carte |
-| **mots acquis** | l'échelle se termine | le 11ᵉ jour |
-| **jeux solides** (sur 40) | il réussit une série de grammaire | la 1ʳᵉ séance |
-
-**« Mots commencés » est le chiffre d'accueil**, en gros caractères : c'est le
-seul qui ne redescend jamais. « Mots acquis » est posé à côté, dans la même
-taille de bloc mais sans emphase — il vaut zéro pendant onze jours, et un zéro
-mis en vedette décourage.
-
-⚠️ **« En cours » est un état interne, pas un compteur affiché.** Le §4.1 en a
-besoin pour définir les trois états d'un mot ; l'accueil n'en montre pas le
-total. Il se déduit d'ailleurs des deux autres, et un troisième nombre coûterait
-plus en clarté qu'il ne rapporte.
-
-Le pourcentage par niveau reste accessible, mais **dans le panneau ⓘ** et comme
-**carte du territoire** — où j'en suis d'un niveau — non comme note
-quotidienne. Il descend d'un rang à l'écran ; sa valeur n'est pas touchée.
-
-**Vocabulaire.** Un relecteur a proposé « taux de consolidation » et « périmètre
-engagé ». Écarté : le dossier garde les mots que l'écran affichera —
-« commencés », « acquis » — pour qu'on ne relise pas une chose en en
-construisant une autre.
+**Ce qui survit au changement de concept :** un mot est **acquis** après quatre
+succès, et il peut ressortir du compte s'il est oublié au contrôle de 16 jours —
+c'est ce que le code fait (`reviewAgain()` remet `srsHits` à 0, puis
+`scheduleReview()` remet `mastered` à `false`). La question de savoir si
+l'affichage doit suivre cette baisse ou afficher un cumul reste entièrement
+ouverte : voir question 1(c), et le précédent de Duolingo au §4.6.
 
 ### 4.3 Donner une mémoire à la grammaire — par JEU, jamais par exercice
 
@@ -321,14 +292,22 @@ plusieurs réussites espacées : le critère sera fixé **après** cette relectu
 pas avant (question 4). Tant qu'il ne l'est pas, le compteur « jeux solides »
 est une intention, pas une spécification.
 
-### 4.4 Plafonner les mots NEUFS par jour, globalement
+### 4.4 Plafonner les mots NEUFS par jour — désormais une conséquence, plus un mécanisme
 
 La séance devient : *tout ce qui est réellement échu* + *au plus N nouveaux*,
 N valant pour l'application entière et non par paquet.
 
-Sans plafond, on peut introduire 20 noms + 20 adverbes + 20 verbes le même
-jour : soixante mots qui reviendront tous demain, et c'est le compteur
-d'échéances lui-même qui finit par décourager.
+⚠️ **Le chemin du §4.1 rend ce plafond presque automatique** : les mots neufs ne
+peuvent venir que de l'étape en cours, donc on ne peut plus ouvrir 20 noms,
+20 adverbes et 20 verbes le même jour. Le plafond ne sert plus à empêcher la
+dispersion — il sert seulement à **doser le rythme à l'intérieur d'une étape**,
+et c'est là que le chiffre d'Anki compte (§4.6 : 20 neufs/jour mènent à environ
+200 révisions quotidiennes).
+
+Dans l'ancien modèle, sans plafond d'aucune sorte, on pouvait introduire 20 noms
++ 20 adverbes + 20 verbes le même jour : soixante mots qui reviendraient tous
+demain, et c'est le compteur d'échéances lui-même qui finissait par
+décourager.
 
 À 20 par séance, présenter tout l'A1 demande **24 séances**, soit trois à
 quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouton
@@ -441,7 +420,8 @@ révision est désormais intégrée au chemin lui-même. Et les niveaux
 « légendaires » ne se cassent plus une fois obtenus.
 *Duolingo, « A new home screen design », blog.duolingo.com, 2022.*
 
-⚠️ **C'est un précédent qui joue CONTRE notre penchant pour l'option B** (§4.1).
+⚠️ **C'est un précédent qui joue CONTRE notre penchant pour l'option B**
+(§4.2 bis).
 Le plus gros acteur du domaine a rencontré la même question — faut-il montrer
 la dégradation ? — et a répondu non : il a supprimé l'affichage qui recule et
 déplacé la révision ailleurs. Ce n'est pas une preuve, c'est une décision de
@@ -503,22 +483,23 @@ serait plus utile que tout le reste de cette section.
 
 ## 6. Ce sur quoi un avis extérieur serait utile
 
-1. **Des comptes plutôt qu'un pourcentage.** Nous envisageons de retirer de
-   l'accueil toute fraction, et de n'afficher que des nombres absolus :
-   mots commencés, mots acquis, jeux de grammaire solides.
-   (a) Ce découpage est-il plus compréhensible et plus motivant, pour un
-   apprenant en autonomie, qu'un pourcentage — quel qu'en soit le
-   dénominateur ?
-   (b) Un nombre sans dénominateur prive l'apprenant de tout repère sur
-   « combien il en reste ». Est-ce une perte réelle, ou le repère manquant
-   est-il justement ce qui décourageait ?
+1. **Le chemin fermé contre le buffet ouvert — c'est LA question du dossier.**
+   Nous envisageons de retirer tous les choix (niveau, type, thème, « au
+   hasard ») et de servir des étapes fermées d'une trentaine d'items mélangés,
+   la suivante s'ouvrant quand la précédente est acquise (§4.1).
+   (a) Pour un adulte en autonomie, un parcours imposé est-il plus soutenable
+   qu'un accès libre — ou le sentiment de perdre le contrôle coûte-t-il plus
+   cher que la fatigue de décision qu'il évite ?
+   (b) Existe-t-il des résultats comparant les deux modèles à rétention égale,
+   plutôt qu'à engagement égal ?
    (c) « Acquis » doit-il suivre l'état réel (il peut baisser quand un mot est
-   oublié) ou afficher un cumul qui ne baisse jamais mais surestime ?
-   (d) Une barre qui avance dès la première tentative — **même ratée** —
-   serait-elle motivante ou décevante pour un débutant ? ⚠️ La question ne
-   propose pas de réintroduire une barre à l'accueil (§4.1 explique pourquoi
-   il n'y en aura pas) : elle porte sur un affichage secondaire, s'il devait y
-   en avoir un.
+   oublié) ou afficher un cumul qui ne baisse jamais mais surestime ? Voir le
+   précédent de Duolingo au §4.6, qui a supprimé son indicateur qui recule.
+   (d) Un chemin imposé rend-il l'application inutilisable pour quelqu'un qui
+   a déjà des bases, si la seule échappatoire est « je le sais déjà » ?
+   (e) Nous supprimons au passage la façon dont l'auteur lui-même utilise
+   l'application. Est-ce un signal d'alarme, ou la marque normale d'un produit
+   qui cesse d'être conçu pour son concepteur ?
 2. **Le recul du pourcentage — et la question se dédouble.**
    (a) Est-ce **pédagogiquement exact** ? « Ma maîtrise mesurée de ce corpus a
    diminué » est une affirmation vraie.
