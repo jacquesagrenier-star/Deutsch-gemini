@@ -240,6 +240,11 @@ qu'on vient de retirer**, sous un autre nom. Et la contrainte qui gouverne tout
 ce chantier est venue de l'utilisateur lui-même : *« pour que ce soit simple et
 clair pour l'étudiant »*. Trois nombres abstraits sur une carte d'accueil sont
 le défaut qu'on répare, pas la réparation.
+
+**Ce refus ne porte que sur l'accueil.** Si un relecteur juge qu'un état de
+consolidation apporte une information utile, il a sa place dans le panneau ⓘ ou
+dans un écran de détail — là où quelqu'un vient chercher une réponse précise,
+et non là où il ouvre l'app pour savoir s'il a avancé.
 - Elle reste **vraie** : elle dit « j'ai commencé à travailler ce mot », ce qui
   est un fait sur l'apprenant — pas un compteur d'activité.
 
@@ -251,6 +256,19 @@ compteurs : aucun indicateur d'accueil ne doit se dégrader quand
 l'utilisateur travaille.** C'est le critère qui a éliminé le pourcentage
 global, puis la barre sur les mots commencés. Toute proposition future se juge
 là-dessus d'abord.
+
+**La nuance sans laquelle la règle a l'air violée, et un relecteur l'a
+relevé :** « mots acquis » PEUT baisser, puisqu'il suit l'état réel (B
+ci-dessus). Il n'y a contradiction qu'en apparence — la règle interdit qu'un
+indicateur recule **en réponse à l'effort**, et c'est bien ce qui est obtenu :
+ouvrir vingt mots neufs, se tromper sur une carte, ouvrir un niveau plus
+difficile ne font baisser ni l'un ni l'autre des deux compteurs. La seule chose
+qui retire un mot du compte « acquis » est **un oubli constaté au contrôle de
+16 jours** — pas un geste de travail, mais un résultat de mémoire.
+
+Cela dit, l'utilisateur ne fait pas cette distinction en regardant son écran :
+il voit un nombre qui a baissé. **C'est précisément l'objet de la question 1(c)**,
+et nous ne tranchons pas ici.
 
 Raisonnement écarté : un compteur d'**effort** (cartes vues, minutes, XP)
 monte tous les jours mais ne dit rien de ce qu'on sait ; un compteur de
@@ -268,9 +286,14 @@ et tous les types :
 | **jeux solides** (sur 40) | il réussit une série de grammaire | la 1ʳᵉ séance |
 
 **« Mots commencés » est le chiffre d'accueil**, en gros caractères : c'est le
-seul qui ne redescend jamais. « Mots acquis » n'est pas un titre — il est le
-remplissage foncé de la barre, où il se lit sans décourager pendant les onze
-premiers jours.
+seul qui ne redescend jamais. « Mots acquis » est posé à côté, dans la même
+taille de bloc mais sans emphase — il vaut zéro pendant onze jours, et un zéro
+mis en vedette décourage.
+
+⚠️ **« En cours » est un état interne, pas un compteur affiché.** Le §4.1 en a
+besoin pour définir les trois états d'un mot ; l'accueil n'en montre pas le
+total. Il se déduit d'ailleurs des deux autres, et un troisième nombre coûterait
+plus en clarté qu'il ne rapporte.
 
 Le pourcentage par niveau reste accessible, mais **dans le panneau ⓘ** et comme
 **carte du territoire** — où j'en suis d'un niveau — non comme note
@@ -278,8 +301,8 @@ quotidienne. Il descend d'un rang à l'écran ; sa valeur n'est pas touchée.
 
 **Vocabulaire.** Un relecteur a proposé « taux de consolidation » et « périmètre
 engagé ». Écarté : le dossier garde les mots que l'écran affichera —
-« commencés », « en route », « acquis » — pour qu'on ne relise pas une chose en
-en construisant une autre.
+« commencés », « acquis » — pour qu'on ne relise pas une chose en en
+construisant une autre.
 
 ### 4.3 Donner une mémoire à la grammaire — par JEU, jamais par exercice
 
@@ -289,6 +312,12 @@ taux de réussite.
 **Par jeu et non par exercice** : réussir « Ich habe gegessen » ne prouve pas
 qu'on sait le Perfekt, et reservir cette phrase-là testerait la mémoire d'une
 phrase, pas d'une règle. Une règle se planifie ; un exemplaire se tire au sort.
+
+⚠️ **« Solide » n'est pas encore défini, et c'est délibéré.** Deux séries sans
+erreur (piste suggérée par l'étude de Serfaty, §4.6), une série à 100 %, ou
+plusieurs réussites espacées : le critère sera fixé **après** cette relecture,
+pas avant (question 4). Tant qu'il ne l'est pas, le compteur « jeux solides »
+est une intention, pas une spécification.
 
 ### 4.4 Plafonner les mots NEUFS par jour, globalement
 
@@ -307,7 +336,9 @@ quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouto
 
 - **Un plafond dynamique plutôt que fixe.** Si la journée porte déjà 50
   échéances, y ajouter 20 mots neufs crée un goulot. Le nombre de neufs
-  dépendrait alors de la charge du jour.
+  dépendrait alors de la charge du jour. ⚠️ **Hypothèse, pas intention** : un
+  plafond qui varie tout seul est plus difficile à comprendre qu'un nombre
+  fixe, et rien ne sera implémenté ici sans données d'usage.
 - **Trois régimes au choix** : soutenu (20 neufs/jour), modéré (10), entretien
   (0 — seules les échéances sont traitées).
 - **Déclarer la séance « complétée »** plutôt que simplement terminée : une fin
@@ -409,12 +440,20 @@ sont ici pour être confirmés ou écartés, pas pour servir d'appui.
    indépendamment du nombre total de séances. Ce résultat se transpose-t-il à
    nos 40 jeux — dont les exercices sont tirés d'un réservoir, non répétés à
    l'identique — ou faut-il mesurer autrement ?
+   ⚠️ Un relecteur a reformulé ce résultat en « deux séries **consécutives** à
+   100 % ». L'étude n'exige pas la consécutivité, et la version vérifiée à la
+   source est celle du §4.6 : deux séances sans erreur, quel que soit
+   l'intervalle. Merci de ne pas raisonner sur la version renforcée.
 5. **Le mélange des niveaux.** Une révision qui présente un mot C1 juste après
    un mot A1 est-elle réellement problématique, ou seulement intuitivement
-   inconfortable ? La littérature sur l'**entrelacement** suggère que mélanger
-   des catégories peut améliorer l'apprentissage, l'effet dépendant de leur
-   similarité. Faut-il conserver le mélange global, et n'introduire une
-   contrainte de niveau que si les données d'usage montrent un problème ?
+   inconfortable ? Deux effets connus tirent en sens contraire, et c'est ce
+   qu'on aimerait voir arbitré : la littérature sur l'**entrelacement**
+   suggère que mélanger des catégories améliore l'apprentissage, mais l'effet
+   dépend de leur **similarité** — or un mot A1 concret et un mot C1 abstrait
+   ne sont pas des catégories proches, et un relecteur avance à l'inverse un
+   **coût de bascule attentionnelle**. Faut-il conserver le mélange global, et
+   n'introduire une contrainte de niveau que si les données d'usage montrent
+   un problème ?
 6. **Le plafond peut-il agacer ?** Bloquer l'entrée de mots neufs quand la
    charge de révision est lourde risque-t-il d'exaspérer quelqu'un qui veut
    « avancer dans le programme » à tout prix ?
