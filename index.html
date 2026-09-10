@@ -2106,16 +2106,33 @@ input, textarea, select{
     margin-top:2px;
 }
 
+/* PLUS GROS ET PLUS VISIBLE (v515). A 15 px et 75 % d'opacite, il se lisait
+   comme un signe de ponctuation : Jacques ne le voyait pas. Il porte
+   desormais un fond, un contour et sa taille de bouton -- ce qui se touche
+   doit avoir l'air de se toucher. */
 .info-progression{
     -webkit-appearance:none; appearance:none;
-    border:0; background:transparent; cursor:pointer;
-    font:inherit; font-size:15px; line-height:1;
-    color:#3b6fe0; opacity:.75;
-    min-width:28px; min-height:28px; padding:0 4px;
+    cursor:pointer; font:inherit; line-height:1;
+    font-size:20px; font-weight:600;
+    color:#2f63d8; opacity:1;
+    width:34px; height:34px; padding:0;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:1.5px solid rgba(59,111,224,.35);
+    background:rgba(59,111,224,.10);
+    border-radius:50%;
     vertical-align:middle;
+    transition:background 120ms ease, border-color 120ms ease;
 }
-.info-progression:hover{ opacity:1; }
-.info-progression[aria-expanded="true"]{ opacity:1; }
+.info-progression:hover{ background:rgba(59,111,224,.18); }
+.info-progression[aria-expanded="true"]{
+    background:rgba(59,111,224,.22);
+    border-color:rgba(59,111,224,.55);
+}
+body[data-theme="dark"] .info-progression{
+    color:#9fc0ff;
+    border-color:rgba(159,192,255,.38);
+    background:rgba(159,192,255,.12);
+}
 
 .info-progression-box{
     margin-top:10px; padding:12px 14px;
@@ -2125,6 +2142,17 @@ input, textarea, select{
     text-align:left;
 }
 .info-progression-box strong{ font-size:13px; }
+/* Chaque repere sur sa ligne, le symbole en tete et le texte aligne dessous :
+   une liste a puces melangerait deux marqueurs, la puce et l'emoji. */
+.info-legende{
+    list-style:none; margin:8px 0 14px; padding:0;
+}
+.info-legende li{
+    margin:0 0 7px; padding:0;
+    font-size:13px; line-height:1.5; color:#576177;
+}
+.info-legende li:last-child{ margin-bottom:0; }
+body[data-theme="dark"] .info-legende li{ color:#B9BFCC; }
 .info-progression-box p{
     margin:6px 0 0;
     font-size:13px; line-height:1.55; color:#576177;
@@ -3819,10 +3847,14 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .home-greeting-row{order:1; display:flex; align-items:baseline; gap:7px; margin-bottom:12px;}
 .home-greeting-row .home-greeting{margin:0;}
 /* La version se loge dans le coin de la carte de progression : elle ne coute
-   plus une ligne sous le logo. */
+   plus une ligne sous le logo.
+   COIN GAUCHE (v515) : a droite elle tombait sous le compteur de l'objectif
+   du jour (« 12 / 30 »), deux petits nombres l'un au-dessus de l'autre dont
+   aucun ne dit lequel il est. A gauche, sous le libelle, elle n'a plus de
+   voisin numerique. Demande de Jacques. */
 .home-stats-card{position:relative;}
 .home-stats-card .subtitle-version{
-    position:absolute; inset-inline-end:10px; bottom:7px;
+    position:absolute; inset-inline-start:10px; bottom:7px;
     color:#c3c9d4; font-weight:600; font-size:10.5px; letter-spacing:.02em;
 }
 .search-launch{order:2; margin:0 0 14px !important;}
@@ -4093,7 +4125,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v514</span>
+        <span class="subtitle-version">v515</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4152,9 +4184,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="info-progression-ligne">
             <button type="button" class="info-progression" onclick="basculerInfoProgression()"
                     aria-expanded="false" aria-controls="infoProgressionBox"
-                    data-i18n-aria-label="progress_info_titre" aria-label="Ce qui fait bouger ce pourcentage">&#9432;</button>
+                    data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">&#9432;</button>
         </div>
         <div id="infoProgressionBox" class="info-progression-box hidden">
+            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « que dans le i, on
+                 explique chacun des symboles ». La carte porte quatre reperes
+                 -- une flamme, un cercle, une courbe, une cible -- et rien ne
+                 disait ce qu'ils comptent. Un chiffre qu'on ne sait pas lire
+                 ne motive pas.
+                 LA LEGENDE VIENT AVANT le paragraphe sur le pourcentage : on
+                 nomme les quatre reperes, ensuite seulement on explique le
+                 plus subtil des quatre. -->
+            <strong data-i18n="carte_info_titre">Comment lire cette carte</strong>
+            <ul class="info-legende">
+                <li data-i18n="legende_serie"></li>
+                <li data-i18n="legende_cercle"></li>
+                <li data-i18n="legende_semaine"></li>
+                <li data-i18n="legende_objectif"></li>
+            </ul>
             <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
             <p data-i18n="progress_info_texte"></p>
         </div>
@@ -6920,6 +6967,11 @@ const I18N = {
         admin_rebuild_echec: "Échec de la reconstruction ({code}).",
         admin_no_resumes: "Aucun résumé. Soit ils n'ont pas encore été construits — touche « Reconstruire les résumés » — soit les écritures Firestore sont refusées, et rien ne se sauvegarde depuis le début.",
         home_ring_hint: "Touche le cercle pour changer de niveau",
+        carte_info_titre: "Comment lire cette carte",
+        legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as fait au moins une carte. Un jour sauté le ramène à zéro.",
+        legende_cercle: "◯ le cercle — ta progression sur le niveau affiché (A1, A2…). Touche-le pour passer d'un niveau à l'autre.",
+        legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
+        legende_objectif: "🎯 objectif du jour — les cartes et exercices faits aujourd'hui, quelle que soit la réponse. Le nombre visé se change dans les réglages.",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
         progress_info_texte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.\n\nUn mot devient maîtrisé après quatre « Je savais » d'affilée — revu d'abord dans la séance, puis après 1 jour, 3 jours, 7 jours. « Je le sais déjà » le marque tout de suite.\n\n« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
 
@@ -7776,6 +7828,11 @@ const I18N = {
         admin_rebuild_echec: "Rebuild failed ({code}).",
         admin_no_resumes: "No summaries. Either they have not been built yet — tap “Rebuild summaries” — or Firestore writes are being refused, and nothing has been saving at all.",
         home_ring_hint: "Tap the circle to change level",
+        carte_info_titre: "How to read this card",
+        legende_serie: "🔥 days — the number of days in a row you have done at least one card. A missed day sends it back to zero.",
+        legende_cercle: "◯ the ring — your progress on the level shown (A1, A2…). Tap it to switch levels.",
+        legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
+        legende_objectif: "🎯 daily goal — the cards and exercises you have done today, whatever the answer. The target is set in the settings.",
         progress_info_titre: "What moves this percentage",
         progress_info_texte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.\n\nA word becomes mastered after four “I knew it” in a row — seen again within the session first, then after 1 day, 3 days, 7 days. “I already know this” marks it straight away.\n\n“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
 
@@ -8634,6 +8691,11 @@ const I18N = {
         admin_rebuild_echec: "Yeniden oluşturma başarısız ({code}).",
         admin_no_resumes: "Özet yok. Ya henüz oluşturulmadılar — « Özetleri yeniden oluştur » düğmesine dokun — ya da Firestore yazmaları reddediliyor ve başından beri hiçbir şey kaydedilmiyor.",
         home_ring_hint: "Seviyeyi değiştirmek için daireye dokun",
+        carte_info_titre: "Bu kartı nasıl okumalı",
+        legende_serie: "🔥 gün — arka arkaya en az bir kart yaptığın gün sayısı. Atlanan bir gün onu sıfıra döndürür.",
+        legende_cercle: "◯ halka — gösterilen seviyedeki ilerlemen (A1, A2…). Seviye değiştirmek için dokun.",
+        legende_semaine: "📈 bu hafta — son yedi günde öğrendiğin kelimeler. Bu, toplam değil, son hızındır.",
+        legende_objectif: "🎯 günlük hedef — bugün yaptığın kartlar ve alıştırmalar, cevap ne olursa olsun. Hedef sayısı ayarlardan değiştirilir.",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
         progress_info_texte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.\n\nBir kelime, arka arkaya dört kez « Biliyordum » dedikten sonra öğrenilmiş sayılır — önce aynı oturumda, sonra 1 gün, 3 gün, 7 gün sonra. « Bunu zaten biliyorum » onu hemen işaretler.\n\n« Bilmiyordum » bu durumu geri alır ve yüzde düşer.\n\nÖğrenilmiş bir kelime kontrol için 16 günde bir geri gelir, bu sırada sayılmaya devam eder.",
 
@@ -10107,6 +10169,11 @@ const I18N = {
         admin_rebuild_echec: "Перебудова не вдалася ({code}).",
         admin_no_resumes: "Зведень немає. Або їх ще не побудовано — торкнись « Перебудувати зведення » — або записи в Firestore відхиляються, і нічого не зберігається від початку.",
         home_ring_hint: "Торкнись кола, щоб змінити рівень",
+        carte_info_titre: "Як читати цю картку",
+        legende_serie: "🔥 днів — скільки днів поспіль ти зробив принаймні одну картку. Пропущений день повертає лічильник до нуля.",
+        legende_cercle: "◯ коло — твій поступ на показаному рівні (A1, A2…). Торкнися, щоб змінити рівень.",
+        legende_semaine: "📈 цього тижня — слова, які ти засвоїв за останні сім днів. Це твоя нинішня швидкість, а не загальна сума.",
+        legende_objectif: "🎯 ціль на день — картки та вправи, зроблені сьогодні, хай якою була відповідь. Число змінюється в налаштуваннях.",
         progress_info_titre: "Що змінює цей відсоток",
         progress_info_texte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.\n\nСлово стає засвоєним після чотирьох « Я знав » поспіль — спершу воно повертається в тому ж занятті, потім через 1 день, 3 дні, 7 днів. « Я це вже знаю » позначає його одразу.\n\n« Я не знав » знімає засвоєння, і відсоток знижується.\n\nЗасвоєне слово повертається кожні 16 днів для перевірки й далі зараховується.",
         home_streak_unit: "днів",
@@ -10969,6 +11036,11 @@ const I18N = {
         admin_rebuild_echec: "بازسازی ناکام ماند ({code}).",
         admin_no_resumes: "هیچ خلاصه‌ای نیست. یا هنوز ساخته نشده‌اند — «بازسازی خلاصه‌ها» را لمس کن — یا نوشتن در Firestore رد می‌شود و از ابتدا چیزی ذخیره نمی‌شود.",
         home_ring_hint: "برای تغییر سطح، دایره را لمس کن",
+        carte_info_titre: "چگونه این کارت را بخوانیم",
+        legende_serie: "🔥 روز — شمار روزهای پیاپی که دست‌کم یک کارت انجام داده‌ای. یک روز از دست‌رفته آن را به صفر بازمی‌گرداند.",
+        legende_cercle: "◯ حلقه — پیشرفت تو در سطح نمایش‌داده‌شده (A1، A2…). برای تغییر سطح روی آن بزن.",
+        legende_semaine: "📈 این هفته — واژه‌هایی که در هفت روز گذشته آموخته‌ای. این سرعت کنونی توست، نه یک جمع کل.",
+        legende_objectif: "🎯 هدف امروز — کارت‌ها و تمرین‌هایی که امروز انجام داده‌ای، هر پاسخی که داده باشی. شمار هدف در تنظیمات تغییر می‌کند.",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
         progress_info_texte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.\n\nیک واژه پس از چهار بار پشت‌سرهم «می‌دانستم» آموخته شمرده می‌شود — نخست در همان جلسه بازمی‌گردد، سپس پس از ۱ روز، ۳ روز و ۷ روز. «این را از قبل می‌دانم» آن را بی‌درنگ ثبت می‌کند.\n\n«نمی‌دانستم» این وضعیت را پس می‌گیرد و درصد پایین می‌آید.\n\nواژهٔ آموخته‌شده هر ۱۶ روز برای بررسی بازمی‌گردد و در این مدت شمرده می‌شود.",
         home_daily_goal_label: "🎯 هدف امروز",
@@ -21972,7 +22044,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 514;
+const APP_VERSION = 515;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
