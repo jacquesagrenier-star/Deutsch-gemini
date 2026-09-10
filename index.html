@@ -4230,7 +4230,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v532</span>
+        <span class="subtitle-version">v533</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -12844,12 +12844,14 @@ async function loadThemesJson() {
         // jusqu'à ce que l'utilisateur déclenche un recalcul manuellement (ex.
         // taper sur le cercle pour changer de niveau). Signalé par l'utilisateur.
         updateGlobalProgress();
+        majTuileSeance();
     } catch (error) {
         themesLoaded = true;
         renderThemes();
         renderNomenLevels();
         updateOrbBadges();
         updateGlobalProgress();
+        majTuileSeance();
     }
     } finally {
         hideGlobalLoadingBar();
@@ -22357,7 +22359,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 532;
+const APP_VERSION = 533;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23993,17 +23995,26 @@ function majTuileSeance(){
     const el = document.getElementById("seanceSub");
     const niveau = niveauSeance();
     if(el){
-        let n = 0;
+        // ⚠️ « 0 carte » A L'OUVERTURE. Le bandeau se dessinait AVANT l'arrivee
+        // des donnees : paquetDuNiveau() ne trouvait rien, et l'app annoncait
+        // une seance vide a quelqu'un qui en avait quarante. Le meme defaut
+        // avait deja frappe l'anneau de progression, et se corrige au meme
+        // endroit -- a la fin de loadThemesJson(). En attendant, on affiche la
+        // phrase d'attente plutot qu'un chiffre faux : un zero errone est pire
+        // qu'une absence de chiffre.
+        //
+        // ⚠️ Et « A1 » seul laissait croire que TOUTE la seance etait de ce
+        // niveau. Il ne decide que de la PROVENANCE DES MOTS NOUVEAUX -- les
+        // revisions viennent de tous les niveaux deja travailles ; c'est
+        // l'etiquette du bas qui le dit.
+        let n = null;
         try{
             const tout = [];
             NIVEAUX_CECR.forEach(x => { tout.push.apply(tout, paquetDuNiveau(x)); });
-            n = cartesDeSeance(tout, paquetDuNiveau(niveau)).length;
-        }catch(e){ n = 0; }
-        // ⚠️ « A1 » seul laissait croire que TOUTE la seance etait de ce
-        // niveau. Il ne decide que de la PROVENANCE DES MOTS NOUVEAUX -- les
-        // revisions viennent de tous les niveaux deja travailles. Le sous-titre
-        // le dit, sinon la pastille ment par omission.
-        el.textContent = tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
+            if(tout.length) n = cartesDeSeance(tout, paquetDuNiveau(niveau)).length;
+        }catch(e){ n = null; }
+        el.textContent = (n === null) ? t("seance_sous")
+                       : tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
     }
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;
