@@ -171,10 +171,23 @@ Aujourd'hui, l'application est un **buffet** : l'utilisateur choisit un niveau,
 puis un type (noms, verbes, adjectifs, adverbes, expressions), puis un thème ou
 « au hasard ». Toutes les portes sont ouvertes en permanence, sur 8 003 entrées.
 
-**Proposition : fermer les portes et servir.** L'application distribue des
-**étapes fermées d'environ 30 items**, mélangeant noms, verbes et adjectifs.
-Quand l'étape est acquise, la suivante s'ouvre. L'utilisateur ne choisit ni
-niveau, ni type, ni thème — il n'a qu'une séance devant lui.
+**Proposition : fermer les portes du vocabulaire, et servir.** L'application
+distribue des **étapes fermées d'environ 30 items**, mélangeant noms, verbes et
+adjectifs. Quand l'étape est acquise, la suivante s'ouvre.
+
+⚠️ **Deux précisions décidées après une première rédaction, et elles adoucissent
+le modèle :**
+
+- **La grammaire reste entièrement ouverte.** Les 40 jeux se choisissent
+  librement, comme aujourd'hui. Seules les **flashcards de vocabulaire** sont
+  imposées. La raison est que le vocabulaire est la partie où le nombre écrase
+  (8 003 entrées) ; les 40 jeux sont déjà une échelle atteignable, et les
+  fermer coûterait de la liberté sans rien régler.
+- **Le chemin est PAR NIVEAU.** L'utilisateur choisit A1, A2, B1, B2 ou C1 ;
+  les étapes se suivent à l'intérieur du niveau choisi, et la progression
+  s'affiche par niveau. Il ne choisit donc ni type ni thème ni ordre — mais il
+  garde le seul choix qui correspond à une décision réelle d'apprenant : où il
+  en est de son cours.
 
 Ce que ça règle, et qu'aucun compteur n'avait réglé :
 
@@ -277,7 +290,16 @@ c'est ce que le code fait (`reviewAgain()` remet `srsHits` à 0, puis
 l'affichage doit suivre cette baisse ou afficher un cumul reste entièrement
 ouverte : voir question 1(c), et le précédent de Duolingo au §4.6.
 
-### 4.3 Donner une mémoire à la grammaire — par JEU, jamais par exercice
+### 4.3 Donner une mémoire à la grammaire — ✅ FAIT en v519, le 10 septembre 2026
+
+⚠️ **Cette section décrivait une proposition ; elle est désormais livrée.** Le
+magasin `deutschAI_grammaire_v1` garde, par jeu : le nombre de séries, la date
+de la dernière, le dernier pourcentage, le meilleur, les totaux cumulés et le
+**nombre de séries sans aucune faute**. Rien ne l'affiche encore — délibérément,
+puisque le critère « solide » n'est pas fixé (question 4). **Les faits se
+rangent maintenant ; la décision viendra sur des données réelles.**
+
+Le texte d'origine, conservé :
 
 Conserver, pour chacun des 40 jeux : la dernière fois, le nombre de séries, le
 taux de réussite.
@@ -490,6 +512,10 @@ serait plus utile que tout le reste de cette section.
    (a) Pour un adulte en autonomie, un parcours imposé est-il plus soutenable
    qu'un accès libre — ou le sentiment de perdre le contrôle coûte-t-il plus
    cher que la fatigue de décision qu'il évite ?
+   (a bis) Nous fermons le **vocabulaire** mais laissons la **grammaire**
+   entièrement libre, et le niveau (A1…C1) reste choisi. Ce partage est-il
+   cohérent du point de vue de l'apprenant, ou un modèle à moitié fermé est-il
+   plus déroutant que l'un ou l'autre pris entièrement ?
    (b) Existe-t-il des résultats comparant les deux modèles à rétention égale,
    plutôt qu'à engagement égal ?
    (c) « Acquis » doit-il suivre l'état réel (il peut baisser quand un mot est
