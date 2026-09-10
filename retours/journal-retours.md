@@ -1393,3 +1393,35 @@ contrôles ne le voit.
 
 **Le persan**, lui, n'a toujours rien de `pruefung.json` : 542 champs. Le
 câblage, en revanche, l'attend désormais — il suffira de poser la donnée.
+
+## 10 septembre 2026 — « un morceau trop gros, inatteignable »
+
+**Demande de Jacques, en plusieurs temps :** les 462 noms d'A1 avant qu'un mot
+revienne quatre fois, *« ça risque de ne jamais arriver »* ; puis l'usager
+peut aller sur les noms, les adverbes ou les exercices ; puis A1 lundi et C1
+mardi ; et pour finir : *« ça peut paraître comme un morceau trop gros,
+inatteignable au niveau des objectifs de progression »*.
+
+**Rien n'a été code.** L'analyse et la proposition sont dans
+`retours/proposition-progression.md`. Trois choses mesurées qui méritent
+d'être ici :
+
+- **Un mot jamais vu compte comme « dû ».** `cartesEchues()` renvoie vrai sur
+  `!st.due`, et un mot neuf a `due: 0` : la première séance sert donc les 462
+  cartes d'un coup. Il n'y a **aucune distinction entre neuf et à revoir**.
+- **⚠️ Les exercices ne laissent aucune trace.** `exerciseResults` vit en
+  mémoire, remis à zéro à chaque départ. Rien n'est écrit sur disque : deux
+  semaines de grammaire donnent 0 % de progression, et ce n'est pas une
+  impression.
+- **Le premier mot maîtrisé ne peut pas arriver avant le 11ᵉ jour** (10 min,
+  1 j, 3 j, 7 j). Aucun découpage en blocs ne change ce chiffre.
+
+**Le diagnostic** : le problème n'est pas la porte choisie, c'est le
+**dénominateur**. Tant que la progression est une fraction d'un très grand
+tout fixe, elle décourage. La proposition remplace ça par trois nombres sans
+dénominateur — mots en cours, mots acquis, jeux solides — et garde le
+pourcentage par niveau comme carte, pas comme note.
+
+**Ordre proposé** : la mémoire de la grammaire d'abord (par JEU, jamais par
+exercice), les compteurs de vocabulaire ensuite, le plafond de mots neufs en
+dernier.
