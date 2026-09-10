@@ -500,6 +500,11 @@ serait plus utile que tout le reste de cette section.
    (e) Nous supprimons au passage la façon dont l'auteur lui-même utilise
    l'application. Est-ce un signal d'alarme, ou la marque normale d'un produit
    qui cesse d'être conçu pour son concepteur ?
+   (f) **Le mot récalcitrant.** Vingt-neuf mots acquis, un qui retombe à zéro
+   sans cesse : faut-il bloquer l'étape jusqu'à ce qu'il tombe, ou la fermer
+   au bout de N jours en reportant le mot ? Le blocage strict garantit que
+   « étape franchie » veut dire quelque chose ; la porte de sortie garantit
+   que le chemin avance. Existe-t-il des résultats sur ce compromis ?
 2. **Le recul du pourcentage — et la question se dédouble.**
    (a) Est-ce **pédagogiquement exact** ? « Ma maîtrise mesurée de ce corpus a
    diminué » est une affirmation vraie.
