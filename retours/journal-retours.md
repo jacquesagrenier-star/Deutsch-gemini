@@ -1425,3 +1425,46 @@ pourcentage par niveau comme carte, pas comme note.
 **Ordre proposé** : la mémoire de la grammaire d'abord (par JEU, jamais par
 exercice), les compteurs de vocabulaire ensuite, le plafond de mots neufs en
 dernier.
+
+---
+
+## 10 septembre 2026 — la grammaire a une mémoire (v519)
+
+**Demande, de Jacques :** *« oui fais-le »*, après la proposition de commencer
+par le chantier le plus débloqué des trois.
+
+**Ce qui existait :** rien. `exerciseResults` vivait en mémoire et repartait à
+zéro à chaque série. 1 682 exercices, 40 jeux, et pas une ligne écrite sur le
+disque — pas d'historique, pas de score, pas de « vu la dernière fois le… ».
+
+**Ce qui a été fait :** un magasin `deutschAI_grammaire_v1`, écrit à la fin de
+chaque série dans `showResults()`, qui garde **par jeu** : le nombre de séries,
+la date de la dernière, le dernier pourcentage, le meilleur, les totaux cumulés
+(questions / justes) et le **nombre de séries sans aucune faute**.
+
+⚠️ **Par jeu, jamais par exercice** — réussir « Ich habe gegessen » ne prouve
+pas qu'on sait le Perfekt. L'identité du jeu manquait : `startExerciseSet()`
+écrase son paramètre `list` dès qu'il l'a chargé, si bien que le nom était perdu
+avant la première question. D'où `exerciseJeuNom`, capturé avant l'écrasement, et
+laissé à `null` pour les séries construites à la volée (dictée, rektion) — elles
+ne font pas partie des 40 jeux.
+
+⚠️ **On range des faits, on ne décide pas encore.** Ce que « solide » veut dire
+n'est pas tranché (question 4 du dossier de relecture). `sansFaute`, `meilleur`
+et les totaux vivent côte à côte pour que le critère se choisisse plus tard sur
+des données réelles, sans redemander à personne de tout refaire.
+
+**Le nuage :** envoyé comme **une seule chaîne**, à côté de `retoursUsager` et
+`synonymesEcartes` — Firestore indexe chaque entrée d'un objet, et le plafond
+des 40 000 a déjà fait échouer des sauvegardes en silence (v396-v400). Et
+restauré par **fusion jeu par jeu**, jamais par écrasement : ouvrir l'app sur un
+second appareil aurait sinon effacé les séries faites sur le premier.
+`GRAMMAIRE_KEY` rejoint aussi la liste de `resetAllConfirm()`.
+
+**Vérifié :** `tests/essai_grammaire.js` (nouveau) exerce le vrai code extrait
+d'`index.html` — 22 contrôles, dont le stockage illisible, la série vide, les
+deux sens de la fusion et le champ distant corrompu. Plus `tests/verifier.py`,
+14 012 contrôles.
+
+**Reste à faire :** rien n'affiche encore cet historique. C'est délibéré —
+l'écran dépend du critère « solide », qui n'est pas fixé.

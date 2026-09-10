@@ -4148,7 +4148,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v518</span>
+        <span class="subtitle-version">v519</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -14346,6 +14346,14 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem("deutschAI_synonymesEcartes") || ""; }
                 catch(e){ return ""; }
             })(),
+            // L'historique des 40 jeux de grammaire (v519), EN UNE SEULE
+            // CHAINE comme les deux champs ci-dessus -- Firestore indexe
+            // chaque entree d'un objet, et le plafond des 40 000 a deja fait
+            // echouer les sauvegardes en silence (v396-v400).
+            grammaire: (function(){
+                try{ return localStorage.getItem(GRAMMAIRE_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             progress,
             updatedAt: window.fsServerTimestamp()
         };
@@ -14485,6 +14493,35 @@ async function restoreProgressFromCloud(){
             if(typeof data.xp === "number" && data.xp > getXp()){
                 localStorage.setItem(XP_KEY, String(data.xp));
             }
+        }catch(e){}
+
+        // L'historique de grammaire (v519), FUSIONNE jeu par jeu et jamais
+        // ecrase : sans ca, ouvrir l'app sur un deuxieme appareil effacerait
+        // les series faites sur le premier. On garde, pour chaque jeu, la
+        // valeur la plus avancee -- l'inverse de « le dernier qui parle a
+        // raison », qui perdrait du travail reel.
+        try{
+            const distant = JSON.parse(data.grammaire || "{}") || {};
+            const ici = lireGrammaire();
+            let touches = 0;
+            Object.keys(distant).forEach(nom => {
+                const d = distant[nom] || {}, l = ici[nom] || {};
+                const f = {
+                    series:    Math.max(l.series    || 0, d.series    || 0),
+                    dernier:   Math.max(l.dernier   || 0, d.dernier   || 0),
+                    meilleur:  Math.max(l.meilleur  || 0, d.meilleur  || 0),
+                    questions: Math.max(l.questions || 0, d.questions || 0),
+                    justes:    Math.max(l.justes    || 0, d.justes    || 0),
+                    sansFaute: Math.max(l.sansFaute || 0, d.sansFaute || 0)
+                };
+                // Le dernier pourcentage suit la serie la plus RECENTE, pas la
+                // meilleure : c'est le seul champ ou « le plus grand » mentirait.
+                f.dernierPct = ((d.dernier || 0) > (l.dernier || 0))
+                    ? (d.dernierPct || 0) : (l.dernierPct || 0);
+                ici[nom] = f;
+                touches++;
+            });
+            if(touches) localStorage.setItem(GRAMMAIRE_KEY, JSON.stringify(ici));
         }catch(e){}
 
         cloudRestoreDone = true;
@@ -22153,7 +22190,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 518;
+const APP_VERSION = 519;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24329,7 +24366,10 @@ function resetAllConfirm(){
     // deux dans un seul objet. Corrige au passage un oubli pré-existant : ces
     // trois clés n'étaient jamais effacées par "Réinitialiser toute la
     // progression", contrairement à la progression par mot.
-    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY, XP_KEY, BADGES_KEY, STREAK_FREEZE_KEY].forEach(k => {
+    // GRAMMAIRE_KEY en fait partie depuis la v519 : « toute la progression »
+    // doit vouloir dire toute, sinon l'historique des 40 jeux survivrait a une
+    // remise a zero et le nuage le reposerait ensuite sur l'appareil.
+    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY, XP_KEY, BADGES_KEY, STREAK_FREEZE_KEY, GRAMMAIRE_KEY].forEach(k => {
         try{ localStorage.removeItem(k); localStorage.removeItem(`en__${k}`); }catch(e){}
     });
     sessionCombo = 0;
@@ -24410,6 +24450,13 @@ function startVerbRektionExercise(){
 }
 
 let exerciseKickerKey = null;
+// Le NOM du jeu dans exercices.json ("perfektExercises"), et non sa liste :
+// startExerciseSet() ecrase son parametre `list` des qu'il l'a charge, si bien
+// que l'identite du jeu etait perdue avant meme la premiere question. Reste
+// null pour les series construites a la volee (dictee, rektion) : elles ne
+// font pas partie des 40 jeux, et les compter la melangerait vocabulaire et
+// grammaire dans le meme magasin.
+let exerciseJeuNom = null;
 // ============ Exercice productif : ecrire la phrase allemande ============
 // Premier exercice ou l'apprenant PRODUIT de l'allemand au lieu de le
 // reconnaitre : les 21 autres series sont des choix multiples, des textes a
@@ -24994,6 +25041,7 @@ function startExerciseSetMelange(nom, kickerKey, backFn, restartFn){
 }
 
 async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
+    exerciseJeuNom = (typeof list === "string") ? list : null;
     if(typeof list === "string"){
         list = await jeu(list);
         // Vide = le chargement a echoue, et jeu() l'a deja signale. On ne
@@ -25455,8 +25503,62 @@ function nextExercise(){
     loadExercise();
 }
 
+// ==================== La memoire de la grammaire (v519) ====================
+// Jusqu'ici, les 1 682 exercices ne laissaient AUCUNE trace : `exerciseResults`
+// vit en memoire et repart a zero a chaque serie. Quelqu'un qui travaille la
+// grammaire deux semaines voyait zero -- non par impression, mais parce qu'il
+// n'y avait rien a voir.
+//
+// ⚠️ PAR JEU, JAMAIS PAR EXERCICE. Reussir « Ich habe gegessen » ne prouve pas
+// qu'on sait le Perfekt, et reservir cette phrase-la testerait la memoire d'une
+// phrase, pas d'une regle. Une regle se planifie ; un exemplaire se tire au
+// sort. Les 40 jeux sont l'echelle atteignable ; les 74 topics, non.
+//
+// ⚠️ ON RANGE DES FAITS, ON NE DECIDE PAS ENCORE. Ce que « solide » veut dire
+// -- deux series sans faute ? une a 100 % ? -- n'est pas tranche (voir
+// retours/progression-dossier-relecture.md, question 4). D'ou `sansFaute`,
+// `meilleur` et les totaux cumules cote a cote : le critere se choisira sur des
+// donnees reelles, sans avoir a redemander a personne de tout refaire.
+const GRAMMAIRE_KEY = "deutschAI_grammaire_v1";
+
+function lireGrammaire(){
+    try{
+        const brut = localStorage.getItem(GRAMMAIRE_KEY);
+        const val = brut ? JSON.parse(brut) : {};
+        return (val && typeof val === "object") ? val : {};
+    }catch(e){ return {}; }
+}
+
+function etatJeu(nom){
+    return lireGrammaire()[nom] || null;
+}
+
+// Appelee a la fin d'une serie, et uniquement pour les 40 jeux : une serie
+// construite a la volee n'a pas de nom stable, donc pas d'historique possible.
+function noterSerieGrammaire(pourcentage, justes, total){
+    if(!exerciseJeuNom || !total) return;
+    const tout = lireGrammaire();
+    const e = tout[exerciseJeuNom] || {};
+    e.series     = (e.series || 0) + 1;
+    e.dernier    = Date.now();
+    e.dernierPct = pourcentage;
+    e.meilleur   = Math.max(e.meilleur || 0, pourcentage);
+    e.questions  = (e.questions || 0) + total;
+    e.justes     = (e.justes || 0) + justes;
+    // Le compte des series SANS AUCUNE FAUTE, garde a part du taux moyen :
+    // c'est le critere que la litterature associe a une connaissance durable
+    // (Serfaty 2024, deux seances sans erreur), et une moyenne de 90 % ne
+    // permet pas de le reconstituer apres coup.
+    if(justes === total) e.sansFaute = (e.sansFaute || 0) + 1;
+    tout[exerciseJeuNom] = e;
+    try{ localStorage.setItem(GRAMMAIRE_KEY, JSON.stringify(tout)); }catch(e2){}
+    scheduleCloudSync();
+}
+
 function showResults(){
-    const percentage = Math.round(scoreValue / activeExercises.length * 100);
+    const total = activeExercises.length;
+    const percentage = Math.round(scoreValue / total * 100);
+    noterSerieGrammaire(percentage, scoreValue, total);
     document.getElementById("score").textContent = percentage + "%";
     document.getElementById("scoreText").textContent = tf("score_result_text", { n: scoreValue });
     showScreen("result");
