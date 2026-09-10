@@ -389,12 +389,44 @@ Cela déplace notre question sur les « jeux solides » : le critère naturel
 serait **deux séries sans faute**, plutôt qu'un seuil de pourcentage dans une
 seule série.
 
-**Non vérifié de notre côté**, et rapporté par un relecteur : la documentation
-d'Anki indiquerait qu'une dose de 20 mots neufs par jour conduit à environ 200
-révisions quotidiennes, et recommanderait de réduire si la charge devient
-excessive ; et les applications grand public utiliseraient des doses plus
-faibles (5 à 12 items neufs). **Nous n'avons pas vérifié ces deux points** — ils
-sont ici pour être confirmés ou écartés, pas pour servir d'appui.
+**20 mots neufs par jour mènent à environ 200 révisions par jour — vérifié dans
+le manuel officiel d'Anki.** Le manuel donne les deux chiffres ensemble : 20
+cartes neuves par jour est bien le réglage par défaut, et « si vous ajoutez 20
+cartes neuves chaque jour, vous pouvez vous attendre à ce que les révisions
+quotidiennes montent, dans les premiers temps, autour de 200 cartes par jour ».
+Il ajoute qu'apprendre trop de cartes neuves d'un coup rend les révisions
+accablantes et fait réoublier la matière.
+*Anki Manual, « Getting Started » et « Deck Options », docs.ankiweb.net,
+consulté le 10 septembre 2026.*
+
+C'est le chiffre qui donne sa force au plafond de §4.4 — et il vient d'un
+manuel d'outil, pas d'une étude : c'est une pratique établie, pas une dose
+optimale démontrée.
+
+**Un chiffre ne veut rien dire sans cadre de référence.** La littérature sur les
+tableaux de bord d'apprentissage (*learning analytics dashboards*) travaille
+cette notion depuis dix ans : un indicateur n'a de sens que rapporté à un
+comparateur, et il en existe trois — **soi dans le temps**, **les autres**, **un
+objectif**. Le résultat le mieux établi y est négatif, et il porte sur la
+comparaison aux autres : anxiété sociale, atteinte au sentiment d'efficacité.
+*Jivet et coll., et travaux ultérieurs — voir notamment « Students' Use of a
+Learning Analytics Dashboard and Influence of Reference Frames », Journal of
+Computer Assisted Learning, 2025.*
+
+Wortando n'a pas de comparaison sociale, donc pas ce risque-là. Mais le cadrage
+éclaire notre problème : **nos compteurs n'ont aucun cadre de référence**, et
+c'est une explication possible du fait que « 98 mots acquis » ne procure aucun
+sentiment de progression.
+
+**La motivation augmente quand le but se rapproche (effet de gradient de but).**
+L'étude de référence porte sur des cartes de fidélité de café : une carte de 12
+cases dont 2 sont déjà tamponnées est complétée par **34 %** des clients, contre
+**19 %** pour une carte de 10 cases vides — effort réel identique.
+*Kivetz, Urminsky, Zheng, « The Goal-Gradient Hypothesis Resurrected »,
+Journal of Marketing Research, 2006.*
+
+⚠️ **Toujours pas vérifié** : que les applications grand public utilisent des
+doses plus faibles (5 à 12 items neufs par jour).
 
 ---
 
@@ -469,11 +501,14 @@ serait plus utile que tout le reste de cette section.
    (b) Est-ce **soutenable comme indicateur principal** ? Faut-il lisser la
    baisse, ou la laisser refléter l'oubli exactement ? Quelles applications le
    font, et avec quel effet mesuré sur l'abandon ?
-3. **Le plafond de mots neufs.** 20/jour est le réglage que nous prenons ici
-   comme point de comparaison, par analogie avec Anki. ⚠️ **Nous n'avons pas
-   vérifié à la source** que c'est bien le défaut d'Anki aujourd'hui, ni ce
-   qu'Anki en dit — et ce document s'interdit de présenter comme vérifié ce qui
-   ne l'est pas (§4.6). Ce n'est en tout cas pas une dose optimale démontrée.
+3. **Le plafond de mots neufs.** 20/jour est le défaut d'Anki, et son manuel
+   dit lui-même qu'à ce rythme les révisions montent autour de **200 par jour**
+   (§4.6, vérifié à la source). C'est une pratique établie, pas une dose
+   optimale démontrée. Existe-t-il des données reliant le nombre d'items neufs
+   introduits chaque jour à la rétention, à la charge de révision et à
+   l'abandon ? Justifient-elles un nombre **fixe** ou **adaptatif** — et 200
+   révisions quotidiennes sont-elles seulement soutenables pour un adulte qui
+   suit un cours du soir ?
    Existe-t-il des données reliant le nombre d'items neufs introduits chaque
    jour à la rétention, à la charge de révision et à l'abandon ? Ces données
    justifient-elles un nombre **fixe** ou **adaptatif** ?
