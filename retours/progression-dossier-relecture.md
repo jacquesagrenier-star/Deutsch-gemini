@@ -177,16 +177,80 @@ ne prétend pas qu'il connaît le mot, on constate qu'il a commencé. C'est
 exactement le principe que ce document se donne, et que la première version
 enfreignait.
 
-Une seule barre, deux remplissages : le foncé = acquis, le clair = en cours.
+### AUCUNE FRACTION À L'ACCUEIL — deux comptes, et c'est tout
 
-- Elle **avance dès la première carte**, sans attendre onze jours.
-- Elle **ne redescend jamais** : un échec fait repartir l'échelle, mais le mot
-  reste « en cours ».
+Une étape intermédiaire a été proposée puis **écartée en cours de relecture**,
+et elle mérite d'être racontée parce que l'erreur est instructive.
+
+L'idée était de garder une barre, mais de changer son dénominateur : mesurer la
+maîtrise non plus sur les 8 003 mots du corpus, mais sur **les seuls mots
+commencés** — somme des paliers atteints ÷ (4 × mots commencés). Elle bougeait
+dès la première séance et 100 % devenait atteignable.
+
+**Un relecteur a produit l'arithmétique qui la tue.** 20 mots menés à 4/4 =
+80/80 = 100 %. On ouvre 20 mots neufs : 80/160 = **50 %**. La barre s'effondre
+de moitié le jour où l'utilisateur a le plus travaillé. Le problème du
+dénominateur n'avait pas été résolu, seulement déplacé — et rendu plus violent,
+puisque la chute est maximale quand la base est petite, c'est-à-dire pendant les
+premières semaines, exactement la période qu'on cherche à réparer. (À 312 mots
+commencés, la même dose de 20 ne coûte que 3 points ; à 20 mots commencés, elle
+en coûte 50.)
+
+**Mettre cette fraction en pixels ne la sauve pas** : un segment foncé qui
+rétrécit alors qu'aucun mot n'a été perdu ment de la même façon.
+
+**Conclusion retenue : l'accueil ne porte AUCUNE fraction.** Deux comptes, qui
+ne se divisent par rien :
+
+| | ce que c'est | premier mouvement |
+|---|---|---|
+| **mots commencés** | cartes uniques ayant reçu au moins une tentative | la 1ʳᵉ carte |
+| **mots acquis** | cartes ayant les quatre succès | le 11ᵉ jour |
+
+La barre n'existait que pour donner du mouvement avant le 11ᵉ jour. **« Mots
+commencés » le donne déjà**, dès la première carte, et monte d'environ 20 par
+séance. La fraction était une réponse à un problème que le premier compteur
+résout mieux.
+
+### ⚠️ Une question que le code tranche déjà à moitié : A ou B ?
+
+Un relecteur demande si « acquis » veut dire **(A)** « a atteint 4/4 au moins
+une fois » ou **(B)** « est actuellement à 4/4 ». **Vérifié dans le code, et
+c'est B :** « Je ne savais pas » appelle `reviewAgain()`, qui remet
+`srsHits = 0`, puis `scheduleReview()`, qui remet `mastered = false`. Un mot
+maîtrisé qui rate son contrôle à 16 jours **perd sa maîtrise et repart à zéro**
+— et le panneau d'aide le dit déjà à l'utilisateur.
+
+La question ouverte n'est donc pas dans le calcul, elle est dans l'**affichage**
+du compteur :
+
+- **suivre le code (B)** : le compteur peut baisser, il est exact, et il baisse
+  de quelques mots à la fois — pas de 50 points ;
+- **afficher un cumul (A)** : il ne baisse jamais, mais il affirme une maîtrise
+  qui n'est plus vraie.
+
+Nous penchons pour **B**, par cohérence avec le principe de ce document. Mais
+c'est un choix, et il est soumis à la relecture.
+
+**Un troisième indicateur a été proposé, et refusé.** Deux relecteurs ont
+suggéré d'ajouter une « consolidation actuelle » à côté des deux comptes. Sous
+B elle est déjà égale à « mots acquis » ; sous A elle est un ratio dont le
+dénominateur est le nombre de mots commencés — donc **exactement la fraction
+qu'on vient de retirer**, sous un autre nom. Et la contrainte qui gouverne tout
+ce chantier est venue de l'utilisateur lui-même : *« pour que ce soit simple et
+clair pour l'étudiant »*. Trois nombres abstraits sur une carte d'accueil sont
+le défaut qu'on répare, pas la réparation.
 - Elle reste **vraie** : elle dit « j'ai commencé à travailler ce mot », ce qui
   est un fait sur l'apprenant — pas un compteur d'activité.
 
 La distinction **en cours ≠ acquis** doit rester visible : deux remplissages,
 jamais un seul chiffre qui mélange les deux.
+
+⚠️ **La règle qui sort de tout ceci, et qui vaut plus que le détail des
+compteurs : aucun indicateur d'accueil ne doit se dégrader quand
+l'utilisateur travaille.** C'est le critère qui a éliminé le pourcentage
+global, puis la barre sur les mots commencés. Toute proposition future se juge
+là-dessus d'abord.
 
 Raisonnement écarté : un compteur d'**effort** (cartes vues, minutes, XP)
 monte tous les jours mais ne dit rien de ce qu'on sait ; un compteur de
@@ -199,12 +263,23 @@ et tous les types :
 
 | | monte quand | premier mouvement |
 |---|---|---|
-| **mots en cours** | il touche un mot neuf | la 1ʳᵉ carte |
+| **mots commencés** | il touche un mot neuf | la 1ʳᵉ carte |
 | **mots acquis** | l'échelle se termine | le 11ᵉ jour |
 | **jeux solides** (sur 40) | il réussit une série de grammaire | la 1ʳᵉ séance |
 
-Le pourcentage par niveau reste affiché, mais comme **carte du territoire** —
-où j'en suis d'un niveau — et non comme note quotidienne.
+**« Mots commencés » est le chiffre d'accueil**, en gros caractères : c'est le
+seul qui ne redescend jamais. « Mots acquis » n'est pas un titre — il est le
+remplissage foncé de la barre, où il se lit sans décourager pendant les onze
+premiers jours.
+
+Le pourcentage par niveau reste accessible, mais **dans le panneau ⓘ** et comme
+**carte du territoire** — où j'en suis d'un niveau — non comme note
+quotidienne. Il descend d'un rang à l'écran ; sa valeur n'est pas touchée.
+
+**Vocabulaire.** Un relecteur a proposé « taux de consolidation » et « périmètre
+engagé ». Écarté : le dossier garde les mots que l'écran affichera —
+« commencés », « en route », « acquis » — pour qu'on ne relise pas une chose en
+en construisant une autre.
 
 ### 4.3 Donner une mémoire à la grammaire — par JEU, jamais par exercice
 
@@ -304,9 +379,19 @@ sont ici pour être confirmés ou écartés, pas pour servir d'appui.
 
 ## 6. Ce sur quoi un avis extérieur serait utile
 
-1. **« Commencé » contre « acquis ».** Une barre qui avance dès la première
-   tentative — **même ratée** — est-elle motivante ou décevante pour un
-   débutant ? Existe-t-il des résultats publiés sur ce choix ?
+1. **Des comptes plutôt qu'un pourcentage.** Nous envisageons de retirer de
+   l'accueil toute fraction, et de n'afficher que des nombres absolus :
+   mots commencés, mots acquis, jeux de grammaire solides.
+   (a) Ce découpage est-il plus compréhensible et plus motivant, pour un
+   apprenant en autonomie, qu'un pourcentage — quel qu'en soit le
+   dénominateur ?
+   (b) Un nombre sans dénominateur prive l'apprenant de tout repère sur
+   « combien il en reste ». Est-ce une perte réelle, ou le repère manquant
+   est-il justement ce qui décourageait ?
+   (c) « Acquis » doit-il suivre l'état réel (il peut baisser quand un mot est
+   oublié) ou afficher un cumul qui ne baisse jamais mais surestime ?
+   (d) Une barre qui avance dès la première tentative — **même ratée** —
+   serait-elle motivante ou décevante pour un débutant ?
 2. **Le recul du pourcentage — et la question se dédouble.**
    (a) Est-ce **pédagogiquement exact** ? « Ma maîtrise mesurée de ce corpus a
    diminué » est une affirmation vraie.
