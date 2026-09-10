@@ -4148,7 +4148,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v523</span>
+        <span class="subtitle-version">v524</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6110,7 +6110,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </button>
         </div>
         <button class="judge-known" onclick="markKnownAlready()">
-            <span data-i18n="review_known">Je connais déjà ce mot</span>
+            <span data-i18n="review_known">Je le sais par cœur</span>
             <small class="judge-echeance" id="judgeEcheanceKnown"></small>
         </button>
         <!-- Le « i » est ICI, dans le bloc qui n'apparait qu'apres la reponse :
@@ -6902,7 +6902,7 @@ const I18N = {
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
         review_good: "Je savais ✓",
-        review_known: "Je connais déjà ce mot",
+        review_known: "Je le sais par cœur",
         known_echeance: "pas avant {n} jours",
         flash_end_title: "Paquet terminé",
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
@@ -6945,6 +6945,7 @@ const I18N = {
         echeance_10min: "dans {n} minutes",
         echeance_dans_seance: "retour dans {n} minutes",
         echeance_demain: "pas avant la prochaine séance",
+        echeance_quelques_seances: "dans quelques séances",
         echeance_jours: "pas avant {n} jours",
         echeance_maitrise: "maîtrisé ✓",
         mastery_toast: "Maîtrisé ! Ce mot revient dans {n} jours pour vérifier — puis de plus en plus rarement.",
@@ -7769,7 +7770,7 @@ const I18N = {
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
         review_good: "I knew it ✓",
-        review_known: "I already know this word",
+        review_known: "I know it by heart",
         known_echeance: "not before {n} days",
         flash_end_title: "Deck finished",
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
@@ -7812,6 +7813,7 @@ const I18N = {
         echeance_10min: "in {n} minutes",
         echeance_dans_seance: "back in {n} minutes",
         echeance_demain: "not before the next session",
+        echeance_quelques_seances: "in a few sessions",
         echeance_jours: "not before {n} days",
         echeance_maitrise: "mastered ✓",
         mastery_toast: "Mastered! This word comes back in {n} days as a check — then less and less often.",
@@ -8638,7 +8640,7 @@ const I18N = {
         myvocab_how: "Bir kelime ara, sonra sözlük kaydının yanındaki + işaretine dokunarak buraya kaydet.",
         review_again: "↺ Tekrar",
         review_good: "Biliyordum ✓",
-        review_known: "Bu kelimeyi zaten biliyorum",
+        review_known: "Ezbere biliyorum",
         known_echeance: "{n} günden önce değil",
         flash_end_title: "Deste bitti",
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
@@ -8681,6 +8683,7 @@ const I18N = {
         echeance_10min: "{n} dakika sonra",
         echeance_dans_seance: "{n} dakika sonra döner",
         echeance_demain: "sonraki oturumdan önce değil",
+        echeance_quelques_seances: "birkaç oturum sonra",
         echeance_jours: "{n} günden önce değil",
         echeance_maitrise: "öğrenildi ✓",
         mastery_toast: "Öğrenildi! Bu kelime kontrol için {n} gün sonra geri gelir — sonra giderek daha seyrek.",
@@ -9807,6 +9810,7 @@ const I18N = {
         echeance_10min: "через {n} хвилин",
         echeance_dans_seance: "повернеться через {n} хв",
         echeance_demain: "не раніше наступного сеансу",
+        echeance_quelques_seances: "за кілька сеансів",
         echeance_jours: "не раніше ніж через {n} дн.",
         echeance_maitrise: "засвоєно ✓",
         mastery_toast: "Засвоєно! Це слово повернеться через {n} днів для перевірки — далі дедалі рідше.",
@@ -10324,7 +10328,7 @@ const I18N = {
         encore_neufs: "Ще {n} карток",
         review_again: "↺ Ще раз",
         review_good: "Пам'ятаю ✓",
-        review_known: "Я вже знаю це слово",
+        review_known: "Знаю напам'ять",
         review_2min: "Повторити через 2 хв",
         review_10min: "Повторити через 10 хв",
         review_tomorrow: "Повторити завтра",
@@ -11247,7 +11251,7 @@ const I18N = {
         myvocab_how: "یک واژه را جست‌وجو کن، سپس + کنار یکی از مدخل‌های فرهنگ را لمس کن تا کنار گذاشته شود.",
         review_again: "↺ دوباره",
         review_good: "می‌دانستم ✓",
-        review_known: "این واژه را از پیش بلدم",
+        review_known: "از بر بلدم",
         known_echeance: "نه پیش از {n} روز",
         flash_end_title: "بستهٔ کارت‌ها تمام شد",
         flash_end_summary: "{vues} کارت دیده شد، که {sues} تای آن‌ها بار اول درست بود.",
@@ -11290,6 +11294,7 @@ const I18N = {
         echeance_10min: "تا {n} دقیقهٔ دیگر",
         echeance_dans_seance: "تا {n} دقیقهٔ دیگر برمی‌گردد",
         echeance_demain: "نه پیش از جلسهٔ بعد",
+        echeance_quelques_seances: "چند جلسهٔ دیگر",
         echeance_jours: "نه پیش از {n} روز",
         echeance_maitrise: "آموخته ✓",
         mastery_toast: "آموخته شد! این واژه {n} روز دیگر برای بررسی برمی‌گردد — و بعد هر بار دیرتر.",
@@ -22212,7 +22217,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 523;
+const APP_VERSION = 524;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23892,7 +23897,17 @@ function echeanceProchaineReussite(state){
     if(reussites === 0) return tf("echeance_dans_seance", { n: SRS_PREMIERE_MINUTES });
     const barreau = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
     const jours = SRS_DAILY_LADDER_DAYS[barreau];
-    return jours === 1 ? t("echeance_demain") : tf("echeance_jours", { n: jours });
+    if(jours === 1) return t("echeance_demain");
+    // ⚠️ EN SEANCES, PAS EN JOURS -- et seulement ici. L'apprenant vit des
+    // seances, pas un calendrier : c'est la demande de Jacques. Mais un compte
+    // PRECIS de seances serait faux (« pas avant 3 seances » tombe des qu'on
+    // saute deux jours et qu'on revient a la deuxieme seance), donc le libelle
+    // reste volontairement vague. Ce qu'il perd -- la difference entre 3 et
+    // 7 jours -- les pastilles le disent deja juste a cote.
+    //
+    // L'entretien, lui, garde les JOURS : « dans quelques seances » pour un mot
+    // programme a deux ans serait un mensonge, pas une approximation.
+    return t("echeance_quelques_seances");
 }
 
 function reviewAgain(){
