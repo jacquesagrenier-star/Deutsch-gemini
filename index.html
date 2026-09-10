@@ -3881,41 +3881,50 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* UN BANDEAU BAS. Deux lignes serrees : ce qu'on fait, puis d'ou viennent les
    mots nouveaux. Pas d'icone -- elle coutait vingt pixels de hauteur pour ne
    rien dire de plus que le titre. */
+/* L'ACTION PRINCIPALE EST LA SEULE PLEINE DE L'ECRAN.
+   ⚠️ Pas de rouge : dans les conventions d'interface il code l'erreur, le
+   danger et la suppression -- l'employer pour l'action a faire envoie le signal
+   inverse, et pour les 8 % d'hommes daltoniens au rouge-vert la distinction
+   disparait. Le signal fiable est le REMPLISSAGE : un seul bloc plein par
+   ecran, tout le reste en contour. Il fonctionne meme sans percevoir la
+   couleur, ce que la regle WCAG demande explicitement (ne jamais porter une
+   information par la couleur seule). La position en tete et la pleine largeur
+   font le reste.
+
+   ⚠️ Et aspect-ratio:auto : .orb impose un carre, ce qui convient a une tuile
+   d'un tiers de largeur mais faisait ici un bloc aussi haut que la page. */
 .orb-seance{
     grid-column:1 / -1;
-    /* ⚠️ SANS CECI, LE BANDEAU EST UN CARRE DE LA LARGEUR DE LA PAGE. La classe
-       .orb impose aspect-ratio:1, ce qui convient a une tuile d'un tiers de
-       largeur ; etendue aux trois colonnes, elle en fait un bloc aussi haut que
-       large -- pres de la moitie de l'ecran. Aucun reglage de padding ne pouvait
-       le rattraper. */
     aspect-ratio:auto;
     display:block;
-    padding:9px 12px 10px;
+    padding:10px 13px 11px;
     border-radius:14px;
     text-align:start;
-    box-shadow:none;
-    border-color:rgba(59,111,224,.42);
-    background:rgba(59,111,224,.055);
+    /* #2f62d6 et non #3b6fe0 : le blanc sur ce bleu passe le seuil AA de 4,5:1
+       pour du texte de 12 px, le bleu plus clair restait juste en dessous. */
+    background:#2f62d6;
+    border-color:#2f62d6;
+    box-shadow:0 6px 16px rgba(47,98,214,.28);
     cursor:pointer;
 }
-.orb-seance:hover{transform:none; box-shadow:none;}
+.orb-seance:hover{transform:none; box-shadow:0 8px 20px rgba(47,98,214,.34);}
 .seance-haut{display:flex; align-items:baseline; gap:8px;}
-.orb-seance strong{font-size:14px; line-height:1.2; flex:0 0 auto;}
-.seance-sub{font-size:12px; color:#5b6b86; flex:1 1 auto; min-width:0;}
-.seance-fleche{flex:0 0 auto; color:#3b6fe0; align-self:center;}
-.seance-bas{display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap;}
-.seance-etiq{font-size:11px; color:#7b8798; flex:0 1 auto; line-height:1.3;}
+.orb-seance strong{font-size:15px; line-height:1.2; flex:0 0 auto; color:#fff;}
+.seance-sub{font-size:12.5px; color:rgba(255,255,255,.82); flex:1 1 auto; min-width:0;}
+.seance-fleche{flex:0 0 auto; color:#fff; align-self:center;}
+.seance-bas{display:flex; align-items:center; gap:5px; margin-top:6px; flex-wrap:wrap;}
+.seance-etiq{font-size:11px; color:rgba(255,255,255,.78); flex:0 1 auto; line-height:1.3;}
 .seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
 .seance-niveau{
-    border:1px solid rgba(59,111,224,.28); background:transparent; color:#5b6b86;
+    border:1px solid rgba(255,255,255,.45); background:transparent; color:#fff;
     font-size:11px; font-weight:600; line-height:1;
     padding:4px 6px; border-radius:6px; cursor:pointer;
 }
-.seance-niveau.on{background:#3b6fe0; border-color:#3b6fe0; color:#fff;}
+.seance-niveau.on{background:#fff; border-color:#fff; color:#2f62d6;}
 .seance-themes{
     margin-inline-start:auto; flex:0 0 auto;
-    border:1px solid rgba(59,111,224,.28); border-radius:6px;
-    background:transparent; color:#3b6fe0; cursor:pointer;
+    border:1px solid rgba(255,255,255,.45); border-radius:6px;
+    background:transparent; color:#fff; cursor:pointer;
     font-size:11px; font-weight:600; line-height:1; padding:4px 8px;
 }
 .home-stats-card{position:relative;}
@@ -4191,7 +4200,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v530</span>
+        <span class="subtitle-version">v531</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -22318,7 +22327,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 530;
+const APP_VERSION = 531;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
