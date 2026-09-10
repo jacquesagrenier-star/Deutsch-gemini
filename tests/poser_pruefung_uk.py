@@ -39,15 +39,34 @@ BASES = ["erkl", "frage", "trad", "consigne", "aufgabe"]
 def phrases(t):
     """Les phrases utiles : sous 12 signes, c'est une abreviation, pas une phrase.
 
-    ⚠️ ON NE COUPE PAS DEVANT UN GUILLEMET FERMANT. Le francais met une espace
-    avant « ? » et « » » : « Faut-il interdire les telephones a l'ecole ? »
-    compte alors pour DEUX phrases, alors que c'en est une seule citee. Les
-    langues qui ne mettent pas cette espace -- l'ukrainien, l'anglais -- en
-    comptent une, et le garde-fou refusait leur traduction comme amputee.
+    ⚠️ DEUX CHOSES QUE CE COMPTEUR PRENAIT POUR DES FINS DE PHRASE, ET QUI
+    N'EN SONT PAS. Les deux viennent de la typographie FRANCAISE, et les deux
+    ont fait refuser des traductions ukrainiennes correctes :
+
+      - L'ESPACE AVANT « ? » ET « » ». « Faut-il interdire les telephones a
+        l'ecole ? » comptait pour deux phrases alors que c'en est une seule,
+        citee. Les langues qui ne mettent pas cette espace en comptaient une.
+
+      - LE POINT D'ABREVIATION. « Que doit faire M. Sow… » se coupait apres
+        « M. », et « Que doit faire M. » fait dix-sept signes -- au-dessus du
+        seuil des douze, donc compte comme une phrase.
+
     Refuser une traduction juste est aussi grave qu'en accepter une fausse :
-    la prochaine fois, on desarme le controle au lieu de le corriger.
+    la fois suivante, on desarme le controle au lieu de le corriger. Ce qui
+    est corrige ici, c'est le COMPTEUR, pas le seuil -- une phrase perdue
+    reste attrapee exactement comme avant.
     """
-    return len([x for x in re.split(r"(?<=[.!?])\s+(?!»)", t.strip()) if len(x) > 12])
+    # Le point d'une abreviation devient un point de liaison, qui ne coupe
+    # pas. Il disparait avec la variable locale.
+    #
+    # Deux familles : les abreviations en capitale (M., Dr., Nr.) se
+    # reconnaissent a leur forme ; les minuscules ne se reconnaissent qu'a
+    # leur liste, parce qu'un point apres un mot minuscule EST normalement
+    # une fin de phrase. On ne devine donc pas -- on nomme.
+    t = re.sub(r"\b([A-ZÄÖÜ][A-Za-zÄÖÜäöü]{0,2})\.(?=\s)", "\\1\u2024", t.strip())
+    t = re.sub(r"\b(ca|inkl|ggf|max|min|bzw|usw|etc|env|ex)\.(?=\s)",
+               "\\1\u2024", t)
+    return len([x for x in re.split(r"(?<=[.!?])\s+(?!»)", t) if len(x) > 12])
 
 
 def entree(d, cle):
