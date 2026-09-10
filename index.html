@@ -3894,7 +3894,7 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .seance-sub{font-size:12px; color:#5b6b86; flex:1 1 auto; min-width:0;}
 .seance-fleche{flex:0 0 auto; color:#3b6fe0; align-self:center;}
 .seance-bas{display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap;}
-.seance-etiq{font-size:11px; color:#7b8798; flex:0 0 auto;}
+.seance-etiq{font-size:11px; color:#7b8798; flex:0 1 auto; line-height:1.3;}
 .seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
 .seance-niveau{
     border:1px solid rgba(59,111,224,.28); background:transparent; color:#5b6b86;
@@ -4181,7 +4181,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v528</span>
+        <span class="subtitle-version">v529</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4307,7 +4307,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <svg class="seance-fleche" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
             </div>
             <div class="seance-bas">
-                <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire&nbsp;:</span>
+                <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire en provenance du niveau&nbsp;:</span>
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
                       aria-label="Provenance des mots nouveaux"></span>
                 <button type="button" class="seance-themes"
@@ -6945,7 +6945,7 @@ const I18N = {
         seance_carte: "{n} carte",
         seance_cartes: "{n} cartes",
         seance_neufs_de: "mots nouveaux en {niv}",
-        seance_neufs_etiq: "Nouveau vocabulaire :",
+        seance_neufs_etiq: "Nouveau vocabulaire en provenance du niveau :",
         seance_par_theme: "Par thème",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
@@ -7820,7 +7820,7 @@ const I18N = {
         seance_carte: "{n} card",
         seance_cartes: "{n} cards",
         seance_neufs_de: "new words from {niv}",
-        seance_neufs_etiq: "New vocabulary:",
+        seance_neufs_etiq: "New vocabulary from level:",
         seance_par_theme: "By theme",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
@@ -8697,7 +8697,7 @@ const I18N = {
         seance_carte: "{n} kart",
         seance_cartes: "{n} kart",
         seance_neufs_de: "{niv} seviyesinden yeni kelimeler",
-        seance_neufs_etiq: "Yeni kelime dağarcığı:",
+        seance_neufs_etiq: "Yeni kelime dağarcığı şu seviyeden:",
         seance_par_theme: "Temaya göre",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
@@ -9839,7 +9839,7 @@ const I18N = {
         seance_carte: "{n} картка",
         seance_cartes: "{n} карток",
         seance_neufs_de: "нові слова з {niv}",
-        seance_neufs_etiq: "Нова лексика:",
+        seance_neufs_etiq: "Нова лексика з рівня:",
         seance_par_theme: "За темою",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
@@ -11323,7 +11323,7 @@ const I18N = {
         seance_carte: "{n} کارت",
         seance_cartes: "{n} کارت",
         seance_neufs_de: "واژه‌های تازه از {niv}",
-        seance_neufs_etiq: "واژگان تازه:",
+        seance_neufs_etiq: "واژگان تازه از سطح:",
         seance_par_theme: "بر پایهٔ موضوع",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
@@ -22308,7 +22308,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 528;
+const APP_VERSION = 529;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
