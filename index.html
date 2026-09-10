@@ -2112,9 +2112,13 @@ input, textarea, select{
     font-family:Georgia, "Times New Roman", serif;
     font-size:22px; font-weight:700; font-style:italic;
     color:#2f63d8; opacity:1;
-    width:40px; height:40px; padding:0;
+    /* LE CERCLE SERRE LA LETTRE (v517). A 40 px il prenait la place d'un
+       bouton d'action alors qu'il n'en est pas un -- Jacques : « le cercle
+       prend trop d'espace ». La LETTRE ne bouge pas, c'est l'anneau qui se
+       resserre autour d'elle, et le trait s'affine avec lui. */
+    width:30px; height:30px; padding:0;
     display:inline-flex; align-items:center; justify-content:center;
-    border:2px solid rgba(59,111,224,.55);
+    border:1.5px solid rgba(59,111,224,.55);
     background:#fff;
     border-radius:50%;
     box-shadow:0 1px 3px rgba(20,30,50,.10);
@@ -4144,7 +4148,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v516</span>
+        <span class="subtitle-version">v517</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -22127,7 +22131,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 516;
+const APP_VERSION = 517;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
