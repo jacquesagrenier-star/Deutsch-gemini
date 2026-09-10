@@ -1302,3 +1302,94 @@ Une séance de cartes en v513, puis COPIER LE JOURNAL. Si les lignes disent
 `progression -> localStorage`, c'était bien ça et le différé l'a réglé. Si
 elles disent `?`, la cause est ailleurs et le journal dira où — sans avoir à
 deviner une quatrième fois.
+
+## 10 septembre 2026 — l'ukrainien, cette fois pour de bon
+
+**État au début de la journée** : les exercices à 67,6 %, et `pruefung.json`
+— les quatre épreuves de l'examen — à **zéro**.
+
+| | corpus | interface | exercices | examen |
+|---|---|---|---|---|
+| turc | 8 003 ✔ | 911 ✔ | 1 682 ✔ | 542 ✔ |
+| **ukrainien, ce matin** | 8 003 ✔ | 911 ✔ | **1 137 / 1 682** | **0 / 542** |
+| **ukrainien, ce soir** | 8 003 ✔ | 911 ✔ | **1 682 ✔** | **542 ✔** |
+
+L'ukrainien est désormais à **parité exacte avec le turc** sur tous les
+fichiers de données. Ce qui manque encore dans `exercices.json` manque
+identiquement en turc et en persan : ce n'est pas un trou ukrainien.
+
+### Les neuf jeux d'exercices, et ce que le garde-fou a trouvé
+
+Neuf jeux, 545 exercices. Méthode inchangée : on traduit les **moules** une
+fois, un script lit les trous et remplit ; seules les phrases d'exemple se
+traduisent une par une, **depuis l'allemand** — traduire une traduction fait
+dériver deux fois.
+
+Chaque script refuse d'écrire si quelque chose ne colle pas. Il a servi trois
+fois, et **aucune des trois n'aurait été vue à la relecture** :
+
+1. **`ordreInverse` allait dans les deux sens.** J'avais relevé un seul moule
+   (« la subordonnée passe derrière »). Le refus a montré **quatorze phrases
+   qui font l'inverse**. Le script vérifie maintenant que l'indice et
+   l'explication vont dans le même sens — les deux phrases sont justes prises
+   séparément, rien d'autre ne les aurait attrapées.
+2. **`partikelnNuance` répond par une étiquette, pas par un mot allemand.**
+   Sans `optionsUk`, l'ukrainophone choisissait entre treize étiquettes
+   **françaises** sur un écran par ailleurs entièrement ukrainien. Le champ
+   `options` existait et n'était pas vide : invisible à tout compteur.
+3. **`blocsConnecteurs` : 120 explications posées, 36 exercices toujours « à
+   faire ».** Il manquait **deux indices sur six** — les seuls qui portent une
+   phrase, les quatre autres n'étant que des noms de temps allemands.
+
+### L'examen : 542 champs, et un contrôle qui refusait du travail juste
+
+`pruefung.json` n'a aucun moule : ce sont des consignes, des traductions et
+des explications d'examen, traduites une par une. Le garde-fou repris du turc
+compare longueur et nombre de phrases avec le français, pour attraper une
+explication qui aurait perdu sa seconde phrase — celle qui dit ce que l'erreur
+coûte.
+
+**Il a refusé trois traductions correctes**, chaque fois pour une raison de
+typographie et jamais de traduction :
+
+- l'**espace française avant « ? » et « » »** faisait compter deux phrases là
+  où il y en a une, citée ;
+- le **rapport de longueur de 0,55**, calibré sur des explications amputées,
+  mesurait la compacité d'une langue sur une question de six mots ;
+- le **point d'abréviation** : « Que doit faire M. Sow… » se coupait après
+  « M. », et ce fragment fait dix-sept signes.
+
+Ce qui a été corrigé, c'est le **compteur**, jamais le seuil. La tentation
+était de rallonger l'ukrainien pour passer le contrôle : c'est exactement
+ainsi qu'un contrôle devient décoratif.
+
+### ⚠️ Et le défaut le plus grave de la journée n'était pas dans la traduction
+
+Une fois les 542 champs posés, **ils n'atteignaient aucun écran**. Les quatre
+lecteurs de `pruefung.json` recopiaient chacun `_en` et `_tr` à la main, et
+rien d'autre. L'ukrainophone voyait du **français** sur les quatre épreuves.
+
+Le fichier de données était complet, la traduction juste, le vérificateur
+passait. **C'est le même défaut que pour le turc, puis pour le persan** —
+troisième fois, et troisième fois trouvé en allant regarder plutôt qu'en
+comptant.
+
+Ajouter « uk » à quatre endroits aurait laissé le piège entier pour la langue
+suivante : les cinq langues se construisent maintenant d'un coup
+(`champsPruefung`), et ajouter une langue est **une entrée dans une liste**.
+Les champs vides d'une épreuve sont posés dans toutes les langues, sans quoi
+`texteTraduit` remonte la chaîne de repli et sert le français — un champ vide
+qui se remplit tout seul de la mauvaise langue.
+
+Vérifié à l'écran, pas au compteur : les quatre lecteurs rendent de
+l'ukrainien en langue `uk` et du français en langue `fr`.
+
+### Ce qui reste, et que je ne peux pas juger
+
+**Un relecteur ukrainophone.** Le registre, le naturel d'une tournure. Une
+phrase peut être exacte, cohérente, bien câblée — et sonner comme une
+traduction. C'est vrai ici comme pour le turc et le persan, et aucun de ces
+contrôles ne le voit.
+
+**Le persan**, lui, n'a toujours rien de `pruefung.json` : 542 champs. Le
+câblage, en revanche, l'attend désormais — il suffira de poser la donnée.
