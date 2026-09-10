@@ -310,7 +310,13 @@ def entrees():
     # ⚠️ funktionswort.json est range par FAMILLE GRAMMATICALE (konjunktionen,
     # partikeln, praepositionen, zahlen, pronomen, artikelwoerter) et non par
     # niveau CECR. Le parcourir comme les autres le rendait invisible : il
-    # n'apparaissait tout simplement pas dans le rapport, sans erreur.
+    # n'apparaissait pas du tout dans le rapport, sans erreur.
+    #
+    # ⚠️ ET LE NIVEAU EXISTE, il est simplement DANS CHAQUE ENTREE. Une premiere
+    # version rangeait ces 161 mots sous leur famille au lieu de leur niveau, ce
+    # qui a fait croire qu'ils n'avaient pas de niveau du tout -- et failli les
+    # faire tous verser en A1, alors que « obwohl », « sodass » et « indem » y
+    # sont a juste titre en B1. Le defaut etait dans le lecteur, pas la donnee.
     chemin = os.path.join(RACINE, "funktionswort.json")
     if os.path.exists(chemin):
         d = json.load(io.open(chemin, encoding="utf-8"))
@@ -319,7 +325,8 @@ def entrees():
                 continue
             for o in liste:
                 if o.get("mot"):
-                    out.append(("mots-outils", famille, o["mot"], note_simple, o))
+                    out.append(("mots-outils", o.get("niveau") or "?",
+                                o["mot"], note_simple, o))
     return out
 
 
