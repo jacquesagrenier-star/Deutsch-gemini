@@ -151,9 +151,9 @@ du tout. Deux semaines de travail sur la grammaire affichent **0 %**.
 
 ### 3.5 Le fond du problème : le dénominateur
 
-Chaque chiffre affiché est **une fraction d'un très grand tout fixe** que
-l'utilisateur n'a pas choisi et ne finira probablement jamais. Quelle que soit
-la porte d'entrée, il voit une part minuscule. Tant que la progression est une
+Chaque chiffre affiché est **une fraction d'un très grand tout fixe** dont
+l'échéance d'achèvement est très lointaine. Quelle que soit la porte d'entrée,
+l'utilisateur voit une part minuscule. Tant que la progression est une
 fraction, elle décourage — indépendamment de tout découpage en blocs.
 
 ---
@@ -248,6 +248,48 @@ quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouto
 
 ---
 
+## 4.6 Ce que la littérature dit déjà — vérifié à la source
+
+Trois résultats publiés touchent directement les questions ci-dessous. Ils sont
+donnés **comme éléments de décision, pas comme prescriptions** : aucun ne porte
+sur Wortando.
+
+**Une barre de progression motive sans faire apprendre.** Une étude sur
+**166 adultes** apprenant du vocabulaire avec récupération adaptative a comparé
+une version sans gamification à des versions avec points, puis points et barres
+de progression. Les points et les barres ont augmenté le sentiment de
+compétence, le plaisir et la valeur attribuée à la tâche — **sans améliorer le
+rappel différé à 2-3 jours**.
+*Gamified feedback in adaptive retrieval practice: Points and progress-bars
+enhance motivation but not learning*, Computers in Human Behavior, nov. 2025.
+
+C'est exactement la distinction que ce document défend : **un indicateur de
+motivation n'est pas un indicateur d'apprentissage**. La barre peut avoir une
+fonction motivante — à condition de ne pas se déguiser en mesure de maîtrise.
+
+**Pour la grammaire, ce sont les séances SANS ERREUR qui comptent, pas un
+pourcentage.** Une étude de 2024 (119 participants, langue artificielle,
+séances de réapprentissage sur jours consécutifs, test à 14 jours) : la
+connaissance productive est nettement meilleure avec trois ou quatre séances de
+réapprentissage. Et l'analyse individuelle montre qu'une connaissance
+productive durable est associée à **deux séances sans erreur**, quel que soit
+le nombre total de séances effectuées.
+*Serfaty, « Practice Makes Perfect, but How Much Is Necessary? The Role of
+Relearning in Second Language Grammar Acquisition »*, Language Learning, 2024.
+
+Cela déplace notre question sur les « jeux solides » : le critère naturel
+serait **deux séries sans faute**, plutôt qu'un seuil de pourcentage dans une
+seule série.
+
+**Non vérifié de notre côté**, et rapporté par un relecteur : la documentation
+d'Anki indiquerait qu'une dose de 20 mots neufs par jour conduit à environ 200
+révisions quotidiennes, et recommanderait de réduire si la charge devient
+excessive ; et les applications grand public utiliseraient des doses plus
+faibles (5 à 12 items neufs). **Nous n'avons pas vérifié ces deux points** — ils
+sont ici pour être confirmés ou écartés, pas pour servir d'appui.
+
+---
+
 ## 5. Contraintes à respecter
 
 - **Ne pas assouplir l'échelle à quatre succès.** C'est elle qui fait tenir la
@@ -271,20 +313,34 @@ quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouto
    (b) Est-ce **soutenable comme indicateur principal** ? Faut-il lisser la
    baisse, ou la laisser refléter l'oubli exactement ? Quelles applications le
    font, et avec quel effet mesuré sur l'abandon ?
-3. **Le plafond de mots neufs.** 20/jour est le défaut d'Anki, repris sans
-   mesure de notre côté. Y a-t-il une base pour un autre nombre, ou pour le
-   faire varier selon l'utilisateur ?
-4. **Ce qui rend un jeu de grammaire « solide ».** Deux séries à 80 % ? Une à
-   100 % ? Nous n'avons aucune donnée pour trancher.
-5. **Le mélange des niveaux.** Une révision qui sert un mot C1 juste après un
-   mot A1 : problème réel, ou faux problème ?
+3. **Le plafond de mots neufs.** 20/jour est le défaut **actuellement utilisé
+   par Anki**, qui ne le présente pas comme une dose optimale universelle.
+   Existe-t-il des données reliant le nombre d'items neufs introduits chaque
+   jour à la rétention, à la charge de révision et à l'abandon ? Ces données
+   justifient-elles un nombre **fixe** ou **adaptatif** ?
+4. **Ce qui rend un jeu de grammaire « solide ».** Deux séries à 80 %, une
+   série à 100 %, ou plusieurs réussites espacées ? L'étude de Serfaty (§4.6)
+   associe la connaissance productive durable à **deux séances sans erreur**,
+   indépendamment du nombre total de séances. Ce résultat se transpose-t-il à
+   nos 40 jeux — dont les exercices sont tirés d'un réservoir, non répétés à
+   l'identique — ou faut-il mesurer autrement ?
+5. **Le mélange des niveaux.** Une révision qui présente un mot C1 juste après
+   un mot A1 est-elle réellement problématique, ou seulement intuitivement
+   inconfortable ? La littérature sur l'**entrelacement** suggère que mélanger
+   des catégories peut améliorer l'apprentissage, l'effet dépendant de leur
+   similarité. Faut-il conserver le mélange global, et n'introduire une
+   contrainte de niveau que si les données d'usage montrent un problème ?
 6. **Le plafond peut-il agacer ?** Bloquer l'entrée de mots neufs quand la
    charge de révision est lourde risque-t-il d'exaspérer quelqu'un qui veut
    « avancer dans le programme » à tout prix ?
 7. **Le seuil d'« acquis ».** Quatre succès étalés sur onze jours : est-ce le
    bon compromis pour du vocabulaire A1/A2, ou trop exigeant ?
-8. **Ce qu'on n'a pas vu.** Y a-t-il, dans ce qui précède, un défaut de
-   conception plus grave que ceux listés ?
+8. **Ce qu'on n'a pas vu.** Parmi tous les mécanismes décrits ici —
+   progression, mémorisation, constitution des séances, entrée des mots neufs,
+   grammaire, mélange des niveaux — voyez-vous un défaut de conception
+   **plus important que ceux que nous avons identifiés** ? Cette question est
+   une invitation explicite à répondre « votre problème principal n'est pas
+   celui que vous croyez ».
 
 ⚠️ **Ce document a déjà subi deux relectures externes.** La première a
 corrigé deux choses, intégrées ci-dessus : le mot « couverture », qui
@@ -294,8 +350,12 @@ document** qui n'a jamais existé, en la présentant comme le texte réel. Inuti
 donc de retrouver les deux premières corrections ; et prière de ne citer que ce
 qui figure réellement ici.
 
-⚠️ **Précision méthodologique.** Tout ce document raisonne sur des chiffres et
-sur le code. **Aucun de ces compteurs n'a été montré à un utilisateur.** Un
-avis qui s'appuierait sur des résultats publiés ou sur des tests réels vaut
-mieux qu'un avis de plausibilité — et nous ne retiendrons que ce qui est
-vérifiable.
+⚠️ **Précision méthodologique.** Ce document raisonne sur des chiffres et sur
+le fonctionnement actuel du code. **Aucun de ces compteurs n'a encore été
+montré à un utilisateur.** Nous distinguons donc trois choses : les **faits
+vérifiés**, les **résultats publiés** (§4.6) et les **hypothèses de
+conception**. Un avis fondé sur des résultats publiés ou sur des tests
+utilisateurs réels vaut mieux qu'un jugement de plausibilité. **Nous ne
+transformerons pas une hypothèse en fait sans élément vérifiable** — et les
+citations rapportées par un relecteur sont vérifiées à la source avant d'entrer
+ici.
