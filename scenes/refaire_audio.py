@@ -128,9 +128,13 @@ def piste(F, scene, p, duree, dossiers):
     return nom, FENETRE, FENETRE + (queue - tete)
 
 
-def prompt(m, p, debut, fin, duree):
+def prompt(m, p, debut, fin, duree, jeu=True):
     """Le prompt du mode reference. Le mouvement de camera, l'action, le
-    minutage -- et PAS UN MOT sur la taille du plan."""
+    minutage -- et PAS UN MOT sur la taille du plan.
+
+    `jeu` porte la DERNIERE ligne, celle qui dirige l'interpretation (« a
+    slight forward lean, eyebrows raised in question »). Voir --sans-jeu.
+    """
     bloc = []
     bloc.append(
         "Use @img1 as the exact framing for this shot: match its composition, "
@@ -169,7 +173,22 @@ def prompt(m, p, debut, fin, duree):
         "seconds to the end of the clip the mouth closes and stays closed - "
         "it does not open again."
         % (duree, debut, debut, fin, fin))
-    bloc.append(m["action"])
+    # ⚠️ LA SEULE LIGNE DE CE PROMPT QU'ON PUISSE VRAIMENT DISCUTER (v. --sans-jeu).
+    #
+    # Les praticiens designent la sur-direction comme la premiere cause de
+    # mauvais lip-sync : « most bad lip sync comes from giving it too many
+    # performance notes, not too few ». Toutes les autres lignes d'ici ont ete
+    # gagnees par une mesure -- le cadrage a 29,5 dB contre 15,9, le regard
+    # rendu apres l'avoir perdu, le texte remis apres le charabia du plan 14,
+    # ce qui doit rester VISIBLE apres la derive du plan 05. Celle-ci, non :
+    # elle dirige le JEU, et c'est exactement ce que le reproche vise.
+    #
+    # On ne la retire donc pas d'office -- on la rend commutable, pour la
+    # juger sur un plan a la fois. Changer trois choses ensemble est ce qu'on
+    # a fait toute la journee du 9 septembre, et c'est ce que toutes les
+    # sources deconseillent.
+    if jeu:
+        bloc.append(m["action"])
     return "\n\n".join(bloc)
 
 
@@ -177,6 +196,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="01-ankunft-berlin")
     ap.add_argument("--plans", help="5,6,8... par defaut tous les parlants")
+    ap.add_argument("--sans-jeu", action="store_true",
+                    help="retirer la ligne de direction d'acteur, celle que "
+                         "les praticiens designent comme la premiere cause de "
+                         "mauvais lip-sync. A essayer sur UN plan.")
     a = ap.parse_args()
 
     F = M.ffmpeg()
@@ -225,6 +248,44 @@ def main():
          "entre en concurrence avec @img1 et le modele suit les mots -- 15,9 dB",
          "au premier essai, 29,5 dB une fois les mots retires.", ""]
 
+    # ⚠️ LA VOIX DOIT DIRE CE QUE LA FEUILLE ANNONCE (10 septembre 2026).
+    #
+    # Le plan 13 a ete coupe en deux. La feuille annoncait donc « Nehmen Sie
+    # die S-Bahn. » -- une seconde et demie -- au-dessus d'une piste @aud1 qui
+    # portait encore les DEUX phrases et 4,6 s de parole, et d'une fenetre de
+    # bouche calculee dessus. Rien ne s'en plaignait : le mp3 existe, il se
+    # mesure, tout est coherent sauf le sens.
+    #
+    # Deux cents credits pour un plan qui articule une phrase qu'on n'a plus.
+    # manifeste.json garde le texte AVEC lequel chaque mp3 a ete fabrique :
+    # on compare, et on refuse.
+    fm = os.path.join(RACINE, "audio", "scenes", a.scene, "manifeste.json")
+    dit = {}
+    if os.path.exists(fm):
+        dit = {x["plan"]: x.get("de", "") for x in
+               json.load(io.open(fm, encoding="utf-8")).get("plans", [])}
+    # Un plan neuf n'a pas encore de voix du tout : c'est le meme probleme --
+    # une feuille qui nomme un @aud1 introuvable -- et il vaut mieux le dire
+    # ici que laisser ffmpeg echouer trois ecrans plus bas.
+    def voix_de(p):
+        f = os.path.join(RACINE, "audio", "scenes", a.scene,
+                         "%02d-%s.mp3" % (p["n"], p["locuteur"]))
+        if not os.path.exists(f):
+            return None
+        return dit.get(p["n"], p["de"])
+
+    perimes = [p for p in plans if voix_de(p) != p["de"]]
+    if perimes:
+        print("  LA VOIX NE DIT PLUS LE TEXTE DE LA SCENE :")
+        for p in perimes:
+            print("    plan %02d" % p["n"])
+            print("      scene : %s" % p["de"])
+            print("      voix  : %s" % (voix_de(p) or "(aucune)"))
+        print("  Refaire ces voix avant de tourner :")
+        for p in perimes:
+            print("    python audio/refaire_plan.py --plan %d --pour-de-vrai" % p["n"])
+        sys.exit("  Aucune feuille ecrite.")
+
     for p in plans:
         m = P.MISE_EN_SCENE[p["n"]]
         duree = P.duree_a_generer(p, a.scene)
@@ -237,7 +298,7 @@ def main():
         o.append("  @img1 : %s" % p["_image"])
         o.append("  @aud1 : %s   (parole de %.1f a %.1f s)" % (nom, deb, fin))
         o.append("")
-        o.append(prompt(m, p, deb, fin, duree))
+        o.append(prompt(m, p, deb, fin, duree, jeu=not a.sans_jeu))
         o.append("")
 
     out = os.path.join(ep, "A-REFAIRE-AUDIO.txt")

@@ -195,13 +195,30 @@ MISE_EN_SCENE = {
                     "then back to her. A slight forward lean, eyebrows raised "
                     "in question."),
 
-    13: dict(pose="anna", coin="right", taille="serre", zoom=True,
+    # LE PLAN 13 A ETE COUPE EN DEUX LE 10 SEPTEMBRE 2026, et la mise en scene
+    # a suivi la coupe au lieu d'etre repartie au hasard. Sa replique portait
+    # 4,57 s de parole -- plus du double de ce qui passe -- et la machoire s'y
+    # etirait de +3,12 s.
+    #
+    # Le geste vers le bas du hall appartient a la SECONDE moitie : c'est elle
+    # qui dit « unten in der Halle ». Le laisser sur la premiere l'aurait fait
+    # designer un endroit dont on ne parle pas encore.
+    #
+    # Le changement de taille entre les deux (moyen serre, puis serre) est ce
+    # qui evite le faux raccord : deux plans d'affilee au meme cadrage sur le
+    # meme visage se lisent comme un saut de montage.
+    13: dict(pose="anna", coin="right", taille="moyen serre",
+             action="She holds his gaze and gives a small nod as she answers - "
+                    "the ordinary confidence of someone who gives this "
+                    "direction every day."),
+
+    20: dict(pose="anna", coin="right", taille="serre", zoom=True,
              action="EARLY in the shot, while the framing is still wide, she "
                     "lifts one hand and indicates DOWN and to her LEFT - away "
                     "from him, into the depth of the hall behind her - a small "
                     "precise gesture, not a broad sweep. Her eyes follow her "
                     "hand briefly, then return to him and stay there as the "
-                    "camera closes in. A small nod at the end."),
+                    "camera closes in."),
 
     18: dict(cadre="Vertical 9:16. A ticket machine standing in a lower "
                    "concourse of an airport, screen lit, seen straight on from a "
