@@ -45,11 +45,31 @@ directement applicable.** L'oreille pardonne **presque trois fois plus** un son
 en retard qu'un son en avance : 125 ms contre 45 ms. Autrement dit, **dans le
 doute, la voix doit arriver un peu TARD, jamais tôt.**
 
-⚠️ **À vérifier dans nos fichiers, et c'est une vraie question ouverte :** le
-signe de notre « +0,35 s ». On a noté l'amplitude sans jamais noter la
-direction, parce qu'on n'avait pas de raison de croire qu'elle changeait
-quelque chose. Elle change tout : le même écart est trois fois plus grave d'un
-côté que de l'autre. La mesure est à refaire, une fois, en notant le sens.
+✅ **MESURÉ le 10 septembre** (`python video/mesurer_decalage.py`). Le signe est
+**positif sur les six prises**, sans exception : la mâchoire démarre toujours
+APRÈS la voix qu'on lui a donnée, donc au montage **le son arrive toujours en
+AVANCE sur l'image** — le côté intolérant, celui à 45 ms.
+
+| prise | voix donnée | voix rendue | attaque | verdict UIT |
+|---|---|---|---|---|
+| plan16-04 | 0,51–1,62 | 0,62–1,52 | **+0,11 s** | × 2,4 du seuil |
+| plan14-03 | 0,50–1,97 | 0,85–2,27 | **+0,35 s** | × 7,8 |
+| plan11-03 | 0,51–2,80 | 0,87–3,76 | **+0,36 s** | × 8,0 |
+| plan17-03 | 0,52–2,51 | 1,08–2,81 | **+0,56 s** | × 12,4 |
+| plan10-04 | 0,52–2,65 | 1,92–3,90 | **+1,40 s** | × 31,1 |
+| plan14-04 | 0,50–1,97 | 2,46–4,03 | **+1,96 s** | × 43,6 |
+
+**Et « très régulier » était faux.** Le +0,35 s venait de deux plans qui se
+trouvaient d'accord. Sur six, l'étendue est de **1,85 s** — de +0,11 à +1,96.
+Même la meilleure prise est à 2,4 fois le seuil de détection.
+
+**Ce que ça interdit, et ce que ça désigne.** Une compensation fixe de 0,35 s
+corrigerait une prise et en aggraverait une autre : il n'y a pas de constante à
+poser. Il faut caler la voix sur la fenêtre **mesurée** de chaque prise — celle
+que `rapatrier.py` écrit déjà dans `02-prises/_parole.json` depuis le 9
+septembre, **et que `lipsync.py` ne lit pas** : il pose la voix à `FENETRE =
+0.5`, c'est-à-dire la fenêtre qu'on a DEMANDÉE au modèle, pas celle qu'il a
+RENDUE. La mesure existe, elle est juste, et personne ne s'en sert.
 
 **c) On a enfin un critère de réussite.** Après conformation, le résidu doit
 tomber dans +45 / −125 ms. Ce n'est plus « ça a l'air bon » : c'est un test qui
