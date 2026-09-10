@@ -3878,20 +3878,45 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* LA SEANCE DU JOUR : un rectangle pleine largeur, juste sous la carte de
    progression, avant les petites tuiles. C'est le premier geste possible en
    ouvrant l'app, et il ne doit pas se chercher parmi dix-sept icones. */
+/* Un BANDEAU, pas une banniere : une seule ligne, pleine largeur, juste sous
+   la carte de progression. Il doit se voir en entrant sans ecraser le reste. */
 .orb-seance{
     grid-column:1 / -1;
-    padding:16px 18px;
-    gap:14px;
-    border-color:rgba(59,111,224,.45);
-    background:linear-gradient(0deg, rgba(59,111,224,.05), rgba(59,111,224,.05));
+    display:flex; align-items:center; gap:10px;
+    padding:10px 12px;
+    border-color:rgba(59,111,224,.42);
+    background:rgba(59,111,224,.055);
+    cursor:pointer;
 }
 .orb-seance .orb-icon{
-    width:44px; height:44px;
+    width:32px; height:32px; flex:0 0 32px;
     background:rgba(59,111,224,.14); border-color:rgba(59,111,224,.30);
 }
 .orb-seance .orb-icon svg{stroke:#3b6fe0;}
-.orb-seance strong{font-size:17px;}
-.orb-seance small{font-size:13px; opacity:.85;}
+.seance-texte{flex:1 1 auto; min-width:0;}
+.orb-seance strong{display:block; font-size:14.5px; line-height:1.25;}
+.orb-seance small{display:block; font-size:12px; opacity:.8;}
+/* Les cinq niveaux, a droite. Compacts : ce sont des reperes, pas des boutons
+   principaux -- le geste principal reste « je commence ». */
+.seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
+.seance-niveau{
+    border:1px solid rgba(59,111,224,.28); background:transparent;
+    color:#5b6b86;
+    font-size:11px; font-weight:600; line-height:1;
+    padding:5px 6px; border-radius:6px; cursor:pointer;
+}
+.seance-niveau.on{background:#3b6fe0; border-color:#3b6fe0; color:#fff;}
+.seance-themes{
+    flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; padding:0;
+    border:1px solid rgba(59,111,224,.28); border-radius:6px;
+    background:transparent; color:#3b6fe0; cursor:pointer;
+}
+.seance-fleche{flex:0 0 auto; color:#3b6fe0; opacity:.75;}
+@media (max-width:380px){
+    .seance-niveau{padding:4px 4.5px; font-size:10px;}
+    .orb-seance{gap:7px; padding:9px 10px;}
+}
 .home-stats-card{position:relative;}
 .home-stats-card .subtitle-version{
     position:absolute; inset-inline-start:10px; bottom:7px;
@@ -4165,7 +4190,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v525</span>
+        <span class="subtitle-version">v526</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4282,10 +4307,22 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              endroit ou l'on entre sans avoir rien a choisir. -->
         <div class="orb orb-seance" data-orbid="seance" onclick="ouvrirSeanceDuJour()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M7 3h14a2 2 0 012 2v12"/></svg></div>
-            <div>
+            <div class="seance-texte">
                 <strong data-i18n="seance_titre">Ma séance du jour</strong>
                 <small id="seanceSub" data-i18n="seance_sous">Révisions et mots nouveaux</small>
             </div>
+            <!-- Les niveaux arretent le clic : sans stopPropagation, choisir un
+                 niveau lancerait la seance de l'ancien. -->
+            <div class="seance-niveaux" id="seanceNiveaux"></div>
+            <!-- L'ENTREE PAR THEME vit ICI, et nulle part ailleurs : la tuile
+                 Flashcards est la porte unique du vocabulaire. Elle arrete le
+                 clic, sinon elle lancerait la seance du jour au passage. -->
+            <button type="button" class="seance-themes" id="seanceThemesBtn"
+                    onclick="event.stopPropagation(); ouvrirThemesDuNiveau();"
+                    aria-label="Par thème">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>
+            </button>
+            <svg class="seance-fleche" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
         </div>
 
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
@@ -22265,7 +22302,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 525;
+const APP_VERSION = 526;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23809,6 +23846,24 @@ function ordonnerParFrequence(items){
     return items.slice().sort((a, b) => rang(a) - rang(b));
 }
 
+// ⚠️ DEUX PAQUETS, ET C'EST LA REGLE DE LA JOURNEE : les revisions viennent
+// de PARTOUT, les mots neufs viennent du NIVEAU CHOISI. Enfermer les echeances
+// dans le niveau courant ferait disparaitre un mois de travail sur l'A1 le jour
+// ou l'on passe a l'A2 -- l'oubli par changement de menu.
+//
+// La dose de mots neufs, elle, reste GLOBALE : quinze mots neufs restent quinze
+// mots neufs pour une memoire, quelle que soit leur etiquette. Un compteur par
+// niveau permettrait d'en prendre soixante-quinze en passant de A1 a C1, ce que
+// le plafond existe precisement pour empecher.
+function cartesDeSeance(poolTout, poolNeufs){
+    const dues = cartesEchuesTriees((poolTout || []).filter(
+        it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, TAILLE_SEANCE);
+    const neufs = (poolNeufs || []).filter(
+        it => estNeuf(getWordState(it.themeId, it.index)));
+    const place = Math.min(TAILLE_SEANCE - dues.length, placeNeufsRestante());
+    return dues.concat(ordonnerParFrequence(neufs).slice(0, Math.max(0, place)));
+}
+
 function cartesDeSession(items){
     const p = separer(items);
     const dues = p.dues.slice(0, TAILLE_SEANCE);
@@ -23860,9 +23915,14 @@ async function ouvrirSeanceDuJour(){
     await chargerFrequence();
     const pool = paquetDuNiveau(niveau);
     if(!pool.length){ showInfoToast(t("alert_all_theme_words_mastered")); return; }
-    const seance = cartesDeSession(pool);
-    if(!seance.length){ toastSeanceVide(pool, "alert_all_theme_words_mastered"); return; }
-    currentCardsFull = pool;
+    // Tous les niveaux pour les echeances, le niveau choisi pour le neuf.
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });
+    const seance = cartesDeSeance(tout, pool);
+    if(!seance.length){ toastSeanceVide(tout, "alert_all_theme_words_mastered"); return; }
+    // Le paquet de reference porte TOUT : « en faire 20 de plus » doit pouvoir
+    // aller chercher du retard d'un autre niveau, pas seulement du neuf d'ici.
+    currentCardsFull = tout;
     currentCards = seance;
     currentTheme = { id: "seance_" + niveau, name: t("seance_titre") + " \u00b7 " + niveau };
     currentFlashcard = 0;
@@ -23873,13 +23933,53 @@ async function ouvrirSeanceDuJour(){
 }
 
 // Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
+// Et les cinq niveaux, redessines avec lui.
 function majTuileSeance(){
     const el = document.getElementById("seanceSub");
-    if(!el) return;
     const niveau = niveauSeance();
-    let n = 0;
-    try{ n = cartesDeSession(paquetDuNiveau(niveau)).length; }catch(e){ n = 0; }
-    el.textContent = niveau + " \u00b7 " + tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
+    if(el){
+        let n = 0;
+        try{
+            const tout = [];
+            NIVEAUX_CECR.forEach(x => { tout.push.apply(tout, paquetDuNiveau(x)); });
+            n = cartesDeSeance(tout, paquetDuNiveau(niveau)).length;
+        }catch(e){ n = 0; }
+        el.textContent = tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
+    }
+    const box = document.getElementById("seanceNiveaux");
+    if(!box) return;
+    box.innerHTML = "";
+    NIVEAUX_CECR.forEach(niv => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "seance-niveau" + (niv === niveau ? " on" : "");
+        b.textContent = niv;
+        b.setAttribute("aria-pressed", niv === niveau ? "true" : "false");
+        b.addEventListener("click", ev => {
+            // ⚠️ Sans ceci, choisir un niveau lancerait la seance de l'ancien :
+            // le clic remonterait jusqu'au bandeau avant que le choix soit pris.
+            ev.stopPropagation();
+            fixerNiveauSeance(niv);
+        });
+        box.appendChild(b);
+    });
+}
+
+// L'entree par THEME, depuis la tuile Flashcards. Elle ouvre la liste des
+// themes existante -- on ne reconstruit pas un ecran qui marche.
+//
+// ⚠️ Le theme PEUT introduire des mots neufs, et c'est une correction. Une
+// premiere version le restreignait aux mots deja rencontres, pour eviter
+// l'interference semantique ; mais au cinquieme jour l'apprenant n'a vu que
+// 75 mots sur 860, et « Nourriture » lui aurait montre deux cartes. Un theme
+// vide n'est pas une revision, c'est une porte qui ne s'ouvre pas -- et il
+// serait inutilisable pendant precisement la periode ou il sert le plus.
+// Les mots neufs qu'il introduit comptent dans la dose du jour, donc ils
+// arrivent en deux ou trois seances au lieu d'un bloc : l'espacement attenue
+// une bonne part de l'effet d'interference.
+function ouvrirThemesDuNiveau(){
+    if(typeof openNomen === "function"){ openNomen(); return; }
+    showInfoToast(t("op_by_theme"));
 }
 
 // Ce qui n'est pas entre dans la seance du jour. ⚠️ Ce nombre ne va PAS a
