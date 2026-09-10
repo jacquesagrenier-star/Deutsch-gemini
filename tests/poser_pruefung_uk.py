@@ -141,7 +141,22 @@ def main():
             if not v or not v.strip():
                 rates.append("VIDE : %s (%s)" % (k, cle))
                 continue
-            if phrases(v) < phrases(fr) or len(v) < 0.55 * len(fr):
+            # LE RAPPORT DE LONGUEUR NE VAUT QUE SUR LES CHAMPS LONGS.
+            #
+            # 0,55 a ete calibre sur des EXPLICATIONS turques amputees de leur
+            # seconde phrase. Applique a une question de six mots, il ne
+            # mesure plus la completude : il mesure la compacite d'une langue.
+            # « Quand les stations de retrait sont-elles accessibles ? » fait
+            # 54 signes ; « Коли доступні станції видачі? » en fait 29, dit
+            # exactement la meme chose, et tombait a un demi-signe du seuil.
+            #
+            # C'est la DEUXIEME fois que ce garde-fou refuse une traduction
+            # juste parce qu'il a ete regle sur une seule langue. Sous 80
+            # signes, seul le compte de phrases tranche -- une phrase perdue
+            # reste attrapee, et une phrase courte n'a plus a se justifier
+            # d'etre courte.
+            trop_court = len(fr) >= 80 and len(v) < 0.55 * len(fr)
+            if phrases(v) < phrases(fr) or trop_court:
                 rates.append("AMPUTE : %s (%s) — %d phrases / %d, %d signes / %d"
                              % (k, cle, phrases(v), phrases(fr), len(v), len(fr)))
                 continue
