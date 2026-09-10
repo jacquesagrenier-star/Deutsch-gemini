@@ -1577,3 +1577,52 @@ thèmes, Mots au hasard) passent par `cartesDeSession()`. Les testeurs verront l
 changement dès demain, sans message d'annonce — la question de la portée avait
 été posée et laissée sans réponse ; c'est la seule option qui corrige le défaut
 là où il fait mal.
+
+---
+
+## 10 septembre 2026 — un mot su ne revient plus à vie (v522)
+
+**Remarque de Jacques :** *« si c'est un mot comme Hallo, même après seize
+jours, tu ne veux pas le revoir »*.
+
+**Le défaut :** `markMastered()` remettait `due` à `SRS_MAINTENANCE_DAYS`
+**à chaque contrôle réussi**. Un mot maîtrisé revenait donc tous les 16 jours
+**pour toujours** — `Hallo` serait revenu vingt-trois fois par an, à vie.
+
+**La réponse retenue, et celle qui a été écartée.** Un bouton « plus jamais »
+demande une décision définitive sur une chose incertaine, et il se regrette.
+C'est l'**intervalle** qui devait grandir : `SRS_ENTRETIEN_JOURS = [16, 35, 90,
+180, 365, 730]`. Chaque confirmation éloigne le mot davantage ; trois « oui » et
+`Hallo` ne revient plus que deux fois par an, cinq et c'est une fois tous les
+deux ans. Il disparaît de fait, sans qu'on ait eu à le décider. Un échec remet
+`entretiens` à zéro avec le reste — un mot réoublié doit revenir vite, pas dans
+un an.
+
+**Les libellés suivent l'état réel de la carte**, au lieu d'afficher 16 en dur :
+le bouton annonce 16 jours, puis 35, puis 90.
+
+⚠️ **Trois textes devenaient faux et ont été réécrits dans les cinq langues** —
+`mastery_toast`, `carte_maitrise_titre`, `srs_aide_apres` promettaient un retour
+« tous les {n} jours ». Les laisser aurait fait mentir l'app sur son propre
+fonctionnement, exactement ce qu'on reproche à un bouton qui promet trop.
+
+**Et les libellés des trois boutons sont devenus concrets**, à sa demande :
+« retour dans 2 minutes », « retour dans 10 minutes », puis **« sort du paquet ·
+demain »**. L'ancien « dans quelques cartes » était exact sans être clair : rien
+ne disait si le mot revenait **aujourd'hui**. C'est la seule chose que
+l'apprenant ne peut pas deviner, et c'est maintenant la seule que le libellé
+affirme.
+
+⚠️ **Correction d'une idée reçue au passage :** « Je savais » ne fait pas
+toujours sortir le mot du paquet. À la **première** réussite il revient dix
+minutes plus tard, dans la même séance — c'est le palier d'apprentissage. Ce
+n'est qu'à partir de la deuxième qu'il part vraiment, et les libellés le disent
+désormais chacun à leur tour.
+
+**Vérifié :** `tests/essai_plafond.js` porte 6 contrôles de plus (24 au total) —
+l'échelle d'entretien, son plafonnement au dernier barreau, et le fait qu'elle
+ne redescende jamais. Plus `verifier.py`, 14 033 contrôles.
+
+**Reste ouvert :** le NOM du troisième bouton. Il s'appelle encore « Je connais
+déjà ce mot », qui se confond avec « Je savais ». Proposé : « Je le sais par
+cœur », ou « Trop facile ». Non tranché.

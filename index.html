@@ -4148,7 +4148,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v521</span>
+        <span class="subtitle-version">v522</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6903,7 +6903,7 @@ const I18N = {
         review_again: "↺ Encore",
         review_good: "Je savais ✓",
         review_known: "Je connais déjà ce mot",
-        known_echeance: "à revoir dans {n} jours",
+        known_echeance: "sort du paquet · {n} jours",
         flash_end_title: "Paquet terminé",
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
         flash_end_summary_one: "1 carte vue.",
@@ -6941,12 +6941,13 @@ const I18N = {
         dict_participle: "part. {pp}",
         label_participle: "Participe",
         pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
-        echeance_encore: "dans quelques cartes",
+        echeance_encore: "retour dans {n} minutes",
         echeance_10min: "dans {n} minutes",
-        echeance_demain: "demain",
-        echeance_jours: "dans {n} jours",
+        echeance_dans_seance: "retour dans {n} minutes",
+        echeance_demain: "sort du paquet · demain",
+        echeance_jours: "sort du paquet · {n} jours",
         echeance_maitrise: "maîtrisé ✓",
-        mastery_toast: "Maîtrisé ! Ce mot revient tous les {n} jours, pour vérifier.",
+        mastery_toast: "Maîtrisé ! Ce mot revient dans {n} jours pour vérifier — puis de plus en plus rarement.",
         settings_revoir_maitrises: "REVOIR LES MOTS MAÎTRISÉS",
         settings_revoir_maitrises_desc: "Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.",
         confirm_revoir_maitrises: "Remettre tous tes mots maîtrisés en révision ? Ta progression et ton pourcentage sont conservés.",
@@ -6960,11 +6961,11 @@ const I18N = {
         srs_aide_jour: "{n} jour",
         srs_aide_jours: "{n} jours",
         srs_aide_maitrise: "maîtrisé",
-        carte_maitrise_titre: "Mot maîtrisé — il revient tous les {n} jours pour vérifier",
+        carte_maitrise_titre: "Mot maîtrisé — il revient dans {n} jours pour vérifier, puis de plus en plus rarement",
         srs_aide_encore: "Le mot repart de zéro et revient {n} cartes plus loin, dans cette séance.",
         srs_aide_pastilles: "Les {n} pastilles comptent ces réussites d'affilée.",
         srs_aide_connu: "Le mot passe directement à « maîtrisé », sans faire les quatre étapes. Utile pour un mot déjà su : il sort du paquet sans qu'il faille le juger quatre fois.",
-        srs_aide_apres: "Dans les deux cas, un mot maîtrisé n'est pas rangé pour de bon : il revient tous les {n} jours, pour vérifier.",
+        srs_aide_apres: "Dans les deux cas, un mot maîtrisé n'est pas rangé pour de bon : il revient dans {n} jours pour vérifier. Chaque fois que tu le confirmes, il s'éloigne davantage — 35 jours, puis 3 mois, puis 6, puis un an. Un mot comme « Hallo » finit par ne plus revenir du tout.",
         srs_etat_1: "je commence",
         srs_etat_2: "je progresse",
         srs_etat_3: "j'y suis presque",
@@ -7769,7 +7770,7 @@ const I18N = {
         review_again: "↺ Again",
         review_good: "I knew it ✓",
         review_known: "I already know this word",
-        known_echeance: "back in {n} days",
+        known_echeance: "leaves the deck · {n} days",
         flash_end_title: "Deck finished",
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
         flash_end_summary_one: "1 card seen.",
@@ -7807,12 +7808,13 @@ const I18N = {
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
         pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
-        echeance_encore: "in a few cards",
+        echeance_encore: "back in {n} minutes",
         echeance_10min: "in {n} minutes",
-        echeance_demain: "tomorrow",
-        echeance_jours: "in {n} days",
+        echeance_dans_seance: "back in {n} minutes",
+        echeance_demain: "leaves the deck · tomorrow",
+        echeance_jours: "leaves the deck · {n} days",
         echeance_maitrise: "mastered ✓",
-        mastery_toast: "Mastered! This word comes back every {n} days, as a check.",
+        mastery_toast: "Mastered! This word comes back in {n} days as a check — then less and less often.",
         settings_revoir_maitrises: "REVIEW MASTERED WORDS",
         settings_revoir_maitrises_desc: "Puts mastered words back in circulation, without erasing your progress or your percentage.",
         confirm_revoir_maitrises: "Put all your mastered words back into review? Your progress and percentage are kept.",
@@ -7826,11 +7828,11 @@ const I18N = {
         srs_aide_jour: "{n} day",
         srs_aide_jours: "{n} days",
         srs_aide_maitrise: "mastered",
-        carte_maitrise_titre: "Word mastered — it comes back every {n} days to check",
+        carte_maitrise_titre: "Word mastered — it comes back in {n} days to check, then less and less often",
         srs_aide_encore: "The word starts over and comes back {n} cards later, in this session.",
         srs_aide_pastilles: "The {n} dots count those successes in a row.",
         srs_aide_connu: "The word jumps straight to « mastered », skipping the four steps. Handy for a word you already know: it leaves the deck without being judged four times.",
-        srs_aide_apres: "Either way, a mastered word isn't put away for good: it comes back every {n} days, to check.",
+        srs_aide_apres: "Either way, a mastered word isn't put away for good: it comes back in {n} days as a check. Each time you confirm it, it moves further away — 35 days, then 3 months, then 6, then a year. A word like “Hallo” eventually stops coming back at all.",
         srs_etat_1: "getting started",
         srs_etat_2: "making progress",
         srs_etat_3: "almost there",
@@ -8637,7 +8639,7 @@ const I18N = {
         review_again: "↺ Tekrar",
         review_good: "Biliyordum ✓",
         review_known: "Bu kelimeyi zaten biliyorum",
-        known_echeance: "{n} gün sonra tekrar",
+        known_echeance: "desteden çıkar · {n} gün",
         flash_end_title: "Deste bitti",
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
         flash_end_summary_one: "1 kart görüldü.",
@@ -8675,12 +8677,13 @@ const I18N = {
         dict_participle: "geçmiş ort. {pp}",
         label_participle: "Geçmiş ortaç",
         pos_n: "isim", pos_v: "fiil", pos_adj: "sıfat", pos_adv: "zarf",
-        echeance_encore: "birkaç kart sonra",
+        echeance_encore: "{n} dakika sonra döner",
         echeance_10min: "{n} dakika sonra",
-        echeance_demain: "yarın",
-        echeance_jours: "{n} gün sonra",
+        echeance_dans_seance: "{n} dakika sonra döner",
+        echeance_demain: "desteden çıkar · yarın",
+        echeance_jours: "desteden çıkar · {n} gün",
         echeance_maitrise: "öğrenildi ✓",
-        mastery_toast: "Öğrenildi! Bu kelime kontrol için her {n} günde bir geri gelir.",
+        mastery_toast: "Öğrenildi! Bu kelime kontrol için {n} gün sonra geri gelir — sonra giderek daha seyrek.",
         settings_revoir_maitrises: "ÖĞRENİLEN KELİMELERİ TEKRAR ET",
         settings_revoir_maitrises_desc: "Öğrenilmiş kelimeleri, ilerlemeni ve yüzdeni silmeden yeniden dolaşıma sokar.",
         confirm_revoir_maitrises: "Öğrenilmiş tüm kelimelerin tekrara geri konsun mu? İlerlemen ve yüzden korunur.",
@@ -8694,11 +8697,11 @@ const I18N = {
         srs_aide_jour: "{n} gün",
         srs_aide_jours: "{n} gün",
         srs_aide_maitrise: "öğrenildi",
-        carte_maitrise_titre: "Kelime öğrenildi — kontrol için her {n} günde bir geri gelir",
+        carte_maitrise_titre: "Kelime öğrenildi — kontrol için {n} gün sonra geri gelir, sonra giderek daha seyrek",
         srs_aide_encore: "Kelime sıfırdan başlar ve bu oturumda {n} kart sonra geri gelir.",
         srs_aide_pastilles: "{n} nokta, üst üste gelen bu başarıları sayar.",
         srs_aide_connu: "Kelime dört adımı atlayıp doğrudan « öğrenildi » olur. Zaten bildiğin bir kelime için pratik: dört kez değerlendirilmeden desteden çıkar.",
-        srs_aide_apres: "Her iki durumda da öğrenilen kelime büsbütün kaldırılmaz: kontrol için her {n} günde bir geri gelir.",
+        srs_aide_apres: "Her iki durumda da öğrenilen kelime büsbütün kaldırılmaz: kontrol için {n} gün sonra geri gelir. Her doğruladığında biraz daha uzaklaşır — 35 gün, sonra 3 ay, sonra 6 ay, sonra bir yıl. « Hallo » gibi bir kelime sonunda hiç geri gelmez.",
         srs_etat_1: "başlıyor",
         srs_etat_2: "ilerliyor",
         srs_etat_3: "neredeyse tamam",
@@ -9795,19 +9798,20 @@ const I18N = {
         dict_plural: "мн. {pl}",
         dict_participle: "дієприкм. {pp}",
         dict_au_cours_title: "Уже картка курсу — відкрити картку",
-        known_echeance: "повторити через {n} днів",
+        known_echeance: "виходить із колоди · {n} дн.",
         pos_n: "іменник",
         pos_v: "дієслово",
         pos_adj: "прикметник",
         pos_adv: "прислівник",
-        echeance_encore: "за кілька карток",
+        echeance_encore: "повернеться через {n} хв",
         echeance_10min: "через {n} хвилин",
-        echeance_demain: "завтра",
-        echeance_jours: "через {n} днів",
+        echeance_dans_seance: "повернеться через {n} хв",
+        echeance_demain: "виходить із колоди · завтра",
+        echeance_jours: "виходить із колоди · {n} дн.",
         echeance_maitrise: "засвоєно ✓",
-        mastery_toast: "Засвоєно! Це слово повертається кожні {n} днів для перевірки.",
+        mastery_toast: "Засвоєно! Це слово повернеться через {n} днів для перевірки — далі дедалі рідше.",
         confirm_revoir_maitrises: "Повернути всі засвоєні слова на повторення? Твій поступ і відсоток зберігаються.",
-        carte_maitrise_titre: "Слово засвоєне — повертається кожні {n} днів для перевірки",
+        carte_maitrise_titre: "Слово засвоєне — повернеться через {n} днів для перевірки, далі дедалі рідше",
         srs_etat_0: "нове слово",
         srs_etat_1: "починаю",
         srs_etat_2: "просуваюсь",
@@ -9823,7 +9827,7 @@ const I18N = {
         srs_aide_encore: "Слово починає спочатку і повертається через {n} карток, у цьому ж сеансі.",
         srs_aide_pastilles: "{n} кружечки рахують ці успіхи поспіль.",
         srs_aide_connu: "Слово одразу стає «засвоєним», без чотирьох кроків. Зручно для слова, яке ти вже знаєш: воно виходить з колоди без чотирьох оцінювань.",
-        srs_aide_apres: "У обох випадках засвоєне слово не відкладається назавжди: воно повертається кожні {n} днів для перевірки.",
+        srs_aide_apres: "У обох випадках засвоєне слово не відкладається назавжди: воно повернеться через {n} днів для перевірки. Щоразу, коли ти його підтверджуєш, воно віддаляється ще більше — 35 днів, потім 3 місяці, далі 6, далі рік. Слово на кшталт « Hallo » зрештою перестає повертатися зовсім.",
         qual_0: "Ти починаєш!",
         qual_1: "На правильному шляху!",
         qual_20: "Є поступ!",
@@ -11197,7 +11201,7 @@ const I18N = {
         dict_section_note: "برای ساختن کارت از یک واژه و یافتن دوبارهٔ آن در «واژگان من»، + را لمس کن.",
         srs_aide_intro: "تو فقط یک چیز پاسخ می‌دهی — اینکه واژه به یادت آمد یا نه. برنامه از همان، فاصلهٔ مرور بعدی را درمی‌آورد.",
         srs_aide_connu: "واژه یک‌راست به «آموخته» می‌رود، بدون گذراندن چهار پله. برای واژه‌هایی به کار می‌آید که از پیش بلدی.",
-        srs_aide_apres: "در هر دو حالت، واژهٔ آموخته برای همیشه کنار گذاشته نمی‌شود: هر {n} روز یک‌بار برای بررسی بازمی‌گردد.",
+        srs_aide_apres: "در هر دو حالت، واژهٔ آموخته برای همیشه کنار گذاشته نمی‌شود: {n} روز دیگر برای بررسی بازمی‌گردد. هر بار که آن را تأیید کنی، دورتر می‌رود — ۳۵ روز، سپس ۳ ماه، سپس ۶ ماه، سپس یک سال. واژه‌ای مثل « Hallo » سرانجام دیگر برنمی‌گردد.",
         settings_revoir_maitrises_desc: "واژه‌های دسته‌بندی‌شده در «آموخته» را دوباره به گردش می‌آورد، بی‌آنکه پیشرفت یا درصد تو پاک شود.",
         confirm_revoir_maitrises: "همهٔ واژه‌های آموخته‌ات دوباره به مرور بازگردند؟ پیشرفت و درصد تو دست‌نخورده می‌ماند.",
         examen_aide_1: "سه مرجع رسمی آلمانی فهرست واژگانی را منتشر می‌کنند که باید در هر سطح دانست. واژه‌ای که این نشان را دارد، دست‌کم در یکی از آن‌ها آمده است.",
@@ -11244,7 +11248,7 @@ const I18N = {
         review_again: "↺ دوباره",
         review_good: "می‌دانستم ✓",
         review_known: "این واژه را از پیش بلدم",
-        known_echeance: "مرور دوباره تا {n} روز دیگر",
+        known_echeance: "از دسته خارج می‌شود · {n} روز",
         flash_end_title: "بستهٔ کارت‌ها تمام شد",
         flash_end_summary: "{vues} کارت دیده شد، که {sues} تای آن‌ها بار اول درست بود.",
         flash_end_summary_one: "۱ کارت دیده شد.",
@@ -11282,12 +11286,13 @@ const I18N = {
         pos_v: "فعل",
         pos_adj: "صفت",
         pos_adv: "قید",
-        echeance_encore: "چند کارت دیگر",
+        echeance_encore: "تا {n} دقیقهٔ دیگر برمی‌گردد",
         echeance_10min: "تا {n} دقیقهٔ دیگر",
-        echeance_demain: "فردا",
-        echeance_jours: "تا {n} روز دیگر",
+        echeance_dans_seance: "تا {n} دقیقهٔ دیگر برمی‌گردد",
+        echeance_demain: "از دسته خارج می‌شود · فردا",
+        echeance_jours: "از دسته خارج می‌شود · {n} روز",
         echeance_maitrise: "آموخته ✓",
-        mastery_toast: "آموخته شد! این واژه هر {n} روز یک‌بار برای بررسی برمی‌گردد.",
+        mastery_toast: "آموخته شد! این واژه {n} روز دیگر برای بررسی برمی‌گردد — و بعد هر بار دیرتر.",
         settings_revoir_maitrises: "مرور دوبارهٔ واژه‌های آموخته",
         alert_maitrises_revoir: "{n} واژهٔ آموخته به مرور بازمی‌گردند.",
         alert_maitrises_aucun: "فعلاً هیچ واژهٔ آموخته‌ای نیست.",
@@ -11298,7 +11303,7 @@ const I18N = {
         srs_aide_jour: "{n} روز",
         srs_aide_jours: "{n} روز",
         srs_aide_maitrise: "آموخته",
-        carte_maitrise_titre: "واژهٔ آموخته — هر {n} روز یک‌بار برای بررسی برمی‌گردد",
+        carte_maitrise_titre: "واژهٔ آموخته — {n} روز دیگر برای بررسی برمی‌گردد، و بعد هر بار دیرتر",
         srs_aide_encore: "واژه از نو آغاز می‌کند و {n} کارت بعدتر، در همین نشست، بازمی‌گردد.",
         srs_aide_pastilles: "{n} نشانه این موفقیت‌های پشت‌سرهم را می‌شمارند.",
         srs_etat_1: "تازه آغاز کرده‌ام",
@@ -22207,7 +22212,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 521;
+const APP_VERSION = 522;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23636,6 +23641,9 @@ function scheduleReview(minutes, differerLaSuite){
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
     state.mastered = false;
+    // Le compteur d'entretiens repart avec le reste : un mot reoublie doit
+    // revenir vite, pas dans un an.
+    state.entretiens = 0;
     if(minutes === 1440){
         const step = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
         const days = SRS_DAILY_LADDER_DAYS[step];
@@ -23705,12 +23713,18 @@ let sessionSues = 0;
 function majEcheances(animerDernier){
     const elA = document.getElementById("judgeEcheanceAgain");
     if(!elA) return;
-    elA.textContent = t("echeance_encore");
+    elA.textContent = tf("echeance_encore", { n: SRS_ENCORE_MINUTES });
     // « ne plus me le montrer » etait faux : markMastered() reprogramme le mot
     // a SRS_MAINTENANCE_DAYS. Le bouton dit maintenant ce qu'il fait vraiment,
     // comme les deux autres. Remarque de Jacques.
+    // L'echeance REELLE de cette carte : un mot deja confirme trois fois ne
+    // revient pas dans 16 jours mais dans 90, et le bouton doit le dire.
     const elK = document.getElementById("judgeEcheanceKnown");
-    if(elK) elK.textContent = tf("known_echeance", { n: SRS_MAINTENANCE_DAYS });
+    if(elK){
+        const it0 = currentCards.length ? currentCards[currentFlashcard] : null;
+        const st0 = it0 ? getWordState(it0.themeId, it0.index) : {};
+        elK.textContent = tf("known_echeance", { n: joursEntretien(st0) });
+    }
 
     const ladder  = document.getElementById("srsLadder");
     const pipsBox = document.getElementById("srsPips");
@@ -23814,8 +23828,13 @@ function echeanceProchaineReussite(state){
     // plus qui n'apprenait rien, puisque les quatre pastilles pleines le disent
     // deja, que les confettis le fetent, et que le trophee reste ensuite sur la
     // carte. Il ne reste que l'information qu'on ne peut pas deviner : quand.
-    if(reussites + 1 >= SRS_PALIERS) return tf("echeance_jours", { n: SRS_MAINTENANCE_DAYS });
-    if(reussites === 0) return tf("echeance_10min", { n: SRS_PREMIERE_MINUTES });
+    if(reussites + 1 >= SRS_PALIERS) return tf("echeance_jours", { n: joursEntretien(state) });
+    // ⚠️ LA PREMIERE REUSSITE NE FAIT PAS SORTIR LE MOT DU PAQUET : il
+    // revient avant la fin de la seance. « dans 10 minutes » etait exact
+    // sans etre clair -- rien ne disait que ces dix minutes tombent
+    // aujourd'hui, alors que « demain » et « dans 3 jours » annoncent
+    // d'eux-memes un depart. Remarque de Jacques.
+    if(reussites === 0) return tf("echeance_dans_seance", { n: SRS_PREMIERE_MINUTES });
     const barreau = Math.min(state.srsDailyStreak || 0, SRS_DAILY_LADDER_DAYS.length - 1);
     const jours = SRS_DAILY_LADDER_DAYS[barreau];
     return jours === 1 ? t("echeance_demain") : tf("echeance_jours", { n: jours });
@@ -24347,6 +24366,28 @@ function celebrateMastery(justReachedMultiple, avecToast){
 // suivant de l'echelle du mot (16 jours), pas un chiffre invente.
 const SRS_MAINTENANCE_DAYS = SRS_DAILY_LADDER_DAYS[3] || 16;
 
+// ============ L'entretien s'ELOIGNE au lieu de tourner en rond (v522) ============
+// ⚠️ Jusqu'ici un mot maitrise revenait tous les 16 jours POUR TOUJOURS : due
+// etait remis a SRS_MAINTENANCE_DAYS a chaque controle reussi. « Hallo » serait
+// donc revenu vingt-trois fois par an, a vie -- pour un mot que personne
+// n'oubliera jamais. Remarque de Jacques : « meme apres seize jours, tu ne veux
+// pas le revoir ».
+//
+// La reponse n'est PAS un bouton « plus jamais ». Un tel bouton demande une
+// decision definitive sur une chose incertaine, et il se regrette. C'est
+// l'intervalle qui doit grandir : chaque controle reussi eloigne le mot un peu
+// plus, jusqu'a ce qu'il disparaisse de fait. Trois « oui » et « Hallo » ne
+// revient plus que deux fois par an ; cinq, et c'est une fois tous les deux ans.
+//
+// Un echec ramene tout a zero -- reviewAgain() efface `entretiens` avec le
+// reste, sinon un mot reoublie reviendrait dans un an.
+const SRS_ENTRETIEN_JOURS = [16, 35, 90, 180, 365, 730];
+
+function joursEntretien(state){
+    const i = Math.min(state.entretiens || 0, SRS_ENTRETIEN_JOURS.length - 1);
+    return SRS_ENTRETIEN_JOURS[i];
+}
+
 // Le trophee se pose sur la carte au moment ou il est gagne, avec une couronne
 // d'etincelles qui s'ouvre autour de lui. Rien de plus : les confettis pleine
 // page jouent deja par-dessus, et deux fetes simultanees ne font pas une fete
@@ -24376,7 +24417,11 @@ function markMastered(){
     // trois fois de suite n'est pas un mot acquis a vie -- il revient une fois,
     // longtemps apres, pour le verifier. Le pourcentage, lui, ne bouge pas :
     // "mastered" reste vrai, la carte n'est qu'echue.
-    state.due = Date.now() + (SRS_MAINTENANCE_DAYS * 24 * 60 * 60 * 1000);
+    // L'ECHEANCE S'ELOIGNE : 16 j, puis 35, 90, 180, un an, deux ans. Un mot
+    // qu'on confirme sort de la circulation tout seul, sans decision definitive.
+    const jours = joursEntretien(state);
+    state.entretiens = (state.entretiens || 0) + 1;
+    state.due = Date.now() + (jours * 24 * 60 * 60 * 1000);
     state.reviews = (state.reviews || 0) + 1;
     setWordState(item.themeId, item.index, state);
     const justReachedMultiple = recordDailyActivity();

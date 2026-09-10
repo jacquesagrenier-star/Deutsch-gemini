@@ -93,5 +93,21 @@ magasin["deutschAI_neufsDuJour"] = "{pas du JSON";
 ok("la dose repart entiere plutot que de jeter",
    placeNeufsRestante() === PLAFOND_NEUFS);
 
+console.log("\nL'ENTRETIEN S'ELOIGNE AU LIEU DE TOURNER EN ROND");
+const a2 = src.indexOf("const SRS_ENTRETIEN_JOURS = ");
+const b2 = src.indexOf("\n}", src.indexOf("function joursEntretien(state){")) + 2;
+if (a2 < 0 || b2 < 2) throw new Error("SRS_ENTRETIEN_JOURS introuvable");
+eval(src.slice(a2, b2) + "\nglobalThis.joursEntretien = joursEntretien;"
+   + "\nglobalThis.SRS_ENTRETIEN_JOURS = SRS_ENTRETIEN_JOURS;");
+ok("premier controle a 16 jours", joursEntretien({}) === 16);
+ok("puis 35", joursEntretien({ entretiens: 1 }) === 35);
+ok("puis 90", joursEntretien({ entretiens: 2 }) === 90);
+ok("« Hallo » confirme 5 fois : deux ans", joursEntretien({ entretiens: 5 }) === 730);
+ok("jamais au-dela du dernier barreau",
+   joursEntretien({ entretiens: 99 }) ===
+   SRS_ENTRETIEN_JOURS[SRS_ENTRETIEN_JOURS.length - 1]);
+ok("l'echelle ne redescend jamais",
+   SRS_ENTRETIEN_JOURS.every((v, i2) => i2 === 0 || v > SRS_ENTRETIEN_JOURS[i2 - 1]));
+
 console.log(ko ? "\n" + ko + " ECHEC(S)\n" : "\nTout passe.\n");
 process.exit(ko ? 1 : 0);
