@@ -127,6 +127,64 @@ def main():
                                              % (carte[int(m.group(1))], m.group(2)))))
     renommer(couples, "prises")
 
+    # ⚠️ LES PLANS SYNCHRONISES, ET CE QUE LEUR OUBLI PRODUISAIT (10 sept. 2026)
+    #
+    # 04-lipsync n'etait pas renomme. Apres un deplacement, le montage
+    # trouvait 04-lipsync/plan14.mp4 -- la synchro de l'ANCIEN plan 14 -- et
+    # la servait pour le nouveau. Le garde-fou « synchro perimee » du montage
+    # ne pouvait rien voir : il compare les dates d'un clip d'origine et de sa
+    # synchro, et quand le clip d'origine n'existe pas encore (un plan neuf),
+    # il n'y a rien a comparer. Un episode faux, sans une ligne d'avertissement.
+    #
+    # C'est exactement le defaut que ce script existe pour empecher, et il le
+    # produisait sur les seuls fichiers qui coutent de l'argent a refaire.
+    f4 = os.path.join(dv, "04-lipsync")
+    renommer([(os.path.join(f4, "plan%02d.mp4" % o),
+               os.path.join(f4, "plan%02d.mp4" % n)) for o, n in carte.items()],
+             "synchros")
+
+    # etat.json de lipsync.py : ses cles SONT les numeros de plan. Sans cette
+    # reecriture, une relance croirait le nouveau plan deja synchronise.
+    fe = os.path.join(f4, "etat.json")
+    if os.path.exists(fe):
+        e = json.load(io.open(fe, encoding="utf-8"))
+        neuf = {}
+        for cle, val in e.items():
+            neuf[str(carte.get(int(cle), int(cle)))] = val
+        io.open(fe, "w", encoding="utf-8", newline="").write(
+            json.dumps(neuf, ensure_ascii=False, indent=2) + chr(10))
+        print("  etat.json      %d cle(s)" % len(neuf))
+
+    # Le journal des prises retenues et les fenetres de bouche mesurees : ils
+    # nomment des prises, donc ils suivent. On ne REECRIT PAS l'histoire des
+    # lignes datees -- on renomme le fichier qu'elles designent, ce qui est
+    # la meme chose que pour _sources.txt.
+    ret = os.path.join(dv, "03-final", "_retenues.txt")
+    if os.path.exists(ret):
+        lignes = []
+        for l in io.open(ret, encoding="utf-8"):
+            m = re.search(r"plan(\d\d)\s+plan(\d\d)-(\d\d)\.mp4", l)
+            if m and int(m.group(1)) in carte:
+                l = l.replace(m.group(0), "plan%02d  plan%02d-%s.mp4"
+                              % (carte[int(m.group(1))],
+                                 carte[int(m.group(2))], m.group(3)))
+            lignes.append(l)
+        io.open(ret, "w", encoding="utf-8", newline="").write("".join(lignes))
+        print("  registre       _retenues.txt")
+
+    pj = os.path.join(pr, "_parole.json")
+    if os.path.exists(pj):
+        mes = json.load(io.open(pj, encoding="utf-8"))
+        neuf = {}
+        for nom, val in mes.items():
+            m = re.match(r"plan(\d\d)-(\d\d)\.mp4$", nom)
+            if m and int(m.group(1)) in carte:
+                nom = "plan%02d-%s.mp4" % (carte[int(m.group(1))], m.group(2))
+            neuf[nom] = val
+        io.open(pj, "w", encoding="utf-8", newline="").write(
+            json.dumps(neuf, ensure_ascii=False, indent=1) + chr(10))
+        print("  fenetres       _parole.json")
+
     # Le registre d'empreintes de rapatrier.py suit les noms de prises.
     reg = os.path.join(pr, "_sources.txt")
     if os.path.exists(reg):
