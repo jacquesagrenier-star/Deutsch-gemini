@@ -4148,7 +4148,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v520</span>
+        <span class="subtitle-version">v521</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -6128,6 +6128,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div id="flashcardEnd" class="flashcard-end hidden">
         <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
         <div class="flash-end-summary" id="flashEndSummary"></div>
+        <button id="encoreNeufsBtn" class="secondary hidden" onclick="encoreDesMotsNeufs()" data-i18n="encore_neufs">Encore 15 mots nouveaux</button>
         <button class="secondary" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
         <button class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
         <button id="dictationStartBtn" class="secondary hidden" onclick="startDictationExercise()" data-i18n="dictation_start_btn">🎧 S'ENTRAÎNER : DICTÉE</button>
@@ -6907,6 +6908,7 @@ const I18N = {
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
         flash_end_summary_one: "1 carte vue.",
         flash_end_done: "TERMINER",
+        encore_neufs: "Encore {n} mots nouveaux",
         dict_section_title: "Dictionnaire",
         dict_section_note: "Touche le + pour faire une carte d'un mot et la retrouver dans Mon vocabulaire. La flèche → mène à la carte du cours quand elle existe déjà.",
         search_head_cours: "Cartes de l'app",
@@ -7665,6 +7667,7 @@ const I18N = {
         alert_logout_error: "Erreur lors de la déconnexion.",
         alert_no_verbs_due: "Aucun verbe à réviser pour l'instant. Continue comme ça !",
         alert_all_verbs_mastered: "Tous les verbes de ce niveau sont maîtrisés !",
+        dose_du_jour_faite: "Ta dose de mots nouveaux est faite pour aujourd'hui. Il en reste {n} dans ce paquet — ils t'attendent demain.",
         alert_no_verbs_available: "Aucun verbe disponible.",
         alert_no_adj_due: "Aucun adjectif à réviser pour l'instant. Continue comme ça !",
         alert_all_adj_mastered: "Tous les adjectifs de ce niveau sont maîtrisés !",
@@ -7771,6 +7774,7 @@ const I18N = {
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
         flash_end_summary_one: "1 card seen.",
         flash_end_done: "DONE",
+        encore_neufs: "{n} more new words",
         dict_section_title: "Dictionary",
         dict_section_note: "Tap + to turn a word into a card and find it in My vocabulary. The arrow → opens the course card when there already is one.",
         search_head_cours: "Cards in the app",
@@ -8527,6 +8531,7 @@ const I18N = {
         alert_logout_error: "Error while logging out.",
         alert_no_verbs_due: "No verbs to review right now. Keep it up!",
         alert_all_verbs_mastered: "All verbs at this level are mastered!",
+        dose_du_jour_faite: "You've had your new words for today. {n} left in this deck — they'll be waiting tomorrow.",
         alert_no_verbs_available: "No verbs available.",
         alert_no_adj_due: "No adjectives to review right now. Keep it up!",
         alert_all_adj_mastered: "All adjectives at this level are mastered!",
@@ -8637,6 +8642,7 @@ const I18N = {
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
         flash_end_summary_one: "1 kart görüldü.",
         flash_end_done: "BİTTİ",
+        encore_neufs: "{n} yeni kelime daha",
         dict_section_title: "Sözlük",
         dict_section_note: "Bir kelimeden kart yapmak için + işaretine dokun, sonra Kelimelerim'de bul. Kurs kartı zaten varsa → oku onu açar.",
         search_head_cours: "Uygulamadaki kartlar",
@@ -9393,6 +9399,7 @@ const I18N = {
         alert_logout_error: "Çıkış yapılırken hata oluştu.",
         alert_no_verbs_due: "Şu anda tekrar edilecek fiil yok. Böyle devam!",
         alert_all_verbs_mastered: "Bu seviyedeki tüm fiiller öğrenildi!",
+        dose_du_jour_faite: "Bugünlük yeni kelime payın doldu. Bu destede {n} kelime kaldı — yarın seni bekliyorlar.",
         alert_no_verbs_available: "Kullanılabilir fiil yok.",
         alert_no_adj_due: "Şu anda tekrar edilecek sıfat yok. Böyle devam!",
         alert_all_adj_mastered: "Bu seviyedeki tüm sıfatlar öğrenildi!",
@@ -9918,6 +9925,7 @@ const I18N = {
         alert_logout_error: "Помилка під час виходу.",
         alert_no_verbs_due: "Наразі немає дієслів на повторення. Так тримати!",
         alert_all_verbs_mastered: "Усі дієслова цього рівня засвоєні!",
+        dose_du_jour_faite: "Твоя порція нових слів на сьогодні виконана. У цій колоді лишилося {n} — вони чекатимуть завтра.",
         alert_no_verbs_available: "Немає доступних дієслів.",
         alert_no_adj_due: "Наразі немає прикметників на повторення. Так тримати!",
         alert_all_adj_mastered: "Усі прикметники цього рівня засвоєні!",
@@ -10309,6 +10317,7 @@ const I18N = {
         flash_end_summary: "Переглянуто {vues} карток, з них {sues} — одразу правильно.",
         flash_end_summary_one: "Переглянуто 1 картку.",
         flash_end_done: "ЗАВЕРШИТИ",
+        encore_neufs: "Ще {n} нових слів",
         review_again: "↺ Ще раз",
         review_good: "Пам'ятаю ✓",
         review_known: "Я вже знаю це слово",
@@ -10425,6 +10434,7 @@ const I18N = {
         alert_logout_error: "خطا هنگام خروج.",
         alert_no_verbs_due: "فعلاً فعلی برای مرور نیست. همین‌طور ادامه بده!",
         alert_all_verbs_mastered: "همهٔ افعال این سطح آموخته شده‌اند!",
+        dose_du_jour_faite: "سهم امروزت از واژه‌های تازه تمام شد. {n} واژه در این دسته مانده — فردا منتظرت هستند.",
         alert_no_verbs_available: "هیچ فعلی در دسترس نیست.",
         alert_no_adj_due: "فعلاً صفتی برای مرور نیست. همین‌طور ادامه بده!",
         alert_all_adj_mastered: "همهٔ صفت‌های این سطح آموخته شده‌اند!",
@@ -11239,6 +11249,7 @@ const I18N = {
         flash_end_summary: "{vues} کارت دیده شد، که {sues} تای آن‌ها بار اول درست بود.",
         flash_end_summary_one: "۱ کارت دیده شد.",
         flash_end_done: "پایان",
+        encore_neufs: "{n} واژه تازه دیگر",
         dict_section_title: "فرهنگ واژگان",
         dict_loading: "در حال جست‌وجو در فرهنگ واژگان…",
         dict_none: "هیچ مدخلی برای این واژه نیست.",
@@ -15808,7 +15819,7 @@ function startVerbeLevel(level){
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
-        showInfoToast(t('alert_all_verbs_mastered'));
+        toastSeanceVide(allItems, 'alert_all_verbs_mastered');
         return;
     }
     currentTheme = { id: `verb_${level}`, name: `${t('orb_verben_title')} · ${level}` };
@@ -15962,7 +15973,7 @@ function startAdjektiveLevel(level){
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
-        showInfoToast(t('alert_all_adj_mastered'));
+        toastSeanceVide(allItems, 'alert_all_adj_mastered');
         return;
     }
     currentTheme = { id: `adj_${level}`, name: `${t('orb_adjektive_title')} · ${level}` };
@@ -16513,7 +16524,7 @@ function startAdjektiveFlashcards(){
     const allItems = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
     showScreen("flashcards");
@@ -18507,7 +18518,7 @@ function startKasusVerben(){
     const allItems = kasusVerbTheme.words.map((word, index) => ({ word, index, themeId: kasusVerbTheme.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_kasus_verben', 'op_kasus_o4_t');
     showScreen("flashcards");
@@ -18542,7 +18553,7 @@ function startPraepVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_praep_vocab', 'orb_praep_title');
     showScreen("flashcards");
@@ -18555,7 +18566,7 @@ function startPositionsverbenVokabular(){
     const allItems = positionsverbenTheme.words.map((word, index) => ({ word, index, themeId: positionsverbenTheme.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_position_vocab', 'op_praep_o5_t');
     showScreen("flashcards");
@@ -18662,7 +18673,7 @@ function startRedewendungenVokabular(level, kategorie){
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_redewendungen_vocab', 'orb_redewendungen_title');
     showScreen("flashcards");
@@ -18764,7 +18775,7 @@ function startAdverbienVokabular(level, kategorie){
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_adverbien_vocab', 'orb_adverbien_title');
     showScreen("flashcards");
@@ -18890,7 +18901,7 @@ function startEnglishModule(level, kategorie){
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_english_module', mod.titleKey);
     showScreen("flashcards");
@@ -18950,7 +18961,7 @@ function startZahlenVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_zahlen_vocab', 'zahlen_info_title');
     showScreen("flashcards");
@@ -19003,7 +19014,7 @@ function startKonjunktionenVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_konjunktionen_vocab', 'orb_konjunktionen_title');
     showScreen("flashcards");
@@ -19061,7 +19072,7 @@ function startPartikelnVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = allItems;
+    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_partikeln_vocab', 'orb_partikeln_title');
     showScreen("flashcards");
@@ -19486,7 +19497,7 @@ function startTheme(themeId, level, returnScreen){
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
-        showInfoToast(t('alert_all_theme_words_mastered'));
+        toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
     }
     currentFlashcard = 0;
@@ -19511,7 +19522,7 @@ function startThemeVerben(themeId, level, returnScreen){
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
-        showInfoToast(t('alert_all_theme_words_mastered'));
+        toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
     }
     currentFlashcard = 0;
@@ -19536,7 +19547,7 @@ function startThemeAdjektive(themeId, level, returnScreen){
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0){
-        showInfoToast(t('alert_all_theme_words_mastered'));
+        toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
     }
     currentFlashcard = 0;
@@ -22196,7 +22207,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 520;
+const APP_VERSION = 521;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23505,13 +23516,119 @@ function cartesEncoreEnAttente(items){
     });
 }
 
-// Cartes a proposer a l'ouverture : celles qui sont dues ; a defaut, toutes
-// celles qui ne sont pas encore maitrisees (pour ne jamais ouvrir une session
-// vide alors qu'il reste des mots a apprendre).
+// ============ Le plafond de mots NEUFS par jour (v521) ============
+// Jusqu'ici, cartesEchues() renvoyait vrai sur !st.due -- et un mot jamais
+// touche a due = 0. Ouvrir « Noms A1 » servait donc les 462 cartes d'un coup :
+// la seance n'avait pas de fin, et ce n'etait pas un choix de conception mais
+// la consequence d'une valeur par defaut.
+//
+// ⚠️ ET LE PLAFOND N'EST PAS UNE PRECAUTION DE CONFORT. Le manuel d'Anki donne
+// les deux chiffres ensemble : 20 cartes neuves par jour est son defaut, et
+// « si vous ajoutez 20 cartes neuves chaque jour, vous pouvez vous attendre a
+// ce que les revisions quotidiennes montent, dans les premiers temps, autour
+// de 200 cartes par jour ». Sans plafond, c'est le compteur d'echeances
+// lui-meme qui finit par decourager.
+//
+// 15 plutot que 20 : l'A1 (797 entrees) se parcourt en une cinquantaine de
+// jours, pour une charge de revision qui se stabilise plus bas. Et le plafond
+// GUIDE sans interdire -- « encore 15 » sur l'ecran de fin, parce que celui
+// qui a vingt minutes ne doit pas se faire renvoyer chez lui.
+const PLAFOND_NEUFS = 15;
+const NEUFS_KEY = "deutschAI_neufsDuJour";
+
+function estNeuf(st){
+    return !st.mastered && !st.due && !(st.srsHits || 0);
+}
+
+function etatNeufsDuJour(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(NEUFS_KEY) || "null"); }catch(e){}
+    const jour = getTodayStr();
+    if(!v || typeof v !== "object" || v.d !== jour) return { d: jour, n: 0, bonus: 0 };
+    return { d: jour, n: v.n || 0, bonus: v.bonus || 0 };
+}
+
+function ecrireNeufsDuJour(v){
+    try{ localStorage.setItem(NEUFS_KEY, JSON.stringify(v)); }catch(e){}
+}
+
+function placeNeufsRestante(){
+    const v = etatNeufsDuJour();
+    return Math.max(0, PLAFOND_NEUFS + v.bonus - v.n);
+}
+
+// Appelee quand un mot JAMAIS VU recoit sa premiere reponse -- pas quand il est
+// servi. Une carte affichee puis abandonnee n'a rien coute a la memoire, et la
+// compter fermerait la journee sur du vide.
+function noterMotNeuf(){
+    const v = etatNeufsDuJour();
+    v.n += 1;
+    ecrireNeufsDuJour(v);
+}
+
+// Le bouton « encore 15 » : il ouvre une serie de plus pour AUJOURD'HUI
+// seulement. Le lendemain, le plafond reprend sa valeur.
+function ajouterSerieNeufs(){
+    const v = etatNeufsDuJour();
+    v.bonus += PLAFOND_NEUFS;
+    ecrireNeufsDuJour(v);
+}
+
+// Combien de mots jamais vus restent dans le paquet ouvert. Sert a decider si
+// « encore 15 » a le moindre sens : proposer une serie de plus dans un paquet
+// entierement decouvert serait un bouton qui ne fait rien.
+function neufsRestantsDansPaquet(){
+    const pool = currentCardsFull || [];
+    return pool.filter(it => estNeuf(getWordState(it.themeId, it.index))).length;
+}
+
+// Relance la seance avec la dose suivante, sans quitter le paquet.
+function encoreDesMotsNeufs(){
+    ajouterSerieNeufs();
+    const suite = cartesDeSession(currentCardsFull || []);
+    if(!suite.length){ hideFlashcardEnd(); return; }
+    hideFlashcardEnd();
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.remove("hidden");
+    currentCards = suite;
+    currentFlashcard = 0;
+    loadFlashcard();
+}
+
+// Cartes a proposer a l'ouverture : TOUT ce qui est reellement echu, plus au
+// plus ce qui reste de la dose du jour en mots neufs. Les echeances d'abord --
+// perdre ce qu'on a appris coute plus cher que d'avancer d'un jour.
 function cartesDeSession(items){
-    const dues = cartesEchues(items);
-    if(dues.length) return dues;
-    return items.filter(it => !getWordState(it.themeId, it.index).mastered);
+    const neufs = [], vues = [];
+    items.forEach(it => {
+        (estNeuf(getWordState(it.themeId, it.index)) ? neufs : vues).push(it);
+    });
+    const dues = cartesEchues(vues);
+    return dues.concat(neufs.slice(0, placeNeufsRestante()));
+}
+
+// Le message a montrer quand la seance ressort vide -- et il y a DEUX
+// raisons de ressortir vide, qu'il ne faut pas confondre : ou bien tout est
+// vraiment maitrise, ou bien la dose de mots neufs du jour est faite et il
+// reste des mots jamais vus. Annoncer une maitrise qui n'existe pas serait
+// mentir a l'apprenant sur ce qu'il sait.
+function toastSeanceVide(items, cleMaitrise){
+    const neufs = (items || []).filter(
+        it => estNeuf(getWordState(it.themeId, it.index))).length;
+    if(neufs) showInfoToast(tf("dose_du_jour_faite", { n: neufs }));
+    else showInfoToast(t(cleMaitrise));
+}
+
+// Le repli quand la seance ressort vide. Il servait AUparavant `allItems`,
+// c'est-a-dire tout le niveau -- ce qui aurait rendu le plafond decoratif :
+// il aurait suffi d'avoir tout revise pour que les 462 cartes reviennent. Il
+// sert donc ce que l'apprenant a DEJA COMMENCE et pas encore maitrise :
+// jamais vide pour quelqu'un qui a travaille, et sans un seul mot neuf.
+function cartesCommencees(items){
+    return items.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        return !st.mastered && !estNeuf(st);
+    });
 }
 
 function scheduleReview(minutes, differerLaSuite){
@@ -23708,6 +23825,10 @@ function reviewAgain(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
+    // « Encore » sur un mot jamais vu : il compte quand meme dans la dose du
+    // jour. C'est bien un mot neuf rencontre, et le fait de l'avoir rate le
+    // rend plus couteux, pas moins.
+    if(estNeuf(state)) noterMotNeuf();
     state.srsHits = 0;
     setWordState(item.themeId, item.index, state);
     sessionVues++;
@@ -23745,6 +23866,7 @@ function reviewGood(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
+    if(estNeuf(state)) noterMotNeuf();
     const reussites = state.srsHits || 0;
     state.srsHits = reussites + 1;
     setWordState(item.themeId, item.index, state);
@@ -23772,6 +23894,10 @@ function reviewGood(){
 // Echappatoire pour les mots deja connus : sans elle, quelqu'un qui ouvre un
 // theme de 60 mots dont il en connait 40 devrait les faire remonter un a un.
 function markKnownAlready(){
+    if(currentCards.length){
+        const it = currentCards[currentFlashcard];
+        if(it && estNeuf(getWordState(it.themeId, it.index))) noterMotNeuf();
+    }
     sessionVues++;
     sessionSues++;
     markMastered();
@@ -23792,6 +23918,16 @@ function showFlashcardEnd(){
     // adjectifs, adverbes, expressions y compris.
     const dictee = document.getElementById("dictationStartBtn");
     if(dictee) dictee.classList.toggle("hidden", buildDictationExercises().length === 0);
+    // « Encore 15 » : seulement si le paquet a encore des mots jamais vus. Le
+    // libelle porte un {n}, que data-i18n ne sait pas substituer -- on le
+    // reecrit ici, a chaque affichage de l'ecran de fin.
+    const encore = document.getElementById("encoreNeufsBtn");
+    if(encore){
+        const reste = neufsRestantsDansPaquet();
+        encore.classList.toggle("hidden", reste === 0);
+        if(reste) encore.textContent = tf("encore_neufs",
+                                          { n: Math.min(PLAFOND_NEUFS, reste) });
+    }
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
     return true;
@@ -24375,7 +24511,7 @@ function resetAllConfirm(){
     // GRAMMAIRE_KEY en fait partie depuis la v519 : « toute la progression »
     // doit vouloir dire toute, sinon l'historique des 40 jeux survivrait a une
     // remise a zero et le nuage le reposerait ensuite sur l'appareil.
-    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY, XP_KEY, BADGES_KEY, STREAK_FREEZE_KEY, GRAMMAIRE_KEY].forEach(k => {
+    [DAILY_ACTIVITY_KEY, STREAK_KEY, MASTERY_LOG_KEY, XP_KEY, BADGES_KEY, STREAK_FREEZE_KEY, GRAMMAIRE_KEY, NEUFS_KEY].forEach(k => {
         try{ localStorage.removeItem(k); localStorage.removeItem(`en__${k}`); }catch(e){}
     });
     sessionCombo = 0;

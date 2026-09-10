@@ -1526,3 +1526,54 @@ affinage à l'intérieur d'un niveau — ce qui est exactement le chemin décid�
 `frequence.json` (282 ko, 7 704 entrées, dérivé). L'attribution CC BY est dans
 la carte « Crédits » des réglages, **dans les cinq langues**. Rien ne consomme
 encore ce fichier.
+
+---
+
+## 10 septembre 2026 — la séance a enfin une fin (v521)
+
+**Demande, de Jacques :** *« je prendrais comme tu proposes 15 par jour… avec
+possibilité d'ajouter s'il passe les 15 et qu'il veut une nouvelle série de
+15 »*.
+
+**Le défaut corrigé :** `cartesEchues()` renvoyait vrai sur `!st.due`, et un mot
+jamais touché a `due: 0`. Ouvrir « Noms A1 » servait donc **les 462 cartes d'un
+coup**. Ce n'était pas un choix de conception, c'était la conséquence d'une
+valeur par défaut — et c'est la cause mécanique du « la séance n'a pas de fin ».
+
+**Ce qui a été fait :** `cartesDeSession()` sépare désormais les cartes **jamais
+vues** des cartes **réellement échues**, sert toutes les échéances (jamais
+plafonnées — perdre ce qu'on a appris coûte plus cher que d'avancer d'un jour)
+et au plus **15 mots neufs par jour**, comptés au moment de la **première
+réponse**, jamais au moment où la carte est servie.
+
+⚠️ **Le plafond n'est pas une précaution de confort.** Le manuel d'Anki donne
+les deux chiffres ensemble : 20 cartes neuves par jour est son défaut, et à ce
+rythme les révisions quotidiennes montent « autour de 200 cartes par jour ».
+15 place l'A1 (797 entrées) à une cinquantaine de jours pour une charge plus
+basse. Le bouton **« Encore 15 mots nouveaux »** sur l'écran de fin ouvre une
+série de plus, **pour aujourd'hui seulement**.
+
+⚠️ **Deux pièges rencontrés, et tous deux auraient rendu le plafond décoratif :**
+
+- **Dix écrans remplaçaient une séance vide par TOUT le paquet**
+  (`if(currentCards.length === 0) currentCards = allItems;`). Il aurait suffi
+  d'avoir tout révisé pour que les 462 cartes reviennent. Le repli sert
+  maintenant `cartesCommencees()` : ce que l'apprenant a **déjà entamé** et pas
+  encore maîtrisé — jamais vide pour quelqu'un qui a travaillé, et sans un seul
+  mot neuf.
+- **Cinq écrans annonçaient « tous les mots sont maîtrisés »** quand la séance
+  ressortait vide. Avec le plafond, c'est faux une fois sur deux : la dose du
+  jour est simplement faite. `toastSeanceVide()` distingue les deux cas et dit
+  combien de mots restent dans le paquet.
+
+**Vérifié :** `tests/essai_plafond.js` (nouveau), 18 contrôles sur le vrai code
+extrait d'`index.html` — dont les 462 cartes ramenées à 15, la priorité des
+échéances, la dose qui se consomme, « encore 15 » qui n'ouvre qu'une série et
+que le lendemain oublie, et le repli qui ne rouvre pas la vanne. Plus
+`verifier.py`, 14 028 contrôles.
+
+⚠️ **Portée : partout.** Toutes les portes actuelles (Noms, Verbes, Adjectifs,
+thèmes, Mots au hasard) passent par `cartesDeSession()`. Les testeurs verront le
+changement dès demain, sans message d'annonce — la question de la portée avait
+été posée et laissée sans réponse ; c'est la seule option qui corrige le défaut
+là où il fait mal.
