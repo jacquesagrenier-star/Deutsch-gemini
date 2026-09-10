@@ -129,6 +129,12 @@ pendant une semaine et demie quoi que fasse l'utilisateur. Et quand il bouge,
 il peut **redescendre** — un « Je ne savais pas » honnête fait reculer le
 chiffre.
 
+**Formulation plus juste, venue d'une première relecture :** le problème n'est
+pas que l'algorithme soit trop lent. C'est qu'on **demande à un indicateur de
+maîtrise de jouer le rôle d'un indicateur de progression quotidienne**. Les
+deux ne peuvent pas être le même nombre — et c'est ce qui ferme la tentation
+d'assouplir l'échelle pour rendre le cercle plus gratifiant.
+
 ### 3.3 L'utilisateur se déplace, les compteurs non
 
 Il peut faire les noms lundi, les adverbes mardi, les exercices mercredi ; A1
@@ -154,15 +160,22 @@ fraction, elle décourage — indépendamment de tout découpage en blocs.
 
 ## 4. Ce qui est proposé
 
-### 4.1 Mesurer la COUVERTURE plutôt que la maîtrise ou l'effort
+### 4.1 Mesurer ce qui est COMMENCÉ et ce qui est ACQUIS
 
 Trois états par mot au lieu de deux :
 
-| état | signification |
+| état | définition exacte |
 |---|---|
-| jamais touché | — |
-| **en cours** | l'échelle est entamée, pas terminée |
-| **acquis** | les quatre succès sont faits |
+| jamais touché | aucune tentative |
+| **en cours** | **au moins une tentative sur ce mot**, l'échelle n'est pas terminée |
+| **acquis** | les **quatre** succès consécutifs sont faits |
+
+⚠️ **Le mot « couverture » a été écarté après une première relecture**, et la
+critique était juste : quelqu'un qui ouvre un mot, répond « Encore » et ne le
+revoit jamais n'a rien « couvert ». « Commencé » est une affirmation vraie — on
+ne prétend pas qu'il connaît le mot, on constate qu'il a commencé. C'est
+exactement le principe que ce document se donne, et que la première version
+enfreignait.
 
 Une seule barre, deux remplissages : le foncé = acquis, le clair = en cours.
 
@@ -171,6 +184,9 @@ Une seule barre, deux remplissages : le foncé = acquis, le clair = en cours.
   reste « en cours ».
 - Elle reste **vraie** : elle dit « j'ai commencé à travailler ce mot », ce qui
   est un fait sur l'apprenant — pas un compteur d'activité.
+
+La distinction **en cours ≠ acquis** doit rester visible : deux remplissages,
+jamais un seul chiffre qui mélange les deux.
 
 Raisonnement écarté : un compteur d'**effort** (cartes vues, minutes, XP)
 monte tous les jours mais ne dit rien de ce qu'on sait ; un compteur de
@@ -212,6 +228,18 @@ d'échéances lui-même qui finit par décourager.
 quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouton
 « encore 20 » sur l'écran de fin.
 
+**Trois affinements proposés par un relecteur, non mesurés, à discuter :**
+
+- **Un plafond dynamique plutôt que fixe.** Si la journée porte déjà 50
+  échéances, y ajouter 20 mots neufs crée un goulot. Le nombre de neufs
+  dépendrait alors de la charge du jour.
+- **Trois régimes au choix** : soutenu (20 neufs/jour), modéré (10), entretien
+  (0 — seules les échéances sont traitées).
+- **Déclarer la séance « complétée »** plutôt que simplement terminée : une fin
+  qui se voit, avec « continuer quand même » toujours possible. La différence
+  n'est pas cosmétique — c'est ce qui transforme une liste qui s'épuise en
+  objectif atteint.
+
 ### 4.5 Ordre proposé
 
 1. la mémoire de la grammaire (le seul point qui n'existe pas du tout) ;
@@ -234,12 +262,15 @@ quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouto
 
 ## 6. Ce sur quoi un avis extérieur serait utile
 
-1. **Couverture contre maîtrise.** Une barre qui avance dès qu'on effleure un
-   mot est-elle motivante ou trompeuse ? Existe-t-il des résultats publiés sur
-   ce choix dans les applications d'apprentissage ?
-2. **Le recul du pourcentage.** Faut-il vraiment qu'un « Je ne savais pas »
-   fasse reculer un chiffre visible ? Quelles applications le font, et avec
-   quel effet mesuré sur l'abandon ?
+1. **« Commencé » contre « acquis ».** Une barre qui avance dès la première
+   tentative — **même ratée** — est-elle motivante ou décevante pour un
+   débutant ? Existe-t-il des résultats publiés sur ce choix ?
+2. **Le recul du pourcentage — et la question se dédouble.**
+   (a) Est-ce **pédagogiquement exact** ? « Ma maîtrise mesurée de ce corpus a
+   diminué » est une affirmation vraie.
+   (b) Est-ce **soutenable comme indicateur principal** ? Faut-il lisser la
+   baisse, ou la laisser refléter l'oubli exactement ? Quelles applications le
+   font, et avec quel effet mesuré sur l'abandon ?
 3. **Le plafond de mots neufs.** 20/jour est le défaut d'Anki, repris sans
    mesure de notre côté. Y a-t-il une base pour un autre nombre, ou pour le
    faire varier selon l'utilisateur ?
@@ -247,8 +278,21 @@ quatre semaines — un horizon réel. Le plafond guide sans interdire : un bouto
    100 % ? Nous n'avons aucune donnée pour trancher.
 5. **Le mélange des niveaux.** Une révision qui sert un mot C1 juste après un
    mot A1 : problème réel, ou faux problème ?
-6. **Ce qu'on n'a pas vu.** Y a-t-il, dans ce qui précède, un défaut de
+6. **Le plafond peut-il agacer ?** Bloquer l'entrée de mots neufs quand la
+   charge de révision est lourde risque-t-il d'exaspérer quelqu'un qui veut
+   « avancer dans le programme » à tout prix ?
+7. **Le seuil d'« acquis ».** Quatre succès étalés sur onze jours : est-ce le
+   bon compromis pour du vocabulaire A1/A2, ou trop exigeant ?
+8. **Ce qu'on n'a pas vu.** Y a-t-il, dans ce qui précède, un défaut de
    conception plus grave que ceux listés ?
+
+⚠️ **Ce document a déjà subi deux relectures externes.** La première a
+corrigé deux choses, intégrées ci-dessus : le mot « couverture », qui
+surpromettait, et le cadrage du 11ᵉ jour. La seconde a proposé les affinements
+du plafond (§4.4) — et a par ailleurs **inventé de toutes pièces une fin de
+document** qui n'a jamais existé, en la présentant comme le texte réel. Inutile
+donc de retrouver les deux premières corrections ; et prière de ne citer que ce
+qui figure réellement ici.
 
 ⚠️ **Précision méthodologique.** Tout ce document raisonne sur des chiffres et
 sur le code. **Aucun de ces compteurs n'a été montré à un utilisateur.** Un
