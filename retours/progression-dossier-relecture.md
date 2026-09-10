@@ -248,11 +248,10 @@ le défaut qu'on répare, pas la réparation.
 consolidation apporte une information utile, il a sa place dans le panneau ⓘ ou
 dans un écran de détail — là où quelqu'un vient chercher une réponse précise,
 et non là où il ouvre l'app pour savoir s'il a avancé.
-- Elle reste **vraie** : elle dit « j'ai commencé à travailler ce mot », ce qui
-  est un fait sur l'apprenant — pas un compteur d'activité.
-
-La distinction **en cours ≠ acquis** doit rester visible : deux remplissages,
-jamais un seul chiffre qui mélange les deux.
+**« Commencé » reste une affirmation vraie** : elle dit « j'ai commencé à
+travailler ce mot », ce qui est un fait sur l'apprenant — pas un compteur
+d'activité. Et la distinction **commencé ≠ acquis** doit rester visible : deux
+nombres séparés, jamais un seul chiffre qui mélange les deux.
 
 ⚠️ **La règle qui sort de tout ceci, et qui vaut plus que le détail des
 compteurs : aucun indicateur d'accueil ne doit se dégrader quand
@@ -277,7 +276,7 @@ Raisonnement écarté : un compteur d'**effort** (cartes vues, minutes, XP)
 monte tous les jours mais ne dit rien de ce qu'on sait ; un compteur de
 **maîtrise** seule est vrai mais lointain et il recule.
 
-### 4.2 Trois nombres sans dénominateur
+### 4.2 Trois indicateurs, aucun dénominateur — deux pour le vocabulaire, un pour la grammaire
 
 Ils montent quelle que soit la porte choisie, et additionnent tous les niveaux
 et tous les types :
@@ -460,15 +459,21 @@ serait plus utile que tout le reste de cette section.
    (c) « Acquis » doit-il suivre l'état réel (il peut baisser quand un mot est
    oublié) ou afficher un cumul qui ne baisse jamais mais surestime ?
    (d) Une barre qui avance dès la première tentative — **même ratée** —
-   serait-elle motivante ou décevante pour un débutant ?
+   serait-elle motivante ou décevante pour un débutant ? ⚠️ La question ne
+   propose pas de réintroduire une barre à l'accueil (§4.1 explique pourquoi
+   il n'y en aura pas) : elle porte sur un affichage secondaire, s'il devait y
+   en avoir un.
 2. **Le recul du pourcentage — et la question se dédouble.**
    (a) Est-ce **pédagogiquement exact** ? « Ma maîtrise mesurée de ce corpus a
    diminué » est une affirmation vraie.
    (b) Est-ce **soutenable comme indicateur principal** ? Faut-il lisser la
    baisse, ou la laisser refléter l'oubli exactement ? Quelles applications le
    font, et avec quel effet mesuré sur l'abandon ?
-3. **Le plafond de mots neufs.** 20/jour est le défaut **actuellement utilisé
-   par Anki**, qui ne le présente pas comme une dose optimale universelle.
+3. **Le plafond de mots neufs.** 20/jour est le réglage que nous prenons ici
+   comme point de comparaison, par analogie avec Anki. ⚠️ **Nous n'avons pas
+   vérifié à la source** que c'est bien le défaut d'Anki aujourd'hui, ni ce
+   qu'Anki en dit — et ce document s'interdit de présenter comme vérifié ce qui
+   ne l'est pas (§4.6). Ce n'est en tout cas pas une dose optimale démontrée.
    Existe-t-il des données reliant le nombre d'items neufs introduits chaque
    jour à la rétention, à la charge de révision et à l'abandon ? Ces données
    justifient-elles un nombre **fixe** ou **adaptatif** ?
