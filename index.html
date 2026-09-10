@@ -4148,7 +4148,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v517</span>
+        <span class="subtitle-version">v518</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -15183,6 +15183,25 @@ function echelleMaitriseHtml(){
     return html;
 }
 
+// LE PANNEAU SE REFERME QUAND ON QUITTE L'ECRAN (v518).
+//
+// Demande de Jacques : « si je me deplace sur une autre tuile, quand je
+// reviens, le panneau d'information devrait etre revenu a l'etat ou il est au
+// depart ». Il restait ouvert, et il faut savoir qu'on le referme en
+// retouchant le « i » -- un panneau d'aide qu'on doit penser a ranger finit
+// par occuper l'accueil en permanence.
+//
+// On le referme dans showScreen, donc au DEPART comme au RETOUR : peu importe
+// par ou l'on passe, l'accueil se retrouve tel qu'on l'a connu la premiere
+// fois. Toucher le « i » n'appelle pas showScreen, donc il reste ouvert tant
+// qu'on est sur l'accueil, ce qui est le but.
+function fermerInfoProgression(){
+    const box = document.getElementById("infoProgressionBox");
+    const btn = document.querySelector(".info-progression");
+    if(box) box.classList.add("hidden");
+    if(btn) btn.setAttribute("aria-expanded", "false");
+}
+
 function basculerInfoProgression(){
     const box = document.getElementById("infoProgressionBox");
     const btn = document.querySelector(".info-progression");
@@ -17875,6 +17894,9 @@ let panneauAvantFlashcards = null;
 const ECRANS_DES_REGLAGES = new Set(["settings", "adminDashboard"]);
 
 function showScreen(id){
+    // Le panneau d'information de l'accueil ne survit pas a un changement
+    // d'ecran : voir fermerInfoProgression().
+    fermerInfoProgression();
     // L'ECRAN OU L'ON ETAIT, PAS CELUI D'OU L'ON ECRIT. Le formulaire « Signaler
     // un probleme » vit dans <section id="settings"> : au moment de l'envoi,
     // l'ecran actif est TOUJOURS `settings`. Joindre l'ecran actif dirait donc
@@ -22131,7 +22153,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 517;
+const APP_VERSION = 518;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
