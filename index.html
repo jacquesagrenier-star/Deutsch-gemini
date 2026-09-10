@@ -3875,6 +3875,23 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    du jour (« 12 / 30 »), deux petits nombres l'un au-dessus de l'autre dont
    aucun ne dit lequel il est. A gauche, sous le libelle, elle n'a plus de
    voisin numerique. Demande de Jacques. */
+/* LA SEANCE DU JOUR : un rectangle pleine largeur, juste sous la carte de
+   progression, avant les petites tuiles. C'est le premier geste possible en
+   ouvrant l'app, et il ne doit pas se chercher parmi dix-sept icones. */
+.orb-seance{
+    grid-column:1 / -1;
+    padding:16px 18px;
+    gap:14px;
+    border-color:rgba(59,111,224,.45);
+    background:linear-gradient(0deg, rgba(59,111,224,.05), rgba(59,111,224,.05));
+}
+.orb-seance .orb-icon{
+    width:44px; height:44px;
+    background:rgba(59,111,224,.14); border-color:rgba(59,111,224,.30);
+}
+.orb-seance .orb-icon svg{stroke:#3b6fe0;}
+.orb-seance strong{font-size:17px;}
+.orb-seance small{font-size:13px; opacity:.85;}
 .home-stats-card{position:relative;}
 .home-stats-card .subtitle-version{
     position:absolute; inset-inline-start:10px; bottom:7px;
@@ -4148,7 +4165,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v524</span>
+        <span class="subtitle-version">v525</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4260,6 +4277,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="grid" id="orbGrid">
         <!-- Sans classe orb-de ni orb-en : les mots mis de cote valent dans les
              deux directions d'apprentissage (voir le CSS .orb-en / .orb-de). -->
+        <!-- ⚠️ EN TETE, ET SANS classe orb-de/orb-en : la seance du jour est
+             la porte principale, pas une categorie de plus. C'est le seul
+             endroit ou l'on entre sans avoir rien a choisir. -->
+        <div class="orb orb-seance" data-orbid="seance" onclick="ouvrirSeanceDuJour()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M7 3h14a2 2 0 012 2v12"/></svg></div>
+            <div>
+                <strong data-i18n="seance_titre">Ma séance du jour</strong>
+                <small id="seanceSub" data-i18n="seance_sous">Révisions et mots nouveaux</small>
+            </div>
+        </div>
+
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
@@ -6884,6 +6912,10 @@ const I18N = {
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
         myvocab_title: "Mon vocabulaire",
+        seance_titre: "Ma séance du jour",
+        seance_sous: "Révisions et mots nouveaux",
+        seance_carte: "{n} carte",
+        seance_cartes: "{n} cartes",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -7752,6 +7784,10 @@ const I18N = {
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
         myvocab_title: "My vocabulary",
+        seance_titre: "Today's session",
+        seance_sous: "Reviews and new words",
+        seance_carte: "{n} card",
+        seance_cartes: "{n} cards",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -8622,6 +8658,10 @@ const I18N = {
         label_english_pitfall: "Tuzak",
         label_english_forms: "Biçimler",
         myvocab_title: "Kelimelerim",
+        seance_titre: "Bugünkü oturumum",
+        seance_sous: "Tekrarlar ve yeni kelimeler",
+        seance_carte: "{n} kart",
+        seance_cartes: "{n} kart",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -9757,6 +9797,10 @@ const I18N = {
         onboarding_home_button: "Як почати? (45 с)",
         onboarding_close: "ЗРОЗУМІЛО",
         myvocab_title: "Мої слова",
+        seance_titre: "Мій сеанс на сьогодні",
+        seance_sous: "Повторення та нові слова",
+        seance_carte: "{n} картка",
+        seance_cartes: "{n} карток",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -11234,6 +11278,10 @@ const I18N = {
         label_english_pitfall: "دام",
         label_english_forms: "صورت‌ها",
         myvocab_title: "واژگان من",
+        seance_titre: "جلسهٔ امروز من",
+        seance_sous: "مرور و واژه‌های تازه",
+        seance_carte: "{n} کارت",
+        seance_cartes: "{n} کارت",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -22217,7 +22265,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 524;
+const APP_VERSION = 525;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23644,13 +23692,194 @@ function separer(items){
     return { neufs: neufs, dues: cartesEchuesTriees(vues) };
 }
 
+// ============ LE PAQUET D'UN NIVEAU, TOUTES CATEGORIES REUNIES (v525) ============
+// La tuile « Ma seance du jour » a besoin d'un paquet unique : noms, verbes,
+// adjectifs, adverbes, expressions et mots-outils d'un meme niveau, melanges.
+// 860 cartes pour l'A1.
+//
+// ⚠️ CHAQUE CATEGORIE RANGE SON NIVEAU AILLEURS, et c'est tout le travail :
+//   - les noms : dans themes.json, un paquet par theme ET par niveau ;
+//   - les verbes : objets, champ `.niveau` ;
+//   - les adjectifs : tableaux, case 3 ;
+//   - adverbes, expressions et les six familles de mots-outils : case 8.
+// Une table declarative plutot que dix `if` : ajouter une categorie demain,
+// c'est une ligne, et on ne peut pas en oublier une en silence.
+//
+// ⚠️ ET CHAQUE CARTE PORTE SON `mode`. loadFlashcard() l'honore deja : c'est ce
+// qui rend un paquet mixte possible sans toucher au rendu.
+//
+// Les verben/adjektive PROPRES A UN THEME ne sont pas repris : ils sont deja
+// dans verbeTheme et adjektiveTheme, et les compter deux fois servirait la
+// meme carte sous deux identites -- donc deux progressions pour un seul mot.
+const SOURCES_SEANCE = [
+    { mode: "verben",         theme: () => verbeTheme,             niveau: w => w.niveau },
+    { mode: "adjektive",      theme: () => adjektiveTheme,         niveau: w => w[3] },
+    { mode: "adverbien",      theme: () => adverbienTheme,         niveau: w => w[8] },
+    { mode: "redewendungen",  theme: () => redewendungenTheme,     niveau: w => w[8] },
+    { mode: "konjunktionen",  theme: () => konjunktionenTheme,     niveau: w => w[8] },
+    { mode: "partikeln",      theme: () => partikelnTheme,         niveau: w => w[8] },
+    { mode: "praep",          theme: () => praepTheme,             niveau: w => w[8] },
+    { mode: "pronomen",       theme: () => pronomenVokabularTheme, niveau: w => w[8] },
+    { mode: "artikelwoerter", theme: () => artikelwoerterTheme,    niveau: w => w[8] },
+    { mode: "zahlen",         theme: () => zahlenTheme,            niveau: w => w[8] }
+];
+
+function paquetDuNiveau(niveau){
+    const out = [];
+    (typeof themes !== "undefined" ? themes : []).forEach(t => {
+        const d = t && t.levels && t.levels[niveau];
+        if(!d || !Array.isArray(d.words)) return;
+        d.words.forEach((word, index) => {
+            out.push({ word: word, index: index, themeId: d.id, mode: "nomen" });
+        });
+    });
+    SOURCES_SEANCE.forEach(src => {
+        let th = null;
+        try{ th = src.theme(); }catch(e){ return; }
+        if(!th || !Array.isArray(th.words)) return;
+        th.words.forEach((word, index) => {
+            if(src.niveau(word) !== niveau) return;
+            out.push({ word: word, index: index, themeId: th.id, mode: src.mode });
+        });
+    });
+    return out;
+}
+
+// Le compte par categorie, pour verifier que rien n'a ete oublie : les chiffres
+// attendus sont A1 860, A2 1 198, B1 2 980, B2 1 003, C1 1 663 (mesures dans
+// les fichiers de donnees).
+function compterPaquetDuNiveau(niveau){
+    const n = {};
+    paquetDuNiveau(niveau).forEach(it => { n[it.mode] = (n[it.mode] || 0) + 1; });
+    n.TOTAL = Object.keys(n).reduce((s, k) => s + n[k], 0);
+    return n;
+}
+
+// ============ L'ORDRE DES MOTS NEUFS : LES PLUS UTILES D'ABORD (v525) ============
+// frequence.json classe nos 7 704 entrees par frequence d'usage, categorie par
+// categorie (Leipzig, CC BY -- voir tests/frequence.py). Il est charge a la
+// demande : la seance marche sans lui, dans l'ordre du fichier, et n'echoue
+// jamais parce qu'un fichier annexe manque.
+//
+// ⚠️ LE CLASSEMENT NE VAUT QU'A L'INTERIEUR D'UNE CATEGORIE -- les listes de
+// frequence comptent des formes et non des lemmes, ce qui penalise verbes et
+// adjectifs face aux noms. On compare donc des POSITIONS RELATIVES dans
+// chaque liste, jamais deux rangs bruts.
+let rangsFrequence = null;
+let chargementFrequence = null;
+
+function motDeLaCarte(it){
+    const w = it && it.word;
+    // Meme convention que sansDoublons() : une seule facon de nommer un mot
+    // dans toute l'app, sinon les deux divergent le jour ou une categorie
+    // change de forme.
+    return Array.isArray(w) ? w[0] : (w && (w.infinitif || w.mot)) || "";
+}
+
+async function chargerFrequence(){
+    if(rangsFrequence) return rangsFrequence;
+    if(!chargementFrequence){
+        chargementFrequence = fetch(urlDonnees('frequence.json'), { cache: 'no-cache' })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => {
+                const m = new Map();
+                const cats = (d && d.categories) || {};
+                Object.keys(cats).forEach(cat => {
+                    const liste = cats[cat] || [];
+                    liste.forEach((e, i) => {
+                        if(e && e.m && !m.has(e.m)) m.set(e.m, i / liste.length);
+                    });
+                });
+                rangsFrequence = m;
+                return m;
+            })
+            .catch(() => { rangsFrequence = new Map(); return rangsFrequence; });
+    }
+    return chargementFrequence;
+}
+
+function ordonnerParFrequence(items){
+    if(!rangsFrequence || !rangsFrequence.size) return items;
+    const rang = it => {
+        const m = motDeLaCarte(it);
+        // Un mot absent du classement passe en dernier plutot qu'en premier :
+        // absent de la liste ne veut pas dire « tres frequent ».
+        return rangsFrequence.has(m) ? rangsFrequence.get(m) : 2;
+    };
+    return items.slice().sort((a, b) => rang(a) - rang(b));
+}
+
 function cartesDeSession(items){
     const p = separer(items);
     const dues = p.dues.slice(0, TAILLE_SEANCE);
     // Les mots neufs ne prennent que la place qui RESTE. Sans cela on
     // creuserait le trou pendant qu'on essaie de le combler.
     const place = Math.min(TAILLE_SEANCE - dues.length, placeNeufsRestante());
-    return dues.concat(p.neufs.slice(0, Math.max(0, place)));
+    return dues.concat(ordonnerParFrequence(p.neufs).slice(0, Math.max(0, place)));
+}
+
+// ============ LA SEANCE DU JOUR : LA PORTE UNIQUE DU VOCABULAIRE (v525) ============
+// ⚠️ CE QUI CHANGE POUR L'ETUDIANT. L'accueil comptait dix-sept tuiles, chacune
+// ouvrant un panneau ou il fallait encore choisir un niveau puis un mode. Une
+// seule question se pose desormais avant de travailler : « je fais ma seance ».
+// Le niveau reste choisi -- c'est le seul choix qui corresponde a une decision
+// reelle d'apprenant : ou il en est de son cours.
+//
+// ⚠️ ET LES MOTS NEUFS N'ARRIVENT PAS PAR THEME PAR DEFAUT. Sur treize etudes
+// recensees, six concluent que grouper des mots SEMANTIQUEMENT PROCHES a la
+// premiere rencontre freine l'apprentissage (Tinkham 1993 et 1997, Waring
+// 1997, Finkbeiner & Nicol 2003, Erten & Tekin 2008, Wilcox & Medina 2013) :
+// « der Apfel », « die Birne » et « die Traube » servis ensemble se
+// confondent. Aucune ne montre que le theme aide a ce moment-la, et l'ensemble
+// reste juge non concluant -- c'est un cout, pas un danger. La seance du jour
+// melange donc les types et suit la frequence ; le theme reste une porte
+// secondaire, bornee par les memes garde-fous (dose du jour, plafond de
+// seance), pour qui a une raison precise d'y aller.
+const NIVEAUX_CECR = ["A1", "A2", "B1", "B2", "C1"];
+const NIVEAU_SEANCE_KEY = "deutschAI_niveauSeance";
+
+function niveauSeance(){
+    try{
+        const v = localStorage.getItem(NIVEAU_SEANCE_KEY);
+        if(v && NIVEAUX_CECR.indexOf(v) >= 0) return v;
+    }catch(e){}
+    return "A1";
+}
+
+function fixerNiveauSeance(niv){
+    if(NIVEAUX_CECR.indexOf(niv) < 0) return;
+    try{ localStorage.setItem(NIVEAU_SEANCE_KEY, niv); }catch(e){}
+    majTuileSeance();
+}
+
+async function ouvrirSeanceDuJour(){
+    const niveau = niveauSeance();
+    // La frequence AVANT de constituer la seance, sinon les premiers mots neufs
+    // sortiraient dans l'ordre du fichier -- une seule fois, mais c'est la
+    // seance qui compte le plus : la premiere.
+    await chargerFrequence();
+    const pool = paquetDuNiveau(niveau);
+    if(!pool.length){ showInfoToast(t("alert_all_theme_words_mastered")); return; }
+    const seance = cartesDeSession(pool);
+    if(!seance.length){ toastSeanceVide(pool, "alert_all_theme_words_mastered"); return; }
+    currentCardsFull = pool;
+    currentCards = seance;
+    currentTheme = { id: "seance_" + niveau, name: t("seance_titre") + " \u00b7 " + niveau };
+    currentFlashcard = 0;
+    flashcardMode = seance[0].mode || "nomen";
+    setFlashHeader("seance_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+// Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
+function majTuileSeance(){
+    const el = document.getElementById("seanceSub");
+    if(!el) return;
+    const niveau = niveauSeance();
+    let n = 0;
+    try{ n = cartesDeSession(paquetDuNiveau(niveau)).length; }catch(e){ n = 0; }
+    el.textContent = niveau + " \u00b7 " + tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
 }
 
 // Ce qui n'est pas entre dans la seance du jour. ⚠️ Ce nombre ne va PAS a
@@ -25823,6 +26052,9 @@ function showResults(){
 
 (() => {
     afficherNumeroVersion();
+    // Le sous-titre de la seance se recalcule avec le reste de l'accueil : il
+    // depend des echeances, donc il change tout seul d'un jour a l'autre.
+    setTimeout(majTuileSeance, 0);
     // Avant tout calcul de progression : traduit une eventuelle progression
     // rangee par position en progression rangee par lemme.
     migrerProgressionVerbes();
