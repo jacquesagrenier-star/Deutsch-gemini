@@ -3878,44 +3878,35 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* LA SEANCE DU JOUR : un rectangle pleine largeur, juste sous la carte de
    progression, avant les petites tuiles. C'est le premier geste possible en
    ouvrant l'app, et il ne doit pas se chercher parmi dix-sept icones. */
-/* Un BANDEAU, pas une banniere : une seule ligne, pleine largeur, juste sous
-   la carte de progression. Il doit se voir en entrant sans ecraser le reste. */
+/* UN BANDEAU BAS. Deux lignes serrees : ce qu'on fait, puis d'ou viennent les
+   mots nouveaux. Pas d'icone -- elle coutait vingt pixels de hauteur pour ne
+   rien dire de plus que le titre. */
 .orb-seance{
     grid-column:1 / -1;
-    display:flex; align-items:center; gap:10px;
-    padding:10px 12px;
+    display:block;
+    padding:8px 12px 9px;
     border-color:rgba(59,111,224,.42);
     background:rgba(59,111,224,.055);
     cursor:pointer;
 }
-.orb-seance .orb-icon{
-    width:32px; height:32px; flex:0 0 32px;
-    background:rgba(59,111,224,.14); border-color:rgba(59,111,224,.30);
-}
-.orb-seance .orb-icon svg{stroke:#3b6fe0;}
-.seance-texte{flex:1 1 auto; min-width:0;}
-.orb-seance strong{display:block; font-size:14.5px; line-height:1.25;}
-.orb-seance small{display:block; font-size:12px; opacity:.8;}
-/* Les cinq niveaux, a droite. Compacts : ce sont des reperes, pas des boutons
-   principaux -- le geste principal reste « je commence ». */
+.seance-haut{display:flex; align-items:baseline; gap:8px;}
+.orb-seance strong{font-size:14px; line-height:1.2; flex:0 0 auto;}
+.seance-sub{font-size:12px; color:#5b6b86; flex:1 1 auto; min-width:0;}
+.seance-fleche{flex:0 0 auto; color:#3b6fe0; align-self:center;}
+.seance-bas{display:flex; align-items:center; gap:5px; margin-top:5px; flex-wrap:wrap;}
+.seance-etiq{font-size:11px; color:#7b8798; flex:0 0 auto;}
 .seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
 .seance-niveau{
-    border:1px solid rgba(59,111,224,.28); background:transparent;
-    color:#5b6b86;
+    border:1px solid rgba(59,111,224,.28); background:transparent; color:#5b6b86;
     font-size:11px; font-weight:600; line-height:1;
-    padding:5px 6px; border-radius:6px; cursor:pointer;
+    padding:4px 6px; border-radius:6px; cursor:pointer;
 }
 .seance-niveau.on{background:#3b6fe0; border-color:#3b6fe0; color:#fff;}
 .seance-themes{
-    flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
-    width:28px; height:28px; padding:0;
+    margin-inline-start:auto; flex:0 0 auto;
     border:1px solid rgba(59,111,224,.28); border-radius:6px;
     background:transparent; color:#3b6fe0; cursor:pointer;
-}
-.seance-fleche{flex:0 0 auto; color:#3b6fe0; opacity:.75;}
-@media (max-width:380px){
-    .seance-niveau{padding:4px 4.5px; font-size:10px;}
-    .orb-seance{gap:7px; padding:9px 10px;}
+    font-size:11px; font-weight:600; line-height:1; padding:4px 8px;
 }
 .home-stats-card{position:relative;}
 .home-stats-card .subtitle-version{
@@ -4190,7 +4181,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v527</span>
+        <span class="subtitle-version">v528</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4305,25 +4296,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- ⚠️ EN TETE, ET SANS classe orb-de/orb-en : la seance du jour est
              la porte principale, pas une categorie de plus. C'est le seul
              endroit ou l'on entre sans avoir rien a choisir. -->
+        <!-- ⚠️ NI ICONE A GAUCHE, NI PICTOGRAMME SEUL. L'icone prenait de la
+             hauteur et de la largeur sans rien dire, et les « petites barres »
+             du theme obligeaient a cliquer pour savoir ou elles menaient. Un
+             mot vaut mieux qu'un dessin quand il tient dans la place. -->
         <div class="orb orb-seance" data-orbid="seance" onclick="ouvrirSeanceDuJour()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M7 3h14a2 2 0 012 2v12"/></svg></div>
-            <div class="seance-texte">
+            <div class="seance-haut">
                 <strong data-i18n="seance_titre">Ma séance du jour</strong>
-                <small id="seanceSub" data-i18n="seance_sous">Révisions et mots nouveaux</small>
+                <span id="seanceSub" class="seance-sub"></span>
+                <svg class="seance-fleche" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
             </div>
-            <!-- Les niveaux arretent le clic : sans stopPropagation, choisir un
-                 niveau lancerait la seance de l'ancien. -->
-            <div class="seance-niveaux" id="seanceNiveaux"
-                 role="group" aria-label="Provenance des mots nouveaux"></div>
-            <!-- L'ENTREE PAR THEME vit ICI, et nulle part ailleurs : la tuile
-                 Flashcards est la porte unique du vocabulaire. Elle arrete le
-                 clic, sinon elle lancerait la seance du jour au passage. -->
-            <button type="button" class="seance-themes" id="seanceThemesBtn"
-                    onclick="event.stopPropagation(); ouvrirThemesDuNiveau();"
-                    aria-label="Par thème">
-                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>
-            </button>
-            <svg class="seance-fleche" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+            <div class="seance-bas">
+                <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire&nbsp;:</span>
+                <span class="seance-niveaux" id="seanceNiveaux" role="group"
+                      aria-label="Provenance des mots nouveaux"></span>
+                <button type="button" class="seance-themes"
+                        onclick="event.stopPropagation(); ouvrirThemesDuNiveau();"
+                        data-i18n="seance_par_theme">Par thème</button>
+            </div>
         </div>
 
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
@@ -6955,6 +6945,8 @@ const I18N = {
         seance_carte: "{n} carte",
         seance_cartes: "{n} cartes",
         seance_neufs_de: "mots nouveaux en {niv}",
+        seance_neufs_etiq: "Nouveau vocabulaire :",
+        seance_par_theme: "Par thème",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -7828,6 +7820,8 @@ const I18N = {
         seance_carte: "{n} card",
         seance_cartes: "{n} cards",
         seance_neufs_de: "new words from {niv}",
+        seance_neufs_etiq: "New vocabulary:",
+        seance_par_theme: "By theme",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -8703,6 +8697,8 @@ const I18N = {
         seance_carte: "{n} kart",
         seance_cartes: "{n} kart",
         seance_neufs_de: "{niv} seviyesinden yeni kelimeler",
+        seance_neufs_etiq: "Yeni kelime dağarcığı:",
+        seance_par_theme: "Temaya göre",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -9843,6 +9839,8 @@ const I18N = {
         seance_carte: "{n} картка",
         seance_cartes: "{n} карток",
         seance_neufs_de: "нові слова з {niv}",
+        seance_neufs_etiq: "Нова лексика:",
+        seance_par_theme: "За темою",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -11325,6 +11323,8 @@ const I18N = {
         seance_carte: "{n} کارت",
         seance_cartes: "{n} کارت",
         seance_neufs_de: "واژه‌های تازه از {niv}",
+        seance_neufs_etiq: "واژگان تازه:",
+        seance_par_theme: "بر پایهٔ موضوع",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -22308,7 +22308,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 527;
+const APP_VERSION = 528;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23954,8 +23954,7 @@ function majTuileSeance(){
         // niveau. Il ne decide que de la PROVENANCE DES MOTS NOUVEAUX -- les
         // revisions viennent de tous les niveaux deja travailles. Le sous-titre
         // le dit, sinon la pastille ment par omission.
-        el.textContent = tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n })
-                       + " · " + tf("seance_neufs_de", { niv: niveau });
+        el.textContent = tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
     }
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;
