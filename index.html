@@ -2100,38 +2100,37 @@ input, textarea, select{
 /* Le « i » qui explique le pourcentage. Discret par defaut : il accompagne le
    chiffre, il ne se dispute pas avec lui. La zone tactile fait 28px alors que
    le glyphe en fait 15 -- une cible plus petite se rate au pouce. */
-.info-progression-ligne{
-    display:flex;
-    justify-content:center;
-    margin-top:2px;
-}
-
-/* PLUS GROS ET PLUS VISIBLE (v515). A 15 px et 75 % d'opacite, il se lisait
-   comme un signe de ponctuation : Jacques ne le voyait pas. Il porte
-   desormais un fond, un contour et sa taille de bouton -- ce qui se touche
-   doit avoir l'air de se toucher. */
+/* UN SEUL CERCLE, ET DANS LE COIN (v516).
+   La v515 dessinait un rond autour du caractere ⓘ -- qui porte DEJA son
+   cercle. Deux cercles concentriques, ce qui se voit tout de suite une fois
+   qu'on le sait. Jacques : « je ne mettrai pas deux avec deux cercles, je le
+   mettrai avec un fond blanc, puis avec un cercle autour ».
+   Le caractere est donc un « i » nu ; le cercle est celui du bouton. */
 .info-progression{
     -webkit-appearance:none; appearance:none;
-    cursor:pointer; font:inherit; line-height:1;
-    font-size:20px; font-weight:600;
+    cursor:pointer; line-height:1;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:22px; font-weight:700; font-style:italic;
     color:#2f63d8; opacity:1;
-    width:34px; height:34px; padding:0;
+    width:40px; height:40px; padding:0;
     display:inline-flex; align-items:center; justify-content:center;
-    border:1.5px solid rgba(59,111,224,.35);
-    background:rgba(59,111,224,.10);
+    border:2px solid rgba(59,111,224,.55);
+    background:#fff;
     border-radius:50%;
-    vertical-align:middle;
+    box-shadow:0 1px 3px rgba(20,30,50,.10);
     transition:background 120ms ease, border-color 120ms ease;
+    /* Le coin bas-droit du rectangle. La version occupe le coin gauche. */
+    position:absolute; inset-inline-end:10px; bottom:8px;
+    z-index:2;
 }
-.info-progression:hover{ background:rgba(59,111,224,.18); }
+.info-progression:hover{ background:#f2f6ff; }
 .info-progression[aria-expanded="true"]{
-    background:rgba(59,111,224,.22);
-    border-color:rgba(59,111,224,.55);
+    background:#e8f0ff; border-color:rgba(59,111,224,.85);
 }
 body[data-theme="dark"] .info-progression{
-    color:#9fc0ff;
-    border-color:rgba(159,192,255,.38);
-    background:rgba(159,192,255,.12);
+    color:#0f1620;
+    border-color:rgba(159,192,255,.75);
+    background:#eaf1ff;
 }
 
 .info-progression-box{
@@ -2153,6 +2152,26 @@ body[data-theme="dark"] .info-progression{
 }
 .info-legende li:last-child{ margin-bottom:0; }
 body[data-theme="dark"] .info-legende li{ color:#B9BFCC; }
+
+/* L'ECHELLE DE MAITRISE, EN PASTILLES. Les memes que sur la carte -- meme
+   classe, meme vert -- pour qu'on reconnaisse ce qu'on a deja vu ailleurs. */
+.echelle-intro{
+    margin:10px 0 0; font-size:13px; line-height:1.5; color:#576177;
+}
+body[data-theme="dark"] .echelle-intro{ color:#B9BFCC; }
+.echelle-maitrise{ margin:8px 0 12px; }
+.echelle-maitrise .ligne{
+    display:flex; align-items:center; gap:10px;
+    margin:0 0 8px;
+}
+.echelle-maitrise .ligne:last-child{ margin-bottom:0; }
+.echelle-maitrise .srs-pips{ flex:0 0 auto; }
+.echelle-maitrise .quand{
+    font-size:13px; line-height:1.4; color:#576177;
+}
+.echelle-maitrise .ligne.fin .quand{ font-weight:700; color:#1c6b47; }
+body[data-theme="dark"] .echelle-maitrise .quand{ color:#B9BFCC; }
+body[data-theme="dark"] .echelle-maitrise .ligne.fin .quand{ color:#9fdcbe; }
 .info-progression-box p{
     margin:6px 0 0;
     font-size:13px; line-height:1.55; color:#576177;
@@ -4125,7 +4144,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v515</span>
+        <span class="subtitle-version">v516</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4181,11 +4200,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              et ses elements ne restent dans le DOM que pour que le JS puisse y
              ecrire sans planter. Signale par Jacques : « le i information
              n'apparait pas dans le rectangle de progression ». -->
-        <div class="info-progression-ligne">
-            <button type="button" class="info-progression" onclick="basculerInfoProgression()"
-                    aria-expanded="false" aria-controls="infoProgressionBox"
-                    data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">&#9432;</button>
-        </div>
+        <button type="button" class="info-progression" onclick="basculerInfoProgression()"
+                aria-expanded="false" aria-controls="infoProgressionBox"
+                data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
         <div id="infoProgressionBox" class="info-progression-box hidden">
             <!-- DEMANDE DE JACQUES (10 septembre 2026) : « que dans le i, on
                  explique chacun des symboles ». La carte porte quatre reperes
@@ -4203,7 +4220,23 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <li data-i18n="legende_objectif"></li>
             </ul>
             <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
-            <p data-i18n="progress_info_texte"></p>
+            <p data-i18n="progress_info_compte"></p>
+            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « pour les mots
+                 maitrises, ce serait bien que visuellement on voie juste avec
+                 les points qui augmentent, puis avec leur signification, au
+                 lieu de l'ecrire ». L'echelle etait un paragraphe ; c'est
+                 maintenant les MEMES pastilles que sur la carte, remplies une
+                 de plus a chaque ligne, avec l'echeance en face.
+                 Construite par echelleMaitriseHtml(), depuis les constantes. -->
+            <!-- Une seule ligne au-dessus des pastilles, et c'est une cle qui
+                 EXISTE DEJA (l'aide de la carte l'emploie mot pour mot). Sans
+                 elle « 10 min » ouvre la liste sans qu'on sache de quoi elle
+                 parle ; avec elle, les quatre lignes se lisent d'un coup. Une
+                 traduction reutilisee est une traduction qui ne derive pas. -->
+            <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
+            <div id="echelleMaitrise" class="echelle-maitrise"></div>
+            <p data-i18n="progress_info_deja"></p>
+            <p data-i18n="progress_info_apres"></p>
         </div>
         <div class="home-daily-goal">
             <div class="home-daily-goal-row">
@@ -6973,7 +7006,9 @@ const I18N = {
         legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
         legende_objectif: "🎯 objectif du jour — les cartes et exercices faits aujourd'hui, quelle que soit la réponse. Le nombre visé se change dans les réglages.",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
-        progress_info_texte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.\n\nUn mot devient maîtrisé après quatre « Je savais » d'affilée — revu d'abord dans la séance, puis après 1 jour, 3 jours, 7 jours. « Je le sais déjà » le marque tout de suite.\n\n« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
+        progress_info_compte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.",
+        progress_info_deja: "« Je le sais déjà » saute toute l'échelle et le marque maîtrisé tout de suite.",
+        progress_info_apres: "« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
 
         // --- Recherche dans les flashcards (v188) ---
         search_launch: "Chercher un mot",
@@ -7834,7 +7869,9 @@ const I18N = {
         legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
         legende_objectif: "🎯 daily goal — the cards and exercises you have done today, whatever the answer. The target is set in the settings.",
         progress_info_titre: "What moves this percentage",
-        progress_info_texte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.\n\nA word becomes mastered after four “I knew it” in a row — seen again within the session first, then after 1 day, 3 days, 7 days. “I already know this” marks it straight away.\n\n“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
+        progress_info_compte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.",
+        progress_info_deja: "“I already know this” skips the whole ladder and marks it mastered straight away.",
+        progress_info_apres: "“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
 
         // --- Flashcard search (v188) ---
         search_launch: "Look up a word",
@@ -8697,7 +8734,9 @@ const I18N = {
         legende_semaine: "📈 bu hafta — son yedi günde öğrendiğin kelimeler. Bu, toplam değil, son hızındır.",
         legende_objectif: "🎯 günlük hedef — bugün yaptığın kartlar ve alıştırmalar, cevap ne olursa olsun. Hedef sayısı ayarlardan değiştirilir.",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
-        progress_info_texte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.\n\nBir kelime, arka arkaya dört kez « Biliyordum » dedikten sonra öğrenilmiş sayılır — önce aynı oturumda, sonra 1 gün, 3 gün, 7 gün sonra. « Bunu zaten biliyorum » onu hemen işaretler.\n\n« Bilmiyordum » bu durumu geri alır ve yüzde düşer.\n\nÖğrenilmiş bir kelime kontrol için 16 günde bir geri gelir, bu sırada sayılmaya devam eder.",
+        progress_info_compte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.",
+        progress_info_deja: "« Bunu zaten biliyorum » tüm basamakları atlar ve kelimeyi hemen öğrenilmiş sayar.",
+        progress_info_apres: "« Bilmiyordum » bu durumu geri alır ve yüzde düşer.\n\nÖğrenilmiş bir kelime kontrol için 16 günde bir geri gelir, bu sırada sayılmaya devam eder.",
 
         // --- Flashcard search (v188) ---
         search_launch: "Bir kelime ara",
@@ -10175,7 +10214,9 @@ const I18N = {
         legende_semaine: "📈 цього тижня — слова, які ти засвоїв за останні сім днів. Це твоя нинішня швидкість, а не загальна сума.",
         legende_objectif: "🎯 ціль на день — картки та вправи, зроблені сьогодні, хай якою була відповідь. Число змінюється в налаштуваннях.",
         progress_info_titre: "Що змінює цей відсоток",
-        progress_info_texte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.\n\nСлово стає засвоєним після чотирьох « Я знав » поспіль — спершу воно повертається в тому ж занятті, потім через 1 день, 3 дні, 7 днів. « Я це вже знаю » позначає його одразу.\n\n« Я не знав » знімає засвоєння, і відсоток знижується.\n\nЗасвоєне слово повертається кожні 16 днів для перевірки й далі зараховується.",
+        progress_info_compte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.",
+        progress_info_deja: "« Я вже це знаю » пропускає всі щаблі й одразу позначає слово засвоєним.",
+        progress_info_apres: "« Я не знав » знімає засвоєння, і відсоток знижується.\n\nЗасвоєне слово повертається кожні 16 днів для перевірки й далі зараховується.",
         home_streak_unit: "днів",
         home_week_unit: "цього тижня",
         home_daily_goal_label: "🎯 Ціль на день",
@@ -11042,7 +11083,9 @@ const I18N = {
         legende_semaine: "📈 این هفته — واژه‌هایی که در هفت روز گذشته آموخته‌ای. این سرعت کنونی توست، نه یک جمع کل.",
         legende_objectif: "🎯 هدف امروز — کارت‌ها و تمرین‌هایی که امروز انجام داده‌ای، هر پاسخی که داده باشی. شمار هدف در تنظیمات تغییر می‌کند.",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
-        progress_info_texte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.\n\nیک واژه پس از چهار بار پشت‌سرهم «می‌دانستم» آموخته شمرده می‌شود — نخست در همان جلسه بازمی‌گردد، سپس پس از ۱ روز، ۳ روز و ۷ روز. «این را از قبل می‌دانم» آن را بی‌درنگ ثبت می‌کند.\n\n«نمی‌دانستم» این وضعیت را پس می‌گیرد و درصد پایین می‌آید.\n\nواژهٔ آموخته‌شده هر ۱۶ روز برای بررسی بازمی‌گردد و در این مدت شمرده می‌شود.",
+        progress_info_compte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.",
+        progress_info_deja: "«این را از قبل می‌دانم» همهٔ پله‌ها را رد می‌کند و واژه را بی‌درنگ آموخته‌شده نشان می‌دهد.",
+        progress_info_apres: "«نمی‌دانستم» این وضعیت را پس می‌گیرد و درصد پایین می‌آید.\n\nواژهٔ آموخته‌شده هر ۱۶ روز برای بررسی بازمی‌گردد و در این مدت شمرده می‌شود.",
         home_daily_goal_label: "🎯 هدف امروز",
         home_week_zero: "این هفته: 0",
         home_week_positive: "‎+{n} این هفته",
@@ -15100,10 +15143,50 @@ function showStreakFreezeDetail(){
 
 // Deplie l'explication du pourcentage. Volontairement en place plutot qu'en
 // fenetre : l'anneau reste visible pendant qu'on lit ce qui le fait bouger.
+// L'ECHELLE DE MAITRISE, EN PASTILLES PLUTOT QU'EN PHRASE.
+//
+// Demande de Jacques (10 septembre 2026) : « pour les mots maitrises, ce
+// serait bien que visuellement on voie juste avec les points qui augmentent,
+// puis avec leur signification, au lieu de l'ecrire ».
+//
+// Quatre lignes, une pastille de plus a chaque fois, l'echeance en face. Ce
+// sont LES MEMES pastilles que sous la carte -- meme classe, meme vert : ce
+// qu'on apprend ici se reconnait la-bas.
+//
+// ⚠️ CONSTRUITE DEPUIS LES CONSTANTES, comme texteAideSrs() et pour la meme
+// raison : SRS_PALIERS donne le nombre de pastilles, SRS_PREMIERE_MINUTES et
+// les deux premiers barreaux de SRS_DAILY_LADDER_DAYS donnent les echeances.
+// Un chiffre recopie dans un gabarit finit toujours par mentir le jour ou
+// l'echelle change.
+function echelleMaitriseHtml(){
+    const jour = n => tf(n === 1 ? "srs_aide_jour" : "srs_aide_jours", { n: n });
+    const quand = [tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }),
+                   jour(SRS_DAILY_LADDER_DAYS[0]),
+                   jour(SRS_DAILY_LADDER_DAYS[1]),
+                   t("srs_aide_maitrise")];
+    let html = "";
+    for(let i = 0; i < SRS_PALIERS; i++){
+        let pips = "";
+        for(let k = 0; k < SRS_PALIERS; k++){
+            pips += '<span class="srs-pip' + (k <= i ? " on" : "") + '"></span>';
+        }
+        // La derniere ligne porte le mot « maitrise » : elle se distingue.
+        html += '<div class="ligne' + (i === SRS_PALIERS - 1 ? " fin" : "") + '">'
+              +   '<span class="srs-pips" aria-hidden="true">' + pips + '</span>'
+              +   '<span class="quand">' + (quand[i] || "") + '</span>'
+              + '</div>';
+    }
+    return html;
+}
+
 function basculerInfoProgression(){
     const box = document.getElementById("infoProgressionBox");
     const btn = document.querySelector(".info-progression");
     if(!box) return;
+    // On (re)construit a chaque ouverture : la langue a pu changer entre-temps,
+    // et un gabarit fabrique une fois resterait dans l'ancienne.
+    const ech = document.getElementById("echelleMaitrise");
+    if(ech) ech.innerHTML = echelleMaitriseHtml();
     const ouvert = box.classList.toggle("hidden") === false;
     if(btn) btn.setAttribute("aria-expanded", ouvert ? "true" : "false");
 }
@@ -22044,7 +22127,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 515;
+const APP_VERSION = 516;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
