@@ -4093,7 +4093,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v513</span>
+        <span class="subtitle-version">v514</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -16623,6 +16623,44 @@ function pt(o, base){
     return o[base + "_" + l] || o[base + "_fr"] || o[base] || "";
 }
 
+// UNE LANGUE DE PLUS NE DOIT PLUS SE POSER A QUATRE ENDROITS (v514).
+//
+// Les quatre lecteurs ci-dessous recopiaient chacun `_en` et `_tr` a la main,
+// et rien d'autre. L'ukrainien de pruefung.json -- 542 champs ecrits le 10
+// septembre 2026 -- n'atteignait donc AUCUN ecran : les champs existaient,
+// personne ne les lisait, et l'ukrainophone voyait du francais sur les quatre
+// epreuves.
+//
+// C'est exactement le defaut deja rencontre pour le turc, puis pour le
+// persan : POSER LA DONNEE NE SUFFIT PAS, il faut que quelqu'un la lise. Et
+// il ne se voit sur aucun compteur -- le fichier de donnees est complet, la
+// traduction est juste, l'ecran est en francais.
+//
+// Les cinq langues se construisent donc d'un coup. Ajouter une langue devient
+// une entree dans LANGUES_PRUEFUNG, et les quatre lecteurs suivent.
+const LANGUES_PRUEFUNG = ["en", "tr", "uk", "fa"];
+
+function champsPruefung(o, source, cible, avant){
+    avant = avant || "";
+    const out = {};
+    out[cible] = avant + (o[source + "_fr"] || "");
+    LANGUES_PRUEFUNG.forEach(l => {
+        const v = o[source + "_" + l];
+        out[cible + "_" + l] = v ? avant + v : "";
+    });
+    return out;
+}
+
+// Les champs vides d'une epreuve (pas de traduction, pas d'indice) doivent
+// exister dans TOUTES les langues : texteTraduit remonte la chaine de repli
+// et servirait le francais si la cle ukrainienne manquait.
+function videPruefung(cible){
+    const out = {};
+    out[cible] = "";
+    LANGUES_PRUEFUNG.forEach(l => { out[cible + "_" + l] = ""; });
+    return out;
+}
+
 // LE MELANGE DES OPTIONS SE FAIT ICI, PAS DANS LE FICHIER. Les donnees
 // gardent la bonne reponse en premiere position : elles se relisent ainsi
 // d'un coup d'oeil, et une erreur de contenu saute aux yeux. Mais servir
@@ -16647,17 +16685,15 @@ function exercicesSprechen(niveau){
         .filter(o => !niveau || o.niveau === niveau)
         .map(o => ({
             topic: o.teil,
-            question: "« " + o.frage + " »\n" + pt(o, "consigne"),
-            question_en: "« " + o.frage + " »\n" + o.consigne_en,
-            question_tr: "« " + o.frage + " »\n" + o.consigne_tr,
-            translation: o.trad_fr, translation_en: o.trad_en, translation_tr: o.trad_tr,
-            hint: "", hint_en: "", hint_tr: "",
+            ...champsPruefung(o, "consigne", "question", "« " + o.frage + " »\n"),
+            ...champsPruefung(o, "trad", "translation"),
+            ...videPruefung("hint"),
             chunks: o.chunks.slice(),
             // La question de l'examinateur PUIS la reponse modele : dans un
             // oral, les deux s'entendent, et c'est l'enchainement qu'on
             // apprend a reconnaitre.
             audioDe: o.frage + " " + o.chunks.join(" "),
-            explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
+            ...champsPruefung(o, "erkl", "explanation")
         }));
 }
 
@@ -16673,13 +16709,12 @@ function exercicesSchreiben(niveau){
         .filter(o => !niveau || o.niveau === niveau)
         .map(o => ({
             topic: o.typ,
-            question: pt(o, "aufgabe"),
-            question_en: o.aufgabe_en, question_tr: o.aufgabe_tr,
-            translation: o.trad_fr, translation_en: o.trad_en, translation_tr: o.trad_tr,
-            hint: "", hint_en: "", hint_tr: "",
+            ...champsPruefung(o, "aufgabe", "question"),
+            ...champsPruefung(o, "trad", "translation"),
+            ...videPruefung("hint"),
             chunks: o.chunks.slice(),
             audioDe: o.chunks.join(" "),
-            explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
+            ...champsPruefung(o, "erkl", "explanation")
         }));
 }
 
@@ -16712,14 +16747,14 @@ function exercicesLesen(niveau){
                     // avant de repondre transformerait une epreuve de
                     // lecture en epreuve d'ecoute.
                     audioDe: o.text,
-                    question: o.text + "\n\n— " + pt(q, "frage"),
-                    question_en: o.text + "\n\n— " + q.frage_en,
-                    question_tr: o.text + "\n\n— " + q.frage_tr,
-                    translation: "", translation_en: "", translation_tr: "",
-                    hint: "", hint_en: "", hint_tr: "",
-                    answers: [correct], correct: correct, correctEn: correct, correctTr: correct,
+                    ...champsPruefung(q, "frage", "question", o.text + "\n\n— "),
+                    ...videPruefung("translation"),
+                    ...videPruefung("hint"),
+                    answers: [correct], correct: correct, correctEn: correct,
+                    correctTr: correct, correctUk: correct, correctFa: correct,
                     options: options, optionsEn: options, optionsTr: options,
-                    explanation: q.erkl_fr, explanation_en: q.erkl_en, explanation_tr: q.erkl_tr
+                    optionsUk: options, optionsFa: options,
+                    ...champsPruefung(q, "erkl", "explanation")
                 });
             });
         });
@@ -16746,13 +16781,15 @@ function exercicesHoeren(niveau){
             const { options, correct } = pruefungOptions(o, o.bon);
             return {
                 topic: "Hören",
-                question: pt(o, "frage"), question_en: o.frage_en, question_tr: o.frage_tr,
-                translation: "", translation_en: "", translation_tr: "",
-                hint: "", hint_en: "", hint_tr: "",
+                ...champsPruefung(o, "frage", "question"),
+                ...videPruefung("translation"),
+                ...videPruefung("hint"),
                 dictation: true, dictationText: o.audio, dictationLang: "de",
-                answers: [correct], correct: correct, correctEn: correct, correctTr: correct,
+                answers: [correct], correct: correct, correctEn: correct,
+                correctTr: correct, correctUk: correct, correctFa: correct,
                 options: options, optionsEn: options, optionsTr: options,
-                explanation: o.erkl_fr, explanation_en: o.erkl_en, explanation_tr: o.erkl_tr
+                optionsUk: options, optionsFa: options,
+                ...champsPruefung(o, "erkl", "explanation")
             };
         });
 }
@@ -21935,7 +21972,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 513;
+const APP_VERSION = 514;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
