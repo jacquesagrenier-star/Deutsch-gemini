@@ -108,9 +108,27 @@ def main():
     duree = round(normaliser.duree(fini), 2)
     print("  %s  %.2f s" % (nom, duree))
 
-    for x in m["plans"]:
-        if x["plan"] == a.plan:
-            x["de"], x["duree_reelle"] = p["de"], duree
+    # ⚠️ UN PLAN NEUF N'A PAS DE LIGNE A METTRE A JOUR -- IL EN FAUT UNE.
+    #
+    # Ce script ne savait que MODIFIER une ligne existante. Le 10 septembre
+    # 2026, le plan 13 a ete coupe en deux et le nouveau plan 20 est passe ici
+    # sans laisser de trace : mp3 fabrique, manifeste inchange.
+    #
+    # Ce n'est pas un detail de tenue de livres. refaire_audio.py compare
+    # justement le texte de la scene A CELUI DU MANIFESTE pour refuser une
+    # feuille de tournage dont la voix ne dit plus le texte -- le garde-fou
+    # ecrit le matin meme. Sans ligne, il n'a rien a comparer : il laisse
+    # passer, et il laisse passer EN SILENCE, ce qui est pire que de ne pas
+    # exister. On cree donc la ligne quand elle manque.
+    ligne = next((x for x in m["plans"] if x["plan"] == a.plan), None)
+    if ligne is None:
+        ligne = {"plan": a.plan, "locuteur": p["locuteur"], "fichier": nom,
+                 "duree_prevue": p["duree"]}
+        m["plans"].append(ligne)
+        m["plans"].sort(key=lambda x: x["plan"])
+        print("  nouvelle ligne au manifeste (le plan n'en avait pas)")
+    ligne["de"], ligne["duree_reelle"] = p["de"], duree
+    ligne["fichier"] = nom
     io.open(fm, "w", encoding="utf-8", newline="").write(
         json.dumps(m, ensure_ascii=False, indent=2) + chr(10))
 

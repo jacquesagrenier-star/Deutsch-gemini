@@ -286,6 +286,32 @@ def main():
             print("    python audio/refaire_plan.py --plan %d --pour-de-vrai" % p["n"])
         sys.exit("  Aucune feuille ecrite.")
 
+    # ⚠️ LE SEUIL DE 2,2 s, ET POURQUOI IL DOIT SE VOIR SUR LA FEUILLE.
+    #
+    # production.duree_a_generer le dit dans son propre docstring : « ce
+    # qu'aucune duree ne sauve, c'est une replique de plus de 2,2 s environ.
+    # Les deux seules qui depassent ce seuil se sont etirees, a des rapports
+    # pourtant differents. »
+    #
+    # La regle x3,5 continue pourtant de rendre une duree, sans un mot. Le 10
+    # septembre, apres avoir coupe le plan 13 en deux, la seconde moitie
+    # faisait encore 3,13 s de parole : la feuille annoncait ONZE secondes a
+    # generer -- a 120 credits la seconde en mode reference, 1 320 credits sur
+    # un plan que notre propre mesure dit a risque.
+    #
+    # Une feuille qui coute ca doit le dire avant, pas apres.
+    longues = [(p, P.duree_voix(p, a.scene)) for p in plans
+               if P.duree_voix(p, a.scene) > 2.2]
+    if longues:
+        print("  ⚠️ AU-DESSUS DU SEUIL DE 2,2 s -- nos deux seules repliques plus")
+        print("     longues se sont ETIREES, a des rapports differents :")
+        for p, v in longues:
+            print("       plan %02d  %.2f s de parole  ->  %d s a generer"
+                  % (p["n"], v, P.duree_a_generer(p, a.scene)))
+        print("     Couper la replique, ou la passer en voix off sur un plan")
+        print("     sans visage : aucune duree de clip ne les sauve.")
+        print("")
+
     for p in plans:
         m = P.MISE_EN_SCENE[p["n"]]
         duree = P.duree_a_generer(p, a.scene)
