@@ -3927,6 +3927,36 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
     background:transparent; color:#fff; cursor:pointer;
     font-size:11px; font-weight:600; line-height:1; padding:4px 8px;
 }
+/* ⚠️ LE MODE NUIT EFFACAIT LE REMPLISSAGE. `body[data-theme="dark"] .orb` a
+   une specificite plus forte que `.orb-seance` : la surface sombre gagnait, et
+   le bandeau redevenait une tuile parmi les autres -- exactement ce qu'il ne
+   doit pas etre. Il lui faut donc sa propre regle de nuit, aussi specifique.
+
+   Le bleu ne change pas : sur fond sombre il ressort deja, et l'eclaircir
+   ferait tomber le contraste du texte blanc sous le seuil AA. Ce qui change,
+   c'est l'ombre -- une ombre portee sur du noir ne se voit pas, elle ne fait
+   que salir le bord. */
+body[data-theme="dark"] .orb-seance{
+    background:#2f62d6;
+    border-color:#3f70e2;
+    box-shadow:none;
+}
+body[data-theme="dark"] .orb-seance:hover{
+    background:#3568dd;
+    box-shadow:none;
+}
+body[data-theme="dark"] .orb-seance strong,
+body[data-theme="dark"] .orb-seance .seance-fleche{color:#fff;}
+body[data-theme="dark"] .orb-seance .seance-sub{color:rgba(255,255,255,.84);}
+body[data-theme="dark"] .orb-seance .seance-etiq{color:rgba(255,255,255,.80);}
+body[data-theme="dark"] .orb-seance .seance-niveau,
+body[data-theme="dark"] .orb-seance .seance-themes{
+    background:transparent; border-color:rgba(255,255,255,.48); color:#fff;
+}
+body[data-theme="dark"] .orb-seance .seance-niveau.on{
+    background:#fff; border-color:#fff; color:#2f62d6;
+}
+
 .home-stats-card{position:relative;}
 .home-stats-card .subtitle-version{
     position:absolute; inset-inline-start:10px; bottom:7px;
@@ -4200,7 +4230,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v531</span>
+        <span class="subtitle-version">v532</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -22327,7 +22357,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 531;
+const APP_VERSION = 532;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
