@@ -4190,7 +4190,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v526</span>
+        <span class="subtitle-version">v527</span>
         <div class="global-progress-row">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4313,7 +4313,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <!-- Les niveaux arretent le clic : sans stopPropagation, choisir un
                  niveau lancerait la seance de l'ancien. -->
-            <div class="seance-niveaux" id="seanceNiveaux"></div>
+            <div class="seance-niveaux" id="seanceNiveaux"
+                 role="group" aria-label="Provenance des mots nouveaux"></div>
             <!-- L'ENTREE PAR THEME vit ICI, et nulle part ailleurs : la tuile
                  Flashcards est la porte unique du vocabulaire. Elle arrete le
                  clic, sinon elle lancerait la seance du jour au passage. -->
@@ -6953,6 +6954,7 @@ const I18N = {
         seance_sous: "Révisions et mots nouveaux",
         seance_carte: "{n} carte",
         seance_cartes: "{n} cartes",
+        seance_neufs_de: "mots nouveaux en {niv}",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -7825,6 +7827,7 @@ const I18N = {
         seance_sous: "Reviews and new words",
         seance_carte: "{n} card",
         seance_cartes: "{n} cards",
+        seance_neufs_de: "new words from {niv}",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -8699,6 +8702,7 @@ const I18N = {
         seance_sous: "Tekrarlar ve yeni kelimeler",
         seance_carte: "{n} kart",
         seance_cartes: "{n} kart",
+        seance_neufs_de: "{niv} seviyesinden yeni kelimeler",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -9838,6 +9842,7 @@ const I18N = {
         seance_sous: "Повторення та нові слова",
         seance_carte: "{n} картка",
         seance_cartes: "{n} карток",
+        seance_neufs_de: "нові слова з {niv}",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -11319,6 +11324,7 @@ const I18N = {
         seance_sous: "مرور و واژه‌های تازه",
         seance_carte: "{n} کارت",
         seance_cartes: "{n} کارت",
+        seance_neufs_de: "واژه‌های تازه از {niv}",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -22302,7 +22308,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 526;
+const APP_VERSION = 527;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23944,7 +23950,12 @@ function majTuileSeance(){
             NIVEAUX_CECR.forEach(x => { tout.push.apply(tout, paquetDuNiveau(x)); });
             n = cartesDeSeance(tout, paquetDuNiveau(niveau)).length;
         }catch(e){ n = 0; }
-        el.textContent = tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
+        // ⚠️ « A1 » seul laissait croire que TOUTE la seance etait de ce
+        // niveau. Il ne decide que de la PROVENANCE DES MOTS NOUVEAUX -- les
+        // revisions viennent de tous les niveaux deja travailles. Le sous-titre
+        // le dit, sinon la pastille ment par omission.
+        el.textContent = tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n })
+                       + " · " + tf("seance_neufs_de", { niv: niveau });
     }
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;
