@@ -3147,3 +3147,38 @@ domaine public, meme traitement « vif » que les autres.
 ⚠️ Elle est dessinee par **`dessinerMosaique()`**, la fonction meme qui dessine
 la vraie. La demonstration ne peut donc pas mentir sur ce a quoi le glacis
 ressemble : si le rendu change, elle change avec lui.
+
+## 12 septembre 2026 — la fleche descend dans la zone du pouce (v565)
+
+*« Quand on veut retourner, que la fleche soit en bas au lieu d'en haut dans le
+rectangle : sur le cellulaire, c'est plus pratique de l'avoir dans le bas.
+Puisqu'on avait indique a cote "retour", ou quelque chose, je ne sais pas. »*
+
+Deux corrections dans une seule phrase, et la seconde il l'a formulee en
+hesitant — c'est souvent la qu'il a raison.
+
+### En bas, parce qu'un telephone se tient d'une main
+
+La fleche etait dans le coin **haut** gauche du verso depuis la v562. Le haut
+d'un telephone tenu d'une main demande de changer de prise ; le bas non. Ce
+n'est pas une question de gout, c'est la zone du pouce.
+
+⚠️ **`margin-top:auto` plutot que `position:absolute`.** Le verso defile
+(`overflow-y:auto`) : une fleche calee en `bottom:10px` se decrocherait du bas
+**visible** des que la carte est longue. En flux, poussee par la marge
+automatique, elle est au bas quand il reste de la place et apres le texte quand
+il n'y en a plus. Mesure sur la carte reelle : 24 px du bas, 24 px du bord
+gauche, a l'interieur du cadre.
+
+### Et elle reprend son mot
+
+Nue, une fleche ronde dans un coin peut se lire **« annuler »**, **« revenir au
+recto »** ou **« carte precedente »** — trois gestes differents, et c'est la
+troisieme qui est vraie. Jacques s'en est souvenu tout seul : *« on avait
+indique a cote retour »*. C'etait le cas avant la v562, et le retirer etait une
+perte que personne n'avait pesee.
+
+Une cle **courte** — `flash_revoir_court`, « Precedent » — et non
+`flash_revoir`, qui fait une phrase entiere et reprendrait toute la largeur.
+⚠️ La phrase entiere reste comme **etiquette d'accessibilite** : le lecteur
+d'ecran garde « Revoir le mot precedent », l'oeil n'a besoin que du mot.

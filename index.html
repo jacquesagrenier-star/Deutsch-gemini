@@ -3768,15 +3768,16 @@ body[data-theme="dark"] .judge-known{
     margin-top:6px; padding:20px; border:1px solid #e6e9ef;
     border-radius:20px; background:#fff;
 }
-.flash-retour-coin{
-    position:absolute; top:10px; inset-inline-start:10px; z-index:3;
-    width:30px; height:30px; border-radius:50%; padding:0;
+.flash-retour-bas{
+    margin-top:auto; margin-inline-end:auto; align-self:flex-start;
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 11px 5px 8px; border-radius:999px;
     border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
-    color:#2f62d6; display:inline-flex; align-items:center; justify-content:center;
-    cursor:pointer;
+    color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600;
+    line-height:1.3; cursor:pointer;
 }
-.flash-retour-coin svg{width:15px; height:15px;}
-body[data-theme="dark"] .flash-retour-coin{
+.flash-retour-bas svg{width:14px; height:14px; flex:0 0 auto;}
+body[data-theme="dark"] .flash-retour-bas{
     background:rgba(26,32,42,.92); border-color:rgba(143,180,255,.30); color:#8FB4FF;
 }
 .carte-precedente{
@@ -5229,7 +5230,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v564</span>
+    <span class="subtitle-version">v565</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6892,18 +6893,35 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      Les elements restent, masques : d'autres modes de carte
                      peuvent encore s'y referer. -->
                 <!-- ⚠️ LA FLECHE VIT DANS LE CADRE DE LA CARTE (v562), pas sous
-                     l'ecran. Demande de Jacques. Elle etait tout en bas, apres
-                     les trois boutons : loin du regard au moment ou l'on se dit
-                     « c'etait quoi deja ». Dans le coin du verso, elle est la ou
-                     la question se pose.
+                     l'ecran -- et EN BAS de ce cadre, pas en haut (v565).
+                     Demande de Jacques : « sur le cellulaire, c'est plus
+                     pratique de l'avoir dans le bas ». C'est la zone du pouce :
+                     le haut d'un telephone tenu d'une main demande de changer
+                     de prise, le bas non.
+
+                     ⚠️ ELLE REPREND SON MOT. Nue, une fleche ronde dans un coin
+                     peut se lire « annuler », « revenir au recto », « carte
+                     precedente » -- trois gestes differents. Jacques s'en est
+                     souvenu lui-meme : « on avait indique a cote retour, ou
+                     quelque chose ». Une cle COURTE, pas `flash_revoir` qui
+                     fait une phrase et reprendrait toute la largeur.
+
+                     ⚠️ `margin-top:auto` PLUTOT QUE `position:absolute`. Le
+                     verso defile (`overflow-y:auto`) : une fleche calee en
+                     `bottom:10px` se decrocherait du bas visible des que la
+                     carte est longue. En flux, poussee par la marge
+                     automatique, elle est au bas quand il reste de la place et
+                     apres le texte quand il n'y en a plus.
+
                      ⚠️ event.stopPropagation() est indispensable : sans lui, la
                      toucher RETOURNERAIT la carte, puisque toute la surface du
                      verso sert a ca. -->
-                <button type="button" id="flashRetour" class="flash-retour-coin hidden"
+                <button type="button" id="flashRetour" class="flash-retour-bas hidden"
                         onclick="event.stopPropagation(); ouvrirCartePrecedente();"
                         data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
                          stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+                    <span data-i18n="flash_revoir_court">Précédent</span>
                 </button>
                 <div class="skip-hint hidden" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
                 <div class="tap-map hidden" aria-hidden="true">
@@ -7902,6 +7920,7 @@ const I18N = {
         flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
         flash_revoir: "Revoir le mot précédent",
+        flash_revoir_court: "Précédent",
         flash_fermer: "Toucher pour fermer",
         legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »). Une carte balayée sans réponse fait avancer le tableau, mais pas cette barre.",
@@ -8846,6 +8865,7 @@ const I18N = {
         flash_end_objectif_reste: "{n} more cards to reach today's goal.",
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
         flash_revoir: "See the previous word",
+        flash_revoir_court: "Previous",
         flash_fermer: "Tap to close",
         legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »). A card swiped past moves the painting along, but not this bar.",
@@ -9792,6 +9812,7 @@ const I18N = {
         flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
         mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
         flash_revoir: "Önceki kelimeye bak",
+        flash_revoir_court: "Önceki",
         flash_fermer: "Kapatmak için dokun",
         legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar. Cevapsız geçilen bir kart tabloyu ilerletir ama bu çubuğu ilerletmez.",
@@ -11368,6 +11389,7 @@ const I18N = {
         flash_end_objectif_reste: "Ще {n} карток до денної мети.",
         mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
         flash_revoir: "Переглянути попереднє слово",
+        flash_revoir_court: "Попереднє",
         flash_fermer: "Торкнись, щоб закрити",
         legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив. Пропущена без відповіді картка рухає картину, але не цю смужку.",
@@ -12284,6 +12306,7 @@ const I18N = {
         flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
         mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
         flash_revoir: "دیدن واژهٔ پیشین",
+        flash_revoir_court: "پیشین",
         flash_fermer: "برای بستن بزن",
         legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای. کارتی که بدون پاسخ رد شود تابلو را جلو می‌برد اما این نوار را نه.",
@@ -23966,7 +23989,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 564;
+const APP_VERSION = 565;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
