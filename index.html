@@ -4064,6 +4064,55 @@ body[data-theme="dark"] .carte-examen-part.sus{background:#5DCAA5;}
 .finir-theme + .finir-theme{margin-top:6px;}
 .finir-theme:hover{background:rgba(232,162,58,.18);}
 body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A23A;}
+/* ============ LA MOSAIQUE ============
+   Le CADRE est la des le premier jour : un cadre vide se regarde, une grille
+   vide non. Bord sobre, pas d'ombre portee -- le seul bloc plein de l'accueil
+   reste le bandeau de seance (v531). */
+.carte-mosaique{margin-top:14px; padding-top:13px; border-top:1px solid rgba(30,41,59,.10);}
+.mos-cadre{
+    border:1px solid rgba(30,41,59,.16); border-radius:8px; overflow:hidden;
+    background:#f3f1ec; cursor:pointer; line-height:0;
+}
+.mos-toile{display:block; width:100%; height:auto;}
+.mos-cartouche{text-align:center; margin-top:9px; line-height:1.35;}
+.mos-ligne{display:block;}
+.mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
+.mos-annee{font-size:12px; color:#7b8798; font-variant-numeric:tabular-nums; margin-top:2px;}
+.mos-peintre{font-size:13px; font-weight:600; color:#1e293b; margin-top:2px;}
+.mos-titre{font-size:12.5px; font-style:italic; color:#576177; margin-top:2px;}
+.mos-bas{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:9px;}
+.mos-pied{font-size:11px; color:#7b8798;}
+.mos-galerie{
+    background:none; border:0; padding:0; font-family:inherit; font-size:11.5px;
+    font-weight:600; color:#2f62d6; cursor:pointer; white-space:nowrap;
+}
+body[data-theme="dark"] .carte-mosaique{border-top-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .mos-cadre{border-color:rgba(255,255,255,.16); background:#20252e;}
+body[data-theme="dark"] .mos-peintre{color:#F2F2F6;}
+body[data-theme="dark"] .mos-titre{color:#A6ADBB;}
+body[data-theme="dark"] .mos-annee,
+body[data-theme="dark"] .mos-pied{color:#9AA2B1;}
+body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
+/* Plein ecran */
+.mos-plein{
+    position:fixed; inset:0; z-index:9000; background:rgba(12,16,22,.94);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:14px; padding:18px; cursor:zoom-out;
+}
+.mos-plein-toile{max-width:100%; max-height:78vh; border-radius:6px; display:block;}
+.mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
+/* La galerie */
+.galerie-grille{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
+.galerie-item{margin:0; cursor:pointer;}
+.galerie-item img{
+    display:block; width:100%; height:118px; object-fit:cover;
+    border-radius:7px; border:1px solid rgba(30,41,59,.14);
+}
+.galerie-item figcaption{font-size:11px; color:#7b8798; margin-top:5px; line-height:1.35;}
+.galerie-item figcaption b{color:#1e293b;}
+.galerie-vide{color:#7b8798; font-size:13px; text-align:center; padding:26px 10px;}
+body[data-theme="dark"] .galerie-item figcaption b{color:#F2F2F6;}
+body[data-theme="dark"] .galerie-item img{border-color:rgba(255,255,255,.14);}
 .info-anneau{display:flex; justify-content:center; margin:10px 0 14px;}
 body[data-theme="dark"] .carte-jour-haut{color:#A6ADBB;}
 body[data-theme="dark"] .carte-jour-haut strong,
@@ -4345,7 +4394,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v542</span>
+        <span class="subtitle-version">v543</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4428,6 +4477,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
             <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
+        </div>
+
+        <!-- LA MOSAIQUE. Le CADRE est visible des le premier jour -- demande de
+             Jacques : « qu'on voie déjà l'endroit où va être le tableau ». Un
+             cadre vide dans un musee se regarde ; une grille vide, non. -->
+        <div id="carteMosaique" class="carte-mosaique hidden">
+            <div class="mos-cadre" onclick="ouvrirMosaiquePleinEcran()">
+                <canvas id="mosaiqueToile" class="mos-toile" width="900" height="700"></canvas>
+            </div>
+            <div id="mosaiqueCartouche" class="mos-cartouche"></div>
+            <div class="mos-bas">
+                <span id="mosaiquePied" class="mos-pied"></span>
+                <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
+                        data-i18n="mosaique_galerie">Ta galerie</button>
+            </div>
         </div>
 
         <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
@@ -4907,6 +4971,22 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <!-- ================= VERBEN ================= -->
 
 <!-- ================= RECHERCHE DANS LES FLASHCARDS ================= -->
+
+<!-- LA GALERIE. Elle ne montre QUE les tableaux gagnes : des silhouettes pour
+     ceux a venir seraient le defaut du denominateur inatteignable sous une
+     autre forme. C'est une etagere a trophees, pas une liste de courses. -->
+<section id="galerieMosaique" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <p class="kicker" data-i18n="mosaique_galerie_kicker">Tes tableaux</p>
+    <h2 data-i18n="mosaique_galerie">Ta galerie</h2>
+    <div id="galerieMosaiques" class="galerie-grille"></div>
+</section>
+
+<!-- Plein ecran : toucher l'image pour la voir en grand. Demande de Jacques. -->
+<div id="mosaiquePlein" class="mos-plein hidden" onclick="fermerMosaiquePleinEcran()">
+    <canvas id="mosaiquePleinToile" class="mos-plein-toile"></canvas>
+    <div id="mosaiquePleinLegende" class="mos-plein-legende"></div>
+</div>
 
 <section id="wordSearch" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
@@ -7183,6 +7263,12 @@ const I18N = {
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
         vocab_titre: "Vocabulaire",
+        mosaique_compte: "Tableau {n} sur {total}",
+        mosaique_reste: "encore {n} carreaux",
+        mosaique_trophee: "Terminé · encore {n} séances à l'écran",
+        mosaique_galerie: "Ta galerie",
+        mosaique_galerie_kicker: "Tes tableaux",
+        mosaique_galerie_vide: "Ta première mosaïque se découvre carte après carte. Elle se rangera ici une fois terminée.",
         vocab_sus: "su",
         vocab_cours: "en cours",
         vocab_reste: "à rencontrer",
@@ -8076,6 +8162,12 @@ const I18N = {
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
         vocab_titre: "Vocabulary",
+        mosaique_compte: "Painting {n} of {total}",
+        mosaique_reste: "{n} tiles to go",
+        mosaique_trophee: "Finished · {n} more sessions on screen",
+        mosaique_galerie: "Your gallery",
+        mosaique_galerie_kicker: "Your paintings",
+        mosaique_galerie_vide: "Your first mosaic uncovers card by card. It will be kept here once finished.",
         vocab_sus: "known",
         vocab_cours: "in progress",
         vocab_reste: "to meet",
@@ -8971,6 +9063,12 @@ const I18N = {
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
         vocab_titre: "Kelimeler",
+        mosaique_compte: "Tablo {n} / {total}",
+        mosaique_reste: "{n} kare kaldı",
+        mosaique_trophee: "Bitti · ekranda {n} oturum daha",
+        mosaique_galerie: "Galerin",
+        mosaique_galerie_kicker: "Tabloların",
+        mosaique_galerie_vide: "İlk mozaiğin kart kart açılır. Tamamlanınca burada saklanır.",
         vocab_sus: "biliniyor",
         vocab_cours: "sürüyor",
         vocab_reste: "kaldı",
@@ -10131,6 +10229,12 @@ const I18N = {
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
         vocab_titre: "Лексика",
+        mosaique_compte: "Картина {n} з {total}",
+        mosaique_reste: "ще {n} плиток",
+        mosaique_trophee: "Завершено · ще {n} сеансів на екрані",
+        mosaique_galerie: "Твоя галерея",
+        mosaique_galerie_kicker: "Твої картини",
+        mosaique_galerie_vide: "Перша мозаїка відкривається картка за карткою. Завершена, вона залишиться тут.",
         vocab_sus: "відомо",
         vocab_cours: "у процесі",
         vocab_reste: "попереду",
@@ -11639,6 +11743,12 @@ const I18N = {
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
         vocab_titre: "واژگان",
+        mosaique_compte: "تابلوی {n} از {total}",
+        mosaique_reste: "{n} کاشی مانده",
+        mosaique_trophee: "تمام شد · {n} جلسهٔ دیگر روی صفحه",
+        mosaique_galerie: "گالری تو",
+        mosaique_galerie_kicker: "تابلوهای تو",
+        mosaique_galerie_vide: "نخستین موزاییک تو کارت‌به‌کارت آشکار می‌شود. پس از تکمیل، اینجا می‌ماند.",
         vocab_sus: "بلد",
         vocab_cours: "در جریان",
         vocab_reste: "باقی‌مانده",
@@ -20309,6 +20419,10 @@ const FLASHCARD_RETURN_SCREENS = {
 };
 
 function handleFlashcardBack(){
+    // Le trophee se compte EN SEANCES, pas en jours : quelqu'un qui part une
+    // semaine retrouve son tableau au retour au lieu de l'avoir rate. Meme
+    // principe que la v523 -- l'absence ne punit pas.
+    try{ seanceMosaiqueTerminee(); }catch(e){}
     sessionVues = 0; sessionSues = 0;
     hideFlashcardEnd();
     // Carte ouverte depuis la recherche : retour a l'accueil, d'ou la recherche
@@ -22898,7 +23012,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 542;
+const APP_VERSION = 543;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24566,6 +24680,267 @@ function majCarteProgression(){
     el("compteGrammaire").textContent = c.grammaire + " / 40";
     majCarteVocab();
     majCarteExamen();
+    try{ majMosaiqueAccueil(); }catch(e){}
+}
+
+// ============ LES MOSAIQUES (v543) ============
+// Une image se decouvre carreau par carreau, un carreau par carte traversee --
+// jugee, balayee, ou simplement passee. ⚠️ PAS « par mot neuf », et c'est
+// mesure : apres quelques semaines la plupart des seances sont des revisions,
+// et une image adossee aux mots neufs calerait des jours entiers, precisement
+// quand l'etudiant travaille le plus. Decision de Jacques.
+//
+// ⚠️ LA COULEUR NE VEUT PLUS RIEN DIRE, et c'est ce qui rend l'image possible.
+// Tant qu'un carreau codait « maitrise » ou « en cours », il ne pouvait pas
+// porter un morceau de tableau. Libere, il ne porte plus que l'image.
+//
+// Vingt-trois tableaux classes par Jacques, puis le reste au hasard. Les
+// fichiers vivent dans le depot et se chargent depuis GitHub raw, comme
+// themes.json : le « git push » qui publie les donnees publie les images.
+const MOSAIQUE_CARREAUX = 700;      // vise ; la grille s'ajuste au format
+const MOSAIQUE_PLAFOND = 80;        // carreaux par jour -- voir plus bas
+const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de seances l'image finie reste
+const MOSAIQUE_CLE = "deutschAI_mosaique";
+const MOSAIQUE_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/"
+                    + "Deutsch-gemini/main/branding/mosaique/";
+let MOSAIQUES = null;
+let chargementMosaiques = null;
+
+function chargerMosaiques(){
+    if(MOSAIQUES) return Promise.resolve(MOSAIQUES);
+    if(chargementMosaiques) return chargementMosaiques;
+    chargementMosaiques = fetch(MOSAIQUE_BASE + "mosaiques.json", { cache: "no-cache" })
+        .then(r => r.json())
+        .then(d => { MOSAIQUES = (d && d.images) || []; return MOSAIQUES; })
+        .catch(() => { MOSAIQUES = []; return MOSAIQUES; });
+    return chargementMosaiques;
+}
+
+// { r: rang courant, c: carreaux poses, j: jour, n: poses aujourd'hui,
+//   g: [rangs gagnes], t: seances restantes du trophee }
+function etatMosaique(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE) || "null"); }catch(e){}
+    if(!v || typeof v !== "object") v = {};
+    return { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
+             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0 };
+}
+
+function ecrireMosaique(v){
+    try{ localStorage.setItem(MOSAIQUE_CLE, JSON.stringify(v)); }catch(e){}
+}
+
+// L'ORDRE DE REVELATION EST TIRE UNE FOIS ET REPRODUCTIBLE. Il depend du rang
+// seul : deux appareils montrent la meme image au meme etat, et les carreaux ne
+// sautent pas d'une seance a l'autre. Un melange au hasard a chaque rendu
+// rendrait l'image indevinable -- c'est deviner qui donne envie de continuer.
+function ordreCarreaux(rang, total){
+    const ordre = [];
+    for(let i = 0; i < total; i++) ordre.push(i);
+    let s = 1013904223 + rang * 2654435761;
+    for(let j = total - 1; j > 0; j--){
+        s = (s * 1103515245 + 12345) & 0x7fffffff;
+        const k = s % (j + 1);
+        const t = ordre[j]; ordre[j] = ordre[k]; ordre[k] = t;
+    }
+    return ordre;
+}
+
+// La grille suit le format de l'image : des carreaux carres, et un nombre total
+// aussi proche que possible de MOSAIQUE_CARREAUX.
+function grilleMosaique(l, h){
+    const ratio = (l && h) ? l / h : 1;
+    const cols = Math.max(8, Math.round(Math.sqrt(MOSAIQUE_CARREAUX * ratio)));
+    const rows = Math.max(8, Math.round(MOSAIQUE_CARREAUX / cols));
+    return { cols: cols, rows: rows, total: cols * rows };
+}
+
+// ⚠️ LE PLAFOND N'EST PAS DE LA POLICE ANTI-TRICHE, IL PROTEGE LE RYTHME. Sans
+// lui, mille cartes balayees en un quart d'heure terminent une image d'un coup,
+// et la collection entiere y passe en une semaine -- il ne resterait rien pour
+// le sixieme mois. Avec, une image demande treize jours au plus vite.
+function poserCarreau(){
+    const v = etatMosaique();
+    const jour = getTodayStr();
+    if(v.j !== jour){ v.j = jour; v.n = 0; }
+    if(v.n >= MOSAIQUE_PLAFOND) return;
+    // Le trophee occupe l'ecran : la mosaique suivante s'accumule DESSOUS,
+    // sinon l'etudiant perdrait trois seances de progression pour avoir gagne
+    // quelque chose. Une recompense ne doit rien couter.
+    v.n += 1; v.c += 1;
+    ecrireMosaique(v);
+    majMosaiqueAccueil();
+}
+
+// Appelee a la fin d'une seance : fait avancer le compte des seances du trophee
+// et bascule sur l'image suivante quand il est ecoule.
+function seanceMosaiqueTerminee(){
+    const v = etatMosaique();
+    if(v.t > 0){
+        v.t -= 1;
+        if(v.t === 0) v.r = v.r + 1;
+        ecrireMosaique(v);
+    }
+}
+
+function mosaiqueCourante(){
+    if(!MOSAIQUES || !MOSAIQUES.length) return null;
+    const v = etatMosaique();
+    // Au-dela des images classees, on reboucle -- mais l'ordre fixe par Jacques
+    // reste celui de la premiere annee, on ne le retire pas au sort.
+    const i = (v.r - 1) % MOSAIQUES.length;
+    return MOSAIQUES[i];
+}
+
+function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
+    const ctx = canvas.getContext("2d");
+    const L = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, L, H);
+    ctx.drawImage(img, 0, 0, L, H);
+    if(fini) return;
+    // LE CARREAU FERME EST DU VERRE DEPOLI, PAS UN CACHE OPAQUE. Une grille
+    // vide n'invite personne, et un tableau visible en filigrane tuerait la
+    // curiosite qui porte tout le mecanisme. Le depoli laisse voir qu'il y a
+    // quelque chose, et rien de plus. Idee de Jacques, dosage a mi-chemin.
+    const flou = document.createElement("canvas");
+    flou.width = L; flou.height = H;
+    const fc = flou.getContext("2d");
+    try{ fc.filter = "blur(" + Math.max(6, Math.round(L / 46)) + "px) saturate(.5)"; }catch(e){}
+    fc.drawImage(img, 0, 0, L, H);
+    fc.filter = "none";
+    fc.fillStyle = document.body.dataset.theme === "dark"
+        ? "rgba(18,22,29,.55)" : "rgba(255,255,255,.58)";
+    fc.fillRect(0, 0, L, H);
+
+    const ordre = ordreCarreaux(etatMosaique().r, total);
+    const ouverts = new Uint8Array(total);
+    for(let i = 0; i < Math.min(poses, total); i++) ouverts[ordre[i]] = 1;
+    const cw = L / cols, ch = H / rows;
+    for(let k = 0; k < total; k++){
+        if(ouverts[k]) continue;
+        const x = (k % cols) * cw, y = Math.floor(k / cols) * ch;
+        ctx.drawImage(flou, x, y, cw, ch, x, y, cw, ch);
+    }
+}
+
+// LE CARTOUCHE SE DEVOILE EN TROIS TEMPS, ET CHAQUE TEMPS DONNE QUELQUE CHOSE
+// DE DEVINABLE. Reveler le titre lettre par lettre ne donnerait que du bruit :
+// un demi-mot allemand n'apprend rien. L'annee, puis le peintre, puis le titre
+// -- on peut deviner un peintre avant de deviner un titre, et a la fin il reste
+// une phrase entiere a lire. Demande de Jacques : le peintre, l'annee, le titre.
+function cartoucheMosaique(m, part, fini){
+    const n = document.getElementById("mosaiqueCartouche");
+    if(!n) return;
+    const total = (MOSAIQUES || []).length;
+    const rang = etatMosaique().r;
+    let h = '<div class="mos-ligne mos-rang">' + tf("mosaique_compte",
+              { n: ((rang - 1) % Math.max(1, total)) + 1, total: total }) + '</div>';
+    if(fini || part >= 0.40) h += '<div class="mos-ligne mos-annee">' + (m.annee || "") + '</div>';
+    if(fini || part >= 0.70) h += '<div class="mos-ligne mos-peintre">' + m.peintre + '</div>';
+    if(fini) h += '<div class="mos-ligne mos-titre">' + m.titre + '</div>';
+    n.innerHTML = h;
+}
+
+function majMosaiqueAccueil(){
+    const bloc = document.getElementById("carteMosaique");
+    if(!bloc) return;
+    chargerMosaiques().then(() => {
+        const m = mosaiqueCourante();
+        if(!m){ bloc.classList.add("hidden"); return; }
+        bloc.classList.remove("hidden");
+        const v = etatMosaique();
+        const g = grilleMosaique(m.l, m.h);
+        const fini = v.c >= g.total;
+        const canvas = document.getElementById("mosaiqueToile");
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+            const L = Math.min(900, m.l || 900);
+            canvas.width = L;
+            canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
+            dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
+            cartoucheMosaique(m, v.c / g.total, fini);
+        };
+        img.onerror = () => { bloc.classList.add("hidden"); };
+        img.src = MOSAIQUE_BASE + "img/" + m.fichier;
+
+        // L'image vient d'etre terminee : on ouvre le compte des trois seances
+        // et on la range dans la galerie. Une seule fois.
+        if(fini && v.t === 0 && v.g.indexOf(v.r) < 0){
+            v.g.push(v.r);
+            v.t = MOSAIQUE_SEANCES_TROPHEE;
+            v.c = 0;
+            ecrireMosaique(v);
+        }
+        const pied = document.getElementById("mosaiquePied");
+        if(pied){
+            pied.textContent = fini
+                ? tf("mosaique_trophee", { n: Math.max(1, v.t) })
+                : tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
+        }
+    });
+}
+
+// Plein ecran : l'etudiant touche l'image pour la voir en grand. Demande de
+// Jacques. La mosaique en cours s'y ouvre aussi -- on y voit ses carreaux
+// ouverts en grand, ce qui aide justement a deviner.
+function ouvrirMosaiquePleinEcran(rang){
+    chargerMosaiques().then(() => {
+        if(!MOSAIQUES || !MOSAIQUES.length) return;
+        const v = etatMosaique();
+        const r = rang || v.r;
+        const m = MOSAIQUES[(r - 1) % MOSAIQUES.length];
+        if(!m) return;
+        const gagnee = v.g.indexOf(r) >= 0;
+        const vue = document.getElementById("mosaiquePlein");
+        const toile = document.getElementById("mosaiquePleinToile");
+        const leg = document.getElementById("mosaiquePleinLegende");
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+            const g = grilleMosaique(m.l, m.h);
+            const L = Math.min(900, m.l || 900);
+            toile.width = L;
+            toile.height = Math.round(L * (m.h || 1) / (m.l || 1));
+            dessinerMosaique(toile, img, gagnee ? g.total : v.c, g.total, g.cols, g.rows, gagnee);
+            leg.innerHTML = gagnee
+                ? '<b>' + m.titre + '</b><br>' + m.peintre + ' · ' + (m.annee || "")
+                : tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
+        };
+        img.src = MOSAIQUE_BASE + "img/" + m.fichier;
+        vue.classList.remove("hidden");
+    });
+}
+
+function fermerMosaiquePleinEcran(){
+    const v = document.getElementById("mosaiquePlein");
+    if(v) v.classList.add("hidden");
+}
+
+// ⚠️ LA GALERIE NE MONTRE QUE CE QUI A ETE GAGNE. Des silhouettes pour les
+// images a venir seraient le defaut du denominateur inatteignable sous une
+// autre forme : soixante-cinq cadres vides disent « il t'en manque
+// soixante-deux ». Trois tableaux sur une etagere disent « tu en as trois ».
+function ouvrirGalerieMosaiques(){
+    chargerMosaiques().then(() => {
+        const zone = document.getElementById("galerieMosaiques");
+        if(!zone) return;
+        const v = etatMosaique();
+        if(!v.g.length){
+            zone.innerHTML = '<p class="galerie-vide">' + t("mosaique_galerie_vide") + '</p>';
+        } else {
+            zone.innerHTML = v.g.map(r => {
+                const m = MOSAIQUES[(r - 1) % MOSAIQUES.length];
+                if(!m) return "";
+                return '<figure class="galerie-item" onclick="ouvrirMosaiquePleinEcran(' + r + ')">'
+                     + '<img loading="lazy" src="' + MOSAIQUE_BASE + "img/" + m.fichier
+                     + '" alt="' + m.titre.replace(/"/g, "") + '">'
+                     + '<figcaption><b>' + m.titre + '</b><br>' + m.peintre
+                     + ' · ' + (m.annee || "") + '</figcaption></figure>';
+            }).join("");
+        }
+        showScreen("galerieMosaique");
+    });
 }
 
 // ============ LE VOCABULAIRE PAR NIVEAU (v542) ============
@@ -25669,6 +26044,11 @@ function markMastered(){
 
 function nextFlashcard(){
     currentFlashcard++;
+    // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
+    // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
+    // poser dans loadFlashcard() le compterait deux fois a chaque changement de
+    // langue, qui redessine la carte courante.
+    poserCarreau();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         // Fin du paquet : les cartes mises en attente ("revoir dans 2 min",
@@ -25722,6 +26102,7 @@ function skipFlashcard(){
         }
     }
     currentFlashcard++;
+    poserCarreau();
     if(currentFlashcard >= currentCards.length){
         showInfoToast(t('alert_session_ended'));
         handleFlashcardBack();
