@@ -2038,7 +2038,7 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
     gap:6px;
     flex:1 1 auto;
     min-width:0;
-    max-width:158px;
+    max-width:104px;
     margin:0;
     padding:3px 9px;
     border-radius:999px;
@@ -3982,6 +3982,18 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 }
 .orb-seance:hover{transform:none; box-shadow:0 8px 20px rgba(47,98,214,.34);}
 .seance-haut{display:flex; align-items:baseline; gap:8px;}
+/* L'action principale : un bloc BLANC sur le bleu. Le bandeau reste le seul
+   bloc plein de l'accueil (v531), et a l'interieur c'est l'inverse qui marque
+   -- le blanc ressort sur le bleu comme le bleu ressort sur le papier. */
+.seance-actions{display:flex; align-items:center; gap:10px; margin-top:11px;}
+.seance-go{
+    flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px;
+    padding:11px 16px; border:0; border-radius:12px;
+    background:#fff; color:#2f62d6; font-family:inherit;
+    font-size:14.5px; font-weight:800; cursor:pointer;
+}
+.seance-go svg{width:16px; height:16px;}
+.seance-go:active{transform:scale(.98);}
 .seance-compte{
     font-family:inherit; font-size:12.5px; font-weight:700; color:#fff;
     background:rgba(255,255,255,.20); border-radius:999px; padding:2px 9px;
@@ -4001,10 +4013,10 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 }
 .seance-niveau.on{background:#fff; border-color:#fff; color:#2f62d6;}
 .seance-themes{
-    margin-inline-start:auto; flex:0 0 auto;
-    border:1px solid rgba(255,255,255,.45); border-radius:6px;
-    background:transparent; color:#fff; cursor:pointer;
-    font-size:11px; font-weight:600; line-height:1; padding:4px 8px;
+    flex:0 0 auto; background:none; border:0; padding:6px 2px;
+    color:rgba(255,255,255,.86); font-family:inherit; font-size:12.5px;
+    font-weight:600; text-decoration:underline; text-underline-offset:3px;
+    cursor:pointer;
 }
 /* ⚠️ LE MODE NUIT EFFACAIT LE REMPLISSAGE. `body[data-theme="dark"] .orb` a
    une specificite plus forte que `.orb-seance` : la surface sombre gagnait, et
@@ -4284,8 +4296,14 @@ body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
    filet sombre, lisere clair -- mais plus large, a la mesure de l'image. */
 .mos-plein-toile{
     max-width:100%; max-height:74vh; border-radius:0; display:block;
-    border:3px solid rgba(255,255,255,.55);
-    box-shadow:inset 0 0 0 3px rgba(0,0,0,.35), 0 14px 40px rgba(0,0,0,.55);
+    /* ⚠️ BLEU TRES PALE, PAS LE BLEU DE L'APP. Le bleu de la seance veut dire
+       « action » : l'employer autour d'une oeuvre qu'on ne fait qu'admirer lui
+       retire ce sens. Et il se battrait avec les toiles -- Marc, Macke et
+       Jawlensky sont deja pleins de bleu. #B5D4F4 se lit comme un blanc froid
+       sur le noir : assez present pour cadrer, assez neutre pour ne pas entrer
+       dans le tableau. Question posee par Jacques. */
+    border:3px solid rgba(181,212,244,.62);
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.40), 0 14px 40px rgba(0,0,0,.55);
 }
 .mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
 /* La galerie */
@@ -4598,7 +4616,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
                autocorrect="off" spellcheck="false"
-               data-i18n-placeholder="search_launch_court" placeholder="Chercher"
+               placeholder=""
+               data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
                data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
                onfocus="ouvrirRechercheDepuisAccueil()"
                oninput="ouvrirRechercheDepuisAccueil(this.value)">
@@ -4750,15 +4769,34 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      Le ⓘ le dit, parce que rien d'autre ne peut le deviner. -->
                 <span id="seanceCompte" class="seance-compte"></span>
                 <span id="seanceSub" class="seance-sub"></span>
-                <svg class="seance-fleche" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
+
             </div>
+            <!-- ⚠️ TROIS NATURES DE CONTROLE DANS UN SEUL BLOC, et la plus
+                 importante etait la moins marquee. Signale par Jacques : « il
+                 faut que je fasse attention ». Le bandeau portait une ACTION
+                 principale (commencer -- mais il fallait deviner qu'on touche
+                 le fond), un REGLAGE (d'ou viennent les mots neufs) et une
+                 SECONDE ACTION (par theme) melee aux pastilles du reglage.
+
+                 Desormais chaque nature a sa ligne : le reglage d'abord, avec
+                 ses pastilles seules ; l'action ensuite, dans un vrai bouton
+                 qu'on ne peut pas manquer ; la porte laterale en dessous, en
+                 retrait, annoncee par « ou ». -->
             <div class="seance-bas">
                 <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire en provenance du niveau&nbsp;:</span>
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
                       aria-label="Provenance des mots nouveaux"></span>
+            </div>
+            <div class="seance-actions">
+                <button type="button" class="seance-go" onclick="event.stopPropagation(); ouvrirSeanceDuJour();">
+                    <span data-i18n="seance_commencer">Commencer</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                         stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
                 <button type="button" class="seance-themes"
-                        onclick="event.stopPropagation(); ouvrirThemesDuNiveau();"
-                        data-i18n="seance_par_theme">Par thème</button>
+                        onclick="event.stopPropagation(); ouvrirThemesDuNiveau();">
+                    <span data-i18n="seance_ou_theme">ou par thème</span>
+                </button>
             </div>
         </div>
 
@@ -5099,7 +5137,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v559</span>
+    <span class="subtitle-version">v560</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7584,6 +7622,8 @@ const I18N = {
         seance_neufs_de: "mots nouveaux en {niv}",
         seance_neufs_etiq: "Nouveau vocabulaire en provenance du niveau :",
         seance_par_theme: "Par thème",
+        seance_commencer: "Commencer",
+        seance_ou_theme: "ou par thème",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -8516,6 +8556,8 @@ const I18N = {
         seance_neufs_de: "new words from {niv}",
         seance_neufs_etiq: "New vocabulary from level:",
         seance_par_theme: "By theme",
+        seance_commencer: "Start",
+        seance_ou_theme: "or by theme",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -9450,6 +9492,8 @@ const I18N = {
         seance_neufs_de: "{niv} seviyesinden yeni kelimeler",
         seance_neufs_etiq: "Yeni kelime dağarcığı şu seviyeden:",
         seance_par_theme: "Temaya göre",
+        seance_commencer: "Başla",
+        seance_ou_theme: "ya da temaya göre",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -10649,6 +10693,8 @@ const I18N = {
         seance_neufs_de: "нові слова з {niv}",
         seance_neufs_etiq: "Нова лексика з рівня:",
         seance_par_theme: "За темою",
+        seance_commencer: "Почати",
+        seance_ou_theme: "або за темою",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -12225,6 +12271,8 @@ const I18N = {
         seance_neufs_de: "واژه‌های تازه از {niv}",
         seance_neufs_etiq: "واژگان تازه از سطح:",
         seance_par_theme: "بر پایهٔ موضوع",
+        seance_commencer: "شروع",
+        seance_ou_theme: "یا بر پایهٔ موضوع",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -23683,7 +23731,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 559;
+const APP_VERSION = 560;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
