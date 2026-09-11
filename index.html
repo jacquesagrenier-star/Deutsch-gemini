@@ -3635,9 +3635,13 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 /* Verso d'une carte : deux gestes, pas quatre. La personne sait si le mot lui
    est revenu ; elle n'a pas a choisir en plus une echeance de revision. */
 .judge-row{display:flex; gap:10px;}
+/* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
+   seuls. On gagne la hauteur sur le REMPLISSAGE, pas sur le texte : le libelle
+   descend de 15 a 14 px, l'echeance de 13 a 12, et le rembourrage de 14 a 10 --
+   c'est lui qui coutait le plus, et lui seul ne porte aucune information. */
 .judge-button{
-    flex:1; margin:0; padding:14px 12px 13px; border-radius:16px;
-    font-weight:800; font-size:15px; letter-spacing:.01em;
+    flex:1; margin:0; padding:10px 10px 9px; border-radius:14px;
+    font-weight:800; font-size:14px; letter-spacing:.01em;
     border:1.5px solid transparent; cursor:pointer;
     transition:transform .12s ease, box-shadow .12s ease;
 }
@@ -3661,15 +3665,15 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    De 11 px a 13, de 72 % d'opacite a 92 : elle se lit maintenant du premier
    coup d'oeil, sans cesser d'etre la CONSEQUENCE de la reponse. */
 .judge-echeance{
-    display:block; margin-top:5px;
-    font-size:13px; font-weight:700; opacity:.92; letter-spacing:0;
+    display:block; margin-top:3px;
+    font-size:12px; font-weight:700; opacity:.92; letter-spacing:0;
 }
 /* Trois pastilles valent une phrase : elles disent d'un coup d'oeil ou en est
    le mot sur l'echelle, et un "Encore" les vide sous les yeux -- la sanction
    se voit au lieu d'etre expliquee. */
 .srs-ladder{
-    display:flex; align-items:center; justify-content:center; gap:7px;
-    margin-top:5px;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    margin-top:3px;
 }
 .srs-pips{display:flex; gap:5px;}
 /* A 6 px la pastille se lisait comme une ponctuation. Elle doit se voir
@@ -3682,7 +3686,7 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .srs-pip.on{background:#1c6b47;}
 .srs-pip.next{box-shadow:0 0 0 2.5px rgba(28,107,71,.18);}
 .srs-ladder-text{
-    font-size:13px; font-weight:700; color:#1c6b47; opacity:.95;
+    font-size:12px; font-weight:700; color:#1c6b47; opacity:.95;
     letter-spacing:.01em; text-transform:none;
 }
 /* Trois pastilles vertes : c'est le seul etat qui merite d'etre remarque, et
@@ -3714,8 +3718,8 @@ body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
    elles tiennent quelle que soit la longueur du libelle -- « Je le sais par
    coeur » fait dix-neuf caracteres en francais, davantage en ukrainien. */
 .judge-known{
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
-    width:fit-content; max-width:100%; margin:14px auto 0; padding:9px 16px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
+    width:fit-content; max-width:100%; margin:9px auto 0; padding:6px 15px;
     background:#fff; border:1.5px solid #e3e7ee; border-radius:999px;
     color:#697285; font-size:12.5px; font-weight:700; cursor:pointer;
     transition:border-color .15s ease, color .15s ease, transform .12s ease;
@@ -5095,7 +5099,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v558</span>
+    <span class="subtitle-version">v559</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -23679,7 +23683,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 558;
+const APP_VERSION = 559;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
