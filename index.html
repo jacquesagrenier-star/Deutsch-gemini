@@ -3717,8 +3717,16 @@ body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
    s'alignait plus sur la premiere. Signale par Jacques. Empilees et centrees,
    elles tiennent quelle que soit la longueur du libelle -- « Je le sais par
    coeur » fait dix-neuf caracteres en francais, davantage en ukrainien. */
+/* ⚠️ UNE SEULE LIGNE (v562). Il etait passe en colonne a la v555 parce que
+   l'echeance a 13 px ne s'alignait plus ; a 12 px elle tient a cote, separee par
+   un point median, et le bouton reprend la moitie de sa hauteur. Demande de
+   Jacques. `flex-wrap` garde le repli pour les langues plus longues -- « Знаю
+   напам'ять » ne tient pas partout. */
+.judge-known .judge-echeance{display:inline; margin:0;}
+.judge-known .judge-echeance::before{content:"\00b7"; margin-inline-end:6px; opacity:.55;}
 .judge-known{
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
+    display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline;
+    justify-content:center; gap:0 7px;
     width:fit-content; max-width:100%; margin:9px auto 0; padding:6px 15px;
     background:#fff; border:1.5px solid #e3e7ee; border-radius:999px;
     color:#697285; font-size:12.5px; font-weight:700; cursor:pointer;
@@ -3741,14 +3749,17 @@ body[data-theme="dark"] .judge-known{
     margin-top:6px; padding:20px; border:1px solid #e6e9ef;
     border-radius:20px; background:#fff;
 }
-.flash-retour{display:flex; justify-content:center; margin-top:10px;}
-.flash-retour-btn{
-    display:inline-flex; align-items:center; gap:6px; padding:5px 12px;
-    border:1px solid rgba(47,98,214,.30); border-radius:999px; background:none;
-    color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600; cursor:pointer;
+.flash-retour-coin{
+    position:absolute; top:10px; inset-inline-start:10px; z-index:3;
+    width:30px; height:30px; border-radius:50%; padding:0;
+    border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
+    color:#2f62d6; display:inline-flex; align-items:center; justify-content:center;
+    cursor:pointer;
 }
-.flash-retour-btn svg{width:13px; height:13px;}
-body[data-theme="dark"] .flash-retour-btn{border-color:rgba(143,180,255,.34); color:#8FB4FF;}
+.flash-retour-coin svg{width:15px; height:15px;}
+body[data-theme="dark"] .flash-retour-coin{
+    background:rgba(26,32,42,.92); border-color:rgba(143,180,255,.30); color:#8FB4FF;
+}
 .carte-precedente{
     position:fixed; inset:0; z-index:9000; background:rgba(12,16,22,.88);
     display:flex; align-items:center; justify-content:center; padding:22px; cursor:pointer;
@@ -3985,14 +3996,23 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* L'action principale : un bloc BLANC sur le bleu. Le bandeau reste le seul
    bloc plein de l'accueil (v531), et a l'interieur c'est l'inverse qui marque
    -- le blanc ressort sur le bleu comme le bleu ressort sur le papier. */
-.seance-actions{display:flex; align-items:center; gap:10px; margin-top:11px;}
-.seance-go{
-    flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px;
-    padding:11px 16px; border:0; border-radius:12px;
-    background:#fff; color:#2f62d6; font-family:inherit;
-    font-size:14.5px; font-weight:800; cursor:pointer;
+.seance-actions{display:flex; align-items:flex-end; justify-content:space-between;
+    gap:10px; margin-top:5px;}
+/* ⚠️ `max-content` EST TOUTE L'ASTUCE : la colonne se regle sur le plus
+   large des deux enfants -- la rangee de pastilles -- et le bouton, en
+   `stretch`, vient exactement d'un bord a l'autre. `minmax(0, ...)` evite le
+   debordement quand une langue allonge les etiquettes. */
+.seance-pile{
+    display:inline-grid; grid-template-columns:minmax(0,max-content);
+    gap:6px; min-width:0;
 }
-.seance-go svg{width:16px; height:16px;}
+.seance-go{
+    width:100%; display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:6px 14px; border:0; border-radius:9px;
+    background:#fff; color:#2f62d6; font-family:inherit;
+    font-size:13px; font-weight:800; line-height:1.35; cursor:pointer;
+}
+.seance-go svg{width:13px; height:13px;}
 .seance-go:active{transform:scale(.98);}
 .seance-compte{
     font-family:inherit; font-size:12.5px; font-weight:700; color:#fff;
@@ -4274,13 +4294,17 @@ body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
    bleu : rien ne disait qu'on pouvait le toucher, sinon sa couleur -- et la
    couleur seule ne porte jamais une information (v531). Un contour arrondi le
    dit sans ambiguite. Demande de Jacques. */
+/* ⚠️ GRIS CHARBON, PAS BLEU. Demande de Jacques -- et la raison tient :
+   dans cette app le bleu veut dire ACTION (le bandeau, « Commencer »). Autour
+   d'un tableau, il tire l'oeil vers un bouton secondaire au lieu de le laisser
+   sur l'oeuvre. Le charbon se voit sans reclamer. */
 .mos-galerie{
-    background:none; border:1px solid rgba(47,98,214,.35); border-radius:999px;
+    background:none; border:1px solid rgba(30,41,59,.28); border-radius:999px;
     padding:4px 11px; font-family:inherit; font-size:11px; font-weight:600;
-    color:#2f62d6; cursor:pointer; white-space:nowrap; line-height:1.3;
+    color:#3b4452; cursor:pointer; white-space:nowrap; line-height:1.3;
 }
-.mos-galerie:hover{background:rgba(47,98,214,.08);}
-body[data-theme="dark"] .mos-galerie{border-color:rgba(143,180,255,.38);}
+.mos-galerie:hover{background:rgba(30,41,59,.06);}
+body[data-theme="dark"] .mos-galerie{border-color:rgba(255,255,255,.26); color:#C6CCD6;}
 body[data-theme="dark"] .carte-mosaique{border-top-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .mos-cadre{border-color:rgba(255,255,255,.16); background:#20252e;}
 body[data-theme="dark"] .mos-peintre{color:#F2F2F6;}
@@ -4314,6 +4338,24 @@ body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
 }
 .mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
 /* La galerie */
+.ip-bloc{
+    display:flex; gap:13px; align-items:flex-start;
+    padding:12px 0; border-bottom:1px solid rgba(30,41,59,.08);
+}
+body[data-theme="dark"] .ip-bloc{border-bottom-color:rgba(255,255,255,.10);}
+.ip-demo{flex:0 0 116px; display:flex; flex-direction:column; align-items:center; gap:2px;}
+.ip-texte{flex:1; min-width:0;}
+.ip-texte h3{font-size:13.5px; font-weight:700; margin:0 0 3px;}
+.ip-texte p{font-size:12.5px; line-height:1.5; color:#576177; margin:0;}
+body[data-theme="dark"] .ip-texte p{color:#A6ADBB;}
+.ip-grille{
+    display:grid; grid-template-columns:repeat(12,1fr); gap:1.5px;
+    width:108px; border:2px solid #1C2430; padding:2px; background:#e9e4da;
+}
+body[data-theme="dark"] .ip-grille{border-color:#C6CCD6; background:#2a3038;}
+.ip-grille i{display:block; aspect-ratio:1; background:#cfd5de;}
+.ip-grille i.o{background:#7fae6a;}
+body[data-theme="dark"] .ip-grille i{background:#3a4250;}
 .info-titre{
     font-size:13px; font-weight:800; letter-spacing:.10em; text-transform:uppercase;
     color:#2f62d6; margin:26px 0 8px;
@@ -4791,15 +4833,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  retrait, annoncee par « ou ». -->
             <div class="seance-bas">
                 <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire en provenance du niveau&nbsp;:</span>
+            </div>
+            <!-- ⚠️ LE BOUTON EST EMPILE SOUS LES PASTILLES, DANS LA MEME GRILLE.
+                 Demande de Jacques : qu'il commence ou commence A1 et finisse ou
+                 finit C1. Ce n'est pas une largeur recopiee a la main -- la
+                 colonne est en `max-content`, donc elle prend la largeur de la
+                 rangee de pastilles et le bouton s'y etire tout seul. Ajouter
+                 un niveau demain deplacera les deux ensemble.
+                 ⚠️ « ou par theme » reste HORS de la pile, a droite. -->
+            <div class="seance-actions">
+              <div class="seance-pile">
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
                       aria-label="Provenance des mots nouveaux"></span>
-            </div>
-            <div class="seance-actions">
                 <button type="button" class="seance-go" onclick="event.stopPropagation(); ouvrirSeanceDuJour();">
                     <span data-i18n="seance_commencer">Commencer</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
                          stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                 </button>
+              </div>
                 <button type="button" class="seance-themes"
                         onclick="event.stopPropagation(); ouvrirThemesDuNiveau();">
                     <span data-i18n="seance_ou_theme">ou par thème</span>
@@ -5144,7 +5195,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v561</span>
+    <span class="subtitle-version">v562</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5178,17 +5229,55 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <p class="kicker" data-i18n="carte_info_kicker">Ta progression</p>
     <h2 data-i18n="carte_info_titre">Comment lire ta progression</h2>
 
-    <!-- ⚠️ TROIS PARTIES, DANS CET ORDRE : ce qu'on voit, ce qui est range ici,
-         puis comment un mot s'installe. La legende precedente melait les trois
-         et enumerait dans un ordre qui ne correspondait a aucun ecran. -->
+    <!-- ⚠️ CHAQUE EXPLICATION EST COLLEE A UN ECHANTILLON DE CE QU'ELLE DECRIT.
+         La version precedente enumerait des phrases sans rien montrer : il
+         fallait se souvenir de l'accueil pour la comprendre. -->
 
-    <h3 class="info-titre" data-i18n="info_partie_accueil">Sur l'accueil</h3>
+    <div class="ip-bloc">
+        <div class="ip-demo">
+            <span class="seance-compte" style="background:#2f62d6">12 / 40</span>
+        </div>
+        <div class="ip-texte">
+            <h3 data-i18n="ip_seance_t">Le compte de la séance</h3>
+            <p data-i18n="ip_seance_p"></p>
+        </div>
+    </div>
+
+    <div class="ip-bloc">
+        <div class="ip-demo">
+            <div class="carte-vocab-piste" style="width:104px">
+                <div class="carte-vocab-part sus" style="width:34%"></div>
+                <div class="carte-vocab-part cours" style="width:26%"></div>
+            </div>
+            <div class="vocab-legende" style="margin-top:7px">
+                <span><i class="pt-sus"></i><span data-i18n="vocab_sus">su</span></span>
+                <span><i class="pt-cours"></i><span data-i18n="vocab_cours">en cours</span></span>
+                <span><i class="pt-reste"></i><span data-i18n="vocab_reste">à rencontrer</span></span>
+            </div>
+        </div>
+        <div class="ip-texte">
+            <h3 data-i18n="ip_vocab_t">La progression du vocabulaire</h3>
+            <p data-i18n="ip_vocab_p"></p>
+        </div>
+    </div>
+
+    <!-- ⚠️ LE TABLEAU MANQUAIT ENTIEREMENT. C'est la seule chose vraiment
+         nouvelle de l'app, et l'aide n'en disait pas un mot. Signale par
+         Jacques : « on ne parle pas du tableau, comment il grandit ». -->
+    <h3 class="info-titre" data-i18n="ip_partie_tableau">Le tableau</h3>
+    <div class="ip-bloc">
+        <div class="ip-demo">
+            <div class="ip-grille" id="ipGrille"></div>
+        </div>
+        <div class="ip-texte">
+            <p data-i18n="ip_tableau_1"></p>
+        </div>
+    </div>
     <ul class="info-legende">
-        <li data-i18n="legende_seance"></li>
-        <li data-i18n="legende_seance_niveau"></li>
-        <li data-i18n="legende_objectif_quoi"></li>
-        <li data-i18n="legende_vocab"></li>
-        <li data-i18n="legende_mosaique"></li>
+        <li id="ipTableauCarreaux"></li>
+        <li id="ipTableauPlafond"></li>
+        <li data-i18n="ip_tableau_cartouche"></li>
+        <li id="ipTableauTrophee"></li>
     </ul>
 
     <h3 class="info-titre" data-i18n="info_partie_ici">Rangé ici</h3>
@@ -5218,27 +5307,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <li data-i18n="legende_grammaire"></li>
     </ul>
 
-    <!-- ⚠️ L'ANNEAU EST MASQUE (v557), ET C'EST JACQUES QUI A POSE LA BONNE
-         QUESTION : « le cercle n'est plus la pour la progression, pourquoi tu
-         l'as garde ? » Je l'avais garde par precaution -- la v535 l'avait
-         deplace ici plutot que supprime, et updateHomeStatsPanel() y ecrit
-         toujours.
+    <h3 class="info-titre" data-i18n="info_partie_memoire">Comment un mot s'installe</h3>
+    <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
+    <div id="echelleMaitrise" class="echelle-maitrise"></div>
+    <ul class="info-legende">
+        <li data-i18n="progress_info_deja"></li>
+        <li data-i18n="progress_info_apres"></li>
+    </ul>
 
-         Mais depuis la v542, la ligne « Progression du vocabulaire » dit LA
-         MEME CHOSE EN MIEUX : le niveau avec un denominateur atteignable
-         (612 / 860), en trois couleurs, depliable sur les cinq niveaux.
-         L'anneau donnait un pourcentage d'un niveau entier qui avance de
-         0,22 % par mot. Deux mesures du meme objet, dont une illisible.
-
-         ⚠️ MASQUE ET NON SUPPRIME : globalRingFill, globalRingLevel et
-         globalRingNum recoivent toujours des ecritures. Les retirer casserait
-         la mise a jour EN SILENCE -- le fichier porte cet avertissement depuis
-         la v535, et c'est exactement le genre de raccourci qui a casse
-         l'accueil hier. -->
+    <!-- ⚠️ CONSERVES HORS DE L'AFFICHAGE : updateHomeStatsPanel() y ecrit
+         toujours. Les retirer casserait la mise a jour en silence. -->
     <div class="info-anneau hidden">
         <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button"
-             data-i18n-aria-label="info_anneau_aria" aria-label="Changer de niveau affiché"
-             style="cursor:pointer;">
+             data-i18n-aria-label="info_anneau_aria" aria-label="Changer de niveau affiché">
             <svg width="76" height="76" viewBox="0 0 76 76">
                 <circle cx="38" cy="38" r="32" fill="none" class="global-ring-track" stroke-width="7"/>
                 <circle id="globalRingFill" cx="38" cy="38" r="32" fill="none" stroke="url(#globalRingGrad)"
@@ -5249,20 +5330,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="globalRingLevel" class="global-ring-level">A1</div>
                 <div id="globalRingNum" class="global-ring-num">0%</div>
             </div>
-            <div class="ring-cycle-badge" aria-hidden="true">⟳</div>
         </div>
     </div>
-
-    <h3 class="info-titre" data-i18n="info_partie_memoire">Comment un mot s'installe</h3>
-    <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
-    <div id="echelleMaitrise" class="echelle-maitrise"></div>
-    <ul class="info-legende">
-        <li data-i18n="progress_info_deja"></li>
-        <li data-i18n="progress_info_apres"></li>
-    </ul>
-
-    <!-- ⚠️ CONSERVE HORS DE L'AFFICHAGE : updateHomeStatsPanel() y ecrit
-         toujours. Le retirer casserait la mise a jour en silence. -->
     <div class="home-daily-goal hidden">
         <div class="home-daily-goal-row">
             <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
@@ -6780,6 +6849,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
                      Les elements restent, masques : d'autres modes de carte
                      peuvent encore s'y referer. -->
+                <!-- ⚠️ LA FLECHE VIT DANS LE CADRE DE LA CARTE (v562), pas sous
+                     l'ecran. Demande de Jacques. Elle etait tout en bas, apres
+                     les trois boutons : loin du regard au moment ou l'on se dit
+                     « c'etait quoi deja ». Dans le coin du verso, elle est la ou
+                     la question se pose.
+                     ⚠️ event.stopPropagation() est indispensable : sans lui, la
+                     toucher RETOURNERAIT la carte, puisque toute la surface du
+                     verso sert a ca. -->
+                <button type="button" id="flashRetour" class="flash-retour-coin hidden"
+                        onclick="event.stopPropagation(); ouvrirCartePrecedente();"
+                        data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                         stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+                </button>
                 <div class="skip-hint hidden" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
                 <div class="tap-map hidden" aria-hidden="true">
                     <span class="tap-map-half">←</span>
@@ -6824,13 +6907,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          laisse le temps de relire le mot qu'on vient de rater. -->
     <!-- ⚠️ LECTURE SEULE. La carte precedente est deja jugee : la rejuger la
          compterait deux fois. On la regarde, on referme. -->
-    <div id="flashRetour" class="flash-retour hidden">
-        <button type="button" class="flash-retour-btn" onclick="ouvrirCartePrecedente()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                 stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-            <span data-i18n="flash_revoir">Revoir le mot précédent</span>
-        </button>
-    </div>
+
     <div id="cartePrecedente" class="carte-precedente hidden" onclick="fermerCartePrecedente()">
         <div class="carte-precedente-boite">
             <div id="cartePrecedenteMot" class="carte-precedente-mot"></div>
@@ -7766,6 +7843,16 @@ const I18N = {
         carte_info_kicker: "Ta progression",
         info_partie_accueil: "Sur l'accueil",
         info_partie_ici: "Rangé ici",
+        ip_seance_t: "Le compte de la séance",
+        ip_seance_p: "Les cartes que tu as jugées aujourd'hui, sur ton objectif. Une carte demande une réponse — « Encore » ou « Je savais » — pour compter.",
+        ip_vocab_t: "La progression du vocabulaire",
+        ip_vocab_p: "Où tu en es du niveau affiché. Touche la flèche pour voir les cinq niveaux : ils totalisent les 7 704 mots de l'app.",
+        ip_partie_tableau: "Le tableau",
+        ip_tableau_1: "Un tableau du monde germanophone se découvre carreau par carreau. Chaque carte que tu traverses en ouvre un — les révisions comptent autant que les mots nouveaux.",
+        ip_tableau_carreaux: "Il faut environ {n} carreaux pour découvrir un tableau entier.",
+        ip_tableau_plafond: "Au maximum {n} carreaux par jour : le tableau avance vite, mais pas d'un coup — sinon la collection serait épuisée en une semaine.",
+        ip_tableau_cartouche: "Le cartouche se dévoile en trois temps : l'année, puis le peintre, puis le titre.",
+        ip_tableau_trophee: "Terminé, il reste {n} séances à l'écran, puis il rejoint ta galerie — où tu peux le revoir en grand.",
         info_partie_memoire: "Comment un mot s'installe",
         info_anneau_aria: "Changer de niveau affiché",
         search_launch_court: "Chercher",
@@ -8700,6 +8787,16 @@ const I18N = {
         carte_info_kicker: "Your progress",
         info_partie_accueil: "On the home screen",
         info_partie_ici: "Kept here",
+        ip_seance_t: "The session count",
+        ip_seance_p: "The cards you judged today, against your goal. A card needs an answer — « Again » or « I knew it » — to count.",
+        ip_vocab_t: "Vocabulary progress",
+        ip_vocab_p: "Where you stand in the level shown. Tap the arrow for all five levels: together they make up the app's 7,704 words.",
+        ip_partie_tableau: "The painting",
+        ip_tableau_1: "A painting from the German-speaking world uncovers tile by tile. Every card you go through opens one — reviews count as much as new words.",
+        ip_tableau_carreaux: "About {n} tiles uncover a whole painting.",
+        ip_tableau_plafond: "At most {n} tiles a day: the painting moves quickly, but never all at once — otherwise the collection would be spent in a week.",
+        ip_tableau_cartouche: "The label appears in three stages: the year, then the painter, then the title.",
+        ip_tableau_trophee: "Once finished it stays on screen for {n} sessions, then joins your gallery — where you can see it full size.",
         info_partie_memoire: "How a word settles in",
         info_anneau_aria: "Change the level shown",
         search_launch_court: "Search",
@@ -9636,6 +9733,16 @@ const I18N = {
         carte_info_kicker: "İlerlemen",
         info_partie_accueil: "Ana ekranda",
         info_partie_ici: "Burada saklı",
+        ip_seance_t: "Oturum sayacı",
+        ip_seance_p: "Bugün değerlendirdiğin kartlar, hedefine göre. Bir kartın sayılması için yanıt gerekir.",
+        ip_vocab_t: "Kelime ilerlemesi",
+        ip_vocab_p: "Gösterilen seviyede neredesin. Beş seviyeyi görmek için oka dokun: toplamı uygulamanın 7 704 kelimesi.",
+        ip_partie_tableau: "Tablo",
+        ip_tableau_1: "Almanca konuşulan dünyadan bir tablo kare kare açılır. Geçtiğin her kart bir kare açar — tekrarlar da yeni kelimeler kadar sayılır.",
+        ip_tableau_carreaux: "Bir tablonun tamamı için yaklaşık {n} kare gerekir.",
+        ip_tableau_plafond: "Günde en fazla {n} kare: tablo hızlı ilerler ama bir seferde değil.",
+        ip_tableau_cartouche: "Künye üç aşamada belirir: yıl, sonra ressam, sonra başlık.",
+        ip_tableau_trophee: "Bitince {n} oturum ekranda kalır, sonra galerine geçer.",
         info_partie_memoire: "Bir kelime nasıl yerleşir",
         info_anneau_aria: "Gösterilen seviyeyi değiştir",
         search_launch_court: "Ara",
@@ -11202,6 +11309,16 @@ const I18N = {
         carte_info_kicker: "Твій поступ",
         info_partie_accueil: "На головному екрані",
         info_partie_ici: "Зберігається тут",
+        ip_seance_t: "Лічильник сеансу",
+        ip_seance_p: "Картки, які ти оцінив сьогодні, щодо твоєї мети. Картка зараховується лише з відповіддю.",
+        ip_vocab_t: "Поступ у лексиці",
+        ip_vocab_p: "Де ти на показаному рівні. Торкнись стрілки, щоб побачити всі п'ять: разом це 7 704 слова застосунку.",
+        ip_partie_tableau: "Картина",
+        ip_tableau_1: "Картина німецькомовного світу відкривається плитка за плиткою. Кожна пройдена картка відкриває одну — повторення важать не менше за нові слова.",
+        ip_tableau_carreaux: "Щоб відкрити цілу картину, потрібно близько {n} плиток.",
+        ip_tableau_plafond: "Щонайбільше {n} плиток на день: картина рухається швидко, але не за раз.",
+        ip_tableau_cartouche: "Підпис з'являється у три етапи: рік, потім художник, потім назва.",
+        ip_tableau_trophee: "Завершена, вона лишається на екрані {n} сеанси, потім переходить до галереї.",
         info_partie_memoire: "Як слово закріплюється",
         info_anneau_aria: "Змінити показаний рівень",
         search_launch_court: "Пошук",
@@ -12108,6 +12225,16 @@ const I18N = {
         carte_info_kicker: "پیشرفت تو",
         info_partie_accueil: "در صفحهٔ خانه",
         info_partie_ici: "نگه‌داشته اینجا",
+        ip_seance_t: "شمارندهٔ جلسه",
+        ip_seance_p: "کارت‌هایی که امروز داوری کرده‌ای، نسبت به هدفت. کارت برای شمرده‌شدن به پاسخ نیاز دارد.",
+        ip_vocab_t: "پیشرفت واژگان",
+        ip_vocab_p: "جایگاه تو در سطح نمایش‌داده‌شده. برای دیدن هر پنج سطح روی فلش بزن.",
+        ip_partie_tableau: "تابلو",
+        ip_tableau_1: "تابلویی از جهان آلمانی‌زبان کاشی‌به‌کاشی آشکار می‌شود. هر کارتی که رد می‌کنی یکی را باز می‌کند — مرورها هم به اندازهٔ واژه‌های نو می‌ارزند.",
+        ip_tableau_carreaux: "برای آشکار شدن یک تابلوی کامل حدود {n} کاشی لازم است.",
+        ip_tableau_plafond: "روزانه حداکثر {n} کاشی: تابلو تند پیش می‌رود، اما نه یک‌باره.",
+        ip_tableau_cartouche: "شناسه در سه مرحله پدیدار می‌شود: سال، سپس نقاش، سپس عنوان.",
+        ip_tableau_trophee: "پس از تکمیل {n} جلسه روی صفحه می‌ماند، سپس به گالری تو می‌رود.",
         info_partie_memoire: "چگونه واژه جا می‌افتد",
         info_anneau_aria: "تغییر سطح نمایش‌داده‌شده",
         search_launch_court: "جست‌وجو",
@@ -16390,11 +16517,34 @@ function fermerInfoProgression(){
     if(btn) btn.setAttribute("aria-expanded", "false");
 }
 
+// ⚠️ LES NOMBRES VIENNENT DES CONSTANTES, JAMAIS DU TEXTE. « 700 carreaux »,
+// « 80 par jour », « 3 seances » sont ecrits ici depuis MOSAIQUE_CARREAUX,
+// MOSAIQUE_PLAFOND et MOSAIQUE_SEANCES_TROPHEE. Un chiffre recopie dans cinq
+// traductions se met a mentir des qu'on change la constante, et personne ne le
+// voit -- c'est exactement ce qui est arrive trois fois a cette legende.
+function majInfoProgression(){
+    const pose = (id, cle, vars) => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = tf(cle, vars);
+    };
+    pose("ipTableauCarreaux", "ip_tableau_carreaux", { n: MOSAIQUE_CARREAUX });
+    pose("ipTableauPlafond", "ip_tableau_plafond", { n: MOSAIQUE_PLAFOND });
+    pose("ipTableauTrophee", "ip_tableau_trophee", { n: MOSAIQUE_SEANCES_TROPHEE });
+    // La petite grille : quelques carreaux ouverts, pour montrer le principe.
+    const g = document.getElementById("ipGrille");
+    if(g && !g.childElementCount){
+        let h = "";
+        for(let i = 0; i < 96; i++) h += '<i class="' + (i % 7 === 0 || i % 11 === 3 ? "o" : "") + '"></i>';
+        g.innerHTML = h;
+    }
+}
+
 function ouvrirInfoProgression(){
     // ⚠️ L'ancien basculerInfoProgression() depliait un panneau DANS la carte :
     // pour le refermer il fallait retrouver le ⓘ, minuscule, et le retoucher.
     // Un ecran se quitte par le meme « Retour » que partout ailleurs.
     try{ majCarteProgression(); }catch(e){}
+    try{ majInfoProgression(); }catch(e){}
     showScreen("infoProgression");
 }
 
@@ -23738,7 +23888,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 561;
+const APP_VERSION = 562;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -25313,7 +25463,43 @@ function ordonnerParFrequence(items){
         // absent de la liste ne veut pas dire « tres frequent ».
         return rangsFrequence.has(m) ? rangsFrequence.get(m) : 2;
     };
-    return items.slice().sort((a, b) => rang(a) - rang(b));
+
+    // ⚠️ UN TOURNIQUET ENTRE CATEGORIES, PAS UN TRI A PLAT (v562).
+    //
+    // L'ancienne version triait TOUT par rang relatif, d'un bout a l'autre. Or
+    // le commentaire juste au-dessus dit que ce rang ne vaut QU'A L'INTERIEUR
+    // d'une categorie -- et trier a plat, c'est precisement comparer deux
+    // categories entre elles. Resultat : la dose du jour tombait entiere dans
+    // celle qui dominait le classement du moment. Jacques a eu « aufraeumen,
+    // rauchen, schauen » -- QUE des verbes.
+    //
+    // Le tourniquet prend le meilleur de chaque categorie a tour de role. A
+    // l'interieur d'une categorie l'ordre reste celui de la frequence, qui est
+    // valide ; entre categories on ne compare plus rien, on alterne. Une dose
+    // de quinze contient alors des noms, des verbes, des adjectifs et des
+    // adverbes -- ce qu'une journee de langue contient vraiment.
+    const paniers = new Map();
+    items.forEach(it => {
+        const cle = it.mode || "nomen";
+        if(!paniers.has(cle)) paniers.set(cle, []);
+        paniers.get(cle).push(it);
+    });
+    paniers.forEach(liste => liste.sort((a, b) => rang(a) - rang(b)));
+
+    // Les categories les mieux fournies passent en premier dans le tour : sinon
+    // une categorie de huit mots imposerait son rythme a une de huit cents.
+    const cles = Array.from(paniers.keys()).sort(
+        (a, b) => paniers.get(b).length - paniers.get(a).length);
+    const sortie = [];
+    let reste = true;
+    for(let tour = 0; reste; tour++){
+        reste = false;
+        for(const cle of cles){
+            const liste = paniers.get(cle);
+            if(tour < liste.length){ sortie.push(liste[tour]); reste = true; }
+        }
+    }
+    return sortie;
 }
 
 // ⚠️ DEUX PAQUETS, ET C'EST LA REGLE DE LA JOURNEE : les revisions viennent

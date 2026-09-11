@@ -2940,3 +2940,91 @@ des cumuls.
 
 **Trois parties, dans cet ordre** : ce qu'on voit sur l'accueil · ce qui est
 rangé ici · comment un mot s'installe.
+
+## 12 septembre 2026 — cinq réglages d'écran, tous signalés sur son appareil (v557-v561)
+
+Jacques a lu l'accueil ligne à ligne sur son iPhone. Rien ici n'a été trouvé par
+un test : **chaque défaut vient de son œil, et la plupart sont des restes** — du
+texte, un geste ou un cadre qui décrivaient un état antérieur de l'écran.
+
+- **v557 — l'anneau disait la même chose que la barre, en moins lisible.** Le
+  grand anneau de pourcentage et la barre de vocabulaire mesuraient la même
+  chose. J'ai gardé la barre, qui distingue *su · en cours · à rencontrer* ;
+  l'anneau ne savait donner qu'un nombre. ⚠️ Le balisage de l'anneau reste dans
+  la page, caché : `updateHomeStatsPanel()` y écrit toujours, et le retirer
+  aurait cassé la mise à jour en silence.
+- **v558 — deux indications décrivaient un geste disparu.** Une flèche « → »
+  au bout de « 223/860 » et une phrase d'aide sous la carte pointaient un
+  balayage qui n'existait plus depuis deux versions. *« Ce n'est pas évident
+  qu'on peut agrandir »* : ce n'était pas évident parce que ce n'était plus vrai.
+- **v559 — les trois boutons de jugement prenaient le tiers de l'écran.** Une
+  rangée de trois échéances (10 minutes · demain · trois jours) était juste, mais
+  elle repoussait le mot lui-même hors du regard. Ramenés à deux, l'échéance en
+  gros.
+- **v560 — trois natures de contrôle dans un seul bandeau.** *« Il faut que je
+  fasse attention »* : le bandeau portait une **action** (commencer — mais il
+  fallait deviner qu'on touche le fond), un **réglage** (d'où viennent les mots
+  neufs) et une **seconde action** (par thème) mêlée aux pastilles du réglage.
+  Une nature par ligne, et un vrai bouton pour l'action.
+- **v561 — le cadre contrastait avec le tableau, pas avec la page.** Le cadre de
+  la mosaïque était noir sur fond clair *et* sur fond sombre. Sur le noir, il
+  disparaissait. Noir de jour, gris pâle la nuit : **un cadre se détache de ce
+  qui l'entoure, jamais de ce qu'il contient.**
+
+**Ce qui revient :** quand un geste ou une mesure disparaît, **son texte reste**.
+Deux contrôles attrapent maintenant le *code* mort (`verifier_appels_internes`,
+`verifier_zone_morte`) ; le texte périmé n'a encore d'autre détecteur que lui.
+
+## 12 septembre 2026 — la séance ne servait que des verbes (v562)
+
+Retour le plus grave du lot : *« là, c'est tous des verbes que j'ai dans ma
+séance du jour. Il faudrait que ça soit mélangé, verbe, nom, adjectif,
+adverbe. »*
+
+`ordonnerParFrequence()` triait **à plat**, tous les mots mélangés, par rang de
+fréquence — exactement ce que l'avertissement écrit au-dessus de la fonction
+interdit : *« le classement ne vaut qu'à l'intérieur d'une catégorie, jamais
+entre deux »*. Les listes Leipzig comptent des formes et non des lemmes ; à plat,
+une catégorie rafle le haut du classement et occupe toute la séance.
+
+Remplacé par un **tourniquet** : un panier par catégorie, chacun trié par son
+propre rang, puis on sert un mot de chaque à tour de rôle. La fréquence continue
+de décider *quel* verbe vient en premier ; elle ne décide plus *si* on voit un
+verbe. ⚠️ L'avertissement était déjà là, au-dessus du code qui le violait — un
+commentaire ne protège de rien tout seul.
+
+### Et cinq réglages demandés dans la foulée
+
+- **La flèche « revoir le mot précédent » rentre dans le cadre du verso.** Elle
+  était tout en bas, sous les trois boutons : loin du regard au moment précis où
+  l'on se dit « c'était quoi déjà ». ⚠️ `event.stopPropagation()` est
+  indispensable — sans lui, la toucher **retournerait** la carte, puisque toute
+  la surface du verso sert à ça.
+- **« Je le sais par cœur · pas avant 16 jours » revient sur une ligne.** Il
+  était passé en colonne à la v555 parce que l'échéance à 13 px ne tenait plus ;
+  à 12 px elle tient à côté, séparée par un point médian, et le bouton reprend la
+  moitié de sa hauteur.
+- **La galerie passe du bleu au gris charbon.** Dans cette app le bleu veut dire
+  *action*. Autour d'un tableau, il tirait l'œil vers un bouton secondaire.
+- **Le bouton « Commencer » s'aligne sur les pastilles de niveau** — il commence
+  où commence A1, finit où finit C1 — et perd la moitié de sa hauteur. Ce n'est
+  pas une largeur recopiée : la colonne est en `max-content`, donc **ajouter un
+  niveau demain déplacera les deux ensemble**.
+
+### L'écran ⓘ, quatrième réécriture — et la dernière raison de le refaire
+
+*« Je trouve que c'est peu visuel… puis on ne parle pas du tableau, comment il
+grandit, comment ça fonctionne. »* Les deux reproches sont justes. C'était une
+liste à puces décrivant des éléments qu'on ne voyait pas à côté, et **la mosaïque
+— la seule chose vraiment nouvelle de l'app — n'y était pas mentionnée du tout**.
+
+Chaque explication est maintenant collée à un **échantillon** de ce qu'elle
+décrit : le compte de séance en pastille, la barre de vocabulaire avec sa
+légende, et une grille miniature pour le tableau.
+
+⚠️ **Les nombres viennent des constantes, jamais du texte traduit.** « 700
+carreaux », « 80 par jour », « 3 séances » sont écrits par `majInfoProgression()`
+depuis `MOSAIQUE_CARREAUX`, `MOSAIQUE_PLAFOND` et `MOSAIQUE_SEANCES_TROPHEE`. Un
+chiffre recopié dans cinq traductions se met à mentir dès qu'on change la
+constante, et personne ne le voit — **c'est exactement ce qui est arrivé trois
+fois à cette légende.**
