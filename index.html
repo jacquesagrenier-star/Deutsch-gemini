@@ -2436,6 +2436,22 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 
 /* FLASHCARDS */
 
+/* ⚠️ LE ZOOM QUI S'OUVRE TOUT SEUL SUR iOS. Deux touches rapprochees sur un
+   bouton -- le « - » de l'objectif quotidien, par exemple, quand on tape un peu
+   a cote et qu'on recommence -- sont interpretees comme un DOUBLE-TAP, et
+   Safari zoome la page. Il faut ensuite pincer a deux doigts pour revenir.
+   Signale par Jacques, deux fois : c'est le meme mecanisme que le plancher de
+   16 px des champs de saisie, une commodite iOS qui se retourne contre
+   l'application.
+
+   `touch-action:manipulation` desactive le double-tap sur les CONTROLES
+   seulement. Le defilement, le pincement et le zoom volontaire restent
+   intacts partout ailleurs -- on ne retire pas un geste a l'utilisateur, on
+   empeche un geste involontaire d'en declencher un autre. */
+button, .orb, .theme-item, .level-pill, .judge-button, .judge-known,
+.setup-choice, .orb-opt, .finir-theme, .mos-cadre, .galerie-item,
+[onclick]{ touch-action:manipulation; }
+
 .flashcard-wrapper{
     perspective:1000px;
     margin-top:25px;
@@ -3980,15 +3996,28 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
    l'accueil reste le bandeau de seance (v531). */
 .carte-vocab{margin-top:12px; padding-top:12px; border-top:1px solid rgba(30,41,59,.10);}
 .carte-vocab-tete{
-    display:flex; align-items:baseline; gap:8px; width:100%;
-    background:none; border:0; padding:0; margin:0; cursor:pointer;
+    display:flex; align-items:center; gap:8px; width:100%;
+    background:none; border:0; padding:2px 0; margin:0; cursor:pointer;
     font-family:inherit; font-size:12px; font-weight:600; color:#1e293b; text-align:start;
 }
 .carte-vocab-nom{flex:1; min-width:0;}
 .carte-vocab-niveau{color:#2f62d6;}
 .carte-vocab-compte{font-variant-numeric:tabular-nums; color:#7b8798;}
-.carte-vocab-fleche{color:#a7b0c0; transition:transform .2s; display:inline-block;}
-.carte-vocab-tete.ouvert .carte-vocab-fleche{transform:rotate(90deg);}
+/* ⚠️ LE SIGNE COMPTE AUTANT QUE SA TAILLE. « › » est un chevron de
+   NAVIGATION -- il annonce qu'on quitte l'ecran. Cette ligne se DEPLIE sur
+   place : le signe est un chevron vers le BAS, qui pivote a l'ouverture.
+   Signale par Jacques : « ce n'est pas evident qu'on peut agrandir ».
+   Et il est pose sur une pastille : un caractere seul, meme bien choisi, ne se
+   lit pas comme un bouton. */
+.carte-vocab-fleche{
+    color:#2f62d6; display:inline-flex; align-items:center; justify-content:center;
+    width:22px; height:22px; border-radius:50%; background:rgba(47,98,214,.10);
+    font-size:15px; line-height:1; transition:transform .2s; flex-shrink:0;
+    margin-block-start:-3px;
+}
+.carte-vocab-tete.ouvert .carte-vocab-fleche{transform:rotate(180deg);}
+.carte-vocab-tete:hover .carte-vocab-fleche{background:rgba(47,98,214,.18);}
+body[data-theme="dark"] .carte-vocab-fleche{color:#8FB4FF; background:rgba(143,180,255,.14);}
 .carte-vocab-piste{
     display:flex; height:8px; border-radius:5px; margin-top:7px;
     background:rgba(30,41,59,.12); overflow:hidden;
@@ -4439,7 +4468,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v546</span>
+        <span class="subtitle-version">v547</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4535,7 +4564,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Vocabulaire</span>
                     <span id="vocabNiveauCourant" class="carte-vocab-niveau"></span></span>
                 <span id="vocabCompte" class="carte-vocab-compte">0 / 0</span>
-                <span class="carte-vocab-fleche" aria-hidden="true">›</span>
+                <span class="carte-vocab-fleche" aria-hidden="true">⌄</span>
             </button>
             <div class="carte-vocab-piste">
                 <div id="vocabSus" class="carte-vocab-part sus" style="width:0%"></div>
@@ -15764,6 +15793,17 @@ function adjustDailyGoal(delta){
     setDailyGoalTarget(getDailyGoalTarget() + delta);
     renderDailyGoalSetting();
     updateGlobalProgress();
+    // ⚠️ L'ACCUEIL NE SE REDESSINAIT PAS. On changeait l'objectif a 40 dans les
+    // reglages, on revenait, et la carte affichait toujours « / 100 » --
+    // signale par Jacques. updateGlobalProgress() ne touche ni la carte du jour
+    // ni le bandeau, et rien d'autre ne les rappelait avant le prochain
+    // demarrage.
+    //
+    // LE BANDEAU AUSSI, et c'est le plus important : depuis la v534 la taille
+    // de la seance EST le solde de l'objectif du jour. Un objectif change sans
+    // bandeau rafraichi annonce un nombre de cartes qui n'est plus le bon.
+    try{ majCarteProgression(); }catch(e){}
+    try{ majTuileSeance(); }catch(e){}
 }
 
 // Remet le compte du jour (et le drapeau "célébré aujourd'hui") à zéro, pour
@@ -23133,7 +23173,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 546;
+const APP_VERSION = 547;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24849,12 +24889,16 @@ let chargementMosaiques = null;
 let PEINTRES = null;
 
 function chargerPeintres(){
-    if(PEINTRES) return Promise.resolve(PEINTRES);
-    PEINTRES = {};
+    // ⚠️ NE CACHER QU'EN CAS DE SUCCES. La premiere version posait
+    // PEINTRES = {} AVANT le fetch : apres un seul echec -- reseau coupe, ou
+    // fichier pas encore publie -- la garde `if(PEINTRES)` renvoyait cet objet
+    // vide pour le reste de la session, et les notices ne revenaient plus
+    // jamais. Un cache qui memorise un echec est pire que pas de cache.
+    if(PEINTRES && Object.keys(PEINTRES).length) return Promise.resolve(PEINTRES);
     return fetch(MOSAIQUE_BASE + "peintres.json", { cache: "no-cache" })
         .then(r => r.json())
         .then(d => { PEINTRES = (d && d.peintres) || {}; return PEINTRES; })
-        .catch(() => PEINTRES);
+        .catch(() => (PEINTRES || {}));
 }
 
 // ⚠️ LES NOTICES N'EXISTENT QU'EN FRANCAIS POUR L'INSTANT, et l'app parle cinq

@@ -2595,3 +2595,63 @@ afficher « 0 jour travaillé » à quelqu'un qui en est à trente d'affilée se
 faux et décourageant. La série sous-estime, elle ne surestime jamais.
 
 **Reste à faire :** les 22 textes de peintres, demandés et pas encore écrits.
+
+---
+
+## 12 septembre 2026 — quatre défauts signalés à l'usage (v546-v547)
+
+⚠️ **Aucun des quatre n'aurait pu être trouvé par un contrôle.** Tous viennent
+de Jacques regardant l'écran.
+
+### 1. Le glacis n'existait pas sur son appareil
+
+Le plus grave. Le verre dépoli reposait sur `ctx.filter = "blur(...)"`. **Safari
+ne connaît cette propriété qu'à partir d'iOS 16.4 — et là où elle manque, elle
+ne lève aucune erreur : elle est ignorée.** La « copie floue » devenait une copie
+nette, et **toute la mosaïque s'affichait en clair dès le premier jour**. Le
+mécanisme entier ne servait plus à rien, sans le moindre signe.
+
+⚠️ **Invisible en développement, parce que mon navigateur, lui, l'avait.**
+
+La parade ne dépend de rien : on dessine l'image dans une vignette de vingt
+pixels, puis on la retire en grand — le lissage du navigateur fait le flou,
+partout, depuis toujours.
+
+### 2. « › » était le mauvais signe
+
+Le chevron de la ligne « Vocabulaire » est un chevron de **navigation** : il
+annonce qu'on quitte l'écran. Or la ligne se **déplie sur place**. ⚠️ **Un
+mauvais signe est pire qu'un signe discret** — il promet autre chose. Remplacé
+par un chevron vers le bas qui pivote, posé sur une pastille : un caractère
+seul, même bien choisi, ne se lit pas comme un bouton.
+
+### 3. Le zoom iOS qui s'ouvre tout seul
+
+Deux touches rapprochées sur le « − » de l'objectif quotidien sont lues comme un
+**double-tap**, et Safari zoome ; il faut ensuite pincer pour revenir. C'est le
+même genre de piège que le plancher de 16 px des champs de saisie : une
+commodité iOS qui se retourne contre l'app. `touch-action:manipulation` sur les
+**contrôles seulement** — le défilement et le zoom volontaire restent intacts.
+
+### 4. L'objectif changé ne changeait rien
+
+Objectif mis à 40 dans les réglages, retour à l'accueil : toujours « / 100 ».
+`updateGlobalProgress()` ne touche ni la carte du jour ni le bandeau, et rien ne
+les rappelait avant le prochain démarrage. ⚠️ **Le bandeau était le plus grave
+des deux** : depuis la v534 la taille de la séance **est** le solde de
+l'objectif, donc il annonçait un nombre de cartes qui n'était plus le bon.
+
+### Au passage, un cache qui mémorisait un échec
+
+`chargerPeintres()` posait `PEINTRES = {}` **avant** le fetch. Après un seul
+échec — réseau coupé, ou fichier pas encore publié — la garde renvoyait cet
+objet vide pour le reste de la session. **Un cache qui retient un échec est pire
+que pas de cache.**
+
+### Et la mise en page comprimée
+
+Image à gauche sur 42 %, cartouche et galerie à droite, jours travaillés remontés
+sur la ligne de la barre du jour. La carte gagne une soixantaine de pixels.
+
+**Les 22 notices de peintres sont en ligne** — une par artiste, affichée au
+trophée, en plein écran et dans la galerie, jamais sur la carte d'accueil.
