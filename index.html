@@ -4012,10 +4012,12 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .carte-examen-part.sus + .carte-examen-part.cours{border-inline-start:2px solid #e6e9ef;}
 /* Le cumul de jours : un grand chiffre, un mot, et la serie repoussee a droite
    en petit. L'ordre visuel dit lequel des deux compte. */
-.carte-jours{display:flex; align-items:baseline; gap:7px; margin-top:12px;}
-.carte-jours-n{font-size:22px; font-weight:700; color:#1e293b; line-height:1; font-variant-numeric:tabular-nums;}
-.carte-jours-mot{font-size:13px; font-weight:600; color:#1e293b;}
-.carte-jours-serie{font-size:11.5px; color:#E8A23A; font-weight:600; margin-inline-start:auto;}
+.carte-jour-bas{display:flex; align-items:center; gap:12px;}
+.carte-jour-bas .carte-jour-piste{flex:1;}
+.carte-jours{display:flex; align-items:baseline; gap:5px; flex-shrink:0;}
+.carte-jours-n{font-size:15px; font-weight:700; color:#1e293b; line-height:1; font-variant-numeric:tabular-nums;}
+.carte-jours-mot{font-size:11px; font-weight:600; color:#7b8798;}
+.carte-jours-serie{font-size:10.5px; color:#E8A23A; font-weight:600;}
 body[data-theme="dark"] .carte-jours-n,
 body[data-theme="dark"] .carte-jours-mot{color:#F2F2F6;}
 .carte-vocab-niveaux{margin-top:10px;}
@@ -4094,18 +4096,19 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    vide non. Bord sobre, pas d'ombre portee -- le seul bloc plein de l'accueil
    reste le bandeau de seance (v531). */
 .carte-mosaique{margin-top:14px; padding-top:13px; border-top:1px solid rgba(30,41,59,.10);}
-/* PLUS PETITE QUE LA CARTE, ET CENTREE. Elle n'a pas a occuper toute la
-   largeur : c'est une recompense qu'on regarde, pas un controle qu'on
-   actionne -- et on la touche pour l'avoir en grand. Instinct de Jacques, et
-   il a raison : pleine largeur, elle entrait en concurrence avec le bandeau de
-   seance, qui doit rester le seul bloc qui appelle l'action. */
+/* IMAGE A GAUCHE, INFORMATION A DROITE (v546). Demande de Jacques, pour
+   recuperer de la hauteur : en pile, le cadre et le cartouche prenaient deux
+   fois la place. Cote a cote, la carte gagne une soixantaine de pixels sans
+   rien perdre. */
+.carte-mosaique{display:flex; gap:12px; align-items:flex-start;}
 .mos-cadre{
     border:1px solid rgba(30,41,59,.16); border-radius:8px; overflow:hidden;
     background:#f3f1ec; cursor:zoom-in; line-height:0;
-    max-width:62%; margin:0 auto;
+    flex:0 0 42%; max-width:42%;
 }
+.mos-droite{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;}
 .mos-toile{display:block; width:100%; height:auto;}
-.mos-cartouche{text-align:center; margin-top:9px; line-height:1.35;}
+.mos-cartouche{text-align:start; line-height:1.35;}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
 .mos-annee{font-size:12px; color:#7b8798; font-variant-numeric:tabular-nums; margin-top:2px;}
@@ -4113,8 +4116,16 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
 .mos-titre{font-size:12.5px; font-style:italic; color:#576177; margin-top:2px;}
 /* ⚠️ LE ⓘ EST EN ABSOLU AU COIN DE LA CARTE : sans cette reserve a droite,
    il recouvrait « Ta galerie ». Trouve a l'ecran, pas par un controle. */
+/* La notice du peintre : petite, en retrait, et seulement quand le tableau est
+   fini. Elle ne doit jamais concurrencer le titre de l'oeuvre. */
+.mos-notice{font-size:11px; line-height:1.45; color:#576177; margin-top:6px; text-align:start;}
+body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
+.mos-plein-notice{
+    font-size:12.5px; line-height:1.55; color:#c3cad6; margin-top:10px;
+    max-width:52ch; text-align:start;
+}
 .mos-bas{display:flex; align-items:center; justify-content:space-between;
-    gap:10px; margin-top:9px; padding-inline-end:34px;}
+    gap:8px; margin-top:auto; padding-top:6px; flex-wrap:wrap;}
 .mos-pied{font-size:11px; color:#7b8798;}
 .mos-galerie{
     background:none; border:0; padding:0; font-family:inherit; font-size:11.5px;
@@ -4428,7 +4439,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v545</span>
+        <span class="subtitle-version">v546</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4440,17 +4451,22 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <span data-i18n="home_daily_goal_label_court">Aujourd'hui</span>
                 <span><strong id="jourFait">0</strong><span id="jourCible"> / 0</span></span>
             </div>
-            <div class="carte-jour-piste"><div id="jourRemplissage" class="carte-jour-fill" style="width:0%"></div></div>
+            <!-- Les jours travailles tiennent sur la meme ligne que la barre du
+                 jour : deux chiffres du meme ordre, une seule hauteur. -->
+            <div class="carte-jour-bas">
+                <div class="carte-jour-piste"><div id="jourRemplissage" class="carte-jour-fill" style="width:0%"></div></div>
+                <div class="carte-jours">
+                    <span class="carte-jours-n" id="joursTravaillesN">0</span>
+                    <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
+                    <span class="carte-jours-serie hidden" id="joursSerie"></span>
+                </div>
+            </div>
         </div>
 
         <!-- ⚠️ LE CUMUL EN GRAND, LA SERIE EN PETIT. La serie seule punissait
              l'absence : au retour de vacances elle affichait 0 et effacait des
              semaines de travail. Le cumul ne redescend jamais. -->
-        <div class="carte-jours">
-            <span class="carte-jours-n" id="joursTravaillesN">0</span>
-            <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
-            <span class="carte-jours-serie hidden" id="joursSerie"></span>
-        </div>
+
 
         <div class="global-progress-row hidden">
             <div class="home-stat-cote">
@@ -4535,11 +4551,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="mos-cadre" onclick="ouvrirMosaiquePleinEcran()">
                 <canvas id="mosaiqueToile" class="mos-toile" width="900" height="700"></canvas>
             </div>
+            <div class="mos-droite">
             <div id="mosaiqueCartouche" class="mos-cartouche"></div>
             <div class="mos-bas">
                 <span id="mosaiquePied" class="mos-pied"></span>
                 <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
                         data-i18n="mosaique_galerie">Ta galerie</button>
+            </div>
             </div>
         </div>
 
@@ -23115,7 +23133,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 545;
+const APP_VERSION = 546;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24826,6 +24844,29 @@ const MOSAIQUE_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/"
                     + "Deutsch-gemini/main/branding/mosaique/";
 let MOSAIQUES = null;
 let chargementMosaiques = null;
+// Une notice par PEINTRE, pas par tableau : vingt-deux textes au lieu de
+// soixante-cinq, et c'est l'artiste qu'on apprend a connaitre, pas l'oeuvre.
+let PEINTRES = null;
+
+function chargerPeintres(){
+    if(PEINTRES) return Promise.resolve(PEINTRES);
+    PEINTRES = {};
+    return fetch(MOSAIQUE_BASE + "peintres.json", { cache: "no-cache" })
+        .then(r => r.json())
+        .then(d => { PEINTRES = (d && d.peintres) || {}; return PEINTRES; })
+        .catch(() => PEINTRES);
+}
+
+// ⚠️ LES NOTICES N'EXISTENT QU'EN FRANCAIS POUR L'INSTANT, et l'app parle cinq
+// langues. On se rabat sur le francais plutot que de ne rien montrer : un texte
+// dans la mauvaise langue vaut mieux qu'un blanc, et il disparaitra tout seul
+// le jour ou les traductions arriveront -- il suffira d'ajouter les cles.
+function noticePeintre(nom){
+    const n = (PEINTRES || {})[nom];
+    if(!n) return "";
+    for(const code of langueEtRepli()){ if(n[code]) return n[code]; }
+    return n.fr || "";
+}
 
 function chargerMosaiques(){
     if(MOSAIQUES) return Promise.resolve(MOSAIQUES);
@@ -24949,21 +24990,36 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
     // on sent qu'il y a quelque chose, on ne peut plus dire quoi. C'est la
     // seule facon de garder la curiosite, qui porte tout le mecanisme.
     // Deux passes, parce qu'un seul blur laisse des contours fantomes.
-    // ⚠️ DEUX REGLAGES QUI FONT DEUX CHOSES DIFFERENTES, et je les avais
-    // confondus. LE FLOU detruit la FORME -- c'est lui qui empeche de
-    // reconnaitre le sujet. LE VOILE BLANC detruit la COULEUR -- et pousse trop
-    // loin, il ne reste qu'un cadre blanc, ce qui est pire que tout : une
-    // grille vide n'invite personne. Donc : flouter beaucoup, laver peu, et
-    // meme REHAUSSER la saturation pour que les masses de couleur restent
-    // franches. C'est ca, du verre depoli -- on voit les couleurs, pas le
-    // dessin.
-    try{ fc.filter = "blur(" + Math.max(14, Math.round(L / 13)) + "px) saturate(1.15)"; }catch(e){}
-    fc.drawImage(img, 0, 0, L, H);
-    try{ fc.filter = "blur(" + Math.max(8, Math.round(L / 24)) + "px)"; }catch(e){}
-    fc.drawImage(flou, 0, 0, L, H);
-    fc.filter = "none";
+    // ⚠️ NE PAS UTILISER ctx.filter POUR FLOUTER. Safari ne l'a qu'a partir
+    // d'iOS 16.4, et la ou il manque il ne LEVE PAS D'ERREUR : il est
+    // simplement ignore. La « copie floue » devenait alors une copie NETTE, et
+    // toute la mosaique s'affichait en clair des le premier jour. Signale par
+    // Jacques -- « je vois le tableau au complet, il n'y a pas le glacis ».
+    // Un defaut invisible en developpement : mon navigateur, lui, l'avait.
+    //
+    // LA REDUCTION-AGRANDISSEMENT NE DEPEND DE RIEN. On dessine l'image dans
+    // une vignette de quelques dizaines de pixels, puis on la retire a la
+    // taille voulue : le lissage du navigateur fait le flou, partout, depuis
+    // toujours. Deux passes pour effacer les derniers contours.
+    const petitL = Math.max(6, Math.round(L / 34));
+    const petitH = Math.max(6, Math.round(H / 34));
+    const mini = document.createElement("canvas");
+    mini.width = petitL; mini.height = petitH;
+    const mc = mini.getContext("2d");
+    mc.imageSmoothingEnabled = true;
+    mc.drawImage(img, 0, 0, petitL, petitH);
+
+    const mini2 = document.createElement("canvas");
+    mini2.width = Math.max(3, Math.round(petitL / 2));
+    mini2.height = Math.max(3, Math.round(petitH / 2));
+    const mc2 = mini2.getContext("2d");
+    mc2.imageSmoothingEnabled = true;
+    mc2.drawImage(mini, 0, 0, mini2.width, mini2.height);
+
+    fc.imageSmoothingEnabled = true;
+    fc.drawImage(mini2, 0, 0, L, H);
     fc.fillStyle = document.body.dataset.theme === "dark"
-        ? "rgba(18,22,29,.30)" : "rgba(255,255,255,.26)";
+        ? "rgba(18,22,29,.26)" : "rgba(255,255,255,.22)";
     fc.fillRect(0, 0, L, H);
 
     const ordre = ordreCarreaux(etatMosaique().r, total);
@@ -24992,12 +25048,23 @@ function cartoucheMosaique(m, part, fini){
     if(fini || part >= 0.40) h += '<div class="mos-ligne mos-annee">' + (m.annee || "") + '</div>';
     if(fini || part >= 0.70) h += '<div class="mos-ligne mos-peintre">' + m.peintre + '</div>';
     if(fini) h += '<div class="mos-ligne mos-titre">' + m.titre + '</div>';
+    // ⚠️ LA NOTICE N'ARRIVE QU'A LA FIN, ET C'EST VOULU. Sur une carte qu'on
+    // regarde d'un coup d'oeil au milieu d'une seance, trois phrases sur la vie
+    // d'un peintre sont du bruit. Au moment du trophee, l'image est finie et il
+    // n'y a plus rien a faire d'autre que la regarder : c'est le seul instant
+    // ou l'on a envie de lire. Question posee par Jacques lui-meme -- « ou si
+    // c'est surcharge en information » -- et la reponse est : selon le moment.
+    if(fini){
+        const bio = noticePeintre(m.peintre);
+        if(bio) h += '<div class="mos-notice">' + bio + '</div>';
+    }
     n.innerHTML = h;
 }
 
 function majMosaiqueAccueil(){
     const bloc = document.getElementById("carteMosaique");
     if(!bloc) return;
+    chargerPeintres();
     chargerMosaiques().then(() => {
         const m = mosaiqueCourante();
         if(!m){ bloc.classList.add("hidden"); return; }
@@ -25044,7 +25111,7 @@ function majMosaiqueAccueil(){
 // Jacques. La mosaique en cours s'y ouvre aussi -- on y voit ses carreaux
 // ouverts en grand, ce qui aide justement a deviner.
 function ouvrirMosaiquePleinEcran(rang){
-    chargerMosaiques().then(() => {
+    Promise.all([chargerMosaiques(), chargerPeintres()]).then(() => {
         if(!MOSAIQUES || !MOSAIQUES.length) return;
         const v = etatMosaique();
         const r = rang || v.r;
@@ -25062,9 +25129,14 @@ function ouvrirMosaiquePleinEcran(rang){
             toile.width = L;
             toile.height = Math.round(L * (m.h || 1) / (m.l || 1));
             dessinerMosaique(toile, img, gagnee ? g.total : v.c, g.total, g.cols, g.rows, gagnee);
-            leg.innerHTML = gagnee
-                ? '<b>' + m.titre + '</b><br>' + m.peintre + ' · ' + (m.annee || "")
-                : tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
+            if(gagnee){
+                const bio = noticePeintre(m.peintre);
+                leg.innerHTML = '<b>' + m.titre + '</b><br>' + m.peintre
+                    + ' · ' + (m.annee || "") + (m.mort ? ' · \u2020' + m.mort : "")
+                    + (bio ? '<div class="mos-plein-notice">' + bio + '</div>' : "");
+            } else {
+                leg.innerHTML = tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
+            }
         };
         img.src = MOSAIQUE_BASE + "img/" + m.fichier;
         vue.classList.remove("hidden");
@@ -25081,7 +25153,7 @@ function fermerMosaiquePleinEcran(){
 // autre forme : soixante-cinq cadres vides disent « il t'en manque
 // soixante-deux ». Trois tableaux sur une etagere disent « tu en as trois ».
 function ouvrirGalerieMosaiques(){
-    chargerMosaiques().then(() => {
+    Promise.all([chargerMosaiques(), chargerPeintres()]).then(() => {
         const zone = document.getElementById("galerieMosaiques");
         if(!zone) return;
         const v = etatMosaique();
