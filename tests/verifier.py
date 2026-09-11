@@ -536,6 +536,41 @@ def verifier_retours_flashcards(r, source):
     print("   modes de cartes : %d, dont %d dans la table de retour" % (len(modes), len(traites)))
 
 
+def verifier_zone_morte(r, source):
+    """Une constante du sommet en utilise-t-elle une declaree plus bas ?
+
+    ⚠️ LA FAUTE, DEUX FOIS. Un `const` n'est pas remonte comme une fonction : le
+    lire avant sa ligne leve une ReferenceError -- sa « zone morte temporelle ».
+    Dans un fichier de 26 000 lignes ou tout est au meme niveau, rien ne signale
+    qu'une constante en attend une autre sept mille lignes plus bas.
+
+    v555 : REGLES_GENRE_URL valait MOSAIQUE_BASE.replace(...), et MOSAIQUE_BASE
+    etait declare 7 650 lignes plus loin. A l'evaluation, TOUT CE QUI SUIT a
+    cesse de s'executer -- ni mosaique, ni bandeau de seance, ni la moitie de
+    l'accueil. Le fichier portait deja l'avertissement, pose apres un accident
+    identique sur des `let`.
+
+    On ne verifie que le cas net : `const X = NOM...` ou NOM est une autre
+    constante de premier niveau. Ni les appels de fonction (celles-la sont
+    remontees), ni l'interieur des fonctions.
+    """
+    decls = {}
+    for m in re.finditer(r"^const\s+([A-Za-z_$][\w$]*)\s*=", source, re.M):
+        decls.setdefault(m.group(1), m.start())
+    fautes = 0
+    for m in re.finditer(r"^const\s+([A-Za-z_$][\w$]*)\s*=\s*([A-Za-z_$][\w$]*)", source, re.M):
+        nom, source_nom = m.group(1), m.group(2)
+        if source_nom not in decls:
+            continue
+        if decls[source_nom] > m.start():
+            fautes += 1
+            r.echec("interface",
+                    "zone morte temporelle : const %s lit %s, declare plus bas"
+                    % (nom, source_nom))
+        r.controle()
+    print("   constantes    : %d au premier niveau, %d en zone morte" % (len(decls), fautes))
+
+
 def verifier_appels_internes(r, source, fonctions):
     """Un appel en position d'instruction vise-t-il une fonction qui existe ?
 
@@ -804,6 +839,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_zone_morte(r, source)
     verifier_appels_internes(r, source, fonctions)
     verifier_tuiles_non_vides(r, source)
     verifier_taille_des_champs(r, source)

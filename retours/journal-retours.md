@@ -2889,3 +2889,54 @@ généraliser.
   plus à côté d'un libellé de dix-neuf caractères.
 - **Le cadre suit l'œuvre en plein écran** : le tableau y flottait sans bord,
   alors que c'est là qu'on le regarde vraiment.
+
+---
+
+## 12 septembre 2026 — la zone morte temporelle, deux fois (v556)
+
+### ⚠️ Ce qui était cassé en ligne
+
+*« Plein de choses qui ne sont plus là. »* Plus de tableau, plus de bandeau de
+séance, la moitié de l'accueil disparue.
+
+**La cause tient en une ligne.** La v555 déclarait :
+
+```
+const REGLES_GENRE_URL = MOSAIQUE_BASE.replace("mosaique/", "") + "…";
+```
+
+`MOSAIQUE_BASE` est déclaré **7 650 lignes plus bas**. Un `const` n'est pas
+remonté comme une fonction : le lire avant sa ligne lève une `ReferenceError`.
+Et comme tout le script est au même niveau, **rien de ce qui suit ne s'exécute**.
+
+⚠️ **Le fichier portait déjà cet avertissement**, posé après un accident
+identique sur des `let` : *« si ces `let` étaient déclarées plus bas, un appel
+précoce tombait dans leur zone morte temporelle et plantait tout le script »*.
+Je l'ai refait quelques milliers de lignes plus haut.
+
+**La règle :** dans un fichier de 26 000 lignes, une constante du sommet ne
+dépend jamais d'une autre. On met le littéral, ou on calcule dans la fonction.
+
+### Le contrôle qui manquait
+
+`verifier_zone_morte()` relève les 251 constantes de premier niveau et refuse
+qu'une initialisation en lise une déclarée plus bas. **Vérifié en réintroduisant
+la faute dans une copie : le contrôle l'attrape.**
+
+⚠️ Il ne regarde que le cas net — `const X = NOM…` où `NOM` est une autre
+constante de premier niveau. Ni les appels de fonction (celles-là sont
+remontées), ni l'intérieur des fonctions. Étroit, mais il attrape exactement la
+faute commise, deux fois maintenant.
+
+### Et l'écran ⓘ, réécrit
+
+Troisième réécriture de cette légende (v537, v549, v556), toujours pour la même
+raison : **elle décrivait un écran qui avait changé sans elle**. Il avait grossi
+par accumulation — chaque version y poussait ce qu'elle retirait de la carte, et
+personne ne relisait l'ensemble. Un titre qui parlait d'une « carte » devenue un
+écran, un paragraphe sur « ce qui fait bouger ce pourcentage » alors que le
+pourcentage n'est plus en tête, et un `<ul>` imbriqué par erreur dans le bloc
+des cumuls.
+
+**Trois parties, dans cet ordre** : ce qu'on voit sur l'accueil · ce qui est
+rangé ici · comment un mot s'installe.

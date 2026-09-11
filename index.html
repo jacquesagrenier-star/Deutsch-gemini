@@ -4285,6 +4285,12 @@ body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
 }
 .mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
 /* La galerie */
+.info-titre{
+    font-size:13px; font-weight:800; letter-spacing:.10em; text-transform:uppercase;
+    color:#2f62d6; margin:26px 0 8px;
+}
+body[data-theme="dark"] .info-titre{color:#8FB4FF;}
+.info-jours{justify-content:flex-start; margin:0 0 12px;}
 .regles-intro{font-size:13.5px; color:#576177; line-height:1.55; margin:0 0 12px;}
 .regles-avert{
     font-size:12.5px; line-height:1.5; color:#8a5d12; background:rgba(232,162,58,.10);
@@ -5089,7 +5095,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v555</span>
+    <span class="subtitle-version">v556</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5121,109 +5127,90 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <section id="infoProgression" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
     <p class="kicker" data-i18n="carte_info_kicker">Ta progression</p>
-    <div class="info-progression-page">
-            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « que dans le i, on
-                 explique chacun des symboles ». La carte porte quatre reperes
-                 -- une flamme, un cercle, une courbe, une cible -- et rien ne
-                 disait ce qu'ils comptent. Un chiffre qu'on ne sait pas lire
-                 ne motive pas.
-                 LA LEGENDE VIENT AVANT le paragraphe sur le pourcentage : on
-                 nomme les quatre reperes, ensuite seulement on explique le
-                 plus subtil des quatre. -->
-            <strong data-i18n="carte_info_titre">Comment lire cette carte</strong>
-            <!-- ⚠️ LE CERCLE EST ICI DEPUIS LA v535, et il n'a pas ete supprime :
-                 updateHomeStatsPanel() y ecrit toujours. Sa valeur est juste --
-                 c'est sa PLACE qui etait fausse. Il avance de 0,22 % par mot et
-                 ne bouge pas avant le 11e jour : accueillir quelqu'un avec ca,
-                 c'est lui montrer une fraction minuscule d'un tres grand tout.
-                 Consulte volontairement, il redevient ce qu'il est : une carte
-                 du territoire, qui a le droit d'etre lente. -->
-            <div class="info-anneau">
-            <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button" aria-label="Changer de niveau affiché" style="cursor:pointer;">
-                <svg width="76" height="76" viewBox="0 0 76 76">
-                    <circle cx="38" cy="38" r="32" fill="none" class="global-ring-track" stroke-width="7"/>
-                    <circle id="globalRingFill" cx="38" cy="38" r="32" fill="none" stroke="url(#globalRingGrad)"
-                        stroke-width="7" stroke-linecap="round"
-                        stroke-dasharray="201.06" stroke-dashoffset="201.06"/>
-                </svg>
-                <div class="global-ring-center">
-                    <div id="globalRingLevel" class="global-ring-level">A1</div>
-                    <div id="globalRingNum" class="global-ring-num">0%</div>
-                </div>
-                <div class="ring-cycle-badge" aria-hidden="true">⟳</div>
-            </div>
-            </div>
-            <!-- ⚠️ DEPLACES ICI POUR DE BON (v549). Les v545 et v548 disaient
-                 « ils passent derriere le ⓘ » mais se contentaient de les
-                 MASQUER : ils n'etaient plus nulle part. Une correction a moitie
-                 faite est une perte de fonction, pas un allegement. -->
-                <div class="carte-jours">
-                    <span class="carte-jours-n" id="joursTravaillesN">0</span>
-                    <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
-                    <span class="carte-jours-serie hidden" id="joursSerie"></span>
-                </div>
-        <div class="carte-comptes">
-            <div class="carte-compte">
-                <div class="carte-compte-val" id="compteRencontres">0</div>
-                <div class="carte-compte-lib" data-i18n="compte_rencontres">mots rencontrés</div>
-            </div>
-            <div class="carte-compte">
-                <div class="carte-compte-val carte-compte-vert" id="compteMaitrises">0</div>
-                <div class="carte-compte-lib" data-i18n="compte_maitrises">mots maîtrisés</div>
-            </div>
-            <div class="carte-compte">
-                <div class="carte-compte-val" id="compteGrammaire">0</div>
-                <div class="carte-compte-lib" data-i18n="compte_grammaire">exercices de grammaire</div>
-            </div>
-            <ul class="info-legende">
-                <!-- ⚠️ DANS L'ORDRE DE LECTURE DE LA CARTE, et rien de plus.
-                     La v537 avait deja du reecrire cette legende parce qu'elle
-                     nommait des reperes disparus ; la carte a encore change
-                     trois fois depuis. Une legende qui decrit autre chose que
-                     l'ecran est pire qu'aucune legende. -->
-                <li data-i18n="legende_objectif"></li>
-                <li data-i18n="legende_objectif_quoi"></li>
-                <li data-i18n="legende_vocab"></li>
-                <li data-i18n="legende_mosaique"></li>
-                <li data-i18n="legende_seance"></li>
-                <li data-i18n="legende_seance_niveau"></li>
-                <li data-i18n="legende_jours"></li>
-                <li data-i18n="legende_rencontres"></li>
-                <li data-i18n="legende_maitrises"></li>
-                <li data-i18n="legende_grammaire"></li>
-                <li data-i18n="legende_cercle"></li>
-            </ul>
-            <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
-            <p data-i18n="progress_info_compte"></p>
-            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « pour les mots
-                 maitrises, ce serait bien que visuellement on voie juste avec
-                 les points qui augmentent, puis avec leur signification, au
-                 lieu de l'ecrire ». L'echelle etait un paragraphe ; c'est
-                 maintenant les MEMES pastilles que sur la carte, remplies une
-                 de plus a chaque ligne, avec l'echeance en face.
-                 Construite par echelleMaitriseHtml(), depuis les constantes. -->
-            <!-- Une seule ligne au-dessus des pastilles, et c'est une cle qui
-                 EXISTE DEJA (l'aide de la carte l'emploie mot pour mot). Sans
-                 elle « 10 min » ouvre la liste sans qu'on sache de quoi elle
-                 parle ; avec elle, les quatre lignes se lisent d'un coup. Une
-                 traduction reutilisee est une traduction qui ne derive pas. -->
-            <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
-            <div id="echelleMaitrise" class="echelle-maitrise"></div>
-            <p data-i18n="progress_info_deja"></p>
-            <p data-i18n="progress_info_apres"></p>
+    <h2 data-i18n="carte_info_titre">Comment lire ta progression</h2>
+
+    <!-- ⚠️ TROIS PARTIES, DANS CET ORDRE : ce qu'on voit, ce qui est range ici,
+         puis comment un mot s'installe. La legende precedente melait les trois
+         et enumerait dans un ordre qui ne correspondait a aucun ecran. -->
+
+    <h3 class="info-titre" data-i18n="info_partie_accueil">Sur l'accueil</h3>
+    <ul class="info-legende">
+        <li data-i18n="legende_seance"></li>
+        <li data-i18n="legende_seance_niveau"></li>
+        <li data-i18n="legende_objectif_quoi"></li>
+        <li data-i18n="legende_vocab"></li>
+        <li data-i18n="legende_mosaique"></li>
+    </ul>
+
+    <h3 class="info-titre" data-i18n="info_partie_ici">Rangé ici</h3>
+    <div class="carte-jours info-jours">
+        <span class="carte-jours-n" id="joursTravaillesN">0</span>
+        <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
+        <span class="carte-jours-serie hidden" id="joursSerie"></span>
+    </div>
+    <div class="carte-comptes">
+        <div class="carte-compte">
+            <div class="carte-compte-val" id="compteRencontres">0</div>
+            <div class="carte-compte-lib" data-i18n="compte_rencontres">mots rencontrés</div>
         </div>
-        <!-- ⚠️ MASQUE : DOUBLON. Cette ligne affichait l'objectif du jour
-             juste sous « Aujourd'hui » -- le meme chiffre, deux fois, dans la
-             meme carte. Signale par Jacques : « trop d'informations ».
-             L'element reste parce que updateHomeStatsPanel() y ecrit toujours ;
-             le retirer casserait la mise a jour en silence. -->
-        <div class="home-daily-goal hidden">
-            <div class="home-daily-goal-row">
-                <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
-                <span id="dailyGoalCount">0 / 30</span>
-            </div>
-            <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
+        <div class="carte-compte">
+            <div class="carte-compte-val carte-compte-vert" id="compteMaitrises">0</div>
+            <div class="carte-compte-lib" data-i18n="compte_maitrises">mots maîtrisés</div>
         </div>
+        <div class="carte-compte">
+            <div class="carte-compte-val" id="compteGrammaire">0</div>
+            <div class="carte-compte-lib" data-i18n="compte_grammaire">exercices de grammaire</div>
+        </div>
+    </div>
+    <ul class="info-legende">
+        <li data-i18n="legende_jours"></li>
+        <li data-i18n="legende_rencontres"></li>
+        <li data-i18n="legende_maitrises"></li>
+        <li data-i18n="legende_grammaire"></li>
+    </ul>
+
+    <!-- ⚠️ L'ANNEAU EST ICI DEPUIS LA v535 et n'a jamais ete supprime :
+         updateHomeStatsPanel() y ecrit toujours. Sa valeur est juste, c'est sa
+         PLACE qui etait fausse -- il avance de 0,22 % par mot et ne bouge pas
+         avant le 11e jour. Consulte volontairement, il redevient ce qu'il est :
+         une carte du territoire, qui a le droit d'etre lente. -->
+    <div class="info-anneau">
+        <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button"
+             data-i18n-aria-label="info_anneau_aria" aria-label="Changer de niveau affiché"
+             style="cursor:pointer;">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+                <circle cx="38" cy="38" r="32" fill="none" class="global-ring-track" stroke-width="7"/>
+                <circle id="globalRingFill" cx="38" cy="38" r="32" fill="none" stroke="url(#globalRingGrad)"
+                    stroke-width="7" stroke-linecap="round"
+                    stroke-dasharray="201.06" stroke-dashoffset="201.06"/>
+            </svg>
+            <div class="global-ring-center">
+                <div id="globalRingLevel" class="global-ring-level">A1</div>
+                <div id="globalRingNum" class="global-ring-num">0%</div>
+            </div>
+            <div class="ring-cycle-badge" aria-hidden="true">⟳</div>
+        </div>
+    </div>
+    <ul class="info-legende">
+        <li data-i18n="legende_cercle"></li>
+    </ul>
+
+    <h3 class="info-titre" data-i18n="info_partie_memoire">Comment un mot s'installe</h3>
+    <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
+    <div id="echelleMaitrise" class="echelle-maitrise"></div>
+    <ul class="info-legende">
+        <li data-i18n="progress_info_deja"></li>
+        <li data-i18n="progress_info_apres"></li>
+    </ul>
+
+    <!-- ⚠️ CONSERVE HORS DE L'AFFICHAGE : updateHomeStatsPanel() y ecrit
+         toujours. Le retirer casserait la mise a jour en silence. -->
+    <div class="home-daily-goal hidden">
+        <div class="home-daily-goal-row">
+            <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
+            <span id="dailyGoalCount">0 / 30</span>
+        </div>
+        <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
     </div>
 </section>
 
@@ -7697,13 +7684,17 @@ const I18N = {
         admin_rebuild_echec: "Échec de la reconstruction ({code}).",
         admin_no_resumes: "Aucun résumé. Soit ils n'ont pas encore été construits — touche « Reconstruire les résumés » — soit les écritures Firestore sont refusées, et rien ne se sauvegarde depuis le début.",
         home_ring_hint: "Touche le cercle pour changer de niveau",
-        carte_info_titre: "Comment lire cette carte",
+        carte_info_titre: "Comment lire ta progression",
         legende_grammaire: "Exercices de grammaire — sur les 40 que compte l'app, ceux que tu as réussis deux fois sans aucune faute.",
         legende_maitrises: "Mots maîtrisés — quatre bonnes réponses étalées sur onze jours. Il peut redescendre d'un ou deux si un mot est oublié à son contrôle.",
         legende_rencontres: "Mots rencontrés — tous les mots que tu as vus au moins une fois, même sans les savoir. Ce nombre ne redescend jamais.",
         legende_vocab: "Vocabulaire — où tu en es du niveau affiché. Vert : su. Bleu : en cours. Gris : à rencontrer. Touche la flèche pour voir les cinq niveaux.",
         legende_seance: "Ma séance du jour — le compte « 0 / 40 » est ton objectif quotidien. La séance te sert ce qu'il en reste : les révisions dues d'abord, les mots nouveaux ensuite s'il reste de la place.",
         carte_info_kicker: "Ta progression",
+        info_partie_accueil: "Sur l'accueil",
+        info_partie_ici: "Rangé ici",
+        info_partie_memoire: "Comment un mot s'installe",
+        info_anneau_aria: "Changer de niveau affiché",
         search_launch_court: "Chercher",
         flash_end_objectif_atteint: "Objectif du jour atteint — {n} cartes. La suite est pour le plaisir.",
         flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
@@ -8625,13 +8616,17 @@ const I18N = {
         admin_rebuild_echec: "Rebuild failed ({code}).",
         admin_no_resumes: "No summaries. Either they have not been built yet — tap “Rebuild summaries” — or Firestore writes are being refused, and nothing has been saving at all.",
         home_ring_hint: "Tap the circle to change level",
-        carte_info_titre: "How to read this card",
+        carte_info_titre: "How to read your progress",
         legende_grammaire: "Grammar exercises — out of the 40 in the app, those you have completed twice with no mistake.",
         legende_maitrises: "Words mastered — four correct answers spread over eleven days. It can drop by one or two if a word is forgotten at its check.",
         legende_rencontres: "Words met — every word you have seen at least once, even without knowing it. This number never goes down.",
         legende_vocab: "Vocabulary — where you stand in the level shown. Green: known. Blue: in progress. Grey: still to meet. Tap the arrow for all five levels.",
         legende_seance: "My session today — the « 0 / 40 » count is your daily goal. The session serves what is left of it: overdue reviews first, new words after, if room remains.",
         carte_info_kicker: "Your progress",
+        info_partie_accueil: "On the home screen",
+        info_partie_ici: "Kept here",
+        info_partie_memoire: "How a word settles in",
+        info_anneau_aria: "Change the level shown",
         search_launch_court: "Search",
         flash_end_objectif_atteint: "Daily goal reached — {n} cards. Anything more is for the pleasure of it.",
         flash_end_objectif_reste: "{n} more cards to reach today's goal.",
@@ -9562,6 +9557,10 @@ const I18N = {
         legende_vocab: "Kelimeler — gösterilen seviyede neredesin. Yeşil: biliniyor. Mavi: sürüyor. Gri: henüz görülmedi. Beş seviye için oka dokun.",
         legende_seance: "Bugünkü oturumum — « 0 / 40 » günlük hedefin. Oturum kalanını verir: önce zamanı gelen tekrarlar, yer kalırsa yeni kelimeler.",
         carte_info_kicker: "İlerlemen",
+        info_partie_accueil: "Ana ekranda",
+        info_partie_ici: "Burada saklı",
+        info_partie_memoire: "Bir kelime nasıl yerleşir",
+        info_anneau_aria: "Gösterilen seviyeyi değiştir",
         search_launch_court: "Ara",
         flash_end_objectif_atteint: "Günlük hedefe ulaşıldı — {n} kart. Gerisi keyif için.",
         flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
@@ -11122,6 +11121,10 @@ const I18N = {
         legende_vocab: "Лексика — де ти на показаному рівні. Зелений: відомо. Синій: у процесі. Сірий: попереду. Торкнись стрілки, щоб побачити всі п'ять рівнів.",
         legende_seance: "Мій сеанс на сьогодні — « 0 / 40 » це твоя денна мета. Сеанс подає те, що з неї лишилось: спершу прострочені повторення, потім нові слова, якщо є місце.",
         carte_info_kicker: "Твій поступ",
+        info_partie_accueil: "На головному екрані",
+        info_partie_ici: "Зберігається тут",
+        info_partie_memoire: "Як слово закріплюється",
+        info_anneau_aria: "Змінити показаний рівень",
         search_launch_court: "Пошук",
         flash_end_objectif_atteint: "Денну мету досягнуто — {n} карток. Решта — задля задоволення.",
         flash_end_objectif_reste: "Ще {n} карток до денної мети.",
@@ -12024,6 +12027,10 @@ const I18N = {
         legende_vocab: "واژگان — جایگاه تو در سطح نمایش‌داده‌شده. سبز: بلد. آبی: در جریان. خاکستری: هنوز ندیده. برای دیدن هر پنج سطح روی فلش بزن.",
         legende_seance: "جلسهٔ امروز — عدد « ۰ / ۴۰ » هدف روزانهٔ توست. جلسه باقی‌ماندهٔ آن را می‌آورد: نخست مرورهای سررسیده، سپس واژه‌های نو اگر جا بماند.",
         carte_info_kicker: "پیشرفت تو",
+        info_partie_accueil: "در صفحهٔ خانه",
+        info_partie_ici: "نگه‌داشته اینجا",
+        info_partie_memoire: "چگونه واژه جا می‌افتد",
+        info_anneau_aria: "تغییر سطح نمایش‌داده‌شده",
         search_launch_court: "جست‌وجو",
         flash_end_objectif_atteint: "هدف امروز انجام شد — {n} کارت. باقی برای لذت است.",
         flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
@@ -17696,12 +17703,27 @@ function startDicteeNoms(){
 // La regle du suffixe est exacte ; c'est le test sur les lettres qui ne
 // distingue pas. La lecon le dit, parce que c'est exactement le genre de chose
 // qui fait douter d'une regle juste.
-const REGLES_GENRE_URL = MOSAIQUE_BASE.replace("mosaique/", "") + "regles-genre.json";
+// ⚠️ L'URL EST CALCULEE A L'APPEL, PAS A LA DECLARATION. Cette ligne valait
+// MOSAIQUE_BASE.replace(...) -- or MOSAIQUE_BASE est un `const` declare SEPT
+// MILLE LIGNES PLUS BAS. A l'evaluation du script, la lecture tombait dans sa
+// zone morte temporelle, levait une ReferenceError, et TOUT CE QUI SUIT NE
+// S'EXECUTAIT PLUS : ni la mosaique, ni le bandeau de seance, ni la moitie de
+// l'accueil. Signale par Jacques -- « plein de choses qui ne sont plus la ».
+//
+// ⚠️ LE FICHIER PORTAIT DEJA CET AVERTISSEMENT, quelques milliers de lignes
+// plus haut : « si ces `let` etaient declarees plus bas, un appel precoce
+// tombait dans leur zone morte temporelle et plantait tout le script ». Je l'ai
+// refait. Une constante au sommet d'un fichier de 26 000 lignes ne doit jamais
+// dependre d'une autre : on met le litteral, ou on calcule dans la fonction.
+function urlReglesGenre(){
+    return "https://raw.githubusercontent.com/jacquesagrenier-star/"
+         + "Deutsch-gemini/main/branding/regles-genre.json";
+}
 let REGLES_GENRE = null;
 
 function chargerReglesGenre(){
     if(REGLES_GENRE && REGLES_GENRE.length) return Promise.resolve(REGLES_GENRE);
-    return fetch(REGLES_GENRE_URL, { cache: "no-cache" })
+    return fetch(urlReglesGenre(), { cache: "no-cache" })
         .then(r => r.json())
         .then(d => { REGLES_GENRE = (d && d.regles) || []; return REGLES_GENRE; })
         .catch(() => (REGLES_GENRE || []));
@@ -23635,7 +23657,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 555;
+const APP_VERSION = 556;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
