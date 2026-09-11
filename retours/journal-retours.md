@@ -2090,3 +2090,65 @@ main, parce qu'ils vivent dans la même ligne de code.
 - Essayé **dans la vraie page**, l'exercice lancé pour de bon : « ___ Freundin »
   → « die Freundin · Pluriel : die Freundinnen ».
 - `verifier.py` 14 167 contrôles, `cles_langues.py` 940 clés × 5 langues.
+
+---
+
+## 11 septembre 2026 — quatre cartes de progression, proposées (rien de décidé)
+
+**La demande :** *« propose-moi visuellement et conceptuellement d'autres
+tableaux de progression qui sont plus significatifs, en gardant à l'esprit
+qu'ils doivent être simples et intuitifs et gratifiants et encourageants. »*
+
+**Proposition publiée, avec maquettes :**
+https://claude.ai/code/artifact/fce8202b-c54d-4f11-9c79-4e90c855f034
+
+⚠️ **Rien n'est décidé et rien n'est codé.** Cette entrée existe pour que le
+lien ne se perde pas et que le diagnostic ne soit pas refait dans six semaines.
+
+### Le diagnostic, qui vaut plus que les quatre cartes
+
+Les trois mesures problématiques de la carte actuelle partagent **un seul
+défaut** : elles mesurent **l'état du savoir**, qui fluctue et qu'on ne contrôle
+pas directement.
+
+- le cercle « A1 · 12 % » avance de 0,22 % par mot — invisible avant le 11ᵉ jour ;
+- « cette semaine » mesure une **vitesse**, donc s'effondre après des vacances ;
+- « mots maîtrisés » peut **redescendre** quand un mot est oublié à son contrôle.
+
+**Ce qu'une carte doit refléter à la place :** ce que la personne **a fait**
+(qui ne redescend jamais) et ce qu'elle **vient de terminer** (qui arrive assez
+souvent pour être ressenti).
+
+### Les quatre règles à appliquer à toute mesure future
+
+1. **Ça ne redescend pas.** Une mesure qui baisse pendant des vacances mesure une
+   vitesse : sa place est dans le ⓘ, pas sur la carte.
+2. **Le dénominateur s'atteint.** 17 mots, 1 850 mots avec une date : oui. Une
+   fraction du dictionnaire : non.
+3. **Ça bouge le jour même.** 0,22 % n'est pas un signe.
+4. **Ça se lit sans légende.** Si le ⓘ est nécessaire au sens principal, c'est le
+   libellé qu'il faut réécrire.
+
+### Les quatre cartes, et leur coût réel
+
+- **A · Les thèmes qui se remplissent.** Le dénominateur passe de 4 209 à **17**
+  (taille médiane d'un thème) : un thème se finit en trois ou quatre séances,
+  donc l'app a quelque chose à annoncer chaque semaine. 197 thèmes.
+  **Données prêtes.** Rend au passage un usage aux thèmes, qui ne servent presque
+  plus depuis que la séance du jour est la porte unique.
+- **B · « Ce que tu peux dire maintenant ».** Des capacités concrètes plutôt que
+  des noms de thèmes, avec « encore 9 mots » sur celles qui approchent. La plus
+  forte des quatre. ⚠️ **Le risque est dans la promesse** : un énoncé trop large
+  se paie à la première tentative réelle. **Demande du contenu neuf** — environ
+  40 énoncés pour A1-A2, dans cinq langues.
+- **C · Le mur.** Un carré par mot rencontré, aucun dénominateur : la carte ne
+  peut que grandir. ⚠️ Canvas au-delà de 2 000 à 3 000 carrés, et une vignette
+  des derniers plutôt que 4 209 poussières sur un téléphone. **Données prêtes.**
+- **D · L'examen visé.** Le champ `pruefung` porte déjà **628 mots A2, 1 850 B1,
+  1 541 DTZ**. Le seul grand dénominateur légitime, parce qu'il vient de
+  l'examen que la personne a décidé de passer. Le plus proche de nos testeurs :
+  la date d'examen organise leur année. **Données prêtes.**
+
+**Ordre recommandé :** A tout de suite ; D quand un examen est choisi dans les
+réglages (sans examen choisi, la carte ne s'affiche pas) ; C dans le ⓘ à la
+place du cercle ; B plus tard, une fois les énoncés écrits et relus.
