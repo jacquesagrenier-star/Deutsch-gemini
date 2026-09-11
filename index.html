@@ -3723,7 +3723,7 @@ body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
    Jacques. `flex-wrap` garde le repli pour les langues plus longues -- « Знаю
    напам'ять » ne tient pas partout. */
 .judge-known .judge-echeance{display:inline; margin:0;}
-.judge-known .judge-echeance::before{content:"\00b7"; margin-inline-end:6px; opacity:.55;}
+.judge-known .judge-echeance::before{content:"·"; margin-inline-end:6px; opacity:.55;}
 .judge-known{
     display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline;
     justify-content:center; gap:0 7px;
@@ -4158,7 +4158,21 @@ body[data-theme="dark"] .carte-jour-compte strong{color:#F2F2F6;}
 body[data-theme="dark"] .carte-jours-n,
 body[data-theme="dark"] .carte-jours-mot{color:#F2F2F6;}
 .carte-vocab-niveaux{margin-top:10px;}
-.vocab-ligne{display:flex; align-items:center; gap:8px; margin-top:6px;}
+.vocab-ligne{
+    display:flex; align-items:center; gap:8px; margin-top:6px;
+    width:100%; background:none; border:0; padding:3px 4px; border-radius:7px;
+    font-family:inherit; text-align:start; cursor:pointer;
+    -webkit-tap-highlight-color:transparent; touch-action:manipulation;
+}
+.vocab-ligne:hover{background:rgba(47,98,214,.07);}
+/* ⚠️ LE NIVEAU COURANT NE SE SIGNALE PAS QUE PAR LA COULEUR : la pastille
+   du rang passe en gras et recoit un point. Une teinte bleue seule ne dit
+   rien a qui ne distingue pas le bleu du gris. */
+.vocab-ligne.courant{background:rgba(47,98,214,.09);}
+.vocab-ligne.courant .vocab-ligne-niv{font-weight:800;}
+.vocab-ligne.courant .vocab-ligne-niv::after{content:" •";}
+body[data-theme="dark"] .vocab-ligne:hover{background:rgba(255,255,255,.07);}
+body[data-theme="dark"] .vocab-ligne.courant{background:rgba(143,180,255,.13);}
 .vocab-ligne-niv{font-size:11px; font-weight:600; color:#7b8798; width:22px; flex-shrink:0;}
 .vocab-ligne.courant .vocab-ligne-niv{color:#2f62d6;}
 .vocab-ligne-piste{
@@ -5195,7 +5209,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v562</span>
+    <span class="subtitle-version">v563</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5250,7 +5264,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div class="carte-vocab-part cours" style="width:26%"></div>
             </div>
             <div class="vocab-legende" style="margin-top:7px">
-                <span><i class="pt-sus"></i><span data-i18n="vocab_sus">su</span></span>
+                <span><i class="pt-sus"></i><span data-i18n="vocab_sus">maîtrisé</span></span>
                 <span><i class="pt-cours"></i><span data-i18n="vocab_cours">en cours</span></span>
                 <span><i class="pt-reste"></i><span data-i18n="vocab_reste">à rencontrer</span></span>
             </div>
@@ -7691,7 +7705,7 @@ const I18N = {
         mosaique_agrandir: "Agrandir le tableau",
         mosaique_galerie_kicker: "Tes tableaux",
         mosaique_galerie_vide: "Ta première mosaïque se découvre carte après carte. Elle se rangera ici une fois terminée.",
-        vocab_sus: "su",
+        vocab_sus: "maîtrisé",
         vocab_cours: "en cours",
         vocab_reste: "à rencontrer",
         examen_pied: "{sus} sus · {cours} en cours · {reste} à rencontrer",
@@ -8635,7 +8649,7 @@ const I18N = {
         mosaique_agrandir: "Enlarge the painting",
         mosaique_galerie_kicker: "Your paintings",
         mosaique_galerie_vide: "Your first mosaic uncovers card by card. It will be kept here once finished.",
-        vocab_sus: "known",
+        vocab_sus: "mastered",
         vocab_cours: "in progress",
         vocab_reste: "to meet",
         examen_pied: "{sus} known · {cours} in progress · {reste} to meet",
@@ -9581,7 +9595,7 @@ const I18N = {
         mosaique_agrandir: "Tabloyu büyüt",
         mosaique_galerie_kicker: "Tabloların",
         mosaique_galerie_vide: "İlk mozaiğin kart kart açılır. Tamamlanınca burada saklanır.",
-        vocab_sus: "biliniyor",
+        vocab_sus: "pekişti",
         vocab_cours: "sürüyor",
         vocab_reste: "kaldı",
         examen_pied: "{sus} biliniyor · {cours} sürüyor · {reste} kaldı",
@@ -10792,7 +10806,7 @@ const I18N = {
         mosaique_agrandir: "Збільшити картину",
         mosaique_galerie_kicker: "Твої картини",
         mosaique_galerie_vide: "Перша мозаїка відкривається картка за карткою. Завершена, вона залишиться тут.",
-        vocab_sus: "відомо",
+        vocab_sus: "засвоєно",
         vocab_cours: "у процесі",
         vocab_reste: "попереду",
         examen_pied: "{sus} відомо · {cours} у процесі · {reste} попереду",
@@ -12390,7 +12404,7 @@ const I18N = {
         mosaique_agrandir: "بزرگ‌نمایی تابلو",
         mosaique_galerie_kicker: "تابلوهای تو",
         mosaique_galerie_vide: "نخستین موزاییک تو کارت‌به‌کارت آشکار می‌شود. پس از تکمیل، اینجا می‌ماند.",
-        vocab_sus: "بلد",
+        vocab_sus: "تثبیت‌شده",
         vocab_cours: "در جریان",
         vocab_reste: "باقی‌مانده",
         examen_pied: "{sus} بلد · {cours} در جریان · {reste} باقی‌مانده",
@@ -16064,13 +16078,33 @@ function joursTravailles(){
     let v = null;
     try{ v = JSON.parse(localStorage.getItem(directionScopedKey(JOURS_KEY)) || "null"); }catch(e){}
     if(!v || typeof v !== "object"){
-        // ⚠️ AMORCE DEPUIS LA SERIE POUR LES COMPTES DEJA OUVERTS. Afficher
-        // « 0 jour travaille » a quelqu'un qui en est a trente d'affilee serait
-        // faux et decourageant. La serie sous-estime (elle ignore les jours
-        // isoles) mais elle ne surestime jamais.
-        v = { n: getStreakCount() || 0, dernier: "" };
+        // ⚠️ AMORCE POUR LES COMPTES DEJA OUVERTS. Afficher « 0 jour
+        // travaille » a quelqu'un qui apprend depuis des mois est faux et
+        // decourageant -- signale deux fois par Jacques.
+        //
+        // ⚠️ LA SERIE SEULE NE SUFFISAIT PAS : elle vaut zero des qu'on a
+        // saute hier, et c'est justement le cas de quelqu'un qui travaille
+        // trois jours sur quatre depuis un an. Le journal de memorisation
+        // garde soixante jours d'horodatages : le nombre de JOURS DISTINCTS
+        // qu'on y trouve est un plancher honnete, qui ne peut pas surestimer.
+        // On prend le plus grand des deux.
+        v = { n: amorceJoursTravailles(), dernier: "" };
+        // ⚠️ ON L'ECRIT TOUT DE SUITE. Sans ca, l'amorce se recalcule a
+        // chaque ouverture -- et comme la fenetre du journal glisse sur
+        // soixante jours, le nombre pourrait REDESCENDRE. « Il ne redescend
+        // jamais » est la seule promesse de ce compteur.
+        try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
     }
     return { n: v.n || 0, dernier: v.dernier || "" };
+}
+
+function amorceJoursTravailles(){
+    let log = [];
+    try{ log = JSON.parse(localStorage.getItem(directionScopedKey(MASTERY_LOG_KEY)) || "[]"); }
+    catch(e){ log = []; }
+    const jours = {};
+    (log || []).forEach(ts => { jours[getTodayStr(new Date(ts))] = 1; });
+    return Math.max(Object.keys(jours).length, getStreakCount() || 0);
 }
 
 function noterJourTravaille(){
@@ -23888,7 +23922,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 562;
+const APP_VERSION = 563;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26055,14 +26089,16 @@ function majCarteVocab(){
             const n = etatsDuNiveau(niv);
             if(!n) return "";
             const vus = n.sus + n.cours;
-            return '<div class="vocab-ligne' + (niv === courant ? ' courant' : '') + '">'
+            return '<button type="button" class="vocab-ligne' + (niv === courant ? ' courant' : '')
+                 + '" data-niv="' + niv + '" onclick="choisirNiveauVocab(this.dataset.niv)"'
+                 + ' aria-pressed="' + (niv === courant ? 'true' : 'false') + '">'
                  + '<span class="vocab-ligne-niv">' + niv + '</span>'
                  + '<span class="vocab-ligne-piste">'
                  +   '<span class="carte-vocab-part sus" style="width:' + (n.sus * 100 / n.total) + '%"></span>'
                  +   '<span class="carte-vocab-part cours" style="width:' + (n.cours * 100 / n.total) + '%"></span>'
                  + '</span>'
                  + '<span class="vocab-ligne-n">' + vus + ' / ' + n.total + '</span>'
-                 + '</div>';
+                 + '</button>';
         }).join("") + '<div class="vocab-legende">'
                  + '<span><i class="pt-sus"></i>' + t("vocab_sus") + '</span>'
                  + '<span><i class="pt-cours"></i>' + t("vocab_cours") + '</span>'
@@ -26134,6 +26170,16 @@ function majCarteExamen(){
 // seance), pour qui a une raison precise d'y aller.
 const NIVEAUX_CECR = ["A1", "A2", "B1", "B2", "C1"];
 const NIVEAU_SEANCE_KEY = "deutschAI_niveauSeance";
+
+// ⚠️ UN SEUL ETAT POUR LES DEUX ENDROITS. Toucher une ligne ici revient a
+// toucher la pastille du bandeau : meme cle, meme consequence -- les mots
+// neufs de la prochaine seance viendront de ce niveau. C'est voulu. Deux
+// reglages separes auraient permis de regarder B1 en revisant A1, et il
+// aurait fallu expliquer pourquoi.
+function choisirNiveauVocab(niv){
+    fixerNiveauSeance(niv);
+    majCarteVocab();
+}
 
 function niveauSeance(){
     try{

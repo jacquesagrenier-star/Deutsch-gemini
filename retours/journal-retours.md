@@ -3028,3 +3028,69 @@ depuis `MOSAIQUE_CARREAUX`, `MOSAIQUE_PLAFOND` et `MOSAIQUE_SEANCES_TROPHEE`. Un
 chiffre recopié dans cinq traductions se met à mentir dès qu'on change la
 constante, et personne ne le voit — **c'est exactement ce qui est arrivé trois
 fois à cette légende.**
+
+## 12 septembre 2026 — deux fautes d'echappement, et le controle qui manquait (v563)
+
+Le vrai sujet de cette version n'est pas ce qu'elle ajoute, c'est ce qu'elle a
+failli casser.
+
+### L'app entiere est morte deux fois, et le verificateur a dit « aucun probleme »
+
+Les scripts de construction passaient par un **heredoc** (`cat > f <<'PY'`).
+Ce shell y **reduit les doubles antislashs, meme entre quotes simples**. Deux
+lignes en sont sorties transformees :
+
+| ecrit | arrive dans le fichier |
+|---|---|
+| `content:"\00a0\2022"` | `content:"<NUL>a0<0x82>2"` |
+| `choisirNiveauVocab(\'' + niv + '\')` | `choisirNiveauVocab('' + niv + '')` |
+
+Dans les deux cas, le `<script>` principal a cesse de s'analyser. Pas degrade :
+**mort** — plus une seule fonction definie, plus d'accueil, plus de mosaique.
+Et `verifier.py` a repondu **« OK, 14 650 controles passes »** les deux fois :
+il cherche des cles et des `onclick` par expressions regulieres, et un octet
+NUL ne l'en empeche pas. **Seul le navigateur le disait.**
+
+### Deux gardes, et la preuve qu'elles attrapent
+
+- **`node tests/syntaxe.js`** (nouveau) demande a un moteur JavaScript si les
+  `<script>` d'`index.html` s'analysent. Il n'execute rien : `new Function(corps)`
+  lit le texte et s'arrete la. Sur la copie cassee : *« ECHEC `<script>` ligne
+  7555 : Unexpected string »* — le message exact du navigateur.
+- **`verifier_octets_de_controle()`** refuse tout octet sous 0x20 hors
+  tabulation et saut de ligne. Sur la copie cassee : *« 1 octet de controle
+  interdit »*.
+
+**Verifie en reintroduisant les deux fautes dans deux copies : chaque controle
+attrape la sienne.** Et la regle est maintenant dans `CLAUDE.md` : les scripts
+de construction s'ecrivent dans un vrai fichier, jamais par heredoc.
+
+### Ce que la version apporte, une fois cela regle
+
+**« Su » devient « maitrise ».** Demande de Jacques : *« on sait que la
+maitrise, ca peut changer, mais au moins sur le coup, c'est plutot maitrise que
+su »*. Et l'app disait deja **« mots maitrises »** dans les cumuls : deux mots
+pour un meme etat, c'etait la vraie incoherence.
+
+**« Jours travailles » ne part plus de zero.** Signale deux fois. Le compteur
+s'amorcait sur la **serie**, qui vaut zero des qu'on a saute hier — exactement
+le cas de quelqu'un qui travaille trois jours sur quatre depuis un an. Il
+s'amorce desormais sur le **nombre de jours distincts du journal de
+memorisation** (soixante jours d'horodatages), ou sur la serie si elle est plus
+grande. ⚠️ Et il **s'ecrit immediatement** : sans cela l'amorce se recalculerait
+a chaque ouverture, et comme la fenetre du journal glisse, le nombre pourrait
+**redescendre**. « Il ne redescend jamais » est la seule promesse de ce
+compteur.
+
+**On peut enfin choisir le niveau affiche.** Question de Jacques : *« on montre
+A1 ; ceux qui savent plus voudraient A2, B1… qu'est-ce qu'on pourrait faire
+pour le changer ? »*
+
+⚠️ **Le reglage existait deja — il etait seulement invisible la.** La carte suit
+`niveauSeance()`, c'est-a-dire les pastilles du bandeau ; mais ces pastilles
+sont annoncees comme « la provenance des mots nouveaux », donc personne ne
+devine qu'elles commandent aussi cette barre. Plutot qu'un **second** reglage —
+deux commandes pour un meme etat, la porte ouverte a l'incoherence — les lignes
+que le depliement montre deja sont devenues **cliquables** : on ouvre la
+fleche, on voit les cinq niveaux, on touche celui qu'on veut. Meme cle, meme
+consequence que la pastille.

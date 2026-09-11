@@ -536,6 +536,40 @@ def verifier_retours_flashcards(r, source):
     print("   modes de cartes : %d, dont %d dans la table de retour" % (len(modes), len(traites)))
 
 
+def verifier_octets_de_controle(r, chemin):
+    """Le fichier contient-il un octet qu'aucun navigateur n'attend ?
+
+    ⚠️ LA FAUTE DU 12 SEPTEMBRE 2026. Les scripts de construction passent par
+    un heredoc, et ce shell y REDUIT les doubles antislashs meme entre quotes
+    simples. `content:"\\00a0\\2022"` est arrive dans index.html sous la forme
+    `content:"<NUL>a0<0x82>2"` : un octet NUL au milieu du HTML, et le
+    `<script>` entier a cesse de s'analyser -- ni accueil, ni mosaique.
+
+    Le reste du verificateur n'a rien vu : il cherche des cles et des appels,
+    et un NUL ne l'en empeche pas. Ce controle-ci ne demande rien a personne,
+    il regarde les octets.
+
+    Aucun octet de controle n'a de raison d'etre dans ce fichier, a part la
+    tabulation et le saut de ligne.
+    """
+    octets = io.open(chemin, "rb").read()
+    permis = {0x09, 0x0a, 0x0d}
+    fautifs = {}
+    for i, o in enumerate(octets):
+        if o < 0x20 and o not in permis:
+            fautifs.setdefault(o, []).append(i)
+    for o in sorted(fautifs):
+        pos = fautifs[o][0]
+        extrait = octets[max(0, pos - 40):pos + 20].decode("utf-8", "replace")
+        r.echec("interface",
+                "octet de controle 0x%02X dans %s (%d fois, le premier en %d) : %s"
+                % (o, os.path.basename(chemin), len(fautifs[o]), pos,
+                   extrait.replace("\n", " ")))
+    r.controle(len(octets) // 1000 or 1)
+    print("   octets        : %d Ko, %d octet(s) de controle interdit"
+          % (len(octets) // 1024, sum(len(v) for v in fautifs.values())))
+
+
 def verifier_zone_morte(r, source):
     """Une constante du sommet en utilise-t-elle une declaree plus bas ?
 
@@ -839,6 +873,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_octets_de_controle(r, INDEX)
     verifier_zone_morte(r, source)
     verifier_appels_internes(r, source, fonctions)
     verifier_tuiles_non_vides(r, source)

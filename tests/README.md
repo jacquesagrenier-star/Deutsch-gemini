@@ -7,6 +7,25 @@ python tests/verifier.py
 À lancer avant chaque `git push`. Aucune dépendance : ni npm, ni navigateur.
 Sort en code 0 si tout va bien, 1 sinon.
 
+## Et la syntaxe du JavaScript
+
+```bash
+node tests/syntaxe.js
+```
+
+**À lancer avant chaque `git push`, lui aussi.** Le vérificateur cherche des
+clés, des `onclick`, des écrans — tout par expressions régulières. Il ne
+demande jamais à un moteur JavaScript si le script tient debout.
+
+Le 12 septembre 2026, deux fautes d'échappement introduites par les scripts de
+construction ont cassé l'analyse du `<script>` principal. Le vérificateur a
+répondu « aucun problème » **les deux fois**, et l'app était morte — pas
+dégradée : plus une seule fonction définie. Seul le navigateur le disait.
+
+`syntaxe.js` n'exécute rien : `new Function(corps)` analyse le texte et
+s'arrête là. Il signale aussi tout **octet de contrôle** dans le fichier —
+c'était la première des deux fautes, un NUL au milieu d'une déclaration CSS.
+
 ## Ce qu'il vérifie
 
 **Données** — les 5 fichiers JSON : champs obligatoires présents et non vides,
