@@ -4229,14 +4229,18 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
     /* Un vrai cadre, pour quatre pixels : un filet sombre au bord, un lisere
        clair a l'interieur -- le passe-partout d'un encadrement. Il dit « oeuvre »
        la ou un simple trait gris disait « image d'interface ». */
-    border:2px solid rgba(30,41,59,.42); border-radius:0; overflow:hidden;
-    box-shadow:inset 0 0 0 2px rgba(255,255,255,.85);
+    /* ⚠️ LE CADRE CONTRASTE AVEC CE QUI L'ENTOURE, PAS AVEC LE TABLEAU.
+       Principe pose par Jacques : noir sur clair, gris sur noir. D'ou un filet
+       d'encre pleine sur l'accueil de jour -- et son inverse en mode nuit, ou
+       un cadre noir disparaitrait dans le fond sombre. */
+    border:2px solid #1C2430; border-radius:0; overflow:hidden;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.92);
     background:#f3f1ec; cursor:zoom-in; line-height:0;
     flex:0 0 42%; max-width:42%; position:relative;
 }
 body[data-theme="dark"] .mos-cadre{
-    border-color:rgba(255,255,255,.34);
-    box-shadow:inset 0 0 0 2px rgba(20,25,33,.85);
+    border-color:#C6CCD6;
+    box-shadow:inset 0 0 0 2px rgba(20,25,33,.90);
 }
 .mos-loupe{
     position:absolute; inset-block-end:5px; inset-inline-end:5px;
@@ -4302,8 +4306,11 @@ body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
        Jawlensky sont deja pleins de bleu. #B5D4F4 se lit comme un blanc froid
        sur le noir : assez present pour cadrer, assez neutre pour ne pas entrer
        dans le tableau. Question posee par Jacques. */
-    border:3px solid rgba(181,212,244,.62);
-    box-shadow:inset 0 0 0 3px rgba(0,0,0,.40), 0 14px 40px rgba(0,0,0,.55);
+    /* Le plein ecran est toujours sur du presque-noir, de jour comme de nuit :
+       le cadre y est GRIS -- assez clair pour se detacher, assez sourd pour ne
+       pas eblouir a cote d'une toile. Le blanc pur y etait dur. */
+    border:3px solid #8D949F;
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.45), 0 14px 40px rgba(0,0,0,.6);
 }
 .mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
 /* La galerie */
@@ -5137,7 +5144,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v560</span>
+    <span class="subtitle-version">v561</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -23731,7 +23738,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 560;
+const APP_VERSION = 561;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
