@@ -5095,7 +5095,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v557</span>
+    <span class="subtitle-version">v558</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6718,8 +6718,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashSynonymes" class="synonymes hidden"></div>
-                <div class="skip-hint" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
-                <div class="tap-map" aria-hidden="true">
+                <!-- ⚠️ DEUX INDICATIONS QUI DECRIVAIENT UN GESTE DISPARU (v558).
+                     La fleche vers la droite annoncait « passer a la carte
+                     suivante » -- or depuis la v555 le balayage ne passe plus :
+                     juger fait avancer, et rien d'autre. Signale par Jacques.
+
+                     ⚠️ Et la ligne au-dessus etait carrement FAUSSE : « passer
+                     une carte ne compte pas dans ta progression » promettait une
+                     action qui n'existe plus. Une aide qui decrit un geste
+                     disparu est pire qu'une absence d'aide -- on la croit, on
+                     essaie, et rien ne se passe.
+
+                     Les elements restent, masques : d'autres modes de carte
+                     peuvent encore s'y referer. -->
+                <div class="skip-hint hidden" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
+                <div class="tap-map hidden" aria-hidden="true">
                     <span class="tap-map-half">←</span>
                     <span class="tap-map-half">→</span>
                 </div>
@@ -23666,7 +23679,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 557;
+const APP_VERSION = 558;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
