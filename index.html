@@ -4006,10 +4006,18 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
    ⚠️ NE PAS APPLIQUER CE VERT AU TEXTE. #2FB488 sur blanc ne donne que 2,16,
    loin des 4,5 exiges pour du texte -- « mots maitrises » garde son #0F6E56. */
 .carte-vocab-part{height:100%; display:block; transition:width .3s;}
-.carte-vocab-part.sus{background:#2FB488;}
-.carte-vocab-part.cours{background:#2f62d6;}
+.carte-vocab-part.sus{background:#0F6E56;}
+.carte-vocab-part.cours{background:#6A9BEE;}
 .carte-vocab-part.sus + .carte-vocab-part.cours{border-inline-start:2px solid #e6e9ef;}
 .carte-examen-part.sus + .carte-examen-part.cours{border-inline-start:2px solid #e6e9ef;}
+/* Le cumul de jours : un grand chiffre, un mot, et la serie repoussee a droite
+   en petit. L'ordre visuel dit lequel des deux compte. */
+.carte-jours{display:flex; align-items:baseline; gap:7px; margin-top:12px;}
+.carte-jours-n{font-size:22px; font-weight:700; color:#1e293b; line-height:1; font-variant-numeric:tabular-nums;}
+.carte-jours-mot{font-size:13px; font-weight:600; color:#1e293b;}
+.carte-jours-serie{font-size:11.5px; color:#E8A23A; font-weight:600; margin-inline-start:auto;}
+body[data-theme="dark"] .carte-jours-n,
+body[data-theme="dark"] .carte-jours-mot{color:#F2F2F6;}
 .carte-vocab-niveaux{margin-top:10px;}
 .vocab-ligne{display:flex; align-items:center; gap:8px; margin-top:6px;}
 .vocab-ligne-niv{font-size:11px; font-weight:600; color:#7b8798; width:22px; flex-shrink:0;}
@@ -4025,8 +4033,8 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .vocab-legende{display:flex; gap:11px; flex-wrap:wrap; margin-top:9px; font-size:10px; color:#7b8798;}
 .vocab-legende span{display:flex; align-items:center; gap:4px;}
 .vocab-legende i{width:8px; height:8px; border-radius:2px; display:block;}
-.vocab-legende .pt-sus{background:#2FB488;}
-.vocab-legende .pt-cours{background:#2f62d6;}
+.vocab-legende .pt-sus{background:#0F6E56;}
+.vocab-legende .pt-cours{background:#6A9BEE;}
 .vocab-legende .pt-reste{background:rgba(30,41,59,.18);}
 body[data-theme="dark"] .carte-vocab{border-top-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .carte-vocab-tete{color:#F2F2F6;}
@@ -4061,8 +4069,8 @@ body[data-theme="dark"] .vocab-legende .pt-reste{background:rgba(255,255,255,.20
     background:rgba(30,41,59,.12); overflow:hidden;
 }
 .carte-examen-part{height:100%; transition:width .3s;}
-.carte-examen-part.sus{background:#2FB488;}
-.carte-examen-part.cours{background:#2f62d6;}
+.carte-examen-part.sus{background:#0F6E56;}
+.carte-examen-part.cours{background:#6A9BEE;}
 .carte-examen-pied{font-size:11px; color:#7b8798; margin-top:6px; line-height:1.3;}
 body[data-theme="dark"] .carte-examen{border-top-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .carte-examen-tete{color:#F2F2F6;}
@@ -4086,9 +4094,15 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    vide non. Bord sobre, pas d'ombre portee -- le seul bloc plein de l'accueil
    reste le bandeau de seance (v531). */
 .carte-mosaique{margin-top:14px; padding-top:13px; border-top:1px solid rgba(30,41,59,.10);}
+/* PLUS PETITE QUE LA CARTE, ET CENTREE. Elle n'a pas a occuper toute la
+   largeur : c'est une recompense qu'on regarde, pas un controle qu'on
+   actionne -- et on la touche pour l'avoir en grand. Instinct de Jacques, et
+   il a raison : pleine largeur, elle entrait en concurrence avec le bandeau de
+   seance, qui doit rester le seul bloc qui appelle l'action. */
 .mos-cadre{
     border:1px solid rgba(30,41,59,.16); border-radius:8px; overflow:hidden;
-    background:#f3f1ec; cursor:pointer; line-height:0;
+    background:#f3f1ec; cursor:zoom-in; line-height:0;
+    max-width:62%; margin:0 auto;
 }
 .mos-toile{display:block; width:100%; height:auto;}
 .mos-cartouche{text-align:center; margin-top:9px; line-height:1.35;}
@@ -4097,7 +4111,10 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
 .mos-annee{font-size:12px; color:#7b8798; font-variant-numeric:tabular-nums; margin-top:2px;}
 .mos-peintre{font-size:13px; font-weight:600; color:#1e293b; margin-top:2px;}
 .mos-titre{font-size:12.5px; font-style:italic; color:#576177; margin-top:2px;}
-.mos-bas{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:9px;}
+/* ⚠️ LE ⓘ EST EN ABSOLU AU COIN DE LA CARTE : sans cette reserve a droite,
+   il recouvrait « Ta galerie ». Trouve a l'ecran, pas par un controle. */
+.mos-bas{display:flex; align-items:center; justify-content:space-between;
+    gap:10px; margin-top:9px; padding-inline-end:34px;}
 .mos-pied{font-size:11px; color:#7b8798;}
 .mos-galerie{
     background:none; border:0; padding:0; font-family:inherit; font-size:11.5px;
@@ -4411,7 +4428,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v544</span>
+        <span class="subtitle-version">v545</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4426,7 +4443,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="carte-jour-piste"><div id="jourRemplissage" class="carte-jour-fill" style="width:0%"></div></div>
         </div>
 
-        <div class="global-progress-row">
+        <!-- ⚠️ LE CUMUL EN GRAND, LA SERIE EN PETIT. La serie seule punissait
+             l'absence : au retour de vacances elle affichait 0 et effacait des
+             semaines de travail. Le cumul ne redescend jamais. -->
+        <div class="carte-jours">
+            <span class="carte-jours-n" id="joursTravaillesN">0</span>
+            <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
+            <span class="carte-jours-serie hidden" id="joursSerie"></span>
+        </div>
+
+        <div class="global-progress-row hidden">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
                 <div class="home-stat-val"><span id="streakCount">0</span></div>
@@ -4459,7 +4485,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              l'etudiant appelle un exercice (celui du Perfekt, celui des cas) ;
              les 1 682 sont les QUESTIONS a l'interieur. « Regles maitrisees »
              promettrait trop tant que « solide » n'est pas defini. -->
-        <div class="carte-comptes">
+        <!-- ⚠️ LES TROIS CUMULS PASSENT DERRIERE LE ⓘ (v545). Ils ne sont pas
+             faux, ils sont DE TROP a cet endroit : la ligne « Vocabulaire » juste
+             dessous dit la meme chose par niveau, avec un denominateur qu'on peut
+             atteindre. Meme traitement que l'anneau a la v535 -- la valeur etait
+             juste, c'est la place qui ne l'etait pas. Les elements restent :
+             majCarteProgression() y ecrit toujours. -->
+        <div class="carte-comptes hidden">
             <div class="carte-compte">
                 <div class="carte-compte-val" id="compteRencontres">0</div>
                 <div class="carte-compte-lib" data-i18n="compte_rencontres">mots rencontrés</div>
@@ -4595,7 +4627,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <p data-i18n="progress_info_deja"></p>
             <p data-i18n="progress_info_apres"></p>
         </div>
-        <div class="home-daily-goal">
+        <!-- ⚠️ MASQUE : DOUBLON. Cette ligne affichait l'objectif du jour
+             juste sous « Aujourd'hui » -- le meme chiffre, deux fois, dans la
+             meme carte. Signale par Jacques : « trop d'informations ».
+             L'element reste parce que updateHomeStatsPanel() y ecrit toujours ;
+             le retirer casserait la mise a jour en silence. -->
+        <div class="home-daily-goal hidden">
             <div class="home-daily-goal-row">
                 <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
                 <span id="dailyGoalCount">0 / 30</span>
@@ -7280,6 +7317,9 @@ const I18N = {
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
         vocab_titre: "Vocabulaire",
+        jours_travailles: "jours travaillés",
+        jour_travaille: "jour travaillé",
+        jours_serie: "{n} d'affilée",
         mosaique_compte: "Tableau {n} sur {total}",
         mosaique_reste: "encore {n} carreaux",
         mosaique_trophee: "Terminé · encore {n} séances à l'écran",
@@ -8179,6 +8219,9 @@ const I18N = {
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
         vocab_titre: "Vocabulary",
+        jours_travailles: "days worked",
+        jour_travaille: "day worked",
+        jours_serie: "{n} in a row",
         mosaique_compte: "Painting {n} of {total}",
         mosaique_reste: "{n} tiles to go",
         mosaique_trophee: "Finished · {n} more sessions on screen",
@@ -9080,6 +9123,9 @@ const I18N = {
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
         vocab_titre: "Kelimeler",
+        jours_travailles: "çalışılan gün",
+        jour_travaille: "çalışılan gün",
+        jours_serie: "üst üste {n}",
         mosaique_compte: "Tablo {n} / {total}",
         mosaique_reste: "{n} kare kaldı",
         mosaique_trophee: "Bitti · ekranda {n} oturum daha",
@@ -10246,6 +10292,9 @@ const I18N = {
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
         vocab_titre: "Лексика",
+        jours_travailles: "днів праці",
+        jour_travaille: "день праці",
+        jours_serie: "{n} поспіль",
         mosaique_compte: "Картина {n} з {total}",
         mosaique_reste: "ще {n} плиток",
         mosaique_trophee: "Завершено · ще {n} сеансів на екрані",
@@ -11760,6 +11809,9 @@ const I18N = {
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
         vocab_titre: "واژگان",
+        jours_travailles: "روز کار",
+        jour_travaille: "روز کار",
+        jours_serie: "{n} روز پیاپی",
         mosaique_compte: "تابلوی {n} از {total}",
         mosaique_reste: "{n} کاشی مانده",
         mosaique_trophee: "تمام شد · {n} جلسهٔ دیگر روی صفحه",
@@ -15424,6 +15476,36 @@ function listeNiveaux(){ return LEVELS.join(" \u00b7 "); }
 // ============ Streak, objectif du jour & vélocité (motivation) ============
 
 const DAILY_ACTIVITY_KEY = "deutschAI_dailyActivity";
+// ============ LES JOURS TRAVAILLES (v545) ============
+// ⚠️ UN CUMUL, PAS UNE SERIE, ET C'EST LE POINT. La serie repart a zero des
+// qu'on saute un jour : elle punit l'absence, exactement ce que la v523 avait
+// cesse de faire. « 34 jours travailles » ne redescend jamais -- deux semaines
+// d'absence le laissent ou il etait, et le premier jour de retour le fait
+// monter a 35. La serie reste, mais en petit et a droite, et seulement quand
+// elle est vivante : elle garde ce qu'elle a de bon sans etre ce que l'ecran
+// affirme en premier.
+const JOURS_KEY = "deutschAI_joursTravailles";
+
+function joursTravailles(){
+    let v = null;
+    try{ v = JSON.parse(localStorage.getItem(directionScopedKey(JOURS_KEY)) || "null"); }catch(e){}
+    if(!v || typeof v !== "object"){
+        // ⚠️ AMORCE DEPUIS LA SERIE POUR LES COMPTES DEJA OUVERTS. Afficher
+        // « 0 jour travaille » a quelqu'un qui en est a trente d'affilee serait
+        // faux et decourageant. La serie sous-estime (elle ignore les jours
+        // isoles) mais elle ne surestime jamais.
+        v = { n: getStreakCount() || 0, dernier: "" };
+    }
+    return { n: v.n || 0, dernier: v.dernier || "" };
+}
+
+function noterJourTravaille(){
+    const v = joursTravailles();
+    const jour = getTodayStr();
+    if(v.dernier === jour) return;
+    v.dernier = jour; v.n += 1;
+    try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
+}
 const STREAK_KEY = "deutschAI_streak";
 const STREAK_FREEZE_KEY = "deutschAI_streakFreezes";
 const STREAK_FREEZE_STARTING_COUNT = 1; // offert dès le départ, comme un "essai gratuit" de la mécanique
@@ -15720,6 +15802,10 @@ function recordDailyActivity(compteDansObjectif){
     delete daily.goalCelebrated;
     const target = getDailyGoalTarget();
     if(compteDansObjectif !== false) daily.count += 1;
+    // La grammaire alimente le cumul comme le vocabulaire : quelqu'un qui a
+    // passe une heure sur le Perfekt a travaille (meme raison qu'a la v534
+    // pour la serie).
+    noterJourTravaille();
 
     let justReachedMultiple = 0;
     const multiplesReached = target > 0 ? Math.floor(daily.count / target) : 0;
@@ -23029,7 +23115,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 544;
+const APP_VERSION = 545;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24695,6 +24781,24 @@ function majCarteProgression(){
     el("compteRencontres").textContent = c.rencontres;
     el("compteMaitrises").textContent = c.maitrises;
     el("compteGrammaire").textContent = c.grammaire + " / 40";
+    const jt = document.getElementById("joursTravaillesN");
+    if(jt){
+        const nj = joursTravailles().n;
+        jt.textContent = nj;
+        // « 1 jours travailles » : le pluriel se decide sur le nombre, et le
+        // mot vit dans les cinq langues -- d'ou deux cles plutot qu'un « s »
+        // ajoute a la main, qui n'aurait de sens qu'en francais.
+        const mot = document.querySelector(".carte-jours-mot");
+        if(mot) mot.textContent = t(nj > 1 ? "jours_travailles" : "jour_travaille");
+        const serie = getStreakCount();
+        const se = document.getElementById("joursSerie");
+        if(se){
+            // La serie ne s'affiche qu'a partir de deux : « 1 d'affilee » n'est
+            // pas une serie, c'est aujourd'hui.
+            se.textContent = tf("jours_serie", { n: serie });
+            se.classList.toggle("hidden", serie < 2);
+        }
+    }
     majCarteVocab();
     majCarteExamen();
     try{ majMosaiqueAccueil(); }catch(e){}
@@ -24735,10 +24839,17 @@ function chargerMosaiques(){
 
 // { r: rang courant, c: carreaux poses, j: jour, n: poses aujourd'hui,
 //   g: [rangs gagnes], t: seances restantes du trophee }
+// ⚠️ DIX CARREAUX D'AVANCE AU TOUT PREMIER JOUR. Demande de Jacques :
+// « pour que son esprit se dise : ok, on est en train de construire quelque
+// chose ». Une grille intacte se lit comme un depart a zero ; dix carreaux
+// ouverts se lisent comme un chantier deja commence, et c'est une difference de
+// nature, pas de degre. Offerts une seule fois, a la creation de l'etat.
+const MOSAIQUE_AVANCE = 10;
+
 function etatMosaique(){
     let v = null;
     try{ v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE) || "null"); }catch(e){}
-    if(!v || typeof v !== "object") v = {};
+    if(!v || typeof v !== "object") v = { c: MOSAIQUE_AVANCE };
     return { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
              g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, taille: v.taille || 0 };
 }
@@ -24831,11 +24942,28 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
     const flou = document.createElement("canvas");
     flou.width = L; flou.height = H;
     const fc = flou.getContext("2d");
-    try{ fc.filter = "blur(" + Math.max(6, Math.round(L / 46)) + "px) saturate(.5)"; }catch(e){}
+    // ⚠️ LE FLOU DOIT DETRUIRE LA COMPOSITION, PAS L'ADOUCIR. A L/46 on
+    // reconnaissait encore le sujet -- « ce n'est pas une image cachee en
+    // glacis, c'est la peinture en plus pale », dit par Jacques, et c'est
+    // exactement ca. Un rayon de L/14 ne laisse que des masses de couleur :
+    // on sent qu'il y a quelque chose, on ne peut plus dire quoi. C'est la
+    // seule facon de garder la curiosite, qui porte tout le mecanisme.
+    // Deux passes, parce qu'un seul blur laisse des contours fantomes.
+    // ⚠️ DEUX REGLAGES QUI FONT DEUX CHOSES DIFFERENTES, et je les avais
+    // confondus. LE FLOU detruit la FORME -- c'est lui qui empeche de
+    // reconnaitre le sujet. LE VOILE BLANC detruit la COULEUR -- et pousse trop
+    // loin, il ne reste qu'un cadre blanc, ce qui est pire que tout : une
+    // grille vide n'invite personne. Donc : flouter beaucoup, laver peu, et
+    // meme REHAUSSER la saturation pour que les masses de couleur restent
+    // franches. C'est ca, du verre depoli -- on voit les couleurs, pas le
+    // dessin.
+    try{ fc.filter = "blur(" + Math.max(14, Math.round(L / 13)) + "px) saturate(1.15)"; }catch(e){}
     fc.drawImage(img, 0, 0, L, H);
+    try{ fc.filter = "blur(" + Math.max(8, Math.round(L / 24)) + "px)"; }catch(e){}
+    fc.drawImage(flou, 0, 0, L, H);
     fc.filter = "none";
     fc.fillStyle = document.body.dataset.theme === "dark"
-        ? "rgba(18,22,29,.55)" : "rgba(255,255,255,.58)";
+        ? "rgba(18,22,29,.30)" : "rgba(255,255,255,.26)";
     fc.fillRect(0, 0, L, H);
 
     const ordre = ordreCarreaux(etatMosaique().r, total);

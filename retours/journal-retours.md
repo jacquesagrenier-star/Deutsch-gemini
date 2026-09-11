@@ -2531,3 +2531,67 @@ doublon.
 complet du trophée sur trois séances avec report, la galerie à trois tableaux,
 et le plein écran. `verifier.py` 14 254 contrôles, `cles_langues.py` 954 clés ×
 5 langues.
+
+---
+
+## 12 septembre 2026 — la carte allégée, le glacis réglé (v545)
+
+**Quatre remarques de Jacques, toutes justes, toutes appliquées.**
+
+### « Trop d'informations dans le rectangle de progression »
+
+Vrai, et il y avait pire qu'un encombrement : **un doublon**. « Aujourd'hui
+0 / 30 » et « Objectif du jour 0 / 30 » affichaient **le même chiffre deux fois
+dans la même carte**. Masqué.
+
+Et les trois cumuls — mots rencontrés · maîtrisés · exercices — passent derrière
+le ⓘ. ⚠️ Ils ne sont pas faux, ils sont **de trop à cet endroit** : la ligne
+« Vocabulaire » juste dessous dit la même chose par niveau, avec un dénominateur
+qu'on peut atteindre. Même traitement que l'anneau à la v535.
+
+La carte tient maintenant en quatre blocs : le jour, les jours travaillés, le
+vocabulaire, la mosaïque.
+
+### « Ce n'est pas une image cachée en glacis, c'est la peinture en plus pâle »
+
+⚠️ **J'avais confondu deux réglages qui font deux choses différentes.** Le
+**flou** détruit la **forme** — c'est lui qui empêche de reconnaître le sujet.
+Le **voile blanc** détruit la **couleur**. J'avais trop peu flouté et trop lavé :
+on reconnaissait le tableau, en délavé.
+
+Première correction : j'ai poussé les deux — et obtenu **un cadre blanc**, ce qui
+est pire que tout, puisqu'une grille vide n'invite personne. Le bon réglage est
+**flouter beaucoup, laver peu**, et même **rehausser** la saturation : on voit
+des masses de couleur franches sans aucun dessin. C'est ça, du verre dépoli.
+
+### « Le bleu, plus pâle, pour un meilleur contraste »
+
+Le vert reste `#0F6E56` comme il l'a demandé ; c'est le bleu qui s'éclaircit à
+`#6A9BEE`. Le contraste entre les deux segments passe de **1,13 à 2,23**, en
+plus de la séparation de 2 px posée à la v544.
+
+### « Dix carreaux d'avance, pour qu'on se dise qu'on construit quelque chose »
+
+⚠️ **Une grille intacte se lit comme un départ à zéro ; dix carreaux ouverts se
+lisent comme un chantier déjà commencé.** C'est une différence de nature, pas de
+degré. Offerts une seule fois, à la création de l'état.
+
+### Deux défauts trouvés à l'écran
+
+- **Le ⓘ recouvrait « Ta galerie »** : il est en absolu au coin de la carte, et
+  la mosaïque finit désormais là. Réserve de 34 px à droite.
+- **« 1 jours travaillés »** : le pluriel se décide sur le nombre, et le mot vit
+  dans cinq langues — d'où deux clés, pas un « s » ajouté à la main.
+
+### Et le cumul de jours a remplacé la série
+
+⚠️ **La série repartait à zéro dès qu'on saute un jour : elle punit l'absence**,
+exactement ce que la v523 avait cessé de faire. « 34 jours travaillés » ne
+redescend jamais. La série reste, en petit et à droite, et seulement à partir de
+deux — « 1 d'affilée » n'est pas une série, c'est aujourd'hui.
+
+⚠️ **Le compteur s'amorce depuis la série** pour les comptes déjà ouverts :
+afficher « 0 jour travaillé » à quelqu'un qui en est à trente d'affilée serait
+faux et décourageant. La série sous-estime, elle ne surestime jamais.
+
+**Reste à faire :** les 22 textes de peintres, demandés et pas encore écrits.
