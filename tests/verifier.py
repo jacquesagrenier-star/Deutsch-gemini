@@ -536,6 +536,73 @@ def verifier_retours_flashcards(r, source):
     print("   modes de cartes : %d, dont %d dans la table de retour" % (len(modes), len(traites)))
 
 
+def verifier_tuiles_non_vides(r, source):
+    """Une tuile doit garder au moins DEUX entrees une fois le filtre applique.
+
+    C'est le defaut de la v536, trouve a l'usage et non ici : retirer les
+    actions de vocabulaire des panneaux a vide la tuile « Noms », qui n'avait
+    ni lecon ni exercice propre pour amortir le retrait. Il restait UNE dictee
+    sous un titre qui en promet beaucoup plus.
+
+    La regle que ce controle inscrit dans le code : toute modification de
+    ACTIONS_VOCABULAIRE se juge sur l'ETAT FINAL DE CHAQUE TUILE, jamais sur la
+    constante seule. La constante est lisible d'un coup d'oeil ; ce qu'elle
+    laisse dans chaque panneau ne l'est pas.
+
+    Le seuil est deux : une tuile a une seule entree n'est pas un menu, c'est un
+    bouton qui s'est deguise en menu -- un ecran de plus pour rien.
+
+    ⚠️ IL DIT AUSSI QUI A VIDE LA TUILE. Une tuile qui n'avait qu'une entree
+    AVANT le filtre n'est pas le probleme du filtre : c'est un choix ancien, et
+    l'accuser ici ferait porter a la v536 des defauts qu'elle n'a pas commis.
+    Un controle qui accuse a tort est pire que pas de controle (v537).
+    """
+    debut = source.find("function orbPanelData(id){")
+    if debut == -1:
+        return r.echec("interface", "orbPanelData() introuvable")
+    corps = source[debut:source.index("\n}\n", debut)]
+
+    filtre_actif = re.search(r"const VOCAB_DANS_TUILES\s*=\s*(true|false)", source)
+    masquees = set()
+    if filtre_actif and filtre_actif.group(1) == "false":
+        bloc = source[source.index("const ACTIONS_VOCABULAIRE = ["):]
+        masquees = set(re.findall(r'"([A-Za-z0-9_]+)"', bloc[:bloc.index("];")]))
+
+    # Un bloc par panneau : if(id === "xxx"){ ... } jusqu'au panneau suivant.
+    # Un « open... » ouvre un ecran de choix, un « start... » pose une carte.
+    # Masquer un sommaire ferme une consultation, pas une revision generique --
+    # c'est ce qui avait vide « Noms » et « Expressions ».
+    for a in sorted(masquees):
+        if not a.startswith("start"):
+            r.echec("interface",
+                    "ACTIONS_VOCABULAIRE contient un sommaire : %s() ouvre un "
+                    "ecran de choix, il n'a pas a etre masque" % a)
+    r.controle(len(masquees))
+
+    bornes = [(m.group(1), m.start()) for m in
+              re.finditer(r'if\(id === "([a-z0-9]+)"\)\{', corps)]
+    vides = 0
+    for i, (nom, pos) in enumerate(bornes):
+        fin = bornes[i + 1][1] if i + 1 < len(bornes) else len(corps)
+        actions = re.findall(r'action:\s*"([A-Za-z0-9_]+)"', corps[pos:fin])
+        restantes = [a for a in actions if a not in masquees]
+        if len(restantes) < 2:
+            vides += 1
+            if len(actions) < 2:
+                # Pas le filtre : cette tuile n'a jamais eu qu'une entree.
+                r.alerte("interface",
+                          "la tuile « %s » n'a qu'une entree, filtre ou pas : un menu "
+                          "d'un seul element est un bouton deguise" % nom)
+            else:
+                r.echec("interface",
+                        "le filtre du vocabulaire vide la tuile « %s » : %d entree(s) "
+                        "sur %d, il reste %s"
+                        % (nom, len(restantes), len(actions), ", ".join(restantes) or "rien"))
+        r.controle(1)
+    print("   tuiles          : %d panneaux, %d actions masquees, %d a une seule entree"
+          % (len(bornes), len(masquees), vides))
+
+
 # --------------------------------------------------------------------------
 
 def verifier_taille_des_champs(r, source):
@@ -708,6 +775,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_tuiles_non_vides(r, source)
     verifier_taille_des_champs(r, source)
     verifier_version(r, source)
     verifier_chemins(r)

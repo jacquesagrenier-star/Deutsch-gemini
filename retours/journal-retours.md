@@ -1931,3 +1931,80 @@ jamais un libellé mais le compose depuis sa clé, comme la v535 l'a fait en
 réutilisant `srs_aide_echelle` mot pour mot. Non fait ici — cinq langues à
 recomposer pour une phrase — mais c'est la règle à suivre au prochain texte
 d'aide écrit.
+
+---
+
+## 11 septembre 2026 — « je vois seulement dictée » : ce que la v536 avait vidé (v539)
+
+**Le retour, mot pour mot :** *« Peux-tu me rappeler les sections qu'on avait
+dans les noms ? Parce que là maintenant, je vois seulement dictée. »* Puis la
+même question pour les verbes et les adverbes.
+
+C'était exact, et c'était un **effet secondaire de la v536**. La tuile « Noms »
+avait cinq entrées ; le filtre en a masqué quatre. Il restait **une dictée seule
+sous un titre qui en promet beaucoup plus** — et Noms était la plus exposée des
+tuiles, parce qu'elle n'a ni leçon ni exercice propre pour amortir le retrait.
+
+### Ce que Jacques a demandé, puis corrigé
+
+**Premier tour :** rendre à Noms « Parcourir par niveau » et « Parcourir par
+thème », garder masqués « Réviser mes mots » et « Mots aléatoires ». Sa
+formulation de la distinction : *« ce n'est pas un simple retour en arrière,
+c'est une correction UX de l'effet secondaire de v536 — v536 a correctement
+retiré les actions génériques, mais n'a pas vérifié si chaque tuile conservait
+suffisamment d'actions propres à son domaine »*.
+
+⚠️ **Deuxième tour, et c'est lui qui a eu raison contre ma mise en œuvre :**
+*« c'est un peu inconsistant de le faire seulement pour les noms et pas les
+verbes, les adjectifs et les adverbes »*. J'allais réparer **une tuile**, ce qui
+aurait laissé les mêmes portes fermées ailleurs **sans raison qu'on puisse dire
+à voix haute** — le pire des états, parce qu'il se défend au cas par cas et
+jamais dans son ensemble.
+
+### La ligne de partage, et elle était déjà écrite dans le code
+
+En classant les dix-huit actions masquées, la frontière s'est révélée exacte et
+sans exception : **les six `open…` ouvrent un SOMMAIRE**, un écran où l'on
+choisit (les niveaux, les 197 thèmes, les huit familles d'adverbes) ; **les
+douze `start…` posent une carte** devant l'apprenant tout de suite.
+
+**Un sommaire n'est pas une révision générique.** Ce que la séance du jour
+remplace, c'est le paquet qu'on se sert sans avoir rien choisi — pas la
+consultation. `ACTIONS_VOCABULAIRE` ne contient donc plus que les douze
+`start…`, et **`verifier.py` refuse maintenant qu'un `open…` y entre**.
+
+État final des cinq tuiles de vocabulaire : Noms (par niveau · par thème ·
+dictée), Verbes (par niveau · dictée · par temps · wissen ou kennen), Adjectifs
+(par niveau · dictée · déclinaison), Adverbes (les quatre, inchangée),
+Expressions (leçon · vocabulaire — elle était tombée à une seule entrée elle
+aussi, ce que personne n'avait vu).
+
+### Les deux règles qu'il a demandé d'inscrire
+
+**1. Toute modification de `ACTIONS_VOCABULAIRE` se juge sur l'ÉTAT FINAL DE
+CHAQUE TUILE, jamais sur la constante seule.** La constante se lit d'un coup
+d'œil ; ce qu'elle laisse dans chaque panneau ne se lit pas. `verifier.py` porte
+désormais ce contrôle : il reconstruit les seize panneaux, applique le filtre, et
+échoue si l'un descend sous deux entrées.
+
+⚠️ **Il a trouvé « Expressions » à la première exécution** — une tuile vidée que
+ni Jacques ni moi n'avions remarquée, alors qu'on parlait précisément de ça.
+C'est la justification de ce genre de contrôle en une ligne.
+
+⚠️ **Et il dit qui a vidé la tuile.** « Nombres » et « Ordre des mots » n'ont
+qu'une entrée **depuis toujours** : les compter comme des victimes de la v536
+lui ferait porter des défauts qu'elle n'a pas commis. Ils sortent en
+avertissement — *un menu d'un seul élément est un bouton déguisé* — et restent
+un chantier ouvert, pas une régression.
+
+**2. Un renommage doit chercher les textes qui CITENT le libellé, pas seulement
+la clé qui le produit.** C'est le défaut de la v538, trouvé la même heure :
+`progress_info_deja` citait « Je le sais déjà » treize versions après que le
+bouton eut été renommé. `verifier.py` ne peut pas le voir — les deux chaînes sont
+valides, elles ne se contredisent que pour un lecteur. ⚠️ **La parade n'est pas
+un contrôle, c'est une habitude** : composer la citation depuis la clé, comme la
+v535 l'a fait en réutilisant `srs_aide_echelle` mot pour mot, plutôt que de
+retaper le libellé dans cinq langues.
+
+**Vérifié :** `verifier.py`, 14 149 contrôles, 2 avertissements (les deux tuiles
+à une seule entrée, connues).

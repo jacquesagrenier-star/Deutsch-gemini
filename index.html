@@ -4257,7 +4257,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v538</span>
+        <span class="subtitle-version">v539</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -16784,14 +16784,28 @@ function orbAction(action){
 // semaine, et ces portes sont le filet.
 const VOCAB_DANS_TUILES = false;
 
-// Les actions qui ouvrent des flashcards de VOCABULAIRE. Les dictees n'y sont
-// pas : une dictee est un exercice, pas une revision generique. Les lecons
-// (open...Info) non plus.
+// Les actions qui SERVENT UN PAQUET DE VOCABULAIRE sans qu'on ait rien choisi.
+// Les dictees n'y sont pas : une dictee est un exercice, pas une revision
+// generique. Les lecons (open...Info) non plus.
+//
+// ⚠️ LA LIGNE DE PARTAGE A CHANGE EN v539, ET C'EST LA BONNE. La v536 masquait
+// aussi les SOMMAIRES -- « Parcourir par niveau », « Parcourir par theme »,
+// « Vocabulaire ». Un sommaire n'est pas une revision generique : il ouvre un
+// ecran ou l'on CHOISIT, et c'est ce choix que la seance du jour remplace, pas
+// la consultation. Les avoir masques a vide la tuile « Noms » jusqu'a une
+// dictee seule sous un titre qui promet beaucoup plus, et « Expressions »
+// jusqu'a sa lecon seule. Signale par Jacques, qui a aussi refuse la reparation
+// au cas par cas : ne rendre ses parcours qu'a « Noms » aurait laisse les memes
+// portes fermees chez les verbes, les adjectifs et les adverbes, sans raison
+// qu'on puisse dire a voix haute.
+//
+// LA REGLE TIENT DANS LE NOM DES FONCTIONS, et verifier.py l'exige desormais :
+// ici, QUE DES « start... ». Un « open... » ouvre un ecran de choix et reste
+// visible ; un « start... » pose une carte devant l'apprenant et se retire.
 const ACTIONS_VOCABULAIRE = [
-    "startDueReview", "openNomenNiveau", "openNomen", "startRandomMixAll",
-    "startVerbeDueReview", "openVerbenNiveau", "startVerbeRandomMix",
-    "startAdjektiveDueReview", "openAdjektive", "startAdjektiveRandomMix",
-    "openAdverbienVokabular", "openRedewendungenVokabular",
+    "startDueReview", "startRandomMixAll",
+    "startVerbeDueReview", "startVerbeRandomMix",
+    "startAdjektiveDueReview", "startAdjektiveRandomMix",
     "startPronomenVokabular", "startArtikelwoerterVokabular",
     "startKonjunktionenVokabular", "startPartikelnVokabular",
     "startPraepVokabular", "startPositionsverbenVokabular"
@@ -22519,7 +22533,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 538;
+const APP_VERSION = 539;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
