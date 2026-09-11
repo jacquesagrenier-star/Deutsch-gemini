@@ -755,16 +755,24 @@ def verifier_tuiles_non_vides(r, source):
         bloc = source[source.index("const ACTIONS_VOCABULAIRE = ["):]
         masquees = set(re.findall(r'"([A-Za-z0-9_]+)"', bloc[:bloc.index("];")]))
 
-    # Un bloc par panneau : if(id === "xxx"){ ... } jusqu'au panneau suivant.
-    # Un « open... » ouvre un ecran de choix, un « start... » pose une carte.
-    # Masquer un sommaire ferme une consultation, pas une revision generique --
-    # c'est ce qui avait vide « Noms » et « Expressions ».
-    for a in sorted(masquees):
-        if not a.startswith("start"):
-            r.echec("interface",
-                    "ACTIONS_VOCABULAIRE contient un sommaire : %s() ouvre un "
-                    "ecran de choix, il n'a pas a etre masque" % a)
-    r.controle(len(masquees))
+    # ⚠️ LA REGLE « AUCUN open... DANS LA LISTE » A ETE RETIREE (v567), ET IL
+    # FAUT DIRE POURQUOI.
+    #
+    # Elle interdisait de masquer un sommaire (openNomen, openVerbenNiveau...)
+    # au motif que cela ferme une consultation et non une revision generique.
+    # C'etait un RACCOURCI : ce qu'on voulait vraiment empecher, c'est de vider
+    # une tuile -- et la boucle ci-dessous le verifie directement, sur l'etat
+    # final de chaque panneau.
+    #
+    # Jacques a tranche dans l'autre sens : « enlever reviser par mots, enlever
+    # parcourir par niveau, enlever parcourir par theme, enlever mots
+    # aleatoires -- plus aucune trace de flashcards » dans les quatre tuiles de
+    # vocabulaire. Parcourir mene aux memes cartes ; le prefixe du nom de la
+    # fonction ne dit pas ou l'on arrive.
+    #
+    # Un controle qui repose sur une convention de nommage plutot que sur
+    # l'effet mesure finit par interdire ce qu'on veut faire. Celui du dessous
+    # mesure l'effet.
 
     bornes = [(m.group(1), m.start()) for m in
               re.finditer(r'if\(id === "([a-z0-9]+)"\)\{', corps)]

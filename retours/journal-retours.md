@@ -3222,3 +3222,75 @@ deux portes ; *pronomen* et *konjunktionen* n'en ont toujours aucune.
 (`openAdverbienVokabular`) n'a jamais figure dans `ACTIONS_VOCABULAIRE`, donc
 n'a jamais ete filtree. Il est nomme dans la liste quand meme — pour qu'elle
 dise l'intention et pas seulement l'effet.
+
+## 12 septembre 2026 — j'avais compris l'inverse, et je l'avais publie (v567)
+
+### La correction
+
+*« Je crois qu'on s'est mal compris. Ce que je disais, c'est d'enlever toutes
+les flashcards pour les tuiles de nom, verbes, adjectifs et adverbes. Par
+exemple pour les noms : enlever "reviser les mots", enlever "parcourir par
+niveau", enlever "parcourir par theme", enlever "mots aleatoires". Donc il n'y
+a plus de traces de flashcards, sauf a partir de ma seance du jour, ou par
+theme, ou par niveau. »*
+
+Sa phrase de la v566 etait : *« dans le nom, l'adjectif, le verbe, l'adverbe —
+vers les flashcards »*. J'ai lu **« remets-y une porte »** ; il disait
+**« retire celles qui restent »**. Deux lectures possibles d'une meme phrase,
+et j'ai pris la mienne sans le dire.
+
+⚠️ **Ce qui aurait du m'alerter**, et qui etait sous mes yeux : la v566
+consistait a **defaire** une decision de la v536 prise a sa demande, et le
+commentaire de l'interrupteur le disait mot pour mot — *« c'est la demande de
+Jacques »*. Quand une modification revient sur une decision que la personne a
+elle-meme demandee, ce n'est pas le moment d'interpreter : c'est le moment de
+demander.
+
+### Ce qui change
+
+`TUILES_AVEC_VOCABULAIRE` est **supprimee, pas videe** — une liste vide se
+remplit toute seule un jour.
+
+Et cinq portes rejoignent `ACTIONS_VOCABULAIRE` : `openNomen`,
+`openNomenNiveau`, `openVerbenNiveau`, `openAdjektive`,
+`openAdverbienVokabular`. La liste ne retenait jusqu'ici que les entrees qui
+servent un paquet **sans qu'on ait rien choisi** ; « parcourir par niveau » en
+demande un, mais elle mene au meme endroit — des flashcards. Il les a nommees
+une a une.
+
+Etat final, mesure et non suppose :
+
+| tuile | ce qu'il reste |
+|---|---|
+| Noms | Dictee · Quel article ? · Les terminaisons qui trahissent le genre · Deviner par la terminaison |
+| Verbes | Dictee · S'entrainer par temps · wissen ou kennen ? |
+| Adjectifs | Dictee · Declinaison des adjectifs |
+| Adverbes | Comprendre les adverbes · Reconnaitre la famille · Dictee |
+
+⚠️ **Le filtre ne touche que les panneaux de tuile.** `renderOrbPanel()` en est
+le seul lecteur : la seance du jour, son « ou par theme » et ses pastilles de
+niveau appellent d'autres fonctions et continuent de servir des cartes — c'est
+exactement ce qu'il demande de garder.
+
+### Un controle qui interdisait ce qu'on voulait faire
+
+`verifier_tuiles_non_vides()` refusait tout `open…` dans
+`ACTIONS_VOCABULAIRE` : masquer un sommaire, disait-il, ferme une consultation
+et non une revision. C'etait un **raccourci**. Ce qu'on voulait vraiment
+empecher — vider une tuile — est verifie juste en dessous, directement, sur
+l'etat final de chaque panneau.
+
+**Un controle qui repose sur une convention de nommage plutot que sur l'effet
+mesure finit par interdire ce qu'on veut faire.** La regle du prefixe est
+retiree ; le seuil de deux entrees reste, et il passe.
+
+### Et cent carreaux dans l'ecran d'information
+
+*« Pour la peinture que tu as mise dans information, mets une centaine de
+carreaux qui ne sont pas encore devoiles. »*
+
+Il avait dit « une vingtaine » la veille, et c'etait juste sur le principe. Mais
+vingt sur sept cents, dans une vignette de 136 px, ne se voyaient plus du tout :
+la demonstration montrait une toile intacte et n'expliquait plus rien. A cent,
+les carreaux fermes se comptent encore du regard et le mecanisme redevient
+lisible **a cette taille-la** — c'est la vignette qui decide, pas le principe.
