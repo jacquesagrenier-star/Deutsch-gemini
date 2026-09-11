@@ -104,3 +104,46 @@ saturation ×1,45, contraste ×1,10. Cuit dans le fichier, pas appliqué en CSS.
 - **Ernst Ludwig Kirchner** — 1
 - **Franz von Stuck** — 1
 - **Lovis Corinth** — 1
+
+## L'ordre d'apparition — les 23 premières
+
+Fixé par Jacques le 12 septembre 2026. **Les 42 restantes sont tirées au hasard**
+après celles-ci ; l'ordre ci-dessous est celui de la première année, la seule qui
+décide si quelqu'un reste.
+
+⚠️ **Au bouclage, on ne recommence PAS par ces 23.** Le réservoir mesuré compte
+218 candidats, dont 153 non retenus : on y pioche d'abord, ce qui donne un
+deuxième tour neuf sans aucune production. Le rebouclage n'est que le dernier
+recours — et la curiosité, qui porte tout le mécanisme, n'existe qu'au premier
+passage.
+
+À **700 carreaux** par image, un carreau par carte traversée. « Rythme réel » =
+24 cartes/jour, la moyenne mesurée par `tests/charge.py` après le premier mois ;
+« 1 séance/jour » = 40 cartes, l'assidu. Le plafond de 80/jour ramènerait la 23ᵉ
+au jour 201.
+
+| rang | # | peintre | titre | année | indice | jour (1 séance/j) | jour (rythme réel) |
+|---|---|---|---|---|---|---|---|
+| **1** | 316 | Max Liebermann | Biergarten «De Oude Vink» bei Leiden | 1905 | 35.6 | 18 | 29 |
+| **2** | 260 | Franz Marc | Portrait Maria Marc | 1906 | 62.6 | 35 | 58 |
+| **3** | 18 | Franz Marc | Landschaft mit Haus, Hund und Rind | 1914 | 112.6 | 52 | 88 |
+| **4** | 81 | Koloman Moser | Garden with Peonies and Poppies | 1907-1910 | 38.0 | 70 | 117 |
+| **5** | 417 | Otto Freundlich | Ein Baum 1927 Lenbachhaus AK 51 | 1927 | 52.1 | 88 | 146 |
+| **6** | 457 | Max Liebermann | Der Garten der Villa Oppenheim (Wannsee) | 1925 | 46.8 | 105 | 175 |
+| **7** | 510 | Max Liebermann | Liebermann Villa z36 | — | 36.3 | 122 | 204 |
+| **8** | 480 | August Macke | Landschaft am Meer | 1914 | 44.5 | 140 | 233 |
+| **9** | 278 | Marianne von Werefkin | 1909 Marianne von Werefkin, Andenken | 1909 | 58.9 | 158 | 262 |
+| **10** | 236 | Heinrich Nauen | Roter und blaßvioletter Mohn vor blaugrünem Grund | 1931 | 70.9 | 175 | 292 |
+| **11** | 257 | Carl Moll | Motiv aus dem Schloßpark in Jevisovice | 1930 | 64.0 | 192 | 321 |
+| **12** | 20 | Franz Marc | Wald mit Eichhörnchen | 1913 | 73.4 | 210 | 350 |
+| **13** | 17 | Max Slevogt | Segelboote auf der Alster am Abend, 1905 | 1905 | 31.4 | 228 | 379 |
+| **14** | 502 | Max Liebermann | Garten im Wannsee (Garden in Wannsee) | — | 40.1 | 245 | 408 |
+| **15** | 281 | August Macke | Felsige Landschaft | 1914 | 58.6 | 262 | 438 |
+| **16** | 88 | Franz von Stuck | 1913 von Stuck Der Reigen | 1913 | 44.2 | 280 | 467 |
+| **17** | 96 | Ferdinand Hodler | The Kien Valley with the Bluemlisalp Massif | 1902 | 73.1 | 298 | 496 |
+| **18** | 79 | Egon Schiele | Schiele - Blumenfeld | — | 64.5 | 315 | 525 |
+| **19** | 52 | Max Pechstein | Fischerkaten | 1932 | 55.5 | 332 | 554 |
+| **20** | 3 | Max Liebermann | Birkenweg | — | 24.1 | 350 | 583 |
+| **21** | 225 | August Macke | Mit gelber Jacke | 1913 | 77.0 | 368 | 612 |
+| **22** | 309 | Max Liebermann | Tennisspieler am Meer | 1901 | 47.0 | 385 | 642 |
+| **23** | 317 | Max Liebermann | (MAN WITH A HORSE ON THE BEACH) | 1906 | 35.2 | 402 | 671 |
