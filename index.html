@@ -2027,13 +2027,18 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
 }
 
 /* ---- Recherche dans les flashcards (entree depuis l'accueil uniquement) ---- */
+/* ⚠️ UNE PORTE, PAS UN CHAMP. Toucher cette barre ouvre un AUTRE ECRAN --
+   on n'y tape jamais rien sur place. Un grand champ de saisie promettait donc
+   une saisie qui n'arrive pas, et prenait la hauteur d'un bloc pour un simple
+   lien. Signale par Jacques : « ca prend beaucoup trop d'espace ». Reduite de
+   moitie : elle reste reconnaissable, elle cesse d'etre encombrante. */
 .search-launch{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     width:100%;
-    margin-top:18px;
-    padding:14px 16px;
+    margin-top:12px;
+    padding:7px 12px;
     border-radius:16px;
     border:1px solid rgba(30,41,59,.32);
     background:rgba(255,255,255,.5);
@@ -4009,12 +4014,17 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
    Signale par Jacques : « ce n'est pas evident qu'on peut agrandir ».
    Et il est pose sur une pastille : un caractere seul, meme bien choisi, ne se
    lit pas comme un bouton. */
+/* ⚠️ UN CHEVRON DESSINE, PAS UN CARACTERE. « ⌄ » se pose ou sa police decide :
+   il tombait haut dans la pastille, et aucun calage vertical ne le centrait
+   vraiment d'une police a l'autre. Un SVG occupe exactement sa boite -- il se
+   centre par construction, et il grossit sans devenir flou.
+   Signale par Jacques : « melee au centre du rond gris, et tu peux la grossir ». */
 .carte-vocab-fleche{
     color:#2f62d6; display:inline-flex; align-items:center; justify-content:center;
-    width:22px; height:22px; border-radius:50%; background:rgba(47,98,214,.10);
-    font-size:15px; line-height:1; transition:transform .2s; flex-shrink:0;
-    margin-block-start:-3px;
+    width:26px; height:26px; border-radius:50%; background:rgba(47,98,214,.12);
+    transition:transform .2s, background .15s; flex-shrink:0;
 }
+.carte-vocab-fleche svg{width:16px; height:16px; display:block;}
 .carte-vocab-tete.ouvert .carte-vocab-fleche{transform:rotate(180deg);}
 .carte-vocab-tete:hover .carte-vocab-fleche{background:rgba(47,98,214,.18);}
 body[data-theme="dark"] .carte-vocab-fleche{color:#8FB4FF; background:rgba(143,180,255,.14);}
@@ -4200,7 +4210,7 @@ body[data-theme="dark"] .carte-comptes{border-top-color:rgba(255,255,255,.12);}
     position:absolute; inset-inline-start:10px; bottom:7px;
     color:#c3c9d4; font-weight:600; font-size:10.5px; letter-spacing:.02em;
 }
-.search-launch{order:2; margin:0 0 14px !important;}
+.search-launch{order:2; margin:0 0 10px !important;}
 .home-stats-card{order:3;}
 #orbGrid{order:4;}
 .home-help-launch{order:5; margin-top:18px !important;}
@@ -4468,7 +4478,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v547</span>
+        <span class="subtitle-version">v548</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4484,7 +4494,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  jour : deux chiffres du meme ordre, une seule hauteur. -->
             <div class="carte-jour-bas">
                 <div class="carte-jour-piste"><div id="jourRemplissage" class="carte-jour-fill" style="width:0%"></div></div>
-                <div class="carte-jours">
+                <!-- ⚠️ MASQUE, PAS SUPPRIME. « Ca prend beaucoup trop de place
+                     pour rien », dit par Jacques, et il a raison : le cumul de
+                     jours est une mesure de FOND -- il bouge d'une unite par
+                     jour au mieux. Il n'a rien a faire sur la ligne qui change a
+                     chaque carte. Sa place est dans le ⓘ, avec les autres
+                     cumuls de la v545. L'element reste : majCarteProgression()
+                     y ecrit toujours. -->
+                <div class="carte-jours hidden">
                     <span class="carte-jours-n" id="joursTravaillesN">0</span>
                     <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
                     <span class="carte-jours-serie hidden" id="joursSerie"></span>
@@ -4564,7 +4581,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Vocabulaire</span>
                     <span id="vocabNiveauCourant" class="carte-vocab-niveau"></span></span>
                 <span id="vocabCompte" class="carte-vocab-compte">0 / 0</span>
-                <span class="carte-vocab-fleche" aria-hidden="true">⌄</span>
+                <span class="carte-vocab-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
             </button>
             <div class="carte-vocab-piste">
                 <div id="vocabSus" class="carte-vocab-part sus" style="width:0%"></div>
@@ -23173,7 +23190,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 547;
+const APP_VERSION = 548;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -25045,8 +25062,14 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
     // une vignette de quelques dizaines de pixels, puis on la retire a la
     // taille voulue : le lissage du navigateur fait le flou, partout, depuis
     // toujours. Deux passes pour effacer les derniers contours.
-    const petitL = Math.max(6, Math.round(L / 34));
-    const petitH = Math.max(6, Math.round(H / 34));
+    // ⚠️ LA FINESSE DU GLACIS SE REGLE ICI, ET SEULEMENT ICI. Plus le
+    // diviseur est grand, plus la vignette intermediaire est petite, et moins
+    // il reste d'information. A 34 on devinait encore le sujet -- « on la voit
+    // beaucoup trop », dit par Jacques. A 90, la vignette fait une dizaine de
+    // pixels : il ne reste que la repartition des masses de couleur, ce qui est
+    // exactement ce qu'on veut voir a travers du verre depoli.
+    const petitL = Math.max(4, Math.round(L / 90));
+    const petitH = Math.max(4, Math.round(H / 90));
     const mini = document.createElement("canvas");
     mini.width = petitL; mini.height = petitH;
     const mc = mini.getContext("2d");
@@ -25054,8 +25077,8 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
     mc.drawImage(img, 0, 0, petitL, petitH);
 
     const mini2 = document.createElement("canvas");
-    mini2.width = Math.max(3, Math.round(petitL / 2));
-    mini2.height = Math.max(3, Math.round(petitH / 2));
+    mini2.width = Math.max(2, Math.round(petitL / 2));
+    mini2.height = Math.max(2, Math.round(petitH / 2));
     const mc2 = mini2.getContext("2d");
     mc2.imageSmoothingEnabled = true;
     mc2.drawImage(mini, 0, 0, mini2.width, mini2.height);
@@ -25425,7 +25448,15 @@ function majTuileSeance(){
             if(tout.length) n = cartesDeSeance(tout, paquetDuNiveau(niveau)).length;
         }catch(e){ n = null; }
         el.textContent = (n === null) ? t("seance_sous")
-                       : tf(n === 1 ? "seance_carte" : "seance_cartes", { n: n });
+                       // ⚠️ LE COMPTE N'EST PLUS REPETE ICI. La carte juste au-dessus
+                       // affiche « 2 / 40 » : le bandeau qui annoncait « 38 cartes »
+                       // disait la meme chose autrement, dans le meme ecran.
+                       // Signale par Jacques. On garde le SEUL endroit ou le
+                       // chiffre est complet -- celui qui montre aussi ce qui est
+                       // deja fait -- et le bandeau redevient ce qu'il est : une
+                       // porte. Le libelle du niveau, lui, reste : il n'est
+                       // ailleurs nulle part.
+                       : "";
     }
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;

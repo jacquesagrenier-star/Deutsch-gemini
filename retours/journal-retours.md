@@ -2655,3 +2655,37 @@ sur la ligne de la barre du jour. La carte gagne une soixantaine de pixels.
 
 **Les 22 notices de peintres sont en ligne** — une par artiste, affichée au
 trophée, en plein écran et dans la galerie, jamais sur la carte d'accueil.
+
+---
+
+## 12 septembre 2026 — cinq encombrements retirés (v548)
+
+**Tout vient de Jacques regardant l'écran, et les cinq sont des retraits.**
+
+⚠️ **« On voit beaucoup trop l'image. »** Le glacis était trop fin : on devinait
+le sujet. La finesse se règle à un seul endroit — la taille de la vignette
+intermédiaire. De `L/34` à `L/90` : la vignette passe d'une trentaine de pixels
+à une dizaine, et il ne reste que la répartition des masses de couleur.
+
+⚠️ **« Chercher un mot » promettait une saisie qui n'arrive jamais.** Toucher
+cette barre ouvre un **autre écran** — on n'y tape rien sur place. Un grand
+champ pour un simple lien : hauteur réduite de moitié.
+
+⚠️ **Le cumul de jours n'a rien à faire sur la ligne du jour.** C'est une mesure
+de **fond** — elle bouge d'une unité par jour au mieux — posée sur la ligne qui
+change à chaque carte. Passée derrière le ⓘ, avec les cumuls de la v545.
+
+⚠️ **Et le bandeau répétait le compte de la carte.** « 2 / 40 » au-dessus,
+« 38 cartes » en dessous : la même chose dite deux fois dans le même écran. On
+garde le seul endroit où le chiffre est **complet** — celui qui montre aussi ce
+qui est déjà fait — et le bandeau redevient ce qu'il est, une porte. Le libellé
+du niveau reste : il n'est ailleurs nulle part.
+
+⚠️ **Le chevron était un caractère, pas un dessin.** « ⌄ » se pose où sa police
+décide : il tombait haut dans la pastille, et aucun calage vertical ne le
+centrait d'une police à l'autre. Un SVG occupe exactement sa boîte — il se
+centre par construction et grossit sans devenir flou.
+
+**Note sur l'objectif quotidien** : il n'a jamais été figé par jour.
+`getDailyGoalTarget()` lit le réglage à chaque appel ; c'était bien l'absence de
+rafraîchissement de l'accueil, corrigée en v547.
