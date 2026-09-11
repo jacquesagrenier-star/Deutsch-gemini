@@ -24723,7 +24723,7 @@ function etatMosaique(){
     try{ v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE) || "null"); }catch(e){}
     if(!v || typeof v !== "object") v = {};
     return { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
-             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0 };
+             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, taille: v.taille || 0 };
 }
 
 function ecrireMosaique(v){
@@ -24778,7 +24778,16 @@ function seanceMosaiqueTerminee(){
     const v = etatMosaique();
     if(v.t > 0){
         v.t -= 1;
-        if(v.t === 0) v.r = v.r + 1;
+        if(v.t === 0){
+            // ⚠️ LE SURPLUS EST REPORTE, IL N'EST PAS PERDU. Les carreaux poses
+            // pendant les trois seances du trophee demarrent la mosaique
+            // suivante : sinon l'etudiant paierait trois seances de progression
+            // pour avoir gagne quelque chose, et une recompense ne doit rien
+            // couter. C'est le « la suivante est deja commencee » promis.
+            v.r = v.r + 1;
+            v.c = Math.max(0, v.c - (v.taille || 0));
+            v.taille = 0;
+        }
         ecrireMosaique(v);
     }
 }
@@ -24866,10 +24875,15 @@ function majMosaiqueAccueil(){
 
         // L'image vient d'etre terminee : on ouvre le compte des trois seances
         // et on la range dans la galerie. Une seule fois.
+        // ⚠️ ON NE REMET PAS LE COMPTEUR A ZERO ICI. C'etait le defaut trouve
+        // a l'essai : remis a zero, `fini` redevenait faux au rendu suivant et
+        // le trophee disparaissait avant sa premiere seance. Le compteur
+        // continue de monter -- c'est lui qui porte le report -- et c'est
+        // seanceMosaiqueTerminee() qui le ramene en soustrayant la taille.
         if(fini && v.t === 0 && v.g.indexOf(v.r) < 0){
             v.g.push(v.r);
             v.t = MOSAIQUE_SEANCES_TROPHEE;
-            v.c = 0;
+            v.taille = g.total;
             ecrireMosaique(v);
         }
         const pied = document.getElementById("mosaiquePied");

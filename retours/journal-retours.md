@@ -2461,3 +2461,73 @@ images grises en dernier ; le plancher les a fait disparaître.
 - **Wikimedia Commons** : la source qui marche. ⚠️ Il faut passer par son
   **API** pour obtenir l'URL d'une vignette — deviner l'URL du thumb renvoie 400.
   Et l'en-tête `User-Agent` doit être descriptif, sinon refus.
+
+---
+
+## 12 septembre 2026 — les mosaïques sont en ligne (v543)
+
+**Décisions de Jacques, toutes prises en cours de route et toutes gardées :**
+
+- **un carreau par carte traversée** — jugée, balayée, ou simplement passée ;
+- **700 carreaux** par image (la grille s'ajuste au format : 29 × 24 = 696 pour
+  la première) ;
+- **l'image se forme sur tous les niveaux confondus**, pas par niveau ;
+- **le cadre est visible dès le premier jour** ;
+- **trois séances** de trophée, et le nom qui apparaît ;
+- **on peut toucher l'image pour l'avoir en grand** ;
+- **la galerie garde ce qui a été atteint** ;
+- **65 images, puis retour à la première.**
+
+⚠️ **« Un carreau par carte traversée » et non « par mot neuf »** : après
+quelques semaines la plupart des séances sont des révisions, et une image
+adossée aux mots neufs calerait des jours entiers — précisément quand
+l'étudiant travaille le plus.
+
+⚠️ **La couleur libérée de tout sens est ce qui rend l'image possible.** Tant
+qu'un carreau codait « maîtrisé » ou « en cours », il ne pouvait pas porter un
+morceau de tableau. C'est le déblocage, et il est de Jacques.
+
+### Le cartouche en trois temps
+
+L'année à 40 %, le peintre à 70 %, le titre à la fin. Révéler un titre lettre
+par lettre ne donnerait que du bruit — **un demi-mot allemand n'apprend rien**,
+alors qu'on peut deviner un peintre avant de deviner un titre, et qu'il reste
+une phrase entière à lire au moment de la récompense.
+
+### Le verre dépoli
+
+⚠️ **Le carreau fermé n'est pas un cache opaque.** Jacques proposait de montrer
+le tableau en filigrane dès le départ ; ça aurait tué la curiosité qu'il avait
+lui-même nommée comme moteur. Un cache opaque, lui, donne un écran mort. Le
+`backdrop-filter` laisse voir **qu'il y a quelque chose** — au jour zéro, un
+jardin vert derrière une vitre — et rien de plus.
+
+### Deux défauts trouvés à l'essai, pas par un contrôle
+
+⚠️ **Le trophée disparaissait avant sa première séance.** En remettant le
+compteur à zéro dès l'achèvement, `fini` redevenait faux au rendu suivant. Le
+compteur continue maintenant de monter, et c'est `seanceMosaiqueTerminee()` qui
+le ramène en soustrayant la taille de l'image.
+
+⚠️ **Et ce report est ce qui rend la récompense gratuite** : les carreaux posés
+pendant les trois séances démarrent la mosaïque suivante. Vérifié : 50 carreaux
+posés sous le trophée, la suivante ouvre à 50. Sans ça l'étudiant paierait trois
+séances de progression pour avoir gagné quelque chose.
+
+### Les images
+
+65 tableaux, 9,6 Mo, dans le dépôt — chargés depuis GitHub raw comme
+`themes.json`, donc le push qui publie les données publie les images. Rangs 1 à
+23 dans l'ordre de Jacques, 24 à 65 mélangés à graine fixe.
+
+⚠️ **Deux images ont dû être remplacées** : Commons n'avait le *Portrait Maria
+Marc* qu'en 239 px et le *Landschaft am Meer* de Macke qu'en 270 px — plus petit
+qu'un écran de téléphone. Remplacées par *Mädchen mit Katze II* (2139 px) et
+*Three girls in yellow straw hats* (5929 px). ⚠️ Et **pas par *Sonniger
+Garten***, pourtant proposé : il est déjà dans les 65 et serait revenu en
+doublon.
+
+**Vérifié dans la vraie page** : le cartouche aux quatre paliers, le cycle
+complet du trophée sur trois séances avec report, la galerie à trois tableaux,
+et le plein écran. `verifier.py` 14 254 contrôles, `cles_langues.py` 954 clés ×
+5 langues.
