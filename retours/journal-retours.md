@@ -2404,3 +2404,60 @@ contre-exemples, sinon elles nuisent.
 **À vérifier avant d'écrire quoi que ce soit :** on a les 4 209 noms avec leur
 genre — le taux réel de chaque terminaison est **mesurable sur nos propres
 données**, pas à recopier d'une grammaire. C'est par là qu'il faut commencer.
+
+---
+
+## 11 septembre 2026 — le choix des images : trois planches, et deux erreurs rattrapées par la mesure
+
+Trois planches publiées, 421 œuvres proposées en tout :
+
+1. https://claude.ai/code/artifact/5fb458be-64cf-4824-8746-e4a05ce62f3f — 102 tableaux, la démo réglable de la mosaïque, le cycle de vie
+2. https://claude.ai/code/artifact/cc2e6628-de30-4204-b635-00ee03b06578 — 118 de plus, classés par couleur mesurée
+3. https://claude.ai/code/artifact/077d84a4-0e7e-4228-8d0f-36b6c1f34335 — 118 autres dont 26 Liebermann, plus 83 photochromes, et le sélecteur d'intensité
+
+### Ce qui est décidé
+
+- **Pas de vieux maîtres** : impressionnisme et après. Demande de Jacques.
+- **Liebermann en quantité** — j'avais compris l'inverse au premier tour
+  (« plus de Liebermann » entendu comme « fini Liebermann », parce que sa
+  palette sourde collait mal à « j'aime quand c'est très coloré »). Corrigé :
+  26 dans la troisième planche.
+- **Intensité : « vif »** — autocontrast franc, +12 % de luminosité,
+  **+45 % de saturation**, +10 % de contraste.
+- ⚠️ **La retouche est CUITE dans le fichier**, pas appliquée en CSS : un
+  filtre sur mille carreaux coûterait du GPU à chaque rendu sur téléphone.
+  L'original reste sur Commons si on veut refaire le dosage.
+- **Sélection de la planche 2, 22 images** : 202, 203, 212, 225, 232, 236, 241,
+  257, 260, 261, 278, 281, 291, 301, 306, 307, 309, 311, 314, 315, 316, 317.
+
+### ⚠️ La mesure de couleur a attrapé deux fautes que l'œil aurait laissées passer
+
+La métrique de Hasler & Süsstrunk — écart-type et moyenne des oppositions
+rouge-vert et jaune-bleu — a été introduite pour classer. Elle a surtout servi
+de **garde-fou** :
+
+- **34 « tableaux » étaient des gravures en noir et blanc**, ramenées par les
+  catégories de Commons avec les peintures. Indice proche de zéro.
+- ⚠️ **Et les 264 premiers « photochromes » l'étaient tous.** J'avais pris la
+  collection Photoglob-Wehrli de la Bibliothèque nationale suisse, rangée sous
+  `CH-NB-Photographs of X` : ce sont les photographies **d'atelier**, pas les
+  photochromes. **Zéro n'a passé le plancher.** Sans la mesure, je publiais une
+  planche grise en l'annonçant colorée.
+
+Les vrais photochromes sont ceux de la Library of Congress, sous
+`X on photochrome prints` et `Photochrom prints collection (X)`.
+
+**Leçon générale, pas seulement pour les images :** un plancher qui rejette est
+plus utile qu'un classement qui ordonne. Le classement m'aurait fait montrer les
+images grises en dernier ; le plancher les a fait disparaître.
+
+### L'outillage, pour la prochaine fois
+
+- **Art Institute of Chicago** : belle API, mais le serveur d'images renvoie
+  **403** à tout ce qui n'est pas un navigateur. Inutilisable en script.
+- **Met Museum** : les images se téléchargent, mais la collection est **vide**
+  sur l'expressionnisme allemand — zéro résultat pour Marc, Macke, Klee,
+  Kandinsky, Kirchner, Beckmann.
+- **Wikimedia Commons** : la source qui marche. ⚠️ Il faut passer par son
+  **API** pour obtenir l'URL d'une vignette — deviner l'URL du thumb renvoie 400.
+  Et l'en-tête `User-Agent` doit être descriptif, sinon refus.
