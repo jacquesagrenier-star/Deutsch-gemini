@@ -536,6 +536,35 @@ def verifier_retours_flashcards(r, source):
     print("   modes de cartes : %d, dont %d dans la table de retour" % (len(modes), len(traites)))
 
 
+def verifier_appels_internes(r, source, fonctions):
+    """Un appel en position d'instruction vise-t-il une fonction qui existe ?
+
+    ⚠️ LE TROU QUE CE CONTROLE FERME. La v553 a fait appeler passerAuSuivant()
+    par le balayage ; la v553b a supprime cette fonction en defaisant le bouton
+    « Suivant » -- et l'appel est reste. Le balayage levait une erreur, la carte
+    ne bougeait plus, et l'ecran restait bloque. Personne ne l'a vu avant que
+    Jacques ne s'y retrouve coince.
+
+    verifier_appels() ne voyait pas le probleme : il verifie les `onclick` du
+    HTML, pas les appels a l'interieur du JavaScript.
+
+    ⚠️ LE MOTIF EST VOLONTAIREMENT ETROIT : une ligne qui ne contient QUE
+    `  nomDeFonction();`. Un motif large -- tout `nom(` -- ramenerait les
+    fonctions locales, les parametres, les methodes et les globales du
+    navigateur, et un controle qui accuse a tort est pire que pas de controle
+    (v537). Etroit, il n'attrape pas tout, mais il n'accuse jamais a tort -- et
+    il attrape exactement la faute commise.
+    """
+    appels = set(re.findall(r"^\s{4,}([a-zA-Z_$][\w$]*)\(\);\s*$", source, re.M))
+    inconnues = sorted(a for a in appels if a not in fonctions
+                       and a not in FONCTIONS_EXTERNES)
+    for a in inconnues:
+        r.echec("interface", "appel a une fonction qui n'existe pas : %s()" % a)
+    r.controle(len(appels))
+    print("   appels internes : %d en position d'instruction, %d orphelins"
+          % (len(appels), len(inconnues)))
+
+
 def verifier_tuiles_non_vides(r, source):
     """Une tuile doit garder au moins DEUX entrees une fois le filtre applique.
 
@@ -775,6 +804,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_appels_internes(r, source, fonctions)
     verifier_tuiles_non_vides(r, source)
     verifier_taille_des_champs(r, source)
     verifier_version(r, source)

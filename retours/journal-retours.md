@@ -2824,3 +2824,68 @@ traductions. Les deux s'affichent maintenant, l'allemand d'abord.
 **Leçon à garder :** j'ai codé la première demande sans attendre la seconde. Deux
 phrases qui se complètent valaient mieux qu'une phrase prise seule — et c'est en
 demandant son avis avant de pousser que la deuxième est arrivée.
+
+---
+
+## 12 septembre 2026 — les règles de genre, et une régression que j'ai poussée (v555)
+
+### ⚠️ D'abord la régression, parce qu'elle était en ligne
+
+*« Je suis pris dans l'écran vide. »* La v553 avait fait appeler
+`passerAuSuivant()` par le balayage ; la v553b a **supprimé cette fonction** en
+défaisant le bouton « Suivant » — et l'appel est resté. Le balayage levait une
+erreur, la carte ne bougeait plus, l'écran restait bloqué.
+
+⚠️ **`verifier.py` ne pouvait pas le voir** : il vérifie les `onclick` du HTML,
+pas les appels à l'intérieur du JavaScript. Le contrôle manquant est ajouté —
+`verifier_appels_internes()`, qui lit les lignes ne contenant qu'un
+`nomDeFonction();` et exige que la fonction existe. **135 appels surveillés.**
+
+⚠️ **Le motif est volontairement étroit.** Un motif large — tout `nom(` —
+ramènerait les fonctions locales, les paramètres, les méthodes et les globales
+du navigateur : un contrôle qui accuse à tort est pire que pas de contrôle
+(v537). Étroit, il n'attrape pas tout, mais il attrape exactement la faute
+commise et n'accuse jamais à tort.
+
+**La leçon :** ne jamais supprimer une fonction sans chercher qui l'appelle.
+
+### Les règles de genre des noms
+
+**Demande de Jacques, en attente depuis la v540.** Vingt et une terminaisons,
+une leçon et un exercice, dans la tuile Noms.
+
+⚠️ **Les taux sont MESURÉS sur nos 4 199 noms** (`tests/genres.py`), pas
+recopiés d'une grammaire. Une grammaire dit « les noms en -ung sont féminins »
+sans dire si c'est 100 % ou 94 % — or la différence décide de la formulation, et
+une règle énoncée comme absolue alors qu'elle a des exceptions enseigne une
+fausse certitude. C'est Jacques qui l'avait signalé à propos de `-e` : « la
+majorité du temps, c'est féminin ». **C'est 90,1 %, et on l'écrit.**
+
+**Dix terminaisons sans une seule exception** dans nos données : `-keit` (78
+mots), `-tion` (53), `-heit` (49), `-age` (38), `-schaft` (37), `-tät`, `-ität`,
+`-sion`, `-anz`, `-enz`.
+
+⚠️ **Et la mesure a révélé un piège que je n'attendais pas.** Plusieurs
+« exceptions » n'en sont pas : `der Kuchen` ne porte pas le suffixe *-chen*,
+`der Sprung` ne porte pas *-ung*. Ce sont des **homographes de terminaison** —
+la règle du suffixe est exacte, c'est le test sur les lettres qui ne distingue
+pas. La leçon le dit, parce que c'est précisément ce qui fait douter d'une règle
+juste.
+
+**L'exercice tire en tiers égaux**, comme celui de la v540 et pour la même
+raison — en pire ici : **quinze des vingt et une règles donnent « die »**. Un
+tirage naturel se réussirait à plus de 80 % en répondant « die » à tout.
+
+**Ce qu'il apprend et que « Quel article ? » n'apprend pas :** deviner le genre
+d'un mot **jamais rencontré**. L'un fait mémoriser un à un, l'autre fait
+généraliser.
+
+### Trois ajustements visuels
+
+- **« Ta galerie » et le ⓘ s'alignent sur le bas du tableau** : la colonne de
+  droite était en `flex-start`, elle s'arrêtait à son contenu et `margin-top:auto`
+  n'avait rien à pousser.
+- **Le troisième bouton passe en colonne** : à 13 px, l'échéance ne s'alignait
+  plus à côté d'un libellé de dix-neuf caractères.
+- **Le cadre suit l'œuvre en plein écran** : le tableau y flottait sans bord,
+  alors que c'est là qu'on le regarde vraiment.

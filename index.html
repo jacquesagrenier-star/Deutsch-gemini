@@ -3708,8 +3708,13 @@ body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
    qu'il se touche, et c'est pourtant l'action la plus lourde des trois -- elle
    retire le mot du paquet. Une pastille bordee suffit a le dire, sans lui donner
    le poids des deux boutons de jugement. */
+/* ⚠️ EN COLONNE DEPUIS QUE L'ECHEANCE A GROSSI (v555). Le libelle et
+   l'echeance etaient cote a cote : a 13 px la seconde ligne debordait et ne
+   s'alignait plus sur la premiere. Signale par Jacques. Empilees et centrees,
+   elles tiennent quelle que soit la longueur du libelle -- « Je le sais par
+   coeur » fait dix-neuf caracteres en francais, davantage en ukrainien. */
 .judge-known{
-    display:flex; align-items:center; justify-content:center; gap:7px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
     width:fit-content; max-width:100%; margin:14px auto 0; padding:9px 16px;
     background:#fff; border:1.5px solid #e3e7ee; border-radius:999px;
     color:#697285; font-size:12.5px; font-weight:700; cursor:pointer;
@@ -4195,7 +4200,12 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    recuperer de la hauteur : en pile, le cadre et le cartouche prenaient deux
    fois la place. Cote a cote, la carte gagne une soixantaine de pixels sans
    rien perdre. */
-.carte-mosaique{display:flex; gap:12px; align-items:flex-start;}
+/* ⚠️ `stretch` ET NON `flex-start` : la colonne de droite doit faire la
+   HAUTEUR DU CADRE, sinon « Ta galerie » et le ⓘ flottent au milieu au lieu
+   de s'aligner sur le bas du tableau. C'est `margin-top:auto` de .mos-bas
+   qui les y pousse -- mais il ne peut rien pousser dans une colonne qui
+   s'arrete a son contenu. Signale par Jacques. */
+.carte-mosaique{display:flex; gap:12px; align-items:stretch;}
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
    Jacques : « quelque chose qui me derange visuellement ». */
@@ -4264,9 +4274,47 @@ body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:14px; padding:18px; cursor:zoom-out;
 }
-.mos-plein-toile{max-width:100%; max-height:78vh; border-radius:0; display:block;}
+/* ⚠️ LE CADRE SUIT L'OEUVRE EN PLEIN ECRAN. Il n'y etait pas : le tableau
+   flottait sur le noir, sans bord, alors que c'est justement la qu'on le
+   regarde vraiment. Signale par Jacques. Meme grammaire que sur l'accueil --
+   filet sombre, lisere clair -- mais plus large, a la mesure de l'image. */
+.mos-plein-toile{
+    max-width:100%; max-height:74vh; border-radius:0; display:block;
+    border:3px solid rgba(255,255,255,.55);
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.35), 0 14px 40px rgba(0,0,0,.55);
+}
 .mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
 /* La galerie */
+.regles-intro{font-size:13.5px; color:#576177; line-height:1.55; margin:0 0 12px;}
+.regles-avert{
+    font-size:12.5px; line-height:1.5; color:#8a5d12; background:rgba(232,162,58,.10);
+    border-inline-start:3px solid #E8A23A; border-radius:0 8px 8px 0;
+    padding:10px 13px; margin:0 0 16px;
+}
+.regles-liste{display:flex; flex-direction:column; gap:4px;}
+.rg-genre{
+    font-size:15px; font-weight:800; margin:14px 0 6px; letter-spacing:.01em;
+}
+.rg-die{color:#b03a6a;} .rg-der{color:#2f62d6;} .rg-das{color:#0F6E56;}
+.rg-bloc{display:flex; flex-direction:column; gap:6px;}
+.rg-ligne{
+    display:flex; align-items:flex-start; gap:10px;
+    border:1px solid rgba(30,41,59,.10); border-radius:10px; padding:9px 11px;
+}
+.rg-fin{
+    font-weight:800; font-size:14px; color:#1e293b; flex:0 0 62px;
+    font-variant-numeric:tabular-nums;
+}
+.rg-corps{flex:1; min-width:0; display:flex; flex-direction:column; gap:3px;}
+.rg-ex{font-size:12.5px; color:#576177;}
+.rg-exc{font-size:11.5px; color:#a3562e;}
+.rg-aucune{font-size:11.5px; color:#0F6E56; font-weight:600;}
+.rg-taux{font-size:12px; font-weight:700; color:#7b8798; flex:0 0 auto; font-variant-numeric:tabular-nums;}
+.rg-taux.sur{color:#0F6E56;}
+body[data-theme="dark"] .rg-fin{color:#F2F2F6;}
+body[data-theme="dark"] .rg-ex{color:#A6ADBB;}
+body[data-theme="dark"] .rg-ligne{border-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .regles-intro{color:#A6ADBB;}
 .galerie-grille{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
 .galerie-item{margin:0; cursor:pointer;}
 .galerie-item img{
@@ -5041,7 +5089,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v554</span>
+    <span class="subtitle-version">v555</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5177,6 +5225,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
         </div>
     </div>
+</section>
+
+<section id="reglesGenre" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <p class="kicker" data-i18n="regles_kicker">Le genre des noms</p>
+    <h2 data-i18n="op_nomen_o7_t">Les terminaisons qui trahissent le genre</h2>
+    <p class="regles-intro" data-i18n="regles_intro"></p>
+    <div class="regles-avert" data-i18n="regles_piege"></div>
+    <div id="reglesGenreListe" class="regles-liste"></div>
 </section>
 
 <section id="galerieMosaique" class="screen">
@@ -7882,6 +7939,18 @@ const I18N = {
         op_nomen_o5_t: "Dictée",
         op_nomen_o5_d: "Écouter et écrire — {n} mots",
         op_nomen_o6_t: "Quel article ?",
+        op_nomen_o7_t: "Les terminaisons qui trahissent le genre",
+        op_nomen_o7_d: "21 règles, avec leur taux mesuré",
+        op_nomen_o8_t: "Deviner par la terminaison",
+        op_nomen_o8_d: "der · die · das — à parts égales",
+        kicker_quiz_terminaisons: "Deviner par la terminaison",
+        regles_kicker: "Le genre des noms",
+        regles_intro: "Le genre ne se devine pas… sauf quand la fin du mot le dit. Ces vingt et une terminaisons ont été mesurées sur nos 4 199 noms — le pourcentage est celui que tu rencontreras vraiment dans l'app, pas celui d'une grammaire.",
+        regles_piege: "⚠️ Attention au faux ami : « der Kuchen » ne porte pas le suffixe -chen, « der Sprung » ne porte pas -ung. La règle du suffixe est exacte ; ce sont des mots qui finissent par les mêmes lettres sans en être formés.",
+        regle_sauf: "sauf",
+        flash_repondre: "Réponds à la carte pour continuer.",
+        regle_sans_exception: "aucune exception dans nos mots",
+        regle_explication: "Les noms en {fin} sont {genre} dans {taux} % de nos mots",
         op_nomen_o6_d: "der · die · das — autant de chaque",
         kicker_quiz_article: "Quel article ?",
         dictation_replay_btn: "🔊 RÉÉCOUTER",
@@ -8796,6 +8865,18 @@ const I18N = {
         op_nomen_o5_t: "Dictation",
         op_nomen_o5_d: "Listen and write — {n} words",
         op_nomen_o6_t: "Which article?",
+        op_nomen_o7_t: "Endings that give the gender away",
+        op_nomen_o7_d: "21 rules, with their measured rate",
+        op_nomen_o8_t: "Guess from the ending",
+        op_nomen_o8_d: "der · die · das — equal thirds",
+        kicker_quiz_terminaisons: "Guess from the ending",
+        regles_kicker: "Noun gender",
+        regles_intro: "Gender cannot be guessed… except when the end of the word says so. These twenty-one endings were measured across our 4,199 nouns — the percentage is the one you will actually meet in the app, not a grammar book's.",
+        regles_piege: "⚠️ Beware the look-alike: « der Kuchen » does not carry the -chen suffix, « der Sprung » does not carry -ung. The suffix rule is exact; these are words that end in the same letters without being formed from them.",
+        regle_sauf: "except",
+        flash_repondre: "Answer the card to move on.",
+        regle_sans_exception: "no exception among our words",
+        regle_explication: "Nouns in {fin} are {genre} in {taux}% of our words",
         op_nomen_o6_d: "der · die · das — equal thirds",
         kicker_quiz_article: "Which article?",
         dictation_replay_btn: "🔊 REPLAY",
@@ -9714,6 +9795,18 @@ const I18N = {
         op_nomen_o5_t: "Dikte",
         op_nomen_o5_d: "Dinle ve yaz — {n} kelime",
         op_nomen_o6_t: "Hangi artikel?",
+        op_nomen_o7_t: "Cinsiyeti ele veren sonlar",
+        op_nomen_o7_d: "21 kural, ölçülmüş oranlarıyla",
+        op_nomen_o8_t: "Sondan tahmin et",
+        op_nomen_o8_d: "der · die · das — eşit dağılım",
+        kicker_quiz_terminaisons: "Sondan tahmin et",
+        regles_kicker: "İsimlerin cinsiyeti",
+        regles_intro: "Cinsiyet tahmin edilemez… kelimenin sonu söylemiyorsa. Bu yirmi bir son, 4 199 ismimiz üzerinde ölçüldü — oran, uygulamada gerçekten karşılaşacağın oran.",
+        regles_piege: "⚠️ Benzerlere dikkat: « der Kuchen » -chen ekini taşımaz, « der Sprung » -ung ekini taşımaz. Kural doğrudur; bunlar aynı harflerle biten ama o ekten türememiş kelimelerdir.",
+        regle_sauf: "hariç",
+        flash_repondre: "Devam etmek için kartı yanıtla.",
+        regle_sans_exception: "kelimelerimizde istisna yok",
+        regle_explication: "{fin} ile biten isimler kelimelerimizin %{taux} kadarında {genre}",
         op_nomen_o6_d: "der · die · das — her birinden eşit sayıda",
         kicker_quiz_article: "Hangi artikel?",
         dictation_replay_btn: "🔊 TEKRAR DİNLE",
@@ -10820,6 +10913,18 @@ const I18N = {
         op_nomen_o5_t: "Диктант",
         op_nomen_o5_d: "Слухай і пиши — {n} слів",
         op_nomen_o6_t: "Який артикль?",
+        op_nomen_o7_t: "Закінчення, що видають рід",
+        op_nomen_o7_d: "21 правило з виміряним відсотком",
+        op_nomen_o8_t: "Вгадати за закінченням",
+        op_nomen_o8_d: "der · die · das — порівну",
+        kicker_quiz_terminaisons: "Вгадати за закінченням",
+        regles_kicker: "Рід іменників",
+        regles_intro: "Рід не вгадаєш… хіба що кінець слова його видає. Ці двадцять одне закінчення виміряні на наших 4 199 іменниках — відсоток саме той, який ти справді зустрінеш.",
+        regles_piege: "⚠️ Стережись схожих: « der Kuchen » не має суфікса -chen, « der Sprung » не має -ung. Правило точне; це слова з тими самими літерами, але іншого походження.",
+        regle_sauf: "крім",
+        flash_repondre: "Відповідай на картку, щоб продовжити.",
+        regle_sans_exception: "жодного винятку серед наших слів",
+        regle_explication: "Іменники на {fin} — {genre} у {taux} % наших слів",
         op_nomen_o6_d: "der · die · das — порівну",
         kicker_quiz_article: "Який артикль?",
         op_nomen_title: "Іменники",
@@ -11694,6 +11799,18 @@ const I18N = {
         op_nomen_o5_t: "املا",
         op_nomen_o5_d: "بشنو و بنویس — {n} واژه",
         op_nomen_o6_t: "کدام حرف تعریف؟",
+        op_nomen_o7_t: "پایانه‌هایی که جنس را لو می‌دهند",
+        op_nomen_o7_d: "۲۱ قاعده، با نرخ اندازه‌گیری‌شده",
+        op_nomen_o8_t: "حدس از روی پایانه",
+        op_nomen_o8_d: "der · die · das — به نسبت برابر",
+        kicker_quiz_terminaisons: "حدس از روی پایانه",
+        regles_kicker: "جنس اسم‌ها",
+        regles_intro: "جنس را نمی‌توان حدس زد… مگر آنکه پایان واژه بگوید. این بیست‌ویک پایانه روی ۴۱۹۹ اسم ما اندازه‌گیری شده — درصد همان است که واقعاً در برنامه می‌بینی.",
+        regles_piege: "⚠️ مراقب شبیه‌ها باش: « der Kuchen » پسوند -chen ندارد و « der Sprung » پسوند -ung ندارد. قاعده درست است؛ اینها واژه‌هایی‌اند که تصادفاً به همان حروف ختم می‌شوند.",
+        regle_sauf: "به‌جز",
+        flash_repondre: "برای ادامه به کارت پاسخ بده.",
+        regle_sans_exception: "بدون استثنا در واژه‌های ما",
+        regle_explication: "اسم‌های پایان‌یافته به {fin} در {taux}٪ واژه‌های ما {genre} هستند",
         op_nomen_o6_d: "der · die · das — به نسبت برابر",
         kicker_quiz_article: "کدام حرف تعریف؟",
         dictation_replay_btn: "🔊 دوباره بشنو",
@@ -17038,7 +17155,13 @@ function orbPanelData(id){
                 // du vocabulaire, d'ou son effondrement a la v536 : rien a
                 // garder quand on retire la revision generique.
                 { icon:"exercice", title:t("op_nomen_o6_t"), desc:t("op_nomen_o6_d"),
-                  count:String(QUIZ_ARTICLE_TAILLE), action:"startQuizArticle" }
+                  count:String(QUIZ_ARTICLE_TAILLE), action:"startQuizArticle" },
+                // Deviner le genre d'un mot jamais vu -- l'autre moitie du
+                // probleme, que « Quel article ? » ne touche pas.
+                { icon:"dossier", title:t("op_nomen_o7_t"), desc:t("op_nomen_o7_d"),
+                  action:"ouvrirReglesGenre" },
+                { icon:"exercice", title:t("op_nomen_o8_t"), desc:t("op_nomen_o8_d"),
+                  count:String(REGLE_QUIZ_TAILLE), action:"startQuizTerminaisons" }
             ]
         };
     }
@@ -17553,6 +17676,131 @@ function startDicteeNoms(){
         });
     });
     lancerDictee('nomen', pool, 'nomen', startDicteeNoms);
+}
+
+// ============ LES REGLES DE GENRE DES NOMS (v555) ============
+// Demande de Jacques : « les noms qui finissent par -ung sont toujours
+// feminins, il y a des regles ; indiquer les differentes regles, puis faire des
+// exercices avec ».
+//
+// ⚠️ LES TAUX SONT MESURES SUR NOS 4 199 NOMS, PAS RECOPIES D'UNE GRAMMAIRE
+// (tests/genres.py). Une grammaire dit « les noms en -ung sont feminins » sans
+// dire si c'est 100 % ou 94 % -- or la difference decide de la formulation. Une
+// regle enoncee comme absolue alors qu'elle a des exceptions enseigne une
+// fausse certitude, et c'est Jacques lui-meme qui l'avait signale a propos de
+// -e : « la majorite du temps, c'est feminin ». C'est 90,1 %, et on l'ecrit.
+//
+// ⚠️ ET LA MESURE A REVELE UN PIEGE QUE JE N'ATTENDAIS PAS : plusieurs
+// « exceptions » n'en sont pas. « der Kuchen » ne porte pas le suffixe -chen,
+// « der Sprung » ne porte pas -ung -- ce sont des homographes de terminaison.
+// La regle du suffixe est exacte ; c'est le test sur les lettres qui ne
+// distingue pas. La lecon le dit, parce que c'est exactement le genre de chose
+// qui fait douter d'une regle juste.
+const REGLES_GENRE_URL = MOSAIQUE_BASE.replace("mosaique/", "") + "regles-genre.json";
+let REGLES_GENRE = null;
+
+function chargerReglesGenre(){
+    if(REGLES_GENRE && REGLES_GENRE.length) return Promise.resolve(REGLES_GENRE);
+    return fetch(REGLES_GENRE_URL, { cache: "no-cache" })
+        .then(r => r.json())
+        .then(d => { REGLES_GENRE = (d && d.regles) || []; return REGLES_GENRE; })
+        .catch(() => (REGLES_GENRE || []));
+}
+
+function ouvrirReglesGenre(){
+    chargerReglesGenre().then(regles => {
+        const zone = document.getElementById("reglesGenreListe");
+        if(!zone) return;
+        const par = { die: [], der: [], das: [] };
+        regles.forEach(r => { if(par[r.genre]) par[r.genre].push(r); });
+        let html = "";
+        ["die", "der", "das"].forEach(g => {
+            if(!par[g].length) return;
+            html += '<div class="rg-genre rg-' + g + '">' + g + '</div><div class="rg-bloc">';
+            par[g].forEach(r => {
+                const sur = r.taux === 100;
+                html += '<div class="rg-ligne">'
+                     + '<span class="rg-fin">' + r.suffixe + '</span>'
+                     + '<span class="rg-corps">'
+                     +   '<span class="rg-ex">' + (r.exemples || []).slice(0, 3).map(m => g + " " + m).join(" · ") + '</span>'
+                     +   (r.exceptions && r.exceptions.length
+                          ? '<span class="rg-exc">' + t("regle_sauf") + " " + r.exceptions.slice(0, 3).join(" · ") + '</span>'
+                          : '<span class="rg-aucune">' + t("regle_sans_exception") + '</span>')
+                     + '</span>'
+                     + '<span class="rg-taux' + (sur ? " sur" : "") + '">' + r.taux + ' %</span>'
+                     + '</div>';
+            });
+            html += '</div>';
+        });
+        zone.innerHTML = html;
+        showScreen("reglesGenre");
+    });
+}
+
+// ============ L'EXERCICE DES TERMINAISONS ============
+// ⚠️ MEME TIRAGE EN TIERS EGAUX QU'EN v540, ET POUR LA MEME RAISON -- en pire
+// ici : quinze des vingt et une regles donnent « die ». Un tirage naturel sur
+// les mots a terminaison reglee se reussirait a plus de 80 % en repondant
+// « die » a tout. Dix mots par genre, et le score redevient une mesure.
+//
+// Ce que cet exercice apprend et que « Quel article ? » n'apprend pas : DEVINER
+// le genre d'un mot jamais rencontre. L'un fait memoriser un a un, l'autre fait
+// generaliser.
+const REGLE_QUIZ_TAILLE = 30;
+
+function startQuizTerminaisons(){
+    Promise.all([chargerReglesGenre(), Promise.resolve()]).then(regles0 => {
+        const regles = REGLES_GENRE || [];
+        if(!regles.length){ showInfoToast(t("alert_no_words_available")); return; }
+        const parGenre = { der: [], die: [], das: [] };
+        const vus = {};
+        themesComptes().forEach(theme => {
+            LEVELS.forEach(lvl => {
+                const d = theme.levels[lvl];
+                if(!d) return;
+                d.words.forEach((w, index) => {
+                    const mot = w[0] || "", genre = w[1];
+                    if(!parGenre[genre] || vus[mot.toLowerCase()]) return;
+                    // la regle la plus longue qui s'applique
+                    let trouvee = null;
+                    regles.forEach(r => {
+                        const fin = r.suffixe.slice(1);
+                        if(mot.toLowerCase().endsWith(fin) && mot.length >= fin.length + 2
+                           && r.genre === genre
+                           && (!trouvee || fin.length > trouvee.suffixe.length - 1)) trouvee = r;
+                    });
+                    if(!trouvee) return;
+                    vus[mot.toLowerCase()] = 1;
+                    parGenre[genre].push({ word: w, index: index, themeId: d.id, regle: trouvee });
+                });
+            });
+        });
+        const parTiers = REGLE_QUIZ_TAILLE / 3;
+        const choix = [];
+        ["der", "die", "das"].forEach(g => {
+            shuffleArray(parGenre[g]);
+            choix.push.apply(choix, parGenre[g].slice(0, parTiers));
+        });
+        if(choix.length < 6){ showInfoToast(t("alert_no_words_available")); return; }
+        shuffleArray(choix);
+        const liste = choix.map(it => {
+            const mot = it.word[0], g = it.word[1], r = it.regle;
+            const ex = { audioDe: g + " " + mot, topic: "Noms · terminaisons",
+                         answers: [g], correct: g, correctEn: g,
+                         options: ["der", "die", "das"] };
+            ["fr", "en", "tr", "uk", "fa"].forEach(code => {
+                const suff = (code === "fr") ? "" : SUFFIXE_LANGUE[code];
+                ex["question" + suff] = "___ " + mot;
+                ex["translation" + suff] = texteCarte(it.word, "nomen", "traduction", code) || "";
+                ex["hint" + suff] = "";
+                ex["explanation" + suff] = tfDans(code, "regle_explication",
+                    { fin: r.suffixe, genre: g, taux: r.taux }) + " — " + g + " " + mot;
+            });
+            return ex;
+        });
+        startExerciseSet(liste, "kicker_quiz_terminaisons",
+                         () => openOrbPanel("nomen"), startQuizTerminaisons);
+    });
 }
 
 // ============ « QUEL ARTICLE ? » -- LE GENRE DES NOMS (v540) ============
@@ -21512,10 +21760,21 @@ function slideToNextCard(flashcardEl){
 
     setTimeout(() => {
         flashcardEl.style.transition = "none";
-        // ⚠️ LE BALAYAGE NE SAUTE PLUS, IL AVANCE -- et seulement apres un
-        // jugement. Tant que la carte n'est pas jugee il ne fait rien : c'est
-        // ce qui garantit qu'aucune carte ne traverse la seance sans reponse.
-        passerAuSuivant();
+        // ⚠️ REGRESSION CORRIGEE (v555). La v553 avait fait appeler ici
+        // passerAuSuivant(), puis la v553b a supprime cette fonction en
+        // defaisant le bouton « Suivant » -- et l'appel est reste. Le balayage
+        // levait donc une erreur, la carte ne bougeait plus et l'ecran restait
+        // bloque. Signale par Jacques : « je suis pris dans l'ecran vide ».
+        //
+        // ⚠️ verifier.py ne pouvait pas le voir : il verifie les onclick du HTML,
+        // pas les appels a l'interieur du JavaScript. C'est la limite du filet,
+        // et elle est connue -- raison de plus pour ne jamais supprimer une
+        // fonction sans chercher qui l'appelle.
+        //
+        // Le balayage ne saute plus et n'avance plus : juger fait avancer tout
+        // seul, donc il ne lui reste rien a faire. Il le dit au lieu de ne rien
+        // faire en silence.
+        balayageSansReponse();
         void flashcardEl.offsetHeight;
         flashcardEl.style.transition = "transform .55s ease, height .55s ease";
         requestAnimationFrame(() => {
@@ -23376,7 +23635,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 554;
+const APP_VERSION = 555;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26069,6 +26328,12 @@ function markKnownAlready(){
 
 // Affiche le bilan de fin de paquet au lieu de quitter l'ecran : c'est le seul
 // endroit ou "revoir les non maitrisees" a du sens, et il n'y en avait aucun.
+// Le balayage n'a plus de role : juger fait avancer. Plutot que d'ignorer le
+// geste -- ce qui se lit comme une panne -- on rappelle ce qu'il faut faire.
+function balayageSansReponse(){
+    showInfoToast(t("flash_repondre"));
+}
+
 function ouvrirCartePrecedente(){
     if(!derniereCarteVue) return;
     const c = derniereCarteVue.word;
