@@ -2787,3 +2787,40 @@ soixante-cinq y passent en une semaine. Mais un mécanisme qui s'arrête en
 silence ne se distingue pas d'un mécanisme cassé.
 
 « Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain. »
+
+---
+
+## 12 septembre 2026 — le regard en arrière, et un « Suivant » construit puis défait (v553)
+
+**Le besoin, dit par Jacques :** *« je peux vouloir juste tout de suite regarder
+c'était quoi le mot en français, puis revenir à la carte »* — mais aussi, deux
+messages plus loin : *« j'aime bien le principe que ça revienne dans deux
+minutes, donc on voit d'autres cartes en attendant »*.
+
+⚠️ **J'avais construit la mauvaise réponse.** Un bouton « Suivant » qui séparait
+juger d'avancer : la carte jugée restait à l'écran jusqu'à ce qu'on la congédie.
+Ça répondait à la première phrase et contredisait la seconde — et ça coûtait un
+geste sur quarante.
+
+**La bonne réponse ne touche pas au flux.** Ce qui manquait n'était pas de
+**retenir** la carte, c'était de pouvoir la **regarder** après coup. Un bouton
+discret « Revoir le mot précédent » ouvre le mot qu'on vient de quitter, avec sa
+traduction et sa phrase d'exemple, puis se referme.
+
+⚠️ **En lecture seule.** La carte précédente est déjà jugée et programmée : la
+rejuger la compterait deux fois, dans la dose du jour comme dans l'échelle de
+mémorisation.
+
+**Ce qui reste de la version défaite :** le balayage ne saute plus. C'était une
+décision à part, et la bonne — une carte traversée sans réponse ne dit rien au
+planificateur, et c'était la cause des deux compteurs qui se contredisaient.
+
+⚠️ **Et un défaut attrapé à l'essai :** la phrase d'exemple s'affichait **en
+français**. `texteCarte(..., "exemple")` suit la langue de l'interface — il
+renvoyait « Mon père travaille beaucoup » à quelqu'un qui voulait revoir un mot
+**allemand**. Le rang nu porte l'allemand ; les rangs par langue portent ses
+traductions. Les deux s'affichent maintenant, l'allemand d'abord.
+
+**Leçon à garder :** j'ai codé la première demande sans attendre la seconde. Deux
+phrases qui se complètent valaient mieux qu'une phrase prise seule — et c'est en
+demandant son avis avant de pousser que la deuxième est arrivée.

@@ -3723,6 +3723,33 @@ body[data-theme="dark"] .judge-known{
     margin-top:6px; padding:20px; border:1px solid #e6e9ef;
     border-radius:20px; background:#fff;
 }
+.flash-retour{display:flex; justify-content:center; margin-top:10px;}
+.flash-retour-btn{
+    display:inline-flex; align-items:center; gap:6px; padding:5px 12px;
+    border:1px solid rgba(47,98,214,.30); border-radius:999px; background:none;
+    color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600; cursor:pointer;
+}
+.flash-retour-btn svg{width:13px; height:13px;}
+body[data-theme="dark"] .flash-retour-btn{border-color:rgba(143,180,255,.34); color:#8FB4FF;}
+.carte-precedente{
+    position:fixed; inset:0; z-index:9000; background:rgba(12,16,22,.88);
+    display:flex; align-items:center; justify-content:center; padding:22px; cursor:pointer;
+}
+.carte-precedente-boite{
+    background:#fff; border-radius:16px; padding:26px 24px; max-width:340px; width:100%;
+    text-align:center;
+}
+body[data-theme="dark"] .carte-precedente-boite{background:#1A202A;}
+.carte-precedente-mot{font-size:26px; font-weight:700; color:#1e293b;}
+.carte-precedente-trad{font-size:17px; color:#2f62d6; margin-top:8px; font-weight:600;}
+.carte-precedente-ex{margin-top:12px; line-height:1.5;}
+.cp-de{display:block; font-size:14px; color:#1e293b;}
+.cp-fr{display:block; font-size:12.5px; color:#7b8798; font-style:italic; margin-top:4px;}
+body[data-theme="dark"] .cp-de{color:#F2F2F6;}
+.carte-precedente-fermer{display:block; font-size:11px; color:#9aa3b2; margin-top:18px;}
+body[data-theme="dark"] .carte-precedente-mot{color:#F2F2F6;}
+body[data-theme="dark"] .carte-precedente-trad{color:#8FB4FF;}
+body[data-theme="dark"] .carte-precedente-ex{color:#A6ADBB;}
 .flash-end-objectif{
     font-size:13px; font-weight:600; color:#7b8798; margin:6px 0 2px;
 }
@@ -5005,7 +5032,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v552</span>
+    <span class="subtitle-version">v553</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6668,6 +6695,27 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
          d'etre repetees sous chaque carte. -->
+        <!-- ⚠️ IL N'APPARAIT QU'APRES UN JUGEMENT. C'est lui qui rend
+         impossible de traverser une carte sans repondre, et c'est lui qui
+         laisse le temps de relire le mot qu'on vient de rater. -->
+    <!-- ⚠️ LECTURE SEULE. La carte precedente est deja jugee : la rejuger la
+         compterait deux fois. On la regarde, on referme. -->
+    <div id="flashRetour" class="flash-retour hidden">
+        <button type="button" class="flash-retour-btn" onclick="ouvrirCartePrecedente()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+            <span data-i18n="flash_revoir">Revoir le mot précédent</span>
+        </button>
+    </div>
+    <div id="cartePrecedente" class="carte-precedente hidden" onclick="fermerCartePrecedente()">
+        <div class="carte-precedente-boite">
+            <div id="cartePrecedenteMot" class="carte-precedente-mot"></div>
+            <div id="cartePrecedenteTrad" class="carte-precedente-trad"></div>
+            <div id="cartePrecedenteEx" class="carte-precedente-ex"></div>
+            <span class="carte-precedente-fermer" data-i18n="flash_fermer">Toucher pour fermer</span>
+        </div>
+    </div>
+
     <div id="flashcardEnd" class="flashcard-end hidden">
         <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
         <div class="flash-end-summary" id="flashEndSummary"></div>
@@ -7594,6 +7642,8 @@ const I18N = {
         flash_end_objectif_atteint: "Objectif du jour atteint — {n} cartes. La suite est pour le plaisir.",
         flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
+        flash_revoir: "Revoir le mot précédent",
+        flash_fermer: "Toucher pour fermer",
         legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »). Une carte balayée sans réponse fait avancer le tableau, mais pas cette barre.",
         legende_mosaique: "Le tableau — un carreau se découvre à chaque carte, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
@@ -8508,6 +8558,8 @@ const I18N = {
         flash_end_objectif_atteint: "Daily goal reached — {n} cards. Anything more is for the pleasure of it.",
         flash_end_objectif_reste: "{n} more cards to reach today's goal.",
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
+        flash_revoir: "See the previous word",
+        flash_fermer: "Tap to close",
         legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »). A card swiped past moves the painting along, but not this bar.",
         legende_mosaique: "The painting — one tile uncovers with every card, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
@@ -9424,6 +9476,8 @@ const I18N = {
         flash_end_objectif_atteint: "Günlük hedefe ulaşıldı — {n} kart. Gerisi keyif için.",
         flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
         mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
+        flash_revoir: "Önceki kelimeye bak",
+        flash_fermer: "Kapatmak için dokun",
         legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar. Cevapsız geçilen bir kart tabloyu ilerletir ama bu çubuğu ilerletmez.",
         legende_mosaique: "Tablo — her kartta bir kare açılır, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
@@ -10958,6 +11012,8 @@ const I18N = {
         flash_end_objectif_atteint: "Денну мету досягнуто — {n} карток. Решта — задля задоволення.",
         flash_end_objectif_reste: "Ще {n} карток до денної мети.",
         mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
+        flash_revoir: "Переглянути попереднє слово",
+        flash_fermer: "Торкнись, щоб закрити",
         legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив. Пропущена без відповіді картка рухає картину, але не цю смужку.",
         legende_mosaique: "Картина — з кожною карткою відкривається плитка, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнись, щоб збільшити.",
@@ -11846,6 +11902,8 @@ const I18N = {
         flash_end_objectif_atteint: "هدف امروز انجام شد — {n} کارت. باقی برای لذت است.",
         flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
         mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
+        flash_revoir: "دیدن واژهٔ پیشین",
+        flash_fermer: "برای بستن بزن",
         legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای. کارتی که بدون پاسخ رد شود تابلو را جلو می‌برد اما این نوار را نه.",
         legende_mosaique: "تابلو — با هر کارت یک کاشی باز می‌شود، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
@@ -20859,6 +20917,8 @@ function setFlashHeader(kickerKey, titleKey){
 }
 
 function loadFlashcard(){
+    const retourEl = document.getElementById("flashRetour");
+    if(retourEl) retourEl.classList.toggle("hidden", !derniereCarteVue);
     updateXpComboDisplay();
     hideFlashcardEnd();
     // La phrase a prononcer appartient a la carte qu'on affiche, et a elle
@@ -21443,7 +21503,10 @@ function slideToNextCard(flashcardEl){
 
     setTimeout(() => {
         flashcardEl.style.transition = "none";
-        skipFlashcard();
+        // ⚠️ LE BALAYAGE NE SAUTE PLUS, IL AVANCE -- et seulement apres un
+        // jugement. Tant que la carte n'est pas jugee il ne fait rien : c'est
+        // ce qui garantit qu'aucune carte ne traverse la seance sans reponse.
+        passerAuSuivant();
         void flashcardEl.offsetHeight;
         flashcardEl.style.transition = "transform .55s ease, height .55s ease";
         requestAnimationFrame(() => {
@@ -23304,7 +23367,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 552;
+const APP_VERSION = 553;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -25932,10 +25995,25 @@ function remettreEnFile(item){
 // que le clic, le point vert gagne s'allumait sur une carte deja disparue :
 // l'effort n'etait paye par rien de visible.
 let attentePalier = null;
+// ============ LE REGARD EN ARRIERE (v553) ============
+// ⚠️ CE QUI MANQUAIT N'ETAIT PAS DE RETENIR LA CARTE. Jacques : « je peux
+// vouloir juste tout de suite regarder c'etait quoi le mot en francais » -- mais
+// aussi : « j'aime bien le principe que ca revienne dans deux minutes, donc on
+// voit d'autres cartes en attendant ». Les deux tiennent ensemble a condition de
+// ne pas confondre le FLUX et le REGARD : le flux avance, et un bouton discret
+// permet de revoir ce qu'on vient de juger.
+//
+// ⚠️ LE REGARD EST EN LECTURE SEULE. La carte precedente est deja jugee et
+// programmee : la rejuger la compterait deux fois, dans la dose du jour comme
+// dans l'echelle de memorisation.
+let derniereCarteVue = null;
+
 function celebrerPalier(pointGagne){
     majEcheances(true);
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
     clearTimeout(attentePalier);
+    // La celebration garde son temps d'animation, mais elle ne fait plus
+    // disparaitre la carte : elle ouvre « Suivant ».
     attentePalier = setTimeout(nextFlashcard, pointGagne ? 950 : 520);
 }
 
@@ -25982,6 +26060,35 @@ function markKnownAlready(){
 
 // Affiche le bilan de fin de paquet au lieu de quitter l'ecran : c'est le seul
 // endroit ou "revoir les non maitrisees" a du sens, et il n'y en avait aucun.
+function ouvrirCartePrecedente(){
+    if(!derniereCarteVue) return;
+    const c = derniereCarteVue.word;
+    const mode = derniereCarteVue.mode || flashcardMode;
+    const mot = document.getElementById("cartePrecedenteMot");
+    const trad = document.getElementById("cartePrecedenteTrad");
+    const ex = document.getElementById("cartePrecedenteEx");
+    if(mot) mot.textContent = motAllemandDeLaCarte(c, mode) || "";
+    if(trad) trad.textContent = traductionDeLaCarte(c, mode) || "";
+    // ⚠️ LA PHRASE ALLEMANDE D'ABORD, SA TRADUCTION EN DESSOUS. texteCarte(...,
+    // "exemple") suit la langue de l'interface : il renvoyait « Mon père
+    // travaille beaucoup » a quelqu'un qui voulait revoir un mot ALLEMAND. Le
+    // rang nu porte l'allemand ; les rangs par langue portent sa traduction.
+    const type = TYPE_CARTE_PAR_MODE[mode] || "nomen";
+    // Le rang nu de l'exemple porte l'ALLEMAND ; RANGS_CARTE ne donne que ses
+    // traductions. Pour les verbes, qui sont des objets, c'est le champ `exemple`.
+    const de = Array.isArray(c) ? (c[5] || "") : (c.exemple || "");
+    const tr = texteCarte(c, type, "exemple") || "";
+    if(ex) ex.innerHTML = (de ? '<span class="cp-de">' + echapperHtml(de) + '</span>' : "")
+                        + (tr && tr !== de ? '<span class="cp-fr">' + echapperHtml(tr) + '</span>' : "");
+    const v = document.getElementById("cartePrecedente");
+    if(v) v.classList.remove("hidden");
+}
+
+function fermerCartePrecedente(){
+    const v = document.getElementById("cartePrecedente");
+    if(v) v.classList.add("hidden");
+}
+
 function showFlashcardEnd(){
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.add("hidden");
@@ -26511,6 +26618,9 @@ function markMastered(){
 }
 
 function nextFlashcard(){
+    // On retient ce qu'on vient de quitter, pour le regard en arriere.
+    const partante = currentCards[currentFlashcard];
+    if(partante) derniereCarteVue = partante;
     currentFlashcard++;
     // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
