@@ -3993,9 +3993,23 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
     display:flex; height:8px; border-radius:5px; margin-top:7px;
     background:rgba(30,41,59,.12); overflow:hidden;
 }
+/* ⚠️ LE CONTRASTE ENTRE LES DEUX SEGMENTS ETAIT DE 1,13 -- c'est-a-dire nul.
+   #0F6E56 et #2f62d6 ont presque la meme LUMINANCE (0,119 et 0,142) : seul le
+   ton les separait, et le ton seul ne suffit pas -- ni a petite taille, ni pour
+   les 8 % d'hommes daltoniens au rouge-vert. Signale par Jacques.
+
+   DEUX CORRECTIONS, ET LA PREMIERE EST LA PLUS SURE. Une SEPARATION visible
+   entre les segments se lit sans percevoir la couleur, ce que la regle WCAG
+   demande explicitement (voir v531). Et le vert monte a #2FB488, dont la
+   luminance (0,350) s'ecarte vraiment de celle du bleu : 2,09 au lieu de 1,13.
+
+   ⚠️ NE PAS APPLIQUER CE VERT AU TEXTE. #2FB488 sur blanc ne donne que 2,16,
+   loin des 4,5 exiges pour du texte -- « mots maitrises » garde son #0F6E56. */
 .carte-vocab-part{height:100%; display:block; transition:width .3s;}
-.carte-vocab-part.sus{background:#0F6E56;}
+.carte-vocab-part.sus{background:#2FB488;}
 .carte-vocab-part.cours{background:#2f62d6;}
+.carte-vocab-part.sus + .carte-vocab-part.cours{border-inline-start:2px solid #e6e9ef;}
+.carte-examen-part.sus + .carte-examen-part.cours{border-inline-start:2px solid #e6e9ef;}
 .carte-vocab-niveaux{margin-top:10px;}
 .vocab-ligne{display:flex; align-items:center; gap:8px; margin-top:6px;}
 .vocab-ligne-niv{font-size:11px; font-weight:600; color:#7b8798; width:22px; flex-shrink:0;}
@@ -4011,7 +4025,7 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .vocab-legende{display:flex; gap:11px; flex-wrap:wrap; margin-top:9px; font-size:10px; color:#7b8798;}
 .vocab-legende span{display:flex; align-items:center; gap:4px;}
 .vocab-legende i{width:8px; height:8px; border-radius:2px; display:block;}
-.vocab-legende .pt-sus{background:#0F6E56;}
+.vocab-legende .pt-sus{background:#2FB488;}
 .vocab-legende .pt-cours{background:#2f62d6;}
 .vocab-legende .pt-reste{background:rgba(30,41,59,.18);}
 body[data-theme="dark"] .carte-vocab{border-top-color:rgba(255,255,255,.12);}
@@ -4025,7 +4039,10 @@ body[data-theme="dark"] .vocab-legende{color:#9AA2B1;}
 body[data-theme="dark"] .carte-vocab-piste,
 body[data-theme="dark"] .vocab-ligne-piste{background:rgba(255,255,255,.14);}
 body[data-theme="dark"] .carte-vocab-part.sus,
-body[data-theme="dark"] .vocab-legende .pt-sus{background:#5DCAA5;}
+body[data-theme="dark"] .carte-examen-part.sus,
+body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
+body[data-theme="dark"] .carte-vocab-part.sus + .carte-vocab-part.cours,
+body[data-theme="dark"] .carte-examen-part.sus + .carte-examen-part.cours{border-inline-start-color:#2B3442;}
 body[data-theme="dark"] .vocab-legende .pt-reste{background:rgba(255,255,255,.20);}
 /* Le vocabulaire d'examen. EN CONTOUR, PAS EN PLEIN : le seul bloc plein de
    l'accueil reste le bandeau de seance (v531), et deux blocs pleins ne
@@ -4044,7 +4061,7 @@ body[data-theme="dark"] .vocab-legende .pt-reste{background:rgba(255,255,255,.20
     background:rgba(30,41,59,.12); overflow:hidden;
 }
 .carte-examen-part{height:100%; transition:width .3s;}
-.carte-examen-part.sus{background:#0F6E56;}
+.carte-examen-part.sus{background:#2FB488;}
 .carte-examen-part.cours{background:#2f62d6;}
 .carte-examen-pied{font-size:11px; color:#7b8798; margin-top:6px; line-height:1.3;}
 body[data-theme="dark"] .carte-examen{border-top-color:rgba(255,255,255,.12);}
@@ -4394,7 +4411,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v543</span>
+        <span class="subtitle-version">v544</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -23012,7 +23029,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 543;
+const APP_VERSION = 544;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
