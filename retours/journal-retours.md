@@ -2689,3 +2689,66 @@ centre par construction et grossit sans devenir flou.
 **Note sur l'objectif quotidien** : il n'a jamais été figé par jour.
 `getDailyGoalTarget()` lit le réglage à chaque appel ; c'était bien l'absence de
 rafraîchissement de l'accueil, corrigée en v547.
+
+---
+
+## 12 septembre 2026 — l'accueil réduit à l'essentiel (v549-v550)
+
+**Une longue série de remarques de Jacques, toutes à l'écran, toutes des retraits
+ou des déplacements.** La carte de progression est passée de six blocs à deux.
+
+### Ce qui a bougé
+
+- **Le compte du jour quitte la carte pour le bandeau** : « Ma séance du jour
+  0 / 40 ». Il n'a de sens qu'au moment de travailler, et c'est là qu'on le voit
+  monter. Sa barre disparaît avec lui.
+- **La recherche monte sur la ligne du salut.** Elle occupait une ligne entière
+  pour un geste qui mène ailleurs.
+- **Le ⓘ ouvre un ÉCRAN**, plus un panneau qui se déplie. Déplié dans la carte,
+  il fallait retrouver le ⓘ et le retoucher pour refermer — un geste que
+  personne ne devine. Et il contient désormais les règles de la séance.
+- **L'étiquette de version passe en pied de page.** Calée en absolu au coin de
+  la carte, elle s'est retrouvée **par-dessus le tableau** quand la mosaïque est
+  arrivée.
+- **Le tableau a un vrai cadre** : coins carrés, filet sombre, liseré clair —
+  un passe-partout, pour quatre pixels.
+
+### ⚠️ Trois défauts que j'ai créés en corrigeant
+
+**1. J'ai cassé la carte en déplaçant les cumuls.** Pour sortir le bloc, j'avais
+cherché sa fin avec `s.index("        </div>\n", debut)` — qui trouve la
+fermeture du **premier enfant**, pas celle du conteneur. Résultat : l'ouverture
+et un enfant sont partis dans le ⓘ, deux enfants et un `</div>` surnuméraire
+sont restés, et ce `</div>` de trop fermait la carte **avant** le vocabulaire et
+la mosaïque — qui se sont retrouvés hors du cadre.
+**Ne jamais découper du HTML à l'index de caractère.**
+
+**2. Les v545 et v548 disaient « ils passent derrière le ⓘ » — je les avais
+seulement masqués.** Ils n'étaient plus nulle part. Une correction à moitié
+faite est une perte de fonction, pas un allégement.
+
+**3. Le ⓘ était positionné en absolu** au coin bas de la carte. Quand la carte a
+grandi, il est parti à **1071 px** — hors de l'écran. Un élément calé sur un
+conteneur dont la hauteur varie se déplace sans qu'on touche à son code. Il vit
+maintenant dans le flux, à côté de « Ta galerie ».
+
+### ⚠️ Et un défaut que le vérificateur a arrêté net
+
+Pour faire tenir « Chercher un mot » à côté du salut, j'ai réduit la police du
+champ à 12,5 px. **`verifier.py` l'a refusé dans la seconde** : sous 16 px,
+Safari iOS zoome dès qu'on touche le champ et ne dézoome pas — c'est-à-dire
+exactement le défaut que Jacques venait de signaler sur l'objectif quotidien.
+**C'est le libellé qui raccourcit, jamais la police.**
+
+### La contradiction entre deux compteurs, expliquée plutôt que masquée
+
+⚠️ **La barre du jour ne compte que les cartes JUGÉES ; la mosaïque compte
+chaque carte traversée.** Jacques a vu « 2 / 40 » figé alors qu'il tournait des
+cartes — et comme il n'atteignait jamais 40, la célébration de l'objectif ne
+pouvait pas se déclencher non plus. **Une seule cause pour ses deux
+observations.**
+
+Les deux mesures restent différentes, parce qu'elles mesurent deux choses
+différentes : **l'objectif mesure du travail, la mosaïque mesure la présence**.
+Mais le ⓘ le dit maintenant en toutes lettres, parce que rien d'autre ne permet
+de le deviner.

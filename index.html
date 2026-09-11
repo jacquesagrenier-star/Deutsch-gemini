@@ -2035,21 +2035,13 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
 .search-launch{
     display:flex;
     align-items:center;
-    gap:8px;
-    width:100%;
-    margin-top:12px;
-    padding:7px 12px;
-    border-radius:16px;
-    border:1px solid rgba(30,41,59,.32);
-    background:rgba(255,255,255,.5);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    color:#576177;
-    font-size:15px;
-    font-family:inherit;
-    text-align:start;
-    cursor:pointer;
-    transition:.2s;
+    gap:6px;
+    flex:1 1 auto;
+    min-width:0;
+    max-width:190px;
+    margin:0;
+    padding:3px 9px;
+    border-radius:999px;
 }
 
 .search-launch:hover{
@@ -2060,10 +2052,14 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
 /* 16px MINIMUM ici aussi : en dessous, Safari iOS zoome des qu'on touche le
    champ. C'est la meme raison que pour #wordSearchInput juste en dessous. */
 .search-launch input{
-    flex:1; min-width:0;
-    border:0; background:transparent; outline:none;
-    font-family:inherit; font-size:16px; color:inherit;
-    padding:0;
+    /* ⚠️ 16 PX, ET PAS UN DE MOINS. Sous ce plancher, Safari iOS zoome des qu'on
+       touche le champ ET NE DEZOOME PAS -- c'est le defaut que verifier.py
+       surveille, et celui-la meme que Jacques a signale sur l'objectif
+       quotidien. J'ai essaye 12,5 px pour faire tenir « Chercher un mot » a
+       cote du salut : le controle l'a refuse dans la seconde. C'est le libelle
+       qui raccourcit, jamais la police. */
+    flex:1; min-width:0; border:0; background:none; outline:none;
+    font-family:inherit; font-size:16px; color:#1e293b; padding:3px 0;
 }
 .search-launch input::placeholder{color:#8b93a3; opacity:1;}
 .search-launch:focus-within{
@@ -2111,26 +2107,19 @@ input, textarea, select{
    qu'on le sait. Jacques : « je ne mettrai pas deux avec deux cercles, je le
    mettrai avec un fond blanc, puis avec un cercle autour ».
    Le caractere est donc un « i » nu ; le cercle est celui du bouton. */
+/* ⚠️ PLUS D'ABSOLU. Le bouton etait cale au coin bas de la carte ; quand la
+   carte a grandi -- le ⓘ contient maintenant les cumuls -- il s'est retrouve a
+   1071 px, hors de l'ecran. Signale par Jacques : « je ne vois plus le i ».
+   Un element positionne par rapport a un conteneur dont la hauteur varie est
+   un piege : il se deplace sans qu'on touche a son code. Il vit desormais dans
+   le flux, a cote de « Ta galerie », ou sa place ne depend de rien. */
 .info-progression{
-    -webkit-appearance:none; appearance:none;
-    cursor:pointer; line-height:1;
-    font-family:Georgia, "Times New Roman", serif;
-    font-size:22px; font-weight:700; font-style:italic;
-    color:#2f63d8; opacity:1;
-    /* LE CERCLE SERRE LA LETTRE (v517). A 40 px il prenait la place d'un
-       bouton d'action alors qu'il n'en est pas un -- Jacques : « le cercle
-       prend trop d'espace ». La LETTRE ne bouge pas, c'est l'anneau qui se
-       resserre autour d'elle, et le trait s'affine avec lui. */
-    width:30px; height:30px; padding:0;
+    position:static; flex-shrink:0;
+    width:21px; height:21px; border-radius:50%;
+    border:1px solid rgba(47,98,214,.35); background:none; color:#2f62d6;
+    font-family:inherit; font-size:11px; font-weight:700; font-style:italic;
     display:inline-flex; align-items:center; justify-content:center;
-    border:1.5px solid rgba(59,111,224,.55);
-    background:#fff;
-    border-radius:50%;
-    box-shadow:0 1px 3px rgba(20,30,50,.10);
-    transition:background 120ms ease, border-color 120ms ease;
-    /* Le coin bas-droit du rectangle. La version occupe le coin gauche. */
-    position:absolute; inset-inline-end:10px; bottom:8px;
-    z-index:2;
+    cursor:pointer; line-height:1; padding:0;
 }
 .info-progression:hover{ background:#f2f6ff; }
 .info-progression[aria-expanded="true"]{
@@ -2142,7 +2131,7 @@ body[data-theme="dark"] .info-progression{
     background:#eaf1ff;
 }
 
-.info-progression-box{
+.info-progression-page{
     margin-top:10px; padding:12px 14px;
     border-radius:14px;
     background:rgba(59,111,224,.07);
@@ -2188,16 +2177,13 @@ body[data-theme="dark"] .echelle-maitrise .ligne.fin .quand{ color:#9fdcbe; }
        textContent, pas du HTML. */
     white-space:pre-line;
 }
-body[data-theme="dark"] .info-progression-box{
+body[data-theme="dark"] .info-progression-page{
     background:rgba(255,255,255,.06);
     border-color:rgba(255,255,255,.14);
 }
 body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 
-.search-launch svg{
-    width:18px; height:18px; flex:none;
-    stroke:#3b6fe0; fill:none; stroke-width:2; stroke-linecap:round;
-}
+.search-launch svg{width:17px; height:17px; color:#2f62d6; stroke:#2f62d6; flex-shrink:0;}
 
 .search-result{
     padding:14px 16px;
@@ -3888,7 +3874,17 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    dessinaient EN DESSOUS de ses tuiles (bug de la v232). Le selecteur doit
    donc porter ".active". */
 #home.active{display:flex; flex-direction:column;}
-.home-greeting-row{order:1; display:flex; align-items:baseline; gap:7px; margin-bottom:12px;}
+/* ⚠️ LE SALUT PRENAIT DEUX LIGNES. La recherche lui volait sa largeur et
+   « Bon apres-midi, Jacques » se coupait en deux. Le salut ne se coupe plus, la
+   recherche se contente de ce qui reste -- et se reduit a la loupe seule sur un
+   ecran etroit, ce qui reste comprehensible. */
+.home-greeting-row{order:1; display:flex; align-items:center; gap:8px; margin-bottom:10px;}
+.home-greeting-row .home-greeting{white-space:nowrap; flex:0 0 auto;}
+/* ⚠️ ELLE DEBORDAIT. `max-width` sans `min-width:0` laisse un element flex
+   deborder de son conteneur des que son contenu est plus large -- le champ de
+   saisie gardait sa largeur par defaut et poussait le texte hors de l'ecran. */
+.home-greeting-row .search-launch{margin-inline-start:auto !important; min-width:0;}
+.home-greeting-row .search-launch input{min-width:0; width:100%;}
 .home-greeting-row .home-greeting{margin:0;}
 /* La version se loge dans le coin de la carte de progression : elle ne coute
    plus une ligne sous le logo.
@@ -3930,6 +3926,12 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 }
 .orb-seance:hover{transform:none; box-shadow:0 8px 20px rgba(47,98,214,.34);}
 .seance-haut{display:flex; align-items:baseline; gap:8px;}
+.seance-compte{
+    font-family:inherit; font-size:12.5px; font-weight:700; color:#fff;
+    background:rgba(255,255,255,.20); border-radius:999px; padding:2px 9px;
+    font-variant-numeric:tabular-nums; flex:0 0 auto; line-height:1.35;
+}
+.seance-compte.atteint{background:rgba(255,255,255,.34);}
 .orb-seance strong{font-size:15px; line-height:1.2; flex:0 0 auto; color:#fff;}
 .seance-sub{font-size:12.5px; color:rgba(255,255,255,.82); flex:1 1 auto; min-width:0;}
 .seance-fleche{flex:0 0 auto; color:#fff; align-self:center;}
@@ -4051,8 +4053,13 @@ body[data-theme="dark"] .carte-vocab-fleche{color:#8FB4FF; background:rgba(143,1
 .carte-examen-part.sus + .carte-examen-part.cours{border-inline-start:2px solid #e6e9ef;}
 /* Le cumul de jours : un grand chiffre, un mot, et la serie repoussee a droite
    en petit. L'ordre visuel dit lequel des deux compte. */
-.carte-jour-bas{display:flex; align-items:center; gap:12px;}
-.carte-jour-bas .carte-jour-piste{flex:1;}
+.carte-jour-bas{display:flex; align-items:center; gap:9px;}
+.carte-jour-bas .carte-jour-piste{flex:1; height:7px;}
+.carte-jour-lib{font-size:12px; font-weight:600; color:#1e293b; flex-shrink:0;}
+.carte-jour-compte{font-size:12px; color:#7b8798; font-variant-numeric:tabular-nums; flex-shrink:0;}
+.carte-jour-compte strong{font-size:13px; color:#1e293b;}
+body[data-theme="dark"] .carte-jour-lib,
+body[data-theme="dark"] .carte-jour-compte strong{color:#F2F2F6;}
 .carte-jours{display:flex; align-items:baseline; gap:5px; flex-shrink:0;}
 .carte-jours-n{font-size:15px; font-weight:700; color:#1e293b; line-height:1; font-variant-numeric:tabular-nums;}
 .carte-jours-mot{font-size:11px; font-weight:600; color:#7b8798;}
@@ -4140,11 +4147,29 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    fois la place. Cote a cote, la carte gagne une soixantaine de pixels sans
    rien perdre. */
 .carte-mosaique{display:flex; gap:12px; align-items:flex-start;}
+/* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
+   ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
+   Jacques : « quelque chose qui me derange visuellement ». */
 .mos-cadre{
-    border:1px solid rgba(30,41,59,.16); border-radius:8px; overflow:hidden;
+    /* Un vrai cadre, pour quatre pixels : un filet sombre au bord, un lisere
+       clair a l'interieur -- le passe-partout d'un encadrement. Il dit « oeuvre »
+       la ou un simple trait gris disait « image d'interface ». */
+    border:2px solid rgba(30,41,59,.42); border-radius:0; overflow:hidden;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.85);
     background:#f3f1ec; cursor:zoom-in; line-height:0;
-    flex:0 0 42%; max-width:42%;
+    flex:0 0 42%; max-width:42%; position:relative;
 }
+body[data-theme="dark"] .mos-cadre{
+    border-color:rgba(255,255,255,.34);
+    box-shadow:inset 0 0 0 2px rgba(20,25,33,.85);
+}
+.mos-loupe{
+    position:absolute; inset-block-end:5px; inset-inline-end:5px;
+    width:22px; height:22px; border-radius:6px;
+    background:rgba(28,36,48,.60); color:#fff;
+    display:flex; align-items:center; justify-content:center; pointer-events:none;
+}
+.mos-loupe svg{width:13px; height:13px; display:block;}
 .mos-droite{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;}
 .mos-toile{display:block; width:100%; height:auto;}
 .mos-cartouche{text-align:start; line-height:1.35;}
@@ -4166,10 +4191,17 @@ body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
 .mos-bas{display:flex; align-items:center; justify-content:space-between;
     gap:8px; margin-top:auto; padding-top:6px; flex-wrap:wrap;}
 .mos-pied{font-size:11px; color:#7b8798;}
+/* ⚠️ UN BOUTON DOIT RESSEMBLER A UN BOUTON. « Ta galerie » etait un texte
+   bleu : rien ne disait qu'on pouvait le toucher, sinon sa couleur -- et la
+   couleur seule ne porte jamais une information (v531). Un contour arrondi le
+   dit sans ambiguite. Demande de Jacques. */
 .mos-galerie{
-    background:none; border:0; padding:0; font-family:inherit; font-size:11.5px;
-    font-weight:600; color:#2f62d6; cursor:pointer; white-space:nowrap;
+    background:none; border:1px solid rgba(47,98,214,.35); border-radius:999px;
+    padding:4px 11px; font-family:inherit; font-size:11px; font-weight:600;
+    color:#2f62d6; cursor:pointer; white-space:nowrap; line-height:1.3;
 }
+.mos-galerie:hover{background:rgba(47,98,214,.08);}
+body[data-theme="dark"] .mos-galerie{border-color:rgba(143,180,255,.38);}
 body[data-theme="dark"] .carte-mosaique{border-top-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .mos-cadre{border-color:rgba(255,255,255,.16); background:#20252e;}
 body[data-theme="dark"] .mos-peintre{color:#F2F2F6;}
@@ -4183,14 +4215,14 @@ body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:14px; padding:18px; cursor:zoom-out;
 }
-.mos-plein-toile{max-width:100%; max-height:78vh; border-radius:6px; display:block;}
+.mos-plein-toile{max-width:100%; max-height:78vh; border-radius:0; display:block;}
 .mos-plein-legende{color:#e7ebf2; font-size:13px; text-align:center; line-height:1.5;}
 /* La galerie */
 .galerie-grille{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
 .galerie-item{margin:0; cursor:pointer;}
 .galerie-item img{
     display:block; width:100%; height:118px; object-fit:cover;
-    border-radius:7px; border:1px solid rgba(30,41,59,.14);
+    border-radius:0; border:1px solid rgba(30,41,59,.14);
 }
 .galerie-item figcaption{font-size:11px; color:#7b8798; margin-top:5px; line-height:1.35;}
 .galerie-item figcaption b{color:#1e293b;}
@@ -4206,11 +4238,11 @@ body[data-theme="dark"] .carte-compte-lib{color:#9AA2B1;}
 body[data-theme="dark"] .carte-jour-piste{background:rgba(255,255,255,.14);}
 body[data-theme="dark"] .carte-comptes{border-top-color:rgba(255,255,255,.12);}
 .home-stats-card{position:relative;}
-.home-stats-card .subtitle-version{
-    position:absolute; inset-inline-start:10px; bottom:7px;
-    color:#c3c9d4; font-weight:600; font-size:10.5px; letter-spacing:.02em;
+.subtitle-version{
+    display:block; text-align:center; margin:18px 0 4px;
+    color:#c3c9d4; font-weight:600; font-size:10.5px; letter-spacing:.04em;
 }
-.search-launch{order:2; margin:0 0 10px !important;}
+.search-launch{order:0; margin:0 !important;}
 .home-stats-card{order:3;}
 #orbGrid{order:4;}
 .home-help-launch{order:5; margin-top:18px !important;}
@@ -4446,8 +4478,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 <section id="home" class="screen active">
 
+    <!-- ⚠️ LA RECHERCHE MONTE SUR LA LIGNE DU SALUT (v549). Elle occupait une
+         ligne a elle seule pour un geste qui mene AILLEURS. A droite du salut,
+         elle recupere toute cette hauteur sans rien perdre.
+         ⚠️ ET ELLE RESTE UN VRAI CHAMP, pas un bouton : sur iOS le clavier ne
+         s'ouvre que dans le geste de l'utilisateur. Un bouton menant a un ecran
+         dont le champ se focalise ensuite obligerait a toucher DEUX fois. La
+         loupe est agrandie et coloree pour que la cible se voie. -->
     <div class="home-greeting-row">
         <p id="homeGreeting" class="home-greeting"></p>
+    <div class="search-launch">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
+               autocorrect="off" spellcheck="false"
+               data-i18n-placeholder="search_launch_court" placeholder="Chercher"
+               data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
+               onfocus="ouvrirRechercheDepuisAccueil()"
+               oninput="ouvrirRechercheDepuisAccueil(this.value)">
+    </div>
     </div>
 
     <h1>
@@ -4459,61 +4507,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <p class="subtitle"><span id="homeSubtitle" data-i18n="home_subtitle">Ton tuteur personnel pour la grammaire allemande et le vocabulaire.</span></p>
 
-    <!-- Entree UNIQUE de la recherche : volontairement sur l'accueil seulement,
-         donc hors de portee pendant un exercice (voir openWordSearch). Placee
-         au-dessus de la carte de progression depuis v225 : avec le dictionnaire
-         integre, ce n'est plus une action secondaire mais l'usage quotidien --
-         la releguer sous 269 px de statistiques la rendait invisible. -->
-    <!-- UN VRAI CHAMP, pas un bouton : sur iOS le clavier ne s'ouvre que dans le
-         geste de l'utilisateur. Un bouton qui menait a un ecran dont le champ
-         se focalisait ensuite obligeait a toucher deux fois. -->
-    <div class="search-launch">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-        <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
-               autocorrect="off" spellcheck="false"
-               data-i18n-placeholder="search_launch" placeholder="Chercher un mot"
-               data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
-               onfocus="ouvrirRechercheDepuisAccueil()"
-               oninput="ouvrirRechercheDepuisAccueil(this.value)">
-    </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v548</span>
-
-        <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
-             a zero chaque matin. Il ne peut pas decourager puisqu'il ne
-             memorise rien, et c'est le cadre de reference qui manquait a tous
-             les compteurs essayes avant lui -- « 7 / 100 » se comprend sans
-             explication, « 98 mots » ne se compare a rien. -->
-        <div class="carte-jour">
-            <div class="carte-jour-haut">
-                <span data-i18n="home_daily_goal_label_court">Aujourd'hui</span>
-                <span><strong id="jourFait">0</strong><span id="jourCible"> / 0</span></span>
-            </div>
-            <!-- Les jours travailles tiennent sur la meme ligne que la barre du
-                 jour : deux chiffres du meme ordre, une seule hauteur. -->
-            <div class="carte-jour-bas">
-                <div class="carte-jour-piste"><div id="jourRemplissage" class="carte-jour-fill" style="width:0%"></div></div>
-                <!-- ⚠️ MASQUE, PAS SUPPRIME. « Ca prend beaucoup trop de place
-                     pour rien », dit par Jacques, et il a raison : le cumul de
-                     jours est une mesure de FOND -- il bouge d'une unite par
-                     jour au mieux. Il n'a rien a faire sur la ligne qui change a
-                     chaque carte. Sa place est dans le ⓘ, avec les autres
-                     cumuls de la v545. L'element reste : majCarteProgression()
-                     y ecrit toujours. -->
-                <div class="carte-jours hidden">
-                    <span class="carte-jours-n" id="joursTravaillesN">0</span>
-                    <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
-                    <span class="carte-jours-serie hidden" id="joursSerie"></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ⚠️ LE CUMUL EN GRAND, LA SERIE EN PETIT. La serie seule punissait
-             l'absence : au retour de vacances elle affichait 0 et effacait des
-             semaines de travail. Le cumul ne redescend jamais. -->
-
-
         <div class="global-progress-row hidden">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4537,34 +4532,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="home-stats-labels">
                 <div id="globalProgressQualitative" class="home-stats-qualitative"></div>
                 <span id="streakFreezeChip" class="hidden" title="" onclick="showStreakFreezeDetail()">❄️ <span id="streakFreezeCount">0</span></span>
-            </div>
-        </div>
-        <!-- TROIS ECHELLES DE TEMPS, et aucune fraction du dictionnaire.
-             « rencontres » bouge des la premiere carte, « points de grammaire »
-             des la deuxieme seance, « maitrises » a partir du 11e jour. Les
-             libelles evitent le vocabulaire interne : ni « acquis » (acquis
-             quoi ?), ni « jeux solides ». Et « exercices de grammaire » : les 40 sont ce que
-             l'etudiant appelle un exercice (celui du Perfekt, celui des cas) ;
-             les 1 682 sont les QUESTIONS a l'interieur. « Regles maitrisees »
-             promettrait trop tant que « solide » n'est pas defini. -->
-        <!-- ⚠️ LES TROIS CUMULS PASSENT DERRIERE LE ⓘ (v545). Ils ne sont pas
-             faux, ils sont DE TROP a cet endroit : la ligne « Vocabulaire » juste
-             dessous dit la meme chose par niveau, avec un denominateur qu'on peut
-             atteindre. Meme traitement que l'anneau a la v535 -- la valeur etait
-             juste, c'est la place qui ne l'etait pas. Les elements restent :
-             majCarteProgression() y ecrit toujours. -->
-        <div class="carte-comptes hidden">
-            <div class="carte-compte">
-                <div class="carte-compte-val" id="compteRencontres">0</div>
-                <div class="carte-compte-lib" data-i18n="compte_rencontres">mots rencontrés</div>
-            </div>
-            <div class="carte-compte">
-                <div class="carte-compte-val carte-compte-vert" id="compteMaitrises">0</div>
-                <div class="carte-compte-lib" data-i18n="compte_maitrises">mots maîtrisés</div>
-            </div>
-            <div class="carte-compte">
-                <div class="carte-compte-val" id="compteGrammaire">0</div>
-                <div class="carte-compte-lib" data-i18n="compte_grammaire">exercices de grammaire</div>
             </div>
         </div>
 
@@ -4594,8 +4561,22 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              Jacques : « qu'on voie déjà l'endroit où va être le tableau ». Un
              cadre vide dans un musee se regarde ; une grille vide, non. -->
         <div id="carteMosaique" class="carte-mosaique hidden">
-            <div class="mos-cadre" onclick="ouvrirMosaiquePleinEcran()">
+            <!-- ⚠️ RIEN NE DISAIT QU'ON POUVAIT L'AGRANDIR. Le curseur `zoom-in`
+                 n'existe pas sur un telephone, et une image bordee ressemble a
+                 une illustration, pas a un bouton. Signale par Jacques. La
+                 pastille des quatre fleches est le signe universel de
+                 l'agrandissement -- elle se lit sans legende et sans mot, donc
+                 dans les cinq langues a la fois. -->
+            <div class="mos-cadre" onclick="ouvrirMosaiquePleinEcran()"
+                 role="button" tabindex="0"
+                 data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau">
                 <canvas id="mosaiqueToile" class="mos-toile" width="900" height="700"></canvas>
+                <span class="mos-loupe" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/>
+                    </svg>
+                </span>
             </div>
             <div class="mos-droite">
             <div id="mosaiqueCartouche" class="mos-cartouche"></div>
@@ -4603,6 +4584,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <span id="mosaiquePied" class="mos-pied"></span>
                 <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
                         data-i18n="mosaique_galerie">Ta galerie</button>
+                <button type="button" class="info-progression" onclick="ouvrirInfoProgression()"
+                                data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
             </div>
             </div>
         </div>
@@ -4629,81 +4612,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              et ses elements ne restent dans le DOM que pour que le JS puisse y
              ecrire sans planter. Signale par Jacques : « le i information
              n'apparait pas dans le rectangle de progression ». -->
-        <button type="button" class="info-progression" onclick="basculerInfoProgression()"
-                aria-expanded="false" aria-controls="infoProgressionBox"
-                data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
-        <div id="infoProgressionBox" class="info-progression-box hidden">
-            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « que dans le i, on
-                 explique chacun des symboles ». La carte porte quatre reperes
-                 -- une flamme, un cercle, une courbe, une cible -- et rien ne
-                 disait ce qu'ils comptent. Un chiffre qu'on ne sait pas lire
-                 ne motive pas.
-                 LA LEGENDE VIENT AVANT le paragraphe sur le pourcentage : on
-                 nomme les quatre reperes, ensuite seulement on explique le
-                 plus subtil des quatre. -->
-            <strong data-i18n="carte_info_titre">Comment lire cette carte</strong>
-            <!-- ⚠️ LE CERCLE EST ICI DEPUIS LA v535, et il n'a pas ete supprime :
-                 updateHomeStatsPanel() y ecrit toujours. Sa valeur est juste --
-                 c'est sa PLACE qui etait fausse. Il avance de 0,22 % par mot et
-                 ne bouge pas avant le 11e jour : accueillir quelqu'un avec ca,
-                 c'est lui montrer une fraction minuscule d'un tres grand tout.
-                 Consulte volontairement, il redevient ce qu'il est : une carte
-                 du territoire, qui a le droit d'etre lente. -->
-            <div class="info-anneau">
-            <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button" aria-label="Changer de niveau affiché" style="cursor:pointer;">
-                <svg width="76" height="76" viewBox="0 0 76 76">
-                    <circle cx="38" cy="38" r="32" fill="none" class="global-ring-track" stroke-width="7"/>
-                    <circle id="globalRingFill" cx="38" cy="38" r="32" fill="none" stroke="url(#globalRingGrad)"
-                        stroke-width="7" stroke-linecap="round"
-                        stroke-dasharray="201.06" stroke-dashoffset="201.06"/>
-                </svg>
-                <div class="global-ring-center">
-                    <div id="globalRingLevel" class="global-ring-level">A1</div>
-                    <div id="globalRingNum" class="global-ring-num">0%</div>
-                </div>
-                <div class="ring-cycle-badge" aria-hidden="true">⟳</div>
-            </div>
-            </div>
-            <ul class="info-legende">
-                <li data-i18n="legende_cercle"></li>
-                <li data-i18n="legende_objectif"></li>
-                <li data-i18n="legende_serie"></li>
-                <li data-i18n="legende_rencontres"></li>
-                <li data-i18n="legende_maitrises"></li>
-                <li data-i18n="legende_grammaire"></li>
-            </ul>
-            <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
-            <p data-i18n="progress_info_compte"></p>
-            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « pour les mots
-                 maitrises, ce serait bien que visuellement on voie juste avec
-                 les points qui augmentent, puis avec leur signification, au
-                 lieu de l'ecrire ». L'echelle etait un paragraphe ; c'est
-                 maintenant les MEMES pastilles que sur la carte, remplies une
-                 de plus a chaque ligne, avec l'echeance en face.
-                 Construite par echelleMaitriseHtml(), depuis les constantes. -->
-            <!-- Une seule ligne au-dessus des pastilles, et c'est une cle qui
-                 EXISTE DEJA (l'aide de la carte l'emploie mot pour mot). Sans
-                 elle « 10 min » ouvre la liste sans qu'on sache de quoi elle
-                 parle ; avec elle, les quatre lignes se lisent d'un coup. Une
-                 traduction reutilisee est une traduction qui ne derive pas. -->
-            <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
-            <div id="echelleMaitrise" class="echelle-maitrise"></div>
-            <p data-i18n="progress_info_deja"></p>
-            <p data-i18n="progress_info_apres"></p>
-        </div>
-        <!-- ⚠️ MASQUE : DOUBLON. Cette ligne affichait l'objectif du jour
-             juste sous « Aujourd'hui » -- le meme chiffre, deux fois, dans la
-             meme carte. Signale par Jacques : « trop d'informations ».
-             L'element reste parce que updateHomeStatsPanel() y ecrit toujours ;
-             le retirer casserait la mise a jour en silence. -->
-        <div class="home-daily-goal hidden">
-            <div class="home-daily-goal-row">
-                <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
-                <span id="dailyGoalCount">0 / 30</span>
-            </div>
-            <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
-        </div>
-    </div>
 
 
     <button class="home-help-launch" id="homeHelpLaunch" onclick="openOnboardingVideo(false)">
@@ -4724,6 +4632,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="orb orb-seance" data-orbid="seance" onclick="ouvrirSeanceDuJour()">
             <div class="seance-haut">
                 <strong data-i18n="seance_titre">Ma séance du jour</strong>
+                <!-- ⚠️ LE COMPTE DU JOUR EST ICI, ET NULLE PART AILLEURS (v550).
+                     Il etait en haut de la carte de progression, avec sa propre
+                     barre : deux hauteurs pour un chiffre qui n'a de sens qu'au
+                     moment de travailler. Demande de Jacques. Ici il est juste
+                     avant le geste, et on le voit monter d'une seance a l'autre.
+                     ⚠️ Il compte les cartes JUGEES -- « Encore » ou « Je savais ».
+                     Une carte balayee fait avancer le tableau, pas ce compte :
+                     l'objectif mesure du travail, la mosaique mesure la presence.
+                     Le ⓘ le dit, parce que rien d'autre ne peut le deviner. -->
+                <span id="seanceCompte" class="seance-compte"></span>
                 <span id="seanceSub" class="seance-sub"></span>
                 <svg class="seance-fleche" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
             </div>
@@ -5069,6 +4987,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     </div>
 
+    <!-- ⚠️ L'ETIQUETTE DE VERSION EST ICI, ET PLUS SUR LA CARTE. Elle y etait
+         calee en absolu au coin bas : quand la mosaique est arrivee, elle s'est
+         retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
+         elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
+         demande -- sans rien recouvrir. -->
+    <span class="subtitle-version">v550</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5093,6 +5017,119 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <!-- LA GALERIE. Elle ne montre QUE les tableaux gagnes : des silhouettes pour
      ceux a venir seraient le defaut du denominateur inatteignable sous une
      autre forme. C'est une etagere a trophees, pas une liste de courses. -->
+<!-- ⚠️ UN ECRAN, PAS UN PANNEAU QUI SE DEPLIE (v550). Deplie dans la carte,
+     il fallait retrouver le ⓘ et le retoucher pour refermer -- un geste que
+     personne ne devine et que rien n'annonce. Demande de Jacques. Un ecran se
+     quitte par « Retour », comme les quarante-trois autres de l'app. -->
+<section id="infoProgression" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <p class="kicker" data-i18n="carte_info_kicker">Ta progression</p>
+    <div class="info-progression-page">
+            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « que dans le i, on
+                 explique chacun des symboles ». La carte porte quatre reperes
+                 -- une flamme, un cercle, une courbe, une cible -- et rien ne
+                 disait ce qu'ils comptent. Un chiffre qu'on ne sait pas lire
+                 ne motive pas.
+                 LA LEGENDE VIENT AVANT le paragraphe sur le pourcentage : on
+                 nomme les quatre reperes, ensuite seulement on explique le
+                 plus subtil des quatre. -->
+            <strong data-i18n="carte_info_titre">Comment lire cette carte</strong>
+            <!-- ⚠️ LE CERCLE EST ICI DEPUIS LA v535, et il n'a pas ete supprime :
+                 updateHomeStatsPanel() y ecrit toujours. Sa valeur est juste --
+                 c'est sa PLACE qui etait fausse. Il avance de 0,22 % par mot et
+                 ne bouge pas avant le 11e jour : accueillir quelqu'un avec ca,
+                 c'est lui montrer une fraction minuscule d'un tres grand tout.
+                 Consulte volontairement, il redevient ce qu'il est : une carte
+                 du territoire, qui a le droit d'etre lente. -->
+            <div class="info-anneau">
+            <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button" aria-label="Changer de niveau affiché" style="cursor:pointer;">
+                <svg width="76" height="76" viewBox="0 0 76 76">
+                    <circle cx="38" cy="38" r="32" fill="none" class="global-ring-track" stroke-width="7"/>
+                    <circle id="globalRingFill" cx="38" cy="38" r="32" fill="none" stroke="url(#globalRingGrad)"
+                        stroke-width="7" stroke-linecap="round"
+                        stroke-dasharray="201.06" stroke-dashoffset="201.06"/>
+                </svg>
+                <div class="global-ring-center">
+                    <div id="globalRingLevel" class="global-ring-level">A1</div>
+                    <div id="globalRingNum" class="global-ring-num">0%</div>
+                </div>
+                <div class="ring-cycle-badge" aria-hidden="true">⟳</div>
+            </div>
+            </div>
+            <!-- ⚠️ DEPLACES ICI POUR DE BON (v549). Les v545 et v548 disaient
+                 « ils passent derriere le ⓘ » mais se contentaient de les
+                 MASQUER : ils n'etaient plus nulle part. Une correction a moitie
+                 faite est une perte de fonction, pas un allegement. -->
+                <div class="carte-jours">
+                    <span class="carte-jours-n" id="joursTravaillesN">0</span>
+                    <span class="carte-jours-mot" data-i18n="jours_travailles">jours travaillés</span>
+                    <span class="carte-jours-serie hidden" id="joursSerie"></span>
+                </div>
+        <div class="carte-comptes">
+            <div class="carte-compte">
+                <div class="carte-compte-val" id="compteRencontres">0</div>
+                <div class="carte-compte-lib" data-i18n="compte_rencontres">mots rencontrés</div>
+            </div>
+            <div class="carte-compte">
+                <div class="carte-compte-val carte-compte-vert" id="compteMaitrises">0</div>
+                <div class="carte-compte-lib" data-i18n="compte_maitrises">mots maîtrisés</div>
+            </div>
+            <div class="carte-compte">
+                <div class="carte-compte-val" id="compteGrammaire">0</div>
+                <div class="carte-compte-lib" data-i18n="compte_grammaire">exercices de grammaire</div>
+            </div>
+            <ul class="info-legende">
+                <!-- ⚠️ DANS L'ORDRE DE LECTURE DE LA CARTE, et rien de plus.
+                     La v537 avait deja du reecrire cette legende parce qu'elle
+                     nommait des reperes disparus ; la carte a encore change
+                     trois fois depuis. Une legende qui decrit autre chose que
+                     l'ecran est pire qu'aucune legende. -->
+                <li data-i18n="legende_objectif"></li>
+                <li data-i18n="legende_objectif_quoi"></li>
+                <li data-i18n="legende_vocab"></li>
+                <li data-i18n="legende_mosaique"></li>
+                <li data-i18n="legende_seance"></li>
+                <li data-i18n="legende_seance_niveau"></li>
+                <li data-i18n="legende_jours"></li>
+                <li data-i18n="legende_rencontres"></li>
+                <li data-i18n="legende_maitrises"></li>
+                <li data-i18n="legende_grammaire"></li>
+                <li data-i18n="legende_cercle"></li>
+            </ul>
+            <strong data-i18n="progress_info_titre">Ce qui fait bouger ce pourcentage</strong>
+            <p data-i18n="progress_info_compte"></p>
+            <!-- DEMANDE DE JACQUES (10 septembre 2026) : « pour les mots
+                 maitrises, ce serait bien que visuellement on voie juste avec
+                 les points qui augmentent, puis avec leur signification, au
+                 lieu de l'ecrire ». L'echelle etait un paragraphe ; c'est
+                 maintenant les MEMES pastilles que sur la carte, remplies une
+                 de plus a chaque ligne, avec l'echeance en face.
+                 Construite par echelleMaitriseHtml(), depuis les constantes. -->
+            <!-- Une seule ligne au-dessus des pastilles, et c'est une cle qui
+                 EXISTE DEJA (l'aide de la carte l'emploie mot pour mot). Sans
+                 elle « 10 min » ouvre la liste sans qu'on sache de quoi elle
+                 parle ; avec elle, les quatre lignes se lisent d'un coup. Une
+                 traduction reutilisee est une traduction qui ne derive pas. -->
+            <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
+            <div id="echelleMaitrise" class="echelle-maitrise"></div>
+            <p data-i18n="progress_info_deja"></p>
+            <p data-i18n="progress_info_apres"></p>
+        </div>
+        <!-- ⚠️ MASQUE : DOUBLON. Cette ligne affichait l'objectif du jour
+             juste sous « Aujourd'hui » -- le meme chiffre, deux fois, dans la
+             meme carte. Signale par Jacques : « trop d'informations ».
+             L'element reste parce que updateHomeStatsPanel() y ecrit toujours ;
+             le retirer casserait la mise a jour en silence. -->
+        <div class="home-daily-goal hidden">
+            <div class="home-daily-goal-row">
+                <span data-i18n="home_daily_goal_label">🎯 Objectif du jour</span>
+                <span id="dailyGoalCount">0 / 30</span>
+            </div>
+            <div class="home-daily-goal-track"><div id="dailyGoalFill" class="home-daily-goal-fill" style="width:0%"></div></div>
+        </div>
+    </div>
+</section>
+
 <section id="galerieMosaique" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
     <p class="kicker" data-i18n="mosaique_galerie_kicker">Tes tableaux</p>
@@ -7385,9 +7422,10 @@ const I18N = {
         jour_travaille: "jour travaillé",
         jours_serie: "{n} d'affilée",
         mosaique_compte: "Tableau {n} sur {total}",
-        mosaique_reste: "encore {n} carreaux",
+        mosaique_reste: "encore {n} carreaux pour découvrir l'œuvre d'un peintre du monde germanophone",
         mosaique_trophee: "Terminé · encore {n} séances à l'écran",
         mosaique_galerie: "Ta galerie",
+        mosaique_agrandir: "Agrandir le tableau",
         mosaique_galerie_kicker: "Tes tableaux",
         mosaique_galerie_vide: "Ta première mosaïque se découvre carte après carte. Elle se rangera ici une fois terminée.",
         vocab_sus: "su",
@@ -7535,6 +7573,14 @@ const I18N = {
         legende_grammaire: "Exercices de grammaire — sur les 40 que compte l'app, ceux que tu as réussis deux fois sans aucune faute.",
         legende_maitrises: "Mots maîtrisés — quatre bonnes réponses étalées sur onze jours. Il peut redescendre d'un ou deux si un mot est oublié à son contrôle.",
         legende_rencontres: "Mots rencontrés — tous les mots que tu as vus au moins une fois, même sans les savoir. Ce nombre ne redescend jamais.",
+        legende_vocab: "Vocabulaire — où tu en es du niveau affiché. Vert : su. Bleu : en cours. Gris : à rencontrer. Touche la flèche pour voir les cinq niveaux.",
+        legende_seance: "Ma séance du jour — le compte « 0 / 40 » est ton objectif quotidien. La séance te sert ce qu'il en reste : les révisions dues d'abord, les mots nouveaux ensuite s'il reste de la place.",
+        carte_info_kicker: "Ta progression",
+        search_launch_court: "Chercher",
+        legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
+        legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »). Une carte balayée sans réponse fait avancer le tableau, mais pas cette barre.",
+        legende_mosaique: "Le tableau — un carreau se découvre à chaque carte, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
+        legende_jours: "Jours travaillés — le total des journées où tu as fait quelque chose. Il ne redescend jamais, même après des vacances.",
         legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as travaillé, vocabulaire ou grammaire. Un jour sauté le ramène à zéro.",
         legende_cercle: "◯ le cercle ci-dessus — où tu en es d'un niveau entier. Il avance de 0,2 % par mot et ne bouge pas avant le 11ᵉ jour : c'est normal, et c'est pour ça qu'il est rangé ici plutôt qu'à l'accueil. Touche-le pour changer de niveau.",
         legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
@@ -8287,9 +8333,10 @@ const I18N = {
         jour_travaille: "day worked",
         jours_serie: "{n} in a row",
         mosaique_compte: "Painting {n} of {total}",
-        mosaique_reste: "{n} tiles to go",
+        mosaique_reste: "{n} tiles left to uncover a painting from the German-speaking world",
         mosaique_trophee: "Finished · {n} more sessions on screen",
         mosaique_galerie: "Your gallery",
+        mosaique_agrandir: "Enlarge the painting",
         mosaique_galerie_kicker: "Your paintings",
         mosaique_galerie_vide: "Your first mosaic uncovers card by card. It will be kept here once finished.",
         vocab_sus: "known",
@@ -8437,6 +8484,14 @@ const I18N = {
         legende_grammaire: "Grammar exercises — out of the 40 in the app, those you have completed twice with no mistake.",
         legende_maitrises: "Words mastered — four correct answers spread over eleven days. It can drop by one or two if a word is forgotten at its check.",
         legende_rencontres: "Words met — every word you have seen at least once, even without knowing it. This number never goes down.",
+        legende_vocab: "Vocabulary — where you stand in the level shown. Green: known. Blue: in progress. Grey: still to meet. Tap the arrow for all five levels.",
+        legende_seance: "My session today — the « 0 / 40 » count is your daily goal. The session serves what is left of it: overdue reviews first, new words after, if room remains.",
+        carte_info_kicker: "Your progress",
+        search_launch_court: "Search",
+        legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
+        legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »). A card swiped past moves the painting along, but not this bar.",
+        legende_mosaique: "The painting — one tile uncovers with every card, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
+        legende_jours: "Days worked — the total number of days you did something. It never goes down, not even after a holiday.",
         legende_serie: "🔥 days — days in a row you have worked, vocabulary or grammar. Miss a day and it goes back to zero.",
         legende_cercle: "◯ the ring above — how far you are through a whole level. It moves 0.2 % per word and stays at zero until day 11: that's normal, and it's why it lives here rather than on the home card. Tap it to switch level.",
         legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
@@ -9191,9 +9246,10 @@ const I18N = {
         jour_travaille: "çalışılan gün",
         jours_serie: "üst üste {n}",
         mosaique_compte: "Tablo {n} / {total}",
-        mosaique_reste: "{n} kare kaldı",
+        mosaique_reste: "Almanca konuşulan dünyadan bir tabloyu açmak için {n} kare kaldı",
         mosaique_trophee: "Bitti · ekranda {n} oturum daha",
         mosaique_galerie: "Galerin",
+        mosaique_agrandir: "Tabloyu büyüt",
         mosaique_galerie_kicker: "Tabloların",
         mosaique_galerie_vide: "İlk mozaiğin kart kart açılır. Tamamlanınca burada saklanır.",
         vocab_sus: "biliniyor",
@@ -9341,6 +9397,14 @@ const I18N = {
         legende_grammaire: "Dilbilgisi alıştırmaları — uygulamadaki 40 tanesinden, hatasız olarak iki kez tamamladıkların.",
         legende_maitrises: "Öğrenilen kelime — on bir güne yayılmış dört doğru cevap. Bir kelime kontrolünde unutulursa bir iki azalabilir.",
         legende_rencontres: "Karşılaşılan kelime — en az bir kez gördüğün her kelime, bilmesen bile. Bu sayı asla düşmez.",
+        legende_vocab: "Kelimeler — gösterilen seviyede neredesin. Yeşil: biliniyor. Mavi: sürüyor. Gri: henüz görülmedi. Beş seviye için oka dokun.",
+        legende_seance: "Bugünkü oturumum — « 0 / 40 » günlük hedefin. Oturum kalanını verir: önce zamanı gelen tekrarlar, yer kalırsa yeni kelimeler.",
+        carte_info_kicker: "İlerlemen",
+        search_launch_court: "Ara",
+        legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
+        legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar. Cevapsız geçilen bir kart tabloyu ilerletir ama bu çubuğu ilerletmez.",
+        legende_mosaique: "Tablo — her kartta bir kare açılır, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
+        legende_jours: "Çalışılan gün — bir şeyler yaptığın günlerin toplamı. Tatilden sonra bile hiç azalmaz.",
         legende_serie: "🔥 gün — kelime ya da dilbilgisi, üst üste çalıştığın gün sayısı. Bir gün atlarsan sıfırlanır.",
         legende_cercle: "◯ yukarıdaki halka — bir seviyenin neresindesin. Kelime başına %0,2 ilerler ve 11. güne kadar sıfırda kalır: bu normaldir, ve bu yüzden ana kartta değil burada durur. Seviyeyi değiştirmek için dokun.",
         legende_semaine: "📈 bu hafta — son yedi günde öğrendiğin kelimeler. Bu, toplam değil, son hızındır.",
@@ -10360,9 +10424,10 @@ const I18N = {
         jour_travaille: "день праці",
         jours_serie: "{n} поспіль",
         mosaique_compte: "Картина {n} з {total}",
-        mosaique_reste: "ще {n} плиток",
+        mosaique_reste: "ще {n} плиток, щоб відкрити картину німецькомовного світу",
         mosaique_trophee: "Завершено · ще {n} сеансів на екрані",
         mosaique_galerie: "Твоя галерея",
+        mosaique_agrandir: "Збільшити картину",
         mosaique_galerie_kicker: "Твої картини",
         mosaique_galerie_vide: "Перша мозаїка відкривається картка за карткою. Завершена, вона залишиться тут.",
         vocab_sus: "відомо",
@@ -10863,6 +10928,14 @@ const I18N = {
         legende_grammaire: "Вправи з граматики — із 40, що є в застосунку, ті, які ти пройшов двічі без жодної помилки.",
         legende_maitrises: "Слів засвоєно — чотири правильні відповіді за одинадцять днів. Може зменшитись на одне-два, якщо слово забуто на перевірці.",
         legende_rencontres: "Слів побачено — усі слова, які ти бачив хоча б раз, навіть не знаючи їх. Це число ніколи не зменшується.",
+        legende_vocab: "Лексика — де ти на показаному рівні. Зелений: відомо. Синій: у процесі. Сірий: попереду. Торкнись стрілки, щоб побачити всі п'ять рівнів.",
+        legende_seance: "Мій сеанс на сьогодні — « 0 / 40 » це твоя денна мета. Сеанс подає те, що з неї лишилось: спершу прострочені повторення, потім нові слова, якщо є місце.",
+        carte_info_kicker: "Твій поступ",
+        search_launch_court: "Пошук",
+        legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
+        legende_objectif_quoi: "Сьогодні — картки, які ти оцінив. Пропущена без відповіді картка рухає картину, але не цю смужку.",
+        legende_mosaique: "Картина — з кожною карткою відкривається плитка, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнись, щоб збільшити.",
+        legende_jours: "Днів праці — загальна кількість днів, коли ти щось робив. Воно ніколи не зменшується, навіть після відпустки.",
         legende_serie: "🔥 днів — скільки днів поспіль ти працював, лексика чи граматика. Пропущений день повертає до нуля.",
         legende_cercle: "◯ коло вгорі — де ти на цілому рівні. Воно рухається на 0,2 % за слово і не зрушить до 11-го дня: це нормально, і саме тому воно тут, а не на головній картці. Торкнись, щоб змінити рівень.",
         legende_semaine: "📈 цього тижня — слова, які ти засвоїв за останні сім днів. Це твоя нинішня швидкість, а не загальна сума.",
@@ -11740,6 +11813,14 @@ const I18N = {
         legende_grammaire: "تمرین‌های دستور — از ۴۰ تمرین برنامه، آن‌هایی که دو بار بدون هیچ اشتباهی انجام داده‌ای.",
         legende_maitrises: "واژه‌های آموخته — چهار پاسخ درست در طول یازده روز. اگر واژه‌ای در بررسی فراموش شود، یکی دو تا کم می‌شود.",
         legende_rencontres: "واژه‌های دیده‌شده — هر واژه‌ای که دست‌کم یک بار دیده‌ای، حتی بدون دانستنش. این عدد هرگز کم نمی‌شود.",
+        legende_vocab: "واژگان — جایگاه تو در سطح نمایش‌داده‌شده. سبز: بلد. آبی: در جریان. خاکستری: هنوز ندیده. برای دیدن هر پنج سطح روی فلش بزن.",
+        legende_seance: "جلسهٔ امروز — عدد « ۰ / ۴۰ » هدف روزانهٔ توست. جلسه باقی‌ماندهٔ آن را می‌آورد: نخست مرورهای سررسیده، سپس واژه‌های نو اگر جا بماند.",
+        carte_info_kicker: "پیشرفت تو",
+        search_launch_court: "جست‌وجو",
+        legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
+        legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای. کارتی که بدون پاسخ رد شود تابلو را جلو می‌برد اما این نوار را نه.",
+        legende_mosaique: "تابلو — با هر کارت یک کاشی باز می‌شود، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
+        legende_jours: "روز کار — مجموع روزهایی که کاری کرده‌ای. هرگز کم نمی‌شود، حتی پس از تعطیلات.",
         legende_serie: "🔥 روز — چند روز پیاپی کار کرده‌ای، واژگان یا دستور. یک روز غیبت آن را به صفر برمی‌گرداند.",
         legende_cercle: "◯ حلقهٔ بالا — تا کجای یک سطح کامل رسیده‌ای. برای هر واژه ۰٫۲٪ پیش می‌رود و تا روز یازدهم تکان نمی‌خورد: این طبیعی است، و برای همین اینجاست نه در کارت خانه. برای تغییر سطح لمس کن.",
         legende_semaine: "📈 این هفته — واژه‌هایی که در هفت روز گذشته آموخته‌ای. این سرعت کنونی توست، نه یک جمع کل.",
@@ -11877,9 +11958,10 @@ const I18N = {
         jour_travaille: "روز کار",
         jours_serie: "{n} روز پیاپی",
         mosaique_compte: "تابلوی {n} از {total}",
-        mosaique_reste: "{n} کاشی مانده",
+        mosaique_reste: "{n} کاشی مانده تا تابلویی از جهان آلمانی‌زبان آشکار شود",
         mosaique_trophee: "تمام شد · {n} جلسهٔ دیگر روی صفحه",
         mosaique_galerie: "گالری تو",
+        mosaique_agrandir: "بزرگ‌نمایی تابلو",
         mosaique_galerie_kicker: "تابلوهای تو",
         mosaique_galerie_vide: "نخستین موزاییک تو کارت‌به‌کارت آشکار می‌شود. پس از تکمیل، اینجا می‌ماند.",
         vocab_sus: "بلد",
@@ -16007,17 +16089,14 @@ function fermerInfoProgression(){
     if(btn) btn.setAttribute("aria-expanded", "false");
 }
 
-function basculerInfoProgression(){
-    const box = document.getElementById("infoProgressionBox");
-    const btn = document.querySelector(".info-progression");
-    if(!box) return;
-    // On (re)construit a chaque ouverture : la langue a pu changer entre-temps,
-    // et un gabarit fabrique une fois resterait dans l'ancienne.
-    const ech = document.getElementById("echelleMaitrise");
-    if(ech) ech.innerHTML = echelleMaitriseHtml();
-    const ouvert = box.classList.toggle("hidden") === false;
-    if(btn) btn.setAttribute("aria-expanded", ouvert ? "true" : "false");
+function ouvrirInfoProgression(){
+    // ⚠️ L'ancien basculerInfoProgression() depliait un panneau DANS la carte :
+    // pour le refermer il fallait retrouver le ⓘ, minuscule, et le retoucher.
+    // Un ecran se quitte par le meme « Retour » que partout ailleurs.
+    try{ majCarteProgression(); }catch(e){}
+    showScreen("infoProgression");
 }
+
 
 function getDailyActivityCount(){
     let daily;
@@ -23190,7 +23269,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 548;
+const APP_VERSION = 550;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24836,6 +24915,9 @@ function comptesProgression(){
 }
 
 function majCarteProgression(){
+    // Le bloc « Aujourd'hui » a quitte la carte en v550 : ces elements n'existent
+    // plus, et les gardes ci-dessous suffisent -- on ne retire pas le code, le
+    // compte vit maintenant dans le bandeau (majTuileSeance).
     const fait = document.getElementById("jourFait");
     if(fait){
         let n = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
@@ -25068,8 +25150,8 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
     // beaucoup trop », dit par Jacques. A 90, la vignette fait une dizaine de
     // pixels : il ne reste que la repartition des masses de couleur, ce qui est
     // exactement ce qu'on veut voir a travers du verre depoli.
-    const petitL = Math.max(4, Math.round(L / 90));
-    const petitH = Math.max(4, Math.round(H / 90));
+    const petitL = Math.max(3, Math.round(L / 150));
+    const petitH = Math.max(3, Math.round(H / 150));
     const mini = document.createElement("canvas");
     mini.width = petitL; mini.height = petitH;
     const mc = mini.getContext("2d");
@@ -25086,7 +25168,7 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
     fc.imageSmoothingEnabled = true;
     fc.drawImage(mini2, 0, 0, L, H);
     fc.fillStyle = document.body.dataset.theme === "dark"
-        ? "rgba(18,22,29,.26)" : "rgba(255,255,255,.22)";
+        ? "rgba(18,22,29,.34)" : "rgba(255,255,255,.30)";
     fc.fillRect(0, 0, L, H);
 
     const ordre = ordreCarreaux(etatMosaique().r, total);
@@ -25170,6 +25252,11 @@ function majMosaiqueAccueil(){
             pied.textContent = fini
                 ? tf("mosaique_trophee", { n: Math.max(1, v.t) })
                 : tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
+            // ⚠️ « D'UN PEINTRE ALLEMAND » AURAIT ETE FAUX POUR UN TIERS D'ENTRE
+            // EUX : Moser, Moll, Schiele, Gerstl et Faistauer sont autrichiens ;
+            // Hodler et les deux Giacometti, suisses ; Werefkin, Jawlensky et
+            // Kandinsky, russes installes a Munich. La formule doit rester vraie
+            // pour les vingt-deux.
         }
     });
 }
@@ -25428,6 +25515,14 @@ async function ouvrirSeanceDuJour(){
 function majTuileSeance(){
     const el = document.getElementById("seanceSub");
     const niveau = niveauSeance();
+    const cpt = document.getElementById("seanceCompte");
+    if(cpt){
+        let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
+        try{ fait = getDailyActivityCount() || 0; }catch(e){}
+        try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+        cpt.textContent = fait + " / " + cible + (fait >= cible ? " \u2713" : "");
+        cpt.classList.toggle("atteint", fait >= cible);
+    }
     if(el){
         // ⚠️ « 0 carte » A L'OUVERTURE. Le bandeau se dessinait AVANT l'arrivee
         // des donnees : paquetDuNiveau() ne trouvait rien, et l'app annoncait
