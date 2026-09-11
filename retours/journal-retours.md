@@ -2261,3 +2261,49 @@ parcouru depuis un mois est un achèvement décidé, pas un groupement.
   rechargement montrait l'ancienne page et l'élément semblait absent. `?v=NNN`
   est le geste, comme prévu.
 - `verifier.py` 14 190 contrôles, `cles_langues.py` 944 clés × 5 langues.
+
+---
+
+## 11 septembre 2026 — « Vocabulaire », qui se déplie par niveau (v542)
+
+**Demande de Jacques :** appeler la ligne **« Vocabulaire »** plutôt que
+« Vocabulaire d'examen », lui donner une flèche pour la déplier, et reprendre
+les trois couleurs à chaque niveau — **vert ce qui est su, bleu ce qui est en
+cours, le reste à rencontrer**.
+
+### ⚠️ Et l'argument de droits est le sien, il est juste
+
+*« Les mots qu'on a dans le vocabulaire, c'est une combinaison de Goethe puis
+d'autres propositions. Donc au niveau des droits on est ok, parce qu'on ne
+s'alimente pas seulement avec une école ou une orientation de pensée. »*
+
+C'est exact, et ça règle la question pour les niveaux : **nos niveaux CECR sont
+notre synthèse**, pas la liste de quelqu'un. Afficher « A1 612 / 860 » ne
+reconstitue rien.
+
+⚠️ **L'argument ne s'étend PAS aux marques `a2` / `b1` / `dtz`** : chacune *nomme*
+un programme, et c'est précisément ce qui les isole — la combinaison qui protège
+les niveaux n'existe pas pour elles. C'est d'ailleurs pourquoi la v470 laissait
+passer l'agrégat : l'union des trois *est* une combinaison. La ligne de la v470
+reste donc où elle est, et la carte d'examen garde sa forme agrégée.
+
+**Distinction que j'avais écrasée**, et qu'il faut garder au clair pour la
+prochaine fois : un **paquet** filtré par examen livre la liste mot par mot ;
+un **compteur** par examen ne divulgue qu'un nombre. Ce ne sont pas la même
+chose. La v470 a supprimé le paquet ; elle a aussi refusé le compteur, en toutes
+lettres — et c'est ce refus-là qui reste à trancher si on veut « Objectif B1 ».
+
+### La ligne repliée montre le NIVEAU, pas le total
+
+⚠️ **« 486 sur 7 704 » aurait réintroduit la fraction du dictionnaire entier**,
+exactement ce que la carte de la v535 avait chassé. Repliée, la ligne montre le
+niveau courant — 860 mots en A1, une fin qui existe. Dépliée, les cinq niveaux,
+qui totalisent bien 7 704 : rien n'est caché, c'est la mise en avant qui change.
+
+**Trois états et pas deux**, à sa demande, et la raison tient : « su » seul ne
+bouge pas avant le 11ᵉ jour. « En cours » bouge dès la première carte, et c'est
+lui qui dit qu'il se passe quelque chose.
+
+**Vérifié dans la vraie page :** « Vocabulaire · A1 · 612 / 860 », la flèche qui
+pivote, les cinq lignes et la légende. `verifier.py` 14 213 contrôles,
+`cles_langues.py` 948 clés × 5 langues.

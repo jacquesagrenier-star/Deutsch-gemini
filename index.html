@@ -3976,6 +3976,57 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .carte-compte-val{font-size:19px; font-weight:600; color:#1e293b; line-height:1.1;}
 .carte-compte-vert{color:#0F6E56;}
 .carte-compte-lib{font-size:11px; color:#7b8798; margin-top:3px; line-height:1.3;}
+/* Le vocabulaire par niveau. EN CONTOUR, PAS EN PLEIN : le seul bloc plein de
+   l'accueil reste le bandeau de seance (v531). */
+.carte-vocab{margin-top:12px; padding-top:12px; border-top:1px solid rgba(30,41,59,.10);}
+.carte-vocab-tete{
+    display:flex; align-items:baseline; gap:8px; width:100%;
+    background:none; border:0; padding:0; margin:0; cursor:pointer;
+    font-family:inherit; font-size:12px; font-weight:600; color:#1e293b; text-align:start;
+}
+.carte-vocab-nom{flex:1; min-width:0;}
+.carte-vocab-niveau{color:#2f62d6;}
+.carte-vocab-compte{font-variant-numeric:tabular-nums; color:#7b8798;}
+.carte-vocab-fleche{color:#a7b0c0; transition:transform .2s; display:inline-block;}
+.carte-vocab-tete.ouvert .carte-vocab-fleche{transform:rotate(90deg);}
+.carte-vocab-piste{
+    display:flex; height:8px; border-radius:5px; margin-top:7px;
+    background:rgba(30,41,59,.12); overflow:hidden;
+}
+.carte-vocab-part{height:100%; display:block; transition:width .3s;}
+.carte-vocab-part.sus{background:#0F6E56;}
+.carte-vocab-part.cours{background:#2f62d6;}
+.carte-vocab-niveaux{margin-top:10px;}
+.vocab-ligne{display:flex; align-items:center; gap:8px; margin-top:6px;}
+.vocab-ligne-niv{font-size:11px; font-weight:600; color:#7b8798; width:22px; flex-shrink:0;}
+.vocab-ligne.courant .vocab-ligne-niv{color:#2f62d6;}
+.vocab-ligne-piste{
+    flex:1; display:flex; height:6px; border-radius:4px;
+    background:rgba(30,41,59,.12); overflow:hidden;
+}
+.vocab-ligne-n{
+    font-size:10px; color:#7b8798; font-variant-numeric:tabular-nums;
+    width:68px; text-align:end; flex-shrink:0;
+}
+.vocab-legende{display:flex; gap:11px; flex-wrap:wrap; margin-top:9px; font-size:10px; color:#7b8798;}
+.vocab-legende span{display:flex; align-items:center; gap:4px;}
+.vocab-legende i{width:8px; height:8px; border-radius:2px; display:block;}
+.vocab-legende .pt-sus{background:#0F6E56;}
+.vocab-legende .pt-cours{background:#2f62d6;}
+.vocab-legende .pt-reste{background:rgba(30,41,59,.18);}
+body[data-theme="dark"] .carte-vocab{border-top-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .carte-vocab-tete{color:#F2F2F6;}
+body[data-theme="dark"] .carte-vocab-niveau,
+body[data-theme="dark"] .vocab-ligne.courant .vocab-ligne-niv{color:#8FB4FF;}
+body[data-theme="dark"] .carte-vocab-compte,
+body[data-theme="dark"] .vocab-ligne-niv,
+body[data-theme="dark"] .vocab-ligne-n,
+body[data-theme="dark"] .vocab-legende{color:#9AA2B1;}
+body[data-theme="dark"] .carte-vocab-piste,
+body[data-theme="dark"] .vocab-ligne-piste{background:rgba(255,255,255,.14);}
+body[data-theme="dark"] .carte-vocab-part.sus,
+body[data-theme="dark"] .vocab-legende .pt-sus{background:#5DCAA5;}
+body[data-theme="dark"] .vocab-legende .pt-reste{background:rgba(255,255,255,.20);}
 /* Le vocabulaire d'examen. EN CONTOUR, PAS EN PLEIN : le seul bloc plein de
    l'accueil reste le bandeau de seance (v531), et deux blocs pleins ne
    designent plus rien. */
@@ -4294,7 +4345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v541</span>
+        <span class="subtitle-version">v542</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4357,20 +4408,26 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
-        <!-- LE SEUL GRAND DENOMINATEUR QU'ON S'AUTORISE : il vient des
-             programmes officiels, pas de nous. ⚠️ C'est l'AGREGAT -- les mots
-             qu'au moins un programme retient -- et jamais un examen nomme :
-             voir majCarteExamen() et l'avertissement de cartesParMarque(). -->
-        <div id="carteExamen" class="carte-examen hidden" onclick="openPruefungInfo()">
-            <div class="carte-examen-tete">
-                <span data-i18n="examen_titre">Vocabulaire d'examen</span>
-                <span id="examenCompte" class="carte-examen-compte">0 / 0</span>
+        <!-- LE VOCABULAIRE, REPLIE SUR LE NIVEAU COURANT (v542).
+             ⚠️ LA LIGNE REPLIEE NE MONTRE JAMAIS LE TOTAL DES 7 704. « 486 sur
+             7 704 » est la fraction du dictionnaire entier que la carte de la
+             v535 avait justement chassee : un denominateur que personne
+             n'atteint. Repliee, elle montre TON niveau -- 860 mots en A1, une
+             fin qui existe. Depliee, les cinq niveaux, qui totalisent bien les
+             7 704 : rien n'est cache, c'est la mise en avant qui change. -->
+        <div id="carteVocab" class="carte-vocab hidden">
+            <button type="button" id="vocabTete" class="carte-vocab-tete"
+                    onclick="basculerVocabNiveaux()" aria-expanded="false" aria-controls="vocabNiveaux">
+                <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Vocabulaire</span>
+                    <span id="vocabNiveauCourant" class="carte-vocab-niveau"></span></span>
+                <span id="vocabCompte" class="carte-vocab-compte">0 / 0</span>
+                <span class="carte-vocab-fleche" aria-hidden="true">›</span>
+            </button>
+            <div class="carte-vocab-piste">
+                <div id="vocabSus" class="carte-vocab-part sus" style="width:0%"></div>
+                <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
-            <div class="carte-examen-piste">
-                <div id="examenSus" class="carte-examen-part sus" style="width:0%"></div>
-                <div id="examenEnCours" class="carte-examen-part cours" style="width:0%"></div>
-            </div>
-            <div id="examenPied" class="carte-examen-pied"></div>
+            <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
         </div>
 
         <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
@@ -7125,6 +7182,10 @@ const I18N = {
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
+        vocab_titre: "Vocabulaire",
+        vocab_sus: "su",
+        vocab_cours: "en cours",
+        vocab_reste: "à rencontrer",
         examen_pied: "{sus} sus · {cours} en cours · {reste} à rencontrer",
         finir_theme_un: "Finir {niveau} · encore 1 mot",
         finir_theme_n: "Finir {niveau} · encore {n} mots",
@@ -8014,6 +8075,10 @@ const I18N = {
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
+        vocab_titre: "Vocabulary",
+        vocab_sus: "known",
+        vocab_cours: "in progress",
+        vocab_reste: "to meet",
         examen_pied: "{sus} known · {cours} in progress · {reste} to meet",
         finir_theme_un: "Finish {niveau} · 1 word left",
         finir_theme_n: "Finish {niveau} · {n} words left",
@@ -8905,6 +8970,10 @@ const I18N = {
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
+        vocab_titre: "Kelimeler",
+        vocab_sus: "biliniyor",
+        vocab_cours: "sürüyor",
+        vocab_reste: "kaldı",
         examen_pied: "{sus} biliniyor · {cours} sürüyor · {reste} kaldı",
         finir_theme_un: "{niveau} bitir · 1 kelime kaldı",
         finir_theme_n: "{niveau} bitir · {n} kelime kaldı",
@@ -10061,6 +10130,10 @@ const I18N = {
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
+        vocab_titre: "Лексика",
+        vocab_sus: "відомо",
+        vocab_cours: "у процесі",
+        vocab_reste: "попереду",
         examen_pied: "{sus} відомо · {cours} у процесі · {reste} попереду",
         finir_theme_un: "Завершити {niveau} · лишилось 1 слово",
         finir_theme_n: "Завершити {niveau} · лишилось {n} слів",
@@ -11565,6 +11638,10 @@ const I18N = {
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
+        vocab_titre: "واژگان",
+        vocab_sus: "بلد",
+        vocab_cours: "در جریان",
+        vocab_reste: "باقی‌مانده",
         examen_pied: "{sus} بلد · {cours} در جریان · {reste} باقی‌مانده",
         finir_theme_un: "تمام کردن {niveau} · ۱ واژه مانده",
         finir_theme_n: "تمام کردن {niveau} · {n} واژه مانده",
@@ -22821,7 +22898,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 541;
+const APP_VERSION = 542;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24487,7 +24564,88 @@ function majCarteProgression(){
     el("compteRencontres").textContent = c.rencontres;
     el("compteMaitrises").textContent = c.maitrises;
     el("compteGrammaire").textContent = c.grammaire + " / 40";
+    majCarteVocab();
     majCarteExamen();
+}
+
+// ============ LE VOCABULAIRE PAR NIVEAU (v542) ============
+// ⚠️ AUCUN ENJEU DE DROITS ICI, ET LA RAISON EST PRECISE : nos niveaux CECR
+// sont NOTRE synthese, tiree de plusieurs sources -- Goethe parmi d'autres.
+// Afficher « A1 612 / 860 » ne reconstitue la liste de personne. Ce qui reste
+// hors de l'app, c'est le filtrage par PROGRAMME NOMME (a2, b1, dtz) : ces
+// trois drapeaux-la isolent chacun une liste, et la combinaison qui protege les
+// niveaux n'existe pas pour eux. Voir l'avertissement de cartesParMarque().
+//
+// Trois etats, et pas deux : « su » seul est decourageant -- il ne bouge pas
+// avant le 11e jour. « En cours » bouge des la premiere carte, et c'est lui qui
+// dit qu'il se passe quelque chose.
+const NIVEAUX_VOCAB = ["A1", "A2", "B1", "B2", "C1"];
+let vocabDeplie = false;
+
+function etatsDuNiveau(niveau){
+    let sus = 0, cours = 0, total = 0;
+    let paquet = [];
+    try{ paquet = paquetDuNiveau(niveau); }catch(e){ return null; }
+    paquet.forEach(it => {
+        total++;
+        const st = getWordState(it.themeId, it.index);
+        if(st.mastered) sus++;
+        else if(!estNeuf(st)) cours++;
+    });
+    return total ? { sus: sus, cours: cours, total: total } : null;
+}
+
+function basculerVocabNiveaux(){
+    vocabDeplie = !vocabDeplie;
+    const bloc = document.getElementById("vocabNiveaux");
+    const tete = document.getElementById("vocabTete");
+    if(bloc) bloc.classList.toggle("hidden", !vocabDeplie);
+    if(tete){
+        tete.setAttribute("aria-expanded", vocabDeplie ? "true" : "false");
+        tete.classList.toggle("ouvert", vocabDeplie);
+    }
+    majCarteVocab();
+}
+
+function majCarteVocab(){
+    const bloc = document.getElementById("carteVocab");
+    if(!bloc) return;
+    const courant = niveauSeance();
+    const e = etatsDuNiveau(courant);
+    // Les donnees arrivent apres le premier rendu : tant qu'elles manquent, le
+    // bloc reste absent. Un « 0 / 0 » a l'ouverture est le defaut de la v533.
+    if(!e){ bloc.classList.add("hidden"); return; }
+
+    const nivEl = document.getElementById("vocabNiveauCourant");
+    if(nivEl) nivEl.textContent = "· " + courant;
+    const compte = document.getElementById("vocabCompte");
+    if(compte) compte.textContent = (e.sus + e.cours) + " / " + e.total;
+    const bSus = document.getElementById("vocabSus");
+    if(bSus) bSus.style.width = (e.sus * 100 / e.total) + "%";
+    const bCours = document.getElementById("vocabCours");
+    if(bCours) bCours.style.width = (e.cours * 100 / e.total) + "%";
+
+    const liste = document.getElementById("vocabNiveaux");
+    if(liste && vocabDeplie){
+        liste.innerHTML = NIVEAUX_VOCAB.map(niv => {
+            const n = etatsDuNiveau(niv);
+            if(!n) return "";
+            const vus = n.sus + n.cours;
+            return '<div class="vocab-ligne' + (niv === courant ? ' courant' : '') + '">'
+                 + '<span class="vocab-ligne-niv">' + niv + '</span>'
+                 + '<span class="vocab-ligne-piste">'
+                 +   '<span class="carte-vocab-part sus" style="width:' + (n.sus * 100 / n.total) + '%"></span>'
+                 +   '<span class="carte-vocab-part cours" style="width:' + (n.cours * 100 / n.total) + '%"></span>'
+                 + '</span>'
+                 + '<span class="vocab-ligne-n">' + vus + ' / ' + n.total + '</span>'
+                 + '</div>';
+        }).join("") + '<div class="vocab-legende">'
+                 + '<span><i class="pt-sus"></i>' + t("vocab_sus") + '</span>'
+                 + '<span><i class="pt-cours"></i>' + t("vocab_cours") + '</span>'
+                 + '<span><i class="pt-reste"></i>' + t("vocab_reste") + '</span>'
+                 + '</div>';
+    }
+    bloc.classList.remove("hidden");
 }
 
 // ============ LE VOCABULAIRE D'EXAMEN (v541) ============
