@@ -1675,3 +1675,259 @@ serait faux : la séance de demain ne verra pas un mot programmé à 7 jours.
 en retard ramenées à 40, l'ordre du plus en retard d'abord, le supplément qui ne
 resert pas ce qui vient d'être vu, et le fait qu'il bascule sur des mots neufs
 quand le retard est épongé. Plus `verifier.py`, 14 033 contrôles.
+
+---
+
+## 10 septembre 2026 — parler en séances, et un bouton qui ne se confond plus (v524)
+
+**Ce que cette version règle, c'est la question laissée ouverte deux heures plus
+tôt** (entrée v522) : le nom du troisième bouton. Il s'appelait « Je connais
+déjà ce mot », qui se confond avec « Je savais » — les deux disent *je sais*. La
+distinction à porter est un **degré**, pas un fait. Il s'appelle désormais
+« **Je le sais par cœur** » dans les cinq langues.
+
+**Et les paliers d'apprentissage parlent en séances.** Les échéances de 3 et
+7 jours s'annoncent « dans quelques séances » : l'apprenant vit des séances, pas
+un calendrier. ⚠️ **Le libellé est VAGUE à dessein** — un compte précis serait
+faux, « pas avant 3 séances » tombant dès qu'on saute deux jours et qu'on revient
+à la deuxième séance. Ce qu'il perd, la différence entre 3 et 7 jours, les
+pastilles le disent déjà.
+
+⚠️ **L'entretien garde les jours.** « Dans quelques séances » pour un mot
+programmé à deux ans serait un mensonge, pas une approximation.
+
+---
+
+## 10 septembre 2026 — « 40 est trop bas » : simuler ce que la séance SERT
+
+**Une mesure qui corrige la mesure de la veille.** `charge.py` simulait la
+**demande** : il annonçait « A1 fini au 54ᵉ jour » en supposant que tout était
+traité le jour même. Faux depuis la v523 — la séance est plafonnée à 40, donc le
+surplus attend. `tests/charge_plafond.py` (nouveau) simule ce que la séance
+**sert** : à 15 mots neufs par jour, l'A1 demande **107 jours et non 54**, et la
+séance est **pleine 88 jours sur 107**.
+
+⚠️ **Et augmenter la dose de mots neufs ne sert presque à rien** : de 10 à 25 par
+jour, on gagne quatorze jours sur cent quinze. Ce n'est plus la dose qui
+commande, c'est le plafond — les révisions mangent la séance. Le vrai levier est
+la **taille de la séance** : 30 cartes → 147 jours ; 60 → 70 ; 80 → 54 jours,
+zéro journée pleine, zéro carte en attente.
+
+Le plafond devait protéger du retour d'absence (285 cartes). À 40 il freine tous
+les jours au lieu de ça. **Réglage à revoir — décision de Jacques**, qui a
+tranché à la v534 en le liant à l'objectif du jour.
+
+⚠️ **Au passage, un défaut dans mon lecteur, pas dans la donnée.**
+`funktionswort.json` est rangé par famille grammaticale, mais chaque entrée
+porte son niveau CECR. Mon lecteur les rangeait sous leur **famille**, ce qui a
+fait croire qu'ils n'en avaient aucun — et failli les verser tous en A1, alors
+qu'« obwohl », « sodass » et « indem » y sont à juste titre en B1. Corrigé,
+`frequence.json` régénéré. Le vrai compte : A1 860, A2 1 198, B1 2 980,
+B2 1 003, C1 1 663 — **7 704 entrées**.
+
+---
+
+## 10 septembre 2026 — une porte unique pour le vocabulaire (v525)
+
+**L'accueil comptait dix-sept tuiles**, chacune ouvrant un panneau où il fallait
+encore choisir un niveau puis un mode. Un rectangle pleine largeur, sous la carte
+de progression, donne désormais la séance directement : **aucun choix avant de
+travailler**. Les dix-sept tuiles restent en dessous.
+
+**L'assembleur est le vrai morceau.** Chaque catégorie range son niveau
+ailleurs : les noms dans `themes.json` par thème ET par niveau, les verbes en
+objets avec `.niveau`, les adjectifs en tableaux case 3, les adverbes,
+expressions et six familles de mots-outils en case 8. Une **table déclarative**
+plutôt que dix `if`, pour qu'ajouter une catégorie demain soit une ligne et qu'on
+ne puisse pas en oublier une en silence.
+
+Les mots neufs sortent par **fréquence** (`frequence.json`, chargé à la demande :
+la séance marche sans lui). ⚠️ On compare des positions **relatives** dans chaque
+catégorie, jamais deux rangs bruts.
+
+⚠️ **Et les mots neufs n'arrivent pas par thème par défaut.** Sur treize études
+recensées, six concluent que grouper des mots sémantiquement proches à la
+première rencontre **freine** l'apprentissage (Tinkham, Waring, Erten & Tekin) ;
+aucune ne montre que le thème aide à ce moment-là. C'est un coût, pas un danger —
+le thème reste une porte secondaire.
+
+---
+
+## 10 septembre 2026 — le bandeau, sept fois repris (v526 à v533)
+
+**Sept versions en une soirée sur un seul bloc de quarante pixels**, presque
+toutes parties d'une remarque de Jacques. Elles se lisent mieux ensemble.
+
+**v526 — le niveau est libre, et les révisions traversent.** Le vocabulaire n'est
+pas cumulatif comme la grammaire : on peut suivre un cours de B1 sans connaître
+tout l'A1, et imposer l'A1 demanderait vingt-deux séances pour **écarter** des
+mots déjà sus. ⚠️ **Le défaut signalé par Jacques** : les révisions étaient
+enfermées dans le niveau choisi — un mois de travail sur l'A1 aurait disparu de
+la séance le jour du passage à l'A2, l'oubli par changement de menu.
+`cartesDeSeance()` lit désormais **deux paquets** : les échéances de tous les
+niveaux, les mots neufs du niveau choisi seulement. ⚠️ **La dose de mots neufs
+reste GLOBALE** — un compteur par niveau permettrait d'en prendre soixante-quinze
+en passant de A1 à C1.
+
+**v527 puis v528, v529 — la pastille disait moins que ce qu'elle décide.** « A1 »
+seul laissait croire que toute la séance était de ce niveau. Trois versions pour
+trouver la phrase : « 40 cartes · mots nouveaux en A1 », puis « Nouveau
+vocabulaire : A1 », puis la phrase entière — « **Nouveau vocabulaire en
+provenance du niveau** ». Elle est longue, mais c'est la seule chose que
+l'étudiant ne peut pas deviner. **Deuxième fois dans la journée qu'un libellé
+promettait autre chose que ce que le code fait.**
+
+**v528 — trois reproches, tous fondés.** L'icône de gauche coûtait de la hauteur
+sans rien dire de plus que le titre : retirée. Les « petites barres » du thème
+obligeaient à cliquer pour savoir où elles menaient — **un pictogramme seul est
+une devinette**, remplacé par le mot « Par thème ».
+
+**v530 — « ça prend presque la moitié de la page ».** ⚠️ La cause n'était pas le
+padding : la classe `.orb` impose `aspect-ratio:1`, ce qui convient à une tuile
+d'un tiers de largeur ; étendue aux trois colonnes, elle en faisait un **carré de
+la largeur de la page**. Aucun réglage de marge ne pouvait le rattraper — je
+réduisais les marges d'un carré dont la hauteur se calculait sur sa largeur.
+
+**v531 — « un encadré rouge ».** Pas de rouge : dans les conventions d'interface
+il code l'erreur et la suppression, donc l'employer pour l'action à faire envoie
+le signal inverse ; et pour les 8 % d'hommes daltoniens au rouge-vert la
+distinction disparaît. Le signal fiable est le **remplissage** — un seul bloc
+plein par écran, tout le reste en contour. `#2f62d6` et non `#3b6fe0` : le blanc
+sur ce bleu passe le seuil AA de 4,5:1 à 12 px.
+
+**v532 — le mode nuit effaçait ce remplissage.** `body[data-theme="dark"] .orb` a
+une spécificité plus forte que `.orb-seance` : la surface sombre gagnait et le
+bandeau redevenait une tuile parmi les autres.
+
+**v533 — « Ma séance du jour · 0 carte » à l'ouverture.** Signalé par Jacques, et
+c'est le **même défaut que l'anneau de progression avait déjà eu** : le bandeau
+se dessinait avant l'arrivée de `themes.json` et des autres. Rappel à la fin de
+`loadThemesJson()`, **aux deux sorties, succès et échec**. Tant que les données
+manquent, le bandeau affiche sa phrase d'attente — ⚠️ **un zéro erroné est pire
+qu'une absence de chiffre.**
+
+---
+
+## 11 septembre 2026 — un seul nombre commande la journée (v534)
+
+⚠️ **Deux nombres se contredisaient**, et c'est Jacques qui l'a vu. La v523
+posait une séance de 40 en dur, à côté d'un objectif quotidien réglable que l'app
+affichait déjà : quelqu'un dont l'objectif était à 100 voyait « 7 / 100 » sur une
+séance qui s'arrêtait à 40. **L'app fixait une cible et empêchait de
+l'atteindre.**
+
+La séance prend désormais **le solde de l'objectif du jour**. Le dénominateur
+affiche donc toujours ce que la séance contient vraiment, et « en faire 20 de
+plus » **allonge la barre** au lieu d'éloigner la cible. Un plafond dur à 140
+subsiste, pour qu'un réglage extrême ne remette pas le mur du retour d'absence.
+
+**Et la grammaire sort de la barre du jour.** *« Exercice de grammaire, c'est un
+plus, ce n'est pas une obligation à chaque jour. »* Sinon une journée de
+grammaire remplissait une barre qui annonce des cartes, et **raccourcissait la
+séance du lendemain**.
+
+⚠️ **Mais la série de jours compte toujours la grammaire** : quelqu'un qui a
+passé une heure sur le Perfekt a travaillé, et lui casser sa série pour avoir
+choisi l'autre porte serait une punition. `recordDailyActivity()` prend un
+paramètre — `false` alimente la série sans toucher à l'objectif.
+
+**Vérifié :** `tests/essai_plafond.js`, 36 contrôles.
+
+---
+
+## 11 septembre 2026 — la carte de progression cesse d'accueillir par une fraction (v535)
+
+Trois échelles de temps, et aucune fraction du dictionnaire : la **barre du
+jour** (« 7 / 100 », remise à zéro chaque matin), la **série**, et les **cumuls**
+— mots rencontrés · mots maîtrisés · exercices de grammaire.
+
+⚠️ **« 7 / 100 » est le cadre de référence qui manquait à tous les compteurs
+essayés avant lui** : il se comprend sans explication, là où « 98 mots » ne se
+compare à rien. C'est aussi le seul dénominateur qui a le droit d'être là —
+petit, proche, et il ne mémorise rien.
+
+⚠️ **RIEN N'A ÉTÉ SUPPRIMÉ, TOUT A ÉTÉ DÉPLACÉ.** `updateHomeStatsPanel()` écrit
+toujours dans `globalRingFill`, `globalRingLevel`, `globalRingNum` et
+`weeklyMomentumChip` : les retirer aurait cassé la mise à jour **en silence**, et
+le fichier portait déjà cet avertissement. Le cercle « A1 · 12 % » passe **dans**
+le panneau ⓘ — sa valeur est juste, c'est sa place qui était fausse : il avance
+de 0,22 % par mot et ne bouge pas avant le 11ᵉ jour. « Cette semaine » est
+masqué : il mesure une **vitesse**, donc il s'effondre après des vacances alors
+que rien n'a été perdu.
+
+**Les libellés évitent le vocabulaire interne.** Ni « acquis » (acquis quoi ?),
+ni « jeux solides ». Et « **exercices de grammaire** » plutôt que « règles » — on
+peut lire une règle sans rien faire, ce sont les exercices qui comptent, remarque
+de Jacques.
+
+**Reste indéfini :** « solide ». Le critère provisoire est deux séries sans
+erreur (Serfaty 2024), et le magasin v519 range assez de faits pour en changer
+sans redemander à personne de tout refaire.
+
+---
+
+## 11 septembre 2026 — le vocabulaire quitte les tuiles (v536)
+
+Ce qui part, c'est la **révision générique** de vocabulaire : « Réviser mes
+mots », « par niveau », « au hasard », et les sept boutons « VOCABULAIRE : … »
+des écrans de leçon. La séance du jour est désormais la porte unique.
+
+⚠️ **RIEN N'EST SUPPRIMÉ.** Tout passe par `VOCAB_DANS_TUILES` : une ligne à
+remettre à `true` et les dix-huit portes reviennent à l'identique. **Demande
+explicite de Jacques**, et prudence élémentaire — l'assembleur des dix catégories
+n'a pas encore tourné une semaine, et ces portes sont le filet.
+
+Les **dictées ne sont pas filtrées** : une dictée est un exercice, pas une
+révision générique. Les leçons non plus.
+
+⚠️ **Et les sept boutons des écrans de leçon ne passent pas par
+`renderOrbPanel()`** : le filtre des options ne les voyait pas, et c'est par là
+que les flashcards des nombres restaient accessibles. **Signalé par Jacques.**
+
+---
+
+## 11 septembre 2026 — la légende décrivait une carte qui n'existe plus (v537)
+
+Elle nommait quatre repères — la flamme, le cercle, la courbe, la cible. Depuis
+la v535 la carte porte une barre du jour, une série et trois comptes cumulatifs.
+Quelqu'un qui ouvrait le ⓘ n'y reconnaissait plus rien.
+
+Six entrées, **dans l'ordre de lecture de la carte** : une légende qui énumère
+dans un autre ordre que ce qu'elle explique oblige à chercher, et personne ne
+cherche. Chacune dit aussi ce qui n'est pas devinable — que le cercle ne bouge
+pas avant le 11ᵉ jour et que c'est normal, que « mots rencontrés » ne redescend
+jamais, que « mots maîtrisés » peut en perdre un si un mot est oublié à son
+contrôle.
+
+**`tests/cles_langues.py` (nouveau)** vérifie que chaque clé existe dans les
+**cinq** langues. `verifier.py` ne comparait que le français et l'anglais : le
+turc, l'ukrainien et le persan sont arrivés plus tard, et rien ne disait qu'une
+clé posée aujourd'hui y arrivait aussi. ⚠️ **Une clé manquante ne casse rien** —
+`t()` renvoie la clé elle-même, et l'écran affiche `compte_rencontres` à un
+lecteur ukrainien. Verdict : 937 clés, cinq langues, aucune manquante.
+
+⚠️ **L'analyseur a dû être corrigé deux fois avant qu'on puisse le croire** : il
+laissait le bloc persan courir jusqu'à la fin du fichier (135 fausses absences)
+puis ne lisait que la première clé des lignes qui en portent deux (90 autres).
+**Un contrôle qui accuse à tort est pire que pas de contrôle.**
+
+---
+
+## 11 septembre 2026 — un texte d'aide citait un bouton renommé (v538)
+
+**Trouvé en rattrapant ce journal**, pas à l'usage. La v524 a renommé le
+troisième bouton « Je le sais par cœur » dans les cinq langues — mais
+`progress_info_deja`, le paragraphe du panneau ⓘ de la progression, citait encore
+l'ancien nom **dans les cinq langues** : « Je le sais déjà », « I already know
+this », « Bunu zaten biliyorum », « Я вже це знаю », et son équivalent persan.
+
+C'est exactement le défaut de la v537 — une aide qui décrit un écran disparu — et
+il a survécu treize versions parce qu'un renommage cherche le **libellé**, jamais
+les textes qui le **citent**. `verifier.py` ne peut pas le voir : les deux
+chaînes sont valides, elles ne se contredisent que pour un lecteur.
+
+⚠️ **Ce qui rendrait le contrôle possible** : qu'un texte d'aide ne recopie
+jamais un libellé mais le compose depuis sa clé, comme la v535 l'a fait en
+réutilisant `srs_aide_echelle` mot pour mot. Non fait ici — cinq langues à
+recomposer pour une phrase — mais c'est la règle à suivre au prochain texte
+d'aide écrit.
