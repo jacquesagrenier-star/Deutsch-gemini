@@ -5095,7 +5095,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v556</span>
+    <span class="subtitle-version">v557</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5169,12 +5169,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <li data-i18n="legende_grammaire"></li>
     </ul>
 
-    <!-- ⚠️ L'ANNEAU EST ICI DEPUIS LA v535 et n'a jamais ete supprime :
-         updateHomeStatsPanel() y ecrit toujours. Sa valeur est juste, c'est sa
-         PLACE qui etait fausse -- il avance de 0,22 % par mot et ne bouge pas
-         avant le 11e jour. Consulte volontairement, il redevient ce qu'il est :
-         une carte du territoire, qui a le droit d'etre lente. -->
-    <div class="info-anneau">
+    <!-- ⚠️ L'ANNEAU EST MASQUE (v557), ET C'EST JACQUES QUI A POSE LA BONNE
+         QUESTION : « le cercle n'est plus la pour la progression, pourquoi tu
+         l'as garde ? » Je l'avais garde par precaution -- la v535 l'avait
+         deplace ici plutot que supprime, et updateHomeStatsPanel() y ecrit
+         toujours.
+
+         Mais depuis la v542, la ligne « Progression du vocabulaire » dit LA
+         MEME CHOSE EN MIEUX : le niveau avec un denominateur atteignable
+         (612 / 860), en trois couleurs, depliable sur les cinq niveaux.
+         L'anneau donnait un pourcentage d'un niveau entier qui avance de
+         0,22 % par mot. Deux mesures du meme objet, dont une illisible.
+
+         ⚠️ MASQUE ET NON SUPPRIME : globalRingFill, globalRingLevel et
+         globalRingNum recoivent toujours des ecritures. Les retirer casserait
+         la mise a jour EN SILENCE -- le fichier porte cet avertissement depuis
+         la v535, et c'est exactement le genre de raccourci qui a casse
+         l'accueil hier. -->
+    <div class="info-anneau hidden">
         <div class="global-ring-wrap" onclick="cycleHomeLevel()" role="button"
              data-i18n-aria-label="info_anneau_aria" aria-label="Changer de niveau affiché"
              style="cursor:pointer;">
@@ -5191,9 +5203,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="ring-cycle-badge" aria-hidden="true">⟳</div>
         </div>
     </div>
-    <ul class="info-legende">
-        <li data-i18n="legende_cercle"></li>
-    </ul>
 
     <h3 class="info-titre" data-i18n="info_partie_memoire">Comment un mot s'installe</h3>
     <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
@@ -23657,7 +23666,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 556;
+const APP_VERSION = 557;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
