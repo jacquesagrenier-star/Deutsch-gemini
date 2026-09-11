@@ -4257,7 +4257,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v539</span>
+        <span class="subtitle-version">v540</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -7434,6 +7434,9 @@ const I18N = {
         dictation_start_btn: "🎧 S'ENTRAÎNER : DICTÉE",
         op_nomen_o5_t: "Dictée",
         op_nomen_o5_d: "Écouter et écrire — {n} mots",
+        op_nomen_o6_t: "Quel article ?",
+        op_nomen_o6_d: "der · die · das — autant de chaque",
+        kicker_quiz_article: "Quel article ?",
         dictation_replay_btn: "🔊 RÉÉCOUTER",
         exercice_ecouter_btn: "🔊 ENTENDRE LA PHRASE",
         dictation_instruction: "Écoute et écris ce que tu entends.",
@@ -8314,6 +8317,9 @@ const I18N = {
         dictation_start_btn: "🎧 PRACTICE: DICTATION",
         op_nomen_o5_t: "Dictation",
         op_nomen_o5_d: "Listen and write — {n} words",
+        op_nomen_o6_t: "Which article?",
+        op_nomen_o6_d: "der · die · das — equal thirds",
+        kicker_quiz_article: "Which article?",
         dictation_replay_btn: "🔊 REPLAY",
         exercice_ecouter_btn: "🔊 HEAR THE SENTENCE",
         dictation_instruction: "Listen and write what you hear.",
@@ -9198,6 +9204,9 @@ const I18N = {
         dictation_start_btn: "🎧 ALIŞTIRMA: DİKTE",
         op_nomen_o5_t: "Dikte",
         op_nomen_o5_d: "Dinle ve yaz — {n} kelime",
+        op_nomen_o6_t: "Hangi artikel?",
+        op_nomen_o6_d: "der · die · das — her birinden eşit sayıda",
+        kicker_quiz_article: "Hangi artikel?",
         dictation_replay_btn: "🔊 TEKRAR DİNLE",
         exercice_ecouter_btn: "🔊 CÜMLEYİ DİNLE",
         dictation_instruction: "Dinle ve duyduğunu yaz.",
@@ -10283,6 +10292,9 @@ const I18N = {
         op_due_desc_attente: "Хвилинку, рахую…",
         op_nomen_o5_t: "Диктант",
         op_nomen_o5_d: "Слухай і пиши — {n} слів",
+        op_nomen_o6_t: "Який артикль?",
+        op_nomen_o6_d: "der · die · das — порівну",
+        kicker_quiz_article: "Який артикль?",
         op_nomen_title: "Іменники",
         op_nomen_sub: "Іменники та теми",
         op_nomen_o1_t: "Повторити мої слова",
@@ -11141,6 +11153,9 @@ const I18N = {
         dictation_start_btn: "🎧 تمرین: املا",
         op_nomen_o5_t: "املا",
         op_nomen_o5_d: "بشنو و بنویس — {n} واژه",
+        op_nomen_o6_t: "کدام حرف تعریف؟",
+        op_nomen_o6_d: "der · die · das — به نسبت برابر",
+        kicker_quiz_article: "کدام حرف تعریف؟",
         dictation_replay_btn: "🔊 دوباره بشنو",
         exercice_ecouter_btn: "🔊 شنیدن جمله",
         dictation_instruction: "بشنو و آنچه می‌شنوی بنویس.",
@@ -13263,12 +13278,29 @@ const ARTICLE_DECLENCHEURS = {
                    "(kime / neye ait?)", "(از آن که یا از آن چه؟)"]
 };
 
+// LE BLANC EN TETE PREND UNE MAJUSCULE -- SEULEMENT DANS UNE PHRASE (v540).
+// « ___ Mann ist alt. » attend « Der Mann ist alt. » : l'allemand met une
+// majuscule en tete de phrase, et les 103 enonces qui commencent par le blanc
+// sont tous des phrases. « ___ Baby » du quiz des articles n'en est pas une :
+// c'est une entree de dictionnaire, et la majuscule y afficherait « Das Baby »
+// juste au-dessus d'une explication qui dit « das Baby » et de tuiles qui
+// disent « das ». Sur l'ecran dont le sujet EST l'article, ce desaccord
+// s'apprend.
+//
+// Le test porte sur la ponctuation de phrase n'importe ou dans l'enonce, et
+// non sur la fin : les exercices d'articles portent un rappel entre
+// parentheses apres le point (« ___ Mann ist alt. (der Mann, Nominativ) »).
+// Verifie sur les 1 682 questions d'exercices.json : les 103 concernees
+// contiennent toutes un point, un point d'interrogation ou d'exclamation.
+function enonceEstUnePhrase(enonce){
+    return /[.?!]/.test(String(enonce || ""));
+}
+
 // La phrase seule, sans l'indication entre parentheses, avec la bonne forme a
-// la place du blanc. Meme regle de majuscule que phraseAllemandeDeLExercice() :
-// un blanc qui ouvre la phrase prend la capitale.
+// la place du blanc. Meme regle de majuscule que phraseAllemandeDeLExercice().
 function phraseSeuleArticle(phrase, rep){
     let bon = String(rep);
-    if(phrase.indexOf("___") === 0) bon = bon.charAt(0).toUpperCase() + bon.slice(1);
+    if(phrase.indexOf("___") === 0 && enonceEstUnePhrase(phrase)) bon = bon.charAt(0).toUpperCase() + bon.slice(1);
     return phrase.replace("___", bon).trim();
 }
 
@@ -16388,7 +16420,12 @@ function orbPanelData(id){
                 // jamais en « Mots au hasard », ou le paquet compte jusqu'a
                 // 1 840 cartes et ne finit pas. Une fonction complete derriere
                 // une porte que personne n'emprunte. Signale par Jacques.
-                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeNoms" }
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeNoms" },
+                // LA PREMIERE ACTIVITE PROPRE DE CETTE TUILE. Elle n'avait que
+                // du vocabulaire, d'ou son effondrement a la v536 : rien a
+                // garder quand on retire la revision generique.
+                { icon:"exercice", title:t("op_nomen_o6_t"), desc:t("op_nomen_o6_d"),
+                  count:String(QUIZ_ARTICLE_TAILLE), action:"startQuizArticle" }
             ]
         };
     }
@@ -16903,6 +16940,110 @@ function startDicteeNoms(){
         });
     });
     lancerDictee('nomen', pool, 'nomen', startDicteeNoms);
+}
+
+// ============ « QUEL ARTICLE ? » -- LE GENRE DES NOMS (v540) ============
+// Savoir que « Tisch » veut dire table ne sert a rien sans « der ». Le genre
+// ne se devine pas, ne se deduit pas, et aucun exercice ne l'enseignait : ceux
+// du Kasus apprennent a DECLINER un genre deja connu (der Mann -> den Mann),
+// ce qui est un autre fait. C'est la seule connaissance qui appartienne au nom
+// lui-meme, donc a cette tuile et a aucune autre.
+//
+// ⚠️ LE TIRAGE EST EN TIERS EGAUX, ET C'EST LA DECISION QUI FAIT L'EXERCICE.
+// Nos 4 209 noms se repartissent en die 2 048 · der 1 380 · das 771. Sur un
+// tirage naturel, repondre « die » a toutes les questions donne 48,7 % -- et
+// l'app feliciterait quelqu'un qui ne sait rien. A parts egales le plancher
+// redescend a 33 %, le hasard reel d'un choix a trois, et le score redevient
+// une mesure. Ne pas « simplifier » ce tirage.
+const QUIZ_ARTICLE_TAILLE = 30;              // 10 par genre
+const QUIZ_ARTICLE_GENRES = ["der", "die", "das"];
+
+// Compose un texte dans UNE langue precise, sans passer par la langue active.
+// tf() sert l'affichage immediat ; ici on fabrique un exercice qui range ses
+// cinq langues d'avance, comme le fait toute donnee d'exercice.
+function tfDans(code, key, vars){
+    let str = (I18N[code] && I18N[code][key]) || (I18N.fr && I18N.fr[key]) || key;
+    Object.keys(vars || {}).forEach(k => {
+        str = str.replace(new RegExp('\\{' + k + '\\}', 'g'), vars[k]);
+    });
+    return str;
+}
+
+// Une carte de nom est un TABLEAU : [0] le mot, [1] l'article, [2] le pluriel,
+// et les traductions aux rangs de RANGS_CARTE.nomen. Lire ces rangs ici serait
+// la quatrieme copie de cette connaissance : on passe par texteCarte().
+function construireQuizArticle(cartes){
+    return cartes.map(item => {
+        const carte = item.word;
+        const mot = carte[0], article = carte[1];
+        const pluriel = (carte[2] || "").trim();
+        const aUnPluriel = pluriel && pluriel !== "—" && pluriel !== "-";
+        const ex = {
+            // La voix lit « der Tisch », pas « ___ Tisch » : l'enonce porte un
+            // blanc, et un blanc ne se prononce pas. Meme raison qu'en v526
+            // pour les parentheses des exercices d'articles.
+            audioDe: article + " " + mot,
+            topic: "Noms · article",
+            answers: [article], correct: article, correctEn: article,
+            options: QUIZ_ARTICLE_GENRES
+        };
+        ["fr", "en", "tr", "uk", "fa"].forEach(code => {
+            const suff = (code === "fr") ? "" : SUFFIXE_LANGUE[code];
+            const labelPluriel = tfDans(code, "label_plural", {});
+            ex["question" + suff] = "___ " + mot;
+            ex["translation" + suff] = texteCarte(carte, "nomen", "traduction", code) || "";
+            // AUCUN INDICE : le seul indice possible serait le genre, c'est-a-dire
+            // la reponse. Un champ vide vaut mieux qu'une ligne qui meuble.
+            ex["hint" + suff] = "";
+            ex["explanation" + suff] = article + " " + mot + " · " + labelPluriel
+                + " " + (aUnPluriel ? "die " + pluriel : "—");
+        });
+        return ex;
+    });
+}
+
+// Meme reservoir que la dictee des noms -- tous les noms de tous les niveaux --
+// et la meme preference : cartesDeSession() fait passer devant ce que la
+// personne travaille en ce moment. On garde cet ORDRE, puis on prend dix mots
+// par genre dedans : la familiarite d'abord, l'equilibre par-dessus.
+function startQuizArticle(){
+    const parGenre = { der: [], die: [], das: [] };
+    const pool = [];
+    themesComptes().forEach(theme => {
+        LEVELS.forEach(lvl => {
+            const levelData = theme.levels[lvl];
+            if(!levelData) return;
+            levelData.words.forEach((word, index) => {
+                // Les genres doubles (« der/die Joghurt ») et les pluriels-seuls
+                // n'ont pas de bonne reponse unique : hors du quiz. Ils sont six
+                // sur 4 209, et une question sans reponse juste coute plus cher
+                // que six mots absents.
+                if(QUIZ_ARTICLE_GENRES.indexOf(word[1]) < 0) return;
+                pool.push({ word, index, themeId: levelData.id });
+            });
+        });
+    });
+    let ordre = cartesDeSession(sansDoublons(pool));
+    if(!ordre.length) ordre = pool;
+    ordre.forEach(item => {
+        const g = item.word[1];
+        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / 3) parGenre[g].push(item);
+    });
+    // Le reservoir peut manquer d'un genre (« das » est le plus rare) : on
+    // complete depuis le pool entier plutot que de servir une serie desequilibree
+    // en silence.
+    QUIZ_ARTICLE_GENRES.forEach(g => {
+        if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / 3) return;
+        for(const item of pool){
+            if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / 3) break;
+            if(item.word[1] === g && parGenre[g].indexOf(item) < 0) parGenre[g].push(item);
+        }
+    });
+    const choix = shuffleArray(parGenre.der.concat(parGenre.die, parGenre.das));
+    const liste = construireQuizArticle(choix);
+    if(!liste.length){ showInfoToast(t('alert_no_words_available')); return; }
+    startExerciseSet(liste, "kicker_quiz_article",
+                     () => openOrbPanel('nomen'), startQuizArticle);
 }
 
 function startDicteeVerbes(){
@@ -22533,7 +22674,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 539;
+const APP_VERSION = 540;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -23652,7 +23793,7 @@ function phraseAllemandeDeLExercice(ex){
     let bon = ex.correct || (ex.answers && ex.answers[0]) || "";
     if(!bon) return "";
     bon = String(bon);
-    if(enonce.indexOf("___") === 0) bon = bon.charAt(0).toUpperCase() + bon.slice(1);
+    if(enonce.indexOf("___") === 0 && enonceEstUnePhrase(enonce)) bon = bon.charAt(0).toUpperCase() + bon.slice(1);
     return enonce.replace("___", bon).trim();
 }
 
@@ -26224,7 +26365,7 @@ function motPourLeBlanc(mot){
     const ex = activeExercises[currentExercise];
     if(!ex || !mot) return mot;
     const q = texteTraduit(ex, "question");
-    if(q && q.indexOf("___") === 0) return mot.charAt(0).toUpperCase() + mot.slice(1);
+    if(q && q.indexOf("___") === 0 && enonceEstUnePhrase(q)) return mot.charAt(0).toUpperCase() + mot.slice(1);
     return mot;
 }
 
@@ -26410,7 +26551,7 @@ function checkAnswer(){
             // majuscule dans correct/correctEn -- la comparaison de reponse
             // reste insensible a la casse (voir plus haut), donc les stocker
             // capitalises ne casse rien.
-            if(questionText.indexOf("___") === 0 && correctWord){
+            if(questionText.indexOf("___") === 0 && enonceEstUnePhrase(questionText) && correctWord){
                 correctWord = correctWord.charAt(0).toUpperCase() + correctWord.slice(1);
             }
             document.getElementById("question").innerHTML = questionText.replace("___", `<span class="filled-blank">${correctWord}</span>`);

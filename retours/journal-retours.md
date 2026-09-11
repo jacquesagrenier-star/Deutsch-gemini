@@ -2008,3 +2008,85 @@ retaper le libellé dans cinq langues.
 
 **Vérifié :** `verifier.py`, 14 149 contrôles, 2 avertissements (les deux tuiles
 à une seule entrée, connues).
+
+---
+
+## 11 septembre 2026 — « Quel article ? », la première activité propre des Noms (v540)
+
+**D'où vient la demande :** *« Qu'est-ce qu'on pourrait ajouter comme contenu
+pédagogique pour les noms ? »*, après que la v539 eut rendu à la tuile ses
+parcours. La question était juste : Noms **n'avait aucune activité à elle**.
+C'est exactement pourquoi la v536 l'avait vidée — il n'y avait rien à garder
+quand on retirait le vocabulaire générique.
+
+Cinq pistes proposées, **deux retenues**, et le tri s'est fait sur des faits
+plutôt que sur des goûts.
+
+### Ce que la donnée permettait déjà
+
+⚠️ **`genre` et `pluriel` sont présents sur les 4 209 noms, à 100 %.** Formes
+complètes, pas des suffixes : `Vater → Väter`. L'exercice ne demandait donc
+**aucune nouvelle donnée** — et c'est toujours la donnée qui coûte, jamais
+l'exercice. L'atelier existait aussi : `startExerciseSet()` prend un tableau, et
+les 170 exercices d'articles du Kasus sont eux-mêmes *générés* par
+`construireExercicesArticles()`.
+
+### Le défaut qu'on a évité : un score qui félicite l'ignorance
+
+⚠️ **Nos noms se répartissent en die 2 048 · der 1 380 · das 771.** Sur un
+tirage naturel, **répondre « die » à toutes les questions donne 48,8 %** — et
+l'app annoncerait « la moitié » à quelqu'un qui ne sait rien. C'est le même
+mensonge que le bandeau « 0 carte », en plus flatteur.
+
+**Le tirage est donc en tiers égaux : dix `der`, dix `die`, dix `das`.** Le
+plancher redescend à 33 %, le hasard réel d'un choix à trois, et le score
+redevient une mesure. `tests/essai_article.js` vérifie les deux chiffres sur les
+vraies données, pour que la prochaine « simplification » du tirage se fasse voir.
+
+L'ordre de préférence reste celui de `cartesDeSession()` — ce que la personne
+travaille en ce moment passe devant — **puis** l'équilibre se prend dedans : la
+familiarité d'abord, l'équilibre par-dessus.
+
+### Ce qu'on n'a PAS ajouté, et pourquoi
+
+⚠️ **« Décliner le nom dans la phrase » existe déjà** : 170 exercices dans la
+tuile Kasus, 30 par cas plus un mélange de 50. Le remettre dans Noms aurait été
+la duplication que la v481 a dû défaire — deux copies d'une leçon, et personne
+ne sait plus laquelle corriger.
+
+**La frontière propre est ailleurs, et elle est nette :** Kasus enseigne à
+**décliner un genre déjà connu** (`der Mann` → `den Mann`) ; savoir **que Mann
+est masculin** est un autre fait, et aucun exercice ne l'enseignait. C'est la
+seule connaissance qui appartienne au nom lui-même, donc à cette tuile et à
+aucune autre.
+
+**Sur l'idée adaptative** — pratiquer `Mann + Akkusativ` plutôt que `Mann` —
+elle est la meilleure du lot, mais elle ne tient pas sur le mot : avec 4 209
+noms, la preuve par couple (mot × cas) ne s'accumulerait jamais. Ce qui est
+mesurable, c'est le **patron** (masculin + Akkusativ), soit douze cases au lieu
+de 16 836. À faire seul, plus tard, sur le magasin de la v519.
+
+### Le défaut trouvé à l'écran, et pas par un contrôle
+
+⚠️ **« Das Baby » s'affichait avec une majuscule** juste au-dessus d'une
+explication qui dit « das Baby » et de tuiles qui disent « das ». La règle
+existante est juste — un blanc qui ouvre une **phrase** prend la capitale,
+`___ Mann ist alt.` attend `Der Mann ist alt.` — mais `___ Baby` n'est pas une
+phrase : c'est une entrée de dictionnaire. **Sur l'écran dont le sujet EST
+l'article, ce désaccord s'apprend.**
+
+`enonceEstUnePhrase()` affine la règle aux quatre endroits qui la portaient.
+**Vérifié avant de la changer** : sur les 1 682 questions d'`exercices.json`,
+les 103 qui commencent par le blanc contiennent toutes un point — le correctif
+ne touche donc rien d'existant. Le banc d'essai tient les deux cas dans la même
+main, parce qu'ils vivent dans la même ligne de code.
+
+### Vérifié
+
+- `tests/essai_article.js` (nouveau) : 21 contrôles sur les **vraies** données —
+  l'équilibre, les cinq langues sur chaque question, la bonne réponse comparée
+  au genre réel, le pluriel dans l'explication, le tiret des noms qui n'en ont
+  pas, les cinq genres doubles écartés, et la majuscule.
+- Essayé **dans la vraie page**, l'exercice lancé pour de bon : « ___ Freundin »
+  → « die Freundin · Pluriel : die Freundinnen ».
+- `verifier.py` 14 167 contrôles, `cles_langues.py` 940 clés × 5 langues.
