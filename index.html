@@ -5230,7 +5230,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v565</span>
+    <span class="subtitle-version">v566</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17896,6 +17896,20 @@ function orbAction(action){
 // semaine, et ces portes sont le filet.
 const VOCAB_DANS_TUILES = false;
 
+// ⚠️ SAUF DANS LES QUATRE TUILES DE VOCABULAIRE (v566). Demande de Jacques :
+// « dans le nom, l'adjectif, le verbe, l'adverbe -- vers les flashcards ».
+//
+// L'interrupteur ci-dessus reste `false`, et c'est voulu : il ferme les portes
+// de vocabulaire des tuiles de GRAMMAIRE -- pronoms, conjonctions,
+// prepositions, particules, nombres -- ou elles faisaient doublon avec la
+// seance du jour. Mais une tuile qui s'appelle « Noms » et d'ou l'on ne peut
+// pas atteindre une carte de nom promet ce qu'elle ne tient pas.
+//
+// ⚠️ L'ADVERBE N'AVAIT RIEN A RESTAURER : sa porte (openAdverbienVokabular)
+// n'a jamais ete dans ACTIONS_VOCABULAIRE, donc jamais filtree. Il est nomme
+// ici quand meme, pour que la liste dise l'intention et pas seulement l'effet.
+const TUILES_AVEC_VOCABULAIRE = ["nomen", "verben", "adjektive", "adverbien"];
+
 // Les actions qui SERVENT UN PAQUET DE VOCABULAIRE sans qu'on ait rien choisi.
 // Les dictees n'y sont pas : une dictee est un exercice, pas une revision
 // generique. Les lecons (open...Info) non plus.
@@ -17923,8 +17937,9 @@ const ACTIONS_VOCABULAIRE = [
     "startPraepVokabular", "startPositionsverbenVokabular"
 ];
 
-function optionsVisibles(options){
+function optionsVisibles(options, id){
     if(VOCAB_DANS_TUILES) return options || [];
+    if(TUILES_AVEC_VOCABULAIRE.indexOf(id) >= 0) return options || [];
     return (options || []).filter(o => ACTIONS_VOCABULAIRE.indexOf(o.action) < 0);
 }
 
@@ -17940,7 +17955,7 @@ function renderOrbPanel(){
     kickerEl.textContent = data.sub || "Catégorie";
     titleEl.textContent = data.title;
 
-    const options = optionsVisibles(data.options);
+    const options = optionsVisibles(data.options, openOrbId);
     bodyEl.innerHTML = options.map(o => `
         <div class="orb-opt ${o.primary ? "primary" : ""}" onclick="orbAction('${o.action}')">
             <div class="orb-opt-left">
@@ -23989,7 +24004,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 565;
+const APP_VERSION = 566;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

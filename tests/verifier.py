@@ -575,6 +575,56 @@ def verifier_zoom_involontaire(r, source):
     print("   zoom          : double-tap neutralise, pincement permis")
 
 
+def verifier_notices_peintres(r):
+    """Chaque peintre a-t-il sa notice dans les cinq langues ?
+
+    ⚠️ UNE NOTICE MANQUANTE NE CASSE RIEN, ET C'EST LE PROBLEME.
+    noticePeintre() parcourt langueEtRepli() et finit sur le francais : un
+    peintre oublie en turc s'affiche en francais, sans erreur, sans trace. Le
+    defaut est donc invisible a tout le monde sauf a la personne qui lit le
+    turc -- c'est-a-dire a personne, chez nous.
+
+    C'est le meme mecanisme que les quatre lecteurs de la chaine turque, qui
+    cassaient en silence quand on posait juste la donnee.
+
+    Second controle : tout peintre nomme dans mosaiques.json doit avoir une
+    notice. Ajouter une toile d'un peintre absent de peintres.json donne un
+    trophee muet, et rien ne le dit.
+    """
+    base = os.path.join(RACINE, "branding", "mosaique")
+    fp = os.path.join(base, "peintres.json")
+    fm = os.path.join(base, "mosaiques.json")
+    if not os.path.exists(fp) or not os.path.exists(fm):
+        return
+    with io.open(fp, encoding="utf-8") as f:
+        peintres = json.load(f).get("peintres", {})
+    with io.open(fm, encoding="utf-8") as f:
+        images = json.load(f).get("images", [])
+
+    langues = ("fr", "en", "tr", "uk", "fa")
+    trous = 0
+    for nom, notices in sorted(peintres.items()):
+        for code in langues:
+            if not (notices.get(code) or "").strip():
+                trous += 1
+                r.echec("interface",
+                        "notice de peintre absente en %s : %s "
+                        "(elle se rabattra sur le francais, en silence)"
+                        % (code, nom))
+            r.controle()
+
+    sans_notice = sorted({im.get("peintre") for im in images
+                          if im.get("peintre") and im.get("peintre") not in peintres})
+    for nom in sans_notice:
+        r.echec("interface",
+                "un tableau cite un peintre sans notice : %s" % nom)
+    r.controle(len(images))
+
+    print("   peintres      : %d notices x %d langues, %d trou(s) ; "
+          "%d tableaux, %d peintre(s) sans notice"
+          % (len(peintres), len(langues), trous, len(images), len(sans_notice)))
+
+
 def verifier_octets_de_controle(r, chemin):
     """Le fichier contient-il un octet qu'aucun navigateur n'attend ?
 
@@ -912,6 +962,7 @@ def main():
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
+    verifier_notices_peintres(r)
     verifier_octets_de_controle(r, INDEX)
     verifier_zoom_involontaire(r, source)
     verifier_zone_morte(r, source)

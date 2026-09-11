@@ -3182,3 +3182,43 @@ Une cle **courte** — `flash_revoir_court`, « Precedent » — et non
 `flash_revoir`, qui fait une phrase entiere et reprendrait toute la largeur.
 ⚠️ La phrase entiere reste comme **etiquette d'accessibilite** : le lecteur
 d'ecran garde « Revoir le mot precedent », l'oeil n'a besoin que du mot.
+
+## 12 septembre 2026 — les peintres parlent cinq langues, et les tuiles rouvrent leur porte (v566)
+
+### Les 22 notices, traduites
+
+Elles etaient en francais seul depuis la v543. `peintres.json` porte maintenant
+`fr`, `en`, `tr`, `uk`, `fa` pour chacun des vingt-deux peintres — quatre-vingt-
+huit textes. Aucun code a changer : `noticePeintre()` parcourait deja
+`langueEtRepli()`.
+
+⚠️ **Et c'est precisement ce qui rendait le defaut invisible.** Une notice
+absente ne casse rien : elle se rabat sur le francais, sans erreur et sans
+trace. Le manque n'est donc visible que par quelqu'un qui lit le turc —
+c'est-a-dire par personne, ici. **C'est le meme mecanisme que les quatre
+lecteurs de la chaine turque**, qui cassaient en silence quand on posait juste
+la donnee.
+
+`verifier_notices_peintres()` refuse desormais une notice vide dans l'une des
+cinq langues, **et** un tableau dont le peintre n'a pas de notice du tout —
+ajouter une toile d'un peintre inconnu donnerait un trophee muet. 22 notices
+x 5 langues, 65 tableaux : zero trou.
+
+### Les quatre tuiles de vocabulaire retrouvent leur porte
+
+*« Dans le nom, l'adjectif, le verbe, l'adverbe — vers les flashcards. »*
+
+`VOCAB_DANS_TUILES` reste `false`, et c'est voulu : il ferme les portes de
+vocabulaire des tuiles de **grammaire** — pronoms, conjonctions, prepositions,
+particules, nombres — ou elles faisaient doublon avec la seance du jour. Mais
+une tuile qui s'appelle **« Noms »** et d'ou l'on ne peut pas atteindre une
+carte de nom promet ce qu'elle ne tient pas.
+
+Une liste nommee, `TUILES_AVEC_VOCABULAIRE`, exempte les quatre. Verifie sur
+les six tuiles a la fois : *nomen*, *verben* et *adjektive* retrouvent leurs
+deux portes ; *pronomen* et *konjunktionen* n'en ont toujours aucune.
+
+⚠️ **L'adverbe n'avait rien a restaurer** : sa porte
+(`openAdverbienVokabular`) n'a jamais figure dans `ACTIONS_VOCABULAIRE`, donc
+n'a jamais ete filtree. Il est nomme dans la liste quand meme — pour qu'elle
+dise l'intention et pas seulement l'effet.
