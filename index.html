@@ -3976,6 +3976,43 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .carte-compte-val{font-size:19px; font-weight:600; color:#1e293b; line-height:1.1;}
 .carte-compte-vert{color:#0F6E56;}
 .carte-compte-lib{font-size:11px; color:#7b8798; margin-top:3px; line-height:1.3;}
+/* Le vocabulaire d'examen. EN CONTOUR, PAS EN PLEIN : le seul bloc plein de
+   l'accueil reste le bandeau de seance (v531), et deux blocs pleins ne
+   designent plus rien. */
+.carte-examen{
+    margin-top:12px; padding-top:12px; border-top:1px solid rgba(30,41,59,.10);
+    cursor:pointer;
+}
+.carte-examen-tete{
+    display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+    font-size:12px; font-weight:600; color:#1e293b;
+}
+.carte-examen-compte{font-variant-numeric:tabular-nums; color:#7b8798; font-weight:600;}
+.carte-examen-piste{
+    display:flex; height:8px; border-radius:5px; margin-top:7px;
+    background:rgba(30,41,59,.12); overflow:hidden;
+}
+.carte-examen-part{height:100%; transition:width .3s;}
+.carte-examen-part.sus{background:#0F6E56;}
+.carte-examen-part.cours{background:#2f62d6;}
+.carte-examen-pied{font-size:11px; color:#7b8798; margin-top:6px; line-height:1.3;}
+body[data-theme="dark"] .carte-examen{border-top-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .carte-examen-tete{color:#F2F2F6;}
+body[data-theme="dark"] .carte-examen-compte,
+body[data-theme="dark"] .carte-examen-pied{color:#9AA2B1;}
+body[data-theme="dark"] .carte-examen-piste{background:rgba(255,255,255,.14);}
+body[data-theme="dark"] .carte-examen-part.sus{background:#5DCAA5;}
+/* « Finir ce theme » : une seule ligne sous les pastilles, en ambre -- la
+   couleur de ce qui reste a faire dans l'app, jamais celle de la reussite. */
+.finir-theme{
+    display:block; width:100%; margin-top:8px; padding:7px 10px;
+    border:1px solid #E8A23A; border-radius:9px; background:rgba(232,162,58,.10);
+    color:#8a5d12; font-size:12px; font-weight:600; font-family:inherit;
+    cursor:pointer; text-align:center;
+}
+.finir-theme + .finir-theme{margin-top:6px;}
+.finir-theme:hover{background:rgba(232,162,58,.18);}
+body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A23A;}
 .info-anneau{display:flex; justify-content:center; margin:10px 0 14px;}
 body[data-theme="dark"] .carte-jour-haut{color:#A6ADBB;}
 body[data-theme="dark"] .carte-jour-haut strong,
@@ -4257,7 +4294,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div class="card home-stats-card" id="homeStatsCard">
-        <span class="subtitle-version">v540</span>
+        <span class="subtitle-version">v541</span>
 
         <!-- LE SEUL DENOMINATEUR LEGITIME DE LA CARTE : petit, proche, et remis
              a zero chaque matin. Il ne peut pas decourager puisqu'il ne
@@ -4318,6 +4355,22 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div class="carte-compte-val" id="compteGrammaire">0</div>
                 <div class="carte-compte-lib" data-i18n="compte_grammaire">exercices de grammaire</div>
             </div>
+        </div>
+
+        <!-- LE SEUL GRAND DENOMINATEUR QU'ON S'AUTORISE : il vient des
+             programmes officiels, pas de nous. ⚠️ C'est l'AGREGAT -- les mots
+             qu'au moins un programme retient -- et jamais un examen nomme :
+             voir majCarteExamen() et l'avertissement de cartesParMarque(). -->
+        <div id="carteExamen" class="carte-examen hidden" onclick="openPruefungInfo()">
+            <div class="carte-examen-tete">
+                <span data-i18n="examen_titre">Vocabulaire d'examen</span>
+                <span id="examenCompte" class="carte-examen-compte">0 / 0</span>
+            </div>
+            <div class="carte-examen-piste">
+                <div id="examenSus" class="carte-examen-part sus" style="width:0%"></div>
+                <div id="examenEnCours" class="carte-examen-part cours" style="width:0%"></div>
+            </div>
+            <div id="examenPied" class="carte-examen-pied"></div>
         </div>
 
         <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
@@ -7071,6 +7124,10 @@ const I18N = {
         myvocab_title: "Mon vocabulaire",
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
+        examen_titre: "Vocabulaire d'examen",
+        examen_pied: "{sus} sus · {cours} en cours · {reste} à rencontrer",
+        finir_theme_un: "Finir {niveau} · encore 1 mot",
+        finir_theme_n: "Finir {niveau} · encore {n} mots",
         compte_maitrises: "mots maîtrisés",
         compte_grammaire: "exercices de grammaire",
         seance_titre: "Ma séance du jour",
@@ -7956,6 +8013,10 @@ const I18N = {
         myvocab_title: "My vocabulary",
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
+        examen_titre: "Exam vocabulary",
+        examen_pied: "{sus} known · {cours} in progress · {reste} to meet",
+        finir_theme_un: "Finish {niveau} · 1 word left",
+        finir_theme_n: "Finish {niveau} · {n} words left",
         compte_maitrises: "words mastered",
         compte_grammaire: "grammar exercises",
         seance_titre: "Today's session",
@@ -8843,6 +8904,10 @@ const I18N = {
         myvocab_title: "Kelimelerim",
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
+        examen_titre: "Sınav kelimeleri",
+        examen_pied: "{sus} biliniyor · {cours} sürüyor · {reste} kaldı",
+        finir_theme_un: "{niveau} bitir · 1 kelime kaldı",
+        finir_theme_n: "{niveau} bitir · {n} kelime kaldı",
         compte_maitrises: "öğrenilen kelime",
         compte_grammaire: "dilbilgisi alıştırması",
         seance_titre: "Bugünkü oturumum",
@@ -9995,6 +10060,10 @@ const I18N = {
         myvocab_title: "Мої слова",
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
+        examen_titre: "Лексика іспиту",
+        examen_pied: "{sus} відомо · {cours} у процесі · {reste} попереду",
+        finir_theme_un: "Завершити {niveau} · лишилось 1 слово",
+        finir_theme_n: "Завершити {niveau} · лишилось {n} слів",
         compte_maitrises: "слів засвоєно",
         compte_grammaire: "вправ із граматики",
         seance_titre: "Мій сеанс на сьогодні",
@@ -11495,6 +11564,10 @@ const I18N = {
         myvocab_title: "واژگان من",
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
+        examen_titre: "واژگان آزمون",
+        examen_pied: "{sus} بلد · {cours} در جریان · {reste} باقی‌مانده",
+        finir_theme_un: "تمام کردن {niveau} · ۱ واژه مانده",
+        finir_theme_n: "تمام کردن {niveau} · {n} واژه مانده",
         compte_maitrises: "واژه‌های آموخته",
         compte_grammaire: "تمرین‌های دستور",
         seance_titre: "جلسهٔ امروز من",
@@ -19820,6 +19893,18 @@ function filterAndRenderThemes(){
             `;
         }).join("");
 
+        // « FINIR » n'apparait QUE sur un niveau a portee de main. Le montrer
+        // sur un theme a quinze mots de la fin en ferait un bouton « travailler
+        // ce theme » de plus -- il y en a deja un, c'est la pastille juste
+        // au-dessus. Ce qui rend celui-ci utile, c'est que le compte affiche est
+        // petit : « encore 1 mot » se lit comme une course de trente secondes.
+        const finirHtml = niveauxDuTheme.map(lvl => {
+            const n = motsJamaisVus(theme.levels[lvl]).length;
+            if(n < 1 || n > SEUIL_FINIR) return "";
+            const texte = tf(n > 1 ? 'finir_theme_n' : 'finir_theme_un', { n: n, niveau: lvl });
+            return `<button class="finir-theme" data-theme="${theme.id}" data-level="${lvl}">${texte}</button>`;
+        }).join("");
+
         const item = document.createElement("div");
         item.className = "theme-item" + (themeChoisi === "ALL" ? "" : " ouvert");
         item.innerHTML = `
@@ -19842,6 +19927,7 @@ function filterAndRenderThemes(){
                     <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
                 </div>
                 <div class="level-pills">${pillsHtml}</div>
+                ${finirHtml}
             </div>
         `;
         // Un seul theme ouvert a la fois : sans cela on retombe en quelques
@@ -19856,6 +19942,12 @@ function filterAndRenderThemes(){
             pillEl.addEventListener("click", (e) => {
                 e.stopPropagation();
                 startTheme(pillEl.dataset.theme, pillEl.dataset.level);
+            });
+        });
+        item.querySelectorAll(".finir-theme").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                finirTheme(btn.dataset.theme, btn.dataset.level);
             });
         });
         container.appendChild(item);
@@ -19967,6 +20059,61 @@ function startTheme(themeId, level, returnScreen){
         toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
     }
+    currentFlashcard = 0;
+    setFlashHeader('kicker_nomen_flashcards', null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+// ============ « FINIR CE THEME » (v541) ============
+// UN THEME NE SE TERMINE JAMAIS TOUT SEUL, et c'est mesure, pas suppose. Au
+// rythme reel -- 15 mots neufs par jour toutes categories, dont environ huit
+// noms, tires par FREQUENCE a travers les 32 themes de l'A1 -- la simulation
+// donne : jour 7, quinze themes entames, ZERO complet ; jour 30, vingt-neuf
+// entames, ZERO complet ; jour 60, les huit premiers ; jour 90, les trente-deux
+// d'un coup. Une carte de themes afficherait vingt-neuf barres a moitie pleines
+// pendant deux mois.
+//
+// Mais la meme simulation donne le remede. Au 30e jour, QUATRE themes sont a
+// un, un, un et deux mots de la fin -- Grundwortschatz, Politik und
+// Gesellschaft, Zahlen und Mengen, Zeit und Kalender. Ils ne franchiront pas la
+// ligne seuls : le tirage par frequence est passe a autre chose. Au 60e jour
+// ils sont quinze dans ce cas. Ce bouton les finit, en trente secondes.
+//
+// ⚠️ CELA NE CONTREDIT PAS LA v525. La recherche qu'elle cite -- six etudes sur
+// treize -- porte sur les PREMIERES RENCONTRES groupees par sens. Aller
+// chercher les deux derniers mots d'un theme parcouru depuis un mois n'est pas
+// un groupement de premieres rencontres : c'est un achevement decide.
+const SEUIL_FINIR = 3;
+
+// Les mots de ce niveau que la seance n'a JAMAIS servis. Meme test que le
+// tirage du jour (estNeuf), pour que le compte affiche soit exactement ce qui
+// bloque la fin du theme -- ni un mot en cours de revision, ni un mot balaye.
+function motsJamaisVus(levelData){
+    if(!levelData || !levelData.words) return [];
+    return levelData.words
+        .map((word, index) => ({ word: word, index: index, themeId: levelData.id }))
+        .filter(it => estNeuf(getWordState(levelData.id, it.index)));
+}
+
+function finirTheme(themeId, level, returnScreen){
+    const theme = themes.find(t => t.id === themeId);
+    if(!theme) return;
+    const levelData = theme.levels[level];
+    if(!levelData){ showInfoToast(t('alert_level_unavailable')); return; }
+    const restants = motsJamaisVus(levelData);
+    if(!restants.length){ showInfoToast(t('alert_all_theme_words_mastered')); return; }
+
+    flashcardMode = 'nomen';
+    nomenReturnScreen = returnScreen || 'nomen';
+    currentTheme = { id: levelData.id, name: theme.name + " · " + level };
+    // ⚠️ PAS DE cartesDeSession() ICI, ET C'EST LE POINT DU BOUTON. Le tirage du
+    // jour plafonne les mots neufs a quinze : un jour ou la dose est epuisee, il
+    // renverrait zero carte et le bouton ne ferait rien. On sert exactement les
+    // un a trois mots qui manquent. La journee reste comptee juste malgre tout :
+    // noterMotNeuf() se declenche a la premiere REPONSE, pas au tirage.
+    currentCardsFull = restants;
+    currentCards = restants;
     currentFlashcard = 0;
     setFlashHeader('kicker_nomen_flashcards', null);
     showScreen("flashcards");
@@ -22674,7 +22821,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 540;
+const APP_VERSION = 541;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24340,6 +24487,50 @@ function majCarteProgression(){
     el("compteRencontres").textContent = c.rencontres;
     el("compteMaitrises").textContent = c.maitrises;
     el("compteGrammaire").textContent = c.grammaire + " / 40";
+    majCarteExamen();
+}
+
+// ============ LE VOCABULAIRE D'EXAMEN (v541) ============
+// Le seul GRAND denominateur legitime de l'app : il n'est pas choisi par nous,
+// il vient des programmes officiels. Un chiffre qu'on s'est donne soi-meme ne
+// decourage pas de la meme facon qu'une fraction du dictionnaire -- et il bouge
+// a chaque mot neuf, quel que soit son theme, la ou une barre de theme peut
+// rester bloquee deux mois (voir finirTheme).
+//
+// ⚠️ L'AGREGAT, ET JAMAIS UN EXAMEN PRECIS. La maquette proposait « Objectif B1
+// · 486 / 2 998 » : c'est exactement ce que la v470 a retire. Filtrer par
+// programme, c'est reproduire une liste que quelqu'un a constituee, et en
+// offrir la progression pas a pas, c'est la republier. cartesParMarque() porte
+// l'avertissement en toutes lettres et a perdu son parametre de liste : on ne
+// le remet pas pour un compteur. « Les mots que les programmes officiels
+// retiennent » ne reconstitue aucune liste en particulier, et motive pareil.
+function majCarteExamen(){
+    const bloc = document.getElementById("carteExamen");
+    if(!bloc) return;
+    let cartes = [];
+    try{ cartes = cartesParMarque(null, true); }catch(e){ cartes = []; }
+    // Les donnees arrivent apres le premier rendu : tant qu'elles manquent, le
+    // bloc reste absent. Un « 0 / 0 » a l'ouverture est le defaut de la v533.
+    if(!cartes.length){ bloc.classList.add("hidden"); return; }
+
+    let sus = 0, enCours = 0;
+    cartes.forEach(it => {
+        const st = getWordState(it.themeId, it.index);
+        if(st.mastered) sus++;
+        else if(!estNeuf(st)) enCours++;
+    });
+    const total = cartes.length;
+    const vus = sus + enCours;
+
+    const compte = document.getElementById("examenCompte");
+    if(compte) compte.textContent = vus + " / " + total;
+    const bSus = document.getElementById("examenSus");
+    if(bSus) bSus.style.width = (sus * 100 / total) + "%";
+    const bCours = document.getElementById("examenEnCours");
+    if(bCours) bCours.style.width = (enCours * 100 / total) + "%";
+    const pied = document.getElementById("examenPied");
+    if(pied) pied.textContent = tf("examen_pied", { sus: sus, cours: enCours, reste: total - vus });
+    bloc.classList.remove("hidden");
 }
 
 // ============ LA SEANCE DU JOUR : LA PORTE UNIQUE DU VOCABULAIRE (v525) ============

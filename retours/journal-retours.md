@@ -2208,3 +2208,56 @@ cassée se comprend ; « cette semaine −40 % » après des vacances, non.
 entier.** La vignette ouvre : les cinq bandes de niveau, puis les tuiles de
 thèmes du niveau ouvert. La carte A n'a donc plus besoin de place sur l'accueil —
 et la carte B trouvera la sienne sous les thèmes, plus tard.
+
+---
+
+## 11 septembre 2026 — « finir ce thème », et le vocabulaire d'examen (v541)
+
+**Demande de Jacques :** *« ajoute le bouton "finir ce thème" avec la carte D »*.
+
+### ⚠️ La carte D a dû changer de forme : la v470 l'interdisait telle quelle
+
+La maquette proposait « Objectif B1 · 486 / 2 998 », l'examen choisi dans les
+réglages. **C'est exactement ce que la v470 a retiré**, et `cartesParMarque()`
+porte l'avertissement en toutes lettres : elle savait filtrer par liste
+(« Goethe A2 », « Goethe B1 et le DTZ »), elle a **perdu ce paramètre**, et le
+commentaire dit *« ne pas remettre le paramètre »*. Extraire une liste
+officielle, c'est reproduire une base que quelqu'un a constituée ; en offrir la
+progression pas à pas, c'est la republier.
+
+**La carte est donc bâtie sur l'AGRÉGAT** — les mots qu'au moins un programme
+retient, **3 056** toutes catégories — qui ne reconstitue aucune liste en
+particulier. Elle motive pareil : le dénominateur reste un chiffre qu'on ne
+choisit pas soi-même, et il bouge à chaque mot neuf quel que soit son thème.
+
+Affichage : « 400 / 3 056 », une piste à deux segments (sus · en cours), et
+« 160 sus · 240 en cours · 2 656 à rencontrer ». **En contour, pas en plein** :
+le seul bloc plein de l'accueil reste le bandeau de séance (v531).
+
+### « Finir ce thème » : ce que la simulation a rendu possible
+
+Le bouton n'apparaît que sur un niveau à **trois mots ou moins** de la fin.
+Au-delà, ce serait un « travailler ce thème » de plus — il y en a déjà un, c'est
+la pastille juste au-dessus. Ce qui rend celui-ci utile, c'est que le compte est
+petit : « encore 1 mot » se lit comme une course de trente secondes.
+
+⚠️ **Il ne passe PAS par `cartesDeSession()`, et c'est le point du bouton.** Le
+tirage du jour plafonne les mots neufs à quinze : un jour où la dose est
+épuisée, il renverrait zéro carte et le bouton ne ferait rien. On sert
+exactement les un à trois mots qui manquent. La journée reste comptée juste :
+`noterMotNeuf()` se déclenche à la première **réponse**, pas au tirage.
+
+⚠️ **Et ça ne contredit pas la v525** : sa recherche porte sur les **premières
+rencontres** groupées par sens. Aller chercher les deux derniers mots d'un thème
+parcouru depuis un mois est un achèvement décidé, pas un groupement.
+
+### Vérifié dans la vraie page
+
+- La carte compte **3 056** mots marqués — le même chiffre que le comptage
+  Python sur les fichiers, doublons écartés.
+- Le bouton « Finir A2 · encore 3 mots » sur Familie sert exactement
+  `Zwilling`, `Schwiegermutter`, `Schwiegervater` — les trois qui manquaient.
+- ⚠️ **Le service worker sert `index.html` depuis le cache** : un simple
+  rechargement montrait l'ancienne page et l'élément semblait absent. `?v=NNN`
+  est le geste, comme prévu.
+- `verifier.py` 14 190 contrôles, `cles_langues.py` 944 clés × 5 langues.
