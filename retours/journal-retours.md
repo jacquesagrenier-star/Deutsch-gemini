@@ -2152,3 +2152,59 @@ souvent pour être ressenti).
 **Ordre recommandé :** A tout de suite ; D quand un examen est choisi dans les
 réglages (sans examen choisi, la carte ne s'affiche pas) ; C dans le ⓘ à la
 place du cercle ; B plus tard, une fois les énoncés écrits et relus.
+
+---
+
+## 11 septembre 2026 — la carte D est retenue, et la semaine est retirée
+
+**Décision de Jacques :** *« Je crois qu'on a la carte D. Je garderais juste le
+premier rectangle en haut. Pour la semaine, il faudrait y repenser. »* Plus, sur
+la structure : un petit rectangle d'objectif et **une vignette en mosaïque** sur
+l'accueil, qui ouvre une vue par niveau puis par thème.
+
+⚠️ **Toujours rien de codé.** Maquette à jour, même lien :
+https://claude.ai/code/artifact/fce8202b-c54d-4f11-9c79-4e90c855f034
+
+### ⚠️ Correction d'un chiffre que j'avais donné deux fois
+
+J'annonçais « 628 mots A2, 1 850 B1, 1 541 DTZ » : **ce ne sont que les noms.**
+Le champ `pruefung` est posé sur **toutes** les catégories. Les vrais
+dénominateurs de la carte D sont **A2 1 093 · B1 2 998 · DTZ 2 601**.
+
+### La semaine en sept carrés enfreignait la règle qu'on venait d'écrire
+
+Jacques l'a vue le premier. Trois défauts, aucun réparable par le dessin :
+
+- **le lundi matin elle s'effondre** — six carrés allumés redeviennent un, un
+  jour où rien n'a changé ;
+- **une fenêtre glissante ne récompense plus rien** — soixante jours et sept
+  jours donnent la même image ;
+- ⚠️ **elle rend l'absence visible sous forme de trous.** Une rangée à trois
+  cases vides est un bulletin — exactement ce que la v523 avait cessé de faire.
+
+**Ce qui la remplace :** « **34 jours travaillés** », un cumul qui ne redescend
+jamais, avec **la série en petit et à droite**, et seulement quand elle est
+vivante. Au retour de vacances le grand chiffre est intact et la petite mention
+a disparu sans commentaire.
+
+**La règle #1 est donc affinée :** non pas « ça ne redescend jamais » mais
+« **ça ne redescend pas pour une raison qu'on ne peut pas nommer** ». Une série
+cassée se comprend ; « cette semaine −40 % » après des vacances, non.
+
+### Deux réserves sur le défilement au tap
+
+- **Des pastilles plutôt qu'un défilement.** Avancer d'un niveau à chaque tap
+  cache l'état et demande quatre gestes pour atteindre C1. **La v527 a déjà coûté
+  trois versions sur ce point exact.** Les pastilles du bandeau de séance
+  existent déjà.
+- ⚠️ **Le niveau et l'examen sont deux axes.** « B1 le niveau » = 1 784 noms ;
+  « B1 l'examen » = 2 998 mots toutes catégories. Les faire défiler dans le même
+  rectangle recréerait la confusion de la v527 : l'examen se choisit **une fois**,
+  dans les réglages.
+
+### Ce que la structure de Jacques règle
+
+**197 thèmes n'entrent pas sur une carte d'accueil, mais entrent dans un écran
+entier.** La vignette ouvre : les cinq bandes de niveau, puis les tuiles de
+thèmes du niveau ouvert. La carte A n'a donc plus besoin de place sur l'accueil —
+et la carte B trouvera la sienne sous les thèmes, plus tard.
