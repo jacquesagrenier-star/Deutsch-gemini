@@ -2038,7 +2038,7 @@ body[data-theme="dark"] .marque-mention{ color:#6b7484; }
     gap:6px;
     flex:1 1 auto;
     min-width:0;
-    max-width:190px;
+    max-width:158px;
     margin:0;
     padding:3px 9px;
     border-radius:999px;
@@ -2115,10 +2115,10 @@ input, textarea, select{
    le flux, a cote de « Ta galerie », ou sa place ne depend de rien. */
 .info-progression{
     position:static; flex-shrink:0;
-    width:21px; height:21px; border-radius:50%;
+    width:24px; height:24px; border-radius:50%;
     border:1px solid rgba(47,98,214,.35); background:none; color:#2f62d6;
-    font-family:inherit; font-size:11px; font-weight:700; font-style:italic;
-    display:inline-flex; align-items:center; justify-content:center;
+    font-family:Georgia,'Times New Roman',serif; font-size:15px; font-weight:700;
+    font-style:italic; display:inline-flex; align-items:center; justify-content:center;
     cursor:pointer; line-height:1; padding:0;
 }
 .info-progression:hover{ background:#f2f6ff; }
@@ -2183,7 +2183,13 @@ body[data-theme="dark"] .info-progression-page{
 }
 body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 
-.search-launch svg{width:17px; height:17px; color:#2f62d6; stroke:#2f62d6; flex-shrink:0;}
+.search-launch svg{
+    /* ⚠️ `fill:none` EXPLICITE. Sans lui le cercle de la loupe prend le `fill`
+       herite et l'icone devient un point plein -- une pastille, pas une loupe.
+       Signale par Jacques. */
+    width:20px; height:20px; fill:none; stroke:#2f62d6; stroke-width:2.2;
+    stroke-linecap:round; flex-shrink:0;
+}
 
 .search-result{
     padding:14px 16px;
@@ -4006,7 +4012,10 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .carte-compte-lib{font-size:11px; color:#7b8798; margin-top:3px; line-height:1.3;}
 /* Le vocabulaire par niveau. EN CONTOUR, PAS EN PLEIN : le seul bloc plein de
    l'accueil reste le bandeau de seance (v531). */
-.carte-vocab{margin-top:12px; padding-top:12px; border-top:1px solid rgba(30,41,59,.10);}
+/* ⚠️ PLUS DE FILET AU-DESSUS. Il separait le vocabulaire d'un bloc qui n'existe
+   plus -- la barre du jour est partie dans le bandeau a la v550. Un trait qui ne
+   separe plus rien ne coute que de la hauteur. */
+.carte-vocab{margin-top:2px; padding-top:0; border-top:0;}
 .carte-vocab-tete{
     display:flex; align-items:center; gap:8px; width:100%;
     background:none; border:0; padding:2px 0; margin:0; cursor:pointer;
@@ -4089,7 +4098,6 @@ body[data-theme="dark"] .carte-jours-mot{color:#F2F2F6;}
 .vocab-legende .pt-sus{background:#0F6E56;}
 .vocab-legende .pt-cours{background:#6A9BEE;}
 .vocab-legende .pt-reste{background:rgba(30,41,59,.18);}
-body[data-theme="dark"] .carte-vocab{border-top-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .carte-vocab-tete{color:#F2F2F6;}
 body[data-theme="dark"] .carte-vocab-niveau,
 body[data-theme="dark"] .vocab-ligne.courant .vocab-ligne-niv{color:#8FB4FF;}
@@ -4550,7 +4558,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div id="carteVocab" class="carte-vocab hidden">
             <button type="button" id="vocabTete" class="carte-vocab-tete"
                     onclick="basculerVocabNiveaux()" aria-expanded="false" aria-controls="vocabNiveaux">
-                <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Vocabulaire</span>
+                <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Progression du vocabulaire</span>
                     <span id="vocabNiveauCourant" class="carte-vocab-niveau"></span></span>
                 <span id="vocabCompte" class="carte-vocab-compte">0 / 0</span>
                 <span class="carte-vocab-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
@@ -4997,7 +5005,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v551</span>
+    <span class="subtitle-version">v552</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7423,7 +7431,7 @@ const I18N = {
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
-        vocab_titre: "Vocabulaire",
+        vocab_titre: "Progression du vocabulaire",
         jours_travailles: "jours travaillés",
         jour_travaille: "jour travaillé",
         jours_serie: "{n} d'affilée",
@@ -8337,7 +8345,7 @@ const I18N = {
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
-        vocab_titre: "Vocabulary",
+        vocab_titre: "Vocabulary progress",
         jours_travailles: "days worked",
         jour_travaille: "day worked",
         jours_serie: "{n} in a row",
@@ -9253,7 +9261,7 @@ const I18N = {
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
-        vocab_titre: "Kelimeler",
+        vocab_titre: "Kelime ilerlemesi",
         jours_travailles: "çalışılan gün",
         jour_travaille: "çalışılan gün",
         jours_serie: "üst üste {n}",
@@ -10434,7 +10442,7 @@ const I18N = {
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
-        vocab_titre: "Лексика",
+        vocab_titre: "Поступ у лексиці",
         jours_travailles: "днів праці",
         jour_travaille: "день праці",
         jours_serie: "{n} поспіль",
@@ -11974,7 +11982,7 @@ const I18N = {
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
-        vocab_titre: "واژگان",
+        vocab_titre: "پیشرفت واژگان",
         jours_travailles: "روز کار",
         jour_travaille: "روز کار",
         jours_serie: "{n} روز پیاپی",
@@ -23296,7 +23304,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 551;
+const APP_VERSION = 552;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
