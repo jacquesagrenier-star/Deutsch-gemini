@@ -2752,3 +2752,38 @@ Les deux mesures restent différentes, parce qu'elles mesurent deux choses
 différentes : **l'objectif mesure du travail, la mosaïque mesure la présence**.
 Mais le ⓘ le dit maintenant en toutes lettres, parce que rien d'autre ne permet
 de le deviner.
+
+---
+
+## 12 septembre 2026 — la séance revient chez elle, et le silence s'explique (v551)
+
+**Trois remarques de Jacques, et les trois portent sur des choses que l'app
+faisait sans le dire.**
+
+### La séance ne revenait pas à l'accueil
+
+⚠️ `ouvrirSeanceDuJour()` **ne fixait aucun écran de retour**. `handleFlashcardBack()`
+retombait donc sur ce qui traînait — le panneau des noms, ou l'écran d'un thème
+ouvert une heure plus tôt. Le défaut ne se voit qu'en enchaînant : quelqu'un qui
+n'a fait que sa séance ne le rencontre jamais.
+
+La séance part de l'accueil et y revient : c'est là que se trouvent le tableau,
+le compte du jour et la porte suivante.
+
+### L'objectif atteint ne se disait pas
+
+L'écran de fin proposait « en faire de plus » **sans jamais annoncer que
+l'objectif était atteint**. Rien ne félicitait, et rien ne disait que la suite
+était facultative. Deux phrases, selon le cas : « Objectif du jour atteint —
+40 cartes. La suite est pour le plaisir. » ou « Encore 28 cartes pour ton
+objectif du jour. »
+
+### Et le plafond de la mosaïque ressemblait à une panne
+
+⚠️ **Passé 80 carreaux dans la journée, le tableau cesse d'avancer — sans un
+mot.** Le plafond est là pour protéger le rythme de la collection : sans lui,
+mille cartes balayées en un quart d'heure terminent une image d'un coup et les
+soixante-cinq y passent en une semaine. Mais un mécanisme qui s'arrête en
+silence ne se distingue pas d'un mécanisme cassé.
+
+« Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain. »

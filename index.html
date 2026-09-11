@@ -3717,6 +3717,11 @@ body[data-theme="dark"] .judge-known{
     margin-top:6px; padding:20px; border:1px solid #e6e9ef;
     border-radius:20px; background:#fff;
 }
+.flash-end-objectif{
+    font-size:13px; font-weight:600; color:#7b8798; margin:6px 0 2px;
+}
+.flash-end-objectif.atteint{color:#0F6E56;}
+body[data-theme="dark"] .flash-end-objectif.atteint{color:#A7F3D0;}
 .flash-end-title{font-weight:800; font-size:18px; color:#1C2430;}
 .flash-end-summary{margin-top:6px; color:#576177; font-size:14px;}
 .flashcard-end button{margin-top:10px;}
@@ -4992,7 +4997,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v550</span>
+    <span class="subtitle-version">v551</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6658,6 +6663,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div id="flashcardEnd" class="flashcard-end hidden">
         <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
         <div class="flash-end-summary" id="flashEndSummary"></div>
+        <div id="flashEndObjectif" class="flash-end-objectif hidden"></div>
         <button id="encoreNeufsBtn" class="secondary hidden" onclick="encoreDesMotsNeufs()" data-i18n="encore_neufs">Encore 15 mots nouveaux</button>
         <button class="secondary" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
         <button class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
@@ -7577,6 +7583,9 @@ const I18N = {
         legende_seance: "Ma séance du jour — le compte « 0 / 40 » est ton objectif quotidien. La séance te sert ce qu'il en reste : les révisions dues d'abord, les mots nouveaux ensuite s'il reste de la place.",
         carte_info_kicker: "Ta progression",
         search_launch_court: "Chercher",
+        flash_end_objectif_atteint: "Objectif du jour atteint — {n} cartes. La suite est pour le plaisir.",
+        flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
+        mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
         legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »). Une carte balayée sans réponse fait avancer le tableau, mais pas cette barre.",
         legende_mosaique: "Le tableau — un carreau se découvre à chaque carte, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
@@ -8488,6 +8497,9 @@ const I18N = {
         legende_seance: "My session today — the « 0 / 40 » count is your daily goal. The session serves what is left of it: overdue reviews first, new words after, if room remains.",
         carte_info_kicker: "Your progress",
         search_launch_court: "Search",
+        flash_end_objectif_atteint: "Daily goal reached — {n} cards. Anything more is for the pleasure of it.",
+        flash_end_objectif_reste: "{n} more cards to reach today's goal.",
+        mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
         legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »). A card swiped past moves the painting along, but not this bar.",
         legende_mosaique: "The painting — one tile uncovers with every card, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
@@ -9401,6 +9413,9 @@ const I18N = {
         legende_seance: "Bugünkü oturumum — « 0 / 40 » günlük hedefin. Oturum kalanını verir: önce zamanı gelen tekrarlar, yer kalırsa yeni kelimeler.",
         carte_info_kicker: "İlerlemen",
         search_launch_court: "Ara",
+        flash_end_objectif_atteint: "Günlük hedefe ulaşıldı — {n} kart. Gerisi keyif için.",
+        flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
+        mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
         legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar. Cevapsız geçilen bir kart tabloyu ilerletir ama bu çubuğu ilerletmez.",
         legende_mosaique: "Tablo — her kartta bir kare açılır, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
@@ -10932,6 +10947,9 @@ const I18N = {
         legende_seance: "Мій сеанс на сьогодні — « 0 / 40 » це твоя денна мета. Сеанс подає те, що з неї лишилось: спершу прострочені повторення, потім нові слова, якщо є місце.",
         carte_info_kicker: "Твій поступ",
         search_launch_court: "Пошук",
+        flash_end_objectif_atteint: "Денну мету досягнуто — {n} карток. Решта — задля задоволення.",
+        flash_end_objectif_reste: "Ще {n} карток до денної мети.",
+        mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
         legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив. Пропущена без відповіді картка рухає картину, але не цю смужку.",
         legende_mosaique: "Картина — з кожною карткою відкривається плитка, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнись, щоб збільшити.",
@@ -11817,6 +11835,9 @@ const I18N = {
         legende_seance: "جلسهٔ امروز — عدد « ۰ / ۴۰ » هدف روزانهٔ توست. جلسه باقی‌ماندهٔ آن را می‌آورد: نخست مرورهای سررسیده، سپس واژه‌های نو اگر جا بماند.",
         carte_info_kicker: "پیشرفت تو",
         search_launch_court: "جست‌وجو",
+        flash_end_objectif_atteint: "هدف امروز انجام شد — {n} کارت. باقی برای لذت است.",
+        flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
+        mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
         legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای. کارتی که بدون پاسخ رد شود تابلو را جلو می‌برد اما این نوار را نه.",
         legende_mosaique: "تابلو — با هر کارت یک کاشی باز می‌شود، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
@@ -20681,6 +20702,12 @@ function handleFlashcardBack(){
     // principe que la v523 -- l'absence ne punit pas.
     try{ seanceMosaiqueTerminee(); }catch(e){}
     sessionVues = 0; sessionSues = 0;
+    if(retourSeanceAccueil){
+        retourSeanceAccueil = false;
+        hideFlashcardEnd();
+        goHome();
+        return;
+    }
     hideFlashcardEnd();
     // Carte ouverte depuis la recherche : retour a l'accueil, d'ou la recherche
     // a ete lancee -- pas vers le menu du type de mot, qui n'a pas ete traverse.
@@ -23269,7 +23296,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 550;
+const APP_VERSION = 551;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24232,6 +24259,7 @@ function noterPastilleExamenVue(){
 // « Retour » de fin de paquet au mauvais endroit. Le defaut ne se verrait qu'a
 // la fin du paquet, longtemps apres la cause.
 let gardeOrigineCartes = null;
+let retourSeanceAccueil = false;
 
 function ouvrirAideExamen(){
     gardeOrigineCartes = { panneau: panneauAvantFlashcards, recherche: flashcardFromSearch };
@@ -25249,8 +25277,16 @@ function majMosaiqueAccueil(){
         }
         const pied = document.getElementById("mosaiquePied");
         if(pied){
+            // ⚠️ LE PLAFOND DOIT SE DIRE. Passe 80 carreaux dans la journee, le
+            // tableau cesse d'avancer -- et sans un mot, ca ressemble a une
+            // panne. Le plafond protege le rythme de la collection (sinon mille
+            // cartes balayees terminent une image d'un coup) ; encore faut-il
+            // que la personne sache pourquoi son tableau s'est arrete.
+            // Signale par Jacques.
+            const plafonne = !fini && v.j === getTodayStr() && v.n >= MOSAIQUE_PLAFOND;
             pied.textContent = fini
                 ? tf("mosaique_trophee", { n: Math.max(1, v.t) })
+                : plafonne ? t("mosaique_plafond")
                 : tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
             // ⚠️ « D'UN PEINTRE ALLEMAND » AURAIT ETE FAUX POUR UN TIERS D'ENTRE
             // EUX : Moser, Moll, Schiele, Gerstl et Faistauer sont autrichiens ;
@@ -25502,6 +25538,14 @@ async function ouvrirSeanceDuJour(){
     // aller chercher du retard d'un autre niveau, pas seulement du neuf d'ici.
     currentCardsFull = tout;
     currentCards = seance;
+    // ⚠️ LA SEANCE REVIENT A L'ACCUEIL, PAS AU DERNIER ECRAN VISITE. Elle ne
+    // fixait aucun retour : handleFlashcardBack() retombait sur ce qui trainait
+    // -- le panneau des noms, ou l'ecran d'un theme ouvert une heure plus tot.
+    // Signale par Jacques. La seance part de l'accueil, elle y revient ; c'est
+    // la que se trouvent le tableau, le compte du jour et la porte suivante.
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
     currentTheme = { id: "seance_" + niveau, name: t("seance_titre") + " \u00b7 " + niveau };
     currentFlashcard = 0;
     flashcardMode = seance[0].mode || "nomen";
@@ -25946,6 +25990,21 @@ function showFlashcardEnd(){
     // « Encore 15 » : seulement si le paquet a encore des mots jamais vus. Le
     // libelle porte un {n}, que data-i18n ne sait pas substituer -- on le
     // reecrit ici, a chaque affichage de l'ecran de fin.
+    // ⚠️ DIRE QU'ON PEUT CONTINUER, PAS SEULEMENT L'AUTORISER. L'objectif
+    // atteint, l'ecran de fin proposait « en faire de plus » sans jamais
+    // annoncer que l'objectif ETAIT atteint : rien ne felicitait, et rien ne
+    // disait que la suite etait facultative. Signale par Jacques.
+    const mot = document.getElementById("flashEndObjectif");
+    if(mot){
+        let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
+        try{ fait = getDailyActivityCount() || 0; }catch(e){}
+        try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+        const atteint = fait >= cible;
+        mot.textContent = atteint ? tf("flash_end_objectif_atteint", { n: cible })
+                                  : tf("flash_end_objectif_reste", { n: cible - fait });
+        mot.classList.toggle("atteint", atteint);
+        mot.classList.remove("hidden");
+    }
     const encore = document.getElementById("encoreNeufsBtn");
     if(encore){
         const t2 = trancheSupplementaire();
