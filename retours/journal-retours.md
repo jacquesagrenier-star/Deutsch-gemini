@@ -2307,3 +2307,100 @@ lui qui dit qu'il se passe quelque chose.
 **Vérifié dans la vraie page :** « Vocabulaire · A1 · 612 / 860 », la flèche qui
 pivote, les cinq lignes et la légende. `verifier.py` 14 213 contrôles,
 `cles_langues.py` 948 clés × 5 langues.
+
+---
+
+## 11 septembre 2026 — la mosaïque : spécifiée, et cent deux tableaux candidats
+
+⚠️ **Rien de codé.** Planche de sélection publiée, avec une démo réglable :
+https://claude.ai/code/artifact/5fb458be-64cf-4824-8746-e4a05ce62f3f
+
+### La spécification, telle que Jacques l'a arrêtée
+
+- **Un carreau par carte traversée** — jugée, balayée, ou simplement passée.
+  ⚠️ **Pas « par mot neuf »**, et la raison est mesurée : après quelques
+  semaines la plupart des séances sont des révisions, et une image adossée aux
+  mots neufs calerait des jours entiers — précisément quand l'étudiant travaille
+  le plus.
+- **Mille carreaux par image**, pas 500 : à 40 cartes/jour, une image tous les
+  25 jours, soit **une vingtaine** sur une traversée A1→C1 de dix-sept mois.
+  500 en demanderait 41. C'est la seule variable qui décide si le projet est
+  finissable.
+- **La couleur est libérée de tout sens** — c'est le déblocage, et il est de
+  Jacques. Tant qu'elle codait « maîtrisé / en cours », l'image était
+  impossible ; un carreau porte désormais le morceau d'image qu'il cache.
+- **L'image se forme sur tous les niveaux confondus**, pas par niveau : ça suit
+  la séance, qui traverse déjà tous les niveaux depuis la v526.
+- ⚠️ **Plafond de 80 carreaux par jour.** Ce n'est pas de la police
+  anti-triche : sans lui, mille cartes balayées en un quart d'heure terminent
+  une image d'un coup et la collection entière y passe en une semaine. Il
+  protège le rythme de la récompense, donc l'intérêt du dispositif.
+- **Ordre de révélation éparpillé et figé**, tiré une fois puis mémorisé.
+
+### Le cycle de vie, demandé par Jacques
+
+Terminée → **elle reste quelques jours** à l'accueil → **annoncée une fois**
+(trois notifications seraient du harcèlement) → **rangée dans la galerie**, qui
+est ce qui porte la motivation sur la durée : une vingtaine de cases, gagnées en
+couleur, les autres en silhouette.
+
+### Le premier jour : du verre dépoli
+
+⚠️ **Le problème qu'il a vu : une grille vide n'invite personne.** Sa
+proposition — montrer le tableau en filigrane — tuerait la curiosité qu'il avait
+lui-même nommée comme moteur. Le compromis retenu : **le carreau fermé est du
+verre dépoli** (`backdrop-filter`), pas un cache opaque. On distingue les masses
+et les couleurs, on ne reconnaît rien. Plus un **cadre** et un cartouche de
+musée « Tableau 1 sur 20 » : un cadre vide se regarde, une grille vide non.
+
+### Les images : la règle, et les deux pièges
+
+**Ni vieux maîtres ni XVIIᵉ-XVIIIᵉ** — demande de Jacques : impressionnisme et
+après. Cent deux candidats de vingt peintres du monde germanophone, de
+l'impressionnisme allemand (Liebermann, Corinth, Slevogt) au Blaue Reiter, à Die
+Brücke, au Jugendstil viennois.
+
+⚠️ **Règle unique et vérifiable : peintre mort avant 1956** (plus de 70 ans),
+ce qui couvre l'Europe, le Canada et le Royaume-Uni d'un seul critère. Münter
+(2033) et Nolde (2027) sont écartés pour ça, malgré leur place au Blaue Reiter.
+
+⚠️ **Deuxième piège, moins connu :** l'arrêt allemand Reiss-Engelhorn (2018) a
+jugé qu'une **photo de musée** peut créer un droit neuf, même sur une œuvre du
+domaine public. D'où : ne prendre que des images qu'une institution publie
+elle-même en domaine public / CC0.
+
+⚠️ **Et une leçon d'outillage :** l'Art Institute of Chicago a une belle API
+mais son serveur d'images renvoie 403 à tout ce qui n'est pas un navigateur ; le
+Met répond, mais sa collection est **vide** sur l'expressionnisme allemand (zéro
+résultat pour Marc, Macke, Klee, Kandinsky, Kirchner, Beckmann). Wikimedia
+Commons est la source qui marche — et il faut passer par son **API** pour
+obtenir l'URL d'une vignette, la deviner renvoie 400.
+
+**Je ne suis pas juriste** : la règle des 70 ans et la source institutionnelle
+sont solides, mais une vérification de Jacques sur les images finalement
+retenues reste la bonne prudence.
+
+---
+
+## 11 septembre 2026 — demande en attente : les règles de genre des noms
+
+**Demande de Jacques, non commencée :** *« dans la partie noms, ce qui est
+intéressant, c'est qu'il y a des règles — par exemple les noms qui finissent par
+`-ung` sont toujours féminins. Donc indiquer les différentes règles, puis faire
+des exercices avec les règles, et mélanger. Que ça soit accessible dans la tuile
+Noms. »*
+
+C'est le complément naturel de « Quel article ? » (v540) : celui-ci fait
+mémoriser un genre à la fois, les règles font **deviner un genre jamais
+rencontré**. `-ung`, `-heit`, `-keit`, `-schaft`, `-ion`, `-tät` sont féminins
+sans exception utile ; `-chen` et `-lein` neutres ; `-er` d'agent masculin.
+
+⚠️ **Et la remarque de Jacques sur `-e` est exactement le piège à traiter :**
+« la majorité du temps c'est féminin » — donc `der Name`, `das Auge`, `der Käse`
+existent. Une règle énoncée comme absolue alors qu'elle a des exceptions
+enseigne une fausse certitude. Les règles doivent **porter leur taux** et leurs
+contre-exemples, sinon elles nuisent.
+
+**À vérifier avant d'écrire quoi que ce soit :** on a les 4 209 noms avec leur
+genre — le taux réel de chaque terminaison est **mesurable sur nos propres
+données**, pas à recopier d'une grammaire. C'est par là qu'il faut commencer.
