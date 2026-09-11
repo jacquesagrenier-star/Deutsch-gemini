@@ -3636,7 +3636,7 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    est revenu ; elle n'a pas a choisir en plus une echeance de revision. */
 .judge-row{display:flex; gap:10px;}
 .judge-button{
-    flex:1; margin:0; padding:16px 12px; border-radius:16px;
+    flex:1; margin:0; padding:14px 12px 13px; border-radius:16px;
     font-weight:800; font-size:15px; letter-spacing:.01em;
     border:1.5px solid transparent; cursor:pointer;
     transition:transform .12s ease, box-shadow .12s ease;
@@ -3651,9 +3651,18 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .judge-again:hover{border-color:#c9d0dc;}
 .judge-good{flex:1; background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .judge-good:hover{background:#cdf0dc;}
+/* ⚠️ L'ECHEANCE EST LA SECONDE LIGNE DU BOUTON, PAS UNE NOTE DE BAS DE PAGE.
+   Jacques proposait de remplacer « Je savais » par « Revoir dans 10 minutes ».
+   ⚠️ Ce serait defaire la v227, qui a remplace QUATRE decisions de
+   planification par UNE SEULE question -- « est-ce que le mot t'est revenu ? »
+   -- et laisse l'app en deduire la date. Nommer le bouton par son echeance
+   ramene l'apprenant dans la planification a chaque carte.
+   Mais son intuition visait juste sur un point : l'echeance ne se voyait pas.
+   De 11 px a 13, de 72 % d'opacite a 92 : elle se lit maintenant du premier
+   coup d'oeil, sans cesser d'etre la CONSEQUENCE de la reponse. */
 .judge-echeance{
-    display:block; margin-top:3px;
-    font-size:11px; font-weight:600; opacity:.72; letter-spacing:0;
+    display:block; margin-top:5px;
+    font-size:13px; font-weight:700; opacity:.92; letter-spacing:0;
 }
 /* Trois pastilles valent une phrase : elles disent d'un coup d'oeil ou en est
    le mot sur l'echelle, et un "Encore" les vide sous les yeux -- la sanction
@@ -3673,7 +3682,7 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .srs-pip.on{background:#1c6b47;}
 .srs-pip.next{box-shadow:0 0 0 2.5px rgba(28,107,71,.18);}
 .srs-ladder-text{
-    font-size:11px; font-weight:700; color:#1c6b47; opacity:.78;
+    font-size:13px; font-weight:700; color:#1c6b47; opacity:.95;
     letter-spacing:.01em; text-transform:none;
 }
 /* Trois pastilles vertes : c'est le seul etat qui merite d'etre remarque, et
@@ -5032,7 +5041,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v553</span>
+    <span class="subtitle-version">v554</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -23367,7 +23376,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 553;
+const APP_VERSION = 554;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
