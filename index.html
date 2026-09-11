@@ -2445,9 +2445,28 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
    seulement. Le defilement, le pincement et le zoom volontaire restent
    intacts partout ailleurs -- on ne retire pas un geste a l'utilisateur, on
    empeche un geste involontaire d'en declencher un autre. */
-button, .orb, .theme-item, .level-pill, .judge-button, .judge-known,
-.setup-choice, .orb-opt, .finir-theme, .mos-cadre, .galerie-item,
-[onclick]{ touch-action:manipulation; }
+/* ⚠️ LA LISTE DE CONTROLES NE SUFFISAIT PAS, ET C'ETAIT PREVISIBLE.
+   Troisieme signalement de Jacques : « si je clique a un mauvais endroit,
+   l'ecran va s'expandre, je suis oblige de le reduire avec mes deux doigts ».
+   A COTE d'un bouton, justement : sur la carte, sur le fond, sur un texte --
+   partout ou la regle ne s'appliquait pas. Enumerer les elements interactifs
+   revient a promettre de ne jamais en oublier un ; la promesse a tenu deux
+   versions.
+
+   La regle est donc posee sur la RACINE. `touch-action` n'est pas heritee,
+   mais le navigateur intersecte les valeurs de l'element touche et de ses
+   ancetres : `manipulation` a la racine retire le double-tap de toute la page.
+
+   ⚠️ LE PINCEMENT RESTE. `manipulation` = tout sauf le double-tap : on peut
+   toujours zoomer a deux doigts, et le <meta viewport> ne porte ni
+   `user-scalable=no` ni `maximum-scale`. Retirer le zoom volontaire serait une
+   faute d'accessibilite (WCAG 1.4.4) -- on retire un geste ACCIDENTEL, pas un
+   geste voulu. Le controle verifier_zoom_involontaire() garde les deux moities
+   de cette phrase.
+
+   La flashcard garde son `pan-y` : elle est plus restrictive, et
+   l'intersection la laisse gagner pour elle-meme. */
+html{ touch-action:manipulation; }
 
 .flashcard-wrapper{
     perspective:1000px;
@@ -4362,14 +4381,15 @@ body[data-theme="dark"] .ip-bloc{border-bottom-color:rgba(255,255,255,.10);}
 .ip-texte h3{font-size:13.5px; font-weight:700; margin:0 0 3px;}
 .ip-texte p{font-size:12.5px; line-height:1.5; color:#576177; margin:0;}
 body[data-theme="dark"] .ip-texte p{color:#A6ADBB;}
-.ip-grille{
-    display:grid; grid-template-columns:repeat(12,1fr); gap:1.5px;
-    width:108px; border:2px solid #1C2430; padding:2px; background:#e9e4da;
+.ip-demo-large{flex:0 0 136px;}
+/* Le meme cadre que sur l'accueil, en plus petit : c'est la meme chose qu'on
+   montre, elle doit se reconnaitre. */
+.ip-toile{
+    width:100%; border:2px solid #1C2430; padding:2px; background:#e9e4da;
+    line-height:0;
 }
-body[data-theme="dark"] .ip-grille{border-color:#C6CCD6; background:#2a3038;}
-.ip-grille i{display:block; aspect-ratio:1; background:#cfd5de;}
-.ip-grille i.o{background:#7fae6a;}
-body[data-theme="dark"] .ip-grille i{background:#3a4250;}
+.ip-toile canvas{width:100%; height:auto; display:block;}
+body[data-theme="dark"] .ip-toile{border-color:#C6CCD6; background:#2a3038;}
 .info-titre{
     font-size:13px; font-weight:800; letter-spacing:.10em; text-transform:uppercase;
     color:#2f62d6; margin:26px 0 8px;
@@ -5209,7 +5229,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v563</span>
+    <span class="subtitle-version">v564</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5280,8 +5300,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          Jacques : « on ne parle pas du tableau, comment il grandit ». -->
     <h3 class="info-titre" data-i18n="ip_partie_tableau">Le tableau</h3>
     <div class="ip-bloc">
-        <div class="ip-demo">
-            <div class="ip-grille" id="ipGrille"></div>
+        <!-- ⚠️ UNE VRAIE TOILE, ET UNE QU'AUCUN ETUDIANT NE GAGNERA.
+             Franz Marc, Blaues Pferd I (1911) -- la 66e, hors collection.
+             Illustrer avec l'une des 65 reviendrait a la devoiler avant
+             qu'elle soit meritee. Demande de Jacques : « peut-etre en prendre
+             un qui est apres les soixante-cinq ».
+             Et elle est dessinee par dessinerMosaique(), la fonction meme qui
+             dessine la vraie : la demonstration ne peut pas mentir sur ce a
+             quoi le glacis ressemble. -->
+        <div class="ip-demo ip-demo-large">
+            <div class="ip-toile"><canvas id="ipToile" width="700" height="937"></canvas></div>
         </div>
         <div class="ip-texte">
             <p data-i18n="ip_tableau_1"></p>
@@ -16564,13 +16592,29 @@ function majInfoProgression(){
     pose("ipTableauCarreaux", "ip_tableau_carreaux", { n: MOSAIQUE_CARREAUX });
     pose("ipTableauPlafond", "ip_tableau_plafond", { n: MOSAIQUE_PLAFOND });
     pose("ipTableauTrophee", "ip_tableau_trophee", { n: MOSAIQUE_SEANCES_TROPHEE });
-    // La petite grille : quelques carreaux ouverts, pour montrer le principe.
-    const g = document.getElementById("ipGrille");
-    if(g && !g.childElementCount){
-        let h = "";
-        for(let i = 0; i < 96; i++) h += '<i class="' + (i % 7 === 0 || i % 11 === 3 ? "o" : "") + '"></i>';
-        g.innerHTML = h;
-    }
+    dessinerToileInfo();
+}
+
+// ⚠️ VINGT CARREAUX MANQUANTS, PAS UN DE PLUS. Jacques : « je le mettrai
+// presque complet avec seulement une vingtaine de carreaux qui ne sont pas
+// termines -- je pense que ca donne une bonne idee ». Et c'est juste : une
+// grille a moitie fermee montre une grille, une toile a vingt carreaux pres
+// montre CE QUE LA GRILLE FAIT.
+const IP_CARREAUX_MANQUANTS = 20;
+
+function dessinerToileInfo(){
+    const canvas = document.getElementById("ipToile");
+    if(!canvas || canvas.dataset.fait === "1") return;
+    const img = new Image();
+    img.onload = () => {
+        const g = grilleMosaique(img.naturalWidth, img.naturalHeight);
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        dessinerMosaique(canvas, img, Math.max(0, g.total - IP_CARREAUX_MANQUANTS),
+                         g.total, g.cols, g.rows, false);
+        canvas.dataset.fait = "1";
+    };
+    img.src = MOSAIQUE_BASE + "img/info.jpg";
 }
 
 function ouvrirInfoProgression(){
@@ -23922,7 +23966,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 563;
+const APP_VERSION = 564;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

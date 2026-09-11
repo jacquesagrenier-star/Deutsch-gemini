@@ -3094,3 +3094,56 @@ deux commandes pour un meme etat, la porte ouverte a l'incoherence — les ligne
 que le depliement montre deja sont devenues **cliquables** : on ouvre la
 fleche, on voit les cinq niveaux, on touche celui qu'on veut. Meme cle, meme
 consequence que la pastille.
+
+## 12 septembre 2026 — le zoom qui s'ouvre tout seul, troisieme signalement (v564)
+
+*« Il y a toujours un probleme : dans certains ecrans, si je clique a un
+mauvais endroit, l'ecran va s'expandre. Je suis oblige de le reduire avec mes
+deux doigts. Donc il faudrait s'assurer partout dans l'application. »*
+
+**Troisieme fois.** Les deux premieres, la parade avait ete posee sur une
+**liste** d'elements interactifs — `button, .orb, .theme-item, .level-pill,
+.judge-button…` — ce qui revenait a promettre de n'en jamais oublier un. La
+promesse a tenu deux versions. Et le mot decisif de son message est **« a un
+mauvais endroit »** : justement **a cote** d'un bouton, sur la carte, sur le
+fond, sur un texte — partout ou la liste ne s'appliquait pas.
+
+La regle est desormais sur la **racine**. `touch-action` ne s'herite pas, mais
+le navigateur **intersecte** les valeurs de l'element touche et de ses
+ancetres : `manipulation` sur `html` retire le double-tap de toute la page. La
+flashcard garde son `pan-y`, plus restrictif — l'intersection la laisse gagner
+pour elle-meme.
+
+### La tentation suivante, et pourquoi on ne la prend pas
+
+`user-scalable=no` dans le `<meta viewport>` reglerait tout d'un coup. Ce
+serait une **faute d'accessibilite** (WCAG 1.4.4) : on retirerait alors le zoom
+**voulu**, celui dont a besoin qui voit mal. On enleve un geste **accidentel**,
+jamais un geste volontaire.
+
+`verifier_zoom_involontaire()` garde **les deux moities de cette phrase** :
+il echoue si la regle disparait de `html`, et il echoue aussi si le viewport se
+met a interdire le pincement. **Verifie dans les deux sens, sur deux copies
+cassees.**
+
+### Et un vrai tableau dans l'ecran ⓘ
+
+*« Pour l'explication d'un tableau en information, j'en mettrai un — peut-etre
+en prendre un qui est apres les soixante-cinq, qui avait beaucoup de couleurs,
+puis je le mettrai presque complet avec seulement une vingtaine de carreaux qui
+ne sont pas termines. Je pense que ca donne une bonne idee. »*
+
+Le quadrillage abstrait de la v562 montrait **une grille**. Une toile a vingt
+carreaux pres montre **ce que la grille fait** — c'est la difference, et il a
+raison.
+
+**Franz Marc, _Blaues Pferd I_ (1911), Lenbachhaus** : la 66e toile, **hors
+collection**. Illustrer avec l'une des 65 reviendrait a la devoiler avant
+qu'elle soit meritee — c'est le sens de son « apres les soixante-cinq ». Grands
+aplats de bleu, de jaune et de rouge : elle reste lisible avec vingt carreaux
+manquants, ce que la demonstration doit justement montrer. Marc mort en 1916,
+domaine public, meme traitement « vif » que les autres.
+
+⚠️ Elle est dessinee par **`dessinerMosaique()`**, la fonction meme qui dessine
+la vraie. La demonstration ne peut donc pas mentir sur ce a quoi le glacis
+ressemble : si le rendu change, elle change avec lui.

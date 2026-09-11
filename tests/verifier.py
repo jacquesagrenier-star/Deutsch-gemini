@@ -536,6 +536,45 @@ def verifier_retours_flashcards(r, source):
     print("   modes de cartes : %d, dont %d dans la table de retour" % (len(modes), len(traites)))
 
 
+def verifier_zoom_involontaire(r, source):
+    """Le double-tap est-il neutralise, et le pincement toujours permis ?
+
+    ⚠️ LES DEUX MOITIES COMPTENT, ET ELLES TIRENT EN SENS INVERSE.
+
+    Jacques l'a signale TROIS FOIS : sur iOS, deux touches rapprochees a cote
+    d'un bouton sont lues comme un double-tap, Safari zoome, et il faut pincer
+    a deux doigts pour revenir. La parade est `touch-action:manipulation`, et
+    elle a d'abord ete posee sur une LISTE d'elements interactifs -- ce qui
+    revenait a promettre de n'en jamais oublier un. La promesse a tenu deux
+    versions. Elle est desormais sur la racine.
+
+    La tentation suivante est connue : ajouter `user-scalable=no` au viewport,
+    qui reglerait le probleme d'un coup. Ce serait une faute d'accessibilite
+    (WCAG 1.4.4) -- on retire alors le zoom VOULU, celui dont a besoin qui voit
+    mal. Ce controle refuse les deux derives a la fois : l'oubli de la regle,
+    et le raccourci qui tue le pincement.
+    """
+    if not re.search(r"^html\s*\{[^}]*touch-action\s*:\s*manipulation",
+                     source, re.M):
+        r.echec("interface",
+                "le double-tap n'est pas neutralise : il manque "
+                "`html{ touch-action:manipulation; }`")
+    r.controle()
+
+    m = re.search(r'<meta[^>]+name=["\']viewport["\'][^>]*>', source)
+    if not m:
+        r.echec("interface", "pas de <meta viewport>")
+    else:
+        meta = m.group(0)
+        for interdit in ("user-scalable=no", "user-scalable=0", "maximum-scale"):
+            if interdit in meta.replace(" ", ""):
+                r.echec("interface",
+                        "le <meta viewport> empeche le zoom volontaire (%s) : "
+                        "WCAG 1.4.4" % interdit)
+            r.controle()
+    print("   zoom          : double-tap neutralise, pincement permis")
+
+
 def verifier_octets_de_controle(r, chemin):
     """Le fichier contient-il un octet qu'aucun navigateur n'attend ?
 
@@ -874,6 +913,7 @@ def main():
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
     verifier_octets_de_controle(r, INDEX)
+    verifier_zoom_involontaire(r, source)
     verifier_zone_morte(r, source)
     verifier_appels_internes(r, source, fonctions)
     verifier_tuiles_non_vides(r, source)
