@@ -3686,3 +3686,108 @@ dollar**, et hors gratuité un épisode coûte **7,50 $** — environ 220 $ pour
 
 Dossiers séparés à sa demande : `_a-televerser/` (ce qui part), `retours/` (ce
 qui revient), `_essai-avatar/` (les mesures).
+
+## 12 septembre 2026 — l'épisode 1 refait à l'avatar, monté, sonorisé, sous-titré
+
+*« Bien enregistre toutes les etapes afin que pour le prochain episode tout
+soit facile […] note toute la procedure, toutes les erreurs qu'on a faites
+pour ne pas les repeter. »*
+
+**Livré : `video/PROCEDURE-episode.md`** — neuf étapes, les commandes, et
+chaque avertissement payé d'une prise ou d'une conclusion fausse. C'est le
+fichier à ouvrir au début de l'épisode 2.
+
+**L'épisode 1 est entièrement refait** : douze plans parlants regénérés par
+OmniHuman 1.5, montés avec les sept plans de décor, sonorisés, sous-titrés.
+19 plans, 74 s. **Coût réel : zéro** — les 100 s de l'essai gratuit ont
+suffi ; hors gratuité un épisode coûte 7,50 $.
+
+### Ce qui disparaît de la chaîne
+
+**Plus d'étape de lip-sync.** OmniHuman fabrique la bouche à partir du son,
+dans la même passe que l'image. Deux contraintes qui décidaient de toute la
+mise en scène tombent avec elle : le **plancher de 4 s** de Seedance, et le
+fait que **sync.so repeignait les lèvres sans la mâchoire**. L'abonnement
+sync.so à 19 $/mois n'a plus d'objet.
+
+### Les erreurs de la journée, et pourquoi elles étaient silencieuses
+
+⚠️ **Un fichier mal nommé est une mesure fausse qui se présente bien.** Deux
+fois dans la journée un fichier portait le nom d'un autre plan. La première a
+produit des chiffres plausibles, un verdict lisible et **une conclusion
+spectaculaire entièrement fausse** — j'ai relevé les seuils de bruit, réécrit
+le journal et poussé le commit avant de m'en apercevoir. Rien dans le
+résultat n'avertit. `importer_prise.py` vérifie désormais l'identité par
+corrélation du son, jamais par le nom.
+
+⚠️ **Un plan muet au montage ne signale rien.** Les clips de décor n'ont
+aucune piste sonore et leur voix vit ailleurs ; y avoir mis du silence a fait
+perdre **la narration de sept plans sur dix-neuf**. Jacques : *« il manque un
+plan lorsqu'il répond qu'il vient de Montréal »* — le plan 07 existait, il
+était muet.
+
+⚠️ **Et un seul segment sans audio fait perdre le son de TOUT l'épisode** :
+le concat exige le même nombre de flux partout, et il ne se plaint pas.
+
+⚠️ **Un clic ne se voit pas à 16 kHz.** J'ai écrit « aucune coupure nette »
+sur la foi d'une analyse sous-échantillonnée ; à 44,1 kHz la même fenêtre
+montrait une crête de 9 226 pour une énergie de 257.
+
+⚠️ **Élargir `.gitignore` ne retire rien de ce qui est déjà suivi.** Quatre
+prises — 14 Mo — sont restées dans un dépôt public jusqu'à un `git rm
+--cached` explicite.
+
+### Quatre pièges de sous-titrage, tous silencieux
+
+- **Le tag `\k` du karaoké** garde colorés les mots déjà dits : l'œil voit une
+  barre de progression, pas un mot. Il faut **une ligne par mot**.
+- **Un `\c` en ligne veut six chiffres**, pas huit. libass abandonne une
+  balise mal formée **sans un mot** et le texte reste blanc.
+- **`WrapStyle`** : `2` ne coupe pas du tout (débordement), `0` **équilibre**
+  les lignes — élargir les marges n'y change rien —, `1` remplit la ligne du
+  haut. C'est le seul qui utilise la largeur.
+- **La narration aussi se surligne.** Je l'avais exclue « parce qu'elle n'en a
+  pas besoin » : c'est elle qui porte le plus de texte.
+
+### Ce que les sources ont appris sur les prompts
+
+Le guide propre à OmniHuman met **« clarity, non-contradiction, and minimal
+negation »** en tête. Nos prompts alignaient **quatorze négations**, dont cinq
+d'affilée sur l'arrière-plan — précisément le passage qui échouait, avec le
+figurant qui revenait dans le cadre. Réécrit en positif, il tient.
+
+Et il donne le remède à ce que nous mesurons : *« Unnatural lip movements:
+**add explicit speaking verbs** »*. Nos prompts disaient « He speaks once » à
+la dernière ligne, comme une contrainte technique.
+
+⚠️ **J'avais aussi réordonné les blocs sur la foi d'un guide générique de
+texte-vers-vidéo**, qui recommande de nommer la lumière et l'optique et
+affirme que les premiers mots pèsent davantage. Les deux sont faux ici : le
+guide d'OmniHuman dit **la caméra en tête**, et **de ne pas décrire ce que
+l'image porte déjà**. Un guide écrit pour un autre cas ne se transpose pas.
+
+### Le son
+
+Trois lits d'ambiance générés chez ElevenLabs — hall, tapis à bagages,
+sortie — **enchaînés en fondu aux changements de lieu**. Un lit unique
+contredisait le montage : *« quand il change d'endroit, le son devrait
+changer ».* Niveaux mesurés : lit à **−24 dB** sous le dialogue, annonce à
+**−20** — le critère **WCAG 1.4.7**, qui vaut double pour une app
+d'apprentissage.
+
+L'annonce d'embarquement est faite avec une **voix Windows locale** : après
+le filtre téléphone, la réverbération et 20 dB d'atténuation, une voix
+gratuite est indiscernable d'une voix neurale.
+
+⚠️ **Et rien de ce que Mark demande ne sort du haut-parleur** — même règle que
+pour les panneaux du plan 4.
+
+### Ce qui reste ouvert
+
+- **Les droits.** Ticket **I-2026091223400001**. `video/DROITS-omnihuman.md`.
+  ⚠️ **Jusqu'à la réponse : on monte, on ne diffuse pas publiquement.**
+- **Le compte BytePlus** : Business, pas Personal — leur tableau d'accès ne
+  liste pas OmniHuman pour Personal, et le choix est irréversible.
+- **La finesse du visage** : 480p natif remonté, plafond du modèle.
+- **Les rendus devraient sortir hors de OneDrive** : un fichier de 50 Mo
+  écrit dans le dossier synchronisé revient en `0xC00D36D6` au lecteur.
