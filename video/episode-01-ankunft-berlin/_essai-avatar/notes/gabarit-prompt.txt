@@ -1,36 +1,67 @@
 GABARIT DE PROMPT -- avatar pilote par l'audio
 12 septembre 2026, apres six prises mesurees et une lecture des sources
 
-L'ORDRE DES BLOCS N'EST PAS DECORATIF
-    « Ordering matters because most models read left-to-right and weight
-    the earliest tokens more heavily. » (guide LTX, juillet 2026)
+⚠️ L'ORDRE : LA CAMERA EN PREMIER. J'AI CHANGE, PUIS REVENU.
+    Le guide propre a OmniHuman 1.5 donne la formule :
 
-    Nos premiers prompts ouvraient sur « Locked-off camera. Keep the
-    framing, his position and his distance from the camera exactly as they
-    are in the image » -- de la contrainte technique dans la position la
-    plus lourde, et l'emotion au 150e mot. On donnait le plus de poids a ce
-    qui comptait le moins.
+        [mouvement de camera] + [emotion] + [etat de parole] + [actions]
 
-    L'ordre ci-dessous met la PERFORMANCE en tete et la continuite en
-    queue. La continuite est indispensable, mais elle n'a pas besoin d'etre
-    lue en premier : elle doit seulement etre lue.
+    « Leading with camera movement sets the visual framework. Emotion
+    colors everything that follows. Speaking state helps synchronize lip
+    movements. » (fal, guide OmniHuman 1.5)
 
-LES SEPT BLOCS, DANS CET ORDRE
-    1. SUJET      qui, precisement. « The man in the image » et rien de
-                  plus : l'image porte l'identite, la decrire l'affaiblit.
-    2. SITUATION  ce qui vient de se passer et ce qu'il fait maintenant.
-                  Deux phrases. C'est ce bloc qui donne au modele de quoi
-                  jouer -- il lit le SENS de la replique.
-    3. JEU        la performance en temps : l'etat de depart, ce qui change
-                  pendant la parole, l'etat d'arrivee.
-    4. VOIX       « Let his face follow the voice. » Le son porte deja
-                  l'interpretation ; c'est la seule information qui n'est
-                  ni dans l'image ni dans le texte.
-    5. APRES      ce que fait le visage QUAND IL NE PARLE PLUS. Sans ce
-                  bloc l'avatar retombe en poker-face -- c'est documente.
-    6. CADRE      camera, lumiere, optique. Termes de cinema standard :
-                  ils sont denses dans les donnees d'entrainement.
-    7. CONTINUITE l'interlocuteur hors champ, les figurants, l'arriere-plan.
+    J'avais inverse cet ordre le 12 septembre apres avoir lu, dans un guide
+    GENERIQUE de texte-vers-video, que « les modeles ponderent davantage
+    les premiers mots » -- et j'en avais conclu qu'il fallait chasser la
+    technique de la tete du prompt. Deux erreurs :
+
+      1. L'affirmation est contestee. « The weight of tokens that appears
+         earlier is not necessarily larger ; it depends on the position
+         encoding. » On ne change pas un format qui marche sur une
+         affirmation qu'on n'a pas verifiee.
+      2. Un guide de TEXTE-vers-video ne vaut pas pour de
+         l'IMAGE+SON-vers-video. Chez nous l'image existe deja.
+
+    Le seul plan essaye dans l'ordre inverse (08) a perdu. Retour a la
+    camera en tete.
+
+⚠️ ET LE BLOC QUI MANQUAIT A TOUS NOS PROMPTS : UN VERBE DE PAROLE.
+    « Unnatural lip movements: ADD EXPLICIT SPEAKING VERBS to your prompt.
+    Specify whether the character is speaking, singing, or listening. »
+
+    C'est leur remede pour exactement ce que nous mesurons, et nous ne
+    l'avions jamais donne : nos prompts disaient « He speaks once, early in
+    the shot » a la DERNIERE ligne, comme une contrainte technique. Le
+    verbe doit etre en position d'interpretation :
+        « He asks a stranger for directions, speaking to someone off
+          screen to his left »
+
+    Et pour le silence, leur formule exacte :
+        « She listens intently without speaking. »
+
+⚠️ NE PAS DECRIRE CE QUE L'IMAGE PORTE DEJA.
+    « Do not describe the character's physical appearance, as the model
+    relies on the source image. » « Only describe dynamic events and do
+    not describe static visual details already visible in the input
+    image. »
+
+    J'avais ajoute « soft overhead terminal lighting… shallow depth of
+    field, 50mm » sur la foi du guide generique, qui recommande de nommer
+    la lumiere et l'optique. C'est juste en texte-vers-video, ou rien
+    n'existe avant le prompt. Ici l'image porte la lumiere. RETIRE.
+
+LES BLOCS, DANS CET ORDRE
+    1. CAMERA     taille de plan et mouvement, en vocabulaire de cinema
+                  (static medium shot, slow push-in...). Plus la ligne de
+                  continuite : garder la position et la distance de l'image.
+    2. EMOTION    l'etat du personnage, precis. « She appears genuinely
+                  delighted » vaut mieux que « she looks happy ».
+    3. PAROLE     LE VERBE, plus « let his face follow the voice » : le son
+                  porte deja l'interpretation.
+    4. ACTIONS    en sequence marquee -- First... Then... Finally.
+    5. APRES      ce que fait le visage quand il ne parle plus. Sans ce
+                  bloc l'avatar retombe en poker-face, c'est documente.
+    6. CONTINUITE l'interlocuteur hors champ, les figurants, l'arriere-plan.
 
 ⚠️ LES TROIS PIEGES, CHACUN PAYE D'UNE PRISE
     a) UN VERBE FORT SANS PLAFOND EST SUR-JOUE.
@@ -53,39 +84,37 @@ LES SEPT BLOCS, DANS CET ORDRE
     Le defaut decrit etait le sourire CONSTANT ET DECROCHE DE LA REPLIQUE,
     pas le sourire.
 
-CE QU'ON N'ECRIVAIT PAS DU TOUT, ET QU'IL FAUT ECRIRE
-    LUMIERE   sa qualite ET sa direction. « Soft overhead terminal
-              lighting, a little fill bouncing off the desk » vaut mieux
-              que rien -- l'image la porte, mais la nommer la stabilise.
-    OPTIQUE   « shallow depth of field, 50mm » tient l'arriere-plan flou,
-              ce qui est aussi notre garde-fou contre les figurants.
-
 LONGUEUR
     « Structure beats stream-of-consciousness. » Viser 150 a 200 mots en
     blocs courts, pas 300 mots de prose. Nos prompts les plus longs ont
     marche, mais rien ne prouve que la longueur y soit pour quelque chose.
 
 SOURCES
-    ltx.io/blog/ai-video-prompt-guide            les sept blocs, l'ordre
+    fal.ai/learn/devs/omnihuman-1-5-prompt-guide  LA source : propre au
+                                                  modele. Camera en tete,
+                                                  verbes de parole, ne pas
+                                                  decrire l'image.
+    ltx.io/blog/ai-video-prompt-guide             generique texte-vers-video.
+                                                  Utile sur la structure, mais
+                                                  NE PAS en tirer de regle sur
+                                                  la lumiere ni sur l'ordre :
+                                                  il ne parle pas de notre cas.
     arxiv 2601.00664, 2512.09327                 le comportement d'ecoute
     arxiv 2508.19209                             OmniHuman-1.5, le papier
     wavespeed.ai/models/bytedance/...-1.5        « well-lit frontal images »
 
 ----------------------------------------------------------------------
-EXEMPLE COMPLET -- plan 16, « Vielen Dank für Ihre Hilfe! »
+EXEMPLE COMPLET -- plan 05, « Entschuldigung, wo ist die Gepäckausgabe? »
+Camera, emotion, verbe de parole, actions en sequence, apres, continuite.
 
-The man in the image, thanking someone off screen to his left.
+A static medium shot holds on him, seen from the waist up, with the front edge of the information desk crossing the lower part of the frame. Locked-off camera: no zoom, no push-in, no camera movement of any kind. Keep his position and his distance from the camera exactly as in the image. He is right of centre and never faces the camera.
 
-She has just told him everything he needed - which train, where the ticket machine is, how long it takes. He is thanking her and he means it: a stranger has made a difficult arrival easy.
+He has just come off a night flight: polite, a little tired, and slightly unsure of himself in a place he does not know. He does not want to be a nuisance.
 
-He begins with the tired politeness of someone who has just landed. A single nod of thanks, chin down and back up. His shoulders loosen as he speaks - he knows where he is going now. The smile arrives while he speaks and keeps growing after he stops, until by the last frame he is beaming with real gratitude, the eyes creased and the mouth open. Let the teeth show at the peak.
+He asks a stranger for directions, speaking to someone off screen to his LEFT, and he keeps looking that way throughout. Let his face follow the voice - the hesitancy and the rise of the question are already in the recording, and his eyebrows, eyes and mouth move with the audio rather than on their own schedule.
 
-Let his face follow the voice: the warmth is already in the recording, and his eyebrows, eyes and mouth move with it, never on their own schedule.
+First he takes a short breath and leans in very slightly, the way people do when they are not sure they will be heard. Then, as he asks, one small open-hand gesture of enquiry, close to his body, and the hand comes back down. His eyebrows rise with the question and stay up. There is no smile - he does not know her yet, and the tiredness sits in the eyes rather than the body.
 
-After he stops speaking his head does not turn, wander or look around. He keeps looking at her, blinking and breathing, and the smile holds and deepens.
+Finally, he stops speaking and listens intently without speaking, his mouth closed, watching her for the answer. His head does not turn, wander or look around: he blinks, he breathes, he shifts his weight a little, and he waits.
 
-Head and shoulders, vertical, locked-off camera - no zoom, no push-in, no camera movement. Soft overhead terminal lighting with a little fill bouncing off the desk. Shallow depth of field, 50mm.
-
-Keep his position and his distance from the camera exactly as in the image. He is right of centre and never faces the camera. The person he is talking to stays entirely off screen. He is the only person anywhere near the camera: the space between him and the far background stays empty, the travellers behind him remain far back, small and out of focus, the same people throughout - no one walks forward, enters from an edge, passes between him and the camera, or grows larger.
-
-He speaks once, early, then is silent with his mouth closed until the smile opens it.
+He is the only person anywhere near the camera. The space between him and the far background stays empty for the whole shot. The travellers behind him remain far back, small and out of focus - too small and too soft for any face to read - and they stay at that distance from the first frame to the last. No one walks forward out of the background, no one enters from the left or right edge, no one passes between him and the camera, and no one grows larger or comes into focus.
