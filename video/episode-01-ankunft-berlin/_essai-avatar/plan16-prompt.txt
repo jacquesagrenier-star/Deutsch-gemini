@@ -1,0 +1,92 @@
+PLAN 16 -- essai avatar pilote par l'audio
+« Vielen Dank für Ihre Hilfe! »
+BytePlus / Vision AI -> Dreamina Omnihuman 1.0    12 septembre 2026
+
+A TELEVERSER
+  image : plan16-mark-serre-b.jpg     1080x1935, 241 ko
+  audio : plan16-mark-pleine.mp3      5,09 s, 120 ko
+
+⚠️ SERVIR LE JPEG, PAS LE PNG. BytePlus plafonne l'image a 5 Mo ;
+   01-images/mark-serre-b.png en fait 6,2 et serait refuse. Le JPEG est
+   un allegement de cette image-la, meme cadrage, meme personnage.
+
+⚠️ ET LA PISTE PLEINE, PAS plan16-mark.mp3. La courte (2,12 s) economisait
+   trente-cinq cents et rendait la mesure inutilisable : recoupee a cette
+   longueur, la prise actuelle passe d'une LSE-D de 6,49 a 12,55 sur les
+   memes images. Sur 53 images la distance ne veut plus rien dire. La piste
+   pleine a la longueur, la voix et le placement de la parole de la prise
+   montee -- le retour se compare a la base sans recoupe ni supposition.
+
+CE QUE CA COUTE
+  5,09 s x 0,12 $/s = 0,61 $.
+  La duree de la video est celle de l'audio : ne rien demander d'autre.
+
+⚠️ LA MISE EN GARDE QUI NOUS VISE, mot pour mot dans leur fiche
+  « The best results are achieved with images of a single person, where
+    the face accounts for a large proportion and is in a FRONT-FACING
+    position. Other types of images may yield poor results. »
+
+  Notre image : un seul personnage, visage large -- mais Mark regarde
+  vers la GAUCHE, hors champ. C'est la mise en scene de toute la serie :
+  les deux se parlent, aucun ne regarde l'objectif. Si le 1.0 dégrade
+  sur un trois-quarts, ca se verra ici, et c'est une information sur la
+  piste -- pas un accident d'essai.
+
+LES LIMITES DE BYTEPLUS, verifiees sur leur fiche
+  image   JPG / PNG / JFIF, <= 5 Mo, <= 4096x4096
+  audio   MP3, <= 15 s  (ils recommandent de rester sous 15 s : au-dela
+          la qualite se degrade. Nos 5,09 s sont largement dedans.)
+  sortie  MP4, 30 im/s
+  La cadence ne biaise rien : SyncNet ramene tout a 25 im/s avant de mesurer.
+
+--------------------------------------------------------------------
+PROMPT -- POUR LE 1.5 SEULEMENT.
+
+⚠️ LE 1.0 QUICK MODE N'A PAS DE CHAMP TEXTE. Sa fiche ne liste que deux
+   entrees : image + audio. Le prompt est precisement ce que la 1.5 a
+   ajoute. Sur le 1.0, il n'y a rien a coller -- deux champs, et c'est
+   tout.
+
+The man in the image, in an airport arrivals hall. Head and shoulders,
+vertical framing. Locked-off camera: no zoom, no push-in, no camera
+movement of any kind. Keep the framing, his position and his distance
+from the camera exactly as they are in the image.
+
+He looks toward the LEFT of the frame, at the person he is speaking to,
+off screen. He never turns to face the camera.
+
+He is thanking her, warm and genuine. A small nod of thanks. His
+shoulders loosen: he has just been told where to go. He has come off a
+night flight and is a little tired under the politeness.
+
+The smile arrives only at the END, and it is small and closed-lipped.
+Do not smile through the shot. Do not show a broad grin and do not show
+rows of teeth at any point.
+
+He speaks only once, briefly, near the beginning. He is silent for most
+of the shot, and while he is silent his mouth stays closed. Between and
+after the words the face stays alive: the eyes, a blink, breathing, a
+small natural movement of the head.
+--------------------------------------------------------------------
+
+⚠️ LE PROMPT NE DIT AUCUNE SECONDE, ET C'EST LE POINT DE L'ESSAI.
+   C'est l'audio qui commande la bouche. Une fenetre de parole ecrite en
+   chiffres est exactement ce que Seedance ignorait -- de +0,11 a +1,96 s
+   d'ecart sur six prises. La reintroduire ici referait le defaut qu'on
+   essaie de supprimer.
+
+LA LIGNE DE BASE -- prise actuelle, Seedance + sync.so, meme plan
+  sur les 5,04 s entieres    offset +40 ms   LSE-D  6,493   LSE-C 1,017
+  recoupee a 2,12 s          offset +40 ms   LSE-D 12,548   LSE-C 1,219
+  C'est la PREMIERE ligne qui sert de reference : meme longueur que l'essai.
+  Pour memoire, de vraies images filmees donnent une confiance de 10,1.
+
+AU RETOUR
+  Enregistrer sous _essai-avatar/plan16-omnihuman1.mp4, puis :
+      python video/essai_avatar.py --plan 16 --mesurer video/episode-01-ankunft-berlin/_essai-avatar/plan16-omnihuman1.mp4
+
+  Et REGARDER, parce que SyncNet n'arbitre pas tout :
+    - le sourire permanent et les dents (le defaut le plus rapporte) ;
+    - la bouche sur p/b/m, f/v/w, a/ä, u/o/ü/ö -- rien d'autre n'est
+      visible en gros plan ;
+    - le hall derriere lui : vivant, ou fige ?

@@ -3294,3 +3294,134 @@ vingt sur sept cents, dans une vignette de 136 px, ne se voyaient plus du tout :
 la demonstration montrait une toile intacte et n'expliquait plus rien. A cent,
 les carreaux fermes se comptent encore du regard et le mecanisme redevient
 lisible **a cette taille-la** — c'est la vignette qui decide, pas le principe.
+
+## 12 septembre 2026 — l'avatar piloté par l'audio, mesuré sur un plan
+
+*« prépare l'essai du plan 16 »*, puis *« oui, prépare la piste »*.
+
+L'essai préparé le 10 septembre n'avait jamais été lancé. Les deux autres
+chemins étaient fermés de toute façon : il reste **460 crédits** Artlist, le
+re-tournage MUET en demande 2 400, et le mode référence les brûle en 3,8 s.
+
+### Ce que BytePlus a corrigé de mes notes
+
+**0,12 $/s, pas 0,16 $.** Ma note du 10 septembre donnait BytePlus à 0,16 $ sur
+la foi d'un comparatif ; leur propre fiche produit dit 0,12 $. **L'API
+officielle de ByteDance est donc aussi la moins chère**, à égalité avec
+WaveSpeed — il n'y a plus d'arbitrage à faire. Corrigé dans `essai_avatar.py`,
+tarif et prose.
+
+**Et leur catalogue dit ce que disait le papier.** Sur la page Vision AI :
+Omnihuman 1.0 — *« High-Realism avatar, precise Audio-Driven sync »* ;
+Omnihuman 1.5 — *« Advanced cognitive avatar, semantic understanding »*. C'est
+exactement la lecture des tableaux du 10 septembre : **le 1.0 est celui du
+lip-sync, le 1.5 celui des gestes.** Le catalogue pousse vers le numéro le plus
+élevé ; on a pris le 1.0.
+
+### ⚠️ Un défaut dans mon protocole, vu grâce à une ligne de spécification
+
+La fiche annonce une sortie à 30 im/s. En vérifiant que ça ne biaisait rien
+(non : SyncNet ramène tout à 25 im/s), j'ai vu autre chose.
+
+**La ligne de base portait sur les 5,04 s entières de `plan16.mp4` — dont trois
+de bouche fermée — et l'essai allait faire 2,12 s de parole presque pure.** J'ai
+recoupé la prise actuelle à longueur égale pour mesurer ce que ça changeait :
+
+| | LSE-D | LSE-C |
+|---|---|---|
+| prise actuelle, 5,04 s | 6,493 | 1,017 |
+| **la même, recoupée à 2,12 s** | **12,548** | 1,219 |
+
+**Sur 53 images la distance double, sur les mêmes images.** La confiance tient,
+la distance non. J'allais faire comparer un essai court à une base longue et
+appeler ça un résultat.
+
+Réparé en générant **la piste pleine** — l'audio du plan tel qu'il est monté,
+même voix, même placement de la parole, même longueur. 0,61 $ au lieu de 0,25 $.
+**Trente-cinq cents pour que le chiffre qui décide de douze plans veuille dire
+quelque chose.**
+
+⚠️ **Et une règle plus générale : une ligne de base ne vaut que si elle a la
+forme de ce qu'on lui compare.** Ce n'est pas une précaution de méthode, c'est
+la différence entre une mesure et un chiffre.
+
+### Deux choses que la doc disait et qui étaient fausses
+
+- *« Input Parameters : Image + Audio »* — la fiche du 1.0 Quick Mode, datée
+  d'octobre 2025, ne liste **aucun champ texte**. La console en propose un, et
+  **il a été suivi** : le prompt interdisait le sourire continu et les dents, et
+  Jacques, en regardant la prise : « il n'y a pas de sourire ». La doc était
+  périmée.
+- *« best results […] face in a FRONT-FACING position. Other types of images may
+  yield poor results. »* Notre cadrage est un trois-quarts — Mark regarde hors
+  champ, comme toute la série. **Ça n'a rien dégradé.**
+
+### Le résultat
+
+| | offset | LSE-D | LSE-C |
+|---|---|---|---|
+| Seedance + sync.so | **+40 ms** | 6,493 | 1,017 |
+| **OmniHuman 1.0** | **−40 ms** | **5,565** | **2,444** |
+
+**La confiance plus que double.** C'est l'axe qui pendait — celui qui disait
+« bouche plausiblement dans le temps, dont le réseau doute qu'elle dise ces
+mots-là ».
+
+**Et le signe du décalage s'inverse, ce qui vaut mieux que le chiffre.** Le
++40 ms était du **son en avance sur l'image**, détectable dès 45 ms : on était à
+la limite. Le −40 ms est de l'image en avance, toléré jusqu'à −125 ms. On passe
+du bord du détectable au milieu de la marge.
+
+### Où la bouche bouge, et où couper
+
+Jacques a d'abord dit « au début et à la fin », puis s'est corrigé : « plutôt à
+la fin ». La courbe lui donne raison.
+
+| temps | |
+|---|---|
+| 0,00 → 0,60 | bouche calme |
+| 0,66 → 1,78 | **la réplique** — le mouvement suit la voix, pic à 1,48 |
+| 1,88 → 3,20 | mouvement résiduel moyen |
+| **3,30 → 4,60** | **bouche calme, le creux le plus net** |
+| 4,68 → 5,16 | elle rouvre — l'ouverture parasite |
+
+**Coupe de 0,31 à 3,30** et le défaut sort du montage : 1,3 s de bouche calme
+juste avant. ⚠️ `controler_bouche.py` mesure dans un rectangle calé sur du
+**720×1280** ; la prise fait 1088×1920 et doit être ramenée d'abord, sinon le
+cadre tombe à côté du menton.
+
+Le vrai résultat est là-dedans : **pendant la réplique, le mouvement et la voix
+montent et descendent ensemble.** La prise Seedance faisait l'inverse —
+corrélation −0,31, la bouche s'agitait quand la voix se taisait.
+
+### Ce qui n'est pas prouvé
+
+**Une prise ne fait pas une preuve, et c'est celle où le gain était le plus
+disponible** : le plan 16 partait de 1,017, le pire de l'épisode. Le contrôle
+qui manque est **le plan 10**, dont la base est déjà correcte (4,937) — si
+l'avatar l'améliore aussi, la piste tient partout ; s'il le dégrade, le gain
+d'aujourd'hui n'était qu'un rattrapage sur un cas défaillant. Sa ligne de base
+est en boîte depuis le 10 septembre, l'essai coûte 0,61 $.
+
+Et **la confiance reste à 2,444 contre 10,1 sur de vraies images filmées.**
+C'est une piste qui gagne, pas un problème résolu.
+
+### Une question ouverte, posée en passant
+
+Devant les exemples de la console, Jacques : *« Est-ce qu'on ne peut pas avoir
+un format plutôt dessin animé ? »* Leur fiche annonce « un certain degré de
+généralisation » pour l'anime et le dessin animé — non mesuré.
+
+**Ce n'est pas qu'un choix de style : c'est une autre solution au même
+problème.** Mâchoire décalée, dents, expression qui ne colle pas — ce sont des
+défauts de vallée dérangeante, qui existent parce qu'un visage photoréaliste
+promet une précision que le modèle ne tient pas. Un personnage dessiné ne fait
+pas cette promesse. Contre : dix-neuf plans et les images d'identité seraient à
+refaire (mais il reste 29 épisodes — changer maintenant coûte bien moins que
+changer à l'épisode 5), le registre change le produit, et **dans un cours de
+langue la bouche est un support d'apprentissage** : une bouche stylisée infidèle
+aux phonèmes enseigne moins, voire mal sur `ü` et `ö`.
+
+Décision reportée, volontairement : la question de l'essai — un modèle piloté
+par l'audio supprime-t-il le décalage — est un comportement du modèle, pas du
+style. La réponse vaut pour les deux registres.
