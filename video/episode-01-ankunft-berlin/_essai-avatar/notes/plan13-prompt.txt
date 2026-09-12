@@ -1,0 +1,79 @@
+PLAN 13 -- Anna, la plus longue replique de l'episode
+« Nehmen Sie die S-Bahn. Die Fahrkarte kaufen Sie am Automaten,
+  unten in der Halle. »
+BytePlus / Vision AI Studio -> Dreamina Omnihuman     12 septembre 2026
+
+POURQUOI CE PLAN-CI
+    C'est le cas le plus dur de l'episode, sur trois axes a la fois :
+      - la replique la plus longue (4,57 s de parole, clip de 7,11) ;
+      - l'autre personnage -- Anna n'a jamais ete essayee ;
+      - et le seul plan de la scene AVEC MOUVEMENT D'APPAREIL.
+    Si ca tient ici, ca tient partout.
+
+A TELEVERSER
+  image : plan13-anna-serre.jpg     1080 de large, 233 ko
+  audio : plan13-anna-pleine.mp3    7,11 s, parole de 0,12 a 4,69 s
+
+  0,85 $ a 0,12 $/s. La duree de la video est celle de l'audio.
+
+⚠️ ON GARDE LES 2,5 s DE SILENCE FINAL. Elles coutent 30 cents et elles
+   servent : c'est la marge dont la bouche a besoin pour se refermer, et
+   elles gardent la mesure comparable a la ligne de base.
+
+⚠️ LA FEUILLE A-REFAIRE.txt DIT « replique de 7.08 s ». C'est faux : la
+   parole fait 4,57 s, et les deux pistes le confirment. Ne pas se fier a
+   ce chiffre-la.
+
+⚠️ ET CE PLAN GARDE SON MOUVEMENT D'APPAREIL, contrairement au gabarit.
+   Le reste de la scene est en camera fixe ; ici la feuille de tournage
+   demande un leger rapprochement -- c'est le moment le plus chaleureux de
+   la scene et le mouvement le porte. C'est donc aussi le premier essai qui
+   demande une camera a OmniHuman : s'il derape, on saura que le gabarit
+   fixe n'etait pas seulement une precaution de continuite.
+
+--------------------------------------------------------------------
+PROMPT
+
+The woman in the image, at an information desk in an airport arrivals hall. Seen head and shoulders, vertical framing. Keep her identity, her clothes and the hall behind her exactly as they are in the image.
+
+She is placed left of centre. The person she is speaking to stands off screen to the RIGHT, and that is where she is looking. She never turns to face the camera.
+
+A very slow, subtle push-in across the whole shot, ending closer on her face. Nothing else moves the camera: no pan, no tilt, no shake.
+
+He has asked how to get into the city centre, and she is telling him to take the S-Bahn and buy the ticket from the machine downstairs in the hall. She does this twenty times a day and it is easy for her, but she is genuinely helpful, not mechanical.
+
+Play it in beats. EARLY in the shot, while the framing is still wide, she lifts one hand and indicates DOWN and to her LEFT - away from him, into the depth of the hall behind her. A small precise gesture, not a broad sweep. Her eyes follow her hand briefly, then come back to him and stay there as the camera closes in. Her hand returns to the desk.
+
+Her face is warm and open throughout, and it warms further as she finishes - the warmth in the EYES first, then a small, real smile. It must not arrive already wide in the first frame and sit there unchanged. A small nod at the end, checking he has understood.
+
+Everyone in the background stays where they are, far behind her, going about their own business. No one walks toward her, no one drifts closer to the camera, and no one crosses the frame near her. The background is busy but distant, and it stays at the same depth from the first frame to the last.
+
+She speaks once, through the first part of the shot, and is silent afterwards. While she is silent her mouth stays closed - but she is not still. She breathes, she blinks, her head settles, and she waits to see whether he has followed.
+--------------------------------------------------------------------
+
+CE QUI VIENT DE L'ESSAI DU PLAN 10, ET QU'ON NE REFAIT PAS
+  Le prompt B a franchi le bruit la ou le prompt A ne disait rien :
+      prompt A   LSE-C 4,982   (+0,045 sur la base -- rien)
+      prompt B   LSE-C 5,520   (+0,583)
+  Ce qui a change : jouer la replique EN TEMPS, la chaleur par les yeux
+  avant la bouche, et un silence HABITE plutot qu'une pose tenue.
+
+  ⚠️ Et la prise la plus vivante bouge 30 % de MOINS que les autres.
+  L'agitation n'est pas l'expressivite.
+
+LA LIGNE DE BASE -- Seedance + sync.so, mesuree le 12 septembre
+  offset +0 ms   LSE-D 7,577   LSE-C 5,503     (dans plan13-avant.json)
+  C'est la meilleure base de l'episode : le plan 13 n'est PAS un cas
+  defaillant. On ne cherche donc pas un rattrapage, on verifie qu'on ne
+  perd rien sur le plan le plus exigeant.
+
+AU RETOUR
+  Enregistrer sous _essai-avatar/plan13-omnihuman.mp4, puis :
+      python video/essai_avatar.py --plan 13 --mesurer video/episode-01-ankunft-berlin/_essai-avatar/plan13-omnihuman.mp4
+      python video/cote_a_cote.py --plan 13
+
+  Et REGARDER, dans cet ordre :
+    - le geste : precis et tot dans le plan, ou une grande envolee ?
+    - le rapprochement : lent et continu, ou un a-coup ?
+    - la bouche sur une phrase LONGUE -- c'est la que la derive se voit ;
+    - l'arriere-plan : quelqu'un s'avance-t-il encore ?

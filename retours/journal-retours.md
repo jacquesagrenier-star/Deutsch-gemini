@@ -3537,3 +3537,135 @@ lumière. Les quatre autres cadrages sont des recadrages ffmpeg, zéro crédit.
 Les 460 crédits Artlist restants ne servent donc plus à la vidéo mais aux
 images : environ trois séries de quatre poses. Piste non vérifiée : `Seedream
 5.0` chez BytePlus, qui annonce une « cohérence de référence améliorée ».
+
+## 12 septembre 2026 — l'épisode passe à l'avatar, et la mesure perd son autorité
+
+Après les essais du matin, Jacques : *« continuons […] je pense qu'on procède »*.
+On est passé en production sur l'épisode 1.
+
+### Le résultat qui a emporté la décision
+
+**Plan 13, Anna, la plus longue réplique de l'épisode**, avec mouvement
+d'appareil, sur la **meilleure base** de la scène :
+
+| | offset | LSE-D | LSE-C |
+|---|---|---|---|
+| Seedance + sync.so | +0 ms | 7,577 | 5,503 |
+| OmniHuman | −40 ms | **5,922** | **7,455** |
+
++1,952 de confiance. Quatre difficultés d'un coup — personnage jamais essayé,
+phrase la plus longue, caméra mobile, base déjà bonne — et il gagne partout.
+
+### ⚠️ Puis la mesure s'est retournée contre elle-même
+
+Deux prises du **plan 12**, mêmes fichiers, prompt quasi identique :
+
+| | LSE-D | LSE-C |
+|---|---|---|
+| 1ʳᵉ prise | 5,375 | **3,809** |
+| 2ᵉ prise | 5,013 | **2,418** |
+
+**1,39 d'écart entre deux tirages de la même chose.** C'est la dispersion qu'on
+n'avait jamais mesurée — et elle est **plus grande que la plupart des effets
+qu'on croyait mesurer**. Mes seuils de bruit à 0,25 étaient quatre fois trop
+bas ; ils passent à 1,00.
+
+Ce que ça fait retomber, et qu'il faut assumer : **le gain du prompt B sur le
+plan 10 (+0,583) n'est plus établi par la mesure.** L'œil de Jacques avait
+tranché sans ambiguïté — « beaucoup plus naturel, pas exagéré » — et ce
+jugement tient tout seul.
+
+⚠️ **Règle de travail qui en découle : la mesure ne sert plus qu'à repérer les
+catastrophes. Sous 1,0 d'écart, c'est l'œil qui tranche.** Et ⚠️ ce 1,00 n'est
+toujours PAS un étalonnage : c'est UNE paire, pas une série. Pour la vraie
+dispersion il faut trois prises **à graine fixe** — le champ `Seed` du Studio,
+laissé à −1, est ce qui nous en empêche.
+
+### Ce qui a vraiment fait progresser les prises : le prompt
+
+Quatre corrections, chacune payée d'une prise, et toutes de la même famille.
+
+**a) Un verbe fort sans plafond est sur-joué.** *« she lifts one hand »* → la
+main part en l'air. Nommer l'amplitude avec le geste.
+
+**b) Des qualificatifs empilés sont sous-joués.** *« a small, gentle,
+closed-lipped smile… nothing broad »* → presque rien. **Le modèle obéit aux
+modificateurs plus qu'au verbe.** Décrire l'état d'arrivée, ne pas empiler des
+limites.
+
+**c) ⚠️ Un avertissement de tiers ne devient pas une règle permanente.** Un
+comparatif reprochait à OmniHuman *« a lot of teeth »*. J'en ai fait une
+interdiction générale des dents, et **il a fallu desserrer le sourire trois
+fois dans la journée** avant que Jacques obtienne le remerciement qu'il
+demandait. Le défaut décrit était le sourire *constant et décroché de la
+réplique*, pas le sourire.
+
+**d) La queue du plan a besoin d'une intention, pas de gestes.** *« his head
+settles »* sans plafond → la tête part n'importe où. Et un visage qui attend
+trois secondes sans rien vouloir se lit comme froid.
+
+### Ce que les sources confirment, et les trois choses qu'on faisait mal
+
+La recherche sur les avatars conversationnels décrit notre panne du matin : sans
+consigne d'écoute, l'avatar dégénère en *« poker-face expressions with little
+blinking, negligible micro-expressions »*. Le prompt B n'a rien inventé, il a
+retrouvé ça.
+
+Mais le guide LTX signale trois défauts des nôtres :
+
+1. ⚠️ **L'ordre.** *« Models read left-to-right and weight the earliest tokens
+   more heavily. »* Nos prompts ouvraient sur la contrainte de cadrage et
+   l'émotion arrivait au 150ᵉ mot. **On donnait le plus de poids à ce qui
+   comptait le moins.** Gabarit réordonné : sujet, situation, jeu, voix, après,
+   cadre, continuité.
+2. **La longueur.** *« Structure beats stream-of-consciousness. »* 300 mots de
+   prose continue.
+3. **La lumière et l'optique manquaient complètement** — deux des sept blocs
+   recommandés. L'image les porte, mais les nommer les stabilise.
+
+Le gabarit complet vit dans `_essai-avatar/notes/gabarit-prompt.txt`.
+
+### Les défauts d'image que Jacques a repérés, et leur cause
+
+- **Un figurant qui s'avance et grossit.** Ma ligne parlait de profondeur, pas
+  des bords ni de l'espace intermédiaire. ⚠️ Trois façons dont un figurant
+  s'impose, et il faut les interdire toutes les trois : **l'espace entre le
+  personnage et le fond reste vide**, **aucun visage de figurant ne devient
+  lisible**, **personne ne passe entre le personnage et l'objectif**.
+- **Le visage moins fin qu'avec Seedance.** Mesuré : détail du visage **3,41
+  contre 1,21**. C'est le plafond du modèle — 480p natif remonté en 1080p — et
+  la console confirme qu'il n'y a rien au-dessus de 1080p à demander.
+  ⚠️ Et ce n'était PAS ma réduction d'image : `anna-serre.png` est nativement
+  en 1080×1920. Mon erreur de réduction touchait les *autres* images, celles en
+  1536×2752, et elle est corrigée — on garde tous les pixels, on ne perd que
+  l'encodage sans perte.
+
+### ⚠️ Le piège qui aurait changé un cadrage au milieu de la scène
+
+`preparer_avatar.py` lisait `A-REFAIRE-AUDIO.txt` pour choisir l'image. Les deux
+feuilles ont un bloc « PLAN 13 » et **ce ne sont pas le même plan** : la feuille
+audio a redécoupé les longues répliques et ses numéros ont cessé de suivre le
+montage. Elle donnait `anna-moyen-serre-c.png` là où le montage veut
+`anna-serre.png`.
+
+**Rien ne s'en serait plaint** — le modèle aurait obéi, le fichier serait
+arrivé, et la scène aurait changé de cadrage au milieu. C'est exactement
+l'avertissement de `01-images/_lisez-moi.txt` sur la numérotation abandonnée du
+8 septembre. La feuille qui fait foi est `A-REFAIRE.txt`, et `--carte` imprime
+les douze correspondances pour qu'on les relise avant une série.
+
+### L'économie de l'épisode
+
+L'offre gratuite est de **100 s sur Omnihuman 1.5** — ce qui règle au passage la
+question du modèle : **il n'y a jamais eu de 1.0**, le sélecteur du Studio
+revenait au 1.5 à chaque ouverture. Mes étiquettes « 1.0 » et « 1.5 » nommaient
+deux tirages du même modèle, et l'écart de 13 % que j'en avais tiré était… la
+dispersion qu'on vient de mesurer.
+
+Les 12 plans parlants font **63,1 s** ; les 7 plans sans parole sont déjà
+tournés et ne passent pas par l'avatar. **L'épisode 1 se termine à zéro
+dollar**, et hors gratuité un épisode coûte **7,50 $** — environ 220 $ pour les
+29 restants. Les 460 crédits Artlist ne servent plus à la vidéo mais aux images.
+
+Dossiers séparés à sa demande : `_a-televerser/` (ce qui part), `retours/` (ce
+qui revient), `_essai-avatar/` (les mesures).

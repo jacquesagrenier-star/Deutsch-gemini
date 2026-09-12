@@ -1,0 +1,91 @@
+GABARIT DE PROMPT -- avatar pilote par l'audio
+12 septembre 2026, apres six prises mesurees et une lecture des sources
+
+L'ORDRE DES BLOCS N'EST PAS DECORATIF
+    « Ordering matters because most models read left-to-right and weight
+    the earliest tokens more heavily. » (guide LTX, juillet 2026)
+
+    Nos premiers prompts ouvraient sur « Locked-off camera. Keep the
+    framing, his position and his distance from the camera exactly as they
+    are in the image » -- de la contrainte technique dans la position la
+    plus lourde, et l'emotion au 150e mot. On donnait le plus de poids a ce
+    qui comptait le moins.
+
+    L'ordre ci-dessous met la PERFORMANCE en tete et la continuite en
+    queue. La continuite est indispensable, mais elle n'a pas besoin d'etre
+    lue en premier : elle doit seulement etre lue.
+
+LES SEPT BLOCS, DANS CET ORDRE
+    1. SUJET      qui, precisement. « The man in the image » et rien de
+                  plus : l'image porte l'identite, la decrire l'affaiblit.
+    2. SITUATION  ce qui vient de se passer et ce qu'il fait maintenant.
+                  Deux phrases. C'est ce bloc qui donne au modele de quoi
+                  jouer -- il lit le SENS de la replique.
+    3. JEU        la performance en temps : l'etat de depart, ce qui change
+                  pendant la parole, l'etat d'arrivee.
+    4. VOIX       « Let his face follow the voice. » Le son porte deja
+                  l'interpretation ; c'est la seule information qui n'est
+                  ni dans l'image ni dans le texte.
+    5. APRES      ce que fait le visage QUAND IL NE PARLE PLUS. Sans ce
+                  bloc l'avatar retombe en poker-face -- c'est documente.
+    6. CADRE      camera, lumiere, optique. Termes de cinema standard :
+                  ils sont denses dans les donnees d'entrainement.
+    7. CONTINUITE l'interlocuteur hors champ, les figurants, l'arriere-plan.
+
+⚠️ LES TROIS PIEGES, CHACUN PAYE D'UNE PRISE
+    a) UN VERBE FORT SANS PLAFOND EST SUR-JOUE.
+       « she lifts one hand » -> la main part en l'air.
+       Nommer l'amplitude avec le geste : « from the desk, low, and back ».
+
+    b) DES QUALIFICATIFS EMPILES SONT SOUS-JOUES.
+       « a small, gentle, closed-lipped smile... nothing broad » -> presque
+       rien. Le modele obeit aux modificateurs plus qu'au verbe.
+       DECRIRE L'ETAT D'ARRIVEE, ne pas empiler des limites.
+
+    c) UN PROMPT RIGIDE DONNE UN JEU RAIDE.
+       « Overly rigid prompts can produce stiff, unnatural results. »
+       Etre precis sur ce qui compte, laisser respirer le reste.
+
+⚠️ ET UN AVERTISSEMENT DE TIERS NE DEVIENT PAS UNE REGLE PERMANENTE.
+    Un comparatif reprochait a OmniHuman « a lot of teeth » -- un sourire
+    fige toutes dents dehors. J'en ai fait une interdiction generale des
+    dents, et il a fallu desserrer le sourire TROIS FOIS dans la journee.
+    Le defaut decrit etait le sourire CONSTANT ET DECROCHE DE LA REPLIQUE,
+    pas le sourire.
+
+CE QU'ON N'ECRIVAIT PAS DU TOUT, ET QU'IL FAUT ECRIRE
+    LUMIERE   sa qualite ET sa direction. « Soft overhead terminal
+              lighting, a little fill bouncing off the desk » vaut mieux
+              que rien -- l'image la porte, mais la nommer la stabilise.
+    OPTIQUE   « shallow depth of field, 50mm » tient l'arriere-plan flou,
+              ce qui est aussi notre garde-fou contre les figurants.
+
+LONGUEUR
+    « Structure beats stream-of-consciousness. » Viser 150 a 200 mots en
+    blocs courts, pas 300 mots de prose. Nos prompts les plus longs ont
+    marche, mais rien ne prouve que la longueur y soit pour quelque chose.
+
+SOURCES
+    ltx.io/blog/ai-video-prompt-guide            les sept blocs, l'ordre
+    arxiv 2601.00664, 2512.09327                 le comportement d'ecoute
+    arxiv 2508.19209                             OmniHuman-1.5, le papier
+    wavespeed.ai/models/bytedance/...-1.5        « well-lit frontal images »
+
+----------------------------------------------------------------------
+EXEMPLE COMPLET -- plan 16, « Vielen Dank für Ihre Hilfe! »
+
+The man in the image, thanking someone off screen to his left.
+
+She has just told him everything he needed - which train, where the ticket machine is, how long it takes. He is thanking her and he means it: a stranger has made a difficult arrival easy.
+
+He begins with the tired politeness of someone who has just landed. A single nod of thanks, chin down and back up. His shoulders loosen as he speaks - he knows where he is going now. The smile arrives while he speaks and keeps growing after he stops, until by the last frame he is beaming with real gratitude, the eyes creased and the mouth open. Let the teeth show at the peak.
+
+Let his face follow the voice: the warmth is already in the recording, and his eyebrows, eyes and mouth move with it, never on their own schedule.
+
+After he stops speaking his head does not turn, wander or look around. He keeps looking at her, blinking and breathing, and the smile holds and deepens.
+
+Head and shoulders, vertical, locked-off camera - no zoom, no push-in, no camera movement. Soft overhead terminal lighting with a little fill bouncing off the desk. Shallow depth of field, 50mm.
+
+Keep his position and his distance from the camera exactly as in the image. He is right of centre and never faces the camera. The person he is talking to stays entirely off screen. He is the only person anywhere near the camera: the space between him and the far background stays empty, the travellers behind him remain far back, small and out of focus, the same people throughout - no one walks forward, enters from an edge, passes between him and the camera, or grows larger.
+
+He speaks once, early, then is silent with his mouth closed until the smile opens it.
