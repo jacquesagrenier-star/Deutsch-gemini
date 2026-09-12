@@ -78,6 +78,26 @@ TARIFS = [("WaveSpeed", 0.12), ("ModelsLab", 0.14),
           ("BytePlus (officiel ByteDance)", 0.12), ("fal", 0.16)]
 
 
+# ⚠️ UN ECART SOUS LE BRUIT N'EST PAS UNE VICTOIRE.
+# Le 12 septembre 2026 ce script a ecrit « l'avatar gagne » pour +0,045 de
+# confiance -- sur une echelle ou de vraies images filmees donnent 10,1 et ou
+# le plan 16 avait bouge de +1,427. Il comparait des SIGNES. Un comparateur
+# qui designe toujours un vainqueur finit par en inventer un.
+#
+# Les deux seuils ci-dessous ne sont PAS etalonnes : on n'a pas de serie de
+# mesures repetees du meme clip pour connaitre la dispersion reelle. Ce sont
+# des planchers de bon sens, et ils doivent le dire. Le jour ou l'on mesure
+# trois fois la meme prise, on les remplacera par la dispersion observee.
+BRUIT_C = 0.25         # confiance : en dessous, on ne conclut pas
+BRUIT_D = 0.30         # distance : idem
+
+
+def verdict(ecart, bruit):
+    if abs(ecart) < bruit:
+        return "egalite -- sous le bruit, on ne conclut pas"
+    return "l'avatar gagne" if ecart > 0 else "l'avatar perd"
+
+
 def image_du_plan(ep, n):
     """L'image de depart que la feuille de tournage donne pour ce plan."""
     feuille = os.path.join(ep, "A-REFAIRE-AUDIO.txt")
@@ -156,10 +176,9 @@ def main():
         # LSE-C EST LE JUGE, ET C'EST DIT AVANT DE REGARDER LE RESULTAT.
         dc = apres["lse_c"] - avant["lse_c"]
         dd = apres["lse_d"] - avant["lse_d"]
-        print("  confiance : %+.3f  (%s)"
-              % (dc, "l'avatar gagne" if dc > 0 else "l'avatar perd"))
+        print("  confiance : %+.3f  (%s)" % (dc, verdict(dc, BRUIT_C)))
         print("  distance  : %+.3f  (%s ; plus bas vaut mieux)"
-              % (dd, "l'avatar gagne" if dd < 0 else "l'avatar perd"))
+              % (dd, verdict(-dd, BRUIT_D)))
         print("\n  Rappel de l'echelle : LSE-D de 6 a 8 est l'etat de l'art,")
         print("  et de vraies images filmees donnent une confiance de 10,1.")
         print("  L'oeil tranche ensuite -- le sourire permanent et les dents")

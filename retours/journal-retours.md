@@ -3425,3 +3425,115 @@ aux phonèmes enseigne moins, voire mal sur `ü` et `ö`.
 Décision reportée, volontairement : la question de l'essai — un modèle piloté
 par l'audio supprime-t-il le décalage — est un comportement du modèle, pas du
 style. La réponse vaut pour les deux registres.
+
+## 12 septembre 2026 — le contrôle répond « égalité », et le sourire manquait
+
+### Le plan 10 : ni mieux, ni moins bien
+
+| | offset | LSE-D | LSE-C |
+|---|---|---|---|
+| Seedance + sync.so | +0 ms | 6,045 | 4,937 |
+| OmniHuman 1.0 | −40 ms | 5,778 | **4,982** |
+
+**+0,045 de confiance. C'est zéro.** Le plan 16 avait bougé de +1,427 ; de
+vraies images filmées donnent 10,1. Quarante-cinq millièmes ne sont pas un
+gain.
+
+**Le contrôle a donc fait son travail, et la réponse est nuancée :**
+
+- plan **défaillant** (16, base 1,017) → l'avatar le **répare** ;
+- plan **sain** (10, base 4,937) → **jeu égal**, sans dégrader.
+
+Le gain d'hier était bien un rattrapage sur un cas cassé. Ce qui reste acquis :
+l'avatar ne casse rien, et le décalage d'attaque disparaît par construction.
+
+### ⚠️ Un comparateur qui désigne toujours un vainqueur finit par en inventer un
+
+`essai_avatar.py` a écrit « l'avatar gagne » pour +0,045. Il comparait des
+**signes**. Corrigé : deux planchers, `BRUIT_C = 0,25` et `BRUIT_D = 0,30`, en
+dessous desquels il écrit « égalité — sous le bruit, on ne conclut pas ».
+
+⚠️ **Et les seuils disent eux-mêmes qu'ils ne sont pas étalonnés** : on n'a pas
+de série de mesures répétées du même clip pour connaître la dispersion réelle.
+Ce sont des planchers de bon sens. Le jour où l'on mesure trois fois la même
+prise, on les remplacera par la dispersion observée. C'est la même faute que la
+mesure en dB, qui s'est trompée quatre fois faute d'étalon.
+
+### La voix est intacte, vérifié
+
+*« Est-ce que tu as gardé l'intonation de la voix d'ElevenLabs ? »*
+
+| | envoyé | revenu | corrélation | décalage |
+|---|---|---|---|---|
+| plan 10 | 5,06 s | 5,06 s | **1,0000** | 0 ms |
+| plan 16 | 5,06 s | 5,06 s | **1,0000** | 0 ms |
+
+**OmniHuman ne touche pas au son, il le laisse passer** — échantillon pour
+échantillon. Aurora est exactement celle d'ElevenLabs.
+
+### ⚠️ J'avais supprimé le sourire que la scène demandait
+
+*« ce n'est vraiment pas intéressant à regarder sans sourire »*, puis, sur le
+plan 10 : *« on voit moins de sourire dans ses yeux […] il manque un petit peu
+de vie ».*
+
+La feuille de tournage du plan 16 disait pourtant : **« Warm and genuine. A real
+smile at the end. »** J'avais lu l'avertissement des praticiens — sourire
+permanent, beaucoup de dents — et j'en avais fait une interdiction générale :
+*« small and closed-lipped »*, *« never show rows of teeth »*.
+
+**Le défaut à éviter est le sourire CONSTANT ET DÉCROCHÉ DE LA RÉPLIQUE, pas le
+sourire.** Les deux feuilles sont corrigées : on demande un sourire qui
+construit et finit franc, jusqu'aux yeux ; on interdit seulement celui qui
+arrive déjà large à la première image et ne bouge plus.
+
+⚠️ **Et une mesure qui passe avant le lip-sync : une série que personne n'a
+envie de regarder n'a pas de problème de synchronisation.**
+
+⚠️ **Le plan 16 est à refaire** avec son vrai sourire de remerciement. Sa prise
+a répondu à la question posée ; elle n'est pas bonne pour le montage.
+
+### Ce que « il manque de la vie » désigne, et qui a un chiffre
+
+Ce n'est pas une impression : c'est **HKV**, la dynamique gestuelle du papier.
+
+| | HKV |
+|---|---|
+| OmniHuman **1.0** | 47,6 |
+| OmniHuman **1.5** | **72,1** (+52 %) |
+
+**Toute la contribution du 1.5 est là** : un modèle de langue lit le *sens* de
+la réplique et planifie l'interprétation — les gestes, le regard, ce qui vit
+entre les mots. J'avais écarté le 1.5 parce qu'il est un cheveu sous le 1.0 en
+lip-sync sur le portrait (5,053 contre 5,199).
+
+**Ce cheveu ne coûte plus rien, maintenant qu'on sait que le lip-sync fait jeu
+égal de toute façon.** Prochain essai : le plan 10 avec le 1.5, même image, même
+piste, même prompt.
+
+⚠️ **Retenir le renversement** : le 10 septembre, le classement Sync-C disait de
+prendre le 1.0. C'était juste sur la donnée disponible, et faux sur la décision
+— parce que l'axe qui départage les deux modèles ne départage rien chez nous.
+**Un classement ne choisit que si l'écart qu'il mesure compte pour ce qu'on
+fait.**
+
+### L'offre gratuite change l'échelle
+
+95 s offertes. Les 12 plans parlants font **62,48 s** bout à bout ; les 7 plans
+sans parole (01, 02, 03, 04, 07, 18, 19) sont déjà tournés et ne passent pas par
+l'avatar. **L'épisode 1 se termine à zéro dollar**, avec ~27 s de marge — cinq
+reprises, pas cinquante. Et à 7,50 $ l'épisode hors gratuité, les 29 restants
+coûteraient environ **220 $** en génération.
+
+⚠️ Leur FAQ : **« Video URLs are valid for 1 hour »**. En lot, télécharger au fur
+et à mesure — un lien expiré se repaie.
+
+### Où se créent les images, puisque la question s'est posée
+
+**OmniHuman ne compose rien** : il anime une image finie. Les images de départ
+viennent d'**Artlist**, générées depuis @Mark et @Anna **avec une image
+existante en référence de décor** — c'est ce qui garde le comptoir et la
+lumière. Les quatre autres cadrages sont des recadrages ffmpeg, zéro crédit.
+Les 460 crédits Artlist restants ne servent donc plus à la vidéo mais aux
+images : environ trois séries de quatre poses. Piste non vérifiée : `Seedream
+5.0` chez BytePlus, qui annonce une « cohérence de référence améliorée ».
