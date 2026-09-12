@@ -10,8 +10,13 @@ CE QUE CA FAIT
        telephone, bosses a 1 k / 2 k / 4 k, puis une grande reverberation de
        hall. C'est la REVERBERATION qui fait l'aeroport -- le filtre seul
        donne un talkie-walkie.
-    2. LE LIT d'ambiance est mis en boucle a la longueur du clip, avec des
-       fondus aux deux bouts.
+    2. LES LITS d'ambiance -- un par LIEU -- sont mis en boucle et enchaines
+       en fondu aux instants ou la scene change d'endroit.
+       ⚠️ Un lit unique sur tout l'episode contredit le montage. Jacques,
+       12 septembre : « quand il change d'endroit, le son devrait changer ;
+       on devrait entendre les roulettes ». Un hall d'arrivee, un tapis a
+       bagages et une sortie n'ont pas la meme signature, et l'oreille le
+       sait avant l'oeil.
     3. TOUT EST DOSE PAR RAPPORT AU DIALOGUE, mesure, pas devine.
 
 ⚠️ AU MOINS 20 dB SOUS LA PAROLE -- et ce n'est pas une convention de gout.
@@ -50,6 +55,7 @@ sys.path.insert(0, os.path.join(RACINE, "video"))
 import montage as M                                         # noqa: E402
 
 SOUS_LIT = 24.0        # dB sous le dialogue pour le lit d'ambiance
+FONDU = 0.8            # le croisement entre deux lits, en secondes
 SOUS_ANNONCE = 20.0    # dB sous le dialogue pour l'annonce
 
 # La chaine du haut-parleur. Bande de telephone, puis les trois bosses que
@@ -82,10 +88,30 @@ def a_le_son(F, chemin):
     return "Audio:" in r.stderr
 
 
+def lits_demandes(valeurs, duree):
+    """« fichier@instant » -> [(fichier, debut, fin)], bornes a la duree."""
+    lus = []
+    for v in valeurs:
+        if "@" in v:
+            f, t = v.rsplit("@", 1)
+            lus.append((f, float(t)))
+        else:
+            lus.append((v, 0.0))
+    lus.sort(key=lambda e: e[1])
+    out = []
+    for i, (f, debut) in enumerate(lus):
+        fin = lus[i + 1][1] if i + 1 < len(lus) else duree
+        if fin > debut:
+            out.append((f, debut, min(fin, duree)))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--clip", help="la video a sonoriser")
-    ap.add_argument("--lit", help="le lit d'ambiance (mis en boucle)")
+    ap.add_argument("--lit", action="append", default=[], metavar="FICHIER@T",
+                    help="un lit d'ambiance et l'instant ou il prend le relais. "
+                         "Repetable : --lit hall.mp3@0 --lit tapis.mp3@27.3")
     ap.add_argument("--annonce", help="l'annonce brute, voix seche")
     ap.add_argument("--a", type=float, default=None, metavar="SECONDES",
                     help="a quel instant poser l'annonce")
@@ -112,34 +138,48 @@ def main():
     ref = loudness(F, a.clip)
     if ref is None:
         sys.exit("  Impossible de mesurer la loudness du dialogue.")
-    print("  dialogue : %.1f LUFS, %.2f s" % (ref, duree))
+    print("  dialogue : %.1f LUFS, %.2f s\n" % (ref, duree))
 
-    entrees = ["-i", a.clip]
+    # ⚠️ COMPTER LES ENTREES, PAS LES MOTS. « -stream_loop -1 -i fichier »
+    # fait quatre mots pour une seule entree : un len()//2 se trompe.
+    entrees, n_ent = ["-i", a.clip], 1
     chaines, pistes = [], ["[0:a]"]
+    cible = ref - SOUS_LIT
 
-    if a.lit:
+    for f, debut, fin in lits_demandes(a.lit, duree):
+        if not os.path.exists(f):
+            sys.exit("  Lit introuvable : %s" % f)
+        i = n_ent
         # ⚠️ -stream_loop AVANT -i, sinon il ne s'applique pas.
-        entrees = ["-stream_loop", "-1", "-i", a.lit] + entrees
-        cible = ref - SOUS_LIT
-        g = cible - (loudness(F, a.lit) or -20.0)
-        chaines.append("[0:a]atrim=0:%.3f,volume=%.2fdB,"
-                       "afade=t=in:st=0:d=0.5,afade=t=out:st=%.3f:d=0.8[lit]"
-                       % (duree, g, max(0.0, duree - 0.8)))
-        pistes = ["[1:a]", "[lit]"]
-        print("  lit      : %+.1f dB  ->  %.1f LUFS  (%.0f dB sous le dialogue)"
-              % (g, cible, SOUS_LIT))
+        entrees += ["-stream_loop", "-1", "-i", f]
+        n_ent += 1
+        g = cible - (loudness(F, f) or -20.0)
+        # Le segment deborde de FONDU sur le suivant : les deux fondus se
+        # croisent, ce qui fait le raccord sans trou ni bosse.
+        lg = (fin - debut) + (FONDU if fin < duree else 0.0)
+        e_in = FONDU if debut > 0 else 0.3
+        chaines.append(
+            "[%d:a]atrim=0:%.3f,volume=%.2fdB,"
+            "afade=t=in:st=0:d=%.2f,afade=t=out:st=%.3f:d=%.2f,"
+            "adelay=%d:all=1,aresample=44100[lit%d]"
+            % (i, lg, g, e_in, max(0.0, lg - FONDU), FONDU,
+               int(round(debut * 1000)), i))
+        pistes.append("[lit%d]" % i)
+        print("  lit      : %-16s %6.2f -> %6.2f s   %+.1f dB"
+              % (os.path.basename(f), debut, fin, g))
 
     if a.annonce:
-        i = len(entrees) // 2
+        i = n_ent
         entrees += ["-i", a.annonce]
-        cible = ref - SOUS_ANNONCE
-        g = cible - (loudness(F, a.annonce) or -20.0)
+        n_ent += 1
+        c2 = ref - SOUS_ANNONCE
+        g = c2 - (loudness(F, a.annonce) or -20.0)
         d = int(round((a.a if a.a is not None else duree * 0.15) * 1000))
-        chaines.append("[%d:a]%s,volume=%.2fdB,adelay=%d:all=1,apad[pa]"
-                       % (i, PA, g, d))
+        chaines.append("[%d:a]%s,volume=%.2fdB,adelay=%d:all=1,apad,"
+                       "aresample=44100[pa]" % (i, PA, g, d))
         pistes.append("[pa]")
-        print("  annonce  : %+.1f dB  ->  %.1f LUFS  a %.2f s  (%.0f dB sous)"
-              % (g, cible, d / 1000.0, SOUS_ANNONCE))
+        print("  annonce  : %-16s %6.2f s          %+.1f dB  (%.0f dB sous)"
+              % (os.path.basename(a.annonce), d / 1000.0, g, SOUS_ANNONCE))
 
     if len(pistes) < 2:
         sys.exit("  Rien a ajouter : donner --lit et/ou --annonce.")
@@ -148,14 +188,13 @@ def main():
                    "alimiter=limit=0.97[out]" % ("".join(pistes), len(pistes)))
 
     dst = a.sortie or os.path.splitext(a.clip)[0] + "-sonorise.mp4"
-    v = "0:v" if not a.lit else "1:v"
     subprocess.run([F, "-y", "-v", "error"] + entrees +
                    ["-filter_complex", ";".join(chaines),
-                    "-map", v, "-map", "[out]", "-c:v", "copy",
+                    "-map", "0:v", "-map", "[out]", "-c:v", "copy",
                     "-c:a", "aac", "-b:a", "192k", "-t", "%.3f" % duree, dst],
                    check=True)
     apres = loudness(F, dst)
-    print("\n  %s" % os.path.relpath(dst, RACINE))
+    print("\n%s" % os.path.relpath(dst, RACINE))
     if apres is not None:
         print("  melange  : %.1f LUFS  (le dialogue etait a %.1f)" % (apres, ref))
         # ⚠️ Si le melange monte de plus de ~1 dB, le fond n'est plus un fond.
