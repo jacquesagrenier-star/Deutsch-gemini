@@ -3556,30 +3556,47 @@ d'appareil, sur la **meilleure base** de la scène :
 +1,952 de confiance. Quatre difficultés d'un coup — personnage jamais essayé,
 phrase la plus longue, caméra mobile, base déjà bonne — et il gagne partout.
 
-### ⚠️ Puis la mesure s'est retournée contre elle-même
+### ⚠️ Une fausse alerte sur la mesure, et ce qu'elle apprend
 
-Deux prises du **plan 12**, mêmes fichiers, prompt quasi identique :
+J'ai cru un moment tenir la dispersion du modèle : deux prises du **plan 12**,
+mêmes fichiers, 1,39 d'écart en confiance. J'en ai conclu que la variation d'un
+tirage à l'autre écrasait la plupart de nos effets, et j'ai monté les seuils de
+bruit de 0,25 à 1,00.
 
-| | LSE-D | LSE-C |
-|---|---|---|
-| 1ʳᵉ prise | 5,375 | **3,809** |
-| 2ᵉ prise | 5,013 | **2,418** |
+**C'était faux.** Le second fichier était une prise du **plan 16**, sauvegardée
+sous le nom du 12. Je comparais deux plans différents. La corrélation des pistes
+audio l'a montré en trente secondes — 1,0000 avec `plan16-pleine.mp3`.
 
-**1,39 d'écart entre deux tirages de la même chose.** C'est la dispersion qu'on
-n'avait jamais mesurée — et elle est **plus grande que la plupart des effets
-qu'on croyait mesurer**. Mes seuils de bruit à 0,25 étaient quatre fois trop
-bas ; ils passent à 1,00.
+⚠️ **Un fichier mal nommé est une mesure fausse qui se présente bien.** Rien
+dans le résultat n'avait l'air anormal : des chiffres plausibles, un verdict
+lisible, et une conclusion d'autant plus séduisante qu'elle était spectaculaire.
+Vérifier l'identité du clip AVANT de le mesurer — la corrélation des pistes le
+fait sans rien supposer.
 
-Ce que ça fait retomber, et qu'il faut assumer : **le gain du prompt B sur le
-plan 10 (+0,583) n'est plus établi par la mesure.** L'œil de Jacques avait
-tranché sans ambiguïté — « beaucoup plus naturel, pas exagéré » — et ce
-jugement tient tout seul.
+**La vraie paire était déjà en boîte**, mal étiquetée : les deux prises du plan
+10 faites avec le **même prompt A**, même image, même piste.
 
-⚠️ **Règle de travail qui en découle : la mesure ne sert plus qu'à repérer les
-catastrophes. Sous 1,0 d'écart, c'est l'œil qui tranche.** Et ⚠️ ce 1,00 n'est
-toujours PAS un étalonnage : c'est UNE paire, pas une série. Pour la vraie
-dispersion il faut trois prises **à graine fixe** — le champ `Seed` du Studio,
-laissé à −1, est ce qui nous en empêche.
+| plan 10, prompt A | LSE-C |
+|---|---|
+| 1ʳᵉ prise | 4,982 |
+| 2ᵉ prise | 4,894 |
+| **écart** | **0,088** |
+
+**La dispersion est petite.** Les seuils de 0,25 tiennent, le gain du prompt B
+(+0,583) reste établi, et le plan 12 (+1,080) aussi. ⚠️ Mais ce n'est toujours
+pas un étalonnage : une paire, pas une série. Il faut trois prises **à graine
+fixe** — le champ `Seed`, laissé à −1, est ce qui nous en empêche.
+
+### Le plan 16, avec le sourire qu'il demandait
+
+| | offset | LSE-D | LSE-C |
+|---|---|---|---|
+| Seedance + sync.so | +40 ms | 6,493 | 1,017 |
+| avatar | −40 ms | **5,013** | **2,418** |
+
++1,401, sur la pire base de l'épisode. Et Jacques, sans voir le chiffre : *« la
+dernière prise, quand il la remercie, ça me paraît quand même être la
+meilleure »*. Les deux jugements se rejoignent.
 
 ### Ce qui a vraiment fait progresser les prises : le prompt
 

@@ -84,25 +84,31 @@ TARIFS = [("WaveSpeed", 0.12), ("ModelsLab", 0.14),
 # le plan 16 avait bouge de +1,427. Il comparait des SIGNES. Un comparateur
 # qui designe toujours un vainqueur finit par en inventer un.
 #
-# ⚠️ ET LE MEME JOUR, LA PREMIERE MESURE DE CETTE DISPERSION.
-# Plan 12, deux prises, memes fichiers, prompt quasi identique :
-#     1re prise   LSE-D 5,375   LSE-C 3,809
-#     2e prise    LSE-D 5,013   LSE-C 2,418
-# 1,39 d'ecart en confiance entre deux tirages de la MEME chose. La
-# variation du modele est donc plus grande que la plupart des effets qu'on
-# croyait mesurer, et mes seuils de 0,25 etaient quatre fois trop bas.
+# ⚠️ ET LE MEME JOUR, LA PREMIERE MESURE DE CETTE DISPERSION -- apres une
+# fausse alerte qu'il faut garder ecrite.
 #
-# ⚠️ CE N'EST TOUJOURS PAS UN ETALONNAGE : c'est UNE paire, pas une serie.
-# 1,00 est le plancher que cette paire impose, pas la dispersion vraie.
-# Pour l'avoir il faut trois prises A GRAINE FIXE du meme plan -- le champ
-# Seed du Studio, laisse a -1, est ce qui nous en empeche aujourd'hui.
+# J'ai d'abord cru mesurer 1,39 d'ecart entre deux tirages du plan 12, et
+# j'ai monte les seuils a 1,00 sur cette base. C'ETAIT FAUX : le second
+# fichier etait une prise du plan 16, sauvegardee sous le nom du 12. Je
+# comparais deux plans differents. La correlation des pistes audio l'a
+# montre en trente secondes (1,0000 avec plan16-pleine.mp3).
 #
-# Ce que ce seuil a fait retomber dans le bruit, et qu'il faut assumer :
-# le gain du prompt B sur le plan 10 (+0,583) n'est plus etabli par la
-# mesure. L'oeil de Jacques, lui, avait tranche sans ambiguite -- et ce
-# jugement tient tout seul. C'est la mesure qui perd son autorite.
-BRUIT_C = 1.00         # confiance : en dessous, on ne conclut pas
-BRUIT_D = 1.00         # distance : idem
+# ⚠️ UN FICHIER MAL NOMME EST UNE MESURE FAUSSE QUI SE PRESENTE BIEN. Rien
+# dans le resultat n'avait l'air anormal -- des chiffres plausibles, un
+# verdict lisible, une conclusion interessante. Verifier l'identite du
+# clip AVANT de le mesurer, pas apres avoir trouve le resultat surprenant.
+#
+# La vraie paire etait ailleurs, deja en boite : les deux prises du plan 10
+# faites avec le MEME prompt A, meme image, meme piste.
+#     1re prise   LSE-C 4,982
+#     2e prise    LSE-C 4,894      ecart 0,088
+# La dispersion est donc PETITE, et les seuils de 0,25 tiennent.
+#
+# ⚠️ Ce n'est toujours pas un etalonnage : UNE paire, pas une serie. Pour
+# la vraie dispersion il faut trois prises a GRAINE FIXE du meme plan -- le
+# champ Seed du Studio, laisse a -1, est ce qui nous en empeche.
+BRUIT_C = 0.25         # confiance : en dessous, on ne conclut pas
+BRUIT_D = 0.30         # distance : idem
 
 
 def verdict(ecart, bruit):
