@@ -4268,3 +4268,56 @@ idem ; toucher sans coordonnées (clavier) → idem. Six touchers, six bascules.
 ⚠️ **Si le double toucher persiste**, ce n'est plus notre code : il ne reste
 plus rien entre le toucher et la bascule. Ce serait alors le traitement du clic
 par Safari, et il faudra le mesurer autrement.
+
+## 13 septembre 2026 — la flèche qu'il demandait depuis le début (v574)
+
+**Signalé :** « Je voulais juste avoir une flèche dans le coin gauche de la
+carte ou juste dessous pour être capable de retourner au **recto de la même
+carte**. Ça va encore à la carte précédente. »
+
+### Ce que j'avais mal entendu, quatre fois de suite
+
+Il ne demandait pas qu'on **déplace** « Précédent ». Il demandait **une flèche
+qui fait autre chose** : retourner la carte, pas changer de carte.
+
+Trois versions passées à corriger la mauvaise chose :
+
+| version | ce que j'ai fait | ce qu'il voulait |
+|---|---|---|
+| v571 | sorti « Précédent » de la moitié gauche du verso | une flèche « retour au recto » |
+| v572 | remonté « Précédent » au-dessus du pli | idem |
+| v573 | la carte entière devient une bascule | idem, **plus** une flèche visible |
+
+⚠️ **Chaque correction était juste en elle-même et ne répondait pas à la
+demande.** Le signal était pourtant là dès la v571 — « je veux juste voir le
+recto, puis être capable de recliquer dessus » — et il l'a redit quatre fois.
+Ce que je n'ai pas fait : lui demander à quoi devait servir la flèche, au lieu
+de supposer qu'il parlait de celle qui existait.
+
+### Corrigé
+
+Une flèche **« ↩ Recto »** dans le coin bas-gauche du verso, à l'endroit
+demandé. Elle appelle `unflipCard()`.
+
+⚠️ **Elle ne peut pas se tromper de geste, et c'est la v573 qui le permet.**
+Depuis que toucher la carte la retourne des deux côtés : viser le bouton donne
+le recto, le manquer donne le recto aussi. Aucun toucher de cette zone ne peut
+plus produire autre chose. C'est la première fois de la journée qu'un bouton
+posé sur la carte est sans risque — et ça n'aurait pas été vrai avant la v573.
+
+⚠️ `event.stopPropagation()` est indispensable : sans lui le clic remonte au
+`onclick` de la carte, `handleCardTap()` trouve une carte déjà revenue au recto
+et la retourne au verso — le bouton aurait l'air de ne rien faire.
+
+⚠️ **Une flèche courbe, pas un chevron.** « Précédent », sous la carte, porte
+un chevron « ‹ ». Deux gestes différents ne doivent pas partager un dessin —
+c'est précisément la confusion qu'on vient de payer trois versions. Celle-ci
+revient sur elle-même, comme on retourne une carte.
+
+Trois choses les séparent maintenant : la **forme** (courbe / chevron), le
+**mot** (Recto / Précédent), la **place** (sur la carte / sous la carte).
+
+Clés ajoutées dans les cinq langues : `flash_recto`, `flash_recto_court`.
+
+Vérifié au banc, iPhone 375 × 812 : le bouton est à x = 43 px, en bas à gauche
+de la carte ; clic dessus → recto ; clic sur la carte → verso.

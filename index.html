@@ -3811,6 +3811,22 @@ body[data-theme="dark"] .judge-known{
     line-height:1.3; cursor:pointer;
 }
 .flash-retour-bas svg{width:14px; height:14px; flex:0 0 auto;}
+/* La fleche « Recto », dans le coin bas-gauche du VERSO. Meme habit que
+   « Precedent » -- ce sont deux commandes secondaires de meme rang -- mais les
+   trois reglages de placement d'origine, qui ne valaient que dans la colonne
+   flex du verso et que .flash-retour-bas a perdus en descendant sous la carte. */
+.flash-recto-coin{
+    margin-top:auto; margin-inline-end:auto; align-self:flex-start;
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 11px 5px 8px; border-radius:999px;
+    border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
+    color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600;
+    line-height:1.3; cursor:pointer;
+}
+.flash-recto-coin svg{width:14px; height:14px; flex:0 0 auto;}
+body[data-theme="dark"] .flash-recto-coin{
+    background:rgba(26,32,42,.92); border-color:rgba(143,180,255,.30); color:#8FB4FF;
+}
 body[data-theme="dark"] .flash-retour-bas{
     background:rgba(26,32,42,.92); border-color:rgba(143,180,255,.30); color:#8FB4FF;
 }
@@ -5264,7 +5280,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v573</span>
+    <span class="subtitle-version">v574</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6913,6 +6929,41 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
                 <div id="flashSynonymes" class="synonymes hidden"></div>
+                <!-- ⚠️ LA FLECHE QUI RETOURNE LA CARTE (v574). Demande de
+                     Jacques, quatre fois de suite et que je n'avais pas
+                     entendue : « je voulais juste avoir une fleche dans le coin
+                     gauche de la carte pour etre capable de retourner au recto
+                     de la MEME carte ; ca va encore a la carte precedente ».
+                     Il ne demandait pas qu'on deplace « Precedent » -- il
+                     demandait une fleche qui fait AUTRE CHOSE.
+
+                     ⚠️ CELLE-CI NE PEUT PAS SE TROMPER DE GESTE, et c'est la
+                     v573 qui le permet. Depuis que toucher la carte la retourne
+                     des deux cotes : viser le bouton donne le recto, le manquer
+                     donne le recto aussi. Aucun toucher de cette zone ne peut
+                     plus produire autre chose.
+
+                     ⚠️ event.stopPropagation() EST INDISPENSABLE. Sans lui le
+                     clic remonte jusqu'au onclick de la carte : handleCardTap()
+                     trouverait une carte deja retournee au recto et la
+                     retournerait de nouveau au verso -- le bouton n'aurait
+                     l'air de rien faire.
+
+                     ⚠️ UNE FLECHE COURBE, pas un chevron. « Precedent », sous
+                     la carte, porte un chevron « ‹ » : deux gestes differents ne
+                     doivent pas partager un dessin. Celle-ci revient sur
+                     elle-meme, comme on retourne une carte.
+
+                     ⚠️ margin-top:auto PLUTOT QUE position:absolute. Le verso
+                     defile : une fleche calee en bottom:10px se decrocherait du
+                     bas visible des que la carte est longue. -->
+                <button type="button" class="flash-recto-coin"
+                        onclick="event.stopPropagation(); unflipCard();"
+                        data-i18n-aria-label="flash_recto" aria-label="Revenir au recto de la carte">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                         stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h11a5 5 0 010 10h-3"/><path d="M7 6l-4 4 4 4"/></svg>
+                    <span data-i18n="flash_recto_court">Recto</span>
+                </button>
                 <!-- ⚠️ DEUX INDICATIONS QUI DECRIVAIENT UN GESTE DISPARU (v558).
                      La fleche vers la droite annoncait « passer a la carte
                      suivante » -- or depuis la v555 le balayage ne passe plus :
@@ -7973,6 +8024,8 @@ const I18N = {
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
         flash_revoir: "Revoir le mot précédent",
         flash_revoir_court: "Précédent",
+        flash_recto: "Revenir au recto de la carte",
+        flash_recto_court: "Recto",
         flash_fermer: "Toucher pour fermer",
         legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »). Une carte balayée sans réponse fait avancer le tableau, mais pas cette barre.",
@@ -8918,6 +8971,8 @@ const I18N = {
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
         flash_revoir: "See the previous word",
         flash_revoir_court: "Previous",
+        flash_recto: "Back to the front of the card",
+        flash_recto_court: "Front",
         flash_fermer: "Tap to close",
         legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »). A card swiped past moves the painting along, but not this bar.",
@@ -9865,6 +9920,8 @@ const I18N = {
         mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
         flash_revoir: "Önceki kelimeye bak",
         flash_revoir_court: "Önceki",
+        flash_recto: "Kartın ön yüzüne dön",
+        flash_recto_court: "Ön yüz",
         flash_fermer: "Kapatmak için dokun",
         legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar. Cevapsız geçilen bir kart tabloyu ilerletir ama bu çubuğu ilerletmez.",
@@ -11442,6 +11499,8 @@ const I18N = {
         mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
         flash_revoir: "Переглянути попереднє слово",
         flash_revoir_court: "Попереднє",
+        flash_recto: "Повернутися на лицьовий бік картки",
+        flash_recto_court: "Лицьовий бік",
         flash_fermer: "Торкнись, щоб закрити",
         legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив. Пропущена без відповіді картка рухає картину, але не цю смужку.",
@@ -12359,6 +12418,8 @@ const I18N = {
         mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
         flash_revoir: "دیدن واژهٔ پیشین",
         flash_revoir_court: "پیشین",
+        flash_recto: "بازگشت به روی کارت",
+        flash_recto_court: "روی کارت",
         flash_fermer: "برای بستن بزن",
         legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای. کارتی که بدون پاسخ رد شود تابلو را جلو می‌برد اما این نوار را نه.",
@@ -24083,7 +24144,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 573;
+const APP_VERSION = 574;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
