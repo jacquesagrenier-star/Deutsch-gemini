@@ -396,8 +396,21 @@ html,body{margin:0}
         try{
             var liste = JSON.parse(localStorage.getItem(GEL_CLE) || "[]");
             if(!Array.isArray(liste)) liste = [];
+            // ⚠️ UN GEL ANONYME DOIT QUAND MEME DIRE QUELQUE CHOSE (v570). Deux
+            // journaux de suite ont rendu « ? » sur toutes les lignes, ce qui
+            // n'apprend rien de plus que « ca gele ». On joint donc le DERNIER
+            // travail nomme et depuis combien de temps il est fini : s'il vient
+            // de se terminer, c'est lui ou ce qu'il a declenche ; s'il remonte a
+            // plusieurs minutes, le blocage est hors de notre code -- et ca,
+            // c'est justement ce qu'aucune marque ne peut dire.
+            var q = quoi;
+            if(!q){
+                q = dernierNom
+                  ? ("? apres " + dernierNom + " +" + (Date.now() - dernierFin) + "ms")
+                  : "? (aucun travail nomme depuis l'ouverture)";
+            }
             liste.push({ h: new Date().toLocaleTimeString(), ms: Math.round(ms),
-                         ou: ouSuisJe(), quoi: quoi || "?" });
+                         ou: ouSuisJe(), quoi: q });
             while(liste.length > GEL_MAX) liste.shift();
             localStorage.setItem(GEL_CLE, JSON.stringify(liste));
         }catch(e){}
@@ -409,6 +422,9 @@ html,body{margin:0}
     // journal AVEC SON NOM. Un gel nomme se repare ; un gel anonyme se devine,
     // et ce defaut a deja ete devine trois fois.
     var occupation = null, occupationDebut = 0, finGelNomme = 0, profondeur = 0;
+    // Le dernier travail nomme qui s'est TERMINE, et quand. Sert au gel
+    // anonyme, ci-dessus : il situe le blocage par rapport a ce qu'on connait.
+    var dernierNom = "", dernierFin = 0;
     window.marquerOccupation = function(nom){
         try{
             // ⚠️ LES MARQUES S'IMBRIQUENT (v569). Une seule case « occupation »
@@ -424,6 +440,7 @@ html,body{margin:0}
             }
             if(profondeur > 0 && --profondeur > 0) return;
             if(occupation){
+                dernierNom = occupation; dernierFin = Date.now();
                 var duree = Date.now() - occupationDebut;
                 if(duree >= SEUIL_GEL){
                     noterGel(duree, occupation);
@@ -5241,7 +5258,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v569</span>
+    <span class="subtitle-version">v570</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24045,7 +24062,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 569;
+const APP_VERSION = 570;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -28758,6 +28775,50 @@ function showResults(){
     document.getElementById("scoreText").textContent = tf("score_result_text", { n: scoreValue });
     showScreen("result");
 }
+
+// ============ NOMMER LE TRAVAIL, QUEL QU'IL SOIT (v570) ============
+//
+// ⚠️ MARQUER UN SUSPECT A LA FOIS EST TROP LENT QUAND ON SE TROMPE. La v569 a
+// marque la mosaique et les anneaux des tuiles ; le journal du 13 septembre au
+// matin a rendu « ? » sur les trois nouveaux gels. Deux journaux, zero nom.
+//
+// On enveloppe donc d'un seul bloc TOUT ce qui tourne sur le chemin d'une
+// carte. Les marques s'imbriquent depuis la v569 : c'est la plus EXTERIEURE qui
+// est retenue, donc une ligne de journal nomme le geste complet, pas la feuille
+// de l'arbre.
+//
+// ⚠️ CE QU'ON NE MET PAS DANS LA LISTE, ET POURQUOI. getWordState() est appelee
+// quinze mille fois par updateOrbRings() : l'envelopper ajouterait trente mille
+// Date.now() par carte, c'est-a-dire fabriquer le defaut qu'on mesure. La liste
+// ne contient que des fonctions appelees une poignee de fois par geste.
+//
+// ⚠️ ET SI LE PROCHAIN JOURNAL DIT ENCORE « ? », CE SERA UNE REPONSE : le
+// blocage ne sera dans aucune de ces trente fonctions, donc hors de notre code
+// synchrone -- le SDK Firestore, le decodage audio, ou Safari lui-meme. La
+// mention « ? apres <nom> +N ms » dira alors de quoi il est le plus proche.
+[
+    "showScreen", "goHome",
+    "loadFlashcard", "flipCard", "nextFlashcard", "skipFlashcard",
+    "markMastered", "celebrateMastery", "launchConfetti", "feterLeTrophee",
+    "majEcheances", "poserCarreau", "setWordState", "saveProgress",
+    "recordDailyActivity", "logMasteryEvent", "checkAndUnlockBadges",
+    "updateGlobalProgress", "updateOrbBadges", "updateMyVocabTile",
+    "renderThemes", "renderBadgesGrid", "comptesProgression",
+    "majCarteProgression", "majTuileSeance", "majCompteDuJour",
+    "cartesRevenues", "separer", "cartesEchuesTriees", "cartesDeSeance",
+    "buildDictationExercises", "direAllemand", "sha1Hex"
+].forEach(function(nom){
+    const f = window[nom];
+    if(typeof f !== "function") return;
+    window[nom] = function(){
+        marquerGel(nom);
+        // `finally` et pas une ligne apres l'appel : une exception qui traverse
+        // laisserait la marque ouverte, et toutes les mesures suivantes
+        // seraient fausses sans que rien ne le dise.
+        try{ return f.apply(this, arguments); }
+        finally{ marquerGel(null); }
+    };
+});
 
 (() => {
     afficherNumeroVersion();

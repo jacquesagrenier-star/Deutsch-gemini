@@ -3977,3 +3977,80 @@ faire :
 ⚠️ **Le journal ne date pas ses lignes** — chaque entrée porte une heure, pas
 une date. Pour une mesure rattachable à une séance précise : VIDER d'abord,
 séance, puis COPIER.
+
+## 13 septembre 2026 (matin) — la mosaïque n'était pas la cause, et deux journaux sans un nom
+
+Séance en v569, journal renvoyé le matin même. **Trois gels neufs, trois `?`.**
+
+```
+7:44:16 AM  1818 ms  ?  flashcards 5/44
+7:46:22 AM  2339 ms  ?  flashcards 6/40
+7:47:56 AM  5229 ms  ?  flashcards 19/50
+```
+
+⚠️ **`mosaique -> canvas` n'apparaît pas. `anneaux des tuiles` non plus.** Les
+deux travaux marqués en v569 sont donc innocents, et l'hypothèse de la
+mosaïque — défendue ici même hier avec un mécanisme détaillé — **ne tient pas
+comme explication du gel.**
+
+Ce que le report de la mosaïque reste : une correction juste en elle-même
+(on ne décode pas un JPEG et on n'alloue pas trois canevas pour un écran que
+personne ne regarde). Ce n'est pas la cause du défaut signalé.
+
+**Sur l'amplitude, je ne conclus rien.** 1,8 → 2,3 → 5,2 s aujourd'hui contre
+2,1 → 2,9 → 3,9 → 10,3 → 13,0 s hier, c'est vrai ; mais la séance d'hier durait
+neuf minutes et celle-ci quatre. Au même point du chronomètre, hier donnait
+10,3 s et aujourd'hui 5,2 s — une amélioration possible, pas établie.
+
+### Ce que deux échecs de suite apprennent sur la méthode
+
+Marquer un suspect à la fois coûte un aller-retour complet par hypothèse :
+une version, un déploiement, une séance, un journal. Deux tours, zéro nom.
+Le goulot n'est pas le diagnostic, c'est **la largeur de l'instrument**.
+
+### v570 — deux changements à l'instrument, aucun au comportement
+
+**1. Le filet.** Trente-trois fonctions du chemin d'une carte sont enveloppées
+d'un seul bloc, à la fin du script. Les marques s'imbriquant depuis la v569,
+c'est la plus extérieure qui est retenue : une ligne nomme le geste complet,
+pas la feuille de l'arbre.
+
+⚠️ `getWordState()` n'y est pas, et c'est délibéré : elle est appelée quinze
+mille fois par `updateOrbRings()`. L'envelopper ajouterait trente mille
+`Date.now()` par carte — fabriquer le défaut qu'on mesure.
+
+**2. Le fil d'Ariane.** Un gel anonyme porte désormais le dernier travail nommé
+qui s'est terminé, et depuis combien de temps :
+
+```
+? apres nextFlashcard +180ms      -> c'est lui, ou ce qu'il a déclenché
+? apres showScreen +240000ms      -> le blocage est hors de notre code
+```
+
+Vérifié au banc : marques imbriquées → seule l'extérieure sort, à la bonne
+durée ; blocage de 2,5 s sans marque → le pouls le voit et joint
+`? apres ESSAI-EXTERIEUR +3106ms`. Les 33 noms de la liste résolvent tous
+(un nom mal orthographié aurait été ignoré en silence).
+
+### Les trois issues possibles du prochain journal
+
+| ce que dira la ligne | ce que ça veut dire |
+|---|---|
+| un nom de la liste | c'est lui, et on le répare |
+| `? apres <nom> +petit` | ce que ce travail a déclenché — SDK, audio, rendu |
+| `? apres <nom> +grand` | hors de notre code synchrone : Safari, GC, ou le SDK Firestore en tâche différée |
+
+Dans les trois cas on sait où regarder. C'est la première fois.
+
+### Le suspect qui reste, et pourquoi il n'est pas encore accusé
+
+`syncProgressToCloud()` part quatre secondes après la dernière carte — donc
+après presque **chaque** carte, puisqu'une carte avec son prend dix à vingt
+secondes. Elle écrit un document contenant `progress` : 11 694 mots pour
+Jacques.
+
+⚠️ **Et sa marque ne couvre que le prologue** : `marquerGel(null)` est posé
+avant `await envoi`. Tout ce que le SDK Firestore reporte à une tâche
+ultérieure sort en `?`. C'est exactement la forme que le fil d'Ariane va
+trancher — si les gels tombent juste après un travail nommé de la séance et
+que rien d'autre ne colle, c'est là qu'il faudra creuser.
