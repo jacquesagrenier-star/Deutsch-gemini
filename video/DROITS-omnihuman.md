@@ -91,3 +91,76 @@ country selected cannot be changed after the account profile submitted »*.
 | **ElevenLabs** (les voix) | usage commercial couvert sur les forfaits payants, sans licence séparée |
 | **Artlist** (images, SFX) | licence commerciale ; les fichiers téléchargés restent acquis même sans abonnement. ⚠️ Les SFX sont un **plan distinct** — vérifier ce que couvre « AI Creator » |
 | **OmniHuman** | ce fichier |
+
+
+---
+
+# fal.ai — le même modèle, une autre porte
+### 13 septembre 2026
+
+Les crédits Artlist épuisés et le compte BytePlus bloqué, la question s'est
+posée : **OmniHuman 1.5 ailleurs ?** Oui — **fal.ai**, à **0,16 $ la seconde**,
+exactement le tarif BytePlus. Aussi sur Replicate (`bytedance/omni-human-1.5`)
+et chez AIMLAPI.
+
+## Ce qui est plus simple, et ce n'est pas rien
+
+**Courriel et carte.** Pas de type de compte irréversible, pas de pays
+verrouillé, pas de licence commerciale, pas de « Individual ne se convertit pas
+en Business ». Tout le nœud administratif du 13 septembre disparaît.
+
+Et c'est une API : l'outillage Python du dépôt s'y branche plus facilement que
+sur une console.
+
+## ⚠️ Mais sur les DROITS, c'est possiblement PLUS FAIBLE
+
+Trois relevés, tirés des *Terms of Service* — pas des *API Services*, qui
+régissent la revente à ses propres utilisateurs finaux et ne nous concernent
+pas.
+
+**1. La propriété des sorties n'est PAS confirmée.** La clause trouvée dit :
+
+> *« Customer owns and retains all right, title, and interest in and to the
+> **Customer Input**. »* (§6(b))
+
+C'est l'**entrée** — ce qu'on téléverse — pas la **sortie**. Aucune clause
+équivalente sur l'Output n'a été trouvée. ⚠️ **C'est exactement le trou qu'on
+reprochait à BytePlus**, où la phrase *« BytePlus does not claim ownership of the
+Output »* a disparu dans un document fusionné. Changer de porte ne le comble pas.
+
+**2. L'entraînement sur nos données, sans retrait annoncé.**
+
+> *« Company may generate, collect, store, use, transfer, and/or disclose to
+> third parties Usage Data […] to design, develop, and offer Company products,
+> services, and AI models. »* (§6(c))
+
+Aucun mécanisme de retrait n'apparaît dans ces conditions. Chez BytePlus, le
+*Data Authorization Agreement* en prévoyait un, même imparfait. ⚠️ Reste à
+vérifier ce que « Usage Data » recouvre exactement : des métadonnées ou le
+contenu. La définition change tout, et je ne l'ai pas.
+
+**3. ET L'INDEMNITÉ EST INVERSÉE. C'est le point le plus important.**
+
+| | BytePlus | fal |
+|---|---|---|
+| qui défend qui | **BytePlus défend et indemnise** le client contre les réclamations de PI visant les sorties de ses modèles (§3.1) | **le client indemnise fal** (§15) |
+| exclusion | les réclamations de **marque** en usage commercial (§3.1(d)) | aucune clause trouvée où fal protège le client |
+
+Chez BytePlus, nous étions couverts **sauf** sur la marque. Chez fal, il n'y a
+pas de couverture à exclure — et c'est le client qui garantit fal contre les
+réclamations visant ses entrées.
+
+## Ce que j'en conclus, et ce qui reste à vérifier
+
+**La complication qu'on évite est administrative ; la protection qu'on
+abandonnerait est juridique.** Ce n'est pas un échange évident pour un produit
+commercial portant une marque en cours de dépôt.
+
+⚠️ **À lire soi-même avant de trancher** : les sections **4, 6 et 15** des
+*Terms of Service*, et surtout les **définitions** de « Output Content »,
+« Customer Input » et « Usage Data ». Mes relevés sont des citations, pas une
+lecture complète du contrat.
+
+**Ce qui ne change pas, quel que soit le fournisseur** : ni l'un ni l'autre ne
+nous couvre sur le terrain de la marque. C'était déjà écrit plus haut pour
+BytePlus, et c'est notre terrain.
