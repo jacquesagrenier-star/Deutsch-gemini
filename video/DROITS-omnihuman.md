@@ -217,6 +217,30 @@ Ce qu'on abandonne — la défense de BytePlus contre les réclamations de PI �
 nous couvrait pas là où nous sommes exposés. **Le dépôt de marque reste notre
 seule vraie protection, chez l'un comme chez l'autre.**
 
+## ✅ Fait — compte ouvert et arbitrage refusé, le 13 septembre 2026
+
+Compte **« For myself »** : §4(a) accorde la licence *« for your own personal
+or **internal business use** »*, les deux dans la même phrase. Contrairement à
+BytePlus, ce choix **ne conditionne pas l'usage commercial** — c'est du routage
+d'accueil, pas une classification juridique. Le « For my company » aurait ouvert
+un *Team Organization* (§5(c) : l'administrateur répond de chaque membre) sans
+membres, et renvoyé aux ventes — la boucle exacte où BytePlus s'est perdu.
+
+**L'avis d'exclusion de l'arbitrage a été envoyé le 13 septembre 2026**, par
+courriel à  depuis , au titre du
+§18(k). La copie vit dans les messages envoyés de Gmail — **c'est la seule
+preuve**, et elle ne se resupprime pas.
+
+Conséquence : un litige relève du §19 (tribunaux de Californie) et **le recours
+collectif reste ouvert**. C'est tout ce que ça achète, et c'est assez : à 50 $ de
+plafond de responsabilité, l'action individuelle ne valait rien de toute façon.
+
+⚠️ **Ce qui reste à vérifier avant de payer** : qu'OmniHuman 1.5 soit bien au
+catalogue de fal, à l'unité annoncée. Le tarif de 0,16 $/s vient de résultats de
+recherche, **pas du catalogue lu**. Relever l'identifiant exact et l'unité de
+facturation — par seconde de vidéo, par requête, ou par seconde de calcul : ce
+n'est pas la même facture.
+
 ⚠️ **À faire dans les 30 jours de l'inscription** : le courriel d'exclusion de
 l'arbitrage. C'est gratuit, c'est irréversible une fois le délai passé, et c'est
 le genre de chose qu'on ne pense à regretter qu'au moment où elle sert.
