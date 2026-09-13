@@ -5246,7 +5246,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v576</span>
+    <span class="subtitle-version">v577</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7531,7 +7531,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, deleteField, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
 
 const firebaseConfig = {
@@ -7566,6 +7566,10 @@ window.fsDeleteDoc = deleteDoc;
 window.fsCollection = collection;
 window.fsGetDocs = getDocs;
 window.fsServerTimestamp = serverTimestamp;
+// Retire un champ au lieu de l'ecraser. Sert a effacer l'ancienne carte
+// `progress` une fois la chaine en place -- avec { merge: true }, un champ
+// absent de l'ecriture est CONSERVE, il faut donc le supprimer explicitement.
+window.fsDeleteField = deleteField;
 
 // Notifications push (Firebase Cloud Messaging) : préparées ici, mais getMessaging()
 // échoue silencieusement dans certains contextes (navigateur non supporté, pas de
@@ -15457,12 +15461,61 @@ function marquerGel(nom){
 const ECRITURE_DELAI_MS = 800;
 let ecritureProgression = null;
 
+// ============ N'ECRIRE QUE CE QUI DIT QUELQUE CHOSE (v577) ============
+//
+// ⚠️ 96,3 % DE CE QU'ON SAUVEGARDAIT NE VOULAIT RIEN DIRE. Mesure du 13
+// septembre 2026 sur les treize comptes, en lisant Firestore :
+//
+//   Jacques   11 694 entrees,   432 utiles (3,7 %)   537 ko -> 34 ko
+//   Rene       8 776 entrees,    95 utiles (1,1 %)   395 ko ->  8 ko
+//   Stelios    7 456 entrees,     1 utile  (0,0 %)   334 ko ->  0 ko
+//
+// D'ou viennent les autres : getWordState() INSERE `{mastered:false, due:0,
+// reviews:0}` dans le cache des qu'un mot est simplement AFFICHE. C'est
+// volontaire et documente la-haut -- ne pas le persister a la lecture etait la
+// correction du O(n^2) de la v100. Mais setWordState() sauvegarde ensuite le
+// cache ENTIER, fantomes compris : on finissait par payer, a chaque carte, le
+// poids de tous les mots jamais regardes.
+//
+// ⚠️ LES RETIRER NE PERD RIEN, ET C'EST LE CODE LUI-MEME QUI LE DIT. Le
+// commentaire de getWordState() : cette valeur par defaut « est indiscernable
+// de "aucune entree" pour tout le code qui la lit ». estNeuf() le confirme :
+// !mastered && !due && !srsHits. Une entree dont TOUTES les valeurs sont
+// fausses ou nulles est exactement une entree absente.
+//
+// La regle est volontairement AVEUGLE AUX NOMS DE CHAMPS : un champ ajoute plus
+// tard sera traite correctement sans qu'on y pense, et c'est l'inverse d'une
+// liste de cles a tenir a jour. `vu`, `srsDailyStreak`, `entretiens` sont
+// conserves des qu'ils valent autre chose que zero.
+function progressionUtile(p){
+    const maigre = {};
+    Object.keys(p || {}).forEach(cle => {
+        const bloc = p[cle];
+        // __migrations est un journal, pas une carte de mots : il passe tel quel.
+        if(!bloc || typeof bloc !== "object"){ maigre[cle] = bloc; return; }
+        if(cle === "__migrations"){ maigre[cle] = bloc; return; }
+        const garde = {};
+        let combien = 0;
+        Object.keys(bloc).forEach(i => {
+            const st = bloc[i];
+            if(!st || typeof st !== "object") return;
+            if(Object.keys(st).some(c => !!st[c])){ garde[i] = st; combien++; }
+        });
+        if(combien) maigre[cle] = garde;
+    });
+    return maigre;
+}
+
 function ecrireProgressionMaintenant(){
     if(ecritureProgression){ clearTimeout(ecritureProgression); ecritureProgression = null; }
     if(!progressCache) return;
     marquerGel("progression -> localStorage");
     try{
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(progressCache));
+        // ⚠️ ON ELAGUE A L'ECRITURE, PAS DANS LE CACHE. getWordState() a besoin
+        // de rendre un objet stable pour le mot qu'on regarde ; le vider sous
+        // ses pieds le ferait recreer a chaque appel. Le cache garde ses
+        // fantomes, le disque ne les voit jamais.
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progressionUtile(progressCache)));
     }catch(e){}
     marquerGel(null);
 }
@@ -15680,6 +15733,13 @@ async function syncProgressToCloud(){
     let snapshot = null; // hors du try : le diagnostic du catch en a besoin
     try{
         const progress = getProgress();
+        // ⚠️ CES DEUX COMPTES SE FONT SUR LE CACHE ENTIER, FANTOMES COMPRIS, et
+        // c'est delibere (v577). `progressJson` n'emporte que les entrees utiles,
+        // mais `totalCount` alimente le tableau de bord depuis toujours et y
+        // signifie « mots rencontres ». Le recalculer sur la version elaguee le
+        // ferait tomber de 11 694 a 432 du jour au lendemain, et « 400 sur 432 »
+        // se lirait comme une progression de 93 % -- un chiffre faux a la place
+        // d'un chiffre bancal. On change une chose a la fois.
         let masteredCount = 0, totalCount = 0;
         Object.keys(progress).forEach(cle => {
             // Journal des migrations (v315), pas une liste de mots : sans ce
@@ -15728,7 +15788,33 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(GRAMMAIRE_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
-            progress,
+            // ============ LA PROGRESSION VOYAGE EN UNE CHAINE (v577) ============
+            //
+            // ⚠️ UN CHAMP AU LIEU DE 47 502. Firestore indexe AUTOMATIQUEMENT
+            // chaque champ, y compris au fond des cartes imbriquees, et plafonne
+            // a 40 000 entrees d'index par document. Mesure du 13 septembre 2026
+            // sur le document de Jacques : 11 694 entrees, ~47 502 champs
+            // indexes -- au-dessus du plafond, que seule une exemption posee en
+            // console tenait a distance. Elague et mis en chaine : 1 champ,
+            // 1 entree d'index, 34 ko au lieu de 537.
+            //
+            // ⚠️ ET C'EST LA CORRECTION DU GEL, pas seulement du volume. Le
+            // journal du 13 septembre : « ? apres Firestore -> resume du tableau
+            // de bord +39ms », 3 904 ms, sur l'ecran des cartes. Ce que le SDK
+            // faisait juste avant de nous rendre la main, c'etait appliquer
+            // l'accuse de reception de ces dizaines de milliers de champs, un
+            // par un. Une chaine n'a rien a parcourir.
+            //
+            // C'est exactement le traitement deja applique a `grammaire`,
+            // `retoursUsager` et `synonymesEcartes`, et pour la meme raison.
+            progressJson: JSON.stringify(progressionUtile(progress)),
+            // ⚠️ L'ANCIENNE CARTE DOIT ETRE EFFACEE, PAS LAISSEE. Avec
+            // { merge: true } un champ absent de l'ecriture est CONSERVE : sans
+            // cette suppression, les 47 502 champs resteraient indexes cote
+            // serveur pour toujours, et tout ce travail ne changerait rien au
+            // plafond. La suppression part dans la MEME ecriture que la chaine,
+            // donc il n'existe aucun instant ou les deux manquent.
+            progress: window.fsDeleteField(),
             updatedAt: window.fsServerTimestamp()
         };
         champsRetiresSync = [];
@@ -15869,12 +15955,39 @@ async function restoreProgressFromCloud(){
             window.fsDoc(window.firestoreDb, 'users', user.uid));
         if(!snap.exists()){ cloudRestoreDone = true; return; }
         const data = snap.data() || {};
-        const remote = data.progress || {};
+        // ============ DEUX FORMES, ET ON LES LIT TOUTES LES DEUX (v577) ============
+        //
+        // ⚠️ NE JAMAIS CHOISIR ENTRE ELLES -- LES FUSIONNER. Depuis la v577 la
+        // progression part en une seule chaine (`progressJson`) et l'ancienne
+        // carte `progress` est effacee dans la meme ecriture. Mais un compte qui
+        // n'a pas encore resynchronise n'a QUE l'ancienne, et une ecriture ratee
+        // peut laisser les deux. Choisir, c'est risquer d'effacer une seance ;
+        // fusionner ne peut rien perdre, puisque mergeWordState() garde toujours
+        // l'etat le plus avance. Le cout est d'une lecture de plus, une fois par
+        // connexion.
+        //
+        // ⚠️ LA CHAINE PASSE EN PREMIER : a egalite d'avancement, mergeWordState
+        // garde le premier arrive, et c'est la forme recente qu'on veut voir
+        // gagner.
+        const sources = [];
+        if(typeof data.progressJson === "string" && data.progressJson){
+            try{
+                const p = JSON.parse(data.progressJson);
+                if(p && typeof p === "object") sources.push(p);
+            }catch(e){
+                // Une chaine illisible ne doit pas emporter la restauration :
+                // l'ancienne carte est peut-etre encore la, juste en dessous.
+                console.warn("progressJson illisible, on se rabat sur l'ancienne forme", e);
+            }
+        }
+        if(data.progress && typeof data.progress === "object") sources.push(data.progress);
         const local = getProgress();
 
         let ajoutes = 0;
+        sources.forEach(remote => {
         Object.keys(remote).forEach(themeKey => {
             const remoteTheme = remote[themeKey] || {};
+            if(!remoteTheme || typeof remoteTheme !== "object") return;
             if(!local[themeKey]) local[themeKey] = {};
             Object.keys(remoteTheme).forEach(index => {
                 const antes = local[themeKey][index];
@@ -15882,6 +15995,7 @@ async function restoreProgressFromCloud(){
                 if(fusion !== antes){ ajoutes++; }
                 local[themeKey][index] = fusion;
             });
+        });
         });
         if(ajoutes) saveProgress(local);
 
@@ -24132,7 +24246,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 576;
+const APP_VERSION = 577;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

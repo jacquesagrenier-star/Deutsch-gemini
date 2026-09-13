@@ -4425,3 +4425,99 @@ fait le travail que la boîte faisait.
 
 Vérifié au banc, iPhone 375 × 812 : clic sur la carte → le message et la carte
 ne bouge pas ; clic sur la flèche → recto ; clic sur le recto → verso.
+
+## 13 septembre 2026 — la correction de fond : la progression en une chaîne (v577)
+
+### La mesure d'abord, et elle a déplacé la cible
+
+Avant d'encoder quoi que ce soit, j'ai lu les treize documents Firestore
+(compte de service en lecture seule) :
+
+| | entrées | champs indexés | `progress` JSON |
+|---|---|---|---|
+| Jacques | 11 694 | **~47 502** | 537 ko |
+| René | 8 776 | ~35 286 | 395 ko |
+| Kirsty | 7 866 | ~31 624 | 355 ko |
+
+⚠️ **Le plafond Firestore est à 40 000 entrées d'index par document.** Celui de
+Jacques était déjà au-dessus — seule l'exemption posée en console (v396-v400) le
+tenait à distance. Le mur n'était pas devant, il était derrière.
+
+Puis la mesure qui a tout changé — combien d'entrées portent une information :
+
+| | entrées | utiles | % | JSON complet → élagué |
+|---|---|---|---|---|
+| Jacques | 11 694 | **432** | 3,7 % | 537 ko → **34 ko** |
+| René | 8 776 | 95 | 1,1 % | 395 ko → 8 ko |
+| Stelios | 7 456 | **1** | 0,0 % | 334 ko → 0 ko |
+
+**96,3 % de ce qu'on sauvegardait ne voulait rien dire.**
+
+### D'où venaient les fantômes
+
+`getWordState()` insère `{mastered:false, due:0, reviews:0}` dans le cache dès
+qu'un mot est **simplement affiché**. C'est volontaire et documenté : ne pas le
+persister *à la lecture* était la correction du O(n²) de la v100.
+
+Mais `setWordState()` sauvegarde ensuite le cache **entier**, fantômes compris.
+On payait donc, à chaque carte, le poids de tous les mots jamais regardés.
+
+⚠️ **Les retirer ne perd rien, et c'est le code lui-même qui le dit.** Le
+commentaire de `getWordState()` : cette valeur par défaut « est indiscernable de
+"aucune entrée" pour tout le code qui la lit ». `estNeuf()` le confirme.
+
+La règle retenue est **aveugle aux noms de champs** : une entrée part si
+*toutes* ses valeurs sont fausses ou nulles. Un champ ajouté plus tard sera
+traité correctement sans qu'on y pense — l'inverse d'une liste de clés à tenir
+à jour.
+
+### Ce que fait la v577
+
+1. **`progressionUtile()`** élague à l'écriture — dans localStorage **et** vers
+   Firestore. ⚠️ Pas dans le cache : `getWordState()` doit pouvoir rendre un
+   objet stable pour le mot qu'on regarde.
+2. **`progressJson`** remplace la carte imbriquée : **1 champ, 1 entrée
+   d'index**, au lieu de 47 502. Même traitement que `grammaire`,
+   `retoursUsager` et `synonymesEcartes`, et pour la même raison.
+3. **`progress: deleteField()`** dans la **même** écriture. Avec
+   `{ merge: true }`, un champ absent est *conservé* : sans cette suppression,
+   les 47 502 champs resteraient indexés pour toujours et tout ce travail ne
+   changerait rien au plafond. Même écriture, donc aucun instant où les deux
+   manquent.
+4. **La restauration lit les deux formes et les FUSIONNE** — elle ne choisit
+   pas. Un compte qui n'a pas resynchronisé n'a que l'ancienne ; une écriture
+   ratée peut laisser les deux. Choisir, c'est risquer d'effacer une séance ;
+   fusionner ne peut rien perdre, `mergeWordState()` gardant toujours l'état le
+   plus avancé.
+
+### Pourquoi c'est la correction du gel
+
+Le journal du matin : `? apres Firestore -> resume du tableau de bord +39ms`,
+3 904 ms, sur l'écran des cartes. Ce que le SDK faisait juste avant de rendre la
+main, c'était appliquer l'accusé de réception de ces dizaines de milliers de
+champs, **un par un**. Une chaîne n'a rien à parcourir.
+
+Et l'autre marque, `progression -> localStorage`, écrivait 537 ko toutes les
+800 ms pendant une séance. Elle en écrit 34.
+
+### Ce qui n'a délibérément pas changé
+
+`masteredCount` et `totalCount` se calculent toujours sur le cache entier,
+fantômes compris. `totalCount` alimente le tableau de bord depuis toujours et y
+signifie « mots rencontrés » : le recalculer sur la version élaguée le ferait
+tomber de 11 694 à 432, et « 400 sur 432 » se lirait comme 93 % — un chiffre
+faux à la place d'un chiffre bancal. On change une chose à la fois.
+
+### Vérifié au banc
+
+- entrée par défaut → retirée ; entrée avec `srsDailyStreak: 0` → retirée ;
+- entrée ne portant que `vu: true` → **conservée** ;
+- thème dont toutes les entrées sont vides → retiré entièrement ;
+- `__migrations` → intact ;
+- aller-retour chaîne → `JSON.parse` → `mergeWordState` : identique à l'original.
+
+⚠️ Et le contrôle qui comptait le plus : la sentinelle `deleteField()` traverse
+`sansIndefinis()` **intacte** (identité préservée), comme `serverTimestamp()`.
+Recopiée en objet nu, elle aurait fait refuser le document entier par Firestore
+— et la progression aurait cessé de se sauvegarder en silence, exactement le
+défaut des v396-v400.
