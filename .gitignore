@@ -83,7 +83,13 @@ video/*/final/
 # est public. Les prises Artlist ne se refont pas a l'identique -- elles vivent
 # sur le disque et dans OneDrive, pas ici. Le lisez-moi, lui, reste suivi :
 # c'est lui qui dit pourquoi chaque plan est ce qu'il est.
-video/episode-*/01-images/
+# ⚠️ Le dossier s'exclut par son CONTENU (« /* »), pas par lui-meme : git ne
+# redescend jamais dans un dossier exclu, et une exception « ! » a
+# l'interieur y serait morte sans le dire.
+video/episode-*/01-images/*
+# Les recus de facturation, eux, sont du TEXTE et prouvent ce qui a ete
+# envoye et paye. Ils restent.
+!video/episode-*/01-images/*-fal.json
 video/episode-*/02-prises/
 video/episode-*/03-final/
 video/episode-*/99-abandonne-16x9/
