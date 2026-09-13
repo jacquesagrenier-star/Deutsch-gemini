@@ -434,6 +434,30 @@ python video/sous_titres.py --langue fr     --clip video/episode-01-ankunft-berl
 `--ordre 8,9,10,11` remplace la liste `VITRINE` pour essayer un autre montage
 sans toucher au fichier.
 
+### La vitrine se sonorise aussi, et l'ordre compte
+
+⚠️ **Sonoriser AVANT d'incruster, une seule fois.** Sinon on grave les
+sous-titres sur une vidéo sèche, puis on refait tout — c'est exactement l'erreur
+commise le 13 septembre : les deux premières vitrines livrées n'avaient ni hall,
+ni tapis, ni annonce, parce qu'elles avaient été montées depuis les prises
+avatar brutes et non depuis la version sonorisée.
+
+```bash
+python video/ambiance.py --clip .../EPISODE-01-vitrine.mp4     --lit audio/ambiance/hall.mp3@0     --sortie .../EPISODE-01-vitrine-sonorise.mp4
+```
+
+⚠️ **LES INSTANTS DE LIT NE SE RECOPIENT PAS DEPUIS LE MONTAGE COURS.** Ils sont
+donnés en secondes ; un montage qui garde sept plans sur dix-neuf n'a plus les
+mêmes. Pour la vitrine de l'épisode 1 la réponse est simple — elle ne quitte
+jamais le comptoir, donc un seul lit, `hall@0` — mais c'est une lecture du
+montage, pas une règle générale.
+
+⚠️ **ET PAS D'ANNONCE DANS UNE VITRINE.** L'annonce de haut-parleur ne tient que
+parce qu'elle se pose là où personne ne parle — à 6,0 s dans le montage cours,
+sous la narration. Une vitrine n'a aucun trou : chaque seconde porte du
+dialogue, et l'annonce y deviendrait une troisième couche par-dessus la parole.
+Sa justification tombe avec le silence qui l'accueillait.
+
 ⚠️ **UNE FEUILLE PAR MONTAGE.** La vitrine écrit `_plans-vitrine.json`, le cours
 garde `_plans.json`. Sous-titrer la vitrine avec la feuille du cours placerait
 chaque mot au mauvais endroit, **et rien ne s'en plaindrait** : les deux
