@@ -3869,3 +3869,111 @@ Un suspect existe déjà (`syncProgressToCloud`, qui recopie toute la
 progression puis la fait sérialiser par le SDK Firestore, en synchrone, quatre
 secondes après la dernière carte) — raison de plus pour attendre la mesure
 plutôt que de la confirmer d'avance.
+
+## 13 septembre 2026 (suite) — le journal du gel a parlé : `?` sur les onze lignes
+
+Jacques a envoyé le journal le jour même. **C'est la première fois que ce
+défaut est mesuré au lieu d'être deviné**, et il faut d'abord lire ce qu'il
+dit *non*.
+
+```
+GELS -- 11 (le plus recent en bas)
+10:47:32 PM    1997 ms  ?   flashcards 5/41
+ 1:14:56 PM 1191350 ms  ?   verbenNiveau
+ 2:05:29 PM    2203 ms  ?   flashcards 8/38
+ 2:34:10 PM    4072 ms  ?   adminDashboard
+ 9:47:23 PM    2138 ms  ?   flashcards 10/48
+ 9:47:27 PM    2950 ms  ?   flashcards 10/48
+ 9:48:22 PM    3891 ms  ?   flashcards 17/54
+ 9:50:28 PM   10342 ms  ?   flashcards 36/66
+ 9:52:36 PM   12955 ms  ?   flashcards 1/5
+ 9:54:42 PM   11942 ms  ?   flashcards 2/5
+ 9:56:34 PM   11506 ms  ?   flashcards 2/5
+```
+
+`lancement : LIEN (onglet Safari)` — pas la tuile installée.
+
+### Ce que les onze `?` éliminent
+
+Les deux travaux qui s'annonçaient — `progression -> localStorage` (v513) et
+`progression -> Firestore` — **ne sortent pas une seule fois**. Le différé de
+la v513 tient, et l'écriture cloud n'est pas là non plus.
+
+⚠️ **Une réserve honnête sur Firestore** : `marquerGel(null)` est posé *avant*
+`await envoi`, donc seule la part synchrone du `setDoc` est chronométrée. Ce
+que le SDK reporte à une tâche ultérieure sortirait en `?`. Firestore est
+affaibli comme suspect, pas éliminé.
+
+### Deux lignes sur onze s'expliquent et ne sont pas le défaut
+
+- `1 191 350 ms` (20 min) sur `verbenNiveau` : un onglet Safari mis en
+  arrière-plan. L'ouvrier du pouls a continué de battre pendant que le fil
+  principal était gelé par le navigateur lui-même. Faux positif connu.
+- `4 072 ms` sur `adminDashboard` : la lecture des documents entiers,
+  2,53 Mo — déjà documenté le 9 septembre.
+
+### Les neuf autres : toutes sur `flashcards`, et elles **grandissent**
+
+2,1 s → 2,9 s → 3,9 s → 10,3 s → 13,0 s → 11,9 s → 11,5 s, en neuf minutes.
+
+**Un travail constant ne fait pas cette courbe.** Un travail répété qui laisse
+derrière lui de la mémoire à ramasser, oui. Et « toutes sur `flashcards` »
+disait où chercher : ce qui tourne à chaque carte.
+
+### `majMosaiqueAccueil()` tournait à chaque carte, pour un écran caché
+
+`poserCarreau()` est appelée par `nextFlashcard()` et `skipFlashcard()` — les
+deux seuls endroits où l'on change de carte. Elle écrit l'état du carreau,
+**puis appelle `majMosaiqueAccueil()`**, qui ne demandait jamais si l'accueil
+était à l'écran. Il ne l'est pas : on est dans les cartes.
+
+Ce qu'elle faisait à chaque carte, pour un canevas que personne ne regarde :
+
+| | coût |
+|---|---|
+| `new Image()` neuf vers un tableau GitHub | un **décodage JPEG complet** — le cache HTTP évite le réseau, pas le décodage |
+| `canvas.width = 900` | rejette et réalloue le tampon |
+| `dessinerMosaique()` | **deux canevas hors écran de plus**, pour le glacis en deux passes |
+| les carreaux ouverts | jusqu'à 700 rectangles, et **ce nombre monte avec la séance** |
+
+Trois canevas de ~630 000 pixels et un décodage JPEG, par carte, sur un iPhone
+en onglet Safari. La courbe croissante s'explique d'elle-même. Et l'anonymat
+aussi : le travail se fait dans `img.onload`, donc hors de toute marque.
+
+⚠️ **Le plafond de 80 carreaux par jour bornait le défaut sans le corriger** :
+`poserCarreau()` sort tôt passé 80 cartes dans la journée. D'où « après un
+certain temps » — la séance de 42 cartes de la veille était entièrement dans
+la zone coûteuse.
+
+**Corrigé en v569.** L'état du carreau s'écrit toujours à chaque carte — c'est
+lui qui compte. Le **dessin** attend le retour à l'accueil (`showScreen`, même
+goulot que le compte du jour). Et une image par tableau est gardée au lieu
+d'être redécodée : `imageMosaique()`, avec la règle de `chargerPeintres()` —
+un échec ne se met pas en cache.
+
+### Ce qui a été fait à l'instrument lui-même
+
+- **Les marques s'imbriquent maintenant.** Une seule case `occupation`
+  suffisait tant qu'un seul travail était marqué ; dès qu'un travail marqué en
+  appelle un autre, le `null` intérieur fermait l'extérieur et la mesure
+  devenait fausse **en silence** — le pire défaut possible pour un instrument.
+  Un compteur de profondeur retient le plus extérieur.
+- **Deux travaux de plus s'annoncent** : `mosaique -> canvas` et
+  `anneaux des tuiles` (`updateOrbRings()`, appelée elle aussi à chaque carte,
+  et qui balaie le corpus **deux fois** — la seconde pour des tuiles anglaises
+  que le CSS cache en direction allemande).
+
+### Ce qui reste à vérifier
+
+Une séance en v569, puis COPIER LE JOURNAL. Trois issues, et chacune dit quoi
+faire :
+
+- **plus de gel sur `flashcards`** → c'était la mosaïque, c'est clos ;
+- **`mosaique -> canvas`** → le report ne suffit pas, il faut alléger le dessin
+  lui-même ;
+- **encore `?`** → la cause est ailleurs, et `anneaux des tuiles` aura permis
+  d'éliminer le second travail par carte.
+
+⚠️ **Le journal ne date pas ses lignes** — chaque entrée porte une heure, pas
+une date. Pour une mesure rattachable à une séance précise : VIDER d'abord,
+séance, puis COPIER.

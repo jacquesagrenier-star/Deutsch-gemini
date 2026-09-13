@@ -408,10 +408,21 @@ html,body{margin:0}
     // s'annonce donc ici, et si sa duree depasse le seuil elle entre au
     // journal AVEC SON NOM. Un gel nomme se repare ; un gel anonyme se devine,
     // et ce defaut a deja ete devine trois fois.
-    var occupation = null, occupationDebut = 0, finGelNomme = 0;
+    var occupation = null, occupationDebut = 0, finGelNomme = 0, profondeur = 0;
     window.marquerOccupation = function(nom){
         try{
-            if(nom){ occupation = nom; occupationDebut = Date.now(); return; }
+            // ⚠️ LES MARQUES S'IMBRIQUENT (v569). Une seule case « occupation »
+            // suffisait tant qu'un seul travail etait marque ; des qu'un travail
+            // marque en appelle un autre, le `null` du travail INTERIEUR fermait
+            // celui de l'exterieur, et la mesure devenait fausse en silence --
+            // le pire defaut possible pour un instrument.
+            // On garde LE PLUS EXTERIEUR : c'est la duree totale qui gele, et
+            // c'est le nom du premier qui situe le blocage.
+            if(nom){
+                if(profondeur++ > 0) return;
+                occupation = nom; occupationDebut = Date.now(); return;
+            }
+            if(profondeur > 0 && --profondeur > 0) return;
             if(occupation){
                 var duree = Date.now() - occupationDebut;
                 if(duree >= SEUIL_GEL){
@@ -5230,7 +5241,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v568</span>
+    <span class="subtitle-version">v569</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -16972,14 +16983,22 @@ function updateGlobalProgressRing(level, percent){
     if(levelEl) levelEl.textContent = level;
 }
 
+// MARQUE (v569) : appelee a CHAQUE carte par updateOrbBadges(), depuis
+// nextFlashcard(). Chacun des six anneaux balaie sa liste, et updateOrbRingsEn()
+// rebalaie tout le corpus une seconde fois -- pour des tuiles que le CSS cache
+// en direction allemande. Ce n'est pas le suspect principal du gel du 13
+// septembre, mais c'est le second travail par carte, et il etait anonyme.
 function updateOrbRings(){
-    setRingPercent("ring-verben", getVerbenMasteryPercent());
-    setRingPercent("ring-nomen", getNomenMasteryPercent());
-    setRingPercent("ring-kasus", getKasusMasteryPercent());
-    setRingPercent("ring-adjektive", getAdjektiveMasteryPercent());
-    setRingPercent("ring-praep", getPraepMasteryPercent());
-    setRingPercent("ring-partikeln", getPartikelnMasteryPercent());
-    updateOrbRingsEn();
+    marquerGel("anneaux des tuiles");
+    try{
+        setRingPercent("ring-verben", getVerbenMasteryPercent());
+        setRingPercent("ring-nomen", getNomenMasteryPercent());
+        setRingPercent("ring-kasus", getKasusMasteryPercent());
+        setRingPercent("ring-adjektive", getAdjektiveMasteryPercent());
+        setRingPercent("ring-praep", getPraepMasteryPercent());
+        setRingPercent("ring-partikeln", getPartikelnMasteryPercent());
+        updateOrbRingsEn();
+    }finally{ marquerGel(null); }
 }
 
 // Anneaux des tuiles anglaises (Wortschatz/Verben/Adjektive) : mêmes données
@@ -19701,7 +19720,12 @@ function showScreen(id){
     // La fonction ne lit que deux nombres dans localStorage : la repeindre a
     // chaque changement d'ecran ne coute rien, contrairement a majTuileSeance()
     // qui balaie le corpus entier.
-    if(id === "home"){ try{ majCompteDuJour(); }catch(e){} }
+    if(id === "home"){
+        try{ majCompteDuJour(); }catch(e){}
+        // Les carreaux poses pendant la seance se posent VRAIMENT maintenant :
+        // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
+        if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
+    }
 }
 
 // Le bouton vit dans le HTML statique : c'est au demarrage qu'on le retire
@@ -24021,7 +24045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 568;
+const APP_VERSION = 569;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -25999,9 +26023,58 @@ function cartoucheMosaique(m, part, fini){
     n.innerHTML = h;
 }
 
+// ============ NE PAS PEINDRE UN ECRAN QU'ON NE REGARDE PAS (v569) ============
+//
+// ⚠️ CETTE FONCTION TOURNAIT A CHAQUE CARTE, DEPUIS L'ECRAN DES CARTES.
+// poserCarreau() l'appelle depuis nextFlashcard() et skipFlashcard() -- les
+// deux seuls endroits ou l'on change de carte -- et elle ne demandait JAMAIS si
+// l'accueil etait a l'ecran. Il ne l'est pas : on est dans les flashcards.
+//
+// Ce qu'elle faisait a chaque fois, pour un canevas invisible :
+//   - un `new Image()` neuf vers un tableau de GitHub, donc un DECODAGE JPEG
+//     complet (le cache HTTP evite le reseau, pas le decodage) ;
+//   - un canevas de 900 px redimensionne, ce qui rejette son tampon ;
+//   - deux canevas hors ecran de plus dans dessinerMosaique(), pour le glacis ;
+//   - jusqu'a 700 rectangles de carreaux, et ce nombre MONTE avec la seance.
+//
+// Le journal du gel du 13 septembre 2026 montre exactement cette forme : neuf
+// gels sur onze sur l'ecran `flashcards`, anonymes (le travail se fait dans
+// `img.onload`, donc hors de toute marque), et qui GRANDISSENT au fil de la
+// seance -- 2,1 s, 2,9 s, 3,9 s, 10,3 s, 13,0 s. Un travail constant ne fait pas
+// cette courbe ; un travail repete qui laisse derriere lui des images decodees
+// et des canevas a ramasser, oui.
+//
+// Desormais : l'etat du carreau s'ecrit toujours (c'est lui qui compte), mais le
+// DESSIN attend qu'on revienne a l'accueil. Rien n'est perdu -- personne ne
+// regardait.
+let mosaiqueEnRetard = false;
+
+// ⚠️ UNE IMAGE PAR TABLEAU, GARDEE. `new Image()` a chaque appel refaisait
+// decoder le JPEG meme quand le cache HTTP evitait le reseau. On garde la
+// promesse, pas l'element : deux appels rapproches attendent le meme decodage.
+// Un ECHEC ne se met pas en cache -- meme raison que chargerPeintres() : un
+// cache qui memorise un echec est pire que pas de cache.
+const imagesMosaique = {};
+function imageMosaique(fichier){
+    if(imagesMosaique[fichier]) return imagesMosaique[fichier];
+    const p = new Promise((ok, non) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => ok(img);
+        img.onerror = non;
+        img.src = MOSAIQUE_BASE + "img/" + fichier;
+    });
+    p.catch(() => { delete imagesMosaique[fichier]; });
+    imagesMosaique[fichier] = p;
+    return p;
+}
+
 function majMosaiqueAccueil(){
     const bloc = document.getElementById("carteMosaique");
     if(!bloc) return;
+    const actif = document.querySelector(".screen.active");
+    if(!actif || actif.id !== "home"){ mosaiqueEnRetard = true; return; }
+    mosaiqueEnRetard = false;
     chargerPeintres();
     chargerMosaiques().then(() => {
         const m = mosaiqueCourante();
@@ -26011,17 +26084,18 @@ function majMosaiqueAccueil(){
         const g = grilleMosaique(m.l, m.h);
         const fini = v.c >= g.total;
         const canvas = document.getElementById("mosaiqueToile");
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => {
-            const L = Math.min(900, m.l || 900);
-            canvas.width = L;
-            canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
-            dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
-            cartoucheMosaique(m, v.c / g.total, fini);
-        };
-        img.onerror = () => { bloc.classList.add("hidden"); };
-        img.src = MOSAIQUE_BASE + "img/" + m.fichier;
+        imageMosaique(m.fichier).then(img => {
+            // MARQUE : c'est le travail le plus lourd de l'accueil, et il etait
+            // anonyme au journal. S'il gele encore, il le dira par son nom.
+            marquerGel("mosaique -> canvas");
+            try{
+                const L = Math.min(900, m.l || 900);
+                canvas.width = L;
+                canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
+                dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
+                cartoucheMosaique(m, v.c / g.total, fini);
+            }finally{ marquerGel(null); }
+        }, () => { bloc.classList.add("hidden"); });
 
         // L'image vient d'etre terminee : on ouvre le compte des trois seances
         // et on la range dans la galerie. Une seule fois.
