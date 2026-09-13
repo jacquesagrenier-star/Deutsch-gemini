@@ -202,8 +202,9 @@ données ou interrompt le service en plein montage, il n'y a rien à récupérer
 
 **Les crédits expirent** : 365 jours (90 pour les promotionnels), non
 remboursables, non transférables (§9(a)). ⚠️ **N'acheter que ce qu'on brûlera
-dans l'année.** Un épisode de deux minutes d'avatar coûte environ 19 $ — la
-provision se calcule en épisodes, pas en gros paquet « pour être tranquille ».
+dans l'année.** Mesuré sur l'épisode 2 : **13 plans d'avatar, 52 secondes, soit 8,32 $**
+— les six plans de décor sont des images fixes et ne passent pas par OmniHuman.
+La provision se calcule en épisodes, pas en gros paquet « pour être tranquille ».
 
 ## Ce que j'en conclus
 
