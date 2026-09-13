@@ -203,11 +203,44 @@ def main():
     scene = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"),
                               encoding="utf-8"))
 
-    lignes = []
+    # ============ UN CLIP PEUT PORTER PLUSIEURS REPLIQUES ============
+    #
+    # ⚠️ LA SCENE A VINGT PLANS, LE MONTAGE EN A DIX-NEUF. Les plans 13
+    # (« Nehmen Sie die S-Bahn. ») et 20 (« Die Fahrkarte kaufen Sie am
+    # Automaten... ») ont ete tournes ensemble et fondus en un seul clip -- la
+    # procedure le dit noir sur blanc. L'ancien `if n not in plans: continue`
+    # SAUTAIT donc le plan 20 sans un mot : le clip durait 5,6 s et n'affichait
+    # que quatre mots, etires sur toute sa longueur. Signale par Jacques :
+    # « on ne voit les sous-titres que pour la premiere partie ».
+    #
+    # ⚠️ ET LE SAUT ETAIT MUET, ce qui est le vrai defaut. Un texte qui
+    # disparait du sous-titrage sans que rien ne le signale ne se decouvre qu'a
+    # l'oeil, sur une video de soixante-dix secondes, par quelqu'un qui lit
+    # l'allemand. Le groupement ci-dessous se plaint maintenant a voix haute.
+    #
+    # REGLE : un plan de la scene absent du montage a ete fondu dans le clip du
+    # plan precedent qui, lui, en a un. On les regroupe, on decoupe l'audio du
+    # clip sur le texte COMPLET, puis on rend a chaque replique ses mots.
+    groupes, orphelins = [], []
     for p in scene["plans"]:
+        if p["n"] in plans:
+            groupes.append([p])
+        elif groupes:
+            groupes[-1].append(p)
+        else:
+            orphelins.append(p["n"])
+    if orphelins:
+        print("  ATTENTION : plans sans clip ET sans predecesseur, ignores : %s"
+              % orphelins)
+    for g in groupes:
+        if len(g) > 1:
+            print("  clip du plan %d : %d repliques fondues (%s)"
+                  % (g[0]["n"], len(g), ", ".join(str(q["n"]) for q in g[1:])))
+
+    lignes = []
+    for groupe in groupes:
+        p = groupe[0]
         n = p["n"]
-        if n not in plans:
-            continue
         info = plans[n]
         de, tr = p.get("de", ""), p.get(a.langue, "")
         if not de:
@@ -216,15 +249,39 @@ def main():
             piste = os.path.join(tel, "plan%02d-pleine.mp3" % n)
             if not os.path.exists(piste):
                 continue
-            mots = decouper(F, piste, de)
+            membres = [q for q in groupe if q.get("de")]
+            # Le decoupage se fait sur le texte COMPLET du clip : c'est la seule
+            # facon que le calage au prorata voie la vraie duree de parole.
+            mots = decouper(F, piste, " ".join(q["de"] for q in membres))
             # ⚠️ Le clip est coupe a `amorce` avant le premier mot : la piste
             # et le montage n'ont pas la meme origine. On recale sur le
             # premier mot, que monter_avatar place a `amorce` du debut.
             decalage = info["debut"] + 0.35 - mots[0][1]
             debut = info["debut"]
             fin = info["debut"] + info["duree"]
-            lignes += phrase_mot_a_mot(mots, decalage, debut, fin)
+            # Puis on rend a chaque replique SES mots, pour qu'elle ait sa
+            # propre ligne : deux phrases sur une seule ligne deborderaient du
+            # cadre, et l'une resterait affichee pendant que l'autre est dite.
+            i = 0
+            for k, q in enumerate(membres):
+                nb = len(q["de"].split())
+                part = mots[i:i + nb]
+                i += nb
+                if not part:
+                    continue
+                d = debut if k == 0 else max(debut, part[0][1] + decalage)
+                f = fin if k == len(membres) - 1 else min(fin, part[-1][2] + decalage)
+                lignes += phrase_mot_a_mot(part, decalage, d, f)
+                trq = q.get(a.langue, "")
+                if trq:
+                    lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
+                                  % (tc(d), tc(f), echapper(trq)))
+            continue
         else:
+            if len(groupe) > 1:
+                print("  ATTENTION : narration du plan %d fondue avec %s -- "
+                      "non gere, ces textes manqueront."
+                      % (n, [q["n"] for q in groupe[1:]]))
             # ⚠️ LA NARRATION AUSSI SE SURLIGNE MOT A MOT.
             # Premiere version : elle se lisait d'un bloc, « parce qu'elle
             # n'en a pas besoin ». C'est l'inverse -- c'est elle qui porte le
