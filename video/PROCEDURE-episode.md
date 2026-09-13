@@ -458,6 +458,36 @@ sous la narration. Une vitrine n'a aucun trou : chaque seconde porte du
 dialogue, et l'annonce y deviendrait une troisième couche par-dessus la parole.
 Sa justification tombe avec le silence qui l'accueillait.
 
+### Le plan de carte — dessiné, jamais généré
+
+⚠️ **C'est le seul type de plan où l'outillage bat le modèle génératif à tous
+les coups.** Les cartes, les noms de villes et les traits de côte sont
+exactement ce que ces modèles ratent : on obtient un « MONTRÉÁL » approximatif
+sur un continent qui n'existe pas, et il faut vingt essais pour s'en
+apercevoir. `video/carte_vol.py` le dessine : zéro crédit, zéro essai, le trait
+au pixel près.
+
+```bash
+python video/carte_vol.py --sortie .../00-carte.mp4 --ffmpeg <chemin>
+python video/monter_avatar.py --vitrine --tete .../00-carte.mp4
+```
+
+⚠️ **ET C'EST `--tete` QUI LE POSE, PAS UN CONCAT À LA MAIN.** Prépendre trois
+secondes de carte décale **tout ce qui suit** : une feuille non corrigée dirait
+que Mark parle à 0,00 s alors qu'il parle à 2,96, et chaque mot se surlignerait
+trois secondes trop tôt. Le montage est le seul à savoir où commence chaque
+plan — c'est donc lui qui pose la tête et qui écrit la feuille décalée.
+
+⚠️ **Ce qu'on ne dessine pas, et c'est un choix** : pas de carte du monde. Sans
+fond cartographique juste, une côte approximative se lit comme une faute — et
+un apprenant qui vient d'un de ces pays la voit. On garde l'abstraction
+honnête : deux points nommés, un arc, une grille de méridiens. Personne ne peut
+y trouver d'erreur de géographie parce qu'on n'en affirme aucune.
+
+La distance est **calculée** (haversine sur les coordonnées réelles des deux
+aéroports), pas inventée : 6 025 km. Un nombre faux sur un plan de trois
+secondes est une faute qui dure tout l'épisode.
+
 ⚠️ **UNE FEUILLE PAR MONTAGE.** La vitrine écrit `_plans-vitrine.json`, le cours
 garde `_plans.json`. Sous-titrer la vitrine avec la feuille du cours placerait
 chaque mot au mauvais endroit, **et rien ne s'en plaindrait** : les deux

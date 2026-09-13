@@ -133,6 +133,12 @@ def main():
     # ⚠️ UNE FEUILLE PAR MONTAGE, sinon la vitrine ecrase les instants du cours
     # et les sous-titres du cours placent chaque mot au mauvais endroit.
     ap.add_argument("--feuille")
+    # ⚠️ UN PLAN DE TETE DECALE TOUT CE QUI SUIT. Prependre trois secondes de
+    # carte a la main, c'est laisser la feuille dire que Mark parle a 0,00 s
+    # alors qu'il parle a 3,00 -- et les sous-titres suivent la feuille, donc
+    # chaque mot se surlignerait trois secondes trop tot. Le montage est le seul
+    # a savoir ou commence chaque plan : c'est lui qui pose la tete.
+    ap.add_argument("--tete", help="un clip a poser devant, ex. le plan de carte")
     a = ap.parse_args()
 
     if a.ordre:
@@ -152,6 +158,17 @@ def main():
     morceaux, manquants, total, feuille = [], [], 0.0, []
     print("  plan  source            duree   ce qu'on garde")
     print("  " + "-" * 62)
+
+    if a.tete:
+        if not os.path.exists(a.tete):
+            sys.exit("  Plan de tete introuvable : %s" % a.tete)
+        dt = os.path.join(tmp, "_tete.mp4")
+        normaliser(F, a.tete, dt)
+        morceaux.append(dt)
+        # `total` porte le decalage : la feuille s'ecrit ensuite toute seule
+        # avec les bons instants, et les sous-titres la lisent.
+        total = M.duree(F, dt)
+        print("  --    tete            %6.2f s   %s" % (total, os.path.basename(a.tete)))
     for n in ordre:
         dst = os.path.join(tmp, "plan%02d.mp4" % n)
         if n in PARLANTS:
