@@ -1,0 +1,491 @@
+{
+ "_format": {
+  "unite": "Une SITUATION (ce que voit l'apprenant) est faite de PLANS (ce qu'on rend chez HeyGen).",
+  "plan.type": "decor = image fixe + voix hors champ, ne coute rien en rendu d'avatar ; replique = un visage qui parle, facture a la seconde.",
+  "plan.mots": "[[mot, debut, fin]] en secondes, VENANT D'ELEVENLABS (endpoint dialogue with-timestamps). Absent tant que l'audio n'est pas genere : le lecteur estime alors le decoupage, et le dit.",
+  "chronometrage": "estime | elevenlabs -- ne jamais laisser croire qu'une estimation vient du moteur.",
+  "langues": "Le fichier porte l'allemand une fois et les traductions pour toutes les langues d'interface. Une seule video sert tout le monde.",
+  "serie": "Episode 1. Mark arrive a Berlin pour s'y installer ; chaque episode est une demarche du quotidien. La derniere replique d'un episode amorce le suivant -- ici l'Anmeldung au Buergeramt, qui est l'episode 2.",
+  "duree": "duree = duree_audio arrondie au-dessus + 1 s de marge. duree_audio est MESUREE sur le fichier produit, pas estimee : les estimations d'origine etaient deux fois trop longues, et un clip tourne sur une duree inventee est un clip a refaire."
+ },
+ "id": "beim_buergeramt",
+ "episode": 2,
+ "serie": "Mark in Berlin",
+ "situation": "Beim Bürgeramt",
+ "titre": {
+  "fr": "Au Bürgeramt",
+  "en": "At the registration office",
+  "tr": "Vatandaş bürosunda",
+  "uk": "У бюро для громадян",
+  "fa": "در ادارهٔ شهروندان"
+ },
+ "niveau": "A2",
+ "theme": "stadt_gebaeude",
+ "duree": 84,
+ "chronometrage": "absent",
+ "vitrine": {
+  "moteur": "03 -- le chiffre",
+  "accroche": "« Sechs Wochen. » plein cadre a zero seconde, puis l'episode entier explique le nombre.",
+  "plans": [
+   7,
+   8,
+   9,
+   10,
+   11,
+   16,
+   17
+  ],
+  "_note": "Le montage vitrine ouvre sur le plan 7 et se referme sur le 19, qui redit les deux nombres. Voir PROCEDURE-episode.md, etape 8."
+ },
+ "demarche": {
+  "delai_legal_jours": 14,
+  "premier_creneau_semaines": 6,
+  "papiers": [
+   "Pass",
+   "Wohnungsgeberbestätigung",
+   "Formular"
+  ]
+ },
+ "locuteurs": {
+  "erzaehler": {
+   "nom": "Erzähler",
+   "avatar": null,
+   "voix": "aurora",
+   "voice_id": "8HePnvwzEdJ614CQMPqF"
+  },
+  "mark": {
+   "nom": "Mark",
+   "avatar": "Mark",
+   "voix": "mark-vd-03",
+   "_voix": "Mark-VD-03, J8ovlSvQ5WTDCCxIM8U0, retenue par Jacques le 7 septembre 2026 apres ecoute des trois candidates sur la meme replique. CE N'EST PAS UN VERDICT A L'AVEUGLE : il savait laquelle etait laquelle, l'echantillon durait 2,3 s, et aucune voix de bibliotheque ne servait de point de comparaison exterieur. La decision tient, mais elle ne vaut pas celle qui a donne Aurora. audio/comparatif_voix.py --personnage mark refait le test proprement -- six repliques, sonie egalisee, une voix en double comme controle -- le jour ou l'on veut en avoir le coeur net.",
+   "voice_id": "J8ovlSvQ5WTDCCxIM8U0",
+   "avatar_id": "1b1da3af0612431cae2349395b6b6870",
+   "_avatar": "« Mark » est le nom AFFICHE dans le compte HeyGen, et il ne sert qu'a l'oeil. C'est avatar_id que l'API reclame, et lui ne se lit que dans l'URL de la page de l'avatar : l'interface ne l'ecrit nulle part ailleurs. Le champ portait « wortando_mark », un nom invente avant que l'avatar existe -- le fichier decrivait une intention, plus la realite."
+  },
+  "beamtin": {
+   "nom": "Die Beamtin",
+   "avatar": null,
+   "voix": "aurora",
+   "_etage": "2 -- figure d'un seul episode. Aucun ancrage, aucune fiche dans personnages.json. Elle vouvoie, et Mark la vouvoie : c'est l'allemand des demarches, celui que testent le DTZ, le A2 et le B1."
+  }
+ },
+ "plans": [
+  {
+   "n": 1,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "image": "buergeramt_aussen.jpg",
+   "de": "Ein Amt in Berlin. Montagmorgen, kurz vor neun.",
+   "fr": "Un bureau administratif à Berlin. Lundi matin, juste avant neuf heures.",
+   "en": "A government office in Berlin. Monday morning, just before nine.",
+   "tr": "Berlin'de bir resmî daire. Pazartesi sabahı, dokuza az kala.",
+   "uk": "Установа в Берліні. Понеділок, ранок, майже дев'ята.",
+   "fa": "یک اداره در برلین. صبح دوشنبه، کمی مانده به ساعت نه.",
+   "balise": "[calm]"
+  },
+  {
+   "n": 2,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "image": "buergeramt_wartezimmer.jpg",
+   "de": "Mark muss sich anmelden. In Deutschland ist das Pflicht.",
+   "fr": "Mark doit déclarer son domicile. En Allemagne, c'est obligatoire.",
+   "en": "Mark has to register his address. In Germany, that is mandatory.",
+   "tr": "Mark'ın adres kaydı yaptırması gerekiyor. Almanya'da bu zorunlu.",
+   "uk": "Марк мусить зареєструвати місце проживання. У Німеччині це обов'язок.",
+   "fa": "مارک باید نشانی‌اش را ثبت کند. در آلمان این کار الزامی است.",
+   "balise": "[calm]"
+  },
+  {
+   "n": 3,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Guten Tag. Ich möchte mich anmelden.",
+   "fr": "Bonjour. Je voudrais déclarer mon domicile.",
+   "en": "Hello. I would like to register my address.",
+   "tr": "İyi günler. Adres kaydı yaptırmak istiyorum.",
+   "uk": "Доброго дня. Я хотів би зареєструвати місце проживання.",
+   "fa": "روز بخیر. می‌خواهم نشانی‌ام را ثبت کنم.",
+   "balise": "[politely]"
+  },
+  {
+   "n": 4,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Guten Tag. Haben Sie einen Termin?",
+   "fr": "Bonjour. Vous avez un rendez-vous ?",
+   "en": "Hello. Do you have an appointment?",
+   "tr": "İyi günler. Randevunuz var mı?",
+   "uk": "Доброго дня. У вас є запис?",
+   "fa": "روز بخیر. وقت قبلی دارید؟",
+   "balise": "[neutral]"
+  },
+  {
+   "n": 5,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Nein. Kann ich heute einen bekommen?",
+   "fr": "Non. Est-ce que je peux en avoir un aujourd'hui ?",
+   "en": "No. Can I get one today?",
+   "tr": "Hayır. Bugün alabilir miyim?",
+   "uk": "Ні. Чи можу я отримати його сьогодні?",
+   "fa": "نه. می‌توانم امروز یکی بگیرم؟",
+   "balise": "[hopeful]"
+  },
+  {
+   "n": 6,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "image": "buergeramt_bildschirm.jpg",
+   "de": "Die Frau schaut auf den Bildschirm. Es dauert einen Moment.",
+   "fr": "L'employée regarde l'écran. Ça prend un moment.",
+   "en": "The clerk looks at the screen. It takes a moment.",
+   "tr": "Görevli ekrana bakıyor. Bir an sürüyor.",
+   "uk": "Працівниця дивиться на екран. Це триває якусь мить.",
+   "fa": "کارمند به صفحه نگاه می‌کند. کمی طول می‌کشد.",
+   "balise": "[calm]"
+  },
+  {
+   "n": 7,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Der erste freie Termin ist in sechs Wochen.",
+   "fr": "Le premier rendez-vous libre est dans six semaines.",
+   "en": "The first available appointment is in six weeks.",
+   "tr": "İlk boş randevu altı hafta sonra.",
+   "uk": "Найближчий вільний запис — через шість тижнів.",
+   "fa": "نخستین وقت خالی، شش هفتهٔ دیگر است.",
+   "balise": "[matter-of-fact]"
+  },
+  {
+   "n": 8,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Sechs Wochen? Ich wohne doch schon hier.",
+   "fr": "Six semaines ? Mais j'habite déjà ici.",
+   "en": "Six weeks? But I already live here.",
+   "tr": "Altı hafta mı? Ama ben zaten burada oturuyorum.",
+   "uk": "Шість тижнів? Але ж я вже тут живу.",
+   "fa": "شش هفته؟ ولی من همین حالا اینجا زندگی می‌کنم.",
+   "balise": "[surprised]"
+  },
+  {
+   "n": 9,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Sie haben vierzehn Tage Zeit für die Anmeldung.",
+   "fr": "Vous avez quatorze jours pour faire la déclaration.",
+   "en": "You have fourteen days to register.",
+   "tr": "Kayıt için on dört gününüz var.",
+   "uk": "На реєстрацію у вас чотирнадцять днів.",
+   "fa": "برای ثبت‌نام چهارده روز وقت دارید.",
+   "balise": "[matter-of-fact]"
+  },
+  {
+   "n": 10,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Vierzehn Tage. Und der Termin ist in sechs Wochen.",
+   "fr": "Quatorze jours. Et le rendez-vous est dans six semaines.",
+   "en": "Fourteen days. And the appointment is in six weeks.",
+   "tr": "On dört gün. Ve randevu altı hafta sonra.",
+   "uk": "Чотирнадцять днів. А запис — через шість тижнів.",
+   "fa": "چهارده روز. و وقت، شش هفتهٔ دیگر.",
+   "balise": "[flat]"
+  },
+  {
+   "n": 11,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Ja. Das ist bei uns so.",
+   "fr": "Oui. C'est comme ça chez nous.",
+   "en": "Yes. That is how it works here.",
+   "tr": "Evet. Bizde böyle.",
+   "uk": "Так. У нас це так.",
+   "fa": "بله. اینجا همین‌طور است.",
+   "balise": "[dry, gone almost before it appears]"
+  },
+  {
+   "n": 12,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "image": "buergeramt_formular.jpg",
+   "de": "Sie nimmt ein Blatt aus der Schublade.",
+   "fr": "Elle sort une feuille du tiroir.",
+   "en": "She takes a sheet out of the drawer.",
+   "tr": "Çekmeceden bir kâğıt çıkarıyor.",
+   "uk": "Вона дістає аркуш із шухляди.",
+   "fa": "او برگه‌ای از کشو بیرون می‌آورد.",
+   "balise": "[calm]"
+  },
+  {
+   "n": 13,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Hier ist das Formular. Füllen Sie es zu Hause aus.",
+   "fr": "Voici le formulaire. Remplissez-le à la maison.",
+   "en": "Here is the form. Fill it in at home.",
+   "tr": "İşte form. Evde doldurun.",
+   "uk": "Ось формуляр. Заповніть його вдома.",
+   "fa": "این فرم است. آن را در خانه پر کنید.",
+   "balise": "[helpful]"
+  },
+  {
+   "n": 14,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Welche Papiere brauche ich?",
+   "fr": "De quels papiers ai-je besoin ?",
+   "en": "Which documents do I need?",
+   "tr": "Hangi belgelere ihtiyacım var?",
+   "uk": "Які документи мені потрібні?",
+   "fa": "به چه مدارکی نیاز دارم؟",
+   "balise": "[politely]"
+  },
+  {
+   "n": 15,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Ihren Pass und die Wohnungsgeberbestätigung.",
+   "fr": "Votre passeport et l'attestation du bailleur.",
+   "en": "Your passport and the landlord's confirmation.",
+   "tr": "Pasaportunuz ve ev sahibi onay belgesi.",
+   "uk": "Ваш паспорт і підтвердження від власника житла.",
+   "fa": "گذرنامه‌تان و تأییدیهٔ صاحبخانه.",
+   "balise": "[matter-of-fact]"
+  },
+  {
+   "n": 16,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Die … was, bitte?",
+   "fr": "La… quoi, pardon ?",
+   "en": "The… what, sorry?",
+   "tr": "Ne… efendim?",
+   "uk": "Під… що, перепрошую?",
+   "fa": "چی… ببخشید؟",
+   "balise": "[lost, then trying again]"
+  },
+  {
+   "n": 17,
+   "type": "replique",
+   "locuteur": "beamtin",
+   "duree": 4,
+   "de": "Ein Papier von Ihrem Vermieter. Das ist ganz normal.",
+   "fr": "Un papier de votre propriétaire. C'est tout à fait normal.",
+   "en": "A paper from your landlord. That is completely normal.",
+   "tr": "Ev sahibinizden bir belge. Bu gayet normal.",
+   "uk": "Папір від вашого орендодавця. Це цілком звично.",
+   "fa": "کاغذی از صاحبخانه‌تان. کاملاً عادی است.",
+   "balise": "[warm, explains rather than instructs]"
+  },
+  {
+   "n": 18,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "image": "buergeramt_ausgang.jpg",
+   "de": "Mark geht mit einem Blatt Papier nach draußen.",
+   "fr": "Mark sort avec une feuille de papier.",
+   "en": "Mark walks out with one sheet of paper.",
+   "tr": "Mark elinde bir kâğıtla dışarı çıkıyor.",
+   "uk": "Марк виходить з аркушем паперу.",
+   "fa": "مارک با یک برگه کاغذ بیرون می‌رود.",
+   "balise": "[calm]"
+  },
+  {
+   "n": 19,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 6,
+   "image": "buergeramt_strasse.jpg",
+   "de": "Vierzehn Tage für die Anmeldung. Sechs Wochen bis zum Termin.",
+   "fr": "Quatorze jours pour la déclaration. Six semaines jusqu'au rendez-vous.",
+   "en": "Fourteen days to register. Six weeks until the appointment.",
+   "tr": "Kayıt için on dört gün. Randevuya altı hafta.",
+   "uk": "Чотирнадцять днів на реєстрацію. Шість тижнів до запису.",
+   "fa": "چهارده روز برای ثبت‌نام. شش هفته تا وقت ملاقات.",
+   "balise": "[calm]"
+  }
+ ],
+ "lexique": {
+  "Amt": {
+   "lemme": "das Amt",
+   "pluriel": "die Ämter",
+   "fr": "l'administration",
+   "en": "government office",
+   "tr": "daire",
+   "uk": "установа",
+   "fa": "اداره"
+  },
+  "Bürgeramt": {
+   "lemme": "das Bürgeramt",
+   "pluriel": "die Bürgerämter",
+   "fr": "le bureau des citoyens",
+   "en": "citizens' office",
+   "tr": "vatandaş bürosu",
+   "uk": "бюро для громадян",
+   "fa": "ادارهٔ شهروندان"
+  },
+  "Anmeldung": {
+   "lemme": "die Anmeldung",
+   "pluriel": "die Anmeldungen",
+   "fr": "la déclaration de domicile",
+   "en": "registration",
+   "tr": "kayıt",
+   "uk": "реєстрація",
+   "fa": "ثبت‌نام"
+  },
+  "anmelden": {
+   "lemme": "sich anmelden",
+   "pluriel": "— (verbe)",
+   "fr": "déclarer son domicile",
+   "en": "to register",
+   "tr": "kayıt yaptırmak",
+   "uk": "реєструватися",
+   "fa": "ثبت‌نام کردن"
+  },
+  "Termin": {
+   "lemme": "der Termin",
+   "pluriel": "die Termine",
+   "fr": "le rendez-vous",
+   "en": "appointment",
+   "tr": "randevu",
+   "uk": "запис",
+   "fa": "وقت ملاقات"
+  },
+  "Formular": {
+   "lemme": "das Formular",
+   "pluriel": "die Formulare",
+   "fr": "le formulaire",
+   "en": "form",
+   "tr": "form",
+   "uk": "формуляр",
+   "fa": "فرم"
+  },
+  "ausfüllen": {
+   "lemme": "ausfüllen",
+   "pluriel": "— (verbe)",
+   "fr": "remplir",
+   "en": "to fill in",
+   "tr": "doldurmak",
+   "uk": "заповнювати",
+   "fa": "پر کردن"
+  },
+  "Papier": {
+   "lemme": "das Papier",
+   "pluriel": "die Papiere",
+   "fr": "le papier, le document",
+   "en": "paper, document",
+   "tr": "kâğıt, belge",
+   "uk": "папір, документ",
+   "fa": "کاغذ، مدرک"
+  },
+  "Pass": {
+   "lemme": "der Pass",
+   "pluriel": "die Pässe",
+   "fr": "le passeport",
+   "en": "passport",
+   "tr": "pasaport",
+   "uk": "паспорт",
+   "fa": "گذرنامه"
+  },
+  "Vermieter": {
+   "lemme": "der Vermieter",
+   "pluriel": "die Vermieter",
+   "fr": "le propriétaire bailleur",
+   "en": "landlord",
+   "tr": "ev sahibi",
+   "uk": "орендодавець",
+   "fa": "صاحبخانه"
+  },
+  "Blatt": {
+   "lemme": "das Blatt",
+   "pluriel": "die Blätter",
+   "fr": "la feuille",
+   "en": "sheet",
+   "tr": "yaprak, kâğıt",
+   "uk": "аркуш",
+   "fa": "برگه"
+  },
+  "Woche": {
+   "lemme": "die Woche",
+   "pluriel": "die Wochen",
+   "fr": "la semaine",
+   "en": "week",
+   "tr": "hafta",
+   "uk": "тиждень",
+   "fa": "هفته"
+  },
+  "Pflicht": {
+   "lemme": "die Pflicht",
+   "pluriel": "die Pflichten",
+   "fr": "l'obligation",
+   "en": "duty, obligation",
+   "tr": "zorunluluk",
+   "uk": "обов'язок",
+   "fa": "وظیفه"
+  },
+  "frei": {
+   "lemme": "frei",
+   "pluriel": "— (adjectif)",
+   "fr": "libre",
+   "en": "free, available",
+   "tr": "boş",
+   "uk": "вільний",
+   "fa": "آزاد"
+  },
+  "brauchen": {
+   "lemme": "brauchen",
+   "pluriel": "— (verbe)",
+   "fr": "avoir besoin de",
+   "en": "to need",
+   "tr": "ihtiyaç duymak",
+   "uk": "потребувати",
+   "fa": "نیاز داشتن"
+  },
+  "wohnen": {
+   "lemme": "wohnen",
+   "pluriel": "— (verbe)",
+   "fr": "habiter",
+   "en": "to live, to reside",
+   "tr": "oturmak",
+   "uk": "мешкати",
+   "fa": "زندگی کردن"
+  }
+ },
+ "_balises": [
+  "LES BALISES DE JEU, ajoutees le 8 septembre 2026.",
+  "",
+  "Elles ne sont lues QUE par eleven_v3, et scene_audio.py ne les colle devant",
+  "le texte qu'au moment de generer. Elles ne sont donc jamais dans le champ",
+  "<< de >>, qui sert aussi aux sous-titres et au lexique : [warmly] s'y",
+  "afficherait a l'ecran.",
+  "",
+  "POURQUOI SEULEMENT NEUF PLANS SUR DIX-NEUF. Les dix autres sont des plans",
+  "d'information -- il demande son chemin, elle donne un horaire, le narrateur",
+  "situe un lieu. Un jeu appuye y nuirait a la comprehension, et c'est un cours",
+  "de langue avant d'etre un film. Une balise ne se met que la ou l'intention",
+  "existait deja dans la mise en scene (voir scenes/production.py).",
+  "",
+  "Le plan 11 porte [sympathetic] : c'est le seul trait d'humour de l'episode,",
+  "la compassion d'un quart de seconde sur << Buergeramt >>. Il doit s'entendre",
+  "sans jamais devenir une blague -- voir _incarnation dans personnages.json."
+ ]
+}
