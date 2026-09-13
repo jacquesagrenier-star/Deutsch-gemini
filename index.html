@@ -5230,7 +5230,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v567</span>
+    <span class="subtitle-version">v568</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19694,6 +19694,14 @@ function showScreen(id){
     window.scrollTo(0,0);
     updateGlobalProgress();
     updateOrbBadges();
+    // ⚠️ ICI ET PAS DANS goHome(). On revient a l'accueil par plusieurs chemins
+    // -- le « Retour » des cartes, la fin de seance, un exercice de grammaire,
+    // un panneau referme -- et tous ne passent pas par goHome(). showScreen()
+    // est le seul goulot que l'accueil ne peut pas contourner.
+    // La fonction ne lit que deux nombres dans localStorage : la repeindre a
+    // chaque changement d'ecran ne coute rien, contrairement a majTuileSeance()
+    // qui balaie le corpus entier.
+    if(id === "home"){ try{ majCompteDuJour(); }catch(e){} }
 }
 
 // Le bouton vit dans le HTML statique : c'est au demarrage qu'on le retire
@@ -24013,7 +24021,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 567;
+const APP_VERSION = 568;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26321,17 +26329,32 @@ async function ouvrirSeanceDuJour(){
 
 // Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
 // Et les cinq niveaux, redessines avec lui.
+// ============ LE COMPTE DU JOUR, SEUL (v568) ============
+// \u26a0\ufe0f IL VIT A PART DE majTuileSeance() PARCE QU'IL DOIT SE REPEINDRE SOUVENT,
+// et que la tuile, elle, coute cher. Il etait DANS la tuile, et la tuile n'est
+// rappelee qu'au demarrage, a l'arrivee des donnees, au changement de niveau et
+// au changement d'objectif. Aucun de ces quatre moments n'arrive en revenant
+// d'une seance : le \u00ab 0 / 40 \u00bb peint le matin restait 0 / 40 toute la journee.
+//
+// Signale par Jacques le 13 septembre 2026 : l'ecran de fin de seance annoncait
+// l'objectif DEPASSE pendant que l'accueil affichait 0 / 40 -- les deux lisaient
+// le meme getDailyActivityCount(), mais l'un le relisait et l'autre gardait son
+// vieux texte. Fermer et rouvrir l'app montrait le vrai chiffre, 42 / 40, ce qui
+// disait deja que la donnee etait juste et que seul l'affichage dormait.
+function majCompteDuJour(){
+    const cpt = document.getElementById("seanceCompte");
+    if(!cpt) return;
+    let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+    cpt.textContent = fait + " / " + cible + (fait >= cible ? " \u2713" : "");
+    cpt.classList.toggle("atteint", fait >= cible);
+}
+
 function majTuileSeance(){
     const el = document.getElementById("seanceSub");
     const niveau = niveauSeance();
-    const cpt = document.getElementById("seanceCompte");
-    if(cpt){
-        let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
-        try{ fait = getDailyActivityCount() || 0; }catch(e){}
-        try{ cible = getDailyGoalTarget() || cible; }catch(e){}
-        cpt.textContent = fait + " / " + cible + (fait >= cible ? " \u2713" : "");
-        cpt.classList.toggle("atteint", fait >= cible);
-    }
+    majCompteDuJour();
     if(el){
         // ⚠️ « 0 carte » A L'OUVERTURE. Le bandeau se dessinait AVANT l'arrivee
         // des donnees : paquetDuNiveau() ne trouvait rien, et l'app annoncait
@@ -26345,13 +26368,17 @@ function majTuileSeance(){
         // niveau. Il ne decide que de la PROVENANCE DES MOTS NOUVEAUX -- les
         // revisions viennent de tous les niveaux deja travailles ; c'est
         // l'etiquette du bas qui le dit.
-        let n = null;
+        // ⚠️ ON NE CONSTITUE PLUS LA SEANCE POUR RIEN (v568). Cette garde
+        // appelait cartesDeSeance() sur le corpus ENTIER -- sept niveaux
+        // concatenes, un getWordState() par entree, un tri -- et ne gardait du
+        // resultat que « est-ce nul ». Depuis que le bandeau n'annonce plus le
+        // nombre de cartes, la seule question posee est « les donnees sont-elles
+        // arrivees ». Un paquet non vide y repond, et `some` s'arrete au premier.
+        let pret = false;
         try{
-            const tout = [];
-            NIVEAUX_CECR.forEach(x => { tout.push.apply(tout, paquetDuNiveau(x)); });
-            if(tout.length) n = cartesDeSeance(tout, paquetDuNiveau(niveau)).length;
-        }catch(e){ n = null; }
-        el.textContent = (n === null) ? t("seance_sous")
+            pret = NIVEAUX_CECR.some(x => paquetDuNiveau(x).length > 0);
+        }catch(e){ pret = false; }
+        el.textContent = (!pret) ? t("seance_sous")
                        // ⚠️ LE COMPTE N'EST PLUS REPETE ICI. La carte juste au-dessus
                        // affiche « 2 / 40 » : le bandeau qui annoncait « 38 cartes »
                        // disait la meme chose autrement, dans le meme ecran.

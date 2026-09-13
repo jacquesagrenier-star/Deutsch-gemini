@@ -3791,3 +3791,81 @@ pour les panneaux du plan 4.
 - **La finesse du visage** : 480p natif remonté, plafond du modèle.
 - **Les rendus devraient sortir hors de OneDrive** : un fichier de 50 Mo
   écrit dans le dossier synchronisé revient en `0xC00D36D6` au lecteur.
+
+## 13 septembre 2026 — le compteur du jour dormait, et le gel a changé de forme
+
+Deux retours de Jacques dans le même message, et il faut les séparer : l'un est
+clos, l'autre ne l'est pas.
+
+### « 0 / 40 » toute la journée (v568, corrigé)
+
+**Signalé :** « hier lorsque je faisais ma séance de la journée le nombre
+restait 0/40, malgré le fait que j'ai eu le message que j'avais dépassé
+l'objectif quotidien +40. Lorsque j'ai fermé l'application et que je me suis
+connecté à nouveau cela indiquait le vrai résultat, soit 42/40. »
+
+Le retour porte sa propre preuve : **fermer et rouvrir donnait le bon
+chiffre**. La donnée était juste depuis le début — c'est l'affichage qui
+dormait, et il fallait le lire comme ça plutôt que de chercher un défaut de
+comptage.
+
+Depuis la v550, le compte du jour vit à **un seul endroit** : le `seanceCompte`
+de la tuile « Ma séance du jour ». Il n'est peint que par `majTuileSeance()`,
+et `majTuileSeance()` n'est rappelée qu'à quatre moments :
+
+| quand | par |
+|---|---|
+| au démarrage | l'IIFE de fin de page |
+| à l'arrivée des données | `loadThemesJson()` |
+| au changement de niveau | `fixerNiveauSeance()` |
+| au changement d'objectif | `adjustDailyGoal()` |
+
+**Aucun des quatre n'arrive en revenant d'une séance.** `goHome()` appelle
+`showScreen("home")`, qui appelle `updateGlobalProgress()` et
+`updateOrbBadges()` — ni l'un ni l'autre ne touche à ce compteur. Le « 0 / 40 »
+peint le matin restait donc là jusqu'au rechargement suivant.
+
+Et l'écran de fin de séance, lui, relit `getDailyActivityCount()` à chaque
+affichage : d'où les deux chiffres contradictoires au même instant, sur deux
+écrans de la même app.
+
+**Corrigé en v568** : le compte du jour sort de `majTuileSeance()` et devient
+`majCompteDuJour()`, appelée depuis `showScreen()` à chaque entrée dans
+l'accueil. ⚠️ Dans `showScreen()` et pas dans `goHome()` : on revient à
+l'accueil par plusieurs chemins, et `showScreen()` est le seul qu'aucun ne
+contourne. La fonction ne lit que deux nombres dans localStorage, donc la
+répéter ne coûte rien — c'est précisément pourquoi il fallait la séparer de la
+tuile, qui balaie le corpus.
+
+**Au passage, du travail mort retiré.** `majTuileSeance()` appelait
+`cartesDeSeance()` sur le corpus entier — sept niveaux concaténés, un
+`getWordState()` par entrée, un tri — et ne gardait du résultat que « est-ce
+nul ». Depuis que le bandeau n'annonce plus le nombre de cartes, la seule
+question posée est « les données sont-elles arrivées ». Un `some()` sur le
+premier paquet non vide y répond.
+
+### Le gel : il a changé de forme, et ça dit que la v513 a marché
+
+**Signalé :** « l'application gèle encore après un certain temps.
+Contrairement au problème précédent elle ne retourne pas au vidéo d'ouverture,
+et elle redevient disponible après quelques secondes. »
+
+Le symptôme n'est plus le même, et **la différence est une mesure** :
+l'ouverture ne revient plus. Le pouls dans un fil séparé (v513) distingue
+maintenant correctement un fil bloqué d'une mise en veille — il ne prend plus
+le gel pour une absence. Ce qui restait sous ce faux symptôme est le gel
+lui-même, nu.
+
+Ce qui reste ouvert est donc exactement ce que la section du 10 septembre
+annonçait : **le journal du gel n'a jamais été envoyé.** Il existe depuis la
+v513, il survit au redémarrage, il se copie d'un bouton (Réglages → Journal
+audio → COPIER LE JOURNAL), et il nomme le travail en cause quand celui-ci
+s'est annoncé — `progression -> localStorage`, `progression -> Firestore`, ou
+`?` si la cause est ailleurs.
+
+⚠️ **On ne code pas avant de l'avoir lu.** Ce défaut a déjà été deviné trois
+fois, et la v513 a été écrite pour ne plus avoir à le deviner une quatrième.
+Un suspect existe déjà (`syncProgressToCloud`, qui recopie toute la
+progression puis la fait sérialiser par le SDK Firestore, en synchrone, quatre
+secondes après la dernière carte) — raison de plus pour attendre la mesure
+plutôt que de la confirmer d'avance.
