@@ -4054,3 +4054,50 @@ avant `await envoi`. Tout ce que le SDK Firestore reporte à une tâche
 ultérieure sort en `?`. C'est exactement la forme que le fil d'Ariane va
 trancher — si les gels tombent juste après un travail nommé de la séance et
 que rien d'autre ne colle, c'est là qu'il faudra creuser.
+
+## 13 septembre 2026 — deux gestes sur la même moitié d'écran (v571)
+
+**Signalé :** « Il y a un problème aussi sur la carte au verso. Je veux que ça
+me ramène au recto de la carte. C'est bizarre la façon que ça ouvre. Je veux
+juste voir le recto, puis être capable de recliquer dessus pour revenir au
+verso. Là, ça me donne la carte précédente. »
+
+### Deux commandes dans la même zone tactile
+
+Au verso, la carte est coupée en deux moitiés : **gauche → revenir au recto**,
+droite → carte suivante. C'est le geste au pouce, et il marche.
+
+Mais le bouton « ‹ Précédent » vivait **en bas à gauche du verso** — dans cette
+moitié gauche, donc — et il ouvre la carte *précédente* en plein écran, sur
+fond sombre. Jacques touchait la gauche pour revoir le recto et recevait la
+carte d'avant. « C'est bizarre la façon que ça ouvre » décrit exactement ça :
+une superposition plein écran là où il attendait un simple retournement.
+
+### Le commentaire d'origine avait vu le danger et l'avait mal situé
+
+Il est encore dans le fichier, à la place que le bouton a quittée :
+
+> « Nue, une flèche ronde dans un coin peut se lire "annuler", "revenir au
+> recto", "carte précédente" — trois gestes différents. »
+
+C'était juste. Et la réponse apportée alors — ajouter le mot « Précédent » à
+côté de la flèche — visait **l'étiquette**. Or le conflit était dans la
+**position**. ⚠️ Aucun mot sur un bouton de onze pixels ne désamorce une zone
+tactile qui occupe la moitié de l'écran : on ne lit pas un bouton qu'on ne
+visait pas.
+
+### Corrigé
+
+Le bouton descend sous la carte, dans `#flashcardActions`, sous « Quand ce mot
+reviendra-t-il ? ». Il n'apparaît toujours qu'au verso — ce bloc est masqué
+tant qu'on n'a pas retourné — et il reste dans la zone du pouce, plus bas
+encore qu'avant. Le `event.stopPropagation()` de son `onclick` tombe : hors de
+la carte, il n'y a plus rien à empêcher de remonter.
+
+Le CSS suit : `margin-top:auto` / `align-self:flex-start` ne valaient que dans
+la colonne flex du verso. `#flashcardActions` est un bloc simple, où ils
+seraient inertes — le bouton se serait collé au bord gauche, seul de son espèce
+dans une rangée centrée.
+
+Vérifié au banc : verso + tap dans la moitié gauche → recto ; tap suivant →
+verso. Le cycle que Jacques décrit, et rien d'autre entre les deux.

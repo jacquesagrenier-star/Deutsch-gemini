@@ -3796,9 +3796,15 @@ body[data-theme="dark"] .judge-known{
     margin-top:6px; padding:20px; border:1px solid #e6e9ef;
     border-radius:20px; background:#fff;
 }
+/* ⚠️ CENTRE, PAS CALE A GAUCHE (v571). Les trois reglages d'avant --
+   margin-top:auto, margin-inline-end:auto, align-self -- ne valaient que dans la
+   colonne flex du verso, qu'il a quittee. #flashcardActions est un bloc simple :
+   ils y seraient inertes, et le bouton se collerait au bord gauche, seul de son
+   espece dans une rangee ou tout le reste est centre. Meme marge que
+   .srs-aide-btn, juste au-dessous duquel il vit maintenant. */
 .flash-retour-bas{
-    margin-top:auto; margin-inline-end:auto; align-self:flex-start;
-    display:inline-flex; align-items:center; gap:5px;
+    margin:10px auto 0;
+    display:flex; align-items:center; justify-content:center; gap:5px;
     padding:5px 11px 5px 8px; border-radius:999px;
     border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
     color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600;
@@ -5258,7 +5264,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v570</span>
+    <span class="subtitle-version">v571</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6920,37 +6926,27 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
                      Les elements restent, masques : d'autres modes de carte
                      peuvent encore s'y referer. -->
-                <!-- ⚠️ LA FLECHE VIT DANS LE CADRE DE LA CARTE (v562), pas sous
-                     l'ecran -- et EN BAS de ce cadre, pas en haut (v565).
-                     Demande de Jacques : « sur le cellulaire, c'est plus
-                     pratique de l'avoir dans le bas ». C'est la zone du pouce :
-                     le haut d'un telephone tenu d'une main demande de changer
-                     de prise, le bas non.
+                <!-- ⚠️ LE BOUTON « PRECEDENT » A QUITTE LA CARTE (v571). Il est
+                     maintenant sous elle, dans #flashcardActions. Il vivait ici,
+                     EN BAS A GAUCHE du verso (v562, v565) -- c'est-a-dire dans
+                     la moitie dont le SEUL role est de ramener au recto.
 
-                     ⚠️ ELLE REPREND SON MOT. Nue, une fleche ronde dans un coin
-                     peut se lire « annuler », « revenir au recto », « carte
-                     precedente » -- trois gestes differents. Jacques s'en est
-                     souvenu lui-meme : « on avait indique a cote retour, ou
-                     quelque chose ». Une cle COURTE, pas `flash_revoir` qui
-                     fait une phrase et reprendrait toute la largeur.
+                     Deux gestes differents sur la meme surface, et une fleche
+                     vers la gauche pour les deux : Jacques a touche la gauche
+                     pour revoir le recto et a recu la carte precedente en plein
+                     ecran. « C'est bizarre la facon que ca ouvre. Je veux juste
+                     voir le recto, puis etre capable de recliquer dessus. »
 
-                     ⚠️ `margin-top:auto` PLUTOT QUE `position:absolute`. Le
-                     verso defile (`overflow-y:auto`) : une fleche calee en
-                     `bottom:10px` se decrocherait du bas visible des que la
-                     carte est longue. En flux, poussee par la marge
-                     automatique, elle est au bas quand il reste de la place et
-                     apres le texte quand il n'y en a plus.
+                     ⚠️ LE COMMENTAIRE D'ORIGINE AVAIT VU LE DANGER ET L'AVAIT
+                     MAL SITUE : il craignait qu'une fleche nue se lise « revenir
+                     au recto », et y a repondu en ajoutant le mot « Precedent ».
+                     Mais le conflit n'etait pas dans l'ETIQUETTE, il etait dans
+                     la POSITION. Aucun mot sur un bouton de onze pixels ne
+                     desamorce une zone tactile qui occupe la moitie de l'ecran.
 
-                     ⚠️ event.stopPropagation() est indispensable : sans lui, la
-                     toucher RETOURNERAIT la carte, puisque toute la surface du
-                     verso sert a ca. -->
-                <button type="button" id="flashRetour" class="flash-retour-bas hidden"
-                        onclick="event.stopPropagation(); ouvrirCartePrecedente();"
-                        data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                         stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-                    <span data-i18n="flash_revoir_court">Précédent</span>
-                </button>
+                     Ce qu'on ne perd pas : la zone du pouce. #flashcardActions
+                     est juste sous la carte, plus bas encore -- et il n'apparait
+                     qu'au verso, exactement comme avant. -->
                 <div class="skip-hint hidden" data-i18n="flash_skip_hint">Passer une carte ne compte pas dans ta progression.</div>
                 <div class="tap-map hidden" aria-hidden="true">
                     <span class="tap-map-half">←</span>
@@ -6986,6 +6982,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <span data-i18n="srs_aide_bouton">Quand ce mot reviendra-t-il ?</span>
         </button>
         <div id="srsAide" class="srs-aide hidden"></div>
+        <!-- ⚠️ ICI DEPUIS LA v571, et plus sur le verso de la carte : voir le
+             commentaire laisse a sa place d'origine. loadFlashcard() continue de
+             l'afficher ou de le cacher selon qu'il y a une carte precedente ; la
+             seule chose qui change est qu'il n'est plus dans une zone tactile
+             qui veut dire autre chose.
+             Plus de event.stopPropagation() : hors de la carte, il n'y a plus
+             rien a empecher de remonter. -->
+        <button type="button" id="flashRetour" class="flash-retour-bas hidden"
+                onclick="ouvrirCartePrecedente()"
+                data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+            <span data-i18n="flash_revoir_court">Précédent</span>
+        </button>
     </div>
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
@@ -24062,7 +24072,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 570;
+const APP_VERSION = 571;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
