@@ -227,7 +227,7 @@ un *Team Organization* (§5(c) : l'administrateur répond de chaque membre) sans
 membres, et renvoyé aux ventes — la boucle exacte où BytePlus s'est perdu.
 
 **L'avis d'exclusion de l'arbitrage a été envoyé le 13 septembre 2026**, par
-courriel à  depuis , au titre du
+courriel à `support@fal.ai` depuis `jacques.a.grenier@gmail.com`, au titre du
 §18(k). La copie vit dans les messages envoyés de Gmail — **c'est la seule
 preuve**, et elle ne se resupprime pas.
 
