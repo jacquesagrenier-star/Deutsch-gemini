@@ -1,4 +1,4 @@
-# Le tournant de personnage — quatre angles, une fois pour la série
+# Le tournant de personnage — trois vues à faire, une fois pour la série
 
 Écrit le 13 septembre 2026, sur une question de Jacques : *« on ne devrait pas
 tout de suite demander à Artlist, à partir de l'image de face, une image de
@@ -6,38 +6,54 @@ profil et une image de dos ? »*
 
 Oui. Et plus large que ça.
 
-## Le manque, nommé
+## ⚠️ Ce que j'avais écrit de faux, le premier jour
 
-L'image maîtresse de Mark est un **portrait tête et épaules**. Sa fiche le dit
-déjà, et elle dit aussi ce qui arrive quand on cadre plus bas :
+J'avais écrit ici que l'image maîtresse était un portrait tête et épaules, et
+bâti tout ce document dessus. **C'est faux.** `personnages/Mark.png` est déjà
+un **plein pied de face** : debout, fond studio gris uni, lumière douce, veste
+coquille grise sur t-shirt noir, jeans, baskets. Une vraie planche de
+référence.
 
-> ⚠️ *« À joindre à `apparence` dès que le cadrage dépasse la poitrine. Au-delà
-> de la poitrine le générateur invente le corps, et il invente **mince par
-> défaut**. »*
+J'avais lu le champ `apparence` — qui dit *« in a head-and-shoulders portrait »*
+— **au lieu d'ouvrir le fichier**. Le champ décrit le prompt d'une version
+antérieure ; l'image a évolué depuis. Corrigé par Jacques.
 
-C'est exactement ce qui a raté au plan de dos de l'aéroport — *« ça ne
-correspondait pas tout à fait à lui »*. Le personnage écrit est un triathlète
-massif ; sans ancrage, le générateur rend un coureur.
+La leçon est celle que le dépôt répète ailleurs : **l'artefact fait foi, pas sa
+description.** C'est déjà la règle d'ancrage — *« un personnage se génère
+toujours à partir de son IMAGE maîtresse, jamais à partir de sa description »*
+— et elle vaut aussi pour qui écrit les fiches.
 
-Le texte du champ `corps` corrige en partie. **Une image corrige mieux** : un
-générateur suit une référence visuelle plus fidèlement qu'une description, et
-il n'a plus à interpréter « solid and rectangular rather than V-shaped ».
+## Ce qu'il reste à générer : trois vues, pas quatre
 
-## Ce qu'il faut générer
-
-Quatre vues, **en pied**, même personnage, même tenue neutre, même lumière,
-fond uni :
-
-| vue | à quoi elle sert |
+| vue | état |
 |---|---|
-| **face, en pied** | la seule qui manque vraiment aujourd'hui — l'actuelle s'arrête aux épaules |
-| **trois-quarts** | l'angle le plus utilisé en dialogue, au comptoir |
-| **profil** | les plans latéraux, et les scènes à deux |
-| **dos** | les plans 01 et 18 de l'épisode 2, et tous les « il s'en va » de la série |
+| face, en pied | **elle existe** — `personnages/Mark.png` |
+| **trois-quarts** | à faire — l'angle le plus utilisé en dialogue, au comptoir |
+| **profil** | à faire — les plans latéraux, les scènes à deux |
+| **dos** | à faire — les plans 01 et 18, et tous les « il s'en va » de la série |
 
-⚠️ **Tenue neutre, pas une des tenues de garde-robe.** Le tournant ancre le
-CORPS, pas un épisode. Un t-shirt et un pantalon simples : la garde-robe se
-change ensuite par-dessus, comme elle le fait déjà.
+⚠️ **MÊME TENUE QUE L'IMAGE EXISTANTE**, et c'est un renversement de ce que
+j'avais écrit. Je recommandais une tenue neutre : juste dans l'abstrait, faux
+ici. Trois vues en t-shirt uni à côté d'une face en veste grise ne font pas un
+tournant, elles font quatre photos différentes. On s'aligne sur l'existant :
+**veste coquille grise ouverte, t-shirt noir, jeans bleu foncé, baskets
+sombres.** La garde-robe se change ensuite par-dessus, comme elle le fait déjà.
+
+## ⚠️ Une divergence à trancher avant de lancer
+
+Le champ `corps` décrit un triathlète massif : *« arms that fill a shirt sleeve
+with visible deltoid and bicep mass »*, *« solid and rectangular rather than
+V-shaped »*. **L'image maîtresse montre un homme athlétique plutôt mince.**
+
+Les deux ne disent pas la même chose, et pour le tournant il faut choisir :
+
+- **s'aligner sur l'image** (recommandé) — elle est le canon par la règle
+  d'ancrage. Alors il faut **alléger le bloc `corps` dans le prompt**, sinon on
+  génère trois vues plus massives que la face.
+- **s'aligner sur le texte** — alors c'est la face qu'il faut refaire, et le
+  personnage change d'allure dans l'épisode 1 déjà tourné.
+
+C'est une décision de Jacques, pas une correction à faire en silence.
 
 ## Ce que ça ne résout pas, et il faut le savoir
 
@@ -63,36 +79,29 @@ besoin est établi, pas anticipé.
 
 ## Le prompt
 
-À lancer dans Artlist, mode Framing, avec `personnages/Mark.png` en référence.
-Un lancement par vue — le même bloc, en changeant la dernière phrase.
+À lancer dans Artlist, mode Framing, **avec `personnages/Mark.png` en
+référence**. Un lancement par vue — le même bloc, en changeant la
+dernière ligne.
+
+⚠️ Le prompt ne redécrit ni le visage ni la carrure : **c'est l'image qui les
+porte.** Il ne dit que ce que l'image ne peut pas dire — l'angle.
 
 ```
-Full-body character reference of the same man as in the reference image,
-standing against a plain neutral light grey background, even soft studio
-light, no shadows on the backdrop, photorealistic, documentary realism.
+The same man as in the reference image, same face, same build, same clothes:
+open grey shell jacket over a plain black t-shirt, dark blue jeans, dark
+trainers. Full body, standing, on a plain light grey studio background with
+even soft light and no shadow on the backdrop. Photorealistic.
 
-He wears a plain dark t-shirt and plain dark trousers, no branding, no
-jacket. Bare feet or plain dark shoes.
+POSTURE: upright and relaxed, arms hanging naturally at his sides, weight
+settled evenly. Nothing stiff, nothing posed, no presenter's stance.
 
-BODY: tall — about 1.86 m — with a long-limbed frame, long legs relative to
-the torso and long forearms, and powerfully built with it, compact rather
-than lean. Broad shoulders and a thick neck, a full chest, and arms that fill
-a sleeve with visible deltoid and bicep mass. The waist is moderate rather
-than sharply tapered, so the silhouette reads solid and rectangular rather
-than V-shaped. Long, strong legs with well-developed thighs and calves. A
-triathlete's build, not a marathon runner's.
-
-POSTURE: upright and relaxed, weight settled on one leg, shoulders open, arms
-hanging naturally. Nothing stiff, nothing posed, no presenter's stance.
-
-VIEW: seen from directly in front, facing camera.
-```
-
-Puis la même chose en remplaçant la dernière ligne :
-
-```
 VIEW: seen from three quarters, turned about forty-five degrees to his left.
-VIEW: seen from the side, in full profile.
+```
+
+Puis les deux autres, en ne changeant que la dernière ligne :
+
+```
+VIEW: seen from the side, in full profile, facing frame left.
 VIEW: seen from directly behind, back to camera, head not turned.
 ```
 
