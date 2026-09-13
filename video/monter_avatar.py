@@ -50,7 +50,24 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "video"))
 import montage as M                                         # noqa: E402
 
+# ============ DEUX MONTAGES PAR EPISODE (v579) ============
+#
+# Le montage COURS prend son temps : il ouvre sur la narration, installe le
+# decor, et les sept plans d'Erzaehler portent le gros du vocabulaire.
+#
+# Le montage VITRINE ouvre sur la chute. Mesure sur l'episode 1 : Mark ne parle
+# pas avant 20,65 s, soit 28 % de l'episode -- vingt secondes de patience
+# demandees a quelqu'un qui en accorde une. Ce n'est pas un defaut du montage
+# cours, c'est un autre metier.
+#
+# ⚠️ ET LA VITRINE NE COUTE RIEN : elle ne reutilise que des plans deja tournes
+# et deja synchronises. Aucun credit, aucune prise neuve.
 ORDRE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+# L'enjeu d'abord (« je demenage a Berlin »), la pointe d'Anna sur le Buergeramt
+# au milieu -- qui amorce l'episode 2 -- et les voeux a la fin. Sept plans, tous
+# parlants, tous chronologiques.
+VITRINE = [8, 9, 10, 11, 12, 13, 17]
 PARLANTS = {5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}
 L, H, IPS = 1080, 1920, 25
 
@@ -110,7 +127,20 @@ def main():
     ap.add_argument("--amorce", type=float, default=0.35)
     ap.add_argument("--queue", type=float, default=0.90)
     ap.add_argument("--sortie")
+    ap.add_argument("--vitrine", action="store_true",
+                    help="le montage court qui ouvre sur la chute")
+    ap.add_argument("--ordre", help="liste de plans, ex. 8,9,10,11")
+    # ⚠️ UNE FEUILLE PAR MONTAGE, sinon la vitrine ecrase les instants du cours
+    # et les sous-titres du cours placent chaque mot au mauvais endroit.
+    ap.add_argument("--feuille")
     a = ap.parse_args()
+
+    if a.ordre:
+        ordre = [int(x) for x in a.ordre.replace(" ", "").split(",") if x]
+    elif a.vitrine:
+        ordre = VITRINE
+    else:
+        ordre = ORDRE
 
     F = M.ffmpeg()
     ep = os.path.join(RACINE, "video", "episode-" + a.scene)
@@ -122,7 +152,7 @@ def main():
     morceaux, manquants, total, feuille = [], [], 0.0, []
     print("  plan  source            duree   ce qu'on garde")
     print("  " + "-" * 62)
-    for n in ORDRE:
+    for n in ordre:
         dst = os.path.join(tmp, "plan%02d.mp4" % n)
         if n in PARLANTS:
             src = os.path.join(ret, "plan%02d-omnihuman.mp4" % n)
@@ -173,11 +203,13 @@ def main():
     liste = os.path.join(tmp, "_liste.txt")
     io.open(liste, "w", encoding="utf-8", newline="\n").write(
         "".join("file '%s'\n" % m.replace("\\", "/") for m in morceaux))
-    dst = a.sortie or os.path.join(ep, "EPISODE-01-avatar.mp4")
+    defaut = "EPISODE-01-vitrine.mp4" if (a.vitrine or a.ordre) else "EPISODE-01-avatar.mp4"
+    dst = a.sortie or os.path.join(ep, defaut)
     subprocess.run([F, "-y", "-v", "error", "-f", "concat", "-safe", "0",
                     "-i", liste, "-c", "copy", dst], check=True)
 
-    fjson = os.path.join(tmp, "_plans.json")
+    fdef = "_plans-vitrine.json" if (a.vitrine or a.ordre) else "_plans.json"
+    fjson = a.feuille or os.path.join(tmp, fdef)
     io.open(fjson, "w", encoding="utf-8", newline="").write(
         json.dumps(feuille, ensure_ascii=False, indent=1) + "\n")
 

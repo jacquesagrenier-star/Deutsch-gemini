@@ -191,12 +191,17 @@ def main():
     ap.add_argument("--incruster", action="store_true")
     ap.add_argument("--clip")
     ap.add_argument("--sortie")
+    # ⚠️ UNE FEUILLE PAR MONTAGE. Le montage vitrine n'a ni les memes plans
+    # ni les memes instants que le montage cours : lire la feuille du cours
+    # pour sous-titrer la vitrine placerait chaque mot au mauvais endroit,
+    # et rien ne s'en plaindrait.
+    ap.add_argument("--feuille")
     a = ap.parse_args()
 
     F = M.ffmpeg()
     ep = os.path.join(RACINE, "video", "episode-" + a.scene)
     tel = os.path.join(ep, "_a-televerser")
-    feuille = os.path.join(ep, "_montage-avatar", "_plans.json")
+    feuille = a.feuille or os.path.join(ep, "_montage-avatar", "_plans.json")
     if not os.path.exists(feuille):
         sys.exit("  Pas de feuille de montage. Lancer monter_avatar.py d'abord.")
     plans = {p["n"]: p for p in json.load(io.open(feuille, encoding="utf-8"))}
@@ -221,17 +226,25 @@ def main():
     # REGLE : un plan de la scene absent du montage a ete fondu dans le clip du
     # plan precedent qui, lui, en a un. On les regroupe, on decoupe l'audio du
     # clip sur le texte COMPLET, puis on rend a chaque replique ses mots.
-    groupes, orphelins = [], []
+    # ⚠️ LA FUSION EST DECLAREE, PLUS DEVINEE (v579). La v578 rattachait au
+    # clip precedent TOUT plan absent du montage. Ca marchait pour une fusion
+    # -- le plan 20 tourne avec le 13 -- et ca cassait pour une SELECTION : le
+    # montage vitrine ne garde que sept plans, et la regle par absence lui
+    # aurait colle les sous-titres des plans 14, 15 et 16 sur le clip du 13.
+    # Un plan fondu le dit maintenant lui-meme, dans la scene : `fondu_dans`.
+    # Un plan simplement absent du montage est simplement saute.
+    porteur = {}
     for p in scene["plans"]:
-        if p["n"] in plans:
-            groupes.append([p])
-        elif groupes:
-            groupes[-1].append(p)
-        else:
-            orphelins.append(p["n"])
-    if orphelins:
-        print("  ATTENTION : plans sans clip ET sans predecesseur, ignores : %s"
-              % orphelins)
+        f = p.get("fondu_dans")
+        if f is not None:
+            porteur.setdefault(f, []).append(p)
+    groupes = []
+    for p in scene["plans"]:
+        if p.get("fondu_dans") is not None:
+            continue
+        if p["n"] not in plans:
+            continue
+        groupes.append([p] + porteur.get(p["n"], []))
     for g in groupes:
         if len(g) > 1:
             print("  clip du plan %d : %d repliques fondues (%s)"
@@ -305,7 +318,8 @@ def main():
             lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
                           % (tc(debut), tc(fin), echapper(tr)))
 
-    dst = os.path.join(ep, "EPISODE-01-avatar.%s.ass" % a.langue)
+    base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-01-avatar"
+    dst = os.path.join(ep, "%s.%s.ass" % (base, a.langue))
     io.open(dst, "w", encoding="utf-8-sig", newline="\r\n").write(
         ENTETE + "\n".join(lignes) + "\n")
     print("  %s   %d lignes" % (os.path.relpath(dst, RACINE), len(lignes)))

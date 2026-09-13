@@ -404,3 +404,43 @@ lisible**, **personne ne passe entre le personnage et l'objectif**.
   règleraient ça.
 - **Les rendus devraient sortir hors de OneDrive par défaut**, pas y être
   écrits puis copiés.
+
+
+---
+
+## Étape 8 — le montage vitrine
+
+⚠️ **Chaque épisode a DEUX montages, et le second est presque gratuit** : il ne
+réutilise que des plans déjà tournés et déjà synchronisés. Aucun crédit, aucune
+prise neuve.
+
+| | montage cours | montage vitrine |
+|---|---|---|
+| ouvre sur | le décor, la narration | **la chute** |
+| durée | ~75 s | 25 à 40 s |
+| suppose | les épisodes précédents | **rien** |
+| sert | à installer le vocabulaire | à faire venir des gens |
+
+**Ce qui l'a rendu nécessaire.** Mesure sur l'épisode 1 : Mark ne parle pas
+avant **20,65 s**, soit 28 % de l'épisode. Vingt secondes de patience demandées
+à quelqu'un qui en accorde une. Ce n'est pas un défaut du montage cours — c'est
+un autre métier.
+
+```bash
+python video/monter_avatar.py --vitrine
+python video/sous_titres.py --langue fr     --clip video/episode-01-ankunft-berlin/EPISODE-01-vitrine.mp4     --feuille video/episode-01-ankunft-berlin/_montage-avatar/_plans-vitrine.json     --incruster
+```
+
+`--ordre 8,9,10,11` remplace la liste `VITRINE` pour essayer un autre montage
+sans toucher au fichier.
+
+⚠️ **UNE FEUILLE PAR MONTAGE.** La vitrine écrit `_plans-vitrine.json`, le cours
+garde `_plans.json`. Sous-titrer la vitrine avec la feuille du cours placerait
+chaque mot au mauvais endroit, **et rien ne s'en plaindrait** : les deux
+fichiers sont valides, ils ne décrivent simplement pas la même vidéo.
+
+⚠️ **ET UN PLAN FONDU SE DÉCLARE.** Le plan 20 est la seconde moitié du 13 :
+il porte `"fondu_dans": 13` dans la scène. La règle d'avant — « un plan absent
+du montage est rattaché au précédent » — marchait pour une fusion et cassait
+pour une **sélection** : la vitrine ne garde que sept plans, et cette règle lui
+aurait collé les sous-titres des plans 14, 15 et 16 sur le clip du 13.
