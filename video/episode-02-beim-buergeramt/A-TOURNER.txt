@@ -123,28 +123,36 @@ handle. Documentary realism, muted palette.
    et c'est le plan 02 qui lui dit qui c'est. L'ordre est bon ainsi : on
    montre, puis on nomme.
 
-  Reference d'image : personnages/Mark.png -- l'image maitresse.
-  A JOINDRE AU PROMPT, tel quel (personnages.json, champ `corps`) :
+  REFERENCE D'IMAGE : personnages/Mark-dos.png -- LA VUE DE DOS.
+  En second angle si le modele accepte plusieurs references :
+  personnages/Mark.png (face, plein pied).
 
-    BODY: tall — about 1.86 m (6 ft 1 in) — with a long-limbed frame, long
-    legs relative to the torso and long forearms, and powerfully built with
-    it, compact rather than lean. Broad shoulders and a thick neck, a full
-    chest, and arms that fill a shirt sleeve. The waist is moderate rather
-    than sharply tapered, so the silhouette reads solid and rectangular
-    rather than V-shaped. A triathlete's build, not a marathon runner's.
-    POSTURE: upright and relaxed, he takes up space without effort.
+  ⚠️ PAS L'IMAGE DE FACE SEULE, ET C'EST UNE CORRECTION DU 13 SEPTEMBRE.
+     Ce plan montre Mark DE DOS. Le texte disait de fournir Mark.png, la
+     face -- c'est exactement ce qui a rate au plan de dos de l'aeroport :
+     « ca ne correspondait pas tout a fait a lui ». La cause est connue :
+     aucun ancrage de dos n'existait, donc le generateur a invente.
 
-  ⚠️ SANS CE BLOC, LE GENERATEUR INVENTE LE CORPS -- ET IL INVENTE MINCE PAR
-     DEFAUT. C'est ecrit noir sur blanc dans personnages.json, et c'est
-     exactement ce qui a rate au plan de dos de l'aeroport : « ca ne
-     correspondait pas tout a fait a lui ». La regle existait ; je ne l'avais
-     pas appliquee.
+     Il existe depuis le 12 septembre au soir. Mark-dos.png est CANON --
+     tout ce qui suit s'y accroche. S'en servir ici, c'est la raison meme
+     pour laquelle le tournant a ete fait ; ne pas s'en servir, c'est payer
+     deux fois la meme invention.
 
-  ⚠️ L'IMAGE MAITRESSE EST UN PLEIN PIED DE FACE -- verifie le 13 septembre en
-     ouvrant le fichier, apres avoir cru le contraire en lisant la fiche. Elle
-     porte donc deja tout le corps. Le bloc `corps` ci-dessus reste utile pour
-     ce que l'image ne montre pas de dos, mais c'est L'IMAGE QUI FAIT FOI :
-     en cas de desaccord entre les deux, suivre l'image.
+  ⚠️ ET LE BLOC `corps` EST RETIRE. Il etait joint parce que, avec une
+     seule vue de face, « le generateur invente le corps -- et il invente
+     mince par defaut ». Vrai a l'epoque. Mais la silhouette de dos est
+     desormais DANS L'IMAGE, et le texte de `corps` la contredit : il decrit
+     un triathlete massif la ou l'image montre un homme athletique-mince.
+
+     Cette divergence a ete tranchee le 13 septembre avec une regle :
+     « en cas de desaccord entre le texte et l'image, SUIVRE L'IMAGE ».
+     Joindre les deux ici rendrait au generateur la contradiction qu'on
+     venait d'ecarter -- et sur un plan ou il est petit et de dos, c'est
+     l'image qui decide de toute facon.
+
+     Le bloc reste dans personnages.json, champ `corps`, pour le jour ou un
+     plan montrera Mark sans veste (episode 30, 31 ou 55). Ce jour-la il
+     faudra trancher pour de bon.
 
 
 ⚠️ L'EPOQUE DOIT TENIR D'UN BOUT A L'AUTRE DE L'EPISODE. Une facade de brique
