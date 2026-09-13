@@ -39,43 +39,41 @@ tournant, elles font quatre photos différentes. On s'aligne sur l'existant :
 **veste coquille grise ouverte, t-shirt noir, jeans bleu foncé, baskets
 sombres.** La garde-robe se change ensuite par-dessus, comme elle le fait déjà.
 
-## ⚠️ Une divergence à trancher avant de lancer
+## La divergence texte / image : tranchée le 13 septembre, et différée
 
 Le champ `corps` décrit un triathlète massif : *« arms that fill a shirt sleeve
 with visible deltoid and bicep mass »*, *« solid and rectangular rather than
-V-shaped »*. **L'image maîtresse montre un homme athlétique plutôt mince.**
+V-shaped »*. L'image maîtresse montre un homme plutôt athlétique-mince.
 
-Les deux ne disent pas la même chose, et pour le tournant il faut choisir :
+**Décision de Jacques : on ne tranche pas maintenant, et on ne refait rien de
+l'épisode 1 sauf le plan de dos.**
 
-- **s'aligner sur l'image** (recommandé) — elle est le canon par la règle
-  d'ancrage. Alors il faut **alléger le bloc `corps` dans le prompt**, sinon on
-  génère trois vues plus massives que la face.
-- **s'aligner sur le texte** — alors c'est la face qu'il faut refaire, et le
-  personnage change d'allure dans l'épisode 1 déjà tourné.
+Son raisonnement, et il est juste : *« au comptoir, c'est bon — c'est difficile
+de voir, son corps semble assez athlétique quand même. À partir du moment où on
+le verra en t-shirt, on pourrait voir plus. »*
 
-C'est une décision de Jacques, pas une correction à faire en silence.
+**La veste cache la carrure.** Tant que Mark la porte, le texte et l'image ne
+peuvent pas se contredire à l'écran, et la question est théorique.
 
-## Ce que ça ne résout pas, et il faut le savoir
+⚠️ **CE QUI RÉVEILLE LA QUESTION : le premier plan où Mark n'a pas de veste.**
+Dans l'arc actuel, c'est l'épisode **30** (la salle de sport) ou le **31** (le
+club de volley) — garde-robe `sport`. Peut-être le **55**, les vacances sur la
+Baltique. Ce jour-là il faudra choisir, parce que la silhouette sera visible et
+que les deux versions ne peuvent plus coexister.
 
-⚠️ **Le dos est une invention.** Aucune référence ne dit à quoi ressemble
-l'arrière de la tête de Mark. Le générateur la fabrique, plausiblement mais
-arbitrairement — et dès qu'on l'accepte, **elle devient canon pour soixante-et-
-onze épisodes**. Elle se choisit donc avec le même soin que l'image maîtresse,
-et une seule fois.
+⚠️ **Et le tournant se génère EN VESTE**, donc il ne répondra pas non plus à la
+question. C'est cohérent : il ancre l'angle et la stature, pas la musculature.
 
-Regarder en particulier : la ligne de nuque, la façon dont les cheveux tombent
-à l'arrière, la largeur d'épaules par rapport à la taille. C'est ce qui se
-reconnaît de dos, à distance.
+## Ce qui reste à reprendre de l'épisode 1
 
-## Pourquoi maintenant, et pourquoi ce n'est pas contre la règle
+Un seul plan : **celui où on le voit de dos**. C'est lui qui *« ne correspondait
+pas tout à fait à lui »*, et pour la raison maintenant connue — aucun ancrage
+de dos n'existait, donc le générateur a inventé.
 
-`personnages.json` avertit : *« n'ajouter un récurrent que quand un épisode
-écrit en a besoin — le 7 septembre, six portraits de Mark ont été itérés avant
-qu'un seul plan existe, et c'est ce qui a vidé un mois de crédits. »*
+À refaire **après** le tournant, avec la vue de dos en référence. Pas avant :
+ce serait payer deux fois la même invention.
 
-Cette règle vise les personnages **spéculatifs**. Mark existe, il est dans les
-71 épisodes, et **deux plans écrits ont besoin de son dos aujourd'hui**. Le
-besoin est établi, pas anticipé.
+Les plans du comptoir restent tels quels. Aucun crédit dépensé pour eux.
 
 ## Deux références valent mieux qu'une
 
