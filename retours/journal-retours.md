@@ -4321,3 +4321,107 @@ Clés ajoutées dans les cinq langues : `flash_recto`, `flash_recto_court`.
 
 Vérifié au banc, iPhone 375 × 812 : le bouton est à x = 43 px, en bas à gauche
 de la carte ; clic dessus → recto ; clic sur la carte → verso.
+
+## 13 septembre 2026 — le gel enfin nommé, et c'était aussi le triple toucher (v575)
+
+Séance en v573. Deux gels neufs, et l'un des deux est celui qu'on cherchait
+depuis le 9 septembre.
+
+```
+8:18:11 AM  465514 ms  ? apres progression -> localStorage +761548ms   settings
+8:26:20 AM    3904 ms  ? apres Firestore -> resume du tableau de bord +39ms
+                                                         flashcards 10/245
+```
+
+Le premier est un faux positif connu : douze minutes sans le moindre travail
+nommé, sur l'écran des réglages — un onglet Safari mis en arrière-plan.
+
+### Le second : trente-neuf millisecondes
+
+La marque posée en v572 **juste après `await envoi`** s'est fermée 39 ms avant
+la **fin** d'un blocage de 3 904 ms. Le blocage était donc **en cours** quand
+notre continuation a repris la main.
+
+Ce qui bloque n'est donc ni notre prologue — il est mesuré, et court — ni notre
+continuation, mais **ce que le SDK Firestore fait juste avant de nous la
+rendre** : appliquer l'accusé de réception d'un document qui porte 11 694 mots
+de progression, champ par champ.
+
+⚠️ **Sans la marque de la v572, cette ligne aurait encore dit « ? ».** Les deux
+tours d'instrument précédents n'étaient pas du temps perdu : le `+39ms` n'a de
+sens que parce qu'il y avait quelque chose à côté de quoi le mesurer.
+
+### Et c'était aussi « j'ai dû peser trois fois »
+
+Pendant quatre secondes de fil bloqué, **les touchers sont simplement perdus**.
+Le triple toucher signalé sur le recto et le gel sont **le même défaut**. Ni lui
+ni moi ne l'avions vu, parce qu'ils se racontent comme deux histoires : l'un est
+une lenteur, l'autre un bouton qui ne répond pas.
+
+⚠️ **Leçon de méthode :** j'ai cherché le triple toucher dans la logique du
+toucher — `cardBusy`, les moitiés d'écran, les boutons qui avalent le clic —
+alors que le fil était simplement mort. Un symptôme d'interface peut être un
+symptôme de performance, et rien dans sa formulation ne le dit.
+
+### Ce que fait la v575
+
+Le délai de 4 s part de la **dernière** carte. Avec le son, une carte prend dix
+à vingt secondes : l'écriture partait donc après presque **chaque** carte.
+
+Désormais : **au plus une écriture Firestore par deux minutes.** L'écriture
+n'est pas abandonnée, elle est repoussée — et ce qui attend part au moment où
+l'app passe en arrière-plan, le seul instant annoncé par le système et le seul
+où un gel ne dérange personne.
+
+⚠️ **Ce n'est pas la correction de fond.** Tant que `progress` voyage comme une
+carte imbriquée de milliers de champs, chaque écriture reste chère — c'est aussi
+ce qui avait fait exploser le plafond des 40 000 entrées d'index (v396-v400).
+La vraie réponse est de l'envoyer comme **une seule chaîne**, exactement comme
+`grammaire`, `retoursUsager` et `synonymesEcartes` le font déjà pour cette
+raison. Ça demande une migration en lecture : à faire, pas dans le même tour.
+
+### « Précédent » est retiré (v575)
+
+À la demande de Jacques : « enlève Précédent, il ne me sert à rien ».
+
+Partent avec lui : `ouvrirCartePrecedente()`, `fermerCartePrecedente()`,
+`derniereCarteVue`, la vue plein écran `#cartePrecedente`, son CSS, et les clés
+`flash_revoir` / `flash_revoir_court` / `flash_fermer` dans les cinq langues.
+
+⚠️ **Une commande dont personne ne se sert ne coûte pas zéro** : elle coûte les
+erreurs qu'elle provoque chez celles dont on se sert. Sa flèche et celle du
+retour au recto se ressemblaient assez pour qu'il touche l'une en voulant
+l'autre, trois versions de suite.
+
+## 13 septembre 2026 — la flèche nue, et le message qui revient (v576)
+
+**Signalé :** « Je n'ai pas besoin d'avoir *Recto* ni que le bouton reste dans
+une petite boîte. Je veux juste une flèche simple dans le coin gauche en bas,
+sur la carte. » Et : « on avait mis un blocage — si je touchais à droite pour
+passer à la prochaine carte, j'avais un message comme quoi je devais cliquer un
+des choix. Ce n'est plus là. »
+
+**La v573 était allée trop loin.** En faisant de la carte une bascule pure, elle
+avait retiré le message « Réponds à la carte pour continuer » — que j'avais
+jugé inutile parce qu'il répondait à un balayage disparu. Il servait à autre
+chose : dire qu'une carte retournée **attend un jugement**.
+
+Le verso a maintenant **un seul geste, un seul sens** :
+
+| geste | effet |
+|---|---|
+| la flèche, coin bas-gauche | retour au recto |
+| n'importe où ailleurs sur la carte | « Réponds à la carte pour continuer » |
+| le recto | passe au verso |
+
+⚠️ **On ne rétablit pas `cardBusy` ni le fondu** de l'ancien `slideToNextCard()`.
+Son verrou ignorait les touchers pendant sa fenêtre — un suspect direct des
+touchers perdus. Le message suffit : il répond immédiatement et ne bloque rien.
+
+⚠️ **Nue, mais pas petite.** Plus de bordure, plus de fond, plus de mot — mais
+la cible tactile reste de **40 px**. Un dessin de 21 px se rate au pouce, et le
+rater est précisément ce qu'on vient de corriger trois fois. L'aire invisible
+fait le travail que la boîte faisait.
+
+Vérifié au banc, iPhone 375 × 812 : clic sur la carte → le message et la carte
+ne bouge pas ; clic sur la flèche → recto ; clic sur le recto → verso.

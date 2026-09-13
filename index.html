@@ -3796,59 +3796,25 @@ body[data-theme="dark"] .judge-known{
     margin-top:6px; padding:20px; border:1px solid #e6e9ef;
     border-radius:20px; background:#fff;
 }
-/* ⚠️ CENTRE, PAS CALE A GAUCHE (v571). Les trois reglages d'avant --
-   margin-top:auto, margin-inline-end:auto, align-self -- ne valaient que dans la
-   colonne flex du verso, qu'il a quittee. #flashcardActions est un bloc simple :
-   ils y seraient inertes, et le bouton se collerait au bord gauche, seul de son
-   espece dans une rangee ou tout le reste est centre. Meme marge que
-   .srs-aide-btn, juste au-dessous duquel il vit maintenant. */
-.flash-retour-bas{
-    margin:0 auto 10px;
-    display:flex; align-items:center; justify-content:center; gap:5px;
-    padding:5px 11px 5px 8px; border-radius:999px;
-    border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
-    color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600;
-    line-height:1.3; cursor:pointer;
-}
-.flash-retour-bas svg{width:14px; height:14px; flex:0 0 auto;}
-/* La fleche « Recto », dans le coin bas-gauche du VERSO. Meme habit que
-   « Precedent » -- ce sont deux commandes secondaires de meme rang -- mais les
-   trois reglages de placement d'origine, qui ne valaient que dans la colonne
-   flex du verso et que .flash-retour-bas a perdus en descendant sous la carte. */
+/* La fleche « Recto », dans le coin bas-gauche du VERSO. Elle est la seule
+   commande de la carte depuis que « Precedent » est retire (v575) : les
+   reglages ci-dessous la posent au bas de la colonne flex du verso, ou elle
+   suit le texte quand la carte est longue. */
 .flash-recto-coin{
     margin-top:auto; margin-inline-end:auto; align-self:flex-start;
-    display:inline-flex; align-items:center; gap:5px;
-    padding:5px 11px 5px 8px; border-radius:999px;
-    border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
-    color:#2f62d6; font-family:inherit; font-size:11.5px; font-weight:600;
-    line-height:1.3; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    /* ⚠️ NUE, MAIS PAS PETITE (v576). Demande de Jacques : « je n'ai pas besoin
+       d'avoir Recto ni que le bouton reste dans une petite boite, je veux juste
+       une fleche simple ». La pastille part -- plus de bordure, plus de fond,
+       plus de mot -- mais la CIBLE TACTILE reste de 40 px : un dessin de 20 px
+       se rate au pouce, et le rater est precisement ce qu'on vient de corriger
+       trois fois. L'aire invisible fait le travail que la boite faisait. */
+    width:40px; height:40px; margin-inline-start:-8px; margin-bottom:-6px;
+    padding:0; border:0; background:none;
+    color:#2f62d6; cursor:pointer;
 }
-.flash-recto-coin svg{width:14px; height:14px; flex:0 0 auto;}
-body[data-theme="dark"] .flash-recto-coin{
-    background:rgba(26,32,42,.92); border-color:rgba(143,180,255,.30); color:#8FB4FF;
-}
-body[data-theme="dark"] .flash-retour-bas{
-    background:rgba(26,32,42,.92); border-color:rgba(143,180,255,.30); color:#8FB4FF;
-}
-.carte-precedente{
-    position:fixed; inset:0; z-index:9000; background:rgba(12,16,22,.88);
-    display:flex; align-items:center; justify-content:center; padding:22px; cursor:pointer;
-}
-.carte-precedente-boite{
-    background:#fff; border-radius:16px; padding:26px 24px; max-width:340px; width:100%;
-    text-align:center;
-}
-body[data-theme="dark"] .carte-precedente-boite{background:#1A202A;}
-.carte-precedente-mot{font-size:26px; font-weight:700; color:#1e293b;}
-.carte-precedente-trad{font-size:17px; color:#2f62d6; margin-top:8px; font-weight:600;}
-.carte-precedente-ex{margin-top:12px; line-height:1.5;}
-.cp-de{display:block; font-size:14px; color:#1e293b;}
-.cp-fr{display:block; font-size:12.5px; color:#7b8798; font-style:italic; margin-top:4px;}
-body[data-theme="dark"] .cp-de{color:#F2F2F6;}
-.carte-precedente-fermer{display:block; font-size:11px; color:#9aa3b2; margin-top:18px;}
-body[data-theme="dark"] .carte-precedente-mot{color:#F2F2F6;}
-body[data-theme="dark"] .carte-precedente-trad{color:#8FB4FF;}
-body[data-theme="dark"] .carte-precedente-ex{color:#A6ADBB;}
+.flash-recto-coin svg{width:21px; height:21px; flex:0 0 auto;}
+body[data-theme="dark"] .flash-recto-coin{ color:#8FB4FF; }
 .flash-end-objectif{
     font-size:13px; font-weight:600; color:#7b8798; margin:6px 0 2px;
 }
@@ -5280,7 +5246,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v574</span>
+    <span class="subtitle-version">v576</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6960,9 +6926,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <button type="button" class="flash-recto-coin"
                         onclick="event.stopPropagation(); unflipCard();"
                         data-i18n-aria-label="flash_recto" aria-label="Revenir au recto de la carte">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                          stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h11a5 5 0 010 10h-3"/><path d="M7 6l-4 4 4 4"/></svg>
-                    <span data-i18n="flash_recto_court">Recto</span>
                 </button>
                 <!-- ⚠️ DEUX INDICATIONS QUI DECRIVAIENT UN GESTE DISPARU (v558).
                      La fleche vers la droite annoncait « passer a la carte
@@ -7008,34 +6973,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
-        <!-- ⚠️ EN TETE DU BLOC, ET C'EST UNE MESURE (v572). La v571 l'avait
-             sorti de la carte -- il occupait la moitie gauche du verso, dont le
-             seul role est de ramener au recto -- mais l'avait pose TOUT EN BAS,
-             sous « Quand ce mot reviendra-t-il ? ». Jacques : « il n'y a plus de
-             fleche pour revenir en arriere ».
-             Mesure au banc, iPhone 375x812, bas du bouton :
-                 verso de 200 px -> 567 px   visible
-                 verso de 320 px -> 687 px   visible
-                 verso de 420 px -> 787 px   SOUS LE PLI de Safari (~700 px utiles)
-                 verso de 520 px -> 887 px   sous le pli, meme sans barre d'adresse
-             Un nom avec article, pluriel, phrase et traduction depasse 420 px
-             sans effort : le bouton etait donc hors de l'ecran la plupart du
-             temps. Il n'avait pas disparu, il etait injoignable -- ce qui revient
-             au meme pour qui s'en sert.
-             Ici, il est immediatement sous la carte, donc toujours visible des
-             que le verso l'est. Il reste HORS de la carte : c'est la seule chose
-             que la v571 devait obtenir, et elle est conservee.
-             Plus de event.stopPropagation() : hors de la carte, il n'y a rien a
-             empecher de remonter. loadFlashcard() continue de le montrer ou de
-             le cacher selon qu'il existe une carte precedente -- il n'apparait
-             donc pas sur la premiere carte d'une seance, et c'est voulu. -->
-        <button type="button" id="flashRetour" class="flash-retour-bas hidden"
-                onclick="ouvrirCartePrecedente()"
-                data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                 stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-            <span data-i18n="flash_revoir_court">Précédent</span>
-        </button>
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
                 <span data-i18n="review_again">↺ Encore</span>
@@ -7068,17 +7005,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- ⚠️ IL N'APPARAIT QU'APRES UN JUGEMENT. C'est lui qui rend
          impossible de traverser une carte sans repondre, et c'est lui qui
          laisse le temps de relire le mot qu'on vient de rater. -->
-    <!-- ⚠️ LECTURE SEULE. La carte precedente est deja jugee : la rejuger la
-         compterait deux fois. On la regarde, on referme. -->
-
-    <div id="cartePrecedente" class="carte-precedente hidden" onclick="fermerCartePrecedente()">
-        <div class="carte-precedente-boite">
-            <div id="cartePrecedenteMot" class="carte-precedente-mot"></div>
-            <div id="cartePrecedenteTrad" class="carte-precedente-trad"></div>
-            <div id="cartePrecedenteEx" class="carte-precedente-ex"></div>
-            <span class="carte-precedente-fermer" data-i18n="flash_fermer">Toucher pour fermer</span>
-        </div>
-    </div>
 
     <div id="flashcardEnd" class="flashcard-end hidden">
         <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
@@ -8022,11 +7948,7 @@ const I18N = {
         flash_end_objectif_atteint: "Objectif du jour atteint — {n} cartes. La suite est pour le plaisir.",
         flash_end_objectif_reste: "Encore {n} cartes pour ton objectif du jour.",
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
-        flash_revoir: "Revoir le mot précédent",
-        flash_revoir_court: "Précédent",
         flash_recto: "Revenir au recto de la carte",
-        flash_recto_court: "Recto",
-        flash_fermer: "Toucher pour fermer",
         legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
         legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »). Une carte balayée sans réponse fait avancer le tableau, mais pas cette barre.",
         legende_mosaique: "Le tableau — un carreau se découvre à chaque carte, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
@@ -8969,11 +8891,7 @@ const I18N = {
         flash_end_objectif_atteint: "Daily goal reached — {n} cards. Anything more is for the pleasure of it.",
         flash_end_objectif_reste: "{n} more cards to reach today's goal.",
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
-        flash_revoir: "See the previous word",
-        flash_revoir_court: "Previous",
         flash_recto: "Back to the front of the card",
-        flash_recto_court: "Front",
-        flash_fermer: "Tap to close",
         legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
         legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »). A card swiped past moves the painting along, but not this bar.",
         legende_mosaique: "The painting — one tile uncovers with every card, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
@@ -9918,11 +9836,7 @@ const I18N = {
         flash_end_objectif_atteint: "Günlük hedefe ulaşıldı — {n} kart. Gerisi keyif için.",
         flash_end_objectif_reste: "Günlük hedefin için {n} kart kaldı.",
         mosaique_plafond: "Tablo bugünlük ilerleyebileceği kadar ilerledi. Yarın devam eder.",
-        flash_revoir: "Önceki kelimeye bak",
-        flash_revoir_court: "Önceki",
         flash_recto: "Kartın ön yüzüne dön",
-        flash_recto_court: "Ön yüz",
-        flash_fermer: "Kapatmak için dokun",
         legende_seance_niveau: "A1–C1 düğmeleri yalnızca YENİ kelimelerin geldiği seviyeyi belirler. Tekrarların, hangisi seçili olursa olsun, çalıştığın tüm seviyelerden gelir.",
         legende_objectif_quoi: "Bugün — değerlendirdiğin kartlar. Cevapsız geçilen bir kart tabloyu ilerletir ama bu çubuğu ilerletmez.",
         legende_mosaique: "Tablo — her kartta bir kare açılır, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
@@ -11497,11 +11411,7 @@ const I18N = {
         flash_end_objectif_atteint: "Денну мету досягнуто — {n} карток. Решта — задля задоволення.",
         flash_end_objectif_reste: "Ще {n} карток до денної мети.",
         mosaique_plafond: "Сьогодні картина просунулася максимально. Продовжить завтра.",
-        flash_revoir: "Переглянути попереднє слово",
-        flash_revoir_court: "Попереднє",
         flash_recto: "Повернутися на лицьовий бік картки",
-        flash_recto_court: "Лицьовий бік",
-        flash_fermer: "Торкнись, щоб закрити",
         legende_seance_niveau: "Позначки A1–C1 визначають лише, звідки беруться НОВІ слова. Повторення повертаються з усіх рівнів, які ти вже опрацьовував.",
         legende_objectif_quoi: "Сьогодні — картки, які ти оцінив. Пропущена без відповіді картка рухає картину, але не цю смужку.",
         legende_mosaique: "Картина — з кожною карткою відкривається плитка, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнись, щоб збільшити.",
@@ -12416,11 +12326,7 @@ const I18N = {
         flash_end_objectif_atteint: "هدف امروز انجام شد — {n} کارت. باقی برای لذت است.",
         flash_end_objectif_reste: "{n} کارت دیگر تا هدف امروز.",
         mosaique_plafond: "تابلو امروز تا جای ممکن پیش رفت. فردا ادامه می‌یابد.",
-        flash_revoir: "دیدن واژهٔ پیشین",
-        flash_revoir_court: "پیشین",
         flash_recto: "بازگشت به روی کارت",
-        flash_recto_court: "روی کارت",
-        flash_fermer: "برای بستن بزن",
         legende_seance_niveau: "دکمه‌های A1 تا C1 فقط تعیین می‌کنند واژه‌های نو از کدام سطح بیایند. مرورها از همهٔ سطح‌هایی که کار کرده‌ای برمی‌گردند.",
         legende_objectif_quoi: "امروز — کارت‌هایی که داوری کرده‌ای. کارتی که بدون پاسخ رد شود تابلو را جلو می‌برد اما این نوار را نه.",
         legende_mosaique: "تابلو — با هر کارت یک کاشی باز می‌شود، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
@@ -15572,10 +15478,18 @@ function saveProgress(progress){
     scheduleCloudSync();
 }
 
-window.addEventListener("pagehide", ecrireProgressionMaintenant);
-document.addEventListener("freeze", ecrireProgressionMaintenant);
+// ⚠️ LE CLOUD PART AU MEME MOMENT QUE LE DISQUE (v575). Depuis que l'ecriture
+// Firestore est espacee de deux minutes, il faut un moment ou ce qui attend
+// s'en va : le depart de l'app est le seul que le systeme annonce, et c'est
+// aussi le seul ou un gel de quelques secondes ne derange personne.
+function deposerToutMaintenant(){
+    ecrireProgressionMaintenant();
+    viderFileCloud();
+}
+window.addEventListener("pagehide", deposerToutMaintenant);
+document.addEventListener("freeze", deposerToutMaintenant);
 document.addEventListener("visibilitychange", function(){
-    if(document.hidden) ecrireProgressionMaintenant();
+    if(document.hidden) deposerToutMaintenant();
 });
 
 // ============ Synchronisation cloud de la progression (Firestore) ============
@@ -15687,11 +15601,65 @@ function isAdminUser(){
     return !!(user && user.email && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase());
 }
 
+// ============ AU PLUS UNE ECRITURE PAR DEUX MINUTES (v575) ============
+//
+// ⚠️ CE N'EST PAS UNE OPTIMISATION, C'EST LA CORRECTION DU GEL. Le journal du
+// 13 septembre 2026 l'a enfin nomme, apres trois versions d'instrument :
+//
+//   8:26:20  3904 ms  ? apres Firestore -> resume du tableau de bord +39ms
+//                                                        flashcards 10/245
+//
+// Trente-neuf millisecondes. La marque posee juste apres `await envoi` s'est
+// fermee 39 ms avant la FIN d'un blocage de presque quatre secondes : le
+// blocage etait donc en cours quand notre continuation a repris la main. Ce qui
+// bloque n'est ni notre prologue -- il est mesure et il est court -- ni notre
+// continuation, mais ce que le SDK Firestore fait JUSTE AVANT de nous la
+// rendre : appliquer l'accuse de reception d'un document qui porte 11 694 mots
+// de progression, champ par champ.
+//
+// ⚠️ ET CE GEL EST AUSSI « J'AI DU PESER TROIS FOIS ». Pendant quatre secondes
+// de fil bloque, les touchers sont simplement perdus. Le triple toucher signale
+// sur le recto et le gel sont LE MEME DEFAUT -- ce que ni lui ni moi n'avions
+// vu, parce qu'ils se racontent comme deux histoires.
+//
+// LA CAUSE DE LA FREQUENCE : le delai de 4 s part de la DERNIERE carte. Avec du
+// son, une carte prend dix a vingt secondes -- donc l'ecriture partait apres
+// presque chaque carte, et chacune pouvait couter ces quelques secondes.
+//
+// ⚠️ CE QU'ON MET EN JEU, ET C'EST PEU. localStorage reste la verite (v513) ;
+// le cloud sert au tableau de bord et a la restauration sur un autre appareil.
+// Au pire on y perd les deux dernieres minutes d'une seance -- et encore, une
+// ecriture en attente part quand meme au moment ou l'app passe en arriere-plan.
+//
+// ⚠️ CE N'EST PAS LA CORRECTION DE FOND. Tant que `progress` voyage comme une
+// carte imbriquee de milliers de champs, chaque ecriture reste chere -- c'est
+// aussi ce qui avait fait exploser le plafond des 40 000 entrees d'index
+// (v396-v400). La vraie reponse est de l'envoyer comme UNE CHAINE, exactement
+// comme `grammaire`, `retoursUsager` et `synonymesEcartes` le font deja pour
+// cette raison. Ca demande une migration en lecture, donc pas dans le meme
+// tour qu'une correction urgente.
+const CLOUD_SYNC_MIN_MS = 120000;
+let dernierSyncCloud = 0;
+
 function scheduleCloudSync(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb) return;
     clearTimeout(cloudSyncTimer);
-    cloudSyncTimer = setTimeout(syncProgressToCloud, 4000);
+    // Quatre secondes apres la derniere carte, MAIS jamais moins de deux
+    // minutes apres l'ecriture precedente. L'ecriture n'est pas abandonnee,
+    // elle est repoussee : rien ne se perd, tout arrive plus tard.
+    const reste = CLOUD_SYNC_MIN_MS - (Date.now() - dernierSyncCloud);
+    cloudSyncTimer = setTimeout(syncProgressToCloud, Math.max(4000, reste));
+}
+
+// Une ecriture en attente part MAINTENANT. Appelee au moment ou l'app s'en va :
+// c'est le seul instant ou un gel ne derange personne, et le seul ou iOS
+// previent avant de suspendre.
+function viderFileCloud(){
+    if(!cloudSyncTimer) return;
+    clearTimeout(cloudSyncTimer);
+    cloudSyncTimer = null;
+    try{ syncProgressToCloud(); }catch(e){}
 }
 
 async function syncProgressToCloud(){
@@ -15702,6 +15670,13 @@ async function syncProgressToCloud(){
     // dans un stockage neuf (app installee sur l'ecran d'accueil). Dans le
     // doute, on n'ecrit pas.
     if(!cloudRestoreDone) return;
+    // ⚠️ LE COMPTEUR PART D'ICI, pas de la fin. On veut deux minutes entre deux
+    // DEPARTS d'ecriture ; le compter a l'arrivee ajouterait le temps du reseau
+    // a l'intervalle, qui deviendrait variable et impossible a raisonner.
+    // Et il est pose APRES les gardes : une synchronisation qu'on refuse de
+    // faire ne doit pas repousser la suivante de deux minutes.
+    dernierSyncCloud = Date.now();
+    cloudSyncTimer = null;
     let snapshot = null; // hors du try : le diagnostic du catch en a besoin
     try{
         const progress = getProgress();
@@ -21712,8 +21687,6 @@ function setFlashHeader(kickerKey, titleKey){
 }
 
 function loadFlashcard(){
-    const retourEl = document.getElementById("flashRetour");
-    if(retourEl) retourEl.classList.toggle("hidden", !derniereCarteVue);
     updateXpComboDisplay();
     hideFlashcardEnd();
     // La phrase a prononcer appartient a la carte qu'on affiche, et a elle
@@ -22287,10 +22260,25 @@ function handleCardTap(event){
     stopMasteryCelebrations();
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
-    // ⚠️ `event` n'est plus lu : la reponse ne depend plus de l'endroit touche.
-    // Le parametre reste dans la signature parce que le HTML passe encore
-    // `handleCardTap(event)`, et parce qu'un jour on pourrait vouloir le lire.
-    if(flashcardEl.classList.contains("flipped")) unflipCard();
+    // ⚠️ LE VERSO NE SE RETOURNE PLUS EN LE TOUCHANT (v576). La v573 en avait
+    // fait une bascule pure -- toucher n'importe ou ramenait au recto -- et
+    // Jacques l'a refuse : « on avait mis un blocage, si je touchais a droite
+    // pour passer a la prochaine carte j'avais un message comme quoi je devais
+    // cliquer un des choix ; ce n'est plus la ».
+    //
+    // Il a raison, et c'est une regle de fond : une carte deja retournee attend
+    // un JUGEMENT, et rien d'autre ne doit avoir l'air de la faire avancer. Le
+    // message le dit au lieu de laisser croire a une panne.
+    //
+    // ⚠️ UNE SEULE FACON DE REVENIR AU RECTO : la fleche du coin bas-gauche.
+    // C'est ce qui rend le verso lisible -- un geste, un sens, et plus de
+    // frontiere invisible au milieu de l'ecran comme avant la v573.
+    //
+    // ⚠️ ON NE RETABLIT PAS `cardBusy` NI LE FONDU. Le verrou de l'ancien
+    // slideToNextCard() ignorait les touchers pendant sa fenetre, et c'est un
+    // suspect direct des touchers perdus. Le message suffit : il repond
+    // immediatement et ne bloque rien.
+    if(flashcardEl.classList.contains("flipped")) showInfoToast(t("flash_repondre"));
     else flipCard();
 }
 
@@ -24144,7 +24132,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 574;
+const APP_VERSION = 576;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26889,18 +26877,20 @@ function remettreEnFile(item){
 // que le clic, le point vert gagne s'allumait sur une carte deja disparue :
 // l'effort n'etait paye par rien de visible.
 let attentePalier = null;
-// ============ LE REGARD EN ARRIERE (v553) ============
-// ⚠️ CE QUI MANQUAIT N'ETAIT PAS DE RETENIR LA CARTE. Jacques : « je peux
-// vouloir juste tout de suite regarder c'etait quoi le mot en francais » -- mais
-// aussi : « j'aime bien le principe que ca revienne dans deux minutes, donc on
-// voit d'autres cartes en attendant ». Les deux tiennent ensemble a condition de
-// ne pas confondre le FLUX et le REGARD : le flux avance, et un bouton discret
-// permet de revoir ce qu'on vient de juger.
+// ============ LE REGARD EN ARRIERE EST RETIRE (v575) ============
+// Il vivait ici depuis la v553 : un bouton « Precedent » rouvrait en plein ecran
+// la carte qu'on venait de juger, en lecture seule.
 //
-// ⚠️ LE REGARD EST EN LECTURE SEULE. La carte precedente est deja jugee et
-// programmee : la rejuger la compterait deux fois, dans la dose du jour comme
-// dans l'echelle de memorisation.
-let derniereCarteVue = null;
+// ⚠️ RETIRE A LA DEMANDE DE JACQUES -- « enleve Precedent, il ne me sert a
+// rien » -- et sa presence avait un cout qui n'etait pas que de la place : sa
+// fleche et celle du retour au recto se ressemblaient assez pour qu'il touche
+// l'une en voulant l'autre, trois versions de suite (v571 a v574). Une commande
+// dont personne ne se sert ne coute pas zero : elle coute les erreurs qu'elle
+// provoque chez celles dont on se sert.
+//
+// Partent avec lui : ouvrirCartePrecedente(), fermerCartePrecedente(), la vue
+// plein ecran #cartePrecedente, son CSS, et les cles flash_revoir /
+// flash_revoir_court / flash_fermer dans les cinq langues.
 
 function celebrerPalier(pointGagne){
     majEcheances(true);
@@ -26950,35 +26940,6 @@ function markKnownAlready(){
     sessionVues++;
     sessionSues++;
     markMastered();
-}
-
-function ouvrirCartePrecedente(){
-    if(!derniereCarteVue) return;
-    const c = derniereCarteVue.word;
-    const mode = derniereCarteVue.mode || flashcardMode;
-    const mot = document.getElementById("cartePrecedenteMot");
-    const trad = document.getElementById("cartePrecedenteTrad");
-    const ex = document.getElementById("cartePrecedenteEx");
-    if(mot) mot.textContent = motAllemandDeLaCarte(c, mode) || "";
-    if(trad) trad.textContent = traductionDeLaCarte(c, mode) || "";
-    // ⚠️ LA PHRASE ALLEMANDE D'ABORD, SA TRADUCTION EN DESSOUS. texteCarte(...,
-    // "exemple") suit la langue de l'interface : il renvoyait « Mon père
-    // travaille beaucoup » a quelqu'un qui voulait revoir un mot ALLEMAND. Le
-    // rang nu porte l'allemand ; les rangs par langue portent sa traduction.
-    const type = TYPE_CARTE_PAR_MODE[mode] || "nomen";
-    // Le rang nu de l'exemple porte l'ALLEMAND ; RANGS_CARTE ne donne que ses
-    // traductions. Pour les verbes, qui sont des objets, c'est le champ `exemple`.
-    const de = Array.isArray(c) ? (c[5] || "") : (c.exemple || "");
-    const tr = texteCarte(c, type, "exemple") || "";
-    if(ex) ex.innerHTML = (de ? '<span class="cp-de">' + echapperHtml(de) + '</span>' : "")
-                        + (tr && tr !== de ? '<span class="cp-fr">' + echapperHtml(tr) + '</span>' : "");
-    const v = document.getElementById("cartePrecedente");
-    if(v) v.classList.remove("hidden");
-}
-
-function fermerCartePrecedente(){
-    const v = document.getElementById("cartePrecedente");
-    if(v) v.classList.add("hidden");
 }
 
 function showFlashcardEnd(){
@@ -27510,9 +27471,6 @@ function markMastered(){
 }
 
 function nextFlashcard(){
-    // On retient ce qu'on vient de quitter, pour le regard en arriere.
-    const partante = currentCards[currentFlashcard];
-    if(partante) derniereCarteVue = partante;
     currentFlashcard++;
     // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
