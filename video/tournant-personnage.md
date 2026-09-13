@@ -28,7 +28,7 @@ toujours à partir de son IMAGE maîtresse, jamais à partir de sa description �
 | vue | état |
 |---|---|
 | face, en pied | **elle existe** — `personnages/Mark.png` |
-| **trois-quarts** | à faire — l'angle le plus utilisé en dialogue, au comptoir |
+| **trois-quarts** | à refaire sur fond uni — mais il **existe déjà** dans l'épisode 1, `mark-moyen-b.png`, et il sert de référence |
 | **profil** | à faire — les plans latéraux, les scènes à deux |
 | **dos** | à faire — les plans 01 et 18, et tous les « il s'en va » de la série |
 
@@ -77,20 +77,54 @@ Cette règle vise les personnages **spéculatifs**. Mark existe, il est dans les
 71 épisodes, et **deux plans écrits ont besoin de son dos aujourd'hui**. Le
 besoin est établi, pas anticipé.
 
+## Deux références valent mieux qu'une
+
+Idée de Jacques, et elle change le résultat : **on possède déjà un deuxième
+angle de Mark.**
+
+`video/episode-01-ankunft-berlin/01-images/mark-moyen-b.png` le montre au
+comptoir de l'aéroport, **tourné d'environ trente-cinq degrés** — un
+trois-quarts, même veste, même visage. Il a été généré pour l'épisode 1, donc
+il est à nous.
+
+⚠️ **Donner LES DEUX à chaque lancement.** Avec une seule vue de face, le
+générateur doit inventer toute la rotation ; avec deux angles il interpole
+entre eux, et le profil comme le dos tiennent beaucoup mieux. C'est le vrai
+gain, et il ne coûte rien — les deux images existent.
+
+⚠️ Et préciser que **seul le personnage sert de référence**, pas le décor :
+`mark-moyen-b.png` porte un hall d'aéroport flou derrière lui, et le tournant
+se fait sur fond uni.
+
+## À faire en trois lancements, un par vue
+
+Oui, en étapes séparées — une vue par génération, il n'y a pas d'autre façon.
+
+⚠️ **MAIS TOUJOURS DEPUIS LES DEUX IMAGES D'ORIGINE, jamais en chaîne.** La
+tentation est de faire le profil depuis la face, puis le dos depuis le profil,
+puisque le dos est « plus loin ». C'est exactement ce que la règle d'ancrage
+interdit : *« jamais à partir d'une image tirée du plan précédent »* — les
+écarts s'additionnent, et c'est ainsi qu'on s'est retrouvé avec deux Annas le
+8 septembre.
+
+Si le dos ressort inutilisable depuis les deux références, alors seulement
+essayer depuis le profil — en sachant ce qu'on accepte.
+
 ## Le prompt
 
-À lancer dans Artlist, mode Framing, **avec `personnages/Mark.png` en
-référence**. Un lancement par vue — le même bloc, en changeant la
-dernière ligne.
+À lancer dans Artlist, mode Framing, **avec `personnages/Mark.png` ET
+`mark-moyen-b.png` en référence**. Un lancement par vue — le même bloc, en
+changeant la dernière ligne.
 
 ⚠️ Le prompt ne redécrit ni le visage ni la carrure : **c'est l'image qui les
 porte.** Il ne dit que ce que l'image ne peut pas dire — l'angle.
 
 ```
-The same man as in the reference image, same face, same build, same clothes:
+The same man as in the reference images, same face, same build, same clothes:
 open grey shell jacket over a plain black t-shirt, dark blue jeans, dark
 trainers. Full body, standing, on a plain light grey studio background with
-even soft light and no shadow on the backdrop. Photorealistic.
+even soft light and no shadow on the backdrop. Photorealistic. Use the
+references for the person only, not for the setting.
 
 POSTURE: upright and relaxed, arms hanging naturally at his sides, weight
 settled evenly. Nothing stiff, nothing posed, no presenter's stance.
