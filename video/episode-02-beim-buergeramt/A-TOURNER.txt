@@ -280,46 +280,50 @@ PLAN 18   il sort   5 SECONDES
   Reference : buergeramt_wartezimmer.png
 
 PROMPT D'IMAGE (Framing)
-Tenue : chemise bleu clair, manches roulees ; pantalon marine ; ceinture de
-cuir brun. (garde_robe « administration ».)
-
-  Reference d'image : personnages/Mark.png -- l'image maitresse.
-  A JOINDRE AU PROMPT, tel quel (personnages.json, champ `corps`) :
-
-    BODY: tall — about 1.86 m (6 ft 1 in) — with a long-limbed frame, long
-    legs relative to the torso and long forearms, and powerfully built with
-    it, compact rather than lean. Broad shoulders and a thick neck, a full
-    chest, and arms that fill a shirt sleeve. The waist is moderate rather
-    than sharply tapered, so the silhouette reads solid and rectangular
-    rather than V-shaped. A triathlete's build, not a marathon runner's.
-    POSTURE: upright and relaxed, he takes up space without effort.
-
-  ⚠️ SANS CE BLOC, LE GENERATEUR INVENTE LE CORPS -- ET IL INVENTE MINCE PAR
-     DEFAUT. C'est ecrit noir sur blanc dans personnages.json, et c'est
-     exactement ce qui a rate au plan de dos de l'aeroport : « ca ne
-     correspondait pas tout a fait a lui ». La regle existait ; je ne l'avais
-     pas appliquee.
-
-  ⚠️ L'IMAGE MAITRESSE EST UN PLEIN PIED DE FACE -- verifie le 13 septembre en
-     ouvrant le fichier, apres avoir cru le contraire en lisant la fiche. Elle
-     porte donc deja tout le corps. Le bloc `corps` ci-dessus reste utile pour
-     ce que l'image ne montre pas de dos, mais c'est L'IMAGE QUI FAIT FOI :
-     en cas de desaccord entre les deux, suivre l'image.
-
-
 A tall man in a light blue button-down shirt with sleeves rolled to the
-forearm and navy trousers, seen from behind, walking away from camera down a vaulted municipal
-corridor, vertical framing. Whitewashed stone arches overhead, spherical glass
-pendant lamps hanging in a row down the centre. Pale doors along the left wall,
-each with a small enamel plate reading Platz 8, Platz 9. A hanging sign in a
-mint-green frame reads Pass- und Dokumentenausgabe. Black linked chairs against
-the right wall, empty now. Polished grey stone floor. A dark green double door
-at the far end with daylight around it. He holds a single sheet of paper down at
-his side. Documentary realism, cool daylight.
+forearm, navy trousers and a brown leather belt, seen from behind, walking away
+from camera down a vaulted municipal corridor, vertical framing. Whitewashed
+stone arches overhead, spherical glass pendant lamps hanging in a row down the
+centre. Pale doors along the left wall, each with a small enamel plate reading
+Platz 8, Platz 9. A hanging sign in a mint-green frame reads Pass- und
+Dokumentenausgabe. Black linked chairs against the right wall, empty now.
+Polished grey stone floor. A dark green double door at the far end with
+daylight around it. He holds a single sheet of paper down at his side.
+Documentary realism, cool daylight.
+
+Use the reference images for the man only - his height, his build, his hair
+and the way he carries himself - and NOT for his clothes, which are as
+described above, and NOT for the setting.
+
+  REFERENCE D'IMAGE : personnages/Mark-dos.png -- LA VUE DE DOS.
+  En second angle : personnages/Mark.png (face, plein pied).
+  Reference de decor : buergeramt_wartezimmer.png (plan 02), pour que le vert
+  menthe et la cimaise soient les memes d'un plan a l'autre.
+
+  Tenue : garde_robe « administration » -- chemise bleu clair manches roulees,
+  pantalon marine, ceinture de cuir brun. Elle est DANS le prompt ci-dessus,
+  pas en note a cote : ce qui doit partir au modele s'ecrit dans le prompt.
+
+  ⚠️ MEME CORRECTION QU'AU PLAN 01, LE 13 SEPTEMBRE. Ce plan montre Mark de
+     dos et demandait Mark.png, la FACE -- ce qui a rate au plan de dos de
+     l'aeroport, faute d'ancrage de dos. Mark-dos.png existe depuis le 12 au
+     soir et il est canon.
+
+  ⚠️ ET LE BLOC `corps` EST RETIRE. Avec une seule vue de face il fallait
+     dire la carrure, sans quoi « le generateur invente mince par defaut ».
+     La silhouette de dos est maintenant dans l'image, et le texte de `corps`
+     la contredit -- un triathlete massif contre un athletique-mince. La regle
+     tranchee le 13 septembre dit de suivre l'image. Le bloc reste dans
+     personnages.json pour le jour ou un plan montrera Mark sans veste.
 
 ⚠️ DE DOS, ET C'EST DELIBERE. Un plan de decor ne porte pas de visage ancre :
    de face, il faudrait tenir l'identite de Mark et le plan cesserait d'etre
    bon marche. De dos, il coute le prix d'un decor.
+
+⚠️ ET IL RIME AVEC LE PLAN 01. Il y entre par la porte verte, il en ressort
+   ici avec son formulaire -- la boucle se fait sans un mot. Les deux plans
+   doivent donc se ressembler de cadrage : si le 01 est oblique, celui-ci ne
+   peut pas etre parfaitement frontal.
 
 PROMPT DE MOUVEMENT (Directing)
 Locked-off camera. No zoom, no push-in, no camera movement of any kind.
