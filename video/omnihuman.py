@@ -20,16 +20,20 @@ CE QUE CA REMPLACE
     heureux. Le script va chercher le prompt dans l'une des DEUX formes que le
     depot porte deja -- il n'en invente pas une troisieme :
 
-      notes/planNN-prompt.txt   le document de travail : pourquoi ce plan est
-                                difficile, ce que les essais ont donne, et le
-                                prompt dans un bloc delimite (tirets, PROMPT,
-                                corps, tirets). C'est la forme des plans 10,
-                                13 et 16 de l'episode 1. Quand elle existe,
-                                elle est LA source : on l'extrait, on ne la
-                                recopie pas -- une copie diverge le jour ou
-                                l'on corrige l'original.
-      prompts/planNN.txt        le prompt seul, pour les plans qui ne meritent
-                                pas mille sept cents mots de notes.
+      prompts/planNN.txt        LE FICHIER QUI FAIT FOI. Son contenu entier
+                                part au modele -- c'est donc le seul qu'on
+                                puisse relire en etant sur de ce qu'on envoie.
+      notes/planNN-prompt.txt   le document de travail, a defaut : pourquoi ce
+                                plan est difficile, ce que les essais ont
+                                donne, et le prompt dans un bloc delimite.
+                                ⚠️ Accepte SEULEMENT s'il n'y a qu'un bloc.
+
+    ⚠️ POURQUOI ON N'ANALYSE PAS CES NOTES PLUS LOIN. Trois fichiers, trois
+       formes : le 13 a un bloc PROMPT net, le 10 en a DEUX (« B » et « B2 »,
+       deux iterations), le 16 melange le prompt et un avertissement sous le
+       meme titre. Choisir en silence entre B et B2, c'est payer une prise
+       deja rejetee. Le script refuse et nomme les blocs trouves ; l'humain
+       tranche une fois et copie le bloc retenu dans prompts/.
 
     ⚠️ Sur treize plans parlants de l'episode 1, QUATRE prompts ont survecu :
        10, 13 et 16 en notes, et 05 en exemple complet dans le gabarit. Les
@@ -203,17 +207,31 @@ def lire_prompt(essai, n):
     """
     note = os.path.join(essai, "notes", "plan%02d-prompt.txt" % n)
     brut = os.path.join(essai, "prompts", "plan%02d.txt" % n)
-    if os.path.exists(note):
-        t = io.open(note, encoding="utf-8").read()
-        m = re.search(r"^-{10,}\s*\nPROMPT\s*\n(.*?)^-{10,}\s*$",
-                      t, re.S | re.M)
-        if not m:
-            sys.exit("  plan %d : %s existe mais n'a pas de bloc PROMPT\n"
-                     "  delimite (une ligne de tirets, PROMPT, le corps, une\n"
-                     "  ligne de tirets)." % (n, os.path.relpath(note, RACINE)))
-        return m.group(1).strip(), note
+
+    # prompts/ fait FOI : c'est le seul fichier dont le contenu entier part au
+    # modele, donc le seul qu'on puisse relire en etant sur de ce qu'on envoie.
     if os.path.exists(brut):
         return io.open(brut, encoding="utf-8").read().strip(), brut
+
+    # A defaut, la note -- mais SEULEMENT si elle est sans ambiguite.
+    if os.path.exists(note):
+        t = io.open(note, encoding="utf-8").read()
+        m = re.findall(r"^-{10,}\s*\nPROMPT\s*\n(.*?)^-{10,}\s*$", t, re.S | re.M)
+        if len(m) == 1:
+            return m[0].strip(), note
+        titres = re.findall(r"^(PROMPT.*)$", t, re.M)
+        sys.exit(
+            "  plan %d : %s ne donne pas UN prompt sans ambiguite.\n"
+            "  %s\n"
+            "  Ces notes melangent commentaire et prompt, et leur forme varie\n"
+            "  d'un fichier a l'autre -- les analyser serait deviner, et une\n"
+            "  prise payee sur le mauvais bloc ne se rembourse pas.\n"
+            "  -> choisis le bloc voulu et copie-le SEUL dans\n"
+            "     %s" % (
+                n, os.path.relpath(note, RACINE),
+                ("blocs trouves : " + " | ".join(titres)) if titres
+                else "aucun bloc PROMPT delimite par des lignes de tirets.",
+                os.path.relpath(brut, RACINE)))
     return None, (note, brut)
 
 
