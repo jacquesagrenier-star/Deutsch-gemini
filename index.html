@@ -5246,7 +5246,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v577</span>
+    <span class="subtitle-version">v578</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -16712,6 +16712,13 @@ function recordDailyActivity(compteDansObjectif){
         justReachedMultiple = multiplesReached;
     }
     try{ localStorage.setItem(dailyKey, JSON.stringify(daily)); }catch(e){}
+    // ⚠️ LES DEUX COMPTEURS SUIVENT LE GESTE, PAS LA CARTE SUIVANTE. Mis a jour
+    // seulement dans loadFlashcard(), le compteur restait fige pendant les
+    // 1 250 ms qui separent un jugement de la carte suivante -- on repond, et
+    // rien ne bouge. C'est court, et c'est precisement le moment ou l'on
+    // regarde si son effort a compte.
+    try{ majCompteurCarte(); }catch(e){}
+    try{ majCompteDuJour(); }catch(e){}
 
     let streak;
     const streakKey = directionScopedKey(STREAK_KEY);
@@ -17419,7 +17426,7 @@ function startVerbeDueReview(){
     // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
     // chance d'y figurer.
     dueItems = prioriserRevisions(dueItems);
-    if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
+    dueItems = plafonnerSeance(dueItems);
     currentCardsFull = dueItems;
     currentCards = dueItems;
     currentTheme = { id: `verb_due_review`, name: t('theme_name_verb_due_review') };
@@ -17458,7 +17465,7 @@ function startVerbeRandomMix(){
 
     const now = Date.now();
     let unmastered = cartesDeSession(pool);
-    if(unmastered.length === 0) unmastered = pool;
+    if(unmastered.length === 0) unmastered = plafonnerSeance(pool);
 
     currentCardsFull = pool;
     currentCards = unmastered;
@@ -17573,7 +17580,7 @@ function startAdjektiveDueReview(){
     // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
     // chance d'y figurer.
     dueItems = prioriserRevisions(dueItems);
-    if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
+    dueItems = plafonnerSeance(dueItems);
     currentCardsFull = dueItems;
     currentCards = dueItems;
     currentTheme = { id: `adj_due_review`, name: t('theme_name_adj_due_review') };
@@ -17612,7 +17619,7 @@ function startAdjektiveRandomMix(){
 
     const now = Date.now();
     let unmastered = cartesDeSession(pool);
-    if(unmastered.length === 0) unmastered = pool;
+    if(unmastered.length === 0) unmastered = plafonnerSeance(pool);
 
     currentCardsFull = pool;
     currentCards = unmastered;
@@ -18222,7 +18229,7 @@ function startAdjektiveFlashcards(){
     const allItems = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
     showScreen("flashcards");
@@ -18234,7 +18241,11 @@ function startAllAdjektiveFlashcards(){
     currentTheme = adjektiveTheme;
     const allItems = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }));
     currentCardsFull = allItems;
-    currentCards = allItems;
+    // ⚠️ LA SEULE PORTE QUI N'AVAIT AUCUN PLAFOND (v578) : elle servait les
+    // 981 adjectifs d'un coup. cartesDeSession() d'abord -- les echues avant le
+    // neuf -- et le lot entier, plafonne, seulement s'il n'en sort rien.
+    currentCards = cartesDeSession(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(allItems);
     currentFlashcard = 0;
     setFlashHeader('kicker_adj_flashcards', 'title_adjektive_allemands');
     showScreen("flashcards");
@@ -19459,7 +19470,7 @@ function openMyVocab(){
     if(!items.length){ showInfoToast(t("myvocab_tout_diplome")); return; }
     currentCardsFull = items;
     currentCards = cartesDeSession(items);
-    if(!currentCards.length) currentCards = items;
+    if(!currentCards.length) currentCards = plafonnerSeance(items);
     currentFlashcard = 0;
     setFlashHeader('myvocab_title', null);
     showScreen("flashcards");
@@ -20473,7 +20484,7 @@ function startKasusVerben(){
     const allItems = kasusVerbTheme.words.map((word, index) => ({ word, index, themeId: kasusVerbTheme.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_kasus_verben', 'op_kasus_o4_t');
     showScreen("flashcards");
@@ -20508,7 +20519,7 @@ function startPraepVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_praep_vocab', 'orb_praep_title');
     showScreen("flashcards");
@@ -20521,7 +20532,7 @@ function startPositionsverbenVokabular(){
     const allItems = positionsverbenTheme.words.map((word, index) => ({ word, index, themeId: positionsverbenTheme.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_position_vocab', 'op_praep_o5_t');
     showScreen("flashcards");
@@ -20628,7 +20639,7 @@ function startRedewendungenVokabular(level, kategorie){
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_redewendungen_vocab', 'orb_redewendungen_title');
     showScreen("flashcards");
@@ -20730,7 +20741,7 @@ function startAdverbienVokabular(level, kategorie){
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_adverbien_vocab', 'orb_adverbien_title');
     showScreen("flashcards");
@@ -20856,7 +20867,7 @@ function startEnglishModule(level, kategorie){
     if(allItems.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_english_module', mod.titleKey);
     showScreen("flashcards");
@@ -20916,7 +20927,7 @@ function startZahlenVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_zahlen_vocab', 'zahlen_info_title');
     showScreen("flashcards");
@@ -20935,7 +20946,7 @@ function startPronomenVokabular(){
         ({ word, index, themeId: pronomenVokabularTheme.id }));
     currentCardsFull = items;
     currentCards = cartesDeSession(items);
-    if(!currentCards.length) currentCards = items;
+    if(!currentCards.length) currentCards = plafonnerSeance(items);
     currentFlashcard = 0;
     setFlashHeader('kicker_pronomen_vokabular', null);
     showScreen("flashcards");
@@ -20949,7 +20960,7 @@ function startArtikelwoerterVokabular(){
         ({ word, index, themeId: artikelwoerterTheme.id }));
     currentCardsFull = items;
     currentCards = cartesDeSession(items);
-    if(!currentCards.length) currentCards = items;
+    if(!currentCards.length) currentCards = plafonnerSeance(items);
     currentFlashcard = 0;
     setFlashHeader('kicker_artikelwoerter_vokabular', null);
     showScreen("flashcards");
@@ -20969,7 +20980,7 @@ function startKonjunktionenVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_konjunktionen_vocab', 'orb_konjunktionen_title');
     showScreen("flashcards");
@@ -21027,7 +21038,7 @@ function startPartikelnVokabular(niveau){
     }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
-    if(currentCards.length === 0) currentCards = cartesCommencees(allItems);
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
     setFlashHeader('kicker_partikeln_vocab', 'orb_partikeln_title');
     showScreen("flashcards");
@@ -21179,7 +21190,32 @@ function getAllNomenItems(){
     return sansDoublons(pool);
 }
 
+// ============ UN SEUL NOMBRE COMMANDE LA TAILLE D'UN PAQUET (v578) ============
+//
+// ⚠️ TRENTE EN DUR, A COTE D'UN OBJECTIF REGLABLE. Meme defaut que celui que la
+// v523 corrigeait deja pour « Ma seance du jour » : un nombre invente qui ne
+// sait pas ce que la personne s'est fixe. Quelqu'un dont l'objectif est a cent
+// recevait trente cartes ; quelqu'un qui en avait deja fait trente-huit sur
+// quarante en recevait trente de plus.
+//
+// La constante reste pour la phrase d'annonce du panneau, qui n'a pas de
+// contexte de seance. Tous les paquets, eux, passent par tailleSeance().
 const DUE_SESSION_CAP = 30;
+
+// ⚠️ LE PLAFOND S'APPLIQUE AUSSI AUX REPLIS, ET C'EST LA QUE TOUT FUYAIT.
+// Signale par Jacques : « ca m'indique 41 sur 248, je devrais avoir 0 sur 40 ;
+// je ne sais pas ou ca va piger ». Dix-sept portes tombaient sur un repli du
+// genre `if(!currentCards.length) currentCards = pool;` -- c'est-a-dire LE LOT
+// ENTIER, sans plafond. Et ce repli se declenche precisement quand la dose du
+// jour est faite, donc tous les jours en fin de seance : un plafond qui saute au
+// moment ou il servirait le plus n'est pas un plafond.
+//
+// ⚠️ LE REPLI RESTE UN REPLI. On ne le supprime pas -- une porte qui s'ouvre sur
+// rien se lit comme une panne, c'est la lecon de la v555. Elle s'ouvre sur un
+// paquet de la taille du jour, pas sur deux cent quarante-huit cartes.
+function plafonnerSeance(cartes){
+    return (cartes || []).slice(0, tailleSeance());
+}
 
 function getDueItems(){
     const now = Date.now();
@@ -21199,7 +21235,7 @@ function startDueReview(){
     // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
     // chance d'y figurer.
     dueItems = prioriserRevisions(dueItems);
-    if(dueItems.length > DUE_SESSION_CAP) dueItems = dueItems.slice(0, DUE_SESSION_CAP);
+    dueItems = plafonnerSeance(dueItems);
     currentCardsFull = dueItems;
     currentCards = dueItems;
     currentTheme = { id: `due_review`, name: t('theme_name_due_review') };
@@ -21608,7 +21644,7 @@ function startRandomMix(level, portee){
 
     const now = Date.now();
     let unmastered = cartesDeSession(pool);
-    if(unmastered.length === 0) unmastered = pool;
+    if(unmastered.length === 0) unmastered = plafonnerSeance(pool);
 
     currentCardsFull = pool;
     currentCards = unmastered;
@@ -21830,7 +21866,7 @@ function loadFlashcard(){
         flashcardEl.classList.add("answer-accent");
     }
 
-    document.getElementById("flashCounter").textContent = `${currentFlashcard + 1} / ${currentCards.length}`;
+    majCompteurCarte();
 
     const verbDetailsEl = document.getElementById("flashVerbDetails");
     const articleEl = document.getElementById("flashArticle");
@@ -24246,7 +24282,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 577;
+const APP_VERSION = 578;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26616,6 +26652,30 @@ async function ouvrirSeanceDuJour(){
 // le meme getDailyActivityCount(), mais l'un le relisait et l'autre gardait son
 // vieux texte. Fermer et rouvrir l'app montrait le vrai chiffre, 42 / 40, ce qui
 // disait deja que la donnee etait juste et que seul l'affichage dormait.
+// ⚠️ LE COMPTEUR DE LA CARTE DIT LE JOUR, PAS LE PAQUET (v578).
+//
+// Il affichait `${currentFlashcard + 1} / ${currentCards.length}` -- la position
+// dans le paquet ouvert. Jacques : « ca m'indique 41 sur 248 ; je devrais avoir
+// zero sur quarante, puis la, ca me ment ».
+//
+// Ce n'etait pas un mensonge au sens strict : 41e carte sur 248 etait exact. Mais
+// il est SEUL en haut de l'ecran des cartes, il ressemble trait pour trait au
+// « 12 / 40 » de l'accueil, et il compte autre chose. Deux nombres de meme forme
+// qui mesurent deux choses differentes, c'est la meme faute que la fleche
+// « Precedent » de ce matin, transposee aux chiffres.
+//
+// Depuis que tous les paquets sont plafonnes par l'objectif du jour, la position
+// dans le paquet et l'avancement du jour disent de toute facon la meme chose a
+// un decalage pres. On garde celui qui compte, et c'est le meme partout.
+function majCompteurCarte(){
+    const el = document.getElementById("flashCounter");
+    if(!el) return;
+    let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+    el.textContent = fait + " / " + cible;
+}
+
 function majCompteDuJour(){
     const cpt = document.getElementById("seanceCompte");
     if(!cpt) return;
