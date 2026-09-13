@@ -4204,3 +4204,67 @@ le bas-gauche du verso était occupé par un bouton qui avalait le toucher. Depu
 toute la moitié gauche ramène au recto. Si son geste d'avance tombait par
 habitude de ce côté, il obtient maintenant le recto au lieu du message — donc un
 toucher de plus.
+
+## 13 septembre 2026 — la carte devient une bascule (v573)
+
+**Signalé :** « J'ai dû cliquer deux fois pour obtenir la carte suivante. »
+Puis, après deux questions : « c'est sur le **recto** que j'ai touché, deux
+fois, à **droite**, et ça a pris un deuxième clic pour obtenir le verso. »
+
+⚠️ **Ma première hypothèse était fausse, et il a fallu la lui demander pour le
+savoir.** J'avais supposé que le déplacement du bouton « Précédent » (v571)
+avait changé son geste sur le **verso**. Il touchait le **recto**. Et la
+moitié gauche du verso ramenait déjà au recto bien avant la v571 : rien de ce
+que j'avais fait la veille n'était en cause.
+
+Le recto ne contient que le mot et la ligne d'aide — aucun bouton n'a pu avaler
+le toucher.
+
+### Ce que le verso cachait
+
+Le verso était coupé en deux, et **rien ne le disait** :
+
+| moitié | ce qu'elle faisait |
+|---|---|
+| gauche | retour au recto |
+| droite | un fondu, puis « réponds d'abord » |
+
+Deux réponses différentes au même geste — « toucher la carte » — décidées par
+une frontière invisible au milieu de l'écran. ⚠️ **C'est le défaut de la v571
+une couche plus bas** : là c'était un bouton posé sur une zone tactile, ici
+c'est la zone elle-même qui portait deux sens.
+
+Et la moitié droite passait par `slideToNextCard()`, qui posait un verrou —
+`cardBusy = true` — libéré seulement après un `setTimeout` de 240 ms suivi d'un
+`requestAnimationFrame`. Pendant cette fenêtre, **tout toucher sur la carte
+était ignoré en silence**, recto compris. Et si quoi que ce soit avait échoué
+avant la remise à `false`, le verrou serait resté fermé pour de bon.
+
+⚠️ **Je ne peux pas prouver que c'est ce verrou qui lui a mangé son toucher.**
+Le journal du gel ne trace pas les touchers, et il n'a pas pu redire exactement
+ce qu'il avait vu. Ce que je peux dire : c'était le seul état de l'application
+capable d'ignorer un toucher sur la carte, et il n'existe plus.
+
+### Corrigé
+
+**Toucher la carte la retourne, des deux côtés.** Recto → verso, verso → recto,
+autant de fois qu'on veut. C'est ce que Jacques demandait mot pour mot deux
+messages plus tôt : « je veux juste voir le recto, puis être capable de
+recliquer dessus pour revenir au verso ».
+
+`tapSurMoitieGauche()`, `slideToNextCard()` et `balayageSansReponse()` sont
+retirées — plus personne ne les appelle, vérifié — et `cardBusy` avec elles.
+Il ne reste aucun état sur le chemin du toucher.
+
+**Ce qu'on perd, et c'est voulu :** le message « réponds d'abord » et son
+fondu. Il répondait à un balayage qui n'existe plus depuis la v555, et il se
+déclenchait sur un **simple toucher** — il grondait donc pour un geste que
+personne n'avait fait. Faire avancer reste le rôle des boutons, qui sont juste
+sous la carte.
+
+Vérifié au banc : droite du recto → verso ; droite du verso → recto ; gauche →
+idem ; toucher sans coordonnées (clavier) → idem. Six touchers, six bascules.
+
+⚠️ **Si le double toucher persiste**, ce n'est plus notre code : il ne reste
+plus rien entre le toucher et la bascule. Ce serait alors le traitement du clic
+par Safari, et il faudra le mesurer autrement.

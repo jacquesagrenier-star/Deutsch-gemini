@@ -5264,7 +5264,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v572</span>
+    <span class="subtitle-version">v573</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -22171,24 +22171,37 @@ function flipCard(){
     noterPastilleExamenVue();
 }
 
-let cardBusy = false;
-
-// Vrai si le clic tombe dans la moitie gauche du verso, celle qui ramene au
-// recto. Une moitie plutot qu'une bande etroite : le geste doit se faire au
-// pouce, sans regarder ou l'on touche.
+// ============ LA CARTE EST UNE BASCULE (v573) ============
 //
-// Un clic declenche au clavier n'a pas de coordonnees utilisables (clientX
-// vaut 0) : il vaut alors le geste ordinaire, pas le retour.
-function tapSurMoitieGauche(event, flashcardEl){
-    if(!event || !event.clientX) return false;
-    // On mesure le CONTENEUR, pas la carte : la carte tourne autour de son axe
-    // vertical, et a mi-parcours sa projection a une largeur nulle. Mesuree la,
-    // le calcul ne veut plus rien dire.
-    const cadre = flashcardEl.closest(".flashcard-wrapper") || flashcardEl;
-    const r = cadre.getBoundingClientRect();
-    if(!r.width) return false;
-    return (event.clientX - r.left) / r.width < 0.5;
-}
+// ⚠️ LE VERSO ETAIT COUPE EN DEUX, ET RIEN NE LE DISAIT. Moitie gauche :
+// retour au recto. Moitie droite : un fondu, puis « reponds d'abord ». Deux
+// reponses differentes au meme geste -- « toucher la carte » -- decidees par
+// une frontiere invisible au milieu de l'ecran.
+//
+// Jacques : « je touche sur la carte elle-meme par habitude », et « j'ai du
+// cliquer deux fois pour obtenir la carte suivante ». Quelqu'un qui touche par
+// habitude ne vise pas : il tombe d'un cote ou de l'autre, et l'app repond
+// autre chose une fois sur deux.
+//
+// ⚠️ C'EST LE MEME DEFAUT QUE LE BOUTON « PRECEDENT » DE LA v571, une couche
+// plus bas. La ce n'etait pas un bouton pose sur une zone tactile, c'etait la
+// zone elle-meme qui portait deux sens.
+//
+// DESORMAIS : toucher la carte la retourne, des deux cotes. Recto -> verso,
+// verso -> recto, autant de fois qu'on veut. Ce que Jacques demandait mot pour
+// mot : « je veux juste voir le recto, puis etre capable de recliquer dessus
+// pour revenir au verso ».
+//
+// CE QU'ON PERD, ET C'EST VOULU : le message « reponds d'abord » et son fondu.
+// Il repondait a un balayage qui n'existe plus depuis la v555 -- et il se
+// declenchait sur un SIMPLE TOUCHER, donc il grondait pour un geste que
+// personne n'avait fait. Faire avancer reste le role des boutons, qui sont
+// juste sous la carte et qu'on ne peut pas manquer.
+//
+// tapSurMoitieGauche(), slideToNextCard() et balayageSansReponse() sont
+// retirees avec lui : plus personne ne les appelle (verifie), et du code mort
+// qui reste a maintenir est precisement ce que la v461 avait fini par payer.
+// cardBusy part aussi -- seule slideToNextCard() le mettait a vrai.
 
 function unflipCard(){
     const flashcardEl = document.getElementById("flashcard");
@@ -22207,59 +22220,17 @@ function unflipCard(){
 }
 
 function handleCardTap(event){
-    // Toucher la carte = l'utilisateur passe a la suite : la video de
-    // gratification eventuellement en cours s'arrete ici (demande explicite).
+    // Toucher la carte interrompt l'annonce de palier en cours (demande
+    // explicite) : la gratification a joue son role, la laisser par-dessus
+    // n'apporte plus rien.
     stopMasteryCelebrations();
-    if(cardBusy) return; // ignore les taps pendant qu'une transition est déjà en cours
     const flashcardEl = document.getElementById("flashcard");
     if(!flashcardEl) return;
-    if(flashcardEl.classList.contains("flipped")){
-        if(tapSurMoitieGauche(event, flashcardEl)){ unflipCard(); return; }
-        slideToNextCard(flashcardEl);
-    } else {
-        flipCard();
-    }
-}
-
-function slideToNextCard(flashcardEl){
-    if(cardBusy) return;
-    cardBusy = true;
-
-    // Le fondu se fait sur le conteneur extérieur (sans transformation 3D active),
-    // et non sur la carte elle-même : appliquer une transition d'opacité directement
-    // sur l'élément en rotation 3D peut faire réapparaître brièvement la face cachée
-    // sur certains moteurs de rendu (bug connu backface-visibility + opacity).
-    const wrapper = flashcardEl.closest(".flashcard-wrapper") || flashcardEl.parentElement;
-
-    wrapper.style.transition = "opacity .22s ease";
-    void wrapper.offsetHeight;
-    wrapper.style.opacity = "0";
-
-    setTimeout(() => {
-        flashcardEl.style.transition = "none";
-        // ⚠️ REGRESSION CORRIGEE (v555). La v553 avait fait appeler ici
-        // passerAuSuivant(), puis la v553b a supprime cette fonction en
-        // defaisant le bouton « Suivant » -- et l'appel est reste. Le balayage
-        // levait donc une erreur, la carte ne bougeait plus et l'ecran restait
-        // bloque. Signale par Jacques : « je suis pris dans l'ecran vide ».
-        //
-        // ⚠️ verifier.py ne pouvait pas le voir : il verifie les onclick du HTML,
-        // pas les appels a l'interieur du JavaScript. C'est la limite du filet,
-        // et elle est connue -- raison de plus pour ne jamais supprimer une
-        // fonction sans chercher qui l'appelle.
-        //
-        // Le balayage ne saute plus et n'avance plus : juger fait avancer tout
-        // seul, donc il ne lui reste rien a faire. Il le dit au lieu de ne rien
-        // faire en silence.
-        balayageSansReponse();
-        void flashcardEl.offsetHeight;
-        flashcardEl.style.transition = "transform .55s ease, height .55s ease";
-        requestAnimationFrame(() => {
-            wrapper.style.transition = "opacity .22s ease";
-            wrapper.style.opacity = "1";
-            cardBusy = false;
-        });
-    }, 240);
+    // ⚠️ `event` n'est plus lu : la reponse ne depend plus de l'endroit touche.
+    // Le parametre reste dans la signature parce que le HTML passe encore
+    // `handleCardTap(event)`, et parce qu'un jour on pourrait vouloir le lire.
+    if(flashcardEl.classList.contains("flipped")) unflipCard();
+    else flipCard();
 }
 
 function toggleVerbExtra(){
@@ -24112,7 +24083,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 572;
+const APP_VERSION = 573;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26918,14 +26889,6 @@ function markKnownAlready(){
     sessionVues++;
     sessionSues++;
     markMastered();
-}
-
-// Affiche le bilan de fin de paquet au lieu de quitter l'ecran : c'est le seul
-// endroit ou "revoir les non maitrisees" a du sens, et il n'y en avait aucun.
-// Le balayage n'a plus de role : juger fait avancer. Plutot que d'ignorer le
-// geste -- ce qui se lit comme une panne -- on rappelle ce qu'il faut faire.
-function balayageSansReponse(){
-    showInfoToast(t("flash_repondre"));
 }
 
 function ouvrirCartePrecedente(){
