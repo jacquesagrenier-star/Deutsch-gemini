@@ -103,64 +103,119 @@ posée : **OmniHuman 1.5 ailleurs ?** Oui — **fal.ai**, à **0,16 $ la seconde
 exactement le tarif BytePlus. Aussi sur Replicate (`bytedance/omni-human-1.5`)
 et chez AIMLAPI.
 
-## Ce qui est plus simple, et ce n'est pas rien
-
 **Courriel et carte.** Pas de type de compte irréversible, pas de pays
 verrouillé, pas de licence commerciale, pas de « Individual ne se convertit pas
-en Business ». Tout le nœud administratif du 13 septembre disparaît.
+en Business ». Tout le nœud administratif du 13 septembre disparaît. Et c'est
+une API : l'outillage Python du dépôt s'y branche plus facilement que sur une
+console.
 
-Et c'est une API : l'outillage Python du dépôt s'y branche plus facilement que
-sur une console.
+## ⚠️ Ce que ma première lecture a dit de faux
 
-## ⚠️ Mais sur les DROITS, c'est possiblement PLUS FAIBLE
+J'avais écrit ici — et poussé dans un commit — que fal était **plus faible que
+BytePlus sur les droits**, sur trois points. Après lecture du texte intégral,
+**deux des trois étaient faux.**
 
-Trois relevés, tirés des *Terms of Service* — pas des *API Services*, qui
-régissent la revente à ses propres utilisateurs finaux et ne nous concernent
-pas.
+La cause est précise et se refera : j'avais des **citations de clauses sans la
+section 3, les définitions**, et sans la section 7. Un contrat ne se lit pas par
+extraits — le sens d'une clause vit dans un terme défini trente lignes plus
+haut. C'est la même erreur que le champ `apparence` de Mark : lire la
+description au lieu d'ouvrir la pièce.
 
-**1. La propriété des sorties n'est PAS confirmée.** La clause trouvée dit :
+## Ce que le texte dit vraiment
 
-> *« Customer owns and retains all right, title, and interest in and to the
-> **Customer Input**. »* (§6(b))
+### 1. Les sorties : personne ne les réclame, et elles sont confidentielles
 
-C'est l'**entrée** — ce qu'on téléverse — pas la **sortie**. Aucune clause
-équivalente sur l'Output n'a été trouvée. ⚠️ **C'est exactement le trou qu'on
-reprochait à BytePlus**, où la phrase *« BytePlus does not claim ownership of the
-Output »* a disparu dans un document fusionné. Changer de porte ne le comble pas.
+Il n'existe **aucune clause où fal accorde la propriété de l'Output** — §6(b) ne
+parle que du Customer Input. Mais il n'en existe **aucune où fal la réclame**,
+et deux clauses vont dans notre sens :
 
-**2. L'entraînement sur nos données, sans retrait annoncé.**
+**§4(c)** — fal ne garantit pas que la sortie soit originale ou non
+contrefaisante, *« or otherwise entitle Company to any intellectual property
+rights in any Output Content »*. C'est fal qui écarte ses propres droits sur la
+sortie.
 
-> *« Company may generate, collect, store, use, transfer, and/or disclose to
-> third parties Usage Data […] to design, develop, and offer Company products,
-> services, and AI models. »* (§6(c))
+**§7(a)** — et c'est la clause qui compte le plus, celle que j'avais manquée :
 
-Aucun mécanisme de retrait n'apparaît dans ces conditions. Chez BytePlus, le
-*Data Authorization Agreement* en prévoyait un, même imparfait. ⚠️ Reste à
-vérifier ce que « Usage Data » recouvre exactement : des métadonnées ou le
-contenu. La définition change tout, et je ne l'ai pas.
+> *« Customer's Confidential Information includes Customer Input **and Output
+> Content generated for Customer**. »*
 
-**3. ET L'INDEMNITÉ EST INVERSÉE. C'est le point le plus important.**
+Nos plans sont contractuellement **notre information confidentielle**. fal ne
+peut s'en servir que pour exécuter le service, doit les protéger, et ne peut les
+divulguer qu'à qui en a besoin — cinq ans après la fin du contrat. En pratique
+c'est plus utile qu'une clause de propriété.
+
+⚠️ **La limite honnête** : « rien n'empêche fal de générer une sortie identique
+ou similaire pour un autre client » (§7(e)), et §4(c) prévient que les sorties
+ne sont pas uniques entre usagers. Ce n'est pas une fuite — c'est la nature d'un
+modèle génératif, et BytePlus dit la même chose.
+
+### 2. L'entraînement sur nos données : j'avais tort
+
+J'avais sonné l'alarme sur « Usage Data » (§6(c)) faute d'en avoir la
+définition. Elle est à **§3(e)** :
+
+> *« **anonymized or aggregated** data collected, computed, originated, or
+> stored by Company resulting from the use or provision of the Services »*
+
+Anonymisées ou agrégées. Ce sont des métriques d'usage, pas nos vidéos. Et §7
+confirme par l'autre bout : les sorties sont de l'information confidentielle, et
+la confidentialité **exclut** expressément les Usage Data — les deux catégories
+sont disjointes. **Nos plans ne partent pas à l'entraînement.**
+
+### 3. L'indemnité : ce point-là tient
+
+C'est le vrai écart, et il reste.
 
 | | BytePlus | fal |
 |---|---|---|
-| qui défend qui | **BytePlus défend et indemnise** le client contre les réclamations de PI visant les sorties de ses modèles (§3.1) | **le client indemnise fal** (§15) |
-| exclusion | les réclamations de **marque** en usage commercial (§3.1(d)) | aucune clause trouvée où fal protège le client |
+| fournisseur → client | **défend et indemnise** contre les réclamations de PI visant les sorties (§3.1), **sauf** la marque en usage commercial | **rien** — aucune clause en ce sens |
+| client → fournisseur | — | le client indemnise fal (§15) |
 
-Chez BytePlus, nous étions couverts **sauf** sur la marque. Chez fal, il n'y a
-pas de couverture à exclure — et c'est le client qui garantit fal contre les
-réclamations visant ses entrées.
+⚠️ Mais l'indemnité du §15 est **plus étroite** que je ne l'avais dit : elle
+vise les réclamations contre le **Customer Input**, la violation des Terms, la
+faute du client et ses End Users. Pas « tout ». Comme nos entrées sont nos
+propres images de personnages, le risque réel est faible.
 
-## Ce que j'en conclus, et ce qui reste à vérifier
+**Et surtout : la protection qu'on perd, on ne l'avait déjà pas.** BytePlus
+excluait précisément les réclamations de **marque** — notre seul terrain de
+risque, avec WORTANDO en cours de dépôt. Sur ce qui nous menace vraiment, les
+deux offrent la même chose : rien.
 
-**La complication qu'on évite est administrative ; la protection qu'on
-abandonnerait est juridique.** Ce n'est pas un échange évident pour un produit
-commercial portant une marque en cours de dépôt.
+## Quatre points qu'il faut connaître avant de signer
 
-⚠️ **À lire soi-même avant de trancher** : les sections **4, 6 et 15** des
-*Terms of Service*, et surtout les **définitions** de « Output Content »,
-« Customer Input » et « Usage Data ». Mes relevés sont des citations, pas une
-lecture complète du contrat.
+**⚠️ Les conditions de ByteDance peuvent revenir par la bande.** §14(b) : l'usage
+des « Third-Party Materials » *« may be subject to additional terms »*. OmniHuman
+est un modèle ByteDance hébergé par fal — passer par fal simplifie le **compte**,
+pas nécessairement le **modèle**. §14(c) interdit par ailleurs d'utiliser les
+sorties pour entraîner un concurrent du modèle, ce qui ne nous concerne pas.
 
-**Ce qui ne change pas, quel que soit le fournisseur** : ni l'un ni l'autre ne
-nous couvre sur le terrain de la marque. C'était déjà écrit plus haut pour
-BytePlus, et c'est notre terrain.
+**L'arbitrage se refuse, et ça expire.** §18(k) : **30 jours** après acceptation,
+par courriel à `support@fal.ai`, avec nom complet, adresse postale et courriel,
+et l'intention clairement exprimée. Ça ne coûte rien et garde le tribunal
+ouvert. Sinon : arbitrage individuel AAA, droit californien, San Francisco
+(§19) — c'est-à-dire, depuis Berlin ou le Québec, aucun recours praticable.
+Et **un an** pour agir, passé ce délai la réclamation est éteinte (§18(h)).
+
+**Le plafond de responsabilité est de 50 $**, ou le montant payé dans les douze
+mois (§17(b)). À nos volumes, c'est symbolique. À retenir : si fal perd nos
+données ou interrompt le service en plein montage, il n'y a rien à récupérer.
+
+**Les crédits expirent** : 365 jours (90 pour les promotionnels), non
+remboursables, non transférables (§9(a)). ⚠️ **N'acheter que ce qu'on brûlera
+dans l'année.** Un épisode de deux minutes d'avatar coûte environ 19 $ — la
+provision se calcule en épisodes, pas en gros paquet « pour être tranquille ».
+
+## Ce que j'en conclus
+
+**fal est acceptable pour notre usage**, et l'était déjà avant que je le
+noircisse. Les sorties sont traitées comme les nôtres et comme confidentielles,
+l'entraînement ne les touche pas, il n'y a ni filigrane ni restriction
+commerciale, et le blocage administratif disparaît.
+
+Ce qu'on abandonne — la défense de BytePlus contre les réclamations de PI — ne
+nous couvrait pas là où nous sommes exposés. **Le dépôt de marque reste notre
+seule vraie protection, chez l'un comme chez l'autre.**
+
+⚠️ **À faire dans les 30 jours de l'inscription** : le courriel d'exclusion de
+l'arbitrage. C'est gratuit, c'est irréversible une fois le délai passé, et c'est
+le genre de chose qu'on ne pense à regretter qu'au moment où elle sert.
