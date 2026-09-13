@@ -1,0 +1,197 @@
+LES SIX PLANS DE DECOR -- Beim Bürgeramt
+==============================================================
+Episode 2. Ecrit le 13 septembre 2026.
+
+CES SIX PLANS NE DEMANDENT PAS OMNIHUMAN. Aucun visage ancre, aucune
+bouche a synchroniser : ce sont des images fixes mises en mouvement,
+et la voix du narrateur se pose au montage. Les treize repliques,
+elles, attendent le compte BytePlus.
+
+A l'echelle de l'episode 1 : 200 credits par plan video, 130 pour un
+jeu de 4 images. Six plans = environ 2 000 credits.
+
+POUR CHAQUE PLAN, DANS ARTLIST
+  1. Image, mode Framing -- coller le PROMPT D'IMAGE.
+     9:16 / 1K / 4 images. Garder la meilleure dans 01-images/.
+  2. Video, modele Seedance 2.0 Mini, 9:16, la duree indiquee.
+     Start Frame = l'image retenue.
+     Coller le PROMPT DE MOUVEMENT tel quel.
+  3. Telecharger, puis : python video/rapatrier.py --plan N
+
+REGLAGES QUI NE CHANGENT PAS
+  Modele       Seedance 2.0 Mini
+  Format       9:16  -- ⚠️ A VERIFIER A CHAQUE FOIS. Il s'est reinitialise
+                       en 16:9 tout seul le 8 septembre 2026.
+  Resolution   720p
+  Audio        coupe
+  Duree        celle du plan, MINIMUM 4 s
+
+⚠️ FAIRE LE PLAN 02 EN PREMIER, ET LE REGARDER.
+  C'est lui qui devient l'IMAGE MAITRESSE DU LIEU. Les plans 06, 12 et 18
+  sont le meme interieur : ils doivent partir de cette image-la, donnee en
+  reference, sinon le guichet du plan 6 n'est pas celui du plan 12.
+  « Le personnage est l'invariant de la SERIE, le decor l'invariant de
+  l'EPISODE » (personnages.json, _mise_en_scene, regle 3).
+
+⚠️ ⚠️ AUCUN PANNEAU LISIBLE NE DOIT REPONDRE A LA QUESTION DE L'EPISODE.
+  C'est la regle du plan 5 de l'episode 1, transposee : « un panneau
+  lisible qui indique GEPAECKAUSGABE rendrait absurde la question ».
+  Ici : rien qui affiche un delai, une date de rendez-vous ou le mot
+  ANMELDUNG en clair avant que le plan 7 le dise. L'ecran du plan 06 doit
+  rester ILLISIBLE -- de trois quarts, ou hors de la profondeur de champ.
+  Un decor qui repond avant le dialogue tue la replique qu'il precede.
+
+
+--------------------------------------------------------------
+PLAN 01   exterieur   5 SECONDES
+  narration : « Ein Amt in Berlin. Montagmorgen, kurz vor neun. »
+  Image a nommer : buergeramt_aussen.png
+
+PROMPT D'IMAGE (Framing)
+A plain 1970s West Berlin municipal office building seen from the pavement
+opposite, vertical framing. Grey-beige concrete facade, rows of identical
+windows, a modest glass entrance with a worn metal handrail. A short queue
+of six or seven people waits outside the door, backs to camera, coats on,
+early autumn. Overcast morning light, no sun, no shadows. Wet pavement.
+Documentary realism, muted palette, nothing picturesque. No readable
+signage anywhere in frame.
+
+PROMPT DE MOUVEMENT (Directing)
+Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+The queue shifts a little as people wait. One person checks a phone and
+puts it away. A cyclist crosses the far background from left to right. The
+door stays shut. Nothing is resolved; the building simply waits.
+
+
+--------------------------------------------------------------
+PLAN 02   interieur -- IMAGE MAITRESSE DU LIEU   5 SECONDES
+  narration : « Mark muss sich anmelden. In Deutschland ist das Pflicht. »
+  Image a nommer : buergeramt_wartezimmer.png
+  ⚠️ FAIRE CELUI-CI EN PREMIER. Les plans 06, 12 et 18 en decoulent.
+
+PROMPT D'IMAGE (Framing)
+The waiting room of a German municipal office, vertical framing, seen from
+the back of the room. Two rows of linked plastic chairs, half of them
+occupied by people of different ages waiting quietly. A row of numbered
+service counters along the right wall, each with a low glass partition. Pale
+green walls, linoleum floor, fluorescent ceiling light, a rubber plant in a
+corner. A ticket display is mounted high on the far wall but faces away from
+camera. Institutional, clean, slightly tired. Documentary realism.
+
+PROMPT DE MOUVEMENT (Directing)
+Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+A person in the second row recrosses their legs. Someone at the far counter
+gathers papers and stands up. A door opens and closes at the edge of frame.
+The fluorescent light is steady. Quiet, ordinary, unhurried.
+
+
+--------------------------------------------------------------
+PLAN 06   detail de l'ecran   5 SECONDES
+  narration : « Die Frau schaut auf den Bildschirm. Es dauert einen Moment. »
+  Image a nommer : buergeramt_bildschirm.png
+  Reference : buergeramt_wartezimmer.png (meme lieu, meme lumiere)
+
+PROMPT D'IMAGE (Framing)
+Close shot from behind and slightly above a clerk's shoulder at a municipal
+service counter, vertical framing. An older desktop monitor sits at three
+quarters to camera, its screen catching the ceiling light so the contents
+are not readable. A keyboard, a date stamp, a small stack of forms, a mug.
+The clerk's hand rests near the mouse. Shallow depth of field, the screen
+soft. Pale green wall behind. Same fluorescent light as the waiting room.
+
+⚠️ L'ECRAN NE DOIT RIEN LAISSER LIRE. Ni date, ni chiffre, ni mot. C'est le
+   plan 7 qui annonce les six semaines, et un ecran lisible le dirait avant.
+
+PROMPT DE MOUVEMENT (Directing)
+Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+The hand moves the mouse twice, small movements. The reflection on the
+screen shifts slightly as the display changes. A short pause, then the head
+turns a few degrees toward the customer. Nothing hurried.
+
+
+--------------------------------------------------------------
+PLAN 12   le formulaire   5 SECONDES
+  narration : « Sie nimmt ein Blatt aus der Schublade. »
+  Image a nommer : buergeramt_formular.png
+  Reference : buergeramt_wartezimmer.png
+
+PROMPT D'IMAGE (Framing)
+Close shot of a municipal counter from the customer's side, vertical
+framing. A clerk's hands open a wooden drawer beneath the counter, filled
+with neat stacks of printed forms in pale colours. One hand is lifting a
+single sheet clear of the stack. The counter surface above carries a date
+stamp and a pen on a chain. Fluorescent light, pale green wall, shallow
+depth of field on the far background. No face in frame.
+
+⚠️ LE FORMULAIRE NE DOIT PAS ETRE LISIBLE. Un titre lisible en haut de la
+   feuille repondrait a la question du plan 14, « Welche Papiere brauche
+   ich ? », deux plans avant qu'elle soit posee.
+
+PROMPT DE MOUVEMENT (Directing)
+Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+The drawer slides open, the hand lifts one sheet free, the drawer slides
+shut. The sheet is laid flat on the counter and turned once so it faces the
+customer. Unhurried, practised, a gesture made a hundred times.
+
+
+--------------------------------------------------------------
+PLAN 18   il sort   5 SECONDES
+  narration : « Mark geht mit einem Blatt Papier nach draußen. »
+  Image a nommer : buergeramt_ausgang.png
+  Reference : buergeramt_wartezimmer.png
+
+PROMPT D'IMAGE (Framing)
+A tall man seen from behind, walking away from camera down a municipal
+corridor toward a glass exit door, vertical framing. He holds a single
+sheet of paper down at his side. Linoleum floor, pale green walls,
+fluorescent ceiling light, a noticeboard passing on the left. Daylight
+comes through the glass door ahead of him. Documentary realism.
+
+⚠️ DE DOS, ET C'EST DELIBERE. Un plan de decor ne porte pas de visage ancre :
+   de face, il faudrait tenir l'identite de Mark et le plan cesserait d'etre
+   bon marche. De dos, il coute le prix d'un decor.
+
+PROMPT DE MOUVEMENT (Directing)
+Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+He walks steadily away toward the door. The sheet of paper swings slightly
+with his stride. He pushes the door open with one shoulder and the daylight
+widens across the floor. He does not look back.
+
+
+--------------------------------------------------------------
+PLAN 19   la rue -- LA CHUTE   6 SECONDES
+  narration : « Vierzehn Tage für die Anmeldung. Sechs Wochen bis zum
+               Termin. »
+  Image a nommer : buergeramt_strasse.png
+
+PROMPT D'IMAGE (Framing)
+A quiet Berlin residential street on an overcast autumn morning, vertical
+framing, seen from the pavement. Plane trees losing leaves, parked cars,
+a tram line curving away in the middle distance, five-storey apartment
+blocks with balconies. A tall man stands still on the pavement in the
+middle ground, small in frame, looking down at a sheet of paper in his
+hands. Flat grey light. Documentary realism, muted palette.
+
+PROMPT DE MOUVEMENT (Directing)
+Locked-off camera. No zoom, no push-in, no camera movement of any kind.
+He stands reading the sheet. A tram passes in the far background, left to
+right. Leaves move on the pavement. He lowers the paper, looks up the
+street, and stays where he is. Hold on the stillness until the end of the
+clip.
+
+
+==============================================================
+APRES LES SIX
+==============================================================
+  python video/rapatrier.py --plan 1 2 6 12 18 19
+
+Les treize repliques attendent le compte BytePlus. Quand il sera ouvert,
+la feuille des repliques s'ecrit sur le gabarit de l'episode 1 :
+video/episode-01-ankunft-berlin/_essai-avatar/notes/gabarit-prompt.txt
+-- camera en tete, verbe de parole en position d'interpretation, et le
+bloc de minutage de la bouche avec les secondes exactes de chaque
+replique.
+
+⚠️ LE MINUTAGE DE LA BOUCHE SE CALCULE SUR L'AUDIO REEL, pas sur la duree
+   ecrite dans la scene. Il faut donc generer les voix AVANT d'ecrire les
+   prompts de replique.
