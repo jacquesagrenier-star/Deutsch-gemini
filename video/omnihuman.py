@@ -15,12 +15,27 @@ CE QUE CA REMPLACE
     est irreversible et leur support renvoyait a un formulaire de vente.
     fal sert le MEME modele au MEME prix, par API. Le va-et-vient disparait.
 
-⚠️ ET LE PROMPT DEVIENT UN FICHIER, ce qui est le vrai gain.
-    Les prompts de l'episode 1 ont ete tapes dans un formulaire web et sont
-    PERDUS : il n'en reste que le gabarit et un seul exemple complet, celui
-    du plan 05. Ici le prompt vit dans _essai-avatar/prompts/planNN.txt,
-    versionne, relisible, comparable d'un plan a l'autre. Une prise qu'on ne
-    peut pas rejouer n'est pas une prise, c'est un accident heureux.
+⚠️ ET LE PROMPT SE LIT DEPUIS LE DEPOT, ce qui est le vrai gain.
+    Une prise qu'on ne peut pas rejouer n'est pas une prise, c'est un accident
+    heureux. Le script va chercher le prompt dans l'une des DEUX formes que le
+    depot porte deja -- il n'en invente pas une troisieme :
+
+      notes/planNN-prompt.txt   le document de travail : pourquoi ce plan est
+                                difficile, ce que les essais ont donne, et le
+                                prompt dans un bloc delimite (tirets, PROMPT,
+                                corps, tirets). C'est la forme des plans 10,
+                                13 et 16 de l'episode 1. Quand elle existe,
+                                elle est LA source : on l'extrait, on ne la
+                                recopie pas -- une copie diverge le jour ou
+                                l'on corrige l'original.
+      prompts/planNN.txt        le prompt seul, pour les plans qui ne meritent
+                                pas mille sept cents mots de notes.
+
+    ⚠️ Sur treize plans parlants de l'episode 1, QUATRE prompts ont survecu :
+       10, 13 et 16 en notes, et 05 en exemple complet dans le gabarit. Les
+       neuf autres ont ete tapes dans le formulaire de BytePlus et sont
+       perdus. (J'avais d'abord ecrit qu'il n'en restait qu'UN : j'avais
+       regarde le gabarit sans lire le dossier notes/ a cote.)
 
 LE PANIER VIENT DE preparer_avatar.py, ON NE LE REFABRIQUE PAS
     _a-televerser/planNN-<image>.jpg   l'image allegee
@@ -56,6 +71,7 @@ import glob
 import io
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -171,13 +187,43 @@ def dossiers(scene):
     return ep, os.path.join(ep, "_a-televerser"), os.path.join(ep, "_essai-avatar")
 
 
+def lire_prompt(essai, n):
+    """Le prompt d'un plan, depuis L'UNE DES DEUX FORMES QUI EXISTENT DEJA.
+
+    1. notes/planNN-prompt.txt -- le document de travail : pourquoi ce plan est
+       difficile, ce que les essais ont donne, et le prompt lui-meme dans un
+       bloc delimite. C'est la forme des plans 10, 13 et 16 de l'episode 1, et
+       la SEULE source quand elle existe. On l'extrait, on ne la recopie pas :
+       une deuxieme copie diverge le jour ou l'on corrige la premiere.
+    2. prompts/planNN.txt -- le prompt seul, pour les plans qui ne meritent pas
+       mille sept cents mots de notes.
+
+    ⚠️ Et le recu garde une TROISIEME trace : le prompt reellement envoye. Ni
+       la note ni le fichier ne prouvent ce que le modele a recu ; le recu, si.
+    """
+    note = os.path.join(essai, "notes", "plan%02d-prompt.txt" % n)
+    brut = os.path.join(essai, "prompts", "plan%02d.txt" % n)
+    if os.path.exists(note):
+        t = io.open(note, encoding="utf-8").read()
+        m = re.search(r"^-{10,}\s*\nPROMPT\s*\n(.*?)^-{10,}\s*$",
+                      t, re.S | re.M)
+        if not m:
+            sys.exit("  plan %d : %s existe mais n'a pas de bloc PROMPT\n"
+                     "  delimite (une ligne de tirets, PROMPT, le corps, une\n"
+                     "  ligne de tirets)." % (n, os.path.relpath(note, RACINE)))
+        return m.group(1).strip(), note
+    if os.path.exists(brut):
+        return io.open(brut, encoding="utf-8").read().strip(), brut
+    return None, (note, brut)
+
+
 def panier(tel, essai, n):
-    """Retourne (image, piste, prompt) ou explique precisement ce qui manque.
-    Un message qui dit seulement « fichier absent » fait perdre dix minutes."""
-    imgs = [f for f in sorted(glob.glob(os.path.join(tel, "plan%02d-*.jpg" % n)))
-            if not f.endswith("-pleine.mp3")]
+    """Retourne (image, piste, prompt, source) ou explique precisement ce qui
+    manque. Un message qui dit seulement « fichier absent » fait perdre dix
+    minutes."""
+    imgs = sorted(glob.glob(os.path.join(tel, "plan%02d-*.jpg" % n)))
     mp3 = os.path.join(tel, "plan%02d-pleine.mp3" % n)
-    pr = os.path.join(essai, "prompts", "plan%02d.txt" % n)
+    prompt, src = lire_prompt(essai, n)
     manque = []
     if not imgs:
         manque.append("  l'image : aucun %s/plan%02d-*.jpg\n"
@@ -187,14 +233,15 @@ def panier(tel, essai, n):
         manque.append("  la piste : %s absent\n"
                       "    -> python video/preparer_avatar.py --plan %d" % (
                           os.path.basename(mp3), n))
-    if not os.path.exists(pr):
-        manque.append("  le prompt : %s absent\n"
-                      "    -> l'ecrire d'apres video/episode-01-ankunft-berlin/"
-                      "_essai-avatar/notes/gabarit-prompt.txt" % (
-                          os.path.relpath(pr, RACINE)))
+    if prompt is None:
+        manque.append("  le prompt : ni %s\n             ni %s\n"
+                      "    -> l'ecrire d'apres _essai-avatar/notes/"
+                      "gabarit-prompt.txt de l'episode 1" % (
+                          os.path.relpath(src[0], RACINE),
+                          os.path.relpath(src[1], RACINE)))
     if manque:
         sys.exit("  plan %d -- il manque :\n%s" % (n, "\n".join(manque)))
-    return imgs[0], mp3, pr
+    return imgs[0], mp3, prompt, src
 
 
 _FF = [None]
@@ -216,7 +263,7 @@ def duree_mp3(chemin):
 
 def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     ep, tel, essai = dossiers(scene)
-    img, mp3, pr = panier(tel, essai, n)
+    img, mp3, prompt, src = panier(tel, essai, n)
     sortie = os.path.join(essai, "plan%02d-omnihuman.mp4" % n)
     recu = os.path.join(essai, "plan%02d-fal.json" % n)
 
@@ -233,10 +280,10 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     print("  plan %d : %s + %s  (%.2f s, ~%.2f $)"
           % (n, os.path.basename(img), os.path.basename(mp3), d, d * PRIX))
 
-    prompt = io.open(pr, encoding="utf-8").read().strip()
     if simuler:
         print("    SIMULATION -- rien n'est appele, rien n'est facture.")
-        print("    prompt : %d mots, %d caracteres" % (len(prompt.split()), len(prompt)))
+        print("    prompt : %d mots, depuis %s"
+              % (len(prompt.split()), os.path.relpath(src, RACINE)))
         return 0.0
 
     os.makedirs(essai, exist_ok=True)
@@ -265,7 +312,8 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
         "image": os.path.basename(img), "piste": os.path.basename(mp3),
         "resolution": resolution, "turbo": bool(turbo),
         "duree_piste": round(d, 3), "duree_facturee": round(facturee, 3),
-        "cout_usd": round(cout, 4), "prompt": prompt,
+        "cout_usd": round(cout, 4),
+        "prompt_source": os.path.relpath(src, RACINE), "prompt": prompt,
     }, ensure_ascii=False, indent=1))
     return cout
 
@@ -305,7 +353,7 @@ def main():
     total = 0.0
     for n in ns:
         try:
-            _, mp3, _ = panier(tel, essai, n)
+            _, mp3, _, _ = panier(tel, essai, n)
             total += duree_mp3(mp3) * PRIX
         except SystemExit:
             raise
