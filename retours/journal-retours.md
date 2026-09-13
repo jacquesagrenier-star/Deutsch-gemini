@@ -4101,3 +4101,106 @@ dans une rangée centrée.
 
 Vérifié au banc : verso + tap dans la moitié gauche → recto ; tap suivant →
 verso. Le cycle que Jacques décrit, et rien d'autre entre les deux.
+
+## 13 septembre 2026 — le fil d'Ariane parle dès la première séance (v572)
+
+Séance en v571, journal vidé avant. **Deux gels, et pour la première fois ils
+désignent quelque chose.**
+
+```
+8:00:53 AM  1735 ms  ? apres progression -> Firestore +7341ms   home
+8:01:26 AM  1503 ms  ? apres progression -> Firestore +39868ms  home
+```
+
+### Ce que ces deux lignes établissent
+
+**Aucune des 33 fonctions enveloppées n'a gelé.** Si l'une d'elles avait tenu
+le fil 1,5 s, la ligne porterait son nom.
+
+**Et le « +39868ms » dit plus que le reste** : pendant ces quarante secondes,
+*aucun* travail nommé n'a tourné — sinon le fil d'Ariane aurait été réécrit.
+Jacques était à l'arrêt sur l'accueil, l'app ne faisait rien de ce que nous lui
+demandons, **et le fil principal a quand même bloqué une seconde et demie.**
+
+Le blocage est donc hors de notre code synchrone. Reste : le SDK Firestore
+finissant son travail dans ses propres tâches, ou Safari.
+
+**Sept secondes, c'est l'ordre de grandeur d'un aller-retour réseau depuis un
+téléphone** — c'est-à-dire le moment exact où `await envoi` rend la main.
+
+### ⚠️ Ce que ces deux lignes n'établissent PAS
+
+- **Ce n'est pas la même séance que les gels de 11 à 13 secondes.** Celle-ci
+  dure huit minutes et se passe surtout à écouter des mots ; les gros gels
+  arrivaient après plusieurs minutes de cartes enchaînées. Aucun gel sur
+  `flashcards` ici.
+- **1,5 et 1,7 s, c'est le plancher du journal** (seuil 1 500 ms). Ce sont les
+  plus petits gels enregistrables, pas ceux dont Jacques se plaint.
+- Le voisinage n'est pas la causalité. « Après » n'est pas « à cause de ».
+
+### v572 — on nomme le retour de l'écriture
+
+`marquerGel(null)` se ferme **avant** `await envoi` : la marque ne chronomètre
+que le prologue synchrone. Tout ce que le SDK fait en reprenant la main sortait
+en `?`.
+
+Le bloc qui s'exécute à la reprise — l'écriture du résumé pour le tableau de
+bord — porte maintenant son nom : `Firestore -> resume du tableau de bord`.
+
+⚠️ La marque se referme **dans les deux chemins**, y compris celui de
+l'exception : une marque laissée ouverte rendrait fausses toutes les mesures
+suivantes sans que rien ne le dise.
+
+Les trois issues :
+
+| la prochaine ligne | ce que ça veut dire |
+|---|---|
+| `Firestore -> resume...` | c'est le retour de l'écriture, et on l'allège |
+| `? apres Firestore -> resume +petit` | les tâches propres du SDK |
+| `? apres <autre chose>` | la piste Firestore tombe |
+
+## 13 septembre 2026 — la flèche était sous le pli (v572)
+
+**Signalé :** « Il n'y a plus de flèche pour revenir en arrière. »
+
+La v571 avait sorti « Précédent » de la carte — il occupait la moitié gauche du
+verso, dont le seul rôle est de ramener au recto — mais l'avait posé **tout en
+bas** du bloc d'actions, sous « Quand ce mot reviendra-t-il ? ».
+
+Mesuré au banc, iPhone 375 × 812, bas du bouton :
+
+| hauteur du verso | avant (v571) | après (v572) |
+|---|---|---|
+| 200 px | 567 px | 433 px |
+| 320 px | 687 px | 553 px |
+| 420 px | **787 px — sous le pli** | 653 px |
+| 520 px | **887 px — sous le pli** | 753 px |
+
+Safari sur iPhone laisse environ 700 px utiles, barre d'adresse déduite. Un nom
+avec article, pluriel, phrase et traduction dépasse 420 px sans effort : **le
+bouton était hors de l'écran la plupart du temps.** Il n'avait pas disparu, il
+était injoignable — ce qui revient au même pour qui s'en sert.
+
+Il passe **en tête du bloc**, immédiatement sous la carte. Il reste hors de la
+carte : c'est la seule chose que la v571 devait obtenir, et elle est conservée.
+134 px gagnés.
+
+⚠️ Il n'apparaît toujours pas sur la **première carte** d'une séance — il n'y a
+pas de carte précédente. C'est voulu, et ça peut expliquer une partie du
+« il n'y a plus de flèche ».
+
+### Resté ouvert : « j'ai dû cliquer deux fois pour obtenir la carte suivante »
+
+Pas encore diagnostiqué, et je ne veux pas le deviner. Ce que dit le code :
+
+- moitié **gauche** du verso → retour au recto ;
+- moitié **droite** → un fondu et le message « réponds d'abord » — depuis la
+  v555, **le balayage n'avance plus**, seul un jugement fait avancer ;
+- « Encore », « Je savais », « Je le sais par cœur » → carte suivante après
+  1 250 ms.
+
+⚠️ Une hypothèse à vérifier avec lui, pas à corriger d'avance : avant la v571,
+le bas-gauche du verso était occupé par un bouton qui avalait le toucher. Depuis,
+toute la moitié gauche ramène au recto. Si son geste d'avance tombait par
+habitude de ce côté, il obtient maintenant le recto au lieu du message — donc un
+toucher de plus.

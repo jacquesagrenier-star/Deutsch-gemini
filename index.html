@@ -3803,7 +3803,7 @@ body[data-theme="dark"] .judge-known{
    espece dans une rangee ou tout le reste est centre. Meme marge que
    .srs-aide-btn, juste au-dessous duquel il vit maintenant. */
 .flash-retour-bas{
-    margin:10px auto 0;
+    margin:0 auto 10px;
     display:flex; align-items:center; justify-content:center; gap:5px;
     padding:5px 11px 5px 8px; border-radius:999px;
     border:1px solid rgba(47,98,214,.28); background:rgba(255,255,255,.92);
@@ -5264,7 +5264,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v571</span>
+    <span class="subtitle-version">v572</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6957,6 +6957,34 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
+        <!-- ⚠️ EN TETE DU BLOC, ET C'EST UNE MESURE (v572). La v571 l'avait
+             sorti de la carte -- il occupait la moitie gauche du verso, dont le
+             seul role est de ramener au recto -- mais l'avait pose TOUT EN BAS,
+             sous « Quand ce mot reviendra-t-il ? ». Jacques : « il n'y a plus de
+             fleche pour revenir en arriere ».
+             Mesure au banc, iPhone 375x812, bas du bouton :
+                 verso de 200 px -> 567 px   visible
+                 verso de 320 px -> 687 px   visible
+                 verso de 420 px -> 787 px   SOUS LE PLI de Safari (~700 px utiles)
+                 verso de 520 px -> 887 px   sous le pli, meme sans barre d'adresse
+             Un nom avec article, pluriel, phrase et traduction depasse 420 px
+             sans effort : le bouton etait donc hors de l'ecran la plupart du
+             temps. Il n'avait pas disparu, il etait injoignable -- ce qui revient
+             au meme pour qui s'en sert.
+             Ici, il est immediatement sous la carte, donc toujours visible des
+             que le verso l'est. Il reste HORS de la carte : c'est la seule chose
+             que la v571 devait obtenir, et elle est conservee.
+             Plus de event.stopPropagation() : hors de la carte, il n'y a rien a
+             empecher de remonter. loadFlashcard() continue de le montrer ou de
+             le cacher selon qu'il existe une carte precedente -- il n'apparait
+             donc pas sur la premiere carte d'une seance, et c'est voulu. -->
+        <button type="button" id="flashRetour" class="flash-retour-bas hidden"
+                onclick="ouvrirCartePrecedente()"
+                data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+            <span data-i18n="flash_revoir_court">Précédent</span>
+        </button>
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
                 <span data-i18n="review_again">↺ Encore</span>
@@ -6982,20 +7010,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <span data-i18n="srs_aide_bouton">Quand ce mot reviendra-t-il ?</span>
         </button>
         <div id="srsAide" class="srs-aide hidden"></div>
-        <!-- ⚠️ ICI DEPUIS LA v571, et plus sur le verso de la carte : voir le
-             commentaire laisse a sa place d'origine. loadFlashcard() continue de
-             l'afficher ou de le cacher selon qu'il y a une carte precedente ; la
-             seule chose qui change est qu'il n'est plus dans une zone tactile
-             qui veut dire autre chose.
-             Plus de event.stopPropagation() : hors de la carte, il n'y a plus
-             rien a empecher de remonter. -->
-        <button type="button" id="flashRetour" class="flash-retour-bas hidden"
-                onclick="ouvrirCartePrecedente()"
-                data-i18n-aria-label="flash_revoir" aria-label="Revoir le mot précédent">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                 stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-            <span data-i18n="flash_revoir_court">Précédent</span>
-        </button>
     </div>
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
@@ -15710,8 +15724,26 @@ async function syncProgressToCloud(){
         // ⚠️ `vhsChaptersEnabled` n'est PAS ecrit ici : il appartient a
         // l'admin (toggleUserVhsAccess), et l'inclure l'effacerait a chaque
         // sauvegarde de la personne.
+        // ⚠️ LE RETOUR DE L'ECRITURE EST UN TRAVAIL, LUI AUSSI (v572), et il
+        // etait anonyme. La marque « progression -> Firestore » se ferme AVANT
+        // `await envoi` : elle ne chronometre que le prologue synchrone. Tout ce
+        // que le SDK fait en reprenant la main -- ici, puis dans ses propres
+        // taches -- sortait donc en « ? ».
+        //
+        // Le journal du 13 septembre au matin a mis le doigt dessus le premier
+        // jour ou il le pouvait : « ? apres progression -> Firestore +7341ms »,
+        // puis « +39868ms », les deux sur l'accueil, a l'arret. Sept secondes,
+        // c'est l'ordre de grandeur d'un aller-retour reseau depuis un
+        // telephone : c'est-a-dire exactement le moment ou `await envoi` rend la
+        // main et ou ce bloc-ci s'execute.
+        //
+        // On le nomme donc. S'il gele, il le dira ; s'il ne gele pas et que le
+        // « ? » revient au meme endroit, le blocage est dans les taches propres
+        // du SDK et plus dans notre code -- ce qui est une reponse aussi.
+        marquerGel("Firestore -> resume du tableau de bord");
+        let envoiResume = null;
         try{
-            await window.fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, user.uid), {
+            envoiResume = window.fsSetDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, user.uid), {
                 email: aEcrire.email,
                 // Pose a l'inscription par updateProfile() : disponible sans
                 // aucune lecture Firestore.
@@ -15724,7 +15756,15 @@ async function syncProgressToCloud(){
                 synonymesEcartes: aEcrire.synonymesEcartes || "",
                 updatedAt: window.fsServerTimestamp()
             }, { merge: true });
+            marquerGel(null);
+            await envoiResume;
         }catch(e){
+            // ⚠️ LA MARQUE SE FERME DANS LES DEUX CHEMINS. Une exception levee
+            // par fsSetDoc AVANT le marquerGel(null) ci-dessus la laisserait
+            // ouverte, et toutes les mesures suivantes seraient fausses sans que
+            // rien ne le dise. Refermer une marque deja fermee ne coute rien --
+            // le compteur de profondeur retombe a zero et s'y tient.
+            marquerGel(null);
             // Un resume absent se voit dans le tableau de bord et se repare
             // avec « Reconstruire les resumes ». Il ne doit JAMAIS faire
             // echouer la sauvegarde de la progression, qui vient de reussir.
@@ -24072,7 +24112,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 571;
+const APP_VERSION = 572;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
