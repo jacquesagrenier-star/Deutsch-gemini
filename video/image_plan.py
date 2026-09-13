@@ -81,6 +81,28 @@ def nom_image(bloc, n):
     return m.group(1) if m else "plan%02d.png" % n
 
 
+def archiver(chemin):
+    """Ranger la prise precedente au lieu de l'ecraser.
+
+    ⚠️ UNE PRISE PAYEE NE S'ECRASE PAS. Le 13 septembre, --refaire a detruit
+    la premiere facade du Buergeramt -- 0,15 $ et une composition que Jacques
+    n'a pas pu comparer a la suivante. On ne sait qu'APRES coup laquelle des
+    deux etait la bonne, et c'est precisement pour ca qu'il faut les deux.
+    (Recuperable sous l'onglet Requests de fal, mais a la main.)"""
+    base, ext = os.path.splitext(chemin)
+    i = 1
+    while os.path.exists("%s-v%d%s" % (base, i, ext)):
+        i += 1
+    # L'image et son recu partent ensemble : un recu orphelin ne prouve plus
+    # rien, et une prise sans recu ne se rattache plus a une facture.
+    paires = [(chemin, "%s-v%d%s" % (base, i, ext)),
+              (base + "-fal.json", "%s-v%d-fal.json" % (base, i))]
+    for vieux, neuf in paires:
+        if os.path.exists(vieux):
+            os.replace(vieux, neuf)
+            print("  prise precedente rangee : %s" % os.path.basename(neuf))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--scene", default="02-beim-buergeramt")
@@ -91,7 +113,9 @@ def main():
     p.add_argument("--resolution", default="2K", choices=["1K", "2K", "4K"])
     p.add_argument("--montrer", action="store_true",
                    help="afficher le prompt et les references, ne rien appeler")
-    p.add_argument("--refaire", action="store_true")
+    p.add_argument("--refaire", action="store_true",
+                   help="generer une autre prise ; la precedente est RANGEE "
+                        "en -v1, -v2... jamais ecrasee")
     a = p.parse_args()
 
     ep = os.path.join(RACINE, "video", "episode-%s" % a.scene)
@@ -129,8 +153,10 @@ def main():
         print("\n  RIEN N'A ETE APPELE. Relance sans --montrer pour generer.")
         return
 
-    if os.path.exists(sortie) and not a.refaire:
-        sys.exit("  %s existe deja. --refaire pour la remplacer." % nom)
+    if os.path.exists(sortie):
+        if not a.refaire:
+            sys.exit("  %s existe deja. --refaire pour en generer une autre." % nom)
+        archiver(sortie)
 
     cle = O.cle()
     corps = {"prompt": prompt, "aspect_ratio": a.ratio,
