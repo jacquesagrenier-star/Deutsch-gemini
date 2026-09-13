@@ -1,4 +1,4 @@
-# Le tournant de personnage — trois vues à faire, une fois pour la série
+# Le tournant de personnage — fait le 13 septembre 2026
 
 Écrit le 13 septembre 2026, sur une question de Jacques : *« on ne devrait pas
 tout de suite demander à Artlist, à partir de l'image de face, une image de
@@ -137,9 +137,19 @@ VIEW: seen from the side, in full profile, facing frame left.
 VIEW: seen from directly behind, back to camera, head not turned.
 ```
 
-## Où ça se range
+## ✅ Fait — les quatre vues existent
 
-`personnages/Mark-face.png`, `-troisquarts.png`, `-profil.png`, `-dos.png`.
+`personnages/Mark.png` (face), `Mark-troisquarts.png`, `Mark-profil.png`,
+`Mark-dos.png`. Toutes en 1536 × 2752, même tenue, même fond, même lumière.
+
+⚠️ **Artlist rend en 2752 × 1536 paysage**, sujet au sixième central — la tête
+y fait 120 px contre 400 dans la face. Les trois ont donc été **recadrées en
+portrait** autour du sujet. Seuil de luminance 150, mesuré : le fond est à
+168-201, le sujet sous 100. Sans ce recadrage elles ancrent mal — un générateur
+suit ce qu'il peut voir.
+
+⚠️ **Le dos est désormais canon.** Ne pas le régénérer, même si une autre
+version semble mieux : tout ce qui suivra s'y accroche.
 
 ⚠️ **Hors dépôt** — `personnages/` n'est pas suivi par git, et c'est voulu :
 le dépôt est public, et ces images sont l'ancrage du personnage.
