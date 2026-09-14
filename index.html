@@ -3840,9 +3840,11 @@ body[data-theme="dark"] .judge-garde.on{
    nouvelle revision ». Le code disait deja la meme chose -- markMastered() fait
    revenir le mot POUR LE VERIFIER, et une etoile pleine d'avance affirmerait
    l'acquis a l'instant meme ou l'app demande de le prouver.
-   ⚠️ ET ELLE A LE TEMPS DE S'ALLUMER : markMastered() laisse 1 250 ms avant
-   d'avancer, le temps que le trophee se pose. Sans cette attente il n'y aurait
-   rien a voir -- meme raison qui a sorti le coffre de la rangee des jugements.
+   ⚠️ ET ELLE A LE TEMPS DE S'ALLUMER : la carte attend ATTENTE_ETOILE_MS avant
+   d'avancer. C'etait 1 250 ms tant qu'il fallait laisser lire un toast ; depuis
+   la v596 le toast n'existe plus sur ce chemin -- l'etoile dit la meme chose,
+   a l'endroit qu'on regarde -- et l'attente s'est calee sur l'animation plutot
+   que sur un texte.
    Le cinquieme de tour n'est pas un ornement : c'est exactement une pointe
    d'etoile, donc la forme revient sur elle-meme et seul l'eclat se remarque. */
 .judge-known .etoile-coeur{
@@ -5559,7 +5561,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v595</span>
+    <span class="subtitle-version">v596</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24732,7 +24734,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 595;
+const APP_VERSION = 596;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27687,6 +27689,19 @@ function basculerGardeCarte(){
     setWordState(it.themeId, it.index, st);
     majBoutonGarde();
     try{ majBoutonGardes(); }catch(e){}
+    // ⚠️ IL AVANCE, MAIS IL NE JUGE TOUJOURS RIEN (v596). Demande de Jacques :
+    // « une seconde, deux secondes pour qu'on voie que le couvercle se ferme,
+    // puis passe a l'autre carte ». L'attente n'est pas decorative -- sans
+    // elle, la seule chose que le bouton avait a dire partirait avec la carte.
+    //
+    // ⚠️ ET LA CARTE RESTE ECHUE. Garder un mot ne dit pas qu'on le sait :
+    // ni sessionVues, ni sessionSues, ni l'objectif du jour ne bougent, et le
+    // mot revient a la prochaine seance. C'est litteralement ce que « garder
+    // pour le revoir » demande. On perd en echange le degardage depuis une
+    // seance ordinaire -- il se fait dans le paquet des gardes, avec « Sortir
+    // du coffre », qui est le seul endroit ou la question se pose vraiment.
+    clearTimeout(attentePalier);
+    attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
 function sortirDuCoffre(){
@@ -27757,7 +27772,7 @@ function markKnownAlready(){
     }
     sessionVues++;
     sessionSues++;
-    markMastered();
+    markMastered(true);
     const be = document.getElementById("judgeKnownBtn");
     if(be) be.classList.add("sue");
 }
@@ -28347,6 +28362,17 @@ function celebrateMastery(justReachedMultiple, avecToast){
     }
 }
 
+// ⚠️ CHAQUE ATTENTE EST CALEE SUR SON ANIMATION (v596), pas sur une
+// intuition. L'etoile met 340 ms a se remplir, le couvercle du coffre 300 ms a
+// se fermer : on laisse a peu pres le double. Le temps de VOIR, pas le temps
+// d'attendre -- c'est toute la difference entre un retour et une lenteur.
+// Le 1 250 ms d'origine servait a autre chose : laisser lire un toast qui
+// n'existe plus sur ce chemin. Il ne reste que pour le palier de l'objectif du
+// jour, ou il y a vraiment quelque chose a regarder.
+const ATTENTE_ETOILE_MS = 650;
+const ATTENTE_COFFRE_MS = 1000;
+const ATTENTE_FETE_MS   = 1250;
+
 // Duree avant qu'un mot maitrise revienne se faire verifier : le barreau
 // suivant de l'echelle du mot (16 jours), pas un chiffre invente.
 const SRS_MAINTENANCE_DAYS = SRS_DAILY_LADDER_DAYS[3] || 16;
@@ -28389,7 +28415,11 @@ function feterLeTrophee(){
     trophee.classList.add("fete");
 }
 
-function markMastered(){
+// `discret` : sans toast, et sans l'attente qui servait a le lire. C'est le
+// chemin du bouton « Je le sais par coeur », ou l'etoile qui se remplit dit
+// deja tout ce que le toast disait -- en mieux, puisqu'elle est a l'endroit
+// qu'on regarde.
+function markMastered(discret){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
@@ -28411,15 +28441,20 @@ function markMastered(){
     setWordState(item.themeId, item.index, state);
     const justReachedMultiple = recordDailyActivity();
     logMasteryEvent();
-    celebrateMastery(justReachedMultiple);
+    // ⚠️ LE PALIER DE L'OBJECTIF GARDE SA FETE, meme en mode discret. Ce n'est
+    // pas un message de service repete a chaque carte : il arrive une fois par
+    // jour, et il y a quelque chose a regarder.
+    celebrateMastery(justReachedMultiple, !discret);
     // A L'INSTANT MEME, pas au retour de la carte. Il n'apparaissait qu'a la
     // verification suivante -- seize jours plus tard, quand plus personne ne se
-    // souvient de l'avoir merite. La carte attend deja 1 250 ms avant
-    // d'avancer : le trophee se pose, la couronne s'ouvre, et on passe.
+    // souvient de l'avoir merite. La carte attend avant d'avancer : le trophee
+    // se pose, la couronne s'ouvre, et on passe. L'attente n'est plus la meme
+    // selon le chemin depuis la v596 -- voir ATTENTE_ETOILE_MS.
     feterLeTrophee();
     majEcheances(true);
     clearTimeout(attentePalier);
-    attentePalier = setTimeout(nextFlashcard, 1250);
+    attentePalier = setTimeout(nextFlashcard,
+        (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);
 }
 
 function nextFlashcard(){
