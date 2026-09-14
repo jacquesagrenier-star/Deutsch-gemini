@@ -1,0 +1,89 @@
+==============================================================
+OU EN EST L'EPISODE 2 -- 14 septembre 2026, fin de session
+==============================================================
+
+⚠️⚠️  LA SCENE EST DANS UN ETAT MELANGE. NE PAS MONTER, NE PAS GENERER
+      D'AVATAR AVANT D'AVOIR TRANCHE.
+
+      Le plan 08 est en eleven_v3 (avec sa balise [surprised]).
+      Les dix-huit autres sont en eleven_multilingual_v2 (sans balise).
+
+      Deux modeles dans une scene est un DEFAUT, pas une option : timbre et
+      prosodie ne se recollent pas. C'est un essai en cours, pas un etat
+      d'arrivee. Voir la decision en attente ci-dessous.
+
+
+LA DECISION EN ATTENTE
+----------------------
+Jacques ecoute deux fichiers :
+    audio/scenes/02-beim-buergeramt/08-mark.mp3
+        -> v3 + [surprised], 2,32 s
+    audio/scenes/02-beim-buergeramt/_ancienne-numerotation/sans-pause-08-mark.mp3
+        -> v2 neutre
+
+SI LA SURPRISE S'ENTEND :
+  1. python audio/scene_audio.py --scene 02-beim-buergeramt --modele v3 --pour-de-vrai
+     (818 credits ; les dix-neuf balises partent enfin)
+  2. python audio/controler_debit.py --scene 02-beim-buergeramt
+     ⚠️ INDISPENSABLE en v3 : ce modele n'accepte pas le contexte, donc le
+     remplissage redevient possible. Reprendre chaque prise suspecte avec
+     refaire_plan.py -- v3 tourne a stability 0.0, une reprise donne autre chose.
+  3. python audio/reporter_durees.py --scene 02-beim-buergeramt
+  4. recalculer duree_plan : max(4,0 ; 0,35 + duree_audio + 1,4), plan 08 a 5,0
+  5. python video/panier_avatar.py --scene 02-beim-buergeramt
+  6. refaire le plan 08 en avatar, LE REGARDER, puis les douze autres
+
+SI ELLE NE S'ENTEND PAS :
+  remettre le plan 08 en v2 pour que la scene redevienne homogene --
+  refaire_plan.py --scene 02-beim-buergeramt --plan 8 --modele v2 --pour-de-vrai
+  -- et chercher l'air irrite ailleurs : l'image mark-serre.png elle-meme est
+  peut-etre deja severe, et OmniHuman part du visage qu'on lui donne.
+
+
+CE QUI EST FAIT ET VALIDE PAR JACQUES
+-------------------------------------
+  6 decors               tous generes et acceptes
+  4 images de personnage mark-moyen, mark-serre, beamter-moyen, beamter-formular
+  19 voix                generees (18 en v2 avec contexte, 08 en v3)
+  13 prompts d'avatar    ecrits, puis CORRIGES sur deux defauts (voir plus bas)
+  13 paniers             images JPEG + pistes allongees, dans _a-televerser/
+
+DEPENSE A CE JOUR
+  fal (images + 3 prises du plan 08)   environ 4,4 $
+  ElevenLabs                           environ 1 700 credits (deux passes)
+  reste a faire : 12 plans d'avatar, environ 8,4 $
+
+
+LES DEUX DEFAUTS CORRIGES DANS LES TREIZE PROMPTS
+--------------------------------------------------
+1. OmniHuman MATERIALISAIT l'interlocuteur -- un deuxieme visage invente au
+   bord droit, alors que l'image source ne contient que Mark. La formule
+   << speaking to someone off screen >> nomme quelqu'un et dit ou il est. Les
+   prompts portent maintenant l'interdiction explicite, partie du corps par
+   partie du corps, plus une contrainte de CADRE (meme taille, meme place) et
+   pas seulement de camera.
+
+2. Le plan 08 disait << not anger, not indignation >> puis << eyebrows
+   slightly drawn together >>. L'irritation etait interdite par des mots et
+   demandee par un geste -- et c'est le geste que le modele suit. Le bloc
+   decrit maintenant l'etat d'arrivee (sourcils qui MONTENT), l'interdiction
+   venant apres.
+
+
+TROIS OUTILS NES DE CETTE SESSION
+---------------------------------
+  video/panier_avatar.py      la piste allongee d'un episode NEUF, que
+                              preparer_avatar.py ne savait pas faire (il tire
+                              la piste d'un clip deja monte, qui n'existe pas)
+  audio/controler_debit.py    le filet contre le remplissage, par le debit
+                              compare a la mediane DU LOCUTEUR
+  audio/allonger_pause.py     allonge en SILENCE une pause qui existe deja
+  audio/reporter_durees.py    ecrit duree_audio dans la scene
+
+
+⚠️ CE QUI RESTE VRAI QUOI QU'IL ARRIVE
+   - duree_audio N'EST PAS la duree du plan. La parole occupe la moitie d'un
+     plan ; le reste, c'est le personnage qui ECOUTE.
+   - Toutes les anomalies de voix de cette session ont ete trouvees par
+     L'OREILLE DE JACQUES, jamais par la mesure. controler_debit.py attrape le
+     remplissage ; il n'attrape pas un mauvais jeu.
