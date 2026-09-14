@@ -8690,7 +8690,7 @@ const I18N = {
         admin_no_users: "Aucun testeur pour l'instant.",
         admin_vhs_access_on: "✓ Chapitres VHS activés",
         admin_vhs_access_off: "Activer Chapitres VHS",
-        admin_user_stats: "{mastered}/{total} mots maîtrisés · série de {streak} jour(s)"
+        admin_user_stats: "{vus} mots vus · {mastered} maîtrisés · série de {streak} jour(s)"
     },
     en: {
         onboarding_home_button: "How do I start? (45 s)",
@@ -9632,7 +9632,7 @@ const I18N = {
         admin_no_users: "No testers yet.",
         admin_vhs_access_on: "✓ VHS Chapters enabled",
         admin_vhs_access_off: "Enable VHS Chapters",
-        admin_user_stats: "{mastered}/{total} words mastered · {streak}-day streak"
+        admin_user_stats: "{vus} words seen · {mastered} mastered · {streak}-day streak"
     },
     // TURC -- initialise depuis l'anglais pour que rien ne casse avant que les
     // 879 chaines soient traduites. Chaque cle encore en anglais est une cle a
@@ -10578,7 +10578,7 @@ const I18N = {
         admin_no_users: "Henüz test eden yok.",
         admin_vhs_access_on: "✓ VHS Bölümleri açık",
         admin_vhs_access_off: "VHS Bölümlerini aç",
-        admin_user_stats: "{mastered}/{total} kelime öğrenildi · {streak} günlük seri"
+        admin_user_stats: "{vus} kelime görüldü · {mastered} öğrenildi · {streak} günlük seri"
     },
 
     // ============ UKRAINIEN ============
@@ -10734,7 +10734,7 @@ const I18N = {
         admin_no_users: "Наразі жодного тестувальника.",
         admin_vhs_access_on: "✓ Розділи VHS увімкнено",
         admin_vhs_access_off: "Увімкнути розділи VHS",
-        admin_user_stats: "{mastered}/{total} слів засвоєно · серія {streak} дн.",
+        admin_user_stats: "{vus} слів побачено · {mastered} засвоєно · серія {streak} дн.",
         flip_direction_de_to_en: "🔁 Напрям: DE → EN",
         flip_direction_en_to_de: "🔁 Напрям: EN → DE",
         loading_label: "Завантаження...",
@@ -11689,7 +11689,7 @@ const I18N = {
         admin_no_users: "فعلاً هیچ آزماینده‌ای نیست.",
         admin_vhs_access_on: "✓ فصل‌های VHS فعال است",
         admin_vhs_access_off: "فعال کردن فصل‌های VHS",
-        admin_user_stats: "{mastered}/{total} واژهٔ آموخته · زنجیرهٔ {streak} روزه",
+        admin_user_stats: "{vus} واژهٔ دیده‌شده · {mastered} آموخته · زنجیرهٔ {streak} روزه",
         parler_stop_btn: "⏹ ایست",
         parler_essai_btn: "▶ تلاش من",
         parler_suivant_btn: "جملهٔ بعدی →",
@@ -15755,10 +15755,30 @@ async function syncProgressToCloud(){
                 if(st && st.mastered) masteredCount++;
             });
         });
+        // LES MOTS VRAIMENT RENCONTRES (v579). Demande de Jacques : maitriser
+        // est lent, voir ne coute rien, et un testeur qui a vu cent mots sans
+        // en maitriser un TRAVAILLE -- c'est ce qu'il faut pouvoir distinguer
+        // d'un compte ouvert et jamais utilise.
+        //
+        // ⚠️ totalCount NE DIT PAS CA. Mesure du 14 septembre sur les quinze
+        //    documents : haticsyn avait totalCount 7 710 pour 18 mots
+        //    reellement vus, renvoizeklc 138 pour 108. Le classement etait
+        //    inverse d'un facteur cinquante-six.
+        //
+        // ⚠️ ON REUTILISE progressionUtile(), on ne recopie pas son critere :
+        //    c'est le meme predicat qui decide ce qui part dans le nuage, et
+        //    deux copies divergent le jour ou l'une des deux change.
+        let vusCount = 0;
+        const utile = progressionUtile(progress);
+        Object.keys(utile).forEach(cle => {
+            if(cle === "__migrations") return;
+            vusCount += Object.keys(utile[cle] || {}).length;
+        });
         snapshot = {
             email: user.email,
             masteredCount,
             totalCount,
+            vusCount,
             streak: getStreakCount(),
             xp: getXp(),
             dailyGoalTarget: getDailyGoalTarget(),
@@ -15876,6 +15896,7 @@ async function syncProgressToCloud(){
                 // aucune lecture Firestore.
                 firstName: user.displayName || "",
                 masteredCount: aEcrire.masteredCount,
+                vusCount: aEcrire.vusCount,
                 totalCount: aEcrire.totalCount,
                 streak: aEcrire.streak,
                 retoursUsager: aEcrire.retoursUsager || "",
@@ -20335,7 +20356,7 @@ async function renderAdminUsersList(){
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
                     <div>
                         <div style="font-weight:700;">${titre}</div>
-                        <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
+                        <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { vus: u.vusCount === undefined ? '?' : u.vusCount, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
                         <br><small style="color:${joursDepuis > 7 ? '#d97706' : '#576177'}; font-weight:${joursDepuis > 7 ? '700' : '400'};">${vuTexte}</small>
                         ${u.retoursUsager ? `<div style="margin-top:8px; padding:8px 10px; border-radius:8px; background:rgba(59,111,224,.08); font-size:12px; color:#1e2433; white-space:pre-wrap; word-break:break-word;">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : ""}
                     </div>
@@ -20391,6 +20412,7 @@ async function reconstruireResumes(){
                 email: u.email,
                 firstName: u.firstName || "",
                 masteredCount: u.masteredCount || 0,
+                vusCount: u.vusCount,
                 totalCount: u.totalCount || 0,
                 streak: u.streak || 0,
                 retoursUsager: u.retoursUsager || "",
