@@ -3726,10 +3726,18 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    non le jaune lui-meme, porte le contraste -- du jaune saturé sur un petit
    bouton crierait plus fort que le vert de « Je savais », qui est le geste
    qu'on vise. */
-.judge-again{background:#fcf1d5; border-color:#ecd8a4; color:#87661a;}
-.judge-again:hover{background:#f9e9be;}
+/* ⚠️ LE JAUNE S'EST ECLAIRCI ET A CHANGE DE TEINTE (v599). Le premier etait
+   un jaune CHAUD -- teinte 42 degres -- et il voisinait un orange a 25 : deux
+   couleurs presque adjacentes sur la roue, donc deux boutons qui se
+   ressemblaient. Jacques : « Encore ressemble trop a Garder, un jaune plus
+   clair, plus serein ».
+   Ce n'est donc pas qu'une affaire de clarte : la teinte monte a 50 degres et
+   la luminosite a 94 %. Eclaircir sans tourner aurait donne un orange pale --
+   le meme probleme, en plus faible. */
+.judge-again{background:#fef9e0; border-color:#ecdfa6; color:#7f6c18;}
+.judge-again:hover{background:#fbf3cd;}
 body[data-theme="dark"] .judge-again{
-    background:rgba(232,190,88,.16); border-color:rgba(232,190,88,.42); color:#e8ce8a;
+    background:rgba(240,214,110,.15); border-color:rgba(240,214,110,.40); color:#efdd9c;
 }
 .judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .judge-good:hover{background:#cdf0dc;}
@@ -3846,8 +3854,18 @@ body[data-theme="dark"] .judge-garde.on{
    reecrit des libelles, si. Dehors : quatre colonnes, « Sortir » absent.
    Dedans : trois colonnes, ni coffre ni « par coeur » -- on n'ouvre pas son
    coffre pour graduer un mot. */
-.judge-sortir{display:none; background:#fff; border-color:#e3e7ee; color:#576177;}
-.judge-sortir:hover{border-color:#c9d0dc;}
+/* ⚠️ IL ETAIT LE SEUL BLANC QUI RESTAIT, et il l'etait dans un paquet de
+   TROIS boutons -- donc encore plus visible qu'avant. Jacques : « il faut
+   surtout faire des changements de couleur aussi dans Gardes, pour les trois
+   boutons ».
+   Il prend l'orange du coffre au repos, et non une cinquieme couleur : c'est du
+   coffre qu'il parle, et le coffre est orange. Il ne peut pas se confondre avec
+   « Garder » -- les deux ne paraissent jamais sur le meme ecran. */
+.judge-sortir{display:none; background:#fdead9; border-color:#f0c59e; color:#95571b;}
+.judge-sortir:hover{background:#fbe0c8;}
+body[data-theme="dark"] .judge-sortir{
+    background:rgba(232,162,58,.14); border-color:rgba(232,162,58,.40); color:#e8b573;
+}
 .flashcard-actions.paquet-garde .judge-garde,
 .flashcard-actions.paquet-garde .judge-known{display:none;}
 .flashcard-actions.paquet-garde .judge-sortir{display:flex;}
@@ -5589,7 +5607,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v598</span>
+    <span class="subtitle-version">v599</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24762,7 +24780,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 598;
+const APP_VERSION = 599;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
