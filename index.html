@@ -4342,7 +4342,15 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
 .home-stats-card{overflow:hidden;}
 /* La jauge : collee a la base du tableau, dans le cadre. */
 .mos-jauge{
-    position:absolute; inset-inline:0; bottom:0; height:4px;
+    /* ⚠️ left/right EN PLUS DE inset-inline : la propriete logique suffit
+       sur les navigateurs recents, mais une barre de 4 px qu'on ne voit pas
+       est indiscernable d'une barre absente -- et c'est exactement le doute
+       qu'il a fallu lever le 14 septembre. Deux lignes valent mieux qu'un
+       diagnostic.
+       ⚠️ ET 6 px PLUTOT QUE 4 : sur un telephone, 4 px se perdent dans la
+       texture d'un tableau. Elle doit se lire d'un coup d'oeil, sans etre
+       cherchee. */
+    position:absolute; inset-inline:0; left:0; right:0; bottom:0; height:6px;
     /* ⚠️ LA PART NON FAITE EST BLANCHE ET OPAQUE (v587), ET J'AVAIS COMPRIS
        L'INVERSE. Je l'avais rendue transparente en croyant qu'il fallait
        laisser voir l'oeuvre ; Jacques : « ce qui n'est pas encore atteint, je
@@ -5420,7 +5428,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v588</span>
+    <span class="subtitle-version">v589</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24517,7 +24525,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 588;
+const APP_VERSION = 589;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
