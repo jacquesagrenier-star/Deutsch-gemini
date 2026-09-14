@@ -7778,6 +7778,7 @@ const I18N = {
         jour_travaille: "jour travaillé",
         jours_serie: "{n} d'affilée",
         mosaique_compte: "Tableau {n} sur {total}",
+        mosaique_annee: "Peint en {a}",
         mosaique_reste: "encore {n} carreaux pour découvrir l'œuvre d'un peintre du monde germanophone",
         mosaique_trophee: "Terminé · encore {n} séances à l'écran",
         mosaique_galerie: "Ta galerie",
@@ -8721,6 +8722,7 @@ const I18N = {
         jour_travaille: "day worked",
         jours_serie: "{n} in a row",
         mosaique_compte: "Painting {n} of {total}",
+        mosaique_annee: "Painted in {a}",
         mosaique_reste: "{n} tiles left to uncover a painting from the German-speaking world",
         mosaique_trophee: "Finished · {n} more sessions on screen",
         mosaique_galerie: "Your gallery",
@@ -9666,6 +9668,7 @@ const I18N = {
         jour_travaille: "çalışılan gün",
         jours_serie: "üst üste {n}",
         mosaique_compte: "Tablo {n} / {total}",
+        mosaique_annee: "{a} yılında yapıldı",
         mosaique_reste: "Almanca konuşulan dünyadan bir tabloyu açmak için {n} kare kaldı",
         mosaique_trophee: "Bitti · ekranda {n} oturum daha",
         mosaique_galerie: "Galerin",
@@ -10876,6 +10879,7 @@ const I18N = {
         jour_travaille: "день праці",
         jours_serie: "{n} поспіль",
         mosaique_compte: "Картина {n} з {total}",
+        mosaique_annee: "Написано у {a} році",
         mosaique_reste: "ще {n} плиток, щоб відкрити картину німецькомовного світу",
         mosaique_trophee: "Завершено · ще {n} сеансів на екрані",
         mosaique_galerie: "Твоя галерея",
@@ -12472,6 +12476,7 @@ const I18N = {
         jour_travaille: "روز کار",
         jours_serie: "{n} روز پیاپی",
         mosaique_compte: "تابلوی {n} از {total}",
+        mosaique_annee: "نقاشی‌شده در {a}",
         mosaique_reste: "{n} کاشی مانده تا تابلویی از جهان آلمانی‌زبان آشکار شود",
         mosaique_trophee: "تمام شد · {n} جلسهٔ دیگر روی صفحه",
         mosaique_galerie: "گالری تو",
@@ -26244,7 +26249,12 @@ function cartoucheMosaique(m, part, fini){
     const rang = etatMosaique().r;
     let h = '<div class="mos-ligne mos-rang">' + tf("mosaique_compte",
               { n: ((rang - 1) % Math.max(1, total)) + 1, total: total }) + '</div>';
-    if(fini || part >= 0.40) h += '<div class="mos-ligne mos-annee">' + (m.annee || "") + '</div>';
+    // ⚠️ L'ANNEE SE NOMME. Elle arrive SEULE, avant le peintre et le titre :
+    // un nombre nu -- << 1905 >> -- ne dit pas ce qu'il est, et c'est ce que
+    // Jacques a vu a l'ecran le 14 septembre. Nomme, il devient le premier
+    // indice de la devinette au lieu d'une donnee orpheline.
+    if(fini || part >= 0.40) h += '<div class="mos-ligne mos-annee">'
+              + (m.annee ? tf("mosaique_annee", { a: m.annee }) : "") + '</div>';
     if(fini || part >= 0.70) h += '<div class="mos-ligne mos-peintre">' + m.peintre + '</div>';
     if(fini) h += '<div class="mos-ligne mos-titre">' + m.titre + '</div>';
     // ⚠️ LA NOTICE N'ARRIVE QU'A LA FIN, ET C'EST VOULU. Sur une carte qu'on
