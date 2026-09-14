@@ -5669,7 +5669,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v603</span>
+    <span class="subtitle-version">v604</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8392,7 +8392,6 @@ const I18N = {
         dict_participle: "part. {pp}",
         label_participle: "Participe",
         pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
-        echeance_coffre: "il revient dans cette séance",
         coffre_suivante: "Suivante",
         coffre_suivante_sous: "elle reste dans le coffre",
         echeance_encore: "retour dans {n} minutes",
@@ -9353,7 +9352,6 @@ const I18N = {
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
         pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
-        echeance_coffre: "it comes back in this session",
         coffre_suivante: "Next",
         coffre_suivante_sous: "it stays in the chest",
         echeance_encore: "back in {n} minutes",
@@ -10316,7 +10314,6 @@ const I18N = {
         dict_participle: "geçmiş ort. {pp}",
         label_participle: "Geçmiş ortaç",
         pos_n: "isim", pos_v: "fiil", pos_adj: "sıfat", pos_adv: "zarf",
-        echeance_coffre: "bu seansta geri gelir",
         coffre_suivante: "Sonraki",
         coffre_suivante_sous: "sandıkta kalır",
         echeance_encore: "{n} dakika sonra döner",
@@ -11536,7 +11533,6 @@ const I18N = {
         pos_v: "дієслово",
         pos_adj: "прикметник",
         pos_adv: "прислівник",
-        echeance_coffre: "воно повернеться на цьому занятті",
         coffre_suivante: "Далі",
         coffre_suivante_sous: "вона лишається у скрині",
         echeance_encore: "повернеться через {n} хв",
@@ -13161,7 +13157,6 @@ const I18N = {
         pos_v: "فعل",
         pos_adj: "صفت",
         pos_adv: "قید",
-        echeance_coffre: "در همین جلسه بازمی‌گردد",
         coffre_suivante: "بعدی",
         coffre_suivante_sous: "در صندوق می‌ماند",
         echeance_encore: "تا {n} دقیقهٔ دیگر برمی‌گردد",
@@ -24922,7 +24917,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 603;
+const APP_VERSION = 604;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27651,13 +27646,15 @@ function majEcheances(animerDernier){
     try{ majBoutonGarde(); }catch(e){}
     const elA = document.getElementById("judgeEcheanceAgain");
     if(!elA) return;
-    // ⚠️ DANS LE COFFRE, « retour dans 2 minutes » SERAIT UN MENSONGE : plus
-    // aucune echeance n'est ecrite, la carte revient simplement plus loin dans
-    // la file. Le libelle doit suivre le comportement, sinon c'est lui qui
-    // apprend le systeme a l'envers.
-    elA.textContent = dansLePaquetGarde()
-        ? t("echeance_coffre")
-        : tf("echeance_encore", { n: SRS_ENCORE_MINUTES });
+    // ⚠️ LE MEME LIBELLE DES DEUX COTES (v604), MEME SI LES ROUAGES DIFFERENT.
+    // J'avais mis « il revient dans cette seance » dans le coffre, par scrupule :
+    // « Encore » n'y ecrit plus aucune echeance. Mais un libelle ne decrit pas
+    // ce que le code ECRIT, il decrit CE QUE LA PERSONNE VA VIVRE -- et c'est
+    // identique : remettreEnFile() replace la carte TROIS RANGS plus loin
+    // (SRS_CARTES_AVANT_RETOUR), quelle que soit la taille du paquet. Avec 154
+    // mots gardes comme avec 5, elle revient trois cartes plus tard, soit a peu
+    // pres deux minutes. Demande de Jacques.
+    elA.textContent = tf("echeance_encore", { n: SRS_ENCORE_MINUTES });
     // « ne plus me le montrer » etait faux : markMastered() reprogramme le mot
     // a SRS_MAINTENANCE_DAYS. Le bouton dit maintenant ce qu'il fait vraiment,
     // comme les deux autres. Remarque de Jacques.
