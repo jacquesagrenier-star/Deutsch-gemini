@@ -4564,3 +4564,37 @@ L'ukrainien dit **тепер, отже** — « maintenant, donc » : c'est exac
 même mélange de deux sens, dont le second est un connecteur. Le persan dit
 **اکنون، حال**. Ces deux-là relèvent de la relecture croisée : je ne peux pas
 juger si le second terme s'y lit comme une consigne.
+
+---
+
+## 14 septembre 2026 — les collisions de glose française (Jacques)
+
+**Origine :** pas le bouton de signalement, mais l'analyse des *leeches* — les
+cartes vues neuf fois ou plus sans être acquises. Quatre adverbes de temps y
+figuraient, et la cause était mesurable : deux mots allemands répondaient à la
+même glose française. Jacques : « applique pour l'ensemble des mots dans
+l'application ».
+
+**Pourquoi une réécriture en bloc aurait abîmé les données.** 557 mots
+partagent leur traduction avec un autre, et la plupart n'est pas un défaut.
+`tests/homographes.py` (nouveau) écarte d'abord ce qui se distingue déjà par
+une parenthèse — « entrée (prix) », « la langue (organe) », 72 paires — puis
+range les 59 paires aveugles restantes selon le geste qu'elles appellent :
+
+| pile | quoi | geste |
+|---|---|---|
+| **registre** (15) | `Infolgedessen` / `folglich` — même sens, niveau de langue différent | marquer le registre, surtout pas inventer une distinction |
+| **synonyme** (9) | `Couch` / `Sofa`, `Handy` / `Mobiltelefon` | déclarer dans `synonymes.json`, pour que les deux réponses passent |
+| **homographe français** (35) | `Eingang` / `Vorspeise` — aucun rapport en allemand | trancher la glose |
+
+**Fait :** les dix paires nom/adjectif de la troisième pile — calme, droit,
+froid, patient, plat, professionnel, présent, public, rose, personne. Le nom
+prend un article, l'adjectif prend un voisin ; **les deux moitiés bougent**,
+parce que « le froid » contre « froid » ne diffère que de trois caractères.
+Collisions dures : 35 → 25.
+
+**Reste :** les 25 autres, dont sept sont des distinctions allemandes réelles
+que le français aplatit (`Gehalt`/`Lohn` mensuel vs horaire, `Ziel`/`Zweck`
+but vs finalité, `Mülleimer`/`Mülltonne` intérieur vs extérieur). Celles-là
+n'ont rien de mécanique : chaque glose est une décision pédagogique, à
+soumettre avant d'écrire. Et les neuf synonymes attendent `synonymes.json`.
