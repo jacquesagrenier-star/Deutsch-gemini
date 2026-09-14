@@ -4450,6 +4450,12 @@ body[data-theme="dark"] .mos-cadre{
    fini. Elle ne doit jamais concurrencer le titre de l'oeuvre. */
 .mos-notice{font-size:11px; line-height:1.45; color:#576177; margin-top:6px; text-align:start;}
 body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
+/* Le reste a faire, sous le cartouche progressif de la vue agrandie. */
+.mos-plein-reste{font-size:12px; color:#9aa3b2; margin-top:8px;}
+.mos-plein-legende .mos-identite{justify-content:center;}
+.mos-plein-legende .mos-peintre{color:#eef2f8;}
+.mos-plein-legende .mos-titre{color:#c3cad6;}
+.mos-plein-legende .mos-annee{color:#a8b1c0;}
 .mos-plein-notice{
     font-size:12.5px; line-height:1.55; color:#c3cad6; margin-top:10px;
     max-width:52ch; text-align:start;
@@ -4894,7 +4900,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 </div>
             </div>
             <div class="mos-droite">
-                <div id="mosaiqueCartouche" class="mos-cartouche"></div>
                 <!-- ⚠️ LE PIED RESTE, MAIS IL SE TAIT EN TEMPS NORMAL (v585).
                      Jacques a retire « encore 42 carreaux » : la jauge le dit.
                      Mais ce pied portait DEUX AUTRES messages, et ils ne sont
@@ -5415,7 +5420,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v587</span>
+    <span class="subtitle-version">v588</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24512,7 +24517,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 587;
+const APP_VERSION = 588;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26468,60 +26473,32 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
 // -- on peut deviner un peintre avant de deviner un titre, et a la fin il reste
 // une phrase entiere a lire. Demande de Jacques : le peintre, l'annee, le titre.
 function cartoucheMosaique(m, part, fini){
-    const n = document.getElementById("mosaiqueCartouche");
-    if(!n) return;
+    // ⚠️ ELLE RETOURNE DU HTML, ELLE N'ECRIT PLUS NULLE PART (v588). Le meme
+    // cartouche sert desormais a DEUX endroits -- et il n'en habite plus
+    // qu'un : la vue agrandie. Voir la note de son appel.
     const total = (MOSAIQUES || []).length;
     const rang = etatMosaique().r;
-    // ⚠️ TROIS RANGEES AU LIEU DE CINQ LIGNES EMPILEES (v583). Demande de
-    // Jacques : « gagner de l'espace en hauteur, que ce soit lisible et clair,
-    // mais mieux dispose ». Sous une bande de 3/1, un cartouche de cinq lignes
-    // pesait plus lourd que le tableau lui-meme.
-    //
-    // L'annee, le peintre et le titre passent sur UNE rangee, separes par des
-    // points medians.
-    //
-    // ⚠️ L'ANNEE SE NOMME TOUJOURS. Elle arrive la premiere : un nombre nu --
-    // « 1905 » -- ne dit pas ce qu'il est. Nomme, il devient le premier indice
-    // de la devinette au lieu d'une donnee orpheline.
-    //
-    // ⚠️ ET LE SEPARATEUR NE S'ECRIT QU'ENTRE DEUX MORCEAUX PRESENTS. Le
-    // cartouche se devoile en trois temps, et un « · » suspendu devant du vide
-    // se lirait comme un defaut d'affichage. C'est pour ca qu'on assemble un
-    // tableau puis qu'on le JOINT, au lieu de concatener.
-    // ⚠️ NI LE RANG NI LE COMPTE DE CARREAUX (v585). « Tableau 3 sur 65 » et
-    // « encore 42 carreaux » ont ete retires ensemble : la jauge du bas de
-    // l'image dit les deux d'un coup, et Jacques a tranche -- « la barre de
-    // progression est suffisante pour l'oeil pour voir qu'on evolue ». Deux
-    // compteurs chiffres disaient ce qu'un trait montre.
-    const jauge = document.getElementById("mosaiqueJauge");
-    if(jauge) jauge.style.width = Math.round(Math.min(1, part) * 100) + "%";
-    let h = "";
+    // ⚠️ « PEINT EN » RESTE. Un « 1905 » nu ne dit pas ce qu'il est, et il
+    // arrive SEUL au premier des trois temps du devoilement.
     const bouts = [];
-    // ⚠️ « PEINT EN » RESTE, TOUJOURS (v587). J'avais essaye de le retirer des
-    // que le peintre apparait, en croyant que Jacques le trouvait de trop.
-    // Il a repondu de le garder. Et la raison d'origine n'a pas bouge : un
-    // « 1905 » nu ne dit pas ce qu'il est, et il arrive SEUL -- c'est le
-    // premier des trois temps du devoilement.
-    const avecPeintre = (fini || part >= 0.70);
     if((fini || part >= 0.40) && m.annee)
         bouts.push('<span class="mos-annee">' + tf("mosaique_annee", { a: m.annee }) + '</span>');
-    if(avecPeintre)
+    if(fini || part >= 0.70)
         bouts.push('<span class="mos-peintre">' + m.peintre + '</span>');
     if(fini) bouts.push('<span class="mos-titre">' + m.titre + '</span>');
+    let h = "";
     if(bouts.length) h += '<div class="mos-ligne mos-identite">'
                         + bouts.join('<span class="mos-sep">\u00b7</span>') + '</div>';
-    // ⚠️ LA NOTICE N'ARRIVE QU'A LA FIN, ET C'EST VOULU. Sur une carte qu'on
-    // regarde d'un coup d'oeil au milieu d'une seance, trois phrases sur la vie
-    // d'un peintre sont du bruit. Au moment du trophee, l'image est finie et il
-    // n'y a plus rien a faire d'autre que la regarder : c'est le seul instant
-    // ou l'on a envie de lire. Question posee par Jacques lui-meme -- « ou si
-    // c'est surcharge en information » -- et la reponse est : selon le moment.
+    // ⚠️ LA NOTICE N'ARRIVE QU'A LA FIN, ET C'EST VOULU. Au moment du trophee,
+    // l'image est finie et il n'y a plus rien a faire d'autre que la regarder :
+    // c'est le seul instant ou l'on a envie de lire.
     if(fini){
         const bio = noticePeintre(m.peintre);
         if(bio) h += '<div class="mos-notice">' + bio + '</div>';
     }
-    n.innerHTML = h;
+    return h;
 }
+
 
 // ============ NE PAS PEINDRE UN ECRAN QU'ON NE REGARDE PAS (v569) ============
 //
@@ -26607,7 +26584,13 @@ function majMosaiqueAccueil(){
                 canvas.style.transform =
                     "translateY(" + (-25 * chute).toFixed(2) + "%)";
                 dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
-                cartoucheMosaique(m, v.c / g.total, fini);
+                // ⚠️ PLUS DE CARTOUCHE SUR LA CARTE D'ACCUEIL (v588).
+                // Decision de Jacques : « le "peint en 1905", on va l'enlever ;
+                // l'information va etre seulement lorsqu'on clique pour
+                // agrandir le tableau ». La bande redevient ce qu'elle devait
+                // etre -- une texture qui donne envie d'ouvrir -- et la notice
+                // attend qu'on l'ouvre. La jauge, elle, reste : elle ne se lit
+                // pas, elle se voit.
             }finally{ marquerGel(null); }
         }, () => { bloc.classList.add("hidden"); });
 
@@ -26678,7 +26661,17 @@ function ouvrirMosaiquePleinEcran(rang){
                     + ' · ' + (m.annee || "") + (m.mort ? ' · \u2020' + m.mort : "")
                     + (bio ? '<div class="mos-plein-notice">' + bio + '</div>' : "");
             } else {
-                leg.innerHTML = tf("mosaique_reste", { n: Math.max(0, g.total - v.c) });
+                // ⚠️ LE CARTOUCHE PROGRESSIF VIT ICI DEPUIS LA v588. Il ne
+                // disait rien avant la fin, sinon « encore N carreaux » -- et
+                // les trois temps du devoilement (l'annee, puis le peintre,
+                // puis le titre) ne se voyaient que sur la carte d'accueil,
+                // d'ou Jacques les a retires. Sans ce report, ils auraient
+                // disparu de l'application : le devoilement n'aurait plus rien
+                // devoile.
+                leg.innerHTML = cartoucheMosaique(m, v.c / g.total, false)
+                    + '<div class="mos-plein-reste">'
+                    + tf("mosaique_reste", { n: Math.max(0, g.total - v.c) })
+                    + '</div>';
             }
         };
         img.src = MOSAIQUE_BASE + "img/" + m.fichier;
