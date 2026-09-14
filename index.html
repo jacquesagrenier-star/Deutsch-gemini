@@ -5561,7 +5561,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v596</span>
+    <span class="subtitle-version">v597</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24734,7 +24734,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 596;
+const APP_VERSION = 597;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26582,7 +26582,12 @@ function ecrireMosaique(v){
 // seul : deux appareils montrent la meme image au meme etat, et les carreaux ne
 // sautent pas d'une seance a l'autre. Un melange au hasard a chaque rendu
 // rendrait l'image indevinable -- c'est deviner qui donne envie de continuer.
-function ordreCarreaux(rang, total){
+// Part de la fin reservee a la tranche visible. 8 % : assez pour que la
+// derniere piece et sa poignee de voisines tombent sous les yeux, trop peu
+// pour qu'on remarque que le desordre general a ete touche.
+const MOSAIQUE_QUEUE_VISIBLE = 0.08;
+
+function ordreCarreaux(rang, total, cols, rows, chute){
     const ordre = [];
     for(let i = 0; i < total; i++) ordre.push(i);
     let s = 1013904223 + rang * 2654435761;
@@ -26590,6 +26595,34 @@ function ordreCarreaux(rang, total){
         s = (s * 1103515245 + 12345) & 0x7fffffff;
         const k = s % (j + 1);
         const t = ordre[j]; ordre[j] = ordre[k]; ordre[k] = t;
+    }
+    // ⚠️ LE TABLEAU DOIT FINIR LA OU ON LE VOIT (v597). La bande d'accueil ne
+    // montre qu'une tranche ; un ordre uniforme faisait tomber les derniers
+    // carreaux hors champ, et la bande avait l'air finie bien avant de l'etre.
+    // Signale par Jacques : « la partie du bas, on ne la voit pas ».
+    if(!cols || !rows || !(chute > 0)) return ordre;
+    // La fenetre gardee par le cadre, en fraction de la hauteur du canevas :
+    // il est remonte de 25 % de sa chute, donc elle va de 0,25*chute a
+    // 1 - 0,75*chute. Meme calcul que le translateY, et c'est voulu -- deux
+    // formules pour un seul fait finiraient par diverger.
+    const haut = 0.25 * chute, bas = 1 - 0.75 * chute;
+    const vu = k => {
+        const y = (Math.floor(k / cols) + 0.5) / rows;
+        return y >= haut && y <= bas;
+    };
+    const queue = Math.min(total, Math.max(6, Math.round(total * MOSAIQUE_QUEUE_VISIBLE)));
+    // ⚠️ ON PIOCHE PAR LA FIN, PAS PAR LE DEBUT. Prendre les carreaux visibles
+    // les plus PRECOCES pour les renvoyer a la fin viderait la bande pendant
+    // toute la premiere moitie -- on remplacerait un defaut par son symetrique.
+    // Pris par la fin, ce sont des carreaux qui arrivaient deja tard : la
+    // montee reste la meme, seule la derniere marche change de place.
+    let source = total - queue - 1;
+    for(let p = total - 1; p >= total - queue; p--){
+        if(vu(ordre[p])) continue;
+        while(source >= 0 && !vu(ordre[source])) source--;
+        if(source < 0) break;          // tableau sans aucune rangee visible
+        const t = ordre[p]; ordre[p] = ordre[source]; ordre[source] = t;
+        source--;
     }
     return ordre;
 }
@@ -26707,7 +26740,12 @@ function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
         ? "rgba(18,22,29,.34)" : "rgba(255,255,255,.30)";
     fc.fillRect(0, 0, L, H);
 
-    const ordre = ordreCarreaux(etatMosaique().r, total);
+    // La chute se relit du canevas lui-meme : sa largeur et sa hauteur portent
+    // deja le format de l'oeuvre. La passer en argument ferait une quatrieme
+    // copie de la meme information, et une occasion de plus qu'elles se
+    // contredisent.
+    const chute = Math.max(0, 1 - Math.min(L / H, 3) / 3);
+    const ordre = ordreCarreaux(etatMosaique().r, total, cols, rows, chute);
     const ouverts = new Uint8Array(total);
     for(let i = 0; i < Math.min(poses, total); i++) ouverts[ordre[i]] = 1;
     const cw = L / cols, ch = H / rows;
@@ -26835,6 +26873,19 @@ function majMosaiqueAccueil(){
                 canvas.style.transform =
                     "translateY(" + (-25 * chute).toFixed(2) + "%)";
                 dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
+                // ⚠️ LA JAUGE EST ECRITE ICI DEPUIS LA v597, ET ELLE NE L'ETAIT
+                // PLUS DU TOUT DEPUIS LA v588. Ses deux lignes vivaient dans
+                // cartoucheMosaique() -- une fonction dont le nom ne promet
+                // qu'un cartouche. En retirant le cartouche de la carte
+                // d'accueil, j'ai emporte la jauge avec, et elle est restee
+                // blanche sous chaque tableau pendant six versions sans que
+                // rien ne casse : la carte s'affichait, le compte avancait,
+                // seule la barre mentait. Signale par Jacques.
+                // Elle appartient a la fonction qui PEINT LA CARTE, pas a
+                // celle qui compose une legende.
+                const jauge = document.getElementById("mosaiqueJauge");
+                if(jauge) jauge.style.width =
+                    Math.round(Math.min(1, fini ? 1 : v.c / Math.max(1, g.total)) * 100) + "%";
                 // ⚠️ PLUS DE CARTOUCHE SUR LA CARTE D'ACCUEIL (v588).
                 // Decision de Jacques : « le "peint en 1905", on va l'enlever ;
                 // l'information va etre seulement lorsqu'on clique pour

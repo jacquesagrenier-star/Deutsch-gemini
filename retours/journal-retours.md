@@ -4670,3 +4670,40 @@ seule chose de la v592 qui comptait vraiment, et elle est intacte.
 
 *Leçon : une fonction invisible n'existe pas, et la justesse d'une taxonomie ne
 pèse rien contre ça.*
+
+---
+
+## 14 septembre 2026 — la jauge du tableau et l'ordre des carreaux (Jacques)
+
+**« On ne voit pas le bleu dans la barre de progression pour le tableau. »**
+Elle était figée à 0 % **depuis la v588**, six versions plus tôt. Les deux
+lignes qui l'écrivaient vivaient dans `cartoucheMosaique()` — une fonction dont
+le nom ne promet qu'un cartouche. En retirant le cartouche de la carte
+d'accueil, à sa demande, j'ai emporté la jauge avec.
+
+*Ce qui rend ce défaut cher : il ne casse rien.* La carte s'affichait, les
+carreaux s'ouvraient, le compte avançait — seule la barre mentait, en blanc,
+sous chaque tableau. Aucun test ne pouvait le voir : le vérificateur ne juge
+pas une mise en page, et `syntaxe.js` ne juge que la grammaire.
+
+*La réparation n'est pas de remettre les deux lignes où elles étaient*, mais de
+les mettre où elles appartiennent : dans `majMosaiqueAccueil()`, la fonction
+dont le travail est de peindre la carte.
+
+**« Les derniers carreaux doivent se remplir dans la partie du haut, parce que
+la partie du bas, on ne la voit pas. »** La bande d'accueil ne montre qu'une
+tranche du tableau (3/1, ancrée au quart de la chute) ; les carreaux, eux,
+s'ouvraient dans un ordre uniforme sur toute la surface. Le moment de la fin —
+le seul qui compte — se jouait donc le plus souvent hors champ.
+
+Mesuré sur quatre formats et les 65 tableaux :
+
+| | derniers 8 % dans le champ | bande à mi-parcours |
+|---|---|---|
+| avant | 32 % à 64 % | 54 % |
+| après | **100 %** | **54 %** |
+
+La bande ne se remplit ni plus vite ni plus lentement : on n'échange que la
+queue, et on la pioche **par la fin** plutôt que par le début. Réserver toute
+la tranche visible pour la fin l'aurait laissée vide des semaines — on aurait
+remplacé un défaut par son symétrique.
