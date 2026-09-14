@@ -835,6 +835,17 @@ def verifier_taille_des_champs(r, source):
         sel = m.group(1).strip().splitlines()[-1].strip()
         if sel.startswith("/*") or "::placeholder" in sel:
             continue
+        # ⚠️ LE MOT DOIT ETRE UN MOT, PAS UN MORCEAU DE MOT. Le francais
+        # << selecteur >> contient << select >> : le 14 septembre 2026, un
+        # commentaire CSS a fait declarer le bloc suivant comme un champ de
+        # saisie -- un echec sur 16 638 controles, cause par une phrase.
+        #
+        # ⚠️ ET LE FILTRE EST ICI, PAS DANS LA RECHERCHE. Poser une borne de mot entre deux
+        # [^{}]* fait exploser le retour arriere sur un fichier de 28 000
+        # lignes : la premiere tentative de correction n'a jamais rendu la
+        # main. On capture large, on trie apres.
+        if not re.search(r"\b(?:input|textarea|select)\b", sel):
+            continue
         px = re.search(r"font-size:\s*(\d+(?:\.\d+)?)px", m.group(2))
         if px and float(px.group(1)) < 16:
             fautes.append("%s { font-size:%spx }" % (sel, px.group(1)))

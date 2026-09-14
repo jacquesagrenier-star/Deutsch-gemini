@@ -4286,7 +4286,7 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    suspendu sous le titre de la carte se lit comme une erreur. Demande de
    Jacques : « place la section du tableau avant la progression du vocabulaire,
    comme l'en-tete du bloc ». */
-.carte-mosaique{margin-bottom:14px; padding-bottom:13px; border-bottom:1px solid rgba(30,41,59,.10);}
+.carte-mosaique{margin-bottom:14px;}
 /* ============ LA BANDE PLEINE LARGEUR (v582) ============
    Retour d'un designer, rapporte par Jacques : etendre le tableau sur TOUTE
    la largeur de l'accueil. Le cadre a 42 % (v546) avait ete pose pour
@@ -4320,7 +4320,15 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        a 0,40   les tetes retombent hors du cadre
    Les trois montrent leur SUJET a 0,25, et c'est ce qui donne envie d'ouvrir.
    Aucun raisonnement ne donne ce chiffre ; trois images l'ont donne. */
-.carte-mosaique{display:block;}
+/* ⚠️ LA BANDE SORT DE LA MARGE DE LA CARTE (v584). Demande de Jacques :
+   « les coins du haut, je les agrandirais comme le rectangle dans lequel elle
+   se trouve, pour l'harmoniser ». Une bande qui s'arrete a 22 px des bords
+   n'est pas un bandeau, c'est une image posee. Les marges negatives annulent
+   le padding de .card, et le haut remonte jusqu'au bord.
+   ⚠️ 22 px ET 24 px NE SONT PAS UNE COINCIDENCE A DEVINER : ce sont le padding
+   et le border-radius de .card, l'un pour la marge, l'autre pour les coins. Si
+   .card change, ces deux valeurs changent avec. */
+.carte-mosaique{display:block; margin:-22px -22px 14px; }
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
    Jacques : « quelque chose qui me derange visuellement ». */
@@ -4332,7 +4340,16 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        Principe pose par Jacques : noir sur clair, gris sur noir. D'ou un filet
        d'encre pleine sur l'accueil de jour -- et son inverse en mode nuit, ou
        un cadre noir disparaitrait dans le fond sombre. */
-    border:2px solid #1C2430; border-radius:0; overflow:hidden;
+    /* ⚠️ LES COINS DU HAUT S'ARRONDISSENT, LES AUTRES NON (v584). Le
+       principe pose plus tot -- « un tableau n'a pas les coins arrondis,
+       l'arrondi le fait ressembler a une vignette » -- valait pour une
+       vignette POSEE sur la carte. En bandeau qui touche les bords, c'est
+       l'inverse : un coin carre depasserait de l'arrondi de la carte et se
+       verrait comme une erreur. Les coins du BAS restent carres, parce que
+       la bande s'arrete la au milieu de la carte. */
+    border:2px solid #1C2430; overflow:hidden;
+    border-radius:24px 24px 0 0;   /* = le border-radius de .card */
+    border-top:none; border-inline:none;
     box-shadow:inset 0 0 0 2px rgba(255,255,255,.92);
     background:#f3f1ec; cursor:zoom-in; line-height:0;
     /* Pleine largeur. Le rapport est pose EN JAVASCRIPT, tableau par tableau :
@@ -4364,6 +4381,16 @@ body[data-theme="dark"] .mos-cadre{
     width:100%; height:auto;
 }
 .mos-cartouche{text-align:start; line-height:1.35;}
+/* L'EN-TETE : le rang a gauche, les actions a droite, sur la meme ligne que
+   celle que le rang occupait deja. */
+.mos-entete{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:8px; margin-bottom:6px;
+}
+.mos-actions{display:flex; align-items:center; gap:6px; flex:0 0 auto;}
+/* Le ⓘ de la carte : seul sur sa ligne, aligne a droite, apres le contenu
+   qu'il documente. */
+.carte-info-ligne{display:flex; justify-content:flex-end; margin-top:10px;}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
 /* UNE SEULE RANGEE POUR L'ANNEE, LE PEINTRE ET LE TITRE (v583). Elle enveloppe
@@ -4389,8 +4416,10 @@ body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
     font-size:12.5px; line-height:1.55; color:#c3cad6; margin-top:10px;
     max-width:52ch; text-align:start;
 }
-.mos-bas{display:flex; align-items:center; justify-content:space-between;
-    gap:8px; margin-top:auto; padding-top:6px; flex-wrap:wrap;}
+/* ⚠️ .mos-bas A DISPARU (v584) : ses deux boutons sont montes dans
+   .mos-entete et son pied a rejoint la colonne. La regle est retiree plutot
+   que laissee en place -- un selecteur qui ne s'applique a rien se lit comme
+   un oubli et survit a toutes les relectures. */
 .mos-pied{font-size:11px; color:#7b8798;}
 /* ⚠️ UN BOUTON DOIT RESSEMBLER A UN BOUTON. « Ta galerie » etait un texte
    bleu : rien ne disait qu'on pouvait le toucher, sinon sa couleur -- et la
@@ -4791,6 +4820,31 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              Jacques : « qu'on voie déjà l'endroit où va être le tableau ». Un
              cadre vide dans un musee se regarde ; une grille vide, non. -->
         <div id="carteMosaique" class="carte-mosaique hidden">
+            <!-- L'EN-TETE, AU-DESSUS DU TABLEAU (v584). Demande de Jacques :
+                 le rang a gauche au-dessus du cadre, « Ta galerie » et le ⓘ a
+                 droite. Ils etaient sous le cartouche, ou ils ajoutaient une
+                 rangee a une carte qu'on cherchait justement a raccourcir. En
+                 tete, ils occupent une place qui existait deja -- la ligne du
+                 rang -- et la carte perd une rangee entiere. -->
+            <div class="mos-entete">
+                <span id="mosaiqueRang" class="mos-rang"></span>
+                <!-- ⚠️ LE ⓘ N'EST PAS ICI, ET C'EST DELIBERE (v584). Il ouvre
+                     « Comment lire cette carte » : il documente la carte
+                     ENTIERE -- la seance du jour, le vocabulaire, la serie --
+                     pas seulement le tableau. Signale par Jacques quand je
+                     l'avais monte ici avec « Ta galerie » : « l'information ne
+                     sert pas juste pour le tableau ». Un bouton d'aide place
+                     dans l'en-tete d'une section promet de l'aide SUR CETTE
+                     SECTION. Il vit donc au bas de la carte, apres tout ce
+                     qu'il explique.
+                     « Ta galerie », elle, appartient bien au tableau : elle
+                     reste. -->
+                <div class="mos-actions">
+                    <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
+                            data-i18n="mosaique_galerie">Ta galerie</button>
+                </div>
+            </div>
+
             <!-- ⚠️ RIEN NE DISAIT QU'ON POUVAIT L'AGRANDIR. Le curseur `zoom-in`
                  n'existe pas sur un telephone, et une image bordee ressemble a
                  une illustration, pas a un bouton. Signale par Jacques. La
@@ -4809,14 +4863,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 </span>
             </div>
             <div class="mos-droite">
-            <div id="mosaiqueCartouche" class="mos-cartouche"></div>
-            <div class="mos-bas">
+                <div id="mosaiqueCartouche" class="mos-cartouche"></div>
                 <span id="mosaiquePied" class="mos-pied"></span>
-                <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
-                        data-i18n="mosaique_galerie">Ta galerie</button>
-                <button type="button" class="info-progression" onclick="ouvrirInfoProgression()"
-                                data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
-            </div>
             </div>
         </div>
 
@@ -4866,6 +4914,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
             <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
+        </div>
+
+        <!-- LE ⓘ DE LA CARTE, APRES TOUT CE QU'IL EXPLIQUE (v584).
+             ⚠️ PAS EN ABSOLU. Il l'a ete, cale au coin bas ; quand la carte a
+             grandi il s'est retrouve a 1071 px, hors de l'ecran -- « je ne
+             vois plus le i », signale par Jacques. Un element positionne dans
+             un conteneur dont la hauteur varie se deplace sans qu'on touche a
+             son code. Dans le flux, sa place ne depend de rien. -->
+        <div class="carte-info-ligne">
+            <button type="button" class="info-progression" onclick="ouvrirInfoProgression()"
+                    data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
         </div>
 
         <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
@@ -5298,7 +5357,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v583</span>
+    <span class="subtitle-version">v584</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24395,7 +24454,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 583;
+const APP_VERSION = 584;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26371,8 +26430,12 @@ function cartoucheMosaique(m, part, fini){
     // cartouche se devoile en trois temps, et un « · » suspendu devant du vide
     // se lirait comme un defaut d'affichage. C'est pour ca qu'on assemble un
     // tableau puis qu'on le JOINT, au lieu de concatener.
-    let h = '<div class="mos-ligne mos-rang">' + tf("mosaique_compte",
-              { n: ((rang - 1) % Math.max(1, total)) + 1, total: total }) + '</div>';
+    // LE RANG VIT DESORMAIS DANS L'EN-TETE, au-dessus du tableau : il n'est
+    // plus dans la chaine qu'on assemble ici.
+    const rangEl = document.getElementById("mosaiqueRang");
+    if(rangEl) rangEl.textContent = tf("mosaique_compte",
+              { n: ((rang - 1) % Math.max(1, total)) + 1, total: total });
+    let h = "";
     const bouts = [];
     if((fini || part >= 0.40) && m.annee)
         bouts.push('<span class="mos-annee">' + tf("mosaique_annee", { a: m.annee }) + '</span>');
