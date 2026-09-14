@@ -3779,11 +3779,9 @@ body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
     color:#697285; font-size:12.5px; font-weight:700; cursor:pointer;
     transition:border-color .15s ease, color .15s ease, transform .12s ease;
 }
-.judge-known::before{
-    content:"✓"; font-size:13px; font-weight:800; color:#9aa2b1; flex:none;
-}
+/* Le glyphe de tete n'appartient plus qu'a « Sortir du coffre » : « Je le
+   sais par coeur » a son etoile, en SVG, pour pouvoir se remplir. */
 .judge-known:hover{border-color:#c9d0dc; color:#4a5464;}
-.judge-known:hover::before{color:#697285;}
 .judge-known:active{transform:scale(.97);}
 body[data-theme="dark"] .judge-known{
     background:#161a22; border-color:#2a3240; color:#aab3c2;
@@ -3842,10 +3840,39 @@ body[data-theme="dark"] .garde-btn.on{color:#E8A23A; background:rgba(232,162,58,
    et « Je le sais par coeur » s'efface avec lui -- on n'ouvre pas son coffre
    pour graduer un mot. */
 .garde-sortir{display:none;}
-.garde-sortir::before{content:"\2191";}
+.garde-sortir::before{
+    content:"\2191"; font-size:13px; font-weight:800; color:#9aa2b1; flex:none;
+}
 .flashcard-actions.paquet-garde .garde-btn,
 .flashcard-actions.paquet-garde .judge-known:not(.garde-sortir){display:none;}
 .flashcard-actions.paquet-garde .garde-sortir{display:flex;}
+
+/* ⚠️ VIDE A L'ARRIVEE, PLEINE QUAND ON LE DIT (v593).
+   Elle n'arrive JAMAIS pleine, meme sur un mot deja maitrise. Jacques : « quand
+   le mot va reapparaitre, l'etoile n'est plus pleine, parce que c'est comme une
+   nouvelle revision ». Le code disait deja la meme chose -- markMastered() fait
+   revenir le mot POUR LE VERIFIER, et une etoile pleine d'avance affirmerait
+   l'acquis a l'instant meme ou l'app demande de le prouver.
+   ⚠️ ET ELLE A LE TEMPS DE S'ALLUMER : markMastered() laisse 1 250 ms avant
+   d'avancer, le temps que le trophee se pose. Sans cette attente il n'y aurait
+   rien a voir -- meme raison qui a sorti le coffre de la rangee des jugements.
+   Le cinquieme de tour n'est pas un ornement : c'est exactement une pointe
+   d'etoile, donc la forme revient sur elle-meme et seul l'eclat se remarque. */
+.judge-known .etoile-coeur{
+    width:15px; height:15px; flex:0 0 auto; color:#9aa2b1;
+    transition:color .2s ease, fill .2s ease,
+               transform .34s cubic-bezier(.34,1.45,.64,1);
+}
+.judge-known:hover .etoile-coeur{color:#697285;}
+.judge-known.sue{border-color:rgba(232,162,58,.55); color:#a0700f;}
+.judge-known.sue .etoile-coeur{
+    color:#E8A23A; fill:#E8A23A; transform:scale(1.2) rotate(72deg);
+}
+body[data-theme="dark"] .judge-known.sue{border-color:rgba(232,162,58,.5); color:#E8A23A;}
+@media (prefers-reduced-motion:reduce){
+    .judge-known .etoile-coeur{transition:color .2s ease, fill .2s ease;}
+    .judge-known.sue .etoile-coeur{transform:none;}
+}
 
 /* Fin de paquet : le seul moment ou les actions de SESSION ont leur place.
    Avant v227 elles etaient collees sous chaque carte, ce qui faisait sept
@@ -5541,7 +5568,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v592</span>
+    <span class="subtitle-version">v593</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7299,7 +7326,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 </span>
             </button>
         </div>
-        <button class="judge-known" onclick="markKnownAlready()">
+        <button class="judge-known" id="judgeKnownBtn" onclick="markKnownAlready()">
+            <!-- ⚠️ UNE ETOILE, PAS UN CROCHET (v593). Le bouton portait le MEME
+                 ✓ que « Je savais » juste au-dessus, alors que les deux gestes
+                 n'ont rien en commun : l'un monte d'un cran sur l'echelle,
+                 l'autre la saute entiere. Demande de Jacques.
+                 Elle est vide a l'arrivee, toujours -- voir la note du CSS. -->
+            <svg class="etoile-coeur" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
+                 aria-hidden="true">
+                <path d="M12 3.5l2.63 5.33 5.87.86-4.25 4.14 1 5.85L12 16.95 6.75 19.7l1-5.85L3.5 9.7l5.87-.86z"/>
+            </svg>
             <span data-i18n="review_known">Je le sais par cœur</span>
             <small class="judge-echeance" id="judgeEcheanceKnown"></small>
         </button>
@@ -24690,7 +24727,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 592;
+const APP_VERSION = 593;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27612,6 +27649,10 @@ function estGardee(it){
 // repeindrait « Garder » sur un mot deja garde. Le defaut ne se verrait qu'en
 // changeant de langue au milieu d'une seance -- donc jamais, jusqu'au jour ou.
 function majBoutonGarde(){
+    // L'etoile s'eteint ici : c'est le point de passage de chaque carte
+    // affichee, et chaque carte repart d'une etoile vide.
+    const be = document.getElementById("judgeKnownBtn");
+    if(be) be.classList.remove("sue");
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.toggle("paquet-garde", dansLePaquetGarde());
     const btn = document.getElementById("gardeBtn");
@@ -27707,6 +27748,8 @@ function markKnownAlready(){
     sessionVues++;
     sessionSues++;
     markMastered();
+    const be = document.getElementById("judgeKnownBtn");
+    if(be) be.classList.add("sue");
 }
 
 function showFlashcardEnd(){
