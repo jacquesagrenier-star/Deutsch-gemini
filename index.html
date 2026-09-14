@@ -4350,7 +4350,16 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        ⚠️ ET 6 px PLUTOT QUE 4 : sur un telephone, 4 px se perdent dans la
        texture d'un tableau. Elle doit se lire d'un coup d'oeil, sans etre
        cherchee. */
-    position:absolute; inset-inline:0; left:0; right:0; bottom:0; height:6px;
+    position:absolute; inset-inline:0; left:0; right:0; bottom:0;
+    /* ⚠️ 7 px DONT UN DE FILET. Le filet charbon court sous TOUTE la largeur,
+       sous le bleu comme sous le blanc : c'est lui qui dit qu'il y a un objet
+       la, et pas une bavure claire au bas du tableau. Demande de Jacques,
+       apres qu'on eut retire le trait noir de 2 px -- celui-la doublait la
+       barre ; celui-ci la pose. Un pixel separe, deux font une seconde ligne.
+       box-sizing:border-box pour que le filet soit DANS les 7 px : sans lui la
+       jauge grandirait et sortirait du cadre par le bas. */
+    height:7px; box-sizing:border-box;
+    border-bottom:1px solid rgba(40,48,62,.85);
     /* ⚠️ LA PART NON FAITE EST BLANCHE ET OPAQUE (v587), ET J'AVAIS COMPRIS
        L'INVERSE. Je l'avais rendue transparente en croyant qu'il fallait
        laisser voir l'oeuvre ; Jacques : « ce qui n'est pas encore atteint, je
@@ -4430,13 +4439,21 @@ body[data-theme="dark"] .mos-cadre{
    « retire le cercle autour, et reduis le i, c'est trop gros pour rien ». Une
    lettre suffit quand elle est seule dans son coin ; le cercle ne separait de
    rien. */
+/* ⚠️ UN CERCLE, MAIS FIN ET PETIT. Il heritait d'une pastille de 24 px trop
+   lourde ; sans cercle du tout, « il y a seulement i » et rien ne dit que
+   c'est un bouton. Demande de Jacques : « trace un cercle blanc autour, fin et
+   petit, mais qu'on puisse le voir ».
+   ⚠️ 20 px ET UN FILET D'UN PIXEL : c'est le contour qui porte le sens de
+   bouton, pas sa taille. Une lettre seule est un ornement ; cerclee, elle se
+   touche. */
 .info-seance{
     margin-inline-start:auto;
-    border:none; background:none; color:rgba(255,255,255,.90);
-    width:auto; height:auto; font-size:14px; padding:0 2px;
+    width:20px; height:20px; padding:0; font-size:12px;
+    border:1px solid rgba(255,255,255,.80); border-radius:50%;
+    background:none; color:rgba(255,255,255,.95);
     align-self:center; flex:0 0 auto;
 }
-.info-seance:hover{background:none; color:#fff;}
+.info-seance:hover{background:rgba(255,255,255,.16); color:#fff;}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
 /* UNE SEULE RANGEE POUR L'ANNEE, LE PEINTRE ET LE TITRE (v583). Elle enveloppe
@@ -5428,7 +5445,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v589</span>
+    <span class="subtitle-version">v590</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24525,7 +24542,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 589;
+const APP_VERSION = 590;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
