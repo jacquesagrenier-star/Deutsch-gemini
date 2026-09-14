@@ -5669,7 +5669,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v604</span>
+    <span class="subtitle-version">v605</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5707,6 +5707,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          La version precedente enumerait des phrases sans rien montrer : il
          fallait se souvenir de l'accueil pour la comprendre. -->
 
+    <!-- ⚠️ LA PORTE PRINCIPALE N'ETAIT EXPLIQUEE NULLE PART (v605). L'ecran
+         detaillait le compte, le vocabulaire, le tableau et les quatre boutons,
+         et pas un mot sur les trois commandes du bandeau bleu -- le seul
+         endroit ou l'on entre sans avoir rien a choisir. Demande de Jacques.
+         La question la plus utile est la derniere de la liste : ce que
+         « Commencer » fait vraiment apres qu'on a choisi un niveau. Personne ne
+         peut le deviner, puisque le niveau ne gouverne QUE LE NEUF. -->
+    <h3 class="info-titre" data-i18n="ip_partie_seance">Ma séance du jour</h3>
     <div class="ip-bloc">
         <div class="ip-demo">
             <span class="seance-compte" style="background:#2f62d6">12 / 40</span>
@@ -5716,6 +5724,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <p data-i18n="ip_seance_p"></p>
         </div>
     </div>
+    <ul class="info-legende">
+        <li data-i18n="ip_seance_niveaux"></li>
+        <li id="ipSeanceCommencer"></li>
+        <li data-i18n="ip_seance_gardes"></li>
+        <li data-i18n="ip_seance_theme"></li>
+    </ul>
 
     <!-- ⚠️ LES QUATRE BOUTONS ARRIVENT ICI DEPUIS LA v600. Ils etaient
          expliques sous chaque carte, par un ⓘ qu'il fallait deplier au moment
@@ -8473,6 +8487,11 @@ const I18N = {
         carte_info_kicker: "Ta progression",
         info_partie_accueil: "Sur l'accueil",
         info_partie_ici: "Rangé ici",
+        ip_partie_seance: "Ma séance du jour",
+        ip_seance_niveaux: "Les niveaux A1 à C1 décident d'où viennent les mots NOUVEAUX — pas tes révisions. Celles-ci reviennent de tous les niveaux que tu as déjà travaillés, quel que soit le niveau affiché.",
+        ip_seance_commencer: "« Commencer » compose la séance pour toi : d'abord les mots qu'il est temps de revoir, puis des mots nouveaux du niveau choisi, au plus {n} par jour. Un quart de la séance ({p} %) reste réservé au neuf, pour que le niveau choisi commande toujours quelque chose, même quand le retard est grand.",
+        ip_seance_gardes: "« Gardés » ouvre ton coffre : les mots que tu y as mis avec « Garder ». Tu peux y tourner autant que tu veux — rien de ce que tu y fais ne change une échéance ni l'objectif du jour.",
+        ip_seance_theme: "« par thème » est l'autre porte : tu choisis toi-même un thème, au lieu de laisser l'app composer la séance.",
         ip_seance_t: "Le compte de la séance",
         ip_seance_p: "Les cartes que tu as jugées aujourd'hui, sur ton objectif. Une carte demande une réponse — « Encore » ou « Je savais » — pour compter.",
         ip_vocab_t: "La progression du vocabulaire",
@@ -9433,6 +9452,11 @@ const I18N = {
         carte_info_kicker: "Your progress",
         info_partie_accueil: "On the home screen",
         info_partie_ici: "Kept here",
+        ip_partie_seance: "Today's session",
+        ip_seance_niveaux: "The levels A1 to C1 decide where NEW words come from — not your reviews. Those come back from every level you have already worked on, whatever level is shown.",
+        ip_seance_commencer: "“Start” builds the session for you: first the words it is time to see again, then new words from the chosen level, at most {n} a day. A quarter of the session ({p}%) stays reserved for new words, so the level you choose always commands something, even when the backlog is large.",
+        ip_seance_gardes: "“Kept” opens your chest: the words you put there with “Keep”. You can go round it as often as you like — nothing you do there changes a due date or the daily goal.",
+        ip_seance_theme: "“by theme” is the other door: you pick a theme yourself instead of letting the app build the session.",
         ip_seance_t: "The session count",
         ip_seance_p: "The cards you judged today, against your goal. A card needs an answer — « Again » or « I knew it » — to count.",
         ip_vocab_t: "Vocabulary progress",
@@ -10395,6 +10419,11 @@ const I18N = {
         carte_info_kicker: "İlerlemen",
         info_partie_accueil: "Ana ekranda",
         info_partie_ici: "Burada saklı",
+        ip_partie_seance: "Bugünkü seansım",
+        ip_seance_niveaux: "A1'den C1'e seviyeler YENİ kelimelerin nereden geldiğine karar verir — tekrarlarına değil. Tekrarlar, hangi seviye görünürse görünsün, daha önce çalıştığın bütün seviyelerden gelir.",
+        ip_seance_commencer: "“Başla” seansı senin için kurar: önce yeniden görülme zamanı gelen kelimeler, sonra seçilen seviyeden yeni kelimeler, günde en fazla {n} tane. Seansın dörtte biri ({p}%) yeniye ayrılır; böylece birikmiş tekrar çok olsa bile seçtiğin seviye her zaman bir şeye karar verir.",
+        ip_seance_gardes: "“Saklananlar” sandığını açar: “Sakla” ile oraya koyduğun kelimeler. İstediğin kadar dönebilirsin — orada yaptığın hiçbir şey bir tarihi ya da günlük hedefi değiştirmez.",
+        ip_seance_theme: "“temaya göre” diğer kapıdır: seansı uygulamanın kurmasına bırakmak yerine temayı kendin seçersin.",
         ip_seance_t: "Oturum sayacı",
         ip_seance_p: "Bugün değerlendirdiğin kartlar, hedefine göre. Bir kartın sayılması için yanıt gerekir.",
         ip_vocab_t: "Kelime ilerlemesi",
@@ -11987,6 +12016,11 @@ const I18N = {
         carte_info_kicker: "Твій поступ",
         info_partie_accueil: "На головному екрані",
         info_partie_ici: "Зберігається тут",
+        ip_partie_seance: "Моє заняття на сьогодні",
+        ip_seance_niveaux: "Рівні від A1 до C1 вирішують, звідки беруться НОВІ слова — а не твої повторення. Повторення повертаються з усіх рівнів, які ти вже опрацював, хоч би який рівень був показаний.",
+        ip_seance_commencer: "«Почати» складає заняття за тебе: спершу слова, які час побачити знову, потім нові слова з обраного рівня, щонайбільше {n} на день. Чверть заняття ({p} %) лишається за новими словами, щоб обраний рівень завжди щось вирішував, навіть коли накопичилося багато.",
+        ip_seance_gardes: "«Збережені» відкриває твою скриню: слова, які ти поклав туди через «Зберегти». Можеш крутитися там скільки завгодно — ніщо з того, що ти там робиш, не змінює ні терміну, ні денної мети.",
+        ip_seance_theme: "«за темою» — інші двері: ти сам обираєш тему, замість того щоб застосунок складав заняття.",
         ip_seance_t: "Лічильник сеансу",
         ip_seance_p: "Картки, які ти оцінив сьогодні, щодо твоєї мети. Картка зараховується лише з відповіддю.",
         ip_vocab_t: "Поступ у лексиці",
@@ -12910,6 +12944,11 @@ const I18N = {
         carte_info_kicker: "پیشرفت تو",
         info_partie_accueil: "در صفحهٔ خانه",
         info_partie_ici: "نگه‌داشته اینجا",
+        ip_partie_seance: "جلسهٔ امروز من",
+        ip_seance_niveaux: "سطح‌های A1 تا C1 تعیین می‌کنند واژه‌های تازه از کجا بیایند — نه مرورهایت. مرورها از همهٔ سطح‌هایی که پیش‌تر کار کرده‌ای برمی‌گردند، هر سطحی که نشان داده شود.",
+        ip_seance_commencer: "«شروع» جلسه را برایت می‌چیند: نخست واژه‌هایی که وقت دیدن دوباره‌شان است، سپس واژه‌های تازه از سطح انتخابی، حداکثر {n} تا در روز. یک‌چهارم جلسه ({p}٪) برای واژه‌های تازه کنار گذاشته می‌شود تا سطحی که برگزیده‌ای همیشه چیزی را تعیین کند، حتی وقتی عقب‌ماندگی زیاد است.",
+        ip_seance_gardes: "«نگه‌داشته‌ها» صندوقت را باز می‌کند: واژه‌هایی که با «نگه‌داشتن» آنجا گذاشته‌ای. هر قدر بخواهی می‌توانی دور بزنی — هیچ‌کدام از کارهایت آنجا سررسیدی یا هدف روزانه را تغییر نمی‌دهد.",
+        ip_seance_theme: "«بر پایهٔ موضوع» درِ دیگر است: خودت موضوع را برمی‌گزینی، به‌جای آنکه برنامه جلسه را بچیند.",
         ip_seance_t: "شمارندهٔ جلسه",
         ip_seance_p: "کارت‌هایی که امروز داوری کرده‌ای، نسبت به هدفت. کارت برای شمرده‌شدن به پاسخ نیاز دارد.",
         ip_vocab_t: "پیشرفت واژگان",
@@ -17477,6 +17516,13 @@ function majInfoProgression(){
         const el = document.getElementById(id);
         if(el) el.textContent = tf(cle, vars);
     };
+    // ⚠️ LE QUART ET LA DOSE VIENNENT DES CONSTANTES. Ecrire « 25 % » dans
+    // cinq traductions, c'est cinq phrases qui se mettent a mentir le jour ou
+    // PART_NEUFS_RESERVEE change -- et personne ne le voit.
+    pose("ipSeanceCommencer", "ip_seance_commencer", {
+        p: Math.round(PART_NEUFS_RESERVEE * 100),
+        n: PLAFOND_NEUFS
+    });
     pose("ipTableauCarreaux", "ip_tableau_carreaux", { n: MOSAIQUE_CARREAUX });
     pose("ipTableauPlafond", "ip_tableau_plafond", { n: MOSAIQUE_PLAFOND });
     pose("ipTableauTrophee", "ip_tableau_trophee", { n: MOSAIQUE_SEANCES_TROPHEE });
@@ -24917,7 +24963,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 604;
+const APP_VERSION = 605;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
