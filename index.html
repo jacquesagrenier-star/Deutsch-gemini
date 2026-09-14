@@ -3843,9 +3843,21 @@ body[data-theme="dark"] .judge-garde.on{
     transform:rotate(34deg);
     transition:transform .3s cubic-bezier(.34,1.3,.64,1);
 }
-.judge-garde.on .gc-couvercle, .seance-gardes .gc-couvercle{transform:rotate(0deg);}
+/* ⚠️ FERME PAR DEFAUT SUR « SORTIR DU COFFRE », ET C'EST L'INVERSE DE
+   « GARDER » (v601). Dans le paquet des gardes, le mot EST dans le coffre :
+   le couvercle doit etre ferme tant qu'on le regarde. Il ne s'ouvre qu'au
+   moment ou le mot en sort -- la classe `ouvert` est posee par
+   sortirDuCoffre(), et reviewGood() laisse 520 a 950 ms avant d'avancer, de
+   quoi voir une animation de 300 ms. Demande de Jacques. */
+.judge-garde.on .gc-couvercle,
+.judge-sortir .gc-couvercle,
+.seance-gardes .gc-couvercle{transform:rotate(0deg);}
+.judge-sortir.ouvert .gc-couvercle{transform:rotate(34deg);}
 .gc-serrure{opacity:0; transition:opacity .2s ease .12s;}
-.judge-garde.on .gc-serrure, .seance-gardes .gc-serrure{opacity:1;}
+.judge-garde.on .gc-serrure,
+.judge-sortir .gc-serrure,
+.seance-gardes .gc-serrure{opacity:1;}
+.judge-sortir.ouvert .gc-serrure{opacity:0;}
 @media (prefers-reduced-motion:reduce){
     .gc-couvercle, .gc-serrure{transition:none;}
 }
@@ -4022,7 +4034,12 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 .srs-aide p{margin:0 0 9px}
 .srs-aide p:last-child{margin-bottom:0}
 .srs-aide b{color:#1e293b}
-.srs-aide .srs-aide-echelle{
+/* ⚠️ ELLE SE REPLIE DEPUIS QU'ELLE PORTE DES PHRASES (v601). Les etapes
+   etaient « 10 min », « 1 jour » ; ce sont maintenant les libelles REELS du
+   bouton -- « pas avant la prochaine seance » -- et quatre de ceux-la ne
+   tiennent sur une ligne d'aucun telephone. */
+.srs-aide .srs-aide-echelle{flex-wrap:wrap; row-gap:6px;
+
     display:flex; flex-wrap:wrap; gap:6px; align-items:center;
     margin:2px 0 11px; font-size:12.5px;
 }
@@ -4158,6 +4175,14 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    large des deux enfants -- la rangee de pastilles -- et le bouton, en
    `stretch`, vient exactement d'un bord a l'autre. `minmax(0, ...)` evite le
    debordement quand une langue allonge les etiquettes. */
+/* La colonne de gauche : l'etiquette, puis les niveaux et « Commencer ».
+   `flex:1 1 auto` avec `min-width:0` lui donne toute la place que les deux
+   pastilles de droite ne prennent pas -- et c'est cette largeur-la, et pas une
+   valeur ecrite a la main, qui decide ou l'etiquette se replie. */
+.seance-gauche{
+    display:flex; flex-direction:column; align-items:flex-start;
+    gap:6px; flex:1 1 auto; min-width:0;
+}
 .seance-pile{
     display:inline-grid; grid-template-columns:minmax(0,max-content);
     gap:6px; min-width:0;
@@ -4179,7 +4204,7 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .orb-seance strong{font-size:15px; line-height:1.2; flex:0 0 auto; color:#fff;}
 .seance-sub{font-size:12.5px; color:rgba(255,255,255,.82); flex:1 1 auto; min-width:0;}
 .seance-fleche{flex:0 0 auto; color:#fff; align-self:center;}
-.seance-bas{display:flex; align-items:center; gap:5px; margin-top:6px; flex-wrap:wrap;}
+.seance-bas{display:flex; align-items:center; gap:5px; flex-wrap:wrap; max-width:100%;}
 .seance-etiq{font-size:11px; color:rgba(255,255,255,.78); flex:0 1 auto; line-height:1.3;}
 .seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
 .seance-niveau{
@@ -4508,9 +4533,18 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        PART RESTANTE qui donne son sens a la part faite. */
     background:#fff;
 }
-/* Le trait plein doit se lire sur N'IMPORTE QUEL tableau -- les notres vont du
-   jaune vif au vert sombre. L'ombre portee le detache sans l'alourdir. */
-.mos-jauge-part{height:100%; background:#2f62d6; transition:width .4s ease;}
+/* ⚠️ LE VERT DE « MAITRISE », #0F6E56, ET PAS UN VERT VOISIN (v601). C'est
+   exactement celui de .carte-vocab-part.sus et de la pastille « maitrise » :
+   deux verts presque pareils dans un meme ecran se lisent comme une erreur,
+   pas comme une famille. Demande de Jacques : « le vert veut dire maitriser ;
+   sinon ca fait un peu bizarre ».
+   ⚠️ LA NOTE QUI DEFENDAIT LE BLEU ETAIT PERIMEE, et il a fallu aller la
+   relire avant de la jeter. Elle disait que le trait doit se lire « sur
+   n'importe quel tableau -- les notres vont du jaune vif au vert sombre » :
+   c'etait vrai quand la jauge etait posee sur l'oeuvre. Depuis la v587 la part
+   non faite est un BLANC OPAQUE, donc le trait se lit sur du blanc, jamais sur
+   la peinture. */
+.mos-jauge-part{height:100%; background:#0F6E56; transition:width .4s ease;}
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
    Jacques : « quelque chose qui me derange visuellement ». */
@@ -5224,9 +5258,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  ses pastilles seules ; l'action ensuite, dans un vrai bouton
                  qu'on ne peut pas manquer ; la porte laterale en dessous, en
                  retrait, annoncee par « ou ». -->
-            <div class="seance-bas">
-                <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire en provenance du niveau&nbsp;:</span>
-            </div>
+            <!-- ⚠️ L'ETIQUETTE EST DESCENDUE DANS .seance-gauche (v601). Elle
+                 avait sa propre rangee pleine largeur, donc rien ne lui disait
+                 ou s'arreter : elle courait au-dessus des deux pastilles de
+                 droite. Jacques : « il glisse au-dessus de Garder ».
+                 Elle parle des niveaux et de « Commencer » : sa place est dans
+                 leur colonne, ou elle se replie toute seule sur deux lignes --
+                 dans toutes les langues, a toutes les largeurs, sans aucune
+                 largeur maximale a deviner. -->
             <!-- ⚠️ LE BOUTON EST EMPILE SOUS LES PASTILLES, DANS LA MEME GRILLE.
                  Demande de Jacques : qu'il commence ou commence A1 et finisse ou
                  finit C1. Ce n'est pas une largeur recopiee a la main -- la
@@ -5235,6 +5274,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  un niveau demain deplacera les deux ensemble.
                  ⚠️ « ou par theme » reste HORS de la pile, a droite. -->
             <div class="seance-actions">
+              <div class="seance-gauche">
+              <div class="seance-bas">
+                <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire en provenance du niveau&nbsp;:</span>
+              </div>
               <div class="seance-pile">
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
                       aria-label="Provenance des mots nouveaux"></span>
@@ -5243,6 +5286,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
                          stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                 </button>
+              </div>
               </div>
                 <!-- ⚠️ TROIS PORTES, ET ELLES NE DISENT PAS LA MEME CHOSE :
                      « Commencer » est ce que l'app choisit, « Gardes » est ce
@@ -5611,7 +5655,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v600</span>
+    <span class="subtitle-version">v602</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7869,6 +7913,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="spacer"></div>
         <button class="secondary" onclick="remettreMaitrisesEnRevision()" data-i18n="settings_revoir_maitrises">REVOIR LES MOTS MAÎTRISÉS</button>
         <small style="color:#576177;" data-i18n="settings_revoir_maitrises_desc">Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.</small>
+        <!-- ⚠️ ICI ET PAS DANS LE PAQUET DES GARDES. « Sortir du coffre » vide
+             un mot a la fois, et il faut traverser tout le paquet pour les
+             atteindre : c'est juste pour le menage courant, inutilisable pour
+             repartir de zero. Cette carte des reglages est deja l'endroit des
+             actions de remise a plat -- reset du theme, reset complet, remise
+             en circulation des maitrises -- et elles portent toutes une
+             confirmation. Celle-ci aussi.
+             ⚠️ ELLE NE TOUCHE QUE LE DRAPEAU. Aucune echeance, aucun palier,
+             aucun pourcentage ne bouge : vider le coffre n'est pas un reset,
+             et le libelle doit le dire avant qu'on y touche. -->
+        <div class="spacer"></div>
+        <button class="secondary" onclick="viderLeCoffre()" data-i18n="settings_vider_coffre">VIDER LE COFFRE</button>
+        <small style="color:#576177;" data-i18n="settings_vider_coffre_desc">Retire tous les mots de ton coffre. Ta progression n'est pas touchée : seule la marque « gardé » disparaît.</small>
     </div>
 
     <div class="card">
@@ -8251,6 +8308,10 @@ const I18N = {
         garder_fait: "Gardé",
         gardes_titre: "Gardés",
         garde_sortir: "Sortir du coffre",
+        settings_vider_coffre: "VIDER LE COFFRE",
+        settings_vider_coffre_desc: "Retire tous les mots de ton coffre. Ta progression n'est pas touchée : seule la marque « gardé » disparaît.",
+        confirm_vider_coffre: "Retirer les {n} mots de ton coffre ? Ta progression, tes échéances et ton pourcentage ne bougent pas — seule la marque « gardé » disparaît.",
+        vider_coffre_fait: "Coffre vidé : {n} mots retirés.",
         gardes_vide: "Le coffre est vide. Sous une carte, « Garder » y met un mot à retravailler à part : il reste dans tes séances, et tu le retrouves ici quand tu veux.",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
@@ -9205,6 +9266,10 @@ const I18N = {
         garder_fait: "Kept",
         gardes_titre: "Kept",
         garde_sortir: "Take out of the chest",
+        settings_vider_coffre: "EMPTY THE CHEST",
+        settings_vider_coffre_desc: "Removes every word from your chest. Your progress is untouched: only the “kept” mark goes.",
+        confirm_vider_coffre: "Remove the {n} words from your chest? Your progress, your due dates and your percentage stay as they are — only the “kept” mark goes.",
+        vider_coffre_fait: "Chest emptied: {n} words removed.",
         gardes_vide: "The chest is empty. Under a card, “Keep” puts a word aside to work on again: it stays in your sessions, and you find it here whenever you like.",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
@@ -10161,6 +10226,10 @@ const I18N = {
         garder_fait: "Saklandı",
         gardes_titre: "Saklananlar",
         garde_sortir: "Sandıktan çıkar",
+        settings_vider_coffre: "SANDIĞI BOŞALT",
+        settings_vider_coffre_desc: "Sandığındaki tüm kelimeleri çıkarır. İlerlemene dokunulmaz: yalnızca “saklandı” işareti kalkar.",
+        confirm_vider_coffre: "Sandığındaki {n} kelime çıkarılsın mı? İlerlemen, tarihlerin ve yüzden öyle kalır — yalnızca “saklandı” işareti kalkar.",
+        vider_coffre_fait: "Sandık boşaltıldı: {n} kelime çıkarıldı.",
         gardes_vide: "Sandık boş. Bir kartın altındaki “Sakla”, üzerinde yeniden çalışmak istediğin bir kelimeyi içine koyar: kelime seanslarında kalır, istediğin zaman burada bulursun.",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
@@ -11382,6 +11451,10 @@ const I18N = {
         garder_fait: "Збережено",
         gardes_titre: "Збережені",
         garde_sortir: "Вийняти зі скрині",
+        settings_vider_coffre: "СПОРОЖНИТИ СКРИНЮ",
+        settings_vider_coffre_desc: "Виймає зі скрині всі слова. Твій поступ не змінюється: зникає лише позначка «збережено».",
+        confirm_vider_coffre: "Вийняти {n} слів зі скрині? Твій поступ, терміни й відсоток лишаються як є — зникає лише позначка «збережено».",
+        vider_coffre_fait: "Скриню спорожнено: вийнято {n} слів.",
         gardes_vide: "Скриня порожня. Під карткою «Зберегти» кладе сюди слово, яке хочеш опрацювати окремо: воно лишається у твоїх заняттях, і ти знайдеш його тут будь-коли.",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
@@ -12993,6 +13066,10 @@ const I18N = {
         garder_fait: "نگه داشته شد",
         gardes_titre: "نگه‌داشته‌ها",
         garde_sortir: "برداشتن از صندوق",
+        settings_vider_coffre: "خالی کردن صندوق",
+        settings_vider_coffre_desc: "همهٔ واژه‌ها را از صندوق برمی‌دارد. پیشرفتت دست‌نخورده می‌ماند: فقط نشانهٔ «نگه‌داشته» برداشته می‌شود.",
+        confirm_vider_coffre: "{n} واژه از صندوق برداشته شود؟ پیشرفت، سررسیدها و درصد تو تغییر نمی‌کند — فقط نشانهٔ «نگه‌داشته» برداشته می‌شود.",
+        vider_coffre_fait: "صندوق خالی شد: {n} واژه برداشته شد.",
         gardes_vide: "صندوق خالی است. زیر هر کارت، «نگه‌داشتن» واژه‌ای را که می‌خواهی جداگانه رویش کار کنی در آن می‌گذارد: در جلسه‌هایت می‌ماند و هر وقت بخواهی اینجا پیدایش می‌کنی.",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
@@ -24808,7 +24885,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 600;
+const APP_VERSION = 602;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27590,9 +27667,16 @@ function majEcheances(animerDernier){
 // elle se met a mentir, et une regle expliquee de travers vaut moins que pas
 // d'explication du tout.
 function texteAideSrs(){
-    const j1 = SRS_DAILY_LADDER_DAYS[0];
-    const j2 = SRS_DAILY_LADDER_DAYS[1];
-    const jour = n => tf(n === 1 ? "srs_aide_jour" : "srs_aide_jours", { n: n });
+    // ⚠️ LES QUATRE ETAPES SONT CELLES QUE LE BOUTON AFFICHERA, MOT POUR MOT.
+    // On ne recopie pas les constantes -- on demande a la fonction qui fabrique
+    // le libelle ce qu'elle repondra pour chacun des quatre etats. Ecrire
+    // « 1 jour » ici pendant que le bouton dit « pas avant la prochaine
+    // seance » n'est pas une nuance de style : c'est une aide qui decrit une
+    // autre application que celle qu'on a sous les yeux. Signale par Jacques.
+    const etape = n => echeanceProchaineReussite({
+        srsHits: n,
+        srsDailyStreak: Math.max(0, n - 1)
+    });
     return '<p>' + t("srs_aide_intro") + '</p>'
         // Une section par bouton, dans l'ordre ou ils sont a l'ecran. Le titre
         // est la cle du bouton lui-meme : ce qu'on lit dans l'aide est mot pour
@@ -27605,10 +27689,10 @@ function texteAideSrs(){
         +   '<div class="srs-aide-titre">' + t("review_good") + '</div>'
         +   '<p>' + t("srs_aide_echelle") + '</p>'
         +   '<div class="srs-aide-echelle">'
-        +     '<span class="etape e1">' + tf("srs_aide_minutes", { n: SRS_PREMIERE_MINUTES }) + '</span>'
-        +     '<span class="fleche">\u2192</span><span class="etape e2">' + jour(j1) + '</span>'
-        +     '<span class="fleche">\u2192</span><span class="etape e3">' + jour(j2) + '</span>'
-        +     '<span class="fleche">\u2192</span><span class="etape fin">' + t("srs_aide_maitrise") + '</span>'
+        +     '<span class="etape e1">' + etape(0) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape e2">' + etape(1) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape e3">' + etape(2) + '</span>'
+        +     '<span class="fleche">\u2192</span><span class="etape fin">' + etape(3) + '</span>'
         +   '</div>'
         +   '<p>' + tf("srs_aide_pastilles", { n: SRS_PALIERS }) + '</p>'
         + '</div>'
@@ -27778,6 +27862,8 @@ function majBoutonGarde(){
     // affichee, et chaque carte repart d'une etoile vide.
     const be = document.getElementById("judgeKnownBtn");
     if(be) be.classList.remove("sue");
+    const bs = document.querySelector(".judge-sortir");
+    if(bs) bs.classList.remove("ouvert");
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.toggle("paquet-garde", dansLePaquetGarde());
     const btn = document.getElementById("gardeBtn");
@@ -27823,6 +27909,10 @@ function basculerGardeCarte(){
 }
 
 function sortirDuCoffre(){
+    // Le couvercle s'ouvre AVANT que la carte parte : c'est le seul instant ou
+    // le geste peut se montrer. Voir la note du CSS.
+    const b = document.querySelector(".judge-sortir");
+    if(b) b.classList.add("ouvert");
     const it = carteCourante();
     if(it){
         const st = getWordState(it.themeId, it.index);
@@ -28664,6 +28754,33 @@ function retryMastered(){
 // Distinct d'un reset : la progression et le pourcentage sont conserves, seule
 // l'echeance d'entretien est ramenee a maintenant. Les mots maitrises avant la
 // v243 n'en avaient aucune -- c'est le seul moyen de les revoir.
+// ⚠️ ELLE COMPTE ET LE DIT. Le nombre retire est la seule facon de savoir,
+// apres coup, ce que le coffre contenait -- et c'est exactement la question
+// que Jacques s'est posee en le trouvant plein. Une action de menage qui ne
+// rend aucun chiffre laisse le doute intact.
+function viderLeCoffre(){
+    const n = nombreGardes();
+    if(!n){ showInfoToast(t("gardes_vide")); return; }
+    if(!confirm(tf("confirm_vider_coffre", { n: n }))) return;
+    const progress = getProgress();
+    let faits = 0;
+    Object.keys(progress).forEach(cle => {
+        if(cle === "__migrations") return;
+        const bloc = progress[cle];
+        if(!bloc || typeof bloc !== "object") return;
+        Object.keys(bloc).forEach(i => {
+            const st = bloc[i];
+            // delete, et non `= false` : un champ faux qu'on garde est un champ
+            // qu'il faudra expliquer dans six mois. progressionUtile() laisse
+            // d'ailleurs tomber tout etat dont plus aucune cle n'est vraie.
+            if(st && typeof st === "object" && st.garde){ delete st.garde; faits++; }
+        });
+    });
+    saveProgress(progress);
+    try{ majBoutonGardes(); }catch(e){}
+    showInfoToast(tf("vider_coffre_fait", { n: faits }));
+}
+
 function remettreMaitrisesEnRevision(){
     if(!confirm(t("confirm_revoir_maitrises"))) return;
     const progress = getProgress();
