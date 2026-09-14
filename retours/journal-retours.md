@@ -4598,3 +4598,34 @@ que le français aplatit (`Gehalt`/`Lohn` mensuel vs horaire, `Ziel`/`Zweck`
 but vs finalité, `Mülleimer`/`Mülltonne` intérieur vs extérieur). Celles-là
 n'ont rien de mécanique : chaque glose est une décision pédagogique, à
 soumettre avant d'écrire. Et les neuf synonymes attendent `synonymes.json`.
+
+---
+
+## 14 septembre 2026 — « garder un mot pour le réviser plus tard » (Regina, testeuse)
+
+**Rapporté de vive voix à Jacques, pas par le bouton de signalement** — rien
+dans `tests/retours.js` (un seul retour en base, celui de Jacques sur `nun`).
+Consigné ici pour qu'il ne se perde pas.
+
+**La demande :** un endroit où elle décide elle-même de garder un mot, pour le
+revoir plus tard. Aujourd'hui elle ne peut pas : pendant une séance, les trois
+seuls gestes possibles sont des **jugements** (Encore / Je savais / Je le sais
+par cœur), et chacun fait partir la carte. Il n'existe aucun moyen de dire
+« celui-là, je veux y revenir » sans mentir sur ce qu'on en sait.
+
+**Ce qui existe déjà et qu'il ne faut pas doubler :** « Mon vocabulaire », les
+*mots mis de côté*. Mais il ne se remplit que depuis le **dictionnaire**, par
+le `+` d'une ligne de recherche — jamais depuis une carte du cours. Deux
+limites connues : la liste est **locale seulement** (la synchronisation
+Firestore n'envoie que vers le nuage, sans retour : une liste faite sur le
+téléphone n'apparaît pas sur l'ordinateur), et elle range un tuple de mot de
+dictionnaire, pas une carte du cours.
+
+**Forme voulue par Jacques :** un coffre. **« Garder »** avec un coffre ouvert
+tant qu'on n'y a pas touché, **« Gardé »** avec le coffre fermé une fois
+touché — le verbe avant, le participe après.
+
+**À décider avant d'écrire :** si « garder » alimente *Mon vocabulaire* (une
+liste de côté, hors du calcul de progression) ou si c'est une **marque sur la
+carte du cours** qui la fait revenir plus tôt. Ce n'est pas la même donnée ni
+le même écran.
