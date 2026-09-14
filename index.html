@@ -4300,17 +4300,26 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    tous les pieds, il ne restait que des torses. Nos 65 tableaux vont de 0,71
    a 1,43 -- les portraits ne sont pas une exception.
 
-   Le plafond est donc a 0,80 x la largeur (rapport 1,25), et il ne s'applique
-   qu'aux tableaux plus hauts que ca :
-       paysage 1,43   INTACT, aucun recadrage
-       carre   1,00   recadre, garde la maison et l'allee
-       portrait 0,71  recadre, garde chapeaux et visages
+   ⚠️ ET C'EST UNE VRAIE BANDE : 3/1, LA MEME POUR TOUS LES TABLEAUX.
+   Une premiere version plafonnait la hauteur a 0,80 x la largeur en la
+   laissant varier avec l'oeuvre. Jacques, en la voyant : « ca prend autant en
+   hauteur ; c'est une bande qu'on veut, pas le plein tableau ». Il a raison --
+   a 0,80 ce n'etait plus une bande, c'etait un tableau legerement rogne.
 
-   ⚠️ ET ON COUPE PAR LE HAUT, PAS AU MILIEU. C'est ce qui sauve les figures :
-   elles ont la tete dans le tiers superieur. Les deux versions ont ete rendues
-   cote a cote -- au milieu, le Macke perd ses tetes ; en haut, il les garde.
-   C'est la seule difference entre une bande qui marche et une qui ne marche
-   pas, et elle ne se voit qu'a l'image. */
+   ⚠️ J'AVAIS CONCLU DE TRAVERS, ET LA CAUSE VAUT D'ETRE ECRITE. J'avais
+   compare une bande FINE coupee AU MILIEU a une bande HAUTE coupee EN HAUT, et
+   j'en avais tire que les bandes fines detruisaient les portraits. Deux
+   variables changees a la fois : la conclusion ne portait sur ni l'une ni
+   l'autre. Coupee en haut, une bande fine tient tres bien.
+
+   L'ANCRAGE EST A 25 % DE LA CHUTE, ni en haut ni au milieu -- rendu sur trois
+   formats avant d'ecrire une ligne :
+       a 0      on n'attrape que le ciel et les arbres
+       a 0,25   le Macke garde chapeaux et visages, le carre son pavillon
+                jaune entier, le paysage sa maison et sa route rouge
+       a 0,40   les tetes retombent hors du cadre
+   Les trois montrent leur SUJET a 0,25, et c'est ce qui donne envie d'ouvrir.
+   Aucun raisonnement ne donne ce chiffre ; trois images l'ont donne. */
 .carte-mosaique{display:block;}
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
@@ -4330,7 +4339,7 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        c'est lui qui connait m.l et m.h, et le plafond ne peut pas s'ecrire en
        CSS sans connaitre le format de l'oeuvre. */
     display:block; width:100%; max-width:none; position:relative;
-    aspect-ratio:5 / 4;   /* le plafond, en attendant que JS pose le vrai */
+    aspect-ratio:3 / 1;   /* la bande, identique pour les 65 tableaux */
 }
 body[data-theme="dark"] .mos-cadre{
     border-color:#C6CCD6;
@@ -4343,10 +4352,13 @@ body[data-theme="dark"] .mos-cadre{
     display:flex; align-items:center; justify-content:center; pointer-events:none;
 }
 .mos-loupe svg{width:13px; height:13px; display:block;}
-.mos-droite{margin-top:9px; display:flex; flex-direction:column; gap:4px;}
-/* ⚠️ ANCREE EN HAUT, pas centree. Le canevas porte le tableau ENTIER -- c'est
-   le cadre qui le rogne -- et `top:0` fait que le rognage mange le BAS. Voir
-   la note de .carte-mosaique : c'est ce qui sauve les visages. */
+.mos-droite{margin-top:8px; display:flex; flex-direction:column; gap:2px;}
+/* ⚠️ ANCREE A 25 % DE LA CHUTE. Le canevas porte le tableau ENTIER -- c'est le
+   cadre qui le rogne -- et c'est `transform` qui decide de QUELLE tranche on
+   garde. Le pourcentage d'un translateY se compte sur la HAUTEUR DE L'ELEMENT
+   lui-meme, donc sur celle du canevas : c'est exactement ce qu'il faut, et
+   c'est pourquoi la valeur se calcule en JavaScript, ou le format de l'oeuvre
+   est connu. */
 .mos-toile{
     display:block; position:absolute; inset-inline:0; top:0;
     width:100%; height:auto;
@@ -4354,9 +4366,19 @@ body[data-theme="dark"] .mos-cadre{
 .mos-cartouche{text-align:start; line-height:1.35;}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
-.mos-annee{font-size:12px; color:#7b8798; font-variant-numeric:tabular-nums; margin-top:2px;}
-.mos-peintre{font-size:13px; font-weight:600; color:#1e293b; margin-top:2px;}
-.mos-titre{font-size:12.5px; font-style:italic; color:#576177; margin-top:2px;}
+/* UNE SEULE RANGEE POUR L'ANNEE, LE PEINTRE ET LE TITRE (v583). Elle enveloppe
+   si elle deborde -- un titre long ne doit pas etre tronque, il doit
+   descendre. */
+.mos-identite{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:0 6px;
+    margin-top:3px; line-height:1.35;
+}
+.mos-sep{color:#c3c9d4;}
+/* ⚠️ PLUS DE margin-top SUR LES TROIS : ils ne sont plus empiles, et une marge
+   haute sur un element en ligne decalerait la base des autres. */
+.mos-annee{font-size:12px; color:#7b8798; font-variant-numeric:tabular-nums;}
+.mos-peintre{font-size:13px; font-weight:600; color:#1e293b;}
+.mos-titre{font-size:12.5px; font-style:italic; color:#576177;}
 /* ⚠️ LE ⓘ EST EN ABSOLU AU COIN DE LA CARTE : sans cette reserve a droite,
    il recouvrait « Ta galerie ». Trouve a l'ecran, pas par un controle. */
 /* La notice du peintre : petite, en retrait, et seulement quand le tableau est
@@ -5276,7 +5298,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v582</span>
+    <span class="subtitle-version">v583</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24373,7 +24395,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 582;
+const APP_VERSION = 583;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26333,16 +26355,32 @@ function cartoucheMosaique(m, part, fini){
     if(!n) return;
     const total = (MOSAIQUES || []).length;
     const rang = etatMosaique().r;
+    // ⚠️ TROIS RANGEES AU LIEU DE CINQ LIGNES EMPILEES (v583). Demande de
+    // Jacques : « gagner de l'espace en hauteur, que ce soit lisible et clair,
+    // mais mieux dispose ». Sous une bande de 3/1, un cartouche de cinq lignes
+    // pesait plus lourd que le tableau lui-meme.
+    //
+    // L'annee, le peintre et le titre passent sur UNE rangee, separes par des
+    // points medians.
+    //
+    // ⚠️ L'ANNEE SE NOMME TOUJOURS. Elle arrive la premiere : un nombre nu --
+    // « 1905 » -- ne dit pas ce qu'il est. Nomme, il devient le premier indice
+    // de la devinette au lieu d'une donnee orpheline.
+    //
+    // ⚠️ ET LE SEPARATEUR NE S'ECRIT QU'ENTRE DEUX MORCEAUX PRESENTS. Le
+    // cartouche se devoile en trois temps, et un « · » suspendu devant du vide
+    // se lirait comme un defaut d'affichage. C'est pour ca qu'on assemble un
+    // tableau puis qu'on le JOINT, au lieu de concatener.
     let h = '<div class="mos-ligne mos-rang">' + tf("mosaique_compte",
               { n: ((rang - 1) % Math.max(1, total)) + 1, total: total }) + '</div>';
-    // ⚠️ L'ANNEE SE NOMME. Elle arrive SEULE, avant le peintre et le titre :
-    // un nombre nu -- << 1905 >> -- ne dit pas ce qu'il est, et c'est ce que
-    // Jacques a vu a l'ecran le 14 septembre. Nomme, il devient le premier
-    // indice de la devinette au lieu d'une donnee orpheline.
-    if(fini || part >= 0.40) h += '<div class="mos-ligne mos-annee">'
-              + (m.annee ? tf("mosaique_annee", { a: m.annee }) : "") + '</div>';
-    if(fini || part >= 0.70) h += '<div class="mos-ligne mos-peintre">' + m.peintre + '</div>';
-    if(fini) h += '<div class="mos-ligne mos-titre">' + m.titre + '</div>';
+    const bouts = [];
+    if((fini || part >= 0.40) && m.annee)
+        bouts.push('<span class="mos-annee">' + tf("mosaique_annee", { a: m.annee }) + '</span>');
+    if(fini || part >= 0.70)
+        bouts.push('<span class="mos-peintre">' + m.peintre + '</span>');
+    if(fini) bouts.push('<span class="mos-titre">' + m.titre + '</span>');
+    if(bouts.length) h += '<div class="mos-ligne mos-identite">'
+                        + bouts.join('<span class="mos-sep">\u00b7</span>') + '</div>';
     // ⚠️ LA NOTICE N'ARRIVE QU'A LA FIN, ET C'EST VOULU. Sur une carte qu'on
     // regarde d'un coup d'oeil au milieu d'une seance, trois phrases sur la vie
     // d'un peintre sont du bruit. Au moment du trophee, l'image est finie et il
@@ -26425,15 +26463,20 @@ function majMosaiqueAccueil(){
                 const L = Math.min(900, m.l || 900);
                 canvas.width = L;
                 canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
-                // LA HAUTEUR DE LA BANDE (v582). Le rapport affiche est celui
-                // du tableau, PLAFONNE a 1,25 (soit 0,80 x la largeur). Un
-                // paysage passe intact ; un portrait est rogne par le bas,
-                // jamais par le haut. Voir la note de .carte-mosaique.
-                const cadre = canvas.parentElement;
-                if(cadre){
-                    const r = (m.l || 1) / (m.h || 1);
-                    cadre.style.aspectRatio = String(Math.max(r, 1.25));
-                }
+                // LA TRANCHE DE LA BANDE (v583). Le cadre fait 3/1 pour les
+                // 65 tableaux ; ce qui varie est la PART du tableau qu'on
+                // garde, et d'ou on la prend.
+                //
+                // La chute est ce qui depasse du cadre, en fraction de la
+                // hauteur du canevas : 1 - (rapport du tableau / 3). On en
+                // remonte le quart -- ni le haut, qui ne donne que du ciel, ni
+                // le milieu, qui coupe les tetes. Voir la note de
+                // .carte-mosaique : le chiffre vient de trois rendus, pas d'un
+                // raisonnement.
+                const r = (m.l || 1) / (m.h || 1);
+                const chute = Math.max(0, 1 - Math.min(r, 3) / 3);
+                canvas.style.transform =
+                    "translateY(" + (-25 * chute).toFixed(2) + "%)";
                 dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
                 cartoucheMosaique(m, v.c / g.total, fini);
             }finally{ marquerGel(null); }
