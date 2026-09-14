@@ -147,10 +147,23 @@ def synthetiser(texte, modele, cle, avant=None, apres=None):
            % (VOIX, FORMAT))
     charge = {"text": texte, "model_id": modele,
               "voice_settings": REGLAGES, "seed": SEED}
-    if avant:
-        charge["previous_text"] = avant
-    if apres:
-        charge["next_text"] = apres
+    # ⚠️ v3 REFUSE LE CONTEXTE, et c'est un arbitrage, pas un detail.
+    #    << Providing previous_text or next_text is not yet supported with the
+    #    'eleven_v3' model. >> -- HTTP 400, le 14 septembre 2026.
+    #
+    #      v2   accepte le contexte (donc plus de repetitions) mais PRONONCE
+    #           les balises au lieu de les jouer : aucune direction de jeu.
+    #      v3   lit les balises comme une direction -- [surprised], [dry] --
+    #           mais sans contexte, donc le remplissage redevient possible.
+    #
+    #    On ne peut pas avoir les deux. Le filet, en v3, c'est
+    #    audio/controler_debit.py : il attrape le remplissage par le debit, et
+    #    v3 tourne a stability 0.0 -- une reprise donne une autre prise.
+    if modele != MODELES["v3"][0]:
+        if avant:
+            charge["previous_text"] = avant
+        if apres:
+            charge["next_text"] = apres
     corps = json.dumps(charge).encode("utf-8")
     for essai in range(5):
         req = urllib.request.Request(url, data=corps, method="POST", headers={

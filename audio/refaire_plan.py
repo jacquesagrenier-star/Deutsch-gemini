@@ -41,6 +41,11 @@ def main():
     ap.add_argument("--plan", type=int, required=True)
     ap.add_argument("--scene", default="01-ankunft-berlin")
     ap.add_argument("--pour-de-vrai", action="store_true")
+    ap.add_argument("--modele", choices=sorted(generer.MODELES),
+                    help="essayer un autre modele que celui du manifeste. "
+                         "v3 est le SEUL a lire les balises de jeu. "
+                         "⚠ melanger deux modeles dans une scene est un "
+                         "defaut : timbre et prosodie ne se recollent pas.")
     a = ap.parse_args()
 
     fs = os.path.join(RACINE, "scenes", a.scene + ".json")
@@ -56,8 +61,16 @@ def main():
                  "  Lancer d'abord audio/scene_audio.py.")
     m = json.load(io.open(fm, encoding="utf-8"))
 
-    modele = m["modele"]
-    court = next((k for k, v in generer.MODELES.items() if v[0] == modele), None)
+    if a.modele:
+        court = a.modele
+        modele = generer.MODELES[court][0]
+        if modele != m["modele"]:
+            print("  ⚠ modele force : %s au lieu de %s. La scene "
+                  "melangera deux modeles." % (modele, m["modele"]))
+    else:
+        modele = m["modele"]
+        court = next((k for k, v in generer.MODELES.items()
+                      if v[0] == modele), None)
     gain = m["gain_applique_db"]
     voix = d["locuteurs"][p["locuteur"]]["voice_id"]
 
