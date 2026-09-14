@@ -4650,3 +4650,23 @@ et les deux décisions qui le tiennent :
   absent quand le coffre est vide (« le coffre seulement »).
 
 Reste à faire : le cœur en contour qui se remplit — écarté pour l'instant.
+
+**Corrigé le 14 septembre 2026 — v594.** Jacques, deux fois : « je ne vois pas
+le coffre », « je ne vois pas non plus les quatre boutons ». Les deux avaient
+la même cause, et elle était de mon fait :
+
+- J'avais mis le coffre **au-dessus** de la rangée, discret et sans cadre, en
+  faisant valoir qu'il n'est pas un jugement. L'argument est juste ; la
+  conclusion ne l'était pas. Un libellé gris sans cadre au-dessus de trois
+  vrais boutons ne se lit pas comme une commande.
+- Et sur l'accueil, je **cachais** le bouton tant que le coffre est vide. Donc
+  au premier contact : rien à voir nulle part. Un bouton qui n'apparaît qu'à
+  ceux qui savent déjà s'en servir n'apprend à personne qu'il existe.
+
+**La rangée est maintenant celle de la maquette** : quatre colonnes égales —
+Encore, Je savais, Je le sais par cœur, Garder — plus trois colonnes dans le
+paquet des gardés. Le coffre ne fait toujours pas partir la carte : c'est la
+seule chose de la v592 qui comptait vraiment, et elle est intacte.
+
+*Leçon : une fonction invisible n'existe pas, et la justesse d'une taxonomie ne
+pèse rien contre ça.*

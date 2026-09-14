@@ -3679,28 +3679,42 @@ body[data-theme="dark"] .dict-zone{border-color:#2b3342; color:#7c8698;}
 body[data-theme="dark"] .dict-word{color:#e9ecf1;}
 body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 
-/* Verso d'une carte : deux gestes, pas quatre. La personne sait si le mot lui
-   est revenu ; elle n'a pas a choisir en plus une echeance de revision. */
-.judge-row{display:flex; gap:10px;}
+/* ⚠️ UNE GRILLE DE QUATRE COLONNES EGALES (v594). C'etait deux boutons plus
+   une pastille en dessous, et le coffre flottait encore au-dessus : quatre
+   natures, trois hauteurs, aucune ne disant qu'elle est de la meme famille que
+   les autres. Maquette de Jacques.
+   `1fr` et non `auto` : les colonnes restent egales quelle que soit la longueur
+   des libelles, sinon l'ukrainien ferait glisser toute la rangee. */
+.judge-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:7px;
+    align-items:stretch;
+}
+/* Le paquet des gardes n'en montre que trois -- voir plus bas. */
+.flashcard-actions.paquet-garde .judge-row{grid-template-columns:repeat(3,1fr);}
 /* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
    seuls. On gagne la hauteur sur le REMPLISSAGE, pas sur le texte : le libelle
    descend de 15 a 14 px, l'echeance de 13 a 12, et le rembourrage de 14 a 10 --
    c'est lui qui coutait le plus, et lui seul ne porte aucune information. */
+/* ⚠️ EN COLONNE, PAS EN LIGNE. A un quart de la largeur, le libelle et son
+   echeance ne tiennent plus cote a cote ; empiles et centres, ils tiennent
+   dans toutes les langues. Le symbole monte en tete de chaque bouton --
+   pastilles, etoile, coffre -- pour qu'on reconnaisse la colonne avant de la
+   lire. */
 .judge-button{
-    flex:1; margin:0; padding:10px 10px 9px; border-radius:14px;
-    font-weight:800; font-size:14px; letter-spacing:.01em;
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:flex-start; gap:3px;
+    margin:0; padding:9px 5px 8px; border-radius:14px;
+    font-weight:800; font-size:13px; line-height:1.18; letter-spacing:.01em;
+    text-align:center; font-family:inherit;
     border:1.5px solid transparent; cursor:pointer;
-    transition:transform .12s ease, box-shadow .12s ease;
+    transition:transform .12s ease, background .18s ease, border-color .18s ease;
 }
 .judge-button:active{transform:scale(.97);}
-/* Les deux gestes ne pesent pas pareil : "Je savais" est celui qu'on vise, et
-   c'est lui qui porte l'echelle. "Encore" garde juste de quoi se toucher. */
-.judge-again{
-    flex:0 0 29%; background:#fff; border-color:#e3e7ee; color:#576177;
-    font-size:14px;
-}
+.judge-titre{display:block;}
+.judge-button svg{width:17px; height:17px; flex:0 0 auto; order:-1;}
+.judge-again{background:#fff; border-color:#e3e7ee; color:#576177;}
 .judge-again:hover{border-color:#c9d0dc;}
-.judge-good{flex:1; background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+.judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .judge-good:hover{background:#cdf0dc;}
 /* ⚠️ L'ECHEANCE EST LA SECONDE LIGNE DU BOUTON, PAS UNE NOTE DE BAS DE PAGE.
    Jacques proposait de remplacer « Je savais » par « Revoir dans 10 minutes ».
@@ -3712,16 +3726,18 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    De 11 px a 13, de 72 % d'opacite a 92 : elle se lit maintenant du premier
    coup d'oeil, sans cesser d'etre la CONSEQUENCE de la reponse. */
 .judge-echeance{
-    display:block; margin-top:3px;
-    font-size:12px; font-weight:700; opacity:.92; letter-spacing:0;
+    display:block; order:2;
+    font-size:11px; font-weight:700; opacity:.9; line-height:1.15;
+    letter-spacing:0;
 }
 /* Trois pastilles valent une phrase : elles disent d'un coup d'oeil ou en est
    le mot sur l'echelle, et un "Encore" les vide sous les yeux -- la sanction
    se voit au lieu d'etre expliquee. */
 .srs-ladder{
-    display:flex; align-items:center; justify-content:center; gap:6px;
-    margin-top:3px;
+    display:contents;
 }
+.judge-good .srs-pips{order:-1;}
+.judge-good .srs-ladder-text{order:2;}
 .srs-pips{display:flex; gap:5px;}
 /* A 6 px la pastille se lisait comme une ponctuation. Elle doit se voir
    s'allumer d'un bout a l'autre du bouton -- c'est toute sa raison d'etre. */
@@ -3733,8 +3749,8 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .srs-pip.on{background:#1c6b47;}
 .srs-pip.next{box-shadow:0 0 0 2.5px rgba(28,107,71,.18);}
 .srs-ladder-text{
-    font-size:12px; font-weight:700; color:#1c6b47; opacity:.95;
-    letter-spacing:.01em; text-transform:none;
+    font-size:11px; font-weight:700; color:#1c6b47; opacity:.92;
+    line-height:1.15; letter-spacing:0; text-transform:none;
 }
 /* Trois pastilles vertes : c'est le seul etat qui merite d'etre remarque, et
    le seul qu'on voit rarement. Elles grossissent et respirent une fois. */
@@ -3755,97 +3771,62 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 }
 body[data-theme="dark"] .srs-pip{background:rgba(159,220,190,.28);}
 body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
-/* Sans cadre, ce troisieme geste se lisait comme une legende : rien n'indiquait
-   qu'il se touche, et c'est pourtant l'action la plus lourde des trois -- elle
-   retire le mot du paquet. Une pastille bordee suffit a le dire, sans lui donner
-   le poids des deux boutons de jugement. */
-/* ⚠️ EN COLONNE DEPUIS QUE L'ECHEANCE A GROSSI (v555). Le libelle et
-   l'echeance etaient cote a cote : a 13 px la seconde ligne debordait et ne
-   s'alignait plus sur la premiere. Signale par Jacques. Empilees et centrees,
-   elles tiennent quelle que soit la longueur du libelle -- « Je le sais par
-   coeur » fait dix-neuf caracteres en francais, davantage en ukrainien. */
-/* ⚠️ UNE SEULE LIGNE (v562). Il etait passe en colonne a la v555 parce que
-   l'echeance a 13 px ne s'alignait plus ; a 12 px elle tient a cote, separee par
-   un point median, et le bouton reprend la moitie de sa hauteur. Demande de
-   Jacques. `flex-wrap` garde le repli pour les langues plus longues -- « Знаю
-   напам'ять » ne tient pas partout. */
-.judge-known .judge-echeance{display:inline; margin:0;}
-.judge-known .judge-echeance::before{content:"·"; margin-inline-end:6px; opacity:.55;}
-.judge-known{
-    display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline;
-    justify-content:center; gap:0 7px;
-    width:fit-content; max-width:100%; margin:9px auto 0; padding:6px 15px;
-    background:#fff; border:1.5px solid #e3e7ee; border-radius:999px;
-    color:#697285; font-size:12.5px; font-weight:700; cursor:pointer;
-    transition:border-color .15s ease, color .15s ease, transform .12s ease;
-}
-/* Le glyphe de tete n'appartient plus qu'a « Sortir du coffre » : « Je le
-   sais par coeur » a son etoile, en SVG, pour pouvoir se remplir. */
-.judge-known:hover{border-color:#c9d0dc; color:#4a5464;}
-.judge-known:active{transform:scale(.97);}
+/* ⚠️ « JE LE SAIS PAR COEUR » N'EST PLUS UNE PASTILLE (v594). Il en etait une
+   depuis la v555 pour ne PAS avoir le poids des deux boutons de jugement : il
+   retire le mot du paquet, et on ne voulait pas y inviter. La maquette de
+   Jacques le remet dans la rangee, a egalite -- et l'argument d'origine tient
+   toujours, mais autrement : ce n'est plus la TAILLE qui retient, c'est la
+   couleur. Le bleu n'est ni le vert de « je savais » ni le blanc de « encore » :
+   il ne recompense pas, il range. */
+.judge-known{background:#e6eeff; border-color:#b9ccf3; color:#2b4d97;}
+.judge-known:hover{background:#dbe7ff;}
 body[data-theme="dark"] .judge-known{
-    background:#161a22; border-color:#2a3240; color:#aab3c2;
+    background:rgba(59,111,224,.16); border-color:rgba(59,111,224,.45); color:#9dbcff;
 }
-
-/* ============ LE COFFRE (v592) ============
-   ⚠️ IL NE RESSEMBLE PAS AUX BOUTONS DE JUGEMENT, ET C'EST VOULU. Les trois
-   autres repondent a une question ; celui-ci annote. Un bouton fantome, plus
-   discret que « Je le sais par coeur », dit cette difference de nature sans
-   qu'il faille l'expliquer. */
-.garde-btn{
-    display:flex; align-items:center; justify-content:center; gap:7px;
-    width:fit-content; max-width:100%; margin:0 auto 9px; padding:5px 14px;
-    background:none; border:1.5px solid transparent; border-radius:999px;
-    color:#8b93a3; font-family:inherit; font-size:12.5px; font-weight:700;
-    cursor:pointer;
-    transition:color .18s ease, background .18s ease, border-color .18s ease;
+/* ============ LE COFFRE (v592, redessine v594) ============
+   ⚠️ IL A LA TAILLE DES AUTRES, MAIS PAS LEUR COULEUR TANT QU'IL EST VIDE.
+   Blanc comme « Encore » au repos : il est dans la rangee sans y peser. Une
+   fois garde, il prend l'ambre de la marque -- la seule couleur de l'app qui
+   ne veut dire ni « juste » ni « faux », ce qu'il faut pour un geste qui ne
+   juge pas. */
+.judge-garde{background:#fff; border-color:#e3e7ee; color:#576177;}
+.judge-garde:hover{border-color:#c9d0dc;}
+.judge-garde.on{
+    background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.62); color:#8c6210;
 }
-.garde-btn svg{width:17px; height:17px; flex:0 0 auto;}
-.garde-btn:hover{color:#6b7484;}
-.garde-btn:active{transform:scale(.97);}
-/* Garde : l'ambre de la marque. C'est la seule couleur de l'app qui ne veut
-   dire ni « juste » ni « faux » -- exactement ce qu'il faut pour un geste qui
-   ne juge pas. */
-.garde-btn.on{
-    color:#a0700f; background:rgba(232,162,58,.14);
-    border-color:rgba(232,162,58,.5);
+body[data-theme="dark"] .judge-garde.on{
+    background:rgba(232,162,58,.18); border-color:rgba(232,162,58,.5); color:#E8A23A;
 }
-body[data-theme="dark"] .garde-btn{color:#7d8697;}
-body[data-theme="dark"] .garde-btn.on{color:#E8A23A; background:rgba(232,162,58,.16);}
 /* ⚠️ LE COUVERCLE TOURNE, IL NE CHANGE PAS DE DESSIN. Une seule image, une
-   charniere au bord droit : le coffre se ferme vraiment au lieu de sauter d'un
-   pictogramme a l'autre. `transform-box:view-box` est indispensable -- sans
-   lui, l'origine se calcule sur la boite de l'element et la charniere part
-   ailleurs. Si un navigateur ne suit pas, le couvercle reste en place : le
-   libelle et la couleur disent deja tout, rien ne se casse. */
+   charniere au bout DROIT de la couture : le coffre se ferme vraiment au lieu
+   de sauter d'un pictogramme a l'autre. `transform-box:view-box` est
+   indispensable -- sans lui l'origine se calcule sur la boite de l'element et
+   la charniere part ailleurs.
+   ⚠️ LE SIGNE EST POSITIF, ET IL S'EST TROMPE UNE FOIS. Le bras du couvercle
+   pointe vers la GAUCHE depuis la charniere : une rotation negative le fait
+   descendre sous le corps au lieu de le lever. Vu a l'ecran seulement -- aucun
+   test ne juge un dessin. */
 .gc-couvercle{
     transform-box:view-box; transform-origin:20.2px 12.8px;
-    /* ⚠️ LE SIGNE EST POSITIF, ET IL S'EST TROMPE UNE FOIS. La charniere est
-       au bout DROIT de la couture, donc le bras du couvercle pointe vers la
-       gauche : une rotation NEGATIVE (anti-horaire) le fait descendre sous le
-       corps, pas se lever. Vu a l'ecran seulement -- aucun test ne juge un
-       dessin. */
     transform:rotate(34deg);
     transition:transform .3s cubic-bezier(.34,1.3,.64,1);
 }
-.garde-btn.on .gc-couvercle, .seance-gardes .gc-couvercle{transform:rotate(0deg);}
+.judge-garde.on .gc-couvercle, .seance-gardes .gc-couvercle{transform:rotate(0deg);}
 .gc-serrure{opacity:0; transition:opacity .2s ease .12s;}
-.garde-btn.on .gc-serrure, .seance-gardes .gc-serrure{opacity:1;}
+.judge-garde.on .gc-serrure, .seance-gardes .gc-serrure{opacity:1;}
 @media (prefers-reduced-motion:reduce){
     .gc-couvercle, .gc-serrure{transition:none;}
 }
-/* ⚠️ LE PAQUET DES GARDES ECHANGE DEUX BOUTONS, ET C'EST LE CSS QUI LE FAIT.
-   Une regle ne peut pas se desynchroniser d'un etat ; du JS qui reecrit des
-   libelles, si. Dehors : le coffre est la, « Sortir » non. Dedans : l'inverse,
-   et « Je le sais par coeur » s'efface avec lui -- on n'ouvre pas son coffre
-   pour graduer un mot. */
-.garde-sortir{display:none;}
-.garde-sortir::before{
-    content:"\2191"; font-size:13px; font-weight:800; color:#9aa2b1; flex:none;
-}
-.flashcard-actions.paquet-garde .garde-btn,
-.flashcard-actions.paquet-garde .judge-known:not(.garde-sortir){display:none;}
-.flashcard-actions.paquet-garde .garde-sortir{display:flex;}
+/* ⚠️ LE PAQUET DES GARDES ECHANGE DEUX BOUTONS CONTRE UN, ET C'EST LE CSS QUI
+   LE FAIT. Une regle ne peut pas se desynchroniser d'un etat ; du JS qui
+   reecrit des libelles, si. Dehors : quatre colonnes, « Sortir » absent.
+   Dedans : trois colonnes, ni coffre ni « par coeur » -- on n'ouvre pas son
+   coffre pour graduer un mot. */
+.judge-sortir{display:none; background:#fff; border-color:#e3e7ee; color:#576177;}
+.judge-sortir:hover{border-color:#c9d0dc;}
+.flashcard-actions.paquet-garde .judge-garde,
+.flashcard-actions.paquet-garde .judge-known{display:none;}
+.flashcard-actions.paquet-garde .judge-sortir{display:flex;}
 
 /* ⚠️ VIDE A L'ARRIVEE, PLEINE QUAND ON LE DIT (v593).
    Elle n'arrive JAMAIS pleine, meme sur un mot deja maitrise. Jacques : « quand
@@ -3859,16 +3840,20 @@ body[data-theme="dark"] .garde-btn.on{color:#E8A23A; background:rgba(232,162,58,
    Le cinquieme de tour n'est pas un ornement : c'est exactement une pointe
    d'etoile, donc la forme revient sur elle-meme et seul l'eclat se remarque. */
 .judge-known .etoile-coeur{
-    width:15px; height:15px; flex:0 0 auto; color:#9aa2b1;
+    color:#7d9ad6;
     transition:color .2s ease, fill .2s ease,
                transform .34s cubic-bezier(.34,1.45,.64,1);
 }
-.judge-known:hover .etoile-coeur{color:#697285;}
-.judge-known.sue{border-color:rgba(232,162,58,.55); color:#a0700f;}
+.judge-known:hover .etoile-coeur{color:#4f79c8;}
+.judge-known.sue{
+    background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.62); color:#8c6210;
+}
 .judge-known.sue .etoile-coeur{
     color:#E8A23A; fill:#E8A23A; transform:scale(1.2) rotate(72deg);
 }
-body[data-theme="dark"] .judge-known.sue{border-color:rgba(232,162,58,.5); color:#E8A23A;}
+body[data-theme="dark"] .judge-known.sue{
+    background:rgba(232,162,58,.18); border-color:rgba(232,162,58,.5); color:#E8A23A;
+}
 @media (prefers-reduced-motion:reduce){
     .judge-known .etoile-coeur{transition:color .2s ease, fill .2s ease;}
     .judge-known.sue .etoile-coeur{transform:none;}
@@ -5212,7 +5197,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      deja qu'il n'y a rien dedans -- et un coffre vide qu'on
                      ouvre pour rien est plus decevant qu'un coffre absent. -->
                 <div class="seance-lateral">
-                    <button type="button" class="seance-gardes hidden" id="seanceGardes"
+                    <button type="button" class="seance-gardes" id="seanceGardes"
                             onclick="event.stopPropagation(); ouvrirGardes();">
                         <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"
@@ -5568,7 +5553,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v593</span>
+    <span class="subtitle-version">v594</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7295,60 +7280,74 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
-        <!-- ⚠️ LE COFFRE EST AU-DESSUS DE LA RANGEE, ET HORS D'ELLE. Ce n'est
-             pas un quatrieme jugement : il ne repond pas a « est-ce que je le
-             savais ? », il annote. C'est pour ca qu'il ne fait pas partir la
-             carte -- et c'est pour ca que le couvercle qui se ferme se voit.
-             ⚠️ ET IL EST DANS LE BLOC D'APRES-REPONSE, comme le ⓘ : sur le
-             recto, un bouton « Garder » se lirait comme un indice. On garde un
-             mot parce qu'on vient de voir qu'il resiste. -->
-        <button type="button" id="gardeBtn" class="garde-btn"
-                onclick="basculerGardeCarte()" aria-pressed="false">
-            <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
-                 aria-hidden="true">
-                <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
-                <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
-                <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
-            </svg>
-            <span id="gardeBtnTexte" data-i18n="garder_action">Garder</span>
-        </button>
+        <!-- ⚠️ QUATRE BOUTONS COTE A COTE (v594), ET LE COFFRE EST L'UN D'EUX.
+             Il etait au-dessus, discret et sans cadre, parce qu'il n'est pas un
+             jugement -- c'etait juste, et ca l'a rendu introuvable. Jacques :
+             « je ne vois pas les changements ». Une fonction que personne ne
+             trouve n'existe pas.
+             ⚠️ MAIS IL NE FAIT TOUJOURS PAS PARTIR LA CARTE. C'est la seule
+             chose qui compte vraiment : il bascule SUR PLACE, donc le couvercle
+             qui se ferme et le mot qui passe de « Garder » a « Garde » se
+             voient. Un quatrieme jugement les aurait emportes avec la carte.
+             ⚠️ ET IL EST AU BOUT, pas au milieu. La rangee se lit de gauche a
+             droite comme un eloignement -- 2 minutes, la prochaine seance,
+             N jours ; le coffre n'est pas une echeance, il vient donc apres la
+             fin de l'echelle. -->
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
-                <span data-i18n="review_again">↺ Encore</span>
+                <span class="judge-titre" data-i18n="review_again">↺ Encore</span>
                 <small class="judge-echeance" id="judgeEcheanceAgain"></small>
             </button>
             <button class="judge-button judge-good" onclick="reviewGood()">
-                <span data-i18n="review_good">Je savais ✓</span>
+                <span class="judge-titre" data-i18n="review_good">Je savais ✓</span>
                 <span class="srs-ladder" id="srsLadder">
                     <span class="srs-pips" id="srsPips" aria-hidden="true"></span>
                     <span class="srs-ladder-text" id="srsLadderText"></span>
                 </span>
             </button>
+            <button class="judge-button judge-known" id="judgeKnownBtn" onclick="markKnownAlready()">
+                <!-- ⚠️ UNE ETOILE, PAS UN CROCHET (v593). Le bouton portait le
+                     MEME ✓ que « Je savais » a cote, alors que les deux gestes
+                     n'ont rien en commun : l'un monte d'un cran sur l'echelle,
+                     l'autre la saute entiere. Demande de Jacques.
+                     Elle est vide a l'arrivee, toujours -- voir la note du CSS. -->
+                <svg class="etoile-coeur" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path d="M12 3.5l2.63 5.33 5.87.86-4.25 4.14 1 5.85L12 16.95 6.75 19.7l1-5.85L3.5 9.7l5.87-.86z"/>
+                </svg>
+                <span class="judge-titre" data-i18n="review_known">Je le sais par cœur</span>
+                <small class="judge-echeance" id="judgeEcheanceKnown"></small>
+            </button>
+            <button type="button" class="judge-button judge-garde" id="gardeBtn"
+                    onclick="basculerGardeCarte()" aria-pressed="false">
+                <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
+                    <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
+                    <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
+                </svg>
+                <span class="judge-titre" id="gardeBtnTexte" data-i18n="garder_action">Garder</span>
+            </button>
+            <!-- ⚠️ LE TROISIEME BOUTON DU PAQUET DES GARDES. Il prend la place
+                 de « Je le sais par coeur » ET du coffre : on n'ouvre pas son
+                 coffre pour graduer un mot, et deux commandes pour le meme
+                 drapeau se contrediraient. Il juge le mot su ET retire le
+                 drapeau -- le menage se fait mot par mot, quand la question se
+                 pose, jamais dans un ecran de gestion. -->
+            <button type="button" class="judge-button judge-sortir garde-sortir"
+                    onclick="sortirDuCoffre()">
+                <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
+                    <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
+                    <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
+                </svg>
+                <span class="judge-titre" data-i18n="garde_sortir">Sortir du coffre</span>
+            </button>
         </div>
-        <button class="judge-known" id="judgeKnownBtn" onclick="markKnownAlready()">
-            <!-- ⚠️ UNE ETOILE, PAS UN CROCHET (v593). Le bouton portait le MEME
-                 ✓ que « Je savais » juste au-dessus, alors que les deux gestes
-                 n'ont rien en commun : l'un monte d'un cran sur l'echelle,
-                 l'autre la saute entiere. Demande de Jacques.
-                 Elle est vide a l'arrivee, toujours -- voir la note du CSS. -->
-            <svg class="etoile-coeur" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
-                 aria-hidden="true">
-                <path d="M12 3.5l2.63 5.33 5.87.86-4.25 4.14 1 5.85L12 16.95 6.75 19.7l1-5.85L3.5 9.7l5.87-.86z"/>
-            </svg>
-            <span data-i18n="review_known">Je le sais par cœur</span>
-            <small class="judge-echeance" id="judgeEcheanceKnown"></small>
-        </button>
-        <!-- ⚠️ LE TROISIEME BOUTON DU PAQUET DES GARDES. Il prend la place de
-             « Je le sais par coeur », qui n'a rien a faire la : on n'ouvre pas
-             son coffre pour graduer un mot, on l'ouvre pour voir si on le
-             garde encore. Il juge le mot su ET retire le drapeau -- le menage
-             se fait mot par mot, quand la question se pose. -->
-        <button type="button" class="judge-known garde-sortir"
-                onclick="sortirDuCoffre()">
-            <span data-i18n="garde_sortir">Sortir du coffre</span>
-        </button>
         <!-- Le « i » est ICI, dans le bloc qui n'apparait qu'apres la reponse :
              sur la carte, il se lirait comme un indice. -->
         <button class="srs-aide-btn" id="srsAideBtn" onclick="basculerAideSrs()"
@@ -8196,7 +8195,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Mon vocabulaire est encore vide.</strong><br>C'est ta réserve personnelle : les mots que tu rencontres ailleurs — en cours, dans un texte, dans une conversation — et qui ne sont pas dans l'app.<br><br>Cherche-en un ci-dessus, puis touche le <strong>+</strong> à côté du résultat du dictionnaire. Il deviendra une carte à réviser comme les autres.",
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
-        review_good: "Je savais ✓",
+        review_good: "Je savais",
         review_known: "Je le sais par cœur",
         known_echeance: "pas avant {n} jours",
         flash_end_title: "Paquet terminé",
@@ -9149,7 +9148,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>My vocabulary is still empty.</strong><br>It's your personal stock: the words you meet elsewhere — in class, in a text, in a conversation — that aren't in the app.<br><br>Search for one above, then tap the <strong>+</strong> beside the dictionary result. It becomes a card you review like any other.",
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
-        review_good: "I knew it ✓",
+        review_good: "I knew it",
         review_known: "I know it by heart",
         known_echeance: "not before {n} days",
         flash_end_title: "Deck finished",
@@ -10104,7 +10103,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Kelimelerim henüz boş.</strong><br>Burası senin kişisel stokun: başka yerlerde — derste, bir metinde, bir sohbette — karşılaştığın ve uygulamada bulunmayan kelimeler.<br><br>Yukarıdan bir kelime ara, sonra sözlük sonucunun yanındaki <strong>+</strong> işaretine dokun. O kelime, diğerleri gibi tekrar ettiğin bir karta dönüşür.",
         myvocab_how: "Bir kelime ara, sonra sözlük kaydının yanındaki + işaretine dokunarak buraya kaydet.",
         review_again: "↺ Tekrar",
-        review_good: "Biliyordum ✓",
+        review_good: "Biliyordum",
         review_known: "Ezbere biliyorum",
         known_echeance: "{n} günden önce değil",
         flash_end_title: "Deste bitti",
@@ -11921,7 +11920,7 @@ const I18N = {
         flash_end_done: "ЗАВЕРШИТИ",
         encore_neufs: "Ще {n} карток",
         review_again: "↺ Ще раз",
-        review_good: "Пам'ятаю ✓",
+        review_good: "Пам'ятаю",
         review_known: "Знаю напам'ять",
         review_2min: "Повторити через 2 хв",
         review_10min: "Повторити через 10 хв",
@@ -12933,7 +12932,7 @@ const I18N = {
         myvocab_tout_diplome: "همهٔ واژه‌های تو وارد درس شده‌اند. واژه‌های تازه پیدا کن!",
         myvocab_how: "یک واژه را جست‌وجو کن، سپس + کنار یکی از مدخل‌های فرهنگ را لمس کن تا کنار گذاشته شود.",
         review_again: "↺ دوباره",
-        review_good: "می‌دانستم ✓",
+        review_good: "می‌دانستم",
         review_known: "از بر بلدم",
         known_echeance: "نه پیش از {n} روز",
         flash_end_title: "بستهٔ کارت‌ها تمام شد",
@@ -24727,7 +24726,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 593;
+const APP_VERSION = 594;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27717,8 +27716,13 @@ function nombreGardes(){
 }
 
 function majBoutonGardes(){
+    // ⚠️ IL NE SE CACHE PLUS QUAND LE COFFRE EST VIDE (v594). Il le faisait, et
+    // c'etait la seconde moitie du defaut signale par Jacques : au premier
+    // contact, la fonction n'existait nulle part. Un bouton qui n'apparait
+    // qu'a ceux qui savent deja s'en servir n'apprend a personne qu'il existe.
+    // Vide, il repond -- le toast dit quoi faire pour y mettre un mot.
     const b = document.getElementById("seanceGardes");
-    if(b) b.classList.toggle("hidden", nombreGardes() === 0);
+    if(b) b.classList.remove("hidden");
 }
 
 async function ouvrirGardes(){
