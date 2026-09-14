@@ -4521,3 +4521,46 @@ faux à la place d'un chiffre bancal. On change une chose à la fois.
 Recopiée en objet nu, elle aurait fait refuser le document entier par Firestore
 — et la progression aurait cessé de se sauvegarder en silence, exactement le
 défaut des v396-v400.
+
+---
+
+## « nun » : « or » quitte la carte
+### 14 septembre 2026 — retour de Jacques, v578
+
+> *« Maintenant, or … que veut dire le or »*
+
+`nun` était traduit **« maintenant, or »**. Ce n'est pas faux : « or » rend le
+« Nun, … » allemand en tête de phrase, au sens de « Or, il se trouve que… ».
+Mais c'est un connecteur d'argumentation, rare à l'oral, et **hors contexte il
+se lit comme la conjonction d'opposition**.
+
+⚠️ **Et le défaut est plus grave qu'une glose obscure, à cause du sens de la
+carte.** Il existe un mode français → allemand (`frontIsFrench`) où la
+traduction passe **au RECTO**. Le mot cesse alors d'être une explication pour
+devenir une **consigne** : on lit « maintenant, or » et l'on doit produire
+« nun ». Signalé par Jacques : « il se retrouve au recto ».
+
+**Une traduction n'est pas seulement lue, elle est parfois DEMANDÉE.** Tout
+terme qui ne fonctionne pas comme consigne n'a rien à faire dans ce champ.
+
+Corrigé en **« maintenant, à présent »** : deux synonymes temporels, tous deux
+utilisables comme consigne, conformes à la phrase d'exemple (*Nun müssen wir
+eine Entscheidung treffen*) et à la glose anglaise, qui dit simplement *now*.
+
+### Le balayage qui a suivi
+
+Les six fichiers de vocabulaire ont été relus à la recherche du même défaut.
+**`nun` est le seul vrai cas.** Ailleurs le second terme est un **synonyme** du
+premier — `somit → ainsi, de ce fait`, `gewiss → certes, assurément` — donc
+même littéraire, le premier porte le sens. `nun → maintenant, or` était le seul
+où le second terme était **un autre sens**, et opaque de surcroît.
+
+*(`mithin → partant, donc` frôle le même défaut — « partant » est rare — mais
+« donc » le rattrape.)*
+
+### ⚠️ Ce qui reste à relire, et que je ne peux pas juger
+
+L'ukrainien dit **тепер, отже** — « maintenant, donc » : c'est exactement le
+même mélange de deux sens, dont le second est un connecteur. Le persan dit
+**اکنون، حال**. Ces deux-là relèvent de la relecture croisée : je ne peux pas
+juger si le second terme s'y lit comme une consigne.
