@@ -5246,7 +5246,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v580</span>
+    <span class="subtitle-version">v581</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7355,6 +7355,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <button class="secondary" id="cartePhraseBtn" onclick="basculerCartePhrase()">La phrase d'exemple</button>
     </div>
 
+    <!-- L'ETIQUETTE DIT CE QUE LE REGLAGE COUTE, pas seulement ce qu'il
+         apporte. Demande de Jacques sur la carte voisine : « il faut que ce
+         soit parfaitement clair, qu'est-ce qu'on est en train de faire ».
+         Ici le cout est le coeur du choix -- un reglage qui promettrait
+         seulement « garde ta musique » serait un piege. -->
+    <div class="card">
+        <strong data-i18n="musique_titre">Musique d'une autre application</strong>
+        <p style="color:#576177; margin-top:6px;" data-i18n="musique_desc">Par defaut, l'application prend le son pour elle : ta musique s'arrete quand tu commences une seance, mais tu entends la prononciation meme si le bouton silencieux de ton telephone est baisse.</p>
+        <p style="color:#b45309; margin-top:6px; font-weight:600;" data-i18n="musique_avert">⚠️ Si tu laisses la musique jouer, l'application n'emettra plus AUCUN son quand le bouton silencieux est baisse.</p>
+        <div class="spacer"></div>
+        <button class="secondary" id="musiqueBtn" onclick="basculerMusique()">Laisser la musique jouer</button>
+    </div>
+
     <!-- Reserve a l'administrateur (v374). L'outil a fait son travail -- c'est
          lui qui a nomme le defaut du mode Ecoute le 2 septembre -- et il doit
          rester disponible pour le prochain. Mais un testeur n'a rien a y faire :
@@ -8148,6 +8161,10 @@ const I18N = {
         retour_merci: "Merci — c'est noté ✓",
         carte_dire_titre: "Ce que la carte prononce",
         carte_dire_desc: "Au verso d'une carte, l'allemand se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.",
+        musique_titre: "Musique d'une autre application",
+        musique_desc: "Par défaut, l'application prend le son pour elle : ta musique s'arrête quand tu commences une séance, mais tu entends la prononciation même si le bouton silencieux de ton téléphone est baissé.",
+        musique_avert: "⚠️ Si tu laisses la musique jouer, l'application n'émettra plus AUCUN son quand le bouton silencieux est baissé.",
+        musique_bouton: "Laisser la musique jouer",
         carte_dire_mot: "Le mot avec son article",
         carte_dire_pluriel: "Le pluriel",
         carte_dire_phrase: "La phrase d'exemple",
@@ -9090,6 +9107,10 @@ const I18N = {
         retour_merci: "Thank you — noted ✓",
         carte_dire_titre: "What the card says out loud",
         carte_dire_desc: "On the back of a card, the German is spoken on its own. Choose what you want to hear. Whatever you remove stays on screen, and its speaker button still works — you can play it whenever you decide to.",
+        musique_titre: "Music from another app",
+        musique_desc: "By default the app takes the sound for itself: your music stops when you start a session, but you hear the pronunciation even when your phone's silent switch is on.",
+        musique_avert: "⚠️ If you let the music play, the app will make NO sound at all while the silent switch is on.",
+        musique_bouton: "Let the music keep playing",
         carte_dire_mot: "The word with its article",
         carte_dire_pluriel: "The plural",
         carte_dire_phrase: "The example sentence",
@@ -10036,6 +10057,10 @@ const I18N = {
         retour_merci: "Teşekkürler — kaydedildi ✓",
         carte_dire_titre: "Kartın sesli okuduğu",
         carte_dire_desc: "Kartın arka yüzünde Almanca kendiliğinden okunur. Ne duymak istediğini seç. Çıkardığın şey ekranda kalır ve hoparlör düğmesi çalışmaya devam eder — istediğin an dinleyebilirsin.",
+        musique_titre: "Başka bir uygulamanın müziği",
+        musique_desc: "Varsayılan olarak uygulama sesi kendine alır: bir oturuma başladığınızda müziğiniz durur, ama telefonunuzun sessiz düğmesi açıkken bile telaffuzu duyarsınız.",
+        musique_avert: "⚠️ Müziğin çalmaya devam etmesine izin verirseniz, sessiz düğmesi açıkken uygulama HİÇ ses çıkarmaz.",
+        musique_bouton: "Müzik çalmaya devam etsin",
         carte_dire_mot: "Artikeliyle birlikte sözcük",
         carte_dire_pluriel: "Çoğul",
         carte_dire_phrase: "Örnek cümle",
@@ -11579,6 +11604,10 @@ const I18N = {
         retour_merci: "Дякую — записано ✓",
         carte_dire_titre: "Що картка озвучує",
         carte_dire_desc: "На звороті картки німецька звучить сама. Обери, що ти хочеш чути. Те, що ти вимкнеш, лишається на екрані, а його кнопка динаміка працює як раніше.",
+        musique_titre: "Музика з іншого застосунку",
+        musique_desc: "За замовчуванням застосунок забирає звук собі: ваша музика зупиняється, коли ви починаєте заняття, але ви чуєте вимову навіть із увімкненим беззвучним режимом.",
+        musique_avert: "⚠️ Якщо дозволити музиці грати, застосунок НЕ видаватиме ЖОДНОГО звуку в беззвучному режимі.",
+        musique_bouton: "Дозволити музиці грати",
         carte_dire_mot: "Слово з артиклем",
         carte_dire_pluriel: "Множина",
         carte_dire_phrase: "Речення-приклад",
@@ -12274,6 +12303,10 @@ const I18N = {
         retour_merci: "سپاسگزارم — ثبت شد ✓",
         carte_dire_titre: "کارت چه چیزی را می‌گوید",
         carte_dire_desc: "در پشت کارت، آلمانی خودش خوانده می‌شود. انتخاب کن چه چیزی را می‌خواهی بشنوی. آنچه برداری همچنان روی صفحه می‌ماند و دکمهٔ بلندگویش کار می‌کند — هر وقت خواستی می‌توانی آن را بشنوی.",
+        musique_titre: "موسیقی از برنامه‌ای دیگر",
+        musique_desc: "به‌طور پیش‌فرض برنامه صدا را برای خود می‌گیرد: موسیقی شما هنگام شروع جلسه متوقف می‌شود، اما تلفظ را حتی با دکمهٔ بی‌صدا می‌شنوید.",
+        musique_avert: "⚠️ اگر اجازه دهید موسیقی پخش شود، برنامه با دکمهٔ بی‌صدا هیچ صدایی نخواهد داشت.",
+        musique_bouton: "بگذار موسیقی پخش شود",
         carte_dire_mot: "واژه با حرف تعریفش",
         carte_dire_pluriel: "جمع",
         carte_dire_phrase: "جملهٔ نمونه",
@@ -20049,6 +20082,7 @@ function openSettings(){
     const inviteCard = document.getElementById("inviteCard");
     if(inviteCard) inviteCard.classList.toggle("hidden", !isAdminUser());
     renderCartePhraseSetting();
+    renderMusiqueSetting();
     const journalCard = document.getElementById("journalAudioCard");
     if(journalCard) journalCard.classList.toggle("hidden", !isAdminUser());
     restaurerBrouillonRetour();
@@ -24309,7 +24343,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 580;
+const APP_VERSION = 581;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27382,22 +27416,59 @@ const SILENT_WAV_BASE64 = "UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0Y
 //   Le journal audio (reglages) porte la ligne « SESSION » avec ce qui a ete
 //   demande et ce que le navigateur a REELLEMENT retenu : les deux peuvent
 //   differer, et c'est cette difference qui renseigne.
-const SESSION_CLE = "deutschAI_audioSession";
+const MUSIQUE_CLE = "deutschAI_laisserMusique";
+
+// ⚠️ CE QUE L'ESSAI DU 14 SEPTEMBRE A ETABLI, et qui vaut d'etre garde meme
+//    negatif : « transient » N'A PAS MARCHE. Jacques, bouton silencieux
+//    baisse : « je n'entendais plus le moindrement ». Le brouillon W3C promet
+//    « play on top of playback audio (and maybe also duck) » mais ne dit rien
+//    du bouton silencieux -- et la mesure a repondu a sa place.
+//
+//    Aucune valeur de l'API web ne combine « audible en silencieux » et
+//    « cohabite avec la musique ». Le natif le fait, lui, en separant la
+//    CATEGORIE (.playback) des OPTIONS (.duckOthers) ; le web reunit tout en
+//    un seul reglage. Ce n'est donc pas notre code qui est en cause.
+//
+//    ⚠️ NE PAS RETENTER « transient » sans nouvelle information : c'est
+//    mesure, sur un vrai iPhone, le 14 septembre 2026.
+//
+// L'ARBITRAGE EST DONC RENDU A CELUI QUI LE VIT. Il est reel et personnel :
+//   decoche  l'app prend le son. La musique s'arrete, mais la prononciation
+//            s'entend meme bouton silencieux baisse. C'est le defaut.
+//   coche    la musique continue. Mais bouton silencieux baisse, l'app est
+//            MUETTE -- c'est exactement le defaut que la boucle silencieuse
+//            avait ete ecrite pour corriger, reintroduit sciemment par celui
+//            qui le demande.
+//
+// L'ancienne cle d'essai est effacee au passage : personne ne doit rester
+// coince en « transient » parce qu'il a ouvert un lien de diagnostic.
+try{ localStorage.removeItem("deutschAI_audioSession"); }catch(e){}
+
+function laisserMusiqueJouer(){
+    try{ return localStorage.getItem(MUSIQUE_CLE) === "1"; }catch(e){ return false; }
+}
+
+function basculerMusique(){
+    const neuf = !laisserMusiqueJouer();
+    try{ localStorage.setItem(MUSIQUE_CLE, neuf ? "1" : "0"); }catch(e){}
+    appliquerSessionSonore();
+    // ⚠️ LA BOUCLE SILENCIEUSE ET CE REGLAGE SE BATTRAIENT. C'est elle qui
+    //    force la categorie « media » ; la laisser tourner annulerait le
+    //    reglage sans rien dire. On l'arrete, ou on la reprend.
+    if(neuf) arreterBoucleSilencieuse(); else startSilentUnlockLoop();
+    renderMusiqueSetting();
+}
+
+function renderMusiqueSetting(){
+    const b = document.getElementById("musiqueBtn");
+    if(!b) return;
+    const on = laisserMusiqueJouer();
+    b.textContent = (on ? "\u2713  " : "\u2014  ") + t("musique_bouton")
+                  + (on ? "" : "  \u00b7  " + t("carte_dire_non"));
+}
 
 function appliquerSessionSonore(){
-    let voulu = "";
-    try{
-        const p = new URLSearchParams(location.search).get("audio");
-        if(p !== null){
-            voulu = (p || "").trim().toLowerCase();
-            // « off » efface : un essai doit se refermer aussi simplement
-            // qu'il s'ouvre, sinon on n'ose pas l'ouvrir.
-            if(voulu === "off" || voulu === ""){ localStorage.removeItem(SESSION_CLE); voulu = ""; }
-            else localStorage.setItem(SESSION_CLE, voulu);
-        } else {
-            voulu = localStorage.getItem(SESSION_CLE) || "";
-        }
-    }catch(e){}
+    const voulu = laisserMusiqueJouer() ? "ambient" : "";
     if(!voulu) return;
     if(!("audioSession" in navigator)){
         noterAudio("", "SESSION", "demande « " + voulu + " » mais navigator.audioSession n'existe pas ici");
@@ -27416,7 +27487,25 @@ function appliquerSessionSonore(){
     }
 }
 
+// ⚠️ ON RELACHE VRAIMENT L'ELEMENT, on ne se contente pas de le mettre en
+//    pause : sur iOS un <audio> en pause peut garder la session, et le
+//    reglage n'aurait l'air de rien faire. On le vide et on l'oublie, pour
+//    que startSilentUnlockLoop() puisse en refabriquer un.
+function arreterBoucleSilencieuse(){
+    try{
+        if(!silentUnlockEl) return;
+        silentUnlockEl.pause();
+        silentUnlockEl.loop = false;
+        silentUnlockEl.removeAttribute("src");
+        silentUnlockEl.load();
+    }catch(e){}
+    silentUnlockEl = null;
+}
+
 function startSilentUnlockLoop(){
+    // Le reglage l'emporte : celui qui a choisi sa musique ne veut pas qu'on
+    // reprenne la session dans son dos au prochain toucher.
+    if(laisserMusiqueJouer()) return;
     try{
         if(silentUnlockEl) return;
         silentUnlockEl = new Audio("data:audio/wav;base64," + SILENT_WAV_BASE64);
