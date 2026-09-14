@@ -151,7 +151,12 @@ def main():
             texte = p["de"]
             if a.modele == "v3" and p.get("balise"):
                 texte = p["balise"] + " " + texte
-            octets = generer.synthetiser(texte, modele, cle_api)
+            # Ses voisines dans la scene, quel que soit le locuteur :
+            # c'est la CONVERSATION qui donne le contexte, pas la voix.
+            i = plans.index(p)
+            avant = plans[i - 1]["de"] if i > 0 else None
+            apres = plans[i + 1]["de"] if i + 1 < len(plans) else None
+            octets = generer.synthetiser(texte, modele, cle_api, avant, apres)
         except generer.TexteBloque:
             sys.exit("\n  Texte refuse par ElevenLabs au plan %d. Rien n'est "
                      "utilisable tant que la scene est incomplete." % p["n"])

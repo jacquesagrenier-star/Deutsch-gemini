@@ -125,12 +125,33 @@ def cle_api():
     return cle
 
 
-def synthetiser(texte, modele, cle):
-    """Renvoie les octets MP3. Retente sur 429 et sur les erreurs serveur."""
+def synthetiser(texte, modele, cle, avant=None, apres=None):
+    """Renvoie les octets MP3. Retente sur 429 et sur les erreurs serveur.
+
+    avant / apres : le texte des repliques voisines, pour une SCENE. Ils
+    partent en previous_text / next_text.
+
+    ⚠️ OPTIONNELS, ET ABSENTS DU CORPS QUAND ON NE LES PASSE PAS. Un appel
+    sans contexte envoie exactement les memes octets qu'avant le 14 septembre
+    2026 : le corpus du cours -- 25 298 fichiers -- doit rester homogene avec
+    ce qui a deja ete produit.
+
+    A QUOI ILS SERVENT. Le 14 septembre, deux repliques de l'episode 2 sont
+    sorties a 10,2 s et 7,8 s pour quatre et trois mots : le modele REPETAIT
+    la phrase. Leur seul point commun, qu'aucune des dix-sept autres n'avait :
+    une seule phrase courte. Seul devant une phrase isolee trop breve, il
+    remplit. Ses voisines lui disent qu'elle est un morceau de conversation --
+    et la prosodie s'enchaine au lieu de repartir de zero a chaque plan.
+    """
     url = ("https://api.elevenlabs.io/v1/text-to-speech/%s?output_format=%s"
            % (VOIX, FORMAT))
-    corps = json.dumps({"text": texte, "model_id": modele,
-                        "voice_settings": REGLAGES, "seed": SEED}).encode("utf-8")
+    charge = {"text": texte, "model_id": modele,
+              "voice_settings": REGLAGES, "seed": SEED}
+    if avant:
+        charge["previous_text"] = avant
+    if apres:
+        charge["next_text"] = apres
+    corps = json.dumps(charge).encode("utf-8")
     for essai in range(5):
         req = urllib.request.Request(url, data=corps, method="POST", headers={
             "xi-api-key": cle, "Content-Type": "application/json",

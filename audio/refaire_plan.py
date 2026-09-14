@@ -85,7 +85,14 @@ def main():
 
     generer.VOIX = voix
     generer.REGLAGES = DIALOGUE_V3 if court == "v3" else DIALOGUE
-    octets = generer.synthetiser(texte, modele, generer.cle_api())
+    # Les repliques voisines, comme dans scene_audio.py : sans elles, une
+    # phrase isolee trop breve fait remplir le modele -- il la repete.
+    tous = d["plans"]
+    i = tous.index(p)
+    avant = tous[i - 1]["de"] if i > 0 else None
+    apres = tous[i + 1]["de"] if i + 1 < len(tous) else None
+    octets = generer.synthetiser(texte, modele, generer.cle_api(),
+                                 avant, apres)
 
     nom = "%02d-%s.mp3" % (a.plan, p["locuteur"])
     brut = os.path.join(dossier, "_brut", nom)
