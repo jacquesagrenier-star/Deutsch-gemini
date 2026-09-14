@@ -3718,8 +3718,19 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
 .judge-button:active{transform:scale(.97);}
 .judge-titre{display:block;}
 .judge-button svg{width:17px; height:17px; flex:0 0 auto; order:-1;}
-.judge-again{background:#fff; border-color:#e3e7ee; color:#576177;}
-.judge-again:hover{border-color:#c9d0dc;}
+/* ⚠️ QUATRE BOUTONS, QUATRE COULEURS (v598). Deux blancs au milieu de deux
+   couleurs se lisaient comme des boutons DESACTIVES : la couleur est le premier
+   signal d'une rangee, avant le moindre mot. Demande de Jacques.
+   ⚠️ ET LE JAUNE DIT LA BONNE CHOSE. « Encore » n'est pas une faute, c'est un
+   « pas encore » : le rouge punirait, le blanc effacerait. L'ocre du texte, et
+   non le jaune lui-meme, porte le contraste -- du jaune saturé sur un petit
+   bouton crierait plus fort que le vert de « Je savais », qui est le geste
+   qu'on vise. */
+.judge-again{background:#fcf1d5; border-color:#ecd8a4; color:#87661a;}
+.judge-again:hover{background:#f9e9be;}
+body[data-theme="dark"] .judge-again{
+    background:rgba(232,190,88,.16); border-color:rgba(232,190,88,.42); color:#e8ce8a;
+}
 .judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
 .judge-good:hover{background:#cdf0dc;}
 /* ⚠️ L'ECHEANCE EST LA SECONDE LIGNE DU BOUTON, PAS UNE NOTE DE BAS DE PAGE.
@@ -3795,13 +3806,20 @@ body[data-theme="dark"] .judge-known{
    fois garde, il prend l'ambre de la marque -- la seule couleur de l'app qui
    ne veut dire ni « juste » ni « faux », ce qu'il faut pour un geste qui ne
    juge pas. */
-.judge-garde{background:#fff; border-color:#e3e7ee; color:#576177;}
-.judge-garde:hover{border-color:#c9d0dc;}
-.judge-garde.on{
-    background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.62); color:#8c6210;
+/* ⚠️ L'ORANGE EST DEJA CELUI DE LA MARQUE, et c'est ce qui permet a ce bouton
+   d'etre colore SANS entrer dans l'echelle : ni vert ni bleu, il ne dit ni
+   « juste » ni « range ». Demande de Jacques : « garder, peut-etre orange ».
+   ⚠️ DEUX FORCES DU MEME ORANGE, PAS DEUX COULEURS. Au repos une teinte
+   claire ; garde, un aplat plein. C'est le meme objet qui se remplit -- comme
+   le couvercle qui se ferme au-dessus -- et non un autre bouton qui apparait. */
+.judge-garde{background:#fdead9; border-color:#f0c59e; color:#95571b;}
+.judge-garde:hover{background:#fbe0c8;}
+.judge-garde.on{background:#f0a75a; border-color:#dd8c33; color:#46290a;}
+body[data-theme="dark"] .judge-garde{
+    background:rgba(232,162,58,.14); border-color:rgba(232,162,58,.40); color:#e8b573;
 }
 body[data-theme="dark"] .judge-garde.on{
-    background:rgba(232,162,58,.18); border-color:rgba(232,162,58,.5); color:#E8A23A;
+    background:#c9803a; border-color:#e09a52; color:#1b1207;
 }
 /* ⚠️ LE COUVERCLE TOURNE, IL NE CHANGE PAS DE DESSIN. Une seule image, une
    charniere au bout DROIT de la couture : le coffre se ferme vraiment au lieu
@@ -3853,14 +3871,16 @@ body[data-theme="dark"] .judge-garde.on{
                transform .34s cubic-bezier(.34,1.45,.64,1);
 }
 .judge-known:hover .etoile-coeur{color:#4f79c8;}
-.judge-known.sue{
-    background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.62); color:#8c6210;
-}
+/* ⚠️ LE BOUTON SE FONCE EN BLEU, SEULE L'ETOILE EST DOREE (v598). Il virait a
+   l'ambre -- exactement la couleur que « Garder » porte desormais, deux
+   boutons voisins. La distinction se joue donc sur l'INTENSITE de sa propre
+   couleur, et l'or reste ou il compte : dans l'etoile. */
+.judge-known.sue{background:#cfe0ff; border-color:#7ea6ec; color:#1e3f85;}
 .judge-known.sue .etoile-coeur{
     color:#E8A23A; fill:#E8A23A; transform:scale(1.2) rotate(72deg);
 }
 body[data-theme="dark"] .judge-known.sue{
-    background:rgba(232,162,58,.18); border-color:rgba(232,162,58,.5); color:#E8A23A;
+    background:rgba(59,111,224,.30); border-color:rgba(122,163,255,.65); color:#cfe0ff;
 }
 @media (prefers-reduced-motion:reduce){
     .judge-known .etoile-coeur{transition:color .2s ease, fill .2s ease;}
@@ -4149,24 +4169,28 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* La colonne de droite du bandeau : le coffre, puis « ou par theme ».
    `align-items:flex-end` colle les deux au bord droit quelle que soit la
    longueur des mots -- l'ukrainien « Збережені » est deux fois « Gardes ». */
+/* ⚠️ DEUX PASTILLES DE MEME LARGEUR, CONTENU CENTRE (v598). C'etaient un
+   bouton nu et un lien souligne : deux natures pour deux portes qui font la
+   meme chose -- ouvrir un paquet. Demande de Jacques : « est-ce qu'on entoure
+   Garder et le coffre dans un rectangle avec les coins arrondis, la meme chose
+   pour par theme, pour que ce soit plus elegant ».
+   `align-items:stretch` est ce qui les rend EGALES : la colonne se regle sur
+   la plus large des deux, et l'autre s'y etire. Les centrer sans les egaliser
+   aurait donne deux pastilles decalees, ce qui est pire que pas de pastille. */
 .seance-lateral{
-    display:flex; flex-direction:column; align-items:flex-end;
-    gap:1px; flex:0 0 auto; min-width:0;
+    display:flex; flex-direction:column; align-items:stretch;
+    gap:6px; flex:0 0 auto; min-width:0;
 }
-.seance-gardes{
-    display:inline-flex; align-items:center; gap:5px;
-    background:none; border:0; padding:5px 2px;
+.seance-gardes, .seance-themes{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:6px 12px; border-radius:10px;
+    border:1px solid rgba(255,255,255,.42); background:rgba(255,255,255,.13);
     color:#fff; font-family:inherit; font-size:12.5px; font-weight:700;
-    cursor:pointer; line-height:1.35;
+    line-height:1.35; cursor:pointer; white-space:nowrap;
 }
+.seance-gardes:hover, .seance-themes:hover{background:rgba(255,255,255,.24);}
+.seance-gardes:active, .seance-themes:active{transform:scale(.97);}
 .seance-gardes svg{width:15px; height:15px; flex:0 0 auto;}
-.seance-gardes:active{transform:scale(.97);}
-.seance-themes{
-    flex:0 0 auto; background:none; border:0; padding:6px 2px;
-    color:rgba(255,255,255,.86); font-family:inherit; font-size:12.5px;
-    font-weight:600; text-decoration:underline; text-underline-offset:3px;
-    cursor:pointer;
-}
 /* ⚠️ LE MODE NUIT EFFACAIT LE REMPLISSAGE. `body[data-theme="dark"] .orb` a
    une specificite plus forte que `.orb-seance` : la surface sombre gagnait, et
    le bandeau redevenait une tuile parmi les autres -- exactement ce qu'il ne
@@ -4189,8 +4213,7 @@ body[data-theme="dark"] .orb-seance strong,
 body[data-theme="dark"] .orb-seance .seance-fleche{color:#fff;}
 body[data-theme="dark"] .orb-seance .seance-sub{color:rgba(255,255,255,.84);}
 body[data-theme="dark"] .orb-seance .seance-etiq{color:rgba(255,255,255,.80);}
-body[data-theme="dark"] .orb-seance .seance-niveau,
-body[data-theme="dark"] .orb-seance .seance-themes{
+body[data-theme="dark"] .orb-seance .seance-niveau{
     background:transparent; border-color:rgba(255,255,255,.48); color:#fff;
 }
 body[data-theme="dark"] .orb-seance .seance-niveau.on{
@@ -4509,7 +4532,12 @@ body[data-theme="dark"] .mos-cadre{
 .mos-loupe svg{width:13px; height:13px; display:block;}
 .mos-droite{
     margin:9px 22px 0;            /* on revient dans la marge de la carte */
-    display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    /* ⚠️ center, PAS baseline (v598). `baseline` alignait la PREMIERE ligne du
+       pied sur le texte du bouton : des que le message passe a deux lignes --
+       et celui du plafond en fait deux -- tout le bloc pendait sous « Ta
+       galerie ». Signale par Jacques. `center` aligne les deux milieux, quel
+       que soit le nombre de lignes. */
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
 }
 /* ⚠️ ANCREE A 25 % DE LA CHUTE. Le canevas porte le tableau ENTIER -- c'est le
    cadre qui le rogne -- et c'est `transform` qui decide de QUELLE tranche on
@@ -5218,7 +5246,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     </button>
                     <button type="button" class="seance-themes"
                             onclick="event.stopPropagation(); ouvrirThemesDuNiveau();">
-                        <span data-i18n="seance_ou_theme">ou par thème</span>
+                        <span data-i18n="seance_ou_theme">par thème</span>
                     </button>
                 </div>
             </div>
@@ -5561,7 +5589,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v597</span>
+    <span class="subtitle-version">v598</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8180,12 +8208,12 @@ const I18N = {
         seance_neufs_etiq: "Nouveau vocabulaire en provenance du niveau :",
         seance_par_theme: "Par thème",
         seance_commencer: "Commencer",
-        seance_ou_theme: "ou par thème",
+        seance_ou_theme: "par thème",
         garder_action: "Garder",
         garder_fait: "Gardé",
         gardes_titre: "Gardés",
         garde_sortir: "Sortir du coffre",
-        gardes_vide: "Ton coffre est vide. Touche « Garder » sous une carte pour y mettre un mot.",
+        gardes_vide: "Le coffre est vide. Sous une carte, « Garder » y met un mot à retravailler à part : il reste dans tes séances, et tu le retrouves ici quand tu veux.",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -9133,12 +9161,12 @@ const I18N = {
         seance_neufs_etiq: "New vocabulary from level:",
         seance_par_theme: "By theme",
         seance_commencer: "Start",
-        seance_ou_theme: "or by theme",
+        seance_ou_theme: "by theme",
         garder_action: "Keep",
         garder_fait: "Kept",
         gardes_titre: "Kept",
         garde_sortir: "Take out of the chest",
-        gardes_vide: "Your chest is empty. Tap “Keep” under a card to put a word in it.",
+        gardes_vide: "The chest is empty. Under a card, “Keep” puts a word aside to work on again: it stays in your sessions, and you find it here whenever you like.",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -10088,12 +10116,12 @@ const I18N = {
         seance_neufs_etiq: "Yeni kelime dağarcığı şu seviyeden:",
         seance_par_theme: "Temaya göre",
         seance_commencer: "Başla",
-        seance_ou_theme: "ya da temaya göre",
+        seance_ou_theme: "temaya göre",
         garder_action: "Sakla",
         garder_fait: "Saklandı",
         gardes_titre: "Saklananlar",
         garde_sortir: "Sandıktan çıkar",
-        gardes_vide: "Sandığın boş. Bir kartın altındaki “Sakla”’ya dokunarak içine kelime koy.",
+        gardes_vide: "Sandık boş. Bir kartın altındaki “Sakla”, üzerinde yeniden çalışmak istediğin bir kelimeyi içine koyar: kelime seanslarında kalır, istediğin zaman burada bulursun.",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -11308,12 +11336,12 @@ const I18N = {
         seance_neufs_etiq: "Нова лексика з рівня:",
         seance_par_theme: "За темою",
         seance_commencer: "Почати",
-        seance_ou_theme: "або за темою",
+        seance_ou_theme: "за темою",
         garder_action: "Зберегти",
         garder_fait: "Збережено",
         gardes_titre: "Збережені",
         garde_sortir: "Вийняти зі скрині",
-        gardes_vide: "Твоя скриня порожня. Натисни «Зберегти» під карткою, щоб покласти слово.",
+        gardes_vide: "Скриня порожня. Під карткою «Зберегти» кладе сюди слово, яке хочеш опрацювати окремо: воно лишається у твоїх заняттях, і ти знайдеш його тут будь-коли.",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -12918,12 +12946,12 @@ const I18N = {
         seance_neufs_etiq: "واژگان تازه از سطح:",
         seance_par_theme: "بر پایهٔ موضوع",
         seance_commencer: "شروع",
-        seance_ou_theme: "یا بر پایهٔ موضوع",
+        seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "نگه‌داشتن",
         garder_fait: "نگه داشته شد",
         gardes_titre: "نگه‌داشته‌ها",
         garde_sortir: "برداشتن از صندوق",
-        gardes_vide: "صندوق تو خالی است. زیر یک کارت «نگه‌داشتن» را بزن تا واژه‌ای در آن بگذاری.",
+        gardes_vide: "صندوق خالی است. زیر هر کارت، «نگه‌داشتن» واژه‌ای را که می‌خواهی جداگانه رویش کار کنی در آن می‌گذارد: در جلسه‌هایت می‌ماند و هر وقت بخواهی اینجا پیدایش می‌کنی.",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -24734,7 +24762,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 597;
+const APP_VERSION = 598;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
