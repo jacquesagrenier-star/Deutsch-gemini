@@ -5246,7 +5246,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v579</span>
+    <span class="subtitle-version">v580</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24309,7 +24309,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 579;
+const APP_VERSION = 580;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27339,6 +27339,83 @@ let fanfareAudioReady = false;
 let silentUnlockEl = null;
 const SILENT_WAV_BASE64 = "UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
 
+// ============ L'ESSAI DE LA SESSION SONORE (v580) ============
+//
+// LE PROBLEME, RAPPORTE PAR UN TESTEUR : il ecoute Spotify, il ouvre l'app
+// pour faire ses cartes, et la musique s'arrete.
+//
+// LA CAUSE EST LA BOUCLE SILENCIEUSE CI-DESSOUS, ET ELLE FAIT SON TRAVAIL.
+// iOS range tout son dans l'une de deux categories :
+//
+//     SONNERIE   muet quand l'interrupteur est baisse   cohabite
+//     MEDIA      s'entend quand il est baisse           ARRETE LES AUTRES
+//
+// Une page web est « sonnerie » par defaut : sans la boucle, quiconque a le
+// telephone en silencieux n'entend RIEN. La boucle force « media ». On a donc
+// echange « muet en silencieux » contre « coupe la musique » -- ce n'est pas
+// un defaut, c'est le prix du correctif precedent.
+//
+// ⚠️ EN NATIF, LES DEUX SE COMBINENT. AVAudioSession separe la CATEGORIE
+//    (.playback, qui survit au silencieux) des OPTIONS (.duckOthers, qui fait
+//    baisser la musique au lieu de l'arreter). Les applications natives du
+//    meme genre declarent les deux. L'API web n'expose QU'UN reglage.
+//
+// LE CANDIDAT EST « transient ». Le brouillon du W3C le decrit ainsi : « should
+// play on top of playback audio (and maybe also DUCK persistent audio) ».
+// ⚠️ MAIS IL NE DIT RIEN DU BOUTON SILENCIEUX -- verifie, l'explainer entier
+//    est muet la-dessus, et aucune correspondance avec mixWithOthers ni
+//    duckOthers n'y est declaree. Seul Safari l'implemente, a l'etat de
+//    brouillon d'editeur.
+//
+// LE POINT DECISIF N'EST DONC PAS DOCUMENTE. On le mesure au lieu de le
+// deviner -- c'est la regle de ce fichier depuis le 6 septembre.
+//
+// ⚠️ RIEN NE CHANGE PAR DEFAUT. Sans ?audio= dans l'adresse, cette fonction ne
+//    touche a rien : le comportement reste celui d'aujourd'hui pour tout le
+//    monde. L'essai s'active par un lien, et ?audio=off le referme.
+//
+// COMMENT ESSAYER, sur un iPhone, bouton silencieux BAISSE, Spotify en fond :
+//     ...index.html?audio=transient     puis une carte
+//   Deux observations, et elles suffisent :
+//     - entend-on le mot allemand ?   -> la categorie survit au silencieux
+//     - Spotify continue-t-il ?       -> on a gagne
+//   Le journal audio (reglages) porte la ligne « SESSION » avec ce qui a ete
+//   demande et ce que le navigateur a REELLEMENT retenu : les deux peuvent
+//   differer, et c'est cette difference qui renseigne.
+const SESSION_CLE = "deutschAI_audioSession";
+
+function appliquerSessionSonore(){
+    let voulu = "";
+    try{
+        const p = new URLSearchParams(location.search).get("audio");
+        if(p !== null){
+            voulu = (p || "").trim().toLowerCase();
+            // « off » efface : un essai doit se refermer aussi simplement
+            // qu'il s'ouvre, sinon on n'ose pas l'ouvrir.
+            if(voulu === "off" || voulu === ""){ localStorage.removeItem(SESSION_CLE); voulu = ""; }
+            else localStorage.setItem(SESSION_CLE, voulu);
+        } else {
+            voulu = localStorage.getItem(SESSION_CLE) || "";
+        }
+    }catch(e){}
+    if(!voulu) return;
+    if(!("audioSession" in navigator)){
+        noterAudio("", "SESSION", "demande « " + voulu + " » mais navigator.audioSession n'existe pas ici");
+        return;
+    }
+    try{
+        navigator.audioSession.type = voulu;
+        // ⚠️ ON RELIT. Le navigateur peut refuser une valeur qu'il ne connait
+        // pas et en garder une autre en silence : sans relecture, le journal
+        // dirait « transient » pendant que la session est restee « auto », et
+        // l'essai conclurait n'importe quoi.
+        noterAudio("", "SESSION", "demande « " + voulu + " », retenu « "
+                   + navigator.audioSession.type + " »");
+    }catch(e){
+        noterAudio("", "SESSION", "« " + voulu + " » refuse : " + (e && e.message));
+    }
+}
+
 function startSilentUnlockLoop(){
     try{
         if(silentUnlockEl) return;
@@ -29086,6 +29163,9 @@ function showResults(){
             const ctx = getAudioCtx();
             if(ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
         }catch(e){}
+        // AVANT la boucle : c'est elle qui saisit la session, et le type doit
+        // etre declare avant qu'elle le fasse.
+        appliquerSessionSonore();
         startSilentUnlockLoop();
         document.removeEventListener('pointerdown', unlockAudioOnce);
     };
