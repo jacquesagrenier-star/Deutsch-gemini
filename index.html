@@ -4343,10 +4343,18 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
 /* La jauge : collee a la base du tableau, dans le cadre. */
 .mos-jauge{
     position:absolute; inset-inline:0; bottom:0; height:4px;
-    background:rgba(255,255,255,.55);
+    /* ⚠️ LA PART NON FAITE EST TRANSPARENTE (v586). Demande de Jacques : on
+       doit voir le tableau derriere, pas un plan opaque. Un fond blanc a 55 %
+       posait une regle d'interface en travers de l'oeuvre ; le vide la laisse
+       respirer, et le trait plein suffit a dire ou l'on en est. */
+    background:transparent;
 }
-.mos-jauge-part{height:100%; background:#2f62d6; transition:width .4s ease;}
-body[data-theme="dark"] .mos-jauge{background:rgba(10,14,22,.55);}
+/* Le trait plein doit se lire sur N'IMPORTE QUEL tableau -- les notres vont du
+   jaune vif au vert sombre. L'ombre portee le detache sans l'alourdir. */
+.mos-jauge-part{
+    height:100%; background:#2f62d6; transition:width .4s ease;
+    box-shadow:0 0 0 1px rgba(255,255,255,.45);
+}
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
    Jacques : « quelque chose qui me derange visuellement ». */
@@ -4365,11 +4373,10 @@ body[data-theme="dark"] .mos-jauge{background:rgba(10,14,22,.55);}
        l'inverse : un coin carre depasserait de l'arrondi de la carte et se
        verrait comme une erreur. Les coins du BAS restent carres, parce que
        la bande s'arrete la au milieu de la carte. */
-    /* Plus AUCUN arrondi ici : c'est .home-stats-card qui decoupe. Et plus
-       de filet lateral ni superieur -- le bord de la carte les remplace. Seul
-       le bas garde un trait, sous la jauge. */
-    border:none; border-bottom:2px solid #1C2430; border-radius:0;
-    overflow:hidden;
+    /* Plus AUCUN arrondi ni AUCUN filet (v586). La carte decoupe le haut et
+       les cotes ; le trait du bas a ete retire a la demande de Jacques -- sous
+       une jauge, il faisait deux lignes horizontales l'une sur l'autre. */
+    border:none; border-radius:0; overflow:hidden;
     box-shadow:inset 0 0 0 2px rgba(255,255,255,.92);
     background:#f3f1ec; cursor:zoom-in; line-height:0;
     /* Pleine largeur. Le rapport est pose EN JAVASCRIPT, tableau par tableau :
@@ -4406,9 +4413,16 @@ body[data-theme="dark"] .mos-cadre{
 .mos-cartouche{text-align:start; line-height:1.35;}
 /* L'EN-TETE : le rang a gauche, les actions a droite, sur la meme ligne que
    celle que le rang occupait deja. */
-/* Le ⓘ de la carte : seul sur sa ligne, aligne a droite, apres le contenu
-   qu'il documente. */
-.carte-info-ligne{display:flex; justify-content:flex-end; margin-top:10px;}
+/* Le compte du jour et le ⓘ sont pousses a DROITE de la ligne de titre : le
+   sous-titre prend la place qui reste, eux tiennent le bord. La carte y gagne
+   une rangee entiere, le compte n'ayant plus la sienne. */
+.seance-compte{margin-inline-start:auto;}
+/* Sur le bleu du bandeau, le contour bleu du ⓘ disparaitrait. */
+.info-seance{
+    border-color:rgba(255,255,255,.72); color:#fff;
+    align-self:center; flex:0 0 auto;
+}
+.info-seance:hover{background:rgba(255,255,255,.16);}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
 /* UNE SEULE RANGEE POUR L'ANNEE, LE PEINTRE ET LE TITRE (v583). Elle enveloppe
@@ -4946,11 +4960,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              vois plus le i », signale par Jacques. Un element positionne dans
              un conteneur dont la hauteur varie se deplace sans qu'on touche a
              son code. Dans le flux, sa place ne depend de rien. -->
-        <div class="carte-info-ligne">
-            <button type="button" class="info-progression" onclick="ouvrirInfoProgression()"
-                    data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
-        </div>
-
         <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
             <span id="nextBadgeIcon" class="next-badge-icon"></span>
             <div class="next-badge-info">
@@ -5002,8 +5011,23 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      Une carte balayee fait avancer le tableau, pas ce compte :
                      l'objectif mesure du travail, la mosaique mesure la presence.
                      Le ⓘ le dit, parce que rien d'autre ne peut le deviner. -->
-                <span id="seanceCompte" class="seance-compte"></span>
                 <span id="seanceSub" class="seance-sub"></span>
+                <span id="seanceCompte" class="seance-compte"></span>
+                <!-- ⚠️ LE ⓘ VIT ICI DEPUIS LA v586, et il a beaucoup voyage.
+                     Il documente « Comment lire cette carte » -- la seance du
+                     jour, le vocabulaire, la serie -- donc il ne pouvait pas
+                     rester dans l'en-tete du tableau, ou il promettait de
+                     l'aide sur le tableau seul. Jacques : « l'information ne
+                     sert pas juste pour le tableau ». Il le voulait « dans ma
+                     seance du jour, dans le coin droit en haut » : c'est le
+                     seul endroit ou il touche ce qu'il explique.
+                     ⚠️ event.stopPropagation() EST INDISPENSABLE : toute la
+                     tuile porte onclick="ouvrirSeanceDuJour()". Sans lui,
+                     toucher le ⓘ lancerait une seance. Meme piege que la
+                     loupe du tableau. -->
+                <button type="button" class="info-progression info-seance"
+                        onclick="event.stopPropagation(); ouvrirInfoProgression();"
+                        data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
 
             </div>
             <!-- ⚠️ TROIS NATURES DE CONTROLE DANS UN SEUL BLOC, et la plus
@@ -5381,7 +5405,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v585</span>
+    <span class="subtitle-version">v586</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24478,7 +24502,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 585;
+const APP_VERSION = 586;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26463,9 +26487,20 @@ function cartoucheMosaique(m, part, fini){
     if(jauge) jauge.style.width = Math.round(Math.min(1, part) * 100) + "%";
     let h = "";
     const bouts = [];
+    // ⚠️ « PEINT EN » NE SERT QUE TANT QUE L'ANNEE EST SEULE (v586).
+    // Le prefixe avait ete ajoute parce qu'un « 1905 » nu ne disait pas ce
+    // qu'il etait -- retour de Jacques. Mais des que le peintre arrive, la
+    // ligne se lit d'elle-meme : « 1905 · Gabriele Muenter ». Le prefixe
+    // devient alors du remplissage, et Jacques l'a signale : « peint en mille
+    // neuf cent cinq, ce n'est pas beau ».
+    // On garde donc les deux etats : nomme tant qu'il est orphelin, nu des
+    // qu'il a un voisin qui l'explique.
+    const avecPeintre = (fini || part >= 0.70);
     if((fini || part >= 0.40) && m.annee)
-        bouts.push('<span class="mos-annee">' + tf("mosaique_annee", { a: m.annee }) + '</span>');
-    if(fini || part >= 0.70)
+        bouts.push('<span class="mos-annee">'
+                   + (avecPeintre ? m.annee : tf("mosaique_annee", { a: m.annee }))
+                   + '</span>');
+    if(avecPeintre)
         bouts.push('<span class="mos-peintre">' + m.peintre + '</span>');
     if(fini) bouts.push('<span class="mos-titre">' + m.titre + '</span>');
     if(bouts.length) h += '<div class="mos-ligne mos-identite">'
