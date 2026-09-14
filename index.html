@@ -4281,17 +4281,37 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    Le CADRE est la des le premier jour : un cadre vide se regarde, une grille
    vide non. Bord sobre, pas d'ombre portee -- le seul bloc plein de l'accueil
    reste le bandeau de seance (v531). */
-.carte-mosaique{margin-top:14px; padding-top:13px; border-top:1px solid rgba(30,41,59,.10);}
-/* IMAGE A GAUCHE, INFORMATION A DROITE (v546). Demande de Jacques, pour
-   recuperer de la hauteur : en pile, le cadre et le cartouche prenaient deux
-   fois la place. Cote a cote, la carte gagne une soixantaine de pixels sans
-   rien perdre. */
-/* ⚠️ `stretch` ET NON `flex-start` : la colonne de droite doit faire la
-   HAUTEUR DU CADRE, sinon « Ta galerie » et le ⓘ flottent au milieu au lieu
-   de s'aligner sur le bas du tableau. C'est `margin-top:auto` de .mos-bas
-   qui les y pousse -- mais il ne peut rien pousser dans une colonne qui
-   s'arrete a son contenu. Signale par Jacques. */
-.carte-mosaique{display:flex; gap:12px; align-items:stretch;}
+/* ⚠️ LE FILET EST PASSE EN DESSOUS (v582). Il separait la mosaique de ce qui
+   la precedait ; en tete du bloc elle n'a plus rien au-dessus, et un trait
+   suspendu sous le titre de la carte se lit comme une erreur. Demande de
+   Jacques : « place la section du tableau avant la progression du vocabulaire,
+   comme l'en-tete du bloc ». */
+.carte-mosaique{margin-bottom:14px; padding-bottom:13px; border-bottom:1px solid rgba(30,41,59,.10);}
+/* ============ LA BANDE PLEINE LARGEUR (v582) ============
+   Retour d'un designer, rapporte par Jacques : etendre le tableau sur TOUTE
+   la largeur de l'accueil. Le cadre a 42 % (v546) avait ete pose pour
+   recuperer de la hauteur ; il donnait une vignette posee sur la carte, la
+   bande donne un tableau qui l'occupe.
+
+   ⚠️ LA HAUTEUR VARIE AVEC LE TABLEAU, ET C'EST LE COEUR DU REGLAGE.
+   Une bande de hauteur FIXE a ete essayee d'abord -- 5/2, rendue a l'image le
+   14 septembre. Elle est magnifique sur un paysage et elle DETRUIT un
+   portrait : sur « Trois filles » de Macke, elle coupait toutes les tetes et
+   tous les pieds, il ne restait que des torses. Nos 65 tableaux vont de 0,71
+   a 1,43 -- les portraits ne sont pas une exception.
+
+   Le plafond est donc a 0,80 x la largeur (rapport 1,25), et il ne s'applique
+   qu'aux tableaux plus hauts que ca :
+       paysage 1,43   INTACT, aucun recadrage
+       carre   1,00   recadre, garde la maison et l'allee
+       portrait 0,71  recadre, garde chapeaux et visages
+
+   ⚠️ ET ON COUPE PAR LE HAUT, PAS AU MILIEU. C'est ce qui sauve les figures :
+   elles ont la tete dans le tiers superieur. Les deux versions ont ete rendues
+   cote a cote -- au milieu, le Macke perd ses tetes ; en haut, il les garde.
+   C'est la seule difference entre une bande qui marche et une qui ne marche
+   pas, et elle ne se voit qu'a l'image. */
+.carte-mosaique{display:block;}
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
    Jacques : « quelque chose qui me derange visuellement ». */
@@ -4306,7 +4326,11 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
     border:2px solid #1C2430; border-radius:0; overflow:hidden;
     box-shadow:inset 0 0 0 2px rgba(255,255,255,.92);
     background:#f3f1ec; cursor:zoom-in; line-height:0;
-    flex:0 0 42%; max-width:42%; position:relative;
+    /* Pleine largeur. Le rapport est pose EN JAVASCRIPT, tableau par tableau :
+       c'est lui qui connait m.l et m.h, et le plafond ne peut pas s'ecrire en
+       CSS sans connaitre le format de l'oeuvre. */
+    display:block; width:100%; max-width:none; position:relative;
+    aspect-ratio:5 / 4;   /* le plafond, en attendant que JS pose le vrai */
 }
 body[data-theme="dark"] .mos-cadre{
     border-color:#C6CCD6;
@@ -4319,8 +4343,14 @@ body[data-theme="dark"] .mos-cadre{
     display:flex; align-items:center; justify-content:center; pointer-events:none;
 }
 .mos-loupe svg{width:13px; height:13px; display:block;}
-.mos-droite{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;}
-.mos-toile{display:block; width:100%; height:auto;}
+.mos-droite{margin-top:9px; display:flex; flex-direction:column; gap:4px;}
+/* ⚠️ ANCREE EN HAUT, pas centree. Le canevas porte le tableau ENTIER -- c'est
+   le cadre qui le rogne -- et `top:0` fait que le rognage mange le BAS. Voir
+   la note de .carte-mosaique : c'est ce qui sauve les visages. */
+.mos-toile{
+    display:block; position:absolute; inset-inline:0; top:0;
+    width:100%; height:auto;
+}
 .mos-cartouche{text-align:start; line-height:1.35;}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
@@ -4355,7 +4385,7 @@ body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
 }
 .mos-galerie:hover{background:rgba(30,41,59,.06);}
 body[data-theme="dark"] .mos-galerie{border-color:rgba(255,255,255,.26); color:#C6CCD6;}
-body[data-theme="dark"] .carte-mosaique{border-top-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .carte-mosaique{border-bottom-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .mos-cadre{border-color:rgba(255,255,255,.16); background:#20252e;}
 body[data-theme="dark"] .mos-peintre{color:#F2F2F6;}
 body[data-theme="dark"] .mos-titre{color:#A6ADBB;}
@@ -4735,6 +4765,39 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 
     <div class="card home-stats-card" id="homeStatsCard">
+        <!-- LA MOSAIQUE. Le CADRE est visible des le premier jour -- demande de
+             Jacques : « qu'on voie déjà l'endroit où va être le tableau ». Un
+             cadre vide dans un musee se regarde ; une grille vide, non. -->
+        <div id="carteMosaique" class="carte-mosaique hidden">
+            <!-- ⚠️ RIEN NE DISAIT QU'ON POUVAIT L'AGRANDIR. Le curseur `zoom-in`
+                 n'existe pas sur un telephone, et une image bordee ressemble a
+                 une illustration, pas a un bouton. Signale par Jacques. La
+                 pastille des quatre fleches est le signe universel de
+                 l'agrandissement -- elle se lit sans legende et sans mot, donc
+                 dans les cinq langues a la fois. -->
+            <div class="mos-cadre" onclick="ouvrirMosaiquePleinEcran()"
+                 role="button" tabindex="0"
+                 data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau">
+                <canvas id="mosaiqueToile" class="mos-toile" width="900" height="700"></canvas>
+                <span class="mos-loupe" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="mos-droite">
+            <div id="mosaiqueCartouche" class="mos-cartouche"></div>
+            <div class="mos-bas">
+                <span id="mosaiquePied" class="mos-pied"></span>
+                <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
+                        data-i18n="mosaique_galerie">Ta galerie</button>
+                <button type="button" class="info-progression" onclick="ouvrirInfoProgression()"
+                                data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
+            </div>
+            </div>
+        </div>
+
         <div class="global-progress-row hidden">
             <div class="home-stat-cote">
                 <div class="home-stat-ico">🔥</div>
@@ -4781,39 +4844,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
             <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
-        </div>
-
-        <!-- LA MOSAIQUE. Le CADRE est visible des le premier jour -- demande de
-             Jacques : « qu'on voie déjà l'endroit où va être le tableau ». Un
-             cadre vide dans un musee se regarde ; une grille vide, non. -->
-        <div id="carteMosaique" class="carte-mosaique hidden">
-            <!-- ⚠️ RIEN NE DISAIT QU'ON POUVAIT L'AGRANDIR. Le curseur `zoom-in`
-                 n'existe pas sur un telephone, et une image bordee ressemble a
-                 une illustration, pas a un bouton. Signale par Jacques. La
-                 pastille des quatre fleches est le signe universel de
-                 l'agrandissement -- elle se lit sans legende et sans mot, donc
-                 dans les cinq langues a la fois. -->
-            <div class="mos-cadre" onclick="ouvrirMosaiquePleinEcran()"
-                 role="button" tabindex="0"
-                 data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau">
-                <canvas id="mosaiqueToile" class="mos-toile" width="900" height="700"></canvas>
-                <span class="mos-loupe" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                         stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/>
-                    </svg>
-                </span>
-            </div>
-            <div class="mos-droite">
-            <div id="mosaiqueCartouche" class="mos-cartouche"></div>
-            <div class="mos-bas">
-                <span id="mosaiquePied" class="mos-pied"></span>
-                <button type="button" class="mos-galerie" onclick="ouvrirGalerieMosaiques()"
-                        data-i18n="mosaique_galerie">Ta galerie</button>
-                <button type="button" class="info-progression" onclick="ouvrirInfoProgression()"
-                                data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
-            </div>
-            </div>
         </div>
 
         <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
@@ -5246,7 +5276,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v581</span>
+    <span class="subtitle-version">v582</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24343,7 +24373,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 581;
+const APP_VERSION = 582;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26395,6 +26425,15 @@ function majMosaiqueAccueil(){
                 const L = Math.min(900, m.l || 900);
                 canvas.width = L;
                 canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
+                // LA HAUTEUR DE LA BANDE (v582). Le rapport affiche est celui
+                // du tableau, PLAFONNE a 1,25 (soit 0,80 x la largeur). Un
+                // paysage passe intact ; un portrait est rogne par le bas,
+                // jamais par le haut. Voir la note de .carte-mosaique.
+                const cadre = canvas.parentElement;
+                if(cadre){
+                    const r = (m.l || 1) / (m.h || 1);
+                    cadre.style.aspectRatio = String(Math.max(r, 1.25));
+                }
                 dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
                 cartoucheMosaique(m, v.c / g.total, fini);
             }finally{ marquerGel(null); }
