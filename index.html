@@ -3873,12 +3873,26 @@ body[data-theme="dark"] .judge-garde.on{
    Il prend l'orange du coffre au repos, et non une cinquieme couleur : c'est du
    coffre qu'il parle, et le coffre est orange. Il ne peut pas se confondre avec
    « Garder » -- les deux ne paraissent jamais sur le meme ecran. */
+/* Le bleu est libre dans le coffre -- « Je le sais par coeur » n'y parait
+   pas -- et il dit la bonne chose : ni une reussite, ni un retrait, juste un
+   passage. */
+.judge-suivante{display:none; background:#e6eeff; border-color:#b9ccf3; color:#2b4d97;}
+.judge-suivante:hover{background:#dbe7ff;}
+body[data-theme="dark"] .judge-suivante{
+    background:rgba(59,111,224,.16); border-color:rgba(59,111,224,.45); color:#9dbcff;
+}
+.flashcard-actions.paquet-garde .judge-suivante{display:flex;}
 .judge-sortir{display:none; background:#fdead9; border-color:#f0c59e; color:#95571b;}
 .judge-sortir:hover{background:#fbe0c8;}
 body[data-theme="dark"] .judge-sortir{
     background:rgba(232,162,58,.14); border-color:rgba(232,162,58,.40); color:#e8b573;
 }
+/* ⚠️ « JE SAVAIS » N'A PLUS SA PLACE DANS LE COFFRE (v603). Quatre fois de
+   suite, il declarait le mot maitrise et le sortait pour seize jours : reviser
+   son coffre RETIRAIT des mots de la circulation, l'inverse de ce qu'on vient
+   y chercher. Le coffre n'est pas une echelle, c'est un entrainement. */
 .flashcard-actions.paquet-garde .judge-garde,
+.flashcard-actions.paquet-garde .judge-good,
 .flashcard-actions.paquet-garde .judge-known{display:none;}
 .flashcard-actions.paquet-garde .judge-sortir{display:flex;}
 
@@ -5655,7 +5669,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v602</span>
+    <span class="subtitle-version">v603</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7450,6 +7464,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  drapeau se contrediraient. Il juge le mot su ET retire le
                  drapeau -- le menage se fait mot par mot, quand la question se
                  pose, jamais dans un ecran de gestion. -->
+            <button type="button" class="judge-button judge-suivante"
+                    onclick="suivanteDansLeCoffre()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                <span class="judge-titre" data-i18n="coffre_suivante">Suivante</span>
+                <small class="judge-echeance" data-i18n="coffre_suivante_sous">elle reste dans le coffre</small>
+            </button>
             <button type="button" class="judge-button judge-sortir garde-sortir"
                     onclick="sortirDuCoffre()">
                 <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
@@ -8370,6 +8392,9 @@ const I18N = {
         dict_participle: "part. {pp}",
         label_participle: "Participe",
         pos_n: "nom", pos_v: "verbe", pos_adj: "adjectif", pos_adv: "adverbe",
+        echeance_coffre: "il revient dans cette séance",
+        coffre_suivante: "Suivante",
+        coffre_suivante_sous: "elle reste dans le coffre",
         echeance_encore: "retour dans {n} minutes",
         echeance_10min: "dans {n} minutes",
         echeance_dans_seance: "retour dans {n} minutes",
@@ -8385,7 +8410,7 @@ const I18N = {
         alert_maitrises_aucun: "Aucun mot maîtrisé pour l'instant.",
         srs_etat_0: "nouveau mot",
         ip_partie_boutons: "Les quatre boutons",
-        srs_aide_garder: "Le mot va dans ton coffre et la carte avance — mais rien n'est jugé : elle reste due et revient à la prochaine séance. Tu la retrouves aussi à part, par « Gardés », pour la retravailler seule.",
+        srs_aide_garder: "Le mot va dans ton coffre et la carte avance — mais rien n'est jugé : elle reste due et revient à la prochaine séance. Tu la retrouves aussi à part, par « Gardés », pour la retravailler seule. Dans le coffre, réviser ne change rien : ni échéance, ni palier, ni objectif du jour.",
         srs_aide_intro: "Tu réponds une seule chose — si le mot t'est revenu. C'est l'app qui en déduit la date.",
         srs_aide_echelle: "Chaque « Je savais » d'affilée éloigne le mot un peu plus :",
         srs_aide_minutes: "{n} min",
@@ -9328,6 +9353,9 @@ const I18N = {
         dict_participle: "past part. {pp}",
         label_participle: "Past participle",
         pos_n: "noun", pos_v: "verb", pos_adj: "adjective", pos_adv: "adverb",
+        echeance_coffre: "it comes back in this session",
+        coffre_suivante: "Next",
+        coffre_suivante_sous: "it stays in the chest",
         echeance_encore: "back in {n} minutes",
         echeance_10min: "in {n} minutes",
         echeance_dans_seance: "back in {n} minutes",
@@ -9343,7 +9371,7 @@ const I18N = {
         alert_maitrises_aucun: "No mastered words yet.",
         srs_etat_0: "new word",
         ip_partie_boutons: "The four buttons",
-        srs_aide_garder: "The word goes into your chest and the card moves on — but nothing is judged: it stays due and comes back next session. You also find it on its own, under “Kept”, to work on separately.",
+        srs_aide_garder: "The word goes into your chest and the card moves on — but nothing is judged: it stays due and comes back next session. You also find it on its own, under “Kept”, to work on separately. Inside the chest, reviewing changes nothing: no due date, no step, no daily goal.",
         srs_aide_intro: "You answer one thing only — whether the word came back to you. The app works out the date.",
         srs_aide_echelle: "Each « I knew it » in a row pushes the word further away:",
         srs_aide_minutes: "{n} min",
@@ -10288,6 +10316,9 @@ const I18N = {
         dict_participle: "geçmiş ort. {pp}",
         label_participle: "Geçmiş ortaç",
         pos_n: "isim", pos_v: "fiil", pos_adj: "sıfat", pos_adv: "zarf",
+        echeance_coffre: "bu seansta geri gelir",
+        coffre_suivante: "Sonraki",
+        coffre_suivante_sous: "sandıkta kalır",
         echeance_encore: "{n} dakika sonra döner",
         echeance_10min: "{n} dakika sonra",
         echeance_dans_seance: "{n} dakika sonra döner",
@@ -10303,7 +10334,7 @@ const I18N = {
         alert_maitrises_aucun: "Henüz öğrenilmiş kelime yok.",
         srs_etat_0: "yeni kelime",
         ip_partie_boutons: "Dört düğme",
-        srs_aide_garder: "Kelime sandığına gider ve kart ilerler — ama hiçbir şey değerlendirilmez: kelime sırada kalır ve bir sonraki seansta geri gelir. Ayrıca “Saklananlar” altında, tek başına çalışmak için bulursun.",
+        srs_aide_garder: "Kelime sandığına gider ve kart ilerler — ama hiçbir şey değerlendirilmez: kelime sırada kalır ve bir sonraki seansta geri gelir. Ayrıca “Saklananlar” altında, tek başına çalışmak için bulursun. Sandığın içinde tekrar etmek hiçbir şeyi değiştirmez: ne tarih, ne basamak, ne günlük hedef.",
         srs_aide_intro: "Tek bir şey söylüyorsun — kelime aklına geldi mi. Tarihi uygulama hesaplar.",
         srs_aide_echelle: "Üst üste her « Biliyordum » kelimeyi biraz daha uzağa iter:",
         srs_aide_minutes: "{n} dk",
@@ -11505,6 +11536,9 @@ const I18N = {
         pos_v: "дієслово",
         pos_adj: "прикметник",
         pos_adv: "прислівник",
+        echeance_coffre: "воно повернеться на цьому занятті",
+        coffre_suivante: "Далі",
+        coffre_suivante_sous: "вона лишається у скрині",
         echeance_encore: "повернеться через {n} хв",
         echeance_10min: "через {n} хвилин",
         echeance_dans_seance: "повернеться через {n} хв",
@@ -11521,7 +11555,7 @@ const I18N = {
         srs_etat_3: "майже вийшло",
         srs_etat_4: "засвоїв",
         ip_partie_boutons: "Чотири кнопки",
-        srs_aide_garder: "Слово йде до твоєї скрині, і картка рухається далі — але нічого не оцінюється: вона лишається до повторення й повернеться наступного заняття. Ти також знайдеш її окремо, у «Збережених», щоб опрацювати саму.",
+        srs_aide_garder: "Слово йде до твоєї скрині, і картка рухається далі — але нічого не оцінюється: вона лишається до повторення й повернеться наступного заняття. Ти також знайдеш її окремо, у «Збережених», щоб опрацювати саму. У скрині повторення нічого не змінює: ні терміну, ні щабля, ні денної мети.",
         srs_aide_intro: "Ти відповідаєш лише на одне — чи згадалося слово. Дату застосунок вирахує сам.",
         srs_aide_echelle: "Кожне «Пам'ятаю» поспіль відсуває слово трохи далі:",
         srs_aide_minutes: "{n} хв",
@@ -13127,6 +13161,9 @@ const I18N = {
         pos_v: "فعل",
         pos_adj: "صفت",
         pos_adv: "قید",
+        echeance_coffre: "در همین جلسه بازمی‌گردد",
+        coffre_suivante: "بعدی",
+        coffre_suivante_sous: "در صندوق می‌ماند",
         echeance_encore: "تا {n} دقیقهٔ دیگر برمی‌گردد",
         echeance_10min: "تا {n} دقیقهٔ دیگر",
         echeance_dans_seance: "تا {n} دقیقهٔ دیگر برمی‌گردد",
@@ -13140,7 +13177,7 @@ const I18N = {
         alert_maitrises_aucun: "فعلاً هیچ واژهٔ آموخته‌ای نیست.",
         srs_etat_0: "واژهٔ نو",
         ip_partie_boutons: "چهار دکمه",
-        srs_aide_garder: "واژه به صندوق تو می‌رود و کارت جلو می‌رود — اما چیزی داوری نمی‌شود: کارت همچنان سررسید می‌ماند و در جلسهٔ بعد برمی‌گردد. آن را جداگانه هم، در «نگه‌داشته‌ها»، برای کار روی خودش پیدا می‌کنی.",
+        srs_aide_garder: "واژه به صندوق تو می‌رود و کارت جلو می‌رود — اما چیزی داوری نمی‌شود: کارت همچنان سررسید می‌ماند و در جلسهٔ بعد برمی‌گردد. آن را جداگانه هم، در «نگه‌داشته‌ها»، برای کار روی خودش پیدا می‌کنی. درون صندوق، مرور هیچ چیزی را تغییر نمی‌دهد: نه سررسید، نه پله، نه هدف روزانه.",
         srs_aide_echelle: "هر «می‌دانستم» پشت‌سرهم، واژه را کمی دورتر می‌برد:",
         srs_aide_minutes: "{n} دقیقه",
         srs_aide_jour: "{n} روز",
@@ -24885,7 +24922,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 602;
+const APP_VERSION = 603;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27614,7 +27651,13 @@ function majEcheances(animerDernier){
     try{ majBoutonGarde(); }catch(e){}
     const elA = document.getElementById("judgeEcheanceAgain");
     if(!elA) return;
-    elA.textContent = tf("echeance_encore", { n: SRS_ENCORE_MINUTES });
+    // ⚠️ DANS LE COFFRE, « retour dans 2 minutes » SERAIT UN MENSONGE : plus
+    // aucune echeance n'est ecrite, la carte revient simplement plus loin dans
+    // la file. Le libelle doit suivre le comportement, sinon c'est lui qui
+    // apprend le systeme a l'envers.
+    elA.textContent = dansLePaquetGarde()
+        ? t("echeance_coffre")
+        : tf("echeance_encore", { n: SRS_ENCORE_MINUTES });
     // « ne plus me le montrer » etait faux : markMastered() reprogramme le mot
     // a SRS_MAINTENANCE_DAYS. Le bouton dit maintenant ce qu'il fait vraiment,
     // comme les deux autres. Remarque de Jacques.
@@ -27754,6 +27797,20 @@ function echeanceProchaineReussite(state){
 function reviewAgain(){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
+    // ⚠️ DANS LE COFFRE, « ENCORE » NE TOUCHE A RIEN (v603). Hors du coffre il
+    // fait trois choses lourdes -- srsHits a zero, puis scheduleReview() qui
+    // remet mastered a faux, entretiens a zero, l'echeance a deux minutes et
+    // compte la carte dans l'objectif du jour. Dans un outil de revision libre
+    // ce serait une remise a zero deguisee : un mot a trois pastilles y
+    // retomberait a zero, un mot programme a deux ans reviendrait dans deux
+    // minutes, et l'objectif se remplirait sans qu'on ait rien appris.
+    // Ici on ne fait donc QUE remettre la carte dans la file de la seance.
+    if(dansLePaquetGarde()){
+        remettreEnFile(item);
+        clearTimeout(attentePalier);
+        attentePalier = setTimeout(nextFlashcard, 220);
+        return;
+    }
     const state = getWordState(item.themeId, item.index);
     // « Encore » sur un mot jamais vu : il compte quand meme dans la dose du
     // jour. C'est bien un mot neuf rencontre, et le fait de l'avoir rate le
@@ -27908,6 +27965,14 @@ function basculerGardeCarte(){
     attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
+// Passer sans rien faire : la carte avance, le mot reste garde, et aucune
+// donnee ne bouge. C'est le seul bouton de l'application qui ne fait
+// LITTERALEMENT rien d'autre qu'avancer -- et c'est sa raison d'etre.
+function suivanteDansLeCoffre(){
+    clearTimeout(attentePalier);
+    nextFlashcard();
+}
+
 function sortirDuCoffre(){
     // Le couvercle s'ouvre AVANT que la carte parte : c'est le seul instant ou
     // le geste peut se montrer. Voir la note du CSS.
@@ -27920,10 +27985,15 @@ function sortirDuCoffre(){
         setWordState(it.themeId, it.index, st);
         try{ majBoutonGardes(); }catch(e){}
     }
-    // Sortir un mot du coffre, c'est dire qu'il est regle : il monte l'echelle
-    // comme un « Je savais », et la carte avance. C'est la seule difference
-    // avec le bouton coffre, qui lui ne juge rien et laisse la carte en place.
-    reviewGood();
+    // ⚠️ IL NE JUGE PLUS RIEN (v603). Il deleguait a reviewGood(), donc sortir
+    // un mot du coffre le faisait monter d'un cran sur l'echelle -- et quatre
+    // sorties d'affilee auraient maitrise quatre mots sans qu'on ait dit une
+    // seule fois qu'on les savait. Jacques : « l'idee, c'est simplement sortir
+    // le mot du coffre ».
+    // Le coffre est un lieu de passage, pas un jugement : on y entre, on y
+    // tourne, on en sort, et le calendrier du mot n'a pas bouge d'un jour.
+    clearTimeout(attentePalier);
+    attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
 
 // ⚠️ ON COMPTE DANS LA PROGRESSION, PAS DANS LE COURS. Construire le paquet
