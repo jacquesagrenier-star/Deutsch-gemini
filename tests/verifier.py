@@ -504,7 +504,14 @@ def verifier_ecrans(r, source, fonctions):
         r.echec("interface", "showScreen vise un ecran inexistant : %s" % c)
     r.controle(len(cibles))
     # Les actions des panneaux sont appelees par window[action]()
-    actions = set(re.findall(r'action:\s*"([A-Za-z0-9_]+)"', source))
+    # La limite de mot n'est PAS un detail : sans elle, `action:` se retrouve
+    # dans n'importe quelle cle de traduction finissant par _action, et le
+    # controle exige une fonction nommee d'apres un libelle d'interface. C'est
+    # arrive le 14 septembre 2026 avec garder_action / garder_fait : trois
+    # echecs annonces -- Garder(), Keep(), Sakla() -- pour zero defaut reel.
+    # Un controle qui accuse le libelle au lieu du code fait perdre confiance
+    # dans tous les autres.
+    actions = set(re.findall(r'(?<![A-Za-z0-9_])action:\s*"([A-Za-z0-9_]+)"', source))
     for a in sorted(actions):
         if a not in fonctions and not a.startswith("comingSoonPanel"):
             r.echec("interface", "action de panneau sans fonction : %s()" % a)

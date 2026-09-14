@@ -3789,6 +3789,64 @@ body[data-theme="dark"] .judge-known{
     background:#161a22; border-color:#2a3240; color:#aab3c2;
 }
 
+/* ============ LE COFFRE (v592) ============
+   ⚠️ IL NE RESSEMBLE PAS AUX BOUTONS DE JUGEMENT, ET C'EST VOULU. Les trois
+   autres repondent a une question ; celui-ci annote. Un bouton fantome, plus
+   discret que « Je le sais par coeur », dit cette difference de nature sans
+   qu'il faille l'expliquer. */
+.garde-btn{
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    width:fit-content; max-width:100%; margin:0 auto 9px; padding:5px 14px;
+    background:none; border:1.5px solid transparent; border-radius:999px;
+    color:#8b93a3; font-family:inherit; font-size:12.5px; font-weight:700;
+    cursor:pointer;
+    transition:color .18s ease, background .18s ease, border-color .18s ease;
+}
+.garde-btn svg{width:17px; height:17px; flex:0 0 auto;}
+.garde-btn:hover{color:#6b7484;}
+.garde-btn:active{transform:scale(.97);}
+/* Garde : l'ambre de la marque. C'est la seule couleur de l'app qui ne veut
+   dire ni « juste » ni « faux » -- exactement ce qu'il faut pour un geste qui
+   ne juge pas. */
+.garde-btn.on{
+    color:#a0700f; background:rgba(232,162,58,.14);
+    border-color:rgba(232,162,58,.5);
+}
+body[data-theme="dark"] .garde-btn{color:#7d8697;}
+body[data-theme="dark"] .garde-btn.on{color:#E8A23A; background:rgba(232,162,58,.16);}
+/* ⚠️ LE COUVERCLE TOURNE, IL NE CHANGE PAS DE DESSIN. Une seule image, une
+   charniere au bord droit : le coffre se ferme vraiment au lieu de sauter d'un
+   pictogramme a l'autre. `transform-box:view-box` est indispensable -- sans
+   lui, l'origine se calcule sur la boite de l'element et la charniere part
+   ailleurs. Si un navigateur ne suit pas, le couvercle reste en place : le
+   libelle et la couleur disent deja tout, rien ne se casse. */
+.gc-couvercle{
+    transform-box:view-box; transform-origin:20.2px 12.8px;
+    /* ⚠️ LE SIGNE EST POSITIF, ET IL S'EST TROMPE UNE FOIS. La charniere est
+       au bout DROIT de la couture, donc le bras du couvercle pointe vers la
+       gauche : une rotation NEGATIVE (anti-horaire) le fait descendre sous le
+       corps, pas se lever. Vu a l'ecran seulement -- aucun test ne juge un
+       dessin. */
+    transform:rotate(34deg);
+    transition:transform .3s cubic-bezier(.34,1.3,.64,1);
+}
+.garde-btn.on .gc-couvercle, .seance-gardes .gc-couvercle{transform:rotate(0deg);}
+.gc-serrure{opacity:0; transition:opacity .2s ease .12s;}
+.garde-btn.on .gc-serrure, .seance-gardes .gc-serrure{opacity:1;}
+@media (prefers-reduced-motion:reduce){
+    .gc-couvercle, .gc-serrure{transition:none;}
+}
+/* ⚠️ LE PAQUET DES GARDES ECHANGE DEUX BOUTONS, ET C'EST LE CSS QUI LE FAIT.
+   Une regle ne peut pas se desynchroniser d'un etat ; du JS qui reecrit des
+   libelles, si. Dehors : le coffre est la, « Sortir » non. Dedans : l'inverse,
+   et « Je le sais par coeur » s'efface avec lui -- on n'ouvre pas son coffre
+   pour graduer un mot. */
+.garde-sortir{display:none;}
+.garde-sortir::before{content:"\2191";}
+.flashcard-actions.paquet-garde .garde-btn,
+.flashcard-actions.paquet-garde .judge-known:not(.garde-sortir){display:none;}
+.flashcard-actions.paquet-garde .garde-sortir{display:flex;}
+
 /* Fin de paquet : le seul moment ou les actions de SESSION ont leur place.
    Avant v227 elles etaient collees sous chaque carte, ce qui faisait sept
    boutons a lire a chaque mot. */
@@ -4068,6 +4126,21 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
     padding:4px 6px; border-radius:6px; cursor:pointer;
 }
 .seance-niveau.on{background:#fff; border-color:#fff; color:#2f62d6;}
+/* La colonne de droite du bandeau : le coffre, puis « ou par theme ».
+   `align-items:flex-end` colle les deux au bord droit quelle que soit la
+   longueur des mots -- l'ukrainien « Збережені » est deux fois « Gardes ». */
+.seance-lateral{
+    display:flex; flex-direction:column; align-items:flex-end;
+    gap:1px; flex:0 0 auto; min-width:0;
+}
+.seance-gardes{
+    display:inline-flex; align-items:center; gap:5px;
+    background:none; border:0; padding:5px 2px;
+    color:#fff; font-family:inherit; font-size:12.5px; font-weight:700;
+    cursor:pointer; line-height:1.35;
+}
+.seance-gardes svg{width:15px; height:15px; flex:0 0 auto;}
+.seance-gardes:active{transform:scale(.97);}
 .seance-themes{
     flex:0 0 auto; background:none; border:0; padding:6px 2px;
     color:rgba(255,255,255,.86); font-family:inherit; font-size:12.5px;
@@ -5101,10 +5174,33 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                          stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                 </button>
               </div>
-                <button type="button" class="seance-themes"
-                        onclick="event.stopPropagation(); ouvrirThemesDuNiveau();">
-                    <span data-i18n="seance_ou_theme">ou par thème</span>
-                </button>
+                <!-- ⚠️ TROIS PORTES, ET ELLES NE DISENT PAS LA MEME CHOSE :
+                     « Commencer » est ce que l'app choisit, « Gardes » est ce
+                     que la personne a choisi, « ou par theme » est tout le
+                     reste. Emplacement demande par Jacques : le coffre
+                     au-dessus de « ou par theme ».
+                     ⚠️ PAS DE COMPTE SUR LE BOUTON, ET PAS DE BOUTON QUAND LE
+                     COFFRE EST VIDE. Jacques : « le coffre seulement ». Le
+                     chiffre ne manque pas, parce que l'absence du bouton dit
+                     deja qu'il n'y a rien dedans -- et un coffre vide qu'on
+                     ouvre pour rien est plus decevant qu'un coffre absent. -->
+                <div class="seance-lateral">
+                    <button type="button" class="seance-gardes hidden" id="seanceGardes"
+                            onclick="event.stopPropagation(); ouvrirGardes();">
+                        <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
+                            <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
+                            <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
+                        </svg>
+                        <span data-i18n="gardes_titre">Gardés</span>
+                    </button>
+                    <button type="button" class="seance-themes"
+                            onclick="event.stopPropagation(); ouvrirThemesDuNiveau();">
+                        <span data-i18n="seance_ou_theme">ou par thème</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -5445,7 +5541,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v591</span>
+    <span class="subtitle-version">v592</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7172,6 +7268,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     </div>
 
     <div id="flashcardActions" class="flashcard-actions hidden">
+        <!-- ⚠️ LE COFFRE EST AU-DESSUS DE LA RANGEE, ET HORS D'ELLE. Ce n'est
+             pas un quatrieme jugement : il ne repond pas a « est-ce que je le
+             savais ? », il annote. C'est pour ca qu'il ne fait pas partir la
+             carte -- et c'est pour ca que le couvercle qui se ferme se voit.
+             ⚠️ ET IL EST DANS LE BLOC D'APRES-REPONSE, comme le ⓘ : sur le
+             recto, un bouton « Garder » se lirait comme un indice. On garde un
+             mot parce qu'on vient de voir qu'il resiste. -->
+        <button type="button" id="gardeBtn" class="garde-btn"
+                onclick="basculerGardeCarte()" aria-pressed="false">
+            <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
+                 aria-hidden="true">
+                <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
+                <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
+                <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
+            </svg>
+            <span id="gardeBtnTexte" data-i18n="garder_action">Garder</span>
+        </button>
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
                 <span data-i18n="review_again">↺ Encore</span>
@@ -7188,6 +7302,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <button class="judge-known" onclick="markKnownAlready()">
             <span data-i18n="review_known">Je le sais par cœur</span>
             <small class="judge-echeance" id="judgeEcheanceKnown"></small>
+        </button>
+        <!-- ⚠️ LE TROISIEME BOUTON DU PAQUET DES GARDES. Il prend la place de
+             « Je le sais par coeur », qui n'a rien a faire la : on n'ouvre pas
+             son coffre pour graduer un mot, on l'ouvre pour voir si on le
+             garde encore. Il juge le mot su ET retire le drapeau -- le menage
+             se fait mot par mot, quand la question se pose. -->
+        <button type="button" class="judge-known garde-sortir"
+                onclick="sortirDuCoffre()">
+            <span data-i18n="garde_sortir">Sortir du coffre</span>
         </button>
         <!-- Le « i » est ICI, dans le bloc qui n'apparait qu'apres la reponse :
              sur la carte, il se lirait comme un indice. -->
@@ -8014,6 +8137,11 @@ const I18N = {
         seance_par_theme: "Par thème",
         seance_commencer: "Commencer",
         seance_ou_theme: "ou par thème",
+        garder_action: "Garder",
+        garder_fait: "Gardé",
+        gardes_titre: "Gardés",
+        garde_sortir: "Sortir du coffre",
+        gardes_vide: "Ton coffre est vide. Touche « Garder » sous une carte pour y mettre un mot.",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -8962,6 +9090,11 @@ const I18N = {
         seance_par_theme: "By theme",
         seance_commencer: "Start",
         seance_ou_theme: "or by theme",
+        garder_action: "Keep",
+        garder_fait: "Kept",
+        gardes_titre: "Kept",
+        garde_sortir: "Take out of the chest",
+        gardes_vide: "Your chest is empty. Tap “Keep” under a card to put a word in it.",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -9912,6 +10045,11 @@ const I18N = {
         seance_par_theme: "Temaya göre",
         seance_commencer: "Başla",
         seance_ou_theme: "ya da temaya göre",
+        garder_action: "Sakla",
+        garder_fait: "Saklandı",
+        gardes_titre: "Saklananlar",
+        garde_sortir: "Sandıktan çıkar",
+        gardes_vide: "Sandığın boş. Bir kartın altındaki “Sakla”’ya dokunarak içine kelime koy.",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -11127,6 +11265,11 @@ const I18N = {
         seance_par_theme: "За темою",
         seance_commencer: "Почати",
         seance_ou_theme: "або за темою",
+        garder_action: "Зберегти",
+        garder_fait: "Збережено",
+        gardes_titre: "Збережені",
+        garde_sortir: "Вийняти зі скрині",
+        gardes_vide: "Твоя скриня порожня. Натисни «Зберегти» під карткою, щоб покласти слово.",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -12732,6 +12875,11 @@ const I18N = {
         seance_par_theme: "بر پایهٔ موضوع",
         seance_commencer: "شروع",
         seance_ou_theme: "یا بر پایهٔ موضوع",
+        garder_action: "نگه‌داشتن",
+        garder_fait: "نگه داشته شد",
+        gardes_titre: "نگه‌داشته‌ها",
+        garde_sortir: "برداشتن از صندوق",
+        gardes_vide: "صندوق تو خالی است. زیر یک کارت «نگه‌داشتن» را بزن تا واژه‌ای در آن بگذاری.",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -24542,7 +24690,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 591;
+const APP_VERSION = 592;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27017,6 +27165,10 @@ function majCompteDuJour(){
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
     cpt.textContent = fait + " / " + cible + (fait >= cible ? " \u2713" : "");
     cpt.classList.toggle("atteint", fait >= cible);
+    // Accroche au moins couteux des deux : majCompteDuJour() repasse a chaque
+    // changement d'ecran, majTuileSeance() presque jamais. Le coffre doit
+    // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
+    try{ majBoutonGardes(); }catch(e){}
 }
 
 function majTuileSeance(){
@@ -27211,6 +27363,9 @@ let sessionSues = 0;
 // la personne appuie sans savoir ce qu'elle programme -- et le sens de
 // "Je savais" change selon l'historique du mot.
 function majEcheances(animerDernier){
+    // Le coffre suit la carte : il est appele ici parce que c'est le seul
+    // point de passage garanti de CHAQUE carte affichee.
+    try{ majBoutonGarde(); }catch(e){}
     const elA = document.getElementById("judgeEcheanceAgain");
     if(!elA) return;
     elA.textContent = tf("echeance_encore", { n: SRS_ENCORE_MINUTES });
@@ -27439,6 +27594,111 @@ function reviewGood(){
 
 // Echappatoire pour les mots deja connus : sans elle, quelqu'un qui ouvre un
 // theme de 60 mots dont il en connait 40 devrait les faire remonter un a un.
+// ============ LE COFFRE AU TRESOR (v592) ============
+// Voir la note en tete de ce bloc dans le HTML : le coffre ANNOTE, il ne juge
+// pas. Aucune de ces fonctions ne touche a `due` ni a `srsHits`, sauf
+// sortirDuCoffre() qui delegue a reviewGood() -- le drapeau et l'echeance sont
+// deux choses separees, et doivent le rester.
+function carteCourante(){
+    return currentCards.length ? currentCards[currentFlashcard] : null;
+}
+
+function estGardee(it){
+    return !!(it && getWordState(it.themeId, it.index).garde);
+}
+
+// ⚠️ ON REECRIT data-i18n EN MEME TEMPS QUE LE TEXTE. Le libelle bascule entre
+// DEUX cles ; si l'attribut restait sur « Garder », un changement de langue
+// repeindrait « Garder » sur un mot deja garde. Le defaut ne se verrait qu'en
+// changeant de langue au milieu d'une seance -- donc jamais, jusqu'au jour ou.
+function majBoutonGarde(){
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.toggle("paquet-garde", dansLePaquetGarde());
+    const btn = document.getElementById("gardeBtn");
+    if(!btn) return;
+    const on = estGardee(carteCourante());
+    btn.classList.toggle("on", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    const txt = document.getElementById("gardeBtnTexte");
+    if(txt){
+        const cle = on ? "garder_fait" : "garder_action";
+        txt.setAttribute("data-i18n", cle);
+        txt.textContent = t(cle);
+    }
+}
+
+// L'identite du paquet plutot qu'un drapeau de module : un drapeau se pose a
+// l'ouverture et s'oublie a toutes les sorties -- il y en a une dizaine.
+function dansLePaquetGarde(){
+    return !!(currentTheme && currentTheme.id === "gardes");
+}
+
+function basculerGardeCarte(){
+    const it = carteCourante();
+    if(!it) return;
+    const st = getWordState(it.themeId, it.index);
+    st.garde = !st.garde;
+    setWordState(it.themeId, it.index, st);
+    majBoutonGarde();
+    try{ majBoutonGardes(); }catch(e){}
+}
+
+function sortirDuCoffre(){
+    const it = carteCourante();
+    if(it){
+        const st = getWordState(it.themeId, it.index);
+        st.garde = false;
+        setWordState(it.themeId, it.index, st);
+        try{ majBoutonGardes(); }catch(e){}
+    }
+    // Sortir un mot du coffre, c'est dire qu'il est regle : il monte l'echelle
+    // comme un « Je savais », et la carte avance. C'est la seule difference
+    // avec le bouton coffre, qui lui ne juge rien et laisse la carte en place.
+    reviewGood();
+}
+
+// ⚠️ ON COMPTE DANS LA PROGRESSION, PAS DANS LE COURS. Construire le paquet
+// pour savoir s'il est vide couterait sept niveaux concatenes a chaque
+// changement d'ecran -- le defaut exact que la v568 a retire du bandeau.
+// L'objet de progression tient en memoire et ne contient que ce qu'on a
+// touche.
+function nombreGardes(){
+    let n = 0;
+    let p = null;
+    try{ p = getProgress(); }catch(e){ return 0; }
+    Object.keys(p || {}).forEach(cle => {
+        if(cle === "__migrations") return;
+        const bloc = p[cle];
+        if(!bloc || typeof bloc !== "object") return;
+        Object.keys(bloc).forEach(i => { if(bloc[i] && bloc[i].garde) n++; });
+    });
+    return n;
+}
+
+function majBoutonGardes(){
+    const b = document.getElementById("seanceGardes");
+    if(b) b.classList.toggle("hidden", nombreGardes() === 0);
+}
+
+async function ouvrirGardes(){
+    await chargerFrequence();
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });
+    const gardes = tout.filter(it => getWordState(it.themeId, it.index).garde);
+    if(!gardes.length){ showInfoToast(t("gardes_vide")); majBoutonGardes(); return; }
+    currentCardsFull = gardes;
+    currentCards = gardes.slice();
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = { id: "gardes", name: t("gardes_titre") };
+    currentFlashcard = 0;
+    flashcardMode = gardes[0].mode || "nomen";
+    setFlashHeader("gardes_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
 function markKnownAlready(){
     if(currentCards.length){
         const it = currentCards[currentFlashcard];

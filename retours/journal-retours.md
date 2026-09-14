@@ -4629,3 +4629,24 @@ touché — le verbe avant, le participe après.
 liste de côté, hors du calcul de progression) ou si c'est une **marque sur la
 carte du cours** qui la fait revenir plus tôt. Ce n'est pas la même donnée ni
 le même écran.
+
+**Fait le 14 septembre 2026 — v592.** Le coffre existe. Ce qui a été construit,
+et les deux décisions qui le tiennent :
+
+- **Le coffre n'est pas un jugement.** Il ne répond pas à « est-ce que je le
+  savais ? », donc il ne fait pas partir la carte — donc il reste à l'écran, et
+  c'est la seule raison pour laquelle le couvercle qui se ferme et le mot qui
+  passe de « Garder » à « Gardé » se voient. Sur un bouton de jugement, la
+  bascule durerait le temps d'un clignement.
+- **Le drapeau vit dans l'état du mot**, pas dans une liste à part : il voyage
+  avec `progressJson`, donc le coffre suit du téléphone à l'ordinateur — ce que
+  « Mon vocabulaire », local seulement, ne sait pas faire.
+- Le mot gardé **reste dans la séance normale** (décision de Jacques) : le
+  coffre est une loupe, pas une mise à l'écart.
+- Dans le paquet des gardés, la rangée change : « Je le sais par cœur » cède la
+  place à **« Sortir du coffre »**, qui juge le mot su *et* retire le drapeau.
+  Le ménage se fait mot par mot, jamais dans un écran de gestion.
+- Bouton dans la tuile bleue au-dessus de « ou par thème », **sans compte** et
+  absent quand le coffre est vide (« le coffre seulement »).
+
+Reste à faire : le cœur en contour qui se remplit — écarté pour l'instant.
