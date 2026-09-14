@@ -3700,9 +3700,15 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    dans toutes les langues. Le symbole monte en tete de chaque bouton --
    pastilles, etoile, coffre -- pour qu'on reconnaisse la colonne avant de la
    lire. */
+/* ⚠️ CENTRE DANS LES DEUX SENS, PAS SEULEMENT EN LARGEUR. Les colonnes ont
+   toutes la hauteur de la plus haute -- celle qui porte trois lignes -- et
+   `flex-start` collait les autres au plafond : « Garder », qui n'a qu'un mot,
+   flottait en haut d'une boite vide aux trois quarts. Signale par Jacques.
+   `center` sur l'axe principal repartit le vide au-dessus ET en dessous, donc
+   les quatre contenus s'alignent sur un meme milieu au lieu d'un meme bord. */
 .judge-button{
     display:flex; flex-direction:column; align-items:center;
-    justify-content:flex-start; gap:3px;
+    justify-content:center; gap:3px;
     margin:0; padding:9px 5px 8px; border-radius:14px;
     font-weight:800; font-size:13px; line-height:1.18; letter-spacing:.01em;
     text-align:center; font-family:inherit;
@@ -5553,7 +5559,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v594</span>
+    <span class="subtitle-version">v595</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24726,7 +24732,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 594;
+const APP_VERSION = 595;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
