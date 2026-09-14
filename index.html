@@ -5445,7 +5445,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v590</span>
+    <span class="subtitle-version">v591</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24542,7 +24542,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 590;
+const APP_VERSION = 591;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26165,12 +26165,46 @@ function ordonnerParFrequence(items){
 // mots neufs pour une memoire, quelle que soit leur etiquette. Un compteur par
 // niveau permettrait d'en prendre soixante-quinze en passant de A1 a C1, ce que
 // le plafond existe precisement pour empecher.
+// ⚠️ UN QUART DE LA SEANCE EST RESERVE AU NEUF (v591), ET VOICI POURQUOI.
+//
+// LE DEFAUT, MESURE LE 14 SEPTEMBRE SUR LE COMPTE DE JACQUES :
+//     objectif du jour                40
+//     cartes echues disponibles      164
+//     echues servies    min(164, 40) = 40
+//     place pour le neuf  min(0, 15) =  0
+//
+// Zero. Et tant que le retard depasse la taille d'une seance, il ne peut pas y
+// en avoir d'autre. LE SELECTEUR DE NIVEAU NE COMMANDE ALORS PLUS RIEN : il
+// affiche A1 et sert du B1, parce que les echues viennent de TOUS les niveaux
+// et que le niveau choisi ne gouverne que le neuf. Jacques l'a decrit
+// exactement : « je suis revenu a A1, ca continuait a me donner des mots
+// d'ailleurs ».
+//
+// ⚠️ ET LA PRIORITE AUX ECHUES N'EST PAS LA FAUTE. C'est le coeur de la
+// repetition espacee : ajouter du neuf pendant que le retard grossit creuse le
+// trou. La faute est l'ABSENCE DE PLANCHER -- une regle juste appliquee sans
+// reste finit par nier le choix de la personne.
+//
+// Le quart est un compromis, pas une verite : avec 40 cartes, 30 de retard et
+// 10 de neuf. Le retard baisse encore de 30 par jour, et le niveau choisi
+// avance toujours.
+//
+// ⚠️ LA RESERVE NE CREE RIEN QUI N'EXISTE PAS. Elle est bornee trois fois --
+// par le quart, par le plafond de neufs du jour, ET par le nombre de mots
+// neufs reellement disponibles a ce niveau. S'il n'y a pas de neuf a servir,
+// la place retourne aux echues au lieu de laisser des trous.
+const PART_NEUFS_RESERVEE = 0.25;
+
 function cartesDeSeance(poolTout, poolNeufs){
-    const dues = cartesEchuesTriees((poolTout || []).filter(
-        it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, tailleSeance());
+    const taille = tailleSeance();
     const neufs = (poolNeufs || []).filter(
         it => estNeuf(getWordState(it.themeId, it.index)));
-    const place = Math.min(tailleSeance() - dues.length, placeNeufsRestante());
+    const plafond = placeNeufsRestante();
+    const reserve = Math.min(Math.round(taille * PART_NEUFS_RESERVEE),
+                             plafond, neufs.length);
+    const dues = cartesEchuesTriees((poolTout || []).filter(
+        it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, taille - reserve);
+    const place = Math.min(taille - dues.length, plafond);
     return dues.concat(ordonnerParFrequence(neufs).slice(0, Math.max(0, place)));
 }
 
