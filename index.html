@@ -4343,18 +4343,19 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
 /* La jauge : collee a la base du tableau, dans le cadre. */
 .mos-jauge{
     position:absolute; inset-inline:0; bottom:0; height:4px;
-    /* ⚠️ LA PART NON FAITE EST TRANSPARENTE (v586). Demande de Jacques : on
-       doit voir le tableau derriere, pas un plan opaque. Un fond blanc a 55 %
-       posait une regle d'interface en travers de l'oeuvre ; le vide la laisse
-       respirer, et le trait plein suffit a dire ou l'on en est. */
-    background:transparent;
+    /* ⚠️ LA PART NON FAITE EST BLANCHE ET OPAQUE (v587), ET J'AVAIS COMPRIS
+       L'INVERSE. Je l'avais rendue transparente en croyant qu'il fallait
+       laisser voir l'oeuvre ; Jacques : « ce qui n'est pas encore atteint, je
+       veux que ce soit un blanc opaque, qu'on voie bien que c'est une barre de
+       progression ».
+       Une barre dont le reste a faire est invisible n'est pas une barre : on
+       ne voit qu'un trait bleu qui s'allonge sans savoir vers quoi. C'est la
+       PART RESTANTE qui donne son sens a la part faite. */
+    background:#fff;
 }
 /* Le trait plein doit se lire sur N'IMPORTE QUEL tableau -- les notres vont du
    jaune vif au vert sombre. L'ombre portee le detache sans l'alourdir. */
-.mos-jauge-part{
-    height:100%; background:#2f62d6; transition:width .4s ease;
-    box-shadow:0 0 0 1px rgba(255,255,255,.45);
-}
+.mos-jauge-part{height:100%; background:#2f62d6; transition:width .4s ease;}
 /* ⚠️ COINS CARRES. Un tableau n'a pas les coins arrondis -- l'arrondi le fait
    ressembler a une vignette d'interface au lieu d'une oeuvre encadree. Dit par
    Jacques : « quelque chose qui me derange visuellement ». */
@@ -4413,16 +4414,21 @@ body[data-theme="dark"] .mos-cadre{
 .mos-cartouche{text-align:start; line-height:1.35;}
 /* L'EN-TETE : le rang a gauche, les actions a droite, sur la meme ligne que
    celle que le rang occupait deja. */
-/* Le compte du jour et le ⓘ sont pousses a DROITE de la ligne de titre : le
-   sous-titre prend la place qui reste, eux tiennent le bord. La carte y gagne
-   une rangee entiere, le compte n'ayant plus la sienne. */
-.seance-compte{margin-inline-start:auto;}
-/* Sur le bleu du bandeau, le contour bleu du ⓘ disparaitrait. */
+/* ⚠️ SEUL LE ⓘ TIENT LE BORD DROIT. Le compte, lui, reste colle au titre : un
+   nombre colle a ce qu'il compte se lit d'un coup. C'est le sous-titre, entre
+   les deux, qui prend la place qui reste et repousse le ⓘ. */
+/* ⚠️ NI CERCLE NI GROSSEUR (v587). Le ⓘ heritait d'une pastille de 24 px
+   cerclee, dessinee pour du papier blanc. Sur le bleu du bandeau, Jacques :
+   « retire le cercle autour, et reduis le i, c'est trop gros pour rien ». Une
+   lettre suffit quand elle est seule dans son coin ; le cercle ne separait de
+   rien. */
 .info-seance{
-    border-color:rgba(255,255,255,.72); color:#fff;
+    margin-inline-start:auto;
+    border:none; background:none; color:rgba(255,255,255,.90);
+    width:auto; height:auto; font-size:14px; padding:0 2px;
     align-self:center; flex:0 0 auto;
 }
-.info-seance:hover{background:rgba(255,255,255,.16);}
+.info-seance:hover{background:none; color:#fff;}
 .mos-ligne{display:block;}
 .mos-rang{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#9aa3b2;}
 /* UNE SEULE RANGEE POUR L'ANNEE, LE PEINTRE ET LE TITRE (v583). Elle enveloppe
@@ -5011,8 +5017,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                      Une carte balayee fait avancer le tableau, pas ce compte :
                      l'objectif mesure du travail, la mosaique mesure la presence.
                      Le ⓘ le dit, parce que rien d'autre ne peut le deviner. -->
-                <span id="seanceSub" class="seance-sub"></span>
+                <!-- ⚠️ LE COMPTE RESTE COLLE AU TITRE (v587). Je l'avais
+                     pousse au bord droit ; Jacques : « garde-le a cote de Ma
+                     seance du jour ». Un nombre colle a ce qu'il compte se lit
+                     d'un coup ; renvoye a l'autre bout, il faut le relier. -->
                 <span id="seanceCompte" class="seance-compte"></span>
+                <span id="seanceSub" class="seance-sub"></span>
                 <!-- ⚠️ LE ⓘ VIT ICI DEPUIS LA v586, et il a beaucoup voyage.
                      Il documente « Comment lire cette carte » -- la seance du
                      jour, le vocabulaire, la serie -- donc il ne pouvait pas
@@ -5405,7 +5415,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v586</span>
+    <span class="subtitle-version">v587</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24502,7 +24512,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 586;
+const APP_VERSION = 587;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26487,19 +26497,14 @@ function cartoucheMosaique(m, part, fini){
     if(jauge) jauge.style.width = Math.round(Math.min(1, part) * 100) + "%";
     let h = "";
     const bouts = [];
-    // ⚠️ « PEINT EN » NE SERT QUE TANT QUE L'ANNEE EST SEULE (v586).
-    // Le prefixe avait ete ajoute parce qu'un « 1905 » nu ne disait pas ce
-    // qu'il etait -- retour de Jacques. Mais des que le peintre arrive, la
-    // ligne se lit d'elle-meme : « 1905 · Gabriele Muenter ». Le prefixe
-    // devient alors du remplissage, et Jacques l'a signale : « peint en mille
-    // neuf cent cinq, ce n'est pas beau ».
-    // On garde donc les deux etats : nomme tant qu'il est orphelin, nu des
-    // qu'il a un voisin qui l'explique.
+    // ⚠️ « PEINT EN » RESTE, TOUJOURS (v587). J'avais essaye de le retirer des
+    // que le peintre apparait, en croyant que Jacques le trouvait de trop.
+    // Il a repondu de le garder. Et la raison d'origine n'a pas bouge : un
+    // « 1905 » nu ne dit pas ce qu'il est, et il arrive SEUL -- c'est le
+    // premier des trois temps du devoilement.
     const avecPeintre = (fini || part >= 0.70);
     if((fini || part >= 0.40) && m.annee)
-        bouts.push('<span class="mos-annee">'
-                   + (avecPeintre ? m.annee : tf("mosaique_annee", { a: m.annee }))
-                   + '</span>');
+        bouts.push('<span class="mos-annee">' + tf("mosaique_annee", { a: m.annee }) + '</span>');
     if(avecPeintre)
         bouts.push('<span class="mos-peintre">' + m.peintre + '</span>');
     if(fini) bouts.push('<span class="mos-titre">' + m.titre + '</span>');
