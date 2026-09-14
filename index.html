@@ -3998,7 +3998,10 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 .dict-plural{font-size:12px; color:#8b93a3; font-style:italic;}
 
 /* ---- « Quand ce mot reviendra-t-il ? » ---- */
-.srs-aide-btn{
+/* Plus aucun bouton d'aide sous la carte (v600) ; la regle reste inutile.
+   .srs-aide, elle, sert toujours : c'est le panneau, desormais dans l'ecran
+   d'information. */
+.srs-aide-btn-MORT{
     display:flex; align-items:center; gap:8px; margin:10px auto 0;
     padding:6px 12px; border-radius:999px; cursor:pointer;
     border:1px solid transparent; background:transparent;
@@ -4047,9 +4050,10 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
     padding:11px 13px; margin-top:11px; border-radius:10px;
     border:1px solid transparent; border-inline-start-width:3px;
 }
-.srs-aide-bloc.encore{background:rgba(232,162,58,.09); border-inline-start-color:#E8A23A;}
+.srs-aide-bloc.encore{background:rgba(240,214,110,.16); border-inline-start-color:#ecdfa6;}
 .srs-aide-bloc.savais{background:rgba(28,107,71,.07); border-inline-start-color:#9fdcbe;}
-.srs-aide-bloc.connu{background:rgba(105,114,133,.06); border-inline-start-color:#cdd3de;}
+.srs-aide-bloc.connu{background:rgba(59,111,224,.07); border-inline-start-color:#b9ccf3;}
+.srs-aide-bloc.garder{background:rgba(232,162,58,.10); border-inline-start-color:#f0a75a;}
 .srs-aide-titre{font-weight:700; color:#1e293b; margin-bottom:4px;}
 .srs-aide-pied{padding-top:11px; border-top:1px solid #e6eaf2; font-style:italic;}
 body[data-theme="dark"] .srs-aide-pied{border-color:#2a3240}
@@ -5607,7 +5611,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v599</span>
+    <span class="subtitle-version">v600</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5654,6 +5658,18 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <p data-i18n="ip_seance_p"></p>
         </div>
     </div>
+
+    <!-- ⚠️ LES QUATRE BOUTONS ARRIVENT ICI DEPUIS LA v600. Ils etaient
+         expliques sous chaque carte, par un ⓘ qu'il fallait deplier au moment
+         meme ou l'on veut repondre. Leur place est avec le reste de ce qui se
+         lit une fois : ils gouvernent la seance, et cet ecran explique la
+         seance.
+         Le contenu est construit en JavaScript par texteAideSrs(), a partir des
+         CONSTANTES du systeme -- SRS_PREMIERE_MINUTES, l'echelle des jours,
+         SRS_PALIERS. Un chiffre recopie dans cinq traductions se met a mentir
+         des qu'on change la constante, et personne ne le voit. -->
+    <h3 class="info-titre" data-i18n="ip_partie_boutons">Les quatre boutons</h3>
+    <div id="ipBoutons" class="srs-aide"></div>
 
     <div class="ip-bloc">
         <div class="ip-demo">
@@ -7402,14 +7418,18 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <span class="judge-titre" data-i18n="garde_sortir">Sortir du coffre</span>
             </button>
         </div>
-        <!-- Le « i » est ICI, dans le bloc qui n'apparait qu'apres la reponse :
-             sur la carte, il se lirait comme un indice. -->
-        <button class="srs-aide-btn" id="srsAideBtn" onclick="basculerAideSrs()"
-                aria-expanded="false" aria-controls="srsAide">
-            <span aria-hidden="true">i</span>
-            <span data-i18n="srs_aide_bouton">Quand ce mot reviendra-t-il ?</span>
-        </button>
-        <div id="srsAide" class="srs-aide hidden"></div>
+        <!-- ⚠️ LE LIEN D'AIDE EST PARTI D'ICI (v600), ET C'EST LA v598 QUI
+             L'A RENDU INUTILE. Tant que la rangee etait deux boutons plus une
+             pastille, il fallait un mot pour dire ce que chacun ferait. Depuis
+             qu'elle porte quatre colonnes -- chacune avec son symbole, sa
+             couleur et son echeance ecrite dessous -- la reponse est deja a
+             l'ecran, et un lien d'aide occupait la ligne juste sous la zone du
+             pouce, a chaque carte, pour une question qu'on ne se pose qu'une
+             fois. Demande de Jacques.
+             Le TEXTE, lui, n'est pas perdu : il explique pourquoi l'echelle
+             est faite ainsi, et il vit maintenant dans l'ecran d'information
+             de « Ma seance du jour », avec le compte, le vocabulaire et le
+             tableau. Voir texteAideSrs() et #ipBoutons. -->
     </div>
 
     <!-- Fin de paquet : actions de session, affichees une seule fois au lieu
@@ -8303,7 +8323,8 @@ const I18N = {
         alert_maitrises_revoir: "{n} mots maîtrisés reviennent en révision.",
         alert_maitrises_aucun: "Aucun mot maîtrisé pour l'instant.",
         srs_etat_0: "nouveau mot",
-        srs_aide_bouton: "Quand ce mot reviendra-t-il ?",
+        ip_partie_boutons: "Les quatre boutons",
+        srs_aide_garder: "Le mot va dans ton coffre et la carte avance — mais rien n'est jugé : elle reste due et revient à la prochaine séance. Tu la retrouves aussi à part, par « Gardés », pour la retravailler seule.",
         srs_aide_intro: "Tu réponds une seule chose — si le mot t'est revenu. C'est l'app qui en déduit la date.",
         srs_aide_echelle: "Chaque « Je savais » d'affilée éloigne le mot un peu plus :",
         srs_aide_minutes: "{n} min",
@@ -8314,7 +8335,7 @@ const I18N = {
         srs_aide_encore: "Le mot repart de zéro et revient {n} cartes plus loin, dans cette séance.",
         srs_aide_pastilles: "Les {n} pastilles comptent ces réussites d'affilée.",
         srs_aide_connu: "Le mot passe directement à « maîtrisé », sans faire les quatre étapes. Utile pour un mot déjà su : il sort du paquet sans qu'il faille le juger quatre fois.",
-        srs_aide_apres: "Dans les deux cas, un mot maîtrisé n'est pas rangé pour de bon : il revient dans {n} jours pour vérifier. Chaque fois que tu le confirmes, il s'éloigne davantage — 35 jours, puis 3 mois, puis 6, puis un an. Un mot comme « Hallo » finit par ne plus revenir du tout.",
+        srs_aide_apres: "Par les quatre « Je savais » comme par l'étoile, un mot maîtrisé n'est pas rangé pour de bon : il revient dans {n} jours pour vérifier. Chaque fois que tu le confirmes, il s'éloigne davantage — 35 jours, puis 3 mois, puis 6, puis un an. Un mot comme « Hallo » finit par ne plus revenir du tout.",
         srs_etat_1: "je commence",
         srs_etat_2: "je progresse",
         srs_etat_3: "j'y suis presque",
@@ -9256,7 +9277,8 @@ const I18N = {
         alert_maitrises_revoir: "{n} mastered words are back in review.",
         alert_maitrises_aucun: "No mastered words yet.",
         srs_etat_0: "new word",
-        srs_aide_bouton: "When will this word come back?",
+        ip_partie_boutons: "The four buttons",
+        srs_aide_garder: "The word goes into your chest and the card moves on — but nothing is judged: it stays due and comes back next session. You also find it on its own, under “Kept”, to work on separately.",
         srs_aide_intro: "You answer one thing only — whether the word came back to you. The app works out the date.",
         srs_aide_echelle: "Each « I knew it » in a row pushes the word further away:",
         srs_aide_minutes: "{n} min",
@@ -9267,7 +9289,7 @@ const I18N = {
         srs_aide_encore: "The word starts over and comes back {n} cards later, in this session.",
         srs_aide_pastilles: "The {n} dots count those successes in a row.",
         srs_aide_connu: "The word jumps straight to « mastered », skipping the four steps. Handy for a word you already know: it leaves the deck without being judged four times.",
-        srs_aide_apres: "Either way, a mastered word isn't put away for good: it comes back in {n} days as a check. Each time you confirm it, it moves further away — 35 days, then 3 months, then 6, then a year. A word like “Hallo” eventually stops coming back at all.",
+        srs_aide_apres: "Through four “I knew it”s or straight through the star, a mastered word isn't put away for good: it comes back in {n} days as a check. Each time you confirm it, it moves further away — 35 days, then 3 months, then 6, then a year. A word like “Hallo” eventually stops coming back at all.",
         srs_etat_1: "getting started",
         srs_etat_2: "making progress",
         srs_etat_3: "almost there",
@@ -10211,7 +10233,8 @@ const I18N = {
         alert_maitrises_revoir: "{n} öğrenilmiş kelime tekrara döndü.",
         alert_maitrises_aucun: "Henüz öğrenilmiş kelime yok.",
         srs_etat_0: "yeni kelime",
-        srs_aide_bouton: "Bu kelime ne zaman geri gelecek?",
+        ip_partie_boutons: "Dört düğme",
+        srs_aide_garder: "Kelime sandığına gider ve kart ilerler — ama hiçbir şey değerlendirilmez: kelime sırada kalır ve bir sonraki seansta geri gelir. Ayrıca “Saklananlar” altında, tek başına çalışmak için bulursun.",
         srs_aide_intro: "Tek bir şey söylüyorsun — kelime aklına geldi mi. Tarihi uygulama hesaplar.",
         srs_aide_echelle: "Üst üste her « Biliyordum » kelimeyi biraz daha uzağa iter:",
         srs_aide_minutes: "{n} dk",
@@ -10222,7 +10245,7 @@ const I18N = {
         srs_aide_encore: "Kelime sıfırdan başlar ve bu oturumda {n} kart sonra geri gelir.",
         srs_aide_pastilles: "{n} nokta, üst üste gelen bu başarıları sayar.",
         srs_aide_connu: "Kelime dört adımı atlayıp doğrudan « öğrenildi » olur. Zaten bildiğin bir kelime için pratik: dört kez değerlendirilmeden desteden çıkar.",
-        srs_aide_apres: "Her iki durumda da öğrenilen kelime büsbütün kaldırılmaz: kontrol için {n} gün sonra geri gelir. Her doğruladığında biraz daha uzaklaşır — 35 gün, sonra 3 ay, sonra 6 ay, sonra bir yıl. « Hallo » gibi bir kelime sonunda hiç geri gelmez.",
+        srs_aide_apres: "İster dört “Biliyordum” ile ister doğrudan yıldızla olsun, öğrenilen kelime büsbütün kaldırılmaz: kontrol için {n} gün sonra geri gelir. Her doğruladığında biraz daha uzaklaşır — 35 gün, sonra 3 ay, sonra 6 ay, sonra bir yıl. « Hallo » gibi bir kelime sonunda hiç geri gelmez.",
         srs_etat_1: "başlıyor",
         srs_etat_2: "ilerliyor",
         srs_etat_3: "neredeyse tamam",
@@ -11424,7 +11447,8 @@ const I18N = {
         srs_etat_2: "просуваюсь",
         srs_etat_3: "майже вийшло",
         srs_etat_4: "засвоїв",
-        srs_aide_bouton: "Коли це слово повернеться?",
+        ip_partie_boutons: "Чотири кнопки",
+        srs_aide_garder: "Слово йде до твоєї скрині, і картка рухається далі — але нічого не оцінюється: вона лишається до повторення й повернеться наступного заняття. Ти також знайдеш її окремо, у «Збережених», щоб опрацювати саму.",
         srs_aide_intro: "Ти відповідаєш лише на одне — чи згадалося слово. Дату застосунок вирахує сам.",
         srs_aide_echelle: "Кожне «Пам'ятаю» поспіль відсуває слово трохи далі:",
         srs_aide_minutes: "{n} хв",
@@ -11434,7 +11458,7 @@ const I18N = {
         srs_aide_encore: "Слово починає спочатку і повертається через {n} карток, у цьому ж сеансі.",
         srs_aide_pastilles: "{n} кружечки рахують ці успіхи поспіль.",
         srs_aide_connu: "Слово одразу стає «засвоєним», без чотирьох кроків. Зручно для слова, яке ти вже знаєш: воно виходить з колоди без чотирьох оцінювань.",
-        srs_aide_apres: "У обох випадках засвоєне слово не відкладається назавжди: воно повернеться через {n} днів для перевірки. Щоразу, коли ти його підтверджуєш, воно віддаляється ще більше — 35 днів, потім 3 місяці, далі 6, далі рік. Слово на кшталт « Hallo » зрештою перестає повертатися зовсім.",
+        srs_aide_apres: "Чи через чотири «Пам'ятаю», чи одразу через зірку, засвоєне слово не відкладається назавжди: воно повернеться через {n} днів для перевірки. Щоразу, коли ти його підтверджуєш, воно віддаляється ще більше — 35 днів, потім 3 місяці, далі 6, далі рік. Слово на кшталт « Hallo » зрештою перестає повертатися зовсім.",
         qual_0: "Ти починаєш!",
         qual_1: "На правильному шляху!",
         qual_20: "Є поступ!",
@@ -12904,7 +12928,7 @@ const I18N = {
         dict_section_note: "برای ساختن کارت از یک واژه و یافتن دوبارهٔ آن در «واژگان من»، + را لمس کن.",
         srs_aide_intro: "تو فقط یک چیز پاسخ می‌دهی — اینکه واژه به یادت آمد یا نه. برنامه از همان، فاصلهٔ مرور بعدی را درمی‌آورد.",
         srs_aide_connu: "واژه یک‌راست به «آموخته» می‌رود، بدون گذراندن چهار پله. برای واژه‌هایی به کار می‌آید که از پیش بلدی.",
-        srs_aide_apres: "در هر دو حالت، واژهٔ آموخته برای همیشه کنار گذاشته نمی‌شود: {n} روز دیگر برای بررسی بازمی‌گردد. هر بار که آن را تأیید کنی، دورتر می‌رود — ۳۵ روز، سپس ۳ ماه، سپس ۶ ماه، سپس یک سال. واژه‌ای مثل « Hallo » سرانجام دیگر برنمی‌گردد.",
+        srs_aide_apres: "چه با چهار «می‌دانستم» و چه یک‌راست با ستاره، واژهٔ آموخته برای همیشه کنار گذاشته نمی‌شود: {n} روز دیگر برای بررسی بازمی‌گردد. هر بار که آن را تأیید کنی، دورتر می‌رود — ۳۵ روز، سپس ۳ ماه، سپس ۶ ماه، سپس یک سال. واژه‌ای مثل « Hallo » سرانجام دیگر برنمی‌گردد.",
         settings_revoir_maitrises_desc: "واژه‌های دسته‌بندی‌شده در «آموخته» را دوباره به گردش می‌آورد، بی‌آنکه پیشرفت یا درصد تو پاک شود.",
         confirm_revoir_maitrises: "همهٔ واژه‌های آموخته‌ات دوباره به مرور بازگردند؟ پیشرفت و درصد تو دست‌نخورده می‌ماند.",
         examen_aide_1: "سه مرجع رسمی آلمانی فهرست واژگانی را منتشر می‌کنند که باید در هر سطح دانست. واژه‌ای که این نشان را دارد، دست‌کم در یکی از آن‌ها آمده است.",
@@ -13038,7 +13062,8 @@ const I18N = {
         alert_maitrises_revoir: "{n} واژهٔ آموخته به مرور بازمی‌گردند.",
         alert_maitrises_aucun: "فعلاً هیچ واژهٔ آموخته‌ای نیست.",
         srs_etat_0: "واژهٔ نو",
-        srs_aide_bouton: "این واژه کِی برمی‌گردد؟",
+        ip_partie_boutons: "چهار دکمه",
+        srs_aide_garder: "واژه به صندوق تو می‌رود و کارت جلو می‌رود — اما چیزی داوری نمی‌شود: کارت همچنان سررسید می‌ماند و در جلسهٔ بعد برمی‌گردد. آن را جداگانه هم، در «نگه‌داشته‌ها»، برای کار روی خودش پیدا می‌کنی.",
         srs_aide_echelle: "هر «می‌دانستم» پشت‌سرهم، واژه را کمی دورتر می‌برد:",
         srs_aide_minutes: "{n} دقیقه",
         srs_aide_jour: "{n} روز",
@@ -17346,6 +17371,11 @@ function majInfoProgression(){
     pose("ipTableauCarreaux", "ip_tableau_carreaux", { n: MOSAIQUE_CARREAUX });
     pose("ipTableauPlafond", "ip_tableau_plafond", { n: MOSAIQUE_PLAFOND });
     pose("ipTableauTrophee", "ip_tableau_trophee", { n: MOSAIQUE_SEANCES_TROPHEE });
+    // ⚠️ REECRIT A CHAQUE OUVERTURE, pas une seule fois. Les libelles des
+    // boutons viennent de t(), donc un changement de langue doit les suivre --
+    // et cet ecran s'ouvre par showScreen(), jamais par un rechargement.
+    const bts = document.getElementById("ipBoutons");
+    if(bts) bts.innerHTML = texteAideSrs();
     dessinerToileInfo();
 }
 
@@ -22358,7 +22388,6 @@ function loadFlashcard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
     document.getElementById("flashcardActions").classList.add("hidden");
-    fermerAideSrs();
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
         flashcardEl.classList.add("answer-accent");
@@ -22892,7 +22921,6 @@ function unflipCard(){
     // Les boutons de jugement se retirent avec la reponse : juger une carte
     // qu'on ne voit plus n'aurait aucun sens.
     document.getElementById("flashcardActions").classList.add("hidden");
-    fermerAideSrs();
     // flipCard() lance la prononciation ; revenir au recto la coupe, sinon la
     // voix continue de dire une reponse qui n'est plus a l'ecran. La chaine
     // entiere s'arrete, pas seulement l'etape en cours -- sans quoi le pluriel
@@ -24780,7 +24808,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 599;
+const APP_VERSION = 600;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27588,29 +27616,22 @@ function texteAideSrs(){
         +   '<div class="srs-aide-titre">' + t("review_known") + '</div>'
         +   '<p>' + t("srs_aide_connu") + '</p>'
         + '</div>'
+        // ⚠️ LE COFFRE DIT LA SEULE CHOSE QU'ON NE PEUT PAS DEVINER : il fait
+        // avancer la carte SANS rien juger. Les trois autres repondent a
+        // « est-ce que je le savais ? » ; celui-la n'y repond pas, et rien a
+        // l'ecran ne peut le montrer -- le geste est le meme, la consequence
+        // non.
+        + '<div class="srs-aide-bloc garder">'
+        +   '<div class="srs-aide-titre">' + t("garder_action") + '</div>'
+        +   '<p>' + t("srs_aide_garder") + '</p>'
+        + '</div>'
         + '<p class="srs-aide-pied">' + tf("srs_aide_apres", { n: SRS_MAINTENANCE_DAYS }) + '</p>';
 }
 
-function basculerAideSrs(){
-    const boite = document.getElementById("srsAide");
-    const bouton = document.getElementById("srsAideBtn");
-    if(!boite) return;
-    const ouvert = boite.classList.contains("hidden");
-    if(ouvert && !boite.innerHTML) boite.innerHTML = texteAideSrs();
-    boite.classList.toggle("hidden", !ouvert);
-    if(bouton) bouton.setAttribute("aria-expanded", String(ouvert));
-    // La carte grandit d'un bloc : sans cela le panneau deborde sous le pli.
-    if(typeof resizeFlashcard === "function") resizeFlashcard();
-}
-
-// Refermee a chaque carte : laissee ouverte, elle repousserait les boutons de
-// jugement hors de l'ecran sur la carte suivante.
-function fermerAideSrs(){
-    const boite = document.getElementById("srsAide");
-    const bouton = document.getElementById("srsAideBtn");
-    if(boite) boite.classList.add("hidden");
-    if(bouton) bouton.setAttribute("aria-expanded", "false");
-}
+// ⚠️ basculerAideSrs() ET fermerAideSrs() ONT DISPARU (v600). Elles
+// ouvraient et refermaient le panneau d'aide SOUS la carte ; il n'y a plus de
+// panneau sous la carte. texteAideSrs(), elle, reste : c'est son texte qui a
+// demenage dans l'ecran d'information, pas son contenu qui a ete jete.
 
 // L'echeance que le prochain « Je savais » donnera A CETTE CARTE. Elle refait
 // exactement le calcul de reviewGood() et scheduleReview() -- premiere reussite
