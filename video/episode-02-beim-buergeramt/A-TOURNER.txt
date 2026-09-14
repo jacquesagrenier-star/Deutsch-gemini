@@ -525,10 +525,10 @@ OU CA SE JOUE, DANS LES PROMPTS D'AVATAR DES REPLIQUES :
 
 
 ==============================================================
-LES TREIZE PLANS PARLANTS -- CINQ IMAGES
+LES TREIZE PLANS PARLANTS -- QUATRE IMAGES
 ==============================================================
 
-⚠️ CINQ IMAGES POUR TREIZE PLANS, ET CE N'EST PAS UNE ECONOMIE.
+⚠️ QUATRE IMAGES POUR TREIZE PLANS, ET CE N'EST PAS UNE ECONOMIE.
    L'episode 1 avait fait UNE image par plan parlant -- douze images pour
    douze repliques, chacune un cran plus serree que la precedente. Ca marche,
    mais ce n'est pas comme ca qu'on tourne un champ-contrechamp : on pose deux
@@ -536,7 +536,7 @@ LES TREIZE PLANS PARLANTS -- CINQ IMAGES
    dramatique. Douze valeurs differentes pour une conversation de trente
    secondes, c'est une valeur qui ne veut plus rien dire.
 
-   Ici, cinq images -- 0,75 $ au lieu de 1,95 -- et la valeur redevient un
+   Ici, quatre images -- 0,60 $ au lieu de 1,95 -- et la valeur redevient un
    signe.
 
 ⚠️ ET LE SIGNE EST CELUI-CI : MARK SE RESSERRE, LE FONCTIONNAIRE NON.
@@ -552,11 +552,26 @@ LES TREIZE PLANS PARLANTS -- CINQ IMAGES
       passe rien : c'est le lundi matin.
 
 QUELLE IMAGE POUR QUEL PLAN
-   mark-moyen.png          plan 03
-   mark-moyen-serre.png    plans 05, 14
+   mark-moyen.png          plans 03, 05, 14
    mark-serre.png          plans 08, 10, 16
    beamter-moyen.png       plans 04, 07, 09, 11, 15, 17
    beamter-formular.png    plan 13
+
+   ⚠️ DEUX VALEURS POUR MARK, PAS TROIS -- CORRECTION DU 14 SEPTEMBRE.
+      Une valeur intermediaire << poitrine >> avait ete generee : elle est
+      sortie hanches-en-haut, a peine plus serree que le plan moyen, et
+      l'ecart etait ILLISIBLE. Mais en la regardant, c'est la CONCEPTION qui
+      s'est reveleee fausse, pas la prise.
+
+      Trois valeurs veulent dire DEUX changements. Or il n'y a qu'un temps
+      dramatique dans cette scene : le plan 08, quand il apprend les six
+      semaines. Un second changement au plan 05 dilue celui du 08 -- ce qui
+      contredit la regle ecrite trois paragraphes plus haut, << on ne change
+      de valeur QUE sur un temps dramatique >>. Je l'avais ecrite et pas
+      appliquee.
+
+      UNE SEULE COUPE DE VALEUR, au moment exact ou son monde se retrecit.
+      mark-moyen-serre.png reste sur le disque comme variante.
 
    ⚠️ Un meme fixe sert plusieurs repliques, et ca ne se voit pas : OmniHuman
       anime chacune avec SON audio. C'est exactement ce que fait une camera
@@ -614,9 +629,11 @@ his hair - and for the counter and the wall, and NOT for the framing.
      sur pour l'avatar.
 
 --------------------------------------------------------------
-PLAN 05   Mark, poitrine   (sert aussi au plan 14)
-  replique : « Nein. Kann ich heute einen bekommen? »  /  plan 14 :
-             « Welche Papiere brauche ich? »
+VARIANTE ABANDONNEE -- Mark, poitrine   (mark-moyen-serre.png)
+  ⚠️ PLUS EMPLOYEE. Les plans 05 et 14 prennent mark-moyen.png. Le bloc
+     reste pour le jour ou une scene aurait vraiment DEUX temps dramatiques
+     et donc trois valeurs. Le titre ne dit plus « PLAN 05 » a dessein :
+     image_plan.py ne doit pas pouvoir le regenerer par distraction.
   Image a nommer : mark-moyen-serre.png
   Reference : 01-images/mark-moyen.png (LE PLAN 03, une fois valide)
 
@@ -716,7 +733,7 @@ ORDRE DE GENERATION -- IL N'EST PAS LIBRE
   1. plan 04   le fonctionnaire, qui n'existe encore nulle part. VALIDER.
   2. plan 03   Mark au comptoir. VALIDER.
   3. plan 13   depuis le 04.
-  4. plans 05 et 08   depuis le 03.
+  4. plan 08   depuis le 03.
 
   ⚠️ Les deux ancrages d'abord, et on les regarde avant de continuer. Une
      valeur serree generee depuis un plan moyen faux herite du faux.
