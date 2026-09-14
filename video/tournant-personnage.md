@@ -56,8 +56,8 @@ le verra en t-shirt, on pourrait voir plus. »*
 peuvent pas se contredire à l'écran, et la question est théorique.
 
 ⚠️ **CE QUI RÉVEILLE LA QUESTION : le premier plan où Mark n'a pas de veste.**
-Dans l'arc actuel, c'est l'épisode **30** (la salle de sport) ou le **31** (le
-club de volley) — garde-robe `sport`. Peut-être le **55**, les vacances sur la
+Dans l'arc actuel, c'est l'épisode **31** (la salle de sport) ou le **32** (le
+club de volley) — garde-robe `sport`. Peut-être le **56**, les vacances sur la
 Baltique. Ce jour-là il faudra choisir, parce que la silhouette sera visible et
 que les deux versions ne peuvent plus coexister.
 

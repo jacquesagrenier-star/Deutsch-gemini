@@ -40,10 +40,23 @@ CULTURE ».
 
 ---
 
-## 🚲 En réserve — la rue a des règles ici
+## ✅ Devenu l'épisode 3 — « Rot heißt rot »
 
-Rapporté le 14 septembre. **Candidat : épisode 54, « Fahrrad statt Auto ».**
-Les deux vont ensemble, et c'est la même leçon.
+Rapporté le 14 septembre, et **l'arc a été renuméroté le jour même pour lui faire
+de la place** : les 69 épisodes suivants ont reculé d'un rang.
+
+⚠️ **Pourquoi pas l'épisode 55, où le vélo était déjà prévu.** Parce que
+**le choc ne fonctionne que tant que Mark est neuf.** Au 55 il vit à Berlin
+depuis longtemps ; se faire engueuler sur une piste cyclable pour la première
+fois n'y serait plus crédible. L'épisode du vélo garde ce qui lui reste et qui
+est bon : acheter d'occasion, négocier, défendre une habitude.
+
+⚠️ **Et la transition ne coûte rien** : le dernier plan de l'épisode 2 est
+déjà le premier du 3. Mark debout sur un trottoir berlinois, sa feuille à la
+main, qui lève les yeux vers la rue. L'image est générée, elle est bonne. Il
+n'a qu'à traverser.
+
+Les deux observations vont ensemble, et c'est la même leçon.
 
 ### La piste cyclable n'est pas un trottoir
 

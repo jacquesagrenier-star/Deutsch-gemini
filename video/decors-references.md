@@ -84,9 +84,9 @@ Elle se décline à chaque lieu :
 | lieu | ce qui ne doit pas être lisible |
 |---|---|
 | Bürgeramt | un délai, une date de rendez-vous, le titre du formulaire |
-| banque (ép. 7) | les frais, les conditions du compte |
-| cabinet médical (ép. 9) | le nom d'un traitement, un tarif |
-| agence (ép. 3) | le loyer, les charges |
+| banque (ép. 8) | les frais, les conditions du compte |
+| cabinet médical (ép. 10) | le nom d'un traitement, un tarif |
+| agence (ép. 4) | le loyer, les charges |
 
 ⚠️ **Et l'époque du bâtiment tient d'un bout à l'autre.** Une façade appelle
 ses intérieurs. C'est le principe de l'image maîtresse appliqué au bâtiment :
