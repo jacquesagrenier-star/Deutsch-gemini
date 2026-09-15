@@ -4993,6 +4993,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
    C'est le meme geste que celui qui servait a « Mon vocabulaire » -- devenu
    « Mes ajouts », qui tient tout seul. */
 .orb[data-orbid="kasus"] strong,
+.orb[data-orbid="wortstellung"] strong,
 .orb[data-orbid="vhskapitel"] strong{max-width:5.6em; margin:0 auto;}
 .orb small{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.25;}
 </style>
@@ -5627,8 +5628,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="orb" data-orbid="monvocab" data-cles="wörterbuch" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
-                <strong data-i18n="myvocab_title">Mes ajouts</strong>
-                <small id="myVocabCount" data-i18n="myvocab_empty">Ajoute des mots du dictionnaire</small>
+                <strong data-i18n="myvocab_title">Mots du dictionnaire</strong>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="pruefung" data-cles="goethe telc dtz zertifikat" onclick="openOrbPanel('pruefung')">
@@ -5833,7 +5833,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v609</span>
+    <span class="subtitle-version">v610</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8477,7 +8477,7 @@ const I18N = {
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
-        myvocab_title: "Mes ajouts",
+        myvocab_title: "Mots du dictionnaire",
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
@@ -9448,7 +9448,7 @@ const I18N = {
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
-        myvocab_title: "My additions",
+        myvocab_title: "Dictionary words",
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
@@ -10421,7 +10421,7 @@ const I18N = {
         en_module_expressions_cat_desc: "İngilizce konuşanların gerçekte söyledikleri, amaca göre sıralanmış: tepki verme, çekince koyma, sohbeti ilerletme.",
         label_english_pitfall: "Tuzak",
         label_english_forms: "Biçimler",
-        myvocab_title: "Eklediklerim",
+        myvocab_title: "Sözlük kelimeleri",
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
@@ -11659,7 +11659,7 @@ const I18N = {
         flip_direction_de: "🔁 Напрям: DE → UA",
         onboarding_home_button: "Як почати? (45 с)",
         onboarding_close: "ЗРОЗУМІЛО",
-        myvocab_title: "Мої додані",
+        myvocab_title: "Слова зі словника",
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
@@ -13292,7 +13292,7 @@ const I18N = {
         en_module_expressions_cat_desc: "آنچه انگلیسی‌زبان‌ها واقعاً می‌گویند، بر پایهٔ قصد گوینده: واکنش نشان دادن، ملایم کردن، پیوند دادن.",
         label_english_pitfall: "دام",
         label_english_forms: "صورت‌ها",
-        myvocab_title: "افزوده‌های من",
+        myvocab_title: "واژه‌های واژه‌نامه",
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
@@ -20271,6 +20271,11 @@ function saveMyVocab(){
     }catch(e){}
 }
 
+// ⚠️ SANS EFFET DEPUIS LA V610, ET ELLE RESTE EXPRES. La tuile ne porte plus
+// de compteur : « Mots du dictionnaire » est seul, comme les dix-sept autres
+// titres. La fonction ne trouve donc plus son element et sort tout de suite --
+// ses appelants n'ont pas eu a changer, et remettre le compteur ne demande
+// qu'une ligne de HTML. Ne pas la supprimer sans retirer aussi ses appels.
 function updateMyVocabTile(){
     const el = document.getElementById("myVocabCount");
     if(!el) return;
@@ -25175,7 +25180,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 609;
+const APP_VERSION = 610;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
