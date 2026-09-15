@@ -74,7 +74,11 @@ def main():
     gain = m["gain_applique_db"]
     voix = d["locuteurs"][p["locuteur"]]["voice_id"]
 
-    texte = p["de"]
+    # ⚠️ "de_diction" AVANT "de" -- meme regle que la balise (v620) : une
+    # ponctuation de comedien va au modele, jamais a l'ecran. Sans cette
+    # ligne, refaire un plan effacerait sa diction en silence, et c'est
+    # justement l'outil qu'on prend quand une prise doit etre reprise.
+    texte = p.get("de_diction") or p["de"]
     if court == "v3" and p.get("balise"):
         texte = p["balise"] + " " + texte
 

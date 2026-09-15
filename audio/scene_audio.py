@@ -148,7 +148,15 @@ def main():
             # aussi aux sous-titres et au lexique : [warmly] s'y afficherait a
             # l'ecran. Elle a son propre champ et ne rejoint le texte qu'ici.
             # Et seulement sous v3 -- v2 la prononcerait.
-            texte = p["de"]
+            #
+            # ⚠️ "de_diction" SUIT LA MEME REGLE, POUR LA MEME RAISON (v620).
+            # Sous v2 la seule direction de jeu disponible est la PONCTUATION :
+            # « Sechs Wochen …? » monte la ou « Sechs Wochen? » se referme.
+            # Mais un point de suspension sur une phrase declarative est une
+            # convention de comedien, pas de l'allemand : a l'ecran l'apprenant
+            # doit lire la phrase correcte. Le champ n'est donc lu QU'ICI, et
+            # "de" continue de nourrir sous-titres, lexique et traductions.
+            texte = p.get("de_diction") or p["de"]
             if a.modele == "v3" and p.get("balise"):
                 texte = p["balise"] + " " + texte
             # Ses voisines dans la scene, quel que soit le locuteur :

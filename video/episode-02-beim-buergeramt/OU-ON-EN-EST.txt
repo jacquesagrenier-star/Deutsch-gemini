@@ -1,89 +1,138 @@
 ==============================================================
-OU EN EST L'EPISODE 2 -- 14 septembre 2026, fin de session
+OU EN EST L'EPISODE 2 -- 15 septembre 2026
 ==============================================================
 
-⚠️⚠️  LA SCENE EST DANS UN ETAT MELANGE. NE PAS MONTER, NE PAS GENERER
-      D'AVATAR AVANT D'AVOIR TRANCHE.
-
-      Le plan 08 est en eleven_v3 (avec sa balise [surprised]).
-      Les dix-huit autres sont en eleven_multilingual_v2 (sans balise).
-
-      Deux modeles dans une scene est un DEFAUT, pas une option : timbre et
-      prosodie ne se recollent pas. C'est un essai en cours, pas un etat
-      d'arrivee. Voir la decision en attente ci-dessous.
+LA SCENE EST HOMOGENE. Les dix-neuf voix sont en eleven_multilingual_v2.
+L'etat melange du 14 septembre est resolu.
 
 
-LA DECISION EN ATTENTE
-----------------------
-Jacques ecoute deux fichiers :
-    audio/scenes/02-beim-buergeramt/08-mark.mp3
-        -> v3 + [surprised], 2,32 s
-    audio/scenes/02-beim-buergeramt/_ancienne-numerotation/sans-pause-08-mark.mp3
-        -> v2 neutre
+LA DECISION DU PLAN 08, ET CE QU'ELLE A APPRIS
+----------------------------------------------
+Jacques a ecoute la v3 avec [surprised] et la v2 neutre. Verdict :
 
-SI LA SURPRISE S'ENTEND :
-  1. python audio/scene_audio.py --scene 02-beim-buergeramt --modele v3 --pour-de-vrai
-     (818 credits ; les dix-neuf balises partent enfin)
-  2. python audio/controler_debit.py --scene 02-beim-buergeramt
-     ⚠️ INDISPENSABLE en v3 : ce modele n'accepte pas le contexte, donc le
-     remplissage redevient possible. Reprendre chaque prise suspecte avec
-     refaire_plan.py -- v3 tourne a stability 0.0, une reprise donne autre chose.
-  3. python audio/reporter_durees.py --scene 02-beim-buergeramt
-  4. recalculer duree_plan : max(4,0 ; 0,35 + duree_audio + 1,4), plan 08 a 5,0
-  5. python video/panier_avatar.py --scene 02-beim-buergeramt
-  6. refaire le plan 08 en avatar, LE REGARDER, puis les douze autres
+    « la v3 sonne AGRESSIVE, pas etonnee »
 
-SI ELLE NE S'ENTEND PAS :
-  remettre le plan 08 en v2 pour que la scene redevienne homogene --
-  refaire_plan.py --scene 02-beim-buergeramt --plan 8 --modele v2 --pour-de-vrai
-  -- et chercher l'air irrite ailleurs : l'image mark-serre.png elle-meme est
-  peut-etre deja severe, et OmniHuman part du visage qu'on lui donne.
+⚠️ CE N'EST PAS « LA SURPRISE NE S'ENTEND PAS », C'EST « LA BALISE A DEPASSE
+   LA CIBLE ». La distinction compte pour les prochains episodes : sous v3 a
+   stability 0.0, [surprised] ne donne pas de l'etonnement mais de
+   l'indignation. Les dix-neuf balises de la scene restent ecrites dans le
+   fichier, inertes en v2 -- si un jour on repasse en v3, les relire une par
+   une AVANT de generer, pas apres.
+
+CE QU'IL VOULAIT A LA PLACE, dans ses mots : « une question dans la voix,
+comme si c'etait bizarre, mais sans agressivite ».
+
+EN v2 LA SEULE DIRECTION DE JEU EST LA PONCTUATION. v2 prononcerait une
+balise au lieu de la jouer. Quatre dictions ont donc ete essayees :
+
+    a-tel-quel     Sechs Wochen? Ich wohne doch schon hier.
+    b-question     Sechs Wochen? Ich wohne doch schon hier?
+    c-suspension   Sechs Wochen? Ich wohne doch schon hier …?
+    d-tete         Sechs Wochen …? Ich wohne doch schon hier.     <-- RETENUE
+
+⚠️ POURQUOI d. L'etonnement se pose sur LE NOMBRE, et la seconde phrase
+   redescend. L'agressivite, elle, vient d'une phrase qui reste haute jusqu'au
+   bout -- c'est ce que faisaient la v3 et la variante b.
+
+PUIS : + 450 ms de SILENCE entre les deux phrases (allonger_pause.py). La
+pause naturelle ne faisait que 180 ms. Le silence, pas un son : un « ahhhh »
+invente ne figure pas dans les sous-titres, donc l'apprenant entendrait
+quelque chose qui n'est pas ecrit.
+
+    08-mark.mp3   2.53 s   plan 5.04 s   2.12 s d'ecoute apres la replique
 
 
-CE QUI EST FAIT ET VALIDE PAR JACQUES
--------------------------------------
-  6 decors               tous generes et acceptes
+⚠️ LE DEFAUT DE CASTING -- A NE PAS REFAIRE
+--------------------------------------------
+Les quatre premieres dictions sont sorties DANS LA VOIX DE L'ERZAEHLER.
+
+generer.VOIX vaut par defaut la voix du narrateur ; scene_audio.py la
+remplace avant chaque replique, et le premier essai_diction.py ne le faisait
+pas. Les fichiers etaient valides, a la bonne duree, au bon gain.
+RIEN DANS LE RESULTAT N'AVERTISSAIT.
+
+C'est la meme famille que le fichier mal nomme de l'episode 1 : une mesure
+fausse qui se presente bien. Trouve par l'oreille de Jacques en une ecoute.
+
+  -> essai_diction.py refuse desormais de depenser si le locuteur n'a pas de
+     voice_id, et imprime la voix employee avant de generer.
+  -> Les prises en voix d'Erzaehler sont gardees dans
+     _essais-diction/_mauvaise-voix-erzaehler/ : deja payees, elles serviront
+     si une replique du narrateur a besoin de la meme diction.
+
+⚠️ ET LES DUREES NE SE COMPARENT PAS D'UNE VOIX A L'AUTRE. Les memes quatre
+   textes font 2,88 a 3,39 s chez l'Erzaehler et 1,90 a 2,04 s chez Mark.
+   Mark parle deux fois plus vite -- l'un raconte, l'autre reagit.
+
+
+LE CHAMP de_diction, ET POURQUOI IL EST BRANCHE AUX DEUX ENDROITS
+------------------------------------------------------------------
+Le texte envoye au modele n'est plus celui qui s'affiche :
+
+    de           Sechs Wochen? Ich wohne doch schon hier.     -> ecran, lexique
+    de_diction   Sechs Wochen …? Ich wohne doch schon hier.   -> modele seul
+
+Un point de suspension sur une phrase declarative est une convention de
+comedien, pas de l'allemand. L'apprenant doit lire la phrase correcte.
+
+⚠️ BRANCHE DANS scene_audio.py ET DANS refaire_plan.py. Un champ que la
+   moitie des outils ignore est pire que pas de champ : refaire un jour le
+   plan 8 aurait efface sa diction EN SILENCE -- et refaire_plan.py est
+   justement l'outil qu'on prend quand une prise doit etre reprise.
+
+
+LES DUREES DE DECOR, CORRIGEES AVANT DE FABRIQUER LES CLIPS
+------------------------------------------------------------
+monter_avatar.py calcule la duree d'un plan de decor ainsi :
+
+    min(longueur du clip ; 0,35 amorce + narration + 0,90 queue)
+
+Il TRONQUE au plus court, sans rien dire. Deux plans etaient sous-dimensionnes
+dans la scene :
+
+    plan  1   narration 4,91 s   5,0 s -> 6,2 s
+    plan  6   narration 4,31 s   5,0 s -> 5,6 s
+
+⚠️ UN DECOR TROP COURT NE PRODUIT AUCUNE ERREUR : la narration est coupee en
+   cours de phrase, et au montage ca passe pour une transition seche. C'est ce
+   qui a fait dire « il manque un plan » sur l'episode 1 -- le plan existait,
+   il etait muet.
+
+Corrige pendant que 03-final/ est VIDE, c'est-a-dire au seul moment ou ca ne
+coute rien. Les six decors restent a generer, a ces durees-la.
+
+
+CE QUI EST FAIT
+---------------
+  6 decors               images generees et acceptees ; CLIPS A FAIRE
   4 images de personnage mark-moyen, mark-serre, beamter-moyen, beamter-formular
-  19 voix                generees (18 en v2 avec contexte, 08 en v3)
-  13 prompts d'avatar    ecrits, puis CORRIGES sur deux defauts (voir plus bas)
+  19 voix                v2, homogenes, plan 08 arrete
+  13 prompts d'avatar    ecrits et corriges (interlocuteur materialise ; le
+                         plan 08 qui interdisait l'irritation par des mots et
+                         la demandait par un geste)
   13 paniers             images JPEG + pistes allongees, dans _a-televerser/
+                         (celui du plan 08 refait le 15 septembre)
 
 DEPENSE A CE JOUR
-  fal (images + 3 prises du plan 08)   environ 4,4 $
-  ElevenLabs                           environ 1 700 credits (deux passes)
-  reste a faire : 12 plans d'avatar, environ 8,4 $
+  fal                                  environ 4,4 $
+  ElevenLabs                           environ 2 000 credits
+  reste : 12 plans d'avatar ~8,4 $, plus les six clips de decor
 
 
-LES DEUX DEFAUTS CORRIGES DANS LES TREIZE PROMPTS
---------------------------------------------------
-1. OmniHuman MATERIALISAIT l'interlocuteur -- un deuxieme visage invente au
-   bord droit, alors que l'image source ne contient que Mark. La formule
-   << speaking to someone off screen >> nomme quelqu'un et dit ou il est. Les
-   prompts portent maintenant l'interdiction explicite, partie du corps par
-   partie du corps, plus une contrainte de CADRE (meme taille, meme place) et
-   pas seulement de camera.
+LA SUITE, DANS L'ORDRE
+----------------------
+  1. les six clips de decor, aux durees corrigees ci-dessus
+  2. python video/omnihuman.py --scene 02-beim-buergeramt --reste --simuler
+  3. generer les 13 plans parlants, importer par CORRELATION DU SON
+     (jamais par le nom du fichier -- voir video/PROCEDURE-episode.md)
+  4. monter, sonoriser, sous-titrer
 
-2. Le plan 08 disait << not anger, not indignation >> puis << eyebrows
-   slightly drawn together >>. L'irritation etait interdite par des mots et
-   demandee par un geste -- et c'est le geste que le modele suit. Le bloc
-   decrit maintenant l'etat d'arrivee (sourcils qui MONTENT), l'interdiction
-   venant apres.
-
-
-TROIS OUTILS NES DE CETTE SESSION
----------------------------------
-  video/panier_avatar.py      la piste allongee d'un episode NEUF, que
-                              preparer_avatar.py ne savait pas faire (il tire
-                              la piste d'un clip deja monte, qui n'existe pas)
-  audio/controler_debit.py    le filet contre le remplissage, par le debit
-                              compare a la mediane DU LOCUTEUR
-  audio/allonger_pause.py     allonge en SILENCE une pause qui existe deja
-  audio/reporter_durees.py    ecrit duree_audio dans la scene
-
+⚠️ DROITS : on monte, on ne diffuse pas publiquement tant que le ticket
+   BytePlus I-2026091223400001 n'a pas repondu sur la propriete de la sortie.
+   Voir video/DROITS-omnihuman.md.
 
 ⚠️ CE QUI RESTE VRAI QUOI QU'IL ARRIVE
    - duree_audio N'EST PAS la duree du plan. La parole occupe la moitie d'un
      plan ; le reste, c'est le personnage qui ECOUTE.
-   - Toutes les anomalies de voix de cette session ont ete trouvees par
-     L'OREILLE DE JACQUES, jamais par la mesure. controler_debit.py attrape le
-     remplissage ; il n'attrape pas un mauvais jeu.
+   - Toutes les anomalies de voix de ce projet ont ete trouvees par L'OREILLE
+     DE JACQUES, jamais par une mesure. Deux fois en deux jours.
