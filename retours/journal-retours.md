@@ -4774,3 +4774,20 @@ relecture est retirée : tuile, écran, fonctions, carte admin, 95 clés.
 en v611. Il a raison, et c'est mon propre argument qui se retourne : j'avais
 refusé les accordéons pour que tout reste visible — une fois tout visible et
 rangé en quatre sections, filtrer ne rattrape plus rien.
+
+
+**« Dictation verbe 0/5 »** — le panneau annonce « Écouter et écrire — 20 mots »
+et la dictée en sert cinq. **Réglé en v617.** La cause n'était pas dans la dictée
+mais dans `tailleSeance()`, qui porte un **plancher de cinq** : l'objectif du
+jour atteint, la séance rétrécit à cinq cartes au lieu de fermer la porte. Juste
+pour une séance de révision ; faux pour un **drill dont la taille est annoncée
+d'avance**. `lancerDictee()` garde désormais l'ordre de la séance — les cartes
+dues d'abord — puis complète depuis le réservoir jusqu'aux vingt promis.
+L'ancien repli ne se déclenchait qu'à zéro : cinq sur vingt passaient pour un
+choix délibéré.
+
+**« Pour les verbes, il y a seulement cinq »** — vérifié, ce sont les **cinq
+séries** de l'écran « S'entraîner par temps » (Präsens, Präteritum, Perfekt,
+Konjunktiv II, Infinitiv), et non cinq exercices : **405 exercices** derrière
+elles. Rien à corriger — mais la question était légitime, puisque les boutons
+annonçaient alors des comptes périmés (retirés en v616).

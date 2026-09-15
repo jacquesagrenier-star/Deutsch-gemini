@@ -5793,7 +5793,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v616</span>
+    <span class="subtitle-version">v617</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -18982,7 +18982,29 @@ function lancerDictee(mode, pool, orbe, relance){
     if(!pool || !pool.length){ showInfoToast(t('alert_no_words_available')); return; }
     pool = sansDoublons(pool);
     let choix = cartesDeSession(pool);
-    if(!choix.length) choix = pool;
+    // ⚠️ LA DICTEE PROMETTAIT VINGT MOTS ET EN SERVAIT CINQ. Signale par
+    // Jacques le 15 septembre 2026 : « dictation verbe 0/5 », alors que le
+    // libelle du panneau annonce « Écouter et écrire — 20 mots ».
+    //
+    // La cause n'etait pas ici mais dans tailleSeance(), qui porte un PLANCHER
+    // DE CINQ : l'objectif du jour atteint, la seance ne se ferme pas, elle
+    // retrecit a cinq cartes. C'est juste pour LA SEANCE -- on ne claque pas la
+    // porte au nez de quelqu'un qui veut continuer. Ce ne l'est pas pour un
+    // DRILL : la dictee n'est pas une revision espacee, c'est un exercice
+    // d'ecriture, et sa taille est annoncee d'avance.
+    //
+    // On garde donc l'ordre de la seance -- les cartes dues d'abord, ce sont
+    // elles qui ont besoin d'etre revues -- puis on COMPLETE depuis le
+    // reservoir jusqu'au nombre promis. L'ancien repli ne se declenchait qu'a
+    // zero : cinq cartes sur vingt passaient pour un choix.
+    const vus = new Set(choix.map(it => it.themeId + ":" + it.index));
+    for(const item of shuffleArray(pool.slice())){
+        if(choix.length >= DICTEE_NOMS) break;
+        const cle = item.themeId + ":" + item.index;
+        if(vus.has(cle)) continue;
+        vus.add(cle);
+        choix.push(item);
+    }
     shuffleArray(choix);
     const liste = buildDictationExercises(choix.slice(0, DICTEE_NOMS), mode);
     if(!liste.length){ showInfoToast(t("alert_no_dictation_available")); return; }
@@ -24826,7 +24848,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 616;
+const APP_VERSION = 617;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

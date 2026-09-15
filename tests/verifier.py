@@ -404,6 +404,61 @@ def verifier_jeux_exercices(r, source):
           % (len(jeux), total, len(demandes)))
     if orphelins:
         print("   jeux non joues  : %s" % ", ".join(orphelins))
+    verifier_langues_exercices(r, jeux)
+
+
+# Les trois champs d'un exercice qui se TRADUISENT vraiment. Les autres
+# (question, correct, options) sont de l'allemand : ils se recopient, et leur
+# absence est inerte -- REPLI_LANGUE renvoie sur l'anglais puis le francais,
+# c'est-a-dire sur le meme allemand.
+CHAMPS_TRADUITS = ("translation", "hint", "explanation")
+SUFFIXE_EXO = {"en": "_en", "tr": "_tr", "uk": "_uk", "fa": "_fa"}
+
+
+def verifier_langues_exercices(r, jeux):
+    """Un exercice traduit en francais doit l'etre dans les quatre autres.
+
+    ⚠️ CE TROU S'EST CREUSE SANS BRUIT. Au 15 septembre 2026, 1 403 champs
+    etaient vides -- 7,3 % du turc, 6,8 % de l'ukrainien et du persan. Ils
+    tenaient dans QUATRE jeux sur quarante : trois series de pronoms relatifs
+    posees en francais et en anglais seulement, plus trente-cinq indices du
+    jeu « exercises ». Aucun controle ne les voyait, parce qu'aucun controle
+    ne comparait les langues d'un exercice entre elles.
+
+    Le repli (tr -> en -> fr) rendait le defaut INVISIBLE ET REEL a la fois :
+    rien ne s'affichait vide, mais un lecteur turc recevait l'explication en
+    anglais, ou en francais. C'est la pire forme -- elle ne ressemble pas a
+    une panne, donc personne ne la signale.
+
+    On ne compte que les champs qui EXISTENT en francais : un exercice sans
+    indice n'en manque pas un.
+    """
+    manque = collections.Counter()
+    exemple = {}
+    attendus = 0
+    for nom, liste in sorted(jeux.items()):
+        if not isinstance(liste, list):
+            continue
+        for ex in liste:
+            if not isinstance(ex, dict):
+                continue
+            for champ in CHAMPS_TRADUITS:
+                if not (ex.get(champ) or "").strip():
+                    continue
+                attendus += 1
+                for langue, suf in sorted(SUFFIXE_EXO.items()):
+                    if not (ex.get(champ + suf) or "").strip():
+                        manque[langue] += 1
+                        exemple.setdefault(langue, "%s : %s" % (nom, champ))
+    r.controle(attendus)
+    for langue in sorted(SUFFIXE_EXO):
+        if manque[langue]:
+            r.echec("exercices", "%d champ(s) d'exercice sans %s (ex. %s) -- le "
+                                 "repli les sert en anglais ou en francais, "
+                                 "sans rien dire"
+                    % (manque[langue], langue, exemple[langue]))
+    print("   langues des exos: %d champs x 4 langues, %d vide(s)"
+          % (attendus, sum(manque.values())))
 
 
 # Series ou l'indice est l'ENONCE du drill, pas une fuite : la question donne
