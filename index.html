@@ -736,7 +736,25 @@ body[data-theme="dark"] .subtitle-version{
    ⚠️ LE ROUGE ET LE ROSE SONT LAISSES LIBRES, et pour cette raison meme :
    une couleur qui contredit son entourage attire l'oeil parce qu'elle est
    SEULE a le faire. C'est la reserve pour ce qui devra vraiment alerter --
-   un retard, une erreur. Ne pas les prendre pour une cinquieme section. */
+   un retard, une erreur. Ne pas les prendre pour une cinquieme section.
+
+   ⚠️ ET LE BLEU EST PRIS (v613). Il ne reste pas libre, il est DEJA employe :
+   #2f62d6 est la carte de seance, #3b6fe0 tous les boutons et tous les liens.
+   Une famille bleue ferait ressembler six tuiles a des boutons et mettrait la
+   section en concurrence avec la porte principale de l'app. « Mon parcours »
+   etait passe a l'indigo #4f46e5, a un cheveu de cette couleur d'action --
+   d'ou l'ARDOISE a la place.
+
+   Et l'ardoise n'est pas un pis-aller : « Mon parcours » ne regroupe pas un
+   domaine de la langue, il regroupe ce qui appartient a la personne -- ses
+   mots, ses examens, ses chapitres. Une famille neutre le dit, et laisse les
+   trois sections d'apprentissage porter la couleur.
+
+   ⚠️ L'EMPHASE NE VIENT PAS DE LA TEINTE MAIS DE LA TEMPERATURE. Un chaud
+   avance, un froid recule : l'ambre de « Pratiquer » ressort donc plus que le
+   violet et la sarcelle, que ce soit voulu ou non. C'est voulu -- c'est la
+   section ou l'on PRODUIT. Si un jour l'emphase doit changer de section, ce
+   n'est pas la teinte qu'il faut echanger, c'est la temperature. */
 .orb-section{display:flex; align-items:center; gap:9px;}
 .sec-trait{
     width:3px;
@@ -751,16 +769,16 @@ body[data-theme="dark"] .subtitle-version{
 .orb-section[data-section="mots"] .sec-trait{background:#7c3aed;}
 .orb-section[data-section="phrase"] .sec-trait{background:#0d9488;}
 .orb-section[data-section="pratique"] .sec-trait{background:#d97706;}
-.orb-section[data-section="parcours"] .sec-trait{background:#4f46e5;}
+.orb-section[data-section="parcours"] .sec-trait{background:#64748b;}
 
 /* Ces trois tuiles n'avaient aucune couleur : elles prenaient le
    gris par defaut, ce qui faisait un trou dans leur famille. */
 .orb[data-orbid="ausdruecke"] .orb-icon{background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.28);}
 .orb[data-orbid="ausdruecke"] .orb-icon svg{stroke:#f59e0b;}
 .orb[data-orbid="ausdruecke"] .orb-badge{background:#f59e0b; box-shadow:0 2px 6px rgba(245,158,11,.35);}
-.orb[data-orbid="pruefung"] .orb-icon{background:rgba(99,102,241,.14); border-color:rgba(99,102,241,.28);}
-.orb[data-orbid="pruefung"] .orb-icon svg{stroke:#6366f1;}
-.orb[data-orbid="pruefung"] .orb-badge{background:#6366f1; box-shadow:0 2px 6px rgba(99,102,241,.35);}
+.orb[data-orbid="pruefung"] .orb-icon{background:rgba(82,98,122,.14); border-color:rgba(82,98,122,.28);}
+.orb[data-orbid="pruefung"] .orb-icon svg{stroke:#52627a;}
+.orb[data-orbid="pruefung"] .orb-badge{background:#52627a; box-shadow:0 2px 6px rgba(82,98,122,.35);}
 
 
 body[data-theme="dark"] .orb-section{
@@ -1000,11 +1018,11 @@ body[data-theme="dark"] .home-greeting{
 
 
 .orb[data-orbid="vhskapitel"] .orb-icon{
-    background:rgba(67,56,202,.14);
-    border-color:rgba(67,56,202,.28);
+    background:rgba(122,135,153,.14);
+    border-color:rgba(122,135,153,.28);
 }
-.orb[data-orbid="vhskapitel"] .orb-icon svg{stroke:#4338ca;}
-.orb[data-orbid="vhskapitel"] .orb-badge{background:#4338ca; box-shadow:0 2px 6px rgba(67,56,202,.35);}
+.orb[data-orbid="vhskapitel"] .orb-icon svg{stroke:#7a8799;}
+.orb[data-orbid="vhskapitel"] .orb-badge{background:#7a8799; box-shadow:0 2px 6px rgba(122,135,153,.35);}
 
 .orb[data-orbid="partikeln"] .orb-icon{
     background:rgba(20,184,166,.14);
@@ -4057,8 +4075,8 @@ body[data-theme="dark"] .dict-add.au-cours{background:rgba(232,162,58,.16); colo
 .dict-row-top{padding-inline-end:36px;}
 body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 
-.orb[data-orbid="monvocab"] .orb-icon{background:rgba(79,70,229,.16); border-color:rgba(79,70,229,.3);}
-.orb[data-orbid="monvocab"] .orb-icon svg{stroke:#4f46e5;}
+.orb[data-orbid="monvocab"] .orb-icon{background:rgba(100,116,139,.16); border-color:rgba(100,116,139,.3);}
+.orb[data-orbid="monvocab"] .orb-icon svg{stroke:#64748b;}
 
 /* LA MARQUE « ESSENTIEL » -- TOUJOURS AU MEME ENDROIT (v469).
    Elle vivait d'abord sous le pluriel pendant la phase d'apprentissage, puis
@@ -5775,7 +5793,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v612</span>
+    <span class="subtitle-version">v613</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24782,7 +24800,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 612;
+const APP_VERSION = 613;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
