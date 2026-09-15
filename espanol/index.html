@@ -8582,7 +8582,7 @@ let sentenceRegistry = [];
 
 const I18N = {
     fr: {
-        onboarding_home_button: "Comment commencer ? (45 s)",
+        onboarding_home_button: "Comment commencer ? (moins d'une minute)",
         onboarding_close: "J'AI COMPRIS",
         alert_data_load_failed: "Impossible de charger les données. Vérifie ta connexion.",
         kicker_english_module: "Anglais",
@@ -8783,7 +8783,7 @@ const I18N = {
         legende_maitrises: "Mots maîtrisés — quatre bonnes réponses étalées sur onze jours. Il peut redescendre d'un ou deux si un mot est oublié à son contrôle.",
         legende_rencontres: "Mots rencontrés — tous les mots que tu as vus au moins une fois, même sans les savoir. Ce nombre ne redescend jamais.",
         legende_vocab: "Vocabulaire — où tu en es du niveau affiché. Vert : su. Bleu : en cours. Gris : à rencontrer. Touche la flèche pour voir les cinq niveaux.",
-        legende_seance: "Ma séance du jour — le compte « 0 / 40 » est ton objectif quotidien. La séance te sert ce qu'il en reste : les révisions dues d'abord, les mots nouveaux ensuite s'il reste de la place.",
+        legende_seance: "Ma séance du jour — le compte à gauche est ton objectif quotidien, que tu peux régler dans les réglages. La séance te sert ce qu'il en reste : les révisions dues d'abord, les mots nouveaux ensuite s'il reste de la place.",
         carte_info_kicker: "Ta progression",
         info_partie_accueil: "Sur l'accueil",
         info_partie_ici: "Rangé ici",
@@ -8795,7 +8795,7 @@ const I18N = {
         ip_seance_t: "Le compte de la séance",
         ip_seance_p: "Les cartes que tu as jugées aujourd'hui, sur ton objectif. Une carte demande une réponse — « Encore » ou « Je savais » — pour compter.",
         ip_vocab_t: "La progression du vocabulaire",
-        ip_vocab_p: "Où tu en es du niveau affiché. Touche la flèche pour voir les cinq niveaux : ils totalisent les 7 704 mots de l'app.",
+        ip_vocab_p: "Où tu en es du niveau affiché. Touche la flèche pour voir les cinq niveaux.",
         ip_partie_tableau: "Le tableau",
         ip_tableau_1: "Un tableau du monde germanophone se découvre carreau par carreau. Chaque carte que tu traverses en ouvre un — les révisions comptent autant que les mots nouveaux.",
         ip_tableau_carreaux: "Il faut environ {n} carreaux pour découvrir un tableau entier.",
@@ -8814,13 +8814,13 @@ const I18N = {
         legende_mosaique: "Le tableau — un carreau se découvre à chaque carte, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
         legende_jours: "Jours travaillés — le total des journées où tu as fait quelque chose. Il ne redescend jamais, même après des vacances.",
         legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as travaillé, vocabulaire ou grammaire. Un jour sauté le ramène à zéro.",
-        legende_cercle: "◯ le cercle ci-dessus — où tu en es d'un niveau entier. Il avance de 0,2 % par mot et ne bouge pas avant le 11ᵉ jour : c'est normal, et c'est pour ça qu'il est rangé ici plutôt qu'à l'accueil. Touche-le pour changer de niveau.",
+        legende_cercle: "◯ le cercle ci-dessus — où tu en es d'un niveau entier. Il avance d'une fraction de pour cent par mot et ne bouge pas avant le 11ᵉ jour : c'est normal, et c'est pour ça qu'il est rangé ici plutôt qu'à l'accueil. Touche-le pour changer de niveau.",
         legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
         legende_objectif: "La barre « Aujourd'hui » — les cartes faites depuis ce matin, sur ton objectif. Elle repart à zéro chaque jour. Le nombre visé se change dans les réglages, et il donne aussi la taille de ta séance.",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
         progress_info_compte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.",
         progress_info_deja: "« Je le sais par cœur » saute toute l'échelle et le marque maîtrisé tout de suite.",
-        progress_info_apres: "« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
+        progress_info_apres: "« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient après 16 jours pour vérifier, puis de plus en plus rarement, sans cesser d'être compté.",
 
         // --- Recherche dans les flashcards (v188) ---
         search_launch: "Dictionnaire — chercher un mot",
@@ -8970,8 +8970,6 @@ const I18N = {
 
         flash_tap_hint: "Touche la carte pour voir la réponse",
         flash_skip_hint: "Passer une carte ne compte pas dans ta progression.",
-        review_2min: "Revoir dans 2 min",
-        review_10min: "Revoir dans 10 min",
         review_tomorrow: "Revoir demain",
         review_mastered: "Maîtrisé ✓",
         review_retry_unmastered: "Revoir les cartes non maîtrisées",
@@ -8986,6 +8984,8 @@ const I18N = {
         to_review: "À revoir",
         review_based_on_errors: "Révision basée sur tes erreurs.",
         restart_button: "RECOMMENCER",
+        exo_erreurs_faites: "Tes erreurs sont refaites.",
+        exo_kicker_erreurs: "mes erreurs",
         exo_revoir_erreurs: "REVOIR MES ERREURS ({n})",
         exo_reprendre_debut: "REPRENDRE DU DÉBUT →",
         exo_serie_faite: "Série {n} sur {total} terminée.",
@@ -9288,8 +9288,8 @@ const I18N = {
         orb_schreiben_title: "Écrire",
         orb_schreiben_sub: "traduire une phrase",
         op_schreiben_title: "Écrire en espagnol", op_schreiben_sub: "produire, pas seulement reconnaître",
-        op_schreiben_all_t: "Tous les niveaux", op_schreiben_all_d: "15 phrases tirées de tout le vocabulaire",
-        op_schreiben_level_d: "15 phrases du niveau {n}",
+        op_schreiben_all_t: "Tous les niveaux", op_schreiben_all_d: "{t} phrases tirées de tout le vocabulaire",
+        op_schreiben_level_d: "{t} phrases du niveau {n}",
         kicker_schreiben: "Écrire · Traduction",
         schreiben_hint: "Écris la phrase en espagnol. Les accents et la ponctuation ne comptent pas.",
         orb_pronomen_sub: "lo · la · le · se", _pronomen_sub_: "ich · mich · mir",
@@ -9335,7 +9335,7 @@ const I18N = {
         orb_redewendungen_sub: "ni idea · por supuesto",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Comprendre les expressions", op_redewendungen_o1_d: "6 familles : saluer, nuancer, r\u00e9agir\u2026",
-        op_redewendungen_o2_t: "Vocabulaire", op_redewendungen_o2_d: "148 expressions · 6 familles",
+        op_redewendungen_o2_t: "Vocabulaire", op_redewendungen_o2_d: "{n} expressions · {f} familles",
         redewendungen_vocab_title: "Vocabulaire : flashcards",
         redewendungen_vocab_desc: "Choisis d'abord un niveau : la liste des familles juste en dessous s'ajuste au niveau choisi.",
         redewendungen_cat_title: "R\u00e9viser par famille",
@@ -9401,8 +9401,8 @@ const I18N = {
         chunks_manque_n: "Il manque encore {n} mots.",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : temps, lieu, fréquence, manière…",
-        op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
-        op_adverbien_o3_d: "139 adverbes · 8 familles",
+        op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "Trouver la famille, sur les {f} du cours",
+        op_adverbien_o3_d: "{n} mots · {f} familles",
         op_adverbien_o3_t: "Vocabulaire",
         op_konjunktionen_title: "Connecteurs", op_konjunktionen_sub: "weil · deshalb · obwohl",
         op_konjunktionen_o1_t: "Comprendre les conjonctions", op_konjunktionen_o1_d: "Coordination vs subordination",
@@ -9540,7 +9540,7 @@ const I18N = {
         admin_user_stats: "{vus} mots vus · {mastered} maîtrisés · série de {streak} jour(s)"
     },
     en: {
-        onboarding_home_button: "How do I start? (45 s)",
+        onboarding_home_button: "How do I start? (under a minute)",
         onboarding_close: "GOT IT",
         alert_data_load_failed: "Could not load the data. Check your connection.",
         kicker_english_module: "English",
@@ -9741,7 +9741,7 @@ const I18N = {
         legende_maitrises: "Words mastered — four correct answers spread over eleven days. It can drop by one or two if a word is forgotten at its check.",
         legende_rencontres: "Words met — every word you have seen at least once, even without knowing it. This number never goes down.",
         legende_vocab: "Vocabulary — where you stand in the level shown. Green: known. Blue: in progress. Grey: still to meet. Tap the arrow for all five levels.",
-        legende_seance: "My session today — the « 0 / 40 » count is your daily goal. The session serves what is left of it: overdue reviews first, new words after, if room remains.",
+        legende_seance: "My session today — the count on the left is your daily goal, adjustable in the settings. The session serves what's left of it: reviews that are due first, new words after, if there's room.",
         carte_info_kicker: "Your progress",
         info_partie_accueil: "On the home screen",
         info_partie_ici: "Kept here",
@@ -9753,7 +9753,7 @@ const I18N = {
         ip_seance_t: "The session count",
         ip_seance_p: "The cards you judged today, against your goal. A card needs an answer — « Again » or « I knew it » — to count.",
         ip_vocab_t: "Vocabulary progress",
-        ip_vocab_p: "Where you stand in the level shown. Tap the arrow for all five levels: together they make up the app's 7,704 words.",
+        ip_vocab_p: "How far you are through the level shown. Tap the arrow to see the five levels.",
         ip_partie_tableau: "The painting",
         ip_tableau_1: "A painting from the German-speaking world uncovers tile by tile. Every card you go through opens one — reviews count as much as new words.",
         ip_tableau_carreaux: "About {n} tiles uncover a whole painting.",
@@ -9772,13 +9772,13 @@ const I18N = {
         legende_mosaique: "The painting — one tile uncovers with every card, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
         legende_jours: "Days worked — the total number of days you did something. It never goes down, not even after a holiday.",
         legende_serie: "🔥 days — days in a row you have worked, vocabulary or grammar. Miss a day and it goes back to zero.",
-        legende_cercle: "◯ the ring above — how far you are through a whole level. It moves 0.2 % per word and stays at zero until day 11: that's normal, and it's why it lives here rather than on the home card. Tap it to switch level.",
+        legende_cercle: "◯ the circle above — how far you are through a whole level. It moves by a fraction of a percent per word and doesn't budge before day 11: that's normal, and that's why it lives here rather than on the home screen. Tap it to change level.",
         legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
         legende_objectif: "The “Today” bar — cards done since this morning, out of your goal. It resets every day. The target is set in the settings, and it also sets the size of your session.",
         progress_info_titre: "What moves this percentage",
         progress_info_compte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.",
         progress_info_deja: "“I know it by heart” skips the whole ladder and marks it mastered straight away.",
-        progress_info_apres: "“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
+        progress_info_apres: "\\\"I didn't know\\\" takes its mastery away, and the percentage drops back.\n\nA mastered word comes back after 16 days as a check, then less and less often, without ever stopping being counted.",
 
         // --- Flashcard search (v188) ---
         search_launch: "Dictionary — look up a word",
@@ -9926,8 +9926,6 @@ const I18N = {
 
         flash_tap_hint: "Tap the card to see the answer",
         flash_skip_hint: "Skipping a card doesn't count toward your progress.",
-        review_2min: "Review in 2 min",
-        review_10min: "Review in 10 min",
         review_tomorrow: "Review tomorrow",
         review_mastered: "Mastered ✓",
         review_retry_unmastered: "Review unmastered cards",
@@ -9942,6 +9940,8 @@ const I18N = {
         to_review: "To review",
         review_based_on_errors: "Review based on your mistakes.",
         restart_button: "RESTART",
+        exo_erreurs_faites: "You've redone your mistakes.",
+        exo_kicker_erreurs: "my mistakes",
         exo_revoir_erreurs: "REVIEW MY MISTAKES ({n})",
         exo_reprendre_debut: "START OVER →",
         exo_serie_faite: "Set {n} of {total} done.",
@@ -10244,8 +10244,8 @@ const I18N = {
         orb_schreiben_title: "Write",
         orb_schreiben_sub: "translate a sentence",
         op_schreiben_title: "Write in Spanish", op_schreiben_sub: "produce, not just recognise",
-        op_schreiben_all_t: "All levels", op_schreiben_all_d: "15 sentences from the whole vocabulary",
-        op_schreiben_level_d: "15 sentences from level {n}",
+        op_schreiben_all_t: "All levels", op_schreiben_all_d: "{t} sentences from the whole vocabulary",
+        op_schreiben_level_d: "{t} sentences from level {n}",
         kicker_schreiben: "Write · Translation",
         schreiben_hint: "Write the sentence in Spanish. Accents and punctuation don't count.",
         orb_pronomen_sub: "lo · la · le · se", _pronomen_sub_: "ich · mich · mir",
@@ -10291,7 +10291,7 @@ const I18N = {
         orb_redewendungen_sub: "ni idea · por supuesto",
         op_redewendungen_title: "Expressions", op_redewendungen_sub: "keine Ahnung \u00b7 es kommt darauf an",
         op_redewendungen_o1_t: "Understand expressions", op_redewendungen_o1_d: "6 families: greeting, hedging, reacting\u2026",
-        op_redewendungen_o2_t: "Vocabulary", op_redewendungen_o2_d: "148 expressions · 6 families",
+        op_redewendungen_o2_t: "Vocabulary", op_redewendungen_o2_d: "{n} set phrases · {f} families",
         redewendungen_vocab_title: "Vocabulary: flashcards",
         redewendungen_vocab_desc: "Pick a level first: the list of families just below adjusts to the level you chose.",
         redewendungen_cat_title: "Review by family",
@@ -10357,8 +10357,8 @@ const I18N = {
         chunks_manque_n: "{n} words are still missing.",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
         op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: time, place, frequency, manner…",
-        op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
-        op_adverbien_o3_d: "139 adverbs · 8 families",
+        op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "Find the family, out of the {f} in the lesson",
+        op_adverbien_o3_d: "{n} words · {f} families",
         op_adverbien_o3_t: "Vocabulary",
         op_konjunktionen_title: "Connectors", op_konjunktionen_sub: "weil · deshalb · obwohl",
         op_konjunktionen_o1_t: "Understand conjunctions", op_konjunktionen_o1_d: "Coordinating vs subordinating",
@@ -15729,8 +15729,12 @@ function orbPanelData(id){
             icon:"dossier", title:t("op_adverbien_title"), sub:t("op_adverbien_sub"),
             options:[
                 { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
-                { icon:"exercice", title:t("op_adverbien_o2_t"), desc:t("op_adverbien_o2_d"), action:"startAdverbienNuance" },
-                { icon:"carte", title:t("op_adverbien_o3_t"), desc:t("op_adverbien_o3_d"), action:"openAdverbienVokabular" },
+                // ⚠️ COMPTES CALCULES, PLUS ECRITS (v620). Ils annoncaient
+                // « 16 questions » pour un jeu qui en compte 50 depuis le
+                // plancher, et « 340 mots » pour 470 adverbes. Un nombre fige
+                // ne se corrige pas, il se remplace par un calcul.
+                { icon:"exercice", title:t("op_adverbien_o2_t"), desc:tf("op_adverbien_o2_d", { f: famillesAdverbes() }), action:"startAdverbienNuance" },
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:tf("op_adverbien_o3_d", { n:(adverbienTheme.words || []).length, f: famillesAdverbes() }), action:"openAdverbienVokabular" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes" }
             ]
         };
@@ -15793,7 +15797,8 @@ function orbPanelData(id){
             icon:"dossier", title:t("op_redewendungen_title"), sub:t("op_redewendungen_sub"),
             options:[
                 { icon:"dossier", title:t("op_redewendungen_o1_t"), desc:t("op_redewendungen_o1_d"), primary:true, action:"openRedewendungenInfo" },
-                { icon:"carte", title:t("op_redewendungen_o2_t"), desc:t("op_redewendungen_o2_d"), action:"openRedewendungenVokabular" }
+                // Annoncait « 151 expressions » pour 569. Calcule desormais.
+                { icon:"carte", title:t("op_redewendungen_o2_t"), desc:tf("op_redewendungen_o2_d", { n:(redewendungenTheme.words || []).length, f: famillesExpressions() }), action:"openRedewendungenVokabular" }
             ]
         };
     }
@@ -26846,6 +26851,9 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     exerciseJeuNom = (typeof list === "string") ? list : null;
     exerciseBlocNo = 0;
     exerciseBlocTotal = 0;
+    // Tout lancement normal sort de la reprise des erreurs ; revoirMesErreurs()
+    // repose le drapeau APRES son appel.
+    revisionErreursEnCours = false;
     if(typeof list === "string"){
         const tout = await jeu(list);
         // Vide = le chargement a echoue, et jeu() l'a deja signale. On ne
@@ -26890,10 +26898,15 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
 function majKickerExercice(){
     const el = document.getElementById("exerciseKicker");
     if(!el || !exerciseKickerKey) return;
+    // Pendant une reprise des erreurs, la deuxieme ligne dit CE QU'ON REFAIT
+    // et non ou l'on en est : on n'est pas dans le bloc 3, on est dans ses
+    // fautes -- meme si la position du bloc reste en memoire pour la suite.
     el.textContent = t(exerciseKickerKey)
-        + (exerciseBlocTotal > 1
-            ? "\n" + tf("exo_bloc", { n: exerciseBlocNo + 1, total: exerciseBlocTotal })
-            : "");
+        + (revisionErreursEnCours
+            ? "\n" + t("exo_kicker_erreurs")
+            : (exerciseBlocTotal > 1
+                ? "\n" + tf("exo_bloc", { n: exerciseBlocNo + 1, total: exerciseBlocTotal })
+                : ""));
 }
 
 function exerciseGoBack(){
@@ -27326,7 +27339,23 @@ function checkAnswer(){
     else{ input.disabled = true; }
     reglerBoutonPhraseExercice(true);
     document.getElementById("checkButton").classList.add("hidden");
-    document.getElementById("nextButton").classList.remove("hidden");
+    const suivant = document.getElementById("nextButton");
+    suivant.classList.remove("hidden");
+    // ⚠️ ON AMENE LE BOUTON SOUS LES YEUX (v620). Signale par Jacques : « il
+    // faut que je swipe l'ecran vers le haut pour aller a l'exercice suivant,
+    // c'est derangeant ». La reponse fait apparaitre l'explication, qui pousse
+    // « EXERCICE SUIVANT » sous le pli -- et plus l'explication est utile, plus
+    // le bouton est loin. On defile donc vers lui.
+    //
+    // Pas de barre collee en bas : elle mangerait de la hauteur sur TOUS les
+    // ecrans, y compris pendant qu'on lit l'enonce. Un defilement ne coute rien
+    // tant qu'on n'a pas repondu.
+    try{
+        suivant.scrollIntoView({ behavior: "smooth", block: "end" });
+    }catch(e){
+        // Navigateur sans l'option d'objet : la version simple fait l'affaire.
+        try{ suivant.scrollIntoView(false); }catch(e2){}
+    }
 }
 
 function nextExercise(){
@@ -27453,15 +27482,46 @@ function cleReprise(){
 // de suite. Refaire ses fautes est un entrainement, pas une nouvelle serie --
 // le noter gonflerait le compte de series et ferait avancer le bloc une
 // seconde fois.
+// ⚠️ ON COMPTE LES FAMILLES OFFERTES, PAS CELLES DE LA DONNEE (v620). La barre
+// de categories des adverbes n'affiche que les huit de ADVERB_CATEGORY_OPTIONS ;
+// le corpus en porte une neuvieme (« Nuance/Ton », 36 adverbes) qui n'a pas de
+// bouton. Annoncer neuf promettrait une famille qu'on ne peut pas ouvrir.
+function famillesAdverbes(){
+    return ADVERB_CATEGORY_OPTIONS.length;
+}
+
+function famillesExpressions(){
+    return Object.keys(REDEWENDUNG_CATEGORIES || {}).length;
+}
+
 function exercicesRates(){
     return exerciseResults.filter(r => !r.correct && r.ex).map(r => r.ex);
 }
 
+// ⚠️ LA REPRISE GARDE LA POSITION DU JEU PARENT (v620). Signale par Jacques :
+// « j'ai fait l'exercice basé sur mes erreurs, à la fin je n'ai plus que
+// RECOMMENCER ou ACCUEIL ; il faudrait aussi pouvoir faire la série suivante ».
+//
+// Il a raison, et le libelle mentait une fois de plus : startExerciseSet()
+// remet exerciseBlocTotal a zero quand on lui passe une LISTE, donc le bouton
+// retombait sur « RECOMMENCER » -- alors qu'il appelle le restartFn du jeu
+// parent, c'est-a-dire la SERIE SUIVANTE. Le geste etait juste, le mot faux.
+//
+// On restaure donc la position du bloc apres le lancement. noterSerieGrammaire()
+// ne s'en sert pas ici (exerciseJeuNom est null, elle sort avant), donc la
+// reprise reste non notee comme prevu -- seuls le titre et le bouton la lisent.
+let revisionErreursEnCours = false;
+
 function revoirMesErreurs(){
     const rates = exercicesRates();
     if(!rates.length) return;
+    const bloc = exerciseBlocNo, total = exerciseBlocTotal;
     startExerciseSet(shuffleArray(rates.slice()), exerciseKickerKey,
                      exerciseBackHandler, exerciseRestartHandler);
+    exerciseBlocNo = bloc;
+    exerciseBlocTotal = total;
+    revisionErreursEnCours = true;
+    majKickerExercice();
 }
 
 function majCartesRevision(){
@@ -27492,9 +27552,13 @@ function showResults(){
     // qu'on annonce.
     const situe = document.getElementById("resultSitue");
     if(situe){
-        const montrer = exerciseBlocTotal > 1;
+        const montrer = revisionErreursEnCours || exerciseBlocTotal > 1;
         situe.hidden = !montrer;
-        if(montrer){
+        if(revisionErreursEnCours){
+            // On ne dit PAS « Serie 3 sur 15 terminee » : cette serie-la est
+            // finie depuis tout a l'heure, on vient de refaire ses fautes.
+            situe.textContent = t("exo_erreurs_faites");
+        }else if(montrer){
             situe.textContent = tf("exo_serie_faite",
                 { n: exerciseBlocNo + 1, total: exerciseBlocTotal });
         }
