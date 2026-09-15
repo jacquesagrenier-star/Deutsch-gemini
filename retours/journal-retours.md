@@ -4897,3 +4897,63 @@ Porté à **0,75** — soit **+3,5 dB**, pour les **six** langues d'interface.
 voix système. L'équilibre est tenu **entre les fichiers et la synthèse**, pas
 entre les voix entre elles. Si l'écart s'entend encore, le remède suivant est
 un **réglage**, pas une troisième supposition.
+
+---
+
+## 15 septembre 2026 — les panneaux de tuile se rangent (v625)
+
+**« On va remettre le vocabulaire dans noms, verbes, adjectif, adverbe,
+chiffres… Est-ce qu'on peut les mettre d'une façon qu'ils soient comme une
+section dans les tuiles ou dans une sous-tuile, quelque chose qui serait
+intéressant visuellement ? »**
+
+Le vocabulaire n'avait **jamais été supprimé** : `VOCAB_DANS_TUILES` (v536) le
+filtrait, et remettre l'interrupteur à `true` rétablissait tout. Mais Jacques a
+redécoupé en deux temps — **« j'enlèverais tout ce qui est aléatoire, ça vit
+dans ma séance du jour »**, puis **« on enlève revoir aujourd'hui, c'est dans la
+séance du jour »**. Ce qu'il nomme n'est pas « le vocabulaire » : c'est une
+famille précise, **les portes qui choisissent le paquet à sa place**.
+
+⚠️ **Et la mesure lui donne raison deux fois, contre ma propre mémoire.**
+Une note du 30 août dit qu'il révise justement en « Mots au hasard », un paquet
+de ~1 840 cartes. **Cette note était périmée** :
+
+- `startRandomMix()` **n'est plus aléatoire**. Il appelle `cartesDeSession()` —
+  les échues d'abord, quelques neufs, plafonné à `tailleSeance()`. « Verbes
+  aléatoires » servait **la séance du jour filtrée sur une catégorie**, sous une
+  étiquette qui promet un tirage au hasard. Encore un libellé qui ment, après
+  les comptes figés et le dashboard fantôme.
+- `paquetDuNiveau()` couvre **déjà les dix catégories** (`SOURCES_SEANCE`) :
+  noms, verbes, adjectifs, adverbes, expressions, conjonctions, particules,
+  prépositions, pronoms, déterminants, nombres. Rien de ce qui part ici ne
+  devient inatteignable.
+
+**La ligne de partage remplace celle de la v539** (« start ou open », une
+convention de nommage) : ce qui sert **ce qui est dû** ou **ce qui est tiré au
+hasard** décide pour l'apprenant — c'est le travail de la séance. Ce qui sert
+**la liste de ce sujet-ci** ne décide rien : le sujet, il l'a choisi en ouvrant
+la tuile. Six portes partent ; les sept boutons « Vocabulaire : … » des écrans
+de leçon, masqués depuis la v536, **reviennent**.
+
+**Et les options se rangent en quatre sections** — Comprendre · Vocabulaire ·
+S'entraîner · Voir aussi. Un panneau était une liste plate : **quinze entrées**
+chez les connecteurs, leçon et exercices entrelacés sans qu'aucun mot ne dise
+lequel est lequel.
+
+⚠️ **Les couleurs ne sont pas choisies, elles sont reprises.** Ce sont les
+familles de l'accueil (v612), telles quelles : le violet veut dire « des mots »
+en haut comme en bas, l'ambre « on produit quelque chose ». Une teinte qui garde
+son sens en changeant d'écran fait un langage ; une teinte inventée par panneau
+ferait une décoration.
+
+⚠️ **Ce que la première écriture a manqué, et pourquoi ça compte.** La dernière
+option de « schreiben » a une action **calculée** (`action:"startSchreiben" + n`)
+— 92 options trouvées pour 93 attendues. C'est la seule option de l'app
+construite par une boucle : **toute mesure qui compte les options en lisant le
+source la comptera de travers.** Le nouveau contrôle compte donc les `action:`
+et les `section:` et exige l'égalité, sans regarder la forme de l'action.
+
+`verifier.py` refuse désormais une option sans section — et a été recâblé sur
+la nouvelle constante : il cherchait `VOCAB_DANS_TUILES`, ne trouvait plus rien
+à masquer et annonçait « 0 actions masquées » alors que six le sont. **Un
+contrôle qui a perdu son sujet ne se tait pas : il rassure.**

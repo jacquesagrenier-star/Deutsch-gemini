@@ -866,11 +866,12 @@ def verifier_tuiles_non_vides(r, source):
         return r.echec("interface", "orbPanelData() introuvable")
     corps = source[debut:source.index("\n}\n", debut)]
 
-    filtre_actif = re.search(r"const VOCAB_DANS_TUILES\s*=\s*(true|false)", source)
-    masquees = set()
-    if filtre_actif and filtre_actif.group(1) == "false":
-        bloc = source[source.index("const ACTIONS_VOCABULAIRE = ["):]
-        masquees = set(re.findall(r'"([A-Za-z0-9_]+)"', bloc[:bloc.index("];")]))
+    # ⚠️ L'INTERRUPTEUR VOCAB_DANS_TUILES A DISPARU EN v625, et ce controle
+    # le cherchait. Sans cette mise a jour il ne trouvait plus rien a masquer
+    # et annoncait « 0 actions masquees » alors que six portes le sont : un
+    # controle qui a perdu son sujet ne se tait pas, il rassure.
+    bloc = source[source.index("const ACTIONS_DE_LA_SEANCE = ["):]
+    masquees = set(re.findall(r'"([A-Za-z0-9_]+)"', bloc[:bloc.index("];")]))
 
     # ⚠️ LA REGLE « AUCUN open... DANS LA LISTE » A ETE RETIREE (v567), ET IL
     # FAUT DIRE POURQUOI.
@@ -913,6 +914,54 @@ def verifier_tuiles_non_vides(r, source):
         r.controle(1)
     print("   tuiles          : %d panneaux, %d actions masquees, %d a une seule entree"
           % (len(bornes), len(masquees), vides))
+
+
+def verifier_sections_des_options(r, source):
+    """Chaque option de panneau doit declarer sa section (v625).
+
+    Les options sont rangees en quatre sections -- comprendre, mots, pratique,
+    ailleurs -- et renderOrbPanel() les rend section par section. Une option
+    qui n'en declare aucune TOMBE DANS LA DERNIERE : elle ne disparait pas,
+    mais elle apparait sous « Voir aussi », ou elle n'a rien a faire.
+
+    ⚠️ C'EST LA MEME FAMILLE DE DEFAUT QUE LES COMPTES FIGES ET LE DASHBOARD
+    FANTOME : le controle ne voit que ce que quelqu'un a pense a nommer. Rien
+    dans le code ne signale une option sans section -- elle s'affiche, sous le
+    mauvais titre, et seul l'oeil peut s'en apercevoir. D'ou ce controle.
+
+    ⚠️ ET IL COMPTE DEUX FOIS. La derniere option de « schreiben » a une action
+    CALCULEE (`action:"startSchreiben" + n`) : elle ne finit pas par une chaine
+    litterale. Une mesure qui ne cherche que `action:"..."` la manque, et c'est
+    exactement ce qui a fait echouer la premiere ecriture de la v625 -- 92
+    trouvees pour 93 attendues. On compte donc les `action:` et les `section:`,
+    et on exige l'egalite : la forme de l'action n'entre pas en jeu.
+    """
+    debut = source.find("function orbPanelData(id){")
+    if debut == -1:
+        return r.echec("interface", "orbPanelData() introuvable")
+    corps = source[debut:source.index("\n}\n", debut)]
+
+    connues = set(re.findall(r'cle:"([a-z]+)"',
+                             source[source.index("const SECTIONS_PANNEAU = ["):
+                                    source.index("const SECTIONS_PANNEAU_CLES")]))
+
+    actions = len(re.findall(r'\baction:', corps))
+    posees = re.findall(r'\bsection:"([a-z]*)"', corps)
+    if len(posees) != actions:
+        r.echec("interface",
+                "%d option(s) de panneau sans section : renderOrbPanel() les "
+                "rendra sous la derniere section, qui n'est pas la leur"
+                % (actions - len(posees)))
+    r.controle(1)
+
+    for nom in sorted(set(posees)):
+        if nom not in connues:
+            r.echec("interface",
+                    "section « %s » inconnue de SECTIONS_PANNEAU : l'option "
+                    "tombera sous la derniere section" % nom)
+        r.controle(1)
+    print("   sections        : %d options, %d sections declarees (%s)"
+          % (actions, len(connues), ", ".join(sorted(connues))))
 
 
 # --------------------------------------------------------------------------
@@ -1105,6 +1154,7 @@ def main():
     verifier_zone_morte(r, source)
     verifier_appels_internes(r, source, fonctions)
     verifier_tuiles_non_vides(r, source)
+    verifier_sections_des_options(r, source)
     verifier_taille_des_champs(r, source)
     verifier_version(r, source)
     verifier_chemins(r)
