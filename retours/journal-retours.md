@@ -4852,3 +4852,21 @@ Répondre fait apparaître l’explication, qui pousse le bouton sous le pli —
 **plus l’explication est utile, plus le bouton est loin**. L’app défile
 maintenant jusqu’à lui. Pas de barre collée en bas : elle mangerait de la
 hauteur sur tous les écrans, y compris pendant qu’on lit l’énoncé.
+
+**« J'ai toujours besoin de swiper vers le haut pour rejoindre le bouton
+exercice suivant. »** — le même retour, une deuxième fois : ma correction de
+la v620 ne tenait pas. **Réglé en v621**, et la cause était le **clavier**.
+La v620 posait un `scrollIntoView()` au moment de la réponse ; on tape, on
+touche VÉRIFIER, le champ se désactive, le clavier se referme — et la hauteur
+de la fenêtre change **après** que le défilement a été calculé. Le navigateur
+suivait une géométrie qui n'existait déjà plus.
+
+`position: sticky` ne calcule rien : le bouton se replace à chaque repaint,
+donc la fermeture du clavier le recolle toute seule. Et il ne coûte **aucune
+hauteur avant la réponse** — c'était mon objection à une barre fixe — puisqu'il
+est en `display:none` tant qu'on n'a pas répondu.
+
+⚠️ **Mesuré cette fois, pas supposé.** Page d'essai bâtie à partir du vrai CSS
+et de la vraie section `#exercise`, ouverte en 375×812 : le bouton reste à
+12 px du bas à toutes les positions de défilement. La v620 avait été poussée
+sur un raisonnement seul.

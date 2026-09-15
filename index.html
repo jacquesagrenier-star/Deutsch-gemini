@@ -578,6 +578,31 @@ header{
 .screen{display:none}
 .screen.active{display:block; animation:screenFadeIn .2s ease;}
 
+/* ⚠️ « EXERCICE SUIVANT » RESTE SOUS LE POUCE (v621). Signale deux fois par
+   Jacques : « il faut que je swipe vers le haut pour rejoindre le bouton ».
+
+   La v620 essayait un scrollIntoView() au moment de la reponse. Ca ne tenait
+   pas, et la raison est le CLAVIER : on tape la reponse, on touche VERIFIER,
+   le champ se desactive, le clavier se referme -- et la hauteur de la fenetre
+   change APRES que le defilement a ete calcule. Le navigateur suivait une
+   geometrie qui n'existait deja plus.
+
+   Sticky ne calcule rien : le bouton se replace a chaque repaint, donc la
+   fermeture du clavier le recolle toute seule.
+
+   ⚠️ ET IL NE COUTE AUCUNE HAUTEUR AVANT LA REPONSE, ce qui etait mon
+   objection a une barre fixe : il porte .hidden (display:none) tant qu'on
+   n'a pas repondu, donc il n'occupe rien pendant qu'on lit l'enonce. Il
+   n'apparait que quand il y a quelque chose a faire avec.
+
+   bottom:12px et non 0 : colle au bord, il tombe dans la zone du geste de
+   retour a l'accueil sur iPhone. */
+#nextButton:not(.hidden){
+    position:sticky;
+    bottom:12px;
+    z-index:5;
+}
+
 @keyframes screenFadeIn{
     from{opacity:0;}
     to{opacity:1;}
@@ -5793,7 +5818,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v620</span>
+    <span class="subtitle-version">v621</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24903,7 +24928,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 620;
+const APP_VERSION = 621;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -30175,21 +30200,6 @@ function checkAnswer(){
     document.getElementById("checkButton").classList.add("hidden");
     const suivant = document.getElementById("nextButton");
     suivant.classList.remove("hidden");
-    // ⚠️ ON AMENE LE BOUTON SOUS LES YEUX (v620). Signale par Jacques : « il
-    // faut que je swipe l'ecran vers le haut pour aller a l'exercice suivant,
-    // c'est derangeant ». La reponse fait apparaitre l'explication, qui pousse
-    // « EXERCICE SUIVANT » sous le pli -- et plus l'explication est utile, plus
-    // le bouton est loin. On defile donc vers lui.
-    //
-    // Pas de barre collee en bas : elle mangerait de la hauteur sur TOUS les
-    // ecrans, y compris pendant qu'on lit l'enonce. Un defilement ne coute rien
-    // tant qu'on n'a pas repondu.
-    try{
-        suivant.scrollIntoView({ behavior: "smooth", block: "end" });
-    }catch(e){
-        // Navigateur sans l'option d'objet : la version simple fait l'affaire.
-        try{ suivant.scrollIntoView(false); }catch(e2){}
-    }
 }
 
 function nextExercise(){
