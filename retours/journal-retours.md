@@ -4734,3 +4734,32 @@ locutions en plusieurs mots (`Es tut mir leid`) y valent f = 0, donc dernières.
 le tourniquet au prorata et le garde-fou de thème. Les deux autres demandes
 (« écran élargi à ouverture », « verbes actif versus passif ») restent ouvertes :
 la première demande d'être précisée, la seconde est un ajout de contenu.
+
+---
+
+## 15 septembre 2026 — la relecture de Barbara est finie (Jacques)
+
+**« Tu vas pouvoir enlever la relecture, Barbara a fini sa vérification des
+synonymes. »** Verdicts lus AVANT toute suppression : l'écran de relecture est
+le seul à écrire le champ Firestore `synonymesEcartes`, et le tableau de bord
+admin le seul à le lire — retirer les deux d'abord aurait jeté son travail.
+
+**81 paires écartées, une seule relectrice.** Mesure : **10 des 81** opposent un
+mot que l'app étiquette déjà « (Suisse) » ou « (Autriche) » — `Abwart` /
+`Hausmeister`, `Fleischhauer` / `Metzger`, `Gleis` / `Perron`… Ce sont de vrais
+synonymes dans leur variété ; les écarter reviendrait à supprimer du contenu
+juste parce qu'une locutrice d'Allemagne ne l'emploie pas. **En arbitrage.**
+
+Les 71 autres sont des appariements automatiques fautifs, et ils sont probants :
+`Befehl` / `Ordnung` / `Reihenfolge` (l'anglais « order »), `Interesse` / `Zins`
+(« interest »), `Ukrainer` / `Ukrainisch` (nom contre adjectif), `Fachfrau` /
+`Fachmann` (féminin, pas synonyme).
+
+⚠️ **`synonymes.json` est GÉNÉRÉ** par `tests/synonymes.py` : les paires
+retirées doivent vivre dans un fichier d'écartés versionné, sinon la prochaine
+régénération les ramène toutes.
+
+**« La loupe de l'accueil devrait peut-être se présenter comme un
+dictionnaire. »** Juste — et meilleur que la fusion que j'avais proposée. Les
+deux recherches ne cherchent pas la même chose ; le défaut n'est pas qu'il y en
+ait deux, c'est que l'une n'a aucun nom.
