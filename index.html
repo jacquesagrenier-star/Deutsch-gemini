@@ -5164,15 +5164,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          s'ouvre que dans le geste de l'utilisateur. Un bouton menant a un ecran
          dont le champ se focalise ensuite obligerait a toucher DEUX fois. La
          loupe est agrandie et coloree pour que la cible se voie. -->
+    <!-- ⚠️ UN LIVRE, PLUS UNE LOUPE (v608). Depuis que l'accueil porte SA PROPRE
+         recherche -- celle qui filtre les modules, sous la carte de seance --
+         deux loupes cohabitaient sur le meme ecran sans qu'aucune ne dise ce
+         qu'elle cherche. Celle-ci ne cherche pas dans l'app : elle ouvre le
+         DICTIONNAIRE de 70 000 mots. Un livre le dit sans un mot.
+         Pourquoi pas un libelle ecrit : le champ plafonne a 104 px et sa police
+         ne peut pas descendre sous 16 px (Safari iOS zoome et ne dezoome pas,
+         voir .search-launch input). « Dictionnaire » n'y tient pas -- et c'est
+         le libelle qui raccourcit, jamais la police. L'icone porte donc le
+         sens, et l'aria-label le dit en toutes lettres. -->
     <div class="home-greeting-row">
         <p id="homeGreeting" class="home-greeting"></p>
     <div class="search-launch">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5.2 8.6 4.6 6 4.6c-.9 0-1.7.1-2.4.2v12.6c.7-.1 1.5-.2 2.4-.2 2.6 0 4.5.6 6 1.9"/><path d="M12 6.5c1.5-1.3 3.4-1.9 6-1.9.9 0 1.7.1 2.4.2v12.6c-.7-.1-1.5-.2-2.4-.2-2.6 0-4.5.6-6 1.9"/><path d="M12 6.5v12.6"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
                autocorrect="off" spellcheck="false"
                placeholder=""
-               data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
-               data-i18n-aria-label="search_launch" aria-label="Chercher un mot"
+               data-i18n-aria-label="search_launch" aria-label="Dictionnaire — chercher un mot"
                onfocus="ouvrirRechercheDepuisAccueil()"
                oninput="ouvrirRechercheDepuisAccueil(this.value)">
     </div>
@@ -5459,7 +5468,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="mots">
-            <span data-i18n="sec_mots">Les mots</span>
+            <span data-i18n="sec_mots">Travailler les mots</span>
         </h2>
         <div class="orb orb-de" data-orbid="nomen" data-cles="plural genus artikel substantiv" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
@@ -5469,7 +5478,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_nomen_title">Noms</strong>
-                <small data-i18n="orb_nomen_sub">dictée · articles · genres</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="verben" data-cles="konjugation präsens perfekt präteritum konjunktiv" onclick="openOrbPanel('verben')">
@@ -5480,7 +5488,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_verben_title">Verbes</strong>
-                <small data-i18n="orb_verben_sub">réviser · les temps</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="adjektive" data-cles="komparativ superlativ endungen deklination" onclick="openOrbPanel('adjektive')">
@@ -5491,7 +5498,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_adjektive_title">Adjectifs</strong>
-                <small data-i18n="orb_adjektive_sub">réviser · déclinaison</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="adverbien" data-cles="adverbien" onclick="openOrbPanel('adverbien')">
@@ -5499,7 +5505,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
             <div>
                 <strong data-i18n="orb_adverbien_title">Adverbes</strong>
-                <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="pronomen" data-cles="pronomen possessiv relativ reflexiv" onclick="openOrbPanel('pronomen')">
@@ -5507,7 +5512,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M17 9h4"/><path d="M17 13h4"/></svg></div>
             <div>
                 <strong data-i18n="orb_pronomen_title">Pronoms</strong>
-                <small data-i18n="orb_pronomen_sub">ich · mich · mir</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="zahlen" data-cles="zahlen ordinalzahlen" onclick="openOrbPanel('zahlen')">
@@ -5515,14 +5519,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 6a3.5 3.5 0 11-2.5 6"/></svg></div>
             <div>
                 <strong data-i18n="orb_zahlen_title">Nombres</strong>
-                <small data-i18n="orb_zahlen_sub">einundzwanzig · dritte</small>
             </div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
-            <span data-i18n="sec_phrase">La phrase</span>
+            <span data-i18n="sec_phrase">Travailler la phrase</span>
         </h2>
         <div class="orb orb-de" data-orbid="kasus" data-cles="dativ akkusativ nominativ genitiv deklination" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
@@ -5532,7 +5535,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_kasus_title">Cas & articles</strong>
-                <small data-i18n="orb_kasus_sub">der · den · dem · ein · kein</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="praep" data-cles="wechselpräpositionen wo wohin" onclick="openOrbPanel('praep')">
@@ -5543,15 +5545,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_praep_title">Prépositions</strong>
-                <small data-i18n="orb_praep_sub">Dativ · Akkusativ</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="wortstellung" data-cles="satzbau hauptsatz nebensatz" onclick="openOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
-                <strong data-i18n="orb_wortstellung_title">Structure</strong>
-                <small data-i18n="orb_wortstellung_sub">Satzbau</small>
+                <strong data-i18n="orb_wortstellung_title">Ordre des mots</strong>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="konjunktionen" data-cles="konjunktionen weil denn obwohl" onclick="openOrbPanel('konjunktionen')">
@@ -5559,7 +5559,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg></div>
             <div>
                 <strong data-i18n="orb_konjunktionen_title">Connecteurs</strong>
-                <small data-i18n="orb_konjunktionen_sub">weil · deshalb · obwohl</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="zuinfinitiv" data-cles="infinitiv" onclick="openOrbPanel('zuinfinitiv')">
@@ -5567,7 +5566,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
             <div>
                 <strong data-i18n="orb_zuinf_title">Zu + infinitif</strong>
-                <small data-i18n="orb_zuinf_sub">versuchen zu · ohne zu</small>
             </div>
         </div>
 
@@ -5580,7 +5578,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
             <div>
                 <strong data-i18n="orb_ecouter_title">Écouter</strong>
-                <small data-i18n="orb_ecouter_sub">mains libres · A1 → C1</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="schreiben" data-cles="schreiben übersetzen" onclick="openOrbPanel('schreiben')">
@@ -5588,7 +5585,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></div>
             <div>
                 <strong data-i18n="orb_schreiben_title">Écrire</strong>
-                <small data-i18n="orb_schreiben_sub">traduire une phrase</small>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="ausdruecke" data-cles="redewendungen" onclick="openOrbPanel('ausdruecke')">
@@ -5596,7 +5592,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/><path d="M8 10h8"/><path d="M8 13h5"/></svg></div>
             <div>
                 <strong data-i18n="orb_ausdruecke_title">Expressions & tournures</strong>
-                <small data-i18n="orb_ausdruecke_sub">Par situation</small>
             </div>
         </div>
 
@@ -5617,21 +5612,18 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg></div>
             <div>
                 <strong data-i18n="orb_pruefung_title">Préparation aux examens</strong>
-                <small data-i18n="orb_pruefung_sub">A2 · B1 · C1</small>
             </div>
         </div>
         <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" data-cles="vhs kapitel" onclick="openVhsKapitelListe()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
             <div>
                 <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
-                <small data-i18n="vhs_kapitel_tile_sub">Cours B1</small>
             </div>
         </div>
         <div class="orb orb-de hidden" id="relectureTile" data-orbid="relecture" data-cles="korrektur" onclick="ouvrirRelectureSynonymes()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h9"/><path d="M17 17l2 2 4-4"/></svg></div>
             <div>
                 <strong data-i18n="orb_relecture_title">Relecture</strong>
-                <small data-i18n="orb_relecture_sub">un coup de main ?</small>
             </div>
         </div>
 
@@ -5817,7 +5809,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v607</span>
+    <span class="subtitle-version">v608</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8537,8 +8529,8 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
-        sec_mots: "Les mots",
-        sec_phrase: "La phrase",
+        sec_mots: "Travailler les mots",
+        sec_phrase: "Travailler la phrase",
         sec_pratique: "Pratiquer",
         sec_parcours: "Mon parcours",
         accueil_chercher: "Chercher un module…",
@@ -8683,7 +8675,7 @@ const I18N = {
         progress_info_apres: "« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient tous les 16 jours pour vérifier, sans cesser d'être compté.",
 
         // --- Recherche dans les flashcards (v188) ---
-        search_launch: "Chercher un mot",
+        search_launch: "Dictionnaire — chercher un mot",
         search_kicker: "Flashcards et dictionnaire",
         search_title: "Chercher un mot allemand ou français",
         search_placeholder: "Allemand ou français…",
@@ -8762,7 +8754,7 @@ const I18N = {
         orb_adjektive_sub: "réviser · déclinaison",
         orb_praep_title: "Prépositions",
         orb_praep_sub: "Dativ · Akkusativ",
-        orb_wortstellung_title: "Structure",
+        orb_wortstellung_title: "Ordre des mots",
         orb_wortstellung_sub: "Satzbau",
         orb_possessiv_title: "Possessifs",
         orb_possessiv_sub: "mein · dein",
@@ -9508,8 +9500,8 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
-        sec_mots: "Words",
-        sec_phrase: "The sentence",
+        sec_mots: "Work on words",
+        sec_phrase: "Work on sentences",
         sec_pratique: "Practise",
         sec_parcours: "My path",
         accueil_chercher: "Find a module…",
@@ -9654,7 +9646,7 @@ const I18N = {
         progress_info_apres: "“I didn't know” takes its mastery away, and the percentage goes back down.\n\nA mastered word comes back every 16 days as a check, and keeps counting in the meantime.",
 
         // --- Flashcard search (v188) ---
-        search_launch: "Look up a word",
+        search_launch: "Dictionary — look up a word",
         search_kicker: "Flashcards and dictionary",
         search_title: "Search a German or English word",
         search_placeholder: "German or English…",
@@ -10481,8 +10473,8 @@ const I18N = {
         dict_count_one: "1 kayıt",
         dict_credit: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_title: "Kaynaklar",
-        sec_mots: "Kelimeler",
-        sec_phrase: "Cümle",
+        sec_mots: "Kelime çalışması",
+        sec_phrase: "Cümle çalışması",
         sec_pratique: "Alıştırma",
         sec_parcours: "Benim yolum",
         accueil_chercher: "Modül ara…",
@@ -10627,7 +10619,7 @@ const I18N = {
         progress_info_apres: "« Bilmiyordum » bu durumu geri alır ve yüzde düşer.\n\nÖğrenilmiş bir kelime kontrol için 16 günde bir geri gelir, bu sırada sayılmaya devam eder.",
 
         // --- Flashcard search (v188) ---
-        search_launch: "Bir kelime ara",
+        search_launch: "Sözlük — bir kelime ara",
         search_kicker: "Kartlar ve sözlük",
         search_title: "Almanca veya Türkçe kelime ara",
         search_placeholder: "Almanca veya Türkçe…",
@@ -11707,8 +11699,8 @@ const I18N = {
         dict_count_one: "1 запис",
         dict_credit: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_title: "Подяки",
-        sec_mots: "Слова",
-        sec_phrase: "Речення",
+        sec_mots: "Робота зі словами",
+        sec_phrase: "Робота з реченням",
         sec_pratique: "Практика",
         sec_parcours: "Мій шлях",
         accueil_chercher: "Знайти модуль…",
@@ -12233,7 +12225,7 @@ const I18N = {
         home_daily_goal_label: "🎯 Ціль на день",
         home_week_zero: "Цього тижня: 0",
         home_week_positive: "+{n} цього тижня",
-        search_launch: "Шукати слово",
+        search_launch: "Словник — шукати слово",
         search_kicker: "Картки та словник",
         search_title: "Шукати слово",
         search_placeholder: "Слово німецькою…",
@@ -13165,7 +13157,7 @@ const I18N = {
         qual_50: "تا اینجا خوب آمده‌ای!",
         qual_80: "نزدیک به استادی!",
         qual_100: "تسلط کامل!",
-        search_launch: "جست‌وجوی یک واژه",
+        search_launch: "واژه‌نامه — جست‌وجوی یک واژه",
         search_kicker: "کارت‌ها و فرهنگ واژگان",
         search_title: "جست‌وجوی واژهٔ آلمانی یا فارسی",
         search_placeholder: "آلمانی یا فارسی…",
@@ -13350,8 +13342,8 @@ const I18N = {
         dict_credit: "فرهنگ واژگان: WikDict، برگرفته از ویکی‌واژه — پروانهٔ CC BY-SA 4.0.",
         search_head_cours: "کارت‌های برنامه",
         credits_title: "سپاسگزاری",
-        sec_mots: "واژه‌ها",
-        sec_phrase: "جمله",
+        sec_mots: "کار روی واژه‌ها",
+        sec_phrase: "کار روی جمله",
         sec_pratique: "تمرین",
         sec_parcours: "مسیر من",
         accueil_chercher: "جست‌وجوی بخش…",
@@ -25159,7 +25151,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 607;
+const APP_VERSION = 608;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
