@@ -5793,7 +5793,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v617</span>
+    <span class="subtitle-version">v618</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7849,10 +7849,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <small style="color:#0e9f5f" data-i18n="review_based_on_errors">Révision basée sur tes erreurs.</small>
         </div>
 
+        <p id="resultSitue" style="color:#576177; font-size:13px; margin:10px 0 0" hidden></p>
+
         <div class="spacer"></div>
-        <button class="primary" onclick="restartActiveExerciseSet()" data-i18n="restart_button">RECOMMENCER</button>
+        <!-- Le libelle est POSE PAR showResults() : il depend de ce que le
+             bouton va reellement faire (serie suivante, reprise du debut, ou
+             nouveau tirage). Celui du HTML n'est que le repli. -->
+        <button class="primary" id="resultRestartBtn" onclick="restartActiveExerciseSet()" data-i18n="restart_button">RECOMMENCER</button>
         <div class="spacer"></div>
-        <button class="secondary" onclick="goHome()" data-i18n="dashboard_button">TABLEAU DE BORD</button>
+        <button class="secondary" onclick="goHome()" data-i18n="dashboard_button">ACCUEIL</button>
     </div>
 </section>
 
@@ -8796,7 +8801,10 @@ const I18N = {
         to_review: "À revoir",
         review_based_on_errors: "Révision basée sur tes erreurs.",
         restart_button: "RECOMMENCER",
-        dashboard_button: "TABLEAU DE BORD",
+        exo_reprendre_debut: "REPRENDRE DU DÉBUT →",
+        exo_serie_faite: "Série {n} sur {total} terminée.",
+        exo_serie_suivante: "SÉRIE SUIVANTE →",
+        dashboard_button: "ACCUEIL",
 
         kicker_progress: "Progression",
         settings_account_title: "Compte",
@@ -9747,7 +9755,10 @@ const I18N = {
         to_review: "To review",
         review_based_on_errors: "Review based on your mistakes.",
         restart_button: "RESTART",
-        dashboard_button: "DASHBOARD",
+        exo_reprendre_debut: "START OVER →",
+        exo_serie_faite: "Set {n} of {total} done.",
+        exo_serie_suivante: "NEXT SET →",
+        dashboard_button: "HOME",
 
         kicker_progress: "Progress",
         settings_account_title: "Account",
@@ -10702,7 +10713,10 @@ const I18N = {
         to_review: "Tekrar edilecek",
         review_based_on_errors: "Hatalarına göre tekrar.",
         restart_button: "YENİDEN BAŞLA",
-        dashboard_button: "PANO",
+        exo_reprendre_debut: "BAŞTAN BAŞLA →",
+        exo_serie_faite: "{total} seriden {n}. seri tamamlandı.",
+        exo_serie_suivante: "SONRAKİ SERİ →",
+        dashboard_button: "ANA SAYFA",
 
         kicker_progress: "İlerleme",
         settings_account_title: "Hesap",
@@ -11441,7 +11455,10 @@ const I18N = {
         session_ended: "Сеанс завершено",
         to_review: "На повторення",
         restart_button: "ПОЧАТИ СПОЧАТКУ",
-        dashboard_button: "ПАНЕЛЬ КЕРУВАННЯ",
+        exo_reprendre_debut: "ПОЧАТИ СПОЧАТКУ →",
+        exo_serie_faite: "Серія {n} з {total} завершена.",
+        exo_serie_suivante: "НАСТУПНА СЕРІЯ →",
+        dashboard_button: "ГОЛОВНА",
         question_translation_label: "Переклад: {translation}",
         feedback_correct_title: "✓ Правильно!",
         feedback_wrong_title: "✗ Не зовсім",
@@ -12918,7 +12935,10 @@ const I18N = {
         to_review: "برای مرور",
         review_based_on_errors: "مرور بر پایهٔ خطاهای تو.",
         restart_button: "از نو",
-        dashboard_button: "میزکار",
+        exo_reprendre_debut: "از آغاز شروع کن →",
+        exo_serie_faite: "دستهٔ {n} از {total} تمام شد.",
+        exo_serie_suivante: "دستهٔ بعدی →",
+        dashboard_button: "خانه",
         kicker_progress: "پیشرفت",
         settings_account_title: "حساب کاربری",
         voice_title: "صدای خواندن",
@@ -24848,7 +24868,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 617;
+const APP_VERSION = 618;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -30179,9 +30199,46 @@ function noterSerieGrammaire(pourcentage, justes, total){
     scheduleCloudSync();
 }
 
+// ⚠️ « RECOMMENCER » DISAIT LE CONTRAIRE DE CE QUE LE BOUTON FAIT (v618).
+// Signale par Jacques : « on me dit reprendre, je crois. Moi je dirais plutot
+// est-ce qu'on veut une nouvelle serie ? Sinon on ne sait pas trop ce que ca
+// veut dire. Est-ce que ca veut dire reprendre les memes verbes ? »
+//
+// Il a raison, et c'etait pire qu'ambigu : noterSerieGrammaire() a DEJA fait
+// avancer le bloc quand cet ecran s'affiche. Le bouton etiquete « recommencer »
+// servait donc les DIX SUIVANTS. Un libelle qui annonce l'inverse du geste ne
+// se corrige pas par une explication ailleurs -- il se renomme.
+//
+// Trois situations, trois libelles, parce qu'une seule formule mentirait dans
+// l'un des trois cas :
+//   - il reste des blocs      -> « SERIE SUIVANTE », et ce sont dix neufs
+//   - on vient de boucler     -> « REPRENDRE DU DEBUT », le jeu recommence
+//   - pas de blocs du tout    -> « RECOMMENCER » (dictee, quiz d'articles :
+//                                un nouveau tirage, pas une suite)
+function libelleReprise(){
+    if(exerciseBlocTotal <= 1) return t("restart_button");
+    return exerciseBlocNo + 1 >= exerciseBlocTotal
+        ? t("exo_reprendre_debut")
+        : t("exo_serie_suivante");
+}
+
 function showResults(){
     const total = activeExercises.length;
     const percentage = Math.round(scoreValue / total * 100);
+    // AVANT noterSerieGrammaire() : elle ecrit le bloc suivant dans le magasin,
+    // mais exerciseBlocNo garde le bloc qu'on vient de jouer -- c'est celui-la
+    // qu'on annonce.
+    const situe = document.getElementById("resultSitue");
+    if(situe){
+        const montrer = exerciseBlocTotal > 1;
+        situe.hidden = !montrer;
+        if(montrer){
+            situe.textContent = tf("exo_serie_faite",
+                { n: exerciseBlocNo + 1, total: exerciseBlocTotal });
+        }
+    }
+    const reprise = document.getElementById("resultRestartBtn");
+    if(reprise) reprise.textContent = libelleReprise();
     noterSerieGrammaire(percentage, scoreValue, total);
     document.getElementById("score").textContent = percentage + "%";
     document.getElementById("scoreText").textContent = tf("score_result_text", { n: scoreValue });

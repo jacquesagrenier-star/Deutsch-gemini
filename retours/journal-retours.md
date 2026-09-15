@@ -4791,3 +4791,20 @@ séries** de l'écran « S'entraîner par temps » (Präsens, Präteritum, Perfe
 Konjunktiv II, Infinitiv), et non cinq exercices : **405 exercices** derrière
 elles. Rien à corriger — mais la question était légitime, puisque les boutons
 annonçaient alors des comptes périmés (retirés en v616).
+
+
+**« RECOMMENCER — est-ce que ça veut dire reprendre les mêmes verbes ? »**
+**Réglé en v618**, et c’était pire qu’ambigu : le bloc a DÉJÀ avancé quand
+l’écran de résultat s’affiche, donc le bouton étiqueté « recommencer » servait
+les dix SUIVANTS. Un libellé qui annonce l’inverse du geste ne se rattrape pas
+par une explication ailleurs. Trois libellés selon la situation réelle :
+« SÉRIE SUIVANTE › », « REPRENDRE DU DÉBUT › » quand le jeu vient d’être
+bouclé, « RECOMMENCER » pour les séries sans blocs (dictée, quiz d’articles).
+Et une ligne qui situe : « Série 3 sur 15 terminée. » — l’écran de résultat ne
+disait nulle part où l’on en était.
+
+**« Le tableau de bord m’amène à la page d’accueil. C’était quoi l’idée ? »**
+Il n’y en avait pas : le bouton appelle `goHome()` depuis toujours. « Tableau de
+bord » est un reste d’une époque où l’accueil s’appelait ainsi, et il a survécu
+parce que **rien ne relie un libellé à sa destination**. Renommé « ACCUEIL »
+dans les cinq langues (v618).
