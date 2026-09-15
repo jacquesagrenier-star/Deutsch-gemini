@@ -2789,6 +2789,41 @@ p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
 .orb-opt[onclick*="openAdverbienInfo"],
 .orb-opt[onclick*="openRedewendungenInfo"]{ display:none !important; }
 
+/* Options restees allemandes -- voir le commentaire de ACCIONES_SIN_OBJETO. */
+.orb-opt[onclick*="startAberSondernUebung"],
+.orb-opt[onclick*="startAlsWennUebung"],
+.orb-opt[onclick*="startBlocsConnecteursUebung"],
+.orb-opt[onclick*="startDerEinUebung"],
+.orb-opt[onclick*="startDeshalbTrotzdemUebung"],
+.orb-opt[onclick*="startKasusReconnaissance"],
+.orb-opt[onclick*="startKonjunktionenNuance"],
+.orb-opt[onclick*="startKonnektorenUebung"],
+.orb-opt[onclick*="startObwohlTrotzdemUebung"],
+.orb-opt[onclick*="startOrdreInverseUebung"],
+.orb-opt[onclick*="startPartikelnNuance"],
+.orb-opt[onclick*="startPositionsverbenUebung"],
+.orb-opt[onclick*="startPraepReconnaissance"],
+.orb-opt[onclick*="startPraepWoWohin"],
+.orb-opt[onclick*="startPremierePlaceUebung"],
+.orb-opt[onclick*="startTransformationConnecteursUebung"],
+.orb-opt[onclick*="startWeilObwohlUebung"],
+.orb-opt[onclick*="startWennObUebung"],
+.orb-opt[onclick*="startWennWannUebung"],
+.orb-opt[onclick*="startWissenKennenUebung"],
+.orb-opt[onclick*="startZuInfinitivExercise"],
+.orb-opt[onclick*="startKasusArticleNominativ"],
+.orb-opt[onclick*="startKasusArticleAkkusativ"],
+.orb-opt[onclick*="startKasusArticleDativ"],
+.orb-opt[onclick*="startKasusArticleGenitiv"],
+.orb-opt[onclick*="startKasusArticleMix"],
+.orb-opt[onclick*="startKasusVerben"],
+.orb-opt[onclick*="ouvrirReglesGenre"],
+.orb-opt[onclick*="startQuizTerminaisons"],
+.orb-opt[onclick*="openDemonstrativInfo"],
+.orb-opt[onclick*="openPossessivInfo"],
+.orb-opt[onclick*="openRelativInfo"],
+.orb-opt[onclick*="openRelativGenitivInfo"]{ display:none !important; }
+
 .article.die { color: #ef4444; }
 .article.das { color: #10b981; }
 
@@ -5867,7 +5902,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v33</span>
+    <span class="subtitle-version">v34</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9247,9 +9282,9 @@ const I18N = {
         orb_zahlen_title: "Gender", _zahlen_: "Nombres",
         orb_zahlen_sub: "el · la · -ción · -ma", _zahlen_sub_: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
-        op_pronomen_sub: "ich · mich · mir",
+        op_pronomen_sub: "lo · la · le · se",
         op_pronomen_o1_t: "Personnels et réfléchis",
-        op_pronomen_o1_d: "ich, mich, mir · sich waschen",
+        op_pronomen_o1_d: "lo, la, le · lavarse",
         op_pronomen_o2_t: "Démonstratifs et indéfinis",
         op_pronomen_o2_d: "dieser, man, jemand, jeder",
         op_pronomen_o3_t: "Possessifs",
@@ -9351,7 +9386,7 @@ const I18N = {
         chunks_manque_un: "Il manque encore un mot.",
         chunks_manque_n: "Il manque encore {n} mots.",
         op_adverbien_title: "Adverbes", op_adverbien_sub: "heute · hier · sehr",
-        op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : Zeit, Ort, Häufigkeit, Art und Weise…",
+        op_adverbien_o1_t: "Comprendre les adverbes", op_adverbien_o1_d: "8 familles : temps, lieu, fréquence, manière…",
         op_adverbien_o2_t: "Reconnaître la famille", op_adverbien_o2_d: "16 questions sur les 8 familles",
         op_adverbien_o3_d: "139 adverbes · 8 familles",
         op_adverbien_o3_t: "Vocabulaire",
@@ -9962,7 +9997,7 @@ const I18N = {
         flash_repondre: "Answer the card to move on.",
         regle_sans_exception: "no exception among our words",
         regle_explication: "Nouns in {fin} are {genre} in {taux}% of our words",
-        op_nomen_o6_d: "der · die · das — equal thirds",
+        op_nomen_o6_d: "el · la — two genders",
         kicker_quiz_article: "Which article?",
         dictation_replay_btn: "🔊 REPLAY",
         exercice_ecouter_btn: "🔊 HEAR THE SENTENCE",
@@ -10079,7 +10114,7 @@ const I18N = {
         op_adjektive_o1_t: "Review my adjectives",
         op_adjektive_o4_t: "Adjective declension", op_adjektive_o4_d: "Endungen by article & case",
 
-        op_kasus_title: "Cases & articles", op_kasus_sub: "Cas & articles · der · ein · kein",
+        op_kasus_title: "Cases & articles", op_kasus_sub: "ser · estar",
         op_kasus_o1_t: "Understand the cases", op_kasus_o1_d: "Functions & declension table",
         op_kasus_o2_t: "Identify the case", op_kasus_o2_d: "Identify the case in a sentence",
         op_kasus_art_nom_t: "Articles · Nominativ", op_kasus_art_nom_d: "der · ein · kein — the subject",
@@ -10199,9 +10234,9 @@ const I18N = {
         orb_zahlen_title: "Gender", _zahlen_: "Numbers",
         orb_zahlen_sub: "el · la · -ción · -ma", _zahlen_sub_: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
-        op_pronomen_sub: "ich · mich · mir",
+        op_pronomen_sub: "lo · la · le · se",
         op_pronomen_o1_t: "Personal and reflexive",
-        op_pronomen_o1_d: "ich, mich, mir · sich waschen",
+        op_pronomen_o1_d: "lo, la, le · lavarse",
         op_pronomen_o2_t: "Demonstrative and indefinite",
         op_pronomen_o2_d: "dieser, man, jemand, jeder",
         op_pronomen_o3_t: "Possessive",
@@ -10303,7 +10338,7 @@ const I18N = {
         chunks_manque_un: "One word is still missing.",
         chunks_manque_n: "{n} words are still missing.",
         op_adverbien_title: "Adverbs", op_adverbien_sub: "heute · hier · sehr",
-        op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: Zeit, Ort, Häufigkeit, Art und Weise…",
+        op_adverbien_o1_t: "Understand adverbs", op_adverbien_o1_d: "8 families: time, place, frequency, manner…",
         op_adverbien_o2_t: "Identify the family", op_adverbien_o2_d: "16 questions on the 8 families",
         op_adverbien_o3_d: "139 adverbs · 8 families",
         op_adverbien_o3_t: "Vocabulary",
@@ -21949,7 +21984,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 33;
+const APP_VERSION = 34;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
