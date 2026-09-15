@@ -716,6 +716,53 @@ body[data-theme="dark"] .subtitle-version{
 /* La premiere section suit la carte de seance : pas de marge en trop. */
 .orb-section:first-of-type{margin-top:4px;}
 
+/* ============ UNE FAMILLE DE COULEUR PAR SECTION (v612) ============
+   Les tuiles portaient dix-sept accents sans parente : la couleur disait
+   « je suis une tuile », ce qu'on voyait deja. Chaque section a maintenant sa
+   teinte, declinee sur ses tuiles, et la couleur dit « je suis ici ».
+
+   ⚠️ UN TRAIT VERTICAL, PAS UNE PASTILLE. Les deux ont ete regardes cote a
+   cote : la pastille de 8 px se lit comme une decoration posee devant le mot,
+   le trait se lit comme le BORD GAUCHE de la section -- il donne un
+   alignement a toute la zone et se voit sans qu'on le cherche. Ni l'un ni
+   l'autre ne coute un pixel de hauteur.
+
+   ⚠️ PAS DE COMPLEMENTAIRES ENTRE UNE SECTION ET SES TUILES. L'idee a ete
+   examinee et ecartee : un rouge orange contre un vert a saturation egale
+   fait vibrer le bord commun, et surtout une tuile rouge dans une zone verte
+   annonce « je n'appartiens pas ici » -- l'inverse exact de ce que le
+   regroupement vient d'installer.
+
+   ⚠️ LE ROUGE ET LE ROSE SONT LAISSES LIBRES, et pour cette raison meme :
+   une couleur qui contredit son entourage attire l'oeil parce qu'elle est
+   SEULE a le faire. C'est la reserve pour ce qui devra vraiment alerter --
+   un retard, une erreur. Ne pas les prendre pour une cinquieme section. */
+.orb-section{display:flex; align-items:center; gap:9px;}
+.sec-trait{
+    width:3px;
+    border-radius:2px;
+    flex:0 0 auto;
+    /* Il prend la hauteur du libelle plutot qu'une hauteur fixe : si la
+       police du titre change un jour, le trait suit sans qu'on y pense. */
+    align-self:stretch;
+    min-height:14px;
+    margin:1px 0 2px;
+}
+.orb-section[data-section="mots"] .sec-trait{background:#7c3aed;}
+.orb-section[data-section="phrase"] .sec-trait{background:#0d9488;}
+.orb-section[data-section="pratique"] .sec-trait{background:#d97706;}
+.orb-section[data-section="parcours"] .sec-trait{background:#4f46e5;}
+
+/* Ces trois tuiles n'avaient aucune couleur : elles prenaient le
+   gris par defaut, ce qui faisait un trou dans leur famille. */
+.orb[data-orbid="ausdruecke"] .orb-icon{background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.28);}
+.orb[data-orbid="ausdruecke"] .orb-icon svg{stroke:#f59e0b;}
+.orb[data-orbid="ausdruecke"] .orb-badge{background:#f59e0b; box-shadow:0 2px 6px rgba(245,158,11,.35);}
+.orb[data-orbid="pruefung"] .orb-icon{background:rgba(99,102,241,.14); border-color:rgba(99,102,241,.28);}
+.orb[data-orbid="pruefung"] .orb-icon svg{stroke:#6366f1;}
+.orb[data-orbid="pruefung"] .orb-badge{background:#6366f1; box-shadow:0 2px 6px rgba(99,102,241,.35);}
+
+
 body[data-theme="dark"] .orb-section{
     color:#94a3b8;
     background:linear-gradient(180deg,
@@ -840,52 +887,52 @@ body[data-theme="dark"] .home-greeting{
 /* ============ COULEURS PAR CATÉGORIE ============ */
 
 .orb[data-orbid="verben"] .orb-icon{
-    background:rgba(249,115,22,.14);
-    border-color:rgba(249,115,22,.28);
-}
-.orb[data-orbid="verben"] .orb-icon svg{stroke:#f97316;}
-.orb[data-orbid="verben"] .orb-badge{background:#f97316; box-shadow:0 2px 6px rgba(249,115,22,.35);}
-
-.orb[data-orbid="zuinfinitiv"] .orb-icon{
-    background:rgba(99,102,241,.14);
-    border-color:rgba(99,102,241,.28);
-}
-.orb[data-orbid="zuinfinitiv"] .orb-icon svg{stroke:#6366f1;}
-
-.orb[data-orbid="nomen"] .orb-icon{
     background:rgba(139,92,246,.14);
     border-color:rgba(139,92,246,.28);
 }
-.orb[data-orbid="nomen"] .orb-icon svg{stroke:#8b5cf6;}
-.orb[data-orbid="nomen"] .orb-badge{background:#8b5cf6; box-shadow:0 2px 6px rgba(139,92,246,.35);}
+.orb[data-orbid="verben"] .orb-icon svg{stroke:#8b5cf6;}
+.orb[data-orbid="verben"] .orb-badge{background:#8b5cf6; box-shadow:0 2px 6px rgba(139,92,246,.35);}
 
-.orb[data-orbid="kasus"] .orb-icon{
+.orb[data-orbid="zuinfinitiv"] .orb-icon{
     background:rgba(16,185,129,.14);
     border-color:rgba(16,185,129,.28);
 }
-.orb[data-orbid="kasus"] .orb-icon svg{stroke:#10b981;}
-.orb[data-orbid="kasus"] .orb-badge{background:#10b981; box-shadow:0 2px 6px rgba(16,185,129,.35);}
+.orb[data-orbid="zuinfinitiv"] .orb-icon svg{stroke:#10b981;}
+
+.orb[data-orbid="nomen"] .orb-icon{
+    background:rgba(124,58,237,.14);
+    border-color:rgba(124,58,237,.28);
+}
+.orb[data-orbid="nomen"] .orb-icon svg{stroke:#7c3aed;}
+.orb[data-orbid="nomen"] .orb-badge{background:#7c3aed; box-shadow:0 2px 6px rgba(124,58,237,.35);}
+
+.orb[data-orbid="kasus"] .orb-icon{
+    background:rgba(13,148,136,.14);
+    border-color:rgba(13,148,136,.28);
+}
+.orb[data-orbid="kasus"] .orb-icon svg{stroke:#0d9488;}
+.orb[data-orbid="kasus"] .orb-badge{background:#0d9488; box-shadow:0 2px 6px rgba(13,148,136,.35);}
 
 .orb[data-orbid="adjektive"] .orb-icon{
-    background:rgba(244,63,94,.14);
-    border-color:rgba(244,63,94,.28);
+    background:rgba(168,85,247,.14);
+    border-color:rgba(168,85,247,.28);
 }
-.orb[data-orbid="adjektive"] .orb-icon svg{stroke:#f43f5e;}
-.orb[data-orbid="adjektive"] .orb-badge{background:#f43f5e; box-shadow:0 2px 6px rgba(244,63,94,.35);}
+.orb[data-orbid="adjektive"] .orb-icon svg{stroke:#a855f7;}
+.orb[data-orbid="adjektive"] .orb-badge{background:#a855f7; box-shadow:0 2px 6px rgba(168,85,247,.35);}
 
 .orb[data-orbid="praep"] .orb-icon{
-    background:rgba(6,182,212,.14);
-    border-color:rgba(6,182,212,.28);
+    background:rgba(20,184,166,.14);
+    border-color:rgba(20,184,166,.28);
 }
-.orb[data-orbid="praep"] .orb-icon svg{stroke:#06b6d4;}
-.orb[data-orbid="praep"] .orb-badge{background:#06b6d4; box-shadow:0 2px 6px rgba(6,182,212,.35);}
+.orb[data-orbid="praep"] .orb-icon svg{stroke:#14b8a6;}
+.orb[data-orbid="praep"] .orb-badge{background:#14b8a6; box-shadow:0 2px 6px rgba(20,184,166,.35);}
 
 .orb[data-orbid="wortstellung"] .orb-icon{
-    background:rgba(245,158,11,.14);
-    border-color:rgba(245,158,11,.28);
+    background:rgba(15,118,110,.14);
+    border-color:rgba(15,118,110,.28);
 }
-.orb[data-orbid="wortstellung"] .orb-icon svg{stroke:#f59e0b;}
-.orb[data-orbid="wortstellung"] .orb-badge{background:#f59e0b; box-shadow:0 2px 6px rgba(245,158,11,.35);}
+.orb[data-orbid="wortstellung"] .orb-icon svg{stroke:#0f766e;}
+.orb[data-orbid="wortstellung"] .orb-badge{background:#0f766e; box-shadow:0 2px 6px rgba(15,118,110,.35);}
 
 .orb[data-orbid="possessiv"] .orb-icon{
     background:rgba(167,139,250,.14);
@@ -902,11 +949,11 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="relativ"] .orb-badge{background:#d946ef; box-shadow:0 2px 6px rgba(217,70,239,.35);}
 
 .orb[data-orbid="adverbien"] .orb-icon{
-    background:rgba(132,204,22,.14);
-    border-color:rgba(132,204,22,.28);
+    background:rgba(147,51,234,.14);
+    border-color:rgba(147,51,234,.28);
 }
-.orb[data-orbid="adverbien"] .orb-icon svg{stroke:#84cc16;}
-.orb[data-orbid="adverbien"] .orb-badge{background:#84cc16; box-shadow:0 2px 6px rgba(132,204,22,.35);}
+.orb[data-orbid="adverbien"] .orb-icon svg{stroke:#9333ea;}
+.orb[data-orbid="adverbien"] .orb-badge{background:#9333ea; box-shadow:0 2px 6px rgba(147,51,234,.35);}
 
 .orb[data-orbid="redewendungen"] .orb-icon{
     background:rgba(217,70,239,.14);
@@ -916,48 +963,48 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="redewendungen"] .orb-badge{background:#d946ef; box-shadow:0 2px 6px rgba(217,70,239,.35);}
 
 .orb[data-orbid="pronomen"] .orb-icon{
-    background:rgba(6,182,212,.14);
-    border-color:rgba(6,182,212,.28);
+    background:rgba(109,40,217,.14);
+    border-color:rgba(109,40,217,.28);
 }
-.orb[data-orbid="pronomen"] .orb-icon svg{stroke:#06b6d4;}
-.orb[data-orbid="pronomen"] .orb-badge{background:#06b6d4; box-shadow:0 2px 6px rgba(6,182,212,.35);}
+.orb[data-orbid="pronomen"] .orb-icon svg{stroke:#6d28d9;}
+.orb[data-orbid="pronomen"] .orb-badge{background:#6d28d9; box-shadow:0 2px 6px rgba(109,40,217,.35);}
 
 .orb[data-orbid="zahlen"] .orb-icon{
+    background:rgba(126,34,206,.14);
+    border-color:rgba(126,34,206,.28);
+}
+.orb[data-orbid="zahlen"] .orb-icon svg{stroke:#7e22ce;}
+.orb[data-orbid="zahlen"] .orb-badge{background:#7e22ce; box-shadow:0 2px 6px rgba(126,34,206,.35);}
+
+.orb[data-orbid="schreiben"] .orb-icon{
     background:rgba(234,88,12,.14);
     border-color:rgba(234,88,12,.28);
 }
-.orb[data-orbid="zahlen"] .orb-icon svg{stroke:#ea580c;}
-.orb[data-orbid="zahlen"] .orb-badge{background:#ea580c; box-shadow:0 2px 6px rgba(234,88,12,.35);}
-
-.orb[data-orbid="schreiben"] .orb-icon{
-    background:rgba(244,63,94,.14);
-    border-color:rgba(244,63,94,.28);
-}
-.orb[data-orbid="schreiben"] .orb-icon svg{stroke:#f43f5e;}
-.orb[data-orbid="schreiben"] .orb-badge{background:#f43f5e; box-shadow:0 2px 6px rgba(244,63,94,.35);}
+.orb[data-orbid="schreiben"] .orb-icon svg{stroke:#ea580c;}
+.orb[data-orbid="schreiben"] .orb-badge{background:#ea580c; box-shadow:0 2px 6px rgba(234,88,12,.35);}
 
 .orb[data-orbid="ecouter"] .orb-icon{
-    background:rgba(236,72,153,.14);
-    border-color:rgba(236,72,153,.28);
+    background:rgba(217,119,6,.14);
+    border-color:rgba(217,119,6,.28);
 }
-.orb[data-orbid="ecouter"] .orb-icon svg{stroke:#ec4899;}
-.orb[data-orbid="ecouter"] .orb-badge{background:#ec4899; box-shadow:0 2px 6px rgba(236,72,153,.35);}
+.orb[data-orbid="ecouter"] .orb-icon svg{stroke:#d97706;}
+.orb[data-orbid="ecouter"] .orb-badge{background:#d97706; box-shadow:0 2px 6px rgba(217,119,6,.35);}
 
 .orb[data-orbid="konjunktionen"] .orb-icon{
-    background:rgba(14,165,233,.14);
-    border-color:rgba(14,165,233,.28);
+    background:rgba(5,150,105,.14);
+    border-color:rgba(5,150,105,.28);
 }
-.orb[data-orbid="konjunktionen"] .orb-icon svg{stroke:#0ea5e9;}
-.orb[data-orbid="konjunktionen"] .orb-badge{background:#0ea5e9; box-shadow:0 2px 6px rgba(14,165,233,.35);}
+.orb[data-orbid="konjunktionen"] .orb-icon svg{stroke:#059669;}
+.orb[data-orbid="konjunktionen"] .orb-badge{background:#059669; box-shadow:0 2px 6px rgba(5,150,105,.35);}
 
 
 
 .orb[data-orbid="vhskapitel"] .orb-icon{
-    background:rgba(245,158,11,.14);
-    border-color:rgba(245,158,11,.28);
+    background:rgba(67,56,202,.14);
+    border-color:rgba(67,56,202,.28);
 }
-.orb[data-orbid="vhskapitel"] .orb-icon svg{stroke:#f59e0b;}
-.orb[data-orbid="vhskapitel"] .orb-badge{background:#f59e0b; box-shadow:0 2px 6px rgba(245,158,11,.35);}
+.orb[data-orbid="vhskapitel"] .orb-icon svg{stroke:#4338ca;}
+.orb[data-orbid="vhskapitel"] .orb-badge{background:#4338ca; box-shadow:0 2px 6px rgba(67,56,202,.35);}
 
 .orb[data-orbid="partikeln"] .orb-icon{
     background:rgba(20,184,166,.14);
@@ -4010,8 +4057,8 @@ body[data-theme="dark"] .dict-add.au-cours{background:rgba(232,162,58,.16); colo
 .dict-row-top{padding-inline-end:36px;}
 body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 
-.orb[data-orbid="monvocab"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.3);}
-.orb[data-orbid="monvocab"] .orb-icon svg{stroke:#E8A23A;}
+.orb[data-orbid="monvocab"] .orb-icon{background:rgba(79,70,229,.16); border-color:rgba(79,70,229,.3);}
+.orb[data-orbid="monvocab"] .orb-icon svg{stroke:#4f46e5;}
 
 /* LA MARQUE « ESSENTIEL » -- TOUJOURS AU MEME ENDROIT (v469).
    Elle vivait d'abord sous le pluriel pendant la phase d'apprentissage, puis
@@ -5393,6 +5440,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="mots">
+            <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_mots">Travailler les mots</span>
         </h2>
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
@@ -5450,6 +5498,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
+            <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_phrase">Travailler la phrase</span>
         </h2>
         <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
@@ -5497,6 +5546,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- Section « Pratiquer ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="pratique">
+            <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_pratique">Pratiquer</span>
         </h2>
         <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
@@ -5523,6 +5573,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- Section « Mon parcours ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="parcours">
+            <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_parcours">Mon parcours</span>
         </h2>
         <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
@@ -5724,7 +5775,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v611</span>
+    <span class="subtitle-version">v612</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24731,7 +24782,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 611;
+const APP_VERSION = 612;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
