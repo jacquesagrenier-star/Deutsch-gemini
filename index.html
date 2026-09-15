@@ -5793,7 +5793,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v613</span>
+    <span class="subtitle-version">v614</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8489,6 +8489,7 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
+        exo_bloc: "bloc {n} / {total}",
         sec_mots: "Travailler les mots",
         sec_phrase: "Travailler la phrase",
         sec_pratique: "Pratiquer",
@@ -9441,6 +9442,7 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
+        exo_bloc: "block {n} / {total}",
         sec_mots: "Work on words",
         sec_phrase: "Work on sentences",
         sec_pratique: "Practise",
@@ -10395,6 +10397,7 @@ const I18N = {
         dict_count_one: "1 kayıt",
         dict_credit: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_title: "Kaynaklar",
+        exo_bloc: "blok {n} / {total}",
         sec_mots: "Kelime çalışması",
         sec_phrase: "Cümle çalışması",
         sec_pratique: "Alıştırma",
@@ -11587,6 +11590,7 @@ const I18N = {
         dict_count_one: "1 запис",
         dict_credit: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_title: "Подяки",
+        exo_bloc: "блок {n} / {total}",
         sec_mots: "Робота зі словами",
         sec_phrase: "Робота з реченням",
         sec_pratique: "Практика",
@@ -13209,6 +13213,7 @@ const I18N = {
         dict_credit: "فرهنگ واژگان: WikDict، برگرفته از ویکی‌واژه — پروانهٔ CC BY-SA 4.0.",
         search_head_cours: "کارت‌های برنامه",
         credits_title: "سپاسگزاری",
+        exo_bloc: "بلوک {n} / {total}",
         sec_mots: "کار روی واژه‌ها",
         sec_phrase: "کار روی جمله",
         sec_pratique: "تمرین",
@@ -24800,7 +24805,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 613;
+const APP_VERSION = 614;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -29542,28 +29547,85 @@ function startExerciseSetMelange(nom, kickerKey, backFn, restartFn){
     return startExerciseSet(nom, kickerKey, backFn, restartFn, true);
 }
 
+// ============ LES EXERCICES SE FONT PAR BLOCS (v614) ============
+//
+// ⚠️ UNE SERIE, C'ETAIT LE JEU ENTIER, ET ELLE REPARTAIT TOUJOURS DE ZERO.
+// `currentExercise = 0` a chaque lancement, sans exception -- donc quelqu'un
+// qui faisait quatre questions et revenait le lendemain refaisait les quatre
+// memes. Signale par Jacques.
+//
+// Et le jeu entier, ce n'est pas dix questions : mediane 50, et « Perfekt »
+// en compte 145. Une serie de 145 questions d'affilee ne correspond a aucune
+// seance reelle -- le format lui-meme etait le defaut, pas seulement l'absence
+// de reprise.
+//
+// ⚠️ ON SE SOUVIENT DU BLOC, PAS DE LA QUESTION. Reprendre « a la question 53
+// sur 145 » ne donne aucun point d'arret : on s'arrete n'importe ou et le
+// score ne veut rien dire. Un bloc de dix se termine, se note, et « bloc 6
+// sur 15 » se comprend d'un coup d'oeil.
+//
+// ⚠️ LE MELANGE SE FAIT DANS LE BLOC, PAS SUR LE JEU. Melanger les 145 avant
+// de decouper rendrait le bloc different a chaque fois : « reprendre » ne
+// voudrait plus rien dire, puisqu'on n'aurait jamais deux fois le meme bloc.
+// L'ordre des blocs suit donc le fichier -- qui est ordonne par difficulte --
+// et le desordre reste a l'interieur.
+const TAILLE_BLOC_EXERCICES = 10;
+
+function blocCourant(nom){
+    const e = lireGrammaire()[nom] || {};
+    return Math.max(0, parseInt(e.bloc, 10) || 0);
+}
+
+function nombreDeBlocs(total){
+    return Math.max(1, Math.ceil(total / TAILLE_BLOC_EXERCICES));
+}
+
+let exerciseBlocNo = 0;      // 0 = pas de bloc (serie construite a la volee)
+let exerciseBlocTotal = 0;
+
 async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     exerciseJeuNom = (typeof list === "string") ? list : null;
+    exerciseBlocNo = 0;
+    exerciseBlocTotal = 0;
     if(typeof list === "string"){
-        list = await jeu(list);
+        const tout = await jeu(list);
         // Vide = le chargement a echoue, et jeu() l'a deja signale. On ne
         // bascule PAS sur l'ecran d'exercice : un ecran vide sans explication
         // est le pire des deux.
-        if(!list.length) return;
+        if(!tout.length) return;
+        exerciseBlocTotal = nombreDeBlocs(tout.length);
+        // Un bloc au-dela de la fin -- jeu raccourci depuis, ou tour termine --
+        // repart du premier plutot que de servir une serie vide.
+        let n = blocCourant(list);
+        if(n >= exerciseBlocTotal) n = 0;
+        exerciseBlocNo = n;
         // Toujours une copie : le tableau vient du cache, le melanger sur
         // place le desordonnerait pour tous les appels suivants.
+        list = tout.slice(n * TAILLE_BLOC_EXERCICES,
+                          (n + 1) * TAILLE_BLOC_EXERCICES);
         if(melanger) list = shuffleArray(list.slice());
     }
     activeExercises = list;
     exerciseKickerKey = kickerKey;
     exerciseBackHandler = backFn;
     exerciseRestartHandler = restartFn;
-    document.getElementById("exerciseKicker").textContent = t(kickerKey);
+    majKickerExercice();
     currentExercise = 0;
     scoreValue = 0;
     exerciseResults = [];
     showScreen("exercise");
     loadExercise();
+}
+
+// Le titre de l'ecran dit AUSSI ou l'on en est dans le jeu. Sans ca, « bloc
+// suivant » et « meme bloc » se ressemblent trait pour trait.
+function majKickerExercice(){
+    const el = document.getElementById("exerciseKicker");
+    if(!el || !exerciseKickerKey) return;
+    el.textContent = t(exerciseKickerKey)
+        + (exerciseBlocTotal > 1
+            ? " · " + tf("exo_bloc", { n: exerciseBlocNo + 1, total: exerciseBlocTotal })
+            : "");
 }
 
 function exerciseGoBack(){
@@ -30055,6 +30117,20 @@ function noterSerieGrammaire(pourcentage, justes, total){
     // (Serfaty 2024, deux seances sans erreur), et une moyenne de 90 % ne
     // permet pas de le reconstituer apres coup.
     if(justes === total) e.sansFaute = (e.sansFaute || 0) + 1;
+    // ⚠️ LE BLOC AVANCE MEME QUAND ON SE TROMPE (v614). Le bloqueur serait
+    // pire que le defaut qu'on repare : quelqu'un qui bute sur une question
+    // referait le meme bloc indefiniment et ne verrait jamais le reste du jeu.
+    // Les questions ratees reviennent par le rattrapage, pas en fermant la
+    // porte -- et le tour suivant les representera de toute facon.
+    if(exerciseBlocTotal > 0){
+        const suivant = exerciseBlocNo + 1;
+        if(suivant >= exerciseBlocTotal){
+            e.bloc = 0;
+            e.tours = (e.tours || 0) + 1;   // un jeu parcouru en entier
+        }else{
+            e.bloc = suivant;
+        }
+    }
     tout[exerciseJeuNom] = e;
     try{ localStorage.setItem(GRAMMAIRE_KEY, JSON.stringify(tout)); }catch(e2){}
     scheduleCloudSync();
