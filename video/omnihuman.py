@@ -316,6 +316,29 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
 
     soum = _json(FILE, cle_api, corps)
     print("    requete %s" % soum.get("request_id", "?"))
+
+    # ⚠️ LE RECU S'ECRIT AVANT D'ATTENDRE, PAS APRES (15 septembre 2026).
+    # Il s'ecrivait une fois le fichier telecharge -- donc une panne entre la
+    # soumission et le telechargement ne laissait AUCUNE TRACE d'une
+    # generation deja facturee. C'est arrive au plan 05 : fal a repondu
+    # COMPLETED en 11 s, puis un HTTP 504 a tue la recuperation. La prise
+    # etait payee et son identifiant n'existait plus que dans le journal
+    # d'une tache de fond.
+    #
+    # On pose donc le recu des que l'identifiant existe, et on le complete
+    # apres. Un recu partiel dit « cette requete a ete payee, va la
+    # chercher » ; pas de recu du tout ne dit rien.
+    trace = {"modele": MODELE, "request_id": soum.get("request_id"),
+             "status_url": soum.get("status_url"),
+             "response_url": soum.get("response_url"),
+             "quand": time.strftime("%Y-%m-%dT%H:%M:%S"),
+             "image": os.path.basename(img), "piste": os.path.basename(mp3),
+             "resolution": resolution, "turbo": bool(turbo),
+             "duree_piste": round(d, 3), "etat": "soumise",
+             "prompt_source": os.path.relpath(src, RACINE), "prompt": prompt}
+    io.open(recu, "w", encoding="utf-8").write(
+        json.dumps(trace, ensure_ascii=False, indent=1))
+
     res = attendre(soum["status_url"], soum["response_url"], cle_api)
 
     facturee = float(res.get("duration") or d)
@@ -324,15 +347,10 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     print("    -> %s  (%.1f Mo, %.2f s facturees, %.2f $)"
           % (os.path.basename(sortie), octets / 1e6, facturee, cout))
 
-    io.open(recu, "w", encoding="utf-8").write(json.dumps({
-        "modele": MODELE, "request_id": soum.get("request_id"),
-        "quand": time.strftime("%Y-%m-%dT%H:%M:%S"),
-        "image": os.path.basename(img), "piste": os.path.basename(mp3),
-        "resolution": resolution, "turbo": bool(turbo),
-        "duree_piste": round(d, 3), "duree_facturee": round(facturee, 3),
-        "cout_usd": round(cout, 4),
-        "prompt_source": os.path.relpath(src, RACINE), "prompt": prompt,
-    }, ensure_ascii=False, indent=1))
+    trace.update({"etat": "recue", "duree_facturee": round(facturee, 3),
+                  "cout_usd": round(cout, 4)})
+    io.open(recu, "w", encoding="utf-8").write(
+        json.dumps(trace, ensure_ascii=False, indent=1))
     return cout
 
 

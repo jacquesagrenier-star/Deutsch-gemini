@@ -119,13 +119,52 @@ DEPENSE A CE JOUR
   reste : 12 plans d'avatar ~8,4 $, plus les six clips de decor
 
 
-LA SUITE, DANS L'ORDRE
-----------------------
-  1. les six clips de decor, aux durees corrigees ci-dessus
-  2. python video/omnihuman.py --scene 02-beim-buergeramt --reste --simuler
-  3. generer les 13 plans parlants, importer par CORRELATION DU SON
-     (jamais par le nom du fichier -- voir video/PROCEDURE-episode.md)
-  4. monter, sonoriser, sous-titrer
+=======================================================================
+15 SEPTEMBRE, FIN DE JOURNEE -- OU REPRENDRE EXACTEMENT
+=======================================================================
+
+LES SIX DECORS SONT FAITS ET RETENUS. 03-final/ porte plan01, 02, 06, 12, 18,
+19, chacun avec sa ligne dans _retenues.txt. 8,71 $. Ils sont nes de
+video/mouvement.py, ecrit ce jour : les clips de decor ne passent plus par
+Artlist Directing a la main.
+
+LES PLANS PARLANTS : 3 SUR 13.
+    08   refait avec la diction arretee aujourd'hui     0,81 $
+    03   fait                                           0,65 $
+    04   fait                                           0,74 $
+    05   ⚠️ GENEREE ET FACTUREE, JAMAIS RECUPEREE       0,65 $
+    07 09 10 11 13 14 15 16 17   jamais lancees
+
+⚠️ LE LOT S'EST ARRETE SUR UNE PANNE DE fal, PAS SUR UNE ERREUR DE NOTRE CODE.
+    HTTP 504 « downstream_service_unavailable », y compris en redemandant une
+    requete DEJA terminee. Reessaye plus tard.
+
+⚠️ COMMENCER PAR RECUPERER LE PLAN 05 -- C'EST GRATUIT.
+    Son recu a ete reconstruit a la main : _essai-avatar/plan05-fal.json porte
+    son request_id et son response_url. Interroger cette URL avant de repayer
+    le plan. Si elle repond, la prise est la.
+
+    python video/omnihuman.py --scene 02-beim-buergeramt --reste --plafond 6.00
+    (les neuf qui restent, environ 6,20 $ -- le plafond de 2 $ existe pour
+    empecher un --reste distrait d'engager huit dollars en une touche)
+
+⚠️ ET NE PAS CANALISER UNE COMMANDE DE FOND DANS « | tail ». La tache de ce
+    matin a rapporte un SUCCES en echouant : c'est le code de tail qui remonte,
+    jamais celui de Python. Sans le journal, on aurait cru les douze faits.
+
+PUIS, SANS NOUVELLE DEPENSE
+  1. importer par CORRELATION DU SON, jamais par le nom du fichier
+     (video/PROCEDURE-episode.md)
+  2. python video/monter_avatar.py --scene 02-beim-buergeramt
+  3. l'ambiance : il faut des lits pour le Buergeramt. Ceux de l'episode 1
+     sont un hall d'aeroport, ils ne serviront pas. -24 dB sous le dialogue.
+  4. les sous-titres mot a mot
+
+A REGARDER EN PREMIER QUAND LES PRISES SERONT LA
+    Le fonctionnaire est sur SEPT plans (4, 7, 9, 11, 13, 15, 17) et il est
+    genere depuis DEUX images -- beamter-moyen et beamter-formular. Si son
+    visage derive entre les deux, ca se verra a chaque raccord. C'est
+    l'invariant de l'episode, comme Mark est celui de la serie.
 
 ⚠️ DROITS : on monte, on ne diffuse pas publiquement tant que le ticket
    BytePlus I-2026091223400001 n'a pas repondu sur la propriete de la sortie.
