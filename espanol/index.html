@@ -5273,6 +5273,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <span class="setup-choice-flag">🇮🇷</span>
                     <span>فارسی</span>
                 </button>
+                <button class="setup-choice" id="setupChoiceLangAr" onclick="selectUiLangChoice('ar')">
+                    <span class="setup-choice-flag">🇸🇦</span>
+                    <span>العربية</span>
+                </button>
             </div>
         </div>
         <div class="spacer"></div>
@@ -7270,7 +7274,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="relativ_gen_table_title">Tableau de déclinaison</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;">
+                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_4">
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
                     <td style="padding:8px 4px;">neutre</td>
@@ -7971,7 +7975,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <section id="result" class="screen">
     <div class="kicker" data-i18n="session_ended">Session terminée</div>
 
-    <h1><span class="gradient" id="resultTitle">Très bien !</span></h1>
+    <h1><span class="gradient" id="resultTitle" data-i18n="result_title">Très bien !</span></h1>
 
     <div class="card">
         <div class="score" id="score">0%</div>
@@ -8066,6 +8070,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <button class="setup-choice" onclick="selectUiLangChoice('fa')">
                     <span class="setup-choice-flag">🇮🇷</span>
                     <span>فارسی</span>
+                </button>
+                <button class="setup-choice" onclick="selectUiLangChoice('ar')">
+                    <span class="setup-choice-flag">🇸🇦</span>
+                    <span>العربية</span>
                 </button>
             </div>
         </div>
@@ -8703,6 +8711,8 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
+        result_title: "Très bien !",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fém.</td><td style=\"padding:8px 4px;\">neutre</td><td style=\"padding:8px 4px;\">pluriel</td>",
         exo_bloc: "bloc {n} / {total}",
         sec_mots: "Travailler les mots",
         sec_phrase: "Travailler la phrase",
@@ -9661,6 +9671,8 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
+        result_title: "Well done!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fem.</td><td style=\"padding:8px 4px;\">neuter</td><td style=\"padding:8px 4px;\">plural</td>",
         exo_bloc: "block {n} / {total}",
         sec_mots: "Work on words",
         sec_phrase: "Work on sentences",
@@ -10596,16 +10608,17 @@ function appliquerLangueDocument(lang){
 // Une ternaire ne se met pas a trois langues : d'ou ces deux fonctions, seuls
 // endroits qui connaissent les suffixes. Ajouter une langue, c'est desormais
 // l'ajouter a UI_LANGS et a REPLI_LANGUE -- plus une seule ternaire a reecrire.
-const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa" };
+const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa", ar: "_ar" };
 
 // Le drapeau affiche dans l'en-tete. Ce sont des emoji, donc rien a heberger.
-const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷" };
+const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦" };
 
 // Ordre de repli quand la traduction manque. Le turc arrive en dernier et son
 // corpus se remplira progressivement : sans repli, chaque mot pas encore
 // traduit s'afficherait vide.
 const REPLI_LANGUE = { fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"],
-                       uk: ["uk", "en", "fr"], fa: ["fa", "en", "fr"] };
+                       uk: ["uk", "en", "fr"], fa: ["fa", "en", "fr"],
+                       ar: ["ar", "en", "fr"] };
 
 function langueEtRepli(lang){
     return REPLI_LANGUE[lang || getUiLang()] || REPLI_LANGUE[DEFAULT_UI_LANG];
