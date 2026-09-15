@@ -4729,3 +4729,8 @@ cartes : adverbes 77 %, noms 9 %), et Leipzig est un corpus **écrit** —
 locutions en plusieurs mots (`Es tut mir leid`) y valent f = 0, donc dernières.
 
 *Rien n'est corrigé à cette date : la réponse est une analyse, pas un correctif.*
+
+**Traité le même jour, en v606.** Le palier du noyau officiel, le corpus parlé,
+le tourniquet au prorata et le garde-fou de thème. Les deux autres demandes
+(« écran élargi à ouverture », « verbes actif versus passif ») restent ouvertes :
+la première demande d'être précisée, la seconde est un ajout de contenu.
