@@ -4831,3 +4831,24 @@ que **rien ne remplissait la case et rien ne relisait les erreurs**. La case
 n’apparaît plus que s’il y a une faute, elle liste les énoncés ratés, et son
 bouton les rejoue. La reprise n’est pas notée, volontairement : refaire ses
 fautes est un entraînement, pas une nouvelle série.
+
+**Audit des libellés qui mentent (demande de Jacques). v620.**
+
+Onze libellés corrigés, deux clés mortes retirées. Le détail et la méthode
+sont dans le message de commit. Deux règles appliquées partout : **calculer**
+quand l’app connaît déjà le nombre, **retirer** quand le nombre n’apprend rien
+que l’écran ne montre. Jamais corriger le chiffre en place — il redeviendrait
+faux au prochain ajout.
+
+**« À la fin de la reprise des erreurs, je n’ai que RECOMMENCER ou ACCUEIL. »**
+Juste, et le libellé mentait encore : startExerciseSet() remet la position du
+bloc à zéro quand on lui passe une liste, donc le bouton retombait sur
+« RECOMMENCER » — alors qu’il appelle le relanceur du jeu parent, c’est-à-dire
+la **série suivante**. Le geste était juste, le mot faux. La position est
+désormais restaurée après la reprise.
+
+**« Il faut que je swipe vers le haut pour aller à l’exercice suivant. »**
+Répondre fait apparaître l’explication, qui pousse le bouton sous le pli — et
+**plus l’explication est utile, plus le bouton est loin**. L’app défile
+maintenant jusqu’à lui. Pas de barre collée en bas : elle mangerait de la
+hauteur sur tous les écrans, y compris pendant qu’on lit l’énoncé.
