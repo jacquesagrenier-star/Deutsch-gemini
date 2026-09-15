@@ -4957,3 +4957,43 @@ et les `section:` et exige l'égalité, sans regarder la forme de l'action.
 la nouvelle constante : il cherchait `VOCAB_DANS_TUILES`, ne trouvait plus rien
 à masquer et annonçait « 0 actions masquées » alors que six le sont. **Un
 contrôle qui a perdu son sujet ne se tait pas : il rassure.**
+
+---
+
+## 15 septembre 2026 — un code choisi pour Barbara, et le filet du fork
+
+**« J'aimerais juste que tu me donnes un code qui serait 9911jacques. »** —
+Ajouté et publié : **9 codes actifs**. `acceso.py` ne savait que tirer au sort ;
+il accepte désormais `--fijo`. Le geste vit dans le script plutôt qu'à la main
+dans `codigos.json`, qui n'est qu'une liste de hachages : rien, en le lisant, ne
+dirait d'où vient une empreinte ni avec quel sel elle a été calculée.
+
+⚠️ **Un code choisi est devinable là où un tirage de dix caractères ne l'est
+pas.** Pour deux personnes nommées c'est le bon échange — et cette porte ne
+protège de toute façon pas le contenu, elle décide qui utilise l'app.
+
+⚠️ **ET `fork.py` S'EST ARRÊTÉ, COMME PRÉVU.** Le correctif du panneau des deux
+passes remplace **le bloc entier** du panneau `wortstellung`, et son commentaire
+annonçait mot pour mot ce qui est arrivé : « c'est ce qui fait casser le fork --
+bruyamment, avant publication -- la prochaine fois que l'amont touchera à ce
+panneau ». La v625 a posé un champ `section:` sur les 94 options ; l'ancre ne
+correspondait plus ; **rien n'a été écrit**. Ce n'est pas une panne, c'est la
+seule fois où un correctif de fork s'est fait remarquer avant la publication au
+lieu d'après.
+
+**« Il faudrait quand même qu'elle puisse voir sa progression, autant pour le
+tableau que pour son utilisation. »** — La demande se coupe en deux, et une
+seule moitié existe :
+
+- ✅ **Elle voit la sienne.** Carte de progression, compteur du jour, séance,
+  badges, radar : tout est calculé sur son appareil et fonctionne.
+- ❌ **Elle ne va nulle part, et personne d'autre ne la voit.** Le tableau de
+  bord admin est **dans le fichier mais mort** : `isAdminUser()` lit
+  `window.firebaseAuth.currentUser`, et `fork.py` pose `window.firebaseAuth =
+  null`. `scheduleCloudSync()` sort à sa première ligne pour la même raison.
+
+C'est **voulu** — le produit espagnol est défini « payé une fois, sans compte,
+sans abonnement », et remettre Firebase ramènerait le coût récurrent exclu au
+départ. **À dire à Barbara tout de suite** : vider les données du site ou
+changer d'appareil efface sa progression.
+
