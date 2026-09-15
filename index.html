@@ -672,6 +672,110 @@ body[data-theme="dark"] .subtitle-version{
     margin-top:20px;
 }
 
+/* ============ LES QUATRE SECTIONS DE L'ACCUEIL (v607) ============
+   Dix-huit tuiles identiques ne donnent aucune prise a l'oeil : chercher
+   « Prepositions » revient a lire les dix-huit. Quatre sections repondent
+   chacune a une question -- quelle classe de mots, comment on assemble, quoi
+   pratiquer, ce qui est a moi.
+
+   ⚠️ ELLES NE SE REPLIENT PAS, ET C'EST LA DECISION PRINCIPALE. Un accordeon
+   raccourcirait la page en cachant quatorze modules sur dix-huit a
+   l'ouverture. Trois raisons de ne pas le faire, dans l'ordre de leur poids :
+
+   1. Chaque tuile porte son ANNEAU DE PROGRESSION (.ring-fill). C'est le seul
+      signal de progres par module dans toute l'app. Replier, c'est l'effacer.
+   2. La jauge du tableau est restee figee a 0 % pendant SIX VERSIONS sans que
+      personne la voie (14 septembre 2026). Une fonction invisible n'existe
+      pas -- on ne va pas rendre invisible volontairement ce qui reste.
+   3. Un etat d'accordeon memorise vit dans le localStorage du testeur. « Je
+      ne trouve plus les verbes » devient alors irreproductible ici.
+
+   Le cout evite est faible : six rangees, environ deux hauteurs d'ecran.
+   Derouler coute moins cher que toucher.
+
+   L'en-tete est COLLANT : il reste affiche pendant qu'on parcourt sa propre
+   section, donc on sait toujours dans laquelle on se trouve. */
+.orb-section{
+    grid-column:1 / -1;
+    position:sticky;
+    top:0;
+    z-index:3;
+    margin:10px 0 -2px;
+    padding:8px 2px 7px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:#6b7688;
+    background:linear-gradient(180deg,
+        rgba(244,247,251,.97) 68%, rgba(244,247,251,0) 100%);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+}
+
+/* La premiere section suit la carte de seance : pas de marge en trop. */
+.orb-section:first-of-type{margin-top:4px;}
+
+body[data-theme="dark"] .orb-section{
+    color:#94a3b8;
+    background:linear-gradient(180deg,
+        rgba(15,23,42,.97) 68%, rgba(15,23,42,0) 100%);
+}
+
+/* ⚠️ UNE SECTION DONT TOUTES LES TUILES SONT MASQUEES DISPARAIT AUSSI.
+   « Relecture » et « Chapitres VHS » naissent avec la classe `hidden` et ne
+   s'affichent que pour qui y a droit : sans cette regle, un en-tete pourrait
+   surplomber le vide. Pose par filtrerAccueil(). */
+.orb-section.section-vide{display:none;}
+
+/* ============ LA RECHERCHE DE L'ACCUEIL (v607) ============
+   A dix-huit modules, taper bat n'importe quel classement : « dativ » mene
+   aux prepositions ET aux cas, et personne n'a a deviner dans laquelle des
+   deux sections ils ont ete ranges. C'est le rattrapage de mon decoupage
+   quand il se trompe. */
+.orb-chercher{
+    grid-column:1 / -1;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:16px;
+    padding:9px 13px;
+    border-radius:14px;
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(30,41,59,.18);
+}
+.orb-chercher svg{width:16px; height:16px; flex:0 0 auto; stroke:#8a94a6;
+    fill:none; stroke-width:2; stroke-linecap:round;}
+.orb-chercher input{
+    flex:1 1 auto;
+    min-width:0;
+    border:0;
+    outline:0;
+    background:transparent;
+    /* 16px : en dessous, iOS zoome sur le champ a la mise au point. */
+    font-size:16px;
+    color:#1C2430;
+}
+.orb-chercher input::placeholder{color:#9aa3b2;}
+body[data-theme="dark"] .orb-chercher{
+    background:rgba(30,41,59,.55); border-color:rgba(148,163,184,.22);}
+body[data-theme="dark"] .orb-chercher input{color:#e2e8f0;}
+
+/* Une tuile que la recherche ecarte : elle sort de la grille, elle ne
+   s'estompe pas. Une tuile grisee reste un obstacle a lire. */
+.orb.orb-filtree{display:none !important;}
+
+.orb-rien{
+    grid-column:1 / -1;
+    display:none;
+    padding:14px 2px;
+    color:#6b7688;
+    font-size:13px;
+}
+.orb-rien.visible{display:block;}
+
 .orb{
     position:relative;
     aspect-ratio:1;
@@ -4516,7 +4620,16 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
    overflow:hidden sur la carte fait le travail une fois pour toutes -- le
    tableau EST decoupe par la forme reelle du conteneur, quelle qu'elle
    devienne. */
-.home-stats-card{overflow:hidden;}
+/* ⚠️ `clip` ET NON `hidden` DEPUIS LA V607, ET CE N'EST PAS COSMETIQUE.
+   `overflow:hidden` fait de cette carte un CONTENEUR DE DEFILEMENT -- invisible,
+   puisqu'elle ne defile jamais -- et un tel conteneur annule le
+   `position:sticky` de tout ce qu'il contient. Les en-tetes de section vivent
+   dedans : ils partaient donc vers le haut au lieu de rester colles, sans
+   qu'aucune erreur ne le signale.
+   `overflow:clip` decoupe exactement pareil sans creer ce conteneur. Les deux
+   lignes sont gardees dans cet ordre : un navigateur qui ignore `clip` retombe
+   sur `hidden`, et perd le collant, pas le decoupage. */
+.home-stats-card{overflow:hidden; overflow:clip;}
 /* La jauge : collee a la base du tableau, dans le cadre. */
 .mos-jauge{
     /* ⚠️ left/right EN PLUS DE inset-inline : la propriete logique suffit
@@ -5332,15 +5445,23 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
-        <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
-            <div>
-                <strong data-i18n="myvocab_title">Mon vocabulaire</strong>
-                <small id="myVocabCount" data-i18n="myvocab_empty">Ajoute des mots du dictionnaire</small>
-            </div>
+        <!-- ⚠️ SANS classe orb-de/orb-en : la recherche sert les deux
+             directions d'apprentissage, elle filtre les tuiles affichees. -->
+        <div class="orb-chercher">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input type="search" id="orbChercher" autocomplete="off"
+                   data-i18n-placeholder="accueil_chercher"
+                   placeholder="Chercher un module…"
+                   oninput="filtrerAccueil(this.value)">
         </div>
+        <p class="orb-rien" id="orbRien" data-i18n="accueil_rien">Aucun module ne porte ce mot.</p>
 
-        <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
+        <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
+             quatre sections restent DEPLIEES, et l'en-tete est collant. -->
+        <h2 class="orb-section orb-de" data-section="mots">
+            <span data-i18n="sec_mots">Les mots</span>
+        </h2>
+        <div class="orb orb-de" data-orbid="nomen" data-cles="plural genus artikel substantiv" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5348,11 +5469,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_nomen_title">Noms</strong>
-                <small data-i18n="orb_nomen_sub">Thèmes & Vocabulaire</small>
+                <small data-i18n="orb_nomen_sub">dictée · articles · genres</small>
             </div>
         </div>
-
-        <div class="orb orb-de" data-orbid="verben" onclick="openOrbPanel('verben')">
+        <div class="orb orb-de" data-orbid="verben" data-cles="konjugation präsens perfekt präteritum konjunktiv" onclick="openOrbPanel('verben')">
             <div id="badge-verben" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5360,11 +5480,10 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_verben_title">Verbes</strong>
-                <small data-i18n="orb_verben_sub">Flashcards & Grammaire</small>
+                <small data-i18n="orb_verben_sub">réviser · les temps</small>
             </div>
         </div>
-
-        <div class="orb orb-de" data-orbid="adjektive" onclick="openOrbPanel('adjektive')">
+        <div class="orb orb-de" data-orbid="adjektive" data-cles="komparativ superlativ endungen deklination" onclick="openOrbPanel('adjektive')">
             <div id="badge-adjektive" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-adjektive" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5372,20 +5491,40 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
             <div>
                 <strong data-i18n="orb_adjektive_title">Adjectifs</strong>
-                <small data-i18n="orb_adjektive_sub">Endungen</small>
+                <small data-i18n="orb_adjektive_sub">réviser · déclinaison</small>
             </div>
         </div>
-
-        <div class="orb orb-de" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
-            <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
+        <div class="orb orb-de" data-orbid="adverbien" data-cles="adverbien" onclick="openOrbPanel('adverbien')">
+            <div id="badge-adverbien" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
             <div>
-                <strong data-i18n="orb_zuinf_title">Zu + infinitif</strong>
-                <small data-i18n="orb_zuinf_sub">versuchen zu · ohne zu</small>
+                <strong data-i18n="orb_adverbien_title">Adverbes</strong>
+                <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
+            </div>
+        </div>
+        <div class="orb orb-de" data-orbid="pronomen" data-cles="pronomen possessiv relativ reflexiv" onclick="openOrbPanel('pronomen')">
+            <div id="badge-pronomen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M17 9h4"/><path d="M17 13h4"/></svg></div>
+            <div>
+                <strong data-i18n="orb_pronomen_title">Pronoms</strong>
+                <small data-i18n="orb_pronomen_sub">ich · mich · mir</small>
+            </div>
+        </div>
+        <div class="orb orb-de" data-orbid="zahlen" data-cles="zahlen ordinalzahlen" onclick="openOrbPanel('zahlen')">
+            <div id="badge-zahlen" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 6a3.5 3.5 0 11-2.5 6"/></svg></div>
+            <div>
+                <strong data-i18n="orb_zahlen_title">Nombres</strong>
+                <small data-i18n="orb_zahlen_sub">einundzwanzig · dritte</small>
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
+        <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
+             quatre sections restent DEPLIEES, et l'en-tete est collant. -->
+        <h2 class="orb-section orb-de" data-section="phrase">
+            <span data-i18n="sec_phrase">La phrase</span>
+        </h2>
+        <div class="orb orb-de" data-orbid="kasus" data-cles="dativ akkusativ nominativ genitiv deklination" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-kasus" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5396,8 +5535,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <small data-i18n="orb_kasus_sub">der · den · dem · ein · kein</small>
             </div>
         </div>
-
-        <div class="orb orb-de" data-orbid="praep" onclick="openOrbPanel('praep')">
+        <div class="orb orb-de" data-orbid="praep" data-cles="wechselpräpositionen wo wohin" onclick="openOrbPanel('praep')">
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-praep" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5408,8 +5546,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <small data-i18n="orb_praep_sub">Dativ · Akkusativ</small>
             </div>
         </div>
-
-        <div class="orb orb-de" data-orbid="wortstellung" onclick="openOrbPanel('wortstellung')">
+        <div class="orb orb-de" data-orbid="wortstellung" data-cles="satzbau hauptsatz nebensatz" onclick="openOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
@@ -5417,15 +5554,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <small data-i18n="orb_wortstellung_sub">Satzbau</small>
             </div>
         </div>
-
-
-
-        <!-- Le panneau des connecteurs existait depuis longtemps, avec son ecran
-             d'explication, ses 45 exercices et ses 18 cartes -- mais AUCUNE TUILE
-             ne le portait. On n'y arrivait que par Expressions > "Relations entre
-             les idees", qui ouvrait l'ecran d'explication : le panneau lui-meme
-             ne se voyait qu'en appuyant sur Retour. Signale par Jacques (v409). -->
-        <div class="orb orb-de" data-orbid="konjunktionen" onclick="openOrbPanel('konjunktionen')">
+        <div class="orb orb-de" data-orbid="konjunktionen" data-cles="konjunktionen weil denn obwohl" onclick="openOrbPanel('konjunktionen')">
             <div id="badge-konjunktionen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg></div>
             <div>
@@ -5433,17 +5562,28 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <small data-i18n="orb_konjunktionen_sub">weil · deshalb · obwohl</small>
             </div>
         </div>
-
-        <div class="orb orb-de" data-orbid="adverbien" onclick="openOrbPanel('adverbien')">
-            <div id="badge-adverbien" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="orb orb-de" data-orbid="zuinfinitiv" data-cles="infinitiv" onclick="openOrbPanel('zuinfinitiv')">
+            <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
             <div>
-                <strong data-i18n="orb_adverbien_title">Adverbes</strong>
-                <small data-i18n="orb_adverbien_sub">heute · hier · sehr</small>
+                <strong data-i18n="orb_zuinf_title">Zu + infinitif</strong>
+                <small data-i18n="orb_zuinf_sub">versuchen zu · ohne zu</small>
             </div>
         </div>
 
-        <div class="orb orb-de" data-orbid="schreiben" onclick="openOrbPanel('schreiben')">
+        <!-- Section « Pratiquer ». Voir le commentaire de .orb-section : les
+             quatre sections restent DEPLIEES, et l'en-tete est collant. -->
+        <h2 class="orb-section orb-de" data-section="pratique">
+            <span data-i18n="sec_pratique">Pratiquer</span>
+        </h2>
+        <div class="orb orb-de" data-orbid="ecouter" data-cles="hören audio" onclick="ouvrirEcouteMenu()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
+            <div>
+                <strong data-i18n="orb_ecouter_title">Écouter</strong>
+                <small data-i18n="orb_ecouter_sub">mains libres · A1 → C1</small>
+            </div>
+        </div>
+        <div class="orb orb-de" data-orbid="schreiben" data-cles="schreiben übersetzen" onclick="openOrbPanel('schreiben')">
             <div id="badge-schreiben" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></div>
             <div>
@@ -5451,44 +5591,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <small data-i18n="orb_schreiben_sub">traduire une phrase</small>
             </div>
         </div>
-
-        <!-- Seconde tuile d'ACTIVITE, a cote d'Ecrire : les deux seules de la
-             grille qui nomment un geste plutot qu'un contenu. L'ecoute ne vit
-             plus dans les panneaux Noms/Verbes/Adjectifs/Adverbes -- elle est
-             ici, rangee par NIVEAU, tous types de mots meles. Pas de panneau
-             intermediaire : il n'y a qu'une action, on va droit au menu. -->
-        <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
-            <div>
-                <strong data-i18n="orb_ecouter_title">Écouter</strong>
-                <small data-i18n="orb_ecouter_sub">mains libres · A1 → C1</small>
-            </div>
-        </div>
-
-        <div class="orb orb-de" data-orbid="pronomen" onclick="openOrbPanel('pronomen')">
-            <div id="badge-pronomen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M17 9h4"/><path d="M17 13h4"/></svg></div>
-            <div>
-                <strong data-i18n="orb_pronomen_title">Pronoms</strong>
-                <small data-i18n="orb_pronomen_sub">ich · mich · mir</small>
-            </div>
-        </div>
-
-        <div class="orb orb-de" data-orbid="zahlen" onclick="openOrbPanel('zahlen')">
-            <div id="badge-zahlen" class="orb-badge hidden"></div>
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 6a3.5 3.5 0 11-2.5 6"/></svg></div>
-            <div>
-                <strong data-i18n="orb_zahlen_title">Nombres</strong>
-                <small data-i18n="orb_zahlen_sub">einundzwanzig · dritte</small>
-            </div>
-        </div>
-
-        <!-- Une porte, dix situations. Elle remplace les tuiles Expressions,
-             Particules et Conjonctions : leurs panneaux existent toujours et
-             restent la cible de plusieurs boutons Retour, mais l'accueil ne
-             demande plus a l'usager de savoir si ce qu'il cherche est une
-             expression, une particule ou une conjonction. -->
-        <div class="orb orb-de" data-orbid="ausdruecke" onclick="openOrbPanel('ausdruecke')">
+        <div class="orb orb-de" data-orbid="ausdruecke" data-cles="redewendungen" onclick="openOrbPanel('ausdruecke')">
             <div id="badge-ausdruecke" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/><path d="M8 10h8"/><path d="M8 13h5"/></svg></div>
             <div>
@@ -5497,14 +5600,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
-
-        <!-- Preparation a l'examen. La tuile porte le NIVEAU (A2-B1), pas le nom
-             d'un examen : les trois listes officielles -- Goethe A2, Goethe B1,
-             DTZ -- decrivent le meme niveau du meme cadre europeen. Nommer un
-             seul examen attacherait le cours a une institution, et le DTZ en
-             particulier ne parle qu'aux immigrants. Les trois noms figurent dans
-             le sous-titre, la ou ils renseignent sans etiqueter. -->
-        <div class="orb orb-de" data-orbid="pruefung" onclick="openOrbPanel('pruefung')">
+        <!-- Section « Mon parcours ». Voir le commentaire de .orb-section : les
+             quatre sections restent DEPLIEES, et l'en-tete est collant. -->
+        <h2 class="orb-section orb-de" data-section="parcours">
+            <span data-i18n="sec_parcours">Mon parcours</span>
+        </h2>
+        <div class="orb" data-orbid="monvocab" data-cles="wörterbuch" onclick="openMyVocab()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
+            <div>
+                <strong data-i18n="myvocab_title">Mon vocabulaire</strong>
+                <small id="myVocabCount" data-i18n="myvocab_empty">Ajoute des mots du dictionnaire</small>
+            </div>
+        </div>
+        <div class="orb orb-de" data-orbid="pruefung" data-cles="goethe telc dtz zertifikat" onclick="openOrbPanel('pruefung')">
             <div id="badge-pruefung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg></div>
             <div>
@@ -5512,6 +5620,60 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <small data-i18n="orb_pruefung_sub">A2 · B1 · C1</small>
             </div>
         </div>
+        <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" data-cles="vhs kapitel" onclick="openVhsKapitelListe()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
+            <div>
+                <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
+                <small data-i18n="vhs_kapitel_tile_sub">Cours B1</small>
+            </div>
+        </div>
+        <div class="orb orb-de hidden" id="relectureTile" data-orbid="relecture" data-cles="korrektur" onclick="ouvrirRelectureSynonymes()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h9"/><path d="M17 17l2 2 4-4"/></svg></div>
+            <div>
+                <strong data-i18n="orb_relecture_title">Relecture</strong>
+                <small data-i18n="orb_relecture_sub">un coup de main ?</small>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Le panneau des connecteurs existait depuis longtemps, avec son ecran
+             d'explication, ses 45 exercices et ses 18 cartes -- mais AUCUNE TUILE
+             ne le portait. On n'y arrivait que par Expressions > "Relations entre
+             les idees", qui ouvrait l'ecran d'explication : le panneau lui-meme
+             ne se voyait qu'en appuyant sur Retour. Signale par Jacques (v409). -->
+
+
+
+        <!-- Seconde tuile d'ACTIVITE, a cote d'Ecrire : les deux seules de la
+             grille qui nomment un geste plutot qu'un contenu. L'ecoute ne vit
+             plus dans les panneaux Noms/Verbes/Adjectifs/Adverbes -- elle est
+             ici, rangee par NIVEAU, tous types de mots meles. Pas de panneau
+             intermediaire : il n'y a qu'une action, on va droit au menu. -->
+
+
+
+        <!-- Une porte, dix situations. Elle remplace les tuiles Expressions,
+             Particules et Conjonctions : leurs panneaux existent toujours et
+             restent la cible de plusieurs boutons Retour, mais l'accueil ne
+             demande plus a l'usager de savoir si ce qu'il cherche est une
+             expression, une particule ou une conjonction. -->
+
+
+        <!-- Preparation a l'examen. La tuile porte le NIVEAU (A2-B1), pas le nom
+             d'un examen : les trois listes officielles -- Goethe A2, Goethe B1,
+             DTZ -- decrivent le meme niveau du meme cadre europeen. Nommer un
+             seul examen attacherait le cours a une institution, et le DTZ en
+             particulier ne parle qu'aux immigrants. Les trois noms figurent dans
+             le sous-titre, la ou ils renseignent sans etiqueter. -->
 
         <!-- Tuile "Chapitres VHS" : contenu specifique au cours B1 de l'utilisatrice
              (Nomen+Verben+Adjektive par chapitre), pas pertinent pour le grand public.
@@ -5522,21 +5684,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <!-- TEMPORAIRE (v416) : relecture des synonymes. Barbara a propose la
              fonction, c'est a elle de dire quelles paires ne vont pas. A retirer
              une fois la relecture faite -- avec l'ecran et les fonctions. -->
-        <div class="orb orb-de hidden" id="relectureTile" data-orbid="relecture" onclick="ouvrirRelectureSynonymes()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h9"/><path d="M17 17l2 2 4-4"/></svg></div>
-            <div>
-                <strong data-i18n="orb_relecture_title">Relecture</strong>
-                <small data-i18n="orb_relecture_sub">un coup de main ?</small>
-            </div>
-        </div>
 
-        <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" onclick="openVhsKapitelListe()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
-            <div>
-                <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
-                <small data-i18n="vhs_kapitel_tile_sub">Cours B1</small>
-            </div>
-        </div>
 
         <!-- Tuiles anglais (visibles uniquement en direction "en", voir CSS .orb-en
              ci-dessus) : catégories propres à l'anglais, différentes des catégories
@@ -5669,7 +5817,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v606</span>
+    <span class="subtitle-version">v607</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8389,6 +8537,12 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
+        sec_mots: "Les mots",
+        sec_phrase: "La phrase",
+        sec_pratique: "Pratiquer",
+        sec_parcours: "Mon parcours",
+        accueil_chercher: "Chercher un module…",
+        accueil_rien: "Aucun module ne porte ce mot.",
         examen_essentiel: "Essentiel",
         examen_aide_titre: "Les mots que les programmes officiels retiennent en premier.",
         examen_aide_1: "Trois référentiels d'allemand publient la liste du vocabulaire à connaître à chaque niveau, et ce mot y figure. C'est utile que tu prépares un examen ou que tu partes en voyage : ce sont les mots sur lesquels ceux qui conçoivent les cours sont d'accord.",
@@ -8580,7 +8734,7 @@ const I18N = {
         qual_80: "Presque expert(e) !",
         qual_100: "Maîtrise complète !",
         orb_verben_title: "Verbes",
-        orb_verben_sub: "Flashcards & Grammaire",
+        orb_verben_sub: "réviser · les temps",
         orb_zuinf_title: "Zu + infinitif",
         orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_en_nomen_title: "Vocabulaire",
@@ -8601,11 +8755,11 @@ const I18N = {
         nomen_title_en: "Wortschatz & Thèmes",
         verbenniveau_title_en: "Verben par niveau",
         orb_nomen_title: "Noms",
-        orb_nomen_sub: "Thèmes & Vocabulaire",
+        orb_nomen_sub: "dictée · articles · genres",
         orb_kasus_title: "Cas & articles",
         orb_kasus_sub: "der · den · dem · ein · kein",
         orb_adjektive_title: "Adjectifs",
-        orb_adjektive_sub: "Endungen",
+        orb_adjektive_sub: "réviser · déclinaison",
         orb_praep_title: "Prépositions",
         orb_praep_sub: "Dativ · Akkusativ",
         orb_wortstellung_title: "Structure",
@@ -9354,6 +9508,12 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
+        sec_mots: "Words",
+        sec_phrase: "The sentence",
+        sec_pratique: "Practise",
+        sec_parcours: "My path",
+        accueil_chercher: "Find a module…",
+        accueil_rien: "No module matches that word.",
         examen_essentiel: "Essential",
         examen_aide_titre: "The words the official syllabuses list first.",
         examen_aide_1: "Three German reference frameworks publish the vocabulary to know at each level, and this word is on them. That matters whether you are sitting an exam or going travelling: these are the words the people who design courses agree on.",
@@ -9540,7 +9700,7 @@ const I18N = {
         qual_80: "Almost an expert!",
         qual_100: "Full mastery!",
         orb_verben_title: "Verbs",
-        orb_verben_sub: "Flashcards & Grammar",
+        orb_verben_sub: "revise · tenses",
         orb_zuinf_title: "Zu + infinitive",
         orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_en_nomen_title: "Vocabulary",
@@ -9561,11 +9721,11 @@ const I18N = {
         nomen_title_en: "Wortschatz & Themes",
         verbenniveau_title_en: "Verben by level",
         orb_nomen_title: "Nouns",
-        orb_nomen_sub: "Themes & Vocabulary",
+        orb_nomen_sub: "dictation · articles · genders",
         orb_kasus_title: "Cases & articles",
         orb_kasus_sub: "der · den · dem · ein · kein",
         orb_adjektive_title: "Adjectives",
-        orb_adjektive_sub: "Endungen",
+        orb_adjektive_sub: "revise · declension",
         orb_praep_title: "Prepositions",
         orb_praep_sub: "Dativ · Akkusativ",
         orb_wortstellung_title: "Structure",
@@ -10321,6 +10481,12 @@ const I18N = {
         dict_count_one: "1 kayıt",
         dict_credit: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_title: "Kaynaklar",
+        sec_mots: "Kelimeler",
+        sec_phrase: "Cümle",
+        sec_pratique: "Alıştırma",
+        sec_parcours: "Benim yolum",
+        accueil_chercher: "Modül ara…",
+        accueil_rien: "Bu kelimeyi içeren modül yok.",
         examen_essentiel: "Temel",
         examen_aide_titre: "Resmi programların ilk sıraya koyduğu kelimeler.",
         examen_aide_1: "Üç Almanca başvuru çerçevesi her seviyede bilinmesi gereken kelime listesini yayımlar ve bu kelime o listelerde var. Sınava hazırlansan da yolculuğa çıksan da işine yarar: dersleri tasarlayanların üzerinde anlaştığı kelimelerdir.",
@@ -10507,7 +10673,7 @@ const I18N = {
         qual_80: "Neredeyse uzmansın!",
         qual_100: "Tam hâkimiyet!",
         orb_verben_title: "Fiiller",
-        orb_verben_sub: "Kartlar ve Dilbilgisi",
+        orb_verben_sub: "tekrar · zamanlar",
         orb_zuinf_title: "Zu + mastar",
         orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_en_nomen_title: "Kelime",
@@ -10528,11 +10694,11 @@ const I18N = {
         nomen_title_en: "Wortschatz ve Konular",
         verbenniveau_title_en: "Seviyeye göre Verben",
         orb_nomen_title: "İsimler",
-        orb_nomen_sub: "Konular ve Kelime",
+        orb_nomen_sub: "dikte · artikeller · cinsiyet",
         orb_kasus_title: "Haller ve artikeller",
         orb_kasus_sub: "der · den · dem · ein · kein",
         orb_adjektive_title: "Sıfatlar",
-        orb_adjektive_sub: "Endungen",
+        orb_adjektive_sub: "tekrar · çekim",
         orb_praep_title: "Edatlar",
         orb_praep_sub: "Dativ · Akkusativ",
         orb_wortstellung_title: "Cümle yapısı",
@@ -11541,6 +11707,12 @@ const I18N = {
         dict_count_one: "1 запис",
         dict_credit: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_title: "Подяки",
+        sec_mots: "Слова",
+        sec_phrase: "Речення",
+        sec_pratique: "Практика",
+        sec_parcours: "Мій шлях",
+        accueil_chercher: "Знайти модуль…",
+        accueil_rien: "Жоден модуль не містить цього слова.",
         examen_essentiel: "Головне",
         examen_aide_titre: "Слова, які офіційні програми ставлять на перше місце.",
         examen_aide_1: "Три німецькі довідкові системи публікують список лексики для кожного рівня, і це слово там є. Це корисно й для іспиту, й для подорожі: це слова, щодо яких укладачі курсів згодні.",
@@ -12092,11 +12264,11 @@ const I18N = {
         search_src_position: "Дієслова положення",
         search_src_redewendungen: "Сталі вирази",
         orb_nomen_title: "Іменники",
-        orb_nomen_sub: "Теми та лексика",
+        orb_nomen_sub: "диктант · артиклі · рід",
         orb_verben_title: "Дієслова",
-        orb_verben_sub: "Картки та граматика",
+        orb_verben_sub: "повторення · часи",
         orb_adjektive_title: "Прикметники",
-        orb_adjektive_sub: "Endungen",
+        orb_adjektive_sub: "повторення · відмінювання",
         orb_zuinf_title: "Zu + інфінітив",
         orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_kasus_title: "Відмінки й артиклі",
@@ -13028,15 +13200,15 @@ const I18N = {
         adverbien_cat_all: "همهٔ خانواده‌ها",
         adverbien_level_title: "یک سطح انتخاب کن",
         orb_verben_title: "افعال",
-        orb_verben_sub: "کارت‌ها و دستور زبان",
+        orb_verben_sub: "مرور · زمان‌ها",
         orb_zuinf_title: "zu + مصدر",
         orb_zuinf_sub: "versuchen zu · ohne zu",
         orb_nomen_title: "اسم‌ها",
-        orb_nomen_sub: "موضوع‌ها و واژگان",
+        orb_nomen_sub: "دیکته · حرف تعریف · جنس",
         orb_kasus_title: "حالت‌ها و حرف تعریف",
         orb_kasus_sub: "der · den · dem · ein · kein",
         orb_adjektive_title: "صفت‌ها",
-        orb_adjektive_sub: "Endungen",
+        orb_adjektive_sub: "مرور · صرف",
         orb_praep_title: "حرف‌های اضافه",
         orb_praep_sub: "Dativ · Akkusativ",
         orb_wortstellung_title: "ساختار جمله",
@@ -13178,6 +13350,12 @@ const I18N = {
         dict_credit: "فرهنگ واژگان: WikDict، برگرفته از ویکی‌واژه — پروانهٔ CC BY-SA 4.0.",
         search_head_cours: "کارت‌های برنامه",
         credits_title: "سپاسگزاری",
+        sec_mots: "واژه‌ها",
+        sec_phrase: "جمله",
+        sec_pratique: "تمرین",
+        sec_parcours: "مسیر من",
+        accueil_chercher: "جست‌وجوی بخش…",
+        accueil_rien: "هیچ بخشی با این واژه نیست.",
         examen_essentiel: "کلیدی",
         examen_aide_titre: "واژه‌هایی که برنامه‌های رسمی پیش از همه برمی‌گزینند.",
         examen_aide_retour: "بازگشت به کارت",
@@ -16751,6 +16929,7 @@ let vhsKapitelAccess = false;
 function updateVhsKapitelTileVisibility(){
     const tile = document.getElementById("vhsKapitelTile");
     if(tile) tile.classList.toggle("hidden", !(isAdminUser() || vhsKapitelAccess));
+    resyncAccueil();
     majTuileRelecture();
 }
 
@@ -16781,11 +16960,22 @@ async function empreinteDe(texte){
 async function majTuileRelecture(){
     const tile = document.getElementById("relectureTile");
     if(!tile) return;
-    if(isAdminUser()){ tile.classList.remove("hidden"); return; }
-    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
-    if(!user || !user.email){ tile.classList.add("hidden"); return; }
-    if(empreinteCourante === null) empreinteCourante = await empreinteDe(user.email);
-    tile.classList.toggle("hidden", !RELECTEURS.includes(empreinteCourante));
+    // ⚠️ UN SEUL POINT DE SORTIE, ET C'EST VOULU DEPUIS LA V607. Les quatre
+    // « return » d'avant laissaient la section « Mon parcours » compter ses
+    // tuiles avant que celle-ci apparaisse : un en-tete pouvait rester marque
+    // vide alors qu'il ne l'etait plus. Voir filtrerAccueil().
+    let montrer = false;
+    if(isAdminUser()){
+        montrer = true;
+    }else{
+        const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+        if(user && user.email){
+            if(empreinteCourante === null) empreinteCourante = await empreinteDe(user.email);
+            montrer = RELECTEURS.includes(empreinteCourante);
+        }
+    }
+    tile.classList.toggle("hidden", !montrer);
+    resyncAccueil();
 }
 
 async function loadVhsKapitelAccessFlag(){
@@ -24969,7 +25159,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 606;
+const APP_VERSION = 607;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27154,6 +27344,66 @@ function imageMosaique(fichier){
     p.catch(() => { delete imagesMosaique[fichier]; });
     imagesMosaique[fichier] = p;
     return p;
+}
+
+// ============ LA RECHERCHE DE L'ACCUEIL (v607) ============
+// ⚠️ ELLE EXISTE PARCE QUE LE CLASSEMENT SE TROMPERA. « Cas & articles » et
+// « Prepositions » enseignent tous deux le datif : quelle que soit la section
+// choisie pour chacun, quelqu'un cherchera dans l'autre. Taper tranche sans
+// avoir a deviner -- c'est le rattrapage du decoupage, pas un ornement.
+//
+// ⚠️ ELLE MASQUE, ELLE N'ESTOMPE PAS. Une tuile grisee reste un obstacle a
+// lire et a eviter du regard ; une tuile retiree de la grille ne coute rien.
+//
+// ⚠️ ET LA SEANCE DU JOUR N'EST JAMAIS FILTREE. C'est la porte principale :
+// elle ne depend pas de ce qu'on tape, et la voir disparaitre en cherchant
+// « verbes » donnerait l'impression d'avoir casse l'app.
+function normaliserAccueil(txt){
+    return (txt || "").toLowerCase().normalize("NFD")
+        .replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim();
+}
+
+// Rejoue le filtre courant apres qu'une tuile a paru ou disparu. Sans elle,
+// une section pouvait rester marquee vide alors qu'une tuile venait d'arriver.
+function resyncAccueil(){
+    const champ = document.getElementById("orbChercher");
+    filtrerAccueil(champ ? champ.value : "");
+}
+
+function filtrerAccueil(requete){
+    const grille = document.querySelector("#home .grid");
+    if(!grille) return;
+    const q = normaliserAccueil(requete);
+    const en = document.body.getAttribute("data-learning-dir") === "en";
+    const compte = new Map();
+    let section = null, trouves = 0;
+
+    grille.querySelectorAll(".orb-section, .orb").forEach(el => {
+        if(el.classList.contains("orb-section")){
+            section = el;
+            compte.set(el, 0);
+            return;
+        }
+        if(el.classList.contains("orb-seance")) return;
+        // Une tuile deja masquee pour une autre raison -- mauvaise direction
+        // d'apprentissage, ou `hidden` pose par le code -- ne compte pas : la
+        // recherche ne doit jamais RE-afficher ce que l'app avait cache.
+        const sienne = el.classList.contains("orb-en") ? en
+                     : (el.classList.contains("orb-de") ? !en : true);
+        if(!sienne || el.classList.contains("hidden")) return;
+        const texte = normaliserAccueil(
+            (el.getAttribute("data-cles") || "") + " " + el.textContent);
+        const garde = !q || texte.indexOf(q) >= 0;
+        el.classList.toggle("orb-filtree", !garde);
+        if(garde){
+            trouves++;
+            if(section) compte.set(section, compte.get(section) + 1);
+        }
+    });
+
+    compte.forEach((n, sec) => sec.classList.toggle("section-vide", n === 0));
+    const rien = document.getElementById("orbRien");
+    if(rien) rien.classList.toggle("visible", !!q && trouves === 0);
 }
 
 function majMosaiqueAccueil(){
