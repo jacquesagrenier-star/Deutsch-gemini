@@ -58,7 +58,11 @@ def entree(e, topic):
         "question": e["q"],
         "answers": [e["c"]],
         "correct": e["c"],
-        "options": e["o"],
+        # ⚠️ `options: null` N'EST PAS UNE ERREUR : c'est une question a FRAPPE
+        # LIBRE. Des jeux entiers sont ainsi -- proposer deux boutons y
+        # donnerait la reponse. On garde la cle pour que toutes les entrees
+        # d'un jeu aient la meme forme.
+        "options": e.get("o"),
     }
     for langue, suf in SUFFIXE.items():
         # La question a trous, la reponse et les options sont de l'allemand :
@@ -66,7 +70,7 @@ def entree(e, topic):
         if langue != "fr":
             out["question" + suf] = e["q"]
             out["correct" + CASSE_CHAMEAU[langue]] = e["c"]
-            out["options" + CASSE_CHAMEAU[langue]] = e["o"]
+            out["options" + CASSE_CHAMEAU[langue]] = e.get("o")
         for court, long in CHAMPS.items():
             val = e.get(court + "_" + langue)
             if val:
@@ -96,7 +100,9 @@ def completer(lot, data):
             if langue != "fr":
                 cible.setdefault("question" + suf, cible["question"])
                 cible.setdefault("correct" + CASSE_CHAMEAU[langue], cible["correct"])
-                cible.setdefault("options" + CASSE_CHAMEAU[langue], cible["options"])
+                # .get() : un jeu a frappe libre n a pas de cle « options » du tout.
+                cible.setdefault("options" + CASSE_CHAMEAU[langue],
+                                 cible.get("options"))
             for court, long in CHAMPS.items():
                 val = e.get(court + "_" + langue)
                 if val:
@@ -141,7 +147,7 @@ def main():
         if e["q"].strip() in connues:
             doublons.append(e["q"])
             continue
-        if e["c"] not in e["o"]:
+        if e.get("o") is not None and e["c"] not in e["o"]:
             sys.exit("  -> la bonne reponse n'est pas dans les options : " + e["q"])
         connues.add(e["q"].strip())
         neuves.append(entree(e, lot["topic"]))
