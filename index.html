@@ -5793,7 +5793,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v618</span>
+    <span class="subtitle-version">v619</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7790,7 +7790,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  l'exercice etait affiche ici ET dans la pastille a droite
                  ("Exercice 1" a cote de "1 / 50") -- deux fois le meme
                  chiffre, dont un qui n'apprend rien. -->
-            <h2 id="exerciseKicker">Verbes · Präsens</h2>
+            <!-- pre-line : majKickerExercice() pose un vrai saut de ligne
+                 entre « ce qu'on travaille » et « ou l'on en est ». -->
+            <h2 id="exerciseKicker" style="white-space:pre-line">Verbes · Präsens</h2>
         </div>
         <div class="title-row-pills">
             <div class="pill combo-pill hidden" id="comboPillExercise">🔥 x<span id="comboCountExercise">0</span></div>
@@ -7841,12 +7843,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="score" id="score">0%</div>
         <p id="scoreText" style="color:#576177"></p>
 
-        <div id="statsList"></div>
-
-        <div class="revision">
+        <!-- « À revoir » ne s'affiche QUE s'il y a une faute, et son bouton
+             rejoue les questions ratees. La case etait auparavant toujours
+             la, toujours vide, et sans action. -->
+        <div class="revision" id="revisionBox" hidden>
             <strong data-i18n="to_review">À revoir</strong>
-            <p id="revisionText">—</p>
+            <p id="revisionText" style="white-space:pre-line">—</p>
             <small style="color:#0e9f5f" data-i18n="review_based_on_errors">Révision basée sur tes erreurs.</small>
+            <div class="spacer"></div>
+            <button class="secondary" id="revisionBtn" onclick="revoirMesErreurs()">REVOIR MES ERREURS</button>
         </div>
 
         <p id="resultSitue" style="color:#576177; font-size:13px; margin:10px 0 0" hidden></p>
@@ -8801,6 +8806,7 @@ const I18N = {
         to_review: "À revoir",
         review_based_on_errors: "Révision basée sur tes erreurs.",
         restart_button: "RECOMMENCER",
+        exo_revoir_erreurs: "REVOIR MES ERREURS ({n})",
         exo_reprendre_debut: "REPRENDRE DU DÉBUT →",
         exo_serie_faite: "Série {n} sur {total} terminée.",
         exo_serie_suivante: "SÉRIE SUIVANTE →",
@@ -9755,6 +9761,7 @@ const I18N = {
         to_review: "To review",
         review_based_on_errors: "Review based on your mistakes.",
         restart_button: "RESTART",
+        exo_revoir_erreurs: "REVIEW MY MISTAKES ({n})",
         exo_reprendre_debut: "START OVER →",
         exo_serie_faite: "Set {n} of {total} done.",
         exo_serie_suivante: "NEXT SET →",
@@ -10713,6 +10720,7 @@ const I18N = {
         to_review: "Tekrar edilecek",
         review_based_on_errors: "Hatalarına göre tekrar.",
         restart_button: "YENİDEN BAŞLA",
+        exo_revoir_erreurs: "HATALARIMI GÖZDEN GEÇİR ({n})",
         exo_reprendre_debut: "BAŞTAN BAŞLA →",
         exo_serie_faite: "{total} seriden {n}. seri tamamlandı.",
         exo_serie_suivante: "SONRAKİ SERİ →",
@@ -11455,6 +11463,7 @@ const I18N = {
         session_ended: "Сеанс завершено",
         to_review: "На повторення",
         restart_button: "ПОЧАТИ СПОЧАТКУ",
+        exo_revoir_erreurs: "ПЕРЕГЛЯНУТИ МОЇ ПОМИЛКИ ({n})",
         exo_reprendre_debut: "ПОЧАТИ СПОЧАТКУ →",
         exo_serie_faite: "Серія {n} з {total} завершена.",
         exo_serie_suivante: "НАСТУПНА СЕРІЯ →",
@@ -12935,6 +12944,7 @@ const I18N = {
         to_review: "برای مرور",
         review_based_on_errors: "مرور بر پایهٔ خطاهای تو.",
         restart_button: "از نو",
+        exo_revoir_erreurs: "مرور خطاهایم ({n})",
         exo_reprendre_debut: "از آغاز شروع کن →",
         exo_serie_faite: "دستهٔ {n} از {total} تمام شد.",
         exo_serie_suivante: "دستهٔ بعدی →",
@@ -13837,8 +13847,28 @@ function refreshDynamicUiLang(){
     try{
         const exerciseScreen = document.getElementById("exercise");
         if(exerciseScreen && exerciseScreen.classList.contains("active")){
-            if(exerciseKickerKey) document.getElementById("exerciseKicker").textContent = t(exerciseKickerKey);
+            // ⚠️ majKickerExercice() ET NON t() SEUL : le titre porte aussi le
+            // numero de bloc. Le reecrire avec la seule cle effacait « bloc
+            // 2 / 5 » a chaque changement de langue.
+            majKickerExercice();
             loadExercise();
+        }
+    }catch(e){}
+    // ⚠️ L'ECRAN DE RESULTAT AUSSI. Trois de ses textes sont CONSTRUITS en JS
+    // -- le bouton de reprise, la ligne « Serie 3 sur 15 » et le bouton
+    // « revoir mes erreurs » -- donc applyUiLang() ne peut pas les traduire
+    // seul : deux portent un nombre, le troisieme depend de l'endroit ou l'on
+    // est dans le jeu. Sans ce rappel, passer en anglais et revenir laissait
+    // la moitie de l'ecran dans l'autre langue.
+    try{
+        const ecranResultat = document.getElementById("result");
+        if(ecranResultat && ecranResultat.classList.contains("active")){
+            const situe = document.getElementById("resultSitue");
+            if(situe && !situe.hidden){
+                situe.textContent = tf("exo_serie_faite",
+                    { n: exerciseBlocNo + 1, total: exerciseBlocTotal });
+            }
+            majCartesRevision();
         }
     }catch(e){}
     try{
@@ -24868,7 +24898,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 618;
+const APP_VERSION = 619;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -29682,12 +29712,21 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
 
 // Le titre de l'ecran dit AUSSI ou l'on en est dans le jeu. Sans ca, « bloc
 // suivant » et « meme bloc » se ressemblent trait pour trait.
+// ⚠️ LE BLOC PASSE A LA LIGNE (v619). Signale par Jacques : « Verbes · Präsens
+// · bloc 2 / 5 » sur une seule ligne, « c'est bizarre au niveau visuel ». Ce
+// sont deux informations de nature differente -- CE QU'ON TRAVAILLE et OU L'ON
+// EN EST -- et la seconde n'a pas a allonger la premiere jusqu'au retour a la
+// ligne automatique, qui coupe ou il peut.
+//
+// On n'ecrit pas de HTML ici : textContent avec un vrai saut de ligne, et le
+// CSS du titre porte white-space:pre-line. Le titre reste du TEXTE, donc
+// phraseAllemandeDeLExercice() et le journal continuent de le lire tel quel.
 function majKickerExercice(){
     const el = document.getElementById("exerciseKicker");
     if(!el || !exerciseKickerKey) return;
     el.textContent = t(exerciseKickerKey)
         + (exerciseBlocTotal > 1
-            ? " · " + tf("exo_bloc", { n: exerciseBlocNo + 1, total: exerciseBlocTotal })
+            ? "\n" + tf("exo_bloc", { n: exerciseBlocNo + 1, total: exerciseBlocTotal })
             : "");
 }
 
@@ -30022,7 +30061,7 @@ function checkAnswer(){
     if(!isCorrect && ex.rattrapage && !usingChunks){
         const tokens = tuilesDepuisPhrase(ex.correct);
         if(tokens.length >= 2){
-            exerciseResults.push({ topic: ex.topic, correct: false });
+            exerciseResults.push({ topic: ex.topic, correct: false, ex });
             resetCombo();
             passerEnRattrapageTuiles(ex, tokens);
             return;
@@ -30030,7 +30069,7 @@ function checkAnswer(){
     }
     answered = true;
     const enRattrapage = !!ex.estRattrapage;
-    if(!enRattrapage) exerciseResults.push({ topic: ex.topic, correct: isCorrect });
+    if(!enRattrapage) exerciseResults.push({ topic: ex.topic, correct: isCorrect, ex });
     const feedback = document.getElementById("feedback");
     if(isCorrect){
         if(!enRattrapage) scoreValue++;
@@ -30215,11 +30254,68 @@ function noterSerieGrammaire(pourcentage, justes, total){
 //   - on vient de boucler     -> « REPRENDRE DU DEBUT », le jeu recommence
 //   - pas de blocs du tout    -> « RECOMMENCER » (dictee, quiz d'articles :
 //                                un nouveau tirage, pas une suite)
-function libelleReprise(){
-    if(exerciseBlocTotal <= 1) return t("restart_button");
+// ⚠️ ON RENVOIE LA CLE, PAS LE TEXTE (v619). La v618 posait le texte
+// directement : applyUiLang() parcourt tous les [data-i18n] et REECRIT leur
+// contenu depuis la cle du HTML -- « restart_button ». Changer de langue
+// remettait donc « RECOMMENCER » par-dessus « SERIE SUIVANTE ». Signale par
+// Jacques, qui est passe en anglais puis revenu au francais.
+//
+// La reparation n'est pas de contourner applyUiLang() mais de lui donner la
+// bonne cle : showResults() pose data-i18n sur le bouton. Le mecanisme
+// existant fait alors le travail dans les cinq langues, et a chaque bascule.
+function cleReprise(){
+    if(exerciseBlocTotal <= 1) return "restart_button";
     return exerciseBlocNo + 1 >= exerciseBlocTotal
-        ? t("exo_reprendre_debut")
-        : t("exo_serie_suivante");
+        ? "exo_reprendre_debut"
+        : "exo_serie_suivante";
+}
+
+// ============ REVOIR SES ERREURS (v619) ============
+//
+// ⚠️ LA CASE « A REVOIR » NE REVOYAIT RIEN. Elle affichait « — » et, dessous,
+// « Revision basee sur tes erreurs. » -- une promesse que rien ne tenait :
+// `revisionText` et `statsList` n'etaient remplis par AUCUNE ligne de code, et
+// `exerciseResults` etait rempli a chaque reponse puis jamais relu. Signale par
+// Jacques : « une grande case qui prend beaucoup trop d'espace, puis si je
+// clique dessus il n'y a rien qui se passe ».
+//
+// C'etait le libelle le plus menteur des trois : les deux autres se trompaient
+// de mot, celui-la annoncait une fonctionnalite absente.
+//
+// ⚠️ LA REPRISE N'EST PAS NOTEE, ET C'EST VOULU. On passe une LISTE et non un
+// nom de jeu : exerciseJeuNom reste null, donc noterSerieGrammaire() sort tout
+// de suite. Refaire ses fautes est un entrainement, pas une nouvelle serie --
+// le noter gonflerait le compte de series et ferait avancer le bloc une
+// seconde fois.
+function exercicesRates(){
+    return exerciseResults.filter(r => !r.correct && r.ex).map(r => r.ex);
+}
+
+function revoirMesErreurs(){
+    const rates = exercicesRates();
+    if(!rates.length) return;
+    startExerciseSet(shuffleArray(rates.slice()), exerciseKickerKey,
+                     exerciseBackHandler, exerciseRestartHandler);
+}
+
+function majCartesRevision(){
+    const boite = document.getElementById("revisionBox");
+    if(!boite) return;
+    const rates = exercicesRates();
+    // Zero faute : la case disparait au lieu d'occuper l'ecran pour dire « — ».
+    boite.hidden = !rates.length;
+    if(!rates.length) return;
+    const texte = document.getElementById("revisionText");
+    if(texte){
+        // L'enonce allemand, pas le sujet : c'est la phrase qu'on a ratee qu'on
+        // veut reconnaitre, et le sujet est deja dans le titre de l'ecran.
+        texte.textContent = rates.slice(0, 5)
+            .map(x => (x.question || "").replace(/\s+/g, " ").trim())
+            .filter(Boolean).join("\n")
+            + (rates.length > 5 ? "\n…" : "");
+    }
+    const bouton = document.getElementById("revisionBtn");
+    if(bouton) bouton.textContent = tf("exo_revoir_erreurs", { n: rates.length });
 }
 
 function showResults(){
@@ -30238,7 +30334,13 @@ function showResults(){
         }
     }
     const reprise = document.getElementById("resultRestartBtn");
-    if(reprise) reprise.textContent = libelleReprise();
+    if(reprise){
+        // La cle, pas le texte : applyUiLang() reprendra le relais a chaque
+        // changement de langue. Voir cleReprise().
+        reprise.setAttribute("data-i18n", cleReprise());
+        reprise.textContent = t(cleReprise());
+    }
+    majCartesRevision();
     noterSerieGrammaire(percentage, scoreValue, total);
     document.getElementById("score").textContent = percentage + "%";
     document.getElementById("scoreText").textContent = tf("score_result_text", { n: scoreValue });

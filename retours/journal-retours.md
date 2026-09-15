@@ -4808,3 +4808,26 @@ Il n’y en avait pas : le bouton appelle `goHome()` depuis toujours. « Tableau
 bord » est un reste d’une époque où l’accueil s’appelait ainsi, et il a survécu
 parce que **rien ne relie un libellé à sa destination**. Renommé « ACCUEIL »
 dans les cinq langues (v618).
+
+**Trois retours sur l’écran de résultat, tous justes. Réglés en v619.**
+
+**« Le bloc 2 de 5, le mettre sur la deuxième ligne. »** Fait. Ce sont deux
+informations de nature différente — ce qu’on travaille, où l’on en est — et la
+seconde n’a pas à allonger la première jusqu’au retour à la ligne automatique,
+qui coupe où il peut.
+
+**« Je passe en anglais, je reviens au français, et ça me remet RECOMMENCER. »**
+Mon défaut, introduit la veille. La v618 posait le TEXTE du bouton ; applyUiLang()
+parcourt tous les [data-i18n] et réécrit leur contenu depuis la clé du HTML —
+« restart_button » — donc chaque bascule écrasait « SÉRIE SUIVANTE ». La
+réparation n’est pas de contourner le mécanisme mais de lui donner la bonne clé :
+showResults() pose désormais data-i18n sur le bouton. **Même défaut trouvé sur
+l’écran d’exercice** : changer de langue y effaçait aussi « bloc 2 / 5 ».
+
+**« Une grande case à revoir qui prend trop d’espace, et si je clique il ne se
+passe rien. »** C’était le libellé le plus menteur des trois : les deux autres se
+trompaient de mot, celui-là annonçait « Révision basée sur tes erreurs » alors
+que **rien ne remplissait la case et rien ne relisait les erreurs**. La case
+n’apparaît plus que s’il y a une faute, elle liste les énoncés ratés, et son
+bouton les rejoue. La reprise n’est pas notée, volontairement : refaire ses
+fautes est un entraînement, pas une nouvelle série.
