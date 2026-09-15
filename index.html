@@ -5793,7 +5793,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v614</span>
+    <span class="subtitle-version">v615</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7003,7 +7003,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <em>Ich gehe heute ins Kino. → Heute gehe ich ins Kino.</em> (Aujourd'hui, je vais au cinéma.)
         </div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="startWortstellungV2Exercise()" data-i18n="wortstellung_v2_btn">M'ENTRAÎNER (10 exercices) →</button>
+        <button class="secondary" onclick="startWortstellungV2Exercise()" data-i18n="wortstellung_v2_btn">M'ENTRAÎNER →</button>
     </div>
 
     <div class="card">
@@ -7013,7 +7013,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <em>Ich bleibe zu Hause, weil ich krank bin.</em> (Je reste à la maison parce que je suis malade.)
         </div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="startWortstellungSubExercise()" data-i18n="wortstellung_sub_btn">M'ENTRAÎNER (50 exercices) →</button>
+        <button class="secondary" onclick="startWortstellungSubExercise()" data-i18n="wortstellung_sub_btn">M'ENTRAÎNER →</button>
     </div>
 
     <div class="card">
@@ -7023,7 +7023,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <em>Kommst du mit?</em> (Tu viens ?) — <em>Wann kommst du?</em> (Quand viens-tu ?)
         </div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="startWortstellungFrageExercise()" data-i18n="wortstellung_frage_btn">M'ENTRAÎNER (20 exercices) →</button>
+        <button class="secondary" onclick="startWortstellungFrageExercise()" data-i18n="wortstellung_frage_btn">M'ENTRAÎNER →</button>
     </div>
 
     <div class="card">
@@ -7033,7 +7033,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <em>Ich fahre morgen wegen der Ferien mit dem Zug nach Berlin.</em> (Je pars demain, à cause des vacances, en train, à Berlin.)
         </div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="startWortstellungTekamoloExercise()" data-i18n="wortstellung_tekamolo_btn">M'ENTRAÎNER (30 exercices) →</button>
+        <button class="secondary" onclick="startWortstellungTekamoloExercise()" data-i18n="wortstellung_tekamolo_btn">M'ENTRAÎNER →</button>
     </div>
 
     <div class="card">
@@ -7043,7 +7043,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <em>Ich verstehe das nicht.</em> (Je ne comprends pas ça.) — <em>Ich komme nicht heute, sondern morgen.</em> (Je ne viens pas aujourd'hui, mais demain.)
         </div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="startWortstellungNichtExercise()" data-i18n="wortstellung_nicht_btn">M'ENTRAÎNER (50 exercices) →</button>
+        <button class="secondary" onclick="startWortstellungNichtExercise()" data-i18n="wortstellung_nicht_btn">M'ENTRAÎNER →</button>
     </div>
 </section>
 
@@ -18528,11 +18528,17 @@ function orbPanelData(id){
             ]
         };
     }
+    // ⚠️ LE VOCABULAIRE REMONTE DANS LE PANNEAU (v615). Il existait deja --
+    // un bouton au bas de l'ecran d'explication -- mais la tuile n'offrait
+    // qu'UNE entree, ce que le verificateur signale depuis des semaines :
+    // « un menu d'un seul element est un bouton deguise ». Le contenu n'etait
+    // pas manquant, il etait a deux gestes de profondeur.
     if(id === "zahlen"){
         return {
             icon:"dossier", title:t("op_zahlen_title"), sub:t("op_zahlen_sub"),
             options:[
-                { icon:"dossier", title:t("op_zahlen_o1_t"), desc:t("op_zahlen_o1_d"), primary:true, action:"openZahlenInfo" }
+                { icon:"dossier", title:t("op_zahlen_o1_t"), desc:t("op_zahlen_o1_d"), primary:true, action:"openZahlenInfo" },
+                { icon:"reviser", title:t("kicker_zahlen_vocab"), desc:"", action:"startZahlenVokabular" }
             ]
         };
     }
@@ -18698,11 +18704,26 @@ function orbPanelData(id){
             ]
         };
     }
+    // ⚠️ LES CINQ SERIES REMONTENT DANS LE PANNEAU (v615). Elles existaient
+    // depuis longtemps -- 254 exercices -- mais on ne les atteignait qu'en
+    // ouvrant l'ecran d'explication PUIS en faisant defiler jusqu'au bouton
+    // de la bonne carte. La tuile, elle, n'offrait qu'une entree : le
+    // verificateur le disait, « un menu d'un seul element est un bouton
+    // deguise », et c'etait pire que ca -- le contenu etait invisible.
+    //
+    // L'ecran d'explication garde ses boutons : on peut vouloir lire la regle
+    // AVANT de s'entrainer. Le panneau ajoute le chemin direct pour qui la
+    // connait deja.
     if(id === "wortstellung"){
         return {
             icon:"dossier", title:t("orb_wortstellung_title"), sub:t("orb_wortstellung_sub"),
             options:[
-                { icon:"dossier", title:t("op_wortstellung_o1_t"), desc:"V2 · TeKaMoLo · nicht", primary:true, action:"openWortstellungInfo" }
+                { icon:"dossier", title:t("op_wortstellung_o1_t"), desc:t("op_wortstellung_o2_d"), primary:true, action:"openWortstellungInfo" },
+                { icon:"exercice", title:t("kicker_wortstellung_v2"), desc:"", action:"startWortstellungV2Exercise" },
+                { icon:"exercice", title:t("kicker_wortstellung_sub"), desc:"", action:"startWortstellungSubExercise" },
+                { icon:"exercice", title:t("kicker_wortstellung_frage"), desc:"", action:"startWortstellungFrageExercise" },
+                { icon:"exercice", title:t("kicker_wortstellung_tekamolo"), desc:"", action:"startWortstellungTekamoloExercise" },
+                { icon:"exercice", title:t("kicker_wortstellung_nicht"), desc:"", action:"startWortstellungNichtExercise" }
             ]
         };
     }
@@ -24805,7 +24826,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 614;
+const APP_VERSION = 615;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
