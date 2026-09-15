@@ -5822,7 +5822,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v622</span>
+    <span class="subtitle-version">v623</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7165,7 +7165,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="relativ_gen_table_title">Tableau de déclinaison</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;">
+                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_4">
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
                     <td style="padding:8px 4px;">neutre</td>
@@ -7866,7 +7866,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <section id="result" class="screen">
     <div class="kicker" data-i18n="session_ended">Session terminée</div>
 
-    <h1><span class="gradient" id="resultTitle">Très bien !</span></h1>
+    <h1><span class="gradient" id="resultTitle" data-i18n="result_title">Très bien !</span></h1>
 
     <div class="card">
         <div class="score" id="score">0%</div>
@@ -8532,6 +8532,8 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
+        result_title: "Très bien !",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fém.</td><td style=\"padding:8px 4px;\">neutre</td><td style=\"padding:8px 4px;\">pluriel</td>",
         exo_bloc: "bloc {n} / {total}",
         sec_mots: "Travailler les mots",
         sec_phrase: "Travailler la phrase",
@@ -9489,6 +9491,8 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
+        result_title: "Well done!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fem.</td><td style=\"padding:8px 4px;\">neuter</td><td style=\"padding:8px 4px;\">plural</td>",
         exo_bloc: "block {n} / {total}",
         sec_mots: "Work on words",
         sec_phrase: "Work on sentences",
@@ -10448,6 +10452,8 @@ const I18N = {
         dict_count_one: "1 kayıt",
         dict_credit: "Sözlük: WikDict, Wiktionary'den — CC BY-SA 4.0 lisansı.",
         credits_title: "Kaynaklar",
+        result_title: "Aferin!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">eril</td><td style=\"padding:8px 4px;\">dişil</td><td style=\"padding:8px 4px;\">nötr</td><td style=\"padding:8px 4px;\">çoğul</td>",
         exo_bloc: "blok {n} / {total}",
         sec_mots: "Kelime çalışması",
         sec_phrase: "Cümle çalışması",
@@ -11651,6 +11657,8 @@ const I18N = {
         dict_count_one: "1 запис",
         dict_credit: "Словник: WikDict, за Вікісловником — ліцензія CC BY-SA 4.0.",
         credits_title: "Подяки",
+        result_title: "Чудово!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">чол.</td><td style=\"padding:8px 4px;\">жін.</td><td style=\"padding:8px 4px;\">сер.</td><td style=\"padding:8px 4px;\">мн.</td>",
         exo_bloc: "блок {n} / {total}",
         sec_mots: "Робота зі словами",
         sec_phrase: "Робота з реченням",
@@ -13276,6 +13284,8 @@ const I18N = {
         dict_credit: "فرهنگ واژگان: WikDict، برگرفته از ویکی‌واژه — پروانهٔ CC BY-SA 4.0.",
         search_head_cours: "کارت‌های برنامه",
         credits_title: "سپاسگزاری",
+        result_title: "آفرین!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">مذکر</td><td style=\"padding:8px 4px;\">مؤنث</td><td style=\"padding:8px 4px;\">خنثی</td><td style=\"padding:8px 4px;\">جمع</td>",
         exo_bloc: "بلوک {n} / {total}",
         sec_mots: "کار روی واژه‌ها",
         sec_phrase: "کار روی جمله",
@@ -14354,6 +14364,8 @@ const I18N = {
         dict_count_one: "مدخل واحد",
         dict_credit: "القاموس: WikDict، عن ويكاموس — رخصة CC BY-SA 4.0.",
         credits_title: "شكر وتقدير",
+        result_title: "أحسنت!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">مذكر</td><td style=\"padding:8px 4px;\">مؤنث</td><td style=\"padding:8px 4px;\">محايد</td><td style=\"padding:8px 4px;\">جمع</td>",
         exo_bloc: "مجموعة {n} / {total}",
         sec_mots: "العمل على الكلمات",
         sec_phrase: "العمل على الجملة",
@@ -25951,7 +25963,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 622;
+const APP_VERSION = 623;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
