@@ -1119,7 +1119,14 @@ body[data-theme="dark"] .rel-non[aria-pressed="true"]{background:#3a1f18; border
 
 .orb strong{
     display:block;
-    font-size:13px;
+    /* ⚠️ 12 PX ET DEUX LIGNES TOUJOURS RESERVEES (v609). Depuis que les tuiles
+       n'ont plus de sous-titre, le titre est seul -- et il ne se ressemblait
+       plus d'une tuile a l'autre : « Noms » tenait sur une ligne, « Preparation
+       aux examens » sur deux, et les icones ne s'alignaient plus. La hauteur
+       est donc fixe : un titre d'une ligne occupe la meme boite qu'un titre de
+       deux, et toutes les tuiles ont la meme forme. */
+    font-size:12px;
+    min-height:2.3em;
     color:#1e2433;
 }
 
@@ -4974,9 +4981,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 /* Une tuile ne doit jamais depasser deux lignes par ligne de texte, sans quoi
    elle devient plus haute que ses voisines et casse la grille. */
 .orb strong{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.15;}
-/* "Mon vocabulaire" tient sur une ligne mais remplit la tuile d'un bord a
-   l'autre : on le force sur deux lignes pour lui rendre de l'air. */
-.orb[data-orbid="monvocab"] strong{max-width:6.5em; margin:0 auto;}
+
+/* ⚠️ ON COUPE PAR LA LARGEUR, PAS PAR UN RETOUR A LA LIGNE ECRIT (v609).
+   « Chapitres VHS » et « Cas & articles » tenaient sur une seule ligne et
+   filaient d'un bord a l'autre de la tuile. Une largeur maximale les plie en
+   deux -- et elle vaut pour les cinq langues, ce qu'un « \n » place dans le
+   texte francais ne ferait pas : il faudrait alors decider ou couper
+   « Haller ve artikeller » et « حالت‌ها و حرف تعریف » sans savoir lire le
+   resultat. La typographie s'adapte au texte, le texte ne se plie pas a la
+   typographie.
+   C'est le meme geste que celui qui servait a « Mon vocabulaire » -- devenu
+   « Mes ajouts », qui tient tout seul. */
+.orb[data-orbid="kasus"] strong,
+.orb[data-orbid="vhskapitel"] strong{max-width:5.6em; margin:0 auto;}
 .orb small{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.25;}
 </style>
 
@@ -5174,17 +5191,24 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          voir .search-launch input). « Dictionnaire » n'y tient pas -- et c'est
          le libelle qui raccourcit, jamais la police. L'icone porte donc le
          sens, et l'aria-label le dit en toutes lettres. -->
+    <!-- ⚠️ UN `label`, PAS UN `div` (v609). Le champ est large de quelques
+         pixels et ne porte aucun texte : toute la surface visible, c'est
+         l'icone -- et toucher une icone voisine d'un champ ne le met pas au
+         point. Jacques : « la touche dictionnaire ne fonctionne pas ». Un
+         label `for` transfere le geste au champ NATIVEMENT, donc dans le geste
+         de l'utilisateur : c'est la seule facon d'ouvrir le clavier iOS du
+         premier coup (voir la note de .search-launch input). -->
     <div class="home-greeting-row">
         <p id="homeGreeting" class="home-greeting"></p>
-    <div class="search-launch">
-        <svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5.2 8.6 4.6 6 4.6c-.9 0-1.7.1-2.4.2v12.6c.7-.1 1.5-.2 2.4-.2 2.6 0 4.5.6 6 1.9"/><path d="M12 6.5c1.5-1.3 3.4-1.9 6-1.9.9 0 1.7.1 2.4.2v12.6c-.7-.1-1.5-.2-2.4-.2-2.6 0-4.5.6-6 1.9"/><path d="M12 6.5v12.6"/></svg>
+    <label class="search-launch" for="homeSearchInput">
+        <svg viewBox="0 0 24 24"><path d="M10.5 7.4C9.2 6.2 7.5 5.6 5.2 5.6c-.9 0-1.7.1-2.4.2v9.8c.7-.1 1.5-.2 2.4-.2 2.3 0 4 .6 5.3 1.8"/><path d="M10.5 7.4c1.3-1.2 3-1.8 5.3-1.8.9 0 1.7.1 2.4.2v4.4"/><path d="M10.5 7.4v9.8"/><circle cx="16.6" cy="15.4" r="3.1"/><path d="M18.9 17.7 21.4 20.2"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
                autocorrect="off" spellcheck="false"
                placeholder=""
                data-i18n-aria-label="search_launch" aria-label="Dictionnaire — chercher un mot"
                onfocus="ouvrirRechercheDepuisAccueil()"
                oninput="ouvrirRechercheDepuisAccueil(this.value)">
-    </div>
+    </label>
     </div>
 
     <h1>
@@ -5603,7 +5627,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div class="orb" data-orbid="monvocab" data-cles="wörterbuch" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
-                <strong data-i18n="myvocab_title">Mon vocabulaire</strong>
+                <strong data-i18n="myvocab_title">Mes ajouts</strong>
                 <small id="myVocabCount" data-i18n="myvocab_empty">Ajoute des mots du dictionnaire</small>
             </div>
         </div>
@@ -5809,7 +5833,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v608</span>
+    <span class="subtitle-version">v609</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8453,7 +8477,7 @@ const I18N = {
         en_module_expressions_cat_desc: "Ce que les anglophones disent vraiment, classé par intention : réagir, nuancer, relancer la conversation.",
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
-        myvocab_title: "Mon vocabulaire",
+        myvocab_title: "Mes ajouts",
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
@@ -9424,7 +9448,7 @@ const I18N = {
         en_module_expressions_cat_desc: "What English speakers actually say, sorted by intent: reacting, hedging, moving the conversation on.",
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
-        myvocab_title: "My vocabulary",
+        myvocab_title: "My additions",
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
@@ -10397,7 +10421,7 @@ const I18N = {
         en_module_expressions_cat_desc: "İngilizce konuşanların gerçekte söyledikleri, amaca göre sıralanmış: tepki verme, çekince koyma, sohbeti ilerletme.",
         label_english_pitfall: "Tuzak",
         label_english_forms: "Biçimler",
-        myvocab_title: "Kelimelerim",
+        myvocab_title: "Eklediklerim",
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
@@ -11635,7 +11659,7 @@ const I18N = {
         flip_direction_de: "🔁 Напрям: DE → UA",
         onboarding_home_button: "Як почати? (45 с)",
         onboarding_close: "ЗРОЗУМІЛО",
-        myvocab_title: "Мої слова",
+        myvocab_title: "Мої додані",
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
@@ -13268,7 +13292,7 @@ const I18N = {
         en_module_expressions_cat_desc: "آنچه انگلیسی‌زبان‌ها واقعاً می‌گویند، بر پایهٔ قصد گوینده: واکنش نشان دادن، ملایم کردن، پیوند دادن.",
         label_english_pitfall: "دام",
         label_english_forms: "صورت‌ها",
-        myvocab_title: "واژگان من",
+        myvocab_title: "افزوده‌های من",
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
@@ -25151,7 +25175,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 608;
+const APP_VERSION = 609;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
