@@ -4707,3 +4707,25 @@ La bande ne se remplit ni plus vite ni plus lentement : on n'échange que la
 queue, et on la pioche **par la fin** plutôt que par le début. Réserver toute
 la tranche visible pour la fin l'aurait laissée vide des semaines — on aurait
 remplacé un défaut par son symétrique.
+
+---
+
+## 15 septembre 2026 — trois demandes reçues, aucune encore traitée (Jacques)
+
+Relevées par `node tests/retours.js` (v605, écran d'accueil) :
+
+**« Écran élargi à ouverture »** — à instruire : quel écran, et « élargi » au
+sens de la largeur du contenu ou du mode plein écran.
+
+**« Ajouter verbes actif versus passif »** — demande de contenu : le passif
+(werden + participe) n'existe nulle part dans les exercices de grammaire.
+
+**« Les mots essentiels d'abord dans la séance du jour »** (demandé de vive
+voix, même jour) — mesuré avant de répondre. L'ordre par fréquence existe
+depuis la v525 ; les deux défauts trouvés sont ailleurs : le tourniquet de la
+v562 vide les petites catégories six fois plus vite que les noms (après 240
+cartes : adverbes 77 %, noms 9 %), et Leipzig est un corpus **écrit** —
+`Regierung` et `Präsident` passent devant `Wasser` et `Hand`, et les
+locutions en plusieurs mots (`Es tut mir leid`) y valent f = 0, donc dernières.
+
+*Rien n'est corrigé à cette date : la réponse est une analyse, pas un correctif.*

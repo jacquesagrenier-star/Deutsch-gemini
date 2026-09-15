@@ -40,6 +40,15 @@ import langue as L                                          # noqa: E402
 
 LISTES = ["dtz", "goethe_b1", "goethe_a2"]
 
+# ⚠️ LE A1 EST EXTRAIT MAIS N'ENTRE PAS DANS LISTES, ET C'EST VOULU.
+#
+# LISTES est l'instrument du TAUX DE COUVERTURE, et ce taux est une
+# affirmation publique : la tuile « Preparation A2-B1 » annonce couvrir ces
+# listes-la. Ajouter le A1 a l'union deplacerait le chiffre sans que rien
+# dans le cours ait change. Le A1 sert a autre chose : definir le NOYAU du
+# niveau pour tests/frequence.py, qui le lit dans examens/goethe_a1.json.
+LISTE_A1 = "goethe_a1"
+
 ARTICLES = ("der ", "die ", "das ")
 
 # LES COLONNES OU VIVENT LES MOTS-VEDETTES, en points PDF, par fichier.
@@ -145,8 +154,113 @@ def nettoyer(entree):
 # centaines de mots -- ne bouge pas dans cette fourchette.
 
 
+# ⚠️ LE A1 A UNE AUTRE GEOMETRIE, ET LA MECANIQUE DES COLONNES N'Y MARCHE PAS.
+#
+# Les trois autres PDF posent le mot-vedette dans une colonne et sa phrase
+# d'exemple dans une autre : il suffit de garder la premiere. Le A1 met les
+# deux DANS LE MEME BLOC, a x = 143. Il faut donc couper a l'interieur d'une
+# ligne, et non entre deux colonnes.
+#
+# Le signal, et il est solide : une phrase allemande commence par une
+# MAJUSCULE. Une ligne qui commence par une minuscule, par un article ou par
+# « (sich) » porte donc un mot-vedette ; une ligne qui commence par une
+# majuscule sans article est la suite d'exemples de l'entree precedente.
+#
+# Les cinq premieres pages sont de la prose (couverture, sommaire, Vorwort,
+# Themen) et sortiraient « zusammengestellt » comme un mot du niveau.
+#
+# Ce que ca donne : 822 mots-vedettes pour ~650 annonces dans le Vorwort. Le
+# depassement vient surtout des tableaux d Uhrzeit (« dreizehn Uhr siebzehn »
+# rend trois jetons). Il est SANS CONSEQUENCE ici, pour la raison dite plus
+# bas : cette liste sert a reconnaitre nos mots, pas a certifier un total. Le
+# chiffre sert a ORDONNER, pas a compter.
+VEDETTE_A1 = [
+    re.compile(r"^(?:der|die|das)\s+([A-ZÄÖÜ][A-Za-zÄÖÜäöüß\-]+)"),
+    re.compile(r"^\(sich\)\s+([a-zäöüß][A-Za-zÄÖÜäöüß\-]+)"),
+    re.compile(r"^([a-zäöüß][A-Za-zÄÖÜäöüß\-]*)(?:\s|,|$)"),
+]
+BRUIT_A1 = re.compile(r"^(?:VS_\d+|Seite\s*\d+|[A-ZÄÖÜ]|wortliste|"
+                      r"Alphabetische|INVeNTAre|WORTLISTE)$", re.I)
+
+
+# ⚠️ LES PAGES 6 A 8 NE SE LISENT PAS COMME LES AUTRES, ET L'OUBLIER A DONNE
+# UN RESULTAT ABSURDE : « vier » entrait dans le noyau, « zwei » et « drei »
+# non -- donc la seance servait QUATRE avant DEUX.
+#
+# Ces trois pages sont la Wortgruppenliste : des tableaux « 1 = eins », ou le
+# mot ecrit vit a droite (x = 178 ou 378), hors de la colonne des mots-vedettes.
+# Seuls quelques nombres y tombaient par hasard.
+#
+# On y prend donc TOUT ce qui ressemble a un mot allemand, sans regarder la
+# colonne. C'est sans risque, et pour une raison qui vaut d'etre dite : du
+# bruit en TROP dans cette liste ne coute rien. Elle ne sert qu'a repondre
+# « ce mot du cours est-il dans le noyau ? » -- un intrus comme
+# « wortgruppenliste » ne correspond a aucune de nos entrees et ne sera jamais
+# consulte. Le seul defaut couteux serait un mot du cours MANQUANT, et c'est
+# exactement ce qu'on repare ici.
+MOT_ALLEMAND = re.compile(r"^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß\-]+$")
+PAGES_GROUPES = range(5, 8)
+
+
+def extraire_a1(pdf):
+    import pypdf
+    lecteur = pypdf.PdfReader(pdf)
+    vus, mots = set(), []
+
+    def garder(tete):
+        tete = (tete or "").strip("-")
+        if len(tete) >= 2 and tete not in vus:
+            vus.add(tete)
+            mots.append(tete)
+
+    for num, page in enumerate(lecteur.pages):
+        if num < 5:
+            continue                      # couverture, sommaire, Vorwort, Themen
+        blocs = []
+
+        def visiteur(txt, cm, tm, police, taille, _b=blocs):
+            t = txt.strip()
+            if t:
+                _b.append((round(tm[4]), round(tm[5]), t))
+
+        page.extract_text(visitor_text=visiteur)
+        if num in PAGES_GROUPES:
+            for _, _, t in blocs:
+                for jeton in re.split(r"[\s\t/]+", t):
+                    if MOT_ALLEMAND.match(jeton) and jeton.lower() not in (
+                            "der", "die", "das"):
+                        garder(jeton)
+            continue
+        gardes = [(x, y, t) for x, y, t in blocs if 130 <= x <= 160]
+        gardes.sort(key=lambda m: (-m[1], m[0]))
+        for _, _, ligne in gardes:
+            x = ligne.strip()
+            if not x or BRUIT_A1.match(x):
+                continue
+            for rx in VEDETTE_A1:
+                m = rx.match(x)
+                if not m:
+                    continue
+                garder(m.group(1))
+                break
+    return sorted(mots)
+
+
 def extraire():
     out = {}
+    pdf_a1 = os.path.join(EXAMENS, LISTE_A1 + ".pdf")
+    if os.path.isfile(pdf_a1):
+        mots = extraire_a1(pdf_a1)
+        chemin = os.path.join(EXAMENS, LISTE_A1 + ".json")
+        with io.open(chemin, "w", encoding="utf-8", newline="\n") as f:
+            json.dump({"source": LISTE_A1, "mots": mots}, f,
+                      ensure_ascii=False, indent=1)
+            f.write("\n")
+        out[LISTE_A1] = mots
+        print("  %-12s %5d mots-vedettes  (noyau, hors taux de couverture)"
+              % (LISTE_A1, len(mots)))
+    else:
+        print("  ! absent : %s" % pdf_a1)
     for nom in LISTES:
         pdf = os.path.join(EXAMENS, nom + ".pdf")
         if not os.path.isfile(pdf):
