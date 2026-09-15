@@ -1263,6 +1263,41 @@ body[data-theme="dark"] .home-greeting{
 .orb-opt.primary .orb-opt-title{color:#1e2433; font-weight:800;}
 .orb-opt-arrow{color:#98a1b3; font-size:15px;}
 
+/* ============ LES SECTIONS D'UN PANNEAU (v625) ============
+   Le meme en-tete qu'a l'accueil, a deux differences pres : il ne COLLE pas
+   (un panneau tient sur une hauteur d'ecran ou deux, il n'y a rien a suivre
+   du regard) et il ne s'etale pas sur une grille -- un panneau est une
+   colonne. Le trait vertical et les quatre teintes viennent de .orb-section,
+   plus haut : ils ne sont pas redeclares, pour qu'un changement de famille
+   n'ait a se faire qu'a un seul endroit. */
+.orb-section.pan{
+    position:static;
+    background:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    grid-column:auto;
+    margin:16px 0 8px;
+    padding:0;
+    font-size:11px;
+    letter-spacing:.10em;
+}
+.orb-section.pan:first-child{margin-top:2px;}
+
+/* Le compte de la section, pousse au bord de fin. `margin-inline-start` et
+   non `margin-left` : en arabe et en persan le panneau se lit de droite a
+   gauche, et le nombre doit suivre. */
+.sec-n{
+    margin-inline-start:auto;
+    font-size:10.5px;
+    font-weight:800;
+    letter-spacing:0;
+    color:#8a93a5;
+    background:rgba(120,130,150,.13);
+    padding:2px 7px;
+    border-radius:7px;
+}
+body[data-theme="dark"] .sec-n{color:#9aa4b8; background:rgba(148,163,184,.16);}
+
 .orb-opt-count{
     font-size:11px;
     font-weight:700;
@@ -8420,7 +8455,8 @@ const CODIGOS_VALIDOS = [
     "e42e7ce60b96ee4a61fa4077c012836997efe6cd0e7291a0da8b4f72e6f7bd01",
     "be4d4223b544c9d4a51599cd9b2c955c4566b075fd63e398f212605f9e67d02b",
     "aa4f06a28bcd0d5243371fcf58e73923ae35c35990e71296c1c3db79fb2aed78",
-    "28c7b9148aaac560cc32d928d280f6e6286cea0696cf23f623930d81905ac3ab"
+    "28c7b9148aaac560cc32d928d280f6e6286cea0696cf23f623930d81905ac3ab",
+    "940be416f71c0addf1dc16bf6de73ef58c78899f000714efafc20a76cff72a06"
 ];
 
 const CLAVE_ACCESO = "wortandoEs_acceso";
@@ -8711,6 +8747,10 @@ const I18N = {
         dict_count_one: "1 entrée",
         dict_credit: "Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.",
         credits_title: "Crédits",
+        sec_comprendre: "Comprendre",
+        sec_vocabulaire: "Vocabulaire",
+        sec_entrainer: "S'entraîner",
+        sec_ailleurs: "Voir aussi",
         result_title: "Très bien !",
         table_header_gender_4: "<td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fém.</td><td style=\"padding:8px 4px;\">neutre</td><td style=\"padding:8px 4px;\">pluriel</td>",
         exo_bloc: "bloc {n} / {total}",
@@ -9671,6 +9711,10 @@ const I18N = {
         dict_count_one: "1 entry",
         dict_credit: "Dictionary: WikDict, from Wiktionary — CC BY-SA 4.0 licence.",
         credits_title: "Credits",
+        sec_comprendre: "Understand",
+        sec_vocabulaire: "Vocabulary",
+        sec_entrainer: "Practise",
+        sec_ailleurs: "See also",
         result_title: "Well done!",
         table_header_gender_4: "<td style=\"padding:8px 4px;\">masc.</td><td style=\"padding:8px 4px;\">fem.</td><td style=\"padding:8px 4px;\">neuter</td><td style=\"padding:8px 4px;\">plural</td>",
         exo_bloc: "block {n} / {total}",
@@ -15680,15 +15724,15 @@ function orbPanelData(id){
         return {
             icon:"reviser", title:t("op_verben_title"), sub:t("op_verben_sub"),
             options:[
-                { icon:"reviser", title:t("op_verben_o1_t"), desc:texteDus(getVerbeDueItemsAll(), (verbeTheme.words || []).length), primary:true, action:"startVerbeDueReview" },
-                { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau" },
-                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeVerbes" },
-                { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix" },
-                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo" },
+                { icon:"reviser", title:t("op_verben_o1_t"), desc:texteDus(getVerbeDueItemsAll(), (verbeTheme.words || []).length), primary:true, action:"startVerbeDueReview", section:"pratique" },
+                { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau", section:"mots" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeVerbes", section:"pratique" },
+                { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix", section:"pratique" },
+                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo", section:"pratique" },
                 // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
                 // la frontiere est nette : kennen une personne ou un lieu,
                 // wissen un fait. Aucune carte ne peut l'enseigner seule.
-                { icon:"exercice", title:t("op_verben_o5_t"), desc:t("op_verben_o5_d"), action:"startWissenKennenUebung" }
+                { icon:"exercice", title:t("op_verben_o5_t"), desc:t("op_verben_o5_d"), action:"startWissenKennenUebung", section:"pratique" }
             ]
         };
     }
@@ -15696,8 +15740,8 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_zuinf_title"), sub:t("op_zuinf_sub"),
             options:[
-                { icon:"dossier", title:t("op_zuinf_o1_t"), desc:"versuchen, vergessen, anfangen…", primary:true, action:"openZuInfinitivInfo" },
-                { icon:"exercice", title:t("op_zuinf_o2_t"), desc:t("op_zuinf_o2_d"), action:"startZuInfinitivExercise" }
+                { icon:"dossier", title:t("op_zuinf_o1_t"), desc:"versuchen, vergessen, anfangen…", primary:true, action:"openZuInfinitivInfo", section:"comprendre" },
+                { icon:"exercice", title:t("op_zuinf_o2_t"), desc:t("op_zuinf_o2_d"), action:"startZuInfinitivExercise", section:"pratique" }
             ]
         };
     }
@@ -15705,26 +15749,26 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_nomen_title"), sub:t("op_nomen_sub"),
             options:[
-                { icon:"reviser", title:t("op_nomen_o1_t"), desc:texteDus(getDueItems(), getAllNomenItems().length), primary:true, action:"startDueReview" },
-                { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openNomenNiveau" },
-                { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen" },
-                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll" },
+                { icon:"reviser", title:t("op_nomen_o1_t"), desc:texteDus(getDueItems(), getAllNomenItems().length), primary:true, action:"startDueReview", section:"pratique" },
+                { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openNomenNiveau", section:"mots" },
+                { icon:"dossier", title:t("op_by_theme"), desc:t("op_nomen_o3_d"), action:"openNomen", section:"mots" },
+                { icon:"ale", title:t("op_words_random"), desc:t("op_nomen_o4_d"), action:"startRandomMixAll", section:"pratique" },
                 // La dictee n'existait qu'a la fin d'un paquet de noms -- donc
                 // jamais en « Mots au hasard », ou le paquet compte jusqu'a
                 // 1 840 cartes et ne finit pas. Une fonction complete derriere
                 // une porte que personne n'emprunte. Signale par Jacques.
-                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeNoms" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeNoms", section:"pratique" },
                 // LA PREMIERE ACTIVITE PROPRE DE CETTE TUILE. Elle n'avait que
                 // du vocabulaire, d'ou son effondrement a la v536 : rien a
                 // garder quand on retire la revision generique.
                 { icon:"exercice", title:t("op_nomen_o6_t"), desc:t("op_nomen_o6_d"),
-                  count:String(QUIZ_ARTICLE_TAILLE), action:"startQuizArticle" },
+                  count:String(QUIZ_ARTICLE_TAILLE), action:"startQuizArticle", section:"pratique" },
                 // Deviner le genre d'un mot jamais vu -- l'autre moitie du
                 // probleme, que « Quel article ? » ne touche pas.
                 { icon:"dossier", title:t("op_nomen_o7_t"), desc:t("op_nomen_o7_d"),
-                  action:"ouvrirReglesGenre" },
+                  action:"ouvrirReglesGenre", section:"comprendre" },
                 { icon:"exercice", title:t("op_nomen_o8_t"), desc:t("op_nomen_o8_d"),
-                  count:String(REGLE_QUIZ_TAILLE), action:"startQuizTerminaisons" }
+                  count:String(REGLE_QUIZ_TAILLE), action:"startQuizTerminaisons", section:"pratique" }
             ]
         };
     }
@@ -15732,11 +15776,11 @@ function orbPanelData(id){
         return {
             icon:"carte", title:t("op_adjektive_title"), sub:t("op_adjektive_sub"),
             options:[
-                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:texteDus(getAdjektiveDueItemsAll(), (adjektiveTheme.words || []).length), primary:true, action:"startAdjektiveDueReview" },
-                { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openAdjektive" },
-                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdjektifs" },
-                { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix" },
-                { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination" }
+                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:texteDus(getAdjektiveDueItemsAll(), (adjektiveTheme.words || []).length), primary:true, action:"startAdjektiveDueReview", section:"pratique" },
+                { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openAdjektive", section:"mots" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdjektifs", section:"pratique" },
+                { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix", section:"pratique" },
+                { icon:"exercice", title:t("op_adjektive_o4_t"), desc:t("op_adjektive_o4_d"), action:"openAdjektiveDeklination", section:"pratique" }
             ]
         };
     }
@@ -15744,14 +15788,14 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_kasus_title"), sub:t("op_kasus_sub"),
             options:[
-                { icon:"dossier", title:t("op_kasus_o1_t"), desc:t("op_kasus_o1_d"), primary:true, action:"openKasusInfo" },
-                { icon:"exercice", title:t("op_kasus_o2_t"), desc:t("op_kasus_o2_d"), action:"startKasusReconnaissance" },
-                { icon:"exercice", title:t("op_kasus_art_nom_t"), desc:t("op_kasus_art_nom_d"), count:"30", action:"startKasusArticleNominativ" },
-                { icon:"exercice", title:t("op_kasus_art_akk_t"), desc:t("op_kasus_art_akk_d"), count:"30", action:"startKasusArticleAkkusativ" },
-                { icon:"exercice", title:t("op_kasus_art_dat_t"), desc:t("op_kasus_art_dat_d"), count:"30", action:"startKasusArticleDativ" },
-                { icon:"exercice", title:t("op_kasus_art_gen_t"), desc:t("op_kasus_art_gen_d"), count:"30", action:"startKasusArticleGenitiv" },
-                { icon:"ale", title:t("op_kasus_art_mix_t"), desc:t("op_kasus_art_mix_d"), count:"50", action:"startKasusArticleMix" },
-                { icon:"carte", title:t("op_kasus_o4_t"), desc:"helfen, danken, brauchen…", action:"startKasusVerben" }
+                { icon:"dossier", title:t("op_kasus_o1_t"), desc:t("op_kasus_o1_d"), primary:true, action:"openKasusInfo", section:"comprendre" },
+                { icon:"exercice", title:t("op_kasus_o2_t"), desc:t("op_kasus_o2_d"), action:"startKasusReconnaissance", section:"pratique" },
+                { icon:"exercice", title:t("op_kasus_art_nom_t"), desc:t("op_kasus_art_nom_d"), count:"30", action:"startKasusArticleNominativ", section:"pratique" },
+                { icon:"exercice", title:t("op_kasus_art_akk_t"), desc:t("op_kasus_art_akk_d"), count:"30", action:"startKasusArticleAkkusativ", section:"pratique" },
+                { icon:"exercice", title:t("op_kasus_art_dat_t"), desc:t("op_kasus_art_dat_d"), count:"30", action:"startKasusArticleDativ", section:"pratique" },
+                { icon:"exercice", title:t("op_kasus_art_gen_t"), desc:t("op_kasus_art_gen_d"), count:"30", action:"startKasusArticleGenitiv", section:"pratique" },
+                { icon:"ale", title:t("op_kasus_art_mix_t"), desc:t("op_kasus_art_mix_d"), count:"50", action:"startKasusArticleMix", section:"pratique" },
+                { icon:"carte", title:t("op_kasus_o4_t"), desc:"helfen, danken, brauchen…", action:"startKasusVerben", section:"mots" }
             ]
         };
     }
@@ -15766,14 +15810,14 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_adverbien_title"), sub:t("op_adverbien_sub"),
             options:[
-                { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo" },
+                { icon:"dossier", title:t("op_adverbien_o1_t"), desc:t("op_adverbien_o1_d"), primary:true, action:"openAdverbienInfo", section:"comprendre" },
                 // ⚠️ COMPTES CALCULES, PLUS ECRITS (v620). Ils annoncaient
                 // « 16 questions » pour un jeu qui en compte 50 depuis le
                 // plancher, et « 340 mots » pour 470 adverbes. Un nombre fige
                 // ne se corrige pas, il se remplace par un calcul.
-                { icon:"exercice", title:t("op_adverbien_o2_t"), desc:tf("op_adverbien_o2_d", { f: famillesAdverbes() }), action:"startAdverbienNuance" },
-                { icon:"carte", title:t("op_adverbien_o3_t"), desc:tf("op_adverbien_o3_d", { n:(adverbienTheme.words || []).length, f: famillesAdverbes() }), action:"openAdverbienVokabular" },
-                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes" }
+                { icon:"exercice", title:t("op_adverbien_o2_t"), desc:tf("op_adverbien_o2_d", { f: famillesAdverbes() }), action:"startAdverbienNuance", section:"pratique" },
+                { icon:"carte", title:t("op_adverbien_o3_t"), desc:tf("op_adverbien_o3_d", { n:(adverbienTheme.words || []).length, f: famillesAdverbes() }), action:"openAdverbienVokabular", section:"mots" },
+                { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes", section:"pratique" }
             ]
         };
     }
@@ -15782,12 +15826,12 @@ function orbPanelData(id){
         return {
             icon:"exercice", title:t("op_schreiben_title"), sub:t("op_schreiben_sub"),
             options: [{ icon:"carte", title:t("op_tuiles_t"), desc:t("op_tuiles_d"),
-                        primary:true, action:"ouvrirTuilesMenu" },
+                        primary:true, action:"ouvrirTuilesMenu", section:"ailleurs" },
                       { icon:"exercice", title:t("op_schreiben_all_t"), desc:t("op_schreiben_all_d"),
-                        action:"startSchreibenALL" }]
+                        action:"startSchreibenALL", section:"pratique" }]
                 .concat(niveaux.map(n => ({
                     icon:"exercice", title:n, desc:tf("op_schreiben_level_d", { n: n }),
-                    action:"startSchreiben" + n
+                    action:"startSchreiben" + n, section:"pratique"
                 })))
         };
     }
@@ -15795,24 +15839,24 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_pronomen_title"), sub:t("op_pronomen_sub"),
             options:[
-                { icon:"dossier", title:t("op_pronomen_o1_t"), desc:t("op_pronomen_o1_d"), primary:true, action:"openPersonalpronomenInfo" },
-                { icon:"dossier", title:t("op_pronomen_o2_t"), desc:t("op_pronomen_o2_d"), action:"openDemonstrativInfo" },
-                { icon:"dossier", title:t("op_pronomen_o3_t"), desc:t("op_pronomen_o3_d"), action:"openPossessivInfo" },
-                { icon:"dossier", title:t("op_pronomen_o4_t"), desc:t("op_pronomen_o4_d"), action:"openRelativInfo" },
+                { icon:"dossier", title:t("op_pronomen_o1_t"), desc:t("op_pronomen_o1_d"), primary:true, action:"openPersonalpronomenInfo", section:"comprendre" },
+                { icon:"dossier", title:t("op_pronomen_o2_t"), desc:t("op_pronomen_o2_d"), action:"openDemonstrativInfo", section:"comprendre" },
+                { icon:"dossier", title:t("op_pronomen_o3_t"), desc:t("op_pronomen_o3_d"), action:"openPossessivInfo", section:"comprendre" },
+                { icon:"dossier", title:t("op_pronomen_o4_t"), desc:t("op_pronomen_o4_d"), action:"openRelativInfo", section:"comprendre" },
                 // Le GENITIF des relatives -- « dessen », « deren » -- avec sa
                 // lecon et ses 59 exercices. Il ne figurait que dans un panneau
                 // « relativ » que RIEN n'ouvrait : les relatives se prennent
                 // ici, et cette moitie-la n'existait pour personne.
-                { icon:"dossier", title:t("op_relativ_o2_t"), desc:t("op_relativ_o2_d"), action:"openRelativGenitivInfo" },
+                { icon:"dossier", title:t("op_relativ_o2_t"), desc:t("op_relativ_o2_d"), action:"openRelativGenitivInfo", section:"comprendre" },
                 // Les deux premieres cartes de cette tuile. Elle n'avait que
                 // des lecons, et les determinants n'avaient aucune porte.
-                { icon:"carte", title:t("op_pronomen_o5_t"), desc:"man · es · sich · wer · selbst…", action:"startPronomenVokabular" },
-                { icon:"carte", title:t("op_pronomen_o6_t"), desc:"der · ein · kein · jeder · dieser…", action:"startArtikelwoerterVokabular" },
+                { icon:"carte", title:t("op_pronomen_o5_t"), desc:"man · es · sich · wer · selbst…", action:"startPronomenVokabular", section:"mots" },
+                { icon:"carte", title:t("op_pronomen_o6_t"), desc:"der · ein · kein · jeder · dieser…", action:"startArtikelwoerterVokabular", section:"mots" },
                 // Le cours teste deja der, ein et kein, un cas a la fois. Ce
                 // qui manquait, c'est la regle qui les relie : tout
                 // determinant allemand suit l'un de deux modeles, et il n'y
                 // en a que deux.
-                { icon:"exercice", title:t("op_pronomen_o7_t"), desc:t("op_pronomen_o7_d"), action:"startDerEinUebung" }
+                { icon:"exercice", title:t("op_pronomen_o7_t"), desc:t("op_pronomen_o7_d"), action:"startDerEinUebung", section:"pratique" }
             ]
         };
     }
@@ -15825,8 +15869,8 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_zahlen_title"), sub:t("op_zahlen_sub"),
             options:[
-                { icon:"dossier", title:t("op_zahlen_o1_t"), desc:t("op_zahlen_o1_d"), primary:true, action:"openZahlenInfo" },
-                { icon:"reviser", title:t("kicker_zahlen_vocab"), desc:"", action:"startZahlenVokabular" }
+                { icon:"dossier", title:t("op_zahlen_o1_t"), desc:t("op_zahlen_o1_d"), primary:true, action:"openZahlenInfo", section:"comprendre" },
+                { icon:"reviser", title:t("kicker_zahlen_vocab"), desc:"", action:"startZahlenVokabular", section:"mots" }
             ]
         };
     }
@@ -15834,9 +15878,9 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_redewendungen_title"), sub:t("op_redewendungen_sub"),
             options:[
-                { icon:"dossier", title:t("op_redewendungen_o1_t"), desc:t("op_redewendungen_o1_d"), primary:true, action:"openRedewendungenInfo" },
+                { icon:"dossier", title:t("op_redewendungen_o1_t"), desc:t("op_redewendungen_o1_d"), primary:true, action:"openRedewendungenInfo", section:"comprendre" },
                 // Annoncait « 151 expressions » pour 569. Calcule desormais.
-                { icon:"carte", title:t("op_redewendungen_o2_t"), desc:tf("op_redewendungen_o2_d", { n:(redewendungenTheme.words || []).length, f: famillesExpressions() }), action:"openRedewendungenVokabular" }
+                { icon:"carte", title:t("op_redewendungen_o2_t"), desc:tf("op_redewendungen_o2_d", { n:(redewendungenTheme.words || []).length, f: famillesExpressions() }), action:"openRedewendungenVokabular", section:"mots" }
             ]
         };
     }
@@ -15862,52 +15906,52 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_konjunktionen_title"), sub:t("op_konjunktionen_sub"),
             options:[
-                { icon:"dossier", title:t("op_konjunktionen_o1_t"), desc:t("op_konjunktionen_o1_d"), primary:true, action:"openKonjunktionenInfo" },
-                { icon:"exercice", title:t("op_konjunktionen_o2_t"), desc:t("op_konjunktionen_o2_d"), action:"startKonjunktionenNuance" },
+                { icon:"dossier", title:t("op_konjunktionen_o1_t"), desc:t("op_konjunktionen_o1_d"), primary:true, action:"openKonjunktionenInfo", section:"comprendre" },
+                { icon:"exercice", title:t("op_konjunktionen_o2_t"), desc:t("op_konjunktionen_o2_d"), action:"startKonjunktionenNuance", section:"pratique" },
                 // Choisir PAR LE SENS, dans chacune des deux constructions. Les series
                 // voisines demandent ou va le verbe ; celles-ci demandent ce que les deux
                 // moities se disent -- une cause, ou un obstacle franchi.
-                { icon:"exercice", title:t("op_konjunktionen_o7_t"), desc:t("op_konjunktionen_o7_d"), action:"startWeilObwohlUebung" },
-                { icon:"exercice", title:t("op_konjunktionen_o8_t"), desc:t("op_konjunktionen_o8_d"), action:"startDeshalbTrotzdemUebung" },
+                { icon:"exercice", title:t("op_konjunktionen_o7_t"), desc:t("op_konjunktionen_o7_d"), action:"startWeilObwohlUebung", section:"pratique" },
+                { icon:"exercice", title:t("op_konjunktionen_o8_t"), desc:t("op_konjunktionen_o8_d"), action:"startDeshalbTrotzdemUebung", section:"pratique" },
                 // La famille « un mot francais, deux mots allemands ». Elle est groupee
                 // ici parce que la difficulte y est la meme a chaque fois : ce n'est pas
                 // l'allemand qui complique, c'est la langue de depart qui confond.
-                { icon:"exercice", title:t("op_konjunktionen_o9_t"), desc:t("op_konjunktionen_o9_d"), action:"startWennObUebung" },
-                { icon:"exercice", title:t("op_konjunktionen_o10_t"), desc:t("op_konjunktionen_o10_d"), action:"startWennWannUebung" },
-                { icon:"exercice", title:t("op_konjunktionen_o11_t"), desc:t("op_konjunktionen_o11_d"), action:"startAberSondernUebung" },
+                { icon:"exercice", title:t("op_konjunktionen_o9_t"), desc:t("op_konjunktionen_o9_d"), action:"startWennObUebung", section:"pratique" },
+                { icon:"exercice", title:t("op_konjunktionen_o10_t"), desc:t("op_konjunktionen_o10_d"), action:"startWennWannUebung", section:"pratique" },
+                { icon:"exercice", title:t("op_konjunktionen_o11_t"), desc:t("op_konjunktionen_o11_d"), action:"startAberSondernUebung", section:"pratique" },
                 // Pas un duo de mots : une regle de position. Elle vient apres eux parce
                 // qu'elle les concerne tous -- weil, obwohl, seitdem, bis, wenn.
-                { icon:"exercice", title:t("op_konjunktionen_o12_t"), desc:t("op_konjunktionen_o12_d"), action:"startPremierePlaceUebung" },
+                { icon:"exercice", title:t("op_konjunktionen_o12_t"), desc:t("op_konjunktionen_o12_d"), action:"startPremierePlaceUebung", section:"pratique" },
                 // Reconnaitre puis produire : la porte au-dessus fait choisir entre deux
                 // ordres, celle-ci fait batir la phrase entiere, virgule comprise.
-                { icon:"ale", title:t("op_konjunktionen_o13_t"), desc:t("op_konjunktionen_o13_d"), action:"startBlocsConnecteursUebung" },
+                { icon:"ale", title:t("op_konjunktionen_o13_t"), desc:t("op_konjunktionen_o13_d"), action:"startBlocsConnecteursUebung", section:"pratique" },
                 // Construire une phrase juste, puis dire la MEME chose avec l'autre
                 // connecteur. C'est la seule porte qui montre weil et deshalb sur une
                 // seule phrase -- ailleurs on les rencontre separement, et rien ne dit
                 // qu'il s'agit de la meme idee.
-                { icon:"ale", title:t("op_konjunktionen_o14_t"), desc:t("op_konjunktionen_o14_d"), action:"startTransformationConnecteursUebung" },
+                { icon:"ale", title:t("op_konjunktionen_o14_t"), desc:t("op_konjunktionen_o14_d"), action:"startTransformationConnecteursUebung", section:"pratique" },
                 // Meme phrase, meme connecteur, l'autre moitie devant. La porte
                 // au-dessus change de connecteur ; celle-ci n'en change pas et
                 // deplace la subordonnee -- c'est ainsi que l'inversion se voit
                 // apparaitre puis disparaitre.
-                { icon:"ale", title:t("op_konjunktionen_o15_t"), desc:t("op_konjunktionen_o15_d"), action:"startOrdreInverseUebung" },
+                { icon:"ale", title:t("op_konjunktionen_o15_t"), desc:t("op_konjunktionen_o15_d"), action:"startOrdreInverseUebung", section:"pratique" },
                 // L'exercice « type de conjonction » ci-dessus n'a que deux
                 // reponses et ne peut donc pas contenir « deshalb », qui est un
                 // adverbe. Celui-ci ouvre le troisieme cas -- l'inversion --
                 // et met les trois cote a cote, ce qu'aucune carte isolee ne
                 // fait : weil / denn / deshalb disent la meme cause avec trois
                 // ordres de mots differents.
-                { icon:"exercice", title:t("op_konjunktionen_o4_t"), desc:t("op_konjunktionen_o4_d"), action:"startKonnektorenUebung" },
+                { icon:"exercice", title:t("op_konjunktionen_o4_t"), desc:t("op_konjunktionen_o4_d"), action:"startKonnektorenUebung", section:"pratique" },
                 // La faute la plus couteuse du niveau : elle revient dans
                 // chaque recit au passe, donc a chaque partie orale d'examen.
-                { icon:"exercice", title:t("op_konjunktionen_o5_t"), desc:t("op_konjunktionen_o5_d"), action:"startAlsWennUebung" },
+                { icon:"exercice", title:t("op_konjunktionen_o5_t"), desc:t("op_konjunktionen_o5_d"), action:"startAlsWennUebung", section:"pratique" },
                 // Meme famille : deux mots pour une seule idee francaise, et
                 // l'allemand qui oblige a choisir. Celui-ci demande QUEL MOT ;
                 // « Ou va le verbe ? » demande autre chose. On peut savoir que
                 // « trotzdem » entraine l'inversion et le placer quand meme du
                 // mauvais cote de la phrase.
-                { icon:"exercice", title:t("op_konjunktionen_o6_t"), desc:t("op_konjunktionen_o6_d"), action:"startObwohlTrotzdemUebung" },
-                { icon:"carte", title:t("op_konjunktionen_o3_t"), desc:"und, weil, aber…", action:"startKonjunktionenVokabular" }
+                { icon:"exercice", title:t("op_konjunktionen_o6_t"), desc:t("op_konjunktionen_o6_d"), action:"startObwohlTrotzdemUebung", section:"pratique" },
+                { icon:"carte", title:t("op_konjunktionen_o3_t"), desc:"und, weil, aber…", action:"startKonjunktionenVokabular", section:"mots" }
             ]
         };
     }
@@ -15915,15 +15959,15 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("op_praep_title"), sub:t("op_praep_sub"),
             options:[
-                { icon:"dossier", title:t("op_praep_o1_t"), desc:t("op_praep_o1_d"), primary:true, action:"openPraepInfo" },
-                { icon:"exercice", title:t("op_praep_o2_t"), desc:t("op_praep_o2_d"), action:"startPraepReconnaissance" },
-                { icon:"exercice", title:t("op_praep_o3_t"), desc:t("op_praep_o3_d"), action:"startPraepWoWohin" },
-                { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular" },
-                { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular" },
+                { icon:"dossier", title:t("op_praep_o1_t"), desc:t("op_praep_o1_d"), primary:true, action:"openPraepInfo", section:"comprendre" },
+                { icon:"exercice", title:t("op_praep_o2_t"), desc:t("op_praep_o2_d"), action:"startPraepReconnaissance", section:"pratique" },
+                { icon:"exercice", title:t("op_praep_o3_t"), desc:t("op_praep_o3_d"), action:"startPraepWoWohin", section:"pratique" },
+                { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular", section:"mots" },
+                { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular", section:"mots" },
                 // Le cours avait le vocabulaire de ces verbes et l'exercice
                 // Wo/Wohin sur les prepositions. Il manquait celui qui relie
                 // les deux : le CHOIX DU VERBE, dont depend le cas.
-                { icon:"exercice", title:t("op_praep_o6_t"), desc:t("op_praep_o6_d"), action:"startPositionsverbenUebung" }
+                { icon:"exercice", title:t("op_praep_o6_t"), desc:t("op_praep_o6_d"), action:"startPositionsverbenUebung", section:"pratique" }
             ]
         };
     }
@@ -15931,9 +15975,9 @@ function orbPanelData(id){
         return {
             icon:"bientot", title:t("op_partikeln_title"), sub:t("op_partikeln_sub"),
             options:[
-                { icon:"dossier", title:t("op_partikeln_o1_t"), desc:"doch, ja, mal, denn, wohl, schon…", primary:true, action:"openPartikelnInfo" },
-                { icon:"exercice", title:t("op_partikeln_o2_t"), desc:t("op_partikeln_o2_d"), action:"startPartikelnNuance" },
-                { icon:"carte", title:t("op_vocab"), desc:t("op_partikeln_o3_d"), action:"startPartikelnVokabular" }
+                { icon:"dossier", title:t("op_partikeln_o1_t"), desc:"doch, ja, mal, denn, wohl, schon…", primary:true, action:"openPartikelnInfo", section:"comprendre" },
+                { icon:"exercice", title:t("op_partikeln_o2_t"), desc:t("op_partikeln_o2_d"), action:"startPartikelnNuance", section:"pratique" },
+                { icon:"carte", title:t("op_vocab"), desc:t("op_partikeln_o3_d"), action:"startPartikelnVokabular", section:"mots" }
             ]
         };
     }
@@ -15951,7 +15995,7 @@ function orbPanelData(id){
         return {
             icon:"dossier", title:t("orb_wortstellung_title"), sub:t("orb_wortstellung_sub"),
             options:[
-                { icon:"dossier", title:t("op_wortstellung_o1_t"), desc:"hablaba · hablé", primary:true, action:"openWortstellungInfo" }
+                { icon:"dossier", title:t("op_wortstellung_o1_t"), desc:"hablaba · hablé", primary:true, action:"openWortstellungInfo", section:"comprendre" }
             ]
         };
     }
@@ -15959,7 +16003,7 @@ function orbPanelData(id){
     return {
         icon:"bientot", title: labels[id] || t("op_coming_soon"), sub:"",
         options:[
-            { icon:"bientot", title:t("op_under_construction"), desc:t("op_under_construction_desc"), action: `comingSoonPanel|${labels[id] || id}` }
+            { icon:"bientot", title:t("op_under_construction"), desc:t("op_under_construction_desc"), action: `comingSoonPanel|${labels[id] || id}`, section:"ailleurs" }
         ]
     };
 }
@@ -16073,70 +16117,64 @@ function orbAction(action){
     if(typeof window[action] === "function") window[action]();
 }
 
-// ============ L'INTERRUPTEUR DU VOCABULAIRE DANS LES TUILES (v536) ============
-// `false` : les tuiles ne servent plus de flashcards de vocabulaire -- la
-// seance du jour est la porte unique, et le theme vit dans son bandeau. Les
-// lecons, les exercices et les dictees RESTENT : ce sont eux qui font la
-// valeur propre d'une tuile.
+// ============ CE QUI APPARTIENT A LA SEANCE DU JOUR (v625) ============
+// ⚠️ L'INTERRUPTEUR VOCAB_DANS_TUILES A DISPARU, ET IL FAUT DIRE POURQUOI.
+// Il valait `false` depuis la v536 : les tuiles ne servaient plus AUCUN
+// vocabulaire. C'etait trop large. Jacques a redecoupe en deux temps --
+// « j'enleverais tout ce qui est aleatoire » puis « on enleve revoir
+// aujourd'hui » -- et ce qu'il nomme n'est pas « le vocabulaire », c'est une
+// famille precise : les portes qui CHOISISSENT LE PAQUET A SA PLACE.
 //
-// ⚠️ REMETTRE `true` SUFFIT A TOUT RETABLIR. Aucune option n'a ete supprimee,
-// aucun bouton efface : ils sont filtres. C'est la demande de Jacques, et la
-// prudence -- l'assembleur des dix categories n'a pas encore tourne une
-// semaine, et ces portes sont le filet.
-const VOCAB_DANS_TUILES = false;
-
-// ⚠️ J'AVAIS COMPRIS L'INVERSE A LA v566, ET JE L'AI PUBLIE. Jacques avait
-// demande « dans le nom, l'adjectif, le verbe, l'adverbe -- vers les
-// flashcards » ; j'ai lu « remets-y une porte », il voulait dire « retire
-// celles qui restent ». Sa correction est nette : « plus aucune trace de
-// flashcards, sauf a partir de ma seance du jour, ou par theme, ou par
-// niveau ». La liste d'exemption est donc supprimee, pas mise a vide.
-
-// Les actions qui SERVENT UN PAQUET DE VOCABULAIRE sans qu'on ait rien choisi.
-// Les dictees n'y sont pas : une dictee est un exercice, pas une revision
-// generique. Les lecons (open...Info) non plus.
+// LA LIGNE DE PARTAGE, et elle remplace celle de la v539 (« start ou open ») :
+//   -> ce qui sert CE QUI EST DU, ou CE QUI EST TIRE AU HASARD, decide pour
+//      l'apprenant. C'est le travail de la seance du jour, et d'elle seule.
+//   -> ce qui sert LA LISTE DE CE SUJET-CI ne decide rien : le sujet, il l'a
+//      choisi en ouvrant la tuile. Ces portes restent.
 //
-// ⚠️ LA LIGNE DE PARTAGE A CHANGE EN v539, ET C'EST LA BONNE. La v536 masquait
-// aussi les SOMMAIRES -- « Parcourir par niveau », « Parcourir par theme »,
-// « Vocabulaire ». Un sommaire n'est pas une revision generique : il ouvre un
-// ecran ou l'on CHOISIT, et c'est ce choix que la seance du jour remplace, pas
-// la consultation. Les avoir masques a vide la tuile « Noms » jusqu'a une
-// dictee seule sous un titre qui promet beaucoup plus, et « Expressions »
-// jusqu'a sa lecon seule. Signale par Jacques, qui a aussi refuse la reparation
-// au cas par cas : ne rendre ses parcours qu'a « Noms » aurait laisse les memes
-// portes fermees chez les verbes, les adjectifs et les adverbes, sans raison
-// qu'on puisse dire a voix haute.
+// ⚠️ ET LA MESURE DONNE RAISON A LA REGLE, DEUX FOIS :
+//   - startRandomMix() N'EST PLUS ALEATOIRE depuis qu'il appelle
+//     cartesDeSession() : echues d'abord, quelques neufs, plafonne a
+//     tailleSeance(). « Verbes aleatoires » servait la seance du jour filtree
+//     sur une categorie -- un libelle qui ment, comme les comptes figes.
+//   - paquetDuNiveau() couvre DEJA les dix categories de SOURCES_SEANCE. Rien
+//     de ce qui part ici ne devient inatteignable.
 //
-// LA REGLE TIENT DANS LE NOM DES FONCTIONS, et verifier.py l'exige desormais :
-// ici, QUE DES « start... ». Un « open... » ouvre un ecran de choix et reste
-// visible ; un « start... » pose une carte devant l'apprenant et se retire.
-const ACTIONS_VOCABULAIRE = [
+// ⚠️ CE FILTRE NE TOUCHE QUE LES PANNEAUX DE TUILE. renderOrbPanel() est son
+// seul lecteur. La seance du jour, son « ou par theme » et ses pastilles de
+// niveau appellent d'autres fonctions et continuent de servir des cartes.
+const ACTIONS_DE_LA_SEANCE = [
     "startDueReview", "startRandomMixAll",
     "startVerbeDueReview", "startVerbeRandomMix",
-    "startAdjektiveDueReview", "startAdjektiveRandomMix",
-    "startPronomenVokabular", "startArtikelwoerterVokabular",
-    "startKonjunktionenVokabular", "startPartikelnVokabular",
-    "startPraepVokabular", "startPositionsverbenVokabular",
-    // ⚠️ PARCOURIR EST AUSSI UNE PORTE VERS LES CARTES (v567). La liste ne
-    // retenait que les entrees qui servent un paquet SANS qu'on ait rien
-    // choisi ; « parcourir par niveau » et « parcourir par theme » en
-    // demandent un, mais elles menent au meme endroit -- des flashcards.
-    // Jacques les a nommees une a une : « enlever reviser par mots, enlever
-    // parcourir par niveau, enlever parcourir par theme, enlever mots
-    // aleatoires ».
-    //
-    // ⚠️ CE FILTRE NE TOUCHE QUE LES PANNEAUX DE TUILE. renderOrbPanel() est
-    // son seul lecteur : la seance du jour, son « ou par theme » et ses
-    // pastilles de niveau appellent d'autres fonctions et continuent de
-    // servir des cartes. C'est exactement ce qu'il demande de garder.
-    "openNomenNiveau", "openNomen",
-    "openVerbenNiveau", "openAdjektive",
-    "openAdverbienVokabular"
+    "startAdjektiveDueReview", "startAdjektiveRandomMix"
 ];
 
+// ============ LES QUATRE SECTIONS D'UN PANNEAU (v625) ============
+// Un panneau etait une liste plate : quinze entrees chez les connecteurs, ou
+// une lecon, dix exercices et un paquet de cartes se suivaient sans qu'aucun
+// mot ne dise lequel est lequel. Demande de Jacques : « qu'ils soient comme
+// une section dans les tuiles, quelque chose d'interessant visuellement ».
+//
+// ⚠️ LES COULEURS NE SONT PAS CHOISIES, ELLES SONT REPRISES. Ce sont les
+// quatre familles de l'accueil (v612), telles quelles : le violet veut dire
+// « des mots » en haut comme en bas, l'ambre « on produit quelque chose ».
+// Une teinte qui garde son sens en changeant d'ecran fait un langage ; une
+// teinte inventee par panneau ferait une decoration. Les contraintes de la
+// v612 tiennent toujours : le bleu est pris par les boutons et les liens, le
+// rouge et le rose restent reserves a ce qui doit alerter.
+//
+// L'ORDRE EST FIXE ET NE SE DISCUTE PAS PANNEAU PAR PANNEAU : on comprend la
+// regle, on voit les mots, on s'entraine -- et ce qui mene ailleurs ferme la
+// marche. Une section absente est sautee, jamais affichee vide.
+const SECTIONS_PANNEAU = [
+    { cle:"comprendre", i18n:"sec_comprendre" },
+    { cle:"mots",       i18n:"sec_vocabulaire" },
+    { cle:"pratique",   i18n:"sec_entrainer" },
+    { cle:"ailleurs",   i18n:"sec_ailleurs" }
+];
+const SECTIONS_PANNEAU_CLES = SECTIONS_PANNEAU.map(x => x.cle);
+
 function optionsVisibles(options){
-    if(VOCAB_DANS_TUILES) return options || [];
-    return (options || []).filter(o => ACTIONS_VOCABULAIRE.indexOf(o.action) < 0);
+    return (options || []).filter(o => ACTIONS_DE_LA_SEANCE.indexOf(o.action) < 0);
 }
 
 function renderOrbPanel(){
@@ -16152,7 +16190,8 @@ function renderOrbPanel(){
     titleEl.textContent = data.title;
 
     const options = optionsVisibles(data.options);
-    bodyEl.innerHTML = options.map(o => `
+
+    const ligne = o => `
         <div class="orb-opt ${o.primary ? "primary" : ""}" onclick="orbAction('${o.action}')">
             <div class="orb-opt-left">
                 <div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>
@@ -16163,7 +16202,33 @@ function renderOrbPanel(){
             </div>
             ${o.count ? `<div class="orb-opt-count">${o.count}</div>` : `<div class="orb-opt-arrow">›</div>`}
         </div>
-    `).join("");
+    `;
+
+    // ⚠️ UNE OPTION SANS SECTION NE DISPARAIT PAS, ELLE TOMBE DANS LA DERNIERE.
+    // Le contraire -- la sauter -- ferait disparaitre une porte en silence le
+    // jour ou quelqu'un ajoute une option sans y penser. verifier.py refuse
+    // desormais ce cas, mais le code ne doit pas dependre du controle pour ne
+    // pas perdre de contenu.
+    const connues = SECTIONS_PANNEAU_CLES;
+    // Un en-tete unique au-dessus de TOUTE la liste ne nomme rien : il repete
+    // le titre du panneau un cran plus bas. Une section ne dit quelque chose
+    // qu'en s'opposant a une autre, donc on ne l'affiche qu'a partir de deux.
+    const familles = new Set(options.map(o =>
+        connues.indexOf(o.section) < 0 ? "ailleurs" : o.section));
+    const montrerEntetes = familles.size > 1;
+    const html = [];
+    SECTIONS_PANNEAU.forEach((sec, rang) => {
+        const dernier = rang === SECTIONS_PANNEAU.length - 1;
+        const lot = options.filter(o => o.section === sec.cle
+            || (dernier && connues.indexOf(o.section) < 0));
+        if(!lot.length) return;
+        if(!montrerEntetes){ lot.forEach(o => html.push(ligne(o))); return; }
+        html.push(`<h3 class="orb-section pan" data-section="${sec.cle}">`
+            + `<span class="sec-trait"></span>${t(sec.i18n)}`
+            + `<span class="sec-n">${lot.length}</span></h3>`);
+        lot.forEach(o => html.push(ligne(o)));
+    });
+    bodyEl.innerHTML = html.join("");
 }
 
 function startAdjektiveFlashcards(){
@@ -21292,12 +21357,31 @@ function demarrerEcoute(niveau){
     amorcerSynthese();
     const pool = poolEcoute(niveau);
     if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
-    // Mêmes cartes que les flashcards : les non maîtrisées d'abord. Si tout est
-    // maîtrisé on écoute quand même l'ensemble -- l'écoute est une révision
-    // passive, elle n'a pas de raison de refuser de jouer.
-    let liste = cartesDeSession(pool);
-    if(!liste.length) liste = pool;
-    liste = liste.slice();
+    // ⚠️ L'ECOUTE NE SE PLAFONNE PAS (v624). Signale par Jacques : « on peut
+    // écouter seulement 5 ». La cause n'était pas ici mais dans
+    // tailleSeance(), qui porte un PLANCHER DE CINQ : l'objectif du jour
+    // atteint, la séance rétrécit à cinq cartes. C'est juste pour une SEANCE
+    // -- on ne ferme pas la porte à qui veut continuer -- et faux pour
+    // l'écoute, qui est une révision PASSIVE : elle ne juge rien, ne déplace
+    // aucune échéance, ne compte dans aucun objectif. Rien en elle ne justifie
+    // une limite.
+    //
+    // C'est le troisième endroit où ce plancher déborde de son rôle, après la
+    // dictée (v617) et avant lui les flashcards. La règle qui se dégage : un
+    // écran qui NOTE peut être plafonné, un écran qui fait seulement ENTENDRE
+    // ou ECRIRE ne doit pas l'être.
+    //
+    // L'ordre de la séance est conservé -- les cartes dues d'abord, ce sont
+    // elles qui ont besoin d'être revues -- puis TOUT le reste suit.
+    const seance = cartesDeSession(pool);
+    const vus = new Set(seance.map(it => it.themeId + ":" + it.index));
+    let liste = seance.slice();
+    for(const item of pool){
+        const cle = item.themeId + ":" + item.index;
+        if(vus.has(cle)) continue;
+        vus.add(cle);
+        liste.push(item);
+    }
     shuffleArray(liste);
     ecouteCartes = liste;
     ecouteIndex = 0;
@@ -22403,10 +22487,36 @@ function empreinteAudio(texte){
 // LE CHIFFRE, ET CE QU'IL VAUT AUJOURD'HUI. Mesure faite sur le corpus de
 // Nadja : fichiers a -14 LUFS, crete -0,9 dBTP (la cible d'audio/normaliser.py)
 // contre une voix systeme proche du maximum -- 5 a 8 dB d'ecart, ce qui
-// s'entend franchement. ⚠️ Cette mesure N'A PAS ETE REFAITE sur le corpus
-// d'Aurora. Si l'ecart a change, 0,5 n'est plus le bon chiffre, et cela
-// s'entendra a l'oreille avant de se mesurer : c'est un reglage a revoir, pas
-// un defaut a chercher.
+// s'entend franchement.
+//
+// ✅ MESURE REFAITE LE 15 SEPTEMBRE 2026 SUR LE CORPUS D'AURORA, comme
+// l'avertissement ci-dessous le demandait. Cinq fichiers tires de Hosting :
+// -13,2 / -13,6 / -14,2 / -13,8 / -15,3 LUFS, moyenne -14,0, crete -1,3 dBTP.
+// LES FICHIERS SONT EXACTEMENT SUR LEUR CIBLE. Ce n'est donc pas eux qui ont
+// bouge, et le defaut n'est pas dans le corpus.
+//
+// ⚠️ CE QUI RESTE INCONNU, ET QUI NE PEUT PAS ETRE MESURE ICI : le niveau de
+// la voix de l'appareil. Il varie d'un telephone et d'une voix a l'autre, et
+// aucune API ne le rend. 0,5 retire 6,0 dB a la synthese en supposant l'ecart
+// haut de la fourchette. Jacques, le 15 septembre : « lorsque la voix est en
+// francais, elle est trop faible par rapport a l'allemand » -- donc sur son
+// appareil l'ecart reel est plus petit, et 0,5 SUR-CORRIGE.
+//
+// 0,75 retire 2,5 dB : la compensation reste, reduite de moitie. Un seul
+// chiffre global ne peut pas etre juste sur tous les appareils ; si l'ecart
+// s'entend encore, le remede suivant est un REGLAGE, pas une troisieme
+// supposition.
+//
+// ⚠️ ET CE REGLAGE VAUT POUR LES SIX LANGUES D'INTERFACE, PAS SEULEMENT LE
+// FRANCAIS. Verifie le 15 septembre : les SIX chemins de parole du fichier
+// lisent cette constante, sans exception. Les deux seules affectations qui
+// ne la lisent pas sont volontaires -- l'enonce muet qui deverrouille la
+// synthese (volume 0) et l'element de deverrouillage audio (0,01).
+//
+// Ce que ce chiffre NE PEUT PAS egaliser : le niveau propre de chaque voix
+// systeme. Une voix arabe et une voix francaise n'ont aucune raison de sortir
+// au meme niveau, et aucune API ne le rend. L'equilibre est donc tenu entre
+// LES FICHIERS ET LA SYNTHESE, pas entre les voix elles-memes.
 //
 // On ne peut pas monter les fichiers, ils sont deja au plafond. On baisse donc
 // la synthese pour la rejoindre. C'est le seul remede qui couvre TOUT le
@@ -22416,7 +22526,7 @@ function empreinteAudio(texte){
 // `volume` sur un enonce. Si c'est le cas ici, ce reglage ne changera rien et
 // il faudra l'admettre plutot que de le pousser -- ce sera visible au premier
 // essai.
-const VOLUME_SYNTHESE = 0.5;
+const VOLUME_SYNTHESE = 0.75;
 
 // JOURNAL DE DIAGNOSTIC -- TEMPORAIRE.
 //
@@ -27646,13 +27756,11 @@ function showResults(){
 
 (() => {
     afficherNumeroVersion();
-    // ⚠️ LES SEPT BOUTONS « VOCABULAIRE : ... » DES ECRANS DE LECON. Ils
-    // ne passent pas par renderOrbPanel(), donc le filtre des options ne les
-    // voyait pas -- c'est par la que les flashcards des nombres restaient
-    // accessibles. Signale par Jacques. Meme interrupteur, meme retour arriere.
-    if(!VOCAB_DANS_TUILES){
-        document.querySelectorAll(".vocab-tuile").forEach(b => b.classList.add("hidden"));
-    }
+    // ⚠️ LES SEPT BOUTONS « VOCABULAIRE : ... » DES ECRANS DE LECON ETAIENT
+    // MASQUES ICI (v536). Ils reviennent : chacun sert la liste de mots DE SA
+    // LECON -- les prepositions sous la lecon des prepositions, les nombres
+    // sous celle des nombres. Aucun ne choisit un paquet a la place de
+    // l'apprenant, donc aucun n'empiete sur la seance du jour.
     // Le sous-titre de la seance et les comptes de la carte se recalculent
     // avec le reste de l'accueil : ils dependent des echeances, donc ils
     // changent tout seuls d'un jour a l'autre.
