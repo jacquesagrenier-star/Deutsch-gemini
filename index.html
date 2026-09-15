@@ -5822,7 +5822,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v623</span>
+    <span class="subtitle-version">v624</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -25152,12 +25152,31 @@ function demarrerEcoute(niveau){
     amorcerSynthese();
     const pool = poolEcoute(niveau);
     if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
-    // Mêmes cartes que les flashcards : les non maîtrisées d'abord. Si tout est
-    // maîtrisé on écoute quand même l'ensemble -- l'écoute est une révision
-    // passive, elle n'a pas de raison de refuser de jouer.
-    let liste = cartesDeSession(pool);
-    if(!liste.length) liste = pool;
-    liste = liste.slice();
+    // ⚠️ L'ECOUTE NE SE PLAFONNE PAS (v624). Signale par Jacques : « on peut
+    // écouter seulement 5 ». La cause n'était pas ici mais dans
+    // tailleSeance(), qui porte un PLANCHER DE CINQ : l'objectif du jour
+    // atteint, la séance rétrécit à cinq cartes. C'est juste pour une SEANCE
+    // -- on ne ferme pas la porte à qui veut continuer -- et faux pour
+    // l'écoute, qui est une révision PASSIVE : elle ne juge rien, ne déplace
+    // aucune échéance, ne compte dans aucun objectif. Rien en elle ne justifie
+    // une limite.
+    //
+    // C'est le troisième endroit où ce plancher déborde de son rôle, après la
+    // dictée (v617) et avant lui les flashcards. La règle qui se dégage : un
+    // écran qui NOTE peut être plafonné, un écran qui fait seulement ENTENDRE
+    // ou ECRIRE ne doit pas l'être.
+    //
+    // L'ordre de la séance est conservé -- les cartes dues d'abord, ce sont
+    // elles qui ont besoin d'être revues -- puis TOUT le reste suit.
+    const seance = cartesDeSession(pool);
+    const vus = new Set(seance.map(it => it.themeId + ":" + it.index));
+    let liste = seance.slice();
+    for(const item of pool){
+        const cle = item.themeId + ":" + item.index;
+        if(vus.has(cle)) continue;
+        vus.add(cle);
+        liste.push(item);
+    }
     shuffleArray(liste);
     ecouteCartes = liste;
     ecouteIndex = 0;
@@ -25963,7 +25982,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 623;
+const APP_VERSION = 624;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26259,10 +26278,36 @@ function empreinteAudio(texte){
 // LE CHIFFRE, ET CE QU'IL VAUT AUJOURD'HUI. Mesure faite sur le corpus de
 // Nadja : fichiers a -14 LUFS, crete -0,9 dBTP (la cible d'audio/normaliser.py)
 // contre une voix systeme proche du maximum -- 5 a 8 dB d'ecart, ce qui
-// s'entend franchement. ⚠️ Cette mesure N'A PAS ETE REFAITE sur le corpus
-// d'Aurora. Si l'ecart a change, 0,5 n'est plus le bon chiffre, et cela
-// s'entendra a l'oreille avant de se mesurer : c'est un reglage a revoir, pas
-// un defaut a chercher.
+// s'entend franchement.
+//
+// ✅ MESURE REFAITE LE 15 SEPTEMBRE 2026 SUR LE CORPUS D'AURORA, comme
+// l'avertissement ci-dessous le demandait. Cinq fichiers tires de Hosting :
+// -13,2 / -13,6 / -14,2 / -13,8 / -15,3 LUFS, moyenne -14,0, crete -1,3 dBTP.
+// LES FICHIERS SONT EXACTEMENT SUR LEUR CIBLE. Ce n'est donc pas eux qui ont
+// bouge, et le defaut n'est pas dans le corpus.
+//
+// ⚠️ CE QUI RESTE INCONNU, ET QUI NE PEUT PAS ETRE MESURE ICI : le niveau de
+// la voix de l'appareil. Il varie d'un telephone et d'une voix a l'autre, et
+// aucune API ne le rend. 0,5 retire 6,0 dB a la synthese en supposant l'ecart
+// haut de la fourchette. Jacques, le 15 septembre : « lorsque la voix est en
+// francais, elle est trop faible par rapport a l'allemand » -- donc sur son
+// appareil l'ecart reel est plus petit, et 0,5 SUR-CORRIGE.
+//
+// 0,75 retire 2,5 dB : la compensation reste, reduite de moitie. Un seul
+// chiffre global ne peut pas etre juste sur tous les appareils ; si l'ecart
+// s'entend encore, le remede suivant est un REGLAGE, pas une troisieme
+// supposition.
+//
+// ⚠️ ET CE REGLAGE VAUT POUR LES SIX LANGUES D'INTERFACE, PAS SEULEMENT LE
+// FRANCAIS. Verifie le 15 septembre : les SIX chemins de parole du fichier
+// lisent cette constante, sans exception. Les deux seules affectations qui
+// ne la lisent pas sont volontaires -- l'enonce muet qui deverrouille la
+// synthese (volume 0) et l'element de deverrouillage audio (0,01).
+//
+// Ce que ce chiffre NE PEUT PAS egaliser : le niveau propre de chaque voix
+// systeme. Une voix arabe et une voix francaise n'ont aucune raison de sortir
+// au meme niveau, et aucune API ne le rend. L'equilibre est donc tenu entre
+// LES FICHIERS ET LA SYNTHESE, pas entre les voix elles-memes.
 //
 // On ne peut pas monter les fichiers, ils sont deja au plafond. On baisse donc
 // la synthese pour la rejoindre. C'est le seul remede qui couvre TOUT le
@@ -26272,7 +26317,7 @@ function empreinteAudio(texte){
 // `volume` sur un enonce. Si c'est le cas ici, ce reglage ne changera rien et
 // il faudra l'admettre plutot que de le pousser -- ce sera visible au premier
 // essai.
-const VOLUME_SYNTHESE = 0.5;
+const VOLUME_SYNTHESE = 0.75;
 
 // JOURNAL DE DIAGNOSTIC -- TEMPORAIRE.
 //
