@@ -352,6 +352,9 @@ def verifier_langue_enseignee(r, source):
           % (code, "aucun" if code == "de" else code + "__"))
 
 
+PLANCHER_EXOS = 50
+
+
 def verifier_jeux_exercices(r, source):
     """Tout jeu demande par son nom doit exister dans exercices.json.
 
@@ -399,6 +402,18 @@ def verifier_jeux_exercices(r, source):
             if not ex.get("correct") and not ex.get("answers") and not ex.get("chunks"):
                 r.echec("exercices", "%s[%d] n'a pas de reponse" % (nom, k))
         r.controle(len(liste))
+        # ⚠️ LE PLANCHER DE CINQUANTE EST UNE DECISION, PAS UN HASARD. Les 40
+        # jeux y sont passes le 14 septembre 2026 (1 682 -> 2 317 exercices) :
+        # sous cinquante, les blocs de dix font le tour du jeu en cinq series
+        # et l'apprenant revoit les memes questions avant de les avoir
+        # oubliees. Sans ce controle, un jeu neuf pose a vingt questions
+        # rentrerait sans bruit -- et un compte n'est un defaut que si
+        # quelqu'un le compare.
+        r.controle()
+        if len(liste) < PLANCHER_EXOS:
+            r.echec("exercices", "%s : %d exercices, sous le plancher de %d "
+                                 "(les blocs de 10 boucleraient trop vite)"
+                    % (nom, len(liste), PLANCHER_EXOS))
 
     print("   exercices.json  : %d jeux, %d exercices, %d demandes par le code"
           % (len(jeux), total, len(demandes)))
