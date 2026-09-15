@@ -4870,3 +4870,30 @@ est en `display:none` tant qu'on n'a pas répondu.
 et de la vraie section `#exercise`, ouverte en 375×812 : le bouton reste à
 12 px du bas à toutes les positions de défilement. La v620 avait été poussée
 sur un raisonnement seul.
+
+
+**« On peut écouter seulement 5. »** — **Réglé en v624**, et c'est la
+**troisième fois** que la même cause frappe : `tailleSeance()` porte un
+**plancher de cinq** — l'objectif du jour atteint, la séance rétrécit à cinq
+cartes au lieu de fermer la porte. Juste pour une séance qui NOTE ; faux pour
+tout écran qui ne fait qu'entendre ou écrire. Après la dictée (v617), l'écoute.
+
+⚠️ **La règle à retenir :** un écran qui **note** peut être plafonné ; un écran
+qui fait seulement **entendre** ou **écrire** ne doit pas l'être. L'écoute ne
+juge rien, ne déplace aucune échéance, ne compte dans aucun objectif.
+
+L'écoute sert maintenant **tout le niveau** : A1 267 · A2 480 · B1 999 ·
+B2 404 · C1 615 · tout 2 765 cartes. Les cartes dues passent toujours devant.
+
+**« La voix française est trop faible par rapport à l'allemand. »** —
+**Réglé en v624**, et la mesure que le code réclamait depuis la v407 est enfin
+faite. Cinq fichiers tirés de Hosting : **moyenne −14,0 LUFS, crête −1,3 dBTP**
+— exactement la cible. **Ce n'est donc pas le corpus.** `VOLUME_SYNTHESE` à 0,5
+retirait **6 dB** à la synthèse en supposant l'écart haut d'une fourchette de 5
+à 8 dB ; sur ton appareil l'écart est plus petit, donc on sur-corrigeait.
+Porté à **0,75** — soit **+3,5 dB**, pour les **six** langues d'interface.
+
+⚠️ Ce qu'un chiffre global ne peut pas égaliser : le niveau propre de chaque
+voix système. L'équilibre est tenu **entre les fichiers et la synthèse**, pas
+entre les voix entre elles. Si l'écart s'entend encore, le remède suivant est
+un **réglage**, pas une troisième supposition.
