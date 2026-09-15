@@ -4763,3 +4763,14 @@ régénération les ramène toutes.
 dictionnaire. »** Juste — et meilleur que la fusion que j'avais proposée. Les
 deux recherches ne cherchent pas la même chose ; le défaut n'est pas qu'il y en
 ait deux, c'est que l'une n'a aucun nom.
+
+**Traité en v611.** 71 paires retirées, 10 gardées (décision de Jacques :
+les variantes régionales restent, l'app les étiquette déjà). Les verdicts vivent
+dans `ajouts/synonymes-ecartes.txt`, lu par `tests/synonymes.py` — sans ce
+fichier, la prochaine régénération les ramènerait toutes. La fonction de
+relecture est retirée : tuile, écran, fonctions, carte admin, 95 clés.
+
+**« La barre de recherche des modules ne sert à rien, on les voit. »** Retirée
+en v611. Il a raison, et c'est mon propre argument qui se retourne : j'avais
+refusé les accordéons pour que tout reste visible — une fois tout visible et
+rangé en quatre sections, filtrer ne rattrape plus rien.

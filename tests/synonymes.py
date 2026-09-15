@@ -52,6 +52,40 @@ A_ECARTER = {
     ('zünder', 'zündholz'):    "un detonateur n'est pas une allumette",
 }
 
+# ⚠️ ET LES PAIRES ECARTEES PAR LA RELECTURE HUMAINE, QUI VIENNENT D'UN FICHIER.
+#
+# Barbara Ruprecht a relu la liste entiere dans l'app et signale 71 paires qui
+# ne vont pas -- « Befehl / Ordnung » (l'anglais « order »), « Interesse /
+# Zins » (« interest »), « Ukrainer / Ukrainisch » (un nom contre un adjectif).
+# Elles vivent dans ajouts/synonymes-ecartes.txt et non ici, pour une raison
+# qui compte : ce fichier-la porte AUSSI, en commentaire, les 10 paires qu'on a
+# decide de GARDER -- les variantes suisses et autrichiennes, que le cours
+# etiquette deja. Une decision et son contraire au meme endroit, sinon
+# quelqu'un refera l'arbitrage dans six mois.
+#
+# Sans cette lecture, la prochaine regeneration ramenerait les 71 : rien dans
+# synonymes.json ne se souvient d'une relecture.
+def _charger_ecartes():
+    import os
+    chemin = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                          'ajouts', 'synonymes-ecartes.txt')
+    if not os.path.exists(chemin):
+        print('  ! ajouts/synonymes-ecartes.txt absent : les 71 paires '
+              'ecartees par la relecture vont revenir')
+        return 0
+    n = 0
+    for ligne in io.open(chemin, encoding='utf-8'):
+        ligne = ligne.split('#')[0].strip()
+        if '|' not in ligne:
+            continue
+        a, b = [x.strip().lower() for x in ligne.split('|', 1)]
+        if a and b:
+            A_ECARTER[(a, b)] = 'relecture (Barbara)'
+            n += 1
+    return n
+
+print('relecture : %d paires ecartees a la main' % _charger_ecartes())
+
 def norm(s):
     s = (s or '').lower().strip()
     s = unicodedata.normalize('NFD', s)

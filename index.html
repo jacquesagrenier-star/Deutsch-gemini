@@ -722,59 +722,7 @@ body[data-theme="dark"] .orb-section{
         rgba(15,23,42,.97) 68%, rgba(15,23,42,0) 100%);
 }
 
-/* ⚠️ UNE SECTION DONT TOUTES LES TUILES SONT MASQUEES DISPARAIT AUSSI.
-   « Relecture » et « Chapitres VHS » naissent avec la classe `hidden` et ne
-   s'affichent que pour qui y a droit : sans cette regle, un en-tete pourrait
-   surplomber le vide. Pose par filtrerAccueil(). */
-.orb-section.section-vide{display:none;}
 
-/* ============ LA RECHERCHE DE L'ACCUEIL (v607) ============
-   A dix-huit modules, taper bat n'importe quel classement : « dativ » mene
-   aux prepositions ET aux cas, et personne n'a a deviner dans laquelle des
-   deux sections ils ont ete ranges. C'est le rattrapage de mon decoupage
-   quand il se trompe. */
-.orb-chercher{
-    grid-column:1 / -1;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:16px;
-    padding:9px 13px;
-    border-radius:14px;
-    background:rgba(255,255,255,.55);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid rgba(30,41,59,.18);
-}
-.orb-chercher svg{width:16px; height:16px; flex:0 0 auto; stroke:#8a94a6;
-    fill:none; stroke-width:2; stroke-linecap:round;}
-.orb-chercher input{
-    flex:1 1 auto;
-    min-width:0;
-    border:0;
-    outline:0;
-    background:transparent;
-    /* 16px : en dessous, iOS zoome sur le champ a la mise au point. */
-    font-size:16px;
-    color:#1C2430;
-}
-.orb-chercher input::placeholder{color:#9aa3b2;}
-body[data-theme="dark"] .orb-chercher{
-    background:rgba(30,41,59,.55); border-color:rgba(148,163,184,.22);}
-body[data-theme="dark"] .orb-chercher input{color:#e2e8f0;}
-
-/* Une tuile que la recherche ecarte : elle sort de la grille, elle ne
-   s'estompe pas. Une tuile grisee reste un obstacle a lire. */
-.orb.orb-filtree{display:none !important;}
-
-.orb-rien{
-    grid-column:1 / -1;
-    display:none;
-    padding:14px 2px;
-    color:#6b7688;
-    font-size:13px;
-}
-.orb-rien.visible{display:block;}
 
 .orb{
     position:relative;
@@ -1002,45 +950,7 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="konjunktionen"] .orb-icon svg{stroke:#0ea5e9;}
 .orb[data-orbid="konjunktionen"] .orb-badge{background:#0ea5e9; box-shadow:0 2px 6px rgba(14,165,233,.35);}
 
-/* Tuile de relecture (temporaire) : ambre de la marque. Elle ne fait pas
-   apprendre, elle demande un service -- elle ne doit donc ressembler a aucune
-   des autres. */
-.orb[data-orbid="relecture"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.35);}
-.orb[data-orbid="relecture"] .orb-icon svg{stroke:#E8A23A;}
 
-/* ---- Ecran de relecture ---- */
-.rel-tete{margin-bottom:14px}
-/* Pas de flex ici : le <b> du compteur devenait un element de rangee et la
-   phrase se coupait en deux lignes -- « 1 » puis « paires ecartees sur 661 ». */
-.rel-compte{
-    font-size:13px; color:#8b93a3; font-variant-numeric:tabular-nums;
-    margin:2px 0 6px;
-}
-.rel-compte b{color:#3b6fe0; font-weight:700}
-.rel-niveau{
-    margin:22px 0 6px; padding-bottom:6px; border-bottom:1px solid #e6eaf2;
-    font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-    color:#8b93a3;
-}
-.rel-paire{
-    display:flex; align-items:center; gap:12px;
-    padding:10px 2px; border-bottom:1px solid #eef1f6;
-}
-.rel-mots{flex:1; min-width:0}
-.rel-mots strong{font-size:16px; font-weight:700}
-.rel-mots .fl{color:#b6bcc9; font-weight:400; margin:0 6px}
-.rel-mots small{display:block; font-size:12px; color:#8b93a3; font-style:italic}
-.rel-non{
-    flex:0 0 auto; font-size:12px; font-weight:700; cursor:pointer;
-    padding:6px 12px; border-radius:9px;
-    border:1px solid #dfe4ec; background:#fff; color:#8b93a3;
-}
-.rel-non[aria-pressed="true"]{background:#fde8e2; border-color:#e8b3a3; color:#9c3b24;}
-.rel-paire.ecartee .rel-mots strong{text-decoration:line-through; text-decoration-color:#9c3b24;}
-body[data-theme="dark"] .rel-niveau{border-color:#2a3240}
-body[data-theme="dark"] .rel-paire{border-color:#242b36}
-body[data-theme="dark"] .rel-non{background:#1b212b; border-color:#2a3240}
-body[data-theme="dark"] .rel-non[aria-pressed="true"]{background:#3a1f18; border-color:#7a3a28; color:#e8a58f;}
 
 .orb[data-orbid="vhskapitel"] .orb-icon{
     background:rgba(245,158,11,.14);
@@ -5479,23 +5389,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </div>
         </div>
 
-        <!-- ⚠️ SANS classe orb-de/orb-en : la recherche sert les deux
-             directions d'apprentissage, elle filtre les tuiles affichees. -->
-        <div class="orb-chercher">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-            <input type="search" id="orbChercher" autocomplete="off"
-                   data-i18n-placeholder="accueil_chercher"
-                   placeholder="Chercher un module…"
-                   oninput="filtrerAccueil(this.value)">
-        </div>
-        <p class="orb-rien" id="orbRien" data-i18n="accueil_rien">Aucun module ne porte ce mot.</p>
 
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="mots">
             <span data-i18n="sec_mots">Travailler les mots</span>
         </h2>
-        <div class="orb orb-de" data-orbid="nomen" data-cles="plural genus artikel substantiv" onclick="openOrbPanel('nomen')">
+        <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5505,7 +5405,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <strong data-i18n="orb_nomen_title">Noms</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="verben" data-cles="konjugation präsens perfekt präteritum konjunktiv" onclick="openOrbPanel('verben')">
+        <div class="orb orb-de" data-orbid="verben" onclick="openOrbPanel('verben')">
             <div id="badge-verben" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-verben" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5515,7 +5415,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <strong data-i18n="orb_verben_title">Verbes</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="adjektive" data-cles="komparativ superlativ endungen deklination" onclick="openOrbPanel('adjektive')">
+        <div class="orb orb-de" data-orbid="adjektive" onclick="openOrbPanel('adjektive')">
             <div id="badge-adjektive" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-adjektive" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5525,21 +5425,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <strong data-i18n="orb_adjektive_title">Adjectifs</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="adverbien" data-cles="adverbien" onclick="openOrbPanel('adverbien')">
+        <div class="orb orb-de" data-orbid="adverbien" onclick="openOrbPanel('adverbien')">
             <div id="badge-adverbien" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
             <div>
                 <strong data-i18n="orb_adverbien_title">Adverbes</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="pronomen" data-cles="pronomen possessiv relativ reflexiv" onclick="openOrbPanel('pronomen')">
+        <div class="orb orb-de" data-orbid="pronomen" onclick="openOrbPanel('pronomen')">
             <div id="badge-pronomen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M17 9h4"/><path d="M17 13h4"/></svg></div>
             <div>
                 <strong data-i18n="orb_pronomen_title">Pronoms</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="zahlen" data-cles="zahlen ordinalzahlen" onclick="openOrbPanel('zahlen')">
+        <div class="orb orb-de" data-orbid="zahlen" onclick="openOrbPanel('zahlen')">
             <div id="badge-zahlen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4v16"/><path d="M4 8h4"/><path d="M13 4h5l-3 6a3.5 3.5 0 11-2.5 6"/></svg></div>
             <div>
@@ -5552,7 +5452,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <h2 class="orb-section orb-de" data-section="phrase">
             <span data-i18n="sec_phrase">Travailler la phrase</span>
         </h2>
-        <div class="orb orb-de" data-orbid="kasus" data-cles="dativ akkusativ nominativ genitiv deklination" onclick="openOrbPanel('kasus')">
+        <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-kasus" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5562,7 +5462,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <strong data-i18n="orb_kasus_title">Cas & articles</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="praep" data-cles="wechselpräpositionen wo wohin" onclick="openOrbPanel('praep')">
+        <div class="orb orb-de" data-orbid="praep" onclick="openOrbPanel('praep')">
             <div id="badge-praepositionen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-praep" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
@@ -5572,21 +5472,21 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <strong data-i18n="orb_praep_title">Prépositions</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="wortstellung" data-cles="satzbau hauptsatz nebensatz" onclick="openOrbPanel('wortstellung')">
+        <div class="orb orb-de" data-orbid="wortstellung" onclick="openOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
                 <strong data-i18n="orb_wortstellung_title">Ordre des mots</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="konjunktionen" data-cles="konjunktionen weil denn obwohl" onclick="openOrbPanel('konjunktionen')">
+        <div class="orb orb-de" data-orbid="konjunktionen" onclick="openOrbPanel('konjunktionen')">
             <div id="badge-konjunktionen" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg></div>
             <div>
                 <strong data-i18n="orb_konjunktionen_title">Connecteurs</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="zuinfinitiv" data-cles="infinitiv" onclick="openOrbPanel('zuinfinitiv')">
+        <div class="orb orb-de" data-orbid="zuinfinitiv" onclick="openOrbPanel('zuinfinitiv')">
             <div id="badge-zuinfinitiv" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007.5.5l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7.5-.5l-2 2a5 5 0 007 7l1-1"/></svg></div>
             <div>
@@ -5599,20 +5499,20 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <h2 class="orb-section orb-de" data-section="pratique">
             <span data-i18n="sec_pratique">Pratiquer</span>
         </h2>
-        <div class="orb orb-de" data-orbid="ecouter" data-cles="hören audio" onclick="ouvrirEcouteMenu()">
+        <div class="orb orb-de" data-orbid="ecouter" onclick="ouvrirEcouteMenu()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></div>
             <div>
                 <strong data-i18n="orb_ecouter_title">Écouter</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="schreiben" data-cles="schreiben übersetzen" onclick="openOrbPanel('schreiben')">
+        <div class="orb orb-de" data-orbid="schreiben" onclick="openOrbPanel('schreiben')">
             <div id="badge-schreiben" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></div>
             <div>
                 <strong data-i18n="orb_schreiben_title">Écrire</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="ausdruecke" data-cles="redewendungen" onclick="openOrbPanel('ausdruecke')">
+        <div class="orb orb-de" data-orbid="ausdruecke" onclick="openOrbPanel('ausdruecke')">
             <div id="badge-ausdruecke" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-3.9-.9L3 20.5l1.6-4.7A8.3 8.3 0 013 11.5 8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/><path d="M8 10h8"/><path d="M8 13h5"/></svg></div>
             <div>
@@ -5625,29 +5525,23 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <h2 class="orb-section orb-de" data-section="parcours">
             <span data-i18n="sec_parcours">Mon parcours</span>
         </h2>
-        <div class="orb" data-orbid="monvocab" data-cles="wörterbuch" onclick="openMyVocab()">
+        <div class="orb" data-orbid="monvocab" onclick="openMyVocab()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg></div>
             <div>
                 <strong data-i18n="myvocab_title">Mots du dictionnaire</strong>
             </div>
         </div>
-        <div class="orb orb-de" data-orbid="pruefung" data-cles="goethe telc dtz zertifikat" onclick="openOrbPanel('pruefung')">
+        <div class="orb orb-de" data-orbid="pruefung" onclick="openOrbPanel('pruefung')">
             <div id="badge-pruefung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg></div>
             <div>
                 <strong data-i18n="orb_pruefung_title">Préparation aux examens</strong>
             </div>
         </div>
-        <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" data-cles="vhs kapitel" onclick="openVhsKapitelListe()">
+        <div class="orb orb-de hidden" id="vhsKapitelTile" data-orbid="vhskapitel" onclick="openVhsKapitelListe()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
             <div>
                 <strong data-i18n="vhs_kapitel_tile_title">Chapitres VHS</strong>
-            </div>
-        </div>
-        <div class="orb orb-de hidden" id="relectureTile" data-orbid="relecture" data-cles="korrektur" onclick="ouvrirRelectureSynonymes()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h9"/><path d="M17 17l2 2 4-4"/></svg></div>
-            <div>
-                <strong data-i18n="orb_relecture_title">Relecture</strong>
             </div>
         </div>
 
@@ -5697,9 +5591,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              comptes testeurs autorises via le tableau de bord admin (voir
              updateVhsKapitelTileVisibility()). Va directement a l'ecran de la liste des
              chapitres (pas de panneau intermediaire : il n'y a qu'une seule action ici). -->
-        <!-- TEMPORAIRE (v416) : relecture des synonymes. Barbara a propose la
-             fonction, c'est a elle de dire quelles paires ne vont pas. A retirer
-             une fois la relecture faite -- avec l'ecran et les fonctions. -->
 
 
         <!-- Tuiles anglais (visibles uniquement en direction "en", voir CSS .orb-en
@@ -5833,7 +5724,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v610</span>
+    <span class="subtitle-version">v611</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6903,23 +6794,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 <!-- ================= CONJONCTIONS ================= -->
 
-<!-- TEMPORAIRE (v416) : relecture des synonymes, voir ouvrirRelectureSynonymes(). -->
-<section id="relectureSynonymes" class="screen">
-    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
-    <div class="section-head">
-        <div>
-            <div class="kicker" data-i18n="rel_kicker">Coup de main demandé</div>
-            <h2 data-i18n="rel_title">Ces mots sont-ils vraiment synonymes ?</h2>
-        </div>
-    </div>
-    <div class="info-box" data-i18n-html="rel_intro"></div>
-    <div class="rel-tete">
-        <div class="rel-compte" id="relCompte"></div>
-    </div>
-    <div id="relListe"></div>
-    <button class="secondary" onclick="copierRelecture()" data-i18n="rel_copier">COPIER MA LISTE</button>
-    <div class="rel-compte" id="relEtat"></div>
-</section>
 
 <section id="konjunktionenInfo" class="screen">
     <button class="back" onclick="openOrbPanel('konjunktionen')"><span data-i18n="back_button">‹ Retour</span></button>
@@ -8200,13 +8074,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <div id="adminCodesList"></div>
     </div>
 
-    <!-- TEMPORAIRE (v418) : les verdicts de la relecture des synonymes. -->
-    <div class="card">
-        <strong data-i18n="admin_relecture_title">Relecture des synonymes</strong>
-        <div class="info-box" data-i18n="admin_relecture_desc">Les paires que les relecteurs ont marquées « pas un synonyme ». Retirer une paire, c'est enlever le mot des deux listes dans synonymes.json.</div>
-        <div class="spacer"></div>
-        <div id="adminRelectureList" class="info-box" data-i18n="loading_label">Chargement...</div>
-    </div>
 
     <div class="card">
         <strong data-i18n="admin_requests_title">Mots demandés</strong>
@@ -8557,8 +8424,6 @@ const I18N = {
         sec_phrase: "Travailler la phrase",
         sec_pratique: "Pratiquer",
         sec_parcours: "Mon parcours",
-        accueil_chercher: "Chercher un module…",
-        accueil_rien: "Aucun module ne porte ce mot.",
         examen_essentiel: "Essentiel",
         examen_aide_titre: "Les mots que les programmes officiels retiennent en premier.",
         examen_aide_1: "Trois référentiels d'allemand publient la liste du vocabulaire à connaître à chaque niveau, et ce mot y figure. C'est utile que tu prépares un examen ou que tu partes en voyage : ce sont les mots sur lesquels ceux qui conçoivent les cours sont d'accord.",
@@ -9216,23 +9081,6 @@ const I18N = {
         search_src_redewendungen: "Expressions",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Connecteurs",
-        orb_relecture_title: "Relecture",
-        orb_relecture_sub: "un coup de main ?",
-        rel_kicker: "Coup de main demandé",
-        rel_title: "Ces mots sont-ils vraiment synonymes ?",
-        rel_intro: "L'app propose maintenant, au verso des cartes, les mots du cours qui disent à peu près la même chose. Ces paires ont été trouvées <strong>automatiquement</strong> : deux mots sont retenus s'ils partagent une traduction en français et en anglais.<br><br>La machine ne sait pas tout. <strong>Touche « pas un synonyme » sur les paires qui ne vont pas</strong> — inutile de marquer les bonnes, seules les mauvaises comptent. Tes réponses sont gardées au fur et à mesure.",
-        rel_compte: "{n} paires écartées sur {total}",
-        rel_non: "Pas un synonyme",
-        rel_sans_niveau: "Sans niveau",
-        rel_chargement: "Un instant, je rassemble les paires…",
-        rel_copier: "COPIER MA LISTE",
-        rel_copie: "Copié. Colle-le dans WhatsApp.",
-        rel_rien: "Rien d'écarté pour l'instant.",
-        rel_entete: "Pas des synonymes ({n}) :",
-        admin_relecture_title: "Relecture des synonymes",
-        admin_relecture_desc: "Les paires que les relecteurs ont marquées « pas un synonyme ». Retirer une paire, c'est enlever le mot des deux listes dans synonymes.json.",
-        admin_relecture_none: "Aucune paire écartée pour l'instant.",
-        admin_relecture_compte: "paires écartées par {relecteurs} relecteur(s)",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Écouter", orb_ecouter_sub: "mains libres · A1 → C1",
         ecoute_menu_title: "Écouter et répéter",
@@ -9528,8 +9376,6 @@ const I18N = {
         sec_phrase: "Work on sentences",
         sec_pratique: "Practise",
         sec_parcours: "My path",
-        accueil_chercher: "Find a module…",
-        accueil_rien: "No module matches that word.",
         examen_essentiel: "Essential",
         examen_aide_titre: "The words the official syllabuses list first.",
         examen_aide_1: "Three German reference frameworks publish the vocabulary to know at each level, and this word is on them. That matters whether you are sitting an exam or going travelling: these are the words the people who design courses agree on.",
@@ -10185,23 +10031,6 @@ const I18N = {
         search_src_redewendungen: "Expressions",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Connectors",
-        orb_relecture_title: "Review",
-        orb_relecture_sub: "lend a hand?",
-        rel_kicker: "A hand, please",
-        rel_title: "Are these really synonyms?",
-        rel_intro: "Cards now show the words in the course that mean roughly the same thing. These pairs were found <strong>automatically</strong>: two words are kept if they share a translation in both French and English.<br><br>The machine doesn't know everything. <strong>Tap « not a synonym » on the pairs that are wrong</strong> — no need to mark the good ones, only the bad ones count. Your answers are saved as you go.",
-        rel_compte: "{n} pairs rejected out of {total}",
-        rel_non: "Not a synonym",
-        rel_sans_niveau: "No level",
-        rel_chargement: "One moment, gathering the pairs…",
-        rel_copier: "COPY MY LIST",
-        rel_copie: "Copied. Paste it into WhatsApp.",
-        rel_rien: "Nothing rejected yet.",
-        rel_entete: "Not synonyms ({n}):",
-        admin_relecture_title: "Synonym review",
-        admin_relecture_desc: "The pairs reviewers marked as « not a synonym ». Removing a pair means taking the word out of both lists in synonymes.json.",
-        admin_relecture_none: "No pair rejected yet.",
-        admin_relecture_compte: "pairs rejected by {relecteurs} reviewer(s)",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Listen", orb_ecouter_sub: "hands-free · A1 → C1",
         ecoute_menu_title: "Listen and repeat",
@@ -10501,8 +10330,6 @@ const I18N = {
         sec_phrase: "Cümle çalışması",
         sec_pratique: "Alıştırma",
         sec_parcours: "Benim yolum",
-        accueil_chercher: "Modül ara…",
-        accueil_rien: "Bu kelimeyi içeren modül yok.",
         examen_essentiel: "Temel",
         examen_aide_titre: "Resmi programların ilk sıraya koyduğu kelimeler.",
         examen_aide_1: "Üç Almanca başvuru çerçevesi her seviyede bilinmesi gereken kelime listesini yayımlar ve bu kelime o listelerde var. Sınava hazırlansan da yolculuğa çıksan da işine yarar: dersleri tasarlayanların üzerinde anlaştığı kelimelerdir.",
@@ -11158,23 +10985,6 @@ const I18N = {
         search_src_redewendungen: "İfadeler",
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "Bağlayıcılar",
-        orb_relecture_title: "Gözden geçirme",
-        orb_relecture_sub: "yardım eder misin?",
-        rel_kicker: "Bir el atar mısın",
-        rel_title: "Bunlar gerçekten eş anlamlı mı?",
-        rel_intro: "Kartların arkasında artık kursta aşağı yukarı aynı şeyi söyleyen kelimeler görünüyor. Bu çiftler <strong>otomatik olarak</strong> bulundu: iki kelime hem Fransızcada hem İngilizcede aynı çeviriyi paylaşıyorsa alınıyor.<br><br>Makine her şeyi bilmez. <strong>Uymayan çiftlerde « eş anlamlı değil »e dokun</strong> — doğruları işaretlemene gerek yok, yalnızca yanlışlar sayılır. Cevapların anında kaydedilir.",
-        rel_compte: "{total} çiftten {n} tanesi elendi",
-        rel_non: "Eş anlamlı değil",
-        rel_sans_niveau: "Seviyesiz",
-        rel_chargement: "Bir saniye, çiftler toplanıyor…",
-        rel_copier: "LİSTEMİ KOPYALA",
-        rel_copie: "Kopyalandı. WhatsApp'a yapıştır.",
-        rel_rien: "Henüz hiçbir şey elenmedi.",
-        rel_entete: "Eş anlamlı değil ({n}):",
-        admin_relecture_title: "Eş anlamlı gözden geçirme",
-        admin_relecture_desc: "Gözden geçirenlerin « eş anlamlı değil » olarak işaretlediği çiftler. Bir çifti kaldırmak, kelimeyi synonymes.json içindeki iki listeden de çıkarmak demektir.",
-        admin_relecture_none: "Henüz elenen çift yok.",
-        admin_relecture_compte: "çift, {relecteurs} kişi tarafından elendi",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Dinle", orb_ecouter_sub: "eller serbest · A1 → C1",
         ecoute_menu_title: "Dinle ve tekrarla",
@@ -11414,21 +11224,6 @@ const I18N = {
         redewendungen_vocab_desc: "Спершу обери рівень: список груп нижче підлаштується під нього.",
         redewendungen_cat_title: "Повторювати за групами",
         redewendungen_cat_desc: "Вирази запам'ятовуються за ситуацією: привітатися, висловити думку, пом'якшити сказане.",
-        rel_kicker: "Потрібна допомога",
-        rel_title: "Чи це справді синоніми?",
-        rel_intro: "На звороті карток застосунок тепер показує слова курсу, які означають приблизно те саме. Ці пари знайдено <strong>автоматично</strong>: два слова беруться, якщо мають спільний переклад французькою та англійською.<br><br>Машина знає не все. <strong>Торкнись «не синонім» на парах, які не підходять</strong> — правильні позначати не треба, рахуються лише хибні. Твої відповіді зберігаються одразу.",
-        rel_compte: "Відсіяно пар: {n} з {total}",
-        rel_non: "Не синонім",
-        rel_sans_niveau: "Без рівня",
-        rel_chargement: "Хвилинку, збираю пари…",
-        rel_copier: "СКОПІЮВАТИ МІЙ СПИСОК",
-        rel_copie: "Скопійовано. Встав у WhatsApp.",
-        rel_rien: "Наразі нічого не відсіяно.",
-        rel_entete: "Не синоніми ({n}):",
-        admin_relecture_title: "Вичитка синонімів",
-        admin_relecture_desc: "Пари, які вичитувачі позначили як «не синонім». Прибрати пару — це вилучити слово з обох списків у synonymes.json.",
-        admin_relecture_none: "Наразі жодної відсіяної пари.",
-        admin_relecture_compte: "пар відсіяно, вичитувачів: {relecteurs}",
         ecoute_menu_title: "Слухати й повторювати",
         ecoute_title: "Слухати й повторювати",
         ecoute_sens_title: "Порядок мов",
@@ -11727,8 +11522,6 @@ const I18N = {
         sec_phrase: "Робота з реченням",
         sec_pratique: "Практика",
         sec_parcours: "Мій шлях",
-        accueil_chercher: "Знайти модуль…",
-        accueil_rien: "Жоден модуль не містить цього слова.",
         examen_essentiel: "Головне",
         examen_aide_titre: "Слова, які офіційні програми ставлять на перше місце.",
         examen_aide_1: "Три німецькі довідкові системи публікують список лексики для кожного рівня, і це слово там є. Це корисно й для іспиту, й для подорожі: це слова, щодо яких укладачі курсів згодні.",
@@ -12319,8 +12112,6 @@ const I18N = {
         orb_pruefung_sub: "A2 · B1 · C1",
         orb_revision_title: "Повторення",
         orb_revision_sub: "Поступ · Скидання",
-        orb_relecture_title: "Вичитка",
-        orb_relecture_sub: "допоможеш?",
         flash_tap_hint: "Торкнись картки, щоб побачити відповідь",
         flash_skip_hint: "Пропущена картка не впливає на твій поступ.",
         flash_end_title: "Колоду завершено",
@@ -12664,23 +12455,6 @@ const I18N = {
         orb_adverbien_sub: "heute · hier · sehr",
         orb_konjunktionen_title: "پیونددهنده‌ها",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
-        orb_relecture_title: "بازخوانی",
-        orb_relecture_sub: "کمکی می‌کنی؟",
-        rel_kicker: "به کمک نیاز است",
-        rel_title: "آیا این واژه‌ها واقعاً مترادف‌اند؟",
-        rel_intro: "برنامه اکنون در پشت کارت‌ها واژه‌هایی از درس را نشان می‌دهد که کمابیش یک چیز می‌گویند. این جفت‌ها <strong>خودکار</strong> پیدا شده‌اند: دو واژه وقتی نگه داشته می‌شوند که ترجمه‌ای مشترک در فرانسوی و انگلیسی داشته باشند.<br><br>ماشین همه‌چیز را نمی‌داند. <strong>روی جفت‌هایی که جور نیستند «مترادف نیست» را لمس کن</strong> — نشان کردن جفت‌های درست لازم نیست، تنها نادرست‌ها به کار می‌آیند. پاسخ‌های تو در همان لحظه نگه داشته می‌شوند.",
-        rel_compte: "{n} جفت کنار گذاشته شد از {total}",
-        rel_non: "مترادف نیست",
-        rel_sans_niveau: "بدون سطح",
-        rel_chargement: "یک لحظه، دارم جفت‌ها را گرد می‌آورم…",
-        rel_copier: "رونوشت فهرست من",
-        rel_copie: "رونوشت شد. در WhatsApp بچسبان.",
-        rel_rien: "فعلاً چیزی کنار گذاشته نشده است.",
-        rel_entete: "مترادف نیستند ({n}):",
-        admin_relecture_title: "بازخوانی مترادف‌ها",
-        admin_relecture_desc: "جفت‌هایی که بازخوان‌ها «مترادف نیست» نشان کرده‌اند. برداشتن یک جفت یعنی حذف واژه از هر دو فهرست در synonymes.json.",
-        admin_relecture_none: "فعلاً هیچ جفتی کنار گذاشته نشده است.",
-        admin_relecture_compte: "جفت کنار گذاشته‌شده از سوی {relecteurs} بازخوان",
         orb_ecouter_title: "شنیدن",
         orb_ecouter_sub: "بدون دست · A1 → C1",
         ecoute_menu_title: "بشنو و تکرار کن",
@@ -13370,8 +13144,6 @@ const I18N = {
         sec_phrase: "کار روی جمله",
         sec_pratique: "تمرین",
         sec_parcours: "مسیر من",
-        accueil_chercher: "جست‌وجوی بخش…",
-        accueil_rien: "هیچ بخشی با این واژه نیست.",
         examen_essentiel: "کلیدی",
         examen_aide_titre: "واژه‌هایی که برنامه‌های رسمی پیش از همه برمی‌گزینند.",
         examen_aide_retour: "بازگشت به کارت",
@@ -16945,54 +16717,10 @@ let vhsKapitelAccess = false;
 function updateVhsKapitelTileVisibility(){
     const tile = document.getElementById("vhsKapitelTile");
     if(tile) tile.classList.toggle("hidden", !(isAdminUser() || vhsKapitelAccess));
-    resyncAccueil();
-    majTuileRelecture();
 }
 
-// TEMPORAIRE (v416) : la tuile de relecture ne s'affiche que pour l'admin et
-// pour les relecteurs invites.
-//
-// CE SONT DES EMPREINTES, PAS DES ADRESSES. Le depot est public : ecrire
-// l'adresse d'une testeuse dans index.html la publierait sur GitHub, ce que la
-// cle des testeurs evite deja en restant gitignoree. On compare donc le SHA-256
-// de l'adresse, qui suffit largement -- la tuile n'est pas un secret, elle est
-// seulement inutile pour les autres.
-const RELECTEURS = [
-    // Barbara. C'est le SHA-256 de son adresse en minuscules, pas l'adresse :
-    // le depot est public. Pour ajouter quelqu'un, calculer l'empreinte a
-    // part -- jamais coller une adresse ici.
-    "a30082adbaefe90d40870e7db7ba65cbdffc50e54fda36b3cb34eec26fe69790"
-];
-let empreinteCourante = null;
 
-async function empreinteDe(texte){
-    if(!(window.crypto && window.crypto.subtle)) return null;
-    const octets = new TextEncoder().encode(texte.trim().toLowerCase());
-    const brut = await window.crypto.subtle.digest("SHA-256", octets);
-    return Array.from(new Uint8Array(brut))
-        .map(o => o.toString(16).padStart(2, "0")).join("");
-}
 
-async function majTuileRelecture(){
-    const tile = document.getElementById("relectureTile");
-    if(!tile) return;
-    // ⚠️ UN SEUL POINT DE SORTIE, ET C'EST VOULU DEPUIS LA V607. Les quatre
-    // « return » d'avant laissaient la section « Mon parcours » compter ses
-    // tuiles avant que celle-ci apparaisse : un en-tete pouvait rester marque
-    // vide alors qu'il ne l'etait plus. Voir filtrerAccueil().
-    let montrer = false;
-    if(isAdminUser()){
-        montrer = true;
-    }else{
-        const user = window.firebaseAuth && window.firebaseAuth.currentUser;
-        if(user && user.email){
-            if(empreinteCourante === null) empreinteCourante = await empreinteDe(user.email);
-            montrer = RELECTEURS.includes(empreinteCourante);
-        }
-    }
-    tile.classList.toggle("hidden", !montrer);
-    resyncAccueil();
-}
 
 async function loadVhsKapitelAccessFlag(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
@@ -21109,40 +20837,6 @@ function renderAdminRequests(users){
         + (liste.length > 60 ? `<div class="spacer"></div><small style="color:#8b93a3;">${tf("admin_requests_more", { n: liste.length - 60 })}</small>` : "");
 }
 
-// TEMPORAIRE (v418) : ce que les relecteurs ont ecarte. Une paire signalee par
-// deux personnes passe devant -- meme regle que les mots demandes : l'accord
-// vaut plus que l'avis isole.
-function renderAdminRelecture(users){
-    const box = document.getElementById("adminRelectureList");
-    if(!box) return;
-    const compte = {};
-    let relecteurs = 0;
-    (users || []).forEach(u => {
-        const brut = (u.synonymesEcartes || "").trim();
-        if(!brut) return;
-        relecteurs++;
-        const prenom = (u.firstName || u.email || "?").trim();
-        brut.split(";").filter(Boolean).forEach(paire => {
-            if(!compte[paire]) compte[paire] = { paire: paire, qui: [] };
-            if(compte[paire].qui.indexOf(prenom) === -1) compte[paire].qui.push(prenom);
-        });
-    });
-    const liste = Object.values(compte).sort((a, b) =>
-        b.qui.length - a.qui.length || a.paire.localeCompare(b.paire, "de"));
-    if(!liste.length){ box.textContent = t("admin_relecture_none"); return; }
-    box.innerHTML = `<div style="margin-bottom:8px;"><strong>${liste.length}</strong> <span style="color:#576177;">${
-        tf("admin_relecture_compte", { relecteurs: relecteurs })}</span></div>`
-        + liste.map(d => {
-            const mots = d.paire.split("|");
-            return `
-        <div style="padding:7px 0; border-top:1px solid rgba(30,41,59,.1);">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;">
-                <strong>${echapperHtml(mots[0] || "")} <span style="color:#8b93a3; font-weight:400;">\u21c4</span> ${echapperHtml(mots[1] || "")}</strong>
-                <small style="color:#3b6fe0; font-weight:700; white-space:nowrap;">${d.qui.length}\u00d7</small>
-            </div>
-            <small style="color:#8b93a3;">${echapperHtml(d.qui.join(", "))}</small>
-        </div>`; }).join("");
-}
 
 async function renderAdminUsersList(){
     const container = document.getElementById("adminUsersList");
@@ -21175,8 +20869,7 @@ async function renderAdminUsersList(){
         // que la reponse etait « rien a montrer ». On le remplit d'abord, avec
         // la liste vide s'il le faut.
         renderAdminRequests(users);
-        renderAdminRelecture(users);
-        if(users.length === 0){
+            if(users.length === 0){
             // Une collection 'users' vide n'est PAS une information anodine :
             // l'app y ecrit a chaque sauvegarde, donc ton propre compte devrait
             // s'y trouver. Vide = les ecritures echouent (regles Firestore), et
@@ -23902,158 +23595,16 @@ function remplirVoisins(card, mode){
     el.classList.remove("hidden");
 }
 
-// ============ RELECTURE DES SYNONYMES (TEMPORAIRE, v416) ============
-//
-// Barbara a propose d'afficher les synonymes ; c'est donc a elle de dire
-// lesquels ne vont pas. La relecture se fait DANS L'APP, pas sur une page a
-// part : elle l'a deja installee, il n'y a ni lien a ouvrir ni compte a creer.
-//
-// Rien de neuf n'est telecharge. Les paires viennent de synonymes.json, deja
-// charge pour la ligne du verso ; la traduction et le niveau viennent de
-// l'index de recherche, deja construit.
-//
-// A RETIRER quand ce sera fait : la tuile, l'ecran, ces fonctions, les cles
-// rel_* et le champ synonymesEcartes du snapshot.
-const REL_CLE = "deutschAI_synonymesEcartes";
 
-function relCharger(){
-    try{
-        const brut = localStorage.getItem(REL_CLE) || "";
-        return new Set(brut ? brut.split(";").filter(Boolean) : []);
-    }catch(e){ return new Set(); }
-}
 
-function relGarder(ens){
-    try{ localStorage.setItem(REL_CLE, Array.from(ens).join(";")); }catch(e){}
-    // Un seul champ, une seule chaine : Firestore indexe chaque entree d'un
-    // tableau ou d'une carte, et le plafond des 40 000 entrees a deja fait
-    // echouer les sauvegardes en silence une fois (v396-v400).
-    scheduleCloudSync();
-}
 
-// Les paires, mises a plat une seule fois : « Etage|Stockwerk » une fois, pas
-// deux. On y joint la traduction et le niveau, pris dans l'index de recherche.
-function relPaires(){
-    const index = ensureSearchIndex();
-    const fiche = {};
-    for(const e of index){
-        if(!fiche[e.de]) fiche[e.de] = e;
-    }
-    const vues = new Set();
-    const paires = [];
-    Object.keys(VOISINS_SENS || {}).forEach(mot => {
-        (VOISINS_SENS[mot] || []).forEach(voisin => {
-            const id = [mot, voisin].sort().join("|");
-            if(vues.has(id)) return;
-            vues.add(id);
-            const fa = fiche[mot], fb = fiche[voisin];
-            const src = (fa && fa.source) || (fb && fb.source) || "";
-            const niveau = (src.match(/([ABC][12])\s*$/) || [])[1] || "?";
-            paires.push({
-                id: id, a: mot, b: voisin,
-                trad: (fa && fa.fr) || (fb && fb.fr) || "",
-                niveau: niveau
-            });
-        });
-    });
-    const rang = { A1:1, A2:2, B1:3, B2:4, C1:5, "?":9 };
-    paires.sort((x, y) => (rang[x.niveau] - rang[y.niveau])
-        || x.a.localeCompare(y.a, "de"));
-    return paires;
-}
 
-async function ouvrirRelectureSynonymes(){
-    showScreen("relectureSynonymes");
-    document.getElementById("relListe").innerHTML =
-        '<div class="search-empty">' + t('rel_chargement') + '</div>';
-    if(!COURS_CHARGE) await chargerCours();
-    if(!VOISINS_SENS) await chargerVoisins();
-    if(!VOISINS_SENS){
-        document.getElementById("relListe").innerHTML =
-            '<div class="search-empty">' + t('cours_indisponible') + '</div>';
-        return;
-    }
-    dessinerRelecture();
-}
 
-function dessinerRelecture(){
-    const paires = relPaires();
-    const ecartes = relCharger();
-    let html = "";
-    let niveauCourant = null;
-    for(const p of paires){
-        if(p.niveau !== niveauCourant){
-            niveauCourant = p.niveau;
-            html += '<div class="rel-niveau">' + (niveauCourant === "?" ? t('rel_sans_niveau') : niveauCourant) + '</div>';
-        }
-        const off = ecartes.has(p.id);
-        html += '<div class="rel-paire' + (off ? ' ecartee' : '') + '" id="rel-' + relId(p.id) + '">'
-            + '<div class="rel-mots"><strong>' + echapperHtml(p.a) + '</strong>'
-            + '<span class="fl">\u21c4</span><strong>' + echapperHtml(p.b) + '</strong>'
-            + '<small>' + echapperHtml(p.trad) + '</small></div>'
-            + '<button class="rel-non" aria-pressed="' + off + '" onclick="basculerRelecture(\'' + relId(p.id) + '\')">'
-            + t('rel_non') + '</button></div>';
-    }
-    document.getElementById("relListe").innerHTML = html;
-    majCompteRelecture(paires.length);
-}
 
-// L'identifiant sert d'attribut HTML : on ne garde que ce qui passe partout, et
-// on retrouve la paire par sa position dans la liste plutot qu'en tentant de
-// reconstruire les mots.
-let REL_INDEX = {};
-function relId(id){
-    const propre = "p" + Object.keys(REL_INDEX).length;
-    if(!REL_INDEX.__inverse) REL_INDEX.__inverse = {};
-    if(REL_INDEX.__inverse[id]) return REL_INDEX.__inverse[id];
-    REL_INDEX[propre] = id;
-    REL_INDEX.__inverse[id] = propre;
-    return propre;
-}
 
-function basculerRelecture(cle){
-    const id = REL_INDEX[cle];
-    if(!id) return;
-    const ecartes = relCharger();
-    if(ecartes.has(id)) ecartes.delete(id); else ecartes.add(id);
-    relGarder(ecartes);
-    const ligne = document.getElementById("rel-" + cle);
-    if(ligne){
-        const off = ecartes.has(id);
-        ligne.classList.toggle("ecartee", off);
-        const b = ligne.querySelector(".rel-non");
-        if(b) b.setAttribute("aria-pressed", String(off));
-    }
-    majCompteRelecture();
-}
 
-function majCompteRelecture(total){
-    const el = document.getElementById("relCompte");
-    if(!el) return;
-    if(total !== undefined) el.dataset.total = total;
-    const n = relCharger().size;
-    el.innerHTML = tf('rel_compte', { n: '<b>' + n + '</b>', total: el.dataset.total || "" });
-}
 
-function texteRelecture(){
-    const ecartes = relCharger();
-    if(!ecartes.size) return "";
-    return Array.from(ecartes).map(id => id.split("|").join(" / ")).join("\n");
-}
 
-function copierRelecture(){
-    const texte = texteRelecture();
-    const etat = document.getElementById("relEtat");
-    if(!texte){ if(etat) etat.textContent = t('rel_rien'); return; }
-    const entete = tf('rel_entete', { n: relCharger().size }) + "\n\n";
-    if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(entete + texte)
-            .then(() => { if(etat) etat.textContent = t('rel_copie'); })
-            .catch(() => { if(etat) etat.textContent = entete + texte; });
-    } else if(etat){
-        etat.textContent = entete + texte;
-    }
-}
 
 function registreDeLaCarte(card, mode){
     if(!card) return "";
@@ -25180,7 +24731,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 610;
+const APP_VERSION = 611;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27367,65 +26918,8 @@ function imageMosaique(fichier){
     return p;
 }
 
-// ============ LA RECHERCHE DE L'ACCUEIL (v607) ============
-// ⚠️ ELLE EXISTE PARCE QUE LE CLASSEMENT SE TROMPERA. « Cas & articles » et
-// « Prepositions » enseignent tous deux le datif : quelle que soit la section
-// choisie pour chacun, quelqu'un cherchera dans l'autre. Taper tranche sans
-// avoir a deviner -- c'est le rattrapage du decoupage, pas un ornement.
-//
-// ⚠️ ELLE MASQUE, ELLE N'ESTOMPE PAS. Une tuile grisee reste un obstacle a
-// lire et a eviter du regard ; une tuile retiree de la grille ne coute rien.
-//
-// ⚠️ ET LA SEANCE DU JOUR N'EST JAMAIS FILTREE. C'est la porte principale :
-// elle ne depend pas de ce qu'on tape, et la voir disparaitre en cherchant
-// « verbes » donnerait l'impression d'avoir casse l'app.
-function normaliserAccueil(txt){
-    return (txt || "").toLowerCase().normalize("NFD")
-        .replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim();
-}
 
-// Rejoue le filtre courant apres qu'une tuile a paru ou disparu. Sans elle,
-// une section pouvait rester marquee vide alors qu'une tuile venait d'arriver.
-function resyncAccueil(){
-    const champ = document.getElementById("orbChercher");
-    filtrerAccueil(champ ? champ.value : "");
-}
 
-function filtrerAccueil(requete){
-    const grille = document.querySelector("#home .grid");
-    if(!grille) return;
-    const q = normaliserAccueil(requete);
-    const en = document.body.getAttribute("data-learning-dir") === "en";
-    const compte = new Map();
-    let section = null, trouves = 0;
-
-    grille.querySelectorAll(".orb-section, .orb").forEach(el => {
-        if(el.classList.contains("orb-section")){
-            section = el;
-            compte.set(el, 0);
-            return;
-        }
-        if(el.classList.contains("orb-seance")) return;
-        // Une tuile deja masquee pour une autre raison -- mauvaise direction
-        // d'apprentissage, ou `hidden` pose par le code -- ne compte pas : la
-        // recherche ne doit jamais RE-afficher ce que l'app avait cache.
-        const sienne = el.classList.contains("orb-en") ? en
-                     : (el.classList.contains("orb-de") ? !en : true);
-        if(!sienne || el.classList.contains("hidden")) return;
-        const texte = normaliserAccueil(
-            (el.getAttribute("data-cles") || "") + " " + el.textContent);
-        const garde = !q || texte.indexOf(q) >= 0;
-        el.classList.toggle("orb-filtree", !garde);
-        if(garde){
-            trouves++;
-            if(section) compte.set(section, compte.get(section) + 1);
-        }
-    });
-
-    compte.forEach((n, sec) => sec.classList.toggle("section-vide", n === 0));
-    const rien = document.getElementById("orbRien");
-    if(rien) rien.classList.toggle("visible", !!q && trouves === 0);
-}
 
 function majMosaiqueAccueil(){
     const bloc = document.getElementById("carteMosaique");
