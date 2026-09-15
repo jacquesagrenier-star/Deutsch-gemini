@@ -463,6 +463,46 @@ def verifier_indices_revelateurs(r):
                         % (nom, h[:48], len(rs), rs[0]))
 
 
+def verifier_comptes_figes(r, source):
+    """Un libelle de bouton ne doit pas annoncer un NOMBRE d'exercices.
+
+    Seize boutons disaient « M'ENTRAÎNER (70 exercices) → » ou « ARTICLES :
+    NOMINATIV (30) → ». Neuf mentaient au 15 septembre 2026 : le plancher des
+    cinquante avait porte wortstellungV2Exercises de 10 a 53, et les articles
+    du Nominativ n'en ont jamais compte que 10. Personne ne l'a vu, parce que
+    le nombre est du TEXTE : aucun controle ne le relie au jeu qu'il decrit.
+
+    Le corriger ne servirait a rien -- il redeviendrait faux au prochain lot.
+    C'est la decision de la v615, prise pour les tuiles de l'accueil et
+    etendue ici : le bouton dit ce qu'il fait, jamais combien. Cette regle
+    existe pour que le prochain qui aura envie d'ecrire le compte se fasse
+    arreter avant le push, et non par un apprenant.
+
+    On ne regarde que les libelles a fleche : ce sont les boutons d'action.
+    « (2 h) » dans une explication de grammaire n'a rien a voir.
+    """
+    compte = re.compile(r"\(\s*\d+[^)]{0,20}\)\s*(?:→|-&gt;)")
+    vus = 0
+    for m in re.finditer(r">([^<>]{0,120}→)<", source):
+        vus += 1
+        if compte.search(m.group(1)):
+            r.echec("i18n", "libelle a compte fige : %s -- il redeviendra faux "
+                            "au prochain exercice ajoute" % m.group(1).strip())
+    chemin = os.path.join(RACINE, "grammaire.json")
+    if os.path.exists(chemin):
+        with io.open(chemin, encoding="utf-8") as f:
+            textes = json.load(f).get("textes", {})
+        for langue, dico in sorted(textes.items()):
+            for k, val in sorted(dico.items()):
+                if "→" in val:
+                    vus += 1
+                    if compte.search(val):
+                        r.echec("i18n", "grammaire.json %s : %s porte un compte "
+                                        "fige -> %s" % (langue, k, val))
+    r.controle(vus)
+    print("   libelles a fleche : %d, 0 compte fige" % vus)
+
+
 def verifier_cles_utilisees(r, source, cles):
     """Toute cle citee dans le HTML ou via t()/tf() doit exister."""
     citees = set()
@@ -984,6 +1024,7 @@ def main():
     verifier_indices_revelateurs(r)
     verifier_langue_enseignee(r, source)
     verifier_cles_utilisees(r, source, cles)
+    verifier_comptes_figes(r, source)
     fonctions = fonctions_definies(source)
     verifier_appels(r, source, fonctions)
     verifier_ecrans(r, source, fonctions)
