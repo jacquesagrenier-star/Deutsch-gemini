@@ -68,7 +68,31 @@ ORDRE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 # au milieu -- qui amorce l'episode 2 -- et les voeux a la fin. Sept plans, tous
 # parlants, tous chronologiques.
 VITRINE = [8, 9, 10, 11, 12, 13, 17]
-PARLANTS = {5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}
+
+# ⚠️ CETTE LISTE EST CELLE DE L'EPISODE 1, ET ELLE NE VAUT QUE POUR LUI.
+# Gardee comme repli quand la scene ne dit rien. Sur l'episode 2 elle se
+# trompait sur TROIS plans : elle tenait 6 et 12 pour des repliques (ce sont
+# des decors) et 7 pour un decor (c'est le fonctionnaire qui parle). Le
+# montage serait alle chercher une prise d'avatar pour un decor, et une
+# narration « 07-erzaehler.mp3 » qui n'existe pas -- la scene y range un
+# « 07-beamter.mp3 ».
+PARLANTS_EP1 = {5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}
+
+
+def parlants_de_la_scene(scene):
+    """Qui parle a l'image, d'apres la SCENE et non d'apres une constante.
+
+    Le champ `type` de chaque plan le dit deja -- « replique » ou « decor ».
+    Une liste ecrite a la main devient fausse au deuxieme episode, et rien ne
+    le signale : le montage cherche simplement un fichier au mauvais endroit.
+    """
+    f = os.path.join(RACINE, "scenes", scene + ".json")
+    if not os.path.exists(f):
+        return set(PARLANTS_EP1)
+    d = json.load(io.open(f, encoding="utf-8"))
+    return {p["n"] for p in d["plans"] if p.get("type") == "replique"}
+
+
 L, H, IPS = 1080, 1920, 25
 
 
@@ -169,6 +193,7 @@ def main():
         # avec les bons instants, et les sous-titres la lisent.
         total = M.duree(F, dt)
         print("  --    tete            %6.2f s   %s" % (total, os.path.basename(a.tete)))
+    PARLANTS = parlants_de_la_scene(a.scene)
     for n in ordre:
         dst = os.path.join(tmp, "plan%02d.mp4" % n)
         if n in PARLANTS:
@@ -220,7 +245,13 @@ def main():
     liste = os.path.join(tmp, "_liste.txt")
     io.open(liste, "w", encoding="utf-8", newline="\n").write(
         "".join("file '%s'\n" % m.replace("\\", "/") for m in morceaux))
-    defaut = "EPISODE-01-vitrine.mp4" if (a.vitrine or a.ordre) else "EPISODE-01-avatar.mp4"
+    # ⚠️ LE NUMERO VIENT DE LA SCENE, PAS D'UNE CONSTANTE. Le montage de
+    # l'episode 2 sortait sous le nom « EPISODE-01-avatar.mp4 », dans le
+    # dossier du 2. Un fichier mal nomme est la premiere marche vers une
+    # mesure fausse -- deja paye deux fois sur ce projet.
+    num = a.scene.split("-")[0] if a.scene and a.scene[:2].isdigit() else "01"
+    defaut = ("EPISODE-%s-vitrine.mp4" % num if (a.vitrine or a.ordre)
+              else "EPISODE-%s-avatar.mp4" % num)
     dst = a.sortie or os.path.join(ep, defaut)
     subprocess.run([F, "-y", "-v", "error", "-f", "concat", "-safe", "0",
                     "-i", liste, "-c", "copy", dst], check=True)

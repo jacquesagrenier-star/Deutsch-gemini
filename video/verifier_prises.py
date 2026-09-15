@@ -80,6 +80,41 @@ def ecart(F, a, b):
     return float(m.group(1)) if m else 0.0
 
 
+AMORCE, QUEUE = 0.35, 0.90       # les memes que monter_avatar.py
+
+
+def attendus_scene(scene):
+    """La meme table, mais tiree de la SCENE -- pour un episode NEUF.
+
+    ⚠️ IL N'Y A PAS DE FEUILLE DE RE-TOURNAGE AVANT D'AVOIR TOURNE. A-REFAIRE
+    .txt naît quand une prise est a refaire ; un episode neuf n'a que
+    A-TOURNER.txt, qui ne porte pas « Start Frame » ni « GENERER A N SECONDES »
+    -- ces lignes decrivent un formulaire qu'on ne remplit plus.
+
+    ⚠️ ET LA DUREE NE SE COMPARE PAS DE LA MEME FACON. La feuille de
+    re-tournage donne une duree EXACTE a rejouer. Une scene neuve donne une
+    narration, et le clip doit seulement etre ASSEZ LONG : monter_avatar.py
+    prend min(clip ; amorce + narration + queue), donc un clip plus long ne
+    coute que de l'argent et un clip plus court coupe la narration en pleine
+    phrase. On rend donc un PLANCHER, et retenir.py le compare comme tel.
+
+    Renvoie {n: (image_sans_extension, duree_minimale)}.
+    """
+    f = os.path.join(RACINE, "scenes", scene + ".json")
+    if not os.path.exists(f):
+        sys.exit("  Scene introuvable : %s" % os.path.relpath(f, RACINE))
+    d = json.load(io.open(f, encoding="utf-8"))
+    table = {}
+    for p in d["plans"]:
+        # L'extension ecrite dans la scene ne fait pas foi (les decors y
+        # portent « …jpg » pour des fichiers PNG) : on rend la base, et
+        # l'appelant compare a des noms de 01-images/.
+        base = os.path.splitext(p.get("image") or "")[0]
+        mini = AMORCE + float(p.get("duree_audio") or 0) + QUEUE
+        table[p["n"]] = ((base + ".png") if base else None, round(mini, 2))
+    return table
+
+
 def attendus(scene):
     """Ce que la feuille de re-tournage demande : image de depart et duree.
 

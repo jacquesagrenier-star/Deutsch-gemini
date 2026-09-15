@@ -77,7 +77,21 @@ def main():
     tmp = os.path.join(ep, "_montage", "_identif")
     os.makedirs(tmp, exist_ok=True)
     os.makedirs(fin, exist_ok=True)
-    table = V.attendus(a.scene)
+    # ⚠️ UN EPISODE NEUF N'A PAS DE FEUILLE DE RE-TOURNAGE. Elle naît quand une
+    # prise est a refaire. Sans ce repli, retenir.py ne sert qu'au deuxieme
+    # tour -- et la traçabilite de _retenues.txt, qui est toute sa raison
+    # d'etre, manquerait justement au PREMIER passage.
+    #
+    # Le mode change avec la source : la feuille donne une duree EXACTE a
+    # rejouer, la scene donne un PLANCHER (le montage tronque, donc trop long
+    # ne coute que de l'argent et trop court coupe la narration).
+    feuille = os.path.join(ep, "A-REFAIRE.txt")
+    if os.path.exists(feuille):
+        table, duree_exacte = V.attendus(a.scene), True
+    else:
+        table, duree_exacte = V.attendus_scene(a.scene), False
+        print("  (pas de feuille de re-tournage : les attendus viennent de la "
+              "scene,\n   et la duree se lit comme un plancher)\n")
     refs = [f for f in sorted(os.listdir(dim))
             if f.endswith(".png") and "16x9" not in f]
 
@@ -115,8 +129,12 @@ def main():
             mal = []
             if attendu_img and attendu_img not in proches:
                 mal.append("part de %s au lieu de %s" % (trouvee, attendu_img))
-            if attendu_duree and abs(d - attendu_duree) > 0.3:
+            if attendu_duree and duree_exacte and abs(d - attendu_duree) > 0.3:
                 mal.append("dure %.2f s au lieu de %d s" % (d, attendu_duree))
+            elif attendu_duree and not duree_exacte and d < attendu_duree - 0.05:
+                # Trop COURT : la narration serait coupee en pleine phrase, et
+                # le montage ne s'en plaindrait pas.
+                mal.append("dure %.2f s, il en faut %.2f" % (d, attendu_duree))
             if mal:
                 if a.prise:
                     refus.append("plan %02d : %s -- %s" % (n, f, " ; ".join(mal)))
