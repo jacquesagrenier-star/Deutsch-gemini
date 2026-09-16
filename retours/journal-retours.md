@@ -5047,3 +5047,45 @@ code ne doit plus jamais le revoir ». Vérifié ce matin dans un navigateur vid
 la porte tient, seul l'écran `acceso` s'ouvre. **Si elle est entrée sur un
 appareil ou un navigateur où elle n'a jamais tapé de code, c'est autre chose et
 il faut le dire** — ce serait le seul cas où la porte laisse passer.
+
+
+### Suite, le même jour — la porte verrouillée (v36)
+
+**« Le souci, c'est qu'elle n'avait jamais entré le code. »** — Et elle voit
+bien **l'app espagnole**, directement sur l'accueil. Le chemin n'a **pas pu être
+reproduit** : navigateur vierge, `localStorage` vide, caches et service workers
+effacés → seule la porte s'ouvre ; puis le trajet exact de Barbara — app
+allemande installée d'abord (elle l'a, c'est elle qui a fait la relecture des
+synonymes), lien espagnol ensuite — → la page espagnole arrive avec sa porte.
+La clé `wortandoEs_acceso` n'est écrite qu'à un seul endroit du fichier, et
+l'app allemande ne la touche jamais.
+
+⚠️ **ON A DONC FERMÉ TOUS LES CHEMINS AU LIEU DE CHERCHER LE SIEN.** La porte
+n'est qu'une `<section>` parmi quarante : elle cesse d'être à l'écran dès que
+**quoi que ce soit** appelle `showScreen()`, et le fichier compte des dizaines
+de milliers de lignes écrites pour une app dont la porte est ailleurs. Deux
+verrous, publiés en **v36** :
+
+1. **La porte garde l'empreinte du code tapé, plus un drapeau.** Elle écrivait
+   `"1"` ; n'importe quelle valeur `"1"` posée là ouvrait, **d'où qu'elle
+   vienne** — et le `localStorage` est partagé par tout le domaine, app
+   allemande comprise. Elle recompare maintenant l'empreinte à la liste à
+   chaque ouverture.
+2. **`showScreen()` est enveloppé.** Tant que le code n'a pas été donné, aucun
+   écran autre que la porte ne peut devenir actif, quel que soit l'appelant.
+   Vérifié : `showScreen('home')` et `goHome()` appelés de force ramènent à la
+   porte.
+
+**Deux conséquences à dire à Barbara :**
+
+- **Vous retapez votre code une fois chacun.** C'est le prix du premier verrou,
+  et il a été accepté en connaissance de cause. La progression ne bouge pas :
+  elle vit sous d'autres clés.
+- **`python acceso.py --revocar` ferme enfin partout.** Avant, révoquer un code
+  ne fermait rien sur un appareil déjà entré : plus personne ne relisait la
+  liste.
+
+⚠️ **ET C'EST AUSSI UNE MESURE.** Si Barbara entre encore sans code après la
+v36, alors le défaut ne passe **ni** par une valeur traînante dans le
+`localStorage`, **ni** par un changement d'écran — les deux seules portes que
+le code de cette app possède. À lui demander après sa prochaine ouverture.
