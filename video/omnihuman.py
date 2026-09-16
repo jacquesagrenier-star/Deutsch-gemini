@@ -359,8 +359,6 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     sortie = os.path.join(essai, "plan%02d-omnihuman.mp4" % n)
     recu = os.path.join(essai, "plan%02d-fal.json" % n)
 
-    if os.path.exists(sortie) and refaire and not simuler:
-        archiver(sortie)
     if os.path.exists(sortie) and not refaire:
         print("  plan %d : deja la (%s). --refaire pour la remplacer."
               % (n, os.path.basename(sortie)))
@@ -446,6 +444,18 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
 
     facturee = float(res.get("duration") or d)
     cout = facturee * PRIX
+    # ⚠️ ON ARCHIVE ICI, A LA DERNIERE SECONDE, ET PAS PLUS TOT.
+    #    Premiere version de cette reparation, le 16 sept. 2026 au soir :
+    #    on rangeait la prise precedente des l entree dans un_plan, donc
+    #    AVANT l appel. Le lot suivant est tombe sur un HTTP 504 -- l amont
+    #    absent, rien de facture -- et le plan s est retrouve SANS prise
+    #    courante : l ancienne etait partie en -v1, la nouvelle n est
+    #    jamais arrivee.
+    #
+    #    Corriger un ecrasement en creant une disparition n est pas un
+    #    progres. Tant que rien ne revient, rien ne bouge.
+    if os.path.exists(sortie):
+        archiver(sortie)
     octets = telecharger(res["video"]["url"], sortie)
     print("    -> %s  (%.1f Mo, %.2f s facturees, %.2f $)"
           % (os.path.basename(sortie), octets / 1e6, facturee, cout))
