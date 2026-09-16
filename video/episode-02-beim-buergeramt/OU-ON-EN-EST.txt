@@ -308,3 +308,42 @@ CE QU'ON EN FAIT
   3. les quatre plans de Mark (05, 10, 14, 16) attendent leurs nouvelles voix.
   4. `--recuperer` reste a relancer de temps en temps : si la lecture du
      plan 05 revient un jour, elle est gratuite.
+
+
+-----------------------------------------------------------------------
+16 SEPTEMBRE, LE DIAGNOSTIC COMPLET -- ET LA PRISE RATEE N'EST PAS FACTUREE
+-----------------------------------------------------------------------
+Le lot du fonctionnaire a donne 07, 09, 11 (recus), puis le plan 13 a echoue
+exactement comme le plan 05. Le journal complet a livre LE SIGNE QUI
+DISTINGUE UNE VRAIE GENERATION D'UNE FAUSSE :
+
+    plan 07   COMPLETED en 143 s   video recuperee
+    plan 09   COMPLETED en 143 s   video recuperee
+    plan 11   COMPLETED en 140 s   video recuperee
+    plan 13   COMPLETED en  11 s   HTTP 504, aucun resultat
+    plan 05   COMPLETED en   7 s   HTTP 504, aucun resultat (deux fois)
+
+⚠️ UN CLIP DE QUATRE SECONDES DEMANDE ENVIRON 140 SECONDES. Une requete qui
+   se declare COMPLETED en 7 ou 11 secondes N'A RIEN GENERE : le travail
+   s'est interrompu a l'interieur, la file a marque COMPLETED quand meme, et
+   il n'y a aucun resultat a lire -- d'ou le 504, qui n'est donc pas une
+   panne de reseau mais l'absence de fichier.
+
+⚠️ ET CES PRISES-LA NE SONT PAS FACTUREES. Mesure, pas supposition :
+
+       solde avant le lot   19,2027 $
+       solde apres          17,1421 $
+       depense               2,0605 $   = 0,72 + 0,69 + 0,65
+
+   Exactement les trois prises reussies. Le plan 13 n'a rien coute, et les
+   deux echecs du plan 05 non plus. LA PERTE DE 1,30 $ ANNONCEE PLUS HAUT
+   N'A JAMAIS EU LIEU -- c'est ce que dit aussi la documentation de fal
+   (<< failed requests that return 5xx status codes are not billed >>).
+
+CE QU'IL FAUT EN RETENIR POUR LA SUITE
+  - Un echec de ce type ne coute que du TEMPS. On relance, simplement.
+  - Le temps d'inference est le controle de sante le plus sur : sous 30 s
+    pour un clip de 4 s, la prise est fausse meme si l'etat dit COMPLETED.
+  - Noter le solde avant chaque lot reste la seule facon de savoir apres
+    coup ce qui a ete facture. Le solde du 16 septembre apres le lot :
+    17,1421 $.
