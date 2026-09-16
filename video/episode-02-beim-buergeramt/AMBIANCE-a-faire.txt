@@ -1,0 +1,97 @@
+==============================================================
+L'AMBIANCE DE L'EPISODE 2 -- CE QUI EST PRET, CE QUI T'ATTEND
+16 septembre 2026
+==============================================================
+
+⚠️ POURQUOI TU DOIS LE FAIRE TOI-MEME, ET PAS MOI.
+
+La cle API du projet n'a toujours pas la permission `sound_generation`.
+Verifie a l'instant, la reponse est explicite :
+
+    HTTP 401 -- "The API key you used is missing the permission
+    sound_generation to execute this operation."
+
+Deux chemins, au choix :
+  a) ajouter la permission a la cle, dans le tableau de bord ElevenLabs
+     (Profile > API Keys > la cle > cocher Sound Generation) -- et ensuite
+     je fabrique les trois lits en une commande ;
+  b) les fabriquer a la main dans ElevenLabs > Sound Effects, et me dire
+     ou tu les as poses.
+
+Tout le reste est pret et t'attend.
+
+
+--------------------------------------------------------------
+LES TROIS LIEUX, ET QUAND LE SON DOIT CHANGER
+--------------------------------------------------------------
+Mesure sur le montage reel (_montage-avatar/_plans.json), pas estime :
+
+    0.00 s   plan 01   LA RUE devant l'Amt          -> lit "rue"
+    6.16 s   plan 02   L'INTERIEUR, le guichet      -> lit "buergeramt"
+   65.62 s   plan 18   LE COULOIR                   -> lit "couloir"
+   70.21 s   plan 19   LA RUE                       -> lit "rue" (le meme)
+
+Trois lits suffisent : la rue sert deux fois, en ouverture et en chute.
+
+⚠️ LES LITS DE L'EPISODE 1 NE SERVENT PAS. hall.mp3, tapis.mp3 et
+   sortie.mp3 sont un aeroport : hall d'arrivee, tapis a bagages, sortie.
+   Un tapis a bagages dans un bureau municipal s'entend tout de suite.
+
+
+--------------------------------------------------------------
+LES TROIS PROMPTS, A COPIER TELS QUELS
+--------------------------------------------------------------
+Reglages, les memes que l'episode 1 : boucle ON, duree 22 s, influence du
+prompt 60 %, AMELIORATION OFF.
+
+⚠️ L'AMELIORATION REECRIT LE PROMPT et peut gommer le "no intelligible
+   speech" -- la clause qui empeche des voix de se glisser dans le fond.
+   C'est la seule case qui compte vraiment.
+
+1. rue-berlin.mp3
+   A quiet Berlin side street on a Monday morning: distant traffic on a
+   larger street, a tram passing far away, occasional footsteps on the
+   pavement, a bicycle bell once. Calm, open air, no intelligible speech.
+
+2. buergeramt.mp3
+   The inside of a small German municipal office: quiet room tone, a
+   fluorescent light hum, a printer working somewhere behind a wall, a
+   chair moving on a hard floor, a keyboard now and then, a door closing
+   at a distance. Muffled, unhurried, no intelligible speech.
+
+3. couloir.mp3
+   A long stone corridor in an old public building: footsteps echoing on
+   a tiled floor, a heavy door closing far away, a faint hum. Empty,
+   resonant, no intelligible speech.
+
+⚠️ ET RIEN DE CE QUE MARK DEMANDE NE DOIT S'ENTENDRE. Pas de haut-parleur
+   qui annonce des rendez-vous, pas de numero appele, pas de voix qui dit
+   "Anmeldung". Un fond qui repond a la question du plan 5 rend la scene
+   absurde -- c'est la meme regle que l'annonce de l'aeroport a
+   l'episode 1, et elle a deja failli couter un plan.
+
+⚠️ PAS D'ANNONCE DU TOUT DANS CET EPISODE. Le Buergeramt de la scene est
+   une piece avec un guichet, pas une gare. Le fichier annonce-*.wav de
+   l'episode 1 ne se reutilise pas ici.
+
+
+--------------------------------------------------------------
+LA COMMANDE, UNE FOIS LES TROIS FICHIERS DANS audio/ambiance/
+--------------------------------------------------------------
+    python video/ambiance.py \
+      --clip video/episode-02-beim-buergeramt/EPISODE-02-avatar.mp4 \
+      --lit audio/ambiance/rue-berlin.mp3@0 \
+      --lit audio/ambiance/buergeramt.mp3@6.16 \
+      --lit audio/ambiance/couloir.mp3@65.62 \
+      --lit audio/ambiance/rue-berlin.mp3@70.21 \
+      --sortie video/episode-02-beim-buergeramt/EPISODE-02-sonorise.mp4
+
+Les niveaux sont dans l'outil et ne se discutent pas a l'oreille : le lit
+descend a -24 dB sous le dialogue. Ce n'est pas un gout, c'est le critere
+WCAG 1.4.7 -- et pour une app d'apprentissage la raison est plus forte
+encore : un apprenant qui decode de l'allemand n'a aucune attention a
+depenser sur un fond trop present.
+
+⚠️ L'AMBIANCE NE VA JAMAIS DANS LA PISTE QU'ON TELEVERSE chez fal. Elle se
+   pose ICI, sur le montage, apres coup. Un fond dans le mp3 ferait
+   articuler l'avatar dessus.
