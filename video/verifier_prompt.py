@@ -139,8 +139,17 @@ REGLES = [
      u"Un mouvement de camera dans une serie a camera verrouillee",
      u"Regle de la serie depuis l'episode 1 : tous les plans sont fixes, sinon "
      u"les raccords ne tiennent pas entre deux plans generes separement.",
-     u"Garder la phrase << Locked-off camera: no zoom, no push-in, no camera "
-     u"movement of any kind. >>"),
+     u"⚠️ LE REMEDE A CHANGE LE 16 SEPT. 2026 AU SOIR, et le motif est "
+     u"embarrassant : cette regle PRESCRIVAIT une phrase a trois negations "
+     u"-- << no zoom, no push-in, no camera movement of any kind >> -- dans "
+     u"un fichier dont la toute premiere regle explique que ces modeles "
+     u"fabriquent ce qu'on leur interdit. Et la caméra a recadré en cours "
+     u"de plan sur la reprise du plan 09. On decrit donc un ETAT : "
+     u"<< The camera is locked on a tripod and stays there for the whole "
+     u"shot: the same lens, the same height, the same distance. >> Et pour "
+     u"la queue : << The framing holds to the very end: in the last frame he "
+     u"is the same size and in the same place in the picture as in the "
+     u"first. >>"),
 
     # ----------------------------------------------------------------------
     # CE QUE L'EPISODE 1 A DEJA PAYE (video/PROCEDURE-episode.md, section
@@ -434,6 +443,10 @@ MARQUEURS = re.compile(r"(?im)^(first|then|next|after that|finally)\b")
 # << push-in >>, precedes de << no >>. Une regle qui cherche ces mots se declenche
 # donc sur la consigne qu'elle est censee proteger : premier faux positif du
 # controle, trouve en le lancant. On retire la phrase avant de chercher.
+# ⚠️ ELLE NE SERT PLUS QU AUX ANCIENS PROMPTS. La phrase de camera est
+#    desormais positive (voir le remede de camera-qui-bouge) et ne contient
+#    plus de negation a retirer. On garde le retrait pour les episodes 1 et
+#    2, dont les prompts portent encore l ancienne formule.
 PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 
 
