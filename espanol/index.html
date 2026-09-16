@@ -8974,7 +8974,7 @@ const I18N = {
         orb_kasus_title: "Ser vs estar", _kasus_: "Cas & articles",
         orb_kasus_sub: "two verbs for “to be”", _kasus_sub_: "der · den · dem · ein · kein",
         orb_adjektive_title: "Adjectifs",
-        orb_adjektive_sub: "réviser · déclinaison",
+        orb_adjektive_sub: "réviser · accord",
         orb_praep_title: "Por vs para", _praep_: "Prépositions",
         orb_praep_sub: "two words for “for”", _praep_sub_: "Dativ · Akkusativ",
         orb_wortstellung_title: "Two pasts", _wortstellung_: "Ordre des mots",
@@ -9134,7 +9134,7 @@ const I18N = {
         flash_repondre: "Réponds à la carte pour continuer.",
         regle_sans_exception: "aucune exception dans nos mots",
         regle_explication: "Les noms en {fin} sont {genre} dans {taux} % de nos mots",
-        op_nomen_o6_d: "der · die · das — autant de chaque",
+        op_nomen_o6_d: "el · la — deux genres",
         kicker_quiz_article: "Quel article ?",
         dictation_replay_btn: "🔊 RÉÉCOUTER",
         exercice_ecouter_btn: "🔊 ENTENDRE LA PHRASE",
@@ -9933,7 +9933,7 @@ const I18N = {
         orb_kasus_title: "Ser vs estar", _kasus_: "Cases & articles",
         orb_kasus_sub: "two verbs for “to be”", _kasus_sub_: "der · den · dem · ein · kein",
         orb_adjektive_title: "Adjectives",
-        orb_adjektive_sub: "revise · declension",
+        orb_adjektive_sub: "revise · agreement",
         orb_praep_title: "Por vs para", _praep_: "Prepositions",
         orb_praep_sub: "two words for “for”", _praep_sub_: "Dativ · Akkusativ",
         orb_wortstellung_title: "Two pasts", _wortstellung_: "Structure",
@@ -16473,7 +16473,7 @@ function startQuizTerminaisons(){
 // redescend a 33 %, le hasard reel d'un choix a trois, et le score redevient
 // une mesure. Ne pas « simplifier » ce tirage.
 const QUIZ_ARTICLE_TAILLE = 30;              // 10 par genre
-const QUIZ_ARTICLE_GENRES = ["der", "die", "das"];
+const QUIZ_ARTICLE_GENRES = ["el", "la"];
 
 // Compose un texte dans UNE langue precise, sans passer par la langue active.
 // tf() sert l'affichage immediat ; ici on fabrique un exercice qui range ses
@@ -16513,7 +16513,7 @@ function construireQuizArticle(cartes){
             // la reponse. Un champ vide vaut mieux qu'une ligne qui meuble.
             ex["hint" + suff] = "";
             ex["explanation" + suff] = article + " " + mot + " · " + labelPluriel
-                + " " + (aUnPluriel ? "die " + pluriel : "—");
+                + " " + (aUnPluriel ? articuloPlural(article) + pluriel : "—");
         });
         return ex;
     });
@@ -16524,7 +16524,7 @@ function construireQuizArticle(cartes){
 // personne travaille en ce moment. On garde cet ORDRE, puis on prend dix mots
 // par genre dedans : la familiarite d'abord, l'equilibre par-dessus.
 function startQuizArticle(){
-    const parGenre = { der: [], die: [], das: [] };
+    const parGenre = { el: [], la: [] };
     const pool = [];
     themesComptes().forEach(theme => {
         LEVELS.forEach(lvl => {
@@ -16544,19 +16544,19 @@ function startQuizArticle(){
     if(!ordre.length) ordre = pool;
     ordre.forEach(item => {
         const g = item.word[1];
-        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / 3) parGenre[g].push(item);
+        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) parGenre[g].push(item);
     });
     // Le reservoir peut manquer d'un genre (« das » est le plus rare) : on
     // complete depuis le pool entier plutot que de servir une serie desequilibree
     // en silence.
     QUIZ_ARTICLE_GENRES.forEach(g => {
-        if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / 3) return;
+        if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) return;
         for(const item of pool){
-            if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / 3) break;
+            if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) break;
             if(item.word[1] === g && parGenre[g].indexOf(item) < 0) parGenre[g].push(item);
         }
     });
-    const choix = shuffleArray(parGenre.der.concat(parGenre.die, parGenre.das));
+    const choix = shuffleArray(parGenre.el.concat(parGenre.la));
     const liste = construireQuizArticle(choix);
     if(!liste.length){ showInfoToast(t('alert_no_words_available')); return; }
     startExerciseSet(liste, "kicker_quiz_article",
@@ -20265,9 +20265,9 @@ function loadFlashcard(){
             // entrees, notes "—") gardent le tiret seul, sans article.
             const pluralForm = (card[2] || "").trim();
             const aUnPluriel = pluralForm && pluralForm !== "—" && pluralForm !== "-";
-            const plurielDit = aUnPluriel ? "die " + pluralForm : null;
+            const plurielDit = aUnPluriel ? articuloPlural(card[1]) + pluralForm : null;
             document.getElementById("flashPluralText").textContent =
-                `${t('label_plural')} ${aUnPluriel ? "die " + pluralForm : (pluralForm || "—")}`;
+                `${t('label_plural')} ${aUnPluriel ? articuloPlural(card[1]) + pluralForm : (pluralForm || "—")}`;
             // Les 246 noms sans pluriel affichent « — » : pas de bouton, il n'y a
             // rien a dire. Un haut-parleur qui ne produit rien se lit comme une panne.
             reglerAudioPluriel(plurielDit);
