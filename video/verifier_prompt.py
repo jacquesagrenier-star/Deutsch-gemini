@@ -94,8 +94,22 @@ REGLES = [
      u"behind it a plain pale-green wall. >>"),
 
     ("absent-qui-agit", "faute",
+     # ⚠️ ELARGIE LE 16 SEPT. 2026 AU SOIR, APRES UNE SILHOUETTE ENTREE PAR
+     #    LA DROITE au plan 16. Le bloc de decor des ONZE prompts disait
+     #    << his eyes rest on a fixed point just beyond the right edge of the
+     #    frame, THE WAY ONE LOOKS AT SOMEONE ONE IS SPEAKING TO >>. La
+     #    derniere proposition ne decrit pas un regard : elle DECLARE UNE
+     #    PERSONNE juste hors du cadre, et le modele l a fait entrer.
+     #
+     #    La regle ne voyait que les formulations de l episode 2 -- des objets
+     #    qu une main hors champ devait prendre. Elle couvre maintenant aussi
+     #    les PERSONNES hors champ qu on nomme sans y penser, en croyant
+     #    decrire une direction de regard.
      r"(?i)(until it is taken|when he takes it|once he takes it|"
-     r"hands? it to (him|her)|as (he|she) takes)",
+     r"hands? it to (him|her)|as (he|she) takes"
+     r"|someone (\w+ ){0,3}(is speaking|is talking|he is addressing)"
+     r"|the (person|man|woman) (he|she) is (speaking|talking) to"
+     r"|the way one looks at someone)",
      u"Une consigne que seule la personne hors champ pourrait accomplir",
      u"16 sept. 2026, plan 13 : << the hand stays out until it is taken >>, "
      u"alors qu'un autre paragraphe interdit qu'on voie Mark. Personne ne peut "
