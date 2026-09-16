@@ -36,7 +36,7 @@ LA PISTE CYCLABLE
    bienveillant : personne n'a tort, deux logiques se rencontrent.
 
 --------------------------------------------------------------
-LE DECOUPAGE -- 18 plans, environ 84 s, 9 parlants
+LE DECOUPAGE -- 18 plans, environ 84 s, 11 parlants
 --------------------------------------------------------------
 Chaque plan parlant : la replique allemande (A2), le francais, et LA
 SEULE chose que le visage doit faire.
@@ -190,7 +190,8 @@ memes immeubles, memes velos gares, meme feu.
 --------------------------------------------------------------
 LE COUT, ESTIME AVANT DE COMMENCER
 --------------------------------------------------------------
-  9 plans parlants, environ 39 s d'avatar          ~ 6,30 $ chez fal
+  11 plans parlants, environ 48 s d'avatar        ~ 7,70 $ chez fal
+  4 images maitresses + 15 images derivees         ~ 2,85 $ (0,15 $ piece)
   6 plans de decor                                  a fabriquer (mouvement.py)
   18 repliques et narrations en voix                ~ 900 credits ElevenLabs
   3 lits d'ambiance (rue, carrefour, trottoir)      ~ 300 credits
@@ -199,3 +200,91 @@ LE COUT, ESTIME AVANT DE COMMENCER
    decidee le 16 septembre pour l'episode 2, apres coup, et il a fallu
    refaire six prises d'avatar. Ici on commence en v3 : aucune reprise.
    Le narrateur et les figures d'episode restent en v2.
+
+
+==============================================================
+LES QUATRE IMAGES MAITRESSES
+==============================================================
+⚠️ ON LES FABRIQUE ET ON LES VALIDE AVANT TOUT LE RESTE. Les quinze autres
+   images de l'episode en derivent -- c'est la regle du 16 septembre 2026 :
+   une image generee a part remeuble la piece, et le decor change d'un plan
+   a l'autre sans que rien ne le signale.
+
+   python video/image_plan.py --scene 03-auf-dem-radweg --plan NN --ref ...
+
+⚠️ LE BLOUSON JAUNE DU CYCLISTE N'EST PAS UN DETAIL DE COSTUME, C'EST LA
+   CHUTE. On le voit de pres pendant quatre plans, puis DEUX SECONDES de
+   loin et de dos au plan 18. Sans un signe qui accroche l'oeil, le
+   spectateur ne le reconnait pas -- et la blague tombe a plat, parce que
+   c'est un cycliste quelconque qui grille le feu au lieu de CELUI-LA.
+   Le jaune claque sur le gris berlinois et sur la bande rouge.
+
+
+PLAN 02   Mark, plan moyen   (image maitresse : sert aussi aux plans 05, 10, 16)
+
+PROMPT D'IMAGE (Framing)
+A young man of twenty-five stands on a Berlin pavement on a bright weekday
+morning, seen from the waist up, three quarters turned to his right, left of
+centre in a vertical frame. He wears a light blue shirt with the sleeves
+rolled up and dark navy trousers. Behind him the pavement runs on with a
+broad red-painted bicycle strip beside a grey pedestrian strip, bicycles
+parked against a plain pale building front, and a pedestrian traffic light
+further along the street. Daylight, overcast and even. He looks at a point
+beyond the right edge of the frame and does not face the camera.
+
+Reference : personnages/Mark.png, personnages/Mark-troisquarts.png
+Image a nommer : mark-marche
+
+
+PLAN 08   Mark se retourne   (a DERIVER de mark-marche, pas a regenerer)
+
+PROMPT D'IMAGE (Framing)
+The same young man on the same Berlin pavement, in the same light blue shirt
+and dark navy trousers, in the same street with the same red bicycle strip,
+the same parked bicycles and the same building front. He has turned to his
+right and now looks back over that shoulder, surprised, eyebrows raised,
+mouth closed. Waist up, left of centre, vertical frame. He looks at a point
+beyond the right edge of the frame and does not face the camera.
+
+Reference : mark-marche (l'image du plan 02), personnages/Mark.png
+Image a nommer : mark-retourne
+
+
+PLAN 04   La dame au feu   (figure d'episode : un seul plan, aucune fiche)
+
+PROMPT D'IMAGE (Framing)
+A German woman in her fifties stands on a Berlin pavement beside a pedestrian
+traffic light, seen from the waist up, three quarters turned to her left,
+right of centre in a vertical frame. A plain dark coat, a shopping bag over
+one arm. Her face is indignant and polite at once. Behind her the pavement
+runs on with parked bicycles and a plain pale building front. Daylight,
+overcast and even. She looks at a point beyond the left edge of the frame and
+does not face the camera.
+
+Image a nommer : dame-feu
+
+
+PLAN 09   Le cycliste   (image maitresse : sert aussi aux plans 11, 13, 15 ET 18)
+
+PROMPT D'IMAGE (Framing)
+A man in his forties has stopped on his bicycle on a Berlin bicycle lane,
+seen from the waist up, three quarters turned to his left, right of centre in
+a vertical frame. He wears a BRIGHT YELLOW waterproof cycling jacket, clearly
+visible, over dark trousers, and his bicycle is dark grey. One foot is on the
+ground, both hands rest on the handlebars. His face is annoyed and in control
+of it. Behind him the street runs on with parked bicycles and a plain pale
+building front. Daylight, overcast and even. He looks at a point beyond the
+left edge of the frame and does not face the camera.
+
+Image a nommer : cycliste-jaune
+
+
+==============================================================
+CE QUI SUIT, UNE FOIS LES QUATRE VALIDEES
+==============================================================
+  - les sept images de decor, DERIVEES de mark-marche pour le lieu ;
+  - l'image du plan 18, DERIVEE de cycliste-jaune : le meme homme, le meme
+    blouson jaune, vu de dos et de loin, qui traverse au rouge ;
+  - les voix : Mark en eleven_v3 avec balises DES LE DEPART, le narrateur et
+    les figures d'episode en v2 ;
+  - les onze prompts d'avatar sont deja ecrits et passent le controle.
