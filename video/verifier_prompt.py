@@ -172,6 +172,20 @@ REGLES = [
      u"pilote par l'audio, les reintroduire referait le defaut.",
      u"Le son porte deja le minutage : << let his face follow the voice >>."),
 
+    ("objet-qui-se-materialise", "doute",
+     None,   # objet nomme + plan large sans dire ce que tiennent les mains
+     u"Un objet nomme, des mains dont on ne dit rien : il apparaitra dedans",
+     u"16 sept. 2026, plan 15 : la replique enumere deux documents, le prompt "
+     u"disait seulement << one hand may rise slightly >>, et une page A4 "
+     u"couverte de texte s'est MATERIALISEE dans sa main en cours de plan -- "
+     u"elle n'est pas dans l'image de depart. Signale par Jacques : << elle "
+     u"apparait d'un seul coup, ce n'est pas du tout realiste >>. 0,70 $.",
+     u"MEME CAUSE QUE LA GARDE NEGATIVE, et c'est le principe general : ce que "
+     u"le prompt NOMME, le modele le fabrique -- meme quand la phrase parle de "
+     u"ce que le personnage DIT et non de ce qu'on voit. Dans un plan ou les "
+     u"mains sont visibles, dire ce qu'elles tiennent, y compris rien : << his "
+     u"hands rest on the counter, open and empty, and they stay there >>."),
+
     ("negations-en-nombre", "doute",
      None,   # compte, voir controler()
      u"Trop de negations -- le guide du modele demande le contraire",
@@ -199,6 +213,8 @@ VERBES_PAROLE = re.compile(
 # dans SON paragraphe -- celui qui commence par << Finally >>.
 APRES_PAROLE = re.compile(r"(?i)(blinks?|breathes?|listens?|waits?)")
 PARA_FINAL = re.compile(r"(?ms)^Finally\b.*?(?=\n\s*\n|\Z)")
+# Le paragraphe de decor de la garde positive : ce qu'il nomme EST dans l'image.
+PARA_DECOR = re.compile(r"(?ms)^He is alone in the room\b.*?(?=\n\s*\n|\Z)")
 
 # Les attenuateurs. Au-dela de six dans un prompt, le geste disparait.
 ATTENUATEURS = re.compile(
@@ -208,6 +224,26 @@ ATTENUATEURS = re.compile(
 # Les negations, au sens du guide : ce que le modele doit se representer pour
 # le refuser.
 NEGATIONS = re.compile(r"(?i)\b(no|not|never|nobody|nothing|neither|without)\b")
+
+# Les objets que le modele sait fabriquer si on les nomme sans dire ou ils sont.
+#
+# ⚠️ LE PLURIEL. La premiere version ecrivait \bdocument\b et ratait
+# << two documents >> -- c'est-a-dire exactement le prompt qui a fait apparaitre
+# la feuille. Un controle qui rate le cas qui l'a fait naitre ne sert a rien.
+OBJETS = re.compile(r"(?i)\b(forms?|sheets?|papers?|documents?|leaflets?|"
+                    r"cards?|passports?|stamps?|pens?|phones?|folders?)\b")
+# Ce qui compte comme << j'ai dit ce que font les mains >>.
+#
+# ⚠️ << empty >> TOUT SEUL NE VEUT RIEN DIRE. La premiere version l'acceptait
+# comme preuve qu'on avait decrit les mains -- et la garde positive contient
+# << the room is quiet and empty >> et << an empty noticeboard >>. Le controle
+# se declarait donc satisfait par une phrase qui parle du MUR. Le mot doit
+# etre attache aux mains.
+MAINS_DITES = re.compile(
+    r"(?i)(hands?[^.]{0,60}(rest|stay|lie|remain|empty|open)"
+    r"|(empty|open)[^.]{0,30}hands?"
+    r"|holds? (it|the sheet|the form|it out)"
+    r"|in his hands?|between finger)")
 
 MARQUEURS = re.compile(r"(?im)^(first|then|next|after that|finally)\b")
 
@@ -254,6 +290,23 @@ def controler(texte):
             if n > 6:
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"%d attenuateurs" % n))
+            continue
+        if code == "objet-qui-se-materialise":
+            # Seulement quand les mains sont dans le cadre : un plan tete et
+            # epaules n'a pas de mains a decrire.
+            # ⚠️ ET ON NE COMPTE PAS LES OBJETS DU DECOR. La garde positive que
+            # j'ai ecrite nomme << the date stamp >> -- un objet qui est DANS
+            # l'image, donc sans danger. Sans cette exception, la regle se
+            # declenchait sur sept prompts dont quatre deja tournes et bons :
+            # un controle qui crie tout le temps ne se lit plus.
+            utile = PARA_DECOR.sub(" ", texte)
+            large = re.search(r"(?i)(medium shot|waist up)", texte)
+            objet = OBJETS.search(utile)
+            dit_les_mains = MAINS_DITES.search(texte)
+            if large and objet and not dit_les_mains:
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"<< %s >> nomme, et rien sur ce que tiennent "
+                                u"les mains" % objet.group(0)))
             continue
         if code == "negations-en-nombre":
             n = len(NEGATIONS.findall(sans_verrou))

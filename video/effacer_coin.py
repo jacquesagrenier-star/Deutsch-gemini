@@ -86,10 +86,59 @@ def mesurer(clip, large, haut):
     os.remove(brut)
 
 
-def effacer(clip, x, y, large, haut, fondu, image_ref):
+def bouge(clip, x, y, large, haut, image_ref):
+    """De combien la zone s'ecarte-t-elle de l'image qu'on va y recopier ?
+
+    ⚠️ CETTE MESURE EST OBLIGATOIRE, ET ELLE EST NEE D'UNE FAUTE. Le
+    16 septembre 2026 j'ai recopie la zone des MAINS du plan 17 depuis une
+    image plus tardive, pour que la feuille soit la des le debut. Jacques :
+    << c'est comme une image par-dessus l'autre, on voit que ce n'est pas
+    naturel ; sa main droite a l'air immobile, et on voit une main qui
+    apparait en dessous. >> Il avait raison. Mesure faite APRES coup : la zone
+    s'ecartait de 54 a 57 niveaux de gris pendant la premiere demi-seconde --
+    la main bougeait enormement.
+
+    Le mode d'emploi de cet outil disait deja, des sa premiere version, qu'il
+    ne repare qu'un fond FIXE. Je l'avais ecrit, et je l'ai quand meme fait.
+    D'ou cette mesure, qui n'est plus une recommandation mais une porte.
+    """
+    import io as _io
+    W, H = 60, 60
+    brut = os.path.join(os.environ.get("TEMP", "."), "_zone.raw")
+    ffmpeg(["-i", clip, "-vf",
+            "crop=%d:%d:%d:%d,format=gray,scale=%d:%d"
+            % (large, haut, x, y, W, H), "-f", "rawvideo", brut])
+    d = _io.open(brut, "rb").read()
+    n = len(d) // (W * H)
+    i_ref = min(max(0, int(image_ref * 25)), n - 1)
+    ref = d[i_ref * W * H:(i_ref + 1) * W * H]
+    pire = 0.0
+    quand = 0.0
+    for i in range(n):
+        f = d[i * W * H:(i + 1) * W * H]
+        e = sum(abs(f[k] - ref[k]) for k in range(W * H)) / float(W * H)
+        if e > pire:
+            pire, quand = e, i / 25.0
+    os.remove(brut)
+    return pire, quand
+
+
+def effacer(clip, x, y, large, haut, fondu, image_ref, forcer=False):
     W, H = dimensions(clip)
     if x + large > W or y + haut > H:
         sys.exit("  la zone deborde du cadre (%dx%d)." % (W, H))
+
+    ecart, quand = bouge(clip, x, y, large, haut, image_ref)
+    print("  la zone s'ecarte au plus de %.1f niveaux de gris (a %.2f s)"
+          % (ecart, quand))
+    if ecart > 12 and not forcer:
+        sys.exit(
+            "\n  CETTE ZONE BOUGE : une rustine fixe y ferait une image\n"
+            "  par-dessus l'autre -- un objet fige, et le vrai mouvement qui\n"
+            "  reapparait sur les bords. C'est arrive le 16 septembre 2026 sur\n"
+            "  les mains du plan 17, et ca s'est vu tout de suite.\n\n"
+            "  Un fond immobile reste sous 10. Au-dela, il faut regenerer.\n"
+            "  --forcer si tu sais pourquoi.")
 
     base = os.path.splitext(clip)[0]
     garde = base + "-AVANT-coin.mp4"
@@ -154,6 +203,8 @@ def main():
                    help="seconde de l'image PROPRE a recopier (defaut 0)")
     p.add_argument("--mesurer", action="store_true",
                    help="dire ou et quand le bord change, sans rien modifier")
+    p.add_argument("--forcer", action="store_true",
+                   help="rustiner une zone qui bouge (voir bouge())")
     a = p.parse_args()
 
     if not os.path.exists(a.clip):
@@ -167,7 +218,7 @@ def main():
     if a.mesurer:
         mesurer(a.clip, max(large, 400), max(haut, 600))
         return
-    effacer(a.clip, x, y, large, haut, a.fondu, a.ref)
+    effacer(a.clip, x, y, large, haut, a.fondu, a.ref, a.forcer)
 
 
 if __name__ == "__main__":
