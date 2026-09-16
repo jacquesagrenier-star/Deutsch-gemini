@@ -105,7 +105,109 @@ REGLES = [
      u"les raccords ne tiennent pas entre deux plans generes separement.",
      u"Garder la phrase << Locked-off camera: no zoom, no push-in, no camera "
      u"movement of any kind. >>"),
+
+    # ----------------------------------------------------------------------
+    # CE QUE L'EPISODE 1 A DEJA PAYE (video/PROCEDURE-episode.md, section
+    # << Les cinq pieges, chacun paye d'une prise >>).
+    #
+    # ⚠️ TOUS ETAIENT DEJA ECRITS quand on a tourne l'episode 2, et l'un d'eux
+    # -- << minimal negation >> -- a quand meme coute quatre prises. C'est
+    # exactement la remarque de Jacques le 16 septembre : une lecon rangee dans
+    # un document se relit quand on y pense. Elles s'executent maintenant.
+    # ----------------------------------------------------------------------
+    ("pas-de-verbe-de-parole", "faute",
+     None,   # cherche une liste de verbes, voir controler()
+     u"Aucun vrai verbe de parole dans le prompt",
+     u"Episode 1 : c'est le remede que donne le guide d'OmniHuman pour les "
+     u"bouches qui bougent mal -- << Unnatural lip movements: add explicit "
+     u"speaking verbs >>. Nos premiers prompts le mettaient en derniere ligne "
+     u"comme une contrainte technique, et les levres etaient fausses.",
+     u"Ecrire ce qu'il DIT, avec un verbe : he says, he asks, he answers, he "
+     u"greets, he explains, he names, he lists, he repeats."),
+
+    ("fin-sans-intention", "faute",
+     None,   # cherche le bloc d'apres-parole, voir controler()
+     u"Rien apres la parole : l'avatar retombe en poker-face",
+     u"Episode 1, documente : sans bloc d'apres-parole, le visage se fige des "
+     u"que le son s'arrete. Et la moitie d'un plan de quatre secondes est du "
+     u"silence -- duree_audio n'est PAS la duree du plan.",
+     u"Finir par ce qu'il veut pendant qu'il se tait : << he listens without "
+     u"speaking >>, et ce qui vit -- il cligne, il respire, il attend. Une "
+     u"queue de plan a besoin d'une INTENTION, pas seulement de gestes."),
+
+    ("verbe-sans-plafond", "doute",
+     r"(?i)\b(lifts?|raises?) (his|her|one) (hand|arm|eyebrows?)\b",
+     u"Un verbe fort sans amplitude : il sera sur-joue",
+     u"Episode 1, une prise : << she lifts one hand >> -- la main est partie en "
+     u"l'air. Le modele obeit au verbe s'il n'a rien d'autre.",
+     u"Nommer l'amplitude AVEC le geste : << lifts one hand a few centimetres "
+     u"from the counter and settles it back >>."),
+
+    ("qualificatifs-empiles", "doute",
+     None,   # compte les attenuateurs, voir controler()
+     u"Des attenuations empilees : ce sera sous-joue jusqu'a l'invisible",
+     u"Episode 1, une prise : << a small, gentle, closed-lipped smile... "
+     u"nothing broad >> a donne presque rien. LE MODELE OBEIT AUX "
+     u"MODIFICATEURS PLUS QU'AU VERBE.",
+     u"Decrire l'etat d'arrivee plutot que des limites : << a half-smile that "
+     u"reaches his eyes >>, et s'arreter la."),
+
+    ("decrit-ce-que-l-image-porte", "doute",
+     r"(?i)(depth of field|\b\d{2}mm\b|bokeh|soft overhead|"
+     u"he wears|she wears|his hair is|her hair is|the lighting is)",
+     u"Le prompt decrit ce que l'image montre deja",
+     u"Episode 1 : << soft overhead terminal lighting, shallow depth of field, "
+     u"50mm >> ajoutes sur la foi d'un guide TEXTE-vers-video, ou rien "
+     u"n'existe avant le prompt. Ici l'image existe, et leur fiche le dit : "
+     u"<< Do not describe static visual details already visible in the input "
+     u"image. >>",
+     u"Ne decrire que ce qui BOUGE : le visage, le regard, le geste, la "
+     u"respiration."),
+
+    ("minutage-en-secondes", "faute",
+     r"(?i)\b(at|after|for|during)\s+\d+([.,]\d+)?\s*(s\b|sec|second)",
+     u"Une fenetre de parole donnee en secondes",
+     u"Episode 1 : c'etait la panne de Seedance -- il recevait des chiffres et "
+     u"faisait ce qu'il voulait, de +0,11 a +1,96 s d'ecart. Chez un modele "
+     u"pilote par l'audio, les reintroduire referait le defaut.",
+     u"Le son porte deja le minutage : << let his face follow the voice >>."),
+
+    ("negations-en-nombre", "doute",
+     None,   # compte, voir controler()
+     u"Trop de negations -- le guide du modele demande le contraire",
+     u"Le guide d'OmniHuman met << clarity, non-contradiction, and minimal "
+     u"negation >> en tete de ses principes. Nos prompts d'episode 1 en "
+     u"alignaient QUATORZE, dont cinq d'affilee sur l'arriere-plan -- "
+     u"precisement le passage qui echouait.",
+     u"Un modele qui doit se representer << personne ne s'avance >> doit "
+     u"d'abord se representer quelqu'un qui s'avance. Leurs propres exemples "
+     u"sont positifs : << The leaves in the background sway. >>"),
 ]
+
+# Les verbes qui font parler. Un prompt sans aucun d'eux decrit une pose, pas
+# une replique -- et c'est la cause documentee des bouches qui bougent mal.
+#
+# ⚠️ SANS << he >> DEVANT. La premiere version exigeait << he asks >> et ratait
+# << and asks again >> du plan 16 : le verbe etait la, la phrase coordonnee
+# avait laisse tomber le sujet. Un controle qui accuse un prompt correct se
+# fait desarmer au bout de deux fois.
+VERBES_PAROLE = re.compile(
+    r"(?i)\b(says|asks|answers|replies|greets|explains|tells|names|lists|"
+    r"repeats|states|adds|offers|confirms|agrees|reads|speaking)\b")
+
+# Le bloc d'apres-parole : ce qu'il fait pendant qu'il se tait. On le cherche
+# dans SON paragraphe -- celui qui commence par << Finally >>.
+APRES_PAROLE = re.compile(r"(?i)(blinks?|breathes?|listens?|waits?)")
+PARA_FINAL = re.compile(r"(?ms)^Finally\b.*?(?=\n\s*\n|\Z)")
+
+# Les attenuateurs. Au-dela de six dans un prompt, le geste disparait.
+ATTENUATEURS = re.compile(
+    r"(?i)\b(small|slight(ly)?|gentl[ey]|subtle|barely|hardly|faint(ly)?|"
+    r"a little|not broad|nothing broad|minimal|tiny)\b")
+
+# Les negations, au sens du guide : ce que le modele doit se representer pour
+# le refuser.
+NEGATIONS = re.compile(r"(?i)\b(no|not|never|nobody|nothing|neither|without)\b")
 
 MARQUEURS = re.compile(r"(?im)^(first|then|next|after that|finally)\b")
 
@@ -127,6 +229,38 @@ def controler(texte):
             if n > 3:
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"%d temps marques" % n))
+            continue
+        if code == "pas-de-verbe-de-parole":
+            if not VERBES_PAROLE.search(texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"aucun de : says, asks, answers, greets..."))
+            continue
+        if code == "fin-sans-intention":
+            # ⚠️ PREMIERE VERSION FAUSSE, ET INSTRUCTIVE : elle regardait le
+            # dernier tiers du FICHIER. Or deux paragraphes de forme suivent la
+            # queue du plan -- le decor et le cadrage -- donc le bloc
+            # d'apres-parole n'y est jamais, et huit prompts corrects etaient
+            # declares fautifs. On cherche le paragraphe lui-meme.
+            para = PARA_FINAL.search(texte)
+            if not para:
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"aucun paragraphe de queue de plan"))
+            elif len(APRES_PAROLE.findall(para.group(0))) < 2:
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"la queue du plan ne dit pas ce qu'il fait"))
+            continue
+        if code == "qualificatifs-empiles":
+            n = len(ATTENUATEURS.findall(texte))
+            if n > 6:
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"%d attenuateurs" % n))
+            continue
+        if code == "negations-en-nombre":
+            n = len(NEGATIONS.findall(sans_verrou))
+            if n > 10:
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"%d negations (le guide en demande le moins "
+                                u"possible)" % n))
             continue
         ou = sans_verrou if code == "camera-qui-bouge" else texte
         m = re.search(motif, ou)
@@ -169,11 +303,42 @@ def verifier_scene(scene, bavard=True):
     return sum(verifier_fichier(f, bavard) for f in fichiers)
 
 
+def lecons():
+    """Tout ce qu'on a appris, a relire AVANT d'ecrire un prompt.
+
+    Demande de Jacques le 16 septembre 2026 : << j'aimerais qu'on passe a
+    travers tout, tout ce qu'on a appris avant meme de decrire un nouveau
+    prompt >>, et << je veux que cette experience-la continue a se construire >>.
+
+    ⚠️ CE QUI FAIT VIVRE CETTE LISTE. Chaque prise refusee doit produire soit
+    une regle de plus ici, soit une phrase qui dit pourquoi elle n'est pas
+    mecanisable. Une prise refusee qui ne laisse rien derriere elle sera
+    repayee -- c'est deja arrive quatre fois le 16 septembre, sur des lecons
+    qui etaient ecrites ailleurs et que personne ne relisait.
+    """
+    print()
+    print("  CE QU'ON A DEJA PAYE -- a relire avant d'ecrire un prompt")
+    print("  " + "-" * 66)
+    for code, gravite, _motif, titre, cout, remede in REGLES:
+        print()
+        print("  [%s] %s" % ("refus " if gravite == "faute" else "doute ", code))
+        print("     %s" % titre)
+        print("     deja paye  : %s" % cout)
+        print("     a la place : %s" % remede)
+    print()
+    print("  %d regles. Une prise refusee doit en laisser une de plus." % len(REGLES))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("fichier", nargs="?")
     p.add_argument("--scene")
+    p.add_argument("--lecons", action="store_true",
+                   help="tout ce qu'on a appris, a relire avant d'ecrire")
     a = p.parse_args()
+    if a.lecons:
+        lecons()
+        return
     if a.scene:
         fautes = verifier_scene(a.scene)
     elif a.fichier:
