@@ -357,6 +357,37 @@ ACQUIS = [
      u"debut, au milieu, au bout -- et exiger que chaque image la serve. Ce "
      u"qu'on verra a la fin doit etre VISIBLE des le debut, au fond du cadre."),
 
+    (u"Une COURBE s'ecrit comme une courbe, pas comme une suite d'etats",
+     u"16 sept. 2026",
+     u"Jacques : << il faudrait que le monsieur au manteau jaune devienne un "
+     u"peu plus aimable au cours de route >>. La progression du cycliste "
+     u"existait pourtant : agace (09), pedagogue (11), calme (13), pince-"
+     u"sans-rire (15). Mais chaque prompt decrivait un ETAT SANS REFERENCE AU "
+     u"PRECEDENT -- et quatre etats justes ne font pas une progression si "
+     u"aucun ne se souvient d'ou il vient. Les plans sont fabriques "
+     u"separement : rien ne relie deux prompts sauf ce qu'on y ecrit.",
+     u"Ecrire chaque plan en fonction du precedent, et lui faire annoncer sa "
+     u"propre place dans la courbe : << this is as hard as he will be : "
+     u"everything after this softens >>, << the hardness has gone out of him "
+     u"-- and it shows BEFORE he speaks >>. Et dire ce que le visage FAIT, pas "
+     u"seulement ce qu'il ressent : la machoire qui se relache se filme, la "
+     u"bienveillance non."),
+
+    (u"La CAMERA se verrouille par un etat, pas par trois interdictions",
+     u"16 sept. 2026",
+     u"Le plus genant de la journee : la regle camera-qui-bouge de CE fichier "
+     u"PRESCRIVAIT << Locked-off camera: no zoom, no push-in, no camera "
+     u"movement of any kind >>. Trois negations, dans le fichier dont la "
+     u"premiere regle explique que ces modeles fabriquent ce qu'on interdit. "
+     u"Et la reprise du plan 09 a recadre en cours de plan. La queue disait de "
+     u"meme << The framing itself NEVER changes >>.",
+     u"<< The camera is locked on a tripod and stays there for the whole shot: "
+     u"the same lens, the same height, the same distance. >> Et pour la queue : "
+     u"<< The framing holds to the very end: in the last frame he is the same "
+     u"size and in the same place in the picture as in the first. >> Relire "
+     u"les REMEDES de ses propres regles avec l'oeil des regles voisines : "
+     u"celui-ci se contredisait depuis l'episode 1."),
+
     (u"Les OBJETS aussi doivent raccorder, pas seulement les visages",
      u"16 sept. 2026",
      u"Le velo du cycliste change trois fois : noir avec phare avant dans "
