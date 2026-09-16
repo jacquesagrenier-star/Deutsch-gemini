@@ -39,6 +39,7 @@ CE QU'IL ASSEMBLE
    saute a chaque raccord.
 """
 import argparse
+import glob
 import io
 import json
 import os
@@ -145,6 +146,45 @@ def narrer(F, src, voix, dst, duree, amorce):
          "-ar", "44100", "-ac", "2", "-t", "%.3f" % duree, dst], check=True)
 
 
+def carton(F, image, piste, dst, debut, duree):
+    """Un plan qui n'existe pas encore : son image de depart, sa vraie voix.
+
+    ⚠️ POURQUOI PAS DU NOIR. Un carton noir dit << il manque quelque chose >>
+    et rien d'autre. L'image de depart du plan, elle, dit QUI parle, dans quel
+    cadrage, et a quelle distance -- donc le montage a blanc repond deja a la
+    question du rythme et de l'alternance, qui est la raison d'etre de
+    l'exercice.
+
+    ⚠️ ET ELLE EST VOLONTAIREMENT DESATUREE ET ASSOMBRIE. Une image fixe en
+    couleur au milieu de plans animes se prend pour une prise ratee ; grise,
+    elle se lit comme ce qu'elle est : une place gardee. C'est la meme raison
+    qui fait qu'un decor muet passe pour une respiration voulue -- un manque
+    qui ne se signale pas devient une intention.
+    """
+    # ⚠️ MEME FORMAT QUE TOUS LES AUTRES SEGMENTS, AU HERTZ PRES. Le concat
+    # demuxer exige des flux identiques ; un carton en 1088x1920 a 48 kHz au
+    # milieu de segments en 1080x1920 a 44,1 kHz, et c'est tout le montage qui
+    # saute au raccord -- ou qui perd son son sans rien dire. Voir normaliser().
+    subprocess.run(
+        [F, "-y", "-v", "error", "-loop", "1", "-i", image,
+         "-ss", "%.3f" % debut, "-i", piste,
+         "-filter_complex",
+         "[0:v]scale=%d:%d:force_original_aspect_ratio=decrease,"
+         "pad=%d:%d:-1:-1:color=black,hue=s=0.15,eq=brightness=-0.12,"
+         "fps=%d[v];[1:a]apad,aresample=44100[a]" % (L, H, L, H, IPS),
+         "-map", "[v]", "-map", "[a]",
+         "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+         "-ar", "44100", "-ac", "2", "-t", "%.3f" % duree, dst], check=True)
+
+
+def image_du_plan(tel, n):
+    """L'image de panier du plan, quel que soit le personnage qu'elle porte."""
+    for f in sorted(glob.glob(os.path.join(tel, "plan%02d-*.jpg" % n))):
+        return f
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="01-ankunft-berlin")
@@ -163,6 +203,9 @@ def main():
     # chaque mot se surlignerait trois secondes trop tot. Le montage est le seul
     # a savoir ou commence chaque plan : c'est lui qui pose la tete.
     ap.add_argument("--tete", help="un clip a poser devant, ex. le plan de carte")
+    ap.add_argument("--a-blanc", dest="a_blanc", action="store_true",
+                    help="garder la place des plans manquants : leur image "
+                         "de depart, fixe et grise, avec leur vraie voix")
     a = ap.parse_args()
 
     if a.ordre:
@@ -175,7 +218,14 @@ def main():
     F = M.ffmpeg()
     ep = os.path.join(RACINE, "video", "episode-" + a.scene)
     tel = os.path.join(ep, "_a-televerser")
+    # ⚠️ DEUX ENDROITS SELON L'EPISODE, ET C'EST UNE DERIVE A NE PAS
+    # ARBITRER EN SILENCE. L'episode 1 range ses prises retenues dans
+    # _essai-avatar/retours ; l'episode 2 travaille directement dans
+    # _essai-avatar. Choisir l'un des deux sans le dire ferait un montage
+    # vide, et un montage vide se lit comme << il n'y a rien a monter >>.
     ret = os.path.join(ep, "_essai-avatar", "retours")
+    if not os.path.isdir(ret):
+        ret = os.path.join(ep, "_essai-avatar")
     tmp = os.path.join(ep, "_montage-avatar")
     os.makedirs(tmp, exist_ok=True)
 
@@ -193,12 +243,30 @@ def main():
         # avec les bons instants, et les sous-titres la lisent.
         total = M.duree(F, dt)
         print("  --    tete            %6.2f s   %s" % (total, os.path.basename(a.tete)))
+    a_blanc = []
     PARLANTS = parlants_de_la_scene(a.scene)
     for n in ordre:
         dst = os.path.join(tmp, "plan%02d.mp4" % n)
         if n in PARLANTS:
             src = os.path.join(ret, "plan%02d-omnihuman.mp4" % n)
             piste = os.path.join(tel, "plan%02d-pleine.mp3" % n)
+            if not os.path.exists(src) and a.a_blanc and os.path.exists(piste):
+                # Le plan n'existe pas encore : on garde sa PLACE et sa VOIX.
+                img = image_du_plan(tel, n)
+                if img:
+                    tete, queue, _ = M.parole(F, piste)
+                    debut = max(0.0, tete - a.amorce)
+                    duree = (queue - debut) + a.queue
+                    duree = min(duree, M.duree(F, piste) - debut)
+                    carton(F, img, piste, dst, debut, duree)
+                    a_blanc.append(n)
+                    print("  %02d    A BLANC         %6.2f s   image fixe + voix"
+                          % (n, duree))
+                    feuille.append({"n": n, "debut": round(total, 3),
+                                    "duree": round(duree, 3), "type": "a-blanc"})
+                    morceaux.append(dst)
+                    total += duree
+                    continue
             if not os.path.exists(src):
                 manquants.append(n)
                 print("  %02d    MANQUANT -- la prise avatar n'est pas la" % n)
