@@ -113,13 +113,38 @@ def main():
         sys.exit("  Sans voix : %s\n  Renseigner voice_id dans %s."
                  % (", ".join(manquants), os.path.basename(chemin)))
 
-    modele, cout = generer.MODELES[a.modele]
+    # ⚠️ LE MODELE SE CHOISIT PAR LOCUTEUR, ET EN UNE SEULE PASSE.
+    #    Ajoute le 16 septembre 2026. L'episode 3 demande Mark en v3 -- seul
+    #    modele qui lit les balises de jeu -- et les autres en v2. Jusqu'ici
+    #    --modele valait pour toute la scene, donc il aurait fallu DEUX
+    #    lancements.
+    #
+    #    Or refaire_plan.py avertit deja que melanger deux modeles dans une
+    #    scene est un defaut. L'avertissement vise le timbre, mais il y a pire
+    #    et c'est mesurable : deux lancements donnent DEUX GAINS. Tout le haut
+    #    de ce fichier explique pourquoi la scene s'egalise d'un bloc -- un
+    #    gain par moitie de distribution rend cette precaution inutile.
+    #
+    #    Une seule passe, un modele par voix, et le gain unique a la fin.
+    def modele_de(loc):
+        return locuteurs.get(loc, {}).get("modele") or a.modele
+
     car = sum(len(p["de"]) for p in plans)
     print("  %s — %d plans, %d s" % (d["situation"], len(plans), d["duree"]))
     for cle, v in locuteurs.items():
         n = sum(1 for p in plans if p["locuteur"] == cle)
         print("    %-10s %-12s %2d replique(s)" % (v["nom"], v.get("voix") or "?", n))
-    print("  %d caracteres en %s = environ %d credits" % (car, a.modele, int(car * cout)))
+    par_modele = {}
+    for p in plans:
+        m = modele_de(p["locuteur"])
+        par_modele[m] = par_modele.get(m, 0) + len(p["de"])
+    total = 0
+    for m in sorted(par_modele):
+        c = generer.MODELES[m][1]
+        total += par_modele[m] * c
+        print("    %-5s %4d caracteres = environ %d credits"
+              % (m, par_modele[m], int(par_modele[m] * c)))
+    print("  %d caracteres au total = environ %d credits" % (car, int(total)))
 
     if not a.pour_de_vrai:
         print("\n  Essai a blanc. Relancer avec --pour-de-vrai pour depenser.")
@@ -133,16 +158,19 @@ def main():
     brut = os.path.join(dossier, "_brut")
     os.makedirs(brut, exist_ok=True)
     cle_api = generer.cle_api()
-    if not a.reglages_du_cours:
-        generer.REGLAGES = DIALOGUE_V3 if a.modele == "v3" else DIALOGUE
-
     bruts = []
     for p in plans:
         nom = "%02d-%s" % (p["n"], p["locuteur"])
         f = os.path.join(brut, nom + ".mp3")
         print("  %s ..." % nom, end="", flush=True)
-        avant = generer.VOIX
+        voix_avant = generer.VOIX
+        reglages_avant = generer.REGLAGES
         generer.VOIX = locuteurs[p["locuteur"]]["voice_id"]
+        nom_modele = modele_de(p["locuteur"])
+        modele = generer.MODELES[nom_modele][0]
+        if not a.reglages_du_cours:
+            generer.REGLAGES = (DIALOGUE_V3 if nom_modele == "v3"
+                                else DIALOGUE)
         try:
             # LA BALISE NE VIT PAS DANS LE CHAMP "de". Ce texte allemand sert
             # aussi aux sous-titres et au lexique : [warmly] s'y afficherait a
@@ -157,7 +185,7 @@ def main():
             # doit lire la phrase correcte. Le champ n'est donc lu QU'ICI, et
             # "de" continue de nourrir sous-titres, lexique et traductions.
             texte = p.get("de_diction") or p["de"]
-            if a.modele == "v3" and p.get("balise"):
+            if nom_modele == "v3" and p.get("balise"):
                 texte = p["balise"] + " " + texte
             # Ses voisines dans la scene, quel que soit le locuteur :
             # c'est la CONVERSATION qui donne le contexte, pas la voix.
@@ -169,7 +197,16 @@ def main():
             sys.exit("\n  Texte refuse par ElevenLabs au plan %d. Rien n'est "
                      "utilisable tant que la scene est incomplete." % p["n"])
         finally:
-            generer.VOIX = avant
+            # ⚠️ BUG CORRIGE LE 16 SEPT. 2026, ET IL ETAIT LATENT. La variable
+            #    << avant >> servait a DEUX choses : la voix a restaurer, puis
+            #    le texte du plan precedent. La seconde ecrasait la premiere,
+            #    et ce << finally >> rangeait donc une PHRASE ALLEMANDE dans
+            #    generer.VOIX. Sans consequence tant que la boucle reassigne
+            #    la voix au tour suivant -- mais le premier appel qui aurait
+            #    lu generer.VOIX apres la boucle aurait echoue sans qu'on
+            #    comprenne pourquoi.
+            generer.VOIX = voix_avant
+            generer.REGLAGES = reglages_avant
         io.open(f, "wb").write(octets)
         bruts.append(f)
         print(" %.1f s" % normaliser.duree(f))
@@ -188,13 +225,15 @@ def main():
         if not normaliser._ff(f, fini, filtre):
             sys.exit("  Egalisation echouee sur %s." % nom)
         manifeste.append({"plan": p["n"], "locuteur": p["locuteur"],
+                          "modele": modele_de(p["locuteur"]),
                           "fichier": nom, "de": p["de"],
                           "duree_reelle": round(normaliser.duree(fini), 2),
                           "duree_prevue": p["duree"]})
 
     io.open(os.path.join(dossier, "manifeste.json"), "w",
             encoding="utf-8", newline="").write(
-        json.dumps({"scene": a.scene, "modele": modele,
+        json.dumps({"scene": a.scene,
+                    "modeles": sorted(par_modele),
                     "reglages": generer.REGLAGES, "seed": generer.SEED,
                     "gain_applique_db": round(gain, 2),
                     "sonie_avant_lufs": round(mesure, 2),

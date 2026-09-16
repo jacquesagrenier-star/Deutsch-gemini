@@ -1,0 +1,304 @@
+{
+ "_format": [
+  "La scene audio de l'episode 3. Meme format que 02-beim-buergeramt.json.",
+  "",
+  "⚠️ LES PLANS MUETS N'Y SONT PAS, et c'est voulu : scene_audio.py",
+  "   synthetise CHAQUE entree de « plans » et n'a aucun filtre. Un plan",
+  "   sans replique y produirait un fichier vide. Ils sont donc listes a",
+  "   part, dans « plans_muets », pour que ce fichier dise quand meme la",
+  "   verite de l'episode -- 19 plans, dont 16 parles.",
+  "",
+  "⚠️ LE MODELE EST PAR LOCUTEUR (ajoute le 16 sept. 2026). Mark en v3 DES",
+  "   LE DEPART : c'est le seul modele qui lit les balises de jeu, et la",
+  "   bascule tardive a l'episode 2 avait coute six prises d'avatar a",
+  "   refaire. Les autres en v2.",
+  "",
+  "⚠️ tr, uk et fa MANQUENT. L'episode 2 les a ; ici il n'y a que de, fr et",
+  "   en. Ecrit noir sur blanc plutot que laisse en silence : les",
+  "   sous-titres de ces trois langues ne pourront pas etre faits tant que",
+  "   quelqu'un qui les parle ne les aura pas ecrits."
+ ],
+ "id": "03-auf-dem-radweg",
+ "episode": 3,
+ "serie": "Mark in Berlin",
+ "situation": "Auf dem Radweg",
+ "titre": "Le feu rouge, la piste cyclable, et l'education berlinoise",
+ "niveau": "A2",
+ "theme": "Verkehr und Regeln",
+ "duree": 87,
+ "locuteurs": {
+  "erzaehler": {
+   "nom": "Erzähler",
+   "avatar": null,
+   "voix": "aurora",
+   "voice_id": "8HePnvwzEdJ614CQMPqF",
+   "modele": "v2"
+  },
+  "mark": {
+   "nom": "Mark",
+   "avatar": "Mark",
+   "voix": "mark-vd-03",
+   "voice_id": "J8ovlSvQ5WTDCCxIM8U0",
+   "modele": "v3",
+   "_modele": [
+    "v3 DES LE DEPART. A l'episode 2 la bascule a ete decidee apres",
+    "coup, et il a fallu refaire six prises d'avatar : OmniHuman est",
+    "pilote par l'audio, donc changer la voix invalide la prise.",
+    "",
+    "Et c'est demande : Jacques, 16 septembre 2026, << Marc n'est pas",
+    "assez sympathique, pas assez souriant ; il faut ce cote plus",
+    "outgoing >>. Le sourire et le rire passent par les balises, que",
+    "seul v3 lit."
+   ]
+  },
+  "dame": {
+   "nom": "Die Dame an der Ampel",
+   "avatar": "dame-feu",
+   "voix": "dame-ampel-01",
+   "voice_id": "N85Zhun98cg4usHJ1afQ",
+   "modele": "v2",
+   "_voix": [
+    "Concue par Voice Design le 16 septembre 2026, apercu A sur trois,",
+    "choisi par Jacques sans que je dise ce que j'en pensais.",
+    "",
+    "La description, mot pour mot, pour pouvoir en refabriquer une",
+    "proche si la voix disparaissait du compte :",
+    "",
+    "  A native German woman in her late fifties. She speaks clear",
+    "  standard German as her mother tongue, with no English or",
+    "  American accent. Firm, direct and a little indignant - the",
+    "  voice of someone correcting a stranger because somebody has",
+    "  to. Middle register, crisp consonants, unhurried. Polite even",
+    "  while telling you off. Not shrill, not angry, not theatrical:",
+    "  the everyday authority of a neighbour, not a drill sergeant.",
+    "",
+    "⚠️ LES NEGATIONS FINALES FONT LA MOITIE DU TRAVAIL, et c'est",
+    "   l'INVERSE de notre regle pour les images. Voice Design les",
+    "   comprend ; un generateur d'images fabrique ce qu'on lui",
+    "   interdit. Deux moteurs, deux grammaires."
+   ]
+  },
+  "radfahrer": {
+   "nom": "Der Radfahrer",
+   "avatar": "cycliste-jaune",
+   "voix": "radfahrer-01",
+   "voice_id": "6gT7wJ4bHELbu9OYKzPP",
+   "modele": "v2",
+   "_voix": [
+    "Concue par Voice Design le 16 septembre 2026, apercu B sur",
+    "trois, choisi par Jacques a l'aveugle.",
+    "",
+    "  A native German man of about fifty. He speaks clear",
+    "  standard German as his mother tongue, with no English or",
+    "  American accent. A low, slightly gravelly chest voice,",
+    "  unhurried and solid. Annoyed at first, then patiently",
+    "  explanatory - a man who stops to teach you the rule",
+    "  rather than shout about it. Plain and matter-of-fact.",
+    "  Not gruff, not booming, not a radio announcer.",
+    "",
+    "⚠️ LE TEXTE D'AUDITION PORTAIT LES DEUX MOMENTS : l'agacement",
+    "   du plan 09 et la pedagogie du plan 11. C'est la bascule",
+    "   qui fait le personnage -- une voix incapable de la faire",
+    "   devait s'entendre avant qu'on paie seize repliques."
+   ]
+  }
+ },
+ "plans": [
+  {
+   "n": 1,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 6,
+   "de": "Mark wohnt jetzt in Berlin. An der Ampel ist es rot – keine Autos.",
+   "fr": "Mark habite Berlin maintenant. Au feu, c'est rouge – pas de voitures.",
+   "en": "Mark lives in Berlin now. The light is red – no cars.",
+   "duree_audio": 5.33
+  },
+  {
+   "n": 2,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Kein Auto. Also gehe ich.",
+   "fr": "Pas de voiture. Alors j'y vais.",
+   "en": "No car. So I'm going.",
+   "balise": "[cheerful]",
+   "duree_audio": 2.12
+  },
+  {
+   "n": 4,
+   "type": "replique",
+   "locuteur": "dame",
+   "duree": 5,
+   "de": "Bei Rot bleibt man stehen! Denken Sie an die Kinder!",
+   "fr": "Au rouge on s'arrête ! Pensez aux enfants !",
+   "en": "At a red light you stop! Think of the children!",
+   "duree_audio": 2.53
+  },
+  {
+   "n": 5,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 3,
+   "de": "An welche Kinder?",
+   "fr": "À quels enfants ?",
+   "en": "What children?",
+   "balise": "[puzzled]",
+   "duree_audio": 1.31
+  },
+  {
+   "n": 6,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "de": "Er geht weiter. Auf einem roten Streifen.",
+   "fr": "Il continue. Sur une bande rouge.",
+   "en": "He walks on. On a red strip.",
+   "duree_audio": 3.06
+  },
+  {
+   "n": 8,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Warum klingeln alle?",
+   "fr": "Pourquoi tout le monde sonne ?",
+   "en": "Why is everyone ringing?",
+   "balise": "[surprised]",
+   "duree_audio": 1.23
+  },
+  {
+   "n": 9,
+   "type": "replique",
+   "locuteur": "radfahrer",
+   "duree": 4,
+   "de": "Sie laufen auf dem Radweg!",
+   "fr": "Vous marchez sur la piste cyclable !",
+   "en": "You're walking on the bike lane!",
+   "duree_audio": 2.77
+  },
+  {
+   "n": 10,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Das ist ein Weg. Ich gehe.",
+   "fr": "C'est un chemin. Je marche.",
+   "en": "It's a path. I walk.",
+   "balise": "[warmly]",
+   "duree_audio": 2.12
+  },
+  {
+   "n": 11,
+   "type": "replique",
+   "locuteur": "radfahrer",
+   "duree": 6,
+   "de": "Der rote Streifen ist für Fahrräder. Der graue ist für Sie.",
+   "fr": "La bande rouge est pour les vélos. La grise est pour vous.",
+   "en": "The red strip is for bicycles. The grey one is for you.",
+   "duree_audio": 4.13
+  },
+  {
+   "n": 12,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "de": "Rot für Räder. Grau für Menschen.",
+   "fr": "Rouge pour les vélos. Gris pour les gens.",
+   "en": "Red for wheels. Grey for people.",
+   "duree_audio": 3.34
+  },
+  {
+   "n": 13,
+   "type": "replique",
+   "locuteur": "radfahrer",
+   "duree": 6,
+   "de": "Und an der Ampel warten Sie. Auch ohne Auto.",
+   "fr": "Et au feu, vous attendez. Même sans voiture.",
+   "en": "And at the light you wait. Even with no car.",
+   "duree_audio": 4.55
+  },
+  {
+   "n": 14,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Sie haben mich gesehen?",
+   "fr": "Vous m'avez vu ?",
+   "en": "You saw me?",
+   "balise": "[surprised]",
+   "de_diction": "Sie haben mich gesehen? [chuckles]",
+   "duree_audio": 1.49
+  },
+  {
+   "n": 15,
+   "type": "replique",
+   "locuteur": "radfahrer",
+   "duree": 4,
+   "de": "Ganz Berlin hat Sie gesehen.",
+   "fr": "Tout Berlin vous a vu.",
+   "en": "All of Berlin saw you.",
+   "duree_audio": 2.82
+  },
+  {
+   "n": 16,
+   "type": "replique",
+   "locuteur": "mark",
+   "duree": 4,
+   "de": "Entschuldigung. Ich lerne noch.",
+   "fr": "Pardon. J'apprends encore.",
+   "en": "Sorry. I'm still learning.",
+   "balise": "[amused]",
+   "de_diction": "Entschuldigung. [chuckles] Ich lerne noch.",
+   "duree_audio": 2.51
+  },
+  {
+   "n": 17,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 5,
+   "de": "Mark geht auf den grauen Streifen und wartet bei Rot.",
+   "fr": "Mark passe sur la bande grise et attend au rouge.",
+   "en": "Mark moves onto the grey strip and waits at the red light.",
+   "duree_audio": 3.89
+  },
+  {
+   "n": 18,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 6,
+   "de": "Dann fährt der Radfahrer bei Rot durch.",
+   "fr": "Puis le cycliste passe au rouge.",
+   "en": "Then the cyclist rides straight through the red.",
+   "duree_audio": 2.77
+  }
+ ],
+ "plans_muets": [
+  {
+   "n": 3,
+   "duree": 4,
+   "quoi": "il traverse seul, tout le monde attend"
+  },
+  {
+   "n": 7,
+   "duree": 4,
+   "quoi": "la cycliste sonne et l'interpelle"
+  },
+  {
+   "n": 19,
+   "duree": 4,
+   "quoi": "les deux hommes, plan de situation ; se monte entre 08 et 09"
+  }
+ ],
+ "_balises": [
+  "Lues UNIQUEMENT par eleven_v3, et collees devant le texte au moment de",
+  "generer -- jamais dans le champ « de », qui nourrit aussi les sous-titres",
+  "et le lexique : [surprised] s'y afficherait a l'ecran.",
+  "",
+  "Cinq plans sur seize en portent une, tous de Mark. Les autres sont des",
+  "plans d'information -- une regle qu'on enonce, un lieu qu'on situe -- et",
+  "un jeu appuye y nuirait a la comprehension. C'est un cours de langue",
+  "avant d'etre un film."
+ ],
+ "duree_audio": 45.97
+}
