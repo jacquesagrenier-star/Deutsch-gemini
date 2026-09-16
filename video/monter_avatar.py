@@ -80,6 +80,21 @@ VITRINE = [8, 9, 10, 11, 12, 13, 17]
 PARLANTS_EP1 = {5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}
 
 
+def locuteur_du_plan(scene, n):
+    """Qui parle dans ce plan, d'apres la scene. None si elle ne le dit pas."""
+    f = os.path.join(RACINE, "scenes", scene + ".json")
+    if not os.path.exists(f):
+        return None
+    try:
+        d = json.load(io.open(f, encoding="utf-8"))
+    except Exception:
+        return None
+    for p in d.get("plans", []):
+        if p.get("n") == n:
+            return p.get("locuteur")
+    return None
+
+
 def parlants_de_la_scene(scene):
     """Qui parle a l'image, d'apres la SCENE et non d'apres une constante.
 
@@ -284,8 +299,25 @@ def main():
                 manquants.append(n)
                 print("  %02d    MANQUANT -- %s" % (n, os.path.basename(src)))
                 continue
-            voix = os.path.join(RACINE, "audio", "scenes", a.scene,
-                                "%02d-erzaehler.mp3" % n)
+            # ⚠️ LA VOIX D'UN DECOR N'EST PAS FORCEMENT CELLE DU NARRATEUR.
+            #    Cette ligne disait << %02d-erzaehler.mp3 >> pour tout plan de
+            #    decor. Le plan 19 de l'episode 3 est un decor ou parle le
+            #    CYCLISTE : le montage le traitait comme muet. L'avertissement
+            #    etait pourtant ecrit vingt lignes plus haut, a propos du
+            #    07-beamter.mp3 de l'episode 2 -- on avait corrige QUI PARLE,
+            #    jamais le nom du fichier qu'on va chercher.
+            voix = None
+            for cand in (locuteur_du_plan(a.scene, n), "erzaehler"):
+                if not cand:
+                    continue
+                c = os.path.join(RACINE, "audio", "scenes", a.scene,
+                                 "%02d-%s.mp3" % (n, cand))
+                if os.path.exists(c):
+                    voix = c
+                    break
+            if voix is None:
+                voix = os.path.join(RACINE, "audio", "scenes", a.scene,
+                                    "%02d-erzaehler.mp3" % n)
             if not os.path.exists(voix):
                 duree = M.duree(F, src)
                 normaliser(F, src, dst)
