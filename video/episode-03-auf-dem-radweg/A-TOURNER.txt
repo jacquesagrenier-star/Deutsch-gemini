@@ -455,6 +455,25 @@ LE LIEU, TEL QU'IL EXISTE MAINTENANT -- a recopier dans chaque image :
          --mat 1438,416,1462,464 --flou 2.9
    Les fichiers -PANNEAU.png sont les originaux, gardes intacts.
 
+⚠️ DECISION DU 16 SEPTEMBRE 2026 AU SOIR : ON NE L'INCRUSTE PAS SUR
+   LES CLIPS DE CET EPISODE. Jacques, apres essai : << pas pour le
+   moment >>. Les lentilles font 40 a 62 px de diametre dans des clips en
+   720p ; a cette taille le bonhomme lit comme une croix -- les bras
+   horizontaux passent, le chapeau se confond avec la tete. Le feu
+   d'origine montre deja une silhouette rouge : le gain est reel mais
+   mince, et il ne justifie pas de re-encoder quatre plans.
+
+   LES OUTILS RESTENT ECRITS, pour un episode ou le feu sera plus gros :
+     video/ampelmann_clip.py   un calque fixe -- il REFUSE si le feu bouge,
+                               et il a refuse les quatre plans d'ici.
+     video/ampelmann_suivi.py  image par image, en suivant le feu. Teste
+                               sur le plan 17 : 129 images, la lampe derive
+                               de (391,297) a (389,304), aucune perdue.
+
+   ET LES DEUX IMAGES MAITRESSES, ELLES, LE PORTENT DEJA -- mark-marche et
+   mark-retourne ont ete corrigees le matin meme, et c'est la que ca
+   comptait : elles nourrissent les prises d'avatar.
+
 ⚠️ ET L'INCRUSTATION SE FAIT EN DERNIER, SUR CE QUI EST DEJA ANIME.
    Les plans de decor passent par mouvement.py, qui REFABRIQUE chaque
    image : un bonhomme colle sur l'image d'entree serait redessine, donc
