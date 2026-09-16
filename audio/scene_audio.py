@@ -103,7 +103,12 @@ def main():
 
     chemin = os.path.join(RACINE, "scenes", a.scene + ".json")
     d = json.load(io.open(chemin, encoding="utf-8"))
-    plans, locuteurs = d["plans"], d["locuteurs"]
+    # ⚠️ UN PLAN SANS REPLIQUE N'A PAS D'AUDIO. Les plans muets vivent
+    #    desormais dans la meme liste que les autres, parce que mouvement.py
+    #    y cherche les decors a animer. C'est ici qu'on les saute -- pas en
+    #    les retirant du fichier, qui doit decrire l'episode entier.
+    plans = [p for p in d["plans"] if (p.get("de") or "").strip()]
+    locuteurs = d["locuteurs"]
 
     # Un locuteur sans voix arrete tout AVANT la premiere depense : sinon on
     # decouvre le trou au onzieme plan, apres six cents credits.

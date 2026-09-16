@@ -1,22 +1,24 @@
 {
  "_format": [
-  "La scene audio de l'episode 3. Meme format que 02-beim-buergeramt.json.",
+  "La scene audio ET visuelle de l'episode 3 : dix-neuf plans.",
   "",
-  "⚠️ LES PLANS MUETS N'Y SONT PAS, et c'est voulu : scene_audio.py",
-  "   synthetise CHAQUE entree de « plans » et n'a aucun filtre. Un plan",
-  "   sans replique y produirait un fichier vide. Ils sont donc listes a",
-  "   part, dans « plans_muets », pour que ce fichier dise quand meme la",
-  "   verite de l'episode -- 19 plans, dont 16 parles.",
+  "⚠️ LES PLANS MUETS Y SONT, AVEC UN CHAMP << de >> VIDE. Ils en avaient ete",
+  "   sortis au depart parce que scene_audio.py synthetise chaque entree de",
+  "   << plans >> et aurait fabrique des fichiers vides. Mais mouvement.py, lui,",
+  "   lit CETTE liste pour trouver les decors a animer -- deux outils, deux",
+  "   besoins contradictoires sur la meme liste.",
   "",
-  "⚠️ LE MODELE EST PAR LOCUTEUR (ajoute le 16 sept. 2026). Mark en v3 DES",
-  "   LE DEPART : c'est le seul modele qui lit les balises de jeu, et la",
-  "   bascule tardive a l'episode 2 avait coute six prises d'avatar a",
-  "   refaire. Les autres en v2.",
+  "   Tranche du cote de la verite du fichier : la scene decrit l'episode",
+  "   entier, et c'est a scene_audio.py de sauter ce qui n'a pas de replique.",
+  "   Un plan sans texte n'a pas d'audio ; ce n'est pas un cas particulier,",
+  "   c'est la definition.",
+  "",
+  "⚠️ LE MODELE EST PAR LOCUTEUR. Mark en v3 DES LE DEPART : seul modele qui",
+  "   lit les balises de jeu, et la bascule tardive a l'episode 2 avait coute",
+  "   six prises d'avatar. Les autres en v2.",
   "",
   "⚠️ tr, uk et fa MANQUENT. L'episode 2 les a ; ici il n'y a que de, fr et",
-  "   en. Ecrit noir sur blanc plutot que laisse en silence : les",
-  "   sous-titres de ces trois langues ne pourront pas etre faits tant que",
-  "   quelqu'un qui les parle ne les aura pas ecrits."
+  "   en. Ecrit noir sur blanc plutot que laisse en silence."
  ],
  "id": "03-auf-dem-radweg",
  "episode": 3,
@@ -112,7 +114,8 @@
    "de": "Mark wohnt jetzt in Berlin. An der Ampel ist es rot – keine Autos.",
    "fr": "Mark habite Berlin maintenant. Au feu, c'est rouge – pas de voitures.",
    "en": "Mark lives in Berlin now. The light is red – no cars.",
-   "duree_audio": 5.33
+   "duree_audio": 5.33,
+   "image": "carrefour-rouge.png"
   },
   {
    "n": 2,
@@ -124,6 +127,18 @@
    "en": "No car. So I'm going.",
    "balise": "[cheerful]",
    "duree_audio": 2.12
+  },
+  {
+   "n": 3,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 4,
+   "duree_audio": 0,
+   "image": "traverse-seul.png",
+   "de": "",
+   "fr": "",
+   "en": "",
+   "_muet": "il traverse seul, tout le monde attend"
   },
   {
    "n": 4,
@@ -154,7 +169,20 @@
    "de": "Er geht weiter. Auf einem roten Streifen.",
    "fr": "Il continue. Sur une bande rouge.",
    "en": "He walks on. On a red strip.",
-   "duree_audio": 3.06
+   "duree_audio": 3.06,
+   "image": "bande-rouge-pieds.png"
+  },
+  {
+   "n": 7,
+   "type": "decor",
+   "locuteur": "erzaehler",
+   "duree": 4,
+   "duree_audio": 0,
+   "image": "velos-evitent.png",
+   "de": "",
+   "fr": "",
+   "en": "",
+   "_muet": "la cycliste sonne et l'interpelle"
   },
   {
    "n": 8,
@@ -206,7 +234,8 @@
    "de": "Rot für Räder. Grau für Menschen.",
    "fr": "Rouge pour les vélos. Gris pour les gens.",
    "en": "Red for wheels. Grey for people.",
-   "duree_audio": 3.34
+   "duree_audio": 3.34,
+   "image": "deux-bandes.png"
   },
   {
    "n": 13,
@@ -260,7 +289,8 @@
    "de": "Mark geht auf den grauen Streifen und wartet bei Rot.",
    "fr": "Mark passe sur la bande grise et attend au rouge.",
    "en": "Mark moves onto the grey strip and waits at the red light.",
-   "duree_audio": 3.89
+   "duree_audio": 3.89,
+   "image": "il-attend.png"
   },
   {
    "n": 18,
@@ -270,24 +300,20 @@
    "de": "Dann fährt der Radfahrer bei Rot durch.",
    "fr": "Puis le cycliste passe au rouge.",
    "en": "Then the cyclist rides straight through the red.",
-   "duree_audio": 2.77
-  }
- ],
- "plans_muets": [
-  {
-   "n": 3,
-   "duree": 4,
-   "quoi": "il traverse seul, tout le monde attend"
-  },
-  {
-   "n": 7,
-   "duree": 4,
-   "quoi": "la cycliste sonne et l'interpelle"
+   "duree_audio": 2.77,
+   "image": "chute-feu-rouge.png"
   },
   {
    "n": 19,
+   "type": "decor",
+   "locuteur": "erzaehler",
    "duree": 4,
-   "quoi": "les deux hommes, plan de situation ; se monte entre 08 et 09"
+   "duree_audio": 0,
+   "image": "les-deux-hommes.png",
+   "de": "",
+   "fr": "",
+   "en": "",
+   "_muet": "les deux hommes, plan de situation ; se monte entre 08 et 09"
   }
  ],
  "_balises": [
