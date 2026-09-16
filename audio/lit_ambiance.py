@@ -56,16 +56,28 @@ EPISODES = {
     #    tout pres. C est cette difference-la qui dit au spectateur qu il a
     #    change de place sans qu on le lui montre.
     "03": [
+        # ⚠️ PAS DE PAS. Premiere version : << footsteps of people waiting on
+        #    the pavement >>. Jacques : << il y a comme des bruits de pas qui
+        #    n ont pas rapport ; il faudrait entendre des velos qui roulent,
+        #    des autos, un tramway au loin >>.
+        #
+        #    Il a raison, et la raison est de mise en scene : dans CE plan les
+        #    gens attendent IMMOBILES au feu -- c est meme tout le propos de la
+        #    scene. Des pas contredisent l image. Le fond d une rue n est pas
+        #    une liste de bruits de rue : c est ce que FAIT cette rue-la.
         ("rue-carrefour",
-         "A Berlin street corner on a weekday morning: steady traffic passing "
-         "on the road, a tram rumbling somewhere behind, footsteps of people "
-         "waiting on the pavement, a bicycle bell once in the distance. Open "
-         "air, unhurried, no intelligible speech."),
+         "A Berlin street corner on a weekday morning, heard from the "
+         "pavement: cars and vans rolling past on the road, a tram rumbling "
+         "and squealing somewhere further off, bicycle tyres humming by, a "
+         "bicycle bell once in the distance, a faint wash of city traffic "
+         "behind it all. Open air, unhurried, no footsteps, no intelligible "
+         "speech."),
         ("piste-cyclable",
-         "A Berlin cycle lane close up: bicycle tyres rolling on asphalt, a "
-         "freewheel clicking as a bicycle coasts past, a chain turning, a bell "
-         "ringing twice further off, city traffic behind it all. Open air, no "
-         "intelligible speech."),
+         "A Berlin cycle lane heard close up: bicycle tyres rolling on "
+         "asphalt, a freewheel clicking as a bicycle coasts past, a chain "
+         "turning, another bicycle passing further off, cars on the road "
+         "beyond and a distant tram. Open air, no footsteps, no intelligible "
+         "speech."),
     ],
     "02": [
         ("rue-berlin",
