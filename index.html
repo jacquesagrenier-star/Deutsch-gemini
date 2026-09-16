@@ -1283,20 +1283,9 @@ body[data-theme="dark"] .home-greeting{
 }
 .orb-section.pan:first-child{margin-top:2px;}
 
-/* Le compte de la section, pousse au bord de fin. `margin-inline-start` et
-   non `margin-left` : en arabe et en persan le panneau se lit de droite a
-   gauche, et le nombre doit suivre. */
-.sec-n{
-    margin-inline-start:auto;
-    font-size:10.5px;
-    font-weight:800;
-    letter-spacing:0;
-    color:#8a93a5;
-    background:rgba(120,130,150,.13);
-    padding:2px 7px;
-    border-radius:7px;
-}
-body[data-theme="dark"] .sec-n{color:#9aa4b8; background:rgba(148,163,184,.16);}
+/* Le compte de la section a ete retire en v626 (demande de Jacques) : le
+   style qui le poussait au bord de fin est parti avec lui. Rien d'autre ne
+   portait la classe .sec-n. */
 
 .orb-opt-count{
     font-size:11px;
@@ -5857,7 +5846,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v625</span>
+    <span class="subtitle-version">v626</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -20125,9 +20114,15 @@ function renderOrbPanel(){
             || (dernier && connues.indexOf(o.section) < 0));
         if(!lot.length) return;
         if(!montrerEntetes){ lot.forEach(o => html.push(ligne(o))); return; }
+        // ⚠️ PAS DE COMPTE DANS L'EN-TETE. Il y en avait un (v625) ; Jacques
+        // l'a fait retirer le 16 septembre 2026 : « visuellement on le voit, on
+        // n'a pas besoin de ce petit chiffre-la ». Il a raison -- une section
+        // de panneau tient en trois ou quatre lignes sous les yeux, et un
+        // nombre qui repete ce que l'oeil compte deja n'informe pas, il occupe.
+        // (Le compte de l'accueil, lui, reste : ses sections sont des grilles
+        // qui depassent l'ecran.)
         html.push(`<h3 class="orb-section pan" data-section="${sec.cle}">`
-            + `<span class="sec-trait"></span>${t(sec.i18n)}`
-            + `<span class="sec-n">${lot.length}</span></h3>`);
+            + `<span class="sec-trait"></span>${t(sec.i18n)}</h3>`);
         lot.forEach(o => html.push(ligne(o)));
     });
     bodyEl.innerHTML = html.join("");
@@ -26062,7 +26057,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 625;
+const APP_VERSION = 626;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
