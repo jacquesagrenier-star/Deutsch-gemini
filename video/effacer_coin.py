@@ -112,15 +112,33 @@ def bouge(clip, x, y, large, haut, image_ref):
     n = len(d) // (W * H)
     i_ref = min(max(0, int(image_ref * 25)), n - 1)
     ref = d[i_ref * W * H:(i_ref + 1) * W * H]
-    pire = 0.0
-    quand = 0.0
+    ecarts = []
     for i in range(n):
         f = d[i * W * H:(i + 1) * W * H]
-        e = sum(abs(f[k] - ref[k]) for k in range(W * H)) / float(W * H)
-        if e > pire:
-            pire, quand = e, i / 25.0
+        ecarts.append(sum(abs(f[k] - ref[k]) for k in range(W * H)) / float(W * H))
     os.remove(brut)
-    return pire, quand
+
+    # ⚠️ CE QU'IL FAUT MESURER N'EST PAS << LA ZONE CHANGE-T-ELLE >>. Bien sur
+    # qu'elle change : l'intrus qui arrive EST un changement. La premiere
+    # version de ce garde-fou refusait donc TOUS les cas legitimes, y compris
+    # celui qu'il etait cense autoriser.
+    #
+    # La vraie question est : LE FOND, LUI, EST-IL IMMOBILE ? On la lit dans la
+    # fenetre PROPRE -- de la premiere image jusqu'a l'arrivee de l'intrus. Si
+    # rien n'y bouge et que l'image de reference est dedans, la rustine recopie
+    # un fond fixe sur un fond fixe, et ne se voit pas. Si l'image de reference
+    # est PRISE APRES cette fenetre -- ce que j'ai fait sur les mains du plan
+    # 17 -- alors on colle du tard sur du tot, et ca se voit tout de suite.
+    arrivee = n
+    for i, e in enumerate(ecarts):
+        if e > 12:
+            arrivee = i
+            break
+    propre = ecarts[:arrivee] or [0.0]
+    remuant = max(propre)
+    quand = arrivee / 25.0
+    hors_fenetre = i_ref >= arrivee
+    return remuant, quand, hors_fenetre
 
 
 def effacer(clip, x, y, large, haut, fondu, image_ref, forcer=False):
@@ -128,17 +146,20 @@ def effacer(clip, x, y, large, haut, fondu, image_ref, forcer=False):
     if x + large > W or y + haut > H:
         sys.exit("  la zone deborde du cadre (%dx%d)." % (W, H))
 
-    ecart, quand = bouge(clip, x, y, large, haut, image_ref)
-    print("  la zone s'ecarte au plus de %.1f niveaux de gris (a %.2f s)"
-          % (ecart, quand))
-    if ecart > 12 and not forcer:
+    remuant, arrivee, hors_fenetre = bouge(clip, x, y, large, haut, image_ref)
+    print("  fond propre jusqu'a %.2f s, et il y remue de %.1f niveaux de gris"
+          % (arrivee, remuant))
+    if not forcer and (remuant > 10 or hors_fenetre):
         sys.exit(
-            "\n  CETTE ZONE BOUGE : une rustine fixe y ferait une image\n"
-            "  par-dessus l'autre -- un objet fige, et le vrai mouvement qui\n"
-            "  reapparait sur les bords. C'est arrive le 16 septembre 2026 sur\n"
-            "  les mains du plan 17, et ca s'est vu tout de suite.\n\n"
-            "  Un fond immobile reste sous 10. Au-dela, il faut regenerer.\n"
-            "  --forcer si tu sais pourquoi.")
+            "\n  RUSTINE REFUSEE.\n"
+            + ("  Le fond bouge de %.1f dans la fenetre propre (au-dela de 10,\n"
+               "  ce n'est plus un fond fixe).\n" % remuant if remuant > 10 else "")
+            + ("  L'image de reference (%.2f s) est PRISE APRES l'arrivee de\n"
+               "  l'intrus (%.2f s) : on collerait du tard sur du tot. C'est\n"
+               "  exactement la faute des mains du plan 17, le 16 sept. 2026,\n"
+               "  et elle s'est vue tout de suite.\n" % (image_ref, arrivee)
+               if hors_fenetre else "")
+            + "  --forcer si tu sais pourquoi.")
 
     base = os.path.splitext(clip)[0]
     garde = base + "-AVANT-coin.mp4"
