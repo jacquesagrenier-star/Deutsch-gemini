@@ -498,3 +498,43 @@ il porte `"fondu_dans": 13` dans la scène. La règle d'avant — « un plan abs
 du montage est rattaché au précédent » — marchait pour une fusion et cassait
 pour une **sélection** : la vitrine ne garde que sept plans, et cette règle lui
 aurait collé les sous-titres des plans 14, 15 et 16 sur le clip du 13.
+
+
+---
+
+## La continuité du décor — l'image de référence vient du plan précédent
+
+### 16 septembre 2026, demandé par Jacques
+
+⚠️ **Le modèle invente le décor, et il l'invente DIFFÉREMMENT à chaque plan.**
+Observé sur l'épisode 2 : dans un plan, le fonctionnaire cherche à son
+ordinateur, avec un panier à feuilles à sa gauche ; deux plans plus loin, **ni
+ordinateur ni panier** sur le même bureau. Même pièce, même personnage, même
+minute de récit.
+
+Ce n'est pas un défaut de rendu : c'est que chaque plan part d'une **image
+maîtresse différente**, et que rien n'oblige deux images générées séparément à
+meubler la pièce pareil.
+
+**La règle, dans les mots de Jacques :** *« prendre un print screen du dernier
+décor, puis le mettre comme image de référence pour le second. Comme ça on ne
+change rien de ce qu'il y a sur le bureau. »*
+
+En pratique, trois niveaux, du plus sûr au plus risqué :
+
+1. **Une seule image maîtresse par personnage ET par valeur de plan**, réutilisée
+   par tous les plans de ce lieu. C'est déjà ce que font 04, 07, 09, 11, 15 et
+   17 — tous nés de `beamter-moyen` — et c'est pour ça qu'ils s'accordent.
+2. **Une image dérivée d'une IMAGE de la prise précédente** quand il faut un
+   autre cadrage ou un accessoire en main : on extrait une image du clip
+   accepté et on ne demande au modèle d'images que le changement voulu. Le
+   décor, lui, est déjà là et ne se réinvente pas.
+3. **Une image générée à part** — ce qui a produit la dérive. À n'utiliser que
+   pour un lieu qu'on ne reverra pas.
+
+⚠️ **Et ce n'est pas seulement le mobilier.** Le même jour, un formulaire est
+passé du jaune vif (plans 13, 14, 17) au crème (12) au blanc (18, 19). Un objet
+qui change de couleur d'un plan à l'autre casse la croyance plus sûrement qu'un
+défaut technique : le spectateur ne se dit pas « tiens, une incohérence », il se
+dit que ce n'est pas le même papier. `video/papier_blanc.py` répare après coup,
+mais la vraie place de la correction est **en amont, dans l'image**.
