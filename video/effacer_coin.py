@@ -101,9 +101,28 @@ def effacer(clip, x, y, large, haut, fondu, image_ref):
     rustine = os.path.join(os.environ.get("TEMP", "."), "_rustine.png")
     ffmpeg(["-ss", str(image_ref), "-i", clip, "-vframes", "1", tmp])
 
-    # Le fondu vit dans l'alpha : plein au coin, nul aux deux bords interieurs.
-    # Sans lui, la rustine laisse une arete visible sur un mur en degrade.
-    alpha = ("255*min(1,min((%d-X)/%d,(%d-Y)/%d))" % (large, fondu, haut, fondu))
+    # Le fondu vit dans l'alpha, et seulement sur les cotes INTERIEURS.
+    #
+    # ⚠️ LA PREMIERE VERSION FONDAIT TOUJOURS A DROITE ET EN BAS. Pour un coin
+    # en haut a gauche c'etait juste ; pour un coin en BAS a gauche, le fondu
+    # du bas tombait sur le bord de l'image -- la rustine s'y effacait, et
+    # l'intrus reapparaissait sur les trente derniers pixels, exactement la ou
+    # on croyait l'avoir retire. Un cote colle au bord du cadre ne se fond pas :
+    # il n'a rien a rejoindre.
+    cotes = []
+    if x > 0:
+        cotes.append("X/%d" % fondu)
+    if x + large < W:
+        cotes.append("(%d-X)/%d" % (large, fondu))
+    if y > 0:
+        cotes.append("Y/%d" % fondu)
+    if y + haut < H:
+        cotes.append("(%d-Y)/%d" % (haut, fondu))
+    # min() de ffmpeg ne prend que deux arguments : on les emboite.
+    expr = "1"
+    for c in cotes:
+        expr = "min(%s,%s)" % (expr, c)
+    alpha = "255*" + expr
     ffmpeg(["-i", tmp, "-vf",
             "crop=%d:%d:%d:%d,format=rgba,geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='%s'"
             % (large, haut, x, y, alpha), rustine])
