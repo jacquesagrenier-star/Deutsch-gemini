@@ -391,12 +391,12 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
         trace.update({"etat": "PAYEE, NON RECUPEREE", "echec": str(e)})
         io.open(recu, "w", encoding="utf-8").write(
             json.dumps(trace, ensure_ascii=False, indent=1))
-        sys.exit("  La prise est FACTUREE mais illisible (%s).\n"
-                 "  Recu : %s\n"
-                 "  Rien d'autre n'a ete lance. Quand fal repondra :\n"
-                 "      python video/omnihuman.py --scene %s --recuperer"
-                 % (e, os.path.relpath(recu, RACINE), os.path.basename(
-                     os.path.dirname(os.path.dirname(recu)))[len("episode-"):]))
+        # ⚠️ ON NE DIT PLUS << FACTUREE >>. C'etait faux, et mesure comme tel
+        # le 16 septembre 2026 : une prise qui rend COMPLETED en dix secondes
+        # au lieu de cent quarante n'a rien genere et n'est pas debitee. Dire
+        # a quelqu'un qu'il vient de perdre de l'argent quand ce n'est pas le
+        # cas lui fait prendre de mauvaises decisions -- ici, renoncer.
+        raise
 
     facturee = float(res.get("duration") or d)
     cout = facturee * PRIX
@@ -448,6 +448,41 @@ def recuperer_en_souffrance(scene):
               % (os.path.basename(sortie), octets / 1e6))
 
 
+def avec_patience(minutes, scene, n, cle_api, resolution, turbo, simuler,
+                  refaire=False):
+    """Relance le plan tant que c'est l'AMONT qui manque, jamais nous.
+
+    ⚠️ POURQUOI C'EST SANS RISQUE FINANCIER. Une prise qui avorte de cette
+    facon n'est pas facturee -- verifie au solde le 16 septembre 2026 : trois
+    prises reussies, 2,0605 $ debites, et trois avortees a 0,00 $. Reessayer
+    ne peut donc pas couter ; seul un SUCCES coute, et un succes est ce qu'on
+    veut. C'est ce qui autorise une boucle la ou on ecrirait normalement un
+    abandon prudent.
+
+    ⚠️ ET ON NE REESSAIE QUE CETTE PANNE-LA. Une erreur de panier, un fichier
+    manquant, un depassement de plafond continuent de s'arreter net : insister
+    sur une faute a nous ne la repare pas, elle se corrige.
+    """
+    debut = time.time()
+    essai = 0
+    while True:
+        essai += 1
+        try:
+            return un_plan(scene, n, cle_api, resolution, turbo, simuler,
+                           refaire)
+        except ResultatIndisponible as e:
+            reste = minutes * 60 - (time.time() - debut)
+            if reste <= 0:
+                if minutes:
+                    print("    abandon apres %.0f min et %d essai(s) : le service "
+                          "d'en face n'est pas revenu." % (minutes, essai))
+                raise
+            pause = min(180, max(30, reste))
+            print("    essai %d : l'amont est absent (%s). Nouvel essai dans "
+                  "%.0f s -- rien n'a ete facture." % (essai, e, pause))
+            time.sleep(pause)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--scene", default="02-beim-buergeramt")
@@ -461,6 +496,9 @@ def main():
     p.add_argument("--refaire", action="store_true")
     p.add_argument("--recuperer", action="store_true",
                    help="retelecharge les prises deja payees (gratuit)")
+    p.add_argument("--patience", type=float, default=0.0,
+                   help="minutes ; reessaie un plan tant que le service d'en "
+                        "face est absent (un echec n'est pas facture)")
     p.add_argument("--plafond", type=float, default=2.0,
                    help="dollars ; le lot est refuse au-dela (defaut 2,00)")
     a = p.parse_args()
@@ -501,8 +539,24 @@ def main():
     c = cle() if not a.simuler else ""
     depense = 0.0
     for n in ns:
-        depense += un_plan(a.scene, n, c, a.resolution, a.turbo,
-                           a.simuler, a.refaire)
+        try:
+            depense += avec_patience(a.patience, a.scene, n, c, a.resolution,
+                                     a.turbo, a.simuler, a.refaire)
+        except ResultatIndisponible as e:
+            # ⚠️ RIEN N'A ETE FACTURE -- voir avec_patience. Le lot s'arrete
+            # quand meme : si l'amont est absent, les plans suivants le
+            # trouveront absent aussi, et on prefere une reprise nette.
+            print()
+            print("  Le plan %d n'a pas abouti : %s." % (n, e))
+            print("  L'AMONT (ByteDance, derriere fal) etait absent -- une prise")
+            print("  qui rend COMPLETED en dix secondes au lieu de cent quarante")
+            print("  n'a rien genere, et n'est pas facturee.")
+            print("  Reprendre plus tard, ou laisser la commande attendre :")
+            print("      python video/omnihuman.py --scene %s --plan %d --patience 30"
+                  % (a.scene, n))
+            print()
+            print("depense reelle : %.2f $" % depense)
+            return
     print("depense reelle : %.2f $" % depense)
 
 
