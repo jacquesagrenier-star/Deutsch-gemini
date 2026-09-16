@@ -162,16 +162,67 @@ def eteindre(img, centre, rayon, fond=None):
     voyait une main apparaitre sous l'autre.
 
     La couleur du verre eteint n'est pas inventee : elle est PRELEVEE sur la
-    lentille voisine du meme boitier, celle qui n'est pas allumee."""
+    lentille voisine du meme boitier, celle qui n'est pas allumee.
+
+    ⚠️ ET LE DISQUE NE DOIT PAS DEBORDER DE LA LENTILLE. La premiere version
+       l'etendait a 1,25 fois le rayon et le fondait sur 0,18 rayon : la
+       couleur du verre bavait donc sur 15 px de BOITIER tout autour, et ca
+       se voyait comme un voile carre -- mesure a la difference de pixels,
+       156 x 156 exactement, la taille du tampon. Le fondu doit rester a
+       l'interieur du verre ; c'est le bord du verre lui-meme qui cache la
+       couture."""
     cx, cy = centre
     if fond is None:
         fond = (14, 16, 15)
-    d = int(rayon * 1.25)
+    d = int(rayon * 1.02)
     tampon = Image.new("RGB", (d * 2, d * 2), fond)
     masque = Image.new("L", (d * 2, d * 2), 0)
-    ImageDraw.Draw(masque).ellipse([0, 0, d * 2 - 1, d * 2 - 1], fill=255)
-    masque = masque.filter(ImageFilter.GaussianBlur(rayon * 0.18))
+    marge = max(2, int(rayon * 0.10))
+    ImageDraw.Draw(masque).ellipse(
+        [marge, marge, d * 2 - 1 - marge, d * 2 - 1 - marge], fill=255)
+    masque = masque.filter(ImageFilter.GaussianBlur(max(1.0, rayon * 0.05)))
     img.paste(tampon, (cx - d, cy - d), masque)
+    return img
+
+
+def sa_lumiere(img, pose, centre, rayon, fond, flou=1.2, part=0.95,
+               halo=0.55):
+    """Decoupe le bonhomme DANS la lampe deja allumee, sans rien repeindre.
+
+    Le meilleur rouge disponible est celui que l'image porte deja. Une lampe
+    de feu n'est pas un aplat : elle a sa granulation de LED, son coeur
+    surexpose, sa dominante propre et le reflet de sa vitre. Tout ca se perd
+    des qu'on peint par-dessus avec une couleur choisie -- et ce qui se perd
+    est exactement ce qui faisait croire a une lampe.
+
+    On procede donc a l'envers : on MET DE COTE la lentille telle qu'elle
+    est, on eteint, puis on redepose la lumiere d'origine a travers la
+    decoupe du bonhomme. Le resultat n'est pas une incrustation par-dessus
+    une image, c'est la meme image avec moins de lumiere allumee.
+
+    ⚠️ Ne vaut que si la lampe est DEJA allumee et unie. Pour une lentille
+       eteinte, ou pour un feu noye dans le flou d'arriere-plan, `poser()`
+       et sa couleur dessinee restent la bonne route."""
+    cx, cy = centre
+    d = int(rayon * 1.35)
+    boite = (cx - d, cy - d, cx + d, cy + d)
+    lampe = img.crop(boite)
+
+    eteindre(img, centre, rayon, fond=fond)
+
+    base = silhouette(pose, rayon * 2 * part)
+    masque = Image.new("L", (d * 2, d * 2), 0)
+    coin = (d - base.size[0] // 2, d - base.size[1] // 2)
+
+    if halo > 0:
+        large = base.filter(ImageFilter.GaussianBlur(max(flou, 1.0) * 2.8))
+        large = large.point(lambda v: int(v * halo))
+        voile = Image.new("L", (d * 2, d * 2), 0)
+        voile.paste(large, coin)
+        img.paste(lampe, boite[:2], voile)
+
+    masque.paste(base.filter(ImageFilter.GaussianBlur(flou)), coin)
+    img.paste(lampe, boite[:2], masque)
     return img
 
 
@@ -255,6 +306,32 @@ def prolonger_mat(img, mat, jusqu_a=0):
     return img
 
 
+def trouver_lentille(img, fenetre):
+    """Trouve la lampe ROUGE ALLUMEE dans une fenetre, et la rend mesuree.
+
+    ⚠️ PARCE QUE L'ESTIMER A L'OEIL RATE. Sur carrefour-rouge j'avais lu le
+       centre a 10 px pres, et l'extinction a laisse un croissant rouge en
+       haut a gauche de la lentille -- visible tout de suite. A l'oeil on
+       vise le coeur brillant ; or le verre s'etend plus loin que lui, et
+       c'est le verre qu'il faut couvrir.
+
+    Le seuil regarde l'ECART entre le rouge et les deux autres canaux, pas
+    la valeur du rouge : une facade creme a un rouge eleve et un ecart nul,
+    une lampe a un ecart franc, meme sur son bord sombre."""
+    x0, y0, x1, y1 = fenetre
+    px = img.load()
+    pts = [(x, y) for y in range(y0, y1) for x in range(x0, x1)
+           if px[x, y][0] > px[x, y][1] + 22 and px[x, y][0] > px[x, y][2] + 22]
+    if len(pts) < 200:
+        sys.exit("  aucune lampe rouge dans la fenetre %s (%d px)"
+                 % (fenetre, len(pts)))
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    cx, cy = (min(xs) + max(xs)) // 2, (min(ys) + max(ys)) // 2
+    r = max(max(xs) - min(xs), max(ys) - min(ys)) / 2.0
+    return cx, cy, int(round(r * 1.04))
+
+
 def flou_local(img, centre, rayon):
     """Mesure le flou AUTOUR de la lentille, pour ne pas le deviner.
 
@@ -281,6 +358,8 @@ def main():
     p.add_argument("--sortie")
     p.add_argument("--pose", default="rouge", choices=sorted(POSES))
     p.add_argument("--lentille", help="cx,cy,rayon en pixels")
+    p.add_argument("--fenetre", help="x0,y0,x1,y1 ou CHERCHER la lampe rouge "
+                                     "-- elle est alors mesuree, pas estimee")
     p.add_argument("--flou", type=float, default=None,
                    help="rayon du flou ; sans lui, il est MESURE sur place")
     p.add_argument("--force", type=float, default=1.0)
@@ -291,6 +370,9 @@ def main():
     p.add_argument("--panneau", help="x0,y0,x1,y1 du panneau a effacer")
     p.add_argument("--ciel", help="x0,y0,x1,y1 de ciel propre, meme hauteur")
     p.add_argument("--mat", help="x0,y0,x1,y1 d'une tranche saine du mat")
+    p.add_argument("--sa-lumiere", action="store_true", dest="sa_lumiere",
+                   help="decouper le bonhomme DANS la lampe deja allumee, "
+                        "au lieu de le repeindre")
     a = p.parse_args()
 
     if a.planche:
@@ -298,11 +380,16 @@ def main():
                          "ampelmann-planche.png")
         planche(d)
         return
-    if not (a.dans and a.lentille and a.sortie):
-        sys.exit("  Preciser --dans, --lentille cx,cy,r et --sortie.")
+    if not (a.dans and a.sortie and (a.lentille or a.fenetre)):
+        sys.exit("  Preciser --dans, --sortie, et --lentille cx,cy,r "
+                 "ou --fenetre x0,y0,x1,y1.")
     n = lambda s: [int(v) for v in s.split(",")]                  # noqa: E731
-    cx, cy, r = n(a.lentille)
     img = Image.open(a.dans).convert("RGB")
+    if a.fenetre:
+        cx, cy, r = trouver_lentille(img, n(a.fenetre))
+        print("  lentille mesuree : centre %d,%d  rayon %d" % (cx, cy, r))
+    else:
+        cx, cy, r = n(a.lentille)
     flou = a.flou if a.flou is not None else flou_local(img, (cx, cy), r)
     print("  flou %.2f px  (%s)"
           % (flou, "impose" if a.flou is not None else "mesure sur place"))
@@ -321,8 +408,12 @@ def main():
                   zone[:2])
 
     fond = img.getpixel(tuple(n(a.verre))) if a.verre else None
-    eteindre(img, (cx, cy), r, fond=fond)
-    poser(img, a.pose, (cx, cy), r * 2, flou=flou, force=a.force, part=a.part)
+    if a.sa_lumiere:
+        sa_lumiere(img, a.pose, (cx, cy), r, fond, flou=flou, part=a.part)
+    else:
+        eteindre(img, (cx, cy), r, fond=fond)
+        poser(img, a.pose, (cx, cy), r * 2, flou=flou, force=a.force,
+              part=a.part)
     img.save(a.sortie)
     print("  %s" % a.sortie)
 
