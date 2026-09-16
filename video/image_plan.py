@@ -70,7 +70,7 @@ def prompt_image(bloc, n):
     Ces lignes-la sont des consignes A NOUS, pas au modele -- les envoyer
     ferait payer une image ou le generateur essaie d'obeir a du francais."""
     m = re.search(r"PROMPT D'IMAGE \(Framing\)\s*\n(.*?)"
-                  r"(?=\n\s*(?:⚠|REFERENCE|Reference|Visage neuf"
+                  r"(?=\n\s*(?:⚠|REFERENCE|Reference|Visage neuf|Position neuve"
                   r"|Image a nommer|PROMPT DE MOUVEMENT)|\Z)",
                   bloc, re.S)
     if not m or not m.group(1).strip():
@@ -105,6 +105,26 @@ def visage_neuf(bloc):
        que des references SANS visage. Le lieu se tient tres bien avec un
        decor vide."""
     return re.search(r"(?im)^\s*Visage neuf\s*:\s*oui\s*$", bloc) is not None
+
+
+def position_neuve(bloc):
+    """Ce plan deplace-t-il quelqu'un par rapport aux plans voisins ?
+
+    ⚠️ LE PENDANT DE << Visage neuf >>, ET IL A COUTE AUTANT. Le 16 septembre
+       2026, le plan 12 devait montrer les baskets sur le GRIS. Deux images
+       payees avec --ref bande-rouge-pieds -- une photo ou les pieds sont sur
+       le ROUGE -- les ont gardees sur le rouge, malgre un texte qui disait
+       explicitement le contraire, puis malgre un texte qui comptait les
+       paires. La septieme a reussi du premier coup, sans aucune reference.
+
+       Une reference transporte ce qu'elle MONTRE : un visage, et aussi une
+       position. Ce n'est pas un effet de bord, c'est sa fonction.
+
+    Ici on refuse TOUTE reference, pas seulement les portraits : le piege du
+    plan 12 n'etait pas un visage mais une paire de chaussures. Pour tenir le
+    lieu malgre tout, il reste la description -- et elle a suffi."""
+    return re.search(r"(?im)^\s*Position neuve\s*:\s*oui\s*$",
+                     bloc) is not None
 
 
 def nom_image(bloc, n):
@@ -176,6 +196,17 @@ def main():
         if not os.path.exists(c):
             sys.exit("  reference introuvable : %s" % c)
         refs.append(c)
+
+    if position_neuve(bloc) and refs:
+        sys.exit("\n  Ce plan porte « Position neuve : oui » : il deplace\n"
+                 "  quelqu'un par rapport aux plans voisins. Or une reference\n"
+                 "  transporte la POSITION qu'elle montre, comme elle\n"
+                 "  transporte un visage -- c'est sa fonction.\n\n"
+                 "  Le plan 12 de l'episode 3 a coute DEUX images a cause de\n"
+                 "  ca : la reference montrait les pieds sur le rouge, ils y\n"
+                 "  sont restes. La septieme prise a reussi du premier coup,\n"
+                 "  sans reference. Rien n'a ete facture.\n\n"
+                 "  Relancer sans --ref, et decrire le lieu.")
 
     if visage_neuf(bloc):
         coupables = [os.path.basename(r) for r in refs

@@ -35,6 +35,8 @@ import os
 import re
 import sys
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # --------------------------------------------------------------------------
@@ -229,6 +231,118 @@ REGLES = [
      u"d'abord se representer quelqu'un qui s'avance. Leurs propres exemples "
      u"sont positifs : << The leaves in the background sway. >>"),
 ]
+
+# --------------------------------------------------------------------------
+# LES ACQUIS -- ce qui MARCHE, etabli par une reussite, pas par une opinion.
+# --------------------------------------------------------------------------
+# ⚠️ POURQUOI CETTE SECONDE LISTE EXISTE. Demande de Jacques, 16 sept. 2026 :
+#    << quand on reussit a faire ce qu'on souhaite, rentre-le dans la liste des
+#    criteres a toujours passer avant d'effectuer tout prompt >>.
+#
+#    Jusque-la ce fichier n'avait que des FAUTES. Une liste de fautes empeche
+#    de refaire ; elle n'apprend pas a faire. Chaque solution -- la retouche
+#    plutot que la composition, le retrait de la reference, l'icone dessinee --
+#    a du etre redecouverte, et presque toujours apres avoir paye.
+#
+#    (titre, date, ce qui l'a etabli, comment s'en servir)
+ACQUIS = [
+    (u"Une reference transporte le VISAGE et la POSITION, pas le lieu",
+     u"16 sept. 2026",
+     u"Deux fois le meme mecanisme en une journee. cycliste-jaune fabrique "
+     u"avec --ref mark-marche est sorti avec le visage de Mark, et il servait "
+     u"de maitre a cinq plans. Puis deux-bandes, fabrique avec --ref "
+     u"bande-rouge-pieds pour tenir la matiere, a garde les pieds sur le "
+     u"rouge malgre un texte qui disait le contraire. Un prompt ne gagne "
+     u"jamais contre une reference sur ce qu'elle MONTRE.",
+     u"Si le plan change un visage ou une position, ne rien referencer qui "
+     u"les porte. Le declarer dans A-TOURNER.txt -- << Visage neuf : oui >>, "
+     u"<< Position neuve : oui >> -- et image_plan.py refuse alors. Pour tenir "
+     u"le LIEU, referencer un decor vide, ou decrire."),
+
+    (u"Demander une RETOUCHE, pas une composition",
+     u"16 sept. 2026",
+     u"Trois prompts d'affilee ont echoue a placer quelqu'un en nommant le "
+     u"revetement sous ses pieds, et ils echouaient dans des directions "
+     u"OPPOSEES : << BOTH ARE ON THE RED STRIP >> a donne le gris, << stands "
+     u"on the grey pavement slabs >> a donne le rouge. Le modele ne desobeit "
+     u"pas, il COMPOSE. Les plans 18 et 19 ont ete obtenus du premier coup en "
+     u"changeant de registre.",
+     u"Quand une image voisine porte deja la bonne position : << Take the "
+     u"first reference photograph and change ONE thing in it... do not move "
+     u"him, do not resize him, do not change what he is standing on >>, puis "
+     u"nommer LA seule chose qui change. Et ancrer sur un objet physique -- "
+     u"la bordure de granit entre lui et l'asphalte -- plutot que sur le nom "
+     u"d'une surface."),
+
+    (u"Une PROPORTION ne convoque rien : on peut la demander",
+     u"16 sept. 2026",
+     u"J'avais retire << filling two-thirds of the width >> en disant qu'une "
+     u"contrainte inutile ne peut que couter. Faux : une proportion n'est pas "
+     u"une negation, elle ne nomme aucun acteur. Ignoree elle coute zero ; "
+     u"suivie elle a donne le plan 12 du premier coup.",
+     u"Demander la proportion quand elle SERT (ici : un gris assez large pour "
+     u"que deux pieds y tiennent). Ne pas compter dessus pour un partage "
+     u"exact -- cinq mesures disent qu'elle n'est pas obeie au chiffre."),
+
+    (u"Une ICONE normalisee se DESSINE, elle ne se demande pas",
+     u"16 sept. 2026",
+     u"Deux images perdues a demander l'Ampelmaennchen. Le prompt decrivait "
+     u"le chapeau et les deux bras tendus ; le modele a boulonne un panneau "
+     u"carre sur le mat. Le nom propre d'une icone convoque l'imagerie qui "
+     u"l'entoure.",
+     u"Demander l'objet NU (<< the upper round lens is lit and glows an even "
+     u"plain red >>), puis incruster le dessin : video/ampelmann.py. Mieux "
+     u"encore, --sa-lumiere DECOUPE la figure dans la lampe deja allumee, ce "
+     u"qui garde la granulation, la couleur et le coeur surexpose de l'image."),
+
+    (u"MESURER, et ETALONNER la mesure avant de s'en servir",
+     u"16 sept. 2026",
+     u"Le jaune du blouson : (210,212,52) contre (210,209,81), donc le gag "
+     u"tient. Le rouge de la bande : six images a 27-30 % de saturation, deux "
+     u"a 38-44 %, donc DEUX a reprendre et pas huit. Mais accorder_tenue.py, "
+     u"premiere version, comparait des RGB absolus et declarait << ce n'est "
+     u"plus la meme tenue >> entre deux images deja validees : il mesurait "
+     u"l'EXPOSITION.",
+     u"Une impression ne raccorde rien, un chiffre oui -- a condition de "
+     u"l'etalonner sur des cas DEJA ACCEPTES avant de le laisser arbitrer. "
+     u"Normaliser sur un neutre present partout (ici le gris des dalles)."),
+
+    (u"RECADRER une prise payee plutot que d'en racheter une",
+     u"16 sept. 2026",
+     u"Le plan 15 de l'episode 2 sauve par un recadrage serre ; mark-marche "
+     u"et cycliste-jaune ramenes au bon cadrage a cout nul. Ce qui n'est pas "
+     u"dans l'image ne peut pas y apparaitre -- mais ce qui y est de trop "
+     u"peut en sortir.",
+     u"Avant de racheter, CALCULER si le recadrage suffit. Au plan 12 il ne "
+     u"suffisait pas, et le calcul l'a dit : ramener la frontiere au centre "
+     u"demandait de retirer 626 px pour une moitie rouge de 455, alors que le "
+     u"pictogramme en mesure 857. Le calcul ferme la question, l'oeil non."),
+
+    (u"La GEOGRAPHIE s'ecrit avant les plans",
+     u"16 sept. 2026",
+     u"Jacques : << comment ca qu'il se retrouve deja a un feu, alors qu'on le "
+     u"voyait marcher sur la piste et qu'il n'y avait pas de feu a "
+     u"proximite ? >> J'avais ecrit l'episode comme une SUITE DE PLANS : "
+     u"chacun se defend seul, mis bout a bout ils ne decrivent aucun lieu.",
+     u"Poser le lieu en tete du decoupage -- une seule rue, ce qu'il y a au "
+     u"debut, au milieu, au bout -- et exiger que chaque image la serve. Ce "
+     u"qu'on verra a la fin doit etre VISIBLE des le debut, au fond du cadre."),
+
+    (u"L'INTENTION s'ecrit avant le prompt, et on fait relire",
+     u"16 sept. 2026",
+     u"Le plan 12 a brule cinq images parce que je defendais un partage 50/50 "
+     u"que je n'avais jamais justifie. La question de Jacques -- << qu'est-ce "
+     u"que tu cherches a faire exactement ? >> -- l'a defait en une phrase, et "
+     u"a decouvert le vrai defaut : l'image illustrait << Rot fuer Raeder >> "
+     u"et rien de << Grau fuer Menschen >>.",
+     u"Ecrire l'intention (a quoi sert le plan, ce qui doit etre lisible sans "
+     u"le son, ce qui s'ajoutera, ce qui a deja rate), puis le prompt EXACT, "
+     u"puis faire relire par un autre modele -- avec les images. Voir "
+     u"video/PROCEDURE-episode.md. La relecture du plan 12 a rapporte mieux "
+     u"qu'un prompt : elle a montre que garde-negative ne connaissait que le "
+     u"vocabulaire de l'episode 2, pas la structure d'une negation."),
+]
+
 
 # Les verbes qui font parler. Un prompt sans aucun d'eux decrit une pose, pas
 # une replique -- et c'est la cause documentee des bouches qui bougent mal.
@@ -436,9 +550,53 @@ def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("fichier", nargs="?")
     p.add_argument("--scene")
+    p.add_argument("--avant-episode", action="store_true",
+                   dest="avant_episode",
+                   help="LA REVUE COMPLETE -- fautes ET acquis. A passer "
+                        "avant d'ouvrir un nouvel episode.")
     p.add_argument("--lecons", action="store_true",
                    help="tout ce qu'on a appris, a relire avant d'ecrire")
     a = p.parse_args()
+    if a.avant_episode:
+        print("=" * 74)
+        print("  LA REVUE D'AVANT-EPISODE")
+        print("=" * 74)
+        print(u"""
+  Regle posee par Jacques le 16 septembre 2026 :
+
+      << Il faut construire cette connaissance-la pour qu'on puisse avancer
+      avec plus de confiance pour les prochains episodes. Que ce soit ajoute
+      a chaque fois qu'on corrige quelque chose qui tient la route, puis
+      qu'on revalide l'ensemble avant de recreer un autre episode. >>
+
+  Deux listes, et il faut les deux. Les FAUTES empechent de refaire ; les
+  ACQUIS apprennent a faire. Un projet qui ne tient que la premiere
+  redecouvre ses solutions a chaque fois, et les paie a chaque fois.
+""")
+        print("-" * 74)
+        print("  CE QUI MARCHE -- %d acquis" % len(ACQUIS))
+        print("-" * 74)
+        for titre, date, etabli, usage in ACQUIS:
+            print(u"\n  \u2713 %s\n    (%s)" % (titre, date))
+            print(u"    etabli par : %s" % etabli)
+            print(u"    a faire    : %s" % usage)
+        print()
+        print("-" * 74)
+        print("  CE QU'ON A DEJA PAYE -- %d fautes" % len(REGLES))
+        print("-" * 74)
+        lecons()
+        print("=" * 74)
+        print(u"""  ET CE QUI N'EST PAS DANS CE FICHIER, PARCE QU'IL NE SAIT PAS LE LIRE :
+
+    - l'INTENTION s'ecrit avant le prompt, et un autre modele la relit,
+      avec les images. video/PROCEDURE-episode.md.
+    - la GEOGRAPHIE de l'episode s'ecrit avant les plans.
+    - --montrer est gratuit : le lire AVANT chaque depense.
+    - une prise payee ne s'ecrase jamais a la main ; --refaire l'archive.
+""")
+        print("=" * 74)
+        return
+
     if a.lecons:
         lecons()
         return
