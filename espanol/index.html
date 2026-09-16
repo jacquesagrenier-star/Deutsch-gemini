@@ -5966,7 +5966,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v35</span>
+    <span class="subtitle-version">v36</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8462,8 +8462,34 @@ const CODIGOS_VALIDOS = [
 const CLAVE_ACCESO = "wortandoEs_acceso";
 const SAL_ACCESO = "wortando-es";
 
+/* ------------------------------------------------------------------
+   CE QUE LA PORTE RETIENT, ET POURQUOI CE N'EST PLUS << 1 >>.
+
+   Elle ecrivait un drapeau : localStorage["wortandoEs_acceso"] valait
+   "1", et l'app s'ouvrait. Le 16 septembre 2026, Barbara est entree dans
+   l'app espagnole sans avoir jamais tape de code. Le parcours n'a pas pu
+   etre reproduit ici -- navigateur vierge, caches et service workers
+   effaces, puis le meme trajet qu'elle (app allemande installee, lien
+   espagnol ensuite) : la porte tenait dans les deux cas.
+
+   Un drapeau a deux defauts qu'on ne voit qu'une fois le doute installe.
+   D'abord, N'IMPORTE QUELLE valeur "1" posee la ouvre, d'ou qu'elle
+   vienne -- et le localStorage est partage par TOUT le domaine, l'app
+   allemande comprise. Ensuite, revoquer un code ne ferme rien sur un
+   appareil deja entre : plus personne ne relit la liste.
+
+   La porte garde donc l'EMPREINTE du code tape, et la recompare a la
+   liste a chaque ouverture. Une valeur qui ne vient pas d'un code valide
+   ne vaut plus rien, et `acceso.py --revocar` ferme enfin partout.
+
+   ⚠️ PRIX ASSUME, DEMANDE PAR JACQUES : les testeurs deja entres retapent
+   leur code une fois. Leur progression, elle, ne bouge pas -- elle vit
+   sous d'autres cles.
+   ------------------------------------------------------------------ */
 function accesoConcedido(){
-    try{ return localStorage.getItem(CLAVE_ACCESO) === "1"; }catch(e){ return false; }
+    try{
+        return CODIGOS_VALIDOS.indexOf(localStorage.getItem(CLAVE_ACCESO) || "") !== -1;
+    }catch(e){ return false; }
 }
 
 async function huellaDe(codigo){
@@ -8484,29 +8510,71 @@ async function comprobarCodigo(){
         error.textContent = "This browser can't check the code. Try Safari or Chrome.";
         return;
     }
-    if(CODIGOS_VALIDOS.indexOf(await huellaDe(codigo)) === -1){
+    const huella = await huellaDe(codigo);
+    if(CODIGOS_VALIDOS.indexOf(huella) === -1){
         error.textContent = "That code isn't valid.";
         return;
     }
-    try{ localStorage.setItem(CLAVE_ACCESO, "1"); }catch(e){}
+    // L'empreinte, pas un drapeau : voir accesoConcedido() ci-dessus. Elle est
+    // deja publique -- la liste des empreintes est dans la page -- et ne permet
+    // pas de retrouver le code.
+    try{ localStorage.setItem(CLAVE_ACCESO, huella); }catch(e){}
     error.textContent = "";
     document.getElementById("acceso").classList.remove("active");
     if(typeof goHome === "function") goHome();
 }
 
 /* ---------------------------------------------------------------------
-   Ouverture.
+   Ouverture, et LE VERROU.
 
-   Un testeur qui a deja donne son code ne doit plus jamais le revoir.
-   L'app allemande s'appuyait sur une session Firebase persistee ; celle-ci
-   s'appuie sur une ligne de localStorage, ecrite par comprobarCodigo().
+   Un testeur qui a deja donne son code ne doit plus jamais le revoir :
+   c'est le role de la fin de ce bloc. L'app allemande s'appuyait sur une
+   session Firebase persistee ; celle-ci s'appuie sur une ligne de
+   localStorage, ecrite par comprobarCodigo().
 
-   Le `load` plutot que l'execution immediate : goHome() touche des
-   elements definis plus bas dans la page, et l'ordre des scripts n'est pas
+   ⚠️ LE VERROU, LUI, EST NE D'UN DEFAUT QU'ON N'A PAS SU REPRODUIRE.
+   Le 16 septembre 2026, Barbara a ouvert l'app espagnole directement sur
+   l'accueil, sans avoir jamais tape de code. Rien ici n'a pu le refaire :
+   navigateur vierge, caches et service workers effaces, puis son trajet a
+   elle -- app allemande installee d'abord, lien espagnol ensuite -- la
+   porte tenait dans les deux cas.
+
+   Mais la porte n'est qu'une <section> parmi quarante : elle cesse d'etre
+   a l'ecran des que QUOI QUE CE SOIT appelle showScreen(). Or ce fichier
+   compte des dizaines de milliers de lignes ecrites pour une app dont la
+   porte est ailleurs (Firebase). Chercher le chemin exact pouvait durer
+   longtemps ; les fermer TOUS tient en huit lignes.
+
+   showScreen est donc enveloppe : tant que le code n'a pas ete donne,
+   aucun ecran autre que la porte ne peut devenir actif, quel que soit
+   l'appelant. C'est aussi une MESURE -- si quelqu'un entre encore sans
+   code apres ca, le defaut ne passe pas par un changement d'ecran, et on
+   saura ou ne plus chercher.
+
+   Le `load` plutot que l'execution immediate : showScreen() et goHome()
+   sont definis plus bas dans la page, et l'ordre des scripts n'est pas
    garanti quand on en insere un.
    --------------------------------------------------------------------- */
 window.addEventListener("load", function(){
-    if(typeof accesoConcedido !== "function" || !accesoConcedido()) return;
+    if(typeof window.showScreen === "function" && !window.__puertaConLlave){
+        var original = window.showScreen;
+        window.showScreen = function(id){
+            if(id !== "acceso" && !accesoConcedido()) return original("acceso");
+            return original.apply(this, arguments);
+        };
+        window.__puertaConLlave = true;
+    }
+    if(typeof accesoConcedido !== "function" || !accesoConcedido()){
+        // La porte a pu etre ecartee AVANT le `load` -- c'est precisement ce
+        // qu'on ne sait pas exclure. On la remet, sans rien supposer du chemin.
+        var abiertos = document.querySelectorAll("section.screen.active");
+        for(var i = 0; i < abiertos.length; i++){
+            if(abiertos[i].id !== "acceso") abiertos[i].classList.remove("active");
+        }
+        var cerrada = document.getElementById("acceso");
+        if(cerrada) cerrada.classList.add("active");
+        return;
+    }
     var puerta = document.getElementById("acceso");
     if(puerta) puerta.classList.remove("active");
     if(typeof goHome === "function") goHome();
@@ -22187,7 +22255,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 35;
+const APP_VERSION = 36;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
