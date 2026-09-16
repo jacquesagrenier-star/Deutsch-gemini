@@ -538,3 +538,35 @@ qui change de couleur d'un plan à l'autre casse la croyance plus sûrement qu'u
 défaut technique : le spectateur ne se dit pas « tiens, une incohérence », il se
 dit que ce n'est pas le même papier. `video/papier_blanc.py` répare après coup,
 mais la vraie place de la correction est **en amont, dans l'image**.
+
+## L'INTENTION S'ECRIT AVANT LE PROMPT, ET LES DEUX AVANT DE PAYER
+
+Regle posee par Jacques le 16 septembre 2026, apres la journee du plan 12 :
+**six versions, cinq payees, 0,75 $ sur une plaque de cinq secondes.**
+
+> « Avant de lancer le prompt, je te demanderai de m'ecrire l'intention et le
+> prompt, puis on va le revalider avec Jimmy, juste pour faire un double
+> check. »
+
+Donc, pour toute image ou toute prise facturee :
+
+1. **L'INTENTION**, en francais, et elle repond a quatre questions :
+   - a quoi sert ce plan dans l'episode ?
+   - qu'est-ce qui doit etre LISIBLE dedans, sans le son et sans sous-titre ?
+   - qu'est-ce qui s'y ajoutera ensuite (voix, sous-titre, incrustation) ?
+   - qu'est-ce qui a deja rate ici, et pourquoi ?
+2. **LE PROMPT EXACT**, celui que l'outil enverra -- pas une paraphrase.
+   `--montrer` le donne gratuitement, c'est lui qu'on colle.
+3. **LA RELECTURE CROISEE** par un autre modele, avant l'appel.
+4. Seulement ensuite, la depense.
+
+⚠️ CE QUE CETTE REGLE CORRIGE, ET CE N'EST PAS DE L'ETOURDERIE. Le plan 12 a
+   brule cinq images parce que je defendais une exigence -- un partage 50/50 --
+   que je n'avais JAMAIS justifiee. Il a suffi que Jacques demande « qu'est-ce
+   que tu cherches a faire exactement ? » pour qu'elle tombe : personne
+   n'apprend mieux parce que les bandes sont egales, et pendant que je
+   poursuivais ca, le vrai defaut restait entier (l'image illustrait « Rot fuer
+   Raeder » et rien de « Grau fuer Menschen »).
+
+   Ecrire l'intention AVANT le prompt oblige a dire a quoi sert le plan. Une
+   exigence qui ne survit pas a cette phrase ne merite pas qu'on la paie.
