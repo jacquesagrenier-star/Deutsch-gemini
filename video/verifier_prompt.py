@@ -61,7 +61,27 @@ REGLES = [
      r"no part of anyone|is NEVER seen|nobody walks in|nobody passes)\b"
      r"|\bno\s+\w+(?:\s+(?:or|and)\s+\w+)?\s+"
      r"(?:touch|touches|enter|enters|appear|appears|walk|walks|pass|"
-     r"passes|cross|crosses|stand|stands|move|moves|is seen|are seen)\b)",
+     r"passes|cross|crosses|stand|stands|move|moves|is seen|are seen)\b"
+     # ⚠️ ELARGIE UNE DEUXIEME FOIS LE MEME JOUR, ET CA COMPTE.
+     #    16 sept. 2026, au soir : les deux premieres prises d'avatar de
+     #    l'episode 3 reviennent avec les deux personnages TOURNES VERS
+     #    L'OBJECTIF. Le prompt disait << He NEVER faces the camera >>.
+     #    1,23 $, et un champ/contrechamp detruit -- deux hommes qui
+     #    devaient se parler regardent le spectateur.
+     #
+     #    La regle avait pourtant ete elargie quelques heures plus tot,
+     #    a << no <acteur> <action> >>. Elle ratait << never >>.
+     #
+     #    ET C'EST LA LECON DERRIERE LA LECON : enumerer des FORMES de
+     #    negation est un jeu qu'on perd, parce que chaque elargissement
+     #    arrive APRES la depense. On couvre les charnieres usuelles --
+     #    no, never, does not -- en sachant que la liste restera
+     #    incomplete. La vraie parade n'est pas le controle : c'est de
+     #    ne pas ECRIRE de garde negative, et de decrire un etat.
+     r"|\b(?:he|she|they|it|his|her|their)\s+\w{0,12}\s?"
+     r"(?:never|does not|doesn't|do not|don't|will not|won't)\s+\w+"
+     r"|\b(?:never|does not|doesn't)\s+(?:face|faces|look|looks|turn|"
+     r"turns|move|moves|leave|leaves)\b)",
      u"La garde qui enumere ce qu'il ne faut pas montrer",
      u"16 sept. 2026 : QUATRE prises sur six (09, 13, 15, 17). On a obtenu une "
      u"nuque, des cheveux, une epaule, un bras, une silhouette floue -- "
