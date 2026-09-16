@@ -69,12 +69,103 @@ def essais(de):
     ]
 
 
+# --------------------------------------------------------------------------
+# LA BASCULE DE MARK EN v3 (16 septembre 2026, choix B de Jacques).
+# --------------------------------------------------------------------------
+# Mark passe en v3, le fonctionnaire et le narrateur restent en v2. La raison
+# n'est pas l'argent : c'est Mark qui porte l'humour et l'attachement, et le
+# fonctionnaire DOIT rester neutre -- une balise d'emotion serait contre son
+# personnage. Le melange de modeles tombe donc entre DEUX VOIX DIFFERENTES,
+# la ou il ne s'entend pas, au lieu d'etre a l'interieur d'une meme voix.
+#
+# ⚠️ LA STABILITE EST A 0.5, ET C'EST LA LECON DU PLAN 08. Le 15 septembre,
+# [surprised] a stability 0.0 avait donne de l'indignation, pas de
+# l'etonnement -- << la balise a depasse la cible >>. Une balise ne se juge
+# jamais sans sa stabilite.
+#
+# ⚠️ ET LE PLAN 03 N'A PAS DE BALISE, EXPRES. C'est la ligne de base : Mark y
+# est prepare et un peu fier de l'etre. Tout le contraste de l'episode se
+# mesure a partir de la ; la colorer, c'est perdre l'echelle.
+MARK_V3 = {
+    3:  [("nu", "Guten Tag. Ich möchte mich anmelden.", 0.5,
+          "la ligne de base, sans balise : prepare, pas encore surpris")],
+    5:  [("curieux", "Nein. [curious] Kann ich heute einen bekommen?", 0.5,
+          "la premiere fissure, mais il croit encore que ca s'arrange"),
+         ("espoir", "Nein. [hopeful] Kann ich heute einen bekommen?", 0.5,
+          "la meme, en plus ouvert")],
+    8:  [("surpris", "[surprised] Sechs Wochen? Ich wohne doch schon hier.", 0.5,
+          "la balise que la v3 avait sur-jouee a stabilite 0 -- ici tenue a 0,5"),
+         ("incredule", "Sechs Wochen? [confused] Ich wohne doch schon hier.", 0.5,
+          "l'incredulite arrive APRES le nombre, comme la diction retenue hier")],
+    10: [("amuse", "[amused] Vierzehn Tage. Und der Termin ist in sechs Wochen.", 0.5,
+          "il trouve le calcul drole avant de le trouver injuste"),
+         ("sec", "Vierzehn Tage. Und der Termin ist in sechs Wochen.", 0.5,
+          "sans balise : v3 seul, pour mesurer ce qu'ajoute la balise")],
+    14: [("pratique", "Welche Papiere brauche ich?", 0.5,
+          "pratique et leger : rien a colorer")],
+    16: [("rire", "Die … was, bitte? [chuckles]", 0.5,
+          "le moment ou on l'adopte : il rit de lui-meme"),
+         ("amuse", "[amused] Die … was, bitte?", 0.5,
+          "amuse d'un bout a l'autre, sans rire audible")],
+}
+
+
+def bascule_mark(a, d, man, dossier, sortie, cle):
+    """Les six repliques de Mark en v3, a ecouter avant de remplacer quoi que
+    ce soit. ⚠️ RIEN N'EST INSTALLE ICI."""
+    generer.VOIX = ((d.get("locuteurs") or {}).get("mark") or {})["voice_id"]
+    modele = generer.MODELES["v3"][0]
+    normaliser.FF = normaliser.ffmpeg()
+    filtre = "volume=%.2fdB,alimiter=limit=0.891" % man["gain_applique_db"]
+    total = sum(len(t) for v in MARK_V3.values() for _, t, _, _ in v)
+    print("  %d essais sur %d repliques -> environ %d credits"
+          % (sum(len(v) for v in MARK_V3.values()), len(MARK_V3), total))
+    if not a.pour_de_vrai:
+        print("\n  (essai a blanc -- relancer avec --pour-de-vrai)")
+        return
+    print()
+    for n in sorted(MARK_V3):
+        for nom, texte, stab, pourquoi in MARK_V3[n]:
+            brut = os.path.join(sortie, "%02d-v3-%s-brut.mp3" % (n, nom))
+            # ⚠️ NON VIDE, PAS SEULEMENT PRESENT. Un appel rate laisse un
+            # fichier de 0 octet -- et le 16 septembre, ce fichier-la s'est
+            # fait prendre pour une prise valide : cinq essais annonces, un
+            # jamais produit, et Jacques a entendu << aucune difference >>.
+            if not (os.path.exists(brut) and os.path.getsize(brut) > 1024):
+                generer.REGLAGES = dict(man["reglages"])
+                generer.REGLAGES["stability"] = stab
+                io.open(brut, "wb").write(
+                    generer.synthetiser(texte, modele, cle))
+            final = os.path.join(sortie, "%02d-v3-%s.mp3" % (n, nom))
+            if not normaliser._ff(brut, final, filtre):
+                sys.exit("  ffmpeg a echoue sur %s" % nom)
+            print("  %02d  %-10s %5.2f s   %s"
+                  % (n, nom, normaliser.duree(final), pourquoi))
+    print()
+    print("  Rien n'a ete remplace. Ecoute, puis dis lesquelles.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", required=True)
-    ap.add_argument("--plan", type=int, required=True)
+    ap.add_argument("--plan", type=int)
+    ap.add_argument("--mark", action="store_true",
+                    help="les six repliques de Mark en v3 (bascule d'essai)")
     ap.add_argument("--pour-de-vrai", action="store_true")
     a = ap.parse_args()
+    if a.mark:
+        d = json.load(io.open(os.path.join(RACINE, "scenes",
+                                           a.scene + ".json"), encoding="utf-8"))
+        dossier = os.path.join(RACINE, "audio", "scenes", a.scene)
+        man = json.load(io.open(os.path.join(dossier, "manifeste.json"),
+                                encoding="utf-8"))
+        sortie = os.path.join(dossier, "_essais-diction")
+        if not os.path.isdir(sortie):
+            os.makedirs(sortie)
+        bascule_mark(a, d, man, dossier, sortie, generer.cle_api())
+        return
+    if not a.plan:
+        sys.exit("  Preciser --plan N ou --mark.")
 
     d = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"),
                           encoding="utf-8"))
