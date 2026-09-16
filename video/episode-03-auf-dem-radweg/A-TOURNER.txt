@@ -288,3 +288,140 @@ CE QUI SUIT, UNE FOIS LES QUATRE VALIDEES
   - les voix : Mark en eleven_v3 avec balises DES LE DEPART, le narrateur et
     les figures d'episode en v2 ;
   - les onze prompts d'avatar sont deja ecrits et passent le controle.
+
+
+==============================================================
+LES SEPT PLANS DE DECOR
+==============================================================
+⚠️ BROUILLONS, ET LE MOT EST EXACT. Ils decrivent une rue qui n'existe pas
+   encore : les quatre images maitresses sont ECRITES, pas FABRIQUEES. Des
+   que mark-marche sortira, il faudra relire ces sept prompts contre elle et
+   corriger ce qui ne correspond pas -- la couleur de la facade, le modele
+   des velos gares, la forme du feu pieton. Sinon on retombe exactement dans
+   le defaut de l'episode 2 : un ordinateur qui apparait et disparait du meme
+   bureau.
+
+⚠️ ET CES PLANS NE PASSENT PAS PAR OMNIHUMAN. Ils sont fabriques par la
+   chaine image-vers-video (video/mouvement.py) : une image fixe et un prompt
+   de MOUVEMENT. OmniHuman anime un visage a partir d'une voix ; ici il n'y a
+   pas de voix a l'image, et il y a des figurants qui bougent.
+
+
+PLAN 01   Le carrefour   6 s
+
+PROMPT D'IMAGE (Framing)
+A Berlin street corner on a weekday morning, vertical frame. A pedestrian
+traffic light showing red stands in the foreground on the right. The road is
+empty: no cars in either direction. Behind it a plain pale building front,
+bicycles parked along the pavement, and a broad red-painted bicycle strip
+beside a grey pedestrian strip. Daylight, overcast and even. No people in the
+frame.
+Reference : mark-marche (pour le lieu)
+Image a nommer : carrefour-rouge
+
+PROMPT DE MOUVEMENT
+Locked-off camera. No zoom, no pan. The red pedestrian light glows steadily.
+A few leaves move on the pavement and a tram passes far away in the distance,
+small and soft. The street stays empty. Hold on the stillness to the end.
+
+
+PLAN 03   Le plan muet du feu rouge   4 s
+
+PROMPT D'IMAGE (Framing)
+The same Berlin street corner. The young man in the light blue shirt is out
+on the asphalt of the crossing, alone, in the middle of the frame. On the
+pavement behind him a small group of people stand completely still, facing
+the crossing, waiting. The pedestrian light shows red. Vertical frame, wide.
+Reference : mark-marche, carrefour-rouge
+Image a nommer : traverse-seul
+
+PROMPT DE MOUVEMENT
+Locked-off camera. The man walks steadily across the asphalt, left to right.
+The people on the pavement stay exactly where they are, standing and
+watching, their feet still. Small natural idle only: a coat moves, a head
+turns a little. They remain on the pavement for the whole shot.
+
+
+PLAN 06   La bande rouge   5 s
+
+PROMPT D'IMAGE (Framing)
+A close view of a Berlin pavement from above and slightly ahead, vertical
+frame: a broad red-painted bicycle strip beside a grey pedestrian strip, the
+line between them sharp. A man's shoes and the lower part of dark navy
+trousers enter the frame on the red strip. Daylight, overcast and even.
+Reference : mark-marche
+Image a nommer : bande-rouge-pieds
+
+PROMPT DE MOUVEMENT
+Locked-off camera. The shoes walk forward along the red strip at a calm
+pace, one after the other, and continue out of the frame. Nothing else moves.
+
+
+PLAN 07   Le plan muet des sonnettes   4 s
+
+PROMPT D'IMAGE (Framing)
+A Berlin bicycle lane seen from behind, vertical frame. The young man in the
+light blue shirt walks in the middle of the red strip, seen from behind,
+unaware. Two cyclists are passing him, one on each side, close. Further back
+more cyclists approach. Daylight, overcast and even.
+Reference : mark-marche
+Image a nommer : velos-evitent
+
+PROMPT DE MOUVEMENT
+Locked-off camera. The cyclists swerve smoothly around the walking man, one
+after another, and ride out of frame. He keeps walking at the same pace, head
+forward, and does not turn. More cyclists come from the far distance.
+
+
+PLAN 12   Les deux bandes   5 s
+
+PROMPT D'IMAGE (Framing)
+A pavement seen from directly above, vertical frame, graphic and clean: on
+one side a broad red-painted bicycle strip, on the other a grey pedestrian
+strip, the painted line between them sharp and straight across the frame.
+Nothing else. Daylight, overcast and even.
+Reference : bande-rouge-pieds
+Image a nommer : deux-bandes
+
+PROMPT DE MOUVEMENT
+Locked-off camera. Almost nothing moves. A bicycle shadow crosses the red
+strip once, quickly, and is gone. The frame stays still.
+
+
+PLAN 17   Il change de bande   5 s
+
+PROMPT D'IMAGE (Framing)
+The same Berlin street corner. The young man in the light blue shirt stands
+on the grey pedestrian strip, close to the kerb, facing the crossing, seen
+from behind and slightly to the side. The pedestrian light shows red ahead of
+him. Vertical frame, medium wide.
+Reference : mark-marche, carrefour-rouge
+Image a nommer : il-attend
+
+PROMPT DE MOUVEMENT
+Locked-off camera. The man steps sideways from the red strip onto the grey
+one, stops at the kerb, and stands still facing the red light. He stays
+there, waiting, for the rest of the shot. Small natural idle only.
+
+
+PLAN 18   LA CHUTE   6 s
+
+PROMPT D'IMAGE (Framing)
+The same Berlin street corner, vertical frame, wide. The young man in the
+light blue shirt stands still on the grey pedestrian strip at the kerb, seen
+from behind, waiting at the red pedestrian light. On the road beside him a
+cyclist in a BRIGHT YELLOW waterproof jacket on a dark grey bicycle is riding
+into the crossing, seen from behind.
+Reference : cycliste-jaune, il-attend
+Image a nommer : chute-feu-rouge
+
+PROMPT DE MOUVEMENT
+Locked-off camera. The man on the pavement stays completely still, waiting.
+The cyclist in the yellow jacket pedals straight on through the crossing,
+away from the camera, and grows smaller until he is far down the street. The
+red light stays red.
+
+⚠️ TOUT REPOSE SUR LE BLOUSON JAUNE. Le spectateur l'a vu de pres pendant
+   quatre plans ; ici il ne le voit que de dos et de loin, deux secondes.
+   Si l'image ne rend pas le jaune franc et reconnaissable, la chute n'est
+   plus qu'un cycliste quelconque, et la blague disparait.
