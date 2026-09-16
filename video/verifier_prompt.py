@@ -328,6 +328,22 @@ ACQUIS = [
      u"debut, au milieu, au bout -- et exiger que chaque image la serve. Ce "
      u"qu'on verra a la fin doit etre VISIBLE des le debut, au fond du cadre."),
 
+    (u"Les OBJETS aussi doivent raccorder, pas seulement les visages",
+     u"16 sept. 2026",
+     u"Le velo du cycliste change trois fois : noir avec phare avant dans "
+     u"l'image maitresse et au plan 19, gris-argent avec porte-bagages au "
+     u"plan 18. Personne n'avait regarde -- on surveillait les visages (les "
+     u"deux Annas du 8 sept., le cycliste au visage de Mark), les lieux (le "
+     u"decor qui se remeuble) et les vetements (accorder_tenue.py). Les "
+     u"objets, jamais. Jacques : << ca ne choquera pas les gens, mais il faut "
+     u"toujours verifier pour que les objets soient les memes >>.",
+     u"Lister en tete du decoupage LES OBJETS QUI REVIENNENT -- le velo, le "
+     u"blouson, le sac, la tasse -- et les verifier un par un sur les images "
+     u"avant de tourner. La reference sert a ca : elle transporte un objet "
+     u"comme elle transporte un visage, et c'est le seul cas ou cette force "
+     u"joue POUR nous. Referencer l'image maitresse de l'objet, pas seulement "
+     u"celle du personnage."),
+
     (u"L'INTENTION s'ecrit avant le prompt, et on fait relire",
      u"16 sept. 2026",
      u"Le plan 12 a brule cinq images parce que je defendais un partage 50/50 "
