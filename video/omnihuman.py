@@ -86,6 +86,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "video"))
 import montage as M                                         # noqa: E402
+import verifier_prompt as VP                                # noqa: E402
 
 MODELE = "fal-ai/bytedance/omnihuman/v1.5"
 PRIX = 0.16                      # $ la seconde, releve sur la fiche du modele
@@ -340,6 +341,19 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
                  % (n, d, DUREE_MAX[resolution], resolution))
     print("  plan %d : %s + %s  (%.2f s, ~%.2f $)"
           % (n, os.path.basename(img), os.path.basename(mp3), d, d * PRIX))
+
+    # ⚠️ LE CONTROLE PASSE AVANT LE TELEVERSEMENT, PAS APRES.
+    #
+    # Demande de Jacques le 16 septembre 2026 : << j'ai l'impression qu'on
+    # n'apprend pas de nos erreurs suffisamment >>. Il avait raison -- chaque
+    # faute de verifier_prompt.py etait deja ecrite dans le depot, et chacune a
+    # ete refaite. Une lecon rangee dans un document se relit quand on y
+    # pense ; celle-ci s'execute quand on s'apprete a payer.
+    fautes = VP.dire(src, VP.controler(prompt), bavard=False)
+    if fautes and not os.environ.get("WORTANDO_FORCER"):
+        sys.exit("\n  %d faute(s) connue(s) dans ce prompt : rien n'a ete\n"
+                 "  televerse et rien n'a ete facture. Corrige-les, ou relance\n"
+                 "  avec WORTANDO_FORCER=1 si tu sais pourquoi." % fautes)
 
     if simuler:
         print("    SIMULATION -- rien n'est appele, rien n'est facture.")
