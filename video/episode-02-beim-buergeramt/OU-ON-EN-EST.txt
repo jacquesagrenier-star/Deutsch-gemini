@@ -260,3 +260,51 @@ sourire. Si tout le monde s'allege, plus rien n'est drole.
    sans traduction, c'est le visage >>). Si l'humour doit s'ENTENDRE aussi
    -- un demi-rire sur << Die ... was, bitte ? >> par exemple -- ce sont de
    nouvelles prises ElevenLabs a refaire, et a decider avant de relancer fal.
+
+
+-----------------------------------------------------------------------
+16 SEPTEMBRE, SUITE -- CE N'EST PAS UNE PANNE DE fal. C'EST LE PLAN 05.
+-----------------------------------------------------------------------
+Le test qui a tranche, et il est GRATUIT : redemander le resultat des trois
+prises DEJA telechargees hier, sur le meme modele et le meme compte.
+
+    plan 03   etat COMPLETED   resultat OK   v3b.fal.media/...0aaa86ba
+    plan 04   etat COMPLETED   resultat OK   v3b.fal.media/...0aaa86ea
+    plan 08   etat COMPLETED   resultat OK   v3b.fal.media/...0aaa869a
+    plan 05   etat COMPLETED   resultat HTTP 504   (DEUX requetes, deux jours)
+
+⚠️ LE SERVICE DE RESULTATS MARCHE. Ce sont les deux requetes du plan 05, et
+   elles seules, dont la sortie est illisible. Ni panne generale, ni notre
+   code : quelque chose ne va pas avec CETTE generation-la.
+
+   Et ce n'est pas son panier : plan05-mark-moyen.jpg est OCTET POUR OCTET le
+   meme fichier que plan03-mark-moyen.jpg (537 792 o), et le plan 03 est
+   passe. Le mp3 n'a rien de particulier non plus (33 ko, 4,05 s).
+
+CE QUE DIT LA RECHERCHE WEB (16 septembre 2026)
+  - La documentation de fal : les requetes qui repondent 5xx NE SONT PAS
+    FACTUREES, et la file reessaie jusqu'a dix fois. Notre cas est plus
+    retors -- l'inference, elle, a REUSSI (7 s) : c'est la lecture du
+    resultat qui echoue.
+  - fal a un historique de degradations du STOCKAGE ET DE LA LECTURE DES
+    RESULTATS : << Uploading and downloading of assets is degraded >>
+    (21 mars 2025, une heure, cause Cloudflare R2, AUCUNE perte de donnees) et
+    surtout << Historical Request lookup and Assets generated between Aug 1-26
+    may be degraded >> -- du 27 aout au 2 septembre 2026, CINQ JOURS.
+  - Sa page d'etat est lente et incomplete : StatusGator lui met un << C >>
+    de fiabilite d'annonce et releve des incidents jamais reconnus. << All
+    systems operational >> ne prouve donc rien.
+
+SOLDE fal AU 16 SEPTEMBRE : 19,20 $. A NOTER AVANT CHAQUE LOT -- c'est la
+seule facon de savoir apres coup si une prise perdue a ete facturee.
+
+CE QU'ON EN FAIT
+  1. ne pas s'acharner sur le plan 05 : deux fois la meme chose, ca suffit.
+     Sa voix va de toute facon etre refaite (voir le ton), donc son panier
+     changera : ce sera une requete neuve, avec un autre audio.
+  2. les SIX plans du fonctionnaire (07, 09, 11, 13, 15, 17) ont leur panier
+     DEFINITIF -- leur voix ne change pas. Ce sont eux qu'on lance en premier,
+     4,34 $.
+  3. les quatre plans de Mark (05, 10, 14, 16) attendent leurs nouvelles voix.
+  4. `--recuperer` reste a relancer de temps en temps : si la lecture du
+     plan 05 revient un jour, elle est gratuite.
