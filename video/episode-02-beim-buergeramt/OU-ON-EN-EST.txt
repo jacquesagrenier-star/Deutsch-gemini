@@ -175,3 +175,88 @@ A REGARDER EN PREMIER QUAND LES PRISES SERONT LA
      plan ; le reste, c'est le personnage qui ECOUTE.
    - Toutes les anomalies de voix de ce projet ont ete trouvees par L'OREILLE
      DE JACQUES, jamais par une mesure. Deux fois en deux jours.
+
+
+=======================================================================
+16 SEPTEMBRE -- DEUX CHOSES : fal NE REND PLUS SES RESULTATS, ET LE TON
+=======================================================================
+
+1. fal EST CASSE EN AVAL, ET CA COUTE DE L'ARGENT A CHAQUE ESSAI
+------------------------------------------------------------------
+Le lot des dix plans a ete lance (7,04 $ de devis, plafond 7,50 $). Il s'est
+arrete sur le PREMIER plan, exactement comme hier :
+
+    plan 05   requete 01a0a8e6...   COMPLETED en 7 s   puis HTTP 504
+              << downstream_service_unavailable >> sur la recuperation
+
+⚠️ CE N'EST PAS LA PANNE D'HIER QUI TRAINE : c'est une SECONDE requete, un
+   autre jour, meme resultat. Les deux sont facturees et illisibles.
+   status.fal.ai annonce << all systems operational >>, verifie le
+   16 septembre. Le plan 05 a donc ete paye DEUX FOIS pour rien : 1,30 $.
+
+   Requetes payees et perdues, a retenter gratuitement :
+       01a0a536-4b12-76d2-87a0-a921d07889ed   (15 sept.)
+       01a0a8e6-294f-75a3-a0e9-bbd4a9cc3472   (16 sept.)
+
+⚠️ NE PAS RELANCER LE LOT TANT QUE LA RECUPERATION NE MARCHE PAS. Chaque
+   plan serait facture puis perdu. Le test qui ne coute rien, a refaire de
+   temps en temps :
+
+       python video/omnihuman.py --scene 02-beim-buergeramt --recuperer
+
+   C'est NOUVEAU (16 septembre). omnihuman.py a maintenant trois defenses :
+     - la recuperation insiste cinq minutes au lieu de trois essais ;
+     - un recu qui echoue passe en << PAYEE, NON RECUPEREE >> au lieu de
+       rester << soumise >> -- un etat qui dit quoi faire ;
+     - --recuperer balaie ces recus et retelecharge, SANS RIEN FACTURER.
+
+   Le jour ou fal repond de nouveau, cette commande ramene le plan 05 sans
+   nouvelle depense. Si elle le ramene, le lot des neuf autres peut repartir.
+
+
+2. LE TON : DE L'HUMOUR, DES SOURIRES, DES PERSONNAGES ATTACHANTS
+------------------------------------------------------------------
+Jacques, 16 septembre : << il ne faut pas oublier l'aspect humour, les
+sourires ; malgre la situation, que ca ne devienne pas dramatique, que ca
+reste leger >> puis << il faut que ce soit fait dans un sens qu'on s'attache
+aux personnages >>.
+
+Arrive au bon moment : rien n'etait genere, donc rien n'est perdu.
+
+MARK PASSE DE DIGNE A LEGER. Il encaissait poliment ; il encaisse maintenant
+avec humour -- il trouve la situation drole AVANT de la trouver injuste.
+C'est ce qui rend un personnage attachant, et c'est aussi ce qui passe sans
+sous-titres sur Instagram.
+
+    plan 05   la fissure, mais souriante : il demande comme on demande
+              quand on est sur qu'il y a un moyen simple
+    plan 10   il fait le calcul et s'amuse deja de l'absurdite. Le regard
+              dit << vous l'entendez aussi, non ? >> -- AVEC l'autre, pas
+              contre lui
+    plan 14   plus << un peu eteint >> : leger, un sourire en coin pour
+              lui-meme
+    plan 16   LE MOMENT OU ON L'ADOPTE. Il est le premier a trouver ca
+              drole ; le demi-sourire devient chaleureux, pas gene
+
+LE FONCTIONNAIRE GARDE SON DEADPAN -- 07, 09, 11, 15 ne bougent pas, ET
+C'EST LE POINT : un sourire ne se voit que s'il tombe sur autre chose qu'un
+sourire. Si tout le monde s'allege, plus rien n'est drole.
+
+⚠️ MAIS IL GAGNE DEUX BATTEMENTS HUMAINS, ET C'EST UN ECART ASSUME par
+   rapport a la regle ecrite plus haut dans A-TOURNER.txt (<< ET LE
+   FONCTIONNAIRE NE JOUE RIEN >>) :
+     plan 13   il choisit la feuille, la tape une fois contre le comptoir
+               avant de la tendre -- la seule chose qu'il puisse vraiment
+               faire pour cet homme. Geste de travail, jamais de gentillesse ;
+               le soin est le seul endroit ou la gentillesse se voit.
+     plan 17   son regard reste une demi-seconde de trop avant de redescendre.
+               Rien d'autre ne change : pas de sourire, pas de soupir.
+   Ni l'un ni l'autre ne le fait sourire et sa voix ne bouge pas. A defaire
+   en une minute si la regle d'origine est preferee -- rien n'est genere.
+
+⚠️ CE QUE LES PROMPTS NE PEUVENT PAS FAIRE : LES VOIX SONT DEJA ENREGISTREES.
+   Dix-neuf prises v2, neutres, payees. La legerete passera donc par le
+   VISAGE -- ce qui est deja la doctrine de l'episode (<< ce qui doit passer
+   sans traduction, c'est le visage >>). Si l'humour doit s'ENTENDRE aussi
+   -- un demi-rire sur << Die ... was, bitte ? >> par exemple -- ce sont de
+   nouvelles prises ElevenLabs a refaire, et a decider avant de relancer fal.

@@ -5109,3 +5109,46 @@ meuble ici — c'est exactement ce que dit « visuellement on le voit ».
 (« 30 » sur « Quel article ? », par exemple). Elle ne compte pas des options,
 elle annonce le nombre de questions de l'exercice — une information qu'on ne
 peut pas lire à l'œil. À dire si elle dérange aussi.
+
+
+## 16 septembre 2026 — l'épisode 2 : fal ne rend plus ses résultats, et le ton se décide
+
+**« Il ne faut pas oublier l'aspect humour, les sourires ; malgré la situation,
+que ça ne devienne pas dramatique, que ça reste léger »** puis **« il faut que ce
+soit fait dans un sens qu'on s'attache aux personnages ».** — Arrivé au meilleur
+moment possible : le lot d'avatars venait d'échouer, donc **rien n'était généré
+et rien n'est perdu**. Six prompts sur dix repris.
+
+**Mark passe de digne à léger** : il encaissait poliment, il encaisse maintenant
+avec humour — il trouve la situation drôle **avant** de la trouver injuste. C'est
+ce qui rend un personnage attachant, et c'est aussi la seule chose qui passe
+sans sous-titres sur Instagram. Le plan 16 (« Die … was, bitte ? ») devient
+explicitement **le moment où le spectateur l'adopte** : il est le premier à rire
+de lui-même.
+
+⚠️ **Le fonctionnaire garde son deadpan — 07, 09, 11, 15 n'ont pas bougé, et
+c'est le point.** Un sourire ne se voit que s'il tombe sur autre chose qu'un
+sourire ; si tout le monde s'allège, plus rien n'est drôle. Il gagne quand même
+**deux battements humains**, et c'est un **écart assumé** à la règle écrite dans
+`A-TOURNER.txt` (« le fonctionnaire ne joue rien ») : il tape la feuille une fois
+contre le comptoir avant de la tendre (plan 13), et son regard s'attarde une
+demi-seconde de trop (plan 17). Ni sourire, ni voix qui change. À défaire en une
+minute si tu préfères la règle d'origine.
+
+⚠️ **Ce que les prompts ne peuvent pas faire : les voix sont déjà
+enregistrées.** Dix-neuf prises v2, neutres, payées. La légèreté passera par le
+visage. Si l'humour doit s'**entendre** aussi, ce sont de nouvelles prises
+ElevenLabs — à décider avant de relancer fal.
+
+**Et la mauvaise nouvelle, financière :** fal répond `COMPLETED` (7 s
+d'inférence, donc facturé) puis **HTTP 504 sur la récupération** — hier et
+aujourd'hui, sur deux requêtes différentes, pendant que `status.fal.ai` annonce
+« all systems operational ». Le plan 05 a été payé **deux fois pour rien
+(1,30 $)**. Le lot s'est arrêté au premier plan au lieu d'en brûler dix : c'est
+la seule bonne nouvelle.
+
+⚠️ **`omnihuman.py` a trois défenses de plus**, toutes gratuites : la
+récupération insiste cinq minutes au lieu de trois essais ; un reçu qui échoue
+passe en « PAYÉE, NON RÉCUPÉRÉE » au lieu de rester « soumise » ; et
+`--recuperer` rebalaie ces reçus pour retélécharger **sans rien facturer**. Le
+jour où fal répond, une commande ramène le plan 05 sans nouvelle dépense.

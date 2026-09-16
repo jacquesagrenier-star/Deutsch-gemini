@@ -151,6 +151,49 @@ def deposer(chemin, type_mime, cle_api):
     return rep["file_url"], len(octets)
 
 
+class ResultatIndisponible(Exception):
+    """La requete est COMPLETED -- donc facturee -- mais son resultat ne se
+    laisse pas lire. A ne PAS confondre avec un echec de generation : ici il
+    y a quelque chose a aller chercher plus tard."""
+
+
+def recuperer_resultat(response_url, cle_api, minutes=5.0, bavard=True):
+    """Lit le resultat d'une requete terminee. GRATUIT -- rien n'est relance.
+
+    ⚠️ POURQUOI CINQ MINUTES ET NON TROIS ESSAIS. Le 16 septembre 2026, fal a
+    rendu COMPLETED (7 s d'inference) puis un HTTP 504
+    « downstream_service_unavailable » sur la recuperation, deux jours de
+    suite, pendant que status.fal.ai annonçait « all systems operational ».
+    Trois essais en six secondes ne distinguent pas un hoquet d'une panne ;
+    et la difference vaut 0,65 $ par plan, puisque la prise est deja payee.
+    """
+    debut = time.time()
+    attente = 5
+    dernier = None
+    while True:
+        r = urllib.request.Request(response_url, headers={
+            "Authorization": "Key " + cle_api,
+            "Content-Type": "application/json",
+        })
+        try:
+            with urllib.request.urlopen(r, timeout=120) as rep:
+                return json.loads(rep.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            dernier = "HTTP %s" % e.code
+            # 4xx : la requete est fautive, insister ne repare rien.
+            if e.code < 500:
+                raise ResultatIndisponible(dernier)
+        except Exception as e:
+            dernier = type(e).__name__
+        if time.time() - debut > minutes * 60:
+            raise ResultatIndisponible(dernier or "?")
+        if bavard:
+            print("    resultat indisponible (%s), nouvel essai dans %d s"
+                  % (dernier, attente))
+        time.sleep(attente)
+        attente = min(attente * 2, 60)
+
+
 def attendre(status_url, response_url, cle_api, bavard=True):
     """On suit les URL que la soumission nous a RENDUES, on ne les reconstruit
     pas : le chemin de file d'attente d'un modele a sous-chemins ne se devine
@@ -164,7 +207,7 @@ def attendre(status_url, response_url, cle_api, bavard=True):
             print("    %-12s %4.0f s" % (s, time.time() - debut))
             vu = s
         if s == "COMPLETED":
-            return _json(response_url, cle_api)
+            return recuperer_resultat(response_url, cle_api, bavard=bavard)
         if s in ("FAILED", "CANCELLED", "ERROR"):
             sys.exit("  la requete a echoue : %s" % json.dumps(e)[:400])
         if time.time() - debut > 900:
@@ -339,7 +382,21 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     io.open(recu, "w", encoding="utf-8").write(
         json.dumps(trace, ensure_ascii=False, indent=1))
 
-    res = attendre(soum["status_url"], soum["response_url"], cle_api)
+    try:
+        res = attendre(soum["status_url"], soum["response_url"], cle_api)
+    except ResultatIndisponible as e:
+        # ⚠️ ON N'ENCHAINE PAS SUR LE PLAN SUIVANT. Si fal ne rend pas ses
+        # resultats, les neuf plans d'apres seraient factures et perdus de la
+        # meme facon : le lot s'arrete, et le recu dit ou revenir.
+        trace.update({"etat": "PAYEE, NON RECUPEREE", "echec": str(e)})
+        io.open(recu, "w", encoding="utf-8").write(
+            json.dumps(trace, ensure_ascii=False, indent=1))
+        sys.exit("  La prise est FACTUREE mais illisible (%s).\n"
+                 "  Recu : %s\n"
+                 "  Rien d'autre n'a ete lance. Quand fal repondra :\n"
+                 "      python video/omnihuman.py --scene %s --recuperer"
+                 % (e, os.path.relpath(recu, RACINE), os.path.basename(
+                     os.path.dirname(os.path.dirname(recu)))[len("episode-"):]))
 
     facturee = float(res.get("duration") or d)
     cout = facturee * PRIX
@@ -354,6 +411,43 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     return cout
 
 
+def recuperer_en_souffrance(scene):
+    """Retente le telechargement des prises deja payees. AUCUNE DEPENSE."""
+    ep, tel, essai = dossiers(scene)
+    cle_api = cle()
+    recus = sorted(glob.glob(os.path.join(essai, "plan*-fal.json")))
+    en_attente = []
+    for r in recus:
+        d = json.load(io.open(r, encoding="utf-8"))
+        n = int(os.path.basename(r)[4:6])
+        sortie = os.path.join(essai, "plan%02d-omnihuman.mp4" % n)
+        if os.path.exists(sortie) or not d.get("response_url"):
+            continue
+        if d.get("etat") == "recue":
+            continue
+        en_attente.append((n, r, d, sortie))
+    if not en_attente:
+        print("  aucun recu en souffrance : rien a recuperer.")
+        return
+    print("%d prise(s) payee(s) a recuperer : %s"
+          % (len(en_attente), " ".join(str(n) for n, _, _, _ in en_attente)))
+    for n, r, d, sortie in en_attente:
+        print("  plan %d : %s" % (n, d["request_id"]))
+        try:
+            res = recuperer_resultat(d["response_url"], cle_api, minutes=2.0)
+        except ResultatIndisponible as e:
+            print("    toujours illisible (%s)" % e)
+            continue
+        octets = telecharger(res["video"]["url"], sortie)
+        d.update({"etat": "recue", "recuperee_le": time.strftime("%Y-%m-%d"),
+                  "duree_facturee": round(float(res.get("duration") or
+                                                d.get("duree_piste") or 0), 3)})
+        io.open(r, "w", encoding="utf-8").write(
+            json.dumps(d, ensure_ascii=False, indent=1))
+        print("    -> %s  (%.1f Mo) -- sans nouvelle depense"
+              % (os.path.basename(sortie), octets / 1e6))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--scene", default="02-beim-buergeramt")
@@ -365,11 +459,16 @@ def main():
     p.add_argument("--simuler", action="store_true",
                    help="tout verifier sans rien appeler ni facturer")
     p.add_argument("--refaire", action="store_true")
+    p.add_argument("--recuperer", action="store_true",
+                   help="retelecharge les prises deja payees (gratuit)")
     p.add_argument("--plafond", type=float, default=2.0,
                    help="dollars ; le lot est refuse au-dela (defaut 2,00)")
     a = p.parse_args()
 
     ep, tel, essai = dossiers(a.scene)
+    if a.recuperer:
+        recuperer_en_souffrance(a.scene)
+        return
     if a.reste:
         ns = []
         for f in sorted(glob.glob(os.path.join(tel, "plan*-pleine.mp3"))):
