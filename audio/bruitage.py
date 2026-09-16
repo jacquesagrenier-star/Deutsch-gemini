@@ -57,10 +57,18 @@ EPISODES = {
          "Several bicycle bells ringing one after another on a city street, "
          "some close and some further away, insistent, over faint tyre noise "
          "on asphalt. No voices, no music."),
-        ("cri-cycliste", 2.0,
-         "A woman's short angry shout in the open air, wordless and "
-         "indistinct, as if heard in passing on a street. One burst, not a "
-         "scream. No intelligible words."),
+        # ⚠️ ELLE DIT << HEY! HEY! >>, ET C EST JACQUES QUI A TRANCHE.
+        #    J avais fait un cri SANS PAROLE, en craignant qu une phrase
+        #    allemande fasse croire a l apprenant qu il y a la une replique a
+        #    comprendre. Son objection : << Hey >> n est pas du vocabulaire
+        #    allemand, c est une interjection que tout le monde comprend. Elle
+        #    ne charge donc rien, et elle rend le cri LISIBLE -- un cri sans
+        #    mots se lit comme un defaut de fabrication, pas comme de la
+        #    colere.
+        ("cri-hey", 2.5,
+         "A woman shouting \"Hey! Hey!\" outdoors as she rides past on a "
+         "city street, annoyed and warning someone. Two short bursts, "
+         "carrying but not screamed."),
     ],
 }
 

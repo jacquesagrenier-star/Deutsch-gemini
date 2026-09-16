@@ -46,6 +46,27 @@ DOSSIER = os.path.join(RACINE, "audio", "ambiance")
 # video/episode-02-beim-buergeramt/AMBIANCE-a-faire.txt, mesures sur le
 # montage reel et non estimes.
 EPISODES = {
+    # ⚠️ L EPISODE 3 SE PASSE DANS UNE SEULE RUE, et c est ecrit en tete de son
+    #    decoupage : le carrefour au debut, la piste au milieu, le carrefour
+    #    suivant au bout. Deux lits suffisent donc, et ils se ressemblent a
+    #    dessein -- c est le MEME endroit vu a deux endroits.
+    #
+    #    Ce qui les separe est ce qu on y entend : au carrefour, des gens qui
+    #    attendent et une rue qui passe ; sur la piste, des velos qui roulent
+    #    tout pres. C est cette difference-la qui dit au spectateur qu il a
+    #    change de place sans qu on le lui montre.
+    "03": [
+        ("rue-carrefour",
+         "A Berlin street corner on a weekday morning: steady traffic passing "
+         "on the road, a tram rumbling somewhere behind, footsteps of people "
+         "waiting on the pavement, a bicycle bell once in the distance. Open "
+         "air, unhurried, no intelligible speech."),
+        ("piste-cyclable",
+         "A Berlin cycle lane close up: bicycle tyres rolling on asphalt, a "
+         "freewheel clicking as a bicycle coasts past, a chain turning, a bell "
+         "ringing twice further off, city traffic behind it all. Open air, no "
+         "intelligible speech."),
+    ],
     "02": [
         ("rue-berlin",
          "A quiet Berlin side street on a Monday morning: distant traffic on "
