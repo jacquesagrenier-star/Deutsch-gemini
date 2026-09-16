@@ -44,8 +44,22 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #   "doute"  -> on previent et on continue. Elle demande un coup d'oeil.
 REGLES = [
     ("garde-negative", "faute",
-     r"(?i)\b(no head|no hair|no face|no shoulder|no blurred figure|"
-     r"no part of anyone|is NEVER seen|nobody walks in|nobody passes)\b",
+     # ⚠️ ELARGIE LE 16 SEPT. 2026, APRES UNE RELECTURE CROISEE.
+     #    La premiere version n'enumerait que les formulations exactes de
+     #    l'episode 2 : elle ne voyait donc QUE le passe. Un relecteur
+     #    exterieur a propose << No feet or shoes touch the red lane >> en
+     #    le presentant comme une garde POSITIVE -- et le controle l'a
+     #    laisse passer sans broncher.
+     #
+     #    La forme dangereuse n'est pas un vocabulaire, c'est une
+     #    STRUCTURE : une negation qui nomme un ACTEUR et une ACTION. Pour
+     #    la refuser, le modele doit d'abord se representer l'acteur en
+     #    train d'agir -- et c'est precisement ce qu'il fabrique.
+     r"(?i)(\b(no head|no hair|no face|no shoulder|no blurred figure|"
+     r"no part of anyone|is NEVER seen|nobody walks in|nobody passes)\b"
+     r"|\bno\s+\w+(?:\s+(?:or|and)\s+\w+)?\s+"
+     r"(?:touch|touches|enter|enters|appear|appears|walk|walks|pass|"
+     r"passes|cross|crosses|stand|stands|move|moves|is seen|are seen)\b)",
      u"La garde qui enumere ce qu'il ne faut pas montrer",
      u"16 sept. 2026 : QUATRE prises sur six (09, 13, 15, 17). On a obtenu une "
      u"nuque, des cheveux, une epaule, un bras, une silhouette floue -- "
