@@ -78,8 +78,18 @@ def prompt_image(bloc, n):
 
 
 def nom_image(bloc, n):
+    """Le nom du fichier, EXTENSION COMPRISE.
+
+    ⚠️ A-TOURNER.txt ecrit les noms sans extension (<< Image a nommer :
+    carrefour-rouge >>), et jusqu'au 16 septembre 2026 l'outil ecrivait le
+    fichier tel quel. Un fichier sans extension n'a pas de type MIME : il ne
+    peut donc PAS servir de reference a l'image suivante -- alors que tout
+    l'episode est construit sur des images qui derivent l'une de l'autre. Le
+    dossier 01-images en garde la trace, des paires << nom >> et << nom.png >>
+    recopiees a la main."""
     m = re.search(r"Image a nommer\s*:\s*(\S+)", bloc)
-    return m.group(1) if m else "plan%02d.png" % n
+    nom = m.group(1) if m else "plan%02d" % n
+    return nom if os.path.splitext(nom)[1] else nom + ".png"
 
 
 def archiver(chemin):
