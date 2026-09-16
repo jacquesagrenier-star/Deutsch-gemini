@@ -4997,3 +4997,53 @@ sans abonnement », et remettre Firebase ramènerait le coût récurrent exclu a
 départ. **À dire à Barbara tout de suite** : vider les données du site ou
 changer d'appareil efface sa progression.
 
+
+
+---
+
+## 16 septembre 2026 — le pluriel allemand des fiches espagnoles (essai avec Barbara)
+
+**« Lorsqu'on fait des flashcards, l'article est en allemand au lieu d'être en
+espagnol. Le singulier est OK — la casa — mais le pluriel est en allemand. »**
+— Exact : chaque fiche de nom affichait **« Pluriel : die casas »**. Corrigé et
+publié, **Wortando Español v35**. Les fiches disent maintenant `las casas` /
+`los libros`, et les noms sans pluriel gardent leur tiret.
+
+⚠️ **LA CAUSE N'EST PAS UNE TRADUCTION OUBLIÉE, C'EST UN CORRECTIF RETIRÉ.**
+`parches_es.py` avait un correctif « pluriel (fiche) » ; le 1er septembre son
+ancre ne mordait plus et on l'a retiré en concluant que l'amont avait fusionné
+ses deux endroits en un seul. L'amont en avait toujours deux — le correctif
+resté ne couvrait que la carte d'un mot mis de côté depuis le dictionnaire, pas
+la carte de nom ordinaire, celle de tous les paquets. Deux semaines de fiches
+fausses, sans qu'aucun contrôle ne bronche : le vérificateur juge les données et
+les identifiants, jamais la langue d'un mot collé par du code.
+
+⚠️ **LA LEÇON, ET ELLE VAUT POUR TOUT LE FORK.** Une ancre qui disparaît veut
+dire « l'amont a bougé », **pas** « l'amont a corrigé ». Avant de retirer un
+correctif, chercher où le défaut a déménagé : ici `grep '"die " +' index.html`
+l'aurait montré en une seconde. C'est le contrôle à refaire après chaque
+régénération — il doit ne rien renvoyer.
+
+**Trouvé en tirant le même fil, non signalé :**
+
+- **Le quiz « Quel article ? » ne servait rien.** Sa description avait été
+  traduite en « el · la — deux genres », mais son **code** filtrait toujours sur
+  `der/die/das` : aucun nom espagnol ne passait, et l'option répondait « aucun
+  mot disponible ». Un libellé espagnol posé par-dessus du code allemand, comme
+  la voix de `voz_es.py` en août. Il fonctionne maintenant : 15 `el` + 15 `la`,
+  et l'explication dit « el techo · Pluriel : los techos ».
+- **La description française de ce quiz était restée allemande.** L'amont avait
+  reformulé son libellé (« un tiers chacun » → « autant de chaque ») : l'ancre
+  ne mordait plus, et les testeurs — qui lisent le français — voyaient
+  « der · die · das » sous un quiz espagnol. Même famille de défaut, même jour.
+- **Le sous-titre de la tuile « Adjectifs »** annonçait « déclinaison » :
+  l'espagnol accorde, il ne décline pas. → « réviser · accord ».
+
+**« Barbara est capable de rentrer dans l'application sans utiliser le code —
+c'était voulu comme ça ? »** — **Oui, si c'est sur l'appareil où elle l'a déjà
+tapé une fois.** La porte écrit `wortandoEs_acceso` dans le `localStorage` du
+navigateur et ne se remontre plus jamais : « un testeur qui a déjà donné son
+code ne doit plus jamais le revoir ». Vérifié ce matin dans un navigateur vide :
+la porte tient, seul l'écran `acceso` s'ouvre. **Si elle est entrée sur un
+appareil ou un navigateur où elle n'a jamais tapé de code, c'est autre chose et
+il faut le dire** — ce serait le seul cas où la porte laisse passer.
