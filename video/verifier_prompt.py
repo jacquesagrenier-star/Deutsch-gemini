@@ -186,6 +186,24 @@ REGLES = [
      u"mains sont visibles, dire ce qu'elles tiennent, y compris rien : << his "
      u"hands rest on the counter, open and empty, and they stay there >>."),
 
+    ("icone-nommee-par-son-nom", "faute",
+     r"(?i)\b(ampelm(ae|ä)nnchen|ampelmann|berlin man|"
+     r"east berlin (man|figure|signal))\b",
+     u"Une icone appelee par son nom : c'est l'enseigne qui vient, pas l'objet",
+     u"16 sept. 2026, DEUX images de mark-marche perdues (0,30 $). Le prompt "
+     u"decrivait pourtant le chapeau et les deux bras tendus. Le modele a "
+     u"boulonne un PANNEAU CARRE ROUGE sur le mat -- avec la pose du VERT "
+     u"coloriee en rouge -- et laisse dans le boitier une silhouette "
+     u"quelconque. Jacques : << il l'a mis sur le poteau et non dans le feu "
+     u"lui-meme >>.",
+     u"Le nom propre d'une icone convoque l'imagerie qui l'entoure -- "
+     u"panneaux, autocollants, vitrines a souvenirs -- et aucun luxe de "
+     u"detail ne dit assez fermement OU elle est posee. Deux remedes, dans "
+     u"cet ordre : (1) NE PAS LA NOMMER, decrire la lampe seule, << the upper "
+     u"round lens is lit and glows an even plain red >> ; (2) la DESSINER et "
+     u"l'incruster -- video/ampelmann.py. Un dessin ne derive pas, il est "
+     u"gratuit, et les huit plans recoivent la meme icone au pixel pres."),
+
     ("negations-en-nombre", "doute",
      None,   # compte, voir controler()
      u"Trop de negations -- le guide du modele demande le contraire",
@@ -255,11 +273,29 @@ MARQUEURS = re.compile(r"(?im)^(first|then|next|after that|finally)\b")
 PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 
 
-def controler(texte):
-    """Rend la liste des (code, gravite, titre, cout, remede, extrait)."""
+# Les seules regles qui ont un sens sur un prompt d'IMAGE FIXE.
+#
+# ⚠️ NE PAS LEUR APPLIQUER TOUT LE JEU. Une image ne parle pas, ne dure pas et
+#    n'a pas de queue de plan : << pas-de-verbe-de-parole >> et
+#    << fin-sans-intention >> accuseraient CHAQUE prompt d'image, tous corrects.
+#    Un controle qui accuse le juste se fait desarmer au bout de deux fois --
+#    c'est deja ecrit plus haut a propos de << he asks >>, et ca vaut ici.
+#
+#    Ce qui reste est ce qui a reellement coute des images : la garde
+#    negative, l'icone appelee par son nom, et l'empilement de negations.
+POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
+              "negations-en-nombre", "qualificatifs-empiles")
+
+
+def controler(texte, image=False):
+    """Rend la liste des (code, gravite, titre, cout, remede, extrait).
+
+    `image=True` restreint le jeu a POUR_IMAGE -- voir la note ci-dessus."""
     trouves = []
     sans_verrou = PHRASE_VERROU.sub(" ", texte)
     for code, gravite, motif, titre, cout, remede in REGLES:
+        if image and code not in POUR_IMAGE:
+            continue
         if code == "trop-de-temps":
             n = len(MARQUEURS.findall(texte))
             if n > 3:

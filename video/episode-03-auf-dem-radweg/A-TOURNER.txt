@@ -229,8 +229,10 @@ waist. He stands on a Berlin pavement on a weekday morning, turned three
 quarters to his right so that both his eyes and most of both cheeks stay
 visible. He wears a plain navy blue pique polo shirt with a short buttoned placket, the chest smooth and unmarked, and beige chino trousers. The placket buttons are red, a small warm accent against the blue. Behind him the pavement runs on with a broad red-painted bicycle
 strip beside a grey pedestrian strip, bicycles parked against a plain pale
-building front, and a pedestrian traffic light further along the street
-lit red with the Ampelmaennchen, the stout little Berlin man wearing a brimmed hat, both arms held out horizontally. Daylight, overcast and even. He looks at a
+building front, and, further along the street,
+a pedestrian traffic light on a bare grey pole, its
+black housing holding two round lenses, the upper one lit and glowing an
+even plain red. Daylight, overcast and even. He looks at a
 point beyond the right edge of the frame and does not face the camera.
 
 Reference : personnages/Mark.png, personnages/Mark-troisquarts.png
@@ -308,17 +310,59 @@ LE LIEU, TEL QU'IL EXISTE MAINTENANT -- a recopier dans chaque image :
    trottoir de dalles grises, bordure de granit ; lumiere du jour, couverte
    et plate.
 
-⚠️ L'AMPELMAENNCHEN, ET IL FAUT LE DEMANDER EXPRESSEMENT. Demande de
-   Jacques, 16 septembre : le petit bonhomme berlinois, rouge comme vert.
-   L'image fabriquee ce jour-la avait rendu un bonhomme generique -- le
-   modele fait la silhouette standard si on ne precise rien. On le decrit
-   donc a chaque fois : chapeau, bras tendu pour le vert, bras le long du
-   corps pour le rouge. C'est le detail qui dit BERLIN a quelqu'un qui y a
-   vecu, et il ne coute rien.
+⚠️ L'AMPELMAENNCHEN NE SE DEMANDE PLUS. IL SE DESSINE.
+   Les prompts ci-dessous n'en portent plus une seule mention, et c'est
+   VOULU : ils demandent une lampe rouge UNIE. Le bonhomme est incruste
+   apres coup par `video/ampelmann.py`, qui le dessine.
 
-   Ce n'est pas le meme cas que le logo de marque sur le polo : un feu
-   pieton est du mobilier urbain filme dans la rue ou il se trouve, pas une
-   marque apposee sur un personnage.
+   POURQUOI. Deux essais rates le 16 septembre 2026, et le second est le
+   plus instructif. Le prompt decrivait deja le chapeau et les deux bras
+   tendus ; le modele a quand meme boulonne un PANNEAU CARRE ROUGE sur le
+   mat -- avec la pose du VERT, le bonhomme qui marche, coloriee en rouge --
+   et laisse dans le boitier une silhouette quelconque. Jacques : << il l'a
+   mis sur le poteau et non dans le feu lui-meme, donc ca fonctionne pas >>.
+
+   Ce n'etait pas un manque de detail. Le mot << Ampelmaennchen >> tire vers
+   l'imagerie de souvenir -- panneaux, autocollants, vitrines -- dont les
+   corpus debordent. Un prompt ne dit jamais assez fermement OU une icone
+   est posee, et LE MOT SEUL SUFFIT A CONVOQUER L'ENSEIGNE. On ne le dit
+   donc plus du tout : ce qu'on ne nomme pas ne peut pas se materialiser
+   au mauvais endroit.
+
+   CE QU'ON Y GAGNE EN PLUS. Un dessin ne derive pas. Les huit plans
+   recoivent le MEME bonhomme au pixel pres, ce qui regle pour ce
+   detail-la le probleme du decor qui se remeuble d'un plan a l'autre. Et
+   c'est gratuit : meme logique que le recadrage d'une prise deja payee,
+   on arrete de racheter une chance.
+
+   LES DEUX POSES, ET JE LES AVAIS ECRITES A L'ENVERS ICI. Cette note
+   disait << bras tendu pour le vert, bras le long du corps pour le rouge >> :
+   c'est l'inverse, verifie sur les photos de Jacques.
+       ROUGE : de face, immobile, LES DEUX BRAS A L'HORIZONTALE.
+       VERT  : de profil, EN MARCHE, bras balances, jambes ecartees.
+
+   LES DEUX IMAGES MAITRESSES SONT DEJA CORRIGEES, sans racheter d'image :
+       python video/ampelmann.py \
+         --dans  video/episode-03-auf-dem-radweg/01-images/mark-marche-PANNEAU.png \
+         --sortie video/episode-03-auf-dem-radweg/01-images/mark-marche.png \
+         --lentille 1051,400,26 --verre 1048,476 \
+         --panneau 1066,204,1170,318 --ciel 1172,204,1198,318 \
+         --mat 1104,322,1124,370 --flou 2.6
+       python video/ampelmann.py \
+         --dans  video/episode-03-auf-dem-radweg/01-images/mark-retourne-PANNEAU.png \
+         --sortie video/episode-03-auf-dem-radweg/01-images/mark-retourne.png \
+         --lentille 1364,521,35 --verre 1365,617 \
+         --panneau 1366,252,1518,412 --ciel 1520,252,1535,412 \
+         --mat 1438,416,1462,464 --flou 2.9
+   Les fichiers -PANNEAU.png sont les originaux, gardes intacts.
+
+⚠️ ET L'INCRUSTATION SE FAIT EN DERNIER, SUR CE QUI EST DEJA ANIME.
+   Les plans de decor passent par mouvement.py, qui REFABRIQUE chaque
+   image : un bonhomme colle sur l'image d'entree serait redessine, donc
+   deforme. La camera est verrouillee sur ces plans, le feu ne bouge pas
+   d'un pixel -- on pose donc le calque sur le clip fini, a position fixe.
+   Pour les plans parlants la question ne se pose pas : le feu y est dans
+   le flou d'arriere-plan, et l'image maitresse corrigee suffit.
 
 ⚠️ ET CES PLANS NE PASSENT PAS PAR OMNIHUMAN. Ils sont fabriques par la
    chaine image-vers-video (video/mouvement.py) : une image fixe et un
@@ -329,11 +373,10 @@ LE LIEU, TEL QU'IL EXISTE MAINTENANT -- a recopier dans chaque image :
 PLAN 01   Le carrefour   6 s
 
 PROMPT D'IMAGE (Framing)
-A Berlin street corner on a weekday morning, vertical frame, no people. A
-pedestrian traffic light in a black housing on a grey pole stands on the
-right, lit red: the red signal is the East Berlin Ampelmaennchen, a stout
-little man wearing a brimmed hat, standing with both arms held out
-horizontally. The road is empty in both directions. A red-painted bicycle
+A Berlin street corner on a weekday morning, vertical frame, no people. A pedestrian traffic light stands on the right: a grey metal pole carrying
+one black lamp housing and rising bare above it against the sky. The housing
+holds two round lenses, one above the other; the lower one is dark glass and
+the upper one is lit, glowing an even plain red. The road is empty in both directions. A red-painted bicycle
 strip with a white bicycle pictogram runs along the pavement, a white zebra
 crossing beside it on the asphalt. Behind, a pale cream plastered facade with
 tall stone-framed windows and a rusticated ground floor, and black city
@@ -343,7 +386,7 @@ Reference : mark-marche
 Image a nommer : carrefour-rouge
 
 PROMPT DE MOUVEMENT
-Locked-off camera. No zoom, no pan. The red Ampelmaennchen glows steadily. A
+Locked-off camera. No zoom, no pan. The red lens glows steadily. A
 few leaves move on the pavement and a tram passes far away in the distance,
 small and soft. The road stays empty. Hold on the stillness.
 
@@ -354,9 +397,9 @@ PROMPT D'IMAGE (Framing)
 The same Berlin corner. The young man in the navy blue polo shirt and beige
 chinos is out on the asphalt of the zebra crossing, alone, near the middle of
 a vertical frame. On the pavement behind him four or five people stand
-completely still, facing the crossing, waiting. The pedestrian light in its
-black housing is lit red with the Ampelmaennchen, the little man in the
-brimmed hat with both arms held out. The pale cream facade, the black
+completely still, facing the crossing, waiting. Beside the crossing stands a pedestrian traffic light on a bare grey pole, its
+black housing holding two round lenses, the upper one lit and glowing an
+even plain red. The pale cream facade, the black
 bicycles in a row, the red strip with its white pictogram. Wide, daylight,
 overcast and flat.
 Reference : mark-marche, carrefour-rouge
@@ -422,9 +465,9 @@ PLAN 17   Il change de bande   5 s
 PROMPT D'IMAGE (Framing)
 The same Berlin corner. The young man in the navy blue polo shirt and beige
 chinos stands on the grey pavement slabs close to the granite kerb, facing
-the crossing, seen from behind and slightly to the side. Ahead of him the
-pedestrian light in its black housing is lit red with the Ampelmaennchen, the
-little man in the brimmed hat with both arms held out. The pale cream facade
+the crossing, seen from behind and slightly to the side. Ahead of him stands a pedestrian traffic light on a bare grey pole, its
+black housing holding two round lenses, the upper one lit and glowing an
+even plain red. The pale cream facade
 and the black parked bicycles behind. Medium wide, vertical frame, daylight,
 overcast and flat.
 Reference : mark-marche, carrefour-rouge
@@ -441,9 +484,9 @@ PLAN 18   LA CHUTE   6 s
 PROMPT D'IMAGE (Framing)
 The same Berlin corner, vertical frame, wide. The young man in the navy blue
 polo shirt and beige chinos stands still on the grey pavement slabs at the
-kerb, seen from behind, waiting at the pedestrian light, which is lit red
-with the Ampelmaennchen, the little man in the brimmed hat with both arms
-held out. On the road beside him a cyclist in a BRIGHT YELLOW waterproof
+kerb, seen from behind, waiting at a pedestrian traffic light on a bare grey pole, its
+black housing holding two round lenses, the upper one lit and glowing an
+even plain red. On the road beside him a cyclist in a BRIGHT YELLOW waterproof
 jacket on a dark grey bicycle rides into the crossing, seen from behind. The
 pale cream facade and the black parked bicycles along the street. Daylight,
 overcast and flat.
@@ -453,8 +496,8 @@ Image a nommer : chute-feu-rouge
 PROMPT DE MOUVEMENT
 Locked-off camera. The man on the pavement stays completely still, waiting.
 The cyclist in the yellow jacket pedals straight on through the crossing,
-away from the camera, and grows smaller until he is far down the street. The
-red Ampelmaennchen stays lit.
+away from the camera, and grows smaller until he is far down the street. The red
+lens stays lit, steady and even.
 
 ⚠️ TOUT REPOSE SUR LE BLOUSON JAUNE. Le spectateur l'a vu de pres pendant
    quatre plans ; ici il ne le voit que de dos et de loin, deux secondes. Si

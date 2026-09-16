@@ -46,6 +46,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "video"))
 import omnihuman as O                                        # noqa: E402
+import verifier_prompt as VP                                # noqa: E402
 
 TEXTE = "fal-ai/nano-banana-pro"
 EDIT = "fal-ai/nano-banana-pro/edit"
@@ -146,12 +147,25 @@ def main():
     print("  cout       %.2f $" % cout)
     print("  prompt     %d mots, %d caracteres" % (len(prompt.split()), len(prompt)))
 
+    # ⚠️ LE CONTROLE PASSE AVANT LA DEPENSE, ET IL PASSE AUSSI SOUS --montrer.
+    #    Jusqu'au 16 septembre 2026 cet outil payait sans rien verifier : seul
+    #    omnihuman.py etait garde. C'est par cette breche que sont parties les
+    #    deux images de mark-marche avec leur panneau -- la faute etait dans le
+    #    prompt, et rien ne l'a lue avant de facturer.
+    fautes = VP.dire(nom, VP.controler(prompt, image=True), bavard=False)
+
     if a.montrer:
         print("\n" + "-" * 70)
         print(prompt)
         print("-" * 70)
         print("\n  RIEN N'A ETE APPELE. Relance sans --montrer pour generer.")
         return
+
+    if fautes and not os.environ.get("WORTANDO_FORCER"):
+        sys.exit("\n  %d faute(s) connue(s) dans ce prompt : rien n'a ete\n"
+                 "  televerse, et rien n'a ete facture. Corrige A-TOURNER.txt,\n"
+                 "  ou relance avec WORTANDO_FORCER=1 si tu sais pourquoi."
+                 % fautes)
 
     if os.path.exists(sortie):
         if not a.refaire:
