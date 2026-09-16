@@ -70,11 +70,41 @@ def prompt_image(bloc, n):
     Ces lignes-la sont des consignes A NOUS, pas au modele -- les envoyer
     ferait payer une image ou le generateur essaie d'obeir a du francais."""
     m = re.search(r"PROMPT D'IMAGE \(Framing\)\s*\n(.*?)"
-                  r"(?=\n\s*(?:⚠|REFERENCE|Reference|PROMPT DE MOUVEMENT)|\Z)",
+                  r"(?=\n\s*(?:⚠|REFERENCE|Reference|Visage neuf"
+                  r"|Image a nommer|PROMPT DE MOUVEMENT)|\Z)",
                   bloc, re.S)
     if not m or not m.group(1).strip():
         sys.exit("  plan %02d : pas de bloc « PROMPT D'IMAGE (Framing) »." % n)
     return "\n".join(l.rstrip() for l in m.group(1).strip().splitlines())
+
+
+# Ce qui compte comme UNE IMAGE DE PERSONNAGE. Tout ce qui vit dans
+# personnages/, plus les images maitresses de l'episode, qui portent le nom du
+# personnage en tete de fichier.
+PORTRAIT = re.compile(r"(?i)(^|[\\/])(personnages[\\/]"
+                      r"|(mark|anna|dame|cycliste|erzaehler)[-_.])")
+
+
+def visage_neuf(bloc):
+    """Ce plan fabrique-t-il un visage qui n'existe pas encore ?
+
+    ⚠️ LA REGLE QUI MANQUAIT, ET CE QU'ELLE A COUTE. Le 16 septembre 2026,
+       cycliste-jaune a ete fabrique avec `--ref mark-marche.png` et rien
+       d'autre -- pour tenir le LIEU. Le cycliste est sorti avec le visage de
+       Mark, et il servait de maitre a CINQ plans. Jacques l'a vu du premier
+       coup d'oeil : << le probleme de l'image cycliste, c'est Marc, avec un
+       veston jaune >>.
+
+       Une image de reference sert a transporter un VISAGE. C'est sa fonction,
+       pas un effet de bord -- et c'est exactement pour ca que la regle du
+       projet impose --ref des qu'il y a un personnage. Le prompt disait
+       pourtant << a man in his forties >> : un prompt ne gagne jamais contre
+       une reference sur le visage.
+
+       Donc : un plan qui INTRODUIT quelqu'un le declare, et ne recoit alors
+       que des references SANS visage. Le lieu se tient tres bien avec un
+       decor vide."""
+    return re.search(r"(?im)^\s*Visage neuf\s*:\s*oui\s*$", bloc) is not None
 
 
 def nom_image(bloc, n):
@@ -146,6 +176,21 @@ def main():
         if not os.path.exists(c):
             sys.exit("  reference introuvable : %s" % c)
         refs.append(c)
+
+    if visage_neuf(bloc):
+        coupables = [os.path.basename(r) for r in refs
+                     if PORTRAIT.search(os.path.relpath(r, RACINE))]
+        if coupables:
+            sys.exit("\n  Ce plan porte « Visage neuf : oui » : il fabrique\n"
+                     "  quelqu'un qui n'existe pas encore. Or ces references\n"
+                     "  portent un visage deja connu :\n    %s\n\n"
+                     "  Une reference TRANSPORTE le visage -- c'est sa\n"
+                     "  fonction. Le cycliste de l'episode 3 est sorti avec\n"
+                     "  celui de Mark pour cette raison exacte, et il servait\n"
+                     "  de maitre a cinq plans. Rien n'a ete facture.\n\n"
+                     "  Pour tenir le LIEU, referencer un decor sans personne\n"
+                     "  (carrefour-rouge, deux-bandes...)."
+                     % "\n    ".join(coupables))
 
     modele = EDIT if refs else TEXTE
     cout = PRIX * (2 if a.resolution == "4K" else 1)
