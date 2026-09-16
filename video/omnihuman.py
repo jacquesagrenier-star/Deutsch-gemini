@@ -323,12 +323,44 @@ def duree_mp3(chemin):
 
 # --------------------------------------------------------------------------
 
+def archiver(chemin):
+    """Ranger la prise precedente au lieu de l'ecraser.
+
+    ⚠️ CE TROU A COUTE UNE PRISE LE 16 SEPTEMBRE 2026. image_plan.py archive
+       depuis le 13 septembre, avec un commentaire qui explique pourquoi : on
+       ne sait qu'APRES coup laquelle des deux etait la bonne, et c'est
+       precisement pour ca qu'il faut les deux. La meme regle manquait ici --
+       dans l'outil qui coute QUATRE FOIS PLUS CHER par prise.
+
+       Ce jour-la, --refaire sur le plan 09 a detruit la prise ou le cycliste
+       se tournait vers l'objectif. Jacques voulait justement comparer les
+       deux : << des fois on parle, on regarde d'un cote puis de l'autre, ca
+       peut passer ; il faudrait voir dans son ensemble >>. La comparaison
+       etait impossible.
+
+    Le recu part avec la prise : un recu orphelin ne prouve plus rien, et une
+    prise sans recu ne se rattache plus a une facture."""
+    base, ext = os.path.splitext(chemin)
+    i = 1
+    while os.path.exists("%s-v%d%s" % (base, i, ext)):
+        i += 1
+    recu = base.replace("-omnihuman", "") + "-fal.json"
+    paires = [(chemin, "%s-v%d%s" % (base, i, ext)),
+              (recu, recu.replace("-fal.json", "-v%d-fal.json" % i))]
+    for vieux, neuf in paires:
+        if os.path.exists(vieux):
+            os.replace(vieux, neuf)
+            print("    prise precedente rangee : %s" % os.path.basename(neuf))
+
+
 def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     ep, tel, essai = dossiers(scene)
     img, mp3, prompt, src = panier(tel, essai, n)
     sortie = os.path.join(essai, "plan%02d-omnihuman.mp4" % n)
     recu = os.path.join(essai, "plan%02d-fal.json" % n)
 
+    if os.path.exists(sortie) and refaire and not simuler:
+        archiver(sortie)
     if os.path.exists(sortie) and not refaire:
         print("  plan %d : deja la (%s). --refaire pour la remplacer."
               % (n, os.path.basename(sortie)))
