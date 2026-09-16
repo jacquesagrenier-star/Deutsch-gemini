@@ -57,6 +57,7 @@ import montage as M                                         # noqa: E402
 SOUS_LIT = 24.0        # dB sous le dialogue pour le lit d'ambiance
 FONDU = 0.8            # le croisement entre deux lits, en secondes
 SOUS_ANNONCE = 20.0    # dB sous le dialogue pour l'annonce
+SOUS_MUSIQUE = 18.0    # dB sous le dialogue pour la musique
 SOUS_BRUIT = 10.0      # dB sous le dialogue pour un bruit ponctuel --
                        # au-dessus du lit, sous la parole
 
@@ -114,6 +115,11 @@ def main():
     ap.add_argument("--lit", action="append", default=[], metavar="FICHIER@T",
                     help="un lit d'ambiance et l'instant ou il prend le relais. "
                          "Repetable : --lit hall.mp3@0 --lit tapis.mp3@27.3")
+    ap.add_argument("--musique", action="append", default=[],
+                    metavar="FICHIER@DEBUT:DUREE",
+                    help="une musique, l'instant ou elle entre et combien de "
+                         "temps elle tient. Repetable : "
+                         "--musique pizzicato.mp3@0:7")
     ap.add_argument("--bruit", action="append", default=[],
                     metavar="FICHIER@T",
                     help="un bruit ponctuel et l'instant ou il tombe. "
@@ -173,6 +179,33 @@ def main():
         pistes.append("[lit%d]" % i)
         print("  lit      : %-16s %6.2f -> %6.2f s   %+.1f dB"
               % (os.path.basename(f), debut, fin, g))
+
+    # ⚠️ UNE MUSIQUE N'EST NI UN LIT NI UN BRUIT. Un lit est un fond qu'on
+    #    oublie ; un bruit un evenement qu'on doit entendre. Une musique
+    #    attire l'oreille meme basse -- elle se pose donc a -18 dB, et avec
+    #    des FONDUS FRANCS. Sans fondu de sortie elle s'arrete net au premier
+    #    mot allemand, et on n'entend plus que la coupure.
+    for spec in a.musique:
+        if "@" not in spec or ":" not in spec.rpartition("@")[2]:
+            sys.exit("  --musique veut FICHIER@DEBUT:DUREE : %s" % spec)
+        f, _, reste = spec.rpartition("@")
+        t0, _, lg = reste.partition(":")
+        t0, lg = float(t0), float(lg)
+        if not os.path.exists(f):
+            sys.exit("  Musique introuvable : %s" % f)
+        i = n_ent
+        entrees += ["-i", f]
+        n_ent += 1
+        cm = ref - SOUS_MUSIQUE
+        g = cm - (loudness(F, f) or -20.0)
+        chaines.append(
+            "[%d:a]atrim=0:%.3f,volume=%.2fdB,"
+            "afade=t=in:st=0:d=1.0,afade=t=out:st=%.3f:d=1.5,"
+            "adelay=%d:all=1,apad,aresample=44100[mus%d]"
+            % (i, lg, g, max(0.0, lg - 1.5), int(round(t0 * 1000)), i))
+        pistes.append("[mus%d]" % i)
+        print("  musique  : %-16s %6.2f -> %6.2f s   %+.1f dB  (%.0f dB sous)"
+              % (os.path.basename(f), t0, t0 + lg, g, SOUS_MUSIQUE))
 
     # ⚠️ UN BRUIT N'EST PAS UN LIT, ET IL NE SE POSE PAS AU MEME NIVEAU.
     #    Un lit est un fond dont on ne doit pas s'apercevoir : -24 dB. Une
