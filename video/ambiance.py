@@ -57,6 +57,8 @@ import montage as M                                         # noqa: E402
 SOUS_LIT = 24.0        # dB sous le dialogue pour le lit d'ambiance
 FONDU = 0.8            # le croisement entre deux lits, en secondes
 SOUS_ANNONCE = 20.0    # dB sous le dialogue pour l'annonce
+SOUS_BRUIT = 10.0      # dB sous le dialogue pour un bruit ponctuel --
+                       # au-dessus du lit, sous la parole
 
 # La chaine du haut-parleur. Bande de telephone, puis les trois bosses que
 # les praticiens citent, puis la reverberation du hall.
@@ -112,6 +114,10 @@ def main():
     ap.add_argument("--lit", action="append", default=[], metavar="FICHIER@T",
                     help="un lit d'ambiance et l'instant ou il prend le relais. "
                          "Repetable : --lit hall.mp3@0 --lit tapis.mp3@27.3")
+    ap.add_argument("--bruit", action="append", default=[],
+                    metavar="FICHIER@T",
+                    help="un bruit ponctuel et l'instant ou il tombe. "
+                         "Repetable : --bruit sonnettes.mp3@23.4")
     ap.add_argument("--annonce", help="l'annonce brute, voix seche")
     ap.add_argument("--a", type=float, default=None, metavar="SECONDES",
                     help="a quel instant poser l'annonce")
@@ -168,6 +174,30 @@ def main():
         print("  lit      : %-16s %6.2f -> %6.2f s   %+.1f dB"
               % (os.path.basename(f), debut, fin, g))
 
+    # ⚠️ UN BRUIT N'EST PAS UN LIT, ET IL NE SE POSE PAS AU MEME NIVEAU.
+    #    Un lit est un fond dont on ne doit pas s'apercevoir : -24 dB. Une
+    #    sonnette doit S'ENTENDRE -- c'est elle que Mark commente au plan
+    #    suivant. A -24 dB elle serait la pour la forme, et sa replique ne
+    #    commenterait toujours rien. Et pas de -stream_loop : un bruit arrive
+    #    une fois, une boucle en ferait un carillon.
+    for spec in a.bruit:
+        if "@" not in spec:
+            sys.exit("  --bruit veut FICHIER@INSTANT : %s" % spec)
+        f, _, t = spec.rpartition("@")
+        if not os.path.exists(f):
+            sys.exit("  Bruit introuvable : %s" % f)
+        i = n_ent
+        entrees += ["-i", f]
+        n_ent += 1
+        cb = ref - SOUS_BRUIT
+        g = cb - (loudness(F, f) or -20.0)
+        d = int(round(float(t) * 1000))
+        chaines.append("[%d:a]volume=%.2fdB,adelay=%d:all=1,apad,"
+                       "aresample=44100[br%d]" % (i, g, d, i))
+        pistes.append("[br%d]" % i)
+        print("  bruit    : %-16s %6.2f s          %+.1f dB  (%.0f dB sous)"
+              % (os.path.basename(f), d / 1000.0, g, SOUS_BRUIT))
+
     if a.annonce:
         i = n_ent
         entrees += ["-i", a.annonce]
@@ -182,7 +212,7 @@ def main():
               % (os.path.basename(a.annonce), d / 1000.0, g, SOUS_ANNONCE))
 
     if len(pistes) < 2:
-        sys.exit("  Rien a ajouter : donner --lit et/ou --annonce.")
+        sys.exit("  Rien a ajouter : donner --lit, --bruit et/ou --annonce.")
 
     chaines.append("%samix=inputs=%d:duration=first:normalize=0,"
                    "alimiter=limit=0.97[out]" % ("".join(pistes), len(pistes)))
