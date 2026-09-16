@@ -1,4 +1,70 @@
 # Droits sur les vidéos OmniHuman — ce qui est vérifié, et ce qui ne l'est pas
+
+## ⚠️ LIRE CECI AVANT LE RESTE — ÉTAT AU 16 SEPTEMBRE 2026
+
+**OUI, ON PEUT UTILISER CE QU'ON PRODUIT.** La ligne « on monte, on regarde,
+mais on ne diffuse pas publiquement » qu'on trouve plus bas date du
+**12 septembre** et vise la voie **BytePlus en direct**, celle qui a été
+**abandonnée le lendemain**. Elle n'a plus d'objet : on passe par **fal**, et
+la lecture du 13 septembre (deuxième moitié de ce fichier) conclut
+noir sur blanc que « fal est acceptable pour notre usage ».
+
+Elle a quand même fait peur une deuxième fois — le 16 septembre, je l'ai
+citée à Jacques comme si elle valait encore. **Un avertissement daté qui
+survit à la décision qu'il visait finit toujours par se faire relire comme
+une consigne en cours.** D'où cet en-tête.
+
+**Ce qui est vérifié le 16 septembre 2026 :**
+
+- La page du modèle chez fal (`fal-ai/bytedance/omnihuman/v1.5`) porte la
+  pastille **« Commercial use »**, à 0,16 $/seconde — le tarif annoncé.
+- fal **n'a aucune clause** qui réclame la propriété des sorties, et §4(c)
+  écarte ses propres droits de PI dessus.
+- §7(a) : nos sorties sont **notre information confidentielle**.
+- Les sorties **ne partent pas à l'entraînement** (définition d'Usage Data,
+  §3(e) : données anonymisées ou agrégées).
+- Aucune obligation de filigrane.
+
+**Ce qui reste ouvert, et c'est mineur :** §14(b), les « Third-Party
+Materials » peuvent porter des conditions supplémentaires — OmniHuman est un
+modèle ByteDance hébergé par fal. Le ticket BytePlus le trancherait ; en
+attendant, la pastille « Commercial use » est un engagement de fal envers
+nous.
+
+## ⚠️ LE VRAI SUJET N'EST PAS L'USAGE, C'EST LA PROPRIÉTÉ
+
+Ce que disent les juristes et la jurisprudence, relevé le 16 septembre 2026 :
+
+- **Thaler v. Perlmutter** : la Cour suprême américaine a refusé de se saisir
+  de l'affaire en **mars 2026**. C'est donc établi : seules les œuvres
+  **créées par un humain** obtiennent un droit d'auteur. Une IA n'en détient
+  pas, et l'éditeur du modèle non plus du seul fait de l'avoir construit.
+- **US Copyright Office**, rapport Partie 2 (janvier 2025) : « prompts alone
+  do not provide sufficient human control to make users of an AI system the
+  authors of the output ». **Mais** la **sélection, la coordination et
+  l'arrangement** d'éléments générés sont protégeables, et l'auteur peut
+  revendiquer « ses propres contributions ».
+
+**CE QUE ÇA CHANGE POUR NOUS, CONCRÈTEMENT.** Le risque n'a jamais été
+« on ne pourra pas s'en servir ». Il est : **un plan brut n'appartient à
+personne**, donc rien n'empêcherait quelqu'un de le reprendre. Ce qui est
+protégeable, c'est **tout ce qu'on ajoute d'humain** — le scénario, le
+découpage, l'ordre des plans, le montage, le mixage, les sous-titres, la
+direction de jeu. C'est-à-dire l'essentiel du travail réel de la série.
+
+Trois conséquences pratiques :
+
+1. **Garder la trace du travail humain.** Le dépôt le fait déjà sans le
+   savoir : `A-TOURNER.txt`, les prompts, `OU-ON-EN-EST.txt`, l'historique
+   git. C'est exactement la preuve qu'un dépôt de droit d'auteur réclame.
+2. **En cas d'enregistrement, déclarer les parties générées** et ne
+   revendiquer que les siennes : c'est la procédure du Copyright Office.
+3. **La marque reste notre seule protection solide.** WORTANDO, les visages
+   récurrents et la voix de Mark valent plus, juridiquement, qu'un plan de
+   quatre secondes — et c'était déjà la conclusion du 13 septembre.
+
+---
+
 ### 12 septembre 2026
 
 Wortando est un projet **commercial**, avec un dépôt de marque WORTANDO en
