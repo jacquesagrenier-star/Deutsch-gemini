@@ -5089,3 +5089,23 @@ verrous, publiés en **v36** :
 v36, alors le défaut ne passe **ni** par une valeur traînante dans le
 `localStorage`, **ni** par un changement d'écran — les deux seules portes que
 le code de cette app possède. À lui demander après sa prochaine ouverture.
+
+
+### Suite, le même jour — le compte d'options quitte les en-têtes (v626)
+
+**« Le petit chiffre en haut à droite qui donne le nombre d'options :
+visuellement on le voit, on n'a pas besoin de ce petit chiffre-là, je trouve ça
+dérangeant. »** — Retiré. C'était le `<span class="sec-n">` posé par la v625
+au bord droit de chaque en-tête de section d'un panneau de tuile
+(« Comprendre 3 », « Vocabulaire 4 »). Le style est parti avec lui : rien
+d'autre ne portait cette classe.
+
+⚠️ **Le compte de l'ACCUEIL reste, et ce n'est pas une incohérence.** Ses
+sections sont des grilles qui dépassent l'écran ; une section de panneau tient
+en trois ou quatre lignes sous les yeux. Le même chiffre informe là-haut et
+meuble ici — c'est exactement ce que dit « visuellement on le voit ».
+
+⚠️ **Ce qui n'a PAS été touché** : la pastille bleue de certaines options
+(« 30 » sur « Quel article ? », par exemple). Elle ne compte pas des options,
+elle annonce le nombre de questions de l'exercice — une information qu'on ne
+peut pas lire à l'œil. À dire si elle dérange aussi.
