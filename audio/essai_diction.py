@@ -50,8 +50,62 @@ import normaliser                                          # noqa: E402
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 
-def variantes(de):
-    """Les dictions a essayer, de la plus sobre a la plus interrogative."""
+# --------------------------------------------------------------------------
+# Les dictions ecrites pour une replique precise.
+# --------------------------------------------------------------------------
+# ⚠️ LES VARIANTES GENERIQUES PLUS BAS CHERCHENT L'ETONNEMENT -- elles ont ete
+# ecrites pour le plan 08, ou la question etait << est-ce que ca monte ? >>.
+# Pour les quatre repliques de Mark, la question est autre : Jacques a demande
+# de l'HUMOUR et de la LEGERETE, << que ca reste leger >>, et un personnage
+# auquel on s'attache. Une montee interrogative n'y repond pas.
+#
+# ⚠️ ET v2 NE SAIT PAS RIRE. Un demi-rire ne s'obtient pas par la ponctuation ;
+# une balise serait PRONONCEE. Ce que la ponctuation peut faire, c'est poser
+# une respiration avant le mot qui bat Mark, laisser tomber une phrase au lieu
+# de la durcir, ou suspendre un calcul pour que l'absurdite s'entende. C'est
+# la limite honnete de ce qu'on essaie ici -- si rien ne convient, la question
+# devient << passe-t-on ce plan-la en v3 >>, et c'est une autre decision.
+DICTIONS = {
+    ("02-beim-buergeramt", 5): [
+        ("a-tel-quel", "Nein. Kann ich heute einen bekommen?",
+         "la prise actuelle, pour comparer dans les memes conditions"),
+        ("b-reprise", "Nein … Kann ich heute einen bekommen?",
+         "un temps de reprise apres le << non >> : il encaisse, puis il rebondit"),
+        ("c-leger", "Nein. Kann ich heute einen bekommen, vielleicht?",
+         "il demande comme on demande quand on croit que ca va s'arranger"),
+    ],
+    ("02-beim-buergeramt", 10): [
+        ("a-tel-quel", "Vierzehn Tage. Und der Termin ist in sechs Wochen.",
+         "la prise actuelle"),
+        ("b-suspens", "Vierzehn Tage … Und der Termin ist in sechs Wochen.",
+         "le calcul s'arrete au milieu : l'absurdite tombe dans le silence"),
+        ("c-complice", "Vierzehn Tage. Und der Termin ist in sechs Wochen …?",
+         "il enonce et attend qu'on la corrige -- << vous l'entendez aussi ? >>"),
+    ],
+    ("02-beim-buergeramt", 14): [
+        ("a-tel-quel", "Welche Papiere brauche ich?",
+         "la prise actuelle"),
+        ("b-pratique", "Also, welche Papiere brauche ich?",
+         "il tourne la page et redevient pratique : plus leger que resigne"),
+    ],
+    ("02-beim-buergeramt", 16): [
+        ("a-tel-quel", "Die … was, bitte?",
+         "la prise actuelle"),
+        ("b-abandon", "Die Wohnungs … was, bitte?",
+         "il ESSAIE le mot et abandonne en route -- l'echec s'entend"),
+        ("c-deux-temps", "Die …? Was, bitte?",
+         "deux questions au lieu d'une : il renonce, puis il redemande"),
+        ("d-sourire", "Die … was, bitte …?",
+         "la fin retombe au lieu de durcir : le demi-sourire plutot que l'agacement"),
+    ],
+}
+
+
+def variantes(de, scene=None, plan=None):
+    """Les dictions a essayer -- ecrites pour la replique si on les a."""
+    sur_mesure = DICTIONS.get((scene, plan))
+    if sur_mesure:
+        return sur_mesure
     base = de.rstrip()
     sans_point = base[:-1] if base.endswith((".", "!", "?")) else base
     # ⚠️ TOUTES LES VARIANTES RESTENT DE L'ALLEMAND ECRIVABLE. Une ponctuation
@@ -122,7 +176,7 @@ def main():
     generer.VOIX = voix
 
     sortie = os.path.join(dossier, "_essais-diction")
-    liste = variantes(p["de"])
+    liste = variantes(p["de"], a.scene, a.plan)
     print("  plan %d · %s · voix %s (%s)"
           % (a.plan, p["locuteur"], voix, fiche.get("nom", "?")))
     print("  contexte  avant : %s" % (avant or "(aucun)"))
