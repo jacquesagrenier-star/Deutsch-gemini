@@ -61,16 +61,37 @@ def main():
                  "  Lancer d'abord audio/scene_audio.py.")
     m = json.load(io.open(fm, encoding="utf-8"))
 
+    # ⚠️ LE MODELE EST CELUI DU PLAN, PAS CELUI DE LA SCENE. Depuis le
+    #    16 sept. 2026, scene_audio.py choisit le modele PAR LOCUTEUR -- Mark
+    #    en v3, les autres en v2 -- et le manifeste ecrit << modeles >> au
+    #    pluriel avec, sur chaque plan, le sien. Cet outil lisait encore
+    #    m["modele"] et plantait sur un KeyError.
+    #
+    #    On regarde donc, dans l'ordre : ce que l'entree du plan dit, puis ce
+    #    que le locuteur declare dans la scene, puis l'ancienne cle unique
+    #    pour les episodes 1 et 2.
+    entree = next((x for x in m.get("plans", []) if x.get("plan") == a.plan),
+                  {})
+    defaut = (entree.get("modele")
+              or d["locuteurs"][p["locuteur"]].get("modele")
+              or m.get("modele"))
+    if defaut in generer.MODELES:
+        defaut = generer.MODELES[defaut][0]
+
     if a.modele:
         court = a.modele
         modele = generer.MODELES[court][0]
-        if modele != m["modele"]:
-            print("  ⚠ modele force : %s au lieu de %s. La scene "
-                  "melangera deux modeles." % (modele, m["modele"]))
+        if defaut and modele != defaut:
+            print("  ⚠ modele force : %s au lieu de %s. Le timbre ne se "
+                  "recollera pas avec les autres prises de cette voix."
+                  % (modele, defaut))
     else:
-        modele = m["modele"]
+        modele = defaut
         court = next((k for k, v in generer.MODELES.items()
                       if v[0] == modele), None)
+        if not modele:
+            sys.exit("  impossible de savoir avec quel modele ce plan a ete "
+                     "fait.\n  Preciser --modele.")
     gain = m["gain_applique_db"]
     voix = d["locuteurs"][p["locuteur"]]["voice_id"]
 
