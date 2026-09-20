@@ -423,6 +423,54 @@ def scene_retournement(p):
     p.coupez()
 
 
+@scene("affinage", "La mosaique s affine, carte apres carte, jusqu au tableau.")
+def scene_affinage(p):
+    """⚠️ LE SEUL PLAN QU UNE IMAGE FIXE NE PEUT PAS RACONTER. Deux captures --
+    la mosaique a mi-chemin, puis l oeuvre finie -- ne disent pas que c est le
+    MEME tableau : elles se lisent comme deux ecrans differents. Le mouvement
+    est l information.
+    ⚠️ ON NE PASSE PAS PAR poserCarreau() : il est plafonne a 80 carreaux par
+    jour, ce qui est la regle du produit et n a aucune raison de plier pour un
+    tournage. On pose l etat et on redessine -- la subdivision affichee est la
+    vraie, seul le rythme est celui du film."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.mosaique(rang=3, carreaux=120, gagnees=[1, 2])
+    p.recharger()
+    p.ecran("home")
+    p.js("document.getElementById('carteMosaique').scrollIntoView({block:'start'});")
+    p.attendre(1.0)
+    p.moteur()
+    p.js("""
+        const v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE));
+        for(let c = 120; c <= 700; c += 29){
+            v.c = c;
+            localStorage.setItem(MOSAIQUE_CLE, JSON.stringify(v));
+            majMosaiqueAccueil();
+            await new Promise(r => setTimeout(r, 110));
+        }
+        // La derniere carte : la mosaique DEVIENT le tableau, et la plaque
+        // arrive avec lui.
+        v.c = 700; v.g = [1, 2, 3]; v.t = 3;
+        localStorage.setItem(MOSAIQUE_CLE, JSON.stringify(v));
+        majMosaiqueAccueil();
+    """)
+    p.attendre(2.5)
+    p.coupez()
+
+
+@scene("ecoute_suite", "Le mot suivant arrive tout seul : les mains restent libres.")
+def scene_ecoute_suite(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.js("ouvrirEcouteMenu();")
+    p.attendre(1.5)
+    p.js("demarrerEcoute('A1');")
+    p.attendre(2.0)
+    p.moteur()
+    p.attendre(6.0)
+    p.coupez()
+
+
 @scene("credits", "Ce qui vient d'ailleurs est nomme, et ce qui n'est pas a nous est dit.")
 def scene_credits(p):
     p.ecran("settings")

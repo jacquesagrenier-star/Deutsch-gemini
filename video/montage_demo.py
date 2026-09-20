@@ -48,15 +48,25 @@ LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
 # maintenant TOUJOURS dans le meme sens et deux fois moins vite.
 PLANS = [
     ("accueil-01.png",          4.0, 0.00),  # 1. une seance t'attend
-    ("carte-01-recto.png",      2.5, 0.00),  # 2. tu reponds...
-    ("carte-02-verso.png",      4.0, 0.00),  #    ...et l'echeance suit
-    ("ecoute-02-en-ecoute.png", 4.0, 0.05),  # 3. quand tu ne peux pas regarder
-    ("tableau-02-milieu.png",   2.5, 0.00),  # 4. chaque carte affine...
-    ("tableau-04-gagne.png",    4.0, 0.00),  #    ...a la derniere, il est a toi
+    ("clip:retournement",       3.3, 0.00),  # 2. tu reponds -- LE VRAI GESTE
+    ("clip:ecoute_suite",       4.5, 0.05),  # 3. les mains libres -- LE VRAI LECTEUR
+    ("clip:affinage",           5.0, 0.00),  # 4. la mosaique s'affine -- LE VRAI ARC
     ("dictionnaire-01.png",     4.5, 0.10),  # 5. un mot te manque ?
     ("examens-01-panneau.png",  3.5, 0.15),  # 6. les listes officielles
     ("retour-01.png",           3.0, 0.35),  # 7. dis-nous ce qui t'aiderait
 ]
+
+# ⚠️ TROIS PLANS SONT DES CLIPS, ET C'EST LE PARTAGE QUI COMPTE. Un ecran qui
+# ne bouge pas dans l'app -- le dictionnaire, les examens, le formulaire -- est
+# plus honnete en image fixe : lui inventer un mouvement, c'est promettre une
+# vivacite qu'il n'a pas. Les trois qui bougent VRAIMENT sont filmes, parce
+# qu'aucun montage ne raconte ce qu'ils font :
+#   la carte qui tourne      -- deux images ne montrent pas une rotation ;
+#   le lecteur qui avance    -- deux images ne montrent pas << tout seul >> ;
+#   la mosaique qui s'affine -- deux images se lisent comme DEUX tableaux,
+#                               et l'information etait justement que c'est
+#                               le meme.
+# Les clips se tournent avec : python video/banc.py --clips --scene affinage
 
 # De combien la fenetre glisse, en part de ce qui depasse. 0 = image immobile.
 GLISSE = 0.35
@@ -96,6 +106,24 @@ def plan(image, duree, ancre, glisse, cible):
             "-vf", "scale=%d:-2,crop=%d:%d:0:'%s',fps=%d,format=yuv420p"
                    % (LARGEUR, LARGEUR, HAUTEUR, y, FPS),
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
+
+
+def plan_clip(source, duree, ancre, cible):
+    """Un plan filme : meme cadrage que les images fixes, coupe a la duree
+    voulue.
+
+    ⚠️ LE CLIP EST ENREGISTRE A LA TAILLE CSS DE LA FENETRE (430 x 932), pas a
+    la resolution des captures (1290 x 2796) : Playwright filme la page, il ne
+    la re-rend pas en triple densite. On agrandit donc en lanczos, et le texte
+    est un peu plus mou que sur les plans fixes. Pour la version finale, on
+    filmera dans une fenetre plus grande -- c'est un parametre, pas un
+    chantier."""
+    course = "(ih-%d)" % HAUTEUR
+    y = "min(max(%s*%s,0),%s)" % (course, ancre, course)
+    ffmpeg(["-i", str(source), "-t", str(duree),
+            "-vf", "scale=%d:-2:flags=lanczos,crop=%d:%d:0:'%s',fps=%d,format=yuv420p"
+                   % (LARGEUR, LARGEUR, HAUTEUR, y, FPS),
+            "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
 
 
 def transition(avant, apres, effet, cible):
@@ -143,12 +171,18 @@ def main():
     effet = EFFETS.get(args.transition)
     retrait = TRANSITION_S if effet else 0
     for i, (nom, duree, ancre) in enumerate(PLANS):
-        image = source / nom
+        filme = nom.startswith("clip:")
+        image = (source / "clips" / (nom[5:] + ".mp4")) if filme else (source / nom)
         if not image.exists():
             print("  MANQUE  " + nom + " -- plan saute")
             continue
         cible = travail / ("%02d.mp4" % i)
-        plan(image, max(1.0, duree - retrait), ancre, glisse, cible)
+        if filme:
+            # ⚠️ UN PLAN FILME NE GLISSE PAS : il bouge deja, et lui ajouter un
+            # panoramique ferait deux mouvements concurrents dans le meme plan.
+            plan_clip(image, max(1.0, duree - retrait), ancre, cible)
+        else:
+            plan(image, max(1.0, duree - retrait), ancre, glisse, cible)
         if effet and morceaux:
             pont = travail / ("%02d-pont.mp4" % i)
             transition(morceaux[-1], cible, effet, pont)
