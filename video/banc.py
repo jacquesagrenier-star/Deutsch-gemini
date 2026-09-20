@@ -204,6 +204,21 @@ class Pilote:
         self.page.reload(wait_until="load")
         self.page.wait_for_function("typeof majMosaiqueAccueil === 'function'", timeout=30000)
         self.attendre(1.5)
+        # ⚠️ REPEINDRE CE QUE SEUL openSettings() PEINT. La grille des badges
+        # n'est dessinee que la, et openSettings() sort immediatement quand
+        # personne n'est connecte : sans cet appel, la carte Badges est VIDE sur
+        # toutes les captures des reglages -- ce qui se lit comme une carte
+        # cassee alors que rien ne l'est.
+        # ⚠️ POSE DANS vie(), L'APPEL ETAIT PERDU : le rechargement qui suit
+        # remet le DOM a neuf. Il doit venir APRES, ici.
+        # ⚠️ ET LA BANDE << PROCHAIN BADGE >> DE L'ACCUEIL NE REAPPARAITRA PAS :
+        # elle est eteinte volontairement (`#nextBadgeBox{display:none
+        # !important}`), le prochain badge vit dans les reglages. L'element
+        # reste dans le DOM pour que le JS puisse y ecrire sans planter. J'ai
+        # cru a un defaut du banc et cherche une demi-heure : ce n'en est pas
+        # un.
+        self.js("if(typeof renderBadgesGrid === 'function') renderBadgesGrid();")
+        self.attendre(0.4)
 
     def vers(self, cle_i18n):
         """Amene sous les yeux la carte des reglages qui porte cette cle.
