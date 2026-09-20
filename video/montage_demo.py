@@ -260,6 +260,14 @@ def main():
 
     travail = source / "_montage"
     travail.mkdir(exist_ok=True)
+    # ⚠️ ON VIDE LE PLAN DE TRAVAIL. Les morceaux sont nommes par leur RANG :
+    # retirer un plan de PLANS, ou monter une fois avec une carte-titre au
+    # debut, laisse derriere un fichier qui ne fait plus partie du film. Le
+    # montage l'ignore -- mais voix_demo.py, lui, lit ce dossier pour savoir ou
+    # commence chaque plan, et un orphelin decale toute la narration d'un plan.
+    # Vu : la premiere phrase posee sur la carte-titre d'un ancien essai.
+    for vieux in travail.glob("*.mp4"):
+        vieux.unlink()
     morceaux = []
     # ⚠️ UNE CARTE-TITRE AU DEBUT SE PAIE SUR L'ACCROCHE. Les trois premieres
     # secondes decident si les vingt-sept suivantes sont regardees, et le nom
