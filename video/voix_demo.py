@@ -72,6 +72,23 @@ VOIX_ELEVEN = {
 }
 MODELE_ELEVEN = "eleven_multilingual_v2"
 
+# ⚠️ LE SOURIRE SE REGLE, IL NE SE DEMANDE PAS. Demande de Jacques : << plus
+# detendu, plus souriant >>. Sous eleven_multilingual_v2, il n'y a pas de
+# balise de jeu -- v2 les PRONONCERAIT. Ce qui detend la diction, ce sont deux
+# curseurs : la stabilite qui descend (la voix varie au lieu de reciter) et le
+# style qui monte (elle s'autorise l'intonation). A 0,75/0,00 -- le reglage du
+# corpus du cours -- la lecture est nette et plate : c'est ce qu'il faut pour
+# 25 298 mots de vocabulaire, et l'inverse de ce qu'il faut pour une narration.
+# ⚠️ NE PAS DESCENDRE LA STABILITE PLUS BAS QUE ~0,30 : au-dela la voix
+# commence a changer de couleur d'une phrase a l'autre, et six phrases montees
+# bout a bout ne sonnent plus comme la meme personne.
+TONS = {
+    "neutre":   {"stability": 0.75, "similarity_boost": 0.75,
+                 "style": 0.00, "use_speaker_boost": True},
+    "souriant": {"stability": 0.35, "similarity_boost": 0.75,
+                 "style": 0.55, "use_speaker_boost": True},
+}
+
 
 def cle_eleven():
     cle = (os.environ.get("ELEVENLABS_API_KEY") or "").strip()
@@ -82,20 +99,26 @@ def cle_eleven():
     return cle or None
 
 
-def dire_eleven(texte, voix_id, cle, cible):
+def dire_eleven(texte, voix_id, cle, cible, ton="souriant"):
     """Une phrase chez ElevenLabs, et JAMAIS DEUX FOIS LA MEME.
 
     ⚠️ LE CACHE EST LA POUR L'ARGENT, PAS POUR LA VITESSE. Le montage se refait
     dix fois par soiree ; sans empreinte, chaque relance repaierait les six
     phrases. Le nom du fichier porte l'empreinte de (voix + texte) : changer un
     mot regenere cette ligne-la, et elle seule."""
-    empreinte = hashlib.sha1((voix_id + "|" + texte).encode("utf-8")).hexdigest()[:12]
+    # ⚠️ LE TON ENTRE DANS L'EMPREINTE. Sans lui, changer de reglage ressort le
+    # fichier d'avant : on croit avoir change la voix, on a change un argument.
+    reglages = TONS.get(ton, TONS["souriant"])
+    empreinte = hashlib.sha1(
+        (voix_id + "|" + ton + "|" + json.dumps(reglages, sort_keys=True) + "|" + texte)
+        .encode("utf-8")).hexdigest()[:12]
     garde = cible.with_name(cible.stem + "-" + empreinte + ".mp3")
     if garde.exists() and garde.stat().st_size > 2000:
         return garde
     url = ("https://api.elevenlabs.io/v1/text-to-speech/%s?output_format=mp3_44100_128"
            % voix_id)
-    charge = json.dumps({"text": texte, "model_id": MODELE_ELEVEN}).encode("utf-8")
+    charge = json.dumps({"text": texte, "model_id": MODELE_ELEVEN,
+                         "voice_settings": reglages}).encode("utf-8")
     req = urllib.request.Request(url, data=charge, method="POST", headers={
         "xi-api-key": cle, "Content-Type": "application/json", "Accept": "audio/mpeg"})
     try:
@@ -156,6 +179,9 @@ def main():
                         "sapi : la synthese de Windows (gratuite, pour juger le rythme)")
     # Bella : choisie par Jacques le 20 septembre 2026, apres ecoute des trois
     # candidates sur la meme phrase.
+    a.add_argument("--ton", default="souriant", choices=sorted(TONS),
+                   help="souriant : detendu, intonation libre. neutre : la diction "
+                        "nette et plate du corpus du cours")
     a.add_argument("--voix-eleven", default="bella",
                    help="nom court (rachel, bella, adam, aurora) ou identifiant")
     a.add_argument("--vitesse", type=int, default=0, help="SAPI : -10 (lent) a 10 (rapide)")
@@ -190,7 +216,8 @@ def main():
         cle = cle_eleven()
         if not cle:
             sys.exit("Pas de cle ElevenLabs. Pour juger le rythme sans payer : --moteur sapi")
-    sons = base / ("_voix-" + (args.voix_eleven if args.moteur == "eleven" else "sapi"))
+    sons = base / ("_voix-" + (args.voix_eleven + "-" + args.ton
+                               if args.moteur == "eleven" else "sapi"))
     sons.mkdir(exist_ok=True)
 
     entrees, filtres, etiquettes = ["-i", str(film)], [], []
@@ -201,7 +228,7 @@ def main():
         texte = lignes[i] if i < len(lignes) else None
         if texte:
             if args.moteur == "eleven":
-                piste = dire_eleven(texte, voix_id, cle, sons / ("%02d" % i))
+                piste = dire_eleven(texte, voix_id, cle, sons / ("%02d" % i), args.ton)
             else:
                 piste = sons / ("%02d.wav" % i)
                 if not dire(texte, voix, args.vitesse, piste):
