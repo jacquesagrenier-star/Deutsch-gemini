@@ -23,9 +23,14 @@ qui depend d'un reglage, et chacun se paierait six fois en reenregistrement.
 Les chiffres sont a l'image, ou ils sont toujours justes.
 """
 import argparse
+import hashlib
+import io as _io
 import json
+import os
 import subprocess
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
@@ -55,6 +60,51 @@ NARRATION = {
 }
 
 VOIX_DEFAUT = {"en": "Microsoft Zira Desktop", "fr": None}
+
+# Les voix d'ElevenLabs, par leur identifiant. Trois candidates anglaises sur
+# la MEME phrase, ecoutees cote a cote : c'est la methode qui a choisi la voix
+# de Mark le 7 septembre, et c'est la seule qui tranche quelque chose.
+VOIX_ELEVEN = {
+    "rachel": "21m00Tcm4TlvDq8ikWAM",
+    "bella": "EXAVITQu4vr4xnSDxMaL",
+    "adam": "pNInz6obpgDQGcFmaJgB",
+    "aurora": "8HePnvwzEdJ614CQMPqF",   # la voix allemande de l'app
+}
+MODELE_ELEVEN = "eleven_multilingual_v2"
+
+
+def cle_eleven():
+    cle = (os.environ.get("ELEVENLABS_API_KEY") or "").strip()
+    if not cle:
+        chemin = RACINE / "elevenlabs.secret"
+        if chemin.exists():
+            cle = _io.open(chemin, encoding="utf-8").read().strip()
+    return cle or None
+
+
+def dire_eleven(texte, voix_id, cle, cible):
+    """Une phrase chez ElevenLabs, et JAMAIS DEUX FOIS LA MEME.
+
+    ⚠️ LE CACHE EST LA POUR L'ARGENT, PAS POUR LA VITESSE. Le montage se refait
+    dix fois par soiree ; sans empreinte, chaque relance repaierait les six
+    phrases. Le nom du fichier porte l'empreinte de (voix + texte) : changer un
+    mot regenere cette ligne-la, et elle seule."""
+    empreinte = hashlib.sha1((voix_id + "|" + texte).encode("utf-8")).hexdigest()[:12]
+    garde = cible.with_name(cible.stem + "-" + empreinte + ".mp3")
+    if garde.exists() and garde.stat().st_size > 2000:
+        return garde
+    url = ("https://api.elevenlabs.io/v1/text-to-speech/%s?output_format=mp3_44100_128"
+           % voix_id)
+    charge = json.dumps({"text": texte, "model_id": MODELE_ELEVEN}).encode("utf-8")
+    req = urllib.request.Request(url, data=charge, method="POST", headers={
+        "xi-api-key": cle, "Content-Type": "application/json", "Accept": "audio/mpeg"})
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r:
+            garde.write_bytes(r.read())
+    except urllib.error.HTTPError as e:
+        sys.exit("ElevenLabs a refuse (HTTP %d) : %s"
+                 % (e.code, e.read().decode("utf-8", "replace")[:200]))
+    return garde
 
 
 def ffmpeg(args):
@@ -101,6 +151,11 @@ def main():
     a.add_argument("--langue", default="en")
     a.add_argument("--appareil", default="iphone67")
     a.add_argument("--voix", default=None)
+    a.add_argument("--moteur", default="eleven", choices=["eleven", "sapi"],
+                   help="eleven : ElevenLabs (payant, pour livrer). "
+                        "sapi : la synthese de Windows (gratuite, pour juger le rythme)")
+    a.add_argument("--voix-eleven", default="rachel",
+                   help="nom court (rachel, bella, adam, aurora) ou identifiant")
     a.add_argument("--vitesse", type=int, default=0, help="SAPI : -10 (lent) a 10 (rapide)")
     a.add_argument("--film", default=None, help="le montage muet a sonoriser")
     a.add_argument("--sortie", default=None)
@@ -127,7 +182,13 @@ def main():
         film = candidats[-1]
 
     voix = args.voix or VOIX_DEFAUT.get(args.langue)
-    sons = base / "_voix"
+    voix_id = VOIX_ELEVEN.get(args.voix_eleven, args.voix_eleven)
+    cle = None
+    if args.moteur == "eleven":
+        cle = cle_eleven()
+        if not cle:
+            sys.exit("Pas de cle ElevenLabs. Pour juger le rythme sans payer : --moteur sapi")
+    sons = base / ("_voix-" + (args.voix_eleven if args.moteur == "eleven" else "sapi"))
     sons.mkdir(exist_ok=True)
 
     entrees, filtres, etiquettes = ["-i", str(film)], [], []
@@ -137,9 +198,12 @@ def main():
         d = duree(morceau)
         texte = lignes[i] if i < len(lignes) else None
         if texte:
-            piste = sons / ("%02d.wav" % i)
-            if not dire(texte, voix, args.vitesse, piste):
-                sys.exit("La synthese n'a rien produit pour le plan %d" % i)
+            if args.moteur == "eleven":
+                piste = dire_eleven(texte, voix_id, cle, sons / ("%02d" % i))
+            else:
+                piste = sons / ("%02d.wav" % i)
+                if not dire(texte, voix, args.vitesse, piste):
+                    sys.exit("La synthese n'a rien produit pour le plan %d" % i)
             parle = duree(piste)
             # ⚠️ UN SOUFFLE AVANT DE PARLER : la voix qui demarre sur la coupe
             # se colle au plan precedent et on entend une phrase coupee en
