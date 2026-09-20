@@ -373,6 +373,13 @@ def scene_credits(p):
     p.photo("01")
 
 
+@scene("zero", "Les remises a plat sont ensemble, de la plus douce a la plus definitive.")
+def scene_zero(p):
+    p.ecran("settings")
+    p.vers("settings_zero_title")
+    p.photo("01")
+
+
 @scene("rappels", "Un rappel quotidien, si tu en veux un.")
 def scene_rappels(p):
     p.ecran("settings")

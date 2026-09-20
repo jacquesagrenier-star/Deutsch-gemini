@@ -5402,3 +5402,34 @@ vaut que de 11 à 99. Les deux passent donc au **nom en tête, deux-points, puis
 le nombre** : « Картки : {n} », « البطاقات: {n} ». Un nom suivi du nombre ne
 s'accorde avec rien. C'est la même parade que « jour {i} sur {n} » sur la
 plaque du tableau, ce matin.
+
+## 20 septembre 2026 — les remises à plat sont ensemble (v638)
+
+**Demande de Jacques** après l'audit des réglages : « il y a des choses qui
+sont en trop ». Les quatre remises à plat étaient mêlées à la carte
+« Progression globale » — deux boutons rouges au milieu d'une carte qu'on vient
+*consulter*, entre le compte des mots maîtrisés et le bouton des thèmes.
+
+Elles vivent maintenant dans leur propre carte, **« Repartir de zéro »**,
+rangées du plus doux au plus définitif : vider le coffre (un drapeau),
+revoir les mots maîtrisés (aucun pourcentage ne bouge), réinitialiser le
+thème, réinitialiser toute la progression.
+
+⚠️ **L'ordre n'est pas cosmétique : c'est ce qui permet de s'arrêter au bon
+endroit.** Rangée dans l'autre sens, la première chose qu'on voit est la pire.
+Et le regroupement ne remplace aucune barrière — chaque action garde sa
+confirmation.
+
+⚠️ **Un bouton portait « (TESTS) » dans son libellé et était visible par
+tous** : « Réinitialiser le compte du jour (TESTS) ». Un outil qui annonce
+lui-même qu'il n'est pas pour les usagers a échappé à sa porte. Masqué comme le
+journal audio — pas retiré, sinon il faudra le réécrire au prochain réglage
+d'objectif.
+
+⚠️ **« RESET » était le seul mot anglais d'une interface écrite avec soin**, et
+seulement en français : les cinq autres langues avaient déjà leur verbe.
+« Réinitialiser ».
+
+⚠️ Et la description disait d'abord « **Quatre** façons » — un chiffre écrit à
+la main à côté de quatre boutons, faux le jour où l'on en ajoute un cinquième.
+Retiré avant le commit. Même leçon que le « treize jours » de ce matin.

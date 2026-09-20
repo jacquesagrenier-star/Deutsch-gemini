@@ -5930,7 +5930,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v637</span>
+    <span class="subtitle-version">v638</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8254,26 +8254,42 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
         <div class="spacer"></div>
         <button class="secondary" onclick="openNomen()" data-i18n="settings_view_themes">VOIR LES THÈMES</button>
-        <div class="spacer"></div>
-        <button class="secondary danger" onclick="resetCurrentThemeConfirm()" data-i18n="settings_reset_theme">RESET DU THÈME ACTUEL</button>
-        <div class="spacer"></div>
-        <button class="secondary danger" onclick="resetAllConfirm()" data-i18n="settings_reset_all">RESET DE TOUTE LA PROGRESSION</button>
-        <div class="spacer"></div>
-        <button class="secondary" onclick="remettreMaitrisesEnRevision()" data-i18n="settings_revoir_maitrises">REVOIR LES MOTS MAÎTRISÉS</button>
-        <small style="color:#576177;" data-i18n="settings_revoir_maitrises_desc">Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.</small>
-        <!-- ⚠️ ICI ET PAS DANS LE PAQUET DES GARDES. « Sortir du coffre » vide
-             un mot a la fois, et il faut traverser tout le paquet pour les
-             atteindre : c'est juste pour le menage courant, inutilisable pour
-             repartir de zero. Cette carte des reglages est deja l'endroit des
-             actions de remise a plat -- reset du theme, reset complet, remise
-             en circulation des maitrises -- et elles portent toutes une
-             confirmation. Celle-ci aussi.
-             ⚠️ ELLE NE TOUCHE QUE LE DRAPEAU. Aucune echeance, aucun palier,
-             aucun pourcentage ne bouge : vider le coffre n'est pas un reset,
-             et le libelle doit le dire avant qu'on y touche. -->
+    </div>
+
+    <!-- REPARTIR DE ZERO (v638) : LES QUATRE REMISES A PLAT, ENSEMBLE.
+         Elles etaient melees a la carte de progression, entre le texte qui
+         annonce les mots maitrises et le bouton qui ouvre les themes -- donc
+         deux boutons rouges au milieu d'une carte qu'on vient consulter.
+         Demande de Jacques : << il y a des choses qui sont en trop >>.
+         ⚠️ L'ORDRE VA DU PLUS DOUX AU PLUS DEFINITIF, et ce n'est pas
+         cosmetique : c'est ce qui permet a quelqu'un de s'arreter au bon
+         endroit. Vider le coffre ne touche qu'un drapeau ; remettre les
+         maitrises en circulation ne change aucun pourcentage ; reinitialiser
+         un theme efface un paquet ; tout reinitialiser efface tout. Range dans
+         l'autre sens, la premiere chose qu'on voit est la pire.
+         ⚠️ CHACUNE GARDE SA CONFIRMATION. Le regroupement ne remplace aucune
+         barriere -- il evite juste qu'on tombe dessus en cherchant autre
+         chose. -->
+    <div class="card">
+        <strong data-i18n="settings_zero_title">Repartir de zéro</strong>
+        <p style="color:#576177; margin-top:6px; font-size:13px;" data-i18n="settings_zero_desc">Quatre façons de remettre des compteurs, de la plus douce à la plus définitive. Chacune demande confirmation.</p>
         <div class="spacer"></div>
         <button class="secondary" onclick="viderLeCoffre()" data-i18n="settings_vider_coffre">VIDER LE COFFRE</button>
         <small style="color:#576177;" data-i18n="settings_vider_coffre_desc">Retire tous les mots de ton coffre. Ta progression n'est pas touchée : seule la marque « gardé » disparaît.</small>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="remettreMaitrisesEnRevision()" data-i18n="settings_revoir_maitrises">REVOIR LES MOTS MAÎTRISÉS</button>
+        <small style="color:#576177;" data-i18n="settings_revoir_maitrises_desc">Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.</small>
+        <div class="spacer"></div>
+        <button class="secondary danger" onclick="resetCurrentThemeConfirm()" data-i18n="settings_reset_theme">RÉINITIALISER LE THÈME ACTUEL</button>
+        <div class="spacer"></div>
+        <button class="secondary danger" onclick="resetAllConfirm()" data-i18n="settings_reset_all">RÉINITIALISER TOUTE LA PROGRESSION</button>
+        <!-- ⚠️ « SORTIR DU COFFRE » NE REMPLACE PAS CE BOUTON. Il vide un mot
+             a la fois, et il faut traverser tout le paquet pour les atteindre :
+             c'est le menage courant, inutilisable pour repartir de zero.
+             ⚠️ VIDER LE COFFRE NE TOUCHE QUE LE DRAPEAU. Aucune echeance,
+             aucun palier, aucun pourcentage ne bouge -- ce n'est pas une
+             reinitialisation, et le libelle doit le dire avant qu'on y
+             touche. C'est pour ca qu'il vient EN PREMIER ici. -->
     </div>
 
     <div class="card">
@@ -8289,8 +8305,14 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <button class="secondary" style="width:48px; padding:10px 0;" onclick="adjustDailyGoal(5)">+</button>
         </div>
         <small style="color:#576177;" data-i18n="settings_daily_goal_desc">Nombre de cartes à réviser par jour pour remplir la barre « Objectif du jour » de l'écran d'accueil.</small>
-        <div class="spacer"></div>
-        <button class="secondary" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
+        <!-- ⚠️ (TESTS) DANS UN LIBELLE = UN OUTIL QUI A ECHAPPE A SA PORTE
+             (v638). Ce bouton sert a rejouer l'objectif du jour sans attendre
+             demain ; il annonce lui-meme qu'il n'est pas pour les usagers, et
+             il etait pourtant visible par tous. Meme traitement que le journal
+             audio : masque, pas retire -- le retirer obligerait a le reecrire
+             au prochain reglage d'objectif. -->
+        <div class="spacer" id="resetDailyBloc0"></div>
+        <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
     </div>
 
     <div class="card">
@@ -9050,9 +9072,11 @@ const I18N = {
         voice_unsupported: "Ce navigateur ne propose pas de synth\u00e8se vocale.",
         settings_title: "Révision",
         settings_global_progress: "Progression globale",
+        settings_zero_title: "Repartir de zéro",
+        settings_zero_desc: "Remettre des compteurs, de la plus douce à la plus définitive. Chacune demande confirmation.",
         settings_view_themes: "VOIR LES THÈMES",
-        settings_reset_theme: "RESET DU THÈME ACTUEL",
-        settings_reset_all: "RESET DE TOUTE LA PROGRESSION",
+        settings_reset_theme: "RÉINITIALISER LE THÈME ACTUEL",
+        settings_reset_all: "RÉINITIALISER TOUTE LA PROGRESSION",
         settings_badges_title: "Badges",
         badge_unlocked_prefix: "Badge débloqué :",
         badge_locked_hint: "Pas encore débloqué",
@@ -10021,6 +10045,8 @@ const I18N = {
         voice_unsupported: "This browser does not provide speech synthesis.",
         settings_title: "Review",
         settings_global_progress: "Overall progress",
+        settings_zero_title: "Start over",
+        settings_zero_desc: "Resetting a counter, from the gentlest to the most final. Each one asks for confirmation.",
         settings_view_themes: "VIEW THEMES",
         settings_reset_theme: "RESET CURRENT THEME",
         settings_reset_all: "RESET ALL PROGRESS",
@@ -10996,6 +11022,8 @@ const I18N = {
         voice_unsupported: "Bu tarayıcı konuşma sentezi sunmuyor.",
         settings_title: "Tekrar",
         settings_global_progress: "Genel ilerleme",
+        settings_zero_title: "Sıfırdan başla",
+        settings_zero_desc: "Sayaçları sıfırlama, en yumuşağından en kesinine. Her biri onay ister.",
         settings_view_themes: "KONULARI GÖR",
         settings_reset_theme: "BU KONUYU SIFIRLA",
         settings_reset_all: "TÜM İLERLEMEYİ SIFIRLA",
@@ -12514,6 +12542,8 @@ const I18N = {
         settings_account_title: "Обліковий запис",
         settings_title: "Повторення",
         settings_global_progress: "Загальний поступ",
+        settings_zero_title: "Почати спочатку",
+        settings_zero_desc: "Обнулити лічильники — від найм'якшого способу до остаточного. Кожен просить підтвердження.",
         settings_progress_by_category: "Поступ за категоріями",
         settings_view_themes: "ПЕРЕГЛЯНУТИ ТЕМИ",
         settings_reset_theme: "СКИНУТИ ПОТОЧНУ ТЕМУ",
@@ -13254,6 +13284,8 @@ const I18N = {
         carte_phrase_non: "نه — تنها واژه و جمع",
         settings_title: "مرور",
         settings_global_progress: "پیشرفت کلی",
+        settings_zero_title: "از نو شروع کن",
+        settings_zero_desc: "صفر کردن شمارنده‌ها، از ملایم‌ترین تا قطعی‌ترین. هرکدام تأیید می‌خواهد.",
         settings_view_themes: "دیدن موضوع‌ها",
         settings_reset_theme: "بازنشانی موضوع کنونی",
         settings_reset_all: "بازنشانی همهٔ پیشرفت",
@@ -14141,6 +14173,8 @@ const I18N = {
         voice_unsupported: "هذا المتصفّح لا يوفّر تركيباً صوتياً.",
         settings_title: "المراجعة",
         settings_global_progress: "التقدّم العام",
+        settings_zero_title: "ابدأ من جديد",
+        settings_zero_desc: "تصفير العدّادات، من الألطف إلى الأكثر نهائية. كلّ واحدة تطلب تأكيداً.",
         settings_view_themes: "عرض المواضيع",
         settings_reset_theme: "إعادة ضبط الموضوع الحالي",
         settings_reset_all: "إعادة ضبط كل التقدّم",
@@ -22264,6 +22298,11 @@ function openSettings(){
     renderMusiqueSetting();
     const journalCard = document.getElementById("journalAudioCard");
     if(journalCard) journalCard.classList.toggle("hidden", !isAdminUser());
+    // Le bouton qui porte « (TESTS) » dans son libelle : voir sa note.
+    const resetDaily = document.getElementById("resetDailyBtn");
+    const resetDailyEspace = document.getElementById("resetDailyBloc0");
+    if(resetDaily) resetDaily.classList.toggle("hidden", !isAdminUser());
+    if(resetDailyEspace) resetDailyEspace.classList.toggle("hidden", !isAdminUser());
     restaurerBrouillonRetour();
     showScreen("settings");
 }
@@ -26364,7 +26403,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 637;
+const APP_VERSION = 638;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
