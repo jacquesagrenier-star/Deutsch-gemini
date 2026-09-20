@@ -380,6 +380,31 @@ def scene_zero(p):
     p.photo("01")
 
 
+@scene("badges", "Sept badges : quatre sur l'experience, trois sur la serie.")
+def scene_badges(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    # ⚠️ LES BADGES NE SE PEIGNENT QUE DEPUIS openSettings(), qui sort tout de
+    # suite quand personne n'est connecte -- et le banc ne se connecte jamais.
+    # La grille restait donc VIDE sur toutes les captures des reglages, ce qui
+    # se lit comme une carte cassee alors que rien ne l'est. On appelle le
+    # peintre nous-memes.
+    # ⚠️ ON PASSE PAR addXp(), PAS PAR localStorage. getXp() fait tourner
+    # migrateXpScaleIfNeeded() au passage : une valeur posee a la main est
+    # relue comme si elle datait de l'ancienne echelle et se retrouve DIVISEE.
+    # Le banc a filme des badges d'experience grisses avec 260 points au
+    # compteur -- ils valaient 26 une fois la migration passee, et rien ne le
+    # disait.
+    p.js("""
+        if(typeof addXp === 'function') addXp(300);
+        if(typeof checkAndUnlockBadges === 'function') checkAndUnlockBadges();
+        if(typeof renderBadgesGrid === 'function') renderBadgesGrid();
+    """)
+    p.attendre(1.0)
+    p.ecran("settings")
+    p.vers("settings_badges_title")
+    p.photo("01")
+
+
 @scene("rappels", "Un rappel quotidien, si tu en veux un.")
 def scene_rappels(p):
     p.ecran("settings")

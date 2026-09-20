@@ -5433,3 +5433,18 @@ seulement en français : les cinq autres langues avaient déjà leur verbe.
 ⚠️ Et la description disait d'abord « **Quatre** façons » — un chiffre écrit à
 la main à côté de quatre boutons, faux le jour où l'on en ajoute un cinquième.
 Retiré avant le commit. Même leçon que le « treize jours » de ce matin.
+
+## 20 septembre 2026 — l'écran s'appelle « Réglages » (v639)
+
+**Demande de Jacques.** Il s'appelait « Progression · Révision » alors qu'il
+contient le compte, les crédits, les voix, les rappels, la suppression de
+compte et « Repartir de zéro ». Un titre qui ne décrit pas son contenu est ce
+qui fait qu'on y range ce qui n'a pas de place — c'est exactement l'impression
+de « choses en trop » qui a lancé l'audit.
+
+Le sur-titre suit : « Progression » devient « Ton app ».
+
+⚠️ **L'ukrainien ne dit PAS « Налаштування »**, bien que ce soit le mot juste
+pour « réglages » : c'est déjà le nom de la carte **Configuration** à
+l'intérieur de cet écran. Un écran et une de ses cartes qui portent le même mot,
+c'est un écran où l'on croit avoir mal lu. Il dit « Параметри ».
