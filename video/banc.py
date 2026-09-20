@@ -199,6 +199,26 @@ class Pilote:
         self.page.wait_for_function("typeof majMosaiqueAccueil === 'function'", timeout=30000)
         self.attendre(1.5)
 
+    def vers(self, cle_i18n):
+        """Amene sous les yeux la carte des reglages qui porte cette cle.
+
+        ⚠️ ON VISE PAR LA CLE DE TRADUCTION, PAS PAR LE TEXTE NI PAR UN RANG.
+        Le texte change avec la langue -- un banc qui cherche << Compte >> ne
+        trouve rien en turc -- et le rang change des qu'on insere une carte.
+        La cle i18n, elle, est la meme dans les six langues et survit aux
+        deplacements."""
+        # ⚠️ LE SELECTEUR SE CONSTRUIT AVEC DES GUILLEMETS DOUBLES. Une
+        # premiere version passait la cle par %r : Python rendait 'retour_titre'
+        # avec ses apostrophes, et le selecteur devenait '[data-i18n='retour...
+        # -- une erreur de syntaxe JS, pas une carte introuvable.
+        self.js('''
+            const e = document.querySelector('[data-i18n="%s"]');
+            if(!e) throw new Error('carte introuvable : %s');
+            const carte = e.closest('.card') || e;
+            carte.scrollIntoView({ block: 'center' });
+        ''' % (cle_i18n, cle_i18n))
+        self.attendre(0.6)
+
     def clic(self, selecteur):
         self.page.click(selecteur)
         self.attendre(0.5)
@@ -269,6 +289,40 @@ def scene_galerie(p):
     p.ecran("home")
     p.js("ouvrirGalerieMosaiques();")
     p.attendre(2.5)
+    p.photo("01")
+
+
+@scene("adapter", "Tu regles l'app a ta facon : le niveau, l'objectif, ce que la carte prononce.")
+def scene_adapter(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.ecran("settings")
+    for cle, nom in (("setup_settings_title", "01-configuration"),
+                     ("settings_daily_goal", "02-objectif"),
+                     ("carte_dire_titre", "03-ce-que-la-carte-dit"),
+                     ("voice_title", "04-voix"),
+                     ("settings_progress_by_category", "05-progression")):
+        try:
+            p.vers(cle)
+            p.photo(nom)
+        except Exception:
+            # ⚠️ UNE CARTE ABSENTE NE FAIT PAS TOMBER LA SCENE. Les cles des
+            # reglages bougent plus souvent que les ecrans ; ce qui manque se
+            # voit a l'image manquante, et le reste de la serie est sauve.
+            pass
+
+
+@scene("rappels", "Un rappel quotidien, si tu en veux un.")
+def scene_rappels(p):
+    p.ecran("settings")
+    p.vers("notif_title")
+    p.photo("01")
+
+
+@scene("retour", "Une idee, un defaut : ca s'ecrit dans l'app, le contexte suit tout seul.")
+def scene_retour(p):
+    p.ecran("settings")
+    p.vers("retour_titre")
     p.photo("01")
 
 
