@@ -4744,15 +4744,28 @@ body[data-theme="dark"] .mos-cadre{
     display:flex; align-items:center; justify-content:center; pointer-events:none;
 }
 .mos-loupe svg{width:13px; height:13px; display:block;}
-.mos-droite{
-    margin:9px 22px 0;            /* on revient dans la marge de la carte */
-    /* ⚠️ center, PAS baseline (v598). `baseline` alignait la PREMIERE ligne du
-       pied sur le texte du bouton : des que le message passe a deux lignes --
-       et celui du plafond en fait deux -- tout le bloc pendait sous « Ta
-       galerie ». Signale par Jacques. `center` aligne les deux milieux, quel
-       que soit le nombre de lignes. */
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
+/* LA RANGEE DU BAS DE LA CARTE (v632) : la plaque de l'oeuvre a gauche, « Ta
+   galerie » a droite, et le message du plafond a la place de la plaque quand
+   il n'y a pas de plaque. Elle remplace .mos-droite, qui etait une rangee de
+   plus pour un seul bouton.
+   ⚠️ LES 22 px ANNULENT LE DEBORDEMENT DU BANDEAU. .carte-mosaique sort de
+   -22 px pour que le tableau touche les bords ; la carte, elle, n'a que 18 px
+   de rembourrage et coupe a `overflow:clip`. Un texte laisse dans ce
+   debordement se fait RASER de trois pixels -- le « P » de « Peint en 1905 »
+   y a perdu sa premiere colonne pendant trois versions, vu a l'ecran et pas
+   par un controle. La marge le ramene dans la colonne de texte de la carte,
+   celle de « Progression du vocabulaire » juste dessous.
+   ⚠️ flex-start, PAS center : le bouton doit se lire VIS-A-VIS DE LA
+   PREMIERE LIGNE de la plaque -- le peintre et l'annee -- pas au milieu d'un
+   bloc de trois lignes. La note de la v598 disait `center` contre `baseline`,
+   a une epoque ou cette rangee ne portait qu'un message d'une ou deux lignes ;
+   ce qu'elle protegeait (le bouton ne doit pas pendre sous le texte) est
+   exactement ce que `flex-start` donne. */
+.mos-plaque{
+    margin:9px 22px 0;
+    display:flex; align-items:flex-start; gap:10px;
 }
+.mos-plaque > .mos-galerie{margin-inline-start:auto; flex:0 0 auto;}
 /* ⚠️ ANCREE A 25 % DE LA CHUTE. Le canevas porte le tableau ENTIER -- c'est le
    cadre qui le rogne -- et c'est `transform` qui decide de QUELLE tranche on
    garde. Le pourcentage d'un translateY se compte sur la HAUTEUR DE L'ELEMENT
@@ -4816,9 +4829,17 @@ body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
    long enveloppe sur deux lignes -- en absolu, le chevron finirait par flotter
    au milieu. `align-items:flex-start` le garde a la hauteur de la premiere
    ligne, la ou l'oeil le cherche. */
+/* ⚠️ PLUS DE REMBOURRAGE LATERAL ICI (v632) : c'est .mos-plaque qui tient
+   desormais la marge, pour la plaque et le bouton a la fois. Un rembourrage de
+   plus a l'interieur decalerait la plaque toute seule, et elle doit s'aligner
+   sur le message du plafond qui prend sa place les autres jours.
+   ⚠️ `flex:0 1 auto` ET NON `flex:1` : le cartouche ne prend que la largeur
+   de son texte, sinon il pousserait « Ta galerie » hors de la carte des que le
+   titre est long -- et le chevron se retrouverait colle au bouton. */
 .mos-cartouche-carte{
     display:flex; align-items:flex-start; gap:10px;
-    padding:10px 2px 0; cursor:pointer; text-align:start;
+    padding:0; cursor:pointer; text-align:start;
+    flex:0 1 auto; min-width:0;
 }
 /* ⚠️ UNE COLONNE ENTRE LE CARTOUCHE ET SES LIGNES (v631). Le cartouche est
    une RANGEE : identite, puis chevron. En y ajoutant la ligne du sejour sans
@@ -5338,10 +5359,22 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                  ⚠️ IL MENE AU MEME ENDROIT QUE LE TABLEAU. Toute la carte
                  conduit au plein ecran : c'est ce qui autorise deux zones
                  tactiles cote a cote sans qu'on se trompe de geste. -->
-            <div id="mosaiqueCartouche" class="mos-cartouche-carte hidden"
-                 onclick="ouvrirMosaiquePleinEcran()" role="button" tabindex="0"
-                 data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau"></div>
-            <div class="mos-droite">
+            <!-- UNE SEULE RANGEE : LA PLAQUE A GAUCHE, LA GALERIE A DROITE (v632).
+                 Demande de Jacques : « Ta galerie devrait etre vis-a-vis de Max
+                 Liebermann, mais a droite completement -- il y a trop d'espace
+                 pris inutilement ». C'etaient deux rangees empilees, et la
+                 seconde ne portait qu'un bouton.
+                 ⚠️ LE BOUTON NE PEUT PAS VIVRE DANS LE CARTOUCHE, et c'est la
+                 contrainte qui commande tout le reste : le cartouche n'existe
+                 que pendant les trois jours du trophee, soit trois jours sur
+                 douze. Range dedans, la galerie disparaitrait les neuf autres.
+                 Il est donc son VOISIN dans une rangee qui, elle, est toujours
+                 la -- et c'est `margin-inline-start:auto` qui le tient a droite
+                 quand il s'y retrouve seul. -->
+            <div class="mos-plaque">
+                <div id="mosaiqueCartouche" class="mos-cartouche-carte hidden"
+                     onclick="ouvrirMosaiquePleinEcran()" role="button" tabindex="0"
+                     data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau"></div>
                 <!-- ⚠️ LE PIED RESTE, MAIS IL SE TAIT EN TEMPS NORMAL (v585).
                      Jacques a retire « encore 42 carreaux » : la jauge le dit.
                      Mais ce pied portait DEUX AUTRES messages, et ils ne sont
@@ -5897,7 +5930,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v631</span>
+    <span class="subtitle-version">v632</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26121,7 +26154,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 631;
+const APP_VERSION = 632;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
