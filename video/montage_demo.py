@@ -33,6 +33,10 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
 LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
+# Les clips se tournent dans une fenetre plus large que les captures -- voir
+# APPAREILS["clip720"] dans banc.py. On les y cherche d'abord, et on retombe
+# sur le dossier des captures s'ils n'y sont pas encore.
+CLIPS_APPAREIL = "clip720"
 
 # Une phrase de narration par plan -- voir video/banc.py.
 # Les plans, dans l'ordre du recit. Chaque entree : image, duree, et l'ANCRE --
@@ -58,7 +62,7 @@ LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
 # -- un autre ecran, un autre geste -- et l'accueil revient plus tard, quand il
 # joue son vrai role : montrer que tout part de la.
 PLANS = [
-    ("clip:affinage",           5.0, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
+    ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
     ("clip:retournement",       3.3, 0.00),  # 2. tu reponds -- LE VRAI GESTE
     ("clip:ecoute_suite",       4.5, 0.05),  # 3. les mains libres -- LE VRAI LECTEUR
     ("accueil-01.png",          3.5, 0.00),  # 4. tout part de la
@@ -117,6 +121,27 @@ def plan(image, duree, ancre, glisse, cible):
             "-vf", "scale=%d:-2,crop=%d:%d:0:'%s',fps=%d,format=yuv420p"
                    % (LARGEUR, LARGEUR, HAUTEUR, y, FPS),
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
+
+
+def plan_suite(dossier, duree, ancre, cible, fps_prise=15):
+    """Un plan PHOTOGRAPHIE : une suite d'images pleine resolution, jouee a
+    `fps_prise` et redescendue a 1080. Aucune perte de nettete -- on descend,
+    on ne monte pas.
+
+    ⚠️ LA DUREE DEMANDEE NE COMMANDE PAS LE NOMBRE D'IMAGES : elle est donnee
+    par la prise. On l'ajuste par la cadence de lecture, ce qui change le rythme
+    du mouvement -- pas sa fluidite."""
+    images = sorted(dossier.glob("*.png"))
+    if not images:
+        return False
+    cadence = max(4.0, len(images) / duree)
+    course = "(ih-%d)" % HAUTEUR
+    y = "min(max(%s*%s,0),%s)" % (course, ancre, course)
+    ffmpeg(["-framerate", "%.3f" % cadence, "-i", str(dossier / "%03d.png"),
+            "-vf", "scale=%d:-2:flags=lanczos,crop=%d:%d:0:'%s',fps=%d,format=yuv420p"
+                   % (LARGEUR, LARGEUR, HAUTEUR, y, FPS),
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
+    return True
 
 
 def plan_clip(source, duree, ancre, cible):
@@ -182,8 +207,26 @@ def main():
     effet = EFFETS.get(args.transition)
     retrait = TRANSITION_S if effet else 0
     for i, (nom, duree, ancre) in enumerate(PLANS):
+        photographie = nom.startswith("suite:")
+        if photographie:
+            dossier_suite = source / "sequences" / nom[6:]
+            cible = travail / ("%02d.mp4" % i)
+            if not plan_suite(dossier_suite, max(1.0, duree - retrait), ancre, cible):
+                print("  MANQUE  " + nom + " -- plan saute")
+                continue
+            if effet and morceaux:
+                pont = travail / ("%02d-pont.mp4" % i)
+                transition(morceaux[-1], cible, effet, pont)
+                morceaux.append(pont)
+            morceaux.append(cible)
+            continue
         filme = nom.startswith("clip:")
-        image = (source / "clips" / (nom[5:] + ".mp4")) if filme else (source / nom)
+        if filme:
+            image = source.parent / CLIPS_APPAREIL / "clips" / (nom[5:] + ".mp4")
+            if not image.exists():
+                image = source / "clips" / (nom[5:] + ".mp4")
+        else:
+            image = source / nom
         if not image.exists():
             print("  MANQUE  " + nom + " -- plan saute")
             continue

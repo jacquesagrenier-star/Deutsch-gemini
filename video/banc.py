@@ -66,6 +66,16 @@ APPAREILS = {
                  "is_mobile": True, "has_touch": True, "reduced_motion": "reduce"},
     "web": {"viewport": {"width": 1280, "height": 800}, "device_scale_factor": 2,
             "is_mobile": False, "has_touch": False, "reduced_motion": "reduce"},
+    # ⚠️ POUR LES CLIPS, ET SEULEMENT POUR EUX. Playwright FILME LA PAGE A SA
+    # TAILLE CSS : il ignore device_scale_factor, qui ne sert qu'aux captures.
+    # Un clip tourne en 430 de large doit donc etre agrandi 2,5 fois pour
+    # atteindre 1080, et le texte en sort mou. En 720, l'agrandissement tombe a
+    # 1,5.
+    # ⚠️ 720 ET PAS 1080 : au-dela de 768 px, l'app passe a sa mise en page
+    # large et ce n'est plus un telephone qu'on filme. La limite du produit
+    # commande le format du tournage, pas l'inverse.
+    "clip720": {"viewport": {"width": 720, "height": 1560}, "device_scale_factor": 1,
+                "is_mobile": True, "has_touch": True, "reduced_motion": "reduce"},
 }
 
 LANGUES = ["fr", "en", "tr", "uk", "fa", "ar"]
@@ -212,6 +222,26 @@ class Pilote:
             if(typeof updateGlobalProgress === 'function') updateGlobalProgress();
         """ % (maitrises, serie, serie, seance, seance))
         self.attendre(1.0)
+
+    def sequence(self, nom, n):
+        """Une prise IMAGE PAR IMAGE, a la resolution des captures.
+
+        ⚠️ POURQUOI PAS LA VIDEO. Playwright filme la page a sa taille CSS :
+        430 px de large pour un telephone, qu'il faut ensuite agrandir 2,5 fois.
+        Elargir la fenetre a 720 rend le texte net mais change la MISE EN PAGE
+        -- l'app s'y etale, le contenu devient court, et il reste un tiers
+        d'ecran blanc en bas. Essaye au banc le 20 septembre : plus net, moins
+        cadre. On ne filme donc pas ce plan, on le PHOTOGRAPHIE, une image a la
+        fois, en 1290 x 2796.
+        ⚠️ CA NE MARCHE QUE POUR UN MOUVEMENT QU'ON PILOTE. Une transition CSS
+        de 0,55 s ne s'arrete pas pour poser : la carte qui tourne reste filmee.
+        Ici, chaque etat de la mosaique est pose par nous, donc chaque image est
+        exacte."""
+        dossier = self.dossier / "sequences" / nom
+        dossier.mkdir(parents=True, exist_ok=True)
+        for f in dossier.glob("*.png"):
+            f.unlink()
+        return dossier
 
     def recharger(self):
         """Relit l'app depuis l'etat pose.
@@ -456,6 +486,37 @@ def scene_affinage(p):
     """)
     p.attendre(2.5)
     p.coupez()
+
+
+@scene("affinage_net", "La mosaique s affine -- photographiee, pas filmee.")
+def scene_affinage_net(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.mosaique(rang=3, carreaux=120, gagnees=[1, 2])
+    p.recharger()
+    p.ecran("home")
+    p.js("document.getElementById('carteMosaique').scrollIntoView({block:'start'});")
+    p.attendre(1.0)
+    dossier = p.sequence("affinage", 0)
+    etapes = list(range(120, 701, 12))
+    for i, c in enumerate(etapes):
+        p.js("""
+            const v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE));
+            v.c = %d;
+            localStorage.setItem(MOSAIQUE_CLE, JSON.stringify(v));
+            majMosaiqueAccueil();
+            await new Promise(r => setTimeout(r, 90));
+        """ % c)
+        p.page.screenshot(path=str(dossier / ("%03d.png" % i)))
+    # Le denouement, tenu quelques images : la mosaique DEVIENT le tableau.
+    p.js("""
+        const v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE));
+        v.c = 700; v.g = [1, 2, 3]; v.t = 3;
+        localStorage.setItem(MOSAIQUE_CLE, JSON.stringify(v));
+        majMosaiqueAccueil();
+        await new Promise(r => setTimeout(r, 600));
+    """)
+    for j in range(18):
+        p.page.screenshot(path=str(dossier / ("%03d.png" % (len(etapes) + j))))
 
 
 @scene("ecoute_suite", "Le mot suivant arrive tout seul : les mains restent libres.")
