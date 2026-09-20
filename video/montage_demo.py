@@ -61,6 +61,17 @@ PLANS = [
 # De combien la fenetre glisse, en part de ce qui depasse. 0 = image immobile.
 GLISSE = 0.35
 
+# ⚠️ UNE TRANSITION SE PAIE SUR LE TEMPS DE LECTURE, pas en plus. Chaque plan
+# est raccourci de la duree de la transition qui le suit : sans ca, huit
+# transitions ajoutent trois secondes au film et chaque essai dure plus
+# longtemps que le precedent -- on finirait par comparer des durees, pas des
+# transitions.
+TRANSITION_S = 0.45
+# Ce que ffmpeg appelle ces effets. << fade >> est le fondu ; << squeezeh >>
+# ecrase l'image horizontalement puis la rouvre : c'est l'approximation la plus
+# proche d'une carte qu'on retourne, avec les outils qu'on a.
+EFFETS = {"fondu": "fade", "bascule": "squeezeh"}
+
 def ffmpeg(args):
     r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error"] + args)
     if r.returncode != 0:
@@ -87,11 +98,35 @@ def plan(image, duree, ancre, glisse, cible):
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
 
 
+def transition(avant, apres, effet, cible):
+    """Fabrique le petit clip qui relie deux plans.
+
+    ⚠️ ON RELIE DEUX IMAGES FIXES, PAS DEUX CLIPS. On extrait la DERNIERE image
+    du plan qui finit et la PREMIERE du plan qui commence, et on fond ces
+    deux-la. Un xfade pose sur les clips entiers obligerait a re-encoder tout
+    le film d'un seul filtre : la moindre correction sur un plan rendrait les
+    huit autres a nouveau. Ici, chaque morceau reste independant et le montage
+    se recolle par simple concatenation."""
+    fin = cible.with_name(cible.stem + "-a.png")
+    debut = cible.with_name(cible.stem + "-b.png")
+    ffmpeg(["-sseof", "-0.1", "-i", str(avant), "-frames:v", "1", str(fin)])
+    ffmpeg(["-i", str(apres), "-frames:v", "1", str(debut)])
+    ffmpeg(["-loop", "1", "-t", str(TRANSITION_S), "-i", str(fin),
+            "-loop", "1", "-t", str(TRANSITION_S), "-i", str(debut),
+            "-filter_complex",
+            "[0][1]xfade=transition=%s:duration=%s:offset=0,fps=%d,format=yuv420p"
+            % (effet, TRANSITION_S, FPS),
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
+
+
 def main():
     a = argparse.ArgumentParser(description="Monte la demo muette a partir des plans du banc.")
     a.add_argument("--langue", default="en")
     a.add_argument("--appareil", default="iphone67")
     a.add_argument("--sortie", default=None)
+    a.add_argument("--transition", default="coupe", choices=["coupe", "fondu", "bascule"],
+                   help="coupe : rien entre les plans. fondu : un fondu enchaine. "
+                        "bascule : l'image s'ecrase et se rouvre, comme une carte qu'on retourne")
     a.add_argument("--immobile", action="store_true",
                    help="aucun mouvement : des images fixes, le rythme vient des coupes")
     args = a.parse_args()
@@ -105,13 +140,19 @@ def main():
     travail.mkdir(exist_ok=True)
     morceaux = []
     glisse = 0 if args.immobile else GLISSE
+    effet = EFFETS.get(args.transition)
+    retrait = TRANSITION_S if effet else 0
     for i, (nom, duree, ancre) in enumerate(PLANS):
         image = source / nom
         if not image.exists():
             print("  MANQUE  " + nom + " -- plan saute")
             continue
         cible = travail / ("%02d.mp4" % i)
-        plan(image, duree, ancre, glisse, cible)
+        plan(image, max(1.0, duree - retrait), ancre, glisse, cible)
+        if effet and morceaux:
+            pont = travail / ("%02d-pont.mp4" % i)
+            transition(morceaux[-1], cible, effet, pont)
+            morceaux.append(pont)
         morceaux.append(cible)
 
     if not morceaux:
@@ -119,11 +160,11 @@ def main():
 
     liste = travail / "liste.txt"
     liste.write_text("".join("file '%s'\n" % m.as_posix() for m in morceaux), encoding="utf-8")
-    nom_defaut = "wortando-demo-%s-%s.mp4" % ("immobile" if args.immobile else "calme", args.langue)
+    nom_defaut = "wortando-demo-%s-%s-%s.mp4" % (
+        "immobile" if args.immobile else "calme", args.transition, args.langue)
     sortie = Path(args.sortie) if args.sortie else source.parent / nom_defaut
     ffmpeg(["-f", "concat", "-safe", "0", "-i", str(liste), "-c", "copy", str(sortie)])
-    duree = sum(d for n, d, a in PLANS if (source / n).exists())
-    print("%s  (%d plans, %.1f s)" % (sortie, len(morceaux), duree))
+    print("%s  (%d morceaux)" % (sortie, len(morceaux)))
 
 
 if __name__ == "__main__":
