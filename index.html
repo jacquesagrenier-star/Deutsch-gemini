@@ -4810,6 +4810,39 @@ body[data-theme="dark"] .mos-cadre{
    fini. Elle ne doit jamais concurrencer le titre de l'oeuvre. */
 .mos-notice{font-size:11px; line-height:1.45; color:#576177; margin-top:6px; text-align:start;}
 body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
+/* ============ LE CARTOUCHE DE LA CARTE D'ACCUEIL (v629) ============
+   Il n'apparait que pendant les jours du trophee. Voir majMosaiqueAccueil().
+   ⚠️ LE CHEVRON EST POUSSE A DROITE PAR LE TEXTE, PAS POSE EN ABSOLU. Un titre
+   long enveloppe sur deux lignes -- en absolu, le chevron finirait par flotter
+   au milieu. `align-items:flex-start` le garde a la hauteur de la premiere
+   ligne, la ou l'oeil le cherche. */
+.mos-cartouche-carte{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 2px 0; cursor:pointer; text-align:start;
+}
+.mos-cartouche-carte > .mos-ligne{flex:1; min-width:0;}
+/* ⚠️ `margin-top:0` SUR LA PREMIERE RANGEE. .mos-identite porte un margin-top
+   de 3 px pour le plein ecran, ou il suit un titre ; ici il n'y a rien
+   au-dessus, et ces 3 px desalignaient le chevron d'autant. */
+.mos-cartouche-carte .mos-identite{margin-top:0;}
+/* ⚠️ LE TITRE PREND SA PROPRE LIGNE, ET LE POINT MEDIAN QUI LE PRECEDE
+   DISPARAIT AVEC LUI. Au plein ecran la rangee est centree et les trois bouts
+   tiennent souvent ensemble ; sur la carte, un titre allemand passe toujours a
+   la ligne, et le separateur restait suspendu en fin de premiere ligne -- ce
+   qui se lit comme une faute de frappe, pas comme une mise en page.
+   ⚠️ SI `:has()` MANQUE, ON RETOMBE SUR L'ETAT D'AUJOURD'HUI, pas sur pire :
+   le point reapparait, rien ne casse. C'est la seule raison pour laquelle on
+   peut s'autoriser `:has()` ici. */
+.mos-cartouche-carte .mos-titre{flex-basis:100%;}
+.mos-cartouche-carte .mos-sep:has(+ .mos-titre){display:none;}
+.mos-cart-chevron{
+    font-size:19px; line-height:1.15; color:#9aa4b3;
+    flex:0 0 auto; padding-inline-end:2px;
+}
+/* ⚠️ RETOURNE EN ECRITURE DE DROITE A GAUCHE. Le chevron veut dire « par la »,
+   pas « vers la droite » : en arabe et en persan, « par la » est a gauche. */
+[dir="rtl"] .mos-cart-chevron{transform:scaleX(-1);}
+body[data-theme="dark"] .mos-cart-chevron{color:#6C7686;}
 /* Le reste a faire, sous le cartouche progressif de la vue agrandie. */
 .mos-plein-reste{font-size:12px; color:#9aa3b2; margin-top:8px;}
 .mos-plein-legende .mos-identite{justify-content:center;}
@@ -5290,6 +5323,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                     <div id="mosaiqueJauge" class="mos-jauge-part" style="width:0%"></div>
                 </div>
             </div>
+            <!-- LE CARTOUCHE, ET SEULEMENT QUAND L'OEUVRE EST GAGNEE (v629).
+                 Vide et masque le reste du temps -- voir majMosaiqueAccueil()
+                 pour les trois raisons du chevron « › » plutot qu'un depliage.
+                 ⚠️ IL MENE AU MEME ENDROIT QUE LE TABLEAU. Toute la carte
+                 conduit au plein ecran : c'est ce qui autorise deux zones
+                 tactiles cote a cote sans qu'on se trompe de geste. -->
+            <div id="mosaiqueCartouche" class="mos-cartouche-carte hidden"
+                 onclick="ouvrirMosaiquePleinEcran()" role="button" tabindex="0"
+                 data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau"></div>
             <div class="mos-droite">
                 <!-- ⚠️ LE PIED RESTE, MAIS IL SE TAIT EN TEMPS NORMAL (v585).
                      Jacques a retire « encore 42 carreaux » : la jauge le dit.
@@ -5846,7 +5888,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v628</span>
+    <span class="subtitle-version">v629</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8490,8 +8532,8 @@ const I18N = {
         jours_serie: "{n} d'affilée",
         mosaique_compte: "Tableau {n} sur {total}",
         mosaique_annee: "Peint en {a}",
-        mosaique_reste: "encore {n} carreaux pour découvrir l'œuvre d'un peintre du monde germanophone",
-        mosaique_trophee: "Terminé · encore {n} séances à l'écran",
+        mosaique_reste: "encore {n} cartes avant le tableau entier d'un peintre du monde germanophone",
+        mosaique_trophee: "Terminé · encore {n} jours à l'écran, puis un nouveau tableau",
         mosaique_galerie: "Ta galerie",
         mosaique_agrandir: "Agrandir le tableau",
         mosaique_galerie_kicker: "Tes tableaux",
@@ -8681,11 +8723,11 @@ const I18N = {
         ip_vocab_t: "La progression du vocabulaire",
         ip_vocab_p: "Où tu en es du niveau affiché. Touche la flèche pour voir les cinq niveaux.",
         ip_partie_tableau: "Le tableau",
-        ip_tableau_1: "Un tableau du monde germanophone se découvre carreau par carreau. Chaque carte que tu traverses en ouvre un — les révisions comptent autant que les mots nouveaux.",
-        ip_tableau_carreaux: "Il faut environ {n} carreaux pour découvrir un tableau entier.",
-        ip_tableau_plafond: "Au maximum {n} carreaux par jour : le tableau avance vite, mais pas d'un coup — sinon la collection serait épuisée en une semaine.",
+        ip_tableau_1: "Un tableau du monde germanophone commence en gros carreaux de couleur. Chaque carte que tu traverses en rend un plus fin — les révisions comptent autant que les mots nouveaux.",
+        ip_tableau_carreaux: "Il faut {n} cartes pour un tableau entier.",
+        ip_tableau_plafond: "Au maximum {n} cartes par jour comptent pour le tableau : il avance vite, mais demande au moins {j} jours d'activité.",
         ip_tableau_cartouche: "Le cartouche se dévoile en trois temps : l'année, puis le peintre, puis le titre.",
-        ip_tableau_trophee: "Terminé, il reste {n} séances à l'écran, puis il rejoint ta galerie — où tu peux le revoir en grand.",
+        ip_tableau_trophee: "À la dernière carte, la mosaïque devient le tableau : il reste {n} jours à l'écran, puis il rejoint ta galerie — où tu peux le revoir en grand — et un nouveau tableau commence.",
         info_partie_memoire: "Comment un mot s'installe",
         info_anneau_aria: "Changer de niveau affiché",
         search_launch_court: "Chercher",
@@ -18696,7 +18738,15 @@ function majInfoProgression(){
         n: PLAFOND_NEUFS
     });
     pose("ipTableauCarreaux", "ip_tableau_carreaux", { n: MOSAIQUE_CARREAUX });
-    pose("ipTableauPlafond", "ip_tableau_plafond", { n: MOSAIQUE_PLAFOND });
+    // ⚠️ {j} EST CALCULE, JAMAIS ECRIT. « Au moins 9 jours d'activite » est le
+    // quotient du tableau par le plafond : si l'une des deux constantes bouge,
+    // la phrase bouge avec, dans les six langues a la fois. C'est la regle
+    // posee en tete de cette fonction, et c'est ici qu'elle sert le plus --
+    // un chiffre derive est celui qui se contredit le plus vite.
+    pose("ipTableauPlafond", "ip_tableau_plafond", {
+        n: MOSAIQUE_PLAFOND,
+        j: Math.ceil(MOSAIQUE_CARREAUX / MOSAIQUE_PLAFOND)
+    });
     pose("ipTableauTrophee", "ip_tableau_trophee", { n: MOSAIQUE_SEANCES_TROPHEE });
     // ⚠️ REECRIT A CHAQUE OUVERTURE, pas une seule fois. Les libelles des
     // boutons viennent de t(), donc un changement de langue doit les suivre --
@@ -26060,7 +26110,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 628;
+const APP_VERSION = 629;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27951,7 +28001,13 @@ function majCarteProgression(){
 // themes.json : le « git push » qui publie les donnees publie les images.
 const MOSAIQUE_CARREAUX = 700;      // vise ; la grille s'ajuste au format
 const MOSAIQUE_PLAFOND = 80;        // carreaux par jour -- voir plus bas
-const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de seances l'image finie reste
+const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de JOURS D'ACTIVITE l'image finie reste
+// ⚠️ 900 ms, ET CE N'EST PAS UN FONDU. La mosaique presque finie tient une
+// seconde, puis le tableau tombe d'un coup. Un fondu adoucirait justement ce
+// qu'on veut voir : le passage de la mosaique a l'oeuvre est une BASCULE, pas
+// une transition. Trop court, on ne comprend pas ce qui a change ; trop long,
+// on croit que la carte a fige.
+const MOSAIQUE_RESOLUTION_MS = 900;
 const MOSAIQUE_CLE = "deutschAI_mosaique";
 const MOSAIQUE_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/"
                     + "Deutsch-gemini/main/branding/mosaique/";
@@ -28008,8 +28064,13 @@ function etatMosaique(){
     let v = null;
     try{ v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE) || "null"); }catch(e){}
     if(!v || typeof v !== "object") v = { c: MOSAIQUE_AVANCE };
+    // ⚠️ `taille` A DISPARU EN v629, AVEC LE REPORT QU'ELLE SERVAIT. Un etat
+    // deja ecrit peut encore la porter : elle est simplement ignoree, et elle
+    // s'efface a la premiere ecriture. Rien a migrer.
+    // `tj` EST LE JOUR OU LE TROPHEE A DEJA DECOMPTE (v629) : c'est lui qui
+    // fait qu'une journee compte pour une, quel que soit le nombre de visites.
     return { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
-             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, taille: v.taille || 0 };
+             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "" };
 }
 
 function ecrireMosaique(v){
@@ -28147,9 +28208,22 @@ function poserCarreau(){
     const jour = getTodayStr();
     if(v.j !== jour){ v.j = jour; v.n = 0; }
     if(v.n >= MOSAIQUE_PLAFOND) return;
-    // Le trophee occupe l'ecran : la mosaique suivante s'accumule DESSOUS,
-    // sinon l'etudiant perdrait trois seances de progression pour avoir gagne
-    // quelque chose. Une recompense ne doit rien couter.
+    // ⚠️ PENDANT LE TROPHEE, RIEN NE S'ACCUMULE (v629). L'ancienne version
+    // faisait grandir la mosaique suivante SOUS le tableau gagne, au nom de
+    // « une recompense ne doit rien couter ». Deux choses l'ont fait tomber.
+    //
+    // La premiere est une consequence de la v627 : avec le report, le tableau
+    // suivant apparaissait deja a ~780 carreaux. Or les etats les plus beaux
+    // sont les premiers -- 30 carreaux le premier jour, 300 le troisieme.
+    // Seul le tout premier tableau de quelqu'un montrait le debut de l'arc ;
+    // les soixante-quatre autres commencaient au tiers. Sous l'ancien
+    // devoilement ca ne coutait rien ; depuis qu'on affine, ca coupe
+    // l'ouverture entiere.
+    //
+    // La seconde est de Jacques : on n'est pas paye en rien pendant ces trois
+    // jours, on est paye dans une autre monnaie -- le tableau plein a l'ecran.
+    // La recompense EST la recompense.
+    if(v.t > 0) return;
     v.n += 1; v.c += 1;
     ecrireMosaique(v);
     majMosaiqueAccueil();
@@ -28157,22 +28231,40 @@ function poserCarreau(){
 
 // Appelee a la fin d'une seance : fait avancer le compte des seances du trophee
 // et bascule sur l'image suivante quand il est ecoule.
+// ⚠️ LE TROPHEE SE COMPTE EN JOURS D'ACTIVITE, PLUS EN VISITES (v629).
+// Cette fonction part a chaque sortie de l'ecran des cartes. Sans garde de
+// date, trois passages dans le meme apres-midi consommaient les trois jours du
+// trophee en une heure -- et l'app se contredisait elle-meme, puisque son
+// etiquette dit « Ma seance DU JOUR » : dans la tete de quelqu'un, une seance
+// EST une journee. Signale par Jacques, qui ne comprenait plus si on comptait
+// en jours ou en seances. La reponse etait : les deux, selon l'endroit.
+//
+// Les deux protections d'origine tiennent toujours, et c'est le point :
+//   - une journee SANS activite ne decompte rien (l'absence ne punit pas --
+//     c'est pour ca que ce n'est pas un compte a rebours de calendrier) ;
+//   - trois visites le MEME jour comptent pour une (l'assiduite non plus).
 function seanceMosaiqueTerminee(){
     const v = etatMosaique();
-    if(v.t > 0){
-        v.t -= 1;
-        if(v.t === 0){
-            // ⚠️ LE SURPLUS EST REPORTE, IL N'EST PAS PERDU. Les carreaux poses
-            // pendant les trois seances du trophee demarrent la mosaique
-            // suivante : sinon l'etudiant paierait trois seances de progression
-            // pour avoir gagne quelque chose, et une recompense ne doit rien
-            // couter. C'est le « la suivante est deja commencee » promis.
-            v.r = v.r + 1;
-            v.c = Math.max(0, v.c - (v.taille || 0));
-            v.taille = 0;
-        }
-        ecrireMosaique(v);
+    if(v.t <= 0) return;
+    const jour = getTodayStr();
+    if(v.tj === jour) return;
+    v.tj = jour;
+    v.t -= 1;
+    if(v.t === 0){
+        // ⚠️ LE SUIVANT REPART DE ZERO, VOIR poserCarreau(). Les cartes passees
+        // pendant le trophee n'ont rien accumule : il n'y a donc rien a
+        // soustraire, et `v.c = 0` est la verite, pas une remise a zero.
+        v.r = v.r + 1;
+        v.c = 0;
+        v.tj = "";
     }
+    ecrireMosaique(v);
+    // ⚠️ SANS CETTE LIGNE, LE NOUVEAU TABLEAU N'APPARAIT PAS. Le redessin de
+    // l'accueil est reporte tant qu'on n'y est pas, et c'est poserCarreau() qui
+    // levait le drapeau -- par effet de bord, en accumulant. Depuis que rien ne
+    // s'accumule pendant le trophee, plus personne ne le leve : l'accueil
+    // aurait garde le tableau gagne jusqu'a la carte suivante.
+    mosaiqueEnRetard = true;
 }
 
 function mosaiqueCourante(){
@@ -28230,7 +28322,12 @@ function dessinerMosaique(canvas, img, poses, total, fini){
 // un demi-mot allemand n'apprend rien. L'annee, puis le peintre, puis le titre
 // -- on peut deviner un peintre avant de deviner un titre, et a la fin il reste
 // une phrase entiere a lire. Demande de Jacques : le peintre, l'annee, le titre.
-function cartoucheMosaique(m, part, fini){
+// ⚠️ `avecNotice` EXISTE DEPUIS LA v629, PARCE QUE LE CARTOUCHE SERT A DEUX
+// TAILLES. Sur la carte d'accueil il tient en deux lignes ; au plein ecran il
+// porte la notice du peintre. Le drapeau est EXPLICITE aux deux appels : un
+// defaut qui se declare par omission finit toujours par se declencher au
+// mauvais endroit.
+function cartoucheMosaique(m, part, fini, avecNotice){
     // ⚠️ ELLE RETOURNE DU HTML, ELLE N'ECRIT PLUS NULLE PART (v588). Le meme
     // cartouche sert desormais a DEUX endroits -- et il n'en habite plus
     // qu'un : la vue agrandie. Voir la note de son appel.
@@ -28250,7 +28347,7 @@ function cartoucheMosaique(m, part, fini){
     // ⚠️ LA NOTICE N'ARRIVE QU'A LA FIN, ET C'EST VOULU. Au moment du trophee,
     // l'image est finie et il n'y a plus rien a faire d'autre que la regarder :
     // c'est le seul instant ou l'on a envie de lire.
-    if(fini){
+    if(fini && avecNotice){
         const bio = noticePeintre(m.peintre);
         if(bio) h += '<div class="mos-notice">' + bio + '</div>';
     }
@@ -28344,6 +28441,10 @@ function majMosaiqueAccueil(){
         // depend d'aucun compte, et c'est lui qui doit commander l'affichage.
         const total = MOSAIQUE_CARREAUX;
         const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
+        // Calcule AVANT le bloc qui range le rang dans la galerie, plus bas :
+        // c'est ce bloc qui le rendra faux, et c'est ainsi que la resolution ne
+        // se joue qu'une fois.
+        const vientDeGagner = fini && v.t === 0 && v.g.indexOf(v.r) < 0;
         const canvas = document.getElementById("mosaiqueToile");
         imageMosaique(m.fichier).then(img => {
             // MARQUE : c'est le travail le plus lourd de l'accueil, et il etait
@@ -28367,7 +28468,26 @@ function majMosaiqueAccueil(){
                 const chute = Math.max(0, 1 - Math.min(r, 3) / 3);
                 canvas.style.transform =
                     "translateY(" + (-25 * chute).toFixed(2) + "%)";
-                dessinerMosaique(canvas, img, v.c, total, fini);
+                // ⚠️ LA MARCHE QUI VALAIT TOUTE LA REFONTE NE SE VOYAIT PAS
+                // (v629). Le redessin de l'accueil est REPORTE tant qu'on n'y
+                // est pas : quelqu'un qui terminait un tableau quittait les
+                // cartes, revenait, et le tableau etait deja la. La mosaique ne
+                // devenait jamais le tableau SOUS SES YEUX -- le seul moment du
+                // parcours qui vaut une surprise se jouait hors champ, et
+                // personne ne pouvait le signaler puisqu'il n'y avait rien a
+                // voir. Trouve en cherchant ou mettre une recompense, pas par
+                // un controle.
+                // On pose donc l'avant-dernier etat, puis on laisse la
+                // resolution tomber. Une seule fois : `vientDeGagner` est faux
+                // des que le rang est entre dans la galerie, juste en dessous.
+                if(vientDeGagner){
+                    dessinerMosaique(canvas, img, total - 1, total, false);
+                    setTimeout(() => {
+                        try{ dessinerMosaique(canvas, img, total, total, true); }catch(e){}
+                    }, MOSAIQUE_RESOLUTION_MS);
+                } else {
+                    dessinerMosaique(canvas, img, v.c, total, fini);
+                }
                 // ⚠️ LA JAUGE EST ECRITE ICI DEPUIS LA v597, ET ELLE NE L'ETAIT
                 // PLUS DU TOUT DEPUIS LA v588. Ses deux lignes vivaient dans
                 // cartoucheMosaique() -- une fonction dont le nom ne promet
@@ -28391,17 +28511,15 @@ function majMosaiqueAccueil(){
             }finally{ marquerGel(null); }
         }, () => { bloc.classList.add("hidden"); });
 
-        // L'image vient d'etre terminee : on ouvre le compte des trois seances
+        // L'image vient d'etre terminee : on ouvre le compte des trois jours
         // et on la range dans la galerie. Une seule fois.
         // ⚠️ ON NE REMET PAS LE COMPTEUR A ZERO ICI. C'etait le defaut trouve
         // a l'essai : remis a zero, `fini` redevenait faux au rendu suivant et
-        // le trophee disparaissait avant sa premiere seance. Le compteur
-        // continue de monter -- c'est lui qui porte le report -- et c'est
-        // seanceMosaiqueTerminee() qui le ramene en soustrayant la taille.
-        if(fini && v.t === 0 && v.g.indexOf(v.r) < 0){
+        // le trophee disparaissait avant son premier jour. C'est
+        // seanceMosaiqueTerminee() qui le ramene, quand le trophee s'acheve.
+        if(vientDeGagner){
             v.g.push(v.r);
             v.t = MOSAIQUE_SEANCES_TROPHEE;
-            v.taille = total;
             ecrireMosaique(v);
         }
         const pied = document.getElementById("mosaiquePied");
@@ -28421,11 +28539,40 @@ function majMosaiqueAccueil(){
                 ? tf("mosaique_trophee", { n: Math.max(1, v.t) })
                 : plafonne ? t("mosaique_plafond")
                 : "";
-            // ⚠️ « D'UN PEINTRE ALLEMAND » AURAIT ETE FAUX POUR UN TIERS D'ENTRE
-            // EUX : Moser, Moll, Schiele, Gerstl et Faistauer sont autrichiens ;
-            // Hodler et les deux Giacometti, suisses ; Werefkin, Jawlensky et
-            // Kandinsky, russes installes a Munich. La formule doit rester vraie
-            // pour les vingt-deux.
+        }
+        // ⚠️ LE CARTOUCHE REVIENT, MAIS SEULEMENT UNE FOIS L'OEUVRE GAGNEE
+        // (v629). Il avait ete retire de la carte d'accueil en v588 -- « le
+        // "peint en 1905", on va l'enlever ; l'information va etre seulement
+        // lorsqu'on clique pour agrandir ». C'etait juste POUR UN TABLEAU EN
+        // COURS : une texture qui donne envie d'ouvrir n'a pas besoin de
+        // legende. Un tableau FINI n'est plus une texture, c'est une oeuvre, et
+        // la plaque sous le cadre est la facon dont un musee dit « celle-ci est
+        // a toi ». Demande de Jacques, qui voulait souligner la recompense ; il
+        // parlait de trophees ou d'etoiles dans le coin, ecartes parce qu'un
+        // badge sur une toile la transforme en score -- et parce que la
+        // collection de trophees existe deja, c'est la galerie.
+        //
+        // ⚠️ SANS LA NOTICE DU PEINTRE, ET C'EST LE REGLAGE. Avec elle, la
+        // carte gagnait quatre lignes -- exactement ce que la v584 avait
+        // cherche a raccourcir. Elle reste au plein ecran, ou il y a la place
+        // et ou l'on a envie de lire. Rendu cote a cote avant de trancher.
+        //
+        // ⚠️ UN CHEVRON « › », PAS UNE FLECHE « ⌄ ». Jacques a propose un
+        // depliage dans la carte. Trois raisons contre : la notice parle du
+        // peintre et se lit a cote du tableau ENTIER, pas d'une tranche de
+        // 3/1 ; le plein ecran la contient deja, et deux chemins vers un meme
+        // texte finissent par diverger ; et un depliage sous une image qui,
+        // elle, ouvre un plein ecran, met deux gestes dans le meme centimetre
+        // carre. Le precedent est dans ce fichier : basculerInfoProgression()
+        // depliait un panneau DANS la carte et a ete retire parce qu'on ne
+        // retrouvait plus de quoi le refermer.
+        const cart = document.getElementById("mosaiqueCartouche");
+        if(cart){
+            cart.classList.toggle("hidden", !fini);
+            cart.innerHTML = fini
+                ? cartoucheMosaique(m, 1, true, false)
+                  + '<span class="mos-cart-chevron" aria-hidden="true">›</span>'
+                : "";
         }
     });
 }
@@ -28465,6 +28612,11 @@ function ouvrirMosaiquePleinEcran(rang){
                 // d'ou Jacques les a retires. Sans ce report, ils auraient
                 // disparu de l'application : le devoilement n'aurait plus rien
                 // devoile.
+                // ⚠️ « D'UN PEINTRE ALLEMAND » AURAIT ETE FAUX POUR UN TIERS
+                // D'ENTRE EUX : Moser, Moll, Schiele, Gerstl et Faistauer sont
+                // autrichiens ; Hodler et les deux Giacometti, suisses ;
+                // Werefkin, Jawlensky et Kandinsky, russes installes a Munich.
+                // La formule doit rester vraie pour les vingt-deux.
                 leg.innerHTML = cartoucheMosaique(m, v.c / total, false)
                     + '<div class="mos-plein-reste">'
                     + tf("mosaique_reste", { n: Math.max(0, total - v.c) })
