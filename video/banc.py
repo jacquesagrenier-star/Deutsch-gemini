@@ -553,6 +553,11 @@ def scene_dictionnaire_frappe(p):
     p.doigt("#homeSearchInput", approche=0.5, pause=0.4)
     # La frappe, lettre a lettre : une saisie instantanee ne se lit pas comme
     # une frappe, elle se lit comme un collage.
+    # ⚠️ ON ATTEND QUE LE CHAMP SOIT LA. Toucher la loupe ouvre un autre ecran ;
+    # taper avant qu'il soit monte expire sur << Page.type: Timeout >>, qui
+    # accuse la frappe alors que c'est l'ecran qui manquait. Quatrieme prise
+    # perdue sur cette meme famille de piege.
+    p.page.wait_for_selector("#wordSearchInput", state="visible", timeout=15000)
     p.page.fill("#wordSearchInput", "")
     p.page.type("#wordSearchInput", "sch", delay=300)
     p.attendre(1.6)
@@ -560,13 +565,13 @@ def scene_dictionnaire_frappe(p):
     # dit << il y a une liste >> ; avec lui, il dit << le mot que tu cherches
     # devient une carte >>, ce qui est la fonction, pas le decor.
     p.doigt(".search-result", approche=0.5, pause=0.2)
-    p.attendre(1.1)
-    # ⚠️ ET ON RETOURNE LA CARTE, sinon le plan finit sur << beautiful, nice >>
-    # -- le RECTO, qui demande le mot allemand. Jacques voulait voir apparaitre
-    # LE MOT qu'on a choisi ; sans ce dernier geste, la scene montre l'inverse
-    # de ce qu'elle promet.
-    p.doigt("#flashcard", approche=0.45, pause=0.1)
-    p.attendre(1.9)
+    # ⚠️ ON S'ARRETE A L'ARRIVEE SUR LA CARTE. J'avais ajoute un retournement
+    # pour faire apparaitre le mot choisi ; Jacques l'a retire, et il a raison :
+    # le plan 3 montre deja une carte qu'on retourne. Redire la meme chose
+    # coute quatre secondes et n'apprend rien. Ce plan-ci ne repond qu'a une
+    # question -- << ou est-ce que ca me mene ? >> -- et l'en-tete << FROM
+    # SEARCH >> au-dessus de la carte suffit a y repondre.
+    p.attendre(1.8)
     p.coupez()
 
 
