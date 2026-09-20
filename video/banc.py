@@ -341,7 +341,13 @@ class Pilote:
                     background:'rgba(30,41,59,.30)',
                     boxShadow:'inset 0 0 0 2px rgba(255,255,255,.65), 0 2px 10px rgba(0,0,0,.18)',
                     zIndex:'2147483647', pointerEvents:'none',
-                    transform:'translate(' + x + 'px,' + (y + 260) + 'px)',
+                    // ⚠️ IL ARRIVE PAR LA GAUCHE, PAS PAR LE BAS (demande de
+                    // Jacques). Venant du bas, la pastille monte vers sa cible
+                    // en traversant ce qu'on est en train de lire ; venant de
+                    // la gauche, elle longe la ligne du regard et se pose. Une
+                    // main qui entre par le cote est aussi ce qu'on voit quand
+                    // quelqu'un tend le bras vers un telephone pose.
+                    transform:'translate(' + (x - 360) + 'px,' + y + 'px)',
                     transition:'transform ' + ms + 'ms cubic-bezier(.33,0,.2,1)'
                 });
                 document.body.appendChild(d);
@@ -547,19 +553,64 @@ def scene_dictionnaire_frappe(p):
     p.ecran("home")
     p.page.wait_for_function("typeof themes !== 'undefined' && themes && themes.length > 0",
                              timeout=30000)
+    # ⚠️ ON CHAUFFE LE DICTIONNAIRE AVANT DE TOURNER, avec LA MEME recherche que
+    # celle qu'on filmera. Mesure au banc, etape par etape : taper << sch >> a
+    # froid prenait 36 s, et le geste suivant 96 s de plus -- une prise de deux
+    # minutes et demie dont presque tout en attente invisible. Le dictionnaire
+    # vit dans 53 fichiers d'environ 113 Ko charges depuis GitHub, soit prés de
+    # 6 Mo : la premiere recherche les fait venir et les analyse, et le fil
+    # principal bloque par a-coups pendant ce temps.
+    # ⚠️ ET ON ATTEND UN RESULTAT AFFICHE, PAS SIX SECONDES. Une attente fixe a
+    # deja lache deux fois aujourd'hui ; celle-ci se termine quand la liste
+    # existe vraiment.
+    p.js("ouvrirRechercheDepuisAccueil('sch');")
+    try:
+        p.page.wait_for_function(
+            "document.querySelectorAll('.search-result').length > 0", timeout=120000)
+    except Exception:
+        pass
+    p.attendre(2.0)
+    p.js("""
+        const e = document.getElementById('wordSearchInput');
+        if(e){ e.value = ''; e.dispatchEvent(new Event('input', { bubbles: true })); }
+    """)
+    p.attendre(0.6)
+    p.ecran("home")
     p.attendre(0.8)
     p.moteur()
     p.attendre(0.3)
-    p.doigt("#homeSearchInput", approche=0.5, pause=0.4)
+    # ⚠️ UNE PAUSE PLUS LONGUE ICI. La loupe est un tout petit bouton en haut a
+    # droite : sans un temps apres l'appui, l'ecran change si vite que le geste
+    # et son effet ne se relient pas -- on croit que << ca part tout seul >>.
+    # Signale par Jacques.
+    p.doigt("#homeSearchInput", approche=0.55, pause=0.75)
     # La frappe, lettre a lettre : une saisie instantanee ne se lit pas comme
     # une frappe, elle se lit comme un collage.
     # ⚠️ ON ATTEND QUE LE CHAMP SOIT LA. Toucher la loupe ouvre un autre ecran ;
     # taper avant qu'il soit monte expire sur << Page.type: Timeout >>, qui
     # accuse la frappe alors que c'est l'ecran qui manquait. Quatrieme prise
     # perdue sur cette meme famille de piege.
+    # ⚠️ LA FRAPPE EST POSEE EN JS, PAS ENVOYEE AU CLAVIER, et la raison est
+    # mesuree : `keyboard.type("sch", delay=300)` a pris 36 SECONDES au banc,
+    # et le geste suivant 96 de plus. Ce n'est pas l'app qui est lente --
+    # `runWordSearch()` appelee directement rend ses soixante lignes en 4 ms,
+    # mesure dans la page. C'est le chemin d'entree de Playwright qui, sur
+    # cette page, attend quelque chose qui ne vient jamais.
+    # A l'image, le resultat est identique : les lettres apparaissent une a une,
+    # la liste se reconstruit a chaque lettre. C'est la seule chose que le
+    # spectateur peut voir, et elle est vraie.
     p.page.wait_for_selector("#wordSearchInput", state="visible", timeout=15000)
-    p.page.fill("#wordSearchInput", "")
-    p.page.type("#wordSearchInput", "sch", delay=300)
+    p.js("""
+        const e = document.getElementById('wordSearchInput');
+        if(!e) return;
+        e.value = '';
+        e.focus();
+        for(const lettre of 'sch'){
+            e.value += lettre;
+            if(typeof runWordSearch === 'function') runWordSearch();
+            await new Promise(r => setTimeout(r, 320));
+        }
+    """)
     p.attendre(1.6)
     # ⚠️ ET ON TOUCHE UN RESULTAT. Demande de Jacques. Sans ce geste, le plan
     # dit << il y a une liste >> ; avec lui, il dit << le mot que tu cherches
@@ -863,7 +914,8 @@ def tourner(scenes, langue, appareil, clips):
                     contexte.close()
                     if clips:
                         renommer_clip(dossier, nom, getattr(p, "top", None),
-                                      getattr(p, "fin", None))
+                                      getattr(p, "fin", None),
+                                      time.monotonic() - depart)
         finally:
             navigateur.close()
             arreter()
@@ -871,35 +923,57 @@ def tourner(scenes, langue, appareil, clips):
     return dossier, faits, rates
 
 
-def renommer_clip(dossier, nom, top=None, fin=None):
-    """Playwright nomme ses videos au hasard et ne les ferme qu'a la fermeture
-    du contexte : on les recupere APRES, on coupe autour de ce qui compte, et
-    on convertit en mp4.
+def renommer_clip(dossier, nom, top=None, fin=None, duree_reelle=None):
+    """Recupere la video de Playwright, la remet a l'heure, coupe ce qui compte
+    et convertit en mp4.
 
-    ⚠️ SANS MARQUES, ON GARDE TOUT -- y compris l'ecran d'ouverture et la pose
-    de l'etat. Une scene qui veut un clip montrable appelle p.moteur() juste
-    avant le mouvement et p.coupez() juste apres."""
+    ⚠️ LA VIDEO DE PLAYWRIGHT N'EST PAS A L'ECHELLE DU TEMPS REEL. Le
+    screencast horodate ses images par le compositeur du navigateur : sur une
+    page legere, video et montre concordent ; sur une page lourde -- 243
+    resultats reconstruits a chaque frappe, plus un canevas -- elles divergent.
+    Constate au banc : une scene de vingt-cinq secondes rendue en 151 s de
+    video, soit six fois trop lente, avec un contenu juste mais etire. Et comme
+    les marques de coupe sont prises a la MONTRE, couper sans corriger vise a
+    cote : le clip commencait apres le geste qu'il devait montrer.
+    On mesure donc la duree vraie du contexte, on remet la video a cette
+    echelle, ET SEULEMENT APRES on coupe."""
     clips = dossier / "clips"
     orphelins = sorted(clips.glob("*.webm"), key=lambda f: f.stat().st_mtime)
     if not orphelins:
         return
     source = orphelins[-1]
     cible = clips / (nom + ".mp4")
-    if shutil.which("ffmpeg"):
-        commande = ["ffmpeg", "-y", "-loglevel", "error", "-i", str(source)]
-        if top is not None:
-            # -ss APRES -i : plus lent, mais exact a l'image pres. Avant -i, la
-            # coupe saute a l'image-cle la plus proche et rate un mouvement de
-            # 0,55 s.
-            commande += ["-ss", "%.2f" % max(0, top)]
-            if fin is not None and fin > top:
-                commande += ["-t", "%.2f" % (fin - top)]
-        commande += ["-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                     "-pix_fmt", "yuv420p", str(cible)]
-        subprocess.run(commande, check=False)
-        source.unlink(missing_ok=True)
-    else:
+    if not shutil.which("ffmpeg"):
         source.rename(clips / (nom + ".webm"))
+        return
+
+    facteur = 1.0
+    if duree_reelle:
+        sonde = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
+                                "format=duration", "-of", "csv=p=0", str(source)],
+                               capture_output=True, text=True)
+        try:
+            duree_video = float(sonde.stdout.strip())
+            if duree_video > 0.5:
+                facteur = duree_reelle / duree_video
+        except (ValueError, TypeError):
+            facteur = 1.0
+
+    filtres = []
+    if abs(facteur - 1.0) > 0.02:
+        filtres.append("setpts=%.6f*PTS" % facteur)
+    if top is not None:
+        borne = "trim=start=%.2f" % max(0, top)
+        if fin is not None and fin > top:
+            borne += ":end=%.2f" % fin
+        filtres += [borne, "setpts=PTS-STARTPTS"]
+    filtres.append("fps=30")
+
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(source),
+                    "-vf", ",".join(filtres),
+                    "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                    "-pix_fmt", "yuv420p", str(cible)], check=False)
+    source.unlink(missing_ok=True)
 
 
 def main():
