@@ -5380,3 +5380,25 @@ partenaires — mais la mention des Crédits la couvre désormais.
 
 **Ce qui n'est pas de mon ressort :** je ne suis pas juriste. La question tient
 en trois lignes pour Klan ou Global Trademark, déjà au dossier de la marque.
+
+## 20 septembre 2026 — la pastille comptait des cartes en disant « résultats » (v637)
+
+**Vu en filmant le plan du dictionnaire pour la vidéo**, pas par un contrôle :
+la pastille affichait « Aucun résultat » à deux cents pixels d'un « 2 ENTRÉES »
+du dictionnaire, sur le même écran. Les deux étaient vrais — aucune **carte**,
+deux **entrées** — et se contredisaient à l'œil.
+
+C'est très probablement ce que décrivait le retour du 15 septembre : « il n'y a
+qu'un mot dans le dictionnaire, mais ça monte comme si on avait 140 en haut à
+droite, je pense qu'il pointe pas au bon endroit ». Le compteur pointait au bon
+endroit ; c'est son **nom** qui désignait autre chose.
+
+Les trois libellés parlent maintenant de cartes, dans les six langues.
+
+⚠️ **Et deux langues ont changé de tournure, pas seulement de mot.** « {n}
+карток » est faux en ukrainien pour 2, 3 et 4 (il faut « картки ») — l'ancien
+libellé portait déjà la faute avec « результатів ». En arabe, « {n} بطاقة » ne
+vaut que de 11 à 99. Les deux passent donc au **nom en tête, deux-points, puis
+le nombre** : « Картки : {n} », « البطاقات: {n} ». Un nom suivi du nombre ne
+s'accorde avec rien. C'est la même parade que « jour {i} sur {n} » sur la
+plaque du tableau, ce matin.

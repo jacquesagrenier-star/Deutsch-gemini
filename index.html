@@ -5930,7 +5930,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v636</span>
+    <span class="subtitle-version">v637</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8856,9 +8856,9 @@ const I18N = {
         search_title: "Chercher un mot allemand ou français",
         search_placeholder: "Allemand ou français…",
         search_hint: "Tape au moins deux lettres, <strong>en allemand ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 250 000 mots.",
-        search_count: "{n} résultats",
-        search_count_one: "1 résultat",
-        search_count_none: "Aucun résultat",
+        search_count: "{n} cartes",
+        search_count_one: "1 carte",
+        search_count_none: "Aucune carte",
         search_count_total: "{n} cartes",
         search_more: "Seuls les {n} premiers résultats sont affichés — précise ta recherche.",
         search_none_title: "« {q} » ne fait pas partie de tes cartes.",
@@ -9829,9 +9829,9 @@ const I18N = {
         search_title: "Search a German or English word",
         search_placeholder: "German or English…",
         search_hint: "Type at least two letters, <strong>in German or in English</strong> — both work. The search looks through your {n} cards, then the dictionary — over 250,000 words.",
-        search_count: "{n} results",
-        search_count_one: "1 result",
-        search_count_none: "No result",
+        search_count: "{n} cards",
+        search_count_one: "1 card",
+        search_count_none: "No card",
         search_count_total: "{n} cards",
         search_more: "Only the first {n} results are shown — narrow your search.",
         search_none_title: "“{q}” is not among your cards.",
@@ -10804,9 +10804,9 @@ const I18N = {
         search_title: "Almanca veya Türkçe kelime ara",
         search_placeholder: "Almanca veya Türkçe…",
         search_hint: "En az iki harf yaz, <strong>Almanca ya da Türkçe</strong> — ikisi de olur. Arama önce {n} kartına, sonra sözlüğe bakar — 250 000'den fazla kelime.",
-        search_count: "{n} sonuç",
-        search_count_one: "1 sonuç",
-        search_count_none: "Sonuç yok",
+        search_count: "{n} kart",
+        search_count_one: "1 kart",
+        search_count_none: "Kart yok",
         search_count_total: "{n} kart",
         search_more: "Yalnızca ilk {n} sonuç gösteriliyor — aramanı daralt.",
         search_none_title: "“{q}” kartlarının arasında yok.",
@@ -12411,9 +12411,9 @@ const I18N = {
         search_kicker: "Картки та словник",
         search_title: "Шукати слово",
         search_placeholder: "Слово німецькою…",
-        search_count: "{n} результатів",
-        search_count_one: "1 результат",
-        search_count_none: "Немає результатів",
+        search_count: "Картки: {n}",
+        search_count_one: "Картки: 1",
+        search_count_none: "Жодної картки",
         search_count_total: "{n} карток",
         search_more: "Показано лише перші {n} результатів — уточни запит.",
         search_none_title: "«{q}» немає серед твоїх карток.",
@@ -13336,9 +13336,9 @@ const I18N = {
         search_title: "جست‌وجوی واژهٔ آلمانی یا فارسی",
         search_placeholder: "آلمانی یا فارسی…",
         search_hint: "دست‌کم دو حرف بنویس، <strong>به آلمانی یا به فارسی</strong> — هر دو کار می‌کند. جست‌وجو اول {n} کارت تو را می‌بیند، سپس فرهنگ واژگان را — بیش از 250 000 واژه.",
-        search_count: "{n} نتیجه",
-        search_count_one: "۱ نتیجه",
-        search_count_none: "هیچ نتیجه‌ای نیست",
+        search_count: "{n} کارت",
+        search_count_one: "۱ کارت",
+        search_count_none: "کارتی نیست",
         search_count_total: "{n} کارت",
         search_more: "تنها {n} نتیجهٔ نخست نشان داده می‌شود — جست‌وجو را دقیق‌تر کن.",
         search_none_title: "«{q}» میان کارت‌های تو نیست.",
@@ -14361,9 +14361,9 @@ const I18N = {
         search_title: "ابحث عن كلمة ألمانية أو فرنسية",
         search_placeholder: "بالألمانية أو الفرنسية…",
         search_hint: "اكتب حرفين على الأقل، <strong>بالألمانية أو الفرنسية</strong> — كلاهما يعمل. يبحث النظام في بطاقاتك الـ{n}، ثم في القاموس — أكثر من 250 000 كلمة.",
-        search_count: "{n} نتائج",
-        search_count_one: "نتيجة واحدة",
-        search_count_none: "لا نتائج",
+        search_count: "البطاقات: {n}",
+        search_count_one: "بطاقة واحدة",
+        search_count_none: "لا بطاقات",
         search_count_total: "{n} بطاقة",
         search_more: "لا تُعرض إلا النتائج الـ{n} الأولى — حدّد بحثك أكثر.",
         search_none_title: "«{q}» ليست من بطاقاتك.",
@@ -22042,6 +22042,13 @@ function renderWordSearch(rawQuery){
     if(!hits.length){
         searchHadHits = false;
         searchResults = [];
+        // ⚠️ LA PASTILLE COMPTE DES CARTES, PAS DES RESULTATS (v637). Elle
+        // disait « Aucun resultat » a deux cents pixels d'un « 2 entrees » du
+        // dictionnaire, sur le meme ecran : les deux etaient vrais -- aucune
+        // CARTE, deux ENTREES -- et se contredisaient a l'oeil. Vu en filmant
+        // le plan du dictionnaire pour la video, et c'est probablement ce que
+        // decrivait le retour du 15 septembre sur le compteur « qui ne pointe
+        // pas au bon endroit ».
         if(pill) pill.textContent = t('search_count_none');
         // Un "aucun resultat" sec laisse croire que l'app est incomplete. On
         // enonce donc le perimetre reel (nombre de cartes, A1 -> B2) et on propose
@@ -26357,7 +26364,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 636;
+const APP_VERSION = 637;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
