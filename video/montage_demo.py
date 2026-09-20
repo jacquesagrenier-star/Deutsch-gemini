@@ -244,6 +244,9 @@ def main():
     a.add_argument("--transition", default="coupe", choices=["coupe", "fondu", "bascule"],
                    help="coupe : rien entre les plans. fondu : un fondu enchaine. "
                         "bascule : l'image s'ecrase et se rouvre, comme une carte qu'on retourne")
+    a.add_argument("--titre-debut", action="store_true",
+                   help="poser aussi une carte-titre AU DEBUT (a comparer : elle depense "
+                        "les trois secondes qui decident si la suite est regardee)")
     a.add_argument("--sans-titre", action="store_true",
                    help="ne pas ajouter la carte-titre de fin")
     a.add_argument("--immobile", action="store_true",
@@ -258,6 +261,14 @@ def main():
     travail = source / "_montage"
     travail.mkdir(exist_ok=True)
     morceaux = []
+    # ⚠️ UNE CARTE-TITRE AU DEBUT SE PAIE SUR L'ACCROCHE. Les trois premieres
+    # secondes decident si les vingt-sept suivantes sont regardees, et le nom
+    # est deja dans CHAQUE plan -- l'en-tete de l'app le porte. D'ou l'option,
+    # et non le defaut : on compare, on ne discute pas.
+    if args.titre_debut and not args.sans_titre:
+        ouverture = travail / "00-titre.mp4"
+        if carte_titre(1.2, ouverture):
+            morceaux.append(ouverture)
     glisse = 0 if args.immobile else GLISSE
     effet = EFFETS.get(args.transition)
     retrait = TRANSITION_S if effet else 0
