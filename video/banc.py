@@ -527,6 +527,32 @@ def scene_dictionnaire(p):
     p.photo("01")
 
 
+@scene("dictionnaire_frappe", "On tape trois lettres, le dictionnaire repond.")
+def scene_dictionnaire_frappe(p):
+    """⚠️ LA FRAPPE EST LE SUJET, PAS LE RESULTAT. Une capture du dictionnaire
+    montre une liste ; ce plan montre que la liste ARRIVE pendant qu'on tape --
+    ce qui est la seule chose qu'un apprenant a besoin de savoir pour s'en
+    servir. Demande de Jacques.
+    ⚠️ TROIS LETTRES, PAS UN MOT ENTIER. Taper << Scherbe >> en entier dirait
+    << il faut connaitre le mot >> ; taper << sch >> dit l'inverse, et c'est
+    l'interet."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.ecran("home")
+    p.page.wait_for_function("typeof themes !== 'undefined' && themes && themes.length > 0",
+                             timeout=30000)
+    p.attendre(0.8)
+    p.moteur()
+    p.attendre(0.3)
+    p.doigt("#homeSearchInput", approche=0.5, pause=0.4)
+    # La frappe, lettre a lettre : une saisie instantanee ne se lit pas comme
+    # une frappe, elle se lit comme un collage.
+    p.page.fill("#wordSearchInput", "")
+    p.page.type("#wordSearchInput", "sch", delay=300)
+    p.attendre(2.6)
+    p.coupez()
+
+
 @scene("examens", "Le vocabulaire des listes officielles du Goethe-Institut et du DTZ.")
 def scene_examens(p):
     p.vie(maitrises=312, serie=12, seance=18)

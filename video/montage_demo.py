@@ -66,7 +66,7 @@ PLANS = [
     ("clip:choix_niveau",       7.5, 0.00),  # 2. tu choisis, tu commences, la carte est la
     ("clip:retournement",       4.5, 0.00),  # 3. tu reponds -- LE VRAI GESTE
     ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
-    ("dictionnaire-01.png",     4.5, 0.10),  # 5. un mot te manque ?
+    ("clip:dictionnaire_frappe", 6.5, 0.00),  # 5. trois lettres, et il repond
     ("retour-01.png",           3.0, 0.35),  # 6. dis-nous ce qui t'aiderait
 
 # ⚠️ LE PLAN DES EXAMENS EST RETIRE (demande de Jacques). C'etait le seul qui ne
