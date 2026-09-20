@@ -112,11 +112,17 @@ class Pilote:
         self.attendre(0.4)
 
     def ecran(self, identifiant):
-        """Montre un ecran sans passer par l'authentification.
+        """Pose un decor : montre un ecran, sans rien declencher d'autre.
 
-        ⚠️ ON MANIPULE `.screen.active` A LA MAIN. showScreen() refuserait :
-        l'app garde sa porte fermee tant que personne n'est connecte, et c'est
-        la porte qu'il faut garder fermee. Le banc n'entre pas par elle."""
+        ⚠️ ON MANIPULE `.screen.active` A LA MAIN, ET CE N'EST PAS PARCE QUE
+        showScreen() REFUSERAIT -- il n'a aucune garde d'authentification, je
+        l'ai ecrit ici pendant deux versions et c'etait faux. La raison est
+        qu'il fait DAVANTAGE : il ferme le panneau d'information, retient
+        l'ecran d'ou l'on vient pour le formulaire de retour, declenche le
+        chargement du cours. Pour poser un decor, on ne veut que le changement
+        d'ecran. Les scenes qui filment un PARCOURS, elles, appellent les vraies
+        fonctions de l'app -- ouvrirSeanceDuJour(), ouvrirEcouteMenu() -- parce
+        que la fidelite compte plus que la sobriete des que ca bouge."""
         self.js("""
             document.querySelectorAll('.screen.active').forEach(s => s.classList.remove('active'));
             const e = document.getElementById(%r);
@@ -310,6 +316,54 @@ def scene_adapter(p):
             # reglages bougent plus souvent que les ecrans ; ce qui manque se
             # voit a l'image manquante, et le reste de la serie est sauve.
             pass
+
+
+@scene("carte", "Tu reponds. Ce qui resiste revient plus souvent, ce qui est acquis s'espace.")
+def scene_carte(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.ecran("home")
+    # ⚠️ LA VRAIE PORTE, PAS UN DECOR. Une carte posee a la main montrerait un
+    # mot ; celle-ci montre LA carte que l'app a choisie pour aujourd'hui --
+    # echeances comprises. C'est la difference entre une capture et une preuve.
+    p.js("await ouvrirSeanceDuJour();")
+    p.attendre(3.0)
+    p.photo("01-recto")
+    p.js("if(typeof flipCard === 'function') flipCard();")
+    p.attendre(1.8)
+    p.photo("02-verso")
+
+
+@scene("ecoute", "Quand tu ne peux pas regarder, tu ecoutes : l'allemand continue.")
+def scene_ecoute(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.js("ouvrirEcouteMenu();")
+    p.attendre(2.0)
+    p.photo("01-menu")
+    p.js("demarrerEcoute('A1');")
+    p.attendre(3.5)
+    p.photo("02-en-ecoute")
+
+
+@scene("dictionnaire", "Un mot te manque ? Il est deja dans l'app.")
+def scene_dictionnaire(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    # Un mot qui n'est PAS dans les cartes : c'est tout l'interet du
+    # dictionnaire, et c'est le cas qu'un testeur a signale le 15 septembre.
+    p.js("ouvrirRechercheDepuisAccueil('Scherbe');")
+    p.attendre(3.0)
+    p.photo("01")
+
+
+@scene("examens", "Le vocabulaire des listes officielles du Goethe-Institut et du DTZ.")
+def scene_examens(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.js("openOrbPanel('pruefung');")
+    p.attendre(2.0)
+    p.photo("01-panneau")
 
 
 @scene("credits", "Ce qui vient d'ailleurs est nomme, et ce qui n'est pas a nous est dit.")
