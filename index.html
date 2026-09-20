@@ -1440,38 +1440,58 @@ body[data-theme="dark"] .badge-item .badge-label{
     color:#B7BBCB;
 }
 
+/* ⚠️ UNE SEULE LIGNE, ET C'EST LA CONDITION DE SON RETOUR (v641). Demande de
+   Jacques : << le moins de place possible >>. L'ancienne bande empilait un
+   titre de 13 px, une barre de 6 px et une ligne de compte -- une soixantaine
+   de pixels sur l'accueil, pour un rappel. C'est cette hauteur-la qui l'avait
+   fait retirer. Tout tient maintenant sur une rangee d'environ 26 px : la
+   pastille, le nom, le compte, et un trait court a droite.
+   ⚠️ LE TITRE PEUT ETRE COUPE, PAS LE COMPTE. << Polyglotte en herbe >> est
+   long en allemand comme en ukrainien ; c'est lui qui cede (ellipse), jamais
+   << 320 sur 500 points >>, qui est la seule information neuve de la ligne. */
 .next-badge-box{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     background:rgba(232,162,58,.14);
-    border-radius:10px;
-    padding:10px 12px;
-    margin-top:10px;
+    border-radius:8px;
+    padding:5px 10px;
+    margin-top:8px;
     cursor:pointer;
 }
 
 .next-badge-icon{
-    font-size:22px;
+    font-size:15px;
+    line-height:1;
+    flex:0 0 auto;
 }
 
 .next-badge-info{
+    display:flex;
+    align-items:center;
+    gap:8px;
     flex:1;
     min-width:0;
 }
 
 .next-badge-title{
-    font-size:13px;
+    font-size:11px;
     font-weight:700;
     color:#854F0B;
     margin:0;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
 .next-badge-track{
     background:rgba(240,153,123,.25);
-    border-radius:6px;
-    height:6px;
-    margin-top:6px;
+    border-radius:4px;
+    height:4px;
+    width:44px;
+    flex:0 0 auto;
+    margin:0;
     overflow:hidden;
 }
 
@@ -1482,9 +1502,13 @@ body[data-theme="dark"] .badge-item .badge-label{
 }
 
 .next-badge-progress{
-    font-size:11px;
+    font-size:10px;
     color:#854F0B;
-    margin:4px 0 0;
+    margin:0;
+    margin-inline-start:auto;
+    white-space:nowrap;
+    flex:0 0 auto;
+    font-variant-numeric:tabular-nums;
 }
 
 body[data-theme="dark"] .next-badge-box{
@@ -5034,10 +5058,18 @@ body[data-theme="dark"] .carte-comptes{border-top-color:rgba(255,255,255,.12);}
 /* Le titre et le sous-titre sont une phrase de presentation : justes au premier
    lancement, morts a la douzieme ouverture. La video d'accueil les remplace. */
 #home h1, #home .subtitle{display:none;}
-/* La ligne d'aide ne sert qu'une fois ; le prochain badge et les gels de serie
-   vivent desormais dans les reglages. Les elements restent dans le DOM :
-   updateHomeStatsPanel() et renderNextBadge() y ecrivent toujours. */
-.home-level-hint, #nextBadgeBox, .home-stats-labels, .home-daily-goal-track{display:none !important;}
+/* La ligne d'aide ne sert qu'une fois ; les gels de serie vivent dans les
+   reglages. Les elements restent dans le DOM : updateHomeStatsPanel() y ecrit
+   toujours. */
+.home-level-hint, .home-stats-labels, .home-daily-goal-track{display:none !important;}
+/* ⚠️ #nextBadgeBox EST SORTI DE CETTE LISTE (v641). Il y etait entre depuis que
+   les badges avaient ete renvoyes aux reglages -- et le resultat, mesure en
+   relisant le code avec Jacques, etait qu'un badge n'existait plus que TROIS
+   SECONDES, dans la notule du moment ou on le gagne, en pleine seance. Apres
+   quoi il fallait savoir qu'il existait et aller le chercher. Un systeme de
+   recompense invisible n'en est pas un.
+   Il ne revient pas pour autant en permanence : renderNextBadgeBox() ne le
+   montre qu'au-dela de PROCHE_BADGE. Rare, donc informatif. */
 
 .home-stats-card{padding:12px 16px 11px !important; margin-top:2px;}
 .global-progress-row{
@@ -5461,8 +5493,8 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <span id="nextBadgeIcon" class="next-badge-icon"></span>
             <div class="next-badge-info">
                 <p id="nextBadgeTitle" class="next-badge-title"></p>
-                <div class="next-badge-track"><div id="nextBadgeFill" class="next-badge-fill" style="width:0%"></div></div>
                 <p id="nextBadgeProgress" class="next-badge-progress"></p>
+                <div class="next-badge-track"><div id="nextBadgeFill" class="next-badge-fill" style="width:0%"></div></div>
             </div>
         </div>
         <div class="home-level-hint"><span data-i18n="home_ring_hint">Touche le cercle pour changer de niveau</span> (<span id="homeRingLevels"></span>)
@@ -5941,7 +5973,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v640</span>
+    <span class="subtitle-version">v641</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -18702,6 +18734,16 @@ function checkAndUnlockBadges(){
 // Le badge locked le plus proche d'être débloqué (le + grand ratio
 // current/threshold), tous types confondus (xp et streak) -- c'est celui-là
 // qu'on met en avant sur l'accueil plutôt que la grille complète.
+// A PARTIR D'OU UN BADGE EST << PROCHE >>. Decision de Jacques : la bande de
+// l'accueil ne se montre qu'a mi-chemin.
+//
+// ⚠️ C'EST UN ARBITRAGE, PAS UN REGLAGE DE CONFORT. A zero, la bande est
+// permanente : elle recharge l'accueil et devient un meuble qu'on ne lit plus.
+// A 90 %, elle n'apparait qu'une fois par badge, trop tard pour donner envie.
+// La moitie laisse un rappel qui dure quelques jours et disparait ensuite --
+// c'est la rarete qui le rend lisible.
+const PROCHE_BADGE = 0.5;
+
 function getNextBadgeToUnlock(){
     const unlocked = getUnlockedBadges();
     const stats = { xp: getXp(), streak: getStreakCount() };
@@ -18723,7 +18765,9 @@ function renderNextBadgeBox(){
     const box = document.getElementById("nextBadgeBox");
     if(!box) return;
     const next = getNextBadgeToUnlock();
-    if(!next){ box.classList.add("hidden"); return; }
+    // Pas de badge en vue, ou trop loin : l'accueil n'en parle pas. Voir
+    // PROCHE_BADGE.
+    if(!next || next.ratio < PROCHE_BADGE){ box.classList.add("hidden"); return; }
     box.classList.remove("hidden");
     document.getElementById("nextBadgeIcon").textContent = next.def.icon;
     document.getElementById("nextBadgeTitle").textContent = t(next.def.titleKey);
@@ -19259,6 +19303,13 @@ function updateHomeStatsPanel(percent){
     if(dailyGoalCountEl) dailyGoalCountEl.textContent = `${dailyCount} / ${dailyGoalTarget}` + (dailyCount >= dailyGoalTarget ? " ✓" : "");
     const dailyGoalFillEl = document.getElementById("dailyGoalFill");
     if(dailyGoalFillEl) dailyGoalFillEl.style.width = Math.min(100, Math.round(dailyCount / dailyGoalTarget * 100)) + "%";
+    // ⚠️ LA BANDE DU PROCHAIN BADGE SE PEINT D'ICI (v641). Elle ne l'etait que
+    // par renderBadgesGrid(), appelee depuis openSettings() et
+    // checkAndUnlockBadges() : au simple retour a l'accueil, ou au demarrage,
+    // personne ne la dessinait -- elle serait restee masquee sans que rien ne
+    // le dise. Cette fonction-ci, elle, tourne a chaque rafraichissement de
+    // l'accueil.
+    renderNextBadgeBox();
 }
 
 // Agrégat "allemand uniquement" (voir withGermanProgress ci-dessus) : le texte
@@ -26442,7 +26493,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 640;
+const APP_VERSION = 641;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -5482,3 +5482,34 @@ c'était un choix. C'est écrit dans le banc pour que personne ne recommence.
 **Reste ouvert** : faut-il remettre cette bande sur l'accueil ? Retirée pour
 désencombrer — à raison — mais les badges ne se voient plus jamais sans ouvrir
 les Réglages, ce que personne ne fait pour se motiver.
+
+## 20 septembre 2026 — la bande du prochain badge revient, rare et fine (v641)
+
+**Décision de Jacques**, après avoir constaté qu'un badge n'existait plus que
+**trois secondes** — la notule du moment où on le gagne, en pleine séance —
+puis seulement dans les Réglages, où personne ne va pour se motiver.
+
+Elle ne revient pas en permanence : `renderNextBadgeBox()` ne la montre
+**qu'au-delà de la moitié** (`PROCHE_BADGE = 0.5`).
+
+⚠️ **Le seuil est un arbitrage, pas un réglage de confort.** À zéro, la bande
+est permanente : elle recharge l'accueil et devient un meuble qu'on ne lit
+plus. À 90 %, elle n'apparaît qu'une fois par badge, trop tard pour donner
+envie. La moitié laisse un rappel qui dure quelques jours et disparaît ensuite.
+
+⚠️ **Une seule ligne, et c'est la condition de son retour** — « le moins de
+place possible ». L'ancienne empilait un titre de 13 px, une barre de 6 px et
+une ligne de compte : **une soixantaine de pixels**, et c'est cette hauteur qui
+l'avait fait retirer. **Mesuré après : 25 px.** Le titre cède à l'ellipse si
+besoin, jamais le compte — « 300 sur 500 points » est la seule information
+neuve de la ligne.
+
+⚠️ **Elle se peint depuis `updateHomeStatsPanel()`**, pas seulement depuis
+`renderBadgesGrid()`. Celle-ci n'est appelée que par `openSettings()` et
+`checkAndUnlockBadges()` : au simple retour à l'accueil, ou au démarrage,
+personne ne l'aurait dessinée — elle serait restée masquée sans que rien ne le
+dise.
+
+**Le banc s'est corrigé au passage** : il déverrouillait les badges avant de
+poser l'expérience, et filmait « Premier pas — 1 sur 1 points », un état qui
+n'existe sur l'appareil de personne. L'app, elle, contrôle à chaque réussite.

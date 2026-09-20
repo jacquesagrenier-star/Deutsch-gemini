@@ -186,6 +186,11 @@ class Pilote:
                     JSON.stringify({ count: %d, date: jour }));
             if(%d) localStorage.setItem(directionScopedKey(DAILY_ACTIVITY_KEY),
                     JSON.stringify({ count: %d, date: jour }));
+            // ⚠️ L'APP DEVERROUILLE LES BADGES A CHAQUE REUSSITE, pas au
+            // chargement : sans cet appel, le banc filme quelqu'un qui a douze
+            // jours de serie ET un badge << 3 jours de suite >> toujours
+            // verrouille -- un etat qui n'existe sur l'appareil de personne.
+            if(typeof checkAndUnlockBadges === 'function') checkAndUnlockBadges();
             if(typeof updateGlobalProgress === 'function') updateGlobalProgress();
         """ % (maitrises, serie, serie, seance, seance))
         self.attendre(1.0)
@@ -417,6 +422,22 @@ def scene_badges(p):
     p.attendre(1.0)
     p.ecran("settings")
     p.vers("settings_badges_title")
+    p.photo("01")
+
+
+@scene("bande", "Le prochain badge se rappelle a l'accueil, quand il est proche.")
+def scene_bande(p):
+    p.vie(maitrises=312, serie=12, seance=18)
+    # ⚠️ L'EXPERIENCE AVANT LE DEVERROUILLAGE, sinon la bande annonce un badge
+    # a 1 sur 1 : vie() a deja fait son controle quand l'XP arrive, et l'app,
+    # elle, contrôle a chaque reussite. Un ordre inverse filme un etat qui
+    # n'existe sur l'appareil de personne.
+    p.js("""
+        if(typeof addXp === 'function') addXp(300);
+        if(typeof checkAndUnlockBadges === 'function') checkAndUnlockBadges();
+    """)
+    p.recharger()
+    p.ecran("home")
     p.photo("01")
 
 
