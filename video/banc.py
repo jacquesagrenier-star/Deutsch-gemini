@@ -312,6 +312,13 @@ def scene_adapter(p):
             pass
 
 
+@scene("credits", "Ce qui vient d'ailleurs est nomme, et ce qui n'est pas a nous est dit.")
+def scene_credits(p):
+    p.ecran("settings")
+    p.vers("credits_title")
+    p.photo("01")
+
+
 @scene("rappels", "Un rappel quotidien, si tu en veux un.")
 def scene_rappels(p):
     p.ecran("settings")

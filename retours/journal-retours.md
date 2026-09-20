@@ -5358,3 +5358,25 @@ préfixe `ip_tableau_` ni `mosaique_` : elle vit dans les légendes du panneau
 d'aide. Une passe qui corrige « les clés du tableau » attrape ce qui *s'appelle*
 tableau, pas ce qui *parle* du tableau. Le grep qui l'aurait trouvée du premier
 coup cherchait le VERBE, pas la clé : `grep -n "découvre\|se dévoile"`.
+
+## 20 septembre 2026 — la mention de non-affiliation Goethe / telc (v636)
+
+**Demande de Jacques**, en préparant l'argumentaire de la vidéo. L'app nomme le
+Goethe-Institut, telc et le DTZ à plusieurs endroits — « la liste officielle du
+Goethe-Zertifikat A2 », la tuile « Préparation aux examens ». Nommer une marque
+pour **décrire ce qu'on couvre** est permis ; laisser croire à une approbation
+ne l'est pas. Cette ligne, en bas des Crédits, fait la différence entre les
+deux, dans les six langues.
+
+⚠️ **« Officielles » reste collé à « listes », jamais à « préparation ».** Les
+listes *sont* officielles ; la préparation, elle, est la nôtre. Un seul mot
+déplacé transforme une description vérifiable en fausse affiliation.
+
+Vérifié au passage : les trois chaînes qui nomment ces marques sont déjà bien
+formées dans les six langues (« la liste officielle du Goethe-Zertifikat A2 »,
+« Goethe B1 et DTZ réunis », « Par niveau · Goethe · telc · DTZ »). La
+troisième est la seule un peu lâche — trois noms alignés se lisent comme trois
+partenaires — mais la mention des Crédits la couvre désormais.
+
+**Ce qui n'est pas de mon ressort :** je ne suis pas juriste. La question tient
+en trois lignes pour Klan ou Global Trademark, déjà au dossier de la marque.
