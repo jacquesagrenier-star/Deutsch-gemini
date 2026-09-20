@@ -63,7 +63,7 @@ CLIPS_APPAREIL = "clip720"
 # joue son vrai role : montrer que tout part de la.
 PLANS = [
     ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
-    ("clip:choix_niveau",       6.5, 0.00),  # 2. tu choisis, tu commences, la carte est la
+    ("clip:choix_niveau",       7.2, 0.00),  # 2. tu choisis, tu commences, la carte est la
     ("clip:retournement",       3.3, 0.00),  # 3. tu reponds -- LE VRAI GESTE
     ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
     ("dictionnaire-01.png",     4.5, 0.10),  # 5. un mot te manque ?

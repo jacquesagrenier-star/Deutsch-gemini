@@ -293,6 +293,92 @@ class Pilote:
         ''' % (cle_i18n, cle_i18n))
         self.attendre(0.6)
 
+    def doigt(self, selecteur, approche=0.65, pause=0.35):
+        """Montre le geste : un doigt glisse jusqu'a la cible, appuie, et le
+        clic part vraiment.
+
+        ⚠️ AUCUN CURSEUR N'EST FILME AUTREMENT. Un clic de Playwright ne dessine
+        rien : la video montre l'effet sans la cause, et le spectateur voit
+        l'ecran changer tout seul. Demande de Jacques : << qu on puisse voir
+        l action >>.
+        ⚠️ LE REPERE EST INJECTE PAR LE BANC, JAMAIS PAR L'APP. Il vit dans la
+        page le temps de la prise et ne laisse rien derriere : ajouter un
+        curseur au produit pour le besoin d'un tournage serait payer une video
+        avec du code que tout le monde emporte.
+        ⚠️ ET C'EST UNE PASTILLE, PAS UNE FLECHE. On filme un telephone : une
+        fleche de souris y serait un mensonge de plus, discret mais faux."""
+        # ⚠️ ON RESOUT LA CIBLE DEUX FOIS S'IL LE FAUT. Les pastilles de niveau
+        # sont reconstruites quand les donnees arrivent de GitHub : la poignee
+        # obtenue une milliseconde plus tot pointe alors un element detache, et
+        # l'attente expire sur un message qui parle de geometrie -- pas de
+        # rendu. Deux prises perdues la-dessus, dont une avec le message
+        # << Locator.bounding_box: Timeout >>.
+        boite = None
+        for essai in range(3):
+            try:
+                cible = self.page.locator(selecteur).first
+                cible.scroll_into_view_if_needed(timeout=6000)
+                boite = cible.bounding_box(timeout=6000)
+                if boite:
+                    break
+            except Exception:
+                self.attendre(0.8)
+        if not boite:
+            raise RuntimeError("cible introuvable ou instable : " + selecteur)
+        x = boite["x"] + boite["width"] / 2
+        y = boite["y"] + boite["height"] / 2
+        self.page.evaluate("""([x, y, ms]) => {
+            let d = document.getElementById('__banc_doigt');
+            if(!d){
+                d = document.createElement('div');
+                d.id = '__banc_doigt';
+                Object.assign(d.style, {
+                    position:'fixed', left:'0px', top:'0px', width:'44px', height:'44px',
+                    marginLeft:'-22px', marginTop:'-22px', borderRadius:'50%',
+                    background:'rgba(30,41,59,.30)',
+                    boxShadow:'inset 0 0 0 2px rgba(255,255,255,.65), 0 2px 10px rgba(0,0,0,.18)',
+                    zIndex:'2147483647', pointerEvents:'none',
+                    transform:'translate(' + x + 'px,' + (y + 260) + 'px)',
+                    transition:'transform ' + ms + 'ms cubic-bezier(.33,0,.2,1)'
+                });
+                document.body.appendChild(d);
+                // Une image de battement, sinon le navigateur applique la
+                // position de depart ET l'arrivee dans le meme rendu : le
+                // doigt << saute >> sans qu'on le voie voyager.
+                void d.offsetWidth;
+            }
+            d.style.transition = 'transform ' + ms + 'ms cubic-bezier(.33,0,.2,1)';
+            d.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+        }""", [x, y, int(approche * 1000)])
+        self.attendre(approche + 0.15)
+        # L'appui : la pastille se resserre, une onde part.
+        self.page.evaluate("""([x, y]) => {
+            const d = document.getElementById('__banc_doigt');
+            if(d){
+                d.animate([{ transform:'translate(' + x + 'px,' + y + 'px) scale(1)' },
+                           { transform:'translate(' + x + 'px,' + y + 'px) scale(.72)' },
+                           { transform:'translate(' + x + 'px,' + y + 'px) scale(1)' }],
+                          { duration: 320, easing:'ease-out' });
+            }
+            const onde = document.createElement('div');
+            Object.assign(onde.style, {
+                position:'fixed', left:'0px', top:'0px', width:'44px', height:'44px',
+                marginLeft:'-22px', marginTop:'-22px', borderRadius:'50%',
+                border:'2px solid rgba(30,41,59,.45)', zIndex:'2147483646',
+                pointerEvents:'none', transform:'translate(' + x + 'px,' + y + 'px) scale(.6)'
+            });
+            document.body.appendChild(onde);
+            onde.animate([{ transform:'translate(' + x + 'px,' + y + 'px) scale(.6)', opacity:.9 },
+                          { transform:'translate(' + x + 'px,' + y + 'px) scale(2.2)', opacity:0 }],
+                         { duration: 520, easing:'ease-out' }).onfinish = () => onde.remove();
+        }""", [x, y])
+        self.attendre(0.18)
+        cible.click()
+        self.attendre(pause)
+
+    def ranger_doigt(self):
+        self.js("const d = document.getElementById('__banc_doigt'); if(d) d.remove();")
+
     def clic(self, selecteur):
         self.page.click(selecteur)
         self.attendre(0.5)
@@ -448,8 +534,9 @@ def scene_retournement(p):
     p.attendre(3.0)
     p.moteur()
     p.attendre(1.0)          # un temps sur le recto : on lit le mot
-    p.page.click("#flashcard")
-    p.attendre(2.2)          # la bascule (0,55 s) puis le verso
+    p.doigt("#flashcard", approche=0.7, pause=0.1)
+    p.attendre(2.0)          # la bascule (0,55 s) puis le verso
+    p.ranger_doigt()
     p.coupez()
 
 
@@ -537,15 +624,25 @@ def scene_choix_niveau(p):
     # le rendu suivant detache -- Playwright reessaie alors jusqu'a expirer, et
     # l'erreur parle d'un clic impossible, pas d'un rendu en retard. Perdu une
     # prise la-dessus.
-    p.attendre(2.5)
+    # ⚠️ ON ATTEND UN FAIT, PAS UNE DUREE. << 2,5 secondes >> a tenu une prise
+    # et lache la suivante : le temps de chargement depend du reseau, pas de
+    # notre patience. On attend que les themes soient la -- c'est ce qui
+    # declenche la reconstruction des pastilles.
+    p.page.wait_for_function("typeof themes !== 'undefined' && themes && themes.length > 0",
+                             timeout=30000)
+    p.attendre(1.0)
     p.moteur()
-    p.attendre(0.8)
+    p.attendre(0.3)
     # Le niveau : on touche B1. Les pastilles sont construites en JS, donc on
     # vise le TEXTE -- il est le meme dans les six langues, c'est un code CECR.
-    p.page.click("#seanceNiveaux button:text-is('B1')")
-    p.attendre(1.2)
-    p.page.click(".seance-go")
-    p.attendre(3.2)
+    # ⚠️ CHAQUE GESTE COUTE UNE SECONDE ET DEMIE. Premiere prise : onze secondes
+    # pour deux touchers, dans un film qui en fait trente. Le doigt doit se
+    # voir, pas se regarder marcher.
+    p.doigt("#seanceNiveaux button:text-is('B1')", approche=0.5, pause=0.2)
+    p.attendre(0.4)
+    p.doigt(".seance-go", approche=0.5, pause=0.15)
+    p.attendre(2.0)
+    p.ranger_doigt()
     p.coupez()
 
 
