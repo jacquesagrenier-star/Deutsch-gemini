@@ -65,9 +65,9 @@ PLANS = [
     ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
     ("clip:choix_niveau",       7.5, 0.00),  # 2. tu choisis, tu commences, la carte est la
     ("clip:retournement",       4.5, 0.00),  # 3. tu reponds -- LE VRAI GESTE
-    ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
-    ("clip:dictionnaire_frappe", 6.5, 0.00),  # 5. trois lettres, et il repond
-    ("retour-01.png",           3.0, 0.35),  # 6. dis-nous ce qui t'aiderait
+    ("clip:ecoute_suite",       3.8, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
+    ("clip:dictionnaire_frappe", 11.0, 0.00),  # 5. trois lettres, un mot choisi, sa carte
+    ("retour-01.png",           2.6, 0.35),  # 6. dis-nous ce qui t'aiderait
 
 # ⚠️ LE PLAN DES EXAMENS EST RETIRE (demande de Jacques). C'etait le seul qui ne
 # montrait ni geste ni mouvement : un panneau qu'on lit, dans un film qu'on
@@ -93,6 +93,15 @@ PLANS = [
 #                               et l'information etait justement que c'est
 #                               le meme.
 # Les clips se tournent avec : python video/banc.py --clips --scene affinage
+
+# ⚠️ ACCELERER UN PLAN, C'EST MENTIR UN PEU -- alors on le note ici, en clair,
+# plutot que de le cacher dans un filtre. Un geste d'interface supporte 1,3x
+# sans qu'on le voie : la main va un peu plus vite, rien d'autre ne change. Le
+# plan du dictionnaire enchaine quatre gestes (ouvrir, taper, choisir,
+# retourner) et durerait quinze secondes dans un film qui en fait trente.
+# Au-dela de 1,4x, la frappe devient une saccade : ce n'est plus du rythme,
+# c'est du sucre.
+VITESSE = {"dictionnaire_frappe": 1.3}
 
 # De combien la fenetre glisse, en part de ce qui depasse. 0 = image immobile.
 GLISSE = 0.35
@@ -155,7 +164,7 @@ def plan_suite(dossier, duree, ancre, cible, fps_prise=15):
     return True
 
 
-def plan_clip(source, duree, ancre, cible):
+def plan_clip(source, duree, ancre, cible, vitesse=1.0):
     """Un plan filme : meme cadrage que les images fixes, coupe a la duree
     voulue.
 
@@ -167,9 +176,10 @@ def plan_clip(source, duree, ancre, cible):
     chantier."""
     course = "(ih-%d)" % HAUTEUR
     y = "min(max(%s*%s,0),%s)" % (course, ancre, course)
-    ffmpeg(["-i", str(source), "-t", str(duree),
-            "-vf", "scale=%d:-2:flags=lanczos,crop=%d:%d:0:'%s',fps=%d,format=yuv420p"
-                   % (LARGEUR, LARGEUR, HAUTEUR, y, FPS),
+    presse = ("setpts=%.4f*PTS," % (1.0 / vitesse)) if vitesse and vitesse != 1.0 else ""
+    ffmpeg(["-i", str(source), "-t", str(duree * (vitesse or 1.0)),
+            "-vf", "%sscale=%d:-2:flags=lanczos,crop=%d:%d:0:'%s',fps=%d,format=yuv420p"
+                   % (presse, LARGEUR, LARGEUR, HAUTEUR, y, FPS),
             "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
 
 
@@ -245,7 +255,8 @@ def main():
         if filme:
             # ⚠️ UN PLAN FILME NE GLISSE PAS : il bouge deja, et lui ajouter un
             # panoramique ferait deux mouvements concurrents dans le meme plan.
-            plan_clip(image, max(1.0, duree - retrait), ancre, cible)
+            plan_clip(image, max(1.0, duree - retrait), ancre, cible,
+                      VITESSE.get(nom[5:], 1.0))
         else:
             plan(image, max(1.0, duree - retrait), ancre, glisse, cible)
         if effet and morceaux:

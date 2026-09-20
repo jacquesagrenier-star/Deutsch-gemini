@@ -293,41 +293,43 @@ class Pilote:
         ''' % (cle_i18n, cle_i18n))
         self.attendre(0.6)
 
-    def doigt(self, selecteur, approche=0.65, pause=0.35):
+    def doigt(self, selecteur, texte=None, approche=0.65, pause=0.35):
         """Montre le geste : un doigt glisse jusqu'a la cible, appuie, et le
-        clic part vraiment.
+        clic part vraiment -- a l'endroit ou le doigt s'est pose.
 
         ⚠️ AUCUN CURSEUR N'EST FILME AUTREMENT. Un clic de Playwright ne dessine
         rien : la video montre l'effet sans la cause, et le spectateur voit
-        l'ecran changer tout seul. Demande de Jacques : << qu on puisse voir
-        l action >>.
-        ⚠️ LE REPERE EST INJECTE PAR LE BANC, JAMAIS PAR L'APP. Il vit dans la
-        page le temps de la prise et ne laisse rien derriere : ajouter un
+        l'ecran changer tout seul. Demande de Jacques.
+        ⚠️ LE REPERE EST INJECTE PAR LE BANC, JAMAIS PAR L'APP : ajouter un
         curseur au produit pour le besoin d'un tournage serait payer une video
-        avec du code que tout le monde emporte.
-        ⚠️ ET C'EST UNE PASTILLE, PAS UNE FLECHE. On filme un telephone : une
-        fleche de souris y serait un mensonge de plus, discret mais faux."""
-        # ⚠️ ON RESOUT LA CIBLE DEUX FOIS S'IL LE FAUT. Les pastilles de niveau
-        # sont reconstruites quand les donnees arrivent de GitHub : la poignee
-        # obtenue une milliseconde plus tot pointe alors un element detache, et
-        # l'attente expire sur un message qui parle de geometrie -- pas de
-        # rendu. Deux prises perdues la-dessus, dont une avec le message
-        # << Locator.bounding_box: Timeout >>.
+        avec du code que tout le monde emporte. Et c'est une pastille, pas une
+        fleche -- on filme un telephone.
+        ⚠️ ON CLIQUE DES COORDONNEES, PAS UNE POIGNEE D'ELEMENT. Trois prises
+        perdues sur des poignees Playwright devenues caduques : choisir un
+        niveau reconstruit la carte de seance, taper une lettre reconstruit la
+        liste des resultats, et l'erreur parle alors de geometrie ou de
+        stabilite -- jamais du rendu qui vient de passer dessous. Un point de
+        l'ecran, lui, ne se detache pas. C'est aussi ce que fait un vrai doigt.
+        `texte` choisit parmi plusieurs elements du meme selecteur (le code
+        CECR d'une pastille, par exemple) -- il est le meme dans les six
+        langues quand on vise un code, jamais un libelle traduit."""
         boite = None
-        for essai in range(5):
-            try:
-                cible = self.page.locator(selecteur).first
-                cible.wait_for(state="visible", timeout=6000)
-                cible.scroll_into_view_if_needed(timeout=6000)
-                boite = cible.bounding_box(timeout=6000)
-                if boite:
-                    break
-            except Exception:
-                self.attendre(1.0)
+        for essai in range(6):
+            boite = self.page.evaluate("""([sel, txt]) => {
+                const els = [...document.querySelectorAll(sel)];
+                const el = txt ? els.find(e => (e.textContent || '').trim() === txt) : els[0];
+                if(!el) return null;
+                el.scrollIntoView({ block: 'nearest' });
+                const r = el.getBoundingClientRect();
+                if(r.width < 2 || r.height < 2) return null;
+                return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+            }""", [selecteur, texte])
+            if boite:
+                break
+            self.attendre(0.7)
         if not boite:
-            raise RuntimeError("cible introuvable ou instable : " + selecteur)
-        x = boite["x"] + boite["width"] / 2
-        y = boite["y"] + boite["height"] / 2
+            raise RuntimeError("cible introuvable : " + selecteur + (" / " + texte if texte else ""))
+        x, y = boite["x"], boite["y"]
         self.page.evaluate("""([x, y, ms]) => {
             let d = document.getElementById('__banc_doigt');
             if(!d){
@@ -343,24 +345,21 @@ class Pilote:
                     transition:'transform ' + ms + 'ms cubic-bezier(.33,0,.2,1)'
                 });
                 document.body.appendChild(d);
-                // Une image de battement, sinon le navigateur applique la
-                // position de depart ET l'arrivee dans le meme rendu : le
-                // doigt << saute >> sans qu'on le voie voyager.
+                // Une image de battement, sinon le navigateur applique le
+                // depart ET l'arrivee dans le meme rendu : le doigt saute sans
+                // qu'on le voie voyager.
                 void d.offsetWidth;
             }
             d.style.transition = 'transform ' + ms + 'ms cubic-bezier(.33,0,.2,1)';
             d.style.transform = 'translate(' + x + 'px,' + y + 'px)';
         }""", [x, y, int(approche * 1000)])
         self.attendre(approche + 0.15)
-        # L'appui : la pastille se resserre, une onde part.
         self.page.evaluate("""([x, y]) => {
             const d = document.getElementById('__banc_doigt');
-            if(d){
-                d.animate([{ transform:'translate(' + x + 'px,' + y + 'px) scale(1)' },
-                           { transform:'translate(' + x + 'px,' + y + 'px) scale(.72)' },
-                           { transform:'translate(' + x + 'px,' + y + 'px) scale(1)' }],
-                          { duration: 320, easing:'ease-out' });
-            }
+            if(d) d.animate([{ transform:'translate(' + x + 'px,' + y + 'px) scale(1)' },
+                             { transform:'translate(' + x + 'px,' + y + 'px) scale(.72)' },
+                             { transform:'translate(' + x + 'px,' + y + 'px) scale(1)' }],
+                            { duration: 320, easing:'ease-out' });
             const onde = document.createElement('div');
             Object.assign(onde.style, {
                 position:'fixed', left:'0px', top:'0px', width:'44px', height:'44px',
@@ -374,13 +373,12 @@ class Pilote:
                          { duration: 520, easing:'ease-out' }).onfinish = () => onde.remove();
         }""", [x, y])
         self.attendre(0.18)
-        cible.click()
+        self.page.mouse.click(x, y)
         # ⚠️ LE DOIGT SE RETIRE AVEC LE CLIC, PAS QUELQUES SECONDES PLUS TARD.
         # Signale par Jacques : la pastille restait posee sur l'ecran des cartes
         # apres avoir touche << Commencer >>, comme un doigt oublie sur la
-        # vitre. Un geste se termine quand il a produit son effet -- et c'est
-        # justement a cet instant que le spectateur regarde le NOUVEL ecran, pas
-        # la main.
+        # vitre. Un geste finit quand il a produit son effet -- et c'est a cet
+        # instant que le spectateur regarde le NOUVEL ecran, pas la main.
         self.page.evaluate("""() => {
             const d = document.getElementById('__banc_doigt');
             if(!d) return;
@@ -549,7 +547,18 @@ def scene_dictionnaire_frappe(p):
     # une frappe, elle se lit comme un collage.
     p.page.fill("#wordSearchInput", "")
     p.page.type("#wordSearchInput", "sch", delay=300)
-    p.attendre(2.6)
+    p.attendre(1.6)
+    # ⚠️ ET ON TOUCHE UN RESULTAT. Demande de Jacques. Sans ce geste, le plan
+    # dit << il y a une liste >> ; avec lui, il dit << le mot que tu cherches
+    # devient une carte >>, ce qui est la fonction, pas le decor.
+    p.doigt(".search-result", approche=0.5, pause=0.2)
+    p.attendre(1.1)
+    # ⚠️ ET ON RETOURNE LA CARTE, sinon le plan finit sur << beautiful, nice >>
+    # -- le RECTO, qui demande le mot allemand. Jacques voulait voir apparaitre
+    # LE MOT qu'on a choisi ; sans ce dernier geste, la scene montre l'inverse
+    # de ce qu'elle promet.
+    p.doigt("#flashcard", approche=0.45, pause=0.1)
+    p.attendre(1.9)
     p.coupez()
 
 
@@ -659,7 +668,14 @@ def scene_choix_niveau(p):
     p.vie(maitrises=312, serie=12, seance=18)
     p.recharger()
     p.ecran("home")
-    p.js("document.getElementById('carteSeance') ? document.getElementById('carteSeance').scrollIntoView({block:'center'}) : window.scrollTo(0, 260);")
+    # ⚠️ EXACTEMENT LE MEME CADRAGE QUE LE PLAN DU TABLEAU, et c'est une
+    # demande de Jacques : << sinon on ne sait plus ou on est >>. Les deux plans
+    # se suivent et montrent le MEME ecran ; les cadrer differemment demande au
+    # spectateur de se rechercher entre deux plans qui, pour lui, devraient etre
+    # continus. Le haut de la carte de mosaique sert de repere aux deux -- et
+    # les pastilles de niveau comme << Commencer >> tiennent dans la meme
+    # fenetre.
+    p.js("document.getElementById('carteMosaique').scrollIntoView({block:'start'});")
     p.attendre(1.0)
     # ⚠️ ON ATTEND QUE LES PASTILLES SE POSENT. Elles sont reconstruites quand
     # les donnees arrivent de GitHub : cliquer avant, c'est viser un bouton que
@@ -680,7 +696,7 @@ def scene_choix_niveau(p):
     # ⚠️ CHAQUE GESTE COUTE UNE SECONDE ET DEMIE. Premiere prise : onze secondes
     # pour deux touchers, dans un film qui en fait trente. Le doigt doit se
     # voir, pas se regarder marcher.
-    p.doigt("#seanceNiveaux button:text-is('B1')", approche=0.5, pause=0.2)
+    p.doigt("#seanceNiveaux button", texte="B1", approche=0.5, pause=0.2)
     # ⚠️ CHOISIR UN NIVEAU RECONSTRUIT LA CARTE DE SEANCE : le bouton
     # << Commencer >> disparait et revient. Enchainer tout de suite, c est viser
     # un bouton en train d etre remplace -- et l erreur dit << cible instable >>.
