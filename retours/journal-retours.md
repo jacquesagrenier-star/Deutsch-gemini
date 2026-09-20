@@ -5229,3 +5229,19 @@ rétrécit. Le premier jour un bloc de 150 px éclate et ça saute aux yeux ; le
 neuvième, c'est une tesselle de 18 px. Aucun schéma progressif n'y échappe —
 l'échelle de résolution l'a en pire. C'est la jauge qui porte la fin du parcours,
 et elle le fait déjà.
+
+## 20 septembre 2026 — la passe à six langues est faite (v630)
+
+Le « reste à faire » ci-dessus est clos. Le français avait été réécrit en
+v627-v629 ; l'anglais, le turc, l'ukrainien, le persan et l'arabe décrivaient
+encore l'ancien comportement — des carreaux qui *s'ouvrent* un à un, et des
+« séances » là où on compte désormais des **jours**. Cinq langues sur six
+servaient donc une explication fausse, pas seulement tirée.
+
+Quatre clés touchées dans chaque langue : `mosaique_reste`, `mosaique_trophee`,
+`ip_tableau_1`, `ip_tableau_carreaux`, `ip_tableau_plafond`, `ip_tableau_trophee`.
+
+⚠️ **Le `{j}` de `ip_tableau_plafond` est calculé, jamais écrit** (carreaux ÷
+plafond) : « au moins 9 jours » suit les constantes dans les six langues à la
+fois. Un chiffre recopié à la main dans six phrases est celui qui se contredit
+en premier.
