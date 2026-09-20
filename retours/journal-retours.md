@@ -5329,3 +5329,19 @@ soumission.
 
 La politique de confidentialité nomme maintenant le chemin dans l'app, en
 français et en anglais : c'est ce que les réviseurs cherchent.
+
+## 20 septembre 2026 — « Dis-nous ce qui t'aiderait » (v634)
+
+**Choix de Jacques** parmi trois formulations. Le titre disait « Signaler un
+problème ou une idée » depuis la v478.
+
+⚠️ **Le piège évité, et c'est pour ça que le texte ne bouge PAS.** Un titre qui
+ne parle que d'amélioration fait taire les bogues : « un bouton qui ne répond
+pas » n'est pas une amélioration, et c'est exactement ce qu'on ne veut pas
+perdre. Le titre invite, la description rattrape — elle nomme toujours le mot
+qui sonne mal et le bouton qui ne répond pas. Changer les deux aurait fermé la
+porte qu'on croyait ouvrir.
+
+Six langues. Le repli français du balisage suit le libellé : sans ça, la
+première peinture de l'écran montre l'ancien titre jusqu'à ce qu'`applyUiLang`
+passe.
