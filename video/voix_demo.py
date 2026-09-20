@@ -154,7 +154,9 @@ def main():
     a.add_argument("--moteur", default="eleven", choices=["eleven", "sapi"],
                    help="eleven : ElevenLabs (payant, pour livrer). "
                         "sapi : la synthese de Windows (gratuite, pour juger le rythme)")
-    a.add_argument("--voix-eleven", default="rachel",
+    # Bella : choisie par Jacques le 20 septembre 2026, apres ecoute des trois
+    # candidates sur la meme phrase.
+    a.add_argument("--voix-eleven", default="bella",
                    help="nom court (rachel, bella, adam, aurora) ou identifiant")
     a.add_argument("--vitesse", type=int, default=0, help="SAPI : -10 (lent) a 10 (rapide)")
     a.add_argument("--film", default=None, help="le montage muet a sonoriser")

@@ -5513,3 +5513,40 @@ dise.
 **Le banc s'est corrigé au passage** : il déverrouillait les badges avant de
 poser l'expérience, et filmait « Premier pas — 1 sur 1 points », un état qui
 n'existe sur l'appareil de personne. L'app, elle, contrôle à chaque réussite.
+
+## 20 septembre 2026 — la démo de l'app : banc, montage, voix
+
+Trois outils nouveaux, tous dans `video/` : **`banc.py`** pilote l'app et en
+rapporte images et clips, **`montage_demo.py`** les met bout à bout,
+**`voix_demo.py`** pose la narration.
+
+**Le film anglais fait 27,8 s**, six plans + carte-titre, voix **Bella**
+(ElevenLabs) choisie par Jacques après écoute de trois candidates sur la même
+phrase.
+
+Les décisions de Jacques, dans l'ordre où elles sont venues :
+
+- le **tableau ouvre** le film — « visuellement, c'est plus fort » ;
+- **pas de va-et-vient** de caméra : « ça me dérange en tant que spectateur » ;
+- **même cadre** du tableau jusqu'au « Start » — « sinon on ne sait plus où on
+  est » ;
+- un **doigt visible** — « qu'on puisse voir l'action » — qui **s'efface dans
+  le clic**, et qui **entre par la gauche** ;
+- le **dictionnaire** : taper trois lettres, toucher un résultat, s'arrêter à
+  l'arrivée sur la carte (le retournement que j'avais ajouté faisait doublon) ;
+- **pas de Mark ni d'Anna** : sa propre fiche dit que Mark parle allemand depuis
+  l'enfance et qu'Anna est allemande ;
+- **pas de logo au début**, seulement à la fin.
+
+⚠️ **Les pièges rencontrés valent plus que le film** — ils sont tous écrits
+dans les fichiers, à l'endroit qui les corrige. Les trois qui reviendront :
+**on attend un fait, jamais une durée** ; **on clique des coordonnées, jamais
+une poignée d'élément** ; et **la vidéo de Playwright n'est pas à l'échelle du
+temps réel** (une scène de 25 s rendue en 151 s, marques de coupe à côté).
+
+⚠️ **Et l'app n'est pour rien dans la lenteur qu'on a cru voir** : la recherche
+rend ses soixante lignes en **4 ms**, mesuré dans la page. C'était le chemin
+d'entrée clavier de Playwright.
+
+**Ce qui reste** : les cinq autres langues (une commande chacune, images
+gratuites, voix à payer une fois), et la musique si Jacques en veut.
