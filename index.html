@@ -5846,7 +5846,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v626</span>
+    <span class="subtitle-version">v627</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -5950,7 +5950,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
              un qui est apres les soixante-cinq ».
              Et elle est dessinee par dessinerMosaique(), la fonction meme qui
              dessine la vraie : la demonstration ne peut pas mentir sur ce a
-             quoi le glacis ressemble. -->
+             quoi le grain ressemble. -->
         <div class="ip-demo ip-demo-large">
             <div class="ip-toile"><canvas id="ipToile" width="700" height="937"></canvas></div>
         </div>
@@ -18706,25 +18706,28 @@ function majInfoProgression(){
     dessinerToileInfo();
 }
 
-// ⚠️ CENT CARREAUX MANQUANTS (v567). Jacques avait d'abord dit « une vingtaine
-// -- ca donne une bonne idee », et c'etait juste sur le principe : une grille a
-// moitie fermee montre une grille, une toile presque finie montre CE QUE LA
-// GRILLE FAIT. Mais a vingt sur sept cents, dans une vignette de 136 px, les
-// carreaux fermes ne se voyaient plus du tout : la demonstration montrait une
-// toile intacte et n'expliquait plus rien. A cent, ils se comptent encore du
-// regard et le mecanisme redevient lisible a cette taille-la.
-const IP_CARREAUX_MANQUANTS = 100;
+// ⚠️ UNE PART DU PARCOURS, PLUS UN NOMBRE DE CARREAUX MANQUANTS (v627).
+// L'ancienne demonstration montrait la toile a cent carreaux de la fin : c'etait
+// juste tant qu'il y avait des carreaux FERMES a compter du regard -- une toile
+// presque finie montrait ce que la grille faisait. Depuis que la mosaique
+// s'affine au lieu de se devoiler, une toile presque finie ne montre plus rien :
+// ses tesselles sont trop petites pour qu'on les voie dans une vignette de
+// 136 px, et l'image a simplement l'air nette.
+// Ce qu'il faut montrer maintenant, c'est le CONTRASTE DE GRAIN -- de grosses
+// tesselles a cote de petites. Il est a son maximum vers le tiers du parcours :
+// les premiers niveaux sont eclates, les derniers non.
+const IP_TOILE_PART = 0.34;
 
 function dessinerToileInfo(){
     const canvas = document.getElementById("ipToile");
     if(!canvas || canvas.dataset.fait === "1") return;
     const img = new Image();
     img.onload = () => {
-        const g = grilleMosaique(img.naturalWidth, img.naturalHeight);
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
-        dessinerMosaique(canvas, img, Math.max(0, g.total - IP_CARREAUX_MANQUANTS),
-                         g.total, g.cols, g.rows, false);
+        dessinerMosaique(canvas, img,
+                         Math.round(MOSAIQUE_CARREAUX * IP_TOILE_PART),
+                         MOSAIQUE_CARREAUX, false);
         canvas.dataset.fait = "1";
     };
     img.src = MOSAIQUE_BASE + "img/info.jpg";
@@ -26057,7 +26060,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 626;
+const APP_VERSION = 627;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -28013,62 +28016,126 @@ function ecrireMosaique(v){
     try{ localStorage.setItem(MOSAIQUE_CLE, JSON.stringify(v)); }catch(e){}
 }
 
-// L'ORDRE DE REVELATION EST TIRE UNE FOIS ET REPRODUCTIBLE. Il depend du rang
-// seul : deux appareils montrent la meme image au meme etat, et les carreaux ne
-// sautent pas d'une seance a l'autre. Un melange au hasard a chaque rendu
-// rendrait l'image indevinable -- c'est deviner qui donne envie de continuer.
-// Part de la fin reservee a la tranche visible. 8 % : assez pour que la
-// derniere piece et sa poignee de voisines tombent sous les yeux, trop peu
-// pour qu'on remarque que le desordre general a ete touche.
-const MOSAIQUE_QUEUE_VISIBLE = 0.08;
+// ============ ON NE DEVOILE PAS, ON SUBDIVISE (v627) ============
+//
+// ⚠️ CECI REMPLACE TOUT L'APPAREIL DE DEVOILEMENT -- ordreCarreaux(), sa queue
+// visible, grilleMosaique() et le verre depoli. Ne pas les reintroduire sans
+// avoir relu ce paragraphe, parce que le defaut qu'ils portaient n'etait pas un
+// defaut de reglage.
+//
+// L'ancienne mosaique ouvrait 700 carreaux tires au hasard sur un fond depoli.
+// Le defaut n'etait pas « inachevee », il etait « au hasard » : un tirage
+// uniforme, c'est l'entropie maximale, donc le bruit visuel maximal, A CHAQUE
+// ETAT INTERMEDIAIRE. Il n'existait aucun moment des neuf jours ou la bande
+// etait composee. Jacques, le 20 septembre : « on a toujours un tableau plus ou
+// moins construit, donc visuellement ce n'est pas tres interessant ».
+//
+// LA CAUSE PROFONDE : L'IMAGE SERVAIT DE BARRE DE PROGRESSION. Le rapport des
+// carreaux nets aux carreaux fermes ETAIT la mesure d'avancement. Un tableau a
+// qui l'on demande d'etre aussi un graphique sera un mauvais tableau tous les
+// jours sauf le dernier. C'est structurel : aucun reglage ne le rattrape.
+//
+// Ici le tableau est present des le premier jour, en grosses tesselles de
+// couleur moyenne, et une carte en ECLATE UNE EN QUATRE. Jamais de trou, jamais
+// de confettis : chaque etat est une mosaique complete et composee -- et une
+// mosaique plus fine qu'hier se lit comme un avancement sans qu'on ait a la
+// lire. Le mot « carreau » redevient vrai : on en voit, enfin.
+//
+// Et le dernier carreau ne donne pas une mosaique tres fine : il donne LE
+// TABLEAU, net. C'est la seule marche du parcours qui vaut une surprise, et
+// elle tombe pile ou commence le trophee.
+//
+// ⚠️ 6 COLONNES DE BASE, PAS 4. A 4, la bande d'accueil (une tranche de 3/1
+// prise dans le tableau) n'attrapait que cinq tesselles geantes le premier
+// jour : ca ne ressemblait plus a une mosaique, ca ressemblait a un aplat. A 6
+// on en voit une douzaine, et le premier eclatement se voit quand meme.
+const MOSAIQUE_COLONNES = 6;
+// Profondeur maximale d'eclatement. A 5, la plus petite tesselle fait
+// 900/(6x32) = 4,7 px -- deja sous le seuil du visible. Les 700 cartes n'en
+// consomment que quatre niveaux ; le cinquieme n'existe que pour que rien ne
+// casse si MOSAIQUE_CARREAUX monte un jour.
+const MOSAIQUE_PROFONDEUR = 5;
 
-function ordreCarreaux(rang, total, cols, rows, chute){
-    const ordre = [];
-    for(let i = 0; i < total; i++) ordre.push(i);
-    let s = 1013904223 + rang * 2654435761;
-    for(let j = total - 1; j > 0; j--){
-        s = (s * 1103515245 + 12345) & 0x7fffffff;
-        const k = s % (j + 1);
-        const t = ordre[j]; ordre[j] = ordre[k]; ordre[k] = t;
+// ⚠️ ON NE LIT JAMAIS LES PIXELS. La couleur moyenne d'une tesselle de
+// profondeur d est exactement un pixel d'une reduction de l'image a
+// (6.2^d) x (r0.2^d) : le navigateur a deja fait la moyenne en reduisant.
+// La premiere version lisait ce pixel avec getImageData() -- ce qui exige que
+// le canevas ne soit pas TACHE, donc que raw.githubusercontent reponde avec ses
+// en-tetes CORS, sur tous les navigateurs, pour toujours. Un canevas tache leve
+// SecurityError et la mosaique entiere disparaitrait, sur l'appareil de
+// quelqu'un d'autre, sans rien dans le journal. drawImage d'une source de 1x1
+// px etalee sur la tesselle, lissage coupe, donne EXACTEMENT la meme couleur
+// plate et ne lit aucun pixel. Meme lecon que la reduction-agrandissement qui
+// remplace ctx.filter : la voie qui ne depend de rien bat la voie elegante.
+const pyramidesMosaique = new WeakMap();
+function pyramideMosaique(img, c0, r0){
+    let p = pyramidesMosaique.get(img);
+    if(p && p.c0 === c0 && p.r0 === r0) return p;
+    const niveaux = [];
+    for(let d = 0; d <= MOSAIQUE_PROFONDEUR; d++){
+        const cv = document.createElement("canvas");
+        cv.width = c0 << d; cv.height = r0 << d;
+        const cx = cv.getContext("2d");
+        cx.imageSmoothingEnabled = true;
+        cx.imageSmoothingQuality = "high";
+        cx.drawImage(img, 0, 0, cv.width, cv.height);
+        niveaux.push(cv);
     }
-    // ⚠️ LE TABLEAU DOIT FINIR LA OU ON LE VOIT (v597). La bande d'accueil ne
-    // montre qu'une tranche ; un ordre uniforme faisait tomber les derniers
-    // carreaux hors champ, et la bande avait l'air finie bien avant de l'etre.
-    // Signale par Jacques : « la partie du bas, on ne la voit pas ».
-    if(!cols || !rows || !(chute > 0)) return ordre;
-    // La fenetre gardee par le cadre, en fraction de la hauteur du canevas :
-    // il est remonte de 25 % de sa chute, donc elle va de 0,25*chute a
-    // 1 - 0,75*chute. Meme calcul que le translateY, et c'est voulu -- deux
-    // formules pour un seul fait finiraient par diverger.
-    const haut = 0.25 * chute, bas = 1 - 0.75 * chute;
-    const vu = k => {
-        const y = (Math.floor(k / cols) + 0.5) / rows;
-        return y >= haut && y <= bas;
-    };
-    const queue = Math.min(total, Math.max(6, Math.round(total * MOSAIQUE_QUEUE_VISIBLE)));
-    // ⚠️ ON PIOCHE PAR LA FIN, PAS PAR LE DEBUT. Prendre les carreaux visibles
-    // les plus PRECOCES pour les renvoyer a la fin viderait la bande pendant
-    // toute la premiere moitie -- on remplacerait un defaut par son symetrique.
-    // Pris par la fin, ce sont des carreaux qui arrivaient deja tard : la
-    // montee reste la meme, seule la derniere marche change de place.
-    let source = total - queue - 1;
-    for(let p = total - 1; p >= total - queue; p--){
-        if(vu(ordre[p])) continue;
-        while(source >= 0 && !vu(ordre[source])) source--;
-        if(source < 0) break;          // tableau sans aucune rangee visible
-        const t = ordre[p]; ordre[p] = ordre[source]; ordre[source] = t;
-        source--;
-    }
-    return ordre;
+    p = { c0: c0, r0: r0, niveaux: niveaux };
+    pyramidesMosaique.set(img, p);
+    return p;
 }
 
-// La grille suit le format de l'image : des carreaux carres, et un nombre total
-// aussi proche que possible de MOSAIQUE_CARREAUX.
-function grilleMosaique(l, h){
-    const ratio = (l && h) ? l / h : 1;
-    const cols = Math.max(8, Math.round(Math.sqrt(MOSAIQUE_CARREAUX * ratio)));
-    const rows = Math.max(8, Math.round(MOSAIQUE_CARREAUX / cols));
-    return { cols: cols, rows: rows, total: cols * rows };
+// Melange reproductible : meme generateur que partout ailleurs ici, pour que
+// deux appareils montrent la meme mosaique au meme etat.
+function melangerMosaique(tab, graine){
+    let s = 1013904223 + graine * 2654435761;
+    for(let j = tab.length - 1; j > 0; j--){
+        s = (s * 1103515245 + 12345) & 0x7fffffff;
+        const k = s % (j + 1);
+        const t = tab[j]; tab[j] = tab[k]; tab[k] = t;
+    }
+    return tab;
+}
+
+// Les tesselles apres `eclats` eclatements, et celle qui vient d'eclater.
+//
+// ⚠️ ON EPUISE UN NIVEAU AVANT DE PASSER AU SUIVANT, ET CHAQUE NIVEAU EST
+// MELANGE. Les deux, pas l'un des deux. Sans l'epuisement, un coin du tableau
+// serait deja fin quand le reste est encore grossier -- c'est le defaut du
+// hasard qui revient par la fenetre. Sans le melange, l'image s'affinerait
+// rangee par rangee et ce ne serait plus qu'un rideau.
+//
+// L'ordre ne depend que du rang : il ne saute pas d'une seance a l'autre, et
+// deux appareils voient la meme chose.
+function tessellesMosaique(rang, c0, r0, eclats){
+    const niveaux = [[]];
+    for(let j = 0; j < r0; j++) for(let i = 0; i < c0; i++)
+        niveaux[0].push({ i: i, j: j, d: 0, eclate: false });
+    melangerMosaique(niveaux[0], rang * 13);
+    let d = 0, idx = 0, dernier = null;
+    for(let n = 0; n < eclats; n++){
+        while(d <= MOSAIQUE_PROFONDEUR && (!niveaux[d] || idx >= niveaux[d].length)){
+            d++; idx = 0;
+            // Le niveau est complet au moment ou l'on y entre -- on n'y arrive
+            // qu'apres avoir epuise le precedent -- donc on peut le melanger
+            // ici, une seule fois.
+            if(niveaux[d]) melangerMosaique(niveaux[d], rang * 13 + d);
+        }
+        if(d > MOSAIQUE_PROFONDEUR || !niveaux[d]) break;
+        const b = niveaux[d][idx++];
+        b.eclate = true;
+        const nd = b.d + 1;
+        if(!niveaux[nd]) niveaux[nd] = [];
+        niveaux[nd].push({ i: b.i * 2,     j: b.j * 2,     d: nd, eclate: false },
+                         { i: b.i * 2 + 1, j: b.j * 2,     d: nd, eclate: false },
+                         { i: b.i * 2,     j: b.j * 2 + 1, d: nd, eclate: false },
+                         { i: b.i * 2 + 1, j: b.j * 2 + 1, d: nd, eclate: false });
+        dernier = b;
+    }
+    const feuilles = [];
+    for(const niv of niveaux) if(niv) for(const b of niv) if(!b.eclate) feuilles.push(b);
+    return { feuilles: feuilles, dernier: dernier };
 }
 
 // ⚠️ LE PLAFOND N'EST PAS DE LA POLICE ANTI-TRICHE, IL PROTEGE LE RYTHME. Sans
@@ -28117,78 +28184,45 @@ function mosaiqueCourante(){
     return MOSAIQUES[i];
 }
 
-function dessinerMosaique(canvas, img, poses, total, cols, rows, fini){
+function dessinerMosaique(canvas, img, poses, total, fini){
     const ctx = canvas.getContext("2d");
     const L = canvas.width, H = canvas.height;
     ctx.clearRect(0, 0, L, H);
-    ctx.drawImage(img, 0, 0, L, H);
-    if(fini) return;
-    // LE CARREAU FERME EST DU VERRE DEPOLI, PAS UN CACHE OPAQUE. Une grille
-    // vide n'invite personne, et un tableau visible en filigrane tuerait la
-    // curiosite qui porte tout le mecanisme. Le depoli laisse voir qu'il y a
-    // quelque chose, et rien de plus. Idee de Jacques, dosage a mi-chemin.
-    const flou = document.createElement("canvas");
-    flou.width = L; flou.height = H;
-    const fc = flou.getContext("2d");
-    // ⚠️ LE FLOU DOIT DETRUIRE LA COMPOSITION, PAS L'ADOUCIR. A L/46 on
-    // reconnaissait encore le sujet -- « ce n'est pas une image cachee en
-    // glacis, c'est la peinture en plus pale », dit par Jacques, et c'est
-    // exactement ca. Un rayon de L/14 ne laisse que des masses de couleur :
-    // on sent qu'il y a quelque chose, on ne peut plus dire quoi. C'est la
-    // seule facon de garder la curiosite, qui porte tout le mecanisme.
-    // Deux passes, parce qu'un seul blur laisse des contours fantomes.
-    // ⚠️ NE PAS UTILISER ctx.filter POUR FLOUTER. Safari ne l'a qu'a partir
-    // d'iOS 16.4, et la ou il manque il ne LEVE PAS D'ERREUR : il est
-    // simplement ignore. La « copie floue » devenait alors une copie NETTE, et
-    // toute la mosaique s'affichait en clair des le premier jour. Signale par
-    // Jacques -- « je vois le tableau au complet, il n'y a pas le glacis ».
-    // Un defaut invisible en developpement : mon navigateur, lui, l'avait.
-    //
-    // LA REDUCTION-AGRANDISSEMENT NE DEPEND DE RIEN. On dessine l'image dans
-    // une vignette de quelques dizaines de pixels, puis on la retire a la
-    // taille voulue : le lissage du navigateur fait le flou, partout, depuis
-    // toujours. Deux passes pour effacer les derniers contours.
-    // ⚠️ LA FINESSE DU GLACIS SE REGLE ICI, ET SEULEMENT ICI. Plus le
-    // diviseur est grand, plus la vignette intermediaire est petite, et moins
-    // il reste d'information. A 34 on devinait encore le sujet -- « on la voit
-    // beaucoup trop », dit par Jacques. A 90, la vignette fait une dizaine de
-    // pixels : il ne reste que la repartition des masses de couleur, ce qui est
-    // exactement ce qu'on veut voir a travers du verre depoli.
-    const petitL = Math.max(3, Math.round(L / 150));
-    const petitH = Math.max(3, Math.round(H / 150));
-    const mini = document.createElement("canvas");
-    mini.width = petitL; mini.height = petitH;
-    const mc = mini.getContext("2d");
-    mc.imageSmoothingEnabled = true;
-    mc.drawImage(img, 0, 0, petitL, petitH);
-
-    const mini2 = document.createElement("canvas");
-    mini2.width = Math.max(2, Math.round(petitL / 2));
-    mini2.height = Math.max(2, Math.round(petitH / 2));
-    const mc2 = mini2.getContext("2d");
-    mc2.imageSmoothingEnabled = true;
-    mc2.drawImage(mini, 0, 0, mini2.width, mini2.height);
-
-    fc.imageSmoothingEnabled = true;
-    fc.drawImage(mini2, 0, 0, L, H);
-    fc.fillStyle = document.body.dataset.theme === "dark"
-        ? "rgba(18,22,29,.34)" : "rgba(255,255,255,.30)";
-    fc.fillRect(0, 0, L, H);
-
-    // La chute se relit du canevas lui-meme : sa largeur et sa hauteur portent
-    // deja le format de l'oeuvre. La passer en argument ferait une quatrieme
-    // copie de la meme information, et une occasion de plus qu'elles se
-    // contredisent.
-    const chute = Math.max(0, 1 - Math.min(L / H, 3) / 3);
-    const ordre = ordreCarreaux(etatMosaique().r, total, cols, rows, chute);
-    const ouverts = new Uint8Array(total);
-    for(let i = 0; i < Math.min(poses, total); i++) ouverts[ordre[i]] = 1;
-    const cw = L / cols, ch = H / rows;
-    for(let k = 0; k < total; k++){
-        if(ouverts[k]) continue;
-        const x = (k % cols) * cw, y = Math.floor(k / cols) * ch;
-        ctx.drawImage(flou, x, y, cw, ch, x, y, cw, ch);
+    // LE DENOUEMENT. Le dernier carreau ne donne pas une mosaique tres fine :
+    // il donne LE TABLEAU. C'est la seule marche du parcours qui vaut une
+    // surprise, et elle tombe pile ou commence le trophee.
+    if(fini || poses >= total){
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(img, 0, 0, L, H);
+        return null;
     }
+    // Des tesselles CARREES : le nombre de rangees suit le format de l'oeuvre.
+    // Nos 65 tableaux vont de 0,71 a 1,43, et une tesselle deux fois plus haute
+    // que large ne se lit plus comme une mosaique.
+    const c0 = MOSAIQUE_COLONNES;
+    const r0 = Math.max(2, Math.round(c0 * H / L));
+    const py = pyramideMosaique(img, c0, r0);
+    const t = tessellesMosaique(etatMosaique().r, c0, r0, Math.max(0, poses));
+    // ⚠️ LISSAGE COUPE, ET C'EST CE QUI REND LA COULEUR PLATE. Avec le lissage,
+    // un pixel source etale sur 150 px revient a un degrade entre voisins : on
+    // retrouve un flou, pas une mosaique.
+    ctx.imageSmoothingEnabled = false;
+    for(const b of t.feuilles){
+        const w = L / (c0 << b.d), h = H / (r0 << b.d);
+        // ⚠️ +1 px SUR CHAQUE TESSELLE, ET CE N'EST PAS UN A-PEU-PRES. Des
+        // coordonnees fractionnaires laissent une couture claire entre deux
+        // voisines ; sur deux mille tesselles ca fait une grille grise
+        // par-dessus le tableau. Le debordement est mange par la suivante, et
+        // la derniere colonne deborde dans le vide.
+        ctx.drawImage(py.niveaux[b.d], b.i, b.j, 1, 1,
+                      b.i * w, b.j * h, w + 1, h + 1);
+    }
+    ctx.imageSmoothingEnabled = true;
+    if(!t.dernier) return null;
+    // La tesselle qui vient d'eclater, en coordonnees du canevas : de quoi
+    // faire monter une lumiere dessus le jour ou on le voudra.
+    const w = L / (c0 << t.dernier.d), h = H / (r0 << t.dernier.d);
+    return [t.dernier.i * w, t.dernier.j * h, w, h];
 }
 
 // LE CARTOUCHE SE DEVOILE EN TROIS TEMPS, ET CHAQUE TEMPS DONNE QUELQUE CHOSE
@@ -28238,6 +28272,12 @@ function cartoucheMosaique(m, part, fini){
 //   - deux canevas hors ecran de plus dans dessinerMosaique(), pour le glacis ;
 //   - jusqu'a 700 rectangles de carreaux, et ce nombre MONTE avec la seance.
 //
+// ⚠️ LE GLACIS A DISPARU EN v627, LE DEFAUT NON. La mosaique qui s'affine ne
+// construit plus les deux canevas du glacis a chaque rendu -- elle garde sa
+// pyramide de couleurs par image -- mais elle dessine jusqu'a DEUX MILLE
+// tesselles, et ce nombre monte aussi avec la seance. Le report reste donc
+// necessaire pour exactement la meme raison.
+//
 // Le journal du gel du 13 septembre 2026 montre exactement cette forme : neuf
 // gels sur onze sur l'ecran `flashcards`, anonymes (le travail se fait dans
 // `img.onload`, donc hors de toute marque), et qui GRANDISSENT au fil de la
@@ -28285,8 +28325,13 @@ function majMosaiqueAccueil(){
         if(!m){ bloc.classList.add("hidden"); return; }
         bloc.classList.remove("hidden");
         const v = etatMosaique();
-        const g = grilleMosaique(m.l, m.h);
-        const fini = v.c >= g.total;
+        // ⚠️ LE TOTAL NE DEPEND PLUS DU FORMAT DE L'OEUVRE (v627). Il valait
+        // cols x rows, donc 696 sur un tableau et 702 sur un autre : un reste
+        // de l'epoque ou le nombre de carreaux etait celui d'une grille. Le
+        // nombre de CARTES pour finir un tableau n'a aucune raison de dependre
+        // de sa forme, et « environ 700 carreaux » redevient exact.
+        const total = MOSAIQUE_CARREAUX;
+        const fini = v.c >= total;
         const canvas = document.getElementById("mosaiqueToile");
         imageMosaique(m.fichier).then(img => {
             // MARQUE : c'est le travail le plus lourd de l'accueil, et il etait
@@ -28310,7 +28355,7 @@ function majMosaiqueAccueil(){
                 const chute = Math.max(0, 1 - Math.min(r, 3) / 3);
                 canvas.style.transform =
                     "translateY(" + (-25 * chute).toFixed(2) + "%)";
-                dessinerMosaique(canvas, img, v.c, g.total, g.cols, g.rows, fini);
+                dessinerMosaique(canvas, img, v.c, total, fini);
                 // ⚠️ LA JAUGE EST ECRITE ICI DEPUIS LA v597, ET ELLE NE L'ETAIT
                 // PLUS DU TOUT DEPUIS LA v588. Ses deux lignes vivaient dans
                 // cartoucheMosaique() -- une fonction dont le nom ne promet
@@ -28323,7 +28368,7 @@ function majMosaiqueAccueil(){
                 // celle qui compose une legende.
                 const jauge = document.getElementById("mosaiqueJauge");
                 if(jauge) jauge.style.width =
-                    Math.round(Math.min(1, fini ? 1 : v.c / Math.max(1, g.total)) * 100) + "%";
+                    Math.round(Math.min(1, fini ? 1 : v.c / Math.max(1, total)) * 100) + "%";
                 // ⚠️ PLUS DE CARTOUCHE SUR LA CARTE D'ACCUEIL (v588).
                 // Decision de Jacques : « le "peint en 1905", on va l'enlever ;
                 // l'information va etre seulement lorsqu'on clique pour
@@ -28344,7 +28389,7 @@ function majMosaiqueAccueil(){
         if(fini && v.t === 0 && v.g.indexOf(v.r) < 0){
             v.g.push(v.r);
             v.t = MOSAIQUE_SEANCES_TROPHEE;
-            v.taille = g.total;
+            v.taille = total;
             ecrireMosaique(v);
         }
         const pied = document.getElementById("mosaiquePied");
@@ -28390,11 +28435,11 @@ function ouvrirMosaiquePleinEcran(rang){
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = () => {
-            const g = grilleMosaique(m.l, m.h);
+            const total = MOSAIQUE_CARREAUX;
             const L = Math.min(900, m.l || 900);
             toile.width = L;
             toile.height = Math.round(L * (m.h || 1) / (m.l || 1));
-            dessinerMosaique(toile, img, gagnee ? g.total : v.c, g.total, g.cols, g.rows, gagnee);
+            dessinerMosaique(toile, img, gagnee ? total : v.c, total, gagnee);
             if(gagnee){
                 const bio = noticePeintre(m.peintre);
                 leg.innerHTML = '<b>' + m.titre + '</b><br>' + m.peintre
@@ -28408,9 +28453,9 @@ function ouvrirMosaiquePleinEcran(rang){
                 // d'ou Jacques les a retires. Sans ce report, ils auraient
                 // disparu de l'application : le devoilement n'aurait plus rien
                 // devoile.
-                leg.innerHTML = cartoucheMosaique(m, v.c / g.total, false)
+                leg.innerHTML = cartoucheMosaique(m, v.c / total, false)
                     + '<div class="mos-plein-reste">'
-                    + tf("mosaique_reste", { n: Math.max(0, g.total - v.c) })
+                    + tf("mosaique_reste", { n: Math.max(0, total - v.c) })
                     + '</div>';
             }
         };

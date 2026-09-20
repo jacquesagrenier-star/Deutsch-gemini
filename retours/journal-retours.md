@@ -5152,3 +5152,80 @@ récupération insiste cinq minutes au lieu de trois essais ; un reçu qui écho
 passe en « PAYÉE, NON RÉCUPÉRÉE » au lieu de rester « soumise » ; et
 `--recuperer` rebalaie ces reçus pour retélécharger **sans rien facturer**. Le
 jour où fal répond, une commande ramène le plan 05 sans nouvelle dépense.
+
+
+## 20 septembre 2026 — la mosaïque ne se dévoile plus, elle s'affine (v627)
+
+**« On a toujours un tableau qui est plus ou moins construit, donc visuellement
+ce n'est pas très intéressant. »** — Jacques, sur la bande d'accueil. Il
+proposait deux sorties : montrer un tableau déjà terminé, ou partager le cycle
+entre fini et en cours. Ni l'une ni l'autre n'a été retenue, parce que le défaut
+n'était pas là.
+
+⚠️ **Le défaut n'était pas « inachevé », il était « au hasard ».**
+`ordreCarreaux()` tirait les 700 carreaux uniformément. Un tirage uniforme, c'est
+l'entropie maximale, donc le bruit visuel maximal, **à chaque état
+intermédiaire** : il n'existait aucun moment des neuf jours où la bande était
+composée. Les trois séances du trophée étaient la seule fenêtre propre du cycle.
+
+⚠️ **Et la cause profonde : l'image servait de barre de progression.** Le rapport
+des carreaux nets aux carreaux fermés ÉTAIT la mesure d'avancement. Un tableau à
+qui l'on demande d'être aussi un graphique sera un mauvais tableau tous les jours
+sauf le dernier. C'est structurel — aucun réglage de flou, d'ancrage ou de ratio
+ne le rattrape, et trois versions (v583, v597, v607) avaient déjà essayé.
+
+**Ce qui remplace : on ne dévoile plus, on subdivise.** Le tableau est là dès le
+premier jour, en grosses tesselles de couleur moyenne (grille de base 6 × n,
+tesselles carrées quel que soit le format). Une carte en **éclate une en
+quatre**. Jamais de trou, jamais de verre dépoli, jamais de confettis : chaque
+état est une mosaïque complète et composée, et une mosaïque plus fine qu'hier se
+lit comme un avancement sans qu'on ait à la lire. Le mot « carreau » redevient
+vrai — on en voit, enfin.
+
+**Le dernier carreau ne donne pas une mosaïque très fine : il donne LE TABLEAU**,
+net, d'un coup. C'est la seule marche du parcours qui vaut une surprise, et elle
+tombe pile où commence le trophée.
+
+⚠️ **La décision est passée par cinq rendus, pas par un raisonnement** —
+`essais/apercu-revelation/` (hors dépôt) compare le hasard, les foyers, le
+rideau, l'échelle de résolution et la subdivision, au même état, sur les 65
+tableaux. Deux outils qui ne jugent pas la même chose : le curseur juge la
+beauté, le bouton « + 1 carte » juge **la progression sentie** — et c'est lui qui
+a écarté l'échelle de résolution, la plus belle des cinq, parce qu'une carte sur
+700 n'y change rien de perceptible.
+
+⚠️ **On ne lit jamais les pixels, et c'est délibéré.** La couleur moyenne d'une
+tesselle est un pixel d'une réduction de l'image — la première version la lisait
+avec `getImageData()`, ce qui exige que le canevas ne soit pas taché, donc que
+`raw.githubusercontent` réponde avec ses en-têtes CORS partout et pour toujours.
+Un canevas taché lève `SecurityError` et la mosaïque entière disparaîtrait, sur
+l'appareil de quelqu'un d'autre, sans rien dans le journal. `drawImage` d'une
+source de 1 × 1 px étalée sur la tesselle donne exactement la même couleur plate
+et ne lit rien. **Même leçon que la réduction-agrandissement qui remplace
+`ctx.filter`** : la voie qui ne dépend de rien bat la voie élégante.
+
+**Trois choses disparaissent** : `ordreCarreaux()` et sa queue visible (le
+rustine de la v597 n'existait que parce que l'ordre était aléatoire),
+`grilleMosaique()` (le nombre de cartes pour finir un tableau n'a aucune raison
+de dépendre de sa forme — « environ 700 carreaux » redevient exact), et les deux
+canevas hors écran du glacis. Le rendu est plus simple qu'avant, pas plus
+compliqué.
+
+**La démonstration du panneau d'aide a dû changer de sujet.** Elle montrait la
+toile à cent carreaux de la fin : juste tant qu'il y avait des carreaux *fermés*
+à compter du regard. Une mosaïque presque finie ne montre plus rien — ses
+tesselles sont trop petites pour se voir dans une vignette de 136 px. Ce qu'il
+faut montrer maintenant est le **contraste de grain**, à son maximum vers le
+tiers du parcours (`IP_TOILE_PART = 0.34`).
+
+⚠️ **Reste à faire, et c'est une passe à six langues :** `ip_tableau_1` dit
+encore « chaque carte que tu traverses en ouvre un ». Sous la subdivision, une
+carte n'*ouvre* pas un carreau, elle l'éclate en quatre. La phrase n'est pas
+fausse au point de mentir, mais elle est tirée — à reformuler par la chaîne de
+traduction habituelle (fr, en, tr, uk, fa, ar), pas à la main ici.
+
+⚠️ **Le défaut inhérent, écrit pour qu'on ne le redécouvre pas :** l'événement
+rétrécit. Le premier jour un bloc de 150 px éclate et ça saute aux yeux ; le
+neuvième, c'est une tesselle de 18 px. Aucun schéma progressif n'y échappe —
+l'échelle de résolution l'a en pire. C'est la jauge qui porte la fin du parcours,
+et elle le fait déjà.
