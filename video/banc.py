@@ -314,15 +314,16 @@ class Pilote:
         # rendu. Deux prises perdues la-dessus, dont une avec le message
         # << Locator.bounding_box: Timeout >>.
         boite = None
-        for essai in range(3):
+        for essai in range(5):
             try:
                 cible = self.page.locator(selecteur).first
+                cible.wait_for(state="visible", timeout=6000)
                 cible.scroll_into_view_if_needed(timeout=6000)
                 boite = cible.bounding_box(timeout=6000)
                 if boite:
                     break
             except Exception:
-                self.attendre(0.8)
+                self.attendre(1.0)
         if not boite:
             raise RuntimeError("cible introuvable ou instable : " + selecteur)
         x = boite["x"] + boite["width"] / 2
@@ -374,9 +375,24 @@ class Pilote:
         }""", [x, y])
         self.attendre(0.18)
         cible.click()
+        # ⚠️ LE DOIGT SE RETIRE AVEC LE CLIC, PAS QUELQUES SECONDES PLUS TARD.
+        # Signale par Jacques : la pastille restait posee sur l'ecran des cartes
+        # apres avoir touche << Commencer >>, comme un doigt oublie sur la
+        # vitre. Un geste se termine quand il a produit son effet -- et c'est
+        # justement a cet instant que le spectateur regarde le NOUVEL ecran, pas
+        # la main.
+        self.page.evaluate("""() => {
+            const d = document.getElementById('__banc_doigt');
+            if(!d) return;
+            d.animate([{ opacity: 1 }, { opacity: 0 }],
+                      { duration: 180, easing: 'ease-out', fill: 'forwards' })
+             .onfinish = () => d.remove();
+        }""")
         self.attendre(pause)
 
     def ranger_doigt(self):
+        """Filet de securite : doigt() se retire deja tout seul apres son clic.
+        Reste utile si une scene pose le doigt sans cliquer."""
         self.js("const d = document.getElementById('__banc_doigt'); if(d) d.remove();")
 
     def clic(self, selecteur):
@@ -639,7 +655,10 @@ def scene_choix_niveau(p):
     # pour deux touchers, dans un film qui en fait trente. Le doigt doit se
     # voir, pas se regarder marcher.
     p.doigt("#seanceNiveaux button:text-is('B1')", approche=0.5, pause=0.2)
-    p.attendre(0.4)
+    # ⚠️ CHOISIR UN NIVEAU RECONSTRUIT LA CARTE DE SEANCE : le bouton
+    # << Commencer >> disparait et revient. Enchainer tout de suite, c est viser
+    # un bouton en train d etre remplace -- et l erreur dit << cible instable >>.
+    p.attendre(0.9)
     p.doigt(".seance-go", approche=0.5, pause=0.15)
     p.attendre(2.0)
     p.ranger_doigt()

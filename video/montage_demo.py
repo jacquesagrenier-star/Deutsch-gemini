@@ -63,12 +63,17 @@ CLIPS_APPAREIL = "clip720"
 # joue son vrai role : montrer que tout part de la.
 PLANS = [
     ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
-    ("clip:choix_niveau",       7.2, 0.00),  # 2. tu choisis, tu commences, la carte est la
-    ("clip:retournement",       3.3, 0.00),  # 3. tu reponds -- LE VRAI GESTE
+    ("clip:choix_niveau",       7.5, 0.00),  # 2. tu choisis, tu commences, la carte est la
+    ("clip:retournement",       4.5, 0.00),  # 3. tu reponds -- LE VRAI GESTE
     ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
     ("dictionnaire-01.png",     4.5, 0.10),  # 5. un mot te manque ?
-    ("examens-01-panneau.png",  3.5, 0.15),  # 6. les listes officielles
-    ("retour-01.png",           3.0, 0.35),  # 7. dis-nous ce qui t'aiderait
+    ("retour-01.png",           3.0, 0.35),  # 6. dis-nous ce qui t'aiderait
+
+# ⚠️ LE PLAN DES EXAMENS EST RETIRE (demande de Jacques). C'etait le seul qui ne
+# montrait ni geste ni mouvement : un panneau qu'on lit, dans un film qu'on
+# regarde. Ce qu'il portait -- les listes officielles Goethe et DTZ -- se dit
+# mieux en une ligne de narration ou sur une carte-titre qu'en trois secondes
+# d'ecran fixe.
 ]
 
 # ⚠️ LE PLAN FIXE DE L'ACCUEIL A DISPARU, ET C'EST UN GAIN. Demande de Jacques :
