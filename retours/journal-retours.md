@@ -5245,3 +5245,46 @@ Quatre clés touchées dans chaque langue : `mosaique_reste`, `mosaique_trophee`
 plafond) : « au moins 9 jours » suit les constantes dans les six langues à la
 fois. Un chiffre recopié à la main dans six phrases est celui qui se contredit
 en premier.
+
+## 20 septembre 2026 — le séjour du trophée passe dans la cartouche (v631)
+
+**Demande de Jacques, à la voix :** « le tableau va rester affiché trois jours
+[…] on ne voit pas le prochain tableau tout de suite, on va le voir après […]
+puis bien identifier que le tableau reste trois jours **avec la cartouche** ».
+
+Le comportement, lui, était déjà celui-là — vérifié dans le code avant de
+toucher quoi que ce soit : pendant le trophée `poserCarreau()` sort tout de
+suite (`if(v.t > 0) return;`), donc rien ne s'accumule dessous, et c'est
+`seanceMosaiqueTerminee()` qui fait `v.r + 1` au troisième jour d'activité.
+Le tableau suivant n'apparaît pas avant. Seul l'AFFICHAGE était à déplacer.
+
+La phrase vivait dans le pied, au ras du bouton « Ta galerie », à l'autre bout
+de la carte. Elle est maintenant la deuxième ligne de la cartouche, sous le
+titre de l'œuvre. Le pied garde le plafond du jour — lui n'est pas une légende
+mais une panne apparente à expliquer sur-le-champ.
+
+⚠️ **« Jour 1 sur 3 » remplace « encore 3 jours », et ce n'est pas une
+préférence de style.** Le décompte butait sur l'accord dans trois langues sur
+six, pour des valeurs toutes atteignables (3, 2, 1) :
+
+- français — « encore **1 jours** à l'écran » au dernier jour ;
+- ukrainien — « ще 3 **днів** » : sous cinq, c'est « дні » ;
+- arabe — « 2 **أيام** » là où le duel exige « يومان ».
+
+`tf()` est une substitution nue, sans machinerie de pluriel, et en ajouter une
+pour six langues aurait coûté plus que la phrase ne vaut. **Un rang sur un
+total ne fait jamais accorder un nom à un nombre** — et il dit les trois jours
+*chaque* jour, au lieu de ne les dire qu'au premier. C'est exactement ce que la
+demande voulait identifier.
+
+⚠️ **Deux commentaires du fichier étaient faux, et l'un depuis sa naissance.**
+« Une image demande treize jours au plus vite » : 700 ÷ 80 = 8,75, donc neuf —
+et `git log -S` montre que les deux constantes n'ont jamais bougé depuis la
+v543. Il n'a pas dérivé, il est né faux. L'autre disait « le trophée se compte
+en séances, pas en jours », l'inverse du code depuis la v629. Les deux sont
+réécrits. Le chiffre montré à l'usager, lui, est calculé — c'est ce qui a rendu
+l'écart visible.
+
+**Vérifié à l'écran**, pas seulement au vérificateur : les six langues rendues
+dans la carte, `dir="rtl"` correct en arabe et en persan, aucun débordement de
+la cartouche, et les trois jours défilent bien 1 → 2 → 3.

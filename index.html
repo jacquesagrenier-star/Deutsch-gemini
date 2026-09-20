@@ -4820,7 +4820,16 @@ body[data-theme="dark"] .mos-notice{color:#A6ADBB;}
     display:flex; align-items:flex-start; gap:10px;
     padding:10px 2px 0; cursor:pointer; text-align:start;
 }
+/* ⚠️ UNE COLONNE ENTRE LE CARTOUCHE ET SES LIGNES (v631). Le cartouche est
+   une RANGEE : identite, puis chevron. En y ajoutant la ligne du sejour sans
+   cette enveloppe, elle serait devenue un troisieme element DE LA RANGEE --
+   donc a cote du titre, pas dessous. */
+.mos-cart-texte{flex:1; min-width:0;}
 .mos-cartouche-carte > .mos-ligne{flex:1; min-width:0;}
+/* Le sejour du trophee, sous l'identite de l'oeuvre. Meme graisse que la
+   notice du peintre : elle informe, elle ne felicite pas. */
+.mos-sejour{font-size:11px; color:#7b8798; margin-top:4px; line-height:1.4;}
+body[data-theme="dark"] .mos-sejour{color:#9AA2B1;}
 /* ⚠️ `margin-top:0` SUR LA PREMIERE RANGEE. .mos-identite porte un margin-top
    de 3 px pour le plein ecran, ou il suit un titre ; ici il n'y a rien
    au-dessus, et ces 3 px desalignaient le chevron d'autant. */
@@ -5888,7 +5897,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v630</span>
+    <span class="subtitle-version">v631</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8533,7 +8542,7 @@ const I18N = {
         mosaique_compte: "Tableau {n} sur {total}",
         mosaique_annee: "Peint en {a}",
         mosaique_reste: "encore {n} cartes avant le tableau entier d'un peintre du monde germanophone",
-        mosaique_trophee: "Terminé · encore {n} jours à l'écran, puis un nouveau tableau",
+        mosaique_trophee: "À l'écran · jour {i} sur {n}, puis un nouveau tableau",
         mosaique_galerie: "Ta galerie",
         mosaique_agrandir: "Agrandir le tableau",
         mosaique_galerie_kicker: "Tes tableaux",
@@ -9496,7 +9505,7 @@ const I18N = {
         mosaique_compte: "Painting {n} of {total}",
         mosaique_annee: "Painted in {a}",
         mosaique_reste: "{n} cards left before the whole painting, by an artist from the German-speaking world",
-        mosaique_trophee: "Finished · {n} more days on screen, then a new painting",
+        mosaique_trophee: "On screen · day {i} of {n}, then a new painting",
         mosaique_galerie: "Your gallery",
         mosaique_agrandir: "Enlarge the painting",
         mosaique_galerie_kicker: "Your paintings",
@@ -10461,7 +10470,7 @@ const I18N = {
         mosaique_compte: "Tablo {n} / {total}",
         mosaique_annee: "{a} yılında yapıldı",
         mosaique_reste: "Almanca konuşulan dünyadan bir ressamın tablosunun tamamına {n} kart kaldı",
-        mosaique_trophee: "Bitti · ekranda {n} gün daha, sonra yeni bir tablo",
+        mosaique_trophee: "Ekranda · {n} günün {i}. günü, sonra yeni bir tablo",
         mosaique_galerie: "Galerin",
         mosaique_agrandir: "Tabloyu büyüt",
         mosaique_galerie_kicker: "Tabloların",
@@ -11682,7 +11691,7 @@ const I18N = {
         mosaique_compte: "Картина {n} з {total}",
         mosaique_annee: "Написано у {a} році",
         mosaique_reste: "ще {n} карток до цілої картини художника німецькомовного світу",
-        mosaique_trophee: "Завершено · ще {n} днів на екрані, потім нова картина",
+        mosaique_trophee: "На екрані · день {i} з {n}, потім нова картина",
         mosaique_galerie: "Твоя галерея",
         mosaique_agrandir: "Збільшити картину",
         mosaique_galerie_kicker: "Твої картини",
@@ -13303,7 +13312,7 @@ const I18N = {
         mosaique_compte: "تابلوی {n} از {total}",
         mosaique_annee: "نقاشی‌شده در {a}",
         mosaique_reste: "{n} کارت مانده تا تابلوی کامل نقاشی از جهان آلمانی‌زبان",
-        mosaique_trophee: "تمام شد · {n} روز دیگر روی صفحه، سپس تابلویی تازه",
+        mosaique_trophee: "روی صفحه · روز {i} از {n}، سپس تابلویی تازه",
         mosaique_galerie: "گالری تو",
         mosaique_agrandir: "بزرگ‌نمایی تابلو",
         mosaique_galerie_kicker: "تابلوهای تو",
@@ -14390,7 +14399,7 @@ const I18N = {
         mosaique_compte: "اللوحة {n} من {total}",
         mosaique_annee: "رُسمت عام {a}",
         mosaique_reste: "بقيت {n} بطاقة حتى اللوحة الكاملة لرسّام من العالم الناطق بالألمانية",
-        mosaique_trophee: "انتهت · {n} أيام أخرى على الشاشة، ثم لوحة جديدة",
+        mosaique_trophee: "على الشاشة · اليوم {i} من {n}، ثم لوحة جديدة",
         mosaique_galerie: "معرضك",
         mosaique_agrandir: "تكبير اللوحة",
         mosaique_galerie_kicker: "لوحاتك",
@@ -23636,9 +23645,11 @@ const FLASHCARD_RETURN_SCREENS = {
 };
 
 function handleFlashcardBack(){
-    // Le trophee se compte EN SEANCES, pas en jours : quelqu'un qui part une
-    // semaine retrouve son tableau au retour au lieu de l'avoir rate. Meme
-    // principe que la v523 -- l'absence ne punit pas.
+    // Le trophee se compte EN JOURS D'ACTIVITE (v629), et c'est d'ici qu'il
+    // avance : une semaine d'absence ne consomme rien, une semaine de
+    // seances ne consomme pas trois jours en un apres-midi. La garde de date
+    // est dans seanceMosaiqueTerminee(), avec le detail. Meme principe que
+    // la v523 -- l'absence ne punit pas.
     try{ seanceMosaiqueTerminee(); }catch(e){}
     sessionVues = 0; sessionSues = 0;
     if(retourSeanceAccueil){
@@ -26110,7 +26121,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 630;
+const APP_VERSION = 631;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -28202,7 +28213,11 @@ function tessellesMosaique(rang, c0, r0, eclats){
 // ⚠️ LE PLAFOND N'EST PAS DE LA POLICE ANTI-TRICHE, IL PROTEGE LE RYTHME. Sans
 // lui, mille cartes balayees en un quart d'heure terminent une image d'un coup,
 // et la collection entiere y passe en une semaine -- il ne resterait rien pour
-// le sixieme mois. Avec, une image demande treize jours au plus vite.
+// le sixieme mois. Avec, une image demande NEUF JOURS au plus vite (700 /
+// 80), et douze avant que le suivant commence -- le trophee n'accumule
+// rien. Le fichier a dit << treize >> de la v543 a la v631, sans qu'aucune
+// constante ait jamais bouge : il est ne faux. C'est le chiffre ECRIT A LA
+// MAIN qui derive, jamais celui que pose {j} dans ip_tableau_plafond.
 function poserCarreau(){
     const v = etatMosaique();
     const jour = getTodayStr();
@@ -28535,10 +28550,14 @@ function majMosaiqueAccueil(){
             // retire : la jauge sous l'image le montre, et un chiffre qui
             // repete un trait n'ajoute rien. Restent les deux cas ou il se
             // passe quelque chose qu'aucune barre ne peut expliquer.
-            pied.textContent = fini
-                ? tf("mosaique_trophee", { n: Math.max(1, v.t) })
-                : plafonne ? t("mosaique_plafond")
-                : "";
+            // ⚠️ LE SEJOUR A DEMENAGE DANS LE CARTOUCHE (v631). Demande de
+            // Jacques : « bien identifier que le tableau reste trois jours,
+            // avec la cartouche ». Ce pied vit au ras du bouton « Ta galerie »,
+            // a l'autre bout de la carte ; la plaque, elle, est sous le cadre,
+            // la ou un musee ecrit ce qu'il y a a savoir de l'oeuvre. Le pied
+            // garde le PLAFOND DU JOUR, qui n'est pas une legende : c'est une
+            // panne apparente qu'il faut expliquer sur-le-champ.
+            pied.textContent = (!fini && plafonne) ? t("mosaique_plafond") : "";
         }
         // ⚠️ LE CARTOUCHE REVIENT, MAIS SEULEMENT UNE FOIS L'OEUVRE GAGNEE
         // (v629). Il avait ete retire de la carte d'accueil en v588 -- « le
@@ -28569,8 +28588,23 @@ function majMosaiqueAccueil(){
         const cart = document.getElementById("mosaiqueCartouche");
         if(cart){
             cart.classList.toggle("hidden", !fini);
+            // ⚠️ « JOUR 1 SUR 3 », PAS « ENCORE 3 JOURS » (v631). Le decompte
+            // se heurtait a l'accord des six langues : « encore 1 jours » en
+            // francais, « ще 3 днів » en ukrainien (il faut « дні » sous cinq),
+            // « 2 أيام » en arabe la ou le duel demande « يومان ». Un rang sur
+            // un total ne fait jamais accorder un nom a un nombre -- et il dit
+            // les TROIS JOURS chaque jour, au lieu de ne les dire qu'au
+            // premier. C'est ce que Jacques demandait d'identifier.
+            // ⚠️ {i} ET {n} SONT CALCULES depuis MOSAIQUE_SEANCES_TROPHEE :
+            // meme regle que le {j} de ip_tableau_plafond.
             cart.innerHTML = fini
-                ? cartoucheMosaique(m, 1, true, false)
+                ? '<div class="mos-cart-texte">'
+                  + cartoucheMosaique(m, 1, true, false)
+                  + '<div class="mos-sejour">' + tf("mosaique_trophee", {
+                        i: Math.min(MOSAIQUE_SEANCES_TROPHEE,
+                           Math.max(1, MOSAIQUE_SEANCES_TROPHEE - v.t + 1)),
+                        n: MOSAIQUE_SEANCES_TROPHEE
+                    }) + '</div></div>'
                   + '<span class="mos-cart-chevron" aria-hidden="true">›</span>'
                 : "";
         }
