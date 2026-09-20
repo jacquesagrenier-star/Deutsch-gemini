@@ -5846,7 +5846,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v627</span>
+    <span class="subtitle-version">v628</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26060,7 +26060,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 627;
+const APP_VERSION = 628;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -28330,8 +28330,20 @@ function majMosaiqueAccueil(){
         // de l'epoque ou le nombre de carreaux etait celui d'une grille. Le
         // nombre de CARTES pour finir un tableau n'a aucune raison de dependre
         // de sa forme, et « environ 700 carreaux » redevient exact.
+        // ⚠️ << FINI >> VEUT DIRE << GAGNE >>, PAS << LE COMPTE Y EST >> (v628).
+        // En passant le total de cols x rows a 700 plat, j'ai rendu la cible
+        // PLUS HAUTE sur 31 tableaux des 65 -- jusqu'a dix carreaux de plus.
+        // Quelqu'un qui etait en plein trophee sur l'un d'eux avait un v.c
+        // suffisant pour l'ancien total et insuffisant pour le nouveau : son
+        // tableau gagne redevenait une mosaique presque finie, et le pied
+        // << il reste N seances >> disparaissait, pendant trois seances, sans
+        // qu'aucune erreur ne le signale. La machinerie s'en remettait seule
+        // ensuite -- ce qui est exactement ce qui rend ce genre de defaut
+        // invisible.
+        // Le rang est dans la galerie : le tableau EST gagne. Ce fait-la ne
+        // depend d'aucun compte, et c'est lui qui doit commander l'affichage.
         const total = MOSAIQUE_CARREAUX;
-        const fini = v.c >= total;
+        const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
         const canvas = document.getElementById("mosaiqueToile");
         imageMosaique(m.fichier).then(img => {
             // MARQUE : c'est le travail le plus lourd de l'accueil, et il etait
