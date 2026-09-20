@@ -143,6 +143,38 @@ def plan(image, duree, ancre, glisse, cible):
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
 
 
+# La couleur de fond de l'app, prise dans manifest.json : la carte-titre n'est
+# pas un ecran de plus, c'est le meme papier que tout le reste.
+PAPIER = "0xF2EEE2"
+LOGO = "branding/wortando-logo-pale.png"
+
+
+def carte_titre(duree, cible):
+    """Le monogramme sur le papier de l'app, en fondu.
+
+    ⚠️ LE LOGO SEUL, AUCUNE PHRASE. Une accroche inventee pour finir un film
+    est une promesse que personne n'a relue -- et elle vieillit avant l'app.
+    Le nom suffit : c'est la seule chose qu'on demande au spectateur de retenir.
+    ⚠️ ET PAS DE VERSION CLAIRE SUR FOND FONCE : `wortando-logo-pale.png` est
+    fait pour les sections claires, `-dark` pour les foncees. Poser l'un sur
+    l'autre donne un logo qui disparait -- ils ne sont pas interchangeables."""
+    logo = RACINE / LOGO
+    if not logo.exists():
+        return False
+    ffmpeg(["-f", "lavfi", "-i", "color=c=%s:s=%dx%d:d=%s:r=%d" % (PAPIER, LARGEUR, HAUTEUR, duree, FPS),
+            "-loop", "1", "-i", str(logo),
+            "-filter_complex",
+            # ⚠️ format=rgba APRES scale : sans lui, le redimensionnement rend un
+            # format sans couche alpha et la zone transparente du logo arrive
+            # comme un rectangle pale sur le papier -- visible a l'oeil, pas
+            # dans le fichier source, qui est bien transparent partout.
+            "[1:v]scale=680:-1,format=rgba[l];[0:v][l]overlay=(W-w)/2:(H-h)/2:shortest=1,"
+            "fade=t=in:st=0:d=0.45,format=yuv420p[v]",
+            "-map", "[v]", "-t", str(duree),
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(cible)])
+    return True
+
+
 def plan_suite(dossier, duree, ancre, cible, fps_prise=15):
     """Un plan PHOTOGRAPHIE : une suite d'images pleine resolution, jouee a
     `fps_prise` et redescendue a 1080. Aucune perte de nettete -- on descend,
@@ -212,6 +244,8 @@ def main():
     a.add_argument("--transition", default="coupe", choices=["coupe", "fondu", "bascule"],
                    help="coupe : rien entre les plans. fondu : un fondu enchaine. "
                         "bascule : l'image s'ecrase et se rouvre, comme une carte qu'on retourne")
+    a.add_argument("--sans-titre", action="store_true",
+                   help="ne pas ajouter la carte-titre de fin")
     a.add_argument("--immobile", action="store_true",
                    help="aucun mouvement : des images fixes, le rythme vient des coupes")
     args = a.parse_args()
@@ -267,6 +301,18 @@ def main():
 
     if not morceaux:
         sys.exit("Aucun plan a monter.")
+
+    # La carte-titre ferme le film. Elle vient APRES la boucle : ce n'est pas un
+    # plan de l'app, et la lister parmi les autres inviterait a lui donner une
+    # duree, une ancre, un mouvement -- trois occasions de la charger.
+    if not args.sans_titre:
+        fin = travail / "99-titre.mp4"
+        if carte_titre(2.0, fin):
+            if effet:
+                pont = travail / "99-pont.mp4"
+                transition(morceaux[-1], fin, effet, pont)
+                morceaux.append(pont)
+            morceaux.append(fin)
 
     liste = travail / "liste.txt"
     liste.write_text("".join("file '%s'\n" % m.as_posix() for m in morceaux), encoding="utf-8")
