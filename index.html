@@ -5930,7 +5930,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v632</span>
+    <span class="subtitle-version">v633</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8184,6 +8184,43 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
         <div class="spacer"></div>
         <button class="secondary danger" onclick="handleLogout()" data-i18n="auth_logout">SE DÉCONNECTER</button>
+        <!-- SUPPRIMER SON COMPTE (v633). Apple l'exige de toute app qui permet
+             d'en CREER un (regle 5.1.1(v)), Google Play demande la meme chose :
+             sans ce bouton, la soumission est refusee avant meme d'etre
+             regardee. Ce n'est pas une fonction de confort, c'est la porte de
+             sortie -- et une app qui garde les gens parce qu'ils ne savent pas
+             partir ne les garde pas.
+             ⚠️ LE CHAMP DE MOT DE PASSE N'EST PAS UNE CEREMONIE. Firebase
+             refuse d'effacer un compte dont la session est ancienne ; il faut
+             donc se re-authentifier de toute facon. Autant que ce passage
+             oblige serve aussi de deuxieme barriere -- un `confirm()` se
+             congedie d'un pouce distrait, un mot de passe non.
+             ⚠️ REPLIE PAR DEFAUT : depuis la v633 cette carte porte l'action la
+             plus destructrice de l'app a cote de « SE DECONNECTER », qui est la
+             plus anodine. Deux boutons rouges cote a cote, c'est un accident qui
+             attend son jour. -->
+        <div class="spacer"></div>
+        <button id="suppressionCompteOuvrir" class="secondary danger"
+                onclick="ouvrirSuppressionCompte()"
+                data-i18n="delete_account_btn">SUPPRIMER MON COMPTE</button>
+        <div id="suppressionCompteBloc" class="hidden" style="margin-top:12px;">
+            <p style="color:#576177; font-size:13px; line-height:1.5;"
+               data-i18n="delete_account_intro">Efface définitivement ton compte.</p>
+            <div class="password-field-wrap" style="margin:12px 0;">
+                <input id="suppressionMdp" class="answer" type="password"
+                       autocomplete="current-password"
+                       data-i18n-placeholder="delete_account_pwd_ph" placeholder="Ton mot de passe">
+                <button type="button" class="password-toggle-btn"
+                        onclick="togglePasswordVisibility('suppressionMdp', this)"
+                        title="Afficher/masquer le mot de passe">👁</button>
+            </div>
+            <button id="suppressionCompteGo" class="secondary danger"
+                    onclick="confirmerSuppressionCompte()"
+                    data-i18n="delete_account_go">EFFACER DÉFINITIVEMENT</button>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="annulerSuppressionCompte()"
+                    data-i18n="delete_account_cancel">ANNULER</button>
+        </div>
     </div>
 
     <div class="card">
@@ -8325,7 +8362,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, deleteField, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
 
@@ -8349,6 +8386,17 @@ window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
 window.signOut = signOut;
 window.updateProfile = updateProfile;
+// Suppression du compte (v633). Firebase REFUSE d'effacer un compte dont la
+// session est ancienne -- `auth/requires-recent-login` -- - et c'est une bonne
+// chose : sans ca, un telephone laisse ouvert sur une table suffirait a
+// effacer le compte de quelqu'un. D'ou la re-authentification, qui sert donc
+// DEUX fois : elle satisfait Firebase et elle est la deuxieme barriere.
+// ⚠️ `EmailAuthProvider.credential` EST ENVELOPPE, pas assigne tel quel : une
+// methode statique arrachee a sa classe perd son `this` le jour ou le SDK s'en
+// sert, et ca ne se verrait qu'a la mise a jour suivante du SDK.
+window.authDeleteUser = deleteUser;
+window.authReauthenticate = reauthenticateWithCredential;
+window.authEmailCredential = (email, mdp) => EmailAuthProvider.credential(email, mdp);
 
 // Accès à Firestore depuis le script principal (non-module) : même pattern que
 // les fonctions Auth ci-dessus, exposées individuellement sur window.
@@ -9099,6 +9147,15 @@ const I18N = {
         auth_signup_loading: "CRÉATION…",
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
+        delete_account_btn: "SUPPRIMER MON COMPTE",
+        delete_account_intro: "Efface définitivement ton compte, ta progression et tes retours, sur cet appareil comme dans le nuage. Rien ne peut être récupéré ensuite, et ton code d'invitation ne redevient pas valide. Retape ton mot de passe pour confirmer.",
+        delete_account_pwd_ph: "Ton mot de passe",
+        delete_account_go: "EFFACER DÉFINITIVEMENT",
+        delete_account_cancel: "ANNULER",
+        delete_account_confirm: "Dernière vérification : ton compte et toute ta progression vont être effacés définitivement. Continuer ?",
+        delete_account_done: "Compte supprimé.",
+        delete_account_error: "La suppression n'a pas abouti. Vérifie ta connexion et réessaie.",
+        delete_account_wrong_pwd: "Mot de passe incorrect.",
 
         op_due_desc: "Une séance de {n} cartes · {r} à revoir",
         op_due_desc_neufs: "Une séance de {n} cartes",
@@ -10060,6 +10117,15 @@ const I18N = {
         auth_signup_loading: "CREATING…",
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
+        delete_account_btn: "DELETE MY ACCOUNT",
+        delete_account_intro: "Permanently deletes your account, your progress and your feedback, on this device and in the cloud. Nothing can be recovered afterwards, and your invitation code does not become valid again. Type your password to confirm.",
+        delete_account_pwd_ph: "Your password",
+        delete_account_go: "DELETE PERMANENTLY",
+        delete_account_cancel: "CANCEL",
+        delete_account_confirm: "Last check: your account and all your progress are about to be permanently deleted. Continue?",
+        delete_account_done: "Account deleted.",
+        delete_account_error: "The deletion did not go through. Check your connection and try again.",
+        delete_account_wrong_pwd: "Wrong password.",
 
         op_due_desc: "A {n}-card session · {r} to review",
         op_due_desc_neufs: "A {n}-card session",
@@ -11025,6 +11091,15 @@ const I18N = {
         auth_signup_loading: "OLUŞTURULUYOR…",
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
+        delete_account_btn: "HESABIMI SİL",
+        delete_account_intro: "Hesabını, ilerlemeni ve geri bildirimlerini hem bu cihazdan hem buluttan kalıcı olarak siler. Sonrasında hiçbir şey geri alınamaz ve davet kodun yeniden geçerli olmaz. Onaylamak için şifreni yaz.",
+        delete_account_pwd_ph: "Şifren",
+        delete_account_go: "KALICI OLARAK SİL",
+        delete_account_cancel: "VAZGEÇ",
+        delete_account_confirm: "Son kontrol: hesabın ve tüm ilerlemen kalıcı olarak silinecek. Devam edilsin mi?",
+        delete_account_done: "Hesap silindi.",
+        delete_account_error: "Silme işlemi tamamlanamadı. Bağlantını kontrol edip yeniden dene.",
+        delete_account_wrong_pwd: "Şifre yanlış.",
 
         op_due_desc: "{n} kartlık bir oturum · {r} tekrar",
         op_due_desc_neufs: "{n} kartlık bir oturum",
@@ -11929,6 +12004,15 @@ const I18N = {
         auth_signup_loading: "СТВОРЕННЯ…",
         auth_logged_in_as: "Ви увійшли як: ",
         auth_logout: "ВИЙТИ",
+        delete_account_btn: "ВИДАЛИТИ МІЙ ОБЛІКОВИЙ ЗАПИС",
+        delete_account_intro: "Назавжди видаляє твій обліковий запис, твій поступ і твої відгуки — на цьому пристрої та у хмарі. Після цього нічого не можна відновити, і твій код запрошення не стає дійсним знову. Введи пароль, щоб підтвердити.",
+        delete_account_pwd_ph: "Твій пароль",
+        delete_account_go: "ВИДАЛИТИ НАЗАВЖДИ",
+        delete_account_cancel: "СКАСУВАТИ",
+        delete_account_confirm: "Остання перевірка: твій обліковий запис і весь поступ буде видалено назавжди. Продовжити?",
+        delete_account_done: "Обліковий запис видалено.",
+        delete_account_error: "Видалити не вдалося. Перевір з'єднання і спробуй ще раз.",
+        delete_account_wrong_pwd: "Неправильний пароль.",
         auth_signup_desc: "Маєш код запрошення? Створи тут свій обліковий запис.",
         auth_invite_code_placeholder: "Код запрошення",
         alert_data_load_failed: "Не вдалося завантажити дані. Перевір з'єднання.",
@@ -13017,6 +13101,15 @@ const I18N = {
         auth_signup_loading: "در حال ساختن…",
         auth_logged_in_as: "وارد شده به نام: ",
         auth_logout: "خروج",
+        delete_account_btn: "حذف حساب من",
+        delete_account_intro: "حساب، پیشرفت و بازخوردهای تو را برای همیشه پاک می‌کند، هم روی این دستگاه و هم در فضای ابری. پس از آن هیچ چیز بازگردانده نمی‌شود و کد دعوت تو دوباره معتبر نمی‌شود. برای تأیید، رمز عبورت را بنویس.",
+        delete_account_pwd_ph: "رمز عبور تو",
+        delete_account_go: "برای همیشه پاک کن",
+        delete_account_cancel: "انصراف",
+        delete_account_confirm: "بررسی آخر: حساب و همهٔ پیشرفت تو برای همیشه پاک می‌شود. ادامه می‌دهی؟",
+        delete_account_done: "حساب حذف شد.",
+        delete_account_error: "حذف انجام نشد. اتصالت را بررسی کن و دوباره تلاش کن.",
+        delete_account_wrong_pwd: "رمز عبور نادرست است.",
         setup_kicker: "خوش آمدید",
         setup_title: "بیایید یادگیری شما را تنظیم کنیم",
         setup_learning_label: "چه چیزی یاد می‌گیرید؟",
@@ -13897,6 +13990,15 @@ const I18N = {
         auth_signup_loading: "جارٍ الإنشاء…",
         auth_logged_in_as: "متصل باسم: ",
         auth_logout: "تسجيل الخروج",
+        delete_account_btn: "حذف حسابي",
+        delete_account_intro: "يحذف نهائياً حسابك وتقدّمك وملاحظاتك، على هذا الجهاز وفي السحابة. لا يمكن استرجاع أي شيء بعد ذلك، ولا يعود رمز الدعوة صالحاً. اكتب كلمة السرّ للتأكيد.",
+        delete_account_pwd_ph: "كلمة السرّ",
+        delete_account_go: "احذف نهائياً",
+        delete_account_cancel: "إلغاء",
+        delete_account_confirm: "تحقّق أخير: سيُحذف حسابك وكل تقدّمك نهائياً. هل تتابع؟",
+        delete_account_done: "تم حذف الحساب.",
+        delete_account_error: "لم يتمّ الحذف. تحقّق من اتصالك وأعد المحاولة.",
+        delete_account_wrong_pwd: "كلمة السرّ غير صحيحة.",
         op_due_desc: "جلسة من {n} بطاقة · {r} للمراجعة",
         op_due_desc_neufs: "جلسة من {n} بطاقة",
         op_due_desc_zero: "لا شيء للمراجعة حالياً",
@@ -15272,6 +15374,90 @@ async function handleLogout() {
         showScreen("auth");
     } catch (error) {
         showInfoToast(t('alert_logout_error'));
+    }
+}
+
+// ============ SUPPRIMER SON COMPTE (v633) ============
+//
+// Exige par Apple (regle 5.1.1(v)) et par Google Play de toute app qui permet
+// de creer un compte. Voir la note du balisage pour le pourquoi du mot de passe.
+function ouvrirSuppressionCompte(){
+    const bloc = document.getElementById("suppressionCompteBloc");
+    const bouton = document.getElementById("suppressionCompteOuvrir");
+    if(!bloc) return;
+    bloc.classList.remove("hidden");
+    if(bouton) bouton.classList.add("hidden");
+    const champ = document.getElementById("suppressionMdp");
+    if(champ){ champ.value = ""; champ.focus(); }
+}
+
+function annulerSuppressionCompte(){
+    const bloc = document.getElementById("suppressionCompteBloc");
+    const bouton = document.getElementById("suppressionCompteOuvrir");
+    if(bloc) bloc.classList.add("hidden");
+    if(bouton) bouton.classList.remove("hidden");
+    const champ = document.getElementById("suppressionMdp");
+    // ⚠️ LE MOT DE PASSE NE RESTE PAS DANS LE CHAMP. Les reglages se referment
+    // sans recharger la page : sans cette ligne, il attendrait la prochaine
+    // ouverture, en clair dans le DOM.
+    if(champ) champ.value = "";
+}
+
+async function confirmerSuppressionCompte(){
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    const champ = document.getElementById("suppressionMdp");
+    const mdp = champ ? champ.value : "";
+    if(!user || !user.email){ showInfoToast(t("delete_account_error")); return; }
+    if(!mdp){ if(champ) champ.focus(); return; }
+    if(!confirm(t("delete_account_confirm"))) return;
+    const bouton = document.getElementById("suppressionCompteGo");
+    if(bouton) bouton.disabled = true;
+    try{
+        // ⚠️ L'ECRITURE EN ATTENTE PART AVANT NOUS, SINON ELLE ARRIVE APRES.
+        // scheduleCloudSync() garde une sauvegarde au chaud pendant quatre
+        // secondes : declenchee juste avant l'effacement, elle RECREERAIT le
+        // document une seconde plus tard, avec une progression que plus
+        // personne ne peut lire ni supprimer. On coupe la file d'abord.
+        clearTimeout(cloudSyncTimer);
+        cloudSyncTimer = null;
+        annulerEcritureProgression();
+
+        await window.authReauthenticate(user, window.authEmailCredential(user.email, mdp));
+
+        // ⚠️ LES DOCUMENTS D'ABORD, LE COMPTE ENSUITE, ET L'ORDRE EST TOUT.
+        // Les regles Firestore n'autorisent l'effacement de `users/{uid}` qu'a
+        // `request.auth.uid == uid` : une fois le compte supprime, il n'existe
+        // plus personne pour effacer ces documents, et ils resteraient dans le
+        // nuage pour toujours -- exactement ce que la suppression promet
+        // d'eviter. Ce serait un manquement au RGPD, pas une imperfection.
+        await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, 'users', user.uid));
+        // Le resume du tableau de bord est une vitrine derivee, mais il porte
+        // l'adresse, le prenom et les retours : il part avec le reste.
+        try{
+            await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, RESUMES_COLL, user.uid));
+        }catch(e){}
+
+        await window.authDeleteUser(user);
+
+        // L'appareil en dernier : si quelque chose avait echoue plus haut, la
+        // personne retrouve son compte intact plutot qu'un telephone vide.
+        // ⚠️ `clear()` ET PAS UNE LISTE DE CLES. Une liste oublie toujours
+        // celle qu'on ajoutera le mois prochain, et « supprime mon compte »
+        // ne souffre pas un « sauf trois choses ». Le domaine n'appartient
+        // qu'a Wortando.
+        try{ localStorage.clear(); }catch(e){}
+        try{ sessionStorage.clear(); }catch(e){}
+        progressCache = {};
+        showInfoToast(t("delete_account_done"));
+        // Rechargement franc : des dizaines de variables de module gardent
+        // encore l'etat de quelqu'un qui n'existe plus.
+        setTimeout(() => window.location.replace(window.location.pathname), 1200);
+    }catch(error){
+        if(bouton) bouton.disabled = false;
+        const code = String((error && error.code) || "");
+        showInfoToast(code.indexOf("wrong-password") >= 0 || code.indexOf("invalid-credential") >= 0
+            ? t("delete_account_wrong_pwd")
+            : t("delete_account_error"));
     }
 }
 
@@ -26154,7 +26340,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 632;
+const APP_VERSION = 633;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

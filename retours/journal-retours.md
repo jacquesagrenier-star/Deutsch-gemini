@@ -5288,3 +5288,44 @@ l'écart visible.
 **Vérifié à l'écran**, pas seulement au vérificateur : les six langues rendues
 dans la carte, `dir="rtl"` correct en arabe et en persan, aucun débordement de
 la cartouche, et les trois jours défilent bien 1 → 2 → 3.
+
+## 20 septembre 2026 — supprimer son compte depuis l'app (v633)
+
+**Demande de Jacques**, après avoir demandé si l'App Store était jouable en
+trois-quatre jours. Réponse : non, et **c'est la pièce qui bloquait les deux
+boutiques à la fois**. Apple l'exige de toute app qui permet de *créer* un
+compte (règle 5.1.1(v)), Google Play demande la même chose. Sans elle, la
+soumission est refusée avant d'être regardée.
+
+Réglages → Compte → « Supprimer mon compte ». Replié par défaut : cette carte
+portait déjà « SE DÉCONNECTER », et deux boutons rouges côte à côte sont un
+accident qui attend son jour.
+
+⚠️ **Le champ de mot de passe n'est pas une cérémonie.** Firebase refuse
+d'effacer un compte dont la session est ancienne (`auth/requires-recent-login`)
+— il faut se ré-authentifier de toute façon. Autant que ce passage obligé serve
+aussi de deuxième barrière : un `confirm()` se congédie d'un pouce distrait, un
+mot de passe non.
+
+⚠️ **L'ordre des trois effacements est tout.** Les règles Firestore
+n'autorisent la suppression de `users/{uid}` qu'à `request.auth.uid == uid` :
+une fois le compte Auth supprimé, **plus personne au monde ne peut effacer ces
+documents**, et ils resteraient dans le nuage pour toujours — un manquement au
+RGPD, pas une imperfection. Donc : documents d'abord, compte ensuite, appareil
+en dernier (si une étape échoue, la personne retrouve son compte intact plutôt
+qu'un téléphone vide).
+
+⚠️ **La file d'écriture se coupe AVANT.** `scheduleCloudSync()` garde une
+sauvegarde au chaud quatre secondes : déclenchée juste avant l'effacement, elle
+**recréerait** le document une seconde plus tard, avec une progression que plus
+personne ne peut lire ni supprimer.
+
+**Ce qui est vérifié** : l'ouverture/fermeture du bloc, les six langues (RTL
+compris), le champ en `type="password"`, le garde-fou du champ vide, le
+vérificateur (26 225 contrôles) et l'analyse des `<script>`.
+**Ce qui ne l'est PAS** : le chemin destructeur lui-même, de bout en bout — il
+faut un compte jetable, donc un code d'invitation à brûler. À faire avant toute
+soumission.
+
+La politique de confidentialité nomme maintenant le chemin dans l'app, en
+français et en anglais : c'est ce que les réviseurs cherchent.
