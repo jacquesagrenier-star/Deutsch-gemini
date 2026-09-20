@@ -519,6 +519,36 @@ def scene_affinage_net(p):
         p.page.screenshot(path=str(dossier / ("%03d.png" % (len(etapes) + j))))
 
 
+@scene("choix_niveau", "Tu choisis ton niveau, tu commences -- et la premiere carte est la.")
+def scene_choix_niveau(p):
+    """⚠️ CE PLAN EST FILME, PAS PHOTOGRAPHIE, et la raison tient en un mot :
+    le GESTE. Une suite d'images montrerait un niveau selectionne, puis un
+    ecran de cartes -- deux etats, sans le lien entre eux. Ce que Jacques veut
+    montrer est justement le lien : on touche B1, ca prend, on touche
+    << Commencer >>, la carte arrive. C'est le seul plan du film ou l'on voit
+    quelqu'un SE SERVIR de l'app."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.ecran("home")
+    p.js("document.getElementById('carteSeance') ? document.getElementById('carteSeance').scrollIntoView({block:'center'}) : window.scrollTo(0, 260);")
+    p.attendre(1.0)
+    # ⚠️ ON ATTEND QUE LES PASTILLES SE POSENT. Elles sont reconstruites quand
+    # les donnees arrivent de GitHub : cliquer avant, c'est viser un bouton que
+    # le rendu suivant detache -- Playwright reessaie alors jusqu'a expirer, et
+    # l'erreur parle d'un clic impossible, pas d'un rendu en retard. Perdu une
+    # prise la-dessus.
+    p.attendre(2.5)
+    p.moteur()
+    p.attendre(0.8)
+    # Le niveau : on touche B1. Les pastilles sont construites en JS, donc on
+    # vise le TEXTE -- il est le meme dans les six langues, c'est un code CECR.
+    p.page.click("#seanceNiveaux button:text-is('B1')")
+    p.attendre(1.2)
+    p.page.click(".seance-go")
+    p.attendre(3.2)
+    p.coupez()
+
+
 @scene("ecoute_suite", "Le mot suivant arrive tout seul : les mains restent libres.")
 def scene_ecoute_suite(p):
     p.vie(maitrises=312, serie=12, seance=18)

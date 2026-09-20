@@ -63,13 +63,19 @@ CLIPS_APPAREIL = "clip720"
 # joue son vrai role : montrer que tout part de la.
 PLANS = [
     ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
-    ("clip:retournement",       3.3, 0.00),  # 2. tu reponds -- LE VRAI GESTE
-    ("clip:ecoute_suite",       4.5, 0.05),  # 3. les mains libres -- LE VRAI LECTEUR
-    ("accueil-01.png",          3.5, 0.00),  # 4. tout part de la
+    ("clip:choix_niveau",       6.5, 0.00),  # 2. tu choisis, tu commences, la carte est la
+    ("clip:retournement",       3.3, 0.00),  # 3. tu reponds -- LE VRAI GESTE
+    ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
     ("dictionnaire-01.png",     4.5, 0.10),  # 5. un mot te manque ?
     ("examens-01-panneau.png",  3.5, 0.15),  # 6. les listes officielles
     ("retour-01.png",           3.0, 0.35),  # 7. dis-nous ce qui t'aiderait
 ]
+
+# ⚠️ LE PLAN FIXE DE L'ACCUEIL A DISPARU, ET C'EST UN GAIN. Demande de Jacques :
+# montrer qu'on CHOISIT son niveau, puis qu'on touche << Commencer >> et que la
+# carte arrive. L'accueil n'est plus montre, il est UTILISE -- et c'est le seul
+# plan du film ou l'on voit quelqu'un se servir de l'app. Une capture fixe de
+# l'accueil, a cote de ca, ne disait rien que ce plan ne dise mieux.
 
 # ⚠️ TROIS PLANS SONT DES CLIPS, ET C'EST LE PARTAGE QUI COMPTE. Un ecran qui
 # ne bouge pas dans l'app -- le dictionnaire, les examens, le formulaire -- est
