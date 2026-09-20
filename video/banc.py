@@ -37,6 +37,7 @@ montre CE QUI EST EN LIGNE, pas ce qui est en cours de modification ici.
 """
 import argparse
 import functools
+import time
 import http.server
 import socketserver
 import shutil
@@ -89,11 +90,28 @@ def servir():
 class Pilote:
     """Le vocabulaire d'une scene. Tout ce qu'une scene sait faire est ici."""
 
-    def __init__(self, page, dossier, nom_scene):
+    def __init__(self, page, dossier, nom_scene, depart=None):
         self.page = page
         self.dossier = dossier
         self.scene = nom_scene
         self.prise = 0
+        # ⚠️ PLAYWRIGHT ENREGISTRE TOUT LE CONTEXTE, du premier octet a la
+        # fermeture : la video brute contient l'ecran d'ouverture, la pose de
+        # l'etat, le rechargement, les ecrans qu'on traverse. Filmer utile
+        # demande donc de savoir QUAND le mouvement commence. C'est ce que ces
+        # deux marques notent, en secondes depuis la creation du contexte ; la
+        # coupe se fait apres, quand le fichier existe.
+        self.depart = depart
+        self.top = None
+        self.fin = None
+
+    def moteur(self):
+        """Ici commence ce qu'on garde."""
+        self.top = time.monotonic() - self.depart if self.depart else None
+
+    def coupez(self):
+        """Ici finit ce qu'on garde."""
+        self.fin = time.monotonic() - self.depart if self.depart else None
 
     # ---- amener l'app dans un etat ----
     def js(self, code):
@@ -386,6 +404,25 @@ def scene_examens(p):
     p.photo("01-panneau")
 
 
+@scene("retournement", "La carte se retourne -- le geste de l'app, filme, pas imite.")
+def scene_retournement(p):
+    """⚠️ LE MOUVEMENT EST DANS L'APP, ON NE LE REFABRIQUE PAS. La carte tourne
+    sur `rotateY(180deg)` en 0,55 s (voir .flashcard dans index.html). Toute
+    imitation au montage -- un ecrasement horizontal, un fondu -- sera moins
+    juste que la chose elle-meme, et vieillira le jour ou l'animation changera.
+    On filme."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.ecran("home")
+    p.js("await ouvrirSeanceDuJour();")
+    p.attendre(3.0)
+    p.moteur()
+    p.attendre(1.0)          # un temps sur le recto : on lit le mot
+    p.page.click("#flashcard")
+    p.attendre(2.2)          # la bascule (0,55 s) puis le verso
+    p.coupez()
+
+
 @scene("credits", "Ce qui vient d'ailleurs est nomme, et ce qui n'est pas a nous est dit.")
 def scene_credits(p):
     p.ecran("settings")
@@ -485,14 +522,16 @@ def tourner(scenes, langue, appareil, clips):
                     record_video_dir=str(dossier / "clips") if clips else None,
                     record_video_size=APPAREILS[appareil]["viewport"] if clips else None,
                     **APPAREILS[appareil])
+                depart = time.monotonic()
                 page = contexte.new_page()
+                p = None
                 try:
                     page.goto(url, wait_until="load", timeout=60000)
                     # L'app se monte en plusieurs temps ; on attend la fonction
                     # qui n'existe qu'une fois le script principal execute.
                     page.wait_for_function("typeof majMosaiqueAccueil === 'function'",
                                            timeout=30000)
-                    p = Pilote(page, dossier, nom)
+                    p = Pilote(page, dossier, nom, depart)
                     p.langue(langue)
                     SCENES[nom](p)
                     faits.append(nom)
@@ -505,7 +544,8 @@ def tourner(scenes, langue, appareil, clips):
                     page.close()
                     contexte.close()
                     if clips:
-                        renommer_clip(dossier, nom)
+                        renommer_clip(dossier, nom, getattr(p, "top", None),
+                                      getattr(p, "fin", None))
         finally:
             navigateur.close()
             arreter()
@@ -513,9 +553,14 @@ def tourner(scenes, langue, appareil, clips):
     return dossier, faits, rates
 
 
-def renommer_clip(dossier, nom):
+def renommer_clip(dossier, nom, top=None, fin=None):
     """Playwright nomme ses videos au hasard et ne les ferme qu'a la fermeture
-    du contexte : on les recupere APRES, et on convertit en mp4."""
+    du contexte : on les recupere APRES, on coupe autour de ce qui compte, et
+    on convertit en mp4.
+
+    ⚠️ SANS MARQUES, ON GARDE TOUT -- y compris l'ecran d'ouverture et la pose
+    de l'etat. Une scene qui veut un clip montrable appelle p.moteur() juste
+    avant le mouvement et p.coupez() juste apres."""
     clips = dossier / "clips"
     orphelins = sorted(clips.glob("*.webm"), key=lambda f: f.stat().st_mtime)
     if not orphelins:
@@ -523,9 +568,17 @@ def renommer_clip(dossier, nom):
     source = orphelins[-1]
     cible = clips / (nom + ".mp4")
     if shutil.which("ffmpeg"):
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(source),
-                        "-c:v", "libx264", "-pix_fmt", "yuv420p", str(cible)],
-                       check=False)
+        commande = ["ffmpeg", "-y", "-loglevel", "error", "-i", str(source)]
+        if top is not None:
+            # -ss APRES -i : plus lent, mais exact a l'image pres. Avant -i, la
+            # coupe saute a l'image-cle la plus proche et rate un mouvement de
+            # 0,55 s.
+            commande += ["-ss", "%.2f" % max(0, top)]
+            if fin is not None and fin > top:
+                commande += ["-t", "%.2f" % (fin - top)]
+        commande += ["-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                     "-pix_fmt", "yuv420p", str(cible)]
+        subprocess.run(commande, check=False)
         source.unlink(missing_ok=True)
     else:
         source.rename(clips / (nom + ".webm"))
