@@ -535,6 +535,14 @@ def scene_dictionnaire_frappe(p):
     << il faut connaitre le mot >> ; taper << sch >> dit l'inverse, et c'est
     l'interet."""
     p.vie(maitrises=312, serie=12, seance=18)
+    # ⚠️ LE MEME TABLEAU QUE LE PLAN PRECEDENT, ET DANS L'ETAT OU IL L'A LAISSE.
+    # Signale par Jacques : les plans montraient des tableaux DIFFERENTS -- le
+    # banc posait un etat par scene, et chaque scene repartait du tableau par
+    # defaut. Sur le meme ecran, a une seconde d'intervalle, l'oeuvre changeait.
+    # Le plan du tableau finit sur l'oeuvre GAGNEE (rang 3, plaque affichee) :
+    # celui-ci reprend exactement la, ce qui est aussi ce que voit une vraie
+    # personne -- l'oeuvre reste trois jours a l'ecran.
+    p.mosaique(rang=3, carreaux=700, gagnees=[1, 2, 3], trophee=3)
     p.recharger()
     p.ecran("home")
     p.page.wait_for_function("typeof themes !== 'undefined' && themes && themes.length > 0",
@@ -666,6 +674,14 @@ def scene_choix_niveau(p):
     << Commencer >>, la carte arrive. C'est le seul plan du film ou l'on voit
     quelqu'un SE SERVIR de l'app."""
     p.vie(maitrises=312, serie=12, seance=18)
+    # ⚠️ LE MEME TABLEAU QUE LE PLAN PRECEDENT, ET DANS L'ETAT OU IL L'A LAISSE.
+    # Signale par Jacques : les plans montraient des tableaux DIFFERENTS -- le
+    # banc posait un etat par scene, et chaque scene repartait du tableau par
+    # defaut. Sur le meme ecran, a une seconde d'intervalle, l'oeuvre changeait.
+    # Le plan du tableau finit sur l'oeuvre GAGNEE (rang 3, plaque affichee) :
+    # celui-ci reprend exactement la, ce qui est aussi ce que voit une vraie
+    # personne -- l'oeuvre reste trois jours a l'ecran.
+    p.mosaique(rang=3, carreaux=700, gagnees=[1, 2, 3], trophee=3)
     p.recharger()
     p.ecran("home")
     # ⚠️ EXACTEMENT LE MEME CADRAGE QUE LE PLAN DU TABLEAU, et c'est une
