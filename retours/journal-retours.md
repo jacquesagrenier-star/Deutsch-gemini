@@ -5345,3 +5345,16 @@ porte qu'on croyait ouvrir.
 Six langues. Le repli français du balisage suit le libellé : sans ça, la
 première peinture de l'écran montre l'ancien titre jusqu'à ce qu'`applyUiLang`
 passe.
+
+## 20 septembre 2026 — la légende décrivait encore le dévoilement (v635)
+
+Trouvée en cherchant autre chose : `legende_mosaique`, dans les **six
+langues**, disait toujours « un carreau **se découvre** à chaque carte ».
+C'est le modèle d'avant la v627 — celui que toute la journée d'aujourd'hui a
+servi à remplacer par la subdivision.
+
+⚠️ **Le travail de ce matin l'avait manquée**, parce qu'elle ne porte pas le
+préfixe `ip_tableau_` ni `mosaique_` : elle vit dans les légendes du panneau
+d'aide. Une passe qui corrige « les clés du tableau » attrape ce qui *s'appelle*
+tableau, pas ce qui *parle* du tableau. Le grep qui l'aurait trouvée du premier
+coup cherchait le VERBE, pas la clé : `grep -n "découvre\|se dévoile"`.
