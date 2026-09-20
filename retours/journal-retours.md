@@ -5448,3 +5448,37 @@ Le sur-titre suit : « Progression » devient « Ton app ».
 pour « réglages » : c'est déjà le nom de la carte **Configuration** à
 l'intérieur de cet écran. Un écran et une de ses cartes qui portent le même mot,
 c'est un écran où l'on croit avoir mal lu. Il dit « Параметри ».
+
+## 20 septembre 2026 — un badge verrouillé dit enfin ce qu'il demande (v640)
+
+**Question de Jacques** : « est-ce que je peux cliquer sur le badge puis voir ce
+que c'est ? » On pouvait — et ça ne disait rien. Un badge verrouillé répondait
+« Pas encore débloqué », point. L'app connaissait pourtant la condition : la
+description « 500 points d'expérience atteints » existait, mais **au passé et
+seulement une fois le badge gagné**, c'est-à-dire au moment où elle ne sert
+plus.
+
+Chaque tuile verrouillée porte maintenant son exigence : « 500 points »,
+« 30 jours ».
+
+⚠️ **Elle s'affiche, elle ne se touche pas.** Une grille où il faut toucher
+sept cases pour lire sept conditions est une grille décorative : personne ne
+fait le geste. La notule reste pour le détail, le `title` pour la souris — la
+ligne, elle, se lit d'un coup.
+
+⚠️ **Le seuil est LU dans la définition du badge, jamais recopié**
+(`def.threshold`). Changer un palier change l'affichage dans les six langues
+sans toucher à une traduction. Et **aucune clé nouvelle** : « points » et
+« jours » existaient déjà pour la bande « prochain badge » de l'accueil,
+éteinte depuis, mais dont les mots restaient justes.
+
+**Au passage, une découverte** : la bande « prochain badge » de l'accueil
+n'existe plus à l'écran — `#nextBadgeBox{display:none !important}`, avec la
+note « le prochain badge et les gels de série vivent désormais dans les
+réglages ». L'élément reste dans le DOM pour que le JS y écrive sans planter.
+J'ai cherché une demi-heure un défaut du banc de tournage avant de trouver que
+c'était un choix. C'est écrit dans le banc pour que personne ne recommence.
+
+**Reste ouvert** : faut-il remettre cette bande sur l'accueil ? Retirée pour
+désencombrer — à raison — mais les badges ne se voient plus jamais sans ouvrir
+les Réglages, ce que personne ne fait pour se motiver.

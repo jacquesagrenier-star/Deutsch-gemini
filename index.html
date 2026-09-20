@@ -1415,6 +1415,17 @@ body[data-theme="dark"] .combo-pill{
     line-height:1.25;
 }
 
+/* L'exigence d'un badge verrouille : plus petite et plus pale que son nom --
+   elle repond a une question, elle ne se met pas en avant. Elle disparait avec
+   le verrou : une fois gagne, ce qu'il a fallu n'interesse plus personne. */
+.badge-item .badge-need{
+    font-size:9px;
+    color:#9aa3b2;
+    line-height:1.2;
+    font-variant-numeric:tabular-nums;
+}
+body[data-theme="dark"] .badge-item .badge-need{color:#7F8798;}
+
 body[data-theme="dark"] .badge-item{
     background:rgba(255,255,255,.04);
     border-color:rgba(255,255,255,.12);
@@ -5930,7 +5941,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v639</span>
+    <span class="subtitle-version">v640</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -18749,6 +18760,22 @@ function showInfoToast(message){
 // reste en place pour le survol sur ordinateur, mais l'explication passe
 // surtout par onclick/showBadgeDetail() puisqu'un tooltip HTML ne se
 // déclenche pas de façon fiable au toucher sur mobile.
+// CE QU'IL FAUT POUR L'OBTENIR, EN TROIS MOTS : « 500 points », « 30 jours ».
+//
+// ⚠️ LE SEUIL EST LU DANS LA DEFINITION, JAMAIS RECOPIE. `descKey` dit deja
+// « 500 points d'experience atteints », mais au passe et seulement une fois le
+// badge gagne -- donc au moment ou l'information ne sert plus. Le chiffre vient
+// de `def.threshold` : changer un palier change l'affichage, dans les six
+// langues, sans toucher a une seule traduction.
+//
+// ⚠️ ET AUCUNE CLE NOUVELLE. « points » et « jours » existent depuis la bande
+// « prochain badge » de l'accueil (next_badge_unit_xp / _days), eteinte depuis
+// mais dont les mots restent justes.
+function exigenceBadge(def){
+    const unite = def.metric === "streak" ? t("next_badge_unit_days") : t("next_badge_unit_xp");
+    return def.threshold + " " + unite;
+}
+
 function renderBadgesGrid(){
     const unlocked = getUnlockedBadges();
     const grid = document.getElementById("badgesGrid");
@@ -18756,10 +18783,18 @@ function renderBadgesGrid(){
         grid.innerHTML = BADGE_DEFINITIONS.map(def => {
             const isUnlocked = unlocked.includes(def.id);
             const title = t(def.titleKey);
-            const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
+            const exigence = exigenceBadge(def);
+            // ⚠️ L'EXIGENCE S'AFFICHE, ELLE NE SE TOUCHE PAS. Une grille de
+            // badges dont il faut toucher chaque case pour savoir ce qu'elle
+            // demande est une grille decorative : personne ne fait sept gestes
+            // pour lire sept conditions. Le `title` reste pour la souris, la
+            // notule reste pour le detail ; la ligne, elle, se lit d'un coup.
+            const desc = isUnlocked ? t(def.descKey)
+                                    : t("badge_locked_hint") + " — " + exigence;
             return `<div class="badge-item${isUnlocked ? " unlocked" : ""}" title="${title} — ${desc}" onclick="showBadgeDetail('${def.id}')" role="button" tabindex="0">
                 <span class="badge-icon">${def.icon}</span>
                 <span class="badge-label">${title}</span>
+                ${isUnlocked ? "" : `<span class="badge-need">${exigence}</span>`}
             </div>`;
         }).join("");
     }
@@ -18770,7 +18805,11 @@ function showBadgeDetail(id){
     const def = BADGE_DEFINITIONS.find(b => b.id === id);
     if(!def) return;
     const isUnlocked = getUnlockedBadges().includes(id);
-    const desc = isUnlocked ? t(def.descKey) : t("badge_locked_hint");
+    // Meme phrase que sous la tuile : deux formulations pour une meme condition
+    // finissent par diverger, et c'est toujours celle qu'on ne relit pas qui
+    // reste fausse.
+    const desc = isUnlocked ? t(def.descKey)
+                            : t("badge_locked_hint") + " — " + exigenceBadge(def);
     showToast(def.icon, `${t(def.titleKey)} — ${desc}`);
 }
 
@@ -26403,7 +26442,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 639;
+const APP_VERSION = 640;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
