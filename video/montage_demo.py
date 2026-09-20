@@ -46,11 +46,22 @@ LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
 # mouvement qui change de sens a chaque plan le fait repartir a zero neuf fois
 # en trente secondes, au lieu de lire. Le mouvement, quand il y en a un, va
 # maintenant TOUJOURS dans le meme sens et deux fois moins vite.
+# ⚠️ LE TABLEAU OUVRE, ET C'EST UNE DECISION DE JACQUES : << visuellement,
+# c'est plus fort >>. Dans une video de trente secondes, les trois premieres
+# decident si les vingt-sept suivantes sont regardees -- et l'image la plus
+# forte qu'on ait est une toile qui se precise. Elle ne demande a personne de
+# comprendre avant de regarder.
+#
+# ⚠️ ET L'ACCUEIL NE LE SUIT PAS IMMEDIATEMENT, meme si c'est l'ordre qui vient
+# naturellement : ce sont DEUX PLANS DU MEME ECRAN. Enchaines, le second se lit
+# comme une repetition moins interessante que la premiere. La carte s'intercale
+# -- un autre ecran, un autre geste -- et l'accueil revient plus tard, quand il
+# joue son vrai role : montrer que tout part de la.
 PLANS = [
-    ("accueil-01.png",          4.0, 0.00),  # 1. une seance t'attend
+    ("clip:affinage",           5.0, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
     ("clip:retournement",       3.3, 0.00),  # 2. tu reponds -- LE VRAI GESTE
     ("clip:ecoute_suite",       4.5, 0.05),  # 3. les mains libres -- LE VRAI LECTEUR
-    ("clip:affinage",           5.0, 0.00),  # 4. la mosaique s'affine -- LE VRAI ARC
+    ("accueil-01.png",          3.5, 0.00),  # 4. tout part de la
     ("dictionnaire-01.png",     4.5, 0.10),  # 5. un mot te manque ?
     ("examens-01-panneau.png",  3.5, 0.15),  # 6. les listes officielles
     ("retour-01.png",           3.0, 0.35),  # 7. dis-nous ce qui t'aiderait
