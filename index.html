@@ -5973,7 +5973,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v641</span>
+    <span class="subtitle-version">v642</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26493,7 +26493,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 641;
+const APP_VERSION = 642;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -26978,7 +26978,17 @@ function modeLancement(){
     try{
         if(navigator.standalone) return "TUILE (app installee, navigator.standalone)";
         if(estAppInstallee()) return "TUILE (app installee, display-mode)";
-        return "LIEN (onglet Safari)";
+        // ⚠️ << ONGLET SAFARI >> ETAIT UN MENSONGE PARTOUT AILLEURS QUE SUR
+        // IPHONE (v642). Ce libelle a ete ecrit le 6 septembre pour distinguer
+        // deux contextes iOS ; depuis, le journal se lit aussi sur un
+        // ordinateur, et il annoncait << onglet Safari >> a quelqu'un sous
+        // Chrome/Windows -- Jacques m'a envoye ce journal-la le 21 septembre.
+        // Un journal de diagnostic qui se trompe sur le contexte est pire
+        // qu'un journal muet : on cherche du cote qu'il designe.
+        // La ligne d'agent utilisateur, juste au-dessus, dit deja le navigateur
+        // exact. Celle-ci ne doit dire que ce qu'elle sait : on n'est pas dans
+        // l'app installee.
+        return "LIEN (onglet de navigateur)";
     }catch(e){ return "?"; }
 }
 

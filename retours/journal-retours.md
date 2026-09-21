@@ -5550,3 +5550,38 @@ d'entrée clavier de Playwright.
 
 **Ce qui reste** : les cinq autres langues (une commande chacune, images
 gratuites, voix à payer une fois), et la musique si Jacques en veut.
+
+## 21 septembre 2026 — « ça gèle » : le journal dit non (v642)
+
+**Signalé par Jacques**, sur son ordinateur : l'app « sort », revient à l'écran
+d'ouverture, et le mot qu'il regardait a disparu. Il l'avait déjà remarqué.
+
+**Le journal est catégorique : `GELS : aucun`.** Aucun blocage du fil principal
+d'au moins 1,5 seconde. Ce qu'il a vu n'est pas un gel, c'est un
+**redémarrage** — l'app s'est rechargée, d'où l'écran d'ouverture et la perte
+de la carte en cours.
+
+⚠️ **La cause la plus probable est nous.** `verifierNouvelleVersion()` recharge
+la page dès que `version.json` annonce un numéro plus grand — c'est voulu, et
+c'est ce qui évite qu'un onglet reste des semaines sur une version morte. Mais
+**quinze versions ont été publiées le 20 septembre**, pendant qu'il utilisait
+l'app. Chaque redémarrage d'onglet retombait sur une version plus récente et
+se rechargeait. Le défaut n'est pas dans le code : il est dans le fait de
+publier quinze fois pendant que quelqu'un travaille.
+
+**Deux vrais défauts trouvés dans ce journal :**
+
+⚠️ **Le journal annonçait « LIEN (onglet Safari) » sous Chrome/Windows.** Le
+libellé datait du 6 septembre, écrit pour distinguer deux contextes iOS ; il
+ment partout ailleurs. **Un journal de diagnostic qui se trompe sur le contexte
+est pire qu'un journal muet** — on cherche du côté qu'il désigne. Corrigé :
+« LIEN (onglet de navigateur) ».
+
+⚠️ **`SONDE der Snack — fichier absent`** : la voix enregistrée manque pour ce
+mot, l'app est retombée sur la synthèse. Le corpus est censé couvrir A1–C1 ; il
+y a donc au moins un trou, et personne ne le saurait sans cette ligne.
+
+**Et un manque, trouvé en cherchant autre chose : l'app n'a pas de « mot de
+passe oublié ».** Jacques n'a pas pu se reconnecter à son compte de test. Ses
+testeurs vivront la même chose, et chaque oubli deviendra un message à traiter
+à la main.
