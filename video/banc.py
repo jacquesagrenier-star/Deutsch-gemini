@@ -394,6 +394,61 @@ class Pilote:
         }""")
         self.attendre(pause)
 
+    def carte_lisible(self):
+        """Fait en sorte que la PREMIERE carte de la seance ne soit pas un mot
+        transparent -- un mot qu'un francophone lit sans l'avoir appris.
+
+        ⚠️ << Euro >>, << problem >> : deux fois le meme defaut, signale deux
+        fois par Jacques. Un plan cense montrer qu'on APPREND un mot etranger
+        qui tombe sur un mot deja connu ne demontre rien -- et c'est le hasard
+        de la seance qui decide, donc ca reviendra tant qu'on ne le tient pas.
+
+        ⚠️ ON ENVELOPPE loadFlashcard() AVANT LE PREMIER RENDU, on ne corrige
+        pas apres coup. Reordonner une fois la carte affichee la ferait CHANGER
+        a l'image -- le spectateur verrait le truc. Ici, la premiere carte
+        peinte est deja la bonne.
+
+        ⚠️ ET ON NE FABRIQUE AUCUNE CARTE : le paquet reste celui que l'app a
+        choisi pour aujourd'hui, echeances comprises. On remonte simplement en
+        tete la premiere carte qui porte un article et dont le mot ne se devine
+        pas depuis le francais. Si le paquet n'en contient aucune, rien ne
+        bouge."""
+        self.js("""
+            if(window.__banc_carte) return;
+            window.__banc_carte = true;
+            const mot = c => Array.isArray(c) ? c : (c && Array.isArray(c.word) ? c.word : null);
+            // Les mots que le francais donne gratuitement. La liste n'a pas a
+            // etre exhaustive : elle protege les plus frequents du niveau A1,
+            // qui sont justement ceux qu'une seance tire souvent.
+            const transparents = /^(Euro|Problem|Radio|Hotel|Taxi|Bus|Auto|Kaffee|Baby|Computer|Internet|Sofa|Pizza|Tourist|Film|Musik|Telefon|Adresse|Familie|Minute|Moment|Restaurant|Information|Person)$/i;
+            const bonne = c => {
+                const w = mot(c);
+                return !!(w && /^(der|die|das)$/.test(String(w[1] || ''))
+                            && !transparents.test(String(w[0] || '')));
+            };
+            const original = loadFlashcard;
+            // ⚠️ PAS DE DRAPEAU << DEJA FAIT >>, ET C'EST LA CORRECTION. Une
+            // premiere version ne reordonnait qu'une fois par page : un appel
+            // invisible -- une seance construite puis abandonnee, un changement
+            // de niveau -- consommait la seule cartouche, et la seance filmee
+            // repartait sur le mot transparent. Ici la regle se REVERIFIE a
+            // chaque premiere carte : elle ne s'use pas, et elle ne fait rien
+            // quand la carte en tete est deja bonne.
+            loadFlashcard = function(){
+                try{
+                    if(currentFlashcard === 0 && Array.isArray(currentCards)
+                       && currentCards.length && !bonne(currentCards[0])){
+                        const i = currentCards.findIndex(bonne);
+                        if(i > 0){
+                            const [carte] = currentCards.splice(i, 1);
+                            currentCards.unshift(carte);
+                        }
+                    }
+                }catch(e){}
+                return original.apply(this, arguments);
+            };
+        """)
+
     def ranger_doigt(self):
         """Filet de securite : doigt() se retire deja tout seul apres son clic.
         Reste utile si une scene pose le doigt sans cliquer."""
@@ -645,38 +700,9 @@ def scene_retournement(p):
     p.vie(maitrises=312, serie=12, seance=18)
     p.recharger()
     p.ecran("home")
+    p.carte_lisible()
     p.js("await ouvrirSeanceDuJour();")
     p.attendre(3.0)
-    # ⚠️ LA CARTE FILMEE NE PEUT PAS ETRE UN MOT TRANSPARENT. La seance tirait
-    # << Euro >> en premier -- demande de Jacques : << Euro, en francais, c'est
-    # la meme chose qu'en allemand >>. Un plan cense montrer qu'on APPREND un
-    # mot etranger montrait alors un mot que le spectateur connait deja, et la
-    # demonstration tombait a plat.
-    # ⚠️ ON REORDONNE LA SEANCE, ON NE FABRIQUE PAS UNE CARTE. Le paquet reste
-    # celui que l'app a choisi pour aujourd'hui, echeances comprises : on met
-    # simplement en tete la premiere carte qui porte un article et dont le mot
-    # ne se devine pas depuis le francais.
-    p.js("""
-        // ⚠️ DEUX FORMES DE CARTE DANS LE MEME PAQUET. Un nom arrive tantot
-        // comme un tableau, tantot enveloppe dans un objet qui porte `word` --
-        // et une seance melange les deux. Ne tester que le tableau rendait
-        // findIndex -1 sans rien casser : le banc refilmait << Euro >> en
-        // croyant l'avoir ecarte.
-        const mot = c => Array.isArray(c) ? c : (c && Array.isArray(c.word) ? c.word : null);
-        const transparents = /^(Euro|Radio|Hotel|Taxi|Bus|Auto|Kaffee|Baby|Computer|Internet|Sofa|Pizza|Tourist)$/i;
-        const i = currentCards.findIndex(c => {
-            const w = mot(c);
-            return w && /^(der|die|das)$/.test(String(w[1] || ''))
-                     && !transparents.test(String(w[0] || ''));
-        });
-        if(i > 0){
-            const [carte] = currentCards.splice(i, 1);
-            currentCards.unshift(carte);
-            currentFlashcard = 0;
-            loadFlashcard();
-        }
-    """)
-    p.attendre(1.2)
     p.moteur()
     p.attendre(1.0)          # un temps sur le recto : on lit le mot
     p.doigt("#flashcard", approche=0.7, pause=0.1)
@@ -802,6 +828,11 @@ def scene_choix_niveau(p):
     p.page.wait_for_function("typeof themes !== 'undefined' && themes && themes.length > 0",
                              timeout=30000)
     p.attendre(1.0)
+    # ⚠️ LE FILET SE POSE AVANT QUE LA SEANCE EXISTE. Ce plan finit sur la
+    # premiere carte du paquet B1, et le hasard y mettait << problem >> --
+    # deuxieme mot transparent signale par Jacques apres << Euro >>. Pose ici,
+    # la regle s'applique a la seance que le bouton va construire.
+    p.carte_lisible()
     p.moteur()
     p.attendre(0.3)
     # Le niveau : on touche B1. Les pastilles sont construites en JS, donc on
@@ -815,7 +846,12 @@ def scene_choix_niveau(p):
     # un bouton en train d etre remplace -- et l erreur dit << cible instable >>.
     p.attendre(0.9)
     p.doigt(".seance-go", approche=0.5, pause=0.15)
-    p.attendre(2.0)
+    # ⚠️ LA SEANCE MET UNE SECONDE A S OUVRIR : elle charge la frequence avant
+    # de constituer le paquet. Deux secondes d attente laissaient la coupe
+    # tomber AVANT la carte, et le plan finissait sur l accueil -- un plan qui
+    # promet << et la carte arrive >> et ne la montre pas.
+    p.page.wait_for_selector("#flashcards.active", timeout=20000)
+    p.attendre(2.2)
     p.ranger_doigt()
     p.coupez()
 
