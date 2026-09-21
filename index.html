@@ -6,6 +6,38 @@
 <meta name="theme-color" content="#ffffff">
 
 <title>Wortando</title>
+
+<!-- ⚠️ LA CONNEXION AUDIO S'OUVRE AVANT QU'ON EN AIT BESOIN (v661).
+     CE QUE LA MESURE DU 21 SEPTEMBRE A DONNE, sur la machine de Jacques, au
+     moment exact ou le son ne sortait pas. Quatre facons de jouer LE MEME
+     fichier, l'une apres l'autre :
+
+         A  element neuf, vitesse 1, hors cache ....... 2204 ms
+         B  element neuf, vitesse 0,9, hors cache ......  106 ms
+         C  element REUTILISE, vitesse 0,9 .............   76 ms
+         D  element neuf, vitesse 1, URL de l'app .....    49 ms
+
+     Les quatre recettes sont interchangeables : la seule difference est
+     L'ORDRE. La premiere paie deux secondes, les suivantes cinquante
+     millisecondes. Ce n'est donc ni l'element, ni la vitesse, ni l'URL, ni le
+     cache -- c'est L'OUVERTURE DE LA CONNEXION vers l'hebergement (DNS, TCP,
+     TLS), qui coute ~2 s a froid chez lui et rien du tout une fois etablie.
+
+     ⚠️ ET C'EST CE QUI REFERMAIT LE CERCLE. Sa lecture de « passieren » a ete
+     abandonnee a 2245 ms -- a l'instant precis ou la connexion venait d'etre
+     prete. Abandonnee, elle ne laisse aucune connexion ouverte : la carte
+     suivante repart a froid et paie encore deux secondes. D'ou « ca ne marche
+     pas au debut, puis d'un coup ca marche tres bien » -- ce moment est celui
+     ou une requete a enfin pu aller au bout.
+
+     preconnect fait payer ces deux secondes UNE FOIS, au chargement de la
+     page, pendant que personne n'attend de son. `crossorigin` est
+     indispensable : sans lui le navigateur ouvre une connexion anonyme
+     SEPAREE, et les requetes media ne la reutilisent pas -- on aurait le cout
+     sans le benefice. -->
+<link rel="preconnect" href="https://deutschai-b6fbb.web.app" crossorigin>
+<link rel="dns-prefetch" href="https://deutschai-b6fbb.web.app">
+
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png">
 <link rel="apple-touch-icon" href="branding/wortando-apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -6345,7 +6377,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v660</span>
+    <span class="subtitle-version">v661</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27191,7 +27223,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 660;
+const APP_VERSION = 661;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
