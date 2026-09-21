@@ -441,7 +441,7 @@ window.LIEN_REINIT = (function(){
     // depuis une chaine de caracteres : l'app reste en un seul fichier.
     var POULS_MS = 300;
     var SEUIL_GEL = 1500;   // en deca, c'est le bruit ordinaire du fil
-    var gelSignale = 0;
+    var gelSignale = 0, gelFin = 0;
 
     function ouSuisJe(){
         try{
@@ -464,10 +464,93 @@ window.LIEN_REINIT = (function(){
     var GEL_CLE = "deutschAI_journal_gel";
     var GEL_MAX = 60;
 
-    function noterGel(ms, quoi){
+    // ⚠️ LA QUESTION QU'AUCUNE MARQUE NE POUVAIT POSER (v647). Le journal du
+    // 21 septembre a rendu quatorze gels de 2 a 9 secondes, tous sur les
+    // cartes, dont UN SEUL nomme (« progression -> localStorage », 2509 ms) et
+    // treize en « ? ». Or la progression de Jacques pese 48 Ko : la serialiser
+    // et l'ecrire coute une milliseconde, pas deux secondes et demie. Le nom
+    // designait donc un travail qui SE TROUVAIT LA, pas un coupable -- et les
+    // treize autres ne designaient rien du tout.
+    //
+    // Il manquait la seule distinction qui tranche : PENDANT le gel, est-ce que
+    // notre fil executait du JavaScript, ou est-ce qu'il ne tournait pas ?
+    //
+    //   - une longue tache couvre le gel  -> c'est du code qui s'execute, et
+    //     `name` dit lequel (« self » = le notre). On a une piste.
+    //   - AUCUNE longue tache pendant un gel de neuf secondes -> le fil
+    //     n'executait rien. Personne ne l'a pris : il n'a pas ete servi. Le
+    //     navigateur, une autre page, ou la machine. Aucune ligne de notre code
+    //     ne peut en etre la cause, et c'est une reponse aussi -- celle qui
+    //     evite de passer une semaine a optimiser un travail innocent.
+    //
+    // Jacques l'a d'ailleurs deja observe de l'exterieur, le meme jour :
+    // « je ne pouvais pas cliquer sur l'autre onglet ». Un blocage de notre
+    // JavaScript ne peut pas faire ca.
+    // ⚠️ ET SANS CE DRAPEAU, L'INSTRUMENT MENT SUR IPHONE. Safari ne mesure
+    // pas les longues taches : l'observateur ne se declenche jamais, donc
+    // « aucune tache pendant le gel » y serait vrai a chaque ligne, et le
+    // journal conclurait avec aplomb « le fil n'a pas ete servi » sur des gels
+    // causes par notre propre code. Une mesure indisponible doit se declarer
+    // indisponible ; c'est exactement le defaut qu'on reproche deja au
+    // comparateur de prises, qui designait toujours un vainqueur.
+    var tachesMesurables = false;
+    var longuesTaches = [];
+    try{
+        tachesMesurables = !!(typeof PerformanceObserver === "function" &&
+                              PerformanceObserver.supportedEntryTypes &&
+                              PerformanceObserver.supportedEntryTypes.indexOf("longtask") >= 0);
+    }catch(e){ tachesMesurables = false; }
+    try{
+        if(tachesMesurables){
+            new PerformanceObserver(function(l){
+                l.getEntries().forEach(function(e){
+                    longuesTaches.push({ d: performance.timeOrigin + e.startTime,
+                                         ms: Math.round(e.duration),
+                                         qui: e.name || "?" });
+                });
+                // On ne garde que la derniere minute : le journal regarde en
+                // arriere de quelques secondes, jamais plus.
+                var vieux = Date.now() - 60000;
+                while(longuesTaches.length && longuesTaches[0].d < vieux) longuesTaches.shift();
+            }).observe({ entryTypes: ["longtask"] });
+        }
+    }catch(e){}
+
+    // Ce que les longues taches disent d'une fenetre de gel donnee.
+    function tachesPendant(debut, fin){
+        if(!tachesMesurables) return "longues taches non mesurables ici";
+        var total = 0, pire = 0, qui = "";
+        longuesTaches.forEach(function(t){
+            if(t.d + t.ms < debut || t.d > fin) return;
+            total += t.ms;
+            if(t.ms > pire){ pire = t.ms; qui = t.qui; }
+        });
+        if(!total) return "fil NON SERVI (aucune tache JS pendant le gel)";
+        return "JS " + total + "ms" + (qui ? " (" + qui + ")" : "")
+             + (pire ? ", pire " + pire + "ms" : "");
+    }
+
+    // Le tas, quand le navigateur le dit. Une fuite se voit ici et nulle part
+    // ailleurs : un tas qui monte a chaque carte finit par faire ramasser les
+    // miettes pendant des secondes.
+    function tasMo(){
         try{
-            var liste = JSON.parse(localStorage.getItem(GEL_CLE) || "[]");
-            if(!Array.isArray(liste)) liste = [];
+            var m = performance.memory;
+            return m ? Math.round(m.usedJSHeapSize / 1048576) + " Mo" : "";
+        }catch(e){ return ""; }
+    }
+
+    // ⚠️ LA FIN DU GEL SE PASSE EN ARGUMENT, ELLE NE SE DEDUIT PAS DE L'HEURE
+    // QU'IL EST. Un gel ANONYME n'est ecrit qu'a la battue suivante, une fois
+    // le fil redevenu normal -- parfois plusieurs secondes plus tard. Prendre
+    // Date.now() comme fin decalait la fenetre de recherche apres le gel, ou
+    // il n'y a evidemment plus de longue tache : l'instrument repondait donc
+    // « fil NON SERVI » a un blocage JavaScript de trois secondes qu'on venait
+    // de provoquer expres. Un instrument qui se trompe avec aplomb est pire
+    // que pas d'instrument, et celui-ci se serait trompe exactement sur la
+    // question pour laquelle on l'a ecrit.
+    function noterGel(ms, quoi, finReelle){
+        try{
             // ⚠️ UN GEL ANONYME DOIT QUAND MEME DIRE QUELQUE CHOSE (v570). Deux
             // journaux de suite ont rendu « ? » sur toutes les lignes, ce qui
             // n'apprend rien de plus que « ca gele ». On joint donc le DERNIER
@@ -481,10 +564,43 @@ window.LIEN_REINIT = (function(){
                   ? ("? apres " + dernierNom + " +" + (Date.now() - dernierFin) + "ms")
                   : "? (aucun travail nomme depuis l'ouverture)";
             }
-            liste.push({ h: new Date().toLocaleTimeString(), ms: Math.round(ms),
-                         ou: ouSuisJe(), quoi: q });
-            while(liste.length > GEL_MAX) liste.shift();
-            localStorage.setItem(GEL_CLE, JSON.stringify(liste));
+            // La fenetre du gel : il vient de se terminer, il a dure `ms`.
+            var fin = finReelle || Date.now(), debut = fin - Math.round(ms);
+            var entete = { h: new Date().toLocaleTimeString(), ms: Math.round(ms),
+                           ou: ouSuisJe(), quoi: q, tas: tasMo(),
+                           // Un onglet en arriere-plan est RALENTI PAR DESSEIN :
+                           // ses minuteries sont espacees, et le retard qu'on
+                           // mesure n'est alors pas un gel du tout.
+                           cache: document.hidden ? "onglet cache" : "" };
+            // ⚠️ ON N'ECRIT PAS TOUT DE SUITE, ET C'EST UNE QUESTION D'ORDRE.
+            // Quand le fil est rendu, DEUX choses attendent : la battue en
+            // retard, qui nous amene ici, et le rappel de l'observateur, qui
+            // livre la longue tache. Rien ne garantit l'ordre -- et en pratique
+            // la battue passe la premiere. Interroger les longues taches
+            // maintenant, c'est les interroger avant qu'elles arrivent :
+            // l'instrument repondait « fil NON SERVI » a un blocage JavaScript
+            // de trois secondes qu'on venait de provoquer expres, et il le
+            // disait sans la moindre reserve.
+            //
+            // Trois essais de suite ont donne ce meme verdict faux avant que je
+            // regarde la LISTE plutot que la conclusion : elle contenait bien la
+            // tache, six secondes plus tard. Le defaut n'etait pas dans la
+            // mesure, il etait dans l'instant ou on la lit.
+            //
+            // Un quart de seconde suffit, et il ne coute rien : le gel est
+            // deja fini, personne n'attend cette ligne. Seul un depart de page
+            // dans cet intervalle la perdrait -- une ligne de journal, contre
+            // un verdict faux a chaque ligne.
+            setTimeout(function(){
+                try{
+                    var l2 = JSON.parse(localStorage.getItem(GEL_CLE) || "[]");
+                    if(!Array.isArray(l2)) l2 = [];
+                    entete.tache = tachesPendant(debut, fin);
+                    l2.push(entete);
+                    while(l2.length > GEL_MAX) l2.shift();
+                    localStorage.setItem(GEL_CLE, JSON.stringify(l2));
+                }catch(e){}
+            }, 250);
         }catch(e){}
     }
 
@@ -540,10 +656,16 @@ window.LIEN_REINIT = (function(){
             // Une seule ligne par gel : on retient le pire des messages de la
             // rafale, on l'ecrit quand le fil est redevenu normal. Les battues
             // qu'une ligne nommee explique deja ne comptent pas.
-            if(t >= finGelNomme && retard > gelSignale) gelSignale = retard;
+            if(t >= finGelNomme && retard > gelSignale){
+                gelSignale = retard;
+                // `maintenant` EST la fin du gel : cette battue a ete emise a
+                // l'heure et lue en retard, donc l'instant ou on la lit est
+                // l'instant ou le fil a ete rendu.
+                gelFin = maintenant;
+            }
         } else if(gelSignale){
-            noterGel(gelSignale, null);
-            gelSignale = 0;
+            noterGel(gelSignale, null, gelFin);
+            gelSignale = 0; gelFin = 0;
         }
         if(enCours) return;
         // Le demarrage est exclu : c'est la seule periode ou le fil principal
@@ -6193,7 +6315,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v646</span>
+    <span class="subtitle-version">v647</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26961,7 +27083,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 646;
+const APP_VERSION = 647;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27474,9 +27596,18 @@ function journalGelTexte(){
         return "GELS : aucun. (Un gel = le fil principal pris 1,5 s ou plus.)";
     }
     return "GELS -- " + liste.length + " (le plus recent en bas)" + SAUT +
-        liste.map(e => e.h + "  " + String((e.ms || 0) + " ms").padStart(9) +
-                       "  " + String(e.quoi || "?").padEnd(26) +
-                       "  " + (e.ou || "?")).join(SAUT);
+        liste.map(e => {
+            // ⚠️ LA LIGNE DU VERDICT EST EN DESSOUS, PAS AU BOUT. Elle est la
+            // reponse a la question qu'on se pose en lisant la premiere ; au
+            // bout d'une ligne deja longue, elle serait coupee par le
+            // navigateur ou par le collage, exactement la ou ca compte.
+            const tete = e.h + "  " + String((e.ms || 0) + " ms").padStart(9) +
+                         "  " + String(e.quoi || "?").padEnd(26) +
+                         "  " + (e.ou || "?");
+            const dessous = [e.tache, e.tas ? "tas " + e.tas : "", e.cache]
+                            .filter(x => x).join("  |  ");
+            return dessous ? tete + SAUT + "               " + dessous : tete;
+        }).join(SAUT);
 }
 
 function journalTexte(){

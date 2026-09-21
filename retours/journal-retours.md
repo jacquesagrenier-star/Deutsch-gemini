@@ -5806,3 +5806,63 @@ tout le monde retélécharge ; entre deux poussées, le navigateur répond
 instantanément. Ça suppose qu'une poussée de DONNÉES bump aussi la version —
 ce qui n'est pas le cas aujourd'hui.
 
+## 21 septembre 2026 — le journal des gels dit enfin « nous » ou « pas nous » (v647)
+
+**Le journal de Jacques, sur Chrome/Windows** : quatorze gels de 2,1 à 9,3 s,
+tous sur les cartes, bloqués à `13/30`. **Un seul nommé** — « progression →
+localStorage », 2509 ms — et treize en `?`.
+
+⚠️ **Et le seul nommé n'était pas coupable.** Sa progression pèse **48 Ko**
+(mesuré dans Firestore, champ `progressJson`) : la sérialiser et l'écrire coûte
+une milliseconde, pas deux secondes et demie. Le nom désignait un travail qui
+*se trouvait là* quand le fil s'est arrêté. Les treize autres ne désignaient
+rien.
+
+Il manquait la seule distinction qui tranche : **pendant le gel, notre fil
+exécutait-il du JavaScript, ou ne tournait-il pas ?**
+
+- une longue tâche couvre le gel → du code s'exécute, et `name` dit lequel ;
+- **aucune longue tâche pendant un gel de neuf secondes** → le fil n'exécutait
+  rien. Personne ne l'a pris : il n'a pas été servi. Aucune ligne de notre code
+  ne peut en être la cause — et c'est une réponse aussi, celle qui évite
+  d'optimiser une semaine un travail innocent.
+
+Jacques l'avait déjà observé de l'extérieur, le même jour : « je ne pouvais pas
+cliquer sur l'autre onglet ». Un blocage de notre JavaScript ne peut pas faire
+ça.
+
+**Trois pièges, et les trois auraient fait mentir l'instrument :**
+
+1. ⚠️ **Safari ne mesure pas les longues tâches.** Sans drapeau de support,
+   « aucune tâche » y serait vrai à chaque ligne et le journal conclurait avec
+   aplomb « le fil n'a pas été servi » sur des gels causés par notre propre
+   code — sur la plateforme où il teste le plus. Une mesure indisponible se
+   déclare indisponible.
+
+2. ⚠️ **La fin du gel se passe en argument, elle ne se déduit pas de l'heure
+   qu'il est.** Un gel anonyme n'est écrit qu'à la battue suivante, parfois des
+   secondes plus tard : prendre `Date.now()` comme fin décalait la fenêtre de
+   recherche *après* le gel, là où il n'y a évidemment plus rien.
+
+3. ⚠️ **Et on n'écrit pas la ligne tout de suite.** Quand le fil est rendu,
+   deux choses attendent : la battue en retard, et le rappel de l'observateur
+   qui livre la tâche. La battue passe la première — on interrogeait donc les
+   longues tâches *avant qu'elles arrivent*.
+
+**Chacun des trois a produit le même verdict faux** — « fil NON SERVI » sur un
+blocage JavaScript de trois secondes provoqué exprès — **et chacun le disait
+sans la moindre réserve**. Je ne l'ai vu qu'en regardant la LISTE au lieu de la
+conclusion : elle contenait bien la tâche, six secondes plus tard.
+
+C'est la leçon déjà écrite pour le comparateur de prises — *un comparateur qui
+désigne toujours un vainqueur finit par en inventer un* — et elle vaut autant
+pour un instrument qui a toujours un verdict.
+
+**Vérifié dans un navigateur** : blocage de 3 s lancé depuis un `setTimeout` →
+« JS 2999ms (self), pire 2999ms ». ⚠️ Le lancer depuis `page.evaluate()` de
+Playwright ne marche pas : l'API des longues tâches ne voit pas ce contexte, et
+c'est ce faux essai qui m'a fait croire au premier bogue.
+
+**Ce que ça ne dit pas encore** : pourquoi ça gèle. Prochain journal de
+Jacques, et la ligne du dessous répondra.
+
