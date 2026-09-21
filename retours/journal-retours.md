@@ -6032,3 +6032,36 @@ fond flou** (`backdrop-filter`). Avec l'accélération matérielle, c'est gratui
 sans elle, chacun est recalculé par le processeur. `chrome://gpu` le dit en
 première ligne.
 
+## 21 septembre 2026 — l'app etait hors de cause, et la preuve tient en une ligne
+
+**Chrome redemarre, l'extension Yoroi eteinte, et WORTANDO PAS MEME OUVERT** —
+la seule fenetre s'appelle « New Tab » :
+
+| | |
+|---|---|
+| processus navigateur | **3 614 Mo**, **172 % d'un coeur**, 2,4 min apres le demarrage |
+| un renderer | 252 Mo, **165 % d'un coeur** |
+| processus d'extension vivants | **aucun** |
+| total | ~3,4 coeurs sur 8, en continu |
+
+⚠️ **Une page fermee ne consomme rien.** Avec l'app absente de l'ecran, Chrome
+brule toujours 42 % de la machine. Tout ce qui a ete mesure du cote de
+Wortando — 0,1 % d'un coeur au repos, zero mise en page, `GELS : aucun` dans
+son propre journal — etait vrai, et le restait pendant que je cherchais encore.
+
+**Ce qui a ete elimine, dans l'ordre :** le reseau et OneDrive (disque inactif
+a 99 %), la memoire (16 Go libres), l'acceleration materielle (activee, pilote
+Intel a jour), la fuite lente sur 27 h (un Chrome neuf atteint 3 Go en deux
+minutes), l'extension crypto (aucun processus d'extension vivant), et enfin
+l'app elle-meme (pas ouverte).
+
+**Ce qui reste : le profil Chrome.** Remede sans perte : un nouveau profil.
+Et pour travailler tout de suite, un autre navigateur.
+
+⚠️ **LA LECON EST SUR MOI.** J'ai propose quatre explications successives --
+OneDrive, la fuite de 27 h, l'extension, le rendu logiciel -- et les trois
+premieres ont ete annoncees avant d'etre mesurees. Chaque fois, la mesure
+suivante les a demolies. La seule chose qui a tenu du debut a la fin, c'est ce
+que disaient les instruments de l'app : elle ne faisait rien. **J'aurais du
+partir de ce fait au lieu de chercher une cause a lui attribuer.**
+
