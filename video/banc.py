@@ -701,6 +701,14 @@ def scene_retournement(p):
     p.recharger()
     p.ecran("home")
     p.carte_lisible()
+    # ⚠️ LE MEME NIVEAU QUE LE PLAN PRECEDENT, DONC LA MEME CARTE. Signale par
+    # Jacques : le plan d'avant finit sur la premiere carte d'une seance B1, et
+    # celui-ci en retournait une autre, tiree d'une seance A1 -- deux moments
+    # sans rapport, alors que le film les enchaine comme un seul geste. L'en-tete
+    # le disait d'ailleurs a l'image : << Today's session - B1 >> puis
+    # << - A1 >>. On fixe donc le meme niveau : on touche, la carte apparait, on
+    # la retourne. C'est une seule action, filmee en deux plans.
+    p.js("fixerNiveauSeance('B1');")
     p.js("await ouvrirSeanceDuJour();")
     p.attendre(3.0)
     p.moteur()
