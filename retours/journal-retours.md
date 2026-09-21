@@ -6204,3 +6204,103 @@ audio avant d'ecrire du code, surtout quand on a deja une hypothese. » J'ai
 ecrit trois versions avant de le demander. Le journal, une fois lu, a nomme
 deux defauts en dix minutes — dont un que j'avais moi-meme introduit deux
 heures plus tot.
+
+## 21 septembre 2026 (fin) — RESOLU : la connexion, pas la lecture
+
+**Jacques, apres la v661 : « ca fonctionne. »**
+
+### La cause, et la mesure qui l'a nommee
+
+La v659 avait rendu la comparaison AUTOMATIQUE -- declenchee au premier son qui
+ne sort pas, sans rien demander a personne. Elle s'est lancee a 3:34:41 pendant
+que « passieren » echouait. Quatre facons de jouer LE MEME fichier, a la suite :
+
+| recette | temps |
+|---|---|
+| A element neuf, vitesse 1, hors cache | **2204 ms** |
+| B element neuf, vitesse 0,9, hors cache | 106 ms |
+| C element REUTILISE, vitesse 0,9 | 76 ms |
+| D element neuf, vitesse 1, URL de l'app | 49 ms |
+
+⚠️ **Les quatre recettes sont interchangeables. La seule difference est
+L'ORDRE.** La premiere paie deux secondes, les suivantes cinquante
+millisecondes. Ce n'est ni l'element, ni la vitesse, ni l'URL, ni le cache :
+c'est **l'ouverture de la connexion** vers l'hebergement (DNS, TCP, TLS), qui
+coute ~2 s a froid chez lui et rien une fois etablie.
+
+**Et c'est ce qui refermait le cercle.** Sa lecture de « passieren » a ete
+abandonnee a **2245 ms** -- a l'instant precis ou la connexion venait d'etre
+prete. Abandonnee, elle ne laisse aucune connexion ouverte : la carte suivante
+repart a froid et repaie deux secondes. D'ou « ca ne marche pas au debut, puis
+d'un coup ca marche tres bien » : ce moment est celui ou une requete a enfin pu
+aller au bout.
+
+### Les deux corrections qui reglent ca
+
+- **v660** le fichier se telecharge PENDANT QUE LA CARTE EST LUE, pas au
+  retournement. Justifie par son propre journal : un fichier deja en cache y
+  sort en 26 a 37 ms, contre 2 a 7 s a froid.
+- **v661** `preconnect` + `dns-prefetch` vers l'hebergement, au chargement de
+  la page. ⚠️ `crossorigin` est indispensable : sans lui le navigateur ouvre
+  une connexion anonyme SEPAREE que les requetes media ne reutilisent pas.
+
+La premiere couvre les retours apres une pause, la seconde l'ouverture de
+seance.
+
+### Corrige en chemin, et qui tient
+
+- **v649** la carte de fin reclamait une reponse qu'aucun bouton ne permettait
+  de donner ; et « tous les verbes maitrises » sur 102/111
+- **v653** la sonde condamnait des fichiers valides ; le journal comptait comme
+  gels des mesures prises onglet cache
+- **v654** une lecture ratee ne relachait jamais sa requete
+- **v657** le service worker rechargeait Firebase depuis gstatic A CHAQUE REVEIL
+- **v658** `addRoutes` : les fichiers audio ne traversent plus le worker
+
+### ⚠️ CE QUE CETTE JOURNEE A COUTE, ET LA LECON
+
+**Huit versions poussees avant de mesurer.** Sonde, `preload`, requetes non
+relachees, lecteur unique, fonds flous, vitesse 0,9 -- toutes plausibles,
+toutes fausses. La raison etait devant moi depuis le matin : **je ne
+reproduisais rien.** Tout marchait sur ma machine, entre 86 et 197 ms a chaque
+mesure. Je ne diagnostiquais pas, je devinais, et chaque devinette coutait un
+essai a Jacques.
+
+⚠️ **ET UNE DE MES CORRECTIONS A CREE UN DEFAUT** : le `load()` de la v652
+coupait le telechargement que le lecteur attendait. Les AbortError de midi
+etaient de moi, et il a fallu le journal pour le voir.
+
+**TROIS CHOSES ONT REELLEMENT FAIT AVANCER, ET AUCUNE N'EST DE MON INITIATIVE :**
+
+| | |
+|---|---|
+| son journal audio | a nomme deux defauts en dix minutes apres que j'en aie rate cinq |
+| son test du lien direct | a innocente le reseau -- y compris PENDANT la panne |
+| **sa remarque sur les confettis** | dite en passant, avec « je ne sais pas si ca peut aider » |
+
+⚠️ **ET J'AI TRAITE COMME UNE IMPASSE LE FAIT QUI TRANCHAIT.** « J'ai ouvert
+l'app, j'ai attendu quelques minutes pour voir s'il y a quelque chose en
+arriere-plan, ca n'a rien change. » Je l'ai lu comme une piste de moins.
+C'etait la donnee la plus informative de la journee.
+
+**LA REGLE, POUR LA PROCHAINE FOIS :**
+
+1. **Quand je ne reproduis pas, je ne corrige pas : j'instrumente.** Huit
+   versions poussees a l'aveugle, zero resultat. Une mesure, la reponse.
+2. **L'instrument ne doit rien demander a l'usager.** Le bouton de la v656 n'a
+   jamais pu servir -- il aurait fallu appuyer pile pendant une panne qui dure
+   quelques minutes et arrive sans prevenir, alors qu'il REVISE. La v659, qui
+   se declenche toute seule, a donne la reponse au premier essai.
+3. **Un fait qui contredit toutes les hypotheses en cours n'est pas genant :
+   c'est le seul qui mesure quelque chose.**
+
+### Reste a surveiller
+
+- Le gel de 18 104 ms, onglet VISIBLE, juste apres `progression -> Firestore`,
+  vu une seule fois. Jamais explique, jamais revu.
+- Sur iPhone : `preload="auto"` (v654) peut reveiller la session sonore plus
+  tot et faire revenir l'attenuation du francais. Si ca arrive, c'est dans
+  `obtenirLecteur()` qu'il faut revenir, pas ailleurs.
+- Le prechargement (v660) demande le meme fichier que le lecteur. Les deux
+  fautes de la sonde sont evitees (jamais interrompre, jamais condamner), mais
+  c'est le point a regarder en premier si un defaut audio revient.
