@@ -301,11 +301,29 @@ def main():
             # plus de texte, donc celle ou l'apprenant a le plus besoin de
             # savoir ou en est la voix. Jacques : « au debut de la video on ne
             # voit pas la surbrillance sur les mots ».
-            voix = os.path.join(RACINE, "audio", "scenes", a.scene,
-                                "%02d-erzaehler.mp3" % n)
+            # ⚠️ LE NOM DU FICHIER VIENT DE LA SCENE, PAS DE « erzaehler ».
+            # Un plan de decor n'est pas forcement narre par le narrateur : le
+            # plan 19 de l'episode 3 est un plan large ou le CYCLISTE parle
+            # hors champ, et sa voix s'appelle 19-radfahrer.mp3. Cherchee sous
+            # le seul nom « erzaehler », elle etait introuvable -- et le repli
+            # ci-dessous posait la phrase d'un bloc, sans un mot surligne et
+            # SANS UN AVERTISSEMENT. Un sous-titre qui s'affiche quand meme ne
+            # se lit pas comme une panne : il se lit comme un choix.
+            voix = None
+            for cand in ([p.get("locuteur")] if p.get("locuteur") else []) + ["erzaehler"]:
+                essai = os.path.join(RACINE, "audio", "scenes", a.scene,
+                                     "%02d-%s.mp3" % (n, cand))
+                if os.path.exists(essai):
+                    voix = essai
+                    break
             debut = info["debut"]
             fin = info["debut"] + info["duree"]
-            if os.path.exists(voix):
+            if voix is None:
+                print("  ATTENTION : aucune voix trouvee pour le plan %d "
+                      "(cherche %02d-%s.mp3 et %02d-erzaehler.mp3) -- la "
+                      "phrase s'affichera d'un bloc, sans surlignage."
+                      % (n, n, p.get("locuteur") or "?", n))
+            if voix is not None:
                 mots = decouper(F, voix, de)
                 # narrer() retarde la voix de 0,35 s dans le segment : les
                 # instants du mp3 se lisent donc a partir de debut + 0,35.
