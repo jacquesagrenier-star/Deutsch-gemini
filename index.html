@@ -464,6 +464,34 @@ window.LIEN_REINIT = (function(){
     var GEL_CLE = "deutschAI_journal_gel";
     var GEL_MAX = 60;
 
+    // ⚠️ L'INSTRUMENT DOIT SAVOIR QUAND IL NE MESURE RIEN (v653). Un onglet en
+    // arriere-plan est ralenti PAR DESSEIN : Chrome espace ses minuteries, le
+    // pouls arrive en retard, et le retard qu'on lit n'est pas un gel -- c'est
+    // le navigateur qui fait son travail.
+    //
+    // Le journal le notait deja, mais il lisait document.hidden A LA FIN de la
+    // fenetre : un gel commence hors ecran et termine a l'ecran ressortait
+    // comme un vrai. Et surtout, journalGelTexte() melangeait les deux dans la
+    // meme liste sous « GELS -- 3 ».
+    //
+    // CE QUE CA A COUTE : le journal du 21 septembre a rendu trois lignes de
+    // 2,4 s, 3,9 s et 18 s. Deux portaient « onglet cache » -- donc n'etaient
+    // pas des gels -- et on a cherche trois jours une cause a des mesures qui
+    // ne mesuraient rien. Une mesure indisponible doit se declarer
+    // indisponible ; c'est la regle deja posee pour les longues taches sur
+    // iPhone, et elle vaut ici mot pour mot.
+    var retourVisibleA = 0;
+    try{
+        document.addEventListener("visibilitychange", function(){
+            if(!document.hidden) retourVisibleA = Date.now();
+        });
+    }catch(e){}
+    // Vrai des que la fenetre [debut, fin] touche une periode hors ecran, que
+    // l'onglet soit encore cache maintenant ou qu'il vienne de revenir.
+    function horsEcranPendant(debut){
+        return document.hidden || retourVisibleA > debut;
+    }
+
     // ⚠️ LA QUESTION QU'AUCUNE MARQUE NE POUVAIT POSER (v647). Le journal du
     // 21 septembre a rendu quatorze gels de 2 a 9 secondes, tous sur les
     // cartes, dont UN SEUL nomme (« progression -> localStorage », 2509 ms) et
@@ -570,8 +598,9 @@ window.LIEN_REINIT = (function(){
                            ou: ouSuisJe(), quoi: q, tas: tasMo(),
                            // Un onglet en arriere-plan est RALENTI PAR DESSEIN :
                            // ses minuteries sont espacees, et le retard qu'on
-                           // mesure n'est alors pas un gel du tout.
-                           cache: document.hidden ? "onglet cache" : "" };
+                           // mesure n'est alors pas un gel du tout. On regarde
+                           // TOUTE la fenetre, pas seulement l'instant final.
+                           cache: horsEcranPendant(debut) ? "onglet cache" : "" };
             // ⚠️ ON N'ECRIT PAS TOUT DE SUITE, ET C'EST UNE QUESTION D'ORDRE.
             // Quand le fil est rendu, DEUX choses attendent : la battue en
             // retard, qui nous amene ici, et le rappel de l'observateur, qui
@@ -6316,7 +6345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v652</span>
+    <span class="subtitle-version">v653</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -25281,9 +25310,20 @@ function loadFlashcard(){
     }
 
     resizeFlashcard();
-    // La carte est affichee mais pas encore retournee : c'est le moment de
-    // savoir si son fichier existe. Voir preverifierAudioCarte().
-    preverifierAudioCarte();
+    // ⚠️ LA SONDE EST RETIREE (v653). Elle demandait le MEME fichier que le
+    // lecteur s'apprete a jouer, une seconde fois, a chaque carte. Ce que le
+    // journal du 21 septembre en dit, en clair :
+    //   - elle a declare « fichier absent » pour cinq verbes -- dont
+    //     « sich beschweren », qui a joue 36 s plus tard. Un fichier lent
+    //     etait inscrit comme manquant, DEFINITIVEMENT pour la session, et
+    //     l'app basculait sur la voix Windows au lieu d'Aurora.
+    //   - depuis la v652, sa liberation appelait load() sur cette URL pendant
+    //     que le lecteur attendait encore ses donnees. Le commentaire de
+    //     versRepli() decrit deja cette panne mot pour mot : « quelqu'un a
+    //     repris l'element, change sa source ou appele load() ». Les
+    //     AbortError du journal de midi viennent de la.
+    // Son seul benefice etait de preparer le repli un peu plus tot ; le
+    // lecteur bascule deja tout seul sur erreur. Le cout depassait le gain.
 }
 
 // LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()
@@ -27135,7 +27175,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 652;
+const APP_VERSION = 653;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27647,19 +27687,38 @@ function journalGelTexte(){
     if(!Array.isArray(liste) || !liste.length){
         return "GELS : aucun. (Un gel = le fil principal pris 1,5 s ou plus.)";
     }
-    return "GELS -- " + liste.length + " (le plus recent en bas)" + SAUT +
-        liste.map(e => {
-            // ⚠️ LA LIGNE DU VERDICT EST EN DESSOUS, PAS AU BOUT. Elle est la
-            // reponse a la question qu'on se pose en lisant la premiere ; au
-            // bout d'une ligne deja longue, elle serait coupee par le
-            // navigateur ou par le collage, exactement la ou ca compte.
-            const tete = e.h + "  " + String((e.ms || 0) + " ms").padStart(9) +
-                         "  " + String(e.quoi || "?").padEnd(26) +
-                         "  " + (e.ou || "?");
-            const dessous = [e.tache, e.tas ? "tas " + e.tas : "", e.cache]
-                            .filter(x => x).join("  |  ");
-            return dessous ? tete + SAUT + "               " + dessous : tete;
-        }).join(SAUT);
+    // ⚠️ LA LIGNE DU VERDICT EST EN DESSOUS, PAS AU BOUT. Elle est la reponse a
+    // la question qu'on se pose en lisant la premiere ; au bout d'une ligne
+    // deja longue, elle serait coupee par le navigateur ou par le collage,
+    // exactement la ou ca compte.
+    const ligne = e => {
+        const tete = e.h + "  " + String((e.ms || 0) + " ms").padStart(9) +
+                     "  " + String(e.quoi || "?").padEnd(26) +
+                     "  " + (e.ou || "?");
+        const dessous = [e.tache, e.tas ? "tas " + e.tas : ""]
+                        .filter(x => x).join("  |  ");
+        return dessous ? tete + SAUT + "               " + dessous : tete;
+    };
+    // ⚠️ LES DEUX GROUPES NE SE MELANGENT PLUS (v653). Une mesure prise hors
+    // ecran n'est pas un gel : l'onglet etait ralenti par le navigateur, par
+    // dessein. Les compter ensemble sous « GELS -- 3 » a envoye trois jours de
+    // recherche sur des lignes qui ne mesuraient rien.
+    const vrais = liste.filter(e => !e.cache);
+    const hors  = liste.filter(e => !!e.cache);
+    let out = vrais.length
+        ? "GELS -- " + vrais.length + " (le plus recent en bas)" + SAUT +
+          vrais.map(ligne).join(SAUT)
+        : "GELS : aucun a l'ecran. (Un gel = le fil principal pris 1,5 s ou plus.)";
+    if(hors.length){
+        out += SAUT + SAUT +
+            "HORS ECRAN -- " + hors.length + " : NON COMPARABLES." + SAUT +
+            "  L'onglet etait en arriere-plan, ou il l'a ete pendant la mesure." + SAUT +
+            "  Un onglet cache est ralenti par le navigateur par dessein : le" + SAUT +
+            "  retard mesure n'est pas un blocage de l'app. A ne pas lire comme" + SAUT +
+            "  des gels." + SAUT +
+            hors.map(ligne).join(SAUT);
+    }
+    return out;
 }
 
 function journalTexte(){
@@ -28266,70 +28325,16 @@ function texteCarteAPrononcer(){
 // retournee. Aucune lecture, aucun son : on met le fichier en file et on
 // ecoute l'erreur. Au retournement, audioAbsents sait deja, et la voix part
 // dans le geste.
-const audioSondes = new Set();
-
-// ============ UNE SONDE QUI SE REFERME (v652) ============
+// ⚠️ LA SONDE A ETE RETIREE (v653) -- voir loadFlashcard(). Elle doublait
+// chaque requete audio sur la MEME URL que le lecteur, inscrivait des
+// fichiers lents comme manquants (preuve au journal : « sich beschweren »
+// declare absent, puis joue 36 s plus tard), et depuis la v652 son load()
+// interrompait la lecture en cours -- d'ou les AbortError.
 //
-// ⚠️ LA SONDE FUYAIT UN ELEMENT MEDIA PAR CARTE. Elle en creait un, lui
-// donnait une source, lancait le telechargement -- et l'abandonnait sans
-// jamais le relacher. Un `new Audio()` sans reference n'est PAS libere pour
-// autant : tant qu'il porte une source chargee ou en cours, le navigateur lui
-// tient une ressource media, une connexion et un decodeur. Et ca ne vit pas
-// dans notre page : ca vit dans LE PROCESSUS NAVIGATEUR.
-//
-// C'est ce qui reconcilie trois faits qui se contredisaient depuis trois
-// jours, et aucune de mes cinq explications precedentes n'y arrivait :
-//   - le navigateur ENTIER gele (plus moyen de cliquer un autre onglet)
-//     -> le processus navigateur est sature, et c'est lui qui dessine les
-//        onglets ; du JavaScript bloque ne peut pas faire ca
-//   - notre journal dit « GELS : aucun », et il dit VRAI
-//     -> rien de tout ceci ne passe par le fil principal
-//   - mais SEULE CETTE APP gele
-//     -> elle est la seule a ouvrir un element media par carte
-// Plus « ca prend un certain nombre de cartes » : ca s'accumule, donc ca a un
-// seuil. Et « rien sur iPhone » : iOS ignore preload="metadata" tant qu'il n'y
-// a pas eu de geste, donc la sonde n'y a jamais rien alloue.
-//
-// ⚠️ LIBERER, C'EST `removeAttribute("src")` PUIS `load()`. Mettre src = ""
-// ne suffit pas -- l'element repart chercher la page courante comme media, ce
-// qui rouvre une requete au lieu d'en fermer une.
-function libererSonde(sonde){
-    try{
-        sonde.onerror = null;
-        sonde.onloadedmetadata = null;
-        sonde.removeAttribute("src");
-        sonde.load();
-    }catch(e){}
-}
-
-function preverifierAudioCarte(){
-    if(!AUDIO_BASE || typeof Audio === "undefined") return;
-    const texte = texteCarteAPrononcer();
-    if(!texte) return;
-    const empreinte = empreinteAudio(texte);
-    if(!empreinte || audioAbsents.has(empreinte) || audioSondes.has(empreinte)) return;
-    audioSondes.add(empreinte);
-    // Un element neuf par sonde : reutiliser le meme ferait arriver l'erreur du
-    // mot precedent sur le gestionnaire du mot courant, et noircirait un
-    // fichier parfaitement valide.
-    const sonde = new Audio();
-    sonde.preload = "metadata";
-    sonde.onerror = () => {
-        // NE PAS noircir sur une panne de reseau. Le code 2 (MEDIA_ERR_NETWORK)
-        // dit que le fichier n'a pas pu etre atteint, pas qu'il n'existe pas --
-        // l'inscrire condamnerait le mot pour toute la session sur un creux de
-        // connexion. Seul un fichier introuvable ou illisible compte.
-        const code = sonde.error && sonde.error.code;
-        libererSonde(sonde);
-        if(code === 2) { audioSondes.delete(empreinte); return; }
-        audioAbsents.add(empreinte);
-        noterAudio(texte, "SONDE", "fichier absent -- repli prepare avant le geste");
-    };
-    // La sonde a repondu des que les metadonnees sont la : le fichier existe,
-    // on n'a plus aucun besoin de l'element. C'est la ligne qui manquait.
-    sonde.onloadedmetadata = () => libererSonde(sonde);
-    sonde.src = AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION;
-}
+// audioAbsents reste, mais il n'a plus qu'UNE source : versRepli(), c'est-a-dire
+// une vraie tentative de lecture. Et lui distingue deja le refus temporaire
+// (definitif === false, rien d'inscrit) du fichier vraiment illisible. Un mot
+// n'est donc plus condamne pour la session par un creux de reseau.
 
 function speakWord(){
     if(!currentCards.length || !('speechSynthesis' in window)) return;
