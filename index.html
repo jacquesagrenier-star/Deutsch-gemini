@@ -6345,7 +6345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v655</span>
+    <span class="subtitle-version">v656</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8594,6 +8594,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 onclick="copierJournalAudio()">COPIER LE JOURNAL</button>
         <div class="spacer"></div>
         <button class="secondary" onclick="viderJournalAudio()">VIDER LE JOURNAL</button>
+        <div class="spacer"></div>
+        <!-- ⚠️ A APPUYER PENDANT LA MAUVAISE PHASE, jamais quand le son va
+             bien : il compare quatre facons de lancer LE MEME fichier, et la
+             comparaison ne vaut que la ou le defaut existe. Voir testerLeSon().
+             Le volume est a zero : on mesure un demarrage, on n'ecoute pas. -->
+        <button class="secondary" id="testSonBtn"
+                onclick="testerLeSon()">TESTER LE SON</button>
         <div class="spacer"></div>
         <!-- Reserve a l'admin, comme le reste de cette carte : rejoue les cinq
              cartes ou la cle porte son mot. Voir rejouerApprentissageCle. -->
@@ -27180,7 +27187,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 655;
+const APP_VERSION = 656;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27850,6 +27857,111 @@ function viderJournalAudio(){
     // vide serait pire qu'un journal plein.
     try{ localStorage.removeItem("deutschAI_journal_gel"); }catch(e){}
     afficherJournalAudio();
+}
+
+// ============ COMPARER LES RECETTES, LA OU LE DEFAUT EXISTE (v656) ============
+//
+// ⚠️ POURQUOI UN INSTRUMENT PLUTOT QU'UNE HUITIEME CORRECTION. Le 21 septembre,
+// sept versions ont ete poussees sur le son qui tarde ou n'arrive pas, et
+// AUCUNE n'a rien change. La raison est simple et elle etait devant moi :
+// tout marche sur ma machine. Hebergement, element neuf, vitesse 0,9, URL --
+// mesure et remesure, entre 86 et 197 ms a chaque fois. Je ne reproduis rien,
+// donc je ne fais que deviner.
+//
+// Ce qui a reellement avance aujourd'hui, c'est le journal : lu une fois, il a
+// nomme deux defauts en dix minutes. Ce bouton est le meme geste. Il lance sur
+// SA machine la comparaison que j'ai lancee sur la mienne, et il l'ecrit au
+// journal.
+//
+// LA COMPARAISON, et pourquoi ces quatre-la :
+//   A  element neuf, vitesse 1, hors cache   -> la recette de l'onglet nu, qui
+//                                               marche chez lui (verifie deux
+//                                               fois, dont pendant la panne)
+//   B  A + notre vitesse 0,9                 -> isole le seul reglage qu'on
+//                                               ajoute
+//   C  element REUTILISE, 0,9, hors cache    -> notre ancienne recette, celle
+//                                               d'avant la v655
+//   D  element neuf, vitesse 1, URL de l'app -> meme recette que A, mais sans
+//                                               forcer hors cache : separe le
+//                                               fichier du chemin
+//
+// A appuyer PENDANT LA MAUVAISE PHASE : c'est la seule fenetre ou la mesure
+// vaut quelque chose. Le volume est a zero -- on mesure un demarrage, on
+// n'ecoute pas.
+function testerLeSon(){
+    const btn = document.getElementById("testSonBtn");
+    const dire = (txt) => { if(btn) btn.textContent = txt; };
+    if(!AUDIO_BASE || typeof Audio === "undefined"){
+        showInfoToast("Aucun hebergement audio configure."); return;
+    }
+    const MOT = "gehen";
+    const emp = empreinteAudio(MOT);
+    if(!emp){ showInfoToast("Empreinte impossible."); return; }
+
+    const adresse = (horsCache) => AUDIO_BASE + emp + ".mp3?r=" + AUDIO_REVISION
+        + (horsCache ? "&cb=" + Date.now() + "-" + Math.round(Math.random()*1e6) : "");
+
+    // ⚠️ UN SEUL ELEMENT POUR LA RECETTE C, ET CREE UNE SEULE FOIS. C'est tout
+    // l'interet de cette ligne : si la reutilisation est en cause, elle ne se
+    // voit qu'en reutilisant.
+    let partage = null;
+
+    function essai(nom, opts){
+        return new Promise((res) => {
+            let a;
+            if(opts.partage){
+                if(!partage){ partage = new Audio(); partage.preload = "auto"; }
+                a = partage;
+            } else {
+                a = new Audio();
+                a.preload = "auto";
+            }
+            a.volume = 0;
+            const t0 = Date.now();
+            let fini = false;
+            const fin = (etat) => {
+                if(fini) return;
+                fini = true;
+                a.onplaying = null; a.onerror = null;
+                noterAudio(MOT, "ESSAI", nom + " -- " + etat
+                    + ", " + (Date.now() - t0) + " ms"
+                    + ", donnees " + a.readyState + "/4, reseau " + a.networkState);
+                // On relache toujours, succes comme echec : c'est la lecon de la
+                // v654, une requete laissee ouverte fausse la mesure suivante.
+                try{ a.pause(); a.removeAttribute("src"); a.load(); }catch(e){}
+                // ⚠️ ON RESOUT AVEC L'ETAT, ET PAS SEULEMENT POUR LA FORME.
+                // `res();` seul est une ligne que verifier_appels_internes()
+                // lit comme un appel de fonction inconnue -- son motif ne vise
+                // QUE `  nom();`. Le controle est volontairement etroit pour ne
+                // jamais accuser a tort ; c'est a l'appel de se nommer
+                // clairement, pas au controle de s'assouplir.
+                res(etat);
+            };
+            a.onplaying = () => fin("SORTIE");
+            a.onerror = () => fin("ERREUR code " + ((a.error && a.error.code) || "?"));
+            // Meme plafond pour les quatre : une recette qui depasse dix
+            // secondes a repondu, et sa reponse est « non ».
+            setTimeout(() => fin("MUET apres 10 s"), 10000);
+            a.src = adresse(opts.horsCache);
+            if(opts.vitesse != null) a.playbackRate = opts.vitesse;
+            try{
+                const p = a.play();
+                if(p && p.catch) p.catch(e => fin("REFUS [" + ((e && e.name) || "?") + "]"));
+            }catch(e){ fin("REFUS [" + ((e && e.name) || "?") + "]"); }
+        });
+    }
+
+    dire("ESSAI EN COURS...");
+    noterAudio(MOT, "ESSAI", "===== debut du test des recettes =====");
+    essai("A neuf, vitesse 1, hors cache", { horsCache: true })
+    .then(() => essai("B neuf, vitesse 0,9, hors cache", { horsCache: true, vitesse: 0.9 }))
+    .then(() => essai("C REUTILISE, vitesse 0,9, hors cache", { horsCache: true, vitesse: 0.9, partage: true }))
+    .then(() => essai("D neuf, vitesse 1, URL de l'app", {}))
+    .then(() => {
+        noterAudio(MOT, "ESSAI", "===== fin du test =====");
+        dire("TESTER LE SON");
+        showInfoToast("Test termine. Copie le journal.");
+    });
 }
 
 // Joue le fichier pre-genere s'il existe, sinon la synthese du navigateur.
