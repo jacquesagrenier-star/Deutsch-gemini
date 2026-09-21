@@ -647,6 +647,36 @@ def scene_retournement(p):
     p.ecran("home")
     p.js("await ouvrirSeanceDuJour();")
     p.attendre(3.0)
+    # ⚠️ LA CARTE FILMEE NE PEUT PAS ETRE UN MOT TRANSPARENT. La seance tirait
+    # << Euro >> en premier -- demande de Jacques : << Euro, en francais, c'est
+    # la meme chose qu'en allemand >>. Un plan cense montrer qu'on APPREND un
+    # mot etranger montrait alors un mot que le spectateur connait deja, et la
+    # demonstration tombait a plat.
+    # ⚠️ ON REORDONNE LA SEANCE, ON NE FABRIQUE PAS UNE CARTE. Le paquet reste
+    # celui que l'app a choisi pour aujourd'hui, echeances comprises : on met
+    # simplement en tete la premiere carte qui porte un article et dont le mot
+    # ne se devine pas depuis le francais.
+    p.js("""
+        // ⚠️ DEUX FORMES DE CARTE DANS LE MEME PAQUET. Un nom arrive tantot
+        // comme un tableau, tantot enveloppe dans un objet qui porte `word` --
+        // et une seance melange les deux. Ne tester que le tableau rendait
+        // findIndex -1 sans rien casser : le banc refilmait << Euro >> en
+        // croyant l'avoir ecarte.
+        const mot = c => Array.isArray(c) ? c : (c && Array.isArray(c.word) ? c.word : null);
+        const transparents = /^(Euro|Radio|Hotel|Taxi|Bus|Auto|Kaffee|Baby|Computer|Internet|Sofa|Pizza|Tourist)$/i;
+        const i = currentCards.findIndex(c => {
+            const w = mot(c);
+            return w && /^(der|die|das)$/.test(String(w[1] || ''))
+                     && !transparents.test(String(w[0] || ''));
+        });
+        if(i > 0){
+            const [carte] = currentCards.splice(i, 1);
+            currentCards.unshift(carte);
+            currentFlashcard = 0;
+            loadFlashcard();
+        }
+    """)
+    p.attendre(1.2)
     p.moteur()
     p.attendre(1.0)          # un temps sur le recto : on lit le mot
     p.doigt("#flashcard", approche=0.7, pause=0.1)
@@ -699,7 +729,18 @@ def scene_affinage_net(p):
     p.js("document.getElementById('carteMosaique').scrollIntoView({block:'start'});")
     p.attendre(1.0)
     dossier = p.sequence("affinage", 0)
-    etapes = list(range(120, 701, 12))
+    # ⚠️ ON PART DES GROS CARREAUX, ET LE PAS N'EST PAS REGULIER. Demande de
+    # Jacques : << on aurait du commencer avec les gros carreaux, pour que ca
+    # fasse plus un contraste >>. La premiere version partait de 120 -- deja
+    # affinee, deja lisible -- et le plan racontait la fin d'une histoire dont
+    # on avait rate le debut.
+    # ⚠️ ET LE PAS SUIT L'OEIL, PAS LE COMPTEUR. Une carte qui coupe un bloc de
+    # 150 px se voit ; la meme carte, a la fin, coupe une tesselle de 18 px et
+    # ne se voit pas. A pas constant, la moitie du plan ne montre donc rien. La
+    # progression est quadratique : beaucoup d'images la ou ca change, peu la
+    # ou ca ne change plus.
+    N = 64
+    etapes = [6 + round((700 - 6) * (i / (N - 1)) ** 2) for i in range(N)]
     for i, c in enumerate(etapes):
         p.js("""
             const v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE));
