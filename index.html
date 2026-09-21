@@ -5215,6 +5215,88 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 .orb[data-orbid="wortstellung"] strong,
 .orb[data-orbid="vhskapitel"] strong{max-width:5.6em; margin:0 auto;}
 .orb small{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.25;}
+
+/* ============ SUR UN ECRAN D'ORDINATEUR (v646) ============
+   Demande de Jacques, le 21 septembre 2026 : << est-ce qu'on devrait avoir un
+   format adaptatif sur le laptop, que l'application ne soit pas juste comme
+   une colonne pour un iPhone ? >>
+
+   MESURE AVANT DE DECIDER, a 1512 x 900 : la colonne fait 620 px et laisse
+   446 px de blanc de chaque cote ; l'accueil descend a 1981 px, soit plus du
+   double de la hauteur visible ; et l'ecran des cartes montre une carte de
+   170 px suivie de 500 px de vide.
+
+   ⚠️ CE N'EST PAS UNE DEUXIEME MISE EN PAGE, ET C'EST LA DECISION PRINCIPALE.
+   Un vrai gabarit de bureau -- menu lateral, deux colonnes -- voudrait dire
+   deux mises en page a maintenir, donc la moitie des corrections oubliee d'un
+   cote. Ici, TROIS REGLAGES sur la meme mise en page : la colonne s'elargit,
+   la grille passe a quatre tuiles, et la carte se centre dans la hauteur.
+   Rien n'est deplace, rien n'est duplique, et tout revient a l'identique sous
+   1000 px.
+
+   ⚠️ ET LA CARTE NE S'ELARGIT PAS AVEC LE RESTE. Une phrase allemande etalee
+   sur 860 px se lit moins bien, pas mieux : l'oeil perd la ligne en revenant a
+   gauche. La largeur gagnee va aux TUILES, qui sont une grille a parcourir ;
+   la lecture, elle, garde sa colonne etroite. */
+@media(min-width:1000px){
+
+    .app{max-width:860px;}
+
+    /* ⚠️ SUR UN ORDINATEUR, C'EST LA HAUTEUR QUI MANQUE, PAS LA LARGEUR. Un
+       ecran de portable fait 1512 de large pour 900 de haut : la place est
+       couchee, et une grille de CARRES la depense debout. Cinq tuiles par
+       rangee, et l'arret du carre, font tenir les dix-huit modules en quatre
+       rangees de 124 px au lieu de six de 172 -- l'accueil perd 400 px de
+       hauteur, ce qui compte bien plus que les 80 px que le tableau gagne en
+       s'elargissant.
+       Les entetes de section portent grid-column:1 / -1, donc elles suivent
+       sans rien savoir du nombre de colonnes ; et .orb-ring est en position
+       absolue a 44 px, donc elle ne depend pas non plus de la forme. */
+    .grid{grid-template-columns:repeat(6,1fr);}
+    .orb{aspect-ratio:auto; min-height:124px;}
+
+    /* ⚠️ LA CARTE SE CENTRE PAR MARGE AUTO VERTICALE, JAMAIS PAR
+       justify-content. Un conteneur qui centre ses enfants et deborde rogne
+       par le HAUT, et le debordement est le cas ordinaire ici : le verso d'un
+       verbe fait quatre fois la hauteur du recto. Une marge automatique pousse
+       tant qu'il y a de la place et ne pousse plus quand il n'y en a pas. */
+    #flashcards.active{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        min-height:calc(100vh - 140px);
+    }
+
+    /* ⚠️ ET UNE MARGE AUTO *HORIZONTALE* NE CENTRE PAS ICI, ELLE ECRASE.
+       Dans une colonne flex, une marge auto sur l'axe transversal annule
+       l'etirement : l'element se replie sur son contenu. Ecrit d'abord
+       `max-width:620px; margin-inline:auto`, la carte est tombee a soixante
+       pixels de large et le mot s'est empile une lettre par ligne -- une
+       regle de centrage qui produit l'exact contraire, et seule la capture
+       l'a montre. Le centrage transversal, en flex, s'ecrit align-self. */
+    #flashcards .flashcard-wrapper,
+    #flashcards .flashcard-actions,
+    #flashcards .flashcard-end{
+        width:100%; max-width:620px; align-self:center;
+    }
+    /* ⚠️ C'EST LA PAIRE QUI SE CENTRE, PAS LA CARTE SEULE. Une marge
+       automatique en haut ET en bas de la carte absorbe tout le vide restant
+       autour d'elle : la carte se posait au milieu et les quatre boutons de
+       jugement partaient se coller au bord bas de l'ecran, 180 px plus loin.
+       Sur un telephone ils sont sous la carte ; il n'y a aucune raison qu'ils
+       s'en detachent des qu'on ouvre l'app sur un ordinateur.
+       Quand la barre est la, c'est ELLE qui porte la marge du bas, et la carte
+       ne garde que celle du haut : les deux descendent ensemble.
+       Un navigateur sans :has() retombe sur la carte centree seule -- moins
+       bien, jamais casse. */
+    #flashcards .flashcard-wrapper{margin-block:auto;}
+    #flashcards:has(#flashcardActions:not(.hidden)) .flashcard-wrapper{margin-block-end:0;}
+    #flashcards #flashcardActions:not(.hidden){margin-block-end:auto;}
+
+    /* Le bouton Retour redevient ce qu'il etait hors du flex : a gauche, a sa
+       taille, et non etire sur toute la largeur. */
+    #flashcards > .back{align-self:flex-start; width:auto;}
+}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6111,7 +6193,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v645</span>
+    <span class="subtitle-version">v646</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26879,7 +26961,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 645;
+const APP_VERSION = 646;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

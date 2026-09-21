@@ -5722,3 +5722,51 @@ La réparation n'est pas de me souvenir : l'ordre vit maintenant dans
 `_ordre.txt`, à côté des plans, lu par `monter_avatar.py`. La constante `ORDRE`
 du script était celle de l'épisode 1, resservie à tous les autres.
 
+## 21 septembre 2026 — l'app cesse d'être un téléphone au milieu du blanc (v646)
+
+Suite de la question du jour : « est-ce qu'on devrait avoir un format adaptatif
+sur le laptop ? »
+
+**Mesuré avant de décider, à 1512 × 900** : la colonne fait 620 px et laisse
+446 px de blanc de chaque côté ; l'accueil descend à 1981 px, plus du double de
+la hauteur visible ; et l'écran des cartes montre une carte de 170 px suivie de
+**500 px de vide**.
+
+⚠️ **Ce n'est pas une deuxième mise en page, et c'est la décision principale.**
+Un vrai gabarit de bureau — menu latéral, deux colonnes — voudrait dire deux
+mises en page à maintenir, donc la moitié des corrections oubliée d'un côté.
+Trois réglages sur la même mise en page, au-delà de 1000 px : la colonne passe
+à 860, la grille à six tuiles, la carte se centre dans la hauteur.
+
+⚠️ **Sur un ordinateur, c'est la HAUTEUR qui manque, pas la largeur.** L'écran
+est couché ; une grille de carrés dépense la place debout. Six tuiles par
+rangée — et l'arrêt du carré — font tenir chaque section en **une seule
+rangée** : l'accueil tombe de 1981 à 1493 px, alors même que le tableau a
+grandi de 80 px en s'élargissant.
+
+⚠️ **Et la carte ne s'élargit pas avec le reste.** Une phrase allemande étalée
+sur 860 px se lit moins bien, pas mieux : l'œil perd la ligne en revenant à
+gauche. La largeur gagnée va aux tuiles, qui sont une grille à parcourir ; la
+lecture garde sa colonne de 620.
+
+**Deux pièges, tous deux vus par la capture et par rien d'autre :**
+
+1. **Une marge `auto` horizontale ne centre pas dans une colonne flex, elle
+   écrase.** Sur l'axe transversal, une marge automatique annule l'étirement :
+   écrit `max-width:620px; margin-inline:auto`, la carte est tombée à **soixante
+   pixels de large** et le mot s'est empilé une lettre par ligne. Une règle de
+   centrage qui produit l'exact contraire. Le centrage transversal s'écrit
+   `align-self`.
+
+2. **C'est la PAIRE qui se centre, pas la carte seule.** Une marge auto en haut
+   et en bas de la carte absorbe tout le vide autour d'elle : la carte se
+   posait au milieu et les quatre boutons de jugement partaient se coller au
+   bord bas, 180 px plus loin. Sur un téléphone ils sont sous la carte ; il n'y
+   a aucune raison qu'ils s'en détachent sur un ordinateur.
+
+**Vérifié à quatre tailles** — 1512 × 900, 1280 × 720, **999 × 800 (juste sous
+la bascule)** et 430 × 932 — recto, verso, et un verso forcé à 900 px pour
+chercher un rognage par le haut. Aucun rognage, aucune erreur de page, et
+**à 999 px l'accueil refait exactement ses 1981 px d'avant** : rien n'a fui
+sous le seuil.
+
