@@ -41,7 +41,7 @@ RACINE = Path(__file__).resolve().parent.parent
 NARRATION = {
     "en": [
         "Every card refines a painting. On the last one, it's yours.",
-        "Each day, a session waits. You pick the level; the app picks the words.",
+        "Each day, a session. You pick the level; the app picks the words.",
         "You answer. Hard words come back sooner.",
         "And when you can't look, you listen.",
         "A word you don't have is already in the app. And it becomes a card.",

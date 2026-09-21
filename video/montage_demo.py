@@ -67,7 +67,7 @@ LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
 # joue son vrai role : montrer que tout part de la.
 PLANS = [
     ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
-    ("clip:choix_niveau",       7.5, 0.00),  # 2. tu choisis, tu commences, la carte est la
+    ("clip:choix_niveau",       8.6, 0.00),  # 2. tu choisis, tu commences, la carte est la
     ("clip:retournement",       4.5, 0.00),  # 3. tu reponds -- LE VRAI GESTE
     ("clip:ecoute_suite",       3.8, 0.05),  # 4. les mains libres -- LE VRAI LECTEUR
     ("clip:dictionnaire_frappe", 11.0, 0.00),  # 5. trois lettres, un mot choisi, sa carte
