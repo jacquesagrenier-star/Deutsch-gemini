@@ -5688,3 +5688,37 @@ fois, dans la console Firebase : *Authentication → Templates → Password rese
 le crayon → « customize action URL »* et y mettre
 `https://jacquesagrenier-star.github.io/Deutsch-gemini/index.html`.
 
+## 21 septembre 2026 — trois retours de Jacques, sur portable
+
+**1. Les premières cartes sont très lentes, et muettes.** « Je suis dans le
+verbe A1, j'ai bien vérifié que la configuration demandait le son pour le
+verbe. Ah, ça vient d'arriver, c'est très très lent. » Puis, quelques minutes
+après : « une fois que j'ai commencé et que le son est là, après ça la vitesse
+est OK. Les premières cartes, très [lentes]. »
+
+Les deux symptômes arrivent ensemble et repartent ensemble. **Rien n'est
+diagnostiqué ici** — noté pour l'être. ⚠️ Et la leçon déjà payée s'applique :
+**exiger le journal audio avant d'écrire du code**, surtout quand on a déjà
+une hypothèse. Demandé.
+
+**2. Faut-il une mise en page adaptative sur portable ?** « Que l'application
+ne soit pas juste comme dans une colonne pour un iPhone. Ou si ce n'est pas
+une bonne idée ? » Réponse donnée : oui, mais pas un deuxième écran d'accueil
+— une colonne un peu plus large et une grille de tuiles qui passe à trois
+colonnes. Deux mises en page à maintenir, c'est la moitié des corrections
+oubliée d'un côté.
+
+**3. Épisode 3 — et un piège que j'ai pris en plein visage.** Les dix-neuf
+plans étaient tournés depuis le 16 septembre et n'avaient jamais été montés.
+Monté aujourd'hui : 69,7 s.
+
+⚠️ **L'ordre de montage n'est pas l'ordre des numéros.** Le plan 19 se monte
+**entre le 08 et le 09** — son numéro n'a servi qu'à éviter de renuméroter les
+dix suivants. Au premier montage il est parti à la fin, ce qui fait parler le
+cycliste **après** qu'il est parti. Le film s'est concaténé, a fait sa durée,
+et n'a averti de rien. `A-TOURNER.txt` le disait en toutes lettres, ligne 879.
+
+La réparation n'est pas de me souvenir : l'ordre vit maintenant dans
+`_ordre.txt`, à côté des plans, lu par `monter_avatar.py`. La constante `ORDRE`
+du script était celle de l'épisode 1, resservie à tous les autres.
+

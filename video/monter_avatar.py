@@ -223,15 +223,34 @@ def main():
                          "de depart, fixe et grise, avec leur vraie voix")
     a = ap.parse_args()
 
+    F = M.ffmpeg()
+    ep = os.path.join(RACINE, "video", "episode-" + a.scene)
+
+    # ⚠️ L'ORDRE DE MONTAGE N'EST PAS L'ORDRE DES NUMEROS, ET RIEN NE S'EN
+    # PLAINT QUAND ON SE TROMPE. L'episode 3 a un plan 19 qui se monte ENTRE
+    # le 08 et le 09 : le numero 19 n'a ete choisi que pour eviter de
+    # renumeroter les dix autres. Monte a la place que son numero suggere, il
+    # met la premiere phrase du cycliste APRES la chute -- le film se
+    # concatene, fait sa duree, et personne n'est averti. Sa feuille de
+    # tournage le disait en toutes lettres ; c'est une phrase dans un fichier
+    # de 50 ko, et je l'ai quand meme manquee au premier montage.
+    #
+    # L'ordre vit donc a cote des plans, dans _ordre.txt, la ou on ne peut pas
+    # le rater -- et non dans une constante de ce script, ecrite pour
+    # l'episode 1 et resservie a tous les autres.
+    feuille_ordre = os.path.join(ep, "_ordre.txt")
     if a.ordre:
         ordre = [int(x) for x in a.ordre.replace(" ", "").split(",") if x]
     elif a.vitrine:
         ordre = VITRINE
+    elif os.path.exists(feuille_ordre):
+        brut = io.open(feuille_ordre, encoding="utf-8").read()
+        brut = "\n".join(l.split("#")[0] for l in brut.split("\n"))
+        ordre = [int(x) for x in brut.replace(",", " ").split()]
+        print("  ordre de montage : _ordre.txt  ->  %s"
+              % ", ".join(str(n) for n in ordre))
     else:
         ordre = ORDRE
-
-    F = M.ffmpeg()
-    ep = os.path.join(RACINE, "video", "episode-" + a.scene)
     tel = os.path.join(ep, "_a-televerser")
     # ⚠️ DEUX ENDROITS SELON L'EPISODE, ET C'EST UNE DERIVE A NE PAS
     # ARBITRER EN SILENCE. L'episode 1 range ses prises retenues dans
