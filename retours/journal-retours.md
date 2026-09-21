@@ -6131,3 +6131,76 @@ fin de paquet arrivait tout de suite. **A confirmer avec lui.**
   conflit pilote GPU / Chrome 146 apparu avec une mise a jour Windows 11 debut
   2026 — ce qui collerait avec « Chrome ET Edge », tous deux Chromium. A
   verifier, pas a annoncer.
+
+## 21 septembre 2026 (suite) — le son : ce que le journal a nomme, et ce qui reste
+
+Jacques a colle le journal audio. Il a tranche en une lecture ce que cinq
+hypotheses n'avaient pas entame.
+
+### Ce que le journal a nomme, et qui est corrige
+
+**v653 — la sonde nuisait plus qu'elle ne servait.** `preverifierAudioCarte()`
+redemandait a chaque carte LE MEME fichier que le lecteur s'appretait a jouer.
+Preuve au journal : « sich beschweren » declare *fichier absent* a 12:13:27,
+puis JOUE a 12:14:03. Un fichier lent etait inscrit comme manquant,
+definitivement pour la session, et l'app basculait sur la voix Windows au lieu
+d'Aurora. Quatre autres verbes dans la meme minute.
+
+⚠️ **Et les AbortError de midi etaient de moi.** La v652 avait ajoute une
+liberation qui appelait `load()` sur cette URL pendant que le lecteur attendait
+ses donnees — exactement la panne que le commentaire de `versRepli()` decrivait
+deja mot pour mot. J'ai corrige un defaut en en creant un autre, et il a fallu
+le journal pour le voir.
+
+**v653 — l'instrument comptait des mesures qui ne mesurent rien.** Sur les
+trois lignes du bloc GELS, **deux portaient « onglet cache »**. Un onglet en
+arriere-plan est ralenti PAR DESSEIN. Le journal le savait mais les comptait
+ensemble sous « GELS -- 3 », et lisait `document.hidden` seulement A LA FIN de
+la fenetre. On a cherche trois jours une cause a des lignes qui ne mesuraient
+rien. Desormais : visibilite suivie sur TOUTE la fenetre, deux groupes
+separes, le second titre NON COMPARABLES.
+
+**v654 — deux requetes qui restaient en plan.** Meme mecanisme, deux endroits :
+
+| | |
+|---|---|
+| `onended()` | relache l'element depuis la v448 |
+| `versRepli()` | posait `audioEnCours = null` et passait la main |
+
+L'element gardait donc sa source — **donc sa requete, celle qui venait
+justement de rester en plan**. Et ce `null` DESARME `arreterAudioPregenere()`,
+qui ne relache que `audioEnCours` : plus personne ne venait jamais la fermer.
+Plus `preload` qui passe de `none` a `auto` : toutes les lignes MUET disaient
+`donnees 1/4, reseau 1` — metadonnees recues, **reseau a l'arret**.
+
+Ça colle mot pour mot a ce qu'il decrit : « ca ne fonctionne pas... j'ai
+arrete une minute ou deux... la, ca fonctionne ». Un stock de connexions par
+hote qui s'epuise, puis que le navigateur libere en abandonnant les requetes
+mortes.
+
+### Ce qui est mesure, et hors de cause
+
+| | |
+|---|---|
+| hebergement audio | **86 a 197 ms** depuis ma machine, fichiers de 0,7 s |
+| demarrage de l'app | **22 requetes, rien au-dessus de 160 ms** |
+| service worker | lu en entier : n'intercepte que la page, jamais l'audio |
+| fonds flous | essai v650, elimines par Jacques |
+| ecriture sur disque | deja elaguee 537 ko -> 34 ko, et instrumentee |
+| animations au repos | zero |
+
+### Ce qui reste ouvert
+
+- **Le « demarrage » de 3 a 4 minutes** : mauvais au debut, bon ensuite. Ce
+  n'est pas l'app qui telecharge — c'est mesure ci-dessus.
+- **Un vrai gel de 18 104 ms, onglet VISIBLE**, juste apres
+  `progression -> Firestore`. Jamais explique.
+- **Le test des trois liens directs n'a pas ete fait.** C'est la seule mesure
+  qui separe sa machine de notre code sans passer par une ligne de Wortando,
+  et c'est devenu le goulot de l'enquete.
+
+⚠️ **LA LECON, ET ELLE EST DEJA ECRITE DANS MA MEMOIRE.** « Exiger le journal
+audio avant d'ecrire du code, surtout quand on a deja une hypothese. » J'ai
+ecrit trois versions avant de le demander. Le journal, une fois lu, a nomme
+deux defauts en dix minutes — dont un que j'avais moi-meme introduit deux
+heures plus tot.
