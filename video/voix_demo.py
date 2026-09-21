@@ -177,12 +177,18 @@ def main():
     a.add_argument("--moteur", default="eleven", choices=["eleven", "sapi"],
                    help="eleven : ElevenLabs (payant, pour livrer). "
                         "sapi : la synthese de Windows (gratuite, pour juger le rythme)")
-    # Bella : choisie par Jacques le 20 septembre 2026, apres ecoute des trois
-    # candidates sur la meme phrase.
     a.add_argument("--ton", default="souriant", choices=sorted(TONS),
                    help="souriant : detendu, intonation libre. neutre : la diction "
                         "nette et plate du corpus du cours")
-    a.add_argument("--voix-eleven", default="bella",
+    # ⚠️ AURORA, ET C'EST UN CHOIX DE MARQUE PLUS QUE DE TIMBRE. Jacques a
+    # d'abord retenu Bella -- une voix anglaise pour un film anglais -- puis a
+    # demande pourquoi pas Aurora : c'est LA VOIX DE WORTANDO, celle des
+    # 25 298 fichiers du corpus. Une seule voix partout, reconnaissable,
+    # plutot qu'une voix par langue de presentation.
+    # ⚠️ CE QU'ON ACCEPTE AVEC : la voix qui ENSEIGNE devient aussi celle qui
+    # PRESENTE. Le jour ou un plan contiendra du son de l'app -- le mot dit au
+    # verso d'une carte -- on l'entendra faire les deux dans le meme plan.
+    a.add_argument("--voix-eleven", default="aurora",
                    help="nom court (rachel, bella, adam, aurora) ou identifiant")
     a.add_argument("--vitesse", type=int, default=0, help="SAPI : -10 (lent) a 10 (rapide)")
     a.add_argument("--film", default=None, help="le montage muet a sonoriser")
