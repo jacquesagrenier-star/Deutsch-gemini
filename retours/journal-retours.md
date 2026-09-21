@@ -5635,3 +5635,56 @@ d'échouer à entrer, c'est lui faire porter l'échec.
 
 **Vérifié à l'écran, les trois chemins** : sans adresse, adresse invalide, et
 adresse sans compte — ce dernier reçoit bien le message neutre.
+
+## 21 septembre 2026 — la page « nouveau mot de passe » est à nous (v645)
+
+**Le retour de Jacques, après avoir essayé la v644 :** « il me faisait écrire
+seulement une fois le mot de passe. Je pense qu'on devrait toujours avoir
+l'option de l'écrire deux fois au cas où on fasse une erreur. »
+
+Notre écran d'inscription demandait déjà le mot de passe deux fois. Celui qu'il
+venait de voir n'était pas le nôtre : **c'était la page de Firebase**, et on ne
+peut ni y ajouter un champ ni la traduire.
+
+**Et c'est le deuxième défaut qui décide,** plus grave que le premier : cette
+page est en anglais. Un testeur ukrainien ou arabe reçoit un courriel dans sa
+langue, clique, et tombe sur un formulaire qu'il ne lit pas — au moment précis
+où il est déjà bloqué dehors.
+
+La page vit donc maintenant dans l'app, avec ses six langues, ses deux champs
+et son accord vérifié à la frappe.
+
+⚠️ **La langue voyage deux fois, parce qu'il y a deux textes à traduire.**
+`languageCode` décide de la langue du COURRIEL, que Firebase rédige ; un `lg`
+glissé dans l'adresse de retour décide de la langue de la PAGE, que nous
+rédigeons. Sans le second, le courriel ukrainien menait à un formulaire
+français. Firebase ne connaît pas le persan : son courriel repasse alors en
+anglais, mais notre page, elle, s'ouvre bien en persan.
+
+⚠️ **On vérifie le lien AVANT de montrer le formulaire.** Un lien de
+réinitialisation ne vaut qu'une heure et ne sert qu'une fois — un courriel lu
+le lendemain matin est le cas ORDINAIRE, pas le cas rare. Faire taper deux fois
+un mot de passe pour annoncer ensuite que le lien est mort, ce serait demander
+un effort pour rien.
+
+⚠️ **Pas d'animation d'ouverture sur un lien de courriel.** Arriver ici, ce
+n'est pas lancer l'app : c'est répondre à une question posée il y a deux
+minutes. Quatre secondes de logo feraient douter d'être au bon endroit.
+
+⚠️ **Et le code disparaît de la barre d'adresse en partant.** Un `oobCode`
+consommé qui reste dans l'historique rouvrirait la page sur un lien mort au
+rechargement suivant — l'app aurait l'air cassée.
+
+**Vérifié dans un vrai navigateur, six chemins** : lien mort en ukrainien
+(message ukrainien), lien valide en arabe (page en RTL, adresse du compte
+affichée, curseur dans le premier champ), mot de passe trop court refusé, les
+deux champs qui ne concordent pas refusés, l'enregistrement qui ramène à la
+connexion avec l'adresse déjà remplie, et une ouverture normale inchangée.
+Zéro erreur de page.
+
+**⚠️ IL RESTE UN GESTE HORS DU DÉPÔT, ET SANS LUI RIEN DE TOUT CECI NE SERT.**
+Le lien du courriel pointe encore vers la page de Firebase. Il faut, une seule
+fois, dans la console Firebase : *Authentication → Templates → Password reset →
+le crayon → « customize action URL »* et y mettre
+`https://jacquesagrenier-star.github.io/Deutsch-gemini/index.html`.
+

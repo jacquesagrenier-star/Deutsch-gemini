@@ -48,6 +48,8 @@ HORS_CLIC = {
     "ecran:setup": "premier lancement : ouvert par le rappel d'authentification "
                    "Firebase quand isSetupDone() est faux, jamais par un clic",
     "ecran:auth": "ecran de depart quand personne n'est connecte",
+    "ecran:resetPassword": "ouvert par le lien recu par courriel "
+                           "(?mode=resetPassword&oobCode=...), jamais par un clic",
 }
 
 
