@@ -60,6 +60,24 @@ NARRATION_TOUR = {
     # anglaise a sens egal, et l'arabe l'est encore davantage. On ecrit donc
     # court d'emblee -- le script dit lequel deborde, et c'est toujours le texte
     # qui cede.
+    # ⚠️ L'ALLEMAND NARRE UNE INTERFACE QUI N'EST PAS EN ALLEMAND, et c'est
+    # assume. L'app s'affiche en six langues -- francais, anglais, turc,
+    # ukrainien, persan, arabe -- mais pas en allemand : l'allemand est ce
+    # qu'on APPREND, pas la langue dans laquelle on lit les boutons. Une voix
+    # allemande sur une interface anglaise est la facon habituelle de presenter
+    # un produit a quelqu'un dont la langue n'est pas (encore) une langue
+    # d'interface -- et le public vise ici, ce sont des professeurs d'allemand.
+    "de": [
+        "Öffne die App, wähle dein Niveau und leg los.",
+        "Antworte — das Wort kommt wieder: in Minuten oder in Wochen.",
+        "Alles auf einem Bildschirm: Wörter, Sätze, Übungen, Prüfungen.",
+        "Und wenn du nicht hinsehen kannst, hörst du zu.",
+        "Such ein beliebiges Wort. Ein Tippen macht eine Karte daraus.",
+        "Du bestimmst das Niveau, die Karten pro Tag und was die Karte vorliest.",
+        "Und jede Karte schärft ein Gemälde, bis es dir gehört.",
+        "Die App spricht deine Sprache — in sechs Sprachen.",
+        None,
+    ],
     "uk": [
         "Відкрий застосунок, обери рівень і почни.",
         "Відповідай — і слово повернеться: за хвилини, дні або тижні.",
@@ -227,7 +245,16 @@ def main():
         pass
     a = argparse.ArgumentParser(description="Pose la narration sur le montage muet.")
     a.add_argument("--recit", default="promo", choices=["promo", "tour"])
-    a.add_argument("--langue", default="en")
+    a.add_argument("--langue", default="en",
+                   help="la langue de la NARRATION")
+    # ⚠️ LA VOIX ET L'IMAGE PEUVENT NE PAS PARLER LA MEME LANGUE. Jacques veut
+    # une version allemande du film pour ses professeurs -- mais l'app n'a pas
+    # d'interface allemande, et n'en aura pas : l'allemand est ce qu'on
+    # apprend. On narre donc en allemand des images anglaises, ce qui est le
+    # cas ordinaire d'un produit presente a quelqu'un dont la langue n'est pas
+    # une langue d'interface.
+    a.add_argument("--images", default=None,
+                   help="langue des PLANS si elle differe de la narration (ex. --langue de --images en)")
     a.add_argument("--appareil", default="iphone67")
     a.add_argument("--voix", default=None)
     a.add_argument("--moteur", default="eleven", choices=["eleven", "sapi"],
@@ -255,7 +282,8 @@ def main():
     if not lignes:
         sys.exit("Pas de narration ecrite pour : " + args.langue)
 
-    base = RACINE / "video" / "demo" / args.langue
+    langue_images = args.images or args.langue
+    base = RACINE / "video" / "demo" / langue_images
     travail = base / args.appareil / ("_montage" if args.recit == "promo"
                                       else "_montage-" + args.recit)
     if not travail.exists():
@@ -279,7 +307,7 @@ def main():
         cle = cle_eleven()
         if not cle:
             sys.exit("Pas de cle ElevenLabs. Pour juger le rythme sans payer : --moteur sapi")
-    sons = base / ("_voix-" + args.recit + "-" + (args.voix_eleven + "-" + args.ton
+    sons = base / ("_voix-" + args.langue + "-" + args.recit + "-" + (args.voix_eleven + "-" + args.ton
                                if args.moteur == "eleven" else "sapi"))
     sons.mkdir(exist_ok=True)
 
