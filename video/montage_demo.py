@@ -33,10 +33,14 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
 LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
-# Les clips se tournent dans une fenetre plus large que les captures -- voir
-# APPAREILS["clip720"] dans banc.py. On les y cherche d'abord, et on retombe
-# sur le dossier des captures s'ils n'y sont pas encore.
-CLIPS_APPAREIL = "clip720"
+# ⚠️ LES CLIPS VIENNENT DU MEME DOSSIER QUE LES CAPTURES, ET PLUS D'AILLEURS.
+# Le montage cherchait d'abord dans `clip720` -- une fenetre plus large, essayee
+# pour gagner en nettete -- puis retombait sur le dossier normal. Deux sources
+# pour une meme scene, et la plus ancienne gagnait : le film a montre pendant
+# deux versions un plan refilme le matin meme, avec le mot qu'on venait
+# justement de remplacer. Signale par Jacques : << je vois encore euro >>.
+# Une preference silencieuse entre deux dossiers est un piege a version
+# perimee ; on n'en garde qu'un.
 
 # Une phrase de narration par plan -- voir video/banc.py.
 # Les plans, dans l'ordre du recit. Chaque entree : image, duree, et l'ANCRE --
@@ -296,9 +300,7 @@ def main():
             continue
         filme = nom.startswith("clip:")
         if filme:
-            image = source.parent / CLIPS_APPAREIL / "clips" / (nom[5:] + ".mp4")
-            if not image.exists():
-                image = source / "clips" / (nom[5:] + ".mp4")
+            image = source / "clips" / (nom[5:] + ".mp4")
         else:
             image = source / nom
         if not image.exists():
