@@ -217,7 +217,39 @@ html,body{margin:0}
     // cle de sessionStorage survit a la mise en veille de l'app, donc "deja vu
     // dans cette session" finissait par vouloir dire "plus jamais".
 
+    // ⚠️ DEUX SEUILS, PARCE QU'IL Y A DEUX SITUATIONS QUI N'ONT RIEN A VOIR.
+    //
+    // L'ouverture rejouee au retour est faite pour l'APP INSTALLEE : on quitte
+    // vers l'ecran d'accueil, on revient, et l'animation dit << te revoila >>.
+    // Cinq secondes suffisent la-bas : on ne sort d'une app que pour faire
+    // autre chose.
+    //
+    // DANS UN ONGLET SUR UN ORDINATEUR, cinq secondes veulent dire tout autre
+    // chose : elles veulent dire qu'on a regarde une autre fenetre. Jacques,
+    // le 21 septembre, avec l'app sur un ecran et cette conversation sur
+    // l'autre : << quand je change d'ecran, c'est la que le W reapparait >>.
+    // Il l'a d'abord pris pour un gel, puis pour un rechargement -- et le
+    // journal a dit non aux deux. Une animation d'accueil qui se declenche a
+    // chaque changement de fenetre ne souhaite plus la bienvenue : elle
+    // interrompt.
+    //
+    // Un onglet attend donc un quart d'heure : assez pour qu'un retour soit
+    // vraiment un retour, jamais pour qu'un aller-retour entre deux fenetres
+    // le devienne.
     var DELAI_ABSENCE = 5000;
+    var DELAI_ABSENCE_ONGLET = 900000;
+
+    function appInstallee(){
+        try{
+            return !!(navigator.standalone ||
+                      (window.matchMedia &&
+                       window.matchMedia("(display-mode: standalone)").matches));
+        }catch(e){ return false; }
+    }
+
+    function seuilAbsence(){
+        return appInstallee() ? DELAI_ABSENCE : DELAI_ABSENCE_ONGLET;
+    }
     var enCours = false;
     var estParti = false;   // un evenement de depart a-t-il eu lieu ? voir traiterBattue
     var minuterie = null;
@@ -333,7 +365,7 @@ html,body{margin:0}
         }
         // Un aller-retour eclair (une notification, une feuille de partage) ne
         // merite pas trois secondes d'animation : on decouvre sans fondu.
-        if(absence >= DELAI_ABSENCE) jouer();
+        if(absence >= seuilAbsence()) jouer();
         else decouvrir(false);
     }
 
@@ -478,7 +510,7 @@ html,body{margin:0}
         // peut rester bloque assez longtemps pour ressembler a une absence
         // (chargement et indexation du vocabulaire).
         if(maintenant - debutPage < 6000) return;
-        if(absence < DELAI_ABSENCE) return;
+        if(absence < seuilAbsence()) return;
         // Le trou est la ; reste a savoir qui dormait. Une battue FRAICHE
         // malgre le trou veut dire que l'ouvrier s'est arrete avec l'app :
         // absence reelle, on rejoue l'ouverture. Une battue EN RETARD veut
@@ -505,7 +537,14 @@ html,body{margin:0}
     // de revenir apres une vraie mise en veille, ce qui est sa raison d'etre.
     if(!ouvrier) setInterval(function(){ traiterBattue(Date.now()); }, POULS_MS);
 
-    window.addEventListener("blur", veille);
+    // ⚠️ PERDRE LE FOCUS N'EST PAS PARTIR. Sur un ordinateur a deux ecrans,
+    // `blur` part chaque fois qu'on clique dans une autre fenetre -- la page
+    // reste VISIBLE, posee devant les yeux. La traiter comme un depart armait
+    // le retour de l'ouverture pour un geste qui n'a rien quitte.
+    // `document.hidden` fait la difference : il est vrai quand la page est
+    // reellement masquee (onglet en arriere-plan, app suspendue par iOS), faux
+    // quand la fenetre a seulement cede le focus.
+    window.addEventListener("blur", function(){ if(document.hidden) veille(); });
     window.addEventListener("pagehide", veille);
     document.addEventListener("freeze", veille);
     window.addEventListener("focus", retour);
@@ -5973,7 +6012,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v642</span>
+    <span class="subtitle-version">v643</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26493,7 +26532,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 642;
+const APP_VERSION = 643;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

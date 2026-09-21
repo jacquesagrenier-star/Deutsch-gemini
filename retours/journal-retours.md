@@ -5585,3 +5585,30 @@ y a donc au moins un trou, et personne ne le saurait sans cette ligne.
 passe oublié ».** Jacques n'a pas pu se reconnecter à son compte de test. Ses
 testeurs vivront la même chose, et chaque oubli deviendra un message à traiter
 à la main.
+
+## 21 septembre 2026 — « ça ressort au logo » : ni gel, ni rechargement (v643)
+
+**Signalé par Jacques**, trois fois de suite pendant qu'on parlait, et il a
+fini par nommer la cause lui-même : « **quand je change d'écran, c'est là que
+le W réapparaît** ». App sur un écran, notre conversation sur l'autre.
+
+**Ce n'était ni un gel ni un rechargement** — le journal avait déjà dit
+`GELS : aucun`, et j'ai cherché deux fois du mauvais côté avant d'ouvrir le
+code de l'écran d'ouverture. C'était une **fonctionnalité** : l'animation
+rejoue après cinq secondes d'absence, pour dire « te revoilà » à quelqu'un qui
+revient dans l'app installée sur son téléphone.
+
+⚠️ **Cinq secondes ne veulent pas dire la même chose dans un onglet.** Sur un
+ordinateur à deux écrans, elles veulent dire « j'ai regardé l'autre fenêtre ».
+Une animation d'accueil qui se déclenche à chaque changement de fenêtre ne
+souhaite plus la bienvenue : **elle interrompt**. Un onglet attend maintenant
+un quart d'heure ; l'app installée garde ses cinq secondes.
+
+⚠️ **Et `blur` n'est pas un départ.** La page reste VISIBLE quand la fenêtre
+cède le focus — `document.hidden` reste faux. La traiter comme un départ armait
+le retour de l'ouverture pour un geste qui n'avait rien quitté.
+
+**La leçon, et elle est déjà écrite ailleurs dans ce dépôt :** le journal
+disait `GELS : aucun`, et cette phrase était vraie. J'ai quand même cherché un
+gel, puis un rechargement. **C'est la description de Jacques — « quand je
+change d'écran » — qui a tranché**, pas le code.
