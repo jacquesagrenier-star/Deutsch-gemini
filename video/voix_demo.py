@@ -69,7 +69,7 @@ NARRATION_TOUR = {
     # d'interface -- et le public vise ici, ce sont des professeurs d'allemand.
     "de": [
         "Öffne die App, wähle dein Niveau und leg los.",
-        "Antworte — das Wort kommt wieder: in Minuten oder in Wochen.",
+        "Antworte — das Wort kommt wieder, Minuten oder Wochen später.",
         "Alles auf einem Bildschirm: Wörter, Sätze, Übungen, Prüfungen.",
         "Und wenn du nicht hinsehen kannst, hörst du zu.",
         "Such ein beliebiges Wort. Ein Tippen macht eine Karte daraus.",
