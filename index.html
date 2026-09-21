@@ -6345,7 +6345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v659</span>
+    <span class="subtitle-version">v660</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -25331,6 +25331,10 @@ function loadFlashcard(){
     //     AbortError du journal de midi viennent de la.
     // Son seul benefice etait de preparer le repli un peu plus tot ; le
     // lecteur bascule deja tout seul sur erreur. Le cout depassait le gain.
+    //
+    // ⚠️ MAIS SON INTENTION, ELLE, ETAIT BONNE -- voir prechargerSonCarte()
+    // (v660), qui la reprend sans les deux fautes qui l'avaient rendue nuisible.
+    prechargerSonCarte();
 }
 
 // LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()
@@ -27187,7 +27191,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 659;
+const APP_VERSION = 660;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27888,6 +27892,68 @@ function viderJournalAudio(){
 // A appuyer PENDANT LA MAUVAISE PHASE : c'est la seule fenetre ou la mesure
 // vaut quelque chose. Le volume est a zero -- on mesure un demarrage, on
 // n'ecoute pas.
+// ============ METTRE LE FICHIER EN CACHE AVANT LE GESTE (v660) ============
+//
+// ⚠️ CE N'EST PAS UNE HYPOTHESE : LE JOURNAL DE JACQUES LE MESURE. Chaque fois
+// qu'un fichier etait deja en cache, il est sorti en 26 a 37 ms -- « sich
+// verabreden » 31 ms, « sich interessieren » 37 ms, « vergleichen » 26 ms,
+// « abfahren » 29 ms -- pendant que les premieres ecoutes prenaient 2 a 7 s et
+// finissaient souvent sur la voix Windows. La difference entre les deux n'est
+// pas le fichier : c'est qu'il etait deja la.
+//
+// On telecharge donc pendant que la carte est LUE, avant qu'elle soit
+// retournee. Le retournement trouve alors un fichier en cache.
+//
+// ⚠️⚠️ LES DEUX FAUTES DE LA SONDE, QU'ON NE REFAIT PAS. Elles ont coute la
+// journee du 21 septembre, et elles sont la seule raison pour laquelle cette
+// idee-la avait ete jugee mauvaise :
+//
+//   1. NE JAMAIS INTERROMPRE. La v652 appelait load() pour « liberer » des que
+//      les metadonnees arrivaient. Ca coupait le telechargement EN COURS sur
+//      cette URL -- celle-la meme que le lecteur allait jouer -- d'ou les
+//      AbortError en rafale, et une entree de cache incomplete, donc inutile.
+//      On ne relache qu'apres `canplaythrough`, c'est-a-dire quand le fichier
+//      est ENTIEREMENT la : a ce moment le cache est complet, et lacher
+//      l'element ne lui retire rien.
+//
+//   2. NE JAMAIS CONDAMNER. La sonde inscrivait dans audioAbsents ce qui
+//      echouait. Sous un reseau lent, elle y a mis cinq verbes parfaitement
+//      valides -- « sich beschweren » a joue 36 s plus tard. Un prechargement
+//      qui rate ne dit RIEN du fichier : il dit seulement qu'on n'a pas eu le
+//      temps. Il se tait donc, et le lecteur decidera lui-meme, comme avant.
+//
+// Une seule tentative par empreinte et par seance : reessayer en boucle
+// ajouterait des requetes exactement quand elles manquent le plus.
+const sonsPrecharges = new Set();
+
+function prechargerSonCarte(){
+    if(!AUDIO_BASE || typeof Audio === "undefined") return;
+    const texte = texteCarteAPrononcer();
+    if(!texte) return;
+    const empreinte = empreinteAudio(texte);
+    if(!empreinte || audioAbsents.has(empreinte) || sonsPrecharges.has(empreinte)) return;
+    sonsPrecharges.add(empreinte);
+    const avance = new Audio();
+    avance.preload = "auto";
+    const debut = Date.now();
+    avance.oncanplaythrough = () => {
+        avance.oncanplaythrough = null; avance.onerror = null;
+        noterAudio(texte, "PRECHARGE",
+            "en cache avant le geste, " + (Date.now() - debut) + " ms");
+        // Le fichier est complet : relacher l'element ne retire rien au cache,
+        // et evite de garder une ressource media par carte.
+        try{ avance.removeAttribute("src"); avance.load(); }catch(e){}
+    };
+    avance.onerror = () => {
+        avance.oncanplaythrough = null; avance.onerror = null;
+        // ⚠️ ON NE NOIRCIT RIEN, ET ON NE DIT MEME PAS QUE LE FICHIER MANQUE.
+        // On ne sait pas. On retire juste l'empreinte pour qu'une prochaine
+        // carte puisse retenter, et on laisse le lecteur juger.
+        sonsPrecharges.delete(empreinte);
+    };
+    avance.src = AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION;
+}
+
 // ⚠️ UNE FOIS PAR SEANCE, ET PAS PLUS. La comparaison lance quatre requetes ;
 // la relancer a chaque carte muette aggraverait exactement ce qu'on mesure, et
 // noierait la seule serie qui compte -- la premiere, celle du debut de seance,
