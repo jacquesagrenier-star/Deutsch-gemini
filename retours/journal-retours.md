@@ -5971,3 +5971,64 @@ journal — `[AbortError]` ou `[NotAllowedError]` décidera, sans interprétatio
 navigateur tenait 6,1 Go après 27 h (voir l'entrée précédente), et on ne mesure
 rien de fiable à travers un navigateur qui n'arrive plus à ouvrir un onglet.
 
+## 21 septembre 2026 — le son n'est pas refusé, il n'est pas encore arrivé
+
+**Le journal v648 répond, et sans interprétation :**
+
+```
+FICHIER aufmachen      → MUET  données 1/4, réseau 1  → SORTIE 2 348 ms
+FICHIER zumachen       → MUET  données 0/4, réseau 2  → BASCULE [AbortError] 2 754 ms
+FICHIER entschuldigen  → MUET  données 0/4, réseau 2  → SORTIE 6 838 ms
+```
+
+`données 0/4` veut dire `HAVE_NOTHING` : **une seconde et demie après la
+demande, pas un octet du fichier n'est arrivé.** `réseau 2` dit que le
+téléchargement est toujours en cours.
+
+⚠️ **Ce n'est donc ni une permission ni une politique de lecture automatique.**
+Et `[AbortError]` confirme le reste : la carte suivante reprend l'élément
+pendant que le fichier charge encore, et la lecture en attente est annulée. La
+voix de Windows prend alors le relais — c'est elle qu'il entend, pas Aurora.
+
+**Le son finit par sortir : 2 348 ms, 6 838 ms.** Repère mesuré ici sur la même
+app : **94 ms, 57 ms, 131 ms.**
+
+### Ce que la page fait au repos : rien
+
+Mesuré par le protocole de Chrome, dix secondes sans toucher à rien :
+
+| | accueil | cartes |
+|---|---|---|
+| CPU du fil principal | **0,1 %** d'un cœur | 0,4 % |
+| CPU du processus | 0,1 % | **1,3 %** |
+| mises en page / recalculs de style | **0** | **0** |
+
+⚠️ **PREMIÈRE VERSION DE CETTE MESURE : FAUSSE, ET FLATTEUSE DANS LE MAUVAIS
+SENS.** J'avais compté les images par seconde avec `requestAnimationFrame` —
+or demander une image à chaque image **provoque** les 60 par seconde qu'on
+prétend observer. La sonde mesurait la sonde. La vraie mesure ne touche pas la
+page du tout.
+
+### Ce qui tourne vraiment, sur sa machine
+
+| | |
+|---|---|
+| processus **navigateur** de Chrome | 3 038 Mo, **130 à 163 % d'un cœur** — une minute après un redémarrage complet |
+| un **renderer** | 302 Mo, **159 % d'un cœur**, en continu |
+| seule fenêtre ouverte | « Wortando » |
+| disque | inactif à 99 % | mémoire libre | 16 Go |
+
+⚠️ **Et le redémarrage de Chrome n'a rien réglé** — ce qui démolit mon
+explication précédente, la fuite lente sur 27 heures. Un processus navigateur
+qui atteint 3 Go et 1,3 cœur en **une minute** ne fuit pas : quelque chose le
+fait travailler.
+
+**Le lien plausible, et il n'est pas prouvé** : un renderer cloué à 1,6 cœur
+affame le décodage audio, ce qui donne exactement des fichiers qui mettent 2 à
+7 secondes au lieu de 100 ms. La page, elle, ne demande aucun de ces cycles.
+
+**La piste à vérifier : le rendu logiciel.** L'accueil porte **36 éléments à
+fond flou** (`backdrop-filter`). Avec l'accélération matérielle, c'est gratuit ;
+sans elle, chacun est recalculé par le processeur. `chrome://gpu` le dit en
+première ligne.
+
