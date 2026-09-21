@@ -6345,7 +6345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v653</span>
+    <span class="subtitle-version">v654</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27175,7 +27175,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 653;
+const APP_VERSION = 654;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27341,9 +27341,31 @@ let lectureCourante = 0;      // numero de la lecture en cours, voir direAlleman
 function obtenirLecteur(){
     if(!lecteurAudio){
         lecteurAudio = new Audio();
-        // `preload` a none : on remplace `src` a chaque mot, precharger
-        // l'ancien ne servirait qu'a telecharger ce qu'on s'apprete a jeter.
-        lecteurAudio.preload = "none";
+        // ⚠️ `preload` PASSE DE none A auto (v654), ET C'EST LE JOURNAL QUI LE
+        // DEMANDE. Les lignes MUET du 21 septembre disent toutes la meme
+        // chose, 1,5 s apres que play() a ete appele :
+        //
+        //     donnees 1/4, reseau 1, position 0.00 s
+        //
+        // `donnees 1/4` = les metadonnees sont la. `reseau 1` = NETWORK_IDLE,
+        // c'est-a-dire QUE PLUS RIEN NE SE TELECHARGE. Chrome a pris l'en-tete
+        // du fichier puis s'est arrete, pendant que play() attendait encore ses
+        // donnees -- et la lecture finissait en AbortError, sur la voix Windows
+        // au lieu d'Aurora. C'est exactement le comportement que `preload:none`
+        // autorise : il dit au navigateur de ne rien chercher tant qu'on ne le
+        // force pas.
+        //
+        // L'ancien raisonnement -- « precharger l'ancien ne servirait qu'a
+        // telecharger ce qu'on s'apprete a jeter » -- portait sur la source
+        // PRECEDENTE. Mais `auto` ne precharge pas le passe : il engage le
+        // telechargement de la source qu'on vient de poser, celle qu'on va
+        // jouer dans l'instant. Et ces fichiers durent 0,7 s : une dizaine de
+        // kilo-octets, telecharges pour rien dans le pire des cas.
+        //
+        // ⚠️ CE QUI RESTE NON VERIFIE : sur iPhone, `auto` peut reveiller la
+        // session sonore plus tot et faire revenir l'attenuation du francais.
+        // Si ca arrive, c'est ici qu'il faut revenir -- pas ailleurs.
+        lecteurAudio.preload = "auto";
     }
     return lecteurAudio;
 }
@@ -27932,6 +27954,22 @@ function direAllemand(texte, opts){
             + (nom ? " [" + nom + "]" : "")
             + ", " + (Date.now() - demandeA) + " ms apres la demande"
             + ", donnees " + son.readyState + "/4, reseau " + son.networkState);
+        // ⚠️ LE CHEMIN DE L'ECHEC NE RELACHAIT RIEN (v654), ET C'EST UNE
+        // ASYMETRIE, PAS UN OUBLI ANODIN. onended() appelle relacherLecteur()
+        // depuis la v448 ; versRepli(), lui, posait `audioEnCours = null` et
+        // passait la main. L'element gardait donc sa source -- et surtout sa
+        // requete, celle qui venait justement de rester en plan.
+        //
+        // Pire : `audioEnCours = null` DESARME le nettoyage suivant.
+        // arreterAudioPregenere() ne relache que `audioEnCours` ; a null, il ne
+        // fait rien. Une lecture ratee laissait donc sa requete ouverte sans
+        // que personne ne vienne plus jamais la fermer.
+        //
+        // Ce que Jacques decrit le 21 septembre colle a ca mot pour mot : « ca
+        // ne fonctionne pas... j'ai arrete une minute ou deux... la, ca
+        // fonctionne ». Un stock de connexions par hote qui s'epuise, puis que
+        // le navigateur libere en abandonnant les requetes mortes.
+        relacherLecteur(son);
         audioEnCours = null;
         repli();
     };
