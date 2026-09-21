@@ -10,12 +10,16 @@
 // par portée : enregistrer un second fichier remplacerait celui-ci et
 // supprimerait les notifications. Ils doivent donc cohabiter.
 //
-// L'ORDRE COMPTE. Le cache est installé en premier et Firebase est chargé
-// ensuite, dans un try/catch. Si gstatic ne répond pas -- réseau coupé, soit
-// exactement le cas où le cache sert le plus -- on perd les notifications
-// pour cette session, mais le démarrage instantané survit. L'inverse serait
-// absurde : une importScripts en échec au sommet du fichier empêcherait le
-// gestionnaire de fetch d'être seulement installé.
+// ⚠️ CE FICHIER NE TOUCHE PLUS AU RÉSEAU À SON DÉMARRAGE (v657). Il chargeait
+// deux scripts Firebase depuis gstatic, synchronement, au sommet -- donc à
+// chaque réveil du worker, et toute requête de l'app attendait derrière. Voir
+// le bloc NOTIFICATIONS plus bas : c'est là qu'est l'explication complète, et
+// c'est la correction la plus importante de la journée du 21 septembre.
+//
+// La règle qui reste : rien de bloquant au sommet de ce fichier. Un service
+// worker est réévalué en entier à chaque réveil, et tout ce qu'on y met au
+// premier niveau se paie sur la latence de la PREMIÈRE requête qui le réveille
+// -- une dette invisible en développement, où tout répond en dix millisecondes.
 
 // ============ 1. CACHE DE DÉMARRAGE ============
 //
@@ -134,34 +138,71 @@ self.addEventListener("fetch", (e) => {
 
 // ============ 2. NOTIFICATIONS ============
 //
-// Variante « compat » du SDK Firebase : les service workers ne supportent pas
-// les imports ES module utilisés ailleurs dans index.html, et importScripts
-// est la méthode que Firebase recommande pour ce fichier précis.
-try{
-    importScripts('https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js');
-    importScripts('https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js');
+// ⚠️ PLUS AUCUN `importScripts` AU DÉMARRAGE (v657), ET C'EST LA CORRECTION LA
+// PLUS IMPORTANTE DU 21 SEPTEMBRE. Ce fichier chargeait deux scripts Firebase
+// depuis gstatic, SYNCHRONEMENT, au sommet — donc À CHAQUE DÉMARRAGE DU
+// WORKER, et non une fois pour toutes.
+//
+// CE QUE ÇA COÛTAIT, et personne ne le voyait :
+//
+//   Toute sous-ressource demandée par une page contrôlée traverse le service
+//   worker, MÊME vers une autre origine. Chrome tue un worker inactif après une
+//   trentaine de secondes ; la requête suivante doit donc le RÉVEILLER, et le
+//   réveil réévalue ce fichier en entier — deux téléchargements réseau — avant
+//   que le premier `fetch` ne soit seulement dispatché. Chaque mp3 d'Aurora
+//   attendait derrière ça, dépassait la garde de 1,5 s, et finissait sur la
+//   voix Windows.
+//
+// LES QUATRE OBSERVATIONS DE JACQUES, QUI NE TENAIENT ENSEMBLE QUE COMME ÇA :
+//   - « le son des confettis est simultané »   -> un `blob:` ne traverse JAMAIS
+//                                                 le service worker
+//   - le même fichier dans un onglet nu : instantané, même pendant la panne
+//                                              -> onglet non contrôlé
+//   - mauvais au début, puis « très très bien » après une cinquantaine de
+//     cartes                                   -> le trafic garde le worker en vie
+//   - ⚠️ « j'ai attendu quelques minutes, ça n'a rien changé »
+//                                              -> attendre ENDORT le worker.
+//                                                 C'est le seul fait que toutes
+//                                                 mes autres explications
+//                                                 contredisaient.
+//
+// Le push est donc traité NATIVEMENT. Web Push est livré par le navigateur à
+// cet événement de toute façon ; `onBackgroundMessage` n'en était qu'une
+// enveloppe. Le worker démarre maintenant sans toucher au réseau.
+//
+// ⚠️ IL FAUT TOUJOURS APPELER showNotification(). Sans ça Chrome affiche
+// lui-même « ce site a été mis à jour en arrière-plan », ce qui est pire que
+// pas de notification du tout.
+const ICONE = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png";
 
-    firebase.initializeApp({
-        apiKey: "AIzaSyDK9aTVTxDWWrGSIuydHtjSvUTaEguu45U",
-        authDomain: "deutschai-b6fbb.firebaseapp.com",
-        projectId: "deutschai-b6fbb",
-        storageBucket: "deutschai-b6fbb.firebasestorage.app",
-        messagingSenderId: "915434419015",
-        appId: "1:915434419015:web:bfd33c9e8ba5948af99262"
-    });
+self.addEventListener("push", (e) => {
+    let titre = "Wortando", corps = "";
+    try{
+        // FCM envoie soit un bloc `notification`, soit un bloc `data` seul.
+        // On lit les deux : choisir en aurait fait disparaître un des deux
+        // types de message, en silence.
+        const p = e.data ? e.data.json() : {};
+        const n = p.notification || p.data || {};
+        titre = n.title || titre;
+        corps = n.body || "";
+    }catch(err){
+        // Charge utile illisible ou absente : on notifie quand même, sans
+        // texte. Se taire ici laisserait Chrome écrire son message générique.
+    }
+    e.waitUntil(self.registration.showNotification(titre, {
+        body: corps, icon: ICONE, badge: ICONE
+    }));
+});
 
-    const messaging = firebase.messaging();
-
-    messaging.onBackgroundMessage((payload) => {
-        const title = (payload.notification && payload.notification.title) || "Wortando";
-        const options = {
-            body: (payload.notification && payload.notification.body) || "",
-            icon: "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png",
-            badge: "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png"
-        };
-        self.registration.showNotification(title, options);
-    });
-}catch(err){
-    // gstatic injoignable : pas de notifications pour cette session. Le cache
-    // de démarrage ci-dessus, lui, est déjà en place et reste intact.
-}
+// Toucher la notification ramène à l'app plutôt que d'ouvrir un onglet de plus.
+self.addEventListener("notificationclick", (e) => {
+    e.notification.close();
+    e.waitUntil((async () => {
+        const cible = new URL("index.html", self.registration.scope).toString();
+        const ouverts = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+        for(const c of ouverts){
+            if(c.url.startsWith(self.registration.scope) && "focus" in c) return c.focus();
+        }
+        if(self.clients.openWindow) return self.clients.openWindow(cible);
+    })());
+});
