@@ -6345,7 +6345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v658</span>
+    <span class="subtitle-version">v659</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27187,7 +27187,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 658;
+const APP_VERSION = 659;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27888,6 +27888,19 @@ function viderJournalAudio(){
 // A appuyer PENDANT LA MAUVAISE PHASE : c'est la seule fenetre ou la mesure
 // vaut quelque chose. Le volume est a zero -- on mesure un demarrage, on
 // n'ecoute pas.
+// ⚠️ UNE FOIS PAR SEANCE, ET PAS PLUS. La comparaison lance quatre requetes ;
+// la relancer a chaque carte muette aggraverait exactement ce qu'on mesure, et
+// noierait la seule serie qui compte -- la premiere, celle du debut de seance,
+// qui est justement la phase que Jacques decrit depuis le debut.
+let comparaisonAutoFaite = false;
+function comparaisonAuto(){
+    if(comparaisonAutoFaite) return;
+    comparaisonAutoFaite = true;
+    noterAudio("(auto)", "ESSAI",
+        "premier son en panne de la seance -- comparaison lancee toute seule");
+    try{ testerLeSon(); }catch(e){}
+}
+
 function testerLeSon(){
     const btn = document.getElementById("testSonBtn");
     const dire = (txt) => { if(btn) btn.textContent = txt; };
@@ -28073,6 +28086,15 @@ function direAllemand(texte, opts){
             + " -- donnees " + son.readyState + "/4, reseau " + son.networkState
             + ", position " + (son.currentTime || 0).toFixed(2) + " s"
             + (son.paused ? ", en pause" : ""));
+        // ⚠️ LA MESURE SE DECLENCHE TOUTE SEULE (v659). Demander a Jacques
+        // d'appuyer sur un bouton PILE pendant la mauvaise phase etait une
+        // mauvaise idee : la panne dure quelques minutes, arrive sans
+        // prevenir, et il est en train de reviser -- pas de surveiller un
+        // instrument. Le bouton de la v656 n'a jamais pu servir.
+        //
+        // C'est a l'app de se mesurer au moment ou elle echoue. Cette ligne
+        // EST ce moment : le premier son qui ne sort pas.
+        comparaisonAuto();
     }, DELAI_MUET);
     son.onplaying = () => {
         if(jeton !== lectureCourante) return;
