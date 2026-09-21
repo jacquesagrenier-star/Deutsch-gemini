@@ -65,7 +65,7 @@ LARGEUR, HAUTEUR, FPS = 1080, 1920, 30
 # comme une repetition moins interessante que la premiere. La carte s'intercale
 # -- un autre ecran, un autre geste -- et l'accueil revient plus tard, quand il
 # joue son vrai role : montrer que tout part de la.
-PLANS = [
+PROMO = [
     ("suite:affinage",          4.6, 0.00),  # 1. le tableau se precise -- L'ACCROCHE
     ("clip:choix_niveau",       8.6, 0.00),  # 2. tu choisis, tu commences, la carte est la
     ("clip:retournement",       4.5, 0.00),  # 3. tu reponds -- LE VRAI GESTE
@@ -79,6 +79,38 @@ PLANS = [
 # mieux en une ligne de narration ou sur une carte-titre qu'en trois secondes
 # d'ecran fixe.
 ]
+
+# ============ LE TOUR DU PROPRIETAIRE ============
+# ⚠️ CE N'EST PAS LE MEME FILM, ET CE N'EST PAS LA MEME QUESTION. Jacques, le
+# 21 septembre : << quand on entre dans l'application, on n'est pas trop
+# certain de ce qu'on peut faire avec >>. Une promo retient quelqu'un qui
+# pourrait partir ; une explication dresse la carte pour quelqu'un qui est deja
+# entre -- son professeur d'allemand, un etudiant a qui on a dit << regarde
+# ca >>. Personne ne la regarde par hasard.
+#
+# ⚠️ D'OU TROIS RENVERSEMENTS PAR RAPPORT A LA PROMO :
+#   - on commence par ce qu'on fait TOUS LES JOURS, pas par l'image la plus
+#     forte : l'accroche sert a retenir, pas a expliquer ;
+#   - le tableau passe a la fin, a sa place reelle -- une recompense se decouvre
+#     en chemin, elle ne s'annonce pas ;
+#   - la duree cesse d'etre un ennemi. Vingt-sept secondes, c'est une
+#     bande-annonce.
+#
+# ⚠️ ET LE DICTIONNAIRE REVIENT. Dans une promo c'etait l'argument le plus
+# copiable ; dans une explication, << tu peux chercher n'importe quel mot et en
+# faire une carte >> est exactement ce qu'un usager a besoin de savoir.
+TOUR = [
+    ("clip:choix_niveau",       5.7, 0.00),  # 1. ouvrir, choisir son niveau, commencer
+    ("clip:retournement",       5.2, 0.00),  # 2. repondre, et l'echeance suit
+    ("clip:tuiles",             5.5, 0.00),  # 3. LA CARTE DES LIEUX -- la reponse a la question
+    ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres
+    ("clip:dictionnaire_frappe", 7.5, 0.00),  # 5. un mot qui manque devient une carte
+    ("adapter-01-configuration.png", 4.0, 0.15),  # 6. ce qu'on regle soi-meme
+    ("suite:affinage",          4.6, 0.00),  # 7. ce qu'on gagne en chemin
+    ("clip:langues",            6.9, 0.00),  # 8. l'app dans ta langue -- la preuve
+]
+
+FILMS = {"promo": PROMO, "tour": TOUR}
 
 # ⚠️ LE PLAN FIXE DE L'ACCUEIL A DISPARU, ET C'EST UN GAIN. Demande de Jacques :
 # montrer qu'on CHOISIT son niveau, puis qu'on touche << Commencer >> et que la
@@ -242,6 +274,9 @@ def transition(avant, apres, effet, cible):
 
 def main():
     a = argparse.ArgumentParser(description="Monte la demo muette a partir des plans du banc.")
+    a.add_argument("--recit", default="promo", choices=["promo", "tour"],
+                   help="promo : 27 s, l'accroche d'abord. "
+                        "tour : le tour du proprietaire, pour montrer ce qu'on peut faire")
     a.add_argument("--langue", default="en")
     a.add_argument("--appareil", default="iphone67")
     a.add_argument("--sortie", default=None)
@@ -262,7 +297,8 @@ def main():
         sys.exit("Aucun plan pour cette langue. Lancer d'abord :\n"
                  "  python video/banc.py --photos --langue %s" % args.langue)
 
-    travail = source / "_montage"
+    plans = FILMS[args.recit]
+    travail = source / ("_montage" if args.recit == "promo" else "_montage-" + args.recit)
     travail.mkdir(exist_ok=True)
     # ⚠️ ON VIDE LE PLAN DE TRAVAIL. Les morceaux sont nommes par leur RANG :
     # retirer un plan de PLANS, ou monter une fois avec une carte-titre au
@@ -284,7 +320,7 @@ def main():
     glisse = 0 if args.immobile else GLISSE
     effet = EFFETS.get(args.transition)
     retrait = TRANSITION_S if effet else 0
-    for i, (nom, duree, ancre) in enumerate(PLANS):
+    for i, (nom, duree, ancre) in enumerate(plans):
         photographie = nom.startswith("suite:")
         if photographie:
             dossier_suite = source / "sequences" / nom[6:]
@@ -337,8 +373,8 @@ def main():
 
     liste = travail / "liste.txt"
     liste.write_text("".join("file '%s'\n" % m.as_posix() for m in morceaux), encoding="utf-8")
-    nom_defaut = "wortando-demo-%s-%s-%s.mp4" % (
-        "immobile" if args.immobile else "calme", args.transition, args.langue)
+    nom_defaut = "wortando-%s-%s-%s-%s.mp4" % (
+        args.recit, "immobile" if args.immobile else "calme", args.transition, args.langue)
     sortie = Path(args.sortie) if args.sortie else source.parent / nom_defaut
     ffmpeg(["-f", "concat", "-safe", "0", "-i", str(liste), "-c", "copy", str(sortie)])
     print("%s  (%d morceaux)" % (sortie, len(morceaux)))

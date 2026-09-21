@@ -38,6 +38,25 @@ RACINE = Path(__file__).resolve().parent.parent
 # Une phrase par plan, dans l'ordre de PLANS (montage_demo.py). None = le plan
 # se passe de voix -- la carte-titre, par exemple : le nom se lit, il ne
 # s'annonce pas.
+# ⚠️ DEUX RECITS, DEUX NARRATIONS. La promo retient quelqu'un qui pourrait
+# partir ; le tour du proprietaire repond a une question que Jacques a posee le
+# 21 septembre : << quand on entre dans l'application, on n'est pas trop
+# certain de ce qu'on peut faire avec >>. La premiere seduit, la seconde NOMME.
+# On ne recycle donc pas les phrases de l'une dans l'autre.
+NARRATION_TOUR = {
+    "en": [
+        "Open the app, pick your level, and start.",
+        "Answer, and the word comes back: minutes, days, or weeks.",
+        "It all sits on one screen. Words, sentences, practice, exams.",
+        "Listen and repeat, hands free. On the bus, walking.",
+        "Look up any word. If it isn't in your cards, one tap adds it.",
+        "You set the level, the daily goal, what the card says out loud.",
+        "And every card refines a painting, until it's yours.",
+        "The app speaks your language: Turkish, Ukrainian, Arabic, Persian, French.",
+        None,
+    ],
+}
+
 NARRATION = {
     "en": [
         "Every card refines a painting. On the last one, it's yours.",
@@ -171,6 +190,7 @@ def dire(texte, voix, vitesse, cible):
 
 def main():
     a = argparse.ArgumentParser(description="Pose la narration sur le montage muet.")
+    a.add_argument("--recit", default="promo", choices=["promo", "tour"])
     a.add_argument("--langue", default="en")
     a.add_argument("--appareil", default="iphone67")
     a.add_argument("--voix", default=None)
@@ -195,12 +215,13 @@ def main():
     a.add_argument("--sortie", default=None)
     args = a.parse_args()
 
-    lignes = NARRATION.get(args.langue)
+    lignes = (NARRATION_TOUR if args.recit == "tour" else NARRATION).get(args.langue)
     if not lignes:
         sys.exit("Pas de narration ecrite pour : " + args.langue)
 
     base = RACINE / "video" / "demo" / args.langue
-    travail = base / args.appareil / "_montage"
+    travail = base / args.appareil / ("_montage" if args.recit == "promo"
+                                      else "_montage-" + args.recit)
     if not travail.exists():
         sys.exit("Monter d'abord le film muet :\n"
                  "  python video/montage_demo.py --langue %s --immobile --transition coupe" % args.langue)
@@ -222,7 +243,7 @@ def main():
         cle = cle_eleven()
         if not cle:
             sys.exit("Pas de cle ElevenLabs. Pour juger le rythme sans payer : --moteur sapi")
-    sons = base / ("_voix-" + (args.voix_eleven + "-" + args.ton
+    sons = base / ("_voix-" + args.recit + "-" + (args.voix_eleven + "-" + args.ton
                                if args.moteur == "eleven" else "sapi"))
     sons.mkdir(exist_ok=True)
 

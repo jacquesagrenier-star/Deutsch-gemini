@@ -714,7 +714,11 @@ def scene_retournement(p):
     p.moteur()
     p.attendre(1.0)          # un temps sur le recto : on lit le mot
     p.doigt("#flashcard", approche=0.7, pause=0.1)
-    p.attendre(2.0)          # la bascule (0,55 s) puis le verso
+    # ⚠️ ON TIENT LE VERSO PLUS LONGTEMPS QU'IL N'EN FAUT POUR LE VOIR. Il porte
+    # le pluriel, la phrase, le synonyme et les quatre echeances : deux secondes
+    # suffisent a constater qu'il y a quelque chose, pas a le lire. Et la phrase
+    # de narration qui l'accompagne en demandait trois.
+    p.attendre(2.9)          # la bascule (0,55 s) puis le verso
     p.ranger_doigt()
     p.coupez()
 
@@ -874,6 +878,52 @@ def scene_ecoute_suite(p):
     p.attendre(2.0)
     p.moteur()
     p.attendre(6.0)
+    p.coupez()
+
+
+@scene("tuiles", "Tout tient sur un ecran : les mots, les phrases, la pratique, les examens.")
+def scene_tuiles(p):
+    """⚠️ C'EST LE PLAN QUI REPOND A LA QUESTION DU FILM. Jacques : << quand on
+    entre dans l'application, on n'est pas trop certain de ce qu'on peut faire
+    avec >>. La grille des tuiles EST la reponse -- elle montre d'un coup ce
+    qu'il y a, ce qu'aucune phrase ne resume.
+    ⚠️ UN DEFILEMENT LENT, PAS UNE SUITE DE SAUTS : on lit les intitules au
+    passage. Trop vite, on ne retient qu'un motif de carres."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.mosaique(rang=3, carreaux=700, gagnees=[1, 2, 3], trophee=3)
+    p.recharger()
+    p.ecran("home")
+    p.js("document.querySelector('#orbGrid, .orb-grid, #home').scrollIntoView({block:'start'});")
+    p.attendre(1.2)
+    p.moteur()
+    p.js("""
+        const pas = 22, fois = 46;
+        for(let i = 0; i < fois; i++){
+            window.scrollBy(0, pas);
+            await new Promise(r => setTimeout(r, 90));
+        }
+    """)
+    p.attendre(1.2)
+    p.coupez()
+
+
+@scene("langues", "L app parle ta langue : six, et l ecriture se retourne pour deux d entre elles.")
+def scene_langues(p):
+    """⚠️ POUR LES PROFESSEURS, C'EST LA PREUVE. Jacques veut demander a ses deux
+    professeurs d'allemand s'ils ont des etudiants arabophones ou ukrainophones :
+    ce plan montre l'app dans leur langue, ce qu'aucune affirmation ne remplace.
+    ⚠️ ON FILME LA BASCULE, PAS SIX CAPTURES. Six images cote a cote diraient
+    << il existe six versions >> ; la bascule dit << c'est la MEME app >>."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.mosaique(rang=3, carreaux=700, gagnees=[1, 2, 3], trophee=3)
+    p.recharger()
+    p.ecran("home")
+    p.js("document.getElementById('carteMosaique').scrollIntoView({block:'start'});")
+    p.attendre(1.0)
+    p.moteur()
+    for code in ("tr", "uk", "ar", "fa", "en"):
+        p.js("setUiLang('%s'); if(typeof applyUiLang === 'function') applyUiLang();" % code)
+        p.attendre(1.35)
     p.coupez()
 
 
