@@ -5770,3 +5770,39 @@ chercher un rognage par le haut. Aucun rognage, aucune erreur de page, et
 **à 999 px l'accueil refait exactement ses 1981 px d'avant** : rien n'a fui
 sous le seuil.
 
+## 21 septembre 2026 — ce que mesure la lenteur des premières cartes (aucune réparation)
+
+⚠️ **Rien n'a été changé ici, et c'est volontaire** : le journal audio de
+Jacques n'est pas encore arrivé, et la leçon déjà payée dit de l'exiger avant
+d'écrire du code — surtout quand on a une hypothèse. Ce qui suit est une
+mesure, pas une conclusion.
+
+**Ce que l'app fait n'est PAS lent.** Sur une séance de huit cartes, en 1512 ×
+900 : ouverture de la séance 0,05 s, retournement de carte 10 ms, jugement
+0,36 s, **zéro blocage du fil principal au-dessus de 250 ms**, zéro erreur. Le
+code de rendu est hors de cause.
+
+**Ce qui arrive par le réseau, en revanche, arrive à chaque lancement.** Onze
+requêtes, **2,3 Mo compressés**, dont `themes.json` (913 Ko sur le fil, 4,2 Mo
+en clair) et `verbe.json` (657 Ko). Prêtes en 0,83 s d'ici ; sur une ligne
+lente, c'est de l'ordre de la dizaine de secondes.
+
+⚠️ **Et rien de tout cela n'est jamais réutilisé.** `cacheBustedUrl()` ajoute
+`?v=Date.now()` à chaque fetch de données : l'URL est différente à chaque
+lancement, donc le cache du navigateur ne peut jamais répondre. **C'est un
+choix délibéré et documenté** — un `git push` sur `main` est le déploiement,
+et une donnée corrigée doit être visible tout de suite, ce que
+`{cache:'no-cache'}` seul ne garantissait pas.
+
+Les deux symptômes de Jacques tiennent dans cette même cause, et c'est ce qui
+la rend plausible : les premières cartes sont lentes pendant que 2,3 Mo
+descendent, et le premier son se fait attendre parce qu'il partage le même
+tuyau. Les deux repartent ensemble une fois le corpus arrivé — « une fois que
+le son est là, la vitesse est OK ».
+
+**La piste qui garde la raison du choix** (à décider avec lui, pas seule) :
+remplacer `Date.now()` par le numéro de version. Une poussée change la clé et
+tout le monde retélécharge ; entre deux poussées, le navigateur répond
+instantanément. Ça suppose qu'une poussée de DONNÉES bump aussi la version —
+ce qui n'est pas le cas aujourd'hui.
+
