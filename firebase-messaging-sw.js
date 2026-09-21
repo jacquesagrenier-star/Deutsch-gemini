@@ -61,6 +61,45 @@ function estLaPage(url){
 }
 
 self.addEventListener("install", (e) => {
+    // ============ LA RÈGLE DEVIENT UNE ROUTE (v658) ============
+    //
+    // ⚠️ DÉCLARER « je n'intercepte que la page » NE SUFFISAIT PAS : on le
+    // vérifiait APRÈS COUP, dans le gestionnaire de fetch, donc trop tard. La
+    // requête avait déjà traversé le service worker -- en le réveillant s'il
+    // dormait -- avant qu'on ne dise « pas pour moi ». On payait le trajet pour
+    // refuser la course.
+    //
+    // ⚠️ ET POUR UN FICHIER AUDIO, CE TRAJET EST PIRE QU'UN SIMPLE RETARD. Un
+    // élément média ne télécharge pas son fichier d'un bloc : il le demande par
+    // requêtes Range, et la réponse est un `206 Partial Content`. Le couple
+    // « service worker + 206 » est un point noir documenté de Chromium : la
+    // requête peut ne jamais revenir du worker, et le média reste dans un état
+    // chargé-mais-injouable. C'est EXACTEMENT ce que le journal de Jacques
+    // répète à chaque ligne MUET :
+    //
+    //     donnees 1/4, reseau 1, position 0.00 s
+    //
+    // métadonnées reçues, réseau à l'arrêt, rien qui démarre.
+    //
+    // `addRoutes` règle les deux d'un coup : la condition est évaluée par le
+    // navigateur AVANT tout démarrage du worker, et ce qui n'est pas une
+    // navigation part droit au réseau sans jamais entrer ici. C'est la même
+    // politique qu'au-dessous, mais appliquée au bon moment.
+    //
+    // Le gestionnaire de fetch garde sa vérification : elle reste seule sur les
+    // navigateurs sans `addRoutes`, et deux gardes valent mieux qu'une pour une
+    // règle qu'on s'est promis de ne jamais assouplir.
+    try{
+        if(typeof e.addRoutes === "function"){
+            e.addRoutes([{
+                condition: { not: { requestMode: "navigate" } },
+                source: "network"
+            }]);
+        }
+    }catch(err){
+        // API absente ou condition refusée : on retombe sur la vérification du
+        // gestionnaire de fetch, c'est-à-dire sur le comportement d'avant.
+    }
     // On remplit le cache dès l'installation plutôt qu'au premier passage :
     // sans ça, il faudrait trois ouvertures avant d'en voir l'effet.
     e.waitUntil((async () => {
