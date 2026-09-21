@@ -2111,6 +2111,16 @@ body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); bor
 }
 body[data-theme="dark"] .marque-mention{ color:#6b7484; }
 
+/* Un lien, pas un bouton : il propose une issue, il ne reclame pas l'action
+   principale -- laquelle est juste au-dessus, en bleu plein. */
+.lien-oubli{
+    display:block; width:100%; margin-top:10px; padding:6px 0;
+    background:none; border:0; font:inherit; font-size:13px;
+    color:#576177; text-decoration:underline; cursor:pointer;
+}
+.lien-oubli:hover{color:#1e2433;}
+body[data-theme="dark"] .lien-oubli{color:#A6ADBB;}
+
 .password-field-wrap{ position:relative; }
 .password-field-wrap .answer{ padding-inline-end:48px; }
 .password-toggle-btn{
@@ -5254,6 +5264,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
                 <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authPassword', this)" title="Afficher/masquer le mot de passe">👁</button>
             </div>
             <button id="authLoginBtn" class="primary" onclick="handleEmailLogin()" data-i18n="auth_login">SE CONNECTER</button>
+            <!-- ⚠️ SOUS LE BOUTON, DISCRET, ET SANS CHAMP A LUI. Il reprend
+                 l'adresse deja tapee au-dessus : demander une deuxieme fois la
+                 meme chose, a quelqu'un qui vient d'echouer a entrer, c'est lui
+                 faire porter l'echec. -->
+            <button type="button" class="lien-oubli" onclick="envoyerReinitialisation()"
+                    data-i18n="auth_forgot">Mot de passe oublié ?</button>
         </div>
         <div id="userAccountInfo" class="hidden">
             <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="userEmailDisplay" style="color:#1e2433;"></strong></p>
@@ -6012,7 +6028,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v643</span>
+    <span class="subtitle-version">v644</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8477,7 +8493,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, deleteField, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getMessaging, getToken as fcmGetToken, isSupported as fcmIsSupported } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
 
@@ -8512,6 +8528,12 @@ window.updateProfile = updateProfile;
 window.authDeleteUser = deleteUser;
 window.authReauthenticate = reauthenticateWithCredential;
 window.authEmailCredential = (email, mdp) => EmailAuthProvider.credential(email, mdp);
+// ⚠️ SANS CECI, UN MOT DE PASSE OUBLIE ETAIT UN COMPTE PERDU (v644). L'app
+// n'offrait aucune reinitialisation : la seule issue etait d'ecrire a
+// l'administrateur, qui ne peut pas davantage relire un mot de passe. Trouve
+// le 21 septembre en voulant me connecter a un compte de test -- et ce qui
+// m'a bloque, moi, aurait bloque chaque testeur, un jour ou l'autre.
+window.authResetEmail = sendPasswordResetEmail;
 
 // Accès à Firestore depuis le script principal (non-module) : même pattern que
 // les fonctions Auth ci-dessus, exposées individuellement sur window.
@@ -9252,6 +9274,10 @@ const I18N = {
         auth_password_match_ok: "✓ Les mots de passe correspondent",
         auth_password_match_fail: "✕ Les mots de passe ne correspondent pas",
         auth_login: "SE CONNECTER",
+        auth_forgot: "Mot de passe oublié ?",
+        auth_forgot_sent: "Si un compte existe pour cette adresse, un courriel vient de partir. Regarde aussi tes indésirables.",
+        auth_forgot_need_email: "Écris d'abord ton adresse, puis touche « Mot de passe oublié ».",
+        auth_forgot_bad_email: "Cette adresse ne semble pas valide.",
         auth_login_loading: "CONNEXION…",
         auth_signup: "CRÉER UN COMPTE",
         setup_kicker: "Bienvenue",
@@ -10225,6 +10251,10 @@ const I18N = {
         auth_password_match_ok: "✓ Passwords match",
         auth_password_match_fail: "✕ Passwords don't match",
         auth_login: "SIGN IN",
+        auth_forgot: "Forgot your password?",
+        auth_forgot_sent: "If an account exists for that address, an email is on its way. Check your spam folder too.",
+        auth_forgot_need_email: "Type your address first, then tap \u00ab Forgot your password \u00bb.",
+        auth_forgot_bad_email: "That address doesn't look valid.",
         auth_login_loading: "SIGNING IN…",
         auth_signup: "CREATE ACCOUNT",
         setup_kicker: "Welcome",
@@ -11202,6 +11232,10 @@ const I18N = {
         auth_password_match_ok: "✓ Şifreler eşleşiyor",
         auth_password_match_fail: "✕ Şifreler eşleşmiyor",
         auth_login: "GİRİŞ YAP",
+        auth_forgot: "Şifreni mi unuttun?",
+        auth_forgot_sent: "Bu adrese ait bir hesap varsa, bir e-posta yola çıktı. Spam klasörüne de bak.",
+        auth_forgot_need_email: "Önce adresini yaz, sonra « Şifreni mi unuttun » a dokun.",
+        auth_forgot_bad_email: "Bu adres geçerli görünmüyor.",
         auth_login_loading: "GİRİŞ YAPILIYOR…",
         auth_signup: "HESAP OLUŞTUR",
         setup_kicker: "Hoş geldin",
@@ -12124,6 +12158,10 @@ const I18N = {
         auth_password_match_ok: "✓ Паролі збігаються",
         auth_password_match_fail: "✕ Паролі не збігаються",
         auth_login: "УВІЙТИ",
+        auth_forgot: "Забув пароль?",
+        auth_forgot_sent: "Якщо для цієї адреси є обліковий запис, лист уже в дорозі. Перевір і теку зі спамом.",
+        auth_forgot_need_email: "Спочатку введи адресу, потім торкнись « Забув пароль ».",
+        auth_forgot_bad_email: "Ця адреса виглядає неправильною.",
         auth_login_loading: "ВХІД…",
         auth_signup: "СТВОРИТИ ОБЛІКОВИЙ ЗАПИС",
         auth_signup_loading: "СТВОРЕННЯ…",
@@ -13223,6 +13261,10 @@ const I18N = {
         auth_password_match_ok: "✓ گذرواژه‌ها یکسان‌اند",
         auth_password_match_fail: "✕ گذرواژه‌ها یکسان نیستند",
         auth_login: "ورود",
+        auth_forgot: "رمز عبورت را فراموش کرده‌ای؟",
+        auth_forgot_sent: "اگر برای این نشانی حسابی وجود داشته باشد، ایمیلی فرستاده شد. پوشهٔ هرزنامه را هم ببین.",
+        auth_forgot_need_email: "نخست نشانی‌ات را بنویس، سپس « رمز عبورت را فراموش کرده‌ای » را بزن.",
+        auth_forgot_bad_email: "این نشانی معتبر به نظر نمی‌رسد.",
         auth_login_loading: "در حال ورود…",
         auth_signup: "ساختن حساب",
         auth_signup_loading: "در حال ساختن…",
@@ -14107,6 +14149,10 @@ const I18N = {
         auth_password_match_ok: "✓ كلمتا المرور متطابقتان",
         auth_password_match_fail: "✕ كلمتا المرور غير متطابقتين",
         auth_login: "تسجيل الدخول",
+        auth_forgot: "نسيت كلمة السرّ؟",
+        auth_forgot_sent: "إن كان لهذا العنوان حساب، فقد انطلقت رسالة إليه. تفقّد مجلد الرسائل غير المرغوبة أيضاً.",
+        auth_forgot_need_email: "اكتب عنوانك أولاً، ثم المس « نسيت كلمة السرّ ».",
+        auth_forgot_bad_email: "لا يبدو هذا العنوان صالحاً.",
         auth_login_loading: "جارٍ الدخول…",
         auth_signup: "إنشاء حساب",
         setup_kicker: "أهلاً بك",
@@ -15499,6 +15545,32 @@ async function handleEmailSignup() {
     } finally {
         setAuthButtonLoading('authSignupBtn', false, 'auth_signup_loading', 'auth_signup');
     }
+}
+
+async function envoyerReinitialisation(){
+    const champ = document.getElementById("authEmail");
+    const adresse = (champ ? champ.value : "").trim();
+    if(!adresse){
+        showInfoToast(t("auth_forgot_need_email"));
+        if(champ) champ.focus();
+        return;
+    }
+    try{
+        await window.authResetEmail(window.firebaseAuth, adresse);
+    }catch(e){
+        // ⚠️ LE MEME MESSAGE DANS TOUS LES CAS, ET C'EST VOULU. Firebase
+        // distingue « aucun compte pour cette adresse » du succes ; le
+        // repercuter transformerait cet ecran en detecteur de comptes : on
+        // saurait, en tapant des adresses, lesquelles sont inscrites. La seule
+        // erreur qu'on relaie est une adresse mal ecrite, parce qu'elle
+        // n'apprend rien sur personne.
+        const code = String((e && e.code) || "");
+        if(code.indexOf("invalid-email") >= 0){
+            showInfoToast(t("auth_forgot_bad_email"));
+            return;
+        }
+    }
+    showInfoToast(t("auth_forgot_sent"));
 }
 
 async function handleLogout() {
@@ -26532,7 +26604,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 643;
+const APP_VERSION = 644;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

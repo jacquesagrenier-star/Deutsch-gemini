@@ -5612,3 +5612,26 @@ le retour de l'ouverture pour un geste qui n'avait rien quitté.
 disait `GELS : aucun`, et cette phrase était vraie. J'ai quand même cherché un
 gel, puis un rechargement. **C'est la description de Jacques — « quand je
 change d'écran » — qui a tranché**, pas le code.
+
+## 21 septembre 2026 — « mot de passe oublié » (v644)
+
+**Trouvé en butant dessus.** Je proposais à Jacques de tester la suppression de
+compte avec son compte `+test1@` ; il ne se souvenait plus du mot de passe, et
+**l'app n'offrait aucune issue**. La seule porte était d'écrire à
+l'administrateur — qui ne peut pas davantage relire un mot de passe.
+
+Ce qui m'a bloqué, moi, aurait bloqué chaque testeur, un jour ou l'autre.
+
+Un lien discret sous « Se connecter », qui reprend l'adresse déjà tapée.
+
+⚠️ **Le même message dans tous les cas, et c'est voulu.** Firebase distingue
+« aucun compte pour cette adresse » du succès ; le répercuter transformerait
+cet écran en **détecteur de comptes** — on saurait, en tapant des adresses,
+lesquelles sont inscrites. La seule erreur relayée est une adresse mal écrite,
+parce qu'elle n'apprend rien sur personne.
+
+⚠️ **Et pas de champ à lui.** Redemander l'adresse à quelqu'un qui vient
+d'échouer à entrer, c'est lui faire porter l'échec.
+
+**Vérifié à l'écran, les trois chemins** : sans adresse, adresse invalide, et
+adresse sans compte — ce dernier reçoit bien le message neutre.
