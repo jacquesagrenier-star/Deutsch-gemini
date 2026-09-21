@@ -52,7 +52,7 @@ NARRATION_TOUR = {
         "Look up any word. If it isn't in your cards, one tap adds it.",
         "You set your level, how many cards a day, and what the card says out loud.",
         "And every card refines a painting, until it's yours.",
-        "The app speaks your language: Turkish, Ukrainian, Arabic, Persian, French.",
+        "And the app speaks your language: English, French, Turkish, Ukrainian, Arabic, Persian.",
         None,
     ],
 }
@@ -280,7 +280,13 @@ def main():
     sortie = Path(args.sortie) if args.sortie else base / ("wortando-demo-voix-%s.mp4" % args.langue)
     ffmpeg(entrees + ["-filter_complex", ";".join(filtres + [melange]),
                       "-map", "0:v", "-map", "[voix]",
-                      "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", str(sortie)])
+                      # ⚠️ PAS DE -shortest : la derniere phrase se tait AVANT la
+                      # fin du film -- la carte-titre, elle, n'a pas de voix.
+                      # Avec -shortest, ffmpeg coupait la VIDEO a la fin de
+                      # l'audio et le logo disparaissait du fichier sonorise.
+                      # Signale par Jacques : << on devrait finir avec le W >>.
+                      # Il etait bien dans le montage muet, et seulement la.
+                      "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", str(sortie)])
 
     print("%s  (%d phrases)" % (sortie, len(etiquettes)))
     for i, parle, plan, texte in depassements:

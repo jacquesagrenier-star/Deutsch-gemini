@@ -107,7 +107,7 @@ TOUR = [
     ("clip:dictionnaire_frappe", 7.5, 0.00),  # 5. un mot qui manque devient une carte
     ("clip:reglages_defile",    8.6, 0.00),  # 6. ce qu'on regle soi-meme, en descendant
     ("suite:affinage",          4.6, 0.00),  # 7. ce qu'on gagne en chemin
-    ("clip:langues",            6.9, 0.00),  # 8. l'app dans ta langue -- la preuve
+    ("clip:langues",            7.1, 0.00),  # 8. l'app dans ta langue -- la preuve
 ]
 
 FILMS = {"promo": PROMO, "tour": TOUR}

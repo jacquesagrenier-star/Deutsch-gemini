@@ -921,9 +921,16 @@ def scene_langues(p):
     p.js("document.getElementById('carteMosaique').scrollIntoView({block:'start'});")
     p.attendre(1.0)
     p.moteur()
-    for code in ("tr", "uk", "ar", "fa", "en"):
+    # ⚠️ LES SIX, ET LE FRANCAIS EN FAIT PARTIE. La premiere version en montrait
+    # cinq et la narration en nommait six : le francais etait dit sans etre
+    # montre, l'anglais montre sans etre dit. Signale par Jacques. Une liste
+    # parlee et une liste filmee qui ne coincident pas, c'est la liste parlee
+    # qu'on croit -- et elle devient une promesse invérifiable.
+    # ⚠️ ON REVIENT A LA LANGUE DU FILM POUR FINIR : le plan se termine sur
+    # l'ecran que le spectateur reconnait, pas sur une langue qu'il ne lit pas.
+    for code in ("fr", "tr", "uk", "ar", "fa", "en"):
         p.js("setUiLang('%s'); if(typeof applyUiLang === 'function') applyUiLang();" % code)
-        p.attendre(1.35)
+        p.attendre(1.15)
     p.coupez()
 
 
