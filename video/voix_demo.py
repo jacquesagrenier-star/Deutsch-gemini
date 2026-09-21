@@ -50,7 +50,7 @@ NARRATION_TOUR = {
         "It all sits on one screen. Words, sentences, practice, exams.",
         "Listen and repeat, hands free. On the bus, walking.",
         "Look up any word. If it isn't in your cards, one tap adds it.",
-        "You set the level, the daily goal, what the card says out loud.",
+        "You set your level, how many cards a day, and what the card says out loud.",
         "And every card refines a painting, until it's yours.",
         "The app speaks your language: Turkish, Ukrainian, Arabic, Persian, French.",
         None,

@@ -105,7 +105,7 @@ TOUR = [
     ("clip:tuiles",             5.5, 0.00),  # 3. LA CARTE DES LIEUX -- la reponse a la question
     ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres
     ("clip:dictionnaire_frappe", 7.5, 0.00),  # 5. un mot qui manque devient une carte
-    ("adapter-01-configuration.png", 4.0, 0.15),  # 6. ce qu'on regle soi-meme
+    ("clip:reglages_defile",    8.6, 0.00),  # 6. ce qu'on regle soi-meme, en descendant
     ("suite:affinage",          4.6, 0.00),  # 7. ce qu'on gagne en chemin
     ("clip:langues",            6.9, 0.00),  # 8. l'app dans ta langue -- la preuve
 ]
@@ -137,7 +137,7 @@ FILMS = {"promo": PROMO, "tour": TOUR}
 # retourner) et durerait quinze secondes dans un film qui en fait trente.
 # Au-dela de 1,4x, la frappe devient une saccade : ce n'est plus du rythme,
 # c'est du sucre.
-VITESSE = {"dictionnaire_frappe": 1.3}
+VITESSE = {"dictionnaire_frappe": 1.3, "reglages_defile": 1.35}
 
 # De combien la fenetre glisse, en part de ce qui depasse. 0 = image immobile.
 GLISSE = 0.35

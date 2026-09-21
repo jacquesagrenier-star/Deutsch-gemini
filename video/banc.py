@@ -927,6 +927,40 @@ def scene_langues(p):
     p.coupez()
 
 
+@scene("reglages_defile", "On descend dans les reglages, et on fixe son nombre de cartes par jour.")
+def scene_reglages_defile(p):
+    """⚠️ UNE CAPTURE FIXE DES REGLAGES NE MONTRE QU'UNE CARTE. Jacques : << on
+    est juste vis-a-vis de Learning, il faudrait defiler vers le bas pour qu'on
+    voie ce qu'il y a >>. Un ecran de reglages est une LISTE : ce qui compte est
+    sa longueur et ce qu'elle contient, et une seule carte ne dit ni l'un ni
+    l'autre.
+    ⚠️ ET ON FINIT SUR UN GESTE, PAS SUR UNE VUE. << On peut choisir combien de
+    cartes par jour >> se demontre en touchant le +, pas en montrant un
+    chiffre : le nombre change sous les yeux, et c'est la preuve qu'il est a
+    nous."""
+    p.vie(maitrises=312, serie=12, seance=18)
+    p.recharger()
+    p.ecran("settings")
+    p.js("window.scrollTo(0, 0);")
+    p.attendre(1.0)
+    p.moteur()
+    p.attendre(0.4)
+    # La descente : lente, on lit les titres au passage.
+    p.js("""
+        const pas = 20, fois = 52;
+        for(let i = 0; i < fois; i++){
+            window.scrollBy(0, pas);
+            await new Promise(r => setTimeout(r, 85));
+        }
+    """)
+    p.vers("settings_daily_goal")
+    p.attendre(0.6)
+    # Deux touchers sur le +, et l'objectif passe de trente a quarante.
+    p.doigt("button[onclick='adjustDailyGoal(5)']", approche=0.5, pause=0.5)
+    p.doigt("button[onclick='adjustDailyGoal(5)']", approche=0.3, pause=0.9)
+    p.coupez()
+
+
 @scene("credits", "Ce qui vient d'ailleurs est nomme, et ce qui n'est pas a nous est dit.")
 def scene_credits(p):
     p.ecran("settings")
