@@ -5866,3 +5866,57 @@ c'est ce faux essai qui m'a fait croire au premier bogue.
 **Ce que ça ne dit pas encore** : pourquoi ça gèle. Prochain journal de
 Jacques, et la ligne du dessous répondra.
 
+## 21 septembre 2026 — les gels ne venaient pas de l'app : c'était Chrome
+
+**Mesuré sur la machine de Jacques, pendant qu'il était bloqué :**
+
+| | |
+|---|---|
+| processus **navigateur** de Chrome | **6 109 Mo** (7 625 Mo en privé) |
+| repère d'un processus navigateur sain | 200 à 600 Mo |
+| démarré | la veille à 8 h 19 — **27 heures** |
+| CPU cumulée | 10 713 s, soit près de 3 h |
+| le plus gros *renderer* (donc au pire notre page) | **444 Mo** |
+| disque | **inactif à 99,9 %**, file d'attente 0 |
+| OneDrive | 0 s de CPU sur 1,5 s |
+
+⚠️ **Le processus NAVIGATEUR n'est pas une page : c'est Chrome lui-même.** Il
+tient la barre d'onglets, l'interface, le routage des clics et le stockage du
+profil. Quand il s'étrangle, *tout* Chrome s'arrête — changer d'onglet, copier,
+cliquer. C'est mot pour mot ce que Jacques décrivait : « je ne peux même plus
+circuler dans mes onglets », « je ne suis même pas en mesure de te copier le
+journal ».
+
+**Une page ne peut pas faire ça.** Un onglet bloqué bloque son onglet.
+
+⚠️ **ET LA PREUVE EST DANS LE SILENCE DE L'INSTRUMENT.** Le journal v647, pris
+pendant un gel, dit `GELS : aucun`. Le fil principal de l'app n'a jamais été
+pris. L'instrument construit le matin même a répondu correctement — en ne
+disant rien. C'est le cas qu'on avait écrit noir sur blanc : *aucune ligne de
+notre code ne peut en être la cause, et c'est une réponse aussi.*
+
+**Et ça explique pourquoi le SEUL gel nommé était une écriture localStorage.**
+48 Ko ne coûtent pas 2 509 ms — sauf que `localStorage` est synchrone et passe
+par le service de stockage **de ce processus-là**. C'est la seule opération de
+notre code qui doive attendre le processus malade. Elle n'était pas la cause :
+elle était le point de contact.
+
+⚠️ **MA FAUSSE PISTE, ET ELLE MÉRITE D'ÊTRE ÉCRITE.** J'avais annoncé « trouvé,
+et c'est moi » : j'avais écrit 112 Mo de vidéo dans le dossier synchronisé par
+OneDrive, et le dernier fichier tombait à 10:26:42, **la seconde exacte** du
+dernier gel de son journal. La corrélation était frappante, les deux documents
+du dépôt mettent en garde contre exactement ça — et c'était faux. Le disque
+était inactif et OneDrive ne consommait rien.
+
+**Une corrélation à la seconde près n'est pas une cause.** J'ai annoncé avant
+de mesurer, sur une piste que j'avais des raisons de trouver élégante parce
+qu'elle me désignait.
+
+**Ce qu'on fait :** redémarrer Chrome entièrement. Et si le processus navigateur
+regrossit en quelques heures, c'est une extension ou le profil — `Shift+Échap`
+ouvre le gestionnaire de tâches de Chrome, qui le montre en direct.
+
+**Ce qui reste vrai et sans rapport** : l'app retélécharge 2,3 Mo à chaque
+lancement (voir plus haut). Ça ralentit un démarrage ; ça ne gèle pas un
+navigateur.
+
