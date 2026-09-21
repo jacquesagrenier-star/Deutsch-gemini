@@ -55,6 +55,33 @@ NARRATION_TOUR = {
         "And the app speaks your language: English, French, Turkish, Ukrainian, Arabic, Persian.",
         None,
     ],
+    # ⚠️ LA TRADUCTION SUIT LE PLAN, PAS LE MOT A MOT. Chaque ligne doit tenir
+    # dans la duree de SON plan : une phrase ukrainienne est plus longue qu'une
+    # anglaise a sens egal, et l'arabe l'est encore davantage. On ecrit donc
+    # court d'emblee -- le script dit lequel deborde, et c'est toujours le texte
+    # qui cede.
+    "uk": [
+        "Відкрий застосунок, обери рівень і почни.",
+        "Відповідай — і слово повернеться: за хвилини, дні або тижні.",
+        "Усе на одному екрані: слова, речення, вправи, іспити.",
+        "Слухай і повторюй, вільними руками. В автобусі, дорогою.",
+        "Шукай будь-яке слово. Немає серед карток — один дотик, і воно там.",
+        "Ти обираєш рівень, скільки карток на день і що картка промовляє.",
+        "Кожна картка робить картину чіткішою, доки вона не стане твоєю.",
+        "І застосунок говорить твоєю мовою — шістьма мовами.",
+        None,
+    ],
+    "ar": [
+        "افتح التطبيق، اختر مستواك، وابدأ.",
+        "أجب، وتعود الكلمة: بعد دقائق أو أيام أو أسابيع.",
+        "كل شيء في شاشة واحدة: الكلمات، الجمل، التمارين، الامتحانات.",
+        "استمع وكرّر، ويداك حرّتان.",
+        "ابحث عن أي كلمة، ولمسة واحدة تضيفها إلى بطاقاتك.",
+        "أنت تحدّد المستوى، وعدد البطاقات في اليوم، وما تنطقه البطاقة.",
+        "وكل بطاقة تجعل اللوحة أدقّ، حتى تصبح لك.",
+        "والتطبيق يتحدث لغتك — بستّ لغات.",
+        None,
+    ],
 }
 
 NARRATION = {
@@ -189,6 +216,15 @@ def dire(texte, voix, vitesse, cible):
 
 
 def main():
+    # ⚠️ LA CONSOLE WINDOWS EST EN CP1252, ET ELLE FAIT TOMBER LE SCRIPT SUR UN
+    # CARACTERE CYRILLIQUE. Le film ukrainien etait DEJA ECRIT quand le rapport
+    # de depassement a plante en voulant l'afficher : on perdait le diagnostic,
+    # pas le travail -- mais on le perdait quand meme, et c'est ce diagnostic
+    # qui dit quelle phrase raccourcir.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
     a = argparse.ArgumentParser(description="Pose la narration sur le montage muet.")
     a.add_argument("--recit", default="promo", choices=["promo", "tour"])
     a.add_argument("--langue", default="en")

@@ -106,7 +106,12 @@ TOUR = [
     ("clip:ecoute_suite",       4.5, 0.05),  # 4. les mains libres
     ("clip:dictionnaire_frappe", 7.5, 0.00),  # 5. un mot qui manque devient une carte
     ("clip:reglages_defile",    8.6, 0.00),  # 6. ce qu'on regle soi-meme, en descendant
-    ("suite:affinage",          4.6, 0.00),  # 7. ce qu'on gagne en chemin
+    # ⚠️ PLUS LONG QUE DANS LA PROMO, ET C'EST LA TRADUCTION QUI L'A DEMANDE :
+    # la phrase ukrainienne tient 5 s la ou l'anglaise en fait 4,3. Un plan
+    # PHOTOGRAPHIE n'a pas de duree propre -- c'est la cadence de lecture qui
+    # s'ajuste --, donc l'allonger ne coute rien et evite de mutiler le texte
+    # dans chaque langue. Un plan filme, lui, aurait impose l'inverse.
+    ("suite:affinage",          5.4, 0.00),  # 7. ce qu'on gagne en chemin
     ("clip:langues",            7.1, 0.00),  # 8. l'app dans ta langue -- la preuve
 ]
 
