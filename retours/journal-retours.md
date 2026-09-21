@@ -6065,3 +6065,69 @@ suivante les a demolies. La seule chose qui a tenu du debut a la fin, c'est ce
 que disaient les instruments de l'app : elle ne faisait rien. **J'aurais du
 partir de ce fait au lieu de chercher une cause a lui attribuer.**
 
+
+## 21 septembre 2026 — le « blocage » n'etait pas un gel, c'etaient deux defauts de notre code
+
+Jacques, de retour : « ca bloque tout de suite quand j'essaie de me faire un
+login » (Edge), « puis dans Chrome, ca prend un certain nombre de cartes ». Puis
+deux captures d'ecran, qui ont retourne le dossier en entier.
+
+### Defaut 1 — la carte qui reclame une reponse impossible (corrige v649)
+
+Capture : « Paquet termine » ouvert, la derniere carte (*sich freuen*, puis
+*sich beschweren*) toujours a l'ecran et toujours retournee, **aucun bouton de
+jugement**, et a chaque toucher : « Reponds a la carte pour continuer. »
+
+| | |
+|---|---|
+| ce que voyait Jacques | une app qui exige une reponse et n'offre aucun moyen d'en donner une |
+| ce qui se passait | `showFlashcardEnd()` cache `#flashcardActions` mais **n'efface pas la carte** |
+| pourquoi les boutons etaient partis | cette carte VENAIT d'etre jugee — c'est son jugement qui a fini le paquet |
+| ce que disait `handleCardTap()` | « carte retournee => reclame un jugement », sans verifier qu'un jugement soit encore possible |
+
+Ses mots : « j'ai plus les boutons pour dire si je veux revoir la carte dans
+deux minutes ». Corrige des deux cotes : le message ne sort plus quand il n'y a
+plus rien a repondre (la carte revient simplement au recto), et retourner cette
+carte restee a l'ecran ne ressuscite plus les boutons par-dessus « Paquet
+termine » — sinon un second jugement partait sur une carte deja jugee.
+
+### Defaut 2 — « Tous les verbes de ce niveau sont maitrises ! » sur 102/111
+
+Capture : « Niveau A1 — 102/111 — 92 % maitrise », et le paquet refuse de
+s'ouvrir sur ce message. **Neuf verbes ne l'etaient pas.**
+
+`toastSeanceVide()` ne connait que deux etats : *neuf* et *maitrise*. Les neuf
+verbes restants etaient dans un troisieme — **commences et pas encore dus** —
+donc `neufs === 0`, donc la branche « tout est maitrise ». Le message etait
+faux, et le paquet restait ferme.
+
+⚠️ **La ligne de repli existait deja, dans DIX autres ouvertures**
+(`startKasusVerben` et neuf soeurs) : `cartesCommencees(allItems)`.
+`startVerbeLevel`, `startAdjektiveLevel` et les trois ouvertures de theme
+l'avaient sautee. Posee aux cinq (15 sites au total), `toastSeanceVide()`
+redevient juste **par construction** : il ne parle plus que d'un paquet ou
+chaque mot est neuf ou maitrise.
+
+### Ce que ca reprend de la veille
+
+⚠️ **« Ca bloque apres un certain nombre de cartes » n'a jamais ete un gel.**
+Le fil principal allait bien, et le journal de l'app qui affichait `GELS :
+aucun` disait vrai — depuis le debut, pendant que je cherchais une cause dans
+OneDrive, dans une fuite de 27 h, dans une extension, dans le rendu logiciel,
+puis dans le profil Chrome. **La lecon d'hier tenait deja : partir de ce que
+disent les instruments.** Ce qui a resolu le dossier en dix minutes, c'est une
+capture d'ecran, pas une cinquieme hypothese.
+
+**Et le contraste iPhone / portable s'explique sans le materiel :** il revise
+en « Mots au hasard » (~1840 cartes) sur iPhone — la fin de paquet n'arrive
+jamais. Sur le portable il ouvrait des niveaux (Verbes A2 : 5 cartes), donc la
+fin de paquet arrivait tout de suite. **A confirmer avec lui.**
+
+### Ce qui reste ouvert
+
+- **Edge bloque au login** — aucune mesure, aucune capture. Ne pas theoriser.
+- Le processus navigateur de Chrome a 3,6 Go et 172 % d'un coeur **fenetre
+  fermee** reste vrai et reste inexplique. Piste du web, NON VERIFIEE : un
+  conflit pilote GPU / Chrome 146 apparu avec une mise a jour Windows 11 debut
+  2026 — ce qui collerait avec « Chrome ET Edge », tous deux Chromium. A
+  verifier, pas a annoncer.

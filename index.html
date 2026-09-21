@@ -6315,7 +6315,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v648</span>
+    <span class="subtitle-version">v649</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -20310,6 +20310,18 @@ function startVerbeLevel(level){
         .filter(it => motDansPortee(it.word, porteeNoms(), "verben"));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
+    // ⚠️ LE REPLI MANQUAIT ICI, ET IL MENTAIT (v649). Capture de Jacques :
+    // « Niveau A1 -- 102/111 -- 92 % maitrise », et le paquet refuse de
+    // s'ouvrir sur « Tous les verbes de ce niveau sont maitrises ! ». Neuf
+    // verbes ne l'etaient pas : ils etaient COMMENCES et pas encore dus. Ce
+    // troisieme etat n'existait pour personne -- toastSeanceVide() ne connait
+    // que « neuf » et « maitrise », donc il tombait dans le mauvais cas.
+    //
+    // Dix autres ouvertures portent deja cette ligne (startKasusVerben et les
+    // neuf autres) ; startVerbeLevel et startAdjektiveLevel l'avaient sautee.
+    // Avec elle, toastSeanceVide() redevient juste par construction : il ne
+    // parle plus que d'un paquet ou chaque mot est neuf ou maitrise.
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
         toastSeanceVide(allItems, 'alert_all_verbs_mastered');
         return;
@@ -20464,6 +20476,8 @@ function startAdjektiveLevel(level){
         .filter(it => motDansPortee(it.word, porteeNoms(), "adjektive"));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
+    // Meme repli que startVerbeLevel : un niveau a moitie su doit s'ouvrir.
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
         toastSeanceVide(allItems, 'alert_all_adj_mastered');
         return;
@@ -24430,6 +24444,8 @@ function startTheme(themeId, level, returnScreen){
     const allItems = levelData.words.map((word, index) => ({ word, index, themeId: levelData.id }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
+    // Meme repli que startVerbeLevel : un theme a moitie su doit s'ouvrir.
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
         toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
@@ -24510,6 +24526,8 @@ function startThemeVerben(themeId, level, returnScreen){
     const allItems = levelData.verben.map((word, index) => ({ word, index, themeId: verbenThemeId }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
+    // Meme repli que startVerbeLevel : un theme a moitie su doit s'ouvrir.
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
         toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
@@ -24535,6 +24553,8 @@ function startThemeAdjektive(themeId, level, returnScreen){
     const allItems = levelData.adjektive.map((word, index) => ({ word, index, themeId: adjThemeId }));
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
+    // Meme repli que startVerbeLevel : un theme a moitie su doit s'ouvrir.
+    if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
         toastSeanceVide(allItems, 'alert_all_theme_words_mastered');
         return;
@@ -25265,10 +25285,23 @@ function loadFlashcard(){
     preverifierAudioCarte();
 }
 
+// LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()
+// ouvre son panneau -- elle a ete jugee, l'index a avance, mais rien ne l'efface.
+// Tant qu'elle traine la, elle a l'air d'attendre une reponse qu'on ne peut plus
+// donner. Les deux fonctions ci-dessous s'en servent pour ne pas mentir.
+function paquetTermine(){
+    const fin = document.getElementById("flashcardEnd");
+    return !!(fin && !fin.classList.contains("hidden"));
+}
+
 function flipCard(){
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.add("flipped");
-    document.getElementById("flashcardActions").classList.remove("hidden");
+    // ⚠️ PAS DE BOUTONS DE JUGEMENT APRES LA FIN DU PAQUET. Sans ce garde-fou,
+    // retourner la carte restee a l'ecran ressuscitait les boutons PAR-DESSUS
+    // « Paquet termine » : un jugement de plus partait alors sur une carte deja
+    // jugee, et la seance suivante heritait du compte fausse.
+    if(!paquetTermine()) document.getElementById("flashcardActions").classList.remove("hidden");
     resizeFlashcard();
     // Prononcer automatiquement dès que la carte se retourne, sans attendre un
     // clic sur le bouton d'écoute. Les textes sont à jour à ce stade, puisque
@@ -25352,8 +25385,26 @@ function handleCardTap(event){
     // slideToNextCard() ignorait les touchers pendant sa fenetre, et c'est un
     // suspect direct des touchers perdus. Le message suffit : il repond
     // immediatement et ne bloque rien.
-    if(flashcardEl.classList.contains("flipped")) showInfoToast(t("flash_repondre"));
-    else flipCard();
+    // ⚠️ ET LE MESSAGE SE TAIT QUAND IL N'Y A PLUS RIEN A REPONDRE (v649).
+    // Capture d'ecran de Jacques : « Paquet termine » ouvert, la derniere carte
+    // (sich freuen) toujours retournee au-dessus, AUCUN bouton de jugement --
+    // et l'app qui repond « Reponds a la carte pour continuer » a chaque
+    // toucher. Il n'y avait plus aucun geste capable de satisfaire cette
+    // consigne : « j'ai plus les boutons pour dire si je veux revoir la carte
+    // dans deux minutes ». C'est CA qu'il decrivait comme un blocage apres un
+    // certain nombre de cartes -- pas un gel. Le fil principal allait bien, et
+    // le journal des gels disait vrai en affichant « aucun ».
+    //
+    // La regle « une carte retournee attend un jugement » ne vaut que tant que
+    // le jugement est possible. Le paquet fini, la carte n'est plus qu'un
+    // reste : on la laisse revenir au recto, sans gronder.
+    const jugeable = !paquetTermine();
+    if(!flashcardEl.classList.contains("flipped")){
+        if(jugeable) flipCard();
+        return;
+    }
+    if(jugeable) showInfoToast(t("flash_repondre"));
+    else unflipCard();
 }
 
 function toggleVerbExtra(){
@@ -27083,7 +27134,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 648;
+const APP_VERSION = 649;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
