@@ -6316,7 +6316,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v651</span>
+    <span class="subtitle-version">v652</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27135,7 +27135,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 651;
+const APP_VERSION = 652;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -28268,6 +28268,40 @@ function texteCarteAPrononcer(){
 // dans le geste.
 const audioSondes = new Set();
 
+// ============ UNE SONDE QUI SE REFERME (v652) ============
+//
+// ⚠️ LA SONDE FUYAIT UN ELEMENT MEDIA PAR CARTE. Elle en creait un, lui
+// donnait une source, lancait le telechargement -- et l'abandonnait sans
+// jamais le relacher. Un `new Audio()` sans reference n'est PAS libere pour
+// autant : tant qu'il porte une source chargee ou en cours, le navigateur lui
+// tient une ressource media, une connexion et un decodeur. Et ca ne vit pas
+// dans notre page : ca vit dans LE PROCESSUS NAVIGATEUR.
+//
+// C'est ce qui reconcilie trois faits qui se contredisaient depuis trois
+// jours, et aucune de mes cinq explications precedentes n'y arrivait :
+//   - le navigateur ENTIER gele (plus moyen de cliquer un autre onglet)
+//     -> le processus navigateur est sature, et c'est lui qui dessine les
+//        onglets ; du JavaScript bloque ne peut pas faire ca
+//   - notre journal dit « GELS : aucun », et il dit VRAI
+//     -> rien de tout ceci ne passe par le fil principal
+//   - mais SEULE CETTE APP gele
+//     -> elle est la seule a ouvrir un element media par carte
+// Plus « ca prend un certain nombre de cartes » : ca s'accumule, donc ca a un
+// seuil. Et « rien sur iPhone » : iOS ignore preload="metadata" tant qu'il n'y
+// a pas eu de geste, donc la sonde n'y a jamais rien alloue.
+//
+// ⚠️ LIBERER, C'EST `removeAttribute("src")` PUIS `load()`. Mettre src = ""
+// ne suffit pas -- l'element repart chercher la page courante comme media, ce
+// qui rouvre une requete au lieu d'en fermer une.
+function libererSonde(sonde){
+    try{
+        sonde.onerror = null;
+        sonde.onloadedmetadata = null;
+        sonde.removeAttribute("src");
+        sonde.load();
+    }catch(e){}
+}
+
 function preverifierAudioCarte(){
     if(!AUDIO_BASE || typeof Audio === "undefined") return;
     const texte = texteCarteAPrononcer();
@@ -28286,10 +28320,14 @@ function preverifierAudioCarte(){
         // l'inscrire condamnerait le mot pour toute la session sur un creux de
         // connexion. Seul un fichier introuvable ou illisible compte.
         const code = sonde.error && sonde.error.code;
+        libererSonde(sonde);
         if(code === 2) { audioSondes.delete(empreinte); return; }
         audioAbsents.add(empreinte);
         noterAudio(texte, "SONDE", "fichier absent -- repli prepare avant le geste");
     };
+    // La sonde a repondu des que les metadonnees sont la : le fichier existe,
+    // on n'a plus aucun besoin de l'element. C'est la ligne qui manquait.
+    sonde.onloadedmetadata = () => libererSonde(sonde);
     sonde.src = AUDIO_BASE + empreinte + ".mp3?r=" + AUDIO_REVISION;
 }
 
