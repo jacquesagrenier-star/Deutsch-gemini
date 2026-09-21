@@ -6315,7 +6315,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v647</span>
+    <span class="subtitle-version">v648</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27083,7 +27083,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 647;
+const APP_VERSION = 648;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27750,19 +27750,83 @@ function direAllemand(texte, opts){
     // ce qui declenche cet evenement tardif -- requete reseau interrompue,
     // element recycle, particularite d'iOS : si l'on a entendu le fichier, la
     // question de le remplacer ne se pose plus.
+    // ⚠️ « FICHIER » DIT CE QU'ON DEMANDE, PAS CE QU'ON ENTEND (v648).
+    //
+    // La ligne « FICHIER » s'ecrit AVANT play(). Huit cartes muettes et huit
+    // cartes sonores laissaient donc exactement la meme trace, et le journal
+    // avait l'air parfait pendant que Jacques n'entendait rien : « le son pour
+    // les mots arrive seulement apres huit ou neuf cartes ».
+    //
+    // Un instrument qui note l'intention ne peut pas arbitrer une plainte qui
+    // porte sur le resultat. On note donc les deux autres moments :
+    //
+    //   SORTIE  le son a REELLEMENT commence, et combien de temps apres la
+    //           demande. S'il sort et qu'on n'entend rien, le probleme est en
+    //           aval de l'app -- peripherique, volume, mixeur -- et aucune
+    //           ligne de notre code n'y peut quoi que ce soit.
+    //   MUET    rien n'a commence, et personne ne s'est plaint : ni erreur, ni
+    //           refus, ni bascule. C'est le cas qui n'avait AUCUNE trace, et
+    //           c'est exactement celui qu'il decrit.
+    //
+    // L'etat de l'element part avec la ligne « MUET » : `readyState` dit si les
+    // donnees sont la, `networkState` si le telechargement est en cours ou en
+    // panne. Les deux ensemble separent « le reseau n'a pas repondu » de « tout
+    // etait pret et rien n'est sorti », et ces deux-la ne se reparent pas au
+    // meme endroit.
     let demarre = false;
-    son.onplaying = () => { if(jeton === lectureCourante) demarre = true; };
-    const versRepli = (definitif) => {
+    let garde = null;
+    const finGarde = () => { if(garde){ clearTimeout(garde); garde = null; } };
+    const DELAI_MUET = 1500;
+    garde = setTimeout(() => {
+        garde = null;
+        if(demarre || bascule || jeton !== lectureCourante) return;
+        noterAudio(texte, "MUET",
+            "rien apres " + DELAI_MUET + " ms, sans erreur ni refus"
+            + " -- donnees " + son.readyState + "/4, reseau " + son.networkState
+            + ", position " + (son.currentTime || 0).toFixed(2) + " s"
+            + (son.paused ? ", en pause" : ""));
+    }, DELAI_MUET);
+    son.onplaying = () => {
+        if(jeton !== lectureCourante) return;
+        demarre = true;
+        finGarde();
+        noterAudio(texte, "SORTIE",
+            "le son sort, " + (Date.now() - demandeA) + " ms apres la demande"
+            + ", volume " + son.volume + (son.muted ? ", MUET" : ""));
+    };
+    // ⚠️ « LECTURE REFUSEE » RECOUVRE DEUX CHOSES QUI NE SE REPARENT PAS AU
+    // MEME ENDROIT, et le journal les confondait (v648).
+    //
+    //   NotAllowedError -- le navigateur INTERDIT. C'est la politique de
+    //     lecture automatique : il faut un geste, ou l'avoir perdu en cours de
+    //     route. Elle refuse SUR-LE-CHAMP.
+    //   AbortError -- la lecture a ete INTERROMPUE : quelqu'un a repris
+    //     l'element, change sa source ou appele load() pendant que play()
+    //     attendait encore ses donnees. Elle refuse quand l'interruption
+    //     arrive, donc potentiellement des secondes plus tard.
+    //
+    // Le journal du 21 septembre montre des refus a +2151, +2399, +2722 et
+    // +4435 ms. Un interdit ne met pas quatre secondes a dire non : ces
+    // delais-la accusent l'interruption. Mais « accusent » n'est pas « prouvent
+    // », et le nom de l'erreur, lui, tranche sans interpretation -- il tenait
+    // dans la ligne depuis le debut, il n'y etait simplement pas ecrit.
+    const versRepli = (definitif, err) => {
+        finGarde();
         if(bascule || demarre || jeton !== lectureCourante) return;
         bascule = true;
         if(definitif !== false) audioAbsents.add(empreinte);
+        const nom = (err && err.name) ? err.name : "";
         noterAudio(texte, "BASCULE",
-            definitif !== false ? "fichier absent ou illisible" : "lecture refusee");
+            (definitif !== false ? "fichier absent ou illisible" : "lecture refusee")
+            + (nom ? " [" + nom + "]" : "")
+            + ", " + (Date.now() - demandeA) + " ms apres la demande"
+            + ", donnees " + son.readyState + "/4, reseau " + son.networkState);
         audioEnCours = null;
         repli();
     };
     son.onerror = () => versRepli(true);
     son.onended = () => {
+        finGarde();
         if(jeton !== lectureCourante) return;
         // On relache AVANT de rendre la main : l'etape suivante est souvent un
         // enonce de synthese, et c'est precisement pendant que cet element
@@ -27773,13 +27837,14 @@ function direAllemand(texte, opts){
         if(onEnd) onEnd();
     };
     audioEnCours = son;
+    const demandeA = Date.now();
     noterAudio(texte, "FICHIER",
         "vitesse " + son.playbackRate + ", volume " + son.volume +
         (son.muted ? ", MUET" : ""));
     try{
         const p = son.play();
-        if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e)));
-    }catch(e){ versRepli(!estRefusDeLecture(e)); }
+        if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e), e));
+    }catch(e){ versRepli(!estRefusDeLecture(e), e); }
 }
 
 function estRefusDeLecture(e){

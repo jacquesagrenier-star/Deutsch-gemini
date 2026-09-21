@@ -5920,3 +5920,54 @@ ouvre le gestionnaire de tâches de Chrome, qui le montre en direct.
 lancement (voir plus haut). Ça ralentit un démarrage ; ça ne gèle pas un
 navigateur.
 
+## 21 septembre 2026 — « le son n'arrive qu'après huit ou neuf cartes » (v648)
+
+**Le journal de Jacques, v647, quatre mots de suite :**
+
+```
+11:25:43  FICHIER  gut            11:25:52  FICHIER  zu
+11:25:47  +4435ms  BASCULE  gut   11:25:54  +2151ms  BASCULE  zu
+          lecture refusée                   lecture refusée
+11:25:47  SYNTHESE gut (Hedda)    11:25:54  SYNTHESE zu (Hedda)
+```
+
+Chaque mot : le fichier est demandé, **refusé 2 à 4,4 secondes plus tard**, et
+la voix mécanique de Windows prend le relais. Il n'entend donc pas Aurora — il
+entend Hedda, et seulement après le détour.
+
+⚠️ **Un refus qui met quatre secondes n'est pas un interdit.** La politique de
+lecture automatique refuse sur-le-champ : elle sait dire non avant même de
+charger. Un non qui arrive à +4435 ms est une lecture **interrompue** — la
+source a été reprise, changée ou rechargée pendant que `play()` attendait
+encore ses données.
+
+**Mais le journal ne le disait pas, parce qu'il confondait les deux.**
+`estRefusDeLecture()` distingue `NotAllowedError` d'`AbortError` depuis
+toujours ; la ligne écrivait « lecture refusée » pour les deux. Le fait
+tranchant tenait dans la ligne, il n'y était simplement pas écrit.
+
+⚠️ **ET « FICHIER » DISAIT L'INTENTION, PAS LE RÉSULTAT.** Cette ligne s'écrit
+AVANT `play()`. Huit cartes muettes et huit cartes sonores laissaient
+exactement la même trace : le journal avait l'air parfait pendant que Jacques
+n'entendait rien. Un instrument qui note ce qu'on demande ne peut pas arbitrer
+une plainte qui porte sur ce qu'on entend.
+
+**Trois lignes nouvelles, et chacune répond à une question qu'on se posait :**
+
+| | |
+|---|---|
+| `SORTIE` | le son a réellement commencé, et combien de temps après la demande |
+| `MUET` | rien n'a commencé et personne ne s'est plaint — le cas qui n'avait aucune trace |
+| `BASCULE … [AbortError]` | le nom de l'erreur, le délai, l'état des données et du réseau |
+
+**Mesuré ici, pour avoir un repère** : un mot sort en **94 ms**, **57 ms**,
+**131 ms**. Chez lui, le même geste met deux à quatre secondes avant d'échouer.
+Ce n'est pas le même monde, et c'est la comparaison qui le dit.
+
+**Ce qui n'est pas conclu** : pourquoi la lecture est interrompue. Prochain
+journal — `[AbortError]` ou `[NotAllowedError]` décidera, sans interprétation.
+
+⚠️ **À faire AVANT ce journal-là** : redémarrer Chrome. Son processus
+navigateur tenait 6,1 Go après 27 h (voir l'entrée précédente), et on ne mesure
+rien de fiable à travers un navigateur qui n'arrive plus à ouvrir un onglet.
+
