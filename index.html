@@ -5420,26 +5420,6 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     #flashcards > .back{align-self:flex-start; width:auto;}
 }
 
-/* ============ ESSAI v650 : LES FONDS FLOUS COUPES ============
-   ⚠️ CECI EST UNE MESURE, PAS UNE DECISION DE DESIGN. A retirer des que le
-   resultat est connu -- dans un sens comme dans l'autre.
-
-   Ce qu'on sait, et qui a mis trois jours a se dire proprement :
-     - le navigateur ENTIER gele : Jacques ne peut plus cliquer un autre
-       onglet. Du JavaScript bloque ne peut pas faire ca.
-     - notre propre journal dit « GELS : aucun », et il dit vrai : le fil
-       principal n'est pas pris.
-     - mais SEULE CETTE APP gele. Chrome et Edge vont bien partout ailleurs.
-   Les trois tiennent ensemble d'une facon : la page coince le processus GPU,
-   qui est partage par tous les onglets, sans passer par le fil JavaScript.
-
-   Les 29 declarations backdrop-filter sont notre plus grosse demande a ce
-   chemin-la. On les coupe d'un bloc pour voir. L'app perd son verre depoli ;
-   elle ne perd rien d'autre. */
-*, *::before, *::after{
-    backdrop-filter:none !important;
-    -webkit-backdrop-filter:none !important;
-}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6336,7 +6316,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v650</span>
+    <span class="subtitle-version">v651</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27155,7 +27135,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 650;
+const APP_VERSION = 651;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
