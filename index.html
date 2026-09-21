@@ -6345,7 +6345,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v654</span>
+    <span class="subtitle-version">v655</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26731,7 +26731,12 @@ function ecouteJouerEtape(){
         // « charge mais arrete » -- deux causes sans rapport, meme silence.
         armerChien(et.texte, () => {
             try{
-                const a = obtenirLecteur();
+                // ⚠️ ON INSPECTE L'ELEMENT QUI JOUE, PAS UN NEUF (v655). Depuis
+                // que obtenirLecteur() rend un element neuf hors iOS, l'appeler
+                // ici fabriquait le temoin au lieu de le lire : readyState 0 et
+                // networkState 0 a tous les coups, sur une lecture parfaitement
+                // en cours. audioEnCours EST celui dont on parle.
+                const a = audioEnCours || obtenirLecteur();
                 return "lecteur readyState " + a.readyState +
                        ", networkState " + a.networkState +
                        ", position " + a.currentTime.toFixed(2) + " s";
@@ -27175,7 +27180,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 654;
+const APP_VERSION = 655;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -27338,7 +27343,45 @@ let audioEnCours = null;
 let lecteurAudio = null;
 let lectureCourante = 0;      // numero de la lecture en cours, voir direAllemand
 
+// ⚠️ LE LECTEUR UNIQUE N'EXISTE QUE POUR iOS, ET IL COUTE CHER AILLEURS (v655).
+//
+// CE QUE LE TEST DE JACQUES A PROUVE. Le 21 septembre, il a ouvert dans un
+// onglet nu le fichier exact que l'app n'arrivait pas a jouer :
+// « ca fonctionne bien ». Meme machine, meme seconde, meme fichier, meme
+// hebergement. Un element NEUF le joue tout de suite ; le NOTRE traine des
+// secondes ou abandonne. La seule chose qui reste entre les deux, c'est qu'on
+// reutilise le meme element pour tous les mots -- et qu'a chaque carte Chrome
+// doit demonter puis remonter sa chaine de lecture sur la source precedente.
+//
+// Ont ete eliminees avant d'en arriver la, chacune par une mesure :
+// l'hebergement (86 a 197 ms depuis une autre machine), le reseau (le lien
+// direct marche chez lui), preload:none (v654, sans effet), la sonde (v653),
+// les fonds flous (v650), le service worker, l'ecriture sur disque.
+//
+// ⚠️ MAIS ON NE LE RETIRE PAS SUR iOS, ET C'EST TOUT L'INTERET DU DECOUPAGE.
+// Le commentaire d'origine dit pourquoi : « un element unique reste debloque
+// une fois qu'il a joue dans un geste ; c'est la seule facon connue de tenir
+// une file de lectures automatiques sur iOS ». Un element neuf par mot y
+// perdrait l'autorisation de jouer a la deuxieme carte. Jacques revise sur
+// iPhone tous les jours : cette contrainte-la n'est pas theorique.
+//
+// Le partage est donc : iOS garde son lecteur unique, tout le reste reçoit un
+// element neuf -- celui qui, chez lui, joue en 133 ms.
+const AUDIO_LECTEUR_UNIQUE = (function(){
+    try{
+        return /iPad|iPhone|iPod/.test(navigator.userAgent)
+            // iPadOS se presente comme un Mac depuis 2019 : seul le tactile le
+            // trahit. Un vrai Mac de bureau rend maxTouchPoints a 0.
+            || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    }catch(e){ return true; }   // dans le doute, l'ancien comportement
+})();
+
 function obtenirLecteur(){
+    if(!AUDIO_LECTEUR_UNIQUE){
+        const neuf = new Audio();
+        neuf.preload = "auto";
+        return neuf;
+    }
     if(!lecteurAudio){
         lecteurAudio = new Audio();
         // ⚠️ `preload` PASSE DE none A auto (v654), ET C'EST LE JOURNAL QUI LE
