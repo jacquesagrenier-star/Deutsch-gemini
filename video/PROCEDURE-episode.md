@@ -164,6 +164,16 @@ Mesurer d'abord la zone (`--mesurer`). Si l'outil refuse, **ne pas forcer sans
 avoir vérifié image par image ce qui bouge dans le rectangle** : c'est la
 différence entre recouvrir une lampe et geler une mèche de cheveux.
 
+⚠️ **Et la mesure ne dit pas s'il faut réparer.** Le même jour, les quatre
+prises du cycliste avaient le même défaut, mesuré de 135 à 205 px de
+déplacement — plus que celui de la dame. Jacques a regardé le montage :
+« ça me paraît OK au niveau visuel », et on n'a rien touché. Ce qui change
+entre les deux cas, ce n'est pas le chiffre, c'est la taille du plan et ce
+que l'œil suit pendant la réplique. **Montrer la prise et le défaut mesuré,
+laisser trancher à l'écran** — et ne pas rustiner près d'une tête qui bouge :
+le casque du cycliste passe sous le feu, et un rectangle gelé par-dessus
+serait pire que le défaut.
+
 ---
 
 ## Étape 5 — mesurer, sans lui donner le dernier mot
