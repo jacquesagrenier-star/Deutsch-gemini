@@ -162,6 +162,7 @@ def archiver(chemin):
         if os.path.exists(vieux):
             os.replace(vieux, neuf)
             print("  prise precedente rangee : %s" % os.path.basename(neuf))
+    return paires[0][1]          # ou l'image vient d'etre rangee
 
 
 def main():
@@ -256,7 +257,16 @@ def main():
     if os.path.exists(sortie):
         if not a.refaire:
             sys.exit("  %s existe deja. --refaire pour en generer une autre." % nom)
-        archiver(sortie)
+        ancien = archiver(sortie)
+        # ⚠️ UNE RETOUCHE SE REFERENCE ELLE-MEME, et --refaire venait de
+        #    deplacer le fichier sous les pieds du televersement. 22 sept.
+        #    2026, plan 17 : la reference etait il-attend.png, archivee en
+        #    il-attend-v1.png une ligne plus haut, et l'outil s'est arrete
+        #    sur un FileNotFoundError au moment de deposer -- avant l'appel,
+        #    donc sans rien facturer, mais avec l'image d'origine deja
+        #    renommee. On suit le deplacement.
+        refs = [ancien if os.path.abspath(c) == os.path.abspath(sortie) else c
+                for c in refs]
 
     cle = O.cle()
     corps = {"prompt": prompt, "aspect_ratio": a.ratio,
