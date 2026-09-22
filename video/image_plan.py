@@ -254,19 +254,20 @@ def main():
                  "  ou relance avec WORTANDO_FORCER=1 si tu sais pourquoi."
                  % fautes)
 
-    if os.path.exists(sortie):
-        if not a.refaire:
-            sys.exit("  %s existe deja. --refaire pour en generer une autre." % nom)
-        ancien = archiver(sortie)
-        # ⚠️ UNE RETOUCHE SE REFERENCE ELLE-MEME, et --refaire venait de
-        #    deplacer le fichier sous les pieds du televersement. 22 sept.
-        #    2026, plan 17 : la reference etait il-attend.png, archivee en
-        #    il-attend-v1.png une ligne plus haut, et l'outil s'est arrete
-        #    sur un FileNotFoundError au moment de deposer -- avant l'appel,
-        #    donc sans rien facturer, mais avec l'image d'origine deja
-        #    renommee. On suit le deplacement.
-        refs = [ancien if os.path.abspath(c) == os.path.abspath(sortie) else c
-                for c in refs]
+    # ⚠️ ON N'ARCHIVE QU'APRES AVOIR L'IMAGE NEUVE EN MAIN. 22 septembre
+    #    2026, deux fois dans la meme heure :
+    #      - plan 17 : la reference d'une retouche EST l'image de sortie ;
+    #        rangee en -v1 avant le televersement, elle etait introuvable
+    #        une ligne plus bas ;
+    #      - plan 01 : le compte fal etait a sec (HTTP 403, << Exhausted
+    #        balance >>). L'appel n'a jamais eu lieu, rien n'a ete facture,
+    #        et carrefour-rouge.png avait quand meme disparu du dossier --
+    #        le montage de l'episode s'appuie dessus.
+    #    Un outil qui range avant de savoir s'il aura quelque chose a mettre
+    #    a la place laisse le projet sans son image. On genere d'abord, on
+    #    range ensuite.
+    if os.path.exists(sortie) and not a.refaire:
+        sys.exit("  %s existe deja. --refaire pour en generer une autre." % nom)
 
     cle = O.cle()
     corps = {"prompt": prompt, "aspect_ratio": a.ratio,
@@ -286,7 +287,11 @@ def main():
     res = O.attendre(soum["status_url"], soum["response_url"], cle)
 
     os.makedirs(os.path.dirname(sortie), exist_ok=True)
-    octets = O.telecharger(res["images"][0]["url"], sortie)
+    neuve = sortie + ".neuve"
+    octets = O.telecharger(res["images"][0]["url"], neuve)
+    if os.path.exists(sortie):
+        archiver(sortie)
+    os.replace(neuve, sortie)
     print("    -> %s  (%.1f Mo, %.2f $)" % (nom, octets / 1e6, cout))
 
     recu = os.path.splitext(sortie)[0] + "-fal.json"
