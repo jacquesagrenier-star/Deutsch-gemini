@@ -1,88 +1,72 @@
 # -*- coding: utf-8 -*-
-"""Resserrer un plan moyen en tete et epaules, sans repasser par le modele.
+"""Serrer une image deja payee sur un visage, sans en racheter une.
 
-    python video/recadrer.py <clip.mp4>
-    python video/recadrer.py <clip.mp4> --zone 619x1100+230+40
+    python video/recadrer.py video/episode-03-auf-dem-radweg/01-images/dame-trottoir.png \\
+        --x 300 --y 41 --hauteur 2012
 
-POURQUOI. Le 16 septembre 2026, apres une demi-journee de reprises payantes,
-un fait s'est impose en comptant les defauts plan par plan :
+POURQUOI CET OUTIL EXISTE
+    Le 22 septembre 2026, dame-trottoir est revenue avec la bonne geographie
+    -- trottoir devant, bordure, bande rouge derriere -- mais une tete a
+    13,6 % de la hauteur. Les images de cette serie qui partent chez
+    OmniHuman tournent autour de 18 a 23 % (dame-feu 17,5 %, mark-moyen-serre
+    23 %). Une reprise coute 0,15 $ ET remet en jeu la geographie, qui avait
+    justement mis trois prises a venir. Un recadrage ne remet rien en jeu.
 
-    plans SERRES (tete et epaules)  08, 10, 16   aucun objet invente, jamais
-    plans MOYENS (comptoir visible) 04 07 09 13 15 17   feuilles, mains,
-                                                        silhouettes
+CE QU'IL NE SAIT PAS FAIRE
+    Inventer des pixels. La fenetre est agrandie a la taille d'origine par
+    LANCZOS : on perd du piqué en proportion du zoom. A 1,36x sur une image
+    2K, la sortie reste au-dessus du 1080x1920 du montage, donc la perte ne
+    se voit pas au final. Au-dela de 1,6x environ, reprendre plutot.
 
-Le comptoir et les mains sont exactement l'endroit ou le modele invente. Tant
-qu'ils sont dans le cadre, chaque generation est un tirage a 0,70 $. Le prompt
-reduit le risque ; LE CADRAGE LE SUPPRIME -- ce qui n'est pas dans l'image ne
-peut pas y apparaitre.
+LA FENETRE GARDE LE RAPPORT DE LA SOURCE
+    On donne la HAUTEUR voulue et le coin haut-gauche ; la largeur se deduit.
+    Le rapport 9:16 de l'episode est ainsi conserve sans calcul a la main.
 
-Jacques, ce jour-la : << une feuille qui apparait, ce n'est pas realiste ; il
-n'y a pas de magie dans le comportement humain >>. Il avait raison, et la
-reponse la moins chere n'etait pas un meilleur prompt : c'etait de retirer du
-cadre la zone ou la magie se produit.
-
-⚠️ CE QU'IL FAUT VERIFIER AVANT DE RECADRER. Le bas du cadre ne doit rien
-   porter d'utile. Le plan 13 garde son comptoir -- la feuille tendue EST le
-   plan -- et le 14 aussi, Mark y regarde le formulaire dans sa main. Un
-   recadrage qui coupe l'action est pire qu'un objet invente.
-
-⚠️ ET LE PRIX A PAYER : on agrandit 1,76 fois. Sur un visage doux c'est
-   invisible ; sur du texte ou une arete franche, ca se verrait. Regarder.
+⚠️ LA PRISE D'ORIGINE N'EST PAS ECRASEE. Elle est rangee en -BRUT, comme
+   deux-bandes-BRUT.png : c'est elle qu'on relit le jour ou le recadrage se
+   revele trop serre, et elle seule porte ce que le modele a vraiment rendu.
 """
 import argparse
 import os
-import re
-import shutil
-import subprocess
 import sys
 
-# Le cadrage tete-et-epaules du fonctionnaire, etabli a l'oeil sur le plan 17
-# et valable pour les quatre plans qui partent de beamter-moyen (07, 09, 15,
-# 17) : ils ont la meme image de depart, donc la meme position de visage.
-ZONE_BEAMTER = "619x1100+230+40"
+from PIL import Image
+
+sys.stdout.reconfigure(encoding="utf-8")
 
 
-def ffmpeg(args):
-    r = subprocess.run(["ffmpeg", "-v", "error", "-y"] + args,
-                       capture_output=True, text=True)
-    if r.returncode:
-        sys.exit("  ffmpeg a echoue :\n  " + (r.stderr or "")[-600:])
-
-
-def recadrer(clip, large, haut, x, y):
-    base = os.path.splitext(clip)[0]
-    garde = base + "-AVANT-recadrage.mp4"
-    if not os.path.exists(garde):
-        shutil.copy2(clip, garde)
-        print("  prise d'origine gardee : %s" % os.path.basename(garde))
-
-    # 9:16 exact en sortie, comme tous les plans de la serie.
-    sortie = base + "-serre.mp4"
-    ffmpeg(["-i", clip, "-vf",
-            "crop=%d:%d:%d:%d,scale=1088:1920:flags=lanczos" % (large, haut, x, y),
-            "-c:a", "copy", "-c:v", "libx264", "-crf", "16", "-preset", "slow",
-            "-pix_fmt", "yuv420p", sortie])
-    os.replace(sortie, clip)
-    print("  %s : %dx%d en (%d,%d) -> 1088x1920  (agrandi %.2f fois)"
-          % (os.path.basename(clip), large, haut, x, y, 1088.0 / large))
+def recadrer(chemin, x, y, hauteur):
+    im = Image.open(chemin)
+    L, H = im.size
+    largeur = int(round(hauteur * L / float(H)))
+    if x + largeur > L or y + hauteur > H:
+        sys.exit("  la fenetre sort de l'image (%dx%d demandes en %d,%d "
+                 "dans %dx%d)." % (largeur, hauteur, x, y, L, H))
+    brut = "%s-BRUT%s" % os.path.splitext(chemin)
+    if not os.path.exists(brut):
+        im.save(brut)
+        print("  prise d'origine rangee : %s" % os.path.basename(brut))
+    vue = im.crop((x, y, x + largeur, y + hauteur)).resize((L, H),
+                                                           Image.LANCZOS)
+    vue.save(chemin)
+    print("  fenetre %dx%d en (%d,%d), agrandie %.2fx -> %s"
+          % (largeur, hauteur, x, y, L / float(largeur),
+             os.path.basename(chemin)))
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    p.add_argument("clip")
-    p.add_argument("--zone", default=ZONE_BEAMTER,
-                   help="LxH+X+Y ; defaut = le cadrage du fonctionnaire")
+    p.add_argument("image")
+    p.add_argument("--x", type=int, required=True,
+                   help="bord gauche de la fenetre, en pixels")
+    p.add_argument("--y", type=int, required=True,
+                   help="bord haut de la fenetre, en pixels")
+    p.add_argument("--hauteur", type=int, required=True,
+                   help="hauteur de la fenetre ; la largeur en decoule")
     a = p.parse_args()
-    if not os.path.exists(a.clip):
-        sys.exit("  introuvable : %s" % a.clip)
-    m = re.match(r"^(\d+)x(\d+)\+(\d+)\+(\d+)$", a.zone)
-    if not m:
-        sys.exit("  --zone attend LxH+X+Y")
-    large, haut, x, y = (int(g) for g in m.groups())
-    if abs(large / float(haut) - 9.0 / 16.0) > 0.02:
-        print("  ⚠️ la zone n'est pas en 9:16 (%.3f) -- l'image sera deformee"
-              % (large / float(haut)))
-    recadrer(a.clip, large, haut, x, y)
+    if not os.path.exists(a.image):
+        sys.exit("  introuvable : %s" % a.image)
+    recadrer(a.image, a.x, a.y, a.hauteur)
 
 
 if __name__ == "__main__":
