@@ -154,6 +154,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 SURBRILLANCE = "&H00D7FF&"        # ambre vif, en &Hbbggrr (RGB 255,215,0)
 REPOS = "&HFFFFFF&"               # blanc
 
+# Combien de temps la phrase reste apres le dernier mot, au maximum.
+#
+# ⚠️ ELLE RESTAIT JUSQU'A LA COUPE, et c'etait juste tant qu'un plan
+#    s'arretait presque avec la voix (queue commune : 0,90 s). Le plan 18 de
+#    l'episode 3 a trois secondes de queue -- le cycliste s'eloigne, Mark
+#    leve les bras, personne ne parle -- et le sous-titre couvrait toute la
+#    chute, dernier mot fige en ambre. Le texte doit tenir assez longtemps
+#    pour se lire, pas occuper le silence qui suit.
+TENUE = 1.2                       # s
+
 
 def phrase_mot_a_mot(mots, decalage, debut, fin):
     """Une ligne par mot : la phrase entiere, le mot du moment en couleur."""
@@ -323,18 +333,22 @@ def main():
                       "(cherche %02d-%s.mp3 et %02d-erzaehler.mp3) -- la "
                       "phrase s'affichera d'un bloc, sans surlignage."
                       % (n, n, p.get("locuteur") or "?", n))
+            fin_texte = fin
             if voix is not None:
                 mots = decouper(F, voix, de)
                 # narrer() retarde la voix de 0,35 s dans le segment : les
                 # instants du mp3 se lisent donc a partir de debut + 0,35.
-                lignes += phrase_mot_a_mot(mots, info["debut"] + 0.35,
-                                           debut, fin)
+                decalage = info["debut"] + 0.35
+                if mots:
+                    fin_texte = min(fin, mots[-1][2] + decalage + TENUE)
+                lignes += phrase_mot_a_mot(mots, decalage, debut, fin_texte)
             else:
                 lignes.append("Dialogue: 0,%s,%s,DE,,0,0,0,,%s"
                               % (tc(debut), tc(fin), echapper(de)))
         if tr:
+            # La traduction suit l'allemand : elle sort du cadre avec lui.
             lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
-                          % (tc(debut), tc(fin), echapper(tr)))
+                          % (tc(debut), tc(fin_texte), echapper(tr)))
 
     base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-01-avatar"
     dst = os.path.join(ep, "%s.%s.ass" % (base, a.langue))
