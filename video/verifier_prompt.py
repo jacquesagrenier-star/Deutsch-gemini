@@ -298,6 +298,24 @@ REGLES = [
      u"hem of her coat and the tote bag hanging from her arm >>. Un repere hors "
      u"champ n'est pas une precision, c'est un ordre de recadrer."),
 
+    ("corps-sans-contact", "doute",
+     None,   # voir controler() : il faut une ligne de coupe
+     u"Quelqu'un pose sur une surface, sans dire ou l'image coupe",
+     u"22 sept. 2026, dame-trottoir, 0,15 $, ET C'EST JACQUES QUI L'A VU, pas "
+     u"le controle ni moi : le manteau et le sac s'arretent EN L'AIR au-dessus "
+     u"du pave -- ni jambes, ni pieds, ni ombre, ni point de contact. J'avais "
+     u"mesure la tete et declare la geographie bonne sur une image ou la dame "
+     u"ne touche pas le sol dont ce plan doit justement prouver qu'elle y est. "
+     u"⚠️ ET CETTE REGLE-LA NE L'AURAIT PAS ARRETEE : le prompt disait bien "
+     u"<< seen from the waist up >>. C'est sol-bord-a-bord qui l'attrape -- la "
+     u"coupe etait ANNULEE par un sol demande bord a bord. La presente regle "
+     u"couvre l'autre cas, celui ou rien ne dit ou l'image s'arrete.",
+     u"Un plan qui doit dire SUR QUELLE SURFACE quelqu'un se tient doit soit "
+     u"montrer le contact -- << her shoes stand on the slabs, with their "
+     u"shadow under them >> -- soit couper franchement au-dessus : << the "
+     u"bottom edge of the picture crosses her coat just below the tote bag >>. "
+     u"Entre les deux, le modele termine le corps en l'air."),
+
     ("sol-bord-a-bord", "doute",
      r"(?i)(fills? the whole foreground|from edge to edge"
      r"|fill(s|ing)? the bottom of the picture)",
@@ -649,7 +667,13 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
-              "sol-bord-a-bord")
+              "sol-bord-a-bord", "corps-sans-contact")
+
+# Se tenir sur une surface, et ou l'image coupe. Voir << corps-sans-contact >>.
+POSE_SUR = re.compile(r"(?i)\b(stands?|standing|stood) on\b")
+LIGNE_DE_COUPE = re.compile(
+    r"(?i)(bottom edge of the picture|seen from the (waist|chest|hips?) up"
+    r"|cropped? at the (waist|chest|hips?)|shoes?|feet|shadow)")
 
 # Un prompt d'IMAGE ou de MOUVEMENT de decor : ni parole, ni queue de plan.
 EST_IMAGE = re.compile(r"PROMPT\s+(?:D'IMAGE|DE\s+MOUVEMENT)", re.I)
@@ -711,6 +735,15 @@ def controler(texte, image=False):
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"<< %s >> nomme, et rien sur ce que tiennent "
                                 u"les mains" % objet.group(0)))
+            continue
+        if code == "corps-sans-contact":
+            # Le defaut est arrive sur une image, mais la question vaut pour
+            # tout prompt qui plante quelqu'un sur une surface : ou coupe-t-on ?
+            pose = POSE_SUR.search(texte)
+            if pose and not LIGNE_DE_COUPE.search(texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"<< %s >>, et rien sur l'endroit ou l'image "
+                                u"coupe" % pose.group(0)))
             continue
         if code == "negations-en-nombre":
             n = len(NEGATIONS.findall(sans_verrou))
