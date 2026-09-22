@@ -1275,3 +1275,49 @@ pavement. The lane stays clear and open behind them for the whole shot.
    4,7 % du cadre, la bouche n'est pas lisible. Voir scenes/03-auf-dem-radweg
    .json, champ « _voix_hors_synchro ». Cette note disait « pas de parole
    audible ici » : elle etait restee d'avant.
+
+
+=============================================================================
+SONORISATION -- LA COMMANDE EXACTE (22 septembre 2026)
+=============================================================================
+
+Elle se rejoue telle quelle apres chaque remontage : le mixage part du
+montage muet, jamais du fichier deja sonorise.
+
+    python video/ambiance.py \
+        --clip video/episode-03-auf-dem-radweg/EPISODE-03-avatar.mp4 \
+        --lit audio/ambiance/rue-carrefour.mp3@0 \
+        --lit audio/ambiance/piste-cyclable.mp3@19.08 \
+        --lit audio/ambiance/rue-carrefour.mp3@57.01 \
+        --bruit audio/bruitage/sonnettes-plusieurs.mp3@23.6 \
+        --bruit audio/bruitage/cri-hey.mp3@24.0 \
+        --sortie video/episode-03-auf-dem-radweg/EPISODE-03-avatar-sonorise.mp4
+
+    python video/sous_titres.py --scene 03-auf-dem-radweg \
+        --clip video/episode-03-auf-dem-radweg/EPISODE-03-avatar-sonorise.mp4 \
+        --sortie video/episode-03-auf-dem-radweg/EPISODE-03-avatar-st.mp4 \
+        --incruster
+
+⚠️ LES INSTANTS SUIVENT LE MONTAGE, ET LE MONTAGE BOUGE. 19,08 et 57,01 sont
+   les debuts des plans 06 et 17 dans la feuille _montage-avatar/_plans.json.
+   Toute reprise qui change une duree les deplace : relire la feuille avant
+   de rejouer la commande, sinon le lit de la piste cyclable commence sur le
+   carrefour et personne ne le voit ecrit nulle part.
+
+UN LIT PAR LIEU, et l'episode n'en a que deux : le carrefour (plans 01-05,
+puis 17-18) et la piste cyclable (plans 06-16). Le retour au carrefour a la
+fin est ce qui dit, sans un mot, qu'on est revenu au point de depart.
+
+LES DEUX BRUITS SONT DES REPLIQUES DEGUISEES.
+    sonnettes  Mark demande au plan 08 << Warum klingeln alle? >>. Sans
+               sonnette, sa question ne commente rien.
+    cri-hey    Jacques, 22 septembre : << ajoute HEY a la femme qui passe en
+               velo >>. Le fichier attendait depuis le 16, fabrique pour ce
+               plan et jamais pose. Un cri muet ne se lit pas comme de la
+               colere, il se lit comme un defaut de fabrication.
+    Aucun mot allemand dans les deux : ce sont des bruits de rue, pas des
+    repliques a comprendre.
+
+CE QUI RESTE INUTILISE dans audio/bruitage : tram-loin, voiture-passe,
+depart-velo, cri-cycliste. Un fond trop peuple coute de l'attention a
+quelqu'un qui decode une langue.
