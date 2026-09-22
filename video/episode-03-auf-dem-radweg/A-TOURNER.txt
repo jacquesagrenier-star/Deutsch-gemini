@@ -315,6 +315,144 @@ Image a nommer : mark-retourne
 
 
 PLAN 04   La dame au feu   (figure d'episode : un seul plan, aucune fiche)
+INTENTION (ecrite le 22 septembre 2026, avant le prompt et avant la depense)
+
+LA GEOGRAPHIE, AVANT TOUT LE RESTE
+   Elle s'ecrit en premier parce que c'est elle qui a rate trois fois. Dans
+   cet episode, la rue se lit toujours du meme cote :
+
+      trottoir en pave gris   |   BORDURE DE GRANIT   |   bande rouge  |  asphalte
+      (les pietons)                 (la frontiere)        (les velos)     (les autos)
+
+   Mark est sur le pave gris au plan 17 et au plan 18. Le cycliste est sur
+   l'asphalte au plan 18. LA DAME DOIT ETRE SUR LE PAVE GRIS, du meme cote
+   que Mark, derriere la bordure de granit -- et la bordure doit etre
+   VISIBLE dans le cadre, sinon rien ne le dit au spectateur.
+
+PROMPT D'IMAGE (Framing)
+A German woman in her fifties stands on the grey stone pavement of a Berlin
+street corner, seen from the waist up, three quarters turned to her left,
+right of centre in a vertical frame. A dark navy wool coat over a white top,
+a cream tote bag hanging from her forearm, her hair tied back. Her face is
+indignant and polite at once, and she looks at a point beyond the left edge
+of the frame, away from the camera.
+
+The bottom edge of the picture crosses her coat just below the tote bag, and
+the top of her head sits a hand's width under the top edge, so that her face
+is one of the largest things in the picture.
+
+She stands on worn pale grey stone slabs. Behind her coat a straight granite
+kerb, a plain pale stone lip, crosses the picture horizontally, and past that
+kerb, higher in the frame and further from the camera, a red asphalt lane runs
+across and away to the right, with the grey asphalt of the road past it.
+
+Close beside her, level with her head, a pedestrian traffic light stands on a
+bare grey pole, its black housing holding two round lenses, the upper one lit
+and glowing an even plain red. Behind her the pavement runs on with parked
+bicycles along a plain pale building front. Daylight, overcast and flat.
+
+Reference : AUCUNE. ⚠️ Le plan porte << Position neuve : oui >>, et
+            image_plan.py refuse alors toute reference -- garde payee DEUX
+            images au plan 12. La retouche de dame-feu.png est donc
+            abandonnee : elle exigeait justement la reference qui ramene la
+            bande rouge sous ses pieds. La dame ne paraissant qu'une fois et
+            n'ayant aucune fiche, un autre visage ne coute rien.
+Visage neuf : non
+Position neuve : oui
+Image a nommer : dame-trottoir
+
+A QUOI SERT CE PLAN
+   Premier des deux plans ou une inconnue reprend Mark. Elle etablit la
+   regle que tout l'episode va ensuite retourner : ici, on s'arrete au
+   rouge. Sa replique -- << Bei Rot bleibt man stehen! Denken Sie an die
+   Kinder! >> -- est aussi une lecon de grammaire : l'imperatif poli et le
+   << man >> impersonnel. Le plan 05 lui repond (<< An welche Kinder? >>).
+
+   C'est donc un plan d'AVATAR : sa bouche porte la phrase, et le cadrage
+   doit rester assez serre pour qu'OmniHuman ait un visage a animer.
+
+CE QUI DOIT ETRE LISIBLE, SANS LE SON ET SANS SOUS-TITRE
+   1. ELLE EST SUR LE TROTTOIR. C'est le defaut signale par Jacques le 22
+      septembre : << elle a comme les deux pieds sur la piste cyclable, ca
+      n'a pas de sens >>. Une dame qui sermonne sur le respect du feu
+      depuis la chaussee detruit sa propre replique. La bordure de granit
+      derriere elle est ce qui le dit.
+   2. Elle s'adresse a quelqu'un hors champ, et elle est contrariee -- pas
+      furieuse. Le ton de l'episode est le sourire, pas l'engueulade.
+   3. Le feu piéton rouge est allume dans le cadre : c'est ce dont elle
+      parle.
+
+CE QUI S'Y AJOUTERA ENSUITE
+   - La voix allemande de la dame (04-dame.mp3), posee par OmniHuman, qui
+     animera la bouche a partir de cette image.
+   - Le sous-titre : << Au rouge on s'arrete ! Pensez aux enfants ! >>
+   - Aucune incrustation.
+
+CE QUI A DEJA RATE ICI, ET POURQUOI
+   0. ⚠️ ET LA CAUSE EST VERIFIEE : dame-feu.png a ete fabriquee avec
+      --ref mark-marche.png, une image ou le personnage MARCHE SUR LA BANDE
+      ROUGE. La reference a transporte la position, exactement comme
+      l'acquis du 16 septembre le decrit. Ce n'est pas le prompt qui a
+      rate, c'est la reference.
+
+      ⚠️ ET LA DEUXIEME REFERENCE A SA PROPRE INVERSION. carrefour-rouge.png
+         montre bien la matiere du pave et la bordure, mais sa DISPOSITION
+         est l'inverse de celle qu'on veut : chez elle la bande rouge est
+         au PREMIER PLAN, en bas du cadre, et le pave derriere. Le premier
+         jet disait << the grey slabs OF THE SECOND REFERENCE fill the
+         bottom of the picture >> -- on demandait le bas d'une image dont
+         le bas est rouge. On ne la reference plus que pour la MATIERE.
+
+      Releve par Jimmy le 22 septembre, sur les images : la bordure ne peut
+      pas etre << at the level of her knees >>, ils sont hors champ, et le
+      modele aurait dezoome pour les montrer -- ce qui aurait retreci le
+      visage et casse OmniHuman. Vrai, verifie sur l'image (coupee a
+      mi-cuisse, tete a ~18 % de la hauteur), et c'est devenu la regle 19
+      du controle, << repere-hors-champ >>.
+
+      ⚠️ SA RAISON POUR << below her >>, ELLE, EST FAUSSE, et on ne la garde
+         pas : << ce qui est plus loin est PLUS HAUT dans l'image >> n'est
+         pas une loi. carrefour-rouge.png le contredit dans ce dossier meme
+         -- sa bande rouge est plus loin que rien du tout et elle est EN
+         BAS, parce que la camera la regarde d'en haut et de pres. Ce qui
+         est vrai ici tient a la composition qu'on VEUT : elle sur le
+         trottoir au premier plan, donc la bande derriere elle monte dans
+         le cadre. Retirer << below her >> : oui. Le motif : non.
+
+      ⚠️ CE QU'ON A REFUSE DE SA RELECTURE, TROIS FOIS :
+         - nommer les barres du passage pieton pour dire qu'elles sont
+           derriere elle. On veut les faire disparaitre ; les nommer, c'est
+           les fabriquer ;
+         - nommer le pictogramme blanc du velo, deja dans l'image, pour la
+           meme raison ;
+         - decrire le feu (<< the upper round lens lit and glowing an even
+           plain red >>). C'est un DEUXIEME changement : l'image porte un
+           bonhomme rouge, pas une lentille pleine. Demander la lentille,
+           c'est racheter la faute du 16 septembre (0,30 $, deux images).
+           Le feu ne se mentionne pas ; s'il faut la lentille plate un
+           jour, c'est ampelmann.py qui la dessine.
+
+   1. L'image actuelle (dame-feu.png) la pose au bord de la chaussee, une
+      barre de passage pieton sous elle et la bande rouge a sa droite. Ses
+      pieds ne sont meme pas dans le cadre -- c'est TOUT AUTOUR d'elle qui
+      dit << je suis dans la rue >>. Corriger sa position ne suffira pas si
+      le decor autour continue de la contredire.
+   2. La faute de fond est deja consignee trois fois : NOMMER UNE SURFACE
+      NE PLACE PERSONNE. << BOTH ARE ON THE RED STRIP >> a donne le gris,
+      << stands on the grey pavement slabs >> a donne le rouge. Le modele
+      ne desobeit pas, il COMPOSE.
+   3. Le remede documente est de demander UNE RETOUCHE et d'ancrer sur un
+      OBJET PHYSIQUE -- la bordure de granit -- plutot que sur le nom d'un
+      revetement. Ici la position est justement ce qui change : on ne peut
+      pas ecrire << ne la bouge pas >>. On retouche donc LE DECOR autour
+      d'elle, ce qui est une composition minimale : meme femme, meme
+      manteau, meme sac, meme cadrage, meme lumiere, et la bordure de
+      granit amenee derriere elle.
+   4. ⚠️ NE RIEN REFERENCER QUI PORTE UNE POSITION. L'acquis du 16
+      septembre : une reference transporte le visage ET la position. Si on
+      reference dame-feu.png pour garder son visage, on risque de reimporter
+      sa position. A declarer dans A-TOURNER.txt : << Position neuve : oui >>.
+
 
 PROMPT D'IMAGE (Framing)
 A German woman in her fifties stands on a Berlin pavement beside a pedestrian
@@ -781,6 +919,58 @@ lit.
 
 
 PLAN 18   LA CHUTE   6 s
+INTENTION (ecrite le 22 septembre 2026, avant le prompt et avant la depense)
+
+A QUOI SERT CE PLAN
+   C'est la chute, et c'est le dernier plan de l'episode. Tout ce qui precede
+   est une lecon : un cycliste arrete Mark, lui explique qu'on ne marche pas
+   sur la bande rouge, et Mark obeit -- au plan 17 il est passe sur le pave
+   gris. Le plan 18 encaisse cette lecon et la retourne : Mark attend au
+   rouge, et CELUI QUI VENAIT DE LUI FAIRE LA LECON passe sans s'arreter.
+   Le sujet de l'episode n'est pas la regle, c'est qui la suit.
+
+   Depuis le 22 septembre, le plan porte une deuxieme moitie : Mark leve les
+   bras. Sans elle, la chute est un constat ; avec elle, le film prend parti,
+   et le spectateur a le droit de trouver ca injuste.
+
+CE QUI DOIT ETRE LISIBLE, SANS LE SON ET SANS SOUS-TITRE
+   1. Le feu est rouge et Mark ne bouge pas, derriere la bordure de granit.
+      Il obeit -- c'est la moitie de la blague, et elle doit etre acquise des
+      la premiere image.
+   2. LE CYCLISTE EST LE MEME HOMME. Le blouson jaune franc et la nuque grise
+      sont tout ce qui l'identifie a cette distance et de dos. Un cycliste
+      quelconque qui grille un feu n'est pas drole ; c'est LUI qui l'est.
+   3. Il traverse au rouge et s'en va, Mark reste. Puis les mains de Mark
+      montent a hauteur de taille, paumes en l'air, et y restent.
+
+CE QUI S'Y AJOUTERA ENSUITE
+   - La narration allemande : << Dann faehrt der Radfahrer bei Rot durch. >>
+     (18-erzaehler.mp3, 2,77 s), puis TROIS SECONDES DE SILENCE. Le geste de
+     Mark n'est dans aucun texte : il vit entierement dans cette queue. C'est
+     pour lui qu'existe la ligne << 18 3.0 >> de _queues.txt.
+   - Le sous-titre francais : << Puis le cycliste passe au rouge. >>
+   - Aucune incrustation. L'Ampelmaennchen n'est PAS dessine dans cet
+     episode : le feu reste rouge d'un bout a l'autre, c'est le sujet.
+
+CE QUI A DEJA RATE ICI, ET POURQUOI
+   1. chute-feu-rouge.png : le cycliste etait DEJA dans l'image de depart. Il
+      ne pouvait donc que partir, jamais arriver -- on le voyait retrecir, on
+      ne le voyait pas surgir, et la surprise mourait. On repart de
+      il-attend.png, ou Mark attend seul.
+   2. La nuque brune : l'image derivait du cycliste qui portait le visage de
+      Mark. De dos, on croyait voir Mark. C'est le pire endroit possible pour
+      cette confusion. Les cheveux gris reglent ca.
+   3. << stands still on the grey pavement slabs >> a mis Mark sur le rouge.
+      Nommer un revetement ne place personne : le modele COMPOSE. On demande
+      une retouche et on ancre sur un objet -- la bordure de granit.
+   4. 22 septembre : le cycliste arrivait trop tard. Le prompt decrivait un
+      EVENEMENT (<< a cyclist rides into the picture >>) et un modele
+      PLANIFIE un evenement. On decrit donc l'etat de la premiere image : le
+      pneu avant est deja en train de franchir le bord du bas.
+   5. 22 septembre : le montage recoupait le plan a 4,02 s -- amorce +
+      narration + queue commune. Les deux secondes du geste tombaient, apres
+      avoir ete payees. D'ou _queues.txt.
+
 ⚠️ NOMMER UNE SURFACE NE PLACE PERSONNE. Trois echecs le 16 septembre
    2026, et ils se contredisent, ce qui est toute la demonstration :
      - plan 19, prompt << BOTH ARE ON THE RED STRIP, both feet planted on the
@@ -844,14 +1034,114 @@ Image a nommer : chute-feu-rouge
 
 PROMPT DE MOUVEMENT
 The camera is locked on a tripod and stays there for the whole shot: the
-same lens, the same height, the same distance. The young man on the pavement stays completely still, waiting, his back
-to us. The lane beside him is clear and open when the shot opens. Then a
-cyclist RIDES INTO THE PICTURE FROM THE BOTTOM EDGE, close to the camera
-at first and large: a bright yellow waterproof jacket, a dark grey
-bicycle, a dark grey cycling helmet with short steel grey hair at the
-neck below it. He carries straight on past the waiting man and out
-through the crossing, away from the camera, growing smaller until he is
-far down the street. The red lens stays lit, steady and even.
+same lens, the same height, the same distance. The young man on the
+pavement waits with his back to us, his arms hanging at his sides, his
+hands open and empty.
+
+The cyclist in the bright yellow jacket is already riding when the shot
+opens, out on the grey asphalt beyond the kerb. He carries
+straight on through the crossing, away from the camera, growing smaller,
+and he rides right out of the picture, until the picture holds only the
+waiting man, the red lane, the grey asphalt and the lit red lens.
+
+Once the picture holds only the waiting man again, he raises both arms and
+holds the position: his open empty hands come up level with his chest,
+one out to either side of him, his elbows bent and carried away from his
+body, his palms turned up. He holds that position to the last frame, his
+back still to us, still facing the red light. The red lens stays lit, steady and
+even. The framing holds to the very end: in the last frame he is the same
+size and in the same place in the picture as in the first.
+
+⚠️ NE PAS NOMMER LE GESTE : << SHRUG >> APPELLE LE HAUSSEMENT COMIQUE.
+   22 septembre 2026, releve par Jimmy. Le prompt disait << raises both
+   arms into a shrug >> et << his shoulders lifted >>. Meme faute que
+   l'Ampelmaennchen : nommer une abstraction convoque son imagerie, pas
+   l'objet. Et sur un homme VU DE DOS, des epaules qui montent se lisent
+   comme une tete qui s'enfonce -- une seconde partie du corps a animer,
+   pour rien.
+
+   On garde la geometrie seule, qui dit deja la posture : mains a hauteur
+   de poitrine, une de chaque cote, coudes plies et ecartes, paumes en
+   l'air. Le nom du geste est ce qu'on veut que le SPECTATEUR comprenne,
+   pas ce qu'on ecrit au modele.
+
+   ⚠️ CE QU'IL PROPOSAIT ET QU'ON A REFUSE : mettre le cycliste
+      << on the red cycle lane in front of the waiting man >>. Sur
+      chute-depart.png il est sur l'ASPHALTE, au-dela de la bordure, et la
+      bande rouge est devant Mark. Sa correction contredisait l'image de
+      depart et supprimait le contraste qui fait la chute -- Mark sur le
+      trottoir, l'autre sur la chaussee. Deuxieme fois qu'il raisonne sur
+      la description plutot que sur l'image : une relecture croisee est un
+      avis a verifier, pas un verdict.
+
+⚠️ L'AMPLITUDE SE BORNE PAR L'ETAT D'ARRIVEE, PAS PAR UNE LIMITE.
+   22 septembre 2026. Jacques a d'abord dit << au niveau de la taille >>,
+   puis << a peu pres a la hauteur du torse, la, le cote >>. Le premier
+   jet bornait le geste par les coudes colles au corps -- ce qui contredit
+   des bras ecartes.
+
+   La fiche des lecons interdit deux choses ici : un verbe fort sans
+   amplitude (<< lifts one hand >> a envoye la main en l'air) et des
+   qualificatifs empiles (<< a small, gentle... nothing broad >> n'a
+   presque rien donne). Le remede est d'ecrire l'ETAT D'ARRIVEE en
+   geometrie : mains a hauteur de poitrine, une de chaque cote, coudes
+   plies et ecartes du corps, paumes en l'air, epaules levees. Le geste
+   est alors borne par sa description, sans limite et sans negation.
+
+⚠️ L'IMAGE DE DEPART VIENT DE LA PRISE, ET CA SUPPRIME LE PROBLEME.
+   22 septembre 2026, propose par Jacques : << le plan pourrait commencer
+   exactement sur l'image ou on voit le cycliste >>. On extrait donc la
+   2,6e seconde de la prise existante -- chute-depart.png, 1080x1920 --
+   et le plan ouvre sur les DEUX hommes deja dans le cadre.
+
+   Ce que ca supprime : l'entree du cycliste, qui etait le seul temps que
+   le modele pouvait planifier trop tard, et la seule raison d'ecrire
+   << pres de la camera et grand >>, la phrase qui effacait le plan. Il
+   reste deux temps au lieu de trois, dans sept secondes.
+
+   Ce que ca gagne aussi : la continuite du decor est parfaite au pixel
+   pres, sans payer d'image, et sans risque que le modele remeuble la rue.
+
+   ⚠️ MAIS L'IMAGE DOIT ETRE NETTE. La 1,6e seconde -- celle que Jacques
+      avait d'abord montree -- est en bouge : le cycliste y passe trop
+      pres. C'est la PREMIERE image du DERNIER plan de l'episode, celle
+      que voit une vignette et celle qui accueille la coupe du plan 17.
+      On a pris la 2,6e, ou les deux hommes sont separes et nets.
+
+⚠️ << PRES DE LA CAMERA ET GRAND >> EFFACE LE PLAN.
+   22 septembre 2026, verifie image par image sur la prise existante : a
+   1,6 s le cycliste occupe tout l'ecran -- Mark, le feu et la rue ont
+   disparu derriere un blouson jaune. La phrase fautive est
+   << close to the camera at first and large >>, recopiee sans etre
+   remise en cause. Elle demandait exactement ce qu'on a obtenu.
+
+   Ce plan a besoin des DEUX hommes dans le meme cadre : celui qui attend
+   et celui qui passe. La taille du cycliste se borne donc par sa
+   TRAJECTOIRE, pas par un adjectif -- << ridden at the far side of the red
+   lane so that the waiting man stays visible the whole way past >>.
+
+   Relecture croisee par Jimmy le 22 septembre. Il avait attribue le defaut
+   au mot << wheel >> et propose de faire entrer le cycliste par un cote :
+   verifie sur la prise, il entre bien par le bas et ca se lit. Sa cause
+   etait fausse, son diagnostic de taille etait juste.
+
+⚠️ UN EVENEMENT SE FAIT ATTENDRE, UN ETAT S'OBEIT DES L'IMAGE 1.
+   22 septembre 2026, Jacques en regardant le montage : << le cycliste
+   arrive un peu tard ; il faut qu'on voie entrer son pneu avant >>. Le
+   prompt disait << a cyclist RIDES INTO THE PICTURE FROM THE BOTTOM EDGE >>
+   -- un EVENEMENT, et le modele choisit quand il le declenche. On decrit
+   donc l'etat de la premiere image : << In the very first frame the front
+   wheel of a bicycle is already crossing the bottom edge of the picture >>.
+   Il n'a plus de marge pour le faire attendre.
+
+   Meme famille que la garde negative : ce qu'on laisse au modele, il le
+   compose a sa facon. Ce qu'on fixe comme etat, il le tient.
+
+⚠️ ET LA CHUTE A BESOIN DE SA QUEUE. Le montage taille chaque plan sur
+   amorce + narration + queue. La narration du 18 fait 2,77 s, donc le plan
+   sortait a 4,02 s -- et les deux secondes ou Mark leve les bras, apres le
+   depart du cycliste, tombaient. La queue particuliere vit dans
+   _queues.txt, a cote des plans : << 18 3.0 >>.
 
 ⚠️ ET LA NUQUE DOIT ETRE GRISE. Premiere version : une chevelure brune,
    epaisse et ondulee -- celle de Mark, litteralement, puisque l'image

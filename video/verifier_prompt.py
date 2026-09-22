@@ -298,6 +298,21 @@ REGLES = [
      u"hem of her coat and the tote bag hanging from her arm >>. Un repere hors "
      u"champ n'est pas une precision, c'est un ordre de recadrer."),
 
+    ("sol-bord-a-bord", "doute",
+     r"(?i)(fills? the whole foreground|from edge to edge"
+     r"|fill(s|ing)? the bottom of the picture)",
+     u"Un sol demande bord a bord : la camera recule, le visage retrecit",
+     u"22 sept. 2026, dame-trottoir, 0,15 $. La geographie etait juste du "
+     u"premier coup -- trottoir devant, bordure, bande rouge derriere -- mais "
+     u"<< the pavement fills the whole foreground ... from edge to edge >> a "
+     u"gagne contre << seen from the waist up >> : la tete est sortie a 10,5 % "
+     u"de la hauteur au lieu des 18 % de dame-feu.png. Un recadrage rattrape le "
+     u"visage mais perd le feu rouge, qui est ce dont elle parle.",
+     u"Sur une image qui part chez OmniHuman, poser d'abord LA LIGNE DE COUPE "
+     u"-- << the bottom edge of the picture crosses her coat just below the "
+     u"tote bag >> -- et ne decrire le sol que DERRIERE le personnage. Un sol "
+     u"qu'on veut voir en entier est un ordre de reculer la camera."),
+
     ("nom-du-geste", "doute",
      r"(?i)(shrug|shrugs|facepalm|thumbs up|eye ?roll|fist pump)",
      u"Le geste appele par son nom : c'est la caricature qui vient",
@@ -633,7 +648,8 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 #    negative, l'icone appelee par son nom, et l'empilement de negations.
 POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
-              "taille-par-adjectif", "nom-du-geste", "repere-hors-champ")
+              "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
+              "sol-bord-a-bord")
 
 # Un prompt d'IMAGE ou de MOUVEMENT de decor : ni parole, ni queue de plan.
 EST_IMAGE = re.compile(r"PROMPT\s+(?:D'IMAGE|DE\s+MOUVEMENT)", re.I)
