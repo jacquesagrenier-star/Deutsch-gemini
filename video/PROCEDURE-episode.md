@@ -145,6 +145,25 @@ secondes de calcul contre une journée de conclusions fausses.
 L'importateur **repose systématiquement notre piste** sur la prise — sinon un
 simple ré-import écrase les corrections de l'étape 2, en silence.
 
+### ⚠️ Regarder ce qui S'ALLUME dans le fond, pas seulement le visage
+
+22 septembre 2026, plan 04 de l'épisode 3, 0,63 $ : la bouche disait les mots,
+le cadre tenait — et **OmniHuman avait repeint le feu piéton**. Le rouge est en
+haut de la lanterne à 0,05 s et en bas à 2,40 s : la lampe descend d'une
+lentille à l'autre, dans le plan dont tout le sujet est le feu rouge.
+
+**Le prompt ne mentionnait pas le feu.** Il n'y a donc rien à corriger dans le
+prompt, et reprendre ne garantit rien : le tirage suivant peut refaire la même
+chose. La réparation se fait après coup, la caméra étant verrouillée :
+
+```bash
+python video/effacer_coin.py <clip.mp4> --zone 300x420+250+0 --fondu 24 --ref 0
+```
+
+Mesurer d'abord la zone (`--mesurer`). Si l'outil refuse, **ne pas forcer sans
+avoir vérifié image par image ce qui bouge dans le rectangle** : c'est la
+différence entre recouvrir une lampe et geler une mèche de cheveux.
+
 ---
 
 ## Étape 5 — mesurer, sans lui donner le dernier mot

@@ -466,6 +466,27 @@ CE QUI A DEJA RATE ICI, ET POURQUOI
       La prise brute est rangee en dame-trottoir-BRUT.png, la premiere en
       dame-trottoir-v1.png.
 
+   0 quater. LA PRISE D'AVATAR (22 sept. 2026, 0,63 $, plan04-omnihuman.mp4)
+      La bouche dit les mots, le cadre tient, la main reste ou l'image la
+      pose. UN DEFAUT, ET IL N'ETAIT PAS DANS LE PROMPT : OmniHuman a
+      REPEINT LE FEU. Mesure sur les images : le rouge est en haut
+      (y 62-144) a 0,05 s, et en bas (y 184-370) a 2,40 s -- la lampe
+      descend d'une lentille a l'autre et le bonhomme se deforme, dans le
+      plan dont tout le sujet est le feu rouge. Le prompt ne parle pas du
+      feu : on ne peut donc pas le corriger par le prompt.
+      Repare sans repayer, par effacer_coin.py : la camera est verrouillee
+      et rien ne bouge dans ce coin sauf la lampe elle-meme.
+         python video/effacer_coin.py \
+             video/episode-03-auf-dem-radweg/_essai-avatar/plan04-omnihuman.mp4 \
+             --zone 300x420+250+0 --fondu 24 --ref 0 --forcer
+      ⚠️ --forcer, ET VOICI POURQUOI. Le garde-fou mesure 10,0 niveaux de
+         gris dans la zone propre, juste au seuil. Ce remuement est celui
+         du fond que le modele refabrique a chaque image, pas un objet qui
+         passe : verifie image par image, la seule chose qui change dans
+         ce rectangle est la lampe, et la chevelure (x>430, y>414) n'est
+         pas touchee -- comparee avant/apres, elle est identique au pixel.
+         La prise d'origine est gardee en plan04-omnihuman-AVANT-coin.mp4.
+
    1. L'image actuelle (dame-feu.png) la pose au bord de la chaussee, une
       barre de passage pieton sous elle et la bande rouge a sa droite. Ses
       pieds ne sont meme pas dans le cadre -- c'est TOUT AUTOUR d'elle qui

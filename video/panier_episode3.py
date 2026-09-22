@@ -48,7 +48,10 @@ QUEUE = 1.4          # s de silence final
 #    etait a mi-corps : la consigne se contredisait elle-meme.
 PLANS = {
     2:  ("mark-marche",    "mark"),
-    4:  ("dame-feu",       "dame"),
+    # ⚠️ 22 sept. 2026 : dame-feu -> dame-trottoir. dame-feu.png la posait au
+    #    bord de la chaussee, une barre de passage pieton sous elle -- une
+    #    dame qui sermonne sur le feu rouge depuis la rue detruit sa replique.
+    4:  ("dame-trottoir",  "dame"),
     5:  ("mark-serre",     "mark"),
     8:  ("mark-retourne",  "mark"),
     9:  ("cycliste-jaune", "radfahrer"),
@@ -71,7 +74,14 @@ def duree(f):
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--ecrire", action="store_true")
+    p.add_argument("--plan", type=int, nargs="+",
+                   help="ne refaire que ces paniers ; par defaut, tous")
     a = p.parse_args()
+    if a.plan:
+        inconnus = [n for n in a.plan if n not in PLANS]
+        if inconnus:
+            sys.exit("  plan(s) sans replique : %s"
+                     % ", ".join(str(n) for n in inconnus))
 
     tel = os.path.join(EP, "_a-televerser")
     if a.ecrire and not os.path.isdir(tel):
@@ -80,7 +90,8 @@ def main():
     total = 0.0
     print("  plan  image              piste        parole  +silence   cout")
     print("  " + "-" * 68)
-    for n in sorted(PLANS):
+    choisis = sorted(n for n in PLANS if not a.plan or n in a.plan)
+    for n in choisis:
         nom_img, loc = PLANS[n]
         src_img = os.path.join(EP, "01-images", nom_img + ".png")
         src_mp3 = os.path.join(SCENE, "%02d-%s.mp3" % (n, loc))
@@ -107,7 +118,7 @@ def main():
                         dst_mp3], check=True)
 
     print("  " + "-" * 68)
-    print("  %d plans, %.1f s au total  ->  %.2f $" % (len(PLANS), total,
+    print("  %d plans, %.1f s au total  ->  %.2f $" % (len(choisis), total,
                                                        total * PRIX))
     if not a.ecrire:
         print("\n  Essai a blanc. Relancer avec --ecrire pour fabriquer les "

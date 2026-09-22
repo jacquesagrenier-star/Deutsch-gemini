@@ -291,6 +291,20 @@ def panier(tel, essai, n):
         manque.append("  l'image : aucun %s/plan%02d-*.jpg\n"
                       "    -> python video/preparer_avatar.py --plan %d" % (
                           os.path.basename(tel), n, n))
+    elif len(imgs) > 1:
+        # ⚠️ DEUX IMAGES POUR UN PLAN, ET LE TRI ALPHABETIQUE CHOISIT.
+        #    22 sept. 2026 : le plan 04 changeait d'image maitresse
+        #    (dame-feu -> dame-trottoir) et l'ancien panier etait reste la.
+        #    << plan04-dame-feu.jpg >> passe avant << plan04-dame-trottoir.jpg >> :
+        #    la simulation allait payer 0,63 $ pour l'image qu'on venait
+        #    justement de remplacer. Vu par --simuler, pas par le code.
+        #    Un choix silencieux entre deux images est un choix de trop.
+        manque.append("  l'image : %d candidates pour le plan %02d --\n%s"
+                      "    -> effacer celle qui n'est plus la bonne ; le "
+                      "panier se refabrique sans rien payer."
+                      % (len(imgs), n,
+                         "".join("      %s\n" % os.path.basename(f)
+                                 for f in imgs)))
     if not os.path.exists(mp3):
         manque.append("  la piste : %s absent\n"
                       "    -> python video/preparer_avatar.py --plan %d" % (
