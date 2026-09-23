@@ -207,3 +207,31 @@ qui suit. Le contrôle avait raison ; c'est moi qui l'avais bâillonné.
 
 Les zones et seuils exacts sont dans `retours/journal-retours.md`, au
 23 septembre 2026.
+
+---
+
+## 6. Le piège des dérivés — ajouté le 23 septembre au soir
+
+**Toute reconstruction d'un master annule les retouches faites sur le master
+précédent**, et toute régénération d'un clip annule les retouches faites sur le
+clip précédent. Deux fois dans la même journée :
+
+- la **coupe de tête de 0,75 s** du plan 07, perdue en régénérant son clip ;
+- les **deux barres blanches en travers** du plan 17, revenues quand j'ai
+  reconstruit son master depuis `il-attend-COURTE.png` pour en retirer le
+  pictogramme.
+
+> Une retouche qui vit dans un fichier dérivé ne survit pas à la régénération
+> de sa source. Elle doit donc être **rejouable** : une commande notée dans
+> `A-TOURNER.txt` ou ici, jamais seulement un fichier sur le disque.
+
+Les six retouches de clip de l'épisode 03 sont rejouables et listées dans
+`retours/journal-retours.md` au 23 septembre. Les retouches de master aussi :
+
+```
+il-attend.png   : allonger_bande.py, puis greffe zone 930,2130,1536,2285 dy 230
+deux-bandes.png : greffe zone 0,800,560,1700 dy 880
+bande-rouge-pieds.png : greffe zone 0,925,900,1640 dy -900
+chute-depart.png      : greffe zone 995,2295,1536,2565 dy -230
+```
+

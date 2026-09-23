@@ -7040,3 +7040,21 @@ Plans 01, 02, 03, 06, 07, 08, 10, 12, 17, 18, 19 : tous propres.
 a 25,69 et 26,34 ; musique sur 67,98 s avec ses deux montees a 22,2-27,4 et
 64,6-67,4. Total 67,97 s. Solde fal : 4,23 $ (3,87 $ depenses aujourd'hui).
 
+### Les deux barres en travers du plan 17, entourees en rouge sur sa capture
+
+Elles etaient parties ce matin -- et **revenues quand j'ai reconstruit le
+master du plan 17** depuis `il-attend-COURTE.png` pour retirer le pictogramme.
+La reconstruction a rendu au plan sa bande d'origine, barres comprises.
+
+⚠️ **C'est le meme piege que la coupe de tete du plan 07 : toute
+reconstruction d'un master ANNULE les retouches faites sur le master
+precedent.** Ce qui vit dans un fichier derive ne survit pas a la
+regeneration de sa source. Les retouches de master doivent donc etre
+REJOUABLES -- une commande notee, pas un fichier.
+
+**Fait :** greffe sur `il-attend.png`, zone 930,2130,1536,2285, source 230 px
+plus bas, fondu 8. Original garde en `il-attend-AVEC-BARRES.png`. Puis plan
+fixe, retenu en prise 8, remontage, reapplication des six retouches de clip,
+sonorisation et sous-titrage. Verifie sur une trame du .mp4 livre a 59,5 s :
+ni velo ni barres.
+
