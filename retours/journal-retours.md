@@ -6350,3 +6350,45 @@ puis de quoi il parle. Le deuxieme temps leve une ambiguite, il n'elargit pas le
 mandat. Un perimetre qu'il a retreci (<< juste une image >>) tient jusqu'a ce que
 LUI le rouvre. Et rien de paye ne s'enchaine dans le meme tour : il ecrit pendant
 que je travaille.
+
+## 23 septembre 2026 -- << allonge la piste, elle est plus longue quand le cycliste apparait >>
+
+**Qui :** Jacques, de vive voix, capture du plan ou Mark attend au feu.
+
+**Le retour :** << peux-tu toi-meme allonger la piste, car lorsque le cycliste
+apparait elle est plus longue >>. Le << toi-meme >> etait la consigne : en
+local, sans repasser par fal.
+
+**Mesure :** dans `il-attend.png` le rouge s'arretait a y=2183 et laissait 569
+px d'asphalte nu jusqu'au bas du cadre -- 20,7 % de l'image. Dans
+`les-deux-hommes.png`, le plan du cycliste, il descend jusqu'au dernier pixel.
+Les deux plans se suivent a l'ecran : la piste raccourcissait puis rallongeait.
+
+**Fait :** nouvel outil `video/allonger_bande.py`, rien de paye. Il releve la
+teinte sur la bande existante (r/L=1,252, g/L=0,885, b/L=0,933), regle le bord
+gauche par moindres carres sur 530 lignes (x = -0,7373*y + 2633,7), et reteinte
+l'asphalte deja present en lui gardant sa luminosite -- le geste de
+`degriser_bande.py` a l'envers. 393 462 pixels. L'original est garde en
+`il-attend-COURTE.png`.
+
+**Deux choses apprises en le faisant :**
+- **La bordure de granit ne se distingue pas de l'asphalte par la couleur**
+  (granit L=112-149, asphalte L=139-155, r-g de 13 a 20 des deux cotes). C'est
+  la geometrie qui tient la peinture a distance du trottoir ; la couleur ne
+  sert qu'a proteger les traits blancs (L>180).
+- **Un masque coupe au pixel se lit comme un masque.** Premiere sortie : bord
+  gauche parfaitement net, vu tout de suite au zoom. Corrige par une lisiere de
+  4 px, interpolee depuis le pixel lui-meme et non depuis un gris neutre, sans
+  quoi la lisiere decolore l'asphalte.
+
+**Reste, et c'est a lui de trancher :** `il-attend.png` est l'image de depart du
+**plan 18, la chute**. Le clip monte porte encore la bande courte. Le refaire
+est un appel Seedance (~1,45 $) ET remet en jeu l'entree du cycliste, qui n'a
+ete juste qu'apres plusieurs prises le 22. Non touche -- consigne debut de
+session : ne pas toucher au clip.
+
+**Mesure de cadrage, pour information :** deux autres images ont encore une
+bande qui s'arrete haut -- `traverse-seul.png` (22,4 % du cadre sous la bande)
+et `mark-serre.png` (28,0 %). Dans `traverse-seul` la bande longe la traverse en
+travers de la rue, donc sa fin peut etre legitime ; il a d'ailleurs dit de ce
+plan-la << ca, ca fait du sens >>. Rien touche.
