@@ -6583,3 +6583,45 @@ large : integrer l'une ou l'autre donnerait un plan 01 visiblement plus mou
 que les dix-huit autres. Il faut l'image d'origine de Jimmy, deposee dans
 `video/episode-03-auf-dem-radweg/01-images/`.
 
+## 23 septembre 2026 -- le plan fixe, et la musique
+
+**<< Pourquoi tu ne prends pas juste l'image ? >>** Solde fal a 1,31 $, reprise
+du plan 01 a 1,69 $ : je venais de lui annoncer que je ne pouvais pas la faire.
+Sa reponse : << mais tu peux pas te servir seulement de l'image ? Il n'y a pas
+de mouvement dans cette image-la. >>
+
+Il avait raison, et c'etait ecrit dans notre propre feuille. Le PROMPT DE
+MOUVEMENT du plan 01 dit en entier : des feuilles qui bougent et un tram
+lointain. On payait 1,69 $ pour une immobilite, sur un plan de six secondes qui
+porte une narration -- et la serie est A CAMERA VERROUILLEE depuis l'episode 1,
+donc une image tenue n'introduit aucune rupture de langage : c'est le cas
+limite de la regle.
+
+⚠️ **LA REGLE QUE J'EN TIRE : avant de payer un clip de decor, relire son
+prompt de mouvement et se demander ce qu'un spectateur remarquerait.** Si la
+reponse est << rien >>, c'est un plan fixe. Nouvel outil `video/plan_fixe.py`,
+qui releve largeur/hauteur/cadence/format sur un clip VOISIN au lieu de les
+inventer -- un plan a 25 im/s se recoderait au montage et la chute de qualite
+se verrait au milieu de l'episode. Il refuse de s'appliquer a un plan avec
+quelqu'un dedans : un visage immobile six secondes se lit comme un arret sur
+image, pas comme du calme.
+
+**Et mon objection sur la resolution etait fausse.** J'avais refuse d'integrer
+son image de Jimmy parce qu'elle n'arrive qu'en 571x1024 quand les maitres sont
+en 1536x2752. Mais LE CLIP SE REND EN 720 DE LARGE : les maitres sont de toute
+facon reduits par Seedance. L'agrandissement reel est de 1,26x. Il a insiste
+trois fois avant que je verifie ce que je croyais savoir.
+
+**La musique.** Ses deux derniers telechargements, qu'il a distingues lui-meme :
+`Last_Tram_to_Prenzlauer_Berg.mp3` sous l'episode 3 (18 dB sous le dialogue,
+0 -> 67,26 s), et `Sleepless_U_Bahn.mp3` mise de cote pour une scene de S-Bahn
+ou U-Bahn a venir. Les deux copiees dans `audio/musique/`. La reserve est
+notee en memoire, sinon la seconde finirait sous n'importe quel plan.
+
+⚠️ **A LUI DE REPONDRE : la provenance et la licence des deux musiques.** Le
+depot est PUBLIC et il documente ses licences avec soin -- WikDict CC BY-SA,
+Leipzig CC BY, la carte << Credits >> des reglages. Une musique sortie d'un
+generateur n'a pas les memes droits qu'une piste libre, et ces deux mp3 sont
+maintenant dans un depot public. Les fichiers ne sont PAS commites en
+attendant sa reponse.
+
