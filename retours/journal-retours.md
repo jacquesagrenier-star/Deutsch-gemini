@@ -6888,3 +6888,50 @@ fond, et j'en avais conclu << c'est infaisable >>. La bonne conclusion etait
 << il n'y a pas de texture a preserver, donc on peut recopier >>. Une mesure ne
 dit pas seulement ce qui ne marchera pas.
 
+### Il avait raison : << regarde de plus pres, les velos sont encore partout >>
+
+⚠️ **ET MA FAUTE DE METHODE EST LA PLUS GROSSE DE LA JOURNEE : j'ai verifie mon
+travail sur les IMAGES INTERMEDIAIRES et jamais sur le fichier livre.** Les
+trios avant/masque/apres que je regardais etaient construits sur le FOND
+MEDIAN, pas sur les trames du clip. J'ai annonce six plans nettoyes ; trois
+l'etaient.
+
+**Deux causes, trouvees en remontant la chaine :**
+
+1. **`retenir.py` REFUSAIT mes prises du plan 17 depuis le debut**, avec le mot
+   REFUS et un code de sortie 1 : << plan17-06.mp4 part de il-attend-TRAME.png
+   au lieu de il-attend.png >>. Le controle avait raison -- la prise ne venait
+   pas de l'image declaree du plan. Et mes `tail -1` ne montraient que la
+   ligne d'explication, jamais le mot REFUS. `03-final/plan17.mp4` etait reste
+   le clip Seedance de 10 h 50 pendant deux heures.
+   **Ne jamais filtrer la sortie d'un outil par `tail` quand on se fie a lui.**
+
+2. **Le plan 06 n'a pas une camera verrouillee.** C'est un plan de MARCHE : le
+   sol defile. Son fond median n'a donc pas de velo -- il est etale sur la
+   duree -- alors que chaque trame en montre un. Toute ma methode repose sur
+   la camera fixe, et ce plan-la est hors de son domaine.
+
+**LA ROUTE QUI MARCHE, ET ELLE EST CLAIRE MAINTENANT : corriger le MASTER,
+pas le clip.** C'est ainsi que 12 et 17 sont devenus propres, gratuitement :
+    plan 17 : il-attend.png refait depuis il-attend-COURTE.png, bande
+              rallongee et pictogramme JAMAIS repose
+    plan 12 : deux-bandes.png greffe (zone 0,800,560,1700, source 880 px plus
+              bas), puis plan fixe
+Les deux passent `retenir.py` parce que la prise part bien de l'image declaree.
+
+**ETAT VERIFIE SUR LE FICHIER LIVRE** (trames extraites du .mp4 final) :
+    propres : 01, 02, 03, 07, 08, 10, 12, 17, 19
+    velo restant : 06 et 18
+
+**POURQUOI CES DEUX-LA RESISTENT, mesure a l'appui :**
+ - plan 06 : camera mobile, voir ci-dessus.
+ - plan 18 : sa bande n'a aucun morceau propre assez grand. Au-dessus du velo
+   il y a le PASSAGE PIETON, en dessous le bord du cadre -- la greffe ramene
+   les barres blanches dans la piste. Vu deux fois.
+
+**CE QU'IL FAUT POUR LES DEUX, et c'est a lui de decider :** corriger leurs
+masters (gratuit, la methode est prouvee) puis REGENERER leurs clips chez fal,
+parce que tous deux ont besoin de leur mouvement -- 06 est << il continue >> et
+18 est la chute avec le cycliste qui entre. Environ 1,21 $ + 1,45 $ = 2,66 $,
+et le solde est a 1,31 $ : il faut recharger.
+
