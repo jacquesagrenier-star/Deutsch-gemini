@@ -6815,3 +6815,40 @@ enchaine six criteres d'APPARENCE avant de mesurer si la chose que je decrivais
 etait stable d'un plan a l'autre. Elle ne l'etait pas. Une mesure de trois
 lignes, faite au debut, aurait remplace plusieurs heures de reglages.
 
+### Un plan a la fois : quatre faits, deux refuses
+
+Il a tranche : << fais-les un plan a la fois, montre-moi chaque masque. >> Bon
+choix -- c'est la seule facon qui a marche. Nouvel outil
+`video/velo_un_plan.py` : une grille de coordonnees, une boite lue dessus, un
+seuil etalonne sur CE plan, un masque a regarder, puis l'ecriture.
+
+**FAITS ET VERIFIES : 12, 17, 18, 19.** Plus de velo, personne de touche.
+    plan 12 : boite 0,560,370,1200     seuil 144,8   58 190 px
+    plan 17 : par son image fixe (zone bornee)
+    plan 18 : boite 700,1560,1080,1830 seuil 170,2   21 619 px
+    plan 19 : boite 0,1055,152,1215    seuil 183,1    5 082 px
+
+**AUCUN VELO A EFFACER : 01, 02, 03, 06.** Verifie a l'oeil sur le fond median.
+Le plan 06 est une vue plongeante SUR la bande et elle est nue -- c'est
+d'ailleurs pourquoi les detecteurs automatiques n'y trouvaient rien de vrai.
+
+**REFUSES, ET JE NE LES AI PAS FORCES : 08 et 10.** Leur velo est petit, pale,
+au bord du cadre, sur une bande qui court EN DIAGONALE contre un trottoir de
+beton clair. Et la, aucun rectangle ne marche :
+ - un rectangle assez large pour couvrir le glyphe attrape le beton du
+   trottoir -- vu deux fois, le masque s'est pose sur le trottoir ;
+ - le resserrer sous la bordure coupe le glyphe, et il reste a moitie.
+⚠️ **Et la couleur ne peut pas departager**, ce qui m'a coute un essai de plus :
+j'avais ajoute une condition r-g > 13 pour sortir le beton gris. Mais la
+peinture la PLUS OPAQUE est un blanc franc, donc r-g proche de 5 -- la
+condition excluait exactement le coeur du glyphe. Blanc et gris ne se separent
+pas par la teinte ; seul le LIEU les separe.
+La suite, si on y revient : une ZONE POLYGONALE qui suit la diagonale de la
+bande, au lieu d'un rectangle. C'est le seul manque.
+
+⚠️ **Et un piege du montage, trouve juste avant de detruire le travail :**
+`monter_avatar.py` REGENERE `_montage-avatar/` depuis `03-final/`. Mes clips
+corriges vivent dans `_montage-avatar/` -- un remontage les aurait ecrases sans
+un mot. On concatene donc les clips deja corriges soi-meme, dans l'ordre de
+`_ordre.txt`, au lieu de relancer le montage.
+
