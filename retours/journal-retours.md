@@ -6775,3 +6775,43 @@ bibliotheque ne le sait ; REBOUCHER un trou dans une photo est resolu depuis
 vingt ans. **Avant d'ecrire un traitement d'image, regarder ce qui est deja
 installe.**
 
+### La suite, le meme jour : six approches, et le constat qui les tue toutes
+
+Il a dit << oui, enchaine les dix plans >>. J'ai essaye, dans l'ordre :
+ 1. seuil de couleur absolu -- attrapait les espadrilles et la facade
+ 2. voisinage a 3 cotes -- attrapait le PANTALON de Mark
+ 3. voisinage a 4 cotes -- ne prenait le velo qu'a moitie
+ 4. garde par la forme (aire, remplissage) -- gardait les taches du pantalon
+ 5. garde << entoure de rouge >> -- 126 849 px sur un gros plan de visage,
+    jusqu'a ce que je trouve que LA PEAU passait pour de la bande (g-b)
+ 6. seuil d'Otsu par plan, puis correspondance de motif avec le glyphe lui-meme
+    -- scores de 0,35 a 0,40 partout, aucune discrimination
+
+⚠️ **ET VOICI POURQUOI AUCUNE NE POUVAIT MARCHER.** Mesure finale, au centre de
+la bande :
+    plan 06 : (173, 96, 84)   r-g = 77   g-b = +12
+    plan 17 : bande mesuree plus tot a  r-g = 60-70  g-b = -7
+**La bande n'a pas la meme couleur d'un plan a l'autre.** Au plan 06 c'est un
+rouge brique chaud, au plan 17 un rose presque mauve. Or ma condition
+`g-b < 4` -- celle qui reglait enfin le probleme de la peau -- EXCLUT la bande
+du plan 06 : l'outil declare << pas de bande >> sur un gros plan DE la bande.
+Et la peau du plan 13 tombe entre les deux.
+
+Il n'existe donc **aucun critere de couleur global** qui separe la bande de la
+peau sur les dix-neuf plans. Chaque plan a sa propre etalonnage, parce que
+chaque clip a ete rendu separement par Seedance.
+
+### Ce que je livre, et ce que je ne livre pas
+- **Livre** : plan 17, verifie. Methode de la zone bornee sur son image fixe.
+- **Non livre** : les dix autres. Je n'ai rien ecrit sur ces clips.
+
+### Ce qu'il faut pour les dix, et c'est a choisir avec lui
+La zone bornee PAR PLAN, avec un seuil etalonne PAR PLAN. Dix passages ou il
+faut regarder chaque masque avant d'ecrire. C'est mecanique et sur, mais ce
+n'est pas automatisable -- la mesure ci-dessus dit pourquoi.
+
+⚠️ **Et la lecon de methode, qui est la plus chere de la journee :** j'ai
+enchaine six criteres d'APPARENCE avant de mesurer si la chose que je decrivais
+etait stable d'un plan a l'autre. Elle ne l'etait pas. Une mesure de trois
+lignes, faite au debut, aurait remplace plusieurs heures de reglages.
+

@@ -56,46 +56,76 @@ sys.path.insert(0, os.path.join(RACINE, "video"))
 import effacer_marquage as EM                              # noqa: E402
 
 
-def glyphes(fond, rayon, cotes, sur_clair, aire, remplissage, dilate,
-            part_rouge=0.60):
-    """Le masque statique du marquage, sur le fond sans personne.
+def glyphes(fond, sur_clair=10, erosion=18, aire_bande=20000, dilate=3):
+    """Le masque du marquage : de la peinture claire DANS l'interieur de la bande.
 
-    ⚠️ LA GARDE DECISIVE : CHAQUE TACHE DOIT ETRE ENTOUREE DE BANDE ROUGE.
-       Premier essai du 23 sept. 2026, sans elle : 148 241 px de masque sur le
-       plan 13, un GROS PLAN DE VISAGE ou il n'y a pas l'ombre d'une piste
-       cyclable -- et 100 453 sur le plan 11, un autre visage. Les criteres
-       locaux (clair, cerne, fin) decrivent un trait de peinture ; ils ne
-       disent rien du LIEU. Or un marquage de piste cyclable est, par
-       definition, pose SUR la bande.
-       On mesure donc, pour chaque tache, la proportion de rouge dans la
-       couronne qui l'entoure. Un pictogramme est a plus de 60 % ; une joue,
-       un col de polo, une facade sont a zero. Lancer la passe sans ce
-       controle aurait repeint des visages.
+    ⚠️ CE N'EST PLUS UN TEST DE VOISINAGE, ET C'EST TOUT L'INTERET. Les
+       versions precedentes demandaient << du rouge sur 3 ou 4 cotes a 22 px >>.
+       Trois tours passes a regler ce chiffre : a 3 le pantalon de Mark entrait,
+       a 4 le velo sortait a moitie. Le defaut n'etait dans aucun des deux
+       reglages -- il etait dans l'idee. Un voisinage local ne sait pas dire
+       << sur la bande >>.
+
+       La bonne formulation vient de Jacques : << le blanc sur la piste
+       rouge >>. Donc :
+         1. on prend la ou les GRANDES regions rouges -- la bande, pas un
+            vetement ni une joue (la peau est deja exclue par g-b < 4) ;
+         2. on les ERODE de 18 px, ce qui donne l'INTERIEUR de la bande ;
+         3. on n'efface que la peinture claire dans cet interieur.
+
+       L'erosion fait un travail de plus, gratuitement : les pointillets de
+       BORD de la piste -- qui sont un vrai marquage de rue, present aussi au
+       plan 18 -- tombent hors de l'interieur et sont donc epargnes. Seul ce
+       qui est peint AU MILIEU de la bande part, c'est-a-dire le velo.
     """
-    cible, rouge = EM.masque(fond, rayon, cotes, sur_clair)
-    cible = EM.par_la_forme(cible, aire, remplissage)
-    if not cible.any():
-        return cible
-    try:
-        from scipy import ndimage
-    except ImportError:
-        return EM.dilater(cible, dilate)
+    from scipy import ndimage
+    r = fond[:, :, 0].astype(np.int16)
+    g = fond[:, :, 1].astype(np.int16)
+    b = fond[:, :, 2].astype(np.int16)
+    clarte = 0.299 * r + 0.587 * g + 0.114 * b
+    rouge = (r - g > EM.ROUGE_RG) & (r - b > EM.ROUGE_RB) & (g - b < 4)
 
-    # ⚠️ UNE SEULE CONVOLUTION, PAS UNE DILATATION PAR TACHE. Premiere version :
-    #    on dilatait CHAQUE tache de 18 px pour mesurer sa couronne. Sur un gros
-    #    plan de visage il y a des centaines de taches, donc des milliers
-    #    d'operations plein cadre -- la passe d'essai a depasse dix minutes et
-    #    s'est fait mettre en arriere-plan. La densite de rouge autour de chaque
-    #    point se calcule en UN flou de moyenne, et on la lit ensuite par tache.
-    densite = ndimage.uniform_filter(rouge.astype(np.float32), size=41)
-    lab, n = ndimage.label(cible)
+    # Ne garder que les grandes regions : la bande, pas une tache de couleur.
+    lab, n = ndimage.label(rouge)
     if n == 0:
-        return cible
-    moyennes = ndimage.mean(densite, lab, index=np.arange(1, n + 1))
-    tailles = ndimage.sum(cible, lab, index=np.arange(1, n + 1))
-    garde = np.zeros(n + 1, dtype=bool)
-    garde[1:] = (moyennes >= part_rouge) & (tailles >= 12)
-    return EM.dilater(garde[lab], dilate)
+        return np.zeros(rouge.shape, dtype=bool), rouge
+    tailles = ndimage.sum(rouge, lab, index=np.arange(1, n + 1))
+    grandes = np.zeros(n + 1, dtype=bool)
+    grandes[1:] = tailles >= aire_bande
+    bande = grandes[lab]
+    if not bande.any():
+        return np.zeros(rouge.shape, dtype=bool), rouge
+
+    interieur = ndimage.binary_erosion(bande, iterations=erosion)
+    if not interieur.any():
+        return np.zeros(rouge.shape, dtype=bool), rouge
+
+    # ⚠️ LE SEUIL SE CHOISIT PAR PLAN, IL NE SE FIXE PAS. Mesure du 23 sept.
+    #    2026 : a << mediane + 10 >>, la bande du plan 07 entrait en entier
+    #    (96 265 px) parce que son revetement varie fort dans une meme ligne ;
+    #    a << + 30 >>, les velos LAVES des plans 12, 18 et 19 disparaissaient du
+    #    masque. Aucune valeur ne marche partout, parce que le contraste du
+    #    pictogramme va du blanc franc au rose pale selon le plan.
+    #    Otsu, lui, cherche la coupure NATURELLE entre deux populations dans
+    #    l'histogramme de CE plan-la : la bande et ce qui est peint dessus. Le
+    #    seuil devient une mesure et non un reglage.
+    vals = clarte[interieur]
+    if len(vals) < 500:
+        return np.zeros(clarte.shape, dtype=bool), bande
+    import cv2
+    v8 = np.clip(vals, 0, 255).astype(np.uint8)
+    seuil_otsu, _ = cv2.threshold(v8, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Un plancher : sans peinture, Otsu coupe quand meme la bande en deux.
+    seuil_otsu = max(seuil_otsu, float(np.median(vals)) + 14.0)
+    clair = (clarte > seuil_otsu) & interieur
+
+    # ⚠️ ET LA CLASSE CLAIRE DOIT ETRE UNE MINORITE. Un plan sans pictogramme
+    #    existe : la moitie de la bande au-dessus du seuil ne veut pas dire
+    #    << la moitie est peinte >>, ca veut dire << il n'y a rien a effacer >>.
+    part = clair.sum() / float(interieur.sum())
+    if part > 0.14:
+        return np.zeros(clarte.shape, dtype=bool), bande
+    return EM.dilater(clair, dilate), bande
 
 
 def main():
@@ -103,8 +133,12 @@ def main():
         description="Effacer les velos peints de tous les plans d'un episode.")
     p.add_argument("--scene", required=True)
     p.add_argument("--plans", help="8,9,12 -- sinon tous ceux du montage")
-    p.add_argument("--rayon", type=int, default=22)
-    p.add_argument("--cotes", type=int, default=4)
+    p.add_argument("--erosion", type=int, default=18,
+                   help="de combien on rentre dans la bande")
+    p.add_argument("--aire-bande", type=int, default=20000,
+                   dest="aire_bande",
+                   help="taille minimale d une region rouge pour etre prise "
+                        "pour la bande")
     p.add_argument("--sur-clair", type=int, dest="sur_clair", default=12)
     p.add_argument("--aire", type=int, default=700)
     p.add_argument("--remplissage", type=float, default=0.30)
@@ -139,8 +173,8 @@ def main():
             continue
         L, H, cadence = EM.dimensions(clip)
         fond, n_img = EM.fond_median(clip, L, H)
-        m = glyphes(fond, a.rayon, a.cotes, a.sur_clair, a.aire,
-                    a.remplissage, a.dilate, a.part_rouge)
+        m, _bande = glyphes(fond, a.sur_clair, a.erosion,
+                            a.aire_bande, a.dilate)
         if m.sum() < 120:
             print("   plan %02d : rien de marque (%d px) -- laisse tel quel"
                   % (n, int(m.sum())))
