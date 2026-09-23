@@ -1437,7 +1437,7 @@ montage muet, jamais du fichier deja sonorise.
         --lit audio/ambiance/rue-carrefour.mp3@0 \
         --lit audio/ambiance/piste-cyclable.mp3@19.08 \
         --lit audio/ambiance/rue-carrefour.mp3@56.26 \
-        --musique audio/musique/last-tram-episode3.mp3@0:67.26:14 \
+        --musique audio/musique/last-tram-episode3.mp3@0:67.26:11 \
         --bruit audio/bruitage/sonnette-double.mp3@23.47 \
         --bruit audio/bruitage/cri-achtung-simple.mp3@23.44 \
         --bruit audio/bruitage/cri-achtung-simple.mp3@25.34 \
@@ -1455,9 +1455,20 @@ montage muet, jamais du fichier deja sonorise.
     monter un peu lorsque la cycliste passe, et une montee et une descente a
     la fin ? >>
 
-    Elle passe de 18 a 14 dB sous le dialogue -- c'est le troisieme champ de
+    Elle passe de 18 a 11 dB sous le dialogue -- c'est le troisieme champ de
     --musique, ouvert ce jour-la ; sans lui la valeur reste 18 et les
-    episodes 1 et 2 ne bougent pas d'un dB.
+    episodes 1 et 2 ne bougent pas d'un dB. Trois demandes successives de
+    Jacques : 18 -> 14, puis << de facon generale un petit peu plus fort >>
+    -> 11.
+
+    ⚠️ 10 dB EST LE PLANCHER, ET IL NE SE FRANCHIT PAS SANS QU'IL LE
+       DEMANDE EN CONNAISSANCE. Sous 10 dB, la musique commence a se battre
+       avec la parole allemande -- et le spectateur de cette serie ne fait pas
+       qu'entendre les mots, il les DECODE. Ce qu'un francophone ou un
+       anglophone tolere sur un documentaire, un apprenant A1 ne le tolere
+       pas : il perd le mot, pas juste le confort. Les deux montees, elles,
+       culminent a ~5 dB sous la parole -- c'est permis parce qu'aucune parole
+       ne s'y trouve.
 
     La COURBE, elle, est gravee dans une piste derivee par
     audio/courber_musique.py :
