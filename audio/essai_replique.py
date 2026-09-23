@@ -43,6 +43,10 @@ def main():
     ap.add_argument("--plan", type=int, help="numero du plan dans la scene")
     ap.add_argument("--texte", help="texte libre, au lieu d'un plan")
     ap.add_argument("--modele", default="v2", choices=sorted(generer.MODELES))
+    ap.add_argument("--expressif", action="store_true",
+                    help="desserre la stabilite pour un cri ou une colere ; "
+                         "hors des reglages du corpus, a reserver aux "
+                         "repliques de personnage")
     ap.add_argument("--nom", default=None, help="nom du fichier de sortie")
     a = ap.parse_args()
 
@@ -74,10 +78,20 @@ def main():
     print("  « %s »" % texte)
     print("  %d caracteres, environ %d credits" % (len(texte), int(len(texte) * cout)))
 
+    # ⚠️ UN CRI N'EST PAS UNE REPLIQUE DU CORPUS. Les reglages de production
+    #    -- stability 0,75, style 0 -- sont faits pour resserrer la
+    #    distribution sur des milliers de fichiers ; ils aplatissent un cri.
+    #    --expressif desserre la stabilite POUR CET APPEL SEULEMENT.
+    reglages = None
+    if a.expressif:
+        reglages = {"stability": 0.0, "similarity_boost": 0.75,
+                    "style": 0.6, "use_speaker_boost": True}
+        print("  expressif : stability 0.0, style 0.6 (hors reglages du corpus)")
+
     avant = generer.VOIX
     generer.VOIX = a.voix
     try:
-        octets = generer.synthetiser(texte, modele, cle)
+        octets = generer.synthetiser(texte, modele, cle, reglages=reglages)
     finally:
         generer.VOIX = avant
 

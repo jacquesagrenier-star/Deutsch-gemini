@@ -25,11 +25,30 @@ se lit comme un defaut de fabrication.
    << remove background noise >> de l'audio pilote. Une sonnette dans le mp3
    ferait articuler l'avatar dessus.
 
-⚠️ ET LA CYCLISTE NE DIT PAS DE MOTS. On lui donne un eclat de voix sans
-   parole -- un << hey >> etouffe par la distance. Lui faire dire une phrase
-   allemande demanderait une voix de plus, un lip-sync, et ferait croire a
-   l'apprenant qu'il y a la une replique a comprendre. Ce n'est pas une
-   replique, c'est un bruit de rue.
+⚠️ LA CYCLISTE DIT UN MOT, ET C'EST JACQUES QUI A TRANCHE (23 sept. 2026).
+   << Voir la cycliste actionner la sonnette de son velo et crier Attention,
+   Attention en allemand. >> Ce paragraphe disait le contraire, avec trois
+   arguments. Deux ne tenaient pas :
+   - << demanderait un lip-sync >> : non. Son visage fait une quarantaine de
+     pixels de large a cette distance ; il n'y a pas de levres a lire. La voix
+     se pose PAR-DESSUS le plan, comme un bruit.
+   - << une voix de plus >> : Nadja existe deja (iOLZqmXTaFktMrY5oZ2z), et ce
+     n'est PAS Aurora -- donc l'apprenant entend un personnage et non la
+     narratrice. 17 credits.
+   Le troisieme etait le vrai : << ferait croire qu'il y a une replique a
+   comprendre >>. Et c'est precisement ce qu'on veut ici. << Achtung >> est un
+   mot A1, un des plus utiles de la rue allemande, et il donne enfin un
+   antecedent a la question de Mark au plan 08 -- << Warum klingeln alle? >>.
+   Un mot a haute valeur n'encombre pas l'apprenant : c'est le cours.
+
+⚠️ ET UN CRI NE SORT PAS DES REGLAGES DU CORPUS. Premiere fournee, plate :
+   la balise [shouting] partait bien, v3 les lit. La cause etait ailleurs --
+   generer.REGLAGES fixe stability a 0,75 et style a 0, choisis pour APLATIR
+   la variation sur 25 298 fichiers qu'on ne peut pas reecouter. Une voix a
+   stabilite 0,75 ne crie pas. D'ou essai_replique.py --expressif, qui
+   desserre POUR UN APPEL et ne touche pas au corpus.
+   Et la distance se fabrique au mixage, pas dans la voix : coupe a 3,8 kHz
+   plus une reverberation courte, sinon le cri sonne au micro de studio.
 """
 import argparse
 import io

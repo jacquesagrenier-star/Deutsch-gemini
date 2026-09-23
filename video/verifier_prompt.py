@@ -306,6 +306,23 @@ REGLES = [
      u"at the bend >>. Une part de cadre n'est pas une position, c'est une "
      u"contrainte de composition -- et elle se paie sur la forme de l'objet."),
 
+    ("bouche-tenue-ouverte", "refus",
+     r"(?i)(calling out|mouth open|shout(s|ing) at|yell(s|ing) at)",
+     u"Un etat vocal continu, sans position de fermeture",
+     u"23 sept. 2026, plan 07, 0,97 $ de reprise. Le prompt disait "
+     u"<< calling out as she comes >>. Jacques : << on voit la bouche "
+     u"ouverte, ouverte, ouverte, elle reste ouverte trop longtemps. >> Et la "
+     u"cause etait ecrite dans ce fichier depuis le 16 septembre, a "
+     u"<< camera-qui-bouge >> : un plan de quatre secondes montre UN etat et "
+     u"le TIENT jusqu'a la derniere image. On avait donc commande un "
+     u"baillement de quatre secondes sans le voir.",
+     u"Ce qui doit se REPETER s'ecrit comme une repetition, et avec sa "
+     u"position de fermeture : << her mouth opens wide on the first shout, "
+     u"closes, opens wide again on the second, and after that it STAYS "
+     u"CLOSED, her jaw set >>. Une bouche a qui on ne donne pas d'etat final "
+     u"reste dans celui qu'on lui a decrit. Meme mecanique que "
+     u"<< fin-sans-intention >>, ou la queue de plan a besoin d'une intention."),
+
     ("repere-hors-champ", "doute",
      r"(?i)\b(her|his) (knees?|shoes?|feet|ankles?|boots?|waist)\b",
      u"Un decor accroche a une partie du corps qui n'est pas dans le cadre",
@@ -688,7 +705,17 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",
-              "marquage-place-par-le-cadre")
+              "marquage-place-par-le-cadre", "bouche-tenue-ouverte")
+
+# Un etat vocal tenu, et sa fermeture. Voir << bouche-tenue-ouverte >>.
+#
+# ⚠️ LA REGLE NE VAUT QUE SUR UN PROMPT DE MOUVEMENT. Une bouche ouverte
+#    dans une IMAGE fixe est juste -- velos-evitent.png la demande, et elle est
+#    bonne : une image est un instant. C'est la TENIR quatre secondes qui est
+#    la faute. Sans cette porte, le controle accuserait le prompt d'image qui a
+#    donne la bonne photo, et un controle qui accuse le juste se fait desarmer.
+FERMETURE = re.compile(r"(?i)(closes|closed|shuts|jaw set|lips (close|together))")
+EST_MOUVEMENT = re.compile(r"PROMPT DE MOUVEMENT", re.I)
 
 # Se tenir sur une surface, et ou l'image coupe. Voir << corps-sans-contact >>.
 POSE_SUR = re.compile(r"(?i)\b(stands?|standing|stood) on\b")
@@ -756,6 +783,13 @@ def controler(texte, image=False):
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"<< %s >> nomme, et rien sur ce que tiennent "
                                 u"les mains" % objet.group(0)))
+            continue
+        if code == "bouche-tenue-ouverte":
+            if EST_MOUVEMENT.search(texte) and not FERMETURE.search(texte):
+                m = re.search(motif, texte)
+                if m:
+                    trouves.append((code, gravite, titre, cout, remede,
+                                    m.group(0)))
             continue
         if code == "corps-sans-contact":
             # Le defaut est arrive sur une image, mais la question vaut pour

@@ -6440,3 +6440,54 @@ consignees dans l'outil :**
 **Toujours en attente de lui :** une image du plan 01 qu'il a faite avec Jimmy
 (bande qui tourne a gauche, traverse occupant tout le bas, sans pictogramme).
 Je ne sais pas encore ce qu'il veut que j'en fasse -- demande posee.
+
+## 23 septembre 2026 -- << la cycliste doit crier Achtung, pas le dire >>
+
+**Qui :** Jacques, de vive voix, capture du plan 07.
+
+**Les retours, dans l'ordre :**
+1. << Je pense qu'on devrait refaire ce plan, et voir la cycliste actionner la
+   sonnette de son velo et crier Attention, Attention en allemand. >>
+2. << On voit la bouche ouverte, ouverte, ouverte, elle reste ouverte trop
+   longtemps, puis elle fait juste dire "Hey". >>
+3. << Le Achtung n'est vraiment pas correct. Il faut entendre quelqu'un qui
+   CRIE Achtung, pas juste le dire. Il n'y avait pas de son avec ta video. >>
+
+**LA BOUCHE TENUE -- et la cause etait deja ecrite chez nous.** Le prompt
+disait << calling out as she comes >>, un ETAT continu. Or
+`verifier_prompt.py` enseigne depuis le 16 septembre, a
+<< camera-qui-bouge >>, qu'un plan de quatre secondes montre UN etat et le
+TIENT jusqu'a la derniere image. On avait donc commande un baillement de
+quatre secondes sans le voir. Reecrit en repetition AVEC sa fermeture --
+<< opens wide, closes, opens wide again, and after that it STAYS CLOSED, her
+jaw set >> -- et la prise sort juste du premier coup : cri a 0,6 s, bouche
+fermee de 1,6 a 2,6 s, deuxieme cri a 3,1 s, puis elle passe. 0,97 $.
+Regle ajoutee : `bouche-tenue-ouverte` (23 regles). Elle ne vaut que sur un
+prompt de MOUVEMENT -- une bouche ouverte dans une image fixe est juste, et un
+controle qui accuse le juste se fait desarmer.
+
+**LE CRI PLAT -- ce n'etait ni la voix ni la balise.** La balise [shouting]
+partait bien, v3 les lit. Mais `generer.REGLAGES` fixe stability a 0,75 et
+style a 0, reglages CHOISIS pour aplatir la variation sur les 25 298 fichiers
+du corpus, qu'on ne peut pas reecouter un par un. Une voix a stabilite 0,75 ne
+crie pas. Ajout d'un parametre `reglages` a `generer.synthetiser` (absent = les
+memes octets qu'avant, le corpus reste homogene) et d'un `--expressif` a
+`essai_replique.py` : stability 0,0, style 0,6, pour un appel.
+⚠️ **Un reglage bon pour un corpus est mauvais pour un cri, et c'etait le meme
+reglage.**
+
+**ET LA DISTANCE SE FABRIQUE AU MIXAGE.** Une voix TTS sort au micro, seche.
+Un cri dans la rue est lointain : coupe a 3,8 kHz plus une reverberation
+courte, 6 dB sous le direct. Trois melanges envoyes a son oreille -- je ne peux
+pas juger un son.
+
+**UNE DECISION DE CONCEPTION RETOURNEE.** `audio/bruitage.py` portait
+<< LA CYCLISTE NE DIT PAS DE MOTS >>, avec trois arguments. Deux ne tenaient
+pas (le lip-sync est inutile a 40 px de visage ; Nadja existe deja). Le
+troisieme -- << ferait croire qu'il y a une replique a comprendre >> -- est
+exactement ce qu'on veut : << Achtung >> est un mot A1 et il donne un
+antecedent a << Warum klingeln alle? >> au plan 08. Note reecrite sur place.
+
+**Reste :** son choix de cri, puis retenir la prise, remonter, resonoriser
+(les instants de `ambiance.py` bougent avec le montage) et re-sous-titrer --
+avec << Achtung! >> en sous-titre, puisque c'est desormais un mot a lire.

@@ -125,11 +125,25 @@ def cle_api():
     return cle
 
 
-def synthetiser(texte, modele, cle, avant=None, apres=None):
+def synthetiser(texte, modele, cle, avant=None, apres=None, reglages=None):
     """Renvoie les octets MP3. Retente sur 429 et sur les erreurs serveur.
 
     avant / apres : le texte des repliques voisines, pour une SCENE. Ils
     partent en previous_text / next_text.
+
+    reglages : des voice_settings de remplacement, POUR UNE REPLIQUE DE
+    PERSONNAGE et rien d'autre. Absent, on envoie REGLAGES -- donc un appel
+    qui ne le passe pas produit exactement les memes octets qu'avant le
+    23 septembre 2026, et le corpus reste homogene.
+
+    ⚠️ POURQUOI CETTE PORTE EXISTE. Le 23 septembre, Jacques sur le plan 07 :
+    << il faut entendre quelqu'un qui CRIE Achtung, pas juste dire tout
+    simplement Achtung. >> La balise [shouting] partait bien -- v3 les lit --
+    et le fichier sortait plat quand meme. La cause n'etait pas la voix ni la
+    balise : REGLAGES fixe stability a 0,75 et style a 0, CHOISIS POUR APLATIR
+    la variation sur 25 298 fichiers qu'on ne peut pas reecouter un par un.
+    Une voix a stabilite 0,75 ne crie pas. Un reglage bon pour un corpus est
+    mauvais pour un cri, et c'est le meme reglage : d'ou le parametre.
 
     ⚠️ OPTIONNELS, ET ABSENTS DU CORPS QUAND ON NE LES PASSE PAS. Un appel
     sans contexte envoie exactement les memes octets qu'avant le 14 septembre
@@ -146,7 +160,7 @@ def synthetiser(texte, modele, cle, avant=None, apres=None):
     url = ("https://api.elevenlabs.io/v1/text-to-speech/%s?output_format=%s"
            % (VOIX, FORMAT))
     charge = {"text": texte, "model_id": modele,
-              "voice_settings": REGLAGES, "seed": SEED}
+              "voice_settings": reglages or REGLAGES, "seed": SEED}
     # ⚠️ v3 REFUSE LE CONTEXTE, et c'est un arbitrage, pas un detail.
     #    << Providing previous_text or next_text is not yet supported with the
     #    'eleven_v3' model. >> -- HTTP 400, le 14 septembre 2026.
