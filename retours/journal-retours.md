@@ -6304,3 +6304,35 @@ C'etait la donnee la plus informative de la journee.
 - Le prechargement (v660) demande le meme fichier que le lecteur. Les deux
   fautes de la sonde sont evitees (jamais interrompre, jamais condamner), mais
   c'est le point a regarder en premier si un defaut audio revient.
+
+## 23 septembre 2026 -- << les images ne vont pas du tout ensemble >>
+
+**Qui :** Jacques, de vive voix, sur l'episode 03 deja monte et livre
+(`EPISODE-03-avatar-st.mp4`, 22 sept.).
+
+**Le retour, dans ses mots :** << Deux, ca fait aucun sens. Il faudrait que la
+piste cyclable soit a droite, puis qu'elle tourne pour aller dans l'autre rue,
+pour que ca fasse du sens avec l'image ou on voit Mark marcher sur la traverse
+de pieton. >> Puis, apres la premiere reprise : << Ca devrait etre l'inverse.
+La piste devrait etre a gauche, et la traverse a droite vis-a-vis le feu de
+circulation. >>
+
+**Ce que c'etait :** le plan 01 (le carrefour) et le plan 03 (Mark sur la
+traverse) sont chacun presentables, et le carrefour qu'ils decrivent ensemble
+n'existe pas. Dans le plan 01 la bande rouge sortait en TRIANGLE -- large a la
+bordure, finissant en pointe au milieu de la chaussee, sans amont ni aval -- et
+la traverse etait peinte a gauche alors que le feu pieton est a droite : le feu
+ne commandait rien.
+
+**Fait :** plan 01 regenere, image seule (il a demande l'image, pas le clip).
+Traverse au pied du poteau, piste a sa gauche, largeur constante, virage a
+gauche du cote rue de la bordure. Trois prises, 0,45 $ ; les deux premieres
+sont rangees en `carrefour-rouge-v5.png` et `-v6.png`.
+
+**Reste :** le clip `_montage-avatar/plan01.mp4` porte encore l'ancien
+marquage. Le remonter demande une passe Seedance -- pas faite, pas demandee.
+
+**Consigne :** regle ajoutee a `video/verifier_prompt.py`
+(`marquage-place-par-le-cadre`) et les trois lecons de raccord ecrites sous le
+plan 01 dans `A-TOURNER.txt`. Le detail qui ne se voit sur aucune image seule :
+gauche et droite s'inversent entre les deux bouts d'une traverse.

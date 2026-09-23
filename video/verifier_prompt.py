@@ -286,6 +286,26 @@ REGLES = [
      u"side of the lane so that the waiting man stays visible the whole way "
      u"past >>. Une taille se deduit d'un chemin, elle ne se decrete pas."),
 
+    ("marquage-place-par-le-cadre", "doute",
+     r"(?i)((left|right) (third|half|quarter) of the picture"
+     r"|so (that )?(both|all|the two) \w+ (are|is) (fully |entirely )?in the "
+     r"picture|pushed over)",
+     u"Un marquage au sol place par la part de cadre qu'il occupe",
+     u"23 sept. 2026, carrefour-rouge, 0,15 $ -- et le plan 01 etait deja "
+     u"monte et livre comme ca. Le prompt situait les deux voies dans le "
+     u"CADRE : << filling the whole LEFT THIRD of the picture >>, << pushed "
+     u"over that far so both lanes are fully in the picture >>. Le modele a "
+     u"obei a la composition en deformant l'objet : la bande rouge est sortie "
+     u"en TRIANGLE, large a la bordure et finissant en pointe au milieu de la "
+     u"chaussee, sans amont ni aval. Jacques : << les images ne vont pas du "
+     u"tout ensemble, ensemble elles ne font aucun sens >>.",
+     u"Un marquage au sol se decrit par son AMONT, son AVAL et une largeur "
+     u"qui ne change pas : << coming up from the bottom edge it runs straight "
+     u"to the kerb; at the kerb it bends to the LEFT and follows the street, "
+     u"leaving the picture at its left edge, still exactly as wide there as "
+     u"at the bend >>. Une part de cadre n'est pas une position, c'est une "
+     u"contrainte de composition -- et elle se paie sur la forme de l'objet."),
+
     ("repere-hors-champ", "doute",
      r"(?i)\b(her|his) (knees?|shoes?|feet|ankles?|boots?|waist)\b",
      u"Un decor accroche a une partie du corps qui n'est pas dans le cadre",
@@ -667,7 +687,8 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
-              "sol-bord-a-bord", "corps-sans-contact")
+              "sol-bord-a-bord", "corps-sans-contact",
+              "marquage-place-par-le-cadre")
 
 # Se tenir sur une surface, et ou l'image coupe. Voir << corps-sans-contact >>.
 POSE_SUR = re.compile(r"(?i)\b(stands?|standing|stood) on\b")
