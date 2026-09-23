@@ -6971,3 +6971,45 @@ chere :**
    la camera bouge (plan 06) ou qu'il n'y a pas de morceau propre a greffer
    (plan 18 : au-dessus du velo, le passage pieton).
 
+### 23 sept., fin de journee : la cause etait dans mes propres prompts
+
+Jacques : << regarde de plus pres, les velos sont encore partout >>, puis une
+capture du plan 06 avec un velo enorme.
+
+⚠️ **QUATRE PROMPTS NOMMAIENT LE PICTOGRAMME** -- plans 01, 03 et 06 (image ET
+mouvement). Celui du plan 06 disait en toutes lettres `the white bicycle
+symbol, all moving past at an even speed`. **J'effacais image par image ce que
+mes propres instructions commandaient.** Une demi-journee de masques, de
+greffes et d'inpainting pour un defaut que quatre lignes de texte creaient.
+
+> Quand on passe du temps a RETIRER quelque chose d'une sortie, relire d'abord
+> ce qu'on a DEMANDE.
+
+**Deux mecanismes distincts, mesures :**
+1. **Camera mobile** (plan 06) : corriger le master ne fixe que la premiere
+   image. Le modele invente le sol a mesure qu'il defile et y remet ce que le
+   prompt nomme. Le velo entrait a 2,6 s d'un plan de 4,3 s alors que la
+   premiere image etait propre.
+2. **Le modele l'ajoute SEUL** (plan 07) : master propre, aucun prompt ne
+   nomme de velo -- et le clip en portait un sur toutes ses trames, qui
+   DERIVAIT d'une image a l'autre. Pour lui, le pictogramme fait partie de
+   l'objet << piste cyclable rouge >>. D'ou une clause POSITIVE sur tout plan
+   qui montre la bande : `The red strip's surface stays plain worn asphalt the
+   whole way, marked only by the seams and the hairline cracks in it.`
+   Et un marquage qui DERIVE ne se rattrape par aucun masque pose apres coup.
+
+**Et une regression que j'ai introduite en regenerant le plan 07 :** sa coupe
+de tete de 0,75 s est perdue, et les deux cris etaient cales sur les bouches de
+l'ANCIENNE prise. Puis la nouvelle prise a rendu UN SEUL cri tenu de 0,0 a
+2,1 s -- le defaut du matin, revenu.
+⚠️ La cause : << opens wide, closes, opens wide again, and AFTER THAT it stays
+closed >>. << Ensuite >> n'est pas un instant pour le modele, il n'a aucun
+moyen de situer la frontiere. Reecrit en ancrant la fermeture sur un repere
+VISIBLE -- la taille de la cycliste, qui grandit en approchant : << from the
+moment she is close enough to fill the left half of the picture her mouth is
+SHUT >>.
+
+**Liste de controle ecrite a sa demande** : `video/LISTE-effacer-un-marquage.md`
+-- les cinq etapes, les seuils mesures, les trois pieges de montage et les deux
+fautes de verification.
+
