@@ -92,6 +92,57 @@ def masque_zone(fond, zone, marge, rg_min=13):
     return m, niveau
 
 
+def zone_suivie(fond, y0, y1, inset, xa, xb):
+    """Les bornes de la bande LIGNE PAR LIGNE, rentrees de `inset`.
+
+    ⚠️ UN RECTANGLE NE SUIT PAS UNE BANDE EN DIAGONALE. Plans 08 et 10, 23
+       sept. 2026 : leur piste court en biais contre un trottoir de beton
+       CLAIR. Un rectangle assez large pour couvrir le velo attrapait le
+       beton -- deux essais, le masque s'est pose sur le trottoir. Et la
+       couleur ne peut pas departager : la peinture la plus opaque est un
+       blanc franc, aussi peu rouge que le beton. Seul le LIEU les separe.
+       On prend donc, pour chaque ligne, le premier et le dernier pixel
+       rougeatre : le trottoir est dehors par construction.
+    """
+    r = fond[:, :, 0].astype(np.int16)
+    v = fond[:, :, 1].astype(np.int16)
+    b = fond[:, :, 2].astype(np.int16)
+    rouge = (r - v > 20) & (r - b > 15)
+    z = np.zeros(rouge.shape, dtype=bool)
+    for y in range(max(0, y0), min(fond.shape[0], y1)):
+        xs = np.where(rouge[y, xa:xb])[0]
+        if len(xs) < 30:
+            continue
+        a, bb = xs.min() + xa + inset, xs.max() + xa - inset
+        if bb > a:
+            z[y, a:bb] = True
+    return z
+
+
+def greffer(img, fond, m, dy, flou=4.0):
+    """Recopie la bande prise `dy` px plus bas DANS LE FOND, bord fondu.
+
+    ⚠️ POURQUOI GREFFER PLUTOT QUE REBOUCHER, sur ces deux plans. Mesure du
+       23 sept. : le velo n'y est que +10 a +35 de clarte au-dessus de la
+       bande, alors que la bande varie d'elle-meme de ±10 -- ce sont des gros
+       plans a faible profondeur de champ, la peinture y est FLOUE. Aucun
+       seuil ne la separe, et cv2.inpaint sur une surface aussi large tirait
+       du GRIS depuis le trottoir voisin : une plaque grise, pire que le velo.
+       Mais une bande floue et uniforme se GREFFE : on prend un morceau propre
+       de la meme bande, quelques dizaines de pixels plus loin, et le raccord
+       est invisible parce qu'il n'y a aucune texture a raccorder.
+
+    ⚠️ ET LA SOURCE SE PREND DANS LE FOND MEDIAN, PAS DANS L'IMAGE COURANTE.
+       Sinon, le jour ou quelqu'un passe `dy` pixels plus bas, on le greffe
+       sur la bande.
+    """
+    from scipy import ndimage
+    src = np.roll(fond, -dy, axis=0).astype(np.float32)
+    al = ndimage.gaussian_filter(m.astype(np.float32), sigma=flou)
+    al = np.clip(al / max(1e-6, al.max()), 0, 1)[:, :, None]
+    return img.astype(np.float32) * (1 - al) + src * al
+
+
 def main():
     p = argparse.ArgumentParser(
         description="Effacer le velo peint d'un plan, etalonne sur ce plan.")
@@ -104,6 +155,12 @@ def main():
     p.add_argument("--ecart", type=int, default=30,
                    help="au-dela de cet ecart au fond, quelque chose est "
                         "devant : on ne touche pas")
+    p.add_argument("--greffe", type=int,
+                   help="DY : greffer la bande prise DY px plus "
+                        "bas, au lieu de reboucher. Pour une "
+                        "bande floue et uniforme.")
+    p.add_argument("--suivre", action="store_true",
+                   help="la zone suit la bande ligne par ligne")
     p.add_argument("--grille", action="store_true",
                    help="ecrire le fond median quadrille, et s'arreter")
     p.add_argument("--essai", action="store_true",
@@ -127,14 +184,27 @@ def main():
         return
 
     zone = [int(v) for v in a.zone.split(",")]
-    m, niveau = masque_zone(fond, zone, a.marge)
-    m = EM.dilater(m, a.dilate)
+    if a.suivre or a.greffe is not None:
+        m = zone_suivie(fond, zone[1], zone[3], 5, zone[0], zone[2])
+        niveau = 0.0
+        if a.greffe is None:
+            r = fond[:, :, 0].astype(np.int16); v = fond[:, :, 1].astype(np.int16)
+            b = fond[:, :, 2].astype(np.int16)
+            cl = 0.299 * r + 0.587 * v + 0.114 * b
+            niveau = float(np.median(cl[m])) if m.any() else 0.0
+            m = EM.dilater(m & (cl > niveau + a.marge), a.dilate)
+    else:
+        m, niveau = masque_zone(fond, zone, a.marge)
+        m = EM.dilater(m, a.dilate)
     print("  sol de la boite : clarte %.1f ; seuil %.1f ; masque %d px"
           % (niveau, niveau + a.marge, int(m.sum())))
 
     if a.essai:
         from PIL import Image
-        out, _ = EM.reboucher_cv2(fond.astype(np.int16), m)
+        if a.greffe is not None:
+            out = np.clip(greffer(fond, fond, m, a.greffe), 0, 255)
+        else:
+            out, _ = EM.reboucher_cv2(fond.astype(np.int16), m)
         vue = fond.astype(np.uint8).copy()
         vue[m] = [0, 255, 0]
         x0, y0, x1, y1 = zone
@@ -168,7 +238,10 @@ def main():
         proche = np.abs(img.astype(np.int16) - fond).max(axis=2) <= a.ecart
         cible = m & proche
         if cible.any():
-            out, _ = EM.reboucher_cv2(img.astype(np.int16), cible)
+            if a.greffe is not None:
+                out = np.clip(greffer(img, fond, cible, a.greffe), 0, 255)
+            else:
+                out, _ = EM.reboucher_cv2(img.astype(np.int16), cible)
             ecriture.stdin.write(out.astype(np.uint8).tobytes())
         else:
             ecriture.stdin.write(brut)

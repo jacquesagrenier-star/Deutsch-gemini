@@ -6852,3 +6852,39 @@ corriges vivent dans `_montage-avatar/` -- un remontage les aurait ecrases sans
 un mot. On concatene donc les clips deja corriges soi-meme, dans l'ordre de
 `_ordre.txt`, au lieu de relancer le montage.
 
+### 08 et 10 sont faits aussi : on GREFFE au lieu de reboucher
+
+Je les avais declares infaisables. Ils l'etaient avec les methodes que
+j'essayais, et la mesure disait pourquoi -- mais elle disait aussi ce qu'il
+fallait faire, et je ne l'avais pas lu.
+
+**La mesure :** sur le plan 08, le velo n'est que **+10 a +35** de clarte
+au-dessus de la bande, alors que la bande varie d'elle-meme de **±10**. Ce sont
+des gros plans a faible profondeur de champ : la peinture y est FLOUE. Aucun
+seuil ne peut separer un signal plus petit que la derive du fond.
+
+**Les deux echecs qui ont suivi, et leur cause :**
+ - `cv2.inpaint` sur toute la zone : il tire la couleur du TROTTOIR gris voisin
+   et laisse une plaque grise -- pire que le velo.
+ - un rectangle : la bande court en diagonale contre le beton clair. D'ou
+   `zone_suivie()`, qui prend ligne par ligne le premier et le dernier pixel
+   rougeatre. Le trottoir est dehors par construction.
+
+⚠️ **ET LA SOLUTION ETAIT DANS LA MESURE : une surface FLOUE ET UNIFORME ne se
+reconstruit pas, elle se GREFFE.** S'il n'y a aucune texture a raccorder, un
+morceau de la meme bande pris quelques dizaines de pixels plus loin est
+invisible. `greffer()`, avec un bord fondu au flou gaussien :
+    plan 08 : zone 800,1092,1080,1195   greffe de 118 px plus bas
+    plan 10 : zone 860,1040,1080,1190   greffe de 165 px plus bas
+Et la source se prend dans le FOND MEDIAN, jamais dans l'image courante --
+sinon, le jour ou quelqu'un passe 118 px plus bas, on le greffe sur la piste.
+
+**L'episode entier est maintenant sans velo peint** : 08, 10, 12, 17, 18, 19
+faits ; 01, 02, 03, 06 n'en portaient pas. 67,23 s.
+
+⚠️ **La lecon, et c'est la deuxieme fois aujourd'hui que la mesure contenait la
+reponse :** j'avais mesure que le contraste etait plus petit que la variation du
+fond, et j'en avais conclu << c'est infaisable >>. La bonne conclusion etait
+<< il n'y a pas de texture a preserver, donc on peut recopier >>. Une mesure ne
+dit pas seulement ce qui ne marchera pas.
+
