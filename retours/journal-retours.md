@@ -7013,3 +7013,30 @@ SHUT >>.
 -- les cinq etapes, les seuils mesures, les trois pieges de montage et les deux
 fautes de verification.
 
+### Finalise : 67,98 s, plus aucun velo peint
+
+Trois prises pour le plan 07 avant d'y arriver, et chacune a appris quelque
+chose :
+- **plan07-04** : bande propre (la clause de surface nue marche), mais UN SEUL
+  cri tenu de 0,0 a 2,1 s -- le defaut du matin, revenu.
+- **plan07-05** : bande propre ET deux cris a 2,30 et 2,95 s, apres avoir
+  ancre la fermeture sur un repere VISIBLE (<< from the moment she is close
+  enough to fill the left half of the picture her mouth is SHUT >>) au lieu
+  d'un << ensuite >>, qui n'est pas un instant pour le modele.
+  Il restait un velo en BAS A GAUCHE, hors de tous mes recadrages precedents,
+  retire au masque (zone 0,955,300,1140).
+
+⚠️ **ET J'AI OUBLIE DE REAPPLIQUER LA CORRECTION DU PLAN 07 apres le dernier
+remontage**, croyant le clip neuf propre. C'est le piege ecrit dans la liste de
+controle, et j'y suis retombe le jour meme ou je l'ecrivais. Toute
+regeneration de clip ANNULE les retouches faites dessus -- y compris la coupe
+de tete de 0,75 s du matin, definitivement perdue.
+
+**VERIFICATION FINALE, la bonne cette fois :** deux instants par plan, la bande
+decoupee sur sa boite englobante A TAILLE REELLE, extraits du .mp4 LIVRE.
+Plans 01, 02, 03, 06, 07, 08, 10, 12, 17, 18, 19 : tous propres.
+
+**Instants de sonorisation, a jour :** lit du carrefour a 57,01 ; les deux cris
+a 25,69 et 26,34 ; musique sur 67,98 s avec ses deux montees a 22,2-27,4 et
+64,6-67,4. Total 67,97 s. Solde fal : 4,23 $ (3,87 $ depenses aujourd'hui).
+
