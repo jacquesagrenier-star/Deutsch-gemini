@@ -6713,3 +6713,65 @@ risque que dix minutes de lecture ont demonte.** Un risque suppose se verifie
 avant d'etre annonce comme un blocage -- l'annoncer le rend vrai pour celui
 qui l'entend.
 
+## 23 septembre 2026 -- effacer les velos peints : ce qui marche et ce qui ne marche pas
+
+**Le retour, et c'est un argument d'HISTOIRE :** << peux-tu enlever les velos
+blancs partout sur tous les plans [...] ca ne fait pas de sens que Mark n'ait
+pas compris qu'il ne pouvait pas marcher sur la piste rouge alors qu'il y a des
+velos peints en blanc. >> Puis : << il y a des velos a peu pres sur tous les
+plans, donc il faudrait vraiment s'en debarrasser. >> Et : << peux-tu le faire
+sans repasser les plans dans FAL ? >>
+
+Il a raison, et ca renverse ce que j'avais fait le MEME JOUR : j'avais repose un
+pictogramme sur il-attend.png a sa demande. Un velo peint au sol est un
+panneau ; tout l'episode repose sur le fait que Mark ne lit pas la bande.
+
+### FAIT, ET VERIFIE : le plan 17
+Plus de velo, plus les deux pointillets horizontaux (qui n'etaient PAS sur le
+plan 18 -- encore un raccord). Methode : le plan 17 est un plan FIXE que
+j'avais fabrique, donc j'ai corrige l'IMAGE et refabrique le plan. Sur une
+image on peut BORNER LA ZONE : Mark est hors d'atteinte par construction, pas
+par chance de seuil. 0 $.
+
+### LA VRAIE TROUVAILLE : la peau est rouge
+⚠️ **C'etait la cause racine de TOUS mes faux positifs**, et il m'a fallu des
+heures pour la voir. Mon detecteur de bande etait `r-g > 30 & r-b > 20`. Un
+teint a (210,165,150) donne r-g = 45 : **la peau passait pour de la bande
+cyclable**. Donc la main de Mark s'est retrouvee repeinte en rose, puis son
+pantalon, puis 126 849 px de masque sur un GROS PLAN DE VISAGE.
+Ce qui les separe est le BLEU. Mesure sur la bande : (205,143,149),
+(211,144,153), (183,125,131) -- le bleu est toujours un peu AU-DESSUS du vert,
+g-b de -6 a -9 : un rouge brique presque mauve. Sur un teint le bleu tombe sous
+le vert. Une condition de plus, `g-b < 4`, et les neuf plans de visage sont
+passes de 126 000 px de masque a ZERO.
+
+### CE QUI N'A PAS MARCHE, ET QUE JE N'AI PAS LANCE
+La detection automatique sur tous les plans. Apres la correction de la peau
+elle n'abime plus les visages, mais elle RATE la plupart des pictogrammes (au
+plan 12 le velo est bien visible et le masque n'en prend que quelques points) et
+laisse des taches sur le polo aux plans 08 et 10. Je ne l'ai pas lancee :
+lancee, elle aurait fait des degats la ou elle se trompe et n'aurait pas retire
+les velos la ou il fallait.
+
+⚠️ **J'ai perdu beaucoup de temps a tourner des seuils au lieu de chercher la
+cause.** Trois tours sur << 3 cotes ou 4 cotes >>, alors que le defaut n'etait
+dans aucun des deux : c'etait la definition du rouge. Quand deux reglages
+opposes echouent tous les deux, le probleme n'est pas le reglage.
+
+### LE CHEMIN QUI MARCHE, POUR LA PROCHAINE FOIS
+La ZONE BORNEE par plan. La camera est verrouillee, donc la bande ne bouge pas
+dans le cadre : une boite par plan met tout le reste hors d'atteinte, ce qu'un
+seuil de couleur ne garantira jamais. Les plans qui montrent un pictogramme sont
+01, 02, 03, 06, 07, 08, 10, 12, 17, 18, 19 ; 17 est fait. Il faut regarder
+chaque plan une fois pour poser sa boite -- mecanique, mais sur.
+
+### ET LES DEUX OUTILS GRATUITS, PARCE QU'IL A POSE LA QUESTION
+<< Il n'y a pas des outils gratuits que tu peux utiliser ? >> Oui, et ils
+etaient DEJA INSTALLES : cv2 5.0 et scipy. Ma mediane de bande ligne par ligne
+laissait un FANTOME parfaitement lisible du velo ; `cv2.inpaint` n'en laisse
+rien -- compare cote a cote. Le travail se coupait en deux et une seule moitie
+etait a nous : DETECTER de la peinture sur une bande cyclable, aucune
+bibliotheque ne le sait ; REBOUCHER un trou dans une photo est resolu depuis
+vingt ans. **Avant d'ecrire un traitement d'image, regarder ce qui est deja
+installe.**
+
