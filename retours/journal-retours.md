@@ -6525,3 +6525,34 @@ secondes >> comme un instant dans la prise ; il disait de COUPER LA VIDEO a
 0,75 s. Une fois coupee (3,29 s), la mesure image par image donne les bouches
 ouvertes a 0,05-0,75 s et 1,95-2,75 s : ses deux chiffres etaient exacts, c'est
 mon origine qui etait fausse. Sa repetition etait le signal, encore une fois.
+
+**Montage complet livre.** << On garde le premier, fais-moi le montage
+complet. >> 19 plans, 67,28 s.
+- Prises retenues : plan 01 prise 3 (le carrefour corrige) et plan 07 prise 3
+  (la tete coupee de 0,75 s).
+- Instants relus dans `_plans.json` : plan 07 a 23,39 s, plan 17 passe de
+  57,01 a 56,26 -- les 0,75 s de la tete coupee, exactement. L'avertissement
+  ecrit le 22 septembre (<< les instants suivent le montage, et le montage
+  bouge >>) a servi des sa premiere occasion.
+- Les sonnettes DES AUTRES deplacees de 23,6 a 24,60 : a 23,6 elles tombaient
+  en meme temps que sa sonnette a elle et les deux se mangeaient. A 24,60
+  elles entrent apres son premier cri et tiennent jusque dans le plan 08, ou
+  Mark demande << Warum klingeln alle? >>.
+- Melange a -14,3 LUFS, dialogue a -14,2.
+
+**Trois choses restent ouvertes, et aucune n'est faite :**
+1. **<< Achtung! >> n'est pas sous-titre.** Le plan 07 est declare `MUET` dans
+   la table de narration, et `MUET` est aussi ce qui dit au pipeline de ne pas
+   lui fabriquer de voix. Ajouter une ligne `de:`/`fr:` risque de lui coller
+   la voix d'Aurora par-dessus le cri. Or un mot allemand non sous-titre n'est
+   pas un mot enseigne -- c'etait le seul argument pour le mettre la. A
+   verifier avant de toucher la table : `sous_titres.py` et la fabrication de
+   narration lisent-ils la MEME ligne ?
+2. **Le plan 18 garde son ancien clip.** `il-attend.png` a maintenant sa bande
+   longue et son velo blanc, mais le clip monte vient de l'image d'avant. Il
+   s'en tire parce que Seedance avait deja recompose la bande longue -- donc
+   l'ecart ne se voit pas a l'ecran. Le refaire coute ~1,45 $ et remet en jeu
+   l'entree du cycliste.
+3. L'image du plan 01 faite avec Jimmy n'est toujours pas tranchee : le
+   montage utilise le carrefour-rouge.png que j'ai refait.
+
