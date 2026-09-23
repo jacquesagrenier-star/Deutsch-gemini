@@ -22,11 +22,21 @@ qui porte une narration. On payait 1,69 $ pour une immobilite.
    separement. Une image tenue n'introduit donc aucune rupture de langage :
    elle est le cas limite de la regle, pas une exception.
 
-⚠️ QUAND *NE PAS* S'EN SERVIR. Des qu'une personne est dans le cadre. Un
-   visage parfaitement immobile pendant six secondes se lit comme un arret sur
-   image, pas comme du calme -- il ne cligne pas, il ne respire pas. Cet outil
-   est pour les plans de DECOR sans personne : un carrefour vide, un sol, une
-   bande de peinture.
+⚠️ QUAND *NE PAS* S'EN SERVIR : QUAND UN VISAGE EST VISIBLE, ou quand un geste
+   est le sujet du plan. Un visage parfaitement immobile pendant six secondes
+   se lit comme un arret sur image, pas comme du calme -- il ne cligne pas, il
+   ne respire pas.
+
+   ⚠️ LA PREMIERE VERSION DE CETTE REGLE DISAIT << des qu'une personne est
+      dans le cadre >>, ET C'ETAIT TROP LARGE. Jacques, 23 sept. 2026, sur le
+      plan 17 : << l'avant-dernier plan n'a egalement que tres peu de
+      mouvement, on pourrait tout simplement prendre cette image. >> Mark y
+      est DE DOS, debout, immobile, a plusieurs metres. Aucun visage, aucun
+      geste : la raison que ma propre regle donnait ne s'appliquait pas a
+      elle. J'ai failli refuser en citant la lettre de la regle contre son
+      motif.
+      Le critere est donc : y a-t-il un VISAGE, ou un GESTE qui porte le plan ?
+      Une nuque immobile est une nuque immobile, a l'image comme dans la rue.
 
 ⚠️ LES CARACTERISTIQUES SE RELEVENT SUR UN CLIP VOISIN, ELLES NE S'INVENTENT
    PAS. 720x1280, 24 im/s, yuv420p, h264 High : mesure le 23 sept. sur

@@ -6625,3 +6625,44 @@ generateur n'a pas les memes droits qu'une piste libre, et ces deux mp3 sont
 maintenant dans un depot public. Les fichiers ne sont PAS commites en
 attendant sa reponse.
 
+**Le plan 17 devient fixe aussi -- et ma propre regle a failli me tromper.**
+Jacques : << l'avant-dernier plan n'a egalement que tres peu de mouvement, on
+pourrait tout simplement prendre cette image. >>
+
+`plan_fixe.py`, que je venais d'ecrire, disait << ne pas s'en servir des qu'une
+personne est dans le cadre >>. J'ai failli refuser en citant cette phrase. Mais
+sa RAISON, ecrite juste a cote, etait << un visage immobile se lit comme un
+arret sur image -- il ne cligne pas, il ne respire pas >>. Or Mark est DE DOS.
+Aucun visage, aucun geste : le motif ne s'appliquait pas a la lettre.
+
+⚠️ **La regle etait trop large, et c'est lui qui l'a montre.** Reecrite : le
+critere est un VISAGE visible, ou un GESTE qui porte le plan. Une nuque
+immobile est une nuque immobile, a l'image comme dans la rue. Lecon generale :
+quand une regle que j'ai ecrite refuse quelque chose, relire son MOTIF avant de
+s'appuyer sur sa lettre.
+
+Et la prise part de `il-attend-TRAME.png`, une trame extraite du clip qu'il
+venait d'approuver : 720x1280 natif, donc zero agrandissement, et c'est
+exactement l'image qu'il regardait. `retenir.py` l'a signale de lui-meme --
+<< part de il-attend-TRAME.png au lieu de il-attend.png >> -- ce qui est
+precisement ce qu'un outil doit dire.
+
+**La musique, montee et courbee.** 18 -> 14 dB sous le dialogue, plus deux
+montees : +5,6 dB sur la cycliste (22,8 -> 27,2) et +6,0 dB sur la chute
+(63,4 -> 66,2). Deux outils pour ca :
+- `ambiance.py --musique FICHIER@DEBUT:DUREE[:SOUS_DB]` -- troisieme champ
+  optionnel, son absence redonne 18 dB au dB pres.
+- `audio/courber_musique.py` -- grave la courbe dans une piste derivee. Une
+  automation dans une ligne de commande ne se relit pas.
+
+⚠️ **Et ses deux emplacements etaient les bons pour une raison mesurable.** Les
+montees tombent aux SEULS endroits sans parole allemande : plan 07 declare
+MUET, et les ~3,3 s de silence apres la narration du plan 18. Il les a choisis
+a l'oreille ; la feuille les confirme. Une musique qui monte sur une narration
+allemande abime le cours, pas le mixage.
+
+⚠️ **Un rendu perdu a comprendre une erreur de ffmpeg sans message :** les
+virgules d'une expression `volume=` doivent etre echappees, sinon le
+filtergraph les lit comme des separateurs de filtres et ffmpeg sort sur un code
+qui n'explique rien. Consigne dans `courber_musique.py`.
+

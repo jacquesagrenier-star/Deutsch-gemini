@@ -1437,7 +1437,7 @@ montage muet, jamais du fichier deja sonorise.
         --lit audio/ambiance/rue-carrefour.mp3@0 \
         --lit audio/ambiance/piste-cyclable.mp3@19.08 \
         --lit audio/ambiance/rue-carrefour.mp3@56.26 \
-        --musique audio/musique/last-tram-prenzlauer-berg.mp3@0:67.26 \
+        --musique audio/musique/last-tram-episode3.mp3@0:67.26:14 \
         --bruit audio/bruitage/sonnette-double.mp3@23.47 \
         --bruit audio/bruitage/cri-achtung-simple.mp3@23.44 \
         --bruit audio/bruitage/cri-achtung-simple.mp3@25.34 \
@@ -1449,6 +1449,34 @@ montage muet, jamais du fichier deja sonorise.
     plan 17 a 56,26 -- il etait a 57,01, et les 0,75 s d'ecart sont exactement
     la tete coupee du plan 07. C'est la demonstration de l'avertissement qui
     suit : personne ne l'aurait vu sans relire la feuille.)
+
+    LA MUSIQUE, ET POURQUOI ELLE EST COURBEE (23 septembre 2026).
+    Jacques : << tu peux mettre la musique un peu plus forte, et peut-etre la
+    monter un peu lorsque la cycliste passe, et une montee et une descente a
+    la fin ? >>
+
+    Elle passe de 18 a 14 dB sous le dialogue -- c'est le troisieme champ de
+    --musique, ouvert ce jour-la ; sans lui la valeur reste 18 et les
+    episodes 1 et 2 ne bougent pas d'un dB.
+
+    La COURBE, elle, est gravee dans une piste derivee par
+    audio/courber_musique.py :
+        --montee 22.8,27.2,0.9   (+5,6 dB)   la cycliste
+        --montee 63.4,66.2,1.0   (+6,0 dB)   la chute
+    Une automation dans une ligne de commande ne se relit pas et se reperd au
+    premier remontage.
+
+    ⚠️ ET LES DEUX MONTEES SONT AUX SEULS ENDROITS OU IL NE SE DIT RIEN.
+       Ce n'est pas un choix de gout : une musique qui monte sur une narration
+       allemande coute de la comprehension a quelqu'un qui decode la langue --
+       c'est le cours qu'on abime, pas le mixage. Mesure dans _plans.json : le
+       plan 07 (23,39 -> 26,68) est declare MUET, et le plan 18 n'a que 2,77 s
+       de narration sur 6,12, donc ~3,3 s de silence sur la chute. Jacques
+       avait choisi ces deux endroits A L'OREILLE, sans la feuille.
+
+    ⚠️ LA DESCENTE FINALE NE SE DEMANDE PAS DEUX FOIS. ambiance.py applique
+       deja un fondu de sortie de 1,5 s. La courbe redescend donc a 1,0 avant
+       qu'il commence, sinon les deux se contrarient.
 
     LES QUATRE BRUITS, ET CE QU'ILS FONT :
       sonnette-double @23,47      SA sonnette a elle, sous son pouce.

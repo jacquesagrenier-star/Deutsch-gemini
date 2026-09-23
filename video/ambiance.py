@@ -189,14 +189,30 @@ def main():
         if "@" not in spec or ":" not in spec.rpartition("@")[2]:
             sys.exit("  --musique veut FICHIER@DEBUT:DUREE : %s" % spec)
         f, _, reste = spec.rpartition("@")
-        t0, _, lg = reste.partition(":")
-        t0, lg = float(t0), float(lg)
+        # FICHIER@DEBUT:DUREE[:SOUS_DB]
+        #
+        # ⚠️ LE TROISIEME CHAMP EST OPTIONNEL, ET SON ABSENCE REDONNE
+        #    EXACTEMENT L'ANCIEN COMPORTEMENT : -18 dB. Les commandes de
+        #    sonorisation deja ecrites dans les A-TOURNER.txt des episodes
+        #    1 et 2 continuent de produire le meme melange, au dB pres.
+        #
+        #    Ouvert le 23 septembre 2026. Jacques, sur l'episode 3 : << tu
+        #    peux mettre la musique un peu plus forte, et peut-etre la monter
+        #    un peu lorsque la cycliste passe, et une montee et une descente a
+        #    la fin ? >> Le NIVEAU se regle ici ; la COURBE, elle, se grave
+        #    dans une piste derivee -- une automation n'a pas sa place dans une
+        #    ligne de commande, elle se relit mal et ne se verifie pas.
+        champs = reste.split(":")
+        if len(champs) not in (2, 3):
+            sys.exit("  --musique veut FICHIER@DEBUT:DUREE[:SOUS_DB] : %s" % spec)
+        t0, lg = float(champs[0]), float(champs[1])
+        sous = float(champs[2]) if len(champs) == 3 else SOUS_MUSIQUE
         if not os.path.exists(f):
             sys.exit("  Musique introuvable : %s" % f)
         i = n_ent
         entrees += ["-i", f]
         n_ent += 1
-        cm = ref - SOUS_MUSIQUE
+        cm = ref - sous
         g = cm - (loudness(F, f) or -20.0)
         chaines.append(
             "[%d:a]atrim=0:%.3f,volume=%.2fdB,"
@@ -205,7 +221,7 @@ def main():
             % (i, lg, g, max(0.0, lg - 1.5), int(round(t0 * 1000)), i))
         pistes.append("[mus%d]" % i)
         print("  musique  : %-16s %6.2f -> %6.2f s   %+.1f dB  (%.0f dB sous)"
-              % (os.path.basename(f), t0, t0 + lg, g, SOUS_MUSIQUE))
+              % (os.path.basename(f), t0, t0 + lg, g, sous))
 
     # ⚠️ UN BRUIT N'EST PAS UN LIT, ET IL NE SE POSE PAS AU MEME NIVEAU.
     #    Un lit est un fond dont on ne doit pas s'apercevoir : -24 dB. Une
