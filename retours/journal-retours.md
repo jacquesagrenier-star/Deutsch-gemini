@@ -6392,3 +6392,51 @@ bande qui s'arrete haut -- `traverse-seul.png` (22,4 % du cadre sous la bande)
 et `mark-serre.png` (28,0 %). Dans `traverse-seul` la bande longe la traverse en
 travers de la rue, donc sa fin peut etre legitime ; il a d'ailleurs dit de ce
 plan-la << ca, ca fait du sens >>. Rien touche.
+
+**Suite, meme jour -- le velo blanc.** Jacques, capture du clip du plan 18 :
+<< c'est a cela que la piste devrait ressembler, avec le velo en blanc. >>
+
+**Et l'enquete a retourne ma propre phrase.** J'avais ecrit plus haut que le
+clip du plan 18 << porte encore la bande courte >>. C'etait faux, et la
+chronologie le montre :
+- 16 sept. : `il-attend-v1.png` -- bande longue AVEC son pictogramme.
+- 22 sept. 18:00 : retouche pour ajouter la traverse devant Mark. Elle repeint
+  la chaussee, RACCOURCIT la bande et EFFACE le velo. Personne ne l'a vu : on
+  regardait la traverse.
+- 22 sept. 18:09 : Seedance fabrique le clip depuis cette image -- et
+  RECOMPOSE une bande longue avec un pictogramme. Un modele image-vers-video
+  re-rend la scene et corrige ce qui lui parait invraisemblable.
+
+Donc le clip monte etait juste et l'image fixe dont il vient etait fausse.
+C'est exactement l'ecart que Jacques voyait, et c'est l'inverse de ce que
+j'avais annonce.
+
+⚠️ **LA LECON : UNE RETOUCHE QUI REPEINT UNE SURFACE EMPORTE CE QUI ETAIT
+   DESSUS.** On demande une traverse, on perd un pictogramme. Apres toute
+   retouche de chaussee, comparer la surface repeinte a la version d'avant --
+   pas seulement verifier ce qu'on avait demande. Et ne jamais deduire l'etat
+   d'un clip de l'image qui l'a produit : extraire une trame.
+
+**Fait :** nouvel outil `video/poser_pictogramme.py`, rien de paye. Il preleve
+le glyphe de `carrefour-rouge.png` (meme carrefour, meme peinture, 495x130 px
+de peinture reelle), tire son alpha de la DESATURATION et non d'un detourage,
+et le repose dans un quadrilatere avec la lumiere de l'image d'arrivee.
+Commandes exactes, depuis `il-attend-COURTE.png` :
+
+    python video/allonger_bande.py --dans <il-attend> --sortie <il-attend>
+    python video/poser_pictogramme.py --source <carrefour-rouge>         --boite 605,2090,1100,2220 --cible <il-attend>         --quad 1020,2390,1520,2340,1520,2520,1020,2600 --sortie <il-attend>
+
+**Trois essais, trois fautes de mesure -- toutes gratuites, et toutes
+consignees dans l'outil :**
+1. Boite source depassant du marquage : l'alpha prend l'asphalte gris pour de
+   la peinture, une BARRE GRISE arrive en travers du velo. Controle ajoute qui
+   refuse la boite si plus de 1 % n'est ni peinture ni bande.
+2. `ROUGE_PEINTURE` suppose a 10 alors qu'il vaut 21 (mesure sur 9 668 px) :
+   alpha de 0,80 sur la peinture pleine, velo fantome.
+3. Quadrilatere de rapport 1,47 alors que le clip donne 2,40 : 1,6 x trop
+   d'etirement vertical, donc un velo trop haut et flou. Le glyphe du clip est
+   coupe au bord droit du cadre -- c'est ce qui donne la mesure juste.
+
+**Toujours en attente de lui :** une image du plan 01 qu'il a faite avec Jimmy
+(bande qui tourne a gauche, traverse occupant tout le bas, sans pictogramme).
+Je ne sais pas encore ce qu'il veut que j'en fasse -- demande posee.
