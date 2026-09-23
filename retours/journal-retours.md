@@ -6491,3 +6491,37 @@ antecedent a << Warum klingeln alle? >> au plan 08. Note reecrite sur place.
 **Reste :** son choix de cri, puis retenir la prise, remonter, resonoriser
 (les instants de `ambiance.py` bougent avec le montage) et re-sous-titrer --
 avec << Achtung! >> en sous-titre, puisque c'est desormais un mot a lire.
+
+**Suite -- sa question a trouve la faute mieux que moi.** Jacques :
+<< pourquoi tu ne reussis pas a faire Achtung avec une voix criee, c'est juste
+comme une voix parlee ? Tandis que Hey, tu etais capable. >>
+
+Parce que le HEY n'a JAMAIS ete fait par une voix. Il sort de
+`/v1/sound-generation` -- le modele de bruitage, a qui on demande un SON, et un
+cri est le son demande. Mon Achtung sortait de `/v1/text-to-speech`, un modele
+entraine a LIRE DU TEXTE LISIBLEMENT. Une balise [shouting] inflechit une
+lecture ; elle ne transforme pas une voix de lecture en voix de cri. Et
+desserrer la stabilite -- ce que j'avais fait, en ouvrant une porte dans
+`generer.py` -- donne une lecture plus libre, pas un cri. Ce diagnostic-la
+etait juste sur son mecanisme et faux sur sa conclusion.
+
+⚠️ **ET LA REPONSE ETAIT ECRITE DANS LE DEPOT DEPUIS LE 16 SEPTEMBRE.** Le
+prompt de `cri-hey` dans `audio/bruitage.py` CITE le mot entre guillemets :
+`A woman shouting "Hey! Hey!" outdoors...`. Le modele de bruitage prononce ce
+qu'on lui met entre guillemets. Le geste juste etait de copier ce prompt en
+changeant le mot -- trois fournees de TTS pour voir une ligne qui etait deja
+la. La regle generale : **quand un effet a deja marche une fois dans ce
+projet, lire COMMENT il a ete obtenu avant de le refabriquer autrement.**
+
+**Fait :** `cri-achtung` (deux eclats, 3 s) et `cri-achtung-simple` (un eclat,
+1,5 s) ajoutes a la table `EPISODES` de `audio/bruitage.py`, avec la raison
+ecrite dedans. La table refuse d'ecraser un son existant, donc `--episode 03`
+se rejoue sans risque. Le risque se DEPLACE vers l'intelligibilite : un modele
+de bruitage n'a aucune garantie de prononciation, c'est a son oreille de dire
+si << Achtung >> s'entend.
+
+**Le calage, corrige par sa repetition.** J'avais lu << le deuxieme a 2
+secondes >> comme un instant dans la prise ; il disait de COUPER LA VIDEO a
+0,75 s. Une fois coupee (3,29 s), la mesure image par image donne les bouches
+ouvertes a 0,05-0,75 s et 1,95-2,75 s : ses deux chiffres etaient exacts, c'est
+mon origine qui etait fausse. Sa repetition etait le signal, encore une fois.

@@ -88,6 +88,35 @@ EPISODES = {
          "A woman shouting \"Hey! Hey!\" outdoors as she rides past on a "
          "city street, annoyed and warning someone. Two short bursts, "
          "carrying but not screamed."),
+        # ⚠️ POURQUOI LE CRI ALLEMAND EST *ICI* ET NON DANS essai_replique.py.
+        #    Jacques, 23 sept. 2026 : << pourquoi tu ne reussis pas a faire
+        #    Achtung avec une voix criee, c'est juste comme une voix parlee ?
+        #    Tandis que Hey, tu etais capable. >>
+        #
+        #    Parce que le HEY n'a jamais ete fait par une voix. Il sort d'ICI,
+        #    de /v1/sound-generation : on demande un SON, et un cri est le son
+        #    demande. Achtung sortait de /v1/text-to-speech, un modele entraine
+        #    a LIRE DU TEXTE LISIBLEMENT. Une balise [shouting] inflechit une
+        #    lecture ; elle ne transforme pas une voix de lecture en voix de
+        #    cri, et desserrer la stabilite n'y change rien non plus -- ca
+        #    donne une lecture plus libre, pas un cri.
+        #
+        #    ET LE PROMPT DU HEY MONTRAIT DEJA LA SORTIE : il CITE le mot entre
+        #    guillemets. Le modele de bruitage prononce ce qu'on lui met entre
+        #    guillemets. Le geste juste etait donc de copier ce prompt en
+        #    changeant le mot -- ce que j'ai mis trois fournees a voir.
+        #
+        #    ⚠️ Le risque se deplace : il devient l'INTELLIGIBILITE. Un modele
+        #    de bruitage n'a aucune garantie de prononciation ; c'est a
+        #    l'oreille de Jacques de dire si << Achtung >> s'entend.
+        ("cri-achtung", 3.0,
+         "A woman shouting \"Achtung! Achtung!\" in German, outdoors, as she "
+         "rides past on a city street, annoyed and warning someone. Two short "
+         "bursts about a second and a half apart, carrying but not screamed."),
+        ("cri-achtung-simple", 1.5,
+         "A woman shouting one clear \"Achtung!\" in German, outdoors on a "
+         "city street, annoyed and warning someone. One short burst, carrying "
+         "but not screamed. Nothing else."),
     ],
 }
 
