@@ -47,10 +47,11 @@ def main():
     p.add_argument("--duree", type=float, required=True,
                    help="la duree de l'episode, pour tailler la piste")
     p.add_argument("--montee", action="append", default=[],
-                   help="DEBUT,FIN,GAIN -- gain en facteur d'amplitude ajoute "
-                        "au-dessus de 1,0 (0.9 ~ +5,6 dB). Repetable.")
+                   help="DEBUT,FIN,GAIN[,RAMPE_IN[,RAMPE_OUT]] -- gain en "
+                        "facteur d'amplitude ajoute au-dessus de 1,0 "
+                        "(0.9 ~ +5,6 dB). Repetable.")
     p.add_argument("--rampe", type=float, default=0.8,
-                   help="duree de la montee et de la descente, en secondes")
+                   help="rampe par defaut, si la montee n'en precise pas")
     p.add_argument("--essai", action="store_true")
     a = p.parse_args()
 
@@ -63,19 +64,35 @@ def main():
 
     termes = ["1"]
     for m in a.montee:
+        ch = m.split(",")
+        if len(ch) < 3 or len(ch) > 5:
+            sys.exit("  --montee veut DEBUT,FIN,GAIN[,RAMPE_IN[,RAMPE_OUT]] : %s" % m)
         try:
-            t0, t1, gain = [float(v) for v in m.split(",")]
+            t0, t1, gain = float(ch[0]), float(ch[1]), float(ch[2])
         except ValueError:
-            sys.exit("  --montee veut DEBUT,FIN,GAIN : %s" % m)
+            sys.exit("  --montee : trois nombres au moins (%s)" % m)
         if t1 <= t0:
             sys.exit("  --montee : la fin doit suivre le debut (%s)" % m)
-        r = min(a.rampe, (t1 - t0) / 2.0)
+        # ⚠️ LES DEUX RAMPES SE REGLENT SEPAREMENT, ET CE N'EST PAS UN LUXE.
+        #    23 sept. 2026 : Jacques voulait la montee AVANT que la cycliste
+        #    croise Mark, << comme pour preparer tout ca >>. La narration du
+        #    plan 06 finit a 22,14 s et celle du plan 08 commence a 26,68 :
+        #    il faut donc monter LENTEMENT dans le silence qui precede, et
+        #    redescendre VITE avant que Mark parle. Une rampe symetrique
+        #    obligeait a choisir entre les deux, et laissait la musique haute
+        #    sous << Warum klingeln alle? >>.
+        r_in = float(ch[3]) if len(ch) >= 4 else a.rampe
+        r_out = float(ch[4]) if len(ch) == 5 else r_in
+        marge = (t1 - t0) / 2.0
+        r_in, r_out = min(r_in, marge), min(r_out, marge)
         # Deux rampes qui se multiplient : une qui monte, une qui descend.
         # clip() borne a [0,1], donc le terme vaut gain au plateau et 0 ailleurs.
         termes.append("%.3f*clip((t-%.3f)/%.3f,0,1)*clip((%.3f-t)/%.3f,0,1)"
-                      % (gain, t0, r, t1, r))
-        print("  montee : %6.2f -> %6.2f s   x%.2f au plateau   (+%.1f dB)"
-              % (t0, t1, 1.0 + gain, 20.0 * math.log10(1.0 + gain)))
+                      % (gain, t0, r_in, t1, r_out))
+        print("  montee : %6.2f -> %6.2f s   x%.2f au plateau  (+%.1f dB)   "
+              "rampes %.2f / %.2f s   plateau %.2f -> %.2f"
+              % (t0, t1, 1.0 + gain, 20.0 * math.log10(1.0 + gain),
+                 r_in, r_out, t0 + r_in, t1 - r_out))
     expr = "+".join(termes)
 
     sortie = chemin(a.sortie)

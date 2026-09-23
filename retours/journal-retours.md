@@ -6666,3 +6666,50 @@ virgules d'une expression `volume=` doivent etre echappees, sinon le
 filtergraph les lit comme des separateurs de filtres et ffmpeg sort sur un code
 qui n'explique rien. Consigne dans `courber_musique.py`.
 
+**La musique plus presente, et la montee anticipee.** << Ouais, je veux la
+musique plus presente, puis fais-la augmenter avant que la cycliste croise
+Mark, un peu avant, comme pour preparer tout ca. >>
+
+- **9 dB sous le dialogue**, donc SOUS le plancher de 10 que je venais
+  d'ecrire. Il l'a demande apres que je lui aie explique pourquoi ce plancher
+  existait : c'est donc une decision assumee, et elle est consignee comme
+  telle. Si un testeur signale un jour qu'il perd des mots dans cet episode,
+  c'est la qu'il faut revenir d'abord.
+- **La montee commence a 22,2 s au lieu de 22,8**, et surtout elle est
+  ASYMETRIQUE : 1,2 s pour monter, 0,7 s pour redescendre.
+
+⚠️ **ET C'EST LA MESURE QUI A DICTE CES CHIFFRES, PAS L'OREILLE.** J'ai mesure
+l'enveloppe d'energie de la piste voix du montage muet -- et il fallait trois
+tentatives pour trouver la bonne source :
+- le `.ass` ne sert pas : sa ligne reste affichee apres le dernier mot (elle
+  donnait 23,37 pour le plan 06 et 65,41 pour le plan 18) ;
+- `duree_audio` non plus : il dit une duree, pas un instant ;
+- l'enveloppe, elle, est sans appel : plan 06 la voix s'arrete a **22,15**,
+  silence complet jusqu'a **26,50**, plan 08 reprend a **26,60**. Et a la fin,
+  la narration s'arrete a **63,95** avec 3,3 s de silence absolu apres.
+
+La montee monte donc lentement dans un silence et redescend vite avant que
+Mark parle. Une rampe symetrique -- ce que mon outil savait faire le matin --
+obligeait a choisir entre les deux et laissait la musique haute sous
+<< Warum klingeln alle? >>. D'ou le quatrieme et le cinquieme champ de
+`--montee`.
+
+**Et << Achtung >> est enfin sous-titre.** J'avais laisse ca ouvert en le
+donnant pour risque : << ajouter une ligne de/fr risque de coller la voix
+d'Aurora par-dessus le cri >>. Verifie : c'est faux, et de deux facons.
+1. Dans `scenes/03-auf-dem-radweg.json`, c'est `duree_audio: 0` qui commande
+   l'absence de voix ; les champs `de`/`fr`/`en` vides ne faisaient que
+   supprimer le sous-titre. Les deux lectures sont separees.
+2. Et `sous_titres.py` s'applique sur la video DEJA sonorisee -- le relancer ne
+   peut fabriquer aucune voix, quoi qu'on ecrive dans la feuille.
+
+Mieux : l'outil avait deja la porte pour ce cas et il previent de lui-meme --
+<< aucune voix trouvee pour le plan 7, la phrase s'affichera d'un bloc, sans
+surlignage >>. Un cri ne s'affiche pas mot a mot ; le bloc est exactement ce
+qu'il faut.
+
+⚠️ **La lecon : j'ai laisse un travail ouvert pendant plusieurs tours sur un
+risque que dix minutes de lecture ont demonte.** Un risque suppose se verifie
+avant d'etre annonce comme un blocage -- l'annoncer le rend vrai pour celui
+qui l'entend.
+

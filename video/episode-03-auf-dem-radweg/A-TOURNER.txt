@@ -135,7 +135,20 @@ SEULE chose que le visage doit faire.
     fr : Il continue. Sur une bande rouge.
     image : le sol, la bande rouge sous ses pieds.
 
-07  DECOR  4 s   MUET (bruitage au montage)
+07  DECOR  4 s   MUET AU SENS DE LA VOIX, MAIS SOUS-TITRE
+    de : Achtung! Achtung!
+    fr : Attention ! Attention !
+    ⚠️ ET LES DEUX LECTURES SONT SEPAREES, ce que j'avais donne pour un
+       risque avant de le verifier. Dans scenes/03-auf-dem-radweg.json, c'est
+       `duree_audio: 0` qui empeche de fabriquer une voix, et les champs
+       de/fr/en VIDES qui empechaient le sous-titre. Les remplir en laissant
+       duree_audio a 0 donne donc un sous-titre sans voix -- et sous_titres.py
+       avait deja la porte pour ce cas : il previent lui-meme (<< aucune voix
+       trouvee pour le plan 7 -- la phrase s'affichera d'un bloc, sans
+       surlignage >>) et affiche la phrase entiere sur la duree du plan. Un
+       cri ne s'affiche pas mot a mot : le bloc est ce qu'il faut.
+       Sans ce sous-titre, << Achtung >> etait un mot allemand non enseigne --
+       c'est-a-dire le seul argument qu'on avait pour le mettre la.
     ⚠️ LA PRISE RETENUE A LA TETE COUPEE DE 0,75 s. plan07-02.mp4 fait
        4,04 s ; plan07-03.mp4 est la meme prise sans ses 750 premieres
        millisecondes, et c'est ELLE qui est dans 03-final. Jacques,
@@ -1437,7 +1450,7 @@ montage muet, jamais du fichier deja sonorise.
         --lit audio/ambiance/rue-carrefour.mp3@0 \
         --lit audio/ambiance/piste-cyclable.mp3@19.08 \
         --lit audio/ambiance/rue-carrefour.mp3@56.26 \
-        --musique audio/musique/last-tram-episode3.mp3@0:67.26:11 \
+        --musique audio/musique/last-tram-episode3.mp3@0:67.26:9 \
         --bruit audio/bruitage/sonnette-double.mp3@23.47 \
         --bruit audio/bruitage/cri-achtung-simple.mp3@23.44 \
         --bruit audio/bruitage/cri-achtung-simple.mp3@25.34 \
@@ -1461,8 +1474,14 @@ montage muet, jamais du fichier deja sonorise.
     Jacques : 18 -> 14, puis << de facon generale un petit peu plus fort >>
     -> 11.
 
-    ⚠️ 10 dB EST LE PLANCHER, ET IL NE SE FRANCHIT PAS SANS QU'IL LE
-       DEMANDE EN CONNAISSANCE. Sous 10 dB, la musique commence a se battre
+    ⚠️ LE PLANCHER DE 10 dB A ETE FRANCHI, ET C'EST UN CHOIX ASSUME.
+       Jacques, apres que je le lui ai explique : << ouais, je veux la
+       musique plus presente. >> On est donc a 9 dB. Ce n'est plus un reglage,
+       c'est une decision : si un testeur signale un jour qu'il perd des mots
+       dans cet episode, c'est ICI qu'il faut revenir avant de chercher
+       ailleurs.
+
+    ⚠️ CE QUE DISAIT LE PLANCHER, ET QUI RESTE VRAI : Sous 10 dB, la musique commence a se battre
        avec la parole allemande -- et le spectateur de cette serie ne fait pas
        qu'entendre les mots, il les DECODE. Ce qu'un francophone ou un
        anglophone tolere sur un documentaire, un apprenant A1 ne le tolere
@@ -1472,10 +1491,25 @@ montage muet, jamais du fichier deja sonorise.
 
     La COURBE, elle, est gravee dans une piste derivee par
     audio/courber_musique.py :
-        --montee 22.8,27.2,0.9   (+5,6 dB)   la cycliste
-        --montee 63.4,66.2,1.0   (+6,0 dB)   la chute
+        --montee 22.2,26.6,1.1,1.2,0.7   (+6,4 dB)   la cycliste
+        --montee 63.9,66.6,1.0,1.3,1.0   (+6,0 dB)   la chute
     Une automation dans une ligne de commande ne se relit pas et se reperd au
     premier remontage.
+
+    ⚠️ LES DEUX RAMPES SONT ASYMETRIQUES, ET C'EST LA MESURE QUI LE
+       DICTE. Jacques voulait la montee AVANT la rencontre, << comme pour
+       preparer tout ca >>. Mesure du 23 sept. sur l'enveloppe de la piste
+       voix du montage muet -- pas sur le .ass, dont la ligne reste affichee
+       apres le dernier mot, et pas sur duree_audio :
+           plan 06 : la voix s'arrete a 22,15 s
+           plan 07 : silence complet, 22,2 -> 26,5
+           plan 08 : la voix reprend a 26,60 s
+       La montee dispose donc de 22,2 a 26,6, et elle doit monter LENTEMENT
+       (1,2 s) puis redescendre VITE (0,7 s) pour etre a plat quand Mark
+       demande << Warum klingeln alle? >>. Une rampe symetrique obligeait a
+       choisir entre les deux.
+       Meme methode a la fin : la narration du plan 18 s'arrete a 63,95 s et
+       il reste 3,3 s de silence absolu -- la chute, les bras en l'air.
 
     ⚠️ ET LES DEUX MONTEES SONT AUX SEULS ENDROITS OU IL NE SE DIT RIEN.
        Ce n'est pas un choix de gout : une musique qui monte sur une narration
