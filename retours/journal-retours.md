@@ -6935,3 +6935,39 @@ parce que tous deux ont besoin de leur mouvement -- 06 est << il continue >> et
 18 est la chute avec le cycliste qui entre. Environ 1,21 $ + 1,45 $ = 2,66 $,
 et le solde est a 1,31 $ : il faut recharger.
 
+### FINI : plus aucun velo peint, et la methode qui a marche
+
+Solde recharge par Jacques, donc la route fiable etait ouverte : **corriger le
+MASTER, puis regenerer le clip.** 2,90 $ pour les plans 06 et 18.
+
+    plan 06 : bande-rouge-pieds.png, greffe zone 0,925,900,1640 source -900
+    plan 18 : chute-depart.png,      greffe zone 995,2295,1536,2565 source -230
+    plan 12 : deux-bandes.png,       greffe zone 0,800,560,1700 source 880
+              puis plan fixe (0 $)
+    plan 17 : il-attend.png refait depuis il-attend-COURTE.png, bande
+              rallongee, pictogramme JAMAIS repose, puis plan fixe (0 $)
+    plans 08, 10, 19 : greffe directement sur le clip (0 $)
+
+**VERIFIE SUR DES TRAMES EXTRAITES DU .mp4 LIVRE**, plan par plan : 06, 08,
+12, 17, 18, 19 tous propres. 01, 02, 03, 07 n'en portaient pas.
+
+⚠️ **LES TROIS REGLES QUE CETTE JOURNEE LAISSE, et la premiere est la plus
+chere :**
+
+1. **VERIFIER SUR LE LIVRABLE, JAMAIS SUR UN INTERMEDIAIRE.** J'ai annonce six
+   plans nettoyes alors que trois l'etaient, parce que je regardais des trios
+   avant/apres construits sur le FOND MEDIAN et jamais une trame du .mp4 final.
+   C'est Jacques qui a du me dire << regarde de plus pres >>.
+
+2. **NE JAMAIS FILTRER PAR `tail` LA SORTIE D'UN OUTIL AUQUEL ON SE FIE.**
+   `retenir.py` REFUSAIT mes prises du plan 17 pendant deux heures, avec le mot
+   REFUS et un code de sortie 1. Mes `tail -1` n'affichaient que la ligne
+   d'explication qui suit. Le controle avait raison : la prise ne partait pas
+   de l'image DECLAREE du plan -- d'ou la regle suivante.
+
+3. **CORRIGER LE MASTER, PAS LE CLIP.** C'est la seule route qui marche a tous
+   les coups, et `retenir.py` l'impose : une prise doit partir de l'image
+   declaree du plan. Retoucher un clip est un contournement qui echoue des que
+   la camera bouge (plan 06) ou qu'il n'y a pas de morceau propre a greffer
+   (plan 18 : au-dessus du velo, le passage pieton).
+
