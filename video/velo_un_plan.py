@@ -159,6 +159,11 @@ def main():
                    help="DY : greffer la bande prise DY px plus "
                         "bas, au lieu de reboucher. Pour une "
                         "bande floue et uniforme.")
+    p.add_argument("--par-trame", action="store_true", dest="par_trame",
+                   help="recalculer le masque sur CHAQUE trame au lieu du fond "
+                        "median. Pour un marquage qui DERIVE : un masque fige "
+                        "le couvre a certains instants et pas a d autres, et "
+                        "il se met a clignoter.")
     p.add_argument("--suivre", action="store_true",
                    help="la zone suit la bande ligne par ligne")
     p.add_argument("--grille", action="store_true",
@@ -235,8 +240,41 @@ def main():
         if len(brut) < taille:
             break
         img = np.frombuffer(brut, dtype=np.uint8).reshape(H, L, 3)
-        proche = np.abs(img.astype(np.int16) - fond).max(axis=2) <= a.ecart
-        cible = m & proche
+        if a.par_trame:
+            # ⚠️ LE MASQUE SE RECALCULE SUR CETTE TRAME-LA. Jacques, 23 sept.
+            #    2026, plan 03 : << on voit encore un peu le velo blanc
+            #    apparaitre et disparaitre >>. Mesure sur 20 trames : le
+            #    residu est net a 0,0 s, faible au milieu, et REVIENT a 3,6 s.
+            #    Le glyphe DERIVE de quelques pixels d'une image a l'autre --
+            #    un masque calcule une fois le couvre par endroits et le
+            #    laisse ailleurs, ce qui le fait CLIGNOTER : pire que de ne
+            #    rien faire, parce qu'un clignotement attire l'oeil.
+            #    On ne garde pas le test d'occlusion ici : la zone bornee ne
+            #    contient que de la bande, donc rien a proteger.
+            imz = img.astype(np.int16)
+            if a.suivre or a.greffe is not None:
+                z = zone_suivie(imz, zone[1], zone[3], 5, zone[0], zone[2])
+                if a.greffe is None:
+                    rr = imz[:, :, 0]; vv = imz[:, :, 1]; bb2 = imz[:, :, 2]
+                    cl = 0.299 * rr + 0.587 * vv + 0.114 * bb2
+                    niv = float(np.median(cl[z])) if z.any() else 0.0
+                    cible = EM.dilater(z & (cl > niv + a.marge), a.dilate)
+                else:
+                    cible = z
+            else:
+                cible, _ = masque_zone(imz, zone, a.marge)
+                cible = EM.dilater(cible, a.dilate)
+            # ⚠️ ON GARDE QUAND MEME LE TEST D'OCCLUSION. La zone bornee du
+            #    plan 03 ne contenait que de la bande, mais celles des plans
+            #    02 et 07 contiennent son BRAS et la ROUE du velo -- et un
+            #    bras est plus clair que la bande, donc le seuil par trame le
+            #    prendrait pour de la peinture. Le glyphe, lui, derive de
+            #    quelques pixels : il reste proche du fond et passe le test.
+            #    Ce qui bouge vraiment ne passe pas.
+            cible = cible & (np.abs(imz - fond).max(axis=2) <= a.ecart)
+        else:
+            proche = np.abs(img.astype(np.int16) - fond).max(axis=2) <= a.ecart
+            cible = m & proche
         if cible.any():
             if a.greffe is not None:
                 out = np.clip(greffer(img, fond, cible, a.greffe), 0, 255)

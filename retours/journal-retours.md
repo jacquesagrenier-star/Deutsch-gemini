@@ -7058,3 +7058,32 @@ fixe, retenu en prise 8, remontage, reapplication des six retouches de clip,
 sonorisation et sous-titrage. Verifie sur une trame du .mp4 livre a 59,5 s :
 ni velo ni barres.
 
+### << On voit encore un peu le velo blanc apparaitre et disparaitre >> (plan 03)
+
+Il a raison, et le mot << apparaitre et disparaitre >> etait le diagnostic.
+Mesure sur 20 trames du plan 03 : le residu est NET a 0,0 s, faible au milieu,
+et REVIENT a 3,6 s.
+
+⚠️ **LA CAUSE : mon masque etait calcule UNE FOIS, sur le fond median, et le
+glyphe DERIVE de quelques pixels d'une trame a l'autre.** Un masque fige le
+couvre donc a certains instants et le laisse a d'autres -- et le resultat
+CLIGNOTE, ce qui est pire que de ne rien faire : un clignotement attire l'oeil
+alors qu'un marquage stable se fond dans le decor.
+
+**Fait :** nouveau mode `--par-trame` dans `velo_un_plan.py`. Le masque se
+recalcule sur CHAQUE trame, avec le meme etalonnage de zone.
+
+⚠️ **ET ON GARDE LE TEST D'OCCLUSION EN MODE PAR-TRAME.** La zone du plan 03 ne
+contient que de la bande, mais celles des plans 02 et 07 contiennent son BRAS
+et la ROUE du velo -- et un bras est plus clair que la bande, donc un seuil par
+trame le prendrait pour de la peinture. Le glyphe, lui, ne derive que de
+quelques pixels : il reste proche du fond median et passe le test. Ce qui bouge
+vraiment ne passe pas.
+
+    plan 03 : zone 620,870,920,985   marge 10  --par-trame   (20 trames verifiees)
+    plan 02 : zone 760,1060,1130,1215 marge 5 ecart 50 --par-trame  (6 trames)
+    plan 07 : zone 0,955,300,1140    marge 8   --par-trame   (6 trames)
+Le plan 19 ne clignotait pas ; les plans 08 et 10 sont des GREFFES, qui
+remplacent toute la bande a chaque trame -- un glyphe qui derive a l'interieur
+est donc couvert par construction.
+

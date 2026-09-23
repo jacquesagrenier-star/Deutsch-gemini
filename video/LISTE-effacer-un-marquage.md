@@ -140,10 +140,28 @@ greffe sur la piste.
 ⚠️ **Et vérifier ce que contient la source.** Au plan 18, au-dessus du vélo il y
 a le passage piéton : la greffe a ramené ses barres blanches dans la bande.
 
-### Ce qu'aucune retouche ne rattrape
+### Un marquage qui DÉRIVE : `--par-trame`
 
-Un marquage qui **dérive** d'une image à l'autre (plan 07). Ce qui se corrige
-après coup est ce qui ne bouge pas. Là, il faut le prompt.
+Un masque calculé une seule fois sur le fond médian couvre un glyphe qui dérive
+à certains instants et le laisse à d'autres — et le résultat **clignote**, ce
+qui est pire que de ne rien faire : un clignotement attire l'œil, un marquage
+stable se fond dans le décor. C'est ce que Jacques a vu au plan 03 : « on voit
+encore un peu le vélo blanc apparaître et disparaître ».
+
+`--par-trame` recalcule le masque sur chaque trame.
+
+⚠️ **Et il garde le test d'occlusion.** La zone du plan 03 ne contenait que de
+la bande, mais celles des plans 02 et 07 contiennent un bras et une roue — et un
+bras est plus clair que la bande, donc un seuil par trame le prendrait pour de
+la peinture. Le glyphe ne dérive que de quelques pixels : il reste proche du
+fond médian et passe le test. Ce qui bouge vraiment ne passe pas.
+
+⚠️ **Une GREFFE n'a pas ce problème** : elle remplace toute la largeur de la
+bande à chaque trame, donc un glyphe qui dérive à l'intérieur est couvert par
+construction. C'est pourquoi les plans 08 et 10 ne clignotaient pas.
+
+Ce qu'aucune retouche ne rattrape reste : un marquage qui traverse le cadre
+parce que **la caméra avance** (plan 06). Là, il faut le prompt.
 
 ---
 
@@ -234,4 +252,3 @@ deux-bandes.png : greffe zone 0,800,560,1700 dy 880
 bande-rouge-pieds.png : greffe zone 0,925,900,1640 dy -900
 chute-depart.png      : greffe zone 995,2295,1536,2565 dy -230
 ```
-
