@@ -6556,3 +6556,30 @@ complet. >> 19 plans, 67,28 s.
 3. L'image du plan 01 faite avec Jimmy n'est toujours pas tranchee : le
    montage utilise le carrefour-rouge.png que j'ai refait.
 
+**Plan 17 refait, et une confusion de plans corrigee.** Jacques :
+<< et celle-ci pour l'avant-dernier plan >> -- l'image de Mark au feu avec la
+bande longue et le velo blanc.
+
+⚠️ **J'AVAIS ATTRIBUE `il-attend.png` AU PLAN 18. C'EST LE PLAN 17.** Le
+plan 18 part de `chute-depart.png`. J'ai lu les mauvais numeros de ligne parce
+que j'inserais des notes dans A-TOURNER.txt pendant la meme session : mes
+reperes de ligne avaient glisse sous mes pieds. Deux fois j'ai affirme que
+<< le clip du plan 18 porte encore la bande courte >> -- faux sur le plan ET
+faux sur le fait. La regle : verifier une attribution plan/image par
+`grep "^Image a nommer"` avec ses numeros de ligne, pas par un sed autour d'un
+numero retenu plus tot.
+
+**Fait :** plan 17 regenere depuis `il-attend.png` corrige (1,45 $), retenu en
+prise 3, episode remonte, resonorise, re-sous-titre. Les durees n'ont pas
+bouge -- plan 17 toujours 5,14 s, total 67,26 s -- donc les instants du son
+sont restes les memes ; verifie dans `_plans.json` avant de rejouer la
+commande, comme le fichier l'exige.
+
+**Plan 01, l'image de Jimmy : BLOQUE, et il faut le fichier.** Il a dit
+<< tu as oublie d'integrer cette image au plan 1 >>. Ce que j'ai n'est qu'une
+capture de 571x1024, et le `Piste.png` trouve sur le Bureau ne fait que
+192x365. Les maitres du projet sont en 1536x2752 et le clip se rend en 720 de
+large : integrer l'une ou l'autre donnerait un plan 01 visiblement plus mou
+que les dix-huit autres. Il faut l'image d'origine de Jimmy, deposee dans
+`video/episode-03-auf-dem-radweg/01-images/`.
+
