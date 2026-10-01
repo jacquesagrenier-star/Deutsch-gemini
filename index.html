@@ -4775,7 +4775,7 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 .carte-vocab-fleche svg{width:16px; height:16px; display:block;}
 .carte-vocab-tete.ouvert .carte-vocab-fleche{transform:rotate(180deg);}
 .carte-vocab-tete:hover .carte-vocab-fleche{background:rgba(var(--wt-action-rgb),.18);}
-body[data-theme="dark"] .carte-vocab-fleche{color:#F0B456; background:rgba(143,180,255,.14);}
+body[data-theme="dark"] .carte-vocab-fleche{color:#F0B456; background:rgba(232,162,58,.14);}
 .carte-vocab-piste{
     display:flex; height:8px; border-radius:5px; margin-top:7px;
     background:rgba(30,41,59,.12); overflow:hidden;
@@ -4827,7 +4827,7 @@ body[data-theme="dark"] .carte-jours-mot{color:#F2F2F6;}
 .vocab-ligne.courant .vocab-ligne-niv{font-weight:800;}
 .vocab-ligne.courant .vocab-ligne-niv::after{content:" •";}
 body[data-theme="dark"] .vocab-ligne:hover{background:rgba(255,255,255,.07);}
-body[data-theme="dark"] .vocab-ligne.courant{background:rgba(143,180,255,.13);}
+body[data-theme="dark"] .vocab-ligne.courant{background:rgba(232,162,58,.12);}
 .vocab-ligne-niv{font-size:11px; font-weight:600; color:#7b8798; width:22px; flex-shrink:0;}
 .vocab-ligne.courant .vocab-ligne-niv{color:var(--wt-accent-texte);}
 .vocab-ligne-piste{
@@ -5656,6 +5656,22 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
 body[data-theme="dark"] #serieAccueil .home-stat-ico svg{stroke:#F0B456;}
 body[data-theme="dark"] #serieAccueil .home-stat-val{color:#F2F2F6;}
 body[data-theme="dark"] #serieAccueil .home-stat-lib{color:#E9C89A;}
+
+/* --- MAITRISES / EN COURS : DEUX FONCES NE SE DISTINGUENT PAS (v667).
+   La v662 avait fait passer « en cours » du bleu a l'ENCRE, a cote du vert
+   fonce des « maitrises » : deux teintes sombres de luminance voisine, que
+   l'oeil ne separe plus. Signale par Jacques : « plus de difference ».
+   « En cours » prend l'AMBRE -- la couleur de ce qui avance dans toute l'app --
+   et l'ecart passe par la LUMINANCE, pas seulement par le ton : vert fonce
+   contre ambre clair le jour, vert clair contre ambre profond la nuit. Lisible
+   aussi pour qui ne distingue pas le vert du rouge. */
+.carte-vocab-part.cours, .carte-examen-part.cours, .vocab-legende .pt-cours{background:#E8A23A;}
+body[data-theme="dark"] .carte-vocab-part.cours,
+body[data-theme="dark"] .carte-examen-part.cours,
+body[data-theme="dark"] .vocab-legende .pt-cours{background:#B9770E;}
+body[data-theme="dark"] .carte-vocab-part.sus,
+body[data-theme="dark"] .carte-examen-part.sus,
+body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6556,7 +6572,7 @@ body[data-theme="dark"] #serieAccueil .home-stat-lib{color:#E9C89A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v666</span>
+    <span class="subtitle-version">v667</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27533,7 +27549,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 666;
+const APP_VERSION = 667;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

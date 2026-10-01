@@ -7209,3 +7209,18 @@ Question en attente : quel chemin (icone ou navigateur) montre ces chiffres.
   et un ancien nombre nu se relit comme une serie.
 - Banc d'essai : 4 cas de fusion (neuf <- avance, avance garde, meme rang,
   rien au nuage) + serie, sur une fausse reponse Firestore. Tous passent.
+
+## 1er octobre 2026 -- << plus de difference entre la couleur des mots maitrises et des mots en cours >>
+
+Il a raison, et c'est une regression de la v662 : « en cours » etait passe du
+bleu a l'ENCRE, a cote du vert fonce des « maitrises » -- deux sombres. **v667** :
+« en cours » prend l'ambre (ce qui avance), l'ecart passe par la luminance
+(vert fonce / ambre clair le jour ; vert clair / ambre profond la nuit).
+Barres du vocabulaire, de l'examen et legende. Deux reflets bleus de nuit
+retires au passage (ligne du niveau courant, rond de la fleche).
+
+## 1er octobre 2026 -- << je ne vois pas la serie ; ca prend trop d'espace au milieu, montre-moi un autre endroit >>
+
+Invisible parce que sa serie vaut 0 dans ce contenant (et le nuage avait 0 a
+cause du defaut corrige en v666). La place au centre ne lui va pas : options
+d'emplacement presentees en maquette, pas encore deplacee.
