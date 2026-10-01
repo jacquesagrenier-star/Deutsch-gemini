@@ -7087,3 +7087,29 @@ Le plan 19 ne clignotait pas ; les plans 08 et 10 sont des GREFFES, qui
 remplacent toute la bande a chaque trame -- un glyphe qui derive a l'interieur
 est donc couvert par construction.
 
+
+## 1er octobre 2026 -- << applique tout dans l'application, mais garde tous les boutons >>
+
+Demande de Jacques, apres deux maquettes validees (accueil recolore, carte de
+nom avec les genres). **v662.**
+
+**Fait :**
+- Palette de la marque : ENCRE #1C2430 pour l'action, AMBRE #E8A23A pour ce qui
+  avance (barres, anneaux, niveau choisi, « Commencer »). Le bleu #3b6fe0 et le
+  degrade bleu-violet sont partis. Fond papier #F7F3EC.
+- Les couleurs passent par des variables (--wt-action...) : en mode nuit
+  l'action devient l'ambre et le texte pose dessus l'encre. Les ~100 styles
+  inline du JS portent la variable, pas l'hexadecimal.
+- Accueil : une seule famille pour les tuiles (icones encre sur sable), trait
+  de section ambre partout, carte de seance a l'encre dans les deux themes.
+- Genres : der #2D5DA8, die #C2412D, das #2F7D57 (carte, regles de genre).
+- Cas recolores pour ne plus croiser les genres : Nominativ encre, Akkusativ
+  violet, Dativ cuivre, Genitiv prune, preposition en contour.
+- L'allemand de la carte (mot et article) en serif Source Serif 4.
+
+**Pas touche, comme demande :** aucun bouton retire, deplace ni renomme ; les
+quatre boutons de reponse de la carte gardent leurs couleurs. La hierarchie de
+l'accueil (proposee) n'est PAS faite : elle deplacerait des elements.
+
+**Ecarte :** la coupure automatique des mots composes -- fitFlashcardWord()
+fait deja tenir les mots longs en reduisant la taille.

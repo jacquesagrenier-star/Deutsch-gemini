@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#F7F3EC">
 
 <title>Wortando</title>
 
@@ -107,9 +107,9 @@
      la police s'applique alors normalement. Elle arrive tres largement avant
      la fin des trois secondes d'ouverture, donc la police de secours n'est
      jamais visible. -->
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
       rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet"></noscript>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet"></noscript>
 
 <!-- CSS CRITIQUE (v256) : uniquement de quoi peindre l'ecran d'ouverture.
      Tout le reste de la feuille de style est descendu dans le <body>, juste
@@ -793,7 +793,7 @@ window.LIEN_REINIT = (function(){
 body{
     margin:0;
     min-height:100vh;
-    background:#ffffff;
+    background:#F7F3EC;
     color:#1e2433;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -875,7 +875,7 @@ header{
 }
 
 .kicker{
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     font-size:11px;
     font-weight:800;
     letter-spacing:2px;
@@ -902,7 +902,7 @@ h1{
 }
 
 .subtitle{
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     opacity:.7;
     font-size:14px;
     line-height:1.5;
@@ -911,12 +911,12 @@ h1{
 .subtitle-version{
     font-size:10px;
     font-weight:600;
-    color:#8fb3e8;
+    color:var(--wt-accent-texte);
     opacity:.8;
     vertical-align:middle;
 }
 body[data-theme="dark"] .subtitle-version{
-    color:#a8c7f5;
+    color:#F0B456;
 }
 
 .card{
@@ -941,7 +941,7 @@ body[data-theme="dark"] .subtitle-version{
 
 .progress-fill{
     height:100%;
-    background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+    background:var(--wt-ambre);
     border-radius:20px;
     transition:width .3s ease;
 }
@@ -1118,15 +1118,15 @@ body[data-learning-dir="en"] .orb-en{ display:flex; }
     align-items:center;
     justify-content:center;
     margin-bottom:6px;
-    background:rgba(59,111,224,.12);
-    border:1px solid rgba(59,111,224,.22);
+    background:rgba(var(--wt-action-rgb),.12);
+    border:1px solid rgba(var(--wt-action-rgb),.22);
 }
 
 .orb-icon svg{
     width:18px;
     height:18px;
     fill:none;
-    stroke:#3b6fe0;
+    stroke:var(--wt-action);
     stroke-width:1.7;
     stroke-linecap:round;
     stroke-linejoin:round;
@@ -1332,8 +1332,8 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="artikel_en"] .orb-icon svg{stroke:#6366f1;}
 .orb[data-orbid="zeiten_en"] .orb-icon{background:rgba(16,185,129,.14); border-color:rgba(16,185,129,.28);}
 .orb[data-orbid="zeiten_en"] .orb-icon svg{stroke:#10b981;}
-.orb[data-orbid="modal_en"] .orb-icon{background:rgba(59,130,246,.14); border-color:rgba(59,130,246,.28);}
-.orb[data-orbid="modal_en"] .orb-icon svg{stroke:#3b82f6;}
+.orb[data-orbid="modal_en"] .orb-icon{background:rgba(var(--wt-action-rgb),.14); border-color:rgba(var(--wt-action-rgb),.28);}
+.orb[data-orbid="modal_en"] .orb-icon svg{stroke:var(--wt-action);}
 .orb[data-orbid="praep_en"] .orb-icon{background:rgba(6,182,212,.14); border-color:rgba(6,182,212,.28);}
 .orb[data-orbid="praep_en"] .orb-icon svg{stroke:#06b6d4;}
 .orb[data-orbid="satzbau_en"] .orb-icon{background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.28);}
@@ -1348,14 +1348,14 @@ body[data-theme="dark"] .home-greeting{
 .orb[data-orbid="pitfalls_en"] .orb-icon svg{stroke:#ef4444;}
 .orb[data-orbid="irregular_en"] .orb-icon{background:rgba(249,115,22,.14); border-color:rgba(249,115,22,.28);}
 .orb[data-orbid="irregular_en"] .orb-icon svg{stroke:#f97316;}
-.orb[data-orbid="britam_en"] .orb-icon{background:rgba(59,130,246,.14); border-color:rgba(59,130,246,.28);}
-.orb[data-orbid="britam_en"] .orb-icon svg{stroke:#3b82f6;}
+.orb[data-orbid="britam_en"] .orb-icon{background:rgba(var(--wt-action-rgb),.14); border-color:rgba(var(--wt-action-rgb),.28);}
+.orb[data-orbid="britam_en"] .orb-icon svg{stroke:var(--wt-action);}
 
 .orb[data-orbid="revision"] .orb-icon{
-    background:rgba(59,130,246,.14);
-    border-color:rgba(59,130,246,.28);
+    background:rgba(var(--wt-action-rgb),.14);
+    border-color:rgba(var(--wt-action-rgb),.28);
 }
-.orb[data-orbid="revision"] .orb-icon svg{stroke:#3b82f6;}
+.orb[data-orbid="revision"] .orb-icon svg{stroke:var(--wt-action);}
 
 .radar-grid{
     fill:none;
@@ -1369,8 +1369,8 @@ body[data-theme="dark"] .home-greeting{
 }
 
 .radar-data{
-    fill:rgba(59,111,224,.16);
-    stroke:#3b6fe0;
+    fill:rgba(var(--wt-action-rgb),.16);
+    stroke:var(--wt-action);
     stroke-width:2;
 }
 
@@ -1406,21 +1406,21 @@ body[data-theme="dark"] .home-greeting{
     width:34px;
     height:18px;
     border-radius:9px;
-    background:#3b6fe0;
-    color:#ffffff;
+    background:var(--wt-action);
+    color:var(--wt-sur-action);
     font-size:10px;
     font-weight:800;
     letter-spacing:-0.02em;
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow:0 2px 6px rgba(59,111,224,.35);
+    box-shadow:0 2px 6px rgba(var(--wt-action-rgb),.35);
     z-index:2;
 }
 
 .orb.active{
-    border-color:#3b6fe0;
-    box-shadow:0 0 0 1px #3b6fe0, 0 15px 30px rgba(30,41,59,.10);
+    border-color:var(--wt-action);
+    box-shadow:0 0 0 1px var(--wt-action), 0 15px 30px rgba(30,41,59,.10);
 }
 
 .orb-panel{
@@ -1447,8 +1447,8 @@ body[data-theme="dark"] .home-greeting{
     width:38px;
     height:38px;
     border-radius:12px;
-    background:rgba(59,111,224,.12);
-    border:1px solid rgba(59,111,224,.25);
+    background:rgba(var(--wt-action-rgb),.12);
+    border:1px solid rgba(var(--wt-action-rgb),.25);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1459,7 +1459,7 @@ body[data-theme="dark"] .home-greeting{
     width:19px;
     height:19px;
     fill:none;
-    stroke:#3b6fe0;
+    stroke:var(--wt-action);
     stroke-width:1.7;
     stroke-linecap:round;
     stroke-linejoin:round;
@@ -1494,8 +1494,8 @@ body[data-theme="dark"] .home-greeting{
 .orb-opt:hover{background:rgba(255,255,255,.8)}
 
 .orb-opt.primary{
-    border-color:rgba(59,111,224,.35);
-    background:rgba(59,111,224,.1);
+    border-color:rgba(var(--wt-action-rgb),.35);
+    background:rgba(var(--wt-action-rgb),.1);
 }
 
 .orb-opt-left{display:flex; align-items:center; gap:12px;}
@@ -1504,7 +1504,7 @@ body[data-theme="dark"] .home-greeting{
     width:32px;
     height:32px;
     border-radius:10px;
-    background:rgba(59,111,224,.14);
+    background:rgba(var(--wt-action-rgb),.14);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1514,7 +1514,7 @@ body[data-theme="dark"] .home-greeting{
     width:16px;
     height:16px;
     fill:none;
-    stroke:#3b6fe0;
+    stroke:var(--wt-action);
     stroke-width:1.7;
     stroke-linecap:round;
     stroke-linejoin:round;
@@ -1552,8 +1552,8 @@ body[data-theme="dark"] .home-greeting{
 .orb-opt-count{
     font-size:11px;
     font-weight:700;
-    color:#3b6fe0;
-    background:rgba(59,111,224,.16);
+    color:var(--wt-accent-texte);
+    background:rgba(var(--wt-action-rgb),.16);
     padding:3px 9px;
     border-radius:8px;
     flex-shrink:0;
@@ -1562,7 +1562,7 @@ body[data-theme="dark"] .home-greeting{
 .back{
     background:none;
     border:none;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     font-size:15px;
     font-weight:600;
     padding:0;
@@ -1911,17 +1911,17 @@ body[data-theme="dark"] .auth-value-row{
    Autrement dit elle n'etait jamais bleue, alors que c'est le bleu qui la
    relie a la cle des cartes. Elle porte maintenant sa couleur, et ne bascule
    au blanc que la ou le fond est bleu. */
-.portee-bar button svg{display:block; flex:0 0 auto; color:#3b6fe0;}
+.portee-bar button svg{display:block; flex:0 0 auto; color:var(--wt-accent-texte);}
 .portee-bar button.active svg{color:#ffffff;}
-body[data-theme="dark"] .portee-bar button svg{color:#7fa3f0;}
+body[data-theme="dark"] .portee-bar button svg{color:#F0B456;}
 body[data-theme="dark"] .portee-bar button.active svg{color:#ffffff;}
 .portee-bar button.active{
-    background:#3b6fe0; color:#ffffff;
+    background:var(--wt-action); color:var(--wt-sur-action);
     box-shadow:0 1px 3px rgba(30,41,59,.18);
 }
 body[data-theme="dark"] .portee-bar{background:rgba(255,255,255,.07);}
 body[data-theme="dark"] .portee-bar button{color:#a8b0bf;}
-body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff;}
+body[data-theme="dark"] .portee-bar button.active{background:var(--wt-action); color:var(--wt-sur-action);}
 
 .due-banner{
     display:flex;
@@ -1931,7 +1931,7 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
     padding:18px 20px;
     border-radius:20px;
     cursor:pointer;
-    background:linear-gradient(100deg,rgba(59,130,246,.16),rgba(124,92,255,.16));
+    background:linear-gradient(100deg,rgba(var(--wt-action-rgb),.16),rgba(var(--wt-action-rgb),.16));
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
     border:1px solid rgba(30,41,59,.32);
@@ -1940,7 +1940,7 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
 
 .due-banner:hover{
     transform:translateY(-2px);
-    background:linear-gradient(100deg,rgba(59,130,246,.24),rgba(124,92,255,.24));
+    background:linear-gradient(100deg,rgba(var(--wt-action-rgb),.24),rgba(var(--wt-action-rgb),.24));
 }
 
 .due-banner-left{
@@ -1967,7 +1967,7 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
 
 .due-banner-arrow{
     font-size:20px;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
 }
 
 .filters-bar select, .filters-bar input {
@@ -1992,7 +1992,7 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
    souris/tactile) -- filet de sécurité générique pour tout élément
    interactif qui n'a pas déjà son propre style de focus explicite. */
 :focus-visible{
-    outline:2px solid #3b6fe0;
+    outline:2px solid var(--wt-action);
     outline-offset:2px;
 }
 
@@ -2007,9 +2007,9 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
 }
 
 .rektion-akkusativ{
-    background:rgba(59,111,224,.14);
+    background:rgba(var(--wt-action-rgb),.14);
     color:#1a4fb4;
-    border:1px solid rgba(59,111,224,.35);
+    border:1px solid rgba(var(--wt-action-rgb),.35);
 }
 
 .rektion-dativ{
@@ -2050,9 +2050,9 @@ body[data-theme="dark"] .portee-bar button.active{background:#3b6fe0; color:#fff
 }
 
 body[data-theme="dark"] .rektion-akkusativ{
-    background:rgba(59,111,224,.22);
-    color:#9db8f0;
-    border-color:rgba(59,111,224,.5);
+    background:rgba(var(--wt-action-rgb),.22);
+    color:#F0B456;
+    border-color:rgba(var(--wt-action-rgb),.5);
 }
 
 body[data-theme="dark"] .rektion-dativ{
@@ -2095,12 +2095,12 @@ body[data-theme="dark"] .intransitiv-badge{
    et même couleur de texte que la pastille correspondante (mini-pastille
    à même le mot, plutôt qu'un simple soulignement), pour que l'œil associe
    directement le mot à sa pastille. */
-.hl-akkusativ{ background:rgba(59,111,224,.14); color:#1a4fb4; padding:1px 6px; border-radius:6px; font-weight:700; }
+.hl-akkusativ{ background:rgba(var(--wt-action-rgb),.14); color:#1a4fb4; padding:1px 6px; border-radius:6px; font-weight:700; }
 .hl-dativ{ background:rgba(139,92,246,.14); color:#6d28d9; padding:1px 6px; border-radius:6px; font-weight:700; }
 .hl-nominativ{ background:rgba(22,163,74,.14); color:#15803d; padding:1px 6px; border-radius:6px; font-weight:700; }
 .hl-praeposition{ background:rgba(219,39,119,.12); color:#be185d; padding:1px 6px; border-radius:6px; font-weight:700; }
 
-body[data-theme="dark"] .hl-akkusativ{ background:rgba(59,111,224,.22); color:#9db8f0; }
+body[data-theme="dark"] .hl-akkusativ{ background:rgba(var(--wt-action-rgb),.22); color:#F0B456; }
 body[data-theme="dark"] .hl-dativ{ background:rgba(139,92,246,.22); color:#c4b5fd; }
 body[data-theme="dark"] .hl-nominativ{ background:rgba(22,163,74,.22); color:#86efac; }
 body[data-theme="dark"] .hl-praeposition{ background:rgba(219,39,119,.22); color:#f9a8d4; }
@@ -2138,12 +2138,12 @@ button{font-family:inherit}
     padding:16px;
     border:none;
     border-radius:16px;
-    background:linear-gradient(100deg,#3b82f6,#7c5cff);
-    color:#ffffff;
+    background:var(--wt-action);
+    color:var(--wt-sur-action);
     font-size:16px;
     font-weight:800;
     cursor:pointer;
-    box-shadow:0 8px 20px rgba(59,111,224,.25);
+    box-shadow:0 8px 20px rgba(var(--wt-action-rgb),.25);
 }
 
 .secondary{
@@ -2203,9 +2203,9 @@ body[data-theme="dark"] .filled-blank{ color:#34d399; }
    ressembler a un trou. La phrase se lit alors d'un trait, ce qui est tout
    l'interet de poser le mot dedans plutot que de le laisser dans sa tuile.
    Seule la couleur dit que le choix n'est pas encore verifie. */
-.filled-blank.pose{ color:#2563eb; }
+.filled-blank.pose{ color:var(--wt-accent-texte); }
 body[data-theme="dark"] .filled-blank.vide{ color:#64748b; }
-body[data-theme="dark"] .filled-blank.pose{ color:#60a5fa; }
+body[data-theme="dark"] .filled-blank.pose{ color:#F0B456; }
 
 /* Tuiles de reponse : meme geste que les tuiles de remise en ordre
    (.chunk-pill), mais un seul choix a la fois. Apres verification, la bonne
@@ -2231,9 +2231,9 @@ body[data-theme="dark"] .filled-blank.pose{ color:#60a5fa; }
 .option-pill:hover{ box-shadow:0 2px 8px rgba(30,41,59,.12); }
 .option-pill:active{ transform:scale(.96); }
 .option-pill.choisie{
-    background:#eef2ff;
-    border-color:#3b82f6;
-    color:#1e3a8a;
+    background:var(--wt-teinte);
+    border-color:var(--wt-action);
+    color:var(--wt-accent-texte);
 }
 .option-pill.juste{
     background:#dcfce7;
@@ -2248,7 +2248,7 @@ body[data-theme="dark"] .filled-blank.pose{ color:#60a5fa; }
 .option-pill:disabled{ cursor:default; opacity:.75; }
 .option-pill.juste:disabled, .option-pill.fausse:disabled{ opacity:1; }
 body[data-theme="dark"] .option-pill{ background:#1e2433; border-color:rgba(226,232,240,.24); color:#e7ebf3; }
-body[data-theme="dark"] .option-pill.choisie{ background:rgba(59,130,246,.22); border-color:#60a5fa; color:#bfdbfe; }
+body[data-theme="dark"] .option-pill.choisie{ background:rgba(var(--wt-action-rgb),.22); border-color:var(--wt-action); color:#F0B456; }
 body[data-theme="dark"] .option-pill.juste{ background:rgba(16,185,129,.22); border-color:#34d399; color:#a7f3d0; }
 body[data-theme="dark"] .option-pill.fausse{ background:rgba(239,68,68,.20); border-color:#f87171; color:#fecaca; }
 
@@ -2272,7 +2272,7 @@ body[data-theme="dark"] .option-pill.fausse{ background:rgba(239,68,68,.20); bor
     outline:none;
 }
 
-.answer:focus{border-color:#3b82f6}
+.answer:focus{border-color:var(--wt-action)}
 
 /* Exercice "remets les mots en ordre" (pronoms relatifs, etc.) : deux zones --
    une bande "construite" (vide au depart, pointille) ou les mots tapes
@@ -2288,7 +2288,7 @@ body[data-theme="dark"] .option-pill.fausse{ background:rgba(239,68,68,.20); bor
 }
 .chunk-strip-built{
     border:2px dashed rgba(30,41,59,.28);
-    background:rgba(59,130,246,.05);
+    background:rgba(var(--wt-action-rgb),.05);
 }
 .chunk-strip-bank{
     border:1px solid rgba(30,41,59,.14);
@@ -2316,14 +2316,14 @@ body[data-theme="dark"] .option-pill.fausse{ background:rgba(239,68,68,.20); bor
 .chunk-pill:hover{ box-shadow:0 2px 8px rgba(30,41,59,.12); }
 .chunk-pill:active{ transform:scale(.96); }
 .chunk-pill.placed{
-    background:#eef2ff;
-    border-color:#3b82f6;
-    color:#1e3a8a;
+    background:var(--wt-teinte);
+    border-color:var(--wt-action);
+    color:var(--wt-accent-texte);
 }
 body[data-theme="dark"] .chunk-strip-built{ background:rgba(96,165,250,.08); border-color:rgba(226,232,240,.28); }
 body[data-theme="dark"] .chunk-strip-bank{ background:rgba(255,255,255,.04); border-color:rgba(226,232,240,.14); }
 body[data-theme="dark"] .chunk-pill{ background:#1e2433; border-color:rgba(226,232,240,.24); color:#e7ebf3; }
-body[data-theme="dark"] .chunk-pill.placed{ background:rgba(59,130,246,.22); border-color:#60a5fa; color:#bfdbfe; }
+body[data-theme="dark"] .chunk-pill.placed{ background:rgba(var(--wt-action-rgb),.22); border-color:var(--wt-action); color:#F0B456; }
 
 .marque-mention{
     text-align:center;
@@ -2439,7 +2439,7 @@ body[data-theme="dark"] .lien-oubli{color:#A6ADBB;}
     font-weight:900;
     letter-spacing:-4px;
     margin:20px 0;
-    background:linear-gradient(110deg,#2f6fed,#7c5cff);
+    background:linear-gradient(110deg,var(--wt-action),var(--wt-ambre));
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -2457,8 +2457,8 @@ body[data-theme="dark"] .lien-oubli{color:#A6ADBB;}
     margin-top:20px;
     padding:17px;
     border-radius:17px;
-    background:rgba(59,111,224,.1);
-    border:1px solid rgba(59,111,224,.25);
+    background:rgba(var(--wt-action-rgb),.1);
+    border:1px solid rgba(var(--wt-action-rgb),.25);
 }
 
 .hidden{display:none!important}
@@ -2488,12 +2488,12 @@ body[data-theme="dark"] .lien-oubli{color:#A6ADBB;}
 }
 
 .theme-item.random-item{
-    background:linear-gradient(120deg,rgba(59,130,246,.14),rgba(124,92,255,.14));
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.14),rgba(var(--wt-action-rgb),.14));
     border:1px solid rgba(30,41,59,.32);
 }
 
 .theme-item.random-item:hover{
-    background:linear-gradient(120deg,rgba(59,130,246,.22),rgba(124,92,255,.22));
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.22),rgba(var(--wt-action-rgb),.22));
 }
 
 /* ---- Recherche dans les flashcards (entree depuis l'accueil uniquement) ---- */
@@ -2534,7 +2534,7 @@ body[data-theme="dark"] .lien-oubli{color:#A6ADBB;}
 .search-launch input::placeholder{color:#8b93a3; opacity:1;}
 .search-launch:focus-within{
     background:rgba(255,255,255,.85);
-    border-color:rgba(59,111,224,.5);
+    border-color:rgba(var(--wt-action-rgb),.5);
 }
 body[data-theme="dark"] .search-launch input::placeholder{color:#6f7684;}
 
@@ -2586,26 +2586,26 @@ input, textarea, select{
 .info-progression{
     position:static; flex-shrink:0;
     width:24px; height:24px; border-radius:50%;
-    border:1px solid rgba(47,98,214,.35); background:none; color:#2f62d6;
+    border:1px solid rgba(var(--wt-action-rgb),.35); background:none; color:var(--wt-accent-texte);
     font-family:Georgia,'Times New Roman',serif; font-size:15px; font-weight:700;
     font-style:italic; display:inline-flex; align-items:center; justify-content:center;
     cursor:pointer; line-height:1; padding:0;
 }
-.info-progression:hover{ background:#f2f6ff; }
+.info-progression:hover{ background:var(--wt-teinte); }
 .info-progression[aria-expanded="true"]{
-    background:#e8f0ff; border-color:rgba(59,111,224,.85);
+    background:var(--wt-teinte); border-color:rgba(var(--wt-action-rgb),.85);
 }
 body[data-theme="dark"] .info-progression{
     color:#0f1620;
     border-color:rgba(159,192,255,.75);
-    background:#eaf1ff;
+    background:var(--wt-action);
 }
 
 .info-progression-page{
     margin-top:10px; padding:12px 14px;
     border-radius:14px;
-    background:rgba(59,111,224,.07);
-    border:1px solid rgba(59,111,224,.18);
+    background:rgba(var(--wt-action-rgb),.07);
+    border:1px solid rgba(var(--wt-action-rgb),.18);
     text-align:left;
 }
 .info-progression-box strong{ font-size:13px; }
@@ -2657,7 +2657,7 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     /* ⚠️ `fill:none` EXPLICITE. Sans lui le cercle de la loupe prend le `fill`
        herite et l'icone devient un point plein -- une pastille, pas une loupe.
        Signale par Jacques. */
-    width:20px; height:20px; fill:none; stroke:#2f62d6; stroke-width:2.2;
+    width:20px; height:20px; fill:none; stroke:var(--wt-action); stroke-width:2.2;
     stroke-linecap:round; flex-shrink:0;
 }
 
@@ -2678,19 +2678,19 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
    distingue immediatement des mots qui contiennent seulement la recherche
    (chercher "Vater" renvoie aussi Vatertag, Grossvater, Stiefvater...). */
 .search-result.exact{
-    background:linear-gradient(120deg,rgba(59,111,224,.13),rgba(124,92,255,.10));
-    border-color:rgba(59,111,224,.55);
-    box-shadow:0 2px 12px rgba(59,111,224,.15);
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.13),rgba(var(--wt-action-rgb),.10));
+    border-color:rgba(var(--wt-action-rgb),.55);
+    box-shadow:0 2px 12px rgba(var(--wt-action-rgb),.15);
 }
 
 .search-result.exact:hover{
-    background:linear-gradient(120deg,rgba(59,111,224,.2),rgba(124,92,255,.16));
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.2),rgba(var(--wt-action-rgb),.16));
 }
 
 .search-tag.exact{
-    background:#3b6fe0;
-    border-color:#3b6fe0;
-    color:#fff;
+    background:var(--wt-action);
+    border-color:var(--wt-action);
+    color:var(--wt-sur-action);
 }
 
 .search-result-head{
@@ -2718,9 +2718,9 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     font-weight:600;
     padding:3px 9px;
     border-radius:999px;
-    background:rgba(59,111,224,.12);
-    border:1px solid rgba(59,111,224,.25);
-    color:#3b6fe0;
+    background:rgba(var(--wt-action-rgb),.12);
+    border:1px solid rgba(var(--wt-action-rgb),.25);
+    color:var(--wt-accent-texte);
     white-space:nowrap;
     flex:none;
 }
@@ -2787,8 +2787,8 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     justify-content:center;
     width:36px;
     height:36px;
-    background:rgba(59,111,224,.12);
-    border:1px solid rgba(59,111,224,.25);
+    background:rgba(var(--wt-action-rgb),.12);
+    border:1px solid rgba(var(--wt-action-rgb),.25);
     border-radius:10px;
 }
 
@@ -2796,7 +2796,7 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     width: 18px;
     height: 18px;
     fill: currentColor;
-    color: #3b6fe0;
+    color: var(--wt-accent-texte);
 }
 
 .theme-name{font-weight:800; color:#1e2433;}
@@ -2817,7 +2817,7 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .theme-progress-fill{
     height:100%;
     border-radius:10px;
-    background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+    background:var(--wt-ambre);
 }
 
 .theme-percent{
@@ -2884,9 +2884,9 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .setup-choice:hover{background:rgba(255,255,255,.85); transform:translateY(-2px);}
 .setup-choice .setup-choice-flag{display:block; font-size:26px; margin-bottom:6px;}
 .setup-choice.active{
-    border-color:rgba(59,111,224,.5);
-    background:rgba(59,111,224,.1);
-    color:#3b6fe0;
+    border-color:rgba(var(--wt-action-rgb),.5);
+    background:rgba(var(--wt-action-rgb),.1);
+    color:var(--wt-accent-texte);
 }
 
 .level-pill-label{
@@ -3072,21 +3072,21 @@ html{ touch-action:manipulation; }
 }
 
 .flashcard.answer-accent.flipped .flashcard-back{
-    border:1.5px solid rgba(59,111,224,.4);
+    border:1.5px solid rgba(var(--wt-action-rgb),.4);
     background:rgba(238,243,255,.75);
 }
 
 .flashcard.answer-accent.flipped .back-word{
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
 }
 
-.flashcard.border-der.flipped .flashcard-back { border: 2px solid #3b82f6; }
-.flashcard.border-die.flipped .flashcard-back { border: 2px solid #ef4444; }
-.flashcard.border-das.flipped .flashcard-back { border: 2px solid #10b981; }
+.flashcard.border-der.flipped .flashcard-back { border: 2px solid var(--g-der); }
+.flashcard.border-die.flipped .flashcard-back { border: 2px solid var(--g-die); }
+.flashcard.border-das.flipped .flashcard-back { border: 2px solid var(--g-das); }
 
-.flashcard.border-der.flipped .back-word { color: #3b82f6; }
-.flashcard.border-die.flipped .back-word { color: #ef4444; }
-.flashcard.border-das.flipped .back-word { color: #10b981; }
+.flashcard.border-der.flipped .back-word { color: var(--wt-encre-texte); }
+.flashcard.border-die.flipped .back-word { color: var(--wt-encre-texte); }
+.flashcard.border-das.flipped .back-word { color: var(--wt-encre-texte); }
 
 .article {
     font-size: 15px;
@@ -3095,14 +3095,14 @@ html{ touch-action:manipulation; }
     letter-spacing: 1px;
     margin-bottom: 6px;
 }
-.article.der { color: #3b82f6; }
-.article.die { color: #ef4444; }
-.article.das { color: #10b981; }
+.article.der { color: var(--g-der); }
+.article.die { color: var(--g-die); }
+.article.das { color: var(--g-das); }
 
 .back-word{
     font-size:26px;
     font-weight:800;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     margin-bottom:4px;
 }
 
@@ -3111,7 +3111,7 @@ html{ touch-action:manipulation; }
    plutot que gris -- le bleu vif, le rouge et le vert sont deja pris par
    der/die/das (voir .border-der/.border-die/.border-das). */
 .plural{
-    color:#1e3a8a;
+    color:var(--wt-accent-texte);
     font-size:14px;
     font-weight:600;
     margin:2px 0 10px;
@@ -3172,7 +3172,7 @@ html{ touch-action:manipulation; }
     margin:0 auto;
     background:none;
     border:none;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     cursor:pointer;
     font-size:22px;
     font-weight:800;
@@ -3180,7 +3180,7 @@ html{ touch-action:manipulation; }
     padding:0 14px;
 }
 
-.verb-toggle-btn:hover{color:#6591ec}
+.verb-toggle-btn:hover{color:var(--wt-accent-texte)}
 
 .verb-extra{
     margin-top:2px;
@@ -3206,9 +3206,9 @@ html{ touch-action:manipulation; }
     width:30px;
     height:30px;
     border-radius:50%;
-    background:rgba(59,111,224,.12);
-    border:1px solid rgba(59,111,224,.3);
-    color:#3b6fe0;
+    background:rgba(var(--wt-action-rgb),.12);
+    border:1px solid rgba(var(--wt-action-rgb),.3);
+    color:var(--wt-accent-texte);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -3229,7 +3229,7 @@ html{ touch-action:manipulation; }
 
 .icon-audio-btn svg{width:14px; height:14px; fill:currentColor;}
 
-.icon-audio-btn:hover{background:rgba(59,111,224,.2); transform:scale(1.05);}
+.icon-audio-btn:hover{background:rgba(var(--wt-action-rgb),.2); transform:scale(1.05);}
 
 .icon-audio-btn-sm{
     display:inline-flex;
@@ -3244,11 +3244,11 @@ html{ touch-action:manipulation; }
 
 .audio-btn{
     margin-top:12px;
-    background:rgba(59,111,224,.12);
-    border:1px solid rgba(59,111,224,.3);
+    background:rgba(var(--wt-action-rgb),.12);
+    border:1px solid rgba(var(--wt-action-rgb),.3);
     border-radius:20px;
     padding:6px 14px;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     cursor:pointer;
     font-size:13px;
     font-weight:700;
@@ -3266,7 +3266,7 @@ html{ touch-action:manipulation; }
 }
 
 .audio-btn:hover{
-    background:rgba(59,111,224,.2);
+    background:rgba(var(--wt-action-rgb),.2);
     transform:scale(1.03);
 }
 
@@ -3405,11 +3405,11 @@ body[data-theme="dark"] .registre-note{
     font-weight:900;
     letter-spacing:-1px;
     white-space:nowrap;
-    background:linear-gradient(110deg,#2f6fed,#7c5cff,#17a893);
+    background:linear-gradient(110deg,var(--wt-action),var(--wt-ambre));
     -webkit-background-clip:text;
     background-clip:text;
     -webkit-text-fill-color:transparent;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     filter:drop-shadow(0 6px 16px rgba(30,41,59,.18));
     pointer-events:none;
     z-index:10000;
@@ -3605,7 +3605,7 @@ body[data-theme="dark"] .ring-cycle-badge{
     font-size:10px;
     font-weight:800;
     letter-spacing:1px;
-    color:#3b6fe0;
+    color:var(--wt-accent-texte);
     line-height:1;
     margin-bottom:1px;
 }
@@ -3638,8 +3638,8 @@ body[data-theme="dark"] .ring-cycle-badge{
     display:inline-block;
     font-size:12px;
     font-weight:700;
-    color:#3b6fe0;
-    background:rgba(59,111,224,.1);
+    color:var(--wt-accent-texte);
+    background:rgba(var(--wt-action-rgb),.1);
     padding:4px 10px;
     border-radius:999px;
     white-space:nowrap;
@@ -3673,7 +3673,7 @@ body[data-theme="dark"] .ring-cycle-badge{
 .home-daily-goal-fill{
     height:100%;
     border-radius:999px;
-    background:linear-gradient(90deg,#3b6fe0,#8b5cf6);
+    background:var(--wt-ambre);
     transition:width .3s ease;
 }
 
@@ -3708,10 +3708,10 @@ body[data-theme="dark"] .subtitle{
    pour couvrir tous les cas d'un coup, + !important, seul moyen de
    surcharger un style inline sans modifier chacune des ~180 occurrences. */
 body[data-theme="dark"] .kicker{
-    color:#7ea6ff;
+    color:#F0B456;
 }
-body[data-theme="dark"] [style*="color:#3b6fe0"]{
-    color:#7ea6ff !important;
+body[data-theme="dark"] [style*="color:var(--wt-accent-texte)"]{
+    color:#F0B456 !important;
 }
 
 /* Meme probleme que #3b6fe0 ci-dessus, mais pour les deux gris de texte de
@@ -3767,7 +3767,7 @@ body[data-theme="dark"] .filters-bar input{
 }
 
 body[data-theme="dark"] .theme-item.random-item{
-    background:linear-gradient(120deg,rgba(59,130,246,.16),rgba(124,92,255,.16));
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.16),rgba(var(--wt-action-rgb),.16));
 }
 
 body[data-theme="dark"] .search-launch,
@@ -3783,22 +3783,22 @@ body[data-theme="dark"] .search-result:hover{
 
 body[data-theme="dark"] .usage-mark{background:#241f15; border-color:#3b3324; color:#cbb87f;}
 body[data-theme="dark"] .plural{
-    color:#A8C0F0;
+    color:#F0B456;
 }
 
 body[data-theme="dark"] .search-result.exact{
-    background:linear-gradient(120deg,rgba(59,130,246,.22),rgba(124,92,255,.18));
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.22),rgba(var(--wt-action-rgb),.18));
     border-color:rgba(96,165,250,.6);
     box-shadow:none;
 }
 
 body[data-theme="dark"] .search-result.exact:hover{
-    background:linear-gradient(120deg,rgba(59,130,246,.3),rgba(124,92,255,.24));
+    background:linear-gradient(120deg,rgba(var(--wt-action-rgb),.3),rgba(var(--wt-action-rgb),.24));
 }
 
 body[data-theme="dark"] .search-tag.exact{
-    background:#60a5fa;
-    border-color:#60a5fa;
+    background:var(--wt-action);
+    border-color:var(--wt-action);
     color:#0b1020;
 }
 
@@ -3823,8 +3823,8 @@ body[data-theme="dark"] .search-tag.src{
 }
 
 body[data-theme="dark"] .orb-opt.primary{
-    background:rgba(59,111,224,.16);
-    border-color:rgba(59,111,224,.4);
+    background:rgba(var(--wt-action-rgb),.16);
+    border-color:rgba(var(--wt-action-rgb),.4);
 }
 
 body[data-theme="dark"] .setup-choice{
@@ -3833,9 +3833,9 @@ body[data-theme="dark"] .setup-choice{
     color:#F2F2F6;
 }
 body[data-theme="dark"] .setup-choice.active{
-    background:rgba(59,111,224,.16);
-    border-color:rgba(59,111,224,.45);
-    color:#8fb4ff;
+    background:rgba(var(--wt-action-rgb),.16);
+    border-color:rgba(var(--wt-action-rgb),.45);
+    color:#F0B456;
 }
 
 /* .orb-opt.primary .orb-opt-title (2 classes + descendant) est plus spécifique
@@ -3858,7 +3858,7 @@ body[data-theme="dark"] .flashcard-front{
    retournés illisibles). Ce correctif le sur-spécifie. */
 body[data-theme="dark"] .flashcard.answer-accent.flipped .flashcard-back{
     background:rgba(255,255,255,.06);
-    border-color:rgba(59,111,224,.55);
+    border-color:rgba(var(--wt-action-rgb),.55);
 }
 
 body[data-theme="dark"] .level-pill.done{
@@ -3943,15 +3943,15 @@ body[data-theme="dark"] .radar-grid,
 body[data-theme="dark"] .radar-axis{stroke:rgba(255,255,255,.2);}
 body[data-theme="dark"] .ring-bg{stroke:rgba(255,255,255,.2);}
 body[data-theme="dark"] .global-ring-track{stroke:rgba(255,255,255,.2);}
-body[data-theme="dark"] .home-chip{background:rgba(59,111,224,.22);}
+body[data-theme="dark"] .home-chip{background:rgba(var(--wt-action-rgb),.22);}
 body[data-theme="dark"] .home-daily-goal-track{background:rgba(255,255,255,.14);}
 body[data-theme="dark"] .radar-label{fill:#B7BBCB;}
 
 body[data-theme="dark"] .theme-switch-btn{color:#B7BBCB;}
 body[data-theme="dark"] .theme-switch-btn:hover{color:#F2F2F6;}
 body[data-theme="dark"] .theme-switch-btn.active{
-    background:#3b6fe0;
-    color:#ffffff;
+    background:var(--wt-action);
+    color:var(--wt-sur-action);
 }
 
 /* Rattrape les couleurs posées en style inline dans le HTML/JS existant */
@@ -3992,13 +3992,13 @@ body[data-theme="dark"] [style*="#767f8f"]{color:#B7BBCB !important;}
 .ecoute-controles{ display:flex; gap:14px; justify-content:center; align-items:center; margin-top:18px; }
 .ecoute-btn{
     width:54px; height:54px; border-radius:50%; border:1.5px solid #d8dde8;
-    background:#ffffff; color:#3b6fe0; display:flex; align-items:center;
+    background:#ffffff; color:var(--wt-accent-texte); display:flex; align-items:center;
     justify-content:center; cursor:pointer; padding:0;
 }
 .ecoute-btn svg{ width:24px; height:24px; fill:currentColor; }
 .ecoute-btn.principal{
-    width:70px; height:70px; background:#3b6fe0; border-color:#3b6fe0; color:#ffffff;
-    box-shadow:0 6px 16px rgba(59,111,224,.32);
+    width:70px; height:70px; background:var(--wt-action); border-color:var(--wt-action); color:var(--wt-sur-action);
+    box-shadow:0 6px 16px rgba(var(--wt-action-rgb),.32);
 }
 .ecoute-btn.principal svg{ width:30px; height:30px; }
 .ecoute-note{ font-size:12px; color:#767f8f; line-height:1.5; margin-top:14px; text-align:center; }
@@ -4009,10 +4009,10 @@ body[data-theme="dark"] .ecoute-phrase-fr,
 body[data-theme="dark"] .ecoute-etat,
 body[data-theme="dark"] .ecoute-note{ color:#B7BBCB; }
 body[data-theme="dark"] .ecoute-btn{
-    background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); color:#8fb0f5;
+    background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); color:#F0B456;
 }
 body[data-theme="dark"] .ecoute-btn.principal{
-    background:#3b6fe0; border-color:#3b6fe0; color:#ffffff;
+    background:var(--wt-action); border-color:var(--wt-action); color:var(--wt-sur-action);
 }
 
 /* Video d'accueil : superposition plein ecran, affichee une fois apres l'ecran
@@ -4068,7 +4068,7 @@ body[data-theme="dark"] .ecoute-btn.principal{
     font-weight:600;
     cursor:pointer;
 }
-.home-help-launch:hover{color:#3b6fe0;}
+.home-help-launch:hover{color:var(--wt-accent-texte);}
 body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
 
 /* Dictionnaire : deuxieme bloc de resultats sous les flashcards, sur le meme
@@ -4099,7 +4099,7 @@ body[data-theme="dark"] .home-help-launch{color:#9aa4b5;}
 }
 .dict-row-top{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;}
 .dict-word{font-weight:700; font-size:16px; color:#1C2430;}
-.dict-gender{font-weight:700; color:#3b6fe0;}
+.dict-gender{font-weight:700; color:var(--wt-accent-texte);}
 .dict-pron{font-size:12px; color:#8b93a3;}
 .dict-pos{
     font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
@@ -4245,10 +4245,10 @@ body[data-theme="dark"] .srs-pip.on{background:#9fdcbe;}
    toujours, mais autrement : ce n'est plus la TAILLE qui retient, c'est la
    couleur. Le bleu n'est ni le vert de « je savais » ni le blanc de « encore » :
    il ne recompense pas, il range. */
-.judge-known{background:#e6eeff; border-color:#b9ccf3; color:#2b4d97;}
-.judge-known:hover{background:#dbe7ff;}
+.judge-known{background:var(--wt-teinte); border-color:var(--wt-bordure-accent); color:var(--wt-accent-texte);}
+.judge-known:hover{background:var(--wt-teinte);}
 body[data-theme="dark"] .judge-known{
-    background:rgba(59,111,224,.16); border-color:rgba(59,111,224,.45); color:#9dbcff;
+    background:rgba(var(--wt-action-rgb),.16); border-color:rgba(var(--wt-action-rgb),.45); color:#F0B456;
 }
 /* ============ LE COFFRE (v592, redessine v594) ============
    ⚠️ IL A LA TAILLE DES AUTRES, MAIS PAS LEUR COULEUR TANT QU'IL EST VIDE.
@@ -4318,10 +4318,10 @@ body[data-theme="dark"] .judge-garde.on{
 /* Le bleu est libre dans le coffre -- « Je le sais par coeur » n'y parait
    pas -- et il dit la bonne chose : ni une reussite, ni un retrait, juste un
    passage. */
-.judge-suivante{display:none; background:#e6eeff; border-color:#b9ccf3; color:#2b4d97;}
-.judge-suivante:hover{background:#dbe7ff;}
+.judge-suivante{display:none; background:var(--wt-teinte); border-color:var(--wt-bordure-accent); color:var(--wt-accent-texte);}
+.judge-suivante:hover{background:var(--wt-teinte);}
 body[data-theme="dark"] .judge-suivante{
-    background:rgba(59,111,224,.16); border-color:rgba(59,111,224,.45); color:#9dbcff;
+    background:rgba(var(--wt-action-rgb),.16); border-color:rgba(var(--wt-action-rgb),.45); color:#F0B456;
 }
 .flashcard-actions.paquet-garde .judge-suivante{display:flex;}
 .judge-sortir{display:none; background:#fdead9; border-color:#f0c59e; color:#95571b;}
@@ -4352,21 +4352,21 @@ body[data-theme="dark"] .judge-sortir{
    Le cinquieme de tour n'est pas un ornement : c'est exactement une pointe
    d'etoile, donc la forme revient sur elle-meme et seul l'eclat se remarque. */
 .judge-known .etoile-coeur{
-    color:#7d9ad6;
+    color:var(--wt-accent-texte);
     transition:color .2s ease, fill .2s ease,
                transform .34s cubic-bezier(.34,1.45,.64,1);
 }
-.judge-known:hover .etoile-coeur{color:#4f79c8;}
+.judge-known:hover .etoile-coeur{color:var(--wt-accent-texte);}
 /* ⚠️ LE BOUTON SE FONCE EN BLEU, SEULE L'ETOILE EST DOREE (v598). Il virait a
    l'ambre -- exactement la couleur que « Garder » porte desormais, deux
    boutons voisins. La distinction se joue donc sur l'INTENSITE de sa propre
    couleur, et l'or reste ou il compte : dans l'etoile. */
-.judge-known.sue{background:#cfe0ff; border-color:#7ea6ec; color:#1e3f85;}
+.judge-known.sue{background:var(--wt-teinte); border-color:var(--wt-bordure-accent); color:var(--wt-accent-texte);}
 .judge-known.sue .etoile-coeur{
     color:#E8A23A; fill:#E8A23A; transform:scale(1.2) rotate(72deg);
 }
 body[data-theme="dark"] .judge-known.sue{
-    background:rgba(59,111,224,.30); border-color:rgba(122,163,255,.65); color:#cfe0ff;
+    background:rgba(var(--wt-action-rgb),.30); border-color:rgba(122,163,255,.65); color:#F0B456;
 }
 @media (prefers-reduced-motion:reduce){
     .judge-known .etoile-coeur{transition:color .2s ease, fill .2s ease;}
@@ -4395,10 +4395,10 @@ body[data-theme="dark"] .judge-known.sue{
        trois fois. L'aire invisible fait le travail que la boite faisait. */
     width:40px; height:40px; margin-inline-start:-8px; margin-bottom:-6px;
     padding:0; border:0; background:none;
-    color:#2f62d6; cursor:pointer;
+    color:var(--wt-accent-texte); cursor:pointer;
 }
 .flash-recto-coin svg{width:21px; height:21px; flex:0 0 auto;}
-body[data-theme="dark"] .flash-recto-coin{ color:#8FB4FF; }
+body[data-theme="dark"] .flash-recto-coin{ color:#F0B456; }
 .flash-end-objectif{
     font-size:13px; font-weight:600; color:#7b8798; margin:6px 0 2px;
 }
@@ -4418,10 +4418,10 @@ body[data-theme="dark"] .flash-end-title{color:#e9ecf1;}
 .dict-add{
     position:absolute; top:8px; inset-inline-end:8px;
     width:30px; height:30px; padding:0; border-radius:9px;
-    border:1px solid #dfe4ec; background:#fff; color:#3b6fe0;
+    border:1px solid #dfe4ec; background:#fff; color:var(--wt-accent-texte);
     font-size:17px; font-weight:700; line-height:1; cursor:pointer;
 }
-.dict-add:hover{background:#eef3ff; border-color:#3b6fe0;}
+.dict-add:hover{background:var(--wt-teinte); border-color:var(--wt-action);}
 .dict-add.ajoute{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47; cursor:default;}
 /* Mot deja enseigne par le cours : la fleche ouvre sa carte. Ambre de la
    marque, pour ne pas se confondre avec le vert du mot mis de cote. */
@@ -4447,19 +4447,19 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
     position:absolute; top:10px; inset-inline-start:12px; z-index:2;
     display:flex; align-items:center; gap:5px;
     background:none; border:none; padding:4px; cursor:pointer;
-    border-radius:999px; color:#3b6fe0; line-height:0;
+    border-radius:999px; color:var(--wt-accent-texte); line-height:0;
     font:inherit; font-size:11px; font-weight:700; letter-spacing:.03em;
 }
 .examen-coin svg{display:block; flex:0 0 auto;}
 /* Avec le mot : la meme pastille bleue pale que le chip de frequence -- c'est
    la meme famille d'information, deux dessins differents feraient du bruit. */
 .examen-coin.avec-mot{
-    background:rgba(59,111,224,.12); padding:3px 9px 3px 7px;
+    background:rgba(var(--wt-action-rgb),.12); padding:3px 9px 3px 7px;
 }
 
 .freq-chip{
     display:inline-block; padding:1px 7px; border-radius:6px;
-    background:rgba(59,111,224,.12); color:#3b6fe0;
+    background:rgba(var(--wt-action-rgb),.12); color:var(--wt-accent-texte);
     font-size:11px; font-weight:700; letter-spacing:.03em;
 }
 
@@ -4484,7 +4484,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 }
 .srs-aide{
     margin-top:10px; padding:14px 16px; border-radius:12px;
-    background:#f5f7fb; border:1px solid #e6eaf2;
+    background:var(--wt-teinte); border:1px solid #e6eaf2;
     font-size:13px; line-height:1.6; color:#576177; text-align:start;
 }
 .srs-aide p{margin:0 0 9px}
@@ -4525,7 +4525,7 @@ body[data-theme="dark"] .dict-add{background:#1b212b; border-color:#2a3240;}
 }
 .srs-aide-bloc.encore{background:rgba(240,214,110,.16); border-inline-start-color:#ecdfa6;}
 .srs-aide-bloc.savais{background:rgba(28,107,71,.07); border-inline-start-color:#9fdcbe;}
-.srs-aide-bloc.connu{background:rgba(59,111,224,.07); border-inline-start-color:#b9ccf3;}
+.srs-aide-bloc.connu{background:rgba(var(--wt-action-rgb),.07); border-inline-start-color:var(--wt-bordure-accent);}
 .srs-aide-bloc.garder{background:rgba(232,162,58,.10); border-inline-start-color:#f0a75a;}
 .srs-aide-titre{font-weight:700; color:#1e293b; margin-bottom:4px;}
 .srs-aide-pied{padding-top:11px; border-top:1px solid #e6eaf2; font-style:italic;}
@@ -4615,12 +4615,12 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
     text-align:start;
     /* #2f62d6 et non #3b6fe0 : le blanc sur ce bleu passe le seuil AA de 4,5:1
        pour du texte de 12 px, le bleu plus clair restait juste en dessous. */
-    background:#2f62d6;
-    border-color:#2f62d6;
-    box-shadow:0 6px 16px rgba(47,98,214,.28);
+    background:var(--wt-action);
+    border-color:var(--wt-action);
+    box-shadow:0 6px 16px rgba(var(--wt-action-rgb),.28);
     cursor:pointer;
 }
-.orb-seance:hover{transform:none; box-shadow:0 8px 20px rgba(47,98,214,.34);}
+.orb-seance:hover{transform:none; box-shadow:0 8px 20px rgba(var(--wt-action-rgb),.34);}
 .seance-haut{display:flex; align-items:baseline; gap:8px;}
 /* L'action principale : un bloc BLANC sur le bleu. Le bandeau reste le seul
    bloc plein de l'accueil (v531), et a l'interieur c'est l'inverse qui marque
@@ -4646,7 +4646,7 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .seance-go{
     width:100%; display:inline-flex; align-items:center; justify-content:center; gap:6px;
     padding:6px 14px; border:0; border-radius:9px;
-    background:#fff; color:#2f62d6; font-family:inherit;
+    background:#fff; color:var(--wt-accent-texte); font-family:inherit;
     font-size:13px; font-weight:800; line-height:1.35; cursor:pointer;
 }
 .seance-go svg{width:13px; height:13px;}
@@ -4668,7 +4668,7 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
     font-size:11px; font-weight:600; line-height:1;
     padding:4px 6px; border-radius:6px; cursor:pointer;
 }
-.seance-niveau.on{background:#fff; border-color:#fff; color:#2f62d6;}
+.seance-niveau.on{background:#fff; border-color:#fff; color:var(--wt-accent-texte);}
 /* La colonne de droite du bandeau : le coffre, puis « ou par theme ».
    `align-items:flex-end` colle les deux au bord droit quelle que soit la
    longueur des mots -- l'ukrainien « Збережені » est deux fois « Gardes ». */
@@ -4704,12 +4704,12 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    c'est l'ombre -- une ombre portee sur du noir ne se voit pas, elle ne fait
    que salir le bord. */
 body[data-theme="dark"] .orb-seance{
-    background:#2f62d6;
-    border-color:#3f70e2;
+    background:var(--wt-action);
+    border-color:var(--wt-action);
     box-shadow:none;
 }
 body[data-theme="dark"] .orb-seance:hover{
-    background:#3568dd;
+    background:var(--wt-action);
     box-shadow:none;
 }
 body[data-theme="dark"] .orb-seance strong,
@@ -4720,7 +4720,7 @@ body[data-theme="dark"] .orb-seance .seance-niveau{
     background:transparent; border-color:rgba(255,255,255,.48); color:#fff;
 }
 body[data-theme="dark"] .orb-seance .seance-niveau.on{
-    background:#fff; border-color:#fff; color:#2f62d6;
+    background:#fff; border-color:#fff; color:#F0B456;
 }
 
 /* LA CARTE DE PROGRESSION (v535). L'objectif du jour en haut, en grand : c'est
@@ -4733,7 +4733,7 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
 }
 .carte-jour-haut strong{font-size:21px; color:#1e293b; font-weight:600;}
 .carte-jour-piste{height:9px; border-radius:5px; background:rgba(30,41,59,.12); overflow:hidden;}
-.carte-jour-fill{height:100%; background:#2f62d6; border-radius:5px; transition:width .3s;}
+.carte-jour-fill{height:100%; background:var(--wt-action); border-radius:5px; transition:width .3s;}
 .carte-comptes{
     display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
     margin-top:12px; padding-top:12px; border-top:1px solid rgba(30,41,59,.10);
@@ -4754,7 +4754,7 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
     font-family:inherit; font-size:12px; font-weight:600; color:#1e293b; text-align:start;
 }
 .carte-vocab-nom{flex:1; min-width:0;}
-.carte-vocab-niveau{color:#2f62d6;}
+.carte-vocab-niveau{color:var(--wt-accent-texte);}
 .carte-vocab-compte{font-variant-numeric:tabular-nums; color:#7b8798;}
 /* ⚠️ LE SIGNE COMPTE AUTANT QUE SA TAILLE. « › » est un chevron de
    NAVIGATION -- il annonce qu'on quitte l'ecran. Cette ligne se DEPLIE sur
@@ -4768,14 +4768,14 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{
    centre par construction, et il grossit sans devenir flou.
    Signale par Jacques : « melee au centre du rond gris, et tu peux la grossir ». */
 .carte-vocab-fleche{
-    color:#2f62d6; display:inline-flex; align-items:center; justify-content:center;
-    width:26px; height:26px; border-radius:50%; background:rgba(47,98,214,.12);
+    color:var(--wt-accent-texte); display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; background:rgba(var(--wt-action-rgb),.12);
     transition:transform .2s, background .15s; flex-shrink:0;
 }
 .carte-vocab-fleche svg{width:16px; height:16px; display:block;}
 .carte-vocab-tete.ouvert .carte-vocab-fleche{transform:rotate(180deg);}
-.carte-vocab-tete:hover .carte-vocab-fleche{background:rgba(47,98,214,.18);}
-body[data-theme="dark"] .carte-vocab-fleche{color:#8FB4FF; background:rgba(143,180,255,.14);}
+.carte-vocab-tete:hover .carte-vocab-fleche{background:rgba(var(--wt-action-rgb),.18);}
+body[data-theme="dark"] .carte-vocab-fleche{color:#F0B456; background:rgba(143,180,255,.14);}
 .carte-vocab-piste{
     display:flex; height:8px; border-radius:5px; margin-top:7px;
     background:rgba(30,41,59,.12); overflow:hidden;
@@ -4794,7 +4794,7 @@ body[data-theme="dark"] .carte-vocab-fleche{color:#8FB4FF; background:rgba(143,1
    loin des 4,5 exiges pour du texte -- « mots maitrises » garde son #0F6E56. */
 .carte-vocab-part{height:100%; display:block; transition:width .3s;}
 .carte-vocab-part.sus{background:#0F6E56;}
-.carte-vocab-part.cours{background:#6A9BEE;}
+.carte-vocab-part.cours{background:var(--wt-action);}
 .carte-vocab-part.sus + .carte-vocab-part.cours{border-inline-start:2px solid #e6e9ef;}
 .carte-examen-part.sus + .carte-examen-part.cours{border-inline-start:2px solid #e6e9ef;}
 /* Le cumul de jours : un grand chiffre, un mot, et la serie repoussee a droite
@@ -4819,17 +4819,17 @@ body[data-theme="dark"] .carte-jours-mot{color:#F2F2F6;}
     font-family:inherit; text-align:start; cursor:pointer;
     -webkit-tap-highlight-color:transparent; touch-action:manipulation;
 }
-.vocab-ligne:hover{background:rgba(47,98,214,.07);}
+.vocab-ligne:hover{background:rgba(var(--wt-action-rgb),.07);}
 /* ⚠️ LE NIVEAU COURANT NE SE SIGNALE PAS QUE PAR LA COULEUR : la pastille
    du rang passe en gras et recoit un point. Une teinte bleue seule ne dit
    rien a qui ne distingue pas le bleu du gris. */
-.vocab-ligne.courant{background:rgba(47,98,214,.09);}
+.vocab-ligne.courant{background:rgba(var(--wt-action-rgb),.09);}
 .vocab-ligne.courant .vocab-ligne-niv{font-weight:800;}
 .vocab-ligne.courant .vocab-ligne-niv::after{content:" •";}
 body[data-theme="dark"] .vocab-ligne:hover{background:rgba(255,255,255,.07);}
 body[data-theme="dark"] .vocab-ligne.courant{background:rgba(143,180,255,.13);}
 .vocab-ligne-niv{font-size:11px; font-weight:600; color:#7b8798; width:22px; flex-shrink:0;}
-.vocab-ligne.courant .vocab-ligne-niv{color:#2f62d6;}
+.vocab-ligne.courant .vocab-ligne-niv{color:var(--wt-accent-texte);}
 .vocab-ligne-piste{
     flex:1; display:flex; height:6px; border-radius:4px;
     background:rgba(30,41,59,.12); overflow:hidden;
@@ -4842,11 +4842,11 @@ body[data-theme="dark"] .vocab-ligne.courant{background:rgba(143,180,255,.13);}
 .vocab-legende span{display:flex; align-items:center; gap:4px;}
 .vocab-legende i{width:8px; height:8px; border-radius:2px; display:block;}
 .vocab-legende .pt-sus{background:#0F6E56;}
-.vocab-legende .pt-cours{background:#6A9BEE;}
+.vocab-legende .pt-cours{background:var(--wt-action);}
 .vocab-legende .pt-reste{background:rgba(30,41,59,.18);}
 body[data-theme="dark"] .carte-vocab-tete{color:#F2F2F6;}
 body[data-theme="dark"] .carte-vocab-niveau,
-body[data-theme="dark"] .vocab-ligne.courant .vocab-ligne-niv{color:#8FB4FF;}
+body[data-theme="dark"] .vocab-ligne.courant .vocab-ligne-niv{color:#F0B456;}
 body[data-theme="dark"] .carte-vocab-compte,
 body[data-theme="dark"] .vocab-ligne-niv,
 body[data-theme="dark"] .vocab-ligne-n,
@@ -4877,7 +4877,7 @@ body[data-theme="dark"] .vocab-legende .pt-reste{background:rgba(255,255,255,.20
 }
 .carte-examen-part{height:100%; transition:width .3s;}
 .carte-examen-part.sus{background:#0F6E56;}
-.carte-examen-part.cours{background:#6A9BEE;}
+.carte-examen-part.cours{background:var(--wt-action);}
 .carte-examen-pied{font-size:11px; color:#7b8798; margin-top:6px; line-height:1.3;}
 body[data-theme="dark"] .carte-examen{border-top-color:rgba(255,255,255,.12);}
 body[data-theme="dark"] .carte-examen-tete{color:#F2F2F6;}
@@ -5216,7 +5216,7 @@ body[data-theme="dark"] .mos-peintre{color:#F2F2F6;}
 body[data-theme="dark"] .mos-titre{color:#A6ADBB;}
 body[data-theme="dark"] .mos-annee,
 body[data-theme="dark"] .mos-pied{color:#9AA2B1;}
-body[data-theme="dark"] .mos-galerie{color:#8FB4FF;}
+body[data-theme="dark"] .mos-galerie{color:#F0B456;}
 /* Plein ecran */
 .mos-plein{
     position:fixed; inset:0; z-index:9000; background:rgba(12,16,22,.94);
@@ -5264,9 +5264,9 @@ body[data-theme="dark"] .ip-texte p{color:#A6ADBB;}
 body[data-theme="dark"] .ip-toile{border-color:#C6CCD6; background:#2a3038;}
 .info-titre{
     font-size:13px; font-weight:800; letter-spacing:.10em; text-transform:uppercase;
-    color:#2f62d6; margin:26px 0 8px;
+    color:var(--wt-accent-texte); margin:26px 0 8px;
 }
-body[data-theme="dark"] .info-titre{color:#8FB4FF;}
+body[data-theme="dark"] .info-titre{color:#F0B456;}
 .info-jours{justify-content:flex-start; margin:0 0 12px;}
 .regles-intro{font-size:13.5px; color:#576177; line-height:1.55; margin:0 0 12px;}
 .regles-avert{
@@ -5278,7 +5278,7 @@ body[data-theme="dark"] .info-titre{color:#8FB4FF;}
 .rg-genre{
     font-size:15px; font-weight:800; margin:14px 0 6px; letter-spacing:.01em;
 }
-.rg-die{color:#b03a6a;} .rg-der{color:#2f62d6;} .rg-das{color:#0F6E56;}
+.rg-die{color:var(--g-die);} .rg-der{color:var(--g-der);} .rg-das{color:var(--g-das);}
 .rg-bloc{display:flex; flex-direction:column; gap:6px;}
 .rg-ligne{
     display:flex; align-items:flex-start; gap:10px;
@@ -5378,7 +5378,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
 .home-daily-goal{margin-top:4px !important; padding-top:6px !important;}
 .home-daily-goal-row{justify-content:center !important; gap:8px !important; font-size:13px;}
-#dailyGoalCount{font-weight:800; color:#3b6fe0;}
+#dailyGoalCount{font-weight:800; color:var(--wt-accent-texte);}
 
 /* Une tuile ne doit jamais depasser deux lignes par ligne de texte, sans quoi
    elle devient plus haute que ses voisines et casse la grille. */
@@ -5481,6 +5481,115 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     #flashcards > .back{align-self:flex-start; width:auto;}
 }
 
+
+/* ================= PALETTE WORTANDO (v662) =================
+   L'app portait le logo encre + ambre, mais son interface etait restee dans
+   un bleu d'action generique (#3b6fe0, 164 occurrences) et un degrade
+   bleu-violet. Elle reprend maintenant les deux couleurs de la marque :
+
+   - ENCRE (#1C2430) pour l'action : boutons, icones, carte de seance.
+   - AMBRE (#E8A23A) pour ce qui avance : barres de progression, anneaux,
+     niveau choisi, bouton « Commencer ».
+
+   ⚠️ LES COULEURS SONT DES VARIABLES, ET C'EST CE QUI FAIT MARCHER LA NUIT.
+   Sur fond noir, l'encre disparaitrait : en mode nuit, --wt-action devient
+   l'ambre et le texte pose dessus devient l'encre. Les styles inline du JS
+   portent var(--wt-action) au lieu d'un hexadecimal pour la meme raison --
+   un hexadecimal en inline ne peut pas changer avec le theme.
+
+   ⚠️ LES GENRES ET LES CAS NE PARTAGENT PLUS AUCUNE TEINTE. Les cas
+   employaient bleu, violet, vert et rose -- exactement les couleurs que les
+   manuels donnent a der/die/das. Or « an der Haltestelle » met un nom
+   FEMININ derriere « der » : si le bleu voulait dire a la fois « masculin »
+   et « accusatif », la couleur embrouillerait la seule chose qu'elle devait
+   eclaircir. Genres : bleu, rouge, vert (la convention). Cas : encre,
+   violet, cuivre, prune, et un simple contour pour la preposition. */
+body{
+    --wt-action:#1C2430;
+    --wt-action-hover:#2A3442;
+    --wt-action-rgb:28,36,48;
+    --wt-sur-action:#FFFFFF;
+    --wt-accent-texte:#8F560B;
+    --wt-ambre:#E8A23A;
+    --wt-teinte:#F3ECDF;
+    --wt-bordure-accent:#DCCBAA;
+    --wt-icone:#1C2430;
+    --wt-encre-texte:#1C2430;
+    --g-der:#2D5DA8;
+    --g-die:#C2412D;
+    --g-das:#2F7D57;
+}
+body[data-theme="dark"]{
+    --wt-action:#E8A23A;
+    --wt-action-hover:#F0B456;
+    --wt-action-rgb:232,162,58;
+    --wt-sur-action:#1C2430;
+    --wt-accent-texte:#F0B456;
+    --wt-teinte:rgba(232,162,58,.14);
+    --wt-bordure-accent:rgba(232,162,58,.45);
+    --wt-icone:#F0B456;
+    --wt-encre-texte:#F2F2F6;
+    --g-der:#86A8E8;
+    --g-die:#F08A78;
+    --g-das:#74C69D;
+}
+
+/* --- Accueil : une seule famille pour toutes les tuiles. Le titre de la
+   section dit de quoi il s'agit ; cinq teintes en plus en faisaient un
+   patchwork. Le trait de section passe a l'ambre partout. */
+.orb[data-orbid] .orb-icon{background:#F3ECDF; border-color:#E6DCC9;}
+.orb[data-orbid] .orb-icon svg{stroke:var(--wt-icone);}
+.orb[data-orbid] .orb-badge{background:var(--wt-action); color:var(--wt-sur-action); box-shadow:none;}
+.orb-section[data-section] .sec-trait{background:var(--wt-ambre);}
+/* Le bandeau colle (sticky) doit avoir la couleur de la carte qu'il recouvre :
+   blanc a 55 % sur papier le jour, blanc a 6 % sur noir la nuit. Il gardait le
+   gris-bleu (et le marine la nuit) de l'ancienne palette. */
+.orb-section{
+    color:#6B6459;
+    background:linear-gradient(180deg, rgba(251,249,245,.97) 68%, rgba(251,249,245,0) 100%);
+}
+body[data-theme="dark"] .orb-section{
+    color:#A8A39A;
+    background:linear-gradient(180deg, rgba(15,15,15,.97) 68%, rgba(15,15,15,0) 100%);
+}
+body[data-theme="dark"] .orb[data-orbid] .orb-icon{background:rgba(232,162,58,.12); border-color:rgba(232,162,58,.30);}
+
+/* --- Carte de seance : l'encre dans les deux themes, c'est le seul aplat
+   fonce de l'ecran ; « Commencer » et le niveau choisi en ambre. */
+.orb-seance,
+body[data-theme="dark"] .orb-seance{background:#1C2430; border-color:#1C2430;}
+.orb-seance:hover{box-shadow:0 8px 20px rgba(28,36,48,.30);}
+body[data-theme="dark"] .orb-seance{border-color:rgba(232,162,58,.45);}
+body[data-theme="dark"] .orb-seance:hover{background:#232D3B;}
+.seance-go{background:#E8A23A; color:#1C2430;}
+.seance-niveau.on,
+body[data-theme="dark"] .orb-seance .seance-niveau.on{background:#E8A23A; border-color:#E8A23A; color:#1C2430;}
+
+/* --- Progression : l'ambre veut dire « tu avances ». */
+.carte-jour-fill{background:var(--wt-ambre);}
+
+/* --- Les cas, recolores pour ne plus croiser les genres (voir plus haut). */
+.hl-nominativ, .rektion-nominativ{background:rgba(28,36,48,.08); color:#1C2430; border-color:rgba(28,36,48,.30);}
+.hl-akkusativ, .rektion-akkusativ{background:rgba(91,63,166,.12); color:#5B3FA6; border-color:rgba(91,63,166,.35);}
+.hl-dativ, .rektion-dativ{background:rgba(163,90,31,.14); color:#8A4A1C; border-color:rgba(163,90,31,.38);}
+.rektion-akkusativ-dativ{background:rgba(79,91,110,.12); color:#3E4858; border-color:rgba(79,91,110,.35);}
+.hl-praeposition, .praeposition-badge{background:transparent; color:#1C2430; border:1px solid #8A8F99;}
+body[data-theme="dark"] .hl-nominativ, body[data-theme="dark"] .rektion-nominativ{background:rgba(242,242,246,.12); color:#E9E6DF; border-color:rgba(242,242,246,.35);}
+body[data-theme="dark"] .hl-akkusativ, body[data-theme="dark"] .rektion-akkusativ{background:rgba(150,120,230,.22); color:#C3B2EE; border-color:rgba(150,120,230,.5);}
+body[data-theme="dark"] .hl-dativ, body[data-theme="dark"] .rektion-dativ{background:rgba(200,120,60,.24); color:#E9B48A; border-color:rgba(200,120,60,.5);}
+body[data-theme="dark"] .rektion-akkusativ-dativ{background:rgba(150,165,190,.18); color:#C5CEDB; border-color:rgba(150,165,190,.45);}
+body[data-theme="dark"] .hl-praeposition, body[data-theme="dark"] .praeposition-badge{background:transparent; color:#E9E6DF; border-color:#8A8F99;}
+
+/* --- L'allemand en serif, l'interface dans sa police : on voit sans lire ce
+   qui est a apprendre et ce qui l'explique.
+   ⚠️ PAS DE hyphens:auto ICI. Les mots longs tiennent deja par
+   fitFlashcardWord(), qui reduit la taille ; une coupure automatique
+   passerait avant la reduction et changerait ce qui marche. La police
+   arrivant apres le premier rendu, document.fonts.ready relance la mesure. */
+.back-word, .article{
+    font-family:'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+.article{letter-spacing:.5px;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -5498,12 +5607,12 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 <svg width="0" height="0" style="position:absolute;">
     <defs>
         <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#3b6fe0"/>
-            <stop offset="100%" stop-color="#d3a9ff"/>
+            <stop offset="0%" stop-color="#E8A23A"/>
+            <stop offset="100%" stop-color="#F2C46D"/>
         </linearGradient>
         <linearGradient id="globalRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#6A3BFF"/>
-            <stop offset="100%" stop-color="#12B5C9"/>
+            <stop offset="0%" stop-color="#E8A23A"/>
+            <stop offset="100%" stop-color="#F2C46D"/>
         </linearGradient>
     </defs>
 </svg>
@@ -6049,7 +6158,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
                 <svg class="orb-ring" viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="19"></circle><circle id="ring-nomen" class="ring-fill" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4"></circle></svg>
-                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#8b5cf6" stroke="none"/></svg></div>
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" style="fill:var(--wt-icone)" stroke="none"/></svg></div>
             </div>
             <div>
                 <strong data-i18n="orb_nomen_title">Noms</strong>
@@ -6377,7 +6486,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v661</span>
+    <span class="subtitle-version">v662</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6425,7 +6534,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <h3 class="info-titre" data-i18n="ip_partie_seance">Ma séance du jour</h3>
     <div class="ip-bloc">
         <div class="ip-demo">
-            <span class="seance-compte" style="background:#2f62d6">12 / 40</span>
+            <span class="seance-compte" style="background:var(--wt-action)">12 / 40</span>
         </div>
         <div class="ip-texte">
             <h3 data-i18n="ip_seance_t">Le compte de la séance</h3>
@@ -6759,19 +6868,19 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="kasus_functions_title">Les 4 fonctions</strong>
         <div class="info-box" data-i18n-html="kasus_box_nominativ">
-            <strong style="color:#3b6fe0;">Nominativ</strong> — le sujet, qui fait l'action.<br>
+            <strong style="color:var(--wt-accent-texte);">Nominativ</strong> — le sujet, qui fait l'action.<br>
             <em>Der Mann liest.</em> (L'homme lit.)
         </div>
         <div class="info-box" data-i18n-html="kasus_box_akkusativ">
-            <strong style="color:#3b6fe0;">Akkusativ</strong> — l'objet direct, qui subit l'action.<br>
+            <strong style="color:var(--wt-accent-texte);">Akkusativ</strong> — l'objet direct, qui subit l'action.<br>
             <em>Ich sehe den Mann.</em> (Je vois l'homme.)
         </div>
         <div class="info-box" data-i18n-html="kasus_box_dativ">
-            <strong style="color:#3b6fe0;">Dativ</strong> — l'objet indirect, à qui/pour qui.<br>
+            <strong style="color:var(--wt-accent-texte);">Dativ</strong> — l'objet indirect, à qui/pour qui.<br>
             <em>Ich gebe dem Mann das Buch.</em> (Je donne le livre à l'homme.)
         </div>
         <div class="info-box" data-i18n-html="kasus_box_genitiv">
-            <strong style="color:#3b6fe0;">Genitiv</strong> — la possession, à qui appartient.<br>
+            <strong style="color:var(--wt-accent-texte);">Genitiv</strong> — la possession, à qui appartient.<br>
             <em>Das Buch des Mannes.</em> (Le livre de l'homme.)
         </div>
     </div>
@@ -6797,7 +6906,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n-html="art_table_def_title">1. Articles définis — <em>der / die / das</em> (le, la, les)</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td>
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
@@ -6814,7 +6923,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n-html="art_table_indef_title">2. Articles indéfinis — <em>ein / eine</em> (un, une)</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td>
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
@@ -6831,7 +6940,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n-html="art_table_neg_title">3. Article négatif — <em>kein / keine</em> (aucun, pas de)</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td>
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
@@ -6880,13 +6989,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="adj_decl_definite_title">Après un article défini (der/die/das…)</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">masc.</td><td style="padding:8px 4px;">fém.</td><td style="padding:8px 4px;">neutre</td><td style="padding:8px 4px;">pluriel</td>
                 </tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Nom.</td><td>-e</td><td>-e</td><td>-e</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Akk.</td><td>-en</td><td>-e</td><td>-e</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Dat.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Gen.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Nom.</td><td>-e</td><td>-e</td><td>-e</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Akk.</td><td>-en</td><td>-e</td><td>-e</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Dat.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Gen.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
             </table>
         </div>
         <small style="color:#576177;" data-i18n="adj_decl_definite_tip">Ex. : der kleine Hund · den kleinen Hund</small>
@@ -6896,13 +7005,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="adj_decl_indefinite_title">Après un article indéfini (ein/kein/mein…)</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">masc.</td><td style="padding:8px 4px;">fém.</td><td style="padding:8px 4px;">neutre</td><td style="padding:8px 4px;">pluriel</td>
                 </tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Nom.</td><td>-er</td><td>-e</td><td>-es</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Akk.</td><td>-en</td><td>-e</td><td>-es</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Dat.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Gen.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Nom.</td><td>-er</td><td>-e</td><td>-es</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Akk.</td><td>-en</td><td>-e</td><td>-es</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Dat.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Gen.</td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
             </table>
         </div>
         <small style="color:#576177;" data-i18n="adj_decl_indefinite_tip">Ex. : ein guter Wein · einen guten Wein · ein neues Auto</small>
@@ -6912,13 +7021,13 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="adj_decl_noarticle_title">Sans article</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">masc.</td><td style="padding:8px 4px;">fém.</td><td style="padding:8px 4px;">neutre</td><td style="padding:8px 4px;">pluriel</td>
                 </tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Nom.</td><td>-er</td><td>-e</td><td>-es</td><td>-e</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Akk.</td><td>-en</td><td>-e</td><td>-es</td><td>-e</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Dat.</td><td>-em</td><td>-er</td><td>-em</td><td>-en</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Gen.</td><td>-en</td><td>-er</td><td>-en</td><td>-er</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Nom.</td><td>-er</td><td>-e</td><td>-es</td><td>-e</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Akk.</td><td>-en</td><td>-e</td><td>-es</td><td>-e</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Dat.</td><td>-em</td><td>-er</td><td>-em</td><td>-en</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Gen.</td><td>-en</td><td>-er</td><td>-en</td><td>-er</td></tr>
             </table>
         </div>
         <small style="color:#576177;" data-i18n="adj_decl_noarticle_tip">Ex. : kaltes Wasser · mit heißem Tee · frische Milch</small>
@@ -6948,7 +7057,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; cursor:pointer;" onclick="togglePraepQuickRef()">
             <strong data-i18n="praep_quickref_title">Toutes les prépositions en un coup d'œil</strong>
-            <span id="praepQuickRefChevron" style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:none; border-radius:50%; background:rgba(59,111,224,.12); color:#3b6fe0; font-weight:800; font-size:22px; transition:transform .15s;">▾</span>
+            <span id="praepQuickRefChevron" style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; flex:none; border-radius:50%; background:rgba(var(--wt-action-rgb),.12); color:var(--wt-accent-texte); font-weight:800; font-size:22px; transition:transform .15s;">▾</span>
         </div>
         <div id="praepQuickRefGrid" class="hidden" style="display:flex; flex-direction:column; gap:8px; margin-top:12px;"></div>
     </div>
@@ -6957,43 +7066,43 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="praep_contract_title">Formes contractées</strong>
         <p style="margin-top:8px;" data-i18n="praep_contract_intro">Certaines prépositions se contractent avec l'article défini (dem/das/der) quand celui-ci n'est pas particulièrement souligné — très fréquent à l'oral comme à l'écrit.</p>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">an + dem → am</strong><br>
+            <strong style="color:var(--wt-accent-texte);">an + dem → am</strong><br>
             <em>Ich warte am Bahnhof.</em> <span data-i18n="praep_contract_am">(J'attends à la gare.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">an + das → ans</strong><br>
+            <strong style="color:var(--wt-accent-texte);">an + das → ans</strong><br>
             <em>Ich gehe ans Fenster.</em> <span data-i18n="praep_contract_ans">(Je vais à la fenêtre.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">auf + das → aufs</strong><br>
+            <strong style="color:var(--wt-accent-texte);">auf + das → aufs</strong><br>
             <em>Ich freue mich aufs Wochenende.</em> <span data-i18n="praep_contract_aufs">(Je me réjouis du week-end.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">bei + dem → beim</strong><br>
+            <strong style="color:var(--wt-accent-texte);">bei + dem → beim</strong><br>
             <em>Ich bin beim Arzt.</em> <span data-i18n="praep_contract_beim">(Je suis chez le médecin.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">für + das → fürs</strong><br>
+            <strong style="color:var(--wt-accent-texte);">für + das → fürs</strong><br>
             <em>Das ist gut fürs Team.</em> <span data-i18n="praep_contract_fuers">(C'est bon pour l'équipe.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">in + dem → im</strong><br>
+            <strong style="color:var(--wt-accent-texte);">in + dem → im</strong><br>
             <em>Ich bin im Büro.</em> <span data-i18n="praep_contract_im">(Je suis au bureau.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">in + das → ins</strong><br>
+            <strong style="color:var(--wt-accent-texte);">in + das → ins</strong><br>
             <em>Ich gehe ins Kino.</em> <span data-i18n="praep_contract_ins">(Je vais au cinéma.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">von + dem → vom</strong><br>
+            <strong style="color:var(--wt-accent-texte);">von + dem → vom</strong><br>
             <em>Ich komme vom Supermarkt.</em> <span data-i18n="praep_contract_vom">(Je viens du supermarché.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">zu + dem → zum</strong><br>
+            <strong style="color:var(--wt-accent-texte);">zu + dem → zum</strong><br>
             <em>Ich gehe zum Arzt.</em> <span data-i18n="praep_contract_zum">(Je vais chez le médecin.)</span>
         </div>
         <div class="info-box">
-            <strong style="color:#3b6fe0;">zu + der → zur</strong><br>
+            <strong style="color:var(--wt-accent-texte);">zu + der → zur</strong><br>
             <em>Ich gehe zur Schule.</em> <span data-i18n="praep_contract_zur">(Je vais à l'école.)</span>
         </div>
         <div class="info-box" data-i18n-html="praep_contract_warn">
@@ -7004,17 +7113,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="praep_fixedcase_title">Trois groupes à cas fixe</strong>
         <div class="info-box" data-i18n-html="praep_box_akkusativ">
-            <strong style="color:#3b6fe0;">Toujours Akkusativ</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Toujours Akkusativ</strong><br>
             bis, durch, für, gegen, ohne, um<br>
             <em>Das Geschenk ist für dich.</em> (Le cadeau est pour toi.)
         </div>
         <div class="info-box" data-i18n-html="praep_box_dativ">
-            <strong style="color:#3b6fe0;">Toujours Dativ</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Toujours Dativ</strong><br>
             ab, aus, außer, bei, gegenüber, mit, nach, seit, von, zu<br>
             <em>Ich komme aus der Schweiz.</em> (Je viens de Suisse.)
         </div>
         <div class="info-box" data-i18n-html="praep_box_genitiv">
-            <strong style="color:#3b6fe0;">Toujours Genitiv</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Toujours Genitiv</strong><br>
             während, trotz, wegen<br>
             <em>Wegen des Regens bleiben wir zu Hause.</em> (À cause de la pluie, on reste à la maison.)
         </div>
@@ -7026,11 +7135,11 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             in, an, auf, über, unter, vor, hinter, neben, zwischen
         </div>
         <div class="info-box" data-i18n-html="praep_wo_box">
-            <strong style="color:#3b6fe0;">Wo ? (position) → Dativ</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Wo ? (position) → Dativ</strong><br>
             <em>Das Buch liegt auf dem Tisch.</em> (Le livre est sur la table — pas de mouvement.)
         </div>
         <div class="info-box" data-i18n-html="praep_wohin_box">
-            <strong style="color:#3b6fe0;">Wohin ? (mouvement) → Akkusativ</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Wohin ? (mouvement) → Akkusativ</strong><br>
             <em>Ich lege das Buch auf den Tisch.</em> (Je pose le livre sur la table — déplacement vers un endroit.)
         </div>
         <small style="color:#576177;" data-i18n="praep_wechsel_tip">Astuce : si tu peux répondre à « où est-ce que ça va ? » avec un déplacement, c'est Akkusativ. Si ça décrit juste où quelque chose se trouve, c'est Dativ.</small>
@@ -7039,17 +7148,17 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="praep_position_title">Verbes de position (Wo?/Wohin?)</strong>
         <div class="info-box" data-i18n-html="praep_position_wo_box">
-            <strong style="color:#3b6fe0;">Wo ? → Dativ</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Wo ? → Dativ</strong><br>
             <em>Das Buch liegt auf dem Tisch.</em> (Le livre est sur la table — état, pas de mouvement.)
         </div>
         <div class="info-box" data-i18n-html="praep_position_wohin_box">
-            <strong style="color:#3b6fe0;">Wohin ? → Akkusativ</strong><br>
+            <strong style="color:var(--wt-accent-texte);">Wohin ? → Akkusativ</strong><br>
             <em>Ich lege das Buch auf den Tisch.</em> (Je pose le livre sur la table — je le déplace vers cet endroit.)
         </div>
         <div class="info-box" style="overflow-x:auto;">
-            <strong style="color:#3b6fe0;" data-i18n="praep_position_wo_table_title">Wo ? · Dativ — irréguliers (verbes forts)</strong>
+            <strong style="color:var(--wt-accent-texte);" data-i18n="praep_position_wo_table_title">Wo ? · Dativ — irréguliers (verbes forts)</strong>
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px; margin-top:6px;">
-                <tr style="color:#3b6fe0; font-weight:800;">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;">
                     <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">Präsens</td><td style="padding:8px 4px;">Perfekt</td><td style="padding:8px 4px;">Präteritum</td>
                 </tr>
                 <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">stehen</td><td>steht</td><td>hat gestanden</td><td>stand</td></tr>
@@ -7059,9 +7168,9 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
             </table>
         </div>
         <div class="info-box" style="overflow-x:auto;">
-            <strong style="color:#3b6fe0;" data-i18n="praep_position_wohin_table_title">Wohin ? · Akkusativ — réguliers (verbes faibles)</strong>
+            <strong style="color:var(--wt-accent-texte);" data-i18n="praep_position_wohin_table_title">Wohin ? · Akkusativ — réguliers (verbes faibles)</strong>
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px; margin-top:6px;">
-                <tr style="color:#3b6fe0; font-weight:800;">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;">
                     <td style="padding:8px 4px;"></td><td style="padding:8px 4px;">Präsens</td><td style="padding:8px 4px;">Perfekt</td><td style="padding:8px 4px;">Präteritum</td>
                 </tr>
                 <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700;">stellen</td><td>stellt</td><td>hat gestellt</td><td>stellte</td></tr>
@@ -7105,55 +7214,55 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="partikeln_most_useful_title">Les particules les plus utiles</strong>
         <div class="info-box" data-i18n-html="partikel_doch">
-            <strong style="color:#3b6fe0;">doch</strong> — insistance amicale, encouragement<br>
+            <strong style="color:var(--wt-accent-texte);">doch</strong> — insistance amicale, encouragement<br>
             <em>Mach das doch!</em> (Vas-y, fais-le donc !)
         </div>
         <div class="info-box" data-i18n-html="partikel_mal">
-            <strong style="color:#3b6fe0;">mal</strong> — adoucit une demande, la rend plus légère<br>
+            <strong style="color:var(--wt-accent-texte);">mal</strong> — adoucit une demande, la rend plus légère<br>
             <em>Komm mal her!</em> (Viens un peu par ici.)
         </div>
         <div class="info-box" data-i18n-html="partikel_denn">
-            <strong style="color:#3b6fe0;">denn</strong> — curiosité informelle, intérêt amical<br>
+            <strong style="color:var(--wt-accent-texte);">denn</strong> — curiosité informelle, intérêt amical<br>
             <em>Was machst du denn?</em> (Qu'est-ce que tu fais donc ?)
         </div>
         <div class="info-box" data-i18n-html="partikel_eben_halt">
-            <strong style="color:#3b6fe0;">eben / halt</strong> — résignation, « c'est comme ça »<br>
+            <strong style="color:var(--wt-accent-texte);">eben / halt</strong> — résignation, « c'est comme ça »<br>
             <em>Das ist eben so.</em> (C'est comme ça, un point c'est tout.)
         </div>
         <div class="info-box" data-i18n-html="partikel_wohl">
-            <strong style="color:#3b6fe0;">wohl</strong> — supposition probable, pas totalement certaine<br>
+            <strong style="color:var(--wt-accent-texte);">wohl</strong> — supposition probable, pas totalement certaine<br>
             <em>Das wird wohl stimmen.</em> (Ça doit sûrement être vrai.)
         </div>
         <div class="info-box" data-i18n-html="partikel_ja">
-            <strong style="color:#3b6fe0;">ja</strong> — évidence partagée, quelque chose de connu des deux locuteurs<br>
+            <strong style="color:var(--wt-accent-texte);">ja</strong> — évidence partagée, quelque chose de connu des deux locuteurs<br>
             <em>Das ist ja klar!</em> (Mais c'est évident, voyons !)
         </div>
         <div class="info-box" data-i18n-html="partikel_schon">
-            <strong style="color:#3b6fe0;">schon</strong> — rassurance, encouragement confiant<br>
+            <strong style="color:var(--wt-accent-texte);">schon</strong> — rassurance, encouragement confiant<br>
             <em>Das schaffst du schon!</em> (T'inquiète, tu vas y arriver.)
         </div>
         <div class="info-box" data-i18n-html="partikel_aber">
-            <strong style="color:#3b6fe0;">aber</strong> — surprise, emphase admirative<br>
+            <strong style="color:var(--wt-accent-texte);">aber</strong> — surprise, emphase admirative<br>
             <em>Das ist aber schön!</em> (Ça alors, que c'est beau !)
         </div>
         <div class="info-box" data-i18n-html="partikel_eigentlich">
-            <strong style="color:#3b6fe0;">eigentlich</strong> — curiosité, changement de sujet<br>
+            <strong style="color:var(--wt-accent-texte);">eigentlich</strong> — curiosité, changement de sujet<br>
             <em>Was machst du eigentlich?</em> (Au fait, qu'est-ce que tu fais ?)
         </div>
         <div class="info-box" data-i18n-html="partikel_bloss_nur">
-            <strong style="color:#3b6fe0;">bloß / nur</strong> — urgence, mise en garde<br>
+            <strong style="color:var(--wt-accent-texte);">bloß / nur</strong> — urgence, mise en garde<br>
             <em>Geh bloß nicht dahin!</em> (Ne va surtout pas là-bas !)
         </div>
         <div class="info-box" data-i18n-html="partikel_ruhig">
-            <strong style="color:#3b6fe0;">ruhig</strong> — permission rassurante<br>
+            <strong style="color:var(--wt-accent-texte);">ruhig</strong> — permission rassurante<br>
             <em>Du kannst ruhig fragen.</em> (Tu peux demander sans problème.)
         </div>
         <div class="info-box" data-i18n-html="partikel_einfach">
-            <strong style="color:#3b6fe0;">einfach</strong> — simplicité, désinvolture<br>
+            <strong style="color:var(--wt-accent-texte);">einfach</strong> — simplicité, désinvolture<br>
             <em>Sag es einfach!</em> (Dis-le, tout simplement.)
         </div>
         <div class="info-box" data-i18n-html="partikel_vielleicht">
-            <strong style="color:#3b6fe0;">vielleicht</strong> — exaspération, emphase forte (pas « peut-être » ici)<br>
+            <strong style="color:var(--wt-accent-texte);">vielleicht</strong> — exaspération, emphase forte (pas « peut-être » ici)<br>
             <em>Das ist vielleicht ein Chaos!</em> (Quel bazar, quand même !)
         </div>
     </div>
@@ -7656,16 +7765,16 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="relativ_table_title">Tableau de déclinaison</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_number">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_number">
                     <td style="padding:8px 4px;"></td>
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
                     <td style="padding:8px 4px;">neutre</td>
                     <td style="padding:8px 4px;">pluriel</td>
                 </tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Nom.</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Akk.</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>
-                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">Dat.</td><td>dem</td><td>der</td><td>dem</td><td style="color:#be185d; font-weight:800;">denen</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Nom.</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Akk.</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>
+                <tr style="border-top:1px solid #e7ebf3;"><td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">Dat.</td><td>dem</td><td>der</td><td>dem</td><td style="color:#be185d; font-weight:800;">denen</td></tr>
             </table>
         </div>
         <small style="color:#576177;" data-i18n="relativ_table_tip">La seule case qui change vraiment : le datif pluriel (denen). Tout le reste = les articles définis.</small>
@@ -7720,7 +7829,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
         <strong data-i18n="relativ_gen_table_title">Tableau de déclinaison</strong>
         <div class="info-box" style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-                <tr style="color:#3b6fe0; font-weight:800;" data-i18n-html="table_header_gender_4">
+                <tr style="color:var(--wt-accent-texte); font-weight:800;" data-i18n-html="table_header_gender_4">
                     <td style="padding:8px 4px;">masc.</td>
                     <td style="padding:8px 4px;">fém.</td>
                     <td style="padding:8px 4px;">neutre</td>
@@ -7824,7 +7933,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="possessiv_base_title">Les possessifs de base</strong>
         <div class="info-box" data-i18n-html="possessiv_base">
-            <strong style="color:#3b6fe0;">mein</strong> (mon/ma/mes) · <strong style="color:#3b6fe0;">dein</strong> (ton/ta/tes) · <strong style="color:#3b6fe0;">sein</strong> (son/sa/ses — à lui) · <strong style="color:#3b6fe0;">ihr</strong> (son/sa/ses — à elle) · <strong style="color:#3b6fe0;">unser</strong> (notre/nos) · <strong style="color:#3b6fe0;">euer</strong> (votre/vos, tutoiement pluriel) · <strong style="color:#3b6fe0;">ihr</strong> (leur/leurs) · <strong style="color:#3b6fe0;">Ihr</strong> (votre/vos, vouvoiement)
+            <strong style="color:var(--wt-accent-texte);">mein</strong> (mon/ma/mes) · <strong style="color:var(--wt-accent-texte);">dein</strong> (ton/ta/tes) · <strong style="color:var(--wt-accent-texte);">sein</strong> (son/sa/ses — à lui) · <strong style="color:var(--wt-accent-texte);">ihr</strong> (son/sa/ses — à elle) · <strong style="color:var(--wt-accent-texte);">unser</strong> (notre/nos) · <strong style="color:var(--wt-accent-texte);">euer</strong> (votre/vos, tutoiement pluriel) · <strong style="color:var(--wt-accent-texte);">ihr</strong> (leur/leurs) · <strong style="color:var(--wt-accent-texte);">Ihr</strong> (votre/vos, vouvoiement)
         </div>
     </div>
 
@@ -7880,34 +7989,34 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="zuinf_never_title">Jamais de « zu »</strong>
         <div class="info-box" data-i18n-html="zuinf_never_modal">
-            Les <strong style="color:#3b6fe0;">verbes de modalité</strong> (können, müssen, dürfen, sollen, wollen, mögen) n'utilisent jamais « zu ».<br>
+            Les <strong style="color:var(--wt-accent-texte);">verbes de modalité</strong> (können, müssen, dürfen, sollen, wollen, mögen) n'utilisent jamais « zu ».<br>
             <em>Ich kann gut schwimmen.</em> (Je sais bien nager.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_never_movement">
-            Les verbes de <strong style="color:#3b6fe0;">mouvement</strong> (gehen, kommen) se comportent comme des modaux quand ils annoncent une activité qu'on va faire.<br>
+            Les verbes de <strong style="color:var(--wt-accent-texte);">mouvement</strong> (gehen, kommen) se comportent comme des modaux quand ils annoncent une activité qu'on va faire.<br>
             <em>Ich gehe schwimmen.</em> (Je vais nager.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_wahrnehmung">
-            Les <strong style="color:#3b6fe0;">verbes de perception</strong> — <em>Wahrnehmungsverben</em> — (sehen, hören, spüren, fühlen) forment une construction « accusatif + infinitif » : on perçoit quelqu'un ou quelque chose <strong>en train de</strong> faire une action, comme un seul bloc verbal, donc pas de « zu ».<br>
+            Les <strong style="color:var(--wt-accent-texte);">verbes de perception</strong> — <em>Wahrnehmungsverben</em> — (sehen, hören, spüren, fühlen) forment une construction « accusatif + infinitif » : on perçoit quelqu'un ou quelque chose <strong>en train de</strong> faire une action, comme un seul bloc verbal, donc pas de « zu ».<br>
             <em>Ich sehe die Kinder spielen.</em> (Je vois les enfants jouer.)<br>
             <em>Ich höre ihn singen.</em> (Je l'entends chanter.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_lassen">
-            <strong style="color:#3b6fe0;">lassen</strong> suit la même logique, dans deux sens courants : faire faire quelque chose par quelqu'un d'autre (causatif), ou laisser faire.<br>
+            <strong style="color:var(--wt-accent-texte);">lassen</strong> suit la même logique, dans deux sens courants : faire faire quelque chose par quelqu'un d'autre (causatif), ou laisser faire.<br>
             <em>Ich lasse mein Auto reparieren.</em> (Je fais réparer ma voiture.)<br>
             <em>Lass mich das machen!</em> (Laisse-moi le faire !)
         </div>
         <div class="info-box" data-i18n-html="zuinf_bleiben">
-            <strong style="color:#3b6fe0;">bleiben</strong>, combiné à un verbe de position (stehen, sitzen, liegen), décrit un état qui continue — encore un bloc verbal sans « zu ».<br>
+            <strong style="color:var(--wt-accent-texte);">bleiben</strong>, combiné à un verbe de position (stehen, sitzen, liegen), décrit un état qui continue — encore un bloc verbal sans « zu ».<br>
             <em>Er blieb stehen.</em> (Il s'est arrêté / est resté debout.)<br>
             <em>Bleib sitzen!</em> (Reste assis !)
         </div>
         <div class="info-box" data-i18n-html="zuinf_finden">
-            <strong style="color:#3b6fe0;">finden</strong>, quand il signifie « surprendre / rencontrer quelqu'un en train de faire quelque chose », suit la même construction que les verbes de perception.<br>
+            <strong style="color:var(--wt-accent-texte);">finden</strong>, quand il signifie « surprendre / rencontrer quelqu'un en train de faire quelque chose », suit la même construction que les verbes de perception.<br>
             <em>Ich fand ihn schlafen.</em> (Je l'ai trouvé en train de dormir.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_haben">
-            <strong style="color:#3b6fe0;">haben</strong>, combiné à un verbe de position, décrit un état — surtout à l'oral. Là aussi, pas de « zu ».<br>
+            <strong style="color:var(--wt-accent-texte);">haben</strong>, combiné à un verbe de position, décrit un état — surtout à l'oral. Là aussi, pas de « zu ».<br>
             <em>Ich habe das Bild an der Wand hängen.</em> (J'ai le tableau accroché au mur.)
         </div>
     </div>
@@ -7915,15 +8024,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="zuinf_always_title">Avec « zu »</strong>
         <div class="info-box" data-i18n-html="zuinf_always_list">
-            La majorité des autres verbes exigent « zu » : <strong style="color:#3b6fe0;">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br>
+            La majorité des autres verbes exigent « zu » : <strong style="color:var(--wt-accent-texte);">versuchen, vergessen, beginnen, hoffen, vorschlagen, sich freuen, planen, beschließen</strong>…<br>
             <em>Ich versuche, Deutsch zu lernen.</em> (J'essaie d'apprendre l'allemand.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_separable">
-            Avec un <strong style="color:#3b6fe0;">verbe à particule séparable</strong>, « zu » s'insère entre la particule et le radical — un seul mot.<br>
+            Avec un <strong style="color:var(--wt-accent-texte);">verbe à particule séparable</strong>, « zu » s'insère entre la particule et le radical — un seul mot.<br>
             <em>anfangen</em> → <em>Ich habe vor, an<strong>zu</strong>fangen.</em> (J'ai l'intention de commencer.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_brauchen">
-            <strong style="color:#3b6fe0;">brauchen</strong> (au négatif) exige aussi « zu », contrairement aux modaux.<br>
+            <strong style="color:var(--wt-accent-texte);">brauchen</strong> (au négatif) exige aussi « zu », contrairement aux modaux.<br>
             <em>Du brauchst nicht zu kommen.</em> (Tu n'as pas besoin de venir.)
         </div>
     </div>
@@ -7931,15 +8040,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
     <div class="card">
         <strong data-i18n="zuinf_constructions_title">Constructions à deux mots</strong>
         <div class="info-box" data-i18n-html="zuinf_umzu">
-            <strong style="color:#3b6fe0;">um … zu</strong> — le but, « afin de »<br>
+            <strong style="color:var(--wt-accent-texte);">um … zu</strong> — le but, « afin de »<br>
             <em>Ich lerne Deutsch, um in Berlin zu arbeiten.</em> (J'apprends l'allemand afin de travailler à Berlin.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_ohnezu">
-            <strong style="color:#3b6fe0;">ohne … zu</strong> — l'absence, « sans »<br>
+            <strong style="color:var(--wt-accent-texte);">ohne … zu</strong> — l'absence, « sans »<br>
             <em>Er ging, ohne zu grüßen.</em> (Il est parti sans dire bonjour.)
         </div>
         <div class="info-box" data-i18n-html="zuinf_stattzu">
-            <strong style="color:#3b6fe0;">(an)statt … zu</strong> — la substitution, « au lieu de »<br>
+            <strong style="color:var(--wt-accent-texte);">(an)statt … zu</strong> — la substitution, « au lieu de »<br>
             <em>Sie las, statt zu schlafen.</em> (Elle a lu au lieu de dormir.)
         </div>
     </div>
@@ -17475,7 +17584,7 @@ const PREP_DIAGRAM_URL = LANGUE_ENSEIGNEE.donnees + "video/prep.JPG";
 const praepTheme = {
   id: "praep_vokabular",
   name: "Prépositions",
-  svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" fill="#3b6fe0" stroke="none"/></svg>',
+  svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" style="fill:var(--wt-icone)" stroke="none"/></svg>',
   words: [
     ["für", "pour", "toujours Akkusativ", "Das Geschenk ist für dich.", "Le cadeau est pour toi.", "for", "The gift is for you.", "always Akkusativ"],
     ["ohne", "sans", "toujours Akkusativ", "Ich trinke Kaffee ohne Zucker.", "Je bois le café sans sucre.", "without", "I drink coffee without sugar.", "always Akkusativ"],
@@ -17515,12 +17624,12 @@ const praepTheme = {
 // cas colorée plutôt qu'une icône décorative, pour renforcer la notion de cas
 // plutôt que juste illustrer le sens du mot.
 const PRAEP_CASE_BADGE = {
-  "toujours Akkusativ": { label: "Akkusativ", color: "#3b82f6" },
-  "toujours Dativ": { label: "Dativ", color: "#10b981" },
-  "toujours Genitiv": { label: "Genitiv", color: "#a78bfa" }
+  "toujours Akkusativ": { label: "Akkusativ", color: "#5B3FA6" },
+  "toujours Dativ": { label: "Dativ", color: "#A35A1F" },
+  "toujours Genitiv": { label: "Genitiv", color: "#7A3B69" }
 };
 function praepCaseBadgeFor(catFr){
-    return PRAEP_CASE_BADGE[catFr] || { label: "Wechsel", color: "#f59e0b" };
+    return PRAEP_CASE_BADGE[catFr] || { label: "Wechsel", color: "#4F5B6E" };
 }
 
 // Pour les 9 Wechselpräpositionen : une phrase Wo ? (Dativ, position -- reprend
@@ -17580,7 +17689,7 @@ function renderPraepQuickRef(){
         return `
         <div class="info-box" style="margin-top:0;">
             <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                <strong style="color:#3b6fe0;">${wort}</strong> — ${traductionConnue}
+                <strong style="color:var(--wt-accent-texte);">${wort}</strong> — ${traductionConnue}
                 <span style="flex:none; font-size:10px; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:#fff; background:${badge.color}; padding:3px 8px; border-radius:20px;">${badge.label}</span>
             </div>
             ${exemplesHtml}
@@ -20306,7 +20415,7 @@ function renderVerbeLevels(){
                 <div class="theme-icon">🎲</div>
                 <div>
                     <div class="theme-name">${t('random_verbs_label')}</div>
-                    <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${t('all_levels')}</div>
+                    <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${t('all_levels')}</div>
                 </div>
             </div>
         </div>
@@ -20335,7 +20444,7 @@ function renderVerbeLevels(){
                     <div class="theme-icon">${verbeTheme.svg}</div>
                     <div>
                         <div class="theme-name">${tf('level_n_label', {lvl})}</div>
-                        <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${lvl}</div>
+                        <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${lvl}</div>
                     </div>
                 </div>
                 <div class="theme-count">${mastered}/${total}</div>
@@ -20473,7 +20582,7 @@ function renderAdjektiveLevels(){
                 <div class="theme-icon">🎲</div>
                 <div>
                     <div class="theme-name">${t('random_words_label')}</div>
-                    <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${t('all_levels')}</div>
+                    <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${t('all_levels')}</div>
                 </div>
             </div>
         </div>
@@ -20501,7 +20610,7 @@ function renderAdjektiveLevels(){
                     <div class="theme-icon">${adjektiveTheme.svg}</div>
                     <div>
                         <div class="theme-name">${tf('level_n_label', {lvl})}</div>
-                        <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${lvl}</div>
+                        <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${lvl}</div>
                     </div>
                 </div>
                 <div class="theme-count">${mastered}/${total}</div>
@@ -20587,7 +20696,7 @@ function updateOrbBadges(){
 const ORB_ICONS = {
     reviser: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
     dossier: '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>',
-    ale: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="#3b6fe0" stroke="none"/><circle cx="15" cy="9" r="1" fill="#3b6fe0" stroke="none"/><circle cx="9" cy="15" r="1" fill="#3b6fe0" stroke="none"/><circle cx="15" cy="15" r="1" fill="#3b6fe0" stroke="none"/><circle cx="12" cy="12" r="1" fill="#3b6fe0" stroke="none"/></svg>',
+    ale: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" style="fill:var(--wt-icone)" stroke="none"/><circle cx="15" cy="9" r="1" style="fill:var(--wt-icone)" stroke="none"/><circle cx="9" cy="15" r="1" style="fill:var(--wt-icone)" stroke="none"/><circle cx="15" cy="15" r="1" style="fill:var(--wt-icone)" stroke="none"/><circle cx="12" cy="12" r="1" style="fill:var(--wt-icone)" stroke="none"/></svg>',
     exercice: '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>',
     carte: '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>',
     casque: '<svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg>',
@@ -21047,8 +21156,8 @@ const ENGLISH_GRAMMAR_CONTENT = {
         html: `
         <div class="card">
             <strong>Der unbestimmte Artikel: a / an</strong>
-            <div class="info-box"><strong style="color:#3b6fe0;">a</strong> — vor einem Konsonantenlaut<br><em>a dog, a university, a car</em> (achte auf den <strong>Laut</strong>, nicht den Buchstaben: "university" beginnt mit einem "j"-Laut!)</div>
-            <div class="info-box"><strong style="color:#3b6fe0;">an</strong> — vor einem Vokallaut<br><em>an apple, an hour, an idea</em> ("hour" beginnt stumm mit einem Vokallaut!)</div>
+            <div class="info-box"><strong style="color:var(--wt-accent-texte);">a</strong> — vor einem Konsonantenlaut<br><em>a dog, a university, a car</em> (achte auf den <strong>Laut</strong>, nicht den Buchstaben: "university" beginnt mit einem "j"-Laut!)</div>
+            <div class="info-box"><strong style="color:var(--wt-accent-texte);">an</strong> — vor einem Vokallaut<br><em>an apple, an hour, an idea</em> ("hour" beginnt stumm mit einem Vokallaut!)</div>
         </div>
         <div class="card">
             <strong>Der bestimmte Artikel: the</strong>
@@ -22030,7 +22139,7 @@ function renderPruefungNiveauBar(){
     const bouton = (val, libelle, n) => {
         const actif = (val === "ALL") ? (pruefungNiveau === null)
                                       : (pruefungNiveau === val);
-        const style = actif ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+        const style = actif ? "flex:1; min-width:0; border-color:var(--wt-action); color:var(--wt-accent-texte); font-weight:700;"
                             : "flex:1; min-width:0;";
         return `<button class="secondary" style="${style}" onclick="selectPruefungNiveau('${val}')">${libelle} (${n})</button>`;
     };
@@ -23243,7 +23352,7 @@ function renderAdminRequests(users){
         <div style="padding:7px 0; border-top:1px solid rgba(30,41,59,.1);">
             <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;">
                 <strong>${d.mot}</strong>
-                <small style="color:#3b6fe0; font-weight:700; white-space:nowrap;">${d.qui.length}×</small>
+                <small style="color:var(--wt-accent-texte); font-weight:700; white-space:nowrap;">${d.qui.length}×</small>
             </div>
             <small style="color:#576177;">${d.sens}</small><br>
             <small style="color:#8b93a3;">${d.qui.join(", ")}</small>
@@ -23338,7 +23447,7 @@ async function renderAdminUsersList(){
                         <div style="font-weight:700;">${titre}</div>
                         <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { vus: u.vusCount === undefined ? '?' : u.vusCount, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
                         <br><small style="color:${joursDepuis > 7 ? '#d97706' : '#576177'}; font-weight:${joursDepuis > 7 ? '700' : '400'};">${vuTexte}</small>
-                        ${u.retoursUsager ? `<div style="margin-top:8px; padding:8px 10px; border-radius:8px; background:rgba(59,111,224,.08); font-size:12px; color:#1e2433; white-space:pre-wrap; word-break:break-word;">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : ""}
+                        ${u.retoursUsager ? `<div style="margin-top:8px; padding:8px 10px; border-radius:8px; background:rgba(var(--wt-action-rgb),.08); font-size:12px; color:#1e2433; white-space:pre-wrap; word-break:break-word;">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : ""}
                     </div>
                     <button class="secondary" style="min-height:auto; padding:6px 10px; font-size:12px; white-space:nowrap;" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
@@ -23459,7 +23568,7 @@ function remplirTableauxArticles(){
         if(!corps) return;
         corps.innerHTML = cas.map(c =>
             `<tr style="border-top:1px solid #e7ebf3;">` +
-            `<td style="padding:8px 4px; font-weight:700; color:#3b6fe0;">${etiquettes[c]}</td>` +
+            `<td style="padding:8px 4px; font-weight:700; color:var(--wt-accent-texte);">${etiquettes[c]}</td>` +
             genres.map(g => {
                 const forme = ARTICLE_FORMES[famille][c][g];
                 return forme ? `<td>${forme}</td>` : `<td style="color:#94a3b8;">—</td>`;
@@ -23601,7 +23710,7 @@ function renderRedewendungenBars(){
         mots.forEach(w => { const n = w[8] || ""; if(n) parNiveau[n] = (parNiveau[n] || 0) + 1; });
         const bouton = (val, libelle, n) => {
             const actif = redewendungenSelectedLevel === val;
-            const style = actif ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+            const style = actif ? "flex:1; min-width:0; border-color:var(--wt-action); color:var(--wt-accent-texte); font-weight:700;"
                                 : "flex:1; min-width:0;";
             return `<button class="secondary" style="${style}" onclick="selectRedewendungenLevel('${val}')">${libelle} (${n})</button>`;
         };
@@ -23697,7 +23806,7 @@ function renderAdverbienLevelBar(){
             // Le niveau choisi est mis en avant : sans repere visuel, la liste
             // de familles en dessous changerait sans qu'on sache pourquoi.
             const style = actif
-                ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+                ? "flex:1; min-width:0; border-color:var(--wt-action); color:var(--wt-accent-texte); font-weight:700;"
                 : "flex:1; min-width:0;";
             return `<button class="secondary" style="${style}" onclick="selectAdverbienLevel('${val}')">${libelle} (${n})</button>`;
         };
@@ -23831,7 +23940,7 @@ function renderEnglishModuleBars(){
         const bouton = (val, libelle, n) => {
             const actif = englishModuleLevel === val;
             const style = actif
-                ? "flex:1; min-width:0; border-color:#3b6fe0; color:#3b6fe0; font-weight:700;"
+                ? "flex:1; min-width:0; border-color:var(--wt-action); color:var(--wt-accent-texte); font-weight:700;"
                 : "flex:1; min-width:0;";
             return `<button class="secondary" style="${style}" onclick="selectEnglishModuleLevel('${val}')">${libelle} (${n})</button>`;
         };
@@ -24052,7 +24161,7 @@ function startPartikelnVokabular(niveau){
     loadFlashcard();
 }
 
-const NOMEN_SVG = '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" fill="#3b6fe0" stroke="none"/></svg>';
+const NOMEN_SVG = '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h6l10 10-8 8L3 13V7z"/><circle cx="8" cy="9" r="1.1" style="fill:var(--wt-icone)" stroke="none"/></svg>';
 
 function openNomenNiveau(){
     loadThemesJson();
@@ -24131,7 +24240,7 @@ function renderNomenLevels(){
                 <div class="theme-icon">🎲</div>
                 <div>
                     <div class="theme-name">${t('random_nouns_label')}</div>
-                    <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${t('all_levels')}</div>
+                    <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${t('all_levels')}</div>
                 </div>
             </div>
         </div>
@@ -24161,7 +24270,7 @@ function renderNomenLevels(){
                     <div class="theme-icon">${NOMEN_SVG}</div>
                     <div>
                         <div class="theme-name">${tf('level_n_label', {lvl})}</div>
-                        <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${lvl}</div>
+                        <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${lvl}</div>
                     </div>
                 </div>
                 <div class="theme-count">${mastered}/${total}</div>
@@ -24308,7 +24417,7 @@ function filterAndRenderThemes(){
                 <div class="theme-icon">🎲</div>
                 <div>
                     <div class="theme-name">${t('random_words_label')}</div>
-                    <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${selectedLevel === "ALL" ? t('all_levels') : selectedLevel}</div>
+                    <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${selectedLevel === "ALL" ? t('all_levels') : selectedLevel}</div>
                 </div>
             </div>
         </div>
@@ -24371,7 +24480,7 @@ function filterAndRenderThemes(){
                     <div class="theme-icon">${theme.svg || ''}</div>
                     <div>
                         <div class="theme-name">${theme.name}</div>
-                        <div style="font-size:11px; color:#3b6fe0; margin-top:2px;">${niveauxDuTheme.join(' · ')}</div>
+                        <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${niveauxDuTheme.join(' · ')}</div>
                     </div>
                 </div>
                 <div class="theme-count">${mastered}/${total}</div>
@@ -26318,7 +26427,7 @@ function ecouteMenuRetour(){ goHome(); }
 
 function ecouteBoutonBarre(actif, onclick, libelle, sous, largeur){
     const style = (largeur || "flex:1; min-width:0;")
-        + (actif ? " border-color:#3b6fe0; color:#3b6fe0; font-weight:700;" : "");
+        + (actif ? " border-color:var(--wt-action); color:var(--wt-accent-texte); font-weight:700;" : "");
     const bas = sous ? `<br><small style="opacity:.75; font-weight:400;">${sous}</small>` : "";
     return `<button class="secondary" style="${style}" onclick="${onclick}">${libelle}${bas}</button>`;
 }
@@ -27223,7 +27332,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 661;
+const APP_VERSION = 662;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
