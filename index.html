@@ -5640,6 +5640,22 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
 .carte-rektion{margin:4px 0 6px; text-align:center;}
 .carte-rektion > div{margin-bottom:0 !important;}
 .carte-rektion .rektion-badge{margin-bottom:0;}
+
+/* --- La serie de jours sur l'accueil (v665) : une pastille ambre centree,
+   flamme dessinee au trait comme les icones des tuiles (pas d'emoji). */
+#serieAccueil{display:flex; justify-content:center; margin:0 0 10px;}
+#serieAccueil.hidden{display:none;}
+#serieAccueil .home-stat-cote{
+    flex-direction:row; align-items:center; gap:6px;
+    padding:4px 12px 4px 10px; border-radius:999px;
+    background:rgba(232,162,58,.16); border:1px solid rgba(232,162,58,.35);
+}
+#serieAccueil .home-stat-ico svg{width:17px; height:17px; fill:none; stroke:#B9770E; stroke-width:1.8; stroke-linejoin:round; display:block;}
+#serieAccueil .home-stat-val{font-size:15px; color:#1C2430;}
+#serieAccueil .home-stat-lib{font-size:12.5px; color:#6B5A3E; font-weight:600;}
+body[data-theme="dark"] #serieAccueil .home-stat-ico svg{stroke:#F0B456;}
+body[data-theme="dark"] #serieAccueil .home-stat-val{color:#F2F2F6;}
+body[data-theme="dark"] #serieAccueil .home-stat-lib{color:#E9C89A;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -5998,11 +6014,15 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
             </div>
         </div>
 
-        <div class="global-progress-row hidden">
+        <!-- LA SERIE DE JOURS REVIENT (v665), demande de Jacques. La ligne etait
+             masquee entiere depuis que la mosaique a remplace l'anneau. Elle ne
+             s'affiche qu'a partir d'UN jour : « 0 jour » au retour de vacances
+             serait un indicateur qui punit l'absence -- ce qu'on a retire ailleurs. -->
+        <div id="serieAccueil" class="global-progress-row hidden">
             <div class="home-stat-cote">
-                <div class="home-stat-ico">🔥</div>
+                <div class="home-stat-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg></div>
                 <div class="home-stat-val"><span id="streakCount">0</span></div>
-                <div class="home-stat-lib" data-i18n="home_streak_unit">jours</div>
+                <div class="home-stat-lib" id="serieUnite">jours</div>
             </div>
 
             <!-- ⚠️ MASQUE, PAS SUPPRIME. « Cette semaine » mesure une VITESSE :
@@ -6536,7 +6556,7 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v664</span>
+    <span class="subtitle-version">v665</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9434,6 +9454,7 @@ const I18N = {
         srs_etat_3: "j'y suis presque",
         srs_etat_4: "je maîtrise",
         home_streak_unit: "jours",
+        home_streak_unit_one: "jour",
         home_week_unit: "cette semaine",
         en_module_mastered_label: "✅ Maîtrisé",
         en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
@@ -10425,6 +10446,7 @@ const I18N = {
         srs_etat_3: "almost there",
         srs_etat_4: "I know it",
         home_streak_unit: "days",
+        home_streak_unit_one: "day",
         home_week_unit: "this week",
         en_module_mastered_label: "✅ Mastered",
         en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
@@ -11418,6 +11440,7 @@ const I18N = {
         srs_etat_3: "neredeyse tamam",
         srs_etat_4: "biliyorum",
         home_streak_unit: "gün",
+        home_streak_unit_one: "gün",
         home_week_unit: "bu hafta",
         en_module_mastered_label: "✅ Öğrenildi",
         en_module_mastered_hint: "Modülün %{pct} kadarı. {reste} kart hâlâ “öğrenildi” durumuna geçmedi.",
@@ -13136,6 +13159,7 @@ const I18N = {
         progress_info_deja: "« Знаю напам'ять » пропускає всі щаблі й одразу позначає слово засвоєним.",
         progress_info_apres: "« Я не знав » забирає опанування, і відсоток знижується.\n\nОпановане слово повертається через 16 днів для перевірки, далі все рідше, не перестаючи рахуватись.",
         home_streak_unit: "днів",
+        home_streak_unit_one: "день",
         home_week_unit: "цього тижня",
         home_daily_goal_label: "🎯 Ціль на день",
         home_week_zero: "Цього тижня: 0",
@@ -14334,6 +14358,7 @@ const I18N = {
         srs_etat_3: "نزدیکم",
         srs_etat_4: "آموخته‌ام",
         home_streak_unit: "روز",
+        home_streak_unit_one: "روز",
         home_week_unit: "این هفته",
         en_module_mastered_label: "✅ آموخته",
         en_module_mastered_hint: "{pct} ٪ از این بخش. {reste} کارت مانده تا به «آموخته» برسند.",
@@ -15250,6 +15275,7 @@ const I18N = {
         srs_etat_3: "أوشكت",
         srs_etat_4: "أتقنتها",
         home_streak_unit: "أيام",
+        home_streak_unit_one: "يوم",
         home_week_unit: "هذا الأسبوع",
         en_module_mastered_label: "✅ متقَن",
         en_module_mastered_hint: "{pct} % من الوحدة. تبقّت لك {reste} بطاقات لتنقلها إلى «متقَن».",
@@ -20114,6 +20140,13 @@ function updateHomeStatsPanel(percent){
 
     const streakEl = document.getElementById("streakCount");
     if(streakEl) streakEl.textContent = getStreakCount();
+    const serieEl = document.getElementById("serieAccueil");
+    if(serieEl){
+        const n = getStreakCount();
+        serieEl.classList.toggle("hidden", n < 1);
+        const uniteEl = document.getElementById("serieUnite");
+        if(uniteEl) uniteEl.textContent = t(n === 1 ? 'home_streak_unit_one' : 'home_streak_unit');
+    }
 
     const freezeChip = document.getElementById("streakFreezeChip");
     const freezeCountEl = document.getElementById("streakFreezeCount");
@@ -27444,7 +27477,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 664;
+const APP_VERSION = 665;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

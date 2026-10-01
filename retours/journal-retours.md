@@ -7159,3 +7159,22 @@ Consigne ici, rien d'applique sans decision de Jacques. Points et etat :
   la question est seulement de la montrer sur l'accueil ;
 - infobulle « mots revises ce jour-la » : depend de la mosaique, pas d'une
   grille d'activite.
+
+## 1er octobre 2026 -- << ajoute la serie de jours sur l'accueil >>
+
+Retenu dans les suggestions de Jimmy. **v665.** La serie existait (getStreakCount)
+mais sa ligne d'accueil etait masquee entiere depuis que la mosaique a remplace
+l'anneau. Elle revient en pastille ambre, sous la mosaique, flamme dessinee au
+trait (pas d'emoji), « 1 jour » / « N jours » dans les six langues.
+Elle ne s'affiche qu'a partir d'UN jour : « 0 jour » au retour de vacances
+punirait l'absence. Note : quand un badge de serie est proche, l'encart du
+prochain badge (« 3 jours de suite ») s'affiche aussi -- deux mentions de la
+serie a ce moment-la, rare et voulu.
+
+## 1er octobre 2026 -- << avec le lien, on voit pas ma progression, comme si je repartais a zero >>
+
+Le lien `?v=664` donne en reponse s'ouvre dans le NAVIGATEUR, qui a son propre
+contenant de donnees, separe de l'app installee sur l'ecran d'accueil (voir la
+memoire test-iphone). Rien n'est perdu : la progression vit dans l'app installee
+et dans le cloud. Ne plus donner le lien `?v=` comme geste de mise a jour quand
+il utilise la tuile : la tuile se met a jour seule au lancement.
