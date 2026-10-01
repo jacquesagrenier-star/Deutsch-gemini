@@ -5676,6 +5676,18 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
 .carte-rektion{margin:4px 0 6px; text-align:center;}
 .carte-rektion > div{margin-bottom:0 !important;}
 .carte-rektion .rektion-badge{margin-bottom:0;}
+/* --- LA CARTE D'ADJECTIF (v673) : le traitement du verbe sans complement --
+   fond clair, liseré a l'encre (ambre la nuit), mot a l'encre en serif --
+   et une etiquette neutre qui dit la nature du mot. */
+.flashcard.carte-adjectif.flipped .flashcard-back,
+body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{
+    border:1px solid rgba(var(--wt-action-rgb),.30);
+    box-shadow:inset 0 7px 0 var(--wt-action);
+}
+.flashcard.carte-adjectif.flipped .flashcard-back{background:rgba(255,255,255,.6);}
+body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{background:rgba(255,255,255,.06);}
+.flashcard.carte-adjectif.flipped .back-word{color:var(--wt-encre-texte);}
+.carte-genre.adjectif{color:var(--wt-encre-texte); background:rgba(var(--wt-action-rgb),.09);}
 
 /* --- La serie de jours, sur la ligne du salut (v668). */
 .serie-salut{
@@ -6621,7 +6633,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v672</span>
+    <span class="subtitle-version">v673</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9424,6 +9436,7 @@ const I18N = {
         myvocab_already: "« {mot} » est déjà dans tes flashcards.",
         myvocab_full: "Tu as atteint {n} mots mis de côté. Fais-en le tour avant d'en ajouter.",
         myvocab_sans_genre: "« {mot} » n'a pas d'article dans le dictionnaire. On ne peut pas en faire une carte fiable, mais ta demande est notée.",
+        carte_type_adjectif: "adjectif",
         carte_genre_der: "masculin",
         carte_genre_die: "féminin",
         carte_genre_das: "neutre",
@@ -10416,6 +10429,7 @@ const I18N = {
         myvocab_already: "“{mot}” is already in your flashcards.",
         myvocab_full: "You have reached {n} saved words. Work through them before adding more.",
         myvocab_sans_genre: "“{mot}” has no article in the dictionary. We can't build a reliable card, but your request is noted.",
+        carte_type_adjectif: "adjective",
         carte_genre_der: "masculine",
         carte_genre_die: "feminine",
         carte_genre_das: "neuter",
@@ -11410,6 +11424,7 @@ const I18N = {
         myvocab_already: "“{mot}” zaten kartlarında.",
         myvocab_full: "{n} kayıtlı kelimeye ulaştın. Yenilerini eklemeden önce bunları çalış.",
         myvocab_sans_genre: "“{mot}” kelimesinin sözlükte artikeli yok. Güvenilir bir kart oluşturamıyoruz ama isteğin not edildi.",
+        carte_type_adjectif: "sıfat",
         carte_genre_der: "eril",
         carte_genre_die: "dişil",
         carte_genre_das: "nötr",
@@ -12659,6 +12674,7 @@ const I18N = {
         myvocab_already: "«{mot}» уже є серед твоїх карток.",
         myvocab_full: "Ти набрав {n} відкладених слів. Пройди їх, перш ніж додавати нові.",
         myvocab_sans_genre: "У словнику «{mot}» без артикля. Надійної картки з нього не зробити, але твій запит записано.",
+        carte_type_adjectif: "прикметник",
         carte_genre_der: "чоловічий рід",
         carte_genre_die: "жіночий рід",
         carte_genre_das: "середній рід",
@@ -14334,6 +14350,7 @@ const I18N = {
         myvocab_already: "«{mot}» از پیش در کارت‌های توست.",
         myvocab_full: "به {n} واژهٔ کنارگذاشته رسیدی. پیش از افزودن واژهٔ تازه، اول همین‌ها را مرور کن.",
         myvocab_sans_genre: "«{mot}» در فرهنگ واژگان حرف تعریف ندارد. نمی‌شود از آن کارت ساخت — بدون حرف تعریف، اسم آلمانی ناقص است.",
+        carte_type_adjectif: "صفت",
         carte_genre_der: "مذکر",
         carte_genre_die: "مؤنث",
         carte_genre_das: "خنثی",
@@ -14441,6 +14458,7 @@ const I18N = {
         confirm_vider_coffre: "أتريد إزالة {n} كلمة من خزانتك؟ تقدّمك ومواعيدك ونسبتك لا تتغيّر — ولا تختفي إلا علامة «محفوظة».",
         gardes_vide: "الخزانة فارغة. تحت أي بطاقة، «احتفظ» يضع الكلمة هنا لتعمل عليها على حدة: وتبقى في جلساتك، وتجدها هنا متى شئت.",
         myvocab_sans_genre: "«{mot}» بلا أداة تعريف في القاموس. لا يمكن صنع بطاقة موثوقة منها، لكن طلبك مسجَّل.",
+        carte_type_adjectif: "صفة",
         carte_genre_der: "مذكر",
         carte_genre_die: "مؤنث",
         carte_genre_das: "محايد",
@@ -25301,7 +25319,7 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent",
-        "carte-verbe", "rk-akk", "rk-dat", "rk-akkdat", "rk-nom", "rk-aucun");
+        "carte-verbe", "rk-akk", "rk-dat", "rk-akkdat", "rk-nom", "rk-aucun", "carte-adjectif");
     document.getElementById("flashcardActions").classList.add("hidden");
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
@@ -25497,6 +25515,20 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
+        // LA CARTE D'ADJECTIF COMME CELLES DU NOM ET DU VERBE (v673), demande
+        // de Jacques. L'adjectif n'a ni genre ni rection dans nos donnees : le
+        // liseré reste a l'encre (ambre la nuit), comme le verbe sans
+        // complement, et l'etiquette dit simplement ce qu'est le mot. Pas de
+        // couleur inventee : une teinte qui ne code rien finirait par etre lue
+        // comme si elle codait quelque chose.
+        if(!learningEnglish){
+            flashcardEl.classList.add("carte-adjectif");
+            const etiquette = document.getElementById("flashGenre");
+            if(etiquette){
+                etiquette.textContent = t('carte_type_adjectif');
+                etiquette.className = "carte-genre adjectif";
+            }
+        }
     } else if(flashcardMode === 'positionsverben'){
         const germanWord = card.infinitif;
         const frenchWord = texteTraduit(card, "traduction");
@@ -27693,7 +27725,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 672;
+const APP_VERSION = 673;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

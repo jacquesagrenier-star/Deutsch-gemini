@@ -7321,3 +7321,16 @@ Confirme sur le terrain, les deux choses en meme temps :
   a 17 h 42 min 20 s, la publication sur Pages a 17 h 42 min 24 s.)
 - le rattrapage (v672) : nuage a 17 h 43 -- mosaique r3 c280 g[1,2] x1, soit
   deux tableaux en galerie et 280 carreaux sur le troisieme, comme prevu.
+
+## 1er octobre 2026 -- << fais la meme chose pour les cartes d'adjectifs >>
+
+**v673.** Fond clair au lieu du sable, liseré, etiquette en toutes lettres
+(« adjectif », six langues), mot a l'encre en serif. L'adjectif n'a ni genre ni
+rection dans nos donnees (adjectif.json : mot, traduction, exemple) : liseré a
+l'encre (ambre la nuit), comme le verbe sans complement -- pas de couleur
+inventee, une teinte qui ne code rien serait lue comme si elle codait quelque
+chose. Verifie : la carte suivante d'un autre type ne garde pas la classe.
+Non couvert : les adjectifs des chapitres VHS (mode a part) et les autres
+cartes « answer-accent » (prepositions, adverbes...).
+Piste ouverte : comparatif/superlatif absents des donnees -- ce serait la vraie
+information a mettre en tete, comme le genre et la rection.
