@@ -7311,3 +7311,13 @@ Estime (lecture seule du nuage, 1er oct.) : Jacques 2 452 revisions -> plafond
 722, 426, 90, 79, 20 revisions pour les plus actifs, les autres a 0-2.
 Banc : comme Jacques, compte deja devant, petit testeur, deuxieme appareil ;
 une seconde restauration ne change rien. Galerie verifiee a l'ecran.
+
+## 1er octobre 2026 -- << j'ai la version 672 maintenant >>
+
+Confirme sur le terrain, les deux choses en meme temps :
+- la recherche de version au retour de veille (v670) : il etait en v671, a
+  quitte l'app une minute, l'a rouverte par l'icone -> v672, sans fermer l'app
+  ni redemarrer le telephone. (La v672 avait ete manquee de 4 s : sa sauvegarde
+  a 17 h 42 min 20 s, la publication sur Pages a 17 h 42 min 24 s.)
+- le rattrapage (v672) : nuage a 17 h 43 -- mosaique r3 c280 g[1,2] x1, soit
+  deux tableaux en galerie et 280 carreaux sur le troisieme, comme prevu.
