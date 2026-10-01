@@ -6621,7 +6621,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v671</span>
+    <span class="subtitle-version">v672</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19237,13 +19237,20 @@ async function restoreProgressFromCloud(){
                         ? { r: rd, c: cd, j: d.j || "", n: d.n || 0, t: d.t || 0, tj: d.tj || "" }
                         : { r: l.r, c: l.c, j: l.j, n: l.n, t: l.t, tj: l.tj };
                     retenu.g = gagnes;
-                    if(distantDevant || gagnes.length !== (l.g || []).length){
+                    retenu.x = Math.max(l.x || 0, d.x || 0);
+                    if(distantDevant || gagnes.length !== (l.g || []).length || retenu.x !== (l.x || 0)){
                         ecrireMosaique(retenu);
                         try{ majMosaiqueAccueil(); }catch(e){}
                     }
                 }
             }
         }catch(e){}
+
+        // Le rattrapage de la mosaique, APRES la fusion : la progression du
+        // nuage est maintenant ici, c'est elle qui dit combien de cartes ont ete
+        // faites. Seulement apres une lecture REUSSIE du nuage -- hors ligne,
+        // on compterait trop peu et le drapeau figerait ce compte trop bas.
+        try{ rattraperMosaique(); }catch(e){}
 
         // CE QU'ON GAGNE, RESTAURE SANS JAMAIS RECULER (v671). Une regle par
         // nature de donnee, parce qu'elles ne se fusionnent pas pareil :
@@ -27686,7 +27693,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 671;
+const APP_VERSION = 672;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -29997,8 +30004,62 @@ function etatMosaique(){
     // s'efface a la premiere ecriture. Rien a migrer.
     // `tj` EST LE JOUR OU LE TROPHEE A DEJA DECOMPTE (v629) : c'est lui qui
     // fait qu'une journee compte pour une, quel que soit le nombre de visites.
+    // `x` : LE RATTRAPAGE A EU LIEU (v672). Il voyage avec l'image -- sans ca,
+    // un deuxieme appareil le referait.
     return { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
-             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "" };
+             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "", x: v.x || 0 };
+}
+
+// ============ LES CARREAUX RENDUS (v672) ============
+// Jusqu'a la v666, la mosaique ne vivait que dans le telephone : un stockage
+// vide (icone reinstallee, autre navigateur) la renvoyait au debut pendant que
+// les mots, eux, revenaient du nuage. Jacques s'est retrouve a 18 carreaux
+// apres des semaines de revision, et a demande qu'on les rende -- « pour tous
+// les testeurs ».
+//
+// ⚠️ ON NE PEUT PAS RECONSTITUER LE COMPTE EXACT. Chaque mot garde son nombre
+// de revisions, pas leurs dates : on ne sait pas lesquelles datent d'avant la
+// mosaique. La regle est donc la meme que celle de la mosaique elle-meme :
+// UN CARREAU PAR CARTE REVISEE, AU PLUS 80 PAR JOUR depuis son arrivee le
+// 11 septembre. C'est un plafond honnete -- il ne donne jamais plus que ce que
+// la vraie mosaique aurait pu donner -- et une estimation genereuse en dessous.
+//
+// ⚠️ UNE SEULE FOIS, ET JAMAIS A LA BAISSE. Le drapeau `x` voyage avec l'image
+// (sinon chaque appareil le referait, et les revisions comptees deux fois). Un
+// compte deja plus avance que l'estimation garde son image telle quelle. Les
+// tableaux couverts entrent dans la galerie, sans trophee : on ne fait pas
+// attendre trois jours pour une image qu'on rend.
+const MOSAIQUE_ARRIVEE = "2026-09-11";
+
+function rattraperMosaique(){
+    const v = etatMosaique();
+    if(v.x) return;
+    let revisions = 0;
+    const p = getProgress() || {};
+    Object.keys(p).forEach(cle => {
+        if(cle === "__migrations") return;
+        const theme = p[cle];
+        if(!theme || typeof theme !== "object") return;
+        Object.keys(theme).forEach(i => {
+            const st = theme[i];
+            if(st && typeof st === "object") revisions += st.reviews || 0;
+        });
+    });
+    const jours = Math.max(1, daysBetweenDateStrs(MOSAIQUE_ARRIVEE, getTodayStr()) + 1);
+    const du = Math.min(revisions, MOSAIQUE_PLAFOND * jours);
+    const actuel = (v.r - 1) * MOSAIQUE_CARREAUX + Math.min(v.c, MOSAIQUE_CARREAUX);
+    v.x = 1;
+    if(du > actuel){
+        const k = Math.floor(du / MOSAIQUE_CARREAUX);
+        const gagnes = new Set(v.g);
+        for(let i = 1; i <= k; i++) gagnes.add(i);
+        v.r = k + 1;
+        v.c = du - k * MOSAIQUE_CARREAUX;
+        v.t = 0; v.tj = "";
+        v.g = Array.from(gagnes).sort((a, b) => a - b);
+    }
+    ecrireMosaique(v);
+    try{ majMosaiqueAccueil(); }catch(e){}
 }
 
 function ecrireMosaique(v){

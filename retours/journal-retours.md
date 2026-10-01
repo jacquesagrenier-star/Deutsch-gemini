@@ -7293,3 +7293,21 @@ qui ouvre le clavier iOS). Champ reduit a 6 px, livre au bout de la ligne ;
 un prenom tres long s'abrege par des points de suspension au lieu de deborder.
 Mesure a 375 px avec « Добрий вечір, Олександра-Катерина » : rien ne depasse.
 Toucher le livre ouvre toujours le dictionnaire (verifie au toucher).
+
+## 1er octobre 2026 -- << oui, rends les carreaux pour tous les testeurs >>
+
+**v672.** Une seule fois par compte, a la premiere restauration reussie depuis
+le nuage (donc avec toute la progression) :
+- regle : UN CARREAU PAR CARTE REVISEE, AU PLUS 80 PAR JOUR depuis l'arrivee de
+  la mosaique le 11 septembre -- le plafond de la mosaique elle-meme. Les
+  revisions n'ont pas de date : impossible de savoir lesquelles precedent la
+  mosaique, d'ou le plafond plutot qu'un compte exact ;
+- jamais a la baisse : un compte deja plus avance garde son image ;
+- les tableaux couverts entrent dans la galerie, sans trophee de trois jours ;
+- drapeau `x` dans l'etat de la mosaique, fusionne par le nuage : un second
+  appareil ne refait pas le rattrapage.
+Estime (lecture seule du nuage, 1er oct.) : Jacques 2 452 revisions -> plafond
+21 jours x 80 = 1 680 carreaux = 2 tableaux + 280 sur le troisieme. Testeurs :
+722, 426, 90, 79, 20 revisions pour les plus actifs, les autres a 0-2.
+Banc : comme Jacques, compte deja devant, petit testeur, deuxieme appareil ;
+une seconde restauration ne change rien. Galerie verifiee a l'ecran.
