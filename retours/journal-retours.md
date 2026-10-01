@@ -7254,3 +7254,16 @@ coup sur et sans perte, redemarrer l'iPhone. Ne PAS supprimer l'icone : son
 stockage partirait avec elle.
 Cloud a 21 h 06 UTC (deja ecrit par du code v666) : serie 1 (2026-10-01),
 mosaique r1 c18 g[] -- le premier tableau, presque au debut.
+
+## 1er octobre 2026 -- << il y a surement d'autres utilisateurs qui ferment tres rarement leur cellulaire >>
+
+Juste, et ca revelait une faille de la v669 : la recherche de version etait
+accrochee a la decision de REJOUER LA VIDEO, or Jacques revient dans l'app sans
+que la video rejoue. **v670** : la recherche a son propre declencheur -- le plus
+grand des deux trous du pouls (absence ou retard) au-dessus du seuil du contexte
+(5 s app installee, 15 min onglet), plus `visibilitychange` (app installee
+seulement) et `pageshow` restauree. Au plus une recherche par minute. Banc :
+un retour declenche la requete, un second retour immediat est freine.
+Limite : un appareil reste sur une version ANTERIEURE a la v669 jusqu'a son
+prochain vrai demarrage -- aucun code nouveau ne peut l'atteindre avant.
+Jacques a redemarre son telephone : v669 confirmee.

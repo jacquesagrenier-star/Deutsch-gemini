@@ -304,6 +304,30 @@ window.LIEN_REINIT = (function(){
     var DELAI_ABSENCE = 5000;
     var DELAI_ABSENCE_ONGLET = 900000;
 
+    // Au plus une recherche de version par minute, d'ou qu'elle vienne : le
+    // pouls, le retour au premier plan et la restauration de page peuvent
+    // tomber ensemble. verifierNouvelleVersion() vit dans le script principal,
+    // d'ou l'appel par window et la garde.
+    var derniereDemandeVersion = 0;
+    function demanderVersion(){
+        var t = Date.now();
+        if(t - derniereDemandeVersion < 60000) return;
+        derniereDemandeVersion = t;
+        if(typeof window.verifierNouvelleVersion === "function"){
+            try{ window.verifierNouvelleVersion(); }catch(e){}
+        }
+    }
+    // CEINTURE ET BRETELLES. iOS n'emet pas toujours ces evenements pour l'app
+    // installee (voir le pouls), mais quand il les emet, ils sont exacts. Pour
+    // l'app installee seulement : dans un onglet d'ordinateur, changer de
+    // fenetre les declenche, et ce n'est pas un retour.
+    document.addEventListener("visibilitychange", function(){
+        if(!document.hidden && appInstallee()) demanderVersion();
+    });
+    window.addEventListener("pageshow", function(ev){
+        if(ev.persisted) demanderVersion();
+    });
+
     function appInstallee(){
         try{
             return !!(navigator.standalone ||
@@ -728,6 +752,18 @@ window.LIEN_REINIT = (function(){
             noterGel(gelSignale, null, gelFin);
             gelSignale = 0; gelFin = 0;
         }
+        // LA NOUVELLE VERSION SE CHERCHE A CHAQUE RETOUR (v670). La v669 avait
+        // accroche cette recherche a la decision de REJOUER LA VIDEO -- or
+        // Jacques revient dans l'app sans que la video rejoue, et il ferme tres
+        // rarement son telephone : « il y a surement d'autres utilisateurs qui
+        // font comme moi ». La video a de bonnes raisons d'etre prudente (gel
+        // ou absence ?) ; la recherche de version n'en a aucune : c'est une
+        // petite requete, sans effet visible tant qu'il n'y a rien de neuf.
+        // Donc : le PLUS GRAND des deux trous, absence ou retard, et le seuil
+        // du contexte (5 s pour l'app installee, 15 min pour un onglet).
+        if(maintenant - debutPage >= 6000 && Math.max(absence, retard) >= seuilAbsence()){
+            demanderVersion();
+        }
         if(enCours) return;
         // Le demarrage est exclu : c'est la seule periode ou le fil principal
         // peut rester bloque assez longtemps pour ressembler a une absence
@@ -742,20 +778,7 @@ window.LIEN_REINIT = (function(){
         // rejoue quand meme. Sur un appareil ou l'ouvrier survivrait a la mise
         // en veille, mieux vaut revoir l'ouverture pour rien que ne plus
         // jamais la revoir.
-        if(retard < SEUIL_GEL || estParti){
-            jouer();
-            // ⚠️ ET ON REGARDE S'IL Y A UNE NOUVELLE VERSION (v669). La
-            // verification ne tournait qu'au DEMARRAGE de la page -- or l'app
-            // installee n'est presque jamais redemarree : iOS la met en veille
-            // et la reveille. Jacques est reste en v666 apres la publication
-            // de la v668, tuile ouverte et rouverte. Le retour de veille est
-            // le seul moment ou l'on sait qu'il revient : c'est la qu'on
-            // demande. Le rechargement passe sous la video d'ouverture, qui
-            // vient justement de se rejouer.
-            if(typeof window.verifierNouvelleVersion === "function"){
-                try{ window.verifierNouvelleVersion(); }catch(e){}
-            }
-        }
+        if(retard < SEUIL_GEL || estParti) jouer();
     }
 
     var ouvrier = null;
@@ -6583,7 +6606,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v669</span>
+    <span class="subtitle-version">v670</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27561,7 +27584,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 669;
+const APP_VERSION = 670;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
