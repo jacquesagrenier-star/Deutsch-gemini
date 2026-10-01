@@ -7267,3 +7267,29 @@ un retour declenche la requete, un second retour immediat est freine.
 Limite : un appareil reste sur une version ANTERIEURE a la v669 jusqu'a son
 prochain vrai demarrage -- aucun code nouveau ne peut l'atteindre avant.
 Jacques a redemarre son telephone : v669 confirmee.
+
+## 1er octobre 2026 -- << ce qui m'inquiete, c'est que ca pourrait se reproduire >>
+
+Inventaire de toutes les cles du localStorage, contre ce que syncProgressToCloud
+envoie et ce que restoreProgressFromCloud relit. Deja proteges : progression,
+serie (v666), XP, grammaire, mosaique (v666). **Ne quittaient jamais le
+telephone** : badges, jours travailles, gels de serie, vocabulaire personnel ;
+envoyes mais jamais relus : mots demandes, objectif du jour.
+**v671**, une regle par nature, aucune ne peut faire reculer :
+- badges : reunion ; jours travailles : le plus grand ;
+- gels et objectif : repris seulement sur un appareil qui n'en a aucune trace
+  (un gel se depense -- un maximum le ressusciterait) ;
+- vocabulaire personnel : sa progression est INDEXEE PAR POSITION, donc pas de
+  fusion ; la liste distante n'est prise que si elle PROLONGE la locale ;
+- mots demandes : reunion par mot.
+Banc : appareil neuf, appareil existant, vocabulaire prolonge -- tout passe.
+Restent locaux, volontairement : les reglages d'affichage (theme, langue,
+voix), le brouillon de retour, le journal audio.
+
+## 1er octobre 2026 -- << tasser plus a droite l'icone du dictionnaire, il y a des prenoms plus longs >>
+
+**v671.** Le livre etait suivi d'un champ vide d'environ 80 px (le vrai champ
+qui ouvre le clavier iOS). Champ reduit a 6 px, livre au bout de la ligne ;
+un prenom tres long s'abrege par des points de suspension au lieu de deborder.
+Mesure a 375 px avec « Добрий вечір, Олександра-Катерина » : rien ne depasse.
+Toucher le livre ouvre toujours le dictionnaire (verifie au toucher).

@@ -5691,6 +5691,21 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
 body[data-theme="dark"] .serie-salut{color:#F2F2F6;}
 body[data-theme="dark"] .serie-salut svg{stroke:#F0B456;}
 
+/* --- LE DICTIONNAIRE CONTRE LE BORD DROIT (v671). Jacques : « tasser plus a
+   droite l'icone du dictionnaire, pour laisser de la place a Bon apres-midi
+   Jacques avec la serie -- il y a des prenoms plus longs ». Le livre etait
+   suivi d'un champ vide d'environ 80 px, qui le repoussait vers le centre.
+   ⚠️ LE CHAMP RESTE UN VRAI CHAMP (voir la note v609 dans le HTML) : sur iOS
+   le clavier ne s'ouvre que si le geste tombe sur un champ, et c'est le
+   `label for` qui l'y transfere. On le reduit a quelques pixels, on ne le
+   retire pas ; et `row-reverse` met le livre tout au bout de la ligne. */
+.home-greeting-row .search-launch{
+    flex:0 0 auto; max-width:none; flex-direction:row-reverse;
+    gap:0; padding:4px 6px;
+}
+.home-greeting-row .search-launch input{flex:0 0 6px; width:6px; padding:0;}
+.home-greeting-row .home-greeting{flex:0 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis;}
+
 /* --- MAITRISES / EN COURS : DEUX FONCES NE SE DISTINGUENT PAS (v667).
    La v662 avait fait passer « en cours » du bleu a l'ENCRE, a cote du vert
    fonce des « maitrises » : deux teintes sombres de luminance voisine, que
@@ -6606,7 +6621,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v670</span>
+    <span class="subtitle-version">v671</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -18947,6 +18962,24 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(MOSAIQUE_CLE) || ""; }
                 catch(e){ return ""; }
             })(),
+            // CE QU'ON GAGNE VOYAGE AUSSI (v671). Jacques, apres la mosaique
+            // perdue : « ce qui m'inquiete, c'est que ca pourrait se
+            // reproduire ». L'inventaire des cles a trouve cinq autres choses
+            // qui ne quittaient jamais le telephone. Chacune en UNE CHAINE, pour
+            // le plafond d'index (voir grammaire).
+            badgesJson: (function(){
+                try{ return localStorage.getItem(directionScopedKey(BADGES_KEY)) || ""; }
+                catch(e){ return ""; }
+            })(),
+            joursJson: (function(){
+                try{ return localStorage.getItem(directionScopedKey(JOURS_KEY)) || ""; }
+                catch(e){ return ""; }
+            })(),
+            gels: getStreakFreezes(),
+            monVocabJson: (function(){
+                try{ return localStorage.getItem(directionScopedKey(MY_VOCAB_KEY)) || ""; }
+                catch(e){ return ""; }
+            })(),
             // Le jour de la serie, sans quoi un appareil qui la restaure ne
             // saurait pas si elle continue demain ou repart a un.
             streakJour: (function(){
@@ -19209,6 +19242,75 @@ async function restoreProgressFromCloud(){
                         try{ majMosaiqueAccueil(); }catch(e){}
                     }
                 }
+            }
+        }catch(e){}
+
+        // CE QU'ON GAGNE, RESTAURE SANS JAMAIS RECULER (v671). Une regle par
+        // nature de donnee, parce qu'elles ne se fusionnent pas pareil :
+        try{
+            // Badges : la REUNION. Un badge gagne ne se perd pas.
+            if(typeof data.badgesJson === "string" && data.badgesJson){
+                const d = JSON.parse(data.badgesJson);
+                if(Array.isArray(d)){
+                    const l = getUnlockedBadges();
+                    const union = Array.from(new Set([...(Array.isArray(l) ? l : []), ...d]));
+                    if(union.length !== (Array.isArray(l) ? l.length : 0)) saveUnlockedBadges(union);
+                }
+            }
+        }catch(e){}
+        try{
+            // Jours travailles : LE PLUS GRAND. « Il ne redescend jamais » est
+            // la seule promesse de ce compteur.
+            if(typeof data.joursJson === "string" && data.joursJson){
+                const d = JSON.parse(data.joursJson);
+                const l = joursTravailles();
+                if(d && typeof d === "object" && (d.n || 0) > l.n){
+                    localStorage.setItem(directionScopedKey(JOURS_KEY),
+                        JSON.stringify({ n: d.n, dernier: d.dernier || l.dernier || "" }));
+                }
+            }
+        }catch(e){}
+        try{
+            // Gels de serie : ILS SE DEPENSENT, donc pas de maximum -- il
+            // ressusciterait un gel deja consomme. On ne les reprend que sur un
+            // appareil qui n'en a encore aucune trace.
+            if(typeof data.gels === "number"
+               && localStorage.getItem(directionScopedKey(STREAK_FREEZE_KEY)) === null){
+                setStreakFreezes(data.gels);
+            }
+            // L'objectif du jour : meme regle, c'est un reglage.
+            if(typeof data.dailyGoalTarget === "number"
+               && localStorage.getItem(DAILY_GOAL_STORAGE_KEY) === null){
+                localStorage.setItem(DAILY_GOAL_STORAGE_KEY, String(data.dailyGoalTarget));
+            }
+        }catch(e){}
+        try{
+            // Vocabulaire personnel : ⚠️ SA PROGRESSION EST INDEXEE PAR POSITION.
+            // Fusionner deux listes les reordonnerait et attacherait chaque
+            // progression au mauvais mot. La liste ne fait que s'allonger (les
+            // mots entres au cours sont MARQUES, jamais retires) : on prend
+            // donc la liste distante seulement si elle PROLONGE la locale.
+            if(typeof data.monVocabJson === "string" && data.monVocabJson){
+                const d = JSON.parse(data.monVocabJson);
+                const l = loadMyVocab();
+                const prolonge = Array.isArray(d) && d.length > l.length
+                    && l.every((w, i) => d[i] && d[i][0] === w[0]);
+                if(prolonge){
+                    monVocabTheme.words = d;
+                    saveMyVocab();
+                }
+            }
+        }catch(e){}
+        try{
+            // Mots demandes : la reunion, par mot.
+            if(Array.isArray(data.vocabDemandes) && data.vocabDemandes.length){
+                const l = loadMyRequests();
+                const connus = new Set(l.map(x => x && x.m));
+                let ajoute = false;
+                data.vocabDemandes.forEach(x => {
+                    if(x && x.m && !connus.has(x.m)){ l.push(x); connus.add(x.m); ajoute = true; }
+                });
+                if(ajoute) localStorage.setItem(directionScopedKey(MY_REQUESTS_KEY), JSON.stringify(l.slice(-300)));
             }
         }catch(e){}
 
@@ -27584,7 +27686,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 670;
+const APP_VERSION = 671;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
