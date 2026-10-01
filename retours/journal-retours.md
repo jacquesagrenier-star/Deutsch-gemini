@@ -7243,3 +7243,14 @@ reveille. **v669** : la verification tourne aussi au retour de veille, detecte
 par le pouls (le meme qui rejoue la video d'ouverture) ; le rechargement passe
 sous la video. Pour CETTE fois, il faut fermer l'app (balayer vers le haut dans
 le selecteur d'apps) et la rouvrir : la v666 n'a pas encore ce code.
+
+## 1er octobre 2026 -- << je glisse vers le haut, je reclique l'icone : pas de video d'ouverture, toujours l'ancienne version >>
+
+Pas de video = pas de redemarrage : la page n'a pas ete rechargee, l'app a ete
+reveillee. Un vrai demarrage rejoue toujours la video (elle est embarquee) et
+lance `verifierNouvelleVersion()`, sans verrou puisque sessionStorage repart a
+vide. Consignes donnees : fermer la CARTE de l'app dans le selecteur, ou, a
+coup sur et sans perte, redemarrer l'iPhone. Ne PAS supprimer l'icone : son
+stockage partirait avec elle.
+Cloud a 21 h 06 UTC (deja ecrit par du code v666) : serie 1 (2026-10-01),
+mosaique r1 c18 g[] -- le premier tableau, presque au debut.
