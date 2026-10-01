@@ -7334,3 +7334,18 @@ Non couvert : les adjectifs des chapitres VHS (mode a part) et les autres
 cartes « answer-accent » (prepositions, adverbes...).
 Piste ouverte : comparatif/superlatif absents des donnees -- ce serait la vraie
 information a mettre en tete, comme le genre et la rection.
+
+## 1er octobre 2026 -- << fais la meme chose pour les autres cartes >>
+
+**v674.** Prepositions, verbes a cas, verbes de position, particules, adverbes,
+connecteurs, nombres, pronoms, articles, expressions, adjectifs des chapitres,
+mots du dictionnaire. Meme principe partout : la categorie monte en etiquette
+au-dessus du mot (elle n'est plus repetee dans le corps), fond clair, mot a
+l'encre en serif ; le liseré ne prend une couleur que quand il CODE quelque
+chose -- le cas pour les prepositions, verbes a cas et verbes de position
+(Akk violet, Dativ cuivre, Wechsel ardoise, Genitiv prune), le genre pour les
+mots du dictionnaire qui en ont un ; sinon l'encre. Libelle « particule » en
+six langues. Verifie a l'ecran sur neuf types de cartes, aucune erreur.
+Hors champ : le module anglais (en attente). Reste a refaire : le SCHEMA des
+prepositions (image) garde l'ancien bleu pour l'Akkusativ, alors que l'app dit
+violet desormais.

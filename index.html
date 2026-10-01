@@ -5688,6 +5688,37 @@ body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{
 body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{background:rgba(255,255,255,.06);}
 .flashcard.carte-adjectif.flipped .back-word{color:var(--wt-encre-texte);}
 .carte-genre.adjectif{color:var(--wt-encre-texte); background:rgba(var(--wt-action-rgb),.09);}
+/* --- TOUTES LES AUTRES CARTES (v674) : fond clair, liseré a la couleur du cas
+   quand il y en a un, sinon a l'encre ; etiquette de meme teinte. */
+.flashcard.carte-mot{--rk:var(--wt-action); --rk-rgb:var(--wt-action-rgb);}
+.flashcard.carte-mot.rk-akk{--rk:#5B3FA6; --rk-rgb:91,63,166;}
+.flashcard.carte-mot.rk-dat{--rk:#A35A1F; --rk-rgb:163,90,31;}
+.flashcard.carte-mot.rk-akkdat{--rk:#4F5B6E; --rk-rgb:79,91,110;}
+.flashcard.carte-mot.rk-gen{--rk:#7A3B69; --rk-rgb:122,59,105;}
+body[data-theme="dark"] .flashcard.carte-mot.rk-akk{--rk:#C3B2EE; --rk-rgb:195,178,238;}
+body[data-theme="dark"] .flashcard.carte-mot.rk-dat{--rk:#E9B48A; --rk-rgb:233,180,138;}
+body[data-theme="dark"] .flashcard.carte-mot.rk-akkdat{--rk:#C5CEDB; --rk-rgb:197,206,219;}
+body[data-theme="dark"] .flashcard.carte-mot.rk-gen{--rk:#E3A6D2; --rk-rgb:227,166,210;}
+.flashcard.carte-mot.flipped .flashcard-back,
+body[data-theme="dark"] .flashcard.carte-mot.flipped .flashcard-back{
+    border:1px solid rgba(var(--rk-rgb),.35);
+    box-shadow:inset 0 7px 0 var(--rk);
+}
+.flashcard.carte-mot.flipped .flashcard-back{background:rgba(255,255,255,.6);}
+body[data-theme="dark"] .flashcard.carte-mot.flipped .flashcard-back{background:rgba(255,255,255,.06);}
+.flashcard.carte-mot.flipped .back-word{color:var(--wt-encre-texte);}
+.carte-genre.neutre{color:var(--wt-encre-texte); background:rgba(var(--wt-action-rgb),.09);}
+.carte-genre.cas-akk{color:#5B3FA6; background:rgba(91,63,166,.12);}
+.carte-genre.cas-dat{color:#8A4A1C; background:rgba(163,90,31,.14);}
+.carte-genre.cas-akkdat{color:#3E4858; background:rgba(79,91,110,.12);}
+.carte-genre.cas-gen{color:#7A3B69; background:rgba(122,59,105,.12);}
+.carte-genre.cas-nom{color:#1C2430; background:rgba(28,36,48,.08);}
+body[data-theme="dark"] .carte-genre.cas-akk{color:#C3B2EE; background:rgba(150,120,230,.22);}
+body[data-theme="dark"] .carte-genre.cas-dat{color:#E9B48A; background:rgba(200,120,60,.24);}
+body[data-theme="dark"] .carte-genre.cas-akkdat{color:#C5CEDB; background:rgba(150,165,190,.18);}
+body[data-theme="dark"] .carte-genre.cas-gen{color:#E3A6D2; background:rgba(200,110,170,.22);}
+body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,242,246,.12);}
+.carte-genre{max-width:92%; text-align:center;}
 
 /* --- La serie de jours, sur la ligne du salut (v668). */
 .serie-salut{
@@ -6633,7 +6664,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v673</span>
+    <span class="subtitle-version">v674</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9436,6 +9467,7 @@ const I18N = {
         myvocab_already: "« {mot} » est déjà dans tes flashcards.",
         myvocab_full: "Tu as atteint {n} mots mis de côté. Fais-en le tour avant d'en ajouter.",
         myvocab_sans_genre: "« {mot} » n'a pas d'article dans le dictionnaire. On ne peut pas en faire une carte fiable, mais ta demande est notée.",
+        carte_type_particule: "particule",
         carte_type_adjectif: "adjectif",
         carte_genre_der: "masculin",
         carte_genre_die: "féminin",
@@ -10429,6 +10461,7 @@ const I18N = {
         myvocab_already: "“{mot}” is already in your flashcards.",
         myvocab_full: "You have reached {n} saved words. Work through them before adding more.",
         myvocab_sans_genre: "“{mot}” has no article in the dictionary. We can't build a reliable card, but your request is noted.",
+        carte_type_particule: "particle",
         carte_type_adjectif: "adjective",
         carte_genre_der: "masculine",
         carte_genre_die: "feminine",
@@ -11424,6 +11457,7 @@ const I18N = {
         myvocab_already: "“{mot}” zaten kartlarında.",
         myvocab_full: "{n} kayıtlı kelimeye ulaştın. Yenilerini eklemeden önce bunları çalış.",
         myvocab_sans_genre: "“{mot}” kelimesinin sözlükte artikeli yok. Güvenilir bir kart oluşturamıyoruz ama isteğin not edildi.",
+        carte_type_particule: "edat",
         carte_type_adjectif: "sıfat",
         carte_genre_der: "eril",
         carte_genre_die: "dişil",
@@ -12674,6 +12708,7 @@ const I18N = {
         myvocab_already: "«{mot}» уже є серед твоїх карток.",
         myvocab_full: "Ти набрав {n} відкладених слів. Пройди їх, перш ніж додавати нові.",
         myvocab_sans_genre: "У словнику «{mot}» без артикля. Надійної картки з нього не зробити, але твій запит записано.",
+        carte_type_particule: "частка",
         carte_type_adjectif: "прикметник",
         carte_genre_der: "чоловічий рід",
         carte_genre_die: "жіночий рід",
@@ -14350,6 +14385,7 @@ const I18N = {
         myvocab_already: "«{mot}» از پیش در کارت‌های توست.",
         myvocab_full: "به {n} واژهٔ کنارگذاشته رسیدی. پیش از افزودن واژهٔ تازه، اول همین‌ها را مرور کن.",
         myvocab_sans_genre: "«{mot}» در فرهنگ واژگان حرف تعریف ندارد. نمی‌شود از آن کارت ساخت — بدون حرف تعریف، اسم آلمانی ناقص است.",
+        carte_type_particule: "ادات",
         carte_type_adjectif: "صفت",
         carte_genre_der: "مذکر",
         carte_genre_die: "مؤنث",
@@ -14458,6 +14494,7 @@ const I18N = {
         confirm_vider_coffre: "أتريد إزالة {n} كلمة من خزانتك؟ تقدّمك ومواعيدك ونسبتك لا تتغيّر — ولا تختفي إلا علامة «محفوظة».",
         gardes_vide: "الخزانة فارغة. تحت أي بطاقة، «احتفظ» يضع الكلمة هنا لتعمل عليها على حدة: وتبقى في جلساتك، وتجدها هنا متى شئت.",
         myvocab_sans_genre: "«{mot}» بلا أداة تعريف في القاموس. لا يمكن صنع بطاقة موثوقة منها، لكن طلبك مسجَّل.",
+        carte_type_particule: "أداة",
         carte_type_adjectif: "صفة",
         carte_genre_der: "مذكر",
         carte_genre_die: "مؤنث",
@@ -25319,7 +25356,7 @@ function loadFlashcard(){
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
     flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent",
-        "carte-verbe", "rk-akk", "rk-dat", "rk-akkdat", "rk-nom", "rk-aucun", "carte-adjectif");
+        "carte-verbe", "rk-akk", "rk-dat", "rk-akkdat", "rk-nom", "rk-aucun", "carte-adjectif", "carte-mot", "rk-gen");
     document.getElementById("flashcardActions").classList.add("hidden");
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
@@ -25548,7 +25585,8 @@ function loadFlashcard(){
         const praeteritumTr = texteTraduit(card, "praeteritum");
         const posPraesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
         const posPerfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
-        const coreHtml = `<strong>${card.cas}</strong> · ${regularite}` +
+        habillerCarte(card.cas, casDeLibelle(card.cas));
+        const coreHtml = `${regularite}` +
             `<div class="verb-sep"></div>` +
             `<strong>Präsens :</strong> ${card.exemple || ""}${posPraesensSpeakBtn}<br>(${exempleTr || ""})` +
             `<div class="verb-sep"></div>` +
@@ -25579,6 +25617,18 @@ function loadFlashcard(){
             articleEl.classList.remove("hidden");
         } else {
             articleEl.classList.add("hidden");
+        }
+        // Le meme habit que la carte de nom quand le genre est connu (v674) :
+        // liseré et etiquette a la couleur de der/die/das.
+        const g = String(genre || "").toLowerCase().trim();
+        if(["der", "die", "das"].includes(g)){
+            const carteEl = document.getElementById("flashcard");
+            if(carteEl) carteEl.classList.add("border-" + g);
+            articleEl.className = "article " + g;
+            const et = document.getElementById("flashGenre");
+            if(et){ et.textContent = t('carte_genre_' + g); et.className = "carte-genre " + g; }
+        } else {
+            habillerCarte(card[4] ? t("pos_" + card[4]) : "", "aucun");
         }
         // "die" ne vaut que pour un pluriel ALLEMAND : un mot anglais ou
         // francais garde ne prend pas d'article allemand.
@@ -25666,8 +25716,16 @@ function loadFlashcard(){
             ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
             : "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
-        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive')
-            ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}`
+        // La categorie (le cas, ou la nature du mot) monte en etiquette en tete
+        // de carte (v674) : elle n'est plus repetee ici. `label` reste pour
+        // les cartes qui n'ont pas de categorie.
+        const etiquetteCarte = flashcardMode === 'partikeln' ? t('carte_type_particule')
+            : flashcardMode === 'vhskapiteladjektive' ? t('carte_type_adjectif')
+            : cas;
+        habillerCarte(etiquetteCarte,
+            (flashcardMode === 'praep' || flashcardMode === 'kasusverben') ? casDeLibelle(card[2] + " " + cas) : "aucun");
+        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive' || cas)
+            ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`
             : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`;
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
@@ -26600,6 +26658,35 @@ function placerRektionEnTete(card, html){
     carte.classList.add("carte-verbe", "rk-" + cas);
     el.innerHTML = html;
     el.className = html ? "carte-rektion" : "carte-rektion hidden";
+}
+
+// TOUTES LES AUTRES CARTES (v674), demande de Jacques apres le nom, le verbe et
+// l'adjectif. Meme principe partout : ce qui s'apprend AVEC le mot monte en
+// etiquette au-dessus de lui, et le liseré prend une couleur seulement quand
+// elle CODE quelque chose -- un cas (memes teintes que les pastilles et les
+// surlignages), sinon l'encre.
+function casDeLibelle(txt){
+    const s = String(txt || "");
+    if(/Wechsel/i.test(s) || (/Akkusativ/.test(s) && /Dativ/.test(s))) return "akkdat";
+    if(/Genitiv/.test(s)) return "gen";
+    if(/Akkusativ/.test(s)) return "akk";
+    if(/Dativ/.test(s)) return "dat";
+    if(/Nominativ/.test(s)) return "nom";
+    return "aucun";
+}
+
+function habillerCarte(etiquette, cas){
+    const carte = document.getElementById("flashcard");
+    const el = document.getElementById("flashGenre");
+    if(!carte) return;
+    carte.classList.add("carte-mot", "rk-" + (cas || "aucun"));
+    if(!el) return;
+    if(etiquette){
+        el.textContent = etiquette;
+        el.className = "carte-genre " + (cas && cas !== "aucun" ? "cas-" + cas : "neutre");
+    } else {
+        el.className = "carte-genre hidden";
+    }
 }
 
 function buildRektionBadgesHtml(card){
@@ -27725,7 +27812,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 673;
+const APP_VERSION = 674;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
