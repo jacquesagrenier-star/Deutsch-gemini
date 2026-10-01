@@ -7349,3 +7349,13 @@ six langues. Verifie a l'ecran sur neuf types de cartes, aucune erreur.
 Hors champ : le module anglais (en attente). Reste a refaire : le SCHEMA des
 prepositions (image) garde l'ancien bleu pour l'Akkusativ, alors que l'app dit
 violet desormais.
+
+## 1er octobre 2026 -- << les verbes sont trop pres de la couleur des noms feminins >>
+
+Juste : le datif (cuivre #A35A1F) etait de la meme famille que le rouge brique
+de « die ». Maquette de deux remplacements ; la sarcelle etait trop pres du vert
+de « das » (son jugement), il a choisi l'OCRE. **v675** : datif #9A7400 (texte
+#7A5C00, 6,25:1 sur blanc ; nuit #E3C46B) partout -- liseré, pastilles,
+surlignages, etiquettes, badge des prepositions. Et le liseré NEUTRE de nuit
+quitte l'ambre pour un gris clair (#C9CED6) : a cote d'un datif ocre clair, les
+deux se confondaient. Verifie a l'ecran sur « helfen », jour et nuit.

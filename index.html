@@ -5607,12 +5607,12 @@ body[data-theme="dark"] .orb-seance .seance-niveau.on{background:#E8A23A; border
 /* --- Les cas, recolores pour ne plus croiser les genres (voir plus haut). */
 .hl-nominativ, .rektion-nominativ{background:rgba(28,36,48,.08); color:#1C2430; border-color:rgba(28,36,48,.30);}
 .hl-akkusativ, .rektion-akkusativ{background:rgba(91,63,166,.12); color:#5B3FA6; border-color:rgba(91,63,166,.35);}
-.hl-dativ, .rektion-dativ{background:rgba(163,90,31,.14); color:#8A4A1C; border-color:rgba(163,90,31,.38);}
+.hl-dativ, .rektion-dativ{background:rgba(154,116,0,.14); color:#7A5C00; border-color:rgba(154,116,0,.38);}
 .rektion-akkusativ-dativ{background:rgba(79,91,110,.12); color:#3E4858; border-color:rgba(79,91,110,.35);}
 .hl-praeposition, .praeposition-badge{background:transparent; color:#1C2430; border:1px solid #8A8F99;}
 body[data-theme="dark"] .hl-nominativ, body[data-theme="dark"] .rektion-nominativ{background:rgba(242,242,246,.12); color:#E9E6DF; border-color:rgba(242,242,246,.35);}
 body[data-theme="dark"] .hl-akkusativ, body[data-theme="dark"] .rektion-akkusativ{background:rgba(150,120,230,.22); color:#C3B2EE; border-color:rgba(150,120,230,.5);}
-body[data-theme="dark"] .hl-dativ, body[data-theme="dark"] .rektion-dativ{background:rgba(200,120,60,.24); color:#E9B48A; border-color:rgba(200,120,60,.5);}
+body[data-theme="dark"] .hl-dativ, body[data-theme="dark"] .rektion-dativ{background:rgba(200,160,40,.24); color:#E3C46B; border-color:rgba(200,160,40,.5);}
 body[data-theme="dark"] .rektion-akkusativ-dativ{background:rgba(150,165,190,.18); color:#C5CEDB; border-color:rgba(150,165,190,.45);}
 body[data-theme="dark"] .hl-praeposition, body[data-theme="dark"] .praeposition-badge{background:transparent; color:#E9E6DF; border-color:#8A8F99;}
 
@@ -5660,10 +5660,10 @@ body[data-theme="dark"] .flashcard-back .plural{color:#B7BBCB;}
    en tete (voir placerRektionEnTete), infinitif a l'encre. */
 .flashcard.carte-verbe{--rk:var(--wt-action); --rk-rgb:var(--wt-action-rgb);}
 .flashcard.carte-verbe.rk-akk{--rk:#5B3FA6; --rk-rgb:91,63,166;}
-.flashcard.carte-verbe.rk-dat{--rk:#A35A1F; --rk-rgb:163,90,31;}
+.flashcard.carte-verbe.rk-dat{--rk:#9A7400; --rk-rgb:154,116,0;}
 .flashcard.carte-verbe.rk-akkdat{--rk:#4F5B6E; --rk-rgb:79,91,110;}
 body[data-theme="dark"] .flashcard.carte-verbe.rk-akk{--rk:#C3B2EE; --rk-rgb:195,178,238;}
-body[data-theme="dark"] .flashcard.carte-verbe.rk-dat{--rk:#E9B48A; --rk-rgb:233,180,138;}
+body[data-theme="dark"] .flashcard.carte-verbe.rk-dat{--rk:#E3C46B; --rk-rgb:227,196,107;}
 body[data-theme="dark"] .flashcard.carte-verbe.rk-akkdat{--rk:#C5CEDB; --rk-rgb:197,206,219;}
 .flashcard.carte-verbe.flipped .flashcard-back,
 body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{
@@ -5692,11 +5692,11 @@ body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{backgr
    quand il y en a un, sinon a l'encre ; etiquette de meme teinte. */
 .flashcard.carte-mot{--rk:var(--wt-action); --rk-rgb:var(--wt-action-rgb);}
 .flashcard.carte-mot.rk-akk{--rk:#5B3FA6; --rk-rgb:91,63,166;}
-.flashcard.carte-mot.rk-dat{--rk:#A35A1F; --rk-rgb:163,90,31;}
+.flashcard.carte-mot.rk-dat{--rk:#9A7400; --rk-rgb:154,116,0;}
 .flashcard.carte-mot.rk-akkdat{--rk:#4F5B6E; --rk-rgb:79,91,110;}
 .flashcard.carte-mot.rk-gen{--rk:#7A3B69; --rk-rgb:122,59,105;}
 body[data-theme="dark"] .flashcard.carte-mot.rk-akk{--rk:#C3B2EE; --rk-rgb:195,178,238;}
-body[data-theme="dark"] .flashcard.carte-mot.rk-dat{--rk:#E9B48A; --rk-rgb:233,180,138;}
+body[data-theme="dark"] .flashcard.carte-mot.rk-dat{--rk:#E3C46B; --rk-rgb:227,196,107;}
 body[data-theme="dark"] .flashcard.carte-mot.rk-akkdat{--rk:#C5CEDB; --rk-rgb:197,206,219;}
 body[data-theme="dark"] .flashcard.carte-mot.rk-gen{--rk:#E3A6D2; --rk-rgb:227,166,210;}
 .flashcard.carte-mot.flipped .flashcard-back,
@@ -5709,16 +5709,29 @@ body[data-theme="dark"] .flashcard.carte-mot.flipped .flashcard-back{background:
 .flashcard.carte-mot.flipped .back-word{color:var(--wt-encre-texte);}
 .carte-genre.neutre{color:var(--wt-encre-texte); background:rgba(var(--wt-action-rgb),.09);}
 .carte-genre.cas-akk{color:#5B3FA6; background:rgba(91,63,166,.12);}
-.carte-genre.cas-dat{color:#8A4A1C; background:rgba(163,90,31,.14);}
+.carte-genre.cas-dat{color:#7A5C00; background:rgba(154,116,0,.14);}
 .carte-genre.cas-akkdat{color:#3E4858; background:rgba(79,91,110,.12);}
 .carte-genre.cas-gen{color:#7A3B69; background:rgba(122,59,105,.12);}
 .carte-genre.cas-nom{color:#1C2430; background:rgba(28,36,48,.08);}
 body[data-theme="dark"] .carte-genre.cas-akk{color:#C3B2EE; background:rgba(150,120,230,.22);}
-body[data-theme="dark"] .carte-genre.cas-dat{color:#E9B48A; background:rgba(200,120,60,.24);}
+body[data-theme="dark"] .carte-genre.cas-dat{color:#E3C46B; background:rgba(200,160,40,.24);}
 body[data-theme="dark"] .carte-genre.cas-akkdat{color:#C5CEDB; background:rgba(150,165,190,.18);}
 body[data-theme="dark"] .carte-genre.cas-gen{color:#E3A6D2; background:rgba(200,110,170,.22);}
 body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,242,246,.12);}
 .carte-genre{max-width:92%; text-align:center;}
+
+/* --- LE DATIF PASSE A L'OCRE (v675). Le cuivre (#A35A1F) etait de la meme
+   famille que le rouge brique de « die » : Jacques, « les verbes sont trop pres
+   des noms feminins ». La sarcelle, proposee aussi, etait trop pres du vert de
+   « das » -- son choix : l'ocre, jaune-brun, loin des trois genres.
+   ⚠️ ET LE LISERE NEUTRE DE NUIT QUITTE L'AMBRE. Il valait --wt-action, donc
+   l'ambre la nuit : a cote d'un datif ocre clair, les deux se confondaient.
+   Il passe a un gris clair, qui ne ressemble a aucun cas. */
+body[data-theme="dark"] .flashcard.carte-verbe,
+body[data-theme="dark"] .flashcard.carte-mot{--rk:#C9CED6; --rk-rgb:201,206,214;}
+body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{
+    border-color:rgba(201,206,214,.30); box-shadow:inset 0 7px 0 #C9CED6;
+}
 
 /* --- La serie de jours, sur la ligne du salut (v668). */
 .serie-salut{
@@ -6664,7 +6677,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v674</span>
+    <span class="subtitle-version">v675</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17840,7 +17853,7 @@ const praepTheme = {
 // plutôt que juste illustrer le sens du mot.
 const PRAEP_CASE_BADGE = {
   "toujours Akkusativ": { label: "Akkusativ", color: "#5B3FA6" },
-  "toujours Dativ": { label: "Dativ", color: "#A35A1F" },
+  "toujours Dativ": { label: "Dativ", color: "#9A7400" },
   "toujours Genitiv": { label: "Genitiv", color: "#7A3B69" }
 };
 function praepCaseBadgeFor(catFr){
@@ -27812,7 +27825,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 674;
+const APP_VERSION = 675;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
