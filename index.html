@@ -6677,7 +6677,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v675</span>
+    <span class="subtitle-version">v676</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17807,7 +17807,11 @@ const PRAEP_CASE_OPTIONS_EN = ["Akkusativ", "Dativ", "Genitiv", "It depends (Wec
 
 
 
-const PREP_DIAGRAM_URL = LANGUE_ENSEIGNEE.donnees + "video/prep.JPG";
+// ?v=2 (v676) : le schema a ete redessine aux couleurs des cas (accusatif
+// violet, datif ocre, double cas ardoise). Le parametre force les telephones a
+// le recharger au lieu de servir l'ancien, bleu, depuis leur cache. Sa source
+// est video/sources/prep-schema.html (SVG rendu en JPG).
+const PREP_DIAGRAM_URL = LANGUE_ENSEIGNEE.donnees + "video/prep.JPG?v=2";
 
 const praepTheme = {
   id: "praep_vokabular",
@@ -27825,7 +27829,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 675;
+const APP_VERSION = 676;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

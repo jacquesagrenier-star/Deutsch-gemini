@@ -7359,3 +7359,14 @@ de « das » (son jugement), il a choisi l'OCRE. **v675** : datif #9A7400 (texte
 surlignages, etiquettes, badge des prepositions. Et le liseré NEUTRE de nuit
 quitte l'ambre pour un gris clair (#C9CED6) : a cote d'un datif ocre clair, les
 deux se confondaient. Verifie a l'ecran sur « helfen », jour et nuit.
+
+## 1er octobre 2026 -- << refais le schema des prepositions aux nouvelles couleurs >>
+
+**v676.** `video/prep.JPG` redessine a l'identique (memes prepositions, meme
+disposition, reperes wohin?/wo? avec fleche, avion et epingle) aux couleurs des
+cas : accusatif violet, datif ocre, double cas (le recoupement) en ardoise --
+comme les pastilles. A plat, police de la marque. Source gardee :
+`video/sources/prep-schema.html` (SVG, rendu en JPG 1728x1152 par Chrome).
+Corrige au passage : l'avion de l'ancien ressemblait a une fleche.
+L'adresse porte `?v=2` pour que les telephones ne servent pas l'ancien depuis
+leur cache. L'app espagnole pointe vers le meme fichier : elle suit.
