@@ -7128,3 +7128,34 @@ Boutons de la carte : inchanges.
 
 Lecon : appliquer une maquette, c'est reproduire ce qu'elle MONTRE, pas
 seulement sa palette.
+
+## 1er octobre 2026 -- << c'est beaucoup mieux, fais la meme chose pour les verbes >>
+
+**v664.** Ce qui s'apprend AVEC un nom est son genre ; avec un verbe, c'est sa
+RECTION. Donc, comme la carte de nom :
+- fond clair au lieu du sable, liseré en haut a la couleur du cas demande
+  (Akkusativ violet, Dativ cuivre, les deux ardoise, aucun : encre / ambre la
+  nuit) -- les memes teintes que les pastilles et les surlignages de la phrase ;
+- les pastilles de rection montent en tete, au-dessus de l'infinitif (elles
+  etaient enfouies dans le bloc de conjugaison) ;
+- l'infinitif a l'encre, en serif.
+Boutons : inchanges. Les adjectifs et les autres cartes « answer-accent »
+gardent l'ancien traitement (sable) -- pas demande.
+
+## 1er octobre 2026 -- suggestions de design transmises par Jimmy
+
+Texte colle par Jacques (genere par un outil d'analyse, d'apres une capture).
+Consigne ici, rien d'applique sans decision de Jacques. Points et etat :
+- grille d'activite « facon GitHub » : c'est en fait la MOSAIQUE (galerie
+  d'images qui se devoile), mal lue sur la capture ;
+- degrade / glassmorphism / glow sur la carte de seance : contraire au
+  principe a plat valide le 1er octobre ;
+- couleurs pastel par categorie de tuile : c'est exactement ce qu'on vient de
+  retirer (v662), a la demande de Jacques ;
+- mini-progression par tuile : existe deja en partie (anneaux autour des
+  icones) ;
+- mode sombre complet : existe (bouton lune) ;
+- serie (streak) visible en haut : a examiner -- la serie existe dans l'app,
+  la question est seulement de la montrer sur l'accueil ;
+- infobulle « mots revises ce jour-la » : depend de la mosaique, pas d'une
+  grille d'activite.

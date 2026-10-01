@@ -5618,6 +5618,28 @@ body[data-theme="dark"]{--g-der-rgb:134,168,232; --g-die-rgb:240,138,120; --g-da
 body[data-theme="dark"] .flashcard-back .plural{color:#B7BBCB;}
 .plural .pl-art{color:var(--g-die); font-weight:700; font-family:'Source Serif 4', Georgia, serif;}
 .plural .pl-mot{color:var(--wt-encre-texte); font-weight:600; font-family:'Source Serif 4', Georgia, serif;}
+
+/* --- LA CARTE DE VERBE (v664), meme traitement que la carte de nom : fond
+   clair au lieu du sable, liseré en haut a la couleur du cas demande, rection
+   en tete (voir placerRektionEnTete), infinitif a l'encre. */
+.flashcard.carte-verbe{--rk:var(--wt-action); --rk-rgb:var(--wt-action-rgb);}
+.flashcard.carte-verbe.rk-akk{--rk:#5B3FA6; --rk-rgb:91,63,166;}
+.flashcard.carte-verbe.rk-dat{--rk:#A35A1F; --rk-rgb:163,90,31;}
+.flashcard.carte-verbe.rk-akkdat{--rk:#4F5B6E; --rk-rgb:79,91,110;}
+body[data-theme="dark"] .flashcard.carte-verbe.rk-akk{--rk:#C3B2EE; --rk-rgb:195,178,238;}
+body[data-theme="dark"] .flashcard.carte-verbe.rk-dat{--rk:#E9B48A; --rk-rgb:233,180,138;}
+body[data-theme="dark"] .flashcard.carte-verbe.rk-akkdat{--rk:#C5CEDB; --rk-rgb:197,206,219;}
+.flashcard.carte-verbe.flipped .flashcard-back,
+body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{
+    border:1px solid rgba(var(--rk-rgb),.35);
+    box-shadow:inset 0 7px 0 var(--rk);
+}
+.flashcard.carte-verbe.flipped .flashcard-back{background:rgba(255,255,255,.6);}
+body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{background:rgba(255,255,255,.06);}
+.flashcard.carte-verbe.flipped .back-word{color:var(--wt-encre-texte);}
+.carte-rektion{margin:4px 0 6px; text-align:center;}
+.carte-rektion > div{margin-bottom:0 !important;}
+.carte-rektion .rektion-badge{margin-bottom:0;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6514,7 +6536,7 @@ body[data-theme="dark"] .flashcard-back .plural{color:#B7BBCB;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v663</span>
+    <span class="subtitle-version">v664</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -25029,7 +25051,8 @@ function loadFlashcard(){
     if(item.mode) flashcardMode = item.mode;
     const card = item.word;
     const flashcardEl = document.getElementById("flashcard");
-    flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent");
+    flashcardEl.classList.remove("flipped", "border-der", "border-die", "border-das", "answer-accent",
+        "carte-verbe", "rk-akk", "rk-dat", "rk-akkdat", "rk-nom", "rk-aucun");
     document.getElementById("flashcardActions").classList.add("hidden");
     sentenceRegistry = [];
     if(flashcardMode === 'verben' || flashcardMode === 'adjektive' || flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'positionsverben' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapitelverben' || flashcardMode === 'vhskapiteladjektive' || flashcardMode === 'englishmodule'){
@@ -25133,7 +25156,8 @@ function loadFlashcard(){
             // venir) : on n'affiche que la phrase d'exemple, plutôt qu'un tableau
             // Präsens vide suivi de lignes "Perfekt :" sans contenu.
             const soloSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
-            verbDetailsEl.innerHTML = `<div class="verb-core">${buildRektionBadgesHtml(card)}${card.exemple || ""}${soloSpeakBtn}${exampleTr ? `<br>(${exampleTr})` : ""}</div>`;
+            placerRektionEnTete(card, buildRektionBadgesHtml(card));
+            verbDetailsEl.innerHTML = `<div class="verb-core">${card.exemple || ""}${soloSpeakBtn}${exampleTr ? `<br>(${exampleTr})` : ""}</div>`;
         } else {
             const p = card.praesens || {};
             const conjLines = [
@@ -25142,7 +25166,7 @@ function loadFlashcard(){
             ].join(" · ");
             const praesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
             const perfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
-            const rektionHtml = buildRektionBadgesHtml(card);
+            placerRektionEnTete(card, buildRektionBadgesHtml(card));
             // exempleHighlight (si présent) surligne dans la phrase le(s) mot(s)
             // qui correspond(ent) à chaque pastille de régime, avec la même
             // couleur -- ex. "dir" en violet (Dativ) et "eine E-Mail" en bleu
@@ -25151,7 +25175,7 @@ function loadFlashcard(){
             // doit jamais recevoir de HTML.
             const exampleDisplay = card.exempleHighlight || card.exemple || "";
             const perfektDisplay = card.perfektHighlight || card.perfekt || "";
-            const coreHtml = `${rektionHtml}<strong>PRÄSENS</strong><br>${conjLines}` +
+            const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Präsens :</strong> ${exampleDisplay}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
                 `<div class="verb-sep"></div>` +
@@ -26273,6 +26297,28 @@ function usageMarkText(registre, vergleich){
     if(registre === "oesterreichisch") return t("usage_autriche");
     if(registre === "schweizerisch") return t("usage_suisse");
     return "";
+}
+
+// LA CARTE DE VERBE EN TETE, COMME LA CARTE DE NOM (v664). Sur le nom, ce qui
+// s'apprend AVEC le mot est son genre : il est en tete, en toutes lettres, et
+// colore le liseré. Sur le verbe, c'est sa RECTION -- quel cas il demande. Les
+// pastilles etaient enfouies dans le bloc de conjugaison ; elles montent au-dessus
+// de l'infinitif, et le liseré prend la couleur du cas (les memes teintes que les
+// pastilles et que les surlignages de la phrase : un seul code pour tout l'ecran).
+// Le verbe sans complement direct garde un liseré a l'encre -- l'absence de cas
+// est une information, pas un oubli.
+function placerRektionEnTete(card, html){
+    const el = document.getElementById("flashGenre");
+    const carte = document.getElementById("flashcard");
+    if(!el || !carte) return;
+    const r = card.rektion || "";
+    const cas = (r.includes("Akkusativ") && r.includes("Dativ")) ? "akkdat"
+              : r === "Akkusativ" ? "akk"
+              : r === "Dativ" ? "dat"
+              : r === "Nominativ" ? "nom" : "aucun";
+    carte.classList.add("carte-verbe", "rk-" + cas);
+    el.innerHTML = html;
+    el.className = html ? "carte-rektion" : "carte-rektion hidden";
 }
 
 function buildRektionBadgesHtml(card){
@@ -27398,7 +27444,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 663;
+const APP_VERSION = 664;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
