@@ -7178,3 +7178,18 @@ contenant de donnees, separe de l'app installee sur l'ecran d'accueil (voir la
 memoire test-iphone). Rien n'est perdu : la progression vit dans l'app installee
 et dans le cloud. Ne plus donner le lien `?v=` comme geste de mise a jour quand
 il utilise la tuile : la tuile se met a jour seule au lancement.
+
+## 1er octobre 2026 -- << 269 sur 860 en A1, 175 en A2, 143 en B1, ca n'est pas possible ; presque pas de carreaux decouverts >>
+
+Mesure (lecture seule du cloud, 20 h 52 UTC) : 617 mots vus, 212 maitrises,
+445 XP, derniere sauvegarde a l'instant. 269 + 175 + 143 = 587 : les chiffres
+affiches SONT ceux du cloud -- rien n'a ete perdu, et les v662-v665 ne touchent
+ni la progression ni sa synchronisation.
+
+**La mosaique, elle, ne voyage pas** : son etat vit seulement dans le
+localStorage (`deutschAI_mosaique`), pas dans le document Firestore. Ouverte
+dans un nouveau contenant (le navigateur via le lien `?v=`), l'app repart a 10
+carreaux, alors que les mots reviennent du cloud. C'est un vrai trou : un
+changement de telephone ou une reinstallation de l'icone perd l'image en cours.
+Propose a Jacques : synchroniser l'etat de la mosaique avec le cloud.
+Question en attente : quel chemin (icone ou navigateur) montre ces chiffres.
