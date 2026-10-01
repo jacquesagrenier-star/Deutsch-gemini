@@ -5641,21 +5641,19 @@ body[data-theme="dark"] .flashcard.carte-verbe.flipped .flashcard-back{backgroun
 .carte-rektion > div{margin-bottom:0 !important;}
 .carte-rektion .rektion-badge{margin-bottom:0;}
 
-/* --- La serie de jours sur l'accueil (v665) : une pastille ambre centree,
-   flamme dessinee au trait comme les icones des tuiles (pas d'emoji). */
-#serieAccueil{display:flex; justify-content:center; margin:0 0 10px;}
-#serieAccueil.hidden{display:none;}
-#serieAccueil .home-stat-cote{
-    flex-direction:row; align-items:center; gap:6px;
-    padding:4px 12px 4px 10px; border-radius:999px;
-    background:rgba(232,162,58,.16); border:1px solid rgba(232,162,58,.35);
+/* --- La serie de jours, sur la ligne du salut (v668). */
+.serie-salut{
+    display:inline-flex; align-items:center; gap:3px; flex:0 0 auto;
+    padding:2px 8px 2px 6px; border-radius:999px;
+    background:rgba(232,162,58,.16); border:1px solid rgba(232,162,58,.40);
+    font-size:13px; font-weight:800; line-height:1.2; color:#1C2430;
+    font-variant-numeric:tabular-nums;
 }
-#serieAccueil .home-stat-ico svg{width:17px; height:17px; fill:none; stroke:#B9770E; stroke-width:1.8; stroke-linejoin:round; display:block;}
-#serieAccueil .home-stat-val{font-size:15px; color:#1C2430;}
-#serieAccueil .home-stat-lib{font-size:12.5px; color:#6B5A3E; font-weight:600;}
-body[data-theme="dark"] #serieAccueil .home-stat-ico svg{stroke:#F0B456;}
-body[data-theme="dark"] #serieAccueil .home-stat-val{color:#F2F2F6;}
-body[data-theme="dark"] #serieAccueil .home-stat-lib{color:#E9C89A;}
+.serie-salut.hidden{display:none;}
+.serie-salut svg{width:14px; height:14px; fill:none; stroke:#B9770E; stroke-width:2; stroke-linejoin:round; display:block;}
+.serie-unite{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+body[data-theme="dark"] .serie-salut{color:#F2F2F6;}
+body[data-theme="dark"] .serie-salut svg{stroke:#F0B456;}
 
 /* --- MAITRISES / EN COURS : DEUX FONCES NE SE DISTINGUENT PAS (v667).
    La v662 avait fait passer « en cours » du bleu a l'ENCRE, a cote du vert
@@ -5930,6 +5928,15 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          premier coup (voir la note de .search-launch input). -->
     <div class="home-greeting-row">
         <p id="homeGreeting" class="home-greeting"></p>
+        <!-- LA SERIE SUR LA LIGNE DU SALUT (v668). Au milieu de la carte, elle
+             prenait une ligne entiere pour une pastille, et laissait de part et
+             d'autre un vide que Jacques a refuse ; a cote du logo, il n'en
+             voulait pas non plus. Ici elle ne coute aucune hauteur : le salut,
+             la flamme, puis le dictionnaire pousse a droite.
+             Le nombre seul a l'ecran, l'unite pour les lecteurs d'ecran : sur
+             une ligne deja partagee, « 12 jours » en toutes lettres ne tiendrait
+             pas dans toutes les langues. -->
+        <span id="serieAccueil" class="serie-salut hidden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></span>
     <label class="search-launch" for="homeSearchInput">
         <svg viewBox="0 0 24 24"><path d="M10.5 7.4C9.2 6.2 7.5 5.6 5.2 5.6c-.9 0-1.7.1-2.4.2v9.8c.7-.1 1.5-.2 2.4-.2 2.3 0 4 .6 5.3 1.8"/><path d="M10.5 7.4c1.3-1.2 3-1.8 5.3-1.8.9 0 1.7.1 2.4.2v4.4"/><path d="M10.5 7.4v9.8"/><circle cx="16.6" cy="15.4" r="3.1"/><path d="M18.9 17.7 21.4 20.2"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
@@ -6030,16 +6037,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
             </div>
         </div>
 
-        <!-- LA SERIE DE JOURS REVIENT (v665), demande de Jacques. La ligne etait
-             masquee entiere depuis que la mosaique a remplace l'anneau. Elle ne
-             s'affiche qu'a partir d'UN jour : « 0 jour » au retour de vacances
-             serait un indicateur qui punit l'absence -- ce qu'on a retire ailleurs. -->
-        <div id="serieAccueil" class="global-progress-row hidden">
-            <div class="home-stat-cote">
-                <div class="home-stat-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg></div>
-                <div class="home-stat-val"><span id="streakCount">0</span></div>
-                <div class="home-stat-lib" id="serieUnite">jours</div>
-            </div>
+        <div class="global-progress-row hidden">
 
             <!-- ⚠️ MASQUE, PAS SUPPRIME. « Cette semaine » mesure une VITESSE :
                  elle s'effondre apres une semaine de vacances alors que rien
@@ -6572,7 +6570,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v667</span>
+    <span class="subtitle-version">v668</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -20218,6 +20216,7 @@ function updateHomeStatsPanel(percent){
         serieEl.classList.toggle("hidden", n < 1);
         const uniteEl = document.getElementById("serieUnite");
         if(uniteEl) uniteEl.textContent = t(n === 1 ? 'home_streak_unit_one' : 'home_streak_unit');
+        serieEl.title = n + " " + (uniteEl ? uniteEl.textContent : "");
     }
 
     const freezeChip = document.getElementById("streakFreezeChip");
@@ -27549,7 +27548,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 667;
+const APP_VERSION = 668;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -7224,3 +7224,12 @@ retires au passage (ligne du niveau courant, rond de la fleche).
 Invisible parce que sa serie vaut 0 dans ce contenant (et le nuage avait 0 a
 cause du defaut corrige en v666). La place au centre ne lui va pas : options
 d'emplacement presentees en maquette, pas encore deplacee.
+
+## 1er octobre 2026 -- << pas a cote du logo ; apres « Bon apres-midi, Jacques », sur la meme ligne que le dictionnaire >>
+
+Il avait d'abord choisi l'option A (a cote du logo) puis s'est ravise en cours
+de travail. **v668** : la pastille du milieu de la carte est retiree ; la serie
+se pose sur la ligne du salut -- salut, flamme et nombre, puis le dictionnaire
+pousse a droite. Aucune hauteur ajoutee. Le nombre seul a l'ecran (« 12 »),
+l'unite pour les lecteurs d'ecran et en infobulle. Mesure a 375 px : rien ne
+deborde, meme avec un salut ukrainien long. Toujours invisible a 0 jour.
