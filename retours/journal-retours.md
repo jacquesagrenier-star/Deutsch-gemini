@@ -7113,3 +7113,18 @@ l'accueil (proposee) n'est PAS faite : elle deplacerait des elements.
 
 **Ecarte :** la coupure automatique des mots composes -- fitFlashcardWord()
 fait deja tenir les mots longs en reduisant la taille.
+
+## 1er octobre 2026 -- << je ne vois pas vraiment de changement sur la carte >>
+
+Juste : la v662 n'avait change que des TEINTES sur une carte qui colorait deja
+l'article (bordure pleine + « DER » en petites capitales). La maquette validee
+montrait une carte differente. **v663** la rend :
+- un liseré de la couleur du genre en haut, au lieu de la bordure pleine ;
+- le genre en toutes lettres dans une etiquette (« féminin »), traduit dans
+  les six langues d'interface (cles carte_genre_der/die/das) ;
+- l'article en minuscules et en grand (« die »), en serif ;
+- le « die » du pluriel dans la couleur du feminin.
+Boutons de la carte : inchanges.
+
+Lecon : appliquer une maquette, c'est reproduire ce qu'elle MONTRE, pas
+seulement sa palette.
