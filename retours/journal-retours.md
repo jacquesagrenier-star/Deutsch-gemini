@@ -7370,3 +7370,27 @@ comme les pastilles. A plat, police de la marque. Source gardee :
 Corrige au passage : l'avion de l'ancien ressemblait a une fleche.
 L'adresse porte `?v=2` pour que les telephones ne servent pas l'ancien depuis
 leur cache. L'app espagnole pointe vers le meme fichier : elle suit.
+
+## 1er octobre 2026 -- << ajoute le comparatif et le superlatif aux adjectifs >>
+
+**v677.** Source, pas memoire :
+- les FORMES : le Wiktionnaire ALLEMAND, tableau « Deutsch Adjektiv
+  Übersicht » de chaque fiche (API officielle, 20 requetes de 50 titres) ;
+- les MARQUES : kaikki.org (Wiktionnaire anglais), lu en flux sans garder les
+  439 Mo, pour ecarter ce qu'il dit rare, familier ou peu usite (tot -> toter,
+  perfekt -> perfekter, ideal, extrem, ueberholt, willkommen, ueberrascht).
+  Le Wiktionnaire anglais seul ne suffisait pas : il ne developpe pas toujours
+  les formes (sauer, moeglich n'avaient qu'une regle de formation).
+Resultat sur 981 : **709 avec degres** (champs `comparatif`, `superlatif`),
+**175 `sans_comparatif`** (tiret du Wiktionnaire allemand ou forme marquee).
+Laisses SANS donnee, et pas devines : 48 entrees composees (« ehrlich/unehrlich »,
+« total (gut) ») et 49 participes dont la page n'a pas de tableau (entspannt,
+gestresst, ueberzeugt...).
+Controle mecanique (comparatif = mot + -er a l'inflexion pres) : 5 ecarts, 3
+justes (fit, gross, naheliegend), 2 corriges -- un reste de commentaire HTML
+colle a « eingebildet », et « verschiedner », forme litteraire, ecartee.
+Carte : « besser · am besten » sous le mot, a la place du pluriel des noms,
+avec le bouton d'ecoute ; rien pour un adjectif sans comparatif. Rangs 15-16
+ajoutes A LA FIN du tableau de l'adjectif : aucun rang existant ne bouge.
+Credit ajoute (six langues) : Wiktionnaire allemand et anglais via kaikki.org,
+CC BY-SA 4.0.
