@@ -742,7 +742,20 @@ window.LIEN_REINIT = (function(){
         // rejoue quand meme. Sur un appareil ou l'ouvrier survivrait a la mise
         // en veille, mieux vaut revoir l'ouverture pour rien que ne plus
         // jamais la revoir.
-        if(retard < SEUIL_GEL || estParti) jouer();
+        if(retard < SEUIL_GEL || estParti){
+            jouer();
+            // ⚠️ ET ON REGARDE S'IL Y A UNE NOUVELLE VERSION (v669). La
+            // verification ne tournait qu'au DEMARRAGE de la page -- or l'app
+            // installee n'est presque jamais redemarree : iOS la met en veille
+            // et la reveille. Jacques est reste en v666 apres la publication
+            // de la v668, tuile ouverte et rouverte. Le retour de veille est
+            // le seul moment ou l'on sait qu'il revient : c'est la qu'on
+            // demande. Le rechargement passe sous la video d'ouverture, qui
+            // vient justement de se rejouer.
+            if(typeof window.verifierNouvelleVersion === "function"){
+                try{ window.verifierNouvelleVersion(); }catch(e){}
+            }
+        }
     }
 
     var ouvrier = null;
@@ -6570,7 +6583,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v668</span>
+    <span class="subtitle-version">v669</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27548,7 +27561,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 668;
+const APP_VERSION = 669;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -7233,3 +7233,13 @@ se pose sur la ligne du salut -- salut, flamme et nombre, puis le dictionnaire
 pousse a droite. Aucune hauteur ajoutee. Le nombre seul a l'ecran (« 12 »),
 l'unite pour les lecteurs d'ecran et en infobulle. Mesure a 375 px : rien ne
 deborde, meme avec un salut ukrainien long. Toujours invisible a 0 jour.
+
+## 1er octobre 2026 -- << avec l'icone, l'accueil reste en v666 >>
+
+Mesure : la v668 etait bien publiee (version.json et APP_VERSION en ligne).
+Cause : `verifierNouvelleVersion()` ne tournait qu'au DEMARRAGE de la page, et
+l'app installee n'est presque jamais redemarree -- iOS la met en veille puis la
+reveille. **v669** : la verification tourne aussi au retour de veille, detecte
+par le pouls (le meme qui rejoue la video d'ouverture) ; le rechargement passe
+sous la video. Pour CETTE fois, il faut fermer l'app (balayer vers le haut dans
+le selecteur d'apps) et la rouvrir : la v666 n'a pas encore ce code.
