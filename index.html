@@ -6556,7 +6556,7 @@ body[data-theme="dark"] #serieAccueil .home-stat-lib{color:#E9C89A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v665</span>
+    <span class="subtitle-version">v666</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -18887,6 +18887,24 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(GRAMMAIRE_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // LA MOSAIQUE VOYAGE (v666). Elle ne vivait que dans le localStorage :
+            // ouverte dans un autre contenant -- le navigateur au lieu de l'icone,
+            // un nouveau telephone, une reinstallation -- l'app repartait a dix
+            // carreaux pendant que les mots, eux, revenaient du nuage. Constate
+            // par Jacques le 1er octobre : « presque pas de carreaux decouverts ».
+            // Une chaine, comme grammaire, pour le plafond d'index.
+            mosaique: (function(){
+                try{ return localStorage.getItem(MOSAIQUE_CLE) || ""; }
+                catch(e){ return ""; }
+            })(),
+            // Le jour de la serie, sans quoi un appareil qui la restaure ne
+            // saurait pas si elle continue demain ou repart a un.
+            streakJour: (function(){
+                try{
+                    const s = JSON.parse(localStorage.getItem(directionScopedKey(STREAK_KEY)) || "null");
+                    return (s && typeof s === "object" && s.lastActiveDate) || "";
+                }catch(e){ return ""; }
+            })(),
             // ============ LA PROGRESSION VOYAGE EN UNE CHAINE (v577) ============
             //
             // ⚠️ UN CHAMP AU LIEU DE 47 502. Firestore indexe AUTOMATIQUEMENT
@@ -19100,12 +19118,47 @@ async function restoreProgressFromCloud(){
         if(ajoutes) saveProgress(local);
 
         // La serie et l'XP se restaurent au maximum, jamais a la baisse.
+        //
+        // ⚠️ LA SERIE N'A JAMAIS ETE RESTAUREE, JUSQU'A LA v666. On ecrivait le
+        // nombre nu (« 12 ») la ou getStreakCount() et la mise a jour quotidienne
+        // attendent un objet { count, lastActiveDate } : le nombre se lisait 0,
+        // et ce 0 repartait au nuage a la synchronisation suivante, ecrasant la
+        // vraie serie du premier appareil. Mesure le 1er octobre : la serie de
+        // Jacques valait 0 dans son document.
         try{
             if(typeof data.streak === "number" && data.streak > getStreakCount()){
-                localStorage.setItem(STREAK_KEY, String(data.streak));
+                localStorage.setItem(directionScopedKey(STREAK_KEY), JSON.stringify({
+                    count: data.streak,
+                    lastActiveDate: data.streakJour || data.dailyActivityDate || null
+                }));
             }
             if(typeof data.xp === "number" && data.xp > getXp()){
-                localStorage.setItem(XP_KEY, String(data.xp));
+                localStorage.setItem(directionScopedKey(XP_KEY), String(data.xp));
+            }
+        }catch(e){}
+
+        // LA MOSAIQUE, FUSIONNEE ET NON ECRASEE (v666). On garde l'image la plus
+        // avancee -- rang d'abord, puis carreaux poses -- et la REUNION des
+        // tableaux gagnes. Le dernier qui parle n'a pas raison : un navigateur
+        // tout neuf a dix carreaux ne doit jamais effacer l'image de l'icone.
+        try{
+            if(typeof data.mosaique === "string" && data.mosaique){
+                const d = JSON.parse(data.mosaique);
+                if(d && typeof d === "object"){
+                    const l = etatMosaique();
+                    const rd = d.r || 1, cd = d.c || 0;
+                    const distantDevant = rd > l.r || (rd === l.r && cd > l.c);
+                    const gagnes = Array.from(new Set([...(l.g || []), ...(Array.isArray(d.g) ? d.g : [])]))
+                        .sort((a, b) => a - b);
+                    const retenu = distantDevant
+                        ? { r: rd, c: cd, j: d.j || "", n: d.n || 0, t: d.t || 0, tj: d.tj || "" }
+                        : { r: l.r, c: l.c, j: l.j, n: l.n, t: l.t, tj: l.tj };
+                    retenu.g = gagnes;
+                    if(distantDevant || gagnes.length !== (l.g || []).length){
+                        ecrireMosaique(retenu);
+                        try{ majMosaiqueAccueil(); }catch(e){}
+                    }
+                }
             }
         }catch(e){}
 
@@ -19831,7 +19884,8 @@ function recordDailyActivity(compteDansObjectif){
     let streak;
     const streakKey = directionScopedKey(STREAK_KEY);
     try{ streak = JSON.parse(localStorage.getItem(streakKey) || "null"); }catch(e){ streak = null; }
-    if(!streak) streak = { count: 0, lastActiveDate: null };
+    if(typeof streak === "number") streak = { count: streak, lastActiveDate: null };
+    if(!streak || typeof streak !== "object") streak = { count: 0, lastActiveDate: null };
     if(streak.lastActiveDate !== today){
         const yesterday = getTodayStr(new Date(Date.now() - 86400000));
         if(streak.lastActiveDate === yesterday){
@@ -20037,7 +20091,9 @@ function getDailyActivityCount(){
 function getStreakCount(){
     let streak;
     try{ streak = JSON.parse(localStorage.getItem(directionScopedKey(STREAK_KEY)) || "null"); }catch(e){ streak = null; }
-    const n = streak ? Number(streak.count) : 0;
+    // Un nombre nu est l'ancien format de restauration (avant v666) : il se lit
+    // comme une serie au lieu de valoir zero.
+    const n = typeof streak === "number" ? streak : (streak ? Number(streak.count) : 0);
     return Number.isFinite(n) ? n : 0;
 }
 
@@ -27477,7 +27533,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 665;
+const APP_VERSION = 666;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

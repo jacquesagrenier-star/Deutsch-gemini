@@ -7193,3 +7193,19 @@ carreaux, alors que les mots reviennent du cloud. C'est un vrai trou : un
 changement de telephone ou une reinstallation de l'icone perd l'image en cours.
 Propose a Jacques : synchroniser l'etat de la mosaique avec le cloud.
 Question en attente : quel chemin (icone ou navigateur) montre ces chiffres.
+
+## 1er octobre 2026 -- << oui, et assure-toi que ca fonctionne pour les testeurs aussi >>
+
+**v666, pour tous les comptes.**
+- La mosaique part au nuage (champ `mosaique`, une chaine) et se FUSIONNE a la
+  restauration : rang le plus avance, puis carreaux poses, et reunion des
+  tableaux gagnes. Un navigateur neuf a dix carreaux n'ecrase jamais l'image de
+  l'icone. Pour Jacques : ouvrir UNE FOIS l'icone envoie son image au nuage ;
+  le navigateur la recoit a l'ouverture suivante.
+- Trouve en lisant le code : **la serie de jours n'etait jamais restauree**. La
+  restauration ecrivait « 12 » la ou l'app attend { count, lastActiveDate } ;
+  le nombre se lisait 0, et ce 0 repartait au nuage -- d'ou la serie de Jacques
+  a 0 dans son document. Restauree au bon format desormais (avec `streakJour`),
+  et un ancien nombre nu se relit comme une serie.
+- Banc d'essai : 4 cas de fusion (neuf <- avance, avance garde, meme rang,
+  rien au nuage) + serie, sur une fausse reponse Firestore. Tous passent.
