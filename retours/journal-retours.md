@@ -7394,3 +7394,33 @@ avec le bouton d'ecoute ; rien pour un adjectif sans comparatif. Rangs 15-16
 ajoutes A LA FIN du tableau de l'adjectif : aucun rang existant ne bouge.
 Credit ajoute (six langues) : Wiktionnaire allemand et anglais via kaikki.org,
 CC BY-SA 4.0.
+
+## 1er octobre 2026 -- le premier lancement (v678)
+
+Constat (lecture seule du nuage) : 16 comptes, **8 n'ont jamais vu un mot** --
+ils ont reussi l'inscription et decrochent avant la premiere carte. Parcours
+refait ecran par ecran en francais et en ukrainien. Decide par Jacques, fait :
+- **langue du telephone** des l'ouverture (l'app s'ouvrait TOUJOURS en
+  francais) ; une langue que l'app ne parle pas -> l'ANGLAIS (son etudiant grec,
+  un etudiant indien) ; dari -> persan. Verifie sur 7 locales simulees.
+- **bouton de langue retire de l'en-tete** (sa demande) : la langue se change
+  dans les reglages. **Ecran de reglages du depart saute** : sa seule vraie
+  question etait la langue. Une etape de moins.
+- **un mot jamais juge se DECOUVRE avant de se demander** : la carte se
+  retourne d'elle-meme, avec « Nouveau mot », l'allemand, le son, la
+  traduction. La premiere carte d'un debutant etait une question a laquelle il
+  ne pouvait pas repondre. Boutons inchanges : « Encore » le fait revenir en
+  question deux minutes plus tard.
+- **champ « Genre » retire** : il devait accorder les textes (motive/motivee),
+  ce qui n'a jamais ete programme -- enregistre, jamais lu. Politique de
+  confidentialite mise a jour (FR/EN). ⚠️ Les genres DEJA enregistres restent
+  dans les documents : a effacer depuis la console Firebase (la cle du depot
+  est en lecture seule, et doit le rester).
+- **titre d'accueil** : « Accès restreint / Connexion obligatoire » ->
+  « Bienvenue / Apprends l'allemand, un mot à la fois » (6 langues) ; « du A1
+  au B2 » -> « du A1 au C1 » ; tutoiement partout (4 textes vouvoyaient) ;
+  langues designees par leur nom, sans drapeau (Iran/Arabie pour persan/arabe).
+- **etapes notees** (accueil, 1re carte affichee, 1re carte passee) + langue
+  de l'interface, dans la sauvegarde ; `node tests/parcours.js` en fait le
+  tableau.
+Question de Jacques en suspens : la video de demonstration au demarrage.

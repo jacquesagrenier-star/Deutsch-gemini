@@ -5720,6 +5720,23 @@ body[data-theme="dark"] .carte-genre.cas-gen{color:#E3A6D2; background:rgba(200,
 body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,242,246,.12);}
 .carte-genre{max-width:92%; text-align:center;}
 
+/* --- LE PREMIER LANCEMENT (v678) ---
+   Le bouton de langue quitte l'en-tete : la langue vient du telephone et se
+   change dans les reglages (demande de Jacques). Le bouton reste dans le code,
+   cache, parce que le reste de l'app y lit encore son libelle. */
+#uiLangToggleBtn{display:none !important;}
+/* Les langues se designent par leur nom, pas par un drapeau : un Afghan qui
+   parle persan ou un Syrien qui parle arabe n'a pas a choisir le drapeau de
+   l'Iran ou de l'Arabie saoudite. */
+.setup-choice-flag{display:none !important;}
+.carte-nouveau{
+    display:inline-block; font-size:11.5px; font-weight:800; letter-spacing:.04em;
+    padding:2px 10px; border-radius:20px; margin:4px 0 2px;
+    color:#1C2430; background:#E8A23A;
+}
+.carte-nouveau.hidden{display:none;}
+body[data-theme="dark"] .carte-nouveau{color:#1C2430; background:#F0B456;}
+
 /* --- LE DATIF PASSE A L'OCRE (v675). Le cuivre (#A35A1F) etait de la meme
    famille que le rouge brique de « die » : Jacques, « les verbes sont trop pres
    des noms feminins ». La sarcelle, proposee aussi, etait trop pres du vert de
@@ -5831,15 +5848,15 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
 <section id="auth" class="screen">
     <div class="title-row" style="margin-top: 10px;">
         <div>
-            <div class="kicker" data-i18n="auth_kicker">Accès restreint</div>
-            <h2 data-i18n="auth_title">Connexion obligatoire</h2>
+            <div class="kicker" data-i18n="auth_kicker">Bienvenue</div>
+            <h2 data-i18n="auth_title">Apprends l'allemand, un mot à la fois</h2>
         </div>
     </div>
 
     <div class="card auth-value-card">
         <div class="auth-value-row">
             <span class="auth-value-icon">🗂️</span>
-            <span data-i18n="auth_value_1">Vocabulaire et grammaire allemande organisés par niveau, du A1 au B2.</span>
+            <span data-i18n="auth_value_1">Vocabulaire et grammaire allemande organisés par niveau, du A1 au C1.</span>
         </div>
         <div class="auth-value-row">
             <span class="auth-value-icon">🎯</span>
@@ -5858,7 +5875,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
 
     <div class="card" id="authLoginCard">
         <div id="authContent">
-            <p style="color:#576177" data-i18n="auth_desc">Veuillez vous connecter ou créer un compte pour utiliser Wortando.</p>
+            <p style="color:#576177" data-i18n="auth_desc">Connecte-toi, ou crée ton compte avec ton code d'invitation.</p>
             <div class="spacer"></div>
             <input id="authEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
             <div class="password-field-wrap" style="margin-bottom:20px;">
@@ -5884,11 +5901,6 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <p style="color:#576177" data-i18n="auth_signup_desc">Tu as reçu un code d'invitation ? Crée ton compte ici.</p>
         <div class="spacer"></div>
         <input id="authSignupFirstName" class="answer" type="text" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
-        <select id="authSignupGender" class="answer" style="margin-bottom:12px;">
-            <option value="" data-i18n="auth_gender_placeholder">Genre</option>
-            <option value="female" data-i18n="auth_gender_female">Féminin</option>
-            <option value="male" data-i18n="auth_gender_male">Masculin</option>
-        </select>
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
         <div class="password-field-wrap" style="margin-bottom:10px;">
             <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (6 caractères min.)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
@@ -5954,12 +5966,12 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
     <div class="title-row" style="margin-top: 10px;">
         <div>
             <div class="kicker" data-i18n="setup_kicker">Bienvenue</div>
-            <h2 data-i18n="setup_title">Configurons votre apprentissage</h2>
+            <h2 data-i18n="setup_title">Configurons ton apprentissage</h2>
         </div>
     </div>
     <div class="card">
         <div class="setup-choice-group">
-            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que vous apprenez ?</div>
+            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que tu apprends ?</div>
             <div class="setup-choice-row">
                 <button class="setup-choice" id="setupChoiceDirDe" onclick="selectLearningDirectionChoice('de')">
                     <span class="setup-choice-flag">🇩🇪</span>
@@ -5972,7 +5984,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
             </div>
         </div>
         <div class="setup-choice-group" id="setupUiLangGroup">
-            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue voulez-vous les instructions ?</div>
+            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
             <div class="setup-choice-row">
                 <button class="setup-choice" id="setupChoiceLangFr" onclick="selectUiLangChoice('fr')">
                     <span class="setup-choice-flag">🇫🇷</span>
@@ -6677,7 +6689,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v677</span>
+    <span class="subtitle-version">v678</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8317,6 +8329,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
                         onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
+                <div id="flashNouveau" class="carte-nouveau hidden" data-i18n="carte_nouveau_mot">Nouveau mot</div>
                 <div id="flashGenre" class="carte-genre hidden"></div>
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row" id="flashMotRow">
@@ -8766,7 +8779,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
     <div class="card">
         <strong data-i18n="setup_settings_title">Configuration</strong>
         <div class="setup-choice-group" style="margin-top:14px;">
-            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que vous apprenez ?</div>
+            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que tu apprends ?</div>
             <div class="setup-choice-row">
                 <button class="setup-choice" onclick="selectLearningDirectionChoice('de')">
                     <span class="setup-choice-flag">🇩🇪</span>
@@ -8779,7 +8792,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
             </div>
         </div>
         <div class="setup-choice-group" id="settingsUiLangGroup">
-            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue voulez-vous les instructions ?</div>
+            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
             <div class="setup-choice-row">
                 <button class="setup-choice" onclick="selectUiLangChoice('fr')">
                     <span class="setup-choice-flag">🇫🇷</span>
@@ -9258,8 +9271,12 @@ onAuthStateChanged(auth, (user) => {
         // n'apparaissait jamais.
         if(window.LIEN_REINIT){ /* l'ecran appartient a la reinitialisation */ }
         else if(typeof isSetupDone === "function" && !isSetupDone()){
-            refreshSetupChoiceActiveStates();
-            showScreen("setup");
+            // L'ECRAN DE REGLAGES N'EST PLUS MONTRE (v678). Sa seule vraie question
+            // etait la langue -- devinee maintenant d'apres le telephone, et
+            // modifiable dans les reglages. Une etape de moins entre l'inscription
+            // et la premiere carte, la ou la moitie des invites decrochaient.
+            markSetupDone();
+            goHome();
         } else if(document.getElementById("auth").classList.contains("active")) {
             goHome();
         }
@@ -9481,6 +9498,7 @@ const I18N = {
         myvocab_already: "« {mot} » est déjà dans tes flashcards.",
         myvocab_full: "Tu as atteint {n} mots mis de côté. Fais-en le tour avant d'en ajouter.",
         myvocab_sans_genre: "« {mot} » n'a pas d'article dans le dictionnaire. On ne peut pas en faire une carte fiable, mais ta demande est notée.",
+        carte_nouveau_mot: "Nouveau mot",
         carte_type_particule: "particule",
         carte_type_adjectif: "adjectif",
         carte_genre_der: "masculin",
@@ -9941,10 +9959,10 @@ const I18N = {
         settings_reset_daily: "RÉINITIALISER LE COMPTE DU JOUR (TESTS)",
         settings_progress_by_category: "Progression par catégorie",
 
-        auth_kicker: "Accès restreint",
-        auth_title: "Connexion obligatoire",
-        auth_desc: "Veuillez vous connecter ou créer un compte pour utiliser Wortando.",
-        auth_value_1: "Vocabulaire et grammaire allemande organisés par niveau, du A1 au B2.",
+        auth_kicker: "Bienvenue",
+        auth_title: "Apprends l'allemand, un mot à la fois",
+        auth_desc: "Connecte-toi, ou crée ton compte avec ton code d'invitation.",
+        auth_value_1: "Vocabulaire et grammaire allemande organisés par niveau, du A1 au C1.",
         auth_value_2: "Objectifs quotidiens, séries, XP et badges pour rester motivé.",
         auth_value_3: "Répétition espacée : chaque mot revient au bon moment pour rester en mémoire.",
         auth_mode_login: "Se connecter",
@@ -9976,11 +9994,11 @@ const I18N = {
         auth_login_loading: "CONNEXION…",
         auth_signup: "CRÉER UN COMPTE",
         setup_kicker: "Bienvenue",
-        setup_title: "Configurons votre apprentissage",
-        setup_learning_label: "Qu'est-ce que vous apprenez ?",
+        setup_title: "Configurons ton apprentissage",
+        setup_learning_label: "Qu'est-ce que tu apprends ?",
         setup_learning_de: "Allemand",
         setup_learning_en: "Anglais",
-        setup_uilang_label: "Dans quelle langue voulez-vous les instructions ?",
+        setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_settings_title: "Configuration",
         auth_signup_loading: "CRÉATION…",
@@ -10178,7 +10196,7 @@ const I18N = {
         orb_pruefung_title: "Préparation aux examens", orb_pruefung_sub: "A2 · B1 · C1",
         op_pruefung_title: "Préparation aux examens", op_pruefung_sub: "Par niveau · Goethe · telc · DTZ",
         op_pruefung_hoeren_t: "Écouter", op_pruefung_hoeren_d: "Une annonce, un message — puis la question",
-        op_pruefung_lesen_t: "Lire", op_pruefung_lesen_d: "Annonce, courriel, formulaire — et ce qu’on vous demande",
+        op_pruefung_lesen_t: "Lire", op_pruefung_lesen_d: "Annonce, courriel, formulaire — et ce qu’on te demande",
         op_pruefung_schreiben_t: "Écrire", op_pruefung_schreiben_d: "La lettre officielle, remontée dans l’ordre",
         op_pruefung_sprechen_t: "Parler", op_pruefung_sprechen_d: "Les questions de l’examinateur, et quoi répondre",
         kicker_pruefung_hoeren: "Examen · Écouter", kicker_pruefung_lesen: "Examen · Lire",
@@ -10476,6 +10494,7 @@ const I18N = {
         myvocab_already: "“{mot}” is already in your flashcards.",
         myvocab_full: "You have reached {n} saved words. Work through them before adding more.",
         myvocab_sans_genre: "“{mot}” has no article in the dictionary. We can't build a reliable card, but your request is noted.",
+        carte_nouveau_mot: "New word",
         carte_type_particule: "particle",
         carte_type_adjectif: "adjective",
         carte_genre_der: "masculine",
@@ -10934,10 +10953,10 @@ const I18N = {
         settings_reset_daily: "RESET TODAY'S COUNT (TESTING)",
         settings_progress_by_category: "Progress by category",
 
-        auth_kicker: "Restricted access",
-        auth_title: "Login required",
-        auth_desc: "Please sign in or create an account to use Wortando.",
-        auth_value_1: "German vocabulary and grammar organized by level, from A1 to B2.",
+        auth_kicker: "Welcome",
+        auth_title: "Learn German, one word at a time",
+        auth_desc: "Sign in, or create your account with your invitation code.",
+        auth_value_1: "German vocabulary and grammar organized by level, from A1 to C1.",
         auth_value_2: "Daily goals, streaks, XP and badges to keep you motivated.",
         auth_value_3: "Spaced repetition: every word comes back at just the right time to stick.",
         auth_mode_login: "Sign in",
@@ -11473,6 +11492,7 @@ const I18N = {
         myvocab_already: "“{mot}” zaten kartlarında.",
         myvocab_full: "{n} kayıtlı kelimeye ulaştın. Yenilerini eklemeden önce bunları çalış.",
         myvocab_sans_genre: "“{mot}” kelimesinin sözlükte artikeli yok. Güvenilir bir kart oluşturamıyoruz ama isteğin not edildi.",
+        carte_nouveau_mot: "Yeni kelime",
         carte_type_particule: "edat",
         carte_type_adjectif: "sıfat",
         carte_genre_der: "eril",
@@ -11931,10 +11951,10 @@ const I18N = {
         settings_reset_daily: "BUGÜNKÜ SAYACI SIFIRLA (TEST)",
         settings_progress_by_category: "Kategoriye göre ilerleme",
 
-        auth_kicker: "Sınırlı erişim",
-        auth_title: "Giriş gerekli",
-        auth_desc: "Wortando'yu kullanmak için lütfen giriş yap veya bir hesap oluştur.",
-        auth_value_1: "A1'den B2'ye, seviyeye göre düzenlenmiş Almanca kelime ve dilbilgisi.",
+        auth_kicker: "Hoş geldin",
+        auth_title: "Almancayı kelime kelime öğren",
+        auth_desc: "Giriş yap ya da davet kodunla hesabını oluştur.",
+        auth_value_1: "A1'den C1'e, seviyeye göre düzenlenmiş Almanca kelime ve dilbilgisi.",
         auth_value_2: "Motivasyonunu koruyacak günlük hedefler, seriler, XP ve rozetler.",
         auth_value_3: "Aralıklı tekrar: her kelime, akılda kalması için tam doğru anda geri gelir.",
         auth_mode_login: "Giriş yap",
@@ -12725,6 +12745,7 @@ const I18N = {
         myvocab_already: "«{mot}» уже є серед твоїх карток.",
         myvocab_full: "Ти набрав {n} відкладених слів. Пройди їх, перш ніж додавати нові.",
         myvocab_sans_genre: "У словнику «{mot}» без артикля. Надійної картки з нього не зробити, але твій запит записано.",
+        carte_nouveau_mot: "Нове слово",
         carte_type_particule: "частка",
         carte_type_adjectif: "прикметник",
         carte_genre_der: "чоловічий рід",
@@ -12872,10 +12893,10 @@ const I18N = {
         orb_en_pitfalls_sub: "actually ≠ актуально",
         nomen_title_en: "Wortschatz і теми",
         verbenniveau_title_en: "Verben за рівнями",
-        auth_kicker: "Обмежений доступ",
-        auth_title: "Потрібен вхід",
-        auth_desc: "Увійди або створи обліковий запис, щоб користуватися Wortando.",
-        auth_value_1: "Німецька лексика та граматика за рівнями, від A1 до B2.",
+        auth_kicker: "Ласкаво просимо",
+        auth_title: "Вивчай німецьку слово за словом",
+        auth_desc: "Увійди або створи обліковий запис за кодом запрошення.",
+        auth_value_1: "Німецька лексика та граматика за рівнями, від A1 до C1.",
         auth_value_2: "Щоденні цілі, серії, XP і значки — щоб не втрачати запал.",
         auth_value_3: "Інтервальне повторення: кожне слово повертається саме тоді, коли треба.",
         auth_mode_login: "Увійти",
@@ -13985,10 +14006,10 @@ const I18N = {
         streak_freeze_hint: "انجماد زنجیره در دسترس است: در یک روز از دست رفته از زنجیره‌ات محافظت می‌کند.",
         settings_daily_goal: "هدف روزانه",
         settings_progress_by_category: "پیشرفت بر پایهٔ دسته",
-        auth_kicker: "دسترسی محدود",
-        auth_title: "ورود الزامی است",
-        auth_desc: "برای استفاده از Wortando لطفاً وارد شوید یا حساب کاربری بسازید.",
-        auth_value_1: "واژگان و دستور زبان آلمانی، مرتب‌شده بر پایهٔ سطح، از A1 تا B2.",
+        auth_kicker: "خوش آمدی",
+        auth_title: "آلمانی را کلمه به کلمه یاد بگیر",
+        auth_desc: "وارد شو، یا با کد دعوتت حساب بساز.",
+        auth_value_1: "واژگان و دستور زبان آلمانی، مرتب‌شده بر پایهٔ سطح، از A1 تا C1.",
         auth_value_2: "هدف‌های روزانه، زنجیره‌ها، امتیاز و نشان‌ها تا انگیزه‌ات را نگه دارد.",
         auth_value_3: "تکرار با فاصله: هر واژه درست در زمان مناسب بازمی‌گردد تا در حافظه بماند.",
         auth_mode_login: "ورود",
@@ -14403,6 +14424,7 @@ const I18N = {
         myvocab_already: "«{mot}» از پیش در کارت‌های توست.",
         myvocab_full: "به {n} واژهٔ کنارگذاشته رسیدی. پیش از افزودن واژهٔ تازه، اول همین‌ها را مرور کن.",
         myvocab_sans_genre: "«{mot}» در فرهنگ واژگان حرف تعریف ندارد. نمی‌شود از آن کارت ساخت — بدون حرف تعریف، اسم آلمانی ناقص است.",
+        carte_nouveau_mot: "واژهٔ تازه",
         carte_type_particule: "ادات",
         carte_type_adjectif: "صفت",
         carte_genre_der: "مذکر",
@@ -14513,6 +14535,7 @@ const I18N = {
         confirm_vider_coffre: "أتريد إزالة {n} كلمة من خزانتك؟ تقدّمك ومواعيدك ونسبتك لا تتغيّر — ولا تختفي إلا علامة «محفوظة».",
         gardes_vide: "الخزانة فارغة. تحت أي بطاقة، «احتفظ» يضع الكلمة هنا لتعمل عليها على حدة: وتبقى في جلساتك، وتجدها هنا متى شئت.",
         myvocab_sans_genre: "«{mot}» بلا أداة تعريف في القاموس. لا يمكن صنع بطاقة موثوقة منها، لكن طلبك مسجَّل.",
+        carte_nouveau_mot: "كلمة جديدة",
         carte_type_particule: "أداة",
         carte_type_adjectif: "صفة",
         carte_genre_der: "مذكر",
@@ -14894,10 +14917,10 @@ const I18N = {
         orb_pruefung_title: "التحضير للامتحانات",
         orb_pruefung_sub: "A2 · B1 · C1",
         settings_progress_by_category: "التقدّم حسب الفئة",
-        auth_kicker: "وصول محدود",
-        auth_title: "تسجيل الدخول مطلوب",
-        auth_desc: "يُرجى تسجيل الدخول أو إنشاء حساب لاستعمال Wortando.",
-        auth_value_1: "مفردات الألمانية وقواعدها مرتّبة حسب المستوى، من A1 إلى B2.",
+        auth_kicker: "أهلًا بك",
+        auth_title: "تعلّم الألمانية كلمةً كلمة",
+        auth_desc: "سجّل الدخول، أو أنشئ حسابك برمز الدعوة.",
+        auth_value_1: "مفردات الألمانية وقواعدها مرتّبة حسب المستوى، من A1 إلى C1.",
         auth_value_2: "أهداف يومية وسلاسل ونقاط وأوسمة للحفاظ على الحافز.",
         auth_value_3: "تكرار متباعد: كل كلمة تعود في وقتها المناسب لتبقى في الذاكرة.",
         auth_mode_login: "تسجيل الدخول",
@@ -15564,7 +15587,26 @@ const I18N = {
 function getUiLang(){
     let lang;
     try{ lang = localStorage.getItem(UI_LANG_KEY); }catch(e){ lang = null; }
-    return UI_LANGS.includes(lang) ? lang : DEFAULT_UI_LANG;
+    return UI_LANGS.includes(lang) ? lang : langueDuTelephone();
+}
+
+// LA LANGUE DU TELEPHONE, TANT QU'ON N'EN A PAS CHOISI (v678). L'app s'ouvrait
+// TOUJOURS en francais : un camarade ukrainien, syrien ou afghan faisait toute
+// son inscription en francais, et ne pouvait choisir sa langue qu'une fois le
+// compte cree. On lit maintenant la langue du telephone ; un choix fait dans les
+// reglages l'emporte toujours (il est range dans UI_LANG_KEY, lu juste avant).
+// Le dari (prs) et le persan s'ecrivent pareil : tous deux vont au persan.
+// Une langue que l'app ne parle pas donne l'ANGLAIS, pas le francais : c'est la
+// langue seconde la plus probable de quelqu'un qui apprend l'allemand.
+function langueDuTelephone(){
+    let liste = [];
+    try{ liste = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language]; }catch(e){}
+    for(const brut of liste){
+        const code = String(brut || "").toLowerCase().split("-")[0];
+        if(code === "prs") return "fa";
+        if(UI_LANGS.includes(code)) return code;
+    }
+    return liste.length ? "en" : DEFAULT_UI_LANG;
 }
 
 function setUiLang(lang){
@@ -15999,6 +16041,25 @@ function selectUiLangChoice(lang){
     afterNextPaint(() => applyUiLangSideEffects());
 }
 
+// LES ETAPES DU DEPART (v678). La moitie des invites avaient un compte et
+// zero mot vu : ils decrochaient entre l'inscription et la premiere carte,
+// sans qu'on sache ou. Chaque etape est datee UNE fois, et voyage avec la
+// sauvegarde : `node tests/parcours.js` montre ou chacun s'est arrete.
+// accueil : l'accueil a ete vu ; carte : une premiere carte affichee ;
+// reponse : une premiere carte passee (jugee ou balayee).
+const PARCOURS_KEY = "deutschAI_parcours";
+function lireParcours(){
+    try{ const v = JSON.parse(localStorage.getItem(PARCOURS_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
+    catch(e){ return {}; }
+}
+function noterEtape(nom){
+    const v = lireParcours();
+    if(v[nom]) return;
+    v[nom] = new Date().toISOString();
+    try{ localStorage.setItem(PARCOURS_KEY, JSON.stringify(v)); }catch(e){}
+    if(typeof scheduleCloudSync === "function") scheduleCloudSync();
+}
+
 function completeInitialSetup(){
     markSetupDone();
     goHome();
@@ -16256,15 +16317,16 @@ async function handleEmailLogin() {
 async function handleEmailSignup() {
     const firstNameInput = document.getElementById("authSignupFirstName");
     const firstName = firstNameInput ? firstNameInput.value.trim() : "";
-    const genderInput = document.getElementById("authSignupGender");
-    const gender = genderInput ? genderInput.value : "";
     const email = document.getElementById("authSignupEmail").value.trim();
     const password = document.getElementById("authSignupPassword").value;
     const passwordConfirm = document.getElementById("authSignupPasswordConfirm").value;
     const codeInput = document.getElementById("authInviteCode");
     const code = codeInput ? codeInput.value.trim().toUpperCase() : "";
     if (!firstName) { showInfoToast(t('alert_first_name_required')); return; }
-    if (!gender) { showInfoToast(t('alert_gender_required')); return; }
+    // LE GENRE N'EST PLUS DEMANDE (v678). Il devait servir a accorder les textes
+    // de l'interface (motive/motivee) ; cet accord n'a jamais ete programme, et
+    // la valeur etait enregistree sans jamais etre lue. Un champ obligatoire de
+    // plus a l'inscription, et une donnee personnelle collectee sans usage.
     if (!isValidEmail(email)) { showInfoToast(t('alert_valid_email')); return; }
     if (password.length < 6) { showInfoToast(t('alert_password_min_length')); return; }
     if (password !== passwordConfirm) { showInfoToast(t('alert_password_mismatch')); return; }
@@ -16307,7 +16369,6 @@ async function handleEmailSignup() {
                 await window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', uid), {
                     email,
                     firstName,
-                    gender,
                     inviteCode: code,
                     createdAt: window.fsServerTimestamp()
                 }, { merge: true });
@@ -19064,6 +19125,13 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(directionScopedKey(MY_VOCAB_KEY)) || ""; }
                 catch(e){ return ""; }
             })(),
+            // Les etapes du depart et la langue de l'interface (v678) : ce
+            // qu'il faut pour voir ou un nouvel inscrit s'arrete.
+            parcoursJson: (function(){
+                try{ return localStorage.getItem(PARCOURS_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
+            langueInterface: getUiLang(),
             // Le jour de la serie, sans quoi un appareil qui la restaure ne
             // saurait pas si elle continue demain ou repart a un.
             streakJour: (function(){
@@ -23511,7 +23579,7 @@ if(!VIDEO_ACCUEIL_ACTIVE){
     });
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -25950,6 +26018,31 @@ function loadFlashcard(){
     // ⚠️ MAIS SON INTENTION, ELLE, ETAIT BONNE -- voir prechargerSonCarte()
     // (v660), qui la reprend sans les deux fautes qui l'avaient rendue nuisible.
     prechargerSonCarte();
+
+    // UN MOT JAMAIS VU SE DECOUVRE AVANT DE SE DEMANDER (v678). La toute
+    // premiere carte d'un debutant montrait « l'annee » et lui demandait
+    // l'allemand -- qu'il ne pouvait pas savoir. Son premier contact avec
+    // l'app etait un echec. Un mot jamais juge se presente donc deja
+    // retourne : l'allemand, le son, la traduction, avec « Nouveau mot ».
+    // Les boutons de reponse ne changent pas : « Encore » le fait revenir
+    // dans deux minutes, et c'est la que la question commence vraiment.
+    // Le retournement attend un instant : on voit la carte tourner, ce qui
+    // dit qu'on peut le faire soi-meme.
+    const nouveauEl = document.getElementById("flashNouveau");
+    const etatMot = getWordState(item.themeId, item.index) || {};
+    const jamaisJuge = !etatMot.reviews && !etatMot.mastered;
+    if(nouveauEl) nouveauEl.classList.toggle("hidden", !jamaisJuge);
+    if(jamaisJuge){
+        const indexDeLaCarte = currentFlashcard;
+        setTimeout(() => {
+            const el = document.getElementById("flashcard");
+            if(currentFlashcard === indexDeLaCarte && el && !el.classList.contains("flipped")
+               && document.getElementById("flashcards").classList.contains("active")){
+                flipCard();
+            }
+        }, 650);
+    }
+    noterEtape("carte");
 }
 
 // LE PAQUET EST-IL DEJA FINI ? La carte reste a l'ecran quand showFlashcardEnd()
@@ -27857,7 +27950,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 677;
+const APP_VERSION = 678;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -32373,6 +32466,7 @@ function markMastered(discret){
 }
 
 function nextFlashcard(){
+    noterEtape("reponse");
     currentFlashcard++;
     // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le

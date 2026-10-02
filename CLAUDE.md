@@ -64,6 +64,7 @@ Le bouton « Signaler un problème ou une idée » (v478) écrit dans le documen
 - La lecture passe par le compte de service `lecture-retour`, qui ne porte que le rôle « Lecteur Cloud Datastore » : une écriture serait refusée par Google, pas par la prudence du code. Ne pas ajouter d'appel d'écriture à ce script — ce serait une raison d'élargir le rôle, donc de perdre la garantie.
 - La clé (`C:/Users/jacqu/.wortando/admin.json`) et la liste des retours déjà lus vivent **hors du dépôt et hors de OneDrive** : le dépôt est public et les retours nomment des testeurs.
 - Chaque retour traité va dans `retours/journal-retours.md`, dans le même tour.
+- `node tests/parcours.js` (v678, même clé en lecture seule) : à quelle étape chaque compte s'est arrêté — accueil vu, première carte affichée, première carte passée. Né du constat du 1er octobre 2026 : la moitié des invités avaient un compte et zéro mot vu.
 
 ## Conventions pour les contributions
 
