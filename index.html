@@ -5369,9 +5369,12 @@ body[data-theme="dark"] .carte-compte-lib{color:#9AA2B1;}
 body[data-theme="dark"] .carte-jour-piste{background:rgba(255,255,255,.14);}
 body[data-theme="dark"] .carte-comptes{border-top-color:rgba(255,255,255,.12);}
 .home-stats-card{position:relative;}
+/* Plus fonce et un peu plus grand (v687) : #c3c9d4 sur le papier se lisait a
+   peine, et c'est le seul endroit ou l'on verifie qu'une mise a jour est
+   arrivee (demande de Jacques). Le gris des autres textes secondaires. */
 .subtitle-version{
     display:block; text-align:center; margin:18px 0 4px;
-    color:#c3c9d4; font-weight:600; font-size:10.5px; letter-spacing:.04em;
+    color:#7b8798; font-weight:600; font-size:12px; letter-spacing:.04em;
 }
 .search-launch{order:0; margin:0 !important;}
 .home-stats-card{order:3;}
@@ -6750,7 +6753,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v686</span>
+    <span class="subtitle-version">v687</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28190,7 +28193,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 686;
+const APP_VERSION = 687;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
