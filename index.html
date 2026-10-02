@@ -5725,6 +5725,30 @@ body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,
    change dans les reglages (demande de Jacques). Le bouton reste dans le code,
    cache, parce que le reste de l'app y lit encore son libelle. */
 #uiLangToggleBtn{display:none !important;}
+
+/* --- TABLEAU ADMIN : UNE LIGNE PAR TESTEUR (v680) ---
+   Le point dit l'etat d'un coup d'oeil : plein vert = actif cette semaine,
+   ambre = a relancer, vide = jamais commence. Le detail s'ouvre au toucher. */
+.admin-chiffres{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-bottom:10px;}
+.admin-chiffre{background:rgba(var(--wt-action-rgb),.06); border-radius:10px; padding:8px 10px;}
+.admin-chiffre small{display:block; opacity:.7; font-size:12px;}
+.admin-chiffre strong{font-size:20px;}
+.admin-user-row{border-top:1px solid rgba(var(--wt-action-rgb),.12);}
+.admin-user-row > summary{display:flex; align-items:center; gap:10px; padding:10px 2px; cursor:pointer; list-style:none;}
+.admin-user-row > summary::-webkit-details-marker{display:none;}
+.admin-user-row > summary small{opacity:.7; white-space:nowrap;}
+.admin-nom{flex:1; min-width:0; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.admin-bulle{font-weight:400;}
+.admin-point{flex:none; width:10px; height:10px; border-radius:50%;}
+.admin-point-actif{background:var(--g-das);}
+.admin-point-relancer{background:var(--wt-ambre);}
+.admin-point-jamais{border:1.5px solid rgba(var(--wt-action-rgb),.35);}
+.admin-detail{padding:0 2px 12px 22px;}
+.admin-detail small{opacity:.75;}
+.admin-retour{margin-top:8px; padding:8px 10px; border-radius:8px; background:var(--wt-teinte); font-size:13px; white-space:pre-wrap; word-break:break-word;}
+.admin-vhs{min-height:auto; padding:6px 10px; font-size:12px; margin-top:10px;}
+.admin-outils{margin-top:14px;}
+.admin-outils > summary{cursor:pointer; opacity:.7; font-size:13px; padding:6px 0;}
 /* Les langues se designent par leur nom, pas par un drapeau : un Afghan qui
    parle persan ou un Syrien qui parle arabe n'a pas a choisir le drapeau de
    l'Iran ou de l'Arabie saoudite. */
@@ -6689,7 +6713,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v679</span>
+    <span class="subtitle-version">v680</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9143,18 +9167,23 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
 
     <div class="card">
         <strong data-i18n="admin_users_title">Testeurs</strong>
-        <!-- La reconstruction est le SEUL endroit de l'app qui telecharge
+        <div class="spacer"></div>
+        <div id="adminUsersList" data-i18n="loading_label">Chargement...</div>
+        <!-- LES OUTILS SOUS LA LISTE, REPLIES (v680). Ils servent une fois de
+             temps en temps ; places avant la liste, ils la poussaient sous le
+             pli a chaque ouverture du tableau.
+             La reconstruction est le SEUL endroit de l'app qui telecharge
              encore tous les documents complets. Volontairement derriere un
              bouton, et pas au chargement : c'est une operation lourde, elle
-             doit etre demandee. Elle ne sert qu'une fois, et apres l'ajout
-             d'un testeur d'avant la v504. -->
-        <div class="info-box" data-i18n="admin_resumes_desc">Le tableau lit des résumés légers. Un testeur y apparaît dès sa première sauvegarde ; ceux inscrits avant cette version arrivent d'un coup avec le bouton ci-dessous.</div>
-        <div class="spacer"></div>
-        <button class="secondary" id="adminRebuildBtn" onclick="reconstruireResumes()" data-i18n="admin_rebuild_btn">RECONSTRUIRE LES RÉSUMÉS →</button>
-        <div class="spacer"></div>
-        <button class="secondary" onclick="viderMesRetours()" data-i18n="admin_vider_retours_btn">VIDER MES RETOURS ENVOYÉS →</button>
-        <div class="spacer"></div>
-        <div id="adminUsersList" class="info-box" data-i18n="loading_label">Chargement...</div>
+             doit etre demandee. -->
+        <details class="admin-outils">
+            <summary>Outils</summary>
+            <div class="info-box" data-i18n="admin_resumes_desc">Le tableau lit des résumés légers. Un testeur y apparaît dès sa première sauvegarde ; ceux inscrits avant cette version arrivent d'un coup avec le bouton ci-dessous.</div>
+            <div class="spacer"></div>
+            <button class="secondary" id="adminRebuildBtn" onclick="reconstruireResumes()" data-i18n="admin_rebuild_btn">RECONSTRUIRE LES RÉSUMÉS →</button>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="viderMesRetours()" data-i18n="admin_vider_retours_btn">VIDER MES RETOURS ENVOYÉS →</button>
+        </details>
     </div>
 </section>
 
@@ -19229,6 +19258,7 @@ async function syncProgressToCloud(){
                 retoursUsager: aEcrire.retoursUsager || "",
                 vocabDemandes: aEcrire.vocabDemandes || [],
                 synonymesEcartes: aEcrire.synonymesEcartes || "",
+                langueInterface: aEcrire.langueInterface || "",
                 updatedAt: window.fsServerTimestamp()
             }, { merge: true });
             marquerGel(null);
@@ -23877,7 +23907,11 @@ async function renderAdminUsersList(){
         const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, RESUMES_COLL));
         const users = [];
         snap.forEach(d => users.push({ id: d.id, ...d.data() }));
-        users.sort((a, b) => (b.masteredCount || 0) - (a.masteredCount || 0));
+        // Par derniere sauvegarde, la plus recente en haut (v680) : on ouvre ce
+        // tableau pour savoir qui relancer, et le tri par mots maitrises
+        // gardait en tete des testeurs partis depuis des semaines.
+        const quandMs = u => (u.updatedAt && typeof u.updatedAt.toMillis === "function") ? u.updatedAt.toMillis() : 0;
+        users.sort((a, b) => quandMs(b) - quandMs(a));
         // « Mots demandes » est rempli d'ici, et il l'etait APRES le retour
         // anticipe ci-dessous : zero testeur laissait donc ce bloc bloque sur
         // « Chargement... » indefiniment, ce qui se lit comme une panne alors
@@ -23899,53 +23933,62 @@ async function renderAdminUsersList(){
             container.innerHTML = alerteSync + `<div>${t('admin_no_resumes')}</div>`;
             return;
         }
-        // Identification par le PRENOM (saisi a l'inscription et deja enregistre
-        // dans le document Firestore) plutot que par l'adresse e-mail : bien plus
-        // lisible pour reconnaitre un testeur d'un coup d'oeil. Repli sur
-        // l'e-mail pour les comptes crees avant que le prenom soit obligatoire.
-        // L'e-mail reste affiche en second, en petit, quand deux testeurs
-        // portent le meme prenom -- sinon leurs deux lignes seraient identiques.
-        const prenomsVus = {};
-        users.forEach(u => {
-            const n = (u.firstName || "").trim();
-            if(n) prenomsVus[n] = (prenomsVus[n] || 0) + 1;
-        });
-        container.innerHTML = alerteSync + users.map(u => {
+        // Identification par le PRENOM (saisi a l'inscription) plutot que par
+        // l'adresse e-mail, avec repli sur l'e-mail pour les comptes crees
+        // avant que le prenom soit obligatoire. L'adresse est dans le detail :
+        // deux prenoms identiques se departagent en ouvrant la ligne.
+        // UNE LIGNE PAR TESTEUR, LE DETAIL AU TOUCHER (v680). Chaque testeur
+        // prenait trois a cinq lignes, un bouton VHS repete seize fois et ses
+        // retours en entier : la liste etait un mur. La ligne dit maintenant
+        // ce qui sert a relancer -- actif ou non, depuis quand, combien de
+        // mots -- et le reste s'ouvre dans un <details>, sans JS.
+        //
+        // « Vu il y a... » : updatedAt est ecrit par syncProgressToCloud() a
+        // chaque sauvegarde -- la seule mesure d'activite qu'on ait. Timestamp
+        // Firestore, d'ou le .toDate() avant timeAgoFr().
+        // ⚠️ C'EST UN PLANCHER, JAMAIS LA DERNIERE VISITE : updatedAt n'avance
+        // que quand l'ecriture Firestore REUSSIT, et sur iPhone une session
+        // plus courte que le delai de 4 s de scheduleCloudSync() n'envoie rien.
+        const etatDe = u => {
+            const vuLe = (u.updatedAt && typeof u.updatedAt.toDate === "function") ? u.updatedAt.toDate() : null;
+            const jours = vuLe ? (Date.now() - vuLe.getTime()) / 86400000 : Infinity;
+            const etat = !(u.vusCount > 0) ? "jamais" : (jours <= 7 ? "actif" : "relancer");
+            return { vuLe, etat };
+        };
+        const compte = { actif: 0, relancer: 0, jamais: 0 };
+        users.forEach(u => { compte[etatDe(u).etat]++; });
+        // Les lignes ouvertes le restent : le bouton VHS redessine la liste,
+        // et la refermer sous le doigt donnait l'impression d'un clic perdu.
+        const ouverts = new Set(Array.from(container.querySelectorAll("details[data-uid][open]")).map(d => d.dataset.uid));
+        const NOMS_LANGUE = { fr: "français", en: "anglais", tr: "turc", uk: "ukrainien", fa: "persan", ar: "arabe" };
+        const chiffre = (n, libelle) => `<div class="admin-chiffre"><small>${libelle}</small><strong>${n}</strong></div>`;
+        container.innerHTML = alerteSync
+            + `<div class="admin-chiffres">${chiffre(compte.actif, "Actifs 7 j")}${chiffre(compte.relancer, "À relancer")}${chiffre(compte.jamais, "Jamais commencé")}</div>`
+            + users.map(u => {
             const vhsOn = u.vhsChaptersEnabled === true;
             const prenom = (u.firstName || "").trim();
             const titre = prenom || u.email || u.id;
-            const emailEnRappel = (prenom && prenomsVus[prenom] > 1) ? (u.email || "") : "";
-            // « Vu il y a... » : updatedAt est ecrit par syncProgressToCloud() a
-            // chaque sauvegarde, donc c'est la derniere fois que la personne a
-            // reellement fait quelque chose dans l'app -- la seule mesure d'activite
-            // qu'on ait. Elle dormait dans Firestore sans etre affichee nulle part.
-            // Au-dela d'une semaine, la ligne passe en orange : un testeur inactif
-            // ne se voit pas dans un compteur de mots maitrises, qui ne redescend
-            // jamais. Timestamp Firestore, d'ou le .toDate() avant timeAgoFr().
-            const vuLe = (u.updatedAt && typeof u.updatedAt.toDate === "function") ? u.updatedAt.toDate() : null;
-            const joursDepuis = vuLe ? (Date.now() - vuLe.getTime()) / 86400000 : Infinity;
-            // « derniere sauvegarde », PAS « vu » : updatedAt n'avance que quand
-            // l'ecriture Firestore REUSSIT. Une personne qui utilise l'app tous
-            // les jours reste figee a la date ou ses ecritures ont commence a
-            // etre refusees. Et sur iPhone, l'app installee est suspendue sans
-            // aucun evenement : une session plus courte que le delai de 4 s de
-            // scheduleCloudSync() ne declenche jamais d'envoi. Dans les deux cas
-            // la date est un PLANCHER, jamais la derniere visite.
-            const vuTexte = vuLe ? `dernière sauvegarde ${timeAgoFr(vuLe)}` : "jamais synchronisé";
+            const { vuLe, etat } = etatDe(u);
+            const quand = vuLe ? timeAgoFr(vuLe) : "jamais";
+            const mots = u.vusCount === undefined ? "?" : u.vusCount;
+            const retour = u.retoursUsager
+                ? `<div class="admin-retour">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : "";
             return `
-            <div class="admin-user-row" style="padding:10px 0; border-top:1px solid rgba(30,41,59,.1);">
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
-                    <div>
-                        <div style="font-weight:700;">${titre}</div>
-                        <small style="color:#576177;">${emailEnRappel ? emailEnRappel + ' · ' : ''}${tf('admin_user_stats', { vus: u.vusCount === undefined ? '?' : u.vusCount, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small>
-                        <br><small style="color:${joursDepuis > 7 ? '#d97706' : '#576177'}; font-weight:${joursDepuis > 7 ? '700' : '400'};">${vuTexte}</small>
-                        ${u.retoursUsager ? `<div style="margin-top:8px; padding:8px 10px; border-radius:8px; background:rgba(var(--wt-action-rgb),.08); font-size:12px; color:#1e2433; white-space:pre-wrap; word-break:break-word;">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : ""}
-                    </div>
-                    <button class="secondary" style="min-height:auto; padding:6px 10px; font-size:12px; white-space:nowrap;" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
+            <details class="admin-user-row" data-uid="${u.id}"${ouverts.has(u.id) ? " open" : ""}>
+                <summary>
+                    <span class="admin-point admin-point-${etat}"></span>
+                    <span class="admin-nom">${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
+                    <small>${quand} · ${mots} mot${mots > 1 ? "s" : ""}</small>
+                </summary>
+                <div class="admin-detail">
+                    <small>${tf('admin_user_stats', { vus: mots, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small><br>
+                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}</small>
+                    ${retour}
+                    <button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
                     </button>
                 </div>
-            </div>
+            </details>
         `;}).join("");
     }catch(e){
         adminEtatErreur(container, renderAdminUsersList);
@@ -24000,6 +24043,7 @@ async function reconstruireResumes(){
                 vocabDemandes: u.vocabDemandes || [],
                 synonymesEcartes: u.synonymesEcartes || "",
                 vhsChaptersEnabled: !!u.vhsChaptersEnabled,
+                langueInterface: u.langueInterface || "",
                 // La date du document complet, PAS l'heure de la
                 // reconstruction : sinon tous les testeurs paraitraient
                 // actifs a l'instant.
@@ -27972,7 +28016,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 679;
+const APP_VERSION = 680;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
