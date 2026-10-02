@@ -850,7 +850,9 @@ body{
        jusque sous l'heure et la batterie : « 18:55 » se posait sur les deux
        points du logo. env() vaut 0 partout ailleurs -- navigateur d'ordinateur,
        Safari sans viewport-fit=cover --, donc rien ne bouge hors de l'app. */
-    padding-top:calc(20px + env(safe-area-inset-top, 0px));
+    /* Pas 20 px EN PLUS de la barre : c'etait trop bas (v685, demande de
+       Jacques). Juste sous l'heure, et jamais moins que les 20 px d'avant. */
+    padding-top:max(20px, calc(env(safe-area-inset-top, 0px) + 4px));
     padding-bottom:calc(20px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -6747,7 +6749,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v684</span>
+    <span class="subtitle-version">v685</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28150,7 +28152,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 684;
+const APP_VERSION = 685;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
