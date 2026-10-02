@@ -5769,6 +5769,7 @@ html[dir="rtl"] .reglage-langue:not([open]) > summary::after{transform:scaleX(-1
 .admin-chiffre{background:rgba(var(--wt-action-rgb),.06); border-radius:10px; padding:8px 10px;}
 .admin-chiffre small{display:block; opacity:.7; font-size:12px;}
 .admin-chiffre strong{font-size:20px;}
+.admin-appareils{margin:0 0 10px; font-size:13px; opacity:.75;}
 .admin-user-row{border-top:1px solid rgba(var(--wt-action-rgb),.12);}
 .admin-user-row > summary{display:flex; align-items:center; gap:10px; padding:10px 2px; cursor:pointer; list-style:none;}
 .admin-user-row > summary::-webkit-details-marker{display:none;}
@@ -6749,7 +6750,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v685</span>
+    <span class="subtitle-version">v686</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19251,6 +19252,9 @@ async function syncProgressToCloud(){
                 catch(e){ return ""; }
             })(),
             langueInterface: getUiLang(),
+            // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
+            // savoir qui peut tester sur Google Play. Voir typeAppareil().
+            appareil: typeAppareil(),
             // Les ouvertures et les verifications de version (v684), voir
             // noterVersion() -- lu par `node tests/versions.js`.
             journalVersionJson: (function(){
@@ -19355,6 +19359,7 @@ async function syncProgressToCloud(){
                 vocabDemandes: aEcrire.vocabDemandes || [],
                 synonymesEcartes: aEcrire.synonymesEcartes || "",
                 langueInterface: aEcrire.langueInterface || "",
+                appareil: aEcrire.appareil || "",
                 updatedAt: window.fsServerTimestamp()
             }, { merge: true });
             marquerGel(null);
@@ -24019,6 +24024,37 @@ function renderAdminRequests(users){
 }
 
 
+// LE TYPE D'APPAREIL, ET RIEN DE PLUS (v686). Google Play exige douze
+// testeurs Android pendant quatorze jours ; il fallait savoir qui en a un sans
+// le demander a chacun. Un mot, jamais le modele ni la version du systeme --
+// la politique de confidentialite le dit. Capacitor d'abord : dans l'app des
+// magasins il donne la plateforme sans deviner.
+// ⚠️ L'iPad se presente comme un Mac depuis iPadOS 13 : l'ecran tactile le
+// trahit.
+function typeAppareil(){
+    try{
+        if(window.Capacitor && typeof window.Capacitor.getPlatform === "function"){
+            const p = window.Capacitor.getPlatform();
+            if(p === "android") return "Android";
+            if(p === "ios") return /iPad/.test(navigator.userAgent) ? "iPad" : "iPhone";
+        }
+        const ua = navigator.userAgent || "";
+        if(/Android/i.test(ua)) return "Android";
+        if(/iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return "iPad";
+        if(/iPhone|iPod/.test(ua)) return "iPhone";
+        return "ordinateur";
+    }catch(e){ return ""; }
+}
+
+function repartitionAppareils(users){
+    const n = {};
+    let inconnus = 0;
+    users.forEach(u => { if(u.appareil) n[u.appareil] = (n[u.appareil] || 0) + 1; else inconnus++; });
+    const morceaux = ["Android", "iPhone", "iPad", "ordinateur"].filter(k => n[k]).map(k => k + " " + n[k]);
+    if(inconnus) morceaux.push("inconnu " + inconnus);
+    return morceaux.length ? `<p class="admin-appareils">${morceaux.join(" · ")}</p>` : "";
+}
+
 async function renderAdminUsersList(){
     const container = document.getElementById("adminUsersList");
     if(!container || !isAdminUser()) return;
@@ -24100,6 +24136,7 @@ async function renderAdminUsersList(){
         const chiffre = (n, libelle) => `<div class="admin-chiffre"><small>${libelle}</small><strong>${n}</strong></div>`;
         container.innerHTML = alerteSync
             + `<div class="admin-chiffres">${chiffre(compte.actif, "Actifs 7 j")}${chiffre(compte.relancer, "À relancer")}${chiffre(compte.jamais, "Jamais commencé")}</div>`
+            + repartitionAppareils(users)
             + users.map(u => {
             const vhsOn = u.vhsChaptersEnabled === true;
             const prenom = (u.firstName || "").trim();
@@ -24118,7 +24155,7 @@ async function renderAdminUsersList(){
                 </summary>
                 <div class="admin-detail">
                     <small>${tf('admin_user_stats', { vus: mots, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small><br>
-                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}</small>
+                    <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil : ""}</small>
                     ${retour}
                     <button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
@@ -24180,6 +24217,7 @@ async function reconstruireResumes(){
                 synonymesEcartes: u.synonymesEcartes || "",
                 vhsChaptersEnabled: !!u.vhsChaptersEnabled,
                 langueInterface: u.langueInterface || "",
+                appareil: u.appareil || "",
                 // La date du document complet, PAS l'heure de la
                 // reconstruction : sinon tous les testeurs paraitraient
                 // actifs a l'instant.
@@ -28152,7 +28190,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 685;
+const APP_VERSION = 686;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
