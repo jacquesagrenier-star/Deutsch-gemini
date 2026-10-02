@@ -6747,7 +6747,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v683</span>
+    <span class="subtitle-version">v684</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19249,6 +19249,12 @@ async function syncProgressToCloud(){
                 catch(e){ return ""; }
             })(),
             langueInterface: getUiLang(),
+            // Les ouvertures et les verifications de version (v684), voir
+            // noterVersion() -- lu par `node tests/versions.js`.
+            journalVersionJson: (function(){
+                try{ return localStorage.getItem(JOURNAL_VERSION_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // Le jour de la serie, sans quoi un appareil qui la restaure ne
             // saurait pas si elle continue demain ou repart a un.
             streakJour: (function(){
@@ -28144,7 +28150,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 683;
+const APP_VERSION = 684;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -28192,6 +28198,36 @@ function enregistrerServiceWorker(){
 
 const VERSION_RECHARGE_FAITE = "deutschAI_rechargeVersion";
 
+// LE JOURNAL DES VERSIONS (v684). L'app TestFlight restait en v681 apres
+// fermeture et reouverture, alors que le site servait la v683 (2 octobre
+// 2026). Rien ne disait si la page venait du cache, si la verification avait
+// tourne, ni ce qu'elle avait vu. Chaque ouverture et chaque verification
+// laissent une ligne ; les vingt dernieres partent avec la sauvegarde
+// (`journalVersionJson`), lisibles par `node tests/versions.js`.
+// ⚠️ DE L'OBSERVATION SEULEMENT : rien ici ne decide d'un rechargement.
+const JOURNAL_VERSION_KEY = "deutschAI_journalVersion";
+function noterVersion(quoi, detail){
+    try{
+        const l = JSON.parse(localStorage.getItem(JOURNAL_VERSION_KEY) || "[]");
+        l.push(Object.assign({ t: new Date().toISOString(), app: APP_VERSION, quoi: quoi }, detail || {}));
+        localStorage.setItem(JOURNAL_VERSION_KEY, JSON.stringify(l.slice(-20)));
+    }catch(e){}
+}
+(function noterOuverture(){
+    let nav = {};
+    try{ nav = performance.getEntriesByType("navigation")[0] || {}; }catch(e){}
+    let natif = false;
+    try{ natif = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }catch(e){}
+    noterVersion("ouverture", {
+        recherche: location.search || "",
+        // transferSize 0 avec une taille decodee = servie par le cache, sans reseau.
+        cache: nav.transferSize === 0 && nav.decodedBodySize > 0,
+        navigation: nav.type || "?",
+        natif: natif,
+        sw: !!(navigator.serviceWorker && navigator.serviceWorker.controller)
+    });
+})();
+
 async function verifierNouvelleVersion(){
     try{
         // LE VERROU COMPARE, IL NE TESTE PLUS LA PRESENCE.
@@ -28211,10 +28247,17 @@ async function verifierNouvelleVersion(){
         // version PLUS RECENTE, ce qu'il ne savait pas faire.
         const dejaTentee = sessionStorage.getItem(VERSION_RECHARGE_FAITE);
         const r = await fetch("version.json?t=" + Date.now(), { cache: "no-store" });
-        if(!r.ok) return;
+        if(!r.ok){ noterVersion("verif", { resultat: "http " + r.status }); return; }
         const publiee = parseInt((await r.json()).version, 10);
-        if(!Number.isFinite(publiee) || publiee <= APP_VERSION) return;
-        if(dejaTentee && parseInt(dejaTentee, 10) === publiee) return;
+        if(!Number.isFinite(publiee) || publiee <= APP_VERSION){
+            noterVersion("verif", { publiee: publiee, resultat: "a jour" });
+            return;
+        }
+        if(dejaTentee && parseInt(dejaTentee, 10) === publiee){
+            noterVersion("verif", { publiee: publiee, resultat: "deja tentee" });
+            return;
+        }
+        noterVersion("verif", { publiee: publiee, resultat: "rechargement" });
         sessionStorage.setItem(VERSION_RECHARGE_FAITE, String(publiee));
         const url = new URL(window.location.href);
         url.searchParams.set("v", String(publiee));
@@ -28228,7 +28271,10 @@ async function verifierNouvelleVersion(){
         requestAnimationFrame(() => requestAnimationFrame(() => {
             window.location.replace(url.toString());
         }));
-    }catch(e){ /* hors ligne ou fichier absent : on garde la version en cours */ }
+    }catch(e){
+        // Hors ligne ou fichier absent : on garde la version en cours.
+        noterVersion("verif", { resultat: "erreur", erreur: String((e && (e.name + ": " + e.message)) || e).slice(0, 160) });
+    }
 }
 
 // ============ Voix allemande pre-generee ============
