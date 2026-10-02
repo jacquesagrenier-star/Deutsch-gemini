@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#F7F3EC">
 
 <title>Wortando</title>
@@ -839,6 +839,12 @@ body{
     max-width:620px;
     margin:auto;
     padding:20px;
+    /* LA BARRE D'ETAT DE L'IPHONE (v682). Dans l'app TestFlight, la page monte
+       jusque sous l'heure et la batterie : « 18:55 » se posait sur les deux
+       points du logo. env() vaut 0 partout ailleurs -- navigateur d'ordinateur,
+       Safari sans viewport-fit=cover --, donc rien ne bouge hors de l'app. */
+    padding-top:calc(20px + env(safe-area-inset-top, 0px));
+    padding-bottom:calc(20px + env(safe-area-inset-bottom, 0px));
 }
 
 header{
@@ -1821,7 +1827,7 @@ body[data-theme="dark"] .next-badge-progress{
 .badge-toast{
     position:fixed;
     left:50%;
-    bottom:26px;
+    bottom:calc(26px + env(safe-area-inset-bottom, 0px));
     transform:translateX(-50%) translateY(20px);
     background:#1C2430;
     color:#fff;
@@ -6734,7 +6740,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v681</span>
+    <span class="subtitle-version">v682</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19608,6 +19614,14 @@ async function restoreProgressFromCloud(){
         }catch(e){}
 
         cloudRestoreDone = true;
+        // ⚠️ LES CARTES DE L'ACCUEIL AUSSI, ET MEME SANS MOT AJOUTE (v682).
+        // Elles n'etaient redessinees qu'au chargement des themes -- qui, sur
+        // un appareil neuf, arrive AVANT la progression. Premier lancement de
+        // l'app iPhone (TestFlight, 2 octobre 2026) : « Progression du
+        // vocabulaire 0 / 860 », puis 273 / 860 en touchant la fleche. Les
+        // jours travailles et la serie, restaures plus haut, en dependent
+        // aussi : d'ou l'appel hors du `if(ajoutes)`.
+        try{ majTuileSeance(); majCarteProgression(); }catch(e){}
         if(ajoutes){
             // L'accueil affiche deja 0 % a ce stade : il faut le redessiner,
             // sinon la restauration est invisible jusqu'au prochain ecran.
@@ -28123,7 +28137,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 681;
+const APP_VERSION = 682;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
