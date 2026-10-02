@@ -328,8 +328,15 @@ window.LIEN_REINIT = (function(){
         if(ev.persisted) demanderVersion();
     });
 
+    // ⚠️ L'APP DES MAGASINS EST INSTALLEE, ELLE AUSSI (v683). Capacitor ouvre
+    // la page dans une vue web qui n'est ni « standalone » ni un onglet : sans
+    // ce test, l'app TestFlight se croyait onglet, ne reverifiait sa version
+    // qu'apres un quart d'heure d'absence et restait en v681 quand on la
+    // rouvrait (2 octobre 2026).
     function appInstallee(){
         try{
+            if(window.Capacitor && typeof window.Capacitor.isNativePlatform === "function"
+               && window.Capacitor.isNativePlatform()) return true;
             return !!(navigator.standalone ||
                       (window.matchMedia &&
                        window.matchMedia("(display-mode: standalone)").matches));
@@ -6740,7 +6747,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v682</span>
+    <span class="subtitle-version">v683</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28137,7 +28144,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 682;
+const APP_VERSION = 683;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
