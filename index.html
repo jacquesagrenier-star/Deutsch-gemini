@@ -5726,6 +5726,27 @@ body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,
    cache, parce que le reste de l'app y lit encore son libelle. */
 #uiLangToggleBtn{display:none !important;}
 
+/* --- REGLAGES EN GROUPES (v681) ---
+   Un groupe replie a l'air d'un titre de section avec un chevron, pas d'une
+   carte : il annonce ce qu'il contient sans ajouter un cadre de plus. */
+.reglages-groupe{margin-top:18px;}
+.reglages-groupe > summary,
+.reglage-langue > summary{display:flex; align-items:center; gap:10px; cursor:pointer; list-style:none;}
+.reglages-groupe > summary::-webkit-details-marker,
+.reglage-langue > summary::-webkit-details-marker{display:none;}
+.reglages-groupe > summary{font-weight:800; font-size:17px; padding:12px 4px; border-top:1px solid rgba(var(--wt-action-rgb),.15);}
+.reglages-groupe > summary::after,
+.reglage-langue > summary::after{content:"›"; margin-inline-start:auto; font-size:20px; opacity:.6; transition:transform .2s;}
+.reglages-groupe[open] > summary::after,
+.reglage-langue[open] > summary::after{transform:rotate(90deg);}
+/* En persan et en arabe, ferme, le chevron pointe vers le debut de la ligne
+   -- la gauche. Ouvert, il pointe vers le bas dans les deux sens. */
+html[dir="rtl"] .reglages-groupe:not([open]) > summary::after,
+html[dir="rtl"] .reglage-langue:not([open]) > summary::after{transform:scaleX(-1);}
+.reglage-langue > summary #reglageLangueActuelle{margin-inline-start:auto; opacity:.75;}
+.reglage-langue > summary::after{margin-inline-start:0;}
+.reglage-langue[open] > summary{margin-bottom:6px;}
+
 /* --- TABLEAU ADMIN : UNE LIGNE PAR TESTEUR (v680) ---
    Le point dit l'etat d'un coup d'oeil : plein vert = actif cette semaine,
    ambre = a relancer, vide = jamais commence. Le detail s'ouvre au toucher. */
@@ -6229,7 +6250,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
              vois plus le i », signale par Jacques. Un element positionne dans
              un conteneur dont la hauteur varie se deplace sans qu'on touche a
              son code. Dans le flux, sa place ne depend de rien. -->
-        <div id="nextBadgeBox" class="next-badge-box hidden" onclick="openSettings()">
+        <div id="nextBadgeBox" class="next-badge-box hidden" onclick="ouvrirBadges()">
             <span id="nextBadgeIcon" class="next-badge-icon"></span>
             <div class="next-badge-info">
                 <p id="nextBadgeTitle" class="next-badge-title"></p>
@@ -6713,7 +6734,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v680</span>
+    <span class="subtitle-version">v681</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8800,146 +8821,307 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         </div>
     </div>
 
+    <!-- LES REGLAGES EN QUATRE GROUPES (v681). Quatorze cartes, plus de six
+         ecrans de haut, dans un ordre sans logique : les credits en deuxieme,
+         « Repartir de zero » entre deux cartes de progression. Demande de
+         Jacques : « je trouve ca lourd ». L'essentiel reste ouvert ; le son,
+         la progression et le compte se replient. Aucune carte n'est reecrite,
+         elles sont seulement deplacees.
+         ⚠️ UN LIEN QUI MENE A UNE CARTE DOIT OUVRIR SON GROUPE : voir
+         ouvrirGroupeReglages(). Une carte dans un <details> ferme n'existe pas
+         pour qui arrive en la cherchant. -->
     <div class="card">
-        <strong data-i18n="setup_settings_title">Configuration</strong>
-        <div class="setup-choice-group" style="margin-top:14px;">
-            <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que tu apprends ?</div>
-            <div class="setup-choice-row">
-                <button class="setup-choice" onclick="selectLearningDirectionChoice('de')">
-                    <span class="setup-choice-flag">🇩🇪</span>
-                    <span data-i18n="setup_learning_de">Allemand</span>
-                </button>
-                <button class="setup-choice" onclick="selectLearningDirectionChoice('en')">
-                    <span class="setup-choice-flag">🇬🇧</span>
-                    <span data-i18n="setup_learning_en">Anglais</span>
-                </button>
+        <details class="reglage-langue" id="reglageLangue">
+            <summary>
+                <strong data-i18n="settings_langue_titre">Langue</strong>
+                <span id="reglageLangueActuelle"></span>
+            </summary>
+            <div class="setup-choice-group" style="margin-top:14px;">
+                <div class="setup-choice-label" data-i18n="setup_learning_label">Qu'est-ce que tu apprends ?</div>
+                <div class="setup-choice-row">
+                    <button class="setup-choice" onclick="selectLearningDirectionChoice('de')">
+                        <span class="setup-choice-flag">🇩🇪</span>
+                        <span data-i18n="setup_learning_de">Allemand</span>
+                    </button>
+                    <button class="setup-choice" onclick="selectLearningDirectionChoice('en')">
+                        <span class="setup-choice-flag">🇬🇧</span>
+                        <span data-i18n="setup_learning_en">Anglais</span>
+                    </button>
+                </div>
+            </div>
+            <div class="setup-choice-group" id="settingsUiLangGroup">
+                <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
+                <div class="setup-choice-row">
+                    <button class="setup-choice" onclick="selectUiLangChoice('fr')">
+                        <span class="setup-choice-flag">🇫🇷</span>
+                        <span>Français</span>
+                    </button>
+                    <button class="setup-choice" onclick="selectUiLangChoice('en')">
+                        <span class="setup-choice-flag">🇬🇧</span>
+                        <span>English</span>
+                    </button>
+                    <button class="setup-choice" onclick="selectUiLangChoice('tr')">
+                        <span class="setup-choice-flag">🇹🇷</span>
+                        <span>Türkçe</span>
+                    </button>
+                    <button class="setup-choice" onclick="selectUiLangChoice('uk')">
+                        <span class="setup-choice-flag">🇺🇦</span>
+                        <span>Українська</span>
+                    </button>
+                    <button class="setup-choice" onclick="selectUiLangChoice('fa')">
+                        <span class="setup-choice-flag">🇮🇷</span>
+                        <span>فارسی</span>
+                    </button>
+                    <button class="setup-choice" onclick="selectUiLangChoice('ar')">
+                        <span class="setup-choice-flag">🇸🇦</span>
+                        <span>العربية</span>
+                    </button>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="settings_daily_goal">Objectif quotidien</strong>
+        <div class="info-box" style="display:flex; align-items:center; justify-content:center; gap:18px;">
+            <button class="secondary" style="width:48px; padding:10px 0;" onclick="adjustDailyGoal(-5)">−</button>
+            <span id="dailyGoalSetting" style="font-size:22px; font-weight:800; min-width:44px; text-align:center;">30</span>
+            <button class="secondary" style="width:48px; padding:10px 0;" onclick="adjustDailyGoal(5)">+</button>
+        </div>
+        <small style="color:#576177;" data-i18n="settings_daily_goal_desc">Nombre de cartes à réviser par jour pour remplir la barre « Objectif du jour » de l'écran d'accueil.</small>
+        <!-- ⚠️ (TESTS) DANS UN LIBELLE = UN OUTIL QUI A ECHAPPE A SA PORTE
+             (v638). Ce bouton sert a rejouer l'objectif du jour sans attendre
+             demain ; il annonce lui-meme qu'il n'est pas pour les usagers, et
+             il etait pourtant visible par tous. Meme traitement que le journal
+             audio : masque, pas retire -- le retirer obligerait a le reecrire
+             au prochain reglage d'objectif. -->
+        <div class="spacer" id="resetDailyBloc0"></div>
+        <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
+    </div>
+
+    <div class="card">
+        <strong data-i18n="notif_title">Rappels quotidiens</strong>
+        <p style="color:#576177" data-i18n="notif_desc">Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.</p>
+        <div class="spacer"></div>
+        <button id="notifToggleBtn" class="secondary" onclick="toggleNotifications()" data-i18n="notif_btn_enable">ACTIVER LES RAPPELS</button>
+    </div>
+
+    <details class="reglages-groupe" id="groupeSon">
+        <summary data-i18n="settings_groupe_son">Son</summary>
+        <div class="card">
+            <strong data-i18n="voice_title">Voix de lecture</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
+            <div id="voiceSettingsBox"></div>
+        </div>
+
+        <!-- L'ETIQUETTE DOIT DIRE EXACTEMENT CE QUE LE REGLAGE FAIT, y compris ce
+             qu'il COUTE -- demande explicite de Jacques : « il faut que ce soit
+             parfaitement clair, qu'est-ce qu'on est en train de faire ». Un
+             reglage dont on ne comprend pas l'effet est un piege, pas un choix. -->
+        <div class="card">
+            <strong data-i18n="carte_dire_titre">Ce que la carte prononce</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="carte_dire_desc">Au verso d'une carte, l'allemand se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.</p>
+            <div class="spacer"></div>
+            <button class="secondary" id="carteMotBtn" onclick="basculerCarteMot()">Le mot avec son article</button>
+            <div class="spacer"></div>
+            <button class="secondary" id="cartePlurielBtn" onclick="basculerCartePluriel()">Le pluriel</button>
+            <div class="spacer"></div>
+            <button class="secondary" id="cartePhraseBtn" onclick="basculerCartePhrase()">La phrase d'exemple</button>
+        </div>
+
+        <!-- L'ETIQUETTE DIT CE QUE LE REGLAGE COUTE, pas seulement ce qu'il
+             apporte. Demande de Jacques sur la carte voisine : « il faut que ce
+             soit parfaitement clair, qu'est-ce qu'on est en train de faire ».
+             Ici le cout est le coeur du choix -- un reglage qui promettrait
+             seulement « garde ta musique » serait un piege. -->
+        <div class="card">
+            <strong data-i18n="musique_titre">Musique d'une autre application</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="musique_desc">Par defaut, l'application prend le son pour elle : ta musique s'arrete quand tu commences une seance, mais tu entends la prononciation meme si le bouton silencieux de ton telephone est baisse.</p>
+            <p style="color:#b45309; margin-top:6px; font-weight:600;" data-i18n="musique_avert">⚠️ Si tu laisses la musique jouer, l'application n'emettra plus AUCUN son quand le bouton silencieux est baisse.</p>
+            <div class="spacer"></div>
+            <button class="secondary" id="musiqueBtn" onclick="basculerMusique()">Laisser la musique jouer</button>
+        </div>
+    </details>
+
+    <details class="reglages-groupe" id="groupeProgression">
+        <summary data-i18n="settings_groupe_progression">Ma progression</summary>
+        <div class="card">
+            <strong data-i18n="settings_global_progress">Progression globale</strong>
+            <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
+
+            <div class="spacer"></div>
+            <button class="secondary" onclick="openNomen()" data-i18n="settings_view_themes">VOIR LES THÈMES</button>
+        </div>
+
+        <div class="card">
+            <strong data-i18n="settings_progress_by_category">Progression par catégorie</strong>
+            <svg id="progressRadar" viewBox="0 0 220 220" style="width:100%; max-width:280px; display:block; margin:14px auto 0;"></svg>
+        </div>
+
+        <div class="card">
+            <strong data-i18n="settings_badges_title">Badges</strong>
+            <div id="badgesGrid" class="badges-grid"></div>
+        </div>
+    </details>
+
+    <details class="reglages-groupe" id="groupeCompte">
+        <summary data-i18n="settings_groupe_compte">Compte et aide</summary>
+        <!-- SIGNALER QUELQUE CHOSE. Suggestion d'usagers, relayee par Jacques.
+             Elle repare un desequilibre : l'app demande beaucoup de retours et
+             n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
+             defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
+             qu'il faisait -- donc la plupart ne disaient rien.
+             Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
+             lien) : c'est exactement ce qui a manque toute la journee du 6
+             septembre pour diagnostiquer le son. -->
+        <div class="card">
+            <strong data-i18n="retour_titre">Dis-nous ce qui t'aiderait</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
+            <div class="spacer"></div>
+            <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
+                      style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
+                             border:1px solid rgba(30,41,59,.2); background:transparent; color:inherit;"></textarea>
+            <div class="spacer"></div>
+            <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
+        </div>
+
+        <div class="card" id="inviteCard">
+            <strong data-i18n="settings_invite_title">Inviter un ami</strong>
+            <p style="color:#576177" data-i18n="settings_invite_desc">Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.</p>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="shareWortandoInvite()" data-i18n="settings_invite_btn">PARTAGER WORTANDO</button>
+        </div>
+
+        <div class="card">
+            <strong data-i18n="settings_account_title">Compte</strong>
+            <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
+            <div class="spacer"></div>
+            <button class="secondary danger" onclick="handleLogout()" data-i18n="auth_logout">SE DÉCONNECTER</button>
+            <!-- SUPPRIMER SON COMPTE (v633). Apple l'exige de toute app qui permet
+                 d'en CREER un (regle 5.1.1(v)), Google Play demande la meme chose :
+                 sans ce bouton, la soumission est refusee avant meme d'etre
+                 regardee. Ce n'est pas une fonction de confort, c'est la porte de
+                 sortie -- et une app qui garde les gens parce qu'ils ne savent pas
+                 partir ne les garde pas.
+                 ⚠️ LE CHAMP DE MOT DE PASSE N'EST PAS UNE CEREMONIE. Firebase
+                 refuse d'effacer un compte dont la session est ancienne ; il faut
+                 donc se re-authentifier de toute facon. Autant que ce passage
+                 oblige serve aussi de deuxieme barriere -- un `confirm()` se
+                 congedie d'un pouce distrait, un mot de passe non.
+                 ⚠️ REPLIE PAR DEFAUT : depuis la v633 cette carte porte l'action la
+                 plus destructrice de l'app a cote de « SE DECONNECTER », qui est la
+                 plus anodine. Deux boutons rouges cote a cote, c'est un accident qui
+                 attend son jour. -->
+            <div class="spacer"></div>
+            <button id="suppressionCompteOuvrir" class="secondary danger"
+                    onclick="ouvrirSuppressionCompte()"
+                    data-i18n="delete_account_btn">SUPPRIMER MON COMPTE</button>
+            <div id="suppressionCompteBloc" class="hidden" style="margin-top:12px;">
+                <p style="color:#576177; font-size:13px; line-height:1.5;"
+                   data-i18n="delete_account_intro">Efface définitivement ton compte.</p>
+                <div class="password-field-wrap" style="margin:12px 0;">
+                    <input id="suppressionMdp" class="answer" type="password"
+                           autocomplete="current-password"
+                           data-i18n-placeholder="delete_account_pwd_ph" placeholder="Ton mot de passe">
+                    <button type="button" class="password-toggle-btn"
+                            onclick="togglePasswordVisibility('suppressionMdp', this)"
+                            title="Afficher/masquer le mot de passe">👁</button>
+                </div>
+                <button id="suppressionCompteGo" class="secondary danger"
+                        onclick="confirmerSuppressionCompte()"
+                        data-i18n="delete_account_go">EFFACER DÉFINITIVEMENT</button>
+                <div class="spacer"></div>
+                <button class="secondary" onclick="annulerSuppressionCompte()"
+                        data-i18n="delete_account_cancel">ANNULER</button>
             </div>
         </div>
-        <div class="setup-choice-group" id="settingsUiLangGroup">
-            <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
-            <div class="setup-choice-row">
-                <button class="setup-choice" onclick="selectUiLangChoice('fr')">
-                    <span class="setup-choice-flag">🇫🇷</span>
-                    <span>Français</span>
-                </button>
-                <button class="setup-choice" onclick="selectUiLangChoice('en')">
-                    <span class="setup-choice-flag">🇬🇧</span>
-                    <span>English</span>
-                </button>
-                <button class="setup-choice" onclick="selectUiLangChoice('tr')">
-                    <span class="setup-choice-flag">🇹🇷</span>
-                    <span>Türkçe</span>
-                </button>
-                <button class="setup-choice" onclick="selectUiLangChoice('uk')">
-                    <span class="setup-choice-flag">🇺🇦</span>
-                    <span>Українська</span>
-                </button>
-                <button class="setup-choice" onclick="selectUiLangChoice('fa')">
-                    <span class="setup-choice-flag">🇮🇷</span>
-                    <span>فارسی</span>
-                </button>
-                <button class="setup-choice" onclick="selectUiLangChoice('ar')">
-                    <span class="setup-choice-flag">🇸🇦</span>
-                    <span>العربية</span>
-                </button>
-            </div>
+
+        <!-- REPARTIR DE ZERO (v638) : LES QUATRE REMISES A PLAT, ENSEMBLE.
+             Elles etaient melees a la carte de progression, entre le texte qui
+             annonce les mots maitrises et le bouton qui ouvre les themes -- donc
+             deux boutons rouges au milieu d'une carte qu'on vient consulter.
+             Demande de Jacques : << il y a des choses qui sont en trop >>.
+             ⚠️ L'ORDRE VA DU PLUS DOUX AU PLUS DEFINITIF, et ce n'est pas
+             cosmetique : c'est ce qui permet a quelqu'un de s'arreter au bon
+             endroit. Vider le coffre ne touche qu'un drapeau ; remettre les
+             maitrises en circulation ne change aucun pourcentage ; reinitialiser
+             un theme efface un paquet ; tout reinitialiser efface tout. Range dans
+             l'autre sens, la premiere chose qu'on voit est la pire.
+             ⚠️ CHACUNE GARDE SA CONFIRMATION. Le regroupement ne remplace aucune
+             barriere -- il evite juste qu'on tombe dessus en cherchant autre
+             chose. -->
+        <div class="card">
+            <strong data-i18n="settings_zero_title">Repartir de zéro</strong>
+            <p style="color:#576177; margin-top:6px; font-size:13px;" data-i18n="settings_zero_desc">Quatre façons de remettre des compteurs, de la plus douce à la plus définitive. Chacune demande confirmation.</p>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="viderLeCoffre()" data-i18n="settings_vider_coffre">VIDER LE COFFRE</button>
+            <small style="color:#576177;" data-i18n="settings_vider_coffre_desc">Retire tous les mots de ton coffre. Ta progression n'est pas touchée : seule la marque « gardé » disparaît.</small>
+            <div class="spacer"></div>
+            <button class="secondary" onclick="remettreMaitrisesEnRevision()" data-i18n="settings_revoir_maitrises">REVOIR LES MOTS MAÎTRISÉS</button>
+            <small style="color:#576177;" data-i18n="settings_revoir_maitrises_desc">Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.</small>
+            <div class="spacer"></div>
+            <button class="secondary danger" onclick="resetCurrentThemeConfirm()" data-i18n="settings_reset_theme">RÉINITIALISER LE THÈME ACTUEL</button>
+            <div class="spacer"></div>
+            <button class="secondary danger" onclick="resetAllConfirm()" data-i18n="settings_reset_all">RÉINITIALISER TOUTE LA PROGRESSION</button>
+            <!-- ⚠️ « SORTIR DU COFFRE » NE REMPLACE PAS CE BOUTON. Il vide un mot
+                 a la fois, et il faut traverser tout le paquet pour les atteindre :
+                 c'est le menage courant, inutilisable pour repartir de zero.
+                 ⚠️ VIDER LE COFFRE NE TOUCHE QUE LE DRAPEAU. Aucune echeance,
+                 aucun palier, aucun pourcentage ne bouge -- ce n'est pas une
+                 reinitialisation, et le libelle doit le dire avant qu'on y
+                 touche. C'est pour ca qu'il vient EN PREMIER ici. -->
         </div>
-    </div>
 
-    <!-- CREDITS. Trois obligations d'attribution reunies au meme endroit,
-         parce qu'elles vivaient jusqu'ici a trois endroits differents ou pas
-         du tout :
-           - WikDict / CC BY-SA : la licence EXIGE l'attribution. Elle est deja
-             affichee sous les resultats du dictionnaire ; elle est reprise ici
-             pour que quelqu'un qui cherche « d'ou vient ce contenu » la trouve
-             sans avoir a faire une recherche.
-           - Leipzig / CC BY et OPUS OpenSubtitles : les deux sources du
-             classement par frequence. L'attribution est obligatoire pour la
-             premiere, demandee pour la seconde.
-             ⚠️ SUBTLEX-DE, la source que la recherche cite pour l'allemand
-             parle, est ECARTEE et doit le rester : sa licence est CC BY-NC-SA,
-             « noncommercial purposes only ». Wortando est une entreprise.
-           - ElevenLabs : pas une obligation, une honnetete.
-           - Grok : les conditions grand public de xAI demandent d'attribuer
-             l'Output au service, de facon lisible et visible, selon leurs
-             lignes directrices de marque. Ce n'etait fait NULLE PART avant la
-             v462. L'ecran d'ouverture dure trois secondes : y poser une mention
-             le denaturerait, et personne ne la lirait. Elle est donc ici, dans
-             le seul endroit de l'app ou l'on va chercher ce genre de chose.
-         ⚠️ Si xAI exige un jour la mention SUR la video, cet emplacement ne
-         suffira plus -- ce sera le moment de changer de source. -->
-    <div class="card">
-        <strong data-i18n="credits_title">Crédits</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="credits_voix">Voix allemande : Aurora, générée avec ElevenLabs.</p>
-        <p style="color:#576177; margin-top:4px;" data-i18n="credits_dict">Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.</p>
-        <p style="color:#576177; margin-top:4px;" data-i18n="credits_degres">Comparatifs et superlatifs des adjectifs : Wiktionnaire allemand et anglais (via kaikki.org) — licence CC BY-SA 4.0.</p>
-        <p style="color:#576177; margin-top:4px;" data-i18n="credits_video">Animation d'ouverture : Created with Grok.</p>
-        <p style="color:#576177; margin-top:4px;" data-i18n="credits_freq">Fréquence d'usage : Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY ; et OPUS OpenSubtitles (Lison &amp; Tiedemann, 2016), d'après opensubtitles.org.</p>
-        <!-- ⚠️ NON-AFFILIATION, ET CE N'EST PAS UNE FORMULE DE POLITESSE (v636).
-             L'app nomme le Goethe-Institut, telc et le DTZ a plusieurs endroits
-             -- << la liste officielle du Goethe-Zertifikat A2 >>, la tuile
-             << Preparation aux examens >>. Nommer une marque pour DECRIRE ce
-             qu'on couvre est permis ; laisser croire a une approbation ne l'est
-             pas, et c'est cette ligne qui fait la difference entre les deux.
-             ⚠️ << OFFICIELLES >> RESTE COLLE A << LISTES >>, JAMAIS A
-             << PREPARATION >>. Les listes SONT officielles ; la preparation,
-             elle, est la notre. Un seul mot deplace transforme une description
-             verifiable en fausse affiliation. -->
-        <p style="color:#576177; margin-top:8px; font-size:12px;" data-i18n="credits_examens">Examens : Wortando n'est affilié ni au Goethe-Institut ni à telc, et n'est approuvé par aucun des deux. Leurs listes officielles servent uniquement de référence pour mesurer la couverture du vocabulaire.</p>
-    </div>
+        <!-- CREDITS. Trois obligations d'attribution reunies au meme endroit,
+             parce qu'elles vivaient jusqu'ici a trois endroits differents ou pas
+             du tout :
+               - WikDict / CC BY-SA : la licence EXIGE l'attribution. Elle est deja
+                 affichee sous les resultats du dictionnaire ; elle est reprise ici
+                 pour que quelqu'un qui cherche « d'ou vient ce contenu » la trouve
+                 sans avoir a faire une recherche.
+               - Leipzig / CC BY et OPUS OpenSubtitles : les deux sources du
+                 classement par frequence. L'attribution est obligatoire pour la
+                 premiere, demandee pour la seconde.
+                 ⚠️ SUBTLEX-DE, la source que la recherche cite pour l'allemand
+                 parle, est ECARTEE et doit le rester : sa licence est CC BY-NC-SA,
+                 « noncommercial purposes only ». Wortando est une entreprise.
+               - ElevenLabs : pas une obligation, une honnetete.
+               - Grok : les conditions grand public de xAI demandent d'attribuer
+                 l'Output au service, de facon lisible et visible, selon leurs
+                 lignes directrices de marque. Ce n'etait fait NULLE PART avant la
+                 v462. L'ecran d'ouverture dure trois secondes : y poser une mention
+                 le denaturerait, et personne ne la lirait. Elle est donc ici, dans
+                 le seul endroit de l'app ou l'on va chercher ce genre de chose.
+             ⚠️ Si xAI exige un jour la mention SUR la video, cet emplacement ne
+             suffira plus -- ce sera le moment de changer de source. -->
+        <div class="card">
+            <strong data-i18n="credits_title">Crédits</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="credits_voix">Voix allemande : Aurora, générée avec ElevenLabs.</p>
+            <p style="color:#576177; margin-top:4px;" data-i18n="credits_dict">Dictionnaire : WikDict, d'après le Wiktionnaire — licence CC BY-SA 4.0.</p>
+            <p style="color:#576177; margin-top:4px;" data-i18n="credits_degres">Comparatifs et superlatifs des adjectifs : Wiktionnaire allemand et anglais (via kaikki.org) — licence CC BY-SA 4.0.</p>
+            <p style="color:#576177; margin-top:4px;" data-i18n="credits_video">Animation d'ouverture : Created with Grok.</p>
+            <p style="color:#576177; margin-top:4px;" data-i18n="credits_freq">Fréquence d'usage : Leipzig Corpora Collection — © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY ; et OPUS OpenSubtitles (Lison &amp; Tiedemann, 2016), d'après opensubtitles.org.</p>
+            <!-- ⚠️ NON-AFFILIATION, ET CE N'EST PAS UNE FORMULE DE POLITESSE (v636).
+                 L'app nomme le Goethe-Institut, telc et le DTZ a plusieurs endroits
+                 -- << la liste officielle du Goethe-Zertifikat A2 >>, la tuile
+                 << Preparation aux examens >>. Nommer une marque pour DECRIRE ce
+                 qu'on couvre est permis ; laisser croire a une approbation ne l'est
+                 pas, et c'est cette ligne qui fait la difference entre les deux.
+                 ⚠️ << OFFICIELLES >> RESTE COLLE A << LISTES >>, JAMAIS A
+                 << PREPARATION >>. Les listes SONT officielles ; la preparation,
+                 elle, est la notre. Un seul mot deplace transforme une description
+                 verifiable en fausse affiliation. -->
+            <p style="color:#576177; margin-top:8px; font-size:12px;" data-i18n="credits_examens">Examens : Wortando n'est affilié ni au Goethe-Institut ni à telc, et n'est approuvé par aucun des deux. Leurs listes officielles servent uniquement de référence pour mesurer la couverture du vocabulaire.</p>
+        </div>
+    </details>
 
-    <div class="card">
-        <strong data-i18n="voice_title">Voix de lecture</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
-        <div id="voiceSettingsBox"></div>
-    </div>
-
-    <!-- SIGNALER QUELQUE CHOSE. Suggestion d'usagers, relayee par Jacques.
-         Elle repare un desequilibre : l'app demande beaucoup de retours et
-         n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
-         defaut devait ecrire a Jacques, hors de l'app, en se souvenant de ce
-         qu'il faisait -- donc la plupart ne disaient rien.
-         Le contexte est joint TOUT SEUL (version, ecran, langue, tuile ou
-         lien) : c'est exactement ce qui a manque toute la journee du 6
-         septembre pour diagnostiquer le son. -->
-    <div class="card">
-        <strong data-i18n="retour_titre">Dis-nous ce qui t'aiderait</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="retour_desc">Un mot qui sonne mal, un bouton qui ne répond pas, une idée : écris-le ici. La version de l'app et l'écran où tu étais sont joints automatiquement — tu n'as rien à noter.</p>
-        <div class="spacer"></div>
-        <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
-                  style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
-                         border:1px solid rgba(30,41,59,.2); background:transparent; color:inherit;"></textarea>
-        <div class="spacer"></div>
-        <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
-    </div>
-
-    <!-- L'ETIQUETTE DOIT DIRE EXACTEMENT CE QUE LE REGLAGE FAIT, y compris ce
-         qu'il COUTE -- demande explicite de Jacques : « il faut que ce soit
-         parfaitement clair, qu'est-ce qu'on est en train de faire ». Un
-         reglage dont on ne comprend pas l'effet est un piege, pas un choix. -->
-    <div class="card">
-        <strong data-i18n="carte_dire_titre">Ce que la carte prononce</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="carte_dire_desc">Au verso d'une carte, l'allemand se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.</p>
-        <div class="spacer"></div>
-        <button class="secondary" id="carteMotBtn" onclick="basculerCarteMot()">Le mot avec son article</button>
-        <div class="spacer"></div>
-        <button class="secondary" id="cartePlurielBtn" onclick="basculerCartePluriel()">Le pluriel</button>
-        <div class="spacer"></div>
-        <button class="secondary" id="cartePhraseBtn" onclick="basculerCartePhrase()">La phrase d'exemple</button>
-    </div>
-
-    <!-- L'ETIQUETTE DIT CE QUE LE REGLAGE COUTE, pas seulement ce qu'il
-         apporte. Demande de Jacques sur la carte voisine : « il faut que ce
-         soit parfaitement clair, qu'est-ce qu'on est en train de faire ».
-         Ici le cout est le coeur du choix -- un reglage qui promettrait
-         seulement « garde ta musique » serait un piege. -->
-    <div class="card">
-        <strong data-i18n="musique_titre">Musique d'une autre application</strong>
-        <p style="color:#576177; margin-top:6px;" data-i18n="musique_desc">Par defaut, l'application prend le son pour elle : ta musique s'arrete quand tu commences une seance, mais tu entends la prononciation meme si le bouton silencieux de ton telephone est baisse.</p>
-        <p style="color:#b45309; margin-top:6px; font-weight:600;" data-i18n="musique_avert">⚠️ Si tu laisses la musique jouer, l'application n'emettra plus AUCUN son quand le bouton silencieux est baisse.</p>
-        <div class="spacer"></div>
-        <button class="secondary" id="musiqueBtn" onclick="basculerMusique()">Laisser la musique jouer</button>
-    </div>
+    <!-- Mention de marque. UNE SEULE fois dans toute l'app, et ici plutot que
+         dans l'en-tete : le nom apparait sur chaque ecran, un exposant repete
+         partout serait illisible sur telephone et n'apprendrait rien a
+         l'apprenant. Le symbole (TM) se revendique librement ; le (R) est
+         reserve aux marques ENREGISTREES et l'afficher avant le certificat est
+         une fausse declaration, sanctionnable dans plusieurs pays de l'Union. -->
+    <p class="marque-mention" data-i18n="settings_trademark">Wortando™ est une marque de commerce.</p>
 
     <!-- Reserve a l'administrateur (v374). L'outil a fait son travail -- c'est
          lui qui a nomme le defaut du mode Ecoute le 2 septembre -- et il doit
@@ -8982,144 +9164,6 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
             background:#0e131b; color:#d7dde8; padding:12px; border-radius:8px;
             margin-top:12px; max-height:50vh; overflow:auto;"></pre>
     </div>
-
-    <div class="card">
-        <strong data-i18n="settings_account_title">Compte</strong>
-        <p style="color:#576177"><span data-i18n="auth_logged_in_as">Connecté en tant que : </span><strong id="settingsUserEmailDisplay" style="color:#1e2433;"></strong></p>
-        <div class="spacer"></div>
-        <button class="secondary danger" onclick="handleLogout()" data-i18n="auth_logout">SE DÉCONNECTER</button>
-        <!-- SUPPRIMER SON COMPTE (v633). Apple l'exige de toute app qui permet
-             d'en CREER un (regle 5.1.1(v)), Google Play demande la meme chose :
-             sans ce bouton, la soumission est refusee avant meme d'etre
-             regardee. Ce n'est pas une fonction de confort, c'est la porte de
-             sortie -- et une app qui garde les gens parce qu'ils ne savent pas
-             partir ne les garde pas.
-             ⚠️ LE CHAMP DE MOT DE PASSE N'EST PAS UNE CEREMONIE. Firebase
-             refuse d'effacer un compte dont la session est ancienne ; il faut
-             donc se re-authentifier de toute facon. Autant que ce passage
-             oblige serve aussi de deuxieme barriere -- un `confirm()` se
-             congedie d'un pouce distrait, un mot de passe non.
-             ⚠️ REPLIE PAR DEFAUT : depuis la v633 cette carte porte l'action la
-             plus destructrice de l'app a cote de « SE DECONNECTER », qui est la
-             plus anodine. Deux boutons rouges cote a cote, c'est un accident qui
-             attend son jour. -->
-        <div class="spacer"></div>
-        <button id="suppressionCompteOuvrir" class="secondary danger"
-                onclick="ouvrirSuppressionCompte()"
-                data-i18n="delete_account_btn">SUPPRIMER MON COMPTE</button>
-        <div id="suppressionCompteBloc" class="hidden" style="margin-top:12px;">
-            <p style="color:#576177; font-size:13px; line-height:1.5;"
-               data-i18n="delete_account_intro">Efface définitivement ton compte.</p>
-            <div class="password-field-wrap" style="margin:12px 0;">
-                <input id="suppressionMdp" class="answer" type="password"
-                       autocomplete="current-password"
-                       data-i18n-placeholder="delete_account_pwd_ph" placeholder="Ton mot de passe">
-                <button type="button" class="password-toggle-btn"
-                        onclick="togglePasswordVisibility('suppressionMdp', this)"
-                        title="Afficher/masquer le mot de passe">👁</button>
-            </div>
-            <button id="suppressionCompteGo" class="secondary danger"
-                    onclick="confirmerSuppressionCompte()"
-                    data-i18n="delete_account_go">EFFACER DÉFINITIVEMENT</button>
-            <div class="spacer"></div>
-            <button class="secondary" onclick="annulerSuppressionCompte()"
-                    data-i18n="delete_account_cancel">ANNULER</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <strong data-i18n="notif_title">Rappels quotidiens</strong>
-        <p style="color:#576177" data-i18n="notif_desc">Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.</p>
-        <div class="spacer"></div>
-        <button id="notifToggleBtn" class="secondary" onclick="toggleNotifications()" data-i18n="notif_btn_enable">ACTIVER LES RAPPELS</button>
-    </div>
-
-    <div class="card" id="inviteCard">
-        <strong data-i18n="settings_invite_title">Inviter un ami</strong>
-        <p style="color:#576177" data-i18n="settings_invite_desc">Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.</p>
-        <div class="spacer"></div>
-        <button class="secondary" onclick="shareWortandoInvite()" data-i18n="settings_invite_btn">PARTAGER WORTANDO</button>
-    </div>
-
-    <div class="card">
-        <strong data-i18n="settings_global_progress">Progression globale</strong>
-        <div id="settingsProgress" class="info-box">0 élément maîtrisé.</div>
-
-        <div class="spacer"></div>
-        <button class="secondary" onclick="openNomen()" data-i18n="settings_view_themes">VOIR LES THÈMES</button>
-    </div>
-
-    <!-- REPARTIR DE ZERO (v638) : LES QUATRE REMISES A PLAT, ENSEMBLE.
-         Elles etaient melees a la carte de progression, entre le texte qui
-         annonce les mots maitrises et le bouton qui ouvre les themes -- donc
-         deux boutons rouges au milieu d'une carte qu'on vient consulter.
-         Demande de Jacques : << il y a des choses qui sont en trop >>.
-         ⚠️ L'ORDRE VA DU PLUS DOUX AU PLUS DEFINITIF, et ce n'est pas
-         cosmetique : c'est ce qui permet a quelqu'un de s'arreter au bon
-         endroit. Vider le coffre ne touche qu'un drapeau ; remettre les
-         maitrises en circulation ne change aucun pourcentage ; reinitialiser
-         un theme efface un paquet ; tout reinitialiser efface tout. Range dans
-         l'autre sens, la premiere chose qu'on voit est la pire.
-         ⚠️ CHACUNE GARDE SA CONFIRMATION. Le regroupement ne remplace aucune
-         barriere -- il evite juste qu'on tombe dessus en cherchant autre
-         chose. -->
-    <div class="card">
-        <strong data-i18n="settings_zero_title">Repartir de zéro</strong>
-        <p style="color:#576177; margin-top:6px; font-size:13px;" data-i18n="settings_zero_desc">Quatre façons de remettre des compteurs, de la plus douce à la plus définitive. Chacune demande confirmation.</p>
-        <div class="spacer"></div>
-        <button class="secondary" onclick="viderLeCoffre()" data-i18n="settings_vider_coffre">VIDER LE COFFRE</button>
-        <small style="color:#576177;" data-i18n="settings_vider_coffre_desc">Retire tous les mots de ton coffre. Ta progression n'est pas touchée : seule la marque « gardé » disparaît.</small>
-        <div class="spacer"></div>
-        <button class="secondary" onclick="remettreMaitrisesEnRevision()" data-i18n="settings_revoir_maitrises">REVOIR LES MOTS MAÎTRISÉS</button>
-        <small style="color:#576177;" data-i18n="settings_revoir_maitrises_desc">Remet en circulation les mots classés maîtrisés, sans effacer ta progression ni ton pourcentage.</small>
-        <div class="spacer"></div>
-        <button class="secondary danger" onclick="resetCurrentThemeConfirm()" data-i18n="settings_reset_theme">RÉINITIALISER LE THÈME ACTUEL</button>
-        <div class="spacer"></div>
-        <button class="secondary danger" onclick="resetAllConfirm()" data-i18n="settings_reset_all">RÉINITIALISER TOUTE LA PROGRESSION</button>
-        <!-- ⚠️ « SORTIR DU COFFRE » NE REMPLACE PAS CE BOUTON. Il vide un mot
-             a la fois, et il faut traverser tout le paquet pour les atteindre :
-             c'est le menage courant, inutilisable pour repartir de zero.
-             ⚠️ VIDER LE COFFRE NE TOUCHE QUE LE DRAPEAU. Aucune echeance,
-             aucun palier, aucun pourcentage ne bouge -- ce n'est pas une
-             reinitialisation, et le libelle doit le dire avant qu'on y
-             touche. C'est pour ca qu'il vient EN PREMIER ici. -->
-    </div>
-
-    <div class="card">
-        <strong data-i18n="settings_badges_title">Badges</strong>
-        <div id="badgesGrid" class="badges-grid"></div>
-    </div>
-
-    <div class="card">
-        <strong data-i18n="settings_daily_goal">Objectif quotidien</strong>
-        <div class="info-box" style="display:flex; align-items:center; justify-content:center; gap:18px;">
-            <button class="secondary" style="width:48px; padding:10px 0;" onclick="adjustDailyGoal(-5)">−</button>
-            <span id="dailyGoalSetting" style="font-size:22px; font-weight:800; min-width:44px; text-align:center;">30</span>
-            <button class="secondary" style="width:48px; padding:10px 0;" onclick="adjustDailyGoal(5)">+</button>
-        </div>
-        <small style="color:#576177;" data-i18n="settings_daily_goal_desc">Nombre de cartes à réviser par jour pour remplir la barre « Objectif du jour » de l'écran d'accueil.</small>
-        <!-- ⚠️ (TESTS) DANS UN LIBELLE = UN OUTIL QUI A ECHAPPE A SA PORTE
-             (v638). Ce bouton sert a rejouer l'objectif du jour sans attendre
-             demain ; il annonce lui-meme qu'il n'est pas pour les usagers, et
-             il etait pourtant visible par tous. Meme traitement que le journal
-             audio : masque, pas retire -- le retirer obligerait a le reecrire
-             au prochain reglage d'objectif. -->
-        <div class="spacer" id="resetDailyBloc0"></div>
-        <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
-    </div>
-
-    <div class="card">
-        <strong data-i18n="settings_progress_by_category">Progression par catégorie</strong>
-        <svg id="progressRadar" viewBox="0 0 220 220" style="width:100%; max-width:280px; display:block; margin:14px auto 0;"></svg>
-    </div>
-
-    <!-- Mention de marque. UNE SEULE fois dans toute l'app, et ici plutot que
-         dans l'en-tete : le nom apparait sur chaque ecran, un exposant repete
-         partout serait illisible sur telephone et n'apprendrait rien a
-         l'apprenant. Le symbole (TM) se revendique librement ; le (R) est
-         reserve aux marques ENREGISTREES et l'afficher avant le certificat est
-         une fausse declaration, sanctionnable dans plusieurs pays de l'Union. -->
-    <p class="marque-mention" data-i18n="settings_trademark">Wortando™ est une marque de commerce.</p>
 
     <div class="card hidden" id="adminDashboardCard">
         <strong data-i18n="settings_admin_title">Administration</strong>
@@ -10030,6 +10074,11 @@ const I18N = {
         setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_settings_title: "Configuration",
+        settings_progress_texte: "{n} maîtrisés sur {total} ({pct} %).",
+        settings_langue_titre: "Langue",
+        settings_groupe_son: "Son",
+        settings_groupe_progression: "Ma progression",
+        settings_groupe_compte: "Compte et aide",
         auth_signup_loading: "CRÉATION…",
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
@@ -11024,6 +11073,11 @@ const I18N = {
         setup_uilang_label: "Which language for the instructions?",
         setup_continue: "CONTINUE",
         setup_settings_title: "Configuration",
+        settings_progress_texte: "{n} mastered out of {total} ({pct}%).",
+        settings_langue_titre: "Language",
+        settings_groupe_son: "Sound",
+        settings_groupe_progression: "My progress",
+        settings_groupe_compte: "Account and help",
         auth_signup_loading: "CREATING…",
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
@@ -12022,6 +12076,11 @@ const I18N = {
         setup_uilang_label: "Açıklamalar hangi dilde olsun?",
         setup_continue: "DEVAM",
         setup_settings_title: "Yapılandırma",
+        settings_progress_texte: "{total} öğeden {n} tanesi öğrenildi (%{pct}).",
+        settings_langue_titre: "Dil",
+        settings_groupe_son: "Ses",
+        settings_groupe_progression: "İlerlemem",
+        settings_groupe_compte: "Hesap ve yardım",
         auth_signup_loading: "OLUŞTURULUYOR…",
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
@@ -12706,6 +12765,11 @@ const I18N = {
         setup_uilang_label: "Якою мовою показувати пояснення?",
         setup_continue: "ПРОДОВЖИТИ",
         setup_settings_title: "Налаштування",
+        settings_progress_texte: "Опановано {n} з {total} ({pct}%).",
+        settings_langue_titre: "Мова",
+        settings_groupe_son: "Звук",
+        settings_groupe_progression: "Мій прогрес",
+        settings_groupe_compte: "Обліковий запис і допомога",
         adj_decl_title: "Відмінювання прикметників",
         adj_decl_intro: "Закінчення прикметника залежить від того, що стоїть перед ним: означений артикль, неозначений артикль або нічого.",
         adj_decl_definite_title: "Після означеного артикля (der/die/das…)",
@@ -14089,6 +14153,11 @@ const I18N = {
         setup_uilang_label: "راهنمایی‌ها به چه زبانی باشد؟",
         setup_continue: "ادامه",
         setup_settings_title: "پیکربندی",
+        settings_progress_texte: "{n} از {total} مورد یاد گرفته شده است ({pct}٪).",
+        settings_langue_titre: "زبان",
+        settings_groupe_son: "صدا",
+        settings_groupe_progression: "پیشرفت من",
+        settings_groupe_compte: "حساب و راهنما",
         op_due_desc: "نشستی از {n} کارت · {r} برای مرور",
         op_due_desc_neufs: "نشستی از {n} کارت",
         op_due_desc_zero: "فعلاً چیزی برای مرور نیست",
@@ -14988,6 +15057,11 @@ const I18N = {
         setup_uilang_label: "بأي لغة تريد التعليمات؟",
         setup_continue: "متابعة",
         setup_settings_title: "الإعداد",
+        settings_progress_texte: "تم إتقان {n} من أصل {total} ({pct}٪).",
+        settings_langue_titre: "اللغة",
+        settings_groupe_son: "الصوت",
+        settings_groupe_progression: "تقدّمي",
+        settings_groupe_compte: "الحساب والمساعدة",
         auth_signup_loading: "جارٍ الإنشاء…",
         auth_logged_in_as: "متصل باسم: ",
         auth_logout: "تسجيل الخروج",
@@ -16067,6 +16141,7 @@ function selectLearningDirectionChoice(dir){
 function selectUiLangChoice(lang){
     setUiLang(lang);
     refreshSetupChoiceActiveStates();
+    afficherLangueActuelle();
     afterNextPaint(() => applyUiLangSideEffects());
 }
 
@@ -20632,7 +20707,7 @@ function updateGlobalProgress(){
         });
         const percentage = total ? Math.round(mastered / total * 100) : 0;
         const sText = document.getElementById("settingsProgress");
-        if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
+        if(sText) sText.textContent = tf('settings_progress_texte', { n: mastered, total: total, pct: percentage });
         const homeLevel = getHomeLevel();
         const levelStats = getLevelMasteryStatsEn(homeLevel);
         updateGlobalProgressRing(homeLevel, levelStats.percent);
@@ -20672,7 +20747,7 @@ function updateGlobalProgress(){
         const percentage = total ? Math.round(mastered / total * 100) : 0;
 
         const sText = document.getElementById("settingsProgress");
-        if(sText) sText.textContent = `${mastered} élément${mastered !== 1 ? 's' : ''} maîtrisé${mastered !== 1 ? 's' : ''} sur ${total} (${percentage}%).`;
+        if(sText) sText.textContent = tf('settings_progress_texte', { n: mastered, total: total, pct: percentage });
 
         const homeLevel = getHomeLevel();
         const levelStats = getLevelMasteryStats(homeLevel);
@@ -23698,7 +23773,39 @@ function openSettings(){
     if(resetDaily) resetDaily.classList.toggle("hidden", !isAdminUser());
     if(resetDailyEspace) resetDailyEspace.classList.toggle("hidden", !isAdminUser());
     restaurerBrouillonRetour();
+    afficherLangueActuelle();
+    // Un retour commence et pas envoye : son groupe s'ouvre, sinon le
+    // brouillon dormirait dans un pli que personne ne rouvre.
+    const brouillon = document.getElementById("retourTexte");
+    if(brouillon && brouillon.value.trim()) ouvrirGroupeReglages("groupeCompte");
     showScreen("settings");
+}
+
+// LA LANGUE EN UNE LIGNE (v681). Six gros boutons occupaient le haut de
+// l'ecran pour un choix qu'on fait une fois : la ligne dit la langue actuelle,
+// les boutons s'ouvrent au toucher. Les noms dans leur propre langue -- c'est
+// sous cette forme qu'on reconnait la sienne.
+const NOM_LANGUE_NATIF = { fr: "Français", en: "English", tr: "Türkçe", uk: "Українська", fa: "فارسی", ar: "العربية" };
+function afficherLangueActuelle(){
+    const el = document.getElementById("reglageLangueActuelle");
+    if(el) el.textContent = NOM_LANGUE_NATIF[getUiLang()] || "";
+}
+
+// Ouvre un groupe replie des reglages et l'amene a l'ecran : pour les liens
+// qui menent a une carte precise (le badge de l'accueil, un brouillon de
+// retour). Voir la note en tete de <section id="settings">.
+function ouvrirGroupeReglages(id){
+    const groupe = document.getElementById(id);
+    if(!groupe) return;
+    groupe.open = true;
+    afterNextPaint(() => { try{ groupe.scrollIntoView({ block: "start", behavior: "smooth" }); }catch(e){} });
+}
+
+// Le badge de l'accueil menait aux reglages, ou les badges sont maintenant
+// dans « Ma progression », replie : on ouvre ce groupe directement.
+function ouvrirBadges(){
+    openSettings();
+    ouvrirGroupeReglages("groupeProgression");
 }
 
 // ============ Tableau de bord admin (codes d'invitation + testeurs) ============
@@ -28016,7 +28123,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 680;
+const APP_VERSION = 681;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
