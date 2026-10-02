@@ -7424,3 +7424,18 @@ refait ecran par ecran en francais et en ukrainien. Decide par Jacques, fait :
   de l'interface, dans la sauvegarde ; `node tests/parcours.js` en fait le
   tableau.
 Question de Jacques en suspens : la video de demonstration au demarrage.
+
+## 2 octobre 2026 -- Jacques : « le tableau admin et les reglages, c'est lourd »
+
+Demande de Jacques (pas d'un testeur), faite et validee le meme jour
+(« c'est beaucoup mieux ») :
+- **v679** : langue imposee a un seul compte (`langueImposee`, pose a la main
+  dans la console Firebase), pour les testeurs inscrits avant la v678. Posee
+  sur 4 comptes : ukrainien, persan x2, turc.
+- **v680, tableau admin** : trois chiffres (actifs 7 j, a relancer, jamais
+  commence), une ligne par testeur triee par derniere sauvegarde, detail au
+  toucher, outils de maintenance replies sous la liste.
+- **v681, reglages** : 14 cartes sur plus de 6 ecrans -> langue en une ligne,
+  objectif et rappels visibles, le reste en trois groupes replies (Son, Ma
+  progression, Compte et aide). Au passage, la phrase de progression globale,
+  en francais en dur pour toutes les langues, est traduite.
