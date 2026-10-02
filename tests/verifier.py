@@ -197,6 +197,12 @@ def verifier_themes(r):
                             % (t.get("id"), m.get("mot", "?"), champ))
             if m.get("genre") not in GENRES:
                 r.echec("themes.json", "%s : genre invalide %r" % (m.get("mot"), m.get("genre")))
+            # L'article francais vit dans article_fr, et l'app le colle devant la
+            # traduction : une traduction qui le repete s'affiche « le le droit »
+            # (signale par Jacques le 2 octobre 2026, sept cartes).
+            if m.get("article_fr") and re.match(r"(le |la |les |l')", m.get("traduction", ""), re.I):
+                r.echec("themes.json", "%s / %s : article en double -> %r + %r"
+                        % (t.get("id"), m.get("mot"), m.get("article_fr"), m.get("traduction")))
         # Les verbes des chapitres VHS suivent le meme contrat que verbe.json
         for v in t.get("verben", []):
             verbes += 1

@@ -7439,3 +7439,12 @@ Demande de Jacques (pas d'un testeur), faite et validee le meme jour
   objectif et rappels visibles, le reste en trois groupes replies (Son, Ma
   progression, Compte et aide). Au passage, la phrase de progression globale,
   en francais en dur pour toutes les langues, est traduite.
+
+## 2 octobre 2026 -- Jacques : « le le droit » sur une carte
+
+Vu en faisant ses cartes dans l'app iPhone (TestFlight). La traduction
+repetait l'article deja porte par `article_fr`, et l'app colle l'un devant
+l'autre. Sept cartes sur 3 858 : Kälte, Ruhe, Gegenwart, Recht (x2),
+Publikum, Wirt (« le l'aubergiste » -> article `l'`). Corrige dans
+themes.json, et `tests/verifier.py` refuse maintenant une traduction qui
+commence par un article quand `article_fr` est rempli.
