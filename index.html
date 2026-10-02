@@ -6689,7 +6689,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v678</span>
+    <span class="subtitle-version">v679</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19551,10 +19551,32 @@ async function loadVhsKapitelAccessFlag(){
     try{
         const snap = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid));
         vhsKapitelAccess = !!(snap.exists() && snap.data().vhsChaptersEnabled === true);
+        if(snap.exists()) appliquerLangueImposee(snap.data().langueImposee);
     }catch(e){
         vhsKapitelAccess = false;
     }
     updateVhsKapitelTileVisibility();
+}
+
+// UNE LANGUE IMPOSEE A UN SEUL COMPTE (v679). La langue du telephone ne vaut
+// que tant qu'on n'en a pas choisi : une testrice ukrainienne inscrite avant la
+// v678 restait en francais. Le champ `langueImposee` ("uk", "tr"...) se pose a
+// la main dans la console Firebase, sur users/{uid} -- les regles interdisent a
+// l'admin de l'ecrire depuis l'app, et c'est voulu. La sauvegarde de la personne
+// ecrit en { merge: true } sans ce champ, donc elle ne l'efface pas.
+// ⚠️ APPLIQUE UNE FOIS PAR APPAREIL, pas a chaque ouverture : sinon la personne
+// ne pourrait plus jamais changer de langue dans les reglages. Pour l'imposer
+// de nouveau, il faut une valeur differente de la derniere appliquee.
+const LANGUE_IMPOSEE_KEY = "deutschAI_langueImposee";
+function appliquerLangueImposee(lang){
+    if(!UI_LANGS.includes(lang)) return;
+    let deja = null;
+    try{ deja = localStorage.getItem(LANGUE_IMPOSEE_KEY); }catch(e){}
+    if(deja === lang) return;
+    try{ localStorage.setItem(LANGUE_IMPOSEE_KEY, lang); }catch(e){}
+    if(getUiLang() === lang) return;
+    setUiLang(lang);
+    applyUiLangSideEffects();
 }
 
 // Préfixe la clé de thème selon la direction d'apprentissage active, pour que
@@ -27950,7 +27972,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 678;
+const APP_VERSION = 679;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
