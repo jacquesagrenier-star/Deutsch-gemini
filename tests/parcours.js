@@ -24,14 +24,16 @@ const { getFirestore } = require(path.join(FBA, "firestore"));
 const ETAPES = [["accueil", "accueil vu"], ["carte", "1re carte affichee"], ["reponse", "1re carte passee"]];
 
 // LA DECOUVERTE GUIDEE (v700). L'app note `decouverte_debut`, puis
-// `decouverte_etape1` a `decouverte_etape4` a mesure qu'on les atteint, et
+// `decouverte_etape1` a `decouverte_etape5` a mesure qu'on les atteint (la 5,
+// la seance du jour, depuis la v702), et
 // enfin `decouverte_finie` ou `decouverte_passee` -- avec, pour celle-ci,
 // `decouverte_passee_etape2` (par exemple) : la question est A QUELLE ETAPE on
 // la quitte. Une colonne la resume ; le bilan compte chaque issue.
-const DEC_ETAPES = 4;
+const DEC_ETAPES = 5;
 function decouverte(p){
     if(p.decouverte_finie) return "finie";
-    for(let n = 1; n <= DEC_ETAPES; n++){
+    // 0 = quittee des l'introduction (v701), avant toute carte.
+    for(let n = 0; n <= DEC_ETAPES; n++){
         if(p["decouverte_passee_etape" + n]) return "passee a " + n + "/" + DEC_ETAPES;
     }
     if(p.decouverte_passee) return "passee";
@@ -77,7 +79,7 @@ async function main(){
         }
         console.log("  finie".padEnd(22) + vues.filter(l => l.p.decouverte_finie).length);
         console.log("  passee".padEnd(22) + vues.filter(l => l.p.decouverte_passee).length
-                    + "  (" + [1, 2, 3, 4].map(n => n + "/" + DEC_ETAPES + " : "
+                    + "  (" + [0, 1, 2, 3, 4, 5].map(n => n + "/" + DEC_ETAPES + " : "
                         + vues.filter(l => l.p["decouverte_passee_etape" + n]).length).join(", ") + ")");
     }
 }

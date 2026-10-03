@@ -6006,6 +6006,15 @@ body[data-theme="dark"] .dec-texte{color:#aab3c2;}
 body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
 /* L'etiquette de la projection (v701) : elle dit, a chaque arret, que ce
    qu'on voit est un EXEMPLE et a quel rythme. */
+/* La seance du jour montree a l'etape 5 (v702) : la vraie tuile de l'accueil,
+   mais qu'on ne peut pas lancer -- un toucher y ferait quitter la visite. */
+.dec-scene.lecture{pointer-events:none;}
+.dec-ecouter{
+    width:auto; min-height:40px; padding:6px 14px; margin:-6px 0 14px;
+    border-radius:999px; border:1.5px solid rgba(var(--wt-action-rgb),.25);
+    background:transparent; font-size:18px; line-height:1; cursor:pointer;
+}
+body[data-theme="dark"] .dec-ecouter{border-color:rgba(242,242,246,.35);}
 .dec-projection{margin:10px 0 0; font-weight:700; line-height:1.45; color:#8A5A12;}
 body[data-theme="dark"] .dec-projection{color:#E8A23A;}
 .abo-plus-tard{margin-top:12px;}
@@ -6269,6 +6278,10 @@ body[data-theme="dark"] .dec-projection{color:#E8A23A;}
     <div class="kicker" data-i18n="dec_kicker">Découvre Wortando</div>
     <h2 id="decouverteTitre" class="dec-titre"></h2>
     <p id="decouverteTexte" class="dec-texte"></p>
+    <!-- La voix de la visite (v702) se reecoute d'ici : le texte reste toujours
+         a l'ecran, la voix s'y ajoute, et ce bouton la rend a qui avait le
+         volume baisse. Cache aux etapes 1 a 3, ou parle la voix allemande. -->
+    <button type="button" id="decouverteEcouter" class="dec-ecouter hidden" onclick="rejouerNarrationDecouverte()" data-i18n-aria-label="dec_ecouter" aria-label="Réécouter">🔊</button>
     <div id="decouverteScene" class="dec-scene"></div>
     <div id="decouverteMosaique" class="dec-mosaique hidden">
         <canvas id="decouverteToile" aria-hidden="true"></canvas>
@@ -6279,7 +6292,7 @@ body[data-theme="dark"] .dec-projection{color:#E8A23A;}
     <button type="button" id="decouverteDebut" class="primary hidden" onclick="commencerVisiteDecouverte()" data-i18n="dec_t0_bouton">COMMENCER LA VISITE</button>
     <button type="button" id="decouverteSuite" class="primary hidden" onclick="suiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
     <button type="button" id="decouverteFin" class="primary hidden" onclick="finVisiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
-    <button type="button" id="decouverteFermer" class="primary hidden" onclick="terminerDecouverte()" data-i18n="dec_t5_bouton">COMMENCER</button>
+    <button type="button" id="decouverteFermer" class="primary hidden" onclick="terminerDecouverte()" data-i18n="dec_t6_bouton">COMMENCER</button>
 </section>
 
 <!-- ================= HOME ================= -->
@@ -6954,7 +6967,7 @@ body[data-theme="dark"] .dec-projection{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v701</span>
+    <span class="subtitle-version">v702</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10376,12 +10389,15 @@ const I18N = {
         dec_passer: "Passer",
         dec_progression_aria: "Étape {n} sur {total}",
         dec_kicker: "Découvre Wortando",
-        dec_t0_titre: "Une visite guidée de l'app",
-        dec_t0_texte: "Deux minutes, quatre aperçus : des mots, un verbe, un peu de grammaire et ton tableau. L'app en contient bien plus — thèmes, examens, écoute, dictionnaire…",
+        dec_t0_titre: "Une visite guidée de l'application",
+        dec_t0_texte: "Deux minutes, cinq aperçus : des mots, un verbe, un peu de grammaire, ton tableau et ta séance du jour. L'application en contient bien plus : thèmes, expressions, préparation aux examens, écoute, dictée, dictionnaire, et bien d'autres.",
         dec_t0_bouton: "COMMENCER LA VISITE",
-        dec_t5_titre: "La visite est terminée !",
-        dec_t5_texte: "Tu as vu un peu de chaque partie. Ta séance du jour t'attend sur l'accueil : quelques mots nouveaux et tes révisions, chaque jour. Le reste de l'app — thèmes, examens, écoute, dictionnaire — est à un toucher.",
-        dec_t5_bouton: "COMMENCER",
+        dec_ecouter: "Réécouter",
+        dec_t5_titre: "Ta séance du jour",
+        dec_t5_texte: "Chaque jour, elle te propose quelques mots nouveaux et les révisions qui reviennent au bon moment : environ 30 cartes. C'est elle qui fait avancer ton tableau. Tu peux y changer de niveau à tout moment.",
+        dec_t6_titre: "La visite est terminée !",
+        dec_t6_texte: "Tu as vu un peu de chaque partie, et il reste bien plus à découvrir. Ta séance du jour t'attend sur l'accueil. Bon apprentissage !",
+        dec_t6_bouton: "COMMENCER",
         dec_t1_titre: "Ton premier mot",
         dec_t1_titre_plusieurs: "Tes premiers mots",
         dec_t1_texte: "Écoute-le, regarde la couleur de l'article, puis dis si tu le savais.",
@@ -10395,11 +10411,12 @@ const I18N = {
         dec_t3_titre: "Un peu de grammaire",
         dec_t3_texte: "Une ou deux questions, comme dans les exercices de l'app. Chaque réponse est expliquée.",
         dec_t4_titre: "Ton tableau commence",
-        dec_t4_texte: "Chaque carte travaillée ouvre un carreau. Au bout de {n}, c'est le tableau d'un vrai peintre.",
+        dec_t4_texte: "Chaque carte travaillée ouvre un carreau, et peu à peu se dévoile le tableau d'un grand peintre de langue allemande. Tu apprends la langue, et tu découvres son art.",
         dec_t4_bravo: "Tes premières réponses viennent d'ouvrir ces carreaux.",
-        dec_t4_proj_jours: "Exemple, à {n} cartes par jour : dans {j} jours",
-        dec_t4_proj_fin: "Vers le jour {j}, le tableau complet — et le nom du peintre.",
-        dec_t4_proj_retour: "Le tien en est à {n} carreaux. C'est parti !",
+        dec_t4_p1: "Exemple, à 30 cartes par jour : dans 3 jours.",
+        dec_t4_p2: "Dans 7 jours.",
+        dec_t4_pfin: "En un peu plus de trois semaines, le tableau complet, et le nom du peintre.",
+        dec_t4_pretour: "Voici ton vrai tableau : il commence aujourd'hui.",
         dec_admin_titre: "Découverte guidée",
         dec_admin_desc: "Les quatre étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.",
         dec_admin_btn: "REVOIR LA DÉCOUVERTE GUIDÉE →",
@@ -11448,11 +11465,14 @@ const I18N = {
         dec_progression_aria: "Step {n} of {total}",
         dec_kicker: "Discover Wortando",
         dec_t0_titre: "A guided tour of the app",
-        dec_t0_texte: "Two minutes, four previews: words, a verb, a bit of grammar and your painting. The app holds much more — themes, exams, listening, a dictionary…",
+        dec_t0_texte: "Two minutes, five previews: words, a verb, a bit of grammar, your painting and today's session. The app holds much more: themes, expressions, exam preparation, listening, dictation, a dictionary, and much else.",
         dec_t0_bouton: "START THE TOUR",
-        dec_t5_titre: "The tour is over!",
-        dec_t5_texte: "You've seen a bit of each part. Your daily session is waiting on the home screen: a few new words and your reviews, every day. The rest of the app — themes, exams, listening, the dictionary — is one tap away.",
-        dec_t5_bouton: "LET'S START",
+        dec_ecouter: "Listen again",
+        dec_t5_titre: "Today's session",
+        dec_t5_texte: "Every day, it offers a few new words and the reviews that come back at just the right moment: about 30 cards. It's what makes your painting grow. You can change your level there at any time.",
+        dec_t6_titre: "The tour is over!",
+        dec_t6_texte: "You've seen a bit of each part, and there's much more to discover. Today's session is waiting for you on the home screen. Happy learning!",
+        dec_t6_bouton: "LET'S START",
         dec_t1_titre: "Your first word",
         dec_t1_titre_plusieurs: "Your first words",
         dec_t1_texte: "Listen, look at the colour of the article, then say whether you knew it.",
@@ -11466,11 +11486,12 @@ const I18N = {
         dec_t3_titre: "A little grammar",
         dec_t3_texte: "One or two questions, just like the app's exercises. Every answer is explained.",
         dec_t4_titre: "Your painting begins",
-        dec_t4_texte: "Every card you work on opens a tile. After {n}, it's a real painter's masterpiece.",
+        dec_t4_texte: "Every card you work on opens a tile, and little by little a painting by a great German-speaking painter is revealed. You learn the language, and you discover its art.",
         dec_t4_bravo: "Your first answers just opened these tiles.",
-        dec_t4_proj_jours: "Example, at {n} cards a day: in {j} days",
-        dec_t4_proj_fin: "Around day {j}, the full painting — and the painter's name.",
-        dec_t4_proj_retour: "Yours has {n} tiles so far. Let's go!",
+        dec_t4_p1: "Example, at 30 cards a day: in 3 days.",
+        dec_t4_p2: "In 7 days.",
+        dec_t4_pfin: "In a little over three weeks, the full painting, and the painter's name.",
+        dec_t4_pretour: "Here is your real painting: it begins today.",
         dec_admin_titre: "Guided tour",
         dec_admin_desc: "The four steps a new account sees after the welcome screen. Answers count as real answers.",
         dec_admin_btn: "REPLAY THE GUIDED TOUR →",
@@ -12523,11 +12544,14 @@ const I18N = {
         dec_progression_aria: "Adım {n} / {total}",
         dec_kicker: "Wortando'yu keşfet",
         dec_t0_titre: "Uygulamada rehberli bir tur",
-        dec_t0_texte: "İki dakika, dört örnek: kelimeler, bir fiil, biraz dilbilgisi ve tablon. Uygulamada çok daha fazlası var — temalar, sınavlar, dinleme, sözlük…",
+        dec_t0_texte: "İki dakika, beş örnek: kelimeler, bir fiil, biraz dilbilgisi, tablon ve bugünkü oturumun. Uygulamada çok daha fazlası var: temalar, deyimler, sınavlara hazırlık, dinleme, dikte, sözlük ve daha birçok şey.",
         dec_t0_bouton: "TURA BAŞLA",
-        dec_t5_titre: "Tur bitti!",
-        dec_t5_texte: "Her bölümden biraz gördün. Günün oturumu ana ekranda seni bekliyor: her gün birkaç yeni kelime ve tekrarların. Uygulamanın geri kalanı — temalar, sınavlar, dinleme, sözlük — bir dokunuş uzağında.",
-        dec_t5_bouton: "BAŞLA",
+        dec_ecouter: "Tekrar dinle",
+        dec_t5_titre: "Bugünkü oturumun",
+        dec_t5_texte: "Her gün sana birkaç yeni kelime ve tam zamanında geri gelen tekrarları sunar: yaklaşık 30 kart. Tablonu ilerleten odur. Seviyeni orada istediğin zaman değiştirebilirsin.",
+        dec_t6_titre: "Tur bitti!",
+        dec_t6_texte: "Her bölümden biraz gördün ve keşfedecek çok daha fazlası var. Bugünkü oturumun ana ekranda seni bekliyor. İyi çalışmalar!",
+        dec_t6_bouton: "BAŞLA",
         dec_t1_titre: "İlk kelimen",
         dec_t1_titre_plusieurs: "İlk kelimelerin",
         dec_t1_texte: "Dinle, artikelin rengine bak, sonra bilip bilmediğini söyle.",
@@ -12541,11 +12565,12 @@ const I18N = {
         dec_t3_titre: "Biraz dilbilgisi",
         dec_t3_texte: "Uygulamadaki alıştırmalar gibi bir iki soru. Her cevap açıklanır.",
         dec_t4_titre: "Tablon başlıyor",
-        dec_t4_texte: "Çalışılan her kart bir parça açar. {n} parçanın sonunda gerçek bir ressamın tablosu ortaya çıkar.",
+        dec_t4_texte: "Çalışılan her kart bir parça açar ve yavaş yavaş Almanca konuşan büyük bir ressamın tablosu ortaya çıkar. Dili öğrenirken sanatını da keşfedersin.",
         dec_t4_bravo: "İlk cevapların bu parçaları açtı.",
-        dec_t4_proj_jours: "Örnek, günde {n} kartla: {j} gün sonra",
-        dec_t4_proj_fin: "Yaklaşık {j}. günde tablonun tamamı ve ressamın adı.",
-        dec_t4_proj_retour: "Seninki şimdilik {n} parçada. Haydi başlayalım!",
+        dec_t4_p1: "Örnek, günde 30 kartla: 3 gün sonra.",
+        dec_t4_p2: "7 gün sonra.",
+        dec_t4_pfin: "Üç haftadan biraz fazla bir sürede tablonun tamamı ve ressamın adı.",
+        dec_t4_pretour: "İşte gerçek tablon: bugün başlıyor.",
         dec_admin_titre: "Rehberli keşif",
         dec_admin_desc: "Yeni bir hesabın karşılama ekranından sonra gördüğü dört adım. Cevaplar gerçek cevap sayılır.",
         dec_admin_btn: "REHBERLİ KEŞFİ YENİDEN GÖR →",
@@ -13282,11 +13307,14 @@ const I18N = {
         dec_progression_aria: "Крок {n} з {total}",
         dec_kicker: "Знайомство з Wortando",
         dec_t0_titre: "Екскурсія застосунком",
-        dec_t0_texte: "Дві хвилини, чотири приклади: слова, дієслово, трохи граматики й твоя картина. У застосунку набагато більше — теми, іспити, слухання, словник…",
+        dec_t0_texte: "Дві хвилини, п'ять прикладів: слова, дієслово, трохи граматики, твоя картина і твій сеанс на сьогодні. У застосунку набагато більше: теми, вирази, підготовка до іспитів, слухання, диктант, словник і багато іншого.",
         dec_t0_bouton: "ПОЧАТИ ЕКСКУРСІЮ",
-        dec_t5_titre: "Екскурсію завершено!",
-        dec_t5_texte: "Ось потроху з кожної частини. На головному екрані на тебе чекає щоденне заняття: кілька нових слів і повторення щодня. Решта застосунку — теми, іспити, слухання, словник — за один дотик.",
-        dec_t5_bouton: "ПОЧАТИ",
+        dec_ecouter: "Прослухати ще раз",
+        dec_t5_titre: "Твій сеанс на сьогодні",
+        dec_t5_texte: "Щодня він пропонує кілька нових слів і повторення, які повертаються в потрібний момент: близько 30 карток. Саме він рухає вперед твою картину. Рівень тут можна змінити будь-коли.",
+        dec_t6_titre: "Екскурсію завершено!",
+        dec_t6_texte: "Ось потроху з кожної частини, а відкрити можна ще набагато більше. Твій сеанс на сьогодні чекає на головному екрані. Успіхів у навчанні!",
+        dec_t6_bouton: "ПОЧАТИ",
         dec_t1_titre: "Твоє перше слово",
         dec_t1_titre_plusieurs: "Твої перші слова",
         dec_t1_texte: "Послухай, подивись на колір артикля, а тоді скажи, чи це слово тобі знайоме.",
@@ -13300,11 +13328,12 @@ const I18N = {
         dec_t3_titre: "Трохи граматики",
         dec_t3_texte: "Одне-два запитання, як у вправах застосунку. Кожну відповідь пояснено.",
         dec_t4_titre: "Твоя картина починається",
-        dec_t4_texte: "Кожна опрацьована картка відкриває плитку. Після {n} плиток — картина справжнього художника.",
+        dec_t4_texte: "Кожна опрацьована картка відкриває плитку, і поступово постає картина великого німецькомовного художника. Ти вивчаєш мову — і відкриваєш її мистецтво.",
         dec_t4_bravo: "Твої перші відповіді щойно відкрили ці плитки.",
-        dec_t4_proj_jours: "Приклад, по {n} карток на день: через {j} днів",
-        dec_t4_proj_fin: "Приблизно на {j}-й день — уся картина й ім'я художника.",
-        dec_t4_proj_retour: "У твоїй картині вже відкрито плиток: {n}. Уперед!",
+        dec_t4_p1: "Приклад, по 30 карток на день: через 3 дні.",
+        dec_t4_p2: "Через 7 днів.",
+        dec_t4_pfin: "Трохи більше ніж за три тижні — уся картина й ім'я художника.",
+        dec_t4_pretour: "Ось твоя справжня картина: вона починається сьогодні.",
         dec_admin_titre: "Знайомство із застосунком",
         dec_admin_desc: "Чотири кроки, які бачить новий обліковий запис після екрана привітання. Відповіді зараховуються як справжні.",
         dec_admin_btn: "ПЕРЕГЛЯНУТИ ЗНАЙОМСТВО ЩЕ РАЗ →",
@@ -14749,11 +14778,14 @@ const I18N = {
         dec_progression_aria: "گام {n} از {total}",
         dec_kicker: "آشنایی با Wortando",
         dec_t0_titre: "یک گشت راهنما در برنامه",
-        dec_t0_texte: "دو دقیقه، چهار نمونه: چند واژه، یک فعل، کمی دستور زبان و تابلوی تو. برنامه خیلی بیشتر از این دارد — موضوع‌ها، آزمون‌ها، شنیدن، فرهنگ لغت…",
+        dec_t0_texte: "دو دقیقه، پنج نمونه: چند واژه، یک فعل، کمی دستور زبان، تابلوی تو و جلسهٔ امروزت. برنامه خیلی بیشتر از این دارد: موضوع‌ها، اصطلاحات، آمادگی برای آزمون‌ها، شنیدن، دیکته، فرهنگ لغت و بسیاری چیزهای دیگر.",
         dec_t0_bouton: "شروع گشت",
-        dec_t5_titre: "گشت تمام شد!",
-        dec_t5_texte: "از هر بخش کمی دیدی. جلسهٔ امروزت در صفحهٔ اصلی منتظر توست: هر روز چند واژهٔ تازه و مرورهایت. بقیهٔ برنامه — موضوع‌ها، آزمون‌ها، شنیدن، فرهنگ لغت — با یک لمس در دسترس است.",
-        dec_t5_bouton: "شروع کنیم",
+        dec_ecouter: "دوباره گوش کن",
+        dec_t5_titre: "جلسهٔ امروزت",
+        dec_t5_texte: "هر روز چند واژهٔ تازه و مرورهایی را که درست به‌موقع برمی‌گردند به تو پیشنهاد می‌کند: حدود سی کارت. همین جلسه است که تابلویت را پیش می‌برد. هر وقت بخواهی می‌توانی سطحت را همان‌جا عوض کنی.",
+        dec_t6_titre: "گشت تمام شد!",
+        dec_t6_texte: "از هر بخش کمی دیدی و هنوز خیلی چیزها برای کشف کردن مانده است. جلسهٔ امروزت در صفحهٔ اصلی منتظر توست. یادگیری خوبی داشته باشی!",
+        dec_t6_bouton: "شروع کنیم",
         dec_t1_titre: "نخستین واژه‌ات",
         dec_t1_titre_plusieurs: "نخستین واژه‌هایت",
         dec_t1_texte: "گوش کن، به رنگ حرف تعریف نگاه کن، بعد بگو آن را می‌دانستی یا نه.",
@@ -14767,11 +14799,12 @@ const I18N = {
         dec_t3_titre: "کمی دستور زبان",
         dec_t3_texte: "یکی دو پرسش، درست مانند تمرین‌های برنامه. هر پاسخ توضیح داده می‌شود.",
         dec_t4_titre: "تابلوی تو آغاز می‌شود",
-        dec_t4_texte: "هر کارتی که کار می‌کنی یک کاشی را باز می‌کند. پس از {n} کاشی، تابلوی یک نقاش واقعی پیدا می‌شود.",
+        dec_t4_texte: "هر کارتی که کار می‌کنی یک کاشی را باز می‌کند و کم‌کم تابلوی یک نقاش بزرگ آلمانی‌زبان پدیدار می‌شود. زبان را یاد می‌گیری و هنرش را هم کشف می‌کنی.",
         dec_t4_bravo: "نخستین پاسخ‌هایت همین حالا این کاشی‌ها را باز کردند.",
-        dec_t4_proj_jours: "نمونه، با {n} کارت در روز: {j} روز دیگر",
-        dec_t4_proj_fin: "حدود روز {j}، تمام تابلو — و نام نقاش.",
-        dec_t4_proj_retour: "تابلوی تو تا اینجا {n} کاشی دارد. شروع کنیم!",
+        dec_t4_p1: "نمونه، با سی کارت در روز: سه روز دیگر.",
+        dec_t4_p2: "هفت روز دیگر.",
+        dec_t4_pfin: "در کمی بیش از سه هفته، تمام تابلو و نام نقاش.",
+        dec_t4_pretour: "این تابلوی واقعی توست: از امروز شروع می‌شود.",
         dec_admin_titre: "آشنایی راهنما",
         dec_admin_desc: "چهار گامی که یک حساب تازه پس از صفحهٔ خوشامد می‌بیند. پاسخ‌ها پاسخ واقعی به شمار می‌آیند.",
         dec_admin_btn: "دیدن دوبارهٔ آشنایی راهنما →",
@@ -15725,11 +15758,14 @@ const I18N = {
         dec_progression_aria: "الخطوة {n} من {total}",
         dec_kicker: "تعرّف على Wortando",
         dec_t0_titre: "جولة إرشادية في التطبيق",
-        dec_t0_texte: "دقيقتان وأربع لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك. وفي التطبيق أكثر من ذلك بكثير — مواضيع، وامتحانات، واستماع، وقاموس…",
+        dec_t0_texte: "دقيقتان وخمس لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك، وجلستك اليوم. وفي التطبيق أكثر من ذلك بكثير: مواضيع، وتعابير، وتحضير للامتحانات، واستماع، وإملاء، وقاموس، وغير ذلك الكثير.",
         dec_t0_bouton: "ابدأ الجولة",
-        dec_t5_titre: "انتهت الجولة!",
-        dec_t5_texte: "رأيت لمحة من كل جزء. جلستك اليومية تنتظرك في الشاشة الرئيسية: كلمات جديدة ومراجعاتك كل يوم. وبقية التطبيق — المواضيع والامتحانات والاستماع والقاموس — على بُعد لمسة.",
-        dec_t5_bouton: "لنبدأ",
+        dec_ecouter: "استمع مرة أخرى",
+        dec_t5_titre: "جلستك اليوم",
+        dec_t5_texte: "كل يوم تقترح عليك بضع كلمات جديدة والمراجعات التي تعود في الوقت المناسب: نحو ثلاثين بطاقة. هي التي تجعل لوحتك تتقدّم. ويمكنك تغيير مستواك منها في أي وقت.",
+        dec_t6_titre: "انتهت الجولة!",
+        dec_t6_texte: "رأيت لمحة من كل جزء، وما زال هناك الكثير لتكتشفه. جلستك اليوم تنتظرك في الشاشة الرئيسية. تعلّمًا موفّقًا!",
+        dec_t6_bouton: "لنبدأ",
         dec_t1_titre: "كلمتك الأولى",
         dec_t1_titre_plusieurs: "كلماتك الأولى",
         dec_t1_texte: "استمع، وانظر إلى لون أداة التعريف، ثم قل إن كنت تعرفها.",
@@ -15743,11 +15779,12 @@ const I18N = {
         dec_t3_titre: "قليل من القواعد",
         dec_t3_texte: "سؤال أو سؤالان، مثل تمارين التطبيق. كل إجابة مشروحة.",
         dec_t4_titre: "لوحتك تبدأ",
-        dec_t4_texte: "كل بطاقة تعمل عليها تفتح قطعة. بعد {n} قطعة تظهر لوحة رسّام حقيقي.",
+        dec_t4_texte: "كل بطاقة تعمل عليها تفتح قطعة، وشيئًا فشيئًا تتكشّف لوحة رسّام كبير من الناطقين بالألمانية. تتعلّم اللغة، وتكتشف فنّها.",
         dec_t4_bravo: "إجاباتك الأولى فتحت هذه القطع للتو.",
-        dec_t4_proj_jours: "مثال، بمعدل {n} بطاقة يوميًا: اليوم {j}",
-        dec_t4_proj_fin: "نحو اليوم {j}: اللوحة كاملة واسم الرسّام.",
-        dec_t4_proj_retour: "في لوحتك الآن {n} من القطع. لنبدأ!",
+        dec_t4_p1: "مثال، بمعدل ثلاثين بطاقة يوميًا: بعد ثلاثة أيام.",
+        dec_t4_p2: "بعد سبعة أيام.",
+        dec_t4_pfin: "في أكثر من ثلاثة أسابيع بقليل: اللوحة كاملة، واسم الرسّام.",
+        dec_t4_pretour: "هذه لوحتك الحقيقية: تبدأ اليوم.",
         dec_admin_titre: "الجولة التعريفية",
         dec_admin_desc: "الخطوات الأربع التي يراها حساب جديد بعد شاشة الترحيب. تُحتسب الإجابات إجابات حقيقية.",
         dec_admin_btn: "إعادة الجولة التعريفية ←",
@@ -16966,7 +17003,7 @@ function completeInitialSetup(){
 // verifie par tests/verifier.py : la fin du paquet (nextFlashcard), la fin
 // de la serie (nextExercise) et l'ecran que startExerciseSet() ouvre.
 const DECOUVERTE_KEY = "deutschAI_decouverte";
-const DECOUVERTE_ETAPES = 4;
+const DECOUVERTE_ETAPES = 5;
 
 // CE QUE LA DECOUVERTE MONTRE, SELON LA REPONSE A « TU CONNAIS DEJA UN PEU
 // D'ALLEMAND ? » (v699). Le seul endroit ou ces choix vivent.
@@ -17168,6 +17205,9 @@ async function lancerDecouverte(){
     peindreCadreDecouverte();
     const debut = document.getElementById("decouverteDebut");
     if(debut) debut.classList.remove("hidden");
+    // ⚠️ AVANT LE PREMIER await : sur iPhone, le son n'est permis que dans le
+    // prolongement du geste (CONTINUER, ou le bouton du tableau admin).
+    narrerDecouverte("intro");
     await attendreDonneesDecouverte();
     // « Passer » a pu etre touche pendant le chargement.
     if(decouverte !== moi) return true;
@@ -17194,6 +17234,78 @@ function revoirDecouverte(){
     lancerDecouverte();
 }
 
+// ============ LA VOIX DE LA VISITE (v702) ============
+// Demandee par Jacques : au tableau, on lisait ET on regardait -- trop a la
+// fois. Une voix dit maintenant, dans la langue de l'interface, le texte des
+// pages qui n'ont pas deja la voix allemande : l'introduction, le tableau et
+// sa projection, la seance du jour, la fin.
+// ⚠️ LE TEXTE RESTE A L'ECRAN, ET LA VOIX DIT CE TEXTE-LA, MOT POUR MOT. Un
+// telephone en silencieux ne perd rien, et rien n'est dit qui ne soit ecrit.
+// ⚠️ LA VISITE N'ATTEND JAMAIS LA VOIX. Toute lecture se termine : a la fin du
+// clip, sur une erreur, sur un refus d'iOS, ou au plus tard 3 s apres sa duree
+// (20 s tant que la duree n'est pas connue).
+// ⚠️ ENREGISTREE, PAS DITE PAR LE TELEPHONE : sur iPhone la seule voix offerte
+// aux pages web est une voix de base (voir la voix allemande, v347). Les
+// clips (voix Charlotte, ElevenLabs) sont dans voix-visite/, faits par
+// audio/voix_visite.py A PARTIR DE CES TEXTES : apres avoir change l'un d'eux,
+// relancer le script et monter VOIX_VISITE.revision.
+// ⚠️ LE MEME LECTEUR QUE LA VOIX ALLEMANDE (obtenirLecteur) : sur iOS, c'est
+// l'element deja debloque qui peut jouer sans nouveau geste.
+const VOIX_VISITE = { revision: "1", langues: ["fr", "en", "tr", "uk", "fa", "ar"] };
+const CLIPS_DE_PAGE = { 0: "intro", 4: "t4", 5: "t5", 6: "t6" };
+
+function voixVisiteDispo(){
+    return VOIX_VISITE.langues.indexOf(getUiLang()) >= 0;
+}
+
+function clipDePage(n){
+    return CLIPS_DE_PAGE[n] || null;
+}
+
+function narrerDecouverte(clip){
+    if(!decouverte || !clip || !voixVisiteDispo()) return Promise.resolve(false);
+    arreterAudioPregenere();
+    if('speechSynthesis' in window &&
+       (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
+        window.speechSynthesis.cancel();
+    }
+    const son = obtenirLecteur();
+    const jeton = ++lectureCourante;
+    audioEnCours = son;
+    return new Promise(ok => {
+        let fini = false;
+        let garde = null;
+        const finir = (sorti) => {
+            if(fini) return;
+            fini = true;
+            clearTimeout(garde);
+            if(jeton === lectureCourante){ son.onended = null; son.onerror = null; son.onloadedmetadata = null; }
+            ok(sorti);
+        };
+        son.onended = () => finir(true);
+        son.onerror = () => finir(false);
+        garde = setTimeout(() => finir(false), 20000);
+        // Les 20 s couvrent le chargement, pas la lecture : l'introduction
+        // arabe dure 23,7 s. Des que la duree est connue, la garde la suit.
+        son.onloadedmetadata = () => {
+            if(fini || !Number.isFinite(son.duration)) return;
+            clearTimeout(garde);
+            garde = setTimeout(() => finir(false), (son.duration + 3) * 1000);
+        };
+        try{
+            son.src = "voix-visite/" + getUiLang() + "/" + clip + ".mp3?r=" + VOIX_VISITE.revision;
+            son.playbackRate = 1;
+            const p = son.play();
+            if(p && p.catch) p.catch(() => finir(false));
+        }catch(e){ finir(false); }
+    });
+}
+
+// Le bouton 🔊 : la voix de la page en cours, encore une fois.
+function rejouerNarrationDecouverte(){
+    if(decouverte) narrerDecouverte(clipDePage(decouverte.etape));
+}
+
 // Le cadre : la barre, « n / 4 », le titre et la phrase d'accompagnement.
 function peindreCadreDecouverte(){
     if(!decouverte) return;
@@ -17218,13 +17330,15 @@ function peindreCadreDecouverte(){
     const plusieurs = decouverte.noms.length > 1 || (decouverte.contenu.noms || []).length > 1;
     const temps = (decouverte.contenu.verbe && decouverte.contenu.verbe.temps) || "praesens";
     const titres = { 0: "dec_t0_titre", 1: plusieurs ? "dec_t1_titre_plusieurs" : "dec_t1_titre",
-                     2: "dec_t2_titre", 3: "dec_t3_titre", 4: "dec_t4_titre", 5: "dec_t5_titre" };
+                     2: "dec_t2_titre", 3: "dec_t3_titre", 4: "dec_t4_titre", 5: "dec_t5_titre", 6: "dec_t6_titre" };
     const textes = { 0: "dec_t0_texte", 1: plusieurs ? "dec_t1_texte_plusieurs" : "dec_t1_texte",
-                     2: "dec_t2_texte_" + temps, 3: "dec_t3_texte", 4: "dec_t4_texte", 5: "dec_t5_texte" };
+                     2: "dec_t2_texte_" + temps, 3: "dec_t3_texte", 4: "dec_t4_texte", 5: "dec_t5_texte", 6: "dec_t6_texte" };
     const titre = document.getElementById("decouverteTitre");
     if(titre) titre.textContent = t(titres[n]);
     const texte = document.getElementById("decouverteTexte");
     if(texte) texte.textContent = tf(textes[n], { n: MOSAIQUE_CARREAUX });
+    const ecouter = document.getElementById("decouverteEcouter");
+    if(ecouter) ecouter.classList.toggle("hidden", !(clipDePage(n) && voixVisiteDispo()));
 }
 
 // Prend un bloc a son ecran et le pose dans la scene de la decouverte.
@@ -17245,7 +17359,7 @@ function rendreBlocsDecouverte(){
         if(b.parent) b.parent.insertBefore(b.el, b.suivant && b.suivant.parentNode === b.parent ? b.suivant : null);
     }
     const scene = document.getElementById("decouverteScene");
-    if(scene) scene.classList.remove("fait");
+    if(scene){ scene.classList.remove("fait"); scene.classList.remove("lecture"); }
 }
 
 function allerEtapeDecouverte(n){
@@ -17270,7 +17384,8 @@ function allerEtapeDecouverte(n){
     if(n === 1) montrerCartesDecouverte(decouverte.noms);
     else if(n === 2) montrerCartesDecouverte([decouverte.verbe]);
     else if(n === 3) montrerExercicesDecouverte();
-    else montrerTableauDecouverte();
+    else if(n === 4) montrerTableauDecouverte();
+    else montrerSeanceDecouverte();
 }
 
 function suiteDecouverte(){
@@ -17345,15 +17460,18 @@ function montrerTableauDecouverte(){
     if(etiquette) etiquette.classList.add("hidden");
     const montrerFin = () => {
         if(decouverte !== moi) return;
-        const fin = document.getElementById("decouverteFin");
-        if(fin) fin.classList.remove("hidden");
+        const suite = document.getElementById("decouverteSuite");
+        if(suite) suite.classList.remove("hidden");
     };
+    // La voix d'abord : la projection attend qu'elle ait fini sa phrase.
+    moi.voixTableau = narrerDecouverte("t4");
     // `projeter` : la projection (v701), qui appelle montrerFin a son terme.
     const conclure = (nouveaux, projeter) => {
         if(decouverte !== moi) return;
         if(nouveaux){
             try{ launchConfetti(); }catch(e){}
-            try{ playMasteredSound(); }catch(e){}
+            // Pas de carillon par-dessus la voix : la fete reste visible.
+            if(!voixVisiteDispo()){ try{ playMasteredSound(); }catch(e){} }
         }
         const bravo = document.getElementById("decouverteBravo");
         if(bravo && nouveaux){
@@ -17419,36 +17537,44 @@ function montrerTableauDecouverte(){
 // n'est invente » tient : rien n'est presente comme acquis.
 function projeterTableauDecouverte(toile, img, v, total, moi, lueur, fin){
     const etiquette = document.getElementById("decouverteProjection");
-    const rythme = DEFAULT_DAILY_GOAL_TARGET;
-    const arrets = [3, 7].map(j => ({ j: j, c: v.c + j * rythme }))
-                          .filter(a => a.c < total * 0.85);
+    // ⚠️ LES ARRETS ET LE RYTHME SONT ECRITS DANS LES TEXTES (v702) -- « 30 cartes
+    // par jour », « dans 3 jours », « dans 7 jours » -- parce que la voix les dit
+    // et qu'un enregistrement ne se recalcule pas. Changer l'un ici sans les
+    // autres dans les six langues ferait mentir la page.
+    const rythme = 30;
+    const arrets = [{ j: 3, cle: "dec_t4_p1", clip: "p1" }, { j: 7, cle: "dec_t4_p2", clip: "p2" }]
+        .map(a => Object.assign(a, { c: v.c + a.j * rythme }))
+        .filter(a => a.c < total * 0.85);
     if(!etiquette || !arrets.length){ fin(); return; }
-    const joursTotal = Math.ceil((total - v.c) / rythme);
     const bravo = document.getElementById("decouverteBravo");
-    let i = 0;
-    const suivant = () => {
+    const attendre = (ms) => new Promise(ok => { minuteurTableau = setTimeout(ok, ms); });
+    const montrer = (cle, clip, minimum) => {
+        etiquette.textContent = t(cle);
+        etiquette.classList.remove("hidden");
+        return Promise.all([narrerDecouverte(clip), attendre(minimum)]);
+    };
+    // Un arret, puis le suivant quand sa phrase est dite ; le dernier ramene
+    // au vrai tableau.
+    const arret = (i) => {
         if(decouverte !== moi) return;
-        if(i === 0){
-            if(lueur) lueur.classList.add("hidden");
-            if(bravo) bravo.classList.add("hidden");
-        }
         if(i < arrets.length){
-            const a = arrets[i++];
-            dessinerMosaique(toile, img, a.c, total, false);
-            etiquette.textContent = tf("dec_t4_proj_jours", { n: rythme, j: a.j });
-            etiquette.classList.remove("hidden");
-            minuteurTableau = setTimeout(suivant, 1900);
+            dessinerMosaique(toile, img, arrets[i].c, total, false);
+            montrer(arrets[i].cle, arrets[i].clip, 1900).then(() => arret(i + 1));
         } else if(i === arrets.length){
-            i++;
-            etiquette.textContent = tf("dec_t4_proj_fin", { j: joursTotal });
-            minuteurTableau = setTimeout(suivant, 2400);
+            montrer("dec_t4_pfin", "pfin", 2400).then(() => arret(i + 1));
         } else {
             dessinerMosaique(toile, img, v.c, total, false);
-            etiquette.textContent = tf("dec_t4_proj_retour", { n: v.c });
+            etiquette.textContent = t("dec_t4_pretour");
+            narrerDecouverte("pretour");
             fin();
         }
     };
-    minuteurTableau = setTimeout(suivant, 1600);
+    Promise.all([moi.voixTableau || Promise.resolve(), attendre(1600)]).then(() => {
+        if(decouverte !== moi) return;
+        if(lueur) lueur.classList.add("hidden");
+        if(bravo) bravo.classList.add("hidden");
+        arret(0);
+    });
 }
 
 // La tesselle est en coordonnees du canevas ; la lueur se pose en pixels
@@ -17472,6 +17598,7 @@ function fermerDecouverte(){
     clearTimeout(minuteurTableau);
     try{ stopMasteryCelebrations(); }catch(e){}
     try{ arreterChaineCarte(true); }catch(e){}
+    try{ arreterAudioPregenere(); }catch(e){}
     rendreBlocsDecouverte();
     currentCards = [];
     currentCardsFull = [];
@@ -17496,6 +17623,24 @@ function passerDecouverte(){
     goHome();
 }
 
+// L'ETAPE 5, LA SEANCE DU JOUR (v702). Demandee par Jacques : la visite
+// montrait le tableau sans dire ce qui le fait avancer. On EMPRUNTE la vraie
+// tuile de l'accueil, comme les cartes : si la seance change de dessin, cette
+// etape suit sans qu'on y touche. Elle est montree en lecture seule
+// (.dec-scene.lecture) : un toucher lancerait une seance en pleine visite.
+function montrerSeanceDecouverte(){
+    const tuile = document.querySelector("#orbGrid .orb-seance");
+    if(tuile){
+        try{ majTuileSeance(); }catch(e){}
+        emprunterBlocDecouverte(tuile);
+        const scene = document.getElementById("decouverteScene");
+        if(scene) scene.classList.add("lecture");
+    }
+    narrerDecouverte("t5");
+    const fin = document.getElementById("decouverteFin");
+    if(fin) fin.classList.remove("hidden");
+}
+
 // LA PAGE DE FIN (v701). Elle dit que la visite est finie, que l'app commence,
 // et ou se trouve la suite : la seance du jour, sur l'accueil. Sans elle, le
 // dernier geste menait droit a l'accueil, et rien ne disait que la visite
@@ -17504,6 +17649,7 @@ function finVisiteDecouverte(){
     if(!decouverte) return;
     clearTimeout(minuteurTableau);
     decouverte.etape = DECOUVERTE_ETAPES + 1;
+    rendreBlocsDecouverte();
     ["decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
         const el = document.getElementById(id);
         if(el) el.classList.add("hidden");
@@ -17512,6 +17658,7 @@ function finVisiteDecouverte(){
     const fermer = document.getElementById("decouverteFermer");
     if(fermer) fermer.classList.remove("hidden");
     window.scrollTo(0, 0);
+    narrerDecouverte("t6");
 }
 
 function terminerDecouverte(){
@@ -30110,7 +30257,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 701;
+const APP_VERSION = 702;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
