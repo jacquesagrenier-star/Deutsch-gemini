@@ -2916,7 +2916,8 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 /* Version gratuite (v691) : un cadenas DISCRET, decide le 2 octobre. Le niveau
    reste lisible et touchable -- le toucher ouvre l'offre -- mais il se lit
    comme en retrait. */
-.level-pill.verrou{
+.level-pill.verrou,
+.theme-item.verrou{
     opacity:.55;
     border-style:dashed;
 }
@@ -6805,7 +6806,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v692</span>
+    <span class="subtitle-version">v693</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -21331,11 +21332,17 @@ function renderVerbeLevels(){
     randomItem.addEventListener("click", () => startVerbeRandomMix());
     container.appendChild(randomItem);
 
+    const complet = accesComplet();
     levelsPresent.forEach(lvl => {
-        const items = verbeTheme.words
-            .map((word, index) => ({ word, index }))
+        if(!complet && lvl !== niveauEchantillon()){
+            container.appendChild(ligneNiveauVerrouillee(verbeTheme.svg, lvl));
+            return;
+        }
+        let items = verbeTheme.words
+            .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
             .filter(it => it.word.niveau === lvl)
             .filter(it => motDansPortee(it.word, portee, "verben"));
+        if(!complet) items = filtrerGratuit(items);
         const total = items.length;
         let mastered = 0;
         items.forEach(it => {
@@ -21371,6 +21378,7 @@ function renderVerbeLevels(){
 function startVerbeDueReview(){
     flashcardMode = 'verben';
     let dueItems = getVerbeDueItemsAll();
+    if(!accesComplet()) dueItems = filtrerGratuit(dueItems);
     if(dueItems.length === 0){ showInfoToast(t('alert_no_verbs_due')); return; }
     // Les revisions d'abord : sur trente cartes tirees au hasard dans un
     // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
@@ -21389,10 +21397,12 @@ function startVerbeDueReview(){
 function startVerbeLevel(level){
     flashcardMode = 'verben';
     const now = Date.now();
-    const allItems = verbeTheme.words
+    // Version gratuite (v693) : les 10 verbes de l'echantillon, l'offre sinon.
+    const allItems = paquetAutorise(verbeTheme.words
         .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
         .filter(it => it.word.niveau === level)
-        .filter(it => motDansPortee(it.word, porteeNoms(), "verben"));
+        .filter(it => motDansPortee(it.word, porteeNoms(), "verben")));
+    if(!allItems){ ouvrirAbonnement(); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     // ⚠️ LE REPLI MANQUAIT ICI, ET IL MENTAIT (v649). Capture de Jacques :
@@ -21408,6 +21418,7 @@ function startVerbeLevel(level){
     // parle plus que d'un paquet ou chaque mot est neuf ou maitrise.
     if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
+        if(!accesComplet()){ ouvrirAbonnement(); return; }
         toastSeanceVide(allItems, 'alert_all_verbs_mastered');
         return;
     }
@@ -21422,6 +21433,10 @@ function startVerbeRandomMix(){
     flashcardMode = 'verben';
     let pool = verbeTheme.words.map((word, index) => ({ word, index, themeId: verbeTheme.id }))
         .filter(it => motDansPortee(it.word, porteeNoms(), "verben"));
+    if(!accesComplet()){
+        pool = filtrerGratuit(pool);
+        if(pool.length === 0){ ouvrirAbonnement(); return; }
+    }
     if(pool.length === 0){ showInfoToast(t('alert_no_verbs_available')); return; }
     shuffleArray(pool);
 
@@ -21498,10 +21513,16 @@ function renderAdjektiveLevels(){
     randomItem.addEventListener("click", () => startAdjektiveRandomMix());
     container.appendChild(randomItem);
 
+    const complet = accesComplet();
     LEVELS.forEach(lvl => {
-        const items = adjektiveTheme.words
-            .map((word, index) => ({ word, index }))
+        if(!complet && lvl !== niveauEchantillon()){
+            container.appendChild(ligneNiveauVerrouillee(adjektiveTheme.svg, lvl));
+            return;
+        }
+        let items = adjektiveTheme.words
+            .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
             .filter(it => it.word[3] === lvl);
+        if(!complet) items = filtrerGratuit(items);
         const total = items.length;
         let mastered = 0;
         items.forEach(it => {
@@ -21537,6 +21558,7 @@ function renderAdjektiveLevels(){
 function startAdjektiveDueReview(){
     flashcardMode = 'adjektive';
     let dueItems = getAdjektiveDueItemsAll();
+    if(!accesComplet()) dueItems = filtrerGratuit(dueItems);
     if(dueItems.length === 0){ showInfoToast(t('alert_no_adj_due')); return; }
     // Les revisions d'abord : sur trente cartes tirees au hasard dans un
     // reservoir de milliers, le mot qu'on allait oublier n'avait presque aucune
@@ -21555,15 +21577,18 @@ function startAdjektiveDueReview(){
 function startAdjektiveLevel(level){
     flashcardMode = 'adjektive';
     const now = Date.now();
-    const allItems = adjektiveTheme.words
+    // Version gratuite (v693) : les 10 adjectifs de l'echantillon, l'offre sinon.
+    const allItems = paquetAutorise(adjektiveTheme.words
         .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
         .filter(it => it.word[3] === level)
-        .filter(it => motDansPortee(it.word, porteeNoms(), "adjektive"));
+        .filter(it => motDansPortee(it.word, porteeNoms(), "adjektive")));
+    if(!allItems){ ouvrirAbonnement(); return; }
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     // Meme repli que startVerbeLevel : un niveau a moitie su doit s'ouvrir.
     if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     if(currentCards.length === 0){
+        if(!accesComplet()){ ouvrirAbonnement(); return; }
         toastSeanceVide(allItems, 'alert_all_adj_mastered');
         return;
     }
@@ -21578,6 +21603,10 @@ function startAdjektiveRandomMix(){
     flashcardMode = 'adjektive';
     let pool = adjektiveTheme.words.map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
         .filter(it => motDansPortee(it.word, porteeNoms(), "adjektive"));
+    if(!accesComplet()){
+        pool = filtrerGratuit(pool);
+        if(pool.length === 0){ ouvrirAbonnement(); return; }
+    }
     if(pool.length === 0){ showInfoToast(t('alert_no_adj_available')); return; }
     shuffleArray(pool);
 
@@ -21665,7 +21694,7 @@ function orbPanelData(id){
         return {
             icon:"reviser", title:t("op_verben_title"), sub:t("op_verben_sub"),
             options:[
-                { icon:"reviser", title:t("op_verben_o1_t"), desc:texteDus(getVerbeDueItemsAll(), (verbeTheme.words || []).length), primary:true, action:"startVerbeDueReview", section:"pratique" },
+                { icon:"reviser", title:t("op_verben_o1_t"), desc:(accesComplet() ? texteDus(getVerbeDueItemsAll(), (verbeTheme.words || []).length) : texteDus(filtrerGratuit(getVerbeDueItemsAll()), GRATUIT.verbes)), primary:true, action:"startVerbeDueReview", section:"pratique" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau", section:"mots" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeVerbes", section:"pratique" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix", section:"pratique" },
@@ -21717,7 +21746,7 @@ function orbPanelData(id){
         return {
             icon:"carte", title:t("op_adjektive_title"), sub:t("op_adjektive_sub"),
             options:[
-                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:texteDus(getAdjektiveDueItemsAll(), (adjektiveTheme.words || []).length), primary:true, action:"startAdjektiveDueReview", section:"pratique" },
+                { icon:"reviser", title:t("op_adjektive_o1_t"), desc:(accesComplet() ? texteDus(getAdjektiveDueItemsAll(), (adjektiveTheme.words || []).length) : texteDus(filtrerGratuit(getAdjektiveDueItemsAll()), GRATUIT.adjectifs)), primary:true, action:"startAdjektiveDueReview", section:"pratique" },
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openAdjektive", section:"mots" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdjektifs", section:"pratique" },
                 { icon:"ale", title:t("op_words_random"), desc:t("op_all_levels_mix"), action:"startAdjektiveRandomMix", section:"pratique" },
@@ -24327,6 +24356,37 @@ function clesGratuites(){
 function filtrerGratuit(items){
     const cles = clesGratuites();
     return items.filter(it => cles.has(it.themeId + "#" + it.index));
+}
+
+// Un paquet de flashcards, passe a l'echantillon si la version est gratuite.
+// Renvoie null quand il n'en reste rien : l'appelant ouvre alors l'offre,
+// plutot qu'un paquet vide ou un « tout est su » trompeur.
+function paquetAutorise(items){
+    if(accesComplet()) return items;
+    const reste = filtrerGratuit(items);
+    return reste.length ? reste : null;
+}
+
+// La ligne d'un niveau hors echantillon, dans les panneaux Verbes et
+// Adjectifs : meme dessin que les autres, en retrait, et le toucher ouvre
+// l'offre.
+function ligneNiveauVerrouillee(svg, lvl){
+    const item = document.createElement("div");
+    item.className = "theme-item verrou";
+    item.innerHTML = `
+        <div class="theme-header">
+            <div class="theme-left">
+                <div class="theme-icon">${svg || ""}</div>
+                <div>
+                    <div class="theme-name">${tf('level_n_label', {lvl})}</div>
+                    <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${lvl}</div>
+                </div>
+            </div>
+            <div class="theme-count">🔒</div>
+        </div>
+    `;
+    item.addEventListener("click", () => ouvrirAbonnement());
+    return item;
 }
 
 function basculerApercuGratuit(){
@@ -28739,7 +28799,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 692;
+const APP_VERSION = 693;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
