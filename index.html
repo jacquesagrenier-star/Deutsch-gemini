@@ -6807,7 +6807,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v696</span>
+    <span class="subtitle-version">v697</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24004,9 +24004,16 @@ function ouvrirCarteDuCours(i){
 
 function ouvrirEntreeRecherche(entry){
     if(!entry) return;
+    const item = { word: entry.card, index: entry.index, themeId: entry.themeId };
+    // ⚠️ VERSION GRATUITE (v697) : LA RECHERCHE ETAIT UNE PORTE DEROBEE. Elle
+    // ouvre la vraie carte, avec ses boutons de jugement ; juger un mot neuf
+    // l'aurait « commence », et la regle de la v694 (ce qui est commence reste
+    // ouvert) l'aurait garde en revision pour toujours. La liste des resultats
+    // reste lisible -- c'est un dictionnaire -- mais la carte d'un mot neuf
+    // hors echantillon ouvre l'offre.
+    if(!accesComplet() && !filtrerGratuit([item]).length){ ouvrirAbonnement(); return; }
     flashcardMode = entry.mode;
     currentTheme = { id: entry.themeId, name: entry.source };
-    const item = { word: entry.card, index: entry.index, themeId: entry.themeId };
     currentCards = [item];
     currentCardsFull = [item];
     currentFlashcard = 0;
@@ -24349,7 +24356,7 @@ const GRATUIT = {
     // elles-memes (themes, niveaux de verbes et d'adjectifs), ou parce
     // qu'elles menent a la serie gratuite (la lecon des adjectifs).
     // Les quatre epreuves aussi : lancerEpreuve() les reduit a l'echantillon.
-    portesOuvertes: ["openNomen", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination",
+    portesOuvertes: ["openNomen", "openNomenNiveau", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination",
                      "startPruefungHoeren", "startPruefungLesen", "startPruefungSchreiben", "startPruefungSprechen"]
 };
 
@@ -25667,17 +25674,28 @@ function renderNomenLevels(){
     randomItem.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix("ALL", portee); });
     container.appendChild(randomItem);
 
+    // Version gratuite (v697) : meme regle que les panneaux Verbes et
+    // Adjectifs -- le niveau de la seance compte ses noms gratuits, les autres
+    // portent le cadenas. Le clic passe par startRandomMix(), deja filtre.
+    const complet = accesComplet();
     levelsPresent.forEach(lvl => {
-        let total = 0, mastered = 0;
+        if(!complet && lvl !== niveauEchantillon()){
+            container.appendChild(ligneNiveauVerrouillee(NOMEN_SVG, lvl));
+            return;
+        }
+        let items = [];
         themesComptes().forEach(th => {
             const levelData = th.levels[lvl];
             if(!levelData) return;
             levelData.words.forEach((w, i) => {
                 if(!motDansPortee(w, portee, "nomen")) return;
-                total++;
-                if(getWordState(levelData.id, i).mastered) mastered++;
+                items.push({ word: w, index: i, themeId: levelData.id });
             });
         });
+        if(!complet) items = filtrerGratuit(items);
+        const total = items.length;
+        let mastered = 0;
+        items.forEach(it => { if(getWordState(it.themeId, it.index).mastered) mastered++; });
         const percentage = total ? Math.round(mastered / total * 100) : 0;
 
         const item = document.createElement("div");
@@ -28048,6 +28066,21 @@ function renderEcouteMenu(){
           + ecouteBoutonBarre(ecouteSens === "cible-connu", "setEcouteSens('cible-connu')",
                 t("ecoute_sens_cible_connu"), t("ecoute_sens_cible_connu_d"), "flex:1 1 46%; min-width:0;");
     }
+    // VERSION GRATUITE (v697) : l'ecoute des MOTS sert les memes mots que
+    // l'echantillon -- le meme vocabulaire, entendu au lieu d'etre lu. Les
+    // phrases et « Parler » n'en font pas partie : un seul bouton a cadenas.
+    if(!accesComplet()){
+        const niv = niveauEchantillon();
+        const cadenas = "ouvrirAbonnement()";
+        const barMots = document.getElementById("ecouteLevelBar");
+        if(barMots) barMots.innerHTML = ecouteBoutonBarre(false, `demarrerEcoute('${niv}')`,
+            `${niv} (${filtrerGratuit(poolEcoute(niv)).length})`, "", "flex:1 1 100%;");
+        ["ecoutePhraseLevelBar", "parlerLevelBar"].forEach(id => {
+            const b = document.getElementById(id);
+            if(b) b.innerHTML = ecouteBoutonBarre(false, cadenas, "🔒", "", "flex:1 1 100%;");
+        });
+        return;
+    }
     const bar = document.getElementById("ecouteLevelBar");
     if(bar){
         const total = poolEcoute("ALL").length;
@@ -28102,7 +28135,9 @@ function demarrerEcoute(niveau){
     // Premier geste de la seance : c'est ici, et pas plus tard, que la
     // synthese peut obtenir le droit de parler. Voir amorcerSynthese().
     amorcerSynthese();
-    const pool = poolEcoute(niveau);
+    // Version gratuite (v697) : les mots de l'echantillon, et ce qui est deja
+    // commence -- le meme vocabulaire que la seance, entendu.
+    const pool = accesComplet() ? poolEcoute(niveau) : filtrerGratuit(poolEcoute(niveauEchantillon()));
     if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
     // ⚠️ L'ECOUTE NE SE PLAFONNE PAS (v624). Signale par Jacques : « on peut
     // écouter seulement 5 ». La cause n'était pas ici mais dans
@@ -28939,7 +28974,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 696;
+const APP_VERSION = 697;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -33923,6 +33958,7 @@ function traductionActive(p){
 }
 
 function startEcoutePhrase(niveau){
+    if(!accesComplet()){ ouvrirAbonnement(); return; }
     // Premier geste de la seance : c'est ici que la synthese peut obtenir le
     // droit de parler, si un fichier venait a manquer. Voir amorcerSynthese().
     amorcerSynthese();
@@ -34017,6 +34053,7 @@ let parlerUrl = null;
 let parlerLecteur = null;
 
 function startParler(niveau){
+    if(!accesComplet()){ ouvrirAbonnement(); return; }
     amorcerSynthese();
     const vivier = phrasesEcoutables(niveau || "ALL");
     if(!vivier.length){ showInfoToast(t('alert_level_unavailable')); return; }
