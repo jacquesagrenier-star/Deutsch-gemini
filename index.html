@@ -2949,6 +2949,11 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     background:rgba(var(--wt-action-rgb),.1);
     color:var(--wt-accent-texte);
 }
+/* Le niveau declare (v699) : six reponses en phrases, plus basses que les
+   drapeaux pour que la question tienne sur un ecran de telephone. */
+.setup-niveaux .setup-choice{padding:12px 8px; font-size:13px;}
+.setup-niveau-note{margin-top:8px; font-size:12px; color:#576177;}
+body[data-theme="dark"] .setup-niveau-note{color:#aab3c2;}
 
 .level-pill-label{
     font-weight:800;
@@ -6143,6 +6148,24 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
                 </button>
             </div>
         </div>
+        <!-- LE NIVEAU DECLARE (v699). Une question, jamais un test : vingt
+             questions avant de commencer, c'est la que les gens abandonnent.
+             Elle regle le niveau de la seance du jour -- donc d'ou viennent
+             les mots nouveaux, et l'echantillon de la version gratuite. Sans
+             reponse, on reste en A1. Seulement ici : ensuite le niveau se
+             change dans le bandeau de la seance. -->
+        <div class="setup-choice-group" id="setupNiveauGroup">
+            <div class="setup-choice-label" data-i18n="setup_niveau_label">Tu connais déjà un peu d'allemand ?</div>
+            <div class="setup-choice-row setup-niveaux">
+                <button class="setup-choice" data-niveau-declare="zero" onclick="choisirNiveauDeclare('zero')"><span data-i18n="setup_niveau_zero">Je pars de zéro</span></button>
+                <button class="setup-choice" data-niveau-declare="peu" onclick="choisirNiveauDeclare('peu')"><span data-i18n="setup_niveau_peu">Je connais quelques mots</span></button>
+                <button class="setup-choice" data-niveau-declare="A2" onclick="choisirNiveauDeclare('A2')"><span data-i18n="setup_niveau_a2">Je me débrouille (A2)</span></button>
+                <button class="setup-choice" data-niveau-declare="B1" onclick="choisirNiveauDeclare('B1')"><span data-i18n="setup_niveau_b1">J'ai un bon niveau (B1)</span></button>
+                <button class="setup-choice" data-niveau-declare="B2" onclick="choisirNiveauDeclare('B2')"><span data-i18n="setup_niveau_b2">Niveau avancé (B2)</span></button>
+                <button class="setup-choice" data-niveau-declare="C1" onclick="choisirNiveauDeclare('C1')"><span data-i18n="setup_niveau_c1">Niveau très avancé (C1)</span></button>
+            </div>
+            <div class="setup-niveau-note" data-i18n="setup_niveau_note">Tu pourras changer de niveau à tout moment, depuis ta séance du jour.</div>
+        </div>
         <div class="spacer"></div>
         <button class="primary" onclick="completeInitialSetup()" data-i18n="setup_continue">CONTINUER</button>
     </div>
@@ -6820,7 +6843,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v698</span>
+    <span class="subtitle-version">v699</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10215,6 +10238,14 @@ const I18N = {
         setup_learning_en: "Anglais",
         setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
+        setup_niveau_label: "Tu connais déjà un peu d'allemand ?",
+        setup_niveau_zero: "Je pars de zéro",
+        setup_niveau_peu: "Je connais quelques mots",
+        setup_niveau_a2: "Je me débrouille (A2)",
+        setup_niveau_b1: "J'ai un bon niveau (B1)",
+        setup_niveau_b2: "Niveau avancé (B2)",
+        setup_niveau_c1: "Niveau très avancé (C1)",
+        setup_niveau_note: "Tu pourras changer de niveau à tout moment, depuis ta séance du jour.",
         setup_settings_title: "Configuration",
         abo_titre: "Apprends l'allemand sans limite",
         abo_sous_titre: "7 jours gratuits, puis tu choisis",
@@ -11247,6 +11278,14 @@ const I18N = {
         setup_learning_en: "English",
         setup_uilang_label: "Which language for the instructions?",
         setup_continue: "CONTINUE",
+        setup_niveau_label: "Do you already know some German?",
+        setup_niveau_zero: "I'm starting from zero",
+        setup_niveau_peu: "I know a few words",
+        setup_niveau_a2: "I get by (A2)",
+        setup_niveau_b1: "Good level (B1)",
+        setup_niveau_b2: "Advanced (B2)",
+        setup_niveau_c1: "Very advanced (C1)",
+        setup_niveau_note: "You can change your level at any time from your daily session.",
         setup_settings_title: "Configuration",
         abo_titre: "Learn German without limits",
         abo_sous_titre: "7 days free, then you choose",
@@ -12283,6 +12322,14 @@ const I18N = {
         setup_learning_en: "İngilizce",
         setup_uilang_label: "Açıklamalar hangi dilde olsun?",
         setup_continue: "DEVAM",
+        setup_niveau_label: "Biraz Almanca biliyor musun?",
+        setup_niveau_zero: "Sıfırdan başlıyorum",
+        setup_niveau_peu: "Birkaç kelime biliyorum",
+        setup_niveau_a2: "İdare ediyorum (A2)",
+        setup_niveau_b1: "İyi seviye (B1)",
+        setup_niveau_b2: "İleri seviye (B2)",
+        setup_niveau_c1: "Çok ileri seviye (C1)",
+        setup_niveau_note: "Seviyeni istediğin zaman günün oturumundan değiştirebilirsin.",
         setup_settings_title: "Yapılandırma",
         abo_titre: "Almancayı sınırsız öğren",
         abo_sous_titre: "7 gün ücretsiz, sonra sen seç",
@@ -13003,6 +13050,14 @@ const I18N = {
         setup_learning_en: "Англійську",
         setup_uilang_label: "Якою мовою показувати пояснення?",
         setup_continue: "ПРОДОВЖИТИ",
+        setup_niveau_label: "Ти вже трохи знаєш німецьку?",
+        setup_niveau_zero: "Починаю з нуля",
+        setup_niveau_peu: "Знаю кілька слів",
+        setup_niveau_a2: "Можу порозумітися (A2)",
+        setup_niveau_b1: "Добрий рівень (B1)",
+        setup_niveau_b2: "Високий рівень (B2)",
+        setup_niveau_c1: "Дуже високий рівень (C1)",
+        setup_niveau_note: "Рівень можна змінити будь-коли в щоденному занятті.",
         setup_settings_title: "Налаштування",
         abo_titre: "Вивчай німецьку без обмежень",
         abo_sous_titre: "7 днів безкоштовно, потім вирішуєш ти",
@@ -14431,6 +14486,14 @@ const I18N = {
         setup_learning_en: "انگلیسی",
         setup_uilang_label: "راهنمایی‌ها به چه زبانی باشد؟",
         setup_continue: "ادامه",
+        setup_niveau_label: "از قبل کمی آلمانی بلدی؟",
+        setup_niveau_zero: "از صفر شروع می‌کنم",
+        setup_niveau_peu: "چند واژه بلدم",
+        setup_niveau_a2: "از پسش برمی‌آیم (A2)",
+        setup_niveau_b1: "سطح خوب (B1)",
+        setup_niveau_b2: "سطح پیشرفته (B2)",
+        setup_niveau_c1: "سطح خیلی پیشرفته (C1)",
+        setup_niveau_note: "هر وقت بخواهی می‌توانی سطح را از جلسهٔ امروز عوض کنی.",
         setup_settings_title: "پیکربندی",
         abo_titre: "آلمانی را بی‌محدودیت یاد بگیر",
         abo_sous_titre: "۷ روز رایگان، بعد خودت انتخاب کن",
@@ -15368,6 +15431,14 @@ const I18N = {
         setup_learning_en: "الإنجليزية",
         setup_uilang_label: "بأي لغة تريد التعليمات؟",
         setup_continue: "متابعة",
+        setup_niveau_label: "هل لديك معرفة سابقة بالألمانية؟",
+        setup_niveau_zero: "أبدأ من الصفر",
+        setup_niveau_peu: "أعرف بعض الكلمات",
+        setup_niveau_a2: "أتدبّر أموري (A2)",
+        setup_niveau_b1: "مستوى جيد (B1)",
+        setup_niveau_b2: "مستوى متقدم (B2)",
+        setup_niveau_c1: "مستوى متقدم جداً (C1)",
+        setup_niveau_note: "يمكن تغيير المستوى في أي وقت من جلسة اليوم.",
         setup_settings_title: "الإعداد",
         abo_titre: "تعلّم الألمانية بلا حدود",
         abo_sous_titre: "7 أيام مجانًا، ثم تختار",
@@ -16442,6 +16513,9 @@ function refreshSetupChoiceActiveStates(){
     const learningEnglish = dir === 'en';
     const setupGroup = document.getElementById("setupUiLangGroup");
     const settingsGroup = document.getElementById("settingsUiLangGroup");
+    // La question du niveau parle d'allemand : sans objet pour le module anglais.
+    const niveauGroup = document.getElementById("setupNiveauGroup");
+    if(niveauGroup) niveauGroup.classList.toggle("hidden", learningEnglish);
     if(setupGroup) setupGroup.classList.toggle("hidden", learningEnglish);
     if(settingsGroup) settingsGroup.classList.toggle("hidden", learningEnglish);
     // Module anglais réservé à l'admin pour l'instant (encore en rodage) --
@@ -16500,6 +16574,22 @@ function noterEtape(nom){
     v[nom] = new Date().toISOString();
     try{ localStorage.setItem(PARCOURS_KEY, JSON.stringify(v)); }catch(e){}
     if(typeof scheduleCloudSync === "function") scheduleCloudSync();
+}
+
+// LE NIVEAU DECLARE (v699). « Zero » et « quelques mots » partent tous deux
+// de l'A1 : ils different par ce que la decouverte guidee montrera, pas par
+// le niveau. La reponse brute est gardee pour elle. Le niveau, lui, est celui
+// de la seance du jour -- un seul etat, que le bandeau change ensuite.
+const NIVEAU_DECLARE_KEY = "deutschAI_niveauDeclare";
+const NIVEAU_DES_REPONSES = { zero: "A1", peu: "A1", A2: "A2", B1: "B1", B2: "B2", C1: "C1" };
+
+function choisirNiveauDeclare(reponse){
+    const niv = NIVEAU_DES_REPONSES[reponse];
+    if(!niv) return;
+    try{ localStorage.setItem(NIVEAU_DECLARE_KEY, reponse); }catch(e){}
+    fixerNiveauSeance(niv);
+    document.querySelectorAll("[data-niveau-declare]").forEach(b =>
+        b.classList.toggle("active", b.getAttribute("data-niveau-declare") === reponse));
 }
 
 function completeInitialSetup(){
@@ -29042,7 +29132,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 698;
+const APP_VERSION = 699;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
