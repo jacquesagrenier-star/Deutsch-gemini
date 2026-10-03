@@ -42,6 +42,20 @@ panneau (`action:"nom"`, appelée par `window[nom]()`) correspond à une
 fonction, et chaque mode de flashcard a un écran de retour explicite dans
 `FLASHCARD_RETURN_SCREENS`.
 
+**Découverte guidée** (v700) — elle n'a presque rien à elle : elle emprunte la
+carte, l'exercice et le tableau, avec leurs fonctions. Le vérificateur relit
+`DECOUVERTE_CONTENU` (écrit en JSON strict pour ça) et exige que chaque nom
+existe dans `themes.json`, chaque verbe dans `verbe.json` avec le temps annoncé,
+et que chaque exercice désigne **exactement un** énoncé d'`exercices.json` ou de
+`pruefung.json`, à tuiles ou à blocs. Il contrôle aussi chaque fonction appelée
+par ses fonctions, chaque `#id` visé, ses clés dans les six langues, les blocs
+empruntés (toujours dans `#flashcards` et `#exercise`), les accroches posées
+dans `nextFlashcard`, `nextExercise`, `startExerciseSet`, `loadFlashcard`,
+`completeInitialSetup` et `handleEmailSignup`, la sauvegarde de son état, et
+que `tests/parcours.js` lit chaque étape notée. La découverte ne se voit
+qu'une fois, à l'inscription : sans ce contrôle, la casser ailleurs ne se
+verrait jamais.
+
 **Export** — les CSV de `export/` sont-ils encore le reflet des JSON ? Un
 avertissement, pas une erreur : une donnée modifiée sans export refait n'est
 pas une régression, seulement un export à relancer.

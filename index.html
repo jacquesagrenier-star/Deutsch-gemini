@@ -5930,6 +5930,81 @@ body[data-theme="dark"] .vocab-legende .pt-cours{background:#B9770E;}
 body[data-theme="dark"] .carte-vocab-part.sus,
 body[data-theme="dark"] .carte-examen-part.sus,
 body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
+
+/* --- LA DECOUVERTE GUIDEE (v700). Seul son CADRE est style ici : la carte et
+   l'exercice qu'elle montre sont les vrais blocs, avec leur propre CSS --
+   aucune regle ci-dessous ne vise .flashcard ni .card pour les redessiner.
+   ⚠️ RIEN N'Y EST ORIENTE A GAUCHE OU A DROITE : marges symetriques et
+   rangees flex, qui suivent le sens de lecture. Le persan et l'arabe lisent de
+   droite a gauche, et la barre doit se remplir dans leur sens sans regle a
+   part -- verifie a la capture, a 375 px. */
+/* Plein ecran : l'en-tete (reglages, langue, theme) ouvrirait une porte de
+   sortie que « Passer » ne verrait pas. */
+body.en-decouverte header{display:none;}
+.dec-haut{
+    position:sticky; top:0; z-index:5;
+    display:flex; align-items:center; gap:12px;
+    margin:0 -20px 14px; padding:10px 20px;
+    padding-top:max(10px, env(safe-area-inset-top, 0px));
+    background:#F7F3EC;
+}
+body[data-theme="dark"] .dec-haut{background:#000000;}
+.dec-progres{flex:1 1 auto; display:flex; gap:6px; min-width:0;}
+.dec-seg{
+    flex:1 1 0; height:6px; border-radius:999px;
+    background:rgba(var(--wt-action-rgb),.14);
+    transition:background-color .3s ease;
+}
+.dec-seg.fait{background:var(--wt-ambre);}
+.dec-etape{
+    flex:0 0 auto; font-size:13px; font-weight:700; color:#576177;
+    font-variant-numeric:tabular-nums;
+    /* « 1 / 4 » reste dans cet ordre en persan et en arabe : c'est un compte,
+       pas une phrase. */
+    direction:ltr; unicode-bidi:isolate;
+}
+body[data-theme="dark"] .dec-etape{color:#aab3c2;}
+.dec-passer{
+    flex:0 0 auto; width:auto; min-height:40px; padding:8px 16px;
+    border-radius:999px; border:1.5px solid rgba(var(--wt-action-rgb),.25);
+    background:transparent; color:var(--wt-encre-texte, #1C2430);
+    font-size:14px; font-weight:700; cursor:pointer;
+}
+body[data-theme="dark"] .dec-passer{color:#F2F2F6; border-color:rgba(242,242,246,.35);}
+.dec-titre{margin:4px 0 6px;}
+.dec-texte{margin:0 0 16px; color:#576177; line-height:1.5;}
+body[data-theme="dark"] .dec-texte{color:#aab3c2;}
+.dec-scene{margin-bottom:12px;}
+/* La carte jugee ne repond plus : la suite est au bouton CONTINUER. */
+.dec-scene.fait .flashcard{pointer-events:none;}
+.dec-mosaique{position:relative; margin:4px 0 14px; text-align:center;}
+.dec-mosaique canvas{
+    display:block; margin:0 auto; max-width:100%; max-height:52vh;
+    width:auto; height:auto; border-radius:10px;
+    box-shadow:0 6px 24px rgba(28,36,48,.18);
+}
+/* La lueur entoure la tesselle qui vient d'eclater. Positionnee en px par
+   placerLueurDecouverte() : left/top, donc PAS de propriete logique ici --
+   ce sont des coordonnees de canevas, pas un sens de lecture. */
+.dec-lueur{
+    position:absolute; pointer-events:none; box-sizing:border-box;
+    border:3px solid var(--wt-ambre); border-radius:3px;
+    box-shadow:0 0 0 3px rgba(232,162,58,.35), 0 0 18px 6px rgba(232,162,58,.55);
+    animation:decLueur 1.1s ease-out both;
+}
+@keyframes decLueur{
+    0%{opacity:0; transform:scale(1.6);}
+    35%{opacity:1; transform:scale(1);}
+    100%{opacity:.85; transform:scale(1);}
+}
+@media (prefers-reduced-motion: reduce){ .dec-lueur{animation:none;} }
+.dec-bravo{
+    margin:4px 0 14px; padding:10px 14px; border-radius:12px;
+    background:rgba(232,162,58,.16); border:1px solid rgba(232,162,58,.40);
+    font-weight:700; line-height:1.45; color:#1C2430;
+}
+body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
+.abo-plus-tard{margin-top:12px;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6169,6 +6244,35 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <div class="spacer"></div>
         <button class="primary" onclick="completeInitialSetup()" data-i18n="setup_continue">CONTINUER</button>
     </div>
+</section>
+
+<!-- ================= DECOUVERTE GUIDEE (v700) ================= -->
+<!-- Quatre etapes juste apres l'ecran de bienvenue : une carte de nom, une
+     carte de verbe, un peu de grammaire, le premier carreau du tableau. Voir
+     lancerDecouverte().
+     ⚠️ #decouverteScene EST VIDE, ET DOIT LE RESTER. Elle recoit les VRAIS
+     blocs de l'ecran des cartes et de l'ecran d'exercice, le temps d'une
+     etape, puis les rend : rien de leur affichage n'est recopie ici.
+     ⚠️ « PASSER » NE SE CACHE JAMAIS. La barre du haut est collante : le verso
+     d'un verbe fait quatre fois la hauteur du recto, et une sortie qui defile
+     hors de l'ecran n'en est plus une. -->
+<section id="decouverte" class="screen" aria-labelledby="decouverteTitre">
+    <div class="dec-haut">
+        <div id="decouverteProgres" class="dec-progres" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
+        <span id="decouverteEtape" class="dec-etape">1 / 4</span>
+        <button type="button" class="dec-passer" onclick="passerDecouverte()" data-i18n="dec_passer">Passer</button>
+    </div>
+    <div class="kicker" data-i18n="dec_kicker">Découvre Wortando</div>
+    <h2 id="decouverteTitre" class="dec-titre"></h2>
+    <p id="decouverteTexte" class="dec-texte"></p>
+    <div id="decouverteScene" class="dec-scene"></div>
+    <div id="decouverteMosaique" class="dec-mosaique hidden">
+        <canvas id="decouverteToile" aria-hidden="true"></canvas>
+        <span id="decouverteLueur" class="dec-lueur hidden" aria-hidden="true"></span>
+    </div>
+    <p id="decouverteBravo" class="dec-bravo hidden" role="status"></p>
+    <button type="button" id="decouverteSuite" class="primary hidden" onclick="suiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
+    <button type="button" id="decouverteFin" class="primary hidden" onclick="terminerDecouverte()" data-i18n="flash_end_done">TERMINER</button>
 </section>
 
 <!-- ================= HOME ================= -->
@@ -6843,7 +6947,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v699</span>
+    <span class="subtitle-version">v700</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9313,6 +9417,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <button type="button" class="abo-fermer" onclick="fermerAbonnement()" data-i18n-aria-label="abo_fermer" aria-label="Fermer">✕</button>
     </div>
     <div id="aboContenu"></div>
+    <button type="button" id="aboPlusTard" class="secondary abo-plus-tard hidden" onclick="fermerAbonnement()" data-i18n="abo_plus_tard">Plus tard</button>
 </section>
 
 <!-- ================= ADMIN DASHBOARD ================= -->
@@ -9363,6 +9468,16 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <div id="adminApercuGratuitEtat" class="info-box"></div>
         <div class="spacer"></div>
         <button class="secondary" onclick="basculerApercuGratuit()">ACTIVER / ARRÊTER L'APERÇU →</button>
+    </div>
+
+    <!-- La decouverte guidee (v700) : un nouveau compte la voit une fois,
+         apres l'ecran de bienvenue. Ce bouton la rejoue, quel que soit l'etat
+         enregistre -- pour l'essayer sans creer de compte. -->
+    <div class="card">
+        <strong data-i18n="dec_admin_titre">Découverte guidée</strong>
+        <div class="info-box" data-i18n="dec_admin_desc">Les quatre étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="revoirDecouverte()" data-i18n="dec_admin_btn">REVOIR LA DÉCOUVERTE GUIDÉE →</button>
     </div>
 
     <div class="card">
@@ -9506,6 +9621,11 @@ onAuthStateChanged(auth, (user) => {
         // l'on est deja connecte envoyait droit a l'accueil, et le formulaire
         // n'apparaissait jamais.
         if(window.LIEN_REINIT){ /* l'ecran appartient a la reinitialisation */ }
+        // Un compte qu'on vient de creer (v700) : l'ecran de bienvenue, que
+        // handleEmailSignup() rouvrira de toute facon a la fin.
+        else if(window.INSCRIPTION_EN_COURS){
+            if(typeof ouvrirBienvenue === "function") ouvrirBienvenue();
+        }
         else if(typeof isSetupDone === "function" && !isSetupDone()){
             // L'ECRAN DE REGLAGES N'EST PLUS MONTRE (v678). Sa seule vraie question
             // etait la langue -- devinee maintenant d'apres le telephone, et
@@ -10246,6 +10366,28 @@ const I18N = {
         setup_niveau_b2: "Niveau avancé (B2)",
         setup_niveau_c1: "Niveau très avancé (C1)",
         setup_niveau_note: "Tu pourras changer de niveau à tout moment, depuis ta séance du jour.",
+        dec_passer: "Passer",
+        dec_progression_aria: "Étape {n} sur {total}",
+        dec_kicker: "Découvre Wortando",
+        dec_t1_titre: "Ton premier mot",
+        dec_t1_titre_plusieurs: "Tes premiers mots",
+        dec_t1_texte: "Écoute-le, regarde la couleur de l'article, puis dis si tu le savais.",
+        dec_t1_texte_plusieurs: "Trois mots qu'on devine presque. La couleur dit l'article : der, die ou das.",
+        dec_t1_bravo: "Bravo ! Chaque mot reviendra au bon moment, pour rester.",
+        dec_t2_titre: "Un verbe, toute sa conjugaison",
+        dec_t2_texte_praesens: "Au dos de chaque verbe : sa conjugaison au présent, et des phrases à écouter.",
+        dec_t2_texte_perfekt: "Au dos : le présent, puis le Perfekt, le passé qu'on parle.",
+        dec_t2_texte_konjunktiv2: "Au dos : toute la conjugaison, jusqu'au Konjunktiv II, celui des demandes polies et des conditions irréelles.",
+        dec_t2_bravo: "Chaque verbe a sa carte comme celle-ci.",
+        dec_t3_titre: "Un peu de grammaire",
+        dec_t3_texte: "Une ou deux questions, comme dans les exercices de l'app. Chaque réponse est expliquée.",
+        dec_t4_titre: "Ton tableau commence",
+        dec_t4_texte: "Chaque carte travaillée ouvre un carreau. Au bout de {n}, c'est le tableau d'un vrai peintre.",
+        dec_t4_bravo: "Tes premières réponses viennent d'ouvrir ces carreaux.",
+        dec_admin_titre: "Découverte guidée",
+        dec_admin_desc: "Les quatre étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.",
+        dec_admin_btn: "REVOIR LA DÉCOUVERTE GUIDÉE →",
+        abo_plus_tard: "Plus tard",
         setup_settings_title: "Configuration",
         abo_titre: "Apprends l'allemand sans limite",
         abo_sous_titre: "7 jours gratuits, puis tu choisis",
@@ -11286,6 +11428,28 @@ const I18N = {
         setup_niveau_b2: "Advanced (B2)",
         setup_niveau_c1: "Very advanced (C1)",
         setup_niveau_note: "You can change your level at any time from your daily session.",
+        dec_passer: "Skip",
+        dec_progression_aria: "Step {n} of {total}",
+        dec_kicker: "Discover Wortando",
+        dec_t1_titre: "Your first word",
+        dec_t1_titre_plusieurs: "Your first words",
+        dec_t1_texte: "Listen, look at the colour of the article, then say whether you knew it.",
+        dec_t1_texte_plusieurs: "Three words you can almost guess. The colour tells you the article: der, die or das.",
+        dec_t1_bravo: "Well done! Each word will come back at the right moment, so it stays.",
+        dec_t2_titre: "One verb, its whole conjugation",
+        dec_t2_texte_praesens: "On the back of every verb: its present tense, and sentences to listen to.",
+        dec_t2_texte_perfekt: "On the back: the present, then the Perfekt, the past tense people speak.",
+        dec_t2_texte_konjunktiv2: "On the back: the whole conjugation, down to Konjunktiv II, for polite requests and unreal conditions.",
+        dec_t2_bravo: "Every verb has a card like this one.",
+        dec_t3_titre: "A little grammar",
+        dec_t3_texte: "One or two questions, just like the app's exercises. Every answer is explained.",
+        dec_t4_titre: "Your painting begins",
+        dec_t4_texte: "Every card you work on opens a tile. After {n}, it's a real painter's masterpiece.",
+        dec_t4_bravo: "Your first answers just opened these tiles.",
+        dec_admin_titre: "Guided tour",
+        dec_admin_desc: "The four steps a new account sees after the welcome screen. Answers count as real answers.",
+        dec_admin_btn: "REPLAY THE GUIDED TOUR →",
+        abo_plus_tard: "Later",
         setup_settings_title: "Configuration",
         abo_titre: "Learn German without limits",
         abo_sous_titre: "7 days free, then you choose",
@@ -12330,6 +12494,28 @@ const I18N = {
         setup_niveau_b2: "İleri seviye (B2)",
         setup_niveau_c1: "Çok ileri seviye (C1)",
         setup_niveau_note: "Seviyeni istediğin zaman günün oturumundan değiştirebilirsin.",
+        dec_passer: "Geç",
+        dec_progression_aria: "Adım {n} / {total}",
+        dec_kicker: "Wortando'yu keşfet",
+        dec_t1_titre: "İlk kelimen",
+        dec_t1_titre_plusieurs: "İlk kelimelerin",
+        dec_t1_texte: "Dinle, artikelin rengine bak, sonra bilip bilmediğini söyle.",
+        dec_t1_texte_plusieurs: "Neredeyse tahmin edilebilecek üç kelime. Renk artikeli söyler: der, die ya da das.",
+        dec_t1_bravo: "Bravo! Her kelime kalıcı olsun diye doğru zamanda geri gelecek.",
+        dec_t2_titre: "Bir fiil, tüm çekimiyle",
+        dec_t2_texte_praesens: "Her fiilin arkasında: şimdiki zaman çekimi ve dinlenecek cümleler.",
+        dec_t2_texte_perfekt: "Arkasında: şimdiki zaman, sonra Perfekt, konuşmada kullanılan geçmiş zaman.",
+        dec_t2_texte_konjunktiv2: "Arkasında: tüm çekim, Konjunktiv II'ye kadar; kibar ricalar ve gerçek dışı koşullar için.",
+        dec_t2_bravo: "Her fiilin böyle bir kartı var.",
+        dec_t3_titre: "Biraz dilbilgisi",
+        dec_t3_texte: "Uygulamadaki alıştırmalar gibi bir iki soru. Her cevap açıklanır.",
+        dec_t4_titre: "Tablon başlıyor",
+        dec_t4_texte: "Çalışılan her kart bir parça açar. {n} parçanın sonunda gerçek bir ressamın tablosu ortaya çıkar.",
+        dec_t4_bravo: "İlk cevapların bu parçaları açtı.",
+        dec_admin_titre: "Rehberli keşif",
+        dec_admin_desc: "Yeni bir hesabın karşılama ekranından sonra gördüğü dört adım. Cevaplar gerçek cevap sayılır.",
+        dec_admin_btn: "REHBERLİ KEŞFİ YENİDEN GÖR →",
+        abo_plus_tard: "Daha sonra",
         setup_settings_title: "Yapılandırma",
         abo_titre: "Almancayı sınırsız öğren",
         abo_sous_titre: "7 gün ücretsiz, sonra sen seç",
@@ -13058,6 +13244,28 @@ const I18N = {
         setup_niveau_b2: "Високий рівень (B2)",
         setup_niveau_c1: "Дуже високий рівень (C1)",
         setup_niveau_note: "Рівень можна змінити будь-коли в щоденному занятті.",
+        dec_passer: "Пропустити",
+        dec_progression_aria: "Крок {n} з {total}",
+        dec_kicker: "Знайомство з Wortando",
+        dec_t1_titre: "Твоє перше слово",
+        dec_t1_titre_plusieurs: "Твої перші слова",
+        dec_t1_texte: "Послухай, подивись на колір артикля, а тоді скажи, чи це слово тобі знайоме.",
+        dec_t1_texte_plusieurs: "Три слова, які майже можна вгадати. Колір підказує артикль: der, die або das.",
+        dec_t1_bravo: "Браво! Кожне слово повернеться в потрібний момент, щоб запам'ятатися.",
+        dec_t2_titre: "Одне дієслово — уся його відміна",
+        dec_t2_texte_praesens: "На звороті кожного дієслова: теперішній час і речення, які можна послухати.",
+        dec_t2_texte_perfekt: "На звороті: теперішній час, а потім Perfekt — минулий час розмовної мови.",
+        dec_t2_texte_konjunktiv2: "На звороті: уся відміна, аж до Konjunktiv II — для ввічливих прохань і нереальних умов.",
+        dec_t2_bravo: "Кожне дієслово має таку картку.",
+        dec_t3_titre: "Трохи граматики",
+        dec_t3_texte: "Одне-два запитання, як у вправах застосунку. Кожну відповідь пояснено.",
+        dec_t4_titre: "Твоя картина починається",
+        dec_t4_texte: "Кожна опрацьована картка відкриває плитку. Після {n} плиток — картина справжнього художника.",
+        dec_t4_bravo: "Твої перші відповіді щойно відкрили ці плитки.",
+        dec_admin_titre: "Знайомство із застосунком",
+        dec_admin_desc: "Чотири кроки, які бачить новий обліковий запис після екрана привітання. Відповіді зараховуються як справжні.",
+        dec_admin_btn: "ПЕРЕГЛЯНУТИ ЗНАЙОМСТВО ЩЕ РАЗ →",
+        abo_plus_tard: "Пізніше",
         setup_settings_title: "Налаштування",
         abo_titre: "Вивчай німецьку без обмежень",
         abo_sous_titre: "7 днів безкоштовно, потім вирішуєш ти",
@@ -14494,6 +14702,28 @@ const I18N = {
         setup_niveau_b2: "سطح پیشرفته (B2)",
         setup_niveau_c1: "سطح خیلی پیشرفته (C1)",
         setup_niveau_note: "هر وقت بخواهی می‌توانی سطح را از جلسهٔ امروز عوض کنی.",
+        dec_passer: "رد شدن",
+        dec_progression_aria: "گام {n} از {total}",
+        dec_kicker: "آشنایی با Wortando",
+        dec_t1_titre: "نخستین واژه‌ات",
+        dec_t1_titre_plusieurs: "نخستین واژه‌هایت",
+        dec_t1_texte: "گوش کن، به رنگ حرف تعریف نگاه کن، بعد بگو آن را می‌دانستی یا نه.",
+        dec_t1_texte_plusieurs: "سه واژه که تقریباً می‌شود حدسشان زد. رنگ، حرف تعریف را نشان می‌دهد: der، die یا das.",
+        dec_t1_bravo: "آفرین! هر واژه سر وقتش دوباره می‌آید تا در یادت بماند.",
+        dec_t2_titre: "یک فعل، با همهٔ صرفش",
+        dec_t2_texte_praesens: "پشت هر فعل: صرف زمان حال و جمله‌هایی برای شنیدن.",
+        dec_t2_texte_perfekt: "پشت کارت: زمان حال، سپس Perfekt، گذشته‌ای که در گفتار به کار می‌رود.",
+        dec_t2_texte_konjunktiv2: "پشت کارت: همهٔ صرف، تا Konjunktiv II، برای خواهش مؤدبانه و شرط‌های غیرواقعی.",
+        dec_t2_bravo: "هر فعل کارتی مانند این دارد.",
+        dec_t3_titre: "کمی دستور زبان",
+        dec_t3_texte: "یکی دو پرسش، درست مانند تمرین‌های برنامه. هر پاسخ توضیح داده می‌شود.",
+        dec_t4_titre: "تابلوی تو آغاز می‌شود",
+        dec_t4_texte: "هر کارتی که کار می‌کنی یک کاشی را باز می‌کند. پس از {n} کاشی، تابلوی یک نقاش واقعی پیدا می‌شود.",
+        dec_t4_bravo: "نخستین پاسخ‌هایت همین حالا این کاشی‌ها را باز کردند.",
+        dec_admin_titre: "آشنایی راهنما",
+        dec_admin_desc: "چهار گامی که یک حساب تازه پس از صفحهٔ خوشامد می‌بیند. پاسخ‌ها پاسخ واقعی به شمار می‌آیند.",
+        dec_admin_btn: "دیدن دوبارهٔ آشنایی راهنما →",
+        abo_plus_tard: "بعداً",
         setup_settings_title: "پیکربندی",
         abo_titre: "آلمانی را بی‌محدودیت یاد بگیر",
         abo_sous_titre: "۷ روز رایگان، بعد خودت انتخاب کن",
@@ -15439,6 +15669,28 @@ const I18N = {
         setup_niveau_b2: "مستوى متقدم (B2)",
         setup_niveau_c1: "مستوى متقدم جداً (C1)",
         setup_niveau_note: "يمكن تغيير المستوى في أي وقت من جلسة اليوم.",
+        dec_passer: "تخطٍّ",
+        dec_progression_aria: "الخطوة {n} من {total}",
+        dec_kicker: "تعرّف على Wortando",
+        dec_t1_titre: "كلمتك الأولى",
+        dec_t1_titre_plusieurs: "كلماتك الأولى",
+        dec_t1_texte: "استمع، وانظر إلى لون أداة التعريف، ثم قل إن كنت تعرفها.",
+        dec_t1_texte_plusieurs: "ثلاث كلمات يكاد معناها يُخمَّن. اللون يدلّ على أداة التعريف: der أو die أو das.",
+        dec_t1_bravo: "أحسنت! ستعود كل كلمة في الوقت المناسب لتبقى في الذاكرة.",
+        dec_t2_titre: "فعل واحد بتصريفه كاملاً",
+        dec_t2_texte_praesens: "على ظهر كل فعل: تصريفه في المضارع، وجمل للاستماع.",
+        dec_t2_texte_perfekt: "على الظهر: المضارع، ثم Perfekt، الماضي المستعمل في الكلام.",
+        dec_t2_texte_konjunktiv2: "على الظهر: التصريف كاملاً حتى Konjunktiv II، للطلب المهذّب والشرط غير الواقعي.",
+        dec_t2_bravo: "لكل فعل بطاقة مثل هذه.",
+        dec_t3_titre: "قليل من القواعد",
+        dec_t3_texte: "سؤال أو سؤالان، مثل تمارين التطبيق. كل إجابة مشروحة.",
+        dec_t4_titre: "لوحتك تبدأ",
+        dec_t4_texte: "كل بطاقة تعمل عليها تفتح قطعة. بعد {n} قطعة تظهر لوحة رسّام حقيقي.",
+        dec_t4_bravo: "إجاباتك الأولى فتحت هذه القطع للتو.",
+        dec_admin_titre: "الجولة التعريفية",
+        dec_admin_desc: "الخطوات الأربع التي يراها حساب جديد بعد شاشة الترحيب. تُحتسب الإجابات إجابات حقيقية.",
+        dec_admin_btn: "إعادة الجولة التعريفية ←",
+        abo_plus_tard: "لاحقاً",
         setup_settings_title: "الإعداد",
         abo_titre: "تعلّم الألمانية بلا حدود",
         abo_sous_titre: "7 أيام مجانًا، ثم تختار",
@@ -16592,13 +16844,539 @@ function choisirNiveauDeclare(reponse){
         b.classList.toggle("active", b.getAttribute("data-niveau-declare") === reponse));
 }
 
+// L'ECRAN DE BIENVENUE, A L'INSCRIPTION SEULEMENT (v700). Depuis la v678, le
+// rappel d'authentification passait #setup sans le montrer -- sa seule vraie
+// question etait alors la langue, devinee d'apres le telephone. La v699 y a
+// ajoute le niveau, et la decouverte guidee part de son bouton CONTINUER :
+// l'ecran ne servait plus a rien tant que personne ne le voyait.
+// ⚠️ IL S'OUVRE A LA CREATION DU COMPTE, ET A ELLE SEULE. Un compte existant
+// qui se connecte sur un nouvel appareil n'a pas de `setupDone` local : le
+// rappel le marque fait et va a l'accueil, comme depuis la v678. Seule
+// l'inscription sait, sans deviner, que le compte est neuf.
+function ouvrirBienvenue(){
+    refreshSetupChoiceActiveStates();
+    const actif = document.querySelector(".screen.active");
+    if(!actif || actif.id !== "setup") showScreen("setup");
+}
+
 function completeInitialSetup(){
     markSetupDone();
+    // LA DECOUVERTE GUIDEE (v700), la premiere fois seulement : le drapeau
+    // voyage avec la sauvegarde, et un compte existant ne passe jamais ici.
+    if(!lireDecouverte().debut && getLearningDirection() !== "en"){
+        lancerDecouverte();
+        return;
+    }
     goHome();
     // Le clic sur CONTINUER est un geste utilisateur : c'est le seul moment ou
     // le navigateur laisse demarrer une video avec le son. D'ou le lancement
     // ici plutot qu'au chargement de l'accueil.
     maybeShowOnboardingVideo();
+}
+
+// ============ LA DECOUVERTE GUIDEE (v700) ============
+// Constat du 1er octobre 2026 : la moitie des invites avaient un compte et ZERO
+// mot vu. Ceux qui passaient la porte prenaient l'app pour un paquet de cartes
+// -- la grammaire, les verbes et le tableau etaient derriere des tuiles qu'ils
+// n'ouvraient jamais. Juste apres la configuration, un nouveau compte voit donc
+// en deux minutes un peu de chaque partie : une carte de nom, une carte de
+// verbe, un exercice de grammaire, le premier carreau du tableau.
+//
+// ⚠️ UN ECRAN A PART, PAS UNE VISITE PAR BULLES. Des bulles posees sur les
+// vrais ecrans dependent de la place de chaque bouton : le premier deplacement
+// de tuile les aurait fait pointer dans le vide, et rien ne l'aurait signale.
+//
+// ⚠️ ELLE NE RECOPIE RIEN DE L'AFFICHAGE DES CARTES NI DES EXERCICES. Elle
+// EMPRUNTE leurs blocs : la carte (.flashcard-wrapper et ses boutons de
+// jugement) et la carte d'exercice quittent un instant leur ecran pour
+// #decouverteScene, puis y retournent. Les memes fonctions les remplissent --
+// loadFlashcard(), flipCard(), startExerciseSet(), checkAnswer() -- avec la
+// meme voix et le meme CSS. Une copie aurait ete juste le jour de sa
+// naissance, puis fausse au premier changement de carte ; celle-ci suit.
+// Seul le cadre lui appartient : la barre 1/4, « Passer », les phrases
+// d'accompagnement, la celebration.
+//
+// ⚠️ LES REPONSES SONT DE VRAIES REPONSES. « Je savais » programme le mot,
+// l'exercice compte dans la serie, et chaque carte pose son carreau par
+// nextFlashcard() -- c'est ce qui rend le carreau de la quatrieme etape
+// reellement gagne, et non un decor.
+//
+// Trois points d'accroche hors de ce bloc, chacun d'une ligne et chacun
+// verifie par tests/verifier.py : la fin du paquet (nextFlashcard), la fin
+// de la serie (nextExercise) et l'ecran que startExerciseSet() ouvre.
+const DECOUVERTE_KEY = "deutschAI_decouverte";
+const DECOUVERTE_ETAPES = 4;
+
+// CE QUE LA DECOUVERTE MONTRE, SELON LA REPONSE A « TU CONNAIS DEJA UN PEU
+// D'ALLEMAND ? » (v699). Le seul endroit ou ces choix vivent.
+//
+// Tous viennent des donnees reelles : un nom de themes.json (theme + mot), un
+// verbe de verbe.json (niveau + infinitif), et des exercices reperes par le
+// DEBUT de leur enonce -- jamais par leur position, qu'un ajout dans le
+// fichier decalerait sans bruit. `article` construit la question d'article
+// avec construireQuizArticle(), comme le quiz de la tuile Noms ; `epreuve`
+// passe par le convertisseur des epreuves d'examen (exercicesHoeren...).
+//
+// Les noms et les verbes sont les plus frequents de leur niveau
+// (frequence.json), sauf pour « zero » ou l'on veut des mots qu'on devine
+// presque -- das Haus, die Katze, der Kaffee : les trois couleurs d'article
+// des la premiere minute. Les exercices sont choisis a tuiles ou a blocs :
+// taper au clavier sur un telephone, des la premiere minute, fait abandonner.
+// `temps` dit quelle partie du verso de la carte de verbe l'accompagnement
+// annonce ; « konjunktiv2 » deplie aussi le bloc replie du verso.
+//
+// ⚠️ « C1 » N'A PAS DE DISCOURS INDIRECT, ET C'EST LA DONNEE QUI MANQUE :
+// aucun jeu d'exercices ne porte le Konjunktiv I, et verbe.json n'a pas cette
+// forme. On montre la relative au genitif (dessen/deren), la structure C1 la
+// plus proche qui existe. A remplacer le jour ou le Konjunktiv I arrivera.
+// ⚠️ « B2 » MONTRE LA SUBORDONNEE, PAS LE PASSIF -- meme raison.
+//
+// ⚠️ ECRIT EN JSON STRICT (guillemets partout, aucune virgule finale) : le
+// verificateur le relit tel quel et refuse tout mot, verbe ou exercice qui
+// n'existerait plus. Un mot retire de themes.json fera echouer la
+// verification, au lieu d'une etape qui disparait en silence chez un invite.
+const DECOUVERTE_CONTENU = {
+    "zero": {
+        "noms": [{"theme": "wohnen_a1", "mot": "Haus"},
+                 {"theme": "tiere_a1", "mot": "Katze"},
+                 {"theme": "essen_trinken_a1", "mot": "Kaffee"}],
+        "verbe": {"niveau": "A1", "infinitif": "sein", "temps": "praesens"},
+        "exos": [{"article": "Katze"}, {"article": "Haus"}]
+    },
+    "peu": {
+        "noms": [{"theme": "familie_a1", "mot": "Kind"}],
+        "verbe": {"niveau": "A1", "infinitif": "gehen", "temps": "praesens"},
+        "exos": [{"jeu": "wortstellungV2Exercises", "debut": "Morgen ___ ich nach Berlin."},
+                 {"jeu": "wortstellungV2Exercises", "debut": "Morgens ___ ich immer Kaffee."}]
+    },
+    "A2": {
+        "noms": [{"theme": "zeit_kalender_a2", "mot": "Stunde"}],
+        "verbe": {"niveau": "A2", "infinitif": "versuchen", "temps": "perfekt"},
+        "exos": [{"jeu": "kasusReconnaissanceExercises", "debut": "Sie trinkt den Kaffee."},
+                 {"jeu": "kasusReconnaissanceExercises", "debut": "Ich gebe dem Kind ein Geschenk."}]
+    },
+    "B1": {
+        "noms": [{"theme": "grundwortschatz_b1", "mot": "Entscheidung"}],
+        "verbe": {"niveau": "B1", "infinitif": "annehmen", "temps": "konjunktiv2"},
+        "exos": [{"jeu": "konjunktiv2Exercises", "debut": "Wenn ich reich ___"},
+                 {"epreuve": "hoeren", "niveau": "B1", "debut": "Que doivent faire les voyageurs pour Salzbourg"}]
+    },
+    "B2": {
+        "noms": [{"theme": "grundwortschatz_b2", "mot": "Ergebnis"}],
+        "verbe": {"niveau": "B2", "infinitif": "übernehmen", "temps": "praesens"},
+        "exos": [{"jeu": "konnektorenExercises", "debut": "Ich gehe raus, obwohl es regnet."},
+                 {"jeu": "obwohlTrotzdemExercises", "debut": "Es regnet, ___ gehe ich spazieren."}]
+    },
+    "C1": {
+        "noms": [{"theme": "ursache_wirkung_c1", "mot": "Auswirkung"}],
+        "verbe": {"niveau": "C1", "infinitif": "sicherstellen", "temps": "praesens"},
+        "exos": [{"jeu": "relativGenitivOrderExercises", "debut": "Er ist der Autor,"}]
+    }
+};
+
+// La decouverte en cours, ou null. Tout ce qui l'interroge passe par
+// decouverteEnCours() : un seul etat, que « Passer » remet a null.
+let decouverte = null;
+// Les blocs empruntes a leur ecran : { el, parent, suivant }, pour les remettre
+// EXACTEMENT ou ils etaient.
+let blocsEmpruntes = [];
+let minuteurTableau = null;
+
+function decouverteEnCours(){
+    return !!decouverte;
+}
+
+// L'etat durable : { debut, reponse, fin: "finie"|"passee", etapePassee, abo }.
+// Il voyage avec la sauvegarde (decouverteJson) : un deuxieme appareil ne doit
+// ni relancer la decouverte ni rouvrir l'ecran d'abonnement une seconde fois.
+function lireDecouverte(){
+    try{
+        const v = JSON.parse(localStorage.getItem(DECOUVERTE_KEY) || "{}");
+        return (v && typeof v === "object") ? v : {};
+    }catch(e){ return {}; }
+}
+
+function ecrireDecouverte(maj){
+    const v = Object.assign(lireDecouverte(), maj);
+    try{ localStorage.setItem(DECOUVERTE_KEY, JSON.stringify(v)); }catch(e){}
+    if(typeof scheduleCloudSync === "function") scheduleCloudSync();
+}
+
+// Absente, la reponse vaut « zero » : c'est le cas de qui a touche CONTINUER
+// sans repondre, et montrer du C1 a un debutant serait le pire des deux.
+function reponseDecouverte(){
+    let r = null;
+    try{ r = localStorage.getItem(NIVEAU_DECLARE_KEY); }catch(e){}
+    return DECOUVERTE_CONTENU[r] ? r : "zero";
+}
+
+// Les cartes sont construites comme paquetDuNiveau() les construit :
+// { word, index, themeId, mode }. Meme forme, donc memes fonctions derriere.
+function carteDeNomDecouverte(ref){
+    for(const th of (themes || [])){
+        for(const niv of NIVEAUX_CECR){
+            const d = th && th.levels && th.levels[niv];
+            if(!d || d.id !== ref.theme || !Array.isArray(d.words)) continue;
+            const index = d.words.findIndex(w => w[0] === ref.mot);
+            if(index >= 0) return { word: d.words[index], index: index, themeId: d.id, mode: "nomen" };
+        }
+    }
+    return null;
+}
+
+function carteDeVerbeDecouverte(ref){
+    const mots = (verbeTheme && verbeTheme.words) || [];
+    const index = mots.findIndex(w => w.infinitif === ref.infinitif && w.niveau === ref.niveau);
+    return index >= 0 ? { word: mots[index], index: index, themeId: verbeTheme.id, mode: "verben" } : null;
+}
+
+// Le debut de l'enonce, ou des blocs pour une phrase a remettre en ordre (leur
+// enonce est le meme partout : « Remets les mots dans le bon ordre »).
+function trouverExerciceDecouverte(liste, debut){
+    return (liste || []).find(e => String(e.question || "").indexOf(debut) === 0
+        || (Array.isArray(e.chunks) && e.chunks.join(" ").indexOf(debut) === 0)) || null;
+}
+
+async function exercicesDecouverte(contenu, noms){
+    const sortie = [];
+    const epreuves = { hoeren: exercicesHoeren, lesen: exercicesLesen,
+                       schreiben: exercicesSchreiben, sprechen: exercicesSprechen };
+    for(const ref of (contenu.exos || [])){
+        let ex = null;
+        if(ref.article){
+            const it = noms.find(n => n.word[0] === ref.article);
+            if(it) ex = construireQuizArticle([it])[0];
+        } else if(ref.epreuve){
+            if(!pruefungData) await loadPruefungJson();
+            const construire = epreuves[ref.epreuve];
+            // ⚠️ PAS D'EPREUVE A MOITIE TRADUITE. pruefung.json n'existe en
+            // entier qu'en francais, anglais et turc : en ukrainien les options
+            // restent francaises, en persan et en arabe tout l'est -- et la
+            // question, elle, retombe sur l'anglais. Un ecran en trois langues
+            // dans les deux premieres minutes ferait plus de mal que la
+            // question n'apporte : on la garde pour ceux qui la liront.
+            const lang = getUiLang();
+            const brut = ((pruefungData || {})[ref.epreuve] || []).find(o =>
+                o.niveau === ref.niveau && String(o.frage_fr || "").indexOf(ref.debut) === 0);
+            const traduite = lang === "fr" || !!(brut && brut["frage_" + lang] && brut["options_" + lang]);
+            if(construire && traduite) ex = trouverExerciceDecouverte(construire(ref.niveau), ref.debut);
+        } else if(ref.jeu){
+            ex = trouverExerciceDecouverte(await jeu(ref.jeu), ref.debut);
+        }
+        // ⚠️ UNE COPIE. L'objet vient du cache des jeux, et le rattrapage par
+        // tuiles (passerEnRattrapageTuiles) ecrit dedans : sans copie, la
+        // decouverte modifierait l'exercice pour le reste de la session.
+        if(ex) sortie.push(Object.assign({}, ex));
+    }
+    return sortie;
+}
+
+// themesLoaded passe a vrai a la fin de loadThemesJson(), qui charge AUSSI
+// verbe.json et pruefung.json. Le chargement part au demarrage ; on attend
+// qu'il finisse plutot que d'en lancer un second en parallele.
+async function attendreDonneesDecouverte(){
+    const limite = Date.now() + 15000;
+    while(!themesLoaded && Date.now() < limite){
+        await new Promise(ok => setTimeout(ok, 150));
+    }
+    return themesLoaded;
+}
+
+// Le point d'entree : completeInitialSetup() pour un nouveau compte, le bouton
+// du tableau admin pour la revoir. Faux si elle n'a pas de sens ici.
+async function lancerDecouverte(){
+    // Le contenu est allemand : le module anglais n'a rien a y montrer.
+    if(getLearningDirection() === "en") return false;
+    const reponse = reponseDecouverte();
+    const v = etatMosaique();
+    const moi = { reponse: reponse, contenu: DECOUVERTE_CONTENU[reponse], etape: 1,
+                  noms: [], verbe: null, exos: [], mosaiqueAvant: { r: v.r, c: v.c } };
+    decouverte = moi;
+    if(!lireDecouverte().debut) ecrireDecouverte({ debut: new Date().toISOString(), reponse: reponse });
+    noterEtape("decouverte_debut");
+    document.body.classList.add("en-decouverte");
+    showScreen("decouverte");
+    peindreCadreDecouverte();
+    const texte = document.getElementById("decouverteTexte");
+    if(texte) texte.textContent = t("loading_label");
+    await attendreDonneesDecouverte();
+    // « Passer » a pu etre touche pendant le chargement.
+    if(decouverte !== moi) return true;
+    moi.noms = moi.contenu.noms.map(carteDeNomDecouverte).filter(Boolean);
+    moi.verbe = carteDeVerbeDecouverte(moi.contenu.verbe);
+    try{ moi.exos = await exercicesDecouverte(moi.contenu, moi.noms); }catch(e){ moi.exos = []; }
+    if(decouverte !== moi) return true;
+    allerEtapeDecouverte(1);
+    return true;
+}
+
+// Le tableau de bord admin : la revoir, quel que soit l'etat enregistre.
+function revoirDecouverte(){
+    lancerDecouverte();
+}
+
+// Le cadre : la barre, « n / 4 », le titre et la phrase d'accompagnement.
+function peindreCadreDecouverte(){
+    if(!decouverte) return;
+    const n = decouverte.etape;
+    const barre = document.getElementById("decouverteProgres");
+    if(barre){
+        if(barre.children.length !== DECOUVERTE_ETAPES){
+            barre.innerHTML = "";
+            for(let i = 0; i < DECOUVERTE_ETAPES; i++){
+                const seg = document.createElement("span");
+                seg.className = "dec-seg";
+                barre.appendChild(seg);
+            }
+        }
+        Array.from(barre.children).forEach((seg, i) => seg.classList.toggle("fait", i < n));
+        barre.setAttribute("aria-valuenow", String(n));
+        barre.setAttribute("aria-valuemax", String(DECOUVERTE_ETAPES));
+        barre.setAttribute("aria-label", tf("dec_progression_aria", { n: n, total: DECOUVERTE_ETAPES }));
+    }
+    const etape = document.getElementById("decouverteEtape");
+    if(etape) etape.textContent = n + " / " + DECOUVERTE_ETAPES;
+    const plusieurs = decouverte.noms.length > 1 || (decouverte.contenu.noms || []).length > 1;
+    const temps = (decouverte.contenu.verbe && decouverte.contenu.verbe.temps) || "praesens";
+    const titres = { 1: plusieurs ? "dec_t1_titre_plusieurs" : "dec_t1_titre",
+                     2: "dec_t2_titre", 3: "dec_t3_titre", 4: "dec_t4_titre" };
+    const textes = { 1: plusieurs ? "dec_t1_texte_plusieurs" : "dec_t1_texte",
+                     2: "dec_t2_texte_" + temps, 3: "dec_t3_texte", 4: "dec_t4_texte" };
+    const titre = document.getElementById("decouverteTitre");
+    if(titre) titre.textContent = t(titres[n]);
+    const texte = document.getElementById("decouverteTexte");
+    if(texte) texte.textContent = tf(textes[n], { n: MOSAIQUE_CARREAUX });
+}
+
+// Prend un bloc a son ecran et le pose dans la scene de la decouverte.
+function emprunterBlocDecouverte(el){
+    const scene = document.getElementById("decouverteScene");
+    if(!el || !scene) return;
+    blocsEmpruntes.push({ el: el, parent: el.parentNode, suivant: el.nextSibling });
+    scene.appendChild(el);
+}
+
+// ⚠️ TOUJOURS RENDUS, PAR TOUS LES CHEMINS DE SORTIE. Un bloc oublie ici
+// laisserait l'ecran des cartes sans carte -- pour toutes les seances
+// suivantes, jusqu'au rechargement. D'ou l'ordre inverse : chaque bloc
+// retrouve exactement son voisin d'avant.
+function rendreBlocsDecouverte(){
+    while(blocsEmpruntes.length){
+        const b = blocsEmpruntes.pop();
+        if(b.parent) b.parent.insertBefore(b.el, b.suivant && b.suivant.parentNode === b.parent ? b.suivant : null);
+    }
+    const scene = document.getElementById("decouverteScene");
+    if(scene) scene.classList.remove("fait");
+}
+
+function allerEtapeDecouverte(n){
+    if(!decouverte) return;
+    // Une etape dont la donnee manque (fichier pas arrive) est sautee plutot
+    // que montree vide. Le verificateur garantit que les donnees existent :
+    // ceci ne couvre que le reseau.
+    if(n === 1 && !decouverte.noms.length) n = 2;
+    if(n === 2 && !decouverte.verbe) n = 3;
+    if(n === 3 && !decouverte.exos.length) n = 4;
+    clearTimeout(attentePalier);
+    clearTimeout(minuteurTableau);
+    rendreBlocsDecouverte();
+    decouverte.etape = n;
+    noterEtape("decouverte_etape" + n);
+    peindreCadreDecouverte();
+    ["decouverteSuite", "decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add("hidden");
+    });
+    window.scrollTo(0, 0);
+    if(n === 1) montrerCartesDecouverte(decouverte.noms);
+    else if(n === 2) montrerCartesDecouverte([decouverte.verbe]);
+    else if(n === 3) montrerExercicesDecouverte();
+    else montrerTableauDecouverte();
+}
+
+function suiteDecouverte(){
+    if(decouverte) allerEtapeDecouverte(decouverte.etape + 1);
+}
+
+// Les etapes 1 et 2 : le paquet de la seance, reduit a ces cartes-la. Memes
+// variables que ouvrirSeanceDuJour() -- c'est ce qui fait que « Je savais »,
+// le son, la couleur de l'article et le carreau marchent sans rien de plus.
+function montrerCartesDecouverte(cartes){
+    emprunterBlocDecouverte(document.querySelector("#flashcards .flashcard-wrapper"));
+    emprunterBlocDecouverte(document.getElementById("flashcardActions"));
+    currentCardsFull = cartes.slice();
+    currentCards = cartes.slice();
+    currentFlashcard = 0;
+    currentTheme = { id: "decouverte", name: t("dec_kicker") };
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    flashcardMode = cartes[0].mode || "nomen";
+    sessionVues = 0; sessionSues = 0;
+    loadFlashcard();
+    // Le Konjunktiv II vit dans le bloc replie du verso : on le deplie, sinon
+    // la phrase d'accompagnement parlerait de ce qu'on ne voit pas.
+    if(flashcardMode === "verben" && decouverte.contenu.verbe.temps === "konjunktiv2"){
+        const extra = document.querySelector("#flashVerbDetails .verb-extra");
+        if(extra && extra.classList.contains("hidden")) toggleVerbExtra();
+    }
+}
+
+// Appelee par nextFlashcard() quand le paquet de la decouverte est fini : le
+// carreau est deja pose, la carte reste a l'ecran, et la suite attend un geste
+// -- le temps de lire le bravo, et un toucher pour la voix de l'etape d'apres.
+function decouverteCartesFaites(){
+    if(!decouverte) return;
+    const actions = document.getElementById("flashcardActions");
+    if(actions) actions.classList.add("hidden");
+    // La carte jugee ne repond plus : la toucher aurait demande un jugement
+    // qu'on ne peut plus donner (voir handleCardTap).
+    const scene = document.getElementById("decouverteScene");
+    if(scene) scene.classList.add("fait");
+    const bravo = document.getElementById("decouverteBravo");
+    if(bravo){
+        bravo.textContent = t(decouverte.etape === 1 ? "dec_t1_bravo" : "dec_t2_bravo");
+        bravo.classList.remove("hidden");
+    }
+    const suite = document.getElementById("decouverteSuite");
+    if(suite) suite.classList.remove("hidden");
+}
+
+// L'etape 3 : startExerciseSet() lui-meme, avec une liste deja construite. Il
+// n'ouvre pas son ecran pendant une decouverte (voir sa ligne), et la fin de
+// serie revient ici par nextExercise() au lieu d'afficher le resultat.
+function montrerExercicesDecouverte(){
+    emprunterBlocDecouverte(document.querySelector("#exercise > .card"));
+    startExerciseSet(decouverte.exos, "dec_t3_titre", goHome, null);
+}
+
+function decouverteExercicesFaits(){
+    if(decouverte) allerEtapeDecouverte(4);
+}
+
+// L'etape 4 : le tableau ENTIER, avec les carreaux que la decouverte vient de
+// gagner, un par un. dessinerMosaique() rend la tesselle qui vient d'eclater :
+// c'est elle que la lueur entoure.
+function montrerTableauDecouverte(){
+    const zone = document.getElementById("decouverteMosaique");
+    const toile = document.getElementById("decouverteToile");
+    const lueur = document.getElementById("decouverteLueur");
+    const moi = decouverte;
+    const conclure = (nouveaux) => {
+        if(decouverte !== moi) return;
+        if(nouveaux){
+            try{ launchConfetti(); }catch(e){}
+            try{ playMasteredSound(); }catch(e){}
+        }
+        const bravo = document.getElementById("decouverteBravo");
+        if(bravo && nouveaux){
+            bravo.textContent = t("dec_t4_bravo");
+            bravo.classList.remove("hidden");
+        }
+        const fin = document.getElementById("decouverteFin");
+        if(fin) fin.classList.remove("hidden");
+    };
+    if(!zone || !toile){ conclure(false); return; }
+    chargerMosaiques().then(() => {
+        const m = mosaiqueCourante();
+        if(!m || decouverte !== moi){ conclure(false); return; }
+        return imageMosaique(m.fichier).then(img => {
+            if(decouverte !== moi) return;
+            tailleToileMosaique(toile, m);
+            zone.classList.remove("hidden");
+            const v = etatMosaique();
+            const total = MOSAIQUE_CARREAUX;
+            const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
+            const avant = moi.mosaiqueAvant;
+            // ⚠️ RIEN N'EST INVENTE. Sans carreau gagne (plafond du jour, trophee
+            // en cours, toutes les cartes passees), on montre l'etat tel qu'il
+            // est, sans lueur ni fete : rejouer le dernier carreau comme s'il
+            // venait de tomber serait mentir a la personne sur son tableau.
+            const depart = (!fini && avant.r === v.r) ? Math.min(avant.c, v.c) : v.c;
+            if(fini || depart >= v.c){
+                dessinerMosaique(toile, img, v.c, total, fini);
+                conclure(false);
+                return;
+            }
+            dessinerMosaique(toile, img, depart, total, false);
+            let k = depart;
+            const suivant = () => {
+                if(decouverte !== moi) return;
+                k++;
+                const r = dessinerMosaique(toile, img, k, total, false);
+                placerLueurDecouverte(lueur, toile, r);
+                if(k < v.c) minuteurTableau = setTimeout(suivant, 650);
+                else minuteurTableau = setTimeout(() => conclure(true), 450);
+            };
+            minuteurTableau = setTimeout(suivant, 600);
+        });
+    }).catch(() => conclure(false));
+}
+
+// La tesselle est en coordonnees du canevas ; la lueur se pose en pixels
+// d'ecran, d'ou l'echelle. Elle se rejoue a chaque carreau (reflow force).
+function placerLueurDecouverte(lueur, toile, r){
+    if(!lueur || !toile || !r) return;
+    const echelle = toile.clientWidth / (toile.width || 1);
+    lueur.style.left = (toile.offsetLeft + r[0] * echelle) + "px";
+    lueur.style.top = (toile.offsetTop + r[1] * echelle) + "px";
+    lueur.style.width = (r[2] * echelle) + "px";
+    lueur.style.height = (r[3] * echelle) + "px";
+    lueur.classList.add("hidden");
+    void lueur.offsetWidth;
+    lueur.classList.remove("hidden");
+}
+
+// Tout ce qui s'arrete en quittant, par l'un ou l'autre bouton : minuteries,
+// voix, confettis, blocs empruntes, paquet de cartes.
+function fermerDecouverte(){
+    clearTimeout(attentePalier);
+    clearTimeout(minuteurTableau);
+    try{ stopMasteryCelebrations(); }catch(e){}
+    try{ arreterChaineCarte(true); }catch(e){}
+    rendreBlocsDecouverte();
+    currentCards = [];
+    currentCardsFull = [];
+    currentFlashcard = 0;
+    retourSeanceAccueil = false;
+    decouverte = null;
+    document.body.classList.remove("en-decouverte");
+}
+
+// « Passer », toujours visible. On note A QUELLE ETAPE : c'est la question que
+// tests/parcours.js doit pouvoir trancher -- la carte, le verbe, la grammaire ?
+function passerDecouverte(){
+    if(!decouverte) return;
+    const n = decouverte.etape || 1;
+    noterEtape("decouverte_passee");
+    noterEtape("decouverte_passee_etape" + n);
+    ecrireDecouverte({ fin: "passee", etapePassee: n });
+    fermerDecouverte();
+    goHome();
+}
+
+function terminerDecouverte(){
+    if(!decouverte) return;
+    noterEtape("decouverte_finie");
+    ecrireDecouverte({ fin: "finie" });
+    fermerDecouverte();
+    goHome();
+    // L'accueil d'abord : « Plus tard » et la croix y ramenent tous les deux,
+    // puisque fermerAbonnement() revient a l'ecran d'ou l'offre a ete ouverte.
+    if(abonnementApresDecouverte()) ouvrirAbonnement(true);
+}
+
+// LE BRANCHEMENT DE L'APRES-SORTIE. Tant que ACCES.actif est false, personne
+// n'est « gratuit » et la fin mene a l'accueil, point. Le jour ou l'acces
+// payant s'ouvre, un compte gratuit qui FINIT la decouverte voit l'offre --
+// UNE fois : le drapeau `abo` voyage avec la sauvegarde, donc un deuxieme
+// appareil ne la remontrera pas. « Passer » n'y mene pas : quelqu'un qui
+// saute la visite n'a rien demande de plus.
+function abonnementApresDecouverte(){
+    if(!ACCES.actif || etatAcces() !== "gratuit") return false;
+    if(lireDecouverte().abo) return false;
+    ecrireDecouverte({ abo: new Date().toISOString() });
+    return true;
 }
 
 // ---- Video d'accueil ---------------------------------------------------
@@ -16866,6 +17644,10 @@ async function handleEmailSignup() {
 
     setAuthButtonLoading('authSignupBtn', true, 'auth_signup_loading', 'auth_signup');
     try {
+        // LE COMPTE EST NEUF, ET C'EST LE SEUL ENDROIT QUI LE SAIT (v700). Le
+        // rappel d'authentification part PENDANT createUserWithEmailAndPassword ;
+        // ce drapeau lui dit d'ouvrir l'ecran de bienvenue au lieu de l'accueil.
+        window.INSCRIPTION_EN_COURS = true;
         // On valide le code AVANT de créer le compte, pour ne pas créer de compte
         // Firebase orphelin si le code est invalide ou déjà utilisé.
         let codeSnap;
@@ -16906,11 +17688,14 @@ async function handleEmailSignup() {
                 }, { merge: true });
             } catch (e) {}
             if (typeof syncProgressToCloud === "function") syncProgressToCloud();
-            goHome();
+            // L'ecran de bienvenue (langue, niveau), puis la decouverte guidee
+            // par son bouton CONTINUER -- et non plus l'accueil directement.
+            ouvrirBienvenue();
         } catch (error) {
             showInfoToast(t('alert_signup_error_prefix') + getFriendlyAuthError(error));
         }
     } finally {
+        window.INSCRIPTION_EN_COURS = false;
         setAuthButtonLoading('authSignupBtn', false, 'auth_signup_loading', 'auth_signup');
     }
 }
@@ -19663,6 +20448,13 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(PARCOURS_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // La decouverte guidee (v700) : commencee, finie ou passee, et
+            // l'offre d'abonnement deja montree. Sans elle, un deuxieme
+            // appareil rouvrirait l'offre une seconde fois.
+            decouverteJson: (function(){
+                try{ return localStorage.getItem(DECOUVERTE_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             langueInterface: getUiLang(),
             // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
             // savoir qui peut tester sur Google Play. Voir typeAppareil().
@@ -19946,6 +20738,23 @@ async function restoreProgressFromCloud(){
         // faites. Seulement apres une lecture REUSSIE du nuage -- hors ligne,
         // on compterait trop peu et le drapeau figerait ce compte trop bas.
         try{ rattraperMosaique(); }catch(e){}
+
+        // LA DECOUVERTE GUIDEE, EN REUNION (v700). Un champ pose sur un
+        // appareil ne s'efface jamais depuis un autre : c'est ce qui tient la
+        // promesse « l'offre une seule fois ». Le local gagne sur un champ
+        // present des deux cotes -- il est le plus recent.
+        try{
+            if(typeof data.decouverteJson === "string" && data.decouverteJson){
+                const d = JSON.parse(data.decouverteJson);
+                if(d && typeof d === "object"){
+                    const l = lireDecouverte();
+                    const fusion = Object.assign({}, d, l);
+                    if(Object.keys(fusion).length !== Object.keys(l).length){
+                        localStorage.setItem(DECOUVERTE_KEY, JSON.stringify(fusion));
+                    }
+                }
+            }
+        }catch(e){}
 
         // CE QU'ON GAGNE, RESTAURE SANS JAMAIS RECULER (v671). Une regle par
         // nature de donnee, parce qu'elles ne se fusionnent pas pareil :
@@ -24371,9 +25180,15 @@ function nombreAbo(n){
     catch(e){ return String(n); }
 }
 
-function ouvrirAbonnement(){
+// `avecPlusTard` : la fin de la decouverte guidee (v700) ajoute un « Plus
+// tard » en toutes lettres sous l'offre. La croix fait la meme chose, mais
+// une premiere offre doit dire qu'on peut la remettre, pas seulement le
+// permettre. Les onclick existants n'en passent pas : le bouton reste cache.
+function ouvrirAbonnement(avecPlusTard){
     const actif = document.querySelector(".screen.active");
     if(actif && actif.id !== "abonnement") ecranAvantAbonnement = actif.id;
+    const plusTard = document.getElementById("aboPlusTard");
+    if(plusTard) plusTard.classList.toggle("hidden", avecPlusTard !== true);
     aboPlan = "annuel";
     afficherAbonnement();
     showScreen("abonnement");
@@ -27201,8 +28016,12 @@ function loadFlashcard(){
         const indexDeLaCarte = currentFlashcard;
         setTimeout(() => {
             const el = document.getElementById("flashcard");
+            // ⚠️ « LA CARTE EST VISIBLE », ET NON « L'ECRAN DES CARTES EST
+            // ACTIF » (v700) : la decouverte guidee montre la meme carte dans
+            // son propre ecran. offsetParent est nul des qu'un ancetre est
+            // masque -- c'est exactement la question posee.
             if(currentFlashcard === indexDeLaCarte && el && !el.classList.contains("flipped")
-               && document.getElementById("flashcards").classList.contains("active")){
+               && el.offsetParent !== null){
                 flipCard();
             }
         }, 650);
@@ -29132,7 +29951,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 699;
+const APP_VERSION = 700;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -31865,6 +32684,16 @@ let mosaiqueEnRetard = false;
 // Un ECHEC ne se met pas en cache -- meme raison que chargerPeintres() : un
 // cache qui memorise un echec est pire que pas de cache.
 const imagesMosaique = {};
+// LA TAILLE DU CANEVAS, D'APRES LE FORMAT DE L'OEUVRE (v700). Ces trois lignes
+// vivaient en double, dans la carte d'accueil et le plein ecran ; la
+// decouverte guidee en aurait fait une troisieme copie. 900 px au plus : au-dela
+// le canevas coute sans que l'oeil y gagne.
+function tailleToileMosaique(canvas, m){
+    const L = Math.min(900, m.l || 900);
+    canvas.width = L;
+    canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
+}
+
 function imageMosaique(fichier){
     if(imagesMosaique[fichier]) return imagesMosaique[fichier];
     const p = new Promise((ok, non) => {
@@ -31923,9 +32752,7 @@ function majMosaiqueAccueil(){
             // anonyme au journal. S'il gele encore, il le dira par son nom.
             marquerGel("mosaique -> canvas");
             try{
-                const L = Math.min(900, m.l || 900);
-                canvas.width = L;
-                canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
+                tailleToileMosaique(canvas, m);
                 // LA TRANCHE DE LA BANDE (v583). Le cadre fait 3/1 pour les
                 // 65 tableaux ; ce qui varie est la PART du tableau qu'on
                 // garde, et d'ou on la prend.
@@ -32094,9 +32921,7 @@ function ouvrirMosaiquePleinEcran(rang){
         img.crossOrigin = "anonymous";
         img.onload = () => {
             const total = MOSAIQUE_CARREAUX;
-            const L = Math.min(900, m.l || 900);
-            toile.width = L;
-            toile.height = Math.round(L * (m.h || 1) / (m.l || 1));
+            tailleToileMosaique(toile, m);
             dessinerMosaique(toile, img, gagnee ? total : v.c, total, gagnee);
             if(gagnee){
                 const bio = noticePeintre(m.peintre);
@@ -33727,6 +34552,9 @@ function nextFlashcard(){
     poserCarreau();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
+        // La decouverte guidee (v700) garde la main a la fin de SON paquet :
+        // ni rattrapage des cartes revenues, ni ecran « Paquet termine ».
+        if(decouverteEnCours()){ decouverteCartesFaites(); return; }
         // Fin du paquet : les cartes mises en attente ("revoir dans 2 min",
         // "dans 10 min") sont-elles redevenues dues entre-temps ? Sans ce
         // rebalayage, scheduleReview() enregistrait bien une date mais rien ne
@@ -34609,7 +35437,9 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     const epreuve = epreuveGratuiteEnCours;
     epreuveGratuiteEnCours = false;
     apercuExos = null;
-    if(!accesComplet() && !epreuve){
+    // La decouverte guidee (v700) arrive avec ses deux questions choisies :
+    // elle est l'apercu, elle ne passe pas par l'echantillon.
+    if(!accesComplet() && !epreuve && !decouverteEnCours()){
         if(!exerciceGratuit(restartFn)){ ouvrirAbonnement(); return; }
         const tout = (typeof list === "string") ? await jeu(list) : list;
         if(!tout.length) return;
@@ -34646,7 +35476,9 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     currentExercise = 0;
     scoreValue = 0;
     exerciseResults = [];
-    showScreen("exercise");
+    // Pendant la decouverte guidee (v700), la carte d'exercice est dans SON
+    // ecran : en ouvrir un autre la ferait disparaitre.
+    if(!decouverteEnCours()) showScreen("exercise");
     loadExercise();
 }
 
@@ -35114,7 +35946,12 @@ function nextExercise(){
     // celebration en cours.
     stopMasteryCelebrations();
     currentExercise++;
-    if(currentExercise >= activeExercises.length){ showResults(); return; }
+    if(currentExercise >= activeExercises.length){
+        // La decouverte guidee (v700) passe a son tableau au lieu du resultat.
+        if(decouverteEnCours()){ decouverteExercicesFaits(); return; }
+        showResults();
+        return;
+    }
     loadExercise();
 }
 

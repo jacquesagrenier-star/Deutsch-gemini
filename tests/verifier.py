@@ -1087,6 +1087,230 @@ def verifier_chemins(r):
     print("   chemins d'acces : %d cibles, %d sans chemin" % (len(cibles), len(perdus)))
 
 
+# ==================== LA DECOUVERTE GUIDEE (v700) ====================
+# Les globales du navigateur et du langage que la decouverte a le droit
+# d'appeler. Une liste FERMEE : un nom absent d'ici et de index.html fait
+# echouer le controle, ce qui est le but -- une faute de frappe dans un appel
+# ne casse la decouverte qu'au moment ou un invite l'ouvre.
+GLOBALES_JS = {"if", "for", "of", "in", "while", "switch", "catch", "return", "function", "typeof",
+               "setTimeout", "clearTimeout", "Promise", "String", "Array", "Object",
+               "JSON", "Date", "Math", "Number", "parseInt", "isNaN", "Boolean"}
+
+# Les accroches hors du bloc : sans elles, la decouverte s'ouvre mais ne
+# finit plus -- la fin du paquet tomberait sur « Paquet termine », la fin de
+# serie sur l'ecran de resultat, la carte d'exercice disparaitrait.
+ACCROCHES_DECOUVERTE = [
+    ("nextFlashcard", "decouverteCartesFaites()",
+     "la fin du paquet ne rend plus la main a la decouverte"),
+    ("nextExercise", "decouverteExercicesFaits()",
+     "la fin de serie ne rend plus la main a la decouverte"),
+    ("startExerciseSet", "if(!decouverteEnCours()) showScreen(\"exercise\")",
+     "startExerciseSet() ouvrirait son ecran et emporterait la carte d'exercice"),
+    ("startExerciseSet", "!epreuve && !decouverteEnCours()",
+     "en version gratuite, l'echantillon refuserait les exercices de la decouverte"),
+    ("completeInitialSetup", "lancerDecouverte()",
+     "le bouton CONTINUER de #setup ne lance plus la decouverte"),
+    ("handleEmailSignup", "ouvrirBienvenue()",
+     "l'inscription ne montre plus l'ecran de bienvenue, donc ni le niveau ni la decouverte"),
+    ("handleEmailSignup", "window.INSCRIPTION_EN_COURS = true",
+     "le rappel d'authentification ne saurait plus qu'un compte est neuf"),
+    ("loadFlashcard", "el.offsetParent !== null",
+     "un mot nouveau ne se retournerait plus tout seul dans la decouverte"),
+]
+
+
+def corps_de_section(source, ident):
+    m = re.search(r'<section id="%s"[^>]*>' % re.escape(ident), source)
+    if not m:
+        return None
+    return source[m.end():source.index("</section>", m.end())]
+
+
+def verifier_decouverte(r, source, fonctions, cles):
+    """Tout ce que la decouverte guidee appelle doit exister.
+
+    Elle n'a presque rien a elle : elle emprunte la carte, l'exercice, le
+    tableau et leurs fonctions. C'est ce qui la garde a jour -- et ce qui la
+    rend fragile a distance. Renommer une fonction des cartes, deplacer le
+    bloc des boutons de jugement, retirer un mot de themes.json : chacun de ces
+    gestes casserait la decouverte SANS QUE RIEN NE LE MONTRE, puisqu'on ne la
+    voit qu'une fois, a l'inscription. Ce controle le dit avant le push.
+    """
+    import chemins
+    m = re.search(r"const DECOUVERTE_CONTENU = (\{.*?\n\});", source, re.S)
+    if not m:
+        return r.echec("decouverte", "const DECOUVERTE_CONTENU introuvable dans index.html")
+    try:
+        contenu = json.loads(m.group(1))
+    except ValueError as e:
+        return r.echec("decouverte", "DECOUVERTE_CONTENU n'est plus du JSON strict (%s)" % e)
+    n_avant = len(r.erreurs)
+
+    # 1. Une entree par reponse possible a la question du niveau.
+    rep = re.search(r"const NIVEAU_DES_REPONSES = \{([^}]*)\}", source)
+    reponses = set(re.findall(r"(\w+):", rep.group(1))) if rep else set()
+    reponses |= set(re.findall(r'data-niveau-declare="(\w+)"', source))
+    for x in sorted(reponses - set(contenu)):
+        r.echec("decouverte", "la reponse « %s » n'a pas de contenu dans DECOUVERTE_CONTENU" % x)
+    r.controle(len(reponses))
+
+    # 2. Les mots, les verbes et les exercices existent dans les donnees.
+    themes = (charger("themes.json") or {}).get("themes", [])
+    verbes = charger("verbe.json") or {}
+    jeux = (charger("exercices.json") or {}).get("jeux", {})
+    pruefung = charger("pruefung.json") or {}
+    fr = set(cles)
+    for rep_, c in sorted(contenu.items()):
+        noms = []
+        for ref in c.get("noms", []):
+            th = [t for t in themes if t.get("id") == ref.get("theme")]
+            if not th or not any(w.get("mot") == ref.get("mot") for w in th[0].get("mots", [])):
+                r.echec("decouverte", "%s : le nom %s/%s n'existe plus dans themes.json"
+                        % (rep_, ref.get("theme"), ref.get("mot")))
+            noms.append(ref.get("mot"))
+            r.controle()
+        if not noms:
+            r.echec("decouverte", "%s : aucun nom pour l'etape 1" % rep_)
+        v = c.get("verbe") or {}
+        temps = v.get("temps", "praesens")
+        trouve = [x for x in verbes.get(v.get("niveau"), []) if x.get("infinitif") == v.get("infinitif")]
+        if not trouve:
+            r.echec("decouverte", "%s : le verbe %s (%s) n'existe plus dans verbe.json"
+                    % (rep_, v.get("infinitif"), v.get("niveau")))
+        elif not trouve[0].get(temps):
+            r.echec("decouverte", "%s : %s n'a pas de « %s », que l'etape 2 annonce"
+                    % (rep_, v.get("infinitif"), temps))
+        if "dec_t2_texte_" + temps not in fr:
+            r.echec("decouverte", "%s : cle dec_t2_texte_%s absente" % (rep_, temps))
+        r.controle(2)
+        if not c.get("exos"):
+            r.echec("decouverte", "%s : aucun exercice pour l'etape 3" % rep_)
+        for ref in c.get("exos", []):
+            r.controle()
+            if "article" in ref:
+                if ref["article"] not in noms:
+                    r.echec("decouverte", "%s : question d'article sur « %s », absent de l'etape 1"
+                            % (rep_, ref["article"]))
+                continue
+            debut = ref.get("debut", "")
+            if "jeu" in ref:
+                liste = jeux.get(ref["jeu"])
+                if liste is None:
+                    r.echec("decouverte", "%s : jeu %s absent d'exercices.json" % (rep_, ref["jeu"]))
+                    continue
+                cand = [e for e in liste if str(e.get("question", "")).startswith(debut)
+                        or " ".join(e.get("chunks") or []).startswith(debut)]
+            elif "epreuve" in ref:
+                cand = [e for e in pruefung.get(ref["epreuve"], [])
+                        if e.get("niveau") == ref.get("niveau")
+                        and str(e.get("frage_fr", "")).startswith(debut)]
+            else:
+                r.echec("decouverte", "%s : exercice sans source (%s)" % (rep_, ref))
+                continue
+            # Exactement un : deux enonces qui commencent pareil, et l'ajout
+            # d'un exercice changerait en silence celui qu'on montre.
+            if len(cand) != 1:
+                r.echec("decouverte", "%s : « %s » designe %d exercice(s) au lieu d'un"
+                        % (rep_, debut, len(cand)))
+                continue
+            # Des tuiles ou des blocs, jamais le clavier : la premiere minute
+            # se joue sur un telephone.
+            e = cand[0]
+            if not (e.get("options") or e.get("chunks") or e.get("options_fr")):
+                r.echec("decouverte", "%s : « %s » se repond au clavier" % (rep_, debut))
+
+    # 3. Chaque fonction appelee par la decouverte existe.
+    corps = chemins.corps_des_fonctions(source)
+    siens = {n: b for n, b in corps.items()
+             if "ecouverte" in n or n in ("ouvrirBienvenue", "completeInitialSetup")}
+    if len(siens) < 10:
+        r.echec("decouverte", "seulement %d fonctions de la decouverte trouvees" % len(siens))
+    for nom, b in sorted(siens.items()):
+        locales = set(re.findall(r"\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)", b))
+        tete = re.match(r"[^(]*\(([^)]*)\)", b)
+        if tete:
+            locales |= set(re.findall(r"[A-Za-z_$][\w$]*", tete.group(1)))
+        locales |= set(re.findall(r"\(\s*([A-Za-z_$][\w$]*)\s*\)\s*=>", b))
+        locales |= set(re.findall(r"\b([A-Za-z_$][\w$]*)\s*=>", b))
+        # Le code seul : les commentaires (en francais, pleins de « mot (») et
+        # les chaines ne sont pas des appels.
+        code = "\n".join(l for l in b[len(tete.group(0)) if tete else 0:].split("\n")
+                         if not l.strip().startswith("//"))
+        code = re.sub(r""""(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|`[^`]*`""", '""', code)
+        for appel in sorted(set(re.findall(r"(?<![\w$.])([A-Za-z_$][\w$]*)\s*\(", code))):
+            if appel in fonctions or appel in locales or appel in GLOBALES_JS:
+                continue
+            r.echec("decouverte", "%s() appelle %s(), qui n'existe pas" % (nom, appel))
+        r.controle()
+
+        # 4. Chaque element vise par son id existe dans le HTML.
+        for ident in set(re.findall(r'getElementById\("([\w-]+)"\)', b)) \
+                | set(re.findall(r'querySelector\("#([\w-]+)', b)) \
+                | set(re.findall(r'\["([\w-]+)"(?:, "[\w-]+")*\]\.forEach', b)):
+            if not re.search(r'\bid="%s"' % re.escape(ident), source):
+                r.echec("decouverte", "%s() vise #%s, absent du HTML" % (nom, ident))
+            r.controle()
+        for lst in re.findall(r'\[((?:"[\w-]+",\s*)+"[\w-]+")\]\.forEach', b):
+            for ident in re.findall(r'"([\w-]+)"', lst):
+                if not re.search(r'\bid="%s"' % re.escape(ident), source):
+                    r.echec("decouverte", "%s() vise #%s, absent du HTML" % (nom, ident))
+
+        # 5. Chaque cle citee -- y compris dans les tables de titres -- existe,
+        # et dans les SIX langues : la decouverte est le premier ecran d'un
+        # invite, un repli en francais y serait le pire endroit.
+        for cle in set(re.findall(r'"(dec_[a-z0-9_]+?)"', b)):
+            if cle.endswith("_") :
+                continue
+            if cle not in fr:
+                r.echec("decouverte", "%s() cite la cle %s, absente" % (nom, cle))
+    dicos = blocs_i18n(source)
+    a_moi = sorted(k for k in dicos.get("fr", {}) if k.startswith("dec_")) + ["abo_plus_tard"]
+    for langue in ("fr", "en", "tr", "uk", "fa", "ar"):
+        for cle in a_moi:
+            if cle not in dicos.get(langue, {}):
+                r.echec("decouverte", "cle %s absente en %s" % (cle, langue))
+            r.controle()
+
+    # 6. Les blocs empruntes sont encore la ou on les prend.
+    cartes = corps_de_section(source, "flashcards") or ""
+    for besoin in ('class="flashcard-wrapper"', 'id="flashcardActions"'):
+        if besoin not in cartes:
+            r.echec("decouverte", "#flashcards ne contient plus %s : rien a emprunter" % besoin)
+    exo = corps_de_section(source, "exercise") or ""
+    if not re.search(r'\n    <div class="card">', exo):
+        r.echec("decouverte", "#exercise n'a plus de .card enfant direct : rien a emprunter")
+    for ident in ("answerOptions", "answerChunksWrap", "checkButton", "nextButton", "feedback"):
+        if 'id="%s"' % ident not in exo:
+            r.echec("decouverte", "#exercise ne contient plus #%s" % ident)
+    scene = corps_de_section(source, "decouverte") or ""
+    if not re.search(r'<div id="decouverteScene"[^>]*></div>', scene):
+        r.echec("decouverte", "#decouverteScene doit rester vide : elle recoit les vrais blocs")
+    r.controle(8)
+
+    # 7. Les accroches hors du bloc.
+    for fonction, attendu, consequence in ACCROCHES_DECOUVERTE:
+        if attendu not in corps.get(fonction, ""):
+            r.echec("decouverte", "%s() ne contient plus « %s » : %s" % (fonction, attendu, consequence))
+        r.controle()
+    if source.count("window.INSCRIPTION_EN_COURS") < 3:
+        r.echec("decouverte", "le rappel d'authentification ne lit plus INSCRIPTION_EN_COURS")
+
+    # 8. La mesure : la sauvegarde emporte l'etat, et parcours.js lit les etapes.
+    if "decouverteJson:" not in source or "data.decouverteJson" not in source:
+        r.echec("decouverte", "l'etat de la decouverte ne voyage plus avec la sauvegarde")
+    etapes = set(re.findall(r'noterEtape\("(decouverte_[a-z_]*)', source))
+    try:
+        parcours = io.open(os.path.join(RACINE, "tests", "parcours.js"), encoding="utf-8").read()
+    except IOError:
+        parcours = ""
+    for e in sorted(etapes):
+        if e not in parcours:
+            r.echec("decouverte", "tests/parcours.js ne lit pas l'etape %s" % e)
+    r.controle(len(etapes) + 1)
+    print("   decouverte      : %d reponses, %d fonctions, %d etapes mesurees, %d probleme(s)"
+          % (len(contenu), len(siens), len(etapes), len(r.erreurs) - n_avant))
+
+
 def verifier_export_csv(r):
     """Les CSV de export/ sont-ils encore le reflet des JSON ?
 
@@ -1164,6 +1388,7 @@ def main():
     verifier_taille_des_champs(r, source)
     verifier_version(r, source)
     verifier_chemins(r)
+    verifier_decouverte(r, source, fonctions, cles)
     verifier_export_csv(r)
 
     print("\n" + "-" * 62)
