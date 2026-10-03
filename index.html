@@ -4473,6 +4473,19 @@ body[data-theme="dark"] .judge-good{background:#123024; border-color:#2c5c44; co
 body[data-theme="dark"] .flashcard-end{background:#161a22; border-color:#252c38;}
 body[data-theme="dark"] .flash-end-title{color:#e9ecf1;}
 
+/* La fin de l'apercu gratuit (v698) : l'ambre du trema de la marque, pour
+   qu'elle se lise comme une invitation et non comme une erreur. */
+.fin-gratuite{
+    margin:12px 0 4px; padding:12px 14px; border-radius:14px; text-align:start;
+    background:rgba(232,162,58,.12); border:1px solid rgba(232,162,58,.45);
+}
+.fin-gratuite strong{display:block; color:#1C2430; font-size:15px;}
+.fin-gratuite p{margin:6px 0 0; color:#576177; font-size:13px; line-height:1.45;}
+.fin-gratuite button{margin-top:10px; width:100%;}
+body[data-theme="dark"] .fin-gratuite{background:rgba(232,162,58,.10); border-color:rgba(232,162,58,.35);}
+body[data-theme="dark"] .fin-gratuite strong{color:#e9ecf1;}
+body[data-theme="dark"] .fin-gratuite p{color:#aab3c2;}
+
 /* Bouton d'ajout sur une ligne de dictionnaire : discret tant qu'on ne le
    cherche pas, evident des qu'on le cherche. */
 .dict-row{position:relative;}
@@ -6807,7 +6820,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v697</span>
+    <span class="subtitle-version">v698</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8651,6 +8664,8 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
         <div class="flash-end-summary" id="flashEndSummary"></div>
         <div id="flashEndObjectif" class="flash-end-objectif hidden"></div>
+        <!-- La fin de l'apercu gratuit (v698) : remplie par afficherFinGratuite(). -->
+        <div id="finGratuiteFlash" class="fin-gratuite hidden"></div>
         <button id="encoreNeufsBtn" class="secondary hidden" onclick="encoreDesMotsNeufs()" data-i18n="encore_neufs">Encore 15 mots nouveaux</button>
         <button class="secondary" onclick="retryUnmastered()" data-i18n="review_retry_unmastered">Revoir les cartes non maîtrisées</button>
         <button class="secondary" onclick="retryMastered()" data-i18n="review_retry_mastered">Revoir les cartes maîtrisées</button>
@@ -8877,6 +8892,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         </div>
 
         <p id="resultSitue" style="color:#576177; font-size:13px; margin:10px 0 0" hidden></p>
+        <div id="finGratuiteResult" class="fin-gratuite hidden"></div>
 
         <div class="spacer"></div>
         <!-- Le libelle est POSE PAR showResults() : il depend de ce que le
@@ -10590,6 +10606,11 @@ const I18N = {
         dose_du_jour_faite: "Ta dose de mots nouveaux est faite pour aujourd'hui. Il en reste {n} dans ce paquet — ils t'attendent demain.",
         gratuit_rien_aujourdhui: "Rien à réviser aujourd'hui : tes mots reviendront au bon moment. À demain !",
         gratuit_echantillon_fini: "Tu as appris tous les mots de la version gratuite. Pour en découvrir d'autres, il y a l'abonnement.",
+        gratuit_sur: "{n} sur {total} · version gratuite",
+        gratuit_fin_titre: "Fin de l'aperçu gratuit",
+        gratuit_fin_mots: "Tu as découvert les {n} mots gratuits de ce paquet. Les autres sont dans l'abonnement.",
+        gratuit_fin_exos: "Tu as fait les {n} exercices gratuits de cette série, sur {total}. Les autres sont dans l'abonnement.",
+        gratuit_fin_bouton: "Voir l'abonnement",
         alert_no_verbs_available: "Aucun verbe disponible.",
         alert_no_adj_due: "Aucun adjectif à réviser pour l'instant. Continue comme ça !",
         alert_all_adj_mastered: "Tous les adjectifs de ce niveau sont maîtrisés !",
@@ -11617,6 +11638,11 @@ const I18N = {
         dose_du_jour_faite: "You've had your new words for today. {n} left in this deck — they'll be waiting tomorrow.",
         gratuit_rien_aujourdhui: "Nothing to review today: your words will come back at the right time. See you tomorrow!",
         gratuit_echantillon_fini: "You've learned every word in the free version. To discover more, there's the subscription.",
+        gratuit_sur: "{n} of {total} · free version",
+        gratuit_fin_titre: "End of the free preview",
+        gratuit_fin_mots: "You've discovered the {n} free words in this deck. The rest come with the subscription.",
+        gratuit_fin_exos: "You've done the {n} free exercises in this set, out of {total}. The rest come with the subscription.",
+        gratuit_fin_bouton: "See the subscription",
         alert_no_verbs_available: "No verbs available.",
         alert_no_adj_due: "No adjectives to review right now. Keep it up!",
         alert_all_adj_mastered: "All adjectives at this level are mastered!",
@@ -12648,6 +12674,11 @@ const I18N = {
         dose_du_jour_faite: "Bugünlük yeni kelime payın doldu. Bu destede {n} kelime kaldı — yarın seni bekliyorlar.",
         gratuit_rien_aujourdhui: "Bugün tekrar edecek bir şey yok: kelimelerin doğru zamanda geri gelecek. Yarın görüşürüz!",
         gratuit_echantillon_fini: "Ücretsiz sürümdeki tüm kelimeleri öğrendin. Daha fazlasını keşfetmek için abonelik var.",
+        gratuit_sur: "{total} içinden {n} · ücretsiz sürüm",
+        gratuit_fin_titre: "Ücretsiz önizlemenin sonu",
+        gratuit_fin_mots: "Bu destedeki {n} ücretsiz kelimeyi keşfettin. Diğerleri abonelikte.",
+        gratuit_fin_exos: "Bu serideki {total} alıştırmadan {n} ücretsiz olanı yaptın. Diğerleri abonelikte.",
+        gratuit_fin_bouton: "Aboneliğe göz at",
         alert_no_verbs_available: "Kullanılabilir fiil yok.",
         alert_no_adj_due: "Şu anda tekrar edilecek sıfat yok. Böyle devam!",
         alert_all_adj_mastered: "Bu seviyedeki tüm sıfatlar öğrenildi!",
@@ -13285,6 +13316,11 @@ const I18N = {
         dose_du_jour_faite: "Твоя порція нових слів на сьогодні виконана. У цій колоді лишилося {n} — вони чекатимуть завтра.",
         gratuit_rien_aujourdhui: "Сьогодні нічого повторювати: твої слова повернуться вчасно. До завтра!",
         gratuit_echantillon_fini: "Усі слова безкоштовної версії вивчено. Щоб відкрити більше, є підписка.",
+        gratuit_sur: "{n} з {total} · безкоштовна версія",
+        gratuit_fin_titre: "Кінець безкоштовного перегляду",
+        gratuit_fin_mots: "Усі {n} безкоштовних слів цієї колоди вже відкрито. Решта — у підписці.",
+        gratuit_fin_exos: "Безкоштовні вправи цієї серії виконано: {n} з {total}. Решта — у підписці.",
+        gratuit_fin_bouton: "Переглянути підписку",
         alert_no_verbs_available: "Немає доступних дієслів.",
         alert_no_adj_due: "Наразі немає прикметників на повторення. Так тримати!",
         alert_all_adj_mastered: "Усі прикметники цього рівня засвоєні!",
@@ -13848,6 +13884,11 @@ const I18N = {
         dose_du_jour_faite: "سهم امروزت از واژه‌های تازه تمام شد. {n} واژه در این دسته مانده — فردا منتظرت هستند.",
         gratuit_rien_aujourdhui: "امروز چیزی برای مرور نیست: واژه‌هایت به‌موقع برمی‌گردند. تا فردا!",
         gratuit_echantillon_fini: "همهٔ واژه‌های نسخهٔ رایگان را یاد گرفتی. برای کشف واژه‌های بیشتر، اشتراک هست.",
+        gratuit_sur: "{n} از {total} · نسخهٔ رایگان",
+        gratuit_fin_titre: "پایان پیش‌نمایش رایگان",
+        gratuit_fin_mots: "{n} واژهٔ رایگانِ این دسته را دیدی. بقیه در اشتراک است.",
+        gratuit_fin_exos: "{n} تمرین رایگان از {total} تمرینِ این مجموعه را انجام دادی. بقیه در اشتراک است.",
+        gratuit_fin_bouton: "دیدن اشتراک",
         alert_no_verbs_available: "هیچ فعلی در دسترس نیست.",
         alert_no_adj_due: "فعلاً صفتی برای مرور نیست. همین‌طور ادامه بده!",
         alert_all_adj_mastered: "همهٔ صفت‌های این سطح آموخته شده‌اند!",
@@ -15009,6 +15050,11 @@ const I18N = {
         dose_du_jour_faite: "أنجزتَ حصّتك من الكلمات الجديدة لهذا اليوم. وتبقّت {n} في هذه المجموعة — تنتظرك غداً.",
         gratuit_rien_aujourdhui: "لا شيء للمراجعة اليوم: ستعود كلماتك في الوقت المناسب. إلى الغد!",
         gratuit_echantillon_fini: "اكتمل تعلّم كل كلمات النسخة المجانية. لاكتشاف المزيد، هناك الاشتراك.",
+        gratuit_sur: "{n} من {total} · النسخة المجانية",
+        gratuit_fin_titre: "نهاية المعاينة المجانية",
+        gratuit_fin_mots: "انتهت الكلمات المجانية في هذه المجموعة ({n}). البقية متاحة مع الاشتراك.",
+        gratuit_fin_exos: "انتهت التمارين المجانية في هذه السلسلة: {n} من {total}. البقية متاحة مع الاشتراك.",
+        gratuit_fin_bouton: "عرض الاشتراك",
         alert_no_verbs_available: "لا فعل متاح.",
         alert_no_adj_due: "لا صفة للمراجعة حالياً. واصِل هكذا!",
         alert_all_adj_mastered: "كل صفات هذا المستوى متقَنة!",
@@ -21355,6 +21401,7 @@ function renderVerbeLevels(){
             .map((word, index) => ({ word, index, themeId: verbeTheme.id }))
             .filter(it => it.word.niveau === lvl)
             .filter(it => motDansPortee(it.word, portee, "verben"));
+        const totalNiveau = items.length;   // « 10 sur 111 » (v698)
         if(!complet) items = filtrerGratuit(items);
         const total = items.length;
         let mastered = 0;
@@ -21380,7 +21427,7 @@ function renderVerbeLevels(){
                 <div class="theme-progress-bar">
                     <div class="theme-progress-fill" style="width:${percentage}%"></div>
                 </div>
-                <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
+                <div class="theme-percent">${complet ? percentage + t('mastered_suffix') : tf('gratuit_sur', { n: total, total: totalNiveau })}</div>
             </div>
         `;
         item.addEventListener("click", () => startVerbeLevel(lvl));
@@ -21535,6 +21582,7 @@ function renderAdjektiveLevels(){
         let items = adjektiveTheme.words
             .map((word, index) => ({ word, index, themeId: adjektiveTheme.id }))
             .filter(it => it.word[3] === lvl);
+        const totalNiveau = items.length;   // « 10 sur 111 » (v698)
         if(!complet) items = filtrerGratuit(items);
         const total = items.length;
         let mastered = 0;
@@ -21560,7 +21608,7 @@ function renderAdjektiveLevels(){
                 <div class="theme-progress-bar">
                     <div class="theme-progress-fill" style="width:${percentage}%"></div>
                 </div>
-                <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
+                <div class="theme-percent">${complet ? percentage + t('mastered_suffix') : tf('gratuit_sur', { n: total, total: totalNiveau })}</div>
             </div>
         `;
         item.addEventListener("click", () => startAdjektiveLevel(lvl));
@@ -23175,7 +23223,8 @@ function lancerEpreuve(construire, kicker){
             showInfoToast(t(pruefungData ? 'pruefung_niveau_vide' : 'pruefung_pas_encore'));
             return;
         }
-        if(!complet) epreuveGratuiteEnCours = true;
+        if(!complet) epreuveGratuiteEnCours =
+            { total: construire(GRATUIT.examenNiveau[niveauEchantillon()] || "A2").length };
         startExerciseSet(complet ? melangerEpreuve(liste) : liste, kicker,
                          openPruefungInfo,
                          () => lancerEpreuve(construire, kicker));
@@ -24484,6 +24533,23 @@ function optionGratuite(panneau, o){
     return GRATUIT.exercices[panneau] === o.action;
 }
 
+// LA CARTE DE FIN DE L'APERCU GRATUIT (v698). Un encadre ambre dans l'ecran
+// de fin -- des cartes ou des exercices -- qui dit ce qu'on vient de finir et
+// ouvre l'offre d'un geste. Sans texte, il se cache : l'appeler a chaque fin
+// d'ecran suffit, en version complete comme gratuite.
+let apercuExos = null;   // { n, total } de la serie gratuite en cours
+
+function afficherFinGratuite(id, texte){
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(!texte){ el.classList.add("hidden"); el.innerHTML = ""; return; }
+    el.innerHTML = "<strong>" + t("gratuit_fin_titre") + "</strong>"
+        + "<p>" + texte + "</p>"
+        + '<button type="button" class="secondary" onclick="ouvrirAbonnement()">'
+        + t("gratuit_fin_bouton") + "</button>";
+    el.classList.remove("hidden");
+}
+
 // UNE SEANCE GRATUITE VIDE N'EST PAS UNE SEANCE FINIE (v694). La simulation du
 // 2 octobre l'a montre : un bon eleve n'a, certains jours, rien d'echu -- en
 // A1, 15 jours sur 45 -- et l'app lui ouvrait l'offre comme s'il avait tout
@@ -25692,6 +25758,7 @@ function renderNomenLevels(){
                 items.push({ word: w, index: i, themeId: levelData.id });
             });
         });
+        const totalNiveau = items.length;   // « 10 sur 111 » (v698)
         if(!complet) items = filtrerGratuit(items);
         const total = items.length;
         let mastered = 0;
@@ -25715,7 +25782,7 @@ function renderNomenLevels(){
                 <div class="theme-progress-bar">
                     <div class="theme-progress-fill" style="width:${percentage}%"></div>
                 </div>
-                <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
+                <div class="theme-percent">${complet ? percentage + t('mastered_suffix') : tf('gratuit_sur', { n: total, total: totalNiveau })}</div>
             </div>
         `;
         item.addEventListener("click", () => { nomenReturnScreen = 'nomenNiveau'; startRandomMix(lvl, portee); });
@@ -25870,12 +25937,13 @@ function filterAndRenderThemes(){
         // deja la meme chose tant que tous les themes couvraient A1-B2 ; le C1
         // les a separes.
         const niveauxDuTheme = levelsToShow.filter(lvl => theme.levels[lvl]);
-        let total = 0, mastered = 0;
+        let total = 0, mastered = 0, totalNiveau = 0;
         niveauxDuTheme.forEach(lvl => {
             const levelData = theme.levels[lvl];
             // En version gratuite, le compte ne porte que sur ce qui est ouvert.
             if(!accesComplet()){
                 if(!themeNiveauGratuit(levelData.id)) return;
+                totalNiveau += levelData.words.length;
                 motsGratuitsDuTheme(levelData).forEach(it => {
                     total++;
                     if(getWordState(levelData.id, it.index).mastered) mastered++;
@@ -25951,7 +26019,7 @@ function filterAndRenderThemes(){
                     <div class="theme-progress-bar">
                         <div class="theme-progress-fill" style="width:${percentage}%"></div>
                     </div>
-                    <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
+                    <div class="theme-percent">${complet ? percentage + t('mastered_suffix') : (total ? tf('gratuit_sur', { n: total, total: totalNiveau }) : '')}</div>
                 </div>
                 <div class="level-pills">${pillsHtml}</div>
                 ${finirHtml}
@@ -28974,7 +29042,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 697;
+const APP_VERSION = 698;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -32911,6 +32979,12 @@ function showFlashcardEnd(){
         if(t2.cartes.length) encore.textContent = tf("encore_neufs",
                                                     { n: t2.cartes.length });
     }
+    // Version gratuite (v698) : quand le paquet n'a plus aucun mot neuf, c'est
+    // l'apercu qui est fini, pas la journee -- on le dit, offre a portee. Tant
+    // qu'il reste du neuf, la fin de seance reste la fin de seance.
+    afficherFinGratuite("finGratuiteFlash",
+        (!accesComplet() && neufsRestantsDansPaquet() === 0 && (currentCardsFull || []).length)
+            ? tf("gratuit_fin_mots", { n: currentCardsFull.length }) : null);
     fin.classList.remove("hidden");
     sessionVues = 0; sessionSues = 0;
     return true;
@@ -34444,13 +34518,18 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     // les memes -- pas le bloc ou la personne s'etait arretee pendant l'essai.
     const epreuve = epreuveGratuiteEnCours;
     epreuveGratuiteEnCours = false;
+    apercuExos = null;
     if(!accesComplet() && !epreuve){
         if(!exerciceGratuit(restartFn)){ ouvrirAbonnement(); return; }
         const tout = (typeof list === "string") ? await jeu(list) : list;
         if(!tout.length) return;
         list = tout.slice(0, GRATUIT.exercicesGrammaire);
         if(melanger) list = shuffleArray(list.slice());
+        apercuExos = { n: list.length, total: tout.length };
     }
+    // Une epreuve d'examen arrive deja reduite : lancerEpreuve() a passe le
+    // compte complet avec le drapeau.
+    if(epreuve && epreuve.total) apercuExos = { n: list.length, total: epreuve.total };
     if(typeof list === "string"){
         const tout = await jeu(list);
         // Vide = le chargement a echoue, et jeu() l'a deja signale. On ne
@@ -35153,6 +35232,9 @@ function showResults(){
         reprise.textContent = t(cleReprise());
     }
     majCartesRevision();
+    // Version gratuite (v698) : « tu as fait les 3 exercices gratuits, sur 50 ».
+    afficherFinGratuite("finGratuiteResult",
+        apercuExos ? tf("gratuit_fin_exos", apercuExos) : null);
     noterSerieGrammaire(percentage, scoreValue, total);
     document.getElementById("score").textContent = percentage + "%";
     document.getElementById("scoreText").textContent = tf("score_result_text", { n: scoreValue });
