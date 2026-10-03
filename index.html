@@ -5232,7 +5232,12 @@ body[data-theme="dark"] .mos-sejour{color:#9AA2B1;}
 [dir="rtl"] .mos-cart-chevron{transform:scaleX(-1);}
 body[data-theme="dark"] .mos-cart-chevron{color:#6C7686;}
 /* Le reste a faire, sous le cartouche progressif de la vue agrandie. */
-.mos-plein-reste{font-size:12px; color:#9aa3b2; margin-top:8px;}
+.mos-plein-reste{font-size:14px; color:#b4bcc9; margin-top:8px;}
+.mos-plein-intro{
+    max-width:440px; margin:0 auto 14px; padding:0 16px;
+    color:#d6dbe4; font-size:14px; line-height:1.5; text-align:center;
+}
+.mos-plein-intro strong{display:block; color:#f2f4f8; font-size:17px; margin-bottom:4px;}
 .mos-plein-legende .mos-identite{justify-content:center;}
 .mos-plein-legende .mos-peintre{color:#eef2f8;}
 .mos-plein-legende .mos-titre{color:#c3cad6;}
@@ -6753,7 +6758,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v687</span>
+    <span class="subtitle-version">v688</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6951,6 +6956,12 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
 
 <!-- Plein ecran : toucher l'image pour la voir en grand. Demande de Jacques. -->
 <div id="mosaiquePlein" class="mos-plein hidden" onclick="fermerMosaiquePleinEcran()">
+    <!-- LE PREMIER TABLEAU S'EXPLIQUE (v688). Touche par reflexe, il ne montrait
+         qu'une quarantaine de gros carres de couleur, et « encore 690 cartes »
+         en tout petit dessous : rien ne disait qu'une peinture s'y cachait.
+         Signale par Jacques. Rempli seulement pendant le premier tableau --
+         ensuite on sait, et le relire a chaque fois deviendrait du bruit. -->
+    <div id="mosaiquePleinIntro" class="mos-plein-intro hidden"></div>
     <canvas id="mosaiquePleinToile" class="mos-plein-toile"></canvas>
     <div id="mosaiquePleinLegende" class="mos-plein-legende"></div>
 </div>
@@ -9553,6 +9564,8 @@ const I18N = {
         mosaique_agrandir: "Agrandir le tableau",
         mosaique_galerie_kicker: "Tes tableaux",
         mosaique_galerie_vide: "Ta première mosaïque se découvre carte après carte. Elle se rangera ici une fois terminée.",
+        mosaique_intro_titre: "Un tableau se cache ici",
+        mosaique_intro_texte: "Chaque carte que tu passes rend l'image un peu plus nette. À la fin, l'œuvre entière d'un peintre du monde germanophone apparaît, avec son nom et son histoire, et elle rejoint ta galerie.",
         vocab_sus: "maîtrisé",
         vocab_cours: "en cours",
         vocab_reste: "à rencontrer",
@@ -10554,6 +10567,8 @@ const I18N = {
         mosaique_agrandir: "Enlarge the painting",
         mosaique_galerie_kicker: "Your paintings",
         mosaique_galerie_vide: "Your first mosaic uncovers card by card. It will be kept here once finished.",
+        mosaique_intro_titre: "A painting is hidden here",
+        mosaique_intro_texte: "Every card you complete makes the image a little sharper. At the end, the whole work of a painter from the German-speaking world appears, with their name and story, and joins your gallery.",
         vocab_sus: "mastered",
         vocab_cours: "in progress",
         vocab_reste: "to meet",
@@ -11557,6 +11572,8 @@ const I18N = {
         mosaique_agrandir: "Tabloyu büyüt",
         mosaique_galerie_kicker: "Tabloların",
         mosaique_galerie_vide: "İlk mozaiğin kart kart açılır. Tamamlanınca burada saklanır.",
+        mosaique_intro_titre: "Burada bir tablo saklı",
+        mosaique_intro_texte: "Geçtiğin her kart görüntüyü biraz daha netleştirir. Sonunda Almanca konuşulan dünyadan bir ressamın eserinin tamamı, adı ve hikâyesiyle birlikte ortaya çıkar ve galerine eklenir.",
         vocab_sus: "pekişti",
         vocab_cours: "sürüyor",
         vocab_reste: "kaldı",
@@ -12821,6 +12838,8 @@ const I18N = {
         mosaique_agrandir: "Збільшити картину",
         mosaique_galerie_kicker: "Твої картини",
         mosaique_galerie_vide: "Перша мозаїка відкривається картка за карткою. Завершена, вона залишиться тут.",
+        mosaique_intro_titre: "Тут сховано картину",
+        mosaique_intro_texte: "Кожна картка, яку ти проходиш, робить зображення трохи чіткішим. Наприкінці з'явиться весь твір художника з німецькомовного світу, з його ім'ям та історією, і він потрапить до твоєї галереї.",
         vocab_sus: "засвоєно",
         vocab_cours: "у процесі",
         vocab_reste: "попереду",
@@ -14504,6 +14523,8 @@ const I18N = {
         mosaique_agrandir: "بزرگ‌نمایی تابلو",
         mosaique_galerie_kicker: "تابلوهای تو",
         mosaique_galerie_vide: "نخستین موزاییک تو کارت‌به‌کارت آشکار می‌شود. پس از تکمیل، اینجا می‌ماند.",
+        mosaique_intro_titre: "اینجا یک تابلو پنهان است",
+        mosaique_intro_texte: "هر کارتی که پشت سر می‌گذاری، تصویر را کمی واضح‌تر می‌کند. در پایان، کل اثر نقاشی از جهان آلمانی‌زبان با نام و داستانش نمایان می‌شود و به گالری تو اضافه می‌شود.",
         vocab_sus: "تثبیت‌شده",
         vocab_cours: "در جریان",
         vocab_reste: "باقی‌مانده",
@@ -15638,6 +15659,8 @@ const I18N = {
         mosaique_agrandir: "تكبير اللوحة",
         mosaique_galerie_kicker: "لوحاتك",
         mosaique_galerie_vide: "فسيفساؤك الأولى تنكشف بطاقةً بعد بطاقة. وستُحفظ هنا متى اكتملت.",
+        mosaique_intro_titre: "هنا لوحة مخفية",
+        mosaique_intro_texte: "كل بطاقة تُنهيها تجعل الصورة أوضح قليلاً. وفي النهاية تظهر اللوحة كاملةً لرسّام من العالم الناطق بالألمانية، مع اسمه وقصته، وتنضمّ إلى معرضك.",
         vocab_sus: "متقَن",
         vocab_cours: "قيد التعلّم",
         vocab_reste: "لم تصادفه بعد",
@@ -28193,7 +28216,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 687;
+const APP_VERSION = 688;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -31143,6 +31166,14 @@ function ouvrirMosaiquePleinEcran(rang){
         const vue = document.getElementById("mosaiquePlein");
         const toile = document.getElementById("mosaiquePleinToile");
         const leg = document.getElementById("mosaiquePleinLegende");
+        const intro = document.getElementById("mosaiquePleinIntro");
+        if(intro){
+            const premier = r === 1 && !gagnee && v.g.length === 0;
+            intro.innerHTML = premier
+                ? '<strong>' + t("mosaique_intro_titre") + '</strong>' + t("mosaique_intro_texte")
+                : "";
+            intro.classList.toggle("hidden", !premier);
+        }
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = () => {
