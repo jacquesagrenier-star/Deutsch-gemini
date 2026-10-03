@@ -6004,6 +6004,10 @@ body[data-theme="dark"] .dec-texte{color:#aab3c2;}
     font-weight:700; line-height:1.45; color:#1C2430;
 }
 body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
+/* L'etiquette de la projection (v701) : elle dit, a chaque arret, que ce
+   qu'on voit est un EXEMPLE et a quel rythme. */
+.dec-projection{margin:10px 0 0; font-weight:700; line-height:1.45; color:#8A5A12;}
+body[data-theme="dark"] .dec-projection{color:#E8A23A;}
 .abo-plus-tard{margin-top:12px;}
 </style>
 
@@ -6269,10 +6273,13 @@ body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
     <div id="decouverteMosaique" class="dec-mosaique hidden">
         <canvas id="decouverteToile" aria-hidden="true"></canvas>
         <span id="decouverteLueur" class="dec-lueur hidden" aria-hidden="true"></span>
+        <p id="decouverteProjection" class="dec-projection hidden" role="status"></p>
     </div>
     <p id="decouverteBravo" class="dec-bravo hidden" role="status"></p>
+    <button type="button" id="decouverteDebut" class="primary hidden" onclick="commencerVisiteDecouverte()" data-i18n="dec_t0_bouton">COMMENCER LA VISITE</button>
     <button type="button" id="decouverteSuite" class="primary hidden" onclick="suiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
-    <button type="button" id="decouverteFin" class="primary hidden" onclick="terminerDecouverte()" data-i18n="flash_end_done">TERMINER</button>
+    <button type="button" id="decouverteFin" class="primary hidden" onclick="finVisiteDecouverte()" data-i18n="setup_continue">CONTINUER</button>
+    <button type="button" id="decouverteFermer" class="primary hidden" onclick="terminerDecouverte()" data-i18n="dec_t5_bouton">COMMENCER</button>
 </section>
 
 <!-- ================= HOME ================= -->
@@ -6947,7 +6954,7 @@ body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v700</span>
+    <span class="subtitle-version">v701</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10369,6 +10376,12 @@ const I18N = {
         dec_passer: "Passer",
         dec_progression_aria: "Étape {n} sur {total}",
         dec_kicker: "Découvre Wortando",
+        dec_t0_titre: "Une visite guidée de l'app",
+        dec_t0_texte: "Deux minutes, quatre aperçus : des mots, un verbe, un peu de grammaire et ton tableau. L'app en contient bien plus — thèmes, examens, écoute, dictionnaire…",
+        dec_t0_bouton: "COMMENCER LA VISITE",
+        dec_t5_titre: "La visite est terminée !",
+        dec_t5_texte: "Tu as vu un peu de chaque partie. Ta séance du jour t'attend sur l'accueil : quelques mots nouveaux et tes révisions, chaque jour. Le reste de l'app — thèmes, examens, écoute, dictionnaire — est à un toucher.",
+        dec_t5_bouton: "COMMENCER",
         dec_t1_titre: "Ton premier mot",
         dec_t1_titre_plusieurs: "Tes premiers mots",
         dec_t1_texte: "Écoute-le, regarde la couleur de l'article, puis dis si tu le savais.",
@@ -10384,6 +10397,9 @@ const I18N = {
         dec_t4_titre: "Ton tableau commence",
         dec_t4_texte: "Chaque carte travaillée ouvre un carreau. Au bout de {n}, c'est le tableau d'un vrai peintre.",
         dec_t4_bravo: "Tes premières réponses viennent d'ouvrir ces carreaux.",
+        dec_t4_proj_jours: "Exemple, à {n} cartes par jour : dans {j} jours",
+        dec_t4_proj_fin: "Vers le jour {j}, le tableau complet — et le nom du peintre.",
+        dec_t4_proj_retour: "Le tien en est à {n} carreaux. C'est parti !",
         dec_admin_titre: "Découverte guidée",
         dec_admin_desc: "Les quatre étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.",
         dec_admin_btn: "REVOIR LA DÉCOUVERTE GUIDÉE →",
@@ -11431,6 +11447,12 @@ const I18N = {
         dec_passer: "Skip",
         dec_progression_aria: "Step {n} of {total}",
         dec_kicker: "Discover Wortando",
+        dec_t0_titre: "A guided tour of the app",
+        dec_t0_texte: "Two minutes, four previews: words, a verb, a bit of grammar and your painting. The app holds much more — themes, exams, listening, a dictionary…",
+        dec_t0_bouton: "START THE TOUR",
+        dec_t5_titre: "The tour is over!",
+        dec_t5_texte: "You've seen a bit of each part. Your daily session is waiting on the home screen: a few new words and your reviews, every day. The rest of the app — themes, exams, listening, the dictionary — is one tap away.",
+        dec_t5_bouton: "LET'S START",
         dec_t1_titre: "Your first word",
         dec_t1_titre_plusieurs: "Your first words",
         dec_t1_texte: "Listen, look at the colour of the article, then say whether you knew it.",
@@ -11446,6 +11468,9 @@ const I18N = {
         dec_t4_titre: "Your painting begins",
         dec_t4_texte: "Every card you work on opens a tile. After {n}, it's a real painter's masterpiece.",
         dec_t4_bravo: "Your first answers just opened these tiles.",
+        dec_t4_proj_jours: "Example, at {n} cards a day: in {j} days",
+        dec_t4_proj_fin: "Around day {j}, the full painting — and the painter's name.",
+        dec_t4_proj_retour: "Yours has {n} tiles so far. Let's go!",
         dec_admin_titre: "Guided tour",
         dec_admin_desc: "The four steps a new account sees after the welcome screen. Answers count as real answers.",
         dec_admin_btn: "REPLAY THE GUIDED TOUR →",
@@ -12497,6 +12522,12 @@ const I18N = {
         dec_passer: "Geç",
         dec_progression_aria: "Adım {n} / {total}",
         dec_kicker: "Wortando'yu keşfet",
+        dec_t0_titre: "Uygulamada rehberli bir tur",
+        dec_t0_texte: "İki dakika, dört örnek: kelimeler, bir fiil, biraz dilbilgisi ve tablon. Uygulamada çok daha fazlası var — temalar, sınavlar, dinleme, sözlük…",
+        dec_t0_bouton: "TURA BAŞLA",
+        dec_t5_titre: "Tur bitti!",
+        dec_t5_texte: "Her bölümden biraz gördün. Günün oturumu ana ekranda seni bekliyor: her gün birkaç yeni kelime ve tekrarların. Uygulamanın geri kalanı — temalar, sınavlar, dinleme, sözlük — bir dokunuş uzağında.",
+        dec_t5_bouton: "BAŞLA",
         dec_t1_titre: "İlk kelimen",
         dec_t1_titre_plusieurs: "İlk kelimelerin",
         dec_t1_texte: "Dinle, artikelin rengine bak, sonra bilip bilmediğini söyle.",
@@ -12512,6 +12543,9 @@ const I18N = {
         dec_t4_titre: "Tablon başlıyor",
         dec_t4_texte: "Çalışılan her kart bir parça açar. {n} parçanın sonunda gerçek bir ressamın tablosu ortaya çıkar.",
         dec_t4_bravo: "İlk cevapların bu parçaları açtı.",
+        dec_t4_proj_jours: "Örnek, günde {n} kartla: {j} gün sonra",
+        dec_t4_proj_fin: "Yaklaşık {j}. günde tablonun tamamı ve ressamın adı.",
+        dec_t4_proj_retour: "Seninki şimdilik {n} parçada. Haydi başlayalım!",
         dec_admin_titre: "Rehberli keşif",
         dec_admin_desc: "Yeni bir hesabın karşılama ekranından sonra gördüğü dört adım. Cevaplar gerçek cevap sayılır.",
         dec_admin_btn: "REHBERLİ KEŞFİ YENİDEN GÖR →",
@@ -13247,6 +13281,12 @@ const I18N = {
         dec_passer: "Пропустити",
         dec_progression_aria: "Крок {n} з {total}",
         dec_kicker: "Знайомство з Wortando",
+        dec_t0_titre: "Екскурсія застосунком",
+        dec_t0_texte: "Дві хвилини, чотири приклади: слова, дієслово, трохи граматики й твоя картина. У застосунку набагато більше — теми, іспити, слухання, словник…",
+        dec_t0_bouton: "ПОЧАТИ ЕКСКУРСІЮ",
+        dec_t5_titre: "Екскурсію завершено!",
+        dec_t5_texte: "Ось потроху з кожної частини. На головному екрані на тебе чекає щоденне заняття: кілька нових слів і повторення щодня. Решта застосунку — теми, іспити, слухання, словник — за один дотик.",
+        dec_t5_bouton: "ПОЧАТИ",
         dec_t1_titre: "Твоє перше слово",
         dec_t1_titre_plusieurs: "Твої перші слова",
         dec_t1_texte: "Послухай, подивись на колір артикля, а тоді скажи, чи це слово тобі знайоме.",
@@ -13262,6 +13302,9 @@ const I18N = {
         dec_t4_titre: "Твоя картина починається",
         dec_t4_texte: "Кожна опрацьована картка відкриває плитку. Після {n} плиток — картина справжнього художника.",
         dec_t4_bravo: "Твої перші відповіді щойно відкрили ці плитки.",
+        dec_t4_proj_jours: "Приклад, по {n} карток на день: через {j} днів",
+        dec_t4_proj_fin: "Приблизно на {j}-й день — уся картина й ім'я художника.",
+        dec_t4_proj_retour: "У твоїй картині вже відкрито плиток: {n}. Уперед!",
         dec_admin_titre: "Знайомство із застосунком",
         dec_admin_desc: "Чотири кроки, які бачить новий обліковий запис після екрана привітання. Відповіді зараховуються як справжні.",
         dec_admin_btn: "ПЕРЕГЛЯНУТИ ЗНАЙОМСТВО ЩЕ РАЗ →",
@@ -14705,6 +14748,12 @@ const I18N = {
         dec_passer: "رد شدن",
         dec_progression_aria: "گام {n} از {total}",
         dec_kicker: "آشنایی با Wortando",
+        dec_t0_titre: "یک گشت راهنما در برنامه",
+        dec_t0_texte: "دو دقیقه، چهار نمونه: چند واژه، یک فعل، کمی دستور زبان و تابلوی تو. برنامه خیلی بیشتر از این دارد — موضوع‌ها، آزمون‌ها، شنیدن، فرهنگ لغت…",
+        dec_t0_bouton: "شروع گشت",
+        dec_t5_titre: "گشت تمام شد!",
+        dec_t5_texte: "از هر بخش کمی دیدی. جلسهٔ امروزت در صفحهٔ اصلی منتظر توست: هر روز چند واژهٔ تازه و مرورهایت. بقیهٔ برنامه — موضوع‌ها، آزمون‌ها، شنیدن، فرهنگ لغت — با یک لمس در دسترس است.",
+        dec_t5_bouton: "شروع کنیم",
         dec_t1_titre: "نخستین واژه‌ات",
         dec_t1_titre_plusieurs: "نخستین واژه‌هایت",
         dec_t1_texte: "گوش کن، به رنگ حرف تعریف نگاه کن، بعد بگو آن را می‌دانستی یا نه.",
@@ -14720,6 +14769,9 @@ const I18N = {
         dec_t4_titre: "تابلوی تو آغاز می‌شود",
         dec_t4_texte: "هر کارتی که کار می‌کنی یک کاشی را باز می‌کند. پس از {n} کاشی، تابلوی یک نقاش واقعی پیدا می‌شود.",
         dec_t4_bravo: "نخستین پاسخ‌هایت همین حالا این کاشی‌ها را باز کردند.",
+        dec_t4_proj_jours: "نمونه، با {n} کارت در روز: {j} روز دیگر",
+        dec_t4_proj_fin: "حدود روز {j}، تمام تابلو — و نام نقاش.",
+        dec_t4_proj_retour: "تابلوی تو تا اینجا {n} کاشی دارد. شروع کنیم!",
         dec_admin_titre: "آشنایی راهنما",
         dec_admin_desc: "چهار گامی که یک حساب تازه پس از صفحهٔ خوشامد می‌بیند. پاسخ‌ها پاسخ واقعی به شمار می‌آیند.",
         dec_admin_btn: "دیدن دوبارهٔ آشنایی راهنما →",
@@ -15672,6 +15724,12 @@ const I18N = {
         dec_passer: "تخطٍّ",
         dec_progression_aria: "الخطوة {n} من {total}",
         dec_kicker: "تعرّف على Wortando",
+        dec_t0_titre: "جولة إرشادية في التطبيق",
+        dec_t0_texte: "دقيقتان وأربع لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك. وفي التطبيق أكثر من ذلك بكثير — مواضيع، وامتحانات، واستماع، وقاموس…",
+        dec_t0_bouton: "ابدأ الجولة",
+        dec_t5_titre: "انتهت الجولة!",
+        dec_t5_texte: "رأيت لمحة من كل جزء. جلستك اليومية تنتظرك في الشاشة الرئيسية: كلمات جديدة ومراجعاتك كل يوم. وبقية التطبيق — المواضيع والامتحانات والاستماع والقاموس — على بُعد لمسة.",
+        dec_t5_bouton: "لنبدأ",
         dec_t1_titre: "كلمتك الأولى",
         dec_t1_titre_plusieurs: "كلماتك الأولى",
         dec_t1_texte: "استمع، وانظر إلى لون أداة التعريف، ثم قل إن كنت تعرفها.",
@@ -15687,6 +15745,9 @@ const I18N = {
         dec_t4_titre: "لوحتك تبدأ",
         dec_t4_texte: "كل بطاقة تعمل عليها تفتح قطعة. بعد {n} قطعة تظهر لوحة رسّام حقيقي.",
         dec_t4_bravo: "إجاباتك الأولى فتحت هذه القطع للتو.",
+        dec_t4_proj_jours: "مثال، بمعدل {n} بطاقة يوميًا: اليوم {j}",
+        dec_t4_proj_fin: "نحو اليوم {j}: اللوحة كاملة واسم الرسّام.",
+        dec_t4_proj_retour: "في لوحتك الآن {n} من القطع. لنبدأ!",
         dec_admin_titre: "الجولة التعريفية",
         dec_admin_desc: "الخطوات الأربع التي يراها حساب جديد بعد شاشة الترحيب. تُحتسب الإجابات إجابات حقيقية.",
         dec_admin_btn: "إعادة الجولة التعريفية ←",
@@ -17089,16 +17150,24 @@ async function lancerDecouverte(){
     if(getLearningDirection() === "en") return false;
     const reponse = reponseDecouverte();
     const v = etatMosaique();
-    const moi = { reponse: reponse, contenu: DECOUVERTE_CONTENU[reponse], etape: 1,
-                  noms: [], verbe: null, exos: [], mosaiqueAvant: { r: v.r, c: v.c } };
+    const moi = { reponse: reponse, contenu: DECOUVERTE_CONTENU[reponse], etape: 0,
+                  noms: [], verbe: null, exos: [], mosaiqueAvant: { r: v.r, c: v.c },
+                  pret: false, demarrer: false };
     decouverte = moi;
     if(!lireDecouverte().debut) ecrireDecouverte({ debut: new Date().toISOString(), reponse: reponse });
     noterEtape("decouverte_debut");
     document.body.classList.add("en-decouverte");
     showScreen("decouverte");
+    // L'INTRODUCTION (v701) : elle dit que c'est une visite, et qu'elle ne
+    // montre qu'une partie de l'app. Elle s'affiche AVANT les donnees, et
+    // couvre leur chargement : le temps de la lire, elles sont arrivees.
+    ["decouverteSuite", "decouverteFin", "decouverteFermer", "decouverteBravo", "decouverteMosaique"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add("hidden");
+    });
     peindreCadreDecouverte();
-    const texte = document.getElementById("decouverteTexte");
-    if(texte) texte.textContent = t("loading_label");
+    const debut = document.getElementById("decouverteDebut");
+    if(debut) debut.classList.remove("hidden");
     await attendreDonneesDecouverte();
     // « Passer » a pu etre touche pendant le chargement.
     if(decouverte !== moi) return true;
@@ -17106,8 +17175,18 @@ async function lancerDecouverte(){
     moi.verbe = carteDeVerbeDecouverte(moi.contenu.verbe);
     try{ moi.exos = await exercicesDecouverte(moi.contenu, moi.noms); }catch(e){ moi.exos = []; }
     if(decouverte !== moi) return true;
-    allerEtapeDecouverte(1);
+    moi.pret = true;
+    // Le bouton a ete touche pendant le chargement : on y va maintenant.
+    if(moi.demarrer) allerEtapeDecouverte(1);
     return true;
+}
+
+// « Commencer la visite ». Les donnees pas encore arrivees, le geste est
+// garde : lancerDecouverte() ouvrira l'etape 1 des qu'elles seront la.
+function commencerVisiteDecouverte(){
+    if(!decouverte) return;
+    if(decouverte.pret) allerEtapeDecouverte(1);
+    else decouverte.demarrer = true;
 }
 
 // Le tableau de bord admin : la revoir, quel que soit l'etat enregistre.
@@ -17130,18 +17209,18 @@ function peindreCadreDecouverte(){
             }
         }
         Array.from(barre.children).forEach((seg, i) => seg.classList.toggle("fait", i < n));
-        barre.setAttribute("aria-valuenow", String(n));
+        barre.setAttribute("aria-valuenow", String(Math.min(n, DECOUVERTE_ETAPES)));
         barre.setAttribute("aria-valuemax", String(DECOUVERTE_ETAPES));
         barre.setAttribute("aria-label", tf("dec_progression_aria", { n: n, total: DECOUVERTE_ETAPES }));
     }
     const etape = document.getElementById("decouverteEtape");
-    if(etape) etape.textContent = n + " / " + DECOUVERTE_ETAPES;
+    if(etape) etape.textContent = (n && n <= DECOUVERTE_ETAPES) ? n + " / " + DECOUVERTE_ETAPES : "";
     const plusieurs = decouverte.noms.length > 1 || (decouverte.contenu.noms || []).length > 1;
     const temps = (decouverte.contenu.verbe && decouverte.contenu.verbe.temps) || "praesens";
-    const titres = { 1: plusieurs ? "dec_t1_titre_plusieurs" : "dec_t1_titre",
-                     2: "dec_t2_titre", 3: "dec_t3_titre", 4: "dec_t4_titre" };
-    const textes = { 1: plusieurs ? "dec_t1_texte_plusieurs" : "dec_t1_texte",
-                     2: "dec_t2_texte_" + temps, 3: "dec_t3_texte", 4: "dec_t4_texte" };
+    const titres = { 0: "dec_t0_titre", 1: plusieurs ? "dec_t1_titre_plusieurs" : "dec_t1_titre",
+                     2: "dec_t2_titre", 3: "dec_t3_titre", 4: "dec_t4_titre", 5: "dec_t5_titre" };
+    const textes = { 0: "dec_t0_texte", 1: plusieurs ? "dec_t1_texte_plusieurs" : "dec_t1_texte",
+                     2: "dec_t2_texte_" + temps, 3: "dec_t3_texte", 4: "dec_t4_texte", 5: "dec_t5_texte" };
     const titre = document.getElementById("decouverteTitre");
     if(titre) titre.textContent = t(titres[n]);
     const texte = document.getElementById("decouverteTexte");
@@ -17183,7 +17262,7 @@ function allerEtapeDecouverte(n){
     decouverte.etape = n;
     noterEtape("decouverte_etape" + n);
     peindreCadreDecouverte();
-    ["decouverteSuite", "decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
+    ["decouverteDebut", "decouverteSuite", "decouverteFin", "decouverteFermer", "decouverteBravo", "decouverteMosaique"].forEach(id => {
         const el = document.getElementById(id);
         if(el) el.classList.add("hidden");
     });
@@ -17262,7 +17341,15 @@ function montrerTableauDecouverte(){
     const toile = document.getElementById("decouverteToile");
     const lueur = document.getElementById("decouverteLueur");
     const moi = decouverte;
-    const conclure = (nouveaux) => {
+    const etiquette = document.getElementById("decouverteProjection");
+    if(etiquette) etiquette.classList.add("hidden");
+    const montrerFin = () => {
+        if(decouverte !== moi) return;
+        const fin = document.getElementById("decouverteFin");
+        if(fin) fin.classList.remove("hidden");
+    };
+    // `projeter` : la projection (v701), qui appelle montrerFin a son terme.
+    const conclure = (nouveaux, projeter) => {
         if(decouverte !== moi) return;
         if(nouveaux){
             try{ launchConfetti(); }catch(e){}
@@ -17273,8 +17360,8 @@ function montrerTableauDecouverte(){
             bravo.textContent = t("dec_t4_bravo");
             bravo.classList.remove("hidden");
         }
-        const fin = document.getElementById("decouverteFin");
-        if(fin) fin.classList.remove("hidden");
+        if(projeter) projeter(montrerFin);
+        else montrerFin();
     };
     if(!zone || !toile){ conclure(false); return; }
     chargerMosaiques().then(() => {
@@ -17288,6 +17375,7 @@ function montrerTableauDecouverte(){
             const total = MOSAIQUE_CARREAUX;
             const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
             const avant = moi.mosaiqueAvant;
+            const projeter = (fin) => projeterTableauDecouverte(toile, img, v, total, moi, lueur, fin);
             // ⚠️ RIEN N'EST INVENTE. Sans carreau gagne (plafond du jour, trophee
             // en cours, toutes les cartes passees), on montre l'etat tel qu'il
             // est, sans lueur ni fete : rejouer le dernier carreau comme s'il
@@ -17295,7 +17383,7 @@ function montrerTableauDecouverte(){
             const depart = (!fini && avant.r === v.r) ? Math.min(avant.c, v.c) : v.c;
             if(fini || depart >= v.c){
                 dessinerMosaique(toile, img, v.c, total, fini);
-                conclure(false);
+                conclure(false, fini ? null : projeter);
                 return;
             }
             dessinerMosaique(toile, img, depart, total, false);
@@ -17306,11 +17394,61 @@ function montrerTableauDecouverte(){
                 const r = dessinerMosaique(toile, img, k, total, false);
                 placerLueurDecouverte(lueur, toile, r);
                 if(k < v.c) minuteurTableau = setTimeout(suivant, 650);
-                else minuteurTableau = setTimeout(() => conclure(true), 450);
+                else minuteurTableau = setTimeout(() => conclure(true, projeter), 450);
             };
             minuteurTableau = setTimeout(suivant, 600);
         });
     }).catch(() => conclure(false));
+}
+
+// LA PROJECTION (v701). Quatre ou cinq carreaux sur 700 disent que le tableau
+// commence, pas ou il mene. Apres les vrais carreaux, on montre donc le meme
+// tableau dans 3 puis 7 jours, au rythme de l'objectif quotidien par defaut,
+// puis on revient au vrai.
+// ⚠️ AU RYTHME DE L'OBJECTIF PAR DEFAUT, PAS DU PLAFOND. 80 carreaux par jour
+// (MOSAIQUE_PLAFOND) est un maximum ; le montrer a un debutant lui donne un
+// rythme qu'il ne tiendra pas, et sa vraie progression parait lente ensuite.
+// ⚠️ 3 ET 7 JOURS, PAS 7 ET 14. Chaque carte affine un carreau : l'image se
+// lit bien plus tot que son pourcentage ne le dit. A 14 jours (~60 %), la foret
+// du premier tableau etait deja reconnaissable a l'essai -- la surprise gachee.
+// ⚠️ JAMAIS AU-DELA DE 85 %. La recompense est de decouvrir l'oeuvre et son
+// peintre a la fin : la projection s'arrete avant qu'on la reconnaisse, et un
+// arret qui depasserait ce seuil est saute.
+// ⚠️ C'EST UN EXEMPLE, ET L'ETIQUETTE LE DIT A CHAQUE ARRET -- puis le
+// tableau revient a son etat reel, avec son vrai compte. La regle « rien
+// n'est invente » tient : rien n'est presente comme acquis.
+function projeterTableauDecouverte(toile, img, v, total, moi, lueur, fin){
+    const etiquette = document.getElementById("decouverteProjection");
+    const rythme = DEFAULT_DAILY_GOAL_TARGET;
+    const arrets = [3, 7].map(j => ({ j: j, c: v.c + j * rythme }))
+                          .filter(a => a.c < total * 0.85);
+    if(!etiquette || !arrets.length){ fin(); return; }
+    const joursTotal = Math.ceil((total - v.c) / rythme);
+    const bravo = document.getElementById("decouverteBravo");
+    let i = 0;
+    const suivant = () => {
+        if(decouverte !== moi) return;
+        if(i === 0){
+            if(lueur) lueur.classList.add("hidden");
+            if(bravo) bravo.classList.add("hidden");
+        }
+        if(i < arrets.length){
+            const a = arrets[i++];
+            dessinerMosaique(toile, img, a.c, total, false);
+            etiquette.textContent = tf("dec_t4_proj_jours", { n: rythme, j: a.j });
+            etiquette.classList.remove("hidden");
+            minuteurTableau = setTimeout(suivant, 1900);
+        } else if(i === arrets.length){
+            i++;
+            etiquette.textContent = tf("dec_t4_proj_fin", { j: joursTotal });
+            minuteurTableau = setTimeout(suivant, 2400);
+        } else {
+            dessinerMosaique(toile, img, v.c, total, false);
+            etiquette.textContent = tf("dec_t4_proj_retour", { n: v.c });
+            fin();
+        }
+    };
+    minuteurTableau = setTimeout(suivant, 1600);
 }
 
 // La tesselle est en coordonnees du canevas ; la lueur se pose en pixels
@@ -17347,12 +17485,33 @@ function fermerDecouverte(){
 // tests/parcours.js doit pouvoir trancher -- la carte, le verbe, la grammaire ?
 function passerDecouverte(){
     if(!decouverte) return;
-    const n = decouverte.etape || 1;
+    // Depuis la page de fin, il n'y a plus rien a passer : c'est une fin.
+    if(decouverte.etape > DECOUVERTE_ETAPES){ terminerDecouverte(); return; }
+    // 0 = passee des l'introduction, avant toute carte.
+    const n = decouverte.etape;
     noterEtape("decouverte_passee");
     noterEtape("decouverte_passee_etape" + n);
     ecrireDecouverte({ fin: "passee", etapePassee: n });
     fermerDecouverte();
     goHome();
+}
+
+// LA PAGE DE FIN (v701). Elle dit que la visite est finie, que l'app commence,
+// et ou se trouve la suite : la seance du jour, sur l'accueil. Sans elle, le
+// dernier geste menait droit a l'accueil, et rien ne disait que la visite
+// n'etait qu'un apercu.
+function finVisiteDecouverte(){
+    if(!decouverte) return;
+    clearTimeout(minuteurTableau);
+    decouverte.etape = DECOUVERTE_ETAPES + 1;
+    ["decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add("hidden");
+    });
+    peindreCadreDecouverte();
+    const fermer = document.getElementById("decouverteFermer");
+    if(fermer) fermer.classList.remove("hidden");
+    window.scrollTo(0, 0);
 }
 
 function terminerDecouverte(){
@@ -29951,7 +30110,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 700;
+const APP_VERSION = 701;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
