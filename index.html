@@ -2917,7 +2917,8 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
    reste lisible et touchable -- le toucher ouvre l'offre -- mais il se lit
    comme en retrait. */
 .level-pill.verrou,
-.theme-item.verrou{
+.theme-item.verrou,
+.orb-opt.verrou{
     opacity:.55;
     border-style:dashed;
 }
@@ -6806,7 +6807,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v694</span>
+    <span class="subtitle-version">v695</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -22152,6 +22153,12 @@ function startEnglishArtikelExercise(){
 }
 
 function orbAction(action){
+    // La meme regle que le dessin du panneau : une porte fermee ouvre l'offre.
+    if(!accesComplet() && openOrbId){
+        const data = orbPanelData(openOrbId);
+        const o = (data.options || []).find(x => x.action === action);
+        if(o && !optionGratuite(openOrbId, o)){ ouvrirAbonnement(); return; }
+    }
     if(action.startsWith("comingSoonPanel|")){
         comingSoon(action.split("|")[1]);
         goHome();
@@ -22232,10 +22239,19 @@ function renderOrbPanel(){
     kickerEl.textContent = data.sub || "Catégorie";
     titleEl.textContent = data.title;
 
-    const options = optionsVisibles(data.options);
+    // Version gratuite (v695) : ce qui n'est pas dans l'echantillon porte le
+    // meme cadenas discret que les themes, et la serie gratuite dit « 3 ».
+    const complet = accesComplet();
+    const options = optionsVisibles(data.options).map(o => {
+        if(complet) return o;
+        if(!optionGratuite(openOrbId, o)) return Object.assign({}, o, { verrou: true, count: "🔒" });
+        if(GRATUIT.exercices[openOrbId] === o.action)
+            return Object.assign({}, o, { count: String(GRATUIT.exercicesGrammaire) });
+        return o;
+    });
 
     const ligne = o => `
-        <div class="orb-opt ${o.primary ? "primary" : ""}" onclick="orbAction('${o.action}')">
+        <div class="orb-opt ${o.primary ? "primary" : ""}${o.verrou ? " verrou" : ""}" onclick="orbAction('${o.action}')">
             <div class="orb-opt-left">
                 <div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>
                 <div>
@@ -24272,7 +24288,31 @@ const GRATUIT = {
     },
     // Il n'y a de contenu d'examen qu'en A2, B1 et C1 : l'A1 recoit
     // l'echantillon A2 (« ce qui t'attend »), le B2 celui du B1.
-    examenNiveau: { A1: "A2", A2: "A2", B1: "B1", B2: "B1", C1: "C1" }
+    examenNiveau: { A1: "A2", A2: "A2", B1: "B1", B2: "B1", C1: "C1" },
+    // LA PREMIERE SERIE DE CHAQUE TUILE DE GRAMMAIRE (v695), ses 3 premiers
+    // exercices -- decide le 2 octobre. Le nom est celui de la fonction qui
+    // lance la serie : startExerciseSet() la reconnait a sa fonction de
+    // relance. Choisies a la main parce que « la premiere option du panneau »
+    // n'est pas toujours une serie : chez les Verbes c'est un ecran de temps,
+    // chez les Adjectifs une lecon. Ecrire et les dictees ne sont pas dans
+    // l'echantillon.
+    exercices: {
+        nomen:         "startQuizArticle",
+        verben:        "startWissenKennenUebung",
+        adjektive:     "startAdjektiveDeklinationExercises",
+        kasus:         "startKasusReconnaissance",
+        praep:         "startPraepReconnaissance",
+        pronomen:      "startDerEinUebung",
+        konjunktionen: "startKonjunktionenNuance",
+        wortstellung:  "startWortstellungV2Exercise",
+        adverbien:     "startAdverbienNuance",
+        partikeln:     "startPartikelnNuance",
+        zuinfinitiv:   "startZuInfinitivExercise"
+    },
+    // Les portes d'un panneau qui restent ouvertes parce qu'elles verifient
+    // elles-memes (themes, niveaux de verbes et d'adjectifs), ou parce
+    // qu'elles menent a la serie gratuite (la lecon des adjectifs).
+    portesOuvertes: ["openNomen", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination"]
 };
 
 let accesAVieFirestore = false;
@@ -24377,6 +24417,26 @@ function filtrerGratuit(items){
     const cles = clesGratuites();
     return items.filter(it => cles.has(it.themeId + "#" + it.index)
         || !estNeuf(getWordState(it.themeId, it.index)));
+}
+
+// LA GRAMMAIRE EN VERSION GRATUITE (v695). Une serie est gratuite si sa
+// fonction de lancement est celle d'une tuile dans GRATUIT.exercices. On
+// compare des fonctions, pas des noms de jeu : une meme fonction peut servir
+// un jeu ou un tableau construit a la volee (le quiz d'article).
+function exerciceGratuit(relance){
+    return Object.values(GRATUIT.exercices).some(nom =>
+        typeof window[nom] === "function" && window[nom] === relance);
+}
+
+// Une option de panneau, en version gratuite : la comprendre et en sortir
+// restent libres ; s'entrainer ne l'est que sur la serie choisie.
+function optionGratuite(panneau, o){
+    // « Construire la phrase » est rangee dans « ailleurs » mais c'est un jeu
+    // a part entiere, qui ne passe pas par startExerciseSet().
+    if(o.action === "ouvrirTuilesMenu") return false;
+    if(o.section === "comprendre" || o.section === "ailleurs") return true;
+    if(GRATUIT.portesOuvertes.indexOf(o.action) >= 0) return true;
+    return GRATUIT.exercices[panneau] === o.action;
 }
 
 // UNE SEANCE GRATUITE VIDE N'EST PAS UNE SEANCE FINIE (v694). La simulation du
@@ -28841,7 +28901,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 694;
+const APP_VERSION = 695;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -34302,6 +34362,18 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     // Tout lancement normal sort de la reprise des erreurs ; revoirMesErreurs()
     // repose le drapeau APRES son appel.
     revisionErreursEnCours = false;
+    // ⚠️ LE SEUL PASSAGE DE TOUTES LES SERIES (v695) : panneaux, boutons des
+    // lecons, dictees, quiz construits a la volee. La version gratuite se
+    // verifie donc ici, une fois. Une serie hors echantillon ouvre l'offre ;
+    // la serie gratuite d'une tuile sert ses 3 PREMIERS exercices, toujours
+    // les memes -- pas le bloc ou la personne s'etait arretee pendant l'essai.
+    if(!accesComplet()){
+        if(!exerciceGratuit(restartFn)){ ouvrirAbonnement(); return; }
+        const tout = (typeof list === "string") ? await jeu(list) : list;
+        if(!tout.length) return;
+        list = tout.slice(0, GRATUIT.exercicesGrammaire);
+        if(melanger) list = shuffleArray(list.slice());
+    }
     if(typeof list === "string"){
         const tout = await jeu(list);
         // Vide = le chargement a echoue, et jeu() l'a deja signale. On ne
