@@ -6805,7 +6805,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v691</span>
+    <span class="subtitle-version">v692</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24267,10 +24267,13 @@ function accesComplet(){
     return etatAcces() !== "gratuit";
 }
 
-// Le niveau qui regle l'echantillon. La question du debut (« Tu connais deja un
-// peu d'allemand ? ») n'est pas encore construite : d'ici la, A1.
+// Le niveau qui regle l'echantillon : celui de la seance du jour, que la
+// personne choisit dans le bandeau. « S'il change de niveau, l'echantillon le
+// suit » (decide le 2 octobre) -- et un seul est ouvert a la fois, puisqu'il
+// n'y a qu'un niveau de seance. La question du debut, quand elle existera,
+// reglera ce meme niveau.
 function niveauEchantillon(){
-    return "A1";
+    try{ return niveauSeance(); }catch(e){ return "A1"; }
 }
 
 function themeNiveauGratuit(levelId){
@@ -24291,6 +24294,39 @@ function motsGratuitsDuTheme(levelData){
         items.sort((a, b) => rang(a) - rang(b) || a.index - b.index);
     }
     return items.slice(0, GRATUIT.nomsParTheme).sort((a, b) => a.index - b.index);
+}
+
+// ⚠️ LE SEUL FILTRE DE LA VERSION GRATUITE POUR LES PAQUETS DE CARTES (v692).
+// Toute porte qui constitue un paquet -- seance du jour, mots aleatoires --
+// le passe ici plutot que de refaire son propre tri : deux definitions de
+// « ce qui est gratuit » finiraient par diverger. Garde : les noms des themes
+// gratuits (10 par theme), les 10 verbes et les 10 adjectifs les plus
+// frequents du niveau. Le reste (adverbes, particules, expressions...) ne fait
+// pas partie de l'echantillon decide.
+function clesGratuites(){
+    const niv = niveauEchantillon();
+    const cles = new Set();
+    (typeof themes !== "undefined" ? themes : []).forEach(th => {
+        const d = th && th.levels && th.levels[niv];
+        if(d && themeNiveauGratuit(d.id)) motsGratuitsDuTheme(d).forEach(it => cles.add(d.id + "#" + it.index));
+    });
+    let rangs = null;
+    try{ rangs = rangsFrequence; }catch(e){}
+    const rang = it => (rangs && rangs.has(motDeLaCarte(it))) ? rangs.get(motDeLaCarte(it)) : 2;
+    let paquet = [];
+    try{ paquet = paquetDuNiveau(niv); }catch(e){}
+    [["verben", GRATUIT.verbes], ["adjektive", GRATUIT.adjectifs]].forEach(([mode, n]) => {
+        paquet.filter(it => it.mode === mode)
+              .sort((a, b) => rang(a) - rang(b) || a.index - b.index)
+              .slice(0, n)
+              .forEach(it => cles.add(it.themeId + "#" + it.index));
+    });
+    return cles;
+}
+
+function filtrerGratuit(items){
+    const cles = clesGratuites();
+    return items.filter(it => cles.has(it.themeId + "#" + it.index));
 }
 
 function basculerApercuGratuit(){
@@ -25977,6 +26013,12 @@ function startRandomMix(level, portee){
         });
     });
     if(portee !== "tout") pool = pool.filter(it => motDansPortee(it.word, portee, "nomen"));
+    // Version gratuite (v692) : le melange ne puise que dans l'echantillon. Un
+    // niveau sans echantillon ouvre l'offre au lieu d'un paquet vide.
+    if(!accesComplet()){
+        pool = filtrerGratuit(pool);
+        if(pool.length === 0){ ouvrirAbonnement(); return; }
+    }
     if(pool.length === 0){ showInfoToast(t('alert_no_words_available')); return; }
     pool = sansDoublons(pool);
     shuffleArray(pool);
@@ -28697,7 +28739,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 691;
+const APP_VERSION = 692;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -31898,13 +31940,26 @@ async function ouvrirSeanceDuJour(){
     // sortiraient dans l'ordre du fichier -- une seule fois, mais c'est la
     // seance qui compte le plus : la premiere.
     await chargerFrequence();
-    const pool = paquetDuNiveau(niveau);
-    if(!pool.length){ showInfoToast(t("alert_all_theme_words_mastered")); return; }
+    // VERSION GRATUITE (v692) : la seance ne puise que dans l'echantillon du
+    // niveau choisi -- pour le neuf ET pour les revisions. Les mots d'un autre
+    // niveau appris pendant l'essai ne reviennent pas : ils sont derriere le
+    // cadenas comme le reste. Echantillon epuise : l'offre, au lieu d'un
+    // message « tout est su » qui laisserait croire le cours fini.
+    const complet = accesComplet();
+    const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
+    if(!pool.length){
+        if(!complet){ ouvrirAbonnement(); return; }
+        showInfoToast(t("alert_all_theme_words_mastered")); return;
+    }
     // Tous les niveaux pour les echeances, le niveau choisi pour le neuf.
     const tout = [];
-    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });
+    if(complet) NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });
+    else tout.push.apply(tout, pool);
     const seance = cartesDeSeance(tout, pool);
-    if(!seance.length){ toastSeanceVide(tout, "alert_all_theme_words_mastered"); return; }
+    if(!seance.length){
+        if(!complet){ ouvrirAbonnement(); return; }
+        toastSeanceVide(tout, "alert_all_theme_words_mastered"); return;
+    }
     // Le paquet de reference porte TOUT : « en faire 20 de plus » doit pouvoir
     // aller chercher du retard d'un autre niveau, pas seulement du neuf d'ici.
     currentCardsFull = tout;
