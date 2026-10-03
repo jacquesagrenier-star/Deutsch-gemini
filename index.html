@@ -5770,6 +5770,42 @@ html[dir="rtl"] .reglage-langue:not([open]) > summary::after{transform:scaleX(-1
 .reglage-langue > summary::after{margin-inline-start:0;}
 .reglage-langue[open] > summary{margin-bottom:6px;}
 
+/* --- L'ECRAN D'ABONNEMENT (v690) --- */
+#abonnement{max-width:420px; margin:0 auto;}
+.abo-haut{display:flex; justify-content:flex-end;}
+.abo-fermer{background:none; border:0; font-size:20px; padding:6px 8px; color:inherit; opacity:.55; cursor:pointer; min-height:auto; width:auto;}
+.abo-titre{text-align:center; font-size:28px; line-height:1.15; margin:4px 0 6px;}
+.abo-sous-titre{text-align:center; opacity:.65; margin:0 0 18px; font-size:15px;}
+.abo-avantages{list-style:none; padding:0; margin:0 4px 20px; display:grid; gap:10px; font-size:15px;}
+.abo-avantages li{display:flex; gap:10px; align-items:flex-start;}
+.abo-avantages li::before{content:"✓"; color:var(--g-das); font-weight:800;}
+.abo-plan{
+    position:relative; display:flex; justify-content:space-between; align-items:center; width:100%;
+    margin:10px 0 0; padding:14px 16px; border-radius:14px; text-align:start; cursor:pointer;
+    background:rgba(var(--wt-action-rgb),.03); border:1.5px solid var(--wt-bordure-accent); color:inherit; font:inherit;
+}
+.abo-plan.choisi{border:2px solid var(--wt-ambre); background:var(--wt-teinte);}
+.abo-plan:first-of-type{margin-top:18px;}
+.abo-plan-nom, .abo-plan-prix{display:flex; flex-direction:column; font-weight:700; font-size:16px;}
+.abo-plan-prix{text-align:end;}
+.abo-plan small{font-weight:400; font-size:12.5px; opacity:.65;}
+.abo-badge{
+    position:absolute; top:-11px; inset-inline-start:14px; background:var(--wt-ambre); color:#1C2430;
+    font-size:11.5px; font-weight:800; padding:2px 9px; border-radius:999px;
+}
+.abo-calendrier{list-style:none; padding:0; margin:20px 6px 0; display:grid; gap:10px; font-size:14px;}
+.abo-calendrier li{display:flex; gap:10px; align-items:flex-start;}
+.abo-point{flex:none; width:11px; height:11px; border-radius:50%; margin-top:5px;}
+.abo-point.aujourdhui{background:var(--g-das);}
+.abo-point.rappel{background:var(--wt-ambre);}
+.abo-point.debut{background:var(--wt-encre-texte);}
+.abo-bouton{
+    display:block; width:100%; margin-top:20px; padding:16px; border:0; border-radius:14px; cursor:pointer;
+    background:var(--wt-action); color:var(--wt-sur-action); font:inherit; font-weight:800; font-size:16px;
+}
+.abo-petit{text-align:center; font-size:12px; opacity:.65; line-height:1.6; margin-top:10px;}
+.abo-petit a{color:inherit;}
+
 /* --- TABLEAU ADMIN : UNE LIGNE PAR TESTEUR (v680) ---
    Le point dit l'etat d'un coup d'oeil : plein vert = actif cette semaine,
    ambre = a relancer, vide = jamais commence. Le detail s'ouvre au toucher. */
@@ -6761,7 +6797,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v689</span>
+    <span class="subtitle-version">v690</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9206,6 +9242,30 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
     </div>
 </section>
 
+<!-- ================= ABONNEMENT (v690) =================
+     L'ECRAN QUE LES GRANDES APPS ONT CONVERGE A MONTRER, avec nos mots et nos
+     couleurs : une promesse, quatre avantages coches, l'annuel preselectionne
+     avec son prix ramene au mois et son economie, le calendrier de l'essai
+     (idee de Blinkist), un seul bouton qui parle de l'essai et non du paiement,
+     et en petit ce qu'Apple exige (annulation, restauration, conditions).
+     Choix valides par Jacques le 2 octobre 2026.
+     ⚠️ APERCU SEULEMENT : on n'y arrive que par le tableau admin, et le bouton
+     ne paie rien. Le paiement viendra avec RevenueCat, et le rappel du jour 5
+     avec une notification programmee sur le telephone -- la ligne qui le
+     promet ne doit pas partir chez les usagers avant que le rappel existe.
+     ⚠️ LA VERSION GRATUITE N'Y EST PAS ANNONCEE. « 5 themes restent gratuits »
+     sous « 7 jours gratuits » brouillait les deux offres -- on ne savait plus si
+     on essayait ou si on restait gratuitement (Jacques). Elle se decouvre en
+     fermant l'ecran, ou a la fin de l'essai.
+     ⚠️ « 7 700 MOTS DU A1 AU C1 », JAMAIS « LES 7 700 MOTS » : l'article
+     ferait croire que la liste est complete (remarque de Jacques). -->
+<section id="abonnement" class="screen">
+    <div class="abo-haut">
+        <button type="button" class="abo-fermer" onclick="fermerAbonnement()" data-i18n-aria-label="abo_fermer" aria-label="Fermer">✕</button>
+    </div>
+    <div id="aboContenu"></div>
+</section>
+
 <!-- ================= ADMIN DASHBOARD ================= -->
 
 <section id="adminDashboard" class="screen">
@@ -9234,6 +9294,16 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <div id="adminCodesList"></div>
     </div>
 
+
+    <!-- L'apercu de l'ecran d'abonnement (v690) : reserve a l'admin tant que
+         le paiement n'est pas branche. Libelles en francais, comme les
+         outils du tableau. -->
+    <div class="card">
+        <strong>Écran d'abonnement</strong>
+        <div class="info-box">Aperçu de ce que verront les usagers après l'essai. Le bouton ne paie rien encore.</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="ouvrirAbonnement()">VOIR L'APERÇU →</button>
+    </div>
 
     <div class="card">
         <strong data-i18n="admin_requests_title">Mots demandés</strong>
@@ -10109,6 +10179,30 @@ const I18N = {
         setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_settings_title: "Configuration",
+        abo_titre: "Apprends l'allemand sans limite",
+        abo_sous_titre: "7 jours gratuits, puis tu choisis",
+        abo_av_mots: "7 700 mots du A1 au C1",
+        abo_av_grammaire: "La grammaire et les exercices",
+        abo_av_voix: "La voix allemande sur chaque carte",
+        abo_av_examens: "La préparation aux examens A2, B1 et DTZ",
+        abo_annuel: "Annuel",
+        abo_mensuel: "Mensuel",
+        abo_par_an: "{prix} par an",
+        abo_par_mois: "par mois",
+        abo_economie: "Économise {n} %",
+        abo_aujourdhui: "Aujourd'hui",
+        abo_aujourdhui_texte: "tout est ouvert, rien n'est payé",
+        abo_jour5: "Jour 5",
+        abo_jour5_texte: "un rappel avant la fin de l'essai",
+        abo_jour7: "Jour 7",
+        abo_jour7_texte: "l'abonnement commence, sauf si tu annules",
+        abo_bouton: "Commencer mes 7 jours gratuits",
+        abo_annulation: "Annulable à tout moment dans les réglages de ton téléphone.",
+        abo_restaurer: "Restaurer un achat",
+        abo_conditions: "Conditions",
+        abo_confidentialite: "Confidentialité",
+        abo_apercu: "Aperçu : le paiement n'est pas encore branché.",
+        abo_fermer: "Fermer",
         settings_progress_texte: "{n} maîtrisés sur {total} ({pct} %).",
         settings_langue_titre: "Langue",
         settings_groupe_son: "Son",
@@ -11110,6 +11204,30 @@ const I18N = {
         setup_uilang_label: "Which language for the instructions?",
         setup_continue: "CONTINUE",
         setup_settings_title: "Configuration",
+        abo_titre: "Learn German without limits",
+        abo_sous_titre: "7 days free, then you choose",
+        abo_av_mots: "7,700 words from A1 to C1",
+        abo_av_grammaire: "Grammar and exercises",
+        abo_av_voix: "The German voice on every card",
+        abo_av_examens: "Exam preparation for A2, B1 and DTZ",
+        abo_annuel: "Yearly",
+        abo_mensuel: "Monthly",
+        abo_par_an: "{prix} per year",
+        abo_par_mois: "per month",
+        abo_economie: "Save {n}%",
+        abo_aujourdhui: "Today",
+        abo_aujourdhui_texte: "everything is open, nothing is paid",
+        abo_jour5: "Day 5",
+        abo_jour5_texte: "a reminder before the trial ends",
+        abo_jour7: "Day 7",
+        abo_jour7_texte: "your subscription starts, unless you cancel",
+        abo_bouton: "Start my 7 free days",
+        abo_annulation: "Cancel anytime in your phone's settings.",
+        abo_restaurer: "Restore purchase",
+        abo_conditions: "Terms",
+        abo_confidentialite: "Privacy",
+        abo_apercu: "Preview: payment is not connected yet.",
+        abo_fermer: "Close",
         settings_progress_texte: "{n} mastered out of {total} ({pct}%).",
         settings_langue_titre: "Language",
         settings_groupe_son: "Sound",
@@ -12115,6 +12233,30 @@ const I18N = {
         setup_uilang_label: "Açıklamalar hangi dilde olsun?",
         setup_continue: "DEVAM",
         setup_settings_title: "Yapılandırma",
+        abo_titre: "Almancayı sınırsız öğren",
+        abo_sous_titre: "7 gün ücretsiz, sonra sen seç",
+        abo_av_mots: "A1'den C1'e 7.700 kelime",
+        abo_av_grammaire: "Dilbilgisi ve alıştırmalar",
+        abo_av_voix: "Her kartta Almanca ses",
+        abo_av_examens: "A2, B1 ve DTZ sınavlarına hazırlık",
+        abo_annuel: "Yıllık",
+        abo_mensuel: "Aylık",
+        abo_par_an: "yılda {prix}",
+        abo_par_mois: "ayda",
+        abo_economie: "%{n} tasarruf et",
+        abo_aujourdhui: "Bugün",
+        abo_aujourdhui_texte: "her şey açık, hiçbir ödeme yok",
+        abo_jour5: "5. gün",
+        abo_jour5_texte: "deneme bitmeden bir hatırlatma",
+        abo_jour7: "7. gün",
+        abo_jour7_texte: "iptal etmezsen abonelik başlar",
+        abo_bouton: "7 günlük ücretsiz denememi başlat",
+        abo_annulation: "Telefonunun ayarlarından istediğin zaman iptal edebilirsin.",
+        abo_restaurer: "Satın alımı geri yükle",
+        abo_conditions: "Koşullar",
+        abo_confidentialite: "Gizlilik",
+        abo_apercu: "Önizleme: ödeme henüz bağlı değil.",
+        abo_fermer: "Kapat",
         settings_progress_texte: "{total} öğeden {n} tanesi öğrenildi (%{pct}).",
         settings_langue_titre: "Dil",
         settings_groupe_son: "Ses",
@@ -12804,6 +12946,30 @@ const I18N = {
         setup_uilang_label: "Якою мовою показувати пояснення?",
         setup_continue: "ПРОДОВЖИТИ",
         setup_settings_title: "Налаштування",
+        abo_titre: "Вивчай німецьку без обмежень",
+        abo_sous_titre: "7 днів безкоштовно, потім вирішуєш ти",
+        abo_av_mots: "7 700 слів від A1 до C1",
+        abo_av_grammaire: "Граматика та вправи",
+        abo_av_voix: "Німецький голос на кожній картці",
+        abo_av_examens: "Підготовка до іспитів A2, B1 і DTZ",
+        abo_annuel: "Щорічно",
+        abo_mensuel: "Щомісяця",
+        abo_par_an: "{prix} на рік",
+        abo_par_mois: "на місяць",
+        abo_economie: "Заощаджуй {n} %",
+        abo_aujourdhui: "Сьогодні",
+        abo_aujourdhui_texte: "усе відкрито, нічого не сплачено",
+        abo_jour5: "День 5",
+        abo_jour5_texte: "нагадування перед кінцем пробного періоду",
+        abo_jour7: "День 7",
+        abo_jour7_texte: "підписка починається, якщо ти не скасуєш",
+        abo_bouton: "Почати 7 безкоштовних днів",
+        abo_annulation: "Скасувати можна будь-коли в налаштуваннях телефону.",
+        abo_restaurer: "Відновити покупку",
+        abo_conditions: "Умови",
+        abo_confidentialite: "Конфіденційність",
+        abo_apercu: "Попередній перегляд: оплату ще не підключено.",
+        abo_fermer: "Закрити",
         settings_progress_texte: "Опановано {n} з {total} ({pct}%).",
         settings_langue_titre: "Мова",
         settings_groupe_son: "Звук",
@@ -14194,6 +14360,30 @@ const I18N = {
         setup_uilang_label: "راهنمایی‌ها به چه زبانی باشد؟",
         setup_continue: "ادامه",
         setup_settings_title: "پیکربندی",
+        abo_titre: "آلمانی را بی‌محدودیت یاد بگیر",
+        abo_sous_titre: "۷ روز رایگان، بعد خودت انتخاب کن",
+        abo_av_mots: "۷٬۷۰۰ واژه از A1 تا C1",
+        abo_av_grammaire: "دستور زبان و تمرین‌ها",
+        abo_av_voix: "صدای آلمانی روی هر کارت",
+        abo_av_examens: "آمادگی برای آزمون‌های A2، B1 و DTZ",
+        abo_annuel: "سالانه",
+        abo_mensuel: "ماهانه",
+        abo_par_an: "{prix} در سال",
+        abo_par_mois: "در ماه",
+        abo_economie: "{n}٪ صرفه‌جویی",
+        abo_aujourdhui: "امروز",
+        abo_aujourdhui_texte: "همه‌چیز باز است، هیچ پولی پرداخت نمی‌شود",
+        abo_jour5: "روز ۵",
+        abo_jour5_texte: "یادآوری پیش از پایان دوره آزمایشی",
+        abo_jour7: "روز ۷",
+        abo_jour7_texte: "اشتراک آغاز می‌شود، مگر اینکه لغوش کنی",
+        abo_bouton: "شروع ۷ روز رایگان",
+        abo_annulation: "هر زمان در تنظیمات تلفنت قابل لغو است.",
+        abo_restaurer: "بازیابی خرید",
+        abo_conditions: "شرایط",
+        abo_confidentialite: "حریم خصوصی",
+        abo_apercu: "پیش‌نمایش: پرداخت هنوز وصل نشده است.",
+        abo_fermer: "بستن",
         settings_progress_texte: "{n} از {total} مورد یاد گرفته شده است ({pct}٪).",
         settings_langue_titre: "زبان",
         settings_groupe_son: "صدا",
@@ -15100,6 +15290,30 @@ const I18N = {
         setup_uilang_label: "بأي لغة تريد التعليمات؟",
         setup_continue: "متابعة",
         setup_settings_title: "الإعداد",
+        abo_titre: "تعلّم الألمانية بلا حدود",
+        abo_sous_titre: "7 أيام مجانًا، ثم تختار",
+        abo_av_mots: "7700 كلمة من A1 إلى C1",
+        abo_av_grammaire: "القواعد والتمارين",
+        abo_av_voix: "الصوت الألماني على كل بطاقة",
+        abo_av_examens: "التحضير لامتحانات A2 وB1 وDTZ",
+        abo_annuel: "سنوي",
+        abo_mensuel: "شهري",
+        abo_par_an: "{prix} سنويًا",
+        abo_par_mois: "شهريًا",
+        abo_economie: "وفّر {n}٪",
+        abo_aujourdhui: "اليوم",
+        abo_aujourdhui_texte: "كل شيء مفتوح، ولا شيء مدفوع",
+        abo_jour5: "اليوم 5",
+        abo_jour5_texte: "تذكير قبل نهاية الفترة التجريبية",
+        abo_jour7: "اليوم 7",
+        abo_jour7_texte: "يبدأ الاشتراك ما لم تُلغِه",
+        abo_bouton: "ابدأ أيامي السبعة المجانية",
+        abo_annulation: "يمكن الإلغاء في أي وقت من إعدادات هاتفك.",
+        abo_restaurer: "استعادة عملية شراء",
+        abo_conditions: "الشروط",
+        abo_confidentialite: "الخصوصية",
+        abo_apercu: "معاينة: الدفع غير مفعّل بعد.",
+        abo_fermer: "إغلاق",
         settings_progress_texte: "تم إتقان {n} من أصل {total} ({pct}٪).",
         settings_langue_titre: "اللغة",
         settings_groupe_son: "الصوت",
@@ -23882,6 +24096,83 @@ function ouvrirBadges(){
     ouvrirGroupeReglages("groupeProgression");
 }
 
+// ============ L'ABONNEMENT (v690) ============
+// ⚠️ LES PRIX VIVENT ICI, ET NULLE PART AILLEURS. Option B de la page de
+// strategie ; Jacques n'a pas encore tranche entre 6,99 / 49,99 et
+// 7,99 / 59,99. L'economie et le prix ramene au mois se CALCULENT : changer un
+// prix ne demande de toucher a aucun texte. Le jour du vrai paiement, ce sont
+// les prix des magasins (RevenueCat) qui remplaceront ceux-ci.
+const ABONNEMENT = { mensuel: 6.99, annuel: 49.99, devise: "EUR", essaiJours: 7 };
+let aboPlan = "annuel";
+let ecranAvantAbonnement = "adminDashboard";
+
+const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar" };
+function prixAbo(v){
+    try{
+        return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR",
+            { style: "currency", currency: ABONNEMENT.devise }).format(v);
+    }catch(e){ return v.toFixed(2) + " €"; }
+}
+// Les memes chiffres que les prix : en persan, « ۴۰ » a cote de « ۶٫۹۹ ».
+function nombreAbo(n){
+    try{ return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR").format(n); }
+    catch(e){ return String(n); }
+}
+
+function ouvrirAbonnement(){
+    const actif = document.querySelector(".screen.active");
+    if(actif && actif.id !== "abonnement") ecranAvantAbonnement = actif.id;
+    aboPlan = "annuel";
+    afficherAbonnement();
+    showScreen("abonnement");
+}
+
+function fermerAbonnement(){
+    showScreen(ecranAvantAbonnement || "home");
+}
+
+function choisirPlanAbo(plan){
+    aboPlan = plan;
+    afficherAbonnement();
+}
+
+function afficherAbonnement(){
+    const zone = document.getElementById("aboContenu");
+    if(!zone) return;
+    const a = ABONNEMENT;
+    const economie = Math.round((1 - a.annuel / (12 * a.mensuel)) * 100);
+    const plan = (id, nom, droite, sous, badge) =>
+        '<button type="button" class="abo-plan' + (aboPlan === id ? ' choisi' : '') + '"'
+        + ' onclick="choisirPlanAbo(\'' + id + '\')" aria-pressed="' + (aboPlan === id) + '">'
+        + (badge ? '<span class="abo-badge">' + badge + '</span>' : '')
+        + '<span class="abo-plan-nom">' + nom + (sous ? '<small>' + sous + '</small>' : '') + '</span>'
+        + '<span class="abo-plan-prix">' + droite + '<small>' + t("abo_par_mois") + '</small></span>'
+        + '</button>';
+    const etape = (classe, quand, quoi) =>
+        '<li><span class="abo-point ' + classe + '"></span><span><b>' + quand + '</b> · ' + quoi + '</span></li>';
+    zone.innerHTML =
+        '<h2 class="abo-titre">' + t("abo_titre") + '</h2>'
+        + '<p class="abo-sous-titre">' + t("abo_sous_titre") + '</p>'
+        + '<ul class="abo-avantages">'
+        +   ["abo_av_mots", "abo_av_grammaire", "abo_av_voix", "abo_av_examens"]
+                .map(k => '<li>' + t(k) + '</li>').join("")
+        + '</ul>'
+        + plan("annuel", t("abo_annuel"), prixAbo(a.annuel / 12),
+               tf("abo_par_an", { prix: prixAbo(a.annuel) }), tf("abo_economie", { n: nombreAbo(economie) }))
+        + plan("mensuel", t("abo_mensuel"), prixAbo(a.mensuel), "", "")
+        + '<ol class="abo-calendrier">'
+        +   etape("aujourdhui", t("abo_aujourdhui"), t("abo_aujourdhui_texte"))
+        +   etape("rappel", t("abo_jour5"), t("abo_jour5_texte"))
+        +   etape("debut", t("abo_jour7"), t("abo_jour7_texte"))
+        + '</ol>'
+        + '<button type="button" class="abo-bouton" onclick="showInfoToast(t(\'abo_apercu\'))">' + t("abo_bouton") + '</button>'
+        + '<p class="abo-petit">' + t("abo_annulation") + '<br>'
+        +   '<a href="#" onclick="showInfoToast(t(\'abo_apercu\')); return false;">' + t("abo_restaurer") + '</a> · '
+        +   '<a href="#" onclick="showInfoToast(t(\'abo_apercu\')); return false;">' + t("abo_conditions") + '</a> · '
+        +   '<a href="confidentialite.html" target="_blank" rel="noopener">' + t("abo_confidentialite") + '</a>'
+        + '</p>';
+}
+
 // ============ Tableau de bord admin (codes d'invitation + testeurs) ============
 
 // Une lecture Firestore qui echoue laissait un ecran qu'on lit comme une
@@ -28230,7 +28521,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 689;
+const APP_VERSION = 690;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
