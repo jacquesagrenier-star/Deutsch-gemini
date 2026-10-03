@@ -7448,3 +7448,14 @@ l'autre. Sept cartes sur 3 858 : Kälte, Ruhe, Gegenwart, Recht (x2),
 Publikum, Wirt (« le l'aubergiste » -> article `l'`). Corrige dans
 themes.json, et `tests/verifier.py` refuse maintenant une traduction qui
 commence par un article quand `article_fr` est rempli.
+
+## 2 octobre 2026 -- Jacques : le tableau et la flamme ne s'expliquent pas
+
+- **Le premier tableau** (v688) : touche par reflexe, il ne montrait que de gros
+  carres de couleur. Deux lignes au-dessus de la toile, pendant le premier
+  tableau seulement, disent qu'une peinture s'y cache.
+- **La flamme** (v689) : « 🔥 2 » ne disait pas « deux jours d'affilee ». Le mot
+  « jours » etait la, mais reserve aux lecteurs d'ecran ; il est visible, avec le
+  pluriel ukrainien juste (2 дні, 5 днів, 21 день).
+- Une testeuse demande si un ami a besoin d'un code pour s'inscrire : oui, un
+  code par personne, a generer dans le tableau admin.

@@ -5829,7 +5829,10 @@ body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{
 }
 .serie-salut.hidden{display:none;}
 .serie-salut svg{width:14px; height:14px; fill:none; stroke:#B9770E; stroke-width:2; stroke-linejoin:round; display:block;}
-.serie-unite{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+/* LE MOT EST VISIBLE (v689). Il etait reserve aux lecteurs d'ecran : on ne
+   voyait qu'une flamme et un chiffre, et rien ne disait « jours d'affilee ».
+   Demande de Jacques. */
+.serie-unite{font-weight:600; margin-inline-start:2px;}
 body[data-theme="dark"] .serie-salut{color:#F2F2F6;}
 body[data-theme="dark"] .serie-salut svg{stroke:#F0B456;}
 
@@ -6758,7 +6761,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v688</span>
+    <span class="subtitle-version">v689</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -20685,6 +20688,17 @@ function cycleHomeLevel(){
     updateGlobalProgress();
 }
 
+// « 2 jours », et en ukrainien le pluriel suit le nombre : 2-4 -> « дні »,
+// 5-20 -> « днів », sauf 12-14 qui restent en « днів ». « 2 днів » est faux.
+function uniteSerie(n){
+    if(getUiLang() === "uk" && n !== 1){
+        const d = n % 10, c = n % 100;
+        if(d === 1 && c !== 11) return t("home_streak_unit_one");
+        if(d >= 2 && d <= 4 && (c < 12 || c > 14)) return "дні";
+    }
+    return t(n === 1 ? "home_streak_unit_one" : "home_streak_unit");
+}
+
 function updateHomeStatsPanel(percent){
     const niveauxEl = document.getElementById("homeRingLevels");
     if(niveauxEl) niveauxEl.textContent = listeNiveaux();
@@ -20699,7 +20713,7 @@ function updateHomeStatsPanel(percent){
         const n = getStreakCount();
         serieEl.classList.toggle("hidden", n < 1);
         const uniteEl = document.getElementById("serieUnite");
-        if(uniteEl) uniteEl.textContent = t(n === 1 ? 'home_streak_unit_one' : 'home_streak_unit');
+        if(uniteEl) uniteEl.textContent = uniteSerie(n);
         serieEl.title = n + " " + (uniteEl ? uniteEl.textContent : "");
     }
 
@@ -28216,7 +28230,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 688;
+const APP_VERSION = 689;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
