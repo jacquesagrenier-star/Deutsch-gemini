@@ -6807,7 +6807,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v695</span>
+    <span class="subtitle-version">v696</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -23100,6 +23100,9 @@ function nbEpreuves(niveau){
 function renderPruefungNiveauBar(){
     const bar = document.getElementById("pruefungNiveauBar");
     if(!bar) return;
+    // Version gratuite (v696) : le niveau est celui de l'echantillon, et des
+    // comptes comme « A2 (74) » annonceraient ce qu'on ne peut pas ouvrir.
+    if(!accesComplet()){ bar.innerHTML = ""; return; }
     const bouton = (val, libelle, n) => {
         const actif = (val === "ALL") ? (pruefungNiveau === null)
                                       : (pruefungNiveau === val);
@@ -23136,9 +23139,33 @@ function melangerEpreuve(liste){
     return [].concat(...shuffleArray([...paquets.values()]));
 }
 
+// L'ECHANTILLON D'EXAMEN (v696). Par epreuve, au niveau qui correspond au
+// niveau choisi (l'A1 recoit l'A2, le B2 le B1 -- il n'y a pas d'examen A1 ni
+// B2) : 5 ecoutes, 1 texte avec toutes ses questions, 1 sujet ecrit, 1 sujet
+// oral. Toujours les memes, pour que « gratuit » veuille dire un apercu
+// stable et non un tirage qui finirait par tout montrer.
+function echantillonEpreuve(construire, kicker){
+    const niv = GRATUIT.examenNiveau[niveauEchantillon()] || "A2";
+    const choix = GRATUIT.examenChoix[niv] || {};
+    const liste = construire(niv);
+    const sorte = kicker.replace("kicker_pruefung_", "");
+    if(sorte === "hoeren") return liste.slice(0, GRATUIT.examen.hoeren);
+    const cible = choix[sorte] || "";
+    const premier = liste.find(e => (e.topic || "").indexOf(cible) >= 0) || liste[0];
+    if(!premier) return [];
+    if(sorte === "lesen") return liste.filter(e => e.groupe === premier.groupe);
+    return [premier];
+}
+
+// Le passage que startExerciseSet() laisse ouvert a une epreuve d'examen :
+// sa fonction de relance est une fleche, que GRATUIT.exercices ne peut pas
+// nommer. Pose juste avant l'appel, retire par lui.
+let epreuveGratuiteEnCours = false;
+
 function lancerEpreuve(construire, kicker){
     const jouer = () => {
-        const liste = construire(pruefungNiveau);
+        const complet = accesComplet();
+        const liste = complet ? construire(pruefungNiveau) : echantillonEpreuve(construire, kicker);
         if(!liste.length){
             // DEUX SILENCES DIFFERENTS, DEUX MESSAGES DIFFERENTS. Une liste
             // vide parce que le fichier n'est pas encore arrive du reseau n'a
@@ -23148,7 +23175,8 @@ function lancerEpreuve(construire, kicker){
             showInfoToast(t(pruefungData ? 'pruefung_niveau_vide' : 'pruefung_pas_encore'));
             return;
         }
-        startExerciseSet(melangerEpreuve(liste), kicker,
+        if(!complet) epreuveGratuiteEnCours = true;
+        startExerciseSet(complet ? melangerEpreuve(liste) : liste, kicker,
                          openPruefungInfo,
                          () => lancerEpreuve(construire, kicker));
     };
@@ -24289,6 +24317,14 @@ const GRATUIT = {
     // Il n'y a de contenu d'examen qu'en A2, B1 et C1 : l'A1 recoit
     // l'echantillon A2 (« ce qui t'attend »), le B2 celui du B1.
     examenNiveau: { A1: "A2", A2: "A2", B1: "B1", B2: "B1", C1: "C1" },
+    // Le texte, le sujet ecrit et le sujet oral de chaque niveau (v696),
+    // valides le 2 octobre : ce qui tombe le plus souvent. Reperes par le type
+    // ecrit dans pruefung.json (`typ`, `teil`) -- le premier qui correspond.
+    examenChoix: {
+        A2: { lesen: "Wohnungsanzeige", schreiben: "Informelle E-Mail", sprechen: "Über sich sprechen" },
+        B1: { lesen: "Behördenbrief",   schreiben: "Formeller Brief",   sprechen: "Gemeinsam planen" },
+        C1: { lesen: "Kommentar",       schreiben: "Erörterung",        sprechen: "Diskussion" }
+    },
     // LA PREMIERE SERIE DE CHAQUE TUILE DE GRAMMAIRE (v695), ses 3 premiers
     // exercices -- decide le 2 octobre. Le nom est celui de la fonction qui
     // lance la serie : startExerciseSet() la reconnait a sa fonction de
@@ -24312,7 +24348,9 @@ const GRATUIT = {
     // Les portes d'un panneau qui restent ouvertes parce qu'elles verifient
     // elles-memes (themes, niveaux de verbes et d'adjectifs), ou parce
     // qu'elles menent a la serie gratuite (la lecon des adjectifs).
-    portesOuvertes: ["openNomen", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination"]
+    // Les quatre epreuves aussi : lancerEpreuve() les reduit a l'echantillon.
+    portesOuvertes: ["openNomen", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination",
+                     "startPruefungHoeren", "startPruefungLesen", "startPruefungSchreiben", "startPruefungSprechen"]
 };
 
 let accesAVieFirestore = false;
@@ -28901,7 +28939,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 695;
+const APP_VERSION = 696;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -34367,7 +34405,9 @@ async function startExerciseSet(list, kickerKey, backFn, restartFn, melanger){
     // verifie donc ici, une fois. Une serie hors echantillon ouvre l'offre ;
     // la serie gratuite d'une tuile sert ses 3 PREMIERS exercices, toujours
     // les memes -- pas le bloc ou la personne s'etait arretee pendant l'essai.
-    if(!accesComplet()){
+    const epreuve = epreuveGratuiteEnCours;
+    epreuveGratuiteEnCours = false;
+    if(!accesComplet() && !epreuve){
         if(!exerciceGratuit(restartFn)){ ouvrirAbonnement(); return; }
         const tout = (typeof list === "string") ? await jeu(list) : list;
         if(!tout.length) return;
