@@ -2913,6 +2913,14 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     background:rgba(16,185,129,.14);
 }
 
+/* Version gratuite (v691) : un cadenas DISCRET, decide le 2 octobre. Le niveau
+   reste lisible et touchable -- le toucher ouvre l'offre -- mais il se lit
+   comme en retrait. */
+.level-pill.verrou{
+    opacity:.55;
+    border-style:dashed;
+}
+
 /* ============ Configuration (direction d'apprentissage / langue d'interface) :
    premier lancement (#setup) et section équivalente dans Réglages ============ */
 .setup-choice-group{margin-top:22px;}
@@ -6797,7 +6805,7 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v690</span>
+    <span class="subtitle-version">v691</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9303,6 +9311,17 @@ body[data-theme="dark"] .vocab-legende .pt-sus{background:#A7F3D0;}
         <div class="info-box">Aperçu de ce que verront les usagers après l'essai. Le bouton ne paie rien encore.</div>
         <div class="spacer"></div>
         <button class="secondary" onclick="ouvrirAbonnement()">VOIR L'APERÇU →</button>
+    </div>
+
+    <!-- La version gratuite (v691), vue de l'interieur. Seul l'admin peut la
+         voir tant que ACCES.actif est false : personne d'autre ne change. -->
+    <div class="card">
+        <strong>Version gratuite</strong>
+        <div class="info-box">Voir l'app comme un compte gratuit, après l'essai : cadenas sur les thèmes payants, 10 mots dans chaque thème gratuit. Ne change rien pour les autres comptes.</div>
+        <div class="spacer"></div>
+        <div id="adminApercuGratuitEtat" class="info-box"></div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="basculerApercuGratuit()">ACTIVER / ARRÊTER L'APERÇU →</button>
     </div>
 
     <div class="card">
@@ -19933,10 +19952,13 @@ async function loadVhsKapitelAccessFlag(){
     try{
         const snap = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid));
         vhsKapitelAccess = !!(snap.exists() && snap.data().vhsChaptersEnabled === true);
+        // Testeur arrive apres la sortie : gratuit a vie, pose a la main (v691).
+        accesAVieFirestore = !!(snap.exists() && snap.data().accesAVie === true);
         if(snap.exists()) appliquerLangueImposee(snap.data().langueImposee);
     }catch(e){
         vhsKapitelAccess = false;
     }
+    if(!accesComplet()) chargerFrequence();
     updateVhsKapitelTileVisibility();
 }
 
@@ -24098,8 +24120,7 @@ function ouvrirBadges(){
 
 // ============ L'ABONNEMENT (v690) ============
 // ⚠️ LES PRIX VIVENT ICI, ET NULLE PART AILLEURS. Option B de la page de
-// strategie ; Jacques n'a pas encore tranche entre 6,99 / 49,99 et
-// 7,99 / 59,99. L'economie et le prix ramene au mois se CALCULENT : changer un
+// strategie, decidee par Jacques le 2 octobre 2026. L'economie et le prix ramene au mois se CALCULENT : changer un
 // prix ne demande de toucher a aucun texte. Le jour du vrai paiement, ce sont
 // les prix des magasins (RevenueCat) qui remplaceront ceux-ci.
 const ABONNEMENT = { mensuel: 6.99, annuel: 49.99, devise: "EUR", essaiJours: 7 };
@@ -24173,6 +24194,125 @@ function afficherAbonnement(){
         + '</p>';
 }
 
+// ============ QUI A ACCES A QUOI (v691) ============
+// La strategie est dans la page « Wortando — strategie d'abonnement » (2 oct.
+// 2026). Apres l'essai, la version gratuite garde un ECHANTILLON de chaque
+// partie, au niveau declare : 10 noms dans chacun de 5 themes, 10 verbes,
+// 10 adjectifs, 2 ou 3 exercices par tuile de grammaire, et par epreuve
+// d'examen 5 ecoutes, 1 texte, 1 sujet ecrit, 1 sujet oral.
+//
+// ⚠️ ACCES.actif RESTE false JUSQU'A LA SORTIE. Tant qu'il l'est, tout le monde
+// a tout, exactement comme avant la v691 : aucun paiement n'existe encore, et
+// un cadenas qui ne mene a aucun achat possible serait un mensonge. Seul
+// l'admin peut voir l'app « comme un compte gratuit », depuis son tableau.
+//
+// ⚠️ LE JOUR DE LA SORTIE : poser ACCES.lancement a la date du jour, PUIS
+// actif a true. Tout compte cree avant cette date est un testeur, gratuit a vie
+// -- la promesse du 2 octobre 2026. Le champ Firestore `accesAVie: true`, pose
+// a la main dans la console comme `langueImposee`, couvre ceux qui arrivent
+// apres (un ami presente en retard, un compte recree).
+const ACCES = { actif: false, lancement: null /* "AAAA-MM-JJ" */ };
+
+// ⚠️ CE QUI EST GRATUIT VIT ICI, ET NULLE PART AILLEURS -- a cote des prix.
+// Les themes sont des identifiants de NIVEAU (« familie_a1 ») : un theme
+// gratuit en A1 ne l'est pas en B1. Choisis et valides le 2 octobre 2026.
+const GRATUIT = {
+    nomsParTheme: 10,
+    verbes: 10,
+    adjectifs: 10,
+    exercicesGrammaire: 3,
+    examen: { hoeren: 5, lesen: 1, schreiben: 1, sprechen: 1 },
+    themes: {
+        A1: ["familie_a1", "zahlen_mengen_a1", "farben_formen_a1", "zeit_kalender_a1", "essen_trinken_a1"],
+        A2: ["wohnen_a2", "einkaufen_geld_a2", "gesundheit_a2", "arbeit_buero_a2", "verkehr_a2"],
+        B1: ["reisen_urlaub_b1", "freizeit_hobbys_b1", "umwelt_b1", "feste_feiertage_b1", "kueche_kochen_b1"],
+        B2: ["arbeit_buero_b2", "gesundheit_b2", "umwelt_b2", "medien_technologie_b2", "politik_gesellschaft_b2"],
+        C1: ["argumentation_c1", "ursache_wirkung_c1", "sprache_kommunikation_c1", "gesellschaft_wandel_c1", "konflikt_verhandlung_c1"]
+    },
+    // Il n'y a de contenu d'examen qu'en A2, B1 et C1 : l'A1 recoit
+    // l'echantillon A2 (« ce qui t'attend »), le B2 celui du B1.
+    examenNiveau: { A1: "A2", A2: "A2", B1: "B1", B2: "B1", C1: "C1" }
+};
+
+let accesAVieFirestore = false;
+const APERCU_GRATUIT_KEY = "deutschAI_apercuGratuit";
+
+function apercuGratuitActif(){
+    if(!isAdminUser()) return false;
+    try{ return localStorage.getItem(APERCU_GRATUIT_KEY) === "1"; }catch(e){ return false; }
+}
+
+function compteAvantLancement(){
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!ACCES.lancement || !user || !user.metadata || !user.metadata.creationTime) return false;
+    const cree = new Date(user.metadata.creationTime);
+    return !isNaN(cree) && cree < new Date(ACCES.lancement + "T00:00:00");
+}
+
+// L'abonnement et l'essai viendront des magasins, par RevenueCat. Pas encore
+// branche : personne ne peut s'abonner, donc personne n'est abonne.
+function abonnementMagasin(){
+    return null; // plus tard : "abonne" ou "essai"
+}
+
+// « ouvert » (avant la sortie), « testeur », « abonne », « essai » ou « gratuit ».
+function etatAcces(){
+    if(apercuGratuitActif()) return "gratuit";
+    if(!ACCES.actif) return "ouvert";
+    if(isAdminUser() || accesAVieFirestore || compteAvantLancement()) return "testeur";
+    return abonnementMagasin() || "gratuit";
+}
+
+function accesComplet(){
+    return etatAcces() !== "gratuit";
+}
+
+// Le niveau qui regle l'echantillon. La question du debut (« Tu connais deja un
+// peu d'allemand ? ») n'est pas encore construite : d'ici la, A1.
+function niveauEchantillon(){
+    return "A1";
+}
+
+function themeNiveauGratuit(levelId){
+    return (GRATUIT.themes[niveauEchantillon()] || []).includes(levelId);
+}
+
+// Les 10 noms gratuits d'un theme : les plus frequents, d'apres frequence.json.
+// Le classement est charge des qu'on entre en mode gratuit ; s'il manque, on
+// garde l'ordre du fichier plutot que de bloquer la seance.
+function motsGratuitsDuTheme(levelData){
+    const items = levelData.words.map((word, index) => ({ word, index, themeId: levelData.id }));
+    // rangsFrequence est declare plus bas dans le script : le lire avant que
+    // l'evaluation l'atteigne leverait une erreur, d'ou le try.
+    let rangs = null;
+    try{ rangs = rangsFrequence; }catch(e){}
+    if(rangs && rangs.size){
+        const rang = it => rangs.has(motDeLaCarte(it)) ? rangs.get(motDeLaCarte(it)) : 2;
+        items.sort((a, b) => rang(a) - rang(b) || a.index - b.index);
+    }
+    return items.slice(0, GRATUIT.nomsParTheme).sort((a, b) => a.index - b.index);
+}
+
+function basculerApercuGratuit(){
+    if(!isAdminUser()) return;
+    const actif = !apercuGratuitActif();
+    try{
+        if(actif) localStorage.setItem(APERCU_GRATUIT_KEY, "1");
+        else localStorage.removeItem(APERCU_GRATUIT_KEY);
+    }catch(e){}
+    if(actif) chargerFrequence().then(renderThemes);
+    afficherEtatApercuGratuit();
+    renderThemes();
+    showInfoToast(actif ? "Aperçu : tu vois l'app comme un compte gratuit." : "Aperçu terminé : accès complet.");
+}
+
+function afficherEtatApercuGratuit(){
+    const el = document.getElementById("adminApercuGratuitEtat");
+    if(el) el.textContent = apercuGratuitActif()
+        ? "En ce moment : tu vois l'app comme un compte gratuit (niveau " + niveauEchantillon() + ")."
+        : "En ce moment : accès complet. État réel de ce compte : " + etatAcces() + ".";
+}
+
 // ============ Tableau de bord admin (codes d'invitation + testeurs) ============
 
 // Une lecture Firestore qui echoue laissait un ecran qu'on lit comme une
@@ -24198,6 +24338,7 @@ function adminEtatErreur(container, relance){
 function openAdminDashboard(){
     if(!isAdminUser()){ goHome(); return; }
     showScreen("adminDashboard");
+    afficherEtatApercuGratuit();
     renderAdminDeployStatus();
     renderAdminCodesList();
     renderAdminUsersList();
@@ -25478,6 +25619,15 @@ function filterAndRenderThemes(){
         let total = 0, mastered = 0;
         niveauxDuTheme.forEach(lvl => {
             const levelData = theme.levels[lvl];
+            // En version gratuite, le compte ne porte que sur ce qui est ouvert.
+            if(!accesComplet()){
+                if(!themeNiveauGratuit(levelData.id)) return;
+                motsGratuitsDuTheme(levelData).forEach(it => {
+                    total++;
+                    if(getWordState(levelData.id, it.index).mastered) mastered++;
+                });
+                return;
+            }
             total += levelData.words.length;
             levelData.words.forEach((w, i) => {
                 if(getWordState(levelData.id, i).mastered) mastered++;
@@ -25485,11 +25635,26 @@ function filterAndRenderThemes(){
         });
         const percentage = total ? Math.round(mastered / total * 100) : 0;
 
+        const complet = accesComplet();
         const pillsHtml = niveauxDuTheme.map(lvl => {
             const levelData = theme.levels[lvl];
-            let lTotal = levelData.words.length;
+            // VERSION GRATUITE (v691) : un niveau hors echantillon porte un
+            // cadenas, et le toucher ouvre l'ecran d'abonnement ; un niveau
+            // gratuit ne compte que ses 10 mots.
+            if(!complet && !themeNiveauGratuit(levelData.id)){
+                return `
+                <div class="level-pill verrou" data-theme="${theme.id}" data-level="${lvl}" data-verrou="1">
+                    <div class="level-pill-label">${lvl}</div>
+                    <div class="level-pill-stat">🔒</div>
+                </div>
+            `;
+            }
+            const motsServis = complet
+                ? levelData.words.map((w, i) => i)
+                : motsGratuitsDuTheme(levelData).map(it => it.index);
+            let lTotal = motsServis.length;
             let lMastered = 0;
-            levelData.words.forEach((w, i) => {
+            motsServis.forEach(i => {
                 if(getWordState(levelData.id, i).mastered) lMastered++;
             });
             const done = lTotal > 0 && lMastered === lTotal;
@@ -25506,7 +25671,7 @@ function filterAndRenderThemes(){
         // ce theme » de plus -- il y en a deja un, c'est la pastille juste
         // au-dessus. Ce qui rend celui-ci utile, c'est que le compte affiche est
         // petit : « encore 1 mot » se lit comme une course de trente secondes.
-        const finirHtml = niveauxDuTheme.map(lvl => {
+        const finirHtml = !complet ? "" : niveauxDuTheme.map(lvl => {
             const n = motsJamaisVus(theme.levels[lvl]).length;
             if(n < 1 || n > SEUIL_FINIR) return "";
             const texte = tf(n > 1 ? 'finir_theme_n' : 'finir_theme_un', { n: n, niveau: lvl });
@@ -25524,7 +25689,7 @@ function filterAndRenderThemes(){
                         <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${niveauxDuTheme.join(' · ')}</div>
                     </div>
                 </div>
-                <div class="theme-count">${mastered}/${total}</div>
+                <div class="theme-count">${complet || total ? mastered + "/" + total : "🔒"}</div>
                 <div class="theme-chevron">›</div>
             </div>
             <div class="theme-body">
@@ -25549,6 +25714,7 @@ function filterAndRenderThemes(){
         item.querySelectorAll(".level-pill").forEach(pillEl => {
             pillEl.addEventListener("click", (e) => {
                 e.stopPropagation();
+                if(pillEl.dataset.verrou){ ouvrirAbonnement(); return; }
                 startTheme(pillEl.dataset.theme, pillEl.dataset.level);
             });
         });
@@ -25657,10 +25823,17 @@ function startTheme(themeId, level, returnScreen){
     const levelData = theme.levels[level];
     if(!levelData){ showInfoToast(t('alert_level_unavailable')); return; }
 
+    // La verification ne vit pas que dans la grille : startTheme a d'autres
+    // portes (chapitres, liens), et c'est ici que la seance se constitue.
+    const complet = accesComplet();
+    if(!complet && !themeNiveauGratuit(levelData.id)){ ouvrirAbonnement(); return; }
+
     currentTheme = { id: levelData.id, name: `${theme.name} · ${level}` };
 
     const now = Date.now();
-    const allItems = levelData.words.map((word, index) => ({ word, index, themeId: levelData.id }));
+    const allItems = complet
+        ? levelData.words.map((word, index) => ({ word, index, themeId: levelData.id }))
+        : motsGratuitsDuTheme(levelData);
     currentCardsFull = allItems;
     currentCards = cartesDeSession(allItems);
     // Meme repli que startVerbeLevel : un theme a moitie su doit s'ouvrir.
@@ -25711,6 +25884,9 @@ function finirTheme(themeId, level, returnScreen){
     if(!theme) return;
     const levelData = theme.levels[level];
     if(!levelData){ showInfoToast(t('alert_level_unavailable')); return; }
+    // Version gratuite : le bouton n'est pas affiche, mais une autre porte ne
+    // doit pas servir le theme entier. La seance de l'echantillon suffit.
+    if(!accesComplet()){ startTheme(themeId, level, returnScreen); return; }
     const restants = motsJamaisVus(levelData);
     if(!restants.length){ showInfoToast(t('alert_all_theme_words_mastered')); return; }
 
@@ -28521,7 +28697,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 690;
+const APP_VERSION = 691;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
