@@ -10,9 +10,9 @@ Entrées (rien n'est tiré de la mémoire de qui que ce soit) :
   ../kanji.json                  KANJIDIC2 + niveaux Tanos (branche japonais-donnees)
   ../mots.json                   listes de vocabulaire JLPT de Waller
   KanjiVG (git clone)            groupes kvg:element de chaque SVG
-  sources/textes_n5.json         les textes écrits à la main (sens retenus, mnémotechniques, confiance)
-  sources/noms_composants.json   le nom français / anglais de chaque composant
-  sources/a_relire.json          les 20 kanji de la page de relecture
+  textes/textes_n5.json         les textes écrits à la main (sens retenus, mnémotechniques, confiance)
+  textes/noms_composants.json   le nom français / anglais de chaque composant
+  textes/a_relire.json          les 20 kanji de la page de relecture
 
 Sorties : mnemoniques_n5.json, composants.json, a-relire.html.
 Bibliothèque standard seulement. Code de sortie 1 si une vérification échoue.
@@ -29,7 +29,7 @@ from collections import Counter, OrderedDict
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 JAPONAIS = os.path.dirname(ICI)
-SOURCES = os.path.join(ICI, "sources")
+SOURCES = os.path.join(ICI, "textes")
 KVG_DEPOT = "https://github.com/KanjiVG/kanjivg.git"
 NS = "{http://kanjivg.tagaini.net}"
 NIVEAU = "N5"
@@ -377,7 +377,7 @@ def construire(dossier_kvg):
     for k, d in derive.items():
         t = textes.get(k)
         if t is None:
-            erreurs.append("%s : aucun texte dans sources/textes_n5.json" % k)
+            erreurs.append("%s : aucun texte dans textes/textes_n5.json" % k)
             continue
         # Lecture : celle des données, sauf dérogation écrite et justifiée.
         lect = d["lecture_derivee"]

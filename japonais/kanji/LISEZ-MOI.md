@@ -9,9 +9,9 @@
 | `mnemoniques_n5.json` | Une entrée par kanji : sens retenu, lecture retenue et ses comptes, composants, mnémotechniques français et anglais, confiance, exemples. **Généré**, ne pas modifier à la main. |
 | `composants.json` | Le lexique des composants KanjiVG : un nom français et un nom anglais par composant, les kanji où il apparaît, ceux où un mnémotechnique le cite. **Généré.** |
 | `a-relire.html` | 20 kanji à juger, à ouvrir dans un navigateur et à imprimer. **Généré.** |
-| `sources/textes_n5.json` | **Les textes écrits à la main** : sens choisi, mnémotechniques, confiance et sa raison. C'est ici qu'on corrige. |
-| `sources/noms_composants.json` | Le nom de chaque composant. Changer un nom ici le change partout. |
-| `sources/a_relire.json` | La liste des 20 kanji de la page de relecture. |
+| `textes/textes_n5.json` | **Les textes écrits à la main** : sens choisi, mnémotechniques, confiance et sa raison. C'est ici qu'on corrige. |
+| `textes/noms_composants.json` | Le nom de chaque composant. Changer un nom ici le change partout. |
+| `textes/a_relire.json` | La liste des 20 kanji de la page de relecture. |
 | `construire.py` | Refait les trois fichiers générés et vérifie tout. |
 
 Pour reconstruire :
@@ -31,7 +31,7 @@ Pour chaque kanji N5 de `japonais/kanji.json` :
 2. **La lecture à retenir** : calculée, pas choisie. Le script prend chaque mot N5 de `japonais/mots.json` qui contient le kanji et **aligne** son écriture sur sa lecture en kana : chaque kanji doit y prendre une de ses lectures KANJIDIC, éventuellement modifiée de façon régulière (sonorisation 日 → び dans 曜日, gémination 学 → がっ dans 学校). La lecture la plus fréquente gagne ; en cas d'égalité, on compte sur tous les niveaux N5 à N1. Le nombre de mots est noté dans `lecture.mots_n5`, et tous les comptes dans `comptes_lecture`.
    - Quand deux découpes sont possibles parce que KANJIDIC donne le même son en on et en kun (気 : キ et き), le script préfère la découpe qui ne change pas de type de lecture dans le mot (元気 : tout en on). Sinon le mot est écarté.
    - Les mots qui ne s'alignent pas (lectures spéciales comme 今日 きょう, 一日 ついたち, お母さん おかあさん) ne votent pas ; ils sont listés dans `mots_n5_non_alignes`.
-   - Une dérogation est possible (`lecture_derogation` dans `sources/textes_n5.json`, avec une raison écrite) mais **aucune n'est utilisée** : ce pilote applique la règle telle quelle, pour qu'on voie où elle donne un résultat discutable.
+   - Une dérogation est possible (`lecture_derogation` dans `textes/textes_n5.json`, avec une raison écrite) mais **aucune n'est utilisée** : ce pilote applique la règle telle quelle, pour qu'on voie où elle donne un résultat discutable.
 3. **Les composants** : les groupes `kvg:element` de KanjiVG, au premier niveau sous le kanji (`composants`), plus les éléments plus profonds (`sous_composants`). Un kanji sans sous-groupe est son propre composant. `traits_libres` compte les traits que KanjiVG ne range dans aucun élément nommé.
 4. **Le mnémotechnique français** : une ou deux phrases qui relient les composants, le sens et le son de la lecture. Le morceau qui porte le son est en **gras**, la lecture en romaji Hepburn est écrite à côté entre parenthèses.
 5. **Le mnémotechnique anglais**, écrit séparément, avec un son anglais.
@@ -78,7 +78,7 @@ La liste N5 de `kanji.json` compte **79 kanji** alors qu'on en attendait 103. L'
 - Le jeu de mots **s'entend-il** ? Lire la phrase à voix haute, sans regarder le romaji, et voir si le morceau en gras ramène la lecture.
 - L'**image** relie-t-elle bien les composants au sens ? Est-elle drôle, visuelle, jamais vulgaire ni méprisante ?
 - Les **mots** sont-ils connus de tous les francophones ? Deux sont propres à la France : « kawa » (川, argot pour le café) et « Nénette » (年, vieilli). Le Québec ne les connaît pas forcément.
-- Les **noms des composants** (`sources/noms_composants.json`) sont-ils simples et faciles à revoir d'un kanji à l'autre ? Un nom changé là change partout.
+- Les **noms des composants** (`textes/noms_composants.json`) sont-ils simples et faciles à revoir d'un kanji à l'autre ? Un nom changé là change partout.
 - La page `a-relire.html` présente 20 cas variés, avec deux cases à cocher par kanji.
 
 ## Ce qu'un relecteur japonais natif doit vérifier
