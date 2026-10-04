@@ -7479,3 +7479,6 @@ Texte francais soumis avant de generer les voix.
   en vue sur les petits telephones.
   Suite (v707) : l'emoji 🔊 de la visite etait pale et peu lisible. Il
   devient le haut-parleur des cartes, a l'encre, avec le mot « Reecouter ».
+  Suite (v708) : a l'essai, l'etape ouvrait sur son propre tableau, puis
+  passait a l'exemple -- deux tableaux de suite, deroutant. Elle s'ouvre
+  directement sur Ajaccio a 30 cartes ; le vrai tableau arrive a la fin.

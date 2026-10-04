@@ -5983,21 +5983,6 @@ body[data-theme="dark"] .dec-texte{color:#aab3c2;}
     width:auto; height:auto; border-radius:10px;
     box-shadow:0 6px 24px rgba(28,36,48,.18);
 }
-/* La lueur entoure la tesselle qui vient d'eclater. Positionnee en px par
-   placerLueurDecouverte() : left/top, donc PAS de propriete logique ici --
-   ce sont des coordonnees de canevas, pas un sens de lecture. */
-.dec-lueur{
-    position:absolute; pointer-events:none; box-sizing:border-box;
-    border:3px solid var(--wt-ambre); border-radius:3px;
-    box-shadow:0 0 0 3px rgba(232,162,58,.35), 0 0 18px 6px rgba(232,162,58,.55);
-    animation:decLueur 1.1s ease-out both;
-}
-@keyframes decLueur{
-    0%{opacity:0; transform:scale(1.6);}
-    35%{opacity:1; transform:scale(1);}
-    100%{opacity:.85; transform:scale(1);}
-}
-@media (prefers-reduced-motion: reduce){ .dec-lueur{animation:none;} }
 .dec-bravo{
     margin:4px 0 14px; padding:10px 14px; border-radius:12px;
     background:rgba(232,162,58,.16); border:1px solid rgba(232,162,58,.40);
@@ -6304,7 +6289,6 @@ body[data-theme="dark"] #decouverte > button.primary{
     <div id="decouverteScene" class="dec-scene"></div>
     <div id="decouverteMosaique" class="dec-mosaique hidden">
         <canvas id="decouverteToile" aria-hidden="true"></canvas>
-        <span id="decouverteLueur" class="dec-lueur hidden" aria-hidden="true"></span>
         <p id="decouverteProjection" class="dec-projection hidden" role="status"></p>
     </div>
     <p id="decouverteBravo" class="dec-bravo hidden" role="status"></p>
@@ -6986,7 +6970,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v707</span>
+    <span class="subtitle-version">v708</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10431,8 +10415,6 @@ const I18N = {
         dec_t3_texte: "Une ou deux questions, comme dans les exercices de l'app. Chaque réponse est expliquée.",
         dec_t4_titre: "Ton tableau commence",
         dec_t4_texte: "Chaque carte travaillée ouvre un carreau. Sous les carreaux se cache l'œuvre d'un grand peintre de langue allemande : tu ne sauras laquelle qu'en la dévoilant. Chaque tableau terminé rejoint ta galerie.",
-        dec_t4_bravo: "Tes premières réponses viennent d'ouvrir ces carreaux.",
-        dec_t4_d0: "Un exemple, avec un autre tableau de la collection.",
         dec_t4_d1: "30 cartes : une séance.",
         dec_t4_d2: "100 cartes.",
         dec_t4_d3: "250 cartes.",
@@ -11509,8 +11491,6 @@ const I18N = {
         dec_t3_texte: "One or two questions, just like the app's exercises. Every answer is explained.",
         dec_t4_titre: "Your painting begins",
         dec_t4_texte: "Every card you work on opens a tile. Beneath the tiles hides the work of a great German-speaking painter: you'll only know which one by revealing it. Every finished painting joins your gallery.",
-        dec_t4_bravo: "Your first answers just opened these tiles.",
-        dec_t4_d0: "An example, with another painting from the collection.",
         dec_t4_d1: "30 cards: one session.",
         dec_t4_d2: "100 cards.",
         dec_t4_d3: "250 cards.",
@@ -12591,8 +12571,6 @@ const I18N = {
         dec_t3_texte: "Uygulamadaki alıştırmalar gibi bir iki soru. Her cevap açıklanır.",
         dec_t4_titre: "Tablon başlıyor",
         dec_t4_texte: "Çalışılan her kart bir parça açar. Parçaların altında Almanca konuşan büyük bir ressamın eseri saklı: hangisi olduğunu ancak onu ortaya çıkararak öğreneceksin. Biten her tablo galerine eklenir.",
-        dec_t4_bravo: "İlk cevapların bu parçaları açtı.",
-        dec_t4_d0: "Bir örnek, koleksiyondan başka bir tabloyla.",
         dec_t4_d1: "30 kart: bir oturum.",
         dec_t4_d2: "100 kart.",
         dec_t4_d3: "250 kart.",
@@ -13357,8 +13335,6 @@ const I18N = {
         dec_t3_texte: "Одне-два запитання, як у вправах застосунку. Кожну відповідь пояснено.",
         dec_t4_titre: "Твоя картина починається",
         dec_t4_texte: "Кожна опрацьована картка відкриває плитку. Під плитками ховається твір великого німецькомовного художника: який саме, ти дізнаєшся, лише відкривши його. Кожна завершена картина потрапляє до твоєї галереї.",
-        dec_t4_bravo: "Твої перші відповіді щойно відкрили ці плитки.",
-        dec_t4_d0: "Приклад з іншою картиною з колекції.",
         dec_t4_d1: "30 карток: один сеанс.",
         dec_t4_d2: "100 карток.",
         dec_t4_d3: "250 карток.",
@@ -14831,8 +14807,6 @@ const I18N = {
         dec_t3_texte: "یکی دو پرسش، درست مانند تمرین‌های برنامه. هر پاسخ توضیح داده می‌شود.",
         dec_t4_titre: "تابلوی تو آغاز می‌شود",
         dec_t4_texte: "هر کارتی که کار می‌کنی یک کاشی را باز می‌کند. زیر کاشی‌ها اثر یک نقاش بزرگ آلمانی‌زبان پنهان است: تنها با آشکار کردنش می‌فهمی کدام است. هر تابلوی تمام‌شده به گالری تو اضافه می‌شود.",
-        dec_t4_bravo: "نخستین پاسخ‌هایت همین حالا این کاشی‌ها را باز کردند.",
-        dec_t4_d0: "یک نمونه، با تابلوی دیگری از مجموعه.",
         dec_t4_d1: "سی کارت: یک جلسه.",
         dec_t4_d2: "صد کارت.",
         dec_t4_d3: "دویست و پنجاه کارت.",
@@ -15814,8 +15788,6 @@ const I18N = {
         dec_t3_texte: "سؤال أو سؤالان، مثل تمارين التطبيق. كل إجابة مشروحة.",
         dec_t4_titre: "لوحتك تبدأ",
         dec_t4_texte: "كل بطاقة تعمل عليها تفتح قطعة. تحت القطع تختبئ لوحة لرسّام كبير من الناطقين بالألمانية: لن تعرف أيّها إلا حين تكشفها. وكل لوحة تكتمل تنضمّ إلى معرضك.",
-        dec_t4_bravo: "إجاباتك الأولى فتحت هذه القطع للتو.",
-        dec_t4_d0: "مثال، مع لوحة أخرى من المجموعة.",
         dec_t4_d1: "ثلاثون بطاقة: جلسة واحدة.",
         dec_t4_d2: "مئة بطاقة.",
         dec_t4_d3: "مئتان وخمسون بطاقة.",
@@ -17223,9 +17195,10 @@ async function lancerDecouverte(){
     // Le contenu est allemand : le module anglais n'a rien a y montrer.
     if(getLearningDirection() === "en") return false;
     const reponse = reponseDecouverte();
-    const v = etatMosaique();
+    // Cree l'etat du tableau s'il n'existe pas encore (les carreaux offerts).
+    etatMosaique();
     const moi = { reponse: reponse, contenu: DECOUVERTE_CONTENU[reponse], etape: 0,
-                  noms: [], verbe: null, exos: [], mosaiqueAvant: { r: v.r, c: v.c },
+                  noms: [], verbe: null, exos: [],
                   pret: false, demarrer: false };
     decouverte = moi;
     if(!lireDecouverte().debut) ecrireDecouverte({ debut: new Date().toISOString(), reponse: reponse });
@@ -17489,83 +17462,14 @@ function decouverteExercicesFaits(){
     if(decouverte) allerEtapeDecouverte(4);
 }
 
-// L'etape 4 : le tableau ENTIER, avec les carreaux que la decouverte vient de
-// gagner, un par un. dessinerMosaique() rend la tesselle qui vient d'eclater :
-// c'est elle que la lueur entoure.
-function montrerTableauDecouverte(){
-    const zone = document.getElementById("decouverteMosaique");
-    const toile = document.getElementById("decouverteToile");
-    const lueur = document.getElementById("decouverteLueur");
-    const moi = decouverte;
-    const etiquette = document.getElementById("decouverteProjection");
-    if(etiquette) etiquette.classList.add("hidden");
-    const montrerFin = () => {
-        if(decouverte !== moi) return;
-        const suite = document.getElementById("decouverteSuite");
-        if(suite) suite.classList.remove("hidden");
-    };
-    // La voix d'abord : la projection attend qu'elle ait fini sa phrase.
-    moi.voixTableau = narrerDecouverte("t4");
-    // `projeter` : la projection (v701), qui appelle montrerFin a son terme.
-    const conclure = (nouveaux, projeter) => {
-        if(decouverte !== moi) return;
-        if(nouveaux){
-            try{ launchConfetti(); }catch(e){}
-            // Pas de carillon par-dessus la voix : la fete reste visible.
-            if(!voixVisiteDispo()){ try{ playMasteredSound(); }catch(e){} }
-        }
-        const bravo = document.getElementById("decouverteBravo");
-        if(bravo && nouveaux){
-            bravo.textContent = t("dec_t4_bravo");
-            bravo.classList.remove("hidden");
-        }
-        if(projeter) projeter(montrerFin);
-        else montrerFin();
-    };
-    if(!zone || !toile){ conclure(false); return; }
-    chargerMosaiques().then(() => {
-        const m = mosaiqueCourante();
-        if(!m || decouverte !== moi){ conclure(false); return; }
-        return imageMosaique(m.fichier).then(img => {
-            if(decouverte !== moi) return;
-            tailleToileMosaique(toile, m);
-            zone.classList.remove("hidden");
-            const v = etatMosaique();
-            const total = MOSAIQUE_CARREAUX;
-            const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
-            const avant = moi.mosaiqueAvant;
-            const projeter = (fin) => projeterTableauDecouverte(toile, img, m, v, total, moi, lueur, fin);
-            // ⚠️ RIEN N'EST INVENTE. Sans carreau gagne (plafond du jour, trophee
-            // en cours, toutes les cartes passees), on montre l'etat tel qu'il
-            // est, sans lueur ni fete : rejouer le dernier carreau comme s'il
-            // venait de tomber serait mentir a la personne sur son tableau.
-            const depart = (!fini && avant.r === v.r) ? Math.min(avant.c, v.c) : v.c;
-            if(fini || depart >= v.c){
-                dessinerMosaique(toile, img, v.c, total, fini);
-                conclure(false, fini ? null : projeter);
-                return;
-            }
-            dessinerMosaique(toile, img, depart, total, false);
-            let k = depart;
-            const suivant = () => {
-                if(decouverte !== moi) return;
-                k++;
-                const r = dessinerMosaique(toile, img, k, total, false);
-                placerLueurDecouverte(lueur, toile, r);
-                if(k < v.c) minuteurTableau = setTimeout(suivant, 650);
-                else minuteurTableau = setTimeout(() => conclure(true, projeter), 450);
-            };
-            minuteurTableau = setTimeout(suivant, 600);
-        });
-    }).catch(() => conclure(false));
-}
-
-// LA DEMONSTRATION (v704, remplace la projection de la v701). Quelques
-// carreaux sur 700 disent que le tableau commence, pas ou il mene ; et la
-// projection sur le tableau de la personne devait s'arreter avant 85 % pour ne
-// pas gacher sa surprise -- Jacques : « on s'ennuie a regarder les points qui
-// ne bougent pas ». On montre donc UN AUTRE TABLEAU, de 10 carreaux jusqu'au
-// tableau complet, puis on revient au vrai.
+// L'ETAPE 4 : LE TABLEAU, PAR L'EXEMPLE (v708). Jusqu'a la v707, l'etape
+// ouvrait sur le tableau de la personne, puis passait a un autre pour la
+// demonstration -- Jacques, a l'essai : « c'est comme si on commence avec un
+// autre, puis apres ca, pour l'exemple, on va a 30 ». Deux tableaux de suite
+// brouillaient tout. L'etape s'ouvre donc DIRECTEMENT sur l'exemple, deja a
+// 30 cartes, l'etiquette le dit des la premiere seconde, et il monte jusqu'au
+// tableau complet. Le tableau de la personne n'arrive qu'a la fin, sur « le
+// tien commence aujourd'hui ».
 // ⚠️ PRIS PARMI LES DERNIERS DE LA COLLECTION (rang 61, sur 65), choisi par
 // Jacques le 3 octobre 2026 : la personne ne le rencontrera qu'apres une
 // soixantaine de tableaux, la demonstration ne lui gache rien.
@@ -17573,18 +17477,65 @@ function montrerTableauDecouverte(){
 // que la voix les dit et qu'un enregistrement ne se recalcule pas. Changer
 // DEMO_TABLEAU_RANG ou un palier ici sans les cles dec_t4_d* dans les six
 // langues (et les clips) ferait mentir la page. Si ce rang venait a ne plus
-// etre Ajaccio de Faistauer dans mosaiques.json, la demonstration est sautee.
-// ⚠️ C'EST UN EXEMPLE, ET LA PREMIERE PHRASE LE DIT -- puis le tableau revient
-// a son etat reel, avec son vrai compte. La regle « rien n'est invente » tient.
+// etre Ajaccio de Faistauer dans mosaiques.json, l'etape montre le vrai
+// tableau, tel qu'il est, sans demonstration.
+// ⚠️ RIEN N'EST INVENTE SUR LE TABLEAU DE LA PERSONNE : a la fin, il revient
+// avec son vrai compte de carreaux.
 const DEMO_TABLEAU_RANG = 61;
 
-function projeterTableauDecouverte(toile, img, m, v, total, moi, lueur, fin){
+function montrerTableauDecouverte(){
+    const zone = document.getElementById("decouverteMosaique");
+    const toile = document.getElementById("decouverteToile");
     const etiquette = document.getElementById("decouverteProjection");
-    // Dans la fonction : MOSAIQUE_AVANCE est declaree plus bas dans le fichier.
-    const DEMO_PALIERS = [MOSAIQUE_AVANCE, 30, 100, 250, 450, total];
-    const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU_RANG);
-    if(!etiquette || !demo || !/Faistauer/.test(demo.peintre || "")){ fin(); return; }
-    const bravo = document.getElementById("decouverteBravo");
+    const moi = decouverte;
+    if(etiquette) etiquette.classList.add("hidden");
+    const montrerFin = () => {
+        if(decouverte !== moi) return;
+        const suite = document.getElementById("decouverteSuite");
+        if(suite) suite.classList.remove("hidden");
+    };
+    // La voix d'abord : la demonstration attend qu'elle ait fini sa phrase.
+    moi.voixTableau = narrerDecouverte("t4");
+    if(!zone || !toile){ montrerFin(); return; }
+    chargerMosaiques().then(() => {
+        if(decouverte !== moi) return;
+        const m = mosaiqueCourante();
+        const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU_RANG && /Faistauer/.test(x.peintre || ""));
+        const charger = (x) => x ? imageMosaique(x.fichier).catch(() => null) : Promise.resolve(null);
+        return Promise.all([charger(m), charger(demo)]).then(([img, imgDemo]) => {
+            if(decouverte !== moi) return;
+            const v = etatMosaique();
+            const total = MOSAIQUE_CARREAUX;
+            const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
+            const vrai = () => {
+                if(!img) return false;
+                tailleToileMosaique(toile, m);
+                dessinerMosaique(toile, img, v.c, total, fini);
+                return true;
+            };
+            if(!imgDemo || !etiquette){
+                if(vrai()) zone.classList.remove("hidden");
+                montrerFin();
+                return;
+            }
+            zone.classList.remove("hidden");
+            demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette, () => {
+                if(!vrai()) zone.classList.add("hidden");
+                etiquette.textContent = t("dec_t4_pretour");
+                narrerDecouverte("pretour");
+                montrerFin();
+            });
+        });
+    }).catch(() => montrerFin());
+}
+
+// Les paliers : 30, 100, 250, 450 et 700 cartes. Le premier est a l'ecran des
+// l'ouverture, sous le texte de l'etape ; sa phrase est dite quand la voix de
+// l'etape a fini. `fin` ramene le vrai tableau.
+function demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette, fin){
+    const PALIERS = [30, 100, 250, 450, total];
+    const CLES = ["dec_t4_d1", "dec_t4_d2", "dec_t4_d3", "dec_t4_d4", "dec_t4_d5"];
+    const CLIPS = ["d1", "d2", "d3", "d4", "d5"];
     const attendre = (ms) => new Promise(ok => { minuteurTableau = setTimeout(ok, ms); });
     // LE TABLEAU ET SON ETIQUETTE RESTENT A L'ECRAN (v706). Sur un petit
     // telephone, le texte de l'etape pousse l'etiquette sous le bord : on la
@@ -17597,54 +17548,27 @@ function projeterTableauDecouverte(toile, img, m, v, total, moi, lueur, fin){
         const doux = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
         window.scrollBy({ top: depasse, behavior: doux ? "smooth" : "auto" });
     };
-    const montrer = (i, minimum) => {
-        etiquette.textContent = t(["dec_t4_d0", "dec_t4_d1", "dec_t4_d2", "dec_t4_d3", "dec_t4_d4", "dec_t4_d5"][i]);
+    const afficher = (i) => {
+        dessinerMosaique(toile, imgDemo, PALIERS[i], total, i === PALIERS.length - 1);
+        etiquette.textContent = t(CLES[i]);
         etiquette.classList.remove("hidden");
-        garderEnVue(16);
-        return Promise.all([narrerDecouverte("d" + i), attendre(minimum)]);
     };
-    // Un palier, puis le suivant quand sa phrase est dite ; le tableau complet
-    // reste plus longtemps, puis le vrai tableau revient.
-    const palier = (i, imgDemo) => {
+    const palier = (i) => {
         if(decouverte !== moi) return;
-        if(i < DEMO_PALIERS.length){
-            const complet = i === DEMO_PALIERS.length - 1;
-            dessinerMosaique(toile, imgDemo, DEMO_PALIERS[i], total, complet);
-            montrer(i, complet ? 3500 : 1500).then(() => palier(i + 1, imgDemo));
+        if(i < PALIERS.length){
+            const complet = i === PALIERS.length - 1;
+            afficher(i);
+            garderEnVue(16);
+            Promise.all([narrerDecouverte(CLIPS[i]), attendre(complet ? 3500 : 1500)])
+                .then(() => palier(i + 1));
         } else {
-            tailleToileMosaique(toile, m);
-            dessinerMosaique(toile, img, v.c, total, false);
-            etiquette.textContent = t("dec_t4_pretour");
-            narrerDecouverte("pretour");
             fin();
             garderEnVue(96);
         }
     };
-    // L'image se charge pendant que la voix dit le texte de l'etape.
-    const chargement = imageMosaique(demo.fichier).catch(() => null);
-    Promise.all([moi.voixTableau || Promise.resolve(), attendre(1600), chargement]).then(r => {
-        if(decouverte !== moi) return;
-        const imgDemo = r[2];
-        if(!imgDemo){ fin(); return; }
-        if(lueur) lueur.classList.add("hidden");
-        if(bravo) bravo.classList.add("hidden");
-        tailleToileMosaique(toile, demo);
-        palier(0, imgDemo);
-    });
-}
-
-// La tesselle est en coordonnees du canevas ; la lueur se pose en pixels
-// d'ecran, d'ou l'echelle. Elle se rejoue a chaque carreau (reflow force).
-function placerLueurDecouverte(lueur, toile, r){
-    if(!lueur || !toile || !r) return;
-    const echelle = toile.clientWidth / (toile.width || 1);
-    lueur.style.left = (toile.offsetLeft + r[0] * echelle) + "px";
-    lueur.style.top = (toile.offsetTop + r[1] * echelle) + "px";
-    lueur.style.width = (r[2] * echelle) + "px";
-    lueur.style.height = (r[3] * echelle) + "px";
-    lueur.classList.add("hidden");
-    void lueur.offsetWidth;
-    lueur.classList.remove("hidden");
+    tailleToileMosaique(toile, demo);
+    afficher(0);
+    Promise.all([moi.voixTableau || Promise.resolve(), attendre(1600)]).then(() => palier(0));
 }
 
 // Tout ce qui s'arrete en quittant, par l'un ou l'autre bouton : minuteries,
@@ -30313,7 +30237,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 707;
+const APP_VERSION = 708;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

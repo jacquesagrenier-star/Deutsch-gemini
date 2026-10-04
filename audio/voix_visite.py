@@ -30,7 +30,6 @@ MODELE_DEFAUT = "eleven_multilingual_v2"
 CLIPS = {
     "intro":   ["dec_t0_titre", "dec_t0_texte"],
     "t4":      ["dec_t4_titre", "dec_t4_texte"],
-    "d0":      ["dec_t4_d0"],
     "d1":      ["dec_t4_d1"],
     "d2":      ["dec_t4_d2"],
     "d3":      ["dec_t4_d3"],
