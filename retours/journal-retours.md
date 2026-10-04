@@ -7459,3 +7459,14 @@ commence par un article quand `article_fr` est rempli.
   pluriel ukrainien juste (2 дні, 5 днів, 21 день).
 - Une testeuse demande si un ami a besoin d'un code pour s'inscrire : oui, un
   code par personne, a generer dans le tableau admin.
+
+## 3 octobre 2026 -- Jacques : la visite doit montrer un tableau complet
+
+L'etape 4 de la visite guidee (v702) ne montre que quelques carreaux du
+tableau de la personne, puis une projection a 3 et 7 jours qui s'arrete
+volontairement avant 85 %. Jacques : on s'ennuie a regarder des points qui
+ne bougent pas. Il demande une demonstration sur un AUTRE tableau, pris
+parmi les derniers de la collection, qui progresse par paliers de cartes
+jusqu'au tableau complet, puis de dire que plusieurs tableaux attendent.
+Propose : Ajaccio (Faistauer, rang 61), paliers 30, 100, 250, 450, 700.
+Texte francais soumis avant de generer les voix.
