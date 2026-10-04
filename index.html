@@ -6017,6 +6017,19 @@ body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
 body[data-theme="dark"] .dec-ecouter{border-color:rgba(242,242,246,.35);}
 .dec-projection{margin:10px 0 0; font-weight:700; line-height:1.45; color:#8A5A12;}
 body[data-theme="dark"] .dec-projection{color:#E8A23A;}
+/* LE BOUTON DE LA SUITE FLOTTE EN BAS DE L'ECRAN (v706). Demande de Jacques :
+   pendant le tableau, CONTINUER tombait sous le bord de l'ecran, et il a
+   cherche quelques secondes avant de penser a faire defiler. Collant en bas,
+   il reste visible quoi que la scene mesure ; le halo couleur papier,
+   translucide, le detache du tableau qui passe dessous. */
+#decouverte > button.primary{
+    position:sticky; z-index:5;
+    bottom:max(12px, env(safe-area-inset-bottom, 0px));
+    box-shadow:0 0 0 10px rgba(247,243,236,.82), 0 8px 20px rgba(var(--wt-action-rgb),.25);
+}
+body[data-theme="dark"] #decouverte > button.primary{
+    box-shadow:0 0 0 10px rgba(0,0,0,.78), 0 8px 20px rgba(0,0,0,.4);
+}
 .abo-plus-tard{margin-top:12px;}
 </style>
 
@@ -6967,7 +6980,7 @@ body[data-theme="dark"] .dec-projection{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v705</span>
+    <span class="subtitle-version">v706</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17567,9 +17580,21 @@ function projeterTableauDecouverte(toile, img, m, v, total, moi, lueur, fin){
     if(!etiquette || !demo || !/Faistauer/.test(demo.peintre || "")){ fin(); return; }
     const bravo = document.getElementById("decouverteBravo");
     const attendre = (ms) => new Promise(ok => { minuteurTableau = setTimeout(ok, ms); });
+    // LE TABLEAU ET SON ETIQUETTE RESTENT A L'ECRAN (v706). Sur un petit
+    // telephone, le texte de l'etape pousse l'etiquette sous le bord : on la
+    // ramene en vue, au-dessus du bouton flottant quand il est la (marge).
+    const garderEnVue = (marge) => {
+        const zone = document.getElementById("decouverteMosaique");
+        if(!zone) return;
+        const depasse = zone.getBoundingClientRect().bottom - (window.innerHeight - marge);
+        if(depasse <= 0) return;
+        const doux = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+        window.scrollBy({ top: depasse, behavior: doux ? "smooth" : "auto" });
+    };
     const montrer = (i, minimum) => {
         etiquette.textContent = t(["dec_t4_d0", "dec_t4_d1", "dec_t4_d2", "dec_t4_d3", "dec_t4_d4", "dec_t4_d5"][i]);
         etiquette.classList.remove("hidden");
+        garderEnVue(16);
         return Promise.all([narrerDecouverte("d" + i), attendre(minimum)]);
     };
     // Un palier, puis le suivant quand sa phrase est dite ; le tableau complet
@@ -17586,6 +17611,7 @@ function projeterTableauDecouverte(toile, img, m, v, total, moi, lueur, fin){
             etiquette.textContent = t("dec_t4_pretour");
             narrerDecouverte("pretour");
             fin();
+            garderEnVue(96);
         }
     };
     // L'image se charge pendant que la voix dit le texte de l'etape.
@@ -30281,7 +30307,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 705;
+const APP_VERSION = 706;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

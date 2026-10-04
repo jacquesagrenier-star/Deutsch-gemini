@@ -7473,3 +7473,7 @@ Texte francais soumis avant de generer les voix.
   Suite le meme jour (v705) : le texte de l'etape 4 dit ce qu'une recherche
   sur Internet n'offre pas -- la surprise (on ne sait pas quel tableau se
   cache), le merite (il se devoile carte par carte) et la galerie.
+  Suite (v706) : pendant le tableau, CONTINUER tombait sous le bord de
+  l'ecran et Jacques a cherche avant de faire defiler. Les boutons de la
+  visite flottent en bas de l'ecran, et l'etiquette du tableau est ramenee
+  en vue sur les petits telephones.
