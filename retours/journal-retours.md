@@ -7482,3 +7482,5 @@ Texte francais soumis avant de generer les voix.
   Suite (v708) : a l'essai, l'etape ouvrait sur son propre tableau, puis
   passait a l'exemple -- deux tableaux de suite, deroutant. Elle s'ouvre
   directement sur Ajaccio a 30 cartes ; le vrai tableau arrive a la fin.
+  Suite (v709) : le premier palier dit « Exemple : 30 cartes, une seance »,
+  pour qu'Ajaccio ne passe pas pour le tableau de la personne.
