@@ -6009,12 +6009,18 @@ body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
 /* La seance du jour montree a l'etape 5 (v702) : la vraie tuile de l'accueil,
    mais qu'on ne peut pas lancer -- un toucher y ferait quitter la visite. */
 .dec-scene.lecture{pointer-events:none;}
+/* « Reecouter » (v707) : l'emoji 🔊 sortait pale et flou sur iPhone -- « on
+   ne le voit pas tres bien » (Jacques). Le haut-parleur des cartes, a l'encre,
+   avec le mot : on voit ce que le bouton fait sans avoir a deviner. */
 .dec-ecouter{
-    width:auto; min-height:40px; padding:6px 14px; margin:-6px 0 14px;
-    border-radius:999px; border:1.5px solid rgba(var(--wt-action-rgb),.25);
-    background:transparent; font-size:18px; line-height:1; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    width:auto; min-height:40px; padding:8px 16px; margin:-6px 0 14px;
+    border-radius:999px; border:1.5px solid rgba(var(--wt-action-rgb),.35);
+    background:rgba(var(--wt-action-rgb),.06); color:var(--wt-encre-texte, #1C2430);
+    font-size:14px; font-weight:700; line-height:1; cursor:pointer;
 }
-body[data-theme="dark"] .dec-ecouter{border-color:rgba(242,242,246,.35);}
+.dec-ecouter svg{width:18px; height:18px; fill:currentColor; flex:0 0 auto;}
+body[data-theme="dark"] .dec-ecouter{color:#F2F2F6; border-color:rgba(242,242,246,.35); background:rgba(242,242,246,.06);}
 .dec-projection{margin:10px 0 0; font-weight:700; line-height:1.45; color:#8A5A12;}
 body[data-theme="dark"] .dec-projection{color:#E8A23A;}
 /* LE BOUTON DE LA SUITE FLOTTE EN BAS DE L'ECRAN (v706). Demande de Jacques :
@@ -6294,7 +6300,7 @@ body[data-theme="dark"] #decouverte > button.primary{
     <!-- La voix de la visite (v702) se reecoute d'ici : le texte reste toujours
          a l'ecran, la voix s'y ajoute, et ce bouton la rend a qui avait le
          volume baisse. Cache aux etapes 1 a 3, ou parle la voix allemande. -->
-    <button type="button" id="decouverteEcouter" class="dec-ecouter hidden" onclick="rejouerNarrationDecouverte()" data-i18n-aria-label="dec_ecouter" aria-label="Réécouter">🔊</button>
+    <button type="button" id="decouverteEcouter" class="dec-ecouter hidden" onclick="rejouerNarrationDecouverte()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span data-i18n="dec_ecouter">Réécouter</span></button>
     <div id="decouverteScene" class="dec-scene"></div>
     <div id="decouverteMosaique" class="dec-mosaique hidden">
         <canvas id="decouverteToile" aria-hidden="true"></canvas>
@@ -6980,7 +6986,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v706</span>
+    <span class="subtitle-version">v707</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -30307,7 +30313,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 706;
+const APP_VERSION = 707;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

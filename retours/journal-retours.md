@@ -7477,3 +7477,5 @@ Texte francais soumis avant de generer les voix.
   l'ecran et Jacques a cherche avant de faire defiler. Les boutons de la
   visite flottent en bas de l'ecran, et l'etiquette du tableau est ramenee
   en vue sur les petits telephones.
+  Suite (v707) : l'emoji 🔊 de la visite etait pale et peu lisible. Il
+  devient le haut-parleur des cartes, a l'encre, avec le mot « Reecouter ».
