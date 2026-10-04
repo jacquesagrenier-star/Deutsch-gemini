@@ -7470,3 +7470,6 @@ parmi les derniers de la collection, qui progresse par paliers de cartes
 jusqu'au tableau complet, puis de dire que plusieurs tableaux attendent.
 Propose : Ajaccio (Faistauer, rang 61), paliers 30, 100, 250, 450, 700.
 Texte francais soumis avant de generer les voix.
+  Suite le meme jour (v705) : le texte de l'etape 4 dit ce qu'une recherche
+  sur Internet n'offre pas -- la surprise (on ne sait pas quel tableau se
+  cache), le merite (il se devoile carte par carte) et la galerie.
