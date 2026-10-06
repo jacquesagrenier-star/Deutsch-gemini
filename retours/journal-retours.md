@@ -7668,3 +7668,9 @@ scene arrive dans la seance du jour.
   faute : « Ca, c'est die Aerztin. Cherche die Hand sur Mark. », sans point
   perdu, la question reste ouverte. Rien ne change dans la classe (die Brille
   est au prof et a la dame : pas d'indication).
+  Suite : « le pied monte un peu trop haut » (Jacques, gros plan des pieds) :
+  la zone der Fuss remontait au bas de la jambe et couvrait presque la
+  cheville. Elle commence maintenant sous les malleoles, et le bas des jambes
+  repond das Bein. Le talon reste introuvable : pieds de face, il est cache --
+  le lien du prototype ouvert dans le panneau de droite montrait d'abord une
+  version en cache (dix minutes chez GitHub) ; une adresse neuve l'a rafraichi.
