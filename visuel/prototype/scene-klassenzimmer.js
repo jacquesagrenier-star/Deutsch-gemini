@@ -340,6 +340,11 @@ window.SCENE = {
      "mot": "Student",
      "genre": "der",
      "fr": "étudiant"
+    },
+    {
+     "mot": "Bart",
+     "genre": "der",
+     "fr": "barbe"
     }
    ],
    "sur": null,

@@ -7521,3 +7521,5 @@ scene arrive dans la seance du jour.
   En mode Trouve, tout ce qui est sous le doigt AU MEME PLAN compte. 19 cas testes.
   Il demande ensuite un detourage comme sur Apple (l'objet entier, pattes de
   table comprises) : propose SAM 2.
+  Suite : la barbe -- l'homme du fond l'avait deja ; Mark aussi (barbe de
+  trois jours, ein Dreitagebart, est bien un Bart).
