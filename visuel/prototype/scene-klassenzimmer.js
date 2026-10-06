@@ -697,6 +697,11 @@ window.SCENE = {
      "mot": "Hemd",
      "genre": "das",
      "fr": "chemise"
+    },
+    {
+     "mot": "Student",
+     "genre": "der",
+     "fr": "étudiant"
     }
    ],
    "sur": null,
@@ -779,6 +784,11 @@ window.SCENE = {
      "mot": "Kleid",
      "genre": "das",
      "fr": "robe"
+    },
+    {
+     "mot": "Studentin",
+     "genre": "die",
+     "fr": "étudiante"
     }
    ],
    "sur": null,

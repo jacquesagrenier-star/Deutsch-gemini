@@ -7545,3 +7545,7 @@ scene arrive dans la seance du jour.
   plus : ils n'avaient pas de zone. Un petit objet compte maintenant s'il est a
   portee du doigt. La feuille de l'homme du fond, cachee par Anna, retiree.
   38 zones, 24 cas testes.
+  Suite : « der Student » refusait l'homme barbu du fond et n'acceptait que
+  Mark (Jacques). Regle unique pour tous les eleves : hommes = der Student / der
+  Teilnehmer, femmes = die Studentin / die Teilnehmerin (Anna, la jeune femme,
+  la dame en rouge). Le prof n'en est pas.
