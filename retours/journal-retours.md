@@ -7604,3 +7604,18 @@ scene arrive dans la seance du jour.
   deux oreilles visibles, une bande de mur entre chaque bras et le corps, les
   mains a une main des cuisses, les genoux un peu ecartes, les pieds separes.
   La generation reste a faire depuis le PC (cle fal et photos de Mark).
+  Suite (PC) : Jacques veut travailler avec le Claude de son PC, pas celui
+  du cloud. Branche claude/eloquent-newton-li3coy reprise ici. Avant de payer,
+  revue complete de video/verifier_prompt.py, a sa demande (« penser toujours
+  a travers la liste »). Image de Mark chez le medecin GENEREE (0,15 $,
+  visuel/scenes/arztpraxis.png) : visage de Mark juste, deux oreilles, bras
+  ecartes du corps, pieds nus separes sur la marche, medecin au visage neuf
+  (pas celui du prof), tous les objets demandes presents. Trois ecarts vus en
+  zoomant, deviennent trois regles : l'affiche anatomique est venue avec des
+  dizaines de legendes en faux texte (une scene ne porte jamais de mots) ;
+  l'horloge marque 10 h 10 au lieu de 9 h 20 (et celle de la classe ne marque
+  pas non plus l'heure demandee) ; le pansement est sur le genou GAUCHE, pas
+  le droit. Un acquis : les portraits de studio donnent le visage, le texte
+  donne la pose. Fausse alerte « repere hors champ » corrigee (Mark est en
+  pied). Au passage : la montre du prof, demandee dans la classe, n'y est pas.
+  A juger par Jacques.

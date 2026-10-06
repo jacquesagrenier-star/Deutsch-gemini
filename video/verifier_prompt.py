@@ -421,6 +421,56 @@ REGLES = [
      u"personnages, EN PLUS de la scene. Une phrase << they stay >> ne pese "
      u"rien contre une composition ; une reference, si. Et mieux encore : une "
      u"salle qui doit etre pleine se decrit pleine DES LA PREMIERE IMAGE."),
+
+    ("affiche-qui-ecrit", "doute",
+     r"(?i)\b(anatomical|anatomy|medical|educational|teaching|school)\s+"
+     r"(poster|chart|wall ?chart|diagram)\b",
+     u"Une affiche nommee par son genre : elle arrive avec ses legendes ecrites",
+     u"6 oct. 2026, arztpraxis, image gardee. Le prompt demandait << a wide "
+     u"anatomical poster... a human skeleton seen from the front on a white "
+     u"background >>. Sont venus TROIS squelettes (face, organes, dos), cinq "
+     u"vignettes d'os, et des dizaines de petites legendes en faux texte "
+     u"tirees vers chaque os. Or une scene ne porte JAMAIS de mots : l'app les "
+     u"pose par-dessus, dans la langue de l'eleve. Meme mecanisme que l'icone "
+     u"nommee par son nom -- le genre << planche anatomique >> convoque toute "
+     u"son imagerie, legendes comprises.",
+     u"Decrire le DESSIN et sa surface vide, pas le genre de l'affiche : << a "
+     u"framed print of one ivory human skeleton standing on plain white paper, "
+     u"with a wide margin of white all around it >>. Et verifier en zoomant : "
+     u"le faux texte est trop petit pour se voir sur l'image entiere."),
+
+    ("horloge-a-l-heure", "doute",
+     r"(?i)\b(clock|watch)\b[^.]*\b(showing|shows|reads|pointing|set to)\b"
+     r"[^.]*\b(past|to|o'clock|\d{1,2}[:.h]\d{2})\b",
+     u"Une heure precise demandee a une horloge : elle marque 10 h 10",
+     u"6 oct. 2026, arztpraxis, image gardee. << two black hands showing "
+     u"twenty past nine >> a donne 10 h 10 -- l'heure de toutes les montres "
+     u"des catalogues, dont les corpus debordent. ET DEUX SUR DEUX : la "
+     u"classe du meme matin demandait << ten past seven >>, et son horloge "
+     u"marque autre chose (petite aiguille pres de 10, grande sur le 7). "
+     u"Sans gravite tant que "
+     u"l'horloge n'est qu'un objet a toucher (die Uhr) ; fatale le jour ou un "
+     u"exercice demande << Wie spaet ist es ? >>.",
+     u"Ne pas compter sur le modele pour l'heure. Si l'heure doit etre juste, "
+     u"DESSINER les aiguilles et les incruster, comme l'Ampelmaennchen "
+     u"(video/ampelmann.py) : un dessin ne derive pas. Sinon, ne pas en "
+     u"demander, et ne poser aucune question sur l'heure de cette image."),
+
+    ("cote-du-corps", "doute",
+     r"(?i)\b(his|her|their) (right|left) (knee|leg|trouser leg|arm|hand|"
+     r"foot|ear|eye|shoulder|elbow|wrist|ankle|hip)\b",
+     u"La droite ou la gauche d'un personnage : le modele la donne en miroir",
+     u"6 oct. 2026, arztpraxis, image gardee. << the right trouser leg is "
+     u"rolled up... a small square white plaster sits on his right knee >>, "
+     u"pour un homme FACE a l'objectif : le pansement est sorti sur son genou "
+     u"GAUCHE, a droite de l'image. La droite du personnage et celle de "
+     u"l'image sont opposees quand il nous regarde, et le modele tranche au "
+     u"hasard. Sans gravite tant que l'etiquette dit << das Knie >> ; fausse "
+     u"si elle dit << das rechte Knie >>.",
+     u"Situer par l'IMAGE et par un voisin visible, pas par le corps : << on "
+     u"the knee nearer the doctor >>, << the leg on the left of the picture "
+     u">>. Et l'etiquette se pose sur l'image REELLE, apres l'avoir regardee, "
+     u"jamais d'apres le prompt."),
 ]
 
 # --------------------------------------------------------------------------
@@ -437,6 +487,23 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"Une scene NEUVE garde le visage des photos, et prend la pose du texte",
+     u"6 oct. 2026",
+     u"Deux fois le meme jour, avec les deux memes photos de Mark -- debout, "
+     u"veste grise, jean, sur fond gris de studio. La classe l'a assis a une "
+     u"table en pull bleu ; le cabinet medical l'a assis sur la table "
+     u"d'examen, t-shirt gris, pieds nus, et chaque partie du corps degagee "
+     u"comme le prompt le demandait (deux oreilles, bras ecartes du corps, "
+     u"pieds separes sur la marche). Le visage, lui, est le sien. Cela "
+     u"NUANCE << une reference transporte le visage et la position >> : la "
+     u"position ne voyage que si on demande une RETOUCHE de la reference, "
+     u"pas quand le texte compose une piece entiere autour d'un portrait de "
+     u"studio.",
+     u"Pour placer un personnage dans un decor nouveau : referencer ses "
+     u"PORTRAITS sur fond neutre (personnages/), jamais une scene ou il "
+     u"figure deja, et decrire la pose, la tenue et le lieu en entier. Une "
+     u"scene precedente en reference ramene sa piece et ses voisins."),
+
     (u"Une reference de MATIERE n'est pas une reference de DISPOSITION",
      u"22 sept. 2026",
      u"Plan 04. Pour remettre la dame sur le trottoir, on a reference "
@@ -736,7 +803,13 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",
               "marquage-place-par-le-cadre", "bouche-tenue-ouverte",
-              "ajout-qui-remplace")
+              "ajout-qui-remplace", "affiche-qui-ecrit",
+              "horloge-a-l-heure", "cote-du-corps")
+
+# Un personnage EN PIED, de la tete aux pieds. Voir << repere-hors-champ >>.
+EN_PIED = re.compile(
+    r"(?i)(whole body in view|from (the top of )?(his|her|their) head to "
+    r"(his|her|their) (bare )?(feet|shoes|toes)|full[- ]length|head to toe)")
 
 # Un etat vocal tenu, et sa fermeture. Voir << bouche-tenue-ouverte >>.
 #
@@ -821,6 +894,13 @@ def controler(texte, image=False):
                 if m:
                     trouves.append((code, gravite, titre, cout, remede,
                                     m.group(0)))
+            continue
+        if code == "repere-hors-champ" and EN_PIED.search(texte):
+            # ⚠️ 6 oct. 2026, arztpraxis : la regle accusait << his bare feet
+            #    rest on a low grey step >> dans un prompt qui demande Mark
+            #    << from the top of his head to his bare feet >>. Les pieds
+            #    sont DANS le cadre, puisque c'est le cadre qu'on commande. Un
+            #    controle qui accuse le juste se fait desarmer.
             continue
         if code == "corps-sans-contact":
             # Le defaut est arrive sur une image, mais la question vaut pour
