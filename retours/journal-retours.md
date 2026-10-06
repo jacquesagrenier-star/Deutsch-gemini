@@ -7584,3 +7584,11 @@ scene arrive dans la seance du jour.
   visage ne s'ouvre que si le mot demande y est ; une mauvaise reponse sur le
   nez ouvre le gros plan pour le montrer. Flou (l'image n'a que 1080 px) :
   la vraie scene aura son visage agrandi par une IA. 12 cas testes.
+  Suite : le prompt de la scene du corps, « Mark chez le medecin »
+  (visuel/scenes/arztpraxis.prompt.txt) : Mark assis sur la table d'examen,
+  en entier, de la tete aux pieds nus, une jambe de pantalon roulee et un
+  pansement au genou ; une medecin a cote, un poster du squelette au mur.
+  Jacques craignait que la medecin prenne le visage du prof : c'est une
+  femme decrite trait par trait, seules les deux photos de Mark servent de
+  references (jamais l'image de la classe), et rien du prof n'est nomme. Le
+  controle des prompts n'y trouve aucune faute. Rien n'a ete paye.
