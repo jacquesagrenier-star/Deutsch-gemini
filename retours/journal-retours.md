@@ -7638,3 +7638,11 @@ scene arrive dans la seance du jour.
   apres un defilement, la carte collee en haut couvrait le haut de l'image --
   les cheveux : a l'ouverture d'un gros plan, la page se replace pour que son
   haut se voie sous la carte. Vaut pour tous les gros plans, classe comprise.
+  Suite : « les cercles n'arrivent pas vis-a-vis des yeux » (Jacques, sur son
+  telephone, juste apres le nouveau cadrage). Les ellipses etaient justes --
+  verifiees sur l'image d'origine et dans le navigateur, pour les quatre gros
+  plans. Le telephone avait garde en cache l'ANCIENNE image du visage et recu
+  le NOUVEAU cadre : 9 % de decalage, exactement ce qu'il a vu. Desormais la
+  page recharge toujours la scene, et l'adresse de chaque image de gros plan
+  porte l'empreinte de son cadre. Reste a voir : l'ovale « das Poster » du gros
+  plan de l'affiche deborde sur la tete de Mark.

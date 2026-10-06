@@ -2106,7 +2106,7 @@ window.SCENE = {
      0.5
     ]
    },
-   "image": "arztpraxis-visage-mark.webp"
+   "image": "arztpraxis-visage-mark.webp?c=0d956c3e"
   },
   {
    "id": "main-mark",
@@ -2184,7 +2184,7 @@ window.SCENE = {
      0.22
     ]
    },
-   "image": "arztpraxis-main-mark.webp"
+   "image": "arztpraxis-main-mark.webp?c=e2018733"
   },
   {
    "id": "pieds-mark",
@@ -2226,7 +2226,7 @@ window.SCENE = {
      0.6
     ]
    },
-   "image": "arztpraxis-pieds-mark.webp"
+   "image": "arztpraxis-pieds-mark.webp?c=8b24e4ff"
   },
   {
    "id": "affiche",
@@ -2280,7 +2280,7 @@ window.SCENE = {
      1.6
     ]
    },
-   "image": "arztpraxis-affiche.webp"
+   "image": "arztpraxis-affiche.webp?c=7a4b858e"
   }
  ],
  "titre": "Beim Arzt",

@@ -62,7 +62,14 @@ def decouper(pts, nom, g):
              round(W * (x + w) / 100), round(H * (y + h) / 100))
     fichier = "%s-%s.webp" % (nom, g["id"])
     src.crop(boite).save(os.path.join(ICI, fichier), quality=88)
-    return fichier
+    # ⚠️ L'ADRESSE CHANGE AVEC LE CADRE. Le 6 oct. 2026, le telephone de
+    #    Jacques a garde en cache l'ANCIENNE image du visage et recu le
+    #    NOUVEAU cadre : les cercles des yeux tombaient a cote des yeux. Avec
+    #    le cadre dans l'adresse, une image ne peut plus servir un autre
+    #    cadre que le sien.
+    import hashlib
+    empreinte = hashlib.md5(json.dumps([g["cadre"], pts["source"]]).encode()).hexdigest()[:8]
+    return "%s?c=%s" % (fichier, empreinte)
 
 
 def main():
