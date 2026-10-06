@@ -7005,7 +7005,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v715</span>
+    <span class="subtitle-version">v716</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26342,6 +26342,16 @@ function afficherEssais(){
             };
             box.appendChild(r);
         }
+        // Chaque scene entiere, pour la tester a fond -- allumee ou non.
+        if(nom === "scenes"){
+            SCENES_SEANCE.forEach(s => {
+                const o = document.createElement("button");
+                o.className = "secondary";
+                o.textContent = "OUVRIR : " + s.titre.toUpperCase() + " →";
+                o.onclick = () => ouvrirSceneAdmin(s.nom);
+                box.appendChild(o);
+            });
+        }
     });
 }
 
@@ -30779,7 +30789,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 715;
+const APP_VERSION = 716;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -34033,7 +34043,22 @@ function ouvrirChoixSeance(){
     showScreen("choixSeance");
 }
 
+// D'ou la scene a ete ouverte : sa fermeture y ramene.
+let sceneOuverteDepuis = "seance";
+
+// Le tableau de bord ouvre une scene ENTIERE -- tous les niveaux, Decouvrir,
+// Trouve !, les gros plans -- pour la tester a fond, sans toucher a la seance
+// du jour (Jacques, 6 oct.).
+function ouvrirSceneAdmin(nom){
+    if(!isAdminUser()) return;
+    sceneOuverteDepuis = "admin";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre) cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&t=" + Date.now();
+    showScreen("sceneSeance");
+}
+
 function ouvrirSceneSeance(){
+    sceneOuverteDepuis = "seance";
     const s = sceneDuJour();
     const cadre = document.getElementById("sceneCadre");
     if(cadre) cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
@@ -34059,7 +34084,8 @@ window.addEventListener("message", (e) => {
         ouvrirSeanceDuJour(true);
     } else if(d.type === "fermer"){
         if(cadre) cadre.src = "about:blank";
-        ouvrirChoixSeance();
+        if(sceneOuverteDepuis === "admin") openAdminDashboard();
+        else ouvrirChoixSeance();
     }
 });
 

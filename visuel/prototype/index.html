@@ -132,8 +132,8 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 /* Et tout tient dans l'ecran : l'image prend la hauteur qui reste sous la
    carte (ajusterSeance), quitte a etre plus etroite. Il fallait faire
    defiler pour atteindre les reponses (Jacques, 6 oct.). */
-.en-seance .cadre{max-width:none}
-.en-seance .scene{margin:0 auto}
+.en-cadre .cadre{max-width:none}
+.en-cadre .scene{margin:0 auto}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 </style>
 </head>
@@ -182,7 +182,7 @@ document.title = S.titre || "Scène";
 /* Dans la seance, ce lien RAMENE au choix scene / cartes : il dit « Retour »,
    comme les autres retours de l'app. « ‹ Beim Arzt » ressemblait a un titre
    et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
-$("retourChoix").textContent = new URLSearchParams(location.search).get("seance") === "1"
+$("retourChoix").textContent = window.parent !== window
   ? "‹ Retour" : "‹ " + (S.titre || "Scène");
 scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
 /* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
@@ -487,21 +487,24 @@ function envoyer(type, donnees){
   if (window.parent !== window)
     window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");
 }
-if (EN_SEANCE){
-  document.body.classList.add("en-seance");
+if (EN_SEANCE) document.body.classList.add("en-seance");
+if (window.parent !== window) document.body.classList.add("en-cadre");
+/* Ouverte DANS l'app (la seance, ou le tableau de bord admin qui ouvre une
+   scene entiere pour la tester) : le lien du haut rend la main a l'app au
+   lieu de mener a la maquette. */
+if (window.parent !== window)
   $("retourChoix").addEventListener("click", e => { e.preventDefault(); envoyer("fermer", {bons, faits}); });
-}
 /* La largeur de l'image pour que carte + image tiennent dans la hauteur de
    l'ecran. Recalculee quand la carte change de hauteur (une question plus
    longue) et quand l'ecran tourne. */
 function ajusterSeance(){
-  if (!EN_SEANCE) return;
+  if (window.parent === window) return;
   const dispo = innerHeight - document.querySelector(".haut").offsetHeight;
   const largeur = Math.min(document.querySelector(".cadre").clientWidth, dispo * MASQUES.W / MASQUES.H);
   scene.style.width = Math.max(200, Math.floor(largeur)) + "px";
   placerFermer();
 }
-if (EN_SEANCE){
+if (window.parent !== window){
   addEventListener("resize", ajusterSeance);
   new ResizeObserver(ajusterSeance).observe(document.querySelector(".haut"));
 }

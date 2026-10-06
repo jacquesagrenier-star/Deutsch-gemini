@@ -7721,3 +7721,9 @@ decide quand on la pousse en production. »
   mot de la fin suit le score (sans faute / bien joue / ca viendra / pas
   grave). (3) Bouton « Revoir la scene du jour » dans les Fonctions en essai,
   pour verifier une correction le jour meme.
+  Suite (v716) : « je devrais en avoir dans l'administration aussi, pour etre
+  capable de la tester a fond -- tout tester, pas juste la scene du jour »
+  (Jacques). Dans les Fonctions en essai : un bouton par scene, qui l'ouvre
+  ENTIERE (cinq niveaux, Decouvrir, Trouve !, gros plans) en plein ecran, sans
+  toucher a la seance du jour ; « Retour » ramene au tableau de bord. Toute
+  scene ouverte dans l'app tient maintenant dans l'ecran.
