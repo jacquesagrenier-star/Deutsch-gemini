@@ -7500,3 +7500,5 @@ scene arrive dans la seance du jour.
   et fait disparaitre Mark et Anna (regle ajout-qui-remplace, 24e du
   controle). La troisieme prise est la bonne (0,45 $ au total).
   Prototype jouable, hors de l'app : visuel/prototype/index.html.
+  Suite : a l'essai, Jacques demande que les souliers de la dame en rouge
+  se touchent aussi -- zone ajoutee (der Schuh, pl. die Schuhe), 34 zones.

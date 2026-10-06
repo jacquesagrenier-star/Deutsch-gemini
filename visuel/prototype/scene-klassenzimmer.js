@@ -462,6 +462,23 @@ window.SCENE = {
    ]
   },
   {
+   "id": "schuhe",
+   "mot": "Schuh",
+   "genre": "der",
+   "pluriel": "Schuhe",
+   "fr": "chaussure",
+   "en": "shoe",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "boite": [
+    80.5,
+    86.8,
+    19.5,
+    6.9
+   ]
+  },
+  {
    "id": "laptop",
    "mot": "Laptop",
    "genre": "der",
