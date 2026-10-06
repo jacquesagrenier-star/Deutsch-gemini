@@ -324,7 +324,13 @@ REGLES = [
      u"<< fin-sans-intention >>, ou la queue de plan a besoin d'une intention."),
 
     ("repere-hors-champ", "doute",
-     r"(?i)\b(her|his) (knees?|shoes?|feet|ankles?|boots?|waist)\b",
+     # ⚠️ SAUF LA FORMULE DE << corps-sans-contact >>, qui PRESCRIT << her
+     #    shoes stand on the slabs, with their shadow under them >> : un contact
+     #    au sol declare met le pied DANS le cadre. Les deux regles se
+     #    contredisaient -- 6 oct. 2026, plan large de la classe, ou chaque
+     #    personnage est en pied et ou la formule etait juste.
+     r"(?i)\b(her|his) (knees?|shoes?|feet|ankles?|boots?|waist)\b"
+     r"(?! stands? on [^.;]*shadow)",
      u"Un decor accroche a une partie du corps qui n'est pas dans le cadre",
      u"22 sept. 2026, dame-feu, releve par Jimmy AVANT l'envoi : la bordure de "
      u"granit << at the level of her knees >> et les dalles << running right up "
@@ -391,6 +397,30 @@ REGLES = [
      u"Un modele qui doit se representer << personne ne s'avance >> doit "
      u"d'abord se representer quelqu'un qui s'avance. Leurs propres exemples "
      u"sont positifs : << The leaves in the background sway. >>"),
+
+    ("ajout-qui-remplace", "doute",
+     r"(?i)\b(more|additional|extra|new|other)\s+(adult\s+|young\s+|older\s+)?"
+     r"(students?|people|persons?|guests?|passengers?|customers?|"
+     r"men|women|figures?)\b",
+     u"Des personnes AJOUTEES a une image qui en contient deja : le modele remplace",
+     u"6 oct. 2026, klassenzimmer-eleves, 0,15 $. Retouche << change ONE thing "
+     u">> pour remplir les chaises vides du fond avec trois eleves, et une "
+     u"phrase qui gardait nommement << the young man in the blue sweater, the "
+     u"young woman in the oatmeal sweater... in the same places, with the same "
+     u"faces >>. Resultat : MARK ET ANNA ONT DISPARU, les deux seuls qui "
+     u"comptaient. Le roux barbu s'est assis a la place de Mark -- et c'est MOI "
+     u"qui l'y avais mis : << at the back table nearer the door >> designait la "
+     u"table de Mark, que je n'avais pas regardee. Anna s'est evaporee, son "
+     u"cahier est reste. Les deux nouveaux places la ou il y avait vraiment des "
+     u"chaises vides (pres de la fenetre) sont sortis justes.",
+     u"Deux gestes, dans cet ordre. (1) OUVRIR L'IMAGE et ne poser un nouveau "
+     u"venu QUE sur une chaise reellement vide, decrite par ce qui l'entoure "
+     u"(<< the two empty blue chairs by the window, behind the young woman >>) "
+     u"-- jamais par un nom de table qu'on n'a pas verifie. (2) Rendre au "
+     u"modele les visages qui doivent rester : les photos de reference des "
+     u"personnages, EN PLUS de la scene. Une phrase << they stay >> ne pese "
+     u"rien contre une composition ; une reference, si. Et mieux encore : une "
+     u"salle qui doit etre pleine se decrit pleine DES LA PREMIERE IMAGE."),
 ]
 
 # --------------------------------------------------------------------------
@@ -705,7 +735,8 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",
-              "marquage-place-par-le-cadre", "bouche-tenue-ouverte")
+              "marquage-place-par-le-cadre", "bouche-tenue-ouverte",
+              "ajout-qui-remplace")
 
 # Un etat vocal tenu, et sa fermeture. Voir << bouche-tenue-ouverte >>.
 #
