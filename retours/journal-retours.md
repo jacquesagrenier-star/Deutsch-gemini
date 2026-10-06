@@ -7599,3 +7599,8 @@ scene arrive dans la seance du jour.
   dans la liste d'Anna ne voulait rien dire, et la liste melait tout. (Un premier
   essai, mal compris, avait change ce nom de base et fait defiler les noms a
   chaque toucher : defait.)
+  Suite : Jacques demande que chaque partie du corps soit bien accessible.
+  Le prompt degage maintenant chacune : visage tourne vers l'objectif, les
+  deux oreilles visibles, une bande de mur entre chaque bras et le corps, les
+  mains a une main des cuisses, les genoux un peu ecartes, les pieds separes.
+  La generation reste a faire depuis le PC (cle fal et photos de Mark).
