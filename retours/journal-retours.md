@@ -7561,9 +7561,11 @@ scene arrive dans la seance du jour.
   scene ou l'on touche, les cartes qui se retournent --, pour choisir en
   connaissance de cause. Un toucher sur un apercu lance l'activite ; l'ecran
   n'apparait que les jours ou une scene est proposee. Les deux ont le MEME
-  POIDS, cote a cote (Jacques), et l'apercu de la scene suit le NIVEAU de la
-  seance : trouver des mots en A1, les prepositions en A2, stehen/stellen en
-  B1, les relatives en B2, les hypotheses en C1. Maquette hors de l'app :
+  POIDS (Jacques) : meme taille, l'une sous l'autre (cote a cote, trop petit
+  sur le telephone), en apercus FIXES plutot qu'animes (son choix). La scene
+  suit le NIVEAU de la seance, sans le demander : trouver des mots en A1, les
+  prepositions en A2, stehen/stellen en B1, les relatives en B2, les
+  hypotheses en C1. Maquette hors de l'app :
   visuel/prototype/choix-seance.html (et en artefact :
   https://claude.ai/artifact/S9xbXVRHkUQs7sgBJPvHkq). A juger sur le telephone
   avant de toucher a la seance.
