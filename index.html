@@ -6970,7 +6970,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v710</span>
+    <span class="subtitle-version">v711</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17205,19 +17205,9 @@ async function lancerDecouverte(){
     noterEtape("decouverte_debut");
     document.body.classList.add("en-decouverte");
     showScreen("decouverte");
-    // L'INTRODUCTION (v701) : elle dit que c'est une visite, et qu'elle ne
-    // montre qu'une partie de l'app. Elle s'affiche AVANT les donnees, et
-    // couvre leur chargement : le temps de la lire, elles sont arrivees.
-    ["decouverteSuite", "decouverteFin", "decouverteFermer", "decouverteBravo", "decouverteMosaique"].forEach(id => {
-        const el = document.getElementById(id);
-        if(el) el.classList.add("hidden");
-    });
-    peindreCadreDecouverte();
-    const debut = document.getElementById("decouverteDebut");
-    if(debut) debut.classList.remove("hidden");
     // ⚠️ AVANT LE PREMIER await : sur iPhone, le son n'est permis que dans le
     // prolongement du geste (CONTINUER, ou le bouton du tableau admin).
-    narrerDecouverte("intro");
+    montrerIntroDecouverte();
     await attendreDonneesDecouverte();
     // « Passer » a pu etre touche pendant le chargement.
     if(decouverte !== moi) return true;
@@ -17229,6 +17219,51 @@ async function lancerDecouverte(){
     // Le bouton a ete touche pendant le chargement : on y va maintenant.
     if(moi.demarrer) allerEtapeDecouverte(1);
     return true;
+}
+
+// L'INTRODUCTION (v701) : elle dit que c'est une visite, et qu'elle ne
+// montre qu'une partie de l'app. Elle s'affiche AVANT les donnees, et
+// couvre leur chargement : le temps de la lire, elles sont arrivees.
+// Aussi le point d'arrivee du Retour depuis l'etape 1 (v711).
+function montrerIntroDecouverte(){
+    if(!decouverte) return;
+    clearTimeout(attentePalier);
+    clearTimeout(minuteurTableau);
+    rendreBlocsDecouverte();
+    decouverte.etape = 0;
+    decouverte.passage = (decouverte.passage || 0) + 1;
+    ["decouverteSuite", "decouverteFin", "decouverteFermer", "decouverteBravo", "decouverteMosaique"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add("hidden");
+    });
+    peindreCadreDecouverte();
+    const debut = document.getElementById("decouverteDebut");
+    if(debut) debut.classList.remove("hidden");
+    window.scrollTo(0, 0);
+    narrerDecouverte("intro");
+    synchroniserHistorique();
+}
+
+// LE RETOUR DU TELEPHONE DANS LA VISITE (v711) : l'etape d'avant, telle
+// qu'on l'a vue en y arrivant -- sa voix comprise. La premiere etape ne
+// recule pas (retourSansEffet).
+// ⚠️ LA VOIX DE L'ETAPE QUITTEE SE TAIT D'ABORD. Les etapes 1 a 3 n'ont pas
+// de narration : sans cette coupure, la fin de la phrase du tableau, ou le
+// mot allemand de la carte, continuerait par-dessus l'etape d'avant.
+// Une etape sautee a l'aller faute de donnees l'est aussi au retour : sinon
+// allerEtapeDecouverte() la sauterait de nouveau, vers l'avant, et le Retour
+// semblerait ne rien faire.
+function revenirEtapeDecouverte(){
+    if(!decouverte || decouverte.etape <= 0) return;
+    try{ arreterChaineCarte(true); }catch(e){}
+    try{ arreterAudioPregenere(); }catch(e){}
+    try{ stopMasteryCelebrations(); }catch(e){}
+    let n = Math.min(decouverte.etape - 1, DECOUVERTE_ETAPES);
+    if(n === 3 && !decouverte.exos.length) n = 2;
+    if(n === 2 && !decouverte.verbe) n = 1;
+    if(n === 1 && !decouverte.noms.length) n = 0;
+    if(n <= 0 || !decouverte.pret) montrerIntroDecouverte();
+    else allerEtapeDecouverte(n);
 }
 
 // « Commencer la visite ». Les donnees pas encore arrivees, le geste est
@@ -17388,6 +17423,11 @@ function allerEtapeDecouverte(n){
     clearTimeout(minuteurTableau);
     rendreBlocsDecouverte();
     decouverte.etape = n;
+    // Chaque arrivee sur une etape est un passage neuf : ce qu'une etape
+    // quittee avait mis en route (la demonstration du tableau) le compare au
+    // sien et s'arrete. Comparer l'etape ne suffirait pas : un Retour puis un
+    // CONTINUER ramenent au meme numero.
+    decouverte.passage = (decouverte.passage || 0) + 1;
     noterEtape("decouverte_etape" + n);
     peindreCadreDecouverte();
     ["decouverteDebut", "decouverteSuite", "decouverteFin", "decouverteFermer", "decouverteBravo", "decouverteMosaique"].forEach(id => {
@@ -17400,6 +17440,8 @@ function allerEtapeDecouverte(n){
     else if(n === 3) montrerExercicesDecouverte();
     else if(n === 4) montrerTableauDecouverte();
     else montrerSeanceDecouverte();
+    // Le bouton Retour du telephone : une entree par etape franchie.
+    synchroniserHistorique();
 }
 
 function suiteDecouverte(){
@@ -17434,7 +17476,7 @@ function montrerCartesDecouverte(cartes){
 // carreau est deja pose, la carte reste a l'ecran, et la suite attend un geste
 // -- le temps de lire le bravo, et un toucher pour la voix de l'etape d'apres.
 function decouverteCartesFaites(){
-    if(!decouverte) return;
+    if(!decouverte || (decouverte.etape !== 1 && decouverte.etape !== 2)) return;
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.add("hidden");
     // La carte jugee ne repond plus : la toucher aurait demande un jugement
@@ -17459,7 +17501,7 @@ function montrerExercicesDecouverte(){
 }
 
 function decouverteExercicesFaits(){
-    if(decouverte) allerEtapeDecouverte(4);
+    if(decouverte && decouverte.etape === 3) allerEtapeDecouverte(4);
 }
 
 // L'ETAPE 4 : LE TABLEAU, PAR L'EXEMPLE (v708). Jusqu'a la v707, l'etape
@@ -17488,9 +17530,15 @@ function montrerTableauDecouverte(){
     const toile = document.getElementById("decouverteToile");
     const etiquette = document.getElementById("decouverteProjection");
     const moi = decouverte;
+    // ⚠️ L'ETAPE, PAS SEULEMENT LA VISITE (v711). Avant le Retour, on ne
+    // quittait le tableau que vers l'avant ou par la sortie ; maintenant on
+    // peut revenir aux exercices pendant la demonstration, et elle
+    // continuerait de dessiner et de parler par-dessus.
+    const passage = moi.passage;
+    const ailleurs = () => decouverte !== moi || moi.passage !== passage;
     if(etiquette) etiquette.classList.add("hidden");
     const montrerFin = () => {
-        if(decouverte !== moi) return;
+        if(ailleurs()) return;
         const suite = document.getElementById("decouverteSuite");
         if(suite) suite.classList.remove("hidden");
     };
@@ -17498,12 +17546,12 @@ function montrerTableauDecouverte(){
     moi.voixTableau = narrerDecouverte("t4");
     if(!zone || !toile){ montrerFin(); return; }
     chargerMosaiques().then(() => {
-        if(decouverte !== moi) return;
+        if(ailleurs()) return;
         const m = mosaiqueCourante();
         const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU_RANG && /Faistauer/.test(x.peintre || ""));
         const charger = (x) => x ? imageMosaique(x.fichier).catch(() => null) : Promise.resolve(null);
         return Promise.all([charger(m), charger(demo)]).then(([img, imgDemo]) => {
-            if(decouverte !== moi) return;
+            if(ailleurs()) return;
             const v = etatMosaique();
             const total = MOSAIQUE_CARREAUX;
             const fini = v.g.indexOf(v.r) >= 0 || v.c >= total;
@@ -17520,6 +17568,7 @@ function montrerTableauDecouverte(){
             }
             zone.classList.remove("hidden");
             demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette, () => {
+                if(ailleurs()) return;
                 if(!vrai()) zone.classList.add("hidden");
                 etiquette.textContent = t("dec_t4_pretour");
                 narrerDecouverte("pretour");
@@ -17553,8 +17602,9 @@ function demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette,
         etiquette.textContent = t(CLES[i]);
         etiquette.classList.remove("hidden");
     };
+    const passage = moi.passage;
     const palier = (i) => {
-        if(decouverte !== moi) return;
+        if(decouverte !== moi || moi.passage !== passage) return;
         if(i < PALIERS.length){
             const complet = i === PALIERS.length - 1;
             afficher(i);
@@ -17629,6 +17679,7 @@ function finVisiteDecouverte(){
     if(!decouverte) return;
     clearTimeout(minuteurTableau);
     decouverte.etape = DECOUVERTE_ETAPES + 1;
+    decouverte.passage = (decouverte.passage || 0) + 1;
     rendreBlocsDecouverte();
     ["decouverteFin", "decouverteBravo", "decouverteMosaique"].forEach(id => {
         const el = document.getElementById(id);
@@ -17639,6 +17690,7 @@ function finVisiteDecouverte(){
     if(fermer) fermer.classList.remove("hidden");
     window.scrollTo(0, 0);
     narrerDecouverte("t6");
+    synchroniserHistorique();
 }
 
 function terminerDecouverte(){
@@ -25312,7 +25364,10 @@ const ECRANS_DES_REGLAGES = new Set(["settings", "adminDashboard"]);
 
 // Les ecrans sans « ‹ Retour » : on n'en revient pas, on y arrive. Les
 // atteindre vide la pile.
-const ECRANS_RACINES = new Set(["home", "auth", "resetPassword", "setup", "decouverte"]);
+// ⚠️ LA DECOUVERTE N'EN EST PLUS UNE (v711). Retour y fermait l'app, au pire
+// moment : la moitie des invites n'avaient vu aucun mot (tests/parcours.js).
+// Chaque etape est maintenant une entree, voir revenirEtapeDecouverte().
+const ECRANS_RACINES = new Set(["home", "auth", "resetPassword", "setup"]);
 
 // `var` et non `let` : showScreen() peut etre appelee avant que cette ligne
 // ait tourne (voir la note sur les `let` pres de onAuthStateChanged). Les
@@ -25332,6 +25387,8 @@ function etatHistorique(){
     const actif = document.querySelector(".screen.active");
     let cle = actif ? actif.id : "home";
     if(cle === "orbPanel" && openOrbId) cle += ":" + openOrbId;
+    // La visite compte son etape : chaque etape franchie est une entree.
+    if(cle === "decouverte" && decouverte) cle += ":" + decouverte.etape;
     const mos = document.getElementById("mosaiquePlein");
     if(mos && !mos.classList.contains("hidden")) cle += "+mosaique";
     const video = document.getElementById("onboardingOverlay");
@@ -25344,6 +25401,11 @@ function remonterHistorique(k){
     if(d >= 0) return;
     HIST.pile.length = k + 1;
     HIST.idx = k;
+    traverserHistorique(d);
+}
+
+// Un history.go() dont on ignorera le popstate.
+function traverserHistorique(d){
     HIST.ignorer++;
     // ⚠️ UN popstate ATTENDU QUI NE VIENT PAS BLOQUERAIT TOUT : tant que
     // `ignorer` est positif, plus rien ne s'aligne. On le libere au bout de
@@ -25403,6 +25465,14 @@ function fermerFenetreDessus(){
     return false;
 }
 
+// Un Retour qui ne doit rien faire : l'introduction de la visite. Il n'y a
+// rien avant elle -- l'ecran de bienvenue est derriere nous, ses reponses
+// sont enregistrees -- et quitter l'app serait le pire. « Passer » en sort.
+function retourSansEffet(){
+    const actif = document.querySelector(".screen.active");
+    return !!(actif && actif.id === "decouverte" && decouverte && decouverte.etape === 0);
+}
+
 // Ouvre l'ecran d'une cle de la pile. "" est la racine : l'accueil.
 function allerVersCleHistorique(cle){
     const ecran = cle.split("+")[0];
@@ -25417,6 +25487,9 @@ function allerVersCleHistorique(cle){
 function retourHistorique(cible){
     if(fermerFenetreDessus()) return;
     const actif = document.querySelector(".screen.active");
+    // La visite n'a pas de « ‹ Retour » : on recule d'une etape, et la pile
+    // suit l'etape ou l'on arrive.
+    if(actif && actif.id === "decouverte"){ revenirEtapeDecouverte(); return; }
     if(actif && !ECRANS_RACINES.has(actif.id)){
         // Le resultat et l'abonnement, sans bouton « back », portent
         // data-retour sur le bouton qui en tient lieu.
@@ -25475,8 +25548,15 @@ function revenirALaBaseHistorique(suite){
         if(i === HIST.idx) return;
         // Le bouton Suivant du navigateur : rien a refaire, on revient.
         if(i > HIST.idx){
-            HIST.ignorer++;
-            history.go(HIST.idx - i);
+            traverserHistorique(HIST.idx - i);
+            return;
+        }
+        // ⚠️ RETOUR SANS EFFET : on RENTRE dans l'entree qu'on vient de
+        // quitter (history.go en avant), on n'en pose pas une neuve. Elle est
+        // toujours la, juste devant : seul un pushState l'aurait effacee. Sans
+        // ce retour, le Retour suivant trouverait la pile vide et quitterait.
+        if(retourSansEffet()){
+            traverserHistorique(HIST.idx - i);
             return;
         }
         const cible = HIST.pile[i] || "";
@@ -30452,7 +30532,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 710;
+const APP_VERSION = 711;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
