@@ -7575,3 +7575,12 @@ scene arrive dans la seance du jour.
   Suite : toucher Mark repondait aussi « der Bart » (Jacques) : Mark n'a pas
   de barbe. Retire de ses noms -- ce qui defait la retouche precedente, ou sa
   barbe de trois jours comptait. Der Bart reste au prof et a l'homme du fond.
+  Suite : une scene du CORPS HUMAIN (Jacques) -- proposee : Mark chez le
+  medecin, blesse au genou. Les parties du visage etant trop petites pour le
+  doigt, Jacques demande un GROS PLAN quand on touche le visage. Essai sur la
+  classe d'abord, sans rien payer : toucher le visage du prof l'agrandit, et
+  der Kopf, die Stirn, das Ohr, das Auge, die Nase, der Mund, die Brille et
+  der Bart deviennent des cibles a la taille du doigt. En « Trouve ! », le
+  visage ne s'ouvre que si le mot demande y est ; une mauvaise reponse sur le
+  nez ouvre le gros plan pour le montrer. Flou (l'image n'a que 1080 px) :
+  la vraie scene aura son visage agrandi par une IA. 12 cas testes.
