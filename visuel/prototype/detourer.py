@@ -33,7 +33,10 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 MODELES = os.path.join(os.path.expanduser("~"), ".wortando", "modeles")
-REDUCTION = 3            # le masque garde 1 pixel sur 3 : 360 x 645
+REDUCTION = 3            # le masque A TOUCHER garde 1 pixel sur 3 : 360 x 645
+NETTOYAGE = 7            # px : trous bouches et poussieres retirees en dessous
+MIETTE = 400             # px2 : un morceau de masque plus petit n'est pas trace
+SIMPLIFICATION = 2.5     # px : ecart toléré entre le trace et le bord de SAM
 
 
 def englobe(boites):
@@ -85,11 +88,29 @@ def main():
     if len(masques) != len(zones):
         sys.exit("  SAM a rendu %d masques pour %d zones" % (len(masques), len(zones)))
 
+    import cv2
     w, h = W // REDUCTION, H // REDUCTION
-    sortie = {}
-    for z, m in zip(zones, masques):
-        petit = np.array(Image.fromarray(m.astype(np.uint8) * 255)
-                         .resize((w, h), Image.BILINEAR)) > 127
+    sortie, traces = {}, {}
+    noyau = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (NETTOYAGE, NETTOYAGE))
+    for k, (z, m) in enumerate(zip(zones, masques)):
+        # Nettoyer a pleine resolution : fermer les petits trous, retirer les
+        # poussieres (le flanc du bureau en etait crible).
+        m8 = cv2.morphologyEx(m.astype(np.uint8) * 255, cv2.MORPH_CLOSE, noyau)
+        m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, noyau)
+        masques[k] = m8 > 127
+        m = masques[k]
+        # Le TRACE : un polygone simplifie (Douglas-Peucker). Un bord presque
+        # droit devient une ligne droite -- le dessus et les pattes de la table --
+        # au lieu de l'escalier d'un masque reduit puis etire (Jacques, 6 oct.).
+        contours, _ = cv2.findContours(m8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        polys = []
+        for c in contours:
+            if cv2.contourArea(c) < MIETTE:
+                continue
+            a = cv2.approxPolyDP(c, SIMPLIFICATION, True).reshape(-1, 2)
+            polys.append([int(v) for v in a.ravel()])
+        traces[z["id"]] = polys
+        petit = np.array(Image.fromarray(m8).resize((w, h), Image.BILINEAR)) > 127
         couverture = petit.mean() * 100
         boite = z.get("sam") or englobe(z.get("boites") or [z["boite"]])
         part = couverture / (boite[2] * boite[3] / 100) * 100 if boite[2] * boite[3] else 0
@@ -97,7 +118,8 @@ def main():
         sortie[z["id"]] = rle(petit.ravel().tolist())
 
     js = ("// GENERE par detourer.py (SAM 2) -- ne pas modifier a la main.\n"
-          "window.MASQUES = " + json.dumps({"w": w, "h": h, "zones": sortie},
+          "window.MASQUES = " + json.dumps({"w": w, "h": h, "zones": sortie,
+                                            "W": W, "H": H, "traces": traces},
                                            separators=(",", ":")) + ";\n")
     chemin = os.path.join(ICI, "masques-klassenzimmer.js")
     io.open(chemin, "w", encoding="utf-8").write(js)

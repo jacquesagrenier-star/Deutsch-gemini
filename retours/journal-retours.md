@@ -7528,3 +7528,8 @@ scene arrive dans la seance du jour.
   vit dans ~/.wortando/modeles. Chaque objet a son masque : on touche les pixels
   de l'objet (la table AVEC ses pattes, le bureau jusqu'au sol), et le
   surlignage suit son contour avec un halo ambre. 25 cas testes.
+  Suite : le contour faisait des escaliers sur la table (Jacques). Cause : le
+  masque reduit au tiers puis etire. Le contour est maintenant un trace vectoriel
+  (masque nettoye a pleine resolution, polygone simplifie par Douglas-Peucker,
+  SVG) : les bords droits sont droits. Le masque au tiers ne sert plus qu'a
+  savoir ce qu'on touche. 25 cas toujours justes.
