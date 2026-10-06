@@ -42,6 +42,7 @@
   --ambre:#E8A23A;
   --accent-texte:#8F560B;
   --teinte:#F3ECDF;
+  --fond-cartes:#EDCF9B;
   --bordure:#DCCBAA;
   --ombre:rgba(30,41,59,.12);
   --der:#2D5DA8; --die:#C2412D; --das:#2F7D57;
@@ -51,7 +52,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --fond:#000000; --surface:#14181F; --encre:#F2F2F6; --texte-doux:#A9AEBC;
-    --ambre:#E8A23A; --accent-texte:#F0B456; --teinte:#2A2418;
+    --ambre:#E8A23A; --accent-texte:#F0B456; --teinte:#2A2418; --fond-cartes:#4A3818;
     --bordure:rgba(232,162,58,.45); --ombre:rgba(0,0,0,.5);
     --der:#86A8E8; --die:#F08A78; --das:#74C69D;
     color-scheme:dark;
@@ -59,7 +60,7 @@
 }
 :root[data-theme="dark"]{
   --fond:#000000; --surface:#14181F; --encre:#F2F2F6; --texte-doux:#A9AEBC;
-  --ambre:#E8A23A; --accent-texte:#F0B456; --teinte:#2A2418;
+  --ambre:#E8A23A; --accent-texte:#F0B456; --teinte:#2A2418; --fond-cartes:#4A3818;
   --bordure:rgba(232,162,58,.45); --ombre:rgba(0,0,0,.5);
   --der:#86A8E8; --die:#F08A78; --das:#74C69D;
   color-scheme:dark;
@@ -108,7 +109,9 @@ h1{font-family:var(--titre);font-weight:750;font-size:26px;line-height:1.1;margi
 
 /* --- les cartes : le recto et le verso d'une meme carte, une fleche de
    retournement entre les deux --- */
-.vue.cartes{display:flex;align-items:center;justify-content:center;gap:4%;background:var(--teinte);padding:0 6%}
+/* un fond franc, l'ambre de la marque : sans lui, les deux apercus se
+   distinguaient mal (Jacques) */
+.vue.cartes{display:flex;align-items:center;justify-content:center;gap:4%;background:var(--fond-cartes);padding:0 6%}
 .face{flex:1 1 0;min-width:0;aspect-ratio:4/3;border-radius:14px;background:var(--surface);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px;
   border:1px solid var(--bordure);box-shadow:0 6px 16px var(--ombre)}
