@@ -589,7 +589,7 @@ function poser(){
   if (!q) return fin();
   // Seul l'objet de la question s'allume : montrer la reference AVANT la
   // reponse soufflait la moitie de la reponse (le Tisch encadre).
-  effacer(); anneau(q.f);
+  fermerGrosPlan(); effacer(); anneau(q.f);
   const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
   entete(niveau + " · " + c.titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);
