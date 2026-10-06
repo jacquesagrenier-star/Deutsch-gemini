@@ -7572,3 +7572,6 @@ scene arrive dans la seance du jour.
   visuel/prototype/choix-seance.html (et en artefact :
   https://claude.ai/artifact/S9xbXVRHkUQs7sgBJPvHkq). A juger sur le telephone
   avant de toucher a la seance.
+  Suite : toucher Mark repondait aussi « der Bart » (Jacques) : Mark n'a pas
+  de barbe. Retire de ses noms -- ce qui defait la retouche precedente, ou sa
+  barbe de trois jours comptait. Der Bart reste au prof et a l'homme du fond.

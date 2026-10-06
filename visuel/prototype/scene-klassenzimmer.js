@@ -342,11 +342,6 @@ window.SCENE = {
      "fr": "étudiant"
     },
     {
-     "mot": "Bart",
-     "genre": "der",
-     "fr": "barbe"
-    },
-    {
      "mot": "Stift",
      "genre": "der",
      "fr": "stylo"
