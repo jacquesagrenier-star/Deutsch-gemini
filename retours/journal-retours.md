@@ -7565,7 +7565,10 @@ scene arrive dans la seance du jour.
   sur le telephone), en apercus FIXES plutot qu'animes (son choix). La scene
   suit le NIVEAU de la seance, sans le demander : trouver des mots en A1, les
   prepositions en A2, stehen/stellen en B1, les relatives en B2, les
-  hypotheses en C1. Maquette hors de l'app :
+  hypotheses en C1. A partir de l'A2, une des 3 questions revise un niveau
+  d'avant (Jacques, en B1, aurait voulu revoir les prepositions). Pour jouer
+  a sa guise, a tous les niveaux : un espace « Scenes » hors de la seance,
+  plus tard, quand il y aura plus d'une scene. Maquette hors de l'app :
   visuel/prototype/choix-seance.html (et en artefact :
   https://claude.ai/artifact/S9xbXVRHkUQs7sgBJPvHkq). A juger sur le telephone
   avant de toucher a la seance.
