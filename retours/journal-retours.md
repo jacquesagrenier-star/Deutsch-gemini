@@ -7523,3 +7523,8 @@ scene arrive dans la seance du jour.
   table comprises) : propose SAM 2.
   Suite : la barbe -- l'homme du fond l'avait deja ; Mark aussi (barbe de
   trois jours, ein Dreitagebart, est bien un Bart).
+  Suite : detourage comme sur Apple (demande de Jacques). SAM 2 (Meta, Apache
+  2.0) tourne en local, gratuit ; le modele (154 Mo et non 80 comme annonce)
+  vit dans ~/.wortando/modeles. Chaque objet a son masque : on touche les pixels
+  de l'objet (la table AVEC ses pattes, le bureau jusqu'au sol), et le
+  surlignage suit son contour avec un halo ambre. 25 cas testes.

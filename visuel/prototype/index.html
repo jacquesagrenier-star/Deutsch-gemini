@@ -71,7 +71,15 @@ html,body{margin:0;background:#11151b;color:var(--encre);
   color:var(--encre);cursor:pointer}
 .score{font-size:13px;color:#fff;text-align:right;text-shadow:0 1px 3px #000}
 
-/* le cadre lumineux autour d'un objet */
+/* le contour lumineux d'un objet : une toile a la resolution des masques,
+   etiree sur la scene, avec un halo ambre */
+.voile{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1490}
+.contours{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1500;
+  filter:drop-shadow(0 0 3px rgba(232,162,58,.9))}
+.contours.vivant{animation:lueur 1.4s ease-in-out infinite}
+@keyframes lueur{50%{filter:drop-shadow(0 0 7px rgba(232,162,58,1))}}
+@media (prefers-reduced-motion:reduce){.contours.vivant{animation:none}}
+/* (ancien) le cadre lumineux autour d'un objet */
 .anneau{position:absolute;border-radius:10px;pointer-events:none;z-index:1500;
   box-shadow:0 0 0 3px var(--ambre),0 0 0 9999px rgba(0,0,0,.28);
   animation:pulse 1.2s ease-in-out infinite}
@@ -116,6 +124,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 </div>
 
 <script src="scene-klassenzimmer.js"></script>
+<script src="masques-klassenzimmer.js"></script>
 <script>
 "use strict";
 const S = window.SCENE;
@@ -140,46 +149,104 @@ function dire(t){
   speechSynthesis.speak(u);
 }
 
-/* ---------- les zones : la plus petite au-dessus ---------- */
-/* Le plan d'une zone : une personne passe DEVANT ce qui est derriere elle (le
-   prof devant le tableau), et ce qui est pose sur elle herite de son plan.
-   A plan egal, la plus petite zone gagne. */
-const aire = p => p.boites.reduce((s,[,,w,h]) => s + w*h, 0);
-const plan = p => { let n = 0, z = p, k = 0; while (z && k < 5){ n = Math.max(n, z.devant || 0); z = P[z.sur]; k++; } return n; };
-const sous = (xp, yp) => S.points.filter(p => p.boites.some(([x,y,w,h]) => xp >= x && xp <= x+w && yp >= y && yp <= y+h));
+/* ---------- les zones : des MASQUES, plus des rectangles ---------- */
+/* Jacques, 6 oct. : « comme sur Apple, l'objet au complet, meme avec les pattes
+   de la table ». Chaque zone a son masque (detourer.py, SAM 2) : on teste les
+   PIXELS de l'objet sous le doigt, et le surlignage suit son contour.
+   Le plan d'une zone : une personne passe DEVANT ce qui est derriere elle (le
+   prof devant le tableau), et ce qui est pose sur elle herite de son plan. A
+   plan egal, le plus petit objet gagne. */
+const MW = MASQUES.w, MH = MASQUES.h;
 for (const p of S.points){
-  p.boites.forEach(([x,y,w,h], k) => {
-    const b = document.createElement("button");
-    b.className = "zone"; b.dataset.id = p.id;
-    b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;z-index:${plan(p)*2000 + 1000 - Math.round(aire(p)/10)}`;
-    b.setAttribute("aria-label", p.personne || p.mot);
-    if (k) b.setAttribute("aria-hidden", "true"), b.tabIndex = -1;
-    b.addEventListener("click", e => {
-      // ou le doigt est tombe, en % de l'image : en mode Trouve, TOUT ce qui
-      // est sous le doigt compte (les mains de Mark sur la table : Mann ET Tisch)
-      const r = scene.getBoundingClientRect();
-      const pt = e.detail ? [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100] : null;
-      toucher(p.id, pt);
-    });
-    scene.appendChild(b);
-  });
+  const m = new Uint8Array(MW * MH);
+  let k = 0, v = 0;
+  for (const n of MASQUES.zones[p.id]){ if (v) m.fill(1, k, k + n); k += n; v ^= 1; }
+  p.masque = m;
+  let x0 = MW, y0 = MH, x1 = -1, y1 = -1, n = 0;
+  for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) if (m[y*MW + x]){
+    n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  p.pixels = n;
+  p.cadre = [x0/MW*100, y0/MH*100, (x1-x0+1)/MW*100, (y1-y0+1)/MH*100];
 }
-$("voirZones").addEventListener("change", e => scene.classList.toggle("voir-zones", e.target.checked));
+const plan = p => { let n = 0, z = p, k = 0; while (z && k < 5){ n = Math.max(n, z.devant || 0); z = P[z.sur]; k++; } return n; };
+const devantDe = (a, b) => plan(b) - plan(a) || a.pixels - b.pixels;
+/* Ce qui est sous le doigt, avec une marge : un doigt couvre plus qu'un pixel,
+   et le stylo d'Anna ne fait que quelques pixels de large. */
+const RAYON = 3;
+function sous(xp, yp){
+  const cx = Math.floor(xp / 100 * MW), cy = Math.floor(yp / 100 * MH);
+  const exact = [], proche = [];
+  for (const p of S.points){
+    if (p.masque[cy*MW + cx]) { exact.push(p); continue; }
+    cherche: for (let dy = -RAYON; dy <= RAYON; dy++) for (let dx = -RAYON; dx <= RAYON; dx++){
+      const x = cx + dx, y = cy + dy;
+      if (x >= 0 && y >= 0 && x < MW && y < MH && p.masque[y*MW + x]){ proche.push(p); break cherche; }
+    }
+  }
+  return {exact: exact.sort(devantDe), proche: proche.sort(devantDe)};
+}
+/* Un bouton invisible par zone, pour le clavier et les lecteurs d'ecran
+   seulement : le doigt, lui, est lu par la scene. */
+for (const p of S.points){
+  const [x,y,w,h] = p.cadre;
+  const b = document.createElement("button");
+  b.className = "zone"; b.dataset.id = p.id;
+  b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;pointer-events:none`;
+  b.setAttribute("aria-label", p.personne || p.mot);
+  b.addEventListener("click", () => toucher(p.id, null));
+  scene.appendChild(b);
+}
+scene.addEventListener("click", e => {
+  if (e.target.closest(".bas") || e.target.closest("button:not(.zone)")) return;
+  const r = scene.getBoundingClientRect();
+  const pt = [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100];
+  const {exact, proche} = sous(pt[0], pt[1]);
+  const p = exact[0] || proche[0];
+  if (p) toucher(p.id, pt);
+});
 
-/* ---------- surlignage et etiquette ---------- */
-function effacer(){ scene.querySelectorAll(".anneau,.etiquette").forEach(n => n.remove()); }
-const englobe = p => {
-  const xs = p.boites.map(b => b[0]), ys = p.boites.map(b => b[1]);
-  const x = Math.min(...xs), y = Math.min(...ys);
-  return [x, y, Math.max(...p.boites.map(b => b[0]+b[2])) - x, Math.max(...p.boites.map(b => b[1]+b[3])) - y];
-};
-function anneau(id, second){
-  const [x,y,w,h] = englobe(P[id]);
-  const a = document.createElement("div");
-  a.className = "anneau" + (second ? " second" : "");
-  a.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%`;
-  scene.appendChild(a);
+/* ---------- surlignage : le contour de l'objet ---------- */
+/* Deux calques : le voile (qui assombrit le reste) et le contour (avec son
+   halo). Sur un seul calque, le halo ambre s'appliquait au voile et teintait
+   toute l'image en orange. */
+const voile = document.createElement("canvas");
+voile.width = MW; voile.height = MH; voile.className = "voile";
+scene.appendChild(voile);
+const toile = document.createElement("canvas");
+toile.width = MW; toile.height = MH; toile.className = "contours";
+scene.appendChild(toile);
+let allumes = [];
+function dessiner(){
+  const c = toile.getContext("2d"), img = c.createImageData(MW, MH), d = img.data;
+  const cv = voile.getContext("2d"), iv = cv.createImageData(MW, MH), dv = iv.data;
+  const principaux = allumes.filter(a => !a.second);
+  const dans = (p, x, y) => x >= 0 && y >= 0 && x < MW && y < MH && p.masque[y*MW + x] === 1;
+  const bord = (p, x, y) => {     // un pixel de l'objet dont un voisin proche n'en est pas
+    if (!dans(p, x, y)) return false;
+    for (let k = -2; k <= 2; k++) if (!dans(p, x+k, y) || !dans(p, x, y+k)) return true;
+    return false;
+  };
+  for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++){
+    const i = (y*MW + x) * 4;
+    let couleur = null;
+    for (const a of allumes) if (bord(P[a.id], x, y)){
+      couleur = a.second ? [255,255,255] : [232,162,58];
+      if (!a.second) break;
+    }
+    if (couleur){ d[i] = couleur[0]; d[i+1] = couleur[1]; d[i+2] = couleur[2]; d[i+3] = 255; continue; }
+    if (principaux.length && !principaux.some(a => dans(P[a.id], x, y))) dv[i+3] = 80;   // le reste s'assombrit
+  }
+  c.putImageData(img, 0, 0);
+  cv.putImageData(iv, 0, 0);
+  toile.classList.toggle("vivant", principaux.length > 0);
 }
+function effacer(){ allumes = []; dessiner(); scene.querySelectorAll(".etiquette").forEach(n => n.remove()); }
+function anneau(id, second){ allumes.push({id, second: !!second}); dessiner(); }
+const englobe = p => p.cadre;
+$("voirZones").addEventListener("change", e => {
+  if (e.target.checked){ allumes = S.points.map(p => ({id: p.id, second: true})); dessiner(); }
+  else effacer();
+});
 function groupe(p){
   const art = p.genre || "";
   return `<span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span>`;
@@ -348,9 +415,13 @@ function toucher(id, pt){
     const cible = attenteToucher, bonnes = zonesDe(cible);
     // Seulement ce qui est AU MEME PLAN que le premier plan sous le doigt : les
     // mains de Mark et la table, oui ; la tete du prof et le tableau derriere, non.
-    const dessous = pt ? sous(pt[0], pt[1]) : [];
-    const devantTout = Math.max(plan(p), ...dessous.map(plan));
-    const candidats = [p, ...dessous.filter(z => plan(z) === devantTout)];
+    // Tout ce qui est sous le doigt AU MEME PLAN que le premier plan : les mains
+    // de Mark et la table, oui ; la tete du prof et le tableau derriere, non.
+    const {exact, proche} = pt ? sous(pt[0], pt[1]) : {exact: [], proche: []};
+    // Si le doigt ne tombe pile sur rien (a cote d'une patte de table), tout ce
+    // qui est PROCHE compte, sans regarder le plan : on ne sait pas lequel il visait.
+    const devantTout = Math.max(plan(p), ...exact.map(plan));
+    const candidats = exact.length ? [p, ...exact.filter(z => plan(z) === devantTout)] : [p, ...proche];
     const retenue = candidats.find(z => touche(z, cible));
     const juste = !!retenue;
     verrou = true; faits++;
