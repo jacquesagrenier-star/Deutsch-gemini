@@ -6970,7 +6970,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v711</span>
+    <span class="subtitle-version">v712</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -16935,6 +16935,73 @@ function noterEtape(nom){
     if(typeof scheduleCloudSync === "function") scheduleCloudSync();
 }
 
+// OU L'ON DECROCHE DANS LA SEANCE DU JOUR (v712). Avant de placer une scene
+// illustree en tete de seance, il faut savoir ou les gens lachent
+// aujourd'hui. Pour chaque seance du jour ouverte : combien de cartes du
+// paquet ont ete passees, sur combien prevues, et si elle a ete finie.
+// `node tests/parcours.js` en fait le tableau.
+//   d : ouverture (ISO)   n : cartes prevues   p : passees (jugees ou
+//   balayees, au plus n)  f : 1 si la fin de seance a ete atteinte
+// ⚠️ SEPT JOURS, RIEN DE PLUS. C'est ce qui sert a juger, et le champ part
+// avec CHAQUE sauvegarde : il ne doit pas grossir avec les mois.
+// ⚠️ PAS D'ECRITURE PAR CARTE DANS FIRESTORE. Le compte avance dans le
+// localStorage ; la sauvegarde n'est demandee qu'a la sortie de la seance.
+// Une seance abandonnee en fermant l'app y reste « non finie », et part avec
+// la sauvegarde suivante -- ce qui est exactement ce qu'on veut compter.
+// ⚠️ LES REPRISES NE COMPTENT PAS. Les cartes ratees qui reviennent en fin de
+// paquet, et « Encore 15 » apres la fin, ne changent ni n ni p : on mesure le
+// paquet propose, pas l'acharnement.
+const SEANCES_KEY = "deutschAI_seances";
+const SEANCES_JOURS = 7;
+let seanceSuivie = null;   // { d, paquet } tant que la seance est ouverte
+
+function lireSeances(){
+    try{
+        const l = JSON.parse(localStorage.getItem(SEANCES_KEY) || "[]");
+        return Array.isArray(l) ? l : [];
+    }catch(e){ return []; }
+}
+
+function ecrireSeances(maj){
+    const limite = Date.now() - SEANCES_JOURS * 86400000;
+    const l = lireSeances().filter(s => s && s.d && s.d !== maj.d && Date.parse(s.d) >= limite);
+    l.push(maj);
+    try{ localStorage.setItem(SEANCES_KEY, JSON.stringify(l)); }catch(e){}
+}
+
+function seanceCourante(){
+    if(!seanceSuivie) return null;
+    return lireSeances().find(s => s.d === seanceSuivie.d) || null;
+}
+
+function debutSeanceSuivie(paquet){
+    finSeanceSuivie(false);
+    const d = new Date().toISOString();
+    seanceSuivie = { d: d, paquet: paquet };
+    ecrireSeances({ d: d, n: paquet.length, p: 0, f: 0 });
+}
+
+// Une carte du paquet passee. Seulement celles du paquet d'ouverture : les
+// reprises remplacent currentCards par un autre tableau (voir nextFlashcard).
+function carteSeanceSuivie(){
+    if(!seanceSuivie || currentCards !== seanceSuivie.paquet) return;
+    const s = seanceCourante();
+    if(!s) return;
+    s.p = Math.min(s.n, currentFlashcard);
+    ecrireSeances(s);
+}
+
+// La seance se ferme : finie, ou quittee. Une seule demande de sauvegarde.
+function finSeanceSuivie(finie){
+    if(!seanceSuivie) return;
+    const s = seanceCourante();
+    seanceSuivie = null;
+    if(!s) return;
+    if(finie){ s.p = s.n; s.f = 1; }
+    ecrireSeances(s);
+    if(typeof scheduleCloudSync === "function") scheduleCloudSync();
+}
+
 // LE NIVEAU DECLARE (v699). « Zero » et « quelques mots » partent tous deux
 // de l'A1 : ils different par ce que la decouverte guidee montrera, pas par
 // le niveau. La reponse brute est gardee pour elle. Le niveau, lui, est celui
@@ -20786,6 +20853,12 @@ async function syncProgressToCloud(){
             // qu'il faut pour voir ou un nouvel inscrit s'arrete.
             parcoursJson: (function(){
                 try{ return localStorage.getItem(PARCOURS_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
+            // Les seances du jour des sept derniers jours (v712) : ou l'on
+            // decroche. Voir debutSeanceSuivie().
+            seancesJson: (function(){
+                try{ return localStorage.getItem(SEANCES_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
             // La decouverte guidee (v700) : commencee, finie ou passee, et
@@ -27836,6 +27909,8 @@ const FLASHCARD_RETURN_SCREENS = {
 };
 
 function handleFlashcardBack(){
+    // Quittee avant la fin : elle reste « non finie », a p cartes (v712).
+    finSeanceSuivie(false);
     // Le trophee se compte EN JOURS D'ACTIVITE (v629), et c'est d'ici qu'il
     // avance : une semaine d'absence ne consomme rien, une semaine de
     // seances ne consomme pas trois jours en un apres-midi. La garde de date
@@ -30532,7 +30607,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 711;
+const APP_VERSION = 712;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -33770,6 +33845,8 @@ async function ouvrirSeanceDuJour(){
     // aller chercher du retard d'un autre niveau, pas seulement du neuf d'ici.
     currentCardsFull = tout;
     currentCards = seance;
+    // Ou l'on decroche (v712) : voir debutSeanceSuivie().
+    debutSeanceSuivie(seance);
     // ⚠️ LA SEANCE REVIENT A L'ACCUEIL, PAS AU DERNIER ECRAN VISITE. Elle ne
     // fixait aucun retour : handleFlashcardBack() retombait sur ce qui trainait
     // -- le panneau des noms, ou l'ecran d'un theme ouvert une heure plus tot.
@@ -35130,6 +35207,7 @@ function markMastered(discret){
 function nextFlashcard(){
     noterEtape("reponse");
     currentFlashcard++;
+    carteSeanceSuivie();
     // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
     // poser dans loadFlashcard() le compterait deux fois a chaque changement de
@@ -35165,6 +35243,7 @@ function nextFlashcard(){
             loadFlashcard();
             return;
         }
+        finSeanceSuivie(true);
         if(showFlashcardEnd()) return;
         showInfoToast(t('alert_session_ended_saved'));
         handleFlashcardBack();
@@ -35191,8 +35270,10 @@ function skipFlashcard(){
         }
     }
     currentFlashcard++;
+    carteSeanceSuivie();
     poserCarreau();
     if(currentFlashcard >= currentCards.length){
+        finSeanceSuivie(true);
         showInfoToast(t('alert_session_ended'));
         handleFlashcardBack();
         return;
