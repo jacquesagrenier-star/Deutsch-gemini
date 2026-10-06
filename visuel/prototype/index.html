@@ -117,9 +117,11 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    haut que l'ecran du telephone, et un bouton pose en haut de l'image passait
    sous la carte collee des qu'on descendait voir le bas de l'affiche -- plus
    moyen de revenir (Jacques, 6 oct.). */
-.gros-plan .fermer{position:fixed;left:8px;top:8px;z-index:3;border:0;border-radius:999px;
-  padding:8px 12px;font:700 14px inherit;background:rgba(251,247,239,.95);color:var(--encre);
-  box-shadow:0 3px 12px rgba(0,0,0,.35);cursor:pointer}
+/* Et VOYANT : petit et creme sur une image claire, Jacques ne le trouvait
+   pas (« je ne vois pas comment rapetisser l'image », 6 oct.). */
+.gros-plan .fermer{position:fixed;left:8px;top:8px;z-index:3;border:2px solid var(--encre);border-radius:999px;
+  padding:11px 16px;font:800 16px inherit;background:var(--ambre);color:var(--encre);
+  box-shadow:0 4px 16px rgba(0,0,0,.45);cursor:pointer}
 .gros-plan .fermer:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.gros-plan{transition:none}}
 
@@ -374,7 +376,7 @@ function ouvrirGrosPlan(g, sansAnim){
   el.setAttribute("role", "group"); el.setAttribute("aria-label", "Gros plan");
   el.innerHTML = `<div class="fond"></div>
     <svg viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"></svg>
-    <button type="button" class="fermer">‹ Toute la scène</button>`;
+    <button type="button" class="fermer">✕ Revenir à la scène</button>`;
   const fond = el.querySelector(".fond");
   if (g.image){
     // Le cadre decoupe dans la source pleine resolution (construire.py, « net ») :

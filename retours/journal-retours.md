@@ -7674,3 +7674,8 @@ scene arrive dans la seance du jour.
   repond das Bein. Le talon reste introuvable : pieds de face, il est cache --
   le lien du prototype ouvert dans le panneau de droite montrait d'abord une
   version en cache (dix minutes chez GitHub) ; une adresse neuve l'a rafraichi.
+  Suite : « je ne vois pas comment rapetisser l'image qui est en zoom »
+  (Jacques). Le bouton existait, mais petit et creme sur une image claire :
+  il est maintenant ambre, plus grand, cerne, et dit « Revenir a la scene ».
+  Et deux fois, l'onglet montrait une page gardee en cache (le mien aussi) :
+  une adresse neuve force la derniere version.
