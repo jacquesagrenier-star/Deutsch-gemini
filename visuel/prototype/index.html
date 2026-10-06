@@ -37,6 +37,8 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .barre{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .titre{font-weight:700;font-size:15px;color:var(--encre);background:rgba(251,247,239,.92);
   padding:6px 10px;border-radius:999px}
+.retour-choix{text-decoration:none;font-weight:600}
+.retour-choix:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
 .niveaux{display:flex;gap:4px;background:rgba(251,247,239,.92);padding:3px;border-radius:999px}
 .niveaux button{border:0;background:transparent;font:600 13px/1 inherit;color:var(--encre);
   padding:7px 9px;border-radius:999px;cursor:pointer;min-width:34px}
@@ -120,7 +122,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 <div class="cadre">
   <div class="haut">
     <div class="barre">
-      <span class="titre">Im Spanischkurs</span>
+      <a class="titre retour-choix" id="retourChoix" href="choix-seance.html" aria-label="Retour au choix de la séance">‹ Im Spanischkurs</a>
       <div class="niveaux" id="niveaux" role="group" aria-label="Niveau"></div>
     </div>
     <div class="carte" id="carte"></div>
@@ -144,6 +146,10 @@ const P = Object.fromEntries(S.points.map(p => [p.id, p]));
 const $ = id => document.getElementById(id);
 const scene = $("scene");
 $("photo").src = S.image;
+/* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
+   depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
+   la classe s'appelle classe.html. */
+if (/classe\.html$/.test(location.pathname)) $("retourChoix").href = "index.html";
 
 /* ---------- la voix ---------- */
 let voixDe = null;
