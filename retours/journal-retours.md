@@ -7653,3 +7653,18 @@ scene arrive dans la seance du jour.
   Le bouton est desormais FIXE juste sous la carte : visible tant que le gros
   plan est ouvert, ou qu'on soit dans la page. Verifie a 375 px en defilant
   jusqu'en bas. Vaut pour tous les gros plans, classe comprise.
+  Suite : Jacques n'arrive a toucher « ni la cheville ni le talon ». La
+  cheville manquait au corpus : der Knoechel AJOUTE a themes.json
+  (koerperteile_a2, cinq langues, phrase d'exemple : une cheville foulee au
+  foot ; traductions tr/uk/fa ecrites par moi, NON RELUES), puis frequence.json
+  refait. Elle se touche dans le gros plan des pieds. Le talon (die Ferse,
+  deja au corpus) ne se voit pas : Mark a les pieds de face -- il faudra un
+  pied de cote ou de dos dans une autre image. Pas d'audio ElevenLabs pour
+  der Knoechel : la voix du navigateur le lit.
+  Suite : « pour pas qu'on aille cliquer sur le medecin » quand on demande
+  les doigts ou une oreille (Jacques). En « Trouve ! », quand toutes les
+  cibles d'un mot sont des parties d'UNE personne, la question le dit :
+  « die Hand — sur Mark ». Et toucher la medecin a la place n'est plus une
+  faute : « Ca, c'est die Aerztin. Cherche die Hand sur Mark. », sans point
+  perdu, la question reste ouverte. Rien ne change dans la classe (die Brille
+  est au prof et a la dame : pas d'indication).

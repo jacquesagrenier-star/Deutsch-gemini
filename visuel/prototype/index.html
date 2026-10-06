@@ -515,13 +515,31 @@ const A_TROUVER = (() => {
 })();
 const zonesDe = mot => S.points.filter(p => porte(p, mot)).map(p => p.id);
 let fileTrouver = [];
+/* A QUI appartient ce qu'on demande. Jacques, 6 oct. : on demande l'oreille
+   ou les doigts, et l'on va toucher la medecin -- qui a des oreilles aussi,
+   mais seules celles de Mark sont des cibles. La racine d'une zone : on
+   remonte « sur » jusqu'au bout (l'oreille -> Mark). Une personne : un
+   prenom, ou une zone qui porte der Mann / die Frau. */
+const racine = z => { for (let n = 0; z.sur && P[z.sur] && n < 5; n++) z = P[z.sur]; return z; };
+const estPersonne = z => !!z.personne || [z.mot, ...z.aussi.map(a => a.mot)].some(m => m === "Mann" || m === "Frau");
+const nomDe = z => z.personne ? `<b>${z.personne}</b>` : groupe(z);
+/* Le proprietaire, si TOUTES les zones du mot sont des parties d'UNE seule
+   personne (das Ohr -> Mark). Sinon rien : die Brille est au prof et a la
+   dame, et der Mann EST Mark -- le dire donnerait la reponse. */
+function proprietaire(mot){
+  const zones = zonesDe(mot).map(id => P[id]);
+  if (!zones.length || zones.some(z => !z.sur)) return null;
+  const r = [...new Set(zones.map(racine))];
+  return r.length === 1 && estPersonne(r[0]) ? r[0] : null;
+}
 function trouver(){
   if (!fileTrouver.length || i === 0) fileTrouver = melanger(A_TROUVER).slice(0, 10);
   if (i >= fileTrouver.length) return fin();
   const p = fileTrouver[i]; attenteToucher = p.mot;
+  const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
   entete("A1 · Trouve !  " + (i+1) + " / " + fileTrouver.length,
-         `Touche : ${groupe(p)} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
+         `Touche : ${groupe(p)}${chez ? " — sur " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
   $("reecouter").addEventListener("click", () => dire(p.genre + " " + p.mot));
   $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
   dire(p.genre + " " + p.mot);
@@ -551,6 +569,19 @@ function toucher(id, pt){
     const PETIT = MW * MH * 0.004;
     const retenue = candidats.find(z => touche(z, cible))
                  || petits.find(z => touche(z, cible));
+    // Toucher l'oreille de la medecin quand on demande celle de Mark n'est pas
+    // une faute de vocabulaire : le mot etait juste, la personne non. On le
+    // dit, sans compter de point, et la question reste ouverte.
+    const chez = !retenue && proprietaire(cible);
+    if (chez){
+      const r = racine(p);
+      if (r !== chez && estPersonne(r)){
+        effacer(); anneau(r.id, true);
+        $("bas").innerHTML = `<div class="explication">Ça, c'est ${nomDe(r)}. Cherche ${groupe(A_TROUVER.find(t => t.mot === cible))} sur ${nomDe(chez)}.</div>`
+                           + `<div class="score">${bons} / ${faits}</div>`;
+        return;
+      }
+    }
     const juste = !!retenue;
     verrou = true; faits++;
     effacer();

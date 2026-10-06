@@ -1866,6 +1866,52 @@ window.SCENE = {
    ]
   },
   {
+   "id": "knoechel-l",
+   "mot": "Knöchel",
+   "genre": "der",
+   "pluriel": "Knöchel",
+   "fr": "cheville",
+   "en": "ankle",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     44.800000000000004,
+     74.55,
+     1.6,
+     1.5
+    ]
+   ]
+  },
+  {
+   "id": "knoechel-r",
+   "mot": "Knöchel",
+   "genre": "der",
+   "pluriel": "Knöchel",
+   "fr": "cheville",
+   "en": "ankle",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     54.15,
+     74.9,
+     1.5,
+     1.6
+    ]
+   ]
+  },
+  {
    "id": "rippe",
    "mot": "Rippe",
    "genre": "die",
@@ -2224,6 +2270,18 @@ window.SCENE = {
      79.8,
      2.3,
      0.6
+    ],
+    "knoechel-l": [
+     45.6,
+     75.3,
+     0.8,
+     0.75
+    ],
+    "knoechel-r": [
+     54.9,
+     75.7,
+     0.75,
+     0.8
     ]
    },
    "image": "arztpraxis-pieds-mark.webp?c=8b24e4ff"
