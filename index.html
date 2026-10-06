@@ -6051,9 +6051,12 @@ body[data-theme="dark"] #decouverte > button.primary{
 .choix-seance-nom{font-weight:800; font-size:17px;}
 .choix-seance-detail{font-size:13px; color:var(--wt-accent-texte);}
 
-/* La scene : le prototype dans un cadre, toute la hauteur de l'ecran. */
-#sceneSeance.active{padding:0; margin:0;}
-.scene-cadre{display:block; width:100%; height:100vh; height:100dvh; border:0; background:#11151b;}
+/* La scene : le prototype en PLEIN ECRAN, par-dessus la barre Wortando.
+   Dans la page, la barre et la carte de question poussaient les reponses
+   sous le bord : il fallait faire defiler pour repondre (Jacques, 6 oct.).
+   On en sort par le titre de la scene, qui revient au choix. */
+#sceneSeance.active{position:fixed; inset:0; z-index:3000; padding:0; margin:0; background:#11151b;}
+.scene-cadre{display:block; width:100%; height:100%; border:0; background:#11151b;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -7002,7 +7005,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v713</span>
+    <span class="subtitle-version">v714</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -30764,7 +30767,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 713;
+const APP_VERSION = 714;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

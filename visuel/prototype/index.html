@@ -129,6 +129,11 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 /* Dans la seance : ni pastilles (le niveau est celui de la seance), ni modes
    (on cherche), ni pied de controle. */
 .en-seance .niveaux,.en-seance .modes,.en-seance .pied{display:none}
+/* Et tout tient dans l'ecran : l'image prend la hauteur qui reste sous la
+   carte (ajusterSeance), quitte a etre plus etroite. Il fallait faire
+   defiler pour atteindre les reponses (Jacques, 6 oct.). */
+.en-seance .cadre{max-width:none}
+.en-seance .scene{margin:0 auto}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 </style>
 </head>
@@ -481,6 +486,20 @@ function envoyer(type, donnees){
 if (EN_SEANCE){
   document.body.classList.add("en-seance");
   $("retourChoix").addEventListener("click", e => { e.preventDefault(); envoyer("fermer", {bons, faits}); });
+}
+/* La largeur de l'image pour que carte + image tiennent dans la hauteur de
+   l'ecran. Recalculee quand la carte change de hauteur (une question plus
+   longue) et quand l'ecran tourne. */
+function ajusterSeance(){
+  if (!EN_SEANCE) return;
+  const dispo = innerHeight - document.querySelector(".haut").offsetHeight;
+  const largeur = Math.min(document.querySelector(".cadre").clientWidth, dispo * MASQUES.W / MASQUES.H);
+  scene.style.width = Math.max(200, Math.floor(largeur)) + "px";
+  placerFermer();
+}
+if (EN_SEANCE){
+  addEventListener("resize", ajusterSeance);
+  new ResizeObserver(ajusterSeance).observe(document.querySelector(".haut"));
 }
 
 /* ---------- etat ---------- */

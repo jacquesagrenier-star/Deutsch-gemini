@@ -7704,3 +7704,8 @@ decide quand on la pousse en production. »
 - PAS ENCORE : une reponse dans la scene ne compte pas encore comme revision
   du mot (ecrire dans la progression touche la repetition espacee : a part).
   Ecrans en francais seulement, a traduire avant la production.
+  Suite (v714) : dans la scene, « Wortando prend beaucoup de place » et il
+  fallait faire defiler pour atteindre les reponses (Jacques). La scene
+  s'ouvre maintenant en plein ecran, sans la barre de l'app, et l'image se met
+  a la hauteur qui reste sous la carte de question (plus etroite si l'ecran
+  est court) : plus de defilement. Verifie a 375 x 812 et 375 x 667.
