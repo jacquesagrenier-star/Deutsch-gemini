@@ -289,6 +289,13 @@ function decouvrir(){
    sur la dame en rouge (remarque de Jacques, 6 oct.). porte() dit si une
    zone porte ce nom, sous son nom principal ou dans « aussi ». */
 const porte = (p, mot) => p.mot === mot || p.aussi.some(a => a.mot === mot);
+/* Toucher ce qui est POSE SUR l'objet demande est juste : le manteau sur la
+   porte, les lunettes sur le prof (Jacques, 6 oct.). Dans ce sens seulement --
+   demander der Mantel et toucher la porte reste faux. */
+const touche = (p, mot) => {
+  for (let z = p, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, mot)) return true;
+  return false;
+};
 const EXCLUS = ["Teilnehmer", "Teilnehmerin", "Wand"];
 const A_TROUVER = (() => {
   const vus = new Map();
@@ -319,10 +326,16 @@ function toucher(id){
     return;
   }
   if (niveau === "A1" && attenteToucher && !verrou){
-    const cible = attenteToucher, juste = porte(p, cible), bonnes = zonesDe(cible);
+    const cible = attenteToucher, juste = touche(p, cible), bonnes = zonesDe(cible);
     verrou = true; faits++;
     effacer();
-    if (juste){ bons++; anneau(id); etiquette(id); }
+    if (juste){
+      bons++;
+      // On encadre ce qui porte le nom : la porte, pas le manteau qu'on a touche.
+      let support = id;
+      for (let z = p, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, cible)){ support = z.id; break; }
+      anneau(support); etiquette(support);
+    }
     else { bonnes.forEach(z => anneau(z)); anneau(id, true); scene.classList.add("secoue");
            setTimeout(() => scene.classList.remove("secoue"), 400); }
     // Pas de chiffre : le pull de Mark a deux zones (la sienne et celle de Mark),

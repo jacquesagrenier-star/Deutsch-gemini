@@ -7509,3 +7509,8 @@ scene arrive dans la seance du jour.
   de bureau du prof), Pullover, Bart, Brille. 35 zones.
   Suite : l'imprimante (der Drucker) se voit trop peu derriere Mark -- retiree
   a la demande de Jacques. 34 zones.
+  Suite : en mode Trouve, toucher le manteau quand on demande die Tuer etait
+  compte faux, alors qu'il est accroche a la porte (Jacques). Chaque zone dit
+  maintenant SUR quoi elle se trouve (manteau sur la porte, lunettes sur le prof,
+  telephone sur le bureau...) : toucher ce qui est pose sur l'objet demande est
+  juste, l'inverse non. Le prof est DEVANT le tableau, pas dessus. 15 cas testes.

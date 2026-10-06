@@ -13,6 +13,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": "wand",
    "boite": [
     0.5,
     20,
@@ -31,6 +32,7 @@ window.SCENE = {
    "theme": "schule_a1",
    "personne": null,
    "aussi": [],
+   "sur": "wand",
    "boite": [
     0,
     29,
@@ -70,6 +72,7 @@ window.SCENE = {
      "fr": "chemise"
     }
    ],
+   "sur": null,
    "boite": [
     3.5,
     32,
@@ -88,6 +91,7 @@ window.SCENE = {
    "theme": "kleidung_a2",
    "personne": null,
    "aussi": [],
+   "sur": "lehrer",
    "boite": [
     12.5,
     34.6,
@@ -106,6 +110,7 @@ window.SCENE = {
    "theme": "koerperteile_b1",
    "personne": null,
    "aussi": [],
+   "sur": "lehrer",
    "boite": [
     14,
     37.2,
@@ -124,6 +129,7 @@ window.SCENE = {
    "theme": "wohnen_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     35,
     30.2,
@@ -142,6 +148,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
+   "sur": "tuer",
    "boite": [
     38.9,
     33.3,
@@ -160,6 +167,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
+   "sur": "tuer",
    "boite": [
     46.1,
     33.3,
@@ -178,6 +186,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": "wand",
    "boite": [
     59,
     33.6,
@@ -196,6 +205,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     46.5,
     14,
@@ -214,6 +224,7 @@ window.SCENE = {
    "theme": "wohnen_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     80.5,
     19,
@@ -232,6 +243,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     92,
     31,
@@ -250,6 +262,7 @@ window.SCENE = {
    "theme": "natur_a1",
    "personne": null,
    "aussi": [],
+   "sur": "regal",
    "boite": [
     88.5,
     25.6,
@@ -279,6 +292,7 @@ window.SCENE = {
      "fr": "pull"
     }
    ],
+   "sur": null,
    "boite": [
     40,
     42.9,
@@ -297,6 +311,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
+   "sur": "mark",
    "boite": [
     41.5,
     47.5,
@@ -336,6 +351,7 @@ window.SCENE = {
      "fr": "stylo"
     }
    ],
+   "sur": null,
    "boite": [
     55,
     44.2,
@@ -354,6 +370,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
+   "sur": "anna",
    "boite": [
     56,
     60.5,
@@ -372,6 +389,7 @@ window.SCENE = {
    "theme": "schule_a1",
    "personne": null,
    "aussi": [],
+   "sur": "tisch",
    "boite": [
     53.5,
     56,
@@ -390,6 +408,7 @@ window.SCENE = {
    "theme": "schule_a1",
    "personne": null,
    "aussi": [],
+   "sur": "anna",
    "boite": [
     55,
     53.6,
@@ -408,6 +427,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     26.7,
     53.7,
@@ -426,6 +446,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     78.2,
     53.5,
@@ -444,6 +465,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     0,
     76.5,
@@ -462,6 +484,7 @@ window.SCENE = {
    "theme": "reisen_urlaub_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     61,
     66.4,
@@ -496,6 +519,7 @@ window.SCENE = {
      "fr": "chemise"
     }
    ],
+   "sur": null,
    "boite": [
     71.5,
     41.6,
@@ -530,6 +554,7 @@ window.SCENE = {
      "fr": "pull"
     }
    ],
+   "sur": null,
    "boite": [
     78.5,
     42.4,
@@ -564,6 +589,7 @@ window.SCENE = {
      "fr": "robe"
     }
    ],
+   "sur": null,
    "boite": [
     80.5,
     36.2,
@@ -582,6 +608,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
+   "sur": "frau",
    "boite": [
     81.5,
     47,
@@ -600,6 +627,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
+   "sur": "frau",
    "boite": [
     80.5,
     86.8,
@@ -618,6 +646,7 @@ window.SCENE = {
    "theme": "medien_technologie_b1",
    "personne": null,
    "aussi": [],
+   "sur": "schreibtisch",
    "boite": [
     0,
     57.4,
@@ -636,6 +665,7 @@ window.SCENE = {
    "theme": "medien_technologie_a1",
    "personne": null,
    "aussi": [],
+   "sur": "schreibtisch",
    "boite": [
     12.5,
     68.8,
@@ -654,6 +684,7 @@ window.SCENE = {
    "theme": "kueche_kochen_a1",
    "personne": null,
    "aussi": [],
+   "sur": "schreibtisch",
    "boite": [
     28,
     65.4,
@@ -672,6 +703,7 @@ window.SCENE = {
    "theme": "medien_technologie_b1",
    "personne": null,
    "aussi": [],
+   "sur": "schreibtisch",
    "boite": [
     39,
     68.5,
@@ -690,6 +722,7 @@ window.SCENE = {
    "theme": "moebel_haushalt_b1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     0,
     60,
@@ -708,6 +741,7 @@ window.SCENE = {
    "theme": "wohnen_a1",
    "personne": null,
    "aussi": [],
+   "sur": null,
    "boite": [
     10,
     8,

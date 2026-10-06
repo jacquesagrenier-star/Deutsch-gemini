@@ -64,7 +64,12 @@ def main():
             "aussi": [{"mot": a, "genre": idx[a].get("genre"),
                        "fr": idx[a].get("traduction")}
                       for a in p.get("aussi", [])],
+            "sur": p.get("sur"),
             "boite": p["boite"]})
+    connus = {p["id"] for p in sortie}
+    for p in sortie:
+        if p["sur"] and p["sur"] not in connus:
+            sys.exit("  %s : sur=%r ne designe aucune zone" % (p["id"], p["sur"]))
     if manquants:
         sys.exit("  absents du corpus : %s" % ", ".join(manquants))
 
