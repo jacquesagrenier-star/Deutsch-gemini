@@ -174,7 +174,9 @@ function etiquette(id){
   e.style.left = cx + "%";
   e.style.top = (dessous ? y + h + 1 : y - 1) + "%";
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(p)
-              + `<span class="fr">${p.fr}${p.pluriel ? " · pl. die " + p.pluriel : ""}</span>`;
+              + `<span class="fr">${p.fr}${p.pluriel ? " · pl. die " + p.pluriel : ""}</span>`
+              + (p.aussi.length ? `<span class="fr">aussi : ${p.aussi.map(a =>
+                  `<span class="g-${a.genre}">${a.genre} ${a.mot}</span>`).join(" · ")}</span>` : "");
   scene.appendChild(e);
   // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
   // on la ramene dans le cadre apres l'avoir mesuree.
@@ -283,12 +285,25 @@ function decouvrir(){
   entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne.", true);
   $("bas").innerHTML = "";
 }
-const A_TROUVER = S.points.filter(p => !p.personne && !["wand","schreibtisch","tafel"].includes(p.id) || p.id === "tafel");
+/* Une cible est un MOT, pas une zone : « die Frau » est juste sur Anna comme
+   sur la dame en rouge (remarque de Jacques, 6 oct.). porte() dit si une
+   zone porte ce nom, sous son nom principal ou dans « aussi ». */
+const porte = (p, mot) => p.mot === mot || p.aussi.some(a => a.mot === mot);
+const EXCLUS = ["Teilnehmer", "Teilnehmerin", "Wand"];
+const A_TROUVER = (() => {
+  const vus = new Map();
+  for (const p of S.points){
+    if (!EXCLUS.includes(p.mot) && !vus.has(p.mot)) vus.set(p.mot, {mot:p.mot, genre:p.genre});
+    for (const a of p.aussi) if (!EXCLUS.includes(a.mot) && !vus.has(a.mot)) vus.set(a.mot, {mot:a.mot, genre:a.genre});
+  }
+  return [...vus.values()];
+})();
+const zonesDe = mot => S.points.filter(p => porte(p, mot)).map(p => p.id);
 let fileTrouver = [];
 function trouver(){
   if (!fileTrouver.length || i === 0) fileTrouver = melanger(A_TROUVER).slice(0, 10);
   if (i >= fileTrouver.length) return fin();
-  const p = fileTrouver[i]; attenteToucher = p.id;
+  const p = fileTrouver[i]; attenteToucher = p.mot;
   $("bas").classList.remove("en-haut");
   entete("A1 · Trouve !  " + (i+1) + " / " + fileTrouver.length,
          `Touche : ${groupe(p)} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
@@ -304,12 +319,17 @@ function toucher(id){
     return;
   }
   if (niveau === "A1" && attenteToucher && !verrou){
-    const cible = attenteToucher; verrou = true; faits++;
+    const cible = attenteToucher, juste = porte(p, cible), bonnes = zonesDe(cible);
+    verrou = true; faits++;
     effacer();
-    if (id === cible){ bons++; anneau(id); etiquette(id); }
-    else { anneau(cible); etiquette(cible); anneau(id, true); scene.classList.add("secoue");
+    if (juste){ bons++; anneau(id); etiquette(id); }
+    else { bonnes.forEach(z => anneau(z)); anneau(id, true); scene.classList.add("secoue");
            setTimeout(() => scene.classList.remove("secoue"), 400); }
-    $("bas").innerHTML = `<div class="explication">${id === cible ? "Richtig !" : "C'était ici. Tu avais touché : " + groupe(p)}</div>
+    // Pas de chiffre : le pull de Mark a deux zones (la sienne et celle de Mark),
+    // compter les zones annoncerait « 4 pulls » pour trois.
+    const autres = bonnes.length > 1 ? " <i>Il y en a d'autres dans la scène.</i>" : "";
+    $("bas").innerHTML = `<div class="explication">${juste ? "Richtig !" + autres
+        : "C'était " + (bonnes.length > 1 ? "à l'un de ces endroits" : "ici") + ". Tu avais touché : " + groupe(p)}</div>
                           <button class="suite" id="suite">Weiter</button>`;
     $("suite").addEventListener("click", () => { i++; verrou = false; effacer(); trouver(); });
     return;

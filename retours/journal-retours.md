@@ -7502,3 +7502,8 @@ scene arrive dans la seance du jour.
   Prototype jouable, hors de l'app : visuel/prototype/index.html.
   Suite : a l'essai, Jacques demande que les souliers de la dame en rouge
   se touchent aussi -- zone ajoutee (der Schuh, pl. die Schuhe), 34 zones.
+  Suite : en mode Trouve, « die Frau » n'acceptait que la dame en rouge, alors
+  qu'Anna et la jeune femme du fond sont aussi des femmes (Jacques). Chaque zone
+  porte maintenant TOUS ses noms (Anna = die Frau, der Pullover, der Rock) et une
+  cible est un mot, pas une zone. Meme defaut corrige pour Mann, Stuhl (la chaise
+  de bureau du prof), Pullover, Bart, Brille. 35 zones.

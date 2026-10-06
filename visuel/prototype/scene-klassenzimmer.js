@@ -12,6 +12,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     0.5,
     20,
@@ -29,6 +30,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     0,
     29,
@@ -46,6 +48,28 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "berufe_a1",
    "personne": null,
+   "aussi": [
+    {
+     "mot": "Mann",
+     "genre": "der",
+     "fr": "homme/mari"
+    },
+    {
+     "mot": "Brille",
+     "genre": "die",
+     "fr": "lunettes"
+    },
+    {
+     "mot": "Bart",
+     "genre": "der",
+     "fr": "barbe"
+    },
+    {
+     "mot": "Hemd",
+     "genre": "das",
+     "fr": "chemise"
+    }
+   ],
    "boite": [
     3.5,
     32,
@@ -63,6 +87,7 @@ window.SCENE = {
    "niveau": "A2",
    "theme": "kleidung_a2",
    "personne": null,
+   "aussi": [],
    "boite": [
     12.5,
     34.6,
@@ -80,6 +105,7 @@ window.SCENE = {
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
+   "aussi": [],
    "boite": [
     14,
     37.2,
@@ -97,6 +123,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     35,
     30.2,
@@ -114,6 +141,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     38.9,
     33.3,
@@ -131,6 +159,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     46.1,
     33.3,
@@ -148,6 +177,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     59,
     33.6,
@@ -165,6 +195,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     46.5,
     14,
@@ -182,6 +213,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     80.5,
     19,
@@ -199,6 +231,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     92,
     31,
@@ -216,6 +249,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "natur_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     88.5,
     25.6,
@@ -233,6 +267,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "arbeit_buero_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     56,
     45.5,
@@ -250,6 +285,18 @@ window.SCENE = {
    "niveau": "B1",
    "theme": "schule_b1",
    "personne": "Mark",
+   "aussi": [
+    {
+     "mot": "Mann",
+     "genre": "der",
+     "fr": "homme/mari"
+    },
+    {
+     "mot": "Pullover",
+     "genre": "der",
+     "fr": "pull"
+    }
+   ],
    "boite": [
     40,
     42.9,
@@ -267,6 +314,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     41.5,
     47.5,
@@ -284,6 +332,28 @@ window.SCENE = {
    "niveau": "B1",
    "theme": "schule_b1",
    "personne": "Anna",
+   "aussi": [
+    {
+     "mot": "Frau",
+     "genre": "die",
+     "fr": "femme/épouse"
+    },
+    {
+     "mot": "Pullover",
+     "genre": "der",
+     "fr": "pull"
+    },
+    {
+     "mot": "Rock",
+     "genre": "der",
+     "fr": "jupe"
+    },
+    {
+     "mot": "Stift",
+     "genre": "der",
+     "fr": "stylo"
+    }
+   ],
    "boite": [
     55,
     44.2,
@@ -301,6 +371,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     56,
     60.5,
@@ -318,6 +389,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     53.5,
     56,
@@ -335,6 +407,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     55,
     53.6,
@@ -352,6 +425,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     26.7,
     53.7,
@@ -369,11 +443,30 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     78.2,
     53.5,
     5.6,
     17.5
+   ]
+  },
+  {
+   "id": "stuhl-bureau",
+   "mot": "Stuhl",
+   "genre": "der",
+   "pluriel": "Stühle",
+   "fr": "chaise",
+   "en": "chair",
+   "niveau": "A1",
+   "theme": "moebel_haushalt_a1",
+   "personne": null,
+   "aussi": [],
+   "boite": [
+    0,
+    76.5,
+    11,
+    23.5
    ]
   },
   {
@@ -386,6 +479,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "reisen_urlaub_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     61,
     66.4,
@@ -403,6 +497,23 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "familie_a1",
    "personne": null,
+   "aussi": [
+    {
+     "mot": "Teilnehmer",
+     "genre": "der",
+     "fr": "participant"
+    },
+    {
+     "mot": "Bart",
+     "genre": "der",
+     "fr": "barbe"
+    },
+    {
+     "mot": "Hemd",
+     "genre": "das",
+     "fr": "chemise"
+    }
+   ],
    "boite": [
     71.5,
     41.6,
@@ -420,6 +531,23 @@ window.SCENE = {
    "niveau": "A2",
    "theme": "universitaet_a2",
    "personne": null,
+   "aussi": [
+    {
+     "mot": "Frau",
+     "genre": "die",
+     "fr": "femme/épouse"
+    },
+    {
+     "mot": "Teilnehmerin",
+     "genre": "die",
+     "fr": "participante"
+    },
+    {
+     "mot": "Pullover",
+     "genre": "der",
+     "fr": "pull"
+    }
+   ],
    "boite": [
     78.5,
     42.4,
@@ -437,6 +565,23 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "familie_a1",
    "personne": null,
+   "aussi": [
+    {
+     "mot": "Teilnehmerin",
+     "genre": "die",
+     "fr": "participante"
+    },
+    {
+     "mot": "Brille",
+     "genre": "die",
+     "fr": "lunettes"
+    },
+    {
+     "mot": "Kleid",
+     "genre": "das",
+     "fr": "robe"
+    }
+   ],
    "boite": [
     80.5,
     36.2,
@@ -454,6 +599,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     81.5,
     47,
@@ -471,6 +617,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     80.5,
     86.8,
@@ -488,6 +635,7 @@ window.SCENE = {
    "niveau": "B1",
    "theme": "medien_technologie_b1",
    "personne": null,
+   "aussi": [],
    "boite": [
     0,
     57.4,
@@ -505,6 +653,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "medien_technologie_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     12.5,
     68.8,
@@ -522,6 +671,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "kueche_kochen_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     28,
     65.4,
@@ -539,6 +689,7 @@ window.SCENE = {
    "niveau": "B1",
    "theme": "medien_technologie_b1",
    "personne": null,
+   "aussi": [],
    "boite": [
     39,
     68.5,
@@ -556,6 +707,7 @@ window.SCENE = {
    "niveau": "B1",
    "theme": "moebel_haushalt_b1",
    "personne": null,
+   "aussi": [],
    "boite": [
     0,
     60,
@@ -573,6 +725,7 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
+   "aussi": [],
    "boite": [
     10,
     8,

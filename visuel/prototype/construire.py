@@ -49,6 +49,10 @@ def main():
         if not m:
             manquants.append(p["mot"])
             continue
+        absents = [a for a in p.get("aussi", []) if a not in idx]
+        if absents:
+            manquants.extend(absents)
+            continue
         x, y, w, h = p["boite"]
         if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
             sys.exit("  %s : boite hors de l'image %r" % (p["id"], p["boite"]))
@@ -57,6 +61,9 @@ def main():
             "pluriel": m.get("pluriel"), "fr": m.get("traduction"),
             "en": m.get("traduction_en"), "niveau": m["niveau"],
             "theme": m["theme"], "personne": p.get("personne"),
+            "aussi": [{"mot": a, "genre": idx[a].get("genre"),
+                       "fr": idx[a].get("traduction")}
+                      for a in p.get("aussi", [])],
             "boite": p["boite"]})
     if manquants:
         sys.exit("  absents du corpus : %s" % ", ".join(manquants))
