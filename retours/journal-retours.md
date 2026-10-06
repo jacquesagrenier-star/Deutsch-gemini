@@ -7533,3 +7533,15 @@ scene arrive dans la seance du jour.
   (masque nettoye a pleine resolution, polygone simplifie par Douglas-Peucker,
   SVG) : les bords droits sont droits. Le masque au tiers ne sert plus qu'a
   savoir ce qu'on touche. 25 cas toujours justes.
+  Suite : « encore des ondulations, surtout le devant de la table » (Jacques).
+  Vraie cause : SAM ne compte pas comme table ce qui est POSE dessus (cahiers,
+  mains), et le contour contournait chaque cahier. Les objets rigides ont
+  maintenant une forme RECONSTRUITE : table = plateau en enveloppe convexe +
+  pattes en rectangles ; porte, fenetre, tableau, cadre = rectangle ; bureau,
+  portable, telephone, cahier = enveloppe convexe. Lignes droites.
+  Suite : les lunettes de la dame aux cheveux gris ne repondaient pas (vue de
+  profil, elles depassent du visage, et SAM les avait laissees dehors) : zone a
+  part. Les cahiers de Mark (blanc et noir) et de la jeune femme du fond non
+  plus : ils n'avaient pas de zone. Un petit objet compte maintenant s'il est a
+  portee du doigt. La feuille de l'homme du fond, cachee par Anna, retiree.
+  38 zones, 24 cas testes.

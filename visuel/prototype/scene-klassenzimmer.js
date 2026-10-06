@@ -497,6 +497,72 @@ window.SCENE = {
    ]
   },
   {
+   "id": "heft-mark",
+   "mot": "Heft",
+   "genre": "das",
+   "pluriel": "Hefte",
+   "fr": "cahier",
+   "en": "notebook",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "tisch",
+   "devant": 0,
+   "boites": [
+    [
+     38.9,
+     54.5,
+     9.6,
+     1.8
+    ]
+   ]
+  },
+  {
+   "id": "heft-noir",
+   "mot": "Heft",
+   "genre": "das",
+   "pluriel": "Hefte",
+   "fr": "cahier",
+   "en": "notebook",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "tisch",
+   "devant": 0,
+   "boites": [
+    [
+     31.4,
+     53.8,
+     8.8,
+     1.7
+    ]
+   ]
+  },
+  {
+   "id": "heft-studentin",
+   "mot": "Heft",
+   "genre": "das",
+   "pluriel": "Hefte",
+   "fr": "cahier",
+   "en": "notebook",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 1,
+   "boites": [
+    [
+     78.6,
+     51.9,
+     8.8,
+     1.9
+    ]
+   ]
+  },
+  {
    "id": "stift",
    "mot": "Stift",
    "genre": "der",
@@ -723,6 +789,28 @@ window.SCENE = {
      36.2,
      19.5,
      46
+    ]
+   ]
+  },
+  {
+   "id": "brille-frau",
+   "mot": "Brille",
+   "genre": "die",
+   "pluriel": "Brillen",
+   "fr": "lunettes",
+   "en": "glasses",
+   "niveau": "A2",
+   "theme": "kleidung_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "frau",
+   "devant": 0,
+   "boites": [
+    [
+     89,
+     39.6,
+     5,
+     2.4
     ]
    ]
   },

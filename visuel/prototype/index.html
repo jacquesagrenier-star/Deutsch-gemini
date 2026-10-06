@@ -422,7 +422,13 @@ function toucher(id, pt){
     // qui est PROCHE compte, sans regarder le plan : on ne sait pas lequel il visait.
     const devantTout = Math.max(plan(p), ...exact.map(plan));
     const candidats = exact.length ? [p, ...exact.filter(z => plan(z) === devantTout)] : [p, ...proche];
-    const retenue = candidats.find(z => touche(z, cible));
+    // Et un PETIT objet demande (un cahier, des lunettes) compte s'il est a
+    // portee du doigt, meme si le doigt est tombe sur la table juste a cote :
+    // sur une table le doigt touche toujours la table, et la marge ne servait
+    // jamais au cahier (Jacques, 6 oct. : « le cahier de Mark ne fonctionne pas »).
+    const PETIT = MW * MH * 0.004;
+    const retenue = candidats.find(z => touche(z, cible))
+                 || proche.find(z => z.pixels < PETIT && touche(z, cible));
     const juste = !!retenue;
     verrou = true; faits++;
     effacer();

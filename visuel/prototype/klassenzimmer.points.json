@@ -7,7 +7,8 @@
   "aussi = les AUTRES noms que porte la zone (Anna est aussi die Frau ; le professeur porte une Brille). En mode Trouve, toute zone qui porte le nom demande est juste -- remarque de Jacques le 6 oct. : Anna est aussi une dame.",
   "sur = l'objet SUR lequel celui-ci se trouve (le manteau sur la porte, les lunettes sur le prof). Toucher le manteau quand on demande die Tuer est juste ; l'inverse non. Remarque de Jacques, 6 oct. Le prof est DEVANT le tableau, pas dessus : pas de sur.",
   "boites = plusieurs rectangles pour une meme zone (tete, corps, bras). devant = plan : une personne passe devant ce qui est derriere elle (le prof devant le tableau), et ce qui est pose sur elle (sur) herite de son plan. Remarque de Jacques, 6 oct. : toucher Mark n'importe ou -- tete, bras, pull -- doit repondre der Mann.",
-  "sam = le rectangle donne a SAM 2 quand la zone a toucher ne suffit pas a montrer l'objet entier (les pattes de la table, le bureau jusqu'au sol, la fenetre avec son cadre)."
+  "sam = le rectangle donne a SAM 2 quand la zone a toucher ne suffit pas a montrer l'objet entier (les pattes de la table, le bureau jusqu'au sol, la fenetre avec son cadre).",
+  "rigide = un meuble ou un objet a bords droits : son contour est simplifie bien plus fort (lignes droites), et les encoches que creusent les mains ou les cahiers poses dessus sont bouchees. Jacques, 6 oct. : le devant de la table ondulait encore."
  ],
  "image": "klassenzimmer.webp",
  "source": "../scenes/klassenzimmer-fond.png",
@@ -32,7 +33,8 @@
     30,
     20
    ],
-   "sur": "wand"
+   "sur": "wand",
+   "rigide": "rectangle"
   },
   {
    "id": "lehrer",
@@ -89,7 +91,8 @@
     30.2,
     17,
     28.8
-   ]
+   ],
+   "rigide": "rectangle"
   },
   {
    "id": "mantel",
@@ -122,7 +125,8 @@
     11,
     5.7
    ],
-   "sur": "wand"
+   "sur": "wand",
+   "rigide": "rectangle"
   },
   {
    "id": "lampe",
@@ -148,7 +152,8 @@
     16.5,
     18.5,
     30
-   ]
+   ],
+   "rigide": "rectangle"
   },
   {
    "id": "regal",
@@ -158,7 +163,8 @@
     31,
     8,
     8
-   ]
+   ],
+   "rigide": true
   },
   {
    "id": "pflanze",
@@ -267,7 +273,41 @@
     16.5,
     2.6
    ],
-   "sur": "tisch"
+   "sur": "tisch",
+   "rigide": true
+  },
+  {
+   "id": "heft-mark",
+   "mot": "Heft",
+   "sur": "tisch",
+   "boite": [
+    38.9,
+    54.5,
+    9.6,
+    1.8
+   ]
+  },
+  {
+   "id": "heft-noir",
+   "mot": "Heft",
+   "sur": "tisch",
+   "boite": [
+    31.4,
+    53.8,
+    8.8,
+    1.7
+   ]
+  },
+  {
+   "id": "heft-studentin",
+   "mot": "Heft",
+   "devant": 1,
+   "boite": [
+    78.6,
+    51.9,
+    8.8,
+    1.9
+   ]
   },
   {
    "id": "stift",
@@ -295,7 +335,8 @@
     53.7,
     50,
     24.5
-   ]
+   ],
+   "rigide": "table"
   },
   {
    "id": "stuhl",
@@ -385,6 +426,17 @@
    "devant": 1
   },
   {
+   "id": "brille-frau",
+   "mot": "Brille",
+   "sur": "frau",
+   "boite": [
+    89,
+    39.6,
+    5,
+    2.4
+   ]
+  },
+  {
    "id": "kleid",
    "mot": "Kleid",
    "boite": [
@@ -415,7 +467,8 @@
     27,
     12.6
    ],
-   "sur": "schreibtisch"
+   "sur": "schreibtisch",
+   "rigide": true
   },
   {
    "id": "handy",
@@ -426,7 +479,8 @@
     12.5,
     3.4
    ],
-   "sur": "schreibtisch"
+   "sur": "schreibtisch",
+   "rigide": true
   },
   {
    "id": "tasse",
@@ -464,7 +518,8 @@
     59,
     54,
     41
-   ]
+   ],
+   "rigide": true
   },
   {
    "id": "wand",
@@ -474,7 +529,8 @@
     8,
     34,
     20
-   ]
+   ],
+   "rigide": "rectangle"
   }
  ]
 }

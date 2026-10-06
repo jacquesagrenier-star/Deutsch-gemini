@@ -37,6 +37,11 @@ REDUCTION = 3            # le masque A TOUCHER garde 1 pixel sur 3 : 360 x 645
 NETTOYAGE = 7            # px : trous bouches et poussieres retirees en dessous
 MIETTE = 400             # px2 : un morceau de masque plus petit n'est pas trace
 SIMPLIFICATION = 2.5     # px : ecart toléré entre le trace et le bord de SAM
+# Un objet RIGIDE (champ rigide : la table, la porte...) : on bouche plus large
+# (les mains et les cahiers posés sur le bord y creusaient des encoches) et on
+# simplifie bien plus fort, pour que ses bords soient de vraies droites.
+NETTOYAGE_RIGIDE = 25
+SIMPLIFICATION_RIGIDE = 7
 
 
 def englobe(boites):
@@ -44,6 +49,58 @@ def englobe(boites):
     y = min(b[1] for b in boites)
     return [x, y, max(b[0] + b[2] for b in boites) - x,
             max(b[1] + b[3] for b in boites) - y]
+
+
+def geometrie(m8, mode, cv2, np):
+    """La FORME d'un objet rigide, reconstruite au lieu d'etre suivie.
+
+    Suivre le bord de SAM ne donne jamais une droite sur une table : SAM ne
+    compte pas comme table ce qui est POSE dessus (cahiers, stylo, mains), et
+    le contour du plateau contournait chaque cahier (Jacques, 6 oct. : « il y a
+    encore des ondulations, surtout dans le devant de la table »).
+
+    mode "table" : le plateau (ce qui est large) devient son enveloppe convexe
+                   -- elle englobe les cahiers -- et chaque patte (ce qui est
+                   mince) son rectangle ; on reunit le tout.
+    autre        : l'enveloppe convexe de l'objet (porte, fenetre, tableau,
+                   bureau, portable...) : des cotes droits.
+    Le TOUCHER garde le vrai masque ; ceci ne sert qu'au dessin."""
+    toile = np.zeros_like(m8)
+    if mode == "table":
+        # Le plateau : ce qui survit a une ouverture par un trait horizontal
+        # plus large qu'une patte.
+        plateau = cv2.morphologyEx(m8, cv2.MORPH_OPEN,
+                                   cv2.getStructuringElement(cv2.MORPH_RECT, (61, 1)))
+        n, lab, stats, _ = cv2.connectedComponentsWithStats(plateau)
+        if n > 1:
+            grand = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+            pts = cv2.findNonZero((lab == grand).astype(np.uint8))
+            cv2.fillPoly(toile, [cv2.convexHull(pts)], 255)
+        # Les pattes : ce qui reste sous le plateau, chacune en rectangle.
+        reste = cv2.bitwise_and(m8, cv2.bitwise_not(cv2.dilate(toile, np.ones((9, 9), np.uint8))))
+        n, lab, stats, _ = cv2.connectedComponentsWithStats(reste)
+        for i in range(1, n):
+            if stats[i, cv2.CC_STAT_AREA] < 400:
+                continue
+            pts = cv2.findNonZero((lab == i).astype(np.uint8))
+            boite = cv2.boxPoints(cv2.minAreaRect(pts)).astype(np.int32)
+            cv2.fillPoly(toile, [boite], 255)
+        # recoudre la patte au plateau (la bande retiree par la dilatation)
+        toile = cv2.morphologyEx(toile, cv2.MORPH_CLOSE, np.ones((15, 3), np.uint8))
+        return toile
+    contours, _ = cv2.findContours(m8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    gros = [c for c in contours if cv2.contourArea(c) >= 400]
+    if not gros:
+        return toile
+    pts = np.vstack(gros)
+    if mode == "rectangle":
+        # mode "rectangle" : une porte, une fenetre, un tableau caches en partie
+        # (la porte derriere la tete de Mark). L'enveloppe convexe coupait le
+        # coin cache en diagonale ; le rectangle rend la porte entiere.
+        cv2.fillPoly(toile, [cv2.boxPoints(cv2.minAreaRect(pts)).astype(np.int32)], 255)
+    else:
+        cv2.fillPoly(toile, [cv2.convexHull(pts)], 255)
+    return toile
 
 
 def rle(bits):
@@ -83,31 +140,47 @@ def main():
         x, y, w, h = z.get("sam") or englobe(z.get("boites") or [z["boite"]])
         boites.append([W * x / 100, H * y / 100, W * (x + w) / 100, H * (y + h) / 100])
     print("  %d zones, image %dx%d, SAM 2 sur processeur..." % (len(zones), W, H))
-    res = modele(image, bboxes=boites, verbose=False)[0]
-    masques = res.masks.data.cpu().numpy().astype(bool)     # (N, H, W)
-    if len(masques) != len(zones):
-        sys.exit("  SAM a rendu %d masques pour %d zones" % (len(masques), len(zones)))
+    # UNE ZONE PAR APPEL. Toutes les boites d'un coup, SAM a rendu 38 masques
+    # pour 39 zones (6 oct., apres l'ajout des cahiers) -- sans dire lequel il
+    # avait laisse tomber, donc sans qu'on sache a quelle zone va quel masque.
+    masques = []
+    for z, b in zip(zones, boites):
+        res = modele(image, bboxes=[b], verbose=False)[0]
+        if res.masks is None or len(res.masks.data) == 0:
+            # Une boite tres mince (un cahier vu par la tranche) peut ne rien
+            # rendre : on reessaie en l'agrandissant de 8 px de chaque cote.
+            b2 = [max(0, b[0] - 8), max(0, b[1] - 8), min(W, b[2] + 8), min(H, b[3] + 8)]
+            res = modele(image, bboxes=[b2], verbose=False)[0]
+        if res.masks is None or len(res.masks.data) == 0:
+            sys.exit("  SAM ne rend aucun masque pour %s, meme agrandie" % z["id"])
+        masques.append(res.masks.data[0].cpu().numpy().astype(bool))
+    masques = np.stack(masques)                              # (N, H, W)
 
     import cv2
     w, h = W // REDUCTION, H // REDUCTION
     sortie, traces = {}, {}
     noyau = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (NETTOYAGE, NETTOYAGE))
+    noyau_rigide = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,
+                                             (NETTOYAGE_RIGIDE, NETTOYAGE_RIGIDE))
     for k, (z, m) in enumerate(zip(zones, masques)):
         # Nettoyer a pleine resolution : fermer les petits trous, retirer les
         # poussieres (le flanc du bureau en etait crible).
-        m8 = cv2.morphologyEx(m.astype(np.uint8) * 255, cv2.MORPH_CLOSE, noyau)
+        n = noyau_rigide if z.get("rigide") else noyau
+        m8 = cv2.morphologyEx(m.astype(np.uint8) * 255, cv2.MORPH_CLOSE, n)
         m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, noyau)
         masques[k] = m8 > 127
         m = masques[k]
         # Le TRACE : un polygone simplifie (Douglas-Peucker). Un bord presque
         # droit devient une ligne droite -- le dessus et les pattes de la table --
         # au lieu de l'escalier d'un masque reduit puis etire (Jacques, 6 oct.).
-        contours, _ = cv2.findContours(m8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        forme = geometrie(m8, z.get("rigide"), cv2, np) if z.get("rigide") else m8
+        contours, _ = cv2.findContours(forme, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
         polys = []
         for c in contours:
             if cv2.contourArea(c) < MIETTE:
                 continue
-            a = cv2.approxPolyDP(c, SIMPLIFICATION, True).reshape(-1, 2)
+            eps = SIMPLIFICATION_RIGIDE if z.get("rigide") else SIMPLIFICATION
+            a = cv2.approxPolyDP(c, eps, True).reshape(-1, 2)
             polys.append([int(v) for v in a.ravel()])
         traces[z["id"]] = polys
         petit = np.array(Image.fromarray(m8).resize((w, h), Image.BILINEAR)) > 127
