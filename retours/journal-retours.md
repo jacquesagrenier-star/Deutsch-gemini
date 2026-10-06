@@ -7709,3 +7709,7 @@ decide quand on la pousse en production. »
   s'ouvre maintenant en plein ecran, sans la barre de l'app, et l'image se met
   a la hauteur qui reste sous la carte de question (plus etroite si l'ecran
   est court) : plus de defilement. Verifie a 375 x 812 et 375 x 667.
+  Suite : « pourquoi on a en haut Beim Arzt ? Si je clique dessus, ca me
+  ramene au choix scene ou cartes. On ne devrait pas juste voir Retour ? »
+  (Jacques). Dans la seance, le lien dit maintenant « ‹ Retour ». Hors
+  seance, la page du prototype garde son titre.

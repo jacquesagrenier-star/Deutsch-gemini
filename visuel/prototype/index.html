@@ -179,7 +179,11 @@ const scene = $("scene");
 $("photo").src = S.image;
 $("photo").alt = S.alt || "";
 document.title = S.titre || "Scène";
-$("retourChoix").textContent = "‹ " + (S.titre || "Scène");
+/* Dans la seance, ce lien RAMENE au choix scene / cartes : il dit « Retour »,
+   comme les autres retours de l'app. « ‹ Beim Arzt » ressemblait a un titre
+   et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
+$("retourChoix").textContent = new URLSearchParams(location.search).get("seance") === "1"
+  ? "‹ Retour" : "‹ " + (S.titre || "Scène");
 scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
 /* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
