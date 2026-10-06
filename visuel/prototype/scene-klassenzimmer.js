@@ -317,13 +317,13 @@ window.SCENE = {
   },
   {
    "id": "mark",
-   "mot": "Student",
+   "mot": "Teilnehmer",
    "genre": "der",
-   "pluriel": "Studenten",
-   "fr": "étudiant",
-   "en": "student",
-   "niveau": "A1",
-   "theme": "berufe_a1",
+   "pluriel": "Teilnehmer",
+   "fr": "participant",
+   "en": "participant",
+   "niveau": "B1",
+   "theme": "schule_b1",
    "personne": "Mark",
    "aussi": [
     {
@@ -332,14 +332,14 @@ window.SCENE = {
      "fr": "homme/mari"
     },
     {
-     "mot": "Teilnehmer",
-     "genre": "der",
-     "fr": "participant"
-    },
-    {
      "mot": "Pullover",
      "genre": "der",
      "fr": "pull"
+    },
+    {
+     "mot": "Student",
+     "genre": "der",
+     "fr": "étudiant"
     },
     {
      "mot": "Stift",
@@ -394,24 +394,19 @@ window.SCENE = {
   },
   {
    "id": "anna",
-   "mot": "Studentin",
+   "mot": "Teilnehmerin",
    "genre": "die",
-   "pluriel": "Studentinnen",
-   "fr": "étudiante",
-   "en": "student (female)",
-   "niveau": "A2",
-   "theme": "universitaet_a2",
+   "pluriel": "Teilnehmerinnen",
+   "fr": "participante",
+   "en": "participant (female)",
+   "niveau": "B1",
+   "theme": "schule_b1",
    "personne": "Anna",
    "aussi": [
     {
      "mot": "Frau",
      "genre": "die",
      "fr": "femme/épouse"
-    },
-    {
-     "mot": "Teilnehmerin",
-     "genre": "die",
-     "fr": "participante"
     },
     {
      "mot": "Pullover",
@@ -427,6 +422,11 @@ window.SCENE = {
      "mot": "Stift",
      "genre": "der",
      "fr": "stylo"
+    },
+    {
+     "mot": "Studentin",
+     "genre": "die",
+     "fr": "étudiante"
     }
    ],
    "sur": null,

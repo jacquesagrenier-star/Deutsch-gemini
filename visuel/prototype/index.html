@@ -287,8 +287,10 @@ function groupe(p){
   const art = p.genre || "";
   return `<span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span>`;
 }
-/* Tous les noms d'une zone, le principal d'abord : Anna est die Studentin,
-   die Frau, die Teilnehmerin... */
+/* Tous les noms d'une zone, le principal d'abord. En « Trouve ! », l'etiquette
+   montre le mot DEMANDE : on demande die Frau et on touche Anna, elle dit
+   « Anna · die Frau », et die Teilnehmerin passe dans « aussi » (Jacques,
+   6 oct.). */
 const nomsDe = p => [{genre: p.genre, mot: p.mot, fr: p.fr, pluriel: p.pluriel}, ...p.aussi];
 /* `quel` : le rang du nom a montrer, ou le mot lui-meme (celui qu'on a
    demande en « Trouve ! ») ; par defaut, le nom principal. */
@@ -474,7 +476,6 @@ const COUCHES = {
 };
 
 /* ---------- etat ---------- */
-let dernier = null, rang = 0; // la zone touchee en dernier et le rang de son nom
 let niveau = "A1", modeA1 = "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
 const melanger = a => a.map(v => [Math.random(), v]).sort((x,y) => x[0]-y[0]).map(v => v[1]);
 
@@ -487,7 +488,7 @@ for (const n of Object.keys(COUCHES)){
 }
 function demarrer(){
   $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === niveau));
-  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; dernier = null; fermerGrosPlan(); effacer();
+  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; fermerGrosPlan(); effacer();
   if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
   COUCHES[niveau].ordre = melanger(COUCHES[niveau].qs);
   poser();
@@ -504,7 +505,7 @@ function entete(consigne, question, avecModes){
 }
 function decouvrir(){
   $("bas").classList.remove("en-haut");
-  entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne, et encore pour ses autres noms. Touche le visage du prof pour le voir de près.", true);
+  entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne. Touche le visage du prof pour le voir de près.", true);
   $("bas").innerHTML = "";
 }
 /* Une cible est un MOT, pas une zone : « die Frau » est juste sur Anna comme
@@ -543,13 +544,8 @@ function trouver(){
 function toucher(id, pt){
   const p = P[id];
   if (niveau === "A1" && modeA1 === "decouvrir"){
-    // Toucher encore la meme zone donne son nom suivant, a tour de role :
-    // Anna, die Studentin ; Anna, die Frau ; Anna, die Teilnehmerin...
-    // (Jacques, 6 oct. : « Anna, die Teilnehmerin » d'emblee sonnait bizarre.)
-    const noms = nomsDe(p);
-    rang = dernier === id ? (rang + 1) % noms.length : 0; dernier = id;
-    effacer(); anneau(id); etiquette(id, rang);
-    dire((p.personne ? p.personne + ". " : "") + noms[rang].genre + " " + noms[rang].mot);
+    effacer(); anneau(id); etiquette(id);
+    dire((p.personne ? p.personne + ". " : "") + p.genre + " " + p.mot);
     return;
   }
   if (niveau === "A1" && attenteToucher && !verrou){

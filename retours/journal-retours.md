@@ -7592,9 +7592,9 @@ scene arrive dans la seance du jour.
   femme decrite trait par trait, seules les deux photos de Mark servent de
   references (jamais l'image de la classe), et rien du prof n'est nomme. Le
   controle des prompts n'y trouve aucune faute. Rien n'a ete paye.
-  Suite : toucher Anna disait « Anna, die Teilnehmerin » (Jacques : bizarre
-  d'emblee). Mark et Anna ont maintenant pour nom principal der Student et die
-  Studentin (A1 et A2 ; Teilnehmer est B1), et en Decouvrir, chaque nouveau
-  toucher sur la meme zone donne son nom suivant : Anna, die Studentin ; die
-  Frau ; die Teilnehmerin ; der Pullover ; der Rock ; der Stift. En
-  « Trouve ! », l'etiquette dit le mot demande.
+  Suite : en « Trouve ! », on demandait die Frau, on touchait Anna, et
+  l'etiquette disait « Anna · die Teilnehmerin » (Jacques). Elle dit
+  maintenant le mot DEMANDE -- « Anna · die Frau » -- et die Teilnehmerin passe
+  dans « aussi ». Le nom de base d'Anna reste die Teilnehmerin. (Un premier
+  essai, mal compris, avait change ce nom de base et fait defiler les noms a
+  chaque toucher : defait.)
