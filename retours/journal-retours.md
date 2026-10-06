@@ -7555,3 +7555,15 @@ scene arrive dans la seance du jour.
   ajoutees (stylos de Mark, du carnet noir, de la jeune femme, du bureau ; carnet
   du bureau). Il se demande si le stylo n'est pas trop petit -- garde pour
   l'instant, a juger a l'essai. 43 zones.
+  Suite : OU mettre la scene dans la seance du jour ? A la fin, ceux qui
+  abandonnent en route ne la verraient jamais (Jacques). Son idee retenue : au
+  DEBUT, un ecran de choix qui montre les deux activites en mouvement -- la
+  scene ou l'on touche, les cartes qui se retournent --, pour choisir en
+  connaissance de cause. Un toucher sur un apercu lance l'activite ; l'ecran
+  n'apparait que les jours ou une scene est proposee. Les deux ont le MEME
+  POIDS, cote a cote (Jacques), et l'apercu de la scene suit le NIVEAU de la
+  seance : trouver des mots en A1, les prepositions en A2, stehen/stellen en
+  B1, les relatives en B2, les hypotheses en C1. Maquette hors de l'app :
+  visuel/prototype/choix-seance.html (et en artefact :
+  https://claude.ai/artifact/S9xbXVRHkUQs7sgBJPvHkq). A juger sur le telephone
+  avant de toucher a la seance.
