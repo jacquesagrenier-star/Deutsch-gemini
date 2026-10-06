@@ -7679,3 +7679,28 @@ scene arrive dans la seance du jour.
   il est maintenant ambre, plus grand, cerne, et dit « Revenir a la scene ».
   Et deux fois, l'onglet montrait une page gardee en cache (le mien aussi) :
   une adresse neuve force la derniere version.
+
+## 6 octobre 2026 -- Jacques : tester dans la vraie vie avant la production (v713)
+
+« Comment est-ce qu'on pourrait proceder pour avoir une version en production
+puis une version test ? [...] que moi je puisse faire les tests a partir
+vraiment de la vraie vie, quand je commence une session du jour, et qu'on
+decide quand on la pousse en production. »
+
+- **Decide avec lui : une seule app, des FONCTIONS EN ESSAI.** On pousse sur
+  main comme d'habitude, mais la nouveaute reste eteinte pour tous sauf
+  l'admin (ESSAIS, etat "admin"). Mise en production = etat "tous", traduire,
+  monter la version. Pas de deuxieme app : la branche staging (abandonnee le
+  30 aout) lirait les donnees de main, a une autre adresse, avec une autre
+  memoire -- ce ne serait plus sa seance.
+- Tableau de bord admin : carte « Fonctions en essai », un bouton par essai
+  pour le couper ou le rallumer sur son telephone.
+- **Premier essai : la scene dans la seance du jour.** En touchant la seance,
+  un ecran de choix (maquette choix-seance.html) : la scene du jour ou les
+  cartes, au meme poids, l'une sous l'autre. La scene = le prototype lui-meme
+  dans un cadre, au niveau de la seance, TROIS questions (a partir de l'A2,
+  une du niveau d'avant), puis « Continuer avec mes cartes ». Une fois par
+  jour ; une scene par jour, a tour de role (classe, medecin).
+- PAS ENCORE : une reponse dans la scene ne compte pas encore comme revision
+  du mot (ecrire dans la progression touche la repetition espacee : a part).
+  Ecrans en francais seulement, a traduire avant la production.

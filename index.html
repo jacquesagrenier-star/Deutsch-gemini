@@ -6022,6 +6022,38 @@ body[data-theme="dark"] #decouverte > button.primary{
     box-shadow:0 0 0 10px rgba(0,0,0,.78), 0 8px 20px rgba(0,0,0,.4);
 }
 .abo-plus-tard{margin-top:12px;}
+
+/* ===== Fonctions en essai (v713) : la ligne du tableau de bord ===== */
+.essai-ligne{display:flex; gap:10px; align-items:center; justify-content:space-between;
+    padding:10px 0; border-top:1px solid var(--wt-bordure-accent);}
+.essai-ligne:first-child{border-top:0; padding-top:0;}
+.essai-texte{display:flex; flex-direction:column; gap:3px; font-size:13px; line-height:1.35;}
+.essai-ligne button{flex:0 0 auto; width:auto; margin:0;}
+
+/* ===== Le choix au debut de la seance (essai v713) =====
+   Les deux activites AU MEME POIDS : meme taille, l'une sous l'autre (cote a
+   cote, chacune devenait trop petite sur le telephone), apercus fixes. */
+.choix-seance-duo{display:flex; flex-direction:column; gap:14px; margin-top:14px;}
+.choix-seance{display:block; width:100%; padding:0; margin:0; text-align:left; cursor:pointer;
+    border:1.5px solid var(--wt-bordure-accent); border-radius:16px; overflow:hidden;
+    background:var(--wt-teinte); color:inherit; font:inherit;}
+.choix-seance:focus-visible{outline:3px solid var(--wt-ambre); outline-offset:2px;}
+.choix-seance-vue{display:block; aspect-ratio:3/2; position:relative; overflow:hidden;}
+.choix-seance-vue.scene img{width:100%; height:100%; object-fit:cover; object-position:50% 35%; display:block;}
+.choix-seance-vue.cartes{display:flex; align-items:center; justify-content:center; gap:12px;
+    background:#EDCF9B;}
+.choix-seance-carte{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    width:38%; aspect-ratio:3/4; border-radius:12px; background:#FFFFFF; color:#1C2430;
+    box-shadow:0 6px 16px rgba(28,36,48,.18); font-size:15px;}
+.choix-seance-carte.dos{transform:rotate(4deg);}
+.choix-seance-carte small{font-size:11px; color:#5B6272; text-transform:uppercase; letter-spacing:.04em;}
+.choix-seance-legende{display:flex; flex-direction:column; gap:2px; padding:12px 14px;}
+.choix-seance-nom{font-weight:800; font-size:17px;}
+.choix-seance-detail{font-size:13px; color:var(--wt-accent-texte);}
+
+/* La scene : le prototype dans un cadre, toute la hauteur de l'ecran. */
+#sceneSeance.active{padding:0; margin:0;}
+.scene-cadre{display:block; width:100%; height:100vh; height:100dvh; border:0; background:#11151b;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6970,7 +7002,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v712</span>
+    <span class="subtitle-version">v713</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8588,6 +8620,41 @@ body[data-theme="dark"] #decouverte > button.primary{
     <button class="secondary" onclick="retourDepuisAideExamen()" data-i18n="examen_aide_retour">REVENIR À LA CARTE</button>
 </section>
 
+<!-- LE CHOIX AU DEBUT DE LA SEANCE (essai v713, voir ouvrirChoixSeance).
+     En francais seulement tant que l'essai est reserve a l'admin : a traduire
+     dans les six langues AVANT de le mettre en production. -->
+<section id="choixSeance" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <p class="kicker">Ma séance du jour</p>
+    <h2>Par quoi commences-tu ?</h2>
+    <div class="choix-seance-duo">
+        <button type="button" class="choix-seance" onclick="ouvrirSceneSeance()">
+            <span class="choix-seance-vue scene"><img id="choixSceneImage" alt=""></span>
+            <span class="choix-seance-legende">
+                <span class="choix-seance-nom">La scène</span>
+                <span class="choix-seance-detail" id="choixSceneDetail"></span>
+            </span>
+        </button>
+        <button type="button" class="choix-seance" onclick="choisirCartesSeance()">
+            <span class="choix-seance-vue cartes" aria-hidden="true">
+                <span class="choix-seance-carte"><small>Allemand</small><b><span class="g-das">das</span> Fenster</b></span>
+                <span class="choix-seance-carte dos"><small>Français</small><b>la fenêtre</b></span>
+            </span>
+            <span class="choix-seance-legende">
+                <span class="choix-seance-nom">Les cartes</span>
+                <span class="choix-seance-detail">Révisions, puis mots nouveaux</span>
+            </span>
+        </button>
+    </div>
+</section>
+
+<!-- La scene elle-meme : le prototype, dans un cadre plein ecran. Son titre,
+     en haut, revient au choix ; « Continuer avec mes cartes » lance les
+     cartes (message « fini »). -->
+<section id="sceneSeance" class="screen">
+    <iframe id="sceneCadre" class="scene-cadre" title="La scène du jour" allow="autoplay"></iframe>
+</section>
+
 <section id="flashcards" class="screen">
     <button class="back" onclick="handleFlashcardBack()"><span data-i18n="back_button">‹ Retour</span></button>
 
@@ -9491,6 +9558,18 @@ body[data-theme="dark"] #decouverte > button.primary{
         <div id="adminApercuGratuitEtat" class="info-box"></div>
         <div class="spacer"></div>
         <button class="secondary" onclick="basculerApercuGratuit()">ACTIVER / ARRÊTER L'APERÇU →</button>
+    </div>
+
+    <!-- LES FONCTIONS EN ESSAI (v713). Une nouveaute poussee sur main reste
+         eteinte pour tout le monde sauf l'admin, qui la teste dans la vraie
+         vie -- son compte, sa seance du jour -- jusqu'a ce qu'on decide de
+         l'allumer pour tous (ESSAIS, etat "tous"). Choix de Jacques le
+         6 oct. 2026, plutot qu'une deuxieme app de test. -->
+    <div class="card">
+        <strong>Fonctions en essai</strong>
+        <div class="info-box">Allumées pour toi seul. Les autres comptes ne voient rien tant qu'on ne les met pas en production.</div>
+        <div class="spacer"></div>
+        <div id="adminEssais"></div>
     </div>
 
     <!-- La decouverte guidee (v700) : un nouveau compte la voit une fois,
@@ -25678,6 +25757,12 @@ function showScreen(id){
     // reglages) doit couper la voix : sans cette garde, la seance continue
     // de parler par-dessus l'ecran suivant.
     if(id !== 'ecoute') arreterEcoute();
+    // Meme raison pour la scene (essai v713) : quitter son ecran vide le
+    // cadre, sinon la voix de la scene continuerait derriere l'accueil.
+    if(id !== 'sceneSeance'){
+        const cadre = document.getElementById("sceneCadre");
+        if(cadre && cadre.getAttribute("src") && cadre.getAttribute("src") !== "about:blank") cadre.src = "about:blank";
+    }
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
@@ -26174,6 +26259,77 @@ function basculerApercuGratuit(){
     showInfoToast(actif ? "Aperçu : tu vois l'app comme un compte gratuit." : "Aperçu terminé : accès complet.");
 }
 
+// ============ LES FONCTIONS EN ESSAI (v713) ============
+// ⚠️ UNE SEULE APP, PAS DEUX. Jacques veut tester les nouveautes « a partir de
+// la vraie vie, quand je commence une session du jour », et decider ensuite
+// quand on les pousse en production. Une app de test a part (la branche
+// staging, abandonnee le 30 aout 2026) lirait quand meme les donnees de main,
+// vivrait a une autre adresse, avec une autre memoire : ce ne serait plus sa
+// seance. On pousse donc sur main, et la nouveaute reste derriere ceci.
+//
+// etat : "admin" = Jacques seul (et il peut la couper ici, sur son telephone,
+//        sans passer par une version) ; "tous" = en production.
+// METTRE EN PRODUCTION = passer l'etat a "tous", traduire ce qui ne l'est pas
+// encore, et monter la version.
+//
+// ⚠️ CE QUE L'INTERRUPTEUR NE PROTEGE PAS : une faute de syntaxe tue l'app de
+// TOUT LE MONDE, essai ou pas. C'est le role de tests/syntaxe.js, avant
+// chaque envoi.
+const ESSAIS = {
+    scenes: {
+        etat: "admin",
+        titre: "Scènes dans la séance du jour",
+        desc: "Au début de la séance : la scène du jour ou les cartes, au choix. Trois questions au niveau de la séance, puis les cartes."
+    }
+};
+const ESSAIS_COUPES_KEY = "deutschAI_essaisCoupes";
+
+function essaisCoupes(){
+    try{ return JSON.parse(localStorage.getItem(ESSAIS_COUPES_KEY) || "[]") || []; }catch(e){ return []; }
+}
+
+function essaiActif(nom){
+    const e = ESSAIS[nom];
+    if(!e) return false;
+    if(e.etat === "tous") return true;
+    if(e.etat !== "admin" || !isAdminUser()) return false;
+    return essaisCoupes().indexOf(nom) < 0;
+}
+
+function basculerEssai(nom){
+    if(!isAdminUser() || !ESSAIS[nom]) return;
+    const coupes = essaisCoupes();
+    const k = coupes.indexOf(nom);
+    if(k < 0) coupes.push(nom); else coupes.splice(k, 1);
+    try{ localStorage.setItem(ESSAIS_COUPES_KEY, JSON.stringify(coupes)); }catch(e){}
+    afficherEssais();
+    showInfoToast((essaiActif(nom) ? "Essai allumé : " : "Essai coupé : ") + ESSAIS[nom].titre);
+}
+
+function afficherEssais(){
+    const box = document.getElementById("adminEssais");
+    if(!box) return;
+    box.innerHTML = "";
+    Object.keys(ESSAIS).forEach(nom => {
+        const e = ESSAIS[nom];
+        const ligne = document.createElement("div");
+        ligne.className = "essai-ligne";
+        const enProd = e.etat === "tous";
+        const actif = essaiActif(nom);
+        ligne.innerHTML = '<div class="essai-texte"><b></b><span></span></div>';
+        ligne.querySelector("b").textContent = e.titre + (enProd ? " — en production" : actif ? " — allumé" : " — coupé");
+        ligne.querySelector("span").textContent = e.desc;
+        if(!enProd){
+            const b = document.createElement("button");
+            b.className = "secondary";
+            b.textContent = actif ? "COUPER" : "ALLUMER";
+            b.onclick = () => basculerEssai(nom);
+            ligne.appendChild(b);
+        }
+        box.appendChild(ligne);
+    });
+}
+
 function afficherEtatApercuGratuit(){
     const el = document.getElementById("adminApercuGratuitEtat");
     if(el) el.textContent = apercuGratuitActif()
@@ -26207,6 +26363,7 @@ function openAdminDashboard(){
     if(!isAdminUser()){ goHome(); return; }
     showScreen("adminDashboard");
     afficherEtatApercuGratuit();
+    afficherEssais();
     renderAdminDeployStatus();
     renderAdminCodesList();
     renderAdminUsersList();
@@ -30607,7 +30764,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 712;
+const APP_VERSION = 713;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -33812,7 +33969,88 @@ function fixerNiveauSeance(niv){
     majTuileSeance();
 }
 
-async function ouvrirSeanceDuJour(){
+// ============ LA SCENE DU JOUR, EN ESSAI (v713) ============
+// Maquette visuel/prototype/choix-seance.html, decisions de Jacques : au debut
+// de la seance, un ecran de choix montre les deux activites AU MEME POIDS --
+// la scene, les cartes --, l'une sous l'autre, en apercus fixes. La scene
+// suit le niveau de la seance, sans le demander. L'ecran n'apparait que les
+// jours ou une scene est proposee : une fois par jour ; la seance suivante
+// du meme jour va droit aux cartes.
+//
+// ⚠️ LA SCENE N'EST PAS RECOPIEE DANS L'APP. C'est le prototype lui-meme
+// (visuel/prototype/index.html?scene=...&seance=1&niveau=...), ouvert dans un
+// cadre : tout ce qu'on y corrige profite aux deux. Il previent l'app par
+// postMessage quand il a fini ; on enchaine alors sur les cartes.
+//
+// ⚠️ PAS ENCORE FAIT : une reponse dans la scene ne compte pas encore comme
+// revision du mot (decide, mais l'ecriture dans la progression touche au
+// coeur de la repetition espacee -- a faire a part, et a verifier).
+const SCENES_SEANCE = [
+    { nom: "klassenzimmer", titre: "La classe de Mark et Anna" },
+    { nom: "arztpraxis", titre: "Mark chez le médecin" }
+];
+const SCENE_FAITE_KEY = "deutschAI_sceneFaite";
+
+function baseScenes(){
+    // Servie par GitHub Pages a cote de l'app ; l'app installee (Capacitor)
+    // n'a pas d'adresse http, elle va chercher la version en ligne.
+    if(/^https?:$/.test(location.protocol)) return new URL("visuel/prototype/", location.href).toString();
+    return "https://jacquesagrenier-star.github.io/Deutsch-gemini/visuel/prototype/";
+}
+
+function sceneDuJour(){
+    // Une scene par jour, a tour de role : le numero du jour, pas le hasard,
+    // pour que la scene ne change pas entre deux ouvertures.
+    const jour = Math.floor(Date.now() / 86400000);
+    return SCENES_SEANCE[jour % SCENES_SEANCE.length];
+}
+
+function sceneDejaFaite(){
+    try{ return localStorage.getItem(SCENE_FAITE_KEY) === new Date().toDateString(); }catch(e){ return false; }
+}
+
+function ouvrirChoixSeance(){
+    const s = sceneDuJour();
+    const img = document.getElementById("choixSceneImage");
+    if(img) img.src = baseScenes() + s.nom + ".webp";
+    const det = document.getElementById("choixSceneDetail");
+    if(det) det.textContent = s.titre + " · 3 questions · " + niveauSeance();
+    showScreen("choixSeance");
+}
+
+function ouvrirSceneSeance(){
+    const s = sceneDuJour();
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre) cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
+                        + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
+                        + "&t=" + Date.now();
+    showScreen("sceneSeance");
+}
+
+function choisirCartesSeance(){
+    try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(e){}
+    ouvrirSeanceDuJour(true);
+}
+
+window.addEventListener("message", (e) => {
+    const d = e.data;
+    if(!d || d.source !== "wortando-scene") return;
+    // Seule la page de scene que l'app a ouverte parle ici.
+    try{ if(new URL(baseScenes()).origin !== e.origin) return; }catch(err){ return; }
+    const cadre = document.getElementById("sceneCadre");
+    if(d.type === "fini"){
+        try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(err){}
+        if(cadre) cadre.src = "about:blank";
+        ouvrirSeanceDuJour(true);
+    } else if(d.type === "fermer"){
+        if(cadre) cadre.src = "about:blank";
+        ouvrirChoixSeance();
+    }
+});
+
+async function ouvrirSeanceDuJour(sansScene){
+    // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
+    if(!sansScene && essaiActif("scenes") && !sceneDejaFaite()){ ouvrirChoixSeance(); return; }
     const niveau = niveauSeance();
     // La frequence AVANT de constituer la seance, sinon les premiers mots neufs
     // sortiraient dans l'ordre du fichier -- une seule fois, mais c'est la

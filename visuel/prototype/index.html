@@ -126,6 +126,9 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 @media (prefers-reduced-motion:reduce){.gros-plan{transition:none}}
 
 .pied{max-width:430px;margin:10px auto 30px;padding:0 12px;color:#c9ced8;font-size:12px;line-height:1.5}
+/* Dans la seance : ni pastilles (le niveau est celui de la seance), ni modes
+   (on cherche), ni pied de controle. */
+.en-seance .niveaux,.en-seance .modes,.en-seance .pied{display:none}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 </style>
 </head>
@@ -461,9 +464,40 @@ function etiquetteGros(id){
    questions, et seules les couches qu'elle a ont une pastille. */
 const COUCHES = S.couches || {A1: {titre: "Noms et articles"}};
 
+/* ---------- DANS LA SEANCE DU JOUR (?seance=1&niveau=B1) ----------
+   L'app ouvre cette page dans un cadre, au debut de la seance (essai v713,
+   reserve a Jacques). Decisions de la maquette choix-seance.html : TROIS
+   questions, au niveau de la seance, sans pastilles ; a partir de l'A2,
+   l'une des trois revise le niveau d'avant. A la fin, la page le dit a
+   l'app (postMessage), qui enchaine sur les cartes. Le titre, en haut, rend
+   la main a l'app au lieu de mener a la maquette. */
+const PARAMS = new URLSearchParams(location.search);
+const EN_SEANCE = PARAMS.get("seance") === "1";
+const NB_SEANCE = 3;
+function envoyer(type, donnees){
+  if (window.parent !== window)
+    window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");
+}
+if (EN_SEANCE){
+  document.body.classList.add("en-seance");
+  $("retourChoix").addEventListener("click", e => { e.preventDefault(); envoyer("fermer", {bons, faits}); });
+}
+
 /* ---------- etat ---------- */
-let niveau = "A1", modeA1 = "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
+let niveau = (EN_SEANCE && COUCHES[PARAMS.get("niveau")]) ? PARAMS.get("niveau") : "A1";
+let modeA1 = EN_SEANCE ? "trouver" : "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
 const melanger = a => a.map(v => [Math.random(), v]).sort((x,y) => x[0]-y[0]).map(v => v[1]);
+/* Les trois questions d'une seance : deux du niveau, une du niveau d'avant
+   s'il a des questions (en B1, une preposition de l'A2) ; sinon trois du
+   niveau. Chacune garde son niveau, pour l'afficher. */
+function ordreSeance(niv){
+  const k = Object.keys(COUCHES), avant = k[k.indexOf(niv) - 1];
+  const ici = melanger(COUCHES[niv].qs).map(q => Object.assign({_niv: niv}, q));
+  if (avant && COUCHES[avant].qs && COUCHES[avant].qs.length)
+    return melanger([...ici.slice(0, NB_SEANCE - 1),
+                     Object.assign({_niv: avant}, melanger(COUCHES[avant].qs)[0])]);
+  return ici.slice(0, NB_SEANCE);
+}
 
 /* les pastilles */
 for (const n of Object.keys(COUCHES)){
@@ -476,7 +510,7 @@ function demarrer(){
   $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === niveau));
   i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; fermerGrosPlan(); effacer();
   if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
-  COUCHES[niveau].ordre = melanger(COUCHES[niveau].qs);
+  COUCHES[niveau].ordre = EN_SEANCE ? ordreSeance(niveau) : melanger(COUCHES[niveau].qs);
   poser();
 }
 
@@ -535,7 +569,7 @@ function proprietaire(mot){
   return r.length === 1 && estPersonne(r[0]) ? r[0] : null;
 }
 function trouver(){
-  if (!fileTrouver.length || i === 0) fileTrouver = melanger(A_TROUVER).slice(0, 10);
+  if (!fileTrouver.length || i === 0) fileTrouver = melanger(A_TROUVER).slice(0, EN_SEANCE ? NB_SEANCE : 10);
   if (i >= fileTrouver.length) return fin();
   const p = fileTrouver[i]; attenteToucher = p.mot;
   const chez = proprietaire(p.mot);
@@ -626,7 +660,8 @@ function poser(){
   fermerGrosPlan(); effacer(); anneau(q.f);
   const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
-  entete(niveau + " · " + c.titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);
+  const niv = q._niv || niveau;
+  entete(niv + " · " + COUCHES[niv].titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);
   const opts = melanger(q.c.map((t,k) => ({t, ok:k === 0})));
   $("bas").innerHTML = opts.map((o,k) => `<button class="choix" data-k="${k}">${o.t}</button>`).join("")
                      + `<div class="score">${bons} / ${faits}</div>`;
@@ -656,6 +691,12 @@ function repondre(q, opts, k){
 }
 function fin(){
   effacer(); attenteToucher = null; $("bas").classList.remove("en-haut");
+  if (EN_SEANCE){
+    entete("Scène terminée", `${bons} sur ${faits} — bravo !`, false);
+    $("bas").innerHTML = `<button class="suite" id="encore">Continuer avec mes cartes →</button>`;
+    $("encore").addEventListener("click", () => envoyer("fini", {bons, faits}));
+    return;
+  }
   entete(niveau + " · terminé", `${bons} sur ${faits} — bravo !`, niveau === "A1");
   $("bas").innerHTML = `<button class="suite" id="encore">Encore une fois</button>`;
   $("encore").addEventListener("click", demarrer);
