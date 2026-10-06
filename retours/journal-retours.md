@@ -7727,3 +7727,36 @@ decide quand on la pousse en production. »
   ENTIERE (cinq niveaux, Decouvrir, Trouve !, gros plans) en plein ecran, sans
   toucher a la seance du jour ; « Retour » ramene au tableau de bord. Toute
   scene ouverte dans l'app tient maintenant dans l'ecran.
+  Suite : le visage de Mark, relu par Jacques dans le gros plan (v716) :
+  - l'oeil DROIT de l'image : le cercle est un peu trop a droite (le gauche
+    est juste) ;
+  - l'oreille DROITE : la toucher repond der Kopf -- l'ellipse est trop
+    petite ou mal placee (la gauche fonctionne) ;
+  - le cou (der Hals) mord sur le menton : on ne peut pas toucher das Kinn.
+    Descendre le cou, et donner au menton sa place ;
+  - das Haar : l'ellipse doit etre centree sur les cheveux ;
+  - die Stirn (le front) : doit pouvoir se toucher.
+  « Repertorie tout, on va continuer demain. » -- A REPRENDRE le 7 oct. :
+  mesurer chaque partie avec visuel/prototype/grille_gros_plan.py (grille de
+  0,25 %), corriger arztpraxis.points.json, construire.py arztpraxis, verifier
+  dans le navigateur, et faire la meme relecture pour la main, les pieds et
+  l'affiche.
+
+## A reprendre (fin du 6 octobre 2026)
+
+- **Visage de Mark** : les cinq corrections ci-dessus.
+- **Une reponse dans la scene compte comme revision du mot** : decide, pas
+  fait (ecrit dans la repetition espacee : a part, et a verifier).
+- **Mettre l'essai des scenes en production** (sur decision de Jacques) :
+  traduire les deux ecrans dans les six langues, ESSAIS.scenes.etat = "tous",
+  monter la version.
+- **Relire** : les questions A2-C1 du medecin (brouillon) ; les traductions
+  tr/uk/fa de der Knoechel (ecrites par Claude).
+- **L'ovale « das Poster »** du gros plan de l'affiche deborde sur la tete de
+  Mark.
+- **Le talon** : une image des pieds de cote (0,15 $) -- Jacques : « on le
+  laisse comme ca pour le moment ».
+- **Audio de der Knoechel** : pas d'enregistrement ElevenLabs (depense) ; la
+  voix du navigateur le lit.
+- **Connexion** : Jacques a eu « e-mail ou mot de passe incorrect » (refus de
+  Firebase, rien a voir avec v713) -- a voir s'il s'est reconnecte.
