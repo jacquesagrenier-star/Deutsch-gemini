@@ -7713,3 +7713,11 @@ decide quand on la pousse en production. »
   ramene au choix scene ou cartes. On ne devrait pas juste voir Retour ? »
   (Jacques). Dans la seance, le lien dit maintenant « ‹ Retour ». Hors
   seance, la page du prototype garde son titre.
+  Suite (v715), apres une scene B1 : (1) « le sac a dos est du cote d'Anna, on
+  dit que c'est Mark qui l'a mis » -- les deux questions de la classe qui le
+  donnaient a Mark disent maintenant ce que l'image montre : « Anna hat ihren
+  Rucksack unter den Tisch gestellt » (B1) ; la question « dessen » (B2) porte
+  sur les lunettes du prof. (2) « J'ai eu zero sur trois, ca dit bravo » : le
+  mot de la fin suit le score (sans faute / bien joue / ca viendra / pas
+  grave). (3) Bouton « Revoir la scene du jour » dans les Fonctions en essai,
+  pour verifier une correction le jour meme.

@@ -1445,15 +1445,15 @@ window.SCENE = {
      "n": "<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?)."
     },
     {
-     "q": "Mark hat seinen Rucksack unter den Tisch ___.",
+     "q": "Anna hat ihren Rucksack unter den Tisch ___.",
      "c": [
       "gestellt",
       "gestanden",
       "gesessen"
      ],
      "f": "rucksack",
-     "r": "mark",
-     "phrase": "Mark hat seinen Rucksack unter den Tisch gestellt.",
+     "r": "anna",
+     "phrase": "Anna hat ihren Rucksack unter den Tisch gestellt.",
      "n": "Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch."
     },
     {
@@ -1556,16 +1556,16 @@ window.SCENE = {
      "n": "Sujet, masculin → <b>der</b>."
     },
     {
-     "q": "Der Teilnehmer, ___ Rucksack unter dem Tisch steht, heißt Mark.",
+     "q": "Der Mann, ___ Brille auf der Nase sitzt, ist der Lehrer.",
      "c": [
       "dessen",
       "deren",
       "dem"
      ],
-     "f": "mark",
-     "r": "rucksack",
-     "phrase": "Der Teilnehmer, dessen Rucksack unter dem Tisch steht, heißt Mark.",
-     "n": "Possession, antécédent masculin → <b>dessen</b> (dont le sac)."
+     "f": "lehrer",
+     "r": "brille",
+     "phrase": "Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont les lunettes)."
     },
     {
      "q": "Die Teilnehmerin, ___ Heft offen auf dem Tisch liegt, heißt Anna.",

@@ -712,15 +712,26 @@ function repondre(q, opts, k){
   const sc = $("bas").querySelector(".score"); sc.textContent = bons + " / " + faits;
   $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
 }
+/* Le mot de la fin suit le score. « 0 sur 3 — bravo ! » sonnait faux
+   (Jacques, 6 oct.) : un compliment qu'on recoit quoi qu'on fasse ne veut
+   plus rien dire, meme quand il est merite. */
+function bilan(){
+  const s = `${bons} sur ${faits}`;
+  if (!faits) return s;
+  if (bons === faits) return `${s} — sans faute, bravo !`;
+  if (bons * 2 >= faits) return `${s} — bien joué.`;
+  if (bons > 0) return `${s} — ça viendra : on retient aussi en se trompant.`;
+  return `${s} — pas grave, on retient aussi en se trompant.`;
+}
 function fin(){
   effacer(); attenteToucher = null; $("bas").classList.remove("en-haut");
   if (EN_SEANCE){
-    entete("Scène terminée", `${bons} sur ${faits} — bravo !`, false);
+    entete("Scène terminée", bilan(), false);
     $("bas").innerHTML = `<button class="suite" id="encore">Continuer avec mes cartes →</button>`;
     $("encore").addEventListener("click", () => envoyer("fini", {bons, faits}));
     return;
   }
-  entete(niveau + " · terminé", `${bons} sur ${faits} — bravo !`, niveau === "A1");
+  entete(niveau + " · terminé", bilan(), niveau === "A1");
   $("bas").innerHTML = `<button class="suite" id="encore">Encore une fois</button>`;
   $("encore").addEventListener("click", demarrer);
 }

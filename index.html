@@ -7005,7 +7005,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v714</span>
+    <span class="subtitle-version">v715</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26330,6 +26330,18 @@ function afficherEssais(){
             ligne.appendChild(b);
         }
         box.appendChild(ligne);
+        // La scene ne se propose qu'une fois par jour : pour verifier une
+        // correction le jour meme, on la rejoue d'ici (Jacques, 6 oct.).
+        if(nom === "scenes" && actif){
+            const r = document.createElement("button");
+            r.className = "secondary";
+            r.textContent = "REVOIR LA SCÈNE DU JOUR →";
+            r.onclick = () => {
+                try{ localStorage.removeItem(SCENE_FAITE_KEY); }catch(e){}
+                ouvrirChoixSeance();
+            };
+            box.appendChild(r);
+        }
     });
 }
 
@@ -30767,7 +30779,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 714;
+const APP_VERSION = 715;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
