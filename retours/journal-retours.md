@@ -7507,3 +7507,5 @@ scene arrive dans la seance du jour.
   porte maintenant TOUS ses noms (Anna = die Frau, der Pullover, der Rock) et une
   cible est un mot, pas une zone. Meme defaut corrige pour Mann, Stuhl (la chaise
   de bureau du prof), Pullover, Bart, Brille. 35 zones.
+  Suite : l'imprimante (der Drucker) se voit trop peu derriere Mark -- retiree
+  a la demande de Jacques. 34 zones.

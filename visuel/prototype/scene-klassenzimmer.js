@@ -258,24 +258,6 @@ window.SCENE = {
    ]
   },
   {
-   "id": "drucker",
-   "mot": "Drucker",
-   "genre": "der",
-   "pluriel": "Drucker",
-   "fr": "imprimante",
-   "en": "printer",
-   "niveau": "A1",
-   "theme": "arbeit_buero_a1",
-   "personne": null,
-   "aussi": [],
-   "boite": [
-    56,
-    45.5,
-    8.8,
-    3.1
-   ]
-  },
-  {
    "id": "mark",
    "mot": "Teilnehmer",
    "genre": "der",
