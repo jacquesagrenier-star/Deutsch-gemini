@@ -7594,7 +7594,8 @@ scene arrive dans la seance du jour.
   controle des prompts n'y trouve aucune faute. Rien n'a ete paye.
   Suite : en « Trouve ! », on demandait die Frau, on touchait Anna, et
   l'etiquette disait « Anna · die Teilnehmerin » (Jacques). Elle dit
-  maintenant le mot DEMANDE -- « Anna · die Frau » -- et die Teilnehmerin passe
-  dans « aussi ». Le nom de base d'Anna reste die Teilnehmerin. (Un premier
+  maintenant le mot DEMANDE -- « Anna · die Frau ». Le nom de base d'Anna
+  reste die Teilnehmerin. Et plus de liste « aussi » sous le nom : le crayon
+  dans la liste d'Anna ne voulait rien dire, et la liste melait tout. (Un premier
   essai, mal compris, avait change ce nom de base et fait defiler les noms a
   chaque toucher : defait.)

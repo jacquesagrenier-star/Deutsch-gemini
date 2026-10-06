@@ -289,8 +289,7 @@ function groupe(p){
 }
 /* Tous les noms d'une zone, le principal d'abord. En « Trouve ! », l'etiquette
    montre le mot DEMANDE : on demande die Frau et on touche Anna, elle dit
-   « Anna · die Frau », et die Teilnehmerin passe dans « aussi » (Jacques,
-   6 oct.). */
+   « Anna · die Frau » (Jacques, 6 oct.). */
 const nomsDe = p => [{genre: p.genre, mot: p.mot, fr: p.fr, pluriel: p.pluriel}, ...p.aussi];
 /* `quel` : le rang du nom a montrer, ou le mot lui-meme (celui qu'on a
    demande en « Trouve ! ») ; par defaut, le nom principal. */
@@ -299,17 +298,16 @@ function etiquette(id, quel){
   const p = P[id], [x,y,w,h] = englobe(p);
   const noms = nomsDe(p);
   const n = (typeof quel === "string" ? noms.find(m => m.mot === quel) : noms[quel || 0]) || noms[0];
-  const autres = noms.filter(m => m !== n);
   const e = document.createElement("div");
   const dessous = y < 30;
   e.className = "etiquette" + (dessous ? " dessous" : "");
   const cx = Math.min(80, Math.max(20, x + w/2));
   e.style.left = cx + "%";
   e.style.top = (dessous ? y + h + 1 : y - 1) + "%";
+  // Le nom seul, sans la liste de ses autres noms : voir le crayon dans la
+  // liste d'Anna ne voulait rien dire, et la liste melait tout (Jacques, 6 oct.).
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
-              + `<span class="fr">${n.fr}${n.pluriel ? " · pl. die " + n.pluriel : ""}</span>`
-              + (autres.length ? `<span class="fr">aussi : ${autres.map(a =>
-                  `<span class="g-${a.genre}">${a.genre} ${a.mot}</span>`).join(" · ")}</span>` : "");
+              + `<span class="fr">${n.fr}${n.pluriel ? " · pl. die " + n.pluriel : ""}</span>`;
   scene.appendChild(e);
   // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
   // on la ramene dans le cadre apres l'avoir mesuree.
