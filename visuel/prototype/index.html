@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Im Spanischkurs</title>
+<!--
+  PROTOTYPE de scene interactive (6 oct. 2026). Hors de l'app : il s'ouvre en
+  double-cliquant ce fichier. Les zones et les mots viennent de
+  scene-klassenzimmer.js, que construire.py refait depuis themes.json.
+
+  Une seule image, une couche par niveau (A1 noms ; A2 prepositions ; B1 verbes
+  de position ; B2 relatives ; C1 hypotheses). Les pastilles changent de couche
+  sur la meme image -- idee de Jacques.
+-->
+<style>
+:root{
+  --encre:#1C2430; --ambre:#E8A23A; --papier:#FBF7EF;
+  --der:#2563EB; --die:#DC2626; --das:#16A34A;
+  --ok:#15803D; --faux:#B91C1C;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#11151b;color:var(--encre);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.cadre{max-width:430px;margin:0 auto;position:relative}
+.scene{position:relative;width:100%;aspect-ratio:1080/1935;overflow:hidden;
+  background:#2a2a2a;user-select:none;-webkit-user-select:none}
+.scene img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.zone{position:absolute;border:0;padding:0;margin:0;background:transparent;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:6px}
+.zone:focus-visible{outline:2px dashed var(--ambre)}
+.voir-zones .zone{outline:1.5px solid rgba(232,162,58,.85);background:rgba(232,162,58,.10)}
+
+/* le haut : AU-DESSUS de l'image -- pose sur le plafond, il cachait l'horloge et la lampe */
+.haut{position:sticky;top:0;padding:8px 8px 8px;z-index:2000;background:#11151b;
+  display:flex;flex-direction:column;gap:6px}
+.barre{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.titre{font-weight:700;font-size:15px;color:var(--encre);background:rgba(251,247,239,.92);
+  padding:6px 10px;border-radius:999px}
+.niveaux{display:flex;gap:4px;background:rgba(251,247,239,.92);padding:3px;border-radius:999px}
+.niveaux button{border:0;background:transparent;font:600 13px/1 inherit;color:var(--encre);
+  padding:7px 9px;border-radius:999px;cursor:pointer;min-width:34px}
+.niveaux button[aria-pressed=true]{background:var(--encre);color:#fff}
+.carte{background:rgba(251,247,239,.96);border-radius:14px;padding:10px 12px;
+  box-shadow:0 4px 18px rgba(0,0,0,.25);font-size:15px;line-height:1.35}
+.carte .consigne{font-size:12px;letter-spacing:.02em;text-transform:uppercase;
+  color:#8F560B;font-weight:700;margin-bottom:3px}
+.carte .question{font-size:18px;font-weight:650}
+.modes{display:flex;gap:6px;margin-top:8px}
+.modes button{flex:1;border:1.5px solid var(--encre);background:transparent;border-radius:10px;
+  padding:7px;font:600 13px inherit;cursor:pointer}
+.modes button[aria-pressed=true]{background:var(--encre);color:#fff}
+
+/* le bas : sur le plancher */
+.bas{position:absolute;left:0;right:0;bottom:0;z-index:2000;padding:8px;
+  display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end}
+.bas > .explication,.bas > .suite,.bas > .score{flex-basis:100%}
+/* Quand l'objet de la question est dans le bas de l'image (le portable, le
+   sac), le panneau monte sur le mur et le plafond, ou il n'y a presque rien. */
+.bas.en-haut{bottom:auto;top:0;align-items:flex-start}
+.choix{border:0;border-radius:12px;padding:10px 12px;font:600 15px inherit;text-align:left;flex:1 1 auto;
+  background:rgba(251,247,239,.96);color:var(--encre);cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.choix.ok{background:#DCFCE7;outline:2px solid var(--ok)}
+.choix.faux{background:#FEE2E2;outline:2px solid var(--faux)}
+.choix:disabled{cursor:default}
+.explication{background:rgba(28,36,48,.94);color:#fff;border-radius:12px;padding:10px 12px;
+  font-size:14px;line-height:1.4}
+.explication b{color:var(--ambre)}
+.suite{border:0;border-radius:12px;padding:12px;font:700 16px inherit;background:var(--ambre);
+  color:var(--encre);cursor:pointer}
+.score{font-size:13px;color:#fff;text-align:right;text-shadow:0 1px 3px #000}
+
+/* le cadre lumineux autour d'un objet */
+.anneau{position:absolute;border-radius:10px;pointer-events:none;z-index:1500;
+  box-shadow:0 0 0 3px var(--ambre),0 0 0 9999px rgba(0,0,0,.28);
+  animation:pulse 1.2s ease-in-out infinite}
+.anneau.second{box-shadow:0 0 0 3px #fff;animation:none;border:2px dashed #fff}
+@keyframes pulse{50%{box-shadow:0 0 0 6px var(--ambre),0 0 0 9999px rgba(0,0,0,.28)}}
+@media (prefers-reduced-motion:reduce){.anneau{animation:none}}
+
+/* l'etiquette d'un mot */
+.etiquette{position:absolute;z-index:1800;transform:translate(-50%,-100%);
+  background:#fff;border-radius:10px;padding:6px 10px 7px;white-space:nowrap;
+  box-shadow:0 4px 14px rgba(0,0,0,.35);font-size:15px;pointer-events:none;
+  text-align:center}
+.etiquette.dessous{transform:translate(-50%,0)}
+.etiquette .art{font-weight:800}
+.etiquette .nom{font-weight:700}
+.etiquette .fr{display:block;font-size:12px;color:#556}
+.g-der{color:var(--der)} .g-die{color:var(--die)} .g-das{color:var(--das)}
+.secoue{animation:secoue .35s}
+@keyframes secoue{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+.pied{max-width:430px;margin:10px auto 30px;padding:0 12px;color:#c9ced8;font-size:12px;line-height:1.5}
+.pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
+</style>
+</head>
+<body>
+<div class="cadre">
+  <div class="haut">
+    <div class="barre">
+      <span class="titre">Im Spanischkurs</span>
+      <div class="niveaux" id="niveaux" role="group" aria-label="Niveau"></div>
+    </div>
+    <div class="carte" id="carte"></div>
+  </div>
+  <div class="scene" id="scene">
+    <img id="photo" alt="Un cours d'espagnol du soir à Berlin : le professeur devant le tableau, Mark et Anna assis côte à côte, trois autres élèves.">
+    <div class="bas" id="bas"></div>
+  </div>
+</div>
+<div class="pied">
+  <label><input type="checkbox" id="voirZones"> Montrer les zones à toucher (contrôle)</label>
+  Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.
+</div>
+
+<script src="scene-klassenzimmer.js"></script>
+<script>
+"use strict";
+const S = window.SCENE;
+const P = Object.fromEntries(S.points.map(p => [p.id, p]));
+const $ = id => document.getElementById(id);
+const scene = $("scene");
+$("photo").src = S.image;
+
+/* ---------- la voix ---------- */
+let voixDe = null;
+function chargerVoix(){
+  const v = speechSynthesis.getVoices();
+  voixDe = v.find(x => /^de(-|_)DE/i.test(x.lang) && /google|natural|online/i.test(x.name))
+        || v.find(x => /^de/i.test(x.lang)) || null;
+}
+if ("speechSynthesis" in window){ chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }
+function dire(t){
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(t);
+  u.lang = "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92;
+  speechSynthesis.speak(u);
+}
+
+/* ---------- les zones : la plus petite au-dessus ---------- */
+for (const p of S.points){
+  const [x,y,w,h] = p.boite;
+  const b = document.createElement("button");
+  b.className = "zone"; b.dataset.id = p.id;
+  b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;z-index:${1000 - Math.round(w*h/10)}`;
+  b.setAttribute("aria-label", p.personne || p.mot);
+  b.addEventListener("click", () => toucher(p.id));
+  scene.appendChild(b);
+}
+$("voirZones").addEventListener("change", e => scene.classList.toggle("voir-zones", e.target.checked));
+
+/* ---------- surlignage et etiquette ---------- */
+function effacer(){ scene.querySelectorAll(".anneau,.etiquette").forEach(n => n.remove()); }
+function anneau(id, second){
+  const [x,y,w,h] = P[id].boite;
+  const a = document.createElement("div");
+  a.className = "anneau" + (second ? " second" : "");
+  a.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%`;
+  scene.appendChild(a);
+}
+function groupe(p){
+  const art = p.genre || "";
+  return `<span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span>`;
+}
+function etiquette(id){
+  const p = P[id], [x,y,w,h] = p.boite;
+  const e = document.createElement("div");
+  const dessous = y < 30;
+  e.className = "etiquette" + (dessous ? " dessous" : "");
+  const cx = Math.min(80, Math.max(20, x + w/2));
+  e.style.left = cx + "%";
+  e.style.top = (dessous ? y + h + 1 : y - 1) + "%";
+  e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(p)
+              + `<span class="fr">${p.fr}${p.pluriel ? " · pl. die " + p.pluriel : ""}</span>`;
+  scene.appendChild(e);
+  // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
+  // on la ramene dans le cadre apres l'avoir mesuree.
+  const r = e.getBoundingClientRect(), c = scene.getBoundingClientRect(), marge = 6;
+  if (r.left < c.left + marge) e.style.left = `calc(${e.style.left} + ${c.left + marge - r.left}px)`;
+  else if (r.right > c.right - marge) e.style.left = `calc(${e.style.left} - ${r.right - c.right + marge}px)`;
+}
+
+/* ---------- les couches ---------- */
+const A2 = [
+  {q:"Wo ist der Rucksack?", c:["unter dem Tisch","auf dem Tisch","neben der Tür"], f:"rucksack", r:"tisch",
+   phrase:"Der Rucksack ist unter dem Tisch.", n:"<b>Wo?</b> → datif : der Tisch → unter <b>dem</b> Tisch."},
+  {q:"Wo hängt die Uhr?", c:["über der Tafel","unter der Tafel","neben dem Fenster"], f:"uhr", r:"tafel",
+   phrase:"Die Uhr hängt über der Tafel.", n:"<b>Wo?</b> → datif : die Tafel → über <b>der</b> Tafel."},
+  {q:"Wo steht die Pflanze?", c:["auf dem Regal","unter dem Regal","auf dem Tisch"], f:"pflanze", r:"regal",
+   phrase:"Die Pflanze steht auf dem Regal.", n:"<b>Wo?</b> → datif : das Regal → auf <b>dem</b> Regal."},
+  {q:"Wo hängt der Mantel?", c:["an der Tür","an der Tafel","am Fenster"], f:"mantel", r:"tuer",
+   phrase:"Der Mantel hängt an der Tür.", n:"<b>Wo?</b> → datif : die Tür → an <b>der</b> Tür."},
+  {q:"Wo steht der Lehrer?", c:["vor der Tafel","hinter der Tafel","neben dem Fenster"], f:"lehrer", r:"tafel",
+   phrase:"Der Lehrer steht vor der Tafel.", n:"<b>vor</b> = devant. Datif : vor <b>der</b> Tafel."},
+  {q:"Wo liegt das Handy?", c:["neben dem Laptop","unter dem Laptop","auf dem Stuhl"], f:"handy", r:"laptop",
+   phrase:"Das Handy liegt neben dem Laptop.", n:"<b>neben</b> = à côté de. der Laptop → neben <b>dem</b> Laptop."},
+  {q:"Wo sitzt Anna?", c:["neben Mark","hinter Mark","vor der Tür"], f:"anna", r:"mark",
+   phrase:"Anna sitzt neben Mark.", n:"Avec un prénom, pas d'article : neben Mark."},
+  {q:"Wo hängt das Bild?", c:["zwischen der Tür und dem Fenster","über der Tafel","an der Tür"], f:"bild", r:"tuer",
+   phrase:"Das Bild hängt zwischen der Tür und dem Fenster.", n:"<b>zwischen</b> = entre, et les deux noms au datif : <b>der</b> Tür, <b>dem</b> Fenster."},
+];
+const B1 = [
+  {q:"Der Rucksack ___ unter dem Tisch.", c:["steht","stellt","setzt"], f:"rucksack", r:"tisch",
+   phrase:"Der Rucksack steht unter dem Tisch.", n:"<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?)."},
+  {q:"Mark hat seinen Rucksack unter den Tisch ___.", c:["gestellt","gestanden","gesessen"], f:"rucksack", r:"mark",
+   phrase:"Mark hat seinen Rucksack unter den Tisch gestellt.", n:"Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch."},
+  {q:"Das Handy ___ auf dem Schreibtisch.", c:["liegt","legt","setzt"], f:"handy", r:"schreibtisch",
+   phrase:"Das Handy liegt auf dem Schreibtisch.", n:"<b>liegen</b> = être couché à plat (état). <b>legen</b> = poser à plat (mouvement)."},
+  {q:"Der Lehrer hat sein Handy auf den Schreibtisch ___.", c:["gelegt","gelegen","gesetzt"], f:"handy", r:"lehrer",
+   phrase:"Der Lehrer hat sein Handy auf den Schreibtisch gelegt.", n:"Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>den</b> Schreibtisch."},
+  {q:"Anna ___ neben Mark.", c:["sitzt","setzt","stellt"], f:"anna", r:"mark",
+   phrase:"Anna sitzt neben Mark.", n:"<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir."},
+  {q:"Mark hat seine Jacke an die Tür ___.", c:["gehängt","gehangen","gelegt"], f:"jacke", r:"tuer",
+   phrase:"Mark hat seine Jacke an die Tür gehängt.", n:"<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen."},
+  {q:"Mark hängt seine Jacke an ___ Tür.", c:["die","der","den"], f:"jacke", r:"tuer",
+   phrase:"Mark hängt seine Jacke an die Tür.", n:"<b>Wohin?</b> → accusatif : an <b>die</b> Tür. (Wo? → an der Tür.)"},
+  {q:"Die Jacke ___ jetzt an der Tür.", c:["hängt","liegt","stellt"], f:"jacke", r:"tuer",
+   phrase:"Die Jacke hängt jetzt an der Tür.", n:"L'état : <b>hängen</b> + datif — an <b>der</b> Tür."},
+];
+const B2 = [
+  {q:"Die Frau, ___ ein Buch unter dem Arm trägt, steht noch.", c:["die","der","deren"], f:"frau",
+   phrase:"Die Frau, die ein Buch unter dem Arm trägt, steht noch.", n:"Sujet de la relative, féminin → <b>die</b>."},
+  {q:"Der Mann, ___ vor der Tafel steht, ist der Lehrer.", c:["der","den","dem"], f:"lehrer",
+   phrase:"Der Mann, der vor der Tafel steht, ist der Lehrer.", n:"Sujet, masculin → <b>der</b>."},
+  {q:"Der Teilnehmer, ___ Rucksack unter dem Tisch steht, heißt Mark.", c:["dessen","deren","dem"], f:"mark", r:"rucksack",
+   phrase:"Der Teilnehmer, dessen Rucksack unter dem Tisch steht, heißt Mark.", n:"Possession, antécédent masculin → <b>dessen</b> (dont le sac)."},
+  {q:"Die Teilnehmerin, ___ Heft offen auf dem Tisch liegt, heißt Anna.", c:["deren","dessen","die"], f:"anna", r:"heft",
+   phrase:"Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.", n:"Possession, antécédent féminin → <b>deren</b>."},
+  {q:"Der Tisch, unter ___ der Rucksack steht, ist aus Holz.", c:["dem","den","der"], f:"tisch", r:"rucksack",
+   phrase:"Der Tisch, unter dem der Rucksack steht, ist aus Holz.", n:"Préposition + datif (Wo?), masculin → unter <b>dem</b>."},
+  {q:"Die Tafel ___ schon gewischt.", c:["ist","wird","hat"], f:"tafel",
+   phrase:"Die Tafel ist schon gewischt.", n:"Passif d'<b>état</b> : sein + participe. Le résultat se voit — elle est propre."},
+];
+const C1 = [
+  {q:"Ich bin mir fast sicher: Mark und Anna ___ sich kennen.", c:["müssen","können","wollen"], f:"anna", r:"mark",
+   phrase:"Mark und Anna müssen sich kennen.", n:"<b>müssen</b> + infinitif = presque certain. Ils sourient tous les deux, surpris."},
+  {q:"Vielleicht, ich weiß es nicht: Die Frau im Kleid ___ zu spät gekommen sein.", c:["könnte","muss","will"], f:"frau",
+   phrase:"Die Frau im Kleid könnte zu spät gekommen sein.", n:"<b>könnte</b> = une possibilité parmi d'autres. Elle est encore debout…"},
+  {q:"Wahrscheinlich: Der Lehrer ___ schon lange Spanisch unterrichten.", c:["dürfte","soll","mag"], f:"lehrer",
+   phrase:"Der Lehrer dürfte schon lange Spanisch unterrichten.", n:"<b>dürfte</b> = probable, sans en être sûr."},
+  {q:"Man sagt, der Lehrer ___ aus Sevilla kommen.", c:["soll","dürfte","muss"], f:"lehrer",
+   phrase:"Der Lehrer soll aus Sevilla kommen.", n:"<b>sollen</b> = on le dit, je le rapporte sans le garantir."},
+];
+const COUCHES = {
+  A1:{titre:"Noms et articles"}, A2:{titre:"Wo? — les prépositions", qs:A2},
+  B1:{titre:"stehen / stellen, liegen / legen", qs:B1},
+  B2:{titre:"Relatives et passif d'état", qs:B2}, C1:{titre:"Hypothèses", qs:C1},
+};
+
+/* ---------- etat ---------- */
+let niveau = "A1", modeA1 = "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
+const melanger = a => a.map(v => [Math.random(), v]).sort((x,y) => x[0]-y[0]).map(v => v[1]);
+
+/* les pastilles */
+for (const n of Object.keys(COUCHES)){
+  const b = document.createElement("button");
+  b.textContent = n; b.setAttribute("aria-pressed", n === niveau);
+  b.addEventListener("click", () => { niveau = n; demarrer(); });
+  $("niveaux").appendChild(b);
+}
+function demarrer(){
+  $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === niveau));
+  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; effacer();
+  if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
+  COUCHES[niveau].ordre = melanger(COUCHES[niveau].qs);
+  poser();
+}
+
+/* ---------- A1 ---------- */
+function entete(consigne, question, avecModes){
+  $("carte").innerHTML = `<div class="consigne">${consigne}</div><div class="question">${question}</div>`
+    + (avecModes ? `<div class="modes"><button data-m="decouvrir">Découvrir</button><button data-m="trouver">Trouve !</button></div>` : "");
+  $("carte").querySelectorAll(".modes button").forEach(b => {
+    b.setAttribute("aria-pressed", b.dataset.m === modeA1);
+    b.addEventListener("click", () => { modeA1 = b.dataset.m; demarrer(); });
+  });
+}
+function decouvrir(){
+  $("bas").classList.remove("en-haut");
+  entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne.", true);
+  $("bas").innerHTML = "";
+}
+const A_TROUVER = S.points.filter(p => !p.personne && !["wand","schreibtisch","tafel"].includes(p.id) || p.id === "tafel");
+let fileTrouver = [];
+function trouver(){
+  if (!fileTrouver.length || i === 0) fileTrouver = melanger(A_TROUVER).slice(0, 10);
+  if (i >= fileTrouver.length) return fin();
+  const p = fileTrouver[i]; attenteToucher = p.id;
+  $("bas").classList.remove("en-haut");
+  entete("A1 · Trouve !  " + (i+1) + " / " + fileTrouver.length,
+         `Touche : ${groupe(p)} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
+  $("reecouter").addEventListener("click", () => dire(p.genre + " " + p.mot));
+  $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
+  dire(p.genre + " " + p.mot);
+}
+function toucher(id){
+  const p = P[id];
+  if (niveau === "A1" && modeA1 === "decouvrir"){
+    effacer(); anneau(id); etiquette(id);
+    dire((p.personne ? p.personne + ". " : "") + p.genre + " " + p.mot);
+    return;
+  }
+  if (niveau === "A1" && attenteToucher && !verrou){
+    const cible = attenteToucher; verrou = true; faits++;
+    effacer();
+    if (id === cible){ bons++; anneau(id); etiquette(id); }
+    else { anneau(cible); etiquette(cible); anneau(id, true); scene.classList.add("secoue");
+           setTimeout(() => scene.classList.remove("secoue"), 400); }
+    $("bas").innerHTML = `<div class="explication">${id === cible ? "Richtig !" : "C'était ici. Tu avais touché : " + groupe(p)}</div>
+                          <button class="suite" id="suite">Weiter</button>`;
+    $("suite").addEventListener("click", () => { i++; verrou = false; effacer(); trouver(); });
+    return;
+  }
+  // aux autres niveaux, toucher un objet montre son nom : on peut toujours chercher un mot
+  effacer(); anneau(id); etiquette(id); dire(p.genre + " " + p.mot);
+}
+
+/* ---------- A2 a C1 : une question a choix ---------- */
+function poser(){
+  const c = COUCHES[niveau], q = c.ordre[i];
+  if (!q) return fin();
+  // Seul l'objet de la question s'allume : montrer la reference AVANT la
+  // reponse soufflait la moitie de la reponse (le Tisch encadre).
+  effacer(); anneau(q.f);
+  const bas = id => id ? P[id].boite[1] + P[id].boite[3] : 0;
+  $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
+  entete(niveau + " · " + c.titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);
+  const opts = melanger(q.c.map((t,k) => ({t, ok:k === 0})));
+  $("bas").innerHTML = opts.map((o,k) => `<button class="choix" data-k="${k}">${o.t}</button>`).join("")
+                     + `<div class="score">${bons} / ${faits}</div>`;
+  $("bas").querySelectorAll(".choix").forEach((b,k) => b.addEventListener("click", () => repondre(q, opts, k)));
+}
+function repondre(q, opts, k){
+  if (verrou) return; verrou = true; faits++;
+  const juste = opts[k].ok; if (juste) bons++;
+  // Apres la reponse, le panneau se resserre : la bonne reponse seule (et la
+  // fausse si on s'est trompe), pour ne pas couvrir le sac ou la table.
+  $("bas").querySelectorAll(".choix").forEach((b,j) => {
+    b.disabled = true;
+    if (opts[j].ok) b.classList.add("ok");
+    else if (j === k) b.classList.add("faux");
+    else b.remove();
+  });
+  dire(q.phrase);
+  if (q.r) anneau(q.r, true);
+  const ex = document.createElement("div");
+  ex.className = "explication";
+  ex.innerHTML = (juste ? "Richtig ! " : "") + q.n;
+  const suite = document.createElement("button");
+  suite.className = "suite"; suite.textContent = "Weiter";
+  suite.addEventListener("click", () => { i++; verrou = false; poser(); });
+  const sc = $("bas").querySelector(".score"); sc.textContent = bons + " / " + faits;
+  $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
+}
+function fin(){
+  effacer(); attenteToucher = null; $("bas").classList.remove("en-haut");
+  entete(niveau + " · terminé", `${bons} sur ${faits} — bravo !`, niveau === "A1");
+  $("bas").innerHTML = `<button class="suite" id="encore">Encore une fois</button>`;
+  $("encore").addEventListener("click", demarrer);
+}
+
+demarrer();
+</script>
+</body>
+</html>

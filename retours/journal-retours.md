@@ -7484,3 +7484,19 @@ Texte francais soumis avant de generer les voix.
   directement sur Ajaccio a 30 cartes ; le vrai tableau arrive a la fin.
   Suite (v709) : le premier palier dit « Exemple : 30 cartes, une seance »,
   pour qu'Ajaccio ne passe pas pour le tableau de la personne.
+
+## 6 octobre 2026 -- Jacques : des scenes illustrees a toucher
+
+Parti d'une salle de classe etiquetee vue dans un groupe Facebook d'apprenants,
+Jacques veut une scene plus interactive que celle de Duolingo, et qu'elle serve
+aussi aux videos de Mark in Berlin. Decisions prises avec lui : photo realiste
+9:16 (une illustration jurerait dans la serie) ; un cours d'ESPAGNOL a Berlin,
+ou Mark et Anna sont tous deux eleves et se reconnaissent ; aucun mot dans
+l'image, l'app les pose ; une couche par niveau sur la meme image (A1 noms,
+A2 prepositions, B1 stehen/stellen, B2 relatives, C1 hypotheses), avec des
+pastilles A1-C1 sur la carte pour changer de couche (son idee) ; a terme, la
+scene arrive dans la seance du jour.
+  Il a releve que la classe semblait vide : une retouche a ajoute des eleves...
+  et fait disparaitre Mark et Anna (regle ajout-qui-remplace, 24e du
+  controle). La troisieme prise est la bonne (0,45 $ au total).
+  Prototype jouable, hors de l'app : visuel/prototype/index.html.
