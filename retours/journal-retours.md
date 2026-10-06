@@ -7632,3 +7632,9 @@ scene arrive dans la seance du jour.
   la classe (titre, questions) a quitte la page pour klassenzimmer.points.json,
   et la classe a ete reverifiee. Mots absents du corpus, donc absents de la
   scene : Skelett, Stethoskop, Liege, Kittel, Tuerklinke, Daumen, Knoechel.
+  Suite : dans le gros plan du visage, Jacques veut « voir sa tete au complet
+  avec ses cheveux » ; le cadre descendait jusqu'a la poitrine. Cadre resserre
+  sur la tete (des cheveux au cou, visage plus grand). Et sur le telephone,
+  apres un defilement, la carte collee en haut couvrait le haut de l'image --
+  les cheveux : a l'ouverture d'un gros plan, la page se replace pour que son
+  haut se voie sous la carte. Vaut pour tous les gros plans, classe comprise.

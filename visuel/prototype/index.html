@@ -383,6 +383,13 @@ function ouvrirGrosPlan(g, sansAnim){
   scene.appendChild(el);
   if (!sansAnim){ void el.offsetWidth; poser(0, 0, 100, 100); }
   zoom = {g, el, svg: el.querySelector("svg")};
+  // Le haut du gros plan doit se voir. Sur le telephone, la scene depasse
+  // l'ecran : apres un defilement, la carte collee en haut couvrait le haut de
+  // l'image -- les cheveux de Mark (Jacques, 6 oct. : « voir sa tete au
+  // complet »). On ramene le haut de la scene juste sous la carte.
+  const haut = document.querySelector(".haut").getBoundingClientRect().bottom;
+  const ecart = scene.getBoundingClientRect().top - haut;
+  if (ecart < 0) window.scrollBy({top: ecart, behavior: sansAnim ? "auto" : "smooth"});
   el.querySelector(".fermer").addEventListener("click", ev => {
     ev.stopPropagation(); fermerGrosPlan(); if (!verrou) effacer();
   });
