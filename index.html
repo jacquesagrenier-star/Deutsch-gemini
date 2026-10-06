@@ -6970,7 +6970,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v709</span>
+    <span class="subtitle-version">v710</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9050,7 +9050,7 @@ body[data-theme="dark"] #decouverte > button.primary{
              nouveau tirage). Celui du HTML n'est que le repli. -->
         <button class="primary" id="resultRestartBtn" onclick="restartActiveExerciseSet()" data-i18n="restart_button">RECOMMENCER</button>
         <div class="spacer"></div>
-        <button class="secondary" onclick="goHome()" data-i18n="dashboard_button">ACCUEIL</button>
+        <button class="secondary" data-retour onclick="goHome()" data-i18n="dashboard_button">ACCUEIL</button>
     </div>
 </section>
 
@@ -9437,7 +9437,7 @@ body[data-theme="dark"] #decouverte > button.primary{
      ferait croire que la liste est complete (remarque de Jacques). -->
 <section id="abonnement" class="screen">
     <div class="abo-haut">
-        <button type="button" class="abo-fermer" onclick="fermerAbonnement()" data-i18n-aria-label="abo_fermer" aria-label="Fermer">✕</button>
+        <button type="button" class="abo-fermer" data-retour onclick="fermerAbonnement()" data-i18n-aria-label="abo_fermer" aria-label="Fermer">✕</button>
     </div>
     <div id="aboContenu"></div>
     <button type="button" id="aboPlusTard" class="secondary abo-plus-tard hidden" onclick="fermerAbonnement()" data-i18n="abo_plus_tard">Plus tard</button>
@@ -17707,7 +17707,8 @@ function openOnboardingVideo(auto){
     video.currentTime = 0;
     overlay.classList.remove("hidden");
     // Laisse un rafraichissement se produire avant la transition d'opacite.
-    requestAnimationFrame(() => overlay.classList.add("show"));
+    // L'historique suit `show`, pose ici : voir etatHistorique().
+    requestAnimationFrame(() => { overlay.classList.add("show"); synchroniserHistorique(); });
 
     // Si le navigateur refuse le demarrage automatique, la video reste sur sa
     // premiere image avec ses controles : l'utilisateur appuie sur lecture.
@@ -17721,6 +17722,7 @@ function closeOnboardingVideo(){
     if(!overlay) return;
     if(video){ try{ video.pause(); }catch(e){} }
     overlay.classList.remove("show");
+    synchroniserHistorique();
     setTimeout(() => overlay.classList.add("hidden"), 250);
 }
 
@@ -18212,7 +18214,7 @@ async function confirmerSuppressionCompte(){
         showInfoToast(t("delete_account_done"));
         // Rechargement franc : des dizaines de variables de module gardent
         // encore l'etat de quelqu'un qui n'existe plus.
-        setTimeout(() => window.location.replace(window.location.pathname), 1200);
+        setTimeout(() => revenirALaBaseHistorique(() => window.location.replace(window.location.pathname)), 1200);
     }catch(error){
         if(bouton) bouton.disabled = false;
         const code = String((error && error.code) || "");
@@ -25277,6 +25279,217 @@ let panneauAvantFlashcards = null;
 // reglages doit figurer ici.
 const ECRANS_DES_REGLAGES = new Set(["settings", "adminDashboard"]);
 
+// ---- Le bouton Retour du telephone (v710) ------------------------------
+// ⚠️ L'APP ANDROID SE FERMAIT AU PREMIER « RETOUR ». Capacitor fait
+// history.back() dans la WebView s'il y a un historique, et quitte sinon. Or
+// l'app change d'ecran sans jamais rien poser dans l'historique : il n'y en
+// avait donc jamais, et Retour quittait depuis n'importe quel ecran.
+//
+// Chaque ecran, panneau ou fenetre ouvert d'un toucher ajoute une entree
+// (pushState), et chaque Retour du telephone -- ou Precedent du navigateur,
+// ou glissement arriere de Safari -- en consomme une : on ferme ce qui est
+// par-dessus, sinon on revient a l'ecran d'ou l'on venait. Pour y aller, on
+// appuie d'abord sur le « ‹ Retour » de l'ecran : c'est lui qui range ce qu'il
+// faut en partant (fin de seance, voix coupee, panneau d'origine). S'il mene
+// ailleurs que d'ou l'on venait -- la serie lancee depuis le panneau revient a
+// sa lecon --, on rejoint l'ecran d'ou l'on venait.
+//
+// La pile ne grossit pas avec les « ‹ Retour » de l'app : revenir a un ecran
+// deja dans la pile REMONTE jusqu'a lui (history.go), et un ecran racine --
+// l'accueil, la connexion -- vide tout. Sur l'accueil sans rien d'ouvert, il
+// ne reste donc plus d'entree, et Retour quitte l'app comme toute app Android.
+//
+// ⚠️ UNE ENTREE PAR TOUCHER, JAMAIS UNE DE PLUS. Chrome, donc la WebView
+// Android, saute au Retour les entrees posees sans geste de l'utilisateur --
+// et il marque alors TOUTES les entrees de la page : un seul pushState de
+// trop, et le Retour suivant quitterait l'app de n'importe ou. D'ou trois
+// regles : on ne pose qu'apres un toucher ou une touche (HIST.geste), un seul
+// pushState par geste (les appels d'un meme geste sont regroupes), et un
+// Retour ne fait que depiler, il ne pose jamais rien.
+//
+// Sur iPhone (pas de bouton Retour, pas de glissement dans la WebView), ces
+// entrees ne se voient nulle part.
+
+// Les ecrans sans « ‹ Retour » : on n'en revient pas, on y arrive. Les
+// atteindre vide la pile.
+const ECRANS_RACINES = new Set(["home", "auth", "resetPassword", "setup", "decouverte"]);
+
+// `var` et non `let` : showScreen() peut etre appelee avant que cette ligne
+// ait tourne (voir la note sur les `let` pres de onAuthStateChanged). Les
+// gardes `!HIST` couvrent ce moment.
+//   idx      : rang de l'entree courante, 0 = celle de la page elle-meme
+//   pile     : la cle de chaque entree, pile[0] = "" (la racine)
+//   geste    : un toucher n'a pas encore servi a poser une entree
+//   prevu    : un alignement attend la fin du geste en cours
+//   ignorer  : popstate attendus de nos propres history.go()
+//   apres    : a lancer quand ils sont arrives (rechargement de version)
+//   enRetour : un Retour est en train d'etre rejoue
+var HIST = null;
+
+// Ce qui est a l'ecran, en une cle. Le panneau compte son id : deux panneaux
+// differents sont deux etapes.
+function etatHistorique(){
+    const actif = document.querySelector(".screen.active");
+    let cle = actif ? actif.id : "home";
+    if(cle === "orbPanel" && openOrbId) cle += ":" + openOrbId;
+    const mos = document.getElementById("mosaiquePlein");
+    if(mos && !mos.classList.contains("hidden")) cle += "+mosaique";
+    const video = document.getElementById("onboardingOverlay");
+    if(video && video.classList.contains("show") && !video.classList.contains("hidden")) cle += "+video";
+    return cle;
+}
+
+function remonterHistorique(k){
+    const d = k - HIST.idx;
+    if(d >= 0) return;
+    HIST.pile.length = k + 1;
+    HIST.idx = k;
+    HIST.ignorer++;
+    // ⚠️ UN popstate ATTENDU QUI NE VIENT PAS BLOQUERAIT TOUT : tant que
+    // `ignorer` est positif, plus rien ne s'aligne. On le libere au bout de
+    // deux secondes, en reprenant le rang reel de l'entree.
+    const jeton = ++HIST.jeton;
+    setTimeout(() => {
+        if(HIST.jeton !== jeton || HIST.ignorer === 0) return;
+        HIST.ignorer = 0;
+        const s = history.state;
+        HIST.idx = (s && typeof s.wt === "number") ? s.wt : 0;
+        HIST.pile.length = Math.min(HIST.pile.length, HIST.idx + 1);
+    }, 2000);
+    history.go(d);
+}
+
+// Appelee apres chaque changement d'ecran ou de fenetre. Regroupee en fin de
+// geste : un toucher qui traverse deux ecrans ne pose qu'une entree, celle
+// de l'ecran ou il s'arrete.
+function synchroniserHistorique(){
+    if(!HIST || HIST.enRetour || HIST.prevu) return;
+    HIST.prevu = true;
+    Promise.resolve().then(() => {
+        HIST.prevu = false;
+        alignerHistorique(false);
+    });
+}
+
+// Aligne l'historique sur ce qui est affiche. `apresRetour` : on sort d'un
+// popstate, on ne pose rien (voir en tete).
+function alignerHistorique(apresRetour){
+    if(!HIST || HIST.enRetour || HIST.ignorer > 0) return;
+    try{
+        const cle = etatHistorique();
+        if(ECRANS_RACINES.has(cle)){ remonterHistorique(0); return; }
+        const k = HIST.pile.lastIndexOf(cle, HIST.idx);
+        if(k > 0){ remonterHistorique(k); return; }
+        if(!apresRetour && HIST.geste){
+            HIST.geste = false;
+            HIST.pile.length = HIST.idx + 1;
+            HIST.pile.push(cle);
+            HIST.idx++;
+            history.pushState({ wt: HIST.idx }, "");
+            return;
+        }
+        // Sans geste neuf, l'ecran prend la place de l'entree courante. A
+        // l'accueil il n'y en a pas : Retour quittera, comme avant la v710.
+        if(HIST.idx > 0) HIST.pile[HIST.idx] = cle;
+    }catch(e){}
+}
+
+// La fenetre du dessus, s'il y en a une ouverte. Vrai si on l'a fermee.
+function fermerFenetreDessus(){
+    const mos = document.getElementById("mosaiquePlein");
+    if(mos && !mos.classList.contains("hidden")){ fermerMosaiquePleinEcran(); return true; }
+    const video = document.getElementById("onboardingOverlay");
+    if(video && video.classList.contains("show")){ closeOnboardingVideo(); return true; }
+    return false;
+}
+
+// Ouvre l'ecran d'une cle de la pile. "" est la racine : l'accueil.
+function allerVersCleHistorique(cle){
+    const ecran = cle.split("+")[0];
+    if(!ecran){ goHome(); return; }
+    const morceaux = ecran.split(":");
+    if(morceaux[0] === "orbPanel" && morceaux[1]){ openOrbPanel(morceaux[1]); return; }
+    if(document.getElementById(morceaux[0])) showScreen(morceaux[0]);
+    else goHome();
+}
+
+// Un Retour, vers `cible`, la cle de l'entree ou l'on vient d'arriver.
+function retourHistorique(cible){
+    if(fermerFenetreDessus()) return;
+    const actif = document.querySelector(".screen.active");
+    if(actif && !ECRANS_RACINES.has(actif.id)){
+        // Le resultat et l'abonnement, sans bouton « back », portent
+        // data-retour sur le bouton qui en tient lieu.
+        const bouton = actif.querySelector("[data-retour]") || actif.querySelector("button.back");
+        if(bouton) bouton.click();
+    }
+    const cle = etatHistorique();
+    if(cle === cible) return;
+    // L'ecran a choisi un chemin plus court que la pile (la carte ouverte
+    // depuis la recherche rentre a l'accueil) : la pile suivra.
+    if(ECRANS_RACINES.has(cle) || HIST.pile.lastIndexOf(cle, HIST.idx) > 0) return;
+    allerVersCleHistorique(cible);
+}
+
+// Avant de quitter la page (rechargement de version, compte supprime) : on
+// redescend a l'entree de la page. Sinon la nouvelle page arrive par-dessus
+// des entrees de l'ancienne, et le premier Retour la rechargerait -- vers une
+// adresse sans ?v=, que le service worker sert depuis son cache.
+function revenirALaBaseHistorique(suite){
+    if(!HIST || HIST.idx === 0){ suite(); return; }
+    let fait = false;
+    const une = () => { if(!fait){ fait = true; suite(); } };
+    HIST.apres = une;
+    remonterHistorique(0);
+    // Filet : si le popstate ne vient pas, on part quand meme.
+    setTimeout(une, 600);
+}
+
+(function installerHistorique(){
+    HIST = { idx: 0, pile: [""], geste: false, prevu: false, ignorer: 0, apres: null, enRetour: false, jeton: 0 };
+    try{
+        // Une page rechargee au milieu de la pile en herite le rang : elle
+        // repart de zero, l'etat de l'app ne survit pas au rechargement.
+        const s = history.state;
+        if(s && typeof s.wt === "number" && s.wt > 0) history.replaceState(null, "");
+    }catch(e){}
+    // En capture : on le sait AVANT que le onclick du bouton ne change d'ecran.
+    // ⚠️ isTrusted : le bouton.click() de retourHistorique() emet lui aussi un
+    // « click », et ce n'est pas un geste -- Chrome ne s'y trompe pas.
+    const geste = ev => { if(ev.isTrusted) HIST.geste = true; };
+    window.addEventListener("click", geste, true);
+    window.addEventListener("keydown", geste, true);
+    window.addEventListener("popstate", ev => {
+        const s = ev.state;
+        const i = (s && typeof s.wt === "number") ? s.wt : 0;
+        if(HIST.ignorer > 0){
+            HIST.ignorer--;
+            HIST.idx = i;
+            if(HIST.ignorer > 0) return;
+            if(HIST.apres){ const f = HIST.apres; HIST.apres = null; f(); return; }
+            // Ce qui a pu changer pendant le trajet.
+            alignerHistorique(false);
+            return;
+        }
+        // Rien a defaire : une entree deja la (un popstate en retard).
+        if(i === HIST.idx) return;
+        // Le bouton Suivant du navigateur : rien a refaire, on revient.
+        if(i > HIST.idx){
+            HIST.ignorer++;
+            history.go(HIST.idx - i);
+            return;
+        }
+        const cible = HIST.pile[i] || "";
+        HIST.idx = i;
+        HIST.pile.length = i + 1;
+        HIST.enRetour = true;
+        try{ retourHistorique(cible); }
+        catch(e){}
+        finally{ HIST.enRetour = false; }
+        alignerHistorique(true);
+    });
+})();
+
 function showScreen(id){
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -25331,6 +25544,8 @@ function showScreen(id){
         // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
         if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
     }
+    // Le bouton Retour du telephone : voir synchroniserHistorique().
+    synchroniserHistorique();
 }
 
 // Le bouton vit dans le HTML statique : c'est au demarrage qu'on le retire
@@ -30237,7 +30452,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 709;
+const APP_VERSION = 710;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -30355,8 +30570,10 @@ async function verifierNouvelleVersion(){
         // suivant chaque publication. Les deux images demandees laissent au
         // navigateur le temps de peindre la couverture avant sa photo.
         if(typeof window.ouvertureCouvrir === "function") window.ouvertureCouvrir();
+        // Depuis l'entree de la page, pas d'une entree posee par-dessus :
+        // voir revenirALaBaseHistorique().
         requestAnimationFrame(() => requestAnimationFrame(() => {
-            window.location.replace(url.toString());
+            revenirALaBaseHistorique(() => window.location.replace(url.toString()));
         }));
     }catch(e){
         // Hors ligne ou fichier absent : on garde la version en cours.
@@ -33235,12 +33452,14 @@ function ouvrirMosaiquePleinEcran(rang){
         };
         img.src = MOSAIQUE_BASE + "img/" + m.fichier;
         vue.classList.remove("hidden");
+        synchroniserHistorique();
     });
 }
 
 function fermerMosaiquePleinEcran(){
     const v = document.getElementById("mosaiquePlein");
     if(v) v.classList.add("hidden");
+    synchroniserHistorique();
 }
 
 // ⚠️ LA GALERIE NE MONTRE QUE CE QUI A ETE GAGNE. Des silhouettes pour les
