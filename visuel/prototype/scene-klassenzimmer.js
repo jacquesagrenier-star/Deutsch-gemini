@@ -345,6 +345,11 @@ window.SCENE = {
      "mot": "Bart",
      "genre": "der",
      "fr": "barbe"
+    },
+    {
+     "mot": "Stift",
+     "genre": "der",
+     "fr": "stylo"
     }
    ],
    "sur": null,
@@ -581,6 +586,116 @@ window.SCENE = {
      53.6,
      3.4,
      2.8
+    ]
+   ]
+  },
+  {
+   "id": "stift-mark",
+   "mot": "Stift",
+   "genre": "der",
+   "pluriel": "Stifte",
+   "fr": "stylo",
+   "en": "pen",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "boites": [
+    [
+     40.5,
+     51.7,
+     2.9,
+     2.0
+    ]
+   ]
+  },
+  {
+   "id": "stift-noir",
+   "mot": "Stift",
+   "genre": "der",
+   "pluriel": "Stifte",
+   "fr": "stylo",
+   "en": "pen",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "tisch",
+   "devant": 0,
+   "boites": [
+    [
+     34.2,
+     53.9,
+     3.4,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "stift-studentin",
+   "mot": "Stift",
+   "genre": "der",
+   "pluriel": "Stifte",
+   "fr": "stylo",
+   "en": "pen",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "studentin",
+   "devant": 0,
+   "boites": [
+    [
+     78.2,
+     50.5,
+     2.1,
+     1.6
+    ]
+   ]
+  },
+  {
+   "id": "stift-bureau",
+   "mot": "Stift",
+   "genre": "der",
+   "pluriel": "Stifte",
+   "fr": "stylo",
+   "en": "pen",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     1,
+     62.5,
+     7.3,
+     1.4
+    ]
+   ]
+  },
+  {
+   "id": "heft-bureau",
+   "mot": "Heft",
+   "genre": "das",
+   "pluriel": "Hefte",
+   "fr": "cahier",
+   "en": "notebook",
+   "niveau": "A1",
+   "theme": "schule_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     60.5,
+     10.2,
+     2.6
     ]
    ]
   },

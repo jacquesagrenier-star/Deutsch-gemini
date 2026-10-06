@@ -183,7 +183,16 @@ function sous(xp, yp){
       if (x >= 0 && y >= 0 && x < MW && y < MH && p.masque[y*MW + x]){ proche.push(p); break cherche; }
     }
   }
-  return {exact: exact.sort(devantDe), proche: proche.sort(devantDe)};
+  // Les PETITS objets (un stylo) se rattrapent de plus loin : 7 pixels de
+  // masque, ~7 px d'ecran. Jacques n'arrivait pas a toucher le stylo d'Anna.
+  const petits = S.points.filter(p => p.pixels < MW * MH * 0.004 && !exact.includes(p) && (() => {
+    for (let dy = -7; dy <= 7; dy++) for (let dx = -7; dx <= 7; dx++){
+      const x = cx + dx, y = cy + dy;
+      if (x >= 0 && y >= 0 && x < MW && y < MH && p.masque[y*MW + x]) return true;
+    }
+    return false;
+  })());
+  return {exact: exact.sort(devantDe), proche: proche.sort(devantDe), petits};
 }
 /* Un bouton invisible par zone, pour le clavier et les lecteurs d'ecran
    seulement : le doigt, lui, est lu par la scene. */
@@ -417,7 +426,7 @@ function toucher(id, pt){
     // mains de Mark et la table, oui ; la tete du prof et le tableau derriere, non.
     // Tout ce qui est sous le doigt AU MEME PLAN que le premier plan : les mains
     // de Mark et la table, oui ; la tete du prof et le tableau derriere, non.
-    const {exact, proche} = pt ? sous(pt[0], pt[1]) : {exact: [], proche: []};
+    const {exact, proche, petits} = pt ? sous(pt[0], pt[1]) : {exact: [], proche: [], petits: []};
     // Si le doigt ne tombe pile sur rien (a cote d'une patte de table), tout ce
     // qui est PROCHE compte, sans regarder le plan : on ne sait pas lequel il visait.
     const devantTout = Math.max(plan(p), ...exact.map(plan));
@@ -428,7 +437,7 @@ function toucher(id, pt){
     // jamais au cahier (Jacques, 6 oct. : « le cahier de Mark ne fonctionne pas »).
     const PETIT = MW * MH * 0.004;
     const retenue = candidats.find(z => touche(z, cible))
-                 || proche.find(z => z.pixels < PETIT && touche(z, cible));
+                 || petits.find(z => touche(z, cible));
     const juste = !!retenue;
     verrou = true; faits++;
     effacer();
@@ -444,8 +453,14 @@ function toucher(id, pt){
     // Pas de chiffre : le pull de Mark a deux zones (la sienne et celle de Mark),
     // compter les zones annoncerait « 4 pulls » pour trois.
     const autres = bonnes.length > 1 ? " <i>Il y en a d'autres dans la scène.</i>" : "";
-    $("bas").innerHTML = `<div class="explication">${juste ? "Richtig !" + autres
-        : "C'était " + (bonnes.length > 1 ? "à l'un de ces endroits" : "ici") + ". Tu avais touché : " + groupe(p)}</div>
+    // La traduction dans la reponse, jamais dans la question (Jacques, 6 oct.).
+    const sens = mot => { const z = S.points.find(q => q.mot === mot); if (z) return z.fr;
+      for (const q of S.points){ const a = q.aussi.find(x => x.mot === mot); if (a) return a.fr; } return ""; };
+    const demande = A_TROUVER.find(t => t.mot === cible);
+    const traduit = g => `${groupe(g)} <i>= ${sens(g.mot)}</i>`;
+    $("bas").innerHTML = `<div class="explication">${juste ? "Richtig ! " + traduit(demande) + "." + autres
+        : traduit(demande) + " : c'était " + (bonnes.length > 1 ? "à l'un de ces endroits" : "ici")
+          + ". Tu avais touché : " + traduit(p) + "."}</div>
                           <button class="suite" id="suite">Weiter</button>`;
     $("suite").addEventListener("click", () => { i++; verrou = false; effacer(); trouver(); });
     return;

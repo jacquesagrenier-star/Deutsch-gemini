@@ -7549,3 +7549,9 @@ scene arrive dans la seance du jour.
   Mark (Jacques). Regle unique pour tous les eleves : hommes = der Student / der
   Teilnehmer, femmes = die Studentin / die Teilnehmerin (Anna, la jeune femme,
   la dame en rouge). Le prof n'en est pas.
+  Suite : la reponse donne maintenant la traduction (« Richtig ! der Stift =
+  stylo »), jamais la question. Le stylo d'Anna etait trop dur a toucher
+  (Jacques) : les petits objets se rattrapent de ~7 px ; et cinq zones
+  ajoutees (stylos de Mark, du carnet noir, de la jeune femme, du bureau ; carnet
+  du bureau). Il se demande si le stylo n'est pas trop petit -- garde pour
+  l'instant, a juger a l'essai. 43 zones.
