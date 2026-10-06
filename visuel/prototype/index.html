@@ -7,7 +7,12 @@
 <!--
   PROTOTYPE de scene interactive (6 oct. 2026). Hors de l'app : il s'ouvre en
   double-cliquant ce fichier. Les zones et les mots viennent de
-  scene-klassenzimmer.js, que construire.py refait depuis themes.json.
+  scene-<nom>.js, que construire.py refait depuis themes.json.
+
+  UNE PAGE POUR TOUTES LES SCENES : index.html montre la classe,
+  index.html?scene=arztpraxis le cabinet medical. Rien de propre a une scene
+  ne vit ici -- titre, consigne, questions A2-C1 sont dans <nom>.points.json.
+  Ajouter une scene ne doit jamais vouloir dire recopier cette page.
 
   Une seule image, une couche par niveau (A1 noms ; A2 prepositions ; B1 verbes
   de position ; B2 relatives ; C1 hypotheses). Les pastilles changent de couche
@@ -122,13 +127,13 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 <div class="cadre">
   <div class="haut">
     <div class="barre">
-      <a class="titre retour-choix" id="retourChoix" href="choix-seance.html" aria-label="Retour au choix de la séance">‹ Im Spanischkurs</a>
+      <a class="titre retour-choix" id="retourChoix" href="choix-seance.html" aria-label="Retour au choix de la séance">‹</a>
       <div class="niveaux" id="niveaux" role="group" aria-label="Niveau"></div>
     </div>
     <div class="carte" id="carte"></div>
   </div>
   <div class="scene" id="scene">
-    <img id="photo" alt="Un cours d'espagnol du soir à Berlin : le professeur devant le tableau, Mark et Anna assis côte à côte, trois autres élèves.">
+    <img id="photo" alt="">
     <div class="bas" id="bas"></div>
   </div>
 </div>
@@ -137,8 +142,16 @@ html,body{margin:0;background:#11151b;color:var(--encre);
   Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.
 </div>
 
-<script src="scene-klassenzimmer.js"></script>
-<script src="masques-klassenzimmer.js"></script>
+<script>
+/* La scene a charger : ?scene=arztpraxis, la classe par defaut. Le nom ne
+   garde que des minuscules et des tirets, puisqu'il devient un nom de
+   fichier. document.write et pas fetch() : un navigateur refuse fetch() sur
+   file://, et le prototype doit s'ouvrir d'un double-clic. */
+const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
+  .replace(/[^a-z-]/g, "") || "klassenzimmer";
+document.write(`<script src="scene-${NOM_SCENE}.js"><\/script>`
+             + `<script src="masques-${NOM_SCENE}.js"><\/script>`);
+</script>
 <script>
 "use strict";
 const S = window.SCENE;
@@ -146,6 +159,10 @@ const P = Object.fromEntries(S.points.map(p => [p.id, p]));
 const $ = id => document.getElementById(id);
 const scene = $("scene");
 $("photo").src = S.image;
+$("photo").alt = S.alt || "";
+document.title = S.titre || "Scène";
+$("retourChoix").textContent = "‹ " + (S.titre || "Scène");
+scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
 /* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
    la classe s'appelle classe.html. */
@@ -346,14 +363,21 @@ function ouvrirGrosPlan(g, sansAnim){
   const [x,y,w,h] = g.cadre;
   const el = document.createElement("div");
   el.className = "gros-plan";
-  el.setAttribute("role", "group"); el.setAttribute("aria-label", "Gros plan du visage");
+  el.setAttribute("role", "group"); el.setAttribute("aria-label", "Gros plan");
   el.innerHTML = `<div class="fond"></div>
     <svg viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"></svg>
     <button type="button" class="fermer">‹ Toute la scène</button>`;
   const fond = el.querySelector(".fond");
-  fond.style.backgroundImage = `url(${S.image})`;
-  fond.style.backgroundSize = `${10000 / w}% ${10000 / h}%`;
-  fond.style.backgroundPosition = `${100 * x / (100 - w)}% ${100 * y / (100 - h)}%`;
+  if (g.image){
+    // Le cadre decoupe dans la source pleine resolution (construire.py, « net ») :
+    // plus de pixels que la scene web agrandie.
+    fond.style.backgroundImage = `url(${g.image})`;
+    fond.style.backgroundSize = "100% 100%";
+  } else {
+    fond.style.backgroundImage = `url(${S.image})`;
+    fond.style.backgroundSize = `${10000 / w}% ${10000 / h}%`;
+    fond.style.backgroundPosition = `${100 * x / (100 - w)}% ${100 * y / (100 - h)}%`;
+  }
   const poser = (l, t, ww, hh) => Object.assign(el.style, {left: l + "%", top: t + "%", width: ww + "%", height: hh + "%"});
   poser(...(sansAnim ? [0, 0, 100, 100] : g.cadre));
   scene.appendChild(el);
@@ -407,71 +431,9 @@ function etiquetteGros(id){
 }
 
 /* ---------- les couches ---------- */
-const A2 = [
-  {q:"Wo ist der Rucksack?", c:["unter dem Tisch","auf dem Tisch","neben der Tür"], f:"rucksack", r:"tisch",
-   phrase:"Der Rucksack ist unter dem Tisch.", n:"<b>Wo?</b> → datif : der Tisch → unter <b>dem</b> Tisch."},
-  {q:"Wo hängt die Uhr?", c:["über der Tafel","unter der Tafel","neben dem Fenster"], f:"uhr", r:"tafel",
-   phrase:"Die Uhr hängt über der Tafel.", n:"<b>Wo?</b> → datif : die Tafel → über <b>der</b> Tafel."},
-  {q:"Wo steht die Pflanze?", c:["auf dem Regal","unter dem Regal","auf dem Tisch"], f:"pflanze", r:"regal",
-   phrase:"Die Pflanze steht auf dem Regal.", n:"<b>Wo?</b> → datif : das Regal → auf <b>dem</b> Regal."},
-  {q:"Wo hängt der Mantel?", c:["an der Tür","an der Tafel","am Fenster"], f:"mantel", r:"tuer",
-   phrase:"Der Mantel hängt an der Tür.", n:"<b>Wo?</b> → datif : die Tür → an <b>der</b> Tür."},
-  {q:"Wo steht der Lehrer?", c:["vor der Tafel","hinter der Tafel","neben dem Fenster"], f:"lehrer", r:"tafel",
-   phrase:"Der Lehrer steht vor der Tafel.", n:"<b>vor</b> = devant. Datif : vor <b>der</b> Tafel."},
-  {q:"Wo liegt das Handy?", c:["neben dem Laptop","unter dem Laptop","auf dem Stuhl"], f:"handy", r:"laptop",
-   phrase:"Das Handy liegt neben dem Laptop.", n:"<b>neben</b> = à côté de. der Laptop → neben <b>dem</b> Laptop."},
-  {q:"Wo sitzt Anna?", c:["neben Mark","hinter Mark","vor der Tür"], f:"anna", r:"mark",
-   phrase:"Anna sitzt neben Mark.", n:"Avec un prénom, pas d'article : neben Mark."},
-  {q:"Wo hängt das Bild?", c:["zwischen der Tür und dem Fenster","über der Tafel","an der Tür"], f:"bild", r:"tuer",
-   phrase:"Das Bild hängt zwischen der Tür und dem Fenster.", n:"<b>zwischen</b> = entre, et les deux noms au datif : <b>der</b> Tür, <b>dem</b> Fenster."},
-];
-const B1 = [
-  {q:"Der Rucksack ___ unter dem Tisch.", c:["steht","stellt","setzt"], f:"rucksack", r:"tisch",
-   phrase:"Der Rucksack steht unter dem Tisch.", n:"<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?)."},
-  {q:"Mark hat seinen Rucksack unter den Tisch ___.", c:["gestellt","gestanden","gesessen"], f:"rucksack", r:"mark",
-   phrase:"Mark hat seinen Rucksack unter den Tisch gestellt.", n:"Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch."},
-  {q:"Das Handy ___ auf dem Schreibtisch.", c:["liegt","legt","setzt"], f:"handy", r:"schreibtisch",
-   phrase:"Das Handy liegt auf dem Schreibtisch.", n:"<b>liegen</b> = être couché à plat (état). <b>legen</b> = poser à plat (mouvement)."},
-  {q:"Der Lehrer hat sein Handy auf den Schreibtisch ___.", c:["gelegt","gelegen","gesetzt"], f:"handy", r:"lehrer",
-   phrase:"Der Lehrer hat sein Handy auf den Schreibtisch gelegt.", n:"Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>den</b> Schreibtisch."},
-  {q:"Anna ___ neben Mark.", c:["sitzt","setzt","stellt"], f:"anna", r:"mark",
-   phrase:"Anna sitzt neben Mark.", n:"<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir."},
-  {q:"Mark hat seine Jacke an die Tür ___.", c:["gehängt","gehangen","gelegt"], f:"jacke", r:"tuer",
-   phrase:"Mark hat seine Jacke an die Tür gehängt.", n:"<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen."},
-  {q:"Mark hängt seine Jacke an ___ Tür.", c:["die","der","den"], f:"jacke", r:"tuer",
-   phrase:"Mark hängt seine Jacke an die Tür.", n:"<b>Wohin?</b> → accusatif : an <b>die</b> Tür. (Wo? → an der Tür.)"},
-  {q:"Die Jacke ___ jetzt an der Tür.", c:["hängt","liegt","stellt"], f:"jacke", r:"tuer",
-   phrase:"Die Jacke hängt jetzt an der Tür.", n:"L'état : <b>hängen</b> + datif — an <b>der</b> Tür."},
-];
-const B2 = [
-  {q:"Die Frau, ___ ein Buch unter dem Arm trägt, steht noch.", c:["die","der","deren"], f:"frau",
-   phrase:"Die Frau, die ein Buch unter dem Arm trägt, steht noch.", n:"Sujet de la relative, féminin → <b>die</b>."},
-  {q:"Der Mann, ___ vor der Tafel steht, ist der Lehrer.", c:["der","den","dem"], f:"lehrer",
-   phrase:"Der Mann, der vor der Tafel steht, ist der Lehrer.", n:"Sujet, masculin → <b>der</b>."},
-  {q:"Der Teilnehmer, ___ Rucksack unter dem Tisch steht, heißt Mark.", c:["dessen","deren","dem"], f:"mark", r:"rucksack",
-   phrase:"Der Teilnehmer, dessen Rucksack unter dem Tisch steht, heißt Mark.", n:"Possession, antécédent masculin → <b>dessen</b> (dont le sac)."},
-  {q:"Die Teilnehmerin, ___ Heft offen auf dem Tisch liegt, heißt Anna.", c:["deren","dessen","die"], f:"anna", r:"heft",
-   phrase:"Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.", n:"Possession, antécédent féminin → <b>deren</b>."},
-  {q:"Der Tisch, unter ___ der Rucksack steht, ist aus Holz.", c:["dem","den","der"], f:"tisch", r:"rucksack",
-   phrase:"Der Tisch, unter dem der Rucksack steht, ist aus Holz.", n:"Préposition + datif (Wo?), masculin → unter <b>dem</b>."},
-  {q:"Die Tafel ___ schon gewischt.", c:["ist","wird","hat"], f:"tafel",
-   phrase:"Die Tafel ist schon gewischt.", n:"Passif d'<b>état</b> : sein + participe. Le résultat se voit — elle est propre."},
-];
-const C1 = [
-  {q:"Ich bin mir fast sicher: Mark und Anna ___ sich kennen.", c:["müssen","können","wollen"], f:"anna", r:"mark",
-   phrase:"Mark und Anna müssen sich kennen.", n:"<b>müssen</b> + infinitif = presque certain. Ils sourient tous les deux, surpris."},
-  {q:"Vielleicht, ich weiß es nicht: Die Frau im Kleid ___ zu spät gekommen sein.", c:["könnte","muss","will"], f:"frau",
-   phrase:"Die Frau im Kleid könnte zu spät gekommen sein.", n:"<b>könnte</b> = une possibilité parmi d'autres. Elle est encore debout…"},
-  {q:"Wahrscheinlich: Der Lehrer ___ schon lange Spanisch unterrichten.", c:["dürfte","soll","mag"], f:"lehrer",
-   phrase:"Der Lehrer dürfte schon lange Spanisch unterrichten.", n:"<b>dürfte</b> = probable, sans en être sûr."},
-  {q:"Man sagt, der Lehrer ___ aus Sevilla kommen.", c:["soll","dürfte","muss"], f:"lehrer",
-   phrase:"Der Lehrer soll aus Sevilla kommen.", n:"<b>sollen</b> = on le dit, je le rapporte sans le garantir."},
-];
-const COUCHES = {
-  A1:{titre:"Noms et articles"}, A2:{titre:"Wo? — les prépositions", qs:A2},
-  B1:{titre:"stehen / stellen, liegen / legen", qs:B1},
-  B2:{titre:"Relatives et passif d'état", qs:B2}, C1:{titre:"Hypothèses", qs:C1},
-};
+/* Les couches viennent de la SCENE (<nom>.points.json) : chaque scene a ses
+   questions, et seules les couches qu'elle a ont une pastille. */
+const COUCHES = S.couches || {A1: {titre: "Noms et articles"}};
 
 /* ---------- etat ---------- */
 let niveau = "A1", modeA1 = "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
@@ -503,7 +465,7 @@ function entete(consigne, question, avecModes){
 }
 function decouvrir(){
   $("bas").classList.remove("en-haut");
-  entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne. Touche le visage du prof pour le voir de près.", true);
+  entete("A1 · " + COUCHES.A1.titre, S.consigne || "Touche un objet ou une personne.", true);
   $("bas").innerHTML = "";
 }
 /* Une cible est un MOT, pas une zone : « die Frau » est juste sur Anna comme
@@ -517,7 +479,8 @@ const touche = (p, mot) => {
   for (let z = p, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, mot)) return true;
   return false;
 };
-const EXCLUS = ["Teilnehmer", "Teilnehmerin", "Wand"];
+// Les mots qu'on ne demande pas en « Trouve ! » (le mur : il est partout).
+const EXCLUS = S.exclus || [];
 const A_TROUVER = (() => {
   const vus = new Map();
   for (const p of S.points){

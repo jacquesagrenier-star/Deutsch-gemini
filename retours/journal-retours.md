@@ -7619,3 +7619,16 @@ scene arrive dans la seance du jour.
   donne la pose. Fausse alerte « repere hors champ » corrigee (Mark est en
   pied). Au passage : la montre du prof, demandee dans la classe, n'y est pas.
   A juger par Jacques.
+  Suite (PC) : « on continue » (Jacques). La scene du medecin est jouable :
+  visuel/prototype/index.html?scene=arztpraxis. 49 zones detourees (SAM 2 pour
+  les objets ; ellipses dessinees pour les parties du corps -- SAM rend la
+  jambe quand on lui demande un genou, et n'avait pris qu'un morceau des
+  bras). Quatre gros plans, a la demande de Jacques que chaque partie du
+  corps soit accessible : le visage (18 parties, du front au cou), la main
+  (doigts, ongles, poignet), les pieds (orteils) et l'affiche (cotes, colonne,
+  poumons, os). Chaque gros plan est decoupe dans l'image d'origine, plus
+  nette que la scene web. Questions A2 a C1 : BROUILLON non relu, comme celles
+  de la classe. La page sert desormais TOUTES les scenes : ce qui est propre a
+  la classe (titre, questions) a quitte la page pour klassenzimmer.points.json,
+  et la classe a ete reverifiee. Mots absents du corpus, donc absents de la
+  scene : Skelett, Stethoskop, Liege, Kittel, Tuerklinke, Daumen, Knoechel.

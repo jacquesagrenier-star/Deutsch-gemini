@@ -1315,5 +1315,344 @@ window.SCENE = {
     ]
    }
   }
- ]
+ ],
+ "titre": "Im Spanischkurs",
+ "alt": "Un cours d'espagnol du soir à Berlin : le professeur devant le tableau, Mark et Anna assis côte à côte, trois autres élèves.",
+ "consigne": "Touche un objet ou une personne. Touche le visage du prof pour le voir de près.",
+ "exclus": [
+  "Teilnehmer",
+  "Teilnehmerin",
+  "Wand"
+ ],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo ist der Rucksack?",
+     "c": [
+      "unter dem Tisch",
+      "auf dem Tisch",
+      "neben der Tür"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "Der Rucksack ist unter dem Tisch.",
+     "n": "<b>Wo?</b> → datif : der Tisch → unter <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "über der Tafel",
+      "unter der Tafel",
+      "neben dem Fenster"
+     ],
+     "f": "uhr",
+     "r": "tafel",
+     "phrase": "Die Uhr hängt über der Tafel.",
+     "n": "<b>Wo?</b> → datif : die Tafel → über <b>der</b> Tafel."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "auf dem Regal",
+      "unter dem Regal",
+      "auf dem Tisch"
+     ],
+     "f": "pflanze",
+     "r": "regal",
+     "phrase": "Die Pflanze steht auf dem Regal.",
+     "n": "<b>Wo?</b> → datif : das Regal → auf <b>dem</b> Regal."
+    },
+    {
+     "q": "Wo hängt der Mantel?",
+     "c": [
+      "an der Tür",
+      "an der Tafel",
+      "am Fenster"
+     ],
+     "f": "mantel",
+     "r": "tuer",
+     "phrase": "Der Mantel hängt an der Tür.",
+     "n": "<b>Wo?</b> → datif : die Tür → an <b>der</b> Tür."
+    },
+    {
+     "q": "Wo steht der Lehrer?",
+     "c": [
+      "vor der Tafel",
+      "hinter der Tafel",
+      "neben dem Fenster"
+     ],
+     "f": "lehrer",
+     "r": "tafel",
+     "phrase": "Der Lehrer steht vor der Tafel.",
+     "n": "<b>vor</b> = devant. Datif : vor <b>der</b> Tafel."
+    },
+    {
+     "q": "Wo liegt das Handy?",
+     "c": [
+      "neben dem Laptop",
+      "unter dem Laptop",
+      "auf dem Stuhl"
+     ],
+     "f": "handy",
+     "r": "laptop",
+     "phrase": "Das Handy liegt neben dem Laptop.",
+     "n": "<b>neben</b> = à côté de. der Laptop → neben <b>dem</b> Laptop."
+    },
+    {
+     "q": "Wo sitzt Anna?",
+     "c": [
+      "neben Mark",
+      "hinter Mark",
+      "vor der Tür"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Anna sitzt neben Mark.",
+     "n": "Avec un prénom, pas d'article : neben Mark."
+    },
+    {
+     "q": "Wo hängt das Bild?",
+     "c": [
+      "zwischen der Tür und dem Fenster",
+      "über der Tafel",
+      "an der Tür"
+     ],
+     "f": "bild",
+     "r": "tuer",
+     "phrase": "Das Bild hängt zwischen der Tür und dem Fenster.",
+     "n": "<b>zwischen</b> = entre, et les deux noms au datif : <b>der</b> Tür, <b>dem</b> Fenster."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "stehen / stellen, liegen / legen",
+   "qs": [
+    {
+     "q": "Der Rucksack ___ unter dem Tisch.",
+     "c": [
+      "steht",
+      "stellt",
+      "setzt"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "Der Rucksack steht unter dem Tisch.",
+     "n": "<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?)."
+    },
+    {
+     "q": "Mark hat seinen Rucksack unter den Tisch ___.",
+     "c": [
+      "gestellt",
+      "gestanden",
+      "gesessen"
+     ],
+     "f": "rucksack",
+     "r": "mark",
+     "phrase": "Mark hat seinen Rucksack unter den Tisch gestellt.",
+     "n": "Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch."
+    },
+    {
+     "q": "Das Handy ___ auf dem Schreibtisch.",
+     "c": [
+      "liegt",
+      "legt",
+      "setzt"
+     ],
+     "f": "handy",
+     "r": "schreibtisch",
+     "phrase": "Das Handy liegt auf dem Schreibtisch.",
+     "n": "<b>liegen</b> = être couché à plat (état). <b>legen</b> = poser à plat (mouvement)."
+    },
+    {
+     "q": "Der Lehrer hat sein Handy auf den Schreibtisch ___.",
+     "c": [
+      "gelegt",
+      "gelegen",
+      "gesetzt"
+     ],
+     "f": "handy",
+     "r": "lehrer",
+     "phrase": "Der Lehrer hat sein Handy auf den Schreibtisch gelegt.",
+     "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>den</b> Schreibtisch."
+    },
+    {
+     "q": "Anna ___ neben Mark.",
+     "c": [
+      "sitzt",
+      "setzt",
+      "stellt"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Anna sitzt neben Mark.",
+     "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir."
+    },
+    {
+     "q": "Mark hat seine Jacke an die Tür ___.",
+     "c": [
+      "gehängt",
+      "gehangen",
+      "gelegt"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "Mark hat seine Jacke an die Tür gehängt.",
+     "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen."
+    },
+    {
+     "q": "Mark hängt seine Jacke an ___ Tür.",
+     "c": [
+      "die",
+      "der",
+      "den"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "Mark hängt seine Jacke an die Tür.",
+     "n": "<b>Wohin?</b> → accusatif : an <b>die</b> Tür. (Wo? → an der Tür.)"
+    },
+    {
+     "q": "Die Jacke ___ jetzt an der Tür.",
+     "c": [
+      "hängt",
+      "liegt",
+      "stellt"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "Die Jacke hängt jetzt an der Tür.",
+     "n": "L'état : <b>hängen</b> + datif — an <b>der</b> Tür."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "Die Frau, ___ ein Buch unter dem Arm trägt, steht noch.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "frau",
+     "phrase": "Die Frau, die ein Buch unter dem Arm trägt, steht noch.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Der Mann, ___ vor der Tafel steht, ist der Lehrer.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "lehrer",
+     "phrase": "Der Mann, der vor der Tafel steht, ist der Lehrer.",
+     "n": "Sujet, masculin → <b>der</b>."
+    },
+    {
+     "q": "Der Teilnehmer, ___ Rucksack unter dem Tisch steht, heißt Mark.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "mark",
+     "r": "rucksack",
+     "phrase": "Der Teilnehmer, dessen Rucksack unter dem Tisch steht, heißt Mark.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont le sac)."
+    },
+    {
+     "q": "Die Teilnehmerin, ___ Heft offen auf dem Tisch liegt, heißt Anna.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "anna",
+     "r": "heft",
+     "phrase": "Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.",
+     "n": "Possession, antécédent féminin → <b>deren</b>."
+    },
+    {
+     "q": "Der Tisch, unter ___ der Rucksack steht, ist aus Holz.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "tisch",
+     "r": "rucksack",
+     "phrase": "Der Tisch, unter dem der Rucksack steht, ist aus Holz.",
+     "n": "Préposition + datif (Wo?), masculin → unter <b>dem</b>."
+    },
+    {
+     "q": "Die Tafel ___ schon gewischt.",
+     "c": [
+      "ist",
+      "wird",
+      "hat"
+     ],
+     "f": "tafel",
+     "phrase": "Die Tafel ist schon gewischt.",
+     "n": "Passif d'<b>état</b> : sein + participe. Le résultat se voit — elle est propre."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Ich bin mir fast sicher: Mark und Anna ___ sich kennen.",
+     "c": [
+      "müssen",
+      "können",
+      "wollen"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Mark und Anna müssen sich kennen.",
+     "n": "<b>müssen</b> + infinitif = presque certain. Ils sourient tous les deux, surpris."
+    },
+    {
+     "q": "Vielleicht, ich weiß es nicht: Die Frau im Kleid ___ zu spät gekommen sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "frau",
+     "phrase": "Die Frau im Kleid könnte zu spät gekommen sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres. Elle est encore debout…"
+    },
+    {
+     "q": "Wahrscheinlich: Der Lehrer ___ schon lange Spanisch unterrichten.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "lehrer",
+     "phrase": "Der Lehrer dürfte schon lange Spanisch unterrichten.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt, der Lehrer ___ aus Sevilla kommen.",
+     "c": [
+      "soll",
+      "dürfte",
+      "muss"
+     ],
+     "f": "lehrer",
+     "phrase": "Der Lehrer soll aus Sevilla kommen.",
+     "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
+    }
+   ]
+  }
+ }
 };

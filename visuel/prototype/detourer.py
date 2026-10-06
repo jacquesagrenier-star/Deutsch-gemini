@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 """Le contour exact de chaque objet de la scene, par SAM 2. Gratuit, local.
 
-    python visuel/prototype/detourer.py            # ecrit masques-klassenzimmer.js
-    python visuel/prototype/detourer.py --voir     # + une image de controle
+    python visuel/prototype/detourer.py                    # la classe
+    python visuel/prototype/detourer.py arztpraxis --voir  # une autre scene, + controle
+
+LES PARTIES DU CORPS NE PASSENT PAS PAR SAM
+    SAM detoure un OBJET : demande-lui un genou, il rend la jambe, ou le
+    pantalon. Une zone qui porte « ellipses » ([cx, cy, rx, ry] en % de
+    l'image, une ou plusieurs) est dessinee telle quelle : le genou, l'epaule,
+    le ventre de Mark chez le medecin (6 oct. 2026).
 
 POURQUOI
     Jacques, 6 oct. 2026 : « comme sur Apple, l'objet au complet selectionne,
@@ -42,6 +48,13 @@ SIMPLIFICATION = 2.5     # px : ecart toléré entre le trace et le bord de SAM
 # simplifie bien plus fort, pour que ses bords soient de vraies droites.
 NETTOYAGE_RIGIDE = 25
 SIMPLIFICATION_RIGIDE = 7
+
+
+def boites_de(z):
+    """Les rectangles d'une zone ; une zone en ellipses a les leurs."""
+    if z.get("boites") or z.get("boite"):
+        return z.get("boites") or [z["boite"]]
+    return [[cx - rx, cy - ry, 2 * rx, 2 * ry] for cx, cy, rx, ry in z["ellipses"]]
 
 
 def englobe(boites):
@@ -121,7 +134,9 @@ def main():
     from PIL import Image
     from ultralytics import SAM
 
-    scene = json.load(io.open(os.path.join(ICI, "klassenzimmer.points.json"),
+    noms = [a for a in sys.argv[1:] if not a.startswith("--")]
+    nom = noms[0] if noms else "klassenzimmer"
+    scene = json.load(io.open(os.path.join(ICI, nom + ".points.json"),
                               encoding="utf-8"))
     image = os.path.join(ICI, scene["image"])
     W, H = Image.open(image).size
@@ -137,14 +152,23 @@ def main():
     zones = scene["points"]
     boites = []
     for z in zones:
-        x, y, w, h = z.get("sam") or englobe(z.get("boites") or [z["boite"]])
+        x, y, w, h = z.get("sam") or englobe(boites_de(z))
         boites.append([W * x / 100, H * y / 100, W * (x + w) / 100, H * (y + h) / 100])
     print("  %d zones, image %dx%d, SAM 2 sur processeur..." % (len(zones), W, H))
     # UNE ZONE PAR APPEL. Toutes les boites d'un coup, SAM a rendu 38 masques
     # pour 39 zones (6 oct., apres l'ajout des cahiers) -- sans dire lequel il
     # avait laisse tomber, donc sans qu'on sache a quelle zone va quel masque.
+    import cv2
     masques = []
     for z, b in zip(zones, boites):
+        if z.get("ellipses"):
+            m = np.zeros((H, W), np.uint8)
+            for cx, cy, rx, ry in z["ellipses"]:
+                cv2.ellipse(m, (round(W * cx / 100), round(H * cy / 100)),
+                            (round(W * rx / 100), round(H * ry / 100)),
+                            0, 0, 360, 1, -1)
+            masques.append(m.astype(bool))
+            continue
         res = modele(image, bboxes=[b], verbose=False)[0]
         if res.masks is None or len(res.masks.data) == 0:
             # Une boite tres mince (un cahier vu par la tranche) peut ne rien
@@ -156,7 +180,6 @@ def main():
         masques.append(res.masks.data[0].cpu().numpy().astype(bool))
     masques = np.stack(masques)                              # (N, H, W)
 
-    import cv2
     w, h = W // REDUCTION, H // REDUCTION
     sortie, traces = {}, {}
     noyau = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (NETTOYAGE, NETTOYAGE))
@@ -185,7 +208,7 @@ def main():
         traces[z["id"]] = polys
         petit = np.array(Image.fromarray(m8).resize((w, h), Image.BILINEAR)) > 127
         couverture = petit.mean() * 100
-        boite = z.get("sam") or englobe(z.get("boites") or [z["boite"]])
+        boite = z.get("sam") or englobe(boites_de(z))
         part = couverture / (boite[2] * boite[3] / 100) * 100 if boite[2] * boite[3] else 0
         print("  %-13s %5.2f %% de l'image, %3.0f %% de sa boite" % (z["id"], couverture, part))
         sortie[z["id"]] = rle(petit.ravel().tolist())
@@ -194,9 +217,9 @@ def main():
           "window.MASQUES = " + json.dumps({"w": w, "h": h, "zones": sortie,
                                             "W": W, "H": H, "traces": traces},
                                            separators=(",", ":")) + ";\n")
-    chemin = os.path.join(ICI, "masques-klassenzimmer.js")
+    chemin = os.path.join(ICI, "masques-%s.js" % nom)
     io.open(chemin, "w", encoding="utf-8").write(js)
-    print("  -> masques-klassenzimmer.js (%d Ko)" % (os.path.getsize(chemin) // 1024))
+    print("  -> masques-%s.js (%d Ko)" % (nom, os.path.getsize(chemin) // 1024))
 
     if "--voir" in sys.argv:
         rng = np.random.default_rng(3)
@@ -204,7 +227,7 @@ def main():
         for z, m in zip(zones, masques):
             petit = np.array(Image.fromarray(m.astype(np.uint8) * 255).resize((w, h))) > 127
             fond[petit] = fond[petit] * 0.45 + rng.integers(60, 255, 3) * 0.55
-        controle = os.path.join(os.environ.get("TMP", ICI), "masques.png")
+        controle = os.path.join(os.environ.get("TMP", ICI), "masques-%s.png" % nom)
         Image.fromarray(fond.astype(np.uint8)).save(controle)
         print("  controle : %s" % controle)
 

@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Refait scene-klassenzimmer.js a partir des zones et du corpus.
+"""Refait scene-<nom>.js a partir des zones et du corpus.
 
-    python visuel/prototype/construire.py            # ecrit le .js
-    python visuel/prototype/construire.py --grille   # + une image de controle
+    python visuel/prototype/construire.py                       # la classe
+    python visuel/prototype/construire.py arztpraxis            # une autre scene
+    python visuel/prototype/construire.py arztpraxis --grille   # + une image de controle
+
+UNE SCENE = UN FICHIER <nom>.points.json
+    Les zones, mais aussi tout ce qui est propre a la scene : son titre, son
+    texte alternatif, la consigne A1, les mots exclus de « Trouve ! » et les
+    questions A2-C1. index.html ne connait aucune scene ; il charge celle
+    qu'on lui nomme (?scene=arztpraxis). Ajouter une scene = ajouter un
+    fichier, jamais recopier la page.
 
 POURQUOI UN .js ET PAS UN .json
     Le prototype doit s'ouvrir en double-cliquant le fichier. Or un navigateur
@@ -39,8 +47,28 @@ def corpus():
     return idx
 
 
+def decouper(pts, nom, g):
+    """L'image NETTE d'un gros plan : le cadre decoupe dans la source a sa
+    pleine resolution, au lieu de la scene web (1080 px) etiree.
+
+    Le visage de Mark fait ~150 px dans la scene web et ~210 dans la source :
+    pas de miracle, mais 40 % de pixels en plus pour le meme ecran. Le vrai
+    remede reste une image du visage generee pour le gros plan."""
+    from PIL import Image
+    src = Image.open(os.path.normpath(os.path.join(ICI, pts["source"]))).convert("RGB")
+    W, H = src.size
+    x, y, w, h = g["cadre"]
+    boite = (round(W * x / 100), round(H * y / 100),
+             round(W * (x + w) / 100), round(H * (y + h) / 100))
+    fichier = "%s-%s.webp" % (nom, g["id"])
+    src.crop(boite).save(os.path.join(ICI, fichier), quality=88)
+    return fichier
+
+
 def main():
-    pts = json.load(io.open(os.path.join(ICI, "klassenzimmer.points.json"),
+    noms = [a for a in sys.argv[1:] if not a.startswith("--")]
+    nom = noms[0] if noms else "klassenzimmer"
+    pts = json.load(io.open(os.path.join(ICI, nom + ".points.json"),
                             encoding="utf-8"))
     idx = corpus()
     sortie, manquants = [], []
@@ -53,7 +81,11 @@ def main():
         if absents:
             manquants.extend(absents)
             continue
-        boites = p.get("boites") or [p["boite"]]
+        # Une zone en ellipses (une partie du corps) a les rectangles de ses
+        # ellipses ; c'est d'eux que l'app tire la place de l'etiquette.
+        boites = p.get("boites") or ([p["boite"]] if "boite" in p else
+                                     [[cx - rx, cy - ry, 2 * rx, 2 * ry]
+                                      for cx, cy, rx, ry in p["ellipses"]])
         for (x, y, w, h) in boites:
             if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
                 sys.exit("  %s : boite hors de l'image %r" % (p["id"], [x, y, w, h]))
@@ -93,8 +125,11 @@ def main():
                 "theme": m["theme"], "personne": None, "aussi": [],
                 "sur": g["personne"], "devant": 0, "detail": g["id"],
                 "boites": [[cx - rx, cy - ry, 2 * rx, 2 * ry]]})
-        gros.append({"id": g["id"], "declencheur": g["declencheur"],
-                     "cadre": g["cadre"], "formes": formes})
+        entree = {"id": g["id"], "declencheur": g["declencheur"],
+                  "cadre": g["cadre"], "formes": formes}
+        if g.get("net"):
+            entree["image"] = decouper(pts, nom, g)
+        gros.append(entree)
 
     connus = {p["id"] for p in sortie}
     for p in sortie:
@@ -107,13 +142,26 @@ def main():
     if manquants:
         sys.exit("  absents du corpus : %s" % ", ".join(manquants))
 
+    # Les questions A2-C1 visent des zones par leur id (f = l'objet de la
+    # question, r = sa reference) : une faute de frappe ne doit pas attendre
+    # qu'on tombe sur la question pour se voir.
+    for niv, c in pts.get("couches", {}).items():
+        for q in c.get("qs", []):
+            for cle in ("f", "r"):
+                if q.get(cle) and q[cle] not in connus:
+                    sys.exit("  %s, << %s >> : %s=%r ne designe aucune zone"
+                             % (niv, q["q"], cle, q[cle]))
+
+    scene = {"image": pts["image"], "points": sortie, "grosPlans": gros}
+    for cle in ("titre", "alt", "consigne", "exclus", "couches"):
+        if cle in pts:
+            scene[cle] = pts[cle]
     js = ("// GENERE par construire.py -- ne pas modifier a la main.\n"
-          "window.SCENE = " + json.dumps(
-              {"image": pts["image"], "points": sortie, "grosPlans": gros},
-              ensure_ascii=False, indent=1) + ";\n")
-    io.open(os.path.join(ICI, "scene-klassenzimmer.js"), "w",
+          "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1)
+          + ";\n")
+    io.open(os.path.join(ICI, "scene-%s.js" % nom), "w",
             encoding="utf-8").write(js)
-    print("  %d zones -> scene-klassenzimmer.js" % len(sortie))
+    print("  %d zones -> scene-%s.js" % (len(sortie), nom))
 
     if "--grille" in sys.argv:
         from PIL import Image, ImageDraw
@@ -125,7 +173,7 @@ def main():
                 r = [W * x / 100, H * y / 100, W * (x + w) / 100, H * (y + h) / 100]
                 d.rectangle(r, outline=(255, 210, 0), width=3)
                 d.text((r[0] + 4, r[1] + 3), p["mot"], fill=(255, 255, 0))
-        chemin = os.path.join(os.environ.get("TMP", ICI), "zones.png")
+        chemin = os.path.join(os.environ.get("TMP", ICI), "zones-%s.png" % nom)
         im.save(chemin)
         print("  controle : %s" % chemin)
 
