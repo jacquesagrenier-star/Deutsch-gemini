@@ -7646,3 +7646,10 @@ scene arrive dans la seance du jour.
   page recharge toujours la scene, et l'adresse de chaque image de gros plan
   porte l'empreinte de son cadre. Reste a voir : l'ovale « das Poster » du gros
   plan de l'affiche deborde sur la tete de Mark.
+  Suite : en Decouvrir, apres avoir touche l'affiche, Jacques « n'arrive pas a
+  retourner en arriere pour reduire l'image ». Le gros plan est plus haut que
+  l'ecran du telephone : en descendant voir le bas de l'affiche, le bouton
+  « Toute la scene », pose en haut de l'image, passait sous la carte collee.
+  Le bouton est desormais FIXE juste sous la carte : visible tant que le gros
+  plan est ouvert, ou qu'on soit dans la page. Verifie a 375 px en defilant
+  jusqu'en bas. Vaut pour tous les gros plans, classe comprise.

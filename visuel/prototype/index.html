@@ -113,7 +113,11 @@ html,body{margin:0;background:#11151b;color:var(--encre);
   transition:left .45s ease,top .45s ease,width .45s ease,height .45s ease}
 .gros-plan .fond{position:absolute;inset:0;background-repeat:no-repeat}
 .gros-plan svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-.gros-plan .fermer{position:absolute;left:8px;top:8px;z-index:3;border:0;border-radius:999px;
+/* FIXE, juste sous la carte (place par placerFermer) : le gros plan est plus
+   haut que l'ecran du telephone, et un bouton pose en haut de l'image passait
+   sous la carte collee des qu'on descendait voir le bas de l'affiche -- plus
+   moyen de revenir (Jacques, 6 oct.). */
+.gros-plan .fermer{position:fixed;left:8px;top:8px;z-index:3;border:0;border-radius:999px;
   padding:8px 12px;font:700 14px inherit;background:rgba(251,247,239,.95);color:var(--encre);
   box-shadow:0 3px 12px rgba(0,0,0,.35);cursor:pointer}
 .gros-plan .fermer:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
@@ -394,12 +398,21 @@ function ouvrirGrosPlan(g, sansAnim){
   const haut = document.querySelector(".haut").getBoundingClientRect().bottom;
   const ecart = scene.getBoundingClientRect().top - haut;
   if (ecart < 0) window.scrollBy({top: ecart, behavior: sansAnim ? "auto" : "smooth"});
+  placerFermer();
   el.querySelector(".fermer").addEventListener("click", ev => {
     ev.stopPropagation(); fermerGrosPlan(); if (!verrou) effacer();
   });
   el.addEventListener("click", toucherGros);
 }
 function fermerGrosPlan(){ if (!zoom) return; zoom.el.remove(); zoom = null; }
+/* Le bouton de retour : a gauche de la scene, juste sous la carte collee. */
+function placerFermer(){
+  if (!zoom) return;
+  const b = zoom.el.querySelector(".fermer");
+  b.style.left = (scene.getBoundingClientRect().left + 8) + "px";
+  b.style.top = (document.querySelector(".haut").getBoundingClientRect().bottom + 8) + "px";
+}
+addEventListener("resize", placerFermer);
 document.addEventListener("keydown", e => { if (e.key === "Escape" && zoom){ fermerGrosPlan(); if (!verrou) effacer(); } });
 
 function partiesSous(pt, marge){
