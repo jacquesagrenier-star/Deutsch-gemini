@@ -53,9 +53,10 @@ def main():
         if absents:
             manquants.extend(absents)
             continue
-        x, y, w, h = p["boite"]
-        if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
-            sys.exit("  %s : boite hors de l'image %r" % (p["id"], p["boite"]))
+        boites = p.get("boites") or [p["boite"]]
+        for (x, y, w, h) in boites:
+            if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
+                sys.exit("  %s : boite hors de l'image %r" % (p["id"], [x, y, w, h]))
         sortie.append({
             "id": p["id"], "mot": m["mot"], "genre": m.get("genre"),
             "pluriel": m.get("pluriel"), "fr": m.get("traduction"),
@@ -64,8 +65,8 @@ def main():
             "aussi": [{"mot": a, "genre": idx[a].get("genre"),
                        "fr": idx[a].get("traduction")}
                       for a in p.get("aussi", [])],
-            "sur": p.get("sur"),
-            "boite": p["boite"]})
+            "sur": p.get("sur"), "devant": p.get("devant", 0),
+            "boites": boites})
     connus = {p["id"] for p in sortie}
     for p in sortie:
         if p["sur"] and p["sur"] not in connus:
@@ -87,10 +88,10 @@ def main():
         W, H = im.size
         d = ImageDraw.Draw(im)
         for p in sortie:
-            x, y, w, h = p["boite"]
-            r = [W * x / 100, H * y / 100, W * (x + w) / 100, H * (y + h) / 100]
-            d.rectangle(r, outline=(255, 210, 0), width=3)
-            d.text((r[0] + 4, r[1] + 3), p["mot"], fill=(255, 255, 0))
+            for (x, y, w, h) in p["boites"]:
+                r = [W * x / 100, H * y / 100, W * (x + w) / 100, H * (y + h) / 100]
+                d.rectangle(r, outline=(255, 210, 0), width=3)
+                d.text((r[0] + 4, r[1] + 3), p["mot"], fill=(255, 255, 0))
         chemin = os.path.join(os.environ.get("TMP", ICI), "zones.png")
         im.save(chemin)
         print("  controle : %s" % chemin)

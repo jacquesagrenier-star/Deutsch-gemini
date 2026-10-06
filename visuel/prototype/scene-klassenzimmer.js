@@ -14,11 +14,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "wand",
-   "boite": [
-    0.5,
-    20,
-    9.5,
-    5.5
+   "devant": 0,
+   "boites": [
+    [
+     0.5,
+     20,
+     9.5,
+     5.5
+    ]
    ]
   },
   {
@@ -33,11 +36,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "wand",
-   "boite": [
-    0,
-    29,
-    30,
-    20
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     29,
+     30,
+     20
+    ]
    ]
   },
   {
@@ -73,11 +79,20 @@ window.SCENE = {
     }
    ],
    "sur": null,
-   "boite": [
-    3.5,
-    32,
-    24.5,
-    28
+   "devant": 1,
+   "boites": [
+    [
+     10.5,
+     32,
+     11.5,
+     7.5
+    ],
+    [
+     3.5,
+     39,
+     25,
+     21
+    ]
    ]
   },
   {
@@ -92,11 +107,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "lehrer",
-   "boite": [
-    12.5,
-    34.6,
-    9.5,
-    2.6
+   "devant": 0,
+   "boites": [
+    [
+     12.5,
+     34.6,
+     9.5,
+     2.6
+    ]
    ]
   },
   {
@@ -111,11 +129,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "lehrer",
-   "boite": [
-    14,
-    37.2,
-    6.5,
-    2.6
+   "devant": 0,
+   "boites": [
+    [
+     14,
+     37.2,
+     6.5,
+     2.6
+    ]
    ]
   },
   {
@@ -130,11 +151,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    35,
-    30.2,
-    17,
-    28.8
+   "devant": 0,
+   "boites": [
+    [
+     35,
+     30.2,
+     17,
+     28.8
+    ]
    ]
   },
   {
@@ -149,11 +173,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "tuer",
-   "boite": [
-    38.9,
-    33.3,
-    7.4,
-    15.3
+   "devant": 0,
+   "boites": [
+    [
+     38.9,
+     33.3,
+     7.4,
+     15.3
+    ]
    ]
   },
   {
@@ -168,11 +195,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "tuer",
-   "boite": [
-    46.1,
-    33.3,
-    5.8,
-    13.5
+   "devant": 0,
+   "boites": [
+    [
+     46.1,
+     33.3,
+     5.8,
+     13.5
+    ]
    ]
   },
   {
@@ -187,11 +217,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "wand",
-   "boite": [
-    59,
-    33.6,
-    11,
-    5.7
+   "devant": 0,
+   "boites": [
+    [
+     59,
+     33.6,
+     11,
+     5.7
+    ]
    ]
   },
   {
@@ -206,11 +239,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    46.5,
-    14,
-    7,
-    6.5
+   "devant": 0,
+   "boites": [
+    [
+     46.5,
+     14,
+     7,
+     6.5
+    ]
    ]
   },
   {
@@ -225,11 +261,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    80.5,
-    19,
-    15,
-    25
+   "devant": 0,
+   "boites": [
+    [
+     80.5,
+     19,
+     15,
+     25
+    ]
    ]
   },
   {
@@ -244,11 +283,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    92,
-    31,
-    8,
-    8
+   "devant": 0,
+   "boites": [
+    [
+     92,
+     31,
+     8,
+     8
+    ]
    ]
   },
   {
@@ -263,11 +305,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "regal",
-   "boite": [
-    88.5,
-    25.6,
-    11.5,
-    5.6
+   "devant": 0,
+   "boites": [
+    [
+     88.5,
+     25.6,
+     11.5,
+     5.6
+    ]
    ]
   },
   {
@@ -290,14 +335,34 @@ window.SCENE = {
      "mot": "Pullover",
      "genre": "der",
      "fr": "pull"
+    },
+    {
+     "mot": "Student",
+     "genre": "der",
+     "fr": "étudiant"
     }
    ],
    "sur": null,
-   "boite": [
-    40,
-    42.9,
-    15,
-    26.4
+   "devant": 1,
+   "boites": [
+    [
+     46,
+     42.9,
+     8.5,
+     5
+    ],
+    [
+     40,
+     47.5,
+     15.5,
+     22
+    ],
+    [
+     41,
+     52.5,
+     15,
+     3
+    ]
    ]
   },
   {
@@ -312,11 +377,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "mark",
-   "boite": [
-    41.5,
-    47.5,
-    18,
-    7
+   "devant": 0,
+   "boites": [
+    [
+     41.5,
+     47.5,
+     18,
+     7
+    ]
    ]
   },
   {
@@ -349,14 +417,34 @@ window.SCENE = {
      "mot": "Stift",
      "genre": "der",
      "fr": "stylo"
+    },
+    {
+     "mot": "Studentin",
+     "genre": "die",
+     "fr": "étudiante"
     }
    ],
    "sur": null,
-   "boite": [
-    55,
-    44.2,
-    23.7,
-    30.2
+   "devant": 2,
+   "boites": [
+    [
+     64,
+     44.2,
+     9.5,
+     5.8
+    ],
+    [
+     59.5,
+     49.5,
+     20,
+     25
+    ],
+    [
+     55,
+     53,
+     5,
+     3.5
+    ]
    ]
   },
   {
@@ -371,11 +459,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "anna",
-   "boite": [
-    56,
-    60.5,
-    23,
-    8.8
+   "devant": 0,
+   "boites": [
+    [
+     56,
+     60.5,
+     23,
+     8.8
+    ]
    ]
   },
   {
@@ -390,11 +481,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "tisch",
-   "boite": [
-    53.5,
-    56,
-    16.5,
-    2.6
+   "devant": 0,
+   "boites": [
+    [
+     53.5,
+     56,
+     16.5,
+     2.6
+    ]
    ]
   },
   {
@@ -409,11 +503,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "anna",
-   "boite": [
-    55,
-    53.6,
-    3.4,
-    2.8
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     53.6,
+     3.4,
+     2.8
+    ]
    ]
   },
   {
@@ -428,11 +525,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    26.7,
-    53.7,
-    50,
-    6.3
+   "devant": 1,
+   "boites": [
+    [
+     26.7,
+     53.7,
+     50,
+     6.3
+    ]
    ]
   },
   {
@@ -447,11 +547,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    78.2,
-    53.5,
-    5.6,
-    17.5
+   "devant": 0,
+   "boites": [
+    [
+     78.2,
+     53.5,
+     5.6,
+     17.5
+    ]
    ]
   },
   {
@@ -466,11 +569,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    0,
-    76.5,
-    11,
-    23.5
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     76.5,
+     11,
+     23.5
+    ]
    ]
   },
   {
@@ -485,11 +591,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    61,
-    66.4,
-    15.9,
-    12.6
+   "devant": 2,
+   "boites": [
+    [
+     61,
+     66.4,
+     15.9,
+     12.6
+    ]
    ]
   },
   {
@@ -520,11 +629,20 @@ window.SCENE = {
     }
    ],
    "sur": null,
-   "boite": [
-    71.5,
-    41.6,
-    7,
-    8.6
+   "devant": 1,
+   "boites": [
+    [
+     71.5,
+     41.6,
+     7,
+     8.6
+    ],
+    [
+     61,
+     46.5,
+     3.5,
+     4.5
+    ]
    ]
   },
   {
@@ -555,11 +673,14 @@ window.SCENE = {
     }
    ],
    "sur": null,
-   "boite": [
-    78.5,
-    42.4,
-    12.5,
-    10.1
+   "devant": 1,
+   "boites": [
+    [
+     78.5,
+     42.4,
+     12.5,
+     10.1
+    ]
    ]
   },
   {
@@ -590,11 +711,14 @@ window.SCENE = {
     }
    ],
    "sur": null,
-   "boite": [
-    80.5,
-    36.2,
-    19.5,
-    46
+   "devant": 1,
+   "boites": [
+    [
+     80.5,
+     36.2,
+     19.5,
+     46
+    ]
    ]
   },
   {
@@ -609,11 +733,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "frau",
-   "boite": [
-    81.5,
-    47,
-    18.5,
-    33
+   "devant": 0,
+   "boites": [
+    [
+     81.5,
+     47,
+     18.5,
+     33
+    ]
    ]
   },
   {
@@ -628,11 +755,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "frau",
-   "boite": [
-    80.5,
-    86.8,
-    19.5,
-    6.9
+   "devant": 0,
+   "boites": [
+    [
+     80.5,
+     86.8,
+     19.5,
+     6.9
+    ]
    ]
   },
   {
@@ -647,11 +777,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
-   "boite": [
-    0,
-    57.4,
-    27,
-    12.6
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     57.4,
+     27,
+     12.6
+    ]
    ]
   },
   {
@@ -666,11 +799,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
-   "boite": [
-    12.5,
-    68.8,
-    12.5,
-    3.4
+   "devant": 0,
+   "boites": [
+    [
+     12.5,
+     68.8,
+     12.5,
+     3.4
+    ]
    ]
   },
   {
@@ -685,11 +821,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
-   "boite": [
-    28,
-    65.4,
-    6.2,
-    4.8
+   "devant": 0,
+   "boites": [
+    [
+     28,
+     65.4,
+     6.2,
+     4.8
+    ]
    ]
   },
   {
@@ -704,11 +843,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
-   "boite": [
-    39,
-    68.5,
-    10,
-    13
+   "devant": 0,
+   "boites": [
+    [
+     39,
+     68.5,
+     10,
+     13
+    ]
    ]
   },
   {
@@ -723,11 +865,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    0,
-    60,
-    53.5,
-    22
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     60,
+     53.5,
+     22
+    ]
    ]
   },
   {
@@ -742,11 +887,14 @@ window.SCENE = {
    "personne": null,
    "aussi": [],
    "sur": null,
-   "boite": [
-    10,
-    8,
-    34,
-    20
+   "devant": 0,
+   "boites": [
+    [
+     10,
+     8,
+     34,
+     20
+    ]
    ]
   }
  ]

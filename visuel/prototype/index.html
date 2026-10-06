@@ -141,21 +141,40 @@ function dire(t){
 }
 
 /* ---------- les zones : la plus petite au-dessus ---------- */
+/* Le plan d'une zone : une personne passe DEVANT ce qui est derriere elle (le
+   prof devant le tableau), et ce qui est pose sur elle herite de son plan.
+   A plan egal, la plus petite zone gagne. */
+const aire = p => p.boites.reduce((s,[,,w,h]) => s + w*h, 0);
+const plan = p => { let n = 0, z = p, k = 0; while (z && k < 5){ n = Math.max(n, z.devant || 0); z = P[z.sur]; k++; } return n; };
+const sous = (xp, yp) => S.points.filter(p => p.boites.some(([x,y,w,h]) => xp >= x && xp <= x+w && yp >= y && yp <= y+h));
 for (const p of S.points){
-  const [x,y,w,h] = p.boite;
-  const b = document.createElement("button");
-  b.className = "zone"; b.dataset.id = p.id;
-  b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;z-index:${1000 - Math.round(w*h/10)}`;
-  b.setAttribute("aria-label", p.personne || p.mot);
-  b.addEventListener("click", () => toucher(p.id));
-  scene.appendChild(b);
+  p.boites.forEach(([x,y,w,h], k) => {
+    const b = document.createElement("button");
+    b.className = "zone"; b.dataset.id = p.id;
+    b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;z-index:${plan(p)*2000 + 1000 - Math.round(aire(p)/10)}`;
+    b.setAttribute("aria-label", p.personne || p.mot);
+    if (k) b.setAttribute("aria-hidden", "true"), b.tabIndex = -1;
+    b.addEventListener("click", e => {
+      // ou le doigt est tombe, en % de l'image : en mode Trouve, TOUT ce qui
+      // est sous le doigt compte (les mains de Mark sur la table : Mann ET Tisch)
+      const r = scene.getBoundingClientRect();
+      const pt = e.detail ? [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100] : null;
+      toucher(p.id, pt);
+    });
+    scene.appendChild(b);
+  });
 }
 $("voirZones").addEventListener("change", e => scene.classList.toggle("voir-zones", e.target.checked));
 
 /* ---------- surlignage et etiquette ---------- */
 function effacer(){ scene.querySelectorAll(".anneau,.etiquette").forEach(n => n.remove()); }
+const englobe = p => {
+  const xs = p.boites.map(b => b[0]), ys = p.boites.map(b => b[1]);
+  const x = Math.min(...xs), y = Math.min(...ys);
+  return [x, y, Math.max(...p.boites.map(b => b[0]+b[2])) - x, Math.max(...p.boites.map(b => b[1]+b[3])) - y];
+};
 function anneau(id, second){
-  const [x,y,w,h] = P[id].boite;
+  const [x,y,w,h] = englobe(P[id]);
   const a = document.createElement("div");
   a.className = "anneau" + (second ? " second" : "");
   a.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%`;
@@ -166,7 +185,7 @@ function groupe(p){
   return `<span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span>`;
 }
 function etiquette(id){
-  const p = P[id], [x,y,w,h] = p.boite;
+  const p = P[id], [x,y,w,h] = englobe(p);
   const e = document.createElement("div");
   const dessous = y < 30;
   e.className = "etiquette" + (dessous ? " dessous" : "");
@@ -318,7 +337,7 @@ function trouver(){
   $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
   dire(p.genre + " " + p.mot);
 }
-function toucher(id){
+function toucher(id, pt){
   const p = P[id];
   if (niveau === "A1" && modeA1 === "decouvrir"){
     effacer(); anneau(id); etiquette(id);
@@ -326,14 +345,21 @@ function toucher(id){
     return;
   }
   if (niveau === "A1" && attenteToucher && !verrou){
-    const cible = attenteToucher, juste = touche(p, cible), bonnes = zonesDe(cible);
+    const cible = attenteToucher, bonnes = zonesDe(cible);
+    // Seulement ce qui est AU MEME PLAN que le premier plan sous le doigt : les
+    // mains de Mark et la table, oui ; la tete du prof et le tableau derriere, non.
+    const dessous = pt ? sous(pt[0], pt[1]) : [];
+    const devantTout = Math.max(plan(p), ...dessous.map(plan));
+    const candidats = [p, ...dessous.filter(z => plan(z) === devantTout)];
+    const retenue = candidats.find(z => touche(z, cible));
+    const juste = !!retenue;
     verrou = true; faits++;
     effacer();
     if (juste){
       bons++;
       // On encadre ce qui porte le nom : la porte, pas le manteau qu'on a touche.
-      let support = id;
-      for (let z = p, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, cible)){ support = z.id; break; }
+      let support = retenue.id;
+      for (let z = retenue, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, cible)){ support = z.id; break; }
       anneau(support); etiquette(support);
     }
     else { bonnes.forEach(z => anneau(z)); anneau(id, true); scene.classList.add("secoue");
@@ -358,7 +384,7 @@ function poser(){
   // Seul l'objet de la question s'allume : montrer la reference AVANT la
   // reponse soufflait la moitie de la reponse (le Tisch encadre).
   effacer(); anneau(q.f);
-  const bas = id => id ? P[id].boite[1] + P[id].boite[3] : 0;
+  const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
   entete(niveau + " · " + c.titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);
   const opts = melanger(q.c.map((t,k) => ({t, ok:k === 0})));

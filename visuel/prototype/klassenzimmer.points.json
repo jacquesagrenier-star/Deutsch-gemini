@@ -5,7 +5,8 @@
   "mot = la cle dans themes.json : genre et traductions viennent de LA, jamais d'ici. construire.py refuse un mot absent.",
   "personne = un prenom de la serie, affiche avec le mot du corpus ; hors_corpus = un mot qui manque encore au corpus.",
   "aussi = les AUTRES noms que porte la zone (Anna est aussi die Frau ; le professeur porte une Brille). En mode Trouve, toute zone qui porte le nom demande est juste -- remarque de Jacques le 6 oct. : Anna est aussi une dame.",
-  "sur = l'objet SUR lequel celui-ci se trouve (le manteau sur la porte, les lunettes sur le prof). Toucher le manteau quand on demande die Tuer est juste ; l'inverse non. Remarque de Jacques, 6 oct. Le prof est DEVANT le tableau, pas dessus : pas de sur."
+  "sur = l'objet SUR lequel celui-ci se trouve (le manteau sur la porte, les lunettes sur le prof). Toucher le manteau quand on demande die Tuer est juste ; l'inverse non. Remarque de Jacques, 6 oct. Le prof est DEVANT le tableau, pas dessus : pas de sur.",
+  "boites = plusieurs rectangles pour une meme zone (tete, corps, bras). devant = plan : une personne passe devant ce qui est derriere elle (le prof devant le tableau), et ce qui est pose sur elle (sur) herite de son plan. Remarque de Jacques, 6 oct. : toucher Mark n'importe ou -- tete, bras, pull -- doit repondre der Mann."
  ],
  "image": "klassenzimmer.webp",
  "source": "../scenes/klassenzimmer-fond.png",
@@ -35,18 +36,27 @@
   {
    "id": "lehrer",
    "mot": "Lehrer",
-   "boite": [
-    3.5,
-    32,
-    24.5,
-    28
-   ],
    "aussi": [
     "Mann",
     "Brille",
     "Bart",
     "Hemd"
-   ]
+   ],
+   "boites": [
+    [
+     10.5,
+     32,
+     11.5,
+     7.5
+    ],
+    [
+     3.5,
+     39,
+     25,
+     21
+    ]
+   ],
+   "devant": 1
   },
   {
    "id": "brille",
@@ -158,16 +168,32 @@
    "id": "mark",
    "mot": "Teilnehmer",
    "personne": "Mark",
-   "boite": [
-    40,
-    42.9,
-    15,
-    26.4
-   ],
    "aussi": [
     "Mann",
-    "Pullover"
-   ]
+    "Pullover",
+    "Student"
+   ],
+   "boites": [
+    [
+     46,
+     42.9,
+     8.5,
+     5
+    ],
+    [
+     40,
+     47.5,
+     15.5,
+     22
+    ],
+    [
+     41,
+     52.5,
+     15,
+     3
+    ]
+   ],
+   "devant": 1
   },
   {
    "id": "pullover",
@@ -184,18 +210,34 @@
    "id": "anna",
    "mot": "Teilnehmerin",
    "personne": "Anna",
-   "boite": [
-    55,
-    44.2,
-    23.7,
-    30.2
-   ],
    "aussi": [
     "Frau",
     "Pullover",
     "Rock",
-    "Stift"
-   ]
+    "Stift",
+    "Studentin"
+   ],
+   "boites": [
+    [
+     64,
+     44.2,
+     9.5,
+     5.8
+    ],
+    [
+     59.5,
+     49.5,
+     20,
+     25
+    ],
+    [
+     55,
+     53,
+     5,
+     3.5
+    ]
+   ],
+   "devant": 2
   },
   {
    "id": "rock",
@@ -238,7 +280,8 @@
     53.7,
     50,
     6.3
-   ]
+   ],
+   "devant": 1
   },
   {
    "id": "stuhl",
@@ -268,22 +311,32 @@
     66.4,
     15.9,
     12.6
-   ]
+   ],
+   "devant": 2
   },
   {
    "id": "mann",
    "mot": "Mann",
-   "boite": [
-    71.5,
-    41.6,
-    7,
-    8.6
-   ],
    "aussi": [
     "Teilnehmer",
     "Bart",
     "Hemd"
-   ]
+   ],
+   "boites": [
+    [
+     71.5,
+     41.6,
+     7,
+     8.6
+    ],
+    [
+     61,
+     46.5,
+     3.5,
+     4.5
+    ]
+   ],
+   "devant": 1
   },
   {
    "id": "studentin",
@@ -298,7 +351,8 @@
     "Frau",
     "Teilnehmerin",
     "Pullover"
-   ]
+   ],
+   "devant": 1
   },
   {
    "id": "frau",
@@ -313,7 +367,8 @@
     "Teilnehmerin",
     "Brille",
     "Kleid"
-   ]
+   ],
+   "devant": 1
   },
   {
    "id": "kleid",

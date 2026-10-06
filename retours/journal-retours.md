@@ -7514,3 +7514,10 @@ scene arrive dans la seance du jour.
   maintenant SUR quoi elle se trouve (manteau sur la porte, lunettes sur le prof,
   telephone sur le bureau...) : toucher ce qui est pose sur l'objet demande est
   juste, l'inverse non. Le prof est DEVANT le tableau, pas dessus. 15 cas testes.
+  Suite : toucher Mark n'importe ou (tete, bras, pull, mains sur la table)
+  doit repondre der Mann, et Anna n'importe ou die Studentin (Jacques). Les
+  personnes ont plusieurs rectangles (tete, corps, bras) et un PLAN : elles
+  passent devant ce qui est derriere (la tete du prof n'est plus le tableau).
+  En mode Trouve, tout ce qui est sous le doigt AU MEME PLAN compte. 19 cas testes.
+  Il demande ensuite un detourage comme sur Apple (l'objet entier, pattes de
+  table comprises) : propose SAM 2.
