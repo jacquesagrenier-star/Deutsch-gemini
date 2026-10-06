@@ -37,6 +37,8 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .barre{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .titre{font-weight:700;font-size:15px;color:var(--encre);background:rgba(251,247,239,.92);
   padding:6px 10px;border-radius:999px}
+.retour-choix{text-decoration:none;font-weight:600}
+.retour-choix:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
 .niveaux{display:flex;gap:4px;background:rgba(251,247,239,.92);padding:3px;border-radius:999px}
 .niveaux button{border:0;background:transparent;font:600 13px/1 inherit;color:var(--encre);
   padding:7px 9px;border-radius:999px;cursor:pointer;min-width:34px}
@@ -100,6 +102,18 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .secoue{animation:secoue .35s}
 @keyframes secoue{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
+/* le gros plan d'un visage (Jacques, 6 oct.) : un calque qui part du cadre du
+   visage dans la scene et s'agrandit jusqu'a la remplir */
+.gros-plan{position:absolute;z-index:1600;overflow:hidden;background:#111;
+  transition:left .45s ease,top .45s ease,width .45s ease,height .45s ease}
+.gros-plan .fond{position:absolute;inset:0;background-repeat:no-repeat}
+.gros-plan svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.gros-plan .fermer{position:absolute;left:8px;top:8px;z-index:3;border:0;border-radius:999px;
+  padding:8px 12px;font:700 14px inherit;background:rgba(251,247,239,.95);color:var(--encre);
+  box-shadow:0 3px 12px rgba(0,0,0,.35);cursor:pointer}
+.gros-plan .fermer:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.gros-plan{transition:none}}
+
 .pied{max-width:430px;margin:10px auto 30px;padding:0 12px;color:#c9ced8;font-size:12px;line-height:1.5}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 </style>
@@ -108,7 +122,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 <div class="cadre">
   <div class="haut">
     <div class="barre">
-      <span class="titre">Im Spanischkurs</span>
+      <a class="titre retour-choix" id="retourChoix" href="choix-seance.html" aria-label="Retour au choix de la séance">‹ Im Spanischkurs</a>
       <div class="niveaux" id="niveaux" role="group" aria-label="Niveau"></div>
     </div>
     <div class="carte" id="carte"></div>
@@ -132,6 +146,10 @@ const P = Object.fromEntries(S.points.map(p => [p.id, p]));
 const $ = id => document.getElementById(id);
 const scene = $("scene");
 $("photo").src = S.image;
+/* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
+   depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
+   la classe s'appelle classe.html. */
+if (/classe\.html$/.test(location.pathname)) $("retourChoix").href = "index.html";
 
 /* ---------- la voix ---------- */
 let voixDe = null;
@@ -157,7 +175,10 @@ function dire(t){
    prof devant le tableau), et ce qui est pose sur elle herite de son plan. A
    plan egal, le plus petit objet gagne. */
 const MW = MASQUES.w, MH = MASQUES.h;
-for (const p of S.points){
+/* Les parties d'un gros plan (l'oeil, le nez du prof) n'ont pas de masque :
+   ce sont des ellipses, touchees seulement dans le gros plan. */
+const ZONES = S.points.filter(p => !p.detail);
+for (const p of ZONES){
   const m = new Uint8Array(MW * MH);
   let k = 0, v = 0;
   for (const n of MASQUES.zones[p.id]){ if (v) m.fill(1, k, k + n); k += n; v ^= 1; }
@@ -176,7 +197,7 @@ const RAYON = 3;
 function sous(xp, yp){
   const cx = Math.floor(xp / 100 * MW), cy = Math.floor(yp / 100 * MH);
   const exact = [], proche = [];
-  for (const p of S.points){
+  for (const p of ZONES){
     if (p.masque[cy*MW + cx]) { exact.push(p); continue; }
     cherche: for (let dy = -RAYON; dy <= RAYON; dy++) for (let dx = -RAYON; dx <= RAYON; dx++){
       const x = cx + dx, y = cy + dy;
@@ -185,7 +206,7 @@ function sous(xp, yp){
   }
   // Les PETITS objets (un stylo) se rattrapent de plus loin : 7 pixels de
   // masque, ~7 px d'ecran. Jacques n'arrivait pas a toucher le stylo d'Anna.
-  const petits = S.points.filter(p => p.pixels < MW * MH * 0.004 && !exact.includes(p) && (() => {
+  const petits = ZONES.filter(p => p.pixels < MW * MH * 0.004 && !exact.includes(p) && (() => {
     for (let dy = -7; dy <= 7; dy++) for (let dx = -7; dx <= 7; dx++){
       const x = cx + dx, y = cy + dy;
       if (x >= 0 && y >= 0 && x < MW && y < MH && p.masque[y*MW + x]) return true;
@@ -196,7 +217,7 @@ function sous(xp, yp){
 }
 /* Un bouton invisible par zone, pour le clavier et les lecteurs d'ecran
    seulement : le doigt, lui, est lu par la scene. */
-for (const p of S.points){
+for (const p of ZONES){
   const [x,y,w,h] = p.cadre;
   const b = document.createElement("button");
   b.className = "zone"; b.dataset.id = p.id;
@@ -206,9 +227,11 @@ for (const p of S.points){
   scene.appendChild(b);
 }
 scene.addEventListener("click", e => {
-  if (e.target.closest(".bas") || e.target.closest("button:not(.zone)")) return;
+  if (e.target.closest(".bas") || e.target.closest("button:not(.zone)") || e.target.closest(".gros-plan")) return;
   const r = scene.getBoundingClientRect();
   const pt = [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100];
+  const g = grosPlanSous(pt);
+  if (g && !zoom && veutGrosPlan(g)) return ouvrirGrosPlan(g);
   const {exact, proche} = sous(pt[0], pt[1]);
   const p = exact[0] || proche[0];
   if (p) toucher(p.id, pt);
@@ -249,8 +272,12 @@ function dessiner(){
        ${a.second ? 'stroke-dasharray="6 4"' : ""}/>`).join("");
   toile.classList.toggle("vivant", principaux.length > 0);
 }
-function effacer(){ allumes = []; dessiner(); scene.querySelectorAll(".etiquette").forEach(n => n.remove()); }
-function anneau(id, second){ allumes.push({id, second: !!second}); dessiner(); }
+function effacer(){ allumes = []; dessiner(); scene.querySelectorAll(".etiquette").forEach(n => n.remove());
+  if (zoom) zoom.svg.innerHTML = ""; }
+function anneau(id, second){
+  if (zoom && zoom.g.formes[id]) return anneauGros(id, second);
+  allumes.push({id, second: !!second}); dessiner();
+}
 const englobe = p => p.cadre;
 $("voirZones").addEventListener("change", e => {
   if (e.target.checked){ allumes = S.points.map(p => ({id: p.id, second: true})); dessiner(); }
@@ -260,24 +287,123 @@ function groupe(p){
   const art = p.genre || "";
   return `<span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span>`;
 }
-function etiquette(id){
+/* Tous les noms d'une zone, le principal d'abord. En « Trouve ! », l'etiquette
+   montre le mot DEMANDE : on demande die Frau et on touche Anna, elle dit
+   « Anna · die Frau » (Jacques, 6 oct.). */
+const nomsDe = p => [{genre: p.genre, mot: p.mot, fr: p.fr, pluriel: p.pluriel}, ...p.aussi];
+/* `quel` : le rang du nom a montrer, ou le mot lui-meme (celui qu'on a
+   demande en « Trouve ! ») ; par defaut, le nom principal. */
+function etiquette(id, quel){
+  if (zoom && zoom.g.formes[id]) return etiquetteGros(id);
   const p = P[id], [x,y,w,h] = englobe(p);
+  const noms = nomsDe(p);
+  const n = (typeof quel === "string" ? noms.find(m => m.mot === quel) : noms[quel || 0]) || noms[0];
   const e = document.createElement("div");
   const dessous = y < 30;
   e.className = "etiquette" + (dessous ? " dessous" : "");
   const cx = Math.min(80, Math.max(20, x + w/2));
   e.style.left = cx + "%";
   e.style.top = (dessous ? y + h + 1 : y - 1) + "%";
-  e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(p)
-              + `<span class="fr">${p.fr}${p.pluriel ? " · pl. die " + p.pluriel : ""}</span>`
-              + (p.aussi.length ? `<span class="fr">aussi : ${p.aussi.map(a =>
-                  `<span class="g-${a.genre}">${a.genre} ${a.mot}</span>`).join(" · ")}</span>` : "");
+  // Le nom seul, sans la liste de ses autres noms : voir le crayon dans la
+  // liste d'Anna ne voulait rien dire, et la liste melait tout (Jacques, 6 oct.).
+  e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
+              + `<span class="fr">${n.fr}${n.pluriel ? " · pl. die " + n.pluriel : ""}</span>`;
   scene.appendChild(e);
   // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
   // on la ramene dans le cadre apres l'avoir mesuree.
   const r = e.getBoundingClientRect(), c = scene.getBoundingClientRect(), marge = 6;
   if (r.left < c.left + marge) e.style.left = `calc(${e.style.left} + ${c.left + marge - r.left}px)`;
   else if (r.right > c.right - marge) e.style.left = `calc(${e.style.left} - ${r.right - c.right + marge}px)`;
+}
+
+/* ---------- le gros plan d'un visage ---------- */
+/* Jacques, 6 oct. : l'oeil, le nez, la bouche sont trop petits pour le doigt
+   dans la scene entiere. Toucher le visage du prof l'agrandit : le calque part
+   du cadre du visage et s'etend a toute la scene, et ses parties deviennent
+   des cibles a la taille du doigt. Une partie est une ellipse en % de l'image
+   (construire.py) ; dans le gros plan, on la touche, on l'entoure et on
+   l'etiquette dans ces memes coordonnees.
+   ⚠️ L'image n'a que 1080 px de large : le visage en fait une centaine, et le
+   gros plan est flou. C'est un essai du GESTE ; la vraie scene aura son
+   visage agrandi par une IA. */
+const GROS = S.grosPlans || [];
+let zoom = null; // {g, el, svg} tant que le gros plan est ouvert
+const dans = (pt, [x,y,w,h]) => pt[0] >= x && pt[0] <= x + w && pt[1] >= y && pt[1] <= y + h;
+const grosPlanSous = pt => GROS.find(g => dans(pt, g.declencheur)) || null;
+const portePartie = (g, mot) => Object.keys(g.formes).some(id => porte(P[id], mot));
+/* En « Trouve ! », le visage ne s'ouvre que si le mot demande y est : quand on
+   demande der Mann, toucher la tete du prof repond tout de suite. */
+function veutGrosPlan(g){
+  if (niveau === "A1" && modeA1 === "trouver" && attenteToucher && !verrou) return portePartie(g, attenteToucher);
+  return true;
+}
+/* La bonne reponse n'existe que de pres (le nez) : on ouvre le gros plan pour
+   la montrer. Les lunettes et la barbe se voient aussi dans la scene. */
+const grosPlanDe = ids => GROS.find(g => ids.length && ids.every(id => g.formes[id] && P[id].detail)) || null;
+
+function ouvrirGrosPlan(g, sansAnim){
+  fermerGrosPlan(); effacer();
+  const [x,y,w,h] = g.cadre;
+  const el = document.createElement("div");
+  el.className = "gros-plan";
+  el.setAttribute("role", "group"); el.setAttribute("aria-label", "Gros plan du visage");
+  el.innerHTML = `<div class="fond"></div>
+    <svg viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <button type="button" class="fermer">‹ Toute la scène</button>`;
+  const fond = el.querySelector(".fond");
+  fond.style.backgroundImage = `url(${S.image})`;
+  fond.style.backgroundSize = `${10000 / w}% ${10000 / h}%`;
+  fond.style.backgroundPosition = `${100 * x / (100 - w)}% ${100 * y / (100 - h)}%`;
+  const poser = (l, t, ww, hh) => Object.assign(el.style, {left: l + "%", top: t + "%", width: ww + "%", height: hh + "%"});
+  poser(...(sansAnim ? [0, 0, 100, 100] : g.cadre));
+  scene.appendChild(el);
+  if (!sansAnim){ void el.offsetWidth; poser(0, 0, 100, 100); }
+  zoom = {g, el, svg: el.querySelector("svg")};
+  el.querySelector(".fermer").addEventListener("click", ev => {
+    ev.stopPropagation(); fermerGrosPlan(); if (!verrou) effacer();
+  });
+  el.addEventListener("click", toucherGros);
+}
+function fermerGrosPlan(){ if (!zoom) return; zoom.el.remove(); zoom = null; }
+document.addEventListener("keydown", e => { if (e.key === "Escape" && zoom){ fermerGrosPlan(); if (!verrou) effacer(); } });
+
+function partiesSous(pt, marge){
+  return Object.entries(zoom.g.formes)
+    .filter(([, [cx,cy,rx,ry]]) => ((pt[0]-cx) / (rx*marge))**2 + ((pt[1]-cy) / (ry*marge))**2 <= 1)
+    .sort((a, b) => a[1][2]*a[1][3] - b[1][2]*b[1][3])
+    .map(([id]) => id);
+}
+function toucherGros(e){
+  if (e.target.closest(".fermer")) return;
+  e.stopPropagation();
+  const r = zoom.el.getBoundingClientRect(), [x,y,w,h] = zoom.g.cadre;
+  const pt = [x + (e.clientX - r.left) / r.width * w, y + (e.clientY - r.top) / r.height * h];
+  // un doigt deborde : sans rien dessous, on rattrape la partie la plus proche
+  let ids = partiesSous(pt, 1);
+  if (!ids.length) ids = partiesSous(pt, 1.35);
+  if (!ids.length) return;
+  // Sous le doigt, souvent deux parties : l'oeil derriere le verre des
+  // lunettes, la bouche dans la barbe, et toujours la tete. En « Trouve ! »,
+  // celle qu'on demande compte ; sinon, la plus petite -- la plus precise.
+  const attendu = niveau === "A1" && modeA1 === "trouver" && attenteToucher && !verrou;
+  toucher((attendu && ids.find(z => touche(P[z], attenteToucher))) || ids[0], null);
+}
+function anneauGros(id, second){
+  const [cx,cy,rx,ry] = zoom.g.formes[id];
+  zoom.svg.insertAdjacentHTML("beforeend",
+    `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" vector-effect="non-scaling-stroke"
+       stroke="${second ? "#fff" : "#E8A23A"}" stroke-width="${second ? 2 : 3}"
+       ${second ? 'stroke-dasharray="6 4"' : 'style="filter:drop-shadow(0 0 4px rgba(232,162,58,.9))"'}/>`);
+}
+function etiquetteGros(id){
+  const p = P[id], [cx,cy,rx,ry] = zoom.g.formes[id], [x,y,w,h] = zoom.g.cadre;
+  const haut = (cy - ry - y) / h * 100, dessous = haut < 22;
+  const e = document.createElement("div");
+  e.className = "etiquette" + (dessous ? " dessous" : "");
+  e.style.left = Math.min(80, Math.max(20, (cx - x) / w * 100)) + "%";
+  e.style.top = (dessous ? (cy + ry - y) / h * 100 + 1 : haut - 1) + "%";
+  e.innerHTML = groupe(p) + `<span class="fr">${p.fr}${p.pluriel ? " · pl. die " + p.pluriel : ""}</span>`;
+  zoom.el.appendChild(e);
 }
 
 /* ---------- les couches ---------- */
@@ -360,7 +486,7 @@ for (const n of Object.keys(COUCHES)){
 }
 function demarrer(){
   $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === niveau));
-  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; effacer();
+  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; fermerGrosPlan(); effacer();
   if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
   COUCHES[niveau].ordre = melanger(COUCHES[niveau].qs);
   poser();
@@ -377,7 +503,7 @@ function entete(consigne, question, avecModes){
 }
 function decouvrir(){
   $("bas").classList.remove("en-haut");
-  entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne.", true);
+  entete("A1 · " + COUCHES.A1.titre, "Touche un objet ou une personne. Touche le visage du prof pour le voir de près.", true);
   $("bas").innerHTML = "";
 }
 /* Une cible est un MOT, pas une zone : « die Frau » est juste sur Anna comme
@@ -446,9 +572,11 @@ function toucher(id, pt){
       // On encadre ce qui porte le nom : la porte, pas le manteau qu'on a touche.
       let support = retenue.id;
       for (let z = retenue, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, cible)){ support = z.id; break; }
-      anneau(support); etiquette(support);
+      anneau(support); etiquette(support, cible);
     }
-    else { bonnes.forEach(z => anneau(z)); anneau(id, true); scene.classList.add("secoue");
+    else { const g = !zoom && grosPlanDe(bonnes);
+           if (g) ouvrirGrosPlan(g, true);
+           bonnes.forEach(z => anneau(z)); anneau(id, true); scene.classList.add("secoue");
            setTimeout(() => scene.classList.remove("secoue"), 400); }
     // Pas de chiffre : le pull de Mark a deux zones (la sienne et celle de Mark),
     // compter les zones annoncerait « 4 pulls » pour trois.
@@ -462,7 +590,7 @@ function toucher(id, pt){
         : traduit(demande) + " : c'était " + (bonnes.length > 1 ? "à l'un de ces endroits" : "ici")
           + ". Tu avais touché : " + traduit(p) + "."}</div>
                           <button class="suite" id="suite">Weiter</button>`;
-    $("suite").addEventListener("click", () => { i++; verrou = false; effacer(); trouver(); });
+    $("suite").addEventListener("click", () => { i++; verrou = false; fermerGrosPlan(); effacer(); trouver(); });
     return;
   }
   // aux autres niveaux, toucher un objet montre son nom : on peut toujours chercher un mot
@@ -475,7 +603,7 @@ function poser(){
   if (!q) return fin();
   // Seul l'objet de la question s'allume : montrer la reference AVANT la
   // reponse soufflait la moitie de la reponse (le Tisch encadre).
-  effacer(); anneau(q.f);
+  fermerGrosPlan(); effacer(); anneau(q.f);
   const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
   entete(niveau + " · " + c.titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);

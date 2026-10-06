@@ -67,16 +67,49 @@ def main():
                       for a in p.get("aussi", [])],
             "sur": p.get("sur"), "devant": p.get("devant", 0),
             "boites": boites})
+    # LES GROS PLANS (Jacques, 6 oct.) : toucher le visage du prof l'agrandit,
+    # et ses parties -- l'oeil, le nez, la bouche -- deviennent des cibles a
+    # la taille du doigt. Une partie est une ellipse [cx, cy, rx, ry] en % de
+    # l'image, pas un masque : SAM detoure une personne, pas son oreille. Elle
+    # est soit un mot NOUVEAU (« mot »), soit une zone existante vue de pres
+    # (« ref » : les lunettes, la barbe).
+    gros = []
+    for g in pts.get("gros_plans", []):
+        formes = {}
+        for q in g["parties"]:
+            cx, cy, rx, ry = q["forme"]
+            if "ref" in q:
+                formes[q["ref"]] = q["forme"]
+                continue
+            m = idx.get(q["mot"])
+            if not m:
+                manquants.append(q["mot"])
+                continue
+            formes[q["id"]] = q["forme"]
+            sortie.append({
+                "id": q["id"], "mot": m["mot"], "genre": m.get("genre"),
+                "pluriel": m.get("pluriel"), "fr": m.get("traduction"),
+                "en": m.get("traduction_en"), "niveau": m["niveau"],
+                "theme": m["theme"], "personne": None, "aussi": [],
+                "sur": g["personne"], "devant": 0, "detail": g["id"],
+                "boites": [[cx - rx, cy - ry, 2 * rx, 2 * ry]]})
+        gros.append({"id": g["id"], "declencheur": g["declencheur"],
+                     "cadre": g["cadre"], "formes": formes})
+
     connus = {p["id"] for p in sortie}
     for p in sortie:
         if p["sur"] and p["sur"] not in connus:
             sys.exit("  %s : sur=%r ne designe aucune zone" % (p["id"], p["sur"]))
+    for g in gros:
+        for z in g["formes"]:
+            if z not in connus:
+                sys.exit("  %s : la partie %r ne designe aucune zone" % (g["id"], z))
     if manquants:
         sys.exit("  absents du corpus : %s" % ", ".join(manquants))
 
     js = ("// GENERE par construire.py -- ne pas modifier a la main.\n"
           "window.SCENE = " + json.dumps(
-              {"image": pts["image"], "points": sortie},
+              {"image": pts["image"], "points": sortie, "grosPlans": gros},
               ensure_ascii=False, indent=1) + ";\n")
     io.open(os.path.join(ICI, "scene-klassenzimmer.js"), "w",
             encoding="utf-8").write(js)

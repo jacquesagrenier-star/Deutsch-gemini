@@ -7555,3 +7555,52 @@ scene arrive dans la seance du jour.
   ajoutees (stylos de Mark, du carnet noir, de la jeune femme, du bureau ; carnet
   du bureau). Il se demande si le stylo n'est pas trop petit -- garde pour
   l'instant, a juger a l'essai. 43 zones.
+  Suite : OU mettre la scene dans la seance du jour ? A la fin, ceux qui
+  abandonnent en route ne la verraient jamais (Jacques). Son idee retenue : au
+  DEBUT, un ecran de choix qui montre les deux activites en mouvement -- la
+  scene ou l'on touche, les cartes qui se retournent --, pour choisir en
+  connaissance de cause. Un toucher sur un apercu lance l'activite ; l'ecran
+  n'apparait que les jours ou une scene est proposee. Les deux ont le MEME
+  POIDS (Jacques) : meme taille, l'une sous l'autre (cote a cote, trop petit
+  sur le telephone), en apercus FIXES plutot qu'animes (son choix). La scene
+  suit le NIVEAU de la seance, sans le demander : trouver des mots en A1, les
+  prepositions en A2, stehen/stellen en B1, les relatives en B2, les
+  hypotheses en C1. A partir de l'A2, une des 3 questions revise un niveau
+  d'avant (Jacques, en B1, aurait voulu revoir les prepositions). Pour jouer
+  a sa guise, a tous les niveaux : un espace « Scenes » hors de la seance,
+  plus tard, quand il y aura plus d'une scene. Maquette hors de l'app :
+  visuel/prototype/choix-seance.html (et en artefact :
+  https://claude.ai/artifact/S9xbXVRHkUQs7sgBJPvHkq). A juger sur le telephone
+  avant de toucher a la seance.
+  Suite : toucher Mark repondait aussi « der Bart » (Jacques) : Mark n'a pas
+  de barbe. Retire de ses noms -- ce qui defait la retouche precedente, ou sa
+  barbe de trois jours comptait. Der Bart reste au prof et a l'homme du fond.
+  Suite : une scene du CORPS HUMAIN (Jacques) -- proposee : Mark chez le
+  medecin, blesse au genou. Les parties du visage etant trop petites pour le
+  doigt, Jacques demande un GROS PLAN quand on touche le visage. Essai sur la
+  classe d'abord, sans rien payer : toucher le visage du prof l'agrandit, et
+  der Kopf, die Stirn, das Ohr, das Auge, die Nase, der Mund, die Brille et
+  der Bart deviennent des cibles a la taille du doigt. En « Trouve ! », le
+  visage ne s'ouvre que si le mot demande y est ; une mauvaise reponse sur le
+  nez ouvre le gros plan pour le montrer. Flou (l'image n'a que 1080 px) :
+  la vraie scene aura son visage agrandi par une IA. 12 cas testes.
+  Suite : le prompt de la scene du corps, « Mark chez le medecin »
+  (visuel/scenes/arztpraxis.prompt.txt) : Mark assis sur la table d'examen,
+  en entier, de la tete aux pieds nus, une jambe de pantalon roulee et un
+  pansement au genou ; une medecin a cote, un poster du squelette au mur.
+  Jacques craignait que la medecin prenne le visage du prof : c'est une
+  femme decrite trait par trait, seules les deux photos de Mark servent de
+  references (jamais l'image de la classe), et rien du prof n'est nomme. Le
+  controle des prompts n'y trouve aucune faute. Rien n'a ete paye.
+  Suite : en « Trouve ! », on demandait die Frau, on touchait Anna, et
+  l'etiquette disait « Anna · die Teilnehmerin » (Jacques). Elle dit
+  maintenant le mot DEMANDE -- « Anna · die Frau ». Le nom de base d'Anna
+  reste die Teilnehmerin. Et plus de liste « aussi » sous le nom : le crayon
+  dans la liste d'Anna ne voulait rien dire, et la liste melait tout. (Un premier
+  essai, mal compris, avait change ce nom de base et fait defiler les noms a
+  chaque toucher : defait.)
+  Suite : Jacques demande que chaque partie du corps soit bien accessible.
+  Le prompt degage maintenant chacune : visage tourne vers l'objectif, les
+  deux oreilles visibles, une bande de mur entre chaque bras et le corps, les
+  mains a une main des cuisses, les genoux un peu ecartes, les pieds separes.
+  La generation reste a faire depuis le PC (cle fal et photos de Mark).

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Choix de la séance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap">
+<!--
+  MAQUETTE de l'ecran de choix au debut de la seance du jour (6 oct. 2026).
+  Idee de Jacques : au lieu d'imposer la scene, on montre les deux activites
+  et on choisit en connaissance de cause. Un toucher sur un apercu lance
+  l'activite, sans bouton a confirmer.
+
+  Decisions de Jacques :
+  - LES DEUX ONT LE MEME POIDS : meme taille, meme forme.
+  - L'UNE SOUS L'AUTRE, pas cote a cote : sur le telephone, deux colonnes
+    rendaient chaque apercu trop petit.
+  - DES APERCUS FIXES, pas animes.
+  - LA SCENE SUIT LE NIVEAU : en A1 on trouve des mots ; en A2 les
+    prepositions (Wo?) ; en B1 stehen/stellen ; en B2 les relatives ; en C1
+    les hypotheses. Memes questions que le prototype (index.html,
+    constantes A2, B1, B2, C1).
+  - ET ELLE REVISE CE QUI PRECEDE : a partir de l'A2, une des 3 questions
+    vient d'un niveau d'avant (en B1 : les prepositions de l'A2). Jouer a
+    sa guise, a tous les niveaux, se fera dans un espace « Scenes » hors de
+    la seance.
+
+  L'ecran n'apparaitrait QUE les jours ou une scene est proposee ; les autres
+  jours, la seance va droit aux cartes, comme aujourd'hui. Quand il y aura
+  plusieurs scenes, l'apercu montre celle du jour : son image et ses
+  questions.
+-->
+<style>
+/* Deux apercus egaux empiles, au format 3:2. Couleurs et police de l'app :
+   encre, ambre, papier ; Bricolage Grotesque pour les titres. */
+:root{
+  --fond:#F7F3EC;
+  --surface:#FFFFFF;
+  --encre:#1C2430;
+  --texte-doux:#5B6272;
+  --ambre:#E8A23A;
+  --accent-texte:#8F560B;
+  --teinte:#F3ECDF;
+  --fond-cartes:#EDCF9B;
+  --bordure:#DCCBAA;
+  --ombre:rgba(30,41,59,.12);
+  --der:#2D5DA8; --die:#C2412D; --das:#2F7D57;
+  --titre:"Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --corps:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fond:#000000; --surface:#14181F; --encre:#F2F2F6; --texte-doux:#A9AEBC;
+    --ambre:#E8A23A; --accent-texte:#F0B456; --teinte:#2A2418; --fond-cartes:#4A3818;
+    --bordure:rgba(232,162,58,.45); --ombre:rgba(0,0,0,.5);
+    --der:#86A8E8; --die:#F08A78; --das:#74C69D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#000000; --surface:#14181F; --encre:#F2F2F6; --texte-doux:#A9AEBC;
+  --ambre:#E8A23A; --accent-texte:#F0B456; --teinte:#2A2418; --fond-cartes:#4A3818;
+  --bordure:rgba(232,162,58,.45); --ombre:rgba(0,0,0,.5);
+  --der:#86A8E8; --die:#F08A78; --das:#74C69D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--fond);color:var(--encre);font-family:var(--corps);margin:0}
+.page{max-width:430px;margin:0 auto;padding-inline:16px;padding-block:18px 28px;
+  display:flex;flex-direction:column;gap:14px}
+
+.entete{display:flex;flex-direction:column;gap:4px}
+.surtitre{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-texte)}
+h1{font-family:var(--titre);font-weight:750;font-size:26px;line-height:1.1;margin:0;text-wrap:balance}
+.compte{font-size:14px;color:var(--texte-doux);font-variant-numeric:tabular-nums}
+
+.duo{display:flex;flex-direction:column;gap:12px}
+
+/* un apercu = un grand bouton ; les deux sont identiques de forme */
+.choix{display:flex;flex-direction:column;min-width:0;width:100%;border:0;padding:0;margin:0;text-align:left;cursor:pointer;
+  background:var(--surface);color:var(--encre);border-radius:18px;overflow:hidden;
+  box-shadow:0 8px 24px var(--ombre);font:inherit;text-decoration:none;
+  transition:transform .15s ease;-webkit-tap-highlight-color:transparent}
+.choix:active{transform:scale(.985)}
+.choix:focus-visible{outline:3px solid var(--ambre);outline-offset:3px}
+.vue{position:relative;width:100%;max-width:100%;aspect-ratio:3/2;overflow:hidden}
+.legende{padding:10px 14px 12px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.legende .nom{font-family:var(--titre);font-weight:700;font-size:18px;line-height:1.15}
+.legende .detail{font-size:13px;line-height:1.35;color:var(--texte-doux);font-variant-numeric:tabular-nums}
+
+/* --- la scene : une bande de l'image (37,2 % de sa hauteur, au format
+   3:2), centree sur l'objet de la question --- */
+.vue.scene{background:#2a2a2a}
+.toile{position:absolute;left:0;width:100%;height:268.8%}
+.toile img{position:absolute;inset:0;width:100%;height:100%;display:block;max-width:none}
+.anneau{position:absolute;border-radius:8px;pointer-events:none;
+  box-shadow:0 0 0 2.5px var(--ambre), 0 0 14px 3px rgba(232,162,58,.75)}
+.consigne{position:absolute;left:10px;right:10px;bottom:10px}
+.consigne > span{display:inline-block;max-width:100%;background:rgba(251,247,239,.95);color:#1C2430;border-radius:10px;padding:6px 10px;
+  font-size:13.5px;font-weight:650;line-height:1.25;box-shadow:0 3px 12px rgba(0,0,0,.3)}
+.consigne small{display:block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8F560B}
+.etiquette{position:absolute;transform:translate(-50%,-100%);background:#fff;color:#1C2430;border-radius:9px;
+  padding:4px 9px 5px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.35);font-size:13px;text-align:center}
+.etiquette .fr{display:block;font-size:11px;color:#556}
+.etiquette .ok{color:#15803D;font-weight:800;margin-right:3px}
+.g-der{color:#2D5DA8} .g-die{color:#C2412D} .g-das{color:#2F7D57}
+.etiquette b{font-weight:800}
+
+/* --- les cartes : le recto et le verso d'une meme carte, une fleche de
+   retournement entre les deux --- */
+/* un fond franc, l'ambre de la marque : sans lui, les deux apercus se
+   distinguaient mal (Jacques) */
+.vue.cartes{display:flex;align-items:center;justify-content:center;gap:4%;background:var(--fond-cartes);padding:0 6%}
+.face{flex:1 1 0;min-width:0;aspect-ratio:4/3;border-radius:14px;background:var(--surface);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px;
+  border:1px solid var(--bordure);box-shadow:0 6px 16px var(--ombre)}
+.face.avant{transform:rotate(-3deg);box-shadow:inset 0 5px 0 var(--das), 0 6px 16px var(--ombre)}
+.face.dos{transform:rotate(3deg)}
+.face .mot{font-family:var(--titre);font-weight:700;font-size:18px;text-align:center;line-height:1.15}
+.face .art{font-weight:800;color:var(--das)}
+.face .indice{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--texte-doux)}
+.retour{flex:none;width:30px;height:30px;color:var(--accent-texte)}
+
+/* la commande de la maquette : le niveau */
+.essai{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  border-top:1px solid var(--bordure);padding-top:12px}
+.essai .lib{font-size:13px;font-weight:600}
+.bascule{display:flex;background:var(--teinte);border-radius:999px;padding:3px;gap:2px}
+.bascule button{border:0;background:transparent;color:var(--encre);font:600 13px var(--corps);
+  padding:7px 12px;border-radius:999px;cursor:pointer;min-width:40px}
+.bascule button[aria-pressed="true"]{background:var(--encre);color:var(--fond)}
+.bascule button:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
+.note{font-size:13px;line-height:1.5;color:var(--texte-doux)}
+.note p{margin:0 0 6px}
+.note strong{color:var(--encre)}
+
+/* l'ecran d'apres : la maquette s'arrete la */
+.ensuite{position:fixed;inset:0;display:grid;place-items:center;padding:24px;background:rgba(0,0,0,.55);z-index:10}
+.ensuite[hidden]{display:none}
+.ensuite .boite{background:var(--surface);color:var(--encre);border-radius:18px;padding:20px;max-width:340px;
+  display:flex;flex-direction:column;gap:12px;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.ensuite h2{font-family:var(--titre);font-size:20px;margin:0}
+.ensuite p{margin:0;font-size:14px;line-height:1.5;color:var(--texte-doux)}
+.ensuite button{border:0;border-radius:12px;padding:11px 14px;font:700 14px var(--corps);cursor:pointer;
+  background:var(--teinte);color:var(--encre)}
+
+@media (prefers-reduced-motion: reduce){ .choix{transition:none} }
+</style>
+
+</head>
+<body>
+<main class="page">
+  <header class="entete">
+    <div class="surtitre">Ma séance du jour</div>
+    <h1>Par quoi commences-tu ?</h1>
+    <div class="compte">18 cartes et une scène aujourd'hui</div>
+  </header>
+
+  <div class="duo">
+    <a class="choix" id="choixScene" href="index.html" aria-label="Commencer par la scène : la classe de Mark et Anna">
+      <div class="vue scene" aria-hidden="true">
+        <div class="toile" id="toile">
+          <img src="klassenzimmer.webp" alt="">
+          <div class="anneau" id="anneau"></div>
+          <div class="etiquette" id="etiquette"></div>
+        </div>
+        <div class="consigne"><span><small id="consigneTitre">Trouve</small><span id="consigneTexte">der Rucksack</span></span></div>
+      </div>
+      <div class="legende">
+        <div class="nom">La scène</div>
+        <div class="detail" id="sceneDetail">La classe de Mark et Anna · trouve 3 mots</div>
+      </div>
+    </a>
+
+    <button type="button" class="choix" id="choixCartes" aria-label="Commencer par les cartes : 18 cartes">
+      <div class="vue cartes" aria-hidden="true">
+        <div class="face avant"><span class="indice">Allemand</span><span class="mot"><span class="art">das</span> Fenster</span></div>
+        <svg class="retour" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4"/><path d="M20 12a8 8 0 0 1-14 5.3"/><path d="M6 21v-4h4"/>
+        </svg>
+        <div class="face dos"><span class="indice">Français</span><span class="mot">la fenêtre</span></div>
+      </div>
+      <div class="legende">
+        <div class="nom">Les cartes</div>
+        <div class="detail">18 cartes · révisions, puis mots nouveaux</div>
+      </div>
+    </button>
+  </div>
+
+  <div class="essai">
+    <span class="lib" id="libNiveau">Niveau de la séance</span>
+    <div class="bascule" role="group" aria-labelledby="libNiveau" id="niveaux"></div>
+  </div>
+
+  <section class="note">
+    <p><strong>Maquette.</strong> Ce choix de niveau n'existe que dans la maquette : dans l'app, la scène prend le niveau de la séance, sans le demander. Touche la scène pour ouvrir le prototype de la classe ; les cartes s'arrêtent à un message.</p>
+    <p>Cet écran n'apparaîtrait que les jours où une scène est proposée. Les autres jours, la séance irait droit aux cartes, comme aujourd'hui.</p>
+  </section>
+</main>
+
+<div class="ensuite" id="ensuite" hidden>
+  <div class="boite" role="dialog" aria-modal="true" aria-labelledby="ensuiteTitre">
+    <h2 id="ensuiteTitre">Ici commencent tes cartes</h2>
+    <p id="ensuiteTexte">Dans l'app, la séance démarrerait tout de suite sur la première carte. La maquette s'arrête là.</p>
+    <button type="button" id="ensuiteRetour">Revenir au choix</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Par niveau : la premiere question de la couche, posee et resolue.
+  // Questions reprises du prototype ; boites de scene-klassenzimmer.js, en %
+  // de l'image : [x, y, largeur, hauteur]. `rep` est la reponse affichee.
+  var NIVEAUX = {
+    A1:{detail:"trouve 3 mots", titre:"Trouve", texte:"der Rucksack", b:[61,66.4,15.9,12.6],
+        rep:'<b class="g-der">der</b> <b>Rucksack</b><span class="fr">sac à dos</span>'},
+    A2:{detail:"Wo ? Les prépositions · 3 questions, dont 1 révision", titre:"Wo?", texte:"Wo ist der Rucksack?", b:[61,66.4,15.9,12.6],
+        rep:"<b>unter dem Tisch</b>"},
+    B1:{detail:"stehen ou stellen ? · 3 questions, dont 1 révision", titre:"Complète", texte:"Das Handy ___ auf dem Schreibtisch.", b:[12.5,68.8,12.5,3.4],
+        rep:"<b>liegt</b>"},
+    B2:{detail:"Les relatives · 3 questions, dont 1 révision", titre:"Complète", texte:"Die Teilnehmerin, ___ Heft offen auf dem Tisch liegt, heißt Anna.", b:[53.5,56,16.5,2.6],
+        rep:"<b>deren</b>"},
+    C1:{detail:"Les hypothèses · 3 questions, dont 1 révision", titre:"Complète", texte:"Mark und Anna ___ sich kennen.", b:[64,44.2,9.5,5.8],
+        rep:"<b>müssen</b>"}
+  };
+  var BANDE = 37.2; // la hauteur montree, en % de l'image (format 3:2)
+  var $ = function(id){ return document.getElementById(id); };
+  var niveau = "A1";
+
+  function regler(){
+    var c = NIVEAUX[niveau], b = c.b;
+    // La bande suit l'objet : il se tient un peu au-dessus du milieu, la
+    // consigne occupe le bas.
+    var debut = Math.min(Math.max(b[1] + b[3] / 2 - BANDE * 0.42, 0), 100 - BANDE);
+    $("toile").style.top = (-debut / BANDE * 100) + "%";
+    $("consigneTitre").textContent = c.titre;
+    $("consigneTexte").textContent = c.texte;
+    var a = $("anneau");
+    a.style.left = b[0] + "%"; a.style.top = b[1] + "%"; a.style.width = b[2] + "%"; a.style.height = b[3] + "%";
+    var e = $("etiquette");
+    e.style.left = Math.min(Math.max(b[0] + b[2] / 2, 15), 85) + "%";
+    e.style.top = (b[1] - 0.5) + "%";
+    e.innerHTML = '<span class="ok">✓</span>' + c.rep;
+    $("sceneDetail").textContent = "La classe de Mark et Anna · " + c.detail;
+    Array.prototype.forEach.call($("niveaux").children, function(x){ x.setAttribute("aria-pressed", x.textContent === niveau); });
+  }
+  Object.keys(NIVEAUX).forEach(function(n){
+    var x = document.createElement("button");
+    x.type = "button"; x.textContent = n;
+    x.addEventListener("click", function(){ niveau = n; regler(); });
+    $("niveaux").appendChild(x);
+  });
+  regler();
+
+  // Le toucher sur un apercu : la maquette s'arrete a un message. Publiee
+  // seule (sans le prototype a cote), la scene aussi : son lien vaut "#scene".
+  var ensuite = $("ensuite"), origine = null;
+  function montrer(titre, texte, depuis){
+    $("ensuiteTitre").textContent = titre; $("ensuiteTexte").textContent = texte;
+    origine = depuis; ensuite.hidden = false; $("ensuiteRetour").focus();
+  }
+  var scene = $("choixScene");
+  if(scene.getAttribute("href") === "#scene"){
+    scene.addEventListener("click", function(ev){
+      ev.preventDefault();
+      montrer("Ici commence la scène", "Dans l'app, la première question de ton niveau serait posée tout de suite. Trois questions, puis la séance passe toute seule aux cartes. La maquette s'arrête là.", scene);
+    });
+  }
+  var cartes = $("choixCartes");
+  cartes.addEventListener("click", function(){
+    montrer("Ici commencent tes cartes", "Dans l'app, la séance démarrerait tout de suite sur la première carte. La maquette s'arrête là.", cartes);
+  });
+  $("ensuiteRetour").addEventListener("click", function(){
+    ensuite.hidden = true; if(origine) origine.focus();
+  });
+})();
+</script>
+</body>
+</html>
