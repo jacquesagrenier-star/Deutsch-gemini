@@ -6,165 +6,69 @@
 <title>Kanji N5 à relire</title>
 <!-- Généré par construire.py : ne pas modifier à la main. -->
 <style>
-:root{--encre:#1C2430;--papier:#FBF8F2;--ambre:#E8A23A;--trait:#d9d2c3;--doux:#5b6470}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba}}
-:root[data-theme="dark"]{--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba}
+:root{--encre:#1C2430;--papier:#FBF8F2;--ambre:#E8A23A;--trait:#d9d2c3;--doux:#5b6470;--vert:#2f7a4d;--rouge:#a8402f}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba;--vert:#7cc79a;--rouge:#e8907f}}
+:root[data-theme="dark"]{--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba;--vert:#7cc79a;--rouge:#e8907f}
 *{box-sizing:border-box}
 body{margin:0;padding:24px 16px;background:var(--papier);color:var(--encre);font:16px/1.5 Georgia,"Times New Roman",serif}
-main{max-width:820px;margin:0 auto}
+main{max-width:860px;margin:0 auto}
 h1{font-size:1.5rem;margin:0 0 .25rem}
+h2{font-size:1.2rem;margin:2.5rem 0 .5rem}
 .intro{color:var(--doux);margin:0 0 1.5rem}
+.bilan{font-size:.95rem;margin:0 0 1.5rem}
 article{display:flex;gap:20px;border-top:1px solid var(--trait);padding:18px 0;break-inside:avoid;page-break-inside:avoid}
 .kanji{font-size:88px;line-height:1;min-width:110px;text-align:center;font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
 .corps{flex:1;min-width:0}
 .corps p{margin:.2rem 0}
 .tete{font-size:1.1rem}
 .tete i{color:var(--doux)}
-.comp,.ex,small{color:var(--doux);font-size:.9rem}
-.mnemo{font-size:1.05rem;margin:.5rem 0!important}
-.mnemo strong{background:linear-gradient(transparent 60%,color-mix(in srgb,var(--ambre) 45%,transparent) 60%)}
+.comp,.ex,small,.pourquoi{color:var(--doux);font-size:.9rem}
+.refus{color:var(--rouge);font-size:.95rem}
+.version{border-left:3px solid var(--trait);padding:.2rem 0 .2rem .8rem;margin:.7rem 0}
+.vtete{font-size:.95rem}
+.mnemo{font-size:1.05rem;margin:.35rem 0!important}
+strong{background:linear-gradient(transparent 60%,color-mix(in srgb,var(--ambre) 45%,transparent) 60%)}
+.note-son,.note-lien,.etat{display:inline-block;font:.78rem/1.6 system-ui,sans-serif;padding:0 .45rem;border:1px solid var(--trait);border-radius:3px;white-space:nowrap}
+.n-haute{color:var(--vert)} .n-basse{color:var(--rouge)} .n-moyenne{color:var(--doux)}
+.e-ok{color:var(--vert)} .e-non{color:var(--rouge)} .e-att{color:var(--doux)}
 .k{opacity:.8}
-.cases{display:flex;gap:28px;margin-top:.6rem!important;flex-wrap:wrap}
+.cases{display:flex;gap:28px;margin-top:.4rem!important;flex-wrap:wrap}
 .case{display:inline-block;width:16px;height:16px;border:1.5px solid var(--encre);vertical-align:-2px;margin-right:6px}
-.note{color:var(--doux);border-bottom:1px dotted var(--trait);padding-bottom:1.2rem}
-@media (max-width:520px){article{flex-direction:column;gap:6px}.kanji{text-align:left;font-size:72px}}
-@media print{body{background:#fff;color:#000}}
+.remarque{color:var(--doux);border-bottom:1px dotted var(--trait);padding-bottom:1.2rem}
+.tableau{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+td{border-top:1px solid var(--trait);padding:.45rem .4rem;vertical-align:top}
+td.tk{font-size:1.8rem;line-height:1.1;font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
+td i{color:var(--doux)}
+@media (max-width:520px){article{flex-direction:column;gap:6px}.kanji{text-align:left;font-size:72px}td{padding:.35rem .25rem}}
+@media print{body{background:#fff;color:#000}.tableau{overflow:visible}}
 </style>
 </head>
 <body>
 <main>
-<h1>Kanji N5 : 20 mnémotechniques à juger</h1>
-<p class="intro">Brouillon à relire. Pour chaque kanji : est-ce que la phrase française fait <em>entendre</em> la lecture (le morceau souligné) et <em>voir</em> le sens ? Cochez, annotez, imprimez. Rien n'est envoyé. 20 kanji choisis pour varier : simples, composés, lectures on et kun, et trois de confiance basse.</p>
-<article>
-  <div class=kanji lang=ja>一</div>
-  <div class=corps>
-    <p class=tete><b>un</b> · <span lang=ja>イチ</span> <i>ichi</i> <small>(lecture on, 3 mots N5)</small></p>
-    <p class=comp>Composants : 一 planche</p>
-    <p class=mnemo>Une seule planche, et posé dessus un seul <strong>litchi</strong> (ichi) : un, pas deux.</p>
-    <p class=ex lang=ja>一 <span class=k>いち</span> · 一日 <span class=k>いちにち</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>山</div>
-  <div class=corps>
-    <p class=tete><b>montagne</b> · <span lang=ja>やま</span> <i>yama</i> <small>(lecture kun, 1 mot N5)</small></p>
-    <p class=comp>Composants : 山 montagne</p>
-    <p class=mnemo>« Il <strong>y a ma</strong> (yama) cabane, là-haut sur la montagne ! »</p>
-    <p class=ex lang=ja>山 <span class=k>やま</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>火</div>
-  <div class=corps>
-    <p class=tete><b>feu</b> · <span lang=ja>カ</span> <i>ka</i> <small>(lecture on, 1 mot N5)</small></p>
-    <p class=comp>Composants : 火 feu de camp</p>
-    <p class=mnemo>Sur le feu de camp, une <strong>ca</strong>sserole (ka) qui déborde.</p>
-    <p class=ex lang=ja>火曜日 <span class=k>かようび</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>大</div>
-  <div class=corps>
-    <p class=tete><b>grand</b> · <span lang=ja>タイ</span> <i>tai</i> <small>(lecture on, 3 mots N5)</small></p>
-    <p class=comp>Composants : 大 géant</p>
-    <p class=mnemo>Un géant, bras et jambes écartés : c&#x27;est un grand boxeur <strong>thaï</strong> (tai).</p>
-    <p class=ex lang=ja>大切 <span class=k>たいせつ</span> · 大変 <span class=k>たいへん</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>中</div>
-  <div class=corps>
-    <p class=tete><b>milieu</b> · <span lang=ja>なか</span> <i>naka</i> <small>(lecture kun, 1 mot N5)</small></p>
-    <p class=comp>Composants : 口 bouche, 丨 bâton</p>
-    <p class=mnemo>Un bâton planté en plein milieu de la bouche ? Il <strong>n&#x27;a qu&#x27;à</strong> (naka) mâcher autour.</p>
-    <p class=ex lang=ja>中 <span class=k>なか</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>出</div>
-  <div class=corps>
-    <p class=tete><b>sortir</b> · <span lang=ja>で</span> <i>de</i> <small>(lecture kun, 4 mots N5)</small></p>
-    <p class=comp>Composants : 山 montagne, 凵 bac</p>
-    <p class=mnemo>Une montagne posée sur un bac : on la secoue pour la faire sortir comme un <strong>dé</strong> (de) du gobelet.</p>
-    <p class=ex lang=ja>出口 <span class=k>でぐち</span> · 出る <span class=k>でる</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>北</div>
-  <div class=corps>
-    <p class=tete><b>nord</b> · <span lang=ja>きた</span> <i>kita</i> <small>(lecture kun, 1 mot N5)</small></p>
-    <p class=comp>Composants : 匕 cuillère</p>
-    <p class=mnemo>Deux silhouettes dos à dos, une cuillère à la main : « <strong>Qui t&#x27;a</strong> (kita) envoyé au nord avec ça ? »</p>
-    <p class=ex lang=ja>北 <span class=k>きた</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>休</div>
-  <div class=corps>
-    <p class=tete><b>repos</b> · <span lang=ja>やす</span> <i>yasu</i> <small>(lecture kun, 3 mots N5)</small></p>
-    <p class=comp>Composants : 亻 passant, 木 arbre</p>
-    <p class=mnemo>Un passant s&#x27;adosse à un arbre : repos ! Il <strong>y a, sous</strong> (yasu) l&#x27;arbre, une ombre parfaite.</p>
-    <p class=ex lang=ja>休み <span class=k>やすみ</span> · 休む <span class=k>やすむ</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
+<h1>Kanji N5 : lot 1, les quatre réécritures du pilote</h1>
+<p class="intro">Brouillon à relire. Chaque mnémotechnique a deux notes : <b>son</b> (le morceau souligné fait-il entendre la lecture ?) et <b>lien</b> (l'image mène-t-elle d'elle-même au sens ?). Une mnémotechnique n'est proposée que si les deux valent au moins « moyenne ». Cochez, annotez, imprimez. Rien n'est envoyé.</p>
+<p class="bilan">Les 79 kanji : validée 16 · à juger 44 · à réécrire 15 · refusée 4.</p>
 <article>
   <div class=kanji lang=ja>男</div>
   <div class=corps>
     <p class=tete><b>homme</b> · <span lang=ja>おとこ</span> <i>otoko</i> <small>(lecture kun, 2 mots N5)</small></p>
     <p class=comp>Composants : 田 rizière, 力 muscle</p>
-    <p class=mnemo>Un homme bande le muscle au-dessus de la rizière, couvert d&#x27;<strong>autoco</strong>llants (otoko).</p>
+    <p class=refus>Refusé le 2026-10-04 : <s>Un homme bande le muscle au-dessus de la rizière, couvert d&#x27;<strong>autoco</strong>llants (otoko).</s></p>
+    <div class=version>
+      <p class=vtete><b>Version 1</b> <span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></p>
+      <p class=mnemo>Dans la rizière, un homme bande le muscle : c&#x27;est <strong>Otto, co</strong>staud (otoko) comme un bœuf.</p>
+      <p class=pourquoi>Son : « Otto, co(staud) » se dit [oto ko], soit おとこ, sans couper un mot en deux.<br>Lien : Otto est un prénom d&#x27;homme, et l&#x27;homme qui met son muscle dans la rizière, c&#x27;est le dessin du kanji (champ + force).</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
+    <div class=version>
+      <p class=vtete><b>Version 2</b> <span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></p>
+      <p class=mnemo>Un homme sort de la rizière en portant sa <strong>moto co</strong>mme (otoko) un sac de riz : quel muscle !</p>
+      <p class=pourquoi>Son : « moto co(mme) » contient [otoko] d&#x27;un seul souffle.<br>Lien : la force dit « homme » par cliché seulement : rien dans la moto n&#x27;est propre à un homme.</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
     <p class=ex lang=ja>男 <span class=k>おとこ</span> · 男の子 <span class=k>おとこのこ</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>東</div>
-  <div class=corps>
-    <p class=tete><b>Est</b> · <span lang=ja>ひがし</span> <i>higashi</i> <small>(lecture kun, 1 mot N5)</small></p>
-    <p class=comp>Composants : 木 arbre, 日 soleil</p>
-    <p class=mnemo>Le soleil se lève à l&#x27;Est derrière l&#x27;arbre, et <strong>il gâchi</strong>t (higashi) ma grasse matinée.</p>
-    <p class=ex lang=ja>東 <span class=k>ひがし</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>高</div>
-  <div class=corps>
-    <p class=tete><b>haut</b> · <span lang=ja>たか</span> <i>taka</i> <small>(lecture kun, 1 mot N5)</small></p>
-    <p class=comp>Composants : 亠 couvercle, 口 bouche, 冋 fenêtre</p>
-    <p class=mnemo>Un couvercle, une bouche, une fenêtre empilés tout en haut : tu veux voir ? <strong>T&#x27;as qu&#x27;à</strong> (taka) lever la tête.</p>
-    <p class=ex lang=ja>高い <span class=k>たかい</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>今</div>
-  <div class=corps>
-    <p class=tete><b>maintenant</b> · <span lang=ja>コン</span> <i>kon</i> <small>(lecture on, 3 mots N5)</small></p>
-    <p class=comp>Composants : 人 bonhomme, 一 planche</p>
-    <p class=mnemo>Un bonhomme s&#x27;abrite sous une planche en forme de <strong>cône</strong> (kon) : il pleut maintenant.</p>
-    <p class=ex lang=ja>今月 <span class=k>こんげつ</span> · 今週 <span class=k>こんしゅう</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
+    <p class=remarque>Remarque :</p>
   </div>
 </article>
 <article>
@@ -172,10 +76,21 @@ article{display:flex;gap:20px;border-top:1px solid var(--trait);padding:18px 0;b
   <div class=corps>
     <p class=tete><b>ciel</b> · <span lang=ja>テン</span> <i>ten</i> <small>(lecture on, 1 mot N5)</small></p>
     <p class=comp>Composants : 一 planche, 大 géant</p>
-    <p class=mnemo>Un géant lève une planche au-dessus de sa tête et l&#x27;envoie au ciel : un smash de <strong>ten</strong>nis (ten) !</p>
+    <p class=refus>Refusé le 2026-10-04 : <s>Un géant lève une planche au-dessus de sa tête et l&#x27;envoie au ciel : un smash de <strong>ten</strong>nis (ten) !</s></p>
+    <div class=version>
+      <p class=vtete><b>Version 1</b> <span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></p>
+      <p class=mnemo>Comme Atlas, un géant porte le ciel sur une planche, au-dessus d&#x27;A<strong>thènes</strong> (ten).</p>
+      <p class=pourquoi>Son : « -thènes » se dit [tɛn] et porte l&#x27;accent du mot, comme toute fin de mot en français.<br>Lien : Atlas, le géant qui porte le ciel, est exactement le dessin : un géant sous une barre. Athènes n&#x27;est que le lieu.</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
+    <div class=version>
+      <p class=vtete><b>Version 2</b> <span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></p>
+      <p class=mnemo>Un géant brandit une planche vers le ciel pour décrocher une étoile loin<strong>taine</strong> (ten).</p>
+      <p class=pourquoi>Son : « -taine » se dit [tɛn], syllabe accentuée en fin de mot.<br>Lien : décrocher une étoile, c&#x27;est viser le ciel ; l&#x27;expression « décrocher les étoiles » est connue.</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
     <p class=ex lang=ja>天気 <span class=k>てんき</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
+    <p class=remarque>Remarque :</p>
   </div>
 </article>
 <article>
@@ -183,43 +98,21 @@ article{display:flex;gap:20px;border-top:1px solid var(--trait);padding:18px 0;b
   <div class=corps>
     <p class=tete><b>heure</b> · <span lang=ja>ジ</span> <i>ji</i> <small>(lecture on, 1 mot N5)</small></p>
     <p class=comp>Composants : 日 soleil, 寺 temple</p>
-    <p class=mnemo>Le soleil cogne sur le temple comme à <strong>Dji</strong>bouti (ji) : c&#x27;est l&#x27;heure de la sieste.</p>
+    <p class=refus>Refusé le 2026-10-04 : <s>Le soleil cogne sur le temple comme à <strong>Dji</strong>bouti (ji) : c&#x27;est l&#x27;heure de la sieste.</s></p>
+    <div class=version>
+      <p class=vtete><b>Version 1</b> <span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></p>
+      <p class=mnemo>Au temple, l&#x27;ombre du soleil sur le cadran marque l&#x27;heure de la prière : « C&#x27;est l&#x27;heure, <strong>j&#x27;y</strong> (ji) vais ! »</p>
+      <p class=pourquoi>Son : « j&#x27;y » est une syllabe entière, sans coupure, mais le j français [ʒ] est plus mou que le j japonais [dʑ].<br>Lien : le cadran solaire du temple donne l&#x27;heure, et « c&#x27;est l&#x27;heure, j&#x27;y vais » est une phrase toute faite.</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
+    <div class=version>
+      <p class=vtete><b>Version 2</b> <span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></p>
+      <p class=mnemo>Le temple est une horloge <strong>gi</strong>gantesque (ji) : le soleil en est l&#x27;aiguille, et son ombre marque l&#x27;heure.</p>
+      <p class=pourquoi>Son : « gi- » se dit [ʒi] : même j mou qu&#x27;à la version 1.<br>Lien : soleil + temple = un cadran solaire géant ; une horloge donne l&#x27;heure.</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
     <p class=ex lang=ja>時間 <span class=k>じかん</span> · 時々 <span class=k>ときどき</span> <small>(autre lecture)</small></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>毎</div>
-  <div class=corps>
-    <p class=tete><b>chaque</b> · <span lang=ja>マイ</span> <i>mai</i> <small>(lecture on, 8 mots N5)</small></p>
-    <p class=comp>Composants : 𠂉 plumet, 毋 coffre</p>
-    <p class=mnemo>Un plumet sur un coffre : chaque jour, on y range un épi de <strong>maïs</strong> (mai).</p>
-    <p class=ex lang=ja>毎朝 <span class=k>まいあさ</span> · 毎月 <span class=k>まいげつ</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>間</div>
-  <div class=corps>
-    <p class=tete><b>intervalle</b> · <span lang=ja>カン</span> <i>kan</i> <small>(lecture on, 1 mot N5)</small></p>
-    <p class=comp>Composants : 門 portail, 日 soleil</p>
-    <p class=mnemo>Le soleil passe par l&#x27;intervalle entre les battants du portail, et une <strong>cane</strong> (kan) s&#x27;y faufile.</p>
-    <p class=ex lang=ja>時間 <span class=k>じかん</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>電</div>
-  <div class=corps>
-    <p class=tete><b>électricité</b> · <span lang=ja>デン</span> <i>den</i> <small>(lecture on, 3 mots N5)</small></p>
-    <p class=comp>Composants : 雨 pluie, 日 soleil</p>
-    <p class=mnemo>La pluie tombe sur le soleil : l&#x27;électricité jaillit et l&#x27;éclair frappe <strong>Den</strong>ver (den).</p>
-    <p class=ex lang=ja>電気 <span class=k>でんき</span> · 電車 <span class=k>でんしゃ</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
+    <p class=remarque>Remarque :</p>
   </div>
 </article>
 <article>
@@ -227,34 +120,105 @@ article{display:flex;gap:20px;border-top:1px solid var(--trait);padding:18px 0;b
   <div class=corps>
     <p class=tete><b>quoi</b> · <span lang=ja>なん</span> <i>nan</i> <small>(lecture kun, 1 mot N5)</small></p>
     <p class=comp>Composants : 亻 passant, 可 tampon</p>
-    <p class=mnemo>Un passant devant un tampon : « Quoi ? Encore un formulaire ? <strong>Nan</strong> (nan) ! »</p>
+    <p class=refus>Refusé le 2026-10-04 : <s>Un passant devant un tampon : « Quoi ? Encore un formulaire ? <strong>Nan</strong> (nan) ! »</s></p>
+    <div class=version>
+      <p class=vtete><b>Version 1</b> <span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></p>
+      <p class=mnemo>Un passant lit le tampon sur son colis : « Livré à <strong>Nan</strong>tes (nan) ? Quoi ? Mais j&#x27;habite à Lyon ! »</p>
+      <p class=pourquoi>Son : même défaut que la version refusée : « Nan- » est nasal [nɑ̃], なん a un a oral.<br>Lien : une mauvaise adresse tamponnée sur un colis appelle tout seul « Quoi ? ».</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
+    <div class=version>
+      <p class=vtete><b>Version 2</b> <span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></p>
+      <p class=mnemo>Un passant trouve un tampon sur sa ba<strong>nane</strong> (nan) : « Quoi ? Même les fruits ont des papiers ? »</p>
+      <p class=pourquoi>Son : « -nane » se dit [nan], a oral suivi d&#x27;un n, comme なん.<br>Lien : un tampon sur un fruit surprend et appelle « quoi ? », mais la banane n&#x27;a pas de lien propre avec la question.</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>
     <p class=ex lang=ja>何 <span class=k>なん</span> · 何時 <span class=k>いつ</span> <small>(lecture spéciale)</small></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
+    <p class=remarque>Remarque :</p>
   </div>
 </article>
-<article>
-  <div class=kanji lang=ja>九</div>
-  <div class=corps>
-    <p class=tete><b>neuf</b> · <span lang=ja>ここの</span> <i>kokono</i> <small>(lecture kun, 2 mots N5)</small></p>
-    <p class=comp>Composants : 丿 toboggan, 乙 hameçon</p>
-    <p class=mnemo>Neuf singes descendent le toboggan, un hameçon à la main, pour repêcher une noix de <strong>coco no</strong>yée (kokono).</p>
-    <p class=ex lang=ja>九日 <span class=k>ここのか</span> · 九つ <span class=k>ここのつ</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
-<article>
-  <div class=kanji lang=ja>白</div>
-  <div class=corps>
-    <p class=tete><b>blanc</b> · <span lang=ja>しろ</span> <i>shiro</i> <small>(lecture kun, 2 mots N5)</small></p>
-    <p class=comp>Composants : 日 soleil</p>
-    <p class=mnemo>Un soleil coiffé d&#x27;une goutte : c&#x27;est un bonbon blanc nappé de <strong>sirop</strong> (shiro).</p>
-    <p class=ex lang=ja>白 <span class=k>しろ</span> · 白い <span class=k>しろい</span></p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
-  </div>
-</article>
+<h2>Les 79 kanji, texte retenu</h2>
+<div class="tableau"><table>
+<tr><td class=tk lang=ja>一</td><td>un<br><i>ichi</i></td><td>Une seule planche, et posé dessus un seul <strong>litchi</strong> (ichi) : un, pas deux.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>七</td><td>sept<br><i>nana</i></td><td>Un hameçon traverse la planche ; on y a piqué un <strong>ananas</strong> (nana) en guise d&#x27;appât, et sept poissons ont mordu.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>万</td><td>myriade<br><i>man</i></td><td>Sous une planche, une myriade de boutons : c&#x27;est la <strong>manette</strong> (man) d&#x27;une console qui compte dix mille jeux.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>三</td><td>trois<br><i>mi</i></td><td>Une planche, une planche, encore une planche : un sandwich de trois couches de pain de <strong>mie</strong> (mi).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>上</td><td>au-dessus<br><i>jō</i></td><td>Une baguette plantée au-dessus de la planche, avec au bout un drapeau <strong>jau</strong>ne (jō) qui flotte.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>下</td><td>bas<br><i>ka</i></td><td>Une baguette pend sous la planche, tout en bas : on y a suspendu un sac de <strong>ca</strong>fé (ka).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>中</td><td>milieu<br><i>naka</i></td><td>Un bâton planté en plein milieu de la bouche ? Il <strong>n&#x27;a qu&#x27;à</strong> (naka) mâcher autour.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>九</td><td>neuf<br><i>kokono</i></td><td>Neuf singes descendent le toboggan, un hameçon à la main, pour repêcher une noix de <strong>coco no</strong>yée (kokono).</td><td><span class="note-son n-basse">son basse</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>二</td><td>deux<br><i>futa</i></td><td>Une étagère à deux niveaux : on y range les trophées du <strong>foot à</strong> deux (futa).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>五</td><td>cinq<br><i>itsu</i></td><td>Sur l&#x27;étagère tordue en zigzag, cinq disques d&#x27;or : des <strong>hits ou</strong> des flops (itsu) ? Cinq hits !</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>人</td><td>personne<br><i>ri</i></td><td>Un bonhomme qui marche jambes écartées : une personne qui <strong>rit</strong> (ri) toute seule.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>今</td><td>maintenant<br><i>kon</i></td><td>Un bonhomme s&#x27;abrite sous une planche en forme de <strong>cône</strong> (kon) : il pleut maintenant.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>休</td><td>repos<br><i>yasu</i></td><td>Un passant s&#x27;adosse à un arbre : repos ! Il <strong>y a, sous</strong> (yasu) l&#x27;arbre, une ombre parfaite.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>何</td><td>quoi<br><i>nan</i></td><td>Un passant devant un tampon : « Quoi ? Encore un formulaire ? <strong>Nan</strong> (nan) ! »</td><td><span class="note-son n-basse">son basse</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">refusée</span></td></tr>
+<tr><td class=tk lang=ja>先</td><td>avant<br><i>sen</i></td><td>Deux jambes foncent en avant pour arriver les premières sur la <strong>scène</strong> (sen).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>入</td><td>entrer<br><i>i</i></td><td>Une flèche pointée vers le sol : elle veut <strong>y</strong> (i) entrer, la pointe la première.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>八</td><td>huit<br><i>ya</i></td><td>Une moustache pleine de <strong>ya</strong>ourt (ya) : il en a mangé huit pots.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>六</td><td>six<br><i>mu</i></td><td>Sous un couvercle, une moustache où six <strong>mou</strong>ches (mu) se sont posées.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>円</td><td>rond<br><i>maru</i></td><td>J&#x27;ai posé <strong>ma roue</strong> (maru) dans un cadre : elle y tourne en rond.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>出</td><td>sortir<br><i>de</i></td><td>Une montagne posée sur un bac : on la secoue pour la faire sortir comme un <strong>dé</strong> (de) du gobelet.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>前</td><td>devant<br><i>mae</i></td><td>Devant l&#x27;orchestre, un <strong>mae</strong>stro (mae) à moustache brandit un couteau au clair de lune.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>北</td><td>nord<br><i>kita</i></td><td>Deux silhouettes dos à dos, une cuillère à la main : « <strong>Qui t&#x27;a</strong> (kita) envoyé au nord avec ça ? »</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>十</td><td>dix<br><i>tō</i></td><td>Une croix sur le calendrier pour chacun des dix jours où l&#x27;on s&#x27;est levé trop <strong>tôt</strong> (tō).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>千</td><td>mille<br><i>sen</i></td><td>Un toboggan au-dessus d&#x27;une croix : mille enfants glissent jusque dans la <strong>Seine</strong> (sen).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>午</td><td>midi<br><i>go</i></td><td>À midi pile, l&#x27;antenne de la cantine annonce : « <strong>Gau</strong>fres (go) pour tous ! » et tout le monde file au toboggan.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>半</td><td>moitié<br><i>han</i></td><td>Une croix sciée en deux moitiés, une goutte sur l&#x27;étagère, et un <strong>hann</strong>eton (han) posé sur la moitié gauche.</td><td><span class="note-son n-basse">son basse</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>南</td><td>sud<br><i>minami</i></td><td>Une croix dans un cadre, sous une antenne : la carte au trésor. Au sud, une <strong>mine, ami</strong> (minami) !</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>友</td><td>ami<br><i>tomo</i></td><td>Un bras posé sur un tabouret : c&#x27;est mon ami <strong>Tom, au</strong> (tomo) comptoir.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>右</td><td>droite<br><i>migi</i></td><td>« A<strong>mi, gui</strong>de-moi (migi) ! » : à droite, sous l&#x27;auvent, la bouche du métro.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>名</td><td>nom<br><i>mei</i></td><td>Au crépuscule, une bouche crie ton nom dans le champ de <strong>maïs</strong> (mei).</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>四</td><td>quatre<br><i>yo</i></td><td>Dans un enclos, quatre jambes font du <strong>yo</strong>ga (yo).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>国</td><td>pays<br><i>koku</i></td><td>Un joyau dans un enclos : le trésor du pays, que le <strong>coq cou</strong>ronné (koku) garde jour et nuit.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>土</td><td>sol<br><i>do</i></td><td>Allongé sur le sol, le <strong>dos</strong> (do) dans la terre.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>外</td><td>extérieur<br><i>gai</i></td><td>Au crépuscule, un <strong>gai</strong>llard (gai) sort à l&#x27;extérieur en agitant sa baguette.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>大</td><td>grand<br><i>tai</i></td><td>Un géant, bras et jambes écartés : c&#x27;est un grand boxeur <strong>thaï</strong> (tai).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>天</td><td>ciel<br><i>ten</i></td><td>Un géant lève une planche au-dessus de sa tête et l&#x27;envoie au ciel : un smash de <strong>ten</strong>nis (ten) !</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">refusée</span></td></tr>
+<tr><td class=tk lang=ja>女</td><td>femme<br><i>onna</i></td><td>Une femme assise, jambes croisées, qui chante comme Mad<strong>onna</strong> (onna).</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>子</td><td>enfant<br><i>ko</i></td><td>Un enfant emmailloté tend les bras vers son <strong>co</strong>pain (ko).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>学</td><td>étudier<br><i>gaku</i></td><td>Sous un capot qui crache des étincelles, un enfant au lieu d&#x27;étudier prépare un <strong>gag cou</strong>rt (gaku) pour la classe.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>小</td><td>petit<br><i>chii</i></td><td>Trois miettes, un tout petit apéro : « <strong>Tchi</strong>n (chii) ! »</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>山</td><td>montagne<br><i>yama</i></td><td>« Il <strong>y a ma</strong> (yama) cabane, là-haut sur la montagne ! »</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>川</td><td>rivière<br><i>kawa</i></td><td>Trois traits qui coulent : une rivière de <strong>kawa</strong> (kawa), le café en argot.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>左</td><td>gauche<br><i>hidari</i></td><td>Le maçon tient la poutre de la main gauche et crie au collègue : « <strong>Hi, Dari</strong>o (hidari) ! »</td><td><span class="note-son n-basse">son basse</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>年</td><td>année<br><i>nen</i></td><td>Chaque année, la poupée <strong>Nén</strong>ette (nen) descend le toboggan accrochée à l&#x27;antenne.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>後</td><td>après<br><i>go</i></td><td>Sur le sentier, un traînard tire un fil derrière lui : il arrive après tout le monde, son <strong>go</strong>belet (go) vide.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>日</td><td>jour<br><i>bi</i></td><td>Chaque jour, le soleil fait un <strong>bi</strong>sou (bi) à la fenêtre.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>時</td><td>heure<br><i>ji</i></td><td>Le soleil cogne sur le temple comme à <strong>Dji</strong>bouti (ji) : c&#x27;est l&#x27;heure de la sieste.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">refusée</span></td></tr>
+<tr><td class=tk lang=ja>書</td><td>écrire<br><i>sho</i></td><td>Un pinceau au-dessus du soleil : écrire en plein soleil, il fait <strong>chau</strong>d (sho) !</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>月</td><td>mois<br><i>getsu</i></td><td>Une fois par mois, la lune <strong>guette sous</strong> (getsu) les nuages.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>木</td><td>arbre<br><i>moku</i></td><td>Sur l&#x27;écorce de l&#x27;arbre, quelqu&#x27;un a gravé un <strong>mot cou</strong>rt (moku).</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>本</td><td>livre<br><i>hon</i></td><td>Un arbre marqué d&#x27;un trait à la base : c&#x27;est lui qui deviendra ce livre. Quel <strong>honn</strong>eur (hon) !</td><td><span class="note-son n-basse">son basse</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>来</td><td>venir<br><i>rai</i></td><td>Un plant de riz barré d&#x27;un trait : le train de riz va venir sur ce <strong>rail</strong> (rai).</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>東</td><td>Est<br><i>higashi</i></td><td>Le soleil se lève à l&#x27;Est derrière l&#x27;arbre, et <strong>il gâchi</strong>t (higashi) ma grasse matinée.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>校</td><td>école<br><i>kō</i></td><td>Un arbre au croisement : l&#x27;école est juste derrière, sur la <strong>cô</strong>te (kō).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>母</td><td>mère<br><i>bo</i></td><td>Une mère veille sur le coffre de famille ; dedans, tout ce qui est <strong>beau</strong> (bo).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>毎</td><td>chaque<br><i>mai</i></td><td>Un plumet sur un coffre : chaque jour, on y range un épi de <strong>maïs</strong> (mai).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>気</td><td>esprit<br><i>ki</i></td><td>Des ciseaux coupent la vapeur, et un petit esprit s&#x27;en échappe, parfumé au <strong>ki</strong>wi (ki).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>水</td><td>eau<br><i>sui</i></td><td>La fontaine m&#x27;arrose d&#x27;eau : je <strong>suis</strong> (sui) trempé.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>火</td><td>feu<br><i>ka</i></td><td>Sur le feu de camp, une <strong>ca</strong>sserole (ka) qui déborde.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>父</td><td>père<br><i>chichi</i></td><td>Papa croise les bras : le père n&#x27;a pas de temps pour les <strong>chichis</strong> (chichi).</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>生</td><td>vie<br><i>sei</i></td><td>Une pousse sort de terre : sa vie commence, comme on commence la sienne à <strong>sei</strong>ze (sei) ans.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>男</td><td>homme<br><i>otoko</i></td><td>Un homme bande le muscle au-dessus de la rizière, couvert d&#x27;<strong>autoco</strong>llants (otoko).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">refusée</span></td></tr>
+<tr><td class=tk lang=ja>白</td><td>blanc<br><i>shiro</i></td><td>Un soleil coiffé d&#x27;une goutte : c&#x27;est un bonbon blanc nappé de <strong>sirop</strong> (shiro).</td><td><span class="note-son n-basse">son basse</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>百</td><td>cent<br><i>hyaku</i></td><td>Un fantôme debout sur une planche fait fuir cent <strong>yaku</strong>zas (hyaku).</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-basse">lien basse</span></td><td><span class="etat e-non">à réécrire</span></td></tr>
+<tr><td class=tk lang=ja>聞</td><td>entendre<br><i>ki</i></td><td>Une oreille collée au portail pour entendre <strong>qui</strong> (ki) frappe.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>行</td><td>aller<br><i>kō</i></td><td>Le sentier se divise : il faut aller de l&#x27;autre <strong>cô</strong>té (kō).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>西</td><td>Ouest<br><i>nishi</i></td><td>Dans un saloon de l&#x27;Ouest, une <strong>niché</strong>e (nishi) de chatons dort sur le piano.</td><td><span class="note-son n-moyenne">son moyenne</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>見</td><td>voir<br><i>mi</i></td><td>Un œil monté sur deux jambes court se voir dans le <strong>mi</strong>roir (mi).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>話</td><td>parler<br><i>wa</i></td><td>Un mégaphone et une langue : parler si fort que le chien répond « <strong>Ouah</strong> (wa) ! »</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>語</td><td>langage<br><i>go</i></td><td>Un mégaphone gonflé d&#x27;ego : il parle le langage des <strong>go</strong>rilles (go).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>読</td><td>lire<br><i>yo</i></td><td>Au mégaphone, le vendeur se met à lire le mode d&#x27;emploi du <strong>yo</strong>-yo (yo).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>車</td><td>voiture<br><i>sha</i></td><td>Une charrette vue d&#x27;en haut, roues et essieu : la voiture du <strong>cha</strong>t (sha).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>金</td><td>or<br><i>kin</i></td><td>Un lingot d&#x27;or expédié par avion jusqu&#x27;à <strong>Kin</strong>shasa (kin).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>長</td><td>long<br><i>naga</i></td><td>Avec sa crinière d&#x27;un mètre de long, le cheval <strong>n&#x27;a ga</strong>gné (naga) que le prix de beauté.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>間</td><td>intervalle<br><i>kan</i></td><td>Le soleil passe par l&#x27;intervalle entre les battants du portail, et une <strong>cane</strong> (kan) s&#x27;y faufile.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>雨</td><td>pluie<br><i>ame</i></td><td>Des gouttes derrière la vitre : la pluie a un goût <strong>amer</strong> (ame).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>電</td><td>électricité<br><i>den</i></td><td>La pluie tombe sur le soleil : l&#x27;électricité jaillit et l&#x27;éclair frappe <strong>Den</strong>ver (den).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-moyenne">lien moyenne</span></td><td><span class="etat e-ok">validée</span></td></tr>
+<tr><td class=tk lang=ja>食</td><td>manger<br><i>ta</i></td><td>Une gamelle coiffée d&#x27;un toit : on va y manger une <strong>ta</strong>rte (ta).</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-att">à juger</span></td></tr>
+<tr><td class=tk lang=ja>高</td><td>haut<br><i>taka</i></td><td>Un couvercle, une bouche, une fenêtre empilés tout en haut : tu veux voir ? <strong>T&#x27;as qu&#x27;à</strong> (taka) lever la tête.</td><td><span class="note-son n-haute">son haute</span> <span class="note-lien n-haute">lien haute</span></td><td><span class="etat e-ok">validée</span></td></tr>
+</table></div>
 </main>
 </body>
 </html>

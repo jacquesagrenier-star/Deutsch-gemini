@@ -8,10 +8,10 @@
 |---|---|
 | `mnemoniques_n5.json` | Une entrée par kanji : sens retenu, lecture retenue et ses comptes, composants, mnémotechniques français et anglais, confiance, exemples. **Généré**, ne pas modifier à la main. |
 | `composants.json` | Le lexique des composants KanjiVG : un nom français et un nom anglais par composant, les kanji où il apparaît, ceux où un mnémotechnique le cite. **Généré.** |
-| `a-relire.html` | 20 kanji à juger, à ouvrir dans un navigateur et à imprimer. **Généré.** |
+| `a-relire.html` | Le lot en cours (20 kanji au plus) à juger, puis l'état des 79 kanji. À ouvrir dans un navigateur et à imprimer. **Généré.** |
 | `textes/textes_n5.json` | **Les textes écrits à la main** : sens choisi, mnémotechniques, confiance et sa raison. C'est ici qu'on corrige. |
 | `textes/noms_composants.json` | Le nom de chaque composant. Changer un nom ici le change partout. |
-| `textes/a_relire.json` | La liste des 20 kanji de la page de relecture. |
+| `textes/a_relire.json` | Le titre et les kanji du lot en cours de relecture. |
 | `construire.py` | Refait les trois fichiers générés et vérifie tout. |
 
 Pour reconstruire :
@@ -35,10 +35,15 @@ Pour chaque kanji N5 de `japonais/kanji.json` :
 3. **Les composants** : les groupes `kvg:element` de KanjiVG, au premier niveau sous le kanji (`composants`), plus les éléments plus profonds (`sous_composants`). Un kanji sans sous-groupe est son propre composant. `traits_libres` compte les traits que KanjiVG ne range dans aucun élément nommé.
 4. **Le mnémotechnique français** : une ou deux phrases qui relient les composants, le sens et le son de la lecture. Le morceau qui porte le son est en **gras**, la lecture en romaji Hepburn est écrite à côté entre parenthèses.
 5. **Le mnémotechnique anglais**, écrit séparément, avec un son anglais.
-6. **Une note de confiance** sur le jeu de mots **français** seulement, avec sa raison.
+6. **Deux notes** sur le texte **français** seulement, chacune avec sa raison (haute / moyenne / basse) :
+   - `confiance` : **le son**. Le morceau en gras fait-il entendre la lecture ?
+   - `lien` (depuis le 7 oct.) : **l'image mène-t-elle d'elle-même au sens ?** Le pilote du 4 oct. a montré que la note du son ne suffit pas : trois des quatre refus étaient notés « haute » en son, mais reliaient l'image au sens par un lien arbitraire (des autocollants pour « homme », Djibouti pour « heure », un smash de tennis pour « ciel »).
+   - Une mnémotechnique n'est **proposée** que si les deux notes valent au moins « moyenne ».
+   - `avis_jacques` garde chaque verdict (`ok` / `refuse`, date, remarque) **avec le texte jugé** (`mnemo_juge`) : un verdict ne vaut que pour ce texte-là, une réécriture repart à juger. `propositions_fr` contient les réécritures en attente de choix.
+   - Le script en tire un `etat` : **validée** (ok sur le texte actuel), **refusée**, **à juger** (les deux notes au moins moyennes), **à réécrire** (une note basse).
 7. **Deux mots N5 d'exemple** pris dans `mots.json`, avec leur lecture.
 
-Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC ; chaque mnémotechnique contient le mot du sens et la lecture « (romaji) » exacte ; il a un morceau en gras ; chaque composant cité appartient bien à la décomposition KanjiVG et son nom du lexique figure dans les deux textes ; deux composants n'ont jamais le même nom ; la page de relecture a 20 kanji dont 3 de confiance basse. Le romaji est calculé à partir des kana, pas recopié.
+Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC ; chaque mnémotechnique contient le mot du sens et la lecture « (romaji) » exacte ; il a un morceau en gras ; chaque composant cité appartient bien à la décomposition KanjiVG et son nom du lexique figure dans les deux textes ; deux composants n'ont jamais le même nom ; les deux notes sont présentes et valides ; les réécritures de `propositions_fr` suivent les mêmes règles que le texte ; chaque verdict cite le texte jugé ; le lot de relecture compte 1 à 20 kanji. Le romaji est calculé à partir des kana, pas recopié.
 
 ## Les chiffres
 
@@ -49,6 +54,8 @@ Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC
 | Confiance haute | 52 |
 | Confiance moyenne | 21 |
 | Confiance basse | 6 (九, 何, 半, 左, 本, 白) |
+| Lien image-sens haute / moyenne / basse (7 oct.) | 41 / 21 / 17 |
+| États au 7 oct. : validée / refusée / à juger / à réécrire | 16 / 4 / 44 / 15 |
 | Lectures retenues on / kun | 39 / 40 |
 | Composants KanjiVG distincts | 80, tous nommés |
 | … dont cités dans au moins un mnémotechnique | 72 |
@@ -79,7 +86,7 @@ La liste N5 de `kanji.json` compte **79 kanji** alors qu'on en attendait 103. L'
 - L'**image** relie-t-elle bien les composants au sens ? Est-elle drôle, visuelle, jamais vulgaire ni méprisante ?
 - Les **mots** sont-ils connus de tous les francophones ? Deux sont propres à la France : « kawa » (川, argot pour le café) et « Nénette » (年, vieilli). Le Québec ne les connaît pas forcément.
 - Les **noms des composants** (`textes/noms_composants.json`) sont-ils simples et faciles à revoir d'un kanji à l'autre ? Un nom changé là change partout.
-- La page `a-relire.html` présente 20 cas variés, avec deux cases à cocher par kanji.
+- La page `a-relire.html` présente le lot en cours, deux cases à cocher par version, puis le tableau des 79 kanji avec leurs deux notes et leur état.
 
 ## Ce qu'un relecteur japonais natif doit vérifier
 
