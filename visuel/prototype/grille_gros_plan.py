@@ -22,12 +22,31 @@ x0, y0, x1, y1, pas, K = [float(v) for v in sys.argv[1:7]]
 sortie = sys.argv[7]
 gid = sys.argv[8] if len(sys.argv) > 8 else None
 pts = json.load(io.open(os.path.join(ICI, "arztpraxis.points.json"), encoding="utf-8"))
-src = Image.open(os.path.normpath(os.path.join(ICI, pts["source"]))).convert("RGB")
-W, H = src.size
 K = int(K)
-X = lambda v: (W * v / 100 - round(W * x0 / 100)) * K
-Y = lambda v: (H * v / 100 - round(H * y0 / 100)) * K
-im = src.crop((round(W * x0 / 100), round(H * y0 / 100), round(W * x1 / 100), round(H * y1 / 100)))
+chemin = os.path.normpath(os.path.join(ICI, pts["source"]))
+if os.path.exists(chemin):
+    src = Image.open(chemin).convert("RGB")
+    W, H = src.size
+    px = lambda v: W * v / 100
+    py = lambda v: H * v / 100
+else:
+    # Sans la source (une session cloud : elle n'est pas dans le depot), on
+    # mesure dans l'image NETTE du gros plan : elle est decoupee dans la
+    # source a pleine resolution, donc memes pixels, tant que la fenetre
+    # tient dans son cadre.
+    g = next((x for x in pts["gros_plans"] if x["id"] == gid and x.get("net")), None)
+    if not g:
+        sys.exit("  source absente (%s) et pas de gros plan net pour la remplacer" % chemin)
+    src = Image.open(os.path.join(ICI, "arztpraxis-%s.webp" % gid)).convert("RGB")
+    cx0, cy0, cw, ch = g["cadre"]
+    if x0 < cx0 or y0 < cy0 or x1 > cx0 + cw or y1 > cy0 + ch:
+        sys.exit("  source absente : la fenetre doit tenir dans le cadre %s" % g["cadre"])
+    print("  source absente : mesure dans arztpraxis-%s.webp" % gid)
+    px = lambda v: (v - cx0) / cw * src.width
+    py = lambda v: (v - cy0) / ch * src.height
+X = lambda v: (px(v) - round(px(x0))) * K
+Y = lambda v: (py(v) - round(py(y0))) * K
+im = src.crop((round(px(x0)), round(py(y0)), round(px(x1)), round(py(y1))))
 im = im.resize((im.width * K, im.height * K), Image.LANCZOS)
 d = ImageDraw.Draw(im)
 v = x0

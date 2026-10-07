@@ -7744,7 +7744,9 @@ decide quand on la pousse en production. »
 
 ## A reprendre (fin du 6 octobre 2026)
 
-- **Visage de Mark** : les cinq corrections ci-dessus.
+- **Visage de Mark** : les cinq corrections ci-dessus. FAIT le 7 oct.
+  (branche visage-mark, en pull request) ; restent la main, les pieds et
+  l'affiche a relire de la meme facon.
 - **Une reponse dans la scene compte comme revision du mot** : decide, pas
   fait (ecrit dans la repetition espacee : a part, et a verifier).
 - **Mettre l'essai des scenes en production** (sur decision de Jacques) :
@@ -7760,3 +7762,36 @@ decide quand on la pousse en production. »
   voix du navigateur le lit.
 - **Connexion** : Jacques a eu « e-mail ou mot de passe incorrect » (refus de
   Firebase, rien a voir avec v713) -- a voir s'il s'est reconnecte.
+
+## 7 octobre 2026 -- le visage de Mark, mesure puis corrige (session cloud)
+
+Les cinq remarques de Jacques du 6 oct., mesurees sur la grille de 0,25 %
+(grille_gros_plan.py) et au profil de luminance, pixel par pixel :
+
+- **L'oeil droit** etait 0,55 % trop a droite (52,3 -> 51,75). Mesure : l'oeil
+  va de 50,9 a 52,55 ; le gauche, juste, est son miroir autour du nez (49,65).
+  Le coin interieur repondait das Gesicht.
+- **Le sourcil droit** avait le MEME decalage, que Jacques n'avait pas releve
+  (52,5 -> 51,8 ; le sourcil va de 50,85 a 52,75) : son bout interieur
+  repondait das Gesicht. Tout le cote droit avait ete place a ~0,5 % a droite.
+- **L'oreille droite** : l'ellipse etait posee sur la main du squelette de
+  l'affiche, a cote de l'oreille (55,2 -> 54,45 ; l'oreille va de 54,0 a 54,8
+  et de 34,85 a 36,15). Toucher l'oreille repondait der Kopf, son lobe die
+  Wange. La joue droite, qui debordait sur l'oreille, est resserree (53,6 ->
+  53,3, rx 1,0 -> 0,85).
+- **Le cou** commence maintenant SOUS l'ombre de la machoire (39,1) au lieu de
+  38,9, et descend jusqu'au col du t-shirt (41,1). **Le menton n'a pas bouge.**
+- **Les cheveux** : l'ellipse descendait jusqu'a 33,9, sur le front (la ligne
+  des cheveux est a 33,05). Recentree : 30,45 - 33,25, 44,1 - 55,5.
+- **Le front** : l'ellipse ne commencait qu'a 33,45 -- le haut du front
+  repondait das Haar. Elle couvre maintenant 33,1 - 34,6.
+
+Verifie dans Chromium (375 px), en touchant 26 points du gros plan comme un
+doigt : 19/26 avant, 26/26 apres. Le cadre ne change pas : l'image nette
+arztpraxis-visage-mark.webp et son adresse restent les memes.
+
+La session cloud n'a pas l'image source (visuel/scenes/arztpraxis.png, hors du
+depot) : grille_gros_plan.py mesure alors dans l'image nette du gros plan
+(memes pixels, decoupes a pleine resolution), et construire.py garde les
+images nettes telles quelles. Juste tant qu'un CADRE ne change pas -- sinon,
+reconstruire en local.
