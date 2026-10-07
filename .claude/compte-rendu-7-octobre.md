@@ -14,6 +14,9 @@ Suite de `.claude/brief-cloud-kanji.md`. Branche `claude/fervent-noether-2iwytm`
 
 États : validée 18, à juger 41, à réécrire 12, hors charte 8 (半 本 東 百 名 水 父 白, tous réécrits dans le lot 2).
 
+8. **Droit d'auteur** (règle de Jacques du 7 oct.) : section « Mnémoniques » dans `LICENCES.md` ; rappel en tête du LISEZ-MOI. Aucune des méthodes nommées n'a été consultée.
+9. **Origine des noms de composants** vérifiée contre KANJIDIC2 (6 nov. 2025, la version du dépôt), et notée dans `noms_composants.json` (`origine`, vérifiée par `construire.py`) : 29 noms sont un sens KANJIDIC2 du composant (18 en français et en anglais, 10 en anglais seulement, 1 en français seulement), 51 ont été inventés par la session pilote du 4 oct., sans source notée. KanjiVG ne donne aucun nom, seulement les éléments.
+
 ### Ce que Jacques a validé ou refusé
 
 - 4 oct. (pilote) : ok 一 山 火 大 中 出 北 休 東 高 今 毎 間 電 九 白 ; refusés 男 天 時 何. Depuis la charte, 東 et 白 sont hors charte (h ; « sirop » dit si et non chi) et ont une réécriture dans le lot 2.
@@ -29,6 +32,8 @@ Suite de `.claude/brief-cloud-kanji.md`. Branche `claude/fervent-noether-2iwytm`
 - Le principe touche deux textes que la charte ne voit pas, parce que le son en trop vient du mot français et non de la lecture : « djinn » (時 ji, qu'il a choisi) fait entendre じん, et « tchin » (小 chii) fait entendre ちん. Faut-il une règle « son en trop » ?
 - Le h : le français ne le prononce pas. Les réécritures passent par un rire (« hi hi hi », « ho ho ho ») ou un cri (« Hia ! »). C'est le mieux qu'on puisse écrire ; l'audio fera le reste.
 - La lecture « la plus utile » est un compte de mots dans les listes JLPT, pas une fréquence d'usage. Il reste 19 écarts faibles, non traités.
+
+- Les 51 noms inventés ne peuvent pas être comparés à WaniKani sans le consulter, ce que la règle interdit. De mémoire seulement, sans vérification : le nom anglais de 丿, « slide » (« toboggan »), est probablement aussi celui de WaniKani. Proposition : le renommer, ce qui touche 九 (validé), 千, 午 et 年. En attente de l'accord de Jacques.
 
 ### Ce qui reste
 

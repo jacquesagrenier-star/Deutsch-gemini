@@ -2,6 +2,8 @@
 
 **Statut : brouillon à relire.** Ce dossier sert à juger la méthode sur les kanji du niveau JLPT N5 avant de l'étendre aux quelque 2 000 autres. Aucun texte n'est validé.
 
+> **Droit d'auteur (règle du 7 oct. 2026)** : ne jamais consulter WaniKani, Heisig (*Remembering the Kanji* / *Les kanji dans la tête*), KanjiDamage ni les histoires de Kanji Koohii, et n'en rien reproduire, même traduit. Une mnémotechnique qui ressemble à une de leurs histoires se réécrit. Détails : `LICENCES.md`, section « Mnémoniques ».
+
 ## Ce qu'il y a dans le dossier
 
 | Fichier | Rôle |
@@ -10,7 +12,7 @@
 | `composants.json` | Le lexique des composants KanjiVG : un nom français et un nom anglais par composant, les kanji où il apparaît, ceux où un mnémotechnique le cite. **Généré.** |
 | `a-relire.html` | Le lot en cours (20 kanji au plus) à juger, puis l'état des 79 kanji. À ouvrir dans un navigateur et à imprimer. **Généré.** |
 | `textes/textes_n5.json` | **Les textes écrits à la main** : sens choisi, mnémotechniques, confiance et sa raison. C'est ici qu'on corrige. |
-| `textes/noms_composants.json` | Le nom de chaque composant. Changer un nom ici le change partout. |
+| `textes/noms_composants.json` | Le nom de chaque composant, avec son `origine` (sens KANJIDIC2 ou nom écrit pour Wortando). Changer un nom ici le change partout. |
 | `textes/a_relire.json` | Le titre et les kanji du lot en cours de relecture. |
 | `charte-des-sons.md` | La charte des sons : le rendu français fixé pour chaque son japonais difficile. `construire.py` en lit les identifiants. |
 | `construire.py` | Refait les trois fichiers générés et vérifie tout. |

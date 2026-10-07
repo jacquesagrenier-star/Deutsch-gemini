@@ -35,6 +35,7 @@ NS = "{http://kanjivg.tagaini.net}"
 NIVEAU = "N5"
 NOTES = {"basse": 0, "moyenne": 1, "haute": 2}
 ETATS = ("validée", "à juger", "à réécrire", "hors charte", "refusée")
+ORIGINES_NOMS = ("KANJIDIC (fr et en)", "KANJIDIC (fr)", "KANJIDIC (en)", "Wortando")
 TYPES_LECTURE = {"on": "on (sino-japonaise)", "kun": "kun (japonaise)"}
 
 
@@ -698,6 +699,7 @@ def construire(dossier_kvg):
         kvg = d["kanjivg"] or {"composants": [], "sous_composants": []}
         for el in [c["element"] for c in kvg["composants"]] + kvg["sous_composants"] + ([k] if not kvg["composants"] else []):
             lexique.setdefault(el, OrderedDict(element=el, fr=noms.get(el, {}).get("fr"), en=noms.get(el, {}).get("en"),
+                                               origine=noms.get(el, {}).get("origine"),
                                                dans=[], cite_dans=utilises.get(el, [])))
             if k not in lexique[el]["dans"] and el != k:
                 lexique[el]["dans"].append(k)
@@ -712,6 +714,10 @@ def construire(dossier_kvg):
     for el, n in noms.items():
         if el.startswith("_"):
             continue
+        # Chaque nom dit d'où il vient : un sens KANJIDIC2, ou un nom écrit pour Wortando
+        # (jamais un nom de WaniKani, Heisig, KanjiDamage ou Kanji Koohii : voir LICENCES.md).
+        if n.get("origine") not in ORIGINES_NOMS:
+            erreurs.append("nom de %s : origine « %s » (attendu : %s)" % (el, n.get("origine"), ", ".join(ORIGINES_NOMS)))
         for langue in ("fr", "en"):
             if (langue, n[langue]) in vus:
                 erreurs.append("nom %s « %s » donné à %s et %s" % (langue, n[langue], vus[(langue, n[langue])], el))
