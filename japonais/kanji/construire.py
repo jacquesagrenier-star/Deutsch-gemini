@@ -34,7 +34,8 @@ KVG_DEPOT = "https://github.com/KanjiVG/kanjivg.git"
 NS = "{http://kanjivg.tagaini.net}"
 NIVEAU = "N5"
 NOTES = {"basse": 0, "moyenne": 1, "haute": 2}
-ETATS = ("validée", "à juger", "à réécrire", "refusée")
+ETATS = ("validée", "à juger", "à réécrire", "hors charte", "refusée")
+TYPES_LECTURE = {"on": "on (sino-japonaise)", "kun": "kun (japonaise)"}
 
 
 # ---------------------------------------------------------------- kana, romaji
@@ -345,6 +346,11 @@ def deriver(dossier_kvg):
             lecture_derivee=None if retenue is None else OrderedDict(
                 type=retenue[0], kana=retenue[1], romaji=romaji(retenue[1]), mots_n5=comptes[retenue],
                 egalite=egalite, comptee_sur="N5" if comptes else "tous niveaux (aucun mot N5 aligné)"),
+            # Toutes les lectures, comptées sur les mots N5 à N1 : sert à dire si
+            # la lecture enseignée est la plus utile.
+            comptes_tous_niveaux=[OrderedDict(type=c[0], lecture=c[1], romaji=romaji(c[1]), tous_niveaux=tous[c],
+                                              mots_n5=comptes[c])
+                                  for c in sorted(tous, key=lambda c: (-tous[c], -comptes[c], c))],
             mots_par_lecture={"%s:%s" % c: v for c, v in mots_par_lecture.items()},
             mots_non_alignes=ecartes,
             kanjivg=kvg,
@@ -366,8 +372,40 @@ def contient_mot(texte, mot):
     return re.search(r"(?<![\w-])" + re.escape(mot.lower()) + r"(?![\w-])", t) is not None
 
 
+def charger_charte():
+    """Les identifiants de charte-des-sons.md : la première colonne, entre accents graves."""
+    with open(os.path.join(ICI, "charte-des-sons.md"), encoding="utf-8") as f:
+        return re.findall(r"^\| `([a-z-]+)` \|", f.read(), flags=re.M)
+
+
+# Chaque son de la charte, et comment le reconnaître dans le romaji d'une lecture.
+SONS = OrderedDict([
+    ("u", r"u|ū"),
+    ("voyelle-longue", r"[āīūēō]|ii"),
+    ("ei", r"ei"),
+    ("r", r"r"),
+    ("h", r"(?<![sc])h"),
+    ("fu", r"fu|fū"),
+    ("tsu", r"ts"),
+    ("chi", r"ch"),
+    ("shi", r"sh"),
+    ("ji", r"j"),
+    ("g", r"g[ie]"),
+    ("s", r"(?<!t)s(?!h)"),
+    ("w", r"w"),
+    ("yoon", r"[kgnhbpmr]y"),
+    ("n-final", r"n(?![aeiouāīūēōy])"),
+    ("geminee", r"([kstpc])\1|tch"),
+])
+
+
+def sons_difficiles(rom):
+    return [s for s, motif in SONS.items() if re.search(motif, rom)]
+
+
 def construire(dossier_kvg):
     derive, meta_k, meta_m = deriver(dossier_kvg)
+    charte = charger_charte()
     textes = charger(os.path.join(SOURCES, "textes_n5.json"))
     noms = charger(os.path.join(SOURCES, "noms_composants.json"))
     selection = charger(os.path.join(SOURCES, "a_relire.json"))
@@ -446,6 +484,38 @@ def construire(dossier_kvg):
                 if not notes.get(cle + "_pourquoi"):
                     erreurs.append("%s : %s, %s_pourquoi manquant" % (k, nom, cle))
 
+        # La lecture enseignée est écrite dans le texte, et doit être celle retenue.
+        le = t.get("lecture_enseignee") or {}
+        if (le.get("type"), le.get("kana")) != (lect["type"], lect["kana"]):
+            erreurs.append("%s : lecture_enseignee %s, la lecture retenue est %s %s"
+                           % (k, dict(le), lect["type"], lect["kana"]))
+
+        # Charte des sons : un verdict par son difficile de la lecture, pour le
+        # texte et pour chaque réécriture.
+        sons = sons_difficiles(lect["romaji"])
+        for nom, v in [("texte", t)] + [("propositions_fr[%d]" % i, p) for i, p in enumerate(t.get("propositions_fr", []))]:
+            ch = v.get("charte") or {}
+            if set(ch) != set(sons):
+                erreurs.append("%s : %s, charte jugée sur %s, la lecture %s demande %s"
+                               % (k, nom, sorted(ch), lect["romaji"], sons))
+            for son, verdict in ch.items():
+                if son not in charte:
+                    erreurs.append("%s : %s, son « %s » absent de charte-des-sons.md" % (k, nom, son))
+                if verdict != "ok" and not verdict.startswith("écart : "):
+                    erreurs.append("%s : %s, verdict de charte « %s » (ok ou « écart : … »)" % (k, nom, verdict))
+        ecarts = [OrderedDict(son=s, raison=v[len("écart : "):]) for s, v in (t.get("charte") or {}).items() if v != "ok"]
+
+        # La lecture la plus utile : celle du plus grand nombre de mots, tous niveaux JLPT.
+        utile = d["comptes_tous_niveaux"][0] if d["comptes_tous_niveaux"] else None
+        utile_couverte = utile is None or (utile["type"], utile["lecture"]) == (lect["type"], lect["kana"])
+        mots_enseignee = next((c["tous_niveaux"] for c in d["comptes_tous_niveaux"]
+                               if (c["type"], c["lecture"]) == (lect["type"], lect["kana"])), 0)
+        # Écart « net » : la lecture la plus utile porte au moins deux fois plus de mots,
+        # et au moins cinq de plus. En dessous, les comptes sont trop petits pour trancher.
+        ecart_utile = None if utile_couverte else (
+            "net" if utile["tous_niveaux"] >= 2 * mots_enseignee and utile["tous_niveaux"] - mots_enseignee >= 5
+            else "faible")
+
         # Verdicts de Jacques : chacun garde le texte jugé. Un verdict ne vaut que
         # pour ce texte-là ; une réécriture repart « à juger ».
         avis_k = t.get("avis_jacques", [])
@@ -453,8 +523,12 @@ def construire(dossier_kvg):
             if a.get("avis") not in ("ok", "refuse") or not a.get("date") or not a.get("mnemo_juge"):
                 erreurs.append("%s : avis_jacques mal formé %s" % (k, dict(a)))
         courant = [a for a in avis_k if a.get("mnemo_juge") == t["mnemo_fr"]]
-        if courant:
-            etat = "validée" if courant[-1]["avis"] == "ok" else "refusée"
+        if courant and courant[-1]["avis"] == "refuse":
+            etat = "refusée"
+        elif ecarts:
+            etat = "hors charte"
+        elif courant:
+            etat = "validée"
         elif NOTES.get(t["confiance"], 0) >= 1 and NOTES.get(t["lien"], 0) >= 1:
             etat = "à juger"
         else:
@@ -514,6 +588,12 @@ def construire(dossier_kvg):
             sens_fr_candidats=d["sens_fr_candidats"],
             sens_en_candidats=d["sens_en_candidats"],
             lecture=lect,
+            lecture_enseignee=OrderedDict(type=lect["type"], nom=TYPES_LECTURE[lect["type"]], kana=lect["kana"],
+                                          romaji=lect["romaji"]),
+            lecture_la_plus_utile=None if utile is None else OrderedDict(
+                type=utile["type"], nom=TYPES_LECTURE[utile["type"]], kana=utile["lecture"], romaji=utile["romaji"],
+                mots_tous_niveaux=utile["tous_niveaux"], mots_n5=utile["mots_n5"], couverte=utile_couverte,
+                mots_tous_niveaux_lecture_enseignee=mots_enseignee, ecart=ecart_utile),
             lecture_fragile=fragile,
             comptes_lecture=d["comptes_lecture"],
             mots_n5_contenant=d["mots_n5"],
@@ -530,12 +610,25 @@ def construire(dossier_kvg):
             confiance_pourquoi=t["confiance_pourquoi"],
             lien=t["lien"],
             lien_pourquoi=t["lien_pourquoi"],
+            charte=t.get("charte") or {},
+            charte_ecarts=ecarts,
             etat=etat,
             avis_jacques=avis_k,
             propositions_fr=t.get("propositions_fr", []),
             exemples=exemples,
         ))
 
+    hors = ["%s (%s)" % (e["kanji"], ", ".join(x["son"] for x in e["charte_ecarts"])) for e in entrees if e["charte_ecarts"]]
+    if hors:
+        avis.append("%d mnémotechniques hors charte des sons : %s" % (len(hors), " ".join(hors)))
+    for force in ("net", "faible"):
+        non_couv = ["%s (enseigne %s %s : %d mots ; plus utile %s %s : %d mots)" % (
+            e["kanji"], e["lecture"]["type"], e["lecture"]["kana"], u["mots_tous_niveaux_lecture_enseignee"],
+            u["type"], u["kana"], u["mots_tous_niveaux"])
+            for e in entrees for u in [e["lecture_la_plus_utile"]] if u and u["ecart"] == force]
+        if non_couv:
+            avis.append("%d kanji dont la lecture la plus utile (celle du plus de mots N5–N1) n'est pas enseignée, "
+                        "écart %s : %s" % (len(non_couv), force, " ; ".join(non_couv)))
     if peu:
         avis.append("%d kanji ont moins de deux mots N5 sous la lecture retenue ; exemples complétés "
                     "par une autre lecture (marquée) : %s" % (len(peu), " ".join(peu)))
@@ -590,8 +683,29 @@ def ecrire_json(nom, obj):
 
 
 def notes_html(n):
-    return ('<span class="note-son n-{c}">son {c}</span> <span class="note-lien n-{l}">lien {l}</span>'
-            .format(c=html.escape(n["confiance"]), l=html.escape(n["lien"])))
+    ecarts = [s for s, v in n["charte"].items() if v != "ok"]
+    charte = ('<span class="note-charte n-basse">hors charte : %s</span>' % html.escape(", ".join(ecarts)) if ecarts
+              else '<span class="note-charte n-haute">charte ok</span>')
+    return ('<span class="note-son n-{c}">son {c}</span> <span class="note-lien n-{l}">lien {l}</span> {ch}'
+            .format(c=html.escape(n["confiance"]), l=html.escape(n["lien"]), ch=charte))
+
+
+def charte_html(n):
+    ecarts = ["%s : %s" % (s, v[len("écart : "):]) for s, v in n["charte"].items() if v != "ok"]
+    if ecarts:
+        return "<br>Charte : " + html.escape(" ; ".join(ecarts))
+    return "<br>Charte : " + ("conforme (%s)" % html.escape(", ".join(n["charte"])) if n["charte"] else "aucun son difficile")
+
+
+def utile_html(e):
+    u = e["lecture_la_plus_utile"]
+    if not u or u["couverte"]:
+        return ""
+    return (' <span class="utile e-{cl}">la plus utile : {nom} <span lang=ja>{kana}</span> <i>{rom}</i>, '
+            '{n} mots N5–N1 contre {m} (écart {ecart})</span>').format(
+        cl="non" if u["ecart"] == "net" else "att", nom=html.escape(u["nom"]), kana=html.escape(u["kana"]),
+        rom=html.escape(u["romaji"]), n=u["mots_tous_niveaux"], m=u["mots_tous_niveaux_lecture_enseignee"],
+        ecart=u["ecart"])
 
 
 def page_relecture(entrees, selection):
@@ -618,15 +732,16 @@ def page_relecture(entrees, selection):
         blocs = "\n".join("""    <div class=version>
       <p class=vtete><b>{titre}</b> {notes}</p>
       <p class=mnemo>{mnemo}</p>
-      <p class=pourquoi>Son : {cp}<br>Lien : {lp}</p>
+      <p class=pourquoi>Son : {cp}<br>Lien : {lp}{ch}</p>
       <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
     </div>""".format(titre=titre, notes=notes_html(v), mnemo=gras(v["mnemo_fr"]),
-                     cp=html.escape(v["confiance_pourquoi"]), lp=html.escape(v["lien_pourquoi"]))
+                     cp=html.escape(v["confiance_pourquoi"]), lp=html.escape(v["lien_pourquoi"]), ch=charte_html(v))
             for titre, v in versions)
         cartes.append("""<article>
   <div class=kanji lang=ja>{k}</div>
   <div class=corps>
-    <p class=tete><b>{sens}</b> · <span lang=ja>{kana}</span> <i>{romaji}</i> <small>(lecture {type}, {n} mot{s} N5)</small></p>
+    <p class=tete><b>{sens}</b> · <span lang=ja>{kana}</span> <i>{romaji}</i> <small>({n} mot{s} N5)</small></p>
+    <p class=lect>Lecture enseignée : <b>{typenom}</b>{utile}</p>
     <p class=comp>Composants : {comp}</p>
     {refus}
 {blocs}
@@ -634,15 +749,18 @@ def page_relecture(entrees, selection):
     <p class=remarque>Remarque :</p>
   </div>
 </article>""".format(k=k, sens=html.escape(e["sens_fr"]), kana=html.escape(l["kana"]), romaji=html.escape(l["romaji"]),
-                     type=l["type"], n=l["mots_n5"], s="s" if l["mots_n5"] > 1 else "", comp=comp, refus=refus,
+                     typenom=html.escape(e["lecture_enseignee"]["nom"]), utile=utile_html(e),
+                     n=l["mots_n5"], s="s" if l["mots_n5"] > 1 else "", comp=comp, refus=refus,
                      blocs=blocs, ex=ex))
     lignes = []
     for e in entrees:
-        lignes.append("<tr><td class=tk lang=ja>{k}</td><td>{sens}<br><i>{romaji}</i></td><td>{mnemo}</td>"
-                      "<td>{notes}</td><td><span class=\"etat e-{cl}\">{etat}</span></td></tr>".format(
+        lignes.append("<tr><td class=tk lang=ja>{k}</td><td>{sens}<br><i>{romaji}</i><br><small>{typ}</small></td><td>{mnemo}{utile}</td>"
+                      "<td class=notes><span class=\"etat e-{cl}\">{etat}</span> {notes}</td></tr>".format(
                           k=e["kanji"], sens=html.escape(e["sens_fr"]), romaji=html.escape(e["lecture"]["romaji"]),
+                          typ=html.escape(e["lecture_enseignee"]["nom"]),
+                          utile="<br>" + utile_html(e) if utile_html(e) else "",
                           mnemo=gras(e["mnemo_fr"]), notes=notes_html(e), etat=html.escape(e["etat"]),
-                          cl="ok" if e["etat"] == "validée" else "non" if e["etat"] in ("refusée", "à réécrire") else "att"))
+                          cl="ok" if e["etat"] == "validée" else "non" if e["etat"] in ("refusée", "à réécrire", "hors charte") else "att"))
     bilan = " · ".join("%s %d" % (x, etats[x]) for x in ETATS if etats[x])
     return """<!doctype html>
 <html lang="fr">
@@ -668,16 +786,18 @@ article{{display:flex;gap:20px;border-top:1px solid var(--trait);padding:18px 0;
 .corps p{{margin:.2rem 0}}
 .tete{{font-size:1.1rem}}
 .tete i{{color:var(--doux)}}
-.comp,.ex,small,.pourquoi{{color:var(--doux);font-size:.9rem}}
+.comp,.ex,small,.pourquoi,.lect{{color:var(--doux);font-size:.9rem}}
 .refus{{color:var(--rouge);font-size:.95rem}}
 .version{{border-left:3px solid var(--trait);padding:.2rem 0 .2rem .8rem;margin:.7rem 0}}
 .vtete{{font-size:.95rem}}
 .mnemo{{font-size:1.05rem;margin:.35rem 0!important}}
 strong{{background:linear-gradient(transparent 60%,color-mix(in srgb,var(--ambre) 45%,transparent) 60%)}}
-.note-son,.note-lien,.etat{{display:inline-block;font:.78rem/1.6 system-ui,sans-serif;padding:0 .45rem;border:1px solid var(--trait);border-radius:3px;white-space:nowrap}}
+.note-son,.note-lien,.note-charte,.etat{{display:inline-block;font:.78rem/1.6 system-ui,sans-serif;padding:0 .45rem;border:1px solid var(--trait);border-radius:3px;white-space:nowrap}}
 .n-haute{{color:var(--vert)}} .n-basse{{color:var(--rouge)}} .n-moyenne{{color:var(--doux)}}
 .e-ok{{color:var(--vert)}} .e-non{{color:var(--rouge)}} .e-att{{color:var(--doux)}}
 .k{{opacity:.8}}
+.utile{{font-size:.85rem}}
+.lect b{{color:var(--encre)}}
 .cases{{display:flex;gap:28px;margin-top:.4rem!important;flex-wrap:wrap}}
 .case{{display:inline-block;width:16px;height:16px;border:1.5px solid var(--encre);vertical-align:-2px;margin-right:6px}}
 .remarque{{color:var(--doux);border-bottom:1px dotted var(--trait);padding-bottom:1.2rem}}
@@ -686,6 +806,8 @@ table{{border-collapse:collapse;width:100%;font-size:.92rem}}
 td{{border-top:1px solid var(--trait);padding:.45rem .4rem;vertical-align:top}}
 td.tk{{font-size:1.8rem;line-height:1.1;font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}}
 td i{{color:var(--doux)}}
+td.notes span{{margin:0 0 .25rem}}
+.etat{{font-weight:600}}
 @media (max-width:520px){{article{{flex-direction:column;gap:6px}}.kanji{{text-align:left;font-size:72px}}td{{padding:.35rem .25rem}}}}
 @media print{{body{{background:#fff;color:#000}}.tableau{{overflow:visible}}}}
 </style>
@@ -693,7 +815,7 @@ td i{{color:var(--doux)}}
 <body>
 <main>
 <h1>Kanji N5 : {titre}</h1>
-<p class="intro">Brouillon à relire. Chaque mnémotechnique a deux notes : <b>son</b> (le morceau souligné fait-il entendre la lecture ?) et <b>lien</b> (l'image mène-t-elle d'elle-même au sens ?). Une mnémotechnique n'est proposée que si les deux valent au moins « moyenne ». Cochez, annotez, imprimez. Rien n'est envoyé.</p>
+<p class="intro">Brouillon à relire. Chaque mnémotechnique a deux notes : <b>son</b> (le morceau souligné fait-il entendre la lecture ?) et <b>lien</b> (l'image mène-t-elle d'elle-même au sens ?). Une mnémotechnique n'est proposée que si les deux valent au moins « moyenne », et si elle respecte la <b>charte des sons</b> (<code>charte-des-sons.md</code>). Chaque kanji dit quelle lecture il enseigne, <b>on</b> (sino-japonaise) ou <b>kun</b> (japonaise), et signale quand une autre lecture sert dans plus de mots. Cochez, annotez, imprimez. Rien n'est envoyé.</p>
 <p class="bilan">Les {total} kanji : {bilan}.</p>
 {cartes}
 <h2>Les {total} kanji, texte retenu</h2>
