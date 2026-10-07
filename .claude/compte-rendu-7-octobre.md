@@ -17,6 +17,10 @@ Suite de `.claude/brief-cloud-kanji.md`. Branche `claude/fervent-noether-2iwytm`
 8. **Droit d'auteur** (règle de Jacques du 7 oct.) : section « Mnémoniques » dans `LICENCES.md` ; rappel en tête du LISEZ-MOI. Aucune des méthodes nommées n'a été consultée.
 9. **Origine des noms de composants** vérifiée contre KANJIDIC2 (6 nov. 2025, la version du dépôt), et notée dans `noms_composants.json` (`origine`, vérifiée par `construire.py`) : 29 noms sont un sens KANJIDIC2 du composant (18 en français et en anglais, 10 en anglais seulement, 1 en français seulement), 51 ont été inventés par la session pilote du 4 oct., sans source notée. KanjiVG ne donne aucun nom, seulement les éléments.
 
+10. **Règle « syllabe entière »** (Jacques, 7 oct.) : le son visé forme des syllabes entières du mot français, sans consonne collée dans la même syllabe. Ajoutée à la charte (`syllabe-entiere`, un verdict pour chaque mnémotechnique). Elle fait tomber 22 textes actuels, dont 一 男 何 毎 validés (« li-tchi », « cos-taud », « Na-nette », « ma-is ») ; « manette » ne vaut plus comme modèle du n final.
+11. **丿 renommé** « oblique » / « slant » (décrit le trait), à la demande de Jacques. 九 (validé) réécrit autour de neuf mois de grossesse, à rejuger ; 千, 午, 年 ajustés.
+12. **Réécrits pour la règle** : 時 (« horloge gigantesque », l'idée de l'horloge gardée), 小 (« litchi »), et dans le lot 2 万 (Pac-Man), 五 (« hits, ou »), 六 (« moucheron »), 水 (« sou ici »), 左 (« solidarité »), 半 (« Ha ! Anne »), 本 (« Ho ! Aune »), 年 (« planète naine ») ; deuxièmes lectures de 山 (« Hassan ») et 長 (« gaucho »). Réécritures proposées pour 男 (« colosse »), 何 (« pain naan »), 毎 (« maille »).
+
 ### Ce que Jacques a validé ou refusé
 
 - 4 oct. (pilote) : ok 一 山 火 大 中 出 北 休 東 高 今 毎 間 電 九 白 ; refusés 男 天 時 何. Depuis la charte, 東 et 白 sont hors charte (h ; « sirop » dit si et non chi) et ont une réécriture dans le lot 2.
@@ -25,7 +29,8 @@ Suite de `.claude/brief-cloud-kanji.md`. Branche `claude/fervent-noether-2iwytm`
   - charte assouplie : r et j français acceptés ; h, chi, tsu, u, n final stricts ; principe « refusé seulement s'il fait retenir un autre son » ;
   - lot 1 : 男 version 1 (« Otto, costaud »), 天 version 1 (Atlas, « Athènes »), 時 version 1 (« djinn »), 何 version 1 (« Nanette ») ;
   - les 8 écarts nets : garder la lecture enseignée, ajouter une mnémotechnique pour la plus utile.
-- **Lot 2 : en attente de son verdict.**
+- Encore le 7 oct. : renommer 丿 (fait), refuser le « son en trop » (règle ajoutée).
+- **Lot 2 corrigé et 7 kanji à rejuger (九 時 小 男 何 毎 一) : en attente de son verdict.**
 
 ### À vérifier avec lui
 
@@ -34,6 +39,10 @@ Suite de `.claude/brief-cloud-kanji.md`. Branche `claude/fervent-noether-2iwytm`
 - La lecture « la plus utile » est un compte de mots dans les listes JLPT, pas une fréquence d'usage. Il reste 19 écarts faibles, non traités.
 
 - Les 51 noms inventés ne peuvent pas être comparés à WaniKani sans le consulter, ce que la règle interdit. De mémoire seulement, sans vérification : le nom anglais de 丿, « slide » (« toboggan »), est probablement aussi celui de WaniKani. Proposition : le renommer, ce qui touche 九 (validé), 千, 午 et 年. En attente de l'accord de Jacques.
+
+- 一 n'a pas encore de réécriture qui tienne la règle (« ichi » : un i seul, puis « tchi »).
+- 半 et 本 tiennent mal ensemble le h soufflé et le n qui ferme la syllabe : les réécritures doublent la voyelle (« Ha ! Anne », « Ho ! Aune »).
+- La règle fait aussi tomber des textes à juger des lots suivants : 上 前 国 外 女 学 生 西 雨 食. Ils seront réécrits dans leur lot.
 
 ### Ce qui reste
 

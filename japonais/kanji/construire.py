@@ -402,6 +402,8 @@ SONS = OrderedDict([
     ("yoon", r"[kgnhbpmr]y"),
     ("n-final", r"n(?![aeiouāīūēōy])"),
     ("geminee", r"([kstpc])\1|tch"),
+    # Vaut pour toute lecture : le son visé forme des syllabes entières du mot français.
+    ("syllabe-entiere", r"."),
 ])
 
 
@@ -778,7 +780,11 @@ def page_relecture(entrees, selection):
     par_kanji = {e["kanji"]: e for e in entrees}
     etats = Counter(e["etat"] for e in entrees)
     cartes = []
-    for k in selection["kanji"]:
+    rejuger = selection.get("a_rejuger", [])
+    for k in selection["kanji"] + rejuger:
+        if rejuger and k == rejuger[0]:
+            cartes.append('<h2>À rejuger : {n} kanji que les règles du 7 octobre font repasser</h2>\n'
+                          '<p class="intro">{note}</p>'.format(n=len(rejuger), note=html.escape(selection.get("note_rejuger", ""))))
         e = par_kanji[k]
         l = e["lecture"]
         ex = " · ".join("%s <span class=k>%s</span>%s" % (
@@ -918,7 +924,7 @@ def main():
         return 0
 
     entrees, lexique, meta, erreurs, avis, selection = construire(dossier)
-    for k in selection["kanji"]:
+    for k in selection["kanji"] + selection.get("a_rejuger", []):
         if k not in {e["kanji"] for e in entrees}:
             erreurs.append("a_relire.json : %s sans entrée" % k)
     if not 1 <= len(selection["kanji"]) <= 20:

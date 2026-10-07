@@ -2,7 +2,7 @@
 
 > **Le principe (Jacques, 7 oct. 2026) : un rendu français n'est refusé que s'il fait retenir un autre son japonais.**
 > Une approximation qui ne peut pas tromper est acceptée : l'audio apprendra la vraie prononciation. Une approximation qui fait entendre une autre syllabe japonaise est refusée, parce que c'est elle que l'on retiendra.
-> Exemples : le r français est accepté, le japonais n'ayant qu'un son entre r et l ; « chichis » est refusé, parce qu'il fait retenir しし au lieu de ちち.
+> Exemples : le r français est accepté, le japonais n'ayant qu'un son entre r et l ; « chichis » est refusé, parce qu'il fait retenir しし au lieu de ちち ; « djinn » est refusé pour じ, parce qu'il fait entendre *jin*, la lecture de 人.
 
 **Une règle par son, fixée une fois pour toutes.** Une mnémotechnique française fait entendre la lecture japonaise par un mot ou un bout de phrase français, le morceau en **gras**. Ce tableau dit, pour chaque son japonais qu'un francophone entend mal, comment ce morceau doit l'écrire, et ce qui est refusé.
 
@@ -35,8 +35,14 @@
 | `s` | さ す せ そ | toujours le s sourd de *sac* | **un s qui se dit s** : en début de mot, ou « ss », « c », « ç » | un s entre deux voyelles, lu z : *rose*, *maison* |
 | `w` | わ | « oua » | **« oua »** : *ouah*, *Ouagadougou* | « va », « wa » lu va |
 | `yoon` | consonne + ゃ ゅ ょ (きゃ, ひゃ, りょ…) | la consonne et le son « ya / yu / yo » d'un seul coup | **consonne + « ia », « iou », « io »** dans une syllabe : *kiosque* (kyo), *hiatus*… ; ryo = « lio », ryu = « liou » (voir `r`) | perdre la consonne : *yakuza* pour ひゃく (hyaku) |
-| `n-final` | ん (n de fin de syllabe) | un vrai n, après une voyelle restée orale | **voyelle + n qui se prononce** : *manette*, *cane*, *scène*, *Seine*, *Denver*, *cône*, *banane* | la voyelle nasale française, où le n disparaît : *an*, *Nantes*, *nan*, *tente*, *bon* |
+| `n-final` | ん (n de fin de syllabe) | un vrai n, après une voyelle restée orale | **voyelle + n qui ferme la syllabe** : *cane*, *scène*, *Seine*, *Denver*, *cône*, *banane*, *naan* | la voyelle nasale française, où le n disparaît (*an*, *Nantes*, *nan*, *tente*, *bon*) ; un n qui ouvre la syllabe suivante (*ma-nette*, *Na-nette*, *ho-nneur*) : on retient まね, なね, おね (voir `syllabe-entiere`) |
 | `geminee` | っ (petit tsu : consonne double) | un temps d'arrêt avant la consonne | **une coupure entre deux mots** : *hop-pop* | le double qui ne s'entend pas : *botte*, *pomme* |
+
+## Toutes les lectures
+
+| id | Ce qu'on vérifie | Rendu français retenu | Refusé |
+|---|---|---|---|
+| `syllabe-entiere` | Le son visé forme des **syllabes entières** du français, **sans consonne collée** dans la même syllabe (Jacques, 7 oct.). Vaut pour toutes les lectures, d'où un verdict pour chaque mnémotechnique. | des syllabes que l'on peut détacher telles quelles : *gi-gantesque* pour じ, *chau-sson* pour しょう, *ca-ne* pour かん (le n ferme la syllabe), *Pac-Man* pour まん. Une consonne qui passe sur la voyelle du mot suivant (*hits ou* → i-tsou, *guette sous* → gué-tsou) est acceptée : c'est le son visé. | une consonne en trop dans la syllabe : *djinn* (じん au lieu de じ), *tchin* (ちん), *jaune* (じょん), *mouche* (むし), *coq cou* (こっく), *seize* (せず), *amer* (あめる), *litchi* (li-, un l devant le い) ; une voyelle changée : *nichée* (にしぇ), *Dario* (だりょ), *noyée* (のわ) |
 
 ## Ce que la charte ne règle pas
 
