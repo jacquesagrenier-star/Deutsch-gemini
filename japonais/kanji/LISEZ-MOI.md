@@ -41,10 +41,11 @@ Pour chaque kanji N5 de `japonais/kanji.json` :
    - `lien` (depuis le 7 oct.) : **l'image mène-t-elle d'elle-même au sens ?** Le pilote du 4 oct. a montré que la note du son ne suffit pas : trois des quatre refus étaient notés « haute » en son, mais reliaient l'image au sens par un lien arbitraire (des autocollants pour « homme », Djibouti pour « heure », un smash de tennis pour « ciel »).
    - Une mnémotechnique n'est **proposée** que si les deux notes valent au moins « moyenne ».
    - `avis_jacques` garde chaque verdict (`ok` / `refuse`, date, remarque) **avec le texte jugé** (`mnemo_juge`) : un verdict ne vaut que pour ce texte-là, une réécriture repart à juger. `propositions_fr` contient les réécritures en attente de choix.
-   - **La charte des sons** (`charte-des-sons.md`, depuis le 7 oct.) : `construire.py` repère dans la lecture les sons difficiles (r, h, tsu, ji, n final, voyelle longue…). Chaque texte et chaque réécriture donne, dans `charte`, un verdict par son : `ok` ou `écart : …`. Un oubli est une erreur ; un écart rend la mnémotechnique **hors charte**, même validée.
+   - **La charte des sons** (`charte-des-sons.md`, depuis le 7 oct.), sur un principe fixé par Jacques : *un rendu n'est refusé que s'il fait retenir un autre son japonais* (le r et le j français sont donc acceptés ; h, chi, tsu, u et n final restent stricts) : `construire.py` repère dans la lecture les sons difficiles (r, h, tsu, ji, n final, voyelle longue…). Chaque texte et chaque réécriture donne, dans `charte`, un verdict par son : `ok` ou `écart : …`. Un oubli est une erreur ; un écart rend la mnémotechnique **hors charte**, même validée.
    - Le script en tire un `etat` : **validée** (ok sur le texte actuel), **refusée**, **hors charte** (un écart à la charte), **à juger** (les deux notes au moins moyennes), **à réécrire** (une note basse).
 7. **La lecture enseignée** (`lecture_enseignee`, depuis le 7 oct.) : chaque texte écrit quelle lecture il enseigne, **on** (sino-japonaise) ou **kun** (japonaise), et le script vérifie que c'est la lecture retenue. Il calcule aussi `lecture_la_plus_utile` : celle que portent le plus de mots JLPT, tous niveaux N5 à N1. Quand ce n'est pas la lecture enseignée, il le signale, avec un écart **net** (au moins deux fois plus de mots, et cinq de plus) ou **faible** (petits comptes, à ne pas surinterpréter).
-8. **Deux mots N5 d'exemple** pris dans `mots.json`, avec leur lecture.
+8. **Une deuxième mnémotechnique** (`autres_lectures`, depuis le 7 oct.) quand la lecture la plus utile n'est pas la lecture enseignée avec un écart net : on garde la lecture enseignée et on ajoute un texte français pour l'autre, avec les mêmes notes, la même charte et ses propres exemples (pris sur tous les niveaux, les formes sans sonorisation d'abord). Les 8 écarts nets en ont une : 中 人 女 小 山 長 食 高.
+9. **Deux mots N5 d'exemple** pris dans `mots.json`, avec leur lecture.
 
 Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC ; chaque mnémotechnique contient le mot du sens et la lecture « (romaji) » exacte ; il a un morceau en gras ; chaque composant cité appartient bien à la décomposition KanjiVG et son nom du lexique figure dans les deux textes ; deux composants n'ont jamais le même nom ; les deux notes sont présentes et valides ; les réécritures de `propositions_fr` suivent les mêmes règles que le texte ; chaque verdict cite le texte jugé ; le lot de relecture compte 1 à 20 kanji. Le romaji est calculé à partir des kana, pas recopié.
 
@@ -58,8 +59,8 @@ Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC
 | Confiance moyenne | 21 |
 | Confiance basse | 6 (九, 何, 半, 左, 本, 白) |
 | Lien image-sens haute / moyenne / basse (7 oct.) | 41 / 21 / 17 |
-| États au 7 oct. : validée / refusée / hors charte / à juger / à réécrire | 14 / 4 / 13 / 37 / 11 |
-| Lecture la plus utile non enseignée : écart net / faible | 8 / 19 |
+| États au 7 oct., après le lot 1 et la charte assouplie : validée / hors charte / à juger / à réécrire | 18 / 8 / 41 / 12 |
+| Lecture la plus utile non enseignée : écart net (couvert par une 2e mnémotechnique) / faible | 8 (8) / 19 |
 | Lectures retenues on / kun | 39 / 40 |
 | Composants KanjiVG distincts | 80, tous nommés |
 | … dont cités dans au moins un mnémotechnique | 72 |

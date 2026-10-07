@@ -321,13 +321,17 @@ def deriver(dossier_kvg):
                 ecartes.append(OrderedDict(mot=m["kanji"], kana=m["kana"], sens_en=m["tanos"]["champs"]["waller_definition"],
                                            raison=statut, lectures_possibles=[list(x) for x in val] if val else None))
         # Départage, et repli quand aucun mot N5 ne s'aligne : tous les niveaux.
-        tous = Counter()
-        for m in tous_mots:
-            if m["kanji"] and k in m["kanji"]:
-                statut, val = lecture_dans(m, k)
-                if statut == "ok":
-                    for cle in {x[0] for x in val}:
-                        tous[cle] += 1
+        tous, mots_tous = Counter(), {}
+        for niv, liste in mots_json["niveaux"].items():
+            for m in liste:
+                if m["kanji"] and k in m["kanji"]:
+                    statut, val = lecture_dans(m, k)
+                    if statut == "ok":
+                        for cle, surf, variante in dict(((x[0], x) for x in val)).values():
+                            tous[cle] += 1
+                            mots_tous.setdefault(cle, []).append(OrderedDict(
+                                mot=m["kanji"], kana=m["kana"], niveau=niv, variante=variante or None,
+                                sens_en=m["tanos"]["champs"]["waller_definition"]))
         base = comptes if comptes else tous
         classement = sorted(base, key=lambda c: (-comptes[c], -tous[c], c))
         retenue = classement[0] if classement else None
@@ -352,6 +356,7 @@ def deriver(dossier_kvg):
                                               mots_n5=comptes[c])
                                   for c in sorted(tous, key=lambda c: (-tous[c], -comptes[c], c))],
             mots_par_lecture={"%s:%s" % c: v for c, v in mots_par_lecture.items()},
+            mots_tous_par_lecture={"%s:%s" % c: v for c, v in mots_tous.items()},
             mots_non_alignes=ecartes,
             kanjivg=kvg,
         )
@@ -476,6 +481,52 @@ def construire(dossier_kvg):
             noms_cites.append(OrderedDict(element=el, fr=noms[el]["fr"], en=noms[el]["en"]))
             utilises.setdefault(el, []).append(k)
 
+        # Autres lectures : une deuxième mnémotechnique (français seulement) pour une
+        # lecture plus utile que celle retenue. Mêmes règles, sur sa propre lecture.
+        autres_l = []
+        for i, a in enumerate(t.get("autres_lectures", [])):
+            nom = "autres_lectures[%d]" % i
+            lt = a.get("lecture") or {}
+            c = [c for c in d["comptes_tous_niveaux"] if (c["type"], c["lecture"]) == (lt.get("type"), lt.get("kana"))]
+            if not c:
+                erreurs.append("%s : %s, lecture %s absente des mots JLPT" % (k, nom, dict(lt)))
+                continue
+            c = c[0]
+            txt = a["mnemo_fr"]
+            if not contient_mot(txt, t["sens_fr"]):
+                erreurs.append("%s : %s ne cite pas le sens « %s »" % (k, nom, t["sens_fr"]))
+            if "(%s)" % c["romaji"] not in txt:
+                erreurs.append("%s : %s ne cite pas la lecture « (%s) »" % (k, nom, c["romaji"]))
+            if "**" not in txt:
+                erreurs.append("%s : %s sans morceau en gras" % (k, nom))
+            for el in t["composants_cites"]:
+                if el in noms and not contient_mot(txt, noms[el]["fr"]):
+                    erreurs.append("%s : %s ne nomme pas %s « %s »" % (k, nom, el, noms[el]["fr"]))
+            for cle in ("confiance", "lien"):
+                if a.get(cle) not in NOTES or not a.get(cle + "_pourquoi"):
+                    erreurs.append("%s : %s, note %s manquante ou invalide" % (k, nom, cle))
+            sons_a = sons_difficiles(c["romaji"])
+            ch = a.get("charte") or {}
+            if set(ch) != set(sons_a):
+                erreurs.append("%s : %s, charte jugée sur %s, la lecture %s demande %s" % (k, nom, sorted(ch), c["romaji"], sons_a))
+            ec = [OrderedDict(son=s, raison=v[len("écart : "):]) for s, v in ch.items() if v != "ok"]
+            av = a.get("avis_jacques", [])
+            cour = [x for x in av if x.get("mnemo_juge") == txt]
+            etat_a = ("refusée" if cour and cour[-1]["avis"] == "refuse" else "hors charte" if ec
+                      else "validée" if cour else
+                      "à juger" if NOTES.get(a.get("confiance"), 0) >= 1 and NOTES.get(a.get("lien"), 0) >= 1
+                      else "à réécrire")
+            ex = sorted(d["mots_tous_par_lecture"].get("%s:%s" % (lt["type"], lt["kana"]), []),
+                        key=lambda m: (m["variante"] is not None, -int(m["niveau"][1:]), len(m["mot"])))[:2]
+            autres_l.append(OrderedDict(
+                lecture=OrderedDict(type=c["type"], nom=TYPES_LECTURE[c["type"]], kana=c["lecture"], romaji=c["romaji"],
+                                    mots_tous_niveaux=c["tous_niveaux"], mots_n5=c["mots_n5"]),
+                mnemo_fr=txt, confiance=a["confiance"], confiance_pourquoi=a["confiance_pourquoi"],
+                lien=a["lien"], lien_pourquoi=a["lien_pourquoi"], charte=ch, charte_ecarts=ec,
+                etat=etat_a, avis_jacques=av,
+                exemples=[OrderedDict(mot=m["mot"], kana=m["kana"], romaji=romaji(m["kana"]), niveau=m["niveau"],
+                                      sens_en=m["sens_en"]) for m in ex]))
+
         # Deux notes : « confiance » pour le son, « lien » pour le chemin de l'image au sens.
         for nom, notes in [("texte", t)] + [("propositions_fr[%d]" % i, p) for i, p in enumerate(t.get("propositions_fr", []))]:
             for cle in ("confiance", "lien"):
@@ -508,6 +559,9 @@ def construire(dossier_kvg):
         # La lecture la plus utile : celle du plus grand nombre de mots, tous niveaux JLPT.
         utile = d["comptes_tous_niveaux"][0] if d["comptes_tous_niveaux"] else None
         utile_couverte = utile is None or (utile["type"], utile["lecture"]) == (lect["type"], lect["kana"])
+        # Couverte aussi quand une deuxième mnémotechnique l'enseigne.
+        utile_par_autre = utile is not None and any(
+            (a["lecture"]["type"], a["lecture"]["kana"]) == (utile["type"], utile["lecture"]) for a in autres_l)
         mots_enseignee = next((c["tous_niveaux"] for c in d["comptes_tous_niveaux"]
                                if (c["type"], c["lecture"]) == (lect["type"], lect["kana"])), 0)
         # Écart « net » : la lecture la plus utile porte au moins deux fois plus de mots,
@@ -593,7 +647,8 @@ def construire(dossier_kvg):
             lecture_la_plus_utile=None if utile is None else OrderedDict(
                 type=utile["type"], nom=TYPES_LECTURE[utile["type"]], kana=utile["lecture"], romaji=utile["romaji"],
                 mots_tous_niveaux=utile["tous_niveaux"], mots_n5=utile["mots_n5"], couverte=utile_couverte,
-                mots_tous_niveaux_lecture_enseignee=mots_enseignee, ecart=ecart_utile),
+                mots_tous_niveaux_lecture_enseignee=mots_enseignee, ecart=ecart_utile,
+                par_deuxieme_mnemo=utile_par_autre),
             lecture_fragile=fragile,
             comptes_lecture=d["comptes_lecture"],
             mots_n5_contenant=d["mots_n5"],
@@ -615,6 +670,7 @@ def construire(dossier_kvg):
             etat=etat,
             avis_jacques=avis_k,
             propositions_fr=t.get("propositions_fr", []),
+            autres_lectures=autres_l,
             exemples=exemples,
         ))
 
@@ -625,7 +681,7 @@ def construire(dossier_kvg):
         non_couv = ["%s (enseigne %s %s : %d mots ; plus utile %s %s : %d mots)" % (
             e["kanji"], e["lecture"]["type"], e["lecture"]["kana"], u["mots_tous_niveaux_lecture_enseignee"],
             u["type"], u["kana"], u["mots_tous_niveaux"])
-            for e in entrees for u in [e["lecture_la_plus_utile"]] if u and u["ecart"] == force]
+            for e in entrees for u in [e["lecture_la_plus_utile"]] if u and u["ecart"] == force and not u["par_deuxieme_mnemo"]]
         if non_couv:
             avis.append("%d kanji dont la lecture la plus utile (celle du plus de mots N5–N1) n'est pas enseignée, "
                         "écart %s : %s" % (len(non_couv), force, " ; ".join(non_couv)))
@@ -701,6 +757,10 @@ def utile_html(e):
     u = e["lecture_la_plus_utile"]
     if not u or u["couverte"]:
         return ""
+    if u["par_deuxieme_mnemo"]:
+        return (' <span class="utile e-ok">la plus utile, {nom} <span lang=ja>{kana}</span> <i>{rom}</i> ({n} mots N5–N1),'
+                ' a sa deuxième mnémotechnique</span>').format(
+            nom=html.escape(u["nom"]), kana=html.escape(u["kana"]), rom=html.escape(u["romaji"]), n=u["mots_tous_niveaux"])
     return (' <span class="utile e-{cl}">la plus utile : {nom} <span lang=ja>{kana}</span> <i>{rom}</i>, '
             '{n} mots N5–N1 contre {m} (écart {ecart})</span>').format(
         cl="non" if u["ecart"] == "net" else "att", nom=html.escape(u["nom"]), kana=html.escape(u["kana"]),
@@ -724,7 +784,11 @@ def page_relecture(entrees, selection):
         versions = []
         if e["etat"] != "refusée":
             versions.append(("Texte actuel", e))
-        versions += [("Version %d" % (i + 1), p) for i, p in enumerate(e["propositions_fr"])]
+        nouv = e["propositions_fr"]
+        versions += [("Réécriture" if len(nouv) == 1 else "Version %d" % (i + 1), p) for i, p in enumerate(nouv)]
+        versions += [('Deuxième lecture : %s <span lang=ja>%s</span> <i>%s</i>' % (
+            html.escape(a["lecture"]["nom"]), html.escape(a["lecture"]["kana"]), html.escape(a["lecture"]["romaji"])), a)
+            for a in e["autres_lectures"]]
         refus = ""
         juges = [a for a in e["avis_jacques"] if a["mnemo_juge"] == e["mnemo_fr"]]
         if e["etat"] == "refusée":
@@ -759,7 +823,11 @@ def page_relecture(entrees, selection):
                           k=e["kanji"], sens=html.escape(e["sens_fr"]), romaji=html.escape(e["lecture"]["romaji"]),
                           typ=html.escape(e["lecture_enseignee"]["nom"]),
                           utile="<br>" + utile_html(e) if utile_html(e) else "",
-                          mnemo=gras(e["mnemo_fr"]), notes=notes_html(e), etat=html.escape(e["etat"]),
+                          mnemo=gras(e["mnemo_fr"]) + "".join(
+                              '<br><small>2<sup>e</sup> lecture, %s <i>%s</i> (%s) :</small> %s' % (
+                                  html.escape(a["lecture"]["nom"]), html.escape(a["lecture"]["romaji"]),
+                                  html.escape(a["etat"]), gras(a["mnemo_fr"])) for a in e["autres_lectures"]),
+                          notes=notes_html(e), etat=html.escape(e["etat"]),
                           cl="ok" if e["etat"] == "validée" else "non" if e["etat"] in ("refusée", "à réécrire", "hors charte") else "att"))
     bilan = " · ".join("%s %d" % (x, etats[x]) for x in ETATS if etats[x])
     return """<!doctype html>
