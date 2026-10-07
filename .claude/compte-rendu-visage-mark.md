@@ -43,6 +43,11 @@ Il n'a pas dit ce qui le dérange, et je ne l'ai pas deviné. **Il ne faut donc 
 7. **`tests/verifier.py` est OK** (seul avertissement : les CSV d'`export/`, non versionnés) **et `tests/syntaxe.js` aussi.**
 8. **J'ai ajouté une entrée « 7 octobre 2026 » dans `retours/journal-retours.md`** et marqué « Visage de Mark » comme fait dans « À reprendre ».
 9. **Commit `8d77ceb`, push, PR n° 5**, puis surveillance de la PR. Enfin, ce compte-rendu.
+10. **Point 2 du brief : la main et les pieds.** Je les ai mesurés sur la grille (`grille-main.webp`, `grille-pieds.webp`). Chaque ellipse tombe déjà sur sa partie : doigts, ongles, poignet, orteils, chevilles. **Je n'ai rien changé.**
+11. **Point 2 du brief : l'affiche.** L'ovale de `poster` (59.9, 31.4, 16.8, 8.2) couvrait toute la tête de Mark : la toucher dans ce gros plan répondait *das Poster*. Une ellipse ne peut pas couvrir un rectangle dont un coin est occupé par une tête. La plus grande qui l'évite (recherche sur une grille de 0,25 %) est **`[65.5, 31.0, 10.0, 8.0]`**. Dans le navigateur (`toucher-affiche.js`), la tête de Mark ne répond plus *Poster* ; poumon, côtes, colonne et fémur répondent comme avant. Comparaison : `affiche-avant-apres.webp`.
+    - **Ce qu'on perd :** le squelette de GAUCHE, juste au-dessus de la tête, n'est plus dans l'ellipse. Ses côtes (`rippe`) restent touchables et comptent pour *das Poster* en « Trouve ! », mais son crâne ne répond plus rien.
+    - **Ce qui reste :** le bord droit des cheveux (54,8 / 32,5) répond encore *das Poster*, à cause de la marge du doigt (×1,35, utilisée quand rien n'est directement sous le doigt).
+12. **Point 3 du brief (une bonne réponse dans la scène compte comme révision) : pas commencé.** Le brief le réservait au cas où le temps le permettrait. Il touche la répétition espacée et la progression des testeurs (Firestore), et Jacques venait de dire « je sens pas ça ». Je ne l'ouvre pas sans son accord.
 
 ## 2. Ce que Jacques a décidé ou corrigé
 
@@ -50,6 +55,7 @@ Il n'a pas dit ce qui le dérange, et je ne l'ai pas deviné. **Il ne faut donc 
 - **« oui »** : surveiller la PR.
 - **« Je sens pas ça, tout ce qu'on fait aujourd'hui »** : il a demandé un compte-rendu complet pour Claude PC, construit au fur et à mesure, à un endroit où Claude PC le reprendra demain.
 - **L'emplacement** : « écris dans la branche un fichier .claude/compte-rendu-<sujet>.md : ce que tu as fait, ce que j'ai décidé ou corrigé, ce qui reste. Puis pousse tout et ouvre la pull request. » Puis : « C'est là qu'on doit déposer le compte rendu de notre journée. » D'où ce fichier.
+- **« Lis CLAUDE.md puis .claude/brief-cloud-visage-mark.md, et fais ce qu'il demande. »** (après le compte-rendu) → points 10 à 12 ci-dessus.
 - Il n'a **pas encore regardé ni validé** les images avant / après, ni les captures, ni la prévisualisation.
 
 ## 3. Ce qui reste
@@ -60,7 +66,8 @@ Il n'a pas dit ce qui le dérange, et je ne l'ai pas deviné. **Il ne faut donc 
 3. **Faire tester par Jacques sur son téléphone** (prévisualisation ou local). Pour rejouer les 26 touchers : `node .claude/compte-rendu-visage-mark/toucher.js "<chemin absolu>/visuel/prototype" 1200` (Playwright ; la variable `PLAYWRIGHT` peut pointer vers le module).
 4. **Décider de la PR n° 5** : la fusionner, la corriger sur `visage-mark`, ou la fermer.
 5. **`node tests/retours.js`** : je n'ai pas pu le lancer, la clé est sur le PC.
-6. **La suite du brief** : relire la main, les pieds et l'affiche (l'ovale *das Poster* déborde sur la tête de Mark) ; faire compter une réponse dans la scène comme révision (essai `scenes`, ne pas le passer à `"tous"`).
+6. **Trancher pour l'affiche** : garder la nouvelle ellipse (la tête est libre, le squelette de gauche ne fait plus partie de *das Poster*), revenir à l'ancienne, ou permettre plusieurs ellipses par partie dans `index.html` du prototype (le seul moyen de couvrir toute l'affiche sans la tête).
+7. **Le point 3 du brief**, si Jacques le veut : faire compter une réponse dans la scène comme révision (essai `scenes`, ne pas le passer à `"tous"`).
 
 ### Points de doute (ce que je ne garantis pas)
 
@@ -81,3 +88,5 @@ Il n'a pas dit ce qui le dérange, et je ne l'ai pas deviné. **Il ne faut donc 
 - **12 h 30** : premier contrôle. Cloudflare a réussi, aucun conflit, aucun commentaire. J'envoie à Jacques l'adresse de prévisualisation.
 - **Jacques : « Je sens pas ça [...] un compte-rendu pour Claude PC [...] au fur et à mesure »** → je commence ce compte-rendu.
 - **Jacques : « .claude/compte-rendu-<sujet>.md [...] pousse tout et ouvre la pull request »**, puis « c'est là qu'on doit déposer le compte rendu de notre journée » → ce fichier, poussé sur `visage-mark`. La PR n° 5 existait déjà : elle le contient maintenant, et sa description le signale.
+- **12 h 33** : compte-rendu poussé (`a015c55`). Le déploiement Cloudflare réussit, toujours aucun commentaire.
+- **Jacques : « Lis CLAUDE.md puis .claude/brief-cloud-visage-mark.md, et fais ce qu'il demande. »** → le point 1 était fait. Point 2 : la main et les pieds sont justes ; l'affiche est corrigée (tête de Mark libre). Images envoyées. Point 3 non commencé (voir 12).

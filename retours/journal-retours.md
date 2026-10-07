@@ -7755,7 +7755,7 @@ decide quand on la pousse en production. »
 - **Relire** : les questions A2-C1 du medecin (brouillon) ; les traductions
   tr/uk/fa de der Knoechel (ecrites par Claude).
 - **L'ovale « das Poster »** du gros plan de l'affiche deborde sur la tete de
-  Mark.
+  Mark. FAIT le 7 oct. (branche visage-mark), voir plus bas.
 - **Le talon** : une image des pieds de cote (0,15 $) -- Jacques : « on le
   laisse comme ca pour le moment ».
 - **Audio de der Knoechel** : pas d'enregistrement ElevenLabs (depense) ; la
@@ -7795,3 +7795,17 @@ depot) : grille_gros_plan.py mesure alors dans l'image nette du gros plan
 (memes pixels, decoupes a pleine resolution), et construire.py garde les
 images nettes telles quelles. Juste tant qu'un CADRE ne change pas -- sinon,
 reconstruire en local.
+
+Suite (meme session), la main, les pieds et l'affiche, relus de la meme
+facon (point 2 du brief) :
+- **La main et les pieds** : chaque ellipse tombe deja sur sa partie (doigts,
+  ongles, poignet ; orteils, chevilles, pieds, jambes). Rien de change.
+- **L'affiche** : l'ovale de das Poster (59,9 / 31,4, 16,8 x 8,2) couvrait
+  toute la tete de Mark -- la toucher dans ce gros plan repondait das Poster.
+  Une ellipse ne peut pas couvrir un rectangle dont un coin est occupe par une
+  tete : la plus grande qui l'evite (recherche sur une grille de 0,25 %) est
+  65,5 / 31,0, 10 x 8. Elle prend les squelettes du milieu et de droite ; celui
+  de GAUCHE, juste au-dessus de la tete, n'en fait plus partie -- ses cotes
+  (die Rippe) restent touchables et comptent pour das Poster en « Trouve ! »,
+  mais son crane ne repond plus rien. Le bord droit des cheveux repond encore
+  das Poster par la marge du doigt (x 1,35). A trancher par Jacques.
