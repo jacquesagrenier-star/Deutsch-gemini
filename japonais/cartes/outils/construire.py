@@ -624,6 +624,8 @@ def construire_fiche(e, niv, idx_kanji, d, erreurs, phrases_sortie):
     fiche["raison"] = raison
     prov = OrderedDict([("tanos", OrderedDict([("kanji", e["kanji"]), ("kana", e["kana"]), ("waller_en", e["waller_en"])])),
                         ("jmdict_id", e["jmdict_id"])])
+    if d is not None and d.get("id_douteux"):
+        prov["jmdict_id_douteux"] = d["id_douteux"]
     if d is not None:
         prov["decision"] = "japonais/cartes/decisions/" + d["_fichier"]
     fiche["provenance"] = prov

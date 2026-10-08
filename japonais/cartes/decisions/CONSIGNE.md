@@ -43,6 +43,8 @@ Un fichier = une liste JSON, une décision par mot du lot, dans l'ordre du lot :
 - `A_REMPLACER` : rien d'utilisable pour une carte (liste vide, gloses d'un autre sens, trop rares, trop vagues) ; tu as écrit la traduction.
 - `FAUX` : JMdict donne une glose fausse pour le sens courant (左 « droite »), ou une glose fausse risque d'être prise pour la bonne.
 
+**`id_douteux`** (facultatif, texte) : quand l'entrée JMdict du lot n'est **pas le mot que vise la liste JLPT** (un homonyme : ボタン apparié à 牡丹 « pivoine » au lieu de « bouton », コップ à « cop », これ à l'interjection « hé ! »). Les sens anglais n'ont alors rien à voir avec `waller`. Écrire la traduction du vrai mot (`fr_src: "wortando"`, verdict `A_REMPLACER`), et dans `id_douteux` dire en une phrase quel mot l'id désigne. L'id est la clé de progression : c'est à corriger dans la source avant toute mise en service. Attention : Waller se trompe aussi parfois (N3 surtout : 人気 « sign of life ») ; si c'est Waller qui se trompe et que JMdict a le bon mot, pas d'`id_douteux`.
+
 **`raison`** : une phrase courte, en français, que Jacques lit pour savoir où regarder. **`note`** (facultative) dès que le choix n'est pas évident.
 
 Tout reste `brouillon` : ne jamais écrire « validé » ni « vérifié ».

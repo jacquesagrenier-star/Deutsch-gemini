@@ -33,6 +33,7 @@ def carte(f, phrases):
         "np": f.get("note_phrases"),
         "vm": f["verdict_machine"],
         "r": f["raison"],
+        "idd": f["provenance"].get("jmdict_id_douteux"),
     }
 
 
@@ -185,6 +186,7 @@ function rendre(){
     <p class="fr">${esc(c.fr||"—")}</p>
     ${c.au.length?`<p>Aussi : ${esc(c.au.join(" ; "))}</p>`:""}
     ${c.note?`<p class="petit">Note : ${esc(c.note)}</p>`:""}
+    ${c.idd?`<p class="v-FAUX">Id JMdict douteux : ${esc(c.idd)}</p>`:""}
     ${phrase}
     <p class="petit">Anglais JMdict : ${esc(c.enj.join(" | "))}</p>
     <p class="petit">Français JMdict (en vrac) : ${esc(c.frj.join(" ; ")||"aucun")}</p>
