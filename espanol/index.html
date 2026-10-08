@@ -8831,6 +8831,9 @@ body[data-theme="dark"] #decouverte > button.primary{
     <div class="flashcard-wrapper">
         <div id="flashcard" class="flashcard" onclick="handleCardTap(event)">
             <div class="flashcard-face flashcard-front">
+                <!-- Au RECTO depuis la v722 : la carte ne se retourne plus
+                     seule, c'est donc ici qu'on voit qu'un mot est nouveau. -->
+                <div id="flashNouveau" class="carte-nouveau hidden" data-i18n="carte_nouveau_mot">Nouveau mot</div>
                 <div id="flashWord" class="word">Tisch</div>
                 <div class="tap-hint" data-i18n="flash_tap_hint">Touche la carte pour voir la réponse</div>
             </div>
@@ -8842,7 +8845,6 @@ body[data-theme="dark"] #decouverte > button.primary{
                 <div id="flashMaitrise" class="carte-maitrise hidden">🏆</div>
                 <button type="button" id="flashExamenCoin" class="examen-coin hidden"
                         onclick="event.stopPropagation(); ouvrirAideExamen();"></button>
-                <div id="flashNouveau" class="carte-nouveau hidden" data-i18n="carte_nouveau_mot">Nouveau mot</div>
                 <div id="flashGenre" class="carte-genre hidden"></div>
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row" id="flashMotRow">
@@ -24570,17 +24572,23 @@ function loadFlashcard(){
     // UN MOT JAMAIS VU SE DECOUVRE AVANT DE SE DEMANDER (v678). La toute
     // premiere carte d'un debutant montrait « l'annee » et lui demandait
     // l'allemand -- qu'il ne pouvait pas savoir. Son premier contact avec
-    // l'app etait un echec. Un mot jamais juge se presente donc deja
-    // retourne : l'allemand, le son, la traduction, avec « Nouveau mot ».
-    // Les boutons de reponse ne changent pas : « Encore » le fait revenir
-    // dans deux minutes, et c'est la que la question commence vraiment.
-    // Le retournement attend un instant : on voit la carte tourner, ce qui
-    // dit qu'on peut le faire soi-meme.
+    // l'app etait un echec. Un mot jamais juge se presentait donc deja
+    // retourne (650 ms apres l'affichage), avec « Nouveau mot ».
+    //
+    // ⚠️ PLUS DE RETOURNEMENT AUTOMATIQUE (v722). Jacques, en repartant a zero
+    // dans l'app espagnole -- ou TOUTES les cartes sont nouvelles, donc toutes
+    // tournaient seules : « je trouve que c'est trop derangeant ». Il garde
+    // l'etiquette « Nouveau mot », passee au RECTO pour se voir avant le
+    // geste ; c'est le toucher, comme pour toute carte, qui la retourne.
+    //
+    // SAUF DANS LA DECOUVERTE GUIDEE : sa voix enregistree dit « Ecoute-le,
+    // regarde la couleur de l'article » -- deux choses qui ne sont qu'au
+    // verso. Sans le retournement, elle parlerait d'une carte qu'on ne voit pas.
     const nouveauEl = document.getElementById("flashNouveau");
     const etatMot = getWordState(item.themeId, item.index) || {};
     const jamaisJuge = !etatMot.reviews && !etatMot.mastered;
     if(nouveauEl) nouveauEl.classList.toggle("hidden", !jamaisJuge);
-    if(jamaisJuge){
+    if(jamaisJuge && decouverteEnCours()){
         const indexDeLaCarte = currentFlashcard;
         setTimeout(() => {
             const el = document.getElementById("flashcard");
