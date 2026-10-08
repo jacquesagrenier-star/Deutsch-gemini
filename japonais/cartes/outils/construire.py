@@ -720,15 +720,18 @@ def principal():
         if i not in connus:
             erreurs.append("%s : décision pour un id inconnu %s" % (d["_fichier"], i))
 
-    fichiers, pour_page = OrderedDict(), OrderedDict()
+    # Une phrase peut servir à plusieurs mots ; elle est rangée une seule fois, au niveau
+    # du premier mot qui la prend (le plus facile, puisqu'on construit N5 d'abord).
+    fichiers, pour_page, phrases = OrderedDict(), OrderedDict(), OrderedDict()
     for niv in NIVEAUX:
-        phrases = OrderedDict()
         fiches = [construire_fiche(e, niv, idx_kanji, decisions.get("jmdict:" + e["jmdict_id"]), erreurs, phrases)
                   for e in gardees[niv]]
         pour_page[niv] = (fiches, phrases)
         propres = [OrderedDict((k, v) for k, v in f.items() if not k.startswith("_")) for f in fiches]
         fichiers["mots-%s.json" % niv.lower()] = OrderedDict([("sources", SOURCES), ("entrees", propres)])
-        fichiers["phrases-%s.json" % niv.lower()] = OrderedDict([("sources", SOURCES), ("entrees", list(phrases.values()))])
+    for niv in NIVEAUX:
+        fichiers["phrases-%s.json" % niv.lower()] = OrderedDict([
+            ("sources", SOURCES), ("entrees", [p for p in phrases.values() if p["niveau"] == niv])])
     verifier(fichiers, erreurs)
 
     # Les lots incomplets sont signalés, pas bloquants : on avance niveau par niveau.
