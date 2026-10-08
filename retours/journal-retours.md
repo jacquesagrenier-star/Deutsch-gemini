@@ -7956,3 +7956,12 @@ refuse. Cause : son empreinte etait dans `WortandoEspanol/index.html`, mais
 la copie vers `espanol/` n'avait jamais ete faite -- le site servait la v37,
 a 9 codes. Corrige par `python publicar.py` (v38, 10 codes) puis push sur
 main (f322c20). Aucun changement de code : seule la publication manquait.
+
+## 8 octobre 2026 (suite) -- Jacques : en espagnol, la carte tourne toute seule
+
+« Je vois le mot francais, puis la carte tourne tout seul sans que j'aie besoin
+de cliquer. » Ce n'est pas une panne : c'est la v678 allemande, recopiee par le
+fork -- un mot JAMAIS juge se retourne seul apres 650 ms, avec « Nouveau mot ».
+En espagnol, Jacques n'a aucune progression (nouvelle adresse, nouveau code),
+donc CHAQUE carte est nouvelle et tourne. Dans l'allemand il ne le voit presque
+plus. Question posee : le garder, le retirer en espagnol seulement, ou partout.
