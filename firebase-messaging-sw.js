@@ -212,7 +212,10 @@ self.addEventListener("fetch", (e) => {
 // ⚠️ IL FAUT TOUJOURS APPELER showNotification(). Sans ça Chrome affiche
 // lui-même « ce site a été mis à jour en arrière-plan », ce qui est pire que
 // pas de notification du tout.
-const ICONE = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png";
+// A cote du worker, plus sur raw.githubusercontent.com (demenagement, 8 oct.
+// 2026) : le depot deviendra prive et cette adresse cessera de repondre. La
+// portee est le dossier de l'app, sur GitHub Pages comme sur Cloudflare.
+const ICONE = new URL("branding/wortando-app-icon.png", self.registration.scope).href;
 
 self.addEventListener("push", (e) => {
     let titre = "Wortando", corps = "";

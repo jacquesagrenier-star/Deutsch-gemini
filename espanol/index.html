@@ -5966,7 +5966,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v36</span>
+    <span class="subtitle-version">v37</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -6531,7 +6531,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 
     <div class="card">
         <strong data-i18n="praep_visual_title">Aide-mémoire visuel</strong>
-        <img src="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/video/prep.JPG" alt="Diagramme des prépositions Akkusativ, Dativ et Wechselpräpositionen (wohin/wo)" style="width:100%; border-radius:16px; margin-top:10px; display:block;" loading="lazy">
+        <img src="../video/prep.JPG" alt="Diagramme des prépositions Akkusativ, Dativ et Wechselpräpositionen (wohin/wo)" style="width:100%; border-radius:16px; margin-top:10px; display:block;" loading="lazy">
     </div>
 
     <div class="card">
@@ -8674,7 +8674,11 @@ const LANGUE_ENSEIGNEE = {
 // langue enseignee. Les faire suivre LANGUE_ENSEIGNEE.donnees aurait casse
 // un fork espagnol pointant ailleurs -- il aurait perdu des videos qui ne
 // sont pas allemandes pour autant. Deux tables, parce qu'il y a deux choses.
-const ASSETS_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/";
+// ⚠️ CORRIGE A LA MAIN DANS espanol/ (8 oct. 2026, demenagement) : le depot
+// deviendra prive, raw.githubusercontent.com cessera de repondre. Les
+// ressources de Wortando sont a la racine du depot, un dossier AU-DESSUS de
+// cette app. fork.py doit reproduire ces quatre lignes a la regeneration.
+const ASSETS_BASE = new URL("../", location.href).href;
 
 // UN SEUL ENDROIT QUI SAIT OU SONT LES DONNEES.
 // urlDonnees("verbe.json") remplace la chaine complete, treize fois.
@@ -16418,8 +16422,7 @@ function startDicteeNoms(){
 // refait. Une constante au sommet d'un fichier de 26 000 lignes ne doit jamais
 // dependre d'une autre : on met le litteral, ou on calcule dans la fonction.
 function urlReglesGenre(){
-    return "https://raw.githubusercontent.com/jacquesagrenier-star/"
-         + "Deutsch-gemini/main/branding/regles-genre.json";
+    return new URL("../branding/regles-genre.json", location.href).href;
 }
 let REGLES_GENRE = null;
 
@@ -22255,7 +22258,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 36;
+const APP_VERSION = 37;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -24152,8 +24155,7 @@ const MOSAIQUE_CARREAUX = 700;      // vise ; la grille s'ajuste au format
 const MOSAIQUE_PLAFOND = 80;        // carreaux par jour -- voir plus bas
 const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de seances l'image finie reste
 const MOSAIQUE_CLE = "wortandoEs_mosaique";
-const MOSAIQUE_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/"
-                    + "Deutsch-gemini/main/branding/mosaique/";
+const MOSAIQUE_BASE = new URL("../branding/mosaique/", location.href).href;
 let MOSAIQUES = null;
 let chargementMosaiques = null;
 // Une notice par PEINTRE, pas par tableau : vingt-deux textes au lieu de
