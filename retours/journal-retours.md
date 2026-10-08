@@ -7860,3 +7860,43 @@ pas d'historique.
 **Pourquoi maintenant** : le demenagement vers deutsch-gemini.pages.dev aurait
 fait de CHAQUE testeur un « contenant neuf » le meme jour. La fermeture de
 l'ancienne adresse attend donc que tous soient en v718 ou plus.
+
+## 8 octobre 2026 -- Jacques : trois zones du medecin qui ne repondent pas
+
+Essai sur son portable, scene arztpraxis apres la fusion de la PR #5
+(https://deutsch-gemini.pages.dev/visuel/prototype/?scene=arztpraxis) :
+
+« Le manteau ne fonctionne pas. Je n'ai pas non plus les ongles d'orteil. Ou
+je crois les ongles de doigt. Euh, puis pour les cheveux, euh, sur le dessus,
+oui, c'est OK. Mais le, si je clique sur les cotes ou sont les cheveux, ca,
+ca fonctionne pas. »
+
+- ~~Le manteau~~ : Jacques s'est repris aussitot -- « pas de manteau. Le
+  menton ». C'est das Kinn (gros plan du visage) qui ne repond pas. (La veste
+  `jacke`, mesuree avant la correction, etait de toute facon bien placee.)
+- Les ongles d'orteil : le gros plan des pieds n'a AUCUNE zone Nagel (seulement
+  Zehe, Knoechel, Fuss, Bein). Les ongles de doigt existent (nagel-2/3/4) mais
+  font 0,35 x 0,25 % de l'image : a mesurer.
+- Les cheveux : l'ellipse `haar` (31,85 +/- 1,4) ne couvre que le dessus ; les
+  cotes, au-dessus des oreilles, repondent der Kopf.
+
+**Mesure (source PNG pleine resolution, grille_gros_plan.py) puis essai au
+clic dans le navigateur, avant et apres :**
+- **Le menton** repondait das Kinn au centre, mais **das Gesicht** sur son bas
+  (39,05) : il descend jusqu'a l'ombre de la machoire (~39,1) et l'ellipse
+  s'arretait a 38,9. Elargie : [50, 38,5, 1,75, 0,6] -> 37,9 - 39,1, toujours
+  sous la levre (37,83) et au-dessus du cou (39,2).
+- **Les cotes des cheveux** repondaient der Kopf. Deux ellipses haar-l
+  [45,0, 33,65, 1,0, 1,3] et haar-r [54,3, 33,65, 1,0, 1,3], au-dessus des
+  oreilles ; l'oreille, plus petite, garde la priorite la ou elles se touchent.
+- **Les ongles des doigts** repondaient deja der Nagel (essai au clic sur
+  chacun) ; ils sont petits. Le pouce est replie, son ongle ne se voit pas.
+- **Les ongles d'orteil** n'existaient pas : huit ellipses fussnagel-l1..4 et
+  r1..4 (mot Nagel), un peu plus grandes que l'ongle pour rester touchables.
+  ⚠️ Sur un TELEPHONE elles resteront petites : le gros plan des pieds couvre
+  24 % de l'image. Si Jacques n'y arrive pas, il faudra un gros plan plus
+  serre des orteils.
+
+Resultat au clic : menton (centre, bas, cote) -> Kinn ; cotes et tempes ->
+Haar ; ongles d'orteil -> Nagel ; levre, cou, oreilles, oeil, front, orteils,
+pied, cheville inchanges. 85 -> 95 zones. Images : .claude/controle-8-octobre/.

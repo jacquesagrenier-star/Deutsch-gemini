@@ -1268,6 +1268,52 @@ window.SCENE = {
    ]
   },
   {
+   "id": "haar-l",
+   "mot": "Haar",
+   "genre": "das",
+   "pluriel": "Haare",
+   "fr": "cheveu",
+   "en": "hair",
+   "niveau": "A1",
+   "theme": "koerperteile_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "visage-mark",
+   "boites": [
+    [
+     44.0,
+     32.35,
+     2.0,
+     2.6
+    ]
+   ]
+  },
+  {
+   "id": "haar-r",
+   "mot": "Haar",
+   "genre": "das",
+   "pluriel": "Haare",
+   "fr": "cheveu",
+   "en": "hair",
+   "niveau": "A1",
+   "theme": "koerperteile_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "visage-mark",
+   "boites": [
+    [
+     53.3,
+     32.35,
+     2.0,
+     2.6
+    ]
+   ]
+  },
+  {
    "id": "stirn",
    "mot": "Stirn",
    "genre": "die",
@@ -1536,10 +1582,10 @@ window.SCENE = {
    "detail": "visage-mark",
    "boites": [
     [
-     48.4,
-     38.0,
-     3.2,
-     0.9
+     48.25,
+     37.9,
+     3.5,
+     1.2
     ]
    ]
   },
@@ -1912,6 +1958,190 @@ window.SCENE = {
    ]
   },
   {
+   "id": "fussnagel-l1",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     43.1,
+     79.17999999999999,
+     1.1,
+     0.4
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-l2",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     41.68,
+     79.42999999999999,
+     0.6,
+     0.34
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-l3",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     40.97,
+     79.41,
+     0.5,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-l4",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     40.43,
+     79.29,
+     0.4,
+     0.26
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-r1",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     55.400000000000006,
+     79.55,
+     1.1,
+     0.4
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-r2",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     57.17,
+     79.77,
+     0.6,
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-r3",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     58.04,
+     79.72,
+     0.5,
+     0.28
+    ]
+   ]
+  },
+  {
+   "id": "fussnagel-r4",
+   "mot": "Nagel",
+   "genre": "der",
+   "pluriel": "Nägel",
+   "fr": "ongle",
+   "en": "nail",
+   "niveau": "A2",
+   "theme": "koerperteile_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "detail": "pieds-mark",
+   "boites": [
+    [
+     58.74,
+     79.68,
+     0.44,
+     0.26
+    ]
+   ]
+  },
+  {
    "id": "rippe",
    "mot": "Rippe",
    "genre": "die",
@@ -2061,6 +2291,18 @@ window.SCENE = {
      5.7,
      1.4
     ],
+    "haar-l": [
+     45.0,
+     33.65,
+     1.0,
+     1.3
+    ],
+    "haar-r": [
+     54.3,
+     33.65,
+     1.0,
+     1.3
+    ],
     "stirn": [
      49.6,
      33.85,
@@ -2129,9 +2371,9 @@ window.SCENE = {
     ],
     "kinn": [
      50,
-     38.45,
-     1.6,
-     0.45
+     38.5,
+     1.75,
+     0.6
     ],
     "ohr-l": [
      44.9,
@@ -2294,6 +2536,54 @@ window.SCENE = {
      75.7,
      0.75,
      0.8
+    ],
+    "fussnagel-l1": [
+     43.65,
+     79.38,
+     0.55,
+     0.2
+    ],
+    "fussnagel-l2": [
+     41.98,
+     79.6,
+     0.3,
+     0.17
+    ],
+    "fussnagel-l3": [
+     41.22,
+     79.56,
+     0.25,
+     0.15
+    ],
+    "fussnagel-l4": [
+     40.63,
+     79.42,
+     0.2,
+     0.13
+    ],
+    "fussnagel-r1": [
+     55.95,
+     79.75,
+     0.55,
+     0.2
+    ],
+    "fussnagel-r2": [
+     57.47,
+     79.92,
+     0.3,
+     0.15
+    ],
+    "fussnagel-r3": [
+     58.29,
+     79.86,
+     0.25,
+     0.14
+    ],
+    "fussnagel-r4": [
+     58.96,
+     79.81,
+     0.22,
+     0.13
     ]
    },
    "image": "arztpraxis-pieds-mark.webp?c=8b24e4ff"
