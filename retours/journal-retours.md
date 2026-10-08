@@ -7809,3 +7809,54 @@ facon (point 2 du brief) :
   (die Rippe) restent touchables et comptent pour das Poster en « Trouve ! »,
   mais son crane ne repond plus rien. Le bord droit des cheveux repond encore
   das Poster par la marge du doigt (x 1,35). A trancher par Jacques.
+
+## 8 octobre 2026 -- cinq champs du nuage ecrases par un deuxieme appareil (v718)
+
+Trouve par la session cloud du demenagement (PR #6), en inventoriant les cles
+avant de changer d'adresse -- pas par un testeur. Consigne ici parce que le
+defaut a touche des donnees d'usagers.
+
+**En clair.** Quand quelqu'un ouvrait l'app a deux endroits (l'icone et
+Safari, l'app TestFlight, un autre appareil), le second effacait certaines
+notes du premier dans le cloud. Les mots et la progression n'ont JAMAIS ete
+touches.
+
+**Le mecanisme.** retoursUsager, parcoursJson, seancesJson, journalVersionJson
+et synonymesEcartes partaient a chaque sauvegarde comme la valeur complete du
+contenant, mais restoreProgressFromCloud() ne les relisait pas : un contenant
+neuf repartait vide et sa premiere sauvegarde les ecrasait. synonymesEcartes
+n'est meme plus ecrit en local depuis la fin de la relecture des synonymes :
+chaque sauvegarde le remettait a vide.
+
+**Ce que ca a fausse** (mesure le 8 oct., node tests/parcours.js et
+tests/retours.js) :
+- **Les retours de Jacques** envoyes par le bouton en septembre (v484, v605)
+  ont disparu de la base : retours.js --tout dit « Aucun retour dans la base
+  (17 comptes) ». Tres probablement efface par l'app iPhone installee le
+  2 octobre. Rien de perdu pour le travail : ils avaient ete lus et consignes
+  plus haut. D'apres ce journal, aucun testeur n'a jamais utilise le bouton :
+  aucun retour de testeur perdu, a ma connaissance.
+- **Le parcours** : les comptes 8 et 11 ont une « 1re carte affichee » sans
+  « accueil vu », coherent avec un ecrasement par un deuxieme contenant.
+  Probable, pas prouve.
+- **Les seances des 7 jours** (mesure nee le 6 oct., v712) : une seule seance
+  en base, celle de Jacques (0/30) ; aucun testeur n'en a ouvert depuis.
+  Pour Jacques, qui utilise plusieurs contenants, elle ne montre peut-etre
+  qu'un seul d'entre eux.
+
+**Ce qui a change (v718).** restoreProgressFromCloud() reunit les cinq champs
+au lieu de les laisser ecraser, une regle par nature : retours fusionnes par
+entree datee (fusionnerRetoursDuNuage, coupe partagee avec envoyerRetour),
+etapes du parcours a leur date la plus ancienne, seances par date d'ouverture
+au compte le plus avance (sept jours), journal des versions par instant
+(vingt lignes), synonymes repris tant que le local est vide. Verifie par sept
+cas de fusion (node) et une restauration simulee dans la page.
+
+**Bonus possible** : un ancien contenant qui garde ces donnees en local (le
+Safari de Jacques, par exemple) les rendra au nuage a sa premiere ouverture en
+v718. Ce qui n'existe plus nulle part ne reviendra pas : Firestore ne garde
+pas d'historique.
+
+**Pourquoi maintenant** : le demenagement vers deutsch-gemini.pages.dev aurait
+fait de CHAQUE testeur un « contenant neuf » le meme jour. La fermeture de
+l'ancienne adresse attend donc que tous soient en v718 ou plus.
