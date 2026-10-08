@@ -7047,7 +7047,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v719</span>
+    <span class="subtitle-version">v720</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -21009,6 +21009,13 @@ async function syncProgressToCloud(){
                 catch(e){ return ""; }
             })(),
             langueInterface: getUiLang(),
+            // Le niveau de la seance du jour (v720) : sans lui, un appareil
+            // neuf -- ou la nouvelle adresse du demenagement -- repartait en A1,
+            // et un testeur B1 recevait des mots A1. Relu a la restauration.
+            niveauSeance: (function(){
+                try{ return localStorage.getItem(NIVEAU_SEANCE_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // Android, iPhone, iPad ou ordinateur, rien de plus (v686) : pour
             // savoir qui peut tester sur Google Play. Voir typeAppareil().
             appareil: typeAppareil(),
@@ -21479,6 +21486,28 @@ async function restoreProgressFromCloud(){
             if(typeof data.synonymesEcartes === "string" && data.synonymesEcartes
                && !localStorage.getItem("deutschAI_synonymesEcartes")){
                 localStorage.setItem("deutschAI_synonymesEcartes", data.synonymesEcartes);
+            }
+        }catch(e){}
+
+        // DEUX REGLAGES, REPRIS SEULEMENT SI L'APPAREIL N'EN A PAS (v720), sur
+        // le modele de l'objectif du jour : un choix fait ICI l'emporte toujours.
+        // Trouves par l'inventaire des cles du demenagement (JOUR-J.md, A5).
+        try{
+            // Le niveau de la seance : sans lui, A1 par defaut.
+            if(typeof data.niveauSeance === "string" && NIVEAUX_CECR.indexOf(data.niveauSeance) >= 0
+               && localStorage.getItem(NIVEAU_SEANCE_KEY) === null){
+                fixerNiveauSeance(data.niveauSeance);
+            }
+        }catch(e){}
+        try{
+            // La langue de l'interface : sans elle, celle du telephone, qui
+            // n'est pas forcement celle que la personne a choisie. Une langue
+            // imposee par l'admin passe toujours par appliquerLangueImposee().
+            if(typeof data.langueInterface === "string" && UI_LANGS.includes(data.langueInterface)
+               && localStorage.getItem(UI_LANG_KEY) === null
+               && data.langueInterface !== getUiLang()){
+                setUiLang(data.langueInterface);
+                applyUiLangSideEffects();
             }
         }catch(e){}
 
@@ -30951,7 +30980,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 719;
+const APP_VERSION = 720;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
