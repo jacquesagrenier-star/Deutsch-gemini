@@ -301,9 +301,15 @@ const chemin = id => (MASQUES.traces[id] || []).map(pts => {
 let allumes = [];
 function dessiner(){
   const principaux = allumes.filter(a => !a.second);
+  // LE PROJECTEUR (8 oct.) : sur une scene du corps, Mark reste eclaire et le
+  // reste de la piece s'assombrit un peu, en Decouvrir comme en Trouve -- on
+  // comprend sans un mot que c'est LUI qu'on explore (Jacques : « en mode
+  // decouvrir, on peut etre porte a cliquer sur le medecin aussi »).
+  // Un surlignage le remplace le temps de la reponse.
+  const projecteur = !principaux.length && S.corps && MASQUES.traces[S.corps];
   voile.innerHTML = principaux.length
     ? `<path fill="rgba(0,0,0,.30)" fill-rule="evenodd" d="M0 0H${TW}V${TH}H0Z${principaux.map(a => chemin(a.id)).join("")}"/>`
-    : "";
+    : projecteur ? `<path fill="rgba(0,0,0,.38)" fill-rule="evenodd" d="M0 0H${TW}V${TH}H0Z${chemin(S.corps)}"/>` : "";
   // les references d'abord, la cible par-dessus
   toile.innerHTML = [...allumes.filter(a => a.second), ...principaux].map(a =>
     `<path d="${chemin(a.id)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round"
@@ -590,6 +596,12 @@ const nomDe = z => z.personne ? `<b>${z.personne}</b>` : groupe(z);
    dame, et der Mann EST Mark -- le dire donnerait la reponse. */
 function proprietaire(mot){
   const zones = zonesDe(mot).map(id => P[id]);
+  // UNE SCENE DU CORPS ("corps" dans le .points.json) : on cherche sur LUI.
+  // Jacques, 8 oct. : « faire comprendre a l'etudiant que c'est sur le corps
+  // de Mark qu'on va chercher ». La medecin a des mains, mais die Hand se
+  // cherche sur Mark ; toucher les siennes donne le message doux, pas un point.
+  const corps = S.corps && P[S.corps];
+  if (corps && zones.some(z => z.sur && racine(z) === corps)) return corps;
   if (!zones.length || zones.some(z => !z.sur)) return null;
   const r = [...new Set(zones.map(racine))];
   return r.length === 1 && estPersonne(r[0]) ? r[0] : null;
@@ -614,7 +626,11 @@ function toucher(id, pt){
     return;
   }
   if (niveau === "A1" && attenteToucher && !verrou){
-    const cible = attenteToucher, bonnes = zonesDe(cible);
+    // Sur une scene du corps, seules les zones de Mark comptent (et sont
+    // montrees en cas d'erreur) : la main de la medecin n'est pas une cible.
+    const proprio = proprietaire(attenteToucher);
+    const aLui = z => !proprio || racine(z) === proprio;
+    const cible = attenteToucher, bonnes = zonesDe(cible).filter(id => aLui(P[id]));
     // Seulement ce qui est AU MEME PLAN que le premier plan sous le doigt : les
     // mains de Mark et la table, oui ; la tete du prof et le tableau derriere, non.
     // Tout ce qui est sous le doigt AU MEME PLAN que le premier plan : les mains
@@ -629,12 +645,12 @@ function toucher(id, pt){
     // sur une table le doigt touche toujours la table, et la marge ne servait
     // jamais au cahier (Jacques, 6 oct. : « le cahier de Mark ne fonctionne pas »).
     const PETIT = MW * MH * 0.004;
-    const retenue = candidats.find(z => touche(z, cible))
-                 || petits.find(z => touche(z, cible));
+    const retenue = candidats.find(z => touche(z, cible) && aLui(z))
+                 || petits.find(z => touche(z, cible) && aLui(z));
     // Toucher l'oreille de la medecin quand on demande celle de Mark n'est pas
     // une faute de vocabulaire : le mot etait juste, la personne non. On le
     // dit, sans compter de point, et la question reste ouverte.
-    const chez = !retenue && proprietaire(cible);
+    const chez = !retenue && proprio;
     if (chez){
       const r = racine(p);
       if (r !== chez && estPersonne(r)){

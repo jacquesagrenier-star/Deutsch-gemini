@@ -7931,3 +7931,20 @@ d'assurance est importante. »
 est a REPENSER autour du corps de Mark : debout, en sous-vetement, les parties
 du corps sur lui et non sur une affiche ; les objets de la piece ne comptent
 pas, sauf die Versichertenkarte.
+
+**Puis (meme jour) : « faire comprendre a l'etudiant que c'est sur le corps de
+Mark qu'on va chercher ».** Trois facons proposees (l'image, la phrase « Wo
+ist Marks Hand? », le message doux) ; Jacques a choisi **l'image**, et ajoute :
+« en mode decouvrir, on peut etre porte a cliquer sur le medecin aussi ».
+- **Le projecteur** : sur une scene du corps (`"corps": "mark"` dans le
+  .points.json, transmis par construire.py), Mark reste eclaire et le reste
+  de la piece s'assombrit (.38), en Decouvrir comme en Trouve ; un surlignage
+  le remplace le temps d'une reponse.
+- **Les parties du corps sont a Mark** : proprietaire() rend Mark pour tout mot
+  qui a une zone sur lui. En Trouve, toucher la main de la medecin donne
+  « Ca, c'est die Arztin. Cherche die Hand sur Mark », sans point ; seules ses
+  zones a lui sont montrees en cas d'erreur. Ses mains gardent leur zone : en
+  Decouvrir, elles disent die Hand. (Ceci remplace « les deux mains comptent »
+  d'une heure plus tot.)
+Verifie au clic : main de la medecin -> message doux ; main de Mark -> juste ;
+genou nu pour die Hose -> faux, le pantalon montre ; objets inchanges.
