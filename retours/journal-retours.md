@@ -7965,3 +7965,8 @@ fork -- un mot JAMAIS juge se retourne seul apres 650 ms, avec « Nouveau mot »
 En espagnol, Jacques n'a aucune progression (nouvelle adresse, nouveau code),
 donc CHAQUE carte est nouvelle et tourne. Dans l'allemand il ne le voit presque
 plus. Question posee : le garder, le retirer en espagnol seulement, ou partout.
+**Decision de Jacques** : « trop derangeant », retirer partout (allemand,
+espagnol, japonais). Fait en v722 (allemand) et v39 (espagnol) : plus de
+retournement automatique ; « Nouveau mot » passe au RECTO. Seule exception : la
+decouverte guidee, dont la voix enregistree parle du verso. Le japonais n'a pas
+encore d'app de cartes -- il partira du code allemand, donc deja corrige.
