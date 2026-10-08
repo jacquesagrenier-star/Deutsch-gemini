@@ -7948,3 +7948,11 @@ ist Marks Hand? », le message doux) ; Jacques a choisi **l'image**, et ajoute :
   d'une heure plus tot.)
 Verifie au clic : main de la medecin -> message doux ; main de Mark -> juste ;
 genou nu pour die Hose -> faux, le pantalon montre ; objets inchanges.
+
+## 8 octobre 2026 (suite) -- Jacques : le code ne marchait pas pour l'app espagnole
+
+Le code d'invitation fait le matin (commit 8c4c763 de WortandoEspanol) etait
+refuse. Cause : son empreinte etait dans `WortandoEspanol/index.html`, mais
+la copie vers `espanol/` n'avait jamais ete faite -- le site servait la v37,
+a 9 codes. Corrige par `python publicar.py` (v38, 10 codes) puis push sur
+main (f322c20). Aucun changement de code : seule la publication manquait.
