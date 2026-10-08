@@ -7005,7 +7005,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v717</span>
+    <span class="subtitle-version">v718</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -21365,6 +21365,81 @@ async function restoreProgressFromCloud(){
             if(touches) localStorage.setItem(GRAMMAIRE_KEY, JSON.stringify(ici));
         }catch(e){}
 
+        // CINQ CHAMPS QUI PARTAIENT SANS JAMAIS REVENIR (v718). Ils etaient
+        // envoyes a chaque sauvegarde, jamais relus : un appareil neuf -- ou la
+        // meme app ouverte a une NOUVELLE ADRESSE, ce que le demenagement vers
+        // Cloudflare va faire a tout le monde -- repartait vide, et sa premiere
+        // sauvegarde ECRASAIT dans Firestore l'historique des retours, le
+        // parcours et les seances. Trouve par la session cloud du 8 octobre
+        // 2026, en inventoriant les cles avant le demenagement.
+        // Meme principe que plus haut : on reunit, on ne choisit pas.
+        try{ fusionnerRetoursDuNuage(data.retoursUsager); }catch(e){}
+        try{
+            // Parcours : chaque etape garde sa date la PLUS ANCIENNE. C'est
+            // « quand l'a-t-il fait pour la premiere fois » qu'on lit.
+            if(typeof data.parcoursJson === "string" && data.parcoursJson){
+                const d = JSON.parse(data.parcoursJson);
+                if(d && typeof d === "object"){
+                    const l = lireParcours();
+                    let change = false;
+                    Object.keys(d).forEach(k => {
+                        if(d[k] && (!l[k] || String(d[k]) < String(l[k]))){ l[k] = d[k]; change = true; }
+                    });
+                    if(change) localStorage.setItem(PARCOURS_KEY, JSON.stringify(l));
+                }
+            }
+        }catch(e){}
+        try{
+            // Seances : la reunion par date d'ouverture ; une meme seance vue
+            // des deux cotes garde le compte le plus avance. Toujours sept
+            // jours au plus, comme ecrireSeances().
+            if(typeof data.seancesJson === "string" && data.seancesJson){
+                const d = JSON.parse(data.seancesJson);
+                if(Array.isArray(d) && d.length){
+                    const parDate = {};
+                    lireSeances().forEach(s => { if(s && s.d) parDate[s.d] = s; });
+                    d.forEach(s => {
+                        if(!s || !s.d) return;
+                        const l = parDate[s.d];
+                        parDate[s.d] = l
+                            ? { d: s.d, n: Math.max(l.n || 0, s.n || 0), p: Math.max(l.p || 0, s.p || 0), f: (l.f || s.f) ? 1 : 0 }
+                            : s;
+                    });
+                    const limite = Date.now() - SEANCES_JOURS * 86400000;
+                    const l = Object.values(parDate)
+                        .filter(s => Date.parse(s.d) >= limite)
+                        .sort((a, b) => (a.d < b.d ? -1 : 1));
+                    localStorage.setItem(SEANCES_KEY, JSON.stringify(l));
+                }
+            }
+        }catch(e){}
+        try{
+            // Journal des versions : la reunion par instant, les vingt
+            // dernieres lignes, comme noterVersion().
+            if(typeof data.journalVersionJson === "string" && data.journalVersionJson){
+                const d = JSON.parse(data.journalVersionJson);
+                if(Array.isArray(d) && d.length){
+                    let l = [];
+                    try{ l = JSON.parse(localStorage.getItem(JOURNAL_VERSION_KEY) || "[]"); }catch(e){}
+                    if(!Array.isArray(l)) l = [];
+                    const vus = new Set(l.map(x => x && (x.t + "|" + x.quoi)));
+                    d.forEach(x => { if(x && x.t && !vus.has(x.t + "|" + x.quoi)){ l.push(x); vus.add(x.t + "|" + x.quoi); } });
+                    l.sort((a, b) => (String(a.t) < String(b.t) ? -1 : 1));
+                    localStorage.setItem(JOURNAL_VERSION_KEY, JSON.stringify(l.slice(-20)));
+                }
+            }
+        }catch(e){}
+        try{
+            // ⚠️ PLUS PERSONNE N'ECRIT CETTE CLE EN LOCAL (la relecture des
+            // synonymes, v416, est finie) : la sauvegarde la remettait donc a
+            // vide dans le nuage. On reprend la valeur du nuage tant que le
+            // local n'a rien, et elle repart telle quelle.
+            if(typeof data.synonymesEcartes === "string" && data.synonymesEcartes
+               && !localStorage.getItem("deutschAI_synonymesEcartes")){
+                localStorage.setItem("deutschAI_synonymesEcartes", data.synonymesEcartes);
+            }
+        }catch(e){}
+
         cloudRestoreDone = true;
         // ⚠️ LES CARTES DE L'ACCUEIL AUSSI, ET MEME SANS MOT AJOUTE (v682).
         // Elles n'etaient redessinees qu'au chargement des themes -- qui, sur
@@ -29125,6 +29200,40 @@ function contexteEcran(){
 const RETOURS_KEY = "deutschAI_retours";
 const RETOURS_MAX = 4000;   // caractere, pas nombre : c'est la taille qui compte
 
+function couperRetours(tout){
+    if(tout.length <= RETOURS_MAX) return tout;
+    const perdus = tout.length - RETOURS_MAX;
+    return "[COUPE] " + perdus + " caracteres plus anciens ont ete retires, faute de place."
+         + String.fromCharCode(10) + tout.slice(perdus);
+}
+
+// LES RETOURS DU NUAGE, REUNIS A CEUX DE L'APPAREIL (v718). Voir
+// restoreProgressFromCloud() : sans ca, un appareil neuf (ou une nouvelle
+// adresse) repartait vide et ecrasait l'historique a sa premiere sauvegarde.
+// Une entree commence toujours par « [AAAA-MM-JJTHH:MM | » en debut de ligne
+// -- envoyerRetour() desamorce les imitations -- : c'est par la qu'on les
+// separe, qu'on retire les doublons et qu'on les remet dans l'ordre.
+// Le morceau « [COUPE] » (avec le reste d'entree tronquee qui le suit) reste
+// en tete : une perte annoncee doit le rester.
+function fusionnerRetoursDuNuage(distant){
+    if(typeof distant !== "string" || !distant) return;
+    let ici = "";
+    try{ ici = localStorage.getItem(RETOURS_KEY) || ""; }catch(e){}
+    if(ici.indexOf(distant) >= 0) return;
+    let tout = distant;
+    if(ici && distant.indexOf(ici) < 0){
+        const nl = String.fromCharCode(10);
+        const morceaux = (distant + nl + ici).split(/\n(?=\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2} \|)/);
+        const coupe = morceaux.find(m => m.startsWith("[COUPE]"));
+        const vus = new Set();
+        const entrees = morceaux.filter(m => /^\[\d{4}-\d{2}-\d{2}T/.test(m) && !vus.has(m) && vus.add(m));
+        const date = m => m.slice(1, 17);
+        entrees.sort((a, b) => (date(a) < date(b) ? -1 : date(a) > date(b) ? 1 : 0));
+        tout = couperRetours((coupe ? coupe + nl : "") + entrees.join(nl));
+    }
+    localStorage.setItem(RETOURS_KEY, tout);
+}
+
 function envoyerRetour(){
     const zone = document.getElementById("retourTexte");
     const bouton = document.getElementById("retourBtn");
@@ -29156,11 +29265,7 @@ function envoyerRetour(){
     // septembre 2026 -- deux collages de plus et les retours du 6 septembre
     // etaient perdus en silence. Une perte annoncee se rattrape ; une perte
     // muette ne se decouvre jamais.
-    if(tout.length > RETOURS_MAX){
-        const perdus = tout.length - RETOURS_MAX;
-        tout = "[COUPE] " + perdus + " caracteres plus anciens ont ete retires, faute de place."
-             + String.fromCharCode(10) + tout.slice(perdus);
-    }
+    tout = couperRetours(tout);
     try{ localStorage.setItem(RETOURS_KEY, tout); }catch(e){}
     zone.value = "";
     oublierBrouillonRetour();
@@ -30804,7 +30909,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 717;
+const APP_VERSION = 718;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
