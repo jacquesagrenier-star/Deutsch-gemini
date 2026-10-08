@@ -55,13 +55,22 @@ def decouper(pts, nom, g):
     pas de miracle, mais 40 % de pixels en plus pour le meme ecran. Le vrai
     remede reste une image du visage generee pour le gros plan."""
     from PIL import Image
-    src = Image.open(os.path.normpath(os.path.join(ICI, pts["source"]))).convert("RGB")
-    W, H = src.size
-    x, y, w, h = g["cadre"]
-    boite = (round(W * x / 100), round(H * y / 100),
-             round(W * (x + w) / 100), round(H * (y + h) / 100))
     fichier = "%s-%s.webp" % (nom, g["id"])
-    src.crop(boite).save(os.path.join(ICI, fichier), quality=88)
+    chemin = os.path.normpath(os.path.join(ICI, pts["source"]))
+    if os.path.exists(chemin):
+        src = Image.open(chemin).convert("RGB")
+        W, H = src.size
+        x, y, w, h = g["cadre"]
+        boite = (round(W * x / 100), round(H * y / 100),
+                 round(W * (x + w) / 100), round(H * (y + h) / 100))
+        src.crop(boite).save(os.path.join(ICI, fichier), quality=88)
+    elif os.path.exists(os.path.join(ICI, fichier)):
+        # Une session cloud n'a pas la source (hors du depot) : on garde
+        # l'image deja decoupee. Juste tant que le CADRE n'a pas change --
+        # sinon, refaire la construction en local.
+        print("  source absente : %s garde telle quelle (cadre inchange ?)" % fichier)
+    else:
+        sys.exit("  source absente (%s) et pas de %s" % (chemin, fichier))
     # ⚠️ L'ADRESSE CHANGE AVEC LE CADRE. Le 6 oct. 2026, le telephone de
     #    Jacques a garde en cache l'ANCIENNE image du visage et recu le
     #    NOUVEAU cadre : les cercles des yeux tombaient a cote des yeux. Avec
