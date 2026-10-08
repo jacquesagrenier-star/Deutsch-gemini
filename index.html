@@ -38,7 +38,7 @@
 <link rel="preconnect" href="https://deutschai-b6fbb.web.app" crossorigin>
 <link rel="dns-prefetch" href="https://deutschai-b6fbb.web.app">
 
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/branding/wortando-app-icon.png">
+<link rel="icon" type="image/png" href="branding/wortando-app-icon.png">
 <link rel="apple-touch-icon" href="branding/wortando-apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 
@@ -7005,7 +7005,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v716</span>
+    <span class="subtitle-version">v717</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -7576,7 +7576,7 @@ body[data-theme="dark"] #decouverte > button.primary{
 
     <div class="card">
         <strong data-i18n="praep_visual_title">Aide-mémoire visuel</strong>
-        <img src="https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/video/prep.JPG" alt="Diagramme des prépositions Akkusativ, Dativ et Wechselpräpositionen (wohin/wo)" style="width:100%; border-radius:16px; margin-top:10px; display:block;" loading="lazy">
+        <img src="video/prep.JPG" alt="Diagramme des prépositions Akkusativ, Dativ et Wechselpräpositionen (wohin/wo)" style="width:100%; border-radius:16px; margin-top:10px; display:block;" loading="lazy">
     </div>
 
     <div class="card">
@@ -9825,6 +9825,22 @@ const LEARNING_DIRS = ["de", "en"];
 const DEFAULT_LEARNING_DIR = "de";
 
 
+// LE DOSSIER D'OU L'APP EST SERVIE (v717). Jusqu'ici les donnees venaient de
+// raw.githubusercontent.com, donc d'un depot PUBLIC, et toujours de `main` :
+// une previsualisation de branche (Cloudflare Pages) affichait la page de la
+// branche avec les donnees de main. Desormais elles viennent d'a cote de la
+// page -- GitHub Pages aujourd'hui, Cloudflare ou un domaine demain, sans
+// retoucher le code. C'est l'etape 1 du demenagement qui permettra de rendre
+// le depot prive (8 oct. 2026).
+// ⚠️ Le repli sur GitHub ne sert qu'a `file://`, ou fetch() est refuse : ouvrir
+// index.html directement depuis le disque doit continuer de marcher.
+// ⚠️ Un litteral, pas une constante tiree d'une autre (voir urlReglesGenre) :
+// LANGUE_ENSEIGNEE et ASSETS_BASE la lisent des le chargement.
+const RACINE_DEPOT = /^https?:$/.test(location.protocol)
+    ? new URL("./", location.href).href
+    : "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/";
+
+
 // ============ LA LANGUE ENSEIGNEE ============
 //
 // ETAPE 1 DE LA MISE EN COMMUN (3 septembre 2026). Jusqu'ici, « allemand »
@@ -9849,7 +9865,7 @@ const LANGUE_ENSEIGNEE = {
     // Le depot d'ou viennent les cinq JSON de vocabulaire, pruefung.json et
     // le dictionnaire. Un « git push » ici met les donnees a jour en
     // production : c'est voulu, et c'est documente dans CLAUDE.md.
-    donnees: "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/",
+    donnees: RACINE_DEPOT,
     // Les fichiers pre-generes de la voix Aurora, sur Firebase Hosting.
     // Vide = tout passe par la synthese du telephone (voir direAllemand).
     audio:   "https://deutschai-b6fbb.web.app/"
@@ -9861,7 +9877,7 @@ const LANGUE_ENSEIGNEE = {
 // langue enseignee. Les faire suivre LANGUE_ENSEIGNEE.donnees aurait casse
 // un fork espagnol pointant ailleurs -- il aurait perdu des videos qui ne
 // sont pas allemandes pour autant. Deux tables, parce qu'il y a deux choses.
-const ASSETS_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/";
+const ASSETS_BASE = RACINE_DEPOT;
 
 // UN SEUL ENDROIT QUI SAIT OU SONT LES DONNEES.
 // urlDonnees("verbe.json") remplace la chaine complete, treize fois.
@@ -23857,8 +23873,7 @@ function startDicteeNoms(){
 // refait. Une constante au sommet d'un fichier de 26 000 lignes ne doit jamais
 // dependre d'une autre : on met le litteral, ou on calcule dans la fonction.
 function urlReglesGenre(){
-    return "https://raw.githubusercontent.com/jacquesagrenier-star/"
-         + "Deutsch-gemini/main/branding/regles-genre.json";
+    return RACINE_DEPOT + "branding/regles-genre.json";
 }
 let REGLES_GENRE = null;
 
@@ -30789,7 +30804,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 716;
+const APP_VERSION = 717;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -33082,8 +33097,7 @@ const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de JOURS D'ACTIVITE l'image finie
 // on croit que la carte a fige.
 const MOSAIQUE_RESOLUTION_MS = 900;
 const MOSAIQUE_CLE = "deutschAI_mosaique";
-const MOSAIQUE_BASE = "https://raw.githubusercontent.com/jacquesagrenier-star/"
-                    + "Deutsch-gemini/main/branding/mosaique/";
+const MOSAIQUE_BASE = RACINE_DEPOT + "branding/mosaique/";
 let MOSAIQUES = null;
 let chargementMosaiques = null;
 // Une notice par PEINTRE, pas par tableau : vingt-deux textes au lieu de
