@@ -166,6 +166,7 @@ const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
 /* ?t= : jamais la version en cache. Le telephone de Jacques a melange une
    ancienne image et de nouvelles coordonnees (6 oct.) ; un prototype qu'on
    corrige toutes les dix minutes ne doit rien garder. */
+const MISE = new URLSearchParams(location.search).get("mise") === "bleu" ? "bleu" : "sombre";
 const FRAIS = "?t=" + Date.now();
 document.write(`<script src="scene-${NOM_SCENE}.js${FRAIS}"><\/script>`
              + `<script src="masques-${NOM_SCENE}.js${FRAIS}"><\/script>`);
@@ -306,10 +307,20 @@ function dessiner(){
   // comprend sans un mot que c'est LUI qu'on explore (Jacques : « en mode
   // decouvrir, on peut etre porte a cliquer sur le medecin aussi »).
   // Un surlignage le remplace le temps de la reponse.
-  const projecteur = !principaux.length && S.corps && MASQUES.traces[S.corps];
-  voile.innerHTML = principaux.length
+  // EN ESSAI (8 oct.), deux facons de le montrer, a comparer par Jacques :
+  //   ?mise=sombre (defaut) : Mark eclaire, le reste assombri ;
+  //   ?mise=bleu : la photo intacte, un trait BLEU fin et calme autour de
+  //   Mark, toujours la -- dans le calque du voile, qui ne pulse pas, pour
+  //   ne jamais se confondre avec le contour AMBRE d'une reponse.
+  const corps = S.corps && MASQUES.traces[S.corps];
+  const projecteur = !principaux.length && corps && MISE === "sombre";
+  const traitBleu = corps && MISE === "bleu"
+    ? `<path d="${chemin(S.corps)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke="rgba(255,255,255,.75)" stroke-width="4.5"/>`
+    + `<path d="${chemin(S.corps)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke="#2F6FE4" stroke-width="2.25"/>`
+    : "";
+  voile.innerHTML = (principaux.length
     ? `<path fill="rgba(0,0,0,.30)" fill-rule="evenodd" d="M0 0H${TW}V${TH}H0Z${principaux.map(a => chemin(a.id)).join("")}"/>`
-    : projecteur ? `<path fill="rgba(0,0,0,.38)" fill-rule="evenodd" d="M0 0H${TW}V${TH}H0Z${chemin(S.corps)}"/>` : "";
+    : projecteur ? `<path fill="rgba(0,0,0,.38)" fill-rule="evenodd" d="M0 0H${TW}V${TH}H0Z${chemin(S.corps)}"/>` : "") + traitBleu;
   // les references d'abord, la cible par-dessus
   toile.innerHTML = [...allumes.filter(a => a.second), ...principaux].map(a =>
     `<path d="${chemin(a.id)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round"
