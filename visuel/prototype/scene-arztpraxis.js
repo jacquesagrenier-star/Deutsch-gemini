@@ -155,16 +155,6 @@ window.SCENE = {
      "mot": "Mann",
      "genre": "der",
      "fr": "homme/mari"
-    },
-    {
-     "mot": "T-Shirt",
-     "genre": "das",
-     "fr": "t-shirt"
-    },
-    {
-     "mot": "Hose",
-     "genre": "die",
-     "fr": "pantalon"
     }
    ],
    "sur": null,
@@ -681,6 +671,50 @@ window.SCENE = {
      58.8,
      7.5,
      6
+    ]
+   ]
+  },
+  {
+   "id": "hand-aerztin-haut",
+   "mot": "Hand",
+   "genre": "die",
+   "pluriel": "Hände",
+   "fr": "main",
+   "en": "hand",
+   "niveau": "A1",
+   "theme": "koerperteile_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "aerztin",
+   "devant": 0,
+   "boites": [
+    [
+     70.10000000000001,
+     59.05,
+     7.2,
+     1.9
+    ]
+   ]
+  },
+  {
+   "id": "hand-aerztin-bas",
+   "mot": "Hand",
+   "genre": "die",
+   "pluriel": "Hände",
+   "fr": "main",
+   "en": "hand",
+   "niveau": "A1",
+   "theme": "koerperteile_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "aerztin",
+   "devant": 0,
+   "boites": [
+    [
+     72.39999999999999,
+     62.3,
+     7.8,
+     2.2
     ]
    ]
   },

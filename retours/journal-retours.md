@@ -7900,3 +7900,34 @@ clic dans le navigateur, avant et apres :**
 Resultat au clic : menton (centre, bas, cote) -> Kinn ; cotes et tempes ->
 Haar ; ongles d'orteil -> Nagel ; levre, cou, oreilles, oeil, front, orteils,
 pied, cheville inchanges. 85 -> 95 zones. Images : .claude/controle-8-octobre/.
+
+## 8 octobre 2026 (suite) -- Jacques : les mains de la medecin, le pantalon de Mark
+
+« Chez le medecin, lorsqu'on cherche les mains, ca doit inclure les mains du
+medecin aussi. Lorsqu'on clique sur pantalon [...] si je clique sur Mark, ca
+donne son corps complet. On devrait juste definir les pantalons. »
+
+- En « Trouve ! », die Hand : les mains de la medecin doivent compter.
+- Toucher le pantalon de Mark allume tout son corps au lieu du seul pantalon.
+
+**Corrige (meme jour)** : la zone de Mark portait aussi les mots T-Shirt et
+Hose (d'avant les zones tshirt et hose). Sa jambe droite est RETROUSSEE
+au-dessus du genou : toucher le genou nu ou le mollet en cherchant die Hose
+remontait jusqu'a Mark, qui « portait » le mot, et l'allumait en entier. Mark
+ne porte plus que der Mann. Deux mains a la medecin (ellipses, sur aerztin) :
+die Hand n'appartient plus au seul Mark, les deux comptent. Verifie au clic.
+
+**Puis, le concept lui-meme (la vraie remarque) :**
+
+« Mettre Mark soit en slip, en sous-vetement, qu'on travaille vraiment sur le
+corps de Mark, soit debout au lieu d'etre assis. Parce que la, meme s'il y a
+une question sur la colonne vertebrale, c'est sur le poster, sur la fiche
+qu'il faut cliquer. Quelque chose dans le concept qui me derange. »
+« C'est pas les vetements qui nous interessent. C'est les parties du corps. »
+« On se fout des objets qui sont dans la salle. C'est vrai que la carte
+d'assurance est importante. »
+
+-> Tres probablement le « je sens pas ca » du 7 octobre. La scene du medecin
+est a REPENSER autour du corps de Mark : debout, en sous-vetement, les parties
+du corps sur lui et non sur une affiche ; les objets de la piece ne comptent
+pas, sauf die Versichertenkarte.
