@@ -33,15 +33,11 @@ C'est une app **statique, sans build**, essentiellement en un seul fichier HTML 
 
 ## Données (important)
 
-Les fichiers de données sont chargés **à l'exécution, directement depuis GitHub**, pas empaquetés dans le HTML :
+Les fichiers de données sont chargés **à l'exécution, depuis le dossier où la page est servie**, pas empaquetés dans le HTML. Depuis la v717, `RACINE_DEPOT` vaut le dossier de la page (GitHub Pages aujourd'hui, Cloudflare Pages ou un domaine demain). Le repli sur `raw.githubusercontent.com` ne sert qu'à `file://`, pour que l'ouverture directe depuis le disque marche encore. Avant la v717, tout venait de `raw.githubusercontent.com/.../main/`.
 
-```
-https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/verbe.json
-https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/adjectif.json
-https://raw.githubusercontent.com/jacquesagrenier-star/Deutsch-gemini/main/themes.json
-```
+**Conséquence : un `git push` sur `main` met à jour les données en production**, sans étape de déploiement séparée, dès que GitHub Pages a republié (environ une minute). Effet voulu : une prévisualisation de branche Cloudflare Pages charge désormais les données de **sa** branche, ce qui en fait un vrai lieu d'essai.
 
-**Conséquence : un `git push` sur `main` met à jour les données en production immédiatement**, sans étape de déploiement séparée. Il n'y a pas d'environnement de test — toute modification poussée sur `main` est visible tout de suite par l'app.
+**Déménagement en cours (décidé le 8 oct. 2026)** : servir l'app depuis Cloudflare Pages (`deutsch-gemini.pages.dev`, adresse technique fixe pour les apps iPhone et Android), rediriger l'ancien lien GitHub Pages, puis rendre le dépôt **privé**. Étape 1 (v717) faite. Ne pas réintroduire d'adresse `raw.githubusercontent.com` : elle cessera de répondre le jour où le dépôt sera privé.
 
 Structure des fichiers JSON, organisés par niveau CECR (`A1`, `A2`, ...) :
 
