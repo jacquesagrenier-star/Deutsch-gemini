@@ -37,7 +37,7 @@ Les fichiers de données sont chargés **à l'exécution, depuis le dossier où 
 
 **Conséquence : un `git push` sur `main` met à jour les données en production**, sans étape de déploiement séparée, dès que GitHub Pages a republié (environ une minute). Effet voulu : une prévisualisation de branche Cloudflare Pages charge désormais les données de **sa** branche, ce qui en fait un vrai lieu d'essai.
 
-**Déménagement en cours (décidé le 8 oct. 2026)** : servir l'app depuis Cloudflare Pages (`deutsch-gemini.pages.dev`, adresse technique fixe pour les apps iPhone et Android), rediriger l'ancien lien GitHub Pages, puis rendre le dépôt **privé**. Étape 1 (v717) faite. Ne pas réintroduire d'adresse `raw.githubusercontent.com` : elle cessera de répondre le jour où le dépôt sera privé.
+**Déménagement en cours (décidé le 8 oct. 2026)** : servir l'app depuis Cloudflare Pages (`deutsch-gemini.pages.dev`, adresse technique fixe pour les apps iPhone et Android), rediriger l'ancien lien GitHub Pages, puis rendre le dépôt **privé**. Étape 1 (v717) faite. Ne pas réintroduire d'adresse `raw.githubusercontent.com` : elle cessera de répondre le jour où le dépôt sera privé. La redirection de l'ancien lien est **préparée, pas activée** : constante `ADRESSE_DEFINITIVE` dans le `<head>` d'`index.html` (**vide = inerte**, ne la remplir qu'en suivant la procédure), contenu du futur dépôt de redirection dans `demenagement/depot-redirection/`, procédure pas à pas dans `demenagement/JOUR-J.md`.
 
 Structure des fichiers JSON, organisés par niveau CECR (`A1`, `A2`, ...) :
 
@@ -71,3 +71,12 @@ Le bouton « Signaler un problème ou une idée » (v478) écrit dans le documen
 - `python tests/verifier.py` (aucune dépendance, quelques secondes). Il valide les 5 fichiers JSON et analyse `index.html` : clés de traduction en double ou absentes d'une des deux langues, `onclick` vers une fonction inexistante, `showScreen()` vers une section inexistante, action de panneau sans fonction, mode de flashcard sans écran de retour. Voir `tests/README.md`.
 - Le vérificateur ne juge ni la qualité d'une traduction ni une mise en page : valider aussi les changements visuels en ouvrant `index.html` dans un navigateur.
 - Le dossier local du projet est synchronisé via OneDrive (`Desktop/Mes Projets/DeutschAI`) — éviter les opérations git lourdes ou concurrentes qui pourraient entrer en conflit avec la synchronisation OneDrive.
+
+## Travailler depuis une session cloud
+
+- **Une branche par chantier**, nom court en minuscules et tirets (`demenagement-redirection`). **Jamais de push sur `main`** : c'est la production (voir « Données »).
+- Une **pull request** vers `main`, avec les deux vérificateurs passés.
+- **Le lien de prévisualisation Cloudflare** de la branche, donné à Jacques pour qu'il essaie sur son téléphone. Format de Cloudflare Pages : `https://<branche>.deutsch-gemini.pages.dev/` (alias qui suit le dernier commit de la branche) et `https://<empreinte>.deutsch-gemini.pages.dev/` (un commit précis). Cloudflare normalise le nom de branche dans l'adresse ; le lien exact est celui que Cloudflare affiche sur la PR — le recopier plutôt que le reconstruire.
+- Jacques répond « fusionne » : alors seulement on fusionne.
+- **Pas de changement de numéro de version sur une branche** (`APP_VERSION`, `version.json`) : le PC le fait à la fusion. Deux branches qui montent chacune la version se marchent dessus.
+- ⚠️ **Ce qu'une prévisualisation ne permet pas forcément : le parcours connecté.** Firebase n'accepte une adresse que si elle est **autorisée** (Authentication → domaines autorisés) — c'est sûr pour le lien « mot de passe oublié » (sinon page Firebase en anglais) ; pour la connexion elle-même, ça dépend des **restrictions de référent de la clé API** (Google Cloud → Identifiants), à constater une fois. Et Firebase n'accepte **pas de joker** (`*.deutsch-gemini.pages.dev`) : chaque adresse de branche serait à ajouter à la main. D'où **une adresse d'essai fixe** : la branche `essai`, soit `https://essai.deutsch-gemini.pages.dev/`, que Jacques autorise une fois (domaines Firebase + référents de la clé). Pour faire essayer un chantier connecté, le pousser aussi sur `essai` (`git push origin <branche>:essai --force-with-lease` ; `essai` n'appartient à personne et s'écrase). Une prévisualisation de branche ordinaire sert d'abord à juger une mise en page.

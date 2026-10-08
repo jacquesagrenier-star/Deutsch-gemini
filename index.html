@@ -7,6 +7,48 @@
 
 <title>Wortando</title>
 
+<script>
+// ============ L'ADRESSE DEFINITIVE (demenagement, 8 oct. 2026) ============
+//
+// VIDE = INERTE. Tant que cette chaine est vide, rien ne change pour personne.
+// Remplie (« https://deutsch-gemini.pages.dev/ »), l'app servie depuis
+// *.github.io se remplace elle-meme par la meme page a cette adresse, en
+// gardant la requete et le fragment -- un lien de reinitialisation de mot de
+// passe (?mode=resetPassword&oobCode=...) arrive donc entier. Procedure
+// complete : demenagement/JOUR-J.md.
+//
+// ⚠️ C'EST LA VOIE PRINCIPALE, PAS LA PAGE DE REDIRECTION. Un testeur qui a
+// installe l'app a un service worker qui sert index.html DEPUIS SON CACHE : il
+// ne verrait jamais une page de redirection posee a l'ancienne adresse. Cette
+// version-ci, elle, sera dans son cache avant la fermeture.
+//
+// ⚠️ DANS LE <head>, ET PETIT, EXPRES : la redirection part avant le premier
+// rendu, sans eclair d'accueil. Ce script ne doit RIEN faire d'autre -- tout
+// le reste vit dans le <body> (voir la coupe du CSS, v256).
+//
+// GARDE-FOUS : on ne redirige QUE depuis *.github.io, vers une adresse https
+// d'un AUTRE hote -- donc jamais depuis file://, localhost, pages.dev ou un
+// domaine futur, et aucune boucle possible. Jamais non plus dans l'app native
+// (Capacitor) : y changer d'hote ouvrirait Safari a la place de l'app ; les
+// apps sont recompilees avec la nouvelle adresse (etape 3).
+const ADRESSE_DEFINITIVE = "";
+(function(){
+    if(!ADRESSE_DEFINITIVE) return;
+    try{
+        if(!/\.github\.io$/i.test(location.hostname)) return;
+        if(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) return;
+        var cible = new URL(ADRESSE_DEFINITIVE);
+        if(cible.protocol !== "https:" || cible.hostname === location.hostname) return;
+        // Le chemin APRES le dossier de l'app : « », « index.html »...
+        var dossier = new URL("./", location.href).pathname;
+        var reste = location.pathname.indexOf(dossier) === 0 ? location.pathname.slice(dossier.length) : "";
+        location.replace(new URL(reste + location.search + location.hash, cible).href);
+    }catch(e){
+        // Une adresse mal ecrite ne doit jamais empecher l'app de s'ouvrir.
+    }
+})();
+</script>
+
 <!-- ⚠️ LA CONNEXION AUDIO S'OUVRE AVANT QU'ON EN AIT BESOIN (v661).
      CE QUE LA MESURE DU 21 SEPTEMBRE A DONNE, sur la machine de Jacques, au
      moment exact ou le son ne sortait pas. Quatre facons de jouer LE MEME
@@ -34033,8 +34075,10 @@ const SCENE_FAITE_KEY = "deutschAI_sceneFaite";
 function baseScenes(){
     // Servie par GitHub Pages a cote de l'app ; l'app installee (Capacitor)
     // n'a pas d'adresse http, elle va chercher la version en ligne.
+    // ⚠️ L'adresse github.io disparaitra au demenagement : remplir
+    // ADRESSE_DEFINITIVE (dans le <head>) fait suivre ce repli aussi.
     if(/^https?:$/.test(location.protocol)) return new URL("visuel/prototype/", location.href).toString();
-    return "https://jacquesagrenier-star.github.io/Deutsch-gemini/visuel/prototype/";
+    return (ADRESSE_DEFINITIVE || "https://jacquesagrenier-star.github.io/Deutsch-gemini/") + "visuel/prototype/";
 }
 
 function sceneDuJour(){
