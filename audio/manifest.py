@@ -199,6 +199,19 @@ def recolter():
     for phrase in phrases_des_articles():
         prendre(phrase, "B1", "phrase", "exercices.articles")
 
+    # LES SCENES ILLUSTREES (9 oct. 2026). Chaque question A2-C1 se conclut sur
+    # une phrase allemande que la scene PRONONCE (champ phrase, lu par dire()
+    # dans visuel/prototype/index.html, au caractere pres). Jacques : « on n'a
+    # pas les phrases avec la voix d'Aurora ». Le niveau est celui de la couche.
+    import glob
+    for f in sorted(glob.glob(os.path.join(RACINE, "visuel", "prototype", "*.points.json"))):
+        nom = os.path.basename(f)[:-len(".points.json")]
+        with io.open(f, encoding="utf-8") as fh:
+            scene = json.load(fh)
+        for niv, couche in (scene.get("couches") or {}).items():
+            for q in couche.get("qs") or []:
+                prendre(q.get("phrase"), niv, "phrase", "scene." + nom)
+
     return out
 
 

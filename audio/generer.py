@@ -262,6 +262,9 @@ def main():
                    help="credits a ne pas depasser sur cette execution")
     p.add_argument("--a-blanc", action="store_true")
     p.add_argument("--essai", action="store_true")
+    p.add_argument("--sources", default="",
+                   help="ne produire que ces sources (prefixes, ex. scene,nomen) : "
+                        "une depense approuvee pour un lot ne couvre pas le reste")
     a = p.parse_args()
 
     if a.essai:
@@ -273,6 +276,11 @@ def main():
     os.makedirs(SORTIE, exist_ok=True)
 
     voulus, restants = a_produire(niveaux)
+    if a.sources:
+        prefixes = tuple(a.sources.split(","))
+        garder = lambda e: any(s.startswith(prefixes) for s in e["sources"])
+        voulus = [e for e in voulus if garder(e)]
+        restants = [e for e in restants if garder(e)]
     cout = int(sum(len(e["texte"]) for e in restants) * taux)
 
     print("  niveaux %s | modele %s | %d entrees, %d deja faites"

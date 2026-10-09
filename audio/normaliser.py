@@ -209,6 +209,10 @@ def main():
     p.add_argument("--niveaux", default="")
     p.add_argument("--essai", type=int, default=0,
                    help="ne traiter que N fichiers, dans audio/essai_norm/")
+    p.add_argument("--nouveaux", action="store_true",
+                   help="seulement les fichiers SANS original dans mp3_original/ : "
+                        "on y range d'abord l'original, puis on normalise. Pour un "
+                        "petit lot frais, sans retraiter les 26 000 autres.")
     a = p.parse_args()
     FF = ffmpeg()
 
@@ -217,6 +221,25 @@ def main():
     if a.niveaux:
         niveaux = a.niveaux.split(",")
         entrees = [e for e in entrees if e["niveau"] in niveaux]
+    if a.nouveaux:
+        import shutil
+        os.makedirs(SOURCE, exist_ok=True)
+        # ⚠️ « Sans original » ne suffit PAS a dire « frais ». Le 9 oct. 2026,
+        # 158 fichiers DEJA normalises n'avaient pas d'original archive : pris
+        # pour nouveaux, ils ont ete renormalises (une generation d'encodage de
+        # plus) avant d'etre restaures. Un fichier frais sort d'ElevenLabs :
+        # il a moins de 24 heures.
+        import time
+        recent = time.time() - 24 * 3600
+        frais = [e for e in entrees
+                 if os.path.exists(os.path.join(DOSSIER, e["id"] + ".mp3"))
+                 and not os.path.exists(os.path.join(SOURCE, e["id"] + ".mp3"))
+                 and os.path.getmtime(os.path.join(DOSSIER, e["id"] + ".mp3")) >= recent]
+        for e in frais:
+            shutil.copy2(os.path.join(DOSSIER, e["id"] + ".mp3"),
+                         os.path.join(SOURCE, e["id"] + ".mp3"))
+        print("  %d originaux ranges dans audio/mp3_original/" % len(frais))
+        entrees = frais
     entrees = [e for e in entrees
                if os.path.exists(os.path.join(DOSSIER, e["id"] + ".mp3"))]
 
