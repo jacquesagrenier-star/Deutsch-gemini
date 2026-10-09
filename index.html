@@ -7047,7 +7047,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v722</span>
+    <span class="subtitle-version">v723</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -30988,7 +30988,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 722;
+const APP_VERSION = 723;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -34208,9 +34208,15 @@ function fixerNiveauSeance(niv){
 // ⚠️ PAS ENCORE FAIT : une reponse dans la scene ne compte pas encore comme
 // revision du mot (decide, mais l'ecriture dans la progression touche au
 // coeur de la repetition espacee -- a faire a part, et a verifier).
+// v723 (9 oct. 2026) : quatre scenes, un theme chacune -- la classe (l'ecole),
+// l'examen (le corps, de face et de dos), le marche (fruits et legumes, quatre
+// etals), la blessure (la sante). Une scene a plusieurs vues s'ouvre par sa
+// premiere ; la seance va d'elle-meme a la vue de chaque question.
 const SCENES_SEANCE = [
     { nom: "klassenzimmer", titre: "La classe de Mark et Anna" },
-    { nom: "arztpraxis", titre: "Mark chez le médecin" }
+    { nom: "untersuchung", titre: "Mark chez sa médecin" },
+    { nom: "markt-obst-heimisch", titre: "Anna au marché" },
+    { nom: "arztpraxis", titre: "Mark s'est blessé au genou" }
 ];
 const SCENE_FAITE_KEY = "deutschAI_sceneFaite";
 
