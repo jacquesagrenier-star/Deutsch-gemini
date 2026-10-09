@@ -116,6 +116,30 @@ def geometrie(m8, mode, cv2, np):
     return toile
 
 
+def retirer_fond(m8, pixels, fond, cv2, np):
+    """Rendre au MUR ce que SAM a pris autour d'un personnage (champ fond).
+
+    Jacques, 9 oct. 2026, sur l'examen : « autour de sa tete, comme une petite
+    ligne, ce n'est pas beau ». Le projecteur eclaire le masque de Mark et
+    assombrit le reste ; or SAM avait garde des bouts de mur vert entre les
+    boucles, pres de l'oreille et du cou -- des taches claires collees a la
+    tete. Sur un mur UNI, la couleur suffit a les reconnaitre : la couleur du
+    fond est la mediane d'un anneau autour du masque, et l'on retire du masque
+    tout pixel plus proche d'elle que `fond` (distance RVB ; true = 30)."""
+    tol = 30 if fond is True else float(fond)
+    anneau = cv2.dilate(m8, np.ones((31, 31), np.uint8)) & ~m8
+    couleur = np.median(pixels[anneau > 127], axis=0)
+    proche = np.sqrt(((pixels - couleur) ** 2).sum(axis=2)) < tol
+    m8 = m8.copy()
+    m8[proche] = 0
+    m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(m8)
+    for i in range(1, n):
+        if stats[i, cv2.CC_STAT_AREA] < MIETTE:
+            m8[lab == i] = 0
+    return m8
+
+
 def rle(bits):
     """Longueurs alternees, en commencant par une plage de 0."""
     plages, courant, n = [], 0, 0
@@ -180,6 +204,7 @@ def main():
         masques.append(res.masks.data[0].cpu().numpy().astype(bool))
     masques = np.stack(masques)                              # (N, H, W)
 
+    pixels = np.array(Image.open(image).convert("RGB")).astype(np.int16)
     w, h = W // REDUCTION, H // REDUCTION
     sortie, traces = {}, {}
     noyau = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (NETTOYAGE, NETTOYAGE))
@@ -191,6 +216,8 @@ def main():
         n = noyau_rigide if z.get("rigide") else noyau
         m8 = cv2.morphologyEx(m.astype(np.uint8) * 255, cv2.MORPH_CLOSE, n)
         m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, noyau)
+        if z.get("fond"):
+            m8 = retirer_fond(m8, pixels, z["fond"], cv2, np)
         masques[k] = m8 > 127
         m = masques[k]
         # Le TRACE : un polygone simplifie (Douglas-Peucker). Un bord presque

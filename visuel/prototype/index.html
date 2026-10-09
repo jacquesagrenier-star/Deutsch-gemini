@@ -171,7 +171,11 @@ const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
 /* ?t= : jamais la version en cache. Le telephone de Jacques a melange une
    ancienne image et de nouvelles coordonnees (6 oct.) ; un prototype qu'on
    corrige toutes les dix minutes ne doit rien garder. */
-const MISE = new URLSearchParams(location.search).get("mise") === "bleu" ? "bleu" : "sombre";
+/* La facon de montrer Mark sur une scene du corps : DECIDE par Jacques le
+   9 oct. -- « l'eclairage de Mark, ce n'est pas beau ; on avait decide une
+   ligne de contour ». Le trait bleu est donc le defaut ; ?mise=sombre garde
+   l'ancien projecteur pour comparer. */
+const MISE = new URLSearchParams(location.search).get("mise") === "sombre" ? "sombre" : "bleu";
 const FRAIS = "?t=" + Date.now();
 document.write(`<script src="scene-${NOM_SCENE}.js${FRAIS}"><\/script>`
              + `<script src="masques-${NOM_SCENE}.js${FRAIS}"><\/script>`);
@@ -322,9 +326,10 @@ function dessiner(){
   // comprend sans un mot que c'est LUI qu'on explore (Jacques : « en mode
   // decouvrir, on peut etre porte a cliquer sur le medecin aussi »).
   // Un surlignage le remplace le temps de la reponse.
-  // EN ESSAI (8 oct.), deux facons de le montrer, a comparer par Jacques :
-  //   ?mise=sombre (defaut) : Mark eclaire, le reste assombri ;
-  //   ?mise=bleu : la photo intacte, un trait BLEU fin et calme autour de
+  // Deux facons de le montrer (essai du 8 oct.) ; Jacques a choisi le trait
+  // bleu le 9 oct. (voir MISE) :
+  //   ?mise=sombre : Mark eclaire, le reste assombri ;
+  //   bleu (defaut) : la photo intacte, un trait BLEU fin et calme autour de
   //   Mark, toujours la -- dans le calque du voile, qui ne pulse pas, pour
   //   ne jamais se confondre avec le contour AMBRE d'une reponse.
   const corps = S.corps && MASQUES.traces[S.corps];
