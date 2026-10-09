@@ -7984,3 +7984,12 @@ pour die Handflaeche).
 Mots du dos ajoutes au corpus (`ajouts/scene-untersuchung-dos.json`) :
 der Po (A2), der Nacken et die Wade (B1), das Schulterblatt et die Kniekehle
 (B2). Traductions tr/uk/fa NON relues.
+
+## 9 octobre 2026 (suite) -- Jacques : « autour de sa tete, une petite ligne, ce n'est pas beau »
+
+Sur la scene de l'examen, une bordure claire entourait la tete de Mark. Cause :
+le projecteur (Mark eclaire, le reste assombri) suivait le masque SAM, qui avait
+garde des bouts de mur entre les boucles et pres de l'oreille. Jacques rappelle
+qu'on avait choisi une LIGNE DE CONTOUR : le trait bleu est maintenant le
+defaut du prototype, et detourer.py retire du masque de Mark la couleur du mur
+(champ fond). Commit 65deec8.
