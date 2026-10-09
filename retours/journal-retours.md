@@ -8035,3 +8035,15 @@ des mots du niveau de l'eleve (une seance A2 avait demande « Rueebli », B1) ;
 (3) « ‹ Retour » partout au lieu du titre de la scene ; (4) confettis et les
 trois notes de l'app a chaque bonne reponse. Decouvrir ne compte pas : il
 reste hors seance, pour flaner.
+
+## 9 octobre 2026 (suite) -- Jacques : « que toutes les phrases soient avec la voix d'Aurora, partout »
+
+Inventaire refait (audio/manifest.py, qui suit ce que l'app prononce) : 27 645
+textes. Manquaient 517 phrases d'exercices (les jeux etaient passes de 1 682 a
+2 317), les 20 mots ajoutes ces jours-ci, les 176 phrases des scenes et der
+Haken : tous generes, normalises et deposes (~16 200 credits ElevenLabs).
+En verifiant, un vrai bug de production : 104 phrases d'exercices etaient
+prononcees avec l'indice (« vor Wo (Dativ) Haus. (das Haus) ») -- corrige par
+le champ audioDe, plus un exercice a deux trous pour une seule reponse.
+Restent a la voix du telephone : deux imperatifs refuses par ElevenLabs
+(Toete!, Ernaehre dich!).
