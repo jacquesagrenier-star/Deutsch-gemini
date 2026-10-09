@@ -566,6 +566,253 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Au marché"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions au marché",
+   "qs": [
+    {
+     "q": "Wo liegen die Kirschen?",
+     "c": [
+      "zwischen den Stachelbeeren und den Brombeeren",
+      "neben den Äpfeln",
+      "neben den Pflaumen"
+     ],
+     "f": "kirsche",
+     "phrase": "Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.",
+     "n": "<b>zwischen</b> + datif pluriel : <b>den</b> Stachelbeere<b>n</b>, <b>den</b> Brombeere<b>n</b>.",
+     "r": "brombeere"
+    },
+    {
+     "q": "Was nimmt Anna in die Hand?",
+     "c": [
+      "einen Apfel",
+      "eine Birne",
+      "einen Pfirsich"
+     ],
+     "f": "apfel-main",
+     "phrase": "Anna nimmt einen Apfel in die Hand.",
+     "n": "der Apfel → accusatif : <b>einen</b> Apfel.",
+     "r": "anna"
+    },
+    {
+     "q": "Wo liegen die Birnen?",
+     "c": [
+      "neben den Nüssen",
+      "neben den Erdbeeren",
+      "neben den Kirschen"
+     ],
+     "f": "birne",
+     "phrase": "Die Birnen liegen neben den Nüssen.",
+     "n": "die Nuss → pluriel die Nüsse → datif <b>den Nüssen</b>.",
+     "r": "nuss"
+    },
+    {
+     "q": "Wo liegen die Heidelbeeren?",
+     "c": [
+      "rechts neben den Himbeeren",
+      "links neben den Himbeeren",
+      "neben den Äpfeln"
+     ],
+     "f": "heidelbeere",
+     "phrase": "Die Heidelbeeren liegen rechts neben den Himbeeren.",
+     "n": "<b>rechts neben</b> + datif. die Himbeeren → <b>den</b> Himbeeren.",
+     "r": "himbeere"
+    },
+    {
+     "q": "Wo steht Anna?",
+     "c": [
+      "vor dem Stand",
+      "hinter dem Stand",
+      "auf dem Stand"
+     ],
+     "f": "anna",
+     "phrase": "Anna steht vor dem Stand.",
+     "n": "<b>vor</b> + datif (Wo?) : der Stand → vor <b>dem</b> Stand."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "„Ich hätte gern ___ Erdbeeren.“",
+     "c": [
+      "eine Schale",
+      "einen Bund",
+      "eine Flasche"
+     ],
+     "f": "erdbeere",
+     "phrase": "Ich hätte gern eine Schale Erdbeeren.",
+     "n": "<b>eine Schale</b> = une barquette. « Ich hätte gern … » = je voudrais, la formule polie."
+    },
+    {
+     "q": "„Ein Kilo ___, bitte.“",
+     "c": [
+      "Äpfel",
+      "Äpfeln",
+      "Apfel"
+     ],
+     "f": "apfel",
+     "phrase": "Ein Kilo Äpfel, bitte.",
+     "n": "Après une quantité, le nom au pluriel, sans article : ein Kilo <b>Äpfel</b>."
+    },
+    {
+     "q": "Die Pfirsiche sind ___ als die Aprikosen.",
+     "c": [
+      "größer",
+      "großer",
+      "am größten"
+     ],
+     "f": "pfirsich",
+     "phrase": "Die Pfirsiche sind größer als die Aprikosen.",
+     "n": "Comparatif : groß → <b>größer</b> … <b>als</b>.",
+     "r": "aprikose"
+    },
+    {
+     "q": "„Was ___ die Himbeeren?“",
+     "c": [
+      "kosten",
+      "kostet",
+      "kostest"
+     ],
+     "f": "himbeere",
+     "phrase": "Was kosten die Himbeeren?",
+     "n": "Le sujet est au pluriel (die Himbeeren) → <b>kosten</b>."
+    },
+    {
+     "q": "„Ich nehme ___ Pflaumen.“",
+     "c": [
+      "ein Pfund",
+      "einen Bund",
+      "eine Flasche"
+     ],
+     "f": "pflaume",
+     "phrase": "Ich nehme ein Pfund Pflaumen.",
+     "n": "<b>ein Pfund</b> = 500 grammes, très courant au marché."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et adjectifs",
+   "qs": [
+    {
+     "q": "Das sind ___ Erdbeeren aus der Region.",
+     "c": [
+      "frische",
+      "frischen",
+      "frischer"
+     ],
+     "f": "erdbeere",
+     "phrase": "Das sind frische Erdbeeren aus der Region.",
+     "n": "Pluriel sans article, nominatif → <b>-e</b> : frisch<b>e</b> Erdbeeren."
+    },
+    {
+     "q": "Die Äpfel ___ hier in Brandenburg angebaut.",
+     "c": [
+      "werden",
+      "sind",
+      "haben"
+     ],
+     "f": "apfel",
+     "phrase": "Die Äpfel werden hier in Brandenburg angebaut.",
+     "n": "Passif : <b>werden</b> + participe II (angebaut = cultivés)."
+    },
+    {
+     "q": "Die Frau, ___ einen Apfel aussucht, heißt Anna.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "anna",
+     "phrase": "Die Frau, die einen Apfel aussucht, heißt Anna.",
+     "n": "Sujet de la relative, féminin → <b>die</b>.",
+     "r": "apfel-main"
+    },
+    {
+     "q": "Die Kiste, ___ die Brombeeren liegen, steht neben den Kirschen.",
+     "c": [
+      "in der",
+      "in die",
+      "in den"
+     ],
+     "f": "brombeere",
+     "phrase": "Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.",
+     "n": "Relative avec préposition : Wo? → datif, die Kiste → <b>in der</b>.",
+     "r": "kirsche"
+    },
+    {
+     "q": "Rhabarber wird oft zu Kuchen ___.",
+     "c": [
+      "verarbeitet",
+      "verarbeiten",
+      "verarbeitete"
+     ],
+     "f": "rhabarber",
+     "phrase": "Rhabarber wird oft zu Kuchen verarbeitet.",
+     "n": "Passif : wird + participe II <b>verarbeitet</b> (transformé)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses, je … desto, génitif",
+   "qs": [
+    {
+     "q": "Je reifer die Erdbeeren sind, ___ süßer schmecken sie.",
+     "c": [
+      "desto",
+      "als",
+      "wie"
+     ],
+     "f": "erdbeere",
+     "phrase": "Je reifer die Erdbeeren sind, desto süßer schmecken sie.",
+     "n": "<b>je</b> + comparatif …, <b>desto</b> + comparatif : plus …, plus …"
+    },
+    {
+     "q": "___ der langen Transportwege kaufe ich lieber heimisches Obst.",
+     "c": [
+      "Angesichts",
+      "Trotz",
+      "Statt"
+     ],
+     "f": "apfel",
+     "phrase": "Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.",
+     "n": "<b>angesichts</b> + génitif = vu, compte tenu de."
+    },
+    {
+     "q": "Wären die Kirschen billiger, ___ ich zwei Kilo nehmen.",
+     "c": [
+      "würde",
+      "werde",
+      "wurde"
+     ],
+     "f": "kirsche",
+     "phrase": "Wären die Kirschen billiger, würde ich zwei Kilo nehmen.",
+     "n": "Condition sans <b>wenn</b> : verbe en tête, puis <b>würde</b> + infinitif."
+    },
+    {
+     "q": "___ Rhabarber sauer ist, backt Anna gern Kuchen damit.",
+     "c": [
+      "Obwohl",
+      "Weil",
+      "Damit"
+     ],
+     "f": "rhabarber",
+     "phrase": "Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.",
+     "n": "<b>obwohl</b> = bien que (concession), verbe à la fin."
+    },
+    {
+     "q": "Die Himbeeren dürften heute Morgen gepflückt ___ sein.",
+     "c": [
+      "worden",
+      "geworden",
+      "werden"
+     ],
+     "f": "himbeere",
+     "phrase": "Die Himbeeren dürften heute Morgen gepflückt worden sein.",
+     "n": "Supposition sur le passé, au passif : participe II + <b>worden sein</b>."
+    }
+   ]
   }
  },
  "autre_vue": {
