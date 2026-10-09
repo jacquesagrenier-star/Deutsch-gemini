@@ -8014,3 +8014,12 @@ Ajoutes (`ajouts/marche-fruits.json`) : die Himbeere, die Heidelbeere, die
 Mandarine, die Mango, die Wassermelone, die Avocado (A2) ; die Brombeere, die
 Blaubeere, die Grapefruit, die Limette, die Kokosnuss (B1). Traductions
 tr/uk/fa non relues. Le citron et le melon existaient deja, et sont sur l'etal.
+
+## 9 octobre 2026 (suite) -- les legumes en deux etals, et deux trous du corpus
+
+Les 28 legumes passent en deux etals de 15 cagettes (racines et choux /
+legumes-fruits et feuilles), en grille, comme les fruits. En les repartissant,
+deux trous du meme genre que pour les fruits : der Knoblauch (A1) et die Erbse
+(A2) n'etaient pas au corpus. Ajoutes (`ajouts/marche-legumes.json`) ;
+tr/uk/fa non relus. Au corpus mais pas encore dans les scenes : die Kiste
+(la cagette !), der Korb, die Tuete, der Markt, der Haendler.
