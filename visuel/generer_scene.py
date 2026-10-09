@@ -31,6 +31,7 @@ import argparse
 import io
 import json
 import os
+import re
 import sys
 import time
 
@@ -91,6 +92,23 @@ def main():
     print("  cout    %.2f $" % PRIX)
     print("  prompt  %d mots" % len(prompt.split()))
     fautes = VP.dire(a.nom, VP.controler(prompt, image=True), bavard=False)
+
+    # LES REFERENCES QUE LE PROMPT ANNONCE DOIVENT ETRE LA (9 oct. 2026).
+    # Le prompt de l'examen disait << The two reference pictures show the same
+    # young man >>, et la commande partait SANS --ref : on payait un inconnu.
+    # La checklist l'a vu par hasard, en affichant << refs aucune >>. Un
+    # prompt qui parle de sa troisieme reference en exige trois.
+    mots = {"first": 1, "two": 2, "second": 2, "third": 3, "three": 3,
+            "fourth": 4, "four": 4}
+    annonce = [mots[m.lower()] for m in re.findall(
+        r"(?i)\b(first|two|second|third|three|fourth|four)\s+reference pictures?\b",
+        prompt)]
+    if re.search(r"(?i)\bthe reference pictures?\b", prompt):
+        annonce.append(1)
+    if annonce and max(annonce) > len(refs):
+        print("\n  [faute] reference-annoncee-absente -- le prompt parle de %d "
+              "reference(s), la commande en donne %d" % (max(annonce), len(refs)))
+        fautes += 1
 
     if not a.payer:
         print("\n" + "-" * 70 + "\n" + prompt + "\n" + "-" * 70)

@@ -264,8 +264,8 @@ REGLES = [
      u"gratuit, et les huit plans recoivent la meme icone au pixel pres."),
 
     ("evenement-qui-se-planifie", "doute",
-     r"(?i)(then|next|after that)[^.]{0,80}(rides? into|walks? into|"
-     r"enters?|comes? into|appears?)",
+     r"(?i)\b(then|next|after that)\b[^.]{0,80}\b(rides? into|walks? into|"
+     r"enters?|comes? into|appears?)\b",
      u"Une ENTREE decrite comme un evenement : le modele choisit quand",
      u"22 sept. 2026, plan 18 : << Then a cyclist RIDES INTO THE PICTURE >>. "
      u"Jacques : << le cycliste arrive un peu tard ; il faut qu'on voie entrer "
@@ -277,7 +277,7 @@ REGLES = [
      u"partir de la -- l'entree disparait au lieu de se regler."),
 
     ("taille-par-adjectif", "doute",
-     r"(?i)(close to the camera|large|huge|very big|fills the frame)",
+     r"(?i)\b(close to the camera|large|huge|very big|fills the frame)\b",
      u"La taille d'un personnage donnee par un adjectif",
      u"22 sept. 2026, plan 18 : << close to the camera at first and large >>. "
      u"A 1,6 s le cycliste occupait tout l'ecran -- Mark, le feu et la rue "
@@ -375,7 +375,7 @@ REGLES = [
      u"qu'on veut voir en entier est un ordre de reculer la camera."),
 
     ("nom-du-geste", "doute",
-     r"(?i)(shrug|shrugs|facepalm|thumbs up|eye ?roll|fist pump)",
+     r"(?i)\b(shrug|shrugs|facepalm|thumbs up|eye ?roll|fist pump)\b",
      u"Le geste appele par son nom : c'est la caricature qui vient",
      u"22 sept. 2026, plan 18, releve par Jimmy avant l'envoi : << raises both "
      u"arms into a shrug >> plus << his shoulders lifted >>. Meme mecanisme que "
@@ -471,6 +471,47 @@ REGLES = [
      u"the knee nearer the doctor >>, << the leg on the left of the picture "
      u">>. Et l'etiquette se pose sur l'image REELLE, apres l'avoir regardee, "
      u"jamais d'apres le prompt."),
+
+    # Demande de Jacques, 9 oct. 2026 : << ajouter toujours au checklist
+    # lorsqu'on decouvre des choses en cours de route -- comme le medecin qui
+    # est devenu blanc : on aurait du mettre l'image de reference >>.
+    ("personne-sans-reference", "doute",
+     None,   # logique a part, dans controler() : un paragraphe de personnage
+     u"Une personne decrite par le TEXTE seul : le modele en invente une autre",
+     u"9 oct. 2026, examen, 3e prise (0,15 $). La medecin etait decrite mot "
+     u"pour mot comme dans la scene de la blessure -- << warm brown skin, "
+     u"dark-brown eyes, long black hair tied back in a low bun >> -- et le "
+     u"modele a rendu une femme BLANCHE aux cheveux chatains, en chemisier "
+     u"bleu vif. Or c'est sa medecin attitree : elle revient. Avec "
+     u"personnages/medecin.png en troisieme reference, la 4e prise l'a "
+     u"rendue a l'identique du premier coup. Meme famille que << les deux "
+     u"Annas >> du 8 sept. : un personnage se genere depuis son IMAGE, jamais "
+     u"depuis sa description.",
+     u"Toute personne qui apparait dans une AUTRE image (Mark, Anna, la "
+     u"medecin...) entre par une reference : << the third reference picture "
+     u"shows his family doctor: her face, skin, hair and bun stay exactly as "
+     u"in it >>. Si elle n'a pas encore d'image maitresse, la decouper dans "
+     u"la scene ou elle est reussie (medecin.png vient d'arztpraxis.png). Le "
+     u"texte ne fait que confirmer ce que l'image porte."),
+
+    ("pose-pour-la-camera", "doute",
+     r"(?i)\b(smiles? (at|into|for) the camera|looks? (at|into) the camera|"
+     r"holds? (it |them )?up\b|held up|shows? (a|the|his|her)\b[^.]{0,60}"
+     r"\b(card|paper|object|it)\b|poses? for)",
+     u"Un sourire ou un objet tendu VERS L'OBJECTIF : on obtient une seance "
+     u"photo, pas une scene",
+     u"9 oct. 2026, examen, 1re et 2e prises (0,30 $). << He smiles at the "
+     u"camera >> et << she shows a small plain green plastic card >> : la "
+     u"medecin brandissait la carte vers nous, tous deux souriaient a "
+     u"l'objectif. Jacques : << tenir la carte pour la montrer, c'est "
+     u"vraiment pas naturel >>, puis << c'est pas une seance photo, c'est "
+     u"un examen >>.",
+     u"Ecrire un INSTANT PRIS SUR LE VIF : << caught in the middle of the "
+     u"examination >>, et dire ou vont les regards -- l'un vers l'autre, vers "
+     u"ce qu'ils font. Si le visage doit rester de face pour l'app, le dire "
+     u"par la TETE et deplacer les YEUX : << his face turned towards the "
+     u"camera, his eyes turned sideways towards her >>. Un objet utile a "
+     u"l'app se pose sur un meuble, il ne se tend pas a l'objectif."),
 ]
 
 # --------------------------------------------------------------------------
@@ -724,6 +765,42 @@ ACQUIS = [
      u"video/PROCEDURE-episode.md. La relecture du plan 12 a rapporte mieux "
      u"qu'un prompt : elle a montre que garde-negative ne connaissait que le "
      u"vocabulaire de l'episode 2, pas la structure d'une negation."),
+
+    (u"Un personnage secondaire devient recurrent en DECOUPANT sa meilleure "
+     u"image",
+     u"9 oct. 2026",
+     u"La medecin n'avait pas d'image maitresse. Decoupee dans "
+     u"arztpraxis.png (tete et epaules, sans le chariot ni la boite a texte "
+     u"derriere elle) -> personnages/medecin.png, puis donnee en troisieme "
+     u"reference : identique du premier coup, alors que sa description "
+     u"textuelle seule avait produit une autre femme.",
+     u"Des qu'un role revient d'une image a l'autre, lui faire une image "
+     u"maitresse en la decoupant serre (rien du decor qui porte du texte) et "
+     u"la nommer dans le prompt : << the third reference picture shows... >>."),
+
+    (u"Le tournant d'un personnage se fait depuis la FACE seule, une vue par "
+     u"lancement",
+     u"9 oct. 2026",
+     u"Anna : trois-quarts, profil et dos generes chez fal (nano-banana-pro "
+     u"edit, 9:16) depuis anna-20260908-0439.png seule. Meme visage, meme "
+     u"queue de cheval, meme tenue sur les trois, du premier coup (0,45 $). "
+     u"Le plan en pied ecrit par ses deux bords (<< the top of her head sits "
+     u"just below the top edge... her shoes just above the bottom edge >>) a "
+     u"evite le sujet minuscule qu'Artlist rendait pour Mark.",
+     u"Un prompt commun, seule la ligne VIEW change ; mains << open and empty >> "
+     u"pour retirer un objet de la face. Le second profil s'obtient en miroir, "
+     u"gratuitement, si la tenue est symetrique."),
+
+    (u"Un instant PRIS SUR LE VIF, regards l'un vers l'autre",
+     u"9 oct. 2026",
+     u"Examen, 4e prise, gardee par Jacques : << caught in the middle of the "
+     u"examination >>, la medecin << her eyes on him >>, Mark << his face "
+     u"turned towards the camera... his eyes turned sideways towards her, "
+     u"with a half-smile that reaches his eyes >>. Le visage reste lisible "
+     u"pour l'app, et la scene ne pose plus.",
+     u"Pour une scene d'app ou il faut voir le visage : la TETE vers nous, "
+     u"les YEUX vers l'action. Et nommer l'action en cours plutot qu'un "
+     u"sourire."),
 ]
 
 
@@ -804,12 +881,25 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "sol-bord-a-bord", "corps-sans-contact",
               "marquage-place-par-le-cadre", "bouche-tenue-ouverte",
               "ajout-qui-remplace", "affiche-qui-ecrit",
-              "horloge-a-l-heure", "cote-du-corps")
+              "horloge-a-l-heure", "cote-du-corps",
+              "personne-sans-reference", "pose-pour-la-camera")
+
+# Un paragraphe qui decrit l'apparence d'une personne. Voir
+# << personne-sans-reference >>. Seulement ce qui fait un VISAGE (peau,
+# cheveux, yeux) -- pas les vetements, qui changent d'une scene a l'autre.
+APPARENCE = re.compile(r"(?i)\b(\w+ skin|\w+ hair|\w+ eyes|beard|bun|freckles)\b")
+PERSONNE = re.compile(r"(?i)\b(woman|man|girl|boy|lady|doctor|teacher|"
+                      r"nurse|vendor|seller|clerk|person)\b")
 
 # Un personnage EN PIED, de la tete aux pieds. Voir << repere-hors-champ >>.
 EN_PIED = re.compile(
     r"(?i)(whole body in view|from (the top of )?(his|her|their) head to "
-    r"(his|her|their) (bare )?(feet|shoes|toes)|full[- ]length|head to toe)")
+    r"(his|her|their) (bare )?(feet|shoes|toes)|full[- ]length|head to toe"
+    # 9 oct. 2026 : << the top of his head sits just below the top edge, and
+    # his bare feet stand ... just above the bottom edge >> -- un plan en pied
+    # ecrit par ses deux bords. Sans ceci, quatre prompts justes de l'examen
+    # et du tournant d'Anna recevaient le doute << repere-hors-champ >>.
+    r"|top of (his|her|their) head (sits|is) just below the top edge)")
 
 # Un etat vocal tenu, et sa fermeture. Voir << bouche-tenue-ouverte >>.
 #
@@ -910,6 +1000,20 @@ def controler(texte, image=False):
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"<< %s >>, et rien sur l'endroit ou l'image "
                                 u"coupe" % pose.group(0)))
+            continue
+        if code == "personne-sans-reference":
+            for para in re.split(r"\n\s*\n", texte):
+                # Un paragraphe qui PRESENTE quelqu'un (une femme, un medecin),
+                # pas une ligne de cadrage qui parle de << her hair tied back >>
+                # pour une personne deja posee par reference plus haut -- le
+                # tournant d'Anna etait accuse a tort.
+                if (APPARENCE.search(para) and PERSONNE.search(para)
+                        and not re.search(r"(?i)reference", para)):
+                    m = APPARENCE.search(para)
+                    trouves.append((code, gravite, titre, cout, remede,
+                                    u"<< %s >> decrit, sans reference dans le "
+                                    u"paragraphe" % m.group(0)))
+                    break
             continue
         if code == "negations-en-nombre":
             n = len(NEGATIONS.findall(sans_verrou))
