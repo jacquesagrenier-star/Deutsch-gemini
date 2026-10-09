@@ -314,12 +314,36 @@ function chargerVoix(){
         || v.find(x => /^de/i.test(x.lang)) || null;
 }
 if ("speechSynthesis" in window){ chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }
-function dire(t){
+function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
   u.lang = "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92;
   speechSynthesis.speak(u);
+}
+/* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix
+   d'Aurora »). Meme adresse que l'app : l'empreinte SHA-1 du texte, 16
+   caracteres, sur Firebase Hosting. Un fichier qui manque (un mot ajoute
+   depuis la derniere generation, une phrase de scene pas encore enregistree)
+   retombe sur la voix du telephone. Sur file://, crypto.subtle n'existe pas :
+   voix du telephone aussi. */
+const AUDIO_BASE = "https://deutschai-b6fbb.web.app/", AUDIO_REVISION = "7";
+const audioAbsents = new Set();
+let audioEnCours = null;
+async function empreinte(t){
+  const o = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(t));
+  return [...new Uint8Array(o)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
+}
+async function dire(t){
+  if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; }
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (!window.crypto || !crypto.subtle || audioAbsents.has(t)) return direTelephone(t);
+  try {
+    const a = new Audio(AUDIO_BASE + await empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
+    audioEnCours = a;
+    a.addEventListener("error", () => { audioAbsents.add(t); if (audioEnCours === a) direTelephone(t); }, {once: true});
+    await a.play();
+  } catch (e) { direTelephone(t); }
 }
 
 /* ---------- les zones : des MASQUES, plus des rectangles ---------- */
