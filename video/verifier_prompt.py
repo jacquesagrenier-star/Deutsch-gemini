@@ -508,6 +508,22 @@ REGLES = [
      u"quelques pixels et ne se voit pas sur l'image entiere. S'il est la, "
      u"l'effacer par retouche locale (gratuit) plutot que de repayer."),
 
+    ("objet-sous-le-personnage", "doute",
+     None,   # logique a part, dans controler()
+     u"Un geste vers un objet que le personnage cache lui-meme : le modele "
+     u"deplace l'objet",
+     u"9 oct. 2026, etal des fruits du Sud (0,15 $). Anna devait prendre des "
+     u"bananes dans la cagette << at the right-hand end of the row >>, et le "
+     u"meme prompt disait qu'elle << covers only the right-hand end of the "
+     u"front two rows >>. Sa propre silhouette cachait la cagette visee : le "
+     u"modele a pose les bananes dans la cagette VOISINE, sur les grenades, "
+     u"pour que le geste se voie. Sur l'etal des fruits d'ici, la meme "
+     u"construction avait marche -- les pommes depassaient sous son bras.",
+     u"Viser une cagette qui reste VISIBLE a cote d'elle, pas celle qu'elle "
+     u"couvre : << her hand reaches into the crate just in front of her left "
+     u"shoulder >>. Et regarder, sur l'image, si ce qu'elle tient est bien "
+     u"dans la bonne cagette."),
+
     ("pose-pour-la-camera", "doute",
      r"(?i)\b(smiles? (at|into|for) the camera|looks? (at|into) the camera|"
      r"holds? (it |them )?up\b|held up|shows? (a|the|his|her)\b[^.]{0,60}"
@@ -805,6 +821,21 @@ ACQUIS = [
      u"pour retirer un objet de la face. Le second profil s'obtient en miroir, "
      u"gratuitement, si la tenue est symetrique."),
 
+    (u"Beaucoup d'objets : annoncer une GRILLE reguliere, et la remplir case "
+     u"par case",
+     u"9 oct. 2026",
+     u"Marche aux fruits. Premier essai : 21 cagettes en cinq rangees inegales "
+     u"(5, 5, 5, 3, 3) -- le modele a fait trois cagettes d'oranges, fusionne "
+     u"deux fruits dans une cagette et deplace les figues. Second essai : << "
+     u"sixteen crates, four side by side in each of four rows >>, puis chaque "
+     u"rangee de gauche a droite -- les 15 fruits sont sortis DANS L'ORDRE "
+     u"EXACT, une cagette chacun, du premier coup.",
+     u"Pour un etal, une etagere, une vitrine : donner le NOMBRE total et la "
+     u"forme de la grille (n par rangee, n rangees), puis lister case par case. "
+     u"Au-dela de 16 cases environ, scinder en deux images plutot que de "
+     u"serrer : la cible doit rester grande pour le doigt. Et placer les "
+     u"sosies (fruits rouges, agrumes, verts) aux coins opposes de la grille."),
+
     (u"Un instant PRIS SUR LE VIF, regards l'un vers l'autre",
      u"9 oct. 2026",
      u"Examen, 4e prise, gardee par Jacques : << caught in the middle of the "
@@ -897,7 +928,7 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "ajout-qui-remplace", "affiche-qui-ecrit",
               "horloge-a-l-heure", "cote-du-corps",
               "personne-sans-reference", "pose-pour-la-camera",
-              "fruit-a-etiquette")
+              "fruit-a-etiquette", "objet-sous-le-personnage")
 
 # Un paragraphe qui decrit l'apparence d'une personne. Voir
 # << personne-sans-reference >>. Seulement ce qui fait un VISAGE (peau,
@@ -1015,6 +1046,19 @@ def controler(texte, image=False):
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"<< %s >>, et rien sur l'endroit ou l'image "
                                 u"coupe" % pose.group(0)))
+            continue
+        if code == "objet-sous-le-personnage":
+            # Le geste vise l'extremite que le personnage couvre lui-meme.
+            vise = re.search(r"(?i)reaches into the crate of ([a-z -]+?)(?= and |,|\.|$)", texte)
+            couvre = re.search(r"(?i)covers only the (right|left)-hand end", texte)
+            if vise and couvre:
+                cible = vise.group(1).strip().split()[-1]
+                bout = re.search(r"(?i)%s[^;.]*at the %s-hand end of the row"
+                                 % (re.escape(cible), couvre.group(1)), texte)
+                if bout:
+                    trouves.append((code, gravite, titre, cout, remede,
+                                    u"<< %s >> est au bout que le personnage "
+                                    u"couvre" % vise.group(0)))
             continue
         if code == "fruit-a-etiquette":
             m = re.search(r"(?i)\b(bananas?|apples?)\b", texte)
