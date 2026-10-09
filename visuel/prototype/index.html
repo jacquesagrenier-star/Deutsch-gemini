@@ -44,6 +44,10 @@ html,body{margin:0;background:#11151b;color:var(--encre);
   padding:6px 10px;border-radius:999px}
 .retour-choix{text-decoration:none;font-weight:600}
 .retour-choix:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
+/* l'autre vue de la scene : Mark de face, puis de dos (9 oct.) */
+.retourner{text-decoration:none;font-weight:700;background:var(--ambre);white-space:nowrap}
+.retourner[hidden]{display:none}
+.retourner:focus-visible{outline:2px solid var(--encre);outline-offset:2px}
 .niveaux{display:flex;gap:4px;background:rgba(251,247,239,.92);padding:3px;border-radius:999px}
 .niveaux button{border:0;background:transparent;font:600 13px/1 inherit;color:var(--encre);
   padding:7px 9px;border-radius:999px;cursor:pointer;min-width:34px}
@@ -142,6 +146,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
   <div class="haut">
     <div class="barre">
       <a class="titre retour-choix" id="retourChoix" href="choix-seance.html" aria-label="Retour au choix de la séance">‹</a>
+      <a class="titre retourner" id="retourner" hidden></a>
       <div class="niveaux" id="niveaux" role="group" aria-label="Niveau"></div>
     </div>
     <div class="carte" id="carte"></div>
@@ -190,6 +195,16 @@ scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
    la classe s'appelle classe.html. */
 if (/classe\.html$/.test(location.pathname)) $("retourChoix").href = "index.html";
+/* L'AUTRE VUE de la meme scene (9 oct.) : Mark de face, puis de dos. Un
+   lien, pas un etat : chaque vue a ses zones et ses questions Trouve !, et
+   l'on garde les autres parametres (seance, niveau, mise). */
+if (S.autre_vue){
+  const q = new URLSearchParams(location.search);
+  q.set("scene", S.autre_vue.scene);
+  $("retourner").href = "?" + q.toString();
+  $("retourner").textContent = S.autre_vue.libelle;
+  $("retourner").hidden = false;
+}
 
 /* ---------- la voix ---------- */
 let voixDe = null;

@@ -1,0 +1,95 @@
+{
+ "_lisez_moi": [
+  "Scene 3, le corps humain DE FACE : Mark en boxer chez sa medecin, qui l'ausculte (9 oct. 2026). Remplace arztpraxis pour le CORPS ; arztpraxis reste pour la SANTE. Memes regles que klassenzimmer.points.json -- lire son _lisez_moi.",
+  "Deux vues d'une meme scene : celle-ci et untersuchung-dos (champ autre_vue = le bouton « Retourner Mark »). Chaque vue a ses propres questions Trouve ! : on ne demande pas le mollet sur la vue de face.",
+  "Mesures prises sur une grille de 1 % (0,5 % pour le visage) de la source 1536 x 2752, le 9 oct. Gauche et droite sont celles de l'IMAGE (-l, -r).",
+  "Mark est de trois quarts vers la medecin : une seule oreille (a gauche de l'image), paumes cachees -- die Handflaeche se cherche sur la vue de DOS.",
+  "Mots absents du corpus, donc absents de la scene : das Stethoskop, der Kittel, die Unterhose (le boxer), der Bauchnabel, die Toise."
+ ],
+ "image": "untersuchung.webp",
+ "source": "../scenes/untersuchung.png",
+ "titre": "Die Untersuchung",
+ "alt": "Mark, debout en boxer bleu marine, pieds nus, se fait ausculter la poitrine par sa médecin ; un pèse-personne avec toise contre le mur vert.",
+ "consigne": "Touche une partie du corps de Mark. Touche son visage, sa main ou ses pieds pour les voir de près.",
+ "exclus": ["Wand", "Boden"],
+ "corps": "mark",
+ "autre_vue": {"scene": "untersuchung-dos", "libelle": "↻ Retourner Mark"},
+ "couches": {
+  "A1": {"titre": "Le corps humain"}
+ },
+ "points": [
+  {"id": "mark", "mot": "Patient", "personne": "Mark", "aussi": ["Mann", "Körper"],
+   "boites": [[38, 9, 21, 16], [24, 25, 42, 40], [31, 64, 35, 35]], "devant": 1},
+
+  {"id": "kopf", "mot": "Kopf", "ellipses": [[48.7, 17.0, 10.1, 7.4]], "sur": "mark"},
+  {"id": "hals", "mot": "Hals", "ellipses": [[49.0, 25.3, 5.5, 1.3]], "sur": "mark"},
+  {"id": "schulter", "mot": "Schulter", "ellipses": [[29.4, 28.9, 3.5, 2.3], [60.6, 28.9, 2.8, 2.2]], "sur": "mark"},
+  {"id": "brust", "mot": "Brust", "ellipses": [[47.0, 33.6, 11.5, 3.8]], "sur": "mark"},
+  {"id": "bauch", "mot": "Bauch", "ellipses": [[46.5, 44.9, 11.0, 4.4]], "sur": "mark"},
+  {"id": "arm-l", "mot": "Arm", "ellipses": [[30.1, 37.7, 4.8, 6.5], [31.2, 50.7, 3.8, 6.5]], "sur": "mark"},
+  {"id": "arm-r", "mot": "Arm", "ellipses": [[62.4, 39.1, 3.3, 6.0], [64.2, 49.9, 3.1, 5.5]], "sur": "mark"},
+  {"id": "ellbogen", "mot": "Ellbogen", "ellipses": [[29.9, 44.3, 2.2, 1.6], [63.7, 44.3, 2.2, 1.6]], "sur": "mark"},
+  {"id": "handgelenk", "mot": "Handgelenk", "ellipses": [[32.7, 56.0, 2.6, 1.1], [64.6, 55.0, 2.0, 0.9]], "sur": "mark"},
+  {"id": "hand-l", "mot": "Hand", "boite": [29.4, 56.5, 10.1, 8.2], "sur": "mark"},
+  {"id": "hand-r", "mot": "Hand", "boite": [61.6, 55.8, 6.5, 6.0], "sur": "mark"},
+  {"id": "oberschenkel", "mot": "Oberschenkel", "ellipses": [[38.8, 68.1, 6.2, 3.8], [53.7, 67.7, 6.6, 3.8]], "sur": "mark"},
+  {"id": "knie", "mot": "Knie", "ellipses": [[37.7, 73.3, 4.2, 2.0], [53.1, 73.1, 4.2, 1.9]], "sur": "mark"},
+  {"id": "bein-l", "mot": "Bein", "boite": [31.5, 64, 14.5, 25.5], "sur": "mark"},
+  {"id": "bein-r", "mot": "Bein", "boite": [47.5, 64, 13.5, 24.5], "sur": "mark"},
+  {"id": "fuss-l", "mot": "Fuß", "boite": [33.5, 90, 10.1, 8.1], "sur": "mark"},
+  {"id": "fuss-r", "mot": "Fuß", "boite": [48, 88.5, 17.6, 5.7], "sur": "mark"},
+
+  {"id": "aerztin", "mot": "Ärztin", "aussi": ["Frau"],
+   "boites": [[76, 16, 24, 15], [53, 29, 47, 9], [63, 38, 37, 62]], "devant": 2},
+  {"id": "hand-aerztin-haut", "mot": "Hand", "ellipses": [[59.5, 32.7, 4.0, 2.2]], "sur": "aerztin"},
+  {"id": "hand-aerztin-bas", "mot": "Hand", "ellipses": [[72.6, 75.0, 3.5, 2.5]], "sur": "aerztin"},
+
+  {"id": "waage", "mot": "Waage", "boites": [[19.5, 7.5, 5.5, 72], [5, 27, 25, 7], [15.5, 76.5, 29.5, 10]], "rigide": true},
+
+  {"id": "wand", "mot": "Wand", "boite": [0, 0, 100, 72], "rigide": "rectangle"},
+  {"id": "boden", "mot": "Boden", "boite": [0, 75, 100, 25]}
+ ],
+ "gros_plans": [
+  {"id": "visage-mark", "personne": "mark", "net": true, "declencheur": [38, 9, 21, 16], "cadre": [36, 7, 26, 26],
+   "parties": [
+    {"ref": "kopf", "forme": [48.7, 17.0, 10.1, 7.4]},
+    {"ref": "hals", "forme": [49.0, 25.3, 5.5, 1.3]},
+    {"id": "haar", "mot": "Haar", "forme": [48.7, 12.3, 9.5, 3.4]},
+    {"id": "haar-l", "mot": "Haar", "forme": [41.8, 14.8, 2.5, 2.0]},
+    {"id": "gesicht", "mot": "Gesicht", "forme": [50.9, 19.1, 6.2, 5.0]},
+    {"id": "stirn", "mot": "Stirn", "forme": [51.6, 15.25, 4.5, 1.1]},
+    {"id": "augenbraue-l", "mot": "Augenbraue", "forme": [50.45, 16.86, 2.1, 0.35]},
+    {"id": "augenbraue-r", "mot": "Augenbraue", "forme": [56.0, 16.8, 1.25, 0.35]},
+    {"id": "auge-l", "mot": "Auge", "forme": [50.6, 17.66, 1.4, 0.4]},
+    {"id": "auge-r", "mot": "Auge", "forme": [55.8, 17.66, 0.9, 0.4]},
+    {"id": "ohr", "mot": "Ohr", "forme": [41.9, 18.3, 1.3, 1.3]},
+    {"id": "nase", "mot": "Nase", "forme": [53.9, 19.1, 1.6, 1.4]},
+    {"id": "wange-l", "mot": "Wange", "forme": [47.6, 20.6, 2.0, 1.3]},
+    {"id": "wange-r", "mot": "Wange", "forme": [56.2, 20.1, 0.6, 1.0]},
+    {"id": "mund", "mot": "Mund", "forme": [52.8, 21.4, 2.5, 0.6]},
+    {"id": "zahn", "mot": "Zahn", "forme": [53.3, 21.3, 1.1, 0.2]},
+    {"id": "lippe", "mot": "Lippe", "forme": [53.3, 21.7, 1.7, 0.25]},
+    {"id": "kinn", "mot": "Kinn", "forme": [53.05, 23.3, 2.0, 0.8]}
+   ]},
+  {"id": "main-mark", "personne": "mark", "net": true, "declencheur": [29.4, 56.5, 10.1, 8.2], "cadre": [27, 53, 14, 14],
+   "parties": [
+    {"ref": "hand-l", "forme": [34.4, 60.5, 4.8, 4.0]},
+    {"ref": "handgelenk", "forme": [32.7, 56.0, 2.6, 1.1]},
+    {"id": "finger-main", "mot": "Finger", "forme": [33.5, 62.6, 2.0, 1.9]},
+    {"id": "finger-daumen", "mot": "Finger", "forme": [38.3, 62.2, 1.2, 0.8]},
+    {"id": "nagel-daumen", "mot": "Nagel", "forme": [38.7, 62.5, 0.5, 0.35]}
+   ]},
+  {"id": "pieds-mark", "personne": "mark", "net": true, "declencheur": [33.5, 88.5, 32, 10], "cadre": [30, 65, 35, 35],
+   "parties": [
+    {"ref": "fuss-l", "forme": [38.5, 94.0, 5.0, 4.0]},
+    {"ref": "fuss-r", "forme": [56.8, 91.3, 8.8, 2.8]},
+    {"ref": "knie", "forme": [37.7, 73.3, 4.2, 2.0]},
+    {"id": "knoechel-l", "mot": "Knöchel", "forme": [37.7, 90.25, 3.3, 1.2]},
+    {"id": "knoechel-r", "mot": "Knöchel", "forme": [51.7, 88.9, 3.2, 1.0]},
+    {"id": "zehe-l", "mot": "Zehe", "forme": [39.2, 96.9, 4.2, 1.1]},
+    {"id": "zehe-r", "mot": "Zehe", "forme": [63.0, 92.5, 2.6, 1.6]},
+    {"id": "fussnagel-l", "mot": "Nagel", "forme": [42.95, 96.95, 0.7, 0.45]},
+    {"id": "fussnagel-r", "mot": "Nagel", "forme": [64.5, 93.0, 0.7, 0.5]}
+   ]}
+ ]
+}

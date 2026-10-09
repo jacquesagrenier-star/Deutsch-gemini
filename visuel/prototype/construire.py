@@ -169,7 +169,7 @@ def main():
                              % (niv, q["q"], cle, q[cle]))
 
     scene = {"image": pts["image"], "points": sortie, "grosPlans": gros}
-    for cle in ("titre", "alt", "consigne", "exclus", "couches", "corps"):
+    for cle in ("titre", "alt", "consigne", "exclus", "couches", "corps", "autre_vue"):
         if cle in pts:
             scene[cle] = pts[cle]
     js = ("// GENERE par construire.py -- ne pas modifier a la main.\n"
