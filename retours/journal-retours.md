@@ -8003,3 +8003,14 @@ une scene du corps, ou Mark occupe toute la hauteur, il sautait et cachait
 toujours quelque chose. Les reponses vivent maintenant SOUS LA QUESTION, dans
 le bandeau du haut, hors de l'image. Trouve en meme temps : a 375 px, la
 barre debordait et B2 / C1 n'etaient plus touchables -- elle passe a la ligne.
+
+## 9 octobre 2026 (suite) -- Jacques : il manque des fruits sur l'etal
+
+Devant l'etal de fruits : « il n'y a pas de framboises, ni de mures, ni de
+bleuets », puis les avocats (« super important »), le melon d'eau, les
+mangues, les pamplemousses, le citron vert. Ce n'etait pas l'image : le
+CORPUS n'avait aucun de ces fruits (il avait pourtant les groseilles, B2).
+Ajoutes (`ajouts/marche-fruits.json`) : die Himbeere, die Heidelbeere, die
+Mandarine, die Mango, die Wassermelone, die Avocado (A2) ; die Brombeere, die
+Blaubeere, die Grapefruit, die Limette, die Kokosnuss (B1). Traductions
+tr/uk/fa non relues. Le citron et le melon existaient deja, et sont sur l'etal.
