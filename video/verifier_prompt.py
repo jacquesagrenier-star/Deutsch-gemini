@@ -494,6 +494,20 @@ REGLES = [
      u"la scene ou elle est reussie (medecin.png vient d'arztpraxis.png). Le "
      u"texte ne fait que confirmer ce que l'image porte."),
 
+    ("fruit-a-etiquette", "doute",
+     None,   # logique a part, dans controler()
+     u"Des bananes (ou des pommes) nommees : elles arrivent avec leurs "
+     u"autocollants de marque",
+     u"9 oct. 2026, marche aux fruits, image gardee. Chaque regime de bananes "
+     u"portait les petits autocollants ronds bleus d'une grande marque, avec "
+     u"des lettres. Meme mecanisme que << affiche-qui-ecrit >> : le mot "
+     u"convoque toute son imagerie de catalogue, etiquette comprise. Or une "
+     u"scene ne porte jamais de mots, et encore moins une marque.",
+     u"Dire la PEAU nue : << bananas with plain unmarked yellow skins >>. Et "
+     u"zoomer sur chaque cagette avant de garder l'image : l'autocollant fait "
+     u"quelques pixels et ne se voit pas sur l'image entiere. S'il est la, "
+     u"l'effacer par retouche locale (gratuit) plutot que de repayer."),
+
     ("pose-pour-la-camera", "doute",
      r"(?i)\b(smiles? (at|into|for) the camera|looks? (at|into) the camera|"
      r"holds? (it |them )?up\b|held up|shows? (a|the|his|her)\b[^.]{0,60}"
@@ -882,7 +896,8 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "marquage-place-par-le-cadre", "bouche-tenue-ouverte",
               "ajout-qui-remplace", "affiche-qui-ecrit",
               "horloge-a-l-heure", "cote-du-corps",
-              "personne-sans-reference", "pose-pour-la-camera")
+              "personne-sans-reference", "pose-pour-la-camera",
+              "fruit-a-etiquette")
 
 # Un paragraphe qui decrit l'apparence d'une personne. Voir
 # << personne-sans-reference >>. Seulement ce qui fait un VISAGE (peau,
@@ -1000,6 +1015,12 @@ def controler(texte, image=False):
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"<< %s >>, et rien sur l'endroit ou l'image "
                                 u"coupe" % pose.group(0)))
+            continue
+        if code == "fruit-a-etiquette":
+            m = re.search(r"(?i)\b(bananas?|apples?)\b", texte)
+            if m and not re.search(r"(?i)\b(unmarked|sticker-free|bare skins?)\b", texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"<< %s >>, et rien sur leur peau nue" % m.group(0)))
             continue
         if code == "personne-sans-reference":
             for para in re.split(r"\n\s*\n", texte):
