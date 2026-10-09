@@ -226,6 +226,48 @@ const VUES = window.SCENES[NOM_SCENE].vues || [NOM_SCENE];
 let S = window.SCENES[VUE];
 window.MASQUES = window.MASQUES_DE[VUE];
 let P = Object.fromEntries(S.points.map(p => [p.id, p]));
+/* ---------- la langue de l'interface (preparee le 9 oct. 2026) ----------
+   ?lang=fr|en|tr|uk|fa|ar. Sans parametre : le francais, comme avant -- rien ne
+   change tant que l'app ne passe pas la langue de l'usager. Seule l'INTERFACE
+   est ici ; le contenu des scenes (consignes, titres des couches, explications
+   des questions) vit dans les points.json et reste en francais pour l'instant.
+   tr / uk / fa / ar : NON RELUS par un natif. La mise en page de droite a gauche
+   (fa, ar) n'est pas encore faite. */
+const LANGUE = (() => {
+  const l = (new URLSearchParams(location.search).get("lang") || "fr").slice(0, 2);
+  return ["fr", "en", "tr", "uk", "fa", "ar"].includes(l) ? l : "fr";
+})();
+const TEXTES = {
+  retour:      {fr: "‹ Retour", en: "‹ Back", tr: "‹ Geri", uk: "‹ Назад", fa: "‹ بازگشت", ar: "‹ رجوع"},
+  decouvrir:   {fr: "Découvrir", en: "Explore", tr: "Keşfet", uk: "Досліджувати", fa: "کاوش", ar: "استكشف"},
+  trouve:      {fr: "Trouve !", en: "Find it!", tr: "Bul!", uk: "Знайди!", fa: "پیدا کن!", ar: "ابحث!"},
+  consigne:    {fr: "Touche un objet ou une personne.", en: "Tap an object or a person.", tr: "Bir nesneye ya da bir kişiye dokun.", uk: "Торкнися предмета або людини.", fa: "روی یک شیء یا یک نفر بزن.", ar: "المس شيئًا أو شخصًا."},
+  touche:      {fr: "Touche :", en: "Tap:", tr: "Dokun:", uk: "Торкнися:", fa: "بزن:", ar: "المس:"},
+  sur:         {fr: "sur", en: "on", tr: "üzerinde:", uk: "на", fa: "روی", ar: "على"},
+  cestQui:     {fr: "Ça, c'est {a}. Cherche {b} sur {c}.", en: "That's {a}. Look for {b} on {c}.", tr: "Bu {a}. {b} kelimesini {c} üzerinde ara.", uk: "Це {a}. Шукай {b} на {c}.", fa: "این {a} است. {b} را روی {c} پیدا کن.", ar: "هذا {a}. ابحث عن {b} على {c}."},
+  autres:      {fr: "Il y en a d'autres dans la scène.", en: "There are others in the scene.", tr: "Sahnede başkaları da var.", uk: "У сцені є й інші.", fa: "در صحنه موارد دیگری هم هست.", ar: "يوجد غيرها في المشهد."},
+  cetait:      {fr: "c'était", en: "it was", tr: "doğrusu buydu:", uk: "це було", fa: "این بود:", ar: "كانت"},
+  ici:         {fr: "ici", en: "here", tr: "burada", uk: "тут", fa: "اینجا", ar: "هنا"},
+  unDeCes:     {fr: "à l'un de ces endroits", en: "in one of these places", tr: "bu yerlerden birinde", uk: "в одному з цих місць", fa: "در یکی از این جاها", ar: "في أحد هذه الأماكن"},
+  avaisTouche: {fr: "Tu avais touché :", en: "You tapped:", tr: "Dokunduğun:", uk: "Ти торкнувся:", fa: "تو این را زدی:", ar: "لقد لمست:"},
+  surScore:    {fr: "{b} sur {f}", en: "{b} out of {f}", tr: "{f} sorudan {b}", uk: "{b} з {f}", fa: "{b} از {f}", ar: "{b} من {f}"},
+  sansFaute:   {fr: "sans faute, bravo !", en: "no mistakes, well done!", tr: "hatasız, bravo!", uk: "без помилок, браво!", fa: "بدون اشتباه، آفرین!", ar: "بلا أخطاء، أحسنت!"},
+  bienJoue:    {fr: "bien joué.", en: "well played.", tr: "iyi iş.", uk: "добре.", fa: "خوب بود.", ar: "أحسنت."},
+  caViendra:   {fr: "ça viendra : on retient aussi en se trompant.", en: "it will come: we also learn from mistakes.", tr: "olacak: hata yaparak da öğreniriz.", uk: "усе прийде: ми вчимося й на помилках.", fa: "کم‌کم یاد می‌گیری: از اشتباه هم یاد می‌گیریم.", ar: "سيأتي ذلك: نتعلم من أخطائنا أيضًا."},
+  pasGrave:    {fr: "pas grave, on retient aussi en se trompant.", en: "no problem, we also learn from mistakes.", tr: "sorun değil, hata yaparak da öğreniriz.", uk: "нічого страшного, ми вчимося й на помилках.", fa: "اشکالی ندارد، از اشتباه هم یاد می‌گیریم.", ar: "لا بأس، نتعلم من أخطائنا أيضًا."},
+  sceneFinie:  {fr: "Scène terminée", en: "Scene finished", tr: "Sahne bitti", uk: "Сцену завершено", fa: "صحنه تمام شد", ar: "انتهى المشهد"},
+  termine:     {fr: "terminé", en: "finished", tr: "bitti", uk: "завершено", fa: "تمام شد", ar: "انتهى"},
+  versCartes:  {fr: "Continuer avec mes cartes →", en: "Continue with my cards →", tr: "Kartlarımla devam et →", uk: "Продовжити з картками →", fa: "ادامه با کارت‌هایم ←", ar: "تابع مع بطاقاتي ←"},
+  encore:      {fr: "Encore une fois", en: "Once more", tr: "Bir kez daha", uk: "Ще раз", fa: "یک بار دیگر", ar: "مرة أخرى"},
+  revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد"}
+};
+function T(cle, v){
+  const e = TEXTES[cle] || {};
+  let s = e[LANGUE] || e.fr || cle;
+  for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]);
+  return s;
+}
+
 const $ = id => document.getElementById(id);
 const scene = $("scene");
 document.querySelector(".haut").appendChild($("bas"));
@@ -237,7 +279,7 @@ document.title = S.titre || "Scène";
    et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
 /* « ‹ Retour » PARTOUT (Jacques, 9 oct.) : le titre de la scene (« Auf dem
    Markt », « Im Spanischkurs ») ressemblait a un titre, pas a une sortie. */
-$("retourChoix").textContent = "‹ Retour";
+$("retourChoix").textContent = T("retour");
 scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
 /* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
@@ -557,7 +599,7 @@ function ouvrirGrosPlan(g, sansAnim){
   el.setAttribute("role", "group"); el.setAttribute("aria-label", "Gros plan");
   el.innerHTML = `<div class="fond"></div>
     <svg viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"></svg>
-    <button type="button" class="fermer">✕ Revenir à la scène</button>`;
+    <button type="button" class="fermer">${T("revenir")}</button>`;
   const fond = el.querySelector(".fond");
   if (g.image){
     // Le cadre decoupe dans la source pleine resolution (construire.py, « net ») :
@@ -760,7 +802,7 @@ function demarrer(){
 /* ---------- A1 ---------- */
 function entete(consigne, question, avecModes){
   $("carte").innerHTML = `<div class="consigne">${consigne}</div><div class="question">${question}</div>`
-    + (avecModes ? `<div class="modes"><button data-m="decouvrir">Découvrir</button><button data-m="trouver">Trouve !</button></div>` : "");
+    + (avecModes ? `<div class="modes"><button data-m="decouvrir">${T("decouvrir")}</button><button data-m="trouver">${T("trouve")}</button></div>` : "");
   $("carte").querySelectorAll(".modes button").forEach(b => {
     b.setAttribute("aria-pressed", b.dataset.m === modeA1);
     b.addEventListener("click", () => { modeA1 = b.dataset.m; demarrer(); });
@@ -768,7 +810,7 @@ function entete(consigne, question, avecModes){
 }
 function decouvrir(){
   $("bas").classList.remove("en-haut");
-  entete("A1 · " + COUCHES.A1.titre, S.consigne || "Touche un objet ou une personne.", true);
+  entete("A1 · " + COUCHES.A1.titre, S.consigne || T("consigne"), true);
   $("bas").innerHTML = "";
 }
 /* Une cible est un MOT, pas une zone : « die Frau » est juste sur Anna comme
@@ -840,8 +882,8 @@ function trouver(){
   if (!p.vues.includes(VUE)) activerVue(p.vues[0], true);
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
-  entete("A1 · Trouve !  " + (i+1) + " / " + fileTrouver.length,
-         `Touche : ${groupe(p)}${chez ? " — sur " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
+  entete("A1 · " + T("trouve") + "  " + (i+1) + " / " + fileTrouver.length,
+         `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
   $("reecouter").addEventListener("click", () => dire(p.genre + " " + p.mot));
   $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
   dire(p.genre + " " + p.mot);
@@ -883,7 +925,7 @@ function toucher(id, pt){
       const r = racine(p);
       if (r !== chez && estPersonne(r)){
         effacer(); anneau(r.id, true);
-        $("bas").innerHTML = `<div class="explication">Ça, c'est ${nomDe(r)}. Cherche ${groupe(A_TROUVER.find(t => t.mot === cible))} sur ${nomDe(chez)}.</div>`
+        $("bas").innerHTML = `<div class="explication">${T("cestQui", {a: nomDe(r), b: groupe(A_TROUVER.find(t => t.mot === cible)), c: nomDe(chez)})}</div>`
                            + `<div class="score">${bons} / ${faits}</div>`;
         return;
       }
@@ -904,15 +946,15 @@ function toucher(id, pt){
            setTimeout(() => scene.classList.remove("secoue"), 400); }
     // Pas de chiffre : le pull de Mark a deux zones (la sienne et celle de Mark),
     // compter les zones annoncerait « 4 pulls » pour trois.
-    const autres = bonnes.length > 1 ? " <i>Il y en a d'autres dans la scène.</i>" : "";
+    const autres = bonnes.length > 1 ? " <i>" + T("autres") + "</i>" : "";
     // La traduction dans la reponse, jamais dans la question (Jacques, 6 oct.).
     const sens = mot => { const z = S.points.find(q => q.mot === mot); if (z) return z.fr;
       for (const q of S.points){ const a = q.aussi.find(x => x.mot === mot); if (a) return a.fr; } return ""; };
     const demande = A_TROUVER.find(t => t.mot === cible);
     const traduit = g => `${groupe(g)} <i>= ${sens(g.mot)}</i>`;
     $("bas").innerHTML = `<div class="explication">${juste ? "Richtig ! " + traduit(demande) + "." + autres
-        : traduit(demande) + " : c'était " + (bonnes.length > 1 ? "à l'un de ces endroits" : "ici")
-          + ". Tu avais touché : " + traduit(p) + "."}</div>
+        : traduit(demande) + " : " + T("cetait") + " " + (bonnes.length > 1 ? T("unDeCes") : T("ici"))
+          + ". " + T("avaisTouche") + " " + traduit(p) + "."}</div>
                           <button class="suite" id="suite">Weiter</button>`;
     $("suite").addEventListener("click", () => {
       i++; verrou = false; fermerGrosPlan(); effacer();
@@ -950,8 +992,8 @@ function poserTrouve(p, total){
   fermerGrosPlan(); effacer();
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
-  entete("A1 · Trouve !  " + (i+1) + " / " + total,
-         `Touche : ${groupe(p)}${chez ? " — sur " + nomDe(chez) : ""}`, false);
+  entete("A1 · " + T("trouve") + "  " + (i+1) + " / " + total,
+         `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""}`, false);
   $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
   dire(p.genre + " " + p.mot);
 }
@@ -981,23 +1023,23 @@ function repondre(q, opts, k){
    (Jacques, 6 oct.) : un compliment qu'on recoit quoi qu'on fasse ne veut
    plus rien dire, meme quand il est merite. */
 function bilan(){
-  const s = `${bons} sur ${faits}`;
+  const s = T("surScore", {b: bons, f: faits});
   if (!faits) return s;
-  if (bons === faits) return `${s} — sans faute, bravo !`;
-  if (bons * 2 >= faits) return `${s} — bien joué.`;
-  if (bons > 0) return `${s} — ça viendra : on retient aussi en se trompant.`;
-  return `${s} — pas grave, on retient aussi en se trompant.`;
+  if (bons === faits) return `${s} — ${T("sansFaute")}`;
+  if (bons * 2 >= faits) return `${s} — ${T("bienJoue")}`;
+  if (bons > 0) return `${s} — ${T("caViendra")}`;
+  return `${s} — ${T("pasGrave")}`;
 }
 function fin(){
   effacer(); attenteToucher = null; $("bas").classList.remove("en-haut");
   if (EN_SEANCE){
-    entete("Scène terminée", bilan(), false);
-    $("bas").innerHTML = `<button class="suite" id="encore">Continuer avec mes cartes →</button>`;
+    entete(T("sceneFinie"), bilan(), false);
+    $("bas").innerHTML = `<button class="suite" id="encore">${T("versCartes")}</button>`;
     $("encore").addEventListener("click", () => envoyer("fini", {bons, faits}));
     return;
   }
-  entete(niveau + " · terminé", bilan(), niveau === "A1");
-  $("bas").innerHTML = `<button class="suite" id="encore">Encore une fois</button>`;
+  entete(niveau + " · " + T("termine"), bilan(), niveau === "A1");
+  $("bas").innerHTML = `<button class="suite" id="encore">${T("encore")}</button>`;
   $("encore").addEventListener("click", demarrer);
 }
 
