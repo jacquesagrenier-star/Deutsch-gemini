@@ -7993,3 +7993,13 @@ garde des bouts de mur entre les boucles et pres de l'oreille. Jacques rappelle
 qu'on avait choisi une LIGNE DE CONTOUR : le trait bleu est maintenant le
 defaut du prototype, et detourer.py retire du masque de Mark la couleur du mur
 (champ fond). Commit 65deec8.
+
+## 9 octobre 2026 (suite) -- Jacques : les reponses ne sont jamais au meme endroit
+
+« En C1 les choix sont en haut de l'image, en B2 en bas, en B1 en haut... Il
+faut que ce soit toujours au meme endroit, et sans cacher. » C'etait voulu :
+le panneau montait quand l'objet de la question etait bas dans l'image. Sur
+une scene du corps, ou Mark occupe toute la hauteur, il sautait et cachait
+toujours quelque chose. Les reponses vivent maintenant SOUS LA QUESTION, dans
+le bandeau du haut, hors de l'image. Trouve en meme temps : a 375 px, la
+barre debordait et B2 / C1 n'etaient plus touchables -- elle passe a la ligne.

@@ -39,7 +39,9 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 /* le haut : AU-DESSUS de l'image -- pose sur le plafond, il cachait l'horloge et la lampe */
 .haut{position:sticky;top:0;padding:8px 8px 8px;z-index:2000;background:#11151b;
   display:flex;flex-direction:column;gap:6px}
-.barre{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.barre{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+/* flex-wrap (9 oct.) : avec « Retourner Mark » et cinq pastilles, la barre
+   sortait de l'ecran a 375 px -- B2 et C1 n'etaient plus touchables. */
 .titre{font-weight:700;font-size:15px;color:var(--encre);background:rgba(251,247,239,.92);
   padding:6px 10px;border-radius:999px}
 .retour-choix{text-decoration:none;font-weight:600}
@@ -69,6 +71,12 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 /* Quand l'objet de la question est dans le bas de l'image (le portable, le
    sac), le panneau monte sur le mur et le plafond, ou il n'y a presque rien. */
 .bas.en-haut{bottom:auto;top:0;align-items:flex-start}
+/* TOUJOURS AU MEME ENDROIT (Jacques, 9 oct.) : en C1 les reponses etaient en
+   haut de l'image, en B2 en bas, en B1 en haut -- selon ou tombait l'objet
+   de la question. Sur une scene du corps, ou Mark occupe toute la hauteur,
+   elles cachaient toujours quelque chose. Le panneau vit maintenant SOUS LA
+   QUESTION, dans le bandeau du haut : meme place, et rien de l'image cache. */
+.haut .bas{position:static;padding:8px 0 0;align-items:stretch}
 .choix{border:0;border-radius:12px;padding:10px 12px;font:600 15px inherit;text-align:left;flex:1 1 auto;
   background:rgba(251,247,239,.96);color:var(--encre);cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,.25)}
@@ -186,6 +194,7 @@ const S = window.SCENE;
 const P = Object.fromEntries(S.points.map(p => [p.id, p]));
 const $ = id => document.getElementById(id);
 const scene = $("scene");
+document.querySelector(".haut").appendChild($("bas"));
 $("photo").src = S.image;
 $("photo").alt = S.alt || "";
 document.title = S.titre || "Scène";
