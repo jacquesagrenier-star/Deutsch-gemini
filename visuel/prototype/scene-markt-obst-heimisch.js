@@ -670,7 +670,7 @@ window.SCENE = {
      "q": "„Ich hätte gern ___ Erdbeeren.“",
      "c": [
       "eine Schale",
-      "einen Bund",
+      "ein Bund",
       "eine Flasche"
      ],
      "f": "erdbeere",
@@ -715,7 +715,7 @@ window.SCENE = {
      "q": "„Ich nehme ___ Pflaumen.“",
      "c": [
       "ein Pfund",
-      "einen Bund",
+      "ein Bund",
       "eine Flasche"
      ],
      "f": "pflaume",

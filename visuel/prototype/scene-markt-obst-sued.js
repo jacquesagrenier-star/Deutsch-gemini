@@ -689,7 +689,7 @@ window.SCENE = {
      "c": [
       "ein Stück",
       "eine Schale",
-      "einen Bund"
+      "ein Bund"
      ],
      "f": "wassermelone",
      "phrase": "Ich nehme ein Stück Wassermelone, bitte.",

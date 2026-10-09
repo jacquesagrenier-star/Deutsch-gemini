@@ -671,7 +671,7 @@ window.SCENE = {
      "q": "„Ich hätte gern ___ Tomaten.“",
      "c": [
       "ein Pfund",
-      "einen Bund",
+      "ein Bund",
       "ein Stück"
      ],
      "f": "tomate",

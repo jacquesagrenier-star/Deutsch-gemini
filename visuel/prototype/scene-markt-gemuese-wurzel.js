@@ -623,13 +623,13 @@ window.SCENE = {
     {
      "q": "Was hält Anna in der Hand?",
      "c": [
-      "einen Bund Radieschen",
+      "ein Bund Radieschen",
       "einen Kohl",
       "eine Zwiebel"
      ],
      "f": "radieschen-main",
-     "phrase": "Anna hält einen Bund Radieschen in der Hand.",
-     "n": "der Bund (la botte) → accusatif <b>einen</b> Bund.",
+     "phrase": "Anna hält ein Bund Radieschen in der Hand.",
+     "n": "<b>das</b> Bund (la botte) est neutre : à l'accusatif, <b>ein</b> Bund ne change pas. (der Bund, c'est la fédération.)",
      "r": "anna"
     },
     {
@@ -676,13 +676,13 @@ window.SCENE = {
     {
      "q": "„Ich hätte gern ___ Karotten.“",
      "c": [
-      "einen Bund",
+      "ein Bund",
       "eine Schale",
       "ein Stück"
      ],
      "f": "karotte",
-     "phrase": "Ich hätte gern einen Bund Karotten.",
-     "n": "Des carottes avec leurs fanes se vendent en <b>Bund</b> (botte)."
+     "phrase": "Ich hätte gern ein Bund Karotten.",
+     "n": "Des carottes avec leurs fanes se vendent en botte : <b>ein Bund</b> Karotten (das Bund, neutre)."
     },
     {
      "q": "„Zwei Kilo ___, bitte.“",
@@ -722,7 +722,7 @@ window.SCENE = {
      "q": "„Ich brauche noch ___ Knoblauch für die Soße.“",
      "c": [
       "eine Knolle",
-      "einen Bund",
+      "ein Bund",
       "eine Schale"
      ],
      "f": "knoblauch",
