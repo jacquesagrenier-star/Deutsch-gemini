@@ -4,63 +4,856 @@
   "Mesures prises sur une grille de 1 % de la source 1536 x 2752, le 9 oct. Gauche et droite sont celles de l'IMAGE (-l, -r).",
   "Les paumes sont tournees vers nous (idee de Jacques) : c'est ICI que se cherche die Handflaeche.",
   "Le bas du dos repond a der Rücken : das Kreuz (bas du dos) est deja au corpus au sens de « la croix », et un mot n'y entre qu'une fois.",
-  "Haar et Ohr sont POSES SUR le Kopf (sur) : de dos, la tete est surtout des cheveux, et toucher les cheveux quand on demande der Kopf est juste."
+  "Haar et Ohr sont POSES SUR le Kopf (sur) : de dos, la tete est surtout des cheveux, et toucher les cheveux quand on demande der Kopf est juste.",
+  "Les questions A2-C1 (9 oct. 2026) sont un BROUILLON non relu, comme celles de la classe et du medecin."
  ],
  "image": "untersuchung-dos.webp",
  "source": "../scenes/untersuchung-dos.png",
  "titre": "Die Untersuchung",
  "alt": "Mark, de dos, en boxer bleu marine, pieds nus, les paumes tournées vers nous ; sa médecin lui ausculte le dos au stéthoscope.",
  "consigne": "Touche une partie du corps de Mark, vu de dos. Touche sa main gauche pour la voir de près.",
- "exclus": ["Wand", "Boden"],
+ "exclus": [
+  "Wand",
+  "Boden"
+ ],
  "corps": "mark",
- "autre_vue": {"scene": "untersuchung", "libelle": "↻ Retourner Mark"},
+ "autre_vue": {
+  "scene": "untersuchung",
+  "libelle": "↻ Retourner Mark"
+ },
  "couches": {
-  "A1": {"titre": "Le corps humain, de dos"}
+  "A1": {
+   "titre": "Le corps humain, de dos"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions et le corps",
+   "qs": [
+    {
+     "q": "Wo hält die Ärztin das Stethoskop?",
+     "c": [
+      "auf seinem Rücken",
+      "auf seiner Brust",
+      "auf seinem Kopf"
+     ],
+     "f": "ruecken",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin hält das Stethoskop auf seinem Rücken.",
+     "n": "der Rücken → auf <b>seinem</b> Rücken (datif masculin)."
+    },
+    {
+     "q": "Wo steht die Ärztin?",
+     "c": [
+      "neben dem Patienten",
+      "vor dem Patienten",
+      "auf der Waage"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Die Ärztin steht neben dem Patienten.",
+     "n": "<b>neben</b> + datif : dem Patient<b>en</b>."
+    },
+    {
+     "q": "Wo sind seine Hände?",
+     "c": [
+      "neben seinem Po",
+      "auf seinem Kopf",
+      "auf seinem Rücken"
+     ],
+     "f": "hand-l",
+     "r": "po",
+     "phrase": "Seine Hände sind neben seinem Po.",
+     "n": "der Po → neben <b>seinem</b> Po (datif)."
+    },
+    {
+     "q": "Wo ist die Wirbelsäule?",
+     "c": [
+      "zwischen den Schulterblättern",
+      "über dem Kopf",
+      "unter den Füßen"
+     ],
+     "f": "wirbelsaeule",
+     "r": "schulterblatt",
+     "phrase": "Die Wirbelsäule ist zwischen den Schulterblättern.",
+     "n": "<b>zwischen</b> + datif pluriel : <b>den</b> Schulterblätter<b>n</b>."
+    },
+    {
+     "q": "Wo sind die Waden?",
+     "c": [
+      "unter den Kniekehlen",
+      "über den Kniekehlen",
+      "neben den Schultern"
+     ],
+     "f": "wade",
+     "r": "kniekehle",
+     "phrase": "Die Waden sind unter den Kniekehlen.",
+     "n": "<b>unter</b> + datif pluriel : <b>den</b> Kniekehle<b>n</b>."
+    },
+    {
+     "q": "Wo steht die Waage?",
+     "c": [
+      "an der Wand",
+      "auf der Wand",
+      "in der Wand"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "Die Waage steht an der Wand.",
+     "n": "<b>an</b> + datif : an <b>der</b> Wand."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes de la médecin",
+   "qs": [
+    {
+     "q": "„Bitte drehen Sie sich ___!“",
+     "c": [
+      "um",
+      "an",
+      "aus"
+     ],
+     "f": "mark",
+     "phrase": "Bitte drehen Sie sich um!",
+     "n": "<b>sich umdrehen</b> = se retourner. Particule séparable à la fin de l'impératif."
+    },
+    {
+     "q": "Mark hat sich ___, damit sie seinen Rücken abhören kann.",
+     "c": [
+      "umgedreht",
+      "umgezogen",
+      "umgefallen"
+     ],
+     "f": "mark",
+     "r": "ruecken",
+     "phrase": "Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.",
+     "n": "Participe II d'un verbe séparable : <b>um-ge-dreht</b>. <b>damit</b> = pour que."
+    },
+    {
+     "q": "Die Ärztin ___ das Stethoskop auf seinen Rücken.",
+     "c": [
+      "setzt",
+      "sitzt",
+      "steht"
+     ],
+     "f": "ruecken",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin setzt das Stethoskop auf seinen Rücken.",
+     "n": "Mouvement → <b>setzen</b> + accusatif : auf <b>seinen</b> Rücken."
+    },
+    {
+     "q": "Er ___ seine Arme locker hängen.",
+     "c": [
+      "lässt",
+      "legt",
+      "stellt"
+     ],
+     "f": "arm-l",
+     "phrase": "Er lässt seine Arme locker hängen.",
+     "n": "<b>lassen</b> + infinitif : laisser (pendre)."
+    },
+    {
+     "q": "Er hält die Hände so, dass man die Handflächen ___.",
+     "c": [
+      "sieht",
+      "sehen",
+      "siehst"
+     ],
+     "f": "handflaeche-r",
+     "phrase": "Er hält die Hände so, dass man die Handflächen sieht.",
+     "n": "<b>man</b> se conjugue à la 3e personne du singulier : man <b>sieht</b>."
+    },
+    {
+     "q": "„Atmen Sie bitte ruhig ___ und ein!“",
+     "c": [
+      "aus",
+      "ab",
+      "auf"
+     ],
+     "f": "ruecken",
+     "phrase": "Atmen Sie bitte ruhig aus und ein!",
+     "n": "<b>ausatmen</b> = expirer, <b>einatmen</b> = inspirer."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "Sein Rücken ___ gerade abgehört.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "ruecken",
+     "r": "hand-aerztin-haut",
+     "phrase": "Sein Rücken wird gerade abgehört.",
+     "n": "Passif de l'action : <b>werden</b> + participe II."
+    },
+    {
+     "q": "Das ist der Patient, ___ Rücken die Ärztin abhört.",
+     "c": [
+      "dessen",
+      "deren",
+      "den"
+     ],
+     "f": "mark",
+     "r": "ruecken",
+     "phrase": "Das ist der Patient, dessen Rücken die Ärztin abhört.",
+     "n": "Possession, antécédent masculin → <b>dessen</b>."
+    },
+    {
+     "q": "Die Ärztin, ___ Stethoskop auf seinem Rücken liegt, hört genau zu.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "aerztin",
+     "r": "ruecken",
+     "phrase": "Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.",
+     "n": "Possession, antécédent féminin → <b>deren</b>."
+    },
+    {
+     "q": "Nachdem er sich umgedreht ___, hörte sie den Rücken ab.",
+     "c": [
+      "hatte",
+      "hat",
+      "war"
+     ],
+     "f": "mark",
+     "phrase": "Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.",
+     "n": "<b>nachdem</b> + plus-que-parfait. Un verbe pronominal prend <b>haben</b>."
+    },
+    {
+     "q": "Bevor der Rücken abgehört ___ kann, muss er tief einatmen.",
+     "c": [
+      "werden",
+      "worden",
+      "wird"
+     ],
+     "f": "ruecken",
+     "phrase": "Bevor der Rücken abgehört werden kann, muss er tief einatmen.",
+     "n": "Passif avec modal : participe II + <b>werden</b> + modal (kann)."
+    },
+    {
+     "q": "Die Schulterblätter, ___ sich die Wirbelsäule befindet, sind gut zu sehen.",
+     "c": [
+      "zwischen denen",
+      "zwischen den",
+      "zwischen die"
+     ],
+     "f": "schulterblatt",
+     "r": "wirbelsaeule",
+     "phrase": "Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.",
+     "n": "Pronom relatif au datif pluriel : <b>denen</b>, pas « den »."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et Konjunktiv II",
+   "qs": [
+    {
+     "q": "Er bleibt ganz ruhig — er ___ schon oft abgehört worden sein.",
+     "c": [
+      "dürfte",
+      "sollte",
+      "will"
+     ],
+     "f": "mark",
+     "phrase": "Er dürfte schon oft abgehört worden sein.",
+     "n": "<b>dürfte</b> + infinitif passé du passif : supposition probable sur le passé."
+    },
+    {
+     "q": "Wenn er Rückenschmerzen hätte, ___ er es der Ärztin gesagt.",
+     "c": [
+      "hätte",
+      "würde",
+      "wäre"
+     ],
+     "f": "ruecken",
+     "phrase": "Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.",
+     "n": "Irréel du passé : <b>hätte</b> + participe II (gesagt)."
+    },
+    {
+     "q": "Angenommen, sie ___ ein Geräusch, würde sie ihn röntgen lassen.",
+     "c": [
+      "hörte",
+      "hört",
+      "hätte"
+     ],
+     "f": "aerztin",
+     "r": "ruecken",
+     "phrase": "Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.",
+     "n": "Konjunktiv II de <b>hören</b> = <b>hörte</b> (même forme que le prétérit)."
+    },
+    {
+     "q": "Man behauptet, Mark ___ nie ernsthaft krank gewesen sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "mark",
+     "phrase": "Mark soll nie ernsthaft krank gewesen sein.",
+     "n": "<b>sollen</b> + infinitif passé : on le rapporte, sans le garantir."
+    },
+    {
+     "q": "Seine gerade Haltung ___ vom vielen Sport kommen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "will"
+     ],
+     "f": "wirbelsaeule",
+     "phrase": "Seine gerade Haltung dürfte vom vielen Sport kommen.",
+     "n": "<b>dürfte</b> = hypothèse probable de celui qui parle."
+    },
+    {
+     "q": "Hätte sie nichts gehört, ___ sie längst aufgehört.",
+     "c": [
+      "hätte",
+      "würde",
+      "wäre"
+     ],
+     "f": "aerztin",
+     "phrase": "Hätte sie nichts gehört, hätte sie längst aufgehört.",
+     "n": "Condition sans <b>wenn</b>, verbe en tête ; irréel du passé avec <b>hätte</b>."
+    }
+   ]
+  }
  },
  "points": [
-  {"id": "mark", "mot": "Patient", "personne": "Mark", "aussi": ["Mann", "Körper"],
-   "boites": [[38, 9, 20, 13], [22, 21, 51, 45], [31, 64, 34, 36]], "devant": 1, "fond": true},
-
-  {"id": "kopf", "mot": "Kopf", "ellipses": [[47.9, 15.5, 9.2, 5.9]], "sur": "mark"},
-  {"id": "haar", "mot": "Haar", "ellipses": [[47.9, 14.7, 8.8, 5.0]], "sur": "kopf"},
-  {"id": "ohr", "mot": "Ohr", "ellipses": [[41.3, 19.0, 0.9, 1.3], [56.1, 18.4, 0.9, 1.3]], "sur": "kopf"},
-  {"id": "nacken", "mot": "Nacken", "aussi": ["Hals"], "ellipses": [[47.6, 22.5, 5.5, 1.8]], "sur": "mark"},
-  {"id": "schulter", "mot": "Schulter", "ellipses": [[30.4, 28.3, 3.8, 2.6], [65.5, 28.3, 3.8, 2.6]], "sur": "mark"},
-  {"id": "schulterblatt", "mot": "Schulterblatt", "ellipses": [[37.7, 33.0, 4.5, 4.0], [57.4, 33.0, 4.5, 4.0]], "sur": "mark"},
-  {"id": "wirbelsaeule", "mot": "Wirbelsäule", "ellipses": [[47.6, 36.5, 1.2, 12.2]], "sur": "mark"},
-  {"id": "ruecken", "mot": "Rücken", "ellipses": [[47.6, 36.5, 15.6, 12.2]], "sur": "mark"},
-  {"id": "po", "mot": "Po", "ellipses": [[47.9, 58.0, 15.0, 7.5]], "sur": "mark"},
-  {"id": "arm-l", "mot": "Arm", "ellipses": [[28.1, 36.3, 4.9, 8.0], [26.8, 50.1, 3.6, 5.8]], "sur": "mark"},
-  {"id": "arm-r", "mot": "Arm", "ellipses": [[67.1, 36.3, 3.9, 8.0], [68.1, 50.1, 3.4, 5.8]], "sur": "mark"},
-  {"id": "ellbogen", "mot": "Ellbogen", "ellipses": [[27.0, 44.6, 3.3, 1.8], [69.0, 44.6, 2.9, 1.8]], "sur": "mark"},
-  {"id": "hand-l", "mot": "Hand", "boite": [23, 55.5, 8.3, 7.3], "sur": "mark"},
-  {"id": "hand-r", "mot": "Hand", "boite": [64.2, 55.5, 7.4, 7.3], "sur": "mark"},
-  {"id": "handflaeche-r", "mot": "Handfläche", "ellipses": [[67.8, 59.3, 2.2, 1.7]], "sur": "hand-r"},
-  {"id": "oberschenkel", "mot": "Oberschenkel", "ellipses": [[40.1, 68.1, 7.0, 4.2], [56.6, 68.1, 6.8, 4.2]], "sur": "mark"},
-  {"id": "kniekehle", "mot": "Kniekehle", "ellipses": [[39.9, 74.0, 4.5, 1.7], [57.5, 74.0, 4.5, 1.7]], "sur": "mark"},
-  {"id": "wade", "mot": "Wade", "ellipses": [[39.2, 80.7, 5.0, 4.9], [59.0, 80.7, 5.0, 4.9]], "sur": "mark"},
-  {"id": "bein-l", "mot": "Bein", "boite": [33, 63.5, 14.1, 28.5], "sur": "mark"},
-  {"id": "bein-r", "mot": "Bein", "boite": [49.8, 63.5, 13.7, 27.5], "sur": "mark"},
-  {"id": "ferse", "mot": "Ferse", "ellipses": [[40.1, 96.0, 2.8, 2.0], [58.6, 95.3, 2.6, 1.6]], "sur": "mark"},
-  {"id": "fuss-l", "mot": "Fuß", "boite": [31, 91.5, 11.9, 6.5], "sur": "mark"},
-  {"id": "fuss-r", "mot": "Fuß", "boite": [55, 91, 8.8, 5.8], "sur": "mark"},
-
-  {"id": "aerztin", "mot": "Ärztin", "aussi": ["Frau"],
-   "boites": [[75, 16, 25, 15], [55, 29, 45, 10], [71, 38, 29, 62]], "devant": 2},
-  {"id": "hand-aerztin-haut", "mot": "Hand", "ellipses": [[60.0, 35.4, 4.2, 1.8]], "sur": "aerztin"},
-  {"id": "hand-aerztin-bas", "mot": "Hand", "ellipses": [[74.5, 75.0, 3.5, 2.5]], "sur": "aerztin"},
-
-  {"id": "waage", "mot": "Waage", "boites": [[21, 7.5, 4, 70], [5, 27, 25, 7], [15.5, 76.5, 29.5, 10]], "rigide": true},
-
-  {"id": "wand", "mot": "Wand", "boite": [0, 0, 100, 72], "rigide": "rectangle"},
-  {"id": "boden", "mot": "Boden", "boite": [0, 75, 100, 25]}
+  {
+   "id": "mark",
+   "mot": "Patient",
+   "personne": "Mark",
+   "aussi": [
+    "Mann",
+    "Körper"
+   ],
+   "boites": [
+    [
+     38,
+     9,
+     20,
+     13
+    ],
+    [
+     22,
+     21,
+     51,
+     45
+    ],
+    [
+     31,
+     64,
+     34,
+     36
+    ]
+   ],
+   "devant": 1,
+   "fond": true
+  },
+  {
+   "id": "kopf",
+   "mot": "Kopf",
+   "ellipses": [
+    [
+     47.9,
+     15.5,
+     9.2,
+     5.9
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "haar",
+   "mot": "Haar",
+   "ellipses": [
+    [
+     47.9,
+     14.7,
+     8.8,
+     5.0
+    ]
+   ],
+   "sur": "kopf"
+  },
+  {
+   "id": "ohr",
+   "mot": "Ohr",
+   "ellipses": [
+    [
+     41.3,
+     19.0,
+     0.9,
+     1.3
+    ],
+    [
+     56.1,
+     18.4,
+     0.9,
+     1.3
+    ]
+   ],
+   "sur": "kopf"
+  },
+  {
+   "id": "nacken",
+   "mot": "Nacken",
+   "aussi": [
+    "Hals"
+   ],
+   "ellipses": [
+    [
+     47.6,
+     22.5,
+     5.5,
+     1.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "schulter",
+   "mot": "Schulter",
+   "ellipses": [
+    [
+     30.4,
+     28.3,
+     3.8,
+     2.6
+    ],
+    [
+     65.5,
+     28.3,
+     3.8,
+     2.6
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "schulterblatt",
+   "mot": "Schulterblatt",
+   "ellipses": [
+    [
+     37.7,
+     33.0,
+     4.5,
+     4.0
+    ],
+    [
+     57.4,
+     33.0,
+     4.5,
+     4.0
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "wirbelsaeule",
+   "mot": "Wirbelsäule",
+   "ellipses": [
+    [
+     47.6,
+     36.5,
+     1.2,
+     12.2
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "ruecken",
+   "mot": "Rücken",
+   "ellipses": [
+    [
+     47.6,
+     36.5,
+     15.6,
+     12.2
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "po",
+   "mot": "Po",
+   "ellipses": [
+    [
+     47.9,
+     58.0,
+     15.0,
+     7.5
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "arm-l",
+   "mot": "Arm",
+   "ellipses": [
+    [
+     28.1,
+     36.3,
+     4.9,
+     8.0
+    ],
+    [
+     26.8,
+     50.1,
+     3.6,
+     5.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "arm-r",
+   "mot": "Arm",
+   "ellipses": [
+    [
+     67.1,
+     36.3,
+     3.9,
+     8.0
+    ],
+    [
+     68.1,
+     50.1,
+     3.4,
+     5.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "ellbogen",
+   "mot": "Ellbogen",
+   "ellipses": [
+    [
+     27.0,
+     44.6,
+     3.3,
+     1.8
+    ],
+    [
+     69.0,
+     44.6,
+     2.9,
+     1.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "hand-l",
+   "mot": "Hand",
+   "boite": [
+    23,
+    55.5,
+    8.3,
+    7.3
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "hand-r",
+   "mot": "Hand",
+   "boite": [
+    64.2,
+    55.5,
+    7.4,
+    7.3
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "handflaeche-r",
+   "mot": "Handfläche",
+   "ellipses": [
+    [
+     67.8,
+     59.3,
+     2.2,
+     1.7
+    ]
+   ],
+   "sur": "hand-r"
+  },
+  {
+   "id": "oberschenkel",
+   "mot": "Oberschenkel",
+   "ellipses": [
+    [
+     40.1,
+     68.1,
+     7.0,
+     4.2
+    ],
+    [
+     56.6,
+     68.1,
+     6.8,
+     4.2
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "kniekehle",
+   "mot": "Kniekehle",
+   "ellipses": [
+    [
+     39.9,
+     74.0,
+     4.5,
+     1.7
+    ],
+    [
+     57.5,
+     74.0,
+     4.5,
+     1.7
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "wade",
+   "mot": "Wade",
+   "ellipses": [
+    [
+     39.2,
+     80.7,
+     5.0,
+     4.9
+    ],
+    [
+     59.0,
+     80.7,
+     5.0,
+     4.9
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "bein-l",
+   "mot": "Bein",
+   "boite": [
+    33,
+    63.5,
+    14.1,
+    28.5
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "bein-r",
+   "mot": "Bein",
+   "boite": [
+    49.8,
+    63.5,
+    13.7,
+    27.5
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "ferse",
+   "mot": "Ferse",
+   "ellipses": [
+    [
+     40.1,
+     96.0,
+     2.8,
+     2.0
+    ],
+    [
+     58.6,
+     95.3,
+     2.6,
+     1.6
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "fuss-l",
+   "mot": "Fuß",
+   "boite": [
+    31,
+    91.5,
+    11.9,
+    6.5
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "fuss-r",
+   "mot": "Fuß",
+   "boite": [
+    55,
+    91,
+    8.8,
+    5.8
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "aerztin",
+   "mot": "Ärztin",
+   "aussi": [
+    "Frau"
+   ],
+   "boites": [
+    [
+     75,
+     16,
+     25,
+     15
+    ],
+    [
+     55,
+     29,
+     45,
+     10
+    ],
+    [
+     71,
+     38,
+     29,
+     62
+    ]
+   ],
+   "devant": 2
+  },
+  {
+   "id": "hand-aerztin-haut",
+   "mot": "Hand",
+   "ellipses": [
+    [
+     60.0,
+     35.4,
+     4.2,
+     1.8
+    ]
+   ],
+   "sur": "aerztin"
+  },
+  {
+   "id": "hand-aerztin-bas",
+   "mot": "Hand",
+   "ellipses": [
+    [
+     74.5,
+     75.0,
+     3.5,
+     2.5
+    ]
+   ],
+   "sur": "aerztin"
+  },
+  {
+   "id": "waage",
+   "mot": "Waage",
+   "boites": [
+    [
+     21,
+     7.5,
+     4,
+     70
+    ],
+    [
+     5,
+     27,
+     25,
+     7
+    ],
+    [
+     15.5,
+     76.5,
+     29.5,
+     10
+    ]
+   ],
+   "rigide": true
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "boite": [
+    0,
+    0,
+    100,
+    72
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "boite": [
+    0,
+    75,
+    100,
+    25
+   ]
+  }
  ],
  "gros_plans": [
-  {"id": "main-dos", "personne": "mark", "net": true, "declencheur": [23, 55.5, 8.3, 7.3], "cadre": [19, 51, 15, 15],
+  {
+   "id": "main-dos",
+   "personne": "mark",
+   "net": true,
+   "declencheur": [
+    23,
+    55.5,
+    8.3,
+    7.3
+   ],
+   "cadre": [
+    19,
+    51,
+    15,
+    15
+   ],
    "parties": [
-    {"ref": "hand-l", "forme": [27.2, 59.1, 4.1, 3.6]},
-    {"id": "handflaeche-l", "mot": "Handfläche", "forme": [27.3, 59.3, 2.3, 1.7]},
-    {"id": "finger-dos", "mot": "Finger", "forme": [27.3, 61.7, 2.6, 0.9]}
-   ]}
+    {
+     "ref": "hand-l",
+     "forme": [
+      27.2,
+      59.1,
+      4.1,
+      3.6
+     ]
+    },
+    {
+     "id": "handflaeche-l",
+     "mot": "Handfläche",
+     "forme": [
+      27.3,
+      59.3,
+      2.3,
+      1.7
+     ]
+    },
+    {
+     "id": "finger-dos",
+     "mot": "Finger",
+     "forme": [
+      27.3,
+      61.7,
+      2.6,
+      0.9
+     ]
+    }
+   ]
+  }
  ]
 }

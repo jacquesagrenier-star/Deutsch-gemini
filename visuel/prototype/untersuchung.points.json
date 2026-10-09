@@ -4,92 +4,1082 @@
   "Deux vues d'une meme scene : celle-ci et untersuchung-dos (champ autre_vue = le bouton « Retourner Mark »). Chaque vue a ses propres questions Trouve ! : on ne demande pas le mollet sur la vue de face.",
   "Mesures prises sur une grille de 1 % (0,5 % pour le visage) de la source 1536 x 2752, le 9 oct. Gauche et droite sont celles de l'IMAGE (-l, -r).",
   "Mark est de trois quarts vers la medecin : une seule oreille (a gauche de l'image), paumes cachees -- die Handflaeche se cherche sur la vue de DOS.",
-  "Mots absents du corpus, donc absents de la scene : das Stethoskop, der Kittel, die Unterhose (le boxer), der Bauchnabel, die Toise."
+  "Mots absents du corpus, donc absents de la scene : das Stethoskop, der Kittel, die Unterhose (le boxer), der Bauchnabel, die Toise.",
+  "Les questions A2-C1 (9 oct. 2026) sont un BROUILLON non relu, comme celles de la classe et du medecin."
  ],
  "image": "untersuchung.webp",
  "source": "../scenes/untersuchung.png",
  "titre": "Die Untersuchung",
  "alt": "Mark, debout en boxer bleu marine, pieds nus, se fait ausculter la poitrine par sa médecin ; un pèse-personne avec toise contre le mur vert.",
  "consigne": "Touche une partie du corps de Mark. Touche son visage, sa main ou ses pieds pour les voir de près.",
- "exclus": ["Wand", "Boden"],
+ "exclus": [
+  "Wand",
+  "Boden"
+ ],
  "corps": "mark",
- "autre_vue": {"scene": "untersuchung-dos", "libelle": "↻ Retourner Mark"},
+ "autre_vue": {
+  "scene": "untersuchung-dos",
+  "libelle": "↻ Retourner Mark"
+ },
  "couches": {
-  "A1": {"titre": "Le corps humain"}
+  "A1": {
+   "titre": "Le corps humain"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions et le corps",
+   "qs": [
+    {
+     "q": "Wo steht die Waage?",
+     "c": [
+      "an der Wand",
+      "auf der Wand",
+      "unter der Wand"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "Die Waage steht an der Wand.",
+     "n": "<b>an</b> = contre une surface verticale. die Wand → an <b>der</b> Wand (datif)."
+    },
+    {
+     "q": "Wo steht die Ärztin?",
+     "c": [
+      "neben dem Patienten",
+      "hinter dem Patienten",
+      "auf der Waage"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Die Ärztin steht neben dem Patienten.",
+     "n": "<b>neben</b> + datif. der Patient prend un <b>-en</b> : dem Patient<b>en</b>."
+    },
+    {
+     "q": "Wo steht Mark?",
+     "c": [
+      "vor der Waage",
+      "auf der Waage",
+      "unter der Waage"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Mark steht vor der Waage.",
+     "n": "<b>vor</b> = devant. die Waage → vor <b>der</b> Waage. Il n'est pas encore monté dessus."
+    },
+    {
+     "q": "Wo hält die Ärztin das Stethoskop?",
+     "c": [
+      "auf seiner Brust",
+      "auf seinem Bauch",
+      "auf seiner Schulter"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin hält das Stethoskop auf seiner Brust.",
+     "n": "Datif avec le possessif : die Brust → auf <b>seiner</b> Brust."
+    },
+    {
+     "q": "Wo sind seine Hände?",
+     "c": [
+      "an seinen Oberschenkeln",
+      "auf seinem Kopf",
+      "auf seinem Bauch"
+     ],
+     "f": "hand-l",
+     "r": "oberschenkel",
+     "phrase": "Seine Hände sind an seinen Oberschenkeln.",
+     "n": "Datif pluriel : <b>an seinen</b> Oberschenkel<b>n</b> — le nom prend un -n."
+    },
+    {
+     "q": "Wo sind seine Füße?",
+     "c": [
+      "auf dem Boden",
+      "auf der Waage",
+      "unter dem Boden"
+     ],
+     "f": "fuss-l",
+     "r": "boden",
+     "phrase": "Seine Füße sind auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden. Pieds nus, sur le sol gris."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes de la médecin",
+   "qs": [
+    {
+     "q": "Die Ärztin hört seine Lunge ___.",
+     "c": [
+      "ab",
+      "an",
+      "auf"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin hört seine Lunge ab.",
+     "n": "<b>abhören</b> = ausculter. Verbe séparable : la particule <b>ab</b> part à la fin."
+    },
+    {
+     "q": "„Bitte atmen Sie tief ___!“",
+     "c": [
+      "ein",
+      "an",
+      "zu"
+     ],
+     "f": "mark",
+     "phrase": "Bitte atmen Sie tief ein!",
+     "n": "<b>einatmen</b> = inspirer, <b>ausatmen</b> = expirer. Impératif de politesse : verbe en tête, particule à la fin."
+    },
+    {
+     "q": "Mark hat sich bis auf die Unterhose ___.",
+     "c": [
+      "ausgezogen",
+      "angezogen",
+      "umgezogen"
+     ],
+     "f": "mark",
+     "phrase": "Mark hat sich bis auf die Unterhose ausgezogen.",
+     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer."
+    },
+    {
+     "q": "Die Ärztin ___ ihm das Stethoskop auf die Brust.",
+     "c": [
+      "setzt",
+      "sitzt",
+      "stellt"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin setzt ihm das Stethoskop auf die Brust.",
+     "n": "<b>setzen</b> = poser (mouvement) → auf <b>die</b> Brust (accusatif). <b>sitzen</b> = être assis."
+    },
+    {
+     "q": "Gleich ___ sich Mark auf die Waage.",
+     "c": [
+      "stellt",
+      "steht",
+      "legt"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Gleich stellt sich Mark auf die Waage.",
+     "n": "Mouvement, Wohin? → <b>sich stellen</b> + accusatif : auf <b>die</b> Waage."
+    },
+    {
+     "q": "Danach ___ er still auf der Waage.",
+     "c": [
+      "steht",
+      "stellt",
+      "setzt"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "Danach steht er still auf der Waage.",
+     "n": "État, Wo? → <b>stehen</b> + datif : auf <b>der</b> Waage."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "Seine Lunge ___ gerade abgehört.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Seine Lunge wird gerade abgehört.",
+     "n": "Passif de l'action en cours : <b>werden</b> + participe II."
+    },
+    {
+     "q": "Der Patient, ___ Brust abgehört wird, heißt Mark.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "mark",
+     "r": "brust",
+     "phrase": "Der Patient, dessen Brust abgehört wird, heißt Mark.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont la poitrine)."
+    },
+    {
+     "q": "Die Ärztin, ___ ihn untersucht, ist seine Hausärztin.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Die Ärztin, die ihn untersucht, ist seine Hausärztin.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Die Waage, auf ___ er sich gleich stellt, steht an der Wand.",
+     "c": [
+      "die",
+      "der",
+      "dem"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "Die Waage, auf die er sich gleich stellt, steht an der Wand.",
+     "n": "<b>sich stellen auf</b> + accusatif (mouvement) → auf <b>die</b>."
+    },
+    {
+     "q": "Gleich ___ auch seine Größe gemessen.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "waage",
+     "phrase": "Gleich wird auch seine Größe gemessen.",
+     "n": "Passif : <b>wird</b> … gemessen. La toise de la balance mesure la taille."
+    },
+    {
+     "q": "Mark bleibt ruhig stehen, während er ___ wird.",
+     "c": [
+      "untersucht",
+      "untersuchen",
+      "untersuchte"
+     ],
+     "f": "mark",
+     "phrase": "Mark bleibt ruhig stehen, während er untersucht wird.",
+     "n": "Passif dans la subordonnée : participe II + <b>wird</b> à la fin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et Konjunktiv II",
+   "qs": [
+    {
+     "q": "Schau dir seine Arme an: Er ___ viel Sport treiben.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "arm-l",
+     "phrase": "Er muss viel Sport treiben.",
+     "n": "<b>müssen</b> = déduction presque certaine, tirée de ce qu'on voit."
+    },
+    {
+     "q": "Er wirkt ganz entspannt — er ___ gesund sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "will"
+     ],
+     "f": "mark",
+     "phrase": "Er dürfte gesund sein.",
+     "n": "<b>dürfte</b> = probable, sans certitude."
+    },
+    {
+     "q": "Man sagt, diese Ärztin ___ sehr gründlich sein.",
+     "c": [
+      "soll",
+      "dürfte",
+      "muss"
+     ],
+     "f": "aerztin",
+     "phrase": "Diese Ärztin soll sehr gründlich sein.",
+     "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
+    },
+    {
+     "q": "Wäre sein Herzschlag unregelmäßig, ___ sie ihn zum Kardiologen schicken.",
+     "c": [
+      "würde",
+      "wird",
+      "wurde"
+     ],
+     "f": "aerztin",
+     "r": "brust",
+     "phrase": "Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.",
+     "n": "Hypothèse sans <b>wenn</b> : le verbe en tête (<b>Wäre</b>…), puis <b>würde</b> + infinitif."
+    },
+    {
+     "q": "Hätte er sich nicht ausgezogen, ___ sie ihn nicht abhören können.",
+     "c": [
+      "hätte",
+      "würde",
+      "wäre"
+     ],
+     "f": "mark",
+     "phrase": "Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.",
+     "n": "Irréel du passé avec un modal : <b>hätte</b> + double infinitif (abhören können)."
+    },
+    {
+     "q": "Ohne Untersuchung ___ man es nicht genau wissen.",
+     "c": [
+      "könnte",
+      "kann",
+      "konnte"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Ohne Untersuchung könnte man es nicht genau wissen.",
+     "n": "<b>ohne</b> + nom remplace une condition : Konjunktiv II <b>könnte</b>."
+    }
+   ]
+  }
  },
  "points": [
-  {"id": "mark", "mot": "Patient", "personne": "Mark", "aussi": ["Mann", "Körper"],
-   "boites": [[38, 9, 21, 16], [24, 25, 42, 40], [31, 64, 35, 35]], "devant": 1, "fond": true},
-
-  {"id": "kopf", "mot": "Kopf", "ellipses": [[48.7, 17.0, 10.1, 7.4]], "sur": "mark"},
-  {"id": "hals", "mot": "Hals", "ellipses": [[49.0, 25.3, 5.5, 1.3]], "sur": "mark"},
-  {"id": "schulter", "mot": "Schulter", "ellipses": [[29.4, 28.9, 3.5, 2.3], [60.6, 28.9, 2.8, 2.2]], "sur": "mark"},
-  {"id": "brust", "mot": "Brust", "ellipses": [[47.0, 33.6, 11.5, 3.8]], "sur": "mark"},
-  {"id": "bauch", "mot": "Bauch", "ellipses": [[46.5, 44.9, 11.0, 4.4]], "sur": "mark"},
-  {"id": "arm-l", "mot": "Arm", "ellipses": [[30.1, 37.7, 4.8, 6.5], [31.2, 50.7, 3.8, 6.5]], "sur": "mark"},
-  {"id": "arm-r", "mot": "Arm", "ellipses": [[62.4, 39.1, 3.3, 6.0], [64.2, 49.9, 3.1, 5.5]], "sur": "mark"},
-  {"id": "ellbogen", "mot": "Ellbogen", "ellipses": [[29.9, 44.3, 2.2, 1.6], [63.7, 44.3, 2.2, 1.6]], "sur": "mark"},
-  {"id": "handgelenk", "mot": "Handgelenk", "ellipses": [[32.7, 56.0, 2.6, 1.1], [64.6, 55.0, 2.0, 0.9]], "sur": "mark"},
-  {"id": "hand-l", "mot": "Hand", "boite": [29.4, 56.5, 10.1, 8.2], "sur": "mark"},
-  {"id": "hand-r", "mot": "Hand", "boite": [61.6, 55.8, 6.5, 6.0], "sur": "mark"},
-  {"id": "oberschenkel", "mot": "Oberschenkel", "ellipses": [[38.8, 68.1, 6.2, 3.8], [53.7, 67.7, 6.6, 3.8]], "sur": "mark"},
-  {"id": "knie", "mot": "Knie", "ellipses": [[37.7, 73.3, 4.2, 2.0], [53.1, 73.1, 4.2, 1.9]], "sur": "mark"},
-  {"id": "bein-l", "mot": "Bein", "boite": [31.5, 64, 14.5, 25.5], "sur": "mark"},
-  {"id": "bein-r", "mot": "Bein", "boite": [47.5, 64, 13.5, 24.5], "sur": "mark"},
-  {"id": "fuss-l", "mot": "Fuß", "boite": [33.5, 90, 10.1, 8.1], "sur": "mark"},
-  {"id": "fuss-r", "mot": "Fuß", "boite": [48, 88.5, 17.6, 5.7], "sur": "mark"},
-
-  {"id": "aerztin", "mot": "Ärztin", "aussi": ["Frau"],
-   "boites": [[76, 16, 24, 15], [53, 29, 47, 9], [63, 38, 37, 62]], "devant": 2},
-  {"id": "hand-aerztin-haut", "mot": "Hand", "ellipses": [[59.5, 32.7, 4.0, 2.2]], "sur": "aerztin"},
-  {"id": "hand-aerztin-bas", "mot": "Hand", "ellipses": [[72.6, 75.0, 3.5, 2.5]], "sur": "aerztin"},
-
-  {"id": "waage", "mot": "Waage", "boites": [[19.5, 7.5, 5.5, 72], [5, 27, 25, 7], [15.5, 76.5, 29.5, 10]], "rigide": true},
-
-  {"id": "wand", "mot": "Wand", "boite": [0, 0, 100, 72], "rigide": "rectangle"},
-  {"id": "boden", "mot": "Boden", "boite": [0, 75, 100, 25]}
+  {
+   "id": "mark",
+   "mot": "Patient",
+   "personne": "Mark",
+   "aussi": [
+    "Mann",
+    "Körper"
+   ],
+   "boites": [
+    [
+     38,
+     9,
+     21,
+     16
+    ],
+    [
+     24,
+     25,
+     42,
+     40
+    ],
+    [
+     31,
+     64,
+     35,
+     35
+    ]
+   ],
+   "devant": 1,
+   "fond": true
+  },
+  {
+   "id": "kopf",
+   "mot": "Kopf",
+   "ellipses": [
+    [
+     48.7,
+     17.0,
+     10.1,
+     7.4
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "hals",
+   "mot": "Hals",
+   "ellipses": [
+    [
+     49.0,
+     25.3,
+     5.5,
+     1.3
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "schulter",
+   "mot": "Schulter",
+   "ellipses": [
+    [
+     29.4,
+     28.9,
+     3.5,
+     2.3
+    ],
+    [
+     60.6,
+     28.9,
+     2.8,
+     2.2
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "brust",
+   "mot": "Brust",
+   "ellipses": [
+    [
+     47.0,
+     33.6,
+     11.5,
+     3.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "bauch",
+   "mot": "Bauch",
+   "ellipses": [
+    [
+     46.5,
+     44.9,
+     11.0,
+     4.4
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "arm-l",
+   "mot": "Arm",
+   "ellipses": [
+    [
+     30.1,
+     37.7,
+     4.8,
+     6.5
+    ],
+    [
+     31.2,
+     50.7,
+     3.8,
+     6.5
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "arm-r",
+   "mot": "Arm",
+   "ellipses": [
+    [
+     62.4,
+     39.1,
+     3.3,
+     6.0
+    ],
+    [
+     64.2,
+     49.9,
+     3.1,
+     5.5
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "ellbogen",
+   "mot": "Ellbogen",
+   "ellipses": [
+    [
+     29.9,
+     44.3,
+     2.2,
+     1.6
+    ],
+    [
+     63.7,
+     44.3,
+     2.2,
+     1.6
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "handgelenk",
+   "mot": "Handgelenk",
+   "ellipses": [
+    [
+     32.7,
+     56.0,
+     2.6,
+     1.1
+    ],
+    [
+     64.6,
+     55.0,
+     2.0,
+     0.9
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "hand-l",
+   "mot": "Hand",
+   "boite": [
+    29.4,
+    56.5,
+    10.1,
+    8.2
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "hand-r",
+   "mot": "Hand",
+   "boite": [
+    61.6,
+    55.8,
+    6.5,
+    6.0
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "oberschenkel",
+   "mot": "Oberschenkel",
+   "ellipses": [
+    [
+     38.8,
+     68.1,
+     6.2,
+     3.8
+    ],
+    [
+     53.7,
+     67.7,
+     6.6,
+     3.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "knie",
+   "mot": "Knie",
+   "ellipses": [
+    [
+     37.7,
+     73.3,
+     4.2,
+     2.0
+    ],
+    [
+     53.1,
+     73.1,
+     4.2,
+     1.9
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "bein-l",
+   "mot": "Bein",
+   "boite": [
+    31.5,
+    64,
+    14.5,
+    25.5
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "bein-r",
+   "mot": "Bein",
+   "boite": [
+    47.5,
+    64,
+    13.5,
+    24.5
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "fuss-l",
+   "mot": "Fuß",
+   "boite": [
+    33.5,
+    90,
+    10.1,
+    8.1
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "fuss-r",
+   "mot": "Fuß",
+   "boite": [
+    48,
+    88.5,
+    17.6,
+    5.7
+   ],
+   "sur": "mark"
+  },
+  {
+   "id": "aerztin",
+   "mot": "Ärztin",
+   "aussi": [
+    "Frau"
+   ],
+   "boites": [
+    [
+     76,
+     16,
+     24,
+     15
+    ],
+    [
+     53,
+     29,
+     47,
+     9
+    ],
+    [
+     63,
+     38,
+     37,
+     62
+    ]
+   ],
+   "devant": 2
+  },
+  {
+   "id": "hand-aerztin-haut",
+   "mot": "Hand",
+   "ellipses": [
+    [
+     59.5,
+     32.7,
+     4.0,
+     2.2
+    ]
+   ],
+   "sur": "aerztin"
+  },
+  {
+   "id": "hand-aerztin-bas",
+   "mot": "Hand",
+   "ellipses": [
+    [
+     72.6,
+     75.0,
+     3.5,
+     2.5
+    ]
+   ],
+   "sur": "aerztin"
+  },
+  {
+   "id": "waage",
+   "mot": "Waage",
+   "boites": [
+    [
+     19.5,
+     7.5,
+     5.5,
+     72
+    ],
+    [
+     5,
+     27,
+     25,
+     7
+    ],
+    [
+     15.5,
+     76.5,
+     29.5,
+     10
+    ]
+   ],
+   "rigide": true
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "boite": [
+    0,
+    0,
+    100,
+    72
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "boite": [
+    0,
+    75,
+    100,
+    25
+   ]
+  }
  ],
  "gros_plans": [
-  {"id": "visage-mark", "personne": "mark", "net": true, "declencheur": [38, 9, 21, 16], "cadre": [36, 7, 26, 26],
+  {
+   "id": "visage-mark",
+   "personne": "mark",
+   "net": true,
+   "declencheur": [
+    38,
+    9,
+    21,
+    16
+   ],
+   "cadre": [
+    36,
+    7,
+    26,
+    26
+   ],
    "parties": [
-    {"ref": "kopf", "forme": [48.7, 17.0, 10.1, 7.4]},
-    {"ref": "hals", "forme": [49.0, 25.3, 5.5, 1.3]},
-    {"id": "haar", "mot": "Haar", "forme": [48.7, 12.3, 9.5, 3.4]},
-    {"id": "haar-l", "mot": "Haar", "forme": [41.8, 14.8, 2.5, 2.0]},
-    {"id": "gesicht", "mot": "Gesicht", "forme": [50.9, 19.1, 6.2, 5.0]},
-    {"id": "stirn", "mot": "Stirn", "forme": [51.6, 15.25, 4.5, 1.1]},
-    {"id": "augenbraue-l", "mot": "Augenbraue", "forme": [50.45, 16.86, 2.1, 0.35]},
-    {"id": "augenbraue-r", "mot": "Augenbraue", "forme": [56.0, 16.8, 1.25, 0.35]},
-    {"id": "auge-l", "mot": "Auge", "forme": [50.6, 17.66, 1.4, 0.4]},
-    {"id": "auge-r", "mot": "Auge", "forme": [55.8, 17.66, 0.9, 0.4]},
-    {"id": "ohr", "mot": "Ohr", "forme": [41.9, 18.3, 1.3, 1.3]},
-    {"id": "nase", "mot": "Nase", "forme": [53.9, 19.1, 1.6, 1.4]},
-    {"id": "wange-l", "mot": "Wange", "forme": [47.6, 20.6, 2.0, 1.3]},
-    {"id": "wange-r", "mot": "Wange", "forme": [56.2, 20.1, 0.6, 1.0]},
-    {"id": "mund", "mot": "Mund", "forme": [52.8, 21.4, 2.5, 0.6]},
-    {"id": "zahn", "mot": "Zahn", "forme": [53.3, 21.3, 1.1, 0.2]},
-    {"id": "lippe", "mot": "Lippe", "forme": [53.3, 21.7, 1.7, 0.25]},
-    {"id": "kinn", "mot": "Kinn", "forme": [53.05, 23.3, 2.0, 0.8]}
-   ]},
-  {"id": "main-mark", "personne": "mark", "net": true, "declencheur": [29.4, 56.5, 10.1, 8.2], "cadre": [27, 53, 14, 14],
+    {
+     "ref": "kopf",
+     "forme": [
+      48.7,
+      17.0,
+      10.1,
+      7.4
+     ]
+    },
+    {
+     "ref": "hals",
+     "forme": [
+      49.0,
+      25.3,
+      5.5,
+      1.3
+     ]
+    },
+    {
+     "id": "haar",
+     "mot": "Haar",
+     "forme": [
+      48.7,
+      12.3,
+      9.5,
+      3.4
+     ]
+    },
+    {
+     "id": "haar-l",
+     "mot": "Haar",
+     "forme": [
+      41.8,
+      14.8,
+      2.5,
+      2.0
+     ]
+    },
+    {
+     "id": "gesicht",
+     "mot": "Gesicht",
+     "forme": [
+      50.9,
+      19.1,
+      6.2,
+      5.0
+     ]
+    },
+    {
+     "id": "stirn",
+     "mot": "Stirn",
+     "forme": [
+      51.6,
+      15.25,
+      4.5,
+      1.1
+     ]
+    },
+    {
+     "id": "augenbraue-l",
+     "mot": "Augenbraue",
+     "forme": [
+      50.45,
+      16.86,
+      2.1,
+      0.35
+     ]
+    },
+    {
+     "id": "augenbraue-r",
+     "mot": "Augenbraue",
+     "forme": [
+      56.0,
+      16.8,
+      1.25,
+      0.35
+     ]
+    },
+    {
+     "id": "auge-l",
+     "mot": "Auge",
+     "forme": [
+      50.6,
+      17.66,
+      1.4,
+      0.4
+     ]
+    },
+    {
+     "id": "auge-r",
+     "mot": "Auge",
+     "forme": [
+      55.8,
+      17.66,
+      0.9,
+      0.4
+     ]
+    },
+    {
+     "id": "ohr",
+     "mot": "Ohr",
+     "forme": [
+      41.9,
+      18.3,
+      1.3,
+      1.3
+     ]
+    },
+    {
+     "id": "nase",
+     "mot": "Nase",
+     "forme": [
+      53.9,
+      19.1,
+      1.6,
+      1.4
+     ]
+    },
+    {
+     "id": "wange-l",
+     "mot": "Wange",
+     "forme": [
+      47.6,
+      20.6,
+      2.0,
+      1.3
+     ]
+    },
+    {
+     "id": "wange-r",
+     "mot": "Wange",
+     "forme": [
+      56.2,
+      20.1,
+      0.6,
+      1.0
+     ]
+    },
+    {
+     "id": "mund",
+     "mot": "Mund",
+     "forme": [
+      52.8,
+      21.4,
+      2.5,
+      0.6
+     ]
+    },
+    {
+     "id": "zahn",
+     "mot": "Zahn",
+     "forme": [
+      53.3,
+      21.3,
+      1.1,
+      0.2
+     ]
+    },
+    {
+     "id": "lippe",
+     "mot": "Lippe",
+     "forme": [
+      53.3,
+      21.7,
+      1.7,
+      0.25
+     ]
+    },
+    {
+     "id": "kinn",
+     "mot": "Kinn",
+     "forme": [
+      53.05,
+      23.3,
+      2.0,
+      0.8
+     ]
+    }
+   ]
+  },
+  {
+   "id": "main-mark",
+   "personne": "mark",
+   "net": true,
+   "declencheur": [
+    29.4,
+    56.5,
+    10.1,
+    8.2
+   ],
+   "cadre": [
+    27,
+    53,
+    14,
+    14
+   ],
    "parties": [
-    {"ref": "hand-l", "forme": [34.4, 60.5, 4.8, 4.0]},
-    {"ref": "handgelenk", "forme": [32.7, 56.0, 2.6, 1.1]},
-    {"id": "finger-main", "mot": "Finger", "forme": [33.5, 62.6, 2.0, 1.9]},
-    {"id": "finger-daumen", "mot": "Finger", "forme": [38.3, 62.2, 1.2, 0.8]},
-    {"id": "nagel-daumen", "mot": "Nagel", "forme": [38.7, 62.5, 0.5, 0.35]}
-   ]},
-  {"id": "pieds-mark", "personne": "mark", "net": true, "declencheur": [33.5, 88.5, 32, 10], "cadre": [30, 65, 35, 35],
+    {
+     "ref": "hand-l",
+     "forme": [
+      34.4,
+      60.5,
+      4.8,
+      4.0
+     ]
+    },
+    {
+     "ref": "handgelenk",
+     "forme": [
+      32.7,
+      56.0,
+      2.6,
+      1.1
+     ]
+    },
+    {
+     "id": "finger-main",
+     "mot": "Finger",
+     "forme": [
+      33.5,
+      62.6,
+      2.0,
+      1.9
+     ]
+    },
+    {
+     "id": "finger-daumen",
+     "mot": "Finger",
+     "forme": [
+      38.3,
+      62.2,
+      1.2,
+      0.8
+     ]
+    },
+    {
+     "id": "nagel-daumen",
+     "mot": "Nagel",
+     "forme": [
+      38.7,
+      62.5,
+      0.5,
+      0.35
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pieds-mark",
+   "personne": "mark",
+   "net": true,
+   "declencheur": [
+    33.5,
+    88.5,
+    32,
+    10
+   ],
+   "cadre": [
+    30,
+    65,
+    35,
+    35
+   ],
    "parties": [
-    {"ref": "fuss-l", "forme": [38.5, 94.0, 5.0, 4.0]},
-    {"ref": "fuss-r", "forme": [56.8, 91.3, 8.8, 2.8]},
-    {"ref": "knie", "forme": [37.7, 73.3, 4.2, 2.0]},
-    {"id": "knoechel-l", "mot": "Knöchel", "forme": [37.7, 90.25, 3.3, 1.2]},
-    {"id": "knoechel-r", "mot": "Knöchel", "forme": [51.7, 88.9, 3.2, 1.0]},
-    {"id": "zehe-l", "mot": "Zehe", "forme": [39.2, 96.9, 4.2, 1.1]},
-    {"id": "zehe-r", "mot": "Zehe", "forme": [63.0, 92.5, 2.6, 1.6]},
-    {"id": "fussnagel-l", "mot": "Nagel", "forme": [42.95, 96.95, 0.7, 0.45]},
-    {"id": "fussnagel-r", "mot": "Nagel", "forme": [64.5, 93.0, 0.7, 0.5]}
-   ]}
+    {
+     "ref": "fuss-l",
+     "forme": [
+      38.5,
+      94.0,
+      5.0,
+      4.0
+     ]
+    },
+    {
+     "ref": "fuss-r",
+     "forme": [
+      56.8,
+      91.3,
+      8.8,
+      2.8
+     ]
+    },
+    {
+     "ref": "knie",
+     "forme": [
+      37.7,
+      73.3,
+      4.2,
+      2.0
+     ]
+    },
+    {
+     "id": "knoechel-l",
+     "mot": "Knöchel",
+     "forme": [
+      37.7,
+      90.25,
+      3.3,
+      1.2
+     ]
+    },
+    {
+     "id": "knoechel-r",
+     "mot": "Knöchel",
+     "forme": [
+      51.7,
+      88.9,
+      3.2,
+      1.0
+     ]
+    },
+    {
+     "id": "zehe-l",
+     "mot": "Zehe",
+     "forme": [
+      39.2,
+      96.9,
+      4.2,
+      1.1
+     ]
+    },
+    {
+     "id": "zehe-r",
+     "mot": "Zehe",
+     "forme": [
+      63.0,
+      92.5,
+      2.6,
+      1.6
+     ]
+    },
+    {
+     "id": "fussnagel-l",
+     "mot": "Nagel",
+     "forme": [
+      42.95,
+      96.95,
+      0.7,
+      0.45
+     ]
+    },
+    {
+     "id": "fussnagel-r",
+     "mot": "Nagel",
+     "forme": [
+      64.5,
+      93.0,
+      0.7,
+      0.5
+     ]
+    }
+   ]
+  }
  ]
 }

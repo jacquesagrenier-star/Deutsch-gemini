@@ -1459,6 +1459,306 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Le corps humain"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions et le corps",
+   "qs": [
+    {
+     "q": "Wo steht die Waage?",
+     "c": [
+      "an der Wand",
+      "auf der Wand",
+      "unter der Wand"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "Die Waage steht an der Wand.",
+     "n": "<b>an</b> = contre une surface verticale. die Wand → an <b>der</b> Wand (datif)."
+    },
+    {
+     "q": "Wo steht die Ärztin?",
+     "c": [
+      "neben dem Patienten",
+      "hinter dem Patienten",
+      "auf der Waage"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Die Ärztin steht neben dem Patienten.",
+     "n": "<b>neben</b> + datif. der Patient prend un <b>-en</b> : dem Patient<b>en</b>."
+    },
+    {
+     "q": "Wo steht Mark?",
+     "c": [
+      "vor der Waage",
+      "auf der Waage",
+      "unter der Waage"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Mark steht vor der Waage.",
+     "n": "<b>vor</b> = devant. die Waage → vor <b>der</b> Waage. Il n'est pas encore monté dessus."
+    },
+    {
+     "q": "Wo hält die Ärztin das Stethoskop?",
+     "c": [
+      "auf seiner Brust",
+      "auf seinem Bauch",
+      "auf seiner Schulter"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin hält das Stethoskop auf seiner Brust.",
+     "n": "Datif avec le possessif : die Brust → auf <b>seiner</b> Brust."
+    },
+    {
+     "q": "Wo sind seine Hände?",
+     "c": [
+      "an seinen Oberschenkeln",
+      "auf seinem Kopf",
+      "auf seinem Bauch"
+     ],
+     "f": "hand-l",
+     "r": "oberschenkel",
+     "phrase": "Seine Hände sind an seinen Oberschenkeln.",
+     "n": "Datif pluriel : <b>an seinen</b> Oberschenkel<b>n</b> — le nom prend un -n."
+    },
+    {
+     "q": "Wo sind seine Füße?",
+     "c": [
+      "auf dem Boden",
+      "auf der Waage",
+      "unter dem Boden"
+     ],
+     "f": "fuss-l",
+     "r": "boden",
+     "phrase": "Seine Füße sind auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden. Pieds nus, sur le sol gris."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes de la médecin",
+   "qs": [
+    {
+     "q": "Die Ärztin hört seine Lunge ___.",
+     "c": [
+      "ab",
+      "an",
+      "auf"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin hört seine Lunge ab.",
+     "n": "<b>abhören</b> = ausculter. Verbe séparable : la particule <b>ab</b> part à la fin."
+    },
+    {
+     "q": "„Bitte atmen Sie tief ___!“",
+     "c": [
+      "ein",
+      "an",
+      "zu"
+     ],
+     "f": "mark",
+     "phrase": "Bitte atmen Sie tief ein!",
+     "n": "<b>einatmen</b> = inspirer, <b>ausatmen</b> = expirer. Impératif de politesse : verbe en tête, particule à la fin."
+    },
+    {
+     "q": "Mark hat sich bis auf die Unterhose ___.",
+     "c": [
+      "ausgezogen",
+      "angezogen",
+      "umgezogen"
+     ],
+     "f": "mark",
+     "phrase": "Mark hat sich bis auf die Unterhose ausgezogen.",
+     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer."
+    },
+    {
+     "q": "Die Ärztin ___ ihm das Stethoskop auf die Brust.",
+     "c": [
+      "setzt",
+      "sitzt",
+      "stellt"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin setzt ihm das Stethoskop auf die Brust.",
+     "n": "<b>setzen</b> = poser (mouvement) → auf <b>die</b> Brust (accusatif). <b>sitzen</b> = être assis."
+    },
+    {
+     "q": "Gleich ___ sich Mark auf die Waage.",
+     "c": [
+      "stellt",
+      "steht",
+      "legt"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Gleich stellt sich Mark auf die Waage.",
+     "n": "Mouvement, Wohin? → <b>sich stellen</b> + accusatif : auf <b>die</b> Waage."
+    },
+    {
+     "q": "Danach ___ er still auf der Waage.",
+     "c": [
+      "steht",
+      "stellt",
+      "setzt"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "Danach steht er still auf der Waage.",
+     "n": "État, Wo? → <b>stehen</b> + datif : auf <b>der</b> Waage."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "Seine Lunge ___ gerade abgehört.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Seine Lunge wird gerade abgehört.",
+     "n": "Passif de l'action en cours : <b>werden</b> + participe II."
+    },
+    {
+     "q": "Der Patient, ___ Brust abgehört wird, heißt Mark.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "mark",
+     "r": "brust",
+     "phrase": "Der Patient, dessen Brust abgehört wird, heißt Mark.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont la poitrine)."
+    },
+    {
+     "q": "Die Ärztin, ___ ihn untersucht, ist seine Hausärztin.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Die Ärztin, die ihn untersucht, ist seine Hausärztin.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Die Waage, auf ___ er sich gleich stellt, steht an der Wand.",
+     "c": [
+      "die",
+      "der",
+      "dem"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "Die Waage, auf die er sich gleich stellt, steht an der Wand.",
+     "n": "<b>sich stellen auf</b> + accusatif (mouvement) → auf <b>die</b>."
+    },
+    {
+     "q": "Gleich ___ auch seine Größe gemessen.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "waage",
+     "phrase": "Gleich wird auch seine Größe gemessen.",
+     "n": "Passif : <b>wird</b> … gemessen. La toise de la balance mesure la taille."
+    },
+    {
+     "q": "Mark bleibt ruhig stehen, während er ___ wird.",
+     "c": [
+      "untersucht",
+      "untersuchen",
+      "untersuchte"
+     ],
+     "f": "mark",
+     "phrase": "Mark bleibt ruhig stehen, während er untersucht wird.",
+     "n": "Passif dans la subordonnée : participe II + <b>wird</b> à la fin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et Konjunktiv II",
+   "qs": [
+    {
+     "q": "Schau dir seine Arme an: Er ___ viel Sport treiben.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "arm-l",
+     "phrase": "Er muss viel Sport treiben.",
+     "n": "<b>müssen</b> = déduction presque certaine, tirée de ce qu'on voit."
+    },
+    {
+     "q": "Er wirkt ganz entspannt — er ___ gesund sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "will"
+     ],
+     "f": "mark",
+     "phrase": "Er dürfte gesund sein.",
+     "n": "<b>dürfte</b> = probable, sans certitude."
+    },
+    {
+     "q": "Man sagt, diese Ärztin ___ sehr gründlich sein.",
+     "c": [
+      "soll",
+      "dürfte",
+      "muss"
+     ],
+     "f": "aerztin",
+     "phrase": "Diese Ärztin soll sehr gründlich sein.",
+     "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
+    },
+    {
+     "q": "Wäre sein Herzschlag unregelmäßig, ___ sie ihn zum Kardiologen schicken.",
+     "c": [
+      "würde",
+      "wird",
+      "wurde"
+     ],
+     "f": "aerztin",
+     "r": "brust",
+     "phrase": "Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.",
+     "n": "Hypothèse sans <b>wenn</b> : le verbe en tête (<b>Wäre</b>…), puis <b>würde</b> + infinitif."
+    },
+    {
+     "q": "Hätte er sich nicht ausgezogen, ___ sie ihn nicht abhören können.",
+     "c": [
+      "hätte",
+      "würde",
+      "wäre"
+     ],
+     "f": "mark",
+     "phrase": "Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.",
+     "n": "Irréel du passé avec un modal : <b>hätte</b> + double infinitif (abhören können)."
+    },
+    {
+     "q": "Ohne Untersuchung ___ man es nicht genau wissen.",
+     "c": [
+      "könnte",
+      "kann",
+      "konnte"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Ohne Untersuchung könnte man es nicht genau wissen.",
+     "n": "<b>ohne</b> + nom remplace une condition : Konjunktiv II <b>könnte</b>."
+    }
+   ]
   }
  },
  "corps": "mark",

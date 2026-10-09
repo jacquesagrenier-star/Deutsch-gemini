@@ -876,6 +876,303 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Le corps humain, de dos"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions et le corps",
+   "qs": [
+    {
+     "q": "Wo hält die Ärztin das Stethoskop?",
+     "c": [
+      "auf seinem Rücken",
+      "auf seiner Brust",
+      "auf seinem Kopf"
+     ],
+     "f": "ruecken",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin hält das Stethoskop auf seinem Rücken.",
+     "n": "der Rücken → auf <b>seinem</b> Rücken (datif masculin)."
+    },
+    {
+     "q": "Wo steht die Ärztin?",
+     "c": [
+      "neben dem Patienten",
+      "vor dem Patienten",
+      "auf der Waage"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Die Ärztin steht neben dem Patienten.",
+     "n": "<b>neben</b> + datif : dem Patient<b>en</b>."
+    },
+    {
+     "q": "Wo sind seine Hände?",
+     "c": [
+      "neben seinem Po",
+      "auf seinem Kopf",
+      "auf seinem Rücken"
+     ],
+     "f": "hand-l",
+     "r": "po",
+     "phrase": "Seine Hände sind neben seinem Po.",
+     "n": "der Po → neben <b>seinem</b> Po (datif)."
+    },
+    {
+     "q": "Wo ist die Wirbelsäule?",
+     "c": [
+      "zwischen den Schulterblättern",
+      "über dem Kopf",
+      "unter den Füßen"
+     ],
+     "f": "wirbelsaeule",
+     "r": "schulterblatt",
+     "phrase": "Die Wirbelsäule ist zwischen den Schulterblättern.",
+     "n": "<b>zwischen</b> + datif pluriel : <b>den</b> Schulterblätter<b>n</b>."
+    },
+    {
+     "q": "Wo sind die Waden?",
+     "c": [
+      "unter den Kniekehlen",
+      "über den Kniekehlen",
+      "neben den Schultern"
+     ],
+     "f": "wade",
+     "r": "kniekehle",
+     "phrase": "Die Waden sind unter den Kniekehlen.",
+     "n": "<b>unter</b> + datif pluriel : <b>den</b> Kniekehle<b>n</b>."
+    },
+    {
+     "q": "Wo steht die Waage?",
+     "c": [
+      "an der Wand",
+      "auf der Wand",
+      "in der Wand"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "Die Waage steht an der Wand.",
+     "n": "<b>an</b> + datif : an <b>der</b> Wand."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes de la médecin",
+   "qs": [
+    {
+     "q": "„Bitte drehen Sie sich ___!“",
+     "c": [
+      "um",
+      "an",
+      "aus"
+     ],
+     "f": "mark",
+     "phrase": "Bitte drehen Sie sich um!",
+     "n": "<b>sich umdrehen</b> = se retourner. Particule séparable à la fin de l'impératif."
+    },
+    {
+     "q": "Mark hat sich ___, damit sie seinen Rücken abhören kann.",
+     "c": [
+      "umgedreht",
+      "umgezogen",
+      "umgefallen"
+     ],
+     "f": "mark",
+     "r": "ruecken",
+     "phrase": "Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.",
+     "n": "Participe II d'un verbe séparable : <b>um-ge-dreht</b>. <b>damit</b> = pour que."
+    },
+    {
+     "q": "Die Ärztin ___ das Stethoskop auf seinen Rücken.",
+     "c": [
+      "setzt",
+      "sitzt",
+      "steht"
+     ],
+     "f": "ruecken",
+     "r": "hand-aerztin-haut",
+     "phrase": "Die Ärztin setzt das Stethoskop auf seinen Rücken.",
+     "n": "Mouvement → <b>setzen</b> + accusatif : auf <b>seinen</b> Rücken."
+    },
+    {
+     "q": "Er ___ seine Arme locker hängen.",
+     "c": [
+      "lässt",
+      "legt",
+      "stellt"
+     ],
+     "f": "arm-l",
+     "phrase": "Er lässt seine Arme locker hängen.",
+     "n": "<b>lassen</b> + infinitif : laisser (pendre)."
+    },
+    {
+     "q": "Er hält die Hände so, dass man die Handflächen ___.",
+     "c": [
+      "sieht",
+      "sehen",
+      "siehst"
+     ],
+     "f": "handflaeche-r",
+     "phrase": "Er hält die Hände so, dass man die Handflächen sieht.",
+     "n": "<b>man</b> se conjugue à la 3e personne du singulier : man <b>sieht</b>."
+    },
+    {
+     "q": "„Atmen Sie bitte ruhig ___ und ein!“",
+     "c": [
+      "aus",
+      "ab",
+      "auf"
+     ],
+     "f": "ruecken",
+     "phrase": "Atmen Sie bitte ruhig aus und ein!",
+     "n": "<b>ausatmen</b> = expirer, <b>einatmen</b> = inspirer."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "Sein Rücken ___ gerade abgehört.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "ruecken",
+     "r": "hand-aerztin-haut",
+     "phrase": "Sein Rücken wird gerade abgehört.",
+     "n": "Passif de l'action : <b>werden</b> + participe II."
+    },
+    {
+     "q": "Das ist der Patient, ___ Rücken die Ärztin abhört.",
+     "c": [
+      "dessen",
+      "deren",
+      "den"
+     ],
+     "f": "mark",
+     "r": "ruecken",
+     "phrase": "Das ist der Patient, dessen Rücken die Ärztin abhört.",
+     "n": "Possession, antécédent masculin → <b>dessen</b>."
+    },
+    {
+     "q": "Die Ärztin, ___ Stethoskop auf seinem Rücken liegt, hört genau zu.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "aerztin",
+     "r": "ruecken",
+     "phrase": "Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.",
+     "n": "Possession, antécédent féminin → <b>deren</b>."
+    },
+    {
+     "q": "Nachdem er sich umgedreht ___, hörte sie den Rücken ab.",
+     "c": [
+      "hatte",
+      "hat",
+      "war"
+     ],
+     "f": "mark",
+     "phrase": "Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.",
+     "n": "<b>nachdem</b> + plus-que-parfait. Un verbe pronominal prend <b>haben</b>."
+    },
+    {
+     "q": "Bevor der Rücken abgehört ___ kann, muss er tief einatmen.",
+     "c": [
+      "werden",
+      "worden",
+      "wird"
+     ],
+     "f": "ruecken",
+     "phrase": "Bevor der Rücken abgehört werden kann, muss er tief einatmen.",
+     "n": "Passif avec modal : participe II + <b>werden</b> + modal (kann)."
+    },
+    {
+     "q": "Die Schulterblätter, ___ sich die Wirbelsäule befindet, sind gut zu sehen.",
+     "c": [
+      "zwischen denen",
+      "zwischen den",
+      "zwischen die"
+     ],
+     "f": "schulterblatt",
+     "r": "wirbelsaeule",
+     "phrase": "Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.",
+     "n": "Pronom relatif au datif pluriel : <b>denen</b>, pas « den »."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et Konjunktiv II",
+   "qs": [
+    {
+     "q": "Er bleibt ganz ruhig — er ___ schon oft abgehört worden sein.",
+     "c": [
+      "dürfte",
+      "sollte",
+      "will"
+     ],
+     "f": "mark",
+     "phrase": "Er dürfte schon oft abgehört worden sein.",
+     "n": "<b>dürfte</b> + infinitif passé du passif : supposition probable sur le passé."
+    },
+    {
+     "q": "Wenn er Rückenschmerzen hätte, ___ er es der Ärztin gesagt.",
+     "c": [
+      "hätte",
+      "würde",
+      "wäre"
+     ],
+     "f": "ruecken",
+     "phrase": "Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.",
+     "n": "Irréel du passé : <b>hätte</b> + participe II (gesagt)."
+    },
+    {
+     "q": "Angenommen, sie ___ ein Geräusch, würde sie ihn röntgen lassen.",
+     "c": [
+      "hörte",
+      "hört",
+      "hätte"
+     ],
+     "f": "aerztin",
+     "r": "ruecken",
+     "phrase": "Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.",
+     "n": "Konjunktiv II de <b>hören</b> = <b>hörte</b> (même forme que le prétérit)."
+    },
+    {
+     "q": "Man behauptet, Mark ___ nie ernsthaft krank gewesen sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "mark",
+     "phrase": "Mark soll nie ernsthaft krank gewesen sein.",
+     "n": "<b>sollen</b> + infinitif passé : on le rapporte, sans le garantir."
+    },
+    {
+     "q": "Seine gerade Haltung ___ vom vielen Sport kommen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "will"
+     ],
+     "f": "wirbelsaeule",
+     "phrase": "Seine gerade Haltung dürfte vom vielen Sport kommen.",
+     "n": "<b>dürfte</b> = hypothèse probable de celui qui parle."
+    },
+    {
+     "q": "Hätte sie nichts gehört, ___ sie längst aufgehört.",
+     "c": [
+      "hätte",
+      "würde",
+      "wäre"
+     ],
+     "f": "aerztin",
+     "phrase": "Hätte sie nichts gehört, hätte sie längst aufgehört.",
+     "n": "Condition sans <b>wenn</b>, verbe en tête ; irréel du passé avec <b>hätte</b>."
+    }
+   ]
   }
  },
  "corps": "mark",
