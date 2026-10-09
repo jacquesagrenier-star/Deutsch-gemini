@@ -29,7 +29,9 @@ REPONSES = os.path.join(DOSSIER, "reponses")
 TAILLE_LOT = 55
 VERDICTS = ["BON", "A_AMELIORER", "A_REMPLACER", "FAUX"]
 
-CONSIGNE = """Tu relis des exercices d'allemand pour des francophones (niveaux CECR A2 a C1). Chaque exercice se joue sur une PHOTO que tu ne vois pas : une salle de classe, un cabinet medical, un marche. Fais confiance a la description de la scene pour ce qui est visible ; juge la LANGUE.
+CONSIGNE = """Tu relis des exercices d'allemand pour des francophones (niveaux CECR A2 a C1). Chaque exercice se joue sur une PHOTO que tu ne vois pas : une salle de classe, un cabinet medical, un marche.
+
+IMPORTANT : les objets, les personnes et leurs positions ont DEJA ete verifies sur la photo. La description de la scene ci-dessous est un simple resume et ne cite pas tout : un objet absent du resume EST bien sur la photo. Ne signale donc jamais « absent de la scene » ni « position non precisee ». Les phrases a hypotheses (muss, koennte, duerfte, soll) sont guidees par leur amorce (« Ich bin mir fast sicher », « Vielleicht », « Wahrscheinlich », « Man sagt ») : juge si l'amorce impose bien la reponse, pas si la photo la prouve. Juge la LANGUE.
 
 Pour chaque exercice tu recois : la question, les choix (la reponse visee est marquee *), la phrase complete qui sera lue a voix haute, et l'explication montree a l'eleve (en francais).
 
