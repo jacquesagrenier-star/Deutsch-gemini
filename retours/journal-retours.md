@@ -7970,3 +7970,17 @@ espagnol, japonais). Fait en v722 (allemand) et v39 (espagnol) : plus de
 retournement automatique ; « Nouveau mot » passe au RECTO. Seule exception : la
 decouverte guidee, dont la voix enregistree parle du verso. Le japonais n'a pas
 encore d'app de cartes -- il partira du code allemand, donc deja corrige.
+
+## 9 octobre 2026 -- Jacques : une nouvelle scene du corps, Mark en boxer chez sa medecin
+
+La scene de l'examen (`visuel/scenes/untersuchung*.png`) remplace la scene du
+medecin pour le CORPS : Mark debout, de face puis de dos. La scene de la
+blessure (arztpraxis) est gardee pour la SANTE. Corrections de Jacques pendant
+les prises : pas de carte tenue « pour la montrer », un pese-personne avec
+toise, un boxer fonce, « ce n'est pas une seance photo, c'est un examen »,
+toujours SA medecin en reference. Puisque le dos ne se voit pas de face, une
+image du dos a ete faite, avec les paumes tournees vers nous (idee de Jacques,
+pour die Handflaeche).
+Mots du dos ajoutes au corpus (`ajouts/scene-untersuchung-dos.json`) :
+der Po (A2), der Nacken et die Wade (B1), das Schulterblatt et die Kniekehle
+(B2). Traductions tr/uk/fa NON relues.
