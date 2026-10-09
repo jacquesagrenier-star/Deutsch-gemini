@@ -1133,144 +1133,6 @@ window.SCENE = {
      20
     ]
    ]
-  },
-  {
-   "id": "kopf-lehrer",
-   "mot": "Kopf",
-   "genre": "der",
-   "pluriel": "Köpfe",
-   "fr": "tête",
-   "en": "head",
-   "niveau": "A1",
-   "theme": "koerperteile_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": "lehrer",
-   "devant": 0,
-   "detail": "visage-lehrer",
-   "boites": [
-    [
-     10.8,
-     32.05,
-     10.2,
-     6.0
-    ]
-   ]
-  },
-  {
-   "id": "stirn-lehrer",
-   "mot": "Stirn",
-   "genre": "die",
-   "pluriel": "Stirnen",
-   "fr": "front",
-   "en": "forehead",
-   "niveau": "B1",
-   "theme": "koerperteile_b1",
-   "personne": null,
-   "aussi": [],
-   "sur": "lehrer",
-   "devant": 0,
-   "detail": "visage-lehrer",
-   "boites": [
-    [
-     14.100000000000001,
-     33.0,
-     6.4,
-     1.9
-    ]
-   ]
-  },
-  {
-   "id": "ohr-lehrer",
-   "mot": "Ohr",
-   "genre": "das",
-   "pluriel": "Ohren",
-   "fr": "oreille",
-   "en": "ear",
-   "niveau": "A1",
-   "theme": "koerperteile_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": "lehrer",
-   "devant": 0,
-   "detail": "visage-lehrer",
-   "boites": [
-    [
-     11.92,
-     35.1,
-     1.9,
-     1.8
-    ]
-   ]
-  },
-  {
-   "id": "auge-lehrer",
-   "mot": "Auge",
-   "genre": "das",
-   "pluriel": "Augen",
-   "fr": "œil",
-   "en": "eye",
-   "niveau": "A1",
-   "theme": "koerperteile_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": "lehrer",
-   "devant": 0,
-   "detail": "visage-lehrer",
-   "boites": [
-    [
-     18.8,
-     35.8,
-     1.4,
-     0.64
-    ]
-   ]
-  },
-  {
-   "id": "nase-lehrer",
-   "mot": "Nase",
-   "genre": "die",
-   "pluriel": "Nasen",
-   "fr": "nez",
-   "en": "nose",
-   "niveau": "A1",
-   "theme": "koerperteile_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": "lehrer",
-   "devant": 0,
-   "detail": "visage-lehrer",
-   "boites": [
-    [
-     19.1,
-     36.099999999999994,
-     1.8,
-     1.4
-    ]
-   ]
-  },
-  {
-   "id": "mund-lehrer",
-   "mot": "Mund",
-   "genre": "der",
-   "pluriel": "Münder",
-   "fr": "bouche",
-   "en": "mouth",
-   "niveau": "A1",
-   "theme": "koerperteile_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": "lehrer",
-   "devant": 0,
-   "detail": "visage-lehrer",
-   "boites": [
-    [
-     17.97,
-     37.36,
-     2.0,
-     0.8
-    ]
-   ]
   }
  ],
  "grosPlans": [
@@ -1289,42 +1151,6 @@ window.SCENE = {
     14
    ],
    "formes": {
-    "kopf-lehrer": [
-     15.9,
-     35.05,
-     5.1,
-     3.0
-    ],
-    "stirn-lehrer": [
-     17.3,
-     33.95,
-     3.2,
-     0.95
-    ],
-    "ohr-lehrer": [
-     12.87,
-     36.0,
-     0.95,
-     0.9
-    ],
-    "auge-lehrer": [
-     19.5,
-     36.12,
-     0.7,
-     0.32
-    ],
-    "nase-lehrer": [
-     20.0,
-     36.8,
-     0.9,
-     0.7
-    ],
-    "mund-lehrer": [
-     18.97,
-     37.76,
-     1.0,
-     0.4
-    ],
     "brille": [
      17.35,
      35.8,
@@ -1342,7 +1168,7 @@ window.SCENE = {
  ],
  "titre": "Im Spanischkurs",
  "alt": "Un cours d'espagnol du soir à Berlin : le professeur devant le tableau, Mark et Anna assis côte à côte, trois autres élèves.",
- "consigne": "Touche un objet ou une personne. Touche le visage du prof pour le voir de près.",
+ "consigne": "Touche un objet ou une personne. Touche le visage du prof pour voir de près ses lunettes et sa barbe.",
  "exclus": [
   "Teilnehmer",
   "Teilnehmerin",
