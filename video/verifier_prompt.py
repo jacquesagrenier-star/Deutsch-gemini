@@ -524,6 +524,22 @@ REGLES = [
      u"shoulder >>. Et regarder, sur l'image, si ce qu'elle tient est bien "
      u"dans la bonne cagette."),
 
+    ("personnage-qui-se-penche", "doute",
+     r"(?i)\b(leans?|leaning|bends?|bending) (slightly |a little )?(towards|over|forward)",
+     u"Un personnage qui se PENCHE vers l'etal : sa tete monte dans les "
+     u"rangees du fond",
+     u"9 oct. 2026, etal des racines (0,15 $, image gardee). << She leans "
+     u"slightly towards the front row >>, plus le bras tendu : Anna s'est "
+     u"penchee en avant, et sa tete et son epaule sont montees jusqu'a la "
+     u"TROISIEME rangee -- le fenouil et les brocolis sont a moitie caches, "
+     u"alors que le prompt disait que seule la derniere cagette de devant "
+     u"passerait derriere elle. Sur les deux etals de fruits, la meme phrase "
+     u"avait passe : c'est un risque, pas une certitude.",
+     u"Dire ou s'arrete sa TETE dans l'image, par un voisin visible : << she "
+     u"stands upright; the top of her head is level with the front row of "
+     u"crates >>. Et que le bras tendu suffit au geste : << only her arm "
+     u"reaches forward >>."),
+
     ("pose-pour-la-camera", "doute",
      r"(?i)\b(smiles? (at|into|for) the camera|looks? (at|into) the camera|"
      r"holds? (it |them )?up\b|held up|shows? (a|the|his|her)\b[^.]{0,60}"
@@ -928,7 +944,8 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "ajout-qui-remplace", "affiche-qui-ecrit",
               "horloge-a-l-heure", "cote-du-corps",
               "personne-sans-reference", "pose-pour-la-camera",
-              "fruit-a-etiquette", "objet-sous-le-personnage")
+              "fruit-a-etiquette", "objet-sous-le-personnage",
+              "personnage-qui-se-penche")
 
 # Un paragraphe qui decrit l'apparence d'une personne. Voir
 # << personne-sans-reference >>. Seulement ce qui fait un VISAGE (peau,
