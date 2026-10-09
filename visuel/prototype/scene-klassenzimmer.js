@@ -166,6 +166,28 @@ window.SCENE = {
    ]
   },
   {
+   "id": "haken",
+   "mot": "Haken",
+   "genre": "der",
+   "pluriel": "Haken",
+   "fr": "crochet",
+   "en": "hook",
+   "niveau": "A2",
+   "theme": "moebel_haushalt_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "tuer",
+   "devant": 0,
+   "boites": [
+    [
+     41,
+     31.2,
+     7.2,
+     2.6
+    ]
+   ]
+  },
+  {
    "id": "mantel",
    "mot": "Mantel",
    "genre": "der",
@@ -176,7 +198,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": "tuer",
+   "sur": "haken",
    "devant": 0,
    "boites": [
     [
@@ -198,7 +220,7 @@ window.SCENE = {
    "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
-   "sur": "tuer",
+   "sur": "haken",
    "devant": 0,
    "boites": [
     [
