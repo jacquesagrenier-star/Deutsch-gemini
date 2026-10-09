@@ -170,6 +170,12 @@ def recolter():
     # qui va de A2 a B2.
     for nom, liste in charger("exercices.json")["jeux"].items():
         for x in liste:
+            # audioDe d'abord, comme phraseAllemandeDeLExercice() : la phrase
+            # juste, ecrite a la main quand la reconstruction lirait l'indice
+            # (« vor Wo (Dativ) Haus », 104 exercices, corriges le 9 oct. 2026).
+            if x.get("audioDe"):
+                prendre(str(x["audioDe"]).strip(), "B1", "phrase", "exercices." + nom)
+                continue
             blocs = x.get("chunks") or []
             if blocs:
                 prendre(" ".join(blocs), "B1", "phrase", "exercices." + nom)
