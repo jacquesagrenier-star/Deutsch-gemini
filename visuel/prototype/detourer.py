@@ -185,6 +185,16 @@ def main():
     import cv2
     masques = []
     for z, b in zip(zones, boites):
+        if z.get("plein"):
+            # UNE CAGETTE DU MARCHE (9 oct. 2026) : la zone EST le rectangle.
+            # SAM rendait le tas de fruits ou le bois, jamais les deux ; une
+            # cagette vue de face est deja un rectangle, on le prend tel quel.
+            m = np.zeros((H, W), np.uint8)
+            for x, y, w, h in boites_de(z):
+                cv2.rectangle(m, (round(W * x / 100), round(H * y / 100)),
+                              (round(W * (x + w) / 100), round(H * (y + h) / 100)), 1, -1)
+            masques.append(m.astype(bool))
+            continue
         if z.get("ellipses"):
             m = np.zeros((H, W), np.uint8)
             for cx, cy, rx, ry in z["ellipses"]:
