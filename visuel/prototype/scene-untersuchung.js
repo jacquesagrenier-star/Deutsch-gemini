@@ -16,12 +16,14 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "niveau": "A1"
     },
     {
      "mot": "Körper",
      "genre": "der",
-     "fr": "le corps"
+     "fr": "le corps",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -477,7 +479,8 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -1765,5 +1768,10 @@ window.SCENE = {
  "autre_vue": {
   "scene": "untersuchung-dos",
   "libelle": "↻ Retourner Mark"
- }
+ },
+ "vues": [
+  "untersuchung",
+  "untersuchung-dos"
+ ],
+ "nom_vue": "Mark, de face"
 };

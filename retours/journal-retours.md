@@ -8023,3 +8023,15 @@ deux trous du meme genre que pour les fruits : der Knoblauch (A1) et die Erbse
 (A2) n'etaient pas au corpus. Ajoutes (`ajouts/marche-legumes.json`) ;
 tr/uk/fa non relus. Au corpus mais pas encore dans les scenes : die Kiste
 (la cagette !), der Korb, die Tuete, der Markt, der Haendler.
+
+## 9 octobre 2026 (suite) -- Jacques : la seance du jour avec des scenes a plusieurs images
+
+Quatre demandes, faites dans le prototype : (1) dans la seance, l'IMAGE CHANGE
+SEULE quand la question porte sur l'autre vue (Mark de dos, l'etal d'a cote),
+avec un fondu et un bandeau ; le bouton de navigation disparait pendant la
+seance ; (2) en A2, une des trois questions est un « Trouve ! » de niveau A1
+(« on devrait pouvoir faire du A1 aussi »), et Trouve ne demande en seance que
+des mots du niveau de l'eleve (une seance A2 avait demande « Rueebli », B1) ;
+(3) « ‹ Retour » partout au lieu du titre de la scene ; (4) confettis et les
+trois notes de l'app a chaque bonne reponse. Decouvrir ne compte pas : il
+reste hors seance, pour flaner.

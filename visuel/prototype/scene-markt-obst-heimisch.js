@@ -16,12 +16,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -49,17 +51,20 @@ window.SCENE = {
     {
      "mot": "Blaubeere",
      "genre": "die",
-     "fr": "myrtille, bleuet"
+     "fr": "myrtille, bleuet",
+     "niveau": "B1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -87,12 +92,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -120,12 +127,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -153,12 +162,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -186,12 +197,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -219,12 +232,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -252,12 +267,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -285,12 +302,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -318,12 +337,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -351,12 +372,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -384,17 +407,20 @@ window.SCENE = {
     {
      "mot": "Marille",
      "genre": "die",
-     "fr": "abricot"
+     "fr": "abricot",
+     "niveau": "B1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -422,12 +448,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -455,12 +483,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -488,12 +518,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Obst",
      "genre": "das",
-     "fr": "fruits"
+     "fr": "fruits",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -818,5 +850,12 @@ window.SCENE = {
  "autre_vue": {
   "scene": "markt-obst-sued",
   "libelle": "→ Fruits du Sud"
- }
+ },
+ "vues": [
+  "markt-obst-heimisch",
+  "markt-obst-sued",
+  "markt-gemuese-wurzel",
+  "markt-gemuese-frucht"
+ ],
+ "nom_vue": "Les fruits d'ici"
 };

@@ -16,12 +16,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -49,12 +51,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -82,12 +86,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -115,17 +121,20 @@ window.SCENE = {
     {
      "mot": "Erdapfel",
      "genre": "der",
-     "fr": "pomme de terre"
+     "fr": "pomme de terre",
+     "niveau": "B1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -153,12 +162,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -186,12 +197,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -219,12 +232,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -252,12 +267,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -285,17 +302,20 @@ window.SCENE = {
     {
      "mot": "Rüebli",
      "genre": "das",
-     "fr": "carotte"
+     "fr": "carotte",
+     "niveau": "B1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -323,12 +343,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -356,12 +378,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -389,12 +413,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -422,12 +448,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -455,12 +483,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -488,12 +518,14 @@ window.SCENE = {
     {
      "mot": "Kiste",
      "genre": "die",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "niveau": "A2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
-     "fr": "légumes"
+     "fr": "légumes",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -824,5 +856,12 @@ window.SCENE = {
  "autre_vue": {
   "scene": "markt-gemuese-frucht",
   "libelle": "→ Autres légumes"
- }
+ },
+ "vues": [
+  "markt-obst-heimisch",
+  "markt-obst-sued",
+  "markt-gemuese-wurzel",
+  "markt-gemuese-frucht"
+ ],
+ "nom_vue": "Les racines et les choux"
 };

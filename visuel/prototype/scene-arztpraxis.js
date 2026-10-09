@@ -38,7 +38,8 @@ window.SCENE = {
     {
      "mot": "Plakat",
      "genre": "das",
-     "fr": "affiche"
+     "fr": "affiche",
+     "niveau": "A2"
     }
    ],
    "sur": "wand",
@@ -154,7 +155,8 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -576,7 +578,8 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -864,7 +867,8 @@ window.SCENE = {
     {
      "mot": "Computer",
      "genre": "der",
-     "fr": "ordinateur"
+     "fr": "ordinateur",
+     "niveau": "A1"
     }
    ],
    "sur": "schreibtisch",
@@ -914,7 +918,8 @@ window.SCENE = {
     {
      "mot": "Wasser",
      "genre": "das",
-     "fr": "eau"
+     "fr": "eau",
+     "niveau": "A1"
     }
    ],
    "sur": "schreibtisch",
@@ -1052,7 +1057,8 @@ window.SCENE = {
     {
      "mot": "Karte",
      "genre": "die",
-     "fr": "carte, billet"
+     "fr": "carte, billet",
+     "niveau": "A2"
     }
    ],
    "sur": "schreibtisch",
@@ -1102,7 +1108,8 @@ window.SCENE = {
     {
      "mot": "Sporttasche",
      "genre": "die",
-     "fr": "sac de sport"
+     "fr": "sac de sport",
+     "niveau": "B1"
     }
    ],
    "sur": null,
@@ -1130,7 +1137,8 @@ window.SCENE = {
     {
      "mot": "Fußball",
      "genre": "der",
-     "fr": "football"
+     "fr": "football",
+     "niveau": "A1"
     }
    ],
    "sur": "tasche",

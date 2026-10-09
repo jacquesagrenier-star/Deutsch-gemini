@@ -121,6 +121,23 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 
 /* le gros plan d'un visage (Jacques, 6 oct.) : un calque qui part du cadre du
    visage dans la scene et s'agrandit jusqu'a la remplir */
+/* LES CONFETTIS ET LE SON D'UNE REUSSITE (Jacques, 9 oct. : « quand c'est une
+   reussite, on devrait encore avoir des petits confettis avec le bruit »).
+   Les memes que l'app : launchConfetti() et les trois notes de BRAVO_NOTES. */
+.confetti-piece{position:fixed;top:0;left:0;border-radius:2px;pointer-events:none;z-index:9999;
+  animation-name:confettiBurst;animation-timing-function:cubic-bezier(.15,.7,.4,1);animation-fill-mode:forwards}
+@keyframes confettiBurst{
+  0%{transform:translate(-50%,-50%) rotate(0deg) scale(1);opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){.confetti-piece{display:none}}
+/* le nom de la vue, le temps d'un changement d'image (« Mark, de dos ») */
+.bandeau-vue{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:1700;
+  background:rgba(28,36,48,.9);color:#fff;border-radius:999px;padding:7px 14px;
+  font:700 14px inherit;pointer-events:none;white-space:nowrap;animation:bandeau 1.8s ease forwards}
+@keyframes bandeau{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.bandeau-vue{animation:none}}
+/* dans la seance, c'est l'app qui change de vue, pas l'eleve */
+.en-seance .retourner{display:none}
 .gros-plan{position:absolute;z-index:1600;overflow:hidden;background:#111;
   transition:left .45s ease,top .45s ease,width .45s ease,height .45s ease}
 .gros-plan .fond{position:absolute;inset:0;background-repeat:no-repeat}
@@ -185,13 +202,30 @@ const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
    l'ancien projecteur pour comparer. */
 const MISE = new URLSearchParams(location.search).get("mise") === "sombre" ? "sombre" : "bleu";
 const FRAIS = "?t=" + Date.now();
+/* Chaque fichier ecrit window.SCENE et window.MASQUES : on les range au fur
+   et a mesure, sous le nom de la vue, avant que la suivante les ecrase. */
+const RANGER = v => `<script>window.SCENES=window.SCENES||{};window.MASQUES_DE=window.MASQUES_DE||{};`
+  + `window.SCENES["${v}"]=window.SCENE;window.MASQUES_DE["${v}"]=window.MASQUES;<\/script>`;
 document.write(`<script src="scene-${NOM_SCENE}.js${FRAIS}"><\/script>`
-             + `<script src="masques-${NOM_SCENE}.js${FRAIS}"><\/script>`);
+             + `<script src="masques-${NOM_SCENE}.js${FRAIS}"><\/script>` + RANGER(NOM_SCENE));
+</script>
+<script>
+/* UNE SCENE, PLUSIEURS VUES (9 oct. 2026) : Mark de face et de dos, les
+   quatre etals du marche. Les autres vues du groupe (champ vues) se chargent
+   ICI, d'un coup : passer de l'une a l'autre ne recharge plus la page, et le
+   score de la seance survit au changement d'image. */
+for (const v of (window.SCENES[NOM_SCENE].vues || []))
+  if (v !== NOM_SCENE && /^[a-z-]+$/.test(v))
+    document.write(`<script src="scene-${v}.js${FRAIS}"><\/script>`
+                 + `<script src="masques-${v}.js${FRAIS}"><\/script>` + RANGER(v));
 </script>
 <script>
 "use strict";
-const S = window.SCENE;
-const P = Object.fromEntries(S.points.map(p => [p.id, p]));
+let VUE = NOM_SCENE;
+const VUES = window.SCENES[NOM_SCENE].vues || [NOM_SCENE];
+let S = window.SCENES[VUE];
+window.MASQUES = window.MASQUES_DE[VUE];
+let P = Object.fromEntries(S.points.map(p => [p.id, p]));
 const $ = id => document.getElementById(id);
 const scene = $("scene");
 document.querySelector(".haut").appendChild($("bas"));
@@ -201,23 +235,76 @@ document.title = S.titre || "Scène";
 /* Dans la seance, ce lien RAMENE au choix scene / cartes : il dit « Retour »,
    comme les autres retours de l'app. « ‹ Beim Arzt » ressemblait a un titre
    et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
-$("retourChoix").textContent = window.parent !== window
-  ? "‹ Retour" : "‹ " + (S.titre || "Scène");
+/* « ‹ Retour » PARTOUT (Jacques, 9 oct.) : le titre de la scene (« Auf dem
+   Markt », « Im Spanischkurs ») ressemblait a un titre, pas a une sortie. */
+$("retourChoix").textContent = "‹ Retour";
 scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
 /* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
    la classe s'appelle classe.html. */
 if (/classe\.html$/.test(location.pathname)) $("retourChoix").href = "index.html";
-/* L'AUTRE VUE de la meme scene (9 oct.) : Mark de face, puis de dos. Un
-   lien, pas un etat : chaque vue a ses zones et ses questions Trouve !, et
-   l'on garde les autres parametres (seance, niveau, mise). */
-if (S.autre_vue){
+/* L'AUTRE VUE de la meme scene (9 oct.) : Mark de face, puis de dos ; l'etal
+   suivant au marche. Hors seance, ce bouton sert a FLANER d'une vue a
+   l'autre. Dans la seance il disparait : c'est l'app qui change de vue quand
+   la question l'exige (Jacques : « l'image devrait changer automatiquement »). */
+function majAutreVue(){
+  const b = $("retourner");
+  b.hidden = !S.autre_vue;
+  if (!S.autre_vue) return;
   const q = new URLSearchParams(location.search);
   q.set("scene", S.autre_vue.scene);
-  $("retourner").href = "?" + q.toString();
-  $("retourner").textContent = S.autre_vue.libelle;
-  $("retourner").hidden = false;
+  b.href = "?" + q.toString();
+  b.textContent = S.autre_vue.libelle;
 }
+majAutreVue();
+$("retourner").addEventListener("click", e => {
+  if (!S.autre_vue || !window.SCENES[S.autre_vue.scene]) return;   // vue non chargee : le lien recharge
+  e.preventDefault();
+  activerVue(S.autre_vue.scene, true);
+  if (niveau === "A1" && modeA1 === "decouvrir") decouvrir();
+});
+
+/* ---------- la reussite : confettis et trois notes ---------- */
+/* Copie de launchConfetti() et de BRAVO_NOTES (index.html de l'app) : la
+   scene doit feter une bonne reponse exactement comme les cartes. */
+const BRAVO_NOTES = [1046.5, 1318.51, 1567.98];   // do, mi, sol
+let audioCtx = null;
+function sonBravo(){
+  try {
+    const C = window.AudioContext || window.webkitAudioContext;
+    if (!C) return;
+    audioCtx = audioCtx || new C();
+    const t0 = audioCtx.currentTime;
+    BRAVO_NOTES.forEach((f, k) => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain(), t = t0 + k * 0.11;
+      o.type = "triangle"; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.32, t + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(t); o.stop(t + 0.4);
+    });
+  } catch (e) {}
+}
+function confettis(){
+  const couleurs = ["#3b82f6", "#8b5cf6", "#22c55e", "#f59e0b", "#ef4444", "#06b6d4"];
+  const cx = innerWidth / 2, cy = innerHeight * 0.35;
+  for (let k = 0; k < 28; k++){
+    const e = document.createElement("div"), a = Math.random() * Math.PI * 2, d = 90 + Math.random() * 150;
+    e.className = "confetti-piece";
+    e.style.left = cx + "px"; e.style.top = cy + "px";
+    e.style.background = couleurs[Math.floor(Math.random() * couleurs.length)];
+    e.style.setProperty("--dx", Math.cos(a) * d + "px");
+    e.style.setProperty("--dy", Math.sin(a) * d - 70 + "px");
+    e.style.setProperty("--rot", (Math.random() * 720 - 360) + "deg");
+    e.style.width = (5 + Math.random() * 5) + "px";
+    e.style.height = (8 + Math.random() * 8) + "px";
+    e.style.animationDuration = (0.8 + Math.random() * 0.6) + "s";
+    document.body.appendChild(e);
+    e.addEventListener("animationend", () => e.remove());
+  }
+}
+function bravo(){ confettis(); sonBravo(); }
 
 /* ---------- la voix ---------- */
 let voixDe = null;
@@ -242,21 +329,28 @@ function dire(t){
    Le plan d'une zone : une personne passe DEVANT ce qui est derriere elle (le
    prof devant le tableau), et ce qui est pose sur elle herite de son plan. A
    plan egal, le plus petit objet gagne. */
-const MW = MASQUES.w, MH = MASQUES.h;
+let MW = MASQUES.w, MH = MASQUES.h;
 /* Les parties d'un gros plan (l'oeil, le nez du prof) n'ont pas de masque :
-   ce sont des ellipses, touchees seulement dans le gros plan. */
-const ZONES = S.points.filter(p => !p.detail);
-for (const p of ZONES){
-  const m = new Uint8Array(MW * MH);
-  let k = 0, v = 0;
-  for (const n of MASQUES.zones[p.id]){ if (v) m.fill(1, k, k + n); k += n; v ^= 1; }
-  p.masque = m;
-  let x0 = MW, y0 = MH, x1 = -1, y1 = -1, n = 0;
-  for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) if (m[y*MW + x]){
-    n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
-  p.pixels = n;
-  p.cadre = [x0/MW*100, y0/MH*100, (x1-x0+1)/MW*100, (y1-y0+1)/MH*100];
+   ce sont des ellipses, touchees seulement dans le gros plan.
+   Une seule fois par vue : les masques decodes restent sur les zones. */
+let ZONES = [];
+function preparerZones(){
+  ZONES = S.points.filter(p => !p.detail);
+  if (S._prete) return;
+  for (const p of ZONES){
+    const m = new Uint8Array(MW * MH);
+    let k = 0, v = 0;
+    for (const n of MASQUES.zones[p.id]){ if (v) m.fill(1, k, k + n); k += n; v ^= 1; }
+    p.masque = m;
+    let x0 = MW, y0 = MH, x1 = -1, y1 = -1, n = 0;
+    for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) if (m[y*MW + x]){
+      n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    p.pixels = n;
+    p.cadre = [x0/MW*100, y0/MH*100, (x1-x0+1)/MW*100, (y1-y0+1)/MH*100];
+  }
+  S._prete = true;
 }
+preparerZones();
 const plan = p => { let n = 0, z = p, k = 0; while (z && k < 5){ n = Math.max(n, z.devant || 0); z = P[z.sur]; k++; } return n; };
 const devantDe = (a, b) => plan(b) - plan(a) || a.pixels - b.pixels;
 /* Ce qui est sous le doigt, avec une marge : un doigt couvre plus qu'un pixel,
@@ -285,15 +379,19 @@ function sous(xp, yp){
 }
 /* Un bouton invisible par zone, pour le clavier et les lecteurs d'ecran
    seulement : le doigt, lui, est lu par la scene. */
-for (const p of ZONES){
-  const [x,y,w,h] = p.cadre;
-  const b = document.createElement("button");
-  b.className = "zone"; b.dataset.id = p.id;
-  b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;pointer-events:none`;
-  b.setAttribute("aria-label", p.personne || p.mot);
-  b.addEventListener("click", () => toucher(p.id, null));
-  scene.appendChild(b);
+function boutonsZones(){
+  scene.querySelectorAll("button.zone").forEach(b => b.remove());
+  for (const p of ZONES){
+    const [x,y,w,h] = p.cadre;
+    const b = document.createElement("button");
+    b.className = "zone"; b.dataset.id = p.id;
+    b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;pointer-events:none`;
+    b.setAttribute("aria-label", p.personne || p.mot);
+    b.addEventListener("click", () => toucher(p.id, null));
+    scene.appendChild(b);
+  }
 }
+boutonsZones();
 scene.addEventListener("click", e => {
   if (e.target.closest(".bas") || e.target.closest("button:not(.zone)") || e.target.closest(".gros-plan")) return;
   const r = scene.getBoundingClientRect();
@@ -311,7 +409,8 @@ scene.addEventListener("click", e => {
    reste droit. Jacques, 6 oct. : le contour du masque etire faisait des
    escaliers sur la table. Deux calques : le voile (qui assombrit le reste) et
    le contour avec son halo -- sur un seul, le halo teintait toute l'image. */
-const SVG = "http://www.w3.org/2000/svg", TW = MASQUES.W, TH = MASQUES.H;
+const SVG = "http://www.w3.org/2000/svg";
+let TW = MASQUES.W, TH = MASQUES.H;
 function calque(classe){
   const v = document.createElementNS(SVG, "svg");
   v.setAttribute("viewBox", `0 0 ${TW} ${TH}`);
@@ -411,7 +510,7 @@ function etiquette(id, quel){
    ⚠️ L'image n'a que 1080 px de large : le visage en fait une centaine, et le
    gros plan est flou. C'est un essai du GESTE ; la vraie scene aura son
    visage agrandi par une IA. */
-const GROS = S.grosPlans || [];
+let GROS = S.grosPlans || [];
 let zoom = null; // {g, el, svg} tant que le gros plan est ouvert
 const dans = (pt, [x,y,w,h]) => pt[0] >= x && pt[0] <= x + w && pt[1] >= y && pt[1] <= y + h;
 const grosPlanSous = pt => GROS.find(g => dans(pt, g.declencheur)) || null;
@@ -419,7 +518,7 @@ const portePartie = (g, mot) => Object.keys(g.formes).some(id => porte(P[id], mo
 /* En « Trouve ! », le visage ne s'ouvre que si le mot demande y est : quand on
    demande der Mann, toucher la tete du prof repond tout de suite. */
 function veutGrosPlan(g){
-  if (niveau === "A1" && modeA1 === "trouver" && attenteToucher && !verrou) return portePartie(g, attenteToucher);
+  if (attendUnToucher()) return portePartie(g, attenteToucher);
   return true;
 }
 /* La bonne reponse n'existe que de pres (le nez) : on ouvre le gros plan pour
@@ -493,7 +592,7 @@ function toucherGros(e){
   // Sous le doigt, souvent deux parties : l'oeil derriere le verre des
   // lunettes, la bouche dans la barbe, et toujours la tete. En « Trouve ! »,
   // celle qu'on demande compte ; sinon, la plus petite -- la plus precise.
-  const attendu = niveau === "A1" && modeA1 === "trouver" && attenteToucher && !verrou;
+  const attendu = attendUnToucher();
   toucher((attendu && ids.find(z => touche(P[z], attenteToucher))) || ids[0], null);
 }
 function anneauGros(id, second){
@@ -517,7 +616,44 @@ function etiquetteGros(id){
 /* ---------- les couches ---------- */
 /* Les couches viennent de la SCENE (<nom>.points.json) : chaque scene a ses
    questions, et seules les couches qu'elle a ont une pastille. */
-const COUCHES = S.couches || {A1: {titre: "Noms et articles"}};
+/* Une scene a plusieurs vues met leurs questions EN COMMUN, chacune gardant
+   sa vue (_vue) : la seance tire parmi toutes, et poser() montre la bonne. */
+const COUCHES = (() => {
+  const c = {};
+  for (const v of VUES){
+    for (const [niv, couche] of Object.entries(window.SCENES[v].couches || {})){
+      c[niv] = c[niv] || {titre: couche.titre};
+      if (couche.qs) c[niv].qs = (c[niv].qs || []).concat(couche.qs.map(q => Object.assign({_vue: v}, q)));
+    }
+  }
+  return Object.keys(c).length ? c : {A1: {titre: "Noms et articles"}};
+})();
+
+/* ---------- changer de vue ---------- */
+/* Sans recharger : la page connait deja toutes les vues du groupe. Un fondu
+   et un bandeau (« Mark, de dos ») disent ce qui change, pour que l'image qui
+   bouge seule ne surprenne pas. */
+function activerVue(v, annoncer){
+  if (v === VUE || !window.SCENES[v]) return;
+  fermerGrosPlan(); effacer();
+  VUE = v; S = window.SCENES[v]; window.MASQUES = window.MASQUES_DE[v];
+  P = Object.fromEntries(S.points.map(p => [p.id, p]));
+  MW = MASQUES.w; MH = MASQUES.h; TW = MASQUES.W; TH = MASQUES.H;
+  preparerZones(); boutonsZones();
+  for (const c of [voile, toile]) c.setAttribute("viewBox", `0 0 ${TW} ${TH}`);
+  GROS = S.grosPlans || [];
+  $("photo").src = S.image; $("photo").alt = S.alt || "";
+  scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
+  majAutreVue(); dessiner();
+  if (!annoncer) return;
+  if (scene.animate) scene.animate([{opacity: .15}, {opacity: 1}], {duration: 420, easing: "ease-out"});
+  if (S.nom_vue){
+    const b = document.createElement("div");
+    b.className = "bandeau-vue"; b.textContent = S.nom_vue;
+    scene.appendChild(b);
+    setTimeout(() => b.remove(), 1800);
+  }
+}
 
 /* ---------- DANS LA SEANCE DU JOUR (?seance=1&niveau=B1) ----------
    L'app ouvre cette page dans un cadre, au debut de la seance (essai v713,
@@ -558,6 +694,10 @@ if (window.parent !== window){
 /* ---------- etat ---------- */
 let niveau = (EN_SEANCE && COUCHES[PARAMS.get("niveau")]) ? PARAMS.get("niveau") : "A1";
 let modeA1 = EN_SEANCE ? "trouver" : "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
+/* Une etape « Trouve ! » glissee dans une suite de questions A2 (la seance) :
+   le niveau reste A2, mais on attend un toucher. */
+let etapeTrouve = false;
+const attendUnToucher = () => ((niveau === "A1" && modeA1 === "trouver") || etapeTrouve) && attenteToucher && !verrou;
 const melanger = a => a.map(v => [Math.random(), v]).sort((x,y) => x[0]-y[0]).map(v => v[1]);
 /* Les trois questions d'une seance : deux du niveau, une du niveau d'avant
    s'il a des questions (en B1, une preposition de l'A2) ; sinon trois du
@@ -568,6 +708,13 @@ function ordreSeance(niv){
   if (avant && COUCHES[avant].qs && COUCHES[avant].qs.length)
     return melanger([...ici.slice(0, NB_SEANCE - 1),
                      Object.assign({_niv: avant}, melanger(COUCHES[avant].qs)[0])]);
+  // En A2, le niveau d'avant est l'A1 : il n'a pas de questions a choix, il a
+  // « Trouve ! ». Jacques, 9 oct. : « si on est en A2, on devrait avoir la
+  // possibilite de faire du A1 aussi ».
+  const aTrouver = A_TROUVER.filter(m => aSonNiveau(m, "A1"));
+  if (avant === "A1" && aTrouver.length)
+    return melanger([...ici.slice(0, NB_SEANCE - 1),
+                     {_niv: "A1", _trouve: melanger(aTrouver)[0]}]);
   return ici.slice(0, NB_SEANCE);
 }
 
@@ -580,7 +727,7 @@ for (const n of Object.keys(COUCHES)){
 }
 function demarrer(){
   $("niveaux").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === niveau));
-  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; fermerGrosPlan(); effacer();
+  i = 0; bons = 0; faits = 0; attenteToucher = null; verrou = false; etapeTrouve = false; fermerGrosPlan(); effacer();
   if (niveau === "A1") return modeA1 === "decouvrir" ? decouvrir() : trouver();
   COUCHES[niveau].ordre = EN_SEANCE ? ordreSeance(niveau) : melanger(COUCHES[niveau].qs);
   poser();
@@ -612,15 +759,28 @@ const touche = (p, mot) => {
   return false;
 };
 // Les mots qu'on ne demande pas en « Trouve ! » (le mur : il est partout).
-const EXCLUS = S.exclus || [];
+// Toutes les vues du groupe, chaque mot avec les vues ou il se trouve.
 const A_TROUVER = (() => {
   const vus = new Map();
-  for (const p of S.points){
-    if (!EXCLUS.includes(p.mot) && !vus.has(p.mot)) vus.set(p.mot, {mot:p.mot, genre:p.genre});
-    for (const a of p.aussi) if (!EXCLUS.includes(a.mot) && !vus.has(a.mot)) vus.set(a.mot, {mot:a.mot, genre:a.genre});
+  for (const v of VUES){
+    const s = window.SCENES[v], exclus = s.exclus || [];
+    for (const p of s.points){
+      for (const m of [{mot: p.mot, genre: p.genre, niveau: p.niveau}, ...p.aussi]){
+        if (exclus.includes(m.mot)) continue;
+        if (!vus.has(m.mot)) vus.set(m.mot, {mot: m.mot, genre: m.genre, niveau: m.niveau, vues: []});
+        if (!vus.get(m.mot).vues.includes(v)) vus.get(m.mot).vues.push(v);
+      }
+    }
   }
   return [...vus.values()];
 })();
+/* DANS LA SEANCE, Trouve ! reste au niveau de l'eleve. Le 9 oct., une seance
+   A2 a demande « Rüebli » -- la carotte en suisse, niveau B1 -- parce que les
+   variantes regionales repondent sur la cagette de leur synonyme. Un mot
+   au-dessus du niveau de la seance ne se DEMANDE pas ; il se touche toujours
+   en Decouvrir. Hors seance, rien n'est filtre. */
+const RANG = {A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6};
+const aSonNiveau = (m, niv) => !EN_SEANCE || !m.niveau || (RANG[m.niveau] || 9) <= (RANG[niv] || 9);
 const zonesDe = mot => S.points.filter(p => porte(p, mot)).map(p => p.id);
 let fileTrouver = [];
 /* A QUI appartient ce qu'on demande. Jacques, 6 oct. : on demande l'oreille
@@ -647,9 +807,13 @@ function proprietaire(mot){
   return r.length === 1 && estPersonne(r[0]) ? r[0] : null;
 }
 function trouver(){
-  if (!fileTrouver.length || i === 0) fileTrouver = melanger(A_TROUVER).slice(0, EN_SEANCE ? NB_SEANCE : 10);
+  if (!fileTrouver.length || i === 0)
+    fileTrouver = melanger(A_TROUVER.filter(m => aSonNiveau(m, niveau))).slice(0, EN_SEANCE ? NB_SEANCE : 10);
   if (i >= fileTrouver.length) return fin();
   const p = fileTrouver[i]; attenteToucher = p.mot;
+  // Le mot n'est pas dans cette vue (die Wade sur Mark de face) : l'app
+  // tourne Mark, ou passe a l'etal d'a cote, avant de poser la question.
+  if (!p.vues.includes(VUE)) activerVue(p.vues[0], true);
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
   entete("A1 · Trouve !  " + (i+1) + " / " + fileTrouver.length,
@@ -665,7 +829,7 @@ function toucher(id, pt){
     dire((p.personne ? p.personne + ". " : "") + p.genre + " " + p.mot);
     return;
   }
-  if (niveau === "A1" && attenteToucher && !verrou){
+  if ((niveau === "A1" || etapeTrouve) && attenteToucher && !verrou){
     // Sur une scene du corps, seules les zones de Mark comptent (et sont
     // montrees en cas d'erreur) : la main de la medecin n'est pas une cible.
     const proprio = proprietaire(attenteToucher);
@@ -704,7 +868,7 @@ function toucher(id, pt){
     verrou = true; faits++;
     effacer();
     if (juste){
-      bons++;
+      bons++; bravo();
       // On encadre ce qui porte le nom : la porte, pas le manteau qu'on a touche.
       let support = retenue.id;
       for (let z = retenue, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, cible)){ support = z.id; break; }
@@ -726,7 +890,10 @@ function toucher(id, pt){
         : traduit(demande) + " : c'était " + (bonnes.length > 1 ? "à l'un de ces endroits" : "ici")
           + ". Tu avais touché : " + traduit(p) + "."}</div>
                           <button class="suite" id="suite">Weiter</button>`;
-    $("suite").addEventListener("click", () => { i++; verrou = false; fermerGrosPlan(); effacer(); trouver(); });
+    $("suite").addEventListener("click", () => {
+      i++; verrou = false; fermerGrosPlan(); effacer();
+      if (etapeTrouve){ etapeTrouve = false; attenteToucher = null; poser(); } else trouver();
+    });
     return;
   }
   // aux autres niveaux, toucher un objet montre son nom : on peut toujours chercher un mot
@@ -737,8 +904,11 @@ function toucher(id, pt){
 function poser(){
   const c = COUCHES[niveau], q = c.ordre[i];
   if (!q) return fin();
+  if (q._trouve) return poserTrouve(q._trouve, c.ordre.length);
   // Seul l'objet de la question s'allume : montrer la reference AVANT la
   // reponse soufflait la moitie de la reponse (le Tisch encadre).
+  // La question porte sur une autre vue (le dos, l'etal des legumes) : on y va.
+  if (q._vue && q._vue !== VUE) activerVue(q._vue, true);
   fermerGrosPlan(); effacer(); anneau(q.f);
   const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
@@ -749,9 +919,21 @@ function poser(){
                      + `<div class="score">${bons} / ${faits}</div>`;
   $("bas").querySelectorAll(".choix").forEach((b,k) => b.addEventListener("click", () => repondre(q, opts, k)));
 }
+/* Une etape A1 dans la seance A2 : la meme question que « Trouve ! ». */
+function poserTrouve(p, total){
+  etapeTrouve = true; attenteToucher = p.mot;
+  if (!p.vues.includes(VUE)) activerVue(p.vues[0], true);
+  fermerGrosPlan(); effacer();
+  const chez = proprietaire(p.mot);
+  $("bas").classList.remove("en-haut");
+  entete("A1 · Trouve !  " + (i+1) + " / " + total,
+         `Touche : ${groupe(p)}${chez ? " — sur " + nomDe(chez) : ""}`, false);
+  $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
+  dire(p.genre + " " + p.mot);
+}
 function repondre(q, opts, k){
   if (verrou) return; verrou = true; faits++;
-  const juste = opts[k].ok; if (juste) bons++;
+  const juste = opts[k].ok; if (juste){ bons++; bravo(); }
   // Apres la reponse, le panneau se resserre : la bonne reponse seule (et la
   // fausse si on s'est trompe), pour ne pas couvrir le sac ou la table.
   $("bas").querySelectorAll(".choix").forEach((b,j) => {

@@ -111,7 +111,7 @@ def main():
             "en": m.get("traduction_en"), "niveau": m["niveau"],
             "theme": m["theme"], "personne": p.get("personne"),
             "aussi": [{"mot": a, "genre": idx[a].get("genre"),
-                       "fr": idx[a].get("traduction")}
+                       "fr": idx[a].get("traduction"), "niveau": idx[a]["niveau"]}
                       for a in p.get("aussi", [])],
             "sur": p.get("sur"), "devant": p.get("devant", 0),
             "boites": boites})
@@ -169,7 +169,8 @@ def main():
                              % (niv, q["q"], cle, q[cle]))
 
     scene = {"image": pts["image"], "points": sortie, "grosPlans": gros}
-    for cle in ("titre", "alt", "consigne", "exclus", "couches", "corps", "autre_vue"):
+    for cle in ("titre", "alt", "consigne", "exclus", "couches", "corps", "autre_vue",
+                "vues", "nom_vue"):
         if cle in pts:
             scene[cle] = pts[cle]
     js = ("// GENERE par construire.py -- ne pas modifier a la main.\n"

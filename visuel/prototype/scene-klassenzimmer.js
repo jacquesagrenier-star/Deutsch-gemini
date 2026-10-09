@@ -60,22 +60,26 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "niveau": "A1"
     },
     {
      "mot": "Brille",
      "genre": "die",
-     "fr": "lunettes"
+     "fr": "lunettes",
+     "niveau": "A2"
     },
     {
      "mot": "Bart",
      "genre": "der",
-     "fr": "barbe"
+     "fr": "barbe",
+     "niveau": "B1"
     },
     {
      "mot": "Hemd",
      "genre": "das",
-     "fr": "chemise"
+     "fr": "chemise",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -329,22 +333,26 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "niveau": "A1"
     },
     {
      "mot": "Pullover",
      "genre": "der",
-     "fr": "pull"
+     "fr": "pull",
+     "niveau": "A1"
     },
     {
      "mot": "Student",
      "genre": "der",
-     "fr": "étudiant"
+     "fr": "étudiant",
+     "niveau": "A1"
     },
     {
      "mot": "Stift",
      "genre": "der",
-     "fr": "stylo"
+     "fr": "stylo",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -406,27 +414,32 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "niveau": "A1"
     },
     {
      "mot": "Pullover",
      "genre": "der",
-     "fr": "pull"
+     "fr": "pull",
+     "niveau": "A1"
     },
     {
      "mot": "Rock",
      "genre": "der",
-     "fr": "jupe"
+     "fr": "jupe",
+     "niveau": "A1"
     },
     {
      "mot": "Stift",
      "genre": "der",
-     "fr": "stylo"
+     "fr": "stylo",
+     "niveau": "A1"
     },
     {
      "mot": "Studentin",
      "genre": "die",
-     "fr": "étudiante"
+     "fr": "étudiante",
+     "niveau": "A2"
     }
    ],
    "sur": null,
@@ -796,22 +809,26 @@ window.SCENE = {
     {
      "mot": "Teilnehmer",
      "genre": "der",
-     "fr": "participant"
+     "fr": "participant",
+     "niveau": "B1"
     },
     {
      "mot": "Bart",
      "genre": "der",
-     "fr": "barbe"
+     "fr": "barbe",
+     "niveau": "B1"
     },
     {
      "mot": "Hemd",
      "genre": "das",
-     "fr": "chemise"
+     "fr": "chemise",
+     "niveau": "A1"
     },
     {
      "mot": "Student",
      "genre": "der",
-     "fr": "étudiant"
+     "fr": "étudiant",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -845,17 +862,20 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "niveau": "A1"
     },
     {
      "mot": "Teilnehmerin",
      "genre": "die",
-     "fr": "participante"
+     "fr": "participante",
+     "niveau": "B1"
     },
     {
      "mot": "Pullover",
      "genre": "der",
-     "fr": "pull"
+     "fr": "pull",
+     "niveau": "A1"
     }
    ],
    "sur": null,
@@ -883,22 +903,26 @@ window.SCENE = {
     {
      "mot": "Teilnehmerin",
      "genre": "die",
-     "fr": "participante"
+     "fr": "participante",
+     "niveau": "B1"
     },
     {
      "mot": "Brille",
      "genre": "die",
-     "fr": "lunettes"
+     "fr": "lunettes",
+     "niveau": "A2"
     },
     {
      "mot": "Kleid",
      "genre": "das",
-     "fr": "robe"
+     "fr": "robe",
+     "niveau": "A1"
     },
     {
      "mot": "Studentin",
      "genre": "die",
-     "fr": "étudiante"
+     "fr": "étudiante",
+     "niveau": "A2"
     }
    ],
    "sur": null,
