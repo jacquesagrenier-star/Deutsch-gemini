@@ -47,6 +47,12 @@ def corpus():
     return idx
 
 
+def corpus_cat(fichier, cle):
+    """Les mots d'un fichier rangé par niveau (verbe.json, adjectif.json)."""
+    d = json.load(io.open(os.path.join(RACINE, fichier), encoding="utf-8"))
+    return {e[cle] for niv in d.values() for e in niv if e.get(cle)}
+
+
 def decouper(pts, nom, g):
     """L'image NETTE d'un gros plan : le cadre decoupe dans la source a sa
     pleine resolution, au lieu de la scene web (1080 px) etiree.
@@ -111,7 +117,8 @@ def main():
             "en": m.get("traduction_en"), "niveau": m["niveau"],
             "theme": m["theme"], "personne": p.get("personne"),
             "aussi": [{"mot": a, "genre": idx[a].get("genre"),
-                       "fr": idx[a].get("traduction"), "niveau": idx[a]["niveau"]}
+                       "fr": idx[a].get("traduction"), "niveau": idx[a]["niveau"],
+                       "theme": idx[a]["theme"]}
                       for a in p.get("aussi", [])],
             "sur": p.get("sur"), "devant": p.get("devant", 0),
             "boites": boites})
@@ -168,11 +175,39 @@ def main():
                     sys.exit("  %s, << %s >> : %s=%r ne designe aucune zone"
                              % (niv, q["q"], cle, q[cle]))
 
+    # LE MOT QU'UNE QUESTION FAIT TRAVAILLER (« revise »). Dans la seance, la
+    # reponse compte comme une revision de ce mot (repetition espacee). La cle
+    # est posee A LA MAIN, et seulement quand un mot est clairement en jeu :
+    # « Der Rucksack ___ unter dem Tisch » travaille stehen, un pronom
+    # relatif ne travaille aucun mot du corpus -- et mieux vaut ne rien noter
+    # qu'enregistrer une revision fausse. Le mot doit exister dans le corpus
+    # (nom de themes.json, verbe de verbe.json, adjectif d'adjectif.json) :
+    # on le resout ici, l'app n'a plus qu'a le retrouver.
+    verbes, adjectifs = corpus_cat("verbe.json", "infinitif"), corpus_cat("adjectif.json", "mot")
+    couches = json.loads(json.dumps(pts.get("couches", {})))
+    for niv, c in couches.items():
+        for q in c.get("qs", []):
+            mot = q.get("revise")
+            if not mot:
+                continue
+            if mot in idx:
+                q["revise"] = {"mot": mot, "genre": idx[mot].get("genre"),
+                               "theme": idx[mot]["theme"]}
+            elif mot in verbes:
+                q["revise"] = {"mot": mot, "cat": "verbe"}
+            elif mot in adjectifs:
+                q["revise"] = {"mot": mot, "cat": "adjectif"}
+            else:
+                sys.exit("  %s, << %s >> : revise=%r absent du corpus"
+                         % (niv, q["q"], mot))
+
     scene = {"image": pts["image"], "points": sortie, "grosPlans": gros}
     for cle in ("titre", "alt", "consigne", "exclus", "couches", "corps", "autre_vue",
                 "vues", "nom_vue"):
         if cle in pts:
             scene[cle] = pts[cle]
+    if "couches" in pts:
+        scene["couches"] = couches
     js = ("// GENERE par construire.py -- ne pas modifier a la main.\n"
           "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1)
           + ";\n")

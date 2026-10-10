@@ -60,6 +60,24 @@ verrait jamais.
 avertissement, pas une erreur : une donnée modifiée sans export refait n'est
 pas une régression, seulement un export à relancer.
 
+# La scène compte comme révision
+
+```
+node tests/scene_revision.js
+```
+
+Une page headless (Playwright, Chromium) joue l'app : elle porte le vrai code
+d'`index.html` qui reçoit les messages de la scène et écrit la progression
+(extrait par nom de fonction) et ouvre le vrai prototype en séance. On y
+répond — trois « Trouve ! » juste, faux, juste — et le test montre que l'état
+de ces trois mots a changé comme après une carte, et celui d'aucun autre.
+Il vérifie aussi : un mot pas encore échu ne bouge pas sur une réponse juste,
+la quatrième réussite maîtrise, les questions sans mot (`revise`) n'écrivent
+rien, le tableau de bord admin n'écrit rien, et chaque mot qu'une scène peut
+envoyer se retrouve dans le corpus. À relancer après un changement de
+`revisionDeScene()`, de l'échelle de répétition espacée ou d'une scène.
+Playwright : `npm i -g playwright` une fois sur le PC.
+
 # Exportateur
 
 ```bash

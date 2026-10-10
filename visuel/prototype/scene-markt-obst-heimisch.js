@@ -17,13 +17,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -52,19 +54,22 @@ window.SCENE = {
      "mot": "Blaubeere",
      "genre": "die",
      "fr": "myrtille, bleuet",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -93,13 +98,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -128,13 +135,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -163,13 +172,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -198,13 +209,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -233,13 +246,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -268,13 +283,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -303,13 +320,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -338,13 +357,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -373,13 +394,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -408,19 +431,22 @@ window.SCENE = {
      "mot": "Marille",
      "genre": "die",
      "fr": "abricot",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -449,13 +475,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -484,13 +512,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -519,13 +549,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Obst",
      "genre": "das",
      "fr": "fruits",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     }
    ],
    "sur": null,
@@ -624,7 +656,12 @@ window.SCENE = {
      "f": "apfel-main",
      "phrase": "Anna nimmt einen Apfel in die Hand.",
      "n": "der Apfel → accusatif : <b>einen</b> Apfel.",
-     "r": "anna"
+     "r": "anna",
+     "revise": {
+      "mot": "Apfel",
+      "genre": "der",
+      "theme": "obst_gemuese_a1"
+     }
     },
     {
      "q": "Wo liegen die Birnen?",
@@ -686,7 +723,12 @@ window.SCENE = {
      ],
      "f": "apfel",
      "phrase": "Ein Kilo Äpfel, bitte.",
-     "n": "Après une quantité, le nom au pluriel, sans article : ein Kilo <b>Äpfel</b>."
+     "n": "Après une quantité, le nom au pluriel, sans article : ein Kilo <b>Äpfel</b>.",
+     "revise": {
+      "mot": "Apfel",
+      "genre": "der",
+      "theme": "obst_gemuese_a1"
+     }
     },
     {
      "q": "Die Pfirsiche sind ___ als die Aprikosen.",
@@ -698,7 +740,11 @@ window.SCENE = {
      "f": "pfirsich",
      "phrase": "Die Pfirsiche sind größer als die Aprikosen.",
      "n": "Comparatif : groß → <b>größer</b> … <b>als</b>.",
-     "r": "aprikose"
+     "r": "aprikose",
+     "revise": {
+      "mot": "groß",
+      "cat": "adjectif"
+     }
     },
     {
      "q": "„Was ___ die Himbeeren?“",
@@ -709,7 +755,11 @@ window.SCENE = {
      ],
      "f": "himbeere",
      "phrase": "Was kosten die Himbeeren?",
-     "n": "Le sujet est au pluriel (die Himbeeren) → <b>kosten</b>."
+     "n": "Le sujet est au pluriel (die Himbeeren) → <b>kosten</b>.",
+     "revise": {
+      "mot": "kosten",
+      "cat": "verbe"
+     }
     },
     {
      "q": "„Ich nehme ___ Pflaumen.“",

@@ -790,6 +790,17 @@ function envoyer(type, donnees){
   if (window.parent !== window)
     window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");
 }
+/* UNE REPONSE = UNE REVISION DU MOT (decide avec Jacques, 10 oct.). Dans la
+   seance seulement : l'app l'inscrit dans la repetition espacee. « Trouve ! »
+   envoie la cible ; une question A2-C1 n'envoie que si elle porte « revise »
+   (le mot qu'elle fait clairement travailler, pose a la main dans le
+   .points.json) -- sinon rien, plutot qu'une revision fausse. Un seul envoi
+   par question : la reponse est jugee au premier geste, comme une carte. */
+function reviser(m, juste){
+  if (!EN_SEANCE || !m || !m.mot) return;
+  envoyer("reponse", {mot: m.mot, genre: m.genre || null, theme: m.theme || null,
+                      cat: m.cat || "nom", juste: !!juste});
+}
 if (EN_SEANCE) document.body.classList.add("en-seance");
 if (window.parent !== window) document.body.classList.add("en-cadre");
 /* Ouverte DANS l'app (la seance, ou le tableau de bord admin qui ouvre une
@@ -886,9 +897,9 @@ const A_TROUVER = (() => {
   for (const v of VUES){
     const s = window.SCENES[v], exclus = s.exclus || [];
     for (const p of s.points){
-      for (const m of [{mot: p.mot, genre: p.genre, niveau: p.niveau}, ...p.aussi]){
+      for (const m of [{mot: p.mot, genre: p.genre, niveau: p.niveau, theme: p.theme}, ...p.aussi]){
         if (exclus.includes(m.mot)) continue;
-        if (!vus.has(m.mot)) vus.set(m.mot, {mot: m.mot, genre: m.genre, niveau: m.niveau, vues: []});
+        if (!vus.has(m.mot)) vus.set(m.mot, {mot: m.mot, genre: m.genre, niveau: m.niveau, theme: m.theme, vues: []});
         if (!vus.get(m.mot).vues.includes(v)) vus.get(m.mot).vues.push(v);
       }
     }
@@ -987,6 +998,7 @@ function toucher(id, pt){
     }
     const juste = !!retenue;
     verrou = true; faits++;
+    reviser(A_TROUVER.find(t => t.mot === cible), juste);
     effacer();
     if (juste){
       bons++; bravo();
@@ -1055,6 +1067,7 @@ function poserTrouve(p, total){
 function repondre(q, opts, k){
   if (verrou) return; verrou = true; faits++;
   const juste = opts[k].ok; if (juste){ bons++; bravo(); }
+  if (q.revise) reviser(q.revise, juste);
   // Apres la reponse, le panneau se resserre : la bonne reponse seule (et la
   // fausse si on s'est trompe), pour ne pas couvrir le sac ou la table.
   $("bas").querySelectorAll(".choix").forEach((b,j) => {
