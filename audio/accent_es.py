@@ -79,11 +79,34 @@ def mesurer(voix):
     return temoin, rapports, rel, verdict
 
 
+# DEUX ACCENTS A ECARTER, AJOUTES LE 10 OCT. 2026. Le « s » dit Amerique
+# latine, pas QUELLE Amerique latine. Deux accents que le cours ne veut pas se
+# mesurent de la meme facon, par rapport au « s » de casa :
+#   - l'argentin : « calle » dit « caché », le ll devient un sifflement fort
+#     (un ll standard est un son voise, presque sans aigus) ;
+#   - les Caraibes : le s devant consonne s'aspire, « este » dit « ehte »
+#     (un s standard y siffle autant que dans casa).
+# Pas de seuil absolu ici : faute de voix argentine ou caribeenne pour
+# etalonner, on compare a une voix connue pour etre standard (la reference).
+EXTRAS = (("ll de calle", "calle"), ("s de este", "este"))
+
+
+def extras(voix):
+    base = sifflement(son(voix, "casa"))
+    return {nom: sifflement(son(voix, mot)) / base for nom, mot in EXTRAS}
+
+
 def main():
-    for voix in sys.argv[1:]:
+    voix_liste = sys.argv[1:]
+    for voix in voix_liste:
         temoin, rapports, rel, verdict = mesurer(voix)
         print("%s  temoin %.2f  paires %s  ->  %.2f du temoin  :  %s"
               % (voix, temoin, " ".join("%.2f" % r for r in rapports), rel, verdict))
+    print("\nLes deux accents a ecarter (rapport au « s » de casa) :")
+    print("  ll de calle : haut = « ch » argentin ;  s de este : bas = s aspire des Caraibes")
+    for voix in voix_liste:
+        e = extras(voix)
+        print("  %s  %s" % (voix, "   ".join("%s %.2f" % (k, v) for k, v in e.items())))
 
 
 if __name__ == "__main__":
