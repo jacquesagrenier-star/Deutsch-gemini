@@ -11,8 +11,14 @@
 /* La langue apprise sur la balise <html> (fusion de l'espagnol, etape 3) :
    les regles html[data-apprendre="es"] ne valent qu'en espagnol. La meme
    lecture que LANGUE_APPRISE, plus bas. */
-try{ document.documentElement.setAttribute("data-apprendre",
-    new URLSearchParams(location.search).get("apprendre") === "es" ? "es" : "de"); }catch(e){}
+(function(){
+    var a = null;
+    try{ a = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
+    if(a !== "es" && a !== "de"){
+        try{ a = localStorage.getItem("wortando_langueApprise") === "es" ? "es" : "de"; }catch(e){ a = "de"; }
+    }
+    try{ document.documentElement.setAttribute("data-apprendre", a); }catch(e){}
+})();
 </script>
 <script>
 // ============ L'ADRESSE DEFINITIVE (demenagement, 8 oct. 2026) ============
@@ -7187,7 +7193,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v735</span>
+    <span class="subtitle-version">v736</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9982,14 +9988,24 @@ if(window.LIEN_REINIT && typeof ouvrirReinitialisation === "function"){
 <script>
 // ============ LA LANGUE APPRISE (fusion de l'espagnol, etape 1) ============
 // Decide le 10 oct. 2026 : l'espagnol entre dans CE moteur, au lieu d'etre une
-// copie generee par fork.py (voir fusion-espagnol/PLAN.md). Pendant la fusion,
-// l'espagnol ne s'ouvre QUE par l'adresse (?apprendre=es) : aucun usager n'y
-// arrive par hasard, et l'app espagnole actuelle (espanol/) reste servie telle
-// quelle jusqu'a la bascule.
+// copie generee par fork.py (voir fusion-espagnol/PLAN.md).
+// DEPUIS LA BASCULE (v736), LA LANGUE EST RETENUE : l'adresse la donne
+// (?apprendre=es ou de, que espanol/ redirige ici) et la range sous
+// « wortando_langueApprise » -- une cle SANS prefixe de langue, puisqu'elle
+// dit laquelle choisir. Sans adresse : la derniere choisie, sinon l'allemand.
+// C'est ce qui permet aux apps iPhone et Android, qui chargent toujours la
+// racine, de rouvrir en espagnol. La meme lecture est faite dans le <head>.
 // ⚠️ DECLAREES ICI, AVANT TOUT : chaque cle de stockage en depend, et la
 // premiere est lue a la ligne suivante.
+const CLE_LANGUE_APPRISE = "wortando_langueApprise";
 const LANGUE_APPRISE = (() => {
-    try{ return new URLSearchParams(location.search).get("apprendre") === "es" ? "es" : "de"; }
+    let a = null;
+    try{ a = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
+    if(a === "es" || a === "de"){
+        try{ localStorage.setItem(CLE_LANGUE_APPRISE, a); }catch(e){}
+        return a;
+    }
+    try{ return localStorage.getItem(CLE_LANGUE_APPRISE) === "es" ? "es" : "de"; }
     catch(e){ return "de"; }
 })();
 // LE PREFIXE DE STOCKAGE. L'allemand garde le sien, inchange : toute la
@@ -17417,9 +17433,10 @@ const ANGLAIS_EN_RETRAIT = true;
 // l'app espagnole (espanol/), generee depuis celle-ci par fork.py. Le meme
 // lien marche sur le web et dans les apps iPhone et Android, qui chargent
 // ce site. Le fork le remplace par « ../ » pour revenir a l'allemand.
-// Depuis le moteur regle sur l'espagnol (?apprendre=es), l'autre langue est
-// l'allemand : la meme page, sans le parametre.
-const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./" : "espanol/";
+// L'autre langue : la meme page, avec la langue dans l'adresse -- elle y est
+// retenue (bascule, v736). Avant, « Espagnol » ouvrait l'app generee par
+// fork.py, dans espanol/.
+const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./?apprendre=de" : "./?apprendre=es";
 function ouvrirAutreLangueApprise(){
     try{ location.href = new URL(AUTRE_LANGUE_APPRISE_URL, location.href).href; }
     catch(e){ location.href = AUTRE_LANGUE_APPRISE_URL; }
@@ -24773,6 +24790,10 @@ function chargerReglesGenre(){
 }
 
 function ouvrirReglesGenre(){
+    // Les regles de genre sont allemandes (der/die/das) : en espagnol, la fiche
+    // du genre (fusion, etape 7). L'option est cachee, mais un chemin futur
+    // ne doit pas pouvoir y mener.
+    if(LANGUE_APPRISE === "es"){ abrirGramatica("genero"); return; }
     chargerReglesGenre().then(regles => {
         const zone = document.getElementById("reglesGenreListe");
         if(!zone) return;
@@ -31832,7 +31853,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 735;
+const APP_VERSION = 736;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

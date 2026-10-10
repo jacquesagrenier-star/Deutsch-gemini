@@ -212,6 +212,25 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
 7. **La bascule.** Quand le parcours espagnol du moteur égale la référence :
    `espanol/` devient une simple redirection vers le moteur réglé sur
    l'espagnol, et `fork.py` prend sa retraite.
+   ✅ **Faite en v736 (10 oct. 2026).** La langue apprise est retenue
+   (`wortando_langueApprise`) : `?apprendre=es|de` la donne et la range,
+   sinon la dernière choisie, sinon l'allemand — les apps iPhone et Android,
+   qui chargent la racine, rouvrent donc dans la bonne langue. Les boutons
+   « Espagnol » / « Allemand » passent d'une langue à l'autre dans la même
+   page. `espanol/index.html` → redirection vers `../?apprendre=es` ;
+   `espanol/sw.js` → se désinscrit, vide sa copie et recharge (l'ancien
+   servait sa copie avant le réseau) ; `espanol/version.json` 39 → 40 pour
+   que la vieille page encore en mémoire se recharge d'elle-même.
+   `fork.py` et `publicar.py` refusent de tourner (dépôt wortando-espanol,
+   commit local sur la branche actualizacion-v721). Vérifié dans le
+   navigateur : espanol/ → moteur en espagnol, la racine rouverte reste en
+   espagnol, « Allemand » ramène à l'allemand et le retient. Allemand : 0
+   écart. Espagnol : 67 chemins, aucune exception.
+   **Ce que ça change pour les testeurs d'espagnol** : ils doivent se
+   connecter (compte Wortando, code d'invitation du tableau admin) ; leur
+   progression locale (`wortandoEs_`) est retrouvée ; elle ira dans le nuage
+   quand les règles `usuariosEs` / `resumenesEs` seront collées dans la
+   console.
 
 Chaque étape est publiée seule, avec ses deux vérificateurs et le parcours
 allemand identique à la référence.
