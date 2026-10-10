@@ -3234,6 +3234,8 @@ html[data-apprendre="es"] [data-i18n="credits_degres"],
 html[data-apprendre="es"] [data-i18n="credits_freq"],
 html[data-apprendre="es"] [data-i18n="credits_examens"],
 html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
+/* Le choix Espagne / Amerique latine n'existe qu'en espagnol. */
+html:not([data-apprendre="es"]) [data-seulement-es]{ display:none !important; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -6415,6 +6417,19 @@ body[data-theme="dark"] #decouverte > button.primary{
                 </button>
             </div>
         </div>
+        <div class="setup-choice-group" data-seulement-es>
+            <div class="setup-choice-label" data-i18n="variante_titre">Quel espagnol ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" onclick="choisirVarianteEspagnol('es')" data-variante="es">
+                    <span class="setup-choice-flag">🇪🇸</span>
+                    <span data-i18n="variante_choix_espagne">Espagne</span>
+                </button>
+                <button class="setup-choice" onclick="choisirVarianteEspagnol('latam')" data-variante="latam">
+                    <span class="setup-choice-flag">🌎</span>
+                    <span data-i18n="variante_choix_amerique">Amérique latine</span>
+                </button>
+            </div>
+        </div>
         <div class="setup-choice-group" id="setupUiLangGroup">
             <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
             <div class="setup-choice-row">
@@ -7174,7 +7189,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v731</span>
+    <span class="subtitle-version">v732</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9335,7 +9350,20 @@ body[data-theme="dark"] #decouverte > button.primary{
                     </button>
                 </div>
             </div>
-            <div class="setup-choice-group" id="settingsUiLangGroup">
+            <div class="setup-choice-group" data-seulement-es>
+            <div class="setup-choice-label" data-i18n="variante_titre">Quel espagnol ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" onclick="choisirVarianteEspagnol('es')" data-variante="es">
+                    <span class="setup-choice-flag">🇪🇸</span>
+                    <span data-i18n="variante_choix_espagne">Espagne</span>
+                </button>
+                <button class="setup-choice" onclick="choisirVarianteEspagnol('latam')" data-variante="latam">
+                    <span class="setup-choice-flag">🌎</span>
+                    <span data-i18n="variante_choix_amerique">Amérique latine</span>
+                </button>
+            </div>
+        </div>
+        <div class="setup-choice-group" id="settingsUiLangGroup">
                 <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
                 <div class="setup-choice-row">
                     <button class="setup-choice" onclick="selectUiLangChoice('fr')">
@@ -9957,6 +9985,21 @@ const LANGUE_APPRISE = (() => {
 // l'app espagnole actuelle (le fork renommait « deutschAI_ » en « wortandoEs_ ») :
 // ses testeurs retrouveront leur progression le jour de la bascule.
 const PREFIXE_STOCKAGE = LANGUE_APPRISE === "es" ? "wortandoEs_" : "deutschAI_";
+// LA VARIANTE DE L'ESPAGNOL (fusion, etape 3 ; decide par Jacques le 10 oct.
+// 2026 : les deux des le lancement). "es" = Espagne, la base du cours ;
+// "latam" = Amerique latine, qui cache vosotros et remplace les mots de
+// espanol/datos/variantes.json. Sans objet en allemand.
+const VARIANTE_ESPAGNOL = (() => {
+    if(LANGUE_APPRISE !== "es") return "es";
+    try{ return localStorage.getItem(PREFIXE_STOCKAGE + "variante") === "latam" ? "latam" : "es"; }
+    catch(e){ return "es"; }
+})();
+function choisirVarianteEspagnol(v){
+    if(v !== "es" && v !== "latam") return;
+    try{ localStorage.setItem(PREFIXE_STOCKAGE + "variante", v); }catch(e){}
+    // Les cartes sont construites au chargement : on recharge, tout simplement.
+    if(v !== VARIANTE_ESPAGNOL) location.reload();
+}
 const THEME_STORAGE_KEY = PREFIXE_STOCKAGE + "theme";
 
 function applyAppTheme(theme){
@@ -10073,7 +10116,8 @@ const LANGUE_ALLEMAND = {
 const LANGUE_ESPAGNOL = {
     code:    "es",
     nom:     "Español",
-    voix:    "es-ES",
+    // En Amerique latine, une voix mexicaine si le telephone en a une.
+    voix:    VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES",
     donnees: RACINE_DEPOT + "espanol/",
     // Aucune voix enregistree pour l'espagnol : la synthese du telephone.
     audio:   "",
@@ -10109,13 +10153,20 @@ function articlePluriel(articleSingulier){
 // Les six personnes, dans l'ordre des champs praesens (ich, du, er_sie_es,
 // wir, ihr, sie_Sie) : la forme espagnole vit sous les memes cles.
 const PERSONNES_CONJUGAISON = LANGUE_APPRISE === "es"
-    ? ["yo", "t\u00fa", "\u00e9l/ella", "nosotros", "vosotros", "ellos"]
+    ? ["yo", "t\u00fa", "\u00e9l/ella", "nosotros", "vosotros",
+       VARIANTE_ESPAGNOL === "latam" ? "ellos/ustedes" : "ellos"]
     : ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"];
+// La personne cachee : vosotros, en Amerique latine (ustedes prend les
+// formes de ellos). Rien n'est cache en allemand ni en Espagne.
+function personneCachee(i){
+    return LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL === "latam" && i === 4;
+}
 // Les temps espagnols arrivent en LISTE ordonnee (yo ... ellos), pas en objet
 // a cles allemandes : ce sont des champs propres a l'espagnol.
 function blocTempsEspagnol(titre, aide, formes){
     if(!Array.isArray(formes) || !formes.length) return "";
-    const ligne = formes.map((f, i) => PERSONNES_CONJUGAISON[i] + " " + f).join(" \u00b7 ");
+    const ligne = formes.map((f, i) => personneCachee(i) ? null : PERSONNES_CONJUGAISON[i] + " " + f)
+        .filter(x => x !== null).join(" \u00b7 ");
     return '<div class="verb-sep"></div><strong>' + titre + '</strong> '
         + '<span style="font-weight:400; color:#767f8f;">&mdash; ' + aide + '</span><br>' + ligne;
 }
@@ -16891,7 +16942,12 @@ const I18N_ESPAGNOL = {
         "temps_es_imperfecto": "un décor, une habitude, un âge — <em>antes, siempre, mientras</em>",
         "temps_es_subjuntivo": "après <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
         "verbe_es_exemple": "En contexte :",
-        "op_kasus_sub": "ser · estar"
+        "op_kasus_sub": "ser · estar",
+        "variante_titre": "Quel espagnol ?",
+        "variante_choix_espagne": "Espagne",
+        "variante_choix_amerique": "Amérique latine",
+        "variante_amerique": "en Amérique latine : {mot}",
+        "variante_espagne": "en Espagne : {mot}"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -16961,7 +17017,12 @@ const I18N_ESPAGNOL = {
         "temps_es_preterito": "one finished action — <em>ayer, una vez, de repente</em>",
         "temps_es_imperfecto": "a scene, a habit, an age — <em>antes, siempre, mientras</em>",
         "temps_es_subjuntivo": "after <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
-        "verbe_es_exemple": "In use:"
+        "verbe_es_exemple": "In use:",
+        "variante_titre": "Which Spanish?",
+        "variante_choix_espagne": "Spain",
+        "variante_choix_amerique": "Latin America",
+        "variante_amerique": "in Latin America: {mot}",
+        "variante_espagne": "in Spain: {mot}"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -17396,6 +17457,9 @@ function markSetupDone(){
 function adapterChoixALaLangueApprise(){
     if(LANGUE_APPRISE !== "es") return;
     document.title = "Wortando Español";
+    document.querySelectorAll('.setup-choice[data-variante]').forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.variante === VARIANTE_ESPAGNOL);
+    });
     document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
         .forEach(el => { el.textContent = "\u{1F1EA}\u{1F1F8}"; });
     document.querySelectorAll('.setup-choice-flag[data-autre]')
@@ -19438,6 +19502,7 @@ async function loadThemesJson() {
         if (!response.ok) throw new Error("Erreur themes.json");
         const rawJson = await response.json();
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
+        const variantesEspagnol = LANGUE_APPRISE === "es" ? await chargerVariantesEspagnol() : null;
         
         const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
         const grouped = {};
@@ -19512,6 +19577,7 @@ async function loadThemesJson() {
                     w.exemple_fa || ""       // rang 18
                 ];
             });
+            if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol));
 
             const rawVerben = t.verben || [];
             // Les verbes des chapitres VHS suivent le même contrat que verbe.json
@@ -29149,7 +29215,7 @@ function loadFlashcard(){
             const conjLines = [
                 `${PERSONNES_CONJUGAISON[0]} ${p.ich || ""}`, `${PERSONNES_CONJUGAISON[1]} ${p.du || ""}`, `${PERSONNES_CONJUGAISON[2]} ${p.er_sie_es || ""}`,
                 `${PERSONNES_CONJUGAISON[3]} ${p.wir || ""}`, `${PERSONNES_CONJUGAISON[4]} ${p.ihr || ""}`, `${PERSONNES_CONJUGAISON[5]} ${p.sie_Sie || ""}`
-            ].join(" · ");
+            ].filter((_, i) => !personneCachee(i)).join(" · ");
             const praesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
             const perfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
             placerRektionEnTete(card, buildRektionBadgesHtml(card));
@@ -30402,7 +30468,35 @@ function registreDeLaCarte(card, mode){
     return (rang !== undefined && Array.isArray(card)) ? (card[rang] || "") : "";
 }
 
+// LES DEUX ESPAGNOLS (fusion, etape 3). espanol/datos/variantes.json : les
+// noms qui changent entre l'Espagne et l'Amerique latine. Les rangs de la
+// carte de nom : 0 mot, 1 article, 2 pluriel, 5 exemple, 10 marque d'usage,
+// 11 le mot compare. Absent ou illisible : le cours reste celui d'Espagne.
+async function chargerVariantesEspagnol(){
+    try{
+        const r = await fetch(urlDonnees("variantes.json"), { cache: "no-cache" });
+        if(!r.ok) return null;
+        return (await r.json()).noms || null;
+    }catch(e){ return null; }
+}
+function appliquerVarianteEspagnol(carte, variantes){
+    const v = Array.isArray(carte) ? variantes[carte[0]] : null;
+    if(!v) return;
+    if(VARIANTE_ESPAGNOL === "latam"){
+        const espagne = carte[1] + " " + carte[0];
+        carte[0] = v.mot; carte[1] = v.genre; carte[2] = v.pluriel;
+        if(v.exemple) carte[5] = v.exemple;
+        carte[10] = "variante_espagne"; carte[11] = espagne;
+    } else {
+        carte[10] = "variante_amerique"; carte[11] = v.genre + " " + v.mot;
+    }
+}
+
 function usageMarkText(registre, vergleich){
+    // L'autre espagnol, avant tout le reste : `vergleich` y porte le mot de
+    // l'autre variante, pas un mot plus courant.
+    if(registre === "variante_espagne" || registre === "variante_amerique")
+        return tf(registre, { mot: vergleich });
     if(vergleich){
         return tf(registre === "umgangssprachlich" ? "usage_plus_familier" : "usage_plus_formel",
                   { mot: vergleich });
@@ -31621,7 +31715,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 731;
+const APP_VERSION = 732;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -132,8 +132,26 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    examens, tuile d'examen. Le vérificateur a trouvé les 11 options
    espagnoles du panneau sans `section` (défaut du fork) : rangées sous
    « mots ». Allemand : 0 écart sur 123 chemins.
-   Reste dans l'étape 3 : **le réglage Espagne / Amérique latine** (les mots
-   qui changent, *vosotros*, la voix).
+   ✅ **Troisième morceau fait en v732 : les deux espagnols.** « Quel
+   espagnol ? » (🇪🇸 Espagne / 🌎 Amérique latine), au premier lancement et
+   dans les réglages, caché en allemand. `VARIANTE_ESPAGNOL`, rangée sous
+   `wortandoEs_variante` ; changer recharge la page. En Amérique latine :
+   *vosotros* caché partout dans les conjugaisons, « ellos/ustedes », voix
+   es-MX si le téléphone en a une. `espanol/datos/variantes.json` : 17 noms
+   sûrs (coche/carro, ordenador/computadora, móvil/celular, zumo/jugo,
+   patata/papa, piso/departamento, billete/boleto, camarero/mesero,
+   gafas/lentes…) ; en Espagne la carte cite l'autre mot en note, en Amérique
+   latine elle prend le mot, l'article, le pluriel et l'exemple d'ici, et
+   cite le mot d'Espagne. Vérifié dans le navigateur dans les deux modes.
+   **Reste, et à soumettre à Jacques :**
+   - trois noms écartés faute de forme commune en Amérique latine : *tarta*
+     (pastel, torta, pay), *tortilla* (un autre plat), *zapatilla* ;
+   - les **verbes** qui changent (*conducir/manejar*, *coger/tomar*,
+     *aparcar/estacionar*, *enfadarse/enojarse*, *alquilar/rentar*) : pas
+     encore de note, il faut le même mécanisme côté verbes ;
+   - les **exercices** (`ejercicios.json`) gardent *vosotros* et les mots
+     d'Espagne en mode Amérique latine ;
+   - **aucune voix enregistrée** pour l'espagnol : deux corpus à chiffrer.
 
 4. **La grammaire espagnole** (7 écrans de `gramatica_es.py`) en données,
    comme `grammaire.json` pour l'allemand.
