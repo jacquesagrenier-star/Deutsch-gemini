@@ -7193,7 +7193,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v740</span>
+    <span class="subtitle-version">v741</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17069,7 +17069,16 @@ const I18N_ESPAGNOL = {
         "gram_attention": "Attention",
         "kicker_ser_estar": "ser ou estar ?",
         "kicker_por_para": "por ou para ?",
-        "fiche_entrainer": "M'ENTRAÎNER →"
+        "fiche_entrainer": "M'ENTRAÎNER →",
+        "kicker_falsos_amigos": "Faux amis",
+        "kicker_gustar": "Les verbes comme gustar",
+        "kicker_acentos": "L'accent qui change le sens",
+        "op_es_falsos_t": "Les faux amis",
+        "op_es_falsos_d": "embarazada, constipado, éxito… le mot qui ressemble au français est souvent le piège.",
+        "op_es_gustar_t": "Les verbes comme gustar",
+        "op_es_gustar_d": "me gusta, me gustan, me duele : le verbe s'accorde avec ce qui plaît.",
+        "op_es_acentos_t": "L'accent qui change le sens",
+        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo : une petite marque, un autre mot."
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17156,7 +17165,16 @@ const I18N_ESPAGNOL = {
         "gram_attention": "Watch out",
         "kicker_ser_estar": "ser or estar?",
         "kicker_por_para": "por or para?",
-        "fiche_entrainer": "PRACTICE →"
+        "fiche_entrainer": "PRACTICE →",
+        "kicker_falsos_amigos": "False friends",
+        "kicker_gustar": "Verbs like gustar",
+        "kicker_acentos": "Accents that change meaning",
+        "op_es_falsos_t": "False friends",
+        "op_es_falsos_d": "embarazada, éxito, actual… the word that looks familiar is often the trap.",
+        "op_es_gustar_t": "Verbs like gustar",
+        "op_es_gustar_d": "me gusta, me gustan, me duele: the verb agrees with what is liked.",
+        "op_es_acentos_t": "Accents that change meaning",
+        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo: a small mark, a different word."
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -21025,6 +21043,21 @@ function startPorParaUebung(){
     startExerciseSetMelange("porParaExercises", "kicker_por_para",
                      () => abrirGramatica("por-para"), startPorParaUebung);
 }
+// LES PIEGES (10 oct. 2026) : faux amis, verbes comme gustar, accents qui
+// changent le sens. Chacun vit dans la tuile dont il parle -- les mots, les
+// verbes, l'ecrit -- et y ramene.
+function startFalsosAmigosUebung(){
+    startExerciseSetMelange("falsosAmigosExercises", "kicker_falsos_amigos",
+                     () => openOrbPanel("nomen"), startFalsosAmigosUebung);
+}
+function startGustarUebung(){
+    startExerciseSetMelange("gustarExercises", "kicker_gustar",
+                     () => openOrbPanel("verben"), startGustarUebung);
+}
+function startAcentosUebung(){
+    startExerciseSetMelange("acentosExercises", "kicker_acentos",
+                     () => openOrbPanel("schreiben"), startAcentosUebung);
+}
 
 function startWeilObwohlUebung(){
     startExerciseSetMelange("weilObwohlExercises", "kicker_weil_obwohl",
@@ -24103,7 +24136,9 @@ function orbPanelData(id){
                 // la frontiere est nette : kennen une personne ou un lieu,
                 // wissen un fait. Aucune carte ne peut l'enseigner seule.
                 { icon:"exercice", title:t("op_verben_o5_t"), desc:t("op_verben_o5_d"), action:"startWissenKennenUebung", section:"pratique" }
-            ]
+            ].concat(LANGUE_APPRISE === "es" ? [
+                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" }
+            ] : [])
         };
     }
     if(id === "zuinfinitiv"){
@@ -24139,7 +24174,9 @@ function orbPanelData(id){
                   action:"ouvrirReglesGenre", section:"comprendre" },
                 { icon:"exercice", title:t("op_nomen_o8_t"), desc:t("op_nomen_o8_d"),
                   count:String(REGLE_QUIZ_TAILLE), action:"startQuizTerminaisons", section:"pratique" }
-            ]
+            ].concat(LANGUE_APPRISE === "es" ? [
+                { icon:"exercice", title:t("op_es_falsos_t"), desc:t("op_es_falsos_d"), action:"startFalsosAmigosUebung", section:"pratique" }
+            ] : [])
         };
     }
     if(id === "adjektive"){
@@ -24203,6 +24240,9 @@ function orbPanelData(id){
                     icon:"exercice", title:n, desc:tf("op_schreiben_level_d", { n: n }),
                     action:"startSchreiben" + n, section:"pratique"
                 })))
+                .concat(LANGUE_APPRISE === "es" ? [
+                    { icon:"exercice", title:t("op_es_acentos_t"), desc:t("op_es_acentos_d"), action:"startAcentosUebung", section:"pratique" }
+                ] : [])
         };
     }
     if(id === "pronomen"){
@@ -31958,7 +31998,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 740;
+const APP_VERSION = 741;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -35831,6 +35871,7 @@ function echeanceProchaineReussite(state){
 
 function reviewAgain(){
     if(!currentCards.length) return;
+    arreterChaineCarte(true);   // voir reviewGood()
     const item = currentCards[currentFlashcard];
     // ⚠️ DANS LE COFFRE, « ENCORE » NE TOUCHE A RIEN (v603). Hors du coffre il
     // fait trois choses lourdes -- srsHits a zero, puis scheduleReview() qui
@@ -35903,6 +35944,11 @@ function celebrerPalier(pointGagne){
 
 function reviewGood(){
     if(!currentCards.length) return;
+    // JUGER COUPE LA VOIX, TOUT DE SUITE (v741). La carte reste encore 950 ms
+    // pour la celebration : la chaine continuait d'y parler, et le pluriel
+    // tombait sur la carte suivante. Signale par Jacques, en allemand comme en
+    // espagnol : « aussitot que je clique, que ca coupe ».
+    arreterChaineCarte(true);
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
     if(estNeuf(state)) noterMotNeuf();
@@ -36079,6 +36125,7 @@ async function ouvrirGardes(){
 }
 
 function markKnownAlready(){
+    arreterChaineCarte(true);   // voir reviewGood()
     if(currentCards.length){
         const it = currentCards[currentFlashcard];
         if(it && estNeuf(getWordState(it.themeId, it.index))) noterMotNeuf();

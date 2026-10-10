@@ -95,6 +95,7 @@ signalé le défaut, jamais lequel — je ne l'invente pas.
 | 2026-09-04 | v486-v497, puis l'arabe | Stelios | **Ajouter des langues de traduction** pour élargir le public : *« many people that learn German do not speak English so it would be a good idea to add more languages to translate to »*. | **Fait.** Six langues d'interface aujourd'hui : français, anglais, turc, ukrainien, persan et arabe ; l'ukrainien est complet sur le corpus, l'interface, les exercices et l'examen depuis le 10 septembre. Reste à le lui dire, et à lui demander laquelle il aurait voulue. |
 | 2026-09-04 | v406 | Jacques (iPhone, puis portable) | **Aucun son sur les deux premières cartes** en entrant dans l'app. Ça ne démarre qu'à partir de la troisième. Sur le portable, cliquer explicitement sur le haut-parleur débloque le reste de la séance. Se produit sur les **deux** plateformes. | **Diagnostic partiel.** Le journal audio de l'app montre que les mots sans fichier basculent vers la voix du navigateur : `das Tablet` (A2) → `BASCULE, fichier absent` → `SYNTHESE`. Contrôle du manifeste contre le disque : **953 textes de A1-A2 n'ont aucun fichier** (63 en A1, 890 en A2 — un quart du niveau), plus la totalité de B1-C1, jamais générée. Comme Jacques révise en « Mots au hasard », qui pioche dans tous les niveaux, **l'essentiel de ses cartes passe par la synthèse**. **Confirmé par Jacques : vraiment aucun son, pas un son faible.** Le moteur de synthèse est donc muet à froid, alors que le journal montre l'énoncé parti avec la bonne voix — aucune erreur, aucun événement, ce qui rend le défaut invisible. **Corrigé pour de bon en v406**, après deux fausses pistes. Ce n'était ni le volume, ni un moteur froid : **c'est une carte sur deux**, selon qu'elle a un fichier enregistré ou non. Confirmé deux fois par Jacques — muet une carte sur deux en « Mots au hasard », et **parfait dès la première carte en A1**, le seul niveau entièrement généré. Cause : quand le fichier manque, la voix du téléphone est lancée **depuis le gestionnaire d'erreur**, donc hors du geste — et iOS ne l'autorise que pendant un geste. Ce qui la rendait insaisissable : au deuxième appui, le fichier est déjà en liste noire, l'app ne le tente plus et parle dans le geste, donc « ça marche ». v406 sonde le fichier **au moment où la carte s'affiche**, avant le retournement : la réponse est connue quand le geste arrive. ⚠️ Au passage, la v404 a cassé toute l'app une heure durant — `let syntheseAmorcee` déclaré deux fois, erreur de syntaxe, plus une seule tuile ne répondait ; `verifier.py` a dit « aucun problème » car il ne parse pas le JavaScript. Écarté en chemin : le volume 0,5 de la synthèse n'est pas un défaut, il aligne délibérément la voix système sur les fichiers, masterisés à −14 LUFS. |
 | 2026-09-04 | v403, puis l'inventaire du 9 oct. 2026 | Kirsty | Le bouton du pluriel existe, mais les pluriels **ne sont pas dans le manifeste audio** : c'est la voix du navigateur qui parle, pas la voix enregistrée. Sur iPhone, où une seule voix allemande existe, la différence s'entend. | **Fait.** Les pluriels sont dans le manifeste audio (`audio/manifest.py`, « nomen.pluriel »). L'inventaire complet du 9 octobre 2026 n'a plus trouvé que des textes récents sans fichier (phrases d'exercices, mots ajoutés, scènes), tous générés en voix Aurora le jour même. |
+| 2026-10-10 | v741 | Jacques | Après « Je savais » ou « Encore », la voix continuait : le pluriel du mot tombait sur la carte suivante (allemand et espagnol). | Le clic coupe la voix tout de suite : la chaîne du verso n'était coupée qu'au chargement de la carte suivante, 950 ms plus tard. |
 
 ---
 
@@ -107,6 +108,7 @@ chaque retour a aussi sa propre section datée, plus bas dans ce fichier.
 | Reçu | Qui | Ce qui est signalé | État |
 |---|---|---|---|
 | 2026-10-10 | Jacques | Dans les scènes, les confettis partent mais **aucun son** à la bonne réponse. | Corrigé dans le prototype le 10 oct. (le son passe par un fichier, comme dans l'app, et joue même en mode silencieux). **À confirmer à l'oreille sur l'iPhone.** |
+| 2026-10-10 | Jacques | Pensait que les scènes étaient déjà converties en espagnol : l'app espagnole n'en montre aucune. | Normal : les scènes enseignent l'allemand (seule leur interface est traduite). **Des scènes espagnoles = un chantier à décider** (dialogues, voix, décors).  |
 | 2026-10-09 | Jacques | Avant d'ouvrir les scènes à tous : relire les ~180 questions A2-C1, tout traduire, puis passer l'essai `scenes` à « tous ». | **En cours.** Relecture croisée : ChatGPT (lot 1) et Claude reçus, ChatGPT lots 2-4 et Gemini lots 1-4 à coller. Traduction confiée au cloud le 10 oct. (branche `scenes-traduction`). La mise en production reste sa décision. |
 | 2026-09-04 | Shashwat | A répondu **oui** pour Android, mais pas à la question sur ce qu'il faudrait améliorer. | Toujours sans réponse sur ce qu'il améliorerait. **Candidat pour le test fermé Android** : le recontacter quand le test ouvre (voir `cle-testeurs.txt`). |
 | 2026-09-04 | Kirsty | *« Honestly I think it's already a lot better for someone like me than multiple others out there. »* Et : elle attend de savoir **quand ce sera compatible Android** pour l'installer sur le téléphone de Peter. | Le malentendu se règle de lui-même : une vraie app Android arrive (fiche Google Play créée le 10 oct. 2026). **L'inviter au test fermé, elle et Peter.** |
@@ -8088,3 +8090,22 @@ Confirme par Jacques apres la v725 : les cadenas sont la. Mais le cadenas
 a 55 %). v726 : seul le texte reste en retrait ; le cadenas passe dans une
 pastille couleur encre (le W du logo) cerclee d'ambre, sur les themes, les
 niveaux, les lignes d'adjectifs et les options des panneaux.
+
+## 10 octobre 2026 (soir) -- Jacques : le pluriel parle encore apres « Je savais »
+
+« Lorsque j'ecoute un mot, la table, der Tisch, si je clique tout de suite
+[Je savais / Encore]... il revient sur une autre carte mais j'entends la forme
+pluriel. Il faudrait qu'aussitot que je clique, ca coupe. » En allemand comme
+en espagnol. Cause : apres un jugement, la carte reste 950 ms pour la
+celebration, et la chaine du verso (mot, puis pluriel, puis phrase) n'etait
+coupee qu'au chargement de la carte suivante -- elle avait le temps de
+lancer le pluriel. v741 : reviewGood(), reviewAgain() et markKnownAlready()
+coupent la chaine des le clic (arreterChaineCarte(true)).
+
+## 10 octobre 2026 (soir) -- Jacques : pas de scenes au debut dans l'app espagnole
+
+Normal : les scenes (essai v713) ne s'ouvrent qu'en allemand
+(LANGUE_APPRISE === "de"). La « traduction des scenes » du 10 oct. porte sur
+leur interface (consignes, explications en en/tr/uk/fa/ar) ; la scene
+enseigne toujours l'allemand. Des scenes espagnoles = un chantier a part
+(dialogues, voix, decors) -- a decider par Jacques.
