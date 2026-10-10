@@ -7193,7 +7193,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v739</span>
+    <span class="subtitle-version">v740</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -16989,9 +16989,9 @@ const I18N_ESPAGNOL = {
         "carte_genre_la": "féminin",
         "home_title_1": "Apprends l'espagnol",
         "home_subtitle": "Ton tuteur personnel pour la grammaire espagnole et le vocabulaire.",
-        "search_title": "Chercher un mot espagnol ou anglais",
-        "search_placeholder": "Espagnol ou anglais…",
-        "search_hint": "Tape au moins deux lettres, <strong>en espagnol ou en anglais</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 250 000 mots.",
+        "search_title": "Chercher un mot espagnol ou français",
+        "search_placeholder": "Espagnol ou français…",
+        "search_hint": "Tape au moins deux lettres, <strong>en espagnol ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — près de 150 000 mots.",
         "orb_zuinf_title": "Subjonctif",
         "orb_zuinf_sub": "quiero que · espero que",
         "verbenniveau_title_en": "Verbes par niveau",
@@ -26086,10 +26086,11 @@ const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees + (LANGUE_APPRISE === "es" ? "dic
 // Quatre paires existent ; on n'en interroge que deux, celles qui parlent la
 // langue de l'interface. Un francophone qui cherche "Haus" doit lire "maison",
 // pas "house" -- c'etait le cas avant v231.
-// L'espagnol n'a qu'une paire, espagnol-anglais, dans les deux sens : un
-// dictionnaire espagnol-francais reste a faire (fusion, etape 3).
+// L'espagnol a deux paires depuis le 10 oct. 2026 : espagnol-francais pour une
+// interface francaise (WikDict es-fr / fr-es, espanol/dicc_construire.py),
+// espagnol-anglais pour une interface anglaise.
 const DICT_PAIRS_PAR_LANGUE = LANGUE_APPRISE === "es" ? {
-    fr: ["es-en", "en-es"],
+    fr: ["es-fr", "fr-es"],
     en: ["es-en", "en-es"]
 } : {
     fr: ["de-fr", "fr-de"],
@@ -31957,7 +31958,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 739;
+const APP_VERSION = 740;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
