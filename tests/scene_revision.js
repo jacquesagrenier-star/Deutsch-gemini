@@ -85,6 +85,7 @@ const PAGE = `<!doctype html><meta charset="utf-8"><title>banc</title>
 <script>
 const STORAGE_KEY = "deutschAI_progress";
 const LANGUE_ENSEIGNEE = { code: "de" };
+const PREFIXE_STOCKAGE = "deutschAI_";
 const ADRESSE_DEFINITIVE = "";
 let progressDirectionOverride = null;
 const C = ${JSON.stringify(corpus())};
@@ -96,6 +97,8 @@ const journal = [];
 function saveProgress(p){ progressCache = p; localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
 function getTodayStr(){ return "2026-10-10"; }
 function getLearningDirection(){ return "de"; }
+function getUiLang(){ return "fr"; }
+function t(cle){ return cle; }
 function accesComplet(){ return true; }
 function filtrerGratuit(items){ return items; }
 function recordDailyActivity(){ journal.push("objectif"); return 0; }
