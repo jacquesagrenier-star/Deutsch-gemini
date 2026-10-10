@@ -7,8 +7,6 @@ window.SCENE = {
    "mot": "Uhr",
    "genre": "die",
    "pluriel": "Uhren",
-   "fr": "horloge",
-   "en": "clock",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -22,15 +20,18 @@ window.SCENE = {
      9.5,
      5.5
     ]
-   ]
+   ],
+   "fr": "horloge",
+   "en": "clock",
+   "tr": "saat",
+   "uk": "годинник",
+   "fa": "ساعت"
   },
   {
    "id": "tafel",
    "mot": "Tafel",
    "genre": "die",
    "pluriel": "Tafeln",
-   "fr": "tableau",
-   "en": "board",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -44,15 +45,18 @@ window.SCENE = {
      30,
      20
     ]
-   ]
+   ],
+   "fr": "tableau",
+   "en": "board",
+   "tr": "tahta",
+   "uk": "дошка",
+   "fa": "تخته"
   },
   {
    "id": "lehrer",
    "mot": "Lehrer",
    "genre": "der",
    "pluriel": "Lehrer",
-   "fr": "enseignant",
-   "en": "teacher",
    "niveau": "A1",
    "theme": "berufe_a1",
    "personne": null,
@@ -60,26 +64,42 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
+     "niveau": "A1",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "en": "man, husband",
+     "tr": "adam / koca",
+     "uk": "чоловік",
+     "fa": "مرد، شوهر"
     },
     {
      "mot": "Brille",
      "genre": "die",
+     "niveau": "A2",
      "fr": "lunettes",
-     "niveau": "A2"
+     "en": "glasses",
+     "tr": "gözlük",
+     "uk": "окуляри",
+     "fa": "عینک"
     },
     {
      "mot": "Bart",
      "genre": "der",
+     "niveau": "B1",
      "fr": "barbe",
-     "niveau": "B1"
+     "en": "beard",
+     "tr": "sakal",
+     "uk": "борода",
+     "fa": "ریش"
     },
     {
      "mot": "Hemd",
      "genre": "das",
+     "niveau": "A1",
      "fr": "chemise",
-     "niveau": "A1"
+     "en": "shirt",
+     "tr": "gömlek",
+     "uk": "сорочка",
+     "fa": "پیراهن"
     }
    ],
    "sur": null,
@@ -97,15 +117,18 @@ window.SCENE = {
      25,
      21
     ]
-   ]
+   ],
+   "fr": "enseignant",
+   "en": "teacher",
+   "tr": "öğretmen",
+   "uk": "учитель",
+   "fa": "آموزگار"
   },
   {
    "id": "brille",
    "mot": "Brille",
    "genre": "die",
    "pluriel": "Brillen",
-   "fr": "lunettes",
-   "en": "glasses",
    "niveau": "A2",
    "theme": "kleidung_a2",
    "personne": null,
@@ -119,15 +142,18 @@ window.SCENE = {
      9.5,
      2.6
     ]
-   ]
+   ],
+   "fr": "lunettes",
+   "en": "glasses",
+   "tr": "gözlük",
+   "uk": "окуляри",
+   "fa": "عینک"
   },
   {
    "id": "bart",
    "mot": "Bart",
    "genre": "der",
    "pluriel": "Bärte",
-   "fr": "barbe",
-   "en": "beard",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -141,15 +167,18 @@ window.SCENE = {
      6.5,
      2.6
     ]
-   ]
+   ],
+   "fr": "barbe",
+   "en": "beard",
+   "tr": "sakal",
+   "uk": "борода",
+   "fa": "ریش"
   },
   {
    "id": "tuer",
    "mot": "Tür",
    "genre": "die",
    "pluriel": "Türen",
-   "fr": "porte",
-   "en": "door",
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
@@ -163,15 +192,18 @@ window.SCENE = {
      17,
      28.8
     ]
-   ]
+   ],
+   "fr": "porte",
+   "en": "door",
+   "tr": "kapı",
+   "uk": "двері",
+   "fa": "در"
   },
   {
    "id": "haken",
    "mot": "Haken",
    "genre": "der",
    "pluriel": "Haken",
-   "fr": "crochet",
-   "en": "hook",
    "niveau": "A2",
    "theme": "moebel_haushalt_a2",
    "personne": null,
@@ -185,15 +217,18 @@ window.SCENE = {
      7.2,
      2.6
     ]
-   ]
+   ],
+   "fr": "crochet",
+   "en": "hook",
+   "tr": "askı",
+   "uk": "гачок",
+   "fa": "قلاب"
   },
   {
    "id": "mantel",
    "mot": "Mantel",
    "genre": "der",
    "pluriel": "Mäntel",
-   "fr": "manteau",
-   "en": "coat",
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
@@ -207,15 +242,18 @@ window.SCENE = {
      7.4,
      15.3
     ]
-   ]
+   ],
+   "fr": "manteau",
+   "en": "coat",
+   "tr": "palto",
+   "uk": "пальто",
+   "fa": "پالتو"
   },
   {
    "id": "jacke",
    "mot": "Jacke",
    "genre": "die",
    "pluriel": "Jacken",
-   "fr": "veste",
-   "en": "jacket",
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
@@ -229,15 +267,18 @@ window.SCENE = {
      5.8,
      13.5
     ]
-   ]
+   ],
+   "fr": "veste",
+   "en": "jacket",
+   "tr": "ceket",
+   "uk": "куртка",
+   "fa": "کاپشن"
   },
   {
    "id": "bild",
    "mot": "Bild",
    "genre": "das",
    "pluriel": "Bilder",
-   "fr": "tableau",
-   "en": "picture",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -251,15 +292,18 @@ window.SCENE = {
      11,
      5.7
     ]
-   ]
+   ],
+   "fr": "tableau",
+   "en": "picture",
+   "tr": "resim",
+   "uk": "картина",
+   "fa": "تابلو، عکس"
   },
   {
    "id": "lampe",
    "mot": "Lampe",
    "genre": "die",
    "pluriel": "Lampen",
-   "fr": "lampe",
-   "en": "lamp",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -273,15 +317,18 @@ window.SCENE = {
      7,
      6.5
     ]
-   ]
+   ],
+   "fr": "lampe",
+   "en": "lamp",
+   "tr": "lamba",
+   "uk": "лампа",
+   "fa": "چراغ"
   },
   {
    "id": "fenster",
    "mot": "Fenster",
    "genre": "das",
    "pluriel": "Fenster",
-   "fr": "fenêtre",
-   "en": "window",
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
@@ -295,15 +342,18 @@ window.SCENE = {
      15,
      25
     ]
-   ]
+   ],
+   "fr": "fenêtre",
+   "en": "window",
+   "tr": "pencere",
+   "uk": "вікно",
+   "fa": "پنجره"
   },
   {
    "id": "regal",
    "mot": "Regal",
    "genre": "das",
    "pluriel": "Regale",
-   "fr": "étagère",
-   "en": "shelf",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -317,15 +367,18 @@ window.SCENE = {
      8,
      8
     ]
-   ]
+   ],
+   "fr": "étagère",
+   "en": "shelf",
+   "tr": "raf",
+   "uk": "полиця",
+   "fa": "قفسه"
   },
   {
    "id": "pflanze",
    "mot": "Pflanze",
    "genre": "die",
    "pluriel": "Pflanzen",
-   "fr": "la plante",
-   "en": "plant",
    "niveau": "A1",
    "theme": "natur_a1",
    "personne": null,
@@ -339,15 +392,18 @@ window.SCENE = {
      11.5,
      5.6
     ]
-   ]
+   ],
+   "fr": "la plante",
+   "en": "plant",
+   "tr": "bitki",
+   "uk": "рослина",
+   "fa": "گیاه"
   },
   {
    "id": "mark",
    "mot": "Teilnehmer",
    "genre": "der",
    "pluriel": "Teilnehmer",
-   "fr": "participant",
-   "en": "participant",
    "niveau": "B1",
    "theme": "schule_b1",
    "personne": "Mark",
@@ -355,26 +411,42 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
+     "niveau": "A1",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "en": "man, husband",
+     "tr": "adam / koca",
+     "uk": "чоловік",
+     "fa": "مرد، شوهر"
     },
     {
      "mot": "Pullover",
      "genre": "der",
+     "niveau": "A1",
      "fr": "pull",
-     "niveau": "A1"
+     "en": "sweater",
+     "tr": "kazak",
+     "uk": "светр",
+     "fa": "پلیور"
     },
     {
      "mot": "Student",
      "genre": "der",
+     "niveau": "A1",
      "fr": "étudiant",
-     "niveau": "A1"
+     "en": "student",
+     "tr": "üniversite öğrencisi",
+     "uk": "студент",
+     "fa": "دانشجو"
     },
     {
      "mot": "Stift",
      "genre": "der",
+     "niveau": "A1",
      "fr": "stylo",
-     "niveau": "A1"
+     "en": "pen",
+     "tr": "kalem",
+     "uk": "ручка",
+     "fa": "خودکار"
     }
    ],
    "sur": null,
@@ -398,15 +470,18 @@ window.SCENE = {
      15,
      3
     ]
-   ]
+   ],
+   "fr": "participant",
+   "en": "participant",
+   "tr": "katılımcı",
+   "uk": "учасник",
+   "fa": "شرکت‌کننده (مرد)"
   },
   {
    "id": "pullover",
    "mot": "Pullover",
    "genre": "der",
    "pluriel": "Pullover",
-   "fr": "pull",
-   "en": "sweater",
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
@@ -420,15 +495,18 @@ window.SCENE = {
      18,
      7
     ]
-   ]
+   ],
+   "fr": "pull",
+   "en": "sweater",
+   "tr": "kazak",
+   "uk": "светр",
+   "fa": "پلیور"
   },
   {
    "id": "anna",
    "mot": "Teilnehmerin",
    "genre": "die",
    "pluriel": "Teilnehmerinnen",
-   "fr": "participante",
-   "en": "participant (female)",
    "niveau": "B1",
    "theme": "schule_b1",
    "personne": "Anna",
@@ -436,32 +514,52 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
+     "niveau": "A1",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "en": "woman, wife",
+     "tr": "kadın / eş",
+     "uk": "жінка, дружина",
+     "fa": "زن، همسر"
     },
     {
      "mot": "Pullover",
      "genre": "der",
+     "niveau": "A1",
      "fr": "pull",
-     "niveau": "A1"
+     "en": "sweater",
+     "tr": "kazak",
+     "uk": "светр",
+     "fa": "پلیور"
     },
     {
      "mot": "Rock",
      "genre": "der",
+     "niveau": "A1",
      "fr": "jupe",
-     "niveau": "A1"
+     "en": "skirt",
+     "tr": "etek",
+     "uk": "спідниця",
+     "fa": "دامن"
     },
     {
      "mot": "Stift",
      "genre": "der",
+     "niveau": "A1",
      "fr": "stylo",
-     "niveau": "A1"
+     "en": "pen",
+     "tr": "kalem",
+     "uk": "ручка",
+     "fa": "خودکار"
     },
     {
      "mot": "Studentin",
      "genre": "die",
+     "niveau": "A2",
      "fr": "étudiante",
-     "niveau": "A2"
+     "en": "student (female)",
+     "tr": "kız öğrenci",
+     "uk": "студентка",
+     "fa": "دانشجو (زن)"
     }
    ],
    "sur": null,
@@ -485,15 +583,18 @@ window.SCENE = {
      5,
      3.5
     ]
-   ]
+   ],
+   "fr": "participante",
+   "en": "participant (female)",
+   "tr": "katılımcı (kadın)",
+   "uk": "учасниця",
+   "fa": "شرکت‌کننده (زن)"
   },
   {
    "id": "rock",
    "mot": "Rock",
    "genre": "der",
    "pluriel": "Röcke",
-   "fr": "jupe",
-   "en": "skirt",
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
@@ -507,15 +608,18 @@ window.SCENE = {
      23,
      8.8
     ]
-   ]
+   ],
+   "fr": "jupe",
+   "en": "skirt",
+   "tr": "etek",
+   "uk": "спідниця",
+   "fa": "دامن"
   },
   {
    "id": "heft",
    "mot": "Heft",
    "genre": "das",
    "pluriel": "Hefte",
-   "fr": "cahier",
-   "en": "notebook",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -529,15 +633,18 @@ window.SCENE = {
      16.5,
      2.6
     ]
-   ]
+   ],
+   "fr": "cahier",
+   "en": "notebook",
+   "tr": "defter",
+   "uk": "зошит",
+   "fa": "دفتر"
   },
   {
    "id": "heft-mark",
    "mot": "Heft",
    "genre": "das",
    "pluriel": "Hefte",
-   "fr": "cahier",
-   "en": "notebook",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -551,15 +658,18 @@ window.SCENE = {
      9.6,
      1.8
     ]
-   ]
+   ],
+   "fr": "cahier",
+   "en": "notebook",
+   "tr": "defter",
+   "uk": "зошит",
+   "fa": "دفتر"
   },
   {
    "id": "heft-noir",
    "mot": "Heft",
    "genre": "das",
    "pluriel": "Hefte",
-   "fr": "cahier",
-   "en": "notebook",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -573,15 +683,18 @@ window.SCENE = {
      8.8,
      1.7
     ]
-   ]
+   ],
+   "fr": "cahier",
+   "en": "notebook",
+   "tr": "defter",
+   "uk": "зошит",
+   "fa": "دفتر"
   },
   {
    "id": "heft-studentin",
    "mot": "Heft",
    "genre": "das",
    "pluriel": "Hefte",
-   "fr": "cahier",
-   "en": "notebook",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -595,15 +708,18 @@ window.SCENE = {
      8.8,
      1.9
     ]
-   ]
+   ],
+   "fr": "cahier",
+   "en": "notebook",
+   "tr": "defter",
+   "uk": "зошит",
+   "fa": "دفتر"
   },
   {
    "id": "stift",
    "mot": "Stift",
    "genre": "der",
    "pluriel": "Stifte",
-   "fr": "stylo",
-   "en": "pen",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -617,15 +733,18 @@ window.SCENE = {
      3.4,
      2.8
     ]
-   ]
+   ],
+   "fr": "stylo",
+   "en": "pen",
+   "tr": "kalem",
+   "uk": "ручка",
+   "fa": "خودکار"
   },
   {
    "id": "stift-mark",
    "mot": "Stift",
    "genre": "der",
    "pluriel": "Stifte",
-   "fr": "stylo",
-   "en": "pen",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -639,15 +758,18 @@ window.SCENE = {
      2.9,
      2.0
     ]
-   ]
+   ],
+   "fr": "stylo",
+   "en": "pen",
+   "tr": "kalem",
+   "uk": "ручка",
+   "fa": "خودکار"
   },
   {
    "id": "stift-noir",
    "mot": "Stift",
    "genre": "der",
    "pluriel": "Stifte",
-   "fr": "stylo",
-   "en": "pen",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -661,15 +783,18 @@ window.SCENE = {
      3.4,
      1.0
     ]
-   ]
+   ],
+   "fr": "stylo",
+   "en": "pen",
+   "tr": "kalem",
+   "uk": "ручка",
+   "fa": "خودکار"
   },
   {
    "id": "stift-studentin",
    "mot": "Stift",
    "genre": "der",
    "pluriel": "Stifte",
-   "fr": "stylo",
-   "en": "pen",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -683,15 +808,18 @@ window.SCENE = {
      2.1,
      1.6
     ]
-   ]
+   ],
+   "fr": "stylo",
+   "en": "pen",
+   "tr": "kalem",
+   "uk": "ручка",
+   "fa": "خودکار"
   },
   {
    "id": "stift-bureau",
    "mot": "Stift",
    "genre": "der",
    "pluriel": "Stifte",
-   "fr": "stylo",
-   "en": "pen",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -705,15 +833,18 @@ window.SCENE = {
      7.3,
      1.4
     ]
-   ]
+   ],
+   "fr": "stylo",
+   "en": "pen",
+   "tr": "kalem",
+   "uk": "ручка",
+   "fa": "خودکار"
   },
   {
    "id": "heft-bureau",
    "mot": "Heft",
    "genre": "das",
    "pluriel": "Hefte",
-   "fr": "cahier",
-   "en": "notebook",
    "niveau": "A1",
    "theme": "schule_a1",
    "personne": null,
@@ -727,15 +858,18 @@ window.SCENE = {
      10.2,
      2.6
     ]
-   ]
+   ],
+   "fr": "cahier",
+   "en": "notebook",
+   "tr": "defter",
+   "uk": "зошит",
+   "fa": "دفتر"
   },
   {
    "id": "tisch",
    "mot": "Tisch",
    "genre": "der",
    "pluriel": "Tische",
-   "fr": "table",
-   "en": "table",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -749,15 +883,18 @@ window.SCENE = {
      50,
      6.3
     ]
-   ]
+   ],
+   "fr": "table",
+   "en": "table",
+   "tr": "masa",
+   "uk": "стіл",
+   "fa": "میز"
   },
   {
    "id": "stuhl",
    "mot": "Stuhl",
    "genre": "der",
    "pluriel": "Stühle",
-   "fr": "chaise",
-   "en": "chair",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -771,15 +908,18 @@ window.SCENE = {
      5.6,
      17.5
     ]
-   ]
+   ],
+   "fr": "chaise",
+   "en": "chair",
+   "tr": "sandalye",
+   "uk": "стілець",
+   "fa": "صندلی"
   },
   {
    "id": "stuhl-bureau",
    "mot": "Stuhl",
    "genre": "der",
    "pluriel": "Stühle",
-   "fr": "chaise",
-   "en": "chair",
    "niveau": "A1",
    "theme": "moebel_haushalt_a1",
    "personne": null,
@@ -793,15 +933,18 @@ window.SCENE = {
      11,
      23.5
     ]
-   ]
+   ],
+   "fr": "chaise",
+   "en": "chair",
+   "tr": "sandalye",
+   "uk": "стілець",
+   "fa": "صندلی"
   },
   {
    "id": "rucksack",
    "mot": "Rucksack",
    "genre": "der",
    "pluriel": "Rucksäcke",
-   "fr": "sac à dos",
-   "en": "backpack",
    "niveau": "A1",
    "theme": "reisen_urlaub_a1",
    "personne": null,
@@ -815,15 +958,18 @@ window.SCENE = {
      15.9,
      12.6
     ]
-   ]
+   ],
+   "fr": "sac à dos",
+   "en": "backpack",
+   "tr": "sırt çantası",
+   "uk": "рюкзак",
+   "fa": "کوله‌پشتی"
   },
   {
    "id": "mann",
    "mot": "Mann",
    "genre": "der",
    "pluriel": "Männer",
-   "fr": "homme/mari",
-   "en": "man, husband",
    "niveau": "A1",
    "theme": "familie_a1",
    "personne": null,
@@ -831,26 +977,42 @@ window.SCENE = {
     {
      "mot": "Teilnehmer",
      "genre": "der",
+     "niveau": "B1",
      "fr": "participant",
-     "niveau": "B1"
+     "en": "participant",
+     "tr": "katılımcı",
+     "uk": "учасник",
+     "fa": "شرکت‌کننده (مرد)"
     },
     {
      "mot": "Bart",
      "genre": "der",
+     "niveau": "B1",
      "fr": "barbe",
-     "niveau": "B1"
+     "en": "beard",
+     "tr": "sakal",
+     "uk": "борода",
+     "fa": "ریش"
     },
     {
      "mot": "Hemd",
      "genre": "das",
+     "niveau": "A1",
      "fr": "chemise",
-     "niveau": "A1"
+     "en": "shirt",
+     "tr": "gömlek",
+     "uk": "сорочка",
+     "fa": "پیراهن"
     },
     {
      "mot": "Student",
      "genre": "der",
+     "niveau": "A1",
      "fr": "étudiant",
-     "niveau": "A1"
+     "en": "student",
+     "tr": "üniversite öğrencisi",
+     "uk": "студент",
+     "fa": "دانشجو"
     }
    ],
    "sur": null,
@@ -868,15 +1030,18 @@ window.SCENE = {
      3.5,
      4.5
     ]
-   ]
+   ],
+   "fr": "homme/mari",
+   "en": "man, husband",
+   "tr": "adam / koca",
+   "uk": "чоловік",
+   "fa": "مرد، شوهر"
   },
   {
    "id": "studentin",
    "mot": "Studentin",
    "genre": "die",
    "pluriel": "Studentinnen",
-   "fr": "étudiante",
-   "en": "student (female)",
    "niveau": "A2",
    "theme": "universitaet_a2",
    "personne": null,
@@ -884,20 +1049,32 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
+     "niveau": "A1",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "en": "woman, wife",
+     "tr": "kadın / eş",
+     "uk": "жінка, дружина",
+     "fa": "زن، همسر"
     },
     {
      "mot": "Teilnehmerin",
      "genre": "die",
+     "niveau": "B1",
      "fr": "participante",
-     "niveau": "B1"
+     "en": "participant (female)",
+     "tr": "katılımcı (kadın)",
+     "uk": "учасниця",
+     "fa": "شرکت‌کننده (زن)"
     },
     {
      "mot": "Pullover",
      "genre": "der",
+     "niveau": "A1",
      "fr": "pull",
-     "niveau": "A1"
+     "en": "sweater",
+     "tr": "kazak",
+     "uk": "светр",
+     "fa": "پلیور"
     }
    ],
    "sur": null,
@@ -909,15 +1086,18 @@ window.SCENE = {
      12.5,
      10.1
     ]
-   ]
+   ],
+   "fr": "étudiante",
+   "en": "student (female)",
+   "tr": "kız öğrenci",
+   "uk": "студентка",
+   "fa": "دانشجو (زن)"
   },
   {
    "id": "frau",
    "mot": "Frau",
    "genre": "die",
    "pluriel": "Frauen",
-   "fr": "femme/épouse",
-   "en": "woman, wife",
    "niveau": "A1",
    "theme": "familie_a1",
    "personne": null,
@@ -925,26 +1105,42 @@ window.SCENE = {
     {
      "mot": "Teilnehmerin",
      "genre": "die",
+     "niveau": "B1",
      "fr": "participante",
-     "niveau": "B1"
+     "en": "participant (female)",
+     "tr": "katılımcı (kadın)",
+     "uk": "учасниця",
+     "fa": "شرکت‌کننده (زن)"
     },
     {
      "mot": "Brille",
      "genre": "die",
+     "niveau": "A2",
      "fr": "lunettes",
-     "niveau": "A2"
+     "en": "glasses",
+     "tr": "gözlük",
+     "uk": "окуляри",
+     "fa": "عینک"
     },
     {
      "mot": "Kleid",
      "genre": "das",
+     "niveau": "A1",
      "fr": "robe",
-     "niveau": "A1"
+     "en": "dress",
+     "tr": "elbise",
+     "uk": "сукня",
+     "fa": "پیراهن زنانه"
     },
     {
      "mot": "Studentin",
      "genre": "die",
+     "niveau": "A2",
      "fr": "étudiante",
-     "niveau": "A2"
+     "en": "student (female)",
+     "tr": "kız öğrenci",
+     "uk": "студентка",
+     "fa": "دانشجو (زن)"
     }
    ],
    "sur": null,
@@ -956,15 +1152,18 @@ window.SCENE = {
      19.5,
      46
     ]
-   ]
+   ],
+   "fr": "femme/épouse",
+   "en": "woman, wife",
+   "tr": "kadın / eş",
+   "uk": "жінка, дружина",
+   "fa": "زن، همسر"
   },
   {
    "id": "brille-frau",
    "mot": "Brille",
    "genre": "die",
    "pluriel": "Brillen",
-   "fr": "lunettes",
-   "en": "glasses",
    "niveau": "A2",
    "theme": "kleidung_a2",
    "personne": null,
@@ -978,15 +1177,18 @@ window.SCENE = {
      5,
      2.4
     ]
-   ]
+   ],
+   "fr": "lunettes",
+   "en": "glasses",
+   "tr": "gözlük",
+   "uk": "окуляри",
+   "fa": "عینک"
   },
   {
    "id": "kleid",
    "mot": "Kleid",
    "genre": "das",
    "pluriel": "Kleider",
-   "fr": "robe",
-   "en": "dress",
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
@@ -1000,15 +1202,18 @@ window.SCENE = {
      18.5,
      33
     ]
-   ]
+   ],
+   "fr": "robe",
+   "en": "dress",
+   "tr": "elbise",
+   "uk": "сукня",
+   "fa": "پیراهن زنانه"
   },
   {
    "id": "schuhe",
    "mot": "Schuh",
    "genre": "der",
    "pluriel": "Schuhe",
-   "fr": "chaussure",
-   "en": "shoe",
    "niveau": "A1",
    "theme": "kleidung_a1",
    "personne": null,
@@ -1022,15 +1227,18 @@ window.SCENE = {
      19.5,
      6.9
     ]
-   ]
+   ],
+   "fr": "chaussure",
+   "en": "shoe",
+   "tr": "ayakkabı",
+   "uk": "черевик",
+   "fa": "کفش"
   },
   {
    "id": "laptop",
    "mot": "Laptop",
    "genre": "der",
    "pluriel": "Laptops",
-   "fr": "ordinateur portable",
-   "en": "laptop",
    "niveau": "B1",
    "theme": "medien_technologie_b1",
    "personne": null,
@@ -1044,15 +1252,18 @@ window.SCENE = {
      27,
      12.6
     ]
-   ]
+   ],
+   "fr": "ordinateur portable",
+   "en": "laptop",
+   "tr": "dizüstü bilgisayar",
+   "uk": "ноутбук",
+   "fa": "لپ‌تاپ"
   },
   {
    "id": "handy",
    "mot": "Handy",
    "genre": "das",
    "pluriel": "Handys",
-   "fr": "téléphone portable",
-   "en": "cell phone",
    "niveau": "A1",
    "theme": "medien_technologie_a1",
    "personne": null,
@@ -1066,15 +1277,18 @@ window.SCENE = {
      12.5,
      3.4
     ]
-   ]
+   ],
+   "fr": "téléphone portable",
+   "en": "cell phone",
+   "tr": "cep telefonu",
+   "uk": "мобільник",
+   "fa": "تلفن همراه"
   },
   {
    "id": "tasse",
    "mot": "Tasse",
    "genre": "die",
    "pluriel": "Tassen",
-   "fr": "tasse",
-   "en": "cup",
    "niveau": "A1",
    "theme": "kueche_kochen_a1",
    "personne": null,
@@ -1088,15 +1302,18 @@ window.SCENE = {
      6.2,
      4.8
     ]
-   ]
+   ],
+   "fr": "tasse",
+   "en": "cup",
+   "tr": "fincan",
+   "uk": "чашка",
+   "fa": "فنجان"
   },
   {
    "id": "kabel",
    "mot": "Kabel",
    "genre": "das",
    "pluriel": "Kabel",
-   "fr": "câble",
-   "en": "cable",
    "niveau": "B1",
    "theme": "medien_technologie_b1",
    "personne": null,
@@ -1110,15 +1327,18 @@ window.SCENE = {
      10,
      13
     ]
-   ]
+   ],
+   "fr": "câble",
+   "en": "cable",
+   "tr": "kablo",
+   "uk": "кабель",
+   "fa": "کابل"
   },
   {
    "id": "schreibtisch",
    "mot": "Schreibtisch",
    "genre": "der",
    "pluriel": "Schreibtische",
-   "fr": "bureau (meuble)",
-   "en": "desk",
    "niveau": "B1",
    "theme": "moebel_haushalt_b1",
    "personne": null,
@@ -1132,15 +1352,18 @@ window.SCENE = {
      53.5,
      22
     ]
-   ]
+   ],
+   "fr": "bureau (meuble)",
+   "en": "desk",
+   "tr": "çalışma masası",
+   "uk": "письмовий стіл",
+   "fa": "میز کار"
   },
   {
    "id": "wand",
    "mot": "Wand",
    "genre": "die",
    "pluriel": "Wände",
-   "fr": "mur",
-   "en": "wall",
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
@@ -1154,7 +1377,12 @@ window.SCENE = {
      34,
      20
     ]
-   ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار"
   }
  ],
  "grosPlans": [
@@ -1525,6 +1753,213 @@ window.SCENE = {
      "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
     }
    ]
+  }
+ },
+ "traductions": {
+  "en": {
+   "champs": {
+    "alt": "An evening Spanish class in Berlin: the teacher in front of the board, Mark and Anna sitting side by side, three other students.",
+    "consigne": "Tap an object or a person. Tap the teacher's face to see his glasses and beard up close."
+   },
+   "couches": {
+    "A1": "Nouns and articles",
+    "A2": "Wo? — prepositions",
+    "B1": "stehen / stellen, liegen / legen",
+    "B2": "Relative clauses and the state passive",
+    "C1": "Hypotheses"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → dative: der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> → dative: die Tafel → über <b>der</b> Tafel.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> → dative: das Regal → auf <b>dem</b> Regal.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> → dative: die Tür → an <b>der</b> Tür.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = in front of. Dative: vor <b>der</b> Tafel.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = next to. der Laptop → neben <b>dem</b> Laptop.",
+    "A2 | Anna sitzt neben Mark.": "With a first name, no article: neben Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = between, and both nouns in the dative: <b>der</b> Tür, <b>dem</b> Fenster.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = to stand, a state (Wo?). <b>stellen</b> = to put upright, a movement (Wohin?).",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "A movement (Wohin?): <b>stellen</b> + accusative — unter <b>den</b> Tisch.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = to lie flat (state). <b>legen</b> = to lay flat (movement).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Movement: <b>legen</b> → gelegt, and the accusative: auf <b>den</b> Schreibtisch.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = to be sitting. <b>sich setzen</b> = to sit down.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> has two participles: someone <i>hung</i> it up → gehängt; it <i>was hanging</i> → gehangen.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> → accusative: an <b>die</b> Tür. (Wo? → an der Tür.)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "The state: <b>hängen</b> + dative — an <b>der</b> Tür.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Subject of the relative clause, feminine → <b>die</b>.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Subject, masculine → <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Possession, masculine antecedent → <b>dessen</b> (whose glasses).",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Possession, feminine antecedent → <b>deren</b>.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Preposition + dative (Wo?), masculine → unter <b>dem</b>.",
+    "B2 | Die Tafel ist schon gewischt.": "State passive: sein + participle. You can see the result — it is clean.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + infinitive = almost certain. They are both smiling, surprised.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = one possibility among others. She is still standing…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = probable, without being sure.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = people say so; I'm passing it on without vouching for it."
+   }
+  },
+  "tr": {
+   "champs": {
+    "alt": "Berlin'de akşam İspanyolca kursu: öğretmen tahtanın önünde, Mark ile Anna yan yana oturuyor, üç öğrenci daha var.",
+    "consigne": "Bir nesneye ya da bir kişiye dokun. Gözlüğünü ve sakalını yakından görmek için öğretmenin yüzüne dokun."
+   },
+   "couches": {
+    "A1": "İsimler ve artikeller",
+    "A2": "Wo? — edatlar",
+    "B1": "stehen / stellen, liegen / legen",
+    "B2": "İlgi cümleleri ve durum edilgeni",
+    "C1": "Varsayımlar"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → Dativ: der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> → Dativ: die Tafel → über <b>der</b> Tafel.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> → Dativ: das Regal → auf <b>dem</b> Regal.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> → Dativ: die Tür → an <b>der</b> Tür.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = önünde. Dativ: vor <b>der</b> Tafel.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = yanında. der Laptop → neben <b>dem</b> Laptop.",
+    "A2 | Anna sitzt neben Mark.": "Kişi adıyla artikel kullanılmaz: neben Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = arasında; iki isim de Dativ'de: <b>der</b> Tür, <b>dem</b> Fenster.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = dik durmak, bir durum (Wo?). <b>stellen</b> = dik koymak, bir hareket (Wohin?).",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Bir hareket (Wohin?): <b>stellen</b> + Akkusativ — unter <b>den</b> Tisch.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = yatay durmak (durum). <b>legen</b> = yatırarak koymak (hareket).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Hareket: <b>legen</b> → gelegt, ve Akkusativ: auf <b>den</b> Schreibtisch.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = oturuyor olmak. <b>sich setzen</b> = oturmak (oturma hareketi).",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> fiilinin iki Partizip'i var: biri onu <i>astı</i> → gehängt; o <i>asılıydı</i> → gehangen.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> → Akkusativ: an <b>die</b> Tür. (Wo? → an der Tür.)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "Durum: <b>hängen</b> + Dativ — an <b>der</b> Tür.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "İlgi cümlesinin öznesi, dişil → <b>die</b>.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Özne, eril → <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "İyelik, önceki isim eril → <b>dessen</b> (gözlüğü).",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "İyelik, önceki isim dişil → <b>deren</b>.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Edat + Dativ (Wo?), eril → unter <b>dem</b>.",
+    "B2 | Die Tafel ist schon gewischt.": "Durum edilgeni: sein + Partizip II. Sonuç görülüyor — tahta temiz.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + mastar = neredeyse kesin. İkisi de şaşkın şaşkın gülümsüyor.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = birçok olasılıktan biri. Kadın hâlâ ayakta…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = öyle söyleniyor; aktarıyorum ama garanti etmiyorum."
+   }
+  },
+  "uk": {
+   "champs": {
+    "alt": "Вечірній курс іспанської в Берліні: викладач перед дошкою, Марк і Анна сидять поруч, ще троє учнів.",
+    "consigne": "Торкнися предмета або людини. Торкнися обличчя викладача, щоб роздивитися зблизька його окуляри й бороду."
+   },
+   "couches": {
+    "A1": "Іменники й артиклі",
+    "A2": "Wo? — прийменники",
+    "B1": "stehen / stellen, liegen / legen",
+    "B2": "Відносні речення й пасив стану",
+    "C1": "Припущення"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → Dativ: der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> → Dativ: die Tafel → über <b>der</b> Tafel.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> → Dativ: das Regal → auf <b>dem</b> Regal.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> → Dativ: die Tür → an <b>der</b> Tür.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = перед. Dativ: vor <b>der</b> Tafel.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = поруч із. der Laptop → neben <b>dem</b> Laptop.",
+    "A2 | Anna sitzt neben Mark.": "З ім'ям артикля немає: neben Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = між, і обидва іменники в Dativ: <b>der</b> Tür, <b>dem</b> Fenster.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = стояти, стан (Wo?). <b>stellen</b> = ставити, рух (Wohin?).",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Рух (Wohin?): <b>stellen</b> + Akkusativ — unter <b>den</b> Tisch.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = лежати (стан). <b>legen</b> = класти (рух).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Рух: <b>legen</b> → gelegt, і Akkusativ: auf <b>den</b> Schreibtisch.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = сидіти. <b>sich setzen</b> = сідати.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> має два Partizip II: хтось її <i>повісив</i> → gehängt; вона <i>висіла</i> → gehangen.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> → Akkusativ: an <b>die</b> Tür. (Wo? → an der Tür.)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "Стан: <b>hängen</b> + Dativ — an <b>der</b> Tür.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Підмет відносного речення, жіночий рід → <b>die</b>.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Підмет, чоловічий рід → <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Присвійність, попередник чоловічого роду → <b>dessen</b> (чиї окуляри).",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Присвійність, попередник жіночого роду → <b>deren</b>.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Прийменник + Dativ (Wo?), чоловічий рід → unter <b>dem</b>.",
+    "B2 | Die Tafel ist schon gewischt.": "Пасив стану: sein + Partizip II. Результат видно — дошка чиста.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + інфінітив = майже напевно. Обоє усміхаються, здивовані.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = одна можливість серед інших. Вона ще стоїть…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = імовірно, але без певності.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = так кажуть; я переказую, але не ручаюся."
+   }
+  },
+  "fa": {
+   "champs": {
+    "alt": "یک کلاس شبانهٔ اسپانیایی در برلین: استاد جلوی تخته است، مارک و آنا کنار هم نشسته‌اند، و سه شاگرد دیگر هم هستند.",
+    "consigne": "روی یک شیء یا یک نفر بزن. روی صورت استاد بزن تا عینک و ریشش را از نزدیک ببینی."
+   },
+   "couches": {
+    "A1": "اسم‌ها و حرف‌های تعریف",
+    "A2": "<span lang=\"de\">Wo?</span> — حرف‌های اضافه",
+    "B1": "<span lang=\"de\">stehen / stellen, liegen / legen</span>",
+    "B2": "جمله‌های موصولی و مجهولِ حالت",
+    "C1": "فرض‌ها و گمان‌ها"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">der Tisch → unter <b>dem</b> Tisch</span>.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">die Tafel → über <b>der</b> Tafel</span>.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">das Regal → auf <b>dem</b> Regal</span>.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">die Tür → an <b>der</b> Tür</span>.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = جلوی. Dativ: <span lang=\"de\">vor <b>der</b> Tafel</span>.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = کنارِ. <span lang=\"de\">der Laptop → neben <b>dem</b> Laptop</span>.",
+    "A2 | Anna sitzt neben Mark.": "با نام کوچک، حرف تعریف نمی‌آید: <span lang=\"de\">neben Mark</span>.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = میانِ، و هر دو اسم در Dativ: <span lang=\"de\"><b>der</b> Tür</span>، <span lang=\"de\"><b>dem</b> Fenster</span>.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = ایستاده بودن، یک حالت (<span lang=\"de\">Wo?</span>). <b>stellen</b> = ایستاده گذاشتن، یک حرکت (<span lang=\"de\">Wohin?</span>).",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "یک حرکت (<span lang=\"de\">Wohin?</span>): <b>stellen</b> + Akkusativ — <span lang=\"de\">unter <b>den</b> Tisch</span>.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = افقی قرار داشتن (حالت). <b>legen</b> = افقی گذاشتن (حرکت).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "حرکت: <b>legen</b> ← <span lang=\"de\">gelegt</span>، و Akkusativ: <span lang=\"de\">auf <b>den</b> Schreibtisch</span>.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = نشسته بودن. <b>sich setzen</b> = نشستن.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> دو Partizip دارد: کسی آن را <i>آویخت</i> ← <span lang=\"de\">gehängt</span>؛ آویزان <i>بود</i> ← <span lang=\"de\">gehangen</span>.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> ← Akkusativ: <span lang=\"de\">an <b>die</b> Tür</span>. (<span lang=\"de\">Wo? → an der Tür</span>)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "حالت: <b>hängen</b> + Dativ — <span lang=\"de\">an <b>der</b> Tür</span>.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "فاعلِ جملهٔ موصولی، مؤنث ← <b>die</b>.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "فاعل، مذکر ← <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "مالکیت، مرجعِ مذکر ← <b>dessen</b> (که عینکش).",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "مالکیت، مرجعِ مؤنث ← <b>deren</b>.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "حرف اضافه + Dativ (<span lang=\"de\">Wo?</span>)، مذکر ← <span lang=\"de\">unter <b>dem</b></span>.",
+    "B2 | Die Tafel ist schon gewischt.": "مجهولِ حالت: <span lang=\"de\">sein</span> + Partizip II. نتیجه دیده می‌شود — تخته پاک است.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + مصدر = تقریباً قطعی. هر دو شگفت‌زده لبخند می‌زنند.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر. او هنوز ایستاده است…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = این‌طور می‌گویند؛ نقلش می‌کنم بی‌آنکه ضمانتش کنم."
+   }
+  },
+  "ar": {
+   "champs": {
+    "alt": "درس مسائي للغة الإسبانية في برلين: المعلّم أمام اللوح، ومارك وآنا جالسان جنبًا إلى جنب، وثلاثة طلاب آخرون.",
+    "consigne": "المس شيئًا أو شخصًا. المس وجه المعلّم لترى نظارته ولحيته عن قرب."
+   },
+   "couches": {
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "<span lang=\"de\">Wo?</span> — حروف الجر",
+    "B1": "<span lang=\"de\">stehen / stellen, liegen / legen</span>",
+    "B2": "الجمل الموصولة ومجهول الحالة",
+    "C1": "الافتراضات"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">der Tisch → unter <b>dem</b> Tisch</span>.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">die Tafel → über <b>der</b> Tafel</span>.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">das Regal → auf <b>dem</b> Regal</span>.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">die Tür → an <b>der</b> Tür</span>.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = أمام. Dativ: <span lang=\"de\">vor <b>der</b> Tafel</span>.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = بجانب. <span lang=\"de\">der Laptop → neben <b>dem</b> Laptop</span>.",
+    "A2 | Anna sitzt neben Mark.": "مع اسم العَلَم لا أداة تعريف: <span lang=\"de\">neben Mark</span>.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = بين، والاسمان كلاهما في Dativ: <span lang=\"de\"><b>der</b> Tür</span>، <span lang=\"de\"><b>dem</b> Fenster</span>.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = يقف، وهي حالة (<span lang=\"de\">Wo?</span>). <b>stellen</b> = يضع الشيء واقفًا، وهي حركة (<span lang=\"de\">Wohin?</span>).",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "حركة (<span lang=\"de\">Wohin?</span>): <b>stellen</b> + Akkusativ — <span lang=\"de\">unter <b>den</b> Tisch</span>.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = يكون موضوعًا أفقيًا (حالة). <b>legen</b> = يضع الشيء أفقيًا (حركة).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "حركة: <b>legen</b> ← <span lang=\"de\">gelegt</span>، مع Akkusativ: <span lang=\"de\">auf <b>den</b> Schreibtisch</span>.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = يكون جالسًا. <b>sich setzen</b> = يجلس.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "للفعل <b>hängen</b> صيغتا Partizip: أحدهم <i>علّقها</i> ← <span lang=\"de\">gehängt</span>؛ كانت <i>معلّقة</i> ← <span lang=\"de\">gehangen</span>.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> ← Akkusativ: <span lang=\"de\">an <b>die</b> Tür</span>. (<span lang=\"de\">Wo? → an der Tür</span>)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "الحالة: <b>hängen</b> + Dativ — <span lang=\"de\">an <b>der</b> Tür</span>.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "فاعل الجملة الموصولة، مؤنث ← <b>die</b>.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "فاعل، مذكر ← <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "ملكية، والاسم المرجعي مذكر ← <b>dessen</b> (الذي نظارته).",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "ملكية، والاسم المرجعي مؤنث ← <b>deren</b>.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "حرف جر + Dativ (<span lang=\"de\">Wo?</span>)، مذكر ← <span lang=\"de\">unter <b>dem</b></span>.",
+    "B2 | Die Tafel ist schon gewischt.": "مجهول الحالة: <span lang=\"de\">sein</span> + Partizip II. النتيجة ظاهرة — اللوح نظيف.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + المصدر = شبه مؤكد. كلاهما يبتسم مندهشًا.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى. ما زالت واقفة…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = مرجَّح، دون يقين.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = هكذا يُقال؛ أنقله دون أن أضمنه."
+   }
   }
  }
 };

@@ -77,7 +77,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    elles cachaient toujours quelque chose. Le panneau vit maintenant SOUS LA
    QUESTION, dans le bandeau du haut : meme place, et rien de l'image cache. */
 .haut .bas{position:static;padding:8px 0 0;align-items:stretch}
-.choix{border:0;border-radius:12px;padding:10px 12px;font:600 15px inherit;text-align:left;flex:1 1 auto;
+.choix{border:0;border-radius:12px;padding:10px 12px;font:600 15px inherit;text-align:start;flex:1 1 auto;
   background:rgba(251,247,239,.96);color:var(--encre);cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .choix.ok{background:#DCFCE7;outline:2px solid var(--ok)}
@@ -88,7 +88,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .explication b{color:var(--ambre)}
 .suite{border:0;border-radius:12px;padding:12px;font:700 16px inherit;background:var(--ambre);
   color:var(--encre);cursor:pointer}
-.score{font-size:13px;color:#fff;text-align:right;text-shadow:0 1px 3px #000}
+.score{font-size:13px;color:#fff;text-align:end;text-shadow:0 1px 3px #000}
 
 /* le contour lumineux d'un objet : une toile a la resolution des masques,
    etiree sur la scene, avec un halo ambre */
@@ -164,15 +164,30 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .en-cadre .cadre{max-width:none}
 .en-cadre .scene{margin:0 auto}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
+
+/* DE DROITE A GAUCHE (fa, ar ; 10 oct. 2026). Comme l'app : dir="rtl" sur
+   <html> (appliquerLangue), et la mise en page suit par les proprietes
+   logiques (text-align:start/end). L'ALLEMAND reste de gauche a droite : tout
+   ce qui est allemand porte lang="de" (la question, les reponses, le mot et
+   son article) et s'isole du texte qui l'entoure ; les <b> des explications
+   sont de l'allemand aussi. Sans cet isolement, « unter dem Tisch. » dans une
+   phrase persane voit son point sauter a l'autre bout. */
+[lang=de]{unicode-bidi:isolate}
+[dir=rtl] [lang=de],[dir=rtl] .explication b{direction:ltr;unicode-bidi:isolate}
+/* Les compteurs « 2 / 3 » : sans strong, ils se liraient « 3 / 2 » en RTL. */
+.compte{direction:ltr;unicode-bidi:isolate}
+[dir=rtl] .score{direction:ltr;text-align:left}
+/* Le bouton du gros plan reste a gauche (place en px par placerFermer) ;
+   son texte, lui, suit la langue. */
 </style>
 </head>
 <body>
 <div class="cadre">
   <div class="haut">
     <div class="barre">
-      <a class="titre retour-choix" id="retourChoix" href="choix-seance.html" aria-label="Retour au choix de la séance">‹</a>
+      <a class="titre retour-choix" id="retourChoix" href="choix-seance.html">‹</a>
       <a class="titre retourner" id="retourner" hidden></a>
-      <div class="niveaux" id="niveaux" role="group" aria-label="Niveau"></div>
+      <div class="niveaux" id="niveaux" role="group"></div>
     </div>
     <div class="carte" id="carte"></div>
   </div>
@@ -182,8 +197,8 @@ html,body{margin:0;background:#11151b;color:var(--encre);
   </div>
 </div>
 <div class="pied">
-  <label><input type="checkbox" id="voirZones"> Montrer les zones à toucher (contrôle)</label>
-  Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.
+  <label><input type="checkbox" id="voirZones"> <span id="piedZones">Montrer les zones à toucher (contrôle)</span></label>
+  <span id="piedTexte">Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.</span>
 </div>
 
 <script>
@@ -226,17 +241,54 @@ const VUES = window.SCENES[NOM_SCENE].vues || [NOM_SCENE];
 let S = window.SCENES[VUE];
 window.MASQUES = window.MASQUES_DE[VUE];
 let P = Object.fromEntries(S.points.map(p => [p.id, p]));
-/* ---------- la langue de l'interface (preparee le 9 oct. 2026) ----------
-   ?lang=fr|en|tr|uk|fa|ar. Sans parametre : le francais, comme avant -- rien ne
-   change tant que l'app ne passe pas la langue de l'usager. Seule l'INTERFACE
-   est ici ; le contenu des scenes (consignes, titres des couches, explications
-   des questions) vit dans les points.json et reste en francais pour l'instant.
-   tr / uk / fa / ar : NON RELUS par un natif. La mise en page de droite a gauche
-   (fa, ar) n'est pas encore faite. */
+/* ---------- la langue de l'interface (9 oct. 2026) ----------
+   ?lang=fr|en|tr|uk|fa|ar, passe par l'app (getUiLang). Sans parametre : le
+   francais, comme avant. Une langue que la page ne connait pas : l'ANGLAIS,
+   comme l'app (langueDuTelephone) -- la langue seconde la plus probable de
+   quelqu'un qui apprend l'allemand.
+   L'interface est ici (TEXTES) ; le CONTENU des scenes (consignes, titres des
+   couches, explications) vient de traductions/<nom>.<langue>.json, fusionne
+   par construire.py dans S.traductions (traduireVue). Ce qui manque ou est
+   perime s'affiche en francais.
+   tr / uk / fa / ar : NON RELUS par un natif. */
 const LANGUE = (() => {
-  const l = (new URLSearchParams(location.search).get("lang") || "fr").slice(0, 2);
-  return ["fr", "en", "tr", "uk", "fa", "ar"].includes(l) ? l : "fr";
+  const brut = new URLSearchParams(location.search).get("lang");
+  if (!brut) return "fr";
+  const l = brut.toLowerCase().split(/[-_]/)[0];
+  if (l === "prs") return "fa";   // le dari s'ecrit comme le persan (app)
+  return ["fr", "en", "tr", "uk", "fa", "ar"].includes(l) ? l : "en";
 })();
+/* Le sens d'ecriture et la langue du document, comme appliquerLangueDocument()
+   dans l'app : lang decide des majuscules (le i turc), dir du sens. */
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+/* Le sens d'un mot du corpus, dans la langue de l'usager, avec le meme repli
+   que l'app (REPLI_LANGUE) : l'arabe n'a pas encore de traductions de mots,
+   il prend l'anglais. */
+const REPLI = {fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"], uk: ["uk", "en", "fr"],
+               fa: ["fa", "en", "fr"], ar: ["ar", "en", "fr"]}[LANGUE];
+const sensDe = m => { for (const l of REPLI) if (m && m[l]) return m[l]; return ""; };
+/* Le contenu d'une vue dans la langue de l'usager : une fois par vue, avant
+   que la page ne s'en serve. Les questions se reconnaissent a leur couche et
+   a leur phrase (construire.py, cle_question). */
+function traduireVue(s){
+  const tr = LANGUE !== "fr" && s.traductions && s.traductions[LANGUE];
+  if (!tr || s._traduite) return;
+  s._traduite = true;
+  const c = tr.champs || {};
+  if (c.alt) s.alt = c.alt;
+  if (c.consigne) s.consigne = c.consigne;
+  if (c.nom_vue) s.nom_vue = c.nom_vue;
+  if (c.autre_vue && s.autre_vue) s.autre_vue = Object.assign({}, s.autre_vue, {libelle: c.autre_vue});
+  for (const [niv, couche] of Object.entries(s.couches || {})){
+    if (tr.couches && tr.couches[niv]) couche.titre = tr.couches[niv];
+    for (const q of couche.qs || []){
+      const n = tr.questions && tr.questions[niv + " | " + q.phrase];
+      if (n) q.n = n;
+    }
+  }
+}
+for (const v of Object.keys(window.SCENES)) traduireVue(window.SCENES[v]);
 const TEXTES = {
   retour:      {fr: "‹ Retour", en: "‹ Back", tr: "‹ Geri", uk: "‹ Назад", fa: "‹ بازگشت", ar: "‹ رجوع"},
   decouvrir:   {fr: "Découvrir", en: "Explore", tr: "Keşfet", uk: "Досліджувати", fa: "کاوش", ar: "استكشف"},
@@ -259,7 +311,15 @@ const TEXTES = {
   termine:     {fr: "terminé", en: "finished", tr: "bitti", uk: "завершено", fa: "تمام شد", ar: "انتهى"},
   versCartes:  {fr: "Continuer avec mes cartes →", en: "Continue with my cards →", tr: "Kartlarımla devam et →", uk: "Продовжити з картками →", fa: "ادامه با کارت‌هایم ←", ar: "تابع مع بطاقاتي ←"},
   encore:      {fr: "Encore une fois", en: "Once more", tr: "Bir kez daha", uk: "Ще раз", fa: "یک بار دیگر", ar: "مرة أخرى"},
-  revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد"}
+  revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد"},
+  retourAria:  {fr: "Retour au choix de la séance", en: "Back to the session choice", tr: "Çalışma seçimine dön", uk: "Повернутися до вибору сеансу", fa: "بازگشت به انتخاب جلسه", ar: "العودة إلى اختيار الجلسة"},
+  niveau:      {fr: "Niveau", en: "Level", tr: "Seviye", uk: "Рівень", fa: "سطح", ar: "المستوى"},
+  grosPlan:    {fr: "Gros plan", en: "Close-up", tr: "Yakın plan", uk: "Крупний план", fa: "نمای نزدیک", ar: "لقطة مقرّبة"},
+  scene:       {fr: "Scène", en: "Scene", tr: "Sahne", uk: "Сцена", fa: "صحنه", ar: "مشهد"},
+  nomsArticles:{fr: "Noms et articles", en: "Nouns and articles", tr: "İsimler ve artikeller", uk: "Іменники й артиклі", fa: "اسم‌ها و حرف‌های تعریف", ar: "الأسماء وأدوات التعريف"},
+  pluriel:     {fr: "pl.", en: "pl.", tr: "çoğ.", uk: "мн.", fa: "جمع:", ar: "الجمع:"},
+  piedZones:   {fr: "Montrer les zones à toucher (contrôle)", en: "Show the tap zones (check)", tr: "Dokunma alanlarını göster (kontrol)", uk: "Показати зони дотику (перевірка)", fa: "نشان دادن ناحیه‌های لمسی (بررسی)", ar: "إظهار مناطق اللمس (للتحقق)"},
+  piedTexte:   {fr: "Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.", en: "Prototype — nothing is saved. Generated image (fal), browser voice.", tr: "Prototip — hiçbir şey kaydedilmez. Üretilmiş görsel (fal), tarayıcı sesi.", uk: "Прототип — нічого не зберігається. Згенероване зображення (fal), голос браузера.", fa: "نمونهٔ آزمایشی — چیزی ذخیره نمی‌شود. تصویر ساخته‌شده (fal)، صدای مرورگر.", ar: "نموذج تجريبي — لا يُحفظ شيء. صورة مولَّدة (fal)، صوت المتصفح."}
 };
 function T(cle, v){
   const e = TEXTES[cle] || {};
@@ -273,7 +333,13 @@ const scene = $("scene");
 document.querySelector(".haut").appendChild($("bas"));
 $("photo").src = S.image;
 $("photo").alt = S.alt || "";
-document.title = S.titre || "Scène";
+document.title = S.titre || T("scene");
+$("retourChoix").setAttribute("aria-label", T("retourAria"));
+$("niveaux").setAttribute("aria-label", T("niveau"));
+$("piedZones").textContent = T("piedZones");
+$("piedTexte").textContent = T("piedTexte");
+/* Un compteur « 2 / 3 » isole de gauche a droite (voir .compte). */
+const compte = (a, b) => `<span class="compte">${a} / ${b}</span>`;
 /* Dans la seance, ce lien RAMENE au choix scene / cartes : il dit « Retour »,
    comme les autres retours de l'app. « ‹ Beim Arzt » ressemblait a un titre
    et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
@@ -590,12 +656,12 @@ $("voirZones").addEventListener("change", e => {
 });
 function groupe(p){
   const art = p.genre || "";
-  return `<span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span>`;
+  return `<span lang="de"><span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span></span>`;
 }
 /* Tous les noms d'une zone, le principal d'abord. En « Trouve ! », l'etiquette
    montre le mot DEMANDE : on demande die Frau et on touche Anna, elle dit
    « Anna · die Frau » (Jacques, 6 oct.). */
-const nomsDe = p => [{genre: p.genre, mot: p.mot, fr: p.fr, pluriel: p.pluriel}, ...p.aussi];
+const nomsDe = p => [p, ...p.aussi];
 /* `quel` : le rang du nom a montrer, ou le mot lui-meme (celui qu'on a
    demande en « Trouve ! ») ; par defaut, le nom principal. */
 function etiquette(id, quel){
@@ -612,7 +678,7 @@ function etiquette(id, quel){
   // Le nom seul, sans la liste de ses autres noms : voir le crayon dans la
   // liste d'Anna ne voulait rien dire, et la liste melait tout (Jacques, 6 oct.).
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
-              + `<span class="fr">${n.fr}${n.pluriel ? " · pl. die " + n.pluriel : ""}</span>`;
+              + `<span class="fr">${sensDe(n)}${n.pluriel ? " · " + T("pluriel") + ` <span lang="de">die ${n.pluriel}</span>` : ""}</span>`;
   scene.appendChild(e);
   // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
   // on la ramene dans le cadre apres l'avoir mesuree.
@@ -651,7 +717,7 @@ function ouvrirGrosPlan(g, sansAnim){
   const [x,y,w,h] = g.cadre;
   const el = document.createElement("div");
   el.className = "gros-plan";
-  el.setAttribute("role", "group"); el.setAttribute("aria-label", "Gros plan");
+  el.setAttribute("role", "group"); el.setAttribute("aria-label", T("grosPlan"));
   el.innerHTML = `<div class="fond"></div>
     <svg viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"></svg>
     <button type="button" class="fermer">${T("revenir")}</button>`;
@@ -730,7 +796,7 @@ function etiquetteGros(id){
   e.className = "etiquette" + (dessous ? " dessous" : "");
   e.style.left = Math.min(80, Math.max(20, (cx - x) / w * 100)) + "%";
   e.style.top = (dessous ? (cy + ry - y) / h * 100 + 1 : haut - 1) + "%";
-  e.innerHTML = groupe(p) + `<span class="fr">${p.fr}${p.pluriel ? " · pl. die " + p.pluriel : ""}</span>`;
+  e.innerHTML = groupe(p) + `<span class="fr">${sensDe(p)}${p.pluriel ? " · " + T("pluriel") + ` <span lang="de">die ${p.pluriel}</span>` : ""}</span>`;
   zoom.el.appendChild(e);
 }
 
@@ -747,7 +813,7 @@ const COUCHES = (() => {
       if (couche.qs) c[niv].qs = (c[niv].qs || []).concat(couche.qs.map(q => Object.assign({_vue: v}, q)));
     }
   }
-  return Object.keys(c).length ? c : {A1: {titre: "Noms et articles"}};
+  return Object.keys(c).length ? c : {A1: {titre: T("nomsArticles")}};
 })();
 
 /* ---------- changer de vue ---------- */
@@ -937,10 +1003,10 @@ function trouver(){
   if (!p.vues.includes(VUE)) activerVue(p.vues[0], true);
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
-  entete("A1 · " + T("trouve") + "  " + (i+1) + " / " + fileTrouver.length,
+  entete("A1 · " + T("trouve") + "  " + compte(i+1, fileTrouver.length),
          `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
   $("reecouter").addEventListener("click", () => dire(p.genre + " " + p.mot));
-  $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
+  $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
   dire(p.genre + " " + p.mot);
 }
 function toucher(id, pt){
@@ -981,7 +1047,7 @@ function toucher(id, pt){
       if (r !== chez && estPersonne(r)){
         effacer(); anneau(r.id, true);
         $("bas").innerHTML = `<div class="explication">${T("cestQui", {a: nomDe(r), b: groupe(A_TROUVER.find(t => t.mot === cible)), c: nomDe(chez)})}</div>`
-                           + `<div class="score">${bons} / ${faits}</div>`;
+                           + `<div class="score">${compte(bons, faits)}</div>`;
         return;
       }
     }
@@ -1003,14 +1069,14 @@ function toucher(id, pt){
     // compter les zones annoncerait « 4 pulls » pour trois.
     const autres = bonnes.length > 1 ? " <i>" + T("autres") + "</i>" : "";
     // La traduction dans la reponse, jamais dans la question (Jacques, 6 oct.).
-    const sens = mot => { const z = S.points.find(q => q.mot === mot); if (z) return z.fr;
-      for (const q of S.points){ const a = q.aussi.find(x => x.mot === mot); if (a) return a.fr; } return ""; };
+    const sens = mot => { const z = S.points.find(q => q.mot === mot); if (z) return sensDe(z);
+      for (const q of S.points){ const a = q.aussi.find(x => x.mot === mot); if (a) return sensDe(a); } return ""; };
     const demande = A_TROUVER.find(t => t.mot === cible);
     const traduit = g => `${groupe(g)} <i>= ${sens(g.mot)}</i>`;
-    $("bas").innerHTML = `<div class="explication">${juste ? "Richtig ! " + traduit(demande) + "." + autres
+    $("bas").innerHTML = `<div class="explication">${juste ? `<span lang="de">Richtig!</span> ` + traduit(demande) + "." + autres
         : traduit(demande) + " : " + T("cetait") + " " + (bonnes.length > 1 ? T("unDeCes") : T("ici"))
           + ". " + T("avaisTouche") + " " + traduit(p) + "."}</div>
-                          <button class="suite" id="suite">Weiter</button>`;
+                          <button class="suite" id="suite" lang="de">Weiter</button>`;
     $("suite").addEventListener("click", () => {
       i++; verrou = false; fermerGrosPlan(); effacer();
       if (etapeTrouve){ etapeTrouve = false; attenteToucher = null; poser(); } else trouver();
@@ -1034,10 +1100,10 @@ function poser(){
   const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
   const niv = q._niv || niveau;
-  entete(niv + " · " + COUCHES[niv].titre + "  " + (i+1) + " / " + c.ordre.length, q.q, false);
+  entete(niv + " · " + COUCHES[niv].titre + "  " + compte(i+1, c.ordre.length), `<span lang="de">${q.q}</span>`, false);
   const opts = melanger(q.c.map((t,k) => ({t, ok:k === 0})));
-  $("bas").innerHTML = opts.map((o,k) => `<button class="choix" data-k="${k}">${o.t}</button>`).join("")
-                     + `<div class="score">${bons} / ${faits}</div>`;
+  $("bas").innerHTML = opts.map((o,k) => `<button class="choix" lang="de" data-k="${k}">${o.t}</button>`).join("")
+                     + `<div class="score">${compte(bons, faits)}</div>`;
   $("bas").querySelectorAll(".choix").forEach((b,k) => b.addEventListener("click", () => repondre(q, opts, k)));
 }
 /* Une etape A1 dans la seance A2 : la meme question que « Trouve ! ». */
@@ -1047,9 +1113,9 @@ function poserTrouve(p, total){
   fermerGrosPlan(); effacer();
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
-  entete("A1 · " + T("trouve") + "  " + (i+1) + " / " + total,
+  entete("A1 · " + T("trouve") + "  " + compte(i+1, total),
          `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""}`, false);
-  $("bas").innerHTML = `<div class="score">${bons} / ${faits}</div>`;
+  $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
   dire(p.genre + " " + p.mot);
 }
 function repondre(q, opts, k){
@@ -1067,11 +1133,11 @@ function repondre(q, opts, k){
   if (q.r) anneau(q.r, true);
   const ex = document.createElement("div");
   ex.className = "explication";
-  ex.innerHTML = (juste ? "Richtig ! " : "") + q.n;
+  ex.innerHTML = (juste ? `<span lang="de">Richtig!</span> ` : "") + q.n;
   const suite = document.createElement("button");
-  suite.className = "suite"; suite.textContent = "Weiter";
+  suite.className = "suite"; suite.lang = "de"; suite.textContent = "Weiter";
   suite.addEventListener("click", () => { i++; verrou = false; poser(); });
-  const sc = $("bas").querySelector(".score"); sc.textContent = bons + " / " + faits;
+  const sc = $("bas").querySelector(".score"); sc.innerHTML = compte(bons, faits);
   $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
 }
 /* Le mot de la fin suit le score. « 0 sur 3 — bravo ! » sonnait faux

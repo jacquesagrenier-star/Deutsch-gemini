@@ -8670,28 +8670,28 @@ body[data-theme="dark"] #decouverte > button.primary{
 </section>
 
 <!-- LE CHOIX AU DEBUT DE LA SEANCE (essai v713, voir ouvrirChoixSeance).
-     En francais seulement tant que l'essai est reserve a l'admin : a traduire
-     dans les six langues AVANT de le mettre en production. -->
+     Traduit dans les six langues (cles seance_choix_*) ; le contenu de la
+     scene, lui, se traduit dans visuel/prototype/traductions/. -->
 <section id="choixSeance" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
-    <p class="kicker">Ma séance du jour</p>
-    <h2>Par quoi commences-tu ?</h2>
+    <p class="kicker" data-i18n="seance_titre">Ma séance du jour</p>
+    <h2 data-i18n="seance_choix_titre">Par quoi commences-tu ?</h2>
     <div class="choix-seance-duo">
         <button type="button" class="choix-seance" onclick="ouvrirSceneSeance()">
             <span class="choix-seance-vue scene"><img id="choixSceneImage" alt=""></span>
             <span class="choix-seance-legende">
-                <span class="choix-seance-nom">La scène</span>
+                <span class="choix-seance-nom" data-i18n="seance_choix_scene">La scène</span>
                 <span class="choix-seance-detail" id="choixSceneDetail"></span>
             </span>
         </button>
         <button type="button" class="choix-seance" onclick="choisirCartesSeance()">
             <span class="choix-seance-vue cartes" aria-hidden="true">
-                <span class="choix-seance-carte"><small>Allemand</small><b><span class="g-das">das</span> Fenster</b></span>
-                <span class="choix-seance-carte dos"><small>Français</small><b>la fenêtre</b></span>
+                <span class="choix-seance-carte" lang="de"><small data-i18n="seance_choix_allemand">Allemand</small><b><span class="g-das">das</span> Fenster</b></span>
+                <span class="choix-seance-carte dos"><small data-i18n="seance_choix_langue">Français</small><b data-i18n="seance_choix_fenetre">la fenêtre</b></span>
             </span>
             <span class="choix-seance-legende">
-                <span class="choix-seance-nom">Les cartes</span>
-                <span class="choix-seance-detail">Révisions, puis mots nouveaux</span>
+                <span class="choix-seance-nom" data-i18n="seance_choix_cartes">Les cartes</span>
+                <span class="choix-seance-detail" data-i18n="seance_choix_cartes_detail">Révisions, puis mots nouveaux</span>
             </span>
         </button>
     </div>
@@ -9997,6 +9997,19 @@ const I18N = {
         compte_maitrises: "mots maîtrisés",
         compte_grammaire: "exercices de grammaire",
         seance_titre: "Ma séance du jour",
+        seance_choix_titre: "Par quoi commences-tu ?",
+        seance_choix_scene: "La scène",
+        seance_choix_cartes: "Les cartes",
+        seance_choix_cartes_detail: "Révisions, puis mots nouveaux",
+        seance_choix_allemand: "Allemand",
+        seance_choix_langue: "Français",
+        seance_choix_fenetre: "la fenêtre",
+        seance_choix_detail: "{titre} · {n} questions · {niveau}",
+        seance_scene_cadre: "La scène du jour",
+        seance_scene_klassenzimmer: "La classe de Mark et Anna",
+        seance_scene_untersuchung: "Mark chez sa médecin",
+        seance_scene_markt: "Anna au marché",
+        seance_scene_arztpraxis: "Mark s'est blessé au genou",
         seance_sous: "Révisions et mots nouveaux",
         seance_carte: "{n} carte",
         seance_cartes: "{n} cartes",
@@ -11075,6 +11088,19 @@ const I18N = {
         compte_maitrises: "words mastered",
         compte_grammaire: "grammar exercises",
         seance_titre: "Today's session",
+        seance_choix_titre: "Where do you want to start?",
+        seance_choix_scene: "The scene",
+        seance_choix_cartes: "The cards",
+        seance_choix_cartes_detail: "Reviews, then new words",
+        seance_choix_allemand: "German",
+        seance_choix_langue: "English",
+        seance_choix_fenetre: "the window",
+        seance_choix_detail: "{titre} · {n} questions · {niveau}",
+        seance_scene_cadre: "Today's scene",
+        seance_scene_klassenzimmer: "Mark and Anna's class",
+        seance_scene_untersuchung: "Mark at his doctor's",
+        seance_scene_markt: "Anna at the market",
+        seance_scene_arztpraxis: "Mark has hurt his knee",
         seance_sous: "Reviews and new words",
         seance_carte: "{n} card",
         seance_cartes: "{n} cards",
@@ -12155,6 +12181,19 @@ const I18N = {
         compte_maitrises: "öğrenilen kelime",
         compte_grammaire: "dilbilgisi alıştırması",
         seance_titre: "Bugünkü oturumum",
+        seance_choix_titre: "Nereden başlıyorsun?",
+        seance_choix_scene: "Sahne",
+        seance_choix_cartes: "Kartlar",
+        seance_choix_cartes_detail: "Önce tekrarlar, sonra yeni kelimeler",
+        seance_choix_allemand: "Almanca",
+        seance_choix_langue: "Türkçe",
+        seance_choix_fenetre: "pencere",
+        seance_choix_detail: "{titre} · {n} soru · {niveau}",
+        seance_scene_cadre: "Günün sahnesi",
+        seance_scene_klassenzimmer: "Mark ile Anna'nın sınıfı",
+        seance_scene_untersuchung: "Mark doktorunda",
+        seance_scene_markt: "Anna pazarda",
+        seance_scene_arztpraxis: "Mark dizini yaraladı",
         seance_sous: "Tekrarlar ve yeni kelimeler",
         seance_carte: "{n} kart",
         seance_cartes: "{n} kart",
@@ -13564,6 +13603,19 @@ const I18N = {
         compte_maitrises: "слів засвоєно",
         compte_grammaire: "вправ із граматики",
         seance_titre: "Мій сеанс на сьогодні",
+        seance_choix_titre: "З чого почнеш?",
+        seance_choix_scene: "Сцена",
+        seance_choix_cartes: "Картки",
+        seance_choix_cartes_detail: "Повторення, потім нові слова",
+        seance_choix_allemand: "Німецька",
+        seance_choix_langue: "Українська",
+        seance_choix_fenetre: "вікно",
+        seance_choix_detail: "{titre} · {n} запитання · {niveau}",
+        seance_scene_cadre: "Сцена дня",
+        seance_scene_klassenzimmer: "Клас Марка й Анни",
+        seance_scene_untersuchung: "Марк у своєї лікарки",
+        seance_scene_markt: "Анна на ринку",
+        seance_scene_arztpraxis: "Марк поранив коліно",
         seance_sous: "Повторення та нові слова",
         seance_carte: "{n} картка",
         seance_cartes: "{n} карток",
@@ -15331,6 +15383,19 @@ const I18N = {
         compte_maitrises: "واژه‌های آموخته",
         compte_grammaire: "تمرین‌های دستور",
         seance_titre: "جلسهٔ امروز من",
+        seance_choix_titre: "از کجا شروع می‌کنی؟",
+        seance_choix_scene: "صحنه",
+        seance_choix_cartes: "کارت‌ها",
+        seance_choix_cartes_detail: "مرور، سپس واژه‌های تازه",
+        seance_choix_allemand: "آلمانی",
+        seance_choix_langue: "فارسی",
+        seance_choix_fenetre: "پنجره",
+        seance_choix_detail: "{titre} · {n} پرسش · {niveau}",
+        seance_scene_cadre: "صحنهٔ امروز",
+        seance_scene_klassenzimmer: "کلاس مارک و آنا",
+        seance_scene_untersuchung: "مارک پیش پزشکش",
+        seance_scene_markt: "آنا در بازار",
+        seance_scene_arztpraxis: "زانوی مارک زخمی شده است",
         seance_sous: "مرور و واژه‌های تازه",
         seance_carte: "{n} کارت",
         seance_cartes: "{n} کارت",
@@ -16542,6 +16607,19 @@ const I18N = {
         compte_maitrises: "كلمة متقَنة",
         compte_grammaire: "تمرين قواعد",
         seance_titre: "جلستي اليوم",
+        seance_choix_titre: "بماذا تبدأ؟",
+        seance_choix_scene: "المشهد",
+        seance_choix_cartes: "البطاقات",
+        seance_choix_cartes_detail: "المراجعة، ثم كلمات جديدة",
+        seance_choix_allemand: "الألمانية",
+        seance_choix_langue: "العربية",
+        seance_choix_fenetre: "النافذة",
+        seance_choix_detail: "{titre} · {n} أسئلة · {niveau}",
+        seance_scene_cadre: "مشهد اليوم",
+        seance_scene_klassenzimmer: "صفّ مارك وآنا",
+        seance_scene_untersuchung: "مارك عند طبيبته",
+        seance_scene_markt: "آنا في السوق",
+        seance_scene_arztpraxis: "مارك جرح ركبته",
         seance_sous: "مراجعات وكلمات جديدة",
         seance_carte: "{n} بطاقة",
         seance_cartes: "{n} بطاقات",
@@ -34247,11 +34325,12 @@ function fixerNiveauSeance(niv){
 // l'examen (le corps, de face et de dos), le marche (fruits et legumes, quatre
 // etals), la blessure (la sante). Une scene a plusieurs vues s'ouvre par sa
 // premiere ; la seance va d'elle-meme a la vue de chaque question.
+// Le titre de chaque scene est une cle de traduction (seance_scene_<nom>).
 const SCENES_SEANCE = [
-    { nom: "klassenzimmer", titre: "La classe de Mark et Anna" },
-    { nom: "untersuchung", titre: "Mark chez sa médecin" },
-    { nom: "markt-obst-heimisch", titre: "Anna au marché" },
-    { nom: "arztpraxis", titre: "Mark s'est blessé au genou" }
+    { nom: "klassenzimmer", titre: "seance_scene_klassenzimmer" },
+    { nom: "untersuchung", titre: "seance_scene_untersuchung" },
+    { nom: "markt-obst-heimisch", titre: "seance_scene_markt" },
+    { nom: "arztpraxis", titre: "seance_scene_arztpraxis" }
 ];
 const SCENE_FAITE_KEY = "deutschAI_sceneFaite";
 
@@ -34280,7 +34359,7 @@ function ouvrirChoixSeance(){
     const img = document.getElementById("choixSceneImage");
     if(img) img.src = baseScenes() + s.nom + ".webp";
     const det = document.getElementById("choixSceneDetail");
-    if(det) det.textContent = s.titre + " · 3 questions · " + niveauSeance();
+    if(det) det.textContent = tf("seance_choix_detail", {titre: t(s.titre), n: 3, niveau: niveauSeance()});
     showScreen("choixSeance");
 }
 
@@ -34294,7 +34373,11 @@ function ouvrirSceneAdmin(nom){
     if(!isAdminUser()) return;
     sceneOuverteDepuis = "admin";
     const cadre = document.getElementById("sceneCadre");
-    if(cadre) cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&t=" + Date.now();
+    if(cadre){
+        cadre.title = t("seance_scene_cadre");
+        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
+                  + "&lang=" + encodeURIComponent(getUiLang()) + "&t=" + Date.now();
+    }
     showScreen("sceneSeance");
 }
 
@@ -34302,9 +34385,15 @@ function ouvrirSceneSeance(){
     sceneOuverteDepuis = "seance";
     const s = sceneDuJour();
     const cadre = document.getElementById("sceneCadre");
-    if(cadre) cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
-                        + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
-                        + "&t=" + Date.now();
+    // La langue de l'usager suit dans la scene (?lang=) : l'interface ET les
+    // explications des questions (visuel/prototype/traductions/).
+    if(cadre){
+        cadre.title = t("seance_scene_cadre");
+        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
+                  + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
+                  + "&lang=" + encodeURIComponent(getUiLang())
+                  + "&t=" + Date.now();
+    }
     showScreen("sceneSeance");
 }
 
