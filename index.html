@@ -5843,6 +5843,10 @@ html[dir="rtl"] .reglage-langue:not([open]) > summary::after{transform:scaleX(-1
 /* --- L'ECRAN D'ABONNEMENT (v690) --- */
 #abonnement{max-width:420px; margin:0 auto;}
 .abo-haut{display:flex; justify-content:flex-end;}
+/* L'apercu de la version gratuite (admin) : visible sur tous les ecrans. */
+body.apercu-gratuit::after{content:"Aperçu gratuit"; position:fixed; top:calc(env(safe-area-inset-top, 0px) + 4px); left:50%;
+  transform:translateX(-50%); z-index:9998; pointer-events:none; font:600 11px/1 system-ui, sans-serif;
+  padding:4px 10px; border-radius:999px; background:#E8A23A; color:#1C2430; opacity:.92;}
 .abo-fermer{background:none; border:0; font-size:20px; padding:6px 8px; color:inherit; opacity:.55; cursor:pointer; min-height:auto; width:auto;}
 .abo-titre{text-align:center; font-size:28px; line-height:1.15; margin:4px 0 6px;}
 .abo-sous-titre{text-align:center; opacity:.65; margin:0 0 18px; font-size:15px;}
@@ -7047,7 +7051,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v724</span>
+    <span class="subtitle-version">v725</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9604,7 +9608,7 @@ body[data-theme="dark"] #decouverte > button.primary{
         <div class="spacer"></div>
         <div id="adminApercuGratuitEtat" class="info-box"></div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="basculerApercuGratuit()">ACTIVER / ARRÊTER L'APERÇU →</button>
+        <button id="adminApercuGratuitBouton" class="secondary" onclick="basculerApercuGratuit()">ACTIVER / ARRÊTER L'APERÇU →</button>
     </div>
 
     <!-- LES FONCTIONS EN ESSAI (v713). Une nouveaute poussee sur main reste
@@ -25933,6 +25937,9 @@ function showScreen(id){
         const cadre = document.getElementById("sceneCadre");
         if(cadre && cadre.getAttribute("src") && cadre.getAttribute("src") !== "about:blank") cadre.src = "about:blank";
     }
+    // L'etiquette « Aperçu gratuit » suit l'etat, y compris apres un
+    // rechargement : une lecture de localStorage, rien de plus.
+    try{ document.body.classList.toggle("apercu-gratuit", apercuGratuitActif()); }catch(e){}
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     const target = document.getElementById(id);
     if(target) target.classList.add("active");
@@ -26416,17 +26423,32 @@ function ligneNiveauVerrouillee(svg, lvl){
     return item;
 }
 
+// ⚠️ « QUAND JE CLIQUE, IL N'Y A RIEN QUI SE PASSE » (Jacques, 10 oct. 2026,
+// sur son compte ; au PC, en simulant l'admin, tout marchait). Le message
+// venait APRES renderThemes() : une erreur la-dedans taisait le message ET
+// laissait la liste des noms sans cadenas -- exactement ce qu'il a vu. Donc :
+// le message d'abord, chaque etape a part, et l'erreur ecrite en clair sous
+// le bouton plutot qu'avalee. Le bouton dit son etat, et une etiquette
+// « Aperçu gratuit » reste a l'ecran tant qu'il est actif : l'accueil, lui,
+// ne change pas, et on ne doit pas avoir a deviner si l'apercu tourne.
 function basculerApercuGratuit(){
-    if(!isAdminUser()) return;
+    if(!isAdminUser()){
+        showInfoToast("Aperçu réservé au compte administrateur (compte connecté : "
+            + ((window.firebaseAuth && window.firebaseAuth.currentUser && window.firebaseAuth.currentUser.email) || "aucun") + ").");
+        return;
+    }
     const actif = !apercuGratuitActif();
+    let erreur = "";
     try{
         if(actif) localStorage.setItem(APERCU_GRATUIT_KEY, "1");
         else localStorage.removeItem(APERCU_GRATUIT_KEY);
-    }catch(e){}
-    if(actif) chargerFrequence().then(renderThemes);
-    afficherEtatApercuGratuit();
-    renderThemes();
-    showInfoToast(actif ? "Aperçu : tu vois l'app comme un compte gratuit." : "Aperçu terminé : accès complet.");
+    }catch(e){ erreur = "mémoire du navigateur : " + e.message; }
+    if(!erreur && apercuGratuitActif() !== actif) erreur = "le réglage n'a pas été enregistré";
+    showInfoToast(erreur ? "Aperçu : échec (" + erreur + ")."
+        : actif ? "Aperçu : tu vois l'app comme un compte gratuit." : "Aperçu terminé : accès complet.");
+    try{ renderThemes(); }catch(e){ erreur = erreur || "liste des thèmes : " + e.message; }
+    if(actif) chargerFrequence().then(() => { try{ renderThemes(); }catch(e){} }).catch(() => {});
+    afficherEtatApercuGratuit(erreur);
 }
 
 // ============ LES FONCTIONS EN ESSAI (v713) ============
@@ -26522,11 +26544,20 @@ function afficherEssais(){
     });
 }
 
-function afficherEtatApercuGratuit(){
+function afficherEtatApercuGratuit(erreur){
+    const actif = apercuGratuitActif();
+    document.body.classList.toggle("apercu-gratuit", actif);
+    const bouton = document.getElementById("adminApercuGratuitBouton");
+    if(bouton) bouton.textContent = actif ? "ARRÊTER L'APERÇU →" : "ACTIVER L'APERÇU →";
     const el = document.getElementById("adminApercuGratuitEtat");
-    if(el) el.textContent = apercuGratuitActif()
-        ? "En ce moment : tu vois l'app comme un compte gratuit (niveau " + niveauEchantillon() + ")."
-        : "En ce moment : accès complet. État réel de ce compte : " + etatAcces() + ".";
+    if(!el) return;
+    let texte;
+    try{
+        texte = actif
+            ? "En ce moment : tu vois l'app comme un compte gratuit (niveau " + niveauEchantillon() + "). Regarde Noms et thèmes : cadenas sur les thèmes payants, 10 mots dans les autres."
+            : "En ce moment : accès complet. État réel de ce compte : " + etatAcces() + ".";
+    }catch(e){ texte = "En ce moment : aperçu " + (actif ? "actif" : "inactif") + "."; erreur = erreur || e.message; }
+    el.textContent = texte + (erreur ? " ⚠️ Erreur : " + erreur : "");
 }
 
 // ============ Tableau de bord admin (codes d'invitation + testeurs) ============
@@ -30992,7 +31023,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 724;
+const APP_VERSION = 725;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

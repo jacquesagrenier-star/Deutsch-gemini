@@ -8066,3 +8066,14 @@ retenait « abonnement » comme l'ecran d'avant les reglages, et
 quitterReglages() y revenait. Corrige en v724 : l'abonnement n'est jamais
 retenu (on en sort, on n'y revient pas). Verifie dans le navigateur :
 reglages -> admin -> abonnement -> X -> reglages -> Retour = accueil.
+
+## 10 octobre 2026 (suite) -- Jacques : l'apercu de la version gratuite « ne semble pas fonctionner »
+
+« Quand je clique sur activer / arreter, il n'y a rien qui se passe ; dans
+les noms, je ne vois pas de cadenas. » Non reproduit au PC (admin simule :
+message, cadenas sur Berufe, 0/10 sur Familie). v725, un instrument plutot
+qu'une supposition : le message s'affiche AVANT le dessin des themes (une
+erreur la-dedans taisait les deux) ; toute erreur s'ecrit en clair sous le
+bouton ; le bouton dit son etat (ACTIVER / ARRETER) ; une etiquette ambre
+« Apercu gratuit » reste en haut de tous les ecrans tant qu'il tourne ; un
+compte non admin recoit un message avec l'adresse connectee au lieu de rien.
