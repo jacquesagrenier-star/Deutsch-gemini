@@ -586,6 +586,28 @@ def verifier_comptes_figes(r, source):
     print("   libelles a fleche : %d, 0 compte fige" % vus)
 
 
+def verifier_libelles_espagnol(r, source):
+    """La couche de libelles de l'espagnol (fusion, etapes 2-3).
+
+    I18N_ESPAGNOL est versee par-dessus I18N en mode espagnol. Ses cles propres
+    (les temps espagnols, par exemple) n'existent pas dans I18N : sans cette
+    lecture, elles passeraient pour « jamais definies ». En retour, chacune
+    doit exister en francais ET en anglais -- les deux seules langues
+    d'interface de l'espagnol.
+    """
+    m = re.search(r"const I18N_ESPAGNOL = (\{.*?\});\nif\(LANGUE_APPRISE", source, re.S)
+    if not m:
+        print("   libelles espagnol: aucune couche")
+        return set()
+    couche = json.loads(m.group(1))
+    fr, en = set(couche.get("fr", {})), set(couche.get("en", {}))
+    for k in sorted(fr ^ en):
+        r.echec("i18n", "I18N_ESPAGNOL : %s n'existe qu'en %s" % (k, "francais" if k in fr else "anglais"))
+    r.controle(len(fr | en))
+    print("   libelles espagnol: %d cles (fr et en)" % len(fr & en))
+    return fr | en
+
+
 def verifier_cles_utilisees(r, source, cles):
     """Toute cle citee dans le HTML ou via t()/tf() doit exister."""
     citees = set()
@@ -1379,6 +1401,7 @@ def main():
     verifier_jeux_exercices(r, source)
     verifier_indices_revelateurs(r)
     verifier_langue_enseignee(r, source)
+    cles = cles | verifier_libelles_espagnol(r, source)
     verifier_cles_utilisees(r, source, cles)
     verifier_comptes_figes(r, source)
     fonctions = fonctions_definies(source)

@@ -8,6 +8,13 @@
 <title>Wortando</title>
 
 <script>
+/* La langue apprise sur la balise <html> (fusion de l'espagnol, etape 3) :
+   les regles html[data-apprendre="es"] ne valent qu'en espagnol. La meme
+   lecture que LANGUE_APPRISE, plus bas. */
+try{ document.documentElement.setAttribute("data-apprendre",
+    new URLSearchParams(location.search).get("apprendre") === "es" ? "es" : "de"); }catch(e){}
+</script>
+<script>
 // ============ L'ADRESSE DEFINITIVE (demenagement, 8 oct. 2026) ============
 //
 // VIDE = INERTE. Tant que cette chaine est vide, rien ne change pour personne.
@@ -3220,7 +3227,99 @@ html{ touch-action:manipulation; }
     letter-spacing: 1px;
     margin-bottom: 6px;
 }
-.article.der { color: var(--g-der); }
+/* ============ L'ESPAGNOL (fusion, etape 3) ============
+   Repris de fork.py. Les regles « display:none » sont prefixees par
+   html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
+   .el/.la et les pastilles espagnoles ne servent qu'en espagnol. */
+.article.der, .article.el { color: var(--g-der); }
+/* L'espagnol n'a pas de neutre : la classe .das ne sert jamais ici, elle
+   reste pour l'allemand. */
+.article.die, .article.la { color: var(--g-die); }
+/* Le genre en toutes lettres sous la fiche (nouveaute allemande) : ses trois
+   classes sont der/die/das. On ajoute les deux espagnoles. */
+.carte-genre.el{color:var(--g-der); background:rgba(var(--g-der-rgb),.12);}
+.carte-genre.la{color:var(--g-die); background:rgba(var(--g-die-rgb),.12);}
+/* ------------------------------------------------------------------
+   « Quel cas apres ce verbe ? » -- l'espagnol n'a pas de cas.
+   Masque plutot que supprime : le jour ou l'on voudra l'equivalent
+   espagnol (le verbe et sa preposition : sonar CON, pensar EN), il y a
+   une place toute prete.
+   ------------------------------------------------------------------ */
+html[data-apprendre="es"] button[onclick*="startVerbRektionExercise"],
+html[data-apprendre="es"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
+
+/* Conjonctions et chapitres VHS : contenu proprement allemand, sans
+   equivalent espagnol pour l'instant. Masques plutot que remplis a
+   l'approximation. */
+html[data-apprendre="es"] [data-orbid="konjunktionen"],
+html[data-apprendre="es"] [data-orbid="vhskapitel"]{ display:none !important; }
+/* ------------------------------------------------------------------
+   Options de panneau sans objet en espagnol.
+
+   La declinaison de l'adjectif n'existe pas ; les familles d'adverbes et
+   d'expressions se classent sur un champ `kategorie` que le vocabulaire
+   espagnol ne porte pas, donc leurs ecrans s'ouvriraient vides.
+
+   Masquees, pas supprimees : le jour ou le corpus porte des categories,
+   il suffit de retirer ces trois lignes.
+   ------------------------------------------------------------------ */
+html[data-apprendre="es"] .orb-opt[onclick*="openAdjektiveDeklination"],
+html[data-apprendre="es"] .orb-opt[onclick*="openAdverbienInfo"],
+html[data-apprendre="es"] .orb-opt[onclick*="openRedewendungenInfo"]{ display:none !important; }
+
+/* Options restees allemandes -- voir le commentaire de ACCIONES_SIN_OBJETO. */
+html[data-apprendre="es"] .orb-opt[onclick*="startAberSondernUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startAlsWennUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startBlocsConnecteursUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startDerEinUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startDeshalbTrotzdemUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusReconnaissance"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKonjunktionenNuance"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKonnektorenUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startObwohlTrotzdemUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startOrdreInverseUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startPartikelnNuance"],
+html[data-apprendre="es"] .orb-opt[onclick*="startPositionsverbenUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startPraepReconnaissance"],
+html[data-apprendre="es"] .orb-opt[onclick*="startPraepWoWohin"],
+html[data-apprendre="es"] .orb-opt[onclick*="startPremierePlaceUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startTransformationConnecteursUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startWeilObwohlUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startWennObUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startWennWannUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startWissenKennenUebung"],
+html[data-apprendre="es"] .orb-opt[onclick*="startZuInfinitivExercise"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusArticleNominativ"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusArticleAkkusativ"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusArticleDativ"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusArticleGenitiv"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusArticleMix"],
+html[data-apprendre="es"] .orb-opt[onclick*="startKasusVerben"],
+html[data-apprendre="es"] .orb-opt[onclick*="ouvrirReglesGenre"],
+html[data-apprendre="es"] .orb-opt[onclick*="startQuizTerminaisons"],
+html[data-apprendre="es"] .orb-opt[onclick*="openDemonstrativInfo"],
+html[data-apprendre="es"] .orb-opt[onclick*="openPossessivInfo"],
+html[data-apprendre="es"] .orb-opt[onclick*="openRelativInfo"],
+html[data-apprendre="es"] .orb-opt[onclick*="openRelativGenitivInfo"]{ display:none !important; }
+
+/* ------------------------------------------------------------------
+   Les pastilles de regime, cote espagnol.
+
+   La case `rektion` portait les cas allemands ; elle porte ici le type de
+   conjugaison. Trois valeurs seulement s'affichent -- << regular >> n'en
+   est pas une : une pastille posee sur sept cartes sur dix ne distingue
+   plus rien.
+   ------------------------------------------------------------------ */
+.rektion-radical{ background:rgba(245,158,11,.16); color:#92610a;
+                  border:1px solid rgba(245,158,11,.35); }
+.rektion-irregular{ background:rgba(239,68,68,.14); color:#a83232;
+                    border:1px solid rgba(239,68,68,.32); }
+.rektion-compuesto{ background:rgba(124,92,255,.14); color:#5b3fd6;
+                    border:1px solid rgba(124,92,255,.32); }
+.registro-badge{ background:rgba(30,41,59,.08); color:#576177;
+                 border:1px solid rgba(30,41,59,.2); font-style:italic; }
+.verb-construccion{ margin:4px 0 2px; font-size:13px; color:#3b6fe0;
+                    line-height:1.4; }
 .article.die { color: var(--g-die); }
 .article.das { color: var(--g-das); }
 
@@ -7068,7 +7167,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v729</span>
+    <span class="subtitle-version">v730</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9987,6 +10086,32 @@ const LANGUE_ESPAGNOL = {
 };
 
 const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL : LANGUE_ALLEMAND;
+
+// LES ARTICLES ET LES PERSONNES (fusion, etape 3). L'allemand ecrivait « die »
+// en dur pour tout pluriel -- juste chez lui, puisqu'il n'a qu'un article
+// pluriel. L'espagnol en a deux, qui suivent le genre : la casa -> las casas,
+// el libro -> los libros.
+const ARTICLES_GENRE = LANGUE_APPRISE === "es" ? { m: "el", f: "la" } : { m: "der", f: "die" };
+function articlePluriel(articleSingulier){
+    if(LANGUE_APPRISE !== "es") return "die ";
+    const a = String(articleSingulier || "").trim().toLowerCase();
+    if(a === "el") return "los ";
+    if(a === "la") return "las ";
+    return "";
+}
+// Les six personnes, dans l'ordre des champs praesens (ich, du, er_sie_es,
+// wir, ihr, sie_Sie) : la forme espagnole vit sous les memes cles.
+const PERSONNES_CONJUGAISON = LANGUE_APPRISE === "es"
+    ? ["yo", "t\u00fa", "\u00e9l/ella", "nosotros", "vosotros", "ellos"]
+    : ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"];
+// Les temps espagnols arrivent en LISTE ordonnee (yo ... ellos), pas en objet
+// a cles allemandes : ce sont des champs propres a l'espagnol.
+function blocTempsEspagnol(titre, aide, formes){
+    if(!Array.isArray(formes) || !formes.length) return "";
+    const ligne = formes.map((f, i) => PERSONNES_CONJUGAISON[i] + " " + f).join(" \u00b7 ");
+    return '<div class="verb-sep"></div><strong>' + titre + '</strong> '
+        + '<span style="font-weight:400; color:#767f8f;">&mdash; ' + aide + '</span><br>' + ligne;
+}
 
 // LES RESSOURCES DE L'APPLICATION, QUI NE SONT PAS DE L'ALLEMAND.
 // Distinction ajoutee en meme temps que les videos ci-dessous : le logo,
@@ -16738,7 +16863,6 @@ const I18N_ESPAGNOL = {
         "op_verben_o4_d": "Le présent — les autres temps arrivent",
         "op_adjektive_sub": "accord & vocabulaire",
         "label_case_word": "Emploi",
-        "orb_pronomen_title": "Pronoms",
         "op_schreiben_title": "Écrire en espagnol",
         "schreiben_hint": "Écris la phrase en espagnol. Les accents et la ponctuation ne comptent pas.",
         "orb_pronomen_sub": "lo · la · le · se",
@@ -16755,7 +16879,12 @@ const I18N_ESPAGNOL = {
         "op_adverbien_o1_d": "8 familles : temps, lieu, fréquence, manière…",
         "kicker_partikeln_vocab": "Marqueurs du discours · Vocabulaire",
         "title_adjektive_allemands": "Adjectifs espagnols",
-        "setup_learning_autre": "Allemand"
+        "setup_learning_autre": "Allemand",
+        "temps_es_preterito": "une action finie — <em>ayer, una vez, de repente</em>",
+        "temps_es_imperfecto": "un décor, une habitude, un âge — <em>antes, siempre, mientras</em>",
+        "temps_es_subjuntivo": "après <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
+        "verbe_es_exemple": "En contexte :",
+        "op_kasus_sub": "ser · estar"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -16821,7 +16950,11 @@ const I18N_ESPAGNOL = {
         "op_adverbien_o1_d": "8 families: time, place, frequency, manner…",
         "kicker_partikeln_vocab": "Discourse markers · Vocabulary",
         "title_adjektive_allemands": "Spanish adjectives",
-        "setup_learning_autre": "German"
+        "setup_learning_autre": "German",
+        "temps_es_preterito": "one finished action — <em>ayer, una vez, de repente</em>",
+        "temps_es_imperfecto": "a scene, a habit, an age — <em>antes, siempre, mientras</em>",
+        "temps_es_subjuntivo": "after <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
+        "verbe_es_exemple": "In use:"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -18897,6 +19030,10 @@ async function loadVerbeJson() {
                     imperativ: v.imperativ || null,
                     rektion: v.rektion || "", reflexiv: !!v.reflexiv, praeposition: v.praeposition || "", intransitiv: !!v.intransitiv,
                     exempleHighlight: v.exempleHighlight || "", perfektHighlight: v.perfektHighlight || "",
+                    // L'espagnol (fusion, etape 3) : le registre, la construction
+                    // particuliere, et ses trois temps en liste ordonnee.
+                    registro: v.registro || "", construccion: v.construccion || "",
+                    preterito: v.preterito || null, imperfecto: v.imperfecto || null, subjuntivo: v.subjuntivo || null,
                     praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
                     // Les examens ou ce verbe figure, ["a2","b1","dtz"]. Ce
                     // chargeur recopie champ par champ : sans cette ligne, la
@@ -24422,7 +24559,7 @@ function startQuizTerminaisons(){
 // redescend a 33 %, le hasard reel d'un choix a trois, et le score redevient
 // une mesure. Ne pas « simplifier » ce tirage.
 const QUIZ_ARTICLE_TAILLE = 30;              // 10 par genre
-const QUIZ_ARTICLE_GENRES = ["der", "die", "das"];
+const QUIZ_ARTICLE_GENRES = LANGUE_APPRISE === "es" ? ["el", "la"] : ["der", "die", "das"];
 
 // Compose un texte dans UNE langue precise, sans passer par la langue active.
 // tf() sert l'affichage immediat ; ici on fabrique un exercice qui range ses
@@ -24462,7 +24599,7 @@ function construireQuizArticle(cartes){
             // la reponse. Un champ vide vaut mieux qu'une ligne qui meuble.
             ex["hint" + suff] = "";
             ex["explanation" + suff] = article + " " + mot + " · " + labelPluriel
-                + " " + (aUnPluriel ? "die " + pluriel : "—");
+                + " " + (aUnPluriel ? articlePluriel(article) + pluriel : "—");
         });
         return ex;
     });
@@ -24473,7 +24610,7 @@ function construireQuizArticle(cartes){
 // personne travaille en ce moment. On garde cet ORDRE, puis on prend dix mots
 // par genre dedans : la familiarite d'abord, l'equilibre par-dessus.
 function startQuizArticle(){
-    const parGenre = { der: [], die: [], das: [] };
+    const parGenre = Object.fromEntries(QUIZ_ARTICLE_GENRES.map(g => [g, []]));
     const pool = [];
     themesComptes().forEach(theme => {
         LEVELS.forEach(lvl => {
@@ -24493,19 +24630,19 @@ function startQuizArticle(){
     if(!ordre.length) ordre = pool;
     ordre.forEach(item => {
         const g = item.word[1];
-        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / 3) parGenre[g].push(item);
+        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) parGenre[g].push(item);
     });
     // Le reservoir peut manquer d'un genre (« das » est le plus rare) : on
     // complete depuis le pool entier plutot que de servir une serie desequilibree
     // en silence.
     QUIZ_ARTICLE_GENRES.forEach(g => {
-        if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / 3) return;
+        if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) return;
         for(const item of pool){
-            if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / 3) break;
+            if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) break;
             if(item.word[1] === g && parGenre[g].indexOf(item) < 0) parGenre[g].push(item);
         }
     });
-    const choix = shuffleArray(parGenre.der.concat(parGenre.die, parGenre.das));
+    const choix = shuffleArray([].concat(...QUIZ_ARTICLE_GENRES.map(g => parGenre[g])));
     const liste = construireQuizArticle(choix);
     if(!liste.length){ showInfoToast(t('alert_no_words_available')); return; }
     startExerciseSet(liste, "kicker_quiz_article",
@@ -28853,8 +28990,8 @@ function loadFlashcard(){
         } else {
             const p = card.praesens || {};
             const conjLines = [
-                `ich ${p.ich || ""}`, `du ${p.du || ""}`, `er/sie/es ${p.er_sie_es || ""}`,
-                `wir ${p.wir || ""}`, `ihr ${p.ihr || ""}`, `sie/Sie ${p.sie_Sie || ""}`
+                `${PERSONNES_CONJUGAISON[0]} ${p.ich || ""}`, `${PERSONNES_CONJUGAISON[1]} ${p.du || ""}`, `${PERSONNES_CONJUGAISON[2]} ${p.er_sie_es || ""}`,
+                `${PERSONNES_CONJUGAISON[3]} ${p.wir || ""}`, `${PERSONNES_CONJUGAISON[4]} ${p.ihr || ""}`, `${PERSONNES_CONJUGAISON[5]} ${p.sie_Sie || ""}`
             ].join(" · ");
             const praesensSpeakBtn = sentenceSpeakBtnHtml(card.exemple, "de");
             const perfektSpeakBtn = sentenceSpeakBtnHtml(card.perfekt, "de");
@@ -28867,7 +29004,13 @@ function loadFlashcard(){
             // doit jamais recevoir de HTML.
             const exampleDisplay = card.exempleHighlight || card.exemple || "";
             const perfektDisplay = card.perfektHighlight || card.perfekt || "";
-            const coreHtml = `<strong>PRÄSENS</strong><br>${conjLines}` +
+            // L'espagnol : le present, puis l'exemple ; pas de Perfekt (fusion,
+            // etape 3 -- c'etait le texte de fork.py).
+            const coreHtml = LANGUE_APPRISE === "es"
+                ? `<strong>PRESENTE</strong><br>${conjLines}` +
+                  `<div class="verb-sep"></div>` +
+                  `<strong>${t("verbe_es_exemple")}</strong> ${exampleDisplay}${praesensSpeakBtn}<br>(${exampleTr || ""})`
+                : `<strong>PRÄSENS</strong><br>${conjLines}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Präsens :</strong> ${exampleDisplay}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
                 `<div class="verb-sep"></div>` +
@@ -28886,7 +29029,14 @@ function loadFlashcard(){
             // la signaler serait faux.
             const praeteritumNote = praeteritumEstEcrit(card.infinitif)
                 ? `<div class="registre-note">${t('praeteritum_ecrit')}</div>` : "";
-            const extraHtml = `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})${praeteritumNote}` +
+            // L'espagnol : les deux passes d'abord, et dans cet ordre -- c'est
+            // leur opposition qui est difficile, pas chacun pris a part.
+            const extraHtml = LANGUE_APPRISE === "es"
+                ? blocTempsEspagnol("PRETÉRITO", t("temps_es_preterito"), card.preterito)
+                  + blocTempsEspagnol("IMPERFECTO", t("temps_es_imperfecto"), card.imperfecto)
+                  + blocTempsEspagnol("SUBJUNTIVO", t("temps_es_subjuntivo"), card.subjuntivo)
+                  + impHtml
+                : `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})${praeteritumNote}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Konjunktiv II :</strong> ${konjunktiv2Display}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
                 impHtml;
@@ -29037,7 +29187,7 @@ function loadFlashcard(){
         // "die" ne vaut que pour un pluriel ALLEMAND : un mot anglais ou
         // francais garde ne prend pas d'article allemand.
         if(card[7]){
-            const pluriel = (langue === "de" ? "die " : "") + card[7];
+            const pluriel = (langue === "de" ? articlePluriel(card[1]) : "") + card[7];
             document.getElementById("flashPluralText").textContent = t('label_plural') + " " + pluriel;
             // On ne prononce QUE la forme, jamais l'etiquette « Pluriel : ».
             // Et seul l'allemand a une voix : un mot anglais ou francais mis de
@@ -29182,8 +29332,8 @@ function loadFlashcard(){
             translationEl.classList.remove("hidden");
         }
         const articleText = (card[1] || "").toLowerCase().trim();
-        if(articleText === "der") flashcardEl.classList.add("border-der");
-        else if(articleText === "die") flashcardEl.classList.add("border-die");
+        if(articleText === "der" || articleText === "el") flashcardEl.classList.add("border-der");
+        else if(articleText === "die" || articleText === "la") flashcardEl.classList.add("border-die");
         else if(articleText === "das") flashcardEl.classList.add("border-das");
 
         // L'article (der/die/das) et le pluriel allemand n'ont pas de sens à côté
@@ -29198,7 +29348,7 @@ function loadFlashcard(){
             articleEl.classList.remove("hidden");
             // Le genre en toutes lettres, dans la couleur de l'article : la
             // couleur s'apprend en meme temps que le mot qu'elle nomme.
-            if(genreCarteEl && ['der','die','das'].includes(articleText)){
+            if(genreCarteEl && ['der','die','das','el','la'].includes(articleText)){
                 genreCarteEl.textContent = t('carte_genre_' + articleText);
                 genreCarteEl.className = 'carte-genre ' + articleText;
             }
@@ -29208,13 +29358,13 @@ function loadFlashcard(){
             // entrees, notes "—") gardent le tiret seul, sans article.
             const pluralForm = (card[2] || "").trim();
             const aUnPluriel = pluralForm && pluralForm !== "—" && pluralForm !== "-";
-            const plurielDit = aUnPluriel ? "die " + pluralForm : null;
+            const plurielDit = aUnPluriel ? articlePluriel(card[1]) + pluralForm : null;
             const plurielEl = document.getElementById("flashPluralText");
             plurielEl.textContent = t('label_plural') + " ";
             if(aUnPluriel){
                 const artPl = document.createElement("span");
                 artPl.className = "pl-art";
-                artPl.textContent = "die";
+                artPl.textContent = articlePluriel(card[1]).trim();
                 const motPl = document.createElement("span");
                 motPl.className = "pl-mot";
                 motPl.textContent = pluralForm;
@@ -29239,9 +29389,9 @@ function loadFlashcard(){
         if(paireEl){
             const autre = (card[8] || "").trim();
             if(autre && !learningEnglish){
-                const versFeminin = card[1] === "der";
+                const versFeminin = card[1] === ARTICLES_GENRE.m;
                 paireEl.textContent = (versFeminin ? t('label_feminine') : t('label_masculine'))
-                    + " " + (versFeminin ? "die " : "der ") + autre;
+                    + " " + (versFeminin ? ARTICLES_GENRE.f + " " : ARTICLES_GENRE.m + " ") + autre;
                 paireEl.classList.remove("hidden");
             } else {
                 paireEl.classList.add("hidden");
@@ -30184,7 +30334,17 @@ function buildRektionBadgesHtml(card){
     if(card.intransitiv){
         html += `<span class="rektion-badge intransitiv-badge">${t("intransitiv_badge_label")}</span> `;
     }
-    return html ? `<div style="margin-bottom:2px;">${html}</div>` : "";
+    if(card.registro){
+        // Espagnol : familier ou soutenu -- seuls les mots NON neutres en portent.
+        html += `<span class="rektion-badge registro-badge">${card.registro}</span> `;
+    }
+    let bloc = html ? `<div style="margin-bottom:2px;">${html}</div>` : "";
+    if(card.construccion){
+        // Espagnol : « gustar : la chose aimee est le sujet » ne tient pas dans
+        // une pastille, et c'est pourtant ce qui fait rater la phrase.
+        bloc += `<div class="verb-construccion">${card.construccion}</div>`;
+    }
+    return bloc;
 }
 
 // Prononce le mot actuellement affiché au verso (flashBackWord) plutôt que de
@@ -31298,7 +31458,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 729;
+const APP_VERSION = 730;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

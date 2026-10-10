@@ -76,10 +76,14 @@ def serveur():
     return srv
 
 
-def releve(app):
+def releve(app, page_app=None):
     from playwright.sync_api import sync_playwright
     chemin_app = {"de": "index.html", "es": "espanol/index.html",
                   "es-moteur": "index.html?apprendre=es"}[app]
+    if page_app:
+        # Une autre copie de la page (une ancienne version, pour prendre une
+        # reference), servie depuis le meme dossier que les donnees.
+        chemin_app = page_app + chemin_app[len("index.html"):] if app != "es" else chemin_app
     adresse = "http://127.0.0.1:%d/%s" % (PORT, chemin_app)
     srv = serveur()
     resultats = []
@@ -128,6 +132,18 @@ def releve(app):
                 erreurs.clear()
                 resultats.append(etat)
                 print("  %-55s %s" % (chemin[:55], etat["ecran"]))
+                return etat
+
+            def verso(chemin, etat):
+                # Une carte : on la retourne, et on ouvre les temps caches d'un
+                # verbe. C'est au verso que vivent l'article, le pluriel et la
+                # conjugaison -- le recto seul ne les montre pas.
+                if etat["ecran"] != "flashcards":
+                    return
+                page.evaluate("""() => { try{ flipCard(); }catch(e){}
+                    try{ if(document.querySelector('.verb-extra.hidden')) toggleVerbExtra(); }catch(e){} }""")
+                attendre()
+                noter(chemin + " [verso]")
 
             accueil()
             erreurs.clear()
@@ -139,7 +155,7 @@ def releve(app):
                 erreurs.clear()
                 page.evaluate("(id) => document.querySelector('#home [data-orbid=\"' + id + '\"]').click()", orb)
                 attendre()
-                noter(orb)
+                verso(orb, noter(orb))
                 n = page.evaluate("""() => document.querySelector('.screen.active') &&
                     document.querySelector('.screen.active').id === 'orbPanel'
                     ? document.querySelectorAll('#orbPanel .orb-opt').length : 0""")
@@ -151,7 +167,18 @@ def releve(app):
                     erreurs.clear()
                     page.evaluate("(i) => document.querySelectorAll('#orbPanel .orb-opt')[i].click()", i)
                     attendre()
-                    noter("%s > %d %s" % (orb, i + 1, nom))
+                    ch = "%s > %d %s" % (orb, i + 1, nom)
+                    verso(ch, noter(ch))
+            # Des cartes qu'aucune tuile n'ouvre directement : celle d'un
+            # verbe porte la conjugaison et les temps, celle d'un adjectif ses
+            # degres. Ouvertes par leur fonction, recto puis verso.
+            for nom, appel in [("carte verbe A1", "startVerbeLevel('A1')"),
+                               ("carte adjectif A1", "startAdjektiveLevel('A1')")]:
+                accueil()
+                erreurs.clear()
+                page.evaluate("() => { " + appel + "; }")
+                attendre()
+                verso(nom, noter(nom))
             nav.close()
     finally:
         srv.shutdown()
@@ -203,11 +230,12 @@ def main():
     # commun regle sur l'espagnol (?apprendre=es), qui doit la rattraper.
     ap.add_argument("--app", choices=["de", "es", "es-moteur"])
     ap.add_argument("--sortie")
+    ap.add_argument("--page", help="autre fichier que index.html, a la racine du depot")
     ap.add_argument("--comparer", nargs=2)
     a = ap.parse_args()
     if a.comparer:
         sys.exit(1 if comparer(*a.comparer) else 0)
-    r = releve(a.app)
+    r = releve(a.app, a.page)
     with open(a.sortie, "w", encoding="utf-8") as f:
         json.dump(r, f, ensure_ascii=False, indent=1)
     n_err = sum(len(x["erreurs"]) for x in r)

@@ -48,7 +48,7 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    « ? » ajouté dans un libellé → 1 écart, au bon chemin.
    Après chaque étape :
    `python fusion-espagnol/parcours.py --app de --sortie releve.json` puis
-   `python fusion-espagnol/parcours.py --comparer fusion-espagnol/references/de-v727.json releve.json`
+   `python fusion-espagnol/parcours.py --comparer fusion-espagnol/references/de-v729.json releve.json`
    → **0 écart exigé**. Le parcours prend environ six minutes.
    Relevé en passant dans l'espagnol actuel : une explication dit « c'est ici
    que **l'anglais** n'aide pas » même en interface française (écrite pour
@@ -103,6 +103,27 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    d'Aurora, dictionnaire, fréquence, synonymes, marques régionales) : un
    drapeau par fonction dans la table de langue, au lieu d'un remplacement
    dans le fork.
+   ✅ **Premier morceau fait en v730 (10 oct. 2026) : les cartes.**
+   `data-apprendre` sur `<html>` dès le `<head>` ; les règles CSS du fork qui
+   cachaient une trentaine d'exercices allemands ne valent plus qu'en
+   espagnol (`html[data-apprendre="es"] …`). Articles (`ARTICLES_GENRE`,
+   `articlePluriel()` : los/las), quiz des articles (el/la), personnes de
+   conjugaison (`PERSONNES_CONJUGAISON`), les trois temps espagnols au verso
+   (`blocTempsEspagnol`, aides en français ET en anglais — le fork ne les
+   avait qu'en anglais), pastilles de registre et de construction.
+   Le vérificateur lit maintenant `I18N_ESPAGNOL` et exige chaque clé en
+   français et en anglais : il a trouvé un oubli du fork (en français, le
+   panneau « Ser vs estar » gardait « der · den · dem · ein · kein »).
+   **Le parcours retourne maintenant les cartes** (verso, temps cachés d'un
+   verbe) et ouvre une carte de verbe et une d'adjectif : 123 chemins.
+   Nouvelle référence allemande : `references/de-v729.json`, prise sur la
+   version d'AVANT ce morceau ; après : 0 écart, carte de *sein* comprise.
+   Reste dans l'étape 3 : les listes de contenu écrites dans le code
+   (prépositions, connecteurs, particules, catégories d'adverbes et
+   d'expressions, panneau des expressions), la voix (`voicesForLang`,
+   `LANGUE_TAG`), le dictionnaire, les crédits, la visite guidée, l'examen,
+   les scènes, et le réglage Espagne / Amérique latine.
+
 4. **La grammaire espagnole** (7 écrans de `gramatica_es.py`) en données,
    comme `grammaire.json` pour l'allemand.
 5. **Les verbes** : les temps espagnols, la conjugaison, l'affichage.
