@@ -24,6 +24,22 @@ LE GENRE ET LA TRADUCTION VIENNENT DU CORPUS, JAMAIS DES ZONES
 
 --grille dessine les boites sur l'image : la seule facon de verifier qu'une
 zone ecrite a la main tombe sur son objet.
+
+LES TRADUCTIONS (10 oct. 2026) : traductions/<nom>.<langue>.json
+    Le contenu ecrit en francais (alt, consigne, nom de la vue, bouton de
+    l'autre vue, titres des couches, explication « n » de chaque question) a
+    sa traduction en en / tr / uk / fa / ar dans un fichier A PART, pas dans
+    le points.json : les questions sont relues sur main, et deux mains dans
+    le meme fichier font des conflits. L'allemand ne se traduit jamais.
+    Chaque entree garde le FRANCAIS SOURCE a cote de sa traduction. Si le
+    francais du points.json a change depuis, la traduction est PERIMEE : elle
+    n'est pas reprise (la page montre le francais, plutot qu'une explication
+    qui ne correspond plus a la question) et la construction l'annonce.
+    Une question se reconnait a sa couche et a sa phrase allemande :
+    « A2 | Der Rucksack ist unter dem Tisch. ».
+
+    --squelette ajoute aux fichiers de traduction les entrees qui manquent
+    (traduction vide) : le point de depart pour traduire une question neuve.
 """
 import io
 import json
@@ -47,6 +63,77 @@ def corpus():
     return idx
 
 
+LANGUES = ["en", "tr", "uk", "fa", "ar"]
+# Les traductions d'un mot dans le corpus : traduction (fr), traduction_en...
+# Pas encore d'arabe dans le corpus : la page retombe sur l'anglais.
+CHAMPS_MOT = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr",
+              "uk": "traduction_uk", "fa": "traduction_fa"}
+
+
+def sens(m):
+    return {l: m.get(c) for l, c in CHAMPS_MOT.items() if m.get(c)}
+
+
+def cle_question(niv, q):
+    return "%s | %s" % (niv, q["phrase"])
+
+
+def sources(pts):
+    """Tout le francais a traduire d'une scene : {groupe: {cle: texte}}."""
+    champs = {k: pts[k] for k in ("alt", "consigne", "nom_vue") if pts.get(k)}
+    if pts.get("autre_vue", {}).get("libelle"):
+        champs["autre_vue"] = pts["autre_vue"]["libelle"]
+    couches, questions = {}, {}
+    for niv, c in pts.get("couches", {}).items():
+        if c.get("titre"):
+            couches[niv] = c["titre"]
+        for q in c.get("qs", []):
+            questions[cle_question(niv, q)] = q["n"]
+    return {"champs": champs, "couches": couches, "questions": questions}
+
+
+def traductions(pts, nom, squelette):
+    """{langue: {champs, couches, questions}} -- seulement ce qui est a jour."""
+    src = sources(pts)
+    sortie = {}
+    for lang in LANGUES:
+        chemin = os.path.join(ICI, "traductions", "%s.%s.json" % (nom, lang))
+        if not os.path.exists(chemin):
+            if not squelette:
+                continue
+            fic = {"langue": lang, "scene": nom}
+        else:
+            fic = json.load(io.open(chemin, encoding="utf-8"))
+        bon = {"champs": {}, "couches": {}, "questions": {}}
+        perimes, orphelins, manquants = [], [], 0
+        for groupe, textes in src.items():
+            entrees = fic.setdefault(groupe, {})
+            for cle in list(entrees):
+                if cle not in textes:
+                    orphelins.append(cle)
+            for cle, fr in textes.items():
+                e = entrees.get(cle)
+                if not e or not e.get("trad"):
+                    manquants += 1
+                    if squelette and not e:
+                        entrees[cle] = {"fr": fr, "trad": ""}
+                elif e.get("fr") != fr:
+                    perimes.append(cle)
+                else:
+                    bon[groupe][cle] = e["trad"]
+        if squelette:
+            io.open(chemin, "w", encoding="utf-8").write(
+                json.dumps(fic, ensure_ascii=False, indent=1) + "\n")
+        for cle in perimes:
+            print("  ⚠ %s : traduction PERIMEE (le francais a change) -- %s" % (lang, cle))
+        for cle in orphelins:
+            print("  ⚠ %s : traduction sans question (phrase changee ?) -- %s" % (lang, cle))
+        if manquants:
+            print("  %s : %d texte(s) sans traduction, montres en francais" % (lang, manquants))
+        sortie[lang] = bon
+    return sortie
+
+
 def decouper(pts, nom, g):
     """L'image NETTE d'un gros plan : le cadre decoupe dans la source a sa
     pleine resolution, au lieu de la scene web (1080 px) etiree.
@@ -54,10 +141,11 @@ def decouper(pts, nom, g):
     Le visage de Mark fait ~150 px dans la scene web et ~210 dans la source :
     pas de miracle, mais 40 % de pixels en plus pour le meme ecran. Le vrai
     remede reste une image du visage generee pour le gros plan."""
-    from PIL import Image
     fichier = "%s-%s.webp" % (nom, g["id"])
     chemin = os.path.normpath(os.path.join(ICI, pts["source"]))
     if os.path.exists(chemin):
+        # PIL seulement ici : une session cloud n'a ni la source ni PIL.
+        from PIL import Image
         src = Image.open(chemin).convert("RGB")
         W, H = src.size
         x, y, w, h = g["cadre"]
@@ -105,16 +193,15 @@ def main():
         for (x, y, w, h) in boites:
             if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
                 sys.exit("  %s : boite hors de l'image %r" % (p["id"], [x, y, w, h]))
-        sortie.append({
+        sortie.append(dict({
             "id": p["id"], "mot": m["mot"], "genre": m.get("genre"),
-            "pluriel": m.get("pluriel"), "fr": m.get("traduction"),
-            "en": m.get("traduction_en"), "niveau": m["niveau"],
+            "pluriel": m.get("pluriel"), "niveau": m["niveau"],
             "theme": m["theme"], "personne": p.get("personne"),
-            "aussi": [{"mot": a, "genre": idx[a].get("genre"),
-                       "fr": idx[a].get("traduction"), "niveau": idx[a]["niveau"]}
+            "aussi": [dict({"mot": a, "genre": idx[a].get("genre"),
+                            "niveau": idx[a]["niveau"]}, **sens(idx[a]))
                       for a in p.get("aussi", [])],
             "sur": p.get("sur"), "devant": p.get("devant", 0),
-            "boites": boites})
+            "boites": boites}, **sens(m)))
     # LES GROS PLANS (Jacques, 6 oct.) : toucher le visage du prof l'agrandit,
     # et ses parties -- l'oeil, le nez, la bouche -- deviennent des cibles a
     # la taille du doigt. Une partie est une ellipse [cx, cy, rx, ry] en % de
@@ -134,13 +221,12 @@ def main():
                 manquants.append(q["mot"])
                 continue
             formes[q["id"]] = q["forme"]
-            sortie.append({
+            sortie.append(dict({
                 "id": q["id"], "mot": m["mot"], "genre": m.get("genre"),
-                "pluriel": m.get("pluriel"), "fr": m.get("traduction"),
-                "en": m.get("traduction_en"), "niveau": m["niveau"],
+                "pluriel": m.get("pluriel"), "niveau": m["niveau"],
                 "theme": m["theme"], "personne": None, "aussi": [],
                 "sur": g["personne"], "devant": 0, "detail": g["id"],
-                "boites": [[cx - rx, cy - ry, 2 * rx, 2 * ry]]})
+                "boites": [[cx - rx, cy - ry, 2 * rx, 2 * ry]]}, **sens(m)))
         entree = {"id": g["id"], "declencheur": g["declencheur"],
                   "cadre": g["cadre"], "formes": formes}
         if g.get("net"):
@@ -173,6 +259,9 @@ def main():
                 "vues", "nom_vue"):
         if cle in pts:
             scene[cle] = pts[cle]
+    trad = traductions(pts, nom, "--squelette" in sys.argv)
+    if trad:
+        scene["traductions"] = trad
     js = ("// GENERE par construire.py -- ne pas modifier a la main.\n"
           "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1)
           + ";\n")

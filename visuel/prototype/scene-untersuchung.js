@@ -7,8 +7,6 @@ window.SCENE = {
    "mot": "Patient",
    "genre": "der",
    "pluriel": "Patienten",
-   "fr": "un patient (un malade)",
-   "en": "patient",
    "niveau": "B1",
    "theme": "gesundheit_b1",
    "personne": "Mark",
@@ -16,14 +14,22 @@ window.SCENE = {
     {
      "mot": "Mann",
      "genre": "der",
+     "niveau": "A1",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "en": "man, husband",
+     "tr": "adam / koca",
+     "uk": "чоловік",
+     "fa": "مرد، شوهر"
     },
     {
      "mot": "Körper",
      "genre": "der",
+     "niveau": "A1",
      "fr": "le corps",
-     "niveau": "A1"
+     "en": "body",
+     "tr": "vücut",
+     "uk": "тіло",
+     "fa": "بدن"
     }
    ],
    "sur": null,
@@ -47,15 +53,18 @@ window.SCENE = {
      35,
      35
     ]
-   ]
+   ],
+   "fr": "un patient (un malade)",
+   "en": "patient",
+   "tr": "hasta",
+   "uk": "пацієнт",
+   "fa": "بیمار (مرد)"
   },
   {
    "id": "kopf",
    "mot": "Kopf",
    "genre": "der",
    "pluriel": "Köpfe",
-   "fr": "tête",
-   "en": "head",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -69,15 +78,18 @@ window.SCENE = {
      20.2,
      14.8
     ]
-   ]
+   ],
+   "fr": "tête",
+   "en": "head",
+   "tr": "baş",
+   "uk": "голова",
+   "fa": "سر"
   },
   {
    "id": "hals",
    "mot": "Hals",
    "genre": "der",
    "pluriel": "Hälse",
-   "fr": "cou",
-   "en": "neck",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -91,15 +103,18 @@ window.SCENE = {
      11.0,
      2.6
     ]
-   ]
+   ],
+   "fr": "cou",
+   "en": "neck",
+   "tr": "boyun",
+   "uk": "шия, горло",
+   "fa": "گلو، گردن"
   },
   {
    "id": "schulter",
    "mot": "Schulter",
    "genre": "die",
    "pluriel": "Schultern",
-   "fr": "épaule",
-   "en": "shoulder",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -119,15 +134,18 @@ window.SCENE = {
      5.6,
      4.4
     ]
-   ]
+   ],
+   "fr": "épaule",
+   "en": "shoulder",
+   "tr": "omuz",
+   "uk": "плече",
+   "fa": "شانه"
   },
   {
    "id": "brust",
    "mot": "Brust",
    "genre": "die",
    "pluriel": "Brüste",
-   "fr": "la poitrine",
-   "en": "chest, breast",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -141,15 +159,18 @@ window.SCENE = {
      23.0,
      7.6
     ]
-   ]
+   ],
+   "fr": "la poitrine",
+   "en": "chest, breast",
+   "tr": "göğüs",
+   "uk": "груди",
+   "fa": "سینه"
   },
   {
    "id": "bauch",
    "mot": "Bauch",
    "genre": "der",
    "pluriel": "Bäuche",
-   "fr": "ventre",
-   "en": "belly",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -163,15 +184,18 @@ window.SCENE = {
      22.0,
      8.8
     ]
-   ]
+   ],
+   "fr": "ventre",
+   "en": "belly",
+   "tr": "karın",
+   "uk": "живіт",
+   "fa": "شکم"
   },
   {
    "id": "arm-l",
    "mot": "Arm",
    "genre": "der",
    "pluriel": "Arme",
-   "fr": "bras",
-   "en": "arm",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -191,15 +215,18 @@ window.SCENE = {
      7.6,
      13.0
     ]
-   ]
+   ],
+   "fr": "bras",
+   "en": "arm",
+   "tr": "kol",
+   "uk": "рука (від плеча)",
+   "fa": "بازو"
   },
   {
    "id": "arm-r",
    "mot": "Arm",
    "genre": "der",
    "pluriel": "Arme",
-   "fr": "bras",
-   "en": "arm",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -219,15 +246,18 @@ window.SCENE = {
      6.2,
      11.0
     ]
-   ]
+   ],
+   "fr": "bras",
+   "en": "arm",
+   "tr": "kol",
+   "uk": "рука (від плеча)",
+   "fa": "بازو"
   },
   {
    "id": "ellbogen",
    "mot": "Ellbogen",
    "genre": "der",
    "pluriel": "Ellbogen",
-   "fr": "coude",
-   "en": "elbow",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -247,15 +277,18 @@ window.SCENE = {
      4.4,
      3.2
     ]
-   ]
+   ],
+   "fr": "coude",
+   "en": "elbow",
+   "tr": "dirsek",
+   "uk": "лікоть",
+   "fa": "آرنج"
   },
   {
    "id": "handgelenk",
    "mot": "Handgelenk",
    "genre": "das",
    "pluriel": "Handgelenke",
-   "fr": "poignet",
-   "en": "wrist",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -275,15 +308,18 @@ window.SCENE = {
      4.0,
      1.8
     ]
-   ]
+   ],
+   "fr": "poignet",
+   "en": "wrist",
+   "tr": "bilek",
+   "uk": "зап'ясток",
+   "fa": "مچ دست"
   },
   {
    "id": "hand-l",
    "mot": "Hand",
    "genre": "die",
    "pluriel": "Hände",
-   "fr": "main",
-   "en": "hand",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -297,15 +333,18 @@ window.SCENE = {
      10.1,
      8.2
     ]
-   ]
+   ],
+   "fr": "main",
+   "en": "hand",
+   "tr": "el",
+   "uk": "рука",
+   "fa": "دست"
   },
   {
    "id": "hand-r",
    "mot": "Hand",
    "genre": "die",
    "pluriel": "Hände",
-   "fr": "main",
-   "en": "hand",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -319,15 +358,18 @@ window.SCENE = {
      6.5,
      6.0
     ]
-   ]
+   ],
+   "fr": "main",
+   "en": "hand",
+   "tr": "el",
+   "uk": "рука",
+   "fa": "دست"
   },
   {
    "id": "oberschenkel",
    "mot": "Oberschenkel",
    "genre": "der",
    "pluriel": "Oberschenkel",
-   "fr": "cuisse",
-   "en": "thigh",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -347,15 +389,18 @@ window.SCENE = {
      13.2,
      7.6
     ]
-   ]
+   ],
+   "fr": "cuisse",
+   "en": "thigh",
+   "tr": "uyluk",
+   "uk": "стегно",
+   "fa": "ران"
   },
   {
    "id": "knie",
    "mot": "Knie",
    "genre": "das",
    "pluriel": "Knie",
-   "fr": "genou",
-   "en": "knee",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -375,15 +420,18 @@ window.SCENE = {
      8.4,
      3.8
     ]
-   ]
+   ],
+   "fr": "genou",
+   "en": "knee",
+   "tr": "diz",
+   "uk": "коліно",
+   "fa": "زانو"
   },
   {
    "id": "bein-l",
    "mot": "Bein",
    "genre": "das",
    "pluriel": "Beine",
-   "fr": "jambe",
-   "en": "leg",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -397,15 +445,18 @@ window.SCENE = {
      14.5,
      25.5
     ]
-   ]
+   ],
+   "fr": "jambe",
+   "en": "leg",
+   "tr": "bacak",
+   "uk": "нога",
+   "fa": "ساق پا"
   },
   {
    "id": "bein-r",
    "mot": "Bein",
    "genre": "das",
    "pluriel": "Beine",
-   "fr": "jambe",
-   "en": "leg",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -419,15 +470,18 @@ window.SCENE = {
      13.5,
      24.5
     ]
-   ]
+   ],
+   "fr": "jambe",
+   "en": "leg",
+   "tr": "bacak",
+   "uk": "нога",
+   "fa": "ساق پا"
   },
   {
    "id": "fuss-l",
    "mot": "Fuß",
    "genre": "der",
    "pluriel": "Füße",
-   "fr": "pied",
-   "en": "foot",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -441,15 +495,18 @@ window.SCENE = {
      10.1,
      8.1
     ]
-   ]
+   ],
+   "fr": "pied",
+   "en": "foot",
+   "tr": "ayak",
+   "uk": "ступня",
+   "fa": "پا"
   },
   {
    "id": "fuss-r",
    "mot": "Fuß",
    "genre": "der",
    "pluriel": "Füße",
-   "fr": "pied",
-   "en": "foot",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -463,15 +520,18 @@ window.SCENE = {
      17.6,
      5.7
     ]
-   ]
+   ],
+   "fr": "pied",
+   "en": "foot",
+   "tr": "ayak",
+   "uk": "ступня",
+   "fa": "پا"
   },
   {
    "id": "aerztin",
    "mot": "Ärztin",
    "genre": "die",
    "pluriel": "Ärztinnen",
-   "fr": "médecin (fém.)",
-   "en": "doctor (female)",
    "niveau": "A1",
    "theme": "berufe_a1",
    "personne": null,
@@ -479,8 +539,12 @@ window.SCENE = {
     {
      "mot": "Frau",
      "genre": "die",
+     "niveau": "A1",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "en": "woman, wife",
+     "tr": "kadın / eş",
+     "uk": "жінка, дружина",
+     "fa": "زن، همسر"
     }
    ],
    "sur": null,
@@ -504,15 +568,18 @@ window.SCENE = {
      37,
      62
     ]
-   ]
+   ],
+   "fr": "médecin (fém.)",
+   "en": "doctor (female)",
+   "tr": "doktor (kadın)",
+   "uk": "лікарка",
+   "fa": "پزشک (زن)"
   },
   {
    "id": "hand-aerztin-haut",
    "mot": "Hand",
    "genre": "die",
    "pluriel": "Hände",
-   "fr": "main",
-   "en": "hand",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -526,15 +593,18 @@ window.SCENE = {
      8.0,
      4.4
     ]
-   ]
+   ],
+   "fr": "main",
+   "en": "hand",
+   "tr": "el",
+   "uk": "рука",
+   "fa": "دست"
   },
   {
    "id": "hand-aerztin-bas",
    "mot": "Hand",
    "genre": "die",
    "pluriel": "Hände",
-   "fr": "main",
-   "en": "hand",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -548,15 +618,18 @@ window.SCENE = {
      7.0,
      5.0
     ]
-   ]
+   ],
+   "fr": "main",
+   "en": "hand",
+   "tr": "el",
+   "uk": "рука",
+   "fa": "دست"
   },
   {
    "id": "waage",
    "mot": "Waage",
    "genre": "die",
    "pluriel": "Waagen",
-   "fr": "balance",
-   "en": "scales",
    "niveau": "B2",
    "theme": "kueche_kochen_b2",
    "personne": null,
@@ -582,15 +655,18 @@ window.SCENE = {
      29.5,
      10
     ]
-   ]
+   ],
+   "fr": "balance",
+   "en": "scales",
+   "tr": "tartı",
+   "uk": "ваги",
+   "fa": "ترازو"
   },
   {
    "id": "wand",
    "mot": "Wand",
    "genre": "die",
    "pluriel": "Wände",
-   "fr": "mur",
-   "en": "wall",
    "niveau": "A1",
    "theme": "wohnen_a1",
    "personne": null,
@@ -604,15 +680,18 @@ window.SCENE = {
      100,
      72
     ]
-   ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار"
   },
   {
    "id": "boden",
    "mot": "Boden",
    "genre": "der",
    "pluriel": "Böden",
-   "fr": "le sol",
-   "en": "ground, floor",
    "niveau": "A2",
    "theme": "natur_a2",
    "personne": null,
@@ -626,15 +705,18 @@ window.SCENE = {
      100,
      25
     ]
-   ]
+   ],
+   "fr": "le sol",
+   "en": "ground, floor",
+   "tr": "zemin / toprak",
+   "uk": "земля, підлога",
+   "fa": "زمین، کف"
   },
   {
    "id": "haar",
    "mot": "Haar",
    "genre": "das",
    "pluriel": "Haare",
-   "fr": "cheveu",
-   "en": "hair",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -649,15 +731,18 @@ window.SCENE = {
      19.0,
      6.8
     ]
-   ]
+   ],
+   "fr": "cheveu",
+   "en": "hair",
+   "tr": "saç",
+   "uk": "волосся",
+   "fa": "مو"
   },
   {
    "id": "haar-l",
    "mot": "Haar",
    "genre": "das",
    "pluriel": "Haare",
-   "fr": "cheveu",
-   "en": "hair",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -672,15 +757,18 @@ window.SCENE = {
      5.0,
      4.0
     ]
-   ]
+   ],
+   "fr": "cheveu",
+   "en": "hair",
+   "tr": "saç",
+   "uk": "волосся",
+   "fa": "مو"
   },
   {
    "id": "gesicht",
    "mot": "Gesicht",
    "genre": "das",
    "pluriel": "Gesichter",
-   "fr": "visage",
-   "en": "face",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -695,15 +783,18 @@ window.SCENE = {
      12.4,
      10.0
     ]
-   ]
+   ],
+   "fr": "visage",
+   "en": "face",
+   "tr": "yüz",
+   "uk": "обличчя",
+   "fa": "چهره"
   },
   {
    "id": "stirn",
    "mot": "Stirn",
    "genre": "die",
    "pluriel": "Stirnen",
-   "fr": "front",
-   "en": "forehead",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -718,15 +809,18 @@ window.SCENE = {
      9.0,
      2.2
     ]
-   ]
+   ],
+   "fr": "front",
+   "en": "forehead",
+   "tr": "alın",
+   "uk": "чоло, лоб",
+   "fa": "پیشانی"
   },
   {
    "id": "augenbraue-l",
    "mot": "Augenbraue",
    "genre": "die",
    "pluriel": "Augenbrauen",
-   "fr": "sourcil",
-   "en": "eyebrow",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -741,15 +835,18 @@ window.SCENE = {
      4.2,
      0.7
     ]
-   ]
+   ],
+   "fr": "sourcil",
+   "en": "eyebrow",
+   "tr": "kaş",
+   "uk": "брова",
+   "fa": "ابرو"
   },
   {
    "id": "augenbraue-r",
    "mot": "Augenbraue",
    "genre": "die",
    "pluriel": "Augenbrauen",
-   "fr": "sourcil",
-   "en": "eyebrow",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -764,15 +861,18 @@ window.SCENE = {
      2.5,
      0.7
     ]
-   ]
+   ],
+   "fr": "sourcil",
+   "en": "eyebrow",
+   "tr": "kaş",
+   "uk": "брова",
+   "fa": "ابرو"
   },
   {
    "id": "auge-l",
    "mot": "Auge",
    "genre": "das",
    "pluriel": "Augen",
-   "fr": "œil",
-   "en": "eye",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -787,15 +887,18 @@ window.SCENE = {
      2.8,
      0.8
     ]
-   ]
+   ],
+   "fr": "œil",
+   "en": "eye",
+   "tr": "göz",
+   "uk": "око",
+   "fa": "چشم"
   },
   {
    "id": "auge-r",
    "mot": "Auge",
    "genre": "das",
    "pluriel": "Augen",
-   "fr": "œil",
-   "en": "eye",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -810,15 +913,18 @@ window.SCENE = {
      1.8,
      0.8
     ]
-   ]
+   ],
+   "fr": "œil",
+   "en": "eye",
+   "tr": "göz",
+   "uk": "око",
+   "fa": "چشم"
   },
   {
    "id": "ohr",
    "mot": "Ohr",
    "genre": "das",
    "pluriel": "Ohren",
-   "fr": "oreille",
-   "en": "ear",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -833,15 +939,18 @@ window.SCENE = {
      2.6,
      2.6
     ]
-   ]
+   ],
+   "fr": "oreille",
+   "en": "ear",
+   "tr": "kulak",
+   "uk": "вухо",
+   "fa": "گوش"
   },
   {
    "id": "nase",
    "mot": "Nase",
    "genre": "die",
    "pluriel": "Nasen",
-   "fr": "nez",
-   "en": "nose",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -856,15 +965,18 @@ window.SCENE = {
      3.2,
      2.8
     ]
-   ]
+   ],
+   "fr": "nez",
+   "en": "nose",
+   "tr": "burun",
+   "uk": "ніс",
+   "fa": "بینی"
   },
   {
    "id": "wange-l",
    "mot": "Wange",
    "genre": "die",
    "pluriel": "Wangen",
-   "fr": "joue",
-   "en": "cheek",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -879,15 +991,18 @@ window.SCENE = {
      4.0,
      2.6
     ]
-   ]
+   ],
+   "fr": "joue",
+   "en": "cheek",
+   "tr": "yanak",
+   "uk": "щока",
+   "fa": "گونه"
   },
   {
    "id": "wange-r",
    "mot": "Wange",
    "genre": "die",
    "pluriel": "Wangen",
-   "fr": "joue",
-   "en": "cheek",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -902,15 +1017,18 @@ window.SCENE = {
      1.2,
      2.0
     ]
-   ]
+   ],
+   "fr": "joue",
+   "en": "cheek",
+   "tr": "yanak",
+   "uk": "щока",
+   "fa": "گونه"
   },
   {
    "id": "mund",
    "mot": "Mund",
    "genre": "der",
    "pluriel": "Münder",
-   "fr": "bouche",
-   "en": "mouth",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -925,15 +1043,18 @@ window.SCENE = {
      5.0,
      1.2
     ]
-   ]
+   ],
+   "fr": "bouche",
+   "en": "mouth",
+   "tr": "ağız",
+   "uk": "рот",
+   "fa": "دهان"
   },
   {
    "id": "zahn",
    "mot": "Zahn",
    "genre": "der",
    "pluriel": "Zähne",
-   "fr": "dent",
-   "en": "tooth",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -948,15 +1069,18 @@ window.SCENE = {
      2.2,
      0.4
     ]
-   ]
+   ],
+   "fr": "dent",
+   "en": "tooth",
+   "tr": "diş",
+   "uk": "зуб",
+   "fa": "دندان"
   },
   {
    "id": "lippe",
    "mot": "Lippe",
    "genre": "die",
    "pluriel": "Lippen",
-   "fr": "lèvre",
-   "en": "lip",
    "niveau": "B1",
    "theme": "koerperteile_b1",
    "personne": null,
@@ -971,15 +1095,18 @@ window.SCENE = {
      3.4,
      0.5
     ]
-   ]
+   ],
+   "fr": "lèvre",
+   "en": "lip",
+   "tr": "dudak",
+   "uk": "губа",
+   "fa": "لب"
   },
   {
    "id": "kinn",
    "mot": "Kinn",
    "genre": "das",
    "pluriel": "Kinne",
-   "fr": "menton",
-   "en": "chin",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -994,15 +1121,18 @@ window.SCENE = {
      4.0,
      1.6
     ]
-   ]
+   ],
+   "fr": "menton",
+   "en": "chin",
+   "tr": "çene",
+   "uk": "підборіддя",
+   "fa": "چانه"
   },
   {
    "id": "finger-main",
    "mot": "Finger",
    "genre": "der",
    "pluriel": "Finger",
-   "fr": "doigt",
-   "en": "finger",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -1017,15 +1147,18 @@ window.SCENE = {
      4.0,
      3.8
     ]
-   ]
+   ],
+   "fr": "doigt",
+   "en": "finger",
+   "tr": "parmak",
+   "uk": "палець",
+   "fa": "انگشت"
   },
   {
    "id": "finger-daumen",
    "mot": "Finger",
    "genre": "der",
    "pluriel": "Finger",
-   "fr": "doigt",
-   "en": "finger",
    "niveau": "A1",
    "theme": "koerperteile_a1",
    "personne": null,
@@ -1040,15 +1173,18 @@ window.SCENE = {
      2.4,
      1.6
     ]
-   ]
+   ],
+   "fr": "doigt",
+   "en": "finger",
+   "tr": "parmak",
+   "uk": "палець",
+   "fa": "انگشت"
   },
   {
    "id": "nagel-daumen",
    "mot": "Nagel",
    "genre": "der",
    "pluriel": "Nägel",
-   "fr": "ongle",
-   "en": "nail",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1063,15 +1199,18 @@ window.SCENE = {
      1.0,
      0.7
     ]
-   ]
+   ],
+   "fr": "ongle",
+   "en": "nail",
+   "tr": "tırnak",
+   "uk": "ніготь",
+   "fa": "ناخن، میخ"
   },
   {
    "id": "knoechel-l",
    "mot": "Knöchel",
    "genre": "der",
    "pluriel": "Knöchel",
-   "fr": "cheville",
-   "en": "ankle",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1086,15 +1225,18 @@ window.SCENE = {
      6.6,
      2.4
     ]
-   ]
+   ],
+   "fr": "cheville",
+   "en": "ankle",
+   "tr": "ayak bileği",
+   "uk": "щиколотка",
+   "fa": "قوزک پا"
   },
   {
    "id": "knoechel-r",
    "mot": "Knöchel",
    "genre": "der",
    "pluriel": "Knöchel",
-   "fr": "cheville",
-   "en": "ankle",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1109,15 +1251,18 @@ window.SCENE = {
      6.4,
      2.0
     ]
-   ]
+   ],
+   "fr": "cheville",
+   "en": "ankle",
+   "tr": "ayak bileği",
+   "uk": "щиколотка",
+   "fa": "قوزک پا"
   },
   {
    "id": "zehe-l",
    "mot": "Zehe",
    "genre": "die",
    "pluriel": "Zehen",
-   "fr": "orteil",
-   "en": "toe",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1132,15 +1277,18 @@ window.SCENE = {
      8.4,
      2.2
     ]
-   ]
+   ],
+   "fr": "orteil",
+   "en": "toe",
+   "tr": "ayak parmağı",
+   "uk": "палець ноги",
+   "fa": "انگشت پا"
   },
   {
    "id": "zehe-r",
    "mot": "Zehe",
    "genre": "die",
    "pluriel": "Zehen",
-   "fr": "orteil",
-   "en": "toe",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1155,15 +1303,18 @@ window.SCENE = {
      5.2,
      3.2
     ]
-   ]
+   ],
+   "fr": "orteil",
+   "en": "toe",
+   "tr": "ayak parmağı",
+   "uk": "палець ноги",
+   "fa": "انگشت پا"
   },
   {
    "id": "fussnagel-l",
    "mot": "Nagel",
    "genre": "der",
    "pluriel": "Nägel",
-   "fr": "ongle",
-   "en": "nail",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1178,15 +1329,18 @@ window.SCENE = {
      1.4,
      0.9
     ]
-   ]
+   ],
+   "fr": "ongle",
+   "en": "nail",
+   "tr": "tırnak",
+   "uk": "ніготь",
+   "fa": "ناخن، میخ"
   },
   {
    "id": "fussnagel-r",
    "mot": "Nagel",
    "genre": "der",
    "pluriel": "Nägel",
-   "fr": "ongle",
-   "en": "nail",
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
@@ -1201,7 +1355,12 @@ window.SCENE = {
      1.4,
      1.0
     ]
-   ]
+   ],
+   "fr": "ongle",
+   "en": "nail",
+   "tr": "tırnak",
+   "uk": "ніготь",
+   "fa": "ناخن، میخ"
   }
  ],
  "grosPlans": [
@@ -1773,5 +1932,212 @@ window.SCENE = {
   "untersuchung",
   "untersuchung-dos"
  ],
- "nom_vue": "Mark, de face"
+ "nom_vue": "Mark, de face",
+ "traductions": {
+  "en": {
+   "champs": {
+    "alt": "Mark, standing barefoot in navy-blue boxers, has his chest listened to by his doctor; a scale with a height gauge against the green wall.",
+    "consigne": "Tap a part of Mark's body. Tap his face, his hand or his feet to see them up close.",
+    "nom_vue": "Mark, from the front",
+    "autre_vue": "↻ Turn Mark around"
+   },
+   "couches": {
+    "A1": "The human body",
+    "A2": "Wo? — prepositions and the body",
+    "B1": "The doctor's instructions",
+    "B2": "Passive and relative clauses",
+    "C1": "Hypotheses and Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = against a vertical surface. die Wand → an <b>der</b> Wand (dative).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + dative. der Patient takes an <b>-en</b>: dem Patient<b>en</b>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = in front of. die Waage → vor <b>der</b> Waage. He hasn't stepped on it yet.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Dative with the possessive: die Brust → auf <b>seiner</b> Brust.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Dative plural: <b>an seinen</b> Oberschenkel<b>n</b> — the noun takes an -n.",
+    "A2 | Seine Füße sind auf dem Boden.": "der Boden → auf <b>dem</b> Boden. Barefoot, on the grey floor.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = to listen to (with a stethoscope). Separable verb: the particle <b>ab</b> goes to the end.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = to breathe in, <b>ausatmen</b> = to breathe out. Polite imperative: verb first, particle at the end.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = to get undressed; <b>sich anziehen</b> = to get dressed; <b>sich umziehen</b> = to get changed.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = to put (movement) → auf <b>die</b> Brust (accusative). <b>sitzen</b> = to be sitting.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Movement, Wohin? → <b>sich stellen</b> + accusative: auf <b>die</b> Waage.",
+    "B1 | Danach steht er still auf der Waage.": "State, Wo? → <b>stehen</b> + dative: auf <b>der</b> Waage.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Passive of an action in progress: <b>werden</b> + past participle.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Possession, masculine antecedent → <b>dessen</b> (whose chest).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Subject of the relative clause, feminine → <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + accusative (movement) → auf <b>die</b>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Passive: <b>wird</b> … gemessen. The scale's height gauge measures how tall he is.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Passive in the subordinate clause: past participle + <b>wird</b> at the end.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = an almost certain deduction, drawn from what you see.",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = probable, without certainty.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = people say so; I'm passing it on without vouching for it.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Hypothesis without <b>wenn</b>: the verb comes first (<b>Wäre</b>…), then <b>würde</b> + infinitive.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Unreal past with a modal: <b>hätte</b> + double infinitive (abhören können).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + noun replaces a condition: Konjunktiv II <b>könnte</b>."
+   }
+  },
+  "tr": {
+   "champs": {
+    "alt": "Mark lacivert boxer şortla, yalınayak ayakta; doktoru göğsünü dinliyor. Yeşil duvarın önünde boy ölçerli bir baskül var.",
+    "consigne": "Mark'ın vücudundan bir yere dokun. Yakından görmek için yüzüne, eline ya da ayaklarına dokun.",
+    "nom_vue": "Mark, önden",
+    "autre_vue": "↻ Mark'ı çevir"
+   },
+   "couches": {
+    "A1": "İnsan vücudu",
+    "A2": "Wo? — edatlar ve vücut",
+    "B1": "Doktorun talimatları",
+    "B2": "Edilgen ve ilgi cümleleri",
+    "C1": "Varsayımlar ve Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = dikey bir yüzeye dayalı. die Wand → an <b>der</b> Wand (Dativ).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + Dativ. der Patient bir <b>-en</b> alır: dem Patient<b>en</b>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = önünde. die Waage → vor <b>der</b> Waage. Henüz üstüne çıkmadı.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "İyelik zamiriyle Dativ: die Brust → auf <b>seiner</b> Brust.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Çoğul Dativ: <b>an seinen</b> Oberschenkel<b>n</b> — isim bir -n alır.",
+    "A2 | Seine Füße sind auf dem Boden.": "der Boden → auf <b>dem</b> Boden. Yalınayak, gri zeminde.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = (stetoskopla) dinlemek. Ayrılabilen fiil: <b>ab</b> parçacığı sona gider.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = nefes almak, <b>ausatmen</b> = nefes vermek. Kibar emir kipi: fiil başta, parçacık sonda.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = soyunmak; <b>sich anziehen</b> = giyinmek; <b>sich umziehen</b> = üstünü değiştirmek.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = koymak (hareket) → auf <b>die</b> Brust (Akkusativ). <b>sitzen</b> = oturuyor olmak.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Hareket, Wohin? → <b>sich stellen</b> + Akkusativ: auf <b>die</b> Waage.",
+    "B1 | Danach steht er still auf der Waage.": "Durum, Wo? → <b>stehen</b> + Dativ: auf <b>der</b> Waage.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Süren eylemin edilgeni: <b>werden</b> + Partizip II.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "İyelik, önceki isim eril → <b>dessen</b> (göğsü).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "İlgi cümlesinin öznesi, dişil → <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + Akkusativ (hareket) → auf <b>die</b>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Edilgen: <b>wird</b> … gemessen. Baskülün boy ölçeri boyunu ölçer.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Yan cümlede edilgen: Partizip II + sonda <b>wird</b>.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = görülenden çıkarılan, neredeyse kesin bir sonuç.",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = muhtemel, kesin değil.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = öyle söyleniyor; aktarıyorum ama garanti etmiyorum.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "<b>wenn</b> olmadan varsayım: fiil başta (<b>Wäre</b>…), sonra <b>würde</b> + mastar.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Modal fiille geçmişte gerçek dışı durum: <b>hätte</b> + çift mastar (abhören können).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + isim bir koşulun yerini tutar: Konjunktiv II <b>könnte</b>."
+   }
+  },
+  "uk": {
+   "champs": {
+    "alt": "Марк стоїть босоніж у темно-синіх боксерах; лікарка слухає йому груди. Біля зеленої стіни — ваги з ростоміром.",
+    "consigne": "Торкнися частини тіла Марка. Торкнися його обличчя, руки чи ступнів, щоб роздивитися зблизька.",
+    "nom_vue": "Марк, спереду",
+    "autre_vue": "↻ Повернути Марка"
+   },
+   "couches": {
+    "A1": "Тіло людини",
+    "A2": "Wo? — прийменники й тіло",
+    "B1": "Вказівки лікарки",
+    "B2": "Пасив і відносні речення",
+    "C1": "Припущення й Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = біля вертикальної поверхні, впритул. die Wand → an <b>der</b> Wand (Dativ).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + Dativ. der Patient отримує <b>-en</b>: dem Patient<b>en</b>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = перед. die Waage → vor <b>der</b> Waage. Він ще не став на ваги.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Dativ із присвійним займенником: die Brust → auf <b>seiner</b> Brust.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Dativ множини: <b>an seinen</b> Oberschenkel<b>n</b> — іменник отримує -n.",
+    "A2 | Seine Füße sind auf dem Boden.": "der Boden → auf <b>dem</b> Boden. Босоніж, на сірій підлозі.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = вислуховувати (стетоскопом). Відокремлюване дієслово: частка <b>ab</b> іде в кінець.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = вдихати, <b>ausatmen</b> = видихати. Ввічливий наказ: дієслово на початку, частка в кінці.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = роздягатися; <b>sich anziehen</b> = одягатися; <b>sich umziehen</b> = перевдягатися.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = ставити, прикладати (рух) → auf <b>die</b> Brust (Akkusativ). <b>sitzen</b> = сидіти.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Рух, Wohin? → <b>sich stellen</b> + Akkusativ: auf <b>die</b> Waage.",
+    "B1 | Danach steht er still auf der Waage.": "Стан, Wo? → <b>stehen</b> + Dativ: auf <b>der</b> Waage.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Пасив дії, що триває: <b>werden</b> + Partizip II.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Присвійність, попередник чоловічого роду → <b>dessen</b> (чиї груди).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Підмет відносного речення, жіночий рід → <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + Akkusativ (рух) → auf <b>die</b>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Пасив: <b>wird</b> … gemessen. Ростомір на вагах вимірює зріст.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Пасив у підрядному реченні: Partizip II + <b>wird</b> у кінці.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = майже певний висновок з того, що бачимо.",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = імовірно, без певності.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = так кажуть; я переказую, але не ручаюся.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Припущення без <b>wenn</b>: дієслово на початку (<b>Wäre</b>…), потім <b>würde</b> + інфінітив.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Нереальне минуле з модальним дієсловом: <b>hätte</b> + подвійний інфінітив (abhören können).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + іменник замінює умову: Konjunktiv II <b>könnte</b>."
+   }
+  },
+  "fa": {
+   "champs": {
+    "alt": "مارک با شورت باکسر سرمه‌ای و پای برهنه ایستاده و پزشکش با گوشی سینه‌اش را معاینه می‌کند؛ کنار دیوار سبز یک ترازو با قدسنج است.",
+    "consigne": "روی یکی از اعضای بدن مارک بزن. روی صورت، دست یا پاهایش بزن تا از نزدیک ببینی.",
+    "nom_vue": "مارک، از روبه‌رو",
+    "autre_vue": "↻ برگرداندن مارک"
+   },
+   "couches": {
+    "A1": "بدن انسان",
+    "A2": "<span lang=\"de\">Wo?</span> — حرف‌های اضافه و بدن",
+    "B1": "دستورهای پزشک",
+    "B2": "مجهول و جمله‌های موصولی",
+    "C1": "فرض‌ها و Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = چسبیده به سطحی عمودی. <span lang=\"de\">die Wand → an <b>der</b> Wand</span> (Dativ).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + Dativ. <span lang=\"de\">der Patient</span> یک <b>-en</b> می‌گیرد: <span lang=\"de\">dem Patient<b>en</b></span>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = جلوی. <span lang=\"de\">die Waage → vor <b>der</b> Waage</span>. هنوز رویش نرفته است.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Dativ با ضمیر ملکی: <span lang=\"de\">die Brust → auf <b>seiner</b> Brust</span>.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Dativ جمع: <span lang=\"de\"><b>an seinen</b> Oberschenkel<b>n</b></span> — اسم یک <span lang=\"de\">-n</span> می‌گیرد.",
+    "A2 | Seine Füße sind auf dem Boden.": "<span lang=\"de\">der Boden → auf <b>dem</b> Boden</span>. پابرهنه، روی کف خاکستری.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = با گوشی معاینه کردن. فعل جداشدنی: جزء <b>ab</b> به آخر جمله می‌رود.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = دم (نفس را فرو بردن)، <b>ausatmen</b> = بازدم. امرِ مؤدبانه: فعل در آغاز، جزء جداشدنی در پایان.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = لباس درآوردن؛ <b>sich anziehen</b> = لباس پوشیدن؛ <b>sich umziehen</b> = لباس عوض کردن.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = گذاشتن (حرکت) ← <span lang=\"de\">auf <b>die</b> Brust</span> (Akkusativ). <b>sitzen</b> = نشسته بودن.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "حرکت، <span lang=\"de\">Wohin?</span> ← <b>sich stellen</b> + Akkusativ: <span lang=\"de\">auf <b>die</b> Waage</span>.",
+    "B1 | Danach steht er still auf der Waage.": "حالت، <span lang=\"de\">Wo?</span> ← <b>stehen</b> + Dativ: <span lang=\"de\">auf <b>der</b> Waage</span>.",
+    "B2 | Seine Lunge wird gerade abgehört.": "مجهولِ کاری که در جریان است: <b>werden</b> + Partizip II.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "مالکیت، مرجعِ مذکر ← <b>dessen</b> (که سینه‌اش).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "فاعلِ جملهٔ موصولی، مؤنث ← <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + Akkusativ (حرکت) ← <span lang=\"de\">auf <b>die</b></span>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "مجهول: <span lang=\"de\"><b>wird</b> … gemessen</span>. قدسنجِ ترازو قدش را اندازه می‌گیرد.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "مجهول در جملهٔ وابسته: Partizip II + <b>wird</b> در پایان.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = نتیجه‌گیریِ تقریباً قطعی از آنچه می‌بینیم.",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = محتمل، بدون قطعیت.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = این‌طور می‌گویند؛ نقلش می‌کنم بی‌آنکه ضمانتش کنم.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "فرض بدون <b>wenn</b>: فعل در آغاز (<span lang=\"de\"><b>Wäre</b>…</span>)، سپس <b>würde</b> + مصدر.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "غیرواقعی در گذشته با فعل وجهی: <b>hätte</b> + دو مصدر (<span lang=\"de\">abhören können</span>).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + اسم جای یک شرط را می‌گیرد: Konjunktiv II <b>könnte</b>."
+   }
+  },
+  "ar": {
+   "champs": {
+    "alt": "مارك واقف حافي القدمين بسروال بوكسر كحلي، وطبيبته تفحص صدره بالسمّاعة؛ وبجانب الجدار الأخضر ميزان مع مقياس للطول.",
+    "consigne": "المس جزءًا من جسم مارك. المس وجهه أو يده أو قدميه لتراها عن قرب.",
+    "nom_vue": "مارك، من الأمام",
+    "autre_vue": "↻ أدِر مارك"
+   },
+   "couches": {
+    "A1": "جسم الإنسان",
+    "A2": "<span lang=\"de\">Wo?</span> — حروف الجر والجسم",
+    "B1": "تعليمات الطبيبة",
+    "B2": "المبني للمجهول والجمل الموصولة",
+    "C1": "الافتراضات و Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = ملاصق لسطح عمودي. <span lang=\"de\">die Wand → an <b>der</b> Wand</span> (Dativ).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + Dativ. يأخذ <span lang=\"de\">der Patient</span> اللاحقة <b>-en</b>: <span lang=\"de\">dem Patient<b>en</b></span>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = أمام. <span lang=\"de\">die Waage → vor <b>der</b> Waage</span>. لم يصعد على الميزان بعد.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Dativ مع ضمير الملكية: <span lang=\"de\">die Brust → auf <b>seiner</b> Brust</span>.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Dativ الجمع: <span lang=\"de\"><b>an seinen</b> Oberschenkel<b>n</b></span> — يأخذ الاسم <span lang=\"de\">-n</span>.",
+    "A2 | Seine Füße sind auf dem Boden.": "<span lang=\"de\">der Boden → auf <b>dem</b> Boden</span>. حافي القدمين، على الأرضية الرمادية.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = يفحص بالسمّاعة. فعل منفصل: الجزء <b>ab</b> يذهب إلى آخر الجملة.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = شهيق، <b>ausatmen</b> = زفير. الأمر المهذّب: الفعل في البداية والجزء المنفصل في النهاية.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = يخلع ملابسه؛ <b>sich anziehen</b> = يرتدي ملابسه؛ <b>sich umziehen</b> = يبدّل ملابسه.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = يضع (حركة) ← <span lang=\"de\">auf <b>die</b> Brust</span> (Akkusativ). <b>sitzen</b> = يكون جالسًا.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "حركة، <span lang=\"de\">Wohin?</span> ← <b>sich stellen</b> + Akkusativ: <span lang=\"de\">auf <b>die</b> Waage</span>.",
+    "B1 | Danach steht er still auf der Waage.": "حالة، <span lang=\"de\">Wo?</span> ← <b>stehen</b> + Dativ: <span lang=\"de\">auf <b>der</b> Waage</span>.",
+    "B2 | Seine Lunge wird gerade abgehört.": "المبني للمجهول لفعل جارٍ الآن: <b>werden</b> + Partizip II.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "ملكية، والاسم المرجعي مذكر ← <b>dessen</b> (الذي صدره).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "فاعل الجملة الموصولة، مؤنث ← <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + Akkusativ (حركة) ← <span lang=\"de\">auf <b>die</b></span>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "المبني للمجهول: <span lang=\"de\"><b>wird</b> … gemessen</span>. مقياس الطول في الميزان يقيس طوله.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "المبني للمجهول في الجملة الفرعية: Partizip II + <b>wird</b> في النهاية.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = استنتاج شبه مؤكد مما نراه.",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = هكذا يُقال؛ أنقله دون أن أضمنه.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "افتراض دون <b>wenn</b>: الفعل في البداية (<span lang=\"de\"><b>Wäre</b>…</span>)، ثم <b>würde</b> + المصدر.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "غير الواقع في الماضي مع فعل مساعد: <b>hätte</b> + مصدران (<span lang=\"de\">abhören können</span>).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + اسم يحلّ محلّ الشرط: Konjunktiv II <b>könnte</b>."
+   }
+  }
+ }
 };
