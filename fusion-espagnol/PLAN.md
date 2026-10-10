@@ -67,6 +67,30 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
 Chaque étape est publiée seule, avec ses deux vérificateurs et le parcours
 allemand identique à la référence.
 
+## Les deux espagnols, dès le lancement
+
+Décidé par Jacques le 10 octobre 2026 : **Espagne ET Amérique latine au
+lancement**, au choix de l'apprenant.
+
+- **Une question au premier lancement**, sur le même écran que « Qu'est-ce que
+  tu apprends ? » : espagnol d'Espagne ou d'Amérique latine. Modifiable dans
+  les réglages. La variante est un réglage du moteur (étape 1), pas une
+  troisième langue : même progression, même compte.
+- **La base des données est l'Espagne** : le vocabulaire actuel dit *coche*,
+  *ordenador*, *zumo*, *móvil*, et chaque verbe a sa forme *vosotros*. La
+  variante latino-américaine **retire** (cache *vosotros*) et **remplace**
+  (les mots étiquetés), elle n'ajoute pas de personne de conjugaison.
+- **Chaque mot qui change porte les deux formes**, et la carte affiche l'autre
+  en note : « En Espagne : *coche* » / « En Amérique latine : *carro* », comme
+  les marques (A) et (CH) de l'allemand. Repérage et vérification : quelques
+  centaines de mots.
+- **Deux voix.** L'espagnol n'a aujourd'hui **aucune** voix enregistrée (la
+  synthèse du téléphone lit tout) : les deux corpus sont à enregistrer chez
+  ElevenLabs. Mesurer le nombre de textes et le coût **avant** de dépenser,
+  et le soumettre à Jacques.
+- ⚠️ Le DELE et le SIELE acceptent **toutes** les variantes cultivées : ce
+  n'est pas un argument pour l'Espagne (Gemini et moi l'avions dit à tort).
+
 ## Après
 
 - Interface allemande pour l'espagnol (« allemand vers espagnol ») : un
