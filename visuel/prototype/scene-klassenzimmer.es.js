@@ -1396,6 +1396,398 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — estar et les prépositions",
+   "qs": [
+    {
+     "q": "¿Dónde está la mochila?",
+     "c": [
+      "debajo de la mesa",
+      "encima de la mesa",
+      "al lado de la puerta"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "La mochila está debajo de la mesa.",
+     "n": "<b>¿Dónde?</b> → <b>estar</b> + le lieu : la mochila <b>está</b> debajo de la mesa."
+    },
+    {
+     "q": "¿Dónde está el reloj?",
+     "c": [
+      "encima de la pizarra",
+      "debajo de la pizarra",
+      "al lado de la ventana"
+     ],
+     "f": "uhr",
+     "r": "tafel",
+     "phrase": "El reloj está encima de la pizarra.",
+     "n": "<b>encima de</b> = au-dessus de. Le lieu se dit toujours avec <b>estar</b>.",
+     "latam": {
+      "c": [
+       "encima del pizarrón",
+       "debajo del pizarrón",
+       "al lado de la ventana"
+      ],
+      "phrase": "El reloj está encima del pizarrón.",
+      "n": "<b>encima de</b> = au-dessus de. de + el = <b>del</b> : encima <b>del</b> pizarrón."
+     }
+    },
+    {
+     "q": "___ una planta en la estantería.",
+     "c": [
+      "Hay",
+      "Está",
+      "Es"
+     ],
+     "f": "pflanze",
+     "r": "regal",
+     "phrase": "Hay una planta en la estantería.",
+     "n": "Une chose nouvelle, avec <b>un / una</b> → <b>hay</b>. Avec <b>la</b>, on dirait : la planta <b>está</b> en la estantería."
+    },
+    {
+     "q": "¿Dónde está el abrigo?",
+     "c": [
+      "en la puerta",
+      "en la ventana",
+      "en la mesa"
+     ],
+     "f": "mantel",
+     "r": "tuer",
+     "phrase": "El abrigo está en la puerta.",
+     "n": "<b>en</b> = sur, dans, à : le manteau est accroché <b>à</b> la porte."
+    },
+    {
+     "q": "El profesor está ___ la pizarra.",
+     "c": [
+      "delante de",
+      "detrás de",
+      "debajo de"
+     ],
+     "f": "lehrer",
+     "r": "tafel",
+     "phrase": "El profesor está delante de la pizarra.",
+     "n": "<b>delante de</b> = devant. <b>detrás de</b> = derrière.",
+     "latam": {
+      "q": "El profesor está ___ pizarrón.",
+      "c": [
+       "delante del",
+       "detrás del",
+       "debajo del"
+      ],
+      "phrase": "El profesor está delante del pizarrón.",
+      "n": "<b>delante de</b> = devant. de + el = <b>del</b> : delante <b>del</b> pizarrón."
+     }
+    },
+    {
+     "q": "El móvil está al lado ___ portátil.",
+     "c": [
+      "del",
+      "de el",
+      "al"
+     ],
+     "f": "handy",
+     "r": "laptop",
+     "phrase": "El móvil está al lado del portátil.",
+     "n": "<b>de + el = del</b> : la contraction est obligatoire. (<b>de la</b> ne se contracte pas.)",
+     "latam": {
+      "q": "El celular está al lado ___ laptop.",
+      "c": [
+       "de la",
+       "del",
+       "a la"
+      ],
+      "phrase": "El celular está al lado de la laptop.",
+      "n": "<b>la</b> laptop est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
+     }
+    },
+    {
+     "q": "¿Dónde está Anna?",
+     "c": [
+      "al lado de Mark",
+      "detrás de Mark",
+      "delante de la puerta"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Anna está al lado de Mark.",
+     "n": "<b>al lado de</b> = à côté de. Devant un prénom, pas d'article : al lado <b>de</b> Mark."
+    },
+    {
+     "q": "El cuadro está ___ la puerta y la ventana.",
+     "c": [
+      "entre",
+      "encima de",
+      "debajo de"
+     ],
+     "f": "bild",
+     "r": "tuer",
+     "phrase": "El cuadro está entre la puerta y la ventana.",
+     "n": "<b>entre</b> … <b>y</b> … = entre … et …."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Pronoms, ser et estar",
+   "qs": [
+    {
+     "q": "¿La mochila? Anna ___ ha puesto debajo de la mesa.",
+     "c": [
+      "la",
+      "le",
+      "lo"
+     ],
+     "f": "rucksack",
+     "r": "anna",
+     "phrase": "Anna la ha puesto debajo de la mesa.",
+     "revise": {
+      "mot": "poner",
+      "cat": "verbe"
+     },
+     "n": "Complément direct féminin (la mochila) → <b>la</b>. <b>le</b> est le complément indirect (à lui, à elle)."
+    },
+    {
+     "q": "¿El abrigo? Alguien ___ ha colgado en la puerta.",
+     "c": [
+      "lo",
+      "la",
+      "le"
+     ],
+     "f": "mantel",
+     "r": "tuer",
+     "phrase": "Alguien lo ha colgado en la puerta.",
+     "revise": {
+      "mot": "colgar",
+      "cat": "verbe"
+     },
+     "n": "Complément direct masculin (el abrigo) → <b>lo</b>."
+    },
+    {
+     "q": "El profesor ___ delante de la pizarra.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "lehrer",
+     "r": "tafel",
+     "phrase": "El profesor está delante de la pizarra.",
+     "n": "Où il se trouve → <b>estar</b>.",
+     "latam": {
+      "q": "El profesor ___ delante del pizarrón.",
+      "phrase": "El profesor está delante del pizarrón."
+     }
+    },
+    {
+     "q": "El profesor ___ de Sevilla.",
+     "c": [
+      "es",
+      "está",
+      "hay"
+     ],
+     "f": "lehrer",
+     "phrase": "El profesor es de Sevilla.",
+     "n": "L'origine → <b>ser</b> : es de Sevilla."
+    },
+    {
+     "q": "La mesa ___ de madera.",
+     "c": [
+      "es",
+      "está",
+      "hay"
+     ],
+     "f": "tisch",
+     "phrase": "La mesa es de madera.",
+     "n": "La matière → <b>ser</b> : es de madera."
+    },
+    {
+     "q": "El cuaderno de Anna ___ abierto.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "heft",
+     "r": "anna",
+     "phrase": "El cuaderno de Anna está abierto.",
+     "revise": {
+      "mot": "abierto",
+      "cat": "adjectif"
+     },
+     "n": "Un état qui résulte d'une action (on l'a ouvert) → <b>estar</b>."
+    },
+    {
+     "q": "Anna está ___ al lado de Mark.",
+     "c": [
+      "sentada",
+      "sentado",
+      "sentando"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Anna está sentada al lado de Mark.",
+     "revise": {
+      "mot": "sentarse",
+      "cat": "verbe"
+     },
+     "n": "<b>estar sentado</b> = être assis, un état. Le participe s'accorde : Anna → sentad<b>a</b>."
+    },
+    {
+     "q": "Anna y Mark ___ sonriendo.",
+     "c": [
+      "están",
+      "son",
+      "hay"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Anna y Mark están sonriendo.",
+     "n": "Une action en cours : <b>estar</b> + gérondif (sonriendo)."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "La mujer ___ lleva un libro bajo el brazo todavía está de pie.",
+     "c": [
+      "que",
+      "quien",
+      "cuya"
+     ],
+     "f": "frau",
+     "phrase": "La mujer que lleva un libro bajo el brazo todavía está de pie.",
+     "n": "Sujet d'une relative qui précise de quelle femme on parle → <b>que</b>. <b>quien</b> ne s'emploie ici qu'entre virgules."
+    },
+    {
+     "q": "El hombre ___ gafas están sobre la nariz es el profesor.",
+     "c": [
+      "cuyas",
+      "cuyo",
+      "que"
+     ],
+     "f": "lehrer",
+     "r": "brille",
+     "phrase": "El hombre cuyas gafas están sobre la nariz es el profesor.",
+     "n": "<b>cuyo</b> = dont le, dont la. Il s'accorde avec ce qui est possédé : las gafas → <b>cuyas</b>.",
+     "latam": {
+      "q": "El hombre ___ lentes están sobre la nariz es el profesor.",
+      "c": [
+       "cuyos",
+       "cuyas",
+       "que"
+      ],
+      "phrase": "El hombre cuyos lentes están sobre la nariz es el profesor.",
+      "n": "<b>cuyo</b> = dont le, dont la. Il s'accorde avec ce qui est possédé : los lentes → <b>cuyos</b>."
+     }
+    },
+    {
+     "q": "La participante ___ cuaderno está abierto sobre la mesa se llama Anna.",
+     "c": [
+      "cuyo",
+      "cuya",
+      "que"
+     ],
+     "f": "anna",
+     "r": "heft",
+     "phrase": "La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.",
+     "n": "<b>cuyo</b> s'accorde avec el cuaderno (masculin), pas avec Anna → <b>cuyo</b>."
+    },
+    {
+     "q": "La mesa debajo de ___ está la mochila es de madera.",
+     "c": [
+      "la cual",
+      "que",
+      "cuya"
+     ],
+     "f": "tisch",
+     "r": "rucksack",
+     "phrase": "La mesa debajo de la cual está la mochila es de madera.",
+     "n": "Après une préposition comme <b>debajo de</b> : <b>la cual</b> (ou la que). <b>que</b> seul ne suffit pas."
+    },
+    {
+     "q": "La pizarra ya ___ limpia.",
+     "c": [
+      "está",
+      "es",
+      "ha"
+     ],
+     "f": "tafel",
+     "phrase": "La pizarra ya está limpia.",
+     "n": "Le résultat d'une action (quelqu'un l'a effacé) → <b>estar</b>.",
+     "latam": {
+      "q": "El pizarrón ya ___ limpio.",
+      "phrase": "El pizarrón ya está limpio."
+     }
+    },
+    {
+     "q": "En esta clase ___ español.",
+     "c": [
+      "se enseña",
+      "se enseñan",
+      "enseña"
+     ],
+     "f": "lehrer",
+     "phrase": "En esta clase se enseña español.",
+     "n": "Le passif avec <b>se</b> : le verbe s'accorde avec ce qu'on enseigne (español, singulier) → <b>se enseña</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et probabilité",
+   "qs": [
+    {
+     "q": "Mark y Anna ___ conocerse: se sonríen.",
+     "c": [
+      "deben de",
+      "pueden",
+      "quieren"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Mark y Anna deben de conocerse: se sonríen.",
+     "n": "<b>deber de</b> + infinitif = une déduction : c'est presque sûr."
+    },
+    {
+     "q": "No lo sé, pero la mujer del vestido ___ llegado tarde.",
+     "c": [
+      "habrá",
+      "ha",
+      "había"
+     ],
+     "f": "frau",
+     "phrase": "La mujer del vestido habrá llegado tarde.",
+     "n": "Le <b>futur antérieur</b> exprime une supposition sur le passé : habrá llegado = elle est sans doute arrivée."
+    },
+    {
+     "q": "No sé su edad: el profesor ___ unos cincuenta años.",
+     "c": [
+      "tendrá",
+      "tiene",
+      "tenga"
+     ],
+     "f": "lehrer",
+     "phrase": "El profesor tendrá unos cincuenta años.",
+     "n": "Le <b>futur</b> exprime une supposition sur le présent : tendrá = il a sans doute."
+    },
+    {
+     "q": "Si Mark no ___ a Anna, no se sentaría a su lado.",
+     "c": [
+      "conociera",
+      "conoce",
+      "conocería"
+     ],
+     "f": "mark",
+     "r": "anna",
+     "phrase": "Si Mark no conociera a Anna, no se sentaría a su lado.",
+     "revise": {
+      "mot": "conocer",
+      "cat": "verbe"
+     },
+     "n": "Hypothèse contraire à la réalité : <b>si</b> + subjonctif imparfait, puis le conditionnel."
+    }
+   ]
   }
  },
  "traductions": {
@@ -1405,9 +1797,46 @@ window.SCENE = {
     "consigne": "Tap an object or a person. Tap the teacher's face to see his glasses and beard up close."
    },
    "couches": {
-    "A1": "Nouns and articles"
+    "A1": "Nouns and articles",
+    "A2": "¿Dónde está? — estar and prepositions",
+    "B1": "Pronouns, ser and estar",
+    "B2": "Relative clauses and the passive",
+    "C1": "Hypotheses and probability"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La mochila está debajo de la mesa.": "<b>¿Dónde?</b> → <b>estar</b> + place: la mochila <b>está</b> debajo de la mesa.",
+    "A2 | El reloj está encima del pizarrón.": "<b>encima de</b> = above. de + el = <b>del</b>: encima <b>del</b> pizarrón.",
+    "A2 | El reloj está encima de la pizarra.": "<b>encima de</b> = above. Location always takes <b>estar</b>.",
+    "A2 | Hay una planta en la estantería.": "Something new, with <b>un / una</b> → <b>hay</b>. With <b>la</b> it would be: la planta <b>está</b> en la estantería.",
+    "A2 | El abrigo está en la puerta.": "<b>en</b> = on, in, at: the coat is hanging <b>on</b> the door.",
+    "A2 | El profesor está delante del pizarrón.": "<b>delante de</b> = in front of. de + el = <b>del</b>: delante <b>del</b> pizarrón.",
+    "A2 | El profesor está delante de la pizarra.": "<b>delante de</b> = in front of. <b>detrás de</b> = behind.",
+    "A2 | El celular está al lado de la laptop.": "<b>la</b> laptop is feminine: <b>de la</b>, no contraction. Only <b>de + el</b> becomes <b>del</b>.",
+    "A2 | El móvil está al lado del portátil.": "<b>de + el = del</b>: the contraction is compulsory. (<b>de la</b> doesn't contract.)",
+    "A2 | Anna está al lado de Mark.": "<b>al lado de</b> = next to. No article before a name: al lado <b>de</b> Mark.",
+    "A2 | El cuadro está entre la puerta y la ventana.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "B1 | Anna la ha puesto debajo de la mesa.": "Feminine direct object (la mochila) → <b>la</b>. <b>le</b> is the indirect object (to him, to her).",
+    "B1 | Alguien lo ha colgado en la puerta.": "Masculine direct object (el abrigo) → <b>lo</b>.",
+    "B1 | El profesor está delante del pizarrón.": "Where he is → <b>estar</b>.",
+    "B1 | El profesor está delante de la pizarra.": "Where he is → <b>estar</b>.",
+    "B1 | El profesor es de Sevilla.": "Origin → <b>ser</b>: es de Sevilla.",
+    "B1 | La mesa es de madera.": "Material → <b>ser</b>: es de madera.",
+    "B1 | El cuaderno de Anna está abierto.": "A state resulting from an action (someone opened it) → <b>estar</b>.",
+    "B1 | Anna está sentada al lado de Mark.": "<b>estar sentado</b> = to be sitting, a state. The participle agrees: Anna → sentad<b>a</b>.",
+    "B1 | Anna y Mark están sonriendo.": "An action in progress: <b>estar</b> + gerund (sonriendo).",
+    "B2 | La mujer que lleva un libro bajo el brazo todavía está de pie.": "Subject of a relative clause saying which woman → <b>que</b>. <b>quien</b> only works here between commas.",
+    "B2 | El hombre cuyos lentes están sobre la nariz es el profesor.": "<b>cuyo</b> = whose. It agrees with what is owned: los lentes → <b>cuyos</b>.",
+    "B2 | El hombre cuyas gafas están sobre la nariz es el profesor.": "<b>cuyo</b> = whose. It agrees with what is owned: las gafas → <b>cuyas</b>.",
+    "B2 | La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.": "<b>cuyo</b> agrees with el cuaderno (masculine), not with Anna → <b>cuyo</b>.",
+    "B2 | La mesa debajo de la cual está la mochila es de madera.": "After a preposition like <b>debajo de</b>: <b>la cual</b> (or la que). <b>que</b> alone won't do.",
+    "B2 | El pizarrón ya está limpio.": "The result of an action (someone wiped it) → <b>estar</b>.",
+    "B2 | La pizarra ya está limpia.": "The result of an action (someone wiped it) → <b>estar</b>.",
+    "B2 | En esta clase se enseña español.": "The passive with <b>se</b>: the verb agrees with what is taught (español, singular) → <b>se enseña</b>.",
+    "C1 | Mark y Anna deben de conocerse: se sonríen.": "<b>deber de</b> + infinitive = a deduction: it's almost certain.",
+    "C1 | La mujer del vestido habrá llegado tarde.": "The <b>future perfect</b> makes a guess about the past: habrá llegado = she has probably arrived.",
+    "C1 | El profesor tendrá unos cincuenta años.": "The <b>future</b> makes a guess about the present: tendrá = he's probably.",
+    "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "A hypothesis contrary to fact: <b>si</b> + imperfect subjunctive, then the conditional."
+   }
   },
   "tr": {
    "champs": {

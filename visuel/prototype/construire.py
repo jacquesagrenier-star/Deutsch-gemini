@@ -44,6 +44,7 @@ LES TRADUCTIONS (10 oct. 2026) : traductions/<nom>.<langue>.json
 import io
 import json
 import os
+import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -448,13 +449,86 @@ def construire_espagnol(nom, scene_de):
     exclus = [mot_espagnol(table[m], idx, variantes) for m in scene_de.get("exclus", []) if m in table]
     scene["exclus"] = sorted({e["mot"] for e in exclus if e})
     # Les couches allemandes enseignent l'allemand : l'espagnol n'a que les
-    # siennes. A1 (les noms) existe toujours, il ne demande aucune question.
-    scene["couches"] = es.get("couches") or {"A1": scene_de.get("couches", {}).get("A1", {"titre": "Noms et articles"})}
-    if scene.get("traductions"):
-        scene["traductions"] = {l: {"champs": t.get("champs", {}),
-                                    "couches": {k: v for k, v in t.get("couches", {}).items() if k in scene["couches"]},
-                                    "questions": {}}
-                                for l, t in scene["traductions"].items()}
+    # siennes. A1 (les noms) vient de l'allemand -- elle ne pose aucune
+    # question, seul son titre compte.
+    a1 = scene_de.get("couches", {}).get("A1", {"titre": "Noms et articles"})
+    couches = {"A1": a1}
+    trad_en = {"couches": {}, "questions": {}}
+    connus = {p["id"] for p in points}
+    verbes = {e["infinitif"] for n in json.load(io.open(os.path.join(RACINE, "espanol", "datos", "verbos.json"),
+                                                        encoding="utf-8")).values() for e in n}
+    adjectifs = {e["mot"] for n in json.load(io.open(os.path.join(RACINE, "espanol", "datos", "adjetivos.json"),
+                                                     encoding="utf-8")).values() for e in n}
+    erreurs = []
+    for niv, c in es.get("couches", {}).items():
+        sortie_c = {"titre": c["titre"], "qs": []}
+        if c.get("titre_en"):
+            trad_en["couches"][niv] = c["titre_en"]
+        for q in c.get("qs", []):
+            q = dict(q)
+            n_en = q.pop("n_en", None)
+            if "___" in q["q"] and not q["q"].replace("___", q["c"][0]).lower().endswith(q["phrase"].lower()):
+                # La phrase dite et gardee doit etre la question remplie par la
+                # bonne reponse (une amorce « Seguro: » peut la preceder) :
+                # sinon la voix dit autre chose que l'ecran.
+                erreurs.append("%s : la phrase ne remplit pas le trou -- %s" % (niv, q["q"]))
+            if len(set(q["c"])) != len(q["c"]):
+                erreurs.append("%s : choix en double -- %s" % (niv, q["q"]))
+            for cle in ("f", "r"):
+                if q.get(cle) and q[cle] not in connus:
+                    erreurs.append("%s : %s=%r ne designe aucune zone -- %s" % (niv, cle, q[cle], q["q"]))
+            mot = q.get("revise")
+            if mot:
+                r = mot_espagnol(mot, idx, variantes) if mot in idx else None
+                if r:
+                    q["revise"] = {"mot": r["mot"], "genre": r["genre"], "theme": r["theme"]}
+                elif mot in verbes:
+                    q["revise"] = {"mot": mot, "cat": "verbe"}
+                elif mot in adjectifs:
+                    q["revise"] = {"mot": mot, "cat": "adjectif"}
+                else:
+                    erreurs.append("%s : revise=%r absent du corpus espagnol" % (niv, mot))
+            # LES MOTS QUI CHANGENT EN AMERIQUE LATINE. La zone y dit « el
+            # pizarron » : une question qui dirait « la pizarra » contredirait
+            # l'image. Une question qui contient un mot de variantes.json porte
+            # donc sa version d'ici (« latam » : q, c, phrase, n, n_en), ecrite
+            # a la main -- l'article change avec le mot (de la pizarra / del
+            # pizarron), une substitution automatique se tromperait.
+            texte = " ".join([q["q"], q["phrase"]] + q["c"]).lower()
+            cites = [m for m in variantes if re.search(r"(?<!\w)%s(?!\w)" % re.escape(m.lower()), texte)]
+            lat = q.get("latam")
+            if cites and not lat:
+                erreurs.append("%s : %s change en Amerique latine, la question n'a pas de « latam » -- %s"
+                               % (niv, ", ".join(cites), q["q"]))
+            if lat:
+                lq = dict(q, **{k: v for k, v in lat.items() if k != "n_en"})
+                if "___" in lq["q"] and not lq["q"].replace("___", lq["c"][0]).lower().endswith(lq["phrase"].lower()):
+                    erreurs.append("%s : (latam) la phrase ne remplit pas le trou -- %s" % (niv, lq["q"]))
+                lat_en = lat.get("n_en", n_en)
+                if lat_en:
+                    trad_en["questions"][niv + " | " + lq["phrase"]] = lat_en
+                q["latam"] = {k: v for k, v in lat.items() if k != "n_en"}
+            if n_en:
+                trad_en["questions"][niv + " | " + q["phrase"]] = n_en
+            sortie_c["qs"].append(q)
+        couches[niv] = sortie_c
+    if erreurs:
+        for e in erreurs:
+            print("  ⚠ espagnol : %s -- %s" % (nom, e))
+        print("  scene-%s.es.js NON refaite" % nom)
+        return
+    scene["couches"] = couches
+    traductions = {}
+    for l, t in (scene_de.get("traductions") or {}).items():
+        traductions[l] = {"champs": t.get("champs", {}),
+                          "couches": {k: v for k, v in t.get("couches", {}).items() if k == "A1"},
+                          "questions": {}}
+    # L'espagnol a deux langues d'interface : le francais (le texte des
+    # couches) et l'anglais (titre_en, n_en). Les autres ne s'y affichent pas.
+    en = traductions.setdefault("en", {"champs": {}, "couches": {}, "questions": {}})
+    en["couches"].update(trad_en["couches"])
+    en["questions"].update(trad_en["questions"])
+    scene["traductions"] = traductions
     js = ("// GENERE par construire.py (espanol/%s.json) -- ne pas modifier a la main.\n" % nom
           + "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1) + ";\n")
     io.open(os.path.join(ICI, "scene-%s.es.js" % nom), "w", encoding="utf-8").write(js)

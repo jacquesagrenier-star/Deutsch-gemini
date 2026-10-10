@@ -261,6 +261,12 @@ if (LATAM)
         BASE_DE[m.latam.mot] = {mot: m.mot, genre: m.genre};
         Object.assign(m, m.latam);
       }
+/* Les questions qui citent un mot a variante portent leur version d'ici
+   (construire.py l'exige) : la question dit ce que l'image nomme. */
+if (LATAM)
+  for (const s of Object.values(window.SCENES))
+    for (const c of Object.values(s.couches || {}))
+      for (const q of c.qs || []) if (q.latam) Object.assign(q, q.latam);
 let VUE = NOM_SCENE;
 const VUES = window.SCENES[NOM_SCENE].vues || [NOM_SCENE];
 let S = window.SCENES[VUE];

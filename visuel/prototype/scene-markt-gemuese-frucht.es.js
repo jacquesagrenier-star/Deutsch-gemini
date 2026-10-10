@@ -689,6 +689,290 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Au marché"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — au marché",
+   "qs": [
+    {
+     "q": "Los champiñones están entre el maíz y las ___.",
+     "c": [
+      "judías",
+      "berenjenas",
+      "calabazas"
+     ],
+     "f": "pilz",
+     "r": "bohne",
+     "phrase": "Los champiñones están entre el maíz y las judías.",
+     "n": "<b>entre</b> … <b>y</b> … = entre … et ….",
+     "latam": {
+      "q": "Los champiñones están entre el maíz y los ___.",
+      "c": [
+       "frijoles",
+       "pepinos",
+       "tomates"
+      ],
+      "phrase": "Los champiñones están entre el maíz y los frijoles."
+     }
+    },
+    {
+     "q": "Anna toma unos ___.",
+     "c": [
+      "tomates",
+      "pepinos",
+      "pimientos"
+     ],
+     "f": "tomate-main",
+     "r": "anna",
+     "phrase": "Anna toma unos tomates.",
+     "revise": {
+      "mot": "tomate",
+      "genre": "el",
+      "theme": "la_comida"
+     },
+     "n": "<b>unos</b> = quelques, des."
+    },
+    {
+     "q": "Las berenjenas están al lado de los ___.",
+     "c": [
+      "pepinos",
+      "tomates",
+      "champiñones"
+     ],
+     "f": "aubergine",
+     "r": "gurke",
+     "phrase": "Las berenjenas están al lado de los pepinos.",
+     "n": "<b>al lado de</b> = à côté de."
+    },
+    {
+     "q": "Los espárragos están ___ la lechuga y las calabazas.",
+     "c": [
+      "entre",
+      "encima de",
+      "debajo de"
+     ],
+     "f": "spargel",
+     "r": "salat",
+     "phrase": "Los espárragos están entre la lechuga y las calabazas.",
+     "n": "<b>entre</b> … <b>y</b> … = entre … et …."
+    },
+    {
+     "q": "Los calabacines ___ al lado de los tomates.",
+     "c": [
+      "están",
+      "hay",
+      "son"
+     ],
+     "f": "zucchini",
+     "r": "tomate",
+     "phrase": "Los calabacines están al lado de los tomates.",
+     "n": "Avec <b>los</b> (des choses précises) → <b>estar</b>.",
+     "latam": {
+      "q": "Las calabacitas ___ al lado de los tomates.",
+      "phrase": "Las calabacitas están al lado de los tomates.",
+      "n": "Avec <b>las</b> (des choses précises) → <b>estar</b>."
+     }
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "Quería medio ___ de tomates.",
+     "c": [
+      "kilo",
+      "litro",
+      "metro"
+     ],
+     "f": "tomate",
+     "phrase": "Quería medio kilo de tomates.",
+     "revise": {
+      "mot": "tomate",
+      "genre": "el",
+      "theme": "la_comida"
+     },
+     "n": "<b>medio kilo</b>, sans article."
+    },
+    {
+     "q": "¿Cuánto cuestan ___ champiñones?",
+     "c": [
+      "los",
+      "las",
+      "el"
+     ],
+     "f": "pilz",
+     "phrase": "¿Cuánto cuestan los champiñones?",
+     "n": "<b>el</b> champiñón → <b>los</b> champiñones."
+    },
+    {
+     "q": "El pepino es más ___ que el calabacín.",
+     "c": [
+      "largo",
+      "larga",
+      "largos"
+     ],
+     "f": "gurke",
+     "r": "zucchini",
+     "phrase": "El pepino es más largo que el calabacín.",
+     "revise": {
+      "mot": "largo",
+      "cat": "adjectif"
+     },
+     "n": "L'adjectif s'accorde avec el pepino → <b>largo</b>.",
+     "latam": {
+      "q": "El pepino es más ___ que la calabacita.",
+      "phrase": "El pepino es más largo que la calabacita."
+     }
+    },
+    {
+     "q": "Me llevo ___ lechuga.",
+     "c": [
+      "una",
+      "un",
+      "uno"
+     ],
+     "f": "salat",
+     "phrase": "Me llevo una lechuga.",
+     "n": "<b>la</b> lechuga → <b>una</b> lechuga."
+    },
+    {
+     "q": "¿Los espárragos son ___ aquí?",
+     "c": [
+      "de",
+      "desde",
+      "por"
+     ],
+     "f": "spargel",
+     "phrase": "¿Los espárragos son de aquí?",
+     "n": "L'origine : <b>ser de</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et accords",
+   "qs": [
+    {
+     "q": "Los espárragos ___ recogen cada mañana.",
+     "c": [
+      "se",
+      "le",
+      "lo"
+     ],
+     "f": "spargel",
+     "phrase": "Los espárragos se recogen cada mañana.",
+     "n": "Le passif avec <b>se</b> : se recogen, accordé avec los espárragos."
+    },
+    {
+     "q": "Los tomates que Anna tiene en la mano ___ muy maduros.",
+     "c": [
+      "están",
+      "son",
+      "hay"
+     ],
+     "f": "tomate-main",
+     "r": "anna",
+     "phrase": "Los tomates que Anna tiene en la mano están muy maduros.",
+     "revise": {
+      "mot": "maduro",
+      "cat": "adjectif"
+     },
+     "n": "Mûr (un état du fruit) → <b>estar</b> maduro."
+    },
+    {
+     "q": "Al lado de los pimientos rojos y ___ está el maíz.",
+     "c": [
+      "amarillos",
+      "amarillas",
+      "amarillo"
+     ],
+     "f": "paprika",
+     "r": "mais",
+     "phrase": "Al lado de los pimientos rojos y amarillos está el maíz.",
+     "n": "Les deux adjectifs s'accordent avec los pimientos : rojos y <b>amarillos</b>."
+    },
+    {
+     "q": "Las calabazas ya ___ recogidas.",
+     "c": [
+      "están",
+      "son",
+      "han"
+     ],
+     "f": "kuerbis",
+     "phrase": "Las calabazas ya están recogidas.",
+     "n": "Le résultat (on les a récoltées) → <b>estar</b> + participe."
+    },
+    {
+     "q": "La acelga, ___ tallos son rojos y amarillos, es muy sana.",
+     "c": [
+      "cuyos",
+      "cuyas",
+      "que"
+     ],
+     "f": "mangold",
+     "phrase": "La acelga, cuyos tallos son rojos y amarillos, es muy sana.",
+     "n": "<b>cuyo</b> s'accorde avec los tallos → <b>cuyos</b>, même si la acelga est féminin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses, cuanto más, concessions",
+   "qs": [
+    {
+     "q": "___ precio alto, Anna se lleva los tomates en rama.",
+     "c": [
+      "A pesar de su",
+      "Debido a su",
+      "Gracias a su"
+     ],
+     "f": "tomate-main",
+     "phrase": "A pesar de su precio alto, Anna se lleva los tomates en rama.",
+     "n": "<b>a pesar de</b> = malgré : elle les prend quand même."
+    },
+    {
+     "q": "Cuanto más maduros están los tomates, ___ sabor tienen.",
+     "c": [
+      "más",
+      "mucho",
+      "tanto"
+     ],
+     "f": "tomate",
+     "phrase": "Cuanto más maduros están los tomates, más sabor tienen.",
+     "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
+    },
+    {
+     "q": "Si la calabaza no ___ tan pesada, Anna se la llevaría.",
+     "c": [
+      "fuera",
+      "es",
+      "sería"
+     ],
+     "f": "kuerbis",
+     "phrase": "Si la calabaza no fuera tan pesada, Anna se la llevaría.",
+     "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait, puis conditionnel."
+    },
+    {
+     "q": "Hay que lavar bien las alcachofas antes de ___.",
+     "c": [
+      "cocinarlas",
+      "cocinar",
+      "cocinándolas"
+     ],
+     "f": "artischocke",
+     "phrase": "Hay que lavar bien las alcachofas antes de cocinarlas.",
+     "n": "Après <b>antes de</b> : l'infinitif, et le pronom s'y colle → <b>cocinarlas</b>."
+    },
+    {
+     "q": "Puede que Anna ___ una ensalada con estos tomates.",
+     "c": [
+      "haga",
+      "hace",
+      "hará"
+     ],
+     "f": "tomate-main",
+     "phrase": "Puede que Anna haga una ensalada con estos tomates.",
+     "n": "<b>puede que</b> → <b>subjonctif</b> (haga)."
+    }
+   ]
   }
  },
  "autre_vue": {
@@ -711,9 +995,37 @@ window.SCENE = {
     "autre_vue": "→ Local fruit"
    },
    "couches": {
-    "A1": "At the market"
+    "A1": "At the market",
+    "A2": "¿Dónde está? — at the market",
+    "B1": "Shopping: quantities and prices",
+    "B2": "Passive, relative clauses and agreement",
+    "C1": "Hypotheses, cuanto más, concessions"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Los champiñones están entre el maíz y los frijoles.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | Los champiñones están entre el maíz y las judías.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | Anna toma unos tomates.": "<b>unos</b> = some.",
+    "A2 | Las berenjenas están al lado de los pepinos.": "<b>al lado de</b> = next to.",
+    "A2 | Los espárragos están entre la lechuga y las calabazas.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | Las calabacitas están al lado de los tomates.": "With <b>las</b> (specific things) → <b>estar</b>.",
+    "A2 | Los calabacines están al lado de los tomates.": "With <b>los</b> (specific things) → <b>estar</b>.",
+    "B1 | Quería medio kilo de tomates.": "<b>medio kilo</b>, no article.",
+    "B1 | ¿Cuánto cuestan los champiñones?": "<b>el</b> champiñón → <b>los</b> champiñones.",
+    "B1 | El pepino es más largo que la calabacita.": "The adjective agrees with el pepino → <b>largo</b>.",
+    "B1 | El pepino es más largo que el calabacín.": "The adjective agrees with el pepino → <b>largo</b>.",
+    "B1 | Me llevo una lechuga.": "<b>la</b> lechuga → <b>una</b> lechuga.",
+    "B1 | ¿Los espárragos son de aquí?": "Origin: <b>ser de</b>.",
+    "B2 | Los espárragos se recogen cada mañana.": "The passive with <b>se</b>: se recogen, agreeing with los espárragos.",
+    "B2 | Los tomates que Anna tiene en la mano están muy maduros.": "Ripe (the state of the fruit) → <b>estar</b> maduro.",
+    "B2 | Al lado de los pimientos rojos y amarillos está el maíz.": "Both adjectives agree with los pimientos: rojos y <b>amarillos</b>.",
+    "B2 | Las calabazas ya están recogidas.": "The result (they've been harvested) → <b>estar</b> + participle.",
+    "B2 | La acelga, cuyos tallos son rojos y amarillos, es muy sana.": "<b>cuyo</b> agrees with los tallos → <b>cuyos</b>, even though la acelga is feminine.",
+    "C1 | A pesar de su precio alto, Anna se lleva los tomates en rama.": "<b>a pesar de</b> = despite: she takes them anyway.",
+    "C1 | Cuanto más maduros están los tomates, más sabor tienen.": "<b>cuanto más</b> …, <b>más</b> … = the more …, the more ….",
+    "C1 | Si la calabaza no fuera tan pesada, Anna se la llevaría.": "Unreal condition: <b>si</b> + imperfect subjunctive, then the conditional.",
+    "C1 | Hay que lavar bien las alcachofas antes de cocinarlas.": "After <b>antes de</b>: the infinitive, with the pronoun attached → <b>cocinarlas</b>.",
+    "C1 | Puede que Anna haga una ensalada con estos tomates.": "<b>puede que</b> → <b>subjunctive</b> (haga)."
+   }
   },
   "tr": {
    "champs": {

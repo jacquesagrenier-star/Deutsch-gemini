@@ -671,6 +671,284 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Au marché"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — au marché",
+   "qs": [
+    {
+     "q": "Las cerezas están ___ las grosellas espinosas y las moras.",
+     "c": [
+      "entre",
+      "encima de",
+      "debajo de"
+     ],
+     "f": "kirsche",
+     "r": "brombeere",
+     "phrase": "Las cerezas están entre las grosellas espinosas y las moras.",
+     "n": "<b>entre</b> … <b>y</b> … = entre … et …."
+    },
+    {
+     "q": "Anna toma ___.",
+     "c": [
+      "una manzana",
+      "una pera",
+      "una ciruela"
+     ],
+     "f": "apfel-main",
+     "r": "anna",
+     "phrase": "Anna toma una manzana.",
+     "revise": {
+      "mot": "manzana",
+      "genre": "la",
+      "theme": "la_comida"
+     },
+     "n": "<b>tomar</b> = prendre. (<b>coger</b> se dit en Espagne, mais pas au Mexique.)"
+    },
+    {
+     "q": "Las peras están al lado de ___ nueces.",
+     "c": [
+      "las",
+      "los",
+      "les"
+     ],
+     "f": "birne",
+     "r": "nuss",
+     "phrase": "Las peras están al lado de las nueces.",
+     "n": "<b>la</b> nuez → <b>las</b> nueces : féminin, et le z devient c devant -es."
+    },
+    {
+     "q": "Los arándanos están a la ___ de las frambuesas.",
+     "c": [
+      "derecha",
+      "izquierda",
+      "encima"
+     ],
+     "f": "heidelbeere",
+     "r": "himbeere",
+     "phrase": "Los arándanos están a la derecha de las frambuesas.",
+     "n": "<b>a la derecha de</b> = à droite de ; <b>a la izquierda de</b> = à gauche de."
+    },
+    {
+     "q": "Anna está ___ del puesto.",
+     "c": [
+      "delante",
+      "detrás",
+      "encima"
+     ],
+     "f": "anna",
+     "phrase": "Anna está delante del puesto.",
+     "n": "<b>delante de</b> = devant. de + el = <b>del</b> puesto."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "Quería una ___ de fresas, por favor.",
+     "c": [
+      "bandeja",
+      "botella",
+      "barra"
+     ],
+     "f": "erdbeere",
+     "phrase": "Quería una bandeja de fresas, por favor.",
+     "revise": {
+      "mot": "fresa",
+      "genre": "la",
+      "theme": "la_comida"
+     },
+     "n": "<b>una bandeja</b> = une barquette. Et <b>quería</b> (imparfait) est la façon polie de demander."
+    },
+    {
+     "q": "Un kilo de ___, por favor.",
+     "c": [
+      "manzanas",
+      "manzana",
+      "las manzanas"
+     ],
+     "f": "apfel",
+     "phrase": "Un kilo de manzanas, por favor.",
+     "revise": {
+      "mot": "manzana",
+      "genre": "la",
+      "theme": "la_comida"
+     },
+     "n": "Après une quantité : <b>de</b> + pluriel, sans article."
+    },
+    {
+     "q": "Los melocotones son ___ grandes que los albaricoques.",
+     "c": [
+      "más",
+      "tan",
+      "muy"
+     ],
+     "f": "pfirsich",
+     "r": "aprikose",
+     "phrase": "Los melocotones son más grandes que los albaricoques.",
+     "revise": {
+      "mot": "grande",
+      "cat": "adjectif"
+     },
+     "n": "<b>más</b> … <b>que</b> = plus … que. (tan … <b>como</b> = aussi … que.)",
+     "latam": {
+      "q": "Los duraznos son ___ grandes que los chabacanos.",
+      "phrase": "Los duraznos son más grandes que los chabacanos."
+     }
+    },
+    {
+     "q": "¿Cuánto ___ las frambuesas?",
+     "c": [
+      "cuestan",
+      "cuesta",
+      "cuestas"
+     ],
+     "f": "himbeere",
+     "phrase": "¿Cuánto cuestan las frambuesas?",
+     "revise": {
+      "mot": "costar",
+      "cat": "verbe"
+     },
+     "n": "Le verbe s'accorde avec ce qui coûte : las frambuesas → <b>cuestan</b>."
+    },
+    {
+     "q": "Me llevo medio ___ de ciruelas.",
+     "c": [
+      "kilo",
+      "litro",
+      "metro"
+     ],
+     "f": "pflaume",
+     "phrase": "Me llevo medio kilo de ciruelas.",
+     "n": "<b>medio kilo</b>, sans article : on ne dit pas « un medio ». <b>Me llevo</b> = je prends."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et accords",
+   "qs": [
+    {
+     "q": "Son fresas ___ de la región.",
+     "c": [
+      "frescas",
+      "frescos",
+      "fresca"
+     ],
+     "f": "erdbeere",
+     "phrase": "Son fresas frescas de la región.",
+     "revise": {
+      "mot": "fresco",
+      "cat": "adjectif"
+     },
+     "n": "L'adjectif s'accorde : fresas (féminin pluriel) → <b>frescas</b>."
+    },
+    {
+     "q": "Estas manzanas ___ cultivan en la región.",
+     "c": [
+      "se",
+      "les",
+      "lo"
+     ],
+     "f": "apfel",
+     "phrase": "Estas manzanas se cultivan en la región.",
+     "n": "Le passif avec <b>se</b> : se cultivan, accordé avec las manzanas."
+    },
+    {
+     "q": "La mujer ___ elige una manzana se llama Anna.",
+     "c": [
+      "que",
+      "cuya",
+      "quien"
+     ],
+     "f": "anna",
+     "r": "apfel-main",
+     "phrase": "La mujer que elige una manzana se llama Anna.",
+     "n": "Sujet de la relative, sans virgules → <b>que</b>."
+    },
+    {
+     "q": "La caja en ___ están las moras está al lado de las cerezas.",
+     "c": [
+      "la que",
+      "que",
+      "cuya"
+     ],
+     "f": "brombeere",
+     "r": "kirsche",
+     "phrase": "La caja en la que están las moras está al lado de las cerezas.",
+     "n": "Après une préposition : <b>la que</b> (ou la cual)."
+    },
+    {
+     "q": "El ruibarbo ___ usa a menudo para hacer tartas.",
+     "c": [
+      "se",
+      "le",
+      "lo"
+     ],
+     "f": "rhabarber",
+     "phrase": "El ruibarbo se usa a menudo para hacer tartas.",
+     "n": "Passif avec <b>se</b> : on l'utilise → <b>se usa</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses, cuanto más, causes",
+   "qs": [
+    {
+     "q": "Cuanto más maduras están las fresas, ___ dulces son.",
+     "c": [
+      "más",
+      "tan",
+      "muy"
+     ],
+     "f": "erdbeere",
+     "phrase": "Cuanto más maduras están las fresas, más dulces son.",
+     "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
+    },
+    {
+     "q": "___ los largos transportes, prefiero comprar fruta de aquí.",
+     "c": [
+      "Debido a",
+      "A pesar de",
+      "En vez de"
+     ],
+     "f": "apfel",
+     "phrase": "Debido a los largos transportes, prefiero comprar fruta de aquí.",
+     "n": "<b>debido a</b> = en raison de (une cause). <b>a pesar de</b> = malgré."
+    },
+    {
+     "q": "Si las cerezas ___ más baratas, compraría dos kilos.",
+     "c": [
+      "fueran",
+      "son",
+      "serían"
+     ],
+     "f": "kirsche",
+     "phrase": "Si las cerezas fueran más baratas, compraría dos kilos.",
+     "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait, puis conditionnel."
+    },
+    {
+     "q": "___ el ruibarbo es ácido, a Anna le encanta hacer tartas con él.",
+     "c": [
+      "Aunque",
+      "Porque",
+      "Para que"
+     ],
+     "f": "rhabarber",
+     "phrase": "Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.",
+     "n": "<b>aunque</b> = bien que, même si (une concession)."
+    },
+    {
+     "q": "Las frambuesas ___ de haber sido recogidas esta mañana.",
+     "c": [
+      "deben",
+      "pueden",
+      "tienen"
+     ],
+     "f": "himbeere",
+     "phrase": "Las frambuesas deben de haber sido recogidas esta mañana.",
+     "n": "<b>deber de</b> + infinitif passé = une déduction : elles ont dû être cueillies."
+    }
+   ]
   }
  },
  "autre_vue": {
@@ -693,9 +971,35 @@ window.SCENE = {
     "autre_vue": "→ Southern fruit"
    },
    "couches": {
-    "A1": "At the market"
+    "A1": "At the market",
+    "A2": "¿Dónde está? — at the market",
+    "B1": "Shopping: quantities and prices",
+    "B2": "Passive, relative clauses and agreement",
+    "C1": "Hypotheses, cuanto más, causes"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Las cerezas están entre las grosellas espinosas y las moras.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | Anna toma una manzana.": "<b>tomar</b> = to take. (<b>coger</b> is fine in Spain, but avoid it in Mexico.)",
+    "A2 | Las peras están al lado de las nueces.": "<b>la</b> nuez → <b>las</b> nueces: feminine, and z becomes c before -es.",
+    "A2 | Los arándanos están a la derecha de las frambuesas.": "<b>a la derecha de</b> = to the right of; <b>a la izquierda de</b> = to the left of.",
+    "A2 | Anna está delante del puesto.": "<b>delante de</b> = in front of. de + el = <b>del</b> puesto.",
+    "B1 | Quería una bandeja de fresas, por favor.": "<b>una bandeja</b> = a punnet. And <b>quería</b> (imperfect) is the polite way to ask.",
+    "B1 | Un kilo de manzanas, por favor.": "After a quantity: <b>de</b> + plural, no article.",
+    "B1 | Los duraznos son más grandes que los chabacanos.": "<b>más</b> … <b>que</b> = more … than. (tan … <b>como</b> = as … as.)",
+    "B1 | Los melocotones son más grandes que los albaricoques.": "<b>más</b> … <b>que</b> = more … than. (tan … <b>como</b> = as … as.)",
+    "B1 | ¿Cuánto cuestan las frambuesas?": "The verb agrees with what costs: las frambuesas → <b>cuestan</b>.",
+    "B1 | Me llevo medio kilo de ciruelas.": "<b>medio kilo</b>, no article: never « un medio ». <b>Me llevo</b> = I'll take.",
+    "B2 | Son fresas frescas de la región.": "The adjective agrees: fresas (feminine plural) → <b>frescas</b>.",
+    "B2 | Estas manzanas se cultivan en la región.": "The passive with <b>se</b>: se cultivan, agreeing with las manzanas.",
+    "B2 | La mujer que elige una manzana se llama Anna.": "Subject of the relative clause, no commas → <b>que</b>.",
+    "B2 | La caja en la que están las moras está al lado de las cerezas.": "After a preposition: <b>la que</b> (or la cual).",
+    "B2 | El ruibarbo se usa a menudo para hacer tartas.": "Passive with <b>se</b>: it is used → <b>se usa</b>.",
+    "C1 | Cuanto más maduras están las fresas, más dulces son.": "<b>cuanto más</b> …, <b>más</b> … = the more …, the more ….",
+    "C1 | Debido a los largos transportes, prefiero comprar fruta de aquí.": "<b>debido a</b> = because of (a cause). <b>a pesar de</b> = despite.",
+    "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "Unreal condition: <b>si</b> + imperfect subjunctive, then the conditional.",
+    "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "<b>aunque</b> = although (a concession).",
+    "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "<b>deber de</b> + perfect infinitive = a deduction: they must have been picked."
+   }
   },
   "tr": {
    "champs": {

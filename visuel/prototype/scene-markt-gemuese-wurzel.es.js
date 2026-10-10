@@ -681,6 +681,302 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Au marché"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — au marché",
+   "qs": [
+    {
+     "q": "Las cebollas están entre los colinabos y ___ col.",
+     "c": [
+      "la",
+      "el",
+      "las"
+     ],
+     "f": "zwiebel",
+     "r": "kohl",
+     "phrase": "Las cebollas están entre los colinabos y la col.",
+     "n": "<b>la</b> col : féminin, comme la coliflor."
+    },
+    {
+     "q": "Anna tiene ___ de rábanos en la mano.",
+     "c": [
+      "un manojo",
+      "una cabeza",
+      "una barra"
+     ],
+     "f": "radieschen-main",
+     "r": "anna",
+     "phrase": "Anna tiene un manojo de rábanos en la mano.",
+     "revise": {
+      "mot": "rábano",
+      "genre": "el",
+      "theme": "frutas_verduras_b1"
+     },
+     "n": "<b>un manojo</b> = une botte (de radis, de carottes)."
+    },
+    {
+     "q": "El ajo está al lado de los ___.",
+     "c": [
+      "rábanos",
+      "puerros",
+      "pimientos"
+     ],
+     "f": "knoblauch",
+     "r": "radieschen",
+     "phrase": "El ajo está al lado de los rábanos.",
+     "n": "<b>al lado de</b> = à côté de."
+    },
+    {
+     "q": "Las patatas están al lado ___ apio.",
+     "c": [
+      "del",
+      "de el",
+      "de la"
+     ],
+     "f": "kartoffel",
+     "r": "sellerie",
+     "phrase": "Las patatas están al lado del apio.",
+     "n": "<b>el</b> apio → de + el = <b>del</b>.",
+     "latam": {
+      "q": "Las papas están al lado ___ apio.",
+      "phrase": "Las papas están al lado del apio."
+     }
+    },
+    {
+     "q": "El puerro está a la ___ de la col.",
+     "c": [
+      "derecha",
+      "izquierda",
+      "encima"
+     ],
+     "f": "lauch",
+     "r": "kohl",
+     "phrase": "El puerro está a la derecha de la col.",
+     "n": "<b>a la derecha de</b> = à droite de."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "Quería un ___ de zanahorias, por favor.",
+     "c": [
+      "manojo",
+      "litro",
+      "trozo"
+     ],
+     "f": "karotte",
+     "phrase": "Quería un manojo de zanahorias, por favor.",
+     "revise": {
+      "mot": "zanahoria",
+      "genre": "la",
+      "theme": "las_verduras"
+     },
+     "n": "<b>un manojo</b> = une botte."
+    },
+    {
+     "q": "Dos kilos de ___, por favor.",
+     "c": [
+      "patatas",
+      "patata",
+      "las patatas"
+     ],
+     "f": "kartoffel",
+     "phrase": "Dos kilos de patatas, por favor.",
+     "revise": {
+      "mot": "patata",
+      "genre": "la",
+      "theme": "la_comida"
+     },
+     "n": "Après une quantité : <b>de</b> + pluriel, sans article.",
+     "latam": {
+      "q": "Dos kilos de ___, por favor.",
+      "c": [
+       "papas",
+       "papa",
+       "las papas"
+      ],
+      "phrase": "Dos kilos de papas, por favor."
+     }
+    },
+    {
+     "q": "¿Cuánto ___ la coliflor?",
+     "c": [
+      "cuesta",
+      "cuestan",
+      "cuestas"
+     ],
+     "f": "blumenkohl",
+     "phrase": "¿Cuánto cuesta la coliflor?",
+     "revise": {
+      "mot": "costar",
+      "cat": "verbe"
+     },
+     "n": "la coliflor, singulier → <b>cuesta</b>."
+    },
+    {
+     "q": "La col es más grande ___ las coles de Bruselas.",
+     "c": [
+      "que",
+      "como",
+      "de"
+     ],
+     "f": "kohl",
+     "r": "rosenkohl",
+     "phrase": "La col es más grande que las coles de Bruselas.",
+     "revise": {
+      "mot": "grande",
+      "cat": "adjectif"
+     },
+     "n": "<b>más</b> … <b>que</b> = plus … que."
+    },
+    {
+     "q": "Necesito una ___ de ajos para la salsa.",
+     "c": [
+      "cabeza",
+      "barra",
+      "bandeja"
+     ],
+     "f": "knoblauch",
+     "phrase": "Necesito una cabeza de ajos para la salsa.",
+     "revise": {
+      "mot": "ajo",
+      "genre": "el",
+      "theme": "la_cocina_a2"
+     },
+     "n": "<b>una cabeza de ajos</b> = une tête d'ail."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et accords",
+   "qs": [
+    {
+     "q": "Las patatas ___ recogidas la semana pasada.",
+     "c": [
+      "fueron",
+      "estuvieron",
+      "han"
+     ],
+     "f": "kartoffel",
+     "phrase": "Las patatas fueron recogidas la semana pasada.",
+     "n": "L'action, au passif : <b>ser</b> + participe, au passé → <b>fueron</b> recogidas.",
+     "latam": {
+      "q": "Las papas ___ recogidas la semana pasada.",
+      "phrase": "Las papas fueron recogidas la semana pasada."
+     }
+    },
+    {
+     "q": "El puerro, ___ hojas son verde oscuro, está al lado de la col.",
+     "c": [
+      "cuyas",
+      "cuyos",
+      "que"
+     ],
+     "f": "lauch",
+     "r": "kohl",
+     "phrase": "El puerro, cuyas hojas son verde oscuro, está al lado de la col.",
+     "n": "<b>cuyo</b> s'accorde avec las hojas → <b>cuyas</b>."
+    },
+    {
+     "q": "Anna compra rábanos ___.",
+     "c": [
+      "frescos",
+      "frescas",
+      "fresco"
+     ],
+     "f": "radieschen-main",
+     "phrase": "Anna compra rábanos frescos.",
+     "revise": {
+      "mot": "fresco",
+      "cat": "adjectif"
+     },
+     "n": "el rábano → rábanos <b>frescos</b> : masculin pluriel."
+    },
+    {
+     "q": "La verdura que ___ vende aquí es de la región.",
+     "c": [
+      "se",
+      "le",
+      "lo"
+     ],
+     "f": "kohl",
+     "phrase": "La verdura que se vende aquí es de la región.",
+     "n": "Le passif avec <b>se</b> : que se vende = qu'on vend."
+    },
+    {
+     "q": "Las cebollas deben ___ en un lugar seco.",
+     "c": [
+      "guardarse",
+      "guardarlas",
+      "guardadas"
+     ],
+     "f": "zwiebel",
+     "phrase": "Las cebollas deben guardarse en un lugar seco.",
+     "n": "Passif avec <b>se</b> collé à l'infinitif : deben <b>guardarse</b> = doivent être conservées."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses, cuanto más, causes",
+   "qs": [
+    {
+     "q": "___ la temporada, en octubre hay mucha col.",
+     "c": [
+      "Debido a",
+      "A pesar de",
+      "En vez de"
+     ],
+     "f": "kohl",
+     "phrase": "Debido a la temporada, en octubre hay mucha col.",
+     "n": "<b>debido a</b> = en raison de."
+    },
+    {
+     "q": "Cuanto más fresca está la verdura, ___ vitaminas tiene.",
+     "c": [
+      "más",
+      "tantas",
+      "muy"
+     ],
+     "f": "brokkoli",
+     "phrase": "Cuanto más fresca está la verdura, más vitaminas tiene.",
+     "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
+    },
+    {
+     "q": "Si lo ___ sabido, no habría comprado ajo en el supermercado.",
+     "c": [
+      "hubiera",
+      "habría",
+      "había"
+     ],
+     "f": "knoblauch",
+     "phrase": "Si lo hubiera sabido, no habría comprado ajo en el supermercado.",
+     "n": "Regret sur le passé : <b>si</b> + plus-que-parfait du subjonctif, puis conditionnel passé."
+    },
+    {
+     "q": "Las zanahorias parecen ___ recogidas hoy mismo.",
+     "c": [
+      "haber sido",
+      "han sido",
+      "ser"
+     ],
+     "f": "karotte",
+     "phrase": "Las zanahorias parecen haber sido recogidas hoy mismo.",
+     "n": "<b>parecer</b> + infinitif passé du passif : parecen <b>haber sido</b> recogidas."
+    },
+    {
+     "q": "Anna ___ de haber comprado los rábanos para una ensalada.",
+     "c": [
+      "debe",
+      "puede",
+      "tiene"
+     ],
+     "f": "radieschen-main",
+     "phrase": "Anna debe de haber comprado los rábanos para una ensalada.",
+     "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé."
+    }
+   ]
   }
  },
  "autre_vue": {
@@ -703,9 +999,37 @@ window.SCENE = {
     "autre_vue": "→ More vegetables"
    },
    "couches": {
-    "A1": "At the market"
+    "A1": "At the market",
+    "A2": "¿Dónde está? — at the market",
+    "B1": "Shopping: quantities and prices",
+    "B2": "Passive, relative clauses and agreement",
+    "C1": "Hypotheses, cuanto más, causes"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Las cebollas están entre los colinabos y la col.": "<b>la</b> col: feminine, like la coliflor.",
+    "A2 | Anna tiene un manojo de rábanos en la mano.": "<b>un manojo</b> = a bunch (of radishes, of carrots).",
+    "A2 | El ajo está al lado de los rábanos.": "<b>al lado de</b> = next to.",
+    "A2 | Las papas están al lado del apio.": "<b>el</b> apio → de + el = <b>del</b>.",
+    "A2 | Las patatas están al lado del apio.": "<b>el</b> apio → de + el = <b>del</b>.",
+    "A2 | El puerro está a la derecha de la col.": "<b>a la derecha de</b> = to the right of.",
+    "B1 | Quería un manojo de zanahorias, por favor.": "<b>un manojo</b> = a bunch.",
+    "B1 | Dos kilos de papas, por favor.": "After a quantity: <b>de</b> + plural, no article.",
+    "B1 | Dos kilos de patatas, por favor.": "After a quantity: <b>de</b> + plural, no article.",
+    "B1 | ¿Cuánto cuesta la coliflor?": "la coliflor, singular → <b>cuesta</b>.",
+    "B1 | La col es más grande que las coles de Bruselas.": "<b>más</b> … <b>que</b> = more … than.",
+    "B1 | Necesito una cabeza de ajos para la salsa.": "<b>una cabeza de ajos</b> = a bulb of garlic.",
+    "B2 | Las papas fueron recogidas la semana pasada.": "The action, in the passive: <b>ser</b> + participle, in the past → <b>fueron</b> recogidas.",
+    "B2 | Las patatas fueron recogidas la semana pasada.": "The action, in the passive: <b>ser</b> + participle, in the past → <b>fueron</b> recogidas.",
+    "B2 | El puerro, cuyas hojas son verde oscuro, está al lado de la col.": "<b>cuyo</b> agrees with las hojas → <b>cuyas</b>.",
+    "B2 | Anna compra rábanos frescos.": "el rábano → rábanos <b>frescos</b>: masculine plural.",
+    "B2 | La verdura que se vende aquí es de la región.": "The passive with <b>se</b>: que se vende = that is sold.",
+    "B2 | Las cebollas deben guardarse en un lugar seco.": "Passive <b>se</b> attached to the infinitive: deben <b>guardarse</b> = must be stored.",
+    "C1 | Debido a la temporada, en octubre hay mucha col.": "<b>debido a</b> = because of.",
+    "C1 | Cuanto más fresca está la verdura, más vitaminas tiene.": "<b>cuanto más</b> …, <b>más</b> … = the more …, the more ….",
+    "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "Regret about the past: <b>si</b> + pluperfect subjunctive, then the conditional perfect.",
+    "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "<b>parecer</b> + perfect passive infinitive: parecen <b>haber sido</b> recogidas.",
+    "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "<b>deber de</b> + perfect infinitive = a deduction about the past."
+   }
   },
   "tr": {
    "champs": {

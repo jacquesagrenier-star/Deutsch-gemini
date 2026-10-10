@@ -1558,6 +1558,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Le corps et les objets"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — estar et les prépositions",
+   "qs": [
+    {
+     "q": "¿Dónde está la pelota?",
+     "c": [
+      "encima de la bolsa",
+      "debajo de la bolsa",
+      "al lado de la puerta"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "La pelota está encima de la bolsa.",
+     "n": "<b>encima de</b> = sur, dessus. Le lieu → <b>estar</b>."
+    },
+    {
+     "q": "El reloj está encima ___ póster.",
+     "c": [
+      "del",
+      "de el",
+      "al"
+     ],
+     "f": "uhr",
+     "r": "poster",
+     "phrase": "El reloj está encima del póster.",
+     "n": "<b>de + el = del</b>, toujours."
+    },
+    {
+     "q": "¿Dónde está la planta?",
+     "c": [
+      "junto a la ventana",
+      "encima del escritorio",
+      "al lado de la puerta"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "La planta está junto a la ventana.",
+     "n": "<b>junto a</b> = près de, contre."
+    },
+    {
+     "q": "¿Dónde está sentada la médica?",
+     "c": [
+      "al lado del paciente",
+      "detrás del paciente",
+      "delante de la puerta"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "La médica está sentada al lado del paciente.",
+     "n": "<b>al lado de</b> + el paciente → al lado <b>del</b> paciente."
+    },
+    {
+     "q": "___ una chaqueta al lado de la puerta.",
+     "c": [
+      "Hay",
+      "Está",
+      "Es"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "Hay una chaqueta al lado de la puerta.",
+     "n": "Avec <b>una</b> (une chose qu'on découvre) → <b>hay</b>."
+    },
+    {
+     "q": "Los calcetines ___ encima de los zapatos.",
+     "c": [
+      "están",
+      "hay",
+      "son"
+     ],
+     "f": "socke",
+     "r": "schuh",
+     "phrase": "Los calcetines están encima de los zapatos.",
+     "n": "Avec <b>los</b> (des choses précises) → <b>estar</b>, pas hay."
+    },
+    {
+     "q": "¿Dónde está la tirita?",
+     "c": [
+      "en la rodilla",
+      "en la mano",
+      "en el pie"
+     ],
+     "f": "pflaster",
+     "r": "knie",
+     "phrase": "La tirita está en la rodilla.",
+     "n": "<b>en</b> = sur, à : en la rodilla.",
+     "latam": {
+      "q": "¿Dónde está la curita?",
+      "phrase": "La curita está en la rodilla."
+     }
+    },
+    {
+     "q": "El póster está ___ paciente.",
+     "c": [
+      "detrás del",
+      "delante del",
+      "debajo del"
+     ],
+     "f": "poster",
+     "r": "mark",
+     "phrase": "El póster está detrás del paciente.",
+     "n": "<b>detrás de</b> = derrière."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Pronoms, ser et estar",
+   "qs": [
+    {
+     "q": "¿La pelota? Mark ___ ha dejado encima de la bolsa.",
+     "c": [
+      "la",
+      "lo",
+      "le"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "Mark la ha dejado encima de la bolsa.",
+     "revise": {
+      "mot": "dejar",
+      "cat": "verbe"
+     },
+     "n": "Complément direct féminin (la pelota) → <b>la</b>."
+    },
+    {
+     "q": "¿Los zapatos? Mark ___ ha puesto al lado de la bolsa.",
+     "c": [
+      "los",
+      "las",
+      "les"
+     ],
+     "f": "schuh",
+     "r": "tasche",
+     "phrase": "Mark los ha puesto al lado de la bolsa.",
+     "revise": {
+      "mot": "poner",
+      "cat": "verbe"
+     },
+     "n": "Complément direct masculin pluriel (los zapatos) → <b>los</b>."
+    },
+    {
+     "q": "La médica ___ sentada en un taburete.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "aerztin",
+     "r": "hocker",
+     "phrase": "La médica está sentada en un taburete.",
+     "n": "<b>estar sentado</b> : un état, une position."
+    },
+    {
+     "q": "La médica ___ sonríe a Mark.",
+     "c": [
+      "le",
+      "lo",
+      "la"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "La médica le sonríe a Mark.",
+     "n": "Sourire <b>à</b> quelqu'un : complément indirect → <b>le</b>. L'espagnol le répète volontiers : le sonríe <b>a Mark</b>."
+    },
+    {
+     "q": "El vaso ___ encima del escritorio.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "glas",
+     "r": "schreibtisch",
+     "phrase": "El vaso está encima del escritorio.",
+     "n": "Où il se trouve → <b>estar</b>."
+    },
+    {
+     "q": "¿La tarjeta sanitaria? La médica ___ ha dejado en el escritorio.",
+     "c": [
+      "la",
+      "le",
+      "lo"
+     ],
+     "f": "karte",
+     "r": "schreibtisch",
+     "phrase": "La médica la ha dejado en el escritorio.",
+     "revise": {
+      "mot": "dejar",
+      "cat": "verbe"
+     },
+     "n": "Complément direct féminin (la tarjeta) → <b>la</b>."
+    },
+    {
+     "q": "Mark ___ herido en la rodilla.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "mark",
+     "r": "knie",
+     "phrase": "Mark está herido en la rodilla.",
+     "n": "Une blessure est un état → <b>estar</b> herido."
+    },
+    {
+     "q": "Mark se ha ___ los zapatos y los calcetines.",
+     "c": [
+      "quitado",
+      "puesto",
+      "quitando"
+     ],
+     "f": "mark",
+     "r": "schuh",
+     "phrase": "Mark se ha quitado los zapatos y los calcetines.",
+     "revise": {
+      "mot": "quitarse",
+      "cat": "verbe"
+     },
+     "n": "<b>quitarse</b> = enlever (ses vêtements) ; <b>ponerse</b> = mettre. Il est pieds nus : il les a enlevés."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "El paciente ___ rodilla está herida se llama Mark.",
+     "c": [
+      "cuya",
+      "cuyo",
+      "que"
+     ],
+     "f": "mark",
+     "r": "knie",
+     "phrase": "El paciente cuya rodilla está herida se llama Mark.",
+     "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : la rodilla → <b>cuya</b>."
+    },
+    {
+     "q": "La médica, ___ tiene un vendaje en la mano, sonríe.",
+     "c": [
+      "que",
+      "cuya",
+      "donde"
+     ],
+     "f": "aerztin",
+     "r": "verband",
+     "phrase": "La médica, que tiene un vendaje en la mano, sonríe.",
+     "n": "Sujet de la relative → <b>que</b>. <b>cuya</b> demanderait un nom possédé juste après."
+    },
+    {
+     "q": "El paciente al ___ sonríe la médica se llama Mark.",
+     "c": [
+      "que",
+      "quien",
+      "cuyo"
+     ],
+     "f": "mark",
+     "r": "aerztin",
+     "phrase": "El paciente al que sonríe la médica se llama Mark.",
+     "n": "Sourire <b>a</b> alguien : a + el que → <b>al que</b>. Avec quien, ce serait « <b>a</b> quien », sans article."
+    },
+    {
+     "q": "La bolsa encima de ___ está la pelota es de Mark.",
+     "c": [
+      "la cual",
+      "que",
+      "cuya"
+     ],
+     "f": "tasche",
+     "r": "ball",
+     "phrase": "La bolsa encima de la cual está la pelota es de Mark.",
+     "n": "Après <b>encima de</b> : <b>la cual</b> (ou la que), jamais que seul."
+    },
+    {
+     "q": "La ventana ___ cerrada.",
+     "c": [
+      "está",
+      "es",
+      "ha"
+     ],
+     "f": "fenster",
+     "phrase": "La ventana está cerrada.",
+     "n": "Le résultat (quelqu'un l'a fermée) → <b>estar</b> + participe."
+    },
+    {
+     "q": "La tirita ya ___ puesta.",
+     "c": [
+      "está",
+      "es",
+      "ha"
+     ],
+     "f": "pflaster",
+     "r": "knie",
+     "phrase": "La tirita ya está puesta.",
+     "n": "Un état résultant → <b>estar</b> puesta. « es puesta » serait l'action, au passif.",
+     "latam": {
+      "q": "La curita ya ___ puesta.",
+      "phrase": "La curita ya está puesta."
+     }
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et probabilité",
+   "qs": [
+    {
+     "q": "Mark ___ haberse caído jugando al fútbol.",
+     "c": [
+      "debe de",
+      "puede de",
+      "tiene de"
+     ],
+     "f": "mark",
+     "r": "ball",
+     "phrase": "Mark debe de haberse caído jugando al fútbol.",
+     "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé : il a dû tomber."
+    },
+    {
+     "q": "Puede que la médica le ___ un vendaje enseguida.",
+     "c": [
+      "ponga",
+      "pone",
+      "pondrá"
+     ],
+     "f": "aerztin",
+     "r": "verband",
+     "phrase": "Puede que la médica le ponga un vendaje enseguida.",
+     "revise": {
+      "mot": "poner",
+      "cat": "verbe"
+     },
+     "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
+    },
+    {
+     "q": "Si Mark no ___ jugado al fútbol, no se habría hecho daño.",
+     "c": [
+      "hubiera",
+      "habría",
+      "había"
+     ],
+     "f": "mark",
+     "r": "knie",
+     "phrase": "Si Mark no hubiera jugado al fútbol, no se habría hecho daño.",
+     "n": "Hypothèse sur le passé : <b>si</b> + plus-que-parfait du subjonctif, puis conditionnel passé."
+    },
+    {
+     "q": "Dicen que esta médica ___ muy buena.",
+     "c": [
+      "es",
+      "sea",
+      "fuera"
+     ],
+     "f": "aerztin",
+     "phrase": "Dicen que esta médica es muy buena.",
+     "n": "Après <b>dicen que</b> (on rapporte un fait) → l'<b>indicatif</b>."
+    }
+   ]
   }
  },
  "corps": "mark",
@@ -1568,9 +1926,42 @@ window.SCENE = {
     "consigne": "Tap an object, Mark or the doctor. Tap the poster to see it up close."
    },
    "couches": {
-    "A1": "The body and objects"
+    "A1": "The body and objects",
+    "A2": "¿Dónde está? — estar and prepositions",
+    "B1": "Pronouns, ser and estar",
+    "B2": "Relative clauses and the passive",
+    "C1": "Hypotheses and probability"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La pelota está encima de la bolsa.": "<b>encima de</b> = on top of. Location → <b>estar</b>.",
+    "A2 | El reloj está encima del póster.": "<b>de + el = del</b>, always.",
+    "A2 | La planta está junto a la ventana.": "<b>junto a</b> = by, next to.",
+    "A2 | La médica está sentada al lado del paciente.": "<b>al lado de</b> + el paciente → al lado <b>del</b> paciente.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "With <b>una</b> (something you notice) → <b>hay</b>.",
+    "A2 | Los calcetines están encima de los zapatos.": "With <b>los</b> (specific things) → <b>estar</b>, not hay.",
+    "A2 | La curita está en la rodilla.": "<b>en</b> = on: en la rodilla.",
+    "A2 | La tirita está en la rodilla.": "<b>en</b> = on: en la rodilla.",
+    "A2 | El póster está detrás del paciente.": "<b>detrás de</b> = behind.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "Feminine direct object (la pelota) → <b>la</b>.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "Masculine plural direct object (los zapatos) → <b>los</b>.",
+    "B1 | La médica está sentada en un taburete.": "<b>estar sentado</b>: a state, a position.",
+    "B1 | La médica le sonríe a Mark.": "Smiling <b>at</b> someone: indirect object → <b>le</b>. Spanish happily doubles it: le sonríe <b>a Mark</b>.",
+    "B1 | El vaso está encima del escritorio.": "Where it is → <b>estar</b>.",
+    "B1 | La médica la ha dejado en el escritorio.": "Feminine direct object (la tarjeta) → <b>la</b>.",
+    "B1 | Mark está herido en la rodilla.": "An injury is a state → <b>estar</b> herido.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "<b>quitarse</b> = to take off (clothes); <b>ponerse</b> = to put on. He's barefoot: he took them off.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "<b>cuyo</b> agrees with what is owned: la rodilla → <b>cuya</b>.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "Subject of the relative clause → <b>que</b>. <b>cuya</b> would need an owned noun right after it.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "Sonreír <b>a</b> alguien: a + el que → <b>al que</b>. With quien it would be « <b>a</b> quien », no article.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "After <b>encima de</b>: <b>la cual</b> (or la que), never que alone.",
+    "B2 | La ventana está cerrada.": "The result (someone closed it) → <b>estar</b> + participle.",
+    "B2 | La curita ya está puesta.": "A resulting state → <b>estar</b> puesta. « es puesta » would be the action, in the passive.",
+    "B2 | La tirita ya está puesta.": "A resulting state → <b>estar</b> puesta. « es puesta » would be the action, in the passive.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "<b>deber de</b> + perfect infinitive = a deduction about the past: he must have fallen.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "A hypothesis about the past: <b>si</b> + pluperfect subjunctive, then the conditional perfect.",
+    "C1 | Dicen que esta médica es muy buena.": "After <b>dicen que</b> (reporting a fact) → the <b>indicative</b>."
+   }
   },
   "tr": {
    "champs": {

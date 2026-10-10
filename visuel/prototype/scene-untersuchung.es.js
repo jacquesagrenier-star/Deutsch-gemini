@@ -1614,6 +1614,326 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Le corps humain"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — le corps",
+   "qs": [
+    {
+     "q": "La báscula está ___ la pared.",
+     "c": [
+      "junto a",
+      "encima de",
+      "dentro de"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "La báscula está junto a la pared.",
+     "n": "<b>junto a</b> = contre, près de."
+    },
+    {
+     "q": "La médica está ___ del paciente.",
+     "c": [
+      "al lado",
+      "encima",
+      "debajo"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "La médica está al lado del paciente.",
+     "n": "<b>al lado de</b> = à côté de ; de + el = <b>del</b>."
+    },
+    {
+     "q": "Mark está ___ de la báscula.",
+     "c": [
+      "delante",
+      "encima",
+      "debajo"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Mark está delante de la báscula.",
+     "n": "<b>delante de</b> = devant : il n'y est pas encore monté."
+    },
+    {
+     "q": "La médica le pone el estetoscopio en ___ pecho.",
+     "c": [
+      "el",
+      "su",
+      "la"
+     ],
+     "f": "stethoskop",
+     "r": "brust",
+     "phrase": "La médica le pone el estetoscopio en el pecho.",
+     "n": "Pour les parties du corps, l'espagnol met l'<b>article</b>, pas le possessif : le pronom <b>le</b> dit déjà à qui."
+    },
+    {
+     "q": "Mark tiene las manos ___ los muslos.",
+     "c": [
+      "junto a",
+      "encima de",
+      "debajo de"
+     ],
+     "f": "hand-l",
+     "r": "oberschenkel",
+     "phrase": "Mark tiene las manos junto a los muslos.",
+     "n": "<b>junto a</b> = le long de, contre."
+    },
+    {
+     "q": "Mark tiene los pies ___ el suelo.",
+     "c": [
+      "en",
+      "encima",
+      "dentro"
+     ],
+     "f": "fuss-l",
+     "r": "boden",
+     "phrase": "Mark tiene los pies en el suelo.",
+     "n": "<b>en</b> el suelo = par terre. « encima » et « dentro » demandent <b>de</b>.",
+     "latam": {
+      "q": "Mark tiene los pies ___ el piso.",
+      "phrase": "Mark tiene los pies en el piso.",
+      "n": "<b>en</b> el piso = par terre. « encima » et « dentro » demandent <b>de</b>."
+     }
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes de la médecin",
+   "qs": [
+    {
+     "q": "Señor, ___ hondo, por favor.",
+     "c": [
+      "respire",
+      "respira",
+      "respirar"
+     ],
+     "f": "mark",
+     "phrase": "Señor, respire hondo, por favor.",
+     "revise": {
+      "mot": "respirar",
+      "cat": "verbe"
+     },
+     "n": "On vouvoie (usted) : impératif en <b>-e</b> pour un verbe en -ar → <b>respire</b>."
+    },
+    {
+     "q": "La médica le ___ los pulmones.",
+     "c": [
+      "escucha",
+      "escuchan",
+      "escuche"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "La médica le escucha los pulmones.",
+     "revise": {
+      "mot": "escuchar",
+      "cat": "verbe"
+     },
+     "n": "Présent, 3e personne : la médica <b>escucha</b>."
+    },
+    {
+     "q": "Mark se ha quitado la ropa: ___ solo los calzoncillos.",
+     "c": [
+      "lleva",
+      "pone",
+      "quita"
+     ],
+     "f": "mark",
+     "r": "unterhose",
+     "phrase": "Mark se ha quitado la ropa: lleva solo los calzoncillos.",
+     "revise": {
+      "mot": "llevar",
+      "cat": "verbe"
+     },
+     "n": "<b>llevar</b> = porter (un vêtement)."
+    },
+    {
+     "q": "Ahora, ___ a la báscula, por favor.",
+     "c": [
+      "súbase",
+      "súbese",
+      "se sube"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Ahora, súbase a la báscula, por favor.",
+     "n": "Impératif d'usted + pronom collé : <b>súbase</b> (l'accent écrit garde l'accent tonique)."
+    },
+    {
+     "q": "No se ___, por favor.",
+     "c": [
+      "mueva",
+      "mueve",
+      "mover"
+     ],
+     "f": "mark",
+     "phrase": "No se mueva, por favor.",
+     "n": "L'impératif <b>négatif</b> prend le subjonctif : no se <b>mueva</b>."
+    },
+    {
+     "q": "La médica ___ ha pedido que respire hondo.",
+     "c": [
+      "le",
+      "lo",
+      "la"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "La médica le ha pedido que respire hondo.",
+     "n": "Demander <b>à</b> quelqu'un : complément indirect → <b>le</b>. Et pedir que + subjonctif."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "Sus pulmones ___ siendo examinados.",
+     "c": [
+      "están",
+      "son",
+      "han"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Sus pulmones están siendo examinados.",
+     "n": "Passif en cours : <b>estar siendo</b> + participe."
+    },
+    {
+     "q": "El paciente ___ pecho examina la médica se llama Mark.",
+     "c": [
+      "cuyo",
+      "cuya",
+      "que"
+     ],
+     "f": "mark",
+     "r": "brust",
+     "phrase": "El paciente cuyo pecho examina la médica se llama Mark.",
+     "n": "<b>cuyo</b> s'accorde avec el pecho → <b>cuyo</b>."
+    },
+    {
+     "q": "La médica ___ lo examina es su médica de cabecera.",
+     "c": [
+      "que",
+      "cuya",
+      "donde"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "La médica que lo examina es su médica de cabecera.",
+     "n": "Sujet de la relative → <b>que</b>. <b>médica de cabecera</b> = médecin traitante."
+    },
+    {
+     "q": "La báscula a la ___ se va a subir está junto a la pared.",
+     "c": [
+      "que",
+      "quien",
+      "cuya"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "La báscula a la que se va a subir está junto a la pared.",
+     "n": "Subirse <b>a</b> algo : a + la que → <b>a la que</b>. <b>quien</b> ne désigne que des personnes."
+    },
+    {
+     "q": "Su altura ___ medida enseguida.",
+     "c": [
+      "será",
+      "estará",
+      "habrá"
+     ],
+     "f": "waage",
+     "phrase": "Su altura será medida enseguida.",
+     "n": "L'action à venir, au passif : <b>ser</b> + participe → <b>será</b> medida."
+    },
+    {
+     "q": "Mark no se mueve ___ la médica lo examina.",
+     "c": [
+      "mientras",
+      "durante",
+      "cuando que"
+     ],
+     "f": "mark",
+     "phrase": "Mark no se mueve mientras la médica lo examina.",
+     "revise": {
+      "mot": "examinar",
+      "cat": "verbe"
+     },
+     "n": "<b>mientras</b> + verbe = pendant que. <b>durante</b> se met devant un nom."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et probabilité",
+   "qs": [
+    {
+     "q": "Mark ___ hacer mucho deporte: tiene los brazos fuertes.",
+     "c": [
+      "debe de",
+      "puede",
+      "suele de"
+     ],
+     "f": "arm-l",
+     "phrase": "Mark debe de hacer mucho deporte: tiene los brazos fuertes.",
+     "n": "<b>deber de</b> + infinitif = une déduction."
+    },
+    {
+     "q": "___ que Mark esté sano.",
+     "c": [
+      "Es probable",
+      "Es seguro",
+      "Creo"
+     ],
+     "f": "mark",
+     "phrase": "Es probable que Mark esté sano.",
+     "n": "Une probabilité → <b>subjonctif</b> (esté). Après es seguro ou creo, ce serait l'indicatif : está."
+    },
+    {
+     "q": "Dicen que esta médica ___ muy minuciosa.",
+     "c": [
+      "es",
+      "sea",
+      "fuera"
+     ],
+     "f": "aerztin",
+     "phrase": "Dicen que esta médica es muy minuciosa.",
+     "n": "Après <b>dicen que</b> (on rapporte) → l'<b>indicatif</b>."
+    },
+    {
+     "q": "Si el corazón le ___ de forma irregular, lo mandaría al cardiólogo.",
+     "c": [
+      "latiera",
+      "late",
+      "latería"
+     ],
+     "f": "aerztin",
+     "r": "brust",
+     "phrase": "Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.",
+     "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait (latiera), puis conditionnel."
+    },
+    {
+     "q": "Si no se ___ quitado la ropa, no habría podido auscultarlo.",
+     "c": [
+      "hubiera",
+      "habría",
+      "había"
+     ],
+     "f": "mark",
+     "phrase": "Si no se hubiera quitado la ropa, no habría podido auscultarlo.",
+     "n": "Hypothèse sur le passé : <b>si</b> + plus-que-parfait du subjonctif, puis conditionnel passé."
+    },
+    {
+     "q": "Cuanto más deporte hace Mark, ___ sano está.",
+     "c": [
+      "más",
+      "muy",
+      "tan"
+     ],
+     "f": "mark",
+     "phrase": "Cuanto más deporte hace Mark, más sano está.",
+     "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
+    }
+   ]
   }
  },
  "corps": "mark",
@@ -1635,9 +1955,39 @@ window.SCENE = {
     "autre_vue": "↻ Turn Mark around"
    },
    "couches": {
-    "A1": "The human body"
+    "A1": "The human body",
+    "A2": "¿Dónde está? — the body",
+    "B1": "The doctor's instructions",
+    "B2": "Relative clauses and the passive",
+    "C1": "Hypotheses and probability"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La báscula está junto a la pared.": "<b>junto a</b> = against, by.",
+    "A2 | La médica está al lado del paciente.": "<b>al lado de</b> = next to; de + el = <b>del</b>.",
+    "A2 | Mark está delante de la báscula.": "<b>delante de</b> = in front of: he hasn't stepped on it yet.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "With body parts Spanish uses the <b>article</b>, not the possessive: the pronoun <b>le</b> already says whose.",
+    "A2 | Mark tiene las manos junto a los muslos.": "<b>junto a</b> = by, alongside.",
+    "A2 | Mark tiene los pies en el piso.": "<b>en</b> el piso = on the floor. « encima » and « dentro » need <b>de</b>.",
+    "A2 | Mark tiene los pies en el suelo.": "<b>en</b> el suelo = on the floor. « encima » and « dentro » need <b>de</b>.",
+    "B1 | Señor, respire hondo, por favor.": "Formal « you » (usted): imperative in <b>-e</b> for an -ar verb → <b>respire</b>.",
+    "B1 | La médica le escucha los pulmones.": "Present, 3rd person: la médica <b>escucha</b>.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "<b>llevar</b> = to wear.",
+    "B1 | Ahora, súbase a la báscula, por favor.": "Usted imperative + attached pronoun: <b>súbase</b> (the written accent keeps the stress).",
+    "B1 | No se mueva, por favor.": "The <b>negative</b> imperative takes the subjunctive: no se <b>mueva</b>.",
+    "B1 | La médica le ha pedido que respire hondo.": "Asking <b>someone</b>: indirect object → <b>le</b>. And pedir que + subjunctive.",
+    "B2 | Sus pulmones están siendo examinados.": "Passive in progress: <b>estar siendo</b> + participle.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "<b>cuyo</b> agrees with el pecho → <b>cuyo</b>.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "Subject of the relative clause → <b>que</b>. <b>médica de cabecera</b> = family doctor.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "Subirse <b>a</b> algo: a + la que → <b>a la que</b>. <b>quien</b> only refers to people.",
+    "B2 | Su altura será medida enseguida.": "The future action, in the passive: <b>ser</b> + participle → <b>será</b> medida.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "<b>mientras</b> + verb = while. <b>durante</b> goes before a noun.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "<b>deber de</b> + infinitive = a deduction.",
+    "C1 | Es probable que Mark esté sano.": "A probability → <b>subjunctive</b> (esté). After es seguro or creo it would be the indicative: está.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "After <b>dicen que</b> (reporting) → the <b>indicative</b>.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "Unreal condition: <b>si</b> + imperfect subjunctive (latiera), then the conditional.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "A hypothesis about the past: <b>si</b> + pluperfect subjunctive, then the conditional perfect.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "<b>cuanto más</b> …, <b>más</b> … = the more …, the more …."
+   }
   },
   "tr": {
    "champs": {

@@ -684,6 +684,278 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Au marché"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — au marché",
+   "qs": [
+    {
+     "q": "Los aguacates están ___ las naranjas y las papayas.",
+     "c": [
+      "entre",
+      "encima de",
+      "debajo de"
+     ],
+     "f": "avocado",
+     "r": "papaya",
+     "phrase": "Los aguacates están entre las naranjas y las papayas.",
+     "n": "<b>entre</b> … <b>y</b> … = entre … et …."
+    },
+    {
+     "q": "Anna toma unos ___.",
+     "c": [
+      "plátanos",
+      "mangos",
+      "cocos"
+     ],
+     "f": "banane",
+     "r": "anna",
+     "phrase": "Anna toma unos plátanos.",
+     "revise": {
+      "mot": "plátano",
+      "genre": "el",
+      "theme": "la_comida"
+     },
+     "n": "<b>unos</b> = quelques (des). el plátano → unos plátanos."
+    },
+    {
+     "q": "Las limas están al lado de los ___.",
+     "c": [
+      "higos",
+      "melones",
+      "mangos"
+     ],
+     "f": "limette",
+     "r": "feige",
+     "phrase": "Las limas están al lado de los higos.",
+     "n": "<b>al lado de</b> = à côté de."
+    },
+    {
+     "q": "Los mangos están entre los pomelos y los ___.",
+     "c": [
+      "plátanos",
+      "limones",
+      "cocos"
+     ],
+     "f": "mango",
+     "r": "banane",
+     "phrase": "Los mangos están entre los pomelos y los plátanos.",
+     "n": "<b>entre</b> … <b>y</b> … = entre … et ….",
+     "latam": {
+      "q": "Los mangos están entre las toronjas y los ___.",
+      "phrase": "Los mangos están entre las toronjas y los plátanos."
+     }
+    },
+    {
+     "q": "La media sandía está ___ las otras sandías.",
+     "c": [
+      "encima de",
+      "debajo de",
+      "al lado de"
+     ],
+     "f": "wassermelone",
+     "phrase": "La media sandía está encima de las otras sandías.",
+     "n": "<b>encima de</b> = sur, par-dessus."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "¿Cuánto cuesta ___ piña?",
+     "c": [
+      "una",
+      "un",
+      "uno"
+     ],
+     "f": "ananas",
+     "phrase": "¿Cuánto cuesta una piña?",
+     "n": "<b>la</b> piña est féminin → <b>una</b>."
+    },
+    {
+     "q": "Quería un ___ de sandía, por favor.",
+     "c": [
+      "trozo",
+      "litro",
+      "paquete"
+     ],
+     "f": "wassermelone",
+     "phrase": "Quería un trozo de sandía, por favor.",
+     "n": "<b>un trozo</b> = un morceau."
+    },
+    {
+     "q": "La sandía es más grande ___ el melón.",
+     "c": [
+      "que",
+      "como",
+      "de"
+     ],
+     "f": "wassermelone",
+     "r": "melone",
+     "phrase": "La sandía es más grande que el melón.",
+     "revise": {
+      "mot": "grande",
+      "cat": "adjectif"
+     },
+     "n": "<b>más</b> … <b>que</b> = plus … que."
+    },
+    {
+     "q": "¿Ya ___ maduros los mangos?",
+     "c": [
+      "están",
+      "son",
+      "hay"
+     ],
+     "f": "mango",
+     "phrase": "¿Ya están maduros los mangos?",
+     "revise": {
+      "mot": "maduro",
+      "cat": "adjectif"
+     },
+     "n": "<b>estar maduro</b> = être mûr (un état). <b>ser maduro</b> = être mature (une personne)."
+    },
+    {
+     "q": "Quería tres ___, por favor.",
+     "c": [
+      "limones",
+      "limón",
+      "limónes"
+     ],
+     "f": "zitrone",
+     "phrase": "Quería tres limones, por favor.",
+     "revise": {
+      "mot": "limón",
+      "genre": "el",
+      "theme": "el_restaurante"
+     },
+     "n": "el limón → los <b>limones</b> : au pluriel, l'accent écrit disparaît."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et accords",
+   "qs": [
+    {
+     "q": "La fruta tropical ___ transporta casi siempre en barco.",
+     "c": [
+      "se",
+      "le",
+      "lo"
+     ],
+     "f": "banane",
+     "phrase": "La fruta tropical se transporta casi siempre en barco.",
+     "n": "Le passif avec <b>se</b> : se transporta."
+    },
+    {
+     "q": "El mango, ___ piel es roja y verde, ya está maduro.",
+     "c": [
+      "cuya",
+      "cuyo",
+      "que"
+     ],
+     "f": "mango",
+     "phrase": "El mango, cuya piel es roja y verde, ya está maduro.",
+     "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : la piel → <b>cuya</b>."
+    },
+    {
+     "q": "Encima de las otras hay una papaya ___.",
+     "c": [
+      "abierta",
+      "abierto",
+      "abiertas"
+     ],
+     "f": "papaya",
+     "phrase": "Encima de las otras hay una papaya abierta.",
+     "revise": {
+      "mot": "abierto",
+      "cat": "adjectif"
+     },
+     "n": "Le participe-adjectif s'accorde : una papaya → <b>abierta</b>."
+    },
+    {
+     "q": "Los plátanos ___ Anna se lleva vienen de Ecuador.",
+     "c": [
+      "que",
+      "quienes",
+      "cuyos"
+     ],
+     "f": "banane",
+     "r": "anna",
+     "phrase": "Los plátanos que Anna se lleva vienen de Ecuador.",
+     "n": "Complément direct de la relative → <b>que</b>. <b>quienes</b> ne désigne que des personnes."
+    },
+    {
+     "q": "El coco ya ___ abierto.",
+     "c": [
+      "está",
+      "es",
+      "ha"
+     ],
+     "f": "kokosnuss",
+     "phrase": "El coco ya está abierto.",
+     "n": "Le résultat d'une action → <b>estar</b> + participe."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses, cuanto más, concessions",
+   "qs": [
+    {
+     "q": "___ largo viaje, los mangos son bastante baratos aquí.",
+     "c": [
+      "A pesar del",
+      "Debido al",
+      "En vez del"
+     ],
+     "f": "mango",
+     "phrase": "A pesar del largo viaje, los mangos son bastante baratos aquí.",
+     "n": "<b>a pesar de</b> = malgré. Devant el : a pesar <b>del</b>."
+    },
+    {
+     "q": "Cuanto más oscuros son los higos, ___ dulces son.",
+     "c": [
+      "más",
+      "tan",
+      "menos"
+     ],
+     "f": "feige",
+     "phrase": "Cuanto más oscuros son los higos, más dulces son.",
+     "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
+    },
+    {
+     "q": "Si Anna ___ más tiempo, compraría una piña y la pelaría.",
+     "c": [
+      "tuviera",
+      "tiene",
+      "tendría"
+     ],
+     "f": "ananas",
+     "phrase": "Si Anna tuviera más tiempo, compraría una piña y la pelaría.",
+     "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait (tuviera), puis conditionnel."
+    },
+    {
+     "q": "Es mejor que los aguacates no ___ en el frío.",
+     "c": [
+      "estén",
+      "están",
+      "estarían"
+     ],
+     "f": "avocado",
+     "phrase": "Es mejor que los aguacates no estén en el frío.",
+     "n": "<b>es mejor que</b> (un conseil) → <b>subjonctif</b>."
+    },
+    {
+     "q": "El coco ___ de haber sido abierto con un martillo.",
+     "c": [
+      "debe",
+      "puede",
+      "tiene"
+     ],
+     "f": "kokosnuss",
+     "phrase": "El coco debe de haber sido abierto con un martillo.",
+     "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé."
+    }
+   ]
   }
  },
  "autre_vue": {
@@ -706,9 +978,35 @@ window.SCENE = {
     "autre_vue": "→ Vegetables"
    },
    "couches": {
-    "A1": "At the market"
+    "A1": "At the market",
+    "A2": "¿Dónde está? — at the market",
+    "B1": "Shopping: quantities and prices",
+    "B2": "Passive, relative clauses and agreement",
+    "C1": "Hypotheses, cuanto más, concessions"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Los aguacates están entre las naranjas y las papayas.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | Anna toma unos plátanos.": "<b>unos</b> = some. el plátano → unos plátanos.",
+    "A2 | Las limas están al lado de los higos.": "<b>al lado de</b> = next to.",
+    "A2 | Los mangos están entre las toronjas y los plátanos.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | Los mangos están entre los pomelos y los plátanos.": "<b>entre</b> … <b>y</b> … = between … and ….",
+    "A2 | La media sandía está encima de las otras sandías.": "<b>encima de</b> = on top of.",
+    "B1 | ¿Cuánto cuesta una piña?": "<b>la</b> piña is feminine → <b>una</b>.",
+    "B1 | Quería un trozo de sandía, por favor.": "<b>un trozo</b> = a piece.",
+    "B1 | La sandía es más grande que el melón.": "<b>más</b> … <b>que</b> = more … than.",
+    "B1 | ¿Ya están maduros los mangos?": "<b>estar maduro</b> = to be ripe (a state). <b>ser maduro</b> = to be mature (a person).",
+    "B1 | Quería tres limones, por favor.": "el limón → los <b>limones</b>: in the plural, the written accent goes.",
+    "B2 | La fruta tropical se transporta casi siempre en barco.": "The passive with <b>se</b>: se transporta.",
+    "B2 | El mango, cuya piel es roja y verde, ya está maduro.": "<b>cuyo</b> agrees with what is owned: la piel → <b>cuya</b>.",
+    "B2 | Encima de las otras hay una papaya abierta.": "The participle used as an adjective agrees: una papaya → <b>abierta</b>.",
+    "B2 | Los plátanos que Anna se lleva vienen de Ecuador.": "Direct object of the relative clause → <b>que</b>. <b>quienes</b> only refers to people.",
+    "B2 | El coco ya está abierto.": "The result of an action → <b>estar</b> + participle.",
+    "C1 | A pesar del largo viaje, los mangos son bastante baratos aquí.": "<b>a pesar de</b> = despite. Before el: a pesar <b>del</b>.",
+    "C1 | Cuanto más oscuros son los higos, más dulces son.": "<b>cuanto más</b> …, <b>más</b> … = the more …, the more ….",
+    "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "Unreal condition: <b>si</b> + imperfect subjunctive (tuviera), then the conditional.",
+    "C1 | Es mejor que los aguacates no estén en el frío.": "<b>es mejor que</b> (advice) → <b>subjunctive</b>.",
+    "C1 | El coco debe de haber sido abierto con un martillo.": "<b>deber de</b> + perfect infinitive = a deduction about the past."
+   }
   },
   "tr": {
    "champs": {
