@@ -368,6 +368,38 @@ def verifier_langue_enseignee(r, source):
 PLANCHER_EXOS = 50
 
 
+def verifier_jeux_espagnols(r):
+    """Les jeux de l'espagnol : meme plancher, memes champs, fr et en."""
+    chemin = os.path.join(RACINE, "espanol", "datos", "ejercicios.json")
+    if not os.path.exists(chemin):
+        return {}
+    with io.open(chemin, encoding="utf-8") as f:
+        jeux = json.load(f).get("jeux", {})
+    total = 0
+    for nom, liste in sorted(jeux.items()):
+        if not isinstance(liste, list) or not liste:
+            r.echec("exercices", "espagnol %s : liste vide ou mal formee" % nom)
+            continue
+        total += len(liste)
+        r.controle(len(liste))
+        if len(liste) < PLANCHER_EXOS:
+            r.echec("exercices", "espagnol %s : %d exercices, sous le plancher de %d"
+                    % (nom, len(liste), PLANCHER_EXOS))
+        for k, ex in enumerate(liste):
+            if not ex.get("question") and not ex.get("chunks"):
+                r.echec("exercices", "espagnol %s[%d] n'a ni question ni chunks" % (nom, k))
+            if not ex.get("correct") and not ex.get("answers"):
+                r.echec("exercices", "espagnol %s[%d] n'a pas de reponse" % (nom, k))
+            opts = ex.get("options")
+            if opts and ex.get("correct") not in opts:
+                r.echec("exercices", "espagnol %s[%d] : la reponse n'est pas parmi les options" % (nom, k))
+            for champ in ("translation", "explanation"):
+                if ex.get(champ) and not ex.get(champ + "_en"):
+                    r.echec("exercices", "espagnol %s[%d] : %s sans version anglaise" % (nom, k, champ))
+    print("   ejercicios.json : %d jeux, %d exercices (espagnol)" % (len(jeux), total))
+    return jeux
+
+
 def verifier_jeux_exercices(r, source):
     """Tout jeu demande par son nom doit exister dans exercices.json.
 
@@ -391,7 +423,12 @@ def verifier_jeux_exercices(r, source):
 
     demandes = set(re.findall(r'startExerciseSet(?:Melange)?\(\s*"([A-Za-z0-9_]+)"',
                               source))
-    for nom in sorted(demandes - set(jeux)):
+    # L'espagnol (fusion, 10 oct. 2026) a ses jeux a lui, dans
+    # espanol/datos/ejercicios.json : un jeu demande peut vivre dans l'un ou
+    # l'autre fichier. Les siens sont controles a part, en francais et en
+    # anglais -- ses deux seules langues d'interface.
+    jeux_es = verifier_jeux_espagnols(r)
+    for nom in sorted(demandes - set(jeux) - set(jeux_es)):
         r.echec("exercices", "jeu demande par le code mais absent d'exercices.json"
                              " : %s" % nom)
     # L'inverse n'est pas une erreur -- un jeu peut etre prepare avant d'etre

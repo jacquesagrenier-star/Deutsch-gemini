@@ -7193,7 +7193,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v736</span>
+    <span class="subtitle-version">v737</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -16984,7 +16984,10 @@ const I18N_ESPAGNOL = {
         "kicker_verben_praeteritum": "Verbes · Pretérito",
         "op_adjektive_o4_d": "alto · alta · altos · altas",
         "op_adjektive_o4_t": "Accord de l'adjectif",
-        "gram_attention": "Attention"
+        "gram_attention": "Attention",
+        "kicker_ser_estar": "ser ou estar ?",
+        "kicker_por_para": "por ou para ?",
+        "fiche_entrainer": "M'ENTRAÎNER →"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17068,7 +17071,10 @@ const I18N_ESPAGNOL = {
         "kicker_verben_praeteritum": "Verbs · Pretérito",
         "op_adjektive_o4_d": "alto · alta · altos · altas",
         "op_adjektive_o4_t": "Adjective agreement",
-        "gram_attention": "Watch out"
+        "gram_attention": "Watch out",
+        "kicker_ser_estar": "ser or estar?",
+        "kicker_por_para": "por or para?",
+        "fiche_entrainer": "PRACTICE →"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -20926,6 +20932,18 @@ function startAberSondernUebung(){
                      openKonjunktionenPanel, startAberSondernUebung);
 }
 
+// LES PAIRES DE L'ESPAGNOL (recommandees par Gemini et ChatGPT, 10 oct. 2026) :
+// le meme mecanisme que weil / obwohl -- deux options, et le sens tranche.
+// Ouvertes depuis leur fiche de grammaire, ou elles ramenent.
+function startSerEstarUebung(){
+    startExerciseSetMelange("serEstarExercises", "kicker_ser_estar",
+                     () => abrirGramatica("ser-estar"), startSerEstarUebung);
+}
+function startPorParaUebung(){
+    startExerciseSetMelange("porParaExercises", "kicker_por_para",
+                     () => abrirGramatica("por-para"), startPorParaUebung);
+}
+
 function startWeilObwohlUebung(){
     startExerciseSetMelange("weilObwohlExercises", "kicker_weil_obwohl",
                      openKonjunktionenPanel, startWeilObwohlUebung);
@@ -24410,6 +24428,10 @@ async function abrirGramatica(id){
     if(g.attention){
         html += '<div class="card"><div class="revision"><strong>' + t("gram_attention") + '</strong>'
             + '<p style="margin:6px 0 0; line-height:1.55;">' + texteDeFiche(g.attention) + '</p></div></div>';
+    }
+    // L'exercice de la fiche, s'il en a un (ser / estar, por / para).
+    if(g.exercice && typeof window[g.exercice] === "function"){
+        html += '<button class="secondary" onclick="' + g.exercice + '()">' + t("fiche_entrainer") + '</button>';
     }
     document.getElementById("gramCuerpo").innerHTML = html;
     showScreen("gramaticaES");
@@ -31853,7 +31875,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 736;
+const APP_VERSION = 737;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
