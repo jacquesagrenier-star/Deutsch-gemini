@@ -6230,7 +6230,13 @@ body[data-theme="dark"] #decouverte > button.primary{
    Dans la page, la barre et la carte de question poussaient les reponses
    sous le bord : il fallait faire defiler pour repondre (Jacques, 6 oct.).
    On en sort par le titre de la scene, qui revient au choix. */
-#sceneSeance.active{position:fixed; inset:0; z-index:3000; padding:0; margin:0; background:#11151b;}
+/* ⚠️ LA MARGE DE L'ENCOCHE SE POSE ICI, PAS DANS LA SCENE (v742). Un cadre
+   (iframe) ne recoit jamais env(safe-area-inset-*) : vu de l'interieur, il
+   n'y a ni encoche ni heure. Le retour et les niveaux A1-C1 passaient donc
+   sous l'heure de l'iPhone, intouchables (Jacques, 10 oct.). C'est la page
+   qui connait l'encoche : c'est elle qui descend le cadre. */
+#sceneSeance.active{position:fixed; inset:0; z-index:3000; margin:0; background:#11151b;
+    padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);}
 .scene-cadre{display:block; width:100%; height:100%; border:0; background:#11151b;}
 </style>
 
@@ -7193,7 +7199,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v741</span>
+    <span class="subtitle-version">v742</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -31998,7 +32004,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 741;
+const APP_VERSION = 742;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

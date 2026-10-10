@@ -37,7 +37,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .voir-zones .zone{outline:1.5px solid rgba(232,162,58,.85);background:rgba(232,162,58,.10)}
 
 /* le haut : AU-DESSUS de l'image -- pose sur le plafond, il cachait l'horloge et la lampe */
-.haut{position:sticky;top:0;padding:8px 8px 8px;z-index:2000;background:#11151b;
+.haut{position:sticky;top:0;padding:calc(8px + env(safe-area-inset-top, 0px)) 8px 8px;z-index:2000;background:#11151b;
   display:flex;flex-direction:column;gap:6px}
 .barre{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 /* flex-wrap (9 oct.) : avec « Retourner Mark » et cinq pastilles, la barre
@@ -148,7 +148,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    moyen de revenir (Jacques, 6 oct.). */
 /* Et VOYANT : petit et creme sur une image claire, Jacques ne le trouvait
    pas (« je ne vois pas comment rapetisser l'image », 6 oct.). */
-.gros-plan .fermer{position:fixed;left:8px;top:8px;z-index:3;border:2px solid var(--encre);border-radius:999px;
+.gros-plan .fermer{position:fixed;left:8px;top:calc(8px + env(safe-area-inset-top, 0px));z-index:3;border:2px solid var(--encre);border-radius:999px;
   padding:11px 16px;font:800 16px inherit;background:var(--ambre);color:var(--encre);
   box-shadow:0 4px 16px rgba(0,0,0,.45);cursor:pointer}
 .gros-plan .fermer:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
@@ -488,24 +488,63 @@ function direTelephone(t){
    d'Aurora »). Meme adresse que l'app : l'empreinte SHA-1 du texte, 16
    caracteres, sur Firebase Hosting. Un fichier qui manque (un mot ajoute
    depuis la derniere generation, une phrase de scene pas encore enregistree)
-   retombe sur la voix du telephone. Sur file://, crypto.subtle n'existe pas :
-   voix du telephone aussi. */
+   retombe sur la voix du telephone. */
 const AUDIO_BASE = "https://deutschai-b6fbb.web.app/", AUDIO_REVISION = "7";
 const audioAbsents = new Set();
 let audioEnCours = null;
-async function empreinte(t){
-  const o = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(t));
-  return [...new Uint8Array(o)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
+/* ⚠️ L'EMPREINTE EST SYNCHRONE, ET C'EST TOUT LE SUJET (v742). La version
+   precedente attendait crypto.subtle.digest() avant play() : sur iPhone, ce
+   `await` rompt le lien avec le toucher, Safari refuse la lecture, et la voix
+   du telephone prenait la place d'Aurora (Jacques, 10 oct. : « das Stethoskop,
+   das Plakat, c'est pas la voix d'Aurora »). L'app a connu exactement ce
+   defaut en v347 ; sha1Hex() est recopie d'index.html, a l'identique. */
+function sha1Hex(texte){
+    const octets = new TextEncoder().encode(texte);
+    const n = octets.length;
+    const blocs = ((n + 8) >> 6) + 1;
+    const mots = new Uint32Array(blocs * 16);
+    for(let i = 0; i < n; i++) mots[i >> 2] |= octets[i] << (24 - (i % 4) * 8);
+    mots[n >> 2] |= 0x80 << (24 - (n % 4) * 8);
+    // Longueur en bits sur le dernier mot : nos textes font quelques dizaines
+    // d'octets, les 32 bits de poids fort resteront toujours a zero.
+    mots[blocs * 16 - 1] = n * 8;
+
+    let h0 = 0x67452301, h1 = 0xEFCDAB89, h2 = 0x98BADCFE,
+        h3 = 0x10325476, h4 = 0xC3D2E1F0;
+    const w = new Uint32Array(80);
+    for(let j = 0; j < blocs * 16; j += 16){
+        for(let i = 0; i < 16; i++) w[i] = mots[j + i];
+        for(let i = 16; i < 80; i++){
+            const v = w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16];
+            w[i] = (v << 1) | (v >>> 31);
+        }
+        let a = h0, b = h1, c = h2, d = h3, e = h4;
+        for(let i = 0; i < 80; i++){
+            let f, k;
+            if(i < 20)      { f = (b & c) | (~b & d);            k = 0x5A827999; }
+            else if(i < 40) { f = b ^ c ^ d;                     k = 0x6ED9EBA1; }
+            else if(i < 60) { f = (b & c) | (b & d) | (c & d);   k = 0x8F1BBCDC; }
+            else            { f = b ^ c ^ d;                     k = 0xCA62C1D6; }
+            const t = (((a << 5) | (a >>> 27)) + f + e + k + w[i]) >>> 0;
+            e = d; d = c; c = ((b << 30) | (b >>> 2)) >>> 0; b = a; a = t;
+        }
+        h0 = (h0 + a) >>> 0; h1 = (h1 + b) >>> 0; h2 = (h2 + c) >>> 0;
+        h3 = (h3 + d) >>> 0; h4 = (h4 + e) >>> 0;
+    }
+    return [h0, h1, h2, h3, h4]
+        .map(x => x.toString(16).padStart(8, "0")).join("");
 }
-async function dire(t){
+function empreinte(t){ return sha1Hex(t).slice(0, 16); }
+function dire(t){
   if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; }
   if ("speechSynthesis" in window) speechSynthesis.cancel();
-  if (!window.crypto || !crypto.subtle || audioAbsents.has(t)) return direTelephone(t);
+  if (audioAbsents.has(t)) return direTelephone(t);
   try {
-    const a = new Audio(AUDIO_BASE + await empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
+    const a = new Audio(AUDIO_BASE + empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
     audioEnCours = a;
     a.addEventListener("error", () => { audioAbsents.add(t); if (audioEnCours === a) direTelephone(t); }, {once: true});
-    await a.play();
+    const p = a.play();
+    if (p && p.catch) p.catch(() => { if (audioEnCours === a) direTelephone(t); });
   } catch (e) { direTelephone(t); }
 }
 
