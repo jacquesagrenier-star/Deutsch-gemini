@@ -17,13 +17,15 @@ window.SCENE = {
      "mot": "Mann",
      "genre": "der",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     },
     {
      "mot": "Körper",
      "genre": "der",
      "fr": "le corps",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "koerperteile_a1"
     }
    ],
    "sur": null,
@@ -136,7 +138,8 @@ window.SCENE = {
      "mot": "Hals",
      "genre": "der",
      "fr": "cou",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "koerperteile_a1"
     }
    ],
    "sur": "mark",
@@ -637,7 +640,8 @@ window.SCENE = {
      "mot": "Frau",
      "genre": "die",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     }
    ],
    "sur": null,
@@ -982,7 +986,11 @@ window.SCENE = {
      "f": "mark",
      "r": "ruecken",
      "phrase": "Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.",
-     "n": "Participe II d'un verbe séparable : <b>um-ge-dreht</b>. <b>damit</b> = pour que."
+     "n": "Participe II d'un verbe séparable : <b>um-ge-dreht</b>. <b>damit</b> = pour que.",
+     "revise": {
+      "mot": "umdrehen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Die Ärztin ___ das Stethoskop auf seinen Rücken.",
@@ -1005,7 +1013,11 @@ window.SCENE = {
      ],
      "f": "arm-l",
      "phrase": "Er lässt seine Arme locker hängen.",
-     "n": "<b>lassen</b> + infinitif : laisser (pendre)."
+     "n": "<b>lassen</b> + infinitif : laisser (pendre).",
+     "revise": {
+      "mot": "lassen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Er hält die Hände so, dass man die Handflächen ___.",
@@ -1016,7 +1028,11 @@ window.SCENE = {
      ],
      "f": "handflaeche-r",
      "phrase": "Er hält die Hände so, dass man die Handflächen sieht.",
-     "n": "<b>man</b> se conjugue à la 3e personne du singulier : man <b>sieht</b>."
+     "n": "<b>man</b> se conjugue à la 3e personne du singulier : man <b>sieht</b>.",
+     "revise": {
+      "mot": "sehen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "„Atmen Sie bitte ruhig ___ und ein!“",

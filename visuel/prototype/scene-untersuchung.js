@@ -17,13 +17,15 @@ window.SCENE = {
      "mot": "Mann",
      "genre": "der",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     },
     {
      "mot": "Körper",
      "genre": "der",
      "fr": "le corps",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "koerperteile_a1"
     }
    ],
    "sur": null,
@@ -480,7 +482,8 @@ window.SCENE = {
      "mot": "Frau",
      "genre": "die",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     }
    ],
    "sur": null,
@@ -1575,7 +1578,11 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark hat sich bis auf die Unterhose ausgezogen.",
-     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer."
+     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer.",
+     "revise": {
+      "mot": "ausziehen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Die Ärztin ___ ihm das Stethoskop auf die Brust.",
@@ -1599,7 +1606,11 @@ window.SCENE = {
      "f": "mark",
      "r": "waage",
      "phrase": "Gleich stellt sich Mark auf die Waage.",
-     "n": "Mouvement, Wohin? → <b>sich stellen</b> + accusatif : auf <b>die</b> Waage."
+     "n": "Mouvement, Wohin? → <b>sich stellen</b> + accusatif : auf <b>die</b> Waage.",
+     "revise": {
+      "mot": "stellen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Danach ___ er still auf der Waage.",
@@ -1611,7 +1622,11 @@ window.SCENE = {
      "f": "waage",
      "r": "mark",
      "phrase": "Danach steht er still auf der Waage.",
-     "n": "État, Wo? → <b>stehen</b> + datif : auf <b>der</b> Waage."
+     "n": "État, Wo? → <b>stehen</b> + datif : auf <b>der</b> Waage.",
+     "revise": {
+      "mot": "stehen",
+      "cat": "verbe"
+     }
     }
    ]
   },
@@ -1686,7 +1701,11 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark bleibt ruhig stehen, während er untersucht wird.",
-     "n": "Passif dans la subordonnée : participe II + <b>wird</b> à la fin."
+     "n": "Passif dans la subordonnée : participe II + <b>wird</b> à la fin.",
+     "revise": {
+      "mot": "untersuchen",
+      "cat": "verbe"
+     }
     }
    ]
   },

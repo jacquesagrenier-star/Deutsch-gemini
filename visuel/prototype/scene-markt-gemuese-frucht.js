@@ -17,13 +17,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -52,13 +54,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -87,13 +91,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -122,13 +128,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -157,13 +165,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -192,13 +202,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -227,19 +239,22 @@ window.SCENE = {
      "mot": "Schwammerl",
      "genre": "das",
      "fr": "champignon",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -268,13 +283,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -303,13 +320,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -338,13 +357,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -373,13 +394,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -408,13 +431,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -443,13 +468,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -478,13 +505,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -513,13 +542,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -624,7 +655,12 @@ window.SCENE = {
      "f": "tomate-main",
      "phrase": "Anna nimmt ein paar Tomaten.",
      "n": "<b>ein paar</b> = quelques, accusatif pluriel sans article.",
-     "r": "anna"
+     "r": "anna",
+     "revise": {
+      "mot": "Tomate",
+      "genre": "die",
+      "theme": "obst_gemuese_a1"
+     }
     },
     {
      "q": "Wo liegen die Auberginen?",
@@ -699,7 +735,11 @@ window.SCENE = {
      "f": "gurke",
      "phrase": "Die Gurke ist länger als die Zucchini.",
      "n": "Comparatif : lang → <b>länger</b> … <b>als</b>.",
-     "r": "zucchini"
+     "r": "zucchini",
+     "revise": {
+      "mot": "lang",
+      "cat": "adjectif"
+     }
     },
     {
      "q": "„Ich nehme ___ Salat.“",

@@ -39,7 +39,8 @@ window.SCENE = {
      "mot": "Plakat",
      "genre": "das",
      "fr": "affiche",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "musik_kunst_a2"
     }
    ],
    "sur": "wand",
@@ -156,7 +157,8 @@ window.SCENE = {
      "mot": "Mann",
      "genre": "der",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     }
    ],
    "sur": null,
@@ -579,7 +581,8 @@ window.SCENE = {
      "mot": "Frau",
      "genre": "die",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     }
    ],
    "sur": null,
@@ -868,7 +871,8 @@ window.SCENE = {
      "mot": "Computer",
      "genre": "der",
      "fr": "ordinateur",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "arbeit_buero_a1"
     }
    ],
    "sur": "schreibtisch",
@@ -919,7 +923,8 @@ window.SCENE = {
      "mot": "Wasser",
      "genre": "das",
      "fr": "eau",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "essen_trinken_a1"
     }
    ],
    "sur": "schreibtisch",
@@ -1058,7 +1063,8 @@ window.SCENE = {
      "mot": "Karte",
      "genre": "die",
      "fr": "carte, billet",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "freizeit_hobbys_a2"
     }
    ],
    "sur": "schreibtisch",
@@ -1109,7 +1115,8 @@ window.SCENE = {
      "mot": "Sporttasche",
      "genre": "die",
      "fr": "sac de sport",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "sport_b1"
     }
    ],
    "sur": null,
@@ -1138,7 +1145,8 @@ window.SCENE = {
      "mot": "Fußball",
      "genre": "der",
      "fr": "football",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "sport_a1"
     }
    ],
    "sur": "tasche",
@@ -1545,7 +1553,11 @@ window.SCENE = {
      "f": "ball",
      "r": "tasche",
      "phrase": "Der Ball liegt auf der Tasche.",
-     "n": "<b>liegen</b> = être posé (état, Wo?). <b>legen</b> = poser (mouvement, Wohin?)."
+     "n": "<b>liegen</b> = être posé (état, Wo?). <b>legen</b> = poser (mouvement, Wohin?).",
+     "revise": {
+      "mot": "liegen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Mark hat den Ball auf die Tasche ___.",
@@ -1557,7 +1569,11 @@ window.SCENE = {
      "f": "ball",
      "r": "tasche",
      "phrase": "Mark hat den Ball auf die Tasche gelegt.",
-     "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>die</b> Tasche."
+     "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>die</b> Tasche.",
+     "revise": {
+      "mot": "legen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Die Ärztin ___ auf einem Hocker.",
@@ -1569,7 +1585,11 @@ window.SCENE = {
      "f": "aerztin",
      "r": "hocker",
      "phrase": "Die Ärztin sitzt auf einem Hocker.",
-     "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir."
+     "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir.",
+     "revise": {
+      "mot": "sitzen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Mark hat seine Schuhe neben die Tasche ___.",
@@ -1581,7 +1601,11 @@ window.SCENE = {
      "f": "schuh",
      "r": "tasche",
      "phrase": "Mark hat seine Schuhe neben die Tasche gestellt.",
-     "n": "Des chaussures se posent debout : <b>stellen</b> → gestellt, + accusatif : neben <b>die</b> Tasche."
+     "n": "Des chaussures se posent debout : <b>stellen</b> → gestellt, + accusatif : neben <b>die</b> Tasche.",
+     "revise": {
+      "mot": "stellen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Die Schuhe ___ neben der Tasche.",
@@ -1593,7 +1617,11 @@ window.SCENE = {
      "f": "schuh",
      "r": "tasche",
      "phrase": "Die Schuhe stehen neben der Tasche.",
-     "n": "L'état : <b>stehen</b> + datif — neben <b>der</b> Tasche."
+     "n": "L'état : <b>stehen</b> + datif — neben <b>der</b> Tasche.",
+     "revise": {
+      "mot": "stehen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Mark hat seine Jacke neben die Tür ___.",
@@ -1605,7 +1633,11 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Mark hat seine Jacke neben die Tür gehängt.",
-     "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen."
+     "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen.",
+     "revise": {
+      "mot": "hängen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Das Glas ___ auf dem Schreibtisch.",
@@ -1617,7 +1649,11 @@ window.SCENE = {
      "f": "glas",
      "r": "schreibtisch",
      "phrase": "Das Glas steht auf dem Schreibtisch.",
-     "n": "Un verre est debout : <b>stehen</b> (état) + datif."
+     "n": "Un verre est debout : <b>stehen</b> (état) + datif.",
+     "revise": {
+      "mot": "stehen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Die Ärztin hat die Versichertenkarte auf den Schreibtisch ___.",
@@ -1629,7 +1665,11 @@ window.SCENE = {
      "f": "karte",
      "r": "schreibtisch",
      "phrase": "Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.",
-     "n": "Une carte se pose à plat : <b>legen</b> → gelegt, + accusatif : auf <b>den</b> Schreibtisch."
+     "n": "Une carte se pose à plat : <b>legen</b> → gelegt, + accusatif : auf <b>den</b> Schreibtisch.",
+     "revise": {
+      "mot": "legen",
+      "cat": "verbe"
+     }
     }
    ]
   },

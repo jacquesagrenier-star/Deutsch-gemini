@@ -17,13 +17,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -52,13 +54,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -87,13 +91,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -122,19 +128,22 @@ window.SCENE = {
      "mot": "Erdapfel",
      "genre": "der",
      "fr": "pomme de terre",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -163,13 +172,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -198,13 +209,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -233,13 +246,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -268,13 +283,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -303,19 +320,22 @@ window.SCENE = {
      "mot": "Rüebli",
      "genre": "das",
      "fr": "carotte",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "obst_gemuese_b1"
     },
     {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -344,13 +364,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -379,13 +401,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -414,13 +438,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -449,13 +475,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -484,13 +512,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -519,13 +549,15 @@ window.SCENE = {
      "mot": "Kiste",
      "genre": "die",
      "fr": "la caisse",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "moebel_haushalt_a2"
     },
     {
      "mot": "Gemüse",
      "genre": "das",
      "fr": "légumes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "obst_gemuese_a2"
     }
    ],
    "sur": null,
@@ -630,7 +662,12 @@ window.SCENE = {
      "f": "radieschen-main",
      "phrase": "Anna hält ein Bund Radieschen in der Hand.",
      "n": "<b>das</b> Bund (la botte) est neutre : à l'accusatif, <b>ein</b> Bund ne change pas. (der Bund, c'est la fédération.)",
-     "r": "anna"
+     "r": "anna",
+     "revise": {
+      "mot": "Radieschen",
+      "genre": "das",
+      "theme": "obst_gemuese_b1"
+     }
     },
     {
      "q": "Wo liegt der Knoblauch?",
@@ -693,7 +730,12 @@ window.SCENE = {
      ],
      "f": "kartoffel",
      "phrase": "Zwei Kilo Kartoffeln, bitte.",
-     "n": "Après une quantité, le pluriel sans article : zwei Kilo <b>Kartoffeln</b>."
+     "n": "Après une quantité, le pluriel sans article : zwei Kilo <b>Kartoffeln</b>.",
+     "revise": {
+      "mot": "Kartoffel",
+      "genre": "die",
+      "theme": "obst_gemuese_a1"
+     }
     },
     {
      "q": "„Was kostet ___ Blumenkohl?“",
@@ -716,7 +758,11 @@ window.SCENE = {
      "f": "kohl",
      "phrase": "Der Kohl ist größer als der Rosenkohl.",
      "n": "Comparatif : <b>größer</b> … <b>als</b>.",
-     "r": "rosenkohl"
+     "r": "rosenkohl",
+     "revise": {
+      "mot": "groß",
+      "cat": "adjectif"
+     }
     },
     {
      "q": "„Ich brauche noch ___ Knoblauch für die Soße.“",
