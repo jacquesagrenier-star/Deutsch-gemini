@@ -7047,7 +7047,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v723</span>
+    <span class="subtitle-version">v724</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -25897,7 +25897,11 @@ function showScreen(id){
     // l'ecran actif est TOUJOURS `settings`. Joindre l'ecran actif dirait donc
     // « reglages » a tout le monde -- pire que rien, puisque ca a l'air d'une
     // information. On retient le dernier ecran qui n'est pas les reglages.
-    if(!ECRANS_DES_REGLAGES.has(id)) ecranAvantReglages = id;
+    // ⚠️ NI L'ABONNEMENT (signale par Jacques le 10 oct. 2026) : ouvert depuis
+    // le tableau admin, il devenait « l'ecran d'avant les reglages », et le
+    // Retour des reglages y ramenait au lieu de l'accueil. On ne revient
+    // jamais a l'abonnement : on en sort.
+    if(!ECRANS_DES_REGLAGES.has(id) && id !== "abonnement") ecranAvantReglages = id;
     // Un ecran de grammaire ouvert avant l'arrivee de grammaire.json serait une
     // suite de cadres vides. On declenche le chargement (il a normalement deja
     // eu lieu au demarrage) et on previent si le reseau a lache -- un ecran
@@ -30988,7 +30992,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 723;
+const APP_VERSION = 724;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -8057,3 +8057,12 @@ notes sont rendues hors ligne en WAV au chargement et jouees par un <audio>,
 comme playMasteredSound() ; les oscillateurs restent en secours, avec un
 resume() qui manquait. Verifie au PC (WAV de 0,62 s, lecture acceptee) ; reste
 a l'entendre sur l'iPhone.
+
+## 10 octobre 2026 (suite) -- Jacques : « quand je clique sur ecran d'abonnement, je ne suis plus capable de sortir »
+
+Precision de Jacques : le X ramene bien au tableau admin, mais le Retour
+suivant ramene a l'abonnement au lieu de l'accueil. Cause : showScreen()
+retenait « abonnement » comme l'ecran d'avant les reglages, et
+quitterReglages() y revenait. Corrige en v724 : l'abonnement n'est jamais
+retenu (on en sort, on n'y revient pas). Verifie dans le navigateur :
+reglages -> admin -> abonnement -> X -> reglages -> Retour = accueil.
