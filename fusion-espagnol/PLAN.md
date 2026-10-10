@@ -39,6 +39,20 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
 
 0. **Le filet.** Le parcours automatique et les deux références (allemand en
    v727, espagnol en v39). Rien n'est encore touché dans l'app.
+   ✅ **Fait le 10 oct. 2026** : `fusion-espagnol/parcours.py`, références dans
+   `fusion-espagnol/references/`. Allemand : 104 chemins, 0 erreur ;
+   espagnol : 51 chemins (le fork cache la moitié des tuiles), 21 fichiers
+   absents tolérés (`synonymes.json`, `grammaire.json`, `frequence.json`
+   demandés dans `espanol/datos/`), invisibles à l'écran. Étalonné : deux
+   passages sur la même version → 0 écart (heure et hasard figés) ; un seul
+   « ? » ajouté dans un libellé → 1 écart, au bon chemin.
+   Après chaque étape :
+   `python fusion-espagnol/parcours.py --app de --sortie releve.json` puis
+   `python fusion-espagnol/parcours.py --comparer fusion-espagnol/references/de-v727.json releve.json`
+   → **0 écart exigé**. Le parcours prend environ six minutes.
+   Relevé en passant dans l'espagnol actuel : une explication dit « c'est ici
+   que **l'anglais** n'aide pas » même en interface française (écrite pour
+   des anglophones), et une option du panneau des adverbes n'a pas de titre.
 1. **Choisir la langue apprise au démarrage.** Une table de langues `{de, es}`
    au lieu d'une seule `LANGUE_ENSEIGNEE` ; la langue vient de l'adresse
    (`?apprendre=es`), puis du réglage. Données espagnoles lues dans
