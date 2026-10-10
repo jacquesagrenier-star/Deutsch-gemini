@@ -58,6 +58,25 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    (`?apprendre=es`), puis du réglage. Données espagnoles lues dans
    `espanol/datos/`. Stockage local sous le préfixe `wortandoEs_` (celui du
    fork : la progression des testeurs d'espagnol actuels est conservée).
+   ✅ **Fait en v728 (10 oct. 2026)** : `LANGUE_ALLEMAND` / `LANGUE_ESPAGNOL`,
+   `LANGUE_APPRISE` lue dans `?apprendre=es` seulement (pas encore de
+   réglage : personne n'y arrive par hasard), `PREFIXE_STOCKAGE` sur les 50
+   clés (sauf le journal de gel, écrit par le `<head>`), `urlDonnees()` avec
+   table de renvoi et sans repli sur l'allemand, et **aucun nuage en
+   espagnol** (`syncProgressToCloud` et `restoreProgressFromCloud` sortent
+   tout de suite) jusqu'à l'étape 6. Allemand : 0 écart sur 104 chemins.
+   Moteur en espagnol : 104 chemins, aucune exception, les données
+   espagnoles chargées (130 thèmes) ; 44 fichiers allemands absents
+   demandés (grammaire, synonymes, examen, fréquence) — l'objet des
+   étapes 2 à 5. Le réglage Espagne / Amérique latine passe à l'étape 2,
+   avec les mots qui changent.
+   ⚠️ Appris en route : le remplacement global des clés a aussi touché la
+   ligne qui DÉFINIT le préfixe (erreur d'initialisation au chargement).
+   Les deux vérificateurs disaient « aucun problème » ; c'est le parcours
+   qui l'a vue. Ne jamais publier une étape sans lui.
+   Défaut existant noté pour l'étape 2 : les noms de thèmes espagnols
+   s'affichent en anglais sous une interface française (déjà dans le fork).
+
 2. **Les libellés.** Les remplacements de texte du fork deviennent une couche
    de traductions par langue apprise, en données, par-dessus l'interface.
 3. **Ce qui n'existe qu'en allemand** (examens Goethe/DTZ, cas, scènes, voix

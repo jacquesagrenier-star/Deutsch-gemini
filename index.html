@@ -7068,7 +7068,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v727</span>
+    <span class="subtitle-version">v728</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9834,7 +9834,24 @@ if(window.LIEN_REINIT && typeof ouvrirReinitialisation === "function"){
 </script>
 
 <script>
-const THEME_STORAGE_KEY = "deutschAI_theme";
+// ============ LA LANGUE APPRISE (fusion de l'espagnol, etape 1) ============
+// Decide le 10 oct. 2026 : l'espagnol entre dans CE moteur, au lieu d'etre une
+// copie generee par fork.py (voir fusion-espagnol/PLAN.md). Pendant la fusion,
+// l'espagnol ne s'ouvre QUE par l'adresse (?apprendre=es) : aucun usager n'y
+// arrive par hasard, et l'app espagnole actuelle (espanol/) reste servie telle
+// quelle jusqu'a la bascule.
+// ⚠️ DECLAREES ICI, AVANT TOUT : chaque cle de stockage en depend, et la
+// premiere est lue a la ligne suivante.
+const LANGUE_APPRISE = (() => {
+    try{ return new URLSearchParams(location.search).get("apprendre") === "es" ? "es" : "de"; }
+    catch(e){ return "de"; }
+})();
+// LE PREFIXE DE STOCKAGE. L'allemand garde le sien, inchange : toute la
+// progression des testeurs est rangee dessous. L'espagnol reprend celui de
+// l'app espagnole actuelle (le fork renommait « deutschAI_ » en « wortandoEs_ ») :
+// ses testeurs retrouveront leur progression le jour de la bascule.
+const PREFIXE_STOCKAGE = LANGUE_APPRISE === "es" ? "wortandoEs_" : "deutschAI_";
+const THEME_STORAGE_KEY = PREFIXE_STOCKAGE + "theme";
 
 function applyAppTheme(theme){
     document.body.setAttribute("data-theme", theme);
@@ -9877,7 +9894,7 @@ initAppTheme();
 // applyUiLang() parcourt ces éléments et les remplit selon la langue active.
 // Le texte généré dynamiquement en JS (ex. libellés de progression) doit passer
 // par t("clé") plutôt que d'avoir sa chaîne écrite en dur.
-const UI_LANG_KEY = "deutschAI_uiLang";
+const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
 const UI_LANGS = ["fr", "en", "tr", "uk", "fa", "ar"];
 const DEFAULT_UI_LANG = "fr";
 
@@ -9885,7 +9902,7 @@ const DEFAULT_UI_LANG = "fr";
 // "en" = apprendre l'anglais (fusion de english/index.html). Indépendant de la
 // langue d'interface ci-dessus (UI_LANG_KEY) : on peut apprendre l'anglais avec
 // une interface en français, ou l'allemand avec une interface en anglais.
-const LEARNING_DIR_KEY = "deutschAI_learningDirection";
+const LEARNING_DIR_KEY = PREFIXE_STOCKAGE + "learningDirection";
 const LEARNING_DIRS = ["de", "en"];
 const DEFAULT_LEARNING_DIR = "de";
 
@@ -9922,7 +9939,7 @@ const RACINE_DEPOT = /^https?:$/.test(location.protocol)
 //
 // Le comportement est rigoureusement identique : meme depot, meme audio, meme
 // voix. Une seule table remplace quatorze chaines dispersees.
-const LANGUE_ENSEIGNEE = {
+const LANGUE_ALLEMAND = {
     code:    "de",
     nom:     "Deutsch",
     // La langue passee a la synthese vocale et aux voix du telephone.
@@ -9933,8 +9950,40 @@ const LANGUE_ENSEIGNEE = {
     donnees: RACINE_DEPOT,
     // Les fichiers pre-generes de la voix Aurora, sur Firebase Hosting.
     // Vide = tout passe par la synthese du telephone (voir direAllemand).
-    audio:   "https://deutschai-b6fbb.web.app/"
+    audio:   "https://deutschai-b6fbb.web.app/",
+    // Les fichiers portent leur nom allemand : pas de table de renvoi.
+    fichiers: null,
+    // L'identifiant de progression, sans prefixe : voir prefixeLangue().
+    prefixeProgression: ""
 };
+
+// L'ESPAGNOL (fusion, etape 1). Ses donnees vivent dans espanol/, deja au
+// format allemand (contenido/a_formato_aleman.py du depot wortando-espanol),
+// sous des noms espagnols : la table `fichiers` fait le renvoi, comme le
+// faisait l'urlDonnees() reecrite par fork.py.
+const LANGUE_ESPAGNOL = {
+    code:    "es",
+    nom:     "Español",
+    voix:    "es-ES",
+    donnees: RACINE_DEPOT + "espanol/",
+    // Aucune voix enregistree pour l'espagnol : la synthese du telephone.
+    audio:   "",
+    fichiers: {
+        "verbe.json":         "datos/verbos.json",
+        "adjectif.json":      "datos/adjetivos.json",
+        "redewendung.json":   "datos/expresiones.json",
+        "adverbe.json":       "datos/adverbios.json",
+        "themes.json":        "datos/temas.json",
+        "funktionswort.json": "datos/funcionales.json",
+        "exercices.json":     "datos/ejercicios.json"
+    },
+    // Pas de prefixe non plus : la progression espagnole est deja separee par
+    // son stockage (wortandoEs_), et c'est sans prefixe que l'app espagnole
+    // actuelle l'a rangee.
+    prefixeProgression: ""
+};
+
+const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL : LANGUE_ALLEMAND;
 
 // LES RESSOURCES DE L'APPLICATION, QUI NE SONT PAS DE L'ALLEMAND.
 // Distinction ajoutee en meme temps que les videos ci-dessous : le logo,
@@ -9947,7 +9996,14 @@ const ASSETS_BASE = RACINE_DEPOT;
 // UN SEUL ENDROIT QUI SAIT OU SONT LES DONNEES.
 // urlDonnees("verbe.json") remplace la chaine complete, treize fois.
 function urlDonnees(fichier){
-    return cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + fichier);
+    const renvoi = LANGUE_ENSEIGNEE.fichiers;
+    if(!renvoi) return cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + fichier);
+    if(fichier.indexOf("dict/") === 0) return cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + "dicc/" + fichier.slice(5));
+    // ⚠️ UN FICHIER SANS RENVOI N'EST PAS SERVI DEPUIS L'ALLEMAND : il est
+    // cherche dans les donnees espagnoles, ou il manque (grammaire.json,
+    // synonymes.json, frequence.json) -- l'app le tolere deja. Sinon une app
+    // espagnole irait lire du contenu allemand, en silence.
+    return cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + (renvoi[fichier] || ("datos/" + fichier)));
 }
 
 // Déclarées tôt (avant I18N/toute fonction) : progressKey()/renderFlipToggleButtons()
@@ -17033,7 +17089,7 @@ function applyLearningDirectionUi(){
 // boutons .setup-choice existent en double dans le DOM (écran #setup au
 // premier lancement, section en haut de Réglages) : on les synchronise tous
 // à chaque changement via refreshSetupChoiceActiveStates().
-const SETUP_DONE_KEY = "deutschAI_setupDone";
+const SETUP_DONE_KEY = PREFIXE_STOCKAGE + "setupDone";
 function isSetupDone(){
     try{ return localStorage.getItem(SETUP_DONE_KEY) === "1"; }catch(e){ return false; }
 }
@@ -17106,7 +17162,7 @@ function selectUiLangChoice(lang){
 // sauvegarde : `node tests/parcours.js` montre ou chacun s'est arrete.
 // accueil : l'accueil a ete vu ; carte : une premiere carte affichee ;
 // reponse : une premiere carte passee (jugee ou balayee).
-const PARCOURS_KEY = "deutschAI_parcours";
+const PARCOURS_KEY = PREFIXE_STOCKAGE + "parcours";
 function lireParcours(){
     try{ const v = JSON.parse(localStorage.getItem(PARCOURS_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
     catch(e){ return {}; }
@@ -17135,7 +17191,7 @@ function noterEtape(nom){
 // ⚠️ LES REPRISES NE COMPTENT PAS. Les cartes ratees qui reviennent en fin de
 // paquet, et « Encore 15 » apres la fin, ne changent ni n ni p : on mesure le
 // paquet propose, pas l'acharnement.
-const SEANCES_KEY = "deutschAI_seances";
+const SEANCES_KEY = PREFIXE_STOCKAGE + "seances";
 const SEANCES_JOURS = 7;
 let seanceSuivie = null;   // { d, paquet } tant que la seance est ouverte
 
@@ -17190,7 +17246,7 @@ function finSeanceSuivie(finie){
 // de l'A1 : ils different par ce que la decouverte guidee montrera, pas par
 // le niveau. La reponse brute est gardee pour elle. Le niveau, lui, est celui
 // de la seance du jour -- un seul etat, que le bandeau change ensuite.
-const NIVEAU_DECLARE_KEY = "deutschAI_niveauDeclare";
+const NIVEAU_DECLARE_KEY = PREFIXE_STOCKAGE + "niveauDeclare";
 const NIVEAU_DES_REPONSES = { zero: "A1", peu: "A1", A2: "A2", B1: "B1", B2: "B2", C1: "C1" };
 
 function choisirNiveauDeclare(reponse){
@@ -17262,7 +17318,7 @@ function completeInitialSetup(){
 // Trois points d'accroche hors de ce bloc, chacun d'une ligne et chacun
 // verifie par tests/verifier.py : la fin du paquet (nextFlashcard), la fin
 // de la serie (nextExercise) et l'ecran que startExerciseSet() ouvre.
-const DECOUVERTE_KEY = "deutschAI_decouverte";
+const DECOUVERTE_KEY = PREFIXE_STOCKAGE + "decouverte";
 const DECOUVERTE_ETAPES = 5;
 
 // CE QUE LA DECOUVERTE MONTRE, SELON LA REPONSE A « TU CONNAIS DEJA UN PEU
@@ -17977,7 +18033,7 @@ const VIDEO_ACCUEIL_ACTIVE = false;
 // Une seule video existe pour l'instant (narration francaise). En interface
 // anglaise on n'ouvre donc rien automatiquement -- le bouton de l'accueil
 // reste disponible pour qui veut quand meme la regarder.
-const ONBOARDING_SEEN_KEY  = "deutschAI_onboardingSeen";
+const ONBOARDING_SEEN_KEY  = PREFIXE_STOCKAGE + "onboardingSeen";
 const ONBOARDING_VIDEO_FILES = { fr: "wortando-demarrage-fr.mp4" };
 
 function onboardingVideoUrl(){
@@ -18557,7 +18613,7 @@ async function shareWortandoInvite(){
 // la valeur ci-dessous est le texte par défaut, enableNotifications() refuse
 // poliment plutôt que d'échouer avec une erreur Firebase cryptique.
 const FCM_VAPID_KEY = "REMPLACE_PAR_TA_CLE_VAPID";
-const NOTIF_ENABLED_KEY = "deutschAI_notificationsEnabled";
+const NOTIF_ENABLED_KEY = PREFIXE_STOCKAGE + "notificationsEnabled";
 
 function areNotificationsEnabledLocally(){
     try{ return localStorage.getItem(NOTIF_ENABLED_KEY) === "1"; }catch(e){ return false; }
@@ -20596,7 +20652,7 @@ function shuffleArray(arr){
     return arr;
 }
 
-const STORAGE_KEY = "deutschAI_progress_v4";
+const STORAGE_KEY = PREFIXE_STOCKAGE + "progress_v4";
 
 // Cache mémoire : getWordState()/setWordState() sont le seul point d'accès à
 // la progression (voir progressKey()), et tout appelant qui lit repasse par
@@ -20913,6 +20969,11 @@ function viderFileCloud(){
 }
 
 async function syncProgressToCloud(){
+    // ⚠️ PAS DE NUAGE EN ESPAGNOL (fusion, etape 1 -> etape 6). Le document
+    // Firestore de la personne porte sa progression ALLEMANDE, sous les memes
+    // noms de champs : l'ecrire depuis l'espagnol l'ecraserait, le lire
+    // remplirait le stockage espagnol avec de l'allemand.
+    if(LANGUE_APPRISE !== "de") return;
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb) return;
     // Filet de securite : tant que la restauration n'a pas abouti, on ne sait
@@ -20990,11 +21051,11 @@ async function syncProgressToCloud(){
             // chaque entree d'un tableau, et le plafond des 40 000 a deja fait
             // echouer les sauvegardes en silence (v396-v400).
             retoursUsager: (function(){
-                try{ return localStorage.getItem("deutschAI_retours") || ""; }
+                try{ return localStorage.getItem(PREFIXE_STOCKAGE + "retours") || ""; }
                 catch(e){ return ""; }
             })(),
             synonymesEcartes: (function(){
-                try{ return localStorage.getItem("deutschAI_synonymesEcartes") || ""; }
+                try{ return localStorage.getItem(PREFIXE_STOCKAGE + "synonymesEcartes") || ""; }
                 catch(e){ return ""; }
             })(),
             // L'historique des 40 jeux de grammaire (v519), EN UNE SEULE
@@ -21240,6 +21301,7 @@ function mergeWordState(a, b){
 }
 
 async function restoreProgressFromCloud(){
+    if(LANGUE_APPRISE !== "de"){ cloudRestoreDone = true; return; }   // voir syncProgressToCloud
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb){ cloudRestoreDone = true; return; }
     try{
@@ -21528,8 +21590,8 @@ async function restoreProgressFromCloud(){
             // vide dans le nuage. On reprend la valeur du nuage tant que le
             // local n'a rien, et elle repart telle quelle.
             if(typeof data.synonymesEcartes === "string" && data.synonymesEcartes
-               && !localStorage.getItem("deutschAI_synonymesEcartes")){
-                localStorage.setItem("deutschAI_synonymesEcartes", data.synonymesEcartes);
+               && !localStorage.getItem(PREFIXE_STOCKAGE + "synonymesEcartes")){
+                localStorage.setItem(PREFIXE_STOCKAGE + "synonymesEcartes", data.synonymesEcartes);
             }
         }catch(e){}
 
@@ -21631,7 +21693,7 @@ async function loadVhsKapitelAccessFlag(){
 // ⚠️ APPLIQUE UNE FOIS PAR APPAREIL, pas a chaque ouverture : sinon la personne
 // ne pourrait plus jamais changer de langue dans les reglages. Pour l'imposer
 // de nouveau, il faut une valeur differente de la derniere appliquee.
-const LANGUE_IMPOSEE_KEY = "deutschAI_langueImposee";
+const LANGUE_IMPOSEE_KEY = PREFIXE_STOCKAGE + "langueImposee";
 function appliquerLangueImposee(lang){
     if(!UI_LANGS.includes(lang)) return;
     let deja = null;
@@ -21681,6 +21743,11 @@ function withGermanProgress(fn){
 // existe : son prefixe entrerait en collision avec le "en__" de la direction.
 // Le verificateur le refuse.
 function prefixeLangue(){
+    // La table le dit (fusion, etape 1) : "" pour l'allemand ET l'espagnol,
+    // separes par leur prefixe de STOCKAGE. Une langue future qui partagerait
+    // le stockage de l'allemand devrait en porter un.
+    const p = LANGUE_ENSEIGNEE.prefixeProgression;
+    if(typeof p === "string") return p;
     const code = LANGUE_ENSEIGNEE.code;
     return (!code || code === "de") ? "" : code + "__";
 }
@@ -21860,7 +21927,7 @@ function listeNiveaux(){ return LEVELS.join(" \u00b7 "); }
 
 // ============ Streak, objectif du jour & vélocité (motivation) ============
 
-const DAILY_ACTIVITY_KEY = "deutschAI_dailyActivity";
+const DAILY_ACTIVITY_KEY = PREFIXE_STOCKAGE + "dailyActivity";
 // ============ LES JOURS TRAVAILLES (v545) ============
 // ⚠️ UN CUMUL, PAS UNE SERIE, ET C'EST LE POINT. La serie repart a zero des
 // qu'on saute un jour : elle punit l'absence, exactement ce que la v523 avait
@@ -21869,7 +21936,7 @@ const DAILY_ACTIVITY_KEY = "deutschAI_dailyActivity";
 // monter a 35. La serie reste, mais en petit et a droite, et seulement quand
 // elle est vivante : elle garde ce qu'elle a de bon sans etre ce que l'ecran
 // affirme en premier.
-const JOURS_KEY = "deutschAI_joursTravailles";
+const JOURS_KEY = PREFIXE_STOCKAGE + "joursTravailles";
 
 function joursTravailles(){
     let v = null;
@@ -21911,19 +21978,19 @@ function noterJourTravaille(){
     v.dernier = jour; v.n += 1;
     try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
 }
-const STREAK_KEY = "deutschAI_streak";
-const STREAK_FREEZE_KEY = "deutschAI_streakFreezes";
+const STREAK_KEY = PREFIXE_STOCKAGE + "streak";
+const STREAK_FREEZE_KEY = PREFIXE_STOCKAGE + "streakFreezes";
 const STREAK_FREEZE_STARTING_COUNT = 1; // offert dès le départ, comme un "essai gratuit" de la mécanique
 const STREAK_FREEZE_MAX = 3; // évite d'accumuler indéfiniment
-const MASTERY_LOG_KEY = "deutschAI_masteryLog";
-const DAILY_GOAL_STORAGE_KEY = "deutschAI_dailyGoalTarget";
+const MASTERY_LOG_KEY = PREFIXE_STOCKAGE + "masteryLog";
+const DAILY_GOAL_STORAGE_KEY = PREFIXE_STOCKAGE + "dailyGoalTarget";
 const DEFAULT_DAILY_GOAL_TARGET = 30;
 const DAILY_GOAL_MIN = 5;
 const DAILY_GOAL_MAX = 100;
 const DAILY_GOAL_STEP = 5;
 
 // ============ XP & combo (gamification) ============
-const XP_KEY = "deutschAI_xp";
+const XP_KEY = PREFIXE_STOCKAGE + "xp";
 // +1 par bonne réponse (même échelle que l'objectif du jour, voir
 // recordDailyActivity) -- volontairement PAS un multiplicateur arbitraire :
 // l'utilisateur voit "6/30 aujourd'hui" et doit pouvoir relier ça à son XP
@@ -21939,7 +22006,7 @@ let sessionCombo = 0; // pas persisté : repart de 0 à chaque rechargement de p
 // resterait figé et donnerait l'impression d'un nombre de réussites 10x trop
 // élevé une fois le nouveau taux (+1) en place. Se déclenche une seule fois
 // par direction (de/en), au premier getXp() suivant la mise à jour.
-const XP_MIGRATION_V128_KEY = "deutschAI_xpMigratedV128";
+const XP_MIGRATION_V128_KEY = PREFIXE_STOCKAGE + "xpMigratedV128";
 
 function migrateXpScaleIfNeeded(){
     const migKey = directionScopedKey(XP_MIGRATION_V128_KEY);
@@ -22000,7 +22067,7 @@ function updateXpComboDisplay(){
 // Basés uniquement sur des lectures O(1) déjà en cache (XP, streak) --
 // jamais sur un recalcul complet du corpus (voir le bug de performance
 // O(n²) corrigé en v100, à ne pas réintroduire ici).
-const BADGES_KEY = "deutschAI_badges";
+const BADGES_KEY = PREFIXE_STOCKAGE + "badges";
 // metric ("xp" ou "streak") + threshold plutôt qu'une fonction check() : permet
 // de calculer une progression (current/threshold) générique pour n'importe
 // quel badge, utilisé par getNextBadgeToUnlock() pour la mise en avant sur
@@ -22523,7 +22590,7 @@ function qualitativeLabel(percent){
 
 // ============ Anneau d'accueil scopé par niveau (A1/A2/B1/B2), tapable ============
 
-const HOME_LEVEL_KEY = "deutschAI_homeLevel";
+const HOME_LEVEL_KEY = PREFIXE_STOCKAGE + "homeLevel";
 
 // Agrégat "allemand uniquement" (voir withGermanProgress ci-dessus) : cet
 // anneau d'accueil n'a pas d'équivalent anglais dans la fusion, il doit rester
@@ -25065,11 +25132,11 @@ function dedupeSearchHits(hits){
 //   6 indice de frequence (facultatif : les mots ajoutes avant v229 n'en ont pas)
 //   7 pluriel (facultatif : environ deux noms sur trois en ont un)
 //   8 participe passe (verbes allemands seulement) · 9 auxiliaire haben/sein
-const MY_VOCAB_KEY = "deutschAI_monVocabulaire";
+const MY_VOCAB_KEY = PREFIXE_STOCKAGE + "monVocabulaire";
 // Tout mot sur lequel on a touche le "+", carde ou non. C'est ce que
 // l'administrateur voit remonter : un mot qu'on n'a meme pas pu carder est le
 // signal le plus fort qu'il faut en ecrire la fiche.
-const MY_REQUESTS_KEY = "deutschAI_motsDemandes";
+const MY_REQUESTS_KEY = PREFIXE_STOCKAGE + "motsDemandes";
 // 86 octets par mot en moyenne : 5 000 mots pesent 0,43 Mo sur les ~5 Mo
 // disponibles, en laissant la place a la progression, qui est le gros poste.
 const MY_VOCAB_MAX = 5000;
@@ -26269,7 +26336,7 @@ const GRATUIT = {
 };
 
 let accesAVieFirestore = false;
-const APERCU_GRATUIT_KEY = "deutschAI_apercuGratuit";
+const APERCU_GRATUIT_KEY = PREFIXE_STOCKAGE + "apercuGratuit";
 
 function apercuGratuitActif(){
     if(!isAdminUser()) return false;
@@ -26512,7 +26579,7 @@ const ESSAIS = {
         desc: "Au début de la séance : la scène du jour ou les cartes, au choix. Trois questions au niveau de la séance, puis les cartes."
     }
 };
-const ESSAIS_COUPES_KEY = "deutschAI_essaisCoupes";
+const ESSAIS_COUPES_KEY = PREFIXE_STOCKAGE + "essaisCoupes";
 
 function essaisCoupes(){
     try{ return JSON.parse(localStorage.getItem(ESSAIS_COUPES_KEY) || "[]") || []; }catch(e){ return []; }
@@ -27640,7 +27707,7 @@ function openNomenNiveau(){
 // LA PORTEE CHOISIE : tout le vocabulaire, l'essentiel, ou ce qui va au-dela.
 // Retenue d'une visite a l'autre -- quelqu'un qui a decide de commencer par
 // l'essentiel ne veut pas le redire chaque fois qu'il ouvre l'ecran.
-const PORTEE_KEY = "deutschAI_porteeNoms";
+const PORTEE_KEY = PREFIXE_STOCKAGE + "porteeNoms";
 function porteeNoms(){
     try{ return localStorage.getItem(PORTEE_KEY) || "tout"; }catch(e){ return "tout"; }
 }
@@ -29249,7 +29316,7 @@ function toggleVerbExtra(){
 let cachedGermanVoice = null;
 let cachedEnglishVoice = null;
 
-const VOICE_CHOICE_KEY = "deutschAI_voiceChoice";
+const VOICE_CHOICE_KEY = PREFIXE_STOCKAGE + "voiceChoice";
 
 // DIRE AUSSI LA PHRASE D'EXEMPLE AU VERSO -- DEFAUT : NON (v458).
 //
@@ -29349,7 +29416,7 @@ function contexteEcran(){
     return ecran;
 }
 
-const RETOURS_KEY = "deutschAI_retours";
+const RETOURS_KEY = PREFIXE_STOCKAGE + "retours";
 const RETOURS_MAX = 4000;   // caractere, pas nombre : c'est la taille qui compte
 
 function couperRetours(tout){
@@ -29441,7 +29508,7 @@ function envoyerRetour(){
 // qu'on avait commence a dire au lieu de devoir s'en souvenir. Un formulaire
 // dont le contenu depend de la survie de la page est un formulaire qui perd
 // exactement ce qui compte -- le rapport du defaut le plus grave.
-const BROUILLON_KEY = "deutschAI_retourBrouillon";
+const BROUILLON_KEY = PREFIXE_STOCKAGE + "retourBrouillon";
 
 function sauverBrouillonRetour(){
     const zone = document.getElementById("retourTexte");
@@ -29470,9 +29537,9 @@ function restaurerBrouillonRetour(){
 // telecharger le champ `progress` de tout le monde.
 const RESUMES_COLL = "resumes";
 
-const CARTE_MOT_KEY = "deutschAI_carteDitMot";
-const CARTE_PLURIEL_KEY = "deutschAI_carteDitPluriel";
-const CARTE_PHRASE_KEY = "deutschAI_carteDirePhrase";
+const CARTE_MOT_KEY = PREFIXE_STOCKAGE + "carteDitMot";
+const CARTE_PLURIEL_KEY = PREFIXE_STOCKAGE + "carteDitPluriel";
+const CARTE_PHRASE_KEY = PREFIXE_STOCKAGE + "carteDirePhrase";
 
 // Le mot et le pluriel sont ACTIFS par defaut, la phrase non : la valeur
 // absente ne veut donc pas dire la meme chose selon le reglage.
@@ -29971,7 +30038,7 @@ function buildRektionBadgesHtml(card){
 
 const ECOUTE_VITESSES = [0.7, 0.85, 1.0];
 const ECOUTE_PAUSES = [0.6, 1, 1.6];
-const ECOUTE_CLE_REGLAGES = "deutschAI_ecoute";
+const ECOUTE_CLE_REGLAGES = PREFIXE_STOCKAGE + "ecoute";
 const ECOUTE_LIGNES = ["ecouteLigneConnu", "ecouteLigneCible",
                        "ecouteLignePhraseCible", "ecouteLignePhraseConnu"];
 let ecouteCartes = [];
@@ -31061,7 +31128,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 727;
+const APP_VERSION = 728;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -31107,7 +31174,7 @@ function enregistrerServiceWorker(){
     });
 }
 
-const VERSION_RECHARGE_FAITE = "deutschAI_rechargeVersion";
+const VERSION_RECHARGE_FAITE = PREFIXE_STOCKAGE + "rechargeVersion";
 
 // LE JOURNAL DES VERSIONS (v684). L'app TestFlight restait en v681 apres
 // fermeture et reouverture, alors que le site servait la v683 (2 octobre
@@ -31116,7 +31183,7 @@ const VERSION_RECHARGE_FAITE = "deutschAI_rechargeVersion";
 // laissent une ligne ; les vingt dernieres partent avec la sauvegarde
 // (`journalVersionJson`), lisibles par `node tests/versions.js`.
 // ⚠️ DE L'OBSERVATION SEULEMENT : rien ici ne decide d'un rechargement.
-const JOURNAL_VERSION_KEY = "deutschAI_journalVersion";
+const JOURNAL_VERSION_KEY = PREFIXE_STOCKAGE + "journalVersion";
 function noterVersion(quoi, detail){
     try{
         const l = JSON.parse(localStorage.getItem(JOURNAL_VERSION_KEY) || "[]");
@@ -31534,7 +31601,7 @@ let journalEcriture = null;
 // Le journal survit a un redemarrage de l'app. iOS peut la suspendre puis la
 // recharger sans rien dire (c'est note dans nos essais) : sans cela, le
 // journal serait vide au moment meme ou l'on va le lire.
-const JOURNAL_CLE = "deutschAI_journal_audio";
+const JOURNAL_CLE = PREFIXE_STOCKAGE + "journal_audio";
 try{
     const garde = JSON.parse(localStorage.getItem(JOURNAL_CLE) || "[]");
     if(Array.isArray(garde)) journalAudio.push(...garde.slice(-JOURNAL_MAX));
@@ -32374,7 +32441,7 @@ function speakPlural(){
 // les cinq cartes d'apprentissage ont ete depensees a vide pendant qu'on
 // cherchait le defaut. Changer le nom les rend a tout le monde -- la marque a
 // une heure, personne n'a encore rien appris d'elle.
-const CLE_VUES_KEY = "deutschAI_cleVues3";
+const CLE_VUES_KEY = PREFIXE_STOCKAGE + "cleVues3";
 // Nombre de cartes portant la cle qu'on montre AVEC son texte avant de passer
 // a la cle seule. Compte une fois pour toutes, pas par seance : un usager
 // quotidien relirait sinon la meme etiquette tous les jours pendant un an.
@@ -32809,7 +32876,7 @@ function cartesEncoreEnAttente(items){
 // GUIDE sans interdire -- « encore 15 » sur l'ecran de fin, parce que celui
 // qui a vingt minutes ne doit pas se faire renvoyer chez lui.
 const PLAFOND_NEUFS = 15;
-const NEUFS_KEY = "deutschAI_neufsDuJour";
+const NEUFS_KEY = PREFIXE_STOCKAGE + "neufsDuJour";
 
 function estNeuf(st){
     return !st.mastered && !st.due && !(st.srsHits || 0);
@@ -33353,7 +33420,7 @@ const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de JOURS D'ACTIVITE l'image finie
 // une transition. Trop court, on ne comprend pas ce qui a change ; trop long,
 // on croit que la carte a fige.
 const MOSAIQUE_RESOLUTION_MS = 900;
-const MOSAIQUE_CLE = "deutschAI_mosaique";
+const MOSAIQUE_CLE = PREFIXE_STOCKAGE + "mosaique";
 const MOSAIQUE_BASE = RACINE_DEPOT + "branding/mosaique/";
 let MOSAIQUES = null;
 let chargementMosaiques = null;
@@ -34239,7 +34306,7 @@ function majCarteExamen(){
 // secondaire, bornee par les memes garde-fous (dose du jour, plafond de
 // seance), pour qui a une raison precise d'y aller.
 const NIVEAUX_CECR = ["A1", "A2", "B1", "B2", "C1"];
-const NIVEAU_SEANCE_KEY = "deutschAI_niveauSeance";
+const NIVEAU_SEANCE_KEY = PREFIXE_STOCKAGE + "niveauSeance";
 
 // ⚠️ UN SEUL ETAT POUR LES DEUX ENDROITS. Toucher une ligne ici revient a
 // toucher la pastille du bandeau : meme cle, meme consequence -- les mots
@@ -34291,7 +34358,7 @@ const SCENES_SEANCE = [
     { nom: "markt-obst-heimisch", titre: "Anna au marché" },
     { nom: "arztpraxis", titre: "Mark s'est blessé au genou" }
 ];
-const SCENE_FAITE_KEY = "deutschAI_sceneFaite";
+const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 
 function baseScenes(){
     // Servie par GitHub Pages a cote de l'app ; l'app installee (Capacitor)
@@ -35316,7 +35383,7 @@ const SILENT_WAV_BASE64 = "UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0Y
 //   Le journal audio (reglages) porte la ligne « SESSION » avec ce qui a ete
 //   demande et ce que le navigateur a REELLEMENT retenu : les deux peuvent
 //   differer, et c'est cette difference qui renseigne.
-const MUSIQUE_CLE = "deutschAI_laisserMusique";
+const MUSIQUE_CLE = PREFIXE_STOCKAGE + "laisserMusique";
 
 // ⚠️ CE QUE L'ESSAI DU 14 SEPTEMBRE A ETABLI, et qui vaut d'etre garde meme
 //    negatif : « transient » N'A PAS MARCHE. Jacques, bouton silencieux
@@ -35342,7 +35409,7 @@ const MUSIQUE_CLE = "deutschAI_laisserMusique";
 //
 // L'ancienne cle d'essai est effacee au passage : personne ne doit rester
 // coince en « transient » parce qu'il a ouvert un lien de diagnostic.
-try{ localStorage.removeItem("deutschAI_audioSession"); }catch(e){}
+try{ localStorage.removeItem(PREFIXE_STOCKAGE + "audioSession"); }catch(e){}
 
 function laisserMusiqueJouer(){
     try{ return localStorage.getItem(MUSIQUE_CLE) === "1"; }catch(e){ return false; }
@@ -37195,7 +37262,7 @@ function nextExercise(){
 // retours/progression-dossier-relecture.md, question 4). D'ou `sansFaute`,
 // `meilleur` et les totaux cumules cote a cote : le critere se choisira sur des
 // donnees reelles, sans avoir a redemander a personne de tout refaire.
-const GRAMMAIRE_KEY = "deutschAI_grammaire_v1";
+const GRAMMAIRE_KEY = PREFIXE_STOCKAGE + "grammaire_v1";
 
 function lireGrammaire(){
     try{

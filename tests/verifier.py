@@ -343,19 +343,26 @@ def verifier_langue_enseignee(r, source):
     qu'apres avoir perdu des donnees. Le jour ou quelqu'un ecrira code: "en"
     dans LANGUE_ENSEIGNEE, il faut que ca s'arrete ici.
     """
-    m = re.search(r'const LANGUE_ENSEIGNEE = \{.*?code:\s*"([a-z]{2})"',
-                  source, re.S)
-    if not m:
-        r.echec("langue", "LANGUE_ENSEIGNEE.code introuvable")
+    # Depuis la fusion de l'espagnol (10 oct. 2026), il y a une table par
+    # langue -- LANGUE_ALLEMAND, LANGUE_ESPAGNOL -- et LANGUE_ENSEIGNEE choisit
+    # entre elles. Chacune est controlee.
+    tables = re.findall(r'const (LANGUE_[A-Z]+) = \{.*?code:\s*"([a-z]{2})"',
+                        source, re.S)
+    if not tables:
+        r.echec("langue", "aucune table de langue (const LANGUE_... = { code: ... })")
         return
-    code = m.group(1)
-    if code == "en":
-        r.echec("langue", 'LANGUE_ENSEIGNEE.code = "en" : son prefixe de '
-                          'progression entrerait en collision avec le "en__" '
-                          'du module anglais')
-    r.controle(1)
-    print("   langue enseignee: %s (prefixe de progression : %s)"
-          % (code, "aucun" if code == "de" else code + "__"))
+    codes = [c for _, c in tables]
+    if "de" not in codes:
+        r.echec("langue", "aucune table de langue pour l'allemand")
+    for nom, code in tables:
+        if code == "en":
+            r.echec("langue", '%s.code = "en" : son prefixe de progression '
+                              'entrerait en collision avec le "en__" du module '
+                              'anglais' % nom)
+    if len(set(codes)) != len(codes):
+        r.echec("langue", "deux tables de langue portent le meme code : %s" % codes)
+    r.controle(len(tables))
+    print("   langues apprises: %s" % ", ".join("%s (%s)" % (c, n) for n, c in tables))
 
 
 PLANCHER_EXOS = 50

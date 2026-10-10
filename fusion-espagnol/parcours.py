@@ -77,7 +77,9 @@ def serveur():
 
 def releve(app):
     from playwright.sync_api import sync_playwright
-    adresse = "http://127.0.0.1:%d/%s" % (PORT, "index.html" if app == "de" else "espanol/index.html")
+    chemin_app = {"de": "index.html", "es": "espanol/index.html",
+                  "es-moteur": "index.html?apprendre=es"}[app]
+    adresse = "http://127.0.0.1:%d/%s" % (PORT, chemin_app)
     srv = serveur()
     resultats = []
     try:
@@ -185,7 +187,9 @@ def comparer(a, b):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--app", choices=["de", "es"])
+    # es = l'app espagnole actuelle (le fork, espanol/) ; es-moteur = le moteur
+    # commun regle sur l'espagnol (?apprendre=es), qui doit la rattraper.
+    ap.add_argument("--app", choices=["de", "es", "es-moteur"])
     ap.add_argument("--sortie")
     ap.add_argument("--comparer", nargs=2)
     a = ap.parse_args()
