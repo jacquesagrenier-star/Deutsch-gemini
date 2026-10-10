@@ -8077,3 +8077,11 @@ erreur la-dedans taisait les deux) ; toute erreur s'ecrit en clair sous le
 bouton ; le bouton dit son etat (ACTIVER / ARRETER) ; une etiquette ambre
 « Apercu gratuit » reste en haut de tous les ecrans tant qu'il tourne ; un
 compte non admin recoit un message avec l'adresse connectee au lieu de rien.
+
+## 10 octobre 2026 (suite) -- Jacques : l'apercu gratuit fonctionne, « les cadenas, on devrait les mettre un peu plus visibles »
+
+Confirme par Jacques apres la v725 : les cadenas sont la. Mais le cadenas
+« discret » du 2 octobre l'etait trop (tout l'element, cadenas compris, pali
+a 55 %). v726 : seul le texte reste en retrait ; le cadenas passe dans une
+pastille couleur encre (le W du logo) cerclee d'ambre, sur les themes, les
+niveaux, les lignes d'adjectifs et les options des panneaux.

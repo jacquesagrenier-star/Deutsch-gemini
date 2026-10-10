@@ -2955,14 +2955,31 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
     background:rgba(16,185,129,.14);
 }
 
-/* Version gratuite (v691) : un cadenas DISCRET, decide le 2 octobre. Le niveau
-   reste lisible et touchable -- le toucher ouvre l'offre -- mais il se lit
-   comme en retrait. */
+/* Version gratuite (v691) : le niveau reste lisible et touchable -- le toucher
+   ouvre l'offre -- mais il se lit comme en retrait.
+   v726 : le cadenas DISCRET du 2 octobre etait trop discret (Jacques, 10 oct.
+   2026 : « on devrait les mettre un peu plus visibles »). Le retrait ne pali
+   plus que le texte ; le cadenas lui-meme passe dans une pastille couleur
+   encre, celle du W du logo, cerclee d'ambre (le 🔒 jaune se perdait sur
+   un fond ambre). */
 .level-pill.verrou,
 .theme-item.verrou,
 .orb-opt.verrou{
-    opacity:.55;
     border-style:dashed;
+}
+.level-pill.verrou .level-pill-label,
+.theme-item.verrou .theme-left,
+.orb-opt.verrou .orb-opt-left{
+    opacity:.55;
+}
+.level-pill.verrou .level-pill-stat,
+.theme-item.verrou .theme-count,
+.theme-count.cadenas,
+.orb-opt.verrou .orb-opt-count{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:28px; height:24px; padding:0 6px; box-sizing:border-box;
+    border-radius:999px; background:#1C2430; color:#FFFFFF; border:1.5px solid #E8A23A;
+    font-size:13px; line-height:1; opacity:1;
 }
 
 /* ============ Configuration (direction d'apprentissage / langue d'interface) :
@@ -7051,7 +7068,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v725</span>
+    <span class="subtitle-version">v726</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27950,7 +27967,7 @@ function filterAndRenderThemes(){
                         <div style="font-size:11px; color:var(--wt-accent-texte); margin-top:2px;">${niveauxDuTheme.join(' · ')}</div>
                     </div>
                 </div>
-                <div class="theme-count">${complet || total ? mastered + "/" + total : "🔒"}</div>
+                <div class="theme-count${complet || total ? "" : " cadenas"}">${complet || total ? mastered + "/" + total : "🔒"}</div>
                 <div class="theme-chevron">›</div>
             </div>
             <div class="theme-body">
@@ -31023,7 +31040,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 725;
+const APP_VERSION = 726;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
