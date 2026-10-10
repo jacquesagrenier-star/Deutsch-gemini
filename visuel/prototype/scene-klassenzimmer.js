@@ -61,25 +61,29 @@ window.SCENE = {
      "mot": "Mann",
      "genre": "der",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     },
     {
      "mot": "Brille",
      "genre": "die",
      "fr": "lunettes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "kleidung_a2"
     },
     {
      "mot": "Bart",
      "genre": "der",
      "fr": "barbe",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "koerperteile_b1"
     },
     {
      "mot": "Hemd",
      "genre": "das",
      "fr": "chemise",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     }
    ],
    "sur": null,
@@ -356,25 +360,29 @@ window.SCENE = {
      "mot": "Mann",
      "genre": "der",
      "fr": "homme/mari",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     },
     {
      "mot": "Pullover",
      "genre": "der",
      "fr": "pull",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     },
     {
      "mot": "Student",
      "genre": "der",
      "fr": "étudiant",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "berufe_a1"
     },
     {
      "mot": "Stift",
      "genre": "der",
      "fr": "stylo",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "schule_a1"
     }
    ],
    "sur": null,
@@ -437,31 +445,36 @@ window.SCENE = {
      "mot": "Frau",
      "genre": "die",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     },
     {
      "mot": "Pullover",
      "genre": "der",
      "fr": "pull",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     },
     {
      "mot": "Rock",
      "genre": "der",
      "fr": "jupe",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     },
     {
      "mot": "Stift",
      "genre": "der",
      "fr": "stylo",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "schule_a1"
     },
     {
      "mot": "Studentin",
      "genre": "die",
      "fr": "étudiante",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "universitaet_a2"
     }
    ],
    "sur": null,
@@ -832,25 +845,29 @@ window.SCENE = {
      "mot": "Teilnehmer",
      "genre": "der",
      "fr": "participant",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "schule_b1"
     },
     {
      "mot": "Bart",
      "genre": "der",
      "fr": "barbe",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "koerperteile_b1"
     },
     {
      "mot": "Hemd",
      "genre": "das",
      "fr": "chemise",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     },
     {
      "mot": "Student",
      "genre": "der",
      "fr": "étudiant",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "berufe_a1"
     }
    ],
    "sur": null,
@@ -885,19 +902,22 @@ window.SCENE = {
      "mot": "Frau",
      "genre": "die",
      "fr": "femme/épouse",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "familie_a1"
     },
     {
      "mot": "Teilnehmerin",
      "genre": "die",
      "fr": "participante",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "schule_b1"
     },
     {
      "mot": "Pullover",
      "genre": "der",
      "fr": "pull",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     }
    ],
    "sur": null,
@@ -926,25 +946,29 @@ window.SCENE = {
      "mot": "Teilnehmerin",
      "genre": "die",
      "fr": "participante",
-     "niveau": "B1"
+     "niveau": "B1",
+     "theme": "schule_b1"
     },
     {
      "mot": "Brille",
      "genre": "die",
      "fr": "lunettes",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "kleidung_a2"
     },
     {
      "mot": "Kleid",
      "genre": "das",
      "fr": "robe",
-     "niveau": "A1"
+     "niveau": "A1",
+     "theme": "kleidung_a1"
     },
     {
      "mot": "Studentin",
      "genre": "die",
      "fr": "étudiante",
-     "niveau": "A2"
+     "niveau": "A2",
+     "theme": "universitaet_a2"
     }
    ],
    "sur": null,
@@ -1314,7 +1338,11 @@ window.SCENE = {
      "f": "rucksack",
      "r": "tisch",
      "phrase": "Der Rucksack steht unter dem Tisch.",
-     "n": "<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?)."
+     "n": "<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?).",
+     "revise": {
+      "mot": "stehen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Anna hat ihren Rucksack unter den Tisch ___.",
@@ -1326,7 +1354,11 @@ window.SCENE = {
      "f": "rucksack",
      "r": "anna",
      "phrase": "Anna hat ihren Rucksack unter den Tisch gestellt.",
-     "n": "Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch."
+     "n": "Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch.",
+     "revise": {
+      "mot": "stellen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Das Handy ___ auf dem Schreibtisch.",
@@ -1338,7 +1370,11 @@ window.SCENE = {
      "f": "handy",
      "r": "schreibtisch",
      "phrase": "Das Handy liegt auf dem Schreibtisch.",
-     "n": "<b>liegen</b> = être couché à plat (état). <b>legen</b> = poser à plat (mouvement)."
+     "n": "<b>liegen</b> = être couché à plat (état). <b>legen</b> = poser à plat (mouvement).",
+     "revise": {
+      "mot": "liegen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Der Lehrer hat sein Handy auf den Schreibtisch ___.",
@@ -1350,7 +1386,11 @@ window.SCENE = {
      "f": "handy",
      "r": "lehrer",
      "phrase": "Der Lehrer hat sein Handy auf den Schreibtisch gelegt.",
-     "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>den</b> Schreibtisch."
+     "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>den</b> Schreibtisch.",
+     "revise": {
+      "mot": "legen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Anna ___ neben Mark.",
@@ -1362,7 +1402,11 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Anna sitzt neben Mark.",
-     "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir."
+     "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir.",
+     "revise": {
+      "mot": "sitzen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Mark hat seine Jacke an die Tür ___.",
@@ -1374,7 +1418,11 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Mark hat seine Jacke an die Tür gehängt.",
-     "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen."
+     "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen.",
+     "revise": {
+      "mot": "hängen",
+      "cat": "verbe"
+     }
     },
     {
      "q": "Mark hängt seine Jacke an ___ Tür.",
@@ -1398,7 +1446,11 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Die Jacke hängt jetzt an der Tür.",
-     "n": "L'état : <b>hängen</b> + datif — an <b>der</b> Tür."
+     "n": "L'état : <b>hängen</b> + datif — an <b>der</b> Tür.",
+     "revise": {
+      "mot": "hängen",
+      "cat": "verbe"
+     }
     }
    ]
   },

@@ -34209,9 +34209,8 @@ function fixerNiveauSeance(niv){
 // cadre : tout ce qu'on y corrige profite aux deux. Il previent l'app par
 // postMessage quand il a fini ; on enchaine alors sur les cartes.
 //
-// ⚠️ PAS ENCORE FAIT : une reponse dans la scene ne compte pas encore comme
-// revision du mot (decide, mais l'ecriture dans la progression touche au
-// coeur de la repetition espacee -- a faire a part, et a verifier).
+// Une reponse dans la scene compte comme une revision du mot -- voir
+// revisionDeScene(), plus bas.
 // v723 (9 oct. 2026) : quatre scenes, un theme chacune -- la classe (l'ecole),
 // l'examen (le corps, de face et de dos), le marche (fruits et legumes, quatre
 // etals), la blessure (la sante). Une scene a plusieurs vues s'ouvre par sa
@@ -34288,7 +34287,11 @@ window.addEventListener("message", (e) => {
     // Seule la page de scene que l'app a ouverte parle ici.
     try{ if(new URL(baseScenes()).origin !== e.origin) return; }catch(err){ return; }
     const cadre = document.getElementById("sceneCadre");
-    if(d.type === "fini"){
+    if(d.type === "reponse"){
+        // Depuis la seance seulement : le tableau de bord ouvre une scene pour
+        // la TESTER, et ses reponses ne disent rien de ce que l'admin sait.
+        if(sceneOuverteDepuis === "seance") revisionDeScene(d);
+    } else if(d.type === "fini"){
         try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(err){}
         if(cadre) cadre.src = "about:blank";
         ouvrirSeanceDuJour(true);
@@ -34298,6 +34301,101 @@ window.addEventListener("message", (e) => {
         else ouvrirChoixSeance();
     }
 });
+
+// ============ UNE REPONSE DANS LA SCENE = UNE REVISION DU MOT ============
+// Decide avec Jacques (10 oct. 2026) : la scene est un TYPE DE CARTE de la
+// seance du jour. Le prototype envoie { mot, genre, theme, cat, juste } a
+// chaque reponse jugee -- la cible de « Trouve ! », ou le mot qu'une question
+// A2-C1 fait clairement travailler (cle « revise » des .points.json, resolue
+// par construire.py). Une question sans mot clair n'envoie rien.
+//
+// LE MOT DANS LE CORPUS. La scene envoie le mot nu (sans article), tel que le
+// corpus l'ecrit : construire.py refuse une zone dont le mot n'y est pas. Les
+// formes « aussi » et les synonymes regionaux (Rüebli) sont des ENTREES a
+// part du corpus, avec leur propre progression : c'est le mot demande qui est
+// revise, pas son voisin. Un nom present dans deux themes (Ticket en A1 et en
+// A2) : celui que la scene nomme, sinon le premier. Le genre departage les
+// homographes (der See / die See). Trois reponses par scene, donc trois
+// parcours du corpus -- jamais de boucle sur la progression (le piege de la
+// v100) : getWordState() ne lit qu'un mot.
+function carteDeScene(d){
+    const mot = (d && typeof d.mot === "string") ? d.mot : "";
+    if(!mot) return null;
+    if(d.cat === "verbe"){
+        const i = (verbeTheme.words || []).findIndex(w => w && w.infinitif === mot);
+        return i < 0 ? null : { word: verbeTheme.words[i], index: i, themeId: verbeTheme.id, mode: "verben" };
+    }
+    if(d.cat === "adjectif"){
+        const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: adjektiveTheme.words[i], index: i, themeId: adjektiveTheme.id, mode: "adjektive" };
+    }
+    let premier = null, nomme = null;
+    themesComptes().forEach(th => {
+        Object.keys(th.levels || {}).forEach(niv => {
+            const lv = th.levels[niv];
+            if(!lv || !Array.isArray(lv.words)) return;
+            const i = lv.words.findIndex(w => Array.isArray(w) && w[0] === mot
+                                              && (!d.genre || w[1] === d.genre));
+            if(i < 0) return;
+            const it = { word: lv.words[i], index: i, themeId: lv.id, mode: "nomen" };
+            if(!premier) premier = it;
+            if(d.theme && lv.id === d.theme) nomme = it;
+        });
+    });
+    return nomme || premier;
+}
+
+// CE QUE VAUT UNE REPONSE : EXACTEMENT CE QUE VAUT UNE CARTE.
+//   - juste -> « Je savais » (reviewGood) : une pastille de plus ; la
+//     premiere reussite revient dans 10 min, puis l'echelle des jours, puis la
+//     maitrise et l'entretien qui s'eloigne ;
+//   - faux  -> « Encore » (reviewAgain) : pastilles a zero, retour dans
+//     2 min, l'echelle repart de zero.
+// La scene juge au PREMIER geste, comme la carte : un toucher faux verrouille
+// la question. « Juste apres une erreur » n'existe donc pas -- sauf le bon
+// mot touche sur la mauvaise personne (l'oreille de la medecin), que la scene
+// ne compte pas : le vocabulaire etait su, et la reponse suivante seule
+// compte.
+//
+// ⚠️ UNE DIFFERENCE, VOULUE : un mot juste qui n'est PAS ENCORE ECHU ne bouge
+// pas. Une carte de la seance n'est servie que neuve ou echue ; la scene, elle,
+// demande ce que l'image montre. Faire monter d'un barreau un mot programme
+// dans trois jours comprimerait l'espacement -- deux reussites dans la meme
+// heure ne valent pas une reussite a trois jours. Une ERREUR, elle, compte
+// toujours : un oubli se constate quel que soit le calendrier.
+//
+// Hors du cours d'allemand (direction anglaise, autre langue enseignee), et
+// en version gratuite pour un mot hors de l'echantillon, rien ne s'ecrit.
+function revisionDeScene(d){
+    try{
+        if(getLearningDirection() !== "de" || prefixeLangue() !== "") return false;
+        const it = carteDeScene(d);
+        if(!it) return false;
+        if(!accesComplet() && !filtrerGratuit([it]).length) return false;
+        const st = getWordState(it.themeId, it.index);
+        const neuf = estNeuf(st);
+        const juste = d.juste === true;
+        if(juste && !neuf && (st.due || 0) > Date.now()) return false;
+        if(neuf) noterMotNeuf();
+        let maitrise = false;
+        if(!juste){
+            st.srsHits = 0;
+            programmerEcheance(st, SRS_ENCORE_MINUTES);
+        } else {
+            const reussites = st.srsHits || 0;
+            st.srsHits = reussites + 1;
+            if(reussites === 0) programmerEcheance(st, SRS_PREMIERE_MINUTES);
+            else if(reussites + 1 >= SRS_PALIERS){ programmerMaitrise(st); maitrise = true; }
+            else programmerEcheance(st, 1440);
+        }
+        setWordState(it.themeId, it.index, st);
+        // L'objectif du jour et la serie, comme une carte -- mais sans la fete
+        // par-dessus la scene : elle couvrirait l'image au milieu d'une question.
+        recordDailyActivity();
+        if(maitrise) logMasteryEvent();
+        return true;
+    }catch(e){ return false; }
+}
 
 async function ouvrirSeanceDuJour(sansScene){
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
@@ -34525,6 +34623,17 @@ function scheduleReview(minutes, differerLaSuite){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
+    programmerEcheance(state, minutes);
+    setWordState(item.themeId, item.index, state);
+    const justReachedMultiple = recordDailyActivity();
+    if(justReachedMultiple > 0) triggerDailyGoalCelebration(justReachedMultiple);
+    if(!differerLaSuite) nextFlashcard();
+}
+
+// Ce que scheduleReview() fait A L'ETAT DU MOT, sans rien a l'ecran. Sorti
+// tel quel (v. scenes-revision) pour que la scene juge un mot exactement
+// comme une carte : deux calculs paralleles finiraient par diverger.
+function programmerEcheance(state, minutes){
     state.mastered = false;
     // Le compteur d'entretiens repart avec le reste : un mot reoublie doit
     // revenir vite, pas dans un an.
@@ -34539,10 +34648,6 @@ function scheduleReview(minutes, differerLaSuite){
         state.srsDailyStreak = 0; // rechute : l'échelle repart de zéro pour ce mot
     }
     state.reviews = (state.reviews || 0) + 1;
-    setWordState(item.themeId, item.index, state);
-    const justReachedMultiple = recordDailyActivity();
-    if(justReachedMultiple > 0) triggerDailyGoalCelebration(justReachedMultiple);
-    if(!differerLaSuite) nextFlashcard();
 }
 
 // Une seule question est posee a l'usager -- "je savais" ou non -- et c'est
@@ -35659,21 +35764,7 @@ function markMastered(discret){
     if(!currentCards.length) return;
     const item = currentCards[currentFlashcard];
     const state = getWordState(item.themeId, item.index);
-    state.mastered = true;
-    // Les quatre pastilles doivent etre pleines a l'instant meme ou le mot est
-    // declare maitrise -- y compris s'il y arrive par un autre chemin que les
-    // quatre "Je savais" d'affilee.
-    state.srsHits = Math.max(state.srsHits || 0, SRS_PALIERS);
-    // Auparavant due=0 : le mot quittait le paquet POUR TOUJOURS. Un mot su
-    // trois fois de suite n'est pas un mot acquis a vie -- il revient une fois,
-    // longtemps apres, pour le verifier. Le pourcentage, lui, ne bouge pas :
-    // "mastered" reste vrai, la carte n'est qu'echue.
-    // L'ECHEANCE S'ELOIGNE : 16 j, puis 35, 90, 180, un an, deux ans. Un mot
-    // qu'on confirme sort de la circulation tout seul, sans decision definitive.
-    const jours = joursEntretien(state);
-    state.entretiens = (state.entretiens || 0) + 1;
-    state.due = Date.now() + (jours * 24 * 60 * 60 * 1000);
-    state.reviews = (state.reviews || 0) + 1;
+    programmerMaitrise(state);
     setWordState(item.themeId, item.index, state);
     const justReachedMultiple = recordDailyActivity();
     logMasteryEvent();
@@ -35691,6 +35782,26 @@ function markMastered(discret){
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard,
         (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);
+}
+
+// Ce que markMastered() fait A L'ETAT DU MOT, sans rien a l'ecran -- sorti
+// pour la scene, comme programmerEcheance().
+function programmerMaitrise(state){
+    state.mastered = true;
+    // Les quatre pastilles doivent etre pleines a l'instant meme ou le mot est
+    // declare maitrise -- y compris s'il y arrive par un autre chemin que les
+    // quatre "Je savais" d'affilee.
+    state.srsHits = Math.max(state.srsHits || 0, SRS_PALIERS);
+    // Auparavant due=0 : le mot quittait le paquet POUR TOUJOURS. Un mot su
+    // trois fois de suite n'est pas un mot acquis a vie -- il revient une fois,
+    // longtemps apres, pour le verifier. Le pourcentage, lui, ne bouge pas :
+    // "mastered" reste vrai, la carte n'est qu'echue.
+    // L'ECHEANCE S'ELOIGNE : 16 j, puis 35, 90, 180, un an, deux ans. Un mot
+    // qu'on confirme sort de la circulation tout seul, sans decision definitive.
+    const jours = joursEntretien(state);
+    state.entretiens = (state.entretiens || 0) + 1;
+    state.due = Date.now() + (jours * 24 * 60 * 60 * 1000);
+    state.reviews = (state.reviews || 0) + 1;
 }
 
 function nextFlashcard(){
