@@ -7193,7 +7193,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v737</span>
+    <span class="subtitle-version">v738</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10147,8 +10147,12 @@ const LANGUE_ESPAGNOL = {
     // En Amerique latine, une voix mexicaine si le telephone en a une.
     voix:    VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES",
     donnees: RACINE_DEPOT + "espanol/",
-    // Aucune voix enregistree pour l'espagnol : la synthese du telephone.
-    audio:   "",
+    // LES DEUX VOIX ENREGISTREES (10 oct. 2026, audio/generer_es.py) : Lolita
+    // pour l'Espagne, Monica pour l'Amerique latine, chacune dans son dossier
+    // -- elles disent presque les memes textes, donc portent presque les
+    // memes noms de fichiers. Un fichier absent (B1 et au-dela, pour
+    // commencer) fait parler la voix du telephone, comme pour l'allemand.
+    audio:   "https://deutschai-b6fbb.web.app/" + (VARIANTE_ESPAGNOL === "latam" ? "es-419/" : "es-es/"),
     fichiers: {
         "verbe.json":         "datos/verbos.json",
         "adjectif.json":      "datos/adjetivos.json",
@@ -31875,7 +31879,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 737;
+const APP_VERSION = 738;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

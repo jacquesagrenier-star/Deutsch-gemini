@@ -65,26 +65,71 @@ def appeler(voix, texte, reglages, modele, cle):
     raise RuntimeError("echec apres 5 essais")
 
 
-def normaliser(dossier):
+def normaliser(dossier, travailleurs=7):
+    """La sonie de chaque fichier, original archive dans audio/mp3_original/.
+
+    EN PARALLELE (10 oct. 2026) : quatre passes ffmpeg par fichier, un a la
+    fois, faisaient 26 fichiers par minute -- trois heures et demie par voix.
+    ffmpeg tourne hors de Python : des fils suffisent, un par coeur.
+
+    REPRENABLE MEME APRES UNE INTERRUPTION EN PLEIN FICHIER. Un fichier est a
+    faire si son archive manque, OU si l'archive est encore IDENTIQUE au
+    fichier : la copie a eu lieu, pas la normalisation. Le critere « archive
+    presente = fait » tout seul aurait laisse ces fichiers-la a jamais crus.
+    """
+    import filecmp
+    from concurrent.futures import ThreadPoolExecutor
     import normaliser as N
     N.FF = N.ffmpeg()
     mp3 = os.path.join(RACINE, "audio", "mp3", dossier)
     archive = os.path.join(N.SOURCE, dossier)
     os.makedirs(archive, exist_ok=True)
-    faits = rates = 0
-    for f in sorted(os.listdir(mp3)):
-        if not f.endswith(".mp3") or os.path.exists(os.path.join(archive, f)):
-            continue
-        cible, src = os.path.join(mp3, f), os.path.join(archive, f)
-        shutil.copy2(cible, src)
-        tmp = cible + ".norm.mp3"
-        if N.normaliser(src, tmp):
-            os.replace(tmp, cible)
-            faits += 1
-        else:
-            rates += 1
+    for f in os.listdir(mp3):                      # restes d'une interruption
+        if f.endswith((".norm.mp3", ".t1.mp3", ".part")):
+            os.remove(os.path.join(mp3, f))
+
+    def a_faire(f):
+        src = os.path.join(archive, f)
+        return not os.path.exists(src) or filecmp.cmp(os.path.join(mp3, f), src, shallow=False)
+
+    liste = [f for f in sorted(os.listdir(mp3)) if f.endswith(".mp3") and a_faire(f)]
+    print("a normaliser : %d" % len(liste), flush=True)
+
+    def remplacer(tmp, cible):
+        # ONEDRIVE VERROUILLE PARFOIS UN FICHIER pendant qu'il le synchronise
+        # (WinError 5, le 10 oct. 2026, au 2 500e fichier de Lolita). On
+        # reessaie ; s'il resiste, on le laisse : son archive est restee
+        # identique, la passe suivante le reprendra.
+        for essai in range(6):
+            try:
+                os.replace(tmp, cible)
+                return True
+            except PermissionError:
+                time.sleep(1 + essai)
+        return False
+
+    def un(f):
+        try:
+            cible, src = os.path.join(mp3, f), os.path.join(archive, f)
+            if not os.path.exists(src):
+                shutil.copy2(cible, src)
+            tmp = cible + ".norm.mp3"
+            ok = N.normaliser(src, tmp, intermediaire=tmp + ".t1.mp3")
+            if ok and remplacer(tmp, cible):
+                return True
             if os.path.exists(tmp):
                 os.remove(tmp)
+            return False
+        except OSError:
+            return False
+
+    faits = rates = 0
+    with ThreadPoolExecutor(max_workers=travailleurs) as ex:
+        for i, ok in enumerate(ex.map(un, liste), 1):
+            faits += ok
+            rates += not ok
+            if i % 500 == 0:
+                print("  %d/%d" % (i, len(liste)), flush=True)
     print("normalises : %d   rates : %d" % (faits, rates))
 
 
@@ -96,6 +141,12 @@ def main():
     p.add_argument("--plafond", type=int, default=110000, help="credits au plus pour cette execution")
     p.add_argument("--a-blanc", action="store_true")
     p.add_argument("--normaliser", action="store_true")
+    # LA REPRISE DES REFUS (10 oct. 2026). 18 mots chez Lolita, 45 chez Monica :
+    # les deux enchainent « Palabra: » et le mot avec ~0,12 s de pause, trop peu
+    # pour que recouper.py sache ou couper. Un POINT impose une vraie pause.
+    p.add_argument("--reprendre-refus", action="store_true",
+                   help="ne refaire que les refus, avec la porteuse de --porteuse")
+    p.add_argument("--porteuse", default=PORTEUSE)
     a = p.parse_args()
 
     voix, dossier = VOIX[a.variante]
@@ -106,9 +157,18 @@ def main():
     bruts = os.path.join(RACINE, "audio", "bruts_es", dossier)
     niveaux = [n.strip() for n in a.niveaux.split(",")]
     modele, taux = generer.MODELES[a.modele]
+    refus_chemin = os.path.join(RACINE, "audio", "es_refus_%s.json" % dossier)
+    refus = json.load(io.open(refus_chemin, encoding="utf-8")) if os.path.exists(refus_chemin) else {}
     a_faire = [e for e in manifest_es.entrees(a.variante)
                if e["niveau"] in niveaux and not os.path.exists(os.path.join(sortie, e["id"] + ".mp3"))]
-    texte_de = lambda e: (PORTEUSE % e["texte"]) if " " not in e["texte"] else e["texte"]
+    if a.reprendre_refus:
+        a_faire = [e for e in a_faire if e["id"] in refus]
+        for e in a_faire:
+            del refus[e["id"]]
+        # Les prises brutes portent la porteuse dans leur dossier : une autre
+        # porteuse ne doit pas reprendre l'ancienne prise.
+        bruts = os.path.join(bruts, "".join(c if c.isalnum() else "_" for c in a.porteuse))
+    texte_de = lambda e: (a.porteuse % e["texte"]) if " " not in e["texte"] else e["texte"]
     cout = int(sum(len(texte_de(e)) for e in a_faire) * taux)
     print("voix %s -> audio/mp3/%s/   modele %s" % (voix, dossier, modele))
     print("%d fichiers a produire (%d mots seuls en porteuse), environ %d credits"
@@ -118,8 +178,6 @@ def main():
 
     os.makedirs(sortie, exist_ok=True)
     os.makedirs(bruts, exist_ok=True)
-    refus_chemin = os.path.join(RACINE, "audio", "es_refus_%s.json" % dossier)
-    refus = json.load(io.open(refus_chemin, encoding="utf-8")) if os.path.exists(refus_chemin) else {}
     cle = generer.cle_api()
     depense = faits = 0
     debut = time.time()
