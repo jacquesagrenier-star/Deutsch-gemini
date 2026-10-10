@@ -79,6 +79,26 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
 
 2. **Les libellés.** Les remplacements de texte du fork deviennent une couche
    de traductions par langue apprise, en données, par-dessus l'interface.
+   ✅ **Fait en v729 (10 oct. 2026)**. Mesuré d'abord, pas recopié : l'app
+   espagnole v39 a été générée sur l'allemand **v722** ; leurs dictionnaires
+   comparés clé par clé donnent **77 clés par langue** (60 modifiées,
+   17 ajoutées), 9 Ko. Versées par-dessus `I18N` en mode espagnol seulement
+   (`I18N_ESPAGNOL`), avant tout affichage : pas de clignotement « Apprends
+   l'allemand ». Les 14 clés `_xxx_` (anciens libellés allemands gardés par la
+   grammaire du fork) attendent l'étape 4. La version **française** du fork
+   était à moitié anglaise (« Subjunctive », « Two pasts », « Direction: EN →
+   ES ») : remise en français. En espagnol, l'interface ne propose que le
+   français et l'anglais (`UI_LANGS`), le choix « Qu'est-ce que tu apprends ? »
+   montre 🇪🇸 Espagnol / 🇩🇪 Allemand et ramène à l'allemand, la page
+   s'appelle « Wortando Español ». Allemand : 0 écart.
+   **L'inventaire complet des 168 autres différences** (hors dictionnaire) est
+   dans `fusion-espagnol/inventaire.txt` : c'est la liste de travail des
+   étapes 3 à 7.
+   ⚠️ Le réglage Espagne / Amérique latine n'est PAS fait : il dépend des mots
+   qui changent (étape 3, avec le contenu).
+   Noté : le dictionnaire espagnol n'a que la paire **espagnol-anglais**
+   (`espanol/dicc/es-en`, `en-es`) ; un espagnol-français manque.
+
 3. **Ce qui n'existe qu'en allemand** (examens Goethe/DTZ, cas, scènes, voix
    d'Aurora, dictionnaire, fréquence, synonymes, marques régionales) : un
    drapeau par fonction dans la table de langue, au lieu d'un remplacement

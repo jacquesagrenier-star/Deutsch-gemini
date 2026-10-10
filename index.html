@@ -7068,7 +7068,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v728</span>
+    <span class="subtitle-version">v729</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9895,7 +9895,10 @@ initAppTheme();
 // Le texte généré dynamiquement en JS (ex. libellés de progression) doit passer
 // par t("clé") plutôt que d'avoir sa chaîne écrite en dur.
 const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
-const UI_LANGS = ["fr", "en", "tr", "uk", "fa", "ar"];
+// L'espagnol ne se lit qu'en francais et en anglais (fusion, etape 2) : ses
+// libelles propres n'existent que dans ces deux langues, et une interface
+// turque y parlerait encore d'allemand. L'allemand garde ses six langues.
+const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en"] : ["fr", "en", "tr", "uk", "fa", "ar"];
 const DEFAULT_UI_LANG = "fr";
 
 // Direction d'apprentissage : "de" = apprendre l'allemand (contenu existant),
@@ -16680,6 +16683,154 @@ const I18N = {
     }
 };
 
+// ============ LES LIBELLES DE L'ESPAGNOL (fusion, etape 2) ============
+// Ce que fork.py reecrivait dans le dictionnaire : 77 cles par langue,
+// mesurees en comparant l'allemand v722 a l'app espagnole qu'il a produite.
+// Versees PAR-DESSUS I18N en mode espagnol seulement, avant tout affichage :
+// t() reste synchrone, et l'ecran ne montre jamais « Apprends l'allemand »
+// une fraction de seconde. La version francaise du fork etait a moitie
+// anglaise (« Subjunctive », « Two pasts ») : elle est remise en francais.
+const I18N_ESPAGNOL = {
+    "fr": {
+        "carte_genre_el": "masculin",
+        "carte_genre_la": "féminin",
+        "home_title_1": "Apprends l'espagnol",
+        "home_subtitle": "Ton tuteur personnel pour la grammaire espagnole et le vocabulaire.",
+        "search_title": "Chercher un mot espagnol ou anglais",
+        "search_placeholder": "Espagnol ou anglais…",
+        "search_hint": "Tape au moins deux lettres, <strong>en espagnol ou en anglais</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — plus de 250 000 mots.",
+        "orb_zuinf_title": "Subjonctif",
+        "orb_zuinf_sub": "quiero que · espero que",
+        "verbenniveau_title_en": "Verbes par niveau",
+        "orb_kasus_title": "Ser vs estar",
+        "orb_kasus_sub": "deux verbes pour « être »",
+        "orb_adjektive_sub": "réviser · accord",
+        "orb_praep_title": "Por vs para",
+        "orb_praep_sub": "deux mots pour « pour »",
+        "orb_wortstellung_title": "Les deux passés",
+        "orb_wortstellung_sub": "hablaba · hablé",
+        "orb_partikeln_title": "L'accord",
+        "orb_partikeln_sub": "alto · alta · altos",
+        "flip_direction_fr": "🔁 Sens : FR → ES",
+        "flip_direction_de": "🔁 Sens : ES → FR",
+        "verbenniveau_exercises_btn": "EXERCICES PRÉSENT →",
+        "grp_meinung": "Nuances et opinion",
+        "grp_diskussion": "Relier ses idées",
+        "grp_ton": "Marqueurs du discours",
+        "grp_ton_adv": "Adverbes de nuance",
+        "grp_verbindungen": "Verbes et leurs tournures",
+        "grp_gefuehle": "Réactions et exclamations",
+        "grp_alltag": "Vie quotidienne",
+        "grp_smalltalk": "Salutations et politesse",
+        "grp_ideen": "Conjonctions",
+        "grp_praep": "Prépositions",
+        "grp_modismos": "Expressions imagées",
+        "voice_lang_de": "Espagnol",
+        "carte_dire_desc": "Au verso d'une carte, l'espagnol se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours — tu peux l'écouter quand tu le décides.",
+        "carte_phrase_desc": "Au verso d'une carte, l'espagnol se dit tout seul : le mot avec son article, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de deux à trois secondes avant que tu puisses te juger. Sans ce réglage, la phrase reste affichée et son haut-parleur fonctionne comme avant.",
+        "op_nomen_o6_d": "el · la — deux genres",
+        "dictation_hint": "Pas besoin d'écrire l'article (el/la).",
+        "settings_invite_desc": "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'espagnol.",
+        "invite_share_text": "J'apprends l'espagnol avec Wortando — demande-moi un code d'invitation pour essayer !",
+        "reflexiv_badge_label": "pronominal (-se)",
+        "auth_value_1": "Vocabulaire et grammaire espagnole organisés par niveau, du A1 au B2.",
+        "setup_learning_de": "Espagnol",
+        "op_verben_o4_d": "Le présent — les autres temps arrivent",
+        "op_adjektive_sub": "accord & vocabulaire",
+        "label_case_word": "Emploi",
+        "orb_pronomen_title": "Pronoms",
+        "op_schreiben_title": "Écrire en espagnol",
+        "schreiben_hint": "Écris la phrase en espagnol. Les accents et la ponctuation ne comptent pas.",
+        "orb_pronomen_sub": "lo · la · le · se",
+        "orb_zahlen_title": "Le genre",
+        "orb_zahlen_sub": "el · la · -ción · -ma",
+        "op_pronomen_sub": "lo · la · le · se",
+        "op_pronomen_o1_d": "lo, la, le · lavarse",
+        "orb_redewendungen_sub": "ni idea · por supuesto",
+        "orb_adverbien_sub": "hoy · aquí · muy",
+        "ecoute_sens_connu_cible_d": "tu produis l'espagnol de mémoire",
+        "ecoute_sens_cible_connu": "Espagnol d'abord",
+        "tuiles_menu_desc": "On te donne la phrase en français et les mots espagnols en vrac. Touche-les dans le bon ordre — pas de clavier. Le banc contient un ou deux mots en trop, choisis dans la même famille que ceux de la phrase : c'est là que se joue l'exercice.",
+        "op_adverbien_sub": "hoy · aquí · muy",
+        "op_adverbien_o1_d": "8 familles : temps, lieu, fréquence, manière…",
+        "kicker_partikeln_vocab": "Marqueurs du discours · Vocabulaire",
+        "title_adjektive_allemands": "Adjectifs espagnols",
+        "setup_learning_autre": "Allemand"
+    },
+    "en": {
+        "carte_genre_el": "masculine",
+        "carte_genre_la": "feminine",
+        "home_title_1": "Learn Spanish",
+        "home_subtitle": "Your personal tutor for Spanish grammar and vocabulary.",
+        "search_title": "Search a Spanish or English word",
+        "search_placeholder": "Spanish or English…",
+        "search_hint": "Type at least two letters, <strong>in Spanish or in English</strong> — both work. The search looks through your {n} cards, then the dictionary — over 250,000 words.",
+        "orb_zuinf_title": "Subjunctive",
+        "orb_zuinf_sub": "quiero que · espero que",
+        "verbenniveau_title_en": "Verbs by level",
+        "orb_kasus_title": "Ser vs estar",
+        "orb_kasus_sub": "two verbs for “to be”",
+        "orb_adjektive_sub": "revise · agreement",
+        "orb_praep_title": "Por vs para",
+        "orb_praep_sub": "two words for “for”",
+        "orb_wortstellung_title": "Two pasts",
+        "orb_wortstellung_sub": "hablaba · hablé",
+        "orb_partikeln_title": "Agreement",
+        "orb_partikeln_sub": "alto · alta · altos",
+        "flip_direction_fr": "🔁 Direction: EN → ES",
+        "flip_direction_de": "🔁 Direction: ES → EN",
+        "verbenniveau_exercises_btn": "PRESENT TENSE EXERCISES →",
+        "grp_meinung": "Nuance & opinion",
+        "grp_diskussion": "Linking ideas",
+        "grp_ton": "Discourse markers",
+        "grp_ton_adv": "Adverbs of stance",
+        "grp_verbindungen": "Verbs and their phrases",
+        "grp_gefuehle": "Reactions & exclamations",
+        "grp_alltag": "Everyday life",
+        "grp_smalltalk": "Greetings & courtesy",
+        "grp_ideen": "Conjunctions",
+        "grp_praep": "Prepositions",
+        "grp_modismos": "Idioms",
+        "voice_lang_de": "Spanish",
+        "carte_dire_desc": "On the back of a card, the Spanish is spoken on its own. Choose what you want to hear. Whatever you remove stays on screen, and its speaker button still works — you can play it whenever you decide to.",
+        "carte_phrase_desc": "On the back of a card, the Spanish is spoken on its own: the word with its article, then its plural. With this setting on, the example sentence is read next. It teaches the word in context, but it adds two to three seconds to every card before you can rate yourself. With it off, the sentence stays on screen and its speaker button works as before.",
+        "op_nomen_o6_d": "el · la — two genders",
+        "dictation_hint": "No need to write the article (el/la).",
+        "settings_invite_desc": "Learning with Wortando? Share it with someone who'd like to learn Spanish.",
+        "invite_share_text": "I'm learning Spanish with Wortando — ask me for an invite code to try it!",
+        "reflexiv_badge_label": "pronominal (-se)",
+        "auth_value_1": "Spanish vocabulary and grammar organized by level, from A1 to B2.",
+        "setup_learning_de": "Spanish",
+        "op_verben_o4_d": "Present tense — the other tenses are still to come",
+        "op_adjektive_sub": "agreement & vocabulary",
+        "op_kasus_sub": "ser · estar",
+        "label_case_word": "Use",
+        "op_schreiben_title": "Write in Spanish",
+        "schreiben_hint": "Write the sentence in Spanish. Accents and punctuation don't count.",
+        "orb_pronomen_sub": "lo · la · le · se",
+        "orb_zahlen_title": "Gender",
+        "orb_zahlen_sub": "el · la · -ción · -ma",
+        "op_pronomen_sub": "lo · la · le · se",
+        "op_pronomen_o1_d": "lo, la, le · lavarse",
+        "orb_redewendungen_sub": "ni idea · por supuesto",
+        "orb_adverbien_sub": "hoy · aquí · muy",
+        "ecoute_sens_connu_cible_d": "you produce the Spanish from memory",
+        "ecoute_sens_cible_connu": "Spanish first",
+        "tuiles_menu_desc": "You get the sentence in your language and the Spanish words scrambled. Tap them in the right order — no keyboard. The bank holds one or two extra words, taken from the same family as those in the sentence: that is where the exercise happens.",
+        "op_adverbien_sub": "hoy · aquí · muy",
+        "op_adverbien_o1_d": "8 families: time, place, frequency, manner…",
+        "kicker_partikeln_vocab": "Discourse markers · Vocabulary",
+        "title_adjektive_allemands": "Spanish adjectives",
+        "setup_learning_autre": "German"
+    }
+};
+if(LANGUE_APPRISE === "es"){
+    for(const l of Object.keys(I18N_ESPAGNOL)) Object.assign(I18N[l], I18N_ESPAGNOL[l]);
+    // Les ecrans sont deja dans la page (ce script vient apres eux) : titre et
+    // drapeaux sont poses avant le premier affichage.
+    adapterChoixALaLangueApprise();
+}
+
 function getUiLang(){
     let lang;
     try{ lang = localStorage.getItem(UI_LANG_KEY); }catch(e){ lang = null; }
@@ -17031,7 +17182,9 @@ const ANGLAIS_EN_RETRAIT = true;
 // l'app espagnole (espanol/), generee depuis celle-ci par fork.py. Le meme
 // lien marche sur le web et dans les apps iPhone et Android, qui chargent
 // ce site. Le fork le remplace par « ../ » pour revenir a l'allemand.
-const AUTRE_LANGUE_APPRISE_URL = "espanol/";
+// Depuis le moteur regle sur l'espagnol (?apprendre=es), l'autre langue est
+// l'allemand : la meme page, sans le parametre.
+const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./" : "espanol/";
 function ouvrirAutreLangueApprise(){
     try{ location.href = new URL(AUTRE_LANGUE_APPRISE_URL, location.href).href; }
     catch(e){ location.href = AUTRE_LANGUE_APPRISE_URL; }
@@ -17097,7 +17250,24 @@ function markSetupDone(){
     try{ localStorage.setItem(SETUP_DONE_KEY, "1"); }catch(e){}
 }
 
+// En espagnol : le premier bouton (la langue apprise) porte le drapeau
+// espagnol, celui de l'autre langue le drapeau allemand ; et les langues
+// d'interface absentes de UI_LANGS sont cachees. En allemand, rien ne change.
+function adapterChoixALaLangueApprise(){
+    if(LANGUE_APPRISE !== "es") return;
+    document.title = "Wortando Español";
+    document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
+        .forEach(el => { el.textContent = "\u{1F1EA}\u{1F1F8}"; });
+    document.querySelectorAll('.setup-choice-flag[data-autre]')
+        .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
+    document.querySelectorAll('.setup-choice[onclick*="selectUiLangChoice"]').forEach(btn => {
+        const m = btn.getAttribute("onclick").match(/'([a-z]{2})'/);
+        if(m && !UI_LANGS.includes(m[1])) btn.classList.add("hidden");
+    });
+}
+
 function refreshSetupChoiceActiveStates(){
+    adapterChoixALaLangueApprise();
     const dir = getLearningDirection();
     const lang = getUiLang();
     document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice"]').forEach(btn => {
@@ -31128,7 +31298,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 728;
+const APP_VERSION = 729;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

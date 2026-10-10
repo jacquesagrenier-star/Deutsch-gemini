@@ -35,6 +35,7 @@ import functools
 import http.server
 import json
 import os
+import re
 import socketserver
 import sys
 import threading
@@ -157,9 +158,20 @@ def releve(app):
     return resultats
 
 
+# Le numero de version s'affiche sur l'accueil (« v728 ») : il change a chaque
+# publication et ne dit rien de ce que voit l'usager. Normalise des deux cotes,
+# pour que les references deja prises restent valables.
+VERSION_SEULE = re.compile(r"^v\d{2,4}$", re.M)
+
+
+def normaliser(r):
+    r["texte"] = VERSION_SEULE.sub("vNNN", r["texte"])
+    return r
+
+
 def comparer(a, b):
-    ra = {r["chemin"]: r for r in json.load(open(a, encoding="utf-8"))}
-    rb = {r["chemin"]: r for r in json.load(open(b, encoding="utf-8"))}
+    ra = {r["chemin"]: normaliser(r) for r in json.load(open(a, encoding="utf-8"))}
+    rb = {r["chemin"]: normaliser(r) for r in json.load(open(b, encoding="utf-8"))}
     ecarts = 0
     for c in ra:
         if c not in rb:
