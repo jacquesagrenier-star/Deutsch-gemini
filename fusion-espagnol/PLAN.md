@@ -118,11 +118,22 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    verbe) et ouvre une carte de verbe et une d'adjectif : 123 chemins.
    Nouvelle référence allemande : `references/de-v729.json`, prise sur la
    version d'AVANT ce morceau ; après : 0 écart, carte de *sein* comprise.
-   Reste dans l'étape 3 : les listes de contenu écrites dans le code
-   (prépositions, connecteurs, particules, catégories d'adverbes et
-   d'expressions, panneau des expressions), la voix (`voicesForLang`,
-   `LANGUE_TAG`), le dictionnaire, les crédits, la visite guidée, l'examen,
-   les scènes, et le réglage Espagne / Amérique latine.
+   ✅ **Deuxième morceau fait en v731 : le contenu écrit dans le code.**
+   Six listes en double (`praepTheme`, `partikelnTheme`, `konjunktionenTheme`,
+   `ADVERB_CATEGORIES`, `ADVERB_CATEGORY_OPTIONS`, `REDEWENDUNG_CATEGORIES`) :
+   l'allemande inchangée, l'espagnole de fork.py en mode espagnol, découpées
+   par un extracteur qui suit chaînes et commentaires. Le panneau des
+   expressions et ses groupes (dont `ausdrueckeModismos`, espagnol seulement),
+   les titres des paquets, le radar sans branche des cas. La voix : « de »
+   veut dire la langue apprise, `voicesForLang()` le traduit (es-*), le choix
+   des réglages et la voix des cartes restent la même. Le dictionnaire
+   (`dicc/`, paire espagnol-anglais). Sans objet en espagnol : visite guidée,
+   essai des scènes, schéma des prépositions, crédits Aurora/fréquence/
+   examens, tuile d'examen. Le vérificateur a trouvé les 11 options
+   espagnoles du panneau sans `section` (défaut du fork) : rangées sous
+   « mots ». Allemand : 0 écart sur 123 chemins.
+   Reste dans l'étape 3 : **le réglage Espagne / Amérique latine** (les mots
+   qui changent, *vosotros*, la voix).
 
 4. **La grammaire espagnole** (7 écrans de `gramatica_es.py`) en données,
    comme `grammaire.json` pour l'allemand.

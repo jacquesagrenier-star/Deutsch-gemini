@@ -3227,6 +3227,13 @@ html{ touch-action:manipulation; }
     letter-spacing: 1px;
     margin-bottom: 6px;
 }
+/* Allemand seulement : les credits de la voix d'Aurora, des degres, de la
+   frequence et des examens, et la tuile d'examen (Goethe, telc, DTZ). */
+html[data-apprendre="es"] [data-i18n="credits_voix"],
+html[data-apprendre="es"] [data-i18n="credits_degres"],
+html[data-apprendre="es"] [data-i18n="credits_freq"],
+html[data-apprendre="es"] [data-i18n="credits_examens"],
+html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -7167,7 +7174,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v730</span>
+    <span class="subtitle-version">v731</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17804,6 +17811,9 @@ async function attendreDonneesDecouverte(){
 async function lancerDecouverte(){
     // Le contenu est allemand : le module anglais n'a rien a y montrer.
     if(getLearningDirection() === "en") return false;
+    // Ni l'espagnol : des mots allemands, une narration allemande (fork.py
+    // la retirait aussi).
+    if(LANGUE_APPRISE !== "de") return false;
     const reponse = reponseDecouverte();
     // Cree l'etat du tableau s'il n'existe pas encore (les carreaux offerts).
     etatMosaique();
@@ -19138,7 +19148,20 @@ function hideGlobalLoadingBar(){
 // Categories d'adverbes (noms allemands, glosses pour l'interface). Le nom
 // allemand reste en tete : c'est celui que l'apprenant retrouvera dans une
 // grammaire ou un cours.
-const ADVERB_CATEGORIES = {
+// En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
+// celle d'avant, inchangee.
+const ADVERB_CATEGORIES = LANGUE_APPRISE === "es"
+    ? {
+    "tiempo":        { fr: "Tiempo \u2014 temps", en: "Tiempo \u2014 time" },
+    "lugar":         { fr: "Lugar \u2014 lieu, direction", en: "Lugar \u2014 place, direction" },
+    "frecuencia":    { fr: "Frecuencia \u2014 fr\u00e9quence", en: "Frecuencia \u2014 frequency" },
+    "modo":          { fr: "Modo \u2014 mani\u00e8re", en: "Modo \u2014 manner" },
+    "cantidad":      { fr: "Cantidad \u2014 degr\u00e9, quantit\u00e9", en: "Cantidad \u2014 degree, quantity" },
+    "duda":          { fr: "Duda \u2014 doute, probabilit\u00e9", en: "Duda \u2014 doubt, likelihood" },
+    "afirmacion":    { fr: "Afirmaci\u00f3n \u2014 affirmer, nier", en: "Afirmaci\u00f3n \u2014 affirming, denying" },
+    "discurso":      { fr: "Discurso \u2014 organiser le propos", en: "Discurso \u2014 structuring speech" }
+}
+    : {
     "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman", uk: "Zeit \u2014 час" , fa: "Zeit \u2014 زمان" },
     "Ort/Richtung":     { fr: "Ort/Richtung \u2014 lieu, direction", en: "Ort/Richtung \u2014 place, direction", tr: "Ort/Richtung \u2014 yer, yön", uk: "Ort/Richtung \u2014 місце, напрямок" , fa: "Ort/Richtung \u2014 مکان و جهت" },
     "H\u00e4ufigkeit":      { fr: "H\u00e4ufigkeit \u2014 fr\u00e9quence",       en: "H\u00e4ufigkeit \u2014 frequency", tr: "Häufigkeit \u2014 sıklık", uk: "Häufigkeit \u2014 частота" , fa: "H\u00e4ufigkeit \u2014 بسامد" },
@@ -19164,7 +19187,29 @@ const ADVERB_CATEGORIES = {
 // Familles d'expressions, classees par FONCTION (saluer, donner son avis,
 // nuancer...) et non par forme : c'est ainsi qu'on va les chercher quand on
 // parle.
-const REDEWENDUNG_CATEGORIES = {
+// En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
+// celle d'avant, inchangee.
+const REDEWENDUNG_CATEGORIES = LANGUE_APPRISE === "es"
+    ? {
+    "saludo":        { fr: "Saludos \u2014 saluer, prendre cong\u00e9", en: "Saludos \u2014 greetings, goodbyes" },
+    "cortesia":      { fr: "Cortes\u00eda \u2014 remercier, s'excuser", en: "Cortes\u00eda \u2014 thanking, apologising" },
+    "cotidiano":     { fr: "Vida diaria \u2014 la vie pratique", en: "Vida diaria \u2014 everyday life" },
+    "matiz":         { fr: "Matizar \u2014 nuancer, prendre position", en: "Matizar \u2014 hedging, taking a stance" },
+    "conectar":      { fr: "Conectar \u2014 relier ses id\u00e9es", en: "Conectar \u2014 linking ideas" },
+    "reaccion":      { fr: "Reacciones \u2014 r\u00e9agir", en: "Reacciones \u2014 reacting" },
+    "interjeccion":  { fr: "Interjecciones \u2014 s'exclamer", en: "Interjecciones \u2014 exclamations" },
+    "modismo":       { fr: "Modismos \u2014 expressions imag\u00e9es", en: "Modismos \u2014 idioms" },
+    "tener":         { fr: "Con tener \u2014 tener ganas, tener prisa", en: "Con tener \u2014 tener ganas, tener prisa" },
+    "dar":           { fr: "Con dar \u2014 dar igual, dar miedo", en: "Con dar \u2014 dar igual, dar miedo" },
+    "hacer":         { fr: "Con hacer \u2014 hacer cola, hacer caso", en: "Con hacer \u2014 hacer cola, hacer caso" },
+    "poner":         { fr: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", en: "Con poner \u2014 poner al d\u00eda, ponerse las pilas" },
+    "echar":         { fr: "Con echar \u2014 echar de menos, echar una mano", en: "Con echar \u2014 echar de menos, echar una mano" },
+    "llevar":        { fr: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", en: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n" },
+    "quedar":        { fr: "Con quedar \u2014 quedar claro, quedarse corto", en: "Con quedar \u2014 quedar claro, quedarse corto" },
+    "estar":         { fr: "Con estar \u2014 estar de acuerdo, estar al tanto", en: "Con estar \u2014 estar de acuerdo, estar al tanto" },
+    "ser":           { fr: "Con ser \u2014 ser capaz, ser un rollo", en: "Con ser \u2014 ser capaz, ser un rollo" }
+}
+    : {
     "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet", uk: "Begrüßung \u2014 вітання, світська бесіда" , fa: "Begrüßung \u2014 سلام و احوال‌پرسی" },
     "Meinung/Zustimmung":   { fr: "Meinung \u2014 donner son avis",          en: "Meinung \u2014 opinion, agreement", tr: "Meinung \u2014 görüş bildirme", uk: "Meinung \u2014 висловити думку" , fa: "Meinung \u2014 بیان نظر" },
     "Gefühle/Reaktionen":   { fr: "Gefühle \u2014 r\u00e9agir, ressentir",       en: "Gefühle \u2014 feelings, reactions", tr: "Gefühle \u2014 duygular, tepkiler", uk: "Gefühle \u2014 почуття, реакції" , fa: "Gefühle \u2014 احساس‌ها و واکنش‌ها" },
@@ -20157,7 +20202,37 @@ const PRAEP_CASE_OPTIONS_EN = ["Akkusativ", "Dativ", "Genitiv", "It depends (Wec
 // est video/sources/prep-schema.html (SVG rendu en JPG).
 const PREP_DIAGRAM_URL = LANGUE_ENSEIGNEE.donnees + "video/prep.JPG?v=2";
 
-const praepTheme = {
+// En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
+// celle d'avant, inchangee.
+const praepTheme = LANGUE_APPRISE === "es"
+    ? {
+  id: "praep_vokabular",
+  name: "Preposiciones",
+  svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" style="fill:var(--wt-icone)" stroke="none"/></svg>',
+  words: [
+    ["a", "à", "direction, destinataire, heure", "Voy a Madrid el lunes.", "Je vais à Madrid lundi.", "to", "I'm going to Madrid on Monday.", "direction, indirect object, time"],
+    ["de", "de", "origine, possession, matière", "Es el coche de mi hermana.", "C'est la voiture de ma sœur.", "of, from", "It's my sister's car.", "origin, possession, material"],
+    ["en", "dans, en, à", "lieu où l'on est, moyen de transport", "Vivo en Sevilla desde hace dos años.", "J'habite à Séville depuis deux ans.", "in, at, on", "I've lived in Seville for two years.", "location, means of transport"],
+    ["con", "avec", "accompagnement, moyen", "Voy con mis padres.", "J'y vais avec mes parents.", "with", "I'm going with my parents.", "accompaniment, means"],
+    ["sin", "sans", "absence", "Tomo el café sin azúcar.", "Je prends le café sans sucre.", "without", "I take my coffee without sugar.", "absence"],
+    ["por", "par, à cause de, pour (échange)", "cause, passage, durée, échange", "Gracias por tu ayuda.", "Merci pour ton aide.", "for, by, through", "Thanks for your help.", "cause, route, duration, exchange"],
+    ["para", "pour (but, destinataire)", "but, destinataire, échéance", "Este regalo es para ti.", "Ce cadeau est pour toi.", "for, in order to", "This present is for you.", "purpose, recipient, deadline"],
+    ["sobre", "sur, au sujet de", "position, sujet", "El libro está sobre la mesa.", "Le livre est sur la table.", "on, about", "The book is on the table.", "position, topic"],
+    ["bajo", "sous", "position, subordination", "Trabaja bajo mucha presión.", "Il travaille sous forte pression.", "under", "He works under a lot of pressure.", "position, subordination"],
+    ["entre", "entre, parmi", "position intermédiaire", "El pueblo está entre dos montañas.", "Le village est entre deux montagnes.", "between, among", "The village lies between two mountains.", "intermediate position"],
+    ["hasta", "jusqu'à", "limite dans l'espace ou le temps", "Caminamos hasta la playa.", "Nous avons marché jusqu'à la plage.", "until, as far as", "We walked as far as the beach.", "limit in space or time"],
+    ["desde", "depuis", "point de départ", "Desde aquí se ve el mar.", "D'ici on voit la mer.", "from, since", "From here you can see the sea.", "starting point"],
+    ["hacia", "vers", "direction approximative", "Se dirigía hacia el norte.", "Il se dirigeait vers le nord.", "towards", "He was heading north.", "approximate direction"],
+    ["contra", "contre", "opposition", "Nadie votó contra la propuesta.", "Personne n'a voté contre la proposition.", "against", "Nobody voted against the proposal.", "opposition"],
+    ["según", "selon", "source, point de vue", "Según el informe, todo está en orden.", "Selon le rapport, tout est en ordre.", "according to", "According to the report, everything is fine.", "source, viewpoint"],
+    ["durante", "pendant", "durée", "Llovió durante toda la noche.", "Il a plu pendant toute la nuit.", "during, for", "It rained all night long.", "duration"],
+    ["ante", "devant, face à", "position, confrontation", "Compareció ante el juez.", "Il a comparu devant le juge.", "before, faced with", "He appeared before the judge.", "position, confrontation"],
+    ["tras", "après, derrière", "succession", "Tras la reunión, hablamos.", "Après la réunion, nous avons parlé.", "after, behind", "After the meeting, we talked.", "succession"],
+    ["mediante", "au moyen de", "moyen (registre soutenu)", "Se resolvió mediante un acuerdo.", "Cela s'est réglé au moyen d'un accord.", "by means of", "It was settled by means of an agreement.", "means (formal register)"],
+    ["salvo", "sauf", "exception", "Abrimos todos los días salvo el lunes.", "Nous ouvrons tous les jours sauf le lundi.", "except", "We open every day except Monday.", "exception"],
+  ]
+}
+    : {
   id: "praep_vokabular",
   name: "Prépositions",
   svg: '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5"/><path d="M9 9V6a3 3 0 016 0v3"/><circle cx="12" cy="14" r="1.1" style="fill:var(--wt-icone)" stroke="none"/></svg>',
@@ -20375,7 +20450,11 @@ const PARTIKELN_NUANCE_OPTIONS_TR = ["Dostça ısrar (teşvik)", "Ricayı yumuş
 // d'interface, et le meme que sur les cartes et dans adverbe.json. C'est ce nom
 // que l'apprenant retrouvera dans une grammaire ; la glose vit dans l'indice et
 // l'explication de chaque question.
-const ADVERB_CATEGORY_OPTIONS = ["Zeit", "Ort/Richtung", "Häufigkeit", "Art und Weise",
+// En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
+// celle d'avant, inchangee.
+const ADVERB_CATEGORY_OPTIONS = LANGUE_APPRISE === "es"
+    ? ["Tiempo", "Lugar", "Frecuencia", "Modo", "Cantidad", "Duda", "Afirmación", "Discurso"]
+    : ["Zeit", "Ort/Richtung", "Häufigkeit", "Art und Weise",
     "Grad/Menge", "Grund/Folge", "Verbindung/Logik", "Frageadverbien"];
 const ADVERB_CATEGORY_OPTIONS_EN = ADVERB_CATEGORY_OPTIONS;
 const KONJUNKTION_TYPE_OPTIONS = ["Coordination (ordre des mots inchangé)", "Subordination (verbe à la fin)"];
@@ -20738,7 +20817,31 @@ function startKonnektorenUebung(){
 
 
 
-const partikelnTheme = {
+// En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
+// celle d'avant, inchangee.
+const partikelnTheme = LANGUE_APPRISE === "es"
+    ? {
+  id: "partikeln_vokabular",
+  name: "Marcadores del discurso",
+  svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>',
+  words: [
+    ["pues", "eh bien, alors", "marqueur du discours", "Pues no sé qué decir.", "Eh bien, je ne sais pas quoi dire.", "well then", "Well, I don't know what to say."],
+    ["bueno", "bon, d'accord", "marqueur du discours", "Bueno, vamos a ver.", "Bon, on va voir.", "well, all right", "All right, let's see."],
+    ["o sea", "c'est-à-dire", "marqueur du discours", "Llega tarde, o sea, como siempre.", "Il arrive tard, c'est-à-dire comme toujours.", "that is, I mean", "He's late, I mean, as always."],
+    ["a ver", "voyons, alors", "marqueur du discours", "A ver, ¿qué ha pasado aquí?", "Voyons, que s'est-il passé ici ?", "let's see", "Let's see, what happened here?"],
+    ["oye", "dis donc, écoute", "marqueur du discours", "Oye, ¿tienes un momento?", "Dis, tu as un moment ?", "hey, listen", "Hey, have you got a minute?"],
+    ["mira", "regarde, écoute", "marqueur du discours", "Mira, no es tan sencillo.", "Écoute, ce n'est pas si simple.", "look", "Look, it's not that simple."],
+    ["hombre", "enfin, voyons", "marqueur du discours", "¡Hombre, claro que sí!", "Mais bien sûr, voyons !", "come on, of course", "Come on, of course!"],
+    ["vaya", "eh bien, tiens donc", "marqueur du discours", "¡Vaya, qué sorpresa!", "Eh bien, quelle surprise !", "well, wow", "Well, what a surprise!"],
+    ["venga", "allez, allons", "marqueur du discours", "¡Venga, que llegamos tarde!", "Allez, on va être en retard !", "come on", "Come on, we're going to be late!"],
+    ["anda", "allons, tiens", "marqueur du discours", "Anda, no digas eso.", "Allons, ne dis pas ça.", "come on, oh", "Come on, don't say that."],
+    ["claro", "bien sûr", "marqueur du discours", "Claro que te ayudo.", "Bien sûr que je t'aide.", "of course", "Of course I'll help you."],
+    ["en fin", "bref, enfin", "marqueur du discours", "En fin, ya veremos mañana.", "Bref, on verra demain.", "anyway", "Anyway, we'll see tomorrow."],
+    ["total", "bref, au bout du compte", "marqueur du discours", "Total, que no vino nadie.", "Bref, personne n'est venu.", "in short", "In short, nobody came."],
+    ["ya", "déjà, ça y est", "marqueur du discours", "Ya lo sé, no hace falta repetirlo.", "Je sais déjà, pas besoin de le répéter.", "already, I know", "I know already, no need to repeat it."],
+  ]
+}
+    : {
   id: "partikeln_vokabular",
   name: "Particules",
   svg: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>',
@@ -20852,7 +20955,37 @@ const artikelwoerterTheme = {
   ]
 };
 
-const konjunktionenTheme = {
+// En espagnol, la liste de fork.py (fusion, etape 3) ; l'allemande est
+// celle d'avant, inchangee.
+const konjunktionenTheme = LANGUE_APPRISE === "es"
+    ? {
+  id: "konjunktionen_vokabular",
+  name: "Conjunciones",
+  svg: '<svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg>',
+  words: [
+    ["y", "et", "conjonction de coordination", "Cocino y tú pones la mesa.", "Je cuisine et tu mets la table.", "and", "I'm cooking and you're setting the table.", "coordinating conjunction"],
+    ["e", "et (devant i-/hi-)", "conjonction de coordination", "Padre e hijo trabajan juntos.", "Le père et le fils travaillent ensemble.", "and (before i-/hi-)", "Father and son work together.", "coordinating conjunction"],
+    ["o", "ou", "conjonction de coordination", "¿Vienes o te quedas?", "Tu viens ou tu restes ?", "or", "Are you coming or staying?", "coordinating conjunction"],
+    ["u", "ou (devant o-/ho-)", "conjonction de coordination", "Siete u ocho personas.", "Sept ou huit personnes.", "or (before o-/ho-)", "Seven or eight people.", "coordinating conjunction"],
+    ["pero", "mais", "conjonction de coordination", "Es caro, pero vale la pena.", "C'est cher, mais ça vaut la peine.", "but", "It's expensive, but it's worth it.", "coordinating conjunction"],
+    ["sino", "mais (après négation)", "conjonction de coordination", "No es azul, sino verde.", "Ce n'est pas bleu, mais vert.", "but rather", "It's not blue, but green.", "coordinating conjunction"],
+    ["ni", "ni", "conjonction de coordination", "No come carne ni pescado.", "Il ne mange ni viande ni poisson.", "nor", "He eats neither meat nor fish.", "coordinating conjunction"],
+    ["porque", "parce que", "conjonction de subordination", "No salgo porque llueve.", "Je ne sors pas parce qu'il pleut.", "because", "I'm not going out because it's raining.", "subordinating conjunction"],
+    ["como", "comme (cause, en tête)", "conjonction de subordination", "Como llovía, nos quedamos.", "Comme il pleuvait, nous sommes restés.", "as, since", "As it was raining, we stayed.", "subordinating conjunction"],
+    ["que", "que", "conjonction de subordination", "Creo que tiene razón.", "Je crois qu'il a raison.", "that", "I think he's right.", "subordinating conjunction"],
+    ["si", "si", "conjonction de subordination", "Si llueve, no vamos.", "S'il pleut, nous n'irons pas.", "if", "If it rains, we won't go.", "subordinating conjunction"],
+    ["aunque", "bien que, même si", "subordination — indicatif pour un fait, subjonctif pour une hypothèse", "Aunque es tarde, sigo trabajando.", "Bien qu'il soit tard, je continue à travailler.", "although", "Although it's late, I keep working.", "subordinating — indicative for a fact, subjunctive for a supposition"],
+    ["mientras", "pendant que, tant que", "subordination — subjonctif si c'est à venir", "Mientras cocino, escucho la radio.", "Pendant que je cuisine, j'écoute la radio.", "while", "While I cook, I listen to the radio.", "subordinating — subjunctive if it's still to come"],
+    ["cuando", "quand", "subordination — subjonctif si c'est à venir", "Cuando llegues, llámame.", "Quand tu arriveras, appelle-moi.", "when", "When you arrive, call me.", "subordinating — subjunctive if it's still to come"],
+    ["antes de que", "avant que", "subordination — toujours au subjonctif", "Salgamos antes de que empiece a llover.", "Sortons avant qu'il ne commence à pleuvoir.", "before", "Let's leave before it starts raining.", "subordinating — always + subjunctive"],
+    ["después de que", "après que", "subordination — subjonctif si c'est à venir", "Después de que se fue, todo cambió.", "Après qu'il est parti, tout a changé.", "after", "After he left, everything changed.", "subordinating — subjunctive if it's still to come"],
+    ["hasta que", "jusqu'à ce que", "subordination — subjonctif si c'est à venir", "Espera hasta que yo vuelva.", "Attends jusqu'à ce que je revienne.", "until", "Wait until I come back.", "subordinating — subjunctive if it's still to come"],
+    ["para que", "pour que", "subordination — toujours au subjonctif", "Te lo explico para que lo entiendas.", "Je te l'explique pour que tu comprennes.", "so that", "I'm explaining it so that you understand.", "subordinating — always + subjunctive"],
+    ["así que", "donc, si bien que", "conjonction de conséquence", "Era tarde, así que nos fuimos.", "Il était tard, donc nous sommes partis.", "so", "It was late, so we left.", "conjunction of result"],
+    ["pues", "car, donc", "conjonction de conséquence", "No insistas, pues no cambiará de idea.", "N'insiste pas, car il ne changera pas d'avis.", "since, so", "Don't insist, since he won't change his mind.", "conjunction of result"],
+  ]
+}
+    : {
   id: "konjunktionen_vokabular",
   name: "Conjonctions",
   svg: '<svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg>',
@@ -23256,7 +23389,9 @@ function renderProgressRadar(){
         { label: "Cas", percent: getKasusMasteryPercent() },
         { label: "Préps.", percent: getPraepMasteryPercent() },
         { label: "Particules", percent: getPartikelnMasteryPercent() }
-    ];
+    ].filter(c => LANGUE_APPRISE !== "es" || c.label !== "Cas")
+     // L'espagnol n'a pas de declinaison : la branche des cas resterait a zero.
+     .map(c => (LANGUE_APPRISE === "es" && c.label === "Particules") ? { label: "Marqueurs", percent: c.percent } : c);
     const n = categories.length;
     const cx = 110, cy = 110, maxR = 75;
     const angleFor = i => -Math.PI / 2 + i * (2 * Math.PI / n);
@@ -23892,7 +24027,22 @@ function orbPanelData(id){
     if(id === "ausdruecke"){
         return {
             icon:"dossier", title:t("orb_ausdruecke_title"), sub:t("orb_ausdruecke_sub"),
-            options:[
+            options: LANGUE_APPRISE === "es"
+            // L'espagnol : les groupes de fork.py et leurs exemples.
+            ? [
+                { icon:"carte", title:t("grp_meinung"), desc:"por lo visto · la verdad es que", primary:true, action:"ausdrueckeMeinung", section:"mots" },
+                { icon:"carte", title:t("grp_diskussion"), desc:"en cambio · por lo tanto", action:"ausdrueckeDiskussion", section:"mots" },
+                { icon:"carte", title:t("grp_verbindungen"), desc:"tener ganas · dar igual · echar de menos", action:"ausdrueckeVerbindungen", section:"mots" },
+                { icon:"carte", title:t("grp_gefuehle"), desc:"¡qué va! · menos mal", action:"ausdrueckeGefuehle", section:"mots" },
+                { icon:"carte", title:t("grp_alltag"), desc:"de momento · a lo mejor", action:"ausdrueckeAlltag", section:"mots" },
+                { icon:"carte", title:t("grp_smalltalk"), desc:"qué tal · con mucho gusto", action:"ausdrueckeSmalltalk", section:"mots" },
+                { icon:"carte", title:t("grp_modismos"), desc:"estar en las nubes · costar un ojo", action:"ausdrueckeModismos", section:"mots" },
+                { icon:"carte", title:t("grp_ton_adv"), desc:"quizá · desde luego · tal vez", action:"ausdrueckeTonAdverbien", section:"mots" },
+                { icon:"dossier", title:t("grp_ideen"), desc:"y · pero · aunque · para que", action:"startKonjunktionenVokabular", section:"mots" },
+                { icon:"dossier", title:t("grp_ton"), desc:"pues · bueno · oye · vaya", action:"startPartikelnVokabular", section:"mots" },
+                { icon:"dossier", title:t("grp_praep"), desc:"a · de · por · para", action:"startPraepVokabular", section:"mots" }
+            ]
+            : [
                 { icon:"carte", title:t("grp_meinung"), desc:"meiner Meinung nach \u00b7 auf jeden Fall",
                   primary:true, action:"ausdrueckeMeinung", section:"mots" },
                 { icon:"carte", title:t("grp_diskussion"), desc:"es geht um \u00b7 im Gegenteil", action:"ausdrueckeDiskussion", section:"mots" },
@@ -25634,11 +25784,16 @@ function openMyVocab(){
 // (1 Ko en mediane, 195 Ko au pire) au lieu des 10 Mo du dictionnaire entier.
 // Le credit d'attribution est affiche sous les resultats, comme l'exige la
 // licence -- ne pas le retirer.
-const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees + "dict/";
+const DICT_BASE_URL = LANGUE_ENSEIGNEE.donnees + (LANGUE_APPRISE === "es" ? "dicc/" : "dict/");
 // Quatre paires existent ; on n'en interroge que deux, celles qui parlent la
 // langue de l'interface. Un francophone qui cherche "Haus" doit lire "maison",
 // pas "house" -- c'etait le cas avant v231.
-const DICT_PAIRS_PAR_LANGUE = {
+// L'espagnol n'a qu'une paire, espagnol-anglais, dans les deux sens : un
+// dictionnaire espagnol-francais reste a faire (fusion, etape 3).
+const DICT_PAIRS_PAR_LANGUE = LANGUE_APPRISE === "es" ? {
+    fr: ["es-en", "en-es"],
+    en: ["es-en", "en-es"]
+} : {
     fr: ["de-fr", "fr-de"],
     en: ["de-en", "en-de"]
 };
@@ -27479,7 +27634,7 @@ function startPraepVokabular(niveau){
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
-    setFlashHeader('kicker_praep_vocab', 'orb_praep_title');
+    setFlashHeader('kicker_praep_vocab', LANGUE_APPRISE === "es" ? 'grp_praep' : 'orb_praep_title');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -27618,13 +27773,15 @@ function startRedewendungenVokabular(level, kategorie){
 //
 // Chaque groupe est une fonction SANS ARGUMENT : orbAction() appelle
 // window[nom]() et ne sait pas transmettre de parametre.
-function ausdrueckeSmalltalk(){ startRedewendungenVokabular("ALL", "Begr\u00fc\u00dfung/Small Talk"); }
-function ausdrueckeAlltag(){ startRedewendungenVokabular("ALL", "Alltag/Organisation"); }
-function ausdrueckeMeinung(){ startRedewendungenVokabular("ALL", "Meinung/Zustimmung"); }
-function ausdrueckeDiskussion(){ startRedewendungenVokabular("ALL", "Diskussion/Nuance"); }
-function ausdrueckeGefuehle(){ startRedewendungenVokabular("ALL", "Gef\u00fchle/Reaktionen"); }
-function ausdrueckeVerbindungen(){ startRedewendungenVokabular("ALL", "Feste Verbindungen"); }
-function ausdrueckeTonAdverbien(){ startAdverbienVokabular("ALL", "Nuance/Ton"); }
+function ausdrueckeSmalltalk(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["saludo", "cortesia"] : "Begr\u00fc\u00dfung/Small Talk"); }
+function ausdrueckeAlltag(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["cotidiano"] : "Alltag/Organisation"); }
+function ausdrueckeMeinung(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["matiz"] : "Meinung/Zustimmung"); }
+function ausdrueckeDiskussion(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["conectar"] : "Diskussion/Nuance"); }
+function ausdrueckeGefuehle(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["reaccion", "interjeccion"] : "Gef\u00fchle/Reaktionen"); }
+function ausdrueckeVerbindungen(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["tener", "dar", "hacer", "estar", "poner", "echar", "ser", "llevar", "quedar"] : "Feste Verbindungen"); }
+// Espagnol seulement : les expressions imagees (estar en las nubes).
+function ausdrueckeModismos(){ startRedewendungenVokabular("ALL", ["modismo"]); }
+function ausdrueckeTonAdverbien(){ startAdverbienVokabular("ALL", LANGUE_APPRISE === "es" ? ["duda", "afirmacion"] : "Nuance/Ton"); }
 
 function openAdverbienVokabular(){
     renderAdverbienLevelBar();
@@ -27998,7 +28155,7 @@ function startPartikelnVokabular(niveau){
     currentCards = cartesDeSession(allItems);
     if(currentCards.length === 0) currentCards = plafonnerSeance(cartesCommencees(allItems));
     currentFlashcard = 0;
-    setFlashHeader('kicker_partikeln_vocab', 'orb_partikeln_title');
+    setFlashHeader('kicker_partikeln_vocab', LANGUE_APPRISE === "es" ? 'grp_ton' : 'orb_partikeln_title');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -29266,7 +29423,7 @@ function loadFlashcard(){
             translationEl.textContent = frenchWord;
             translationEl.classList.remove("hidden");
         }
-        const praepDiagramHtml = flashcardMode === 'praep'
+        const praepDiagramHtml = flashcardMode === 'praep' && LANGUE_APPRISE === "de"
             ? `<div class="verb-sep"></div><img src="${PREP_DIAGRAM_URL}" alt="Diagramme Akkusativ/Dativ" style="width:100%; border-radius:12px; display:block;" loading="lazy">`
             : "";
         const grammarSpeakBtn = sentenceSpeakBtnHtml(exampleSentence, "de");
@@ -29934,11 +30091,13 @@ function voiceQualityScore(v){
     if(v && v.localService === false) score -= 100;
     // Allemand et anglais standard avant les variantes regionales.
     const lang = ((v && v.lang) || "").toLowerCase();
-    if(lang === "de-de" || lang === "en-gb" || lang === "en-us") score += 2;
+    if(lang === LANGUE_ENSEIGNEE.voix.toLowerCase() || lang === "en-gb" || lang === "en-us") score += 2;
     return score;
 }
 
 function voicesForLang(prefix){
+    // "de" = la langue apprise (fusion, etape 3) : en espagnol, les voix es-*.
+    if(prefix === "de") prefix = LANGUE_ENSEIGNEE.voix.slice(0, 2).toLowerCase();
     if(!('speechSynthesis' in window)) return [];
     return window.speechSynthesis.getVoices()
         .filter(v => v.lang && v.lang.toLowerCase().startsWith(prefix))
@@ -29968,7 +30127,7 @@ const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [], fa: [] 
 // eventuellement fausse chez qui n'a pas de voix ukrainienne installee.
 // C'est exactement le piege deja nomme pour le turc : poser la donnee sans
 // mettre a jour les tables qui la lisent.
-const LANGUE_TAG = { de: "de-DE", en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA" };
+const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA" };
 
 function pickVoice(prefix){
     const dispo = voicesForLang(prefix);
@@ -29986,7 +30145,9 @@ function pickVoice(prefix){
     return dispo[0];
 }
 
-function findGermanVoice(){ return pickVoice(LANGUE_ENSEIGNEE.code); }
+// "de" et non LANGUE_ENSEIGNEE.code : le choix de voix des reglages est range
+// sous "de" (la langue apprise) ; voicesForLang() en fait la vraie langue.
+function findGermanVoice(){ return pickVoice("de"); }
 function findEnglishVoice(){ return pickVoice('en'); }
 
 function setVoiceChoice(prefix, nom){
@@ -30009,9 +30170,11 @@ function testVoice(prefix){
     // muet lui-meme, et l'essai ne prouvait plus rien.
     libererMoteur();
     const extraits = {
-        de: "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch.",
+        de: LANGUE_APPRISE === "es" ? "\u00a1Buenos d\u00edas! Aprendo un poco de espa\u00f1ol todos los d\u00edas."
+                                    : "Guten Tag! Ich lerne jeden Tag ein bisschen Deutsch.",
         en: "Good morning! I learn a little English every day.",
-        fr: "Bonjour ! J'apprends un peu d'allemand chaque jour.",
+        fr: LANGUE_APPRISE === "es" ? "Bonjour ! J'apprends un peu d'espagnol chaque jour."
+                                    : "Bonjour ! J'apprends un peu d'allemand chaque jour.",
         tr: "Günaydın! Her gün biraz Almanca öğreniyorum."
     };
     const u = new SpeechSynthesisUtterance(extraits[prefix] || extraits.en);
@@ -31458,7 +31621,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 730;
+const APP_VERSION = 731;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -34767,7 +34930,8 @@ window.addEventListener("message", (e) => {
 
 async function ouvrirSeanceDuJour(sansScene){
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
-    if(!sansScene && essaiActif("scenes") && !sceneDejaFaite()){ ouvrirChoixSeance(); return; }
+    // Les scenes sont allemandes : pas en espagnol (fusion, etape 3).
+    if(!sansScene && LANGUE_APPRISE === "de" && essaiActif("scenes") && !sceneDejaFaite()){ ouvrirChoixSeance(); return; }
     const niveau = niveauSeance();
     // La frequence AVANT de constituer la seance, sinon les premiers mots neufs
     // sortiraient dans l'ordre du fichier -- une seule fois, mais c'est la
