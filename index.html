@@ -3272,7 +3272,6 @@ html[data-apprendre="es"] [data-orbid="vhskapitel"]{ display:none !important; }
    Masquees, pas supprimees : le jour ou le corpus porte des categories,
    il suffit de retirer ces trois lignes.
    ------------------------------------------------------------------ */
-html[data-apprendre="es"] .orb-opt[onclick*="openAdjektiveDeklination"],
 html[data-apprendre="es"] .orb-opt[onclick*="openAdverbienInfo"],
 html[data-apprendre="es"] .orb-opt[onclick*="openRedewendungenInfo"]{ display:none !important; }
 
@@ -7189,7 +7188,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v732</span>
+    <span class="subtitle-version">v733</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9704,6 +9703,20 @@ body[data-theme="dark"] #decouverte > button.primary{
      fermant l'ecran, ou a la fin de l'essai.
      ⚠️ « 7 700 MOTS DU A1 AU C1 », JAMAIS « LES 7 700 MOTS » : l'article
      ferait croire que la liste est complete (remarque de Jacques). -->
+<!-- LES FICHES DE GRAMMAIRE DE L'ESPAGNOL (fusion, etape 4). Remplies par
+     abrirGramatica() a partir de espanol/datos/grammaire.json. Jamais
+     ouvertes en allemand. -->
+<section id="gramaticaES" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="gramKicker"></div>
+            <h2 id="gramTitulo">—</h2>
+        </div>
+    </div>
+    <div id="gramCuerpo"></div>
+</section>
+
 <section id="abonnement" class="screen">
     <div class="abo-haut">
         <button type="button" class="abo-fermer" data-retour onclick="fermerAbonnement()" data-i18n-aria-label="abo_fermer" aria-label="Fermer">✕</button>
@@ -16947,7 +16960,16 @@ const I18N_ESPAGNOL = {
         "variante_choix_espagne": "Espagne",
         "variante_choix_amerique": "Amérique latine",
         "variante_amerique": "en Amérique latine : {mot}",
-        "variante_espagne": "en Espagne : {mot}"
+        "variante_espagne": "en Espagne : {mot}",
+        "adverbien_cat_desc": "Les adverbes s'apprennent en opposant les mots d'une même famille : siempre, a menudo, a veces, rara vez, nunca.",
+        "kicker_verben_infinitiv": "Verbes · Infinitivo",
+        "kicker_verben_konjunktiv2": "Verbes · Subjuntivo",
+        "kicker_verben_perfekt": "Verbes · Imperfecto",
+        "kicker_verben_praesens": "Verbes · Presente",
+        "kicker_verben_praeteritum": "Verbes · Pretérito",
+        "op_adjektive_o4_d": "alto · alta · altos · altas",
+        "op_adjektive_o4_t": "Accord de l'adjectif",
+        "gram_attention": "Attention"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17022,7 +17044,16 @@ const I18N_ESPAGNOL = {
         "variante_choix_espagne": "Spain",
         "variante_choix_amerique": "Latin America",
         "variante_amerique": "in Latin America: {mot}",
-        "variante_espagne": "in Spain: {mot}"
+        "variante_espagne": "in Spain: {mot}",
+        "adverbien_cat_desc": "Adverbs are learned by contrasting words of the same family: siempre, a menudo, a veces, rara vez, nunca.",
+        "kicker_verben_infinitiv": "Verbs · Infinitivo",
+        "kicker_verben_konjunktiv2": "Verbs · Subjuntivo",
+        "kicker_verben_perfekt": "Verbs · Imperfecto",
+        "kicker_verben_praesens": "Verbs · Presente",
+        "kicker_verben_praeteritum": "Verbs · Pretérito",
+        "op_adjektive_o4_d": "alto · alta · altos · altas",
+        "op_adjektive_o4_t": "Adjective agreement",
+        "gram_attention": "Watch out"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -17286,6 +17317,9 @@ function tf(key, vars){
 const ECRANS_COURS = new Set(["kasusInfo", "praepInfo", "partikelnInfo", "adverbienInfo", "personalpronomenInfo", "demonstrativInfo", "zahlenInfo", "redewendungenInfo", "konjunktionenInfo", "pruefungInfo", "wortstellungInfo", "relativInfo", "relativGenitivInfo", "verbenTempsInfo", "possessivInfo", "zuInfinitivInfo"]);
 let COURS_CHARGE = false;
 let chargementCours = null;
+// Les fiches de grammaire de la langue apprise (l'espagnol en a sept ; la
+// grammaire allemande n'en porte pas : ses ecrans sont dans la page).
+let FICHES_GRAMMAIRE = [];
 
 function chargerCours(){
     if(COURS_CHARGE) return Promise.resolve(true);
@@ -17294,6 +17328,7 @@ function chargerCours(){
             .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
             .then(d => {
                 const textes = d.textes || {};
+                FICHES_GRAMMAIRE = Array.isArray(d.fiches) ? d.fiches : [];
                 Object.keys(textes).forEach(code => {
                     if(I18N[code]) Object.assign(I18N[code], textes[code]);
                 });
@@ -24292,7 +24327,67 @@ function orbPanelData(id){
 
 let openOrbId = null;
 
+// EN ESPAGNOL, LES TUILES DE GRAMMAIRE OUVRENT UNE FICHE (fusion, etape 4) :
+// les ecrans allemands qu'elles ouvraient (les cas, Wortstellung...) n'ont pas
+// d'objet. Les « Retour » de ces ecrans passent aussi par ici.
+const FICHE_PAR_TUILE = {
+    kasus: "ser-estar", praep: "por-para", wortstellung: "pasados",
+    zuinfinitiv: "subjuntivo", pronomen: "pronombres", zahlen: "genero",
+    partikeln: "concordancia"
+};
+function texteDeFiche(v){
+    if(v && typeof v === "object") return v[getUiLang()] || v.fr || "";
+    return v == null ? "" : String(v);
+}
+function echapperFiche(s){
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+async function abrirGramatica(id){
+    if(!COURS_CHARGE) await chargerCours();
+    const g = FICHES_GRAMMAIRE.find(x => x.id === id);
+    if(!g){ goHome(); return; }
+    document.getElementById("gramKicker").textContent = texteDeFiche(g.resume);
+    document.getElementById("gramTitulo").textContent = texteDeFiche(g.titre);
+    // La regle et la mise en garde portent du gras (<b>) : elles viennent de
+    // nos donnees. Le reste est echappe.
+    let html = '<div class="card"><div class="translation-example" style="margin:0;">'
+        + texteDeFiche(g.regle) + '</div></div>';
+    if(g.tableau && g.tableau.length){
+        html += '<div class="card"><table style="width:100%; border-collapse:collapse; font-size:14px;">';
+        g.tableau.forEach((ligne, i) => {
+            html += '<tr style="' + (i ? 'border-top:1px solid rgba(30,41,59,.14);' : '') + '">'
+                + '<td style="padding:9px 8px 9px 0; font-weight:800; white-space:nowrap; vertical-align:top;">'
+                + echapperFiche(texteDeFiche(ligne[0])) + '</td>'
+                + '<td style="padding:9px 8px; color:#576177; vertical-align:top;">'
+                + echapperFiche(texteDeFiche(ligne[1])) + '</td></tr>';
+            if(ligne[2]){
+                html += '<tr><td colspan="2" style="padding:0 0 9px; color:#3b6fe0; font-size:13.5px;">'
+                    + echapperFiche(texteDeFiche(ligne[2])) + '</td></tr>';
+            }
+        });
+        html += '</table></div>';
+    }
+    if(g.exemples && g.exemples.length){
+        html += '<div class="card">';
+        g.exemples.forEach((e, i) => {
+            html += '<div style="' + (i ? 'margin-top:14px;' : '') + '">'
+                + '<div style="font-size:16px; font-weight:700;">' + echapperFiche(texteDeFiche(e[0]))
+                + sentenceSpeakBtnHtml(texteDeFiche(e[0]), "de") + '</div>'
+                + '<div style="color:#576177; font-size:14px; margin-top:2px;">'
+                + echapperFiche(texteDeFiche(e[1])) + '</div></div>';
+        });
+        html += '</div>';
+    }
+    if(g.attention){
+        html += '<div class="card"><div class="revision"><strong>' + t("gram_attention") + '</strong>'
+            + '<p style="margin:6px 0 0; line-height:1.55;">' + texteDeFiche(g.attention) + '</p></div></div>';
+    }
+    document.getElementById("gramCuerpo").innerHTML = html;
+    showScreen("gramaticaES");
+}
+
 function openOrbPanel(id){
+    if(LANGUE_APPRISE === "es" && FICHE_PAR_TUILE[id]){ abrirGramatica(FICHE_PAR_TUILE[id]); return; }
     openOrbId = id;
     renderOrbPanel();
     showScreen("orbPanel");
@@ -27650,6 +27745,7 @@ function openRelativGenitivInfo(){
 }
 
 function openAdjektiveDeklination(){
+    if(LANGUE_APPRISE === "es"){ abrirGramatica("concordancia"); return; }
     showScreen("adjektiveDeklination");
 }
 
@@ -31715,7 +31811,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 732;
+const APP_VERSION = 733;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

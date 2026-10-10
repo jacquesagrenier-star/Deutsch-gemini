@@ -52,7 +52,7 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    → **0 écart exigé**. Le parcours prend environ six minutes.
    Relevé en passant dans l'espagnol actuel : une explication dit « c'est ici
    que **l'anglais** n'aide pas » même en interface française (écrite pour
-   des anglophones), et une option du panneau des adverbes n'a pas de titre.
+   des anglophones), et une option du panneau des adverbes n'a pas de titre — ⚠️ corrigé à l'étape 4 : ce n'est pas un défaut, c'est une option CACHÉE (le parcours ouvre aussi les options cachées, d'où un nom vide).
 1. **Choisir la langue apprise au démarrage.** Une table de langues `{de, es}`
    au lieu d'une seule `LANGUE_ENSEIGNEE` ; la langue vient de l'adresse
    (`?apprendre=es`), puis du réglage. Données espagnoles lues dans
@@ -155,6 +155,28 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
 
 4. **La grammaire espagnole** (7 écrans de `gramatica_es.py`) en données,
    comme `grammaire.json` pour l'allemand.
+   ✅ **Fait en v733 (10 oct. 2026).** `espanol/datos/grammaire.json`, au
+   format de l'allemand : 41 textes d'écrans (temps, adverbes, expressions)
+   versés dans `I18N` au chargement, plus **les sept fiches** (`fiches`),
+   ouvertes par `abrirGramatica(id)` sur l'écran `gramaticaES`. Le fork ne les
+   avait qu'en anglais, écrites pour des anglophones (« English gives you
+   nothing to go on ») : la version **française est réécrite pour des
+   francophones** — le français aide pour les deux passés, le subjonctif et
+   la place des pronoms, et piège pour le genre (el color, la leche) et pour
+   *cuando llegue* (« quand j'arriverai »). Les comparaisons avec l'anglais
+   sont retirées des textes français des écrans. En espagnol, les tuiles de
+   grammaire passent par `FICHE_PAR_TUILE` (dans `openOrbPanel`, donc les
+   « Retour » aussi). La fiche de l'accord était **injoignable** dans le
+   fork (option renommée puis cachée par une autre règle) : rendue, depuis
+   le panneau des adjectifs. Allemand : 0 écart. Espagnol : 67 chemins, plus
+   aucun `grammaire.json` introuvable.
+   ⚠️ **À faire relire** : les fiches françaises sont de moi, comme les
+   textes que le fork avait écrits ; elles méritent la relecture croisée
+   (autre modèle, puis un hispanophone).
+   Restent cachés en espagnol, à finir : les écrans d'explication des
+   adverbes et des expressions (textes espagnols écrits, mais leurs boutons
+   mènent à des exercices allemands et leurs libellés manquent).
+
 5. **Les verbes** : les temps espagnols, la conjugaison, l'affichage.
 6. **Les comptes.** L'espagnol passe par Firebase comme l'allemand : connexion,
    sauvegarde dans le cloud, codes d'invitation du tableau admin, bouton
