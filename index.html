@@ -7199,7 +7199,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v744</span>
+    <span class="subtitle-version">v745</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27380,8 +27380,12 @@ function basculerApercuGratuit(){
 // TOUT LE MONDE, essai ou pas. C'est le role de tests/syntaxe.js, avant
 // chaque envoi.
 const ESSAIS = {
+    // EN PRODUCTION le 10 oct. 2026 (v745), allemand et espagnol, tous les
+    // niveaux -- Jacques : « donne acces a tout le monde ». Les relectures
+    // des questions (allemandes en cours, espagnoles a faire) suivront, avec
+    // les retours des testeurs.
     scenes: {
-        etat: "admin",
+        etat: "tous",
         titre: "Scènes dans la séance du jour",
         desc: "Au début de la séance : la scène du jour ou les cartes, au choix. Trois questions au niveau de la séance, puis les cartes."
     }
@@ -32004,7 +32008,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 744;
+const APP_VERSION = 745;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
