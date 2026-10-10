@@ -7199,7 +7199,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v742</span>
+    <span class="subtitle-version">v743</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -32004,7 +32004,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 742;
+const APP_VERSION = 743;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -35278,7 +35278,7 @@ function ouvrirSceneAdmin(nom){
     if(cadre){
         cadre.title = t("seance_scene_cadre");
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
-                  + "&lang=" + encodeURIComponent(getUiLang()) + "&t=" + Date.now();
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&t=" + Date.now();
     }
     showScreen("sceneSeance");
 }
@@ -35294,9 +35294,18 @@ function ouvrirSceneSeance(){
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
                   + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
                   + "&lang=" + encodeURIComponent(getUiLang())
+                  + langueDeScene()
                   + "&t=" + Date.now();
     }
     showScreen("sceneSeance");
+}
+
+// LA SCENE SUIT LA LANGUE APPRISE (10 oct. 2026). La meme page, la meme image,
+// les memes zones ; en espagnol, elle charge les mots espagnols de la scene
+// (construire.py, visuel/prototype/espanol/) et la voix de la variante.
+function langueDeScene(){
+    if(LANGUE_APPRISE !== "es") return "";
+    return "&apprendre=es&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es");
 }
 
 function choisirCartesSeance(){
@@ -35422,8 +35431,8 @@ function revisionDeScene(d){
 
 async function ouvrirSeanceDuJour(sansScene){
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
-    // Les scenes sont allemandes : pas en espagnol (fusion, etape 3).
-    if(!sansScene && LANGUE_APPRISE === "de" && essaiActif("scenes") && !sceneDejaFaite()){ ouvrirChoixSeance(); return; }
+    // Depuis le 10 oct. 2026, en espagnol aussi (langueDeScene).
+    if(!sansScene && essaiActif("scenes") && !sceneDejaFaite()){ ouvrirChoixSeance(); return; }
     const niveau = niveauSeance();
     // La frequence AVANT de constituer la seance, sinon les premiers mots neufs
     // sortiraient dans l'ordre du fichier -- une seule fois, mais c'est la

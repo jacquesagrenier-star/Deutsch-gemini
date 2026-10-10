@@ -645,6 +645,69 @@ def verifier_libelles_espagnol(r, source):
     return fr | en
 
 
+def verifier_scenes_espagnol(r):
+    """Les scenes espagnoles suivent les scenes allemandes (10 oct. 2026).
+
+    Une scene, deux langues, une seule geometrie : visuel/prototype/espanol/
+    donne le mot espagnol de chaque mot allemand (mots.json, commun). Jacques :
+    « il va falloir faire evoluer tout ca en meme temps ». Ce controle le
+    garantit : une zone allemande ajoutee sans son mot espagnol, un mot
+    espagnol absent du corpus, ou une scene .es.js qui n'a pas ete refaite
+    apres la scene allemande, arretent le push.
+    """
+    proto = os.path.join(RACINE, "visuel", "prototype")
+    dossier = os.path.join(proto, "espanol")
+    if not os.path.isdir(dossier):
+        return
+    with io.open(os.path.join(dossier, "mots.json"), encoding="utf-8") as f:
+        commune = json.load(f)
+    with io.open(os.path.join(RACINE, "espanol", "datos", "temas.json"), encoding="utf-8") as f:
+        corpus = {}
+        for t in json.load(f)["themes"]:
+            for m in t["mots"]:
+                corpus.setdefault(m["mot"], set()).add(t["id"])
+
+    def scene_js(nom):
+        chemin = os.path.join(proto, nom)
+        if not os.path.exists(chemin):
+            return None
+        texte = io.open(chemin, encoding="utf-8").read()
+        return json.loads(texte[texte.index("{"):texte.rindex("}") + 1])
+
+    n = 0
+    for fichier in sorted(os.listdir(dossier)):
+        if not fichier.endswith(".json") or fichier == "mots.json":
+            continue
+        nom = fichier[:-5]
+        with io.open(os.path.join(dossier, fichier), encoding="utf-8") as f:
+            table = dict(commune, **json.load(f).get("mots", {}))
+        with io.open(os.path.join(proto, nom + ".points.json"), encoding="utf-8") as f:
+            pts = json.load(f)
+        mots = list(pts.get("exclus", []))
+        for p in pts["points"]:
+            mots += [p["mot"]] + p.get("aussi", [])
+        for g in pts.get("gros_plans", []):
+            mots += [q["mot"] for q in g["parties"] if "mot" in q]
+        for de in dict.fromkeys(mots):
+            r.controle()
+            v = table.get(de)
+            if not v:
+                r.echec("scenes", "%s : « %s » n'a pas de mot espagnol (visuel/prototype/espanol/mots.json)" % (nom, de))
+                continue
+            texte, _, theme = v.partition("#")
+            mot = texte.split(" ", 1)[1] if texte.split(" ", 1)[0] in ("el", "la", "los", "las") else texte
+            if mot not in corpus or (theme and theme not in corpus[mot]):
+                r.echec("scenes", "%s : « %s » -> « %s » absent du corpus espagnol (espanol/ajouter_mots.py)" % (nom, de, v))
+        de_js, es_js = scene_js("scene-%s.js" % nom), scene_js("scene-%s.es.js" % nom)
+        if es_js is None:
+            r.echec("scenes", "%s : scene-%s.es.js absente -- python visuel/prototype/construire.py %s" % (nom, nom, nom))
+        elif de_js and {p["id"] for p in de_js["points"]} != {p["id"] for p in es_js["points"]}:
+            r.echec("scenes", "%s : scene-%s.es.js n'a pas les zones de l'allemand -- refaire : "
+                    "python visuel/prototype/construire.py %s" % (nom, nom, nom))
+        n += 1
+    print("   scenes espagnol : %d vues suivies" % n)
+
+
 def verifier_cles_utilisees(r, source, cles):
     """Toute cle citee dans le HTML ou via t()/tf() doit exister."""
     citees = set()
@@ -1438,6 +1501,7 @@ def main():
     verifier_jeux_exercices(r, source)
     verifier_indices_revelateurs(r)
     verifier_langue_enseignee(r, source)
+    verifier_scenes_espagnol(r)
     cles = cles | verifier_libelles_espagnol(r, source)
     verifier_cles_utilisees(r, source, cles)
     verifier_comptes_figes(r, source)

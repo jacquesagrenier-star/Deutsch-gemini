@@ -109,7 +109,7 @@ chaque retour a aussi sa propre section datée, plus bas dans ce fichier.
 | Reçu | Qui | Ce qui est signalé | État |
 |---|---|---|---|
 | 2026-10-10 | Jacques | Dans les scènes, les confettis partent mais **aucun son** à la bonne réponse. | Corrigé dans le prototype le 10 oct. (le son passe par un fichier, comme dans l'app, et joue même en mode silencieux). **À confirmer à l'oreille sur l'iPhone.** |
-| 2026-10-10 | Jacques | Pensait que les scènes étaient déjà converties en espagnol : l'app espagnole n'en montre aucune. | Normal : les scènes enseignent l'allemand (seule leur interface est traduite). **Des scènes espagnoles = un chantier à décider** (dialogues, voix, décors).  |
+| 2026-10-10 | Jacques | Pensait que les scènes étaient déjà converties en espagnol : l'app espagnole n'en montre aucune. | Normal : les scènes enseignaient l'allemand. **Décidé par Jacques le 10 oct. : « vas-y pour les scènes en espagnol », et les faire évoluer ensemble.** v743 : les 8 vues en espagnol, couche A1 (noms et articles), même image et mêmes zones ; 93 mots ajoutés au corpus. Reste : les couches A2-C1 à écrire pour l'espagnol, et la voix des mots neufs (à approuver). |
 | 2026-10-09 | Jacques | Avant d'ouvrir les scènes à tous : relire les ~180 questions A2-C1, tout traduire, puis passer l'essai `scenes` à « tous ». | **En cours.** Relecture croisée : ChatGPT (lot 1) et Claude reçus, ChatGPT lots 2-4 et Gemini lots 1-4 à coller. Traduction confiée au cloud le 10 oct. (branche `scenes-traduction`). La mise en production reste sa décision. |
 | 2026-09-04 | Shashwat | A répondu **oui** pour Android, mais pas à la question sur ce qu'il faudrait améliorer. | Toujours sans réponse sur ce qu'il améliorerait. **Candidat pour le test fermé Android** : le recontacter quand le test ouvre (voir `cle-testeurs.txt`). |
 | 2026-09-04 | Kirsty | *« Honestly I think it's already a lot better for someone like me than multiple others out there. »* Et : elle attend de savoir **quand ce sera compatible Android** pour l'installer sur le téléphone de Peter. | Le malentendu se règle de lui-même : une vraie app Android arrive (fiche Google Play créée le 10 oct. 2026). **L'inviter au test fermé, elle et Peter.** |
@@ -8110,3 +8110,14 @@ Normal : les scenes (essai v713) ne s'ouvrent qu'en allemand
 leur interface (consignes, explications en en/tr/uk/fa/ar) ; la scene
 enseigne toujours l'allemand. Des scenes espagnoles = un chantier a part
 (dialogues, voix, decors) -- a decider par Jacques.
+
+## 10 octobre 2026 (soir) -- Jacques : « vas-y pour les scenes en espagnol », et « faire evoluer tout ca en meme temps »
+
+Une scene, deux langues, une seule geometrie. visuel/prototype/espanol/mots.json
+donne le mot espagnol de chacun des 184 mots allemands des scenes ; construire.py
+fait scene-<nom>.js et scene-<nom>.es.js ; le verificateur echoue si une zone
+allemande n'a pas son mot espagnol. 93 mots manquaient au corpus espagnol (fruits,
+legumes, corps, cabinet medical) : ajoutes avec exemples fr/en (espanol/ajouts/
+mots-scenes.json), plus 14 variantes mexicaines (chicharo, durazno, gis, pizarron...).
+Couche A1 seulement : les questions A2-C1 allemandes enseignent le datif, elles
+seront ecrites pour l'espagnol. Toujours en ESSAI (admin).

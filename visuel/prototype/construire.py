@@ -303,6 +303,7 @@ def main():
     io.open(os.path.join(ICI, "scene-%s.js" % nom), "w",
             encoding="utf-8").write(js)
     print("  %d zones -> scene-%s.js" % (len(sortie), nom))
+    construire_espagnol(nom, scene)
 
     if "--grille" in sys.argv:
         from PIL import Image, ImageDraw
@@ -317,6 +318,147 @@ def main():
         chemin = os.path.join(os.environ.get("TMP", ICI), "zones-%s.png" % nom)
         im.save(chemin)
         print("  controle : %s" % chemin)
+
+
+# ============ L'ESPAGNOL (10 oct. 2026) ============
+#
+# UNE SCENE, DEUX LANGUES, UNE SEULE GEOMETRIE. Jacques : « il va falloir
+# faire evoluer tout ca en meme temps ». L'image, les zones, les masques et
+# les gros plans restent ceux de l'allemand ; espanol/<nom>.json ne donne que
+# ce qui change avec la langue :
+#   - « mots » : pour CHAQUE mot allemand de la scene (zone, « aussi », partie
+#     de gros plan), son mot espagnol, ecrit avec son article : « el reloj ».
+#     L'article peut differer du corpus quand le mot a deux genres (« la
+#     estudiante ») ; « #theme » choisit l'entree quand le corpus a deux fois
+#     le meme mot (planta : l'etage de l'hotel, ou la plante).
+#   - « titre », et plus tard les « couches » A2-C1, ecrites POUR l'espagnol :
+#     les questions allemandes enseignent l'allemand (le datif de « Wo? »),
+#     elles ne se traduisent pas.
+# Une zone allemande ajoutee sans son mot espagnol arrete la construction de
+# l'espagnol, et le dit : c'est ce qui garde les deux langues ensemble.
+# Genre, pluriel, niveau, theme et sens viennent du corpus espagnol
+# (espanol/datos/temas.json), jamais d'ici -- meme regle que l'allemand.
+# La variante d'Amerique latine (variantes.json) part avec chaque mot : la
+# page la prend quand l'app lui passe variante=latam.
+ART_PLURIEL = {"el": "los", "la": "las"}
+# Les noms feminins qui prennent « el » au singulier (le a tonique) : leur
+# pluriel reprend « las ». « los aguas » serait faux.
+FEMININS_EN_EL = {"agua", "hacha", "águila", "aula", "alma", "hambre", "arma", "área"}
+
+
+def article_pluriel(mot, genre):
+    if mot in FEMININS_EN_EL:
+        return "las"
+    return ART_PLURIEL.get(genre, "")
+
+
+def pluriel_avec_article(mot, genre, pl):
+    # las gafas, los calzoncillos : deja au pluriel, rien a ajouter.
+    if not pl or genre in ("los", "las"):
+        return None
+    return (article_pluriel(mot, genre) + " " + pl).strip()
+
+
+def corpus_espagnol():
+    d = os.path.join(RACINE, "espanol", "datos")
+    themes = json.load(io.open(os.path.join(d, "temas.json"), encoding="utf-8"))["themes"]
+    idx = {}
+    for t in themes:
+        for m in t["mots"]:
+            idx.setdefault(m["mot"], []).append(dict(m, theme=t["id"], niveau=t.get("niveau")))
+    variantes = json.load(io.open(os.path.join(d, "variantes.json"), encoding="utf-8")).get("noms", {})
+    return idx, variantes
+
+
+def mot_espagnol(valeur, idx, variantes):
+    """« el reloj » / « la planta#la_naturaleza » -> le mot de la page, ou None."""
+    texte, _, theme = valeur.partition("#")
+    morceaux = texte.split(" ", 1)
+    art, mot = (morceaux if len(morceaux) == 2 and morceaux[0] in ("el", "la", "los", "las")
+                else (None, texte))
+    entrees = idx.get(mot) or []
+    if theme:
+        entrees = [e for e in entrees if e["theme"] == theme]
+    if not entrees:
+        return None
+    m = entrees[0]
+    genre = art or m.get("genre")
+    pl = m.get("pluriel")
+    sortie = {"mot": mot, "genre": genre, "niveau": m["niveau"], "theme": m["theme"],
+              "pluriel": pluriel_avec_article(mot, genre, pl),
+              "fr": m.get("traduction"), "en": m.get("traduction_en")}
+    v = variantes.get(mot)
+    if v and (not art or art == m.get("genre")):
+        sortie["latam"] = {"mot": v["mot"], "genre": v["genre"],
+                           "pluriel": pluriel_avec_article(v["mot"], v["genre"], v.get("pluriel"))}
+    return sortie
+
+
+def construire_espagnol(nom, scene_de):
+    chemin = os.path.join(ICI, "espanol", nom + ".json")
+    if not os.path.exists(chemin):
+        return
+    es = json.load(io.open(chemin, encoding="utf-8"))
+    idx, variantes = corpus_espagnol()
+    # La table COMMUNE (espanol/mots.json) : un mot n'a qu'une traduction
+    # d'une scene a l'autre. Une scene peut la preciser (« mots » de son
+    # fichier) quand le contexte l'exige.
+    table = json.load(io.open(os.path.join(ICI, "espanol", "mots.json"), encoding="utf-8"))
+    table.update(es.get("mots", {}))
+    manque, inconnus = [], []
+
+    def traduire(m):
+        v = table.get(m["mot"])
+        if v is None:
+            manque.append(m["mot"])
+            return None
+        r = mot_espagnol(v, idx, variantes)
+        if r is None:
+            inconnus.append(v)
+        return r
+
+    points = []
+    for p in scene_de["points"]:
+        r = traduire(p)
+        aussi, vus = [], set()
+        for a in p["aussi"]:
+            ra = traduire(a)
+            if ra and r and ra["mot"] != r["mot"] and ra["mot"] not in vus:
+                vus.add(ra["mot"])
+                aussi.append({k: v for k, v in ra.items() if k != "pluriel"})
+        if r:
+            points.append(dict(p, aussi=aussi, **{k: r.get(k) for k in
+                          ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "latam")}))
+    for cle in ("tr", "uk", "fa"):     # le corpus espagnol n'a que fr et en
+        for p in points:
+            p.pop(cle, None)
+            for a in p["aussi"]:
+                a.pop(cle, None)
+    if manque or inconnus:
+        if manque:
+            print("  ⚠ espagnol : %s -- mot(s) allemand(s) sans mot espagnol dans espanol/%s.json : %s"
+                  % (nom, nom, ", ".join(sorted(set(manque)))))
+        if inconnus:
+            print("  ⚠ espagnol : %s -- absent(s) du corpus espagnol : %s"
+                  % (nom, ", ".join(sorted(set(inconnus)))))
+        print("  scene-%s.es.js NON refaite" % nom)
+        return
+    scene = dict(scene_de, points=points)
+    scene["titre"] = es.get("titre", scene_de.get("titre"))
+    exclus = [mot_espagnol(table[m], idx, variantes) for m in scene_de.get("exclus", []) if m in table]
+    scene["exclus"] = sorted({e["mot"] for e in exclus if e})
+    # Les couches allemandes enseignent l'allemand : l'espagnol n'a que les
+    # siennes. A1 (les noms) existe toujours, il ne demande aucune question.
+    scene["couches"] = es.get("couches") or {"A1": scene_de.get("couches", {}).get("A1", {"titre": "Noms et articles"})}
+    if scene.get("traductions"):
+        scene["traductions"] = {l: {"champs": t.get("champs", {}),
+                                    "couches": {k: v for k, v in t.get("couches", {}).items() if k in scene["couches"]},
+                                    "questions": {}}
+                                for l, t in scene["traductions"].items()}
+    js = ("// GENERE par construire.py (espanol/%s.json) -- ne pas modifier a la main.\n" % nom
+          + "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1) + ";\n")
+    io.open(os.path.join(ICI, "scene-%s.es.js" % nom), "w", encoding="utf-8").write(js)
+    print("  %d zones -> scene-%s.es.js" % (len(points), nom))
 
 
 if __name__ == "__main__":

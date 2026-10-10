@@ -116,6 +116,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .etiquette .nom{font-weight:700}
 .etiquette .fr{display:block;font-size:12px;color:#556}
 .g-der{color:var(--der)} .g-die{color:var(--die)} .g-das{color:var(--das)}
+.g-el,.g-los{color:var(--der)} .g-la,.g-las{color:var(--die)}
 .secoue{animation:secoue .35s}
 @keyframes secoue{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
@@ -172,8 +173,8 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    son article) et s'isole du texte qui l'entoure ; les <b> des explications
    sont de l'allemand aussi. Sans cet isolement, « unter dem Tisch. » dans une
    phrase persane voit son point sauter a l'autre bout. */
-[lang=de]{unicode-bidi:isolate}
-[dir=rtl] [lang=de],[dir=rtl] .explication b{direction:ltr;unicode-bidi:isolate}
+[lang=de],[lang=es]{unicode-bidi:isolate}
+[dir=rtl] [lang=de],[dir=rtl] [lang=es],[dir=rtl] .explication b{direction:ltr;unicode-bidi:isolate}
 /* Les compteurs « 2 / 3 » : sans strong, ils se liraient « 3 / 2 » en RTL. */
 .compte{direction:ltr;unicode-bidi:isolate}
 [dir=rtl] .score{direction:ltr;text-align:left}
@@ -208,6 +209,11 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    file://, et le prototype doit s'ouvrir d'un double-clic. */
 const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
   .replace(/[^a-z-]/g, "") || "klassenzimmer";
+/* LA LANGUE APPRISE (10 oct. 2026) : ?apprendre=es, passe par l'app. La
+   scene espagnole est la MEME scene -- image, zones, masques -- avec ses mots
+   espagnols : scene-<nom>.es.js, fait par construire.py depuis espanol/. */
+const APPRENDRE = new URLSearchParams(location.search).get("apprendre") === "es" ? "es" : "de";
+const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : "";
 /* ?t= : jamais la version en cache. Le telephone de Jacques a melange une
    ancienne image et de nouvelles coordonnees (6 oct.) ; un prototype qu'on
    corrige toutes les dix minutes ne doit rien garder. */
@@ -221,7 +227,7 @@ const FRAIS = "?t=" + Date.now();
    et a mesure, sous le nom de la vue, avant que la suivante les ecrase. */
 const RANGER = v => `<script>window.SCENES=window.SCENES||{};window.MASQUES_DE=window.MASQUES_DE||{};`
   + `window.SCENES["${v}"]=window.SCENE;window.MASQUES_DE["${v}"]=window.MASQUES;<\/script>`;
-document.write(`<script src="scene-${NOM_SCENE}.js${FRAIS}"><\/script>`
+document.write(`<script src="scene-${NOM_SCENE}${SUFFIXE_LANGUE}.js${FRAIS}"><\/script>`
              + `<script src="masques-${NOM_SCENE}.js${FRAIS}"><\/script>` + RANGER(NOM_SCENE));
 </script>
 <script>
@@ -231,11 +237,30 @@ document.write(`<script src="scene-${NOM_SCENE}.js${FRAIS}"><\/script>`
    score de la seance survit au changement d'image. */
 for (const v of (window.SCENES[NOM_SCENE].vues || []))
   if (v !== NOM_SCENE && /^[a-z-]+$/.test(v))
-    document.write(`<script src="scene-${v}.js${FRAIS}"><\/script>`
+    document.write(`<script src="scene-${v}${SUFFIXE_LANGUE}.js${FRAIS}"><\/script>`
                  + `<script src="masques-${v}.js${FRAIS}"><\/script>` + RANGER(v));
 </script>
 <script>
 "use strict";
+const EST_ES = APPRENDRE === "es";
+const LATAM = EST_ES && new URLSearchParams(location.search).get("variante") === "latam";
+const LANG_CIBLE = EST_ES ? "es" : "de";
+/* Les deux mots de la langue apprise que la page dit elle-meme. */
+const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!", suite: "Seguir"} : {juste: "Richtig!", suite: "Weiter"};
+/* Le pluriel : l'allemand dit toujours « die », l'espagnol porte son article
+   (los / las) dans le fichier de la scene. */
+const plurielDe = n => EST_ES ? n.pluriel : "die " + n.pluriel;
+/* La carte de l'app garde le mot d'Espagne (movil) et ne fait que MONTRER
+   celui d'ici (celular) : une revision envoyee a l'app doit donc porter le
+   mot d'Espagne, sinon elle ne trouve pas sa carte. */
+const BASE_DE = {};
+if (LATAM)
+  for (const s of Object.values(window.SCENES))
+    for (const p of s.points)
+      for (const m of [p, ...p.aussi]) if (m.latam){
+        BASE_DE[m.latam.mot] = {mot: m.mot, genre: m.genre};
+        Object.assign(m, m.latam);
+      }
 let VUE = NOM_SCENE;
 const VUES = window.SCENES[NOM_SCENE].vues || [NOM_SCENE];
 let S = window.SCENES[VUE];
@@ -473,15 +498,17 @@ function bravo(){ confettis(); sonBravo(); }
 let voixDe = null;
 function chargerVoix(){
   const v = speechSynthesis.getVoices();
-  voixDe = v.find(x => /^de(-|_)DE/i.test(x.lang) && /google|natural|online/i.test(x.name))
-        || v.find(x => /^de/i.test(x.lang)) || null;
+  const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : /^de(-|_)DE/i;
+  const langue = EST_ES ? /^es/i : /^de/i;
+  voixDe = v.find(x => pays.test(x.lang) && /google|natural|online/i.test(x.name))
+        || v.find(x => pays.test(x.lang)) || v.find(x => langue.test(x.lang)) || null;
 }
 if ("speechSynthesis" in window){ chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }
 function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
-  u.lang = "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92;
+  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92;
   speechSynthesis.speak(u);
 }
 /* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix
@@ -489,7 +516,8 @@ function direTelephone(t){
    caracteres, sur Firebase Hosting. Un fichier qui manque (un mot ajoute
    depuis la derniere generation, une phrase de scene pas encore enregistree)
    retombe sur la voix du telephone. */
-const AUDIO_BASE = "https://deutschai-b6fbb.web.app/", AUDIO_REVISION = "7";
+const AUDIO_BASE = "https://deutschai-b6fbb.web.app/" + (EST_ES ? (LATAM ? "es-419/" : "es-es/") : ""),
+      AUDIO_REVISION = "7";
 const audioAbsents = new Set();
 let audioEnCours = null;
 /* ⚠️ L'EMPREINTE EST SYNCHRONE, ET C'EST TOUT LE SUJET (v742). La version
@@ -695,7 +723,7 @@ $("voirZones").addEventListener("change", e => {
 });
 function groupe(p){
   const art = p.genre || "";
-  return `<span lang="de"><span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span></span>`;
+  return `<span lang="${LANG_CIBLE}"><span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span></span>`;
 }
 /* Tous les noms d'une zone, le principal d'abord. En « Trouve ! », l'etiquette
    montre le mot DEMANDE : on demande die Frau et on touche Anna, elle dit
@@ -717,7 +745,7 @@ function etiquette(id, quel){
   // Le nom seul, sans la liste de ses autres noms : voir le crayon dans la
   // liste d'Anna ne voulait rien dire, et la liste melait tout (Jacques, 6 oct.).
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
-              + `<span class="fr">${sensDe(n)}${n.pluriel ? " · " + T("pluriel") + ` <span lang="de">die ${n.pluriel}</span>` : ""}</span>`;
+              + `<span class="fr">${sensDe(n)}${n.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(n)}</span>` : ""}</span>`;
   scene.appendChild(e);
   // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
   // on la ramene dans le cadre apres l'avoir mesuree.
@@ -835,7 +863,7 @@ function etiquetteGros(id){
   e.className = "etiquette" + (dessous ? " dessous" : "");
   e.style.left = Math.min(80, Math.max(20, (cx - x) / w * 100)) + "%";
   e.style.top = (dessous ? (cy + ry - y) / h * 100 + 1 : haut - 1) + "%";
-  e.innerHTML = groupe(p) + `<span class="fr">${sensDe(p)}${p.pluriel ? " · " + T("pluriel") + ` <span lang="de">die ${p.pluriel}</span>` : ""}</span>`;
+  e.innerHTML = groupe(p) + `<span class="fr">${sensDe(p)}${p.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(p)}</span>` : ""}</span>`;
   zoom.el.appendChild(e);
 }
 
@@ -903,7 +931,8 @@ function envoyer(type, donnees){
    par question : la reponse est jugee au premier geste, comme une carte. */
 function reviser(m, juste){
   if (!EN_SEANCE || !m || !m.mot) return;
-  envoyer("reponse", {mot: m.mot, genre: m.genre || null, theme: m.theme || null,
+  const b = BASE_DE[m.mot] || m;
+  envoyer("reponse", {mot: b.mot, genre: b.genre || null, theme: m.theme || null,
                       cat: m.cat || "nom", juste: !!juste});
 }
 if (EN_SEANCE) document.body.classList.add("en-seance");
@@ -1026,7 +1055,7 @@ let fileTrouver = [];
    remonte « sur » jusqu'au bout (l'oreille -> Mark). Une personne : un
    prenom, ou une zone qui porte der Mann / die Frau. */
 const racine = z => { for (let n = 0; z.sur && P[z.sur] && n < 5; n++) z = P[z.sur]; return z; };
-const estPersonne = z => !!z.personne || [z.mot, ...z.aussi.map(a => a.mot)].some(m => m === "Mann" || m === "Frau");
+const estPersonne = z => !!z.personne || [z.mot, ...z.aussi.map(a => a.mot)].some(m => m === "Mann" || m === "Frau" || m === "hombre" || m === "mujer");
 const nomDe = z => z.personne ? `<b>${z.personne}</b>` : groupe(z);
 /* Le proprietaire, si TOUTES les zones du mot sont des parties d'UNE seule
    personne (das Ohr -> Mark). Sinon rien : die Brille est au prof et a la
@@ -1124,10 +1153,10 @@ function toucher(id, pt){
       for (const q of S.points){ const a = q.aussi.find(x => x.mot === mot); if (a) return sensDe(a); } return ""; };
     const demande = A_TROUVER.find(t => t.mot === cible);
     const traduit = g => `${groupe(g)} <i>= ${sens(g.mot)}</i>`;
-    $("bas").innerHTML = `<div class="explication">${juste ? `<span lang="de">Richtig!</span> ` + traduit(demande) + "." + autres
+    $("bas").innerHTML = `<div class="explication">${juste ? `<span lang="${LANG_CIBLE}">${MOTS_CIBLE.juste}</span> ` + traduit(demande) + "." + autres
         : traduit(demande) + " : " + T("cetait") + " " + (bonnes.length > 1 ? T("unDeCes") : T("ici"))
           + ". " + T("avaisTouche") + " " + traduit(p) + "."}</div>
-                          <button class="suite" id="suite" lang="de">Weiter</button>`;
+                          <button class="suite" id="suite" lang="${LANG_CIBLE}">${MOTS_CIBLE.suite}</button>`;
     $("suite").addEventListener("click", () => {
       i++; verrou = false; fermerGrosPlan(); effacer();
       if (etapeTrouve){ etapeTrouve = false; attenteToucher = null; poser(); } else trouver();
@@ -1151,9 +1180,9 @@ function poser(){
   const bas = id => { if (!id) return 0; const [,y,,h] = englobe(P[id]); return y + h; };
   $("bas").classList.toggle("en-haut", Math.max(bas(q.f), bas(q.r)) > 62);
   const niv = q._niv || niveau;
-  entete(niv + " · " + COUCHES[niv].titre + "  " + compte(i+1, c.ordre.length), `<span lang="de">${q.q}</span>`, false);
+  entete(niv + " · " + COUCHES[niv].titre + "  " + compte(i+1, c.ordre.length), `<span lang="${LANG_CIBLE}">${q.q}</span>`, false);
   const opts = melanger(q.c.map((t,k) => ({t, ok:k === 0})));
-  $("bas").innerHTML = opts.map((o,k) => `<button class="choix" lang="de" data-k="${k}">${o.t}</button>`).join("")
+  $("bas").innerHTML = opts.map((o,k) => `<button class="choix" lang="${LANG_CIBLE}" data-k="${k}">${o.t}</button>`).join("")
                      + `<div class="score">${compte(bons, faits)}</div>`;
   $("bas").querySelectorAll(".choix").forEach((b,k) => b.addEventListener("click", () => repondre(q, opts, k)));
 }
@@ -1185,9 +1214,9 @@ function repondre(q, opts, k){
   if (q.r) anneau(q.r, true);
   const ex = document.createElement("div");
   ex.className = "explication";
-  ex.innerHTML = (juste ? `<span lang="de">Richtig!</span> ` : "") + q.n;
+  ex.innerHTML = (juste ? `<span lang="${LANG_CIBLE}">${MOTS_CIBLE.juste}</span> ` : "") + q.n;
   const suite = document.createElement("button");
-  suite.className = "suite"; suite.lang = "de"; suite.textContent = "Weiter";
+  suite.className = "suite"; suite.lang = LANG_CIBLE; suite.textContent = MOTS_CIBLE.suite;
   suite.addEventListener("click", () => { i++; verrou = false; poser(); });
   const sc = $("bas").querySelector(".score"); sc.innerHTML = compte(bons, faits);
   $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
