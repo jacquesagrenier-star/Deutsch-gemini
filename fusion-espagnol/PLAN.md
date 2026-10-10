@@ -178,6 +178,17 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    mènent à des exercices allemands et leurs libellés manquent).
 
 5. **Les verbes** : les temps espagnols, la conjugaison, l'affichage.
+   ✅ **Fait en v734 (10 oct. 2026).** L'essentiel était déjà fait à l'étape 3
+   (conjugaison, trois temps au verso). Les exercices par temps sont
+   espagnols et aucun n'emploie *vosotros* : rien à filtrer en Amérique
+   latine. Les verbes qui changent sont cités en note dans les deux modes
+   (`variantes.json`, section `verbes`) : conducir/manejar,
+   aparcar/estacionar, enfadarse/enojarse, et coger (« tomar, agarrar —
+   coger y est souvent grossier »). Libellé périmé du fork corrigé (« Le
+   présent — les autres temps arrivent », alors que les cinq temps existent).
+   L'écran d'explication des adverbes est rendu : ses 56 exercices existent
+   en espagnol, seuls ses deux libellés de boutons manquaient.
+
 6. **Les comptes.** L'espagnol passe par Firebase comme l'allemand : connexion,
    sauvegarde dans le cloud, codes d'invitation du tableau admin, bouton
    « Signaler un problème », suivi du parcours. Sa progression rangée à part

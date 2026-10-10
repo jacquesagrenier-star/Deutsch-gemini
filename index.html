@@ -3272,7 +3272,6 @@ html[data-apprendre="es"] [data-orbid="vhskapitel"]{ display:none !important; }
    Masquees, pas supprimees : le jour ou le corpus porte des categories,
    il suffit de retirer ces trois lignes.
    ------------------------------------------------------------------ */
-html[data-apprendre="es"] .orb-opt[onclick*="openAdverbienInfo"],
 html[data-apprendre="es"] .orb-opt[onclick*="openRedewendungenInfo"]{ display:none !important; }
 
 /* Options restees allemandes -- voir le commentaire de ACCIONES_SIN_OBJETO. */
@@ -7188,7 +7187,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v733</span>
+    <span class="subtitle-version">v734</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -16931,7 +16930,7 @@ const I18N_ESPAGNOL = {
         "reflexiv_badge_label": "pronominal (-se)",
         "auth_value_1": "Vocabulaire et grammaire espagnole organisés par niveau, du A1 au B2.",
         "setup_learning_de": "Espagnol",
-        "op_verben_o4_d": "Le présent — les autres temps arrivent",
+        "op_verben_o4_d": "Presente, pretérito, imperfecto, subjuntivo",
         "op_adjektive_sub": "accord & vocabulaire",
         "label_case_word": "Emploi",
         "op_schreiben_title": "Écrire en espagnol",
@@ -17015,7 +17014,7 @@ const I18N_ESPAGNOL = {
         "reflexiv_badge_label": "pronominal (-se)",
         "auth_value_1": "Spanish vocabulary and grammar organized by level, from A1 to B2.",
         "setup_learning_de": "Spanish",
-        "op_verben_o4_d": "Present tense — the other tenses are still to come",
+        "op_verben_o4_d": "Present, preterite, imperfect, subjunctive",
         "op_adjektive_sub": "agreement & vocabulary",
         "op_kasus_sub": "ser · estar",
         "label_case_word": "Use",
@@ -19155,6 +19154,18 @@ async function loadVerbeJson() {
                 });
             });
         });
+        // Les verbes qui changent en Amerique latine (fusion, etape 5) : pas
+        // remplaces -- il faudrait toute leur conjugaison --, cites en note.
+        if(LANGUE_APPRISE === "es"){
+            const vv = ((await chargerVariantesEspagnol()) || {}).verbes || {};
+            words.forEach(w => {
+                const x = vv[w.infinitif];
+                if(!x) return;
+                const rq = x.remarque ? (x.remarque[getUiLang()] || x.remarque.fr) : "";
+                w.registre = "variante_amerique";
+                w.vergleich = x.mot + (rq ? " (" + rq + ")" : "");
+            });
+        }
         verbeTheme.words = words;
     } catch (e) {
         console.warn("Chargement de secours pour verbe.json", e);
@@ -19537,7 +19548,7 @@ async function loadThemesJson() {
         if (!response.ok) throw new Error("Erreur themes.json");
         const rawJson = await response.json();
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
-        const variantesEspagnol = LANGUE_APPRISE === "es" ? await chargerVariantesEspagnol() : null;
+        const variantesEspagnol = LANGUE_APPRISE === "es" ? (((await chargerVariantesEspagnol()) || {}).noms || null) : null;
         
         const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
         const grouped = {};
@@ -29238,7 +29249,7 @@ function loadFlashcard(){
     // restee collee sur la carte suivante jusqu'au premier paquet mixte.
     if(usageEl && getLearningDirection() !== 'en'){
         const marque = usageMarkText(registreDeLaCarte(card, flashcardMode),
-                                     flashcardMode === 'nomen' ? (card[11] || "") : "");
+                                     flashcardMode === 'nomen' ? (card[11] || "") : ((card && card.vergleich) || ""));
         if(marque){
             usageEl.textContent = marque;
             usageEl.classList.remove("hidden");
@@ -30568,12 +30579,14 @@ function registreDeLaCarte(card, mode){
 // noms qui changent entre l'Espagne et l'Amerique latine. Les rangs de la
 // carte de nom : 0 mot, 1 article, 2 pluriel, 5 exemple, 10 marque d'usage,
 // 11 le mot compare. Absent ou illisible : le cours reste celui d'Espagne.
-async function chargerVariantesEspagnol(){
-    try{
-        const r = await fetch(urlDonnees("variantes.json"), { cache: "no-cache" });
-        if(!r.ok) return null;
-        return (await r.json()).noms || null;
-    }catch(e){ return null; }
+let promesseVariantesEspagnol = null;
+function chargerVariantesEspagnol(){
+    if(!promesseVariantesEspagnol){
+        promesseVariantesEspagnol = fetch(urlDonnees("variantes.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .catch(() => null);
+    }
+    return promesseVariantesEspagnol;
 }
 function appliquerVarianteEspagnol(carte, variantes){
     const v = Array.isArray(carte) ? variantes[carte[0]] : null;
@@ -31811,7 +31824,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 733;
+const APP_VERSION = 734;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
