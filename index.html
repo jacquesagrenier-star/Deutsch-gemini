@@ -6303,9 +6303,9 @@ body[data-theme="dark"] #decouverte > button.primary{
                     <span class="setup-choice-flag">🇩🇪</span>
                     <span data-i18n="setup_learning_de">Allemand</span>
                 </button>
-                <button class="setup-choice" id="setupChoiceDirEn" onclick="selectLearningDirectionChoice('en')">
-                    <span class="setup-choice-flag">🇬🇧</span>
-                    <span data-i18n="setup_learning_en">Anglais</span>
+                <button class="setup-choice" id="setupChoiceDirAutre" onclick="ouvrirAutreLangueApprise()">
+                    <span class="setup-choice-flag" data-autre>🇪🇸</span>
+                    <span data-i18n="setup_learning_autre">Espagnol</span>
                 </button>
             </div>
         </div>
@@ -7068,7 +7068,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v726</span>
+    <span class="subtitle-version">v727</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9223,9 +9223,9 @@ body[data-theme="dark"] #decouverte > button.primary{
                         <span class="setup-choice-flag">🇩🇪</span>
                         <span data-i18n="setup_learning_de">Allemand</span>
                     </button>
-                    <button class="setup-choice" onclick="selectLearningDirectionChoice('en')">
-                        <span class="setup-choice-flag">🇬🇧</span>
-                        <span data-i18n="setup_learning_en">Anglais</span>
+                    <button class="setup-choice" onclick="ouvrirAutreLangueApprise()">
+                        <span class="setup-choice-flag" data-autre>🇪🇸</span>
+                        <span data-i18n="setup_learning_autre">Espagnol</span>
                     </button>
                 </div>
             </div>
@@ -10542,6 +10542,7 @@ const I18N = {
         setup_learning_label: "Qu'est-ce que tu apprends ?",
         setup_learning_de: "Allemand",
         setup_learning_en: "Anglais",
+        setup_learning_autre: "Espagnol",
         setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_niveau_label: "Tu connais déjà un peu d'allemand ?",
@@ -11618,6 +11619,7 @@ const I18N = {
         setup_learning_label: "What are you learning?",
         setup_learning_de: "German",
         setup_learning_en: "English",
+        setup_learning_autre: "Spanish",
         setup_uilang_label: "Which language for the instructions?",
         setup_continue: "CONTINUE",
         setup_niveau_label: "Do you already know some German?",
@@ -12698,6 +12700,7 @@ const I18N = {
         setup_learning_label: "Ne öğreniyorsun?",
         setup_learning_de: "Almanca",
         setup_learning_en: "İngilizce",
+        setup_learning_autre: "İspanyolca",
         setup_uilang_label: "Açıklamalar hangi dilde olsun?",
         setup_continue: "DEVAM",
         setup_niveau_label: "Biraz Almanca biliyor musun?",
@@ -13462,6 +13465,7 @@ const I18N = {
         setup_learning_label: "Що ти вивчаєш?",
         setup_learning_de: "Німецьку",
         setup_learning_en: "Англійську",
+        setup_learning_autre: "Іспанську",
         setup_uilang_label: "Якою мовою показувати пояснення?",
         setup_continue: "ПРОДОВЖИТИ",
         setup_niveau_label: "Ти вже трохи знаєш німецьку?",
@@ -14934,6 +14938,7 @@ const I18N = {
         setup_learning_label: "چه چیزی یاد می‌گیرید؟",
         setup_learning_de: "آلمانی",
         setup_learning_en: "انگلیسی",
+        setup_learning_autre: "اسپانیایی",
         setup_uilang_label: "راهنمایی‌ها به چه زبانی باشد؟",
         setup_continue: "ادامه",
         setup_niveau_label: "از قبل کمی آلمانی بلدی؟",
@@ -15915,6 +15920,7 @@ const I18N = {
         setup_learning_label: "ماذا تتعلّم؟",
         setup_learning_de: "الألمانية",
         setup_learning_en: "الإنجليزية",
+        setup_learning_autre: "الإسبانية",
         setup_uilang_label: "بأي لغة تريد التعليمات؟",
         setup_continue: "متابعة",
         setup_niveau_label: "هل لديك معرفة سابقة بالألمانية؟",
@@ -16960,9 +16966,24 @@ function toggleUiLang(){
 // Modèle direct de getUiLang/setUiLang/toggleUiLang ci-dessus, mais pour un axe
 // totalement indépendant : quelle langue est APPRISE (le contenu des cartes),
 // par opposition à la langue de l'INTERFACE (les libellés des boutons/écrans).
+// L'ANGLAIS EN RETRAIT (v727, decide par Jacques le 10 oct. 2026) : l'espagnol
+// prend sa place dans le choix « Qu'est-ce que tu apprends ? ». Le module
+// anglais n'est pas supprime, seulement masque : il etait deja reserve a
+// l'admin, aucun testeur ne l'a vu. Remettre false le fait revenir tel quel.
+const ANGLAIS_EN_RETRAIT = true;
+// L'autre langue apprise vit dans son propre dossier, a cote de la page :
+// l'app espagnole (espanol/), generee depuis celle-ci par fork.py. Le meme
+// lien marche sur le web et dans les apps iPhone et Android, qui chargent
+// ce site. Le fork le remplace par « ../ » pour revenir a l'allemand.
+const AUTRE_LANGUE_APPRISE_URL = "espanol/";
+function ouvrirAutreLangueApprise(){
+    try{ location.href = new URL(AUTRE_LANGUE_APPRISE_URL, location.href).href; }
+    catch(e){ location.href = AUTRE_LANGUE_APPRISE_URL; }
+}
 function getLearningDirection(){
     let dir;
     try{ dir = localStorage.getItem(LEARNING_DIR_KEY); }catch(e){ dir = null; }
+    if(ANGLAIS_EN_RETRAIT && dir === "en") return DEFAULT_LEARNING_DIR;
     return LEARNING_DIRS.includes(dir) ? dir : DEFAULT_LEARNING_DIR;
 }
 
@@ -31040,7 +31061,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 726;
+const APP_VERSION = 727;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
