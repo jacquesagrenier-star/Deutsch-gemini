@@ -310,12 +310,67 @@ $("retourner").addEventListener("click", e => {
 /* Copie de launchConfetti() et de BRAVO_NOTES (index.html de l'app) : la
    scene doit feter une bonne reponse exactement comme les cartes. */
 const BRAVO_NOTES = [1046.5, 1318.51, 1567.98];   // do, mi, sol
-let audioCtx = null;
+/* Le 10 oct. 2026, Jacques : les confettis partent mais on n'entend rien. La
+   scene n'avait copie que le chemin de SECOURS de l'app (oscillateurs Web
+   Audio), qu'iOS coupe quand le bouton silencieux est active. L'app, elle,
+   rend les trois notes hors ligne en un WAV joue par un <audio>, qu'iOS joue
+   meme en silencieux (buildToneBuffer / audioBufferToWavBlob /
+   playMasteredSound) : meme chemin ici, les oscillateurs en secours. */
+let bravoAudio = null;
+(function preparerBravo(){
+  try {
+    const H = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if (!H) return;
+    const ecart = 0.11, duree = 0.35, taux = 44100;
+    const ctx = new H(1, Math.ceil(taux * ((BRAVO_NOTES.length - 1) * ecart + duree + 0.05)), taux);
+    BRAVO_NOTES.forEach((f, k) => {
+      const o = ctx.createOscillator(), g = ctx.createGain(), t = k * ecart;
+      o.type = "triangle"; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.55, t + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.001, t + duree);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(t); o.stop(t + duree + 0.02);
+    });
+    const rendu = ctx.startRendering();
+    const fini = (buf) => {
+      const n = buf.length, vue = new DataView(new ArrayBuffer(44 + n * 2));
+      const ecrire = (p, s) => { for (let i = 0; i < s.length; i++) vue.setUint8(p + i, s.charCodeAt(i)); };
+      ecrire(0, "RIFF"); vue.setUint32(4, 36 + n * 2, true); ecrire(8, "WAVE");
+      ecrire(12, "fmt "); vue.setUint32(16, 16, true); vue.setUint16(20, 1, true);
+      vue.setUint16(22, 1, true); vue.setUint32(24, taux, true);
+      vue.setUint32(28, taux * 2, true); vue.setUint16(32, 2, true); vue.setUint16(34, 16, true);
+      ecrire(36, "data"); vue.setUint32(40, n * 2, true);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < n; i++){
+        const s = Math.max(-1, Math.min(1, d[i]));
+        vue.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+      }
+      bravoAudio = new Audio(URL.createObjectURL(new Blob([vue.buffer], {type: "audio/wav"})));
+      bravoAudio.preload = "auto";
+    };
+    if (rendu && rendu.then) rendu.then(fini).catch(() => {});
+    else ctx.oncomplete = (e) => fini(e.renderedBuffer);   // vieux Safari
+  } catch (e) {}
+})();
 function sonBravo(){
+  try {
+    if (bravoAudio){
+      bravoAudio.currentTime = 0;
+      const p = bravoAudio.play();
+      if (p && p.catch) p.catch(sonBravoSecours);
+      return;
+    }
+  } catch (e) {}
+  sonBravoSecours();
+}
+let audioCtx = null;
+function sonBravoSecours(){
   try {
     const C = window.AudioContext || window.webkitAudioContext;
     if (!C) return;
     audioCtx = audioCtx || new C();
+    if (audioCtx.resume) audioCtx.resume().catch(() => {});
     const t0 = audioCtx.currentTime;
     BRAVO_NOTES.forEach((f, k) => {
       const o = audioCtx.createOscillator(), g = audioCtx.createGain(), t = t0 + k * 0.11;

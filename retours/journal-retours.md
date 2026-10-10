@@ -8047,3 +8047,13 @@ prononcees avec l'indice (« vor Wo (Dativ) Haus. (das Haus) ») -- corrige par
 le champ audioDe, plus un exercice a deux trous pour une seule reponse.
 Restent a la voix du telephone : deux imperatifs refuses par ElevenLabs
 (Toete!, Ernaehre dich!).
+
+## 10 octobre 2026 -- Jacques : dans les scenes, les confettis partent mais aucun son
+
+La scene n'avait copie que le chemin de SECOURS de l'app (oscillateurs Web
+Audio), qu'iOS coupe quand le bouton silencieux est active -- l'app le dit
+elle-meme en commentaire. Corrige dans visuel/prototype/index.html : les trois
+notes sont rendues hors ligne en WAV au chargement et jouees par un <audio>,
+comme playMasteredSound() ; les oscillateurs restent en secours, avec un
+resume() qui manquait. Verifie au PC (WAV de 0,62 s, lecture acceptee) ; reste
+a l'entendre sur l'iPhone.
