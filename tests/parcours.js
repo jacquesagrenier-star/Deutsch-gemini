@@ -93,15 +93,18 @@ async function main(){
     const { initializeApp, cert } = require(path.join(FBA, "app"));
     const { getFirestore } = require(path.join(FBA, "firestore"));
     initializeApp({ credential: cert(require(path.join(OUTILS, "admin.json"))) });
-    const snap = await getFirestore().collection("users").get();
+    // Les deux langues (v735) : la progression espagnole vit dans usuariosEs.
+    const db = getFirestore();
+    const docs = (await db.collection("users").get()).docs.map(d => [d, ""])
+        .concat((await db.collection("usuariosEs").get()).docs.map(d => [d, "es "]));
     const maintenant = Date.now();
     const lignes = [];
-    for(const d of snap.docs){
+    for(const [d, marque] of docs){
         const x = d.data();
         let p = {};
         try{ p = JSON.parse(x.parcoursJson || "{}") || {}; }catch(e){}
         const cree = x.createdAt && x.createdAt.toDate ? x.createdAt.toDate().toISOString() : "";
-        lignes.push({ cree, p, langue: x.langueInterface || "?", vus: x.vusCount || 0, suivi: !!x.parcoursJson,
+        lignes.push({ cree, p, langue: marque + (x.langueInterface || "?"), vus: x.vusCount || 0, suivi: !!x.parcoursJson,
                       seances: seancesRecentes(x.seancesJson, maintenant) });
     }
     lignes.sort((a, b) => (b.cree || "").localeCompare(a.cree || ""));

@@ -66,7 +66,14 @@ async function main(){
     initializeApp({ credential: cert(require(CLE)) });
     let snap;
     try{
-        snap = await getFirestore().collection("users").get();
+        // Les deux langues : `users` (allemand) et `usuariosEs` (espagnol,
+        // depuis la v735). La cle « es: » garde les deux listes de lus a part.
+        const db = getFirestore();
+        const de = await db.collection("users").get();
+        const es = await db.collection("usuariosEs").get();
+        snap = [];
+        de.forEach(d => snap.push({ id: d.id, data: () => d.data(), langue: "" }));
+        es.forEach(d => snap.push({ id: "es:" + d.id, data: () => d.data(), langue: " (espagnol)" }));
     }catch(e){
         // Le defaut le plus probable au premier essai : le compte de service
         // existe mais n'a recu aucun role. On le nomme au lieu de rendre une
@@ -95,7 +102,7 @@ async function main(){
         const dejaVus = vus[doc.id] || [];
         const nouveaux = TOUT ? liste : liste.filter(e => !dejaVus.includes(empreinte(e)));
         if(nouveaux.length) aVoir.push({
-            qui: (u.firstName || "").trim() || u.email || doc.id,
+            qui: ((u.firstName || "").trim() || u.email || doc.id) + doc.langue,
             retours: nouveaux
         });
     });
@@ -108,7 +115,7 @@ async function main(){
 
     if(aVoir.length === 0){
         console.log(total === 0
-            ? "Aucun retour dans la base (" + snap.size + " comptes)."
+            ? "Aucun retour dans la base (" + snap.length + " documents, allemand et espagnol)."
             : "Rien de nouveau. " + total + " retours deja lus, de " + testeurs + " testeurs.");
         return;
     }

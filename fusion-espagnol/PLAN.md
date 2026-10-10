@@ -196,6 +196,19 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    champs). Une règle Firestore à ajouter dans la console : texte fourni.
    Les testeurs actuels gardent leur progression locale, versée dans leur
    compte à la première connexion.
+   ✅ **Fait en v735 (10 oct. 2026).** Un seul compte pour les deux langues :
+   son document `users` (adresse, prénom, code, accès) sert aux deux. La
+   progression espagnole va dans `usuariosEs`, son résumé pour le tableau
+   admin dans `resumenesEs` (`COLL_PROGRESSION`, `RESUMES_COLL`) ; les
+   verrous de l'étape 1 sont retirés. Supprimer son compte efface aussi la
+   progression de l'autre langue. `firestore.rules` porte les deux nouveaux
+   blocs, sur le modèle exact de `users` et `resumes` — **à coller par
+   Jacques dans la console** (le fichier n'est qu'une copie). Tant qu'ils n'y
+   sont pas, la restauration est refusée, donc rien n'est envoyé : la
+   progression espagnole reste sur l'appareil, rien ne se perd.
+   `tests/retours.js` et `tests/parcours.js` lisent aussi `usuariosEs`
+   (marqués « (espagnol) » / « es »). Allemand : 0 écart.
+
 7. **La bascule.** Quand le parcours espagnol du moteur égale la référence :
    `espanol/` devient une simple redirection vers le moteur réglé sur
    l'espagnol, et `fork.py` prend sa retraite.

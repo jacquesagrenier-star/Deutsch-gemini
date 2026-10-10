@@ -7187,7 +7187,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v734</span>
+    <span class="subtitle-version">v735</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -18964,6 +18964,13 @@ async function confirmerSuppressionCompte(){
         // nuage pour toujours -- exactement ce que la suppression promet
         // d'eviter. Ce serait un manquement au RGPD, pas une imperfection.
         await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, 'users', user.uid));
+        // Les deux langues (fusion, etape 6) : chacune a sa progression et son
+        // resume. Un document absent ou une regle pas encore posee ne doit pas
+        // bloquer la suppression du compte.
+        for(const coll of ["usuariosEs", "resumenesEs", "resumes"]){
+            if(coll === RESUMES_COLL) continue;   // efface juste en dessous
+            try{ await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, coll, user.uid)); }catch(e){}
+        }
         // Le resume du tableau de bord est une vitrine derivee, mais il porte
         // l'adresse, le prenom et les retours : il part avec le reste.
         try{
@@ -21521,11 +21528,6 @@ function viderFileCloud(){
 }
 
 async function syncProgressToCloud(){
-    // ⚠️ PAS DE NUAGE EN ESPAGNOL (fusion, etape 1 -> etape 6). Le document
-    // Firestore de la personne porte sa progression ALLEMANDE, sous les memes
-    // noms de champs : l'ecrire depuis l'espagnol l'ecraserait, le lire
-    // remplirait le stockage espagnol avec de l'allemand.
-    if(LANGUE_APPRISE !== "de") return;
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb) return;
     // Filet de securite : tant que la restauration n'a pas abouti, on ne sait
@@ -21728,7 +21730,7 @@ async function syncProgressToCloud(){
         // chronometre que la part synchrone, la seule qui puisse geler.
         marquerGel("progression -> Firestore");
         const aEcrire = sansIndefinis(snapshot, "");
-        const envoi = window.fsSetDoc(window.fsDoc(window.firestoreDb, 'users', user.uid), aEcrire, { merge: true });
+        const envoi = window.fsSetDoc(window.fsDoc(window.firestoreDb, COLL_PROGRESSION, user.uid), aEcrire, { merge: true });
         marquerGel(null);
         await envoi;
 
@@ -21853,12 +21855,11 @@ function mergeWordState(a, b){
 }
 
 async function restoreProgressFromCloud(){
-    if(LANGUE_APPRISE !== "de"){ cloudRestoreDone = true; return; }   // voir syncProgressToCloud
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb){ cloudRestoreDone = true; return; }
     try{
         const snap = await window.fsGetDoc(
-            window.fsDoc(window.firestoreDb, 'users', user.uid));
+            window.fsDoc(window.firestoreDb, COLL_PROGRESSION, user.uid));
         if(!snap.exists()){ cloudRestoreDone = true; return; }
         const data = snap.data() || {};
         // ============ DEUX FORMES, ET ON LES LIT TOUTES LES DEUX (v577) ============
@@ -30185,7 +30186,14 @@ function restaurerBrouillonRetour(){
 // Collection des resumes de testeurs. Voir le commentaire dans
 // syncProgressToCloud : elle existe pour que le tableau de bord n'ait plus a
 // telecharger le champ `progress` de tout le monde.
-const RESUMES_COLL = "resumes";
+// LA PROGRESSION DE CHAQUE LANGUE, A PART (fusion de l'espagnol, etape 6).
+// Le compte reste UN : son document `users` (adresse, prenom, code
+// d'invitation, acces) sert aux deux langues. Mais la progression espagnole
+// porte les MEMES noms de champs que l'allemande : dans le meme document,
+// l'une ecraserait l'autre. Elle vit donc dans `usuariosEs`, et son resume
+// pour le tableau admin dans `resumenesEs`. Regles : firestore.rules.
+const COLL_PROGRESSION = LANGUE_APPRISE === "es" ? "usuariosEs" : "users";
+const RESUMES_COLL = LANGUE_APPRISE === "es" ? "resumenesEs" : "resumes";
 
 const CARTE_MOT_KEY = PREFIXE_STOCKAGE + "carteDitMot";
 const CARTE_PLURIEL_KEY = PREFIXE_STOCKAGE + "carteDitPluriel";
@@ -31824,7 +31832,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 734;
+const APP_VERSION = 735;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
