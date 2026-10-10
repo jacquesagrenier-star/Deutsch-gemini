@@ -678,6 +678,40 @@ window.SCENE = {
    ]
   },
   {
+   "id": "stethoskop",
+   "mot": "Stethoskop",
+   "genre": "das",
+   "pluriel": "Stethoskope",
+   "fr": "stéthoscope",
+   "en": "stethoscope",
+   "niveau": "B1",
+   "theme": "gesundheit_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": "aerztin",
+   "devant": 0,
+   "boites": [
+    [
+     86.10000000000001,
+     56.95,
+     2.6,
+     1.6
+    ],
+    [
+     89.4,
+     49.5,
+     1.6,
+     7.0
+    ],
+    [
+     81.3,
+     51.0,
+     2.4,
+     4.0
+    ]
+   ]
+  },
+  {
    "id": "hand-aerztin-haut",
    "mot": "Hand",
    "genre": "die",

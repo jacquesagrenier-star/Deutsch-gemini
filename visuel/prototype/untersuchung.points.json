@@ -4,7 +4,7 @@
   "Deux vues d'une meme scene : celle-ci et untersuchung-dos (champ autre_vue = le bouton « Retourner Mark »). Chaque vue a ses propres questions Trouve ! : on ne demande pas le mollet sur la vue de face.",
   "Mesures prises sur une grille de 1 % (0,5 % pour le visage) de la source 1536 x 2752, le 9 oct. Gauche et droite sont celles de l'IMAGE (-l, -r).",
   "Mark est de trois quarts vers la medecin : une seule oreille (a gauche de l'image), paumes cachees -- die Handflaeche se cherche sur la vue de DOS.",
-  "Mots absents du corpus, donc absents de la scene : das Stethoskop, der Kittel, die Unterhose (le boxer), der Bauchnabel, die Toise.",
+  "Mots absents du corpus, donc absents de la scene : der Kittel, die Toise. (das Stethoskop, die Unterhose et der Bauchnabel ajoutes au corpus le 10 oct. 2026, zones en ellipses : masques_ellipses.py, sans SAM.)",
   "Les questions A2-C1 (9 oct. 2026) sont un BROUILLON non relu, comme celles de la classe et du medecin."
  ],
  "image": "untersuchung.webp",
@@ -71,8 +71,8 @@
       "auf seinem Bauch",
       "auf seiner Schulter"
      ],
-     "f": "brust",
-     "r": "hand-aerztin-haut",
+     "f": "stethoskop",
+     "r": "brust",
      "phrase": "Die Ärztin hält das Stethoskop auf seiner Brust.",
      "n": "Datif avec le possessif : die Brust → auf <b>seiner</b> Brust."
     },
@@ -137,7 +137,8 @@
      ],
      "f": "mark",
      "phrase": "Mark hat sich bis auf die Unterhose ausgezogen.",
-     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer."
+     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer.",
+     "r": "unterhose"
     },
     {
      "q": "Die Ärztin ___ ihm das Stethoskop auf die Brust.",
@@ -146,8 +147,8 @@
       "sitzt",
       "stellt"
      ],
-     "f": "brust",
-     "r": "hand-aerztin-haut",
+     "f": "stethoskop",
+     "r": "brust",
      "phrase": "Die Ärztin setzt ihm das Stethoskop auf die Brust.",
      "n": "<b>setzen</b> = poser (mouvement) → auf <b>die</b> Brust (accusatif). <b>sitzen</b> = être assis."
     },
@@ -430,6 +431,19 @@
    "sur": "mark"
   },
   {
+   "id": "bauchnabel",
+   "mot": "Bauchnabel",
+   "ellipses": [
+    [
+     52.0,
+     46.5,
+     1.0,
+     0.7
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
    "id": "arm-l",
    "mot": "Arm",
    "ellipses": [
@@ -547,6 +561,37 @@
    "sur": "mark"
   },
   {
+   "id": "unterhose",
+   "mot": "Unterhose",
+   "ellipses": [
+    [
+     46.5,
+     56.0,
+     13.5,
+     7.0
+    ],
+    [
+     46.5,
+     50.0,
+     13.0,
+     1.6
+    ],
+    [
+     39.5,
+     61.5,
+     7.5,
+     3.3
+    ],
+    [
+     54.5,
+     61.5,
+     6.5,
+     2.8
+    ]
+   ],
+   "sur": "mark"
+  },
+  {
    "id": "knie",
    "mot": "Knie",
    "ellipses": [
@@ -659,6 +704,25 @@
      75.0,
      3.5,
      2.5
+    ]
+   ],
+   "sur": "aerztin"
+  },
+  {
+   "id": "stethoskop",
+   "mot": "Stethoskop",
+   "ellipses": [
+    [
+     55.0,
+     31.15,
+     1.9,
+     1.0
+    ],
+    [
+     81.0,
+     31.5,
+     1.6,
+     2.6
     ]
    ],
    "sur": "aerztin"

@@ -260,7 +260,20 @@ window.SCENE = {
    "niveau": "A2",
    "theme": "koerperteile_a2",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "Gesäß",
+     "genre": "das",
+     "fr": "fesses, postérieur",
+     "niveau": "B2"
+    },
+    {
+     "mot": "Unterhose",
+     "genre": "die",
+     "fr": "caleçon, slip",
+     "niveau": "A2"
+    }
+   ],
    "sur": "mark",
    "devant": 0,
    "boites": [
@@ -708,6 +721,34 @@ window.SCENE = {
    ]
   },
   {
+   "id": "stethoskop",
+   "mot": "Stethoskop",
+   "genre": "das",
+   "pluriel": "Stethoskope",
+   "fr": "stéthoscope",
+   "en": "stethoscope",
+   "niveau": "B1",
+   "theme": "gesundheit_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": "aerztin",
+   "devant": 0,
+   "boites": [
+    [
+     55.0,
+     34.2,
+     3.6,
+     2.0
+    ],
+    [
+     81.19999999999999,
+     30.0,
+     2.8,
+     5.0
+    ]
+   ]
+  },
+  {
    "id": "waage",
    "mot": "Waage",
    "genre": "die",
@@ -891,8 +932,8 @@ window.SCENE = {
       "auf seiner Brust",
       "auf seinem Kopf"
      ],
-     "f": "ruecken",
-     "r": "hand-aerztin-haut",
+     "f": "stethoskop",
+     "r": "ruecken",
      "phrase": "Die Ärztin hält das Stethoskop auf seinem Rücken.",
      "n": "der Rücken → auf <b>seinem</b> Rücken (datif masculin)."
     },
@@ -991,8 +1032,8 @@ window.SCENE = {
       "sitzt",
       "steht"
      ],
-     "f": "ruecken",
-     "r": "hand-aerztin-haut",
+     "f": "stethoskop",
+     "r": "ruecken",
      "phrase": "Die Ärztin setzt das Stethoskop auf seinen Rücken.",
      "n": "Mouvement → <b>setzen</b> + accusatif : auf <b>seinen</b> Rücken."
     },

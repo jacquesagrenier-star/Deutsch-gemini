@@ -144,6 +144,28 @@ window.SCENE = {
    ]
   },
   {
+   "id": "kreide",
+   "mot": "Kreide",
+   "genre": "die",
+   "pluriel": "Kreiden",
+   "fr": "craie",
+   "en": "chalk",
+   "niveau": "A2",
+   "theme": "schule_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "lehrer",
+   "devant": 0,
+   "boites": [
+    [
+     24.799999999999997,
+     48.3,
+     2.2,
+     1.4
+    ]
+   ]
+  },
+  {
    "id": "tuer",
    "mot": "Tür",
    "genre": "die",

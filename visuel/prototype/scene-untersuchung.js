@@ -166,6 +166,28 @@ window.SCENE = {
    ]
   },
   {
+   "id": "bauchnabel",
+   "mot": "Bauchnabel",
+   "genre": "der",
+   "pluriel": "Bauchnabel",
+   "fr": "nombril",
+   "en": "belly button",
+   "niveau": "B1",
+   "theme": "koerperteile_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "boites": [
+    [
+     51.0,
+     45.8,
+     2.0,
+     1.4
+    ]
+   ]
+  },
+  {
    "id": "arm-l",
    "mot": "Arm",
    "genre": "der",
@@ -346,6 +368,46 @@ window.SCENE = {
      63.900000000000006,
      13.2,
      7.6
+    ]
+   ]
+  },
+  {
+   "id": "unterhose",
+   "mot": "Unterhose",
+   "genre": "die",
+   "pluriel": "Unterhosen",
+   "fr": "caleçon, slip",
+   "en": "underpants",
+   "niveau": "A2",
+   "theme": "kleidung_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "mark",
+   "devant": 0,
+   "boites": [
+    [
+     33.0,
+     49.0,
+     27.0,
+     14.0
+    ],
+    [
+     33.5,
+     48.4,
+     26.0,
+     3.2
+    ],
+    [
+     32.0,
+     58.2,
+     15.0,
+     6.6
+    ],
+    [
+     48.0,
+     58.7,
+     13.0,
+     5.6
     ]
    ]
   },
@@ -547,6 +609,34 @@ window.SCENE = {
      72.5,
      7.0,
      5.0
+    ]
+   ]
+  },
+  {
+   "id": "stethoskop",
+   "mot": "Stethoskop",
+   "genre": "das",
+   "pluriel": "Stethoskope",
+   "fr": "stéthoscope",
+   "en": "stethoscope",
+   "niveau": "B1",
+   "theme": "gesundheit_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": "aerztin",
+   "devant": 0,
+   "boites": [
+    [
+     53.1,
+     30.15,
+     3.8,
+     2.0
+    ],
+    [
+     79.4,
+     28.9,
+     3.2,
+     5.2
     ]
    ]
   },
@@ -1509,8 +1599,8 @@ window.SCENE = {
       "auf seinem Bauch",
       "auf seiner Schulter"
      ],
-     "f": "brust",
-     "r": "hand-aerztin-haut",
+     "f": "stethoskop",
+     "r": "brust",
      "phrase": "Die Ärztin hält das Stethoskop auf seiner Brust.",
      "n": "Datif avec le possessif : die Brust → auf <b>seiner</b> Brust."
     },
@@ -1575,7 +1665,8 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark hat sich bis auf die Unterhose ausgezogen.",
-     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer."
+     "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer.",
+     "r": "unterhose"
     },
     {
      "q": "Die Ärztin ___ ihm das Stethoskop auf die Brust.",
@@ -1584,8 +1675,8 @@ window.SCENE = {
       "sitzt",
       "stellt"
      ],
-     "f": "brust",
-     "r": "hand-aerztin-haut",
+     "f": "stethoskop",
+     "r": "brust",
      "phrase": "Die Ärztin setzt ihm das Stethoskop auf die Brust.",
      "n": "<b>setzen</b> = poser (mouvement) → auf <b>die</b> Brust (accusatif). <b>sitzen</b> = être assis."
     },
