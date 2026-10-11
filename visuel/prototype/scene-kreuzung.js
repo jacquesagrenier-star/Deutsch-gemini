@@ -1291,6 +1291,375 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — en ville",
+   "qs": [
+    {
+     "q": "Wo ist die Apotheke?",
+     "c": [
+      "zwischen der Bäckerei und der Post",
+      "neben dem Café",
+      "an der Ecke"
+     ],
+     "f": "apotheke",
+     "r": "post",
+     "phrase": "Die Apotheke ist zwischen der Bäckerei und der Post.",
+     "n": "<b>zwischen</b> + datif pour les deux : zwischen <b>der</b> Bäckerei und <b>der</b> Post."
+    },
+    {
+     "q": "Wo ist das Café?",
+     "c": [
+      "an der Ecke",
+      "zwischen der Bäckerei und der Apotheke",
+      "neben dem Kiosk"
+     ],
+     "f": "cafe",
+     "phrase": "Das Café ist an der Ecke.",
+     "n": "Au coin de la rue : <b>an der</b> Ecke (die Ecke, datif)."
+    },
+    {
+     "q": "Wo ist die Bäckerei?",
+     "c": [
+      "gegenüber dem Kiosk",
+      "neben dem Kiosk",
+      "hinter dem Kiosk"
+     ],
+     "f": "baeckerei",
+     "r": "kiosk",
+     "phrase": "Die Bäckerei ist gegenüber dem Kiosk.",
+     "n": "<b>gegenüber</b> = en face de, toujours au datif : gegenüber <b>dem</b> Kiosk."
+    },
+    {
+     "q": "Wo steht der kleine Briefkasten?",
+     "c": [
+      "vor der Post",
+      "vor der Bäckerei",
+      "neben dem Bus"
+     ],
+     "f": "briefkasten-post",
+     "r": "post",
+     "phrase": "Der kleine Briefkasten steht vor der Post.",
+     "n": "<b>vor</b> + datif : die Post → vor <b>der</b> Post."
+    },
+    {
+     "q": "Wo wartet die Frau im roten Mantel?",
+     "c": [
+      "an der Haltestelle",
+      "vor der Apotheke",
+      "auf dem Radweg"
+     ],
+     "f": "frau-rot",
+     "r": "haltestelle",
+     "phrase": "Die Frau im roten Mantel wartet an der Haltestelle.",
+     "n": "À l'arrêt : <b>an der</b> Haltestelle. Et <b>im</b> roten Mantel = in dem."
+    },
+    {
+     "q": "Wo fährt der Radfahrer?",
+     "c": [
+      "auf dem Radweg",
+      "auf dem Bürgersteig",
+      "im Bus"
+     ],
+     "f": "radfahrer",
+     "r": "radweg",
+     "phrase": "Der Radfahrer fährt auf dem Radweg.",
+     "n": "<b>auf</b> + datif (Wo?) : der Radweg → auf <b>dem</b> Radweg."
+    },
+    {
+     "q": "Wo steht Anna?",
+     "c": [
+      "zwischen der Laterne und der Ampel",
+      "vor der Bäckerei",
+      "an der Haltestelle"
+     ],
+     "f": "anna",
+     "r": "ampel-vorne",
+     "phrase": "Anna steht zwischen der Laterne und der Ampel.",
+     "n": "<b>zwischen</b> + datif : zwischen <b>der</b> Laterne und <b>der</b> Ampel."
+    },
+    {
+     "q": "Wo stehen die Fahrräder?",
+     "c": [
+      "am Fahrradständer",
+      "an der Haltestelle",
+      "vor der Post"
+     ],
+     "f": "fahrradstaender",
+     "phrase": "Die Fahrräder stehen am Fahrradständer.",
+     "n": "<b>am</b> = an + dem. Datif : der Fahrradständer → <b>am</b> Fahrradständer."
+    },
+    {
+     "q": "Wo sind die Fußgänger?",
+     "c": [
+      "auf dem Zebrastreifen",
+      "auf dem Radweg",
+      "im Café"
+     ],
+     "f": "fussgaenger",
+     "r": "zebrastreifen",
+     "phrase": "Die Fußgänger sind auf dem Zebrastreifen.",
+     "n": "<b>auf</b> + datif : der Zebrastreifen → auf <b>dem</b> Zebrastreifen."
+    },
+    {
+     "q": "Wo steht der Kiosk?",
+     "c": [
+      "auf dem Bürgersteig",
+      "auf der Straße",
+      "in der Bäckerei"
+     ],
+     "f": "kiosk",
+     "r": "buergersteig",
+     "phrase": "Der Kiosk steht auf dem Bürgersteig.",
+     "n": "<b>auf</b> + datif : der Bürgersteig → auf <b>dem</b> Bürgersteig."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Indiquer le chemin",
+   "qs": [
+    {
+     "q": "Anna fragt: „Entschuldigung, wie komme ich ___ Apotheke?“",
+     "c": [
+      "zur",
+      "zum",
+      "nach"
+     ],
+     "f": "anna",
+     "r": "apotheke",
+     "phrase": "Entschuldigung, wie komme ich zur Apotheke?",
+     "n": "Vers un lieu : <b>zu</b> + datif. zu + der = <b>zur</b>. <b>nach</b> ne sert que pour les villes et les pays."
+    },
+    {
+     "q": "„Gehen Sie ___ die Straße, dort am Zebrastreifen.“",
+     "c": [
+      "über",
+      "durch",
+      "um"
+     ],
+     "f": "zebrastreifen",
+     "phrase": "Gehen Sie über die Straße, dort am Zebrastreifen.",
+     "n": "Traverser : <b>über</b> + accusatif (un mouvement) — über <b>die</b> Straße."
+    },
+    {
+     "q": "„Warten Sie, bis die Ampel grün ___.“",
+     "c": [
+      "wird",
+      "ist",
+      "werden"
+     ],
+     "f": "ampel-vorne",
+     "phrase": "Warten Sie, bis die Ampel grün wird.",
+     "n": "Devenir : <b>werden</b>. La subordonnée envoie le verbe à la fin : bis die Ampel grün <b>wird</b>."
+    },
+    {
+     "q": "„Die Apotheke ist dann direkt ___ Ihnen, zwischen der Bäckerei und der Post.“",
+     "c": [
+      "vor",
+      "nach",
+      "bei"
+     ],
+     "f": "apotheke",
+     "r": "baeckerei",
+     "phrase": "Die Apotheke ist dann direkt vor Ihnen.",
+     "n": "Devant vous : <b>vor</b> + datif → vor <b>Ihnen</b>."
+    },
+    {
+     "q": "„Und die Post? Gehen Sie ___ Apotheke vorbei, dann sind Sie da.“",
+     "c": [
+      "an der",
+      "an die",
+      "bei der"
+     ],
+     "f": "post",
+     "r": "apotheke",
+     "phrase": "Gehen Sie an der Apotheke vorbei, dann sind Sie da.",
+     "n": "<b>an</b> + datif <b>… vorbei</b> = passer devant : an <b>der</b> Apotheke vorbei."
+    },
+    {
+     "q": "Der Lieferwagen kommt aus ___ Seitenstraße.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "lieferwagen",
+     "phrase": "Der Lieferwagen kommt aus der Seitenstraße.",
+     "n": "<b>aus</b> est toujours suivi du datif, même pour un mouvement : aus <b>der</b> Seitenstraße."
+    },
+    {
+     "q": "Die Fußgänger gehen über ___ Zebrastreifen.",
+     "c": [
+      "den",
+      "dem",
+      "der"
+     ],
+     "f": "fussgaenger",
+     "r": "zebrastreifen",
+     "phrase": "Die Fußgänger gehen über den Zebrastreifen.",
+     "n": "Ils traversent (Wohin?) → accusatif : über <b>den</b> Zebrastreifen."
+    },
+    {
+     "q": "Gleich geht Anna in ___ Bäckerei.",
+     "c": [
+      "die",
+      "der",
+      "das"
+     ],
+     "f": "baeckerei",
+     "r": "anna",
+     "phrase": "Gleich geht Anna in die Bäckerei.",
+     "n": "Wohin? → accusatif : in <b>die</b> Bäckerei. <b>in der</b> Bäckerei répondrait à Wo?"
+    },
+    {
+     "q": "„___ Sie bitte nicht bei Rot über die Straße!“",
+     "c": [
+      "Gehen",
+      "Geht",
+      "Gehst"
+     ],
+     "f": "ampel-vorne",
+     "phrase": "Gehen Sie bitte nicht bei Rot über die Straße!",
+     "n": "L'impératif de politesse : le verbe d'abord, puis <b>Sie</b> — <b>Gehen Sie</b>."
+    },
+    {
+     "q": "„Das Café? Das ist an ___ Ecke, gleich neben der Seitenstraße.“",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "cafe",
+     "phrase": "Das Café ist an der Ecke, gleich neben der Seitenstraße.",
+     "n": "Un état (Wo?) → datif : die Ecke → an <b>der</b> Ecke."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Génitif et relatives",
+   "qs": [
+    {
+     "q": "___ des Bürgersteigs verläuft ein roter Radweg.",
+     "c": [
+      "Entlang",
+      "Gegenüber",
+      "Trotz"
+     ],
+     "f": "radweg",
+     "r": "buergersteig",
+     "phrase": "Entlang des Bürgersteigs verläuft ein roter Radweg.",
+     "n": "<b>entlang</b> placé devant le nom prend le génitif : entlang <b>des</b> Bürgersteigs. Placé après, l'accusatif : den Bürgersteig entlang."
+    },
+    {
+     "q": "___ des Kiosks steht ein gelber Briefkasten.",
+     "c": [
+      "Unweit",
+      "Wegen",
+      "Während"
+     ],
+     "f": "briefkasten",
+     "r": "kiosk",
+     "phrase": "Unweit des Kiosks steht ein gelber Briefkasten.",
+     "n": "<b>unweit</b> (non loin de) + génitif : unweit <b>des</b> Kiosks."
+    },
+    {
+     "q": "Trotz ___ nassen Straße fährt der Radfahrer schnell.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "radfahrer",
+     "phrase": "Trotz der nassen Straße fährt der Radfahrer schnell.",
+     "n": "<b>trotz</b> + génitif : die Straße → trotz <b>der</b> nassen Straße (génitif féminin = der)."
+    },
+    {
+     "q": "Die Frau, ___ Mantel rot ist, wartet auf den Bus.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "frau-rot",
+     "r": "haltestelle",
+     "phrase": "Die Frau, deren Mantel rot ist, wartet auf den Bus.",
+     "n": "Possession, antécédent féminin (die Frau) → <b>deren</b> (dont le manteau)."
+    },
+    {
+     "q": "Der Mann, ___ einen Rucksack trägt, geht über den Zebrastreifen.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "fussgaenger",
+     "phrase": "Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.",
+     "n": "Sujet de la relative, masculin → <b>der</b>."
+    },
+    {
+     "q": "Das Café, vor ___ Tische stehen, hat eine rote Markise.",
+     "c": [
+      "dem",
+      "das",
+      "den"
+     ],
+     "f": "cafe",
+     "r": "markise",
+     "phrase": "Das Café, vor dem Tische stehen, hat eine rote Markise.",
+     "n": "<b>vor</b> + relatif, un état (Wo?) → datif : das Café → <b>vor dem</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna schaut ratlos auf ihr Handy: Sie ___ sich verlaufen haben.",
+     "c": [
+      "dürfte",
+      "will",
+      "soll"
+     ],
+     "f": "anna",
+     "phrase": "Sie dürfte sich verlaufen haben.",
+     "n": "<b>dürfte</b> + infinitif passé = probablement : on le devine à son air."
+    },
+    {
+     "q": "Die Straße ist nass: Es ___ vorhin geregnet haben.",
+     "c": [
+      "muss",
+      "darf",
+      "will"
+     ],
+     "f": "strasse",
+     "phrase": "Es muss vorhin geregnet haben.",
+     "n": "<b>muss</b> + infinitif passé = presque certain, déduit de ce qu'on voit : la rue mouillée."
+    },
+    {
+     "q": "Wäre die Ampel grün, ___ Anna schon über die Straße gegangen.",
+     "c": [
+      "wäre",
+      "hätte",
+      "würde"
+     ],
+     "f": "ampel-vorne",
+     "r": "anna",
+     "phrase": "Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.",
+     "n": "Irréel du passé avec un verbe de mouvement : <b>sein</b> → <b>wäre</b> … gegangen."
+    },
+    {
+     "q": "Niemand weiß, wohin der Lieferwagen fährt. Er ___ Waren für das Café bringen.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "lieferwagen",
+     "r": "cafe",
+     "phrase": "Er könnte Waren für das Café bringen.",
+     "n": "<b>könnte</b> = c'est possible, sans preuve. <b>muss</b> serait une certitude."
+    }
+   ]
   }
  },
  "traductions": {
@@ -1300,9 +1669,44 @@ window.SCENE = {
     "consigne": "Anna is looking for her way in Berlin. Tap a building, a vehicle or a person."
    },
    "couches": {
-    "A1": "Nouns and articles"
+    "A1": "Nouns and articles",
+    "A2": "Wo? — in town",
+    "B1": "Giving directions",
+    "B2": "Genitive and relative clauses",
+    "C1": "Guesses"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + dative for both: zwischen <b>der</b> Bäckerei und <b>der</b> Post.",
+    "A2 | Das Café ist an der Ecke.": "On the corner: <b>an der</b> Ecke (die Ecke, dative).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = opposite, always with the dative: gegenüber <b>dem</b> Kiosk.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + dative: die Post → vor <b>der</b> Post.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "At the stop: <b>an der</b> Haltestelle. And <b>im</b> roten Mantel = in dem.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + dative (Wo?): der Radweg → auf <b>dem</b> Radweg.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + dative: zwischen <b>der</b> Laterne und <b>der</b> Ampel.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = an + dem. Dative: der Fahrradständer → <b>am</b> Fahrradständer.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + dative: der Zebrastreifen → auf <b>dem</b> Zebrastreifen.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + dative: der Bürgersteig → auf <b>dem</b> Bürgersteig.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Towards a place: <b>zu</b> + dative. zu + der = <b>zur</b>. <b>nach</b> is only for towns and countries.",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Crossing: <b>über</b> + accusative (a movement) — über <b>die</b> Straße.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "To become: <b>werden</b>. The subordinate clause sends the verb to the end: bis die Ampel grün <b>wird</b>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "In front of you: <b>vor</b> + dative → vor <b>Ihnen</b>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<b>an</b> + dative <b>… vorbei</b> = to go past: an <b>der</b> Apotheke vorbei.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> always takes the dative, even for a movement: aus <b>der</b> Seitenstraße.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "They are crossing (Wohin?) → accusative: über <b>den</b> Zebrastreifen.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Wohin? → accusative: in <b>die</b> Bäckerei. <b>in der</b> Bäckerei would answer Wo?",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "The polite imperative: the verb first, then <b>Sie</b> — <b>Gehen Sie</b>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "A position (Wo?) → dative: die Ecke → an <b>der</b> Ecke.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> before the noun takes the genitive: entlang <b>des</b> Bürgersteigs. After it, the accusative: den Bürgersteig entlang.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (not far from) + genitive: unweit <b>des</b> Kiosks.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + genitive: die Straße → trotz <b>der</b> nassen Straße (feminine genitive = der).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Possession, feminine antecedent (die Frau) → <b>deren</b> (whose coat).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Subject of the relative clause, masculine → <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + relative pronoun, a position (Wo?) → dative: das Café → <b>vor dem</b>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + past infinitive = probably: you can tell from her face.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + past infinitive = almost certain, deduced from what you see: the wet street.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Unreal past with a verb of movement: <b>sein</b> → <b>wäre</b> … gegangen.",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = it's possible, with no proof. <b>muss</b> would be a certainty."
+   }
   },
   "tr": {
    "champs": {
@@ -1310,9 +1714,44 @@ window.SCENE = {
     "consigne": "Anna Berlin'de yolunu arıyor. Bir binaya, bir araca ya da bir kişiye dokun."
    },
    "couches": {
-    "A1": "İsimler ve artikeller"
+    "A1": "İsimler ve artikeller",
+    "A2": "Wo? — şehirde",
+    "B1": "Yol tarifi",
+    "B2": "Genitiv ve ilgi cümleleri",
+    "C1": "Tahminler"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + ikisi için de Dativ: zwischen <b>der</b> Bäckerei und <b>der</b> Post.",
+    "A2 | Das Café ist an der Ecke.": "Köşede: <b>an der</b> Ecke (die Ecke, Dativ).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = karşısında, her zaman Dativ: gegenüber <b>dem</b> Kiosk.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + Dativ: die Post → vor <b>der</b> Post.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "Durakta: <b>an der</b> Haltestelle. <b>im</b> roten Mantel = in dem.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + Dativ (Wo?): der Radweg → auf <b>dem</b> Radweg.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + Dativ: zwischen <b>der</b> Laterne und <b>der</b> Ampel.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = an + dem. Dativ: der Fahrradständer → <b>am</b> Fahrradständer.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + Dativ: der Zebrastreifen → auf <b>dem</b> Zebrastreifen.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + Dativ: der Bürgersteig → auf <b>dem</b> Bürgersteig.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Bir yere doğru: <b>zu</b> + Dativ. zu + der = <b>zur</b>. <b>nach</b> yalnızca şehir ve ülkeler için.",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Karşıya geçmek: <b>über</b> + Akkusativ (bir hareket) — über <b>die</b> Straße.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Olmak (dönüşmek): <b>werden</b>. Yan cümlede fiil sona gider: bis die Ampel grün <b>wird</b>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Önünüzde: <b>vor</b> + Dativ → vor <b>Ihnen</b>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<b>an</b> + Dativ <b>… vorbei</b> = önünden geçmek: an <b>der</b> Apotheke vorbei.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> hareket olsa bile her zaman Dativ alır: aus <b>der</b> Seitenstraße.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Karşıya geçiyorlar (Wohin?) → Akkusativ: über <b>den</b> Zebrastreifen.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Wohin? → Akkusativ: in <b>die</b> Bäckerei. <b>in der</b> Bäckerei, Wo? sorusunun cevabı olurdu.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Kibar emir kipi: önce fiil, sonra <b>Sie</b> — <b>Gehen Sie</b>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Bir durum (Wo?) → Dativ: die Ecke → an <b>der</b> Ecke.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> isimden önce gelirse Genitiv alır: entlang <b>des</b> Bürgersteigs. Sonra gelirse Akkusativ: den Bürgersteig entlang.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (-in yakınında) + Genitiv: unweit <b>des</b> Kiosks.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + Genitiv: die Straße → trotz <b>der</b> nassen Straße (dişil Genitiv = der).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Sahiplik, dişil öncül (die Frau) → <b>deren</b> (mantosu … olan).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "İlgi cümlesinin öznesi, eril → <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + ilgi zamiri, bir durum (Wo?) → Dativ: das Café → <b>vor dem</b>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + geçmiş mastar = muhtemelen: yüz ifadesinden anlaşılıyor.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + geçmiş mastar = neredeyse kesin, görülenden çıkarılır: ıslak yol.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Hareket fiiliyle gerçek dışı geçmiş: <b>sein</b> → <b>wäre</b> … gegangen.",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = mümkün, kanıt yok. <b>muss</b> kesinlik olurdu."
+   }
   },
   "uk": {
    "champs": {
@@ -1320,9 +1759,44 @@ window.SCENE = {
     "consigne": "Анна шукає дорогу в Берліні. Торкнись будівлі, транспорту чи людини."
    },
    "couches": {
-    "A1": "Іменники й артиклі"
+    "A1": "Іменники й артиклі",
+    "A2": "Wo? — у місті",
+    "B1": "Як пояснити дорогу",
+    "B2": "Genitiv і підрядні означальні",
+    "C1": "Припущення"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + Dativ для обох: zwischen <b>der</b> Bäckerei und <b>der</b> Post.",
+    "A2 | Das Café ist an der Ecke.": "На розі: <b>an der</b> Ecke (die Ecke, Dativ).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = навпроти, завжди з Dativ: gegenüber <b>dem</b> Kiosk.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + Dativ: die Post → vor <b>der</b> Post.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "На зупинці: <b>an der</b> Haltestelle. А <b>im</b> roten Mantel = in dem.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + Dativ (Wo?): der Radweg → auf <b>dem</b> Radweg.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + Dativ: zwischen <b>der</b> Laterne und <b>der</b> Ampel.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = an + dem. Dativ: der Fahrradständer → <b>am</b> Fahrradständer.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + Dativ: der Zebrastreifen → auf <b>dem</b> Zebrastreifen.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + Dativ: der Bürgersteig → auf <b>dem</b> Bürgersteig.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "До якогось місця: <b>zu</b> + Dativ. zu + der = <b>zur</b>. <b>nach</b> — лише для міст і країн.",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Переходити: <b>über</b> + Akkusativ (рух) — über <b>die</b> Straße.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Ставати: <b>werden</b>. У підрядному реченні дієслово йде в кінець: bis die Ampel grün <b>wird</b>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Перед вами: <b>vor</b> + Dativ → vor <b>Ihnen</b>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<b>an</b> + Dativ <b>… vorbei</b> = проходити повз: an <b>der</b> Apotheke vorbei.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> завжди з Dativ, навіть коли є рух: aus <b>der</b> Seitenstraße.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Вони переходять (Wohin?) → Akkusativ: über <b>den</b> Zebrastreifen.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Wohin? → Akkusativ: in <b>die</b> Bäckerei. <b>in der</b> Bäckerei відповідало б на Wo?",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Ввічливий наказовий спосіб: спочатку дієслово, потім <b>Sie</b> — <b>Gehen Sie</b>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Стан (Wo?) → Dativ: die Ecke → an <b>der</b> Ecke.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> перед іменником — Genitiv: entlang <b>des</b> Bürgersteigs. Після нього — Akkusativ: den Bürgersteig entlang.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (недалеко від) + Genitiv: unweit <b>des</b> Kiosks.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + Genitiv: die Straße → trotz <b>der</b> nassen Straße (Genitiv жіночого роду = der).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Належність, означуване слово жіночого роду (die Frau) → <b>deren</b> (чиє пальто).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Підмет підрядного речення, чоловічий рід → <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + відносний займенник, стан (Wo?) → Dativ: das Café → <b>vor dem</b>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + інфінітив минулого = мабуть: це видно з її вигляду.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + інфінітив минулого = майже напевно, висновок з того, що видно: мокра вулиця.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Нереальне минуле з дієсловом руху: <b>sein</b> → <b>wäre</b> … gegangen.",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = можливо, без доказів. <b>muss</b> означало б упевненість."
+   }
   },
   "fa": {
    "champs": {
@@ -1330,9 +1804,44 @@ window.SCENE = {
     "consigne": "آنا در برلین دنبال راهش می‌گردد. یک ساختمان، یک وسیلهٔ نقلیه یا یک آدم را لمس کن."
    },
    "couches": {
-    "A1": "اسم‌ها و حرف‌های تعریف"
+    "A1": "اسم‌ها و حرف‌های تعریف",
+    "A2": "<span lang=\"de\">Wo?</span> — در شهر",
+    "B1": "نشان دادن راه",
+    "B2": "Genitiv و جمله‌های موصولی",
+    "C1": "حدس‌ها"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + Dativ برای هر دو: <span lang=\"de\">zwischen <b>der</b> Bäckerei und <b>der</b> Post</span>.",
+    "A2 | Das Café ist an der Ecke.": "سرِ نبش: <span lang=\"de\"><b>an der</b> Ecke</span> (<span lang=\"de\">die Ecke</span>، Dativ).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = روبه‌روی، همیشه با Dativ: <span lang=\"de\">gegenüber <b>dem</b> Kiosk</span>.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + Dativ: <span lang=\"de\">die Post</span> ← <span lang=\"de\">vor <b>der</b> Post</span>.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "در ایستگاه: <span lang=\"de\"><b>an der</b> Haltestelle</span>. و <span lang=\"de\"><b>im</b> roten Mantel</span> = <span lang=\"de\">in dem</span>.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + Dativ (<span lang=\"de\">Wo?</span>): <span lang=\"de\">der Radweg</span> ← <span lang=\"de\">auf <b>dem</b> Radweg</span>.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + Dativ: <span lang=\"de\">zwischen <b>der</b> Laterne und <b>der</b> Ampel</span>.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = <span lang=\"de\">an + dem</span>. Dativ: <span lang=\"de\">der Fahrradständer</span> ← <span lang=\"de\"><b>am</b> Fahrradständer</span>.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + Dativ: <span lang=\"de\">der Zebrastreifen</span> ← <span lang=\"de\">auf <b>dem</b> Zebrastreifen</span>.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + Dativ: <span lang=\"de\">der Bürgersteig</span> ← <span lang=\"de\">auf <b>dem</b> Bürgersteig</span>.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "به سمتِ یک مکان: <b>zu</b> + Dativ. <span lang=\"de\">zu + der</span> = <b>zur</b>. <b>nach</b> فقط برای شهرها و کشورهاست.",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "عبور کردن: <b>über</b> + Akkusativ (حرکت) — <span lang=\"de\">über <b>die</b> Straße</span>.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "شدن: <b>werden</b>. در جملهٔ وابسته فعل به آخر می‌رود: <span lang=\"de\">bis die Ampel grün <b>wird</b></span>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "جلوی شما: <b>vor</b> + Dativ ← <span lang=\"de\">vor <b>Ihnen</b></span>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<span lang=\"de\"><b>an</b></span> + Dativ <span lang=\"de\"><b>… vorbei</b></span> = از جلوی چیزی گذشتن: <span lang=\"de\">an <b>der</b> Apotheke vorbei</span>.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> همیشه Dativ می‌گیرد، حتی با حرکت: <span lang=\"de\">aus <b>der</b> Seitenstraße</span>.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "عبور می‌کنند (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">über <b>den</b> Zebrastreifen</span>.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "<span lang=\"de\">Wohin?</span> ← Akkusativ: <span lang=\"de\">in <b>die</b> Bäckerei</span>. <span lang=\"de\"><b>in der</b> Bäckerei</span> پاسخِ <span lang=\"de\">Wo?</span> بود.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "امرِ مؤدبانه: اول فعل، بعد <b>Sie</b> — <span lang=\"de\"><b>Gehen Sie</b></span>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "یک وضعیت (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">die Ecke</span> ← <span lang=\"de\">an <b>der</b> Ecke</span>.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> پیش از اسم، Genitiv می‌گیرد: <span lang=\"de\">entlang <b>des</b> Bürgersteigs</span>. پس از اسم، Akkusativ: <span lang=\"de\">den Bürgersteig entlang</span>.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (نزدیکِ) + Genitiv: <span lang=\"de\">unweit <b>des</b> Kiosks</span>.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + Genitiv: <span lang=\"de\">die Straße</span> ← <span lang=\"de\">trotz <b>der</b> nassen Straße</span> (Genitivِ مؤنث = <span lang=\"de\">der</span>).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "مالکیت، مرجعِ مؤنث (<span lang=\"de\">die Frau</span>) ← <b>deren</b> (که پالتویش).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "فاعلِ جملهٔ موصولی، مذکر ← <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + ضمیرِ موصولی، یک وضعیت (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">das Café</span> ← <span lang=\"de\"><b>vor dem</b></span>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + مصدرِ گذشته = احتمالاً: از قیافه‌اش پیداست.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + مصدرِ گذشته = تقریباً قطعی، از آنچه می‌بینیم: خیابانِ خیس.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "گذشتهٔ غیرواقعی با فعلِ حرکتی: <b>sein</b> ← <span lang=\"de\"><b>wäre</b> … gegangen</span>.",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = ممکن است، بی‌مدرک. <b>muss</b> یعنی قطعیت."
+   }
   },
   "ar": {
    "champs": {
@@ -1340,9 +1849,44 @@ window.SCENE = {
     "consigne": "آنا تبحث عن طريقها في برلين. المس مبنى أو مركبة أو شخصًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "<span lang=\"de\">Wo?</span> — في المدينة",
+    "B1": "وصف الطريق",
+    "B2": "الـGenitiv وجمل الصلة",
+    "C1": "الافتراضات"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + Dativ للاثنين: <span lang=\"de\">zwischen <b>der</b> Bäckerei und <b>der</b> Post</span>.",
+    "A2 | Das Café ist an der Ecke.": "عند الزاوية: <span lang=\"de\"><b>an der</b> Ecke</span> (<span lang=\"de\">die Ecke</span>، Dativ).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = مقابل، دائمًا مع Dativ: <span lang=\"de\">gegenüber <b>dem</b> Kiosk</span>.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + Dativ: <span lang=\"de\">die Post</span> ← <span lang=\"de\">vor <b>der</b> Post</span>.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "في الموقف: <span lang=\"de\"><b>an der</b> Haltestelle</span>. و<span lang=\"de\"><b>im</b> roten Mantel</span> = <span lang=\"de\">in dem</span>.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + Dativ (<span lang=\"de\">Wo?</span>): <span lang=\"de\">der Radweg</span> ← <span lang=\"de\">auf <b>dem</b> Radweg</span>.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + Dativ: <span lang=\"de\">zwischen <b>der</b> Laterne und <b>der</b> Ampel</span>.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = <span lang=\"de\">an + dem</span>. Dativ: <span lang=\"de\">der Fahrradständer</span> ← <span lang=\"de\"><b>am</b> Fahrradständer</span>.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + Dativ: <span lang=\"de\">der Zebrastreifen</span> ← <span lang=\"de\">auf <b>dem</b> Zebrastreifen</span>.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + Dativ: <span lang=\"de\">der Bürgersteig</span> ← <span lang=\"de\">auf <b>dem</b> Bürgersteig</span>.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "نحو مكان: <b>zu</b> + Dativ. <span lang=\"de\">zu + der</span> = <b>zur</b>. و<b>nach</b> للمدن والبلدان فقط.",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "العبور: <b>über</b> + Akkusativ (حركة) — <span lang=\"de\">über <b>die</b> Straße</span>.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "يصبح: <b>werden</b>. في الجملة التابعة يذهب الفعل إلى النهاية: <span lang=\"de\">bis die Ampel grün <b>wird</b></span>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "أمامك: <b>vor</b> + Dativ ← <span lang=\"de\">vor <b>Ihnen</b></span>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<span lang=\"de\"><b>an</b></span> + Dativ <span lang=\"de\"><b>… vorbei</b></span> = المرور بجانب: <span lang=\"de\">an <b>der</b> Apotheke vorbei</span>.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> يأخذ Dativ دائمًا، حتى مع الحركة: <span lang=\"de\">aus <b>der</b> Seitenstraße</span>.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "يعبرون (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">über <b>den</b> Zebrastreifen</span>.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "<span lang=\"de\">Wohin?</span> ← Akkusativ: <span lang=\"de\">in <b>die</b> Bäckerei</span>. و<span lang=\"de\"><b>in der</b> Bäckerei</span> تجيب عن <span lang=\"de\">Wo?</span>.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "صيغة الأمر المهذبة: الفعل أولًا ثم <b>Sie</b> — <span lang=\"de\"><b>Gehen Sie</b></span>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "حالة (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">die Ecke</span> ← <span lang=\"de\">an <b>der</b> Ecke</span>.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> قبل الاسم يأخذ Genitiv: <span lang=\"de\">entlang <b>des</b> Bürgersteigs</span>. وبعده Akkusativ: <span lang=\"de\">den Bürgersteig entlang</span>.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (بالقرب من) + Genitiv: <span lang=\"de\">unweit <b>des</b> Kiosks</span>.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + Genitiv: <span lang=\"de\">die Straße</span> ← <span lang=\"de\">trotz <b>der</b> nassen Straße</span> (Genitiv المؤنث = <span lang=\"de\">der</span>).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "ملكية، والسابق مؤنث (<span lang=\"de\">die Frau</span>) ← <b>deren</b> (التي معطفها).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "فاعل جملة الصلة، مذكر ← <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + ضمير الصلة، حالة (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">das Café</span> ← <span lang=\"de\"><b>vor dem</b></span>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + المصدر الماضي = على الأرجح: يظهر ذلك من ملامحها.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + المصدر الماضي = شبه مؤكد، مستنتج مما نراه: الشارع المبلل.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "الماضي غير الواقعي مع فعل حركة: <b>sein</b> ← <span lang=\"de\"><b>wäre</b> … gegangen</span>.",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = ممكن، دون دليل. و<b>muss</b> تعني اليقين."
+   }
   }
  }
 };

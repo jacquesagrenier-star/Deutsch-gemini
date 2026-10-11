@@ -8232,3 +8232,16 @@ sont pas lues a voix haute -> « lire a haute voix » : les 16 clips enregistres
 caracteres). Puis : « commencer par dire bienvenue » -> titre « Bienvenue dans Wortando ! »
 et « Voici une petite visite guidee de l'application... », dans les six langues et pour
 l'espagnol ; introduction reenregistree (8 clips, 2 341 caracteres). v760.
+
+## 11 octobre 2026 -- Jacques : deux nouvelles scenes, le salon (les prepositions) puis la rue
+
+Salon (wohnzimmer) : Mark retire de l'image (il avait l'air d'un nain), sa valise reste ;
+35 zones, couches A1-C1 en allemand et en espagnol, voix, dans la seance et la tuile (v762) ;
+image refaite en 1536 px (elle etait floue au zoom). Rue (kreuzung, « An der Kreuzung » /
+« En el cruce ») : Anna au premier plan pres des velos (trop grande a la premiere prise),
+textes et logos effaces, 39 zones, jouable en A1 (v763). Puis les questions A2-C1 : en
+allemand Wo? en ville, indiquer le chemin (zur, ueber + Akk., an ... vorbei, Gehen Sie),
+genitif et relatives, hypotheses ; en espagnol estar et prepositions, indicaciones a
+l'imperatif de usted, relatives et se, probabilite -- avec les versions d'Amerique latine.
+Notes traduites dans les cinq langues. Reste : les voix (cout a annoncer), puis la seance
+et la tuile.

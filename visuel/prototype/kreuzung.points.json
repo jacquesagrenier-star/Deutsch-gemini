@@ -3,7 +3,8 @@
   "La rue, vue 1 : le carrefour (11 oct. 2026). Un quartier de Berlin vu d'un premier etage ; Anna, au premier plan pres des velos, cherche son chemin. Theme : la ville et la circulation, les prepositions de lieu et de mouvement, indiquer le chemin.",
   "Image : kreuzung-propre.png = la retouche ou Anna est au premier plan (devant la boulangerie elle etait trop grande, Jacques), puis texte et logos effaces (visuel/effacer_texte.py : TAXI, numero du tram, cor de la Poste).",
   "Memes conventions que les autres scenes. Deux Briefkasten (devant la poste, au premier plan), trois Ampel, deux Verkehrszeichen, deux Auto garees (aussi Parkplatz). La femme en manteau rouge et la dame au cabas sont toutes deux die Frau.",
-  "Mesures a la grille sur la source 1536 x 2752, verifiees au toucher dans le navigateur."
+  "Mesures a la grille sur la source 1536 x 2752, verifiees au toucher dans le navigateur.",
+  "Les questions A2-C1 (11 oct. 2026) sont un BROUILLON non relu, ecrit sur les faits de l'image : A2 Wo? en ville (zwischen, gegenueber, an der Ecke, vor) ; B1 indiquer le chemin (zur, ueber + Akk, an … vorbei, Sie-Imperativ) ; B2 genitif (entlang, unweit, trotz) et relatives ; C1 hypotheses."
  ],
  "image": "kreuzung.webp",
  "source": "../scenes/kreuzung-propre.png",
@@ -12,48 +13,865 @@
  "consigne": "Anna cherche son chemin dans Berlin. Touche un bâtiment, un véhicule ou une personne.",
  "exclus": [],
  "couches": {
-  "A1": {"titre": "Noms et articles"}
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — en ville",
+   "qs": [
+    {
+     "q": "Wo ist die Apotheke?",
+     "c": [
+      "zwischen der Bäckerei und der Post",
+      "neben dem Café",
+      "an der Ecke"
+     ],
+     "f": "apotheke",
+     "r": "post",
+     "phrase": "Die Apotheke ist zwischen der Bäckerei und der Post.",
+     "n": "<b>zwischen</b> + datif pour les deux : zwischen <b>der</b> Bäckerei und <b>der</b> Post."
+    },
+    {
+     "q": "Wo ist das Café?",
+     "c": [
+      "an der Ecke",
+      "zwischen der Bäckerei und der Apotheke",
+      "neben dem Kiosk"
+     ],
+     "f": "cafe",
+     "phrase": "Das Café ist an der Ecke.",
+     "n": "Au coin de la rue : <b>an der</b> Ecke (die Ecke, datif)."
+    },
+    {
+     "q": "Wo ist die Bäckerei?",
+     "c": [
+      "gegenüber dem Kiosk",
+      "neben dem Kiosk",
+      "hinter dem Kiosk"
+     ],
+     "f": "baeckerei",
+     "r": "kiosk",
+     "phrase": "Die Bäckerei ist gegenüber dem Kiosk.",
+     "n": "<b>gegenüber</b> = en face de, toujours au datif : gegenüber <b>dem</b> Kiosk."
+    },
+    {
+     "q": "Wo steht der kleine Briefkasten?",
+     "c": [
+      "vor der Post",
+      "vor der Bäckerei",
+      "neben dem Bus"
+     ],
+     "f": "briefkasten-post",
+     "r": "post",
+     "phrase": "Der kleine Briefkasten steht vor der Post.",
+     "n": "<b>vor</b> + datif : die Post → vor <b>der</b> Post."
+    },
+    {
+     "q": "Wo wartet die Frau im roten Mantel?",
+     "c": [
+      "an der Haltestelle",
+      "vor der Apotheke",
+      "auf dem Radweg"
+     ],
+     "f": "frau-rot",
+     "r": "haltestelle",
+     "phrase": "Die Frau im roten Mantel wartet an der Haltestelle.",
+     "n": "À l'arrêt : <b>an der</b> Haltestelle. Et <b>im</b> roten Mantel = in dem."
+    },
+    {
+     "q": "Wo fährt der Radfahrer?",
+     "c": [
+      "auf dem Radweg",
+      "auf dem Bürgersteig",
+      "im Bus"
+     ],
+     "f": "radfahrer",
+     "r": "radweg",
+     "phrase": "Der Radfahrer fährt auf dem Radweg.",
+     "n": "<b>auf</b> + datif (Wo?) : der Radweg → auf <b>dem</b> Radweg."
+    },
+    {
+     "q": "Wo steht Anna?",
+     "c": [
+      "zwischen der Laterne und der Ampel",
+      "vor der Bäckerei",
+      "an der Haltestelle"
+     ],
+     "f": "anna",
+     "r": "ampel-vorne",
+     "phrase": "Anna steht zwischen der Laterne und der Ampel.",
+     "n": "<b>zwischen</b> + datif : zwischen <b>der</b> Laterne und <b>der</b> Ampel."
+    },
+    {
+     "q": "Wo stehen die Fahrräder?",
+     "c": [
+      "am Fahrradständer",
+      "an der Haltestelle",
+      "vor der Post"
+     ],
+     "f": "fahrradstaender",
+     "phrase": "Die Fahrräder stehen am Fahrradständer.",
+     "n": "<b>am</b> = an + dem. Datif : der Fahrradständer → <b>am</b> Fahrradständer."
+    },
+    {
+     "q": "Wo sind die Fußgänger?",
+     "c": [
+      "auf dem Zebrastreifen",
+      "auf dem Radweg",
+      "im Café"
+     ],
+     "f": "fussgaenger",
+     "r": "zebrastreifen",
+     "phrase": "Die Fußgänger sind auf dem Zebrastreifen.",
+     "n": "<b>auf</b> + datif : der Zebrastreifen → auf <b>dem</b> Zebrastreifen."
+    },
+    {
+     "q": "Wo steht der Kiosk?",
+     "c": [
+      "auf dem Bürgersteig",
+      "auf der Straße",
+      "in der Bäckerei"
+     ],
+     "f": "kiosk",
+     "r": "buergersteig",
+     "phrase": "Der Kiosk steht auf dem Bürgersteig.",
+     "n": "<b>auf</b> + datif : der Bürgersteig → auf <b>dem</b> Bürgersteig."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Indiquer le chemin",
+   "qs": [
+    {
+     "q": "Anna fragt: „Entschuldigung, wie komme ich ___ Apotheke?“",
+     "c": [
+      "zur",
+      "zum",
+      "nach"
+     ],
+     "f": "anna",
+     "r": "apotheke",
+     "phrase": "Entschuldigung, wie komme ich zur Apotheke?",
+     "n": "Vers un lieu : <b>zu</b> + datif. zu + der = <b>zur</b>. <b>nach</b> ne sert que pour les villes et les pays."
+    },
+    {
+     "q": "„Gehen Sie ___ die Straße, dort am Zebrastreifen.“",
+     "c": [
+      "über",
+      "durch",
+      "um"
+     ],
+     "f": "zebrastreifen",
+     "phrase": "Gehen Sie über die Straße, dort am Zebrastreifen.",
+     "n": "Traverser : <b>über</b> + accusatif (un mouvement) — über <b>die</b> Straße."
+    },
+    {
+     "q": "„Warten Sie, bis die Ampel grün ___.“",
+     "c": [
+      "wird",
+      "ist",
+      "werden"
+     ],
+     "f": "ampel-vorne",
+     "phrase": "Warten Sie, bis die Ampel grün wird.",
+     "n": "Devenir : <b>werden</b>. La subordonnée envoie le verbe à la fin : bis die Ampel grün <b>wird</b>."
+    },
+    {
+     "q": "„Die Apotheke ist dann direkt ___ Ihnen, zwischen der Bäckerei und der Post.“",
+     "c": [
+      "vor",
+      "nach",
+      "bei"
+     ],
+     "f": "apotheke",
+     "r": "baeckerei",
+     "phrase": "Die Apotheke ist dann direkt vor Ihnen.",
+     "n": "Devant vous : <b>vor</b> + datif → vor <b>Ihnen</b>."
+    },
+    {
+     "q": "„Und die Post? Gehen Sie ___ Apotheke vorbei, dann sind Sie da.“",
+     "c": [
+      "an der",
+      "an die",
+      "bei der"
+     ],
+     "f": "post",
+     "r": "apotheke",
+     "phrase": "Gehen Sie an der Apotheke vorbei, dann sind Sie da.",
+     "n": "<b>an</b> + datif <b>… vorbei</b> = passer devant : an <b>der</b> Apotheke vorbei."
+    },
+    {
+     "q": "Der Lieferwagen kommt aus ___ Seitenstraße.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "lieferwagen",
+     "phrase": "Der Lieferwagen kommt aus der Seitenstraße.",
+     "n": "<b>aus</b> est toujours suivi du datif, même pour un mouvement : aus <b>der</b> Seitenstraße."
+    },
+    {
+     "q": "Die Fußgänger gehen über ___ Zebrastreifen.",
+     "c": [
+      "den",
+      "dem",
+      "der"
+     ],
+     "f": "fussgaenger",
+     "r": "zebrastreifen",
+     "phrase": "Die Fußgänger gehen über den Zebrastreifen.",
+     "n": "Ils traversent (Wohin?) → accusatif : über <b>den</b> Zebrastreifen."
+    },
+    {
+     "q": "Gleich geht Anna in ___ Bäckerei.",
+     "c": [
+      "die",
+      "der",
+      "das"
+     ],
+     "f": "baeckerei",
+     "r": "anna",
+     "phrase": "Gleich geht Anna in die Bäckerei.",
+     "n": "Wohin? → accusatif : in <b>die</b> Bäckerei. <b>in der</b> Bäckerei répondrait à Wo?"
+    },
+    {
+     "q": "„___ Sie bitte nicht bei Rot über die Straße!“",
+     "c": [
+      "Gehen",
+      "Geht",
+      "Gehst"
+     ],
+     "f": "ampel-vorne",
+     "phrase": "Gehen Sie bitte nicht bei Rot über die Straße!",
+     "n": "L'impératif de politesse : le verbe d'abord, puis <b>Sie</b> — <b>Gehen Sie</b>."
+    },
+    {
+     "q": "„Das Café? Das ist an ___ Ecke, gleich neben der Seitenstraße.“",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "cafe",
+     "phrase": "Das Café ist an der Ecke, gleich neben der Seitenstraße.",
+     "n": "Un état (Wo?) → datif : die Ecke → an <b>der</b> Ecke."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Génitif et relatives",
+   "qs": [
+    {
+     "q": "___ des Bürgersteigs verläuft ein roter Radweg.",
+     "c": [
+      "Entlang",
+      "Gegenüber",
+      "Trotz"
+     ],
+     "f": "radweg",
+     "r": "buergersteig",
+     "phrase": "Entlang des Bürgersteigs verläuft ein roter Radweg.",
+     "n": "<b>entlang</b> placé devant le nom prend le génitif : entlang <b>des</b> Bürgersteigs. Placé après, l'accusatif : den Bürgersteig entlang."
+    },
+    {
+     "q": "___ des Kiosks steht ein gelber Briefkasten.",
+     "c": [
+      "Unweit",
+      "Wegen",
+      "Während"
+     ],
+     "f": "briefkasten",
+     "r": "kiosk",
+     "phrase": "Unweit des Kiosks steht ein gelber Briefkasten.",
+     "n": "<b>unweit</b> (non loin de) + génitif : unweit <b>des</b> Kiosks."
+    },
+    {
+     "q": "Trotz ___ nassen Straße fährt der Radfahrer schnell.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "radfahrer",
+     "phrase": "Trotz der nassen Straße fährt der Radfahrer schnell.",
+     "n": "<b>trotz</b> + génitif : die Straße → trotz <b>der</b> nassen Straße (génitif féminin = der)."
+    },
+    {
+     "q": "Die Frau, ___ Mantel rot ist, wartet auf den Bus.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "frau-rot",
+     "r": "haltestelle",
+     "phrase": "Die Frau, deren Mantel rot ist, wartet auf den Bus.",
+     "n": "Possession, antécédent féminin (die Frau) → <b>deren</b> (dont le manteau)."
+    },
+    {
+     "q": "Der Mann, ___ einen Rucksack trägt, geht über den Zebrastreifen.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "fussgaenger",
+     "phrase": "Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.",
+     "n": "Sujet de la relative, masculin → <b>der</b>."
+    },
+    {
+     "q": "Das Café, vor ___ Tische stehen, hat eine rote Markise.",
+     "c": [
+      "dem",
+      "das",
+      "den"
+     ],
+     "f": "cafe",
+     "r": "markise",
+     "phrase": "Das Café, vor dem Tische stehen, hat eine rote Markise.",
+     "n": "<b>vor</b> + relatif, un état (Wo?) → datif : das Café → <b>vor dem</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna schaut ratlos auf ihr Handy: Sie ___ sich verlaufen haben.",
+     "c": [
+      "dürfte",
+      "will",
+      "soll"
+     ],
+     "f": "anna",
+     "phrase": "Sie dürfte sich verlaufen haben.",
+     "n": "<b>dürfte</b> + infinitif passé = probablement : on le devine à son air."
+    },
+    {
+     "q": "Die Straße ist nass: Es ___ vorhin geregnet haben.",
+     "c": [
+      "muss",
+      "darf",
+      "will"
+     ],
+     "f": "strasse",
+     "phrase": "Es muss vorhin geregnet haben.",
+     "n": "<b>muss</b> + infinitif passé = presque certain, déduit de ce qu'on voit : la rue mouillée."
+    },
+    {
+     "q": "Wäre die Ampel grün, ___ Anna schon über die Straße gegangen.",
+     "c": [
+      "wäre",
+      "hätte",
+      "würde"
+     ],
+     "f": "ampel-vorne",
+     "r": "anna",
+     "phrase": "Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.",
+     "n": "Irréel du passé avec un verbe de mouvement : <b>sein</b> → <b>wäre</b> … gegangen."
+    },
+    {
+     "q": "Niemand weiß, wohin der Lieferwagen fährt. Er ___ Waren für das Café bringen.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "lieferwagen",
+     "r": "cafe",
+     "phrase": "Er könnte Waren für das Café bringen.",
+     "n": "<b>könnte</b> = c'est possible, sans preuve. <b>muss</b> serait une certitude."
+    }
+   ]
+  }
  },
  "points": [
-  {"id": "gebaeude", "mot": "Gebäude", "aussi": ["Haus"], "boite": [0, 0, 100, 15], "plein": true},
-  {"id": "strasse", "mot": "Straße", "aussi": ["Kreuzung"], "boite": [0, 44, 100, 42], "plein": true},
-  {"id": "buergersteig", "mot": "Bürgersteig", "aussi": ["Gehsteig"], "boite": [0, 92, 100, 8], "plein": true},
-  {"id": "baeckerei", "mot": "Bäckerei", "aussi": ["Schaufenster"], "boite": [3.6, 19, 19.5, 11.6], "rigide": "rectangle"},
-  {"id": "brot", "mot": "Brot", "aussi": ["Brezel", "Brötchen", "Schaufenster"], "boite": [4, 20, 13, 10.3], "sur": "baeckerei"},
-  {"id": "apotheke", "mot": "Apotheke", "boite": [30.5, 16.7, 19.5, 11.6], "rigide": "rectangle"},
-  {"id": "post", "mot": "Post", "boite": [50, 16.4, 8.5, 11.6], "rigide": "rectangle"},
-  {"id": "briefkasten-post", "mot": "Briefkasten", "boite": [50.2, 23, 4.7, 5]},
-  {"id": "cafe", "mot": "Café", "aussi": ["Tisch", "Stuhl"], "boite": [61.8, 15, 33, 13], "plein": true},
-  {"id": "markise", "mot": "Markise", "boite": [62.7, 15, 31.6, 4.3], "sur": "cafe"},
-  {"id": "bus", "mot": "Bus", "boite": [0, 31.9, 32, 12.6]},
-  {"id": "wartehaeuschen", "mot": "Wartehäuschen", "boite": [0, 39.2, 16, 10.8], "devant": 1},
-  {"id": "haltestelle", "mot": "Haltestelle", "aussi": ["Schild"], "boite": [15.7, 37.5, 3.6, 13.3], "devant": 1},
-  {"id": "frau-rot", "mot": "Frau", "boite": [19.9, 44.2, 3.9, 6.9], "devant": 1},
-  {"id": "auto-dunkel", "mot": "Auto", "aussi": ["Parkplatz"], "boite": [32.3, 34.4, 18.8, 6.2]},
-  {"id": "auto-silber", "mot": "Auto", "aussi": ["Parkplatz"], "boite": [51, 33.1, 14.8, 4.3]},
-  {"id": "parkuhr", "mot": "Parkuhr", "boite": [54.8, 33.9, 2.7, 6.4], "devant": 1},
-  {"id": "schild-klein", "mot": "Verkehrszeichen", "aussi": ["Schild"], "boite": [49.1, 37, 2.9, 3], "devant": 1},
-  {"id": "schild-gross", "mot": "Verkehrszeichen", "aussi": ["Schild"], "boite": [73.7, 38.6, 5, 3], "devant": 1},
-  {"id": "ampel-mitte", "mot": "Ampel", "boite": [72.4, 43, 8, 13.5], "devant": 1},
-  {"id": "ampel-seite", "mot": "Ampel", "boite": [78.2, 27.6, 2.6, 3]},
-  {"id": "lieferwagen", "mot": "Lieferwagen", "aussi": ["Lkw", "Laster"], "boite": [84.7, 22.2, 15.3, 12.8]},
-  {"id": "zebrastreifen", "mot": "Zebrastreifen", "boite": [16, 54.3, 60, 9], "plein": true},
-  {"id": "zebrastreifen-2", "mot": "Zebrastreifen", "boite": [68, 47.5, 22.5, 8], "plein": true},
-  {"id": "fussgaenger", "mot": "Fußgänger", "aussi": ["Mann", "Rucksack"], "boite": [51.8, 48.6, 4.8, 8.3], "devant": 1},
-  {"id": "frau-tasche", "mot": "Frau", "aussi": ["Tasche"], "boite": [60.3, 49.7, 6.7, 7.6], "devant": 1},
-  {"id": "taxi", "mot": "Taxi", "aussi": ["Auto"], "boite": [1.8, 59.5, 41.2, 11.3]},
-  {"id": "strassenbahn", "mot": "Straßenbahn", "aussi": ["Tram"], "boite": [78.4, 48, 21.6, 17]},
-  {"id": "motorrad", "mot": "Motorrad", "boite": [0, 69.5, 15.2, 6.5]},
-  {"id": "radweg", "mot": "Radweg", "boite": [11.6, 72, 88.4, 16]},
-  {"id": "radfahrer", "mot": "Radfahrer", "aussi": ["Fahrrad", "Jacke"], "boite": [69, 70.9, 18.4, 11.9], "devant": 1},
-  {"id": "helm", "mot": "Helm", "boite": [76.3, 70.9, 3, 1.4], "sur": "radfahrer"},
-  {"id": "kiosk", "mot": "Kiosk", "boite": [1.3, 73.2, 29.2, 24.3], "devant": 2},
-  {"id": "flasche", "mot": "Flasche", "boite": [10.6, 81, 12, 6.8], "sur": "kiosk"},
-  {"id": "briefkasten", "mot": "Briefkasten", "boite": [34, 81.7, 9.7, 11.5], "devant": 2},
-  {"id": "laterne", "mot": "Laterne", "boite": [43.5, 60.2, 8.3, 37.6], "devant": 2},
-  {"id": "anna", "mot": "Frau", "personne": "Anna", "aussi": ["Handy", "Jacke"], "boite": [48.8, 79.5, 7.8, 16.5], "devant": 3},
-  {"id": "ampel-vorne", "mot": "Ampel", "boite": [56.5, 78.5, 12.3, 21.5], "devant": 2},
-  {"id": "fahrradstaender", "mot": "Fahrradständer", "aussi": ["Fahrrad"], "boite": [73.3, 84.7, 26.2, 14.6], "devant": 2, "plein": true}
+  {
+   "id": "gebaeude",
+   "mot": "Gebäude",
+   "aussi": [
+    "Haus"
+   ],
+   "boite": [
+    0,
+    0,
+    100,
+    15
+   ],
+   "plein": true
+  },
+  {
+   "id": "strasse",
+   "mot": "Straße",
+   "aussi": [
+    "Kreuzung"
+   ],
+   "boite": [
+    0,
+    44,
+    100,
+    42
+   ],
+   "plein": true
+  },
+  {
+   "id": "buergersteig",
+   "mot": "Bürgersteig",
+   "aussi": [
+    "Gehsteig"
+   ],
+   "boite": [
+    0,
+    92,
+    100,
+    8
+   ],
+   "plein": true
+  },
+  {
+   "id": "baeckerei",
+   "mot": "Bäckerei",
+   "aussi": [
+    "Schaufenster"
+   ],
+   "boite": [
+    3.6,
+    19,
+    19.5,
+    11.6
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "brot",
+   "mot": "Brot",
+   "aussi": [
+    "Brezel",
+    "Brötchen",
+    "Schaufenster"
+   ],
+   "boite": [
+    4,
+    20,
+    13,
+    10.3
+   ],
+   "sur": "baeckerei"
+  },
+  {
+   "id": "apotheke",
+   "mot": "Apotheke",
+   "boite": [
+    30.5,
+    16.7,
+    19.5,
+    11.6
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "post",
+   "mot": "Post",
+   "boite": [
+    50,
+    16.4,
+    8.5,
+    11.6
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "briefkasten-post",
+   "mot": "Briefkasten",
+   "boite": [
+    50.2,
+    23,
+    4.7,
+    5
+   ]
+  },
+  {
+   "id": "cafe",
+   "mot": "Café",
+   "aussi": [
+    "Tisch",
+    "Stuhl"
+   ],
+   "boite": [
+    61.8,
+    15,
+    33,
+    13
+   ],
+   "plein": true
+  },
+  {
+   "id": "markise",
+   "mot": "Markise",
+   "boite": [
+    62.7,
+    15,
+    31.6,
+    4.3
+   ],
+   "sur": "cafe"
+  },
+  {
+   "id": "bus",
+   "mot": "Bus",
+   "boite": [
+    0,
+    31.9,
+    32,
+    12.6
+   ]
+  },
+  {
+   "id": "wartehaeuschen",
+   "mot": "Wartehäuschen",
+   "boite": [
+    0,
+    39.2,
+    16,
+    10.8
+   ],
+   "devant": 1
+  },
+  {
+   "id": "haltestelle",
+   "mot": "Haltestelle",
+   "aussi": [
+    "Schild"
+   ],
+   "boite": [
+    15.7,
+    37.5,
+    3.6,
+    13.3
+   ],
+   "devant": 1
+  },
+  {
+   "id": "frau-rot",
+   "mot": "Frau",
+   "boite": [
+    19.9,
+    44.2,
+    3.9,
+    6.9
+   ],
+   "devant": 1
+  },
+  {
+   "id": "auto-dunkel",
+   "mot": "Auto",
+   "aussi": [
+    "Parkplatz"
+   ],
+   "boite": [
+    32.3,
+    34.4,
+    18.8,
+    6.2
+   ]
+  },
+  {
+   "id": "auto-silber",
+   "mot": "Auto",
+   "aussi": [
+    "Parkplatz"
+   ],
+   "boite": [
+    51,
+    33.1,
+    14.8,
+    4.3
+   ]
+  },
+  {
+   "id": "parkuhr",
+   "mot": "Parkuhr",
+   "boite": [
+    54.8,
+    33.9,
+    2.7,
+    6.4
+   ],
+   "devant": 1
+  },
+  {
+   "id": "schild-klein",
+   "mot": "Verkehrszeichen",
+   "aussi": [
+    "Schild"
+   ],
+   "boite": [
+    49.1,
+    37,
+    2.9,
+    3
+   ],
+   "devant": 1
+  },
+  {
+   "id": "schild-gross",
+   "mot": "Verkehrszeichen",
+   "aussi": [
+    "Schild"
+   ],
+   "boite": [
+    73.7,
+    38.6,
+    5,
+    3
+   ],
+   "devant": 1
+  },
+  {
+   "id": "ampel-mitte",
+   "mot": "Ampel",
+   "boite": [
+    72.4,
+    43,
+    8,
+    13.5
+   ],
+   "devant": 1
+  },
+  {
+   "id": "ampel-seite",
+   "mot": "Ampel",
+   "boite": [
+    78.2,
+    27.6,
+    2.6,
+    3
+   ]
+  },
+  {
+   "id": "lieferwagen",
+   "mot": "Lieferwagen",
+   "aussi": [
+    "Lkw",
+    "Laster"
+   ],
+   "boite": [
+    84.7,
+    22.2,
+    15.3,
+    12.8
+   ]
+  },
+  {
+   "id": "zebrastreifen",
+   "mot": "Zebrastreifen",
+   "boite": [
+    16,
+    54.3,
+    60,
+    9
+   ],
+   "plein": true
+  },
+  {
+   "id": "zebrastreifen-2",
+   "mot": "Zebrastreifen",
+   "boite": [
+    68,
+    47.5,
+    22.5,
+    8
+   ],
+   "plein": true
+  },
+  {
+   "id": "fussgaenger",
+   "mot": "Fußgänger",
+   "aussi": [
+    "Mann",
+    "Rucksack"
+   ],
+   "boite": [
+    51.8,
+    48.6,
+    4.8,
+    8.3
+   ],
+   "devant": 1
+  },
+  {
+   "id": "frau-tasche",
+   "mot": "Frau",
+   "aussi": [
+    "Tasche"
+   ],
+   "boite": [
+    60.3,
+    49.7,
+    6.7,
+    7.6
+   ],
+   "devant": 1
+  },
+  {
+   "id": "taxi",
+   "mot": "Taxi",
+   "aussi": [
+    "Auto"
+   ],
+   "boite": [
+    1.8,
+    59.5,
+    41.2,
+    11.3
+   ]
+  },
+  {
+   "id": "strassenbahn",
+   "mot": "Straßenbahn",
+   "aussi": [
+    "Tram"
+   ],
+   "boite": [
+    78.4,
+    48,
+    21.6,
+    17
+   ]
+  },
+  {
+   "id": "motorrad",
+   "mot": "Motorrad",
+   "boite": [
+    0,
+    69.5,
+    15.2,
+    6.5
+   ]
+  },
+  {
+   "id": "radweg",
+   "mot": "Radweg",
+   "boite": [
+    11.6,
+    72,
+    88.4,
+    16
+   ]
+  },
+  {
+   "id": "radfahrer",
+   "mot": "Radfahrer",
+   "aussi": [
+    "Fahrrad",
+    "Jacke"
+   ],
+   "boite": [
+    69,
+    70.9,
+    18.4,
+    11.9
+   ],
+   "devant": 1
+  },
+  {
+   "id": "helm",
+   "mot": "Helm",
+   "boite": [
+    76.3,
+    70.9,
+    3,
+    1.4
+   ],
+   "sur": "radfahrer"
+  },
+  {
+   "id": "kiosk",
+   "mot": "Kiosk",
+   "boite": [
+    1.3,
+    73.2,
+    29.2,
+    24.3
+   ],
+   "devant": 2
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "boite": [
+    10.6,
+    81,
+    12,
+    6.8
+   ],
+   "sur": "kiosk"
+  },
+  {
+   "id": "briefkasten",
+   "mot": "Briefkasten",
+   "boite": [
+    34,
+    81.7,
+    9.7,
+    11.5
+   ],
+   "devant": 2
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    43.5,
+    60.2,
+    8.3,
+    37.6
+   ],
+   "devant": 2
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "personne": "Anna",
+   "aussi": [
+    "Handy",
+    "Jacke"
+   ],
+   "boite": [
+    48.8,
+    79.5,
+    7.8,
+    16.5
+   ],
+   "devant": 3
+  },
+  {
+   "id": "ampel-vorne",
+   "mot": "Ampel",
+   "boite": [
+    56.5,
+    78.5,
+    12.3,
+    21.5
+   ],
+   "devant": 2
+  },
+  {
+   "id": "fahrradstaender",
+   "mot": "Fahrradständer",
+   "aussi": [
+    "Fahrrad"
+   ],
+   "boite": [
+    73.3,
+    84.7,
+    26.2,
+    14.6
+   ],
+   "devant": 2,
+   "plein": true
+  }
  ],
  "gros_plans": []
 }
