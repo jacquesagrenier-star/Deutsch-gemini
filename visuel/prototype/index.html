@@ -164,6 +164,29 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    defiler pour atteindre les reponses (Jacques, 6 oct.). */
 .en-cadre .cadre{max-width:none}
 .en-cadre .scene{margin:0 auto}
+/* DANS L'APP, L'ENCOCHE EST DEJA RESERVEE PAR LA PAGE (v751). Le cadre est
+   descendu sous l'heure par #sceneSeance ; si l'iPhone transmet aussi
+   env(safe-area-inset-top) a l'interieur du cadre, la marge comptait deux
+   fois -- « un espace vide en dessous de l'heure » (Jacques, 10 oct.),
+   apparu avec la v742 qui l'avait ajoutee ici. Seul le lecteur ouvert seul
+   dans Safari la garde.
+   ET LE HAUT SE FAIT PETIT : l'image prend la hauteur qui reste sous lui
+   (ajusterSeance). Une consigne sur trois lignes, c'etait une image plus
+   etroite -- « pour quelqu'un qui a un plus petit cellulaire, ca ne sera
+   pas pratique ». */
+.en-cadre .haut{padding-top:6px;gap:5px}
+.en-cadre .gros-plan .fermer{top:8px}
+.en-cadre .titre{padding:5px 9px;font-size:14px}
+.en-cadre .niveaux button{padding:6px 8px;min-width:30px}
+.en-cadre .carte{padding:7px 10px;font-size:14px;line-height:1.3}
+.en-cadre .carte .consigne{font-size:11px;margin-bottom:1px}
+.en-cadre .carte .question{font-size:15px;line-height:1.28}
+.en-cadre .modes{margin-top:6px}
+.en-cadre .modes button{padding:5px;font-size:12.5px}
+.en-cadre .haut .bas{padding-top:6px;gap:5px}
+.en-cadre .choix{padding:8px 10px;font-size:14px}
+.en-cadre .explication{padding:8px 10px;font-size:13.5px}
+.en-cadre .suite{padding:9px}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 
 /* DE DROITE A GAUCHE (fa, ar ; 10 oct. 2026). Comme l'app : dir="rtl" sur
