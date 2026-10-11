@@ -8129,3 +8129,16 @@ la fin des relectures -- les retours des testeurs en tiendront lieu. Messages
 d'annonce en fr, en, tr, uk, fa, ar (notre cours) et pour Barbara (espagnol), avec
 une image par langue : annonces/scenes-v745/. Les retours attendus vont dans ce
 journal a mesure qu'ils arrivent (node tests/retours.js).
+
+## 10 octobre 2026 (nuit) -- Jacques : « tres, tres solide » avant d'annoncer l'espagnol
+
+Ses amis ont etudie l'espagnol quatre ans a l'universite : rien ne part avant que
+le contenu soit solide. Fait : tuile « Scenes » (v746) ; trois fiches pour debutants
+(present, hay et les questions, pronominaux) et relecture des sept autres (v747).
+Trouve en route : les jeux passe simple / imparfait / subjonctif (210 questions)
+avaient ete fabriques mecaniquement depuis les phrases du present -- phrases
+fausses (« Corri en el parque los sabados », « Es importante que no pueda salir
+esta noche ») : a reecrire avant toute relecture. Les conjugaisons, elles, sont
+justes. Relecture par d'autres IA : paquets dans relecture-espagnol/
+(fusion-espagnol/paquets_relecture.py), programme complet compris, pour voir ce
+qui manque. Idee de Jacques pour l'annonce : dire que d'autres scenes arrivent.
