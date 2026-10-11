@@ -585,6 +585,34 @@ REGLES = [
      u"le rez-de-chaussee entier etait dessine trop grand. Comparer a une "
      u"PERSONNE ou a un vehicule voisins, ou mettre le personnage au premier "
      u"plan a cote d'objets de taille connue (les guidons des velos a sa taille)."),
+    ("saynetes-en-foule", "doute",
+     r"",   # pas de motif : on COMPTE les personnes, voir controler()
+     u"Une foule de petites saynetes vue d'en haut : on recoit un DESSIN de "
+     u"livre d'images, pas une photo",
+     u"11 oct. 2026, marktplatz, 1re prise (0,15 $). Le prompt commencait par "
+     u"<< A photorealistic photograph >>, comme le carrefour qui etait sorti en "
+     u"photo. Mais il alignait DIX-SEPT personnes, chacune a sa petite action "
+     u"(la fillette sur la balancoire, le garcon dans le bac a sable, le vieux "
+     u"qui nourrit les pigeons, le musicien, l'homme au chien, la mere et "
+     u"l'enfant qui mangent une glace...), le tout rangé et vu d'en haut : "
+     u"c'est exactement un Wimmelbuch, et le genre a gagne sur le mot. On a "
+     u"recu une illustration -- composition parfaite, mais Mark et Anna sans "
+     u"leurs vrais visages, et une scene qui detonne a cote des six autres.",
+     u"(1) Au-dela de quinze personnes, couper : une scene n'a pas besoin de "
+     u"toutes les saynetes, les OBJETS suffisent a nommer les lieux (la "
+     u"balancoire vide dit der Spielplatz). (2) Ancrer la photo par sa "
+     u"MATIERE, pas par un adjectif : << the textures of real stone, brick, "
+     u"water, sand, leaves, fabric and skin >>, << as on a phone camera >>. "
+     u"(3) A LA RECEPTION, regarder d'abord le STYLE, avant le contenu : "
+     u"photo ou dessin ? ⚠️ UN DESSIN NE SE RATTRAPE PAS PAR RETOUCHE "
+     u"(essaye le meme jour, 0,15 $ de plus) : << Turn it into a real "
+     u"photograph, keep everything exactly where it is >>, avec le dessin en "
+     u"premiere reference, a rendu le MEME dessin, trait pour trait -- le "
+     u"modele d'edition garde le style de l'image qu'on lui donne. Pire, Anna "
+     u"a pris la tenue de sa photo de reference, parce que ce prompt-la ne "
+     u"disait plus << use them for the person only >>. La retouche deplace, "
+     u"retire, efface ; elle ne change pas de STYLE. Un dessin se refait "
+     u"depuis le texte, allege."),
 ]
 
 # --------------------------------------------------------------------------
@@ -985,7 +1013,13 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "horloge-a-l-heure", "cote-du-corps",
               "personne-sans-reference", "pose-pour-la-camera",
               "fruit-a-etiquette", "objet-sous-le-personnage",
-              "personnage-qui-se-penche", "tete-calee-sur-le-fond")
+              "personnage-qui-se-penche", "tete-calee-sur-le-fond",
+              "saynetes-en-foule")
+
+# Toute personne nommee dans une scene. Voir << saynetes-en-foule >>.
+FOULE = re.compile(r"(?i)\b(woman|man|girl|boy|lady|doctor|teacher|nurse|"
+                   r"vendor|seller|clerk|person|mother|father|child|children|"
+                   r"musician|cyclist|pedestrians?|waiter|people)\b")
 
 # Un paragraphe qui decrit l'apparence d'une personne. Voir
 # << personne-sans-reference >>. Seulement ce qui fait un VISAGE (peau,
@@ -1038,6 +1072,15 @@ def controler(texte, image=False):
             if n > 3:
                 trouves.append((code, gravite, titre, cout, remede,
                                 u"%d temps marques" % n))
+            continue
+        if code == "saynetes-en-foule":
+            # Etalonne sur nos prompts de scene : la classe en compte 14 et
+            # sort en photo, la place 17 et sort en dessin. Un seul cas --
+            # le seuil est une hypothese, a corriger a la prochaine prise.
+            n = len(FOULE.findall(texte))
+            if n > 14:
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"%d personnes nommees" % n))
             continue
         if code == "pas-de-verbe-de-parole":
             if not VERBES_PAROLE.search(texte):
