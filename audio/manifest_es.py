@@ -95,13 +95,35 @@ def recolter(variante):
         for ligne in re.findall(r'^\s*\["([^"]*)",\s*"[^"]*",\s*"[^"]*",\s*"([^"]*)"', es, re.M):
             prendre(ligne[0], "code." + nom, "A1")
             prendre(ligne[1], "code." + nom, "A1")
+    # LES SCENES (10 oct. 2026). Ce que visuel/prototype/index.html dit :
+    # « el reloj » en touchant une zone, « Anna. la participante » pour une
+    # personne, et la phrase entiere apres chaque question. Lu dans les
+    # scene-*.es.js que construire.py a faits -- en Amerique latine, avec le
+    # mot (latam) et la question (latam) d'ici, comme la page les montre.
+    import glob
+    for chemin in sorted(glob.glob(os.path.join(RACINE, "visuel", "prototype", "scene-*.es.js"))):
+        txt = io.open(chemin, encoding="utf-8").read()
+        sc = json.loads(txt[txt.index("{"):txt.rindex("}") + 1])
+        ici = (lambda m: dict(m, **m["latam"]) if variante == "latam" and m.get("latam") else m)
+        for p in sc["points"]:
+            for m in [p] + p.get("aussi", []):
+                m = ici(m)
+                if m.get("genre"):
+                    prendre(m["genre"] + " " + m["mot"], "scenes", "SC")
+            if p.get("personne") and p.get("genre"):
+                m = ici(p)
+                prendre(p["personne"] + ". " + m["genre"] + " " + m["mot"], "scenes", "SC")
+        for c in sc.get("couches", {}).values():
+            for q in c.get("qs", []):
+                q = dict(q, **q["latam"]) if variante == "latam" and q.get("latam") else q
+                prendre(q["phrase"], "scenes", "SC")
     return out
 
 
 def entrees(variante):
     """Dedoublonnees : un texte n'est enregistre qu'une fois, au niveau le
     plus BAS ou il apparait (c'est la qu'on l'entend en premier)."""
-    ordre = {"A1": 0, "A2": 1, "B1": 2, "B2": 3, "C1": 4, "EX": 5}
+    ordre = {"A1": 0, "A2": 1, "B1": 2, "B2": 3, "C1": 4, "EX": 5, "SC": 6}
     vus = {}
     for t, s, n in recolter(variante):
         if t not in vus or ordre.get(n, 9) < ordre.get(vus[t]["niveau"], 9):
