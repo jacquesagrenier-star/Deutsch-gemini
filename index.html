@@ -3244,6 +3244,7 @@ html[data-apprendre="es"] [data-i18n="credits_examens"],
 html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
 /* Le choix Espagne / Amerique latine n'existe qu'en espagnol. */
 html:not([data-apprendre="es"]) [data-seulement-es]{ display:none !important; }
+html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -4799,6 +4800,29 @@ body[data-theme="dark"] .srs-aide-btn:hover{border-color:#2a3240; color:#c3c9d4;
    n'apparait que sur 17 % des cartes, et n'a jamais a etre lue pour repondre.
    Pas de traduction a cote des mots -- ils partagent celle de la carte, c'est
    precisement ce qui en fait des voisins. */
+/* PRONONCIATION (v755) : une carte par regle, les mots se touchent. */
+.pron-intro{ margin:0 0 14px; color:#576177; line-height:1.5; }
+.pron-groupe{ margin:22px 0 8px; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:#576177; }
+.pron-tete{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.pron-graphie{ font-size:26px; font-weight:800; direction:ltr; unicode-bidi:isolate; }
+.pron-api{ font-size:13px; color:#8a93a6; direction:ltr; unicode-bidi:isolate; }
+.pron-court{ font-size:14px; font-weight:700; color:#3b6fe0; }
+.pron-expl{ margin:8px 0 10px; line-height:1.55; }
+.pron-mots{ display:flex; flex-wrap:wrap; gap:8px; }
+.pron-vitesse{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:0 0 6px; font-size:13px; color:#576177; }
+.pron-vitesse span{ margin-inline-end:4px; font-weight:700; }
+.pron-vitesse button{ font:inherit; font-size:13px; font-weight:700; padding:6px 12px; border-radius:999px;
+    border:1px solid rgba(30,41,59,.18); background:transparent; color:inherit; cursor:pointer; }
+.pron-vitesse button.actif{ background:#1C2430; border-color:#1C2430; color:#fff; }
+body[data-theme="dark"] .pron-vitesse{ color:#a9b1c2; }
+body[data-theme="dark"] .pron-vitesse button.actif{ background:#E8A23A; border-color:#E8A23A; color:#1C2430; }
+.pron-mot{ display:inline-flex; flex-direction:column; align-items:flex-start; gap:1px;
+    padding:7px 12px; border-radius:12px; border:1px solid rgba(30,41,59,.16);
+    background:rgba(59,111,224,.06); font:inherit; cursor:pointer; color:inherit; }
+.pron-mot b{ font-size:16px; direction:ltr; unicode-bidi:isolate; }
+.pron-mot small{ font-size:12px; color:#576177; }
+body[data-theme="dark"] .pron-mot{ border-color:rgba(255,255,255,.14); background:rgba(255,255,255,.05); }
+body[data-theme="dark"] .pron-intro, body[data-theme="dark"] .pron-groupe, body[data-theme="dark"] .pron-mot small{ color:#a9b1c2; }
 .synonymes{
     margin-top:10px; font-size:12px; color:#8b93a3;
     display:flex; flex-wrap:wrap; align-items:baseline;
@@ -6920,6 +6944,14 @@ body[data-theme="dark"] #decouverte > button.primary{
                 <strong data-i18n="orb_zahlen_title">Nombres</strong>
             </div>
         </div>
+        <!-- PRONONCIATION (v755) : les regles de lecture, comparees a la langue
+             de l'utilisateur. Allemand seulement (data-seulement-de). -->
+        <div class="orb orb-de" data-seulement-de data-orbid="prononciation" onclick="ouvrirPrononciation()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
+            <div>
+                <strong data-i18n="orb_prononciation">Prononciation</strong>
+            </div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -7242,7 +7274,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v754</span>
+    <span class="subtitle-version">v755</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9792,6 +9824,24 @@ body[data-theme="dark"] #decouverte > button.primary{
     <div id="gramIndiceListe"></div>
 </section>
 
+<section id="prononciation" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="pron_kicker">Lire l'allemand</div>
+            <h2 data-i18n="orb_prononciation">Prononciation</h2>
+        </div>
+    </div>
+    <p class="pron-intro" data-i18n="pron_intro"></p>
+    <div class="pron-vitesse" role="group" aria-labelledby="pronVitesseTitre">
+        <span id="pronVitesseTitre" data-i18n="pron_vitesse">Vitesse</span>
+        <button type="button" data-vitesse="1" onclick="choisirVitessePron(1)" data-i18n="pron_v_normale">Normale</button>
+        <button type="button" data-vitesse="0.75" onclick="choisirVitessePron(0.75)" data-i18n="pron_v_lente">Lente</button>
+        <button type="button" data-vitesse="0.5" onclick="choisirVitessePron(0.5)" data-i18n="pron_v_tres_lente">Très lente</button>
+    </div>
+    <div id="pronCorps"></div>
+</section>
+
 <section id="gramaticaES" class="screen">
     <button class="back" onclick="retourFiche()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="title-row">
@@ -11161,6 +11211,16 @@ const I18N = {
         schreiben_hint: "Écris la phrase en allemand. Les accents et la ponctuation ne comptent pas.",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Nombres",
+        orb_prononciation: "Prononciation",
+        pron_kicker: "Lire l'allemand",
+        pron_intro: "L'allemand se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
+        pron_voyelles: "Les voyelles",
+        pron_consonnes: "Les consonnes",
+        pron_fins: "Les fins de mots",
+        pron_vitesse: "Vitesse",
+        pron_v_normale: "Normale",
+        pron_v_lente: "Lente",
+        pron_v_tres_lente: "Très lente",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
         op_pronomen_sub: "ich · mich · mir",
@@ -12252,6 +12312,16 @@ const I18N = {
         schreiben_hint: "Write the sentence in German. Accents and punctuation don't count.",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Numbers",
+        orb_prononciation: "Pronunciation",
+        pron_kicker: "Reading German",
+        pron_intro: "German is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
+        pron_voyelles: "Vowels",
+        pron_consonnes: "Consonants",
+        pron_fins: "Word endings",
+        pron_vitesse: "Speed",
+        pron_v_normale: "Normal",
+        pron_v_lente: "Slow",
+        pron_v_tres_lente: "Very slow",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
         op_pronomen_sub: "ich · mich · mir",
@@ -13347,6 +13417,16 @@ const I18N = {
         schreiben_hint: "Cümleyi Almanca yaz. Aksanlar ve noktalama sayılmaz.",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Sayılar",
+        orb_prononciation: "Telaffuz",
+        pron_kicker: "Almanca okumak",
+        pron_intro: "Almanca neredeyse her zaman yazıldığı gibi okunur: bu kurallar her kelimeyi okumaya yeter. Duymak için kelimeye dokun.",
+        pron_voyelles: "Ünlüler",
+        pron_consonnes: "Ünsüzler",
+        pron_fins: "Kelime sonları",
+        pron_vitesse: "Hız",
+        pron_v_normale: "Normal",
+        pron_v_lente: "Yavaş",
+        pron_v_tres_lente: "Çok yavaş",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Zamirler",
         op_pronomen_sub: "ich · mich · mir",
@@ -14660,6 +14740,16 @@ const I18N = {
         orb_pronomen_title: "Займенники",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Числа",
+        orb_prononciation: "Вимова",
+        pron_kicker: "Читати німецькою",
+        pron_intro: "Німецькі слова майже завжди читаються так, як пишуться: цих правил досить, щоб прочитати будь-яке слово. Торкнись слова, щоб його почути.",
+        pron_voyelles: "Голосні",
+        pron_consonnes: "Приголосні",
+        pron_fins: "Кінці слів",
+        pron_vitesse: "Швидкість",
+        pron_v_normale: "Звичайна",
+        pron_v_lente: "Повільна",
+        pron_v_tres_lente: "Дуже повільна",
         orb_zahlen_sub: "einundzwanzig · dritte",
         orb_schreiben_title: "Письмо",
         orb_schreiben_sub: "переклади речення",
@@ -15124,6 +15214,16 @@ const I18N = {
         kicker_schreiben: "نوشتن · ترجمه",
         schreiben_hint: "جمله را به آلمانی بنویس. علامت‌ها و نشانه‌گذاری به حساب نمی‌آیند.",
         orb_zahlen_title: "عددها",
+        orb_prononciation: "تلفظ",
+        pron_kicker: "خواندن آلمانی",
+        pron_intro: "آلمانی تقریباً همیشه همان‌طور که نوشته می‌شود خوانده می‌شود: این قاعده‌ها برای خواندن هر واژه‌ای کافی است. برای شنیدن، واژه را لمس کن.",
+        pron_voyelles: "واکه‌ها",
+        pron_consonnes: "همخوان‌ها",
+        pron_fins: "پایان واژه‌ها",
+        pron_vitesse: "سرعت",
+        pron_v_normale: "عادی",
+        pron_v_lente: "آهسته",
+        pron_v_tres_lente: "خیلی آهسته",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "ضمیرها",
         op_pronomen_sub: "ich · mich · mir",
@@ -16284,6 +16384,16 @@ const I18N = {
         schreiben_hint: "اكتب الجملة بالألمانية. الحركات وعلامات الترقيم لا تُحتسب.",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "الأعداد",
+        orb_prononciation: "النطق",
+        pron_kicker: "قراءة الألمانية",
+        pron_intro: "تُقرأ الألمانية غالبًا كما تُكتب: هذه القواعد تكفي لقراءة أي كلمة. المس الكلمة لتسمعها.",
+        pron_voyelles: "الحروف الصائتة",
+        pron_consonnes: "الحروف الصامتة",
+        pron_fins: "أواخر الكلمات",
+        pron_vitesse: "السرعة",
+        pron_v_normale: "عادية",
+        pron_v_lente: "بطيئة",
+        pron_v_tres_lente: "بطيئة جدًا",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "الضمائر",
         op_pronomen_sub: "ich · mich · mir",
@@ -24738,6 +24848,70 @@ function retourFiche(){
 // plus demandees gardent la leur, les autres (futur, imperatif,
 // periphrases, nombres, prepositions, connecteurs...) vivent ici, dans
 // l'ordre du fichier -- celui d'un debutant.
+// LA TUILE PRONONCIATION (v755, idee de Hatice). Les regles et leurs
+// exemples viennent de prononciation.json, fichier DERIVE de
+// tests/prononciation.py. Chaque explication est ecrite POUR la langue de
+// l'interface (sch = ş en turc, ш en ukrainien...) : texteDeFiche() la
+// choisit. Les exemples sont des mots du corpus deja dits par Aurora ; leur
+// traduction suit le repli habituel (texteTraduit).
+let PRONONCIATION = null;
+// LA VITESSE (idee de Jacques, v755) : trois crans bien distincts. Le fichier
+// d'Aurora est ralenti par le navigateur SANS changer la hauteur de la voix
+// (playbackRate) ; la voix du telephone, en repli, prend la meme vitesse.
+// Retenue sur l'appareil seulement : c'est une preference d'ecoute.
+let vitessePron = 1;
+try{ vitessePron = parseFloat(localStorage.getItem("wortando_pronVitesse")) || 1; }catch(e){}
+function choisirVitessePron(v){
+    vitessePron = v;
+    try{ localStorage.setItem("wortando_pronVitesse", String(v)); }catch(e){}
+    document.querySelectorAll(".pron-vitesse button").forEach(b =>
+        b.classList.toggle("actif", parseFloat(b.dataset.vitesse) === v));
+}
+function direMotPron(idx){
+    const e = sentenceRegistry[idx];
+    if(e && e.text) direAllemand(e.text, { rate: vitessePron });
+}
+async function ouvrirPrononciation(){
+    showScreen("prononciation");
+    choisirVitessePron(vitessePron);
+    const corps = document.getElementById("pronCorps");
+    if(!corps) return;
+    if(!PRONONCIATION){
+        try{
+            const r = await fetch(urlDonnees("prononciation.json"));
+            PRONONCIATION = await r.json();
+        }catch(e){ corps.innerHTML = ""; return; }
+    }
+    const titres = { voyelles: "pron_voyelles", consonnes: "pron_consonnes", fins: "pron_fins" };
+    // En persan et en arabe, la phrase court de droite a gauche et les mots
+    // allemands qu'elle cite s'y melangeaient (« Wasser ≈ » passait derriere
+    // « very »). Chaque mot latin est isole (<bdi>) : il garde sa place dans
+    // la phrase et son propre sens de lecture.
+    const rtl = document.documentElement.dir === "rtl";
+    const isoler = s => rtl ? s.replace(/[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß-]*/g, m => "<bdi>" + m + "</bdi>") : s;
+    let html = "";
+    PRONONCIATION.groupes.forEach(g => {
+        html += '<h3 class="pron-groupe">' + echapperFiche(t(titres[g.id] || g.id)) + '</h3>';
+        g.regles.forEach(r => {
+            html += '<div class="card"><div class="pron-tete">'
+                + '<span class="pron-graphie">' + echapperFiche(r.graphie) + '</span>'
+                + '<span class="pron-api">' + echapperFiche(r.api) + '</span>'
+                + '<span class="pron-court">' + isoler(echapperFiche(texteDeFiche(r.court))) + '</span></div>'
+                + '<p class="pron-expl">' + isoler(echapperFiche(texteDeFiche(r.explication))) + '</p>'
+                + '<div class="pron-mots">';
+            r.exemples.forEach(e => {
+                const idx = sentenceRegistry.length;
+                sentenceRegistry.push({ text: e.mot, lang: "de" });
+                html += '<button type="button" class="pron-mot" onclick="direMotPron(' + idx + ')">'
+                    + '<b>' + echapperFiche(e.mot) + '</b>'
+                    + '<small>' + echapperFiche(texteTraduit(e, "traduction")) + '</small></button>';
+            });
+            html += '</div></div>';
+        });
+    });
+    corps.innerHTML = html;
+}
+
 async function abrirIndiceGramatica(){
     if(!COURS_CHARGE) await chargerCours();
     const liste = document.getElementById("gramIndiceListe");
@@ -32245,7 +32419,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 754;
+const APP_VERSION = 755;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

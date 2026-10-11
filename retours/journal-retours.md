@@ -8189,3 +8189,11 @@ prononciation. Reponse proposee : pas de transcription sur chaque carte, une tui
 « Prononciation » (les ~20 regles de lecture de l'allemand, chaque exemple dit par
 Aurora, rapprochees de la langue de l'apprenant : en turc, s cedille = sch, u et o
 trema identiques). En attente de son feu vert.
+Suite (11 oct.) : Jacques donne le feu vert (« go pour la tuile prononciation »),
+demande le lien avec chaque langue des utilisateurs, et ajoute l'idee de TROIS
+VITESSES bien distinctes. Fait en v755 : tuile « Prononciation » (allemand seul),
+25 regles en trois groupes, chacune expliquee dans les six langues avec le
+rapprochement propre a chacune (tests/prononciation.py -> prononciation.json) ;
+73 exemples, tous des mots du corpus deja dits par Aurora ; vitesse Normale / Lente
+(0,75) / Tres lente (0,5), la voix ralentie sans changer de hauteur. A faire
+relire : tr par Hatice, uk / fa / ar par nos testeurs de ces langues.
