@@ -882,32 +882,44 @@ def verifier_prononciation(r):
     tests/prononciation.py. Chaque regle doit parler aux six langues de
     l'interface -- une langue oubliee retomberait sur le francais, ce qui
     pour un Turc ou un Persan vide la regle de son sens (le rapprochement
-    avec SA langue). Et le fichier doit suivre son script."""
+    avec SA langue). Et le fichier doit suivre son script.
+
+    L'ESPAGNOL (v758) a le sien, en francais et en anglais (les deux langues
+    de son interface), avec des textes par variante pour c / z."""
     import importlib.util
-    chemin = os.path.join(RACINE, "prononciation.json")
-    if not os.path.exists(chemin):
-        return r.echec("prononciation", "prononciation.json absent")
-    d = json.load(io.open(chemin, encoding="utf-8"))
-    n = 0
-    for g in d.get("groupes", []):
-        for regle in g.get("regles", []):
-            n += 1
-            for champ in ("court", "explication"):
-                manque = [l for l in ("fr", "en", "tr", "uk", "fa", "ar") if not (regle.get(champ) or {}).get(l)]
-                if manque:
-                    r.echec("prononciation", "%s / %s : manque %s" % (regle.get("id"), champ, manque))
-            if len(regle.get("exemples", [])) < 2:
-                r.echec("prononciation", "%s : moins de deux exemples" % regle.get("id"))
-    spec = importlib.util.spec_from_file_location("prononciation", os.path.join(RACINE, "tests", "prononciation.py"))
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    attendu, fautes = mod.construire()
-    for f in fautes:
-        r.echec("prononciation", f)
-    if attendu != d:
-        r.echec("prononciation", "prononciation.json en retard sur tests/prononciation.py -- relancer avec --ecrire")
-    r.controle(n or 1)
-    print("   prononciation : %d regles" % n)
+    total = 0
+    for fichier, script, langues in (
+            ("prononciation.json", "prononciation.py", ("fr", "en", "tr", "uk", "fa", "ar")),
+            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en"))):
+        chemin = os.path.join(RACINE, fichier)
+        if not os.path.exists(chemin):
+            r.echec("prononciation", fichier + " absent")
+            continue
+        d = json.load(io.open(chemin, encoding="utf-8"))
+        n = 0
+        for g in d.get("groupes", []):
+            for regle in g.get("regles", []):
+                n += 1
+                textes = [(champ, regle.get(champ)) for champ in ("court", "explication")]
+                for v, t in (regle.get("variantes") or {}).items():
+                    textes += [(v + "." + champ, t.get(champ)) for champ in ("court", "explication")]
+                for champ, valeur in textes:
+                    manque = [l for l in langues if not (valeur or {}).get(l)]
+                    if manque:
+                        r.echec("prononciation", "%s : %s / %s : manque %s" % (fichier, regle.get("id"), champ, manque))
+                if len(regle.get("exemples", [])) < 2:
+                    r.echec("prononciation", "%s : %s : moins de deux exemples" % (fichier, regle.get("id")))
+        spec = importlib.util.spec_from_file_location(script[:-3], os.path.join(RACINE, "tests", script))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        attendu, fautes = mod.construire()
+        for f in fautes:
+            r.echec("prononciation", "%s : %s" % (fichier, f))
+        if attendu != d:
+            r.echec("prononciation", "%s en retard sur tests/%s -- relancer avec --ecrire" % (fichier, script))
+        total += n
+        print("   prononciation : %d regles (%s)" % (n, fichier))
+    r.controle(total or 1)
 
 
 def verifier_trous_de_liste(r, source):

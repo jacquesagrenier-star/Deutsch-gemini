@@ -1,0 +1,587 @@
+{
+ "_note": "Fichier DERIVE : python tests/prononciation_es.py --ecrire. Ne pas modifier a la main.",
+ "groupes": [
+  {
+   "id": "voyelles",
+   "regles": [
+    {
+     "id": "voyelles",
+     "graphie": "a · e · i · o · u",
+     "api": "[a e i o u]",
+     "court": {
+      "fr": "cinq voyelles, toujours entières",
+      "en": "five pure vowels"
+     },
+     "explication": {
+      "fr": "Cinq voyelles, toujours prononcées de la même façon et en entier : a, e (« é »), i, o, u (« ou »). Jamais muettes, jamais nasales.",
+      "en": "Five vowels, always pronounced the same way and in full: a “ah”, e “eh”, i “ee”, o “oh”, u “oo”. No gliding (o is not the “oh-w” of “go”), and never reduced to “uh”."
+     },
+     "exemples": [
+      {
+       "mot": "casa",
+       "traduction": "la maison",
+       "traduction_en": "the house"
+      },
+      {
+       "mot": "mesa",
+       "traduction": "la table",
+       "traduction_en": "the table"
+      },
+      {
+       "mot": "libro",
+       "traduction": "le livre",
+       "traduction_en": "the book"
+      }
+     ]
+    },
+    {
+     "id": "u",
+     "graphie": "u",
+     "api": "[u]",
+     "court": {
+      "fr": "toujours « ou »",
+      "en": "always “oo”"
+     },
+     "explication": {
+      "fr": "Le u se dit toujours « ou » : luna se dit « louna ». Jamais le « u » français.",
+      "en": "u is always “oo”: luna sounds like “loo-na”, never “you”."
+     },
+     "exemples": [
+      {
+       "mot": "luna",
+       "traduction": "la lune",
+       "traduction_en": "the moon"
+      },
+      {
+       "mot": "uva",
+       "traduction": "le raisin",
+       "traduction_en": "the grape"
+      },
+      {
+       "mot": "fruta",
+       "traduction": "le fruit",
+       "traduction_en": "fruit"
+      }
+     ]
+    },
+    {
+     "id": "e-final",
+     "graphie": "-e",
+     "api": "[e]",
+     "court": {
+      "fr": "le e final se prononce",
+      "en": "final e is pronounced"
+     },
+     "explication": {
+      "fr": "Le e se prononce toujours, même à la fin du mot : noche se dit « notché », grande « grandé ». Le piège du francophone : le laisser muet.",
+      "en": "e is always pronounced, even at the end of a word: noche sounds like “no-cheh”, grande like “grahn-deh”. It is never silent as in “come”."
+     },
+     "exemples": [
+      {
+       "mot": "noche",
+       "traduction": "la nuit, le soir",
+       "traduction_en": "the night"
+      },
+      {
+       "mot": "leche",
+       "traduction": "le lait",
+       "traduction_en": "milk"
+      },
+      {
+       "mot": "grande",
+       "traduction": "grand",
+       "traduction_en": "big"
+      }
+     ]
+    },
+    {
+     "id": "sans-nasale",
+     "graphie": "an · en · in · on · un",
+     "api": "[an] [en]",
+     "court": {
+      "fr": "pas de nasales : la voyelle, puis le n",
+      "en": "the vowel, then a real n"
+     },
+     "explication": {
+      "fr": "Pas de voyelles nasales : dans pan, también, cinco, on dit la voyelle PUIS le n, comme dans « Anne » : « pann », « tam-bién ». Jamais « pain » ni « tambien » à la française.",
+      "en": "Before n, the vowel stays pure and the n is fully pronounced: pan “pahn”, también “tahm-byen”. Don't let the vowel turn into “uh”."
+     },
+     "exemples": [
+      {
+       "mot": "pan",
+       "traduction": "le pain",
+       "traduction_en": "bread"
+      },
+      {
+       "mot": "también",
+       "traduction": "aussi",
+       "traduction_en": "also, too"
+      },
+      {
+       "mot": "cinco",
+       "traduction": "cinq",
+       "traduction_en": "five"
+      }
+     ]
+    },
+    {
+     "id": "diphtongues",
+     "graphie": "ue · ie",
+     "api": "[we] [je]",
+     "court": {
+      "fr": "deux voyelles d'un seul coup",
+      "en": "two vowels in one beat"
+     },
+     "explication": {
+      "fr": "Deux voyelles ensemble se disent d'un seul coup : bueno « boué-no », tiempo « tiém-po », nuevo « noué-vo ».",
+      "en": "Two vowels together are said in one beat: bueno “bweh-no”, tiempo “tyem-po”, nuevo “nweh-vo”."
+     },
+     "exemples": [
+      {
+       "mot": "bueno",
+       "traduction": "bon",
+       "traduction_en": "good"
+      },
+      {
+       "mot": "tiempo",
+       "traduction": "le temps (qu'il fait)",
+       "traduction_en": "the weather"
+      },
+      {
+       "mot": "nuevo",
+       "traduction": "neuf, nouveau",
+       "traduction_en": "new"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "consonnes",
+   "regles": [
+    {
+     "id": "c-z",
+     "graphie": "ce · ci · z",
+     "api": "[θ] · [s]",
+     "court": {
+      "fr": "selon la variante",
+      "en": "depends on the variety"
+     },
+     "explication": {
+      "fr": "Devant e ou i, le c — et le z partout — se dit « th » en Espagne et « s » en Amérique latine.",
+      "en": "Before e or i, c — and z everywhere — is “th” in Spain and “s” in Latin America."
+     },
+     "exemples": [
+      {
+       "mot": "cielo",
+       "traduction": "le ciel",
+       "traduction_en": "the sky"
+      },
+      {
+       "mot": "zapato",
+       "traduction": "la chaussure",
+       "traduction_en": "the shoe"
+      },
+      {
+       "mot": "cerveza",
+       "traduction": "la bière",
+       "traduction_en": "beer"
+      }
+     ],
+     "variantes": {
+      "es": {
+       "court": {
+        "fr": "comme le « th » anglais",
+        "en": "“th” as in think"
+       },
+       "explication": {
+        "fr": "En Espagne, devant e ou i, le c — et le z partout — se dit comme le « th » anglais de « think », la langue entre les dents : cielo « thiélo », zapato « thapato ». L'Amérique latine dit « s » : les deux sont corrects.",
+        "en": "In Spain, before e or i, c — and z everywhere — is “th” as in “think”, tongue between the teeth: cielo “thyeh-lo”, zapato “tha-pa-to”. Latin America says “s”: both are correct."
+       }
+      },
+      "latam": {
+       "court": {
+        "fr": "« s »",
+        "en": "“s”"
+       },
+       "explication": {
+        "fr": "En Amérique latine, devant e ou i, le c — et le z partout — se dit « s » : cielo « siélo », zapato « sapato ». En Espagne on dit « th » : les deux sont corrects.",
+        "en": "In Latin America, before e or i, c — and z everywhere — is “s”: cielo “syeh-lo”, zapato “sa-pa-to”. Spain says “th”: both are correct."
+       }
+      }
+     }
+    },
+    {
+     "id": "c-qu",
+     "graphie": "ca · co · cu · que · qui",
+     "api": "[k]",
+     "court": {
+      "fr": "toujours « k »",
+      "en": "always “k”"
+     },
+     "explication": {
+      "fr": "ca, co, cu se disent « ka, ko, kou ». Devant e et i, on écrit qu et le u ne s'entend pas : queso « késo », aquí « aki ».",
+      "en": "ca, co, cu are “ka, ko, koo”. Before e and i, Spanish writes qu and the u is silent: queso “keh-so”, aquí “ah-kee”."
+     },
+     "exemples": [
+      {
+       "mot": "casa",
+       "traduction": "la maison",
+       "traduction_en": "the house"
+      },
+      {
+       "mot": "queso",
+       "traduction": "le fromage",
+       "traduction_en": "cheese"
+      },
+      {
+       "mot": "aquí",
+       "traduction": "ici",
+       "traduction_en": "here"
+      }
+     ]
+    },
+    {
+     "id": "j",
+     "graphie": "j · ge · gi",
+     "api": "[x]",
+     "court": {
+      "fr": "raclé au fond de la gorge",
+      "en": "a strong h, like Scottish loch"
+     },
+     "explication": {
+      "fr": "Le j, et le g devant e ou i, est un raclement au fond de la gorge, comme un « r » français soufflé : jamón, gente. Au Mexique, il est plus doux, presque un « h » soufflé.",
+      "en": "j, and g before e or i, is a rasp in the throat like the “ch” of Scottish “loch” — a strong, breathy h: jamón, gente. In Mexico it is softer, close to an English h."
+     },
+     "exemples": [
+      {
+       "mot": "jamón",
+       "traduction": "le jambon",
+       "traduction_en": "the ham"
+      },
+      {
+       "mot": "ojo",
+       "traduction": "l'œil",
+       "traduction_en": "the eye"
+      },
+      {
+       "mot": "gente",
+       "traduction": "les gens",
+       "traduction_en": "people"
+      }
+     ]
+    },
+    {
+     "id": "g-gu",
+     "graphie": "ga · go · gu · gue · gui",
+     "api": "[g]",
+     "court": {
+      "fr": "g dur ; gue, gui : u muet",
+      "en": "hard g; in gue, gui the u is silent"
+     },
+     "explication": {
+      "fr": "ga, go, gu ont un g dur, comme « gare ». Devant e et i, on écrit gu et le u ne s'entend pas : guerra « guérra ». Le tréma le fait entendre : bilingüe « bi-lin-goué ».",
+      "en": "ga, go, gu have a hard g as in “go”. Before e and i, Spanish writes gu and the u is silent: guerra “geh-rra”. A diaeresis makes it heard: bilingüe “bee-leen-gweh”."
+     },
+     "exemples": [
+      {
+       "mot": "gato",
+       "traduction": "le chat",
+       "traduction_en": "the cat"
+      },
+      {
+       "mot": "guerra",
+       "traduction": "la guerre",
+       "traduction_en": "the war"
+      },
+      {
+       "mot": "bilingüe",
+       "traduction": "bilingue",
+       "traduction_en": "bilingual"
+      }
+     ]
+    },
+    {
+     "id": "ch",
+     "graphie": "ch",
+     "api": "[tʃ]",
+     "court": {
+      "fr": "« tch »",
+      "en": "“ch” as in church"
+     },
+     "explication": {
+      "fr": "ch se dit « tch » : noche « notché », ocho « otcho ». Jamais le « ch » français de « chat ».",
+      "en": "ch is “ch” as in “church”: noche “no-cheh”, ocho “o-cho”."
+     },
+     "exemples": [
+      {
+       "mot": "noche",
+       "traduction": "la nuit, le soir",
+       "traduction_en": "the night"
+      },
+      {
+       "mot": "ocho",
+       "traduction": "huit",
+       "traduction_en": "eight"
+      },
+      {
+       "mot": "chico",
+       "traduction": "le garçon, le jeune homme",
+       "traduction_en": "the boy, the guy"
+      }
+     ]
+    },
+    {
+     "id": "ll-y",
+     "graphie": "ll · y",
+     "api": "[ʝ]",
+     "court": {
+      "fr": "comme « y »",
+      "en": "“y” as in yes"
+     },
+     "explication": {
+      "fr": "ll et y se disent comme le « y » de « yeux » : calle « caïé », playa « plaïa ». En Argentine et en Uruguay, on entend plutôt « ch » : calle « caché ».",
+      "en": "ll and y sound like “y” in “yes”: calle “ka-yeh”, playa “pla-ya”. In Argentina and Uruguay you will hear “sh” instead: “ka-sheh”."
+     },
+     "exemples": [
+      {
+       "mot": "calle",
+       "traduction": "la rue",
+       "traduction_en": "the street"
+      },
+      {
+       "mot": "playa",
+       "traduction": "la plage",
+       "traduction_en": "the beach"
+      },
+      {
+       "mot": "llave",
+       "traduction": "la clé",
+       "traduction_en": "the key"
+      }
+     ]
+    },
+    {
+     "id": "n-tilde",
+     "graphie": "ñ",
+     "api": "[ɲ]",
+     "court": {
+      "fr": "« gn »",
+      "en": "“ny” as in canyon"
+     },
+     "explication": {
+      "fr": "ñ se dit « gn », comme dans « montagne » : niño « nigno », mañana « magnana ».",
+      "en": "ñ is “ny” as in “canyon”: niño “nee-nyo”, mañana “ma-nya-na”."
+     },
+     "exemples": [
+      {
+       "mot": "niño",
+       "traduction": "l'enfant, le garçon",
+       "traduction_en": "the child, the boy"
+      },
+      {
+       "mot": "mañana",
+       "traduction": "le matin",
+       "traduction_en": "the morning"
+      },
+      {
+       "mot": "año",
+       "traduction": "l'année",
+       "traduction_en": "the year"
+      }
+     ]
+    },
+    {
+     "id": "h",
+     "graphie": "h",
+     "api": "—",
+     "court": {
+      "fr": "muet, comme en français",
+      "en": "always silent"
+     },
+     "explication": {
+      "fr": "Le h ne se prononce jamais, exactement comme en français : hoy « oï », hermano « ermano ».",
+      "en": "h is always silent: hoy sounds like “oy”, hermano like “er-ma-no”. Never breathe it as in “house”."
+     },
+     "exemples": [
+      {
+       "mot": "hoy",
+       "traduction": "aujourd'hui",
+       "traduction_en": "today"
+      },
+      {
+       "mot": "hermano",
+       "traduction": "le frère",
+       "traduction_en": "the brother"
+      },
+      {
+       "mot": "hora",
+       "traduction": "l'heure",
+       "traduction_en": "the hour"
+      }
+     ]
+    },
+    {
+     "id": "r-rr",
+     "graphie": "r · rr",
+     "api": "[ɾ] · [r]",
+     "court": {
+      "fr": "roulé, jamais dans la gorge",
+      "en": "tapped, or rolled"
+     },
+     "explication": {
+      "fr": "Un r entre deux voyelles est un seul battement du bout de la langue (caro). En début de mot, ou écrit rr, il est roulé plusieurs fois (rojo, perro). Pas de « r » de gorge à la française : caro et carro ne veulent pas dire la même chose.",
+      "en": "A single r between vowels is one quick tap of the tongue, like the “tt” of American “butter” (caro). At the start of a word, or written rr, it is rolled (rojo, perro). Caro and carro are different words."
+     },
+     "exemples": [
+      {
+       "mot": "caro",
+       "traduction": "cher",
+       "traduction_en": "expensive"
+      },
+      {
+       "mot": "rojo",
+       "traduction": "rouge",
+       "traduction_en": "red"
+      },
+      {
+       "mot": "perro",
+       "traduction": "le chien",
+       "traduction_en": "the dog"
+      }
+     ]
+    },
+    {
+     "id": "b-v",
+     "graphie": "b · v",
+     "api": "[b]",
+     "court": {
+      "fr": "b et v : le même son",
+      "en": "b and v sound the same"
+     },
+     "explication": {
+      "fr": "b et v se prononcent exactement pareil : un « b » en début de mot (vino « bino »), un b très doux, les lèvres à peine fermées, entre deux voyelles (uva).",
+      "en": "b and v sound exactly the same: a “b” at the start of a word (vino “bee-no”), and a very soft b, lips barely touching, between vowels (uva)."
+     },
+     "exemples": [
+      {
+       "mot": "vino",
+       "traduction": "le vin",
+       "traduction_en": "wine"
+      },
+      {
+       "mot": "beber",
+       "traduction": "boire",
+       "traduction_en": "to drink"
+      },
+      {
+       "mot": "uva",
+       "traduction": "le raisin",
+       "traduction_en": "the grape"
+      }
+     ]
+    },
+    {
+     "id": "d",
+     "graphie": "d",
+     "api": "[ð]",
+     "court": {
+      "fr": "doux entre deux voyelles",
+      "en": "soft between vowels"
+     },
+     "explication": {
+      "fr": "Entre deux voyelles et en fin de mot, le d est très doux, presque le « th » anglais de « this » : cansado, nada, ciudad.",
+      "en": "Between vowels and at the end of a word, d is very soft, like “th” in “this”: cansado, nada, ciudad."
+     },
+     "exemples": [
+      {
+       "mot": "cansado",
+       "traduction": "fatigué",
+       "traduction_en": "tired"
+      },
+      {
+       "mot": "nada",
+       "traduction": "rien",
+       "traduction_en": "nothing"
+      },
+      {
+       "mot": "ciudad",
+       "traduction": "la ville",
+       "traduction_en": "the city"
+      }
+     ]
+    },
+    {
+     "id": "s",
+     "graphie": "s",
+     "api": "[s]",
+     "court": {
+      "fr": "toujours « ss », jamais « z »",
+      "en": "always “s”, never “z”"
+     },
+     "explication": {
+      "fr": "Le s se dit toujours « ss », même entre deux voyelles : casa « cassa », rosa « rossa ». Le « z » français de « maison » n'existe pas en espagnol.",
+      "en": "s is always a hissing “s”, never “z”, even between vowels: casa “ka-sa”, rosa “ro-sa”."
+     },
+     "exemples": [
+      {
+       "mot": "casa",
+       "traduction": "la maison",
+       "traduction_en": "the house"
+      },
+      {
+       "mot": "mesa",
+       "traduction": "la table",
+       "traduction_en": "the table"
+      },
+      {
+       "mot": "rosa",
+       "traduction": "rose",
+       "traduction_en": "pink"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accent",
+   "regles": [
+    {
+     "id": "accent",
+     "graphie": "á · é · í · ó · ú",
+     "api": "ˈ",
+     "court": {
+      "fr": "une syllabe plus forte",
+      "en": "one stressed syllable"
+     },
+     "explication": {
+      "fr": "Chaque mot a une syllabe plus forte. Mot terminé par une voyelle, n ou s : l'avant-dernière (casa, hablan). Autre consonne : la dernière (ciudad, hablar). Sinon, l'accent écrit la montre (café, médico, canción). Le piège du francophone : mettre la force à la fin, comme en français.",
+      "en": "Every word has one stressed syllable. Ending in a vowel, n or s: the second-to-last (casa, hablan). Any other consonant: the last (ciudad, hablar). Otherwise the written accent shows it (café, médico, canción)."
+     },
+     "exemples": [
+      {
+       "mot": "médico",
+       "traduction": "le médecin",
+       "traduction_en": "the doctor"
+      },
+      {
+       "mot": "canción",
+       "traduction": "la chanson",
+       "traduction_en": "the song"
+      },
+      {
+       "mot": "café",
+       "traduction": "le café",
+       "traduction_en": "coffee"
+      },
+      {
+       "mot": "ciudad",
+       "traduction": "la ville",
+       "traduction_en": "the city"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -6950,9 +6950,11 @@ body[data-theme="dark"] #decouverte > button.primary{
                 <strong data-i18n="orb_zahlen_title">Nombres</strong>
             </div>
         </div>
-        <!-- PRONONCIATION (v755) : les regles de lecture, comparees a la langue
-             de l'utilisateur. Allemand seulement (data-seulement-de). -->
-        <div class="orb orb-de" data-seulement-de data-orbid="prononciation" onclick="ouvrirPrononciation()">
+        <!-- PRONONCIATION (v755 allemand, v758 espagnol) : les regles de
+             lecture, comparees a la langue de l'utilisateur. Le fichier vient
+             de la langue apprise (urlDonnees) : prononciation.json, ou
+             espanol/datos/prononciation.json. -->
+        <div class="orb orb-de" data-orbid="prononciation" onclick="ouvrirPrononciation()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 9a4 4 0 010 6"/><path d="M18.5 6.5a7.5 7.5 0 010 11"/></svg></div>
             <div>
                 <strong data-i18n="orb_prononciation">Prononciation</strong>
@@ -7280,7 +7282,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v757</span>
+    <span class="subtitle-version">v758</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17367,7 +17369,10 @@ const I18N_ESPAGNOL = {
         "kicker_perifrasis": "Les périphrases",
         "kicker_numeros": "Nombres et heure",
         "kicker_demostrativos": "Démonstratifs et possessifs",
-        "kicker_preposiciones": "a, en, de et le a personnel"
+        "kicker_preposiciones": "a, en, de et le a personnel",
+        "pron_kicker": "Lire l'espagnol",
+        "pron_intro": "L'espagnol se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
+        "pron_accent": "L'accent tonique"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17483,7 +17488,10 @@ const I18N_ESPAGNOL = {
         "kicker_perifrasis": "Verbal periphrases",
         "kicker_numeros": "Numbers and time",
         "kicker_demostrativos": "Demonstratives and possessives",
-        "kicker_preposiciones": "a, en, de and the personal a"
+        "kicker_preposiciones": "a, en, de and the personal a",
+        "pron_kicker": "Reading Spanish",
+        "pron_intro": "Spanish is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
+        "pron_accent": "Stress"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -24945,7 +24953,10 @@ async function ouvrirPrononciation(){
             PRONONCIATION = await r.json();
         }catch(e){ corps.innerHTML = ""; return; }
     }
-    const titres = { voyelles: "pron_voyelles", consonnes: "pron_consonnes", fins: "pron_fins" };
+    const titres = { voyelles: "pron_voyelles", consonnes: "pron_consonnes", fins: "pron_fins", accent: "pron_accent" };
+    // Une regle peut dependre de la variante (l'espagnol : c / z se dit « th »
+    // en Espagne, « s » en Amerique latine) : on montre celle de l'usager.
+    const variante = LANGUE_APPRISE === "es" ? VARIANTE_ESPAGNOL : null;
     // En persan et en arabe, la phrase court de droite a gauche et les mots
     // allemands qu'elle cite s'y melangeaient (« Wasser ≈ » passait derriere
     // « very »). Chaque mot latin est isole (<bdi>) : il garde sa place dans
@@ -24956,11 +24967,12 @@ async function ouvrirPrononciation(){
     PRONONCIATION.groupes.forEach(g => {
         html += '<h3 class="pron-groupe">' + echapperFiche(t(titres[g.id] || g.id)) + '</h3>';
         g.regles.forEach(r => {
+            const v = (variante && r.variantes && r.variantes[variante]) || r;
             html += '<div class="card"><div class="pron-tete">'
                 + '<span class="pron-graphie">' + echapperFiche(r.graphie) + '</span>'
                 + '<span class="pron-api">' + echapperFiche(r.api) + '</span>'
-                + '<span class="pron-court">' + isoler(echapperFiche(texteDeFiche(r.court))) + '</span></div>'
-                + '<p class="pron-expl">' + isoler(echapperFiche(texteDeFiche(r.explication))) + '</p>'
+                + '<span class="pron-court">' + isoler(echapperFiche(texteDeFiche(v.court))) + '</span></div>'
+                + '<p class="pron-expl">' + isoler(echapperFiche(texteDeFiche(v.explication))) + '</p>'
                 + '<div class="pron-mots">';
             r.exemples.forEach(e => {
                 const idx = sentenceRegistry.length;
@@ -32482,7 +32494,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 757;
+const APP_VERSION = 758;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

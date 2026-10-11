@@ -8208,3 +8208,12 @@ rien (parcours allemand : 0 ecart). Le mode Ecouter garde sa propre barre
 Suite : Jacques, « oui, ajoute le bouton sur la carte ». v757 : un bouton 1x / 3/4x / 1/2x
 au verso, a cote du haut-parleur du mot ; chaque toucher passe a la vitesse suivante et
 redit le mot. Meme reglage que Reglages > Son.
+
+## 11 octobre 2026 -- Jacques : une Prononciation pour l'espagnol, « pour un Francais et pour un Anglais »
+
+v758 : la meme tuile dans l'app espagnole. 18 regles (voyelles pures, e final, pas de
+nasales, j, c / z, ll, n tilde, h muet, r / rr, b = v, d doux, s jamais z, accent
+tonique), chacune ecrite pour le francophone ET pour l'anglophone (pas les memes
+pieges). c / z suit la variante : « th » en Espagne, « s » en Amerique latine, voix de
+Lolita ou de Monica. 55 exemples, tous du corpus, dits par les deux voix, absents de
+variantes.json. tests/prononciation_es.py -> espanol/datos/prononciation.json.
