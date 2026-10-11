@@ -8245,3 +8245,17 @@ genitif et relatives, hypotheses ; en espagnol estar et prepositions, indicacion
 l'imperatif de usted, relatives et se, probabilite -- avec les versions d'Amerique latine.
 Notes traduites dans les cinq langues. Reste : les voix (cout a annoncer), puis la seance
 et la tuile.
+
+## 11 octobre 2026 -- Jacques : « traduire l'application allemande en brésilien », puis « fais tout ce qui doit être fait »
+
+Question de strategie d'abord (marche reel, mais aucun testeur bresilien ; prix a adapter ;
+recommandation : apres le lancement, des qu'un Bresilien peut relire). Jacques a tranche :
+on le fait, « vraiment une version bresilienne ». v765 : 7e langue d'interface, pt-BR (voix,
+dates), drapeau bresilien, « Portugues (Brasil) », repli pt -> en -> fr, les deux
+choisisseurs. Interface 1 170 cles + grammaire 235 textes, relues chaine par chaine ; les
+contrastes reecrits contre le portugais (cujo contraire de dessen/deren, saber/conhecer
+comme wissen/kennen, « tenho jogado » n'est pas le Perfekt, « chove » sans sujet).
+Corpus pose par un outil neuf, tests/corpus_langue.py (numerotation, garde-fou d'aller-
+retour, relecture) : A1 et A2 complets (2 086 cartes sur 8 052). Reste : B1-C1, exercices,
+examen, scenes, Prononciation, voix de la visite (payante, a demander). Aucun relecteur
+bresilien.

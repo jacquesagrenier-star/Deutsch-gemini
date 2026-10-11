@@ -41,6 +41,9 @@ LANGUES = {
     # cette langue, il faudra un autre controle. Les autres outils
     # (--suspects, --collisions) ne dependent pas de DeepL et fonctionnent.
     "fa": ("persan", None),
+    # v765 : le portugais DU BRESIL (pt-BR). DeepL ne distingue pas les variantes
+    # en langue SOURCE : la traduction inverse part de "PT".
+    "pt": ("portugais (Bresil)", "PT"),
 }
 
 NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
