@@ -28,12 +28,12 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - Adverbes : A1 28, A2 51, B1 119, B2 17
 
-- Expressions : A1 31, A2 73, B1 53, B2 69
+- Expressions : A1 39, A2 80, B1 54, B2 69
 
-- Mots-outils : A1 81, A2 24, B1 15, B2 14
+- Mots-outils : A1 89, A2 27, B1 20, B2 16
 
 
-## Fiches de grammaire (10)
+## Fiches de grammaire (17)
 
 
 - **Le présent** — Trois terminaisons, quelques grands irréguliers
@@ -48,6 +48,10 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **Les deux passés** — Le français a la même opposition
 
+- **Le futur et le conditionnel** — L'infinitif entier, plus une terminaison
+
+- **L'impératif** — Donner un ordre, un conseil, un chemin
+
 - **Le subjonctif** — Le français l'a aussi, mais pas aux mêmes endroits
 
 - **Les pronoms compléments** — Devant le verbe, comme en français
@@ -56,8 +60,18 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **Les verbes pronominaux** — Comme « se lever » en français… ou pas tout à fait
 
+- **Les périphrases verbales** — ir a, estar + gérondif, acabar de…
 
-## Jeux d'exercices (11)
+- **Les nombres et l'heure** — De 16 à un million, et quelle heure il est
+
+- **Démonstratifs et possessifs** — este, ese, aquel ; mi, mío
+
+- **a, en, de : les prépositions de base** — Et le a devant une personne
+
+- **Les connecteurs** — Relier ses idées, du B1 au B2
+
+
+## Jeux d'exercices (14)
 
 
 - Conjugaison au présent : 60 questions
@@ -82,6 +96,12 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - L'accent qui change le sens : 53 questions
 
+- Futur simple : 60 questions
+
+- Conditionnel : 60 questions
+
+- Impératif (tú, usted, ustedes, nosotros, négatif) : 60 questions
+
 
 ## Scènes illustrées
 
@@ -95,17 +115,16 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 - Les passés : prétérit et imparfait (fiche + 70 exercices chacun) ; le passé composé (he comido) seulement mentionné dans la fiche.
 - Le subjonctif présent : souhait, doute, émotion, nécessité, cuando + avenir, para que, antes de que, relatives (fiche + 70 exercices). Subjonctif imparfait et plus-que-parfait : seulement dans les scènes C1 (si + subjonctif).
 - ser / estar, por / para, hay / está, mots interrogatifs, genre des noms, accord de l'adjectif, pronoms compléments (lo/la/le, se lo), verbes pronominaux, verbes comme gustar, l'accent qui change le sens.
+- Le futur et le conditionnel (fiche + 60 exercices chacun) ; l'impératif (fiche + 60 exercices) ; les périphrases (ir a, estar + gérondif, acabar de, volver a, seguir, tener que, hay que, dejar de, empezar a : fiche) ; les nombres et l'heure, les démonstratifs et possessifs, les prépositions a / en / de avec le a personnel, les connecteurs (une fiche chacun). 17 fiches en tout.
 - Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
 
 **Vocabulaire**
 - Environ 3 700 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Pas de C1.
 
 **Ce qui n'est PAS couvert, à notre connaissance** (inutile de le redire, mais dis-nous ce qui est le plus urgent)
-- Le futur simple et le conditionnel (ni fiche ni exercice) ; ir a + infinitif.
-- L'impératif (tú et usted) en dehors des scènes ; le gérondif et les périphrases (estar + gérondif, seguir + gérondif, acabar de…).
 - Le passé composé, le plus-que-parfait, le subjonctif imparfait (pas de fiche ni d'exercice).
-- Possessifs, démonstratifs, comparatifs et superlatifs, nombres et heure, prépositions a / en / de.
-- Le discours rapporté, la concordance des temps.
+- Les comparatifs et superlatifs (seulement dans les scènes), le discours rapporté, la concordance des temps.
+- Pas encore d'exercices pour les périphrases, les nombres, les démonstratifs et les prépositions (fiches seulement).
 - Les fonctions de communication ne sont pas organisées comme telles (se présenter, commander, téléphoner…) : elles passent par le vocabulaire et les expressions.
 
 
@@ -127,7 +146,7 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **El tiempo y las fechas (A1, 37 mots)** : día, semana, mes, año, hora, minuto, segundo, mañana, tarde, noche, mediodía, medianoche, fin de semana, fecha, calendario, momento, rato, siglo, lunes, martes, miércoles, jueves, viernes, sábado, domingo, enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre
 
-- **Los números (A1, 29 mots)** : cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez, once, doce, trece, catorce, quince, veinte, treinta, cuarenta, cincuenta, sesenta, setenta, ochenta, noventa, cien, mil, primero, segundo, tercero
+- **Los números (A1, 46 mots)** : cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez, once, doce, trece, catorce, quince, veinte, treinta, cuarenta, cincuenta, sesenta, setenta, ochenta, noventa, cien, mil, primero, segundo, tercero, dieciséis, diecisiete, dieciocho, diecinueve, veintiuno, veintidós, veintitrés, ciento, doscientos, trescientos, cuatrocientos, quinientos, seiscientos, setecientos, ochocientos, novecientos, millón
 
 - **Los colores y las formas (A1, 6 mots)** : forma, círculo, cuadrado, línea, punto, raya
 
@@ -427,11 +446,11 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 ## Expressions, par niveau
 
 
-- **A1** : por favor, muchas gracias, de nada, lo siento, buenos días, buenas tardes, buenas noches, hasta luego, qué tal, tener ganas de, echar de menos, dar igual, me llamo, mucho gusto, ¿de dónde eres?, la cuenta, por favor, para llevar, ¿cuánto cuesta?, en coche, todos los días, a menudo, ¿qué tal estás?, ¿cómo te va?, encantado de conocerte, hasta pronto, hasta mañana, nos vemos, que te vaya bien, que aproveche, dar recuerdos, bienvenido a bordo
+- **A1** : por favor, muchas gracias, de nada, lo siento, buenos días, buenas tardes, buenas noches, hasta luego, qué tal, tener ganas de, echar de menos, dar igual, me llamo, mucho gusto, ¿de dónde eres?, la cuenta, por favor, para llevar, ¿cuánto cuesta?, en coche, todos los días, a menudo, ¿qué tal estás?, ¿cómo te va?, encantado de conocerte, hasta pronto, hasta mañana, nos vemos, que te vaya bien, que aproveche, dar recuerdos, bienvenido a bordo, ¿Qué hora es?, son las tres y cuarto, es la una y media, a las ocho menos cuarto, en punto, cuídate, perdone, no se preocupe
 
-- **A2** : hacer las maletas, de vacaciones, con retraso, hacer cola, dar miedo, caer bien, llevarse bien, estar de acuerdo, por supuesto, tomar el sol, pasarlo bien, feliz cumpleaños, felices fiestas, hacer deporte, todo recto, al lado de, un poco de, tener cuidado, en directo, hacerse mayor, hacer la cama, por suerte, pedir prestado, en versión original, sentirse bien, ¿me puedes ayudar?, ¿te importa si...?, ¿sería posible...?, con mucho gusto, no hay de qué, perdona la molestia, te lo agradezco, no te preocupes, disculpe, ¿podría...?, un placer, dar un paseo, echar un vistazo, hacer caso, tener prisa, tener sueño, dar una vuelta, estar a punto de, acabar de, volver a, ponerse de acuerdo, hacer falta, dar la lata, estar de bajón, en plan, tener hambre, tener sed, tener frío, tener calor, tener razón, tener suerte, tener sentido, tener lugar, tener en cuenta, tener que ver, tener éxito, vale, venga, oye, anda, vaya, ojalá, enhorabuena, ánimo, socorro, ni hablar, no pasa nada, qué más da, quién sabe
+- **A2** : hacer las maletas, de vacaciones, con retraso, hacer cola, dar miedo, caer bien, llevarse bien, estar de acuerdo, por supuesto, tomar el sol, pasarlo bien, feliz cumpleaños, felices fiestas, hacer deporte, todo recto, al lado de, un poco de, tener cuidado, en directo, hacerse mayor, hacer la cama, por suerte, pedir prestado, en versión original, sentirse bien, ¿me puedes ayudar?, ¿te importa si...?, ¿sería posible...?, con mucho gusto, no hay de qué, perdona la molestia, te lo agradezco, no te preocupes, disculpe, ¿podría...?, un placer, dar un paseo, echar un vistazo, hacer caso, tener prisa, tener sueño, dar una vuelta, estar a punto de, acabar de, volver a, ponerse de acuerdo, hacer falta, dar la lata, estar de bajón, en plan, tener hambre, tener sed, tener frío, tener calor, tener razón, tener suerte, tener sentido, tener lugar, tener en cuenta, tener que ver, tener éxito, vale, venga, oye, anda, vaya, ojalá, enhorabuena, ánimo, socorro, ni hablar, no pasa nada, qué más da, quién sabe, ¿Diga?, ¿De parte de quién?, ¿Quiere dejar un mensaje?, se ha equivocado de número, un momento, no cuelgue, menos mal, sin falta
 
-- **B1** : a lo largo del curso, dar like, a largo plazo, estar en contra, quedar claro, me parece bien, no me parece, desde mi punto de vista, estoy de acuerdo contigo, ¡qué pena!, ¡qué va!, me da igual, no me lo puedo creer, estar de acuerdo en parte, no tiene sentido, vale la pena intentarlo, dar las gracias, darse cuenta, darse prisa, dar la vuelta, dar de comer, dar pena, dar a entender, hacer daño, hacer las paces, hacer el ridículo, hacer caso omiso, hacer un favor, hacer ilusión, ponerse de pie, ponerse a, poner en marcha, poner al día, echar un ojo, echar a perder, echar la culpa, echarse atrás, llevar a cabo, llevar razón, llevarse una sorpresa, quedarse corto, quedar en, quedar bien, estar de moda, estar harto, estar al día, estar por ver, estar en juego, estar de mala leche, ser capaz, ser consciente, ser hora de, ser de fiar
+- **B1** : a lo largo del curso, dar like, a largo plazo, estar en contra, quedar claro, me parece bien, no me parece, desde mi punto de vista, estoy de acuerdo contigo, ¡qué pena!, ¡qué va!, me da igual, no me lo puedo creer, estar de acuerdo en parte, no tiene sentido, vale la pena intentarlo, dar las gracias, darse cuenta, darse prisa, dar la vuelta, dar de comer, dar pena, dar a entender, hacer daño, hacer las paces, hacer el ridículo, hacer caso omiso, hacer un favor, hacer ilusión, ponerse de pie, ponerse a, poner en marcha, poner al día, echar un ojo, echar a perder, echar la culpa, echarse atrás, llevar a cabo, llevar razón, llevarse una sorpresa, quedarse corto, quedar en, quedar bien, estar de moda, estar harto, estar al día, estar por ver, estar en juego, estar de mala leche, ser capaz, ser consciente, ser hora de, ser de fiar, faltaría más
 
 - **B2** : estar en las nubes, ser pan comido, costar un ojo de la cara, meter la pata, tomar el pelo, dar en el clavo, ponerse las pilas, no tener pelos en la lengua, estar hasta las narices, hacer la vista gorda, ser uña y carne, tirar la toalla, irse por las ramas, quedarse de piedra, salir el tiro por la culata, a duras penas, de vez en cuando, en un abrir y cerrar de ojos, por si acaso, valer la pena, echar una mano, estar al tanto, dar por sentado, llevarse un chasco, poner las cartas sobre la mesa, por lo visto, a lo mejor, en principio, en teoría, hasta cierto punto, por lo general, en cierto modo, no del todo, dicho esto, por una parte... por otra, todo depende de, si no me equivoco, en cualquier caso, estar como una cabra, ser un rollo, estar en la luna, costar una fortuna, no pegar ojo, ir al grano, dar plantón, hablar por los codos, ponerse las botas, estar hecho polvo, no tener ni idea, buscarle tres pies al gato, estar al pie del cañón, cortar el bacalao, a pesar de, a causa de, gracias a, debido a, con el fin de, con tal de, en lugar de, en vez de, a base de, de acuerdo con, de todas formas, al fin y al cabo, aun así, o sea, es decir, por ejemplo, más o menos
 
@@ -439,11 +458,11 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 ## Mots-outils, par niveau
 
 
-- **A1** : el, la, los, las, un, una, yo, tú, él, ella, usted, nosotros, ellos, de, a, en, con, sin, por, para, sobre, entre, desde, hasta, y, o, pero, porque, aunque, si, cuando, qué, quién, cómo, cuándo, dónde, cuánto, por qué, cuál, unos, unas, lo, al, del, vosotros, ellas, ustedes, me, te, se, nos, os, le, les, mí, ti, conmigo, contigo, consigo, esta, estos, estas, ese, esa, esos, esas, aquel, aquella, aquellos, aquellas, esto, eso, aquello, mi, tu, su, nuestro, vuestro, mío, tuyo, suyo
+- **A1** : el, la, los, las, un, una, yo, tú, él, ella, usted, nosotros, ellos, de, a, en, con, sin, por, para, sobre, entre, desde, hasta, y, o, pero, porque, aunque, si, cuando, qué, quién, cómo, cuándo, dónde, cuánto, por qué, cuál, unos, unas, lo, al, del, vosotros, ellas, ustedes, me, te, se, nos, os, le, les, mí, ti, conmigo, contigo, consigo, esta, estos, estas, ese, esa, esos, esas, aquel, aquella, aquellos, aquellas, esto, eso, aquello, mi, tu, su, nuestro, vuestro, mío, tuyo, suyo, encima de, debajo de, delante de, detrás de, cerca de, lejos de, antes de, después de
 
-- **A2** : hacia, según, durante, contra, tras, ante, bajo, e, u, ni, sino, pues, alguien, algo, alguno, ninguno, nadie, nada, cada, otro, mismo, varios, demás, tanto
+- **A2** : hacia, según, durante, contra, tras, ante, bajo, e, u, ni, sino, pues, alguien, algo, alguno, ninguno, nadie, nada, cada, otro, mismo, varios, demás, tanto, enfrente de, ningún, así que
 
-- **B1** : sin embargo, además, por lo tanto, en cambio, es decir, en resumen, por ejemplo, a pesar de, que, quien, cual, cuyo, donde, como, cuanto
+- **B1** : sin embargo, además, por lo tanto, en cambio, es decir, en resumen, por ejemplo, a pesar de, que, quien, cual, cuyo, donde, como, cuanto, a través de, cualquiera, por un lado, por otro lado, ya que
 
-- **B2** : no obstante, por consiguiente, asimismo, en efecto, en definitiva, dado que, siempre que, a fin de que, por el contrario, de hecho, ahora bien, salvo que, en cuanto a, por otra parte
+- **B2** : no obstante, por consiguiente, asimismo, en efecto, en definitiva, dado que, siempre que, a fin de que, por el contrario, de hecho, ahora bien, salvo que, en cuanto a, por otra parte, a menos que, en la medida en que
 

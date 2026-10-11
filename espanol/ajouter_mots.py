@@ -82,9 +82,33 @@ def main():
             var["noms"][mot] = v
             poses += 1
 
+    # LES EXPRESSIONS ET LES MOTS-OUTILS (10 oct. 2026) : rangees par niveau,
+    # avec leur categorie (kategorie). Ligne : [mot, categorie, traduction fr,
+    # traduction en, exemple, exemple fr, exemple en]. Un mot deja present a
+    # n'importe quel niveau n'est pas rajoute : deplacer un mot de niveau
+    # n'est pas le role de ce script.
+    autres = 0
+    for fichier, source in (("expresiones", "palabras_utiles"), ("funcionales", "gramatica")):
+        if fichier not in aj:
+            continue
+        chemin = os.path.join(DATOS, fichier + ".json")
+        d = lire(chemin)
+        deja = {x["mot"] for v in d.values() for x in v}
+        for niv, lignes in aj[fichier].items():
+            for mot, cat, fr, en, ex, ex_fr, ex_en in lignes:
+                if mot in deja:
+                    continue
+                d.setdefault(niv, []).append({"traduction": fr, "traduction_en": en, "exemple": ex,
+                                              "exemple_fr": ex_fr, "exemple_en": ex_en,
+                                              "theme_source": source, "mot": mot, "kategorie": cat})
+                deja.add(mot)
+                autres += 1
+        ecrire(chemin, d)
+
     ecrire(temas_chemin, temas)
     ecrire(var_chemin, var)
-    print("themes crees : %d   mots ajoutes : %d   variantes posees : %d" % (crees, ajoutes, poses))
+    print("themes crees : %d   mots ajoutes : %d   variantes posees : %d   expressions et mots-outils : %d"
+          % (crees, ajoutes, poses, autres))
 
 
 if __name__ == "__main__":

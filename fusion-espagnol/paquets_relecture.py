@@ -104,6 +104,7 @@ NOMS_JEUX = {
     "infinitivExercises": "Retrouver l'infinitif d'une forme conjuguée", "adverbienNuanceExercises": "Nuances des adverbes",
     "serEstarExercises": "ser ou estar", "porParaExercises": "por ou para", "falsosAmigosExercises": "Faux amis",
     "gustarExercises": "Verbes comme gustar (doler, faltar, encantar…)", "acentosExercises": "L'accent qui change le sens",
+    "futuroExercises": "Futur simple", "condicionalExercises": "Conditionnel", "imperativoExercises": "Impératif (tú, usted, ustedes, nosotros, négatif)",
 }
 
 COUVERTURE = """
@@ -114,17 +115,16 @@ COUVERTURE = """
 - Les passés : prétérit et imparfait (fiche + 70 exercices chacun) ; le passé composé (he comido) seulement mentionné dans la fiche.
 - Le subjonctif présent : souhait, doute, émotion, nécessité, cuando + avenir, para que, antes de que, relatives (fiche + 70 exercices). Subjonctif imparfait et plus-que-parfait : seulement dans les scènes C1 (si + subjonctif).
 - ser / estar, por / para, hay / está, mots interrogatifs, genre des noms, accord de l'adjectif, pronoms compléments (lo/la/le, se lo), verbes pronominaux, verbes comme gustar, l'accent qui change le sens.
+- Le futur et le conditionnel (fiche + 60 exercices chacun) ; l'impératif (fiche + 60 exercices) ; les périphrases (ir a, estar + gérondif, acabar de, volver a, seguir, tener que, hay que, dejar de, empezar a : fiche) ; les nombres et l'heure, les démonstratifs et possessifs, les prépositions a / en / de avec le a personnel, les connecteurs (une fiche chacun). 17 fiches en tout.
 - Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
 
 **Vocabulaire**
 - Environ 3 700 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Pas de C1.
 
 **Ce qui n'est PAS couvert, à notre connaissance** (inutile de le redire, mais dis-nous ce qui est le plus urgent)
-- Le futur simple et le conditionnel (ni fiche ni exercice) ; ir a + infinitif.
-- L'impératif (tú et usted) en dehors des scènes ; le gérondif et les périphrases (estar + gérondif, seguir + gérondif, acabar de…).
 - Le passé composé, le plus-que-parfait, le subjonctif imparfait (pas de fiche ni d'exercice).
-- Possessifs, démonstratifs, comparatifs et superlatifs, nombres et heure, prépositions a / en / de.
-- Le discours rapporté, la concordance des temps.
+- Les comparatifs et superlatifs (seulement dans les scènes), le discours rapporté, la concordance des temps.
+- Pas encore d'exercices pour les périphrases, les nombres, les démonstratifs et les prépositions (fiches seulement).
 - Les fonctions de communication ne sont pas organisées comme telles (se présenter, commander, téléphoner…) : elles passent par le vocabulaire et les expressions.
 """
 
@@ -208,7 +208,8 @@ def main():
                               ("05-exercices-generes", "Exercices présent, infinitif, adverbes",
                                (("PR", "exercises"), ("IN", "infinitivExercises"), ("AD", "adverbienNuanceExercises"))),
                               ("08-exercices-temps", "Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.)",
-                               (("PT", "praeteritumExercises"), ("IM", "perfektExercises"), ("SU", "konjunktiv2Exercises")))):
+                               (("PT", "praeteritumExercises"), ("IM", "perfektExercises"), ("SU", "konjunktiv2Exercises"),
+                                ("FU", "futuroExercises"), ("CO", "condicionalExercises"), ("IP", "imperativoExercises")))):
         blocs = [exo(p, i, e) for p, n in sets for i, e in enumerate(jeux.get(n, []), 1)]
         faits += ecrire_lots(base, titre, CONSIGNE, blocs)
 

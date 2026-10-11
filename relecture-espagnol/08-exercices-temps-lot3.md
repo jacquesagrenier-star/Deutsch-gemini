@@ -1,4 +1,4 @@
-# Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.) — lot 3 sur 5
+# Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.) — lot 3 sur 10
 
 CONSIGNE (à coller telle quelle)
 

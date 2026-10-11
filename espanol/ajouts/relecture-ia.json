@@ -1,0 +1,80 @@
+{
+ "_lisez_moi": [
+  "Ce que les relectures de Gemini et ChatGPT (10 oct. 2026) ont trouve absent, et qui l'etait vraiment (verifie dans le corpus) : les nombres de 16 a 29 et les centaines, l'heure, le telephone, les formules de politesse, les locutions prepositives, quelques mots-outils.",
+  "Applique par : python espanol/ajouter_mots.py espanol/ajouts/relecture-ia.json (idempotent)."
+ ],
+ "ajouts": {
+  "los_numeros": [
+   ["dieciséis", "", null, "seize", "sixteen", "Tengo dieciséis años.", "J'ai seize ans.", "I'm sixteen."],
+   ["diecisiete", "", null, "dix-sept", "seventeen", "El autobús diecisiete va al centro.", "Le bus dix-sept va au centre.", "The number seventeen bus goes to the centre."],
+   ["dieciocho", "", null, "dix-huit", "eighteen", "Se puede votar a los dieciocho años.", "On peut voter à dix-huit ans.", "You can vote at eighteen."],
+   ["diecinueve", "", null, "dix-neuf", "nineteen", "Mi hermana tiene diecinueve años.", "Ma sœur a dix-neuf ans.", "My sister is nineteen."],
+   ["veintiuno", "", null, "vingt et un", "twenty-one", "Vivo en el número veintiuno.", "J'habite au numéro vingt et un.", "I live at number twenty-one."],
+   ["veintidós", "", null, "vingt-deux", "twenty-two", "Somos veintidós en clase.", "Nous sommes vingt-deux en classe.", "There are twenty-two of us in class."],
+   ["veintitrés", "", null, "vingt-trois", "twenty-three", "El examen es el veintitrés de mayo.", "L'examen a lieu le vingt-trois mai.", "The exam is on the twenty-third of May."],
+   ["ciento", "", null, "cent (devant un autre nombre)", "a hundred (before another number)", "El libro cuesta ciento veinte pesos.", "Le livre coûte cent vingt pesos.", "The book costs a hundred and twenty pesos."],
+   ["doscientos", "", null, "deux cents", "two hundred", "Hay doscientos alumnos en el colegio.", "Il y a deux cents élèves dans l'école.", "There are two hundred pupils at the school."],
+   ["trescientos", "", null, "trois cents", "three hundred", "El hotel tiene trescientas habitaciones.", "L'hôtel a trois cents chambres.", "The hotel has three hundred rooms."],
+   ["cuatrocientos", "", null, "quatre cents", "four hundred", "El viaje cuesta cuatrocientos euros.", "Le voyage coûte quatre cents euros.", "The trip costs four hundred euros."],
+   ["quinientos", "", null, "cinq cents", "five hundred", "Para el concierto hay quinientas entradas.", "Pour le concert, il y a cinq cents billets.", "There are five hundred tickets for the concert."],
+   ["seiscientos", "", null, "six cents", "six hundred", "El pueblo tiene seiscientos habitantes.", "Le village compte six cents habitants.", "The village has six hundred inhabitants."],
+   ["setecientos", "", null, "sept cents", "seven hundred", "El castillo tiene setecientos años.", "Le château a sept cents ans.", "The castle is seven hundred years old."],
+   ["ochocientos", "", null, "huit cents", "eight hundred", "La ciudad está a ochocientos kilómetros.", "La ville est à huit cents kilomètres.", "The city is eight hundred kilometres away."],
+   ["novecientos", "", null, "neuf cents", "nine hundred", "El puente mide novecientos metros.", "Le pont mesure neuf cents mètres.", "The bridge is nine hundred metres long."],
+   ["millón", "el", "millones", "le million", "million", "La ciudad tiene un millón de habitantes.", "La ville compte un million d'habitants.", "The city has a million inhabitants."]
+  ]
+ },
+ "variantes": {},
+ "expresiones": {
+  "A1": [
+   ["¿Qué hora es?", "cotidiano", "Quelle heure est-il ?", "What time is it?", "Perdone, ¿qué hora es?", "Excusez-moi, quelle heure est-il ?", "Excuse me, what time is it?"],
+   ["son las tres y cuarto", "cotidiano", "il est trois heures et quart", "it's a quarter past three", "Ya son las tres y cuarto: llegamos tarde.", "Il est déjà trois heures et quart : nous sommes en retard.", "It's already a quarter past three: we're late."],
+   ["es la una y media", "cotidiano", "il est une heure et demie", "it's half past one", "Es la una y media; ¿comemos?", "Il est une heure et demie ; on mange ?", "It's half past one; shall we eat?"],
+   ["a las ocho menos cuarto", "cotidiano", "à huit heures moins le quart", "at a quarter to eight", "La clase empieza a las ocho menos cuarto.", "Le cours commence à huit heures moins le quart.", "Class starts at a quarter to eight."],
+   ["en punto", "cotidiano", "pile (à l'heure exacte)", "on the dot", "Llegó a las nueve en punto.", "Il est arrivé à neuf heures pile.", "He arrived at nine on the dot."],
+   ["cuídate", "saludo", "prends soin de toi", "take care", "Adiós, Marta, cuídate mucho.", "Au revoir, Marta, prends bien soin de toi.", "Bye, Marta, take good care of yourself."],
+   ["perdone", "cortesia", "excusez-moi (à quelqu'un qu'on vouvoie)", "excuse me (formal)", "Perdone, ¿dónde está la estación?", "Excusez-moi, où est la gare ?", "Excuse me, where's the station?"],
+   ["no se preocupe", "cortesia", "ne vous inquiétez pas", "don't worry (formal)", "No se preocupe, no pasa nada.", "Ne vous inquiétez pas, ce n'est rien.", "Don't worry, it's nothing."]
+  ],
+  "A2": [
+   ["¿Diga?", "cotidiano", "Allô ? (Espagne ; au Mexique : ¿Bueno? ; ailleurs : ¿Aló?)", "Hello? (Spain; Mexico: ¿Bueno?; elsewhere: ¿Aló?)", "¿Diga? — Hola, ¿está Pedro?", "Allô ? — Bonjour, Pedro est là ?", "Hello? — Hi, is Pedro there?"],
+   ["¿De parte de quién?", "cotidiano", "C'est de la part de qui ?", "Who's calling?", "¿De parte de quién, por favor?", "C'est de la part de qui, s'il vous plaît ?", "Who's calling, please?"],
+   ["¿Quiere dejar un mensaje?", "cotidiano", "Voulez-vous laisser un message ?", "Would you like to leave a message?", "No está en este momento. ¿Quiere dejar un mensaje?", "Il n'est pas là pour le moment. Voulez-vous laisser un message ?", "He isn't in at the moment. Would you like to leave a message?"],
+   ["se ha equivocado de número", "cotidiano", "vous vous êtes trompé de numéro", "you've got the wrong number", "Lo siento, se ha equivocado de número.", "Désolé, vous vous êtes trompé de numéro.", "Sorry, you've got the wrong number."],
+   ["un momento, no cuelgue", "cotidiano", "un instant, ne quittez pas", "one moment, please hold", "Un momento, no cuelgue, por favor.", "Un instant, ne quittez pas, s'il vous plaît.", "One moment, please hold."],
+   ["menos mal", "reaccion", "heureusement, ouf", "thank goodness", "Menos mal que has llegado.", "Heureusement que tu es arrivé.", "Thank goodness you've arrived."],
+   ["sin falta", "cotidiano", "sans faute", "without fail", "Te lo devuelvo mañana sin falta.", "Je te le rends demain sans faute.", "I'll give it back tomorrow without fail."]
+  ],
+  "B1": [
+   ["faltaría más", "cortesia", "je vous en prie, bien sûr (Espagne)", "of course, don't mention it (Spain)", "¿Puedo sentarme aquí? — ¡Faltaría más!", "Je peux m'asseoir ici ? — Je vous en prie !", "May I sit here? — Of course!"]
+  ]
+ },
+ "funcionales": {
+  "A1": [
+   ["encima de", "preposicion", "sur, au-dessus de", "on top of, above", "Las llaves están encima de la mesa.", "Les clés sont sur la table.", "The keys are on the table."],
+   ["debajo de", "preposicion", "sous", "under", "El gato duerme debajo de la cama.", "Le chat dort sous le lit.", "The cat is sleeping under the bed."],
+   ["delante de", "preposicion", "devant", "in front of", "Te espero delante del cine.", "Je t'attends devant le cinéma.", "I'll wait for you in front of the cinema."],
+   ["detrás de", "preposicion", "derrière", "behind", "El jardín está detrás de la casa.", "Le jardin est derrière la maison.", "The garden is behind the house."],
+   ["cerca de", "preposicion", "près de", "near", "Vivo cerca de la playa.", "J'habite près de la plage.", "I live near the beach."],
+   ["lejos de", "preposicion", "loin de", "far from", "El aeropuerto está lejos del centro.", "L'aéroport est loin du centre.", "The airport is far from the centre."],
+   ["antes de", "preposicion", "avant (de)", "before", "Lávate las manos antes de comer.", "Lave-toi les mains avant de manger.", "Wash your hands before eating."],
+   ["después de", "preposicion", "après", "after", "Después de clase vamos al parque.", "Après les cours, nous allons au parc.", "After class we go to the park."]
+  ],
+  "A2": [
+   ["enfrente de", "preposicion", "en face de", "opposite", "La farmacia está enfrente del banco.", "La pharmacie est en face de la banque.", "The chemist's is opposite the bank."],
+   ["ningún", "determinante", "aucun (devant un nom masculin)", "no, not any", "No tengo ningún problema.", "Je n'ai aucun problème.", "I don't have any problem."],
+   ["así que", "conector", "donc, alors", "so", "Llovía, así que nos quedamos en casa.", "Il pleuvait, alors nous sommes restés à la maison.", "It was raining, so we stayed at home."]
+  ],
+  "B1": [
+   ["a través de", "preposicion", "à travers, par l'intermédiaire de", "through", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "I found out through a friend."],
+   ["cualquiera", "pronombre", "n'importe lequel, n'importe qui", "anyone, any", "Cualquiera puede aprenderlo.", "N'importe qui peut l'apprendre.", "Anyone can learn it."],
+   ["por un lado", "conector", "d'un côté", "on the one hand", "Por un lado, me gusta la casa; por otro lado, es cara.", "D'un côté, la maison me plaît ; de l'autre, elle est chère.", "On the one hand I like the house; on the other, it's expensive."],
+   ["por otro lado", "conector", "d'un autre côté, par ailleurs", "on the other hand", "Es barato; por otro lado, está lejos.", "C'est bon marché ; d'un autre côté, c'est loin.", "It's cheap; on the other hand, it's far away."],
+   ["ya que", "conector", "puisque", "since", "Ya que estás aquí, ayúdame.", "Puisque tu es là, aide-moi.", "Since you're here, help me."]
+  ],
+  "B2": [
+   ["a menos que", "conector", "à moins que (+ subjonctif)", "unless", "Iré, a menos que llueva.", "J'irai, à moins qu'il pleuve.", "I'll go, unless it rains."],
+   ["en la medida en que", "conector", "dans la mesure où", "insofar as", "Te ayudaré en la medida en que pueda.", "Je t'aiderai dans la mesure où je le pourrai.", "I'll help you as far as I can."]
+  ]
+ }
+}

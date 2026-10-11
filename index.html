@@ -6929,6 +6929,12 @@ body[data-theme="dark"] #decouverte > button.primary{
         </h2>
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
+        <div class="orb" data-seulement-es data-orbid="es-indice" onclick="abrirIndiceGramatica()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
+            </div>
+        </div>
         <div class="orb" data-seulement-es data-orbid="es-presente" onclick="abrirGramatica('presente')">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h12v16H6a2 2 0 00-2 2z"/><path d="M4 19V5"/></svg></div>
             <div>
@@ -7236,7 +7242,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v748</span>
+    <span class="subtitle-version">v749</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8677,6 +8683,12 @@ body[data-theme="dark"] #decouverte > button.primary{
         <div class="spacer"></div>
         <button class="secondary" onclick="startCondicionalExercise()" data-i18n="fiche_entrainer">M'ENTRAÎNER →</button>
     </div>
+    <div class="card" data-seulement-es>
+        <strong data-i18n="verbentemps_es_imperativo_title">Imperativo — l'impératif</strong>
+        <div class="info-box" data-i18n-html="verbentemps_es_imperativo">tú : habla · usted : hable · no hables.</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="startImperativoExercise()" data-i18n="fiche_entrainer">M'ENTRAÎNER →</button>
+    </div>
 
     <div class="card">
         <strong data-i18n="verbentemps_infinitiv_title">Infinitiv — reconnaître la forme de base</strong>
@@ -9769,8 +9781,19 @@ body[data-theme="dark"] #decouverte > button.primary{
 <!-- LES FICHES DE GRAMMAIRE DE L'ESPAGNOL (fusion, etape 4). Remplies par
      abrirGramatica() a partir de espanol/datos/grammaire.json. Jamais
      ouvertes en allemand. -->
-<section id="gramaticaES" class="screen">
+<section id="gramaticaIndice" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="gram_indice_kicker">Grammaire</div>
+            <h2 data-i18n="gram_indice_titre">Toutes les fiches</h2>
+        </div>
+    </div>
+    <div id="gramIndiceListe"></div>
+</section>
+
+<section id="gramaticaES" class="screen">
+    <button class="back" onclick="retourFiche()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="title-row">
         <div>
             <div class="kicker" id="gramKicker"></div>
@@ -17152,7 +17175,13 @@ const I18N_ESPAGNOL = {
         "verbentemps_es_condicional_title": "Condicional — le conditionnel",
         "verbentemps_es_condicional": "Pour la politesse, le conseil, l'hypothèse — et le futur vu du passé. L'infinitif entier + <b>-ía, -ías, -ía, -íamos, -íais, -ían</b>.<br><em>¿Podrías ayudarme? Dijo que vendría.</em> (Pourrais-tu m'aider ? Il a dit qu'il viendrait.)",
         "kicker_es_futuro": "Verbes · Futuro",
-        "kicker_es_condicional": "Verbes · Condicional"
+        "kicker_es_condicional": "Verbes · Condicional",
+        "orb_es_indice": "Toutes les fiches",
+        "gram_indice_kicker": "Grammaire",
+        "gram_indice_titre": "Toutes les fiches",
+        "verbentemps_es_imperativo_title": "Imperativo — l'impératif",
+        "verbentemps_es_imperativo": "Donner un ordre, un conseil, un chemin. Avec <b>tú</b> : la forme de él (habla) ; avec <b>usted</b> et au <b>négatif</b> : le subjonctif (hable, no hables).<br><em>Gira a la derecha. No hables tan alto.</em> (Tourne à droite. Ne parle pas si fort.)",
+        "kicker_es_imperativo": "Verbes · Imperativo"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17258,7 +17287,13 @@ const I18N_ESPAGNOL = {
         "verbentemps_es_condicional_title": "Condicional — the conditional",
         "verbentemps_es_condicional": "For politeness, advice, hypotheses — and the future seen from the past. The whole infinitive + <b>-ía, -ías, -ía, -íamos, -íais, -ían</b>.<br><em>¿Podrías ayudarme? Dijo que vendría.</em> (Could you help me? He said he'd come.)",
         "kicker_es_futuro": "Verbs · Futuro",
-        "kicker_es_condicional": "Verbs · Condicional"
+        "kicker_es_condicional": "Verbs · Condicional",
+        "orb_es_indice": "All grammar notes",
+        "gram_indice_kicker": "Grammar",
+        "gram_indice_titre": "All grammar notes",
+        "verbentemps_es_imperativo_title": "Imperativo — the imperative",
+        "verbentemps_es_imperativo": "Orders, advice, directions. With <b>tú</b>: the él form (habla); with <b>usted</b> and in the <b>negative</b>: the subjunctive (hable, no hables).<br><em>Gira a la derecha. No hables tan alto.</em> (Turn right. Don't talk so loudly.)",
+        "kicker_es_imperativo": "Verbs · Imperativo"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -24606,7 +24641,34 @@ function texteDeFiche(v){
 function echapperFiche(s){
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-async function abrirGramatica(id){
+// D'ou la fiche a ete ouverte : la liste de toutes les fiches y ramene, tout
+// le reste (une tuile, la fin d'un exercice) ramene a l'accueil.
+let ficheRetour = null;
+function retourFiche(){
+    if(ficheRetour === "indice") abrirIndiceGramatica();
+    else goHome();
+}
+
+// TOUTES LES FICHES (v749). Dix-sept fiches ne tiennent pas en tuiles : les
+// plus demandees gardent la leur, les autres (futur, imperatif,
+// periphrases, nombres, prepositions, connecteurs...) vivent ici, dans
+// l'ordre du fichier -- celui d'un debutant.
+async function abrirIndiceGramatica(){
+    if(!COURS_CHARGE) await chargerCours();
+    const liste = document.getElementById("gramIndiceListe");
+    if(liste){
+        liste.innerHTML = FICHES_GRAMMAIRE.map(g =>
+            '<div class="orb-opt" onclick="abrirGramatica(\'' + g.id + '\', \'indice\')">'
+            + '<div class="orb-opt-left"><div class="orb-opt-icon">' + ORB_ICONS.dossier + '</div><div>'
+            + '<div class="orb-opt-title">' + echapperFiche(texteDeFiche(g.titre)) + '</div>'
+            + '<div class="orb-opt-desc">' + echapperFiche(texteDeFiche(g.resume)) + '</div></div></div>'
+            + '<div class="orb-opt-arrow">›</div></div>').join("");
+    }
+    showScreen("gramaticaIndice");
+}
+
+async function abrirGramatica(id, depuis){
+    ficheRetour = depuis || null;
     if(!COURS_CHARGE) await chargerCours();
     const g = FICHES_GRAMMAIRE.find(x => x.id === id);
     if(!g){ goHome(); return; }
@@ -32098,7 +32160,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 748;
+const APP_VERSION = 749;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -37170,6 +37232,9 @@ function startKonjunktiv2Exercise(){
 }
 function startFuturoExercise(){
     startExerciseSetMelange("futuroExercises", "kicker_es_futuro", openVerbenTempsInfo, startFuturoExercise);
+}
+function startImperativoExercise(){
+    startExerciseSetMelange("imperativoExercises", "kicker_es_imperativo", openVerbenTempsInfo, startImperativoExercise);
 }
 function startCondicionalExercise(){
     startExerciseSetMelange("condicionalExercises", "kicker_es_condicional", openVerbenTempsInfo, startCondicionalExercise);

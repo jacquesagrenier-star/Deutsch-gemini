@@ -1,4 +1,4 @@
-# Les fiches de grammaire — lot 1 sur 2
+# Les fiches de grammaire — lot 1 sur 3
 
 CONSIGNE (à coller telle quelle)
 
@@ -109,34 +109,25 @@ Si tout un lot est correct, réponds seulement « Rien à signaler ».
 - attention EN : English “I ate” can be either. Ask yourself: is this <i>what happened</i>, or <i>what things were like</i>?
 
 
-**FI-7 — Le subjonctif** (The subjunctive)
+**FI-7 — Le futur et le conditionnel** (The future and the conditional)
 
-- règle FR : Après les expressions de <b>souhait, doute, émotion</b>, ou devant <b>ce qui n'est pas encore un fait</b> — presque toujours après <b>que</b>.
-- règle EN : Use it after expressions of <b>wish, doubt, emotion, or a situation that isn't a fact yet</b> — almost always after <b>que</b>.
-- tableau 1 : {'fr': 'souhait', 'en': 'wish'} | FR : quiero que…, espero que… | EN : quiero que…, espero que… | exemple : Espero que vengas.
-- tableau 2 : {'fr': 'doute', 'en': 'doubt'} | FR : no creo que…, dudo que… | EN : no creo que…, dudo que… | exemple : No creo que sea fácil.
-- tableau 3 : {'fr': 'émotion', 'en': 'emotion'} | FR : me alegro de que… | EN : me alegro de que… | exemple : Me alegro de que estés aquí.
-- tableau 4 : {'fr': 'pas encore', 'en': 'not yet'} | FR : cuando…, antes de que… | EN : cuando…, antes de que… | exemple : Te llamo cuando llegue.
-- exemple 1 : Creo que viene. | FR : Je crois qu'il vient. (un fait, à ma connaissance) | EN : I think he's coming. (a fact, as far as I know)
-- exemple 2 : No creo que venga. | FR : Je ne crois pas qu'il vienne. (le doute → subjonctif, comme en français) | EN : I don't think he's coming. (doubt → subjunctive)
-- exemple 3 : Cuando llego, te llamo. | FR : Quand j'arrive, je t'appelle. (une habitude — un fait) | EN : When I arrive, I call you. (habit — a fact)
-- exemple 4 : Cuando llegue, te llamo. | FR : Quand j'arriverai, je t'appellerai. (pas encore arrivé) | EN : When I arrive, I'll call you. (hasn't happened yet)
-- attention FR : Le grand piège du francophone : après <b>cuando</b> tourné vers l'avenir, le français met le futur (« quand j'arriverai »), l'espagnol le subjonctif — <b>cuando llegue</b>, jamais <i>cuando llegaré</i>. Même chose avec <b>espero que</b> : « j'espère que tu viendras » se dit <b>espero que vengas</b>.
-- attention EN : English keeps one fossil of it: “I suggest he <b>be</b> told”, not “is”. That's the same mood.
-
-
-**FI-8 — Les pronoms compléments** (Object pronouns)
-
-- règle FR : Le pronom complément se place <b>devant</b> le verbe conjugué — exactement comme en français : « je le vois », <b>lo veo</b>.
-- règle EN : The object pronoun comes <b>before</b> the conjugated verb — the opposite of English word order.
-- tableau 1 : lo / la / los / las | FR : complément direct (quoi, qui) | EN : direct object (what) | exemple : Lo veo. · Las compro.
-- tableau 2 : me / te / nos / os | FR : me, te, nous, vous (os : Espagne seulement) | EN : me, you, us (os: Spain only) | exemple : Me llama cada día.
-- tableau 3 : le / les | FR : complément indirect (à qui) | EN : indirect object (to whom) | exemple : Le doy el libro.
-- tableau 4 : se | FR : remplace le/les devant lo/la | EN : replaces le/les before lo/la | exemple : Se lo doy. (jamais « le lo ») / Se lo doy. (not “le lo”)
-- exemple 1 : ¿El libro? Lo tengo yo. | FR : Le livre ? C'est moi qui l'ai. | EN : The book? I've got it.
-- exemple 2 : Te lo explico mañana. | FR : Je te l'explique demain. (le même ordre qu'en français) | EN : I'll explain it to you tomorrow. (both pronouns, both first)
-- exemple 3 : Voy a explicártelo. | FR : Je vais te l'expliquer. (ou : te lo voy a explicar) | EN : I'm going to explain it to you. (or: te lo voy a explicar)
-- attention FR : Deux différences avec le français : à l'infinitif, au gérondif et à l'impératif affirmatif, le pronom se <b>soude à la fin</b> du verbe (<b>explícamelo</b>, explique-le-moi) ; et l'ordre est toujours « à qui » puis « quoi » — <b>se lo doy</b>, alors que le français dit « je le lui donne ».
-- attention EN : With an infinitive or a gerund you may attach the pronoun to the end instead — both orders are correct.
+- règle FR : Pas de radical à chercher : on garde l'<b>infinitif entier</b> et on ajoute <b>-é, -ás, -á, -emos, -éis, -án</b> (futur) ou <b>-ía, -ías, -ía, -íamos, -íais, -ían</b> (conditionnel), les mêmes pour -ar, -er et -ir. Comme en français : « je parlerai », <b>hablaré</b> ; « je parlerais », <b>hablaría</b>.
+- règle EN : No stem to find: keep the <b>whole infinitive</b> and add <b>-é, -ás, -á, -emos, -éis, -án</b> (future) or <b>-ía, -ías, -ía, -íamos, -íais, -ían</b> (conditional), the same for -ar, -er and -ir: <b>hablaré</b> (I will speak), <b>hablaría</b> (I would speak).
+- tableau 1 :  | FR : futur · conditionnel | EN : future · conditional
+- tableau 2 : yo | FR : hablaré · hablaría | EN : hablaré · hablaría
+- tableau 3 : tú | FR : hablarás · hablarías | EN : hablarás · hablarías
+- tableau 4 : él, ella, usted | FR : hablará · hablaría | EN : hablará · hablaría
+- tableau 5 : nosotros | FR : hablaremos · hablaríamos | EN : hablaremos · hablaríamos
+- tableau 6 : vosotros (Espagne) | FR : hablaréis · hablaríais | EN : hablaréis · hablaríais
+- tableau 7 : ellos, ustedes | FR : hablarán · hablarían | EN : hablarán · hablarían
+- tableau 8 : irréguliers | FR : tener → tendr-, poner → pondr-, salir → saldr-, venir → vendr-, poder → podr-, saber → sabr-, querer → querr-, haber → habr-, decir → dir-, hacer → har- | EN : tener → tendr-, poner → pondr-, salir → saldr-, venir → vendr-, poder → podr-, saber → sabr-, querer → querr-, haber → habr-, decir → dir-, hacer → har- | exemple : tendré · haría · diremos
+- exemple 1 : Mañana lloverá. | FR : Demain, il pleuvra. | EN : It will rain tomorrow.
+- exemple 2 : Te llamaré cuando llegue. | FR : Je t'appellerai quand j'arriverai. (après cuando, le subjonctif : jamais « cuando llegaré ») | EN : I'll call you when I arrive. (after cuando, the subjunctive: never « cuando llegaré »)
+- exemple 3 : ¿Podrías ayudarme? | FR : Pourrais-tu m'aider ? (le conditionnel adoucit une demande, comme en français) | EN : Could you help me? (the conditional softens a request)
+- exemple 4 : Yo que tú, hablaría con ella. | FR : À ta place, je lui parlerais. | EN : If I were you, I'd talk to her.
+- exemple 5 : Si tuviera tiempo, viajaría más. | FR : Si j'avais le temps, je voyagerais plus. (après si : le subjonctif imparfait, jamais le conditionnel) | EN : If I had time, I'd travel more. (after si: the imperfect subjunctive, never the conditional)
+- exemple 6 : ¿Dónde estará Juan? — Estará en casa. | FR : Où peut bien être Juan ? — Il doit être chez lui. (le futur sert aussi à supposer) | EN : Where can Juan be? — He's probably at home. (the future also expresses a guess)
+- attention FR : Après <b>si</b>, jamais le futur ni le conditionnel : <b>si llueve, no iré</b> ; <b>si lloviera, no iría</b>. Et pour un projet, l'oral préfère souvent le futur proche <b>voy a + infinitif</b> : <b>voy a viajar a México</b>.
+- attention EN : After <b>si</b>, never the future or the conditional: <b>si llueve, no iré</b>; <b>si lloviera, no iría</b>. And for plans, speech often prefers <b>voy a + infinitive</b>: <b>voy a viajar a México</b>.
 
 

@@ -1,4 +1,4 @@
-# Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.) — lot 5 sur 5
+# Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.) — lot 5 sur 10
 
 CONSIGNE (à coller telle quelle)
 
@@ -166,4 +166,144 @@ Si tout un lot est correct, réponds seulement « Rien à signaler ».
 - EN : We might go and live in Chile.
 - explication FR : « es posible que », « puede que », « es probable que » → subjonctif.
 - explication EN : « es posible que », « puede que », « es probable que » → subjunctive.
+
+**FU-1** Mañana ___ a mis abuelos. (visitar — yo)
+- choix : réponse : ✔ visitaré
+- FR : Demain, je rendrai visite à mes grands-parents.
+- EN : Tomorrow I'll visit my grandparents.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « visitar » : visitaré · visitarás · visitará · visitaremos · visitarán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « visitar »: visitaré · visitarás · visitará · visitaremos · visitarán.
+
+**FU-2** El año que viene ___ en Barcelona. (vivir — nosotros)
+- choix : réponse : ✔ viviremos
+- FR : L'année prochaine, nous vivrons à Barcelone.
+- EN : Next year we'll live in Barcelona.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « vivir » : viviré · vivirás · vivirá · viviremos · vivirán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « vivir »: viviré · vivirás · vivirá · viviremos · vivirán.
+
+**FU-3** ¿Qué ___ este fin de semana? (hacer — tú)
+- choix : réponse : ✔ harás
+- FR : Que feras-tu ce week-end ?
+- EN : What will you do this weekend?
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « hacer » : haré · harás · hará · haremos · harán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « hacer »: haré · harás · hará · haremos · harán.
+
+**FU-4** Te lo prometo: ___ a tiempo. (llegar — yo)
+- choix : réponse : ✔ llegaré
+- FR : Je te le promets : j'arriverai à l'heure.
+- EN : I promise: I'll be on time.
+- explication FR : Une promesse → futur. Futur de « llegar » : llegaré · llegarás · llegará · llegaremos · llegarán.
+- explication EN : A promise → future. Future of « llegar »: llegaré · llegarás · llegará · llegaremos · llegarán.
+
+**FU-5** La semana que viene ___ el examen. (tener — nosotros)
+- choix : réponse : ✔ tendremos
+- FR : La semaine prochaine, nous aurons l'examen.
+- EN : Next week we'll have the exam.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « tener » : tendré · tendrás · tendrá · tendremos · tendrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « tener »: tendré · tendrás · tendrá · tendremos · tendrán.
+
+**FU-6** Dentro de dos horas ___ la película. (empezar — él, ella)
+- choix : réponse : ✔ empezará
+- FR : Le film commencera dans deux heures.
+- EN : The film will start in two hours.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « empezar » : empezaré · empezarás · empezará · empezaremos · empezarán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « empezar »: empezaré · empezarás · empezará · empezaremos · empezarán.
+
+**FU-7** Mañana ___ sol en todo el país. (hacer — él, ella)
+- choix : réponse : ✔ hará
+- FR : Demain, il fera beau dans tout le pays.
+- EN : Tomorrow it'll be sunny across the country.
+- explication FR : Une prévision ou une prédiction → futur. Futur de « hacer » : haré · harás · hará · haremos · harán.
+- explication EN : A forecast or prediction → future. Future of « hacer »: haré · harás · hará · haremos · harán.
+
+**FU-8** En 2050 los robots ___ muchas tareas de casa. (hacer — ellos, ellas)
+- choix : réponse : ✔ harán
+- FR : En 2050, les robots feront beaucoup de tâches ménagères.
+- EN : In 2050 robots will do lots of housework.
+- explication FR : Une prévision ou une prédiction → futur. Futur de « hacer » : haré · harás · hará · haremos · harán.
+- explication EN : A forecast or prediction → future. Future of « hacer »: haré · harás · hará · haremos · harán.
+
+**FU-9** El próximo verano ___ a Perú. (ir — nosotros)
+- choix : réponse : ✔ iremos
+- FR : L'été prochain, nous irons au Pérou.
+- EN : Next summer we'll go to Peru.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « ir » : iré · irás · irá · iremos · irán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « ir »: iré · irás · irá · iremos · irán.
+
+**FU-10** Mañana te ___ la verdad. (decir — yo)
+- choix : réponse : ✔ diré
+- FR : Demain, je te dirai la vérité.
+- EN : Tomorrow I'll tell you the truth.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « decir » : diré · dirás · dirá · diremos · dirán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « decir »: diré · dirás · dirá · diremos · dirán.
+
+**FU-11** No te preocupes, ___ todo lo posible. (hacer — yo)
+- choix : réponse : ✔ haré
+- FR : Ne t'inquiète pas, je ferai tout mon possible.
+- EN : Don't worry, I'll do everything I can.
+- explication FR : Une promesse → futur. Futur de « hacer » : haré · harás · hará · haremos · harán.
+- explication EN : A promise → future. Future of « hacer »: haré · harás · hará · haremos · harán.
+
+**FU-12** ¿___ venir a la cena del sábado? (poder — tú)
+- choix : réponse : ✔ podrás
+- FR : Tu pourras venir au dîner de samedi ?
+- EN : Will you be able to come to dinner on Saturday?
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « poder » : podré · podrás · podrá · podremos · podrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « poder »: podré · podrás · podrá · podremos · podrán.
+
+**FU-13** Mañana ___ las fotos en la web. (poner — yo)
+- choix : réponse : ✔ pondré
+- FR : Demain, je mettrai les photos sur le site.
+- EN : Tomorrow I'll put the photos on the website.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « poner » : pondré · pondrás · pondrá · pondremos · pondrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « poner »: pondré · pondrás · pondrá · pondremos · pondrán.
+
+**FU-14** Esta noche ___ tarde del trabajo. (salir — yo)
+- choix : réponse : ✔ saldré
+- FR : Ce soir, je sortirai tard du travail.
+- EN : Tonight I'll leave work late.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « salir » : saldré · saldrás · saldrá · saldremos · saldrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « salir »: saldré · saldrás · saldrá · saldremos · saldrán.
+
+**FU-15** Mis primos ___ en Navidad. (venir — ellos, ellas)
+- choix : réponse : ✔ vendrán
+- FR : Mes cousins viendront à Noël.
+- EN : My cousins will come at Christmas.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « venir » : vendré · vendrás · vendrá · vendremos · vendrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « venir »: vendré · vendrás · vendrá · vendremos · vendrán.
+
+**FU-16** Pronto ___ los resultados. (saber — nosotros)
+- choix : réponse : ✔ sabremos
+- FR : Bientôt, nous connaîtrons les résultats.
+- EN : We'll soon know the results.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « saber » : sabré · sabrás · sabrá · sabremos · sabrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « saber »: sabré · sabrás · sabrá · sabremos · sabrán.
+
+**FU-17** El mes que viene ___ treinta años. (tener — yo)
+- choix : réponse : ✔ tendré
+- FR : Le mois prochain, j'aurai trente ans.
+- EN : Next month I'll be thirty.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « tener » : tendré · tendrás · tendrá · tendremos · tendrán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « tener »: tendré · tendrás · tendrá · tendremos · tendrán.
+
+**FU-18** ¿Cuánto ___ el viaje del año que viene? (costar — él, ella)
+- choix : réponse : ✔ costará
+- FR : Combien coûtera le voyage de l'année prochaine ?
+- EN : How much will next year's trip cost?
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « costar » : costaré · costarás · costará · costaremos · costarán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « costar »: costaré · costarás · costará · costaremos · costarán.
+
+**FU-19** Algún día ___ a hablar español perfectamente. (aprender — yo)
+- choix : réponse : ✔ aprenderé
+- FR : Un jour, j'apprendrai à parler espagnol parfaitement.
+- EN : One day I'll learn to speak Spanish perfectly.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « aprender » : aprenderé · aprenderás · aprenderá · aprenderemos · aprenderán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « aprender »: aprenderé · aprenderás · aprenderá · aprenderemos · aprenderán.
+
+**FU-20** Mañana ___ en la playa todo el día. (estar — nosotros)
+- choix : réponse : ✔ estaremos
+- FR : Demain, nous serons à la plage toute la journée.
+- EN : Tomorrow we'll be at the beach all day.
+- explication FR : Un moment à venir (mañana, el año que viene, dentro de…) → futur. Futur de « estar » : estaré · estarás · estará · estaremos · estarán.
+- explication EN : A time to come (mañana, el año que viene, dentro de…) → future. Future of « estar »: estaré · estarás · estará · estaremos · estarán.
 
