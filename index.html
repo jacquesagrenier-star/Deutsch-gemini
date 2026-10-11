@@ -4809,6 +4809,12 @@ body[data-theme="dark"] .srs-aide-btn:hover{border-color:#2a3240; color:#c3c9d4;
 .pron-court{ font-size:14px; font-weight:700; color:#3b6fe0; }
 .pron-expl{ margin:8px 0 10px; line-height:1.55; }
 .pron-mots{ display:flex; flex-wrap:wrap; gap:8px; }
+.vitesse-carte{ margin-inline-start:6px; font:inherit; font-size:13px; font-weight:800; min-width:44px;
+    padding:5px 10px; border-radius:999px; border:1px solid rgba(30,41,59,.18);
+    background:transparent; color:inherit; cursor:pointer; direction:ltr; }
+.vitesse-carte.lent{ background:#1C2430; border-color:#1C2430; color:#fff; }
+body[data-theme="dark"] .vitesse-carte{ border-color:rgba(255,255,255,.18); }
+body[data-theme="dark"] .vitesse-carte.lent{ background:#E8A23A; border-color:#E8A23A; color:#1C2430; }
 .pron-vitesse{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:0 0 6px; font-size:13px; color:#576177; }
 .pron-vitesse span{ margin-inline-end:4px; font-weight:700; }
 .pron-vitesse button{ font:inherit; font-size:13px; font-weight:700; padding:6px 12px; border-radius:999px;
@@ -7274,7 +7280,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v756</span>
+    <span class="subtitle-version">v757</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8986,6 +8992,13 @@ body[data-theme="dark"] #decouverte > button.primary{
                     <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
+                    <!-- LA VITESSE, SUR LA CARTE (v757, Jacques : « ajoute le bouton
+                         sur la carte »). Ralentir un mot difficile sans passer par
+                         les Reglages : chaque toucher passe a la vitesse suivante
+                         (1x, 3/4, 1/2) et redit le mot. C'est le MEME reglage que
+                         Reglages > Son (facteurVitesse). -->
+                    <button type="button" id="vitesseCarteBtn" class="vitesse-carte"
+                            onclick="event.stopPropagation(); basculerVitesseCarte();">1×</button>
                 </div>
                 <div id="flashPlural" class="plural hidden">
                     <span id="flashPluralText"></span>
@@ -10385,9 +10398,22 @@ try{
     const v = parseFloat(localStorage.getItem("wortando_vitesseVoix"));
     if(VITESSES_VOIX.indexOf(v) !== -1) facteurVitesse = v;
 }catch(e){}
+const LIBELLES_VITESSE = { 1: "1×", 0.75: "¾×", 0.5: "½×" };
 function majBoutonsVitesse(){
     document.querySelectorAll("button[data-vitesse]").forEach(b =>
         b.classList.toggle("actif", parseFloat(b.dataset.vitesse) === facteurVitesse));
+    const c = document.getElementById("vitesseCarteBtn");
+    if(c){
+        c.textContent = LIBELLES_VITESSE[facteurVitesse] || "1×";
+        c.classList.toggle("lent", facteurVitesse < 1);
+        c.setAttribute("aria-label", t("vitesse_voix_titre") + " : " + c.textContent);
+    }
+}
+// Le bouton de la carte : vitesse suivante, puis le mot, pour l'entendre.
+function basculerVitesseCarte(){
+    const i = VITESSES_VOIX.indexOf(facteurVitesse);
+    choisirVitesseVoix(VITESSES_VOIX[(i + 1) % VITESSES_VOIX.length]);
+    try{ speakWord(); }catch(e){}
 }
 function choisirVitesseVoix(v){
     if(VITESSES_VOIX.indexOf(v) === -1) return;
@@ -32456,7 +32482,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 756;
+const APP_VERSION = 757;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

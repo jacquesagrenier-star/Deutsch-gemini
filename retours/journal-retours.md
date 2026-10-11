@@ -8205,3 +8205,6 @@ Tres lente (0,5), applique partout ou la voix parle -- cartes, phrases, dictee,
 scenes, Prononciation, allemand et espagnol, voix anglaise comprise. Normale ne change
 rien (parcours allemand : 0 ecart). Le mode Ecouter garde sa propre barre
 (lente / normale / rapide) : le reglage general ne s'y ajoute pas.
+Suite : Jacques, « oui, ajoute le bouton sur la carte ». v757 : un bouton 1x / 3/4x / 1/2x
+au verso, a cote du haut-parleur du mot ; chaque toucher passe a la vitesse suivante et
+redit le mot. Meme reglage que Reglages > Son.
