@@ -533,11 +533,17 @@ function chargerVoix(){
         || v.find(x => pays.test(x.lang)) || v.find(x => langue.test(x.lang)) || null;
 }
 if ("speechSynthesis" in window){ chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }
+/* LA VITESSE DE LA VOIX (v756) : le reglage commun de l'app, passe dans
+   l'adresse (&vitesse=). 1 = la vitesse de l'enregistrement. */
+const VITESSE_VOIX = (() => {
+  const v = parseFloat(new URLSearchParams(location.search).get("vitesse"));
+  return [1, 0.75, 0.5].indexOf(v) !== -1 ? v : 1;
+})();
 function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
-  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92;
+  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
   speechSynthesis.speak(u);
 }
 /* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix
@@ -598,6 +604,7 @@ function dire(t){
   if (audioAbsents.has(t)) return direTelephone(t);
   try {
     const a = new Audio(AUDIO_BASE + empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
+    a.playbackRate = VITESSE_VOIX;
     audioEnCours = a;
     a.addEventListener("error", () => { audioAbsents.add(t); if (audioEnCours === a) direTelephone(t); }, {once: true});
     const p = a.play();

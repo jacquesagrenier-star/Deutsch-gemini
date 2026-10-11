@@ -7274,7 +7274,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v755</span>
+    <span class="subtitle-version">v756</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9529,6 +9529,15 @@ body[data-theme="dark"] #decouverte > button.primary{
     <details class="reglages-groupe" id="groupeSon">
         <summary data-i18n="settings_groupe_son">Son</summary>
         <div class="card">
+            <strong data-i18n="vitesse_voix_titre">Vitesse de la voix</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="vitesse_voix_desc">Pour toute l'application : cartes, phrases, scènes et prononciation. La voix ralentit sans devenir plus grave. Le mode Écouter garde son propre réglage.</p>
+            <div class="pron-vitesse" role="group" style="margin-top:10px;">
+                <button type="button" data-vitesse="1" onclick="choisirVitesseVoix(1)" data-i18n="pron_v_normale">Normale</button>
+                <button type="button" data-vitesse="0.75" onclick="choisirVitesseVoix(0.75)" data-i18n="pron_v_lente">Lente</button>
+                <button type="button" data-vitesse="0.5" onclick="choisirVitesseVoix(0.5)" data-i18n="pron_v_tres_lente">Très lente</button>
+            </div>
+        </div>
+        <div class="card">
             <strong data-i18n="voice_title">Voix de lecture</strong>
             <p style="color:#576177; margin-top:6px;" data-i18n="voice_desc">Ton appareil propose parfois plusieurs voix pour la même langue : une voix compacte, mécanique, et une voix améliorée beaucoup plus naturelle. L'étoile signale les meilleures.</p>
             <div id="voiceSettingsBox"></div>
@@ -9835,9 +9844,9 @@ body[data-theme="dark"] #decouverte > button.primary{
     <p class="pron-intro" data-i18n="pron_intro"></p>
     <div class="pron-vitesse" role="group" aria-labelledby="pronVitesseTitre">
         <span id="pronVitesseTitre" data-i18n="pron_vitesse">Vitesse</span>
-        <button type="button" data-vitesse="1" onclick="choisirVitessePron(1)" data-i18n="pron_v_normale">Normale</button>
-        <button type="button" data-vitesse="0.75" onclick="choisirVitessePron(0.75)" data-i18n="pron_v_lente">Lente</button>
-        <button type="button" data-vitesse="0.5" onclick="choisirVitessePron(0.5)" data-i18n="pron_v_tres_lente">Très lente</button>
+        <button type="button" data-vitesse="1" onclick="choisirVitesseVoix(1)" data-i18n="pron_v_normale">Normale</button>
+        <button type="button" data-vitesse="0.75" onclick="choisirVitesseVoix(0.75)" data-i18n="pron_v_lente">Lente</button>
+        <button type="button" data-vitesse="0.5" onclick="choisirVitesseVoix(0.5)" data-i18n="pron_v_tres_lente">Très lente</button>
     </div>
     <div id="pronCorps"></div>
 </section>
@@ -10361,6 +10370,31 @@ function urlDonnees(fichier){
 // précoce tombait dans leur zone morte temporelle (TDZ) et plantait tout le script.
 let frontIsFrench = true;
 let progressDirectionOverride = null;
+
+// LA VITESSE DE LA VOIX (v756, demande de Jacques : « les trois vitesses dans
+// l'application en general »). UN facteur, applique dans direAllemand() --
+// cartes, phrases, dictee, scenes, prononciation, allemand comme espagnol --
+// et a la voix anglaise. « Normale » (1) laisse tout exactement comme avant.
+// Le fichier d'Aurora ralentit sans changer de hauteur (playbackRate).
+// ⚠️ Le mode Ecoute garde SA barre (lente / normale / rapide) et ses pauses
+// calculees dessus : il passe vitesseFixe, sinon il ralentirait deux fois.
+// Retenu sur l'appareil : c'est une preference d'ecoute, pas une progression.
+const VITESSES_VOIX = [1, 0.75, 0.5];
+var facteurVitesse = 1;
+try{
+    const v = parseFloat(localStorage.getItem("wortando_vitesseVoix"));
+    if(VITESSES_VOIX.indexOf(v) !== -1) facteurVitesse = v;
+}catch(e){}
+function majBoutonsVitesse(){
+    document.querySelectorAll("button[data-vitesse]").forEach(b =>
+        b.classList.toggle("actif", parseFloat(b.dataset.vitesse) === facteurVitesse));
+}
+function choisirVitesseVoix(v){
+    if(VITESSES_VOIX.indexOf(v) === -1) return;
+    facteurVitesse = v;
+    try{ localStorage.setItem("wortando_vitesseVoix", String(v)); }catch(e){}
+    majBoutonsVitesse();
+}
 
 // Registre des phrases d'exemple actuellement affichées au verso de la
 // flashcard (toutes les phrases : Präsens, Perfekt, Präteritum, Konjunktiv II,
@@ -11221,6 +11255,8 @@ const I18N = {
         pron_v_normale: "Normale",
         pron_v_lente: "Lente",
         pron_v_tres_lente: "Très lente",
+        vitesse_voix_titre: "Vitesse de la voix",
+        vitesse_voix_desc: "Pour toute l'application : cartes, phrases, scènes et prononciation. La voix ralentit sans devenir plus grave. Le mode Écouter garde son propre réglage.",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
         op_pronomen_sub: "ich · mich · mir",
@@ -12322,6 +12358,8 @@ const I18N = {
         pron_v_normale: "Normal",
         pron_v_lente: "Slow",
         pron_v_tres_lente: "Very slow",
+        vitesse_voix_titre: "Voice speed",
+        vitesse_voix_desc: "For the whole app: cards, sentences, scenes and pronunciation. The voice slows down without getting deeper. Listen mode keeps its own setting.",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Pronoms",
         op_pronomen_sub: "ich · mich · mir",
@@ -13427,6 +13465,8 @@ const I18N = {
         pron_v_normale: "Normal",
         pron_v_lente: "Yavaş",
         pron_v_tres_lente: "Çok yavaş",
+        vitesse_voix_titre: "Ses hızı",
+        vitesse_voix_desc: "Tüm uygulama için: kartlar, cümleler, sahneler ve telaffuz. Ses yavaşlar ama kalınlaşmaz. Dinle modunun kendi ayarı vardır.",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "Zamirler",
         op_pronomen_sub: "ich · mich · mir",
@@ -14750,6 +14790,8 @@ const I18N = {
         pron_v_normale: "Звичайна",
         pron_v_lente: "Повільна",
         pron_v_tres_lente: "Дуже повільна",
+        vitesse_voix_titre: "Швидкість голосу",
+        vitesse_voix_desc: "Для всього застосунку: картки, речення, сцени й вимова. Голос сповільнюється, але не стає нижчим. Режим «Слухати» має власне налаштування.",
         orb_zahlen_sub: "einundzwanzig · dritte",
         orb_schreiben_title: "Письмо",
         orb_schreiben_sub: "переклади речення",
@@ -15224,6 +15266,8 @@ const I18N = {
         pron_v_normale: "عادی",
         pron_v_lente: "آهسته",
         pron_v_tres_lente: "خیلی آهسته",
+        vitesse_voix_titre: "سرعت صدا",
+        vitesse_voix_desc: "برای همهٔ برنامه: کارت‌ها، جمله‌ها، صحنه‌ها و تلفظ. صدا آهسته می‌شود بی‌آنکه بم شود. حالت «شنیدن» تنظیم خودش را دارد.",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "ضمیرها",
         op_pronomen_sub: "ich · mich · mir",
@@ -16394,6 +16438,8 @@ const I18N = {
         pron_v_normale: "عادية",
         pron_v_lente: "بطيئة",
         pron_v_tres_lente: "بطيئة جدًا",
+        vitesse_voix_titre: "سرعة الصوت",
+        vitesse_voix_desc: "للتطبيق كله: البطاقات والجمل والمشاهد والنطق. يبطؤ الصوت دون أن يصبح أغلظ. ولوضع «الاستماع» إعداده الخاص.",
         orb_zahlen_sub: "einundzwanzig · dritte",
         op_pronomen_title: "الضمائر",
         op_pronomen_sub: "ich · mich · mir",
@@ -24855,25 +24901,16 @@ function retourFiche(){
 // choisit. Les exemples sont des mots du corpus deja dits par Aurora ; leur
 // traduction suit le repli habituel (texteTraduit).
 let PRONONCIATION = null;
-// LA VITESSE (idee de Jacques, v755) : trois crans bien distincts. Le fichier
-// d'Aurora est ralenti par le navigateur SANS changer la hauteur de la voix
-// (playbackRate) ; la voix du telephone, en repli, prend la meme vitesse.
-// Retenue sur l'appareil seulement : c'est une preference d'ecoute.
-let vitessePron = 1;
-try{ vitessePron = parseFloat(localStorage.getItem("wortando_pronVitesse")) || 1; }catch(e){}
-function choisirVitessePron(v){
-    vitessePron = v;
-    try{ localStorage.setItem("wortando_pronVitesse", String(v)); }catch(e){}
-    document.querySelectorAll(".pron-vitesse button").forEach(b =>
-        b.classList.toggle("actif", parseFloat(b.dataset.vitesse) === v));
-}
+majBoutonsVitesse();
+// LA VITESSE : le reglage commun de toute l'app (facteurVitesse, v756) ;
+// ici la base est 1, la vitesse reelle de l'enregistrement.
 function direMotPron(idx){
     const e = sentenceRegistry[idx];
-    if(e && e.text) direAllemand(e.text, { rate: vitessePron });
+    if(e && e.text) direAllemand(e.text, { rate: 1 });
 }
 async function ouvrirPrononciation(){
     showScreen("prononciation");
-    choisirVitessePron(vitessePron);
+    majBoutonsVitesse();
     const corps = document.getElementById("pronCorps");
     if(!corps) return;
     if(!PRONONCIATION){
@@ -32036,7 +32073,7 @@ function ecouteJouerEtape(){
             ? SOUFFLE_AVANT_FICHIER - depuisEnonce : 0;
         const jouer = () => {
             if(jeton !== ecouteJeton || !ecouteJoue) return;
-            direAllemand(et.texte, { rate: ecouteVitesse, onEnd: avancer });
+            direAllemand(et.texte, { rate: ecouteVitesse, vitesseFixe: true, onEnd: avancer });
         };
         if(souffleDe){
             // Le souffle se note : c'est le seul chiffre de cette serie qu'on
@@ -32419,7 +32456,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 755;
+const APP_VERSION = 756;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -33320,7 +33357,7 @@ function testerLeSon(){
 // l'appel a play(), il ne doit y avoir aucune attente. Voir sha1Hex().
 function direAllemand(texte, opts){
     opts = opts || {};
-    const rate = opts.rate || 0.9;
+    const rate = (opts.rate || 0.9) * (opts.vitesseFixe ? 1 : facteurVitesse);
     const onEnd = opts.onEnd || null;
 
     const repli = () => {
@@ -33902,7 +33939,7 @@ function speakWord(){
     utterance.lang = 'en-GB';
     const voice = cachedEnglishVoice || findEnglishVoice();
     if(voice) utterance.voice = voice;
-    utterance.rate = 0.9;
+    utterance.rate = 0.9 * facteurVitesse;
     window.speechSynthesis.speak(utterance);
 }
 
@@ -33925,7 +33962,7 @@ function speakDictationText(text, lang){
     utterance.lang = 'en-GB';
     const voice = cachedEnglishVoice || findEnglishVoice();
     if(voice) utterance.voice = voice;
-    utterance.rate = 0.85;
+    utterance.rate = 0.85 * facteurVitesse;
     window.speechSynthesis.speak(utterance);
 }
 
@@ -34088,7 +34125,7 @@ function speakRegisteredSentence(idx){
     utterance.lang = 'en-GB';
     const voice = cachedEnglishVoice || findEnglishVoice();
     if(voice) utterance.voice = voice;
-    utterance.rate = 0.9;
+    utterance.rate = 0.9 * facteurVitesse;
     window.speechSynthesis.speak(utterance);
 }
 
@@ -35693,7 +35730,7 @@ function ouvrirSceneAdmin(nom){
     if(cadre){
         cadre.title = t("seance_scene_cadre");
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
-                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&t=" + Date.now();
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
     }
     showScreen("sceneSeance");
 }
@@ -35708,7 +35745,7 @@ function ouvrirSceneLibre(nom){
     if(cadre){
         cadre.title = t("seance_scene_cadre");
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
-                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&t=" + Date.now();
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
     }
     showScreen("sceneSeance");
 }
@@ -35729,6 +35766,7 @@ function ouvrirSceneSeance(){
                   + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
+                  + "&vitesse=" + facteurVitesse
                   + "&t=" + Date.now();
     }
     showScreen("sceneSeance");

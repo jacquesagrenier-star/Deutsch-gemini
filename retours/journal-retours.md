@@ -8197,3 +8197,11 @@ rapprochement propre a chacune (tests/prononciation.py -> prononciation.json) ;
 73 exemples, tous des mots du corpus deja dits par Aurora ; vitesse Normale / Lente
 (0,75) / Tres lente (0,5), la voix ralentie sans changer de hauteur. A faire
 relire : tr par Hatice, uk / fa / ar par nos testeurs de ces langues.
+
+## 11 octobre 2026 -- Jacques : « les trois vitesses dans l'application en general »
+
+v756 : un reglage « Vitesse de la voix » (Reglages > Son) : Normale / Lente (0,75) /
+Tres lente (0,5), applique partout ou la voix parle -- cartes, phrases, dictee,
+scenes, Prononciation, allemand et espagnol, voix anglaise comprise. Normale ne change
+rien (parcours allemand : 0 ecart). Le mode Ecouter garde sa propre barre
+(lente / normale / rapide) : le reglage general ne s'y ajoute pas.
