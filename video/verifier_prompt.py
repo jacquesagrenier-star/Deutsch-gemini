@@ -558,6 +558,27 @@ REGLES = [
      u"par la TETE et deplacer les YEUX : << his face turned towards the "
      u"camera, his eyes turned sideways towards her >>. Un objet utile a "
      u"l'app se pose sur un meuble, il ne se tend pas a l'objectif."),
+
+    ("tete-calee-sur-le-fond", "doute",
+     r"(?i)\btop of (his|her|their) head (is )?(level with|at the height of|"
+     r"reaches|comes up to)",
+     u"La hauteur d'un personnage du PREMIER PLAN calee sur un objet du FOND : "
+     u"il retrecit en nain",
+     u"11 oct. 2026, wohnzimmer, 1re prise (0,15 $), refusee. Mark au seuil, "
+     u"tout pres de l'objectif, et << the top of his head is level with the "
+     u"top of the painting above the sofa >> -- un tableau a l'autre bout de "
+     u"la piece. Le modele a obei a la lettre : Mark arrive a la hauteur du "
+     u"tableau, donc a la taille d'un enfant, la table basse lui monte a la "
+     u"poitrine. Jacques : << on dirait un nain dans une piece, les "
+     u"proportions ne font pas de sens >>. J'avais ecrit la regle pour qu'il "
+     u"ne cache rien ; elle a ecrase la perspective.",
+     u"Un repere de hauteur ne vaut que s'il est A LA MEME PROFONDEUR que le "
+     u"personnage (Anna au marche : << level with the front row of crates >>, "
+     u"juste devant elle). Pour qu'un personnage du premier plan ne cache "
+     u"rien, ne pas le rapetisser : le mettre au BORD et le couper "
+     u"(<< cropped by the left edge, we see one shoulder and his profile >>), "
+     u"ou se demander s'il doit etre dans l'image -- un objet a lui (sa valise "
+     u"sur le seuil) raconte la meme histoire sans rien cacher."),
 ]
 
 # --------------------------------------------------------------------------
@@ -574,6 +595,19 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"RETIRER quelqu'un par une retouche : tout le reste reste en place",
+     u"11 oct. 2026",
+     u"wohnzimmer-vide, 0,15 $, du premier coup. La premiere prise du salon "
+     u"etait bonne sauf Mark (rapetisse). Plutot qu'une image neuve -- qui "
+     u"aurait redistribue les vingt objets --, une retouche de CETTE image : "
+     u"<< retouched in one place only >>, l'etat d'arrivee decrit (le parquet "
+     u"qui continue, la table et le chien en entier, la valise debout seule), "
+     u"puis chaque objet NOMME avec << stays exactly as it is >>. Les vingt "
+     u"objets sont restes au pixel pres, le chien cache est apparu en entier.",
+     u"Quand une prise est bonne sauf UN element, retoucher la prise : la "
+     u"passer en reference unique, dire l'endroit et l'etat d'arrivee, puis "
+     u"enumerer ce qui reste. Ne changer qu'une chose par retouche."),
+
     (u"Une scene NEUVE garde le visage des photos, et prend la pose du texte",
      u"6 oct. 2026",
      u"Deux fois le meme jour, avec les deux memes photos de Mark -- debout, "
@@ -945,7 +979,7 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "horloge-a-l-heure", "cote-du-corps",
               "personne-sans-reference", "pose-pour-la-camera",
               "fruit-a-etiquette", "objet-sous-le-personnage",
-              "personnage-qui-se-penche")
+              "personnage-qui-se-penche", "tete-calee-sur-le-fond")
 
 # Un paragraphe qui decrit l'apparence d'une personne. Voir
 # << personne-sans-reference >>. Seulement ce qui fait un VISAGE (peau,
