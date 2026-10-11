@@ -22,11 +22,11 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 
 
-- Verbes (conjugués : présent, passé simple, imparfait, subjonctif) : A1 122, A2 273, B1 316, B2 121
+- Verbes (conjugués : présent, passé simple, imparfait, subjonctif) : A1 122, A2 273, B1 316, B2 162
 
 - Adjectifs : A1 88, A2 150, B1 258, B2 101
 
-- Adverbes : A1 28, A2 51, B1 119, B2 17
+- Adverbes : A1 28, A2 51, B1 119, B2 30
 
 - Expressions : A1 39, A2 80, B1 54, B2 69
 
@@ -119,7 +119,7 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 - Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
 
 **Vocabulaire**
-- Environ 3 700 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Pas de C1.
+- Environ 3 900 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Le B2 a été étoffé le 10 oct. (41 verbes de nuance et de registre, 13 adverbes). Pas de C1.
 
 **Ce qui n'est PAS couvert, à notre connaissance** (inutile de le redire, mais dis-nous ce qui est le plus urgent)
 - Le passé composé, le plus-que-parfait, le subjonctif imparfait (pas de fiche ni d'exercice).
@@ -129,7 +129,7 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 
 
-## Thèmes de vocabulaire (137), avec leurs mots
+## Thèmes de vocabulaire (139), avec leurs mots
 
 
 - **La casa (A1, 50 mots)** : casa, piso, habitación, dormitorio, cocina, salón, baño, comedor, puerta, ventana, pared, suelo, techo, escalera, pasillo, garaje, jardín, terraza, balcón, llave, mesa, silla, sofá, cama, armario, estantería, lámpara, alfombra, espejo, cortina, cuadro, nevera, horno, fregadero, lavadora, lavavajillas, ducha, toalla, jabón, grifo, basura, mueble, cajón, manta, almohada, sábana, ordenador, móvil, mando, ascensor
@@ -314,7 +314,7 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **La energía (B1, 8 mots)** : electricidad, petróleo, carbón, central, turbina, panel, apagón, potencia
 
-- **El cuerpo humano (B1, 18 mots)** : órgano, músculo, hueso, nervio, pulmón, hígado, riñón, cerebro, vena, articulación, latido, costilla, columna vertebral, omóplato, corva, pantorrilla, nalgas, trasero
+- **El cuerpo humano (B1, 12 mots)** : órgano, músculo, hueso, nervio, pulmón, hígado, riñón, cerebro, vena, articulación, latido, pantorrilla
 
 - **La medicina (B1, 11 mots)** : fármaco, especialista, cirujano, quirófano, dosis, efecto, historial, alta, donación, trasplante, estetoscopio
 
@@ -396,15 +396,19 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **Las verduras (A2, 16 mots)** : lechuga, guisante, pimiento, maíz, champiñón, seta, judía, pepino, calabacín, espinaca, coliflor, zanahoria, col, brócoli, calabaza, berenjena
 
-- **Las partes del cuerpo (A2, 15 mots)** : codo, pecho, barriga, frente, ceja, mejilla, labio, uña, talón, dedo del pie, ombligo, muslo, palma, nuca, barbilla
+- **Las partes del cuerpo (A2, 16 mots)** : codo, pecho, barriga, frente, ceja, mejilla, labio, uña, talón, dedo del pie, ombligo, muslo, palma, nuca, barbilla, trasero
 
 - **El taller y las herramientas (B1, 25 mots)** : taller, ferretería, aguja, hilo, cordón, gancho, pinza, palanca, cuchilla, tijeras, pincel, plancha, trapo, tubo, viga, rejilla, silbato, mecha, vela, linterna, leña, humo, fuego, antena, imprenta
 
 - **El paisaje y el camino (B1, 35 mots)** : colina, acantilado, orilla, prado, huerto, viñedo, molino, faro, muelle, charco, pozo, brisa, atajo, pista, túnel, autopista, vagón, torre, campana, quiosco, jaula, juguete, chaleco, frasco, tobillo, rueda, nudo, tejado, vuelta, fila, ambiente, despacho, losa, membrana, muñeca
 
-- **En el mercado (B1, 17 mots)** : papaya, higo, granada, ruibarbo, grosella, grosella espinosa, espárrago, acelga, alcachofa, remolacha, apio, colinabo, puerro, col de Bruselas, hinojo, rábano, boniato
+- **En el mercado (B1, 6 mots)** : ruibarbo, espárrago, remolacha, puerro, col de Bruselas, rábano
 
 - **La vida interior (B2, 17 mots)** : angustia, asombro, cariño, consuelo, desafío, empeño, entusiasmo, esperanza, impulso, inquietud, instinto, lástima, mirada, pasión, sospecha, ambición, remedio
+
+- **Frutas y verduras poco comunes (B2, 11 mots)** : grosella, grosella espinosa, colinabo, acelga, alcachofa, hinojo, apio, higo, granada, papaya, boniato
+
+- **El cuerpo en detalle (B2, 5 mots)** : costilla, columna vertebral, omóplato, corva, nalgas
 
 
 ## Verbes, par niveau
@@ -416,7 +420,7 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **B1** : respetar, integrarse, discriminar, pertenecer, votar, gobernar, legislar, negociar, protestar, estancarse, producir, exportar, importar, financiar, ascender, dimitir, reclamar, formarse, colaborar, formar, evaluar, motivar, fracasar, desarrollar, actualizar, programar, instalar, bloquear, automatizar, etiquetar, difundir, silenciar, demostrar, comprobar, analizar, observar, experimentar, prevenir, contagiar, recuperarse, adelgazar, engordar, pensar, reflexionar, comprender, influir, reaccionar, emigrar, acoger, establecerse, adaptarse, construir, derribar, planificar, renovar, sufrir, luchar, agravar, marginar, juzgar, condenar, declarar, cumplir, reducir, agotar, conservar, verter, valorar, transmitir, representar, identificar, narrar, describir, citar, inspirar, ocurrir, suceder, afirmar, negar, prever, argumentar, justificar, admitir, dudar, concluir, suponer, insistir, proponer, acordar, coordinar, delegar, recorrer, explorar, hospedarse, contemplar, encargar, comparar, exigir, desconfiar, conquistar, fundar, rebelarse, clasificarse, lesionarse, superar, batir, rendirse, degustar, aliñar, hornear, extenderse, situarse, rodear, circular, desplazarse, multar, comprometerse, romper, perdonar, reprochar, alimentarse, digerir, aportar, presenciar, emocionar, improvisar, fusionar, ampliar, gestionar, quebrar, cotizar, especular, endeudarse, cultivar, sembrar, cosechar, arar, fabricar, ensamblar, almacenar, distribuir, transformar, generar, abastecer, suministrar, latir, sanar, operar, intervenir, donar, aliviar, diseñar, restaurar, edificar, promocionar, patrocinar, persuadir, calcular, estimar, redondear, acudir, recaudar, repartir, garantizar, reivindicar, excluir, adaptar, facilitar, acompañar, rezar, peregrinar, orbitar, brillar, aclarar, anotar, charlar, comunicar, confesar, confirmar, conversar, convocar, expresar, indicar, interrumpir, jurar, mandar, mencionar, prometer, responder, señalar, sugerir, acordarse, adivinar, asegurar, clasificar, coincidir, considerar, consistir, consultar, convencer, definir, depender, distinguir, escoger, examinar, hallar, ignorar, imaginar, implicar, merecer, notar, obtener, pretender, reconocer, reflejar, relacionar, resolver, resultar, seleccionar, significar, simplificar, valer, acumular, aplicar, atar, aumentar, copiar, dañar, deshacer, destruir, disminuir, dividir, editar, eliminar, emplear, envolver, extender, fortalecer, frenar, golpear, impulsar, intercambiar, introducir, limitar, ocultar, esconder, separar, situar, sumar, suprimir, sustituir, unir, vencer, abandonar, agradecer, amenazar, asistir, atender, atraer, burlarse, castigar, defender, dedicar, divertir, educar, engañar, enterarse, equivocarse, esforzarse, fingir, guiar, impedir, imponer, liberar, matar, obedecer, oponer, participar, pelear, permitir, perseguir, provocar, reunir, rogar, vigilar, abrazar, agarrar, agitar, ahogar, alterar, alzar, arder, arrancar, arrastrar, atrasar, averiguar, bendecir, calmar, causar, cesar, cocer, controlar, convertir, cubrir, debilitar, decorar, derretir, descuidar, disparar, manejar, prender, resistir, traer, arriesgar, contar, auxiliar
 
-- **B2** : matizar, precisar, exagerar, suavizar, subrayar, tutear, abordar, disculpar, cuestionar, refutar, sustentar, contrastar, deducir, razonar, concebir, plantear, juzgar moralmente, comprometer, obrar, externalizar, expandirse, importar bienes, vulnerar, amparar, ratificar, intervenir diplomáticamente, mediar, sancionar, entrenar un modelo, generar contenido, supervisar, investigar a fondo, validar, publicar resultados, regular, consentir, liderar, inspirar confianza, asumir, priorizar, optimizar, supervisar el avance, segmentar, interactuar, contrastar fuentes, desmentir, filtrar, apreciar, percibir, persuadir con datos, ironizar, rebatir, reciclarse profesionalmente, adaptarse al cambio, devaluar, estimular la economía, deliberar, disolver, conmemorar, silenciar el pasado, documentar, preservar, analizar un texto, reseñar, intervenir en el debate, conceder, objetar, ceder, pactar, condicionar, sospechar, presumir, descartar, añorar, resignarse, conmover, mitigar, compensar, acelerar, acomodar, agrupar, asociar, autorizar, calificar, caracterizar, carecer, componer, concentrar, conformar, contener, contribuir, cooperar, corresponder, dedicarse, depositar, desempeñar, desplazar, destinar, detallar, determinar, disponer, dominar, promover, realizar, rendir, aclamar, acusar, adoptar, combatir, culpar, debatir, desafiar, dictar, disputar, atacar, callar, chillar, aspirar, continuar, existir, variar
+- **B2** : matizar, precisar, exagerar, suavizar, subrayar, tutear, abordar, disculpar, cuestionar, refutar, sustentar, contrastar, deducir, razonar, concebir, plantear, juzgar moralmente, comprometer, obrar, externalizar, expandirse, importar bienes, vulnerar, amparar, ratificar, intervenir diplomáticamente, mediar, sancionar, entrenar un modelo, generar contenido, supervisar, investigar a fondo, validar, publicar resultados, regular, consentir, liderar, inspirar confianza, asumir, priorizar, optimizar, supervisar el avance, segmentar, interactuar, contrastar fuentes, desmentir, filtrar, apreciar, percibir, persuadir con datos, ironizar, rebatir, reciclarse profesionalmente, adaptarse al cambio, devaluar, estimular la economía, deliberar, disolver, conmemorar, silenciar el pasado, documentar, preservar, analizar un texto, reseñar, intervenir en el debate, conceder, objetar, ceder, pactar, condicionar, sospechar, presumir, descartar, añorar, resignarse, conmover, mitigar, compensar, acelerar, acomodar, agrupar, asociar, autorizar, calificar, caracterizar, carecer, componer, concentrar, conformar, contener, contribuir, cooperar, corresponder, dedicarse, depositar, desempeñar, desplazar, destinar, detallar, determinar, disponer, dominar, promover, realizar, rendir, aclamar, acusar, adoptar, combatir, culpar, debatir, desafiar, dictar, disputar, atacar, callar, chillar, aspirar, continuar, existir, variar, acatar, propiciar, escatimar, constatar, soslayar, desencadenar, tergiversar, recalcar, vislumbrar, agilizar, afrontar, solventar, menospreciar, fomentar, conllevar, otorgar, desestimar, postergar, fundamentar, ahondar, esbozar, enfatizar, sopesar, derrochar, acaparar, mermar, entorpecer, abarcar, plasmar, suscitar, conciliar, compaginar, sobrellevar, vaticinar, disuadir, eludir, incidir, aludir, propugnar, subsanar, respaldar
 
 
 ## Adjectifs, par niveau
@@ -440,7 +444,7 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 
 - **B1** : así, deprisa, rápidamente, lentamente, fácilmente, difícilmente, claramente, perfectamente, correctamente, directamente, exactamente, tranquilamente, cuidadosamente, atentamente, amablemente, sinceramente, abiertamente, sencillamente, naturalmente, automáticamente, igual, totalmente, completamente, absolutamente, únicamente, enormemente, ligeramente, suficientemente, excesivamente, al menos, seguramente, probablemente, posiblemente, tal vez, a lo mejor, supuestamente, ciertamente, efectivamente, realmente, evidentemente, obviamente, en absoluto, ni siquiera, prácticamente, sumamente, extremadamente, altamente, escasamente, levemente, plenamente, enteramente, mayormente, mayoritariamente, parcialmente, meramente, intensamente, fuertemente, duramente, ampliamente, brevemente, debidamente, detalladamente, estrictamente, exclusivamente, formalmente, libremente, profundamente, puramente, radicalmente, razonablemente, rigurosamente, cabalmente, gravemente, legalmente, oficialmente, comúnmente, indudablemente, verdaderamente, visiblemente, injustamente, largamente, urgentemente, consecuentemente, notablemente, localmente, de repente, de pronto, de golpe, de nuevo, al principio, al final, en breve, a tiempo, a diario, cada vez, poco a poco, a solas, a propósito, adrede, aprisa, de verdad, sin duda, en efecto, en realidad, por supuesto, por cierto, por lo tanto, en cambio, en parte, por lo menos, por fin, por desgracia, ya no, aún no, recién, antaño, anteanoche, afuera, adentro
 
-- **B2** : quizá, acaso, presuntamente, incluso, igualmente, principalmente, básicamente, esencialmente, concretamente, precisamente, justamente, entretanto, afortunadamente, desgraciadamente, lamentablemente, sorprendentemente, curiosamente
+- **B2** : quizá, acaso, presuntamente, incluso, igualmente, principalmente, básicamente, esencialmente, concretamente, precisamente, justamente, entretanto, afortunadamente, desgraciadamente, lamentablemente, sorprendentemente, curiosamente, inevitablemente, francamente, categóricamente, paulatinamente, rotundamente, aparentemente, a la larga, de antemano, a grandes rasgos, en cierto modo, con creces, a regañadientes, sin lugar a dudas
 
 
 ## Expressions, par niveau

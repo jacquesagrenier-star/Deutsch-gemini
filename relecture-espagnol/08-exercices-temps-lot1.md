@@ -364,7 +364,7 @@ Si tout un lot est correct, réponds seulement « Rien à signaler ».
 - explication EN : Counting occurrences (« una vez », « dos veces »): finished actions → preterite.
 
 **PT-51** Ayer ___ las fotos del viaje a mi familia. (mandar — yo)
-- choix : réponse : ✔ manduve
+- choix : réponse : ✔ mandé
 - FR : Hier, j'ai envoyé les photos du voyage à ma famille.
 - EN : Yesterday I sent the trip photos to my family.
 - explication FR : « ayer » : une action terminée, à un moment précis → prétérit.

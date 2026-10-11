@@ -343,8 +343,8 @@ window.SCENE = {
    "mot": "acelga",
    "genre": "la",
    "pluriel": "las acelgas",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -383,8 +383,8 @@ window.SCENE = {
    "mot": "alcachofa",
    "genre": "la",
    "pluriel": "las alcachofas",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {

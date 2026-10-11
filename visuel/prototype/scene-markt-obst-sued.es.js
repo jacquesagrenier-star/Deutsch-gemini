@@ -247,8 +247,8 @@ window.SCENE = {
    "mot": "papaya",
    "genre": "la",
    "pluriel": "las papayas",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -407,8 +407,8 @@ window.SCENE = {
    "mot": "higo",
    "genre": "el",
    "pluriel": "los higos",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -611,8 +611,8 @@ window.SCENE = {
    "mot": "granada",
    "genre": "la",
    "pluriel": "las granadas",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {

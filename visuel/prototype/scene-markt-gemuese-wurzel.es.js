@@ -91,8 +91,8 @@ window.SCENE = {
    "mot": "apio",
    "genre": "el",
    "pluriel": "los apios",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -175,8 +175,8 @@ window.SCENE = {
    "mot": "colinabo",
    "genre": "el",
    "pluriel": "los colinabos",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -415,8 +415,8 @@ window.SCENE = {
    "mot": "hinojo",
    "genre": "el",
    "pluriel": "los hinojos",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -575,8 +575,8 @@ window.SCENE = {
    "mot": "boniato",
    "genre": "el",
    "pluriel": "los boniatos",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {

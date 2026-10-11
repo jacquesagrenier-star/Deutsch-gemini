@@ -119,7 +119,7 @@ COUVERTURE = """
 - Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
 
 **Vocabulaire**
-- Environ 3 700 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Pas de C1.
+- Environ 3 900 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Le B2 a été étoffé le 10 oct. (41 verbes de nuance et de registre, 13 adverbes). Pas de C1.
 
 **Ce qui n'est PAS couvert, à notre connaissance** (inutile de le redire, mais dis-nous ce qui est le plus urgent)
 - Le passé composé, le plus-que-parfait, le subjonctif imparfait (pas de fiche ni d'exercice).

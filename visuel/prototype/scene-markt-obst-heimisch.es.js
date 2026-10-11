@@ -287,8 +287,8 @@ window.SCENE = {
    "mot": "grosella",
    "genre": "la",
    "pluriel": "las grosellas",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {
@@ -327,8 +327,8 @@ window.SCENE = {
    "mot": "grosella espinosa",
    "genre": "la",
    "pluriel": "las grosellas espinosas",
-   "niveau": "B1",
-   "theme": "frutas_verduras_b1",
+   "niveau": "B2",
+   "theme": "frutas_verduras_b2",
    "personne": null,
    "aussi": [
     {

@@ -391,12 +391,12 @@ Si tout un lot est correct, réponds seulement « Rien à signaler ».
 - explication FR : Présent de « deducir », je : deduzco.
 - explication EN : Present of « deducir », I: deduzco.
 
-**PR-55** ___ con datos públicos. (entrenar un modelo)
-- choix : réponse : ✔ entrenan un modelo
+**PR-55** ___ un modelo con datos públicos. (entrenar — ellos, ellas)
+- choix : réponse : ✔ entrenan
 - FR : Ils entraînent un modèle sur des données publiques.
 - EN : They train a model on public data.
-- explication FR : Présent de « entrenar un modelo », ils/elles : entrenan un modelo.
-- explication EN : Present of « entrenar un modelo », they: entrenan un modelo.
+- explication FR : Présent de « entrenar », ils/elles : entrenan.
+- explication EN : Present of « entrenar », they: entrenan.
 
 **PR-56** ___ el proceso cada trimestre. (optimizar)
 - choix : réponse : ✔ optimizan
@@ -405,12 +405,12 @@ Si tout un lot est correct, réponds seulement « Rien à signaler ».
 - explication FR : Présent de « optimizar », ils/elles : optimizan.
 - explication EN : Present of « optimizar », they: optimizan.
 
-**PR-57** ___ con formación. (adaptarse al cambio)
-- choix : réponse : ✔ se adaptan al cambio
-- FR : Ils s'adaptent au changement par la formation.
-- EN : They adapt to change through training.
-- explication FR : Présent de « adaptarse al cambio », ils/elles : se adaptan al cambio.
-- explication EN : Present of « adaptarse al cambio », they: se adaptan al cambio.
+**PR-57** Los empleados ___ al cambio con formación. (adaptarse — ellos, ellas)
+- choix : réponse : ✔ se adaptan
+- FR : Les employés s'adaptent au changement grâce à la formation.
+- EN : Employees adapt to change through training.
+- explication FR : Présent de « adaptarse », ils/elles : se adaptan (le pronom se, devant le verbe).
+- explication EN : Present of « adaptarse », they: se adaptan (the pronoun se before the verb).
 
 **PR-58** ___ que llegará el lunes. (presumir)
 - choix : réponse : ✔ presumen

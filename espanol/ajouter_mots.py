@@ -58,13 +58,18 @@ def main():
         crees += 1
 
     ajoutes = 0
+    # DEJA PRESENT = n'importe ou dans le corpus, avec le meme sens : un mot
+    # deplace ensuite vers un autre theme (vocabulaire_b2.py) ne doit pas
+    # revenir dans son theme d'origine a la relance. Le sens departage les
+    # homographes voulus (planta : l'etage, et la plante).
+    partout = {(m["mot"], m.get("traduction")) for t in temas["themes"] for m in t["mots"]}
     for theme, lignes in aj.get("ajouts", {}).items():
         if theme not in par_id:
             sys.exit("theme inconnu : %s" % theme)
         t = par_id[theme]
         deja = {m["mot"] for m in t["mots"]}
         for mot, art, pl, fr, en, ex, ex_fr, ex_en in lignes:
-            if mot in deja:
+            if mot in deja or (mot, fr) in partout:
                 continue
             e = {"traduction": fr, "traduction_en": en, "exemple": ex, "exemple_fr": ex_fr,
                  "exemple_en": ex_en, "theme_source": theme, "mot": mot, "genre": art}
