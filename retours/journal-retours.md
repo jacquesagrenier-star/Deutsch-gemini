@@ -8121,3 +8121,11 @@ legumes, corps, cabinet medical) : ajoutes avec exemples fr/en (espanol/ajouts/
 mots-scenes.json), plus 14 variantes mexicaines (chicharo, durazno, gis, pizarron...).
 Couche A1 seulement : les questions A2-C1 allemandes enseignent le datif, elles
 seront ecrites pour l'espagnol. Toujours en ESSAI (admin).
+
+## 10 octobre 2026 (nuit) -- Jacques : « donne acces a tout le monde » aux scenes, et des messages pour le recueil des retours
+
+v745 : ESSAIS.scenes passe a « tous » (allemand et espagnol, A1-C1), sans attendre
+la fin des relectures -- les retours des testeurs en tiendront lieu. Messages
+d'annonce en fr, en, tr, uk, fa, ar (notre cours) et pour Barbara (espagnol), avec
+une image par langue : annonces/scenes-v745/. Les retours attendus vont dans ce
+journal a mesure qu'ils arrivent (node tests/retours.js).
