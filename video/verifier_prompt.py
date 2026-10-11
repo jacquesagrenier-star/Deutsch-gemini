@@ -578,7 +578,13 @@ REGLES = [
      u"rien, ne pas le rapetisser : le mettre au BORD et le couper "
      u"(<< cropped by the left edge, we see one shoulder and his profile >>), "
      u"ou se demander s'il doit etre dans l'image -- un objet a lui (sa valise "
-     u"sur le seuil) raconte la meme histoire sans rien cacher."),
+     u"sur le seuil) raconte la meme histoire sans rien cacher. ⚠️ ET UNE PORTE "
+     u"N'EST PAS UN BON REPERE, meme a la bonne profondeur (kreuzung, 11 oct. "
+     u"2026, 0,15 $) : Anna calee sur la porte de la boulangerie est sortie "
+     u"PLUS GRANDE que la dame de l'arret de bus, plus proche d'elle de nous -- "
+     u"le rez-de-chaussee entier etait dessine trop grand. Comparer a une "
+     u"PERSONNE ou a un vehicule voisins, ou mettre le personnage au premier "
+     u"plan a cote d'objets de taille connue (les guidons des velos a sa taille)."),
 ]
 
 # --------------------------------------------------------------------------
