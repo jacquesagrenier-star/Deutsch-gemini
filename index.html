@@ -7236,7 +7236,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v747</span>
+    <span class="subtitle-version">v748</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8661,6 +8661,21 @@ body[data-theme="dark"] #decouverte > button.primary{
         </div>
         <div class="spacer"></div>
         <button class="secondary" onclick="startKonjunktiv2Exercise()" data-i18n="verbentemps_konjunktiv2_btn">M'ENTRAÎNER →</button>
+    </div>
+
+    <!-- LE FUTUR ET LE CONDITIONNEL DE L'ESPAGNOL (v748) : l'allemand les a
+         dans « Konjunktiv II » ; l'espagnol leur donne leurs propres jeux. -->
+    <div class="card" data-seulement-es>
+        <strong data-i18n="verbentemps_es_futuro_title">Futuro — le futur</strong>
+        <div class="info-box" data-i18n-html="verbentemps_es_futuro">L'infinitif entier + -é, -ás, -á, -emos, -éis, -án.</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="startFuturoExercise()" data-i18n="fiche_entrainer">M'ENTRAÎNER →</button>
+    </div>
+    <div class="card" data-seulement-es>
+        <strong data-i18n="verbentemps_es_condicional_title">Condicional — le conditionnel</strong>
+        <div class="info-box" data-i18n-html="verbentemps_es_condicional">L'infinitif entier + -ía, -ías, -ía, -íamos, -íais, -ían.</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="startCondicionalExercise()" data-i18n="fiche_entrainer">M'ENTRAÎNER →</button>
     </div>
 
     <div class="card">
@@ -17131,7 +17146,13 @@ const I18N_ESPAGNOL = {
         "orb_es_presente": "Le présent",
         "orb_es_hay": "hay et les questions",
         "orb_es_pronominales": "Verbes pronominaux",
-        "orb_es_accord": "L'accord"
+        "orb_es_accord": "L'accord",
+        "verbentemps_es_futuro_title": "Futuro — le futur",
+        "verbentemps_es_futuro": "Pour l'avenir, une promesse, une prévision — et une supposition sur le présent. L'infinitif entier + <b>-é, -ás, -á, -emos, -éis, -án</b>.<br><em>Mañana lloverá. ¿Dónde estará Juan?</em> (Demain, il pleuvra. Où peut bien être Juan ?)",
+        "verbentemps_es_condicional_title": "Condicional — le conditionnel",
+        "verbentemps_es_condicional": "Pour la politesse, le conseil, l'hypothèse — et le futur vu du passé. L'infinitif entier + <b>-ía, -ías, -ía, -íamos, -íais, -ían</b>.<br><em>¿Podrías ayudarme? Dijo que vendría.</em> (Pourrais-tu m'aider ? Il a dit qu'il viendrait.)",
+        "kicker_es_futuro": "Verbes · Futuro",
+        "kicker_es_condicional": "Verbes · Condicional"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17231,7 +17252,13 @@ const I18N_ESPAGNOL = {
         "orb_es_presente": "The present tense",
         "orb_es_hay": "hay and questions",
         "orb_es_pronominales": "Reflexive verbs",
-        "orb_es_accord": "Agreement"
+        "orb_es_accord": "Agreement",
+        "verbentemps_es_futuro_title": "Futuro — the future",
+        "verbentemps_es_futuro": "For what's ahead, a promise, a forecast — and a guess about the present. The whole infinitive + <b>-é, -ás, -á, -emos, -éis, -án</b>.<br><em>Mañana lloverá. ¿Dónde estará Juan?</em> (It'll rain tomorrow. Where can Juan be?)",
+        "verbentemps_es_condicional_title": "Condicional — the conditional",
+        "verbentemps_es_condicional": "For politeness, advice, hypotheses — and the future seen from the past. The whole infinitive + <b>-ía, -ías, -ía, -íamos, -íais, -ían</b>.<br><em>¿Podrías ayudarme? Dijo que vendría.</em> (Could you help me? He said he'd come.)",
+        "kicker_es_futuro": "Verbs · Futuro",
+        "kicker_es_condicional": "Verbs · Condicional"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -32071,7 +32098,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 747;
+const APP_VERSION = 748;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -37140,6 +37167,12 @@ function startPerfektExercise(){
 }
 function startKonjunktiv2Exercise(){
     startExerciseSetMelange("konjunktiv2Exercises", "kicker_verben_konjunktiv2", openVerbenTempsInfo, startKonjunktiv2Exercise);
+}
+function startFuturoExercise(){
+    startExerciseSetMelange("futuroExercises", "kicker_es_futuro", openVerbenTempsInfo, startFuturoExercise);
+}
+function startCondicionalExercise(){
+    startExerciseSetMelange("condicionalExercises", "kicker_es_condicional", openVerbenTempsInfo, startCondicionalExercise);
 }
 function startInfinitivExercise(){
     startExerciseSetMelange("infinitivExercises", "kicker_verben_infinitiv", openVerbenTempsInfo, startInfinitivExercise);
