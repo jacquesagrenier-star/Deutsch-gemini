@@ -228,6 +228,15 @@ def main():
         m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, noyau)
         if z.get("fond"):
             m8 = retirer_fond(m8, pixels, z["fond"], cv2, np)
+        if z.get("enveloppe"):
+            # LES VELOS DU CARREFOUR (11 oct. 2026) : des tubes fins et des
+            # rayons. Le masque de SAM suit les tubes, et un doigt pose entre
+            # deux rayons tombait sur le trottoir. La zone devient l'enveloppe
+            # convexe du masque -- pour toucher ET pour le dessin.
+            pts = cv2.findNonZero(m8)
+            if pts is not None:
+                m8 = np.zeros_like(m8)
+                cv2.fillPoly(m8, [cv2.convexHull(pts)], 255)
         masques[k] = m8 > 127
         m = masques[k]
         # Le TRACE : un polygone simplifie (Douglas-Peucker). Un bord presque
