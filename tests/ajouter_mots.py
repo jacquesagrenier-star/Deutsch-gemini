@@ -46,9 +46,13 @@ import langue as L                                          # noqa: E402
 PLACEMENT = ("_theme", "_niveau")
 
 
-def serialiser(donnees, saut_final):
+def serialiser(donnees, saut_final, fin="\n"):
+    # `fin` : les fins de ligne du fichier tel qu'il est sur le disque. Git
+    # sous Windows le rend en CRLF (11 oct. 2026) : on les garde, sinon le
+    # controle « a l'octet pres » refuse un fichier pourtant intact.
     texte = json.dumps(donnees, ensure_ascii=False, indent=2)
-    return texte + "\n" if saut_final else texte
+    texte = texte + "\n" if saut_final else texte
+    return texte.replace("\n", fin) if fin != "\n" else texte
 
 
 def champs_obligatoires(entrees, cle):
@@ -71,7 +75,8 @@ def champs_obligatoires(entrees, cle):
 def lire(fichier):
     chemin = os.path.join(RACINE, fichier)
     brut = io.open(chemin, encoding="utf-8", newline="").read()
-    return chemin, json.loads(brut), brut, brut.endswith("\n")
+    fin = "\r\n" if "\r\n" in brut else "\n"
+    return chemin, json.loads(brut), brut, brut.endswith("\n"), fin
 
 
 def ajouter(lot, verifier_seulement):
@@ -81,8 +86,8 @@ def ajouter(lot, verifier_seulement):
         if categorie not in L.FICHIERS or not nouvelles:
             continue
         fichier, cle = L.FICHIERS[categorie]
-        chemin, donnees, brut, saut = lire(fichier)
-        if serialiser(donnees, saut) != brut:
+        chemin, donnees, brut, saut, fin = lire(fichier)
+        if serialiser(donnees, saut, fin) != brut:
             print("  ! %s ne se reproduit pas a l'identique -- ignore" % fichier)
             refus += len(nouvelles)
             continue
@@ -159,7 +164,7 @@ def ajouter(lot, verifier_seulement):
         total += poses
         if not verifier_seulement and poses:
             with io.open(chemin, "w", encoding="utf-8", newline="") as f:
-                f.write(serialiser(donnees, saut))
+                f.write(serialiser(donnees, saut, fin))
 
     print()
     print("  %d mot(s) %s, %d refus"
