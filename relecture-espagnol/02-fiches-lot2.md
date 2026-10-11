@@ -15,15 +15,17 @@ Si tout un lot est correct, réponds seulement « Rien à signaler ».
 
 **FI-8 — L'impératif** (The imperative)
 
-- règle FR : Avec <b>tú</b>, l'impératif est la forme de él au présent : <b>habla</b>, <b>come</b>, <b>cierra</b>. Pour tout le reste — <b>usted</b>, <b>ustedes</b>, <b>nosotros</b> et toutes les formes <b>négatives</b> — on prend le <b>subjonctif présent</b> : <b>hable</b>, <b>no hables</b>.
-- règle EN : With <b>tú</b>, the imperative is the él form of the present: <b>habla</b>, <b>come</b>, <b>cierra</b>. For everything else — <b>usted</b>, <b>ustedes</b>, <b>nosotros</b> and every <b>negative</b> — use the <b>present subjunctive</b>: <b>hable</b>, <b>no hables</b>.
+- règle FR : Avec <b>tú</b>, l'impératif est la forme de él au présent : <b>habla</b>, <b>come</b>, <b>cierra</b>. Pour tout le reste — <b>usted</b>, <b>ustedes</b>, <b>nosotros</b> et toutes les formes <b>négatives</b> — on prend le <b>subjonctif présent</b> : <b>hable</b>, <b>no hables</b>. En Espagne, <b>vosotros</b> a sa forme à lui : l'infinitif, dont le r devient d (<b>hablad</b>) ; en Amérique latine, on dit <b>ustedes</b> (<b>hablen</b>).
+- règle EN : With <b>tú</b>, the imperative is the él form of the present: <b>habla</b>, <b>come</b>, <b>cierra</b>. For everything else — <b>usted</b>, <b>ustedes</b>, <b>nosotros</b> and every <b>negative</b> — use the <b>present subjunctive</b>: <b>hable</b>, <b>no hables</b>. In Spain, <b>vosotros</b> has its own form: the infinitive with r turned into d (<b>hablad</b>); Latin America uses <b>ustedes</b> (<b>hablen</b>).
 - tableau 1 :  | FR : hablar · comer · abrir | EN : hablar · comer · abrir
 - tableau 2 : tú | FR : habla · come · abre | EN : habla · come · abre
 - tableau 3 : tú (négatif) | FR : no hables · no comas · no abras | EN : no hables · no comas · no abras
 - tableau 4 : usted | FR : hable · coma · abra | EN : hable · coma · abra
 - tableau 5 : ustedes | FR : hablen · coman · abran | EN : hablen · coman · abran
 - tableau 6 : nosotros | FR : hablemos · comamos · abramos | EN : hablemos · comamos · abramos
-- tableau 7 : tú irréguliers | FR : decir → di, hacer → haz, ir → ve, poner → pon, salir → sal, ser → sé, tener → ten, venir → ven | EN : decir → di, hacer → haz, ir → ve, poner → pon, salir → sal, ser → sé, tener → ten, venir → ven
+- tableau 7 : vosotros (Espagne) | FR : hablad · comed · abrid — négatif : no habléis · no comáis · no abráis | EN : hablad · comed · abrid — negative: no habléis · no comáis · no abráis
+- tableau 8 : vosotros + os | FR : sentaos, callaos, levantaos : le d tombe devant os (sauf ir → idos) | EN : sentaos, callaos, levantaos: the d drops before os (except ir → idos)
+- tableau 9 : tú irréguliers | FR : decir → di, hacer → haz, ir → ve, poner → pon, salir → sal, ser → sé, tener → ten, venir → ven | EN : decir → di, hacer → haz, ir → ve, poner → pon, salir → sal, ser → sé, tener → ten, venir → ven
 - exemple 1 : Gira a la derecha y sigue todo recto. | FR : Tourne à droite et continue tout droit. | EN : Turn right and go straight on.
 - exemple 2 : Siga todo recto y tome la segunda calle. | FR : Continuez tout droit et prenez la deuxième rue. (usted) | EN : Go straight on and take the second street. (usted)
 - exemple 3 : No hables tan alto. | FR : Ne parle pas si fort. (négatif : le subjonctif) | EN : Don't talk so loudly. (negative: the subjunctive)

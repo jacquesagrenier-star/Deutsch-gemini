@@ -877,6 +877,24 @@ def verifier_notices_peintres(r):
           % (len(peintres), len(langues), trous, len(images), len(sans_notice)))
 
 
+def verifier_trous_de_liste(r, source):
+    """Une ligne de liste qui finit par `],,` laisse un TROU dans le tableau.
+
+    LA FAUTE DU 10 OCTOBRE 2026 (v750). En ajoutant des mots en fin de liste
+    (prepositions et conjonctions espagnoles), la virgule a ete posee deux
+    fois. C'est du JavaScript valide -- syntaxe.js ne dit rien -- mais la
+    liste compte une case vide : words.length ment d'une unite, et toute
+    boucle par indice lit `undefined[0]`. Les listes de mots du code sont
+    enregistrees par POSITION : un trou corrige plus tard decale aussi la
+    progression des mots qui le suivent. D'ou un controle avant le push.
+    """
+    trous = [i + 1 for i, l in enumerate(source.splitlines()) if re.search(r"\]\s*,\s*,\s*$", l)]
+    for n in trous:
+        r.echec("interface", "trou dans une liste (« ],, ») a la ligne %d d'index.html" % n)
+    r.controle(1)
+    print("   listes        : %d trou(s) de liste" % len(trous))
+
+
 def verifier_octets_de_controle(r, chemin):
     """Le fichier contient-il un octet qu'aucun navigateur n'attend ?
 
@@ -1510,6 +1528,7 @@ def main():
     verifier_ecrans(r, source, fonctions)
     verifier_retours_flashcards(r, source)
     verifier_notices_peintres(r)
+    verifier_trous_de_liste(r, source)
     verifier_octets_de_controle(r, INDEX)
     verifier_zoom_involontaire(r, source)
     verifier_zone_morte(r, source)
