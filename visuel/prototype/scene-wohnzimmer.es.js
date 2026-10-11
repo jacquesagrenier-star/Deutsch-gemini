@@ -910,6 +910,408 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "¿Dónde está? — estar et les prépositions",
+   "qs": [
+    {
+     "q": "¿Dónde está el balón?",
+     "c": [
+      "encima del armario",
+      "debajo del armario",
+      "al lado de la ventana"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "El balón está encima del armario.",
+     "n": "<b>encima de</b> = sur. de + el = <b>del</b> : encima <b>del</b> armario.",
+     "latam": {
+      "c": [
+       "encima del clóset",
+       "debajo del clóset",
+       "al lado de la ventana"
+      ],
+      "phrase": "El balón está encima del clóset."
+     }
+    },
+    {
+     "q": "¿Dónde está el perro?",
+     "c": [
+      "debajo de la mesa baja",
+      "encima de la mesa baja",
+      "al lado del sofá"
+     ],
+     "f": "hund",
+     "r": "couchtisch",
+     "phrase": "El perro está debajo de la mesa baja.",
+     "n": "<b>debajo de</b> = sous. Le lieu se dit avec <b>estar</b>.",
+     "latam": {
+      "c": [
+       "debajo de la mesa de centro",
+       "encima de la mesa de centro",
+       "al lado del sofá"
+      ],
+      "phrase": "El perro está debajo de la mesa de centro."
+     }
+    },
+    {
+     "q": "¿Dónde está el gato?",
+     "c": [
+      "en la caja de cartón",
+      "encima de la caja de cartón",
+      "detrás de la caja de cartón"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "El gato está en la caja de cartón.",
+     "n": "<b>en</b> = dans, le lieu où l'on est. On dit aussi <b>dentro de</b>."
+    },
+    {
+     "q": "¿Dónde está el paraguas?",
+     "c": [
+      "colgado de la lámpara",
+      "al lado de la puerta",
+      "debajo de la ventana"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "El paraguas está colgado de la lámpara.",
+     "n": "<b>colgado de</b> = suspendu à. Il s'accorde : el paraguas → colgad<b>o</b>."
+    },
+    {
+     "q": "¿Dónde está la bicicleta?",
+     "c": [
+      "delante de la estantería",
+      "detrás de la estantería",
+      "encima de la estantería"
+     ],
+     "f": "fahrrad",
+     "r": "regal",
+     "phrase": "La bicicleta está delante de la estantería.",
+     "n": "<b>delante de</b> = devant ; <b>detrás de</b> = derrière."
+    },
+    {
+     "q": "¿Dónde está la guitarra?",
+     "c": [
+      "entre el armario y el sofá",
+      "encima del sofá",
+      "debajo del sofá"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "La guitarra está entre el armario y el sofá.",
+     "n": "<b>entre</b> = entre, sans « de » : entre el armario y el sofá.",
+     "latam": {
+      "c": [
+       "entre el clóset y el sofá",
+       "encima del sofá",
+       "debajo del sofá"
+      ],
+      "phrase": "La guitarra está entre el clóset y el sofá."
+     }
+    },
+    {
+     "q": "¿Dónde están las zapatillas?",
+     "c": [
+      "debajo del sofá",
+      "encima del sofá",
+      "al lado de la televisión"
+     ],
+     "f": "turnschuh",
+     "r": "sofa",
+     "phrase": "Las zapatillas están debajo del sofá.",
+     "n": "Pluriel → <b>están</b>. de + el = <b>del</b> : debajo <b>del</b> sofá.",
+     "latam": {
+      "q": "¿Dónde están los tenis?",
+      "phrase": "Los tenis están debajo del sofá."
+     }
+    },
+    {
+     "q": "¿Dónde está el radiador?",
+     "c": [
+      "debajo de la ventana",
+      "encima de la ventana",
+      "al lado de la puerta"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "El radiador está debajo de la ventana.",
+     "n": "<b>debajo de</b> = sous."
+    },
+    {
+     "q": "¿Dónde está el calcetín?",
+     "c": [
+      "colgado de la lámpara de pie",
+      "encima de la mesa baja",
+      "debajo del sofá"
+     ],
+     "f": "socke",
+     "r": "stehlampe",
+     "phrase": "El calcetín está colgado de la lámpara de pie.",
+     "n": "<b>colgado de</b> = suspendu à : el calcetín → colgad<b>o</b>.",
+     "latam": {
+      "c": [
+       "colgado de la lámpara de pie",
+       "encima de la mesa de centro",
+       "debajo del sofá"
+      ]
+     }
+    },
+    {
+     "q": "¿Dónde está la pecera con el pez de colores?",
+     "c": [
+      "encima de la estantería",
+      "debajo de la estantería",
+      "al lado de la bicicleta"
+     ],
+     "f": "goldfisch",
+     "r": "regal",
+     "phrase": "La pecera con el pez de colores está encima de la estantería.",
+     "n": "<b>encima de</b> = sur. La pecera = le bocal.",
+     "latam": {
+      "q": "¿Dónde está la pecera con el pez dorado?",
+      "phrase": "La pecera con el pez dorado está encima de la estantería."
+     }
+    }
+   ]
+  },
+  "B1": {
+   "titre": "hay, estar, ser et les pronoms",
+   "qs": [
+    {
+     "q": "En el suelo ___ muchos globos.",
+     "c": [
+      "hay",
+      "están",
+      "son"
+     ],
+     "f": "luftballon",
+     "r": "boden",
+     "phrase": "En el suelo hay muchos globos.",
+     "n": "Pour dire qu'il y a quelque chose, sans le définir → <b>hay</b> (invariable).",
+     "latam": {
+      "q": "En el piso ___ muchos globos.",
+      "phrase": "En el piso hay muchos globos."
+     }
+    },
+    {
+     "q": "Los globos ___ en el suelo.",
+     "c": [
+      "están",
+      "hay",
+      "son"
+     ],
+     "f": "luftballon",
+     "r": "boden",
+     "phrase": "Los globos están en el suelo.",
+     "n": "Avec l'article défini (<b>los</b> globos) → <b>estar</b>, pas hay.",
+     "latam": {
+      "q": "Los globos ___ en el piso.",
+      "phrase": "Los globos están en el piso."
+     }
+    },
+    {
+     "q": "¿La taza? Mark ___ pone en la estantería.",
+     "c": [
+      "la",
+      "le",
+      "lo"
+     ],
+     "f": "tasse",
+     "r": "regal",
+     "phrase": "Mark la pone en la estantería.",
+     "revise": {
+      "mot": "poner",
+      "cat": "verbe"
+     },
+     "n": "Complément direct féminin (la taza) → <b>la</b>."
+    },
+    {
+     "q": "¿El paraguas? Mark ___ cuelga detrás de la puerta.",
+     "c": [
+      "lo",
+      "la",
+      "le"
+     ],
+     "f": "regenschirm",
+     "r": "tuer",
+     "phrase": "Mark lo cuelga detrás de la puerta.",
+     "n": "Complément direct masculin (el paraguas) → <b>lo</b>."
+    },
+    {
+     "q": "¿Las botellas? Mark ___ tira a la basura.",
+     "c": [
+      "las",
+      "les",
+      "los"
+     ],
+     "f": "flasche",
+     "r": "eimer",
+     "phrase": "Mark las tira a la basura.",
+     "n": "Complément direct féminin pluriel (las botellas) → <b>las</b>."
+    },
+    {
+     "q": "El sofá ___ gris.",
+     "c": [
+      "es",
+      "está",
+      "hay"
+     ],
+     "f": "sofa",
+     "phrase": "El sofá es gris.",
+     "n": "Une caractéristique (la couleur) → <b>ser</b>."
+    },
+    {
+     "q": "El perro ___ dormido debajo de la mesa.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "hund",
+     "r": "couchtisch",
+     "phrase": "El perro está dormido debajo de la mesa.",
+     "n": "Un état (dormido) et un lieu → <b>estar</b>."
+    },
+    {
+     "q": "La puerta ___ abierta.",
+     "c": [
+      "está",
+      "es",
+      "hay"
+     ],
+     "f": "tuer",
+     "phrase": "La puerta está abierta.",
+     "n": "Un résultat, un état → <b>estar</b> + participe accordé : abiert<b>a</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "La lámpara de ___ cuelga el paraguas es redonda.",
+     "c": [
+      "la que",
+      "que",
+      "quien"
+     ],
+     "f": "lampe",
+     "r": "regenschirm",
+     "phrase": "La lámpara de la que cuelga el paraguas es redonda.",
+     "n": "Préposition + relatif : de <b>la que</b> (la lámpara). Sans l'article, « de que » serait faux."
+    },
+    {
+     "q": "El perro, ___ duerme debajo de la mesa, no oyó la fiesta.",
+     "c": [
+      "que",
+      "quien",
+      "cuyo"
+     ],
+     "f": "hund",
+     "phrase": "El perro, que duerme debajo de la mesa, no oyó la fiesta.",
+     "n": "Sujet de la relative → <b>que</b>. <b>quien</b> ne renvoie qu'à une personne."
+    },
+    {
+     "q": "El gato, ___ cabeza sale de la caja, parece tranquilo.",
+     "c": [
+      "cuya",
+      "cuyo",
+      "que"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "El gato, cuya cabeza sale de la caja, parece tranquilo.",
+     "n": "<b>cuyo</b> = dont le, dont la. Il s'accorde avec ce qui est possédé : la cabeza → <b>cuya</b>."
+    },
+    {
+     "q": "La estantería delante de ___ está la bicicleta está llena de libros.",
+     "c": [
+      "la cual",
+      "que",
+      "quien"
+     ],
+     "f": "regal",
+     "r": "fahrrad",
+     "phrase": "La estantería delante de la cual está la bicicleta está llena de libros.",
+     "n": "Après une préposition de plusieurs mots (delante de), on emploie <b>la cual</b>."
+    },
+    {
+     "q": "Los globos fueron ___ por los invitados.",
+     "c": [
+      "inflados",
+      "inflando",
+      "inflan"
+     ],
+     "f": "luftballon",
+     "phrase": "Los globos fueron inflados por los invitados.",
+     "n": "Passif avec <b>ser</b> : ser + participe accordé (los globos → inflad<b>os</b>)."
+    },
+    {
+     "q": "La puerta está ___ desde anoche.",
+     "c": [
+      "abierta",
+      "abriendo",
+      "abre"
+     ],
+     "f": "tuer",
+     "phrase": "La puerta está abierta desde anoche.",
+     "n": "Passif d'état : <b>estar</b> + participe accordé. Le résultat dure."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et probabilité",
+   "qs": [
+    {
+     "q": "Hay globos por todas partes: la fiesta ___ terminar muy tarde.",
+     "c": [
+      "debió de",
+      "pudo",
+      "quiso"
+     ],
+     "f": "luftballon",
+     "phrase": "La fiesta debió de terminar muy tarde.",
+     "n": "<b>deber de</b> + infinitif = une déduction : c'est presque sûr, vu les ballons."
+    },
+    {
+     "q": "Nadie sabe de quién es el calcetín. ___ ser de uno de los invitados.",
+     "c": [
+      "Podría",
+      "Debe",
+      "Quiere"
+     ],
+     "f": "socke",
+     "phrase": "Podría ser de uno de los invitados.",
+     "n": "<b>podría</b> = c'est possible, sans preuve. <b>debe</b> serait une certitude."
+    },
+    {
+     "q": "Si Mark no hubiera viajado, ahora ___ tan cansado como sus compañeros.",
+     "c": [
+      "estaría",
+      "estará",
+      "estaba"
+     ],
+     "f": "koffer",
+     "phrase": "Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.",
+     "n": "Condition irréelle au passé (hubiera viajado), conséquence au présent → conditionnel : <b>estaría</b>."
+    },
+    {
+     "q": "Cuando Mark vea el salón, seguramente ___ un poco.",
+     "c": [
+      "se enfadará",
+      "se enfada",
+      "se enfadaba"
+     ],
+     "f": "koffer",
+     "phrase": "Cuando Mark vea el salón, seguramente se enfadará un poco.",
+     "n": "Une prévision → futur : <b>se enfadará</b>. Et <b>cuando</b> + avenir prend le subjonctif : vea.",
+     "latam": {
+      "q": "Cuando Mark vea la sala, seguramente ___ un poco.",
+      "phrase": "Cuando Mark vea la sala, seguramente se enfadará un poco."
+     }
+    }
+   ]
   }
  },
  "traductions": {
@@ -919,9 +1321,50 @@ window.SCENE = {
     "consigne": "Mark is back from a trip… and his flatmates have had a party. Tap an object."
    },
    "couches": {
-    "A1": "Nouns and articles"
+    "A1": "Nouns and articles",
+    "A2": "¿Dónde está? — estar and prepositions",
+    "B1": "hay, estar, ser and pronouns",
+    "B2": "Relative clauses and the passive",
+    "C1": "Hypotheses and probability"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El balón está encima del clóset.": "<b>encima de</b> = on top of. de + el = <b>del</b>: encima <b>del</b> armario.",
+    "A2 | El balón está encima del armario.": "<b>encima de</b> = on top of. de + el = <b>del</b>: encima <b>del</b> armario.",
+    "A2 | El perro está debajo de la mesa de centro.": "<b>debajo de</b> = under. Location takes <b>estar</b>.",
+    "A2 | El perro está debajo de la mesa baja.": "<b>debajo de</b> = under. Location takes <b>estar</b>.",
+    "A2 | El gato está en la caja de cartón.": "<b>en</b> = in, where something is. You can also say <b>dentro de</b>.",
+    "A2 | El paraguas está colgado de la lámpara.": "<b>colgado de</b> = hanging from. It agrees: el paraguas → colgad<b>o</b>.",
+    "A2 | La bicicleta está delante de la estantería.": "<b>delante de</b> = in front of; <b>detrás de</b> = behind.",
+    "A2 | La guitarra está entre el clóset y el sofá.": "<b>entre</b> = between, with no « de »: entre el armario y el sofá.",
+    "A2 | La guitarra está entre el armario y el sofá.": "<b>entre</b> = between, with no « de »: entre el armario y el sofá.",
+    "A2 | Los tenis están debajo del sofá.": "Plural → <b>están</b>. de + el = <b>del</b>: debajo <b>del</b> sofá.",
+    "A2 | Las zapatillas están debajo del sofá.": "Plural → <b>están</b>. de + el = <b>del</b>: debajo <b>del</b> sofá.",
+    "A2 | El radiador está debajo de la ventana.": "<b>debajo de</b> = under.",
+    "A2 | El calcetín está colgado de la lámpara de pie.": "<b>colgado de</b> = hanging from: el calcetín → colgad<b>o</b>.",
+    "A2 | La pecera con el pez dorado está encima de la estantería.": "<b>encima de</b> = on top of. La pecera = the fish bowl.",
+    "A2 | La pecera con el pez de colores está encima de la estantería.": "<b>encima de</b> = on top of. La pecera = the fish bowl.",
+    "B1 | En el piso hay muchos globos.": "To say there is something, without « the » → <b>hay</b> (it never changes).",
+    "B1 | En el suelo hay muchos globos.": "To say there is something, without « the » → <b>hay</b> (it never changes).",
+    "B1 | Los globos están en el piso.": "With « the » (<b>los</b> globos) → <b>estar</b>, not hay.",
+    "B1 | Los globos están en el suelo.": "With « the » (<b>los</b> globos) → <b>estar</b>, not hay.",
+    "B1 | Mark la pone en la estantería.": "Feminine direct object (la taza) → <b>la</b>.",
+    "B1 | Mark lo cuelga detrás de la puerta.": "Masculine direct object (el paraguas) → <b>lo</b>.",
+    "B1 | Mark las tira a la basura.": "Feminine plural direct object (las botellas) → <b>las</b>.",
+    "B1 | El sofá es gris.": "A feature (the colour) → <b>ser</b>.",
+    "B1 | El perro está dormido debajo de la mesa.": "A state (dormido) and a place → <b>estar</b>.",
+    "B1 | La puerta está abierta.": "A result, a state → <b>estar</b> + agreeing participle: abiert<b>a</b>.",
+    "B2 | La lámpara de la que cuelga el paraguas es redonda.": "Preposition + relative: de <b>la que</b> (la lámpara). Without the article, « de que » is wrong.",
+    "B2 | El perro, que duerme debajo de la mesa, no oyó la fiesta.": "Subject of the relative clause → <b>que</b>. <b>quien</b> only refers to a person.",
+    "B2 | El gato, cuya cabeza sale de la caja, parece tranquilo.": "<b>cuyo</b> = whose. It agrees with what is owned: la cabeza → <b>cuya</b>.",
+    "B2 | La estantería delante de la cual está la bicicleta está llena de libros.": "After a multi-word preposition (delante de), use <b>la cual</b>.",
+    "B2 | Los globos fueron inflados por los invitados.": "Passive with <b>ser</b>: ser + agreeing participle (los globos → inflad<b>os</b>).",
+    "B2 | La puerta está abierta desde anoche.": "Stative passive: <b>estar</b> + agreeing participle. The result lasts.",
+    "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + infinitive = a deduction: it's almost certain, given the balloons.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = it's possible, with no proof. <b>debe</b> would be a certainty.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Unreal past condition (hubiera viajado), present result → conditional: <b>estaría</b>.",
+    "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "A prediction → future: <b>se enfadará</b>. And <b>cuando</b> + future takes the subjunctive: vea.",
+    "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "A prediction → future: <b>se enfadará</b>. And <b>cuando</b> + future takes the subjunctive: vea."
+   }
   },
   "tr": {
    "champs": {

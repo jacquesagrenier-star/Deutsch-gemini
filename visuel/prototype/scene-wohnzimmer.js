@@ -996,6 +996,408 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo liegt der Ball?",
+     "c": [
+      "auf dem Schrank",
+      "unter dem Schrank",
+      "neben dem Fenster"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Der Ball liegt auf dem Schrank.",
+     "n": "<b>Wo?</b> → datif : der Schrank → auf <b>dem</b> Schrank."
+    },
+    {
+     "q": "Wo liegt der Hund?",
+     "c": [
+      "unter dem Couchtisch",
+      "auf dem Couchtisch",
+      "neben dem Sofa"
+     ],
+     "f": "hund",
+     "r": "couchtisch",
+     "phrase": "Der Hund liegt unter dem Couchtisch.",
+     "n": "<b>unter</b> = sous. Datif : der Couchtisch → unter <b>dem</b> Couchtisch."
+    },
+    {
+     "q": "Wo sitzt die Katze?",
+     "c": [
+      "im Karton",
+      "auf dem Karton",
+      "hinter dem Karton"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "Die Katze sitzt im Karton.",
+     "n": "<b>im</b> = in + dem. Datif : der Karton → in <b>dem</b> (im) Karton."
+    },
+    {
+     "q": "Wo hängt der Regenschirm?",
+     "c": [
+      "an der Lampe",
+      "am Fenster",
+      "an der Tür"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Der Regenschirm hängt an der Lampe.",
+     "n": "Accroché : <b>an</b> + datif. die Lampe → an <b>der</b> Lampe."
+    },
+    {
+     "q": "Wo steht das Fahrrad?",
+     "c": [
+      "vor dem Regal",
+      "hinter dem Regal",
+      "auf dem Regal"
+     ],
+     "f": "fahrrad",
+     "r": "regal",
+     "phrase": "Das Fahrrad steht vor dem Regal.",
+     "n": "<b>vor</b> = devant. Datif : das Regal → vor <b>dem</b> Regal."
+    },
+    {
+     "q": "Wo steht die Gitarre?",
+     "c": [
+      "zwischen dem Schrank und dem Sofa",
+      "auf dem Sofa",
+      "unter dem Sofa"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "Die Gitarre steht zwischen dem Schrank und dem Sofa.",
+     "n": "<b>zwischen</b> = entre, au datif pour les deux : zwischen <b>dem</b> Schrank und <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo liegen die Turnschuhe?",
+     "c": [
+      "unter dem Sofa",
+      "auf dem Sofa",
+      "neben dem Fernseher"
+     ],
+     "f": "turnschuh",
+     "r": "sofa",
+     "phrase": "Die Turnschuhe liegen unter dem Sofa.",
+     "n": "Pluriel : die Turnschuhe <b>liegen</b>. Datif : unter <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht das Glas mit dem Goldfisch?",
+     "c": [
+      "auf dem Regal",
+      "unter dem Regal",
+      "neben dem Fahrrad"
+     ],
+     "f": "goldfisch",
+     "r": "regal",
+     "phrase": "Das Glas mit dem Goldfisch steht auf dem Regal.",
+     "n": "<b>auf</b> + datif : auf <b>dem</b> Regal. Et <b>mit</b> est toujours au datif : mit <b>dem</b> Goldfisch."
+    },
+    {
+     "q": "Wo hängt die Socke?",
+     "c": [
+      "an der Stehlampe",
+      "am Fenster",
+      "an der Tür"
+     ],
+     "f": "socke",
+     "r": "stehlampe",
+     "phrase": "Die Socke hängt an der Stehlampe.",
+     "n": "<b>an</b> + datif : die Stehlampe → an <b>der</b> Stehlampe."
+    },
+    {
+     "q": "Wo ist der Heizkörper?",
+     "c": [
+      "unter dem Fenster",
+      "über dem Fenster",
+      "neben der Tür"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "Der Heizkörper ist unter dem Fenster.",
+     "n": "<b>unter</b> + datif : das Fenster → unter <b>dem</b> Fenster."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Wo? ou Wohin? — Mark range",
+   "qs": [
+    {
+     "q": "Der Ball liegt noch auf ___ Schrank.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Der Ball liegt noch auf dem Schrank.",
+     "n": "Un état (<b>liegen</b>, Wo?) → datif : auf <b>dem</b> Schrank.",
+     "revise": {
+      "mot": "liegen",
+      "cat": "verbe"
+     }
+    },
+    {
+     "q": "Mark ___ den Ball in den Schrank.",
+     "c": [
+      "legt",
+      "liegt",
+      "steht"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Mark legt den Ball in den Schrank.",
+     "n": "<b>legen</b> = poser à plat, un geste (Wohin?) → accusatif : in <b>den</b> Schrank. <b>liegen</b> = être posé, un état.",
+     "revise": {
+      "mot": "legen",
+      "cat": "verbe"
+     }
+    },
+    {
+     "q": "Die Tasse ___ auf dem Couchtisch.",
+     "c": [
+      "steht",
+      "stellt",
+      "legt"
+     ],
+     "f": "tasse",
+     "r": "couchtisch",
+     "phrase": "Die Tasse steht auf dem Couchtisch.",
+     "n": "Un état → <b>stehen</b> + datif : auf <b>dem</b> Couchtisch.",
+     "revise": {
+      "mot": "stehen",
+      "cat": "verbe"
+     }
+    },
+    {
+     "q": "Mark stellt die Tasse auf ___ Regal.",
+     "c": [
+      "das",
+      "dem",
+      "den"
+     ],
+     "f": "tasse",
+     "r": "regal",
+     "phrase": "Mark stellt die Tasse auf das Regal.",
+     "n": "<b>stellen</b> = poser debout, un geste (Wohin?) → accusatif : das Regal → auf <b>das</b> Regal (aufs Regal).",
+     "revise": {
+      "mot": "stellen",
+      "cat": "verbe"
+     }
+    },
+    {
+     "q": "Noch hängt der Regenschirm an ___ Lampe.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Noch hängt der Regenschirm an der Lampe.",
+     "n": "<b>hängen</b> pour un état (Wo?) → datif : an <b>der</b> Lampe."
+    },
+    {
+     "q": "Mark hängt den Regenschirm an ___ Tür.",
+     "c": [
+      "die",
+      "der",
+      "den"
+     ],
+     "f": "regenschirm",
+     "r": "tuer",
+     "phrase": "Mark hängt den Regenschirm an die Tür.",
+     "n": "Le même verbe <b>hängen</b>, mais un geste (Wohin?) → accusatif : an <b>die</b> Tür. C'est le cas qui dit si ça bouge."
+    },
+    {
+     "q": "Mark legt das Buch ___ Regal.",
+     "c": [
+      "ins",
+      "im",
+      "in der"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Mark legt das Buch ins Regal.",
+     "n": "Wohin? → accusatif : in + das = <b>ins</b>. <b>im</b> (in dem) répondrait à Wo?",
+     "revise": {
+      "mot": "legen",
+      "cat": "verbe"
+     }
+    },
+    {
+     "q": "Die Flaschen stehen ___ Eimer.",
+     "c": [
+      "im",
+      "in den",
+      "ins"
+     ],
+     "f": "flasche",
+     "r": "eimer",
+     "phrase": "Die Flaschen stehen im Eimer.",
+     "n": "Un état (<b>stehen</b>) → datif : in dem = <b>im</b> Eimer.",
+     "revise": {
+      "mot": "stehen",
+      "cat": "verbe"
+     }
+    },
+    {
+     "q": "Die Katze springt gleich auf ___ Sofa.",
+     "c": [
+      "das",
+      "dem",
+      "der"
+     ],
+     "f": "katze",
+     "r": "sofa",
+     "phrase": "Die Katze springt gleich auf das Sofa.",
+     "n": "Un mouvement vers un lieu (Wohin?) → accusatif : auf <b>das</b> Sofa (aufs Sofa)."
+    },
+    {
+     "q": "Die Luftballons liegen auf ___ Boden.",
+     "c": [
+      "dem",
+      "den",
+      "die"
+     ],
+     "f": "luftballon",
+     "r": "boden",
+     "phrase": "Die Luftballons liegen auf dem Boden.",
+     "n": "Un état → datif : der Boden → auf <b>dem</b> Boden.",
+     "revise": {
+      "mot": "liegen",
+      "cat": "verbe"
+     }
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "Die Lampe, an ___ ein Regenschirm hängt, ist rund.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "lampe",
+     "r": "regenschirm",
+     "phrase": "Die Lampe, an der ein Regenschirm hängt, ist rund.",
+     "n": "Préposition + relatif : <b>an der</b> (die Lampe, datif féminin)."
+    },
+    {
+     "q": "Der Hund, ___ unter dem Tisch schläft, hat die Party verpasst.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "hund",
+     "phrase": "Der Hund, der unter dem Tisch schläft, hat die Party verpasst.",
+     "n": "Sujet de la relative, masculin → <b>der</b>."
+    },
+    {
+     "q": "Die Katze, ___ Kopf aus dem Karton schaut, wirkt ganz ruhig.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.",
+     "n": "Possession, antécédent féminin (die Katze) → <b>deren</b> (dont la tête)."
+    },
+    {
+     "q": "Das Regal, vor ___ das Fahrrad steht, ist voller Bücher.",
+     "c": [
+      "dem",
+      "das",
+      "den"
+     ],
+     "f": "regal",
+     "r": "fahrrad",
+     "phrase": "Das Regal, vor dem das Fahrrad steht, ist voller Bücher.",
+     "n": "<b>vor</b> + relatif, un état (Wo?) → datif : das Regal → <b>vor dem</b>."
+    },
+    {
+     "q": "Die Tür ist ___.",
+     "c": [
+      "geöffnet",
+      "öffnend",
+      "öffnet"
+     ],
+     "f": "tuer",
+     "phrase": "Die Tür ist geöffnet.",
+     "n": "Passif d'état : <b>sein</b> + participe passé. La porte a été ouverte, et elle le reste."
+    },
+    {
+     "q": "Die Lichterkette ist um die Pflanze ___.",
+     "c": [
+      "gewickelt",
+      "wickelt",
+      "wickelnd"
+     ],
+     "f": "pflanze",
+     "phrase": "Die Lichterkette ist um die Pflanze gewickelt.",
+     "n": "Passif d'état : <b>ist</b> + participe. Et <b>um</b> veut toujours l'accusatif : um <b>die</b> Pflanze."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Überall liegen Luftballons: Die Party ___ sehr lang gewesen sein.",
+     "c": [
+      "muss",
+      "soll",
+      "will"
+     ],
+     "f": "luftballon",
+     "phrase": "Die Party muss sehr lang gewesen sein.",
+     "n": "<b>müssen</b> + infinitif passé = presque certain, déduit de ce qu'on voit : les ballons partout."
+    },
+    {
+     "q": "Wer hat den Regenschirm an die Lampe gehängt? Das ___ einer der Gäste gewesen sein.",
+     "c": [
+      "dürfte",
+      "sollte",
+      "wollte"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Das dürfte einer der Gäste gewesen sein.",
+     "n": "<b>dürfte</b> + infinitif passé = probablement : une hypothèse prudente."
+    },
+    {
+     "q": "Niemand weiß, wem die Socke gehört. Sie ___ einem Gast gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "soll"
+     ],
+     "f": "socke",
+     "phrase": "Sie könnte einem Gast gehören.",
+     "n": "<b>könnte</b> = c'est possible, mais rien ne le prouve. <b>muss</b> serait une certitude."
+    },
+    {
+     "q": "Hätte Mark die Party nicht verpasst, ___ er jetzt auch müde.",
+     "c": [
+      "wäre",
+      "ist",
+      "war"
+     ],
+     "f": "koffer",
+     "phrase": "Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.",
+     "n": "Condition irréelle (hätte … verpasst), conséquence au présent → subjonctif II : <b>wäre</b>."
+    }
+   ]
   }
  },
  "traductions": {
@@ -1005,9 +1407,44 @@ window.SCENE = {
     "consigne": "Mark is back from a trip… and his flatmates have had a party. Tap an object."
    },
    "couches": {
-    "A1": "Nouns and articles"
+    "A1": "Nouns and articles",
+    "A2": "Wo? — prepositions",
+    "B1": "Wo? or Wohin? — Mark tidies up",
+    "B2": "Relative clauses and the state passive",
+    "C1": "Hypotheses"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> → dative: der Schrank → auf <b>dem</b> Schrank.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = under. Dative: der Couchtisch → unter <b>dem</b> Couchtisch.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = in + dem. Dative: der Karton → in <b>dem</b> (im) Karton.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Hanging: <b>an</b> + dative. die Lampe → an <b>der</b> Lampe.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = in front of. Dative: das Regal → vor <b>dem</b> Regal.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = between, dative for both: zwischen <b>dem</b> Schrank und <b>dem</b> Sofa.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Plural: die Turnschuhe <b>liegen</b>. Dative: unter <b>dem</b> Sofa.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + dative: auf <b>dem</b> Regal. And <b>mit</b> always takes the dative: mit <b>dem</b> Goldfisch.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + dative: die Stehlampe → an <b>der</b> Stehlampe.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + dative: das Fenster → unter <b>dem</b> Fenster.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "A state (<b>liegen</b>, Wo?) → dative: auf <b>dem</b> Schrank.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = to lay flat, an action (Wohin?) → accusative: in <b>den</b> Schrank. <b>liegen</b> = to lie, a state.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "A state → <b>stehen</b> + dative: auf <b>dem</b> Couchtisch.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = to put upright, an action (Wohin?) → accusative: das Regal → auf <b>das</b> Regal (aufs Regal).",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> for a state (Wo?) → dative: an <b>der</b> Lampe.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "The same verb <b>hängen</b>, but an action (Wohin?) → accusative: an <b>die</b> Tür. The case tells you whether something moves.",
+    "B1 | Mark legt das Buch ins Regal.": "Wohin? → accusative: in + das = <b>ins</b>. <b>im</b> (in dem) would answer Wo?",
+    "B1 | Die Flaschen stehen im Eimer.": "A state (<b>stehen</b>) → dative: in dem = <b>im</b> Eimer.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "A movement towards a place (Wohin?) → accusative: auf <b>das</b> Sofa (aufs Sofa).",
+    "B1 | Die Luftballons liegen auf dem Boden.": "A state → dative: der Boden → auf <b>dem</b> Boden.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Preposition + relative pronoun: <b>an der</b> (die Lampe, feminine dative).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Subject of the relative clause, masculine → <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Possession, feminine antecedent (die Katze) → <b>deren</b> (whose head).",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + relative pronoun, a state (Wo?) → dative: das Regal → <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "State passive: <b>sein</b> + past participle. The door was opened, and it stays open.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "State passive: <b>ist</b> + participle. And <b>um</b> always takes the accusative: um <b>die</b> Pflanze.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + perfect infinitive = almost certain, deduced from what you see: balloons everywhere.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + perfect infinitive = probably: a cautious guess.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = it's possible, but nothing proves it. <b>muss</b> would be a certainty.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Unreal condition (hätte … verpasst), present result → subjunctive II: <b>wäre</b>."
+   }
   },
   "tr": {
    "champs": {
@@ -1015,9 +1452,44 @@ window.SCENE = {
     "consigne": "Mark seyahatten dönüyor… ve ev arkadaşları parti vermiş. Bir nesneye dokun."
    },
    "couches": {
-    "A1": "İsimler ve artikeller"
+    "A1": "İsimler ve artikeller",
+    "A2": "Wo? — edatlar",
+    "B1": "Wo? mu, Wohin? mu? — Mark topluyor",
+    "B2": "İlgi cümleleri ve durum edilgeni",
+    "C1": "Varsayımlar"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> → Dativ: der Schrank → auf <b>dem</b> Schrank.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = altında. Dativ: der Couchtisch → unter <b>dem</b> Couchtisch.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = in + dem. Dativ: der Karton → in <b>dem</b> (im) Karton.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Asılı: <b>an</b> + Dativ. die Lampe → an <b>der</b> Lampe.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = önünde. Dativ: das Regal → vor <b>dem</b> Regal.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = arasında, ikisi için de Dativ: zwischen <b>dem</b> Schrank und <b>dem</b> Sofa.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Çoğul: die Turnschuhe <b>liegen</b>. Dativ: unter <b>dem</b> Sofa.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + Dativ: auf <b>dem</b> Regal. <b>mit</b> ise her zaman Dativ alır: mit <b>dem</b> Goldfisch.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + Dativ: die Stehlampe → an <b>der</b> Stehlampe.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + Dativ: das Fenster → unter <b>dem</b> Fenster.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Bir durum (<b>liegen</b>, Wo?) → Dativ: auf <b>dem</b> Schrank.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = yatırarak koymak, bir hareket (Wohin?) → Akkusativ: in <b>den</b> Schrank. <b>liegen</b> = yatay durmak, bir durum.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Bir durum → <b>stehen</b> + Dativ: auf <b>dem</b> Couchtisch.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = dik koymak, bir hareket (Wohin?) → Akkusativ: das Regal → auf <b>das</b> Regal (aufs Regal).",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "Durum için <b>hängen</b> (Wo?) → Dativ: an <b>der</b> Lampe.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Aynı fiil <b>hängen</b>, ama bir hareket (Wohin?) → Akkusativ: an <b>die</b> Tür. Bir şeyin hareket edip etmediğini hâl söyler.",
+    "B1 | Mark legt das Buch ins Regal.": "Wohin? → Akkusativ: in + das = <b>ins</b>. <b>im</b> (in dem) Wo? sorusunu yanıtlardı.",
+    "B1 | Die Flaschen stehen im Eimer.": "Bir durum (<b>stehen</b>) → Dativ: in dem = <b>im</b> Eimer.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Bir yere doğru hareket (Wohin?) → Akkusativ: auf <b>das</b> Sofa (aufs Sofa).",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Bir durum → Dativ: der Boden → auf <b>dem</b> Boden.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Edat + ilgi zamiri: <b>an der</b> (die Lampe, dişil Dativ).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "İlgi cümlesinin öznesi, eril → <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "İyelik, önceki isim dişil (die Katze) → <b>deren</b> (başı).",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + ilgi zamiri, bir durum (Wo?) → Dativ: das Regal → <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "Durum edilgeni: <b>sein</b> + geçmiş zaman ortacı. Kapı açıldı ve öyle kalıyor.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Durum edilgeni: <b>ist</b> + ortaç. <b>um</b> ise her zaman Akkusativ alır: um <b>die</b> Pflanze.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + geçmiş mastar = neredeyse kesin, görülenden çıkarılıyor: her yerde balonlar.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + geçmiş mastar = muhtemelen: temkinli bir varsayım.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = mümkün, ama hiçbir şey kanıtlamıyor. <b>muss</b> kesinlik olurdu.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Gerçek dışı koşul (hätte … verpasst), şimdiki sonuç → Konjunktiv II: <b>wäre</b>."
+   }
   },
   "uk": {
    "champs": {
@@ -1025,9 +1497,44 @@ window.SCENE = {
     "consigne": "Марк повертається з поїздки… а його сусіди влаштували вечірку. Торкнись предмета."
    },
    "couches": {
-    "A1": "Іменники й артиклі"
+    "A1": "Іменники й артиклі",
+    "A2": "Wo? — прийменники",
+    "B1": "Wo? чи Wohin? — Марк прибирає",
+    "B2": "Відносні речення й пасив стану",
+    "C1": "Припущення"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> → Dativ: der Schrank → auf <b>dem</b> Schrank.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = під. Dativ: der Couchtisch → unter <b>dem</b> Couchtisch.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = in + dem. Dativ: der Karton → in <b>dem</b> (im) Karton.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Висить: <b>an</b> + Dativ. die Lampe → an <b>der</b> Lampe.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = перед. Dativ: das Regal → vor <b>dem</b> Regal.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = між, Dativ для обох: zwischen <b>dem</b> Schrank und <b>dem</b> Sofa.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Множина: die Turnschuhe <b>liegen</b>. Dativ: unter <b>dem</b> Sofa.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + Dativ: auf <b>dem</b> Regal. А <b>mit</b> завжди вимагає Dativ: mit <b>dem</b> Goldfisch.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + Dativ: die Stehlampe → an <b>der</b> Stehlampe.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + Dativ: das Fenster → unter <b>dem</b> Fenster.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Стан (<b>liegen</b>, Wo?) → Dativ: auf <b>dem</b> Schrank.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = класти, дія (Wohin?) → Akkusativ: in <b>den</b> Schrank. <b>liegen</b> = лежати, стан.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Стан → <b>stehen</b> + Dativ: auf <b>dem</b> Couchtisch.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = ставити, дія (Wohin?) → Akkusativ: das Regal → auf <b>das</b> Regal (aufs Regal).",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> для стану (Wo?) → Dativ: an <b>der</b> Lampe.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Те саме дієслово <b>hängen</b>, але дія (Wohin?) → Akkusativ: an <b>die</b> Tür. Саме відмінок показує, чи є рух.",
+    "B1 | Mark legt das Buch ins Regal.": "Wohin? → Akkusativ: in + das = <b>ins</b>. <b>im</b> (in dem) відповідало б на Wo?",
+    "B1 | Die Flaschen stehen im Eimer.": "Стан (<b>stehen</b>) → Dativ: in dem = <b>im</b> Eimer.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Рух до місця (Wohin?) → Akkusativ: auf <b>das</b> Sofa (aufs Sofa).",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Стан → Dativ: der Boden → auf <b>dem</b> Boden.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Прийменник + відносний займенник: <b>an der</b> (die Lampe, Dativ жіночого роду).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Підмет відносного речення, чоловічий рід → <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Присвійність, попередник жіночого роду (die Katze) → <b>deren</b> (чия голова).",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + відносний займенник, стан (Wo?) → Dativ: das Regal → <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "Пасив стану: <b>sein</b> + дієприкметник минулого часу. Двері відчинили, і вони так і лишаються.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Пасив стану: <b>ist</b> + дієприкметник. А <b>um</b> завжди вимагає Akkusativ: um <b>die</b> Pflanze.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + інфінітив минулого = майже напевно, висновок з того, що видно: скрізь кульки.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + інфінітив минулого = мабуть: обережне припущення.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = можливо, але ніщо цього не доводить. <b>muss</b> означало б певність.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Нереальна умова (hätte … verpasst), наслідок у теперішньому → Konjunktiv II: <b>wäre</b>."
+   }
   },
   "fa": {
    "champs": {
@@ -1035,9 +1542,44 @@ window.SCENE = {
     "consigne": "مارک از سفر برمی‌گردد… و هم‌خانه‌هایش مهمانی گرفته‌اند. یک چیز را لمس کن."
    },
    "couches": {
-    "A1": "اسم‌ها و حرف‌های تعریف"
+    "A1": "اسم‌ها و حرف‌های تعریف",
+    "A2": "<span lang=\"de\">Wo?</span> — حرف‌های اضافه",
+    "B1": "<span lang=\"de\">Wo?</span> یا <span lang=\"de\">Wohin?</span> — مارک مرتب می‌کند",
+    "B2": "جمله‌های موصولی و مجهولِ حالت",
+    "C1": "فرض‌ها و گمان‌ها"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">der Schrank</span> ← <span lang=\"de\">auf <b>dem</b> Schrank</span>.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = زیرِ. Dativ: <span lang=\"de\">der Couchtisch</span> ← <span lang=\"de\">unter <b>dem</b> Couchtisch</span>.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = <span lang=\"de\">in + dem</span>. Dativ: <span lang=\"de\">der Karton</span> ← <span lang=\"de\">in <b>dem</b> (im) Karton</span>.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "آویزان: <b>an</b> + Dativ. <span lang=\"de\">die Lampe</span> ← <span lang=\"de\">an <b>der</b> Lampe</span>.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = جلوی. Dativ: <span lang=\"de\">das Regal</span> ← <span lang=\"de\">vor <b>dem</b> Regal</span>.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = بینِ، برای هر دو Dativ: <span lang=\"de\">zwischen <b>dem</b> Schrank und <b>dem</b> Sofa</span>.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "جمع: <span lang=\"de\">die Turnschuhe <b>liegen</b></span>. Dativ: <span lang=\"de\">unter <b>dem</b> Sofa</span>.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + Dativ: <span lang=\"de\">auf <b>dem</b> Regal</span>. و <b>mit</b> همیشه Dativ می‌گیرد: <span lang=\"de\">mit <b>dem</b> Goldfisch</span>.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + Dativ: <span lang=\"de\">die Stehlampe</span> ← <span lang=\"de\">an <b>der</b> Stehlampe</span>.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + Dativ: <span lang=\"de\">das Fenster</span> ← <span lang=\"de\">unter <b>dem</b> Fenster</span>.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "یک حالت (<b>liegen</b>، <span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">auf <b>dem</b> Schrank</span>.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = افقی گذاشتن، یک حرکت (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">in <b>den</b> Schrank</span>. <b>liegen</b> = افقی قرار داشتن، یک حالت.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "یک حالت ← <b>stehen</b> + Dativ: <span lang=\"de\">auf <b>dem</b> Couchtisch</span>.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = ایستاده گذاشتن، یک حرکت (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">das Regal</span> ← <span lang=\"de\">auf <b>das</b> Regal (aufs Regal)</span>.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> برای حالت (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">an <b>der</b> Lampe</span>.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "همان فعل <b>hängen</b>، ولی یک حرکت (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">an <b>die</b> Tür</span>. این حالتِ دستوری است که نشان می‌دهد چیزی جابه‌جا می‌شود یا نه.",
+    "B1 | Mark legt das Buch ins Regal.": "<span lang=\"de\">Wohin?</span> ← Akkusativ: <span lang=\"de\">in + das = <b>ins</b></span>. <b>im</b> (<span lang=\"de\">in dem</span>) پاسخِ <span lang=\"de\">Wo?</span> می‌بود.",
+    "B1 | Die Flaschen stehen im Eimer.": "یک حالت (<b>stehen</b>) ← Dativ: <span lang=\"de\">in dem = <b>im</b> Eimer</span>.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "حرکت به سوی یک جا (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">auf <b>das</b> Sofa (aufs Sofa)</span>.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "یک حالت ← Dativ: <span lang=\"de\">der Boden</span> ← <span lang=\"de\">auf <b>dem</b> Boden</span>.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "حرف اضافه + ضمیر موصولی: <b>an der</b> (<span lang=\"de\">die Lampe</span>، Dativِ مؤنث).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "نهادِ جملهٔ موصولی، مذکر ← <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "مالکیت، مرجعِ مؤنث (<span lang=\"de\">die Katze</span>) ← <b>deren</b> (که سرش).",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + ضمیر موصولی، یک حالت (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">das Regal</span> ← <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "مجهولِ حالت: <b>sein</b> + اسم مفعول. در را باز کرده‌اند و همان‌طور باز مانده است.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "مجهولِ حالت: <b>ist</b> + اسم مفعول. و <b>um</b> همیشه Akkusativ می‌گیرد: <span lang=\"de\">um <b>die</b> Pflanze</span>.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + مصدرِ گذشته = تقریباً قطعی، از آنچه می‌بینیم: بادکنک‌ها همه‌جا.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + مصدرِ گذشته = احتمالاً: گمانی محتاطانه.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = ممکن است، ولی چیزی ثابتش نمی‌کند. <b>muss</b> یعنی یقین.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "شرطِ غیرواقعی (<span lang=\"de\">hätte … verpasst</span>)، نتیجه در زمان حال ← Konjunktiv II: <b>wäre</b>."
+   }
   },
   "ar": {
    "champs": {
@@ -1045,9 +1587,44 @@ window.SCENE = {
     "consigne": "مارك عائد من السفر… وزملاؤه في السكن أقاموا حفلة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "<span lang=\"de\">Wo?</span> — حروف الجر",
+    "B1": "<span lang=\"de\">Wo?</span> أم <span lang=\"de\">Wohin?</span> — مارك يرتّب",
+    "B2": "الجمل الموصولة ومجهول الحالة",
+    "C1": "الافتراضات"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> ← Dativ: <span lang=\"de\">der Schrank</span> ← <span lang=\"de\">auf <b>dem</b> Schrank</span>.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = تحت. Dativ: <span lang=\"de\">der Couchtisch</span> ← <span lang=\"de\">unter <b>dem</b> Couchtisch</span>.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = <span lang=\"de\">in + dem</span>. Dativ: <span lang=\"de\">der Karton</span> ← <span lang=\"de\">in <b>dem</b> (im) Karton</span>.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "معلَّق: <b>an</b> + Dativ. <span lang=\"de\">die Lampe</span> ← <span lang=\"de\">an <b>der</b> Lampe</span>.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = أمام. Dativ: <span lang=\"de\">das Regal</span> ← <span lang=\"de\">vor <b>dem</b> Regal</span>.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = بين، وDativ للاثنين: <span lang=\"de\">zwischen <b>dem</b> Schrank und <b>dem</b> Sofa</span>.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "الجمع: <span lang=\"de\">die Turnschuhe <b>liegen</b></span>. Dativ: <span lang=\"de\">unter <b>dem</b> Sofa</span>.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + Dativ: <span lang=\"de\">auf <b>dem</b> Regal</span>. و<b>mit</b> يأخذ Dativ دائمًا: <span lang=\"de\">mit <b>dem</b> Goldfisch</span>.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + Dativ: <span lang=\"de\">die Stehlampe</span> ← <span lang=\"de\">an <b>der</b> Stehlampe</span>.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + Dativ: <span lang=\"de\">das Fenster</span> ← <span lang=\"de\">unter <b>dem</b> Fenster</span>.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "حالة (<b>liegen</b>، <span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">auf <b>dem</b> Schrank</span>.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = يضع الشيء أفقيًا، وهي حركة (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">in <b>den</b> Schrank</span>. <b>liegen</b> = يكون موضوعًا، وهي حالة.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "حالة ← <b>stehen</b> + Dativ: <span lang=\"de\">auf <b>dem</b> Couchtisch</span>.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = يضع الشيء واقفًا، وهي حركة (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">das Regal</span> ← <span lang=\"de\">auf <b>das</b> Regal (aufs Regal)</span>.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> للحالة (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">an <b>der</b> Lampe</span>.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "الفعل نفسه <b>hängen</b>، لكنها حركة (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">an <b>die</b> Tür</span>. الحالة الإعرابية هي التي تقول إن كان هناك حركة.",
+    "B1 | Mark legt das Buch ins Regal.": "<span lang=\"de\">Wohin?</span> ← Akkusativ: <span lang=\"de\">in + das = <b>ins</b></span>. أما <b>im</b> (<span lang=\"de\">in dem</span>) فيجيب عن <span lang=\"de\">Wo?</span>.",
+    "B1 | Die Flaschen stehen im Eimer.": "حالة (<b>stehen</b>) ← Dativ: <span lang=\"de\">in dem = <b>im</b> Eimer</span>.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "حركة نحو مكان (<span lang=\"de\">Wohin?</span>) ← Akkusativ: <span lang=\"de\">auf <b>das</b> Sofa (aufs Sofa)</span>.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "حالة ← Dativ: <span lang=\"de\">der Boden</span> ← <span lang=\"de\">auf <b>dem</b> Boden</span>.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "حرف جر + ضمير موصول: <b>an der</b> (<span lang=\"de\">die Lampe</span>، Dativ المؤنث).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "فاعل الجملة الموصولة، مذكر ← <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "ملكية، والاسم المرجعي مؤنث (<span lang=\"de\">die Katze</span>) ← <b>deren</b> (التي رأسها).",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + ضمير موصول، حالة (<span lang=\"de\">Wo?</span>) ← Dativ: <span lang=\"de\">das Regal</span> ← <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "مجهول الحالة: <b>sein</b> + اسم المفعول. فُتح الباب وبقي مفتوحًا.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "مجهول الحالة: <b>ist</b> + اسم المفعول. و<b>um</b> يأخذ Akkusativ دائمًا: <span lang=\"de\">um <b>die</b> Pflanze</span>.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + المصدر الماضي = شبه مؤكد، نستنتجه مما نراه: البالونات في كل مكان.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + المصدر الماضي = على الأرجح: افتراض حذر.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = هذا ممكن، لكن لا شيء يثبته. أما <b>muss</b> فيعني اليقين.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "شرط غير واقعي (<span lang=\"de\">hätte … verpasst</span>)، والنتيجة في الحاضر ← Konjunktiv II: <b>wäre</b>."
+   }
   }
  }
 };

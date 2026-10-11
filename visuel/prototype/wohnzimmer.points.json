@@ -4,52 +4,797 @@
   "Image : retouche de la premiere prise, ou Mark (au seuil) etait rapetisse ; il est retire, l'histoire passe par le texte (Jacques).",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
   "Deux Karton : la boite a pizza sur la table et le carton du chat. Le bocal du poisson n'est pas das Glas (das Glas = el vaso dans espanol/mots.json) : il fait partie de la zone der Goldfisch.",
-  "Mesures a la grille de 1 % sur la source 1536 x 2752, puis verifiees au toucher dans le navigateur."
+  "Mesures a la grille de 1 % sur la source 1536 x 2752, puis verifiees au toucher dans le navigateur.",
+  "Les questions A2-C1 (11 oct. 2026) sont un BROUILLON non relu, ecrit sur les faits de l'image : A2 Wo? (datif), B1 Wo? / Wohin? (Mark range : liegen/legen, stehen/stellen, haengen), B2 relatives et passif d'etat, C1 hypotheses."
  ],
  "image": "wohnzimmer.webp",
  "source": "../scenes/wohnzimmer-vide.png",
  "titre": "Nach der Party",
  "alt": "Le salon de la colocation de Mark au lendemain d'une fête : un ballon sur l'armoire, un parapluie suspendu à la lampe, une chaussette sur le lampadaire, un chat dans un carton, un chien sous la table basse, et la valise de Mark sur le seuil.",
-  "consigne": "Mark rentre de voyage… et ses colocataires ont fait la fête. Touche un objet.",
- "exclus": ["Wand", "Boden", "Decke"],
+ "consigne": "Mark rentre de voyage… et ses colocataires ont fait la fête. Touche un objet.",
+ "exclus": [
+  "Wand",
+  "Boden",
+  "Decke"
+ ],
  "couches": {
-  "A1": {"titre": "Noms et articles"}
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo liegt der Ball?",
+     "c": [
+      "auf dem Schrank",
+      "unter dem Schrank",
+      "neben dem Fenster"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Der Ball liegt auf dem Schrank.",
+     "n": "<b>Wo?</b> → datif : der Schrank → auf <b>dem</b> Schrank."
+    },
+    {
+     "q": "Wo liegt der Hund?",
+     "c": [
+      "unter dem Couchtisch",
+      "auf dem Couchtisch",
+      "neben dem Sofa"
+     ],
+     "f": "hund",
+     "r": "couchtisch",
+     "phrase": "Der Hund liegt unter dem Couchtisch.",
+     "n": "<b>unter</b> = sous. Datif : der Couchtisch → unter <b>dem</b> Couchtisch."
+    },
+    {
+     "q": "Wo sitzt die Katze?",
+     "c": [
+      "im Karton",
+      "auf dem Karton",
+      "hinter dem Karton"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "Die Katze sitzt im Karton.",
+     "n": "<b>im</b> = in + dem. Datif : der Karton → in <b>dem</b> (im) Karton."
+    },
+    {
+     "q": "Wo hängt der Regenschirm?",
+     "c": [
+      "an der Lampe",
+      "am Fenster",
+      "an der Tür"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Der Regenschirm hängt an der Lampe.",
+     "n": "Accroché : <b>an</b> + datif. die Lampe → an <b>der</b> Lampe."
+    },
+    {
+     "q": "Wo steht das Fahrrad?",
+     "c": [
+      "vor dem Regal",
+      "hinter dem Regal",
+      "auf dem Regal"
+     ],
+     "f": "fahrrad",
+     "r": "regal",
+     "phrase": "Das Fahrrad steht vor dem Regal.",
+     "n": "<b>vor</b> = devant. Datif : das Regal → vor <b>dem</b> Regal."
+    },
+    {
+     "q": "Wo steht die Gitarre?",
+     "c": [
+      "zwischen dem Schrank und dem Sofa",
+      "auf dem Sofa",
+      "unter dem Sofa"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "Die Gitarre steht zwischen dem Schrank und dem Sofa.",
+     "n": "<b>zwischen</b> = entre, au datif pour les deux : zwischen <b>dem</b> Schrank und <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo liegen die Turnschuhe?",
+     "c": [
+      "unter dem Sofa",
+      "auf dem Sofa",
+      "neben dem Fernseher"
+     ],
+     "f": "turnschuh",
+     "r": "sofa",
+     "phrase": "Die Turnschuhe liegen unter dem Sofa.",
+     "n": "Pluriel : die Turnschuhe <b>liegen</b>. Datif : unter <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht das Glas mit dem Goldfisch?",
+     "c": [
+      "auf dem Regal",
+      "unter dem Regal",
+      "neben dem Fahrrad"
+     ],
+     "f": "goldfisch",
+     "r": "regal",
+     "phrase": "Das Glas mit dem Goldfisch steht auf dem Regal.",
+     "n": "<b>auf</b> + datif : auf <b>dem</b> Regal. Et <b>mit</b> est toujours au datif : mit <b>dem</b> Goldfisch."
+    },
+    {
+     "q": "Wo hängt die Socke?",
+     "c": [
+      "an der Stehlampe",
+      "am Fenster",
+      "an der Tür"
+     ],
+     "f": "socke",
+     "r": "stehlampe",
+     "phrase": "Die Socke hängt an der Stehlampe.",
+     "n": "<b>an</b> + datif : die Stehlampe → an <b>der</b> Stehlampe."
+    },
+    {
+     "q": "Wo ist der Heizkörper?",
+     "c": [
+      "unter dem Fenster",
+      "über dem Fenster",
+      "neben der Tür"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "Der Heizkörper ist unter dem Fenster.",
+     "n": "<b>unter</b> + datif : das Fenster → unter <b>dem</b> Fenster."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Wo? ou Wohin? — Mark range",
+   "qs": [
+    {
+     "q": "Der Ball liegt noch auf ___ Schrank.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Der Ball liegt noch auf dem Schrank.",
+     "n": "Un état (<b>liegen</b>, Wo?) → datif : auf <b>dem</b> Schrank.",
+     "revise": "liegen"
+    },
+    {
+     "q": "Mark ___ den Ball in den Schrank.",
+     "c": [
+      "legt",
+      "liegt",
+      "steht"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Mark legt den Ball in den Schrank.",
+     "n": "<b>legen</b> = poser à plat, un geste (Wohin?) → accusatif : in <b>den</b> Schrank. <b>liegen</b> = être posé, un état.",
+     "revise": "legen"
+    },
+    {
+     "q": "Die Tasse ___ auf dem Couchtisch.",
+     "c": [
+      "steht",
+      "stellt",
+      "legt"
+     ],
+     "f": "tasse",
+     "r": "couchtisch",
+     "phrase": "Die Tasse steht auf dem Couchtisch.",
+     "n": "Un état → <b>stehen</b> + datif : auf <b>dem</b> Couchtisch.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Mark stellt die Tasse auf ___ Regal.",
+     "c": [
+      "das",
+      "dem",
+      "den"
+     ],
+     "f": "tasse",
+     "r": "regal",
+     "phrase": "Mark stellt die Tasse auf das Regal.",
+     "n": "<b>stellen</b> = poser debout, un geste (Wohin?) → accusatif : das Regal → auf <b>das</b> Regal (aufs Regal).",
+     "revise": "stellen"
+    },
+    {
+     "q": "Noch hängt der Regenschirm an ___ Lampe.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Noch hängt der Regenschirm an der Lampe.",
+     "n": "<b>hängen</b> pour un état (Wo?) → datif : an <b>der</b> Lampe."
+    },
+    {
+     "q": "Mark hängt den Regenschirm an ___ Tür.",
+     "c": [
+      "die",
+      "der",
+      "den"
+     ],
+     "f": "regenschirm",
+     "r": "tuer",
+     "phrase": "Mark hängt den Regenschirm an die Tür.",
+     "n": "Le même verbe <b>hängen</b>, mais un geste (Wohin?) → accusatif : an <b>die</b> Tür. C'est le cas qui dit si ça bouge."
+    },
+    {
+     "q": "Mark legt das Buch ___ Regal.",
+     "c": [
+      "ins",
+      "im",
+      "in der"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Mark legt das Buch ins Regal.",
+     "n": "Wohin? → accusatif : in + das = <b>ins</b>. <b>im</b> (in dem) répondrait à Wo?",
+     "revise": "legen"
+    },
+    {
+     "q": "Die Flaschen stehen ___ Eimer.",
+     "c": [
+      "im",
+      "in den",
+      "ins"
+     ],
+     "f": "flasche",
+     "r": "eimer",
+     "phrase": "Die Flaschen stehen im Eimer.",
+     "n": "Un état (<b>stehen</b>) → datif : in dem = <b>im</b> Eimer.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Die Katze springt gleich auf ___ Sofa.",
+     "c": [
+      "das",
+      "dem",
+      "der"
+     ],
+     "f": "katze",
+     "r": "sofa",
+     "phrase": "Die Katze springt gleich auf das Sofa.",
+     "n": "Un mouvement vers un lieu (Wohin?) → accusatif : auf <b>das</b> Sofa (aufs Sofa)."
+    },
+    {
+     "q": "Die Luftballons liegen auf ___ Boden.",
+     "c": [
+      "dem",
+      "den",
+      "die"
+     ],
+     "f": "luftballon",
+     "r": "boden",
+     "phrase": "Die Luftballons liegen auf dem Boden.",
+     "n": "Un état → datif : der Boden → auf <b>dem</b> Boden.",
+     "revise": "liegen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "Die Lampe, an ___ ein Regenschirm hängt, ist rund.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "lampe",
+     "r": "regenschirm",
+     "phrase": "Die Lampe, an der ein Regenschirm hängt, ist rund.",
+     "n": "Préposition + relatif : <b>an der</b> (die Lampe, datif féminin)."
+    },
+    {
+     "q": "Der Hund, ___ unter dem Tisch schläft, hat die Party verpasst.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "hund",
+     "phrase": "Der Hund, der unter dem Tisch schläft, hat die Party verpasst.",
+     "n": "Sujet de la relative, masculin → <b>der</b>."
+    },
+    {
+     "q": "Die Katze, ___ Kopf aus dem Karton schaut, wirkt ganz ruhig.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.",
+     "n": "Possession, antécédent féminin (die Katze) → <b>deren</b> (dont la tête)."
+    },
+    {
+     "q": "Das Regal, vor ___ das Fahrrad steht, ist voller Bücher.",
+     "c": [
+      "dem",
+      "das",
+      "den"
+     ],
+     "f": "regal",
+     "r": "fahrrad",
+     "phrase": "Das Regal, vor dem das Fahrrad steht, ist voller Bücher.",
+     "n": "<b>vor</b> + relatif, un état (Wo?) → datif : das Regal → <b>vor dem</b>."
+    },
+    {
+     "q": "Die Tür ist ___.",
+     "c": [
+      "geöffnet",
+      "öffnend",
+      "öffnet"
+     ],
+     "f": "tuer",
+     "phrase": "Die Tür ist geöffnet.",
+     "n": "Passif d'état : <b>sein</b> + participe passé. La porte a été ouverte, et elle le reste."
+    },
+    {
+     "q": "Die Lichterkette ist um die Pflanze ___.",
+     "c": [
+      "gewickelt",
+      "wickelt",
+      "wickelnd"
+     ],
+     "f": "pflanze",
+     "phrase": "Die Lichterkette ist um die Pflanze gewickelt.",
+     "n": "Passif d'état : <b>ist</b> + participe. Et <b>um</b> veut toujours l'accusatif : um <b>die</b> Pflanze."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Überall liegen Luftballons: Die Party ___ sehr lang gewesen sein.",
+     "c": [
+      "muss",
+      "soll",
+      "will"
+     ],
+     "f": "luftballon",
+     "phrase": "Die Party muss sehr lang gewesen sein.",
+     "n": "<b>müssen</b> + infinitif passé = presque certain, déduit de ce qu'on voit : les ballons partout."
+    },
+    {
+     "q": "Wer hat den Regenschirm an die Lampe gehängt? Das ___ einer der Gäste gewesen sein.",
+     "c": [
+      "dürfte",
+      "sollte",
+      "wollte"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Das dürfte einer der Gäste gewesen sein.",
+     "n": "<b>dürfte</b> + infinitif passé = probablement : une hypothèse prudente."
+    },
+    {
+     "q": "Niemand weiß, wem die Socke gehört. Sie ___ einem Gast gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "soll"
+     ],
+     "f": "socke",
+     "phrase": "Sie könnte einem Gast gehören.",
+     "n": "<b>könnte</b> = c'est possible, mais rien ne le prouve. <b>muss</b> serait une certitude."
+    },
+    {
+     "q": "Hätte Mark die Party nicht verpasst, ___ er jetzt auch müde.",
+     "c": [
+      "wäre",
+      "ist",
+      "war"
+     ],
+     "f": "koffer",
+     "phrase": "Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.",
+     "n": "Condition irréelle (hätte … verpasst), conséquence au présent → subjonctif II : <b>wäre</b>."
+    }
+   ]
+  }
  },
  "points": [
-  {"id": "decke", "mot": "Decke", "boite": [0, 0, 92, 15.5], "plein": true},
-  {"id": "wand", "mot": "Wand", "boite": [0, 15.5, 92, 38], "plein": true},
-  {"id": "boden", "mot": "Boden", "boite": [0, 66, 92, 34], "plein": true},
-  {"id": "lampe", "mot": "Lampe", "aussi": ["Lampenschirm"], "boite": [41.8, 15.5, 16.4, 9.6]},
-  {"id": "regenschirm", "mot": "Regenschirm", "boite": [47.2, 25, 5.2, 14.5], "sur": "lampe"},
-  {"id": "schrank", "mot": "Schrank", "boite": [0, 34, 22, 21], "rigide": "rectangle"},
-  {"id": "ball", "mot": "Ball", "aussi": ["Fußball"], "boite": [12.4, 30.8, 6.6, 3.6], "sur": "schrank"},
-  {"id": "bild", "mot": "Bild", "aussi": ["Gemälde"], "boite": [27.5, 34.5, 19.8, 9.8], "sur": "wand", "rigide": "rectangle"},
-  {"id": "fenster", "mot": "Fenster", "boite": [52.8, 22, 27, 29.5], "rigide": "rectangle"},
-  {"id": "heizkoerper", "mot": "Heizkörper", "boite": [55.6, 52.6, 11.4, 3.6]},
-  {"id": "pflanze", "mot": "Pflanze", "aussi": ["Lichterkette"], "boite": [62, 40, 18, 23.4]},
-  {"id": "stehlampe", "mot": "Stehlampe", "aussi": ["Lampe", "Lampenschirm"], "boite": [77, 40.6, 7.6, 24]},
-  {"id": "socke", "mot": "Socke", "boite": [79.4, 40.6, 4.2, 4.9], "sur": "stehlampe"},
-  {"id": "regal", "mot": "Regal", "boite": [86, 43, 7.6, 26]},
-  {"id": "goldfisch", "mot": "Goldfisch", "aussi": ["Fisch"], "boite": [88.2, 39.4, 5, 3.6], "sur": "regal"},
-  {"id": "fahrrad", "mot": "Fahrrad", "boite": [75, 53.4, 17.6, 17.2], "devant": 1},
-  {"id": "tuer", "mot": "Tür", "boite": [92.3, 10.8, 7.7, 89.2], "rigide": "rectangle"},
-  {"id": "sofa", "mot": "Sofa", "boite": [10.8, 53.2, 56.6, 15]},
-  {"id": "buch", "mot": "Buch", "boite": [41.6, 58.4, 11.4, 2.6], "sur": "sofa"},
-  {"id": "gitarre", "mot": "Gitarre", "boite": [22.2, 47.6, 4.6, 5.8]},
-  {"id": "turnschuh", "mot": "Turnschuh", "aussi": ["Schuh"], "boite": [20.6, 66.2, 13.2, 3.2]},
-  {"id": "fernseher", "mot": "Fernseher", "boite": [0, 55.2, 10.6, 14.8], "rigide": "rectangle"},
-  {"id": "pizza", "mot": "Pizza", "aussi": ["Teller"], "boite": [7.2, 69.2, 12, 2.2]},
-  {"id": "couchtisch", "mot": "Couchtisch", "aussi": ["Tisch"], "boite": [32.4, 69.2, 42.6, 12.4], "rigide": "table"},
-  {"id": "tasse", "mot": "Tasse", "boite": [34.8, 69.4, 5.6, 2.3], "sur": "couchtisch"},
-  {"id": "pizzakarton", "mot": "Karton", "aussi": ["Pizza"], "boite": [53.3, 64, 20.6, 8], "sur": "couchtisch"},
-  {"id": "hund", "mot": "Hund", "boite": [44.8, 74.2, 27.4, 7.4]},
-  {"id": "eimer", "mot": "Eimer", "boite": [16.1, 80.2, 14.8, 10.6]},
-  {"id": "flasche", "mot": "Flasche", "boite": [16.1, 80.2, 15.2, 5], "sur": "eimer"},
-  {"id": "karton", "mot": "Karton", "boite": [69.4, 80, 23, 12.6]},
-  {"id": "katze", "mot": "Katze", "boite": [79.3, 80, 10.4, 5.8], "sur": "karton"},
-  {"id": "luftballon", "mot": "Luftballon", "boite": [76.6, 70.2, 15.8, 7.6]},
-  {"id": "luftballon-links", "mot": "Luftballon", "boite": [0, 87.2, 22.8, 12.8]},
-  {"id": "koffer", "mot": "Koffer", "boite": [34.5, 81, 25, 19]}
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "boite": [
+    0,
+    0,
+    92,
+    15.5
+   ],
+   "plein": true
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "boite": [
+    0,
+    15.5,
+    92,
+    38
+   ],
+   "plein": true
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "boite": [
+    0,
+    66,
+    92,
+    34
+   ],
+   "plein": true
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "aussi": [
+    "Lampenschirm"
+   ],
+   "boite": [
+    41.8,
+    15.5,
+    16.4,
+    9.6
+   ]
+  },
+  {
+   "id": "regenschirm",
+   "mot": "Regenschirm",
+   "boite": [
+    47.2,
+    25,
+    5.2,
+    14.5
+   ],
+   "sur": "lampe"
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "boite": [
+    0,
+    34,
+    22,
+    21
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "ball",
+   "mot": "Ball",
+   "aussi": [
+    "Fußball"
+   ],
+   "boite": [
+    12.4,
+    30.8,
+    6.6,
+    3.6
+   ],
+   "sur": "schrank"
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "aussi": [
+    "Gemälde"
+   ],
+   "boite": [
+    27.5,
+    34.5,
+    19.8,
+    9.8
+   ],
+   "sur": "wand",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    52.8,
+    22,
+    27,
+    29.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "Heizkörper",
+   "boite": [
+    55.6,
+    52.6,
+    11.4,
+    3.6
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "aussi": [
+    "Lichterkette"
+   ],
+   "boite": [
+    62,
+    40,
+    18,
+    23.4
+   ]
+  },
+  {
+   "id": "stehlampe",
+   "mot": "Stehlampe",
+   "aussi": [
+    "Lampe",
+    "Lampenschirm"
+   ],
+   "boite": [
+    77,
+    40.6,
+    7.6,
+    24
+   ]
+  },
+  {
+   "id": "socke",
+   "mot": "Socke",
+   "boite": [
+    79.4,
+    40.6,
+    4.2,
+    4.9
+   ],
+   "sur": "stehlampe"
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "boite": [
+    86,
+    43,
+    7.6,
+    26
+   ]
+  },
+  {
+   "id": "goldfisch",
+   "mot": "Goldfisch",
+   "aussi": [
+    "Fisch"
+   ],
+   "boite": [
+    88.2,
+    39.4,
+    5,
+    3.6
+   ],
+   "sur": "regal"
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    75,
+    53.4,
+    17.6,
+    17.2
+   ],
+   "devant": 1
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "boite": [
+    92.3,
+    10.8,
+    7.7,
+    89.2
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "sofa",
+   "mot": "Sofa",
+   "boite": [
+    10.8,
+    53.2,
+    56.6,
+    15
+   ]
+  },
+  {
+   "id": "buch",
+   "mot": "Buch",
+   "boite": [
+    41.6,
+    58.4,
+    11.4,
+    2.6
+   ],
+   "sur": "sofa"
+  },
+  {
+   "id": "gitarre",
+   "mot": "Gitarre",
+   "boite": [
+    22.2,
+    47.6,
+    4.6,
+    5.8
+   ]
+  },
+  {
+   "id": "turnschuh",
+   "mot": "Turnschuh",
+   "aussi": [
+    "Schuh"
+   ],
+   "boite": [
+    20.6,
+    66.2,
+    13.2,
+    3.2
+   ]
+  },
+  {
+   "id": "fernseher",
+   "mot": "Fernseher",
+   "boite": [
+    0,
+    55.2,
+    10.6,
+    14.8
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "pizza",
+   "mot": "Pizza",
+   "aussi": [
+    "Teller"
+   ],
+   "boite": [
+    7.2,
+    69.2,
+    12,
+    2.2
+   ]
+  },
+  {
+   "id": "couchtisch",
+   "mot": "Couchtisch",
+   "aussi": [
+    "Tisch"
+   ],
+   "boite": [
+    32.4,
+    69.2,
+    42.6,
+    12.4
+   ],
+   "rigide": "table"
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "boite": [
+    34.8,
+    69.4,
+    5.6,
+    2.3
+   ],
+   "sur": "couchtisch"
+  },
+  {
+   "id": "pizzakarton",
+   "mot": "Karton",
+   "aussi": [
+    "Pizza"
+   ],
+   "boite": [
+    53.3,
+    64,
+    20.6,
+    8
+   ],
+   "sur": "couchtisch"
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    44.8,
+    74.2,
+    27.4,
+    7.4
+   ]
+  },
+  {
+   "id": "eimer",
+   "mot": "Eimer",
+   "boite": [
+    16.1,
+    80.2,
+    14.8,
+    10.6
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "boite": [
+    16.1,
+    80.2,
+    15.2,
+    5
+   ],
+   "sur": "eimer"
+  },
+  {
+   "id": "karton",
+   "mot": "Karton",
+   "boite": [
+    69.4,
+    80,
+    23,
+    12.6
+   ]
+  },
+  {
+   "id": "katze",
+   "mot": "Katze",
+   "boite": [
+    79.3,
+    80,
+    10.4,
+    5.8
+   ],
+   "sur": "karton"
+  },
+  {
+   "id": "luftballon",
+   "mot": "Luftballon",
+   "boite": [
+    76.6,
+    70.2,
+    15.8,
+    7.6
+   ]
+  },
+  {
+   "id": "luftballon-links",
+   "mot": "Luftballon",
+   "boite": [
+    0,
+    87.2,
+    22.8,
+    12.8
+   ]
+  },
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    34.5,
+    81,
+    25,
+    19
+   ]
+  }
  ],
  "gros_plans": []
 }
