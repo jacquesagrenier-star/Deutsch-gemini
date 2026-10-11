@@ -612,7 +612,11 @@ REGLES = [
      u"a pris la tenue de sa photo de reference, parce que ce prompt-la ne "
      u"disait plus << use them for the person only >>. La retouche deplace, "
      u"retire, efface ; elle ne change pas de STYLE. Un dessin se refait "
-     u"depuis le texte, allege."),
+     u"depuis le texte, allege. VALIDE le meme jour (3e prise, 0,15 $) : "
+     u"6 personnes au lieu de 17, l'aire de jeux VIDE (une pelle et un seau "
+     u"oublies dans le sable), << a real photograph... as a passer-by would "
+     u"take it with a good phone camera >> et la liste des matieres : une "
+     u"vraie photo, Mark et Anna reconnaissables, aucun lieu perdu."),
 ]
 
 # --------------------------------------------------------------------------
