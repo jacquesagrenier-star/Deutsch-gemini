@@ -10,5 +10,5 @@ Par où commencer :
 - 02-fiches : les 10 fiches de grammaire.
 - 03 à 07 : toutes les phrases écrites (exercices, scènes, mots nouveaux). Chaque élément est numéroté (SE-12, SC-40…).
 
-Pas encore à faire relire : les jeux « passé simple », « imparfait » et « subjonctif ». Ils avaient été
-fabriqués mécaniquement et contiennent des phrases fausses : Claude les réécrit d'abord.
+- 08-exercices-temps : les jeux prétérit, imparfait et subjonctif, réécrits le 10 octobre (les anciens
+  avaient été fabriqués mécaniquement et contenaient des phrases fausses).

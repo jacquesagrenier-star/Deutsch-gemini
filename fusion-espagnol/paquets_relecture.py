@@ -10,14 +10,14 @@ ecrites, les faire verifier par d'autres intelligences artificielles », et
 Chaque fichier commence par la consigne a coller, puis les elements NUMEROTES
 (FI = fiche, SE = ser/estar, PP = por/para, FA = faux amis, GU = gustar,
 AC = accents, SC = scenes, MN = mots nouveaux, PR / IN / AD = exercices
-generes). Un retour « SE-12 : ... » se rattache ainsi a sa ligne sans
+generes, PT / IM / SU = jeux de temps). Un retour « SE-12 : ... » se rattache ainsi a sa ligne sans
 ambiguite. Un lot depasse rarement 18 000 caracteres : il tient dans une
 fenetre de discussion.
 
 Methode (memoire « relecture croisee ») : contraste mecanique d'abord, autre
 modele ensuite, et n'appliquer que les faits verifiables.
 """
-import glob, io, json, os
+import glob, io, json, os, re
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATOS = os.path.join(RACINE, "espanol", "datos")
@@ -63,8 +63,8 @@ Par où commencer :
 - 02-fiches : les 10 fiches de grammaire.
 - 03 à 07 : toutes les phrases écrites (exercices, scènes, mots nouveaux). Chaque élément est numéroté (SE-12, SC-40…).
 
-Pas encore à faire relire : les jeux « passé simple », « imparfait » et « subjonctif ». Ils avaient été
-fabriqués mécaniquement et contiennent des phrases fausses : Claude les réécrit d'abord.
+- 08-exercices-temps : les jeux prétérit, imparfait et subjonctif, réécrits le 10 octobre (les anciens
+  avaient été fabriqués mécaniquement et contenaient des phrases fausses).
 """
 
 
@@ -98,14 +98,48 @@ def ecrire_lots(base, titre, consigne, blocs, maxi=MAX):
     return noms
 
 
+NOMS_JEUX = {
+    "exercises": "Conjugaison au présent", "praeteritumExercises": "Prétérit (pretérito indefinido)",
+    "perfektExercises": "Imparfait (pretérito imperfecto)", "konjunktiv2Exercises": "Subjonctif présent",
+    "infinitivExercises": "Retrouver l'infinitif d'une forme conjuguée", "adverbienNuanceExercises": "Nuances des adverbes",
+    "serEstarExercises": "ser ou estar", "porParaExercises": "por ou para", "falsosAmigosExercises": "Faux amis",
+    "gustarExercises": "Verbes comme gustar (doler, faltar, encantar…)", "acentosExercises": "L'accent qui change le sens",
+}
+
+COUVERTURE = """
+## Ce que l'application couvre aujourd'hui (synthèse)
+
+**Grammaire**
+- Le présent : verbes réguliers, grands irréguliers (ser, estar, tener, ir), diphtongues (e → ie, o → ue), -go (hago, salgo…). Fiche + 60 exercices.
+- Les passés : prétérit et imparfait (fiche + 70 exercices chacun) ; le passé composé (he comido) seulement mentionné dans la fiche.
+- Le subjonctif présent : souhait, doute, émotion, nécessité, cuando + avenir, para que, antes de que, relatives (fiche + 70 exercices). Subjonctif imparfait et plus-que-parfait : seulement dans les scènes C1 (si + subjonctif).
+- ser / estar, por / para, hay / está, mots interrogatifs, genre des noms, accord de l'adjectif, pronoms compléments (lo/la/le, se lo), verbes pronominaux, verbes comme gustar, l'accent qui change le sens.
+- Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
+
+**Vocabulaire**
+- Environ 3 700 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Pas de C1.
+
+**Ce qui n'est PAS couvert, à notre connaissance** (inutile de le redire, mais dis-nous ce qui est le plus urgent)
+- Le futur simple et le conditionnel (ni fiche ni exercice) ; ir a + infinitif.
+- L'impératif (tú et usted) en dehors des scènes ; le gérondif et les périphrases (estar + gérondif, seguir + gérondif, acabar de…).
+- Le passé composé, le plus-que-parfait, le subjonctif imparfait (pas de fiche ni d'exercice).
+- Possessifs, démonstratifs, comparatifs et superlatifs, nombres et heure, prépositions a / en / de.
+- Le discours rapporté, la concordance des temps.
+- Les fonctions de communication ne sont pas organisées comme telles (se présenter, commander, téléphoner…) : elles passent par le vocabulaire et les expressions.
+"""
+
 def exo(prefixe, i, e):
     q = e.get("question", "")
     rep = e.get("correct", "")
     opts = e.get("options") or []
     ch = " / ".join(("✔ " + o) if o == rep else o for o in opts) if opts else "réponse : ✔ " + rep
-    return ("**%s-%d** %s\n- choix : %s\n- FR : %s\n- EN : %s\n- explication FR : %s\n- explication EN : %s\n"
-            % (prefixe, i, q, ch, e.get("translation", ""), e.get("translation_en", ""),
-               e.get("explanation", ""), e.get("explanation_en", "")))
+    # Le tableau de conjugaison en fin d'explication vient de verbos.json,
+    # deja verifie : on ne le fait pas relire (il triplait la taille des lots).
+    ex_fr = re.sub(r" (Prétérit|Imparfait|Subjonctif présent) de « .*$", "", e.get("explanation", ""))
+    ex_en = re.sub(r" (Preterite|Imperfect|Present subjunctive) of « .*$", "", e.get("explanation_en", ""))
+    return ("**%s-%d** %s %s\n- choix : %s\n- FR : %s\n- EN : %s\n- explication FR : %s\n- explication EN : %s\n"
+            % (prefixe, i, q, e.get("hint", "") if not opts else "", ch, e.get("translation", ""),
+               e.get("translation_en", ""), ex_fr, ex_en))
 
 
 def main():
@@ -133,8 +167,9 @@ def main():
         lignes.append("- **%s** — %s" % (fr_en(g["titre"])[0], fr_en(g["resume"])[0]))
     lignes.append("\n## Jeux d'exercices (%d)\n" % len(jeux))
     for n, j in jeux.items():
-        lignes.append("- %s : %d questions (sujet : %s)" % (n, len(j), j[0].get("topic", "")))
-    lignes.append("\n## Scènes illustrées\n\n- La classe, l'examen médical (de face, de dos), le marché (4 étals), le cabinet médical (blessure au genou). A1 : toucher et nommer ; A2-C1 : questions sur l'image (estar et prépositions ; pronoms, ser/estar, impératif d'usted, quantités ; relatives, passif ; futur de probabilité, deber de, si + subjonctif).")
+        lignes.append("- %s : %d questions" % (NOMS_JEUX.get(n, n), len(j)))
+    lignes.append("\n## Scènes illustrées\n\n- La classe, l'examen médical (de face, de dos), le marché (4 étals), le cabinet médical (blessure au genou). A1 : toucher et nommer ; A2-C1 : questions sur l'image.")
+    lignes.append(COUVERTURE)
     lignes.append("\n## Thèmes de vocabulaire (%d), avec leurs mots\n" % len(temas))
     for th in temas:
         lignes.append("- **%s (%s, %d mots)** : %s" % (th.get("nom_theme_es") or th["id"], th.get("niveau"), len(th["mots"]),
@@ -171,7 +206,9 @@ def main():
                               ("04-exercices-pieges", "Exercices faux amis, gustar, accents",
                                (("FA", "falsosAmigosExercises"), ("GU", "gustarExercises"), ("AC", "acentosExercises"))),
                               ("05-exercices-generes", "Exercices présent, infinitif, adverbes",
-                               (("PR", "exercises"), ("IN", "infinitivExercises"), ("AD", "adverbienNuanceExercises")))):
+                               (("PR", "exercises"), ("IN", "infinitivExercises"), ("AD", "adverbienNuanceExercises"))),
+                              ("08-exercices-temps", "Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.)",
+                               (("PT", "praeteritumExercises"), ("IM", "perfektExercises"), ("SU", "konjunktiv2Exercises")))):
         blocs = [exo(p, i, e) for p, n in sets for i, e in enumerate(jeux.get(n, []), 1)]
         faits += ecrire_lots(base, titre, CONSIGNE, blocs)
 

@@ -60,32 +60,54 @@ Classe tes réponses de la plus urgente à la moins urgente pour un débutant fr
 ## Jeux d'exercices (11)
 
 
-- exercises : 60 questions (sujet : Presente)
+- Conjugaison au présent : 60 questions
 
-- praeteritumExercises : 70 questions (sujet : Pretérito)
+- Prétérit (pretérito indefinido) : 70 questions
 
-- perfektExercises : 70 questions (sujet : Imperfecto)
+- Imparfait (pretérito imperfecto) : 70 questions
 
-- konjunktiv2Exercises : 70 questions (sujet : Subjuntivo)
+- Subjonctif présent : 70 questions
 
-- infinitivExercises : 70 questions (sujet : Infinitivo)
+- Retrouver l'infinitif d'une forme conjuguée : 70 questions
 
-- adverbienNuanceExercises : 56 questions (sujet : Adverbes · Famille)
+- Nuances des adverbes : 56 questions
 
-- serEstarExercises : 51 questions (sujet : ser ou estar)
+- ser ou estar : 51 questions
 
-- porParaExercises : 50 questions (sujet : por ou para)
+- por ou para : 50 questions
 
-- falsosAmigosExercises : 52 questions (sujet : falsos amigos)
+- Faux amis : 52 questions
 
-- gustarExercises : 57 questions (sujet : gustar)
+- Verbes comme gustar (doler, faltar, encantar…) : 57 questions
 
-- acentosExercises : 53 questions (sujet : acentos)
+- L'accent qui change le sens : 53 questions
 
 
 ## Scènes illustrées
 
-- La classe, l'examen médical (de face, de dos), le marché (4 étals), le cabinet médical (blessure au genou). A1 : toucher et nommer ; A2-C1 : questions sur l'image (estar et prépositions ; pronoms, ser/estar, impératif d'usted, quantités ; relatives, passif ; futur de probabilité, deber de, si + subjonctif).
+- La classe, l'examen médical (de face, de dos), le marché (4 étals), le cabinet médical (blessure au genou). A1 : toucher et nommer ; A2-C1 : questions sur l'image.
+
+
+## Ce que l'application couvre aujourd'hui (synthèse)
+
+**Grammaire**
+- Le présent : verbes réguliers, grands irréguliers (ser, estar, tener, ir), diphtongues (e → ie, o → ue), -go (hago, salgo…). Fiche + 60 exercices.
+- Les passés : prétérit et imparfait (fiche + 70 exercices chacun) ; le passé composé (he comido) seulement mentionné dans la fiche.
+- Le subjonctif présent : souhait, doute, émotion, nécessité, cuando + avenir, para que, antes de que, relatives (fiche + 70 exercices). Subjonctif imparfait et plus-que-parfait : seulement dans les scènes C1 (si + subjonctif).
+- ser / estar, por / para, hay / está, mots interrogatifs, genre des noms, accord de l'adjectif, pronoms compléments (lo/la/le, se lo), verbes pronominaux, verbes comme gustar, l'accent qui change le sens.
+- Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
+
+**Vocabulaire**
+- Environ 3 700 entrées du A1 au B2 (noms, verbes, adjectifs, adverbes, expressions, mots-outils), toutes avec la voix en deux accents. Pas de C1.
+
+**Ce qui n'est PAS couvert, à notre connaissance** (inutile de le redire, mais dis-nous ce qui est le plus urgent)
+- Le futur simple et le conditionnel (ni fiche ni exercice) ; ir a + infinitif.
+- L'impératif (tú et usted) en dehors des scènes ; le gérondif et les périphrases (estar + gérondif, seguir + gérondif, acabar de…).
+- Le passé composé, le plus-que-parfait, le subjonctif imparfait (pas de fiche ni d'exercice).
+- Possessifs, démonstratifs, comparatifs et superlatifs, nombres et heure, prépositions a / en / de.
+- Le discours rapporté, la concordance des temps.
+- Les fonctions de communication ne sont pas organisées comme telles (se présenter, commander, téléphoner…) : elles passent par le vocabulaire et les expressions.
+
 
 
 ## Thèmes de vocabulaire (137), avec leurs mots
