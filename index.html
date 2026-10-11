@@ -6927,6 +6927,14 @@ body[data-theme="dark"] #decouverte > button.primary{
             <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_phrase">Travailler la phrase</span>
         </h2>
+        <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
+             les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
+        <div class="orb" data-seulement-es data-orbid="es-presente" onclick="abrirGramatica('presente')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h12v16H6a2 2 0 00-2 2z"/><path d="M4 19V5"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_presente">Le présent</strong>
+            </div>
+        </div>
         <div class="orb orb-de" data-orbid="kasus" onclick="openOrbPanel('kasus')">
             <div id="badge-kasus" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
@@ -6947,11 +6955,29 @@ body[data-theme="dark"] #decouverte > button.primary{
                 <strong data-i18n="orb_praep_title">Prépositions</strong>
             </div>
         </div>
+        <div class="orb" data-seulement-es data-orbid="es-hay" onclick="abrirGramatica('hay-preguntas')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.5-2.5 2-2.5 3.5"/><circle cx="12" cy="17" r=".6"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_hay">hay et les questions</strong>
+            </div>
+        </div>
+        <div class="orb" data-seulement-es data-orbid="es-pronominales" onclick="abrirGramatica('pronominales')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a5 5 0 000 10h3"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_pronominales">Verbes pronominaux</strong>
+            </div>
+        </div>
         <div class="orb orb-de" data-orbid="wortstellung" onclick="openOrbPanel('wortstellung')">
             <div id="badge-wortstellung" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h13"/><path d="M16 9l3 3-3 3"/></svg></div>
             <div>
                 <strong data-i18n="orb_wortstellung_title">Ordre des mots</strong>
+            </div>
+        </div>
+        <div class="orb" data-seulement-es data-orbid="es-accord" onclick="abrirGramatica('concordancia')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 9h14"/><path d="M5 15h14"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_accord">L'accord</strong>
             </div>
         </div>
         <div class="orb orb-de" data-orbid="konjunktionen" onclick="openOrbPanel('konjunktionen')">
@@ -7210,7 +7236,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v746</span>
+    <span class="subtitle-version">v747</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17101,7 +17127,11 @@ const I18N_ESPAGNOL = {
         "op_es_gustar_t": "Les verbes comme gustar",
         "op_es_gustar_d": "me gusta, me gustan, me duele : le verbe s'accorde avec ce qui plaît.",
         "op_es_acentos_t": "L'accent qui change le sens",
-        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo : une petite marque, un autre mot."
+        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo : une petite marque, un autre mot.",
+        "orb_es_presente": "Le présent",
+        "orb_es_hay": "hay et les questions",
+        "orb_es_pronominales": "Verbes pronominaux",
+        "orb_es_accord": "L'accord"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17197,7 +17227,11 @@ const I18N_ESPAGNOL = {
         "op_es_gustar_t": "Verbs like gustar",
         "op_es_gustar_d": "me gusta, me gustan, me duele: the verb agrees with what is liked.",
         "op_es_acentos_t": "Accents that change meaning",
-        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo: a small mark, a different word."
+        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo: a small mark, a different word.",
+        "orb_es_presente": "The present tense",
+        "orb_es_hay": "hay and questions",
+        "orb_es_pronominales": "Reflexive verbs",
+        "orb_es_accord": "Agreement"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -32037,7 +32071,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 746;
+const APP_VERSION = 747;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
