@@ -164,9 +164,19 @@ FICHES = [
 ]
 
 
+EXERCICES = {"perifrasis": "startPerifrasisUebung", "numeros-hora": "startNumerosUebung",
+             "demostrativos-posesivos": "startDemostrativosUebung", "preposiciones": "startPreposicionesUebung"}
+
+
 def main():
     d = json.load(io.open(CHEMIN, encoding="utf-8"))
     ids = {f["id"] for f in FICHES}
+    # Le bouton « M'entrainer » de quatre fiches (11 oct. 2026) : les jeux
+    # viennent de exos_fiches.py. Sans cette ligne, relancer ce script-ci
+    # effacerait le bouton.
+    for f in FICHES:
+        if f["id"] in EXERCICES:
+            f["exercice"] = EXERCICES[f["id"]]
     d["fiches"] = [f for f in d["fiches"] if f["id"] not in ids] + FICHES
     io.open(CHEMIN, "w", encoding="utf-8", newline="\n").write(json.dumps(d, ensure_ascii=False, indent=1) + "\n")
     print("fiches :", ", ".join(f["id"] for f in d["fiches"]))

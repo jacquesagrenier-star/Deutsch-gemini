@@ -8171,3 +8171,21 @@ rien change, a surveiller.
 
 Fait : tout le contenu espagnol a sa voix dans les deux accents (Lolita, Monica),
 0 fichier restant au 11 oct. (generer_es.py --a-blanc sur A1-B2, EX, SC).
+
+## 11 octobre 2026 -- Hatice (rapporte par Jacques) : « que la prononciation des mots soit egalement indiquee »
+
+Elle et son mari ont essaye « cette nouvelle fonctionnalite » (les scenes, annoncees
+en v745) depuis son compte ; lui debute l'allemand. Idee : indiquer la prononciation
+des mots, utile a tout le niveau A1.
+Constat : la scene DIT deja chaque mot (voix d'Aurora, bouton « reecouter »), comme
+les cartes. Deux lectures possibles, non tranchees : (1) ils n'ont pas entendu la
+voix -- un iPhone en mode silencieux coupe le son des pages web ; (2) ils veulent
+une prononciation ECRITE sous le mot. A demander a Hatice avant de construire quoi
+que ce soit. Si (2) : pas d'API (illisible pour un debutant), plutot une
+prononciation figuree pour francophones (« ch » pour sch, « ou » pour u...), en A1.
+Precision de Jacques : Hatice et son mari sont TURCS (interface turque). Il demande si
+la transcription phonetique alourdirait, et propose une TUILE dediee a la
+prononciation. Reponse proposee : pas de transcription sur chaque carte, une tuile
+« Prononciation » (les ~20 regles de lecture de l'allemand, chaque exemple dit par
+Aurora, rapprochees de la langue de l'apprenant : en turc, s cedille = sch, u et o
+trema identiques). En attente de son feu vert.

@@ -104,7 +104,7 @@ NOMS_JEUX = {
     "infinitivExercises": "Retrouver l'infinitif d'une forme conjuguée", "adverbienNuanceExercises": "Nuances des adverbes",
     "serEstarExercises": "ser ou estar", "porParaExercises": "por ou para", "falsosAmigosExercises": "Faux amis",
     "gustarExercises": "Verbes comme gustar (doler, faltar, encantar…)", "acentosExercises": "L'accent qui change le sens",
-    "futuroExercises": "Futur simple", "condicionalExercises": "Conditionnel", "imperativoExercises": "Impératif (tú, usted, ustedes, nosotros, négatif)",
+    "futuroExercises": "Futur simple", "condicionalExercises": "Conditionnel", "imperativoExercises": "Impératif (tú, usted, ustedes, nosotros, négatif)", "perifrasisExercises": "Périphrases (ir a, estar + gérondif, acabar de…)", "numerosExercises": "Nombres et heure", "demostrativosExercises": "Démonstratifs et possessifs", "preposicionesExercises": "Prépositions a / en / de et a personnel",
 }
 
 COUVERTURE = """
@@ -115,7 +115,7 @@ COUVERTURE = """
 - Les passés : prétérit et imparfait (fiche + 70 exercices chacun) ; le passé composé (he comido) seulement mentionné dans la fiche.
 - Le subjonctif présent : souhait, doute, émotion, nécessité, cuando + avenir, para que, antes de que, relatives (fiche + 70 exercices). Subjonctif imparfait et plus-que-parfait : seulement dans les scènes C1 (si + subjonctif).
 - ser / estar, por / para, hay / está, mots interrogatifs, genre des noms, accord de l'adjectif, pronoms compléments (lo/la/le, se lo), verbes pronominaux, verbes comme gustar, l'accent qui change le sens.
-- Le futur et le conditionnel (fiche + 60 exercices chacun) ; l'impératif (fiche + 60 exercices) ; les périphrases (ir a, estar + gérondif, acabar de, volver a, seguir, tener que, hay que, dejar de, empezar a : fiche) ; les nombres et l'heure, les démonstratifs et possessifs, les prépositions a / en / de avec le a personnel, les connecteurs (une fiche chacun). 17 fiches en tout.
+- Le futur et le conditionnel (fiche + 60 exercices chacun) ; l'impératif (fiche + 60 exercices) ; les périphrases (ir a, estar + gérondif, acabar de, volver a, seguir, tener que, hay que, dejar de, empezar a : fiche) ; les nombres et l'heure, les démonstratifs et possessifs, les prépositions a / en / de avec le a personnel, les connecteurs (une fiche chacun ; les quatre premières avec 50 exercices chacune). 17 fiches en tout.
 - Dans les scènes : prépositions de lieu, del / al, impératif d'usted, comparatif (más … que), quantités et prix, relatives (que, cuyo, la cual), passif (se, ser + participe, estar + participe, estar siendo), futur de probabilité, deber de, puede que, cuanto más … más, a pesar de, debido a.
 
 **Vocabulaire**
@@ -209,7 +209,10 @@ def main():
                                (("PR", "exercises"), ("IN", "infinitivExercises"), ("AD", "adverbienNuanceExercises"))),
                               ("08-exercices-temps", "Exercices prétérit, imparfait, subjonctif (réécrits le 10 oct.)",
                                (("PT", "praeteritumExercises"), ("IM", "perfektExercises"), ("SU", "konjunktiv2Exercises"),
-                                ("FU", "futuroExercises"), ("CO", "condicionalExercises"), ("IP", "imperativoExercises")))):
+                                ("FU", "futuroExercises"), ("CO", "condicionalExercises"), ("IP", "imperativoExercises"))),
+                              ("09-exercices-fiches", "Exercices des fiches : périphrases, nombres et heure, démonstratifs et possessifs, prépositions (écrits le 11 oct.)",
+                               (("PE", "perifrasisExercises"), ("NU", "numerosExercises"), ("DP", "demostrativosExercises"),
+                                ("PR2", "preposicionesExercises")))):
         blocs = [exo(p, i, e) for p, n in sets for i, e in enumerate(jeux.get(n, []), 1)]
         faits += ecrire_lots(base, titre, CONSIGNE, blocs)
 

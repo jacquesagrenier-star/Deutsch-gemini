@@ -7242,7 +7242,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v753</span>
+    <span class="subtitle-version">v754</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -17181,7 +17181,11 @@ const I18N_ESPAGNOL = {
         "gram_indice_titre": "Toutes les fiches",
         "verbentemps_es_imperativo_title": "Imperativo — l'impératif",
         "verbentemps_es_imperativo": "Donner un ordre, un conseil, un chemin. Avec <b>tú</b> : la forme de él (habla) ; avec <b>usted</b> et au <b>négatif</b> : le subjonctif (hable, no hables).<br><em>Gira a la derecha. No hables tan alto.</em> (Tourne à droite. Ne parle pas si fort.)",
-        "kicker_es_imperativo": "Verbes · Imperativo"
+        "kicker_es_imperativo": "Verbes · Imperativo",
+        "kicker_perifrasis": "Les périphrases",
+        "kicker_numeros": "Nombres et heure",
+        "kicker_demostrativos": "Démonstratifs et possessifs",
+        "kicker_preposiciones": "a, en, de et le a personnel"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17293,7 +17297,11 @@ const I18N_ESPAGNOL = {
         "gram_indice_titre": "All grammar notes",
         "verbentemps_es_imperativo_title": "Imperativo — the imperative",
         "verbentemps_es_imperativo": "Orders, advice, directions. With <b>tú</b>: the él form (habla); with <b>usted</b> and in the <b>negative</b>: the subjunctive (hable, no hables).<br><em>Gira a la derecha. No hables tan alto.</em> (Turn right. Don't talk so loudly.)",
-        "kicker_es_imperativo": "Verbs · Imperativo"
+        "kicker_es_imperativo": "Verbs · Imperativo",
+        "kicker_perifrasis": "Verbal periphrases",
+        "kicker_numeros": "Numbers and time",
+        "kicker_demostrativos": "Demonstratives and possessives",
+        "kicker_preposiciones": "a, en, de and the personal a"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -21179,6 +21187,24 @@ function startPorParaUebung(){
 function startFalsosAmigosUebung(){
     startExerciseSetMelange("falsosAmigosExercises", "kicker_falsos_amigos",
                      () => openOrbPanel("nomen"), startFalsosAmigosUebung);
+}
+// LES QUATRE FICHES DE LA RELECTURE (11 oct. 2026) : chacune son jeu, et
+// le retour ramene a la fiche (fusion-espagnol/exos_fiches.py).
+function startPerifrasisUebung(){
+    startExerciseSetMelange("perifrasisExercises", "kicker_perifrasis",
+                     () => abrirGramatica("perifrasis"), startPerifrasisUebung);
+}
+function startNumerosUebung(){
+    startExerciseSetMelange("numerosExercises", "kicker_numeros",
+                     () => abrirGramatica("numeros-hora"), startNumerosUebung);
+}
+function startDemostrativosUebung(){
+    startExerciseSetMelange("demostrativosExercises", "kicker_demostrativos",
+                     () => abrirGramatica("demostrativos-posesivos"), startDemostrativosUebung);
+}
+function startPreposicionesUebung(){
+    startExerciseSetMelange("preposicionesExercises", "kicker_preposiciones",
+                     () => abrirGramatica("preposiciones"), startPreposicionesUebung);
 }
 function startGustarUebung(){
     startExerciseSetMelange("gustarExercises", "kicker_gustar",
@@ -32219,7 +32245,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 753;
+const APP_VERSION = 754;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
