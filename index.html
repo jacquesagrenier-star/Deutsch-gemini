@@ -7242,7 +7242,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v749</span>
+    <span class="subtitle-version">v750</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -19648,7 +19648,7 @@ async function loadRedewendungenJson() {
                 ]);
             });
         });
-        if (words.length) redewendungenTheme.words = words;
+        if (words.length){ redewendungenTheme.words = words; migrerProgressionExpressions(); }
     } catch (e) {
         console.warn("Chargement de secours pour redewendung.json", e);
     }
@@ -20590,7 +20590,18 @@ const praepTheme = LANGUE_APPRISE === "es"
     ["ante", "devant, face à", "position, confrontation", "Compareció ante el juez.", "Il a comparu devant le juge.", "before, faced with", "He appeared before the judge.", "position, confrontation"],
     ["tras", "après, derrière", "succession", "Tras la reunión, hablamos.", "Après la réunion, nous avons parlé.", "after, behind", "After the meeting, we talked.", "succession"],
     ["mediante", "au moyen de", "moyen (registre soutenu)", "Se resolvió mediante un acuerdo.", "Cela s'est réglé au moyen d'un accord.", "by means of", "It was settled by means of an agreement.", "means (formal register)"],
-    ["salvo", "sauf", "exception", "Abrimos todos los días salvo el lunes.", "Nous ouvrons tous les jours sauf le lundi.", "except", "We open every day except Monday.", "exception"],
+    ["salvo", "sauf", "exception", "Abrimos todos los días salvo el lunes.", "Nous ouvrons tous les jours sauf le lundi.", "except", "We open every day except Monday.", "exception"],,
+    ["encima de", "sur, au-dessus de", "lieu (locution)", "Las llaves están encima de la mesa.", "Les clés sont sur la table.", "on top of", "The keys are on the table.", "place (phrase)"],
+    ["debajo de", "sous", "lieu (locution)", "El gato duerme debajo de la cama.", "Le chat dort sous le lit.", "under", "The cat sleeps under the bed.", "place (phrase)"],
+    ["delante de", "devant", "lieu (locution)", "Te espero delante del cine.", "Je t'attends devant le cinéma.", "in front of", "I'll wait for you in front of the cinema.", "place (phrase)"],
+    ["detrás de", "derrière", "lieu (locution)", "El jardín está detrás de la casa.", "Le jardin est derrière la maison.", "behind", "The garden is behind the house.", "place (phrase)"],
+    ["al lado de", "à côté de", "lieu (locution)", "Me siento al lado de Ana.", "Je m'assois à côté d'Ana.", "next to", "I sit next to Ana.", "place (phrase)"],
+    ["enfrente de", "en face de", "lieu (locution)", "La farmacia está enfrente del banco.", "La pharmacie est en face de la banque.", "opposite", "The chemist's is opposite the bank.", "place (phrase)"],
+    ["cerca de", "près de", "lieu (locution)", "Vivo cerca de la playa.", "J'habite près de la plage.", "near", "I live near the beach.", "place (phrase)"],
+    ["lejos de", "loin de", "lieu (locution)", "El aeropuerto está lejos del centro.", "L'aéroport est loin du centre.", "far from", "The airport is far from the centre.", "place (phrase)"],
+    ["antes de", "avant (de)", "temps (locution)", "Lávate las manos antes de comer.", "Lave-toi les mains avant de manger.", "before", "Wash your hands before eating.", "time (phrase)"],
+    ["después de", "après", "temps (locution)", "Después de clase vamos al parque.", "Après les cours, nous allons au parc.", "after", "After class we go to the park.", "time (phrase)"],
+    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"]
   ]
 }
     : {
@@ -21370,7 +21381,15 @@ const konjunktionenTheme = LANGUE_APPRISE === "es"
     ["hasta que", "jusqu'à ce que", "subordination — subjonctif si c'est à venir", "Espera hasta que yo vuelva.", "Attends jusqu'à ce que je revienne.", "until", "Wait until I come back.", "subordinating — subjunctive if it's still to come"],
     ["para que", "pour que", "subordination — toujours au subjonctif", "Te lo explico para que lo entiendas.", "Je te l'explique pour que tu comprennes.", "so that", "I'm explaining it so that you understand.", "subordinating — always + subjunctive"],
     ["así que", "donc, si bien que", "conjonction de conséquence", "Era tarde, así que nos fuimos.", "Il était tard, donc nous sommes partis.", "so", "It was late, so we left.", "conjunction of result"],
-    ["pues", "car, donc", "conjonction de conséquence", "No insistas, pues no cambiará de idea.", "N'insiste pas, car il ne changera pas d'avis.", "since, so", "Don't insist, since he won't change his mind.", "conjunction of result"],
+    ["pues", "car, donc", "conjonction de conséquence", "No insistas, pues no cambiará de idea.", "N'insiste pas, car il ne changera pas d'avis.", "since, so", "Don't insist, since he won't change his mind.", "conjunction of result"],,
+    ["ya que", "puisque", "conjonction de cause", "Ya que estás aquí, ayúdame.", "Puisque tu es là, aide-moi.", "since", "Since you're here, help me.", "conjunction of cause"],
+    ["a menos que", "à moins que", "conjonction de condition (+ subjonctif)", "Iré, a menos que llueva.", "J'irai, à moins qu'il pleuve.", "unless", "I'll go, unless it rains.", "conjunction of condition (+ subjunctive)"],
+    ["siempre que", "pourvu que, à condition que", "conjonction de condition (+ subjonctif)", "Te lo presto, siempre que me lo devuelvas.", "Je te le prête, à condition que tu me le rendes.", "as long as", "I'll lend it to you, as long as you give it back.", "conjunction of condition (+ subjunctive)"],
+    ["sin embargo", "cependant", "connecteur d'opposition", "Es caro; sin embargo, vale la pena.", "C'est cher ; cependant, ça vaut la peine.", "however", "It's expensive; however, it's worth it.", "contrast connector"],
+    ["en cambio", "en revanche", "connecteur d'opposition", "Yo prefiero el mar; mi hermano, en cambio, la montaña.", "Moi, je préfère la mer ; mon frère, en revanche, la montagne.", "on the other hand", "I prefer the sea; my brother, on the other hand, prefers the mountains.", "contrast connector"],
+    ["además", "en plus, de plus", "connecteur d'addition", "La casa es grande y, además, barata.", "La maison est grande et, en plus, bon marché.", "besides, moreover", "The house is big and, what's more, cheap.", "addition connector"],
+    ["por lo tanto", "donc, par conséquent", "connecteur de conséquence", "No estudió; por lo tanto, no aprobó el examen.", "Il n'a pas étudié ; par conséquent, il n'a pas réussi l'examen.", "therefore", "He didn't study; therefore, he didn't pass the exam.", "consequence connector"],
+    ["por un lado", "d'un côté", "connecteur d'organisation", "Por un lado me gusta; por otro lado, es caro.", "D'un côté, ça me plaît ; de l'autre, c'est cher.", "on the one hand", "On the one hand I like it; on the other, it's expensive.", "organising connector"]
   ]
 }
     : {
@@ -22614,8 +22633,47 @@ const CLES_STABLES = {
     verben: (i) => {
         const w = verbeTheme.words[i];
         return (w && w.infinitif) ? w.infinitif : null;
+    },
+    // LES EXPRESSIONS (v750), pour la meme raison. Le 10 oct. 2026, seize
+    // expressions espagnoles ajoutees en A1 et A2 ont decale toutes les
+    // suivantes : la liste est aplatie A1 -> C1, et la cle etait la position.
+    // migrerProgressionExpressions() traduit l'ancienne progression.
+    redewendungen_vokabular: (i) => {
+        const w = redewendungenTheme.words[i];
+        return (w && w[0]) ? w[0] : null;
     }
 };
+
+// L'ordre des expressions ESPAGNOLES a la v748, le dernier ou la position
+// faisait foi : seul moyen de traduire une progression enregistree par
+// position. En allemand, l'ordre n'a jamais bouge : la liste chargee suffit.
+const ORDRE_EXPRESSIONS_ES_V748 = "por favor|muchas gracias|de nada|lo siento|buenos días|buenas tardes|buenas noches|hasta luego|qué tal|tener ganas de|echar de menos|dar igual|me llamo|mucho gusto|¿de dónde eres?|la cuenta, por favor|para llevar|¿cuánto cuesta?|en coche|todos los días|a menudo|¿qué tal estás?|¿cómo te va?|encantado de conocerte|hasta pronto|hasta mañana|nos vemos|que te vaya bien|que aproveche|dar recuerdos|bienvenido a bordo|hacer las maletas|de vacaciones|con retraso|hacer cola|dar miedo|caer bien|llevarse bien|estar de acuerdo|por supuesto|tomar el sol|pasarlo bien|feliz cumpleaños|felices fiestas|hacer deporte|todo recto|al lado de|un poco de|tener cuidado|en directo|hacerse mayor|hacer la cama|por suerte|pedir prestado|en versión original|sentirse bien|¿me puedes ayudar?|¿te importa si...?|¿sería posible...?|con mucho gusto|no hay de qué|perdona la molestia|te lo agradezco|no te preocupes|disculpe, ¿podría...?|un placer|dar un paseo|echar un vistazo|hacer caso|tener prisa|tener sueño|dar una vuelta|estar a punto de|acabar de|volver a|ponerse de acuerdo|hacer falta|dar la lata|estar de bajón|en plan|tener hambre|tener sed|tener frío|tener calor|tener razón|tener suerte|tener sentido|tener lugar|tener en cuenta|tener que ver|tener éxito|vale|venga|oye|anda|vaya|ojalá|enhorabuena|ánimo|socorro|ni hablar|no pasa nada|qué más da|quién sabe|a lo largo del curso|dar like|a largo plazo|estar en contra|quedar claro|me parece bien|no me parece|desde mi punto de vista|estoy de acuerdo contigo|¡qué pena!|¡qué va!|me da igual|no me lo puedo creer|estar de acuerdo en parte|no tiene sentido|vale la pena intentarlo|dar las gracias|darse cuenta|darse prisa|dar la vuelta|dar de comer|dar pena|dar a entender|hacer daño|hacer las paces|hacer el ridículo|hacer caso omiso|hacer un favor|hacer ilusión|ponerse de pie|ponerse a|poner en marcha|poner al día|echar un ojo|echar a perder|echar la culpa|echarse atrás|llevar a cabo|llevar razón|llevarse una sorpresa|quedarse corto|quedar en|quedar bien|estar de moda|estar harto|estar al día|estar por ver|estar en juego|estar de mala leche|ser capaz|ser consciente|ser hora de|ser de fiar|estar en las nubes|ser pan comido|costar un ojo de la cara|meter la pata|tomar el pelo|dar en el clavo|ponerse las pilas|no tener pelos en la lengua|estar hasta las narices|hacer la vista gorda|ser uña y carne|tirar la toalla|irse por las ramas|quedarse de piedra|salir el tiro por la culata|a duras penas|de vez en cuando|en un abrir y cerrar de ojos|por si acaso|valer la pena|echar una mano|estar al tanto|dar por sentado|llevarse un chasco|poner las cartas sobre la mesa|por lo visto|a lo mejor|en principio|en teoría|hasta cierto punto|por lo general|en cierto modo|no del todo|dicho esto|por una parte... por otra|todo depende de|si no me equivoco|en cualquier caso|estar como una cabra|ser un rollo|estar en la luna|costar una fortuna|no pegar ojo|ir al grano|dar plantón|hablar por los codos|ponerse las botas|estar hecho polvo|no tener ni idea|buscarle tres pies al gato|estar al pie del cañón|cortar el bacalao|a pesar de|a causa de|gracias a|debido a|con el fin de|con tal de|en lugar de|en vez de|a base de|de acuerdo con|de todas formas|al fin y al cabo|aun así|o sea|es decir|por ejemplo|más o menos";
+
+// Une fois par appareil, APRES le chargement de la liste (en allemand, c'est
+// elle qui donne l'ordre). Marquee dans la progression : elle ne se rejoue pas.
+function migrerProgressionExpressions(){
+    try{
+        if(!redewendungenTheme.words.length) return;
+        const progress = getProgress();
+        const faites = progress.__migrations || {};
+        if(faites.expressions_par_mot) return;
+        const ordre = LANGUE_APPRISE === "es" ? ORDRE_EXPRESSIONS_ES_V748.split("|")
+                                              : redewendungenTheme.words.map(w => w[0]);
+        ["redewendungen_vokabular", "en__redewendungen_vokabular"].forEach(cle => {
+            const bloc = progress[cle];
+            if(!bloc || typeof bloc !== "object") return;
+            Object.keys(bloc).forEach(k => {
+                if(!/^\d+$/.test(k)) return;          // deja range par texte
+                const mot = ordre[parseInt(k, 10)];
+                if(mot && !bloc[mot]) bloc[mot] = bloc[k];
+                delete bloc[k];
+            });
+        });
+        faites.expressions_par_mot = true;
+        progress.__migrations = faites;
+        saveProgress(progress);
+    }catch(e){ /* une migration ratee ne doit pas empecher l'app de demarrer */ }
+}
 
 // Retombe sur la position quand la liste n'est pas encore chargee ou que le
 // mot n'a pas de lemme : mieux vaut une cle imparfaite qu'une exception au
@@ -32160,7 +32218,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 749;
+const APP_VERSION = 750;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
