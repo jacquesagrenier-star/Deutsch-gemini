@@ -8142,3 +8142,32 @@ esta noche ») : a reecrire avant toute relecture. Les conjugaisons, elles, sont
 justes. Relecture par d'autres IA : paquets dans relecture-espagnol/
 (fusion-espagnol/paquets_relecture.py), programme complet compris, pour voir ce
 qui manque. Idee de Jacques pour l'annonce : dire que d'autres scenes arrivent.
+
+## 10 octobre 2026 (nuit) -- Jacques colle les relectures de Gemini et ChatGPT : « oui, go pour tout dans l'ordre »
+
+Chaque remarque verifiee dans les donnees avant d'agir ; les fausses lacunes
+(mots deja presents) ecartees. Fait : jeux preterit / imparfait / subjonctif
+reecrits (210 questions, phrases a declencheur) ; v748 futur et conditionnel
+(fiche + 2 x 60) ; v749 imperatif (fiche + 60), cinq fiches (periphrases,
+nombres et heure, demonstratifs et possessifs, prepositions a/en/de,
+connecteurs), tuile « Toutes les fiches », nombres, heure, telephone,
+politesse ; v750 cles stables des expressions (les ajouts de la v749 avaient
+decale la progression) et connecteurs manquants ; 28 conjugaisons fausses
+corrigees (manduve, envio sans accent, me acordo...) ; v752 vocabulaire B2
+(41 verbes, 13 adverbes) et 17 mots trop rares remis en B2.
+11 oct. (v753) : derniere passe point par point -- vosotros a l'imperatif,
+a pesar de que, ¿Digame?, ¿Donde queda...?, no veo claro que.
+Non retenu, a trancher par Jacques : le subjonctif « trop tot » (Gemini) et
+les mots techniques du B2 (bioetica, macroeconomia), gardes comme en allemand.
+
+## 10 octobre 2026 (nuit) -- Jacques (iPhone 15) : la scene trop basse, la consigne trop grande, le tableau de l'accueil lent
+
+v751 : le lecteur dans un cadre n'ajoute plus la marge d'encoche (elle comptait
+deux fois), haut de la scene compacte (consigne 15 px) : l'image prend la
+hauteur. A CONFIRMER sur l'iPhone. Le tableau de l'accueil : « ca ne fait plus »,
+rien change, a surveiller.
+
+## 10 octobre 2026 (nuit) -- Jacques : « assure-toi que toutes les phrases ont ete [enregistrees] dans ElevenLabs »
+
+Fait : tout le contenu espagnol a sa voix dans les deux accents (Lolita, Monica),
+0 fichier restant au 11 oct. (generer_es.py --a-blanc sur A1-B2, EX, SC).
