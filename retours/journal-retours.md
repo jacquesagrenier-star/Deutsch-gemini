@@ -8227,3 +8227,8 @@ casa / gato / cafe, ser, ser-estar et gustar a tuiles (contenu par niveau declar
 Trouve en route : l'ecran de choix de l'app espagnole montrait « Allemand : das Fenster »
 -> « Espagnol : la ventana ». Voix : 16 clips a refaire (~4 250 credits), EN ATTENTE de
 l'accord de Jacques ; d'ici la, les clips changes se taisent (le texte reste a l'ecran).
+Suite (11 oct.) : Jacques, en revoyant la visite : l'ouverture et l'etape de la seance ne
+sont pas lues a voix haute -> « lire a haute voix » : les 16 clips enregistres (4 253
+caracteres). Puis : « commencer par dire bienvenue » -> titre « Bienvenue dans Wortando ! »
+et « Voici une petite visite guidee de l'application... », dans les six langues et pour
+l'espagnol ; introduction reenregistree (8 clips, 2 341 caracteres). v760.
