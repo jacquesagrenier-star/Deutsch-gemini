@@ -8259,3 +8259,9 @@ Corpus pose par un outil neuf, tests/corpus_langue.py (numerotation, garde-fou d
 retour, relecture) : A1 et A2 complets (2 086 cartes sur 8 052). Reste : B1-C1, exercices,
 examen, scenes, Prononciation, voix de la visite (payante, a demander). Aucun relecteur
 bresilien.
+
+Suite (v766) : B1 complet dans les six fichiers -- 2 100 noms, 515 verbes (avec les
+quatre temps), 337 adjectifs, 147 adverbes, 151 expressions, 46 mots-outils. Doublons
+recopies quand la cle et toutes les phrases allemandes sont identiques, le reste traduit.
+5 384 cartes sur 8 052 (66,9 %). Les regionalismes suisses (parkieren, grillieren) rendus
+par le verbe bresilien courant. B2 en cours, C1 ensuite.
