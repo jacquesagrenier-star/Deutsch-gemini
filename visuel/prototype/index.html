@@ -936,7 +936,7 @@ function envoyer(type, donnees){
    .points.json) -- sinon rien, plutot qu'une revision fausse. Un seul envoi
    par question : la reponse est jugee au premier geste, comme une carte. */
 function reviser(m, juste){
-  if (!EN_SEANCE || !m || !m.mot) return;
+  if (window.parent === window || !m || !m.mot) return;
   const b = BASE_DE[m.mot] || m;
   envoyer("reponse", {mot: b.mot, genre: b.genre || null, theme: m.theme || null,
                       cat: m.cat || "nom", juste: !!juste});

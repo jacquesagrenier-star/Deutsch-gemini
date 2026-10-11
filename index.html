@@ -1400,6 +1400,8 @@ body[data-theme="dark"] .home-greeting{
 }
 .orb[data-orbid="ecouter"] .orb-icon svg{stroke:#d97706;}
 .orb[data-orbid="ecouter"] .orb-badge{background:#d97706; box-shadow:0 2px 6px rgba(217,119,6,.35);}
+.orb[data-orbid="scenes"] .orb-icon{background:rgba(232,162,58,.16); border-color:rgba(232,162,58,.32);}
+.orb[data-orbid="scenes"] .orb-icon svg{stroke:#c47f12;}
 
 .orb[data-orbid="konjunktionen"] .orb-icon{
     background:rgba(5,150,105,.14);
@@ -6979,6 +6981,15 @@ body[data-theme="dark"] #decouverte > button.primary{
                 <strong data-i18n="orb_ecouter_title">Écouter</strong>
             </div>
         </div>
+        <!-- LES SCENES, A VOLONTE (v746). La seance n'en montre qu'une par jour,
+             choisie par l'app, et trois questions : ici on choisit la scene, et
+             on a tout -- Decouvrir, Trouve !, les cinq niveaux, les vues. -->
+        <div class="orb" data-orbid="scenes" onclick="openOrbPanel('scenes')">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg></div>
+            <div>
+                <strong data-i18n="orb_scenes_title">Scènes</strong>
+            </div>
+        </div>
         <div class="orb orb-de" data-orbid="schreiben" onclick="openOrbPanel('schreiben')">
             <div id="badge-schreiben" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></div>
@@ -7199,7 +7210,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v745</span>
+    <span class="subtitle-version">v746</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11139,6 +11150,7 @@ const I18N = {
         orb_konjunktionen_title: "Connecteurs",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Écouter", orb_ecouter_sub: "mains libres · A1 → C1",
+        orb_scenes_title: "Scènes", op_scenes_title: "Les scènes", op_scenes_sub: "Une image, cinq niveaux : touche, écoute, réponds", op_scenes_classe_d: "L'école et les objets de la classe", op_scenes_examen_d: "Le corps humain, de face et de dos", op_scenes_marche_d: "Fruits et légumes, quatre étals", op_scenes_blessure_d: "La santé, chez la médecin",
         ecoute_menu_title: "Écouter et répéter",
         ecoute_menu_desc: "Une séance mains libres : l'app dit le mot, laisse un silence pour que tu le répètes à voix haute, puis lit la phrase d'exemple. Garde l'écran allumé — la voix se tait si le téléphone se verrouille.",
         ecoute_sens_title: "Ordre des langues",
@@ -12229,6 +12241,7 @@ const I18N = {
         orb_konjunktionen_title: "Connectors",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Listen", orb_ecouter_sub: "hands-free · A1 → C1",
+        orb_scenes_title: "Scenes", op_scenes_title: "Scenes", op_scenes_sub: "One picture, five levels: tap, listen, answer", op_scenes_classe_d: "School and classroom objects", op_scenes_examen_d: "The human body, front and back", op_scenes_marche_d: "Fruit and vegetables, four stalls", op_scenes_blessure_d: "Health, at the doctor's",
         ecoute_menu_title: "Listen and repeat",
         ecoute_menu_desc: "A hands-free session: the app says the word, leaves a silence for you to repeat it out loud, then reads the example sentence. Keep the screen on — the voice stops if the phone locks.",
         ecoute_sens_title: "Language order",
@@ -13323,6 +13336,7 @@ const I18N = {
         orb_konjunktionen_title: "Bağlayıcılar",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "Dinle", orb_ecouter_sub: "eller serbest · A1 → C1",
+        orb_scenes_title: "Sahneler", op_scenes_title: "Sahneler", op_scenes_sub: "Bir resim, beş seviye: dokun, dinle, cevapla", op_scenes_classe_d: "Okul ve sınıftaki eşyalar", op_scenes_examen_d: "İnsan vücudu, önden ve arkadan", op_scenes_marche_d: "Meyve ve sebze, dört tezgâh", op_scenes_blessure_d: "Sağlık, doktorda",
         ecoute_menu_title: "Dinle ve tekrarla",
         ecoute_menu_desc: "Eller serbest bir oturum: uygulama kelimeyi söyler, yüksek sesle tekrarlaman için bir sessizlik bırakır, sonra örnek cümleyi okur. Ekranı açık tut — telefon kilitlenirse ses durur.",
         ecoute_sens_title: "Dil sırası",
@@ -14586,6 +14600,7 @@ const I18N = {
         orb_schreiben_title: "Письмо",
         orb_schreiben_sub: "переклади речення",
         orb_ecouter_title: "Слухати",
+        orb_scenes_title: "Сцени", op_scenes_title: "Сцени", op_scenes_sub: "Одна картинка, п'ять рівнів: торкнись, послухай, відповідай", op_scenes_classe_d: "Школа та предмети в класі", op_scenes_examen_d: "Тіло людини, спереду і ззаду", op_scenes_marche_d: "Фрукти й овочі, чотири прилавки", op_scenes_blessure_d: "Здоров'я, у лікарки",
         orb_ecouter_sub: "без рук · A1 → C1",
         orb_konjunktionen_title: "Сполучні слова",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
@@ -14946,6 +14961,7 @@ const I18N = {
         orb_konjunktionen_title: "پیونددهنده‌ها",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "شنیدن",
+        orb_scenes_title: "صحنه‌ها", op_scenes_title: "صحنه‌ها", op_scenes_sub: "یک تصویر، پنج سطح: بزن، گوش کن، جواب بده", op_scenes_classe_d: "مدرسه و وسایل کلاس", op_scenes_examen_d: "بدن انسان، از جلو و پشت", op_scenes_marche_d: "میوه و سبزی، چهار بساط", op_scenes_blessure_d: "سلامت، در مطب دکتر",
         orb_ecouter_sub: "بدون دست · A1 → C1",
         ecoute_menu_title: "بشنو و تکرار کن",
         ecoute_menu_desc: "نشستی بدون دست: برنامه واژه را می‌گوید، سکوتی می‌گذارد تا آن را بلند تکرار کنی، سپس جملهٔ نمونه را می‌خواند. صفحه را روشن نگه دار — اگر تلفن قفل شود، صدا خاموش می‌شود.",
@@ -16042,6 +16058,7 @@ const I18N = {
         orb_konjunktionen_title: "أدوات الربط",
         orb_konjunktionen_sub: "weil · deshalb · obwohl",
         orb_ecouter_title: "الاستماع",
+        orb_scenes_title: "المشاهد", op_scenes_title: "المشاهد", op_scenes_sub: "صورة واحدة وخمسة مستويات: المس، استمع، أجب", op_scenes_classe_d: "المدرسة وأغراض الصف", op_scenes_examen_d: "جسم الإنسان، من الأمام والخلف", op_scenes_marche_d: "فواكه وخضار، أربعة أكشاك", op_scenes_blessure_d: "الصحة، عند الطبيبة",
         orb_ecouter_sub: "بلا يدين · A1 ← C1",
         ecoute_menu_title: "استمع وكرّر",
         ecoute_menu_desc: "جلسة بلا يدين: يقول التطبيق الكلمة، ويترك صمتاً لتكرّرها بصوت عالٍ، ثم يقرأ جملة المثال. أبقِ الشاشة مضاءة — فالصوت يسكت إن أُقفل الهاتف.",
@@ -24129,6 +24146,17 @@ function texteDus(dus, total){
 }
 
 function orbPanelData(id){
+    if(id === "scenes"){
+        return {
+            icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
+            options:[
+                { icon:"carte", title:t("seance_scene_klassenzimmer"), desc:t("op_scenes_classe_d"), action:"ouvrirSceneClasse", section:"pratique" },
+                { icon:"carte", title:t("seance_scene_untersuchung"), desc:t("op_scenes_examen_d"), action:"ouvrirSceneExamen", section:"pratique" },
+                { icon:"carte", title:t("seance_scene_markt"), desc:t("op_scenes_marche_d"), action:"ouvrirSceneMarche", section:"pratique" },
+                { icon:"carte", title:t("seance_scene_arztpraxis"), desc:t("op_scenes_blessure_d"), action:"ouvrirSceneBlessure", section:"pratique" }
+            ]
+        };
+    }
     if(id === "verben"){
         return {
             icon:"reviser", title:t("op_verben_title"), sub:t("op_verben_sub"),
@@ -27139,6 +27167,7 @@ const GRATUIT = {
     // qu'elles menent a la serie gratuite (la lecon des adjectifs).
     // Les quatre epreuves aussi : lancerEpreuve() les reduit a l'echantillon.
     portesOuvertes: ["openNomen", "openNomenNiveau", "openVerbenNiveau", "openAdjektive", "openAdjektiveDeklination",
+                     "ouvrirSceneClasse",
                      "startPruefungHoeren", "startPruefungLesen", "startPruefungSchreiben", "startPruefungSprechen"]
 };
 
@@ -32008,7 +32037,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 745;
+const APP_VERSION = 746;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -35233,10 +35262,10 @@ function fixerNiveauSeance(niv){
 // premiere ; la seance va d'elle-meme a la vue de chaque question.
 // Le titre de chaque scene est une cle de traduction (seance_scene_<nom>).
 const SCENES_SEANCE = [
-    { nom: "klassenzimmer", titre: "seance_scene_klassenzimmer" },
-    { nom: "untersuchung", titre: "seance_scene_untersuchung" },
-    { nom: "markt-obst-heimisch", titre: "seance_scene_markt" },
-    { nom: "arztpraxis", titre: "seance_scene_arztpraxis" }
+    { nom: "klassenzimmer", titre: "seance_scene_klassenzimmer", desc: "op_scenes_classe_d", ouvrir: "ouvrirSceneClasse" },
+    { nom: "untersuchung", titre: "seance_scene_untersuchung", desc: "op_scenes_examen_d", ouvrir: "ouvrirSceneExamen" },
+    { nom: "markt-obst-heimisch", titre: "seance_scene_markt", desc: "op_scenes_marche_d", ouvrir: "ouvrirSceneMarche" },
+    { nom: "arztpraxis", titre: "seance_scene_arztpraxis", desc: "op_scenes_blessure_d", ouvrir: "ouvrirSceneBlessure" }
 ];
 const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 
@@ -35287,6 +35316,25 @@ function ouvrirSceneAdmin(nom){
     showScreen("sceneSeance");
 }
 
+// LA TUILE « SCENES » (v746) : une scene ENTIERE, choisie par l'usager, comme
+// le tableau de bord l'ouvre pour l'admin -- mais ici les reponses comptent
+// comme des revisions (Jacques : « comme si on fait les verbes a part »).
+// Version gratuite : la classe seule (GRATUIT.portesOuvertes).
+function ouvrirSceneLibre(nom){
+    sceneOuverteDepuis = "libre";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = t("seance_scene_cadre");
+        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom)
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
+function ouvrirSceneClasse(){ ouvrirSceneLibre("klassenzimmer"); }
+function ouvrirSceneExamen(){ ouvrirSceneLibre("untersuchung"); }
+function ouvrirSceneMarche(){ ouvrirSceneLibre("markt-obst-heimisch"); }
+function ouvrirSceneBlessure(){ ouvrirSceneLibre("arztpraxis"); }
+
 function ouvrirSceneSeance(){
     sceneOuverteDepuis = "seance";
     const s = sceneDuJour();
@@ -35324,9 +35372,10 @@ window.addEventListener("message", (e) => {
     try{ if(new URL(baseScenes()).origin !== e.origin) return; }catch(err){ return; }
     const cadre = document.getElementById("sceneCadre");
     if(d.type === "reponse"){
-        // Depuis la seance seulement : le tableau de bord ouvre une scene pour
-        // la TESTER, et ses reponses ne disent rien de ce que l'admin sait.
-        if(sceneOuverteDepuis === "seance") revisionDeScene(d);
+        // Depuis la seance ET la tuile « Scenes » (v746). Seul le tableau de
+        // bord est exclu : il ouvre une scene pour la TESTER, et ses reponses
+        // ne disent rien de ce que l'admin sait.
+        if(sceneOuverteDepuis !== "admin") revisionDeScene(d);
     } else if(d.type === "fini"){
         try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(err){}
         if(cadre) cadre.src = "about:blank";
@@ -35334,6 +35383,7 @@ window.addEventListener("message", (e) => {
     } else if(d.type === "fermer"){
         if(cadre) cadre.src = "about:blank";
         if(sceneOuverteDepuis === "admin") openAdminDashboard();
+        else if(sceneOuverteDepuis === "libre") openOrbPanel("scenes");
         else ouvrirChoixSeance();
     }
 });

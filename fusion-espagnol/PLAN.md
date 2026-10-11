@@ -48,7 +48,7 @@ servi tel quel** : les testeurs d'espagnol ne voient rien bouger.
    « ? » ajouté dans un libellé → 1 écart, au bon chemin.
    Après chaque étape :
    `python fusion-espagnol/parcours.py --app de --sortie releve.json` puis
-   `python fusion-espagnol/parcours.py --comparer fusion-espagnol/references/de-v745.json releve.json`
+   `python fusion-espagnol/parcours.py --comparer fusion-espagnol/references/de-v746.json releve.json`
    → **0 écart exigé**. Le parcours prend environ six minutes.
    Relevé en passant dans l'espagnol actuel : une explication dit « c'est ici
    que **l'anglais** n'aide pas » même en interface française (écrite pour
