@@ -8217,3 +8217,13 @@ tonique), chacune ecrite pour le francophone ET pour l'anglophone (pas les memes
 pieges). c / z suit la variante : « th » en Espagne, « s » en Amerique latine, voix de
 Lolita ou de Monica. 55 exemples, tous du corpus, dits par les deux voix, absents de
 variantes.json. tests/prononciation_es.py -> espanol/datos/prononciation.json.
+
+## 11 octobre 2026 -- Jacques : mettre a jour la visite d'introduction (les scenes l'avaient rendue fausse), et en faire une pour l'espagnol
+
+v759 : visite allemande -- l'introduction cite les scenes et la prononciation ; l'etape
+« Ta seance du jour » montre le vrai choix « la scene / les cartes » (image de la scene
+du jour) et le dit, dans les six langues. Visite espagnole (fr, en) : memes etapes avec
+casa / gato / cafe, ser, ser-estar et gustar a tuiles (contenu par niveau declare).
+Trouve en route : l'ecran de choix de l'app espagnole montrait « Allemand : das Fenster »
+-> « Espagnol : la ventana ». Voix : 16 clips a refaire (~4 250 credits), EN ATTENTE de
+l'accord de Jacques ; d'ici la, les clips changes se taisent (le texte reste a l'ecran).

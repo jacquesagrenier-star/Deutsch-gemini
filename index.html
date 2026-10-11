@@ -7282,7 +7282,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v758</span>
+    <span class="subtitle-version">v759</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8938,7 +8938,7 @@ body[data-theme="dark"] #decouverte > button.primary{
         </button>
         <button type="button" class="choix-seance" onclick="choisirCartesSeance()">
             <span class="choix-seance-vue cartes" aria-hidden="true">
-                <span class="choix-seance-carte" lang="de"><small data-i18n="seance_choix_allemand">Allemand</small><b><span class="g-das">das</span> Fenster</b></span>
+                <span class="choix-seance-carte" id="choixCarteRecto" lang="de"><small data-i18n="seance_choix_allemand">Allemand</small><b id="choixCarteMot"><span class="g-das">das</span> Fenster</b></span>
                 <span class="choix-seance-carte dos"><small data-i18n="seance_choix_langue">Français</small><b data-i18n="seance_choix_fenetre">la fenêtre</b></span>
             </span>
             <span class="choix-seance-legende">
@@ -11037,11 +11037,11 @@ const I18N = {
         dec_progression_aria: "Étape {n} sur {total}",
         dec_kicker: "Découvre Wortando",
         dec_t0_titre: "Une visite guidée de l'application",
-        dec_t0_texte: "Deux minutes, cinq aperçus : des mots, un verbe, un peu de grammaire, ton tableau et ta séance du jour. L'application en contient bien plus : thèmes, expressions, préparation aux examens, écoute, dictée, dictionnaire, et bien d'autres.",
+        dec_t0_texte: "Deux minutes, cinq aperçus : des mots, un verbe, un peu de grammaire, ton tableau et ta séance du jour. L'application en contient bien plus : scènes, thèmes, expressions, prononciation, préparation aux examens, écoute, dictée, dictionnaire, et bien d'autres.",
         dec_t0_bouton: "COMMENCER LA VISITE",
         dec_ecouter: "Réécouter",
         dec_t5_titre: "Ta séance du jour",
-        dec_t5_texte: "Chaque jour, elle te propose quelques mots nouveaux et les révisions qui reviennent au bon moment : environ 30 cartes. C'est elle qui fait avancer ton tableau. Tu peux y changer de niveau à tout moment.",
+        dec_t5_texte: "Chaque jour, ta séance commence par un choix : la scène — une image où tu touches les objets pour les entendre, puis quelques questions — ou tes cartes : quelques mots nouveaux et les révisions qui reviennent au bon moment. C'est la séance qui fait avancer ton tableau. Tu peux y changer de niveau à tout moment.",
         dec_t6_titre: "La visite est terminée !",
         dec_t6_texte: "Tu as vu un peu de chaque partie, et il reste bien plus à découvrir. Ta séance du jour t'attend sur l'accueil. Bon apprentissage !",
         dec_t6_bouton: "COMMENCER",
@@ -12140,11 +12140,11 @@ const I18N = {
         dec_progression_aria: "Step {n} of {total}",
         dec_kicker: "Discover Wortando",
         dec_t0_titre: "A guided tour of the app",
-        dec_t0_texte: "Two minutes, five previews: words, a verb, a bit of grammar, your painting and today's session. The app holds much more: themes, expressions, exam preparation, listening, dictation, a dictionary, and much else.",
+        dec_t0_texte: "Two minutes, five previews: words, a verb, a bit of grammar, your painting and today's session. The app holds much more: scenes, themes, expressions, pronunciation, exam preparation, listening, dictation, a dictionary, and much else.",
         dec_t0_bouton: "START THE TOUR",
         dec_ecouter: "Listen again",
         dec_t5_titre: "Today's session",
-        dec_t5_texte: "Every day, it offers a few new words and the reviews that come back at just the right moment: about 30 cards. It's what makes your painting grow. You can change your level there at any time.",
+        dec_t5_texte: "Every day, your session starts with a choice: the scene — a picture where you tap things to hear them, then a few questions — or your cards: a few new words and the reviews that come back at just the right moment. The session is what makes your painting grow. You can change your level there at any time.",
         dec_t6_titre: "The tour is over!",
         dec_t6_texte: "You've seen a bit of each part, and there's much more to discover. Today's session is waiting for you on the home screen. Happy learning!",
         dec_t6_bouton: "LET'S START",
@@ -13247,11 +13247,11 @@ const I18N = {
         dec_progression_aria: "Adım {n} / {total}",
         dec_kicker: "Wortando'yu keşfet",
         dec_t0_titre: "Uygulamada rehberli bir tur",
-        dec_t0_texte: "İki dakika, beş örnek: kelimeler, bir fiil, biraz dilbilgisi, tablon ve bugünkü oturumun. Uygulamada çok daha fazlası var: temalar, deyimler, sınavlara hazırlık, dinleme, dikte, sözlük ve daha birçok şey.",
+        dec_t0_texte: "İki dakika, beş örnek: kelimeler, bir fiil, biraz dilbilgisi, tablon ve bugünkü oturumun. Uygulamada çok daha fazlası var: sahneler, temalar, deyimler, telaffuz, sınavlara hazırlık, dinleme, dikte, sözlük ve daha birçok şey.",
         dec_t0_bouton: "TURA BAŞLA",
         dec_ecouter: "Tekrar dinle",
         dec_t5_titre: "Bugünkü oturumun",
-        dec_t5_texte: "Her gün sana birkaç yeni kelime ve tam zamanında geri gelen tekrarları sunar: yaklaşık 30 kart. Tablonu ilerleten odur. Seviyeni orada istediğin zaman değiştirebilirsin.",
+        dec_t5_texte: "Her gün oturumun bir seçimle başlar: sahne — nesnelere dokunup adlarını duyduğun bir resim, ardından birkaç soru — ya da kartların: birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. Tablonu ilerleten bu oturumdur. Seviyeni orada istediğin zaman değiştirebilirsin.",
         dec_t6_titre: "Tur bitti!",
         dec_t6_texte: "Her bölümden biraz gördün ve keşfedecek çok daha fazlası var. Bugünkü oturumun ana ekranda seni bekliyor. İyi çalışmalar!",
         dec_t6_bouton: "BAŞLA",
@@ -14025,11 +14025,11 @@ const I18N = {
         dec_progression_aria: "Крок {n} з {total}",
         dec_kicker: "Знайомство з Wortando",
         dec_t0_titre: "Екскурсія застосунком",
-        dec_t0_texte: "Дві хвилини, п'ять прикладів: слова, дієслово, трохи граматики, твоя картина і твій сеанс на сьогодні. У застосунку набагато більше: теми, вирази, підготовка до іспитів, слухання, диктант, словник і багато іншого.",
+        dec_t0_texte: "Дві хвилини, п'ять прикладів: слова, дієслово, трохи граматики, твоя картина і твій сеанс на сьогодні. У застосунку набагато більше: сцени, теми, вирази, вимова, підготовка до іспитів, слухання, диктант, словник і багато іншого.",
         dec_t0_bouton: "ПОЧАТИ ЕКСКУРСІЮ",
         dec_ecouter: "Прослухати ще раз",
         dec_t5_titre: "Твій сеанс на сьогодні",
-        dec_t5_texte: "Щодня він пропонує кілька нових слів і повторення, які повертаються в потрібний момент: близько 30 карток. Саме він рухає вперед твою картину. Рівень тут можна змінити будь-коли.",
+        dec_t5_texte: "Щодня твій сеанс починається з вибору: сцена — картинка, де ти торкаєшся предметів, щоб почути їхні назви, а потім кілька запитань, — або твої картки: кілька нових слів і повторення, які повертаються в потрібний момент. Саме сеанс рухає вперед твою картину. Рівень тут можна змінити будь-коли.",
         dec_t6_titre: "Екскурсію завершено!",
         dec_t6_texte: "Ось потроху з кожної частини, а відкрити можна ще набагато більше. Твій сеанс на сьогодні чекає на головному екрані. Успіхів у навчанні!",
         dec_t6_bouton: "ПОЧАТИ",
@@ -15537,11 +15537,11 @@ const I18N = {
         dec_progression_aria: "گام {n} از {total}",
         dec_kicker: "آشنایی با Wortando",
         dec_t0_titre: "یک گشت راهنما در برنامه",
-        dec_t0_texte: "دو دقیقه، پنج نمونه: چند واژه، یک فعل، کمی دستور زبان، تابلوی تو و جلسهٔ امروزت. برنامه خیلی بیشتر از این دارد: موضوع‌ها، اصطلاحات، آمادگی برای آزمون‌ها، شنیدن، دیکته، فرهنگ لغت و بسیاری چیزهای دیگر.",
+        dec_t0_texte: "دو دقیقه، پنج نمونه: چند واژه، یک فعل، کمی دستور زبان، تابلوی تو و جلسهٔ امروزت. برنامه خیلی بیشتر از این دارد: صحنه‌ها، موضوع‌ها، اصطلاحات، تلفظ، آمادگی برای آزمون‌ها، شنیدن، دیکته، فرهنگ لغت و بسیاری چیزهای دیگر.",
         dec_t0_bouton: "شروع گشت",
         dec_ecouter: "دوباره گوش کن",
         dec_t5_titre: "جلسهٔ امروزت",
-        dec_t5_texte: "هر روز چند واژهٔ تازه و مرورهایی را که درست به‌موقع برمی‌گردند به تو پیشنهاد می‌کند: حدود سی کارت. همین جلسه است که تابلویت را پیش می‌برد. هر وقت بخواهی می‌توانی سطحت را همان‌جا عوض کنی.",
+        dec_t5_texte: "هر روز جلسه‌ات با یک انتخاب شروع می‌شود: صحنه — تصویری که در آن چیزها را لمس می‌کنی تا نامشان را بشنوی، و بعد چند پرسش — یا کارت‌هایت: چند واژهٔ تازه و مرورهایی که درست به‌موقع برمی‌گردند. همین جلسه است که تابلویت را پیش می‌برد. هر وقت بخواهی می‌توانی سطحت را همان‌جا عوض کنی.",
         dec_t6_titre: "گشت تمام شد!",
         dec_t6_texte: "از هر بخش کمی دیدی و هنوز خیلی چیزها برای کشف کردن مانده است. جلسهٔ امروزت در صفحهٔ اصلی منتظر توست. یادگیری خوبی داشته باشی!",
         dec_t6_bouton: "شروع کنیم",
@@ -16545,11 +16545,11 @@ const I18N = {
         dec_progression_aria: "الخطوة {n} من {total}",
         dec_kicker: "تعرّف على Wortando",
         dec_t0_titre: "جولة إرشادية في التطبيق",
-        dec_t0_texte: "دقيقتان وخمس لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك، وجلستك اليوم. وفي التطبيق أكثر من ذلك بكثير: مواضيع، وتعابير، وتحضير للامتحانات، واستماع، وإملاء، وقاموس، وغير ذلك الكثير.",
+        dec_t0_texte: "دقيقتان وخمس لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك، وجلستك اليوم. وفي التطبيق أكثر من ذلك بكثير: مشاهد، ومواضيع، وتعابير، ونطق، وتحضير للامتحانات، واستماع، وإملاء، وقاموس، وغير ذلك الكثير.",
         dec_t0_bouton: "ابدأ الجولة",
         dec_ecouter: "استمع مرة أخرى",
         dec_t5_titre: "جلستك اليوم",
-        dec_t5_texte: "كل يوم تقترح عليك بضع كلمات جديدة والمراجعات التي تعود في الوقت المناسب: نحو ثلاثين بطاقة. هي التي تجعل لوحتك تتقدّم. ويمكنك تغيير مستواك منها في أي وقت.",
+        dec_t5_texte: "كل يوم تبدأ جلستك باختيار: المشهد — صورة تلمس فيها الأشياء لتسمع أسماءها، ثم بضعة أسئلة — أو بطاقاتك: بضع كلمات جديدة والمراجعات التي تعود في الوقت المناسب. الجلسة هي التي تجعل لوحتك تتقدّم. ويمكنك تغيير مستواك منها في أي وقت.",
         dec_t6_titre: "انتهت الجولة!",
         dec_t6_texte: "رأيت لمحة من كل جزء، وما زال هناك الكثير لتكتشفه. جلستك اليوم تنتظرك في الشاشة الرئيسية. تعلّمًا موفّقًا!",
         dec_t6_bouton: "لنبدأ",
@@ -17372,7 +17372,11 @@ const I18N_ESPAGNOL = {
         "kicker_preposiciones": "a, en, de et le a personnel",
         "pron_kicker": "Lire l'espagnol",
         "pron_intro": "L'espagnol se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
-        "pron_accent": "L'accent tonique"
+        "pron_accent": "L'accent tonique",
+        "dec_t0_texte": "Deux minutes, cinq aperçus : des mots, un verbe, un peu de grammaire, ton tableau et ta séance du jour. L'application en contient bien plus : scènes, thèmes, expressions, fiches de grammaire, prononciation, écoute, dictée, dictionnaire, et bien d'autres.",
+        "dec_t1_texte_plusieurs": "Trois mots qu'on devine presque. La couleur dit l'article : el ou la.",
+        "dec_t4_texte": "Chaque carte travaillée ouvre un carreau. Sous les carreaux se cache l'œuvre d'un grand peintre : tu ne sauras laquelle qu'en la dévoilant. Chaque tableau terminé rejoint ta galerie.",
+        "seance_choix_allemand": "Espagnol"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -17491,7 +17495,11 @@ const I18N_ESPAGNOL = {
         "kicker_preposiciones": "a, en, de and the personal a",
         "pron_kicker": "Reading Spanish",
         "pron_intro": "Spanish is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
-        "pron_accent": "Stress"
+        "pron_accent": "Stress",
+        "dec_t0_texte": "Two minutes, five previews: words, a verb, a bit of grammar, your painting and today's session. The app holds much more: scenes, themes, expressions, grammar sheets, pronunciation, listening, dictation, a dictionary, and much else.",
+        "dec_t1_texte_plusieurs": "Three words you can almost guess. The colour tells you the article: el or la.",
+        "dec_t4_texte": "Every card you work on opens a tile. Beneath the tiles hides the work of a great painter: you'll only know which one by revealing it. Every finished painting joins your gallery.",
+        "seance_choix_allemand": "Spanish"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -18236,6 +18244,55 @@ const DECOUVERTE_CONTENU = {
     }
 };
 
+// LA VISITE ESPAGNOLE (v759, Jacques : « la visite pour l'espagnol, en
+// anglais et en francais »). Memes etapes, memes regles : des mots du corpus
+// espagnol (temas.json), un verbe de verbos.json, et des exercices A TUILES
+// (ser / estar, gustar, por / para...). Pas de C1 en espagnol : la reponse
+// « C1 » montre le B2. Verifie par tests/verifier.py, comme l'allemand.
+const DECOUVERTE_CONTENU_ES = {
+    "zero": {
+        "noms": [{"theme": "la_casa", "mot": "casa"},
+                 {"theme": "los_animales", "mot": "gato"},
+                 {"theme": "la_comida", "mot": "café"}],
+        "verbe": {"niveau": "A1", "infinitif": "ser", "temps": "praesens"},
+        "exos": [{"jeu": "serEstarExercises", "debut": "Mi hermana ___ enfermera."},
+                 {"jeu": "gustarExercises", "debut": "Me ___ el chocolate."}]
+    },
+    "peu": {
+        "noms": [{"theme": "la_familia", "mot": "niño"}],
+        "verbe": {"niveau": "A1", "infinitif": "hablar", "temps": "praesens"},
+        "exos": [{"jeu": "serEstarExercises", "debut": "Mi hermana ___ cansada hoy."},
+                 {"jeu": "porParaExercises", "debut": "Este regalo es ___ ti."}]
+    },
+    "A2": {
+        "noms": [{"theme": "los_estudios", "mot": "resultado"}],
+        "verbe": {"niveau": "A2", "infinitif": "conseguir", "temps": "praesens"},
+        "exos": [{"jeu": "porParaExercises", "debut": "Gracias ___ tu ayuda."},
+                 {"jeu": "preposicionesExercises", "debut": "Estoy ___ Madrid."}]
+    },
+    "B1": {
+        "noms": [{"theme": "la_sociedad", "mot": "sociedad"}],
+        "verbe": {"niveau": "B1", "infinitif": "respetar", "temps": "praesens"},
+        "exos": [{"jeu": "falsosAmigosExercises", "debut": "Tengo fiebre y estoy ___."},
+                 {"jeu": "perifrasisExercises", "debut": "No puedo hablar ahora, ___ cocinando."}]
+    },
+    "B2": {
+        "noms": [{"theme": "la_ciencia", "mot": "hipótesis"}],
+        "verbe": {"niveau": "B2", "infinitif": "matizar", "temps": "praesens"},
+        "exos": [{"jeu": "falsosAmigosExercises", "debut": "Me caí delante de todos y estaba muy ___."},
+                 {"jeu": "acentosExercises", "debut": "¿___ quieres café?"}]
+    },
+    "C1": {
+        "noms": [{"theme": "la_ciencia", "mot": "hipótesis"}],
+        "verbe": {"niveau": "B2", "infinitif": "matizar", "temps": "praesens"},
+        "exos": [{"jeu": "falsosAmigosExercises", "debut": "Me caí delante de todos y estaba muy ___."},
+                 {"jeu": "acentosExercises", "debut": "¿___ quieres café?"}]
+    }
+};
+function contenuDecouverte(){
+    return LANGUE_APPRISE === "es" ? DECOUVERTE_CONTENU_ES : DECOUVERTE_CONTENU;
+}
+
 // La decouverte en cours, ou null. Tout ce qui l'interroge passe par
 // decouverteEnCours() : un seul etat, que « Passer » remet a null.
 let decouverte = null;
@@ -18269,7 +18326,7 @@ function ecrireDecouverte(maj){
 function reponseDecouverte(){
     let r = null;
     try{ r = localStorage.getItem(NIVEAU_DECLARE_KEY); }catch(e){}
-    return DECOUVERTE_CONTENU[r] ? r : "zero";
+    return contenuDecouverte()[r] ? r : "zero";
 }
 
 // Les cartes sont construites comme paquetDuNiveau() les construit :
@@ -18349,13 +18406,12 @@ async function attendreDonneesDecouverte(){
 async function lancerDecouverte(){
     // Le contenu est allemand : le module anglais n'a rien a y montrer.
     if(getLearningDirection() === "en") return false;
-    // Ni l'espagnol : des mots allemands, une narration allemande (fork.py
-    // la retirait aussi).
-    if(LANGUE_APPRISE !== "de") return false;
+    // L'espagnol a la sienne depuis la v759 (DECOUVERTE_CONTENU_ES).
+    if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es") return false;
     const reponse = reponseDecouverte();
     // Cree l'etat du tableau s'il n'existe pas encore (les carreaux offerts).
     etatMosaique();
-    const moi = { reponse: reponse, contenu: DECOUVERTE_CONTENU[reponse], etape: 0,
+    const moi = { reponse: reponse, contenu: contenuDecouverte()[reponse], etape: 0,
                   noms: [], verbe: null, exos: [],
                   pret: false, demarrer: false };
     decouverte = moi;
@@ -18454,19 +18510,36 @@ function revoirDecouverte(){
 // relancer le script et monter VOIX_VISITE.revision.
 // ⚠️ LE MEME LECTEUR QUE LA VOIX ALLEMANDE (obtenirLecteur) : sur iOS, c'est
 // l'element deja debloque qui peut jouer sans nouveau geste.
-const VOIX_VISITE = { revision: "4", langues: ["fr", "en", "tr", "uk", "fa", "ar"] };
+const VOIX_VISITE = { revision: "4", langues: ["fr", "en", "tr", "uk", "fa", "ar"], languesEs: ["fr", "en"] };
 const CLIPS_DE_PAGE = { 0: "intro", 4: "t4", 5: "t5", 6: "t6" };
+// LA VISITE ESPAGNOLE (v759) n'a a elle que les clips dont le texte differe
+// (I18N_ESPAGNOL) : voix-visite/es/<langue>/. Les autres -- la seance, la
+// fin, les paliers du tableau -- disent le meme texte : ceux de l'allemand.
+const CLIPS_PROPRES_ES = ["intro", "t4"];
+// ⚠️ UN CLIP DONT LE TEXTE A CHANGE SE TAIT jusqu'a son nouvel
+// enregistrement (audio/voix_visite.py) : la voix dit le texte affiche, mot
+// pour mot, ou ne dit rien. Vider la liste une fois les clips deposes.
+const CLIPS_EN_ATTENTE = { de: ["intro", "t5"], es: ["intro", "t4", "t5"] };
 
 function voixVisiteDispo(){
-    return VOIX_VISITE.langues.indexOf(getUiLang()) >= 0;
+    const langues = LANGUE_APPRISE === "es" ? VOIX_VISITE.languesEs : VOIX_VISITE.langues;
+    return langues.indexOf(getUiLang()) >= 0;
 }
 
 function clipDePage(n){
-    return CLIPS_DE_PAGE[n] || null;
+    const clip = CLIPS_DE_PAGE[n] || null;
+    const attente = CLIPS_EN_ATTENTE[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+    return attente.indexOf(clip) >= 0 ? null : clip;
+}
+
+function cheminClipVisite(clip){
+    const dossier = (LANGUE_APPRISE === "es" && CLIPS_PROPRES_ES.indexOf(clip) >= 0) ? "voix-visite/es/" : "voix-visite/";
+    return dossier + getUiLang() + "/" + clip + ".mp3?r=" + VOIX_VISITE.revision;
 }
 
 function narrerDecouverte(clip){
-    if(!decouverte || !clip || !voixVisiteDispo()) return Promise.resolve(false);
+    const attente = CLIPS_EN_ATTENTE[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+    if(!decouverte || !clip || !voixVisiteDispo() || attente.indexOf(clip) >= 0) return Promise.resolve(false);
     arreterAudioPregenere();
     if('speechSynthesis' in window &&
        (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
@@ -18500,7 +18573,7 @@ function narrerDecouverte(clip){
         son.onloadedmetadata = suivreDuree;
         son.onplaying = suivreDuree;
         try{
-            son.src = "voix-visite/" + getUiLang() + "/" + clip + ".mp3?r=" + VOIX_VISITE.revision;
+            son.src = cheminClipVisite(clip);
             son.playbackRate = 1;
             const p = son.play();
             if(p && p.catch) p.catch(() => finir(false));
@@ -18823,6 +18896,14 @@ function montrerSeanceDecouverte(){
         emprunterBlocDecouverte(tuile);
         const scene = document.getElementById("decouverteScene");
         if(scene) scene.classList.add("lecture");
+    }
+    // LE CHOIX DU DEBUT DE SEANCE (v759) : depuis les scenes, la seance
+    // s'ouvre sur « la scene ou les cartes ». La visite le montre tel quel,
+    // en lecture seule comme la tuile, avec la scene du jour.
+    const duo = document.querySelector("#choixSeance .choix-seance-duo");
+    if(duo && essaiActif("scenes")){
+        try{ preparerChoixSeance(); }catch(e){}
+        emprunterBlocDecouverte(duo);
     }
     narrerDecouverte("t5");
     const fin = document.getElementById("decouverteFin");
@@ -32494,7 +32575,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 758;
+const APP_VERSION = 759;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -35746,12 +35827,28 @@ function sceneDejaFaite(){
     try{ return localStorage.getItem(SCENE_FAITE_KEY) === new Date().toDateString(); }catch(e){ return false; }
 }
 
-function ouvrirChoixSeance(){
+// L'image et la legende de la scene du jour. A part depuis la v759 : la
+// visite guidee montre le meme choix, emprunte (montrerSeanceDecouverte).
+function preparerChoixSeance(){
+    // ⚠️ LA CARTE D'EXEMPLE DISAIT « ALLEMAND : das Fenster » DANS L'APP
+    // ESPAGNOLE (trouve le 11 oct. 2026, en essayant la visite espagnole) :
+    // le mot etait ecrit en dur dans le HTML. Le verso, « la fenetre », est
+    // juste dans les deux langues.
+    if(LANGUE_APPRISE === "es"){
+        const mot = document.getElementById("choixCarteMot");
+        if(mot) mot.innerHTML = '<span class="rg-die">la</span> ventana';
+        const recto = document.getElementById("choixCarteRecto");
+        if(recto) recto.setAttribute("lang", "es");
+    }
     const s = sceneDuJour();
     const img = document.getElementById("choixSceneImage");
     if(img) img.src = baseScenes() + s.nom + ".webp";
     const det = document.getElementById("choixSceneDetail");
     if(det) det.textContent = tf("seance_choix_detail", {titre: t(s.titre), n: 3, niveau: niveauSeance()});
+}
+
+function ouvrirChoixSeance(){
+    preparerChoixSeance();
     showScreen("choixSeance");
 }
 

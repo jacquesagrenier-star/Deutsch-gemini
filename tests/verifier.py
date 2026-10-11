@@ -1346,13 +1346,41 @@ def verifier_decouverte(r, source, fonctions, cles):
         r.echec("decouverte", "la reponse « %s » n'a pas de contenu dans DECOUVERTE_CONTENU" % x)
     r.controle(len(reponses))
 
-    # 2. Les mots, les verbes et les exercices existent dans les donnees.
-    themes = (charger("themes.json") or {}).get("themes", [])
-    verbes = charger("verbe.json") or {}
-    jeux = (charger("exercices.json") or {}).get("jeux", {})
-    pruefung = charger("pruefung.json") or {}
+    # 2. Les mots, les verbes et les exercices existent dans les donnees --
+    #    celles de l'allemand, et pour la visite espagnole (v759) celles de
+    #    espanol/datos/, avec les memes regles.
     fr = set(cles)
+    def json_es(nom):
+        try:
+            return json.load(io.open(os.path.join(RACINE, "espanol", "datos", nom), encoding="utf-8"))
+        except (OSError, ValueError):
+            return None
+    sources = [("", contenu, (charger("themes.json") or {}).get("themes", []), charger("verbe.json") or {},
+                (charger("exercices.json") or {}).get("jeux", {}), charger("pruefung.json") or {})]
+    m_es = re.search(r"const DECOUVERTE_CONTENU_ES = (\{.*?\n\});", source, re.S)
+    if not m_es:
+        r.echec("decouverte", "const DECOUVERTE_CONTENU_ES introuvable dans index.html")
+    else:
+        try:
+            contenu_es = json.loads(m_es.group(1))
+            for x in sorted(reponses - set(contenu_es)):
+                r.echec("decouverte", "espagnol : la reponse « %s » n'a pas de contenu" % x)
+            sources.append(("espagnol ", contenu_es, (json_es("temas.json") or {}).get("themes", []),
+                            json_es("verbos.json") or {}, (json_es("ejercicios.json") or {}).get("jeux", {}), {}))
+        except ValueError as e:
+            r.echec("decouverte", "DECOUVERTE_CONTENU_ES n'est plus du JSON strict (%s)" % e)
+    for prefixe, contenu_, themes, verbes, jeux, pruefung in sources:
+        verifier_contenu_decouverte(r, prefixe, contenu_, themes, verbes, jeux, pruefung, fr)
+
+    # 3. Chaque fonction appelee par la decouverte existe.
+    verifier_fonctions_decouverte(r, source, fonctions, fr)
+    print("   decouverte      : %d reponses (allemand), %d (espagnol), %d probleme(s)"
+          % (len(contenu), len(sources[1][1]) if len(sources) > 1 else 0, len(r.erreurs) - n_avant))
+
+
+def verifier_contenu_decouverte(r, prefixe, contenu, themes, verbes, jeux, pruefung, fr):
     for rep_, c in sorted(contenu.items()):
+        rep_ = prefixe + rep_
         noms = []
         for ref in c.get("noms", []):
             th = [t for t in themes if t.get("id") == ref.get("theme")]
@@ -1411,7 +1439,9 @@ def verifier_decouverte(r, source, fonctions, cles):
             if not (e.get("options") or e.get("chunks") or e.get("options_fr")):
                 r.echec("decouverte", "%s : « %s » se repond au clavier" % (rep_, debut))
 
-    # 3. Chaque fonction appelee par la decouverte existe.
+
+def verifier_fonctions_decouverte(r, source, fonctions, fr):
+    import chemins
     corps = chemins.corps_des_fonctions(source)
     siens = {n: b for n, b in corps.items()
              if "ecouverte" in n or n in ("ouvrirBienvenue", "completeInitialSetup")}
@@ -1499,8 +1529,7 @@ def verifier_decouverte(r, source, fonctions, cles):
         if e not in parcours:
             r.echec("decouverte", "tests/parcours.js ne lit pas l'etape %s" % e)
     r.controle(len(etapes) + 1)
-    print("   decouverte      : %d reponses, %d fonctions, %d etapes mesurees, %d probleme(s)"
-          % (len(contenu), len(siens), len(etapes), len(r.erreurs) - n_avant))
+    print("   decouverte      : %d fonctions, %d etapes mesurees" % (len(siens), len(etapes)))
 
 
 def verifier_export_csv(r):

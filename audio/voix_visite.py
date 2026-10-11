@@ -86,26 +86,54 @@ def normaliser(brut, cible):
     pathlib.Path(source).unlink()
 
 
+# LA VISITE ESPAGNOLE (v759) : seuls les clips dont le texte differe ont les
+# leurs, dans voix-visite/es/<langue>/ -- les autres sont ceux de l'allemand,
+# qui disent le meme texte. Langues de l'interface espagnole : fr et en.
+# Doit suivre CLIPS_PROPRES_ES dans index.html.
+CLIPS_PROPRES_ES = ["intro", "t4"]
+LANGUES_ES = ["fr", "en"]
+
+
+def textes_espagnols(textes):
+    """Les textes de la visite espagnole : I18N_ESPAGNOL d'abord, l'allemand sinon."""
+    html = (RACINE / "index.html").read_text(encoding="utf-8")
+    a = "const I18N_ESPAGNOL = "
+    i = html.index(a) + len(a)
+    j = html.index(';\nif(LANGUE_APPRISE === "es"){', i)
+    es = json.loads(html[i:j])
+    return {l: dict(textes[l], **es.get(l, {})) for l in LANGUES_ES}
+
+
 def main():
-    cle = (RACINE / "elevenlabs.secret").read_text(encoding="utf-8").strip()
+    # --a-blanc : dit ce qui serait refait, et combien de caracteres, sans
+    # rien demander a ElevenLabs.
+    a_blanc = "--a-blanc" in sys.argv
+    cle = None if a_blanc else (RACINE / "elevenlabs.secret").read_text(encoding="utf-8").strip()
     textes = textes_de_l_app()
     manifeste_f = SORTIE / "textes.json"
     manifeste = json.loads(manifeste_f.read_text(encoding="utf-8")) if manifeste_f.exists() else {}
+    taches = [(langue, langue, clip, cles, textes[langue], SORTIE / langue)
+              for langue in LANGUES for clip, cles in CLIPS.items()]
+    es = textes_espagnols(textes)
+    taches += [("es-" + langue, langue, clip, CLIPS[clip], es[langue], SORTIE / "es" / langue)
+               for langue in LANGUES_ES for clip in CLIPS_PROPRES_ES]
     caracteres = 0
-    for langue in LANGUES:
-        (SORTIE / langue).mkdir(parents=True, exist_ok=True)
-        for clip, cles in CLIPS.items():
-            texte = composer([textes[langue][c] for c in cles])
-            empreinte = hashlib.sha1(texte.encode("utf-8")).hexdigest()
-            cible = SORTIE / langue / f"{clip}.mp3"
-            if cible.exists() and manifeste.get(langue, {}).get(clip) == empreinte:
-                continue
-            normaliser(generer(texte, langue, cle), cible)
-            manifeste.setdefault(langue, {})[clip] = empreinte
-            caracteres += len(texte)
-            print(langue, clip, "fait")
-            manifeste_f.write_text(json.dumps(manifeste, indent=1), encoding="utf-8")
-    print(caracteres, "caracteres generes")
+    for cle_manifeste, langue, clip, cles, t, dossier in taches:
+        texte = composer([t[c] for c in cles])
+        empreinte = hashlib.sha1(texte.encode("utf-8")).hexdigest()
+        cible = dossier / f"{clip}.mp3"
+        if cible.exists() and manifeste.get(cle_manifeste, {}).get(clip) == empreinte:
+            continue
+        caracteres += len(texte)
+        if a_blanc:
+            print(cle_manifeste, clip, len(texte), "caracteres")
+            continue
+        dossier.mkdir(parents=True, exist_ok=True)
+        normaliser(generer(texte, langue, cle), cible)
+        manifeste.setdefault(cle_manifeste, {})[clip] = empreinte
+        print(cle_manifeste, clip, "fait")
+        manifeste_f.write_text(json.dumps(manifeste, indent=1), encoding="utf-8")
+    print(caracteres, "caracteres", "a generer" if a_blanc else "generes")
 
 
 if __name__ == "__main__":
