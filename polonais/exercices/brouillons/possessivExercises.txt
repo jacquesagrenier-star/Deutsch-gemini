@@ -1,0 +1,90 @@
+jeu: possessivExercises
+moule:  : comme le masculin, pas de terminaison → (\w+)\.$	: jak rodzaj męski, bez końcówki → \1.
+moule:  : comme le masculin, terminaison (-\w+) → (\w+)\.$	: jak rodzaj męski, końcówka \1 → \2.
+moule:  : comme le nominatif, terminaison (-\w+) → (\w+)\.$	: jak w mianowniku, końcówka \1 → \2.
+moule:  : le possessif ne prend pas de terminaison → (\w+)\.$	: zaimek dzierżawczy nie ma końcówki → \1.
+moule:  : terminaison (-\w+) → (\w+)\.$	: końcówka \1 → \2.
+moule: ^Nominatif (\w+)	Nominativ (mianownik), \1
+moule: ^Accusatif (\w+)	Akkusativ (biernik), \1
+moule: ^Datif (\w+)	Dativ (celownik), \1
+moule: ^Génitif (\w+)	Genitiv (dopełniacz), \1
+moule: , masculin\b	, rodzaj męski
+moule: , féminin\b	, rodzaj żeński
+moule: , neutre\b	, rodzaj nijaki
+moule: , pluriel\b	, liczba mnoga
+moule: , masc\.	, rodzaj męski
+moule: , fém\.	, rodzaj żeński
+moule: « à lui »	„jego”
+moule: « à elle »	„jej”
+moule: « à eux »	„ich”
+moule:  — attention au piège	 — uwaga na pułapkę
+0	Mój brat jest miły.	*
+1	Moja siostra jest mądra.	*
+2	Moje dziecko bawi się na dworze.	*
+3	Moi rodzice mieszkają w Berlinie.	*
+4	Peter widzi mojego brata.	*
+5	Peter zna moją siostrę.	*
+6	Peter pomaga mojemu bratu.	*
+7	Peter dziękuje mojej siostrze.	*
+8	Peter bawi się z moim dzieckiem.	*
+9	To samochód mojego brata.	*
+10	Twój brat jest miły.	*
+11	Twoja siostra jest mądra.	*
+12	Twoje dziecko bawi się na dworze.	*
+13	Twoi rodzice mieszkają w Berlinie.	*
+14	Peter widzi twojego brata.	*
+15	Peter zna twoją siostrę.	*
+16	Peter pomaga twojemu bratu.	*
+17	Peter dziękuje twojej siostrze.	*
+18	Peter bawi się z twoim dzieckiem.	*
+19	To samochód twojego brata.	*
+20	Jego brat jest miły.	*
+21	Jego siostra jest mądra.	*
+22	Jego dziecko bawi się na dworze.	*
+23	Jego rodzice mieszkają w Berlinie.	*
+24	Peter widzi jego brata.	Akkusativ (biernik), rodzaj męski: końcówka -en → seinen. Uwaga: niemiecki nie ma odpowiednika polskiego „swój” — „sein” to i „jego”, i „swój”, zależnie od kontekstu.
+25	Peter zna jego siostrę.	*
+26	Peter pomaga jego bratu.	*
+27	Peter dziękuje jego siostrze.	*
+28	Peter bawi się z jego dzieckiem.	*
+29	To samochód jego brata.	*
+30	Jej brat jest miły.	*
+31	Jej siostra jest mądra.	*
+32	Jej dziecko bawi się na dworze.	*
+33	Jej rodzice mieszkają w Berlinie.	*
+34	Peter widzi jej brata.	*
+35	Peter zna jej siostrę.	*
+36	Peter pomaga jej bratu.	*
+37	Peter dziękuje jej siostrze.	*
+38	Peter bawi się z jej dzieckiem.	*
+39	To samochód jej brata.	*
+40	Nasz brat jest miły.	*
+41	Nasza siostra jest mądra.	*
+42	Nasze dziecko bawi się na dworze.	*
+43	Nasi rodzice mieszkają w Berlinie.	*
+44	Peter widzi naszego brata.	*
+45	Peter zna naszą siostrę.	*
+46	Peter pomaga naszemu bratu.	*
+47	Peter dziękuje naszej siostrze.	*
+48	Peter bawi się z naszym dzieckiem.	*
+49	To samochód naszego brata.	*
+50	Wasz brat jest miły.	Nominativ (mianownik), rodzaj męski, bez końcówki: forma zostaje „euer” (nic się tu nie traci, bo nie dochodzi żadna końcówka).
+51	Wasza siostra jest mądra.	Nominativ (mianownik), rodzaj żeński: końcówka -e, a „euer” traci swoje drugie e → eure (nie „euere”).
+52	Wasze dziecko bawi się na dworze.	Nominativ (mianownik), rodzaj nijaki, jak rodzaj męski, bez końcówki: euer.
+53	Wasi rodzice mieszkają w Berlinie.	Nominativ (mianownik), liczba mnoga: końcówka -e, a „euer” traci swoje drugie e → eure.
+54	Peter widzi waszego brata.	Akkusativ (biernik), rodzaj męski: końcówka -en, a „euer” traci swoje drugie e → euren (nie „eueren”).
+55	Peter zna waszą siostrę.	Akkusativ (biernik), rodzaj żeński: jak w mianowniku, końcówka -e → eure.
+56	Peter pomaga waszemu bratu.	Dativ (celownik), rodzaj męski: końcówka -em, a „euer” traci swoje drugie e → eurem.
+57	Peter dziękuje waszej siostrze.	Dativ (celownik), rodzaj żeński: końcówka -er, a „euer” traci swoje drugie e → eurer.
+58	Peter bawi się z waszym dzieckiem.	Dativ (celownik), rodzaj nijaki: jak rodzaj męski, końcówka -em, a „euer” traci swoje drugie e → eurem.
+59	To samochód waszego brata.	Genitiv (dopełniacz), rodzaj męski: końcówka -es, a „euer” traci swoje drugie e → eures.
+60	Ich brat jest miły.	*
+61	Ich siostra jest mądra.	*
+62	Ich dziecko bawi się na dworze.	*
+63	Ich rodzice mieszkają w Berlinie.	*
+64	Peter widzi ich brata.	*
+65	Peter zna ich siostrę.	*
+66	Peter pomaga ich bratu.	*
+67	Peter dziękuje ich siostrze.	*
+68	Peter bawi się z ich dzieckiem.	*
+69	To samochód ich brata.	*
