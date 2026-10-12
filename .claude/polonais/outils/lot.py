@@ -17,7 +17,7 @@ for l in io.open(reste, encoding="utf-8"):
         dernier = m.group(1)
         mot = m.group(2)
         if fichier == "themes.json":
-            mot = re.sub(r"^(der|die|das)(/(der|die|das))* ", "", mot)   # « der/das Ketchup »
+            mot = re.sub(r"^(der|die|das)(/(der|die|das))*( \(Pl\.\))? ", "", mot)   # « der/das Ketchup », « die (Pl.) Leute »
         cles[m.group(1)] = mot
         exemples[dernier] = l.strip()   # le mot allemand lui-meme est permis
 e = {}
