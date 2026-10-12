@@ -41,6 +41,7 @@ window.SCENE = {
    "fr": "le petit pois",
    "en": "the pea",
    "ar": "بازلاء",
+   "pl": "groszek",
    "latam": {
     "mot": "chícharo",
     "genre": "el",
@@ -86,6 +87,7 @@ window.SCENE = {
    "fr": "la laitue, la salade",
    "en": "the lettuce",
    "ar": "خس، سلطة",
+   "pl": "sałata, sałatka",
    "latam": null
   },
   {
@@ -127,6 +129,7 @@ window.SCENE = {
    "fr": "l'asperge",
    "en": "the asparagus",
    "ar": "هليون",
+   "pl": "szparag",
    "latam": null
   },
   {
@@ -168,6 +171,7 @@ window.SCENE = {
    "fr": "la citrouille, la courge",
    "en": "the pumpkin",
    "ar": "يقطين",
+   "pl": "dynia",
    "latam": null
   },
   {
@@ -209,6 +213,7 @@ window.SCENE = {
    "fr": "le poivron",
    "en": "the pepper",
    "ar": "فلفل حلو",
+   "pl": "papryka",
    "latam": null
   },
   {
@@ -250,6 +255,7 @@ window.SCENE = {
    "fr": "le maïs",
    "en": "the corn",
    "ar": "ذرة",
+   "pl": "kukurydza",
    "latam": null
   },
   {
@@ -299,6 +305,7 @@ window.SCENE = {
    "fr": "le champignon de Paris",
    "en": "the mushroom",
    "ar": "فطر",
+   "pl": "grzyb",
    "latam": null
   },
   {
@@ -340,6 +347,7 @@ window.SCENE = {
    "fr": "le haricot",
    "en": "the bean",
    "ar": "فاصوليا",
+   "pl": "fasola",
    "latam": {
     "mot": "frijol",
     "genre": "el",
@@ -385,6 +393,7 @@ window.SCENE = {
    "fr": "la blette",
    "en": "the chard",
    "ar": "سلق",
+   "pl": "boćwina, burak liściowy",
    "latam": null
   },
   {
@@ -426,6 +435,7 @@ window.SCENE = {
    "fr": "l'artichaut",
    "en": "the artichoke",
    "ar": "خرشوف",
+   "pl": "karczoch",
    "latam": null
   },
   {
@@ -467,6 +477,7 @@ window.SCENE = {
    "fr": "l'aubergine",
    "en": "the aubergine, the eggplant",
    "ar": "باذنجان",
+   "pl": "bakłażan",
    "latam": null
   },
   {
@@ -508,6 +519,7 @@ window.SCENE = {
    "fr": "le concombre",
    "en": "the cucumber",
    "ar": "خيار",
+   "pl": "ogórek",
    "latam": null
   },
   {
@@ -549,6 +561,7 @@ window.SCENE = {
    "fr": "la courgette",
    "en": "the courgette, the zucchini",
    "ar": "كوسة",
+   "pl": "cukinia",
    "latam": {
     "mot": "calabacita",
     "genre": "la",
@@ -594,6 +607,7 @@ window.SCENE = {
    "fr": "la tomate",
    "en": "tomato",
    "ar": "طماطم",
+   "pl": "pomidor",
    "latam": null
   },
   {
@@ -635,6 +649,7 @@ window.SCENE = {
    "fr": "l'épinard",
    "en": "the spinach",
    "ar": "سبانخ",
+   "pl": "szpinak",
    "latam": null
   },
   {
@@ -671,6 +686,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   },
   {
@@ -695,6 +711,7 @@ window.SCENE = {
    "fr": "la tomate",
    "en": "tomato",
    "ar": "طماطم",
+   "pl": "pomidor",
    "latam": null
   }
  ],
@@ -1101,6 +1118,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na feira"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Anna bierze kiść pomidorów ze straganu z warzywami: groszek, sałata, szparagi, dynie, papryka, kukurydza, grzyby, fasolka, boćwina, karczochy, bakłażany, ogórki, cukinie, pomidory i szpinak.",
+    "consigne": "Dotknij owocu, warzywa albo skrzynki.",
+    "nom_vue": "Warzywa owocowe i liściaste",
+    "autre_vue": "→ Owoce z okolicy"
+   },
+   "couches": {
+    "A1": "Na targu"
    },
    "questions": {}
   }

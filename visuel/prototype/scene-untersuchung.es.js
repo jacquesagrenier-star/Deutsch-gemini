@@ -53,6 +53,7 @@ window.SCENE = {
    "fr": "le patient",
    "en": "the patient",
    "ar": "مريض",
+   "pl": "pacjent",
    "latam": null
   },
   {
@@ -77,6 +78,7 @@ window.SCENE = {
    "fr": "la tête",
    "en": "the head",
    "ar": "رأس",
+   "pl": "głowa",
    "latam": null
   },
   {
@@ -101,6 +103,7 @@ window.SCENE = {
    "fr": "le cou",
    "en": "the neck",
    "ar": "رقبة، حلق",
+   "pl": "szyja, gardło",
    "latam": null
   },
   {
@@ -131,6 +134,7 @@ window.SCENE = {
    "fr": "l'épaule",
    "en": "the shoulder",
    "ar": "كتف",
+   "pl": "ramię, bark",
    "latam": null
   },
   {
@@ -155,6 +159,7 @@ window.SCENE = {
    "fr": "la poitrine",
    "en": "the chest",
    "ar": "صدر",
+   "pl": "klatka piersiowa, pierś",
    "latam": null
   },
   {
@@ -179,6 +184,7 @@ window.SCENE = {
    "fr": "le ventre",
    "en": "the belly, the tummy",
    "ar": "بطن",
+   "pl": "brzuch",
    "latam": null
   },
   {
@@ -203,6 +209,7 @@ window.SCENE = {
    "fr": "le nombril",
    "en": "the belly button",
    "ar": "سُرّة",
+   "pl": "pępek",
    "latam": null
   },
   {
@@ -233,6 +240,7 @@ window.SCENE = {
    "fr": "le bras",
    "en": "the arm",
    "ar": "ذراع",
+   "pl": "ręka, ramię",
    "latam": null
   },
   {
@@ -263,6 +271,7 @@ window.SCENE = {
    "fr": "le bras",
    "en": "the arm",
    "ar": "ذراع",
+   "pl": "ręka, ramię",
    "latam": null
   },
   {
@@ -293,6 +302,7 @@ window.SCENE = {
    "fr": "le coude",
    "en": "the elbow",
    "ar": "مرفق، كوع",
+   "pl": "łokieć",
    "latam": null
   },
   {
@@ -323,6 +333,7 @@ window.SCENE = {
    "fr": "le poignet, la poupée",
    "en": "the wrist, the doll",
    "ar": "معصم",
+   "pl": "nadgarstek",
    "latam": null
   },
   {
@@ -347,6 +358,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -371,6 +383,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -401,6 +414,7 @@ window.SCENE = {
    "fr": "la cuisse",
    "en": "the thigh",
    "ar": "فخذ",
+   "pl": "udo",
    "latam": null
   },
   {
@@ -443,6 +457,7 @@ window.SCENE = {
    "fr": "le caleçon, le slip",
    "en": "the underpants",
    "ar": "سروال داخلي",
+   "pl": "majtki, slipy",
    "latam": null
   },
   {
@@ -473,6 +488,7 @@ window.SCENE = {
    "fr": "le genou",
    "en": "the knee",
    "ar": "ركبة",
+   "pl": "kolano",
    "latam": null
   },
   {
@@ -497,6 +513,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "ar": "ساق",
+   "pl": "noga",
    "latam": null
   },
   {
@@ -521,6 +538,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "ar": "ساق",
+   "pl": "noga",
    "latam": null
   },
   {
@@ -545,6 +563,7 @@ window.SCENE = {
    "fr": "le pied",
    "en": "the foot",
    "ar": "قدم",
+   "pl": "stopa",
    "latam": null
   },
   {
@@ -569,6 +588,7 @@ window.SCENE = {
    "fr": "le pied",
    "en": "the foot",
    "ar": "قدم",
+   "pl": "stopa",
    "latam": null
   },
   {
@@ -614,6 +634,7 @@ window.SCENE = {
    "fr": "la médecin",
    "en": "the doctor (woman)",
    "ar": "طبيبة",
+   "pl": "lekarka",
    "latam": null
   },
   {
@@ -638,6 +659,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -662,6 +684,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -692,6 +715,7 @@ window.SCENE = {
    "fr": "le stéthoscope",
    "en": "the stethoscope",
    "ar": "سمّاعة الطبيب",
+   "pl": "stetoskop",
    "latam": null
   },
   {
@@ -728,6 +752,7 @@ window.SCENE = {
    "fr": "la balance (pèse-personne)",
    "en": "the scales",
    "ar": "ميزان",
+   "pl": "waga (kuchenna)",
    "latam": null
   },
   {
@@ -752,6 +777,7 @@ window.SCENE = {
    "fr": "le mur",
    "en": "the wall",
    "ar": "جدار",
+   "pl": "ściana",
    "latam": null
   },
   {
@@ -776,6 +802,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "ar": "أرض، تربة",
+   "pl": "ziemia, podłoże",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -805,6 +832,7 @@ window.SCENE = {
    "fr": "les cheveux",
    "en": "hair",
    "ar": "شعر",
+   "pl": "włos, włosy",
    "latam": null
   },
   {
@@ -830,6 +858,7 @@ window.SCENE = {
    "fr": "les cheveux",
    "en": "hair",
    "ar": "شعر",
+   "pl": "włos, włosy",
    "latam": null
   },
   {
@@ -855,6 +884,7 @@ window.SCENE = {
    "fr": "le visage",
    "en": "the face",
    "ar": "وجه",
+   "pl": "twarz",
    "latam": null
   },
   {
@@ -880,6 +910,7 @@ window.SCENE = {
    "fr": "le front",
    "en": "the forehead",
    "ar": "جبهة",
+   "pl": "czoło",
    "latam": null
   },
   {
@@ -905,6 +936,7 @@ window.SCENE = {
    "fr": "le sourcil",
    "en": "the eyebrow",
    "ar": "حاجب",
+   "pl": "brew",
    "latam": null
   },
   {
@@ -930,6 +962,7 @@ window.SCENE = {
    "fr": "le sourcil",
    "en": "the eyebrow",
    "ar": "حاجب",
+   "pl": "brew",
    "latam": null
   },
   {
@@ -955,6 +988,7 @@ window.SCENE = {
    "fr": "l'œil",
    "en": "the eye",
    "ar": "عين",
+   "pl": "oko",
    "latam": null
   },
   {
@@ -980,6 +1014,7 @@ window.SCENE = {
    "fr": "l'œil",
    "en": "the eye",
    "ar": "عين",
+   "pl": "oko",
    "latam": null
   },
   {
@@ -1005,6 +1040,7 @@ window.SCENE = {
    "fr": "l'oreille",
    "en": "the ear",
    "ar": "أذن",
+   "pl": "ucho",
    "latam": null
   },
   {
@@ -1030,6 +1066,7 @@ window.SCENE = {
    "fr": "le nez",
    "en": "the nose",
    "ar": "أنف",
+   "pl": "nos",
    "latam": null
   },
   {
@@ -1055,6 +1092,7 @@ window.SCENE = {
    "fr": "la joue",
    "en": "the cheek",
    "ar": "خدّ",
+   "pl": "policzek",
    "latam": null
   },
   {
@@ -1080,6 +1118,7 @@ window.SCENE = {
    "fr": "la joue",
    "en": "the cheek",
    "ar": "خدّ",
+   "pl": "policzek",
    "latam": null
   },
   {
@@ -1105,6 +1144,7 @@ window.SCENE = {
    "fr": "la bouche",
    "en": "the mouth",
    "ar": "فم",
+   "pl": "usta",
    "latam": null
   },
   {
@@ -1130,6 +1170,7 @@ window.SCENE = {
    "fr": "la dent",
    "en": "the tooth",
    "ar": "سنّ",
+   "pl": "ząb",
    "latam": null
   },
   {
@@ -1155,6 +1196,7 @@ window.SCENE = {
    "fr": "la lèvre",
    "en": "the lip",
    "ar": "شفة",
+   "pl": "warga",
    "latam": null
   },
   {
@@ -1180,6 +1222,7 @@ window.SCENE = {
    "fr": "le menton",
    "en": "the chin",
    "ar": "ذقن",
+   "pl": "podbródek, broda",
    "latam": null
   },
   {
@@ -1205,6 +1248,7 @@ window.SCENE = {
    "fr": "le doigt",
    "en": "the finger",
    "ar": "إصبع",
+   "pl": "palec",
    "latam": null
   },
   {
@@ -1230,6 +1274,7 @@ window.SCENE = {
    "fr": "le doigt",
    "en": "the finger",
    "ar": "إصبع",
+   "pl": "palec",
    "latam": null
   },
   {
@@ -1255,6 +1300,7 @@ window.SCENE = {
    "fr": "l'ongle",
    "en": "the nail",
    "ar": "ظفر",
+   "pl": "paznokieć",
    "latam": null
   },
   {
@@ -1280,6 +1326,7 @@ window.SCENE = {
    "fr": "la cheville",
    "en": "the ankle",
    "ar": "كاحل",
+   "pl": "kostka (u nogi)",
    "latam": null
   },
   {
@@ -1305,6 +1352,7 @@ window.SCENE = {
    "fr": "la cheville",
    "en": "the ankle",
    "ar": "كاحل",
+   "pl": "kostka (u nogi)",
    "latam": null
   },
   {
@@ -1330,6 +1378,7 @@ window.SCENE = {
    "fr": "l'orteil",
    "en": "the toe",
    "ar": "إصبع القدم",
+   "pl": "palec u nogi",
    "latam": null
   },
   {
@@ -1355,6 +1404,7 @@ window.SCENE = {
    "fr": "l'orteil",
    "en": "the toe",
    "ar": "إصبع القدم",
+   "pl": "palec u nogi",
    "latam": null
   },
   {
@@ -1380,6 +1430,7 @@ window.SCENE = {
    "fr": "l'ongle",
    "en": "the nail",
    "ar": "ظفر",
+   "pl": "paznokieć",
    "latam": null
   },
   {
@@ -1405,6 +1456,7 @@ window.SCENE = {
    "fr": "l'ongle",
    "en": "the nail",
    "ar": "ظفر",
+   "pl": "paznokieć",
    "latam": null
   }
  ],
@@ -2098,6 +2150,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "O corpo humano"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Mark stoi w granatowych bokserkach, boso, a lekarka osłuchuje mu klatkę piersiową; przy zielonej ścianie waga ze wzrostomierzem.",
+    "consigne": "Dotknij jakiejś części ciała Marka. Dotknij jego twarzy, dłoni albo stóp, żeby zobaczyć je z bliska.",
+    "nom_vue": "Mark, z przodu",
+    "autre_vue": "↻ Obróć Marka"
+   },
+   "couches": {
+    "A1": "Ciało człowieka"
    },
    "questions": {}
   }

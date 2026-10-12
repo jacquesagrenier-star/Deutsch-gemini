@@ -41,6 +41,7 @@ window.SCENE = {
    "fr": "la framboise",
    "en": "the raspberry",
    "ar": "توت العليق",
+   "pl": "malina",
    "latam": null
   },
   {
@@ -82,6 +83,7 @@ window.SCENE = {
    "fr": "la myrtille, le bleuet",
    "en": "the blueberry",
    "ar": "توت أزرق",
+   "pl": "borówka, jagoda",
    "latam": null
   },
   {
@@ -123,6 +125,7 @@ window.SCENE = {
    "fr": "le raisin",
    "en": "the grape",
    "ar": "عنب",
+   "pl": "winogrono",
    "latam": null
   },
   {
@@ -164,6 +167,7 @@ window.SCENE = {
    "fr": "la prune",
    "en": "the plum",
    "ar": "برقوق",
+   "pl": "śliwka",
    "latam": null
   },
   {
@@ -205,6 +209,7 @@ window.SCENE = {
    "fr": "la rhubarbe",
    "en": "the rhubarb",
    "ar": "راوند",
+   "pl": "rabarbar",
    "latam": null
   },
   {
@@ -246,6 +251,7 @@ window.SCENE = {
    "fr": "la noix",
    "en": "the walnut",
    "ar": "جوز، مكسّرات",
+   "pl": "orzech",
    "latam": null
   },
   {
@@ -287,6 +293,7 @@ window.SCENE = {
    "fr": "la poire",
    "en": "the pear",
    "ar": "كمثرى",
+   "pl": "gruszka",
    "latam": null
   },
   {
@@ -328,6 +335,7 @@ window.SCENE = {
    "fr": "la groseille",
    "en": "the redcurrant",
    "ar": "كشمش",
+   "pl": "porzeczka",
    "latam": null
   },
   {
@@ -369,6 +377,7 @@ window.SCENE = {
    "fr": "la groseille à maquereau",
    "en": "the gooseberry",
    "ar": "عنب الثعلب",
+   "pl": "agrest",
    "latam": null
   },
   {
@@ -410,6 +419,7 @@ window.SCENE = {
    "fr": "la cerise",
    "en": "the cherry",
    "ar": "كرز",
+   "pl": "wiśnia, czereśnia",
    "latam": null
   },
   {
@@ -451,6 +461,7 @@ window.SCENE = {
    "fr": "la mûre",
    "en": "the blackberry",
    "ar": "توت العلّيق الأسود",
+   "pl": "jeżyna",
    "latam": null
   },
   {
@@ -492,6 +503,7 @@ window.SCENE = {
    "fr": "l'abricot",
    "en": "the apricot",
    "ar": "مشمش",
+   "pl": "morela",
    "latam": {
     "mot": "chabacano",
     "genre": "el",
@@ -537,6 +549,7 @@ window.SCENE = {
    "fr": "la fraise",
    "en": "strawberry",
    "ar": "فراولة",
+   "pl": "truskawka",
    "latam": null
   },
   {
@@ -578,6 +591,7 @@ window.SCENE = {
    "fr": "la pêche",
    "en": "the peach",
    "ar": "خوخ",
+   "pl": "brzoskwinia",
    "latam": {
     "mot": "durazno",
     "genre": "el",
@@ -623,6 +637,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "ar": "تفاحة",
+   "pl": "jabłko",
    "latam": null
   },
   {
@@ -653,6 +668,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   },
   {
@@ -677,6 +693,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "ar": "تفاحة",
+   "pl": "jabłko",
    "latam": null
   }
  ],
@@ -1075,6 +1092,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na feira"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Anna bierze jabłko ze straganu z owocami z okolicy: maliny, borówki, winogrona, śliwki, rabarbar, orzechy, gruszki, agrest, czereśnie, jeżyny, morele, truskawki, brzoskwinie i jabłka, każde w swojej skrzynce.",
+    "consigne": "Dotknij owocu, warzywa albo skrzynki.",
+    "nom_vue": "Owoce z okolicy",
+    "autre_vue": "→ Owoce z południa"
+   },
+   "couches": {
+    "A1": "Na targu"
    },
    "questions": {}
   }

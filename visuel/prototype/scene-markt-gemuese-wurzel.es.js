@@ -41,6 +41,7 @@ window.SCENE = {
    "fr": "la betterave",
    "en": "the beetroot",
    "ar": "شمندر",
+   "pl": "burak ćwikłowy",
    "latam": {
     "mot": "betabel",
     "genre": "el",
@@ -86,6 +87,7 @@ window.SCENE = {
    "fr": "le chou-fleur",
    "en": "the cauliflower",
    "ar": "قرنبيط",
+   "pl": "kalafior",
    "latam": null
   },
   {
@@ -127,6 +129,7 @@ window.SCENE = {
    "fr": "le céleri",
    "en": "the celery",
    "ar": "كرفس",
+   "pl": "seler",
    "latam": null
   },
   {
@@ -168,6 +171,7 @@ window.SCENE = {
    "fr": "la pomme de terre",
    "en": "potato",
    "ar": "بطاطس",
+   "pl": "ziemniak",
    "latam": {
     "mot": "papa",
     "genre": "la",
@@ -213,6 +217,7 @@ window.SCENE = {
    "fr": "le chou-rave",
    "en": "the kohlrabi",
    "ar": "كرنب أبو ركبة (كولرابي)",
+   "pl": "kalarepa",
    "latam": null
   },
   {
@@ -254,6 +259,7 @@ window.SCENE = {
    "fr": "l'oignon",
    "en": "onion",
    "ar": "بصل",
+   "pl": "cebula",
    "latam": null
   },
   {
@@ -295,6 +301,7 @@ window.SCENE = {
    "fr": "le chou",
    "en": "the cabbage",
    "ar": "ملفوف",
+   "pl": "kapusta",
    "latam": null
   },
   {
@@ -336,6 +343,7 @@ window.SCENE = {
    "fr": "le poireau",
    "en": "the leek",
    "ar": "كرّاث",
+   "pl": "por",
    "latam": null
   },
   {
@@ -377,6 +385,7 @@ window.SCENE = {
    "fr": "la carotte",
    "en": "the carrot",
    "ar": "جزر",
+   "pl": "marchewka",
    "latam": null
   },
   {
@@ -418,6 +427,7 @@ window.SCENE = {
    "fr": "le chou de Bruxelles",
    "en": "the Brussels sprout",
    "ar": "كرنب بروكسل",
+   "pl": "brukselka",
    "latam": null
   },
   {
@@ -459,6 +469,7 @@ window.SCENE = {
    "fr": "le fenouil",
    "en": "the fennel",
    "ar": "شمر",
+   "pl": "koper włoski, fenkuł",
    "latam": null
   },
   {
@@ -500,6 +511,7 @@ window.SCENE = {
    "fr": "le brocoli",
    "en": "the broccoli",
    "ar": "بروكلي",
+   "pl": "brokuł",
    "latam": null
   },
   {
@@ -541,6 +553,7 @@ window.SCENE = {
    "fr": "l'ail",
    "en": "the garlic",
    "ar": "ثوم",
+   "pl": "czosnek",
    "latam": null
   },
   {
@@ -582,6 +595,7 @@ window.SCENE = {
    "fr": "le radis",
    "en": "the radish",
    "ar": "فجل أحمر",
+   "pl": "rzodkiewka",
    "latam": null
   },
   {
@@ -623,6 +637,7 @@ window.SCENE = {
    "fr": "la patate douce",
    "en": "the sweet potato",
    "ar": "بطاطا حلوة",
+   "pl": "batat",
    "latam": {
     "mot": "camote",
     "genre": "el",
@@ -663,6 +678,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   },
   {
@@ -687,6 +703,7 @@ window.SCENE = {
    "fr": "le radis",
    "en": "the radish",
    "ar": "فجل أحمر",
+   "pl": "rzodkiewka",
    "latam": null
   }
  ],
@@ -1105,6 +1122,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na feira"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Anna bierze pęczek rzodkiewek ze straganu z warzywami: buraki, kalafiory, seler, ziemniaki, kalarepy, cebula, kapusta, pory, marchew, brukselka, koper włoski, brokuły, czosnek, rzodkiewki i bataty.",
+    "consigne": "Dotknij owocu, warzywa albo skrzynki.",
+    "nom_vue": "Warzywa korzeniowe i kapustne",
+    "autre_vue": "→ Inne warzywa"
+   },
+   "couches": {
+    "A1": "Na targu"
    },
    "questions": {}
   }

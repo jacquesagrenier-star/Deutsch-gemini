@@ -8377,3 +8377,15 @@ langues, 39 textes turcs recopies de l'anglais, 3 explications persanes finissan
 francais). Traduits et poses en en/tr/uk/fa/pt/ar (fr/de inchanges, bonne reponse toujours
 parmi les options). Nouveau controle permanent : python tests/trous_francais.py.
 Traductions pl/ru pretes dans ~/.wortando/trous-traduction (a poser avec ces langues).
+
+Suite (v778) : le polonais, 8e langue d'interface, au niveau des autres (PR #13 fusionnee,
+phase 1 : interface, grammaire, cablage, corpus A1-A2, scenes ; phase 2 posee a la fusion).
+Corpus 8 052/8 052 (41 lots B1-C1, 5 966 cartes), examen 720 champs, exercices de grammaire
+2 317/2 317 (40 jeux), exercices d'articles 219 textes, prononciation 25 regles (73
+exemples), dix scenes reconstruites avec traduction_pl. Les 324 champs d'exercices que la
+v777 avait traduits sans pl (trous-traduction) poses en polonais ; trous_francais.py
+controle aussi pl : 0. Relecture d'un echantillon de 315 textes par Fable : 94,6 % bon,
+1 faux (treffen, « sie » = ją, pas ich) et 16 a ameliorer, tous corriges (27 remplacements,
+dont « przyimek dwuprzypadkowy » pour les 9 Wechselpraepositionen). Verifie : les dix
+fichiers de donnees identiques a main hors champs pl ; verifier.py, syntaxe.js,
+voix_couverture.py ; parcours allemand et espagnol a 0 ecart. Non relu par un natif.

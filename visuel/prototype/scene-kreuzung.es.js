@@ -33,6 +33,7 @@ window.SCENE = {
    "fr": "l'immeuble, le bâtiment",
    "en": "the building",
    "ar": "مبنى",
+   "pl": "budynek",
    "latam": null
   },
   {
@@ -66,6 +67,7 @@ window.SCENE = {
    "fr": "la rue",
    "en": "the street",
    "ar": "شارع",
+   "pl": "ulica",
    "latam": null
   },
   {
@@ -90,6 +92,7 @@ window.SCENE = {
    "fr": "le trottoir",
    "en": "the pavement",
    "ar": "رصيف المشاة",
+   "pl": "chodnik",
    "latam": {
     "mot": "banqueta",
     "genre": "la",
@@ -132,6 +135,7 @@ window.SCENE = {
    "fr": "la boulangerie",
    "en": "the bakery",
    "ar": "مخبز",
+   "pl": "piekarnia",
    "latam": null
   },
   {
@@ -178,6 +182,7 @@ window.SCENE = {
    "fr": "le pain",
    "en": "bread",
    "ar": "خبز",
+   "pl": "chleb",
    "latam": null
   },
   {
@@ -202,6 +207,7 @@ window.SCENE = {
    "fr": "la pharmacie",
    "en": "the chemist's",
    "ar": "صيدلية",
+   "pl": "apteka",
    "latam": null
   },
   {
@@ -226,6 +232,7 @@ window.SCENE = {
    "fr": "le bureau de poste",
    "en": "the post office",
    "ar": "بريد، مكتب البريد",
+   "pl": "poczta",
    "latam": null
   },
   {
@@ -250,6 +257,7 @@ window.SCENE = {
    "fr": "la boîte aux lettres",
    "en": "the letterbox",
    "ar": "صندوق البريد",
+   "pl": "skrzynka pocztowa",
    "latam": null
   },
   {
@@ -291,6 +299,7 @@ window.SCENE = {
    "fr": "le café (l'établissement)",
    "en": "the café",
    "ar": "مقهى",
+   "pl": "kawiarnia",
    "latam": null
   },
   {
@@ -315,6 +324,7 @@ window.SCENE = {
    "fr": "le store (auvent)",
    "en": "the awning",
    "ar": "مظلّة (قماشية)",
+   "pl": "markiza",
    "latam": null
   },
   {
@@ -339,6 +349,7 @@ window.SCENE = {
    "fr": "l'autobus",
    "en": "the bus",
    "ar": "حافلة",
+   "pl": "autobus",
    "latam": null
   },
   {
@@ -363,6 +374,7 @@ window.SCENE = {
    "fr": "l'abribus",
    "en": "the bus shelter",
    "ar": "مظلّة موقف الحافلة",
+   "pl": "wiata przystankowa",
    "latam": null
   },
   {
@@ -396,6 +408,7 @@ window.SCENE = {
    "fr": "l'arrêt",
    "en": "the stop",
    "ar": "موقف (حافلات)",
+   "pl": "przystanek",
    "latam": null
   },
   {
@@ -420,6 +433,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   },
   {
@@ -458,6 +472,7 @@ window.SCENE = {
    "fr": "la voiture",
    "en": "the car",
    "ar": "سيارة",
+   "pl": "samochód",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -500,6 +515,7 @@ window.SCENE = {
    "fr": "la voiture",
    "en": "the car",
    "ar": "سيارة",
+   "pl": "samochód",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -528,6 +544,7 @@ window.SCENE = {
    "fr": "le parcmètre",
    "en": "the parking meter",
    "ar": "عدّاد الوقوف",
+   "pl": "parkometr",
    "latam": null
   },
   {
@@ -552,6 +569,7 @@ window.SCENE = {
    "fr": "le panneau",
    "en": "the sign",
    "ar": "إشارة مرور (لافتة)",
+   "pl": "znak drogowy",
    "latam": null
   },
   {
@@ -576,6 +594,7 @@ window.SCENE = {
    "fr": "le panneau",
    "en": "the sign",
    "ar": "إشارة مرور (لافتة)",
+   "pl": "znak drogowy",
    "latam": null
   },
   {
@@ -600,6 +619,7 @@ window.SCENE = {
    "fr": "le feu de circulation",
    "en": "the traffic light",
    "ar": "إشارة مرور",
+   "pl": "sygnalizacja świetlna, światła",
    "latam": null
   },
   {
@@ -624,6 +644,7 @@ window.SCENE = {
    "fr": "le feu de circulation",
    "en": "the traffic light",
    "ar": "إشارة مرور",
+   "pl": "sygnalizacja świetlna, światła",
    "latam": null
   },
   {
@@ -657,6 +678,7 @@ window.SCENE = {
    "fr": "la camionnette",
    "en": "the van",
    "ar": "شاحنة توصيل صغيرة",
+   "pl": "samochód dostawczy",
    "latam": {
     "mot": "camioneta",
     "genre": "la",
@@ -685,6 +707,7 @@ window.SCENE = {
    "fr": "le passage piéton",
    "en": "the zebra crossing",
    "ar": "ممرّ المشاة",
+   "pl": "przejście dla pieszych, zebra",
    "latam": {
     "mot": "paso peatonal",
     "genre": "el",
@@ -713,6 +736,7 @@ window.SCENE = {
    "fr": "le passage piéton",
    "en": "the zebra crossing",
    "ar": "ممرّ المشاة",
+   "pl": "przejście dla pieszych, zebra",
    "latam": {
     "mot": "paso peatonal",
     "genre": "el",
@@ -758,6 +782,7 @@ window.SCENE = {
    "fr": "le piéton",
    "en": "the pedestrian",
    "ar": "راجل، ماشٍ",
+   "pl": "pieszy",
    "latam": null
   },
   {
@@ -791,6 +816,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   },
   {
@@ -829,6 +855,7 @@ window.SCENE = {
    "fr": "le taxi",
    "en": "the taxi",
    "ar": "سيارة أجرة",
+   "pl": "taksówka",
    "latam": null
   },
   {
@@ -853,6 +880,7 @@ window.SCENE = {
    "fr": "le tramway",
    "en": "the tram",
    "ar": "ترام",
+   "pl": "tramwaj",
    "latam": null
   },
   {
@@ -877,6 +905,7 @@ window.SCENE = {
    "fr": "la moto",
    "en": "the motorbike",
    "ar": "درّاجة نارية",
+   "pl": "motocykl",
    "latam": null
   },
   {
@@ -901,6 +930,7 @@ window.SCENE = {
    "fr": "la piste cyclable",
    "en": "the cycle lane",
    "ar": "مسار الدرّاجات",
+   "pl": "ścieżka rowerowa",
    "latam": {
     "mot": "ciclovía",
     "genre": "la",
@@ -946,6 +976,7 @@ window.SCENE = {
    "fr": "le cycliste",
    "en": "the cyclist",
    "ar": "راكب دراجة",
+   "pl": "rowerzysta",
    "latam": null
   },
   {
@@ -970,6 +1001,7 @@ window.SCENE = {
    "fr": "le casque",
    "en": "the helmet",
    "ar": "خوذة",
+   "pl": "kask",
    "latam": null
   },
   {
@@ -994,6 +1026,7 @@ window.SCENE = {
    "fr": "le kiosque",
    "en": "the newsstand",
    "ar": "كشك",
+   "pl": "kiosk",
    "latam": null
   },
   {
@@ -1018,6 +1051,7 @@ window.SCENE = {
    "fr": "la bouteille",
    "en": "bottle",
    "ar": "زجاجة",
+   "pl": "butelka",
    "latam": null
   },
   {
@@ -1042,6 +1076,7 @@ window.SCENE = {
    "fr": "la boîte aux lettres",
    "en": "the letterbox",
    "ar": "صندوق البريد",
+   "pl": "skrzynka pocztowa",
    "latam": null
   },
   {
@@ -1066,6 +1101,7 @@ window.SCENE = {
    "fr": "le réverbère",
    "en": "the street lamp",
    "ar": "عمود إنارة",
+   "pl": "latarnia uliczna",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -1116,6 +1152,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   },
   {
@@ -1140,6 +1177,7 @@ window.SCENE = {
    "fr": "le feu de circulation",
    "en": "the traffic light",
    "ar": "إشارة مرور",
+   "pl": "sygnalizacja świetlna, światła",
    "latam": null
   },
   {
@@ -1173,6 +1211,7 @@ window.SCENE = {
    "fr": "le support à vélos",
    "en": "the bike rack",
    "ar": "حامل الدرّاجات",
+   "pl": "stojak na rowery",
    "latam": {
     "mot": "bicicletero",
     "genre": "el",
@@ -1708,6 +1747,16 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Substantivos e artigos"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Skrzyżowanie w Berlinie widziane z pierwszego piętra: piekarnia, apteka, poczta i kawiarnia, przystanek autobusowy, tramwaj, taksówka, piesi na przejściu, rowerzysta na czerwonej ścieżce rowerowej; na pierwszym planie Anna szuka drogi w telefonie, między kioskiem, skrzynką pocztową a rowerami.",
+    "consigne": "Anna szuka drogi w Berlinie. Dotknij budynku, pojazdu albo osoby."
+   },
+   "couches": {
+    "A1": "Rzeczowniki i rodzajniki"
    },
    "questions": {}
   }

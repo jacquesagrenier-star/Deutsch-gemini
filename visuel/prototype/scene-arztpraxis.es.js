@@ -24,6 +24,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "ar": "ساعة حائط",
+   "pl": "zegar",
    "latam": null
   },
   {
@@ -57,6 +58,7 @@ window.SCENE = {
    "fr": "le poster",
    "en": "the poster",
    "ar": "ملصق، بوستر",
+   "pl": "plakat",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "fr": "la fenêtre",
    "en": "the window",
    "ar": "نافذة",
+   "pl": "okno",
    "latam": null
   },
   {
@@ -105,6 +108,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "ar": "نبات",
+   "pl": "roślina",
    "latam": null
   },
   {
@@ -129,6 +133,7 @@ window.SCENE = {
    "fr": "la porte",
    "en": "the door",
    "ar": "باب",
+   "pl": "drzwi",
    "latam": null
   },
   {
@@ -153,6 +158,7 @@ window.SCENE = {
    "fr": "la veste",
    "en": "the jacket",
    "ar": "سترة، جاكيت",
+   "pl": "kurtka",
    "latam": null
   },
   {
@@ -198,6 +204,7 @@ window.SCENE = {
    "fr": "le patient",
    "en": "the patient",
    "ar": "مريض",
+   "pl": "pacjent",
    "latam": null
   },
   {
@@ -222,6 +229,7 @@ window.SCENE = {
    "fr": "le tee-shirt",
    "en": "the T-shirt",
    "ar": "قميص قصير الأكمام (تي شيرت)",
+   "pl": "T-shirt, koszulka",
    "latam": null
   },
   {
@@ -246,6 +254,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "ar": "بنطال",
+   "pl": "spodnie",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "fr": "le pansement",
    "en": "the plaster",
    "ar": "لصقة جروح",
+   "pl": "plaster",
    "latam": {
     "mot": "curita",
     "genre": "la",
@@ -304,6 +314,7 @@ window.SCENE = {
    "fr": "le genou",
    "en": "the knee",
    "ar": "ركبة",
+   "pl": "kolano",
    "latam": null
   },
   {
@@ -334,6 +345,7 @@ window.SCENE = {
    "fr": "l'épaule",
    "en": "the shoulder",
    "ar": "كتف",
+   "pl": "ramię, bark",
    "latam": null
   },
   {
@@ -364,6 +376,7 @@ window.SCENE = {
    "fr": "le coude",
    "en": "the elbow",
    "ar": "مرفق، كوع",
+   "pl": "łokieć",
    "latam": null
   },
   {
@@ -388,6 +401,7 @@ window.SCENE = {
    "fr": "la poitrine",
    "en": "the chest",
    "ar": "صدر",
+   "pl": "klatka piersiowa, pierś",
    "latam": null
   },
   {
@@ -412,6 +426,7 @@ window.SCENE = {
    "fr": "le ventre",
    "en": "the belly, the tummy",
    "ar": "بطن",
+   "pl": "brzuch",
    "latam": null
   },
   {
@@ -442,6 +457,7 @@ window.SCENE = {
    "fr": "le bras",
    "en": "the arm",
    "ar": "ذراع",
+   "pl": "ręka, ramię",
    "latam": null
   },
   {
@@ -472,6 +488,7 @@ window.SCENE = {
    "fr": "le bras",
    "en": "the arm",
    "ar": "ذراع",
+   "pl": "ręka, ramię",
    "latam": null
   },
   {
@@ -496,6 +513,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -520,6 +538,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -544,6 +563,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "ar": "ساق",
+   "pl": "noga",
    "latam": null
   },
   {
@@ -568,6 +588,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "ar": "ساق",
+   "pl": "noga",
    "latam": null
   },
   {
@@ -592,6 +613,7 @@ window.SCENE = {
    "fr": "le pied",
    "en": "the foot",
    "ar": "قدم",
+   "pl": "stopa",
    "latam": null
   },
   {
@@ -616,6 +638,7 @@ window.SCENE = {
    "fr": "le pied",
    "en": "the foot",
    "ar": "قدم",
+   "pl": "stopa",
    "latam": null
   },
   {
@@ -667,6 +690,7 @@ window.SCENE = {
    "fr": "la médecin",
    "en": "the doctor (woman)",
    "ar": "طبيبة",
+   "pl": "lekarka",
    "latam": null
   },
   {
@@ -691,6 +715,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "ar": "بنطال",
+   "pl": "spodnie",
    "latam": null
   },
   {
@@ -715,6 +740,7 @@ window.SCENE = {
    "fr": "la chaussure",
    "en": "the shoe",
    "ar": "حذاء",
+   "pl": "but",
    "latam": null
   },
   {
@@ -739,6 +765,7 @@ window.SCENE = {
    "fr": "le pansement, le bandage",
    "en": "the bandage",
    "ar": "ضمادة؛ اتحاد، جمعية",
+   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
    "latam": null
   },
   {
@@ -775,6 +802,7 @@ window.SCENE = {
    "fr": "le stéthoscope",
    "en": "the stethoscope",
    "ar": "سمّاعة الطبيب",
+   "pl": "stetoskop",
    "latam": null
   },
   {
@@ -799,6 +827,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -823,6 +852,7 @@ window.SCENE = {
    "fr": "la main",
    "en": "the hand",
    "ar": "يد",
+   "pl": "ręka, dłoń",
    "latam": null
   },
   {
@@ -847,6 +877,7 @@ window.SCENE = {
    "fr": "le tabouret",
    "en": "the stool",
    "ar": "مقعد بلا ظهر",
+   "pl": "taboret",
    "latam": null
   },
   {
@@ -871,6 +902,7 @@ window.SCENE = {
    "fr": "la seringue",
    "en": "the syringe",
    "ar": "حقنة",
+   "pl": "zastrzyk, strzykawka",
    "latam": null
   },
   {
@@ -895,6 +927,7 @@ window.SCENE = {
    "fr": "le médicament",
    "en": "the medicine",
    "ar": "دواء",
+   "pl": "lek",
    "latam": null
   },
   {
@@ -919,6 +952,7 @@ window.SCENE = {
    "fr": "la caisse",
    "en": "the checkout",
    "ar": "علبة",
+   "pl": "pudełko",
    "latam": null
   },
   {
@@ -943,6 +977,7 @@ window.SCENE = {
    "fr": "le gant",
    "en": "the glove",
    "ar": "قفاز",
+   "pl": "rękawiczka",
    "latam": null
   },
   {
@@ -967,6 +1002,7 @@ window.SCENE = {
    "fr": "le bureau (meuble)",
    "en": "the desk",
    "ar": "مكتب (قطعة أثاث)",
+   "pl": "biurko",
    "latam": null
   },
   {
@@ -1005,6 +1041,7 @@ window.SCENE = {
    "fr": "l'écran",
    "en": "the screen",
    "ar": "شاشة",
+   "pl": "ekran",
    "latam": null
   },
   {
@@ -1029,6 +1066,7 @@ window.SCENE = {
    "fr": "le mouchoir",
    "en": "the handkerchief, the tissue",
    "ar": "منديل",
+   "pl": "chusteczka",
    "latam": null
   },
   {
@@ -1062,6 +1100,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "ar": "كوب زجاجي",
+   "pl": "szklanka, szkło",
    "latam": null
   },
   {
@@ -1086,6 +1125,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "ar": "لوحة المفاتيح",
+   "pl": "klawiatura",
    "latam": null
   },
   {
@@ -1110,6 +1150,7 @@ window.SCENE = {
    "fr": "la souris",
    "en": "the mouse",
    "ar": "فأر",
+   "pl": "mysz",
    "latam": null
   },
   {
@@ -1134,6 +1175,7 @@ window.SCENE = {
    "fr": "le médicament",
    "en": "the medicine",
    "ar": "دواء",
+   "pl": "lek",
    "latam": null
   },
   {
@@ -1158,6 +1200,7 @@ window.SCENE = {
    "fr": "le comprimé",
    "en": "the pill",
    "ar": "قرص دواء",
+   "pl": "tabletka",
    "latam": null
   },
   {
@@ -1182,6 +1225,7 @@ window.SCENE = {
    "fr": "le stylo",
    "en": "the pen",
    "ar": "قلم",
+   "pl": "długopis, ołówek",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -1219,6 +1263,7 @@ window.SCENE = {
    "fr": "la carte d'assurance maladie",
    "en": "the health card",
    "ar": "بطاقة التأمين الصحي",
+   "pl": "karta ubezpieczenia zdrowotnego",
    "latam": null
   },
   {
@@ -1243,6 +1288,7 @@ window.SCENE = {
    "fr": "la corbeille",
    "en": "the wastepaper bin",
    "ar": "سلّة المهملات",
+   "pl": "kosz na śmieci",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1280,6 +1326,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "ar": "حقيبة",
+   "pl": "torba, torebka",
    "latam": null
   },
   {
@@ -1313,6 +1360,7 @@ window.SCENE = {
    "fr": "le ballon, la balle",
    "en": "the ball",
    "ar": "كرة",
+   "pl": "piłka",
    "latam": null
   },
   {
@@ -1337,6 +1385,7 @@ window.SCENE = {
    "fr": "la chaussure",
    "en": "the shoe",
    "ar": "حذاء",
+   "pl": "but",
    "latam": null
   },
   {
@@ -1361,6 +1410,7 @@ window.SCENE = {
    "fr": "la chaussette",
    "en": "the sock",
    "ar": "جورب",
+   "pl": "skarpetka",
    "latam": null
   },
   {
@@ -1385,6 +1435,7 @@ window.SCENE = {
    "fr": "le mur",
    "en": "the wall",
    "ar": "جدار",
+   "pl": "ściana",
    "latam": null
   },
   {
@@ -1409,6 +1460,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "ar": "أرض، تربة",
+   "pl": "ziemia, podłoże",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -1438,6 +1490,7 @@ window.SCENE = {
    "fr": "la côte",
    "en": "the rib",
    "ar": "ضلع",
+   "pl": "żebro",
    "latam": null
   },
   {
@@ -1463,6 +1516,7 @@ window.SCENE = {
    "fr": "la côte",
    "en": "the rib",
    "ar": "ضلع",
+   "pl": "żebro",
    "latam": null
   },
   {
@@ -1488,6 +1542,7 @@ window.SCENE = {
    "fr": "la colonne vertébrale",
    "en": "the spine",
    "ar": "العمود الفقري",
+   "pl": "kręgosłup",
    "latam": null
   },
   {
@@ -1513,6 +1568,7 @@ window.SCENE = {
    "fr": "le poumon",
    "en": "the lung",
    "ar": "رئة",
+   "pl": "płuco",
    "latam": null
   },
   {
@@ -1538,6 +1594,7 @@ window.SCENE = {
    "fr": "l'os",
    "en": "the bone",
    "ar": "عظم",
+   "pl": "kość",
    "latam": null
   }
  ],
@@ -2067,6 +2124,16 @@ window.SCENE = {
    },
    "couches": {
     "A1": "O corpo e os objetos"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Mark u lekarki, siedzi boso na kozetce, z opatrunkiem na kolanie; lekarka siedzi obok niego i trzyma bandaż.",
+    "consigne": "Dotknij przedmiotu, Marka albo lekarki. Dotknij plakatu, żeby zobaczyć go z bliska."
+   },
+   "couches": {
+    "A1": "Ciało i przedmioty"
    },
    "questions": {}
   }

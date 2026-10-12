@@ -26,7 +26,7 @@ import hashlib, io, json, os, re, sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt")
+LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt", "pl")
 
 
 def guillemets(t):
@@ -331,6 +331,64 @@ PT = {
                  "No fim de uma palavra, b, d e g perdem a voz e se dizem p, t, k: Kind ≈ “kint”, Tag ≈ “tak”, gelb ≈ “guelp”. E não acrescente um “i” no final: é “kint”, e não “kindi”."),
 }
 
+# LE POLONAIS (v778) : a part, (court, explication) par regle. Ecrit CONTRE
+# le polonais : sch = sz, ch dur = le ch de « dach », z = c, ei = aj, eu = oj ;
+# le r roule, pas de longueur vocalique, ti / di / si que le polonais adoucit.
+# L'assourdissement final (Kind = « kint ») est le meme qu'en polonais.
+# Non relu par un natif.
+PL = {
+ "u-trema": ("„i” z zaokrąglonymi ustami",
+             "Polski nie ma tego dźwięku: powiedz „i” i, nie ruszając językiem, zaokrąglij usta jak do „u” albo do gwizdania: müde, Tür."),
+ "o-trema": ("„e” z zaokrąglonymi ustami",
+             "Tego dźwięku też nie ma w polskim: powiedz „e” jak w „ten” i, nie ruszając językiem, zaokrąglij usta jak do „o”."),
+ "a-trema": ("jak polskie „e”",
+             "ä wymawia się jak polskie „e” w „ten” czy „sen”: Käse, Mädchen."),
+ "u": ("jak polskie „u”",
+       "Niemieckie u to polskie „u” (albo „ó”): gut czyta się „gut”, Buch „buch”. Łatwe — trudny jest dopiero ü."),
+ "ei": ("„aj”, jak w „kraj”",
+        "ei czyta się „aj”, jak w „kraj”: Wein to „wajn”, klein „klajn”. Nigdy „ej”."),
+ "ie": ("długie „i”",
+        "ie to długie „i”, a e jest nieme: Liebe to „liibe”. Uwaga: przed i spółgłoski zostają twarde — die to „di”, Kino to „kino”, a nie „dzi” czy „ki” zmiękczone jak w polskim „siedem”."),
+ "eu": ("„oj”, jak w „bój”",
+        "eu i äu czyta się „oj”: heute to „hojte”, neu „noj”, Häuser „hojzer”."),
+ "au": ("„au”, jak w „auto”",
+        "au czyta się jak w polskim „auto”: Haus to „haus”, Frau „frau”. Nie wymawiaj go jak „ał”."),
+ "longueur": ("samogłoska długa albo krótka",
+              "Samogłoska jest długa przed h albo gdy jest podwojona (Tee, Sohn), a krótka przed podwójną spółgłoską (Bett, kommen). W polskim długość samogłosek nie istnieje; w niemieckim zmienia słowo: Staat / Stadt."),
+ "sch": ("jak polskie „sz”",
+         "sch to dokładnie polskie „sz”: Schule to „szule”, Tisch „tisz”."),
+ "sp-st": ("„szp”, „szt” na początku słowa",
+           "Na początku słowa (albo jego części) sp i st czyta się „szp” i „szt”: Straße to „sztrase”, sprechen „szprechen”, Bleistift „blajsztift”. W środku i na końcu słowa zostaje zwykłe s: Fenster, ist."),
+ "ch-doux": ("jak „ch” w „Chiny”",
+             "Po e, i, ä, ö, ü, ei, eu, l, n i r ch jest miękkie, z językiem przy podniebieniu — jak polskie „ch” w „Chiny” albo „chichot”: ich, Milch, leicht. Nie wymawiaj go twardo jak w „dach”."),
+ "ch-dur": ("jak polskie „ch” w „dach”",
+            "Po a, o, u i au ch jest twarde, z tyłu gardła — dokładnie jak polskie „ch” w „dach” czy „chata”: Nacht, Buch, Bauch."),
+ "z": ("polskie „c”",
+       "z (i tz) czyta się zawsze jak polskie „c”: Zeit to „cajt”, Katze „kace”, zehn „cen”. Nigdy jak polskie „z”."),
+ "v": ("prawie zawsze „f”",
+       "v czyta się prawie zawsze „f”: Vater to „fater”, viel „fil”. Kilka słów obcego pochodzenia zachowuje „w” (Vase, Klavier)."),
+ "w": ("polskie „w”",
+       "w to polskie „w”: Wasser to „waser”, wo „wo”. Bez niespodzianek."),
+ "s": ("„z” przed samogłoską",
+       "Przed samogłoską s czyta się jak polskie „z”: Sonne to „zone”, Hose „hoze”, sieben „ziben”. I nie zmiękczaj go: sie to twarde „zi”, a nie polskie „się”."),
+ "eszett": ("ostre „s”",
+            "ß i ss to ostre „s”, jak w „sam”. ß stoi po samogłosce długiej (groß), ss po krótkiej (essen)."),
+ "j": ("polskie „j”",
+       "j to polskie „j”: Jahr to „jar”, jung „jung”. Łatwe."),
+ "h": ("lekki wydech na początku, nieme po samogłosce",
+       "Na początku słowa albo sylaby h to lekki wydech, dużo słabszy niż polskie „h” czy „ch”: Hund, Haus. Po samogłosce się go nie wymawia, tylko wydłuża samogłoskę: gehen, Uhr."),
+ "r": ("z tyłu gardła, nie toczone",
+       "Niemieckie r robi się z tyłu gardła, jak przy płukaniu gardła — nie toczy się go czubkiem języka jak polskie „r”: rot, Brot. Toczone r zostanie zrozumiane, ale od razu zdradza akcent."),
+ "pf": ("p + f naraz",
+        "pf czyta się jako p i f za jednym razem; słychać oba: Apfel, Kopf, Pferd."),
+ "er-final": ("lekkie „a”",
+              "Na końcu słowa -er czyta się jak lekkie „a”, bez „r”: Vater ≈ „fata”, Mutter ≈ „muta”, besser ≈ „besa”."),
+ "ig-final": ("„-ich” z miękkim ch",
+              "Na końcu słowa -ig czyta się „-ich”, z miękkim ch jak w „Chiny”: richtig, billig, wenig."),
+ "b-d-g-final": ("„p”, „t”, „k”",
+                 "Na końcu słowa b, d i g tracą dźwięczność i brzmią jak p, t, k: Kind ≈ „kint”, Tag ≈ „tak”, gelb ≈ „gelp”. Tu polski ci pomaga: to dokładnie to samo co w „chleb” czy „ogród”."),
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("fins", FINS)]
 
 
@@ -362,6 +420,9 @@ def construire():
             if rid in PT:
                 court = dict(court, pt=PT[rid][0])
                 expl = dict(expl, pt=PT[rid][1])
+            if rid in PL:
+                court = dict(court, pl=PL[rid][0])
+                expl = dict(expl, pl=PL[rid][1])
             for nom, v in (("court", court), ("explication", expl)):
                 manque = [l for l in LANGUES if not v.get(l)]
                 if manque:
@@ -376,7 +437,7 @@ def construire():
                 if not os.path.exists(os.path.join(RACINE, "audio", "mp3", h + ".mp3")):
                     fautes.append("%s : « %s » sans voix d'Aurora" % (rid, mot))
                 ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_tr",
-                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar") if e.get(c)}})
+                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar", "traduction_pl") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             g["regles"].append({"id": rid, "graphie": graphie, "api": api, "court": court,

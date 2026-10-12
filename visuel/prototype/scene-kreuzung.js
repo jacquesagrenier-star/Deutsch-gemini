@@ -22,7 +22,8 @@ window.SCENE = {
      "uk": "будинок",
      "fa": "خانه",
      "pt": "casa",
-     "ar": "بيت، منزل"
+     "ar": "بيت، منزل",
+     "pl": "dom"
     }
    ],
    "sur": null,
@@ -41,7 +42,8 @@ window.SCENE = {
    "uk": "будівля",
    "fa": "ساختمان",
    "pt": "prédio, edifício",
-   "ar": "مبنى"
+   "ar": "مبنى",
+   "pl": "budynek"
   },
   {
    "id": "strasse",
@@ -63,7 +65,8 @@ window.SCENE = {
      "uk": "перехрестя",
      "fa": "چهارراه",
      "pt": "cruzamento",
-     "ar": "تقاطع"
+     "ar": "تقاطع",
+     "pl": "skrzyżowanie"
     }
    ],
    "sur": null,
@@ -82,7 +85,8 @@ window.SCENE = {
    "uk": "вулиця",
    "fa": "خیابان",
    "pt": "rua",
-   "ar": "شارع"
+   "ar": "شارع",
+   "pl": "ulica"
   },
   {
    "id": "buergersteig",
@@ -104,7 +108,8 @@ window.SCENE = {
      "uk": "тротуар (австр.)",
      "fa": "پیاده‌رو (واژهٔ اتریشی)",
      "pt": "calçada (Áustria, sul da Alemanha)",
-     "ar": "رصيف المشاة (نمساوية)"
+     "ar": "رصيف المشاة (نمساوية)",
+     "pl": "chodnik (Austria)"
     }
    ],
    "sur": null,
@@ -123,7 +128,8 @@ window.SCENE = {
    "uk": "тротуар",
    "fa": "پیاده‌رو",
    "pt": "calçada",
-   "ar": "رصيف المشاة"
+   "ar": "رصيف المشاة",
+   "pl": "chodnik"
   },
   {
    "id": "baeckerei",
@@ -145,7 +151,8 @@ window.SCENE = {
      "uk": "вітрина",
      "fa": "ویترین",
      "pt": "vitrine",
-     "ar": "واجهة المحلّ"
+     "ar": "واجهة المحلّ",
+     "pl": "wystawa sklepowa, witryna"
     }
    ],
    "sur": null,
@@ -164,7 +171,8 @@ window.SCENE = {
    "uk": "пекарня",
    "fa": "نانوایی",
    "pt": "padaria",
-   "ar": "مخبز"
+   "ar": "مخبز",
+   "pl": "piekarnia"
   },
   {
    "id": "brot",
@@ -186,7 +194,8 @@ window.SCENE = {
      "uk": "крендель",
      "fa": "نان پرتزل",
      "pt": "pretzel",
-     "ar": "بريتزل (خبز معقود)"
+     "ar": "بريتزل (خبز معقود)",
+     "pl": "precel"
     },
     {
      "mot": "Brötchen",
@@ -199,7 +208,8 @@ window.SCENE = {
      "uk": "булочка",
      "fa": "نان کوچک",
      "pt": "pãozinho",
-     "ar": "خبز صغير (كعك)"
+     "ar": "خبز صغير (كعك)",
+     "pl": "bułka"
     },
     {
      "mot": "Schaufenster",
@@ -212,7 +222,8 @@ window.SCENE = {
      "uk": "вітрина",
      "fa": "ویترین",
      "pt": "vitrine",
-     "ar": "واجهة المحلّ"
+     "ar": "واجهة المحلّ",
+     "pl": "wystawa sklepowa, witryna"
     }
    ],
    "sur": "baeckerei",
@@ -231,7 +242,8 @@ window.SCENE = {
    "uk": "хліб",
    "fa": "نان",
    "pt": "pão",
-   "ar": "خبز"
+   "ar": "خبز",
+   "pl": "chleb"
   },
   {
    "id": "apotheke",
@@ -258,7 +270,8 @@ window.SCENE = {
    "uk": "аптека",
    "fa": "داروخانه",
    "pt": "farmácia",
-   "ar": "صيدلية"
+   "ar": "صيدلية",
+   "pl": "apteka"
   },
   {
    "id": "post",
@@ -285,7 +298,8 @@ window.SCENE = {
    "uk": "пошта",
    "fa": "پست",
    "pt": "correio",
-   "ar": "بريد، مكتب البريد"
+   "ar": "بريد، مكتب البريد",
+   "pl": "poczta"
   },
   {
    "id": "briefkasten-post",
@@ -312,7 +326,8 @@ window.SCENE = {
    "uk": "поштова скринька",
    "fa": "صندوق نامه",
    "pt": "caixa de correio",
-   "ar": "صندوق البريد"
+   "ar": "صندوق البريد",
+   "pl": "skrzynka pocztowa"
   },
   {
    "id": "cafe",
@@ -334,7 +349,8 @@ window.SCENE = {
      "uk": "стіл",
      "fa": "میز",
      "pt": "mesa",
-     "ar": "طاولة"
+     "ar": "طاولة",
+     "pl": "stół"
     },
     {
      "mot": "Stuhl",
@@ -347,7 +363,8 @@ window.SCENE = {
      "uk": "стілець",
      "fa": "صندلی",
      "pt": "cadeira",
-     "ar": "كرسي"
+     "ar": "كرسي",
+     "pl": "krzesło"
     }
    ],
    "sur": null,
@@ -366,7 +383,8 @@ window.SCENE = {
    "uk": "кав'ярня",
    "fa": "کافه",
    "pt": "café (o lugar), cafeteria",
-   "ar": "مقهى"
+   "ar": "مقهى",
+   "pl": "kawiarnia"
   },
   {
    "id": "markise",
@@ -393,7 +411,8 @@ window.SCENE = {
    "uk": "маркіза",
    "fa": "سایه‌بان",
    "pt": "toldo",
-   "ar": "مظلّة (قماشية)"
+   "ar": "مظلّة (قماشية)",
+   "pl": "markiza"
   },
   {
    "id": "bus",
@@ -420,7 +439,8 @@ window.SCENE = {
    "uk": "автобус",
    "fa": "اتوبوس",
    "pt": "ônibus",
-   "ar": "حافلة"
+   "ar": "حافلة",
+   "pl": "autobus"
   },
   {
    "id": "wartehaeuschen",
@@ -447,7 +467,8 @@ window.SCENE = {
    "uk": "навіс зупинки",
    "fa": "سایبان ایستگاه",
    "pt": "abrigo do ponto de ônibus",
-   "ar": "مظلّة موقف الحافلة"
+   "ar": "مظلّة موقف الحافلة",
+   "pl": "wiata przystankowa"
   },
   {
    "id": "haltestelle",
@@ -469,7 +490,8 @@ window.SCENE = {
      "uk": "табличка, вивіска",
      "fa": "تابلو",
      "pt": "placa",
-     "ar": "لافتة"
+     "ar": "لافتة",
+     "pl": "tabliczka, szyld"
     }
    ],
    "sur": null,
@@ -488,7 +510,8 @@ window.SCENE = {
    "uk": "зупинка",
    "fa": "ایستگاه",
    "pt": "ponto (de ônibus)",
-   "ar": "موقف (حافلات)"
+   "ar": "موقف (حافلات)",
+   "pl": "przystanek"
   },
   {
    "id": "frau-rot",
@@ -515,7 +538,8 @@ window.SCENE = {
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
    "pt": "mulher / esposa",
-   "ar": "امرأة، زوجة"
+   "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona"
   },
   {
    "id": "auto-dunkel",
@@ -537,7 +561,8 @@ window.SCENE = {
      "uk": "парковка",
      "fa": "جای پارک",
      "pt": "estacionamento, vaga",
-     "ar": "موقف سيارات"
+     "ar": "موقف سيارات",
+     "pl": "parking, miejsce parkingowe"
     }
    ],
    "sur": null,
@@ -556,7 +581,8 @@ window.SCENE = {
    "uk": "автомобіль",
    "fa": "خودرو",
    "pt": "carro",
-   "ar": "سيارة"
+   "ar": "سيارة",
+   "pl": "samochód"
   },
   {
    "id": "auto-silber",
@@ -578,7 +604,8 @@ window.SCENE = {
      "uk": "парковка",
      "fa": "جای پارک",
      "pt": "estacionamento, vaga",
-     "ar": "موقف سيارات"
+     "ar": "موقف سيارات",
+     "pl": "parking, miejsce parkingowe"
     }
    ],
    "sur": null,
@@ -597,7 +624,8 @@ window.SCENE = {
    "uk": "автомобіль",
    "fa": "خودرو",
    "pt": "carro",
-   "ar": "سيارة"
+   "ar": "سيارة",
+   "pl": "samochód"
   },
   {
    "id": "parkuhr",
@@ -624,7 +652,8 @@ window.SCENE = {
    "uk": "паркомат",
    "fa": "پارکومتر",
    "pt": "parquímetro",
-   "ar": "عدّاد الوقوف"
+   "ar": "عدّاد الوقوف",
+   "pl": "parkometr"
   },
   {
    "id": "schild-klein",
@@ -646,7 +675,8 @@ window.SCENE = {
      "uk": "табличка, вивіска",
      "fa": "تابلو",
      "pt": "placa",
-     "ar": "لافتة"
+     "ar": "لافتة",
+     "pl": "tabliczka, szyld"
     }
    ],
    "sur": null,
@@ -665,7 +695,8 @@ window.SCENE = {
    "uk": "дорожній знак",
    "fa": "تابلوی راهنمایی",
    "pt": "placa de trânsito",
-   "ar": "إشارة مرور (لافتة)"
+   "ar": "إشارة مرور (لافتة)",
+   "pl": "znak drogowy"
   },
   {
    "id": "schild-gross",
@@ -687,7 +718,8 @@ window.SCENE = {
      "uk": "табличка, вивіска",
      "fa": "تابلو",
      "pt": "placa",
-     "ar": "لافتة"
+     "ar": "لافتة",
+     "pl": "tabliczka, szyld"
     }
    ],
    "sur": null,
@@ -706,7 +738,8 @@ window.SCENE = {
    "uk": "дорожній знак",
    "fa": "تابلوی راهنمایی",
    "pt": "placa de trânsito",
-   "ar": "إشارة مرور (لافتة)"
+   "ar": "إشارة مرور (لافتة)",
+   "pl": "znak drogowy"
   },
   {
    "id": "ampel-mitte",
@@ -733,7 +766,8 @@ window.SCENE = {
    "uk": "світлофор",
    "fa": "چراغ راهنمایی",
    "pt": "semáforo, farol",
-   "ar": "إشارة مرور"
+   "ar": "إشارة مرور",
+   "pl": "sygnalizacja świetlna, światła"
   },
   {
    "id": "ampel-seite",
@@ -760,7 +794,8 @@ window.SCENE = {
    "uk": "світлофор",
    "fa": "چراغ راهنمایی",
    "pt": "semáforo, farol",
-   "ar": "إشارة مرور"
+   "ar": "إشارة مرور",
+   "pl": "sygnalizacja świetlna, światła"
   },
   {
    "id": "lieferwagen",
@@ -782,7 +817,8 @@ window.SCENE = {
      "uk": "вантажний автомобіль",
      "fa": "کامیون سنگین",
      "pt": "caminhão",
-     "ar": "شاحنة (اختصار)"
+     "ar": "شاحنة (اختصار)",
+     "pl": "samochód ciężarowy, TIR"
     },
     {
      "mot": "Laster",
@@ -795,7 +831,8 @@ window.SCENE = {
      "uk": "вантажівка",
      "fa": "کامیون",
      "pt": "caminhão (coloquial)",
-     "ar": "شاحنة"
+     "ar": "شاحنة",
+     "pl": "ciężarówka"
     }
    ],
    "sur": null,
@@ -814,7 +851,8 @@ window.SCENE = {
    "uk": "фургон",
    "fa": "ون باری",
    "pt": "furgão, van de entrega",
-   "ar": "شاحنة توصيل صغيرة"
+   "ar": "شاحنة توصيل صغيرة",
+   "pl": "samochód dostawczy"
   },
   {
    "id": "zebrastreifen",
@@ -841,7 +879,8 @@ window.SCENE = {
    "uk": "пішохідний перехід",
    "fa": "خط عابر پیاده",
    "pt": "faixa de pedestres",
-   "ar": "ممرّ المشاة"
+   "ar": "ممرّ المشاة",
+   "pl": "przejście dla pieszych, zebra"
   },
   {
    "id": "zebrastreifen-2",
@@ -868,7 +907,8 @@ window.SCENE = {
    "uk": "пішохідний перехід",
    "fa": "خط عابر پیاده",
    "pt": "faixa de pedestres",
-   "ar": "ممرّ المشاة"
+   "ar": "ممرّ المشاة",
+   "pl": "przejście dla pieszych, zebra"
   },
   {
    "id": "fussgaenger",
@@ -890,7 +930,8 @@ window.SCENE = {
      "uk": "чоловік",
      "fa": "مرد، شوهر",
      "pt": "homem / marido",
-     "ar": "رجل، زوج"
+     "ar": "رجل، زوج",
+     "pl": "mężczyzna / mąż"
     },
     {
      "mot": "Rucksack",
@@ -903,7 +944,8 @@ window.SCENE = {
      "uk": "рюкзак",
      "fa": "کوله‌پشتی",
      "pt": "mochila",
-     "ar": "حقيبة ظهر"
+     "ar": "حقيبة ظهر",
+     "pl": "plecak"
     }
    ],
    "sur": null,
@@ -922,7 +964,8 @@ window.SCENE = {
    "uk": "пішохід",
    "fa": "عابر پیاده",
    "pt": "pedestre",
-   "ar": "راجل، ماشٍ"
+   "ar": "راجل، ماشٍ",
+   "pl": "pieszy"
   },
   {
    "id": "frau-tasche",
@@ -944,7 +987,8 @@ window.SCENE = {
      "uk": "сумка",
      "fa": "کیف",
      "pt": "bolsa",
-     "ar": "حقيبة"
+     "ar": "حقيبة",
+     "pl": "torba, torebka"
     }
    ],
    "sur": null,
@@ -963,7 +1007,8 @@ window.SCENE = {
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
    "pt": "mulher / esposa",
-   "ar": "امرأة، زوجة"
+   "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona"
   },
   {
    "id": "taxi",
@@ -985,7 +1030,8 @@ window.SCENE = {
      "uk": "автомобіль",
      "fa": "خودرو",
      "pt": "carro",
-     "ar": "سيارة"
+     "ar": "سيارة",
+     "pl": "samochód"
     }
    ],
    "sur": null,
@@ -1004,7 +1050,8 @@ window.SCENE = {
    "uk": "таксі",
    "fa": "تاکسی",
    "pt": "táxi",
-   "ar": "سيارة أجرة"
+   "ar": "سيارة أجرة",
+   "pl": "taksówka"
   },
   {
    "id": "strassenbahn",
@@ -1026,7 +1073,8 @@ window.SCENE = {
      "uk": "трамвай (скорочення)",
      "fa": "تراموا (واژهٔ کوتاه)",
      "pt": "bonde",
-     "ar": "ترام"
+     "ar": "ترام",
+     "pl": "tramwaj"
     }
    ],
    "sur": null,
@@ -1045,7 +1093,8 @@ window.SCENE = {
    "uk": "трамвай",
    "fa": "تراموا",
    "pt": "bonde",
-   "ar": "ترام"
+   "ar": "ترام",
+   "pl": "tramwaj"
   },
   {
    "id": "motorrad",
@@ -1072,7 +1121,8 @@ window.SCENE = {
    "uk": "мотоцикл",
    "fa": "موتورسیکلت",
    "pt": "moto",
-   "ar": "درّاجة نارية"
+   "ar": "درّاجة نارية",
+   "pl": "motocykl"
   },
   {
    "id": "radweg",
@@ -1099,7 +1149,8 @@ window.SCENE = {
    "uk": "велодоріжка",
    "fa": "مسیر دوچرخه",
    "pt": "ciclovia",
-   "ar": "مسار الدرّاجات"
+   "ar": "مسار الدرّاجات",
+   "pl": "ścieżka rowerowa"
   },
   {
    "id": "radfahrer",
@@ -1121,7 +1172,8 @@ window.SCENE = {
      "uk": "велосипед",
      "fa": "دوچرخه",
      "pt": "bicicleta",
-     "ar": "درّاجة"
+     "ar": "درّاجة",
+     "pl": "rower"
     },
     {
      "mot": "Jacke",
@@ -1134,7 +1186,8 @@ window.SCENE = {
      "uk": "куртка",
      "fa": "کاپشن",
      "pt": "jaqueta",
-     "ar": "سترة، جاكيت"
+     "ar": "سترة، جاكيت",
+     "pl": "kurtka"
     }
    ],
    "sur": null,
@@ -1153,7 +1206,8 @@ window.SCENE = {
    "uk": "велосипедист",
    "fa": "دوچرخه‌سوار",
    "pt": "ciclista",
-   "ar": "راكب دراجة"
+   "ar": "راكب دراجة",
+   "pl": "rowerzysta"
   },
   {
    "id": "helm",
@@ -1180,7 +1234,8 @@ window.SCENE = {
    "uk": "шолом",
    "fa": "کلاه ایمنی",
    "pt": "capacete",
-   "ar": "خوذة"
+   "ar": "خوذة",
+   "pl": "kask"
   },
   {
    "id": "kiosk",
@@ -1207,7 +1262,8 @@ window.SCENE = {
    "uk": "кіоск",
    "fa": "دکه",
    "pt": "banca, quiosque",
-   "ar": "كشك"
+   "ar": "كشك",
+   "pl": "kiosk"
   },
   {
    "id": "flasche",
@@ -1234,7 +1290,8 @@ window.SCENE = {
    "uk": "пляшка",
    "fa": "بطری",
    "pt": "garrafa",
-   "ar": "زجاجة"
+   "ar": "زجاجة",
+   "pl": "butelka"
   },
   {
    "id": "briefkasten",
@@ -1261,7 +1318,8 @@ window.SCENE = {
    "uk": "поштова скринька",
    "fa": "صندوق نامه",
    "pt": "caixa de correio",
-   "ar": "صندوق البريد"
+   "ar": "صندوق البريد",
+   "pl": "skrzynka pocztowa"
   },
   {
    "id": "laterne",
@@ -1288,7 +1346,8 @@ window.SCENE = {
    "uk": "ліхтар",
    "fa": "چراغ خیابان",
    "pt": "poste de luz",
-   "ar": "عمود إنارة"
+   "ar": "عمود إنارة",
+   "pl": "latarnia uliczna"
   },
   {
    "id": "anna",
@@ -1310,7 +1369,8 @@ window.SCENE = {
      "uk": "мобільник",
      "fa": "تلفن همراه",
      "pt": "celular",
-     "ar": "هاتف محمول"
+     "ar": "هاتف محمول",
+     "pl": "komórka, telefon komórkowy"
     },
     {
      "mot": "Jacke",
@@ -1323,7 +1383,8 @@ window.SCENE = {
      "uk": "куртка",
      "fa": "کاپشن",
      "pt": "jaqueta",
-     "ar": "سترة، جاكيت"
+     "ar": "سترة، جاكيت",
+     "pl": "kurtka"
     }
    ],
    "sur": null,
@@ -1342,7 +1403,8 @@ window.SCENE = {
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
    "pt": "mulher / esposa",
-   "ar": "امرأة، زوجة"
+   "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona"
   },
   {
    "id": "ampel-vorne",
@@ -1369,7 +1431,8 @@ window.SCENE = {
    "uk": "світлофор",
    "fa": "چراغ راهنمایی",
    "pt": "semáforo, farol",
-   "ar": "إشارة مرور"
+   "ar": "إشارة مرور",
+   "pl": "sygnalizacja świetlna, światła"
   },
   {
    "id": "fahrradstaender",
@@ -1391,7 +1454,8 @@ window.SCENE = {
      "uk": "велосипед",
      "fa": "دوچرخه",
      "pt": "bicicleta",
-     "ar": "درّاجة"
+     "ar": "درّاجة",
+     "pl": "rower"
     }
    ],
    "sur": null,
@@ -1410,7 +1474,8 @@ window.SCENE = {
    "uk": "велостоянка",
    "fa": "پایهٔ دوچرخه",
    "pt": "bicicletário",
-   "ar": "حامل الدرّاجات"
+   "ar": "حامل الدرّاجات",
+   "pl": "stojak na rowery"
   }
  ],
  "grosPlans": [],
@@ -2061,6 +2126,51 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + infinitivo passado = quase certo, deduzido do que se vê: a rua molhada.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Irreal do passado com um verbo de movimento: <b>sein</b> → <b>wäre</b> … gegangen.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = é possível, sem prova. <b>muss</b> seria uma certeza."
+   }
+  },
+  "pl": {
+   "champs": {
+    "alt": "Skrzyżowanie w Berlinie widziane z pierwszego piętra: piekarnia, apteka, poczta i kawiarnia, przystanek autobusowy, tramwaj, taksówka, piesi na przejściu, rowerzysta na czerwonej ścieżce rowerowej; na pierwszym planie Anna szuka drogi w telefonie, między kioskiem, skrzynką pocztową a rowerami.",
+    "consigne": "Anna szuka drogi w Berlinie. Dotknij budynku, pojazdu albo osoby."
+   },
+   "couches": {
+    "A1": "Rzeczowniki i rodzajniki",
+    "A2": "Wo? — w mieście",
+    "B1": "Wskazywanie drogi",
+    "B2": "Genitiv i zdania względne",
+    "C1": "Przypuszczenia"
+   },
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + Dativ dla obu: zwischen <b>der</b> Bäckerei und <b>der</b> Post.",
+    "A2 | Das Café ist an der Ecke.": "Na rogu: <b>an der</b> Ecke (die Ecke, Dativ).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = naprzeciwko, zawsze z Dativ: gegenüber <b>dem</b> Kiosk.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + Dativ: die Post → vor <b>der</b> Post.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "Na przystanku: <b>an der</b> Haltestelle. A <b>im</b> roten Mantel = in dem (po polsku „w czerwonym płaszczu”).",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + Dativ (Wo?): der Radweg → auf <b>dem</b> Radweg.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + Dativ: zwischen <b>der</b> Laterne und <b>der</b> Ampel.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = an + dem. Dativ: der Fahrradständer → <b>am</b> Fahrradständer.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + Dativ: der Zebrastreifen → auf <b>dem</b> Zebrastreifen.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + Dativ: der Bürgersteig → auf <b>dem</b> Bürgersteig.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Do jakiegoś miejsca: <b>zu</b> + Dativ. zu + der = <b>zur</b>. <b>nach</b> służy tylko do miast i krajów (polskie „do” ma tu dwa odpowiedniki).",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Przejść przez ulicę: <b>über</b> + Akkusativ (ruch) — über <b>die</b> Straße.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Stawać się: <b>werden</b>. Zdanie podrzędne wysyła czasownik na koniec: bis die Ampel grün <b>wird</b>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Przed Panem/Panią: <b>vor</b> + Dativ → vor <b>Ihnen</b>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<b>an</b> + Dativ <b>… vorbei</b> = przejść obok: an <b>der</b> Apotheke vorbei.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> zawsze łączy się z Dativ, nawet przy ruchu: aus <b>der</b> Seitenstraße.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Przechodzą (Wohin?) → Akkusativ: über <b>den</b> Zebrastreifen.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Wohin? → Akkusativ: in <b>die</b> Bäckerei. <b>in der</b> Bäckerei odpowiadałoby na Wo? (jak „do piekarni” / „w piekarni”).",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Tryb rozkazujący w formie grzecznościowej: najpierw czasownik, potem <b>Sie</b> — <b>Gehen Sie</b>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Stan (Wo?) → Dativ: die Ecke → an <b>der</b> Ecke.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> przed rzeczownikiem wymaga Genitiv: entlang <b>des</b> Bürgersteigs. Po rzeczowniku — Akkusativ: den Bürgersteig entlang.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (niedaleko) + Genitiv: unweit <b>des</b> Kiosks — jak polskie „niedaleko kiosku”.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + Genitiv: die Straße → trotz <b>der</b> nassen Straße (Genitiv rodzaju żeńskiego = der).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Przynależność, poprzednik rodzaju żeńskiego (die Frau) → <b>deren</b> (której płaszcz).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Podmiot zdania względnego, rodzaj męski → <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + zaimek względny, stan (Wo?) → Dativ: das Café → <b>vor dem</b>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + bezokolicznik przeszły = prawdopodobnie: widać to po jej minie.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + bezokolicznik przeszły = prawie pewne, wywnioskowane z tego, co widać: mokra ulica.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Warunek nierzeczywisty w przeszłości z czasownikiem ruchu: <b>sein</b> → <b>wäre</b> … gegangen.",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = to możliwe, bez dowodu. <b>muss</b> oznaczałoby pewność."
    }
   }
  }

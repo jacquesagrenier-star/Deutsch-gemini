@@ -38,7 +38,7 @@ CHEMIN = os.path.join(RACINE, "exercices.json")
 CHAMPS_SOULIGNE = ["question", "translation", "hint", "explanation"]
 CHAMPS_CHAMEAU = ["correct", "options"]
 
-CHAMEAU = {"fr": "", "en": "En", "tr": "Tr", "uk": "Uk", "fa": "Fa", "pt": "Pt", "ar": "Ar"}
+CHAMEAU = {"fr": "", "en": "En", "tr": "Tr", "uk": "Uk", "fa": "Fa", "pt": "Pt", "ar": "Ar", "pl": "Pl"}
 
 
 def cle_souligne(base, langue):

@@ -61,7 +61,7 @@ import os
 import re
 import sys
 
-LANGUES_CIBLES = ["en", "tr", "uk", "fa", "pt", "ar"]
+LANGUES_CIBLES = ["en", "tr", "uk", "fa", "pt", "ar", "pl"]
 LANGUES_CONNUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 FICHIERS_JSON = ["exercices.json", "pruefung.json", "grammaire.json",
                  "themes.json", "verbe.json", "adjectif.json", "adverbe.json",
@@ -538,11 +538,11 @@ def enumerer_json(nom, racine_noeud, langues):
 # Les tableaux positionnels d'index.html et le rang de chaque langue, lus dans
 # construireExercicesArticles() et construireExercicesArticlesMix().
 POSITIONNELS = {
-    "ARTICLE_EXPLICATIONS": {"fr": 0, "en": 1, "tr": 2, "fa": 3, "pt": 4, "uk": 5, "ar": 6},
-    "ARTICLE_DECLENCHEURS": {"fr": 0, "en": 1, "tr": 2, "fa": 3, "pt": 4, "uk": 5, "ar": 6},
+    "ARTICLE_EXPLICATIONS": {"fr": 0, "en": 1, "tr": 2, "fa": 3, "pt": 4, "uk": 5, "ar": 6, "pl": 7},
+    "ARTICLE_DECLENCHEURS": {"fr": 0, "en": 1, "tr": 2, "fa": 3, "pt": 4, "uk": 5, "ar": 6, "pl": 7},
 }
-RANGS_ARTICLES = {"fr": 2, "en": 3, "tr": 5, "fa": 6, "pt": 7, "uk": 8, "ar": 9}
-RANGS_ARTICLES_MIX = {"fr": 5, "en": 6, "tr": 8, "fa": 9, "pt": 10, "uk": 11, "ar": 12}
+RANGS_ARTICLES = {"fr": 2, "en": 3, "tr": 5, "fa": 6, "pt": 7, "uk": 8, "ar": 9, "pl": 10}
+RANGS_ARTICLES_MIX = {"fr": 5, "en": 6, "tr": 8, "fa": 9, "pt": 10, "uk": 11, "ar": 12, "pl": 13}
 RE_CONST = re.compile(r"^const ([A-Za-z_][A-Za-z0-9_]*) = ", re.M)
 RE_FR_OBJET = re.compile(r"\bfr\s*:\s*[\"'`]")
 

@@ -41,6 +41,7 @@ window.SCENE = {
    "fr": "la pastèque",
    "en": "the watermelon",
    "ar": "بطّيخ",
+   "pl": "arbuz",
    "latam": null
   },
   {
@@ -82,6 +83,7 @@ window.SCENE = {
    "fr": "l'ananas",
    "en": "the pineapple",
    "ar": "أناناس",
+   "pl": "ananas",
    "latam": null
   },
   {
@@ -123,6 +125,7 @@ window.SCENE = {
    "fr": "la noix de coco",
    "en": "the coconut",
    "ar": "جوز الهند",
+   "pl": "kokos",
    "latam": null
   },
   {
@@ -164,6 +167,7 @@ window.SCENE = {
    "fr": "le melon",
    "en": "the melon",
    "ar": "شمّام",
+   "pl": "melon",
    "latam": null
   },
   {
@@ -205,6 +209,7 @@ window.SCENE = {
    "fr": "l'orange",
    "en": "orange",
    "ar": "برتقالة",
+   "pl": "pomarańcza",
    "latam": null
   },
   {
@@ -246,6 +251,7 @@ window.SCENE = {
    "fr": "l'avocat (fruit)",
    "en": "the avocado",
    "ar": "أفوكادو",
+   "pl": "awokado",
    "latam": null
   },
   {
@@ -287,6 +293,7 @@ window.SCENE = {
    "fr": "la papaye",
    "en": "the papaya",
    "ar": "بابايا",
+   "pl": "papaja",
    "latam": null
   },
   {
@@ -328,6 +335,7 @@ window.SCENE = {
    "fr": "le citron",
    "en": "the lemon",
    "ar": "ليمون",
+   "pl": "cytryna",
    "latam": null
   },
   {
@@ -369,6 +377,7 @@ window.SCENE = {
    "fr": "le kiwi",
    "en": "the kiwi",
    "ar": "كيوي",
+   "pl": "kiwi",
    "latam": null
   },
   {
@@ -410,6 +419,7 @@ window.SCENE = {
    "fr": "la mandarine",
    "en": "the tangerine",
    "ar": "يوسفي، مندرين",
+   "pl": "mandarynka",
    "latam": null
   },
   {
@@ -451,6 +461,7 @@ window.SCENE = {
    "fr": "la figue",
    "en": "the fig",
    "ar": "تين",
+   "pl": "figa",
    "latam": null
   },
   {
@@ -492,6 +503,7 @@ window.SCENE = {
    "fr": "le citron vert",
    "en": "the lime",
    "ar": "ليمون أخضر (ليم)",
+   "pl": "limonka",
    "latam": null
   },
   {
@@ -533,6 +545,7 @@ window.SCENE = {
    "fr": "le pamplemousse",
    "en": "the grapefruit",
    "ar": "جريب فروت",
+   "pl": "grejpfrut",
    "latam": {
     "mot": "toronja",
     "genre": "la",
@@ -578,6 +591,7 @@ window.SCENE = {
    "fr": "la mangue",
    "en": "the mango",
    "ar": "مانجو",
+   "pl": "mango",
    "latam": null
   },
   {
@@ -619,6 +633,7 @@ window.SCENE = {
    "fr": "la banane",
    "en": "banana",
    "ar": "موزة",
+   "pl": "banan",
    "latam": null
   },
   {
@@ -660,6 +675,7 @@ window.SCENE = {
    "fr": "la grenade (fruit)",
    "en": "the pomegranate",
    "ar": "رمّان",
+   "pl": "granat (owoc)",
    "latam": null
   },
   {
@@ -690,6 +706,7 @@ window.SCENE = {
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
+   "pl": "kobieta / żona",
    "latam": null
   }
  ],
@@ -1082,6 +1099,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na feira"
+   },
+   "questions": {}
+  },
+  "pl": {
+   "champs": {
+    "alt": "Anna bierze banany ze straganu z owocami z południa: arbuzy, ananasy, kokosy, melony, pomarańcze, awokado, papaje, cytryny, kiwi, mandarynki, figi, limonki, grejpfruty, mango, banany i granaty.",
+    "consigne": "Dotknij owocu, warzywa albo skrzynki.",
+    "nom_vue": "Owoce z południa",
+    "autre_vue": "→ Warzywa"
+   },
+   "couches": {
+    "A1": "Na targu"
    },
    "questions": {}
   }
