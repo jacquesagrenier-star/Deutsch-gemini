@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Pour chaque jeu, ce qu'il reste a traduire en pt une fois les tuiles
+"""Pour chaque jeu, ce qu'il reste a traduire en ar une fois les tuiles
 allemandes recopiees (simulation, en memoire). Ecrit un fichier par jeu."""
 import io, json, os, sys
 
@@ -15,11 +15,11 @@ for jeu, liste in d["jeux"].items():
         besoin = {}
         for b in SOUL:
             tr = e.get(b + "_tr")
-            if tr and not e.get(b + "_pt") and tr != e.get(b):
+            if tr and not e.get(b + "_ar") and tr != e.get(b):
                 besoin[b] = e.get(b, "")
         for b in CHAM:
             tr = e.get(b + "Tr")
-            if tr and not e.get(b + "Pt") and tr != e.get(b):
+            if tr and not e.get(b + "Ar") and tr != e.get(b):
                 besoin[b] = {"fr": e.get(b), "en": e.get(b + "En"), "tr": tr}
         if besoin:
             besoin["_q"] = e.get("question", "")

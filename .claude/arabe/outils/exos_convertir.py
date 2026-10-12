@@ -15,7 +15,7 @@ un mot francais distinctif apres les moules.
 import io, json, os, re, sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
-FRANCAIS = ["«", "»", " le ", " la ", " les ", "verbe", "personne", "avec ",
+FRANCAIS = [" le ", " la ", " les ", "verbe", "personne", "avec ",
             "Avec ", " est ", " car ", " une ", " un ", " et ", " pas ",
             " se termine", " qui ", " dans ", " sur ",
             "masculin ", "féminin", "neutre", "pluriel", "phrase", "Prétérit", "prétérit", " ici", "toujours", " donc "]
@@ -29,8 +29,17 @@ def fabriquer(fr, moules, ou):
         sys.exit("CARACTERE DE CONTROLE dans %s : %r" % (ou, v))
     for m in FRANCAIS:
         if m in v:
-            sys.exit("FRANCAIS RESTANT %r dans %s :\n   fr : %s\n   pt : %s" % (m, ou, fr, v))
+            sys.exit("FRANCAIS RESTANT %r dans %s :\n   fr : %s\n   ar : %s" % (m, ou, fr, v))
     return v
+
+
+def melange(v, ou):
+    # Un mot qui melange lettres latines et arabes : une faute de frappe
+    # invisible dans une ligne RTL (meme garde-fou que lot.py).
+    for t in (v if isinstance(v, list) else [v]):
+        for mot in re.findall(r"[^\s\-—،,.;:!?()«»“”'/→←=+|]+", t):
+            if re.search(r"[A-Za-zÄÖÜäöüß]", mot) and re.search(r"[\u0600-\u06ff]", mot):
+                sys.exit("MOT MELANGE %r dans %s" % (mot, ou))
 
 
 brouillon = json.load(io.open(sys.argv[1], encoding="utf-8"))
@@ -48,9 +57,9 @@ for r, b in zip(releve, brouillon["e"]):
     if "_cle" in r:
         ent["cle_translation"] = r["_cle"]
     if "translation" in r:
-        ent["translation_pt"] = b[1]
+        ent["translation_ar"] = b[1]
     if "explanation" in r:
-        ent["explanation_pt"] = (fabriquer(r["explanation"], moules, r["_q"])
+        ent["explanation_ar"] = (fabriquer(r["explanation"], moules, r["_q"])
                                  if b[2] == "*" else b[2])
     extras = dict(b[3]) if len(b) > 3 else {}
     for k in ("hint", "question"):
@@ -60,11 +69,14 @@ for r, b in zip(releve, brouillon["e"]):
         if v == "*":
             v = fabriquer(r[k], moules, r["_q"])
         if k in ("correct", "options"):
-            ent[k + "Pt"] = v
+            ent[k + "Ar"] = v
         else:
-            ent[k + "_pt"] = v
+            ent[k + "_ar"] = v
+    for k, v in ent.items():
+        if k.endswith("_ar") or k.endswith("Ar"):
+            melange(v, r["_q"])
     manque = [k for k in r if not k.startswith("_") and
-              (k + "_pt" not in ent and k + "Pt" not in ent)]
+              (k + "_ar" not in ent and k + "Ar" not in ent)]
     if manque:
         sys.exit("CHAMP OUBLIE %s pour %r" % (manque, r["_q"][:50]))
     entrees.append(ent)
