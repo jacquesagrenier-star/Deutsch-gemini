@@ -16,6 +16,8 @@ GENRES = {
         '{ def:"означений", indef:"неозначений", neg:"заперечний" }'),
  "ar": ('{ m:"مذكر", f:"مؤنث", n:"محايد", pl:"جمع" }',
         '{ def:"معرفة", indef:"نكرة", neg:"نفي" }'),
+ "pl": ('{ m:"rodzaj męski", f:"rodzaj żeński", n:"rodzaj nijaki", pl:"liczba mnoga" }',
+        '{ def:"określony", indef:"nieokreślony", neg:"przeczący" }'),
 }
 src = io.open(CIBLE, encoding="utf-8", newline="").read()
 NL = "\r\n" if "\r\n" in src else "\n"
@@ -89,10 +91,13 @@ for nom in sorted({d[0].split("|")[1] for d in DUMP if d[0].startswith("R|")}):
 lignes("ARTICLES_MIX", "M|")
 
 # 4. Le code qui lit ces tableaux.
-une("lignes.map(([phrase, genre, fr, en, dico, tr, fa, %s" % PREC,
-    "lignes.map(([phrase, genre, fr, en, dico, tr, fa, %s, %s" % (PREC, L))
-une("lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa, %s" % PREC,
-    "lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa, %s, %s" % (PREC, L))
+# La liste des colonnes finit par <precedente> ; d'autres langues peuvent
+# s'etre glissees entre fa et elle (pt, uk, ar...).
+for deb in ("lignes.map(([phrase, genre, ", "lignes.map(([phrase, cas, famille, genre, decl, "):
+    m = re.search(re.escape(deb) + r"[^\]]*\b%s\]" % PREC, src)
+    if not m:
+        sys.exit("COLONNES : " + deb)
+    une(m.group(0), m.group(0)[:-1] + ", %s]" % L)
 une('translation_%s: %s || "",' % (PREC, PREC), 'translation_%s: %s || "", translation_%s: %s || "",' % (PREC, PREC, L, L), 2)
 h = '            hint_%s: "(" + ARTICLE_GENRE_%s[genre] + " \\u00b7 " + ARTICLE_FAMILLE_%s[famille] + " \\u00b7 " + casNom + ")",' % (PREC, P, P)
 une(h + NL, h + NL + h.replace("hint_" + PREC, "hint_" + L).replace("_" + P + "[", "_" + U + "[") + NL)
