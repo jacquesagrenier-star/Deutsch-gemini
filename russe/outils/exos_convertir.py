@@ -11,6 +11,7 @@ exercice, alignee PAR NUMERO sur le releve :
 
     jeu <nom du jeu>
     M<TAB><regex><TAB><remplacement>        (moules, appliques dans l'ordre)
+    P<TAB><texte francais><TAB><russe>       (moule litteral, sans regex)
     <n><TAB><translation><TAB><explanation>[<TAB>cle=valeur]...
 
 - n : rang dans le releve (0, 1, 2...) ; un trou ou un decalage est refuse.
@@ -30,7 +31,10 @@ FRANCAIS = [" le ", " la ", " les ", "verbe", "personne", "avec ",
             " se termine", " qui ", " dans ", " sur ", "masculin", "féminin",
             "neutre", "pluriel", "phrase", "Prétérit", "prétérit", " ici",
             "toujours", " donc ", "Nominatif", "Accusatif", "Datif", "Génitif",
-            " du ", " des ", " au ", "fém.", "masc.", " à "]
+            " au ", "fém.", "masc.", " à ", "comme ", " de ", " ou ", " en ",
+            " ne ", " que ", " se ", " sans ", " pour ", " par ", " son ", " sa ",
+            " ses ", " ce ", " cette ", "C'est", "c'est", "l'", "d'", "qu'", "n'",
+            "Remets", " mots", "ordre"]  # pas " du " ni " des " : allemand
 CYR = re.compile("[А-Яа-яЁё]")
 
 
@@ -64,6 +68,9 @@ def main():
         if l.startswith("M\t"):
             _, motif, rempl = l.split("\t")
             moules.append((motif, rempl))
+        elif l.startswith("P\t"):
+            _, fr, ru = l.split("\t")
+            moules.append((re.escape(fr), ru.replace("\\", "\\\\")))
         else:
             entrees_b.append(l.split("\t"))
     releve = [json.loads(l) for l in io.open(os.path.join(rel_dir, jeu + ".txt"), encoding="utf-8") if l.strip()]
