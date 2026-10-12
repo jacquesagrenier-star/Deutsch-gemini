@@ -5,10 +5,14 @@
 import io, json, re, sys
 
 reste, fichier, brouillon, sortie = sys.argv[1:5]
-cles = {}
+cles, exemples, dernier = {}, {}, None
 for l in io.open(reste, encoding="utf-8"):
+    e = re.match(r"    (?:exem|perf|prae|konj): (.*)", l)
+    if e and dernier:
+        exemples[dernier] = exemples.get(dernier, "") + " " + e.group(1)
     m = re.match(r"#(\d+) (.+?) \[", l)
     if m:
+        dernier = m.group(1)
         mot = m.group(2)
         if fichier == "themes.json":
             mot = re.sub(r"^(der|die|das) ", "", mot)
@@ -27,12 +31,22 @@ for n, l in enumerate(io.open(brouillon, encoding="utf-8"), 1):
     vals = [p.strip() for p in parts[1:]]
     if any(not v for v in vals) or any(ord(c) < 32 for v in vals for c in v):
         sys.exit("ligne %d : champ vide ou caractere de controle" % n)
-    # Un mot qui melange lettres latines et arabes : une faute de frappe
-    # (« Grundzahلen ») que l'oeil ne voit pas dans une ligne RTL.
+    # Garde du polonais (l'arabe avait « lettres latines et arabes mêlées ») :
+    # 1. aucune lettre cyrillique ni arabe (copie d'une autre colonne) ;
+    # 2. aucune lettre propre a l'allemand (ä ö ü ß) dans un mot que l'exemple
+    #    allemand de la carte ne contient pas : c'est un mot allemand oublie
+    #    dans la traduction (« Kaffee » au lieu de « kawa ») -- un nom propre
+    #    (Müller, Köln) figure dans l'exemple et passe ;
+    # 3. l'exemple polonais n'est pas l'exemple allemand recopie.
+    de = exemples.get(num, "")
     for v in vals:
-        for mot in re.findall(r"[^\s\-—،,.;:!?()«»“”'/]+", v):
-            if re.search(r"[A-Za-zÄÖÜäöüß]", mot) and re.search(r"[؀-ۿ]", mot):
-                sys.exit("ligne %d : mot melangeant latin et arabe : %r" % (n, mot))
+        if re.search(r"[\u0400-\u04FF\u0600-\u06FF]", v):
+            sys.exit("ligne %d : lettre cyrillique ou arabe : %r" % (n, v))
+        for mot in re.findall(r"[^\s\-—,.;:!?()„”'/…]+", v):
+            if re.search(r"[äöüßÄÖÜ]", mot) and mot not in de:
+                sys.exit("ligne %d : mot allemand dans le polonais : %r" % (n, mot))
+    if len(vals) > 1 and de and vals[1].strip() == de.strip():
+        sys.exit("ligne %d : exemple recopie de l'allemand" % n)
     e[num] = [cles[num]] + vals
 json.dump({"fichier": fichier, "e": e}, io.open(sortie, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 print("%d cartes -> %s" % (len(e), sortie))
