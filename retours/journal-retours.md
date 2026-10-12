@@ -8295,3 +8295,13 @@ Suite (v769) : l'examen, les exercices d'articles et les scenes en portugais.
   le « r » de « rato », j jamais le j portugais, pas de « tchi »/« dji », pas de « i » apres
   une consonne finale) ; avant, un Bresilien la voyait en francais (repli de texteDeFiche).
 Reste : voix de la visite (payante, a demander). Aucun relecteur bresilien.
+
+Suite (v770) : la voix de la visite en portugais (Charlotte, 10 clips, 1 206 caracteres,
+accord de Jacques). Question de Jacques : Charlotte est une voix anglaise que le modele
+multilingue fait parler ; pas de choix Bresil/Portugal possible -- a faire ecouter.
+
+## 12 octobre 2026 -- Jacques : « mettre toutes les langues au meme niveau pour le contenu »
+
+Constat mesure : en, tr, pt complets ; uk sans les reponses de l'examen (178 listes en
+francais) ; fa sans l'examen ; ar sans corpus, sans exercices, sans examen (interface,
+grammaire, scenes et prononciation seulement). Chantier ouvert.

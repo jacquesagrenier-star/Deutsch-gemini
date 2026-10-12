@@ -22,7 +22,7 @@ import hashlib, json, pathlib, re, subprocess, sys, tempfile, urllib.request
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "voix-visite"
 VOIX = "XB0fDUnXU5powFXDhCwa"   # Charlotte
-LANGUES = ["fr", "en", "tr", "uk", "fa", "ar"]   # ordre des blocs de I18N
+LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt"]   # ordre des blocs de I18N
 MODELE = {"fa": "eleven_v3"}
 MODELE_DEFAUT = "eleven_multilingual_v2"
 
