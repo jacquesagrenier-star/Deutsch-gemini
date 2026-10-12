@@ -27323,7 +27323,7 @@ function pt(o, base){
 //
 // Les cinq langues se construisent donc d'un coup. Ajouter une langue devient
 // une entree dans LANGUES_PRUEFUNG, et les quatre lecteurs suivent.
-const LANGUES_PRUEFUNG = ["en", "tr", "uk", "fa", "pt"];
+const LANGUES_PRUEFUNG = ["en", "tr", "uk", "fa", "pt", "ar"];
 
 function champsPruefung(o, source, cible, avant){
     avant = avant || "";
@@ -27436,9 +27436,9 @@ function exercicesLesen(niveau){
                     ...videPruefung("translation"),
                     ...videPruefung("hint"),
                     answers: [correct], correct: correct, correctEn: correct,
-                    correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct,
+                    correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct, correctAr: correct,
                     options: options, optionsEn: options, optionsTr: options,
-                    optionsUk: options, optionsFa: options, optionsPt: options,
+                    optionsUk: options, optionsFa: options, optionsPt: options, optionsAr: options,
                     ...champsPruefung(q, "erkl", "explanation")
                 });
             });
@@ -27471,9 +27471,9 @@ function exercicesHoeren(niveau){
                 ...videPruefung("hint"),
                 dictation: true, dictationText: o.audio, dictationLang: "de",
                 answers: [correct], correct: correct, correctEn: correct,
-                correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct,
+                correctTr: correct, correctUk: correct, correctFa: correct, correctPt: correct, correctAr: correct,
                 options: options, optionsEn: options, optionsTr: options,
-                optionsUk: options, optionsFa: options, optionsPt: options,
+                optionsUk: options, optionsFa: options, optionsPt: options, optionsAr: options,
                 ...champsPruefung(o, "erkl", "explanation")
             };
         });
@@ -39254,9 +39254,9 @@ function startEcoutePhrase(niveau){
             translation: "", translation_en: "", translation_tr: "",
             hint: "", hint_en: "", hint_tr: "",
             answers: [bonne], correct: bonne, correctEn: bonne,
-            correctTr: bonne, correctUk: bonne, correctFa: bonne, correctPt: bonne,
+            correctTr: bonne, correctUk: bonne, correctFa: bonne, correctPt: bonne, correctAr: bonne,
             options: options, optionsEn: options,
-            optionsTr: options, optionsUk: options, optionsFa: options, optionsPt: options,
+            optionsTr: options, optionsUk: options, optionsFa: options, optionsPt: options, optionsAr: options,
             // LA RECOMPENSE : la phrase allemande apparait enfin, et le bouton
             // « entendre la phrase » (v480) la rejoue pendant qu'on la lit.
             audioDe: ph.de,

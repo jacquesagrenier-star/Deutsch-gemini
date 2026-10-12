@@ -89,10 +89,10 @@ for nom in sorted({d[0].split("|")[1] for d in DUMP if d[0].startswith("R|")}):
 lignes("ARTICLES_MIX", "M|")
 
 # 4. Le code qui lit ces tableaux.
-une("lignes.map(([phrase, genre, fr, en, dico, tr, fa, %s" % PREC,
-    "lignes.map(([phrase, genre, fr, en, dico, tr, fa, %s, %s" % (PREC, L))
-une("lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa, %s" % PREC,
-    "lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa, %s, %s" % (PREC, L))
+une("lignes.map(([phrase, genre, fr, en, dico, tr, fa, pt, %s" % PREC,
+    "lignes.map(([phrase, genre, fr, en, dico, tr, fa, pt, %s, %s" % (PREC, L))
+une("lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa, pt, %s" % PREC,
+    "lignes.map(([phrase, cas, famille, genre, decl, fr, en, dico, tr, fa, pt, %s, %s" % (PREC, L))
 une('translation_%s: %s || "",' % (PREC, PREC), 'translation_%s: %s || "", translation_%s: %s || "",' % (PREC, PREC, L, L), 2)
 h = '            hint_%s: "(" + ARTICLE_GENRE_%s[genre] + " \\u00b7 " + ARTICLE_FAMILLE_%s[famille] + " \\u00b7 " + casNom + ")",' % (PREC, P, P)
 une(h + NL, h + NL + h.replace("hint_" + PREC, "hint_" + L).replace("_" + P + "[", "_" + U + "[") + NL)
