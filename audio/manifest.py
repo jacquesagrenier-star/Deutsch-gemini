@@ -14,6 +14,16 @@ CE QUI EST INVENTORIE
     restent a la synthese du navigateur. Ce sont les langues que l'utilisateur
     connait deja ; la voix y etiquette, elle n'enseigne pas.
 
+    ⚠️ CE QUI COMPTE, C'EST CE QUE L'APP ENVOIE A direAllemand(), PAS CE QUE
+    LES JSON CONTIENNENT. Quatre groupes ont manque ici jusqu'au 12 octobre
+    2026 (1 087 textes), chacun ajoute a l'app apres la v407 sans que ce
+    fichier soit mis au courant : les degres des adjectifs (une chaine
+    construite a la volee), les verbes et adjectifs des chapitres VHS (une
+    autre cle de themes.json), les verbes de position (en dur dans
+    index.html), les personnes des scenes (un prefixe ajoute a la volee).
+    tests/voix_couverture.py rejoue les formules de l'app et compare a ce
+    manifeste : le lancer apres tout ajout qui parle.
+
 L'IDENTIFIANT
     id = sha1(texte)[:16]. Nommer par le texte lui-meme plutot que par une cle
     de donnees a trois consequences, toutes voulues :
@@ -84,6 +94,26 @@ def recolter():
             if pluriel and pluriel not in ("—", "-"):
                 prendre("die " + pluriel, niv, "mot", "nomen.pluriel")
             prendre(m.get("exemple"), niv, "phrase", "nomen")
+        # LES CHAPITRES VHS (audit du 12 octobre 2026). Un theme vhs_kapitelN_b1
+        # porte, a cote de ses mots, ses propres `verben` et `adjektive`, que
+        # l'app passe tels quels aux cartes Verbes et Adjectifs (modes
+        # vhskapitelverben / vhskapiteladjektive). Ce manifeste ne lisait que
+        # theme["mots"] : 347 phrases de verbes et 19 d'adjectifs n'avaient
+        # jamais ete generees -- les autres doublaient verbe.json par chance.
+        # Memes formes que pour verbe.json ci-dessous, puisque c'est le meme
+        # rendu de carte qui les prononce.
+        for v in theme.get("verben") or []:
+            prendre(v.get("infinitif"), niv, "mot", "kapitel.verben")
+            for cle in ("exemple", "perfekt", "praeteritum", "konjunktiv2"):
+                prendre(v.get(cle), niv, "phrase", "kapitel.verben." + cle)
+            imp = v.get("imperativ")
+            if isinstance(imp, dict):
+                formes = [imp.get("du"), imp.get("ihr"), imp.get("sie_Sie")]
+                prendre(" ".join(x for x in formes if x), niv, "phrase",
+                        "kapitel.verben.imperativ")
+        for a in theme.get("adjektive") or []:
+            prendre(a.get("mot"), niv, "mot", "kapitel.adjektive")
+            prendre(a.get("exemple"), niv, "phrase", "kapitel.adjektive")
 
     verbes = charger("verbe.json")
     for niv in verbes:
@@ -107,6 +137,19 @@ def recolter():
             for x in d[niv]:
                 prendre(x.get(cle_mot), niv, "mot", source)
                 prendre(x.get("exemple"), niv, "phrase", source)
+                # LES DEGRES DE L'ADJECTIF (v677, audit du 12 octobre 2026).
+                # La carte affiche « besser · am besten » sous le mot, au meme
+                # emplacement que le pluriel d'un nom, avec le meme bouton
+                # d'ecoute -- et la chaine automatique du verso les dit aussi.
+                # Ce qu'elle envoie est UNE SEULE chaine, construite a la
+                # volee : reglerAudioPluriel(germanWord + ", " + card[15] +
+                # ", " + card[16]). Comme pour « die » + pluriel : meme chaine
+                # ici, au caractere pres, sinon l'identifiant ne concorde pas.
+                # Rien pour un adjectif sans comparatif OU sans superlatif
+                # (lila, tot) : la carte n'affiche alors pas la ligne.
+                if source == "adjektive" and x.get("comparatif") and x.get("superlatif"):
+                    prendre(x["mot"] + ", " + x["comparatif"] + ", " + x["superlatif"],
+                            niv, "phrase", "adjektive.degres")
 
     d = charger("funktionswort.json")
     for section in d:
@@ -205,6 +248,18 @@ def recolter():
     for phrase in phrases_des_articles():
         prendre(phrase, "B1", "phrase", "exercices.articles")
 
+    # LES VERBES DE POSITION (« legen ou liegen ? ») sont dans le meme cas :
+    # huit verbes en dur dans index.html (positionsverbenTheme), pas dans
+    # verbe.json. Dix-sept de leurs phrases doublaient verbe.json par chance,
+    # les sept autres sortaient a la voix du telephone (audit du 12 octobre
+    # 2026). Meme procede : lus a la source par tests/phrases_positionsverben.js.
+    # Le niveau : A2, celui des prepositions mixtes que ce jeu exerce. Le
+    # script rend l'infinitif (un mot) puis ses trois phrases : l'espace les
+    # distingue.
+    for texte in phrases_des_positionsverben():
+        prendre(texte, "A2", "phrase" if " " in texte else "mot",
+                "positionsverben")
+
     # LES SCENES ILLUSTREES (9 oct. 2026). Chaque question A2-C1 se conclut sur
     # une phrase allemande que la scene PRONONCE (champ phrase, lu par dire()
     # dans visuel/prototype/index.html, au caractere pres). Jacques : « on n'a
@@ -217,8 +272,35 @@ def recolter():
         for niv, couche in (scene.get("couches") or {}).items():
             for q in couche.get("qs") or []:
                 prendre(q.get("phrase"), niv, "phrase", "scene." + nom)
+        # LES PERSONNES (audit du 12 octobre 2026). En A1 « decouvrir », toucher
+        # Anna ou Mark fait dire son prenom AVANT le mot : dire((p.personne ?
+        # p.personne + ". " : "") + p.genre + " " + p.mot) -> « Anna. die Frau ».
+        # Le mot seul (« die Frau ») est deja la par nomen.article ; la forme
+        # avec le prenom est construite a la volee et n'etait nulle part. On la
+        # lit dans scene-<nom>.js, le fichier que l'app charge : c'est lui qui
+        # porte le genre, que points.json n'a pas (construire.py l'ajoute).
+        for p in points_de_la_scene(nom):
+            if p.get("personne") and p.get("genre") and p.get("mot"):
+                prendre(p["personne"] + ". " + p["genre"] + " " + p["mot"],
+                        "A1", "phrase", "scene.personne")
 
     return out
+
+
+def points_de_la_scene(nom):
+    """Les points de scene-<nom>.js, tels que l'app les charge.
+
+    Le fichier est du JavaScript genere (`window.SCENE = {...};`) ; on en lit
+    l'objet JSON. Une scene sans fichier construit n'a pas de points : elle
+    n'est pas encore dans l'app, donc rien a prononcer.
+    """
+    f = os.path.join(RACINE, "visuel", "prototype", "scene-" + nom + ".js")
+    if not os.path.exists(f):
+        return []
+    with io.open(f, encoding="utf-8") as fh:
+        src = fh.read()
+    src = src[src.index("{"):].rstrip().rstrip(";")
+    return json.loads(src).get("points") or []
 
 
 def phrases_des_articles():
@@ -228,17 +310,32 @@ def phrases_des_articles():
     regenererait sans un mot et laisserait ces exercices muets une seconde
     fois -- exactement le defaut qu'on repare ici.
     """
-    script = os.path.join(RACINE, "tests", "phrases_articles.js")
+    return textes_lus_dans_index("phrases_articles.js",
+                                 "les exercices d'articles")
+
+
+def phrases_des_positionsverben():
+    """L'infinitif et les trois phrases de chaque verbe de position, lus dans
+    index.html par tests/phrases_positionsverben.js. Meme arret que ci-dessus."""
+    return textes_lus_dans_index("phrases_positionsverben.js",
+                                 "les verbes de position")
+
+
+def textes_lus_dans_index(nom_script, quoi):
+    """Fait evaluer index.html par node (tests/<nom_script>) et rend un texte
+    par ligne. S'arrete si le script manque, echoue ou ne rend rien : un
+    manifeste ampute se regenererait sans un mot."""
+    script = os.path.join(RACINE, "tests", nom_script)
     if not os.path.exists(script):
-        sys.exit("  tests/phrases_articles.js manquant : les exercices "
-                 "d'articles seraient omis du manifeste.")
+        sys.exit("  tests/%s manquant : %s seraient omis du manifeste."
+                 % (nom_script, quoi))
     r = subprocess.run(["node", script], capture_output=True, text=True,
                        encoding="utf-8")
     if r.returncode != 0:
-        sys.exit("  tests/phrases_articles.js a echoue :\n" + (r.stderr or ""))
+        sys.exit("  tests/%s a echoue :\n%s" % (nom_script, r.stderr or ""))
     lignes = [l for l in (r.stdout or "").split("\n") if l.strip()]
     if not lignes:
-        sys.exit("  tests/phrases_articles.js n'a rien rendu.")
+        sys.exit("  tests/%s n'a rien rendu." % nom_script)
     return lignes
 
 
