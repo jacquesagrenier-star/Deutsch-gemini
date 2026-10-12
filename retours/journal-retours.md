@@ -8305,3 +8305,10 @@ multilingue fait parler ; pas de choix Bresil/Portugal possible -- a faire ecout
 Constat mesure : en, tr, pt complets ; uk sans les reponses de l'examen (178 listes en
 francais) ; fa sans l'examen ; ar sans corpus, sans exercices, sans examen (interface,
 grammaire, scenes et prononciation seulement). Chantier ouvert.
+
+Suite (v771) : l'ukrainien et le persan au niveau du contenu.
+- Ukrainien : les reponses de l'examen (178 listes, jusque-la en francais) et les 170
+  exercices d'articles codes en dur (traduction, indice, explication) -- verifies en
+  executant le code.
+- Persan : l'examen entier (720 champs, reponses comprises).
+Reste : l'arabe (corpus, exercices, examen, articles, cablage), en cours.
