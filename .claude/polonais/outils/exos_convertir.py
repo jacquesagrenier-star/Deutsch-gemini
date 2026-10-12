@@ -29,7 +29,7 @@ FRANCAIS = ["«", "»", " le ", " la ", " les ", " verbe", "personne", "avec ",
             "Avec ", " est ", " car ", " une ", " un ", " et ", " pas ",
             " se termine", " qui ", " dans ", " sur ",
             "masculin", "féminin", "neutre", "pluriel", "phrase", "Prétérit", "prétérit", " ici", "toujours", " donc ",
-            " ou ", " en ", "être", "avoir", "é", "è", "à ", "ç"]
+            " ou ", " en ", "être", "avoir", "à ", "ç", " de ", " que ", " ne "]
 ETRANGER = re.compile("[Ѐ-ӿ؀-ۿ]")
 
 
