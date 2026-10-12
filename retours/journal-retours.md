@@ -8369,3 +8369,11 @@ peu d'allemand ? » au premier demarrage, et deux textes de l'abonnement. Corrig
 francais et en anglais (I18N_ESPAGNOL). Autre signalement, non reproduit : chez une
 etudiante, « page web non disponible » sur le lien pages.dev (fonctionne chez Jacques) --
 pistes donnees (reseau qui bloque pages.dev, lien abime, lien GitHub de secours).
+
+Suite (v777) : plus aucun texte francais recopie dans les autres langues. Balayage complet
+par Fable (vocabulaire, examen, exercices, grammaire, prononciation, textes de l'app) :
+2 383 textes non traduits, TOUS dans exercices.json (4 jeux en francais dans toutes les
+langues, 39 textes turcs recopies de l'anglais, 3 explications persanes finissant en
+francais). Traduits et poses en en/tr/uk/fa/pt/ar (fr/de inchanges, bonne reponse toujours
+parmi les options). Nouveau controle permanent : python tests/trous_francais.py.
+Traductions pl/ru pretes dans ~/.wortando/trous-traduction (a poser avec ces langues).
