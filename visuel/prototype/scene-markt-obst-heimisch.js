@@ -21,7 +21,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -33,7 +34,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -51,7 +53,8 @@ window.SCENE = {
    "tr": "ahududu",
    "uk": "малина",
    "fa": "تمشک",
-   "pt": "framboesa"
+   "pt": "framboesa",
+   "ar": "توت العليق"
   },
   {
    "id": "heidelbeere",
@@ -72,7 +75,8 @@ window.SCENE = {
      "tr": "yaban mersini",
      "uk": "чорниця",
      "fa": "بلوبری",
-     "pt": "mirtilo (blueberry)"
+     "pt": "mirtilo (blueberry)",
+     "ar": "توت أزرق"
     },
     {
      "mot": "Kiste",
@@ -84,7 +88,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -96,7 +101,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -114,7 +120,8 @@ window.SCENE = {
    "tr": "yaban mersini",
    "uk": "чорниця",
    "fa": "بلوبری",
-   "pt": "mirtilo"
+   "pt": "mirtilo",
+   "ar": "توت أزرق"
   },
   {
    "id": "traube",
@@ -135,7 +142,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -147,7 +155,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -165,7 +174,8 @@ window.SCENE = {
    "tr": "üzüm",
    "uk": "виноград",
    "fa": "انگور",
-   "pt": "uva"
+   "pt": "uva",
+   "ar": "عنب"
   },
   {
    "id": "pflaume",
@@ -186,7 +196,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -198,7 +209,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -216,7 +228,8 @@ window.SCENE = {
    "tr": "erik",
    "uk": "слива",
    "fa": "آلو",
-   "pt": "ameixa"
+   "pt": "ameixa",
+   "ar": "برقوق"
   },
   {
    "id": "rhabarber",
@@ -237,7 +250,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -249,7 +263,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -267,7 +282,8 @@ window.SCENE = {
    "tr": "ravent",
    "uk": "ревінь",
    "fa": "ریواس",
-   "pt": "ruibarbo"
+   "pt": "ruibarbo",
+   "ar": "راوند"
   },
   {
    "id": "nuss",
@@ -288,7 +304,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -300,7 +317,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -318,7 +336,8 @@ window.SCENE = {
    "tr": "ceviz, fındık",
    "uk": "горіх",
    "fa": "مغز گردو، آجیل",
-   "pt": "noz, castanha"
+   "pt": "noz, castanha",
+   "ar": "جوز، مكسّرات"
   },
   {
    "id": "birne",
@@ -339,7 +358,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -351,7 +371,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -369,7 +390,8 @@ window.SCENE = {
    "tr": "armut",
    "uk": "груша",
    "fa": "گلابی",
-   "pt": "pera"
+   "pt": "pera",
+   "ar": "كمثرى"
   },
   {
    "id": "johannisbeere",
@@ -390,7 +412,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -402,7 +425,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -420,7 +444,8 @@ window.SCENE = {
    "tr": "frenk üzümü",
    "uk": "смородина",
    "fa": "انگور فرنگی",
-   "pt": "groselha"
+   "pt": "groselha",
+   "ar": "كشمش"
   },
   {
    "id": "stachelbeere",
@@ -441,7 +466,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -453,7 +479,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -471,7 +498,8 @@ window.SCENE = {
    "tr": "bektaşi üzümü",
    "uk": "аґрус",
    "fa": "انگور فرنگی خاردار",
-   "pt": "groselha-espinhosa"
+   "pt": "groselha-espinhosa",
+   "ar": "عنب الثعلب"
   },
   {
    "id": "kirsche",
@@ -492,7 +520,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -504,7 +533,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -522,7 +552,8 @@ window.SCENE = {
    "tr": "kiraz",
    "uk": "вишня, черешня",
    "fa": "گیلاس",
-   "pt": "cereja"
+   "pt": "cereja",
+   "ar": "كرز"
   },
   {
    "id": "brombeere",
@@ -543,7 +574,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -555,7 +587,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -573,7 +606,8 @@ window.SCENE = {
    "tr": "böğürtlen",
    "uk": "ожина",
    "fa": "تمشک سیاه",
-   "pt": "amora"
+   "pt": "amora",
+   "ar": "توت العلّيق الأسود"
   },
   {
    "id": "aprikose",
@@ -594,7 +628,8 @@ window.SCENE = {
      "tr": "kayısı (Avusturya)",
      "uk": "абрикос (австр.)",
      "fa": "زردآلو (واژهٔ اتریشی)",
-     "pt": "damasco (Áustria)"
+     "pt": "damasco (Áustria)",
+     "ar": "مشمش (نمساوية)"
     },
     {
      "mot": "Kiste",
@@ -606,7 +641,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -618,7 +654,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -636,7 +673,8 @@ window.SCENE = {
    "tr": "kayısı",
    "uk": "абрикос",
    "fa": "زردآلو",
-   "pt": "damasco"
+   "pt": "damasco",
+   "ar": "مشمش"
   },
   {
    "id": "erdbeere",
@@ -657,7 +695,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -669,7 +708,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -687,7 +727,8 @@ window.SCENE = {
    "tr": "çilek",
    "uk": "полуниця",
    "fa": "توت‌فرنگی",
-   "pt": "morango"
+   "pt": "morango",
+   "ar": "فراولة"
   },
   {
    "id": "pfirsich",
@@ -708,7 +749,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -720,7 +762,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -738,7 +781,8 @@ window.SCENE = {
    "tr": "şeftali",
    "uk": "персик",
    "fa": "هلو",
-   "pt": "pêssego"
+   "pt": "pêssego",
+   "ar": "خوخ"
   },
   {
    "id": "apfel",
@@ -759,7 +803,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Obst",
@@ -771,7 +816,8 @@ window.SCENE = {
      "tr": "meyve",
      "uk": "фрукти",
      "fa": "میوه",
-     "pt": "frutas"
+     "pt": "frutas",
+     "ar": "فواكه"
     }
    ],
    "sur": null,
@@ -789,7 +835,8 @@ window.SCENE = {
    "tr": "elma",
    "uk": "яблуко",
    "fa": "سیب",
-   "pt": "maçã"
+   "pt": "maçã",
+   "ar": "تفاحة"
   },
   {
    "id": "anna",
@@ -821,7 +868,8 @@ window.SCENE = {
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
-   "pt": "mulher / esposa"
+   "pt": "mulher / esposa",
+   "ar": "امرأة، زوجة"
   },
   {
    "id": "apfel-main",
@@ -847,7 +895,8 @@ window.SCENE = {
    "tr": "elma",
    "uk": "яблуко",
    "fa": "سیب",
-   "pt": "maçã"
+   "pt": "maçã",
+   "ar": "تفاحة"
   }
  ],
  "grosPlans": [],

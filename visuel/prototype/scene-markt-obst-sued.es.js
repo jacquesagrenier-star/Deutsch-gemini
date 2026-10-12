@@ -40,6 +40,7 @@ window.SCENE = {
    ],
    "fr": "la pastèque",
    "en": "the watermelon",
+   "ar": "بطّيخ",
    "latam": null
   },
   {
@@ -80,6 +81,7 @@ window.SCENE = {
    ],
    "fr": "l'ananas",
    "en": "the pineapple",
+   "ar": "أناناس",
    "latam": null
   },
   {
@@ -120,6 +122,7 @@ window.SCENE = {
    ],
    "fr": "la noix de coco",
    "en": "the coconut",
+   "ar": "جوز الهند",
    "latam": null
   },
   {
@@ -160,6 +163,7 @@ window.SCENE = {
    ],
    "fr": "le melon",
    "en": "the melon",
+   "ar": "شمّام",
    "latam": null
   },
   {
@@ -200,6 +204,7 @@ window.SCENE = {
    ],
    "fr": "l'orange",
    "en": "orange",
+   "ar": "برتقالة",
    "latam": null
   },
   {
@@ -240,6 +245,7 @@ window.SCENE = {
    ],
    "fr": "l'avocat (fruit)",
    "en": "the avocado",
+   "ar": "أفوكادو",
    "latam": null
   },
   {
@@ -280,6 +286,7 @@ window.SCENE = {
    ],
    "fr": "la papaye",
    "en": "the papaya",
+   "ar": "بابايا",
    "latam": null
   },
   {
@@ -320,6 +327,7 @@ window.SCENE = {
    ],
    "fr": "le citron",
    "en": "the lemon",
+   "ar": "ليمون",
    "latam": null
   },
   {
@@ -360,6 +368,7 @@ window.SCENE = {
    ],
    "fr": "le kiwi",
    "en": "the kiwi",
+   "ar": "كيوي",
    "latam": null
   },
   {
@@ -400,6 +409,7 @@ window.SCENE = {
    ],
    "fr": "la mandarine",
    "en": "the tangerine",
+   "ar": "يوسفي، مندرين",
    "latam": null
   },
   {
@@ -440,6 +450,7 @@ window.SCENE = {
    ],
    "fr": "la figue",
    "en": "the fig",
+   "ar": "تين",
    "latam": null
   },
   {
@@ -480,6 +491,7 @@ window.SCENE = {
    ],
    "fr": "le citron vert",
    "en": "the lime",
+   "ar": "ليمون أخضر (ليم)",
    "latam": null
   },
   {
@@ -520,6 +532,7 @@ window.SCENE = {
    ],
    "fr": "le pamplemousse",
    "en": "the grapefruit",
+   "ar": "جريب فروت",
    "latam": {
     "mot": "toronja",
     "genre": "la",
@@ -564,6 +577,7 @@ window.SCENE = {
    ],
    "fr": "la mangue",
    "en": "the mango",
+   "ar": "مانجو",
    "latam": null
   },
   {
@@ -604,6 +618,7 @@ window.SCENE = {
    ],
    "fr": "la banane",
    "en": "banana",
+   "ar": "موزة",
    "latam": null
   },
   {
@@ -644,6 +659,7 @@ window.SCENE = {
    ],
    "fr": "la grenade (fruit)",
    "en": "the pomegranate",
+   "ar": "رمّان",
    "latam": null
   },
   {
@@ -673,6 +689,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   }
  ],

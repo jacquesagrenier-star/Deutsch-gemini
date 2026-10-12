@@ -72,10 +72,9 @@ def corpus_cat(fichier, cle):
 
 LANGUES = ["en", "tr", "uk", "fa", "ar", "pt"]
 # Les traductions d'un mot dans le corpus : traduction (fr), traduction_en...
-# Pas encore d'arabe dans le corpus : la page retombe sur l'anglais.
 CHAMPS_MOT = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr",
               "uk": "traduction_uk", "fa": "traduction_fa",
-              "pt": "traduction_pt"}
+              "pt": "traduction_pt", "ar": "traduction_ar"}
 
 
 def sens(m):

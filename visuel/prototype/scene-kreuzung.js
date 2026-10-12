@@ -21,7 +21,8 @@ window.SCENE = {
      "tr": "ev",
      "uk": "будинок",
      "fa": "خانه",
-     "pt": "casa"
+     "pt": "casa",
+     "ar": "بيت، منزل"
     }
    ],
    "sur": null,
@@ -39,7 +40,8 @@ window.SCENE = {
    "tr": "bina",
    "uk": "будівля",
    "fa": "ساختمان",
-   "pt": "prédio, edifício"
+   "pt": "prédio, edifício",
+   "ar": "مبنى"
   },
   {
    "id": "strasse",
@@ -60,7 +62,8 @@ window.SCENE = {
      "tr": "kavşak",
      "uk": "перехрестя",
      "fa": "چهارراه",
-     "pt": "cruzamento"
+     "pt": "cruzamento",
+     "ar": "تقاطع"
     }
    ],
    "sur": null,
@@ -78,7 +81,8 @@ window.SCENE = {
    "tr": "sokak",
    "uk": "вулиця",
    "fa": "خیابان",
-   "pt": "rua"
+   "pt": "rua",
+   "ar": "شارع"
   },
   {
    "id": "buergersteig",
@@ -99,7 +103,8 @@ window.SCENE = {
      "tr": "kaldırım",
      "uk": "тротуар (австр.)",
      "fa": "پیاده‌رو (واژهٔ اتریشی)",
-     "pt": "calçada (Áustria, sul da Alemanha)"
+     "pt": "calçada (Áustria, sul da Alemanha)",
+     "ar": "رصيف المشاة (نمساوية)"
     }
    ],
    "sur": null,
@@ -117,7 +122,8 @@ window.SCENE = {
    "tr": "kaldırım",
    "uk": "тротуар",
    "fa": "پیاده‌رو",
-   "pt": "calçada"
+   "pt": "calçada",
+   "ar": "رصيف المشاة"
   },
   {
    "id": "baeckerei",
@@ -138,7 +144,8 @@ window.SCENE = {
      "tr": "vitrin",
      "uk": "вітрина",
      "fa": "ویترین",
-     "pt": "vitrine"
+     "pt": "vitrine",
+     "ar": "واجهة المحلّ"
     }
    ],
    "sur": null,
@@ -156,7 +163,8 @@ window.SCENE = {
    "tr": "ekmek fırını",
    "uk": "пекарня",
    "fa": "نانوایی",
-   "pt": "padaria"
+   "pt": "padaria",
+   "ar": "مخبز"
   },
   {
    "id": "brot",
@@ -177,7 +185,8 @@ window.SCENE = {
      "tr": "pretzel",
      "uk": "крендель",
      "fa": "نان پرتزل",
-     "pt": "pretzel"
+     "pt": "pretzel",
+     "ar": "بريتزل (خبز معقود)"
     },
     {
      "mot": "Brötchen",
@@ -189,7 +198,8 @@ window.SCENE = {
      "tr": "küçük ekmek",
      "uk": "булочка",
      "fa": "نان کوچک",
-     "pt": "pãozinho"
+     "pt": "pãozinho",
+     "ar": "خبز صغير (كعك)"
     },
     {
      "mot": "Schaufenster",
@@ -201,7 +211,8 @@ window.SCENE = {
      "tr": "vitrin",
      "uk": "вітрина",
      "fa": "ویترین",
-     "pt": "vitrine"
+     "pt": "vitrine",
+     "ar": "واجهة المحلّ"
     }
    ],
    "sur": "baeckerei",
@@ -219,7 +230,8 @@ window.SCENE = {
    "tr": "ekmek",
    "uk": "хліб",
    "fa": "نان",
-   "pt": "pão"
+   "pt": "pão",
+   "ar": "خبز"
   },
   {
    "id": "apotheke",
@@ -245,7 +257,8 @@ window.SCENE = {
    "tr": "eczane",
    "uk": "аптека",
    "fa": "داروخانه",
-   "pt": "farmácia"
+   "pt": "farmácia",
+   "ar": "صيدلية"
   },
   {
    "id": "post",
@@ -271,7 +284,8 @@ window.SCENE = {
    "tr": "posta",
    "uk": "пошта",
    "fa": "پست",
-   "pt": "correio"
+   "pt": "correio",
+   "ar": "بريد، مكتب البريد"
   },
   {
    "id": "briefkasten-post",
@@ -297,7 +311,8 @@ window.SCENE = {
    "tr": "posta kutusu",
    "uk": "поштова скринька",
    "fa": "صندوق نامه",
-   "pt": "caixa de correio"
+   "pt": "caixa de correio",
+   "ar": "صندوق البريد"
   },
   {
    "id": "cafe",
@@ -318,7 +333,8 @@ window.SCENE = {
      "tr": "masa",
      "uk": "стіл",
      "fa": "میز",
-     "pt": "mesa"
+     "pt": "mesa",
+     "ar": "طاولة"
     },
     {
      "mot": "Stuhl",
@@ -330,7 +346,8 @@ window.SCENE = {
      "tr": "sandalye",
      "uk": "стілець",
      "fa": "صندلی",
-     "pt": "cadeira"
+     "pt": "cadeira",
+     "ar": "كرسي"
     }
    ],
    "sur": null,
@@ -348,7 +365,8 @@ window.SCENE = {
    "tr": "kafe",
    "uk": "кав'ярня",
    "fa": "کافه",
-   "pt": "café (o lugar), cafeteria"
+   "pt": "café (o lugar), cafeteria",
+   "ar": "مقهى"
   },
   {
    "id": "markise",
@@ -374,7 +392,8 @@ window.SCENE = {
    "tr": "tente",
    "uk": "маркіза",
    "fa": "سایه‌بان",
-   "pt": "toldo"
+   "pt": "toldo",
+   "ar": "مظلّة (قماشية)"
   },
   {
    "id": "bus",
@@ -400,7 +419,8 @@ window.SCENE = {
    "tr": "otobüs",
    "uk": "автобус",
    "fa": "اتوبوس",
-   "pt": "ônibus"
+   "pt": "ônibus",
+   "ar": "حافلة"
   },
   {
    "id": "wartehaeuschen",
@@ -426,7 +446,8 @@ window.SCENE = {
    "tr": "otobüs durağı sığınağı",
    "uk": "навіс зупинки",
    "fa": "سایبان ایستگاه",
-   "pt": "abrigo do ponto de ônibus"
+   "pt": "abrigo do ponto de ônibus",
+   "ar": "مظلّة موقف الحافلة"
   },
   {
    "id": "haltestelle",
@@ -447,7 +468,8 @@ window.SCENE = {
      "tr": "tabela",
      "uk": "табличка, вивіска",
      "fa": "تابلو",
-     "pt": "placa"
+     "pt": "placa",
+     "ar": "لافتة"
     }
    ],
    "sur": null,
@@ -465,7 +487,8 @@ window.SCENE = {
    "tr": "durak",
    "uk": "зупинка",
    "fa": "ایستگاه",
-   "pt": "ponto (de ônibus)"
+   "pt": "ponto (de ônibus)",
+   "ar": "موقف (حافلات)"
   },
   {
    "id": "frau-rot",
@@ -491,7 +514,8 @@ window.SCENE = {
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
-   "pt": "mulher / esposa"
+   "pt": "mulher / esposa",
+   "ar": "امرأة، زوجة"
   },
   {
    "id": "auto-dunkel",
@@ -512,7 +536,8 @@ window.SCENE = {
      "tr": "otopark",
      "uk": "парковка",
      "fa": "جای پارک",
-     "pt": "estacionamento, vaga"
+     "pt": "estacionamento, vaga",
+     "ar": "موقف سيارات"
     }
    ],
    "sur": null,
@@ -530,7 +555,8 @@ window.SCENE = {
    "tr": "araba",
    "uk": "автомобіль",
    "fa": "خودرو",
-   "pt": "carro"
+   "pt": "carro",
+   "ar": "سيارة"
   },
   {
    "id": "auto-silber",
@@ -551,7 +577,8 @@ window.SCENE = {
      "tr": "otopark",
      "uk": "парковка",
      "fa": "جای پارک",
-     "pt": "estacionamento, vaga"
+     "pt": "estacionamento, vaga",
+     "ar": "موقف سيارات"
     }
    ],
    "sur": null,
@@ -569,7 +596,8 @@ window.SCENE = {
    "tr": "araba",
    "uk": "автомобіль",
    "fa": "خودرو",
-   "pt": "carro"
+   "pt": "carro",
+   "ar": "سيارة"
   },
   {
    "id": "parkuhr",
@@ -595,7 +623,8 @@ window.SCENE = {
    "tr": "parkmetre",
    "uk": "паркомат",
    "fa": "پارکومتر",
-   "pt": "parquímetro"
+   "pt": "parquímetro",
+   "ar": "عدّاد الوقوف"
   },
   {
    "id": "schild-klein",
@@ -616,7 +645,8 @@ window.SCENE = {
      "tr": "tabela",
      "uk": "табличка, вивіска",
      "fa": "تابلو",
-     "pt": "placa"
+     "pt": "placa",
+     "ar": "لافتة"
     }
    ],
    "sur": null,
@@ -634,7 +664,8 @@ window.SCENE = {
    "tr": "trafik işareti",
    "uk": "дорожній знак",
    "fa": "تابلوی راهنمایی",
-   "pt": "placa de trânsito"
+   "pt": "placa de trânsito",
+   "ar": "إشارة مرور (لافتة)"
   },
   {
    "id": "schild-gross",
@@ -655,7 +686,8 @@ window.SCENE = {
      "tr": "tabela",
      "uk": "табличка, вивіска",
      "fa": "تابلو",
-     "pt": "placa"
+     "pt": "placa",
+     "ar": "لافتة"
     }
    ],
    "sur": null,
@@ -673,7 +705,8 @@ window.SCENE = {
    "tr": "trafik işareti",
    "uk": "дорожній знак",
    "fa": "تابلوی راهنمایی",
-   "pt": "placa de trânsito"
+   "pt": "placa de trânsito",
+   "ar": "إشارة مرور (لافتة)"
   },
   {
    "id": "ampel-mitte",
@@ -699,7 +732,8 @@ window.SCENE = {
    "tr": "trafik ışığı",
    "uk": "світлофор",
    "fa": "چراغ راهنمایی",
-   "pt": "semáforo, farol"
+   "pt": "semáforo, farol",
+   "ar": "إشارة مرور"
   },
   {
    "id": "ampel-seite",
@@ -725,7 +759,8 @@ window.SCENE = {
    "tr": "trafik ışığı",
    "uk": "світлофор",
    "fa": "چراغ راهنمایی",
-   "pt": "semáforo, farol"
+   "pt": "semáforo, farol",
+   "ar": "إشارة مرور"
   },
   {
    "id": "lieferwagen",
@@ -746,7 +781,8 @@ window.SCENE = {
      "tr": "ağır vasıta",
      "uk": "вантажний автомобіль",
      "fa": "کامیون سنگین",
-     "pt": "caminhão"
+     "pt": "caminhão",
+     "ar": "شاحنة (اختصار)"
     },
     {
      "mot": "Laster",
@@ -758,7 +794,8 @@ window.SCENE = {
      "tr": "kamyon",
      "uk": "вантажівка",
      "fa": "کامیون",
-     "pt": "caminhão (coloquial)"
+     "pt": "caminhão (coloquial)",
+     "ar": "شاحنة"
     }
    ],
    "sur": null,
@@ -776,7 +813,8 @@ window.SCENE = {
    "tr": "kamyonet",
    "uk": "фургон",
    "fa": "ون باری",
-   "pt": "furgão, van de entrega"
+   "pt": "furgão, van de entrega",
+   "ar": "شاحنة توصيل صغيرة"
   },
   {
    "id": "zebrastreifen",
@@ -802,7 +840,8 @@ window.SCENE = {
    "tr": "yaya geçidi",
    "uk": "пішохідний перехід",
    "fa": "خط عابر پیاده",
-   "pt": "faixa de pedestres"
+   "pt": "faixa de pedestres",
+   "ar": "ممرّ المشاة"
   },
   {
    "id": "zebrastreifen-2",
@@ -828,7 +867,8 @@ window.SCENE = {
    "tr": "yaya geçidi",
    "uk": "пішохідний перехід",
    "fa": "خط عابر پیاده",
-   "pt": "faixa de pedestres"
+   "pt": "faixa de pedestres",
+   "ar": "ممرّ المشاة"
   },
   {
    "id": "fussgaenger",
@@ -849,7 +889,8 @@ window.SCENE = {
      "tr": "adam / koca",
      "uk": "чоловік",
      "fa": "مرد، شوهر",
-     "pt": "homem / marido"
+     "pt": "homem / marido",
+     "ar": "رجل، زوج"
     },
     {
      "mot": "Rucksack",
@@ -861,7 +902,8 @@ window.SCENE = {
      "tr": "sırt çantası",
      "uk": "рюкзак",
      "fa": "کوله‌پشتی",
-     "pt": "mochila"
+     "pt": "mochila",
+     "ar": "حقيبة ظهر"
     }
    ],
    "sur": null,
@@ -879,7 +921,8 @@ window.SCENE = {
    "tr": "yaya",
    "uk": "пішохід",
    "fa": "عابر پیاده",
-   "pt": "pedestre"
+   "pt": "pedestre",
+   "ar": "راجل، ماشٍ"
   },
   {
    "id": "frau-tasche",
@@ -900,7 +943,8 @@ window.SCENE = {
      "tr": "çanta",
      "uk": "сумка",
      "fa": "کیف",
-     "pt": "bolsa"
+     "pt": "bolsa",
+     "ar": "حقيبة"
     }
    ],
    "sur": null,
@@ -918,7 +962,8 @@ window.SCENE = {
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
-   "pt": "mulher / esposa"
+   "pt": "mulher / esposa",
+   "ar": "امرأة، زوجة"
   },
   {
    "id": "taxi",
@@ -939,7 +984,8 @@ window.SCENE = {
      "tr": "araba",
      "uk": "автомобіль",
      "fa": "خودرو",
-     "pt": "carro"
+     "pt": "carro",
+     "ar": "سيارة"
     }
    ],
    "sur": null,
@@ -957,7 +1003,8 @@ window.SCENE = {
    "tr": "taksi",
    "uk": "таксі",
    "fa": "تاکسی",
-   "pt": "táxi"
+   "pt": "táxi",
+   "ar": "سيارة أجرة"
   },
   {
    "id": "strassenbahn",
@@ -978,7 +1025,8 @@ window.SCENE = {
      "tr": "tramvay (kısaltma)",
      "uk": "трамвай (скорочення)",
      "fa": "تراموا (واژهٔ کوتاه)",
-     "pt": "bonde"
+     "pt": "bonde",
+     "ar": "ترام"
     }
    ],
    "sur": null,
@@ -996,7 +1044,8 @@ window.SCENE = {
    "tr": "tramvay",
    "uk": "трамвай",
    "fa": "تراموا",
-   "pt": "bonde"
+   "pt": "bonde",
+   "ar": "ترام"
   },
   {
    "id": "motorrad",
@@ -1022,7 +1071,8 @@ window.SCENE = {
    "tr": "motosiklet",
    "uk": "мотоцикл",
    "fa": "موتورسیکلت",
-   "pt": "moto"
+   "pt": "moto",
+   "ar": "درّاجة نارية"
   },
   {
    "id": "radweg",
@@ -1048,7 +1098,8 @@ window.SCENE = {
    "tr": "bisiklet yolu",
    "uk": "велодоріжка",
    "fa": "مسیر دوچرخه",
-   "pt": "ciclovia"
+   "pt": "ciclovia",
+   "ar": "مسار الدرّاجات"
   },
   {
    "id": "radfahrer",
@@ -1069,7 +1120,8 @@ window.SCENE = {
      "tr": "bisiklet",
      "uk": "велосипед",
      "fa": "دوچرخه",
-     "pt": "bicicleta"
+     "pt": "bicicleta",
+     "ar": "درّاجة"
     },
     {
      "mot": "Jacke",
@@ -1081,7 +1133,8 @@ window.SCENE = {
      "tr": "ceket",
      "uk": "куртка",
      "fa": "کاپشن",
-     "pt": "jaqueta"
+     "pt": "jaqueta",
+     "ar": "سترة، جاكيت"
     }
    ],
    "sur": null,
@@ -1099,7 +1152,8 @@ window.SCENE = {
    "tr": "bisikletli",
    "uk": "велосипедист",
    "fa": "دوچرخه‌سوار",
-   "pt": "ciclista"
+   "pt": "ciclista",
+   "ar": "راكب دراجة"
   },
   {
    "id": "helm",
@@ -1125,7 +1179,8 @@ window.SCENE = {
    "tr": "kask",
    "uk": "шолом",
    "fa": "کلاه ایمنی",
-   "pt": "capacete"
+   "pt": "capacete",
+   "ar": "خوذة"
   },
   {
    "id": "kiosk",
@@ -1151,7 +1206,8 @@ window.SCENE = {
    "tr": "gazete bayii",
    "uk": "кіоск",
    "fa": "دکه",
-   "pt": "banca, quiosque"
+   "pt": "banca, quiosque",
+   "ar": "كشك"
   },
   {
    "id": "flasche",
@@ -1177,7 +1233,8 @@ window.SCENE = {
    "tr": "şişe",
    "uk": "пляшка",
    "fa": "بطری",
-   "pt": "garrafa"
+   "pt": "garrafa",
+   "ar": "زجاجة"
   },
   {
    "id": "briefkasten",
@@ -1203,7 +1260,8 @@ window.SCENE = {
    "tr": "posta kutusu",
    "uk": "поштова скринька",
    "fa": "صندوق نامه",
-   "pt": "caixa de correio"
+   "pt": "caixa de correio",
+   "ar": "صندوق البريد"
   },
   {
    "id": "laterne",
@@ -1229,7 +1287,8 @@ window.SCENE = {
    "tr": "sokak lambası",
    "uk": "ліхтар",
    "fa": "چراغ خیابان",
-   "pt": "poste de luz"
+   "pt": "poste de luz",
+   "ar": "عمود إنارة"
   },
   {
    "id": "anna",
@@ -1250,7 +1309,8 @@ window.SCENE = {
      "tr": "cep telefonu",
      "uk": "мобільник",
      "fa": "تلفن همراه",
-     "pt": "celular"
+     "pt": "celular",
+     "ar": "هاتف محمول"
     },
     {
      "mot": "Jacke",
@@ -1262,7 +1322,8 @@ window.SCENE = {
      "tr": "ceket",
      "uk": "куртка",
      "fa": "کاپشن",
-     "pt": "jaqueta"
+     "pt": "jaqueta",
+     "ar": "سترة، جاكيت"
     }
    ],
    "sur": null,
@@ -1280,7 +1341,8 @@ window.SCENE = {
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
-   "pt": "mulher / esposa"
+   "pt": "mulher / esposa",
+   "ar": "امرأة، زوجة"
   },
   {
    "id": "ampel-vorne",
@@ -1306,7 +1368,8 @@ window.SCENE = {
    "tr": "trafik ışığı",
    "uk": "світлофор",
    "fa": "چراغ راهنمایی",
-   "pt": "semáforo, farol"
+   "pt": "semáforo, farol",
+   "ar": "إشارة مرور"
   },
   {
    "id": "fahrradstaender",
@@ -1327,7 +1390,8 @@ window.SCENE = {
      "tr": "bisiklet",
      "uk": "велосипед",
      "fa": "دوچرخه",
-     "pt": "bicicleta"
+     "pt": "bicicleta",
+     "ar": "درّاجة"
     }
    ],
    "sur": null,
@@ -1345,7 +1409,8 @@ window.SCENE = {
    "tr": "bisiklet park yeri",
    "uk": "велостоянка",
    "fa": "پایهٔ دوچرخه",
-   "pt": "bicicletário"
+   "pt": "bicicletário",
+   "ar": "حامل الدرّاجات"
   }
  ],
  "grosPlans": [],

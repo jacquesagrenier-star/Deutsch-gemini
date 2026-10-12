@@ -40,6 +40,7 @@ window.SCENE = {
    ],
    "fr": "la betterave",
    "en": "the beetroot",
+   "ar": "شمندر",
    "latam": {
     "mot": "betabel",
     "genre": "el",
@@ -84,6 +85,7 @@ window.SCENE = {
    ],
    "fr": "le chou-fleur",
    "en": "the cauliflower",
+   "ar": "قرنبيط",
    "latam": null
   },
   {
@@ -124,6 +126,7 @@ window.SCENE = {
    ],
    "fr": "le céleri",
    "en": "the celery",
+   "ar": "كرفس",
    "latam": null
   },
   {
@@ -164,6 +167,7 @@ window.SCENE = {
    ],
    "fr": "la pomme de terre",
    "en": "potato",
+   "ar": "بطاطس",
    "latam": {
     "mot": "papa",
     "genre": "la",
@@ -208,6 +212,7 @@ window.SCENE = {
    ],
    "fr": "le chou-rave",
    "en": "the kohlrabi",
+   "ar": "كرنب أبو ركبة (كولرابي)",
    "latam": null
   },
   {
@@ -248,6 +253,7 @@ window.SCENE = {
    ],
    "fr": "l'oignon",
    "en": "onion",
+   "ar": "بصل",
    "latam": null
   },
   {
@@ -288,6 +294,7 @@ window.SCENE = {
    ],
    "fr": "le chou",
    "en": "the cabbage",
+   "ar": "ملفوف",
    "latam": null
   },
   {
@@ -328,6 +335,7 @@ window.SCENE = {
    ],
    "fr": "le poireau",
    "en": "the leek",
+   "ar": "كرّاث",
    "latam": null
   },
   {
@@ -368,6 +376,7 @@ window.SCENE = {
    ],
    "fr": "la carotte",
    "en": "the carrot",
+   "ar": "جزر",
    "latam": null
   },
   {
@@ -408,6 +417,7 @@ window.SCENE = {
    ],
    "fr": "le chou de Bruxelles",
    "en": "the Brussels sprout",
+   "ar": "كرنب بروكسل",
    "latam": null
   },
   {
@@ -448,6 +458,7 @@ window.SCENE = {
    ],
    "fr": "le fenouil",
    "en": "the fennel",
+   "ar": "شمر",
    "latam": null
   },
   {
@@ -488,6 +499,7 @@ window.SCENE = {
    ],
    "fr": "le brocoli",
    "en": "the broccoli",
+   "ar": "بروكلي",
    "latam": null
   },
   {
@@ -528,6 +540,7 @@ window.SCENE = {
    ],
    "fr": "l'ail",
    "en": "the garlic",
+   "ar": "ثوم",
    "latam": null
   },
   {
@@ -568,6 +581,7 @@ window.SCENE = {
    ],
    "fr": "le radis",
    "en": "the radish",
+   "ar": "فجل أحمر",
    "latam": null
   },
   {
@@ -608,6 +622,7 @@ window.SCENE = {
    ],
    "fr": "la patate douce",
    "en": "the sweet potato",
+   "ar": "بطاطا حلوة",
    "latam": {
     "mot": "camote",
     "genre": "el",
@@ -647,6 +662,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -670,6 +686,7 @@ window.SCENE = {
    ],
    "fr": "le radis",
    "en": "the radish",
+   "ar": "فجل أحمر",
    "latam": null
   }
  ],

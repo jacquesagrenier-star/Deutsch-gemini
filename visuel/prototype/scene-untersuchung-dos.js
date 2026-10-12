@@ -21,7 +21,8 @@ window.SCENE = {
      "tr": "adam / koca",
      "uk": "чоловік",
      "fa": "مرد، شوهر",
-     "pt": "homem / marido"
+     "pt": "homem / marido",
+     "ar": "رجل، زوج"
     },
     {
      "mot": "Körper",
@@ -33,7 +34,8 @@ window.SCENE = {
      "tr": "vücut",
      "uk": "тіло",
      "fa": "بدن",
-     "pt": "corpo"
+     "pt": "corpo",
+     "ar": "جسم"
     }
    ],
    "sur": null,
@@ -63,7 +65,8 @@ window.SCENE = {
    "tr": "hasta",
    "uk": "пацієнт",
    "fa": "بیمار (مرد)",
-   "pt": "paciente"
+   "pt": "paciente",
+   "ar": "مريض"
   },
   {
    "id": "kopf",
@@ -89,7 +92,8 @@ window.SCENE = {
    "tr": "baş",
    "uk": "голова",
    "fa": "سر",
-   "pt": "cabeça"
+   "pt": "cabeça",
+   "ar": "رأس"
   },
   {
    "id": "haar",
@@ -115,7 +119,8 @@ window.SCENE = {
    "tr": "saç",
    "uk": "волосся",
    "fa": "مو",
-   "pt": "cabelo"
+   "pt": "cabelo",
+   "ar": "شعر"
   },
   {
    "id": "ohr",
@@ -147,7 +152,8 @@ window.SCENE = {
    "tr": "kulak",
    "uk": "вухо",
    "fa": "گوش",
-   "pt": "orelha, ouvido"
+   "pt": "orelha, ouvido",
+   "ar": "أذن"
   },
   {
    "id": "nacken",
@@ -168,7 +174,8 @@ window.SCENE = {
      "tr": "boyun",
      "uk": "шия, горло",
      "fa": "گلو، گردن",
-     "pt": "pescoço, garganta"
+     "pt": "pescoço, garganta",
+     "ar": "رقبة، حلق"
     }
    ],
    "sur": "mark",
@@ -186,7 +193,8 @@ window.SCENE = {
    "tr": "ense",
    "uk": "карк",
    "fa": "پشت گردن",
-   "pt": "nuca"
+   "pt": "nuca",
+   "ar": "مؤخرة العنق، القفا"
   },
   {
    "id": "schulter",
@@ -218,7 +226,8 @@ window.SCENE = {
    "tr": "omuz",
    "uk": "плече",
    "fa": "شانه",
-   "pt": "ombro"
+   "pt": "ombro",
+   "ar": "كتف"
   },
   {
    "id": "schulterblatt",
@@ -250,7 +259,8 @@ window.SCENE = {
    "tr": "kürek kemiği",
    "uk": "лопатка",
    "fa": "استخوان کتف",
-   "pt": "omoplata, escápula"
+   "pt": "omoplata, escápula",
+   "ar": "لوح الكتف"
   },
   {
    "id": "wirbelsaeule",
@@ -276,7 +286,8 @@ window.SCENE = {
    "tr": "omurga",
    "uk": "хребет",
    "fa": "ستون فقرات",
-   "pt": "coluna vertebral"
+   "pt": "coluna vertebral",
+   "ar": "العمود الفقري"
   },
   {
    "id": "ruecken",
@@ -302,7 +313,8 @@ window.SCENE = {
    "tr": "sırt",
    "uk": "спина",
    "fa": "پشت، کمر",
-   "pt": "costas"
+   "pt": "costas",
+   "ar": "ظهر"
   },
   {
    "id": "po",
@@ -323,7 +335,8 @@ window.SCENE = {
      "tr": "kalça",
      "uk": "сідниці",
      "fa": "باسن",
-     "pt": "nádegas, bumbum"
+     "pt": "nádegas, bumbum",
+     "ar": "الأرداف، المؤخّرة"
     },
     {
      "mot": "Unterhose",
@@ -335,7 +348,8 @@ window.SCENE = {
      "tr": "külot",
      "uk": "труси",
      "fa": "شورت",
-     "pt": "cueca, calcinha"
+     "pt": "cueca, calcinha",
+     "ar": "سروال داخلي"
     }
    ],
    "sur": "mark",
@@ -353,7 +367,8 @@ window.SCENE = {
    "tr": "kalça",
    "uk": "сідниці",
    "fa": "باسن",
-   "pt": "bumbum"
+   "pt": "bumbum",
+   "ar": "مؤخّرة"
   },
   {
    "id": "arm-l",
@@ -385,7 +400,8 @@ window.SCENE = {
    "tr": "kol",
    "uk": "рука (від плеча)",
    "fa": "بازو",
-   "pt": "braço"
+   "pt": "braço",
+   "ar": "ذراع"
   },
   {
    "id": "arm-r",
@@ -417,7 +433,8 @@ window.SCENE = {
    "tr": "kol",
    "uk": "рука (від плеча)",
    "fa": "بازو",
-   "pt": "braço"
+   "pt": "braço",
+   "ar": "ذراع"
   },
   {
    "id": "ellbogen",
@@ -449,7 +466,8 @@ window.SCENE = {
    "tr": "dirsek",
    "uk": "лікоть",
    "fa": "آرنج",
-   "pt": "cotovelo"
+   "pt": "cotovelo",
+   "ar": "مرفق، كوع"
   },
   {
    "id": "hand-l",
@@ -475,7 +493,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "hand-r",
@@ -501,7 +520,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "handflaeche-r",
@@ -527,7 +547,8 @@ window.SCENE = {
    "tr": "avuç içi",
    "uk": "долоня",
    "fa": "کف دست",
-   "pt": "palma da mão"
+   "pt": "palma da mão",
+   "ar": "راحة اليد"
   },
   {
    "id": "oberschenkel",
@@ -559,7 +580,8 @@ window.SCENE = {
    "tr": "uyluk",
    "uk": "стегно",
    "fa": "ران",
-   "pt": "coxa"
+   "pt": "coxa",
+   "ar": "فخذ"
   },
   {
    "id": "kniekehle",
@@ -591,7 +613,8 @@ window.SCENE = {
    "tr": "diz arkası",
    "uk": "підколінна ямка",
    "fa": "پشت زانو",
-   "pt": "dobra de trás do joelho"
+   "pt": "dobra de trás do joelho",
+   "ar": "باطن الركبة"
   },
   {
    "id": "wade",
@@ -623,7 +646,8 @@ window.SCENE = {
    "tr": "baldır",
    "uk": "литка",
    "fa": "ماهیچهٔ پشت ساق پا",
-   "pt": "panturrilha"
+   "pt": "panturrilha",
+   "ar": "ربلة الساق"
   },
   {
    "id": "bein-l",
@@ -649,7 +673,8 @@ window.SCENE = {
    "tr": "bacak",
    "uk": "нога",
    "fa": "ساق پا",
-   "pt": "perna"
+   "pt": "perna",
+   "ar": "ساق"
   },
   {
    "id": "bein-r",
@@ -675,7 +700,8 @@ window.SCENE = {
    "tr": "bacak",
    "uk": "нога",
    "fa": "ساق پا",
-   "pt": "perna"
+   "pt": "perna",
+   "ar": "ساق"
   },
   {
    "id": "ferse",
@@ -707,7 +733,8 @@ window.SCENE = {
    "tr": "topuk",
    "uk": "п'ята",
    "fa": "پاشنهٔ پا",
-   "pt": "calcanhar"
+   "pt": "calcanhar",
+   "ar": "كعب القدم"
   },
   {
    "id": "fuss-l",
@@ -733,7 +760,8 @@ window.SCENE = {
    "tr": "ayak",
    "uk": "ступня",
    "fa": "پا",
-   "pt": "pé"
+   "pt": "pé",
+   "ar": "قدم"
   },
   {
    "id": "fuss-r",
@@ -759,7 +787,8 @@ window.SCENE = {
    "tr": "ayak",
    "uk": "ступня",
    "fa": "پا",
-   "pt": "pé"
+   "pt": "pé",
+   "ar": "قدم"
   },
   {
    "id": "aerztin",
@@ -780,7 +809,8 @@ window.SCENE = {
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
      "fa": "زن، همسر",
-     "pt": "mulher / esposa"
+     "pt": "mulher / esposa",
+     "ar": "امرأة، زوجة"
     }
    ],
    "sur": null,
@@ -810,7 +840,8 @@ window.SCENE = {
    "tr": "doktor (kadın)",
    "uk": "лікарка",
    "fa": "پزشک (زن)",
-   "pt": "médica"
+   "pt": "médica",
+   "ar": "طبيبة"
   },
   {
    "id": "hand-aerztin-haut",
@@ -836,7 +867,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "hand-aerztin-bas",
@@ -862,7 +894,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "stethoskop",
@@ -894,7 +927,8 @@ window.SCENE = {
    "tr": "steteskop",
    "uk": "стетоскоп",
    "fa": "گوشی پزشکی",
-   "pt": "estetoscópio"
+   "pt": "estetoscópio",
+   "ar": "سمّاعة الطبيب"
   },
   {
    "id": "waage",
@@ -932,7 +966,8 @@ window.SCENE = {
    "tr": "tartı",
    "uk": "ваги",
    "fa": "ترازو",
-   "pt": "balança"
+   "pt": "balança",
+   "ar": "ميزان"
   },
   {
    "id": "wand",
@@ -958,7 +993,8 @@ window.SCENE = {
    "tr": "duvar",
    "uk": "стіна",
    "fa": "دیوار",
-   "pt": "parede"
+   "pt": "parede",
+   "ar": "جدار"
   },
   {
    "id": "boden",
@@ -984,7 +1020,8 @@ window.SCENE = {
    "tr": "zemin / toprak",
    "uk": "земля, підлога",
    "fa": "زمین، کف",
-   "pt": "chão, solo"
+   "pt": "chão, solo",
+   "ar": "أرض، تربة"
   },
   {
    "id": "handflaeche-l",
@@ -1011,7 +1048,8 @@ window.SCENE = {
    "tr": "avuç içi",
    "uk": "долоня",
    "fa": "کف دست",
-   "pt": "palma da mão"
+   "pt": "palma da mão",
+   "ar": "راحة اليد"
   },
   {
    "id": "finger-dos",
@@ -1038,7 +1076,8 @@ window.SCENE = {
    "tr": "parmak",
    "uk": "палець",
    "fa": "انگشت",
-   "pt": "dedo"
+   "pt": "dedo",
+   "ar": "إصبع"
   }
  ],
  "grosPlans": [

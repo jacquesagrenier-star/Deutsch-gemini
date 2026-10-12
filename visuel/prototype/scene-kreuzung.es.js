@@ -32,6 +32,7 @@ window.SCENE = {
    ],
    "fr": "l'immeuble, le bâtiment",
    "en": "the building",
+   "ar": "مبنى",
    "latam": null
   },
   {
@@ -64,6 +65,7 @@ window.SCENE = {
    ],
    "fr": "la rue",
    "en": "the street",
+   "ar": "شارع",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    ],
    "fr": "le trottoir",
    "en": "the pavement",
+   "ar": "رصيف المشاة",
    "latam": {
     "mot": "banqueta",
     "genre": "la",
@@ -128,6 +131,7 @@ window.SCENE = {
    ],
    "fr": "la boulangerie",
    "en": "the bakery",
+   "ar": "مخبز",
    "latam": null
   },
   {
@@ -173,6 +177,7 @@ window.SCENE = {
    ],
    "fr": "le pain",
    "en": "bread",
+   "ar": "خبز",
    "latam": null
   },
   {
@@ -196,6 +201,7 @@ window.SCENE = {
    ],
    "fr": "la pharmacie",
    "en": "the chemist's",
+   "ar": "صيدلية",
    "latam": null
   },
   {
@@ -219,6 +225,7 @@ window.SCENE = {
    ],
    "fr": "le bureau de poste",
    "en": "the post office",
+   "ar": "بريد، مكتب البريد",
    "latam": null
   },
   {
@@ -242,6 +249,7 @@ window.SCENE = {
    ],
    "fr": "la boîte aux lettres",
    "en": "the letterbox",
+   "ar": "صندوق البريد",
    "latam": null
   },
   {
@@ -282,6 +290,7 @@ window.SCENE = {
    ],
    "fr": "le café (l'établissement)",
    "en": "the café",
+   "ar": "مقهى",
    "latam": null
   },
   {
@@ -305,6 +314,7 @@ window.SCENE = {
    ],
    "fr": "le store (auvent)",
    "en": "the awning",
+   "ar": "مظلّة (قماشية)",
    "latam": null
   },
   {
@@ -328,6 +338,7 @@ window.SCENE = {
    ],
    "fr": "l'autobus",
    "en": "the bus",
+   "ar": "حافلة",
    "latam": null
   },
   {
@@ -351,6 +362,7 @@ window.SCENE = {
    ],
    "fr": "l'abribus",
    "en": "the bus shelter",
+   "ar": "مظلّة موقف الحافلة",
    "latam": null
   },
   {
@@ -383,6 +395,7 @@ window.SCENE = {
    ],
    "fr": "l'arrêt",
    "en": "the stop",
+   "ar": "موقف (حافلات)",
    "latam": null
   },
   {
@@ -406,6 +419,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -443,6 +457,7 @@ window.SCENE = {
    ],
    "fr": "la voiture",
    "en": "the car",
+   "ar": "سيارة",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -484,6 +499,7 @@ window.SCENE = {
    ],
    "fr": "la voiture",
    "en": "the car",
+   "ar": "سيارة",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -511,6 +527,7 @@ window.SCENE = {
    ],
    "fr": "le parcmètre",
    "en": "the parking meter",
+   "ar": "عدّاد الوقوف",
    "latam": null
   },
   {
@@ -534,6 +551,7 @@ window.SCENE = {
    ],
    "fr": "le panneau",
    "en": "the sign",
+   "ar": "إشارة مرور (لافتة)",
    "latam": null
   },
   {
@@ -557,6 +575,7 @@ window.SCENE = {
    ],
    "fr": "le panneau",
    "en": "the sign",
+   "ar": "إشارة مرور (لافتة)",
    "latam": null
   },
   {
@@ -580,6 +599,7 @@ window.SCENE = {
    ],
    "fr": "le feu de circulation",
    "en": "the traffic light",
+   "ar": "إشارة مرور",
    "latam": null
   },
   {
@@ -603,6 +623,7 @@ window.SCENE = {
    ],
    "fr": "le feu de circulation",
    "en": "the traffic light",
+   "ar": "إشارة مرور",
    "latam": null
   },
   {
@@ -635,6 +656,7 @@ window.SCENE = {
    ],
    "fr": "la camionnette",
    "en": "the van",
+   "ar": "شاحنة توصيل صغيرة",
    "latam": {
     "mot": "camioneta",
     "genre": "la",
@@ -662,6 +684,7 @@ window.SCENE = {
    ],
    "fr": "le passage piéton",
    "en": "the zebra crossing",
+   "ar": "ممرّ المشاة",
    "latam": {
     "mot": "paso peatonal",
     "genre": "el",
@@ -689,6 +712,7 @@ window.SCENE = {
    ],
    "fr": "le passage piéton",
    "en": "the zebra crossing",
+   "ar": "ممرّ المشاة",
    "latam": {
     "mot": "paso peatonal",
     "genre": "el",
@@ -733,6 +757,7 @@ window.SCENE = {
    ],
    "fr": "le piéton",
    "en": "the pedestrian",
+   "ar": "راجل، ماشٍ",
    "latam": null
   },
   {
@@ -765,6 +790,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -802,6 +828,7 @@ window.SCENE = {
    ],
    "fr": "le taxi",
    "en": "the taxi",
+   "ar": "سيارة أجرة",
    "latam": null
   },
   {
@@ -825,6 +852,7 @@ window.SCENE = {
    ],
    "fr": "le tramway",
    "en": "the tram",
+   "ar": "ترام",
    "latam": null
   },
   {
@@ -848,6 +876,7 @@ window.SCENE = {
    ],
    "fr": "la moto",
    "en": "the motorbike",
+   "ar": "درّاجة نارية",
    "latam": null
   },
   {
@@ -871,6 +900,7 @@ window.SCENE = {
    ],
    "fr": "la piste cyclable",
    "en": "the cycle lane",
+   "ar": "مسار الدرّاجات",
    "latam": {
     "mot": "ciclovía",
     "genre": "la",
@@ -915,6 +945,7 @@ window.SCENE = {
    ],
    "fr": "le cycliste",
    "en": "the cyclist",
+   "ar": "راكب دراجة",
    "latam": null
   },
   {
@@ -938,6 +969,7 @@ window.SCENE = {
    ],
    "fr": "le casque",
    "en": "the helmet",
+   "ar": "خوذة",
    "latam": null
   },
   {
@@ -961,6 +993,7 @@ window.SCENE = {
    ],
    "fr": "le kiosque",
    "en": "the newsstand",
+   "ar": "كشك",
    "latam": null
   },
   {
@@ -984,6 +1017,7 @@ window.SCENE = {
    ],
    "fr": "la bouteille",
    "en": "bottle",
+   "ar": "زجاجة",
    "latam": null
   },
   {
@@ -1007,6 +1041,7 @@ window.SCENE = {
    ],
    "fr": "la boîte aux lettres",
    "en": "the letterbox",
+   "ar": "صندوق البريد",
    "latam": null
   },
   {
@@ -1030,6 +1065,7 @@ window.SCENE = {
    ],
    "fr": "le réverbère",
    "en": "the street lamp",
+   "ar": "عمود إنارة",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -1079,6 +1115,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -1102,6 +1139,7 @@ window.SCENE = {
    ],
    "fr": "le feu de circulation",
    "en": "the traffic light",
+   "ar": "إشارة مرور",
    "latam": null
   },
   {
@@ -1134,6 +1172,7 @@ window.SCENE = {
    ],
    "fr": "le support à vélos",
    "en": "the bike rack",
+   "ar": "حامل الدرّاجات",
    "latam": {
     "mot": "bicicletero",
     "genre": "el",

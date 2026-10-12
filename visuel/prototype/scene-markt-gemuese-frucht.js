@@ -21,7 +21,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -33,7 +34,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -51,7 +53,8 @@ window.SCENE = {
    "tr": "bezelye",
    "uk": "горошок",
    "fa": "نخودفرنگی",
-   "pt": "ervilha"
+   "pt": "ervilha",
+   "ar": "بازلاء"
   },
   {
    "id": "salat",
@@ -72,7 +75,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -84,7 +88,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -102,7 +107,8 @@ window.SCENE = {
    "tr": "salata",
    "uk": "салат",
    "fa": "کاهو، سالاد",
-   "pt": "alface, salada"
+   "pt": "alface, salada",
+   "ar": "خس، سلطة"
   },
   {
    "id": "spargel",
@@ -123,7 +129,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -135,7 +142,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -153,7 +161,8 @@ window.SCENE = {
    "tr": "kuşkonmaz",
    "uk": "спаржа",
    "fa": "مارچوبه",
-   "pt": "aspargo"
+   "pt": "aspargo",
+   "ar": "هليون"
   },
   {
    "id": "kuerbis",
@@ -174,7 +183,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -186,7 +196,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -204,7 +215,8 @@ window.SCENE = {
    "tr": "balkabağı",
    "uk": "гарбуз",
    "fa": "کدو تنبل",
-   "pt": "abóbora"
+   "pt": "abóbora",
+   "ar": "يقطين"
   },
   {
    "id": "paprika",
@@ -225,7 +237,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -237,7 +250,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -255,7 +269,8 @@ window.SCENE = {
    "tr": "biber",
    "uk": "солодкий перець",
    "fa": "فلفل دلمه‌ای",
-   "pt": "pimentão"
+   "pt": "pimentão",
+   "ar": "فلفل حلو"
   },
   {
    "id": "mais",
@@ -276,7 +291,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -288,7 +304,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -306,7 +323,8 @@ window.SCENE = {
    "tr": "mısır",
    "uk": "кукурудза",
    "fa": "ذرت",
-   "pt": "milho"
+   "pt": "milho",
+   "ar": "ذرة"
   },
   {
    "id": "pilz",
@@ -327,7 +345,8 @@ window.SCENE = {
      "tr": "mantar (Avusturya)",
      "uk": "гриб (австр.)",
      "fa": "قارچ (واژهٔ اتریشی)",
-     "pt": "cogumelo (Áustria)"
+     "pt": "cogumelo (Áustria)",
+     "ar": "فطر (نمساوية)"
     },
     {
      "mot": "Kiste",
@@ -339,7 +358,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -351,7 +371,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -369,7 +390,8 @@ window.SCENE = {
    "tr": "mantar",
    "uk": "гриб",
    "fa": "قارچ",
-   "pt": "cogumelo"
+   "pt": "cogumelo",
+   "ar": "فطر"
   },
   {
    "id": "bohne",
@@ -390,7 +412,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -402,7 +425,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -420,7 +444,8 @@ window.SCENE = {
    "tr": "fasulye",
    "uk": "квасоля, боби",
    "fa": "لوبیا",
-   "pt": "feijão, vagem"
+   "pt": "feijão, vagem",
+   "ar": "فاصوليا"
   },
   {
    "id": "mangold",
@@ -441,7 +466,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -453,7 +479,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -471,7 +498,8 @@ window.SCENE = {
    "tr": "pazı",
    "uk": "мангольд",
    "fa": "برگ‌چغندر",
-   "pt": "acelga"
+   "pt": "acelga",
+   "ar": "سلق"
   },
   {
    "id": "artischocke",
@@ -492,7 +520,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -504,7 +533,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -522,7 +552,8 @@ window.SCENE = {
    "tr": "enginar",
    "uk": "артишок",
    "fa": "کنگر فرنگی",
-   "pt": "alcachofra"
+   "pt": "alcachofra",
+   "ar": "خرشوف"
   },
   {
    "id": "aubergine",
@@ -543,7 +574,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -555,7 +587,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -573,7 +606,8 @@ window.SCENE = {
    "tr": "patlıcan",
    "uk": "баклажан",
    "fa": "بادمجان",
-   "pt": "berinjela"
+   "pt": "berinjela",
+   "ar": "باذنجان"
   },
   {
    "id": "gurke",
@@ -594,7 +628,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -606,7 +641,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -624,7 +660,8 @@ window.SCENE = {
    "tr": "salatalık",
    "uk": "огірок",
    "fa": "خیار",
-   "pt": "pepino"
+   "pt": "pepino",
+   "ar": "خيار"
   },
   {
    "id": "zucchini",
@@ -645,7 +682,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -657,7 +695,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -675,7 +714,8 @@ window.SCENE = {
    "tr": "kabak",
    "uk": "кабачок",
    "fa": "کدو سبز",
-   "pt": "abobrinha"
+   "pt": "abobrinha",
+   "ar": "كوسة"
   },
   {
    "id": "tomate",
@@ -696,7 +736,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -708,7 +749,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -726,7 +768,8 @@ window.SCENE = {
    "tr": "domates",
    "uk": "помідор",
    "fa": "گوجه‌فرنگی",
-   "pt": "tomate"
+   "pt": "tomate",
+   "ar": "طماطم"
   },
   {
    "id": "spinat",
@@ -747,7 +790,8 @@ window.SCENE = {
      "tr": "sandık",
      "uk": "ящик, коробка",
      "fa": "جعبهٔ چوبی",
-     "pt": "caixote"
+     "pt": "caixote",
+     "ar": "صندوق"
     },
     {
      "mot": "Gemüse",
@@ -759,7 +803,8 @@ window.SCENE = {
      "tr": "sebze",
      "uk": "овочі",
      "fa": "سبزیجات",
-     "pt": "legumes, verduras"
+     "pt": "legumes, verduras",
+     "ar": "خضار"
     }
    ],
    "sur": null,
@@ -777,7 +822,8 @@ window.SCENE = {
    "tr": "ıspanak",
    "uk": "шпинат",
    "fa": "اسفناج",
-   "pt": "espinafre"
+   "pt": "espinafre",
+   "ar": "سبانخ"
   },
   {
    "id": "anna",
@@ -815,7 +861,8 @@ window.SCENE = {
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
-   "pt": "mulher / esposa"
+   "pt": "mulher / esposa",
+   "ar": "امرأة، زوجة"
   },
   {
    "id": "tomate-main",
@@ -841,7 +888,8 @@ window.SCENE = {
    "tr": "domates",
    "uk": "помідор",
    "fa": "گوجه‌فرنگی",
-   "pt": "tomate"
+   "pt": "tomate",
+   "ar": "طماطم"
   }
  ],
  "grosPlans": [],

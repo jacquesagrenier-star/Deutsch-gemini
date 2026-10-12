@@ -40,6 +40,7 @@ window.SCENE = {
    ],
    "fr": "le petit pois",
    "en": "the pea",
+   "ar": "بازلاء",
    "latam": {
     "mot": "chícharo",
     "genre": "el",
@@ -84,6 +85,7 @@ window.SCENE = {
    ],
    "fr": "la laitue, la salade",
    "en": "the lettuce",
+   "ar": "خس، سلطة",
    "latam": null
   },
   {
@@ -124,6 +126,7 @@ window.SCENE = {
    ],
    "fr": "l'asperge",
    "en": "the asparagus",
+   "ar": "هليون",
    "latam": null
   },
   {
@@ -164,6 +167,7 @@ window.SCENE = {
    ],
    "fr": "la citrouille, la courge",
    "en": "the pumpkin",
+   "ar": "يقطين",
    "latam": null
   },
   {
@@ -204,6 +208,7 @@ window.SCENE = {
    ],
    "fr": "le poivron",
    "en": "the pepper",
+   "ar": "فلفل حلو",
    "latam": null
   },
   {
@@ -244,6 +249,7 @@ window.SCENE = {
    ],
    "fr": "le maïs",
    "en": "the corn",
+   "ar": "ذرة",
    "latam": null
   },
   {
@@ -292,6 +298,7 @@ window.SCENE = {
    ],
    "fr": "le champignon de Paris",
    "en": "the mushroom",
+   "ar": "فطر",
    "latam": null
   },
   {
@@ -332,6 +339,7 @@ window.SCENE = {
    ],
    "fr": "le haricot",
    "en": "the bean",
+   "ar": "فاصوليا",
    "latam": {
     "mot": "frijol",
     "genre": "el",
@@ -376,6 +384,7 @@ window.SCENE = {
    ],
    "fr": "la blette",
    "en": "the chard",
+   "ar": "سلق",
    "latam": null
   },
   {
@@ -416,6 +425,7 @@ window.SCENE = {
    ],
    "fr": "l'artichaut",
    "en": "the artichoke",
+   "ar": "خرشوف",
    "latam": null
   },
   {
@@ -456,6 +466,7 @@ window.SCENE = {
    ],
    "fr": "l'aubergine",
    "en": "the aubergine, the eggplant",
+   "ar": "باذنجان",
    "latam": null
   },
   {
@@ -496,6 +507,7 @@ window.SCENE = {
    ],
    "fr": "le concombre",
    "en": "the cucumber",
+   "ar": "خيار",
    "latam": null
   },
   {
@@ -536,6 +548,7 @@ window.SCENE = {
    ],
    "fr": "la courgette",
    "en": "the courgette, the zucchini",
+   "ar": "كوسة",
    "latam": {
     "mot": "calabacita",
     "genre": "la",
@@ -580,6 +593,7 @@ window.SCENE = {
    ],
    "fr": "la tomate",
    "en": "tomato",
+   "ar": "طماطم",
    "latam": null
   },
   {
@@ -620,6 +634,7 @@ window.SCENE = {
    ],
    "fr": "l'épinard",
    "en": "the spinach",
+   "ar": "سبانخ",
    "latam": null
   },
   {
@@ -655,6 +670,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -678,6 +694,7 @@ window.SCENE = {
    ],
    "fr": "la tomate",
    "en": "tomato",
+   "ar": "طماطم",
    "latam": null
   }
  ],

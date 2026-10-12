@@ -23,6 +23,7 @@ window.SCENE = {
    ],
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
+   "ar": "ساعة حائط",
    "latam": null
   },
   {
@@ -46,6 +47,7 @@ window.SCENE = {
    ],
    "fr": "le tableau",
    "en": "the blackboard",
+   "ar": "سبّورة",
    "latam": {
     "mot": "pizarrón",
     "genre": "el",
@@ -117,6 +119,7 @@ window.SCENE = {
    ],
    "fr": "le professeur",
    "en": "the teacher",
+   "ar": "معلّم",
    "latam": null
   },
   {
@@ -140,6 +143,7 @@ window.SCENE = {
    ],
    "fr": "les lunettes",
    "en": "glasses",
+   "ar": "نظّارة",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -167,6 +171,7 @@ window.SCENE = {
    ],
    "fr": "la barbe",
    "en": "the beard",
+   "ar": "لحية",
    "latam": null
   },
   {
@@ -190,6 +195,7 @@ window.SCENE = {
    ],
    "fr": "la craie",
    "en": "the chalk",
+   "ar": "طبشور",
    "latam": {
     "mot": "gis",
     "genre": "el",
@@ -217,6 +223,7 @@ window.SCENE = {
    ],
    "fr": "la porte",
    "en": "the door",
+   "ar": "باب",
    "latam": null
   },
   {
@@ -240,6 +247,7 @@ window.SCENE = {
    ],
    "fr": "le crochet",
    "en": "the hook",
+   "ar": "علّاقة، خطّاف",
    "latam": null
   },
   {
@@ -263,6 +271,7 @@ window.SCENE = {
    ],
    "fr": "le manteau",
    "en": "the coat",
+   "ar": "معطف",
    "latam": null
   },
   {
@@ -286,6 +295,7 @@ window.SCENE = {
    ],
    "fr": "la veste",
    "en": "the jacket",
+   "ar": "سترة، جاكيت",
    "latam": null
   },
   {
@@ -309,6 +319,7 @@ window.SCENE = {
    ],
    "fr": "le tableau",
    "en": "the picture",
+   "ar": "صورة، لوحة",
    "latam": null
   },
   {
@@ -332,6 +343,7 @@ window.SCENE = {
    ],
    "fr": "la lampe",
    "en": "the lamp",
+   "ar": "مصباح",
    "latam": null
   },
   {
@@ -355,6 +367,7 @@ window.SCENE = {
    ],
    "fr": "la fenêtre",
    "en": "the window",
+   "ar": "نافذة",
    "latam": null
   },
   {
@@ -378,6 +391,7 @@ window.SCENE = {
    ],
    "fr": "l'étagère",
    "en": "the shelf unit",
+   "ar": "رفّ",
    "latam": null
   },
   {
@@ -401,6 +415,7 @@ window.SCENE = {
    ],
    "fr": "la plante",
    "en": "the plant",
+   "ar": "نبات",
    "latam": null
   },
   {
@@ -479,6 +494,7 @@ window.SCENE = {
    ],
    "fr": "le, la participant(e)",
    "en": "the participant",
+   "ar": "مشارك",
    "latam": null
   },
   {
@@ -502,6 +518,7 @@ window.SCENE = {
    ],
    "fr": "le pull",
    "en": "the jumper",
+   "ar": "كنزة صوف",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -592,6 +609,7 @@ window.SCENE = {
    ],
    "fr": "le, la participant(e)",
    "en": "the participant",
+   "ar": "مشاركة",
    "latam": null
   },
   {
@@ -615,6 +633,7 @@ window.SCENE = {
    ],
    "fr": "la jupe",
    "en": "the skirt",
+   "ar": "تنورة",
    "latam": null
   },
   {
@@ -638,6 +657,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "ar": "دفتر",
    "latam": null
   },
   {
@@ -661,6 +681,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "ar": "دفتر",
    "latam": null
   },
   {
@@ -684,6 +705,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "ar": "دفتر",
    "latam": null
   },
   {
@@ -707,6 +729,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "ar": "دفتر",
    "latam": null
   },
   {
@@ -730,6 +753,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "ar": "قلم",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -757,6 +781,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "ar": "قلم",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -784,6 +809,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "ar": "قلم",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -811,6 +837,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "ar": "قلم",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -838,6 +865,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "ar": "قلم",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -865,6 +893,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "ar": "دفتر",
    "latam": null
   },
   {
@@ -888,6 +917,7 @@ window.SCENE = {
    ],
    "fr": "la table",
    "en": "the table",
+   "ar": "طاولة",
    "latam": null
   },
   {
@@ -911,6 +941,7 @@ window.SCENE = {
    ],
    "fr": "la chaise",
    "en": "the chair",
+   "ar": "كرسي",
    "latam": null
   },
   {
@@ -934,6 +965,7 @@ window.SCENE = {
    ],
    "fr": "la chaise",
    "en": "the chair",
+   "ar": "كرسي",
    "latam": null
   },
   {
@@ -957,6 +989,7 @@ window.SCENE = {
    ],
    "fr": "le sac à dos",
    "en": "the backpack",
+   "ar": "حقيبة ظهر",
    "latam": null
   },
   {
@@ -1019,6 +1052,7 @@ window.SCENE = {
    ],
    "fr": "l'homme",
    "en": "the man",
+   "ar": "رجل، زوج",
    "latam": null
   },
   {
@@ -1072,6 +1106,7 @@ window.SCENE = {
    ],
    "fr": "l'étudiant",
    "en": "the student",
+   "ar": "طالبة جامعية",
    "latam": null
   },
   {
@@ -1133,6 +1168,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -1156,6 +1192,7 @@ window.SCENE = {
    ],
    "fr": "les lunettes",
    "en": "glasses",
+   "ar": "نظّارة",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -1183,6 +1220,7 @@ window.SCENE = {
    ],
    "fr": "la robe",
    "en": "the dress",
+   "ar": "فستان",
    "latam": null
   },
   {
@@ -1206,6 +1244,7 @@ window.SCENE = {
    ],
    "fr": "la chaussure",
    "en": "the shoe",
+   "ar": "حذاء",
    "latam": null
   },
   {
@@ -1229,6 +1268,7 @@ window.SCENE = {
    ],
    "fr": "l'ordinateur portable",
    "en": "the laptop",
+   "ar": "حاسوب محمول",
    "latam": {
     "mot": "laptop",
     "genre": "la",
@@ -1256,6 +1296,7 @@ window.SCENE = {
    ],
    "fr": "le téléphone portable",
    "en": "the mobile phone",
+   "ar": "هاتف محمول",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -1283,6 +1324,7 @@ window.SCENE = {
    ],
    "fr": "la tasse",
    "en": "cup",
+   "ar": "فنجان",
    "latam": null
   },
   {
@@ -1306,6 +1348,7 @@ window.SCENE = {
    ],
    "fr": "le câble",
    "en": "the cable",
+   "ar": "كابل، سلك",
    "latam": null
   },
   {
@@ -1329,6 +1372,7 @@ window.SCENE = {
    ],
    "fr": "le bureau (meuble)",
    "en": "the desk",
+   "ar": "مكتب (قطعة أثاث)",
    "latam": null
   },
   {
@@ -1352,6 +1396,7 @@ window.SCENE = {
    ],
    "fr": "le mur",
    "en": "the wall",
+   "ar": "جدار",
    "latam": null
   }
  ],

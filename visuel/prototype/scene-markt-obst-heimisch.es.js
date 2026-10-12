@@ -40,6 +40,7 @@ window.SCENE = {
    ],
    "fr": "la framboise",
    "en": "the raspberry",
+   "ar": "توت العليق",
    "latam": null
   },
   {
@@ -80,6 +81,7 @@ window.SCENE = {
    ],
    "fr": "la myrtille, le bleuet",
    "en": "the blueberry",
+   "ar": "توت أزرق",
    "latam": null
   },
   {
@@ -120,6 +122,7 @@ window.SCENE = {
    ],
    "fr": "le raisin",
    "en": "the grape",
+   "ar": "عنب",
    "latam": null
   },
   {
@@ -160,6 +163,7 @@ window.SCENE = {
    ],
    "fr": "la prune",
    "en": "the plum",
+   "ar": "برقوق",
    "latam": null
   },
   {
@@ -200,6 +204,7 @@ window.SCENE = {
    ],
    "fr": "la rhubarbe",
    "en": "the rhubarb",
+   "ar": "راوند",
    "latam": null
   },
   {
@@ -240,6 +245,7 @@ window.SCENE = {
    ],
    "fr": "la noix",
    "en": "the walnut",
+   "ar": "جوز، مكسّرات",
    "latam": null
   },
   {
@@ -280,6 +286,7 @@ window.SCENE = {
    ],
    "fr": "la poire",
    "en": "the pear",
+   "ar": "كمثرى",
    "latam": null
   },
   {
@@ -320,6 +327,7 @@ window.SCENE = {
    ],
    "fr": "la groseille",
    "en": "the redcurrant",
+   "ar": "كشمش",
    "latam": null
   },
   {
@@ -360,6 +368,7 @@ window.SCENE = {
    ],
    "fr": "la groseille à maquereau",
    "en": "the gooseberry",
+   "ar": "عنب الثعلب",
    "latam": null
   },
   {
@@ -400,6 +409,7 @@ window.SCENE = {
    ],
    "fr": "la cerise",
    "en": "the cherry",
+   "ar": "كرز",
    "latam": null
   },
   {
@@ -440,6 +450,7 @@ window.SCENE = {
    ],
    "fr": "la mûre",
    "en": "the blackberry",
+   "ar": "توت العلّيق الأسود",
    "latam": null
   },
   {
@@ -480,6 +491,7 @@ window.SCENE = {
    ],
    "fr": "l'abricot",
    "en": "the apricot",
+   "ar": "مشمش",
    "latam": {
     "mot": "chabacano",
     "genre": "el",
@@ -524,6 +536,7 @@ window.SCENE = {
    ],
    "fr": "la fraise",
    "en": "strawberry",
+   "ar": "فراولة",
    "latam": null
   },
   {
@@ -564,6 +577,7 @@ window.SCENE = {
    ],
    "fr": "la pêche",
    "en": "the peach",
+   "ar": "خوخ",
    "latam": {
     "mot": "durazno",
     "genre": "el",
@@ -608,6 +622,7 @@ window.SCENE = {
    ],
    "fr": "la pomme",
    "en": "apple",
+   "ar": "تفاحة",
    "latam": null
   },
   {
@@ -637,6 +652,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "ar": "امرأة، زوجة",
    "latam": null
   },
   {
@@ -660,6 +676,7 @@ window.SCENE = {
    ],
    "fr": "la pomme",
    "en": "apple",
+   "ar": "تفاحة",
    "latam": null
   }
  ],

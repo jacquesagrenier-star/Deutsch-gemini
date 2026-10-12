@@ -26,7 +26,8 @@ window.SCENE = {
    "tr": "saat",
    "uk": "годинник",
    "fa": "ساعت",
-   "pt": "relógio"
+   "pt": "relógio",
+   "ar": "ساعة حائط"
   },
   {
    "id": "poster",
@@ -47,7 +48,8 @@ window.SCENE = {
      "tr": "afiş",
      "uk": "афіша, плакат",
      "fa": "پوستر تبلیغاتی",
-     "pt": "cartaz"
+     "pt": "cartaz",
+     "ar": "ملصق إعلاني"
     }
    ],
    "sur": "wand",
@@ -65,7 +67,8 @@ window.SCENE = {
    "tr": "poster",
    "uk": "плакат",
    "fa": "پوستر",
-   "pt": "pôster"
+   "pt": "pôster",
+   "ar": "ملصق، بوستر"
   },
   {
    "id": "fenster",
@@ -91,7 +94,8 @@ window.SCENE = {
    "tr": "pencere",
    "uk": "вікно",
    "fa": "پنجره",
-   "pt": "janela"
+   "pt": "janela",
+   "ar": "نافذة"
   },
   {
    "id": "pflanze",
@@ -117,7 +121,8 @@ window.SCENE = {
    "tr": "bitki",
    "uk": "рослина",
    "fa": "گیاه",
-   "pt": "planta"
+   "pt": "planta",
+   "ar": "نبات"
   },
   {
    "id": "tuer",
@@ -143,7 +148,8 @@ window.SCENE = {
    "tr": "kapı",
    "uk": "двері",
    "fa": "در",
-   "pt": "porta"
+   "pt": "porta",
+   "ar": "باب"
   },
   {
    "id": "jacke",
@@ -169,7 +175,8 @@ window.SCENE = {
    "tr": "ceket",
    "uk": "куртка",
    "fa": "کاپشن",
-   "pt": "jaqueta"
+   "pt": "jaqueta",
+   "ar": "سترة، جاكيت"
   },
   {
    "id": "mark",
@@ -190,7 +197,8 @@ window.SCENE = {
      "tr": "adam / koca",
      "uk": "чоловік",
      "fa": "مرد، شوهر",
-     "pt": "homem / marido"
+     "pt": "homem / marido",
+     "ar": "رجل، زوج"
     }
    ],
    "sur": null,
@@ -220,7 +228,8 @@ window.SCENE = {
    "tr": "hasta",
    "uk": "пацієнт",
    "fa": "بیمار (مرد)",
-   "pt": "paciente"
+   "pt": "paciente",
+   "ar": "مريض"
   },
   {
    "id": "tshirt",
@@ -246,7 +255,8 @@ window.SCENE = {
    "tr": "tişört",
    "uk": "футболка",
    "fa": "تی‌شرت",
-   "pt": "camiseta"
+   "pt": "camiseta",
+   "ar": "قميص قصير الأكمام (تي شيرت)"
   },
   {
    "id": "hose",
@@ -272,7 +282,8 @@ window.SCENE = {
    "tr": "pantolon",
    "uk": "штани",
    "fa": "شلوار",
-   "pt": "calça"
+   "pt": "calça",
+   "ar": "بنطال"
   },
   {
    "id": "pflaster",
@@ -298,7 +309,8 @@ window.SCENE = {
    "tr": "yara bandı",
    "uk": "пластир",
    "fa": "چسب زخم",
-   "pt": "curativo (band-aid)"
+   "pt": "curativo (band-aid)",
+   "ar": "لصقة جروح"
   },
   {
    "id": "knie",
@@ -330,7 +342,8 @@ window.SCENE = {
    "tr": "diz",
    "uk": "коліно",
    "fa": "زانو",
-   "pt": "joelho"
+   "pt": "joelho",
+   "ar": "ركبة"
   },
   {
    "id": "schulter",
@@ -362,7 +375,8 @@ window.SCENE = {
    "tr": "omuz",
    "uk": "плече",
    "fa": "شانه",
-   "pt": "ombro"
+   "pt": "ombro",
+   "ar": "كتف"
   },
   {
    "id": "ellbogen",
@@ -394,7 +408,8 @@ window.SCENE = {
    "tr": "dirsek",
    "uk": "лікоть",
    "fa": "آرنج",
-   "pt": "cotovelo"
+   "pt": "cotovelo",
+   "ar": "مرفق، كوع"
   },
   {
    "id": "brust",
@@ -420,7 +435,8 @@ window.SCENE = {
    "tr": "göğüs",
    "uk": "груди",
    "fa": "سینه",
-   "pt": "peito"
+   "pt": "peito",
+   "ar": "صدر"
   },
   {
    "id": "bauch",
@@ -446,7 +462,8 @@ window.SCENE = {
    "tr": "karın",
    "uk": "живіт",
    "fa": "شکم",
-   "pt": "barriga"
+   "pt": "barriga",
+   "ar": "بطن"
   },
   {
    "id": "arm-l",
@@ -478,7 +495,8 @@ window.SCENE = {
    "tr": "kol",
    "uk": "рука (від плеча)",
    "fa": "بازو",
-   "pt": "braço"
+   "pt": "braço",
+   "ar": "ذراع"
   },
   {
    "id": "arm-r",
@@ -510,7 +528,8 @@ window.SCENE = {
    "tr": "kol",
    "uk": "рука (від плеча)",
    "fa": "بازو",
-   "pt": "braço"
+   "pt": "braço",
+   "ar": "ذراع"
   },
   {
    "id": "hand-l",
@@ -536,7 +555,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "hand-r",
@@ -562,7 +582,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "bein-l",
@@ -588,7 +609,8 @@ window.SCENE = {
    "tr": "bacak",
    "uk": "нога",
    "fa": "ساق پا",
-   "pt": "perna"
+   "pt": "perna",
+   "ar": "ساق"
   },
   {
    "id": "bein-r",
@@ -614,7 +636,8 @@ window.SCENE = {
    "tr": "bacak",
    "uk": "нога",
    "fa": "ساق پا",
-   "pt": "perna"
+   "pt": "perna",
+   "ar": "ساق"
   },
   {
    "id": "fuss-l",
@@ -640,7 +663,8 @@ window.SCENE = {
    "tr": "ayak",
    "uk": "ступня",
    "fa": "پا",
-   "pt": "pé"
+   "pt": "pé",
+   "ar": "قدم"
   },
   {
    "id": "fuss-r",
@@ -666,7 +690,8 @@ window.SCENE = {
    "tr": "ayak",
    "uk": "ступня",
    "fa": "پا",
-   "pt": "pé"
+   "pt": "pé",
+   "ar": "قدم"
   },
   {
    "id": "aerztin",
@@ -687,7 +712,8 @@ window.SCENE = {
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
      "fa": "زن، همسر",
-     "pt": "mulher / esposa"
+     "pt": "mulher / esposa",
+     "ar": "امرأة، زوجة"
     }
    ],
    "sur": null,
@@ -723,7 +749,8 @@ window.SCENE = {
    "tr": "doktor (kadın)",
    "uk": "лікарка",
    "fa": "پزشک (زن)",
-   "pt": "médica"
+   "pt": "médica",
+   "ar": "طبيبة"
   },
   {
    "id": "hose-aerztin",
@@ -749,7 +776,8 @@ window.SCENE = {
    "tr": "pantolon",
    "uk": "штани",
    "fa": "شلوار",
-   "pt": "calça"
+   "pt": "calça",
+   "ar": "بنطال"
   },
   {
    "id": "schuh-aerztin",
@@ -775,7 +803,8 @@ window.SCENE = {
    "tr": "ayakkabı",
    "uk": "черевик",
    "fa": "کفش",
-   "pt": "sapato"
+   "pt": "sapato",
+   "ar": "حذاء"
   },
   {
    "id": "verband",
@@ -801,7 +830,8 @@ window.SCENE = {
    "tr": "sargı",
    "uk": "пов'язка; спілка",
    "fa": "باند زخم؛ اتحادیه",
-   "pt": "curativo, atadura; associação"
+   "pt": "curativo, atadura; associação",
+   "ar": "ضمادة؛ اتحاد، جمعية"
   },
   {
    "id": "stethoskop",
@@ -839,7 +869,8 @@ window.SCENE = {
    "tr": "steteskop",
    "uk": "стетоскоп",
    "fa": "گوشی پزشکی",
-   "pt": "estetoscópio"
+   "pt": "estetoscópio",
+   "ar": "سمّاعة الطبيب"
   },
   {
    "id": "hand-aerztin-haut",
@@ -865,7 +896,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "hand-aerztin-bas",
@@ -891,7 +923,8 @@ window.SCENE = {
    "tr": "el",
    "uk": "рука",
    "fa": "دست",
-   "pt": "mão"
+   "pt": "mão",
+   "ar": "يد"
   },
   {
    "id": "hocker",
@@ -917,7 +950,8 @@ window.SCENE = {
    "tr": "tabure",
    "uk": "табурет",
    "fa": "چهارپایه",
-   "pt": "banquinho"
+   "pt": "banquinho",
+   "ar": "مقعد بلا ظهر"
   },
   {
    "id": "spritze",
@@ -943,7 +977,8 @@ window.SCENE = {
    "tr": "iğne, şırınga",
    "uk": "укол, шприц",
    "fa": "آمپول، سرنگ",
-   "pt": "injeção; seringa"
+   "pt": "injeção; seringa",
+   "ar": "حقنة"
   },
   {
    "id": "medikament-wagen",
@@ -969,7 +1004,8 @@ window.SCENE = {
    "tr": "ilaç",
    "uk": "ліки",
    "fa": "دارو",
-   "pt": "remédio"
+   "pt": "remédio",
+   "ar": "دواء"
   },
   {
    "id": "schachtel",
@@ -995,7 +1031,8 @@ window.SCENE = {
    "tr": "kutu",
    "uk": "коробка",
    "fa": "جعبه",
-   "pt": "caixinha"
+   "pt": "caixinha",
+   "ar": "علبة"
   },
   {
    "id": "handschuh",
@@ -1021,7 +1058,8 @@ window.SCENE = {
    "tr": "eldiven",
    "uk": "рукавичка",
    "fa": "دستکش",
-   "pt": "luva"
+   "pt": "luva",
+   "ar": "قفاز"
   },
   {
    "id": "schreibtisch",
@@ -1047,7 +1085,8 @@ window.SCENE = {
    "tr": "çalışma masası",
    "uk": "письмовий стіл",
    "fa": "میز کار",
-   "pt": "escrivaninha"
+   "pt": "escrivaninha",
+   "ar": "مكتب (قطعة أثاث)"
   },
   {
    "id": "bildschirm",
@@ -1068,7 +1107,8 @@ window.SCENE = {
      "tr": "bilgisayar",
      "uk": "комп'ютер",
      "fa": "رایانه",
-     "pt": "computador"
+     "pt": "computador",
+     "ar": "حاسوب"
     }
    ],
    "sur": "schreibtisch",
@@ -1086,7 +1126,8 @@ window.SCENE = {
    "tr": "ekran",
    "uk": "екран",
    "fa": "صفحه‌نمایش",
-   "pt": "tela"
+   "pt": "tela",
+   "ar": "شاشة"
   },
   {
    "id": "taschentuch",
@@ -1112,7 +1153,8 @@ window.SCENE = {
    "tr": "mendil",
    "uk": "носовичок, серветка",
    "fa": "دستمال کاغذی",
-   "pt": "lenço"
+   "pt": "lenço",
+   "ar": "منديل"
   },
   {
    "id": "glas",
@@ -1133,7 +1175,8 @@ window.SCENE = {
      "tr": "su",
      "uk": "вода",
      "fa": "آب",
-     "pt": "água"
+     "pt": "água",
+     "ar": "ماء"
     }
    ],
    "sur": "schreibtisch",
@@ -1151,7 +1194,8 @@ window.SCENE = {
    "tr": "bardak",
    "uk": "склянка",
    "fa": "لیوان، شیشه",
-   "pt": "copo"
+   "pt": "copo",
+   "ar": "كوب زجاجي"
   },
   {
    "id": "tastatur",
@@ -1177,7 +1221,8 @@ window.SCENE = {
    "tr": "klavye",
    "uk": "клавіатура",
    "fa": "صفحه‌کلید",
-   "pt": "teclado"
+   "pt": "teclado",
+   "ar": "لوحة المفاتيح"
   },
   {
    "id": "maus",
@@ -1203,7 +1248,8 @@ window.SCENE = {
    "tr": "fare",
    "uk": "миша",
    "fa": "موش",
-   "pt": "rato"
+   "pt": "rato",
+   "ar": "فأر"
   },
   {
    "id": "medikament",
@@ -1229,7 +1275,8 @@ window.SCENE = {
    "tr": "ilaç",
    "uk": "ліки",
    "fa": "دارو",
-   "pt": "remédio"
+   "pt": "remédio",
+   "ar": "دواء"
   },
   {
    "id": "tablette",
@@ -1255,7 +1302,8 @@ window.SCENE = {
    "tr": "tablet (ilaç)",
    "uk": "таблетка",
    "fa": "قرص",
-   "pt": "comprimido"
+   "pt": "comprimido",
+   "ar": "قرص دواء"
   },
   {
    "id": "stift",
@@ -1281,7 +1329,8 @@ window.SCENE = {
    "tr": "kalem",
    "uk": "ручка",
    "fa": "خودکار",
-   "pt": "caneta"
+   "pt": "caneta",
+   "ar": "قلم"
   },
   {
    "id": "karte",
@@ -1302,7 +1351,8 @@ window.SCENE = {
      "tr": "kart, bilet",
      "uk": "картка; квиток",
      "fa": "کارت، بلیت",
-     "pt": "ingresso, cartão"
+     "pt": "ingresso, cartão",
+     "ar": "بطاقة، تذكرة"
     }
    ],
    "sur": "schreibtisch",
@@ -1320,7 +1370,8 @@ window.SCENE = {
    "tr": "sağlık sigorta kartı",
    "uk": "картка медичного страхування",
    "fa": "کارت بیمه",
-   "pt": "cartão do seguro-saúde"
+   "pt": "cartão do seguro-saúde",
+   "ar": "بطاقة التأمين الصحي"
   },
   {
    "id": "muelleimer",
@@ -1346,7 +1397,8 @@ window.SCENE = {
    "tr": "çöp kovası",
    "uk": "відро для сміття",
    "fa": "سطل زباله",
-   "pt": "lixeira"
+   "pt": "lixeira",
+   "ar": "سلّة المهملات"
   },
   {
    "id": "tasche",
@@ -1367,7 +1419,8 @@ window.SCENE = {
      "tr": "spor çantası",
      "uk": "спортивна сумка",
      "fa": "ساک ورزشی",
-     "pt": "bolsa de academia"
+     "pt": "bolsa de academia",
+     "ar": "حقيبة رياضة"
     }
    ],
    "sur": null,
@@ -1385,7 +1438,8 @@ window.SCENE = {
    "tr": "çanta",
    "uk": "сумка",
    "fa": "کیف",
-   "pt": "bolsa"
+   "pt": "bolsa",
+   "ar": "حقيبة"
   },
   {
    "id": "ball",
@@ -1406,7 +1460,8 @@ window.SCENE = {
      "tr": "futbol",
      "uk": "футбол",
      "fa": "فوتبال",
-     "pt": "futebol"
+     "pt": "futebol",
+     "ar": "كرة القدم"
     }
    ],
    "sur": "tasche",
@@ -1424,7 +1479,8 @@ window.SCENE = {
    "tr": "top",
    "uk": "м'яч",
    "fa": "توپ",
-   "pt": "bola"
+   "pt": "bola",
+   "ar": "كرة"
   },
   {
    "id": "schuh",
@@ -1450,7 +1506,8 @@ window.SCENE = {
    "tr": "ayakkabı",
    "uk": "черевик",
    "fa": "کفش",
-   "pt": "sapato"
+   "pt": "sapato",
+   "ar": "حذاء"
   },
   {
    "id": "socke",
@@ -1476,7 +1533,8 @@ window.SCENE = {
    "tr": "çorap",
    "uk": "шкарпетка",
    "fa": "جوراب",
-   "pt": "meia"
+   "pt": "meia",
+   "ar": "جورب"
   },
   {
    "id": "wand",
@@ -1502,7 +1560,8 @@ window.SCENE = {
    "tr": "duvar",
    "uk": "стіна",
    "fa": "دیوار",
-   "pt": "parede"
+   "pt": "parede",
+   "ar": "جدار"
   },
   {
    "id": "boden",
@@ -1528,7 +1587,8 @@ window.SCENE = {
    "tr": "zemin / toprak",
    "uk": "земля, підлога",
    "fa": "زمین، کف",
-   "pt": "chão, solo"
+   "pt": "chão, solo",
+   "ar": "أرض، تربة"
   },
   {
    "id": "rippe",
@@ -1555,7 +1615,8 @@ window.SCENE = {
    "tr": "kaburga",
    "uk": "ребро",
    "fa": "دنده (استخوان)",
-   "pt": "costela"
+   "pt": "costela",
+   "ar": "ضلع"
   },
   {
    "id": "rippe-dos",
@@ -1582,7 +1643,8 @@ window.SCENE = {
    "tr": "kaburga",
    "uk": "ребро",
    "fa": "دنده (استخوان)",
-   "pt": "costela"
+   "pt": "costela",
+   "ar": "ضلع"
   },
   {
    "id": "wirbelsaeule",
@@ -1609,7 +1671,8 @@ window.SCENE = {
    "tr": "omurga",
    "uk": "хребет",
    "fa": "ستون فقرات",
-   "pt": "coluna vertebral"
+   "pt": "coluna vertebral",
+   "ar": "العمود الفقري"
   },
   {
    "id": "lunge",
@@ -1636,7 +1699,8 @@ window.SCENE = {
    "tr": "akciğer",
    "uk": "легені",
    "fa": "شش",
-   "pt": "pulmão"
+   "pt": "pulmão",
+   "ar": "رئة"
   },
   {
    "id": "knochen",
@@ -1663,7 +1727,8 @@ window.SCENE = {
    "tr": "kemik",
    "uk": "кістка",
    "fa": "استخوان",
-   "pt": "osso"
+   "pt": "osso",
+   "ar": "عظم"
   }
  ],
  "grosPlans": [

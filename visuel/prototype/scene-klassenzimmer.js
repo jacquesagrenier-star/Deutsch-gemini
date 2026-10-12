@@ -26,7 +26,8 @@ window.SCENE = {
    "tr": "saat",
    "uk": "годинник",
    "fa": "ساعت",
-   "pt": "relógio"
+   "pt": "relógio",
+   "ar": "ساعة حائط"
   },
   {
    "id": "tafel",
@@ -52,7 +53,8 @@ window.SCENE = {
    "tr": "tahta",
    "uk": "дошка",
    "fa": "تخته",
-   "pt": "quadro (lousa)"
+   "pt": "quadro (lousa)",
+   "ar": "سبّورة"
   },
   {
    "id": "lehrer",
@@ -73,7 +75,8 @@ window.SCENE = {
      "tr": "adam / koca",
      "uk": "чоловік",
      "fa": "مرد، شوهر",
-     "pt": "homem / marido"
+     "pt": "homem / marido",
+     "ar": "رجل، زوج"
     },
     {
      "mot": "Brille",
@@ -85,7 +88,8 @@ window.SCENE = {
      "tr": "gözlük",
      "uk": "окуляри",
      "fa": "عینک",
-     "pt": "óculos"
+     "pt": "óculos",
+     "ar": "نظّارة"
     },
     {
      "mot": "Bart",
@@ -97,7 +101,8 @@ window.SCENE = {
      "tr": "sakal",
      "uk": "борода",
      "fa": "ریش",
-     "pt": "barba"
+     "pt": "barba",
+     "ar": "لحية"
     },
     {
      "mot": "Hemd",
@@ -109,7 +114,8 @@ window.SCENE = {
      "tr": "gömlek",
      "uk": "сорочка",
      "fa": "پیراهن",
-     "pt": "camisa"
+     "pt": "camisa",
+     "ar": "قميص"
     }
    ],
    "sur": null,
@@ -133,7 +139,8 @@ window.SCENE = {
    "tr": "öğretmen",
    "uk": "учитель",
    "fa": "آموزگار",
-   "pt": "professor"
+   "pt": "professor",
+   "ar": "معلّم"
   },
   {
    "id": "brille",
@@ -159,7 +166,8 @@ window.SCENE = {
    "tr": "gözlük",
    "uk": "окуляри",
    "fa": "عینک",
-   "pt": "óculos"
+   "pt": "óculos",
+   "ar": "نظّارة"
   },
   {
    "id": "bart",
@@ -185,7 +193,8 @@ window.SCENE = {
    "tr": "sakal",
    "uk": "борода",
    "fa": "ریش",
-   "pt": "barba"
+   "pt": "barba",
+   "ar": "لحية"
   },
   {
    "id": "kreide",
@@ -211,7 +220,8 @@ window.SCENE = {
    "tr": "tebeşir",
    "uk": "крейда",
    "fa": "گچ",
-   "pt": "giz"
+   "pt": "giz",
+   "ar": "طبشور"
   },
   {
    "id": "tuer",
@@ -237,7 +247,8 @@ window.SCENE = {
    "tr": "kapı",
    "uk": "двері",
    "fa": "در",
-   "pt": "porta"
+   "pt": "porta",
+   "ar": "باب"
   },
   {
    "id": "haken",
@@ -263,7 +274,8 @@ window.SCENE = {
    "tr": "askı",
    "uk": "гачок",
    "fa": "قلاب",
-   "pt": "gancho"
+   "pt": "gancho",
+   "ar": "علّاقة، خطّاف"
   },
   {
    "id": "mantel",
@@ -289,7 +301,8 @@ window.SCENE = {
    "tr": "palto",
    "uk": "пальто",
    "fa": "پالتو",
-   "pt": "casaco (sobretudo)"
+   "pt": "casaco (sobretudo)",
+   "ar": "معطف"
   },
   {
    "id": "jacke",
@@ -315,7 +328,8 @@ window.SCENE = {
    "tr": "ceket",
    "uk": "куртка",
    "fa": "کاپشن",
-   "pt": "jaqueta"
+   "pt": "jaqueta",
+   "ar": "سترة، جاكيت"
   },
   {
    "id": "bild",
@@ -341,7 +355,8 @@ window.SCENE = {
    "tr": "resim",
    "uk": "картина",
    "fa": "تابلو، عکس",
-   "pt": "quadro"
+   "pt": "quadro",
+   "ar": "صورة، لوحة"
   },
   {
    "id": "lampe",
@@ -367,7 +382,8 @@ window.SCENE = {
    "tr": "lamba",
    "uk": "лампа",
    "fa": "چراغ",
-   "pt": "luminária"
+   "pt": "luminária",
+   "ar": "مصباح"
   },
   {
    "id": "fenster",
@@ -393,7 +409,8 @@ window.SCENE = {
    "tr": "pencere",
    "uk": "вікно",
    "fa": "پنجره",
-   "pt": "janela"
+   "pt": "janela",
+   "ar": "نافذة"
   },
   {
    "id": "regal",
@@ -419,7 +436,8 @@ window.SCENE = {
    "tr": "raf",
    "uk": "полиця",
    "fa": "قفسه",
-   "pt": "estante"
+   "pt": "estante",
+   "ar": "رفّ"
   },
   {
    "id": "pflanze",
@@ -445,7 +463,8 @@ window.SCENE = {
    "tr": "bitki",
    "uk": "рослина",
    "fa": "گیاه",
-   "pt": "planta"
+   "pt": "planta",
+   "ar": "نبات"
   },
   {
    "id": "mark",
@@ -466,7 +485,8 @@ window.SCENE = {
      "tr": "adam / koca",
      "uk": "чоловік",
      "fa": "مرد، شوهر",
-     "pt": "homem / marido"
+     "pt": "homem / marido",
+     "ar": "رجل، زوج"
     },
     {
      "mot": "Pullover",
@@ -478,7 +498,8 @@ window.SCENE = {
      "tr": "kazak",
      "uk": "светр",
      "fa": "پلیور",
-     "pt": "suéter"
+     "pt": "suéter",
+     "ar": "كنزة صوف"
     },
     {
      "mot": "Student",
@@ -490,7 +511,8 @@ window.SCENE = {
      "tr": "üniversite öğrencisi",
      "uk": "студент",
      "fa": "دانشجو",
-     "pt": "estudante (universitário)"
+     "pt": "estudante (universitário)",
+     "ar": "طالب جامعي"
     },
     {
      "mot": "Stift",
@@ -502,7 +524,8 @@ window.SCENE = {
      "tr": "kalem",
      "uk": "ручка",
      "fa": "خودکار",
-     "pt": "caneta"
+     "pt": "caneta",
+     "ar": "قلم"
     }
    ],
    "sur": null,
@@ -532,7 +555,8 @@ window.SCENE = {
    "tr": "katılımcı",
    "uk": "учасник",
    "fa": "شرکت‌کننده (مرد)",
-   "pt": "participante"
+   "pt": "participante",
+   "ar": "مشارك"
   },
   {
    "id": "pullover",
@@ -558,7 +582,8 @@ window.SCENE = {
    "tr": "kazak",
    "uk": "светр",
    "fa": "پلیور",
-   "pt": "suéter"
+   "pt": "suéter",
+   "ar": "كنزة صوف"
   },
   {
    "id": "anna",
@@ -579,7 +604,8 @@ window.SCENE = {
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
      "fa": "زن، همسر",
-     "pt": "mulher / esposa"
+     "pt": "mulher / esposa",
+     "ar": "امرأة، زوجة"
     },
     {
      "mot": "Pullover",
@@ -591,7 +617,8 @@ window.SCENE = {
      "tr": "kazak",
      "uk": "светр",
      "fa": "پلیور",
-     "pt": "suéter"
+     "pt": "suéter",
+     "ar": "كنزة صوف"
     },
     {
      "mot": "Rock",
@@ -603,7 +630,8 @@ window.SCENE = {
      "tr": "etek",
      "uk": "спідниця",
      "fa": "دامن",
-     "pt": "saia"
+     "pt": "saia",
+     "ar": "تنورة"
     },
     {
      "mot": "Stift",
@@ -615,7 +643,8 @@ window.SCENE = {
      "tr": "kalem",
      "uk": "ручка",
      "fa": "خودکار",
-     "pt": "caneta"
+     "pt": "caneta",
+     "ar": "قلم"
     },
     {
      "mot": "Studentin",
@@ -627,7 +656,8 @@ window.SCENE = {
      "tr": "kız öğrenci",
      "uk": "студентка",
      "fa": "دانشجو (زن)",
-     "pt": "estudante (universitária)"
+     "pt": "estudante (universitária)",
+     "ar": "طالبة جامعية"
     }
    ],
    "sur": null,
@@ -657,7 +687,8 @@ window.SCENE = {
    "tr": "katılımcı (kadın)",
    "uk": "учасниця",
    "fa": "شرکت‌کننده (زن)",
-   "pt": "participante (mulher)"
+   "pt": "participante (mulher)",
+   "ar": "مشاركة"
   },
   {
    "id": "rock",
@@ -683,7 +714,8 @@ window.SCENE = {
    "tr": "etek",
    "uk": "спідниця",
    "fa": "دامن",
-   "pt": "saia"
+   "pt": "saia",
+   "ar": "تنورة"
   },
   {
    "id": "heft",
@@ -709,7 +741,8 @@ window.SCENE = {
    "tr": "defter",
    "uk": "зошит",
    "fa": "دفتر",
-   "pt": "caderno"
+   "pt": "caderno",
+   "ar": "دفتر"
   },
   {
    "id": "heft-mark",
@@ -735,7 +768,8 @@ window.SCENE = {
    "tr": "defter",
    "uk": "зошит",
    "fa": "دفتر",
-   "pt": "caderno"
+   "pt": "caderno",
+   "ar": "دفتر"
   },
   {
    "id": "heft-noir",
@@ -761,7 +795,8 @@ window.SCENE = {
    "tr": "defter",
    "uk": "зошит",
    "fa": "دفتر",
-   "pt": "caderno"
+   "pt": "caderno",
+   "ar": "دفتر"
   },
   {
    "id": "heft-studentin",
@@ -787,7 +822,8 @@ window.SCENE = {
    "tr": "defter",
    "uk": "зошит",
    "fa": "دفتر",
-   "pt": "caderno"
+   "pt": "caderno",
+   "ar": "دفتر"
   },
   {
    "id": "stift",
@@ -813,7 +849,8 @@ window.SCENE = {
    "tr": "kalem",
    "uk": "ручка",
    "fa": "خودکار",
-   "pt": "caneta"
+   "pt": "caneta",
+   "ar": "قلم"
   },
   {
    "id": "stift-mark",
@@ -839,7 +876,8 @@ window.SCENE = {
    "tr": "kalem",
    "uk": "ручка",
    "fa": "خودکار",
-   "pt": "caneta"
+   "pt": "caneta",
+   "ar": "قلم"
   },
   {
    "id": "stift-noir",
@@ -865,7 +903,8 @@ window.SCENE = {
    "tr": "kalem",
    "uk": "ручка",
    "fa": "خودکار",
-   "pt": "caneta"
+   "pt": "caneta",
+   "ar": "قلم"
   },
   {
    "id": "stift-studentin",
@@ -891,7 +930,8 @@ window.SCENE = {
    "tr": "kalem",
    "uk": "ручка",
    "fa": "خودکار",
-   "pt": "caneta"
+   "pt": "caneta",
+   "ar": "قلم"
   },
   {
    "id": "stift-bureau",
@@ -917,7 +957,8 @@ window.SCENE = {
    "tr": "kalem",
    "uk": "ручка",
    "fa": "خودکار",
-   "pt": "caneta"
+   "pt": "caneta",
+   "ar": "قلم"
   },
   {
    "id": "heft-bureau",
@@ -943,7 +984,8 @@ window.SCENE = {
    "tr": "defter",
    "uk": "зошит",
    "fa": "دفتر",
-   "pt": "caderno"
+   "pt": "caderno",
+   "ar": "دفتر"
   },
   {
    "id": "tisch",
@@ -969,7 +1011,8 @@ window.SCENE = {
    "tr": "masa",
    "uk": "стіл",
    "fa": "میز",
-   "pt": "mesa"
+   "pt": "mesa",
+   "ar": "طاولة"
   },
   {
    "id": "stuhl",
@@ -995,7 +1038,8 @@ window.SCENE = {
    "tr": "sandalye",
    "uk": "стілець",
    "fa": "صندلی",
-   "pt": "cadeira"
+   "pt": "cadeira",
+   "ar": "كرسي"
   },
   {
    "id": "stuhl-bureau",
@@ -1021,7 +1065,8 @@ window.SCENE = {
    "tr": "sandalye",
    "uk": "стілець",
    "fa": "صندلی",
-   "pt": "cadeira"
+   "pt": "cadeira",
+   "ar": "كرسي"
   },
   {
    "id": "rucksack",
@@ -1047,7 +1092,8 @@ window.SCENE = {
    "tr": "sırt çantası",
    "uk": "рюкзак",
    "fa": "کوله‌پشتی",
-   "pt": "mochila"
+   "pt": "mochila",
+   "ar": "حقيبة ظهر"
   },
   {
    "id": "mann",
@@ -1068,7 +1114,8 @@ window.SCENE = {
      "tr": "katılımcı",
      "uk": "учасник",
      "fa": "شرکت‌کننده (مرد)",
-     "pt": "participante"
+     "pt": "participante",
+     "ar": "مشارك"
     },
     {
      "mot": "Bart",
@@ -1080,7 +1127,8 @@ window.SCENE = {
      "tr": "sakal",
      "uk": "борода",
      "fa": "ریش",
-     "pt": "barba"
+     "pt": "barba",
+     "ar": "لحية"
     },
     {
      "mot": "Hemd",
@@ -1092,7 +1140,8 @@ window.SCENE = {
      "tr": "gömlek",
      "uk": "сорочка",
      "fa": "پیراهن",
-     "pt": "camisa"
+     "pt": "camisa",
+     "ar": "قميص"
     },
     {
      "mot": "Student",
@@ -1104,7 +1153,8 @@ window.SCENE = {
      "tr": "üniversite öğrencisi",
      "uk": "студент",
      "fa": "دانشجو",
-     "pt": "estudante (universitário)"
+     "pt": "estudante (universitário)",
+     "ar": "طالب جامعي"
     }
    ],
    "sur": null,
@@ -1128,7 +1178,8 @@ window.SCENE = {
    "tr": "adam / koca",
    "uk": "чоловік",
    "fa": "مرد، شوهر",
-   "pt": "homem / marido"
+   "pt": "homem / marido",
+   "ar": "رجل، زوج"
   },
   {
    "id": "studentin",
@@ -1149,7 +1200,8 @@ window.SCENE = {
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
      "fa": "زن، همسر",
-     "pt": "mulher / esposa"
+     "pt": "mulher / esposa",
+     "ar": "امرأة، زوجة"
     },
     {
      "mot": "Teilnehmerin",
@@ -1161,7 +1213,8 @@ window.SCENE = {
      "tr": "katılımcı (kadın)",
      "uk": "учасниця",
      "fa": "شرکت‌کننده (زن)",
-     "pt": "participante (mulher)"
+     "pt": "participante (mulher)",
+     "ar": "مشاركة"
     },
     {
      "mot": "Pullover",
@@ -1173,7 +1226,8 @@ window.SCENE = {
      "tr": "kazak",
      "uk": "светр",
      "fa": "پلیور",
-     "pt": "suéter"
+     "pt": "suéter",
+     "ar": "كنزة صوف"
     }
    ],
    "sur": null,
@@ -1191,7 +1245,8 @@ window.SCENE = {
    "tr": "kız öğrenci",
    "uk": "студентка",
    "fa": "دانشجو (زن)",
-   "pt": "estudante (universitária)"
+   "pt": "estudante (universitária)",
+   "ar": "طالبة جامعية"
   },
   {
    "id": "frau",
@@ -1212,7 +1267,8 @@ window.SCENE = {
      "tr": "katılımcı (kadın)",
      "uk": "учасниця",
      "fa": "شرکت‌کننده (زن)",
-     "pt": "participante (mulher)"
+     "pt": "participante (mulher)",
+     "ar": "مشاركة"
     },
     {
      "mot": "Brille",
@@ -1224,7 +1280,8 @@ window.SCENE = {
      "tr": "gözlük",
      "uk": "окуляри",
      "fa": "عینک",
-     "pt": "óculos"
+     "pt": "óculos",
+     "ar": "نظّارة"
     },
     {
      "mot": "Kleid",
@@ -1236,7 +1293,8 @@ window.SCENE = {
      "tr": "elbise",
      "uk": "сукня",
      "fa": "پیراهن زنانه",
-     "pt": "vestido"
+     "pt": "vestido",
+     "ar": "فستان"
     },
     {
      "mot": "Studentin",
@@ -1248,7 +1306,8 @@ window.SCENE = {
      "tr": "kız öğrenci",
      "uk": "студентка",
      "fa": "دانشجو (زن)",
-     "pt": "estudante (universitária)"
+     "pt": "estudante (universitária)",
+     "ar": "طالبة جامعية"
     }
    ],
    "sur": null,
@@ -1266,7 +1325,8 @@ window.SCENE = {
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
    "fa": "زن، همسر",
-   "pt": "mulher / esposa"
+   "pt": "mulher / esposa",
+   "ar": "امرأة، زوجة"
   },
   {
    "id": "brille-frau",
@@ -1292,7 +1352,8 @@ window.SCENE = {
    "tr": "gözlük",
    "uk": "окуляри",
    "fa": "عینک",
-   "pt": "óculos"
+   "pt": "óculos",
+   "ar": "نظّارة"
   },
   {
    "id": "kleid",
@@ -1318,7 +1379,8 @@ window.SCENE = {
    "tr": "elbise",
    "uk": "сукня",
    "fa": "پیراهن زنانه",
-   "pt": "vestido"
+   "pt": "vestido",
+   "ar": "فستان"
   },
   {
    "id": "schuhe",
@@ -1344,7 +1406,8 @@ window.SCENE = {
    "tr": "ayakkabı",
    "uk": "черевик",
    "fa": "کفش",
-   "pt": "sapato"
+   "pt": "sapato",
+   "ar": "حذاء"
   },
   {
    "id": "laptop",
@@ -1370,7 +1433,8 @@ window.SCENE = {
    "tr": "dizüstü bilgisayar",
    "uk": "ноутбук",
    "fa": "لپ‌تاپ",
-   "pt": "notebook"
+   "pt": "notebook",
+   "ar": "حاسوب محمول"
   },
   {
    "id": "handy",
@@ -1396,7 +1460,8 @@ window.SCENE = {
    "tr": "cep telefonu",
    "uk": "мобільник",
    "fa": "تلفن همراه",
-   "pt": "celular"
+   "pt": "celular",
+   "ar": "هاتف محمول"
   },
   {
    "id": "tasse",
@@ -1422,7 +1487,8 @@ window.SCENE = {
    "tr": "fincan",
    "uk": "чашка",
    "fa": "فنجان",
-   "pt": "xícara"
+   "pt": "xícara",
+   "ar": "فنجان"
   },
   {
    "id": "kabel",
@@ -1448,7 +1514,8 @@ window.SCENE = {
    "tr": "kablo",
    "uk": "кабель",
    "fa": "کابل",
-   "pt": "cabo"
+   "pt": "cabo",
+   "ar": "كابل، سلك"
   },
   {
    "id": "schreibtisch",
@@ -1474,7 +1541,8 @@ window.SCENE = {
    "tr": "çalışma masası",
    "uk": "письмовий стіл",
    "fa": "میز کار",
-   "pt": "escrivaninha"
+   "pt": "escrivaninha",
+   "ar": "مكتب (قطعة أثاث)"
   },
   {
    "id": "wand",
@@ -1500,7 +1568,8 @@ window.SCENE = {
    "tr": "duvar",
    "uk": "стіна",
    "fa": "دیوار",
-   "pt": "parede"
+   "pt": "parede",
+   "ar": "جدار"
   }
  ],
  "grosPlans": [
