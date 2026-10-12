@@ -8353,3 +8353,11 @@ Suite (v774) : toute la voix d'Aurora en Multilingual v2, et « Passage a l'espa
   dans l'app et la page des scenes, pour que les telephones abandonnent l'ancien cache.
 - Changer de langue apprise affiche « Passage a l'espagnol... » (ou a l'allemand) avec les
   deux points ambre du logo, au lieu de toute l'animation d'ouverture.
+
+Suite (v775) : l'arabe au niveau des autres langues (PR #12 fusionnee). Corpus 8 052/8 052,
+examen, exercices de grammaire, exercices d'articles, scenes, prononciation. Verifie :
+les neuf fichiers de donnees identiques a main hors champs _ar ; parcours allemand 130/0
+et espagnol 82/0 sur la branche puis apres fusion ; relecture d'un echantillon par Fable
+(vocabulaire 86,7 % bon, 0 faux ; examen 97,5 % ; articles 100 %). Trouve en chemin : ~130
+exercices (4 jeux) restes en FRANCAIS dans TOUTES les langues d'interface -- balayage et
+traduction confies a Fable.
