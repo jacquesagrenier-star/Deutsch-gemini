@@ -8361,3 +8361,11 @@ et espagnol 82/0 sur la branche puis apres fusion ; relecture d'un echantillon p
 (vocabulaire 86,7 % bon, 0 faux ; examen 97,5 % ; articles 100 %). Trouve en chemin : ~130
 exercices (4 jeux) restes en FRANCAIS dans TOUTES les langues d'interface -- balayage et
 traduction confies a Fable.
+
+Suite (v776) : signale par Jacques -- le lien de l'espagnol ouvrait un ecran de connexion
+« Apprends l'allemand, un mot a la fois » ; l'etudiant croyait tomber dans l'app d'allemand.
+Quatre textes n'avaient pas de version espagnole : titre de connexion, « Tu connais deja un
+peu d'allemand ? » au premier demarrage, et deux textes de l'abonnement. Corriges en
+francais et en anglais (I18N_ESPAGNOL). Autre signalement, non reproduit : chez une
+etudiante, « page web non disponible » sur le lien pages.dev (fonctionne chez Jacques) --
+pistes donnees (reseau qui bloque pages.dev, lien abime, lien GitHub de secours).
