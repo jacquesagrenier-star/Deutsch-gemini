@@ -8270,3 +8270,12 @@ Suite (v767) : corpus portugais COMPLET, A1 a C1 -- 8 052 cartes sur 8 052 (noms
 avec les quatre temps, adjectifs, adverbes, expressions, mots-outils). Plus aucune carte ne
 se replie sur l'anglais. Reste : exercices, examen, scenes, Prononciation, voix de la visite
 (payante, a demander).
+
+Suite (v768) : les 2 317 exercices de grammaire en portugais, les 40 jeux (exercices.json,
+10 880 champs, 3 651 tuiles allemandes recopiees). Les explications reecrites contre le
+portugais quand il aide : saber/conhecer pour wissen/kennen, « e sim » pour sondern contre
+« mas » pour aber, « se » de la question indirecte (ob) contre « se » de la condition
+(wenn, subjonctif futur). Controle : rien d'autre n'a bouge dans le fichier (identique hors
+champs pt), et trous_langue.py compte desormais le portugais -- meme niveau que le turc,
+l'ukrainien et le persan partout, sauf l'examen. Reste : examen, scenes, Prononciation,
+voix de la visite (payante, a demander).
