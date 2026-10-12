@@ -31,10 +31,10 @@ FRANCAIS = [" le ", " la ", " les ", "verbe", "personne", "avec ",
             " se termine", " qui ", " dans ", " sur ", "masculin", "féminin",
             "neutre", "pluriel", "phrase", "Prétérit", "prétérit", " ici",
             "toujours", " donc ", "Nominatif", "Accusatif", "Datif", "Génitif",
-            " au ", "fém.", "masc.", " à ", "comme ", " de ", " ou ", " en ",
+            "fém.", "masc.", " à ", "comme ", " de ", " ou ", " en ",
             " ne ", " que ", " se ", " sans ", " pour ", " par ", " son ", " sa ",
             " ses ", " ce ", " cette ", "C'est", "c'est", "l'", "d'", "qu'", "n'",
-            "Remets", " mots", "ordre"]  # pas " du " ni " des " : allemand
+            "Remets", " mots", "ordre"]  # pas " du ", " des ", " au " : allemand
 CYR = re.compile("[А-Яа-яЁё]")
 
 
