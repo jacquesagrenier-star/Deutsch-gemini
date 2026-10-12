@@ -8343,3 +8343,13 @@ fallait rouvrir les reglages pour choisir la langue des explications. Desormais 
 se rouvrent d'eux-memes apres le rechargement, carte « Langue » ouverte, sur la question
 « Dans quelle langue veux-tu les explications ? » (verifie dans le navigateur de test).
 Parcours allemand 130/0, espagnol 82/0.
+
+Suite (v774) : toute la voix d'Aurora en Multilingual v2, et « Passage a l'espagnol... ».
+- Les 1 085 textes que l'app demandait sans enregistrement (degres des adjectifs « gut,
+  besser, am besten », Chapitres VHS, verbes de position, « Anna. die Frau » des scenes)
+  sont enregistres ; manifeste corrige et controle tests/voix_couverture.py (audit Fable).
+- Les 1 042 fichiers faits en Flash les 9-11 oct. sont refaits en v2, choix de Jacques
+  (un seul modele pour tout le corpus). ~81 400 credits sur 716 595. AUDIO_REVISION 7 -> 8
+  dans l'app et la page des scenes, pour que les telephones abandonnent l'ancien cache.
+- Changer de langue apprise affiche « Passage a l'espagnol... » (ou a l'allemand) avec les
+  deux points ambre du logo, au lieu de toute l'animation d'ouverture.
