@@ -36,8 +36,11 @@ for n, l in enumerate(io.open(brouillon, encoding="utf-8"), 1):
             if re.search(r"[A-Za-zÄÖÜäöüß]", mot) and re.search(r"[Ѐ-ӿ]", mot):
                 sys.exit("ligne %d : mot melangeant latin et cyrillique : %r" % (n, mot))
     # Une traduction ou un exemple sans une seule lettre cyrillique : une
-    # ligne oubliee, restee en allemand ou en francais.
-    for v in vals:
+    # ligne oubliee, restee en allemand ou en francais. Seule exception : une
+    # traduction faite de chiffres (« 1945 »), qui n'a pas de lettres du tout.
+    for i, v in enumerate(vals):
+        if i == 0 and not re.search(r"[^\W\d_]", v):
+            continue
         if not re.search(r"[Ѐ-ӿ]", v):
             sys.exit("ligne %d : aucun mot russe dans %r" % (n, v))
     e[num] = [cles[num]] + vals
