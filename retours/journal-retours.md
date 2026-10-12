@@ -8318,3 +8318,28 @@ Suite (v772) : l'arabe, premiere etape. Le corpus A1 et A2 en arabe (2 086 carte
 phrases a construire, libelles de categories). Verifie a l'ecran : une carte en interface
 arabe montre « طاولة » et son exemple, plus l'anglais. Parcours allemand 130/0,
 espagnol 82/0. Reste pour l'arabe : B1 a C1, exercices, examen, articles.
+
+## 12 octobre 2026 -- Jacques : l'arabe et le polonais au cloud, le japonais relu par Fable
+
+- Le reste de l'arabe (B1-C1, exercices, examen, articles) confie a une session cloud,
+  branche `arabe-contenu`, PR attendue.
+- Nouvelle demande : une version polonaise de l'app allemande (8e langue d'interface),
+  session cloud, branche `polonais`, en deux phases pour ne pas heurter l'arabe.
+- Les 1 017 phrases japonaises (N5-N4) relues a l'aveugle par Fable (agent local).
+
+## 12 octobre 2026 -- Jacques : la voix du telephone a la place d'Aurora
+
+Constate par Jacques : dans la revue du jour, une carte d'adjectif dit « gut » avec Aurora,
+mais le comparatif et le superlatif (« besser », « am besten ») avec la voix du telephone.
+Meme chose dans la scene de la rue : en touchant Anna, « die Frau » est dit par le
+telephone. Demande : un audit complet par Fable de tous les endroits ou l'allemand
+tombe sur la voix du telephone. Audit lance (lecture seule). A noter aussi : son
+signalement sur les adjectifs n'est jamais arrive dans la base (retours.js : aucun
+retour, meme --tout) -- a verifier.
+
+Suite (v773) : changer de langue apprise depuis les reglages y ramene. Constate par Jacques :
+choisir l'espagnol (ou l'allemand) dans la roue dentee rechargeait l'app a l'accueil, et il
+fallait rouvrir les reglages pour choisir la langue des explications. Desormais les reglages
+se rouvrent d'eux-memes apres le rechargement, carte « Langue » ouverte, sur la question
+« Dans quelle langue veux-tu les explications ? » (verifie dans le navigateur de test).
+Parcours allemand 130/0, espagnol 82/0.

@@ -7286,7 +7286,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v772</span>
+    <span class="subtitle-version">v773</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10121,6 +10121,10 @@ onAuthStateChanged(auth, (user) => {
         } else if(document.getElementById("auth").classList.contains("active")) {
             goHome();
         }
+        // Retour aux reglages apres un changement de langue apprise (v773) :
+        // voir rouvrirReglagesApresBascule().
+        if(!window.LIEN_REINIT && !window.INSCRIPTION_EN_COURS
+           && typeof rouvrirReglagesApresBascule === "function") rouvrirReglagesApresBascule();
         if(typeof window.onDeutschAiUserSignedIn === "function") window.onDeutschAiUserSignedIn(user);
         if(typeof checkAndUnlockBadges === "function") checkAndUnlockBadges();
         if(typeof renderBadgesGrid === "function") renderBadgesGrid();
@@ -19063,9 +19067,34 @@ const ANGLAIS_EN_RETRAIT = true;
 // retenue (bascule, v736). Avant, « Espagnol » ouvrait l'app generee par
 // fork.py, dans espanol/.
 const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./?apprendre=de" : "./?apprendre=es";
+// CHANGER DE LANGUE APPRISE DEPUIS LES REGLAGES Y RAMENE (v773). La bascule
+// recharge la page -- c'est un autre jeu de donnees et un autre stockage --
+// et l'on se retrouvait a l'accueil. Constate par Jacques le 12 oct. 2026 :
+// il devait rouvrir les reglages pour choisir la langue des explications,
+// la question qui suit justement dans la meme carte. sessionStorage et non
+// localStorage : il survit au rechargement de cet onglet, pas a une app
+// refermee -- on ne rouvre pas les reglages le lendemain.
+const CLE_ROUVRIR_REGLAGES = "wortando_rouvrirReglages";
 function ouvrirAutreLangueApprise(){
+    try{
+        const ecran = document.querySelector(".screen.active");
+        if(ecran && ecran.id === "settings") sessionStorage.setItem(CLE_ROUVRIR_REGLAGES, "1");
+    }catch(e){}
     try{ location.href = new URL(AUTRE_LANGUE_APPRISE_URL, location.href).href; }
     catch(e){ location.href = AUTRE_LANGUE_APPRISE_URL; }
+}
+function rouvrirReglagesApresBascule(){
+    let oui = false;
+    try{
+        oui = sessionStorage.getItem(CLE_ROUVRIR_REGLAGES) === "1";
+        sessionStorage.removeItem(CLE_ROUVRIR_REGLAGES);
+    }catch(e){}
+    if(!oui) return;
+    openSettings();
+    const carte = document.getElementById("reglageLangue");
+    if(carte) carte.open = true;
+    const groupe = document.getElementById("settingsUiLangGroup");
+    if(groupe) afterNextPaint(() => groupe.scrollIntoView({ block: "center" }));
 }
 function getLearningDirection(){
     let dir;
@@ -33898,7 +33927,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 772;
+const APP_VERSION = 773;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
