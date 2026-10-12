@@ -26,7 +26,7 @@ allemandes de correct/options) sont refuses.
 """
 import io, json, os, re, sys
 
-FRANCAIS = [" le ", " la ", " les ", "verbe", "personne", "avec ",
+FRANCAIS = [" le ", " la ", " les ", " verbe", "Verbe ", "personne", "avec ",
             "Avec ", " est ", " car ", " une ", " un ", " et ", " pas ",
             " se termine", " qui ", " dans ", " sur ", "masculin", "féminin",
             "neutre", "pluriel", "phrase", "Prétérit", "prétérit", " ici",
