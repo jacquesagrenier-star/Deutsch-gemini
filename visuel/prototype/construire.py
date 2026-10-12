@@ -70,11 +70,12 @@ def corpus_cat(fichier, cle):
     return {e[cle] for niv in d.values() for e in niv if e.get(cle)}
 
 
-LANGUES = ["en", "tr", "uk", "fa", "ar"]
+LANGUES = ["en", "tr", "uk", "fa", "ar", "pt"]
 # Les traductions d'un mot dans le corpus : traduction (fr), traduction_en...
 # Pas encore d'arabe dans le corpus : la page retombe sur l'anglais.
 CHAMPS_MOT = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr",
-              "uk": "traduction_uk", "fa": "traduction_fa"}
+              "uk": "traduction_uk", "fa": "traduction_fa",
+              "pt": "traduction_pt"}
 
 
 def sens(m):
@@ -430,7 +431,7 @@ def construire_espagnol(nom, scene_de):
         if r:
             points.append(dict(p, aussi=aussi, **{k: r.get(k) for k in
                           ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "latam")}))
-    for cle in ("tr", "uk", "fa"):     # le corpus espagnol n'a que fr et en
+    for cle in ("tr", "uk", "fa", "pt"):     # le corpus espagnol n'a que fr et en
         for p in points:
             p.pop(cle, None)
             for a in p["aussi"]:

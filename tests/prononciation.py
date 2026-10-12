@@ -26,7 +26,7 @@ import hashlib, io, json, os, re, sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGUES = ("fr", "en", "tr", "uk", "fa", "ar")
+LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt")
 
 
 def guillemets(t):
@@ -273,6 +273,64 @@ FINS = [
   ["Kind", "Tag", "gelb"]),
 ]
 
+# LE PORTUGAIS DU BRESIL (v769) : a part, (court, explication) par regle.
+# Ecrit CONTRE le portugais bresilien, pas traduit du francais : le ch dur est
+# le « r » de « rato » ; le j n'est jamais le j portugais ; et le Bresilien
+# palatalise ti / di (« tchi », « dji ») et ajoute un « i » apres une consonne
+# finale -- deux habitudes que l'allemand n'a pas. Non relu par un natif.
+PT = {
+ "u-trema": ("“i” com os lábios arredondados",
+             "O português não tem esse som: diga “i” e, sem mexer a língua, arredonde os lábios como para assobiar."),
+ "o-trema": ("“ê” com os lábios arredondados",
+             "Não existe em português: diga o “ê” de “você” e, sem mexer a língua, arredonde os lábios."),
+ "a-trema": ("como “é” aberto",
+             "O ä se pronuncia como o “é” aberto de “café” ou “pé”."),
+ "u": ("como o “u” de “uva”",
+       "O u alemão é o mesmo “u” do português: gut se diz “gut”. Fácil — o som difícil é o ü."),
+ "ei": ("“ai”, como em “pai”",
+        "ei se pronuncia “ai”, como em “pai”: Wein se diz “vain”, klein “klain”. Nunca “ei”."),
+ "ie": ("“i” longo",
+        "ie se pronuncia como um “i” longo: Liebe se diz “liibe”; o e não se ouve. E atenção: antes de i, t e d continuam duros — die é “di”, nunca “dji”."),
+ "eu": ("“ói”, como em “dói”",
+        "eu e äu se pronunciam “ói”, como em “herói”: heute se diz “hóite”, neu se diz “nói”."),
+ "au": ("“au”, como em “mau”",
+        "au se pronuncia como em “mau” ou “Paulo”: Haus se diz “haus”, Frau “frau”."),
+ "longueur": ("vogal longa ou breve",
+              "Uma vogal é longa antes de um h ou quando é dobrada (Tee, Sohn), e breve antes de consoante dupla (Bett, kommen). Em português a duração não importa; em alemão, ela muda a palavra."),
+ "sch": ("como “ch” de “chave”",
+         "sch se pronuncia como o “ch” de “chave” ou o “x” de “xícara”: Schule se diz “chule”."),
+ "sp-st": ("“chp”, “cht” no começo da palavra",
+           "No começo de uma palavra (ou de parte dela), sp e st se dizem “chp” e “cht”: Straße se diz “chtrasse”, sprechen “chpréchen” — como o “s” chiado do carioca em “festa”."),
+ "ch-doux": ("um sopro suave, sem equivalente",
+             "Depois de e, i, ä, ö, ü, ei, eu, l, n ou r, o ch é um sopro suave, com a língua encostada no céu da boca, como um “ch” sussurrado sorrindo: Milch, leicht. O som não existe em português; dizer “ch” se entende, mas não é o certo."),
+ "ch-dur": ("como o “r” de “rato”",
+            "Depois de a, o, u e au, o ch é raspado no fundo da garganta, como o “r” de “rato” ou de “carro” no Rio de Janeiro: Nacht, Buch, Bauch."),
+ "z": ("“ts”",
+       "z (e tz) se pronuncia sempre “ts”, como em “tsé-tsé”: Zeit se diz “tsait”, Katze “katse”. Nunca o “z” de “casa”."),
+ "v": ("quase sempre “f”",
+       "v se pronuncia quase sempre “f”: Vater se diz “fater”, viel “fil”. Algumas palavras de origem estrangeira mantêm o “v” (Vase, Klavier)."),
+ "w": ("“v”",
+       "w se pronuncia “v”: Wasser se diz “vasser”, wo “vo”."),
+ "s": ("“z” antes de vogal",
+       "Antes de uma vogal, s se diz “z”, como em “casa”: Sonne se diz “zone”, Hose “hoze”."),
+ "eszett": ("“s” forte",
+            "ß e ss se pronunciam como um “s” forte, como o “ss” de “passo”. ß vem depois de vogal longa (groß), ss depois de vogal breve (essen)."),
+ "j": ("“i”, como em “iate”",
+       "j se pronuncia como o “i” de “iate”: Jahr se diz “iar”, jung “iung”. Nunca o “j” de “janela”."),
+ "h": ("aspirado no começo, mudo depois de vogal",
+       "No começo de uma palavra ou sílaba, o h é um sopro de verdade, como o “r” suave de “rato” em boa parte do Brasil — nunca mudo como em “hora”: Hund. Depois de uma vogal, não se pronuncia e alonga a vogal: gehen, Uhr."),
+ "r": ("no fundo da garganta",
+       "O r alemão se faz no fundo da garganta, como o “r” de “rato”, e não como o “r” batido de “caro”: rot, Brot."),
+ "pf": ("p + f de uma vez",
+        "pf se pronuncia p e f de uma só vez; os dois se ouvem: Apfel, Kopf."),
+ "er-final": ("um “a” leve",
+              "No fim de uma palavra, -er se diz como um “a” leve, sem “r”: Vater ≈ “fáta”, Mutter ≈ “múta”."),
+ "ig-final": ("“-ich”, com o ch suave",
+              "No fim de uma palavra, -ig se diz “-ich”, com o ch suave de Milch: richtig, billig."),
+ "b-d-g-final": ("“p”, “t”, “k”",
+                 "No fim de uma palavra, b, d e g perdem a voz e se dizem p, t, k: Kind ≈ “kint”, Tag ≈ “tak”, gelb ≈ “guelp”. E não acrescente um “i” no final: é “kint”, e não “kindi”."),
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("fins", FINS)]
 
 
@@ -301,6 +359,9 @@ def construire():
             if rid in ids:
                 fautes.append("id en double : " + rid)
             ids.add(rid)
+            if rid in PT:
+                court = dict(court, pt=PT[rid][0])
+                expl = dict(expl, pt=PT[rid][1])
             for nom, v in (("court", court), ("explication", expl)):
                 manque = [l for l in LANGUES if not v.get(l)]
                 if manque:
@@ -315,7 +376,7 @@ def construire():
                 if not os.path.exists(os.path.join(RACINE, "audio", "mp3", h + ".mp3")):
                     fautes.append("%s : « %s » sans voix d'Aurora" % (rid, mot))
                 ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_tr",
-                                                             "traduction_uk", "traduction_fa") if e.get(c)}})
+                                                             "traduction_uk", "traduction_fa", "traduction_pt") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             g["regles"].append({"id": rid, "graphie": graphie, "api": api, "court": court,

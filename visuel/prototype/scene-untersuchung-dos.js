@@ -20,7 +20,8 @@ window.SCENE = {
      "en": "man, husband",
      "tr": "adam / koca",
      "uk": "чоловік",
-     "fa": "مرد، شوهر"
+     "fa": "مرد، شوهر",
+     "pt": "homem / marido"
     },
     {
      "mot": "Körper",
@@ -31,7 +32,8 @@ window.SCENE = {
      "en": "body",
      "tr": "vücut",
      "uk": "тіло",
-     "fa": "بدن"
+     "fa": "بدن",
+     "pt": "corpo"
     }
    ],
    "sur": null,
@@ -60,7 +62,8 @@ window.SCENE = {
    "en": "patient",
    "tr": "hasta",
    "uk": "пацієнт",
-   "fa": "بیمار (مرد)"
+   "fa": "بیمار (مرد)",
+   "pt": "paciente"
   },
   {
    "id": "kopf",
@@ -85,7 +88,8 @@ window.SCENE = {
    "en": "head",
    "tr": "baş",
    "uk": "голова",
-   "fa": "سر"
+   "fa": "سر",
+   "pt": "cabeça"
   },
   {
    "id": "haar",
@@ -110,7 +114,8 @@ window.SCENE = {
    "en": "hair",
    "tr": "saç",
    "uk": "волосся",
-   "fa": "مو"
+   "fa": "مو",
+   "pt": "cabelo"
   },
   {
    "id": "ohr",
@@ -141,7 +146,8 @@ window.SCENE = {
    "en": "ear",
    "tr": "kulak",
    "uk": "вухо",
-   "fa": "گوش"
+   "fa": "گوش",
+   "pt": "orelha, ouvido"
   },
   {
    "id": "nacken",
@@ -161,7 +167,8 @@ window.SCENE = {
      "en": "neck",
      "tr": "boyun",
      "uk": "шия, горло",
-     "fa": "گلو، گردن"
+     "fa": "گلو، گردن",
+     "pt": "pescoço, garganta"
     }
    ],
    "sur": "mark",
@@ -178,7 +185,8 @@ window.SCENE = {
    "en": "back of the neck",
    "tr": "ense",
    "uk": "карк",
-   "fa": "پشت گردن"
+   "fa": "پشت گردن",
+   "pt": "nuca"
   },
   {
    "id": "schulter",
@@ -209,7 +217,8 @@ window.SCENE = {
    "en": "shoulder",
    "tr": "omuz",
    "uk": "плече",
-   "fa": "شانه"
+   "fa": "شانه",
+   "pt": "ombro"
   },
   {
    "id": "schulterblatt",
@@ -240,7 +249,8 @@ window.SCENE = {
    "en": "shoulder blade",
    "tr": "kürek kemiği",
    "uk": "лопатка",
-   "fa": "استخوان کتف"
+   "fa": "استخوان کتف",
+   "pt": "omoplata, escápula"
   },
   {
    "id": "wirbelsaeule",
@@ -265,7 +275,8 @@ window.SCENE = {
    "en": "spine",
    "tr": "omurga",
    "uk": "хребет",
-   "fa": "ستون فقرات"
+   "fa": "ستون فقرات",
+   "pt": "coluna vertebral"
   },
   {
    "id": "ruecken",
@@ -290,7 +301,8 @@ window.SCENE = {
    "en": "back",
    "tr": "sırt",
    "uk": "спина",
-   "fa": "پشت، کمر"
+   "fa": "پشت، کمر",
+   "pt": "costas"
   },
   {
    "id": "po",
@@ -310,7 +322,8 @@ window.SCENE = {
      "en": "buttocks, bottom",
      "tr": "kalça",
      "uk": "сідниці",
-     "fa": "باسن"
+     "fa": "باسن",
+     "pt": "nádegas, bumbum"
     },
     {
      "mot": "Unterhose",
@@ -321,7 +334,8 @@ window.SCENE = {
      "en": "underpants",
      "tr": "külot",
      "uk": "труси",
-     "fa": "شورت"
+     "fa": "شورت",
+     "pt": "cueca, calcinha"
     }
    ],
    "sur": "mark",
@@ -338,7 +352,8 @@ window.SCENE = {
    "en": "bottom",
    "tr": "kalça",
    "uk": "сідниці",
-   "fa": "باسن"
+   "fa": "باسن",
+   "pt": "bumbum"
   },
   {
    "id": "arm-l",
@@ -369,7 +384,8 @@ window.SCENE = {
    "en": "arm",
    "tr": "kol",
    "uk": "рука (від плеча)",
-   "fa": "بازو"
+   "fa": "بازو",
+   "pt": "braço"
   },
   {
    "id": "arm-r",
@@ -400,7 +416,8 @@ window.SCENE = {
    "en": "arm",
    "tr": "kol",
    "uk": "рука (від плеча)",
-   "fa": "بازو"
+   "fa": "بازو",
+   "pt": "braço"
   },
   {
    "id": "ellbogen",
@@ -431,7 +448,8 @@ window.SCENE = {
    "en": "elbow",
    "tr": "dirsek",
    "uk": "лікоть",
-   "fa": "آرنج"
+   "fa": "آرنج",
+   "pt": "cotovelo"
   },
   {
    "id": "hand-l",
@@ -456,7 +474,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "hand-r",
@@ -481,7 +500,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "handflaeche-r",
@@ -506,7 +526,8 @@ window.SCENE = {
    "en": "palm (of the hand)",
    "tr": "avuç içi",
    "uk": "долоня",
-   "fa": "کف دست"
+   "fa": "کف دست",
+   "pt": "palma da mão"
   },
   {
    "id": "oberschenkel",
@@ -537,7 +558,8 @@ window.SCENE = {
    "en": "thigh",
    "tr": "uyluk",
    "uk": "стегно",
-   "fa": "ران"
+   "fa": "ران",
+   "pt": "coxa"
   },
   {
    "id": "kniekehle",
@@ -568,7 +590,8 @@ window.SCENE = {
    "en": "back of the knee",
    "tr": "diz arkası",
    "uk": "підколінна ямка",
-   "fa": "پشت زانو"
+   "fa": "پشت زانو",
+   "pt": "dobra de trás do joelho"
   },
   {
    "id": "wade",
@@ -599,7 +622,8 @@ window.SCENE = {
    "en": "calf",
    "tr": "baldır",
    "uk": "литка",
-   "fa": "ماهیچهٔ پشت ساق پا"
+   "fa": "ماهیچهٔ پشت ساق پا",
+   "pt": "panturrilha"
   },
   {
    "id": "bein-l",
@@ -624,7 +648,8 @@ window.SCENE = {
    "en": "leg",
    "tr": "bacak",
    "uk": "нога",
-   "fa": "ساق پا"
+   "fa": "ساق پا",
+   "pt": "perna"
   },
   {
    "id": "bein-r",
@@ -649,7 +674,8 @@ window.SCENE = {
    "en": "leg",
    "tr": "bacak",
    "uk": "нога",
-   "fa": "ساق پا"
+   "fa": "ساق پا",
+   "pt": "perna"
   },
   {
    "id": "ferse",
@@ -680,7 +706,8 @@ window.SCENE = {
    "en": "heel",
    "tr": "topuk",
    "uk": "п'ята",
-   "fa": "پاشنهٔ پا"
+   "fa": "پاشنهٔ پا",
+   "pt": "calcanhar"
   },
   {
    "id": "fuss-l",
@@ -705,7 +732,8 @@ window.SCENE = {
    "en": "foot",
    "tr": "ayak",
    "uk": "ступня",
-   "fa": "پا"
+   "fa": "پا",
+   "pt": "pé"
   },
   {
    "id": "fuss-r",
@@ -730,7 +758,8 @@ window.SCENE = {
    "en": "foot",
    "tr": "ayak",
    "uk": "ступня",
-   "fa": "پا"
+   "fa": "پا",
+   "pt": "pé"
   },
   {
    "id": "aerztin",
@@ -750,7 +779,8 @@ window.SCENE = {
      "en": "woman, wife",
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
-     "fa": "زن، همسر"
+     "fa": "زن، همسر",
+     "pt": "mulher / esposa"
     }
    ],
    "sur": null,
@@ -779,7 +809,8 @@ window.SCENE = {
    "en": "doctor (female)",
    "tr": "doktor (kadın)",
    "uk": "лікарка",
-   "fa": "پزشک (زن)"
+   "fa": "پزشک (زن)",
+   "pt": "médica"
   },
   {
    "id": "hand-aerztin-haut",
@@ -804,7 +835,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "hand-aerztin-bas",
@@ -829,7 +861,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "stethoskop",
@@ -860,7 +893,8 @@ window.SCENE = {
    "en": "stethoscope",
    "tr": "steteskop",
    "uk": "стетоскоп",
-   "fa": "گوشی پزشکی"
+   "fa": "گوشی پزشکی",
+   "pt": "estetoscópio"
   },
   {
    "id": "waage",
@@ -897,7 +931,8 @@ window.SCENE = {
    "en": "scales",
    "tr": "tartı",
    "uk": "ваги",
-   "fa": "ترازو"
+   "fa": "ترازو",
+   "pt": "balança"
   },
   {
    "id": "wand",
@@ -922,7 +957,8 @@ window.SCENE = {
    "en": "wall",
    "tr": "duvar",
    "uk": "стіна",
-   "fa": "دیوار"
+   "fa": "دیوار",
+   "pt": "parede"
   },
   {
    "id": "boden",
@@ -947,7 +983,8 @@ window.SCENE = {
    "en": "ground, floor",
    "tr": "zemin / toprak",
    "uk": "земля, підлога",
-   "fa": "زمین، کف"
+   "fa": "زمین، کف",
+   "pt": "chão, solo"
   },
   {
    "id": "handflaeche-l",
@@ -973,7 +1010,8 @@ window.SCENE = {
    "en": "palm (of the hand)",
    "tr": "avuç içi",
    "uk": "долоня",
-   "fa": "کف دست"
+   "fa": "کف دست",
+   "pt": "palma da mão"
   },
   {
    "id": "finger-dos",
@@ -999,7 +1037,8 @@ window.SCENE = {
    "en": "finger",
    "tr": "parmak",
    "uk": "палець",
-   "fa": "انگشت"
+   "fa": "انگشت",
+   "pt": "dedo"
   }
  ],
  "grosPlans": [
@@ -1575,6 +1614,47 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + مصدر الماضي: يُنقل الخبر دون ضمان.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = افتراض مرجَّح من المتكلّم.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "شرط دون <b>wenn</b>، والفعل في البداية؛ غير الواقع في الماضي مع <b>hätte</b>."
+   }
+  },
+  "pt": {
+   "champs": {
+    "alt": "Mark, de costas, de cueca boxer azul-marinho, descalço, com as palmas das mãos viradas para nós; a médica ausculta as costas dele com o estetoscópio.",
+    "consigne": "Toque numa parte do corpo do Mark, visto de costas. Toque na mão esquerda dele para vê-la de perto.",
+    "nom_vue": "Mark, de costas",
+    "autre_vue": "↻ Virar o Mark"
+   },
+   "couches": {
+    "A1": "O corpo humano, de costas",
+    "A2": "Wo? — as preposições e o corpo",
+    "B1": "As instruções da médica",
+    "B2": "Passiva e relativas",
+    "C1": "Hipóteses e Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "der Rücken → auf <b>seinem</b> Rücken (Dativ masculino).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + Dativ: dem Patient<b>en</b>.",
+    "A2 | Seine Hände sind neben seinem Po.": "der Po → neben <b>seinem</b> Po (Dativ).",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "<b>zwischen</b> + Dativ plural: <b>den</b> Schulterblätter<b>n</b>.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "<b>unter</b> + Dativ plural: <b>den</b> Kniekehle<b>n</b>.",
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> + Dativ: an <b>der</b> Wand.",
+    "B1 | Bitte drehen Sie sich um!": "<b>sich umdrehen</b> = virar-se. Partícula separável no fim do imperativo.",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Partizip II de um verbo separável: <b>um-ge-dreht</b>. <b>damit</b> = para que.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "Movimento → <b>setzen</b> + Akkusativ: auf <b>seinen</b> Rücken.",
+    "B1 | Er lässt seine Arme locker hängen.": "<b>lassen</b> + infinitivo: deixar (pender).",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "<b>man</b> se conjuga na 3ª pessoa do singular: man <b>sieht</b>.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "<b>ausatmen</b> = expirar, <b>einatmen</b> = inspirar.",
+    "B2 | Sein Rücken wird gerade abgehört.": "Passiva de ação: <b>werden</b> + Partizip II.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Posse, antecedente masculino → <b>dessen</b>.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Posse, antecedente feminino → <b>deren</b>.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "<b>nachdem</b> + Plusquamperfekt. Um verbo pronominal leva <b>haben</b>.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Passiva com modal: Partizip II + <b>werden</b> + modal (kann).",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Pronome relativo no Dativ plural: <b>denen</b>, e não “den”.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "<b>dürfte</b> + infinitivo passado da passiva: suposição provável sobre o passado.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Irreal do passado: <b>hätte</b> + Partizip II (gesagt).",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Konjunktiv II de <b>hören</b> = <b>hörte</b> (mesma forma do Präteritum).",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + infinitivo passado: é o que dizem, sem garantia.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = hipótese provável de quem fala.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Condição sem <b>wenn</b>, verbo no início; irreal do passado com <b>hätte</b>."
    }
   }
  }

@@ -20,7 +20,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -31,7 +32,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -48,7 +50,8 @@ window.SCENE = {
    "en": "pea",
    "tr": "bezelye",
    "uk": "горошок",
-   "fa": "نخودفرنگی"
+   "fa": "نخودفرنگی",
+   "pt": "ervilha"
   },
   {
    "id": "salat",
@@ -68,7 +71,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -79,7 +83,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -96,7 +101,8 @@ window.SCENE = {
    "en": "lettuce, salad",
    "tr": "salata",
    "uk": "салат",
-   "fa": "کاهو، سالاد"
+   "fa": "کاهو، سالاد",
+   "pt": "alface, salada"
   },
   {
    "id": "spargel",
@@ -116,7 +122,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -127,7 +134,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -144,7 +152,8 @@ window.SCENE = {
    "en": "asparagus",
    "tr": "kuşkonmaz",
    "uk": "спаржа",
-   "fa": "مارچوبه"
+   "fa": "مارچوبه",
+   "pt": "aspargo"
   },
   {
    "id": "kuerbis",
@@ -164,7 +173,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -175,7 +185,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -192,7 +203,8 @@ window.SCENE = {
    "en": "pumpkin",
    "tr": "balkabağı",
    "uk": "гарбуз",
-   "fa": "کدو تنبل"
+   "fa": "کدو تنبل",
+   "pt": "abóbora"
   },
   {
    "id": "paprika",
@@ -212,7 +224,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -223,7 +236,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -240,7 +254,8 @@ window.SCENE = {
    "en": "bell pepper",
    "tr": "biber",
    "uk": "солодкий перець",
-   "fa": "فلفل دلمه‌ای"
+   "fa": "فلفل دلمه‌ای",
+   "pt": "pimentão"
   },
   {
    "id": "mais",
@@ -260,7 +275,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -271,7 +287,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -288,7 +305,8 @@ window.SCENE = {
    "en": "corn, maize",
    "tr": "mısır",
    "uk": "кукурудза",
-   "fa": "ذرت"
+   "fa": "ذرت",
+   "pt": "milho"
   },
   {
    "id": "pilz",
@@ -308,7 +326,8 @@ window.SCENE = {
      "en": "mushroom",
      "tr": "mantar (Avusturya)",
      "uk": "гриб (австр.)",
-     "fa": "قارچ (واژهٔ اتریشی)"
+     "fa": "قارچ (واژهٔ اتریشی)",
+     "pt": "cogumelo (Áustria)"
     },
     {
      "mot": "Kiste",
@@ -319,7 +338,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -330,7 +350,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -347,7 +368,8 @@ window.SCENE = {
    "en": "mushroom",
    "tr": "mantar",
    "uk": "гриб",
-   "fa": "قارچ"
+   "fa": "قارچ",
+   "pt": "cogumelo"
   },
   {
    "id": "bohne",
@@ -367,7 +389,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -378,7 +401,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -395,7 +419,8 @@ window.SCENE = {
    "en": "bean",
    "tr": "fasulye",
    "uk": "квасоля, боби",
-   "fa": "لوبیا"
+   "fa": "لوبیا",
+   "pt": "feijão, vagem"
   },
   {
    "id": "mangold",
@@ -415,7 +440,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -426,7 +452,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -443,7 +470,8 @@ window.SCENE = {
    "en": "chard",
    "tr": "pazı",
    "uk": "мангольд",
-   "fa": "برگ‌چغندر"
+   "fa": "برگ‌چغندر",
+   "pt": "acelga"
   },
   {
    "id": "artischocke",
@@ -463,7 +491,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -474,7 +503,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -491,7 +521,8 @@ window.SCENE = {
    "en": "artichoke",
    "tr": "enginar",
    "uk": "артишок",
-   "fa": "کنگر فرنگی"
+   "fa": "کنگر فرنگی",
+   "pt": "alcachofra"
   },
   {
    "id": "aubergine",
@@ -511,7 +542,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -522,7 +554,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -539,7 +572,8 @@ window.SCENE = {
    "en": "eggplant",
    "tr": "patlıcan",
    "uk": "баклажан",
-   "fa": "بادمجان"
+   "fa": "بادمجان",
+   "pt": "berinjela"
   },
   {
    "id": "gurke",
@@ -559,7 +593,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -570,7 +605,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -587,7 +623,8 @@ window.SCENE = {
    "en": "cucumber",
    "tr": "salatalık",
    "uk": "огірок",
-   "fa": "خیار"
+   "fa": "خیار",
+   "pt": "pepino"
   },
   {
    "id": "zucchini",
@@ -607,7 +644,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -618,7 +656,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -635,7 +674,8 @@ window.SCENE = {
    "en": "zucchini",
    "tr": "kabak",
    "uk": "кабачок",
-   "fa": "کدو سبز"
+   "fa": "کدو سبز",
+   "pt": "abobrinha"
   },
   {
    "id": "tomate",
@@ -655,7 +695,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -666,7 +707,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -683,7 +725,8 @@ window.SCENE = {
    "en": "tomato",
    "tr": "domates",
    "uk": "помідор",
-   "fa": "گوجه‌فرنگی"
+   "fa": "گوجه‌فرنگی",
+   "pt": "tomate"
   },
   {
    "id": "spinat",
@@ -703,7 +746,8 @@ window.SCENE = {
      "en": "box, crate",
      "tr": "sandık",
      "uk": "ящик, коробка",
-     "fa": "جعبهٔ چوبی"
+     "fa": "جعبهٔ چوبی",
+     "pt": "caixote"
     },
     {
      "mot": "Gemüse",
@@ -714,7 +758,8 @@ window.SCENE = {
      "en": "vegetables",
      "tr": "sebze",
      "uk": "овочі",
-     "fa": "سبزیجات"
+     "fa": "سبزیجات",
+     "pt": "legumes, verduras"
     }
    ],
    "sur": null,
@@ -731,7 +776,8 @@ window.SCENE = {
    "en": "spinach",
    "tr": "ıspanak",
    "uk": "шпинат",
-   "fa": "اسفناج"
+   "fa": "اسفناج",
+   "pt": "espinafre"
   },
   {
    "id": "anna",
@@ -768,7 +814,8 @@ window.SCENE = {
    "en": "woman, wife",
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
-   "fa": "زن، همسر"
+   "fa": "زن، همسر",
+   "pt": "mulher / esposa"
   },
   {
    "id": "tomate-main",
@@ -793,7 +840,8 @@ window.SCENE = {
    "en": "tomato",
    "tr": "domates",
    "uk": "помідор",
-   "fa": "گوجه‌فرنگی"
+   "fa": "گوجه‌فرنگی",
+   "pt": "tomate"
   }
  ],
  "grosPlans": [],
@@ -1258,6 +1306,43 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "شرط دون <b>wenn</b>، والفعل في البداية؛ ثم <b>würde</b> + المصدر.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "افتراض عن الماضي بصيغة المبني للمجهول: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = نصيحة (ينبغي)."
+   }
+  },
+  "pt": {
+   "champs": {
+    "alt": "Anna pega um cacho de tomates na banca de legumes: ervilhas, alfaces, aspargos, abóboras, pimentões, milho, cogumelos, vagens, acelgas, alcachofras, berinjelas, pepinos, abobrinhas, tomates e espinafre.",
+    "consigne": "Toque numa fruta, num legume ou num caixote.",
+    "nom_vue": "Os legumes-fruto e as folhas",
+    "autre_vue": "→ Frutas da região"
+   },
+   "couches": {
+    "A1": "Na feira",
+    "A2": "Wo? — as preposições na feira",
+    "B1": "Fazer compras: quantidades e preços",
+    "B2": "Passiva, relativas e adjetivos",
+    "C1": "Hipóteses, je … desto, Genitiv"
+   },
+   "questions": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "<b>zwischen</b> + Dativ: <b>dem</b> Mais, <b>den</b> Bohne<b>n</b>.",
+    "A2 | Anna nimmt ein paar Tomaten.": "<b>ein paar</b> = alguns, Akkusativ plural sem artigo.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "die Gurke → Dativ plural <b>den Gurken</b>.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "der Kürbis → plural die Kürbisse → Dativ <b>den Kürbissen</b>.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "die Tomate → Dativ plural <b>den Tomaten</b>.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "<b>ein Pfund</b> = 500 gramas, meio quilo.",
+    "B1 | Was kosten die Pilze?": "No plural, o artigo é sempre <b>die</b>.",
+    "B1 | Die Gurke ist länger als die Zucchini.": "Comparativo: lang → <b>länger</b> … <b>als</b>.",
+    "B1 | Ich nehme einen Kopf Salat.": "<b>ein Kopf Salat</b> = um pé de alface (literalmente uma “cabeça”).",
+    "B1 | Kommt der Spargel aus der Region?": "<b>aus</b> + Dativ para a origem: aus der Region.",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Passiva: <b>wird</b> + Partizip II. Spargel <b>stechen</b> = colher o aspargo.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Objeto de halten → Akkusativ plural <b>die</b>.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Depois de <b>den</b> (Dativ plural), os adjetivos recebem <b>-en</b>.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Passiva de estado: <b>sein</b> + Partizip II, invariável.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "Posse, antecedente masculino → <b>dessen</b>.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "<b>trotz</b> + Genitiv = apesar de. Strauchtomaten = tomates em cacho.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "<b>je</b> …, <b>desto</b> …: quanto mais …, mais …",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Condição sem <b>wenn</b>, verbo no início; depois <b>würde</b> + infinitivo.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Suposição sobre o passado, na passiva: Partizip II + <b>worden sein</b>.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = conselho (deveria-se)."
    }
   }
  }

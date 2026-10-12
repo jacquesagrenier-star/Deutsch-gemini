@@ -2002,6 +2002,16 @@ window.SCENE = {
     "A1": "الجسم والأشياء"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Mark no médico, sentado descalço na maca de exame, com um curativo no joelho; a médica, sentada ao lado dele, segura uma atadura.",
+    "consigne": "Toque num objeto, no Mark ou na médica. Toque no cartaz para vê-lo de perto."
+   },
+   "couches": {
+    "A1": "O corpo e os objetos"
+   },
+   "questions": {}
   }
  }
 };

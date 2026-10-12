@@ -25,7 +25,8 @@ window.SCENE = {
    "en": "clock",
    "tr": "saat",
    "uk": "годинник",
-   "fa": "ساعت"
+   "fa": "ساعت",
+   "pt": "relógio"
   },
   {
    "id": "tafel",
@@ -50,7 +51,8 @@ window.SCENE = {
    "en": "board",
    "tr": "tahta",
    "uk": "дошка",
-   "fa": "تخته"
+   "fa": "تخته",
+   "pt": "quadro (lousa)"
   },
   {
    "id": "lehrer",
@@ -70,7 +72,8 @@ window.SCENE = {
      "en": "man, husband",
      "tr": "adam / koca",
      "uk": "чоловік",
-     "fa": "مرد، شوهر"
+     "fa": "مرد، شوهر",
+     "pt": "homem / marido"
     },
     {
      "mot": "Brille",
@@ -81,7 +84,8 @@ window.SCENE = {
      "en": "glasses",
      "tr": "gözlük",
      "uk": "окуляри",
-     "fa": "عینک"
+     "fa": "عینک",
+     "pt": "óculos"
     },
     {
      "mot": "Bart",
@@ -92,7 +96,8 @@ window.SCENE = {
      "en": "beard",
      "tr": "sakal",
      "uk": "борода",
-     "fa": "ریش"
+     "fa": "ریش",
+     "pt": "barba"
     },
     {
      "mot": "Hemd",
@@ -103,7 +108,8 @@ window.SCENE = {
      "en": "shirt",
      "tr": "gömlek",
      "uk": "сорочка",
-     "fa": "پیراهن"
+     "fa": "پیراهن",
+     "pt": "camisa"
     }
    ],
    "sur": null,
@@ -126,7 +132,8 @@ window.SCENE = {
    "en": "teacher",
    "tr": "öğretmen",
    "uk": "учитель",
-   "fa": "آموزگار"
+   "fa": "آموزگار",
+   "pt": "professor"
   },
   {
    "id": "brille",
@@ -151,7 +158,8 @@ window.SCENE = {
    "en": "glasses",
    "tr": "gözlük",
    "uk": "окуляри",
-   "fa": "عینک"
+   "fa": "عینک",
+   "pt": "óculos"
   },
   {
    "id": "bart",
@@ -176,7 +184,8 @@ window.SCENE = {
    "en": "beard",
    "tr": "sakal",
    "uk": "борода",
-   "fa": "ریش"
+   "fa": "ریش",
+   "pt": "barba"
   },
   {
    "id": "kreide",
@@ -201,7 +210,8 @@ window.SCENE = {
    "en": "chalk",
    "tr": "tebeşir",
    "uk": "крейда",
-   "fa": "گچ"
+   "fa": "گچ",
+   "pt": "giz"
   },
   {
    "id": "tuer",
@@ -226,7 +236,8 @@ window.SCENE = {
    "en": "door",
    "tr": "kapı",
    "uk": "двері",
-   "fa": "در"
+   "fa": "در",
+   "pt": "porta"
   },
   {
    "id": "haken",
@@ -251,7 +262,8 @@ window.SCENE = {
    "en": "hook",
    "tr": "askı",
    "uk": "гачок",
-   "fa": "قلاب"
+   "fa": "قلاب",
+   "pt": "gancho"
   },
   {
    "id": "mantel",
@@ -276,7 +288,8 @@ window.SCENE = {
    "en": "coat",
    "tr": "palto",
    "uk": "пальто",
-   "fa": "پالتو"
+   "fa": "پالتو",
+   "pt": "casaco (sobretudo)"
   },
   {
    "id": "jacke",
@@ -301,7 +314,8 @@ window.SCENE = {
    "en": "jacket",
    "tr": "ceket",
    "uk": "куртка",
-   "fa": "کاپشن"
+   "fa": "کاپشن",
+   "pt": "jaqueta"
   },
   {
    "id": "bild",
@@ -326,7 +340,8 @@ window.SCENE = {
    "en": "picture",
    "tr": "resim",
    "uk": "картина",
-   "fa": "تابلو، عکس"
+   "fa": "تابلو، عکس",
+   "pt": "quadro"
   },
   {
    "id": "lampe",
@@ -351,7 +366,8 @@ window.SCENE = {
    "en": "lamp",
    "tr": "lamba",
    "uk": "лампа",
-   "fa": "چراغ"
+   "fa": "چراغ",
+   "pt": "luminária"
   },
   {
    "id": "fenster",
@@ -376,7 +392,8 @@ window.SCENE = {
    "en": "window",
    "tr": "pencere",
    "uk": "вікно",
-   "fa": "پنجره"
+   "fa": "پنجره",
+   "pt": "janela"
   },
   {
    "id": "regal",
@@ -401,7 +418,8 @@ window.SCENE = {
    "en": "shelf",
    "tr": "raf",
    "uk": "полиця",
-   "fa": "قفسه"
+   "fa": "قفسه",
+   "pt": "estante"
   },
   {
    "id": "pflanze",
@@ -426,7 +444,8 @@ window.SCENE = {
    "en": "plant",
    "tr": "bitki",
    "uk": "рослина",
-   "fa": "گیاه"
+   "fa": "گیاه",
+   "pt": "planta"
   },
   {
    "id": "mark",
@@ -446,7 +465,8 @@ window.SCENE = {
      "en": "man, husband",
      "tr": "adam / koca",
      "uk": "чоловік",
-     "fa": "مرد، شوهر"
+     "fa": "مرد، شوهر",
+     "pt": "homem / marido"
     },
     {
      "mot": "Pullover",
@@ -457,7 +477,8 @@ window.SCENE = {
      "en": "sweater",
      "tr": "kazak",
      "uk": "светр",
-     "fa": "پلیور"
+     "fa": "پلیور",
+     "pt": "suéter"
     },
     {
      "mot": "Student",
@@ -468,7 +489,8 @@ window.SCENE = {
      "en": "student",
      "tr": "üniversite öğrencisi",
      "uk": "студент",
-     "fa": "دانشجو"
+     "fa": "دانشجو",
+     "pt": "estudante (universitário)"
     },
     {
      "mot": "Stift",
@@ -479,7 +501,8 @@ window.SCENE = {
      "en": "pen",
      "tr": "kalem",
      "uk": "ручка",
-     "fa": "خودکار"
+     "fa": "خودکار",
+     "pt": "caneta"
     }
    ],
    "sur": null,
@@ -508,7 +531,8 @@ window.SCENE = {
    "en": "participant",
    "tr": "katılımcı",
    "uk": "учасник",
-   "fa": "شرکت‌کننده (مرد)"
+   "fa": "شرکت‌کننده (مرد)",
+   "pt": "participante"
   },
   {
    "id": "pullover",
@@ -533,7 +557,8 @@ window.SCENE = {
    "en": "sweater",
    "tr": "kazak",
    "uk": "светр",
-   "fa": "پلیور"
+   "fa": "پلیور",
+   "pt": "suéter"
   },
   {
    "id": "anna",
@@ -553,7 +578,8 @@ window.SCENE = {
      "en": "woman, wife",
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
-     "fa": "زن، همسر"
+     "fa": "زن، همسر",
+     "pt": "mulher / esposa"
     },
     {
      "mot": "Pullover",
@@ -564,7 +590,8 @@ window.SCENE = {
      "en": "sweater",
      "tr": "kazak",
      "uk": "светр",
-     "fa": "پلیور"
+     "fa": "پلیور",
+     "pt": "suéter"
     },
     {
      "mot": "Rock",
@@ -575,7 +602,8 @@ window.SCENE = {
      "en": "skirt",
      "tr": "etek",
      "uk": "спідниця",
-     "fa": "دامن"
+     "fa": "دامن",
+     "pt": "saia"
     },
     {
      "mot": "Stift",
@@ -586,7 +614,8 @@ window.SCENE = {
      "en": "pen",
      "tr": "kalem",
      "uk": "ручка",
-     "fa": "خودکار"
+     "fa": "خودکار",
+     "pt": "caneta"
     },
     {
      "mot": "Studentin",
@@ -597,7 +626,8 @@ window.SCENE = {
      "en": "student (female)",
      "tr": "kız öğrenci",
      "uk": "студентка",
-     "fa": "دانشجو (زن)"
+     "fa": "دانشجو (زن)",
+     "pt": "estudante (universitária)"
     }
    ],
    "sur": null,
@@ -626,7 +656,8 @@ window.SCENE = {
    "en": "participant (female)",
    "tr": "katılımcı (kadın)",
    "uk": "учасниця",
-   "fa": "شرکت‌کننده (زن)"
+   "fa": "شرکت‌کننده (زن)",
+   "pt": "participante (mulher)"
   },
   {
    "id": "rock",
@@ -651,7 +682,8 @@ window.SCENE = {
    "en": "skirt",
    "tr": "etek",
    "uk": "спідниця",
-   "fa": "دامن"
+   "fa": "دامن",
+   "pt": "saia"
   },
   {
    "id": "heft",
@@ -676,7 +708,8 @@ window.SCENE = {
    "en": "notebook",
    "tr": "defter",
    "uk": "зошит",
-   "fa": "دفتر"
+   "fa": "دفتر",
+   "pt": "caderno"
   },
   {
    "id": "heft-mark",
@@ -701,7 +734,8 @@ window.SCENE = {
    "en": "notebook",
    "tr": "defter",
    "uk": "зошит",
-   "fa": "دفتر"
+   "fa": "دفتر",
+   "pt": "caderno"
   },
   {
    "id": "heft-noir",
@@ -726,7 +760,8 @@ window.SCENE = {
    "en": "notebook",
    "tr": "defter",
    "uk": "зошит",
-   "fa": "دفتر"
+   "fa": "دفتر",
+   "pt": "caderno"
   },
   {
    "id": "heft-studentin",
@@ -751,7 +786,8 @@ window.SCENE = {
    "en": "notebook",
    "tr": "defter",
    "uk": "зошит",
-   "fa": "دفتر"
+   "fa": "دفتر",
+   "pt": "caderno"
   },
   {
    "id": "stift",
@@ -776,7 +812,8 @@ window.SCENE = {
    "en": "pen",
    "tr": "kalem",
    "uk": "ручка",
-   "fa": "خودکار"
+   "fa": "خودکار",
+   "pt": "caneta"
   },
   {
    "id": "stift-mark",
@@ -801,7 +838,8 @@ window.SCENE = {
    "en": "pen",
    "tr": "kalem",
    "uk": "ручка",
-   "fa": "خودکار"
+   "fa": "خودکار",
+   "pt": "caneta"
   },
   {
    "id": "stift-noir",
@@ -826,7 +864,8 @@ window.SCENE = {
    "en": "pen",
    "tr": "kalem",
    "uk": "ручка",
-   "fa": "خودکار"
+   "fa": "خودکار",
+   "pt": "caneta"
   },
   {
    "id": "stift-studentin",
@@ -851,7 +890,8 @@ window.SCENE = {
    "en": "pen",
    "tr": "kalem",
    "uk": "ручка",
-   "fa": "خودکار"
+   "fa": "خودکار",
+   "pt": "caneta"
   },
   {
    "id": "stift-bureau",
@@ -876,7 +916,8 @@ window.SCENE = {
    "en": "pen",
    "tr": "kalem",
    "uk": "ручка",
-   "fa": "خودکار"
+   "fa": "خودکار",
+   "pt": "caneta"
   },
   {
    "id": "heft-bureau",
@@ -901,7 +942,8 @@ window.SCENE = {
    "en": "notebook",
    "tr": "defter",
    "uk": "зошит",
-   "fa": "دفتر"
+   "fa": "دفتر",
+   "pt": "caderno"
   },
   {
    "id": "tisch",
@@ -926,7 +968,8 @@ window.SCENE = {
    "en": "table",
    "tr": "masa",
    "uk": "стіл",
-   "fa": "میز"
+   "fa": "میز",
+   "pt": "mesa"
   },
   {
    "id": "stuhl",
@@ -951,7 +994,8 @@ window.SCENE = {
    "en": "chair",
    "tr": "sandalye",
    "uk": "стілець",
-   "fa": "صندلی"
+   "fa": "صندلی",
+   "pt": "cadeira"
   },
   {
    "id": "stuhl-bureau",
@@ -976,7 +1020,8 @@ window.SCENE = {
    "en": "chair",
    "tr": "sandalye",
    "uk": "стілець",
-   "fa": "صندلی"
+   "fa": "صندلی",
+   "pt": "cadeira"
   },
   {
    "id": "rucksack",
@@ -1001,7 +1046,8 @@ window.SCENE = {
    "en": "backpack",
    "tr": "sırt çantası",
    "uk": "рюкзак",
-   "fa": "کوله‌پشتی"
+   "fa": "کوله‌پشتی",
+   "pt": "mochila"
   },
   {
    "id": "mann",
@@ -1021,7 +1067,8 @@ window.SCENE = {
      "en": "participant",
      "tr": "katılımcı",
      "uk": "учасник",
-     "fa": "شرکت‌کننده (مرد)"
+     "fa": "شرکت‌کننده (مرد)",
+     "pt": "participante"
     },
     {
      "mot": "Bart",
@@ -1032,7 +1079,8 @@ window.SCENE = {
      "en": "beard",
      "tr": "sakal",
      "uk": "борода",
-     "fa": "ریش"
+     "fa": "ریش",
+     "pt": "barba"
     },
     {
      "mot": "Hemd",
@@ -1043,7 +1091,8 @@ window.SCENE = {
      "en": "shirt",
      "tr": "gömlek",
      "uk": "сорочка",
-     "fa": "پیراهن"
+     "fa": "پیراهن",
+     "pt": "camisa"
     },
     {
      "mot": "Student",
@@ -1054,7 +1103,8 @@ window.SCENE = {
      "en": "student",
      "tr": "üniversite öğrencisi",
      "uk": "студент",
-     "fa": "دانشجو"
+     "fa": "دانشجو",
+     "pt": "estudante (universitário)"
     }
    ],
    "sur": null,
@@ -1077,7 +1127,8 @@ window.SCENE = {
    "en": "man, husband",
    "tr": "adam / koca",
    "uk": "чоловік",
-   "fa": "مرد، شوهر"
+   "fa": "مرد، شوهر",
+   "pt": "homem / marido"
   },
   {
    "id": "studentin",
@@ -1097,7 +1148,8 @@ window.SCENE = {
      "en": "woman, wife",
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
-     "fa": "زن، همسر"
+     "fa": "زن، همسر",
+     "pt": "mulher / esposa"
     },
     {
      "mot": "Teilnehmerin",
@@ -1108,7 +1160,8 @@ window.SCENE = {
      "en": "participant (female)",
      "tr": "katılımcı (kadın)",
      "uk": "учасниця",
-     "fa": "شرکت‌کننده (زن)"
+     "fa": "شرکت‌کننده (زن)",
+     "pt": "participante (mulher)"
     },
     {
      "mot": "Pullover",
@@ -1119,7 +1172,8 @@ window.SCENE = {
      "en": "sweater",
      "tr": "kazak",
      "uk": "светр",
-     "fa": "پلیور"
+     "fa": "پلیور",
+     "pt": "suéter"
     }
    ],
    "sur": null,
@@ -1136,7 +1190,8 @@ window.SCENE = {
    "en": "student (female)",
    "tr": "kız öğrenci",
    "uk": "студентка",
-   "fa": "دانشجو (زن)"
+   "fa": "دانشجو (زن)",
+   "pt": "estudante (universitária)"
   },
   {
    "id": "frau",
@@ -1156,7 +1211,8 @@ window.SCENE = {
      "en": "participant (female)",
      "tr": "katılımcı (kadın)",
      "uk": "учасниця",
-     "fa": "شرکت‌کننده (زن)"
+     "fa": "شرکت‌کننده (زن)",
+     "pt": "participante (mulher)"
     },
     {
      "mot": "Brille",
@@ -1167,7 +1223,8 @@ window.SCENE = {
      "en": "glasses",
      "tr": "gözlük",
      "uk": "окуляри",
-     "fa": "عینک"
+     "fa": "عینک",
+     "pt": "óculos"
     },
     {
      "mot": "Kleid",
@@ -1178,7 +1235,8 @@ window.SCENE = {
      "en": "dress",
      "tr": "elbise",
      "uk": "сукня",
-     "fa": "پیراهن زنانه"
+     "fa": "پیراهن زنانه",
+     "pt": "vestido"
     },
     {
      "mot": "Studentin",
@@ -1189,7 +1247,8 @@ window.SCENE = {
      "en": "student (female)",
      "tr": "kız öğrenci",
      "uk": "студентка",
-     "fa": "دانشجو (زن)"
+     "fa": "دانشجو (زن)",
+     "pt": "estudante (universitária)"
     }
    ],
    "sur": null,
@@ -1206,7 +1265,8 @@ window.SCENE = {
    "en": "woman, wife",
    "tr": "kadın / eş",
    "uk": "жінка, дружина",
-   "fa": "زن، همسر"
+   "fa": "زن، همسر",
+   "pt": "mulher / esposa"
   },
   {
    "id": "brille-frau",
@@ -1231,7 +1291,8 @@ window.SCENE = {
    "en": "glasses",
    "tr": "gözlük",
    "uk": "окуляри",
-   "fa": "عینک"
+   "fa": "عینک",
+   "pt": "óculos"
   },
   {
    "id": "kleid",
@@ -1256,7 +1317,8 @@ window.SCENE = {
    "en": "dress",
    "tr": "elbise",
    "uk": "сукня",
-   "fa": "پیراهن زنانه"
+   "fa": "پیراهن زنانه",
+   "pt": "vestido"
   },
   {
    "id": "schuhe",
@@ -1281,7 +1343,8 @@ window.SCENE = {
    "en": "shoe",
    "tr": "ayakkabı",
    "uk": "черевик",
-   "fa": "کفش"
+   "fa": "کفش",
+   "pt": "sapato"
   },
   {
    "id": "laptop",
@@ -1306,7 +1369,8 @@ window.SCENE = {
    "en": "laptop",
    "tr": "dizüstü bilgisayar",
    "uk": "ноутбук",
-   "fa": "لپ‌تاپ"
+   "fa": "لپ‌تاپ",
+   "pt": "notebook"
   },
   {
    "id": "handy",
@@ -1331,7 +1395,8 @@ window.SCENE = {
    "en": "cell phone",
    "tr": "cep telefonu",
    "uk": "мобільник",
-   "fa": "تلفن همراه"
+   "fa": "تلفن همراه",
+   "pt": "celular"
   },
   {
    "id": "tasse",
@@ -1356,7 +1421,8 @@ window.SCENE = {
    "en": "cup",
    "tr": "fincan",
    "uk": "чашка",
-   "fa": "فنجان"
+   "fa": "فنجان",
+   "pt": "xícara"
   },
   {
    "id": "kabel",
@@ -1381,7 +1447,8 @@ window.SCENE = {
    "en": "cable",
    "tr": "kablo",
    "uk": "кабель",
-   "fa": "کابل"
+   "fa": "کابل",
+   "pt": "cabo"
   },
   {
    "id": "schreibtisch",
@@ -1406,7 +1473,8 @@ window.SCENE = {
    "en": "desk",
    "tr": "çalışma masası",
    "uk": "письмовий стіл",
-   "fa": "میز کار"
+   "fa": "میز کار",
+   "pt": "escrivaninha"
   },
   {
    "id": "wand",
@@ -1431,7 +1499,8 @@ window.SCENE = {
    "en": "wall",
    "tr": "duvar",
    "uk": "стіна",
-   "fa": "دیوار"
+   "fa": "دیوار",
+   "pt": "parede"
   }
  ],
  "grosPlans": [
@@ -2036,6 +2105,47 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى. ما زالت واقفة…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = هكذا يُقال؛ أنقله دون أن أضمنه."
+   }
+  },
+  "pt": {
+   "champs": {
+    "alt": "Uma aula de espanhol à noite em Berlim: o professor diante do quadro, Mark e Anna sentados lado a lado, mais três alunos.",
+    "consigne": "Toque num objeto ou numa pessoa. Toque no rosto do professor para ver de perto os óculos e a barba dele."
+   },
+   "couches": {
+    "A1": "Substantivos e artigos",
+    "A2": "Wo? — as preposições",
+    "B1": "stehen / stellen, liegen / legen",
+    "B2": "Relativas e passiva de estado",
+    "C1": "Hipóteses"
+   },
+   "questions": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → Dativ: der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> → Dativ: die Tafel → über <b>der</b> Tafel.",
+    "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> → Dativ: das Regal → auf <b>dem</b> Regal.",
+    "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> → Dativ: die Tür → an <b>der</b> Tür.",
+    "A2 | Der Lehrer steht vor der Tafel.": "<b>vor</b> = na frente de. Dativ: vor <b>der</b> Tafel.",
+    "A2 | Das Handy liegt neben dem Laptop.": "<b>neben</b> = ao lado de. der Laptop → neben <b>dem</b> Laptop.",
+    "A2 | Anna sitzt neben Mark.": "Com um nome próprio, sem artigo: neben Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "<b>zwischen</b> = entre, e os dois substantivos no Dativ: <b>der</b> Tür, <b>dem</b> Fenster.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "<b>stehen</b> = estar em pé, um estado (Wo?). <b>stellen</b> = pôr em pé, um movimento (Wohin?).",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Um movimento (Wohin?): <b>stellen</b> + Akkusativ — unter <b>den</b> Tisch.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "<b>liegen</b> = estar deitado (estado). <b>legen</b> = pôr deitado (movimento).",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Movimento: <b>legen</b> → gelegt, e o Akkusativ: auf <b>den</b> Schreibtisch.",
+    "B1 | Anna sitzt neben Mark.": "<b>sitzen</b> = estar sentado. <b>sich setzen</b> = sentar-se.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "<b>hängen</b> tem dois particípios: alguém <b>pendurou</b> → gehängt; ela <b>estava pendurada</b> → gehangen.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "<b>Wohin?</b> → Akkusativ: an <b>die</b> Tür. (Wo? → an der Tür.)",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "O estado: <b>hängen</b> + Dativ — an <b>der</b> Tür.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Sujeito da relativa, feminino → <b>die</b>.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Sujeito, masculino → <b>der</b>.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Posse, antecedente masculino → <b>dessen</b> (cujos óculos).",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Posse, antecedente feminino → <b>deren</b>.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Preposição + Dativ (Wo?), masculino → unter <b>dem</b>.",
+    "B2 | Die Tafel ist schon gewischt.": "Passiva de <b>estado</b>: sein + particípio. O resultado se vê — ele está limpo.",
+    "C1 | Mark und Anna müssen sich kennen.": "<b>müssen</b> + infinitivo = quase certo. Os dois sorriem, surpresos.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = uma possibilidade entre outras. Ela ainda está em pé…",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = provável, sem ter certeza.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = é o que dizem, eu repasso sem garantir."
    }
   }
  }

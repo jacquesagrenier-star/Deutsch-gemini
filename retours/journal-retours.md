@@ -8279,3 +8279,19 @@ portugais quand il aide : saber/conhecer pour wissen/kennen, « e sim » pour so
 champs pt), et trous_langue.py compte desormais le portugais -- meme niveau que le turc,
 l'ukrainien et le persan partout, sauf l'examen. Reste : examen, scenes, Prononciation,
 voix de la visite (payante, a demander).
+
+Suite (v769) : l'examen, les exercices d'articles et les scenes en portugais.
+- Examen (pruefung.json) : 720 champs, les quatre epreuves, REPONSES COMPRISES (l'ukrainien,
+  lui, voit encore les options en francais) ; LANGUES_PRUEFUNG + correctPt/optionsPt dans
+  Lesen et Hoeren. Les explications qui comparaient au francais reecrites contre le
+  portugais (« zur Schule » comme « a escola », les nombres entendus a l'envers).
+- Exercices d'articles codes en dur : 170 exercices (44 explications, 5 indices, 170
+  phrases), tous avec traduction, indice et explication portugais -- verifie en
+  executant le code.
+- Scenes : les 10 scenes (322 textes) dans traductions/<scene>.pt.json, la page des scenes
+  en portugais (30 textes d'interface), construire.py connait pt ; les fichiers de scene
+  ne different des precedents que par les cles pt (verifie, 20 fichiers, 0 autre ecart).
+- Tuile Prononciation : les 25 regles ecrites CONTRE le portugais bresilien (ch dur =
+  le « r » de « rato », j jamais le j portugais, pas de « tchi »/« dji », pas de « i » apres
+  une consonne finale) ; avant, un Bresilien la voyait en francais (repli de texteDeFiche).
+Reste : voix de la visite (payante, a demander). Aucun relecteur bresilien.

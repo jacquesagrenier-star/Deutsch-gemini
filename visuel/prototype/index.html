@@ -310,7 +310,7 @@ const LANGUE = (() => {
   if (!brut) return "fr";
   const l = brut.toLowerCase().split(/[-_]/)[0];
   if (l === "prs") return "fa";   // le dari s'ecrit comme le persan (app)
-  return ["fr", "en", "tr", "uk", "fa", "ar"].includes(l) ? l : "en";
+  return ["fr", "en", "tr", "uk", "fa", "ar", "pt"].includes(l) ? l : "en";
 })();
 /* Le sens d'ecriture et la langue du document, comme appliquerLangueDocument()
    dans l'app : lang decide des majuscules (le i turc), dir du sens. */
@@ -320,7 +320,7 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
    que l'app (REPLI_LANGUE) : l'arabe n'a pas encore de traductions de mots,
    il prend l'anglais. */
 const REPLI = {fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"], uk: ["uk", "en", "fr"],
-               fa: ["fa", "en", "fr"], ar: ["ar", "en", "fr"]}[LANGUE];
+               fa: ["fa", "en", "fr"], ar: ["ar", "en", "fr"], pt: ["pt", "en", "fr"]}[LANGUE];
 const sensDe = m => { for (const l of REPLI) if (m && m[l]) return m[l]; return ""; };
 /* Le contenu d'une vue dans la langue de l'usager : une fois par vue, avant
    que la page ne s'en serve. Les questions se reconnaissent a leur couche et
@@ -344,36 +344,36 @@ function traduireVue(s){
 }
 for (const v of Object.keys(window.SCENES)) traduireVue(window.SCENES[v]);
 const TEXTES = {
-  retour:      {fr: "‹ Retour", en: "‹ Back", tr: "‹ Geri", uk: "‹ Назад", fa: "‹ بازگشت", ar: "‹ رجوع"},
-  decouvrir:   {fr: "Découvrir", en: "Explore", tr: "Keşfet", uk: "Досліджувати", fa: "کاوش", ar: "استكشف"},
-  trouve:      {fr: "Trouve !", en: "Find it!", tr: "Bul!", uk: "Знайди!", fa: "پیدا کن!", ar: "ابحث!"},
-  consigne:    {fr: "Touche un objet ou une personne.", en: "Tap an object or a person.", tr: "Bir nesneye ya da bir kişiye dokun.", uk: "Торкнися предмета або людини.", fa: "روی یک شیء یا یک نفر بزن.", ar: "المس شيئًا أو شخصًا."},
-  touche:      {fr: "Touche :", en: "Tap:", tr: "Dokun:", uk: "Торкнися:", fa: "بزن:", ar: "المس:"},
-  sur:         {fr: "sur", en: "on", tr: "üzerinde:", uk: "на", fa: "روی", ar: "على"},
-  cestQui:     {fr: "Ça, c'est {a}. Cherche {b} sur {c}.", en: "That's {a}. Look for {b} on {c}.", tr: "Bu {a}. {b} kelimesini {c} üzerinde ara.", uk: "Це {a}. Шукай {b} на {c}.", fa: "این {a} است. {b} را روی {c} پیدا کن.", ar: "هذا {a}. ابحث عن {b} على {c}."},
-  autres:      {fr: "Il y en a d'autres dans la scène.", en: "There are others in the scene.", tr: "Sahnede başkaları da var.", uk: "У сцені є й інші.", fa: "در صحنه موارد دیگری هم هست.", ar: "يوجد غيرها في المشهد."},
-  cetait:      {fr: "c'était", en: "it was", tr: "doğrusu buydu:", uk: "це було", fa: "این بود:", ar: "كانت"},
-  ici:         {fr: "ici", en: "here", tr: "burada", uk: "тут", fa: "اینجا", ar: "هنا"},
-  unDeCes:     {fr: "à l'un de ces endroits", en: "in one of these places", tr: "bu yerlerden birinde", uk: "в одному з цих місць", fa: "در یکی از این جاها", ar: "في أحد هذه الأماكن"},
-  avaisTouche: {fr: "Tu avais touché :", en: "You tapped:", tr: "Dokunduğun:", uk: "Ти торкнувся:", fa: "تو این را زدی:", ar: "لقد لمست:"},
-  surScore:    {fr: "{b} sur {f}", en: "{b} out of {f}", tr: "{f} sorudan {b}", uk: "{b} з {f}", fa: "{b} از {f}", ar: "{b} من {f}"},
-  sansFaute:   {fr: "sans faute, bravo !", en: "no mistakes, well done!", tr: "hatasız, bravo!", uk: "без помилок, браво!", fa: "بدون اشتباه، آفرین!", ar: "بلا أخطاء، أحسنت!"},
-  bienJoue:    {fr: "bien joué.", en: "well played.", tr: "iyi iş.", uk: "добре.", fa: "خوب بود.", ar: "أحسنت."},
-  caViendra:   {fr: "ça viendra : on retient aussi en se trompant.", en: "it will come: we also learn from mistakes.", tr: "olacak: hata yaparak da öğreniriz.", uk: "усе прийде: ми вчимося й на помилках.", fa: "کم‌کم یاد می‌گیری: از اشتباه هم یاد می‌گیریم.", ar: "سيأتي ذلك: نتعلم من أخطائنا أيضًا."},
-  pasGrave:    {fr: "pas grave, on retient aussi en se trompant.", en: "no problem, we also learn from mistakes.", tr: "sorun değil, hata yaparak da öğreniriz.", uk: "нічого страшного, ми вчимося й на помилках.", fa: "اشکالی ندارد، از اشتباه هم یاد می‌گیریم.", ar: "لا بأس، نتعلم من أخطائنا أيضًا."},
-  sceneFinie:  {fr: "Scène terminée", en: "Scene finished", tr: "Sahne bitti", uk: "Сцену завершено", fa: "صحنه تمام شد", ar: "انتهى المشهد"},
-  termine:     {fr: "terminé", en: "finished", tr: "bitti", uk: "завершено", fa: "تمام شد", ar: "انتهى"},
-  versCartes:  {fr: "Continuer avec mes cartes →", en: "Continue with my cards →", tr: "Kartlarımla devam et →", uk: "Продовжити з картками →", fa: "ادامه با کارت‌هایم ←", ar: "تابع مع بطاقاتي ←"},
-  encore:      {fr: "Encore une fois", en: "Once more", tr: "Bir kez daha", uk: "Ще раз", fa: "یک بار دیگر", ar: "مرة أخرى"},
-  revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد"},
-  retourAria:  {fr: "Retour au choix de la séance", en: "Back to the session choice", tr: "Çalışma seçimine dön", uk: "Повернутися до вибору сеансу", fa: "بازگشت به انتخاب جلسه", ar: "العودة إلى اختيار الجلسة"},
-  niveau:      {fr: "Niveau", en: "Level", tr: "Seviye", uk: "Рівень", fa: "سطح", ar: "المستوى"},
-  grosPlan:    {fr: "Gros plan", en: "Close-up", tr: "Yakın plan", uk: "Крупний план", fa: "نمای نزدیک", ar: "لقطة مقرّبة"},
-  scene:       {fr: "Scène", en: "Scene", tr: "Sahne", uk: "Сцена", fa: "صحنه", ar: "مشهد"},
-  nomsArticles:{fr: "Noms et articles", en: "Nouns and articles", tr: "İsimler ve artikeller", uk: "Іменники й артиклі", fa: "اسم‌ها و حرف‌های تعریف", ar: "الأسماء وأدوات التعريف"},
-  pluriel:     {fr: "pl.", en: "pl.", tr: "çoğ.", uk: "мн.", fa: "جمع:", ar: "الجمع:"},
-  piedZones:   {fr: "Montrer les zones à toucher (contrôle)", en: "Show the tap zones (check)", tr: "Dokunma alanlarını göster (kontrol)", uk: "Показати зони дотику (перевірка)", fa: "نشان دادن ناحیه‌های لمسی (بررسی)", ar: "إظهار مناطق اللمس (للتحقق)"},
-  piedTexte:   {fr: "Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.", en: "Prototype — nothing is saved. Generated image (fal), browser voice.", tr: "Prototip — hiçbir şey kaydedilmez. Üretilmiş görsel (fal), tarayıcı sesi.", uk: "Прототип — нічого не зберігається. Згенероване зображення (fal), голос браузера.", fa: "نمونهٔ آزمایشی — چیزی ذخیره نمی‌شود. تصویر ساخته‌شده (fal)، صدای مرورگر.", ar: "نموذج تجريبي — لا يُحفظ شيء. صورة مولَّدة (fal)، صوت المتصفح."}
+  retour:      {fr: "‹ Retour", en: "‹ Back", tr: "‹ Geri", uk: "‹ Назад", fa: "‹ بازگشت", ar: "‹ رجوع", pt: "‹ Voltar"},
+  decouvrir:   {fr: "Découvrir", en: "Explore", tr: "Keşfet", uk: "Досліджувати", fa: "کاوش", ar: "استكشف", pt: "Explorar"},
+  trouve:      {fr: "Trouve !", en: "Find it!", tr: "Bul!", uk: "Знайди!", fa: "پیدا کن!", ar: "ابحث!", pt: "Encontre!"},
+  consigne:    {fr: "Touche un objet ou une personne.", en: "Tap an object or a person.", tr: "Bir nesneye ya da bir kişiye dokun.", uk: "Торкнися предмета або людини.", fa: "روی یک شیء یا یک نفر بزن.", ar: "المس شيئًا أو شخصًا.", pt: "Toque num objeto ou numa pessoa."},
+  touche:      {fr: "Touche :", en: "Tap:", tr: "Dokun:", uk: "Торкнися:", fa: "بزن:", ar: "المس:", pt: "Toque:"},
+  sur:         {fr: "sur", en: "on", tr: "üzerinde:", uk: "на", fa: "روی", ar: "على", pt: "em"},
+  cestQui:     {fr: "Ça, c'est {a}. Cherche {b} sur {c}.", en: "That's {a}. Look for {b} on {c}.", tr: "Bu {a}. {b} kelimesini {c} üzerinde ara.", uk: "Це {a}. Шукай {b} на {c}.", fa: "این {a} است. {b} را روی {c} پیدا کن.", ar: "هذا {a}. ابحث عن {b} على {c}.", pt: "Isso é {a}. Procure {b} em {c}."},
+  autres:      {fr: "Il y en a d'autres dans la scène.", en: "There are others in the scene.", tr: "Sahnede başkaları da var.", uk: "У сцені є й інші.", fa: "در صحنه موارد دیگری هم هست.", ar: "يوجد غيرها في المشهد.", pt: "Há outros na cena."},
+  cetait:      {fr: "c'était", en: "it was", tr: "doğrusu buydu:", uk: "це було", fa: "این بود:", ar: "كانت", pt: "era"},
+  ici:         {fr: "ici", en: "here", tr: "burada", uk: "тут", fa: "اینجا", ar: "هنا", pt: "aqui"},
+  unDeCes:     {fr: "à l'un de ces endroits", en: "in one of these places", tr: "bu yerlerden birinde", uk: "в одному з цих місць", fa: "در یکی از این جاها", ar: "في أحد هذه الأماكن", pt: "num destes lugares"},
+  avaisTouche: {fr: "Tu avais touché :", en: "You tapped:", tr: "Dokunduğun:", uk: "Ти торкнувся:", fa: "تو این را زدی:", ar: "لقد لمست:", pt: "Você tocou:"},
+  surScore:    {fr: "{b} sur {f}", en: "{b} out of {f}", tr: "{f} sorudan {b}", uk: "{b} з {f}", fa: "{b} از {f}", ar: "{b} من {f}", pt: "{b} de {f}"},
+  sansFaute:   {fr: "sans faute, bravo !", en: "no mistakes, well done!", tr: "hatasız, bravo!", uk: "без помилок, браво!", fa: "بدون اشتباه، آفرین!", ar: "بلا أخطاء، أحسنت!", pt: "sem erros, parabéns!"},
+  bienJoue:    {fr: "bien joué.", en: "well played.", tr: "iyi iş.", uk: "добре.", fa: "خوب بود.", ar: "أحسنت.", pt: "muito bem."},
+  caViendra:   {fr: "ça viendra : on retient aussi en se trompant.", en: "it will come: we also learn from mistakes.", tr: "olacak: hata yaparak da öğreniriz.", uk: "усе прийде: ми вчимося й на помилках.", fa: "کم‌کم یاد می‌گیری: از اشتباه هم یاد می‌گیریم.", ar: "سيأتي ذلك: نتعلم من أخطائنا أيضًا.", pt: "vai chegar lá: também se aprende errando."},
+  pasGrave:    {fr: "pas grave, on retient aussi en se trompant.", en: "no problem, we also learn from mistakes.", tr: "sorun değil, hata yaparak da öğreniriz.", uk: "нічого страшного, ми вчимося й на помилках.", fa: "اشکالی ندارد، از اشتباه هم یاد می‌گیریم.", ar: "لا بأس، نتعلم من أخطائنا أيضًا.", pt: "tudo bem, também se aprende errando."},
+  sceneFinie:  {fr: "Scène terminée", en: "Scene finished", tr: "Sahne bitti", uk: "Сцену завершено", fa: "صحنه تمام شد", ar: "انتهى المشهد", pt: "Cena concluída"},
+  termine:     {fr: "terminé", en: "finished", tr: "bitti", uk: "завершено", fa: "تمام شد", ar: "انتهى", pt: "concluído"},
+  versCartes:  {fr: "Continuer avec mes cartes →", en: "Continue with my cards →", tr: "Kartlarımla devam et →", uk: "Продовжити з картками →", fa: "ادامه با کارت‌هایم ←", ar: "تابع مع بطاقاتي ←", pt: "Continuar com os meus cartões →"},
+  encore:      {fr: "Encore une fois", en: "Once more", tr: "Bir kez daha", uk: "Ще раз", fa: "یک بار دیگر", ar: "مرة أخرى", pt: "Mais uma vez"},
+  revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد", pt: "✕ Voltar à cena"},
+  retourAria:  {fr: "Retour au choix de la séance", en: "Back to the session choice", tr: "Çalışma seçimine dön", uk: "Повернутися до вибору сеансу", fa: "بازگشت به انتخاب جلسه", ar: "العودة إلى اختيار الجلسة", pt: "Voltar à escolha da sessão"},
+  niveau:      {fr: "Niveau", en: "Level", tr: "Seviye", uk: "Рівень", fa: "سطح", ar: "المستوى", pt: "Nível"},
+  grosPlan:    {fr: "Gros plan", en: "Close-up", tr: "Yakın plan", uk: "Крупний план", fa: "نمای نزدیک", ar: "لقطة مقرّبة", pt: "Close"},
+  scene:       {fr: "Scène", en: "Scene", tr: "Sahne", uk: "Сцена", fa: "صحنه", ar: "مشهد", pt: "Cena"},
+  nomsArticles:{fr: "Noms et articles", en: "Nouns and articles", tr: "İsimler ve artikeller", uk: "Іменники й артиклі", fa: "اسم‌ها و حرف‌های تعریف", ar: "الأسماء وأدوات التعريف", pt: "Substantivos e artigos"},
+  pluriel:     {fr: "pl.", en: "pl.", tr: "çoğ.", uk: "мн.", fa: "جمع:", ar: "الجمع:", pt: "pl."},
+  piedZones:   {fr: "Montrer les zones à toucher (contrôle)", en: "Show the tap zones (check)", tr: "Dokunma alanlarını göster (kontrol)", uk: "Показати зони дотику (перевірка)", fa: "نشان دادن ناحیه‌های لمسی (بررسی)", ar: "إظهار مناطق اللمس (للتحقق)", pt: "Mostrar as áreas de toque (verificação)"},
+  piedTexte:   {fr: "Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.", en: "Prototype — nothing is saved. Generated image (fal), browser voice.", tr: "Prototip — hiçbir şey kaydedilmez. Üretilmiş görsel (fal), tarayıcı sesi.", uk: "Прототип — нічого не зберігається. Згенероване зображення (fal), голос браузера.", fa: "نمونهٔ آزمایشی — چیزی ذخیره نمی‌شود. تصویر ساخته‌شده (fal)، صدای مرورگر.", ar: "نموذج تجريبي — لا يُحفظ شيء. صورة مولَّدة (fal)، صوت المتصفح.", pt: "Protótipo — nada é salvo. Imagem gerada (fal), voz do navegador."}
 };
 function T(cle, v){
   const e = TEXTES[cle] || {};

@@ -1877,6 +1877,16 @@ window.SCENE = {
     "A1": "الأسماء وأدوات التعريف"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Uma aula de espanhol à noite em Berlim: o professor diante do quadro, Mark e Anna sentados lado a lado, mais três alunos.",
+    "consigne": "Toque num objeto ou numa pessoa. Toque no rosto do professor para ver de perto os óculos e a barba dele."
+   },
+   "couches": {
+    "A1": "Substantivos e artigos"
+   },
+   "questions": {}
   }
  }
 };

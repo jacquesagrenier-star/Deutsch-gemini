@@ -1055,6 +1055,18 @@ window.SCENE = {
     "A1": "في السوق"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Anna pega bananas na banca de frutas tropicais: melancias, abacaxis, cocos, melões, laranjas, abacates, mamões, limões-sicilianos, kiwis, tangerinas, figos, limões, toranjas, mangas, bananas e romãs.",
+    "consigne": "Toque numa fruta, num legume ou num caixote.",
+    "nom_vue": "As frutas tropicais",
+    "autre_vue": "→ Legumes"
+   },
+   "couches": {
+    "A1": "Na feira"
+   },
+   "questions": {}
   }
  }
 };

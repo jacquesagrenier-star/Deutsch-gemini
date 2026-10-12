@@ -1661,6 +1661,16 @@ window.SCENE = {
     "A1": "الأسماء وأدوات التعريف"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Um cruzamento de Berlim visto de um primeiro andar: padaria, farmácia, correio e café, um ponto de ônibus, um bonde, um táxi, pedestres na faixa, um ciclista na ciclovia vermelha; em primeiro plano, Anna procura o caminho no celular, entre a banca, a caixa de correio e as bicicletas.",
+    "consigne": "Anna procura o caminho em Berlim. Toque num prédio, num veículo ou numa pessoa."
+   },
+   "couches": {
+    "A1": "Substantivos e artigos"
+   },
+   "questions": {}
   }
  }
 };

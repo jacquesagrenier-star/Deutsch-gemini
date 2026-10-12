@@ -25,7 +25,8 @@ window.SCENE = {
    "en": "clock",
    "tr": "saat",
    "uk": "годинник",
-   "fa": "ساعت"
+   "fa": "ساعت",
+   "pt": "relógio"
   },
   {
    "id": "poster",
@@ -45,7 +46,8 @@ window.SCENE = {
      "en": "poster",
      "tr": "afiş",
      "uk": "афіша, плакат",
-     "fa": "پوستر تبلیغاتی"
+     "fa": "پوستر تبلیغاتی",
+     "pt": "cartaz"
     }
    ],
    "sur": "wand",
@@ -62,7 +64,8 @@ window.SCENE = {
    "en": "poster",
    "tr": "poster",
    "uk": "плакат",
-   "fa": "پوستر"
+   "fa": "پوستر",
+   "pt": "pôster"
   },
   {
    "id": "fenster",
@@ -87,7 +90,8 @@ window.SCENE = {
    "en": "window",
    "tr": "pencere",
    "uk": "вікно",
-   "fa": "پنجره"
+   "fa": "پنجره",
+   "pt": "janela"
   },
   {
    "id": "pflanze",
@@ -112,7 +116,8 @@ window.SCENE = {
    "en": "plant",
    "tr": "bitki",
    "uk": "рослина",
-   "fa": "گیاه"
+   "fa": "گیاه",
+   "pt": "planta"
   },
   {
    "id": "tuer",
@@ -137,7 +142,8 @@ window.SCENE = {
    "en": "door",
    "tr": "kapı",
    "uk": "двері",
-   "fa": "در"
+   "fa": "در",
+   "pt": "porta"
   },
   {
    "id": "jacke",
@@ -162,7 +168,8 @@ window.SCENE = {
    "en": "jacket",
    "tr": "ceket",
    "uk": "куртка",
-   "fa": "کاپشن"
+   "fa": "کاپشن",
+   "pt": "jaqueta"
   },
   {
    "id": "mark",
@@ -182,7 +189,8 @@ window.SCENE = {
      "en": "man, husband",
      "tr": "adam / koca",
      "uk": "чоловік",
-     "fa": "مرد، شوهر"
+     "fa": "مرد، شوهر",
+     "pt": "homem / marido"
     }
    ],
    "sur": null,
@@ -211,7 +219,8 @@ window.SCENE = {
    "en": "patient",
    "tr": "hasta",
    "uk": "пацієнт",
-   "fa": "بیمار (مرد)"
+   "fa": "بیمار (مرد)",
+   "pt": "paciente"
   },
   {
    "id": "tshirt",
@@ -236,7 +245,8 @@ window.SCENE = {
    "en": "t-shirt",
    "tr": "tişört",
    "uk": "футболка",
-   "fa": "تی‌شرت"
+   "fa": "تی‌شرت",
+   "pt": "camiseta"
   },
   {
    "id": "hose",
@@ -261,7 +271,8 @@ window.SCENE = {
    "en": "pants",
    "tr": "pantolon",
    "uk": "штани",
-   "fa": "شلوار"
+   "fa": "شلوار",
+   "pt": "calça"
   },
   {
    "id": "pflaster",
@@ -286,7 +297,8 @@ window.SCENE = {
    "en": "band-aid",
    "tr": "yara bandı",
    "uk": "пластир",
-   "fa": "چسب زخم"
+   "fa": "چسب زخم",
+   "pt": "curativo (band-aid)"
   },
   {
    "id": "knie",
@@ -317,7 +329,8 @@ window.SCENE = {
    "en": "knee",
    "tr": "diz",
    "uk": "коліно",
-   "fa": "زانو"
+   "fa": "زانو",
+   "pt": "joelho"
   },
   {
    "id": "schulter",
@@ -348,7 +361,8 @@ window.SCENE = {
    "en": "shoulder",
    "tr": "omuz",
    "uk": "плече",
-   "fa": "شانه"
+   "fa": "شانه",
+   "pt": "ombro"
   },
   {
    "id": "ellbogen",
@@ -379,7 +393,8 @@ window.SCENE = {
    "en": "elbow",
    "tr": "dirsek",
    "uk": "лікоть",
-   "fa": "آرنج"
+   "fa": "آرنج",
+   "pt": "cotovelo"
   },
   {
    "id": "brust",
@@ -404,7 +419,8 @@ window.SCENE = {
    "en": "chest, breast",
    "tr": "göğüs",
    "uk": "груди",
-   "fa": "سینه"
+   "fa": "سینه",
+   "pt": "peito"
   },
   {
    "id": "bauch",
@@ -429,7 +445,8 @@ window.SCENE = {
    "en": "belly",
    "tr": "karın",
    "uk": "живіт",
-   "fa": "شکم"
+   "fa": "شکم",
+   "pt": "barriga"
   },
   {
    "id": "arm-l",
@@ -460,7 +477,8 @@ window.SCENE = {
    "en": "arm",
    "tr": "kol",
    "uk": "рука (від плеча)",
-   "fa": "بازو"
+   "fa": "بازو",
+   "pt": "braço"
   },
   {
    "id": "arm-r",
@@ -491,7 +509,8 @@ window.SCENE = {
    "en": "arm",
    "tr": "kol",
    "uk": "рука (від плеча)",
-   "fa": "بازو"
+   "fa": "بازو",
+   "pt": "braço"
   },
   {
    "id": "hand-l",
@@ -516,7 +535,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "hand-r",
@@ -541,7 +561,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "bein-l",
@@ -566,7 +587,8 @@ window.SCENE = {
    "en": "leg",
    "tr": "bacak",
    "uk": "нога",
-   "fa": "ساق پا"
+   "fa": "ساق پا",
+   "pt": "perna"
   },
   {
    "id": "bein-r",
@@ -591,7 +613,8 @@ window.SCENE = {
    "en": "leg",
    "tr": "bacak",
    "uk": "нога",
-   "fa": "ساق پا"
+   "fa": "ساق پا",
+   "pt": "perna"
   },
   {
    "id": "fuss-l",
@@ -616,7 +639,8 @@ window.SCENE = {
    "en": "foot",
    "tr": "ayak",
    "uk": "ступня",
-   "fa": "پا"
+   "fa": "پا",
+   "pt": "pé"
   },
   {
    "id": "fuss-r",
@@ -641,7 +665,8 @@ window.SCENE = {
    "en": "foot",
    "tr": "ayak",
    "uk": "ступня",
-   "fa": "پا"
+   "fa": "پا",
+   "pt": "pé"
   },
   {
    "id": "aerztin",
@@ -661,7 +686,8 @@ window.SCENE = {
      "en": "woman, wife",
      "tr": "kadın / eş",
      "uk": "жінка, дружина",
-     "fa": "زن، همسر"
+     "fa": "زن، همسر",
+     "pt": "mulher / esposa"
     }
    ],
    "sur": null,
@@ -696,7 +722,8 @@ window.SCENE = {
    "en": "doctor (female)",
    "tr": "doktor (kadın)",
    "uk": "лікарка",
-   "fa": "پزشک (زن)"
+   "fa": "پزشک (زن)",
+   "pt": "médica"
   },
   {
    "id": "hose-aerztin",
@@ -721,7 +748,8 @@ window.SCENE = {
    "en": "pants",
    "tr": "pantolon",
    "uk": "штани",
-   "fa": "شلوار"
+   "fa": "شلوار",
+   "pt": "calça"
   },
   {
    "id": "schuh-aerztin",
@@ -746,7 +774,8 @@ window.SCENE = {
    "en": "shoe",
    "tr": "ayakkabı",
    "uk": "черевик",
-   "fa": "کفش"
+   "fa": "کفش",
+   "pt": "sapato"
   },
   {
    "id": "verband",
@@ -771,7 +800,8 @@ window.SCENE = {
    "en": "bandage; association",
    "tr": "sargı",
    "uk": "пов'язка; спілка",
-   "fa": "باند زخم؛ اتحادیه"
+   "fa": "باند زخم؛ اتحادیه",
+   "pt": "curativo, atadura; associação"
   },
   {
    "id": "stethoskop",
@@ -808,7 +838,8 @@ window.SCENE = {
    "en": "stethoscope",
    "tr": "steteskop",
    "uk": "стетоскоп",
-   "fa": "گوشی پزشکی"
+   "fa": "گوشی پزشکی",
+   "pt": "estetoscópio"
   },
   {
    "id": "hand-aerztin-haut",
@@ -833,7 +864,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "hand-aerztin-bas",
@@ -858,7 +890,8 @@ window.SCENE = {
    "en": "hand",
    "tr": "el",
    "uk": "рука",
-   "fa": "دست"
+   "fa": "دست",
+   "pt": "mão"
   },
   {
    "id": "hocker",
@@ -883,7 +916,8 @@ window.SCENE = {
    "en": "stool",
    "tr": "tabure",
    "uk": "табурет",
-   "fa": "چهارپایه"
+   "fa": "چهارپایه",
+   "pt": "banquinho"
   },
   {
    "id": "spritze",
@@ -908,7 +942,8 @@ window.SCENE = {
    "en": "injection, syringe",
    "tr": "iğne, şırınga",
    "uk": "укол, шприц",
-   "fa": "آمپول، سرنگ"
+   "fa": "آمپول، سرنگ",
+   "pt": "injeção; seringa"
   },
   {
    "id": "medikament-wagen",
@@ -933,7 +968,8 @@ window.SCENE = {
    "en": "medication",
    "tr": "ilaç",
    "uk": "ліки",
-   "fa": "دارو"
+   "fa": "دارو",
+   "pt": "remédio"
   },
   {
    "id": "schachtel",
@@ -958,7 +994,8 @@ window.SCENE = {
    "en": "box",
    "tr": "kutu",
    "uk": "коробка",
-   "fa": "جعبه"
+   "fa": "جعبه",
+   "pt": "caixinha"
   },
   {
    "id": "handschuh",
@@ -983,7 +1020,8 @@ window.SCENE = {
    "en": "glove",
    "tr": "eldiven",
    "uk": "рукавичка",
-   "fa": "دستکش"
+   "fa": "دستکش",
+   "pt": "luva"
   },
   {
    "id": "schreibtisch",
@@ -1008,7 +1046,8 @@ window.SCENE = {
    "en": "desk",
    "tr": "çalışma masası",
    "uk": "письмовий стіл",
-   "fa": "میز کار"
+   "fa": "میز کار",
+   "pt": "escrivaninha"
   },
   {
    "id": "bildschirm",
@@ -1028,7 +1067,8 @@ window.SCENE = {
      "en": "computer",
      "tr": "bilgisayar",
      "uk": "комп'ютер",
-     "fa": "رایانه"
+     "fa": "رایانه",
+     "pt": "computador"
     }
    ],
    "sur": "schreibtisch",
@@ -1045,7 +1085,8 @@ window.SCENE = {
    "en": "screen",
    "tr": "ekran",
    "uk": "екран",
-   "fa": "صفحه‌نمایش"
+   "fa": "صفحه‌نمایش",
+   "pt": "tela"
   },
   {
    "id": "taschentuch",
@@ -1070,7 +1111,8 @@ window.SCENE = {
    "en": "handkerchief, tissue",
    "tr": "mendil",
    "uk": "носовичок, серветка",
-   "fa": "دستمال کاغذی"
+   "fa": "دستمال کاغذی",
+   "pt": "lenço"
   },
   {
    "id": "glas",
@@ -1090,7 +1132,8 @@ window.SCENE = {
      "en": "water",
      "tr": "su",
      "uk": "вода",
-     "fa": "آب"
+     "fa": "آب",
+     "pt": "água"
     }
    ],
    "sur": "schreibtisch",
@@ -1107,7 +1150,8 @@ window.SCENE = {
    "en": "glass",
    "tr": "bardak",
    "uk": "склянка",
-   "fa": "لیوان، شیشه"
+   "fa": "لیوان، شیشه",
+   "pt": "copo"
   },
   {
    "id": "tastatur",
@@ -1132,7 +1176,8 @@ window.SCENE = {
    "en": "keyboard",
    "tr": "klavye",
    "uk": "клавіатура",
-   "fa": "صفحه‌کلید"
+   "fa": "صفحه‌کلید",
+   "pt": "teclado"
   },
   {
    "id": "maus",
@@ -1157,7 +1202,8 @@ window.SCENE = {
    "en": "mouse",
    "tr": "fare",
    "uk": "миша",
-   "fa": "موش"
+   "fa": "موش",
+   "pt": "rato"
   },
   {
    "id": "medikament",
@@ -1182,7 +1228,8 @@ window.SCENE = {
    "en": "medication",
    "tr": "ilaç",
    "uk": "ліки",
-   "fa": "دارو"
+   "fa": "دارو",
+   "pt": "remédio"
   },
   {
    "id": "tablette",
@@ -1207,7 +1254,8 @@ window.SCENE = {
    "en": "pill, tablet",
    "tr": "tablet (ilaç)",
    "uk": "таблетка",
-   "fa": "قرص"
+   "fa": "قرص",
+   "pt": "comprimido"
   },
   {
    "id": "stift",
@@ -1232,7 +1280,8 @@ window.SCENE = {
    "en": "pen",
    "tr": "kalem",
    "uk": "ручка",
-   "fa": "خودکار"
+   "fa": "خودکار",
+   "pt": "caneta"
   },
   {
    "id": "karte",
@@ -1252,7 +1301,8 @@ window.SCENE = {
      "en": "card, ticket",
      "tr": "kart, bilet",
      "uk": "картка; квиток",
-     "fa": "کارت، بلیت"
+     "fa": "کارت، بلیت",
+     "pt": "ingresso, cartão"
     }
    ],
    "sur": "schreibtisch",
@@ -1269,7 +1319,8 @@ window.SCENE = {
    "en": "health insurance card",
    "tr": "sağlık sigorta kartı",
    "uk": "картка медичного страхування",
-   "fa": "کارت بیمه"
+   "fa": "کارت بیمه",
+   "pt": "cartão do seguro-saúde"
   },
   {
    "id": "muelleimer",
@@ -1294,7 +1345,8 @@ window.SCENE = {
    "en": "trash can",
    "tr": "çöp kovası",
    "uk": "відро для сміття",
-   "fa": "سطل زباله"
+   "fa": "سطل زباله",
+   "pt": "lixeira"
   },
   {
    "id": "tasche",
@@ -1314,7 +1366,8 @@ window.SCENE = {
      "en": "sports bag",
      "tr": "spor çantası",
      "uk": "спортивна сумка",
-     "fa": "ساک ورزشی"
+     "fa": "ساک ورزشی",
+     "pt": "bolsa de academia"
     }
    ],
    "sur": null,
@@ -1331,7 +1384,8 @@ window.SCENE = {
    "en": "bag",
    "tr": "çanta",
    "uk": "сумка",
-   "fa": "کیف"
+   "fa": "کیف",
+   "pt": "bolsa"
   },
   {
    "id": "ball",
@@ -1351,7 +1405,8 @@ window.SCENE = {
      "en": "soccer",
      "tr": "futbol",
      "uk": "футбол",
-     "fa": "فوتبال"
+     "fa": "فوتبال",
+     "pt": "futebol"
     }
    ],
    "sur": "tasche",
@@ -1368,7 +1423,8 @@ window.SCENE = {
    "en": "ball",
    "tr": "top",
    "uk": "м'яч",
-   "fa": "توپ"
+   "fa": "توپ",
+   "pt": "bola"
   },
   {
    "id": "schuh",
@@ -1393,7 +1449,8 @@ window.SCENE = {
    "en": "shoe",
    "tr": "ayakkabı",
    "uk": "черевик",
-   "fa": "کفش"
+   "fa": "کفش",
+   "pt": "sapato"
   },
   {
    "id": "socke",
@@ -1418,7 +1475,8 @@ window.SCENE = {
    "en": "sock",
    "tr": "çorap",
    "uk": "шкарпетка",
-   "fa": "جوراب"
+   "fa": "جوراب",
+   "pt": "meia"
   },
   {
    "id": "wand",
@@ -1443,7 +1501,8 @@ window.SCENE = {
    "en": "wall",
    "tr": "duvar",
    "uk": "стіна",
-   "fa": "دیوار"
+   "fa": "دیوار",
+   "pt": "parede"
   },
   {
    "id": "boden",
@@ -1468,7 +1527,8 @@ window.SCENE = {
    "en": "ground, floor",
    "tr": "zemin / toprak",
    "uk": "земля, підлога",
-   "fa": "زمین، کف"
+   "fa": "زمین، کف",
+   "pt": "chão, solo"
   },
   {
    "id": "rippe",
@@ -1494,7 +1554,8 @@ window.SCENE = {
    "en": "rib",
    "tr": "kaburga",
    "uk": "ребро",
-   "fa": "دنده (استخوان)"
+   "fa": "دنده (استخوان)",
+   "pt": "costela"
   },
   {
    "id": "rippe-dos",
@@ -1520,7 +1581,8 @@ window.SCENE = {
    "en": "rib",
    "tr": "kaburga",
    "uk": "ребро",
-   "fa": "دنده (استخوان)"
+   "fa": "دنده (استخوان)",
+   "pt": "costela"
   },
   {
    "id": "wirbelsaeule",
@@ -1546,7 +1608,8 @@ window.SCENE = {
    "en": "spine",
    "tr": "omurga",
    "uk": "хребет",
-   "fa": "ستون فقرات"
+   "fa": "ستون فقرات",
+   "pt": "coluna vertebral"
   },
   {
    "id": "lunge",
@@ -1572,7 +1635,8 @@ window.SCENE = {
    "en": "lung",
    "tr": "akciğer",
    "uk": "легені",
-   "fa": "شش"
+   "fa": "شش",
+   "pt": "pulmão"
   },
   {
    "id": "knochen",
@@ -1598,7 +1662,8 @@ window.SCENE = {
    "en": "bone",
    "tr": "kemik",
    "uk": "кістка",
-   "fa": "استخوان"
+   "fa": "استخوان",
+   "pt": "osso"
   }
  ],
  "grosPlans": [
@@ -2243,6 +2308,47 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = هكذا يُقال؛ أنقله دون أن أضمنه."
+   }
+  },
+  "pt": {
+   "champs": {
+    "alt": "Mark no médico, sentado descalço na maca de exame, com um curativo no joelho; a médica, sentada ao lado dele, segura uma atadura.",
+    "consigne": "Toque num objeto, no Mark ou na médica. Toque no cartaz para vê-lo de perto."
+   },
+   "couches": {
+    "A1": "O corpo e os objetos",
+    "A2": "Wo? — as preposições",
+    "B1": "stehen / stellen, liegen / legen",
+    "B2": "Relativas e passiva de estado",
+    "C1": "Hipóteses"
+   },
+   "questions": {
+    "A2 | Der Ball liegt auf der Tasche.": "<b>Wo?</b> → Dativ: die Tasche → auf <b>der</b> Tasche.",
+    "A2 | Die Uhr hängt über dem Poster.": "<b>über</b> = em cima de, acima de. das Poster → über <b>dem</b> Poster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "<b>neben</b> + Dativ. E der Patient recebe um <b>-en</b>: dem Patient<b>en</b>.",
+    "A2 | Die Jacke hängt neben der Tür.": "Ela está na parede, ao lado da porta: <b>neben der</b> Tür (Dativ).",
+    "A2 | Die Socken liegen auf den Schuhen.": "Dativ plural: <b>den</b> Schuhe<b>n</b> — o substantivo recebe um -n.",
+    "A2 | Das Pflaster ist auf dem Knie.": "das Knie → auf <b>dem</b> Knie.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "<b>hinter</b> = atrás de. hinter <b>dem</b> Patient<b>en</b>.",
+    "B1 | Der Ball liegt auf der Tasche.": "<b>liegen</b> = estar deitado (estado, Wo?). <b>legen</b> = deitar, pôr (movimento, Wohin?).",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Movimento: <b>legen</b> → gelegt, e o Akkusativ: auf <b>die</b> Tasche.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "<b>sitzen</b> = estar sentado. <b>sich setzen</b> = sentar-se.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Sapatos se põem em pé: <b>stellen</b> → gestellt, + Akkusativ: neben <b>die</b> Tasche.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "O estado: <b>stehen</b> + Dativ — neben <b>der</b> Tasche.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "<b>hängen</b> tem dois particípios: alguém <b>pendurou</b> → gehängt; ela <b>estava pendurada</b> → gehangen.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "Um copo fica em pé: <b>stehen</b> (estado) + Dativ.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "Um cartão se põe deitado: <b>legen</b> → gelegt, + Akkusativ: auf <b>den</b> Schreibtisch.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "Posse, antecedente masculino → <b>dessen</b> (cujo joelho).",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "Sujeito da relativa, feminino → <b>die</b>.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "<b>zulächeln</b> + Dativ: jemandem zulächeln → <b>dem</b>.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "Preposição + Dativ (Wo?), feminino → auf <b>der</b>.",
+    "B2 | Das Fenster ist geschlossen.": "Passiva de <b>estado</b>: sein + particípio. Vê-se o resultado: ela está fechada.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "Passiva de estado: o curativo <b>está</b> colado — já foi feito.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "<b>müssen</b> + infinitivo passado = quase certo. A bola, a bolsa de esporte, o joelho…",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = uma possibilidade entre outras.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = provável, sem ter certeza.",
+    "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = é o que dizem, eu repasso sem garantir."
    }
   }
  }

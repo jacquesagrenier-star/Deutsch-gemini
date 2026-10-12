@@ -1385,6 +1385,18 @@ window.SCENE = {
     "A1": "جسم الإنسان، من الخلف"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Mark, de costas, de cueca boxer azul-marinho, descalço, com as palmas das mãos viradas para nós; a médica ausculta as costas dele com o estetoscópio.",
+    "consigne": "Toque numa parte do corpo do Mark, visto de costas. Toque na mão esquerda dele para vê-la de perto.",
+    "nom_vue": "Mark, de costas",
+    "autre_vue": "↻ Virar o Mark"
+   },
+   "couches": {
+    "A1": "O corpo humano, de costas"
+   },
+   "questions": {}
   }
  }
 };

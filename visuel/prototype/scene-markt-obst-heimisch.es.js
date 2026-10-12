@@ -1048,6 +1048,18 @@ window.SCENE = {
     "A1": "في السوق"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Anna pega uma maçã na banca de frutas da região: framboesas, mirtilos, uvas, ameixas, ruibarbo, nozes, peras, groselhas, cerejas, amoras, damascos, morangos, pêssegos e maçãs, cada um no seu caixote.",
+    "consigne": "Toque numa fruta, num legume ou num caixote.",
+    "nom_vue": "As frutas da região",
+    "autre_vue": "→ Frutas tropicais"
+   },
+   "couches": {
+    "A1": "Na feira"
+   },
+   "questions": {}
   }
  }
 };

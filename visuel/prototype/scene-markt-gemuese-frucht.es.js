@@ -1074,6 +1074,18 @@ window.SCENE = {
     "A1": "في السوق"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Anna pega um cacho de tomates na banca de legumes: ervilhas, alfaces, aspargos, abóboras, pimentões, milho, cogumelos, vagens, acelgas, alcachofras, berinjelas, pepinos, abobrinhas, tomates e espinafre.",
+    "consigne": "Toque numa fruta, num legume ou num caixote.",
+    "nom_vue": "Os legumes-fruto e as folhas",
+    "autre_vue": "→ Frutas da região"
+   },
+   "couches": {
+    "A1": "Na feira"
+   },
+   "questions": {}
   }
  }
 };

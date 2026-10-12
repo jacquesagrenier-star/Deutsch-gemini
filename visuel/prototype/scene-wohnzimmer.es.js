@@ -1405,6 +1405,16 @@ window.SCENE = {
     "A1": "الأسماء وأدوات التعريف"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "A sala da república do Mark no dia seguinte a uma festa: uma bola em cima do armário, um guarda-chuva pendurado na luminária, uma meia no abajur de pé, um gato numa caixa de papelão, um cachorro debaixo da mesa de centro, e a mala do Mark na porta.",
+    "consigne": "Mark volta de viagem… e os colegas de apartamento fizeram festa. Toque num objeto."
+   },
+   "couches": {
+    "A1": "Substantivos e artigos"
+   },
+   "questions": {}
   }
  }
 };

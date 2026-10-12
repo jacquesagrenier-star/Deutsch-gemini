@@ -2036,6 +2036,18 @@ window.SCENE = {
     "A1": "جسم الإنسان"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Mark, em pé de cueca boxer azul-marinho, descalço, tem o peito auscultado pela médica; uma balança com régua de altura encostada na parede verde.",
+    "consigne": "Toque numa parte do corpo do Mark. Toque no rosto, na mão ou nos pés dele para vê-los de perto.",
+    "nom_vue": "Mark, de frente",
+    "autre_vue": "↻ Virar o Mark"
+   },
+   "couches": {
+    "A1": "O corpo humano"
+   },
+   "questions": {}
   }
  }
 };

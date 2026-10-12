@@ -1078,6 +1078,18 @@ window.SCENE = {
     "A1": "في السوق"
    },
    "questions": {}
+  },
+  "pt": {
+   "champs": {
+    "alt": "Anna pega um maço de rabanetes na banca de legumes: beterrabas, couves-flores, aipo, batatas, couves-rábano, cebolas, repolhos, alho-poró, cenouras, couves-de-bruxelas, erva-doce, brócolis, alho, rabanetes e batatas-doces.",
+    "consigne": "Toque numa fruta, num legume ou num caixote.",
+    "nom_vue": "As raízes e os repolhos",
+    "autre_vue": "→ Outros legumes"
+   },
+   "couches": {
+    "A1": "Na feira"
+   },
+   "questions": {}
   }
  }
 };
