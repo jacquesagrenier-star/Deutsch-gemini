@@ -11,7 +11,7 @@ for l in io.open(reste, encoding="utf-8"):
     if m:
         mot = m.group(2)
         if fichier == "themes.json":
-            mot = re.sub(r"^(der|die|das) ", "", mot)
+            mot = re.sub(r"^((der|die|das)(/(der|die|das))* )?(\(Pl\.\) )?", "", mot)
         cles[m.group(1)] = mot
 e = {}
 for n, l in enumerate(io.open(brouillon, encoding="utf-8"), 1):
