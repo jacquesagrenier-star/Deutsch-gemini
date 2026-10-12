@@ -26,7 +26,8 @@ window.SCENE = {
    "tr": "battaniye",
    "uk": "ковдра",
    "fa": "پتو",
-   "pt": "cobertor"
+   "pt": "cobertor",
+   "ar": "بطانية"
   },
   {
    "id": "wand",
@@ -52,7 +53,8 @@ window.SCENE = {
    "tr": "duvar",
    "uk": "стіна",
    "fa": "دیوار",
-   "pt": "parede"
+   "pt": "parede",
+   "ar": "جدار"
   },
   {
    "id": "boden",
@@ -78,7 +80,8 @@ window.SCENE = {
    "tr": "zemin / toprak",
    "uk": "земля, підлога",
    "fa": "زمین، کف",
-   "pt": "chão, solo"
+   "pt": "chão, solo",
+   "ar": "أرض، تربة"
   },
   {
    "id": "lampe",
@@ -99,7 +102,8 @@ window.SCENE = {
      "tr": "lamba şapkası",
      "uk": "абажур",
      "fa": "آباژور",
-     "pt": "cúpula (de abajur)"
+     "pt": "cúpula (de abajur)",
+     "ar": "غطاء المصباح"
     }
    ],
    "sur": null,
@@ -117,7 +121,8 @@ window.SCENE = {
    "tr": "lamba",
    "uk": "лампа",
    "fa": "چراغ",
-   "pt": "luminária"
+   "pt": "luminária",
+   "ar": "مصباح"
   },
   {
    "id": "regenschirm",
@@ -143,7 +148,8 @@ window.SCENE = {
    "tr": "şemsiye",
    "uk": "парасолька",
    "fa": "چتر",
-   "pt": "guarda-chuva"
+   "pt": "guarda-chuva",
+   "ar": "مظلّة"
   },
   {
    "id": "schrank",
@@ -169,7 +175,8 @@ window.SCENE = {
    "tr": "dolap",
    "uk": "шафа",
    "fa": "کمد",
-   "pt": "armário"
+   "pt": "armário",
+   "ar": "خزانة"
   },
   {
    "id": "ball",
@@ -190,7 +197,8 @@ window.SCENE = {
      "tr": "futbol",
      "uk": "футбол",
      "fa": "فوتبال",
-     "pt": "futebol"
+     "pt": "futebol",
+     "ar": "كرة القدم"
     }
    ],
    "sur": "schrank",
@@ -208,7 +216,8 @@ window.SCENE = {
    "tr": "top",
    "uk": "м'яч",
    "fa": "توپ",
-   "pt": "bola"
+   "pt": "bola",
+   "ar": "كرة"
   },
   {
    "id": "bild",
@@ -229,7 +238,8 @@ window.SCENE = {
      "tr": "tablo",
      "uk": "картина, полотно",
      "fa": "تابلوی نقاشی",
-     "pt": "pintura, quadro"
+     "pt": "pintura, quadro",
+     "ar": "لوحة زيتية"
     }
    ],
    "sur": "wand",
@@ -247,7 +257,8 @@ window.SCENE = {
    "tr": "resim",
    "uk": "картина",
    "fa": "تابلو، عکس",
-   "pt": "quadro"
+   "pt": "quadro",
+   "ar": "صورة، لوحة"
   },
   {
    "id": "fenster",
@@ -273,7 +284,8 @@ window.SCENE = {
    "tr": "pencere",
    "uk": "вікно",
    "fa": "پنجره",
-   "pt": "janela"
+   "pt": "janela",
+   "ar": "نافذة"
   },
   {
    "id": "heizkoerper",
@@ -299,7 +311,8 @@ window.SCENE = {
    "tr": "kalorifer peteği",
    "uk": "радіатор",
    "fa": "رادیاتور",
-   "pt": "aquecedor (radiador)"
+   "pt": "aquecedor (radiador)",
+   "ar": "مشعاع التدفئة"
   },
   {
    "id": "pflanze",
@@ -320,7 +333,8 @@ window.SCENE = {
      "tr": "ışık zinciri",
      "uk": "гірлянда",
      "fa": "ریسهٔ چراغ",
-     "pt": "pisca-pisca, cordão de luzes"
+     "pt": "pisca-pisca, cordão de luzes",
+     "ar": "سلسلة أضواء"
     }
    ],
    "sur": null,
@@ -338,7 +352,8 @@ window.SCENE = {
    "tr": "bitki",
    "uk": "рослина",
    "fa": "گیاه",
-   "pt": "planta"
+   "pt": "planta",
+   "ar": "نبات"
   },
   {
    "id": "stehlampe",
@@ -359,7 +374,8 @@ window.SCENE = {
      "tr": "lamba",
      "uk": "лампа",
      "fa": "چراغ",
-     "pt": "luminária"
+     "pt": "luminária",
+     "ar": "مصباح"
     },
     {
      "mot": "Lampenschirm",
@@ -371,7 +387,8 @@ window.SCENE = {
      "tr": "lamba şapkası",
      "uk": "абажур",
      "fa": "آباژور",
-     "pt": "cúpula (de abajur)"
+     "pt": "cúpula (de abajur)",
+     "ar": "غطاء المصباح"
     }
    ],
    "sur": null,
@@ -389,7 +406,8 @@ window.SCENE = {
    "tr": "ayaklı lamba",
    "uk": "торшер",
    "fa": "چراغ پایه‌بلند",
-   "pt": "luminária de chão"
+   "pt": "luminária de chão",
+   "ar": "مصباح أرضي"
   },
   {
    "id": "socke",
@@ -415,7 +433,8 @@ window.SCENE = {
    "tr": "çorap",
    "uk": "шкарпетка",
    "fa": "جوراب",
-   "pt": "meia"
+   "pt": "meia",
+   "ar": "جورب"
   },
   {
    "id": "regal",
@@ -441,7 +460,8 @@ window.SCENE = {
    "tr": "raf",
    "uk": "полиця",
    "fa": "قفسه",
-   "pt": "estante"
+   "pt": "estante",
+   "ar": "رفّ"
   },
   {
    "id": "goldfisch",
@@ -462,7 +482,8 @@ window.SCENE = {
      "tr": "balık",
      "uk": "риба",
      "fa": "ماهی",
-     "pt": "peixe"
+     "pt": "peixe",
+     "ar": "سمكة"
     }
    ],
    "sur": "regal",
@@ -480,7 +501,8 @@ window.SCENE = {
    "tr": "japon balığı",
    "uk": "золота рибка",
    "fa": "ماهی قرمز",
-   "pt": "peixinho dourado"
+   "pt": "peixinho dourado",
+   "ar": "سمكة ذهبية"
   },
   {
    "id": "fahrrad",
@@ -506,7 +528,8 @@ window.SCENE = {
    "tr": "bisiklet",
    "uk": "велосипед",
    "fa": "دوچرخه",
-   "pt": "bicicleta"
+   "pt": "bicicleta",
+   "ar": "درّاجة"
   },
   {
    "id": "tuer",
@@ -532,7 +555,8 @@ window.SCENE = {
    "tr": "kapı",
    "uk": "двері",
    "fa": "در",
-   "pt": "porta"
+   "pt": "porta",
+   "ar": "باب"
   },
   {
    "id": "sofa",
@@ -558,7 +582,8 @@ window.SCENE = {
    "tr": "kanepe",
    "uk": "диван",
    "fa": "مبل",
-   "pt": "sofá"
+   "pt": "sofá",
+   "ar": "أريكة، كنبة"
   },
   {
    "id": "buch",
@@ -584,7 +609,8 @@ window.SCENE = {
    "tr": "kitap",
    "uk": "книжка",
    "fa": "کتاب",
-   "pt": "livro"
+   "pt": "livro",
+   "ar": "كتاب"
   },
   {
    "id": "gitarre",
@@ -610,7 +636,8 @@ window.SCENE = {
    "tr": "gitar",
    "uk": "гітара",
    "fa": "گیتار",
-   "pt": "violão, guitarra"
+   "pt": "violão, guitarra",
+   "ar": "غيتار"
   },
   {
    "id": "turnschuh",
@@ -631,7 +658,8 @@ window.SCENE = {
      "tr": "ayakkabı",
      "uk": "черевик",
      "fa": "کفش",
-     "pt": "sapato"
+     "pt": "sapato",
+     "ar": "حذاء"
     }
    ],
    "sur": null,
@@ -649,7 +677,8 @@ window.SCENE = {
    "tr": "spor ayakkabı",
    "uk": "кросівка",
    "fa": "کفش ورزشی",
-   "pt": "tênis (calçado)"
+   "pt": "tênis (calçado)",
+   "ar": "حذاء رياضي"
   },
   {
    "id": "fernseher",
@@ -675,7 +704,8 @@ window.SCENE = {
    "tr": "televizyon",
    "uk": "телевізор",
    "fa": "تلویزیون",
-   "pt": "televisão, TV"
+   "pt": "televisão, TV",
+   "ar": "تلفاز"
   },
   {
    "id": "pizza",
@@ -696,7 +726,8 @@ window.SCENE = {
      "tr": "tabak",
      "uk": "тарілка",
      "fa": "بشقاب",
-     "pt": "prato"
+     "pt": "prato",
+     "ar": "صحن"
     }
    ],
    "sur": null,
@@ -714,7 +745,8 @@ window.SCENE = {
    "tr": "pizza",
    "uk": "піца",
    "fa": "پیتزا",
-   "pt": "pizza"
+   "pt": "pizza",
+   "ar": "بيتزا"
   },
   {
    "id": "couchtisch",
@@ -735,7 +767,8 @@ window.SCENE = {
      "tr": "masa",
      "uk": "стіл",
      "fa": "میز",
-     "pt": "mesa"
+     "pt": "mesa",
+     "ar": "طاولة"
     }
    ],
    "sur": null,
@@ -753,7 +786,8 @@ window.SCENE = {
    "tr": "orta sehpa",
    "uk": "журнальний столик",
    "fa": "میز جلومبلی",
-   "pt": "mesa de centro"
+   "pt": "mesa de centro",
+   "ar": "طاولة القهوة"
   },
   {
    "id": "tasse",
@@ -779,7 +813,8 @@ window.SCENE = {
    "tr": "fincan",
    "uk": "чашка",
    "fa": "فنجان",
-   "pt": "xícara"
+   "pt": "xícara",
+   "ar": "فنجان"
   },
   {
    "id": "pizzakarton",
@@ -800,7 +835,8 @@ window.SCENE = {
      "tr": "pizza",
      "uk": "піца",
      "fa": "پیتزا",
-     "pt": "pizza"
+     "pt": "pizza",
+     "ar": "بيتزا"
     }
    ],
    "sur": "couchtisch",
@@ -818,7 +854,8 @@ window.SCENE = {
    "tr": "karton kutu",
    "uk": "картонна коробка",
    "fa": "جعبهٔ مقوایی",
-   "pt": "caixa de papelão"
+   "pt": "caixa de papelão",
+   "ar": "صندوق كرتون"
   },
   {
    "id": "hund",
@@ -844,7 +881,8 @@ window.SCENE = {
    "tr": "köpek",
    "uk": "собака",
    "fa": "سگ",
-   "pt": "cachorro"
+   "pt": "cachorro",
+   "ar": "كلب"
   },
   {
    "id": "eimer",
@@ -870,7 +908,8 @@ window.SCENE = {
    "tr": "kova",
    "uk": "відро",
    "fa": "سطل",
-   "pt": "balde"
+   "pt": "balde",
+   "ar": "دلو"
   },
   {
    "id": "flasche",
@@ -896,7 +935,8 @@ window.SCENE = {
    "tr": "şişe",
    "uk": "пляшка",
    "fa": "بطری",
-   "pt": "garrafa"
+   "pt": "garrafa",
+   "ar": "زجاجة"
   },
   {
    "id": "karton",
@@ -922,7 +962,8 @@ window.SCENE = {
    "tr": "karton kutu",
    "uk": "картонна коробка",
    "fa": "جعبهٔ مقوایی",
-   "pt": "caixa de papelão"
+   "pt": "caixa de papelão",
+   "ar": "صندوق كرتون"
   },
   {
    "id": "katze",
@@ -948,7 +989,8 @@ window.SCENE = {
    "tr": "kedi",
    "uk": "кіт",
    "fa": "گربه",
-   "pt": "gato"
+   "pt": "gato",
+   "ar": "قطة"
   },
   {
    "id": "luftballon",
@@ -974,7 +1016,8 @@ window.SCENE = {
    "tr": "balon",
    "uk": "повітряна кулька",
    "fa": "بادکنک",
-   "pt": "bexiga, balão"
+   "pt": "bexiga, balão",
+   "ar": "بالون"
   },
   {
    "id": "luftballon-links",
@@ -1000,7 +1043,8 @@ window.SCENE = {
    "tr": "balon",
    "uk": "повітряна кулька",
    "fa": "بادکنک",
-   "pt": "bexiga, balão"
+   "pt": "bexiga, balão",
+   "ar": "بالون"
   },
   {
    "id": "koffer",
@@ -1026,7 +1070,8 @@ window.SCENE = {
    "tr": "bavul",
    "uk": "валіза",
    "fa": "چمدان",
-   "pt": "mala"
+   "pt": "mala",
+   "ar": "حقيبة سفر"
   }
  ],
  "grosPlans": [],

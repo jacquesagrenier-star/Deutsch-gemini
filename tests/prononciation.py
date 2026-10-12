@@ -376,7 +376,7 @@ def construire():
                 if not os.path.exists(os.path.join(RACINE, "audio", "mp3", h + ".mp3")):
                     fautes.append("%s : « %s » sans voix d'Aurora" % (rid, mot))
                 ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_tr",
-                                                             "traduction_uk", "traduction_fa", "traduction_pt") if e.get(c)}})
+                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             g["regles"].append({"id": rid, "graphie": graphie, "api": api, "court": court,

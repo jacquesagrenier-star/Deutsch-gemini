@@ -23,6 +23,7 @@ window.SCENE = {
    ],
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
+   "ar": "بطانية",
    "latam": null
   },
   {
@@ -46,6 +47,7 @@ window.SCENE = {
    ],
    "fr": "le mur",
    "en": "the wall",
+   "ar": "جدار",
    "latam": null
   },
   {
@@ -69,6 +71,7 @@ window.SCENE = {
    ],
    "fr": "le sol",
    "en": "the floor",
+   "ar": "أرض، تربة",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -105,6 +108,7 @@ window.SCENE = {
    ],
    "fr": "la lampe",
    "en": "the lamp",
+   "ar": "مصباح",
    "latam": null
   },
   {
@@ -128,6 +132,7 @@ window.SCENE = {
    ],
    "fr": "le parapluie",
    "en": "the umbrella",
+   "ar": "مظلّة",
    "latam": null
   },
   {
@@ -151,6 +156,7 @@ window.SCENE = {
    ],
    "fr": "l'armoire, le placard",
    "en": "the wardrobe",
+   "ar": "خزانة",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -187,6 +193,7 @@ window.SCENE = {
    ],
    "fr": "le ballon, la balle",
    "en": "the ball",
+   "ar": "كرة",
    "latam": null
   },
   {
@@ -210,6 +217,7 @@ window.SCENE = {
    ],
    "fr": "le tableau",
    "en": "the picture",
+   "ar": "صورة، لوحة",
    "latam": null
   },
   {
@@ -233,6 +241,7 @@ window.SCENE = {
    ],
    "fr": "la fenêtre",
    "en": "the window",
+   "ar": "نافذة",
    "latam": null
   },
   {
@@ -256,6 +265,7 @@ window.SCENE = {
    ],
    "fr": "le radiateur",
    "en": "the radiator",
+   "ar": "مشعاع التدفئة",
    "latam": null
   },
   {
@@ -288,6 +298,7 @@ window.SCENE = {
    ],
    "fr": "la plante",
    "en": "the plant",
+   "ar": "نبات",
    "latam": null
   },
   {
@@ -328,6 +339,7 @@ window.SCENE = {
    ],
    "fr": "le lampadaire",
    "en": "the floor lamp",
+   "ar": "مصباح أرضي",
    "latam": null
   },
   {
@@ -351,6 +363,7 @@ window.SCENE = {
    ],
    "fr": "la chaussette",
    "en": "the sock",
+   "ar": "جورب",
    "latam": null
   },
   {
@@ -374,6 +387,7 @@ window.SCENE = {
    ],
    "fr": "l'étagère",
    "en": "the shelf unit",
+   "ar": "رفّ",
    "latam": null
   },
   {
@@ -406,6 +420,7 @@ window.SCENE = {
    ],
    "fr": "le poisson rouge",
    "en": "the goldfish",
+   "ar": "سمكة ذهبية",
    "latam": {
     "mot": "pez dorado",
     "genre": "el",
@@ -433,6 +448,7 @@ window.SCENE = {
    ],
    "fr": "le vélo",
    "en": "the bicycle",
+   "ar": "درّاجة",
    "latam": null
   },
   {
@@ -456,6 +472,7 @@ window.SCENE = {
    ],
    "fr": "la porte",
    "en": "the door",
+   "ar": "باب",
    "latam": null
   },
   {
@@ -479,6 +496,7 @@ window.SCENE = {
    ],
    "fr": "le canapé",
    "en": "the sofa",
+   "ar": "أريكة، كنبة",
    "latam": null
   },
   {
@@ -502,6 +520,7 @@ window.SCENE = {
    ],
    "fr": "le livre",
    "en": "the book",
+   "ar": "كتاب",
    "latam": null
   },
   {
@@ -525,6 +544,7 @@ window.SCENE = {
    ],
    "fr": "la guitare",
    "en": "the guitar",
+   "ar": "غيتار",
    "latam": null
   },
   {
@@ -557,6 +577,7 @@ window.SCENE = {
    ],
    "fr": "la basket",
    "en": "the trainer",
+   "ar": "حذاء رياضي",
    "latam": {
     "mot": "tenis",
     "genre": "el",
@@ -584,6 +605,7 @@ window.SCENE = {
    ],
    "fr": "la télévision",
    "en": "the television",
+   "ar": "تلفاز",
    "latam": null
   },
   {
@@ -616,6 +638,7 @@ window.SCENE = {
    ],
    "fr": "la pizza",
    "en": "the pizza",
+   "ar": "بيتزا",
    "latam": null
   },
   {
@@ -648,6 +671,7 @@ window.SCENE = {
    ],
    "fr": "la table basse",
    "en": "the coffee table",
+   "ar": "طاولة القهوة",
    "latam": {
     "mot": "mesa de centro",
     "genre": "la",
@@ -675,6 +699,7 @@ window.SCENE = {
    ],
    "fr": "la tasse",
    "en": "cup",
+   "ar": "فنجان",
    "latam": null
   },
   {
@@ -707,6 +732,7 @@ window.SCENE = {
    ],
    "fr": "le carton",
    "en": "the cardboard box",
+   "ar": "صندوق كرتون",
    "latam": null
   },
   {
@@ -730,6 +756,7 @@ window.SCENE = {
    ],
    "fr": "le chien",
    "en": "the dog",
+   "ar": "كلب",
    "latam": null
   },
   {
@@ -753,6 +780,7 @@ window.SCENE = {
    ],
    "fr": "le seau",
    "en": "the bucket",
+   "ar": "دلو",
    "latam": {
     "mot": "cubeta",
     "genre": "la",
@@ -780,6 +808,7 @@ window.SCENE = {
    ],
    "fr": "la bouteille",
    "en": "bottle",
+   "ar": "زجاجة",
    "latam": null
   },
   {
@@ -803,6 +832,7 @@ window.SCENE = {
    ],
    "fr": "le carton",
    "en": "the cardboard box",
+   "ar": "صندوق كرتون",
    "latam": null
   },
   {
@@ -826,6 +856,7 @@ window.SCENE = {
    ],
    "fr": "le chat",
    "en": "the cat",
+   "ar": "قطة",
    "latam": null
   },
   {
@@ -849,6 +880,7 @@ window.SCENE = {
    ],
    "fr": "le ballon de baudruche",
    "en": "the balloon",
+   "ar": "بالون",
    "latam": null
   },
   {
@@ -872,6 +904,7 @@ window.SCENE = {
    ],
    "fr": "le ballon de baudruche",
    "en": "the balloon",
+   "ar": "بالون",
    "latam": null
   },
   {
@@ -895,6 +928,7 @@ window.SCENE = {
    ],
    "fr": "la valise",
    "en": "the suitcase",
+   "ar": "حقيبة سفر",
    "latam": null
   }
  ],

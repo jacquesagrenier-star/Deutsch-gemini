@@ -52,6 +52,7 @@ window.SCENE = {
    ],
    "fr": "le patient",
    "en": "the patient",
+   "ar": "مريض",
    "latam": null
   },
   {
@@ -75,6 +76,7 @@ window.SCENE = {
    ],
    "fr": "la tête",
    "en": "the head",
+   "ar": "رأس",
    "latam": null
   },
   {
@@ -98,6 +100,7 @@ window.SCENE = {
    ],
    "fr": "les cheveux",
    "en": "hair",
+   "ar": "شعر",
    "latam": null
   },
   {
@@ -127,6 +130,7 @@ window.SCENE = {
    ],
    "fr": "l'oreille",
    "en": "the ear",
+   "ar": "أذن",
    "latam": null
   },
   {
@@ -159,6 +163,7 @@ window.SCENE = {
    ],
    "fr": "la nuque",
    "en": "the nape of the neck",
+   "ar": "مؤخرة العنق، القفا",
    "latam": null
   },
   {
@@ -188,6 +193,7 @@ window.SCENE = {
    ],
    "fr": "l'épaule",
    "en": "the shoulder",
+   "ar": "كتف",
    "latam": null
   },
   {
@@ -217,6 +223,7 @@ window.SCENE = {
    ],
    "fr": "l'omoplate",
    "en": "the shoulder blade",
+   "ar": "لوح الكتف",
    "latam": null
   },
   {
@@ -240,6 +247,7 @@ window.SCENE = {
    ],
    "fr": "la colonne vertébrale",
    "en": "the spine",
+   "ar": "العمود الفقري",
    "latam": null
   },
   {
@@ -263,6 +271,7 @@ window.SCENE = {
    ],
    "fr": "le dos",
    "en": "the back",
+   "ar": "ظهر",
    "latam": null
   },
   {
@@ -303,6 +312,7 @@ window.SCENE = {
    ],
    "fr": "le derrière, les fesses",
    "en": "the bottom, the backside",
+   "ar": "مؤخّرة",
    "latam": null
   },
   {
@@ -332,6 +342,7 @@ window.SCENE = {
    ],
    "fr": "le bras",
    "en": "the arm",
+   "ar": "ذراع",
    "latam": null
   },
   {
@@ -361,6 +372,7 @@ window.SCENE = {
    ],
    "fr": "le bras",
    "en": "the arm",
+   "ar": "ذراع",
    "latam": null
   },
   {
@@ -390,6 +402,7 @@ window.SCENE = {
    ],
    "fr": "le coude",
    "en": "the elbow",
+   "ar": "مرفق، كوع",
    "latam": null
   },
   {
@@ -413,6 +426,7 @@ window.SCENE = {
    ],
    "fr": "la main",
    "en": "the hand",
+   "ar": "يد",
    "latam": null
   },
   {
@@ -436,6 +450,7 @@ window.SCENE = {
    ],
    "fr": "la main",
    "en": "the hand",
+   "ar": "يد",
    "latam": null
   },
   {
@@ -459,6 +474,7 @@ window.SCENE = {
    ],
    "fr": "la paume",
    "en": "the palm",
+   "ar": "راحة اليد",
    "latam": null
   },
   {
@@ -488,6 +504,7 @@ window.SCENE = {
    ],
    "fr": "la cuisse",
    "en": "the thigh",
+   "ar": "فخذ",
    "latam": null
   },
   {
@@ -517,6 +534,7 @@ window.SCENE = {
    ],
    "fr": "le creux du genou",
    "en": "the back of the knee",
+   "ar": "باطن الركبة",
    "latam": null
   },
   {
@@ -546,6 +564,7 @@ window.SCENE = {
    ],
    "fr": "le mollet",
    "en": "the calf",
+   "ar": "ربلة الساق",
    "latam": null
   },
   {
@@ -569,6 +588,7 @@ window.SCENE = {
    ],
    "fr": "la jambe",
    "en": "the leg",
+   "ar": "ساق",
    "latam": null
   },
   {
@@ -592,6 +612,7 @@ window.SCENE = {
    ],
    "fr": "la jambe",
    "en": "the leg",
+   "ar": "ساق",
    "latam": null
   },
   {
@@ -621,6 +642,7 @@ window.SCENE = {
    ],
    "fr": "le talon",
    "en": "the heel",
+   "ar": "كعب القدم",
    "latam": null
   },
   {
@@ -644,6 +666,7 @@ window.SCENE = {
    ],
    "fr": "le pied",
    "en": "the foot",
+   "ar": "قدم",
    "latam": null
   },
   {
@@ -667,6 +690,7 @@ window.SCENE = {
    ],
    "fr": "le pied",
    "en": "the foot",
+   "ar": "قدم",
    "latam": null
   },
   {
@@ -711,6 +735,7 @@ window.SCENE = {
    ],
    "fr": "la médecin",
    "en": "the doctor (woman)",
+   "ar": "طبيبة",
    "latam": null
   },
   {
@@ -734,6 +759,7 @@ window.SCENE = {
    ],
    "fr": "la main",
    "en": "the hand",
+   "ar": "يد",
    "latam": null
   },
   {
@@ -757,6 +783,7 @@ window.SCENE = {
    ],
    "fr": "la main",
    "en": "the hand",
+   "ar": "يد",
    "latam": null
   },
   {
@@ -786,6 +813,7 @@ window.SCENE = {
    ],
    "fr": "le stéthoscope",
    "en": "the stethoscope",
+   "ar": "سمّاعة الطبيب",
    "latam": null
   },
   {
@@ -821,6 +849,7 @@ window.SCENE = {
    ],
    "fr": "la balance (pèse-personne)",
    "en": "the scales",
+   "ar": "ميزان",
    "latam": null
   },
   {
@@ -844,6 +873,7 @@ window.SCENE = {
    ],
    "fr": "le mur",
    "en": "the wall",
+   "ar": "جدار",
    "latam": null
   },
   {
@@ -867,6 +897,7 @@ window.SCENE = {
    ],
    "fr": "le sol",
    "en": "the floor",
+   "ar": "أرض، تربة",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -895,6 +926,7 @@ window.SCENE = {
    ],
    "fr": "la paume",
    "en": "the palm",
+   "ar": "راحة اليد",
    "latam": null
   },
   {
@@ -919,6 +951,7 @@ window.SCENE = {
    ],
    "fr": "le doigt",
    "en": "the finger",
+   "ar": "إصبع",
    "latam": null
   }
  ],
