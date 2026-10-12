@@ -8265,3 +8265,8 @@ quatre temps), 337 adjectifs, 147 adverbes, 151 expressions, 46 mots-outils. Dou
 recopies quand la cle et toutes les phrases allemandes sont identiques, le reste traduit.
 5 384 cartes sur 8 052 (66,9 %). Les regionalismes suisses (parkieren, grillieren) rendus
 par le verbe bresilien courant. B2 en cours, C1 ensuite.
+
+Suite (v767) : corpus portugais COMPLET, A1 a C1 -- 8 052 cartes sur 8 052 (noms, verbes
+avec les quatre temps, adjectifs, adverbes, expressions, mots-outils). Plus aucune carte ne
+se replie sur l'anglais. Reste : exercices, examen, scenes, Prononciation, voix de la visite
+(payante, a demander).
