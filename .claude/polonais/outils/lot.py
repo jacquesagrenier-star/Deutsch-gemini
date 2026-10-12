@@ -5,11 +5,13 @@
 import io, json, re, sys
 
 reste, fichier, brouillon, sortie = sys.argv[1:5]
-cles, exemples, dernier = {}, {}, None
+cles, exemples, exem, dernier = {}, {}, {}, None
 for l in io.open(reste, encoding="utf-8"):
-    e = re.match(r"    (?:exem|perf|prae|konj): (.*)", l)
+    e = re.match(r"    (exem|perf|prae|konj|kat): (.*)", l)
     if e and dernier:
-        exemples[dernier] = exemples.get(dernier, "") + " " + e.group(1)
+        exemples[dernier] = exemples.get(dernier, "") + " " + e.group(2)
+        if e.group(1) == "exem":
+            exem[dernier] = e.group(2)
     m = re.match(r"#(\d+) (.+?) \[", l)
     if m:
         dernier = m.group(1)
@@ -17,6 +19,7 @@ for l in io.open(reste, encoding="utf-8"):
         if fichier == "themes.json":
             mot = re.sub(r"^(der|die|das) ", "", mot)
         cles[m.group(1)] = mot
+        exemples[dernier] = l.strip()   # le mot allemand lui-meme est permis
 e = {}
 for n, l in enumerate(io.open(brouillon, encoding="utf-8"), 1):
     l = l.rstrip("\n")
@@ -36,7 +39,9 @@ for n, l in enumerate(io.open(brouillon, encoding="utf-8"), 1):
     # 2. aucune lettre propre a l'allemand (ä ö ü ß) dans un mot que l'exemple
     #    allemand de la carte ne contient pas : c'est un mot allemand oublie
     #    dans la traduction (« Kaffee » au lieu de « kawa ») -- un nom propre
-    #    (Müller, Köln) figure dans l'exemple et passe ;
+    #    (Müller, Köln) figure dans l'exemple et passe, comme un terme de
+    #    grammaire que la categorie francaise garde en allemand
+    #    (« Wechselpräposition ») ;
     # 3. l'exemple polonais n'est pas l'exemple allemand recopie.
     de = exemples.get(num, "")
     for v in vals:
@@ -45,7 +50,7 @@ for n, l in enumerate(io.open(brouillon, encoding="utf-8"), 1):
         for mot in re.findall(r"[^\s\-—,.;:!?()„”'/…]+", v):
             if re.search(r"[äöüßÄÖÜ]", mot) and mot not in de:
                 sys.exit("ligne %d : mot allemand dans le polonais : %r" % (n, mot))
-    if len(vals) > 1 and de and vals[1].strip() == de.strip():
+    if len(vals) > 1 and vals[1].strip() == exem.get(num, "").strip():
         sys.exit("ligne %d : exemple recopie de l'allemand" % n)
     e[num] = [cles[num]] + vals
 json.dump({"fichier": fichier, "e": e}, io.open(sortie, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
