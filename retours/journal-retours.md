@@ -8312,3 +8312,9 @@ Suite (v771) : l'ukrainien et le persan au niveau du contenu.
   executant le code.
 - Persan : l'examen entier (720 champs, reponses comprises).
 Reste : l'arabe (corpus, exercices, examen, articles, cablage), en cours.
+
+Suite (v772) : l'arabe, premiere etape. Le corpus A1 et A2 en arabe (2 086 cartes sur
+8 052, les six fichiers) et le cablage d'index.html (rangs des cartes, verbes, recherche,
+phrases a construire, libelles de categories). Verifie a l'ecran : une carte en interface
+arabe montre « طاولة » et son exemple, plus l'anglais. Parcours allemand 130/0,
+espagnol 82/0. Reste pour l'arabe : B1 a C1, exercices, examen, articles.
