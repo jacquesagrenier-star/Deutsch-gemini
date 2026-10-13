@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v781</span>
+    <span class="subtitle-version">v782</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -36656,7 +36656,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 781;
+const APP_VERSION = 782;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -37725,7 +37725,17 @@ function direAllemand(texte, opts){
         audioEnCours = null;
         repli();
     };
-    son.onerror = () => versRepli(true);
+    // ⚠️ SEUL UN FICHIER INTROUVABLE EST CONDAMNE (13 oct. 2026). Sur l'Android
+    // de la soeur de Jacques, le mot espagnol se taisait a chaque toucher, la
+    // phrase et (apres un temps) le pluriel parlaient. Une erreur RESEAU
+    // (code 2, MEDIA_ERR_NETWORK -- un telephone lent, un creux de connexion)
+    // inscrivait le fichier dans audioAbsents pour toute la session, et le mot
+    // passait ensuite a la voix du telephone, qui n'a pas forcement l'espagnol.
+    // Code 2 = passager ; 3 (decodage) et 4 (introuvable, 404) = definitifs.
+    son.onerror = () => {
+        const code = son.error && son.error.code;
+        versRepli(code !== 2, { name: code ? "MEDIA_ERR_" + code : "" });
+    };
     son.onended = () => {
         finGarde();
         if(jeton !== lectureCourante) return;
@@ -37746,6 +37756,13 @@ function direAllemand(texte, opts){
         const p = son.play();
         if(p && p.catch) p.catch(e => versRepli(!estRefusDeLecture(e), e));
     }catch(e){ versRepli(!estRefusDeLecture(e), e); }
+}
+
+// Retire un texte de la liste noire de la session : appele quand la personne
+// touche elle-meme un haut-parleur, pour que son geste retente le vrai fichier.
+function oublierAbsence(texte){
+    const empreinte = texte ? empreinteAudio(texte) : null;
+    if(empreinte) audioAbsents.delete(empreinte);
 }
 
 function estRefusDeLecture(e){
@@ -37942,6 +37959,7 @@ function speakPlural(){
     // nomen.pluriel), et les fichiers sont en ligne dans la voix d'Aurora.
     // Verifie cote serveur le 6 septembre 2026 sur « die Vaeter » et
     // « die Muetter ».
+    oublierAbsence(texteAudioPluriel);
     direAllemand(texteAudioPluriel, { rate: 0.9 });
 }
 
@@ -38133,7 +38151,9 @@ function speakWord(){
     const learningEnglish = getLearningDirection() === 'en';
     // L'allemand passe par la voix pre-generee ; l'anglais du module pour
     // germanophones n'en a pas et reste a la synthese du navigateur.
-    if(!learningEnglish){ direAllemand(textToSpeak, { rate: 0.9 }); return; }
+    // Le toucher du haut-parleur est une demande EXPRESSE : il retente le vrai
+    // fichier meme s'il a echoue plus tot dans la session (voir son.onerror).
+    if(!learningEnglish){ oublierAbsence(textToSpeak); direAllemand(textToSpeak, { rate: 0.9 }); return; }
     arreterAudioPregenere();
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);

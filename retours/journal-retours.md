@@ -8469,3 +8469,18 @@ Verifie : verifier.py, syntaxe.js, trous_francais.py ; parcours allemand et espa
   gustar. Propose : un parcours « Premiers pas » par langue (5 mini-fiches dans l'ordre +
   un petit exercice chacune), un lien « Comprendre d'abord » en tete de chaque serie
   d'exercices, des indices sans jargon. A faire apres le chantier portugais (memes fichiers).
+
+## 13 octobre 2026 -- v782 : le haut-parleur du mot espagnol se taisait sur Android (la soeur de Jacques)
+
+Constate : sur la carte, le mot au singulier ne se disait pas, la phrase oui, et le pluriel
+« au debut non, puis oui ». Les fichiers existent (verifies : es-es et es-419, singulier et
+pluriel) et tout marche sur ordinateur. Cause retenue : une erreur RESEAU passagere (code 2)
+inscrivait le fichier dans audioAbsents pour TOUTE la session ; le mot passait ensuite a la voix
+du telephone, sans voix espagnole -> silence. Corrige : seuls les codes 3/4 (decodage,
+introuvable) condamnent un fichier ; et un toucher du haut-parleur (mot, pluriel) retente
+toujours le vrai fichier (oublierAbsence). A confirmer sur son telephone.
+Vu en cherchant, NON corrige : une carte de nombre espagnole (« setecientos ») voulait dire
+« der setecientos » -- un article allemand reste colle. A confier avec les « premiers pas ».
+Meme jour : elle ouvrait Wortando depuis Messenger (navigateur integre : un X qui ferme tout,
+Retour qui quitte). Conseil donne : ouvrir dans Chrome puis « Installer et creer un raccourci ».
+Bandeau « ouvre-le dans Chrome » prevu en v783.
