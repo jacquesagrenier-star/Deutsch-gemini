@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v783</span>
+    <span class="subtitle-version">v784</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10362,7 +10362,7 @@ const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
 // L'espagnol ne se lit qu'en francais et en anglais (fusion, etape 2) : ses
 // libelles propres n'existent que dans ces deux langues, et une interface
 // turque y parlerait encore d'allemand. L'allemand garde ses six langues.
-const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en"] : ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
+const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt"] : ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
 const DEFAULT_UI_LANG = "fr";
 
 // Direction d'apprentissage : "de" = apprendre l'allemand (contenu existant),
@@ -21066,7 +21066,7 @@ const I18N_ESPAGNOL = {
         "op_es_falsos_t": "Les faux amis",
         "op_es_falsos_d": "embarazada, constipado, éxito… le mot qui ressemble au français est souvent le piège.",
         "op_es_gustar_t": "Les verbes comme gustar",
-        "op_es_gustar_d": "me gusta, me gustan, me duele : le verbe s'accorde avec ce qui plaît.",
+        "op_es_gustar_d": "me gusta el chocolate = le chocolat me plaît : une chose aimée → gusta, plusieurs → gustan.",
         "op_es_acentos_t": "L'accent qui change le sens",
         "op_es_acentos_d": "tú / tu, sí / si, habló / hablo : une petite marque, un autre mot.",
         "orb_es_presente": "Le présent",
@@ -21193,7 +21193,7 @@ const I18N_ESPAGNOL = {
         "op_es_falsos_t": "False friends",
         "op_es_falsos_d": "embarazada, éxito, actual… the word that looks familiar is often the trap.",
         "op_es_gustar_t": "Verbs like gustar",
-        "op_es_gustar_d": "me gusta, me gustan, me duele: the verb agrees with what is liked.",
+        "op_es_gustar_d": "me gusta el chocolate = chocolate pleases me: one thing liked → gusta, several → gustan.",
         "op_es_acentos_t": "Accents that change meaning",
         "op_es_acentos_d": "tú / tu, sí / si, habló / hablo: a small mark, a different word.",
         "orb_es_presente": "The present tense",
@@ -21223,6 +21223,133 @@ const I18N_ESPAGNOL = {
         "dec_t1_texte_plusieurs": "Three words you can almost guess. The colour tells you the article: el or la.",
         "dec_t4_texte": "Every card you work on opens a tile. Beneath the tiles hides the work of a great painter: you'll only know which one by revealing it. Every finished painting joins your gallery.",
         "seance_choix_allemand": "Spanish"
+    },
+    "pt": {
+        "carte_genre_el": "masculino",
+        "carte_genre_la": "feminino",
+        "home_title_1": "Aprenda espanhol",
+        "home_subtitle": "Seu tutor pessoal de gramática e vocabulário espanhol.",
+        "auth_title": "Aprenda espanhol, uma palavra de cada vez",
+        "setup_niveau_label": "Você já sabe um pouco de espanhol?",
+        "abo_titre": "Aprenda espanhol sem limites",
+        "abo_av_voix": "A voz espanhola em cada cartão",
+        "search_title": "Buscar uma palavra em espanhol ou em português",
+        "search_placeholder": "Espanhol ou português…",
+        "search_hint": "Digite pelo menos duas letras, <strong>em espanhol ou em português</strong> — os dois funcionam. A busca percorre seus {n} cartões, depois o dicionário — cerca de 150 000 palavras.",
+        "orb_zuinf_title": "Subjuntivo",
+        "orb_zuinf_sub": "quiero que · espero que",
+        "verbenniveau_title_en": "Verbos por nível",
+        "orb_kasus_title": "Ser vs estar",
+        "orb_kasus_sub": "dois verbos para “ser”",
+        "orb_adjektive_sub": "revisar · concordância",
+        "orb_praep_title": "Por vs para",
+        "orb_praep_sub": "duas palavras para “para”",
+        "orb_wortstellung_title": "Os dois passados",
+        "orb_wortstellung_sub": "hablaba · hablé",
+        "orb_partikeln_title": "A concordância",
+        "orb_partikeln_sub": "alto · alta · altos",
+        "flip_direction_fr": "🔁 Sentido: PT → ES",
+        "flip_direction_de": "🔁 Sentido: ES → PT",
+        "verbenniveau_exercises_btn": "EXERCÍCIOS DO PRESENTE →",
+        "grp_meinung": "Nuances e opinião",
+        "grp_diskussion": "Ligar as ideias",
+        "grp_ton": "Marcadores do discurso",
+        "grp_ton_adv": "Advérbios de nuance",
+        "grp_verbindungen": "Verbos e suas expressões",
+        "grp_gefuehle": "Reações e exclamações",
+        "grp_alltag": "Dia a dia",
+        "grp_smalltalk": "Cumprimentos e cortesia",
+        "grp_ideen": "Conjunções",
+        "grp_praep": "Preposições",
+        "grp_modismos": "Expressões idiomáticas",
+        "voice_lang_de": "Espanhol",
+        "carte_dire_desc": "No verso de um cartão, o espanhol é dito sozinho. Escolha o que você quer ouvir. O que você retirar continua na tela, e o seu alto-falante continua funcionando — você ouve quando quiser.",
+        "carte_phrase_desc": "No verso de um cartão, o espanhol é dito sozinho: a palavra com o artigo, depois o plural. Com este ajuste, a frase de exemplo é lida em seguida. Ela ensina a palavra em contexto, mas alonga cada cartão em dois ou três segundos antes de você poder se avaliar. Sem o ajuste, a frase continua na tela e o seu alto-falante funciona como antes.",
+        "op_nomen_o6_d": "el · la — dois gêneros",
+        "dictation_hint": "Não é preciso escrever o artigo (el/la).",
+        "settings_invite_desc": "Você aprende com o Wortando? Compartilhe com alguém que queira aprender espanhol.",
+        "invite_share_text": "Estou aprendendo espanhol com o Wortando — me peça um código de convite para experimentar!",
+        "reflexiv_badge_label": "pronominal (-se)",
+        "auth_value_1": "Vocabulário e gramática do espanhol organizados por nível, do A1 ao B2.",
+        "setup_learning_de": "Espanhol",
+        "op_verben_o4_d": "Presente, pretérito, imperfecto, subjuntivo",
+        "op_adjektive_sub": "concordância & vocabulário",
+        "label_case_word": "Uso",
+        "op_schreiben_title": "Escrever em espanhol",
+        "schreiben_hint": "Escreva a frase em espanhol. Acentos e pontuação não contam.",
+        "orb_pronomen_sub": "lo · la · le · se",
+        "orb_zahlen_title": "O gênero",
+        "orb_zahlen_sub": "el · la · -ción · -ma",
+        "op_pronomen_sub": "lo · la · le · se",
+        "op_pronomen_o1_d": "lo, la, le · lavarse",
+        "orb_redewendungen_sub": "ni idea · por supuesto",
+        "orb_adverbien_sub": "hoy · aquí · muy",
+        "ecoute_sens_connu_cible_d": "você produz o espanhol de memória",
+        "ecoute_sens_cible_connu": "Espanhol primeiro",
+        "tuiles_menu_desc": "Você recebe a frase em português e as palavras espanholas fora de ordem. Toque nelas na ordem certa — sem teclado. O banco tem uma ou duas palavras a mais, da mesma família das que estão na frase: é aí que o exercício acontece.",
+        "op_adverbien_sub": "hoy · aquí · muy",
+        "op_adverbien_o1_d": "8 famílias: tempo, lugar, frequência, modo…",
+        "kicker_partikeln_vocab": "Marcadores do discurso · Vocabulário",
+        "title_adjektive_allemands": "Adjetivos espanhóis",
+        "setup_learning_autre": "Alemão",
+        "temps_es_preterito": "uma ação acabada — <em>ayer, una vez, de repente</em>",
+        "temps_es_imperfecto": "um cenário, um hábito, uma idade — <em>antes, siempre, mientras</em>",
+        "temps_es_subjuntivo": "depois de <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
+        "verbe_es_exemple": "Em contexto:",
+        "op_kasus_sub": "ser · estar",
+        "variante_titre": "Qual espanhol?",
+        "variante_choix_espagne": "Espanha",
+        "variante_choix_amerique": "América Latina",
+        "variante_amerique": "na América Latina: {mot}",
+        "variante_espagne": "na Espanha: {mot}",
+        "adverbien_cat_desc": "Os advérbios se aprendem opondo as palavras de uma mesma família: siempre, a menudo, a veces, rara vez, nunca.",
+        "kicker_verben_infinitiv": "Verbos · Infinitivo",
+        "kicker_verben_konjunktiv2": "Verbos · Subjuntivo",
+        "kicker_verben_perfekt": "Verbos · Imperfecto",
+        "kicker_verben_praesens": "Verbos · Presente",
+        "kicker_verben_praeteritum": "Verbos · Pretérito",
+        "op_adjektive_o4_d": "alto · alta · altos · altas",
+        "op_adjektive_o4_t": "Concordância do adjetivo",
+        "gram_attention": "Atenção",
+        "kicker_ser_estar": "ser ou estar?",
+        "kicker_por_para": "por ou para?",
+        "fiche_entrainer": "PRATICAR →",
+        "kicker_falsos_amigos": "Falsos amigos",
+        "kicker_gustar": "Os verbos como gustar",
+        "kicker_acentos": "O acento que muda o sentido",
+        "op_es_falsos_t": "Os falsos amigos",
+        "op_es_falsos_d": "embarazada, exquisito, largo… a palavra parecida com o português costuma ser a armadilha.",
+        "op_es_gustar_t": "Os verbos como gustar",
+        "op_es_gustar_d": "me gusta el chocolate = o chocolate me agrada: uma coisa → gusta, várias → gustan.",
+        "op_es_acentos_t": "O acento que muda o sentido",
+        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo: um sinal pequeno, outra palavra.",
+        "orb_es_presente": "O presente",
+        "orb_es_hay": "hay e as perguntas",
+        "orb_es_pronominales": "Verbos pronominais",
+        "orb_es_accord": "A concordância",
+        "verbentemps_es_futuro_title": "Futuro — o futuro",
+        "verbentemps_es_futuro": "Para o que está por vir, uma promessa, uma previsão — e uma suposição sobre o presente. O infinitivo inteiro + <b>-é, -ás, -á, -emos, -éis, -án</b>.<br><em>Mañana lloverá. ¿Dónde estará Juan?</em> (Amanhã vai chover. Onde será que o Juan está?)",
+        "verbentemps_es_condicional_title": "Condicional — o condicional",
+        "verbentemps_es_condicional": "Para a cortesia, o conselho, a hipótese — e o futuro visto do passado. O infinitivo inteiro + <b>-ía, -ías, -ía, -íamos, -íais, -ían</b>.<br><em>¿Podrías ayudarme? Dijo que vendría.</em> (Você poderia me ajudar? Ele disse que viria.)",
+        "kicker_es_futuro": "Verbos · Futuro",
+        "kicker_es_condicional": "Verbos · Condicional",
+        "orb_es_indice": "Todas as fichas",
+        "gram_indice_kicker": "Gramática",
+        "gram_indice_titre": "Todas as fichas",
+        "verbentemps_es_imperativo_title": "Imperativo — o imperativo",
+        "verbentemps_es_imperativo": "Dar uma ordem, um conselho, um caminho. Com <b>tú</b>: a forma de él (habla); com <b>usted</b> e no <b>negativo</b>: o subjuntivo (hable, no hables).<br><em>Gira a la derecha. No hables tan alto.</em> (Vire à direita. Não fale tão alto.)",
+        "kicker_es_imperativo": "Verbos · Imperativo",
+        "kicker_perifrasis": "As perífrases",
+        "kicker_numeros": "Números e horas",
+        "kicker_demostrativos": "Demonstrativos e possessivos",
+        "kicker_preposiciones": "a, en, de e o a pessoal",
+        "pron_kicker": "Ler o espanhol",
+        "pron_intro": "O espanhol se lê quase sempre como se escreve: estas regras bastam para ler qualquer palavra. Toque em uma palavra para ouvi-la.",
+        "pron_accent": "O acento tônico",
+        "dec_t0_texte": "Esta é uma pequena visita guiada do aplicativo. Dois minutos, cinco amostras: palavras, um verbo, um pouco de gramática, o seu quadro e a sua sessão do dia. O aplicativo tem muito mais: cenas, temas, expressões, fichas de gramática, pronúncia, escuta, ditado, dicionário e muito mais.",
+        "dec_t1_texte_plusieurs": "Três palavras que quase se adivinham. A cor indica o artigo: el ou la.",
+        "dec_t4_texte": "Cada cartão trabalhado abre um ladrilho. Sob os ladrilhos se esconde a obra de um grande pintor: você só saberá qual ao revelá-la. Cada quadro terminado entra na sua galeria.",
+        "seance_choix_allemand": "Espanhol"
     }
 };
 if(LANGUE_APPRISE === "es"){
@@ -21606,7 +21733,7 @@ const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./?apprendre=de" : "
 // qui choisirait l'espagnol se retrouverait avec des traductions anglaises.
 // Ajouter ici une langue le jour ou le contenu espagnol y est traduit.
 // Sans effet pour qui est DEJA en espagnol : il garde le bouton de retour.
-const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en"];
+const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt"];
 function masquerEspagnolSelonLangueUi(){
     if(LANGUE_APPRISE === "es") return;
     const cache = !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang());
@@ -23608,14 +23735,14 @@ function hideGlobalLoadingBar(){
 // celle d'avant, inchangee.
 const ADVERB_CATEGORIES = LANGUE_APPRISE === "es"
     ? {
-    "tiempo":        { fr: "Tiempo \u2014 temps", en: "Tiempo \u2014 time" },
-    "lugar":         { fr: "Lugar \u2014 lieu, direction", en: "Lugar \u2014 place, direction" },
-    "frecuencia":    { fr: "Frecuencia \u2014 fr\u00e9quence", en: "Frecuencia \u2014 frequency" },
-    "modo":          { fr: "Modo \u2014 mani\u00e8re", en: "Modo \u2014 manner" },
-    "cantidad":      { fr: "Cantidad \u2014 degr\u00e9, quantit\u00e9", en: "Cantidad \u2014 degree, quantity" },
-    "duda":          { fr: "Duda \u2014 doute, probabilit\u00e9", en: "Duda \u2014 doubt, likelihood" },
-    "afirmacion":    { fr: "Afirmaci\u00f3n \u2014 affirmer, nier", en: "Afirmaci\u00f3n \u2014 affirming, denying" },
-    "discurso":      { fr: "Discurso \u2014 organiser le propos", en: "Discurso \u2014 structuring speech" }
+    "tiempo":        { fr: "Tiempo \u2014 temps", en: "Tiempo \u2014 time", pt: "Tiempo — tempo" },
+    "lugar":         { fr: "Lugar \u2014 lieu, direction", en: "Lugar \u2014 place, direction", pt: "Lugar — lugar, direção" },
+    "frecuencia":    { fr: "Frecuencia \u2014 fr\u00e9quence", en: "Frecuencia \u2014 frequency", pt: "Frecuencia — frequência" },
+    "modo":          { fr: "Modo \u2014 mani\u00e8re", en: "Modo \u2014 manner", pt: "Modo — modo" },
+    "cantidad":      { fr: "Cantidad \u2014 degr\u00e9, quantit\u00e9", en: "Cantidad \u2014 degree, quantity", pt: "Cantidad — grau, quantidade" },
+    "duda":          { fr: "Duda \u2014 doute, probabilit\u00e9", en: "Duda \u2014 doubt, likelihood", pt: "Duda — dúvida, probabilidade" },
+    "afirmacion":    { fr: "Afirmaci\u00f3n \u2014 affirmer, nier", en: "Afirmaci\u00f3n \u2014 affirming, denying", pt: "Afirmación — afirmar, negar" },
+    "discurso":      { fr: "Discurso \u2014 organiser le propos", en: "Discurso \u2014 structuring speech", pt: "Discurso — organizar o discurso" }
 }
     : {
     "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman", uk: "Zeit \u2014 час" , fa: "Zeit \u2014 زمان", pt: "Zeit \u2014 tempo", ar: "Zeit \u2014 زمان", pl: "Zeit \u2014 czas", ru: "Zeit \u2014 время" },
@@ -23647,23 +23774,23 @@ const ADVERB_CATEGORIES = LANGUE_APPRISE === "es"
 // celle d'avant, inchangee.
 const REDEWENDUNG_CATEGORIES = LANGUE_APPRISE === "es"
     ? {
-    "saludo":        { fr: "Saludos \u2014 saluer, prendre cong\u00e9", en: "Saludos \u2014 greetings, goodbyes" },
-    "cortesia":      { fr: "Cortes\u00eda \u2014 remercier, s'excuser", en: "Cortes\u00eda \u2014 thanking, apologising" },
-    "cotidiano":     { fr: "Vida diaria \u2014 la vie pratique", en: "Vida diaria \u2014 everyday life" },
-    "matiz":         { fr: "Matizar \u2014 nuancer, prendre position", en: "Matizar \u2014 hedging, taking a stance" },
-    "conectar":      { fr: "Conectar \u2014 relier ses id\u00e9es", en: "Conectar \u2014 linking ideas" },
-    "reaccion":      { fr: "Reacciones \u2014 r\u00e9agir", en: "Reacciones \u2014 reacting" },
-    "interjeccion":  { fr: "Interjecciones \u2014 s'exclamer", en: "Interjecciones \u2014 exclamations" },
-    "modismo":       { fr: "Modismos \u2014 expressions imag\u00e9es", en: "Modismos \u2014 idioms" },
-    "tener":         { fr: "Con tener \u2014 tener ganas, tener prisa", en: "Con tener \u2014 tener ganas, tener prisa" },
-    "dar":           { fr: "Con dar \u2014 dar igual, dar miedo", en: "Con dar \u2014 dar igual, dar miedo" },
-    "hacer":         { fr: "Con hacer \u2014 hacer cola, hacer caso", en: "Con hacer \u2014 hacer cola, hacer caso" },
-    "poner":         { fr: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", en: "Con poner \u2014 poner al d\u00eda, ponerse las pilas" },
-    "echar":         { fr: "Con echar \u2014 echar de menos, echar una mano", en: "Con echar \u2014 echar de menos, echar una mano" },
-    "llevar":        { fr: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", en: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n" },
-    "quedar":        { fr: "Con quedar \u2014 quedar claro, quedarse corto", en: "Con quedar \u2014 quedar claro, quedarse corto" },
-    "estar":         { fr: "Con estar \u2014 estar de acuerdo, estar al tanto", en: "Con estar \u2014 estar de acuerdo, estar al tanto" },
-    "ser":           { fr: "Con ser \u2014 ser capaz, ser un rollo", en: "Con ser \u2014 ser capaz, ser un rollo" }
+    "saludo":        { fr: "Saludos \u2014 saluer, prendre cong\u00e9", en: "Saludos \u2014 greetings, goodbyes", pt: "Saludos — cumprimentar, despedir-se" },
+    "cortesia":      { fr: "Cortes\u00eda \u2014 remercier, s'excuser", en: "Cortes\u00eda \u2014 thanking, apologising", pt: "Cortesía — agradecer, desculpar-se" },
+    "cotidiano":     { fr: "Vida diaria \u2014 la vie pratique", en: "Vida diaria \u2014 everyday life", pt: "Vida diaria — a vida prática" },
+    "matiz":         { fr: "Matizar \u2014 nuancer, prendre position", en: "Matizar \u2014 hedging, taking a stance", pt: "Matizar — nuançar, posicionar-se" },
+    "conectar":      { fr: "Conectar \u2014 relier ses id\u00e9es", en: "Conectar \u2014 linking ideas", pt: "Conectar — ligar as ideias" },
+    "reaccion":      { fr: "Reacciones \u2014 r\u00e9agir", en: "Reacciones \u2014 reacting", pt: "Reacciones — reagir" },
+    "interjeccion":  { fr: "Interjecciones \u2014 s'exclamer", en: "Interjecciones \u2014 exclamations", pt: "Interjecciones — exclamar" },
+    "modismo":       { fr: "Modismos \u2014 expressions imag\u00e9es", en: "Modismos \u2014 idioms", pt: "Modismos — expressões idiomáticas" },
+    "tener":         { fr: "Con tener \u2014 tener ganas, tener prisa", en: "Con tener \u2014 tener ganas, tener prisa", pt: "Con tener — tener ganas, tener prisa" },
+    "dar":           { fr: "Con dar \u2014 dar igual, dar miedo", en: "Con dar \u2014 dar igual, dar miedo", pt: "Con dar — dar igual, dar miedo" },
+    "hacer":         { fr: "Con hacer \u2014 hacer cola, hacer caso", en: "Con hacer \u2014 hacer cola, hacer caso", pt: "Con hacer — hacer cola, hacer caso" },
+    "poner":         { fr: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", en: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", pt: "Con poner — poner al día, ponerse las pilas" },
+    "echar":         { fr: "Con echar \u2014 echar de menos, echar una mano", en: "Con echar \u2014 echar de menos, echar una mano", pt: "Con echar — echar de menos, echar una mano" },
+    "llevar":        { fr: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", en: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", pt: "Con llevar — llevarse bien, llevar razón" },
+    "quedar":        { fr: "Con quedar \u2014 quedar claro, quedarse corto", en: "Con quedar \u2014 quedar claro, quedarse corto", pt: "Con quedar — quedar claro, quedarse corto" },
+    "estar":         { fr: "Con estar \u2014 estar de acuerdo, estar al tanto", en: "Con estar \u2014 estar de acuerdo, estar al tanto", pt: "Con estar — estar de acuerdo, estar al tanto" },
+    "ser":           { fr: "Con ser \u2014 ser capaz, ser un rollo", en: "Con ser \u2014 ser capaz, ser un rollo", pt: "Con ser — ser capaz, ser un rollo" }
 }
     : {
     "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet", uk: "Begrüßung \u2014 вітання, світська бесіда" , fa: "Begrüßung \u2014 سلام و احوال‌پرسی", pt: "Begrüßung \u2014 cumprimentar, bater papo", ar: "Begrüßung \u2014 تحية، دردشة", pl: "Begrüßung \u2014 powitania, pogawędka", ru: "Begrüßung \u2014 приветствие, светская беседа" },
@@ -25843,6 +25970,398 @@ const konjunktionenTheme = LANGUE_APPRISE === "es"
   ["solange", "tant que", "conjonction de subordination", "Du darfst bleiben, solange du willst.", "Tu peux rester tant que tu veux.", "as long as", "You may stay as long as you want."]
   ]
 };
+
+// LE PORTUGAIS DES MOTS-OUTILS ESPAGNOLS (v782). Ces trois listes vivent dans le
+// code, pas dans funcionales.json : le chargeur de funktionswort.json ne les
+// touche pas. Leurs tuples s'arretent au rang 7 ; le portugais va aux rangs
+// 20-22, la ou RANGS_CARTE.funktionswort le lit (traduction, exemple,
+// categorie), sans deplacer aucun rang existant. Sans effet en allemand.
+const MOTS_OUTILS_ES_PT = {
+  "praep": {
+    "a": [
+      "a, para",
+      "Vou a Madri na segunda.",
+      "direção, destinatário, hora"
+    ],
+    "de": [
+      "de",
+      "É o carro da minha irmã.",
+      "origem, posse, material"
+    ],
+    "en": [
+      "em",
+      "Moro em Sevilha há dois anos.",
+      "lugar onde se está, meio de transporte"
+    ],
+    "con": [
+      "com",
+      "Vou com meus pais.",
+      "companhia, meio"
+    ],
+    "sin": [
+      "sem",
+      "Tomo o café sem açúcar.",
+      "ausência"
+    ],
+    "por": [
+      "por, por causa de",
+      "Obrigado pela sua ajuda.",
+      "causa, passagem, duração, troca"
+    ],
+    "para": [
+      "para (finalidade, destinatário)",
+      "Este presente é para você.",
+      "finalidade, destinatário, prazo"
+    ],
+    "sobre": [
+      "sobre, a respeito de",
+      "O livro está sobre a mesa.",
+      "posição, assunto"
+    ],
+    "bajo": [
+      "sob",
+      "Ele trabalha sob muita pressão.",
+      "posição, subordinação"
+    ],
+    "entre": [
+      "entre",
+      "O vilarejo fica entre duas montanhas.",
+      "posição intermediária"
+    ],
+    "hasta": [
+      "até",
+      "Caminhamos até a praia.",
+      "limite no espaço ou no tempo"
+    ],
+    "desde": [
+      "desde, de",
+      "Daqui se vê o mar.",
+      "ponto de partida"
+    ],
+    "hacia": [
+      "em direção a, para",
+      "Ele se dirigia para o norte.",
+      "direção aproximada"
+    ],
+    "contra": [
+      "contra",
+      "Ninguém votou contra a proposta.",
+      "oposição"
+    ],
+    "según": [
+      "segundo, de acordo com",
+      "Segundo o relatório, está tudo em ordem.",
+      "fonte, ponto de vista"
+    ],
+    "durante": [
+      "durante",
+      "Choveu durante a noite inteira.",
+      "duração"
+    ],
+    "ante": [
+      "diante de, perante",
+      "Ele compareceu perante o juiz.",
+      "posição, confronto"
+    ],
+    "tras": [
+      "após, atrás de",
+      "Após a reunião, conversamos.",
+      "sucessão"
+    ],
+    "mediante": [
+      "mediante, por meio de",
+      "Resolveu-se mediante um acordo.",
+      "meio (registro formal)"
+    ],
+    "salvo": [
+      "salvo, exceto",
+      "Abrimos todos os dias, exceto segunda.",
+      "exceção"
+    ],
+    "encima de": [
+      "em cima de",
+      "As chaves estão em cima da mesa.",
+      "lugar (locução)"
+    ],
+    "debajo de": [
+      "embaixo de",
+      "O gato dorme embaixo da cama.",
+      "lugar (locução)"
+    ],
+    "delante de": [
+      "na frente de",
+      "Espero você na frente do cinema.",
+      "lugar (locução)"
+    ],
+    "detrás de": [
+      "atrás de",
+      "O jardim fica atrás da casa.",
+      "lugar (locução)"
+    ],
+    "al lado de": [
+      "ao lado de",
+      "Eu me sento ao lado da Ana.",
+      "lugar (locução)"
+    ],
+    "enfrente de": [
+      "em frente a",
+      "A farmácia fica em frente ao banco.",
+      "lugar (locução)"
+    ],
+    "cerca de": [
+      "perto de",
+      "Moro perto da praia.",
+      "lugar (locução)"
+    ],
+    "lejos de": [
+      "longe de",
+      "O aeroporto fica longe do centro.",
+      "lugar (locução)"
+    ],
+    "antes de": [
+      "antes de",
+      "Lave as mãos antes de comer.",
+      "tempo (locução)"
+    ],
+    "después de": [
+      "depois de",
+      "Depois da aula vamos ao parque.",
+      "tempo (locução)"
+    ],
+    "a través de": [
+      "através de, por meio de",
+      "Fiquei sabendo por meio de uma amiga.",
+      "meio (locução)"
+    ]
+  },
+  "konjunktionen": {
+    "y": [
+      "e",
+      "Eu cozinho e você põe a mesa.",
+      "conjunção coordenativa"
+    ],
+    "e": [
+      "e (antes de i-/hi-)",
+      "Pai e filho trabalham juntos.",
+      "conjunção coordenativa"
+    ],
+    "o": [
+      "ou",
+      "Você vem ou fica?",
+      "conjunção coordenativa"
+    ],
+    "u": [
+      "ou (antes de o-/ho-)",
+      "Sete ou oito pessoas.",
+      "conjunção coordenativa"
+    ],
+    "pero": [
+      "mas",
+      "É caro, mas vale a pena.",
+      "conjunção coordenativa"
+    ],
+    "sino": [
+      "mas sim, e sim (depois de negação)",
+      "Não é azul, e sim verde.",
+      "conjunção coordenativa"
+    ],
+    "ni": [
+      "nem",
+      "Ele não come carne nem peixe.",
+      "conjunção coordenativa"
+    ],
+    "porque": [
+      "porque",
+      "Não saio porque está chovendo.",
+      "conjunção subordinativa"
+    ],
+    "como": [
+      "como (causa, no início)",
+      "Como chovia, ficamos.",
+      "conjunção subordinativa"
+    ],
+    "que": [
+      "que",
+      "Acho que ele tem razão.",
+      "conjunção subordinativa"
+    ],
+    "si": [
+      "se",
+      "Se chover, não vamos.",
+      "conjunção subordinativa"
+    ],
+    "aunque": [
+      "embora, mesmo que",
+      "Embora seja tarde, continuo trabalhando.",
+      "subordinação — indicativo para um fato, subjuntivo para uma hipótese"
+    ],
+    "mientras": [
+      "enquanto",
+      "Enquanto cozinho, escuto rádio.",
+      "subordinação — subjuntivo se ainda vai acontecer"
+    ],
+    "cuando": [
+      "quando",
+      "Quando você chegar, me ligue.",
+      "subordinação — subjuntivo se ainda vai acontecer"
+    ],
+    "antes de que": [
+      "antes que",
+      "Vamos sair antes que comece a chover.",
+      "subordinação — sempre no subjuntivo"
+    ],
+    "después de que": [
+      "depois que",
+      "Depois que ele foi embora, tudo mudou.",
+      "subordinação — subjuntivo se ainda vai acontecer"
+    ],
+    "hasta que": [
+      "até que",
+      "Espere até que eu volte.",
+      "subordinação — subjuntivo se ainda vai acontecer"
+    ],
+    "para que": [
+      "para que",
+      "Explico para que você entenda.",
+      "subordinação — sempre no subjuntivo"
+    ],
+    "así que": [
+      "então, de modo que",
+      "Era tarde, então fomos embora.",
+      "conjunção de consequência"
+    ],
+    "pues": [
+      "pois, então",
+      "Não insista, pois ele não vai mudar de ideia.",
+      "conjunção de consequência"
+    ],
+    "ya que": [
+      "já que",
+      "Já que você está aqui, me ajude.",
+      "conjunção de causa"
+    ],
+    "a menos que": [
+      "a menos que",
+      "Irei, a menos que chova.",
+      "conjunção de condição (+ subjuntivo)"
+    ],
+    "siempre que": [
+      "contanto que, desde que",
+      "Empresto, contanto que você devolva.",
+      "conjunção de condição (+ subjuntivo)"
+    ],
+    "sin embargo": [
+      "no entanto, porém",
+      "É caro; no entanto, vale a pena.",
+      "conector de oposição"
+    ],
+    "en cambio": [
+      "em compensação, por outro lado",
+      "Eu prefiro o mar; meu irmão, por outro lado, a montanha.",
+      "conector de oposição"
+    ],
+    "además": [
+      "além disso",
+      "A casa é grande e, além disso, barata.",
+      "conector de adição"
+    ],
+    "por lo tanto": [
+      "portanto, por conseguinte",
+      "Ele não estudou; portanto, não passou na prova.",
+      "conector de consequência"
+    ],
+    "por un lado": [
+      "por um lado",
+      "Por um lado eu gosto; por outro, é caro.",
+      "conector de organização"
+    ],
+    "a pesar de que": [
+      "apesar de que, mesmo que",
+      "Saímos apesar de estar chovendo.",
+      "conjunção de concessão (indicativo: um fato; subjuntivo: uma hipótese)"
+    ]
+  },
+  "partikeln": {
+    "pues": [
+      "bem, então",
+      "Bem, não sei o que dizer.",
+      "marcador do discurso"
+    ],
+    "bueno": [
+      "bom, tá bom",
+      "Bom, vamos ver.",
+      "marcador do discurso"
+    ],
+    "o sea": [
+      "ou seja",
+      "Ele chega tarde, ou seja, como sempre.",
+      "marcador do discurso"
+    ],
+    "a ver": [
+      "vejamos, deixa eu ver",
+      "Vejamos, o que aconteceu aqui?",
+      "marcador do discurso"
+    ],
+    "oye": [
+      "ei, escuta",
+      "Ei, você tem um momento?",
+      "marcador do discurso"
+    ],
+    "mira": [
+      "olha, veja",
+      "Olha, não é tão simples.",
+      "marcador do discurso"
+    ],
+    "hombre": [
+      "ora, claro",
+      "Ora, claro que sim!",
+      "marcador do discurso"
+    ],
+    "vaya": [
+      "nossa, puxa",
+      "Nossa, que surpresa!",
+      "marcador do discurso"
+    ],
+    "venga": [
+      "vamos, anda",
+      "Vamos, que estamos atrasados!",
+      "marcador do discurso"
+    ],
+    "anda": [
+      "ora, vamos",
+      "Ora, não diga isso.",
+      "marcador do discurso"
+    ],
+    "claro": [
+      "claro",
+      "Claro que eu ajudo você.",
+      "marcador do discurso"
+    ],
+    "en fin": [
+      "enfim",
+      "Enfim, veremos amanhã.",
+      "marcador do discurso"
+    ],
+    "total": [
+      "resumindo, no fim das contas",
+      "Resumindo, não veio ninguém.",
+      "marcador do discurso"
+    ],
+    "ya": [
+      "já, já sei",
+      "Já sei, não precisa repetir.",
+      "marcador do discurso"
+    ]
+  }
+};
+if(LANGUE_APPRISE === "es"){
+    [[praepTheme, "praep"], [konjunktionenTheme, "konjunktionen"], [partikelnTheme, "partikeln"]].forEach(([theme, cle]) => {
+        theme.words.forEach(w => {
+            const p = MOTS_OUTILS_ES_PT[cle][w[0]];
+            if(p){ w[20] = p[0]; w[21] = p[1]; w[22] = p[2]; }
+        });
+    });
+}
 
 let currentTheme = null;
 let currentCards = [];
@@ -36792,7 +37311,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 783;
+const APP_VERSION = 784;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

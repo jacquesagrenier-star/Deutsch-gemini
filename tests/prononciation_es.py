@@ -28,7 +28,7 @@ import hashlib, io, json, os, re, sys
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATOS = os.path.join(RACINE, "espanol", "datos")
-LANGUES = ("fr", "en")
+LANGUES = ("fr", "en", "pt")
 
 
 def guillemets(t):
@@ -148,6 +148,55 @@ ACCENT = [
   ["médico", "canción", "café", "ciudad"]),
 ]
 
+# LE PORTUGAIS DU BRESIL (13 oct. 2026), ecrit CONTRE le portugais et non traduit
+# du francais : le lusophone a deja les cinq voyelles pleines, le r roule
+# (caro / carro) et le lh ~ ll ; ses pieges a lui sont le e et le o fermes ou
+# nasalises, le s sonore entre voyelles (casa), le j et le ch a la francaise,
+# le d et le t palatalises (dia -> « djia »), et le b / v distingues.
+# Cle = id de la regle ; « c-z.es » et « c-z.latam » pour les variantes.
+PT = {
+ "voyelles": ("cinco vogais, sempre inteiras e abertas",
+              "Cinco vogais, sempre pronunciadas do mesmo jeito e por inteiro: a, e, i, o, u. Nunca mudas, nunca nasais — e nunca o e e o o fechados do português: pelo se diz « pé-lo », com e aberto."),
+ "u": ("sempre « u », nunca mudo",
+       "O u se diz sempre « u » e sempre se ouve: luna, « lu-na ». Diferente do português, não há u mudo depois de q e g — em que e gue, só o u escrito com trema (ü) se pronuncia."),
+ "e-final": ("o e final é um e aberto, nunca « i »",
+             "O e se pronuncia sempre, e com som de é, mesmo no fim da palavra: noche se diz « nó-tchê », grande « gran-dê ». A armadilha do brasileiro: transformar esse e final em i (« nochi », « grandi »)."),
+ "sans-nasale": ("sem nasais: a vogal, depois o n",
+                 "Nada de vogais nasais: em pan, también, cinco, diz-se a vogal e DEPOIS o n, com a língua no céu da boca — « pann », « tam-bién ». Nunca o « pão » nem o « tambêm » do português."),
+ "diphtongues": ("duas vogais de uma vez só",
+                 "Duas vogais juntas se dizem de uma vez só: bueno « bué-no », tiempo « tiém-po », nuevo « nué-vo » — como em português « quase », « série »."),
+ "c-z": ("depende da variante",
+         "Antes de e ou i, o c — e o z em qualquer posição — se diz « th » na Espanha e « s » na América Latina."),
+ "c-z.es": ("como o « th » inglês de « think »",
+            "Na Espanha, antes de e ou i, o c — e o z em qualquer posição — se diz com a língua entre os dentes, como o « th » inglês de « think »: cielo « thié-lo », zapato « tha-pa-to ». A América Latina diz « s »: as duas formas são corretas."),
+ "c-z.latam": ("« s »",
+               "Na América Latina, antes de e ou i, o c — e o z em qualquer posição — se diz « s »: cielo « sié-lo », zapato « sa-pa-to ». Na Espanha diz-se « th »: as duas formas são corretas."),
+ "c-qu": ("sempre « k »",
+          "ca, co, cu se dizem « ka, ko, ku ». Antes de e e i escreve-se qu e o u não se ouve: queso « ké-so », aquí « a-ki » — como em português « quero », « aqui »."),
+ "j": ("raspado no fundo da garganta",
+       "O j, e o g antes de e ou i, é um raspar no fundo da garganta, como o rr carioca ou o r de « rato »: jamón, gente. Nunca o j do português (« já », « gente »). No México é mais suave, quase um h aspirado."),
+ "g-gu": ("g duro; gue, gui: u mudo",
+          "ga, go, gu têm g duro, como em « gato ». Antes de e e i escreve-se gu e o u não se ouve: guerra « gué-rra » — como em português. O trema o faz soar: bilingüe « bi-lin-güe »."),
+ "ch": ("« tch »",
+        "ch se diz « tch », como o « tch » de « tchau »: noche « nó-tchê », ocho « ó-tcho ». Nunca o ch do português (« chave »)."),
+ "ll-y": ("como o « i » de « ioga »",
+          "ll e y se dizem como o i de « ioga »: calle « ca-ie », playa « pla-ia ». Não é o lh do português. Na Argentina e no Uruguai ouve-se « ch » ou « j »: calle « ca-che »."),
+ "n-tilde": ("« nh »",
+             "ñ se diz como o nh do português, em « manhã »: niño « ni-nho », mañana « ma-nha-na »."),
+ "h": ("mudo, como em português",
+       "O h nunca se pronuncia, exatamente como em português: hoy « ói », hermano « er-ma-no »."),
+ "r-rr": ("vibrado com a ponta da língua, nunca na garganta",
+          "Um r entre duas vogais é uma só batida da ponta da língua, como o r de « caro » em português. No início da palavra, ou escrito rr, é vibrado várias vezes com a ponta da língua (rojo, perro) — nunca o rr de garganta do Rio ou o r aspirado: caro e carro não querem dizer a mesma coisa."),
+ "b-v": ("b e v: o mesmo som",
+         "b e v se pronunciam exatamente igual: um « b » no início da palavra (vino « bi-no »), um b muito suave, com os lábios mal fechados, entre duas vogais (uva). O v do português não existe em espanhol."),
+ "d": ("suave entre vogais, nunca « dj »",
+       "Entre duas vogais e no fim da palavra, o d é muito suave, quase o « th » inglês de « this »: cansado, nada, ciudad. E antes de i nunca vira « dj » como no Brasil: día se diz « di-a », não « djia »."),
+ "s": ("sempre « ss », nunca « z »",
+       "O s se diz sempre « ss », mesmo entre duas vogais: casa « ca-ssa », rosa « ró-ssa ». O s sonoro do português (« casa » com som de z) não existe em espanhol."),
+ "accent": ("uma sílaba mais forte",
+            "Cada palavra tem uma sílaba mais forte. Palavra terminada em vogal, n ou s: a penúltima (casa, hablan). Outra consoante: a última (ciudad, hablar). Senão, o acento escrito a mostra (café, médico, canción). As regras são parecidas com as do português; nos monossílabos, o acento serve para distinguir (más / mas, sí / si, él / el)."),
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("accent", ACCENT)]
 
 
@@ -177,6 +226,14 @@ def construire():
         for regle in regles:
             rid, graphie, api, court, expl, exemples = regle[:6]
             variantes = regle[6] if len(regle) > 6 else None
+            # Le portugais vient de PT, ecrit contre le portugais (13 oct. 2026).
+            if rid in PT:
+                court = dict(court, pt=PT[rid][0])
+                expl = dict(expl, pt=PT[rid][1])
+            if variantes:
+                variantes = {v: {"court": dict(t["court"], pt=PT[rid + "." + v][0]),
+                                 "explication": dict(t["explication"], pt=PT[rid + "." + v][1])}
+                             for v, t in variantes.items()}
             if rid in ids:
                 fautes.append("id en double : " + rid)
             ids.add(rid)
@@ -200,7 +257,7 @@ def construire():
                 for voix in ("es-es", "es-419"):
                     if not os.path.exists(os.path.join(RACINE, "audio", "mp3", voix, h + ".mp3")):
                         fautes.append("%s : « %s » sans voix %s" % (rid, mot, voix))
-                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en") if e.get(c)}})
+                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             r = {"id": rid, "graphie": graphie, "api": api, "court": court, "explication": expl, "exemples": ex}

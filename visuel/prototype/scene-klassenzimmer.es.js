@@ -23,6 +23,7 @@ window.SCENE = {
    ],
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
+   "pt": "o relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
    "ru": "часы",
@@ -49,6 +50,7 @@ window.SCENE = {
    ],
    "fr": "le tableau",
    "en": "the blackboard",
+   "pt": "a lousa, o quadro",
    "ar": "سبّورة",
    "pl": "tablica",
    "ru": "доска",
@@ -73,7 +75,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_familia",
      "fr": "l'homme",
-     "en": "the man"
+     "en": "the man",
+     "pt": "o homem"
     },
     {
      "mot": "gafas",
@@ -82,6 +85,7 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "les lunettes",
      "en": "glasses",
+     "pt": "os óculos",
      "latam": {
       "mot": "lentes",
       "genre": "los",
@@ -94,7 +98,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "el_aspecto",
      "fr": "la barbe",
-     "en": "the beard"
+     "en": "the beard",
+     "pt": "a barba"
     },
     {
      "mot": "camisa",
@@ -102,7 +107,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la chemise",
-     "en": "the shirt"
+     "en": "the shirt",
+     "pt": "a camisa"
     }
    ],
    "sur": null,
@@ -123,6 +129,7 @@ window.SCENE = {
    ],
    "fr": "le professeur",
    "en": "the teacher",
+   "pt": "o professor",
    "ar": "معلّم",
    "pl": "nauczyciel",
    "ru": "учитель",
@@ -149,6 +156,7 @@ window.SCENE = {
    ],
    "fr": "les lunettes",
    "en": "glasses",
+   "pt": "os óculos",
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
@@ -179,6 +187,7 @@ window.SCENE = {
    ],
    "fr": "la barbe",
    "en": "the beard",
+   "pt": "a barba",
    "ar": "لحية",
    "pl": "broda, zarost",
    "ru": "борода",
@@ -205,6 +214,7 @@ window.SCENE = {
    ],
    "fr": "la craie",
    "en": "the chalk",
+   "pt": "o giz",
    "ar": "طبشور",
    "pl": "kreda",
    "ru": "мел",
@@ -235,6 +245,7 @@ window.SCENE = {
    ],
    "fr": "la porte",
    "en": "the door",
+   "pt": "a porta",
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
@@ -261,6 +272,7 @@ window.SCENE = {
    ],
    "fr": "le crochet",
    "en": "the hook",
+   "pt": "o gancho",
    "ar": "علّاقة، خطّاف",
    "pl": "wieszak, hak",
    "ru": "крючок",
@@ -287,6 +299,7 @@ window.SCENE = {
    ],
    "fr": "le manteau",
    "en": "the coat",
+   "pt": "o casaco, o sobretudo",
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
@@ -313,6 +326,7 @@ window.SCENE = {
    ],
    "fr": "la veste",
    "en": "the jacket",
+   "pt": "a jaqueta, o casaco",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
@@ -339,6 +353,7 @@ window.SCENE = {
    ],
    "fr": "le tableau",
    "en": "the picture",
+   "pt": "o quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
@@ -365,6 +380,7 @@ window.SCENE = {
    ],
    "fr": "la lampe",
    "en": "the lamp",
+   "pt": "a lâmpada, o abajur",
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
@@ -391,6 +407,7 @@ window.SCENE = {
    ],
    "fr": "la fenêtre",
    "en": "the window",
+   "pt": "a janela",
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
@@ -417,6 +434,7 @@ window.SCENE = {
    ],
    "fr": "l'étagère",
    "en": "the shelf unit",
+   "pt": "a estante",
    "ar": "رفّ",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
@@ -443,6 +461,7 @@ window.SCENE = {
    ],
    "fr": "la plante",
    "en": "the plant",
+   "pt": "a planta",
    "ar": "نبات",
    "pl": "roślina",
    "ru": "растение",
@@ -463,7 +482,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_familia",
      "fr": "l'homme",
-     "en": "the man"
+     "en": "the man",
+     "pt": "o homem"
     },
     {
      "mot": "jersey",
@@ -472,6 +492,7 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le pull",
      "en": "the jumper",
+     "pt": "o suéter, a blusa de lã",
      "latam": {
       "mot": "suéter",
       "genre": "el",
@@ -484,7 +505,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_escuela",
      "fr": "l'étudiant",
-     "en": "the student"
+     "en": "the student",
+     "pt": "o estudante"
     },
     {
      "mot": "bolígrafo",
@@ -493,6 +515,7 @@ window.SCENE = {
      "theme": "la_escuela",
      "fr": "le stylo",
      "en": "the pen",
+     "pt": "a caneta",
      "latam": {
       "mot": "pluma",
       "genre": "la",
@@ -524,6 +547,7 @@ window.SCENE = {
    ],
    "fr": "le, la participant(e)",
    "en": "the participant",
+   "pt": "o/a participante",
    "ar": "مشارك",
    "pl": "uczestnik",
    "ru": "участник",
@@ -550,6 +574,7 @@ window.SCENE = {
    ],
    "fr": "le pull",
    "en": "the jumper",
+   "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوف",
    "pl": "sweter",
    "ru": "свитер",
@@ -574,7 +599,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_familia",
      "fr": "la femme, l'épouse",
-     "en": "the wife, the woman"
+     "en": "the wife, the woman",
+     "pt": "a mulher, a esposa"
     },
     {
      "mot": "jersey",
@@ -583,6 +609,7 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le pull",
      "en": "the jumper",
+     "pt": "o suéter, a blusa de lã",
      "latam": {
       "mot": "suéter",
       "genre": "el",
@@ -595,7 +622,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la jupe",
-     "en": "the skirt"
+     "en": "the skirt",
+     "pt": "a saia"
     },
     {
      "mot": "bolígrafo",
@@ -604,6 +632,7 @@ window.SCENE = {
      "theme": "la_escuela",
      "fr": "le stylo",
      "en": "the pen",
+     "pt": "a caneta",
      "latam": {
       "mot": "pluma",
       "genre": "la",
@@ -616,7 +645,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_escuela",
      "fr": "l'étudiant",
-     "en": "the student"
+     "en": "the student",
+     "pt": "o estudante"
     }
    ],
    "sur": null,
@@ -643,6 +673,7 @@ window.SCENE = {
    ],
    "fr": "le, la participant(e)",
    "en": "the participant",
+   "pt": "o/a participante",
    "ar": "مشاركة",
    "pl": "uczestniczka",
    "ru": "участница",
@@ -669,6 +700,7 @@ window.SCENE = {
    ],
    "fr": "la jupe",
    "en": "the skirt",
+   "pt": "a saia",
    "ar": "تنورة",
    "pl": "spódnica",
    "ru": "юбка",
@@ -695,6 +727,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "pt": "o caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
@@ -721,6 +754,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "pt": "o caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
@@ -747,6 +781,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "pt": "o caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
@@ -773,6 +808,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "pt": "o caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
@@ -799,6 +835,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "pt": "a caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
@@ -829,6 +866,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "pt": "a caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
@@ -859,6 +897,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "pt": "a caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
@@ -889,6 +928,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "pt": "a caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
@@ -919,6 +959,7 @@ window.SCENE = {
    ],
    "fr": "le stylo",
    "en": "the pen",
+   "pt": "a caneta",
    "ar": "قلم",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
@@ -949,6 +990,7 @@ window.SCENE = {
    ],
    "fr": "le cahier",
    "en": "the notebook",
+   "pt": "o caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
@@ -975,6 +1017,7 @@ window.SCENE = {
    ],
    "fr": "la table",
    "en": "the table",
+   "pt": "a mesa",
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
@@ -1001,6 +1044,7 @@ window.SCENE = {
    ],
    "fr": "la chaise",
    "en": "the chair",
+   "pt": "a cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
@@ -1027,6 +1071,7 @@ window.SCENE = {
    ],
    "fr": "la chaise",
    "en": "the chair",
+   "pt": "a cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
@@ -1053,6 +1098,7 @@ window.SCENE = {
    ],
    "fr": "le sac à dos",
    "en": "the backpack",
+   "pt": "a mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
@@ -1073,7 +1119,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "los_estudios",
      "fr": "le, la participant(e)",
-     "en": "the participant"
+     "en": "the participant",
+     "pt": "o/a participante"
     },
     {
      "mot": "barba",
@@ -1081,7 +1128,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "el_aspecto",
      "fr": "la barbe",
-     "en": "the beard"
+     "en": "the beard",
+     "pt": "a barba"
     },
     {
      "mot": "camisa",
@@ -1089,7 +1137,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la chemise",
-     "en": "the shirt"
+     "en": "the shirt",
+     "pt": "a camisa"
     },
     {
      "mot": "estudiante",
@@ -1097,7 +1146,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_escuela",
      "fr": "l'étudiant",
-     "en": "the student"
+     "en": "the student",
+     "pt": "o estudante"
     }
    ],
    "sur": null,
@@ -1118,6 +1168,7 @@ window.SCENE = {
    ],
    "fr": "l'homme",
    "en": "the man",
+   "pt": "o homem",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
@@ -1138,7 +1189,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_familia",
      "fr": "la femme, l'épouse",
-     "en": "the wife, the woman"
+     "en": "the wife, the woman",
+     "pt": "a mulher, a esposa"
     },
     {
      "mot": "participante",
@@ -1146,7 +1198,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "los_estudios",
      "fr": "le, la participant(e)",
-     "en": "the participant"
+     "en": "the participant",
+     "pt": "o/a participante"
     },
     {
      "mot": "jersey",
@@ -1155,6 +1208,7 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le pull",
      "en": "the jumper",
+     "pt": "o suéter, a blusa de lã",
      "latam": {
       "mot": "suéter",
       "genre": "el",
@@ -1174,6 +1228,7 @@ window.SCENE = {
    ],
    "fr": "l'étudiant",
    "en": "the student",
+   "pt": "o estudante",
    "ar": "طالبة جامعية",
    "pl": "studentka",
    "ru": "студентка",
@@ -1194,7 +1249,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "los_estudios",
      "fr": "le, la participant(e)",
-     "en": "the participant"
+     "en": "the participant",
+     "pt": "o/a participante"
     },
     {
      "mot": "gafas",
@@ -1203,6 +1259,7 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "les lunettes",
      "en": "glasses",
+     "pt": "os óculos",
      "latam": {
       "mot": "lentes",
       "genre": "los",
@@ -1215,7 +1272,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la robe",
-     "en": "the dress"
+     "en": "the dress",
+     "pt": "o vestido"
     },
     {
      "mot": "estudiante",
@@ -1223,7 +1281,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_escuela",
      "fr": "l'étudiant",
-     "en": "the student"
+     "en": "the student",
+     "pt": "o estudante"
     }
    ],
    "sur": null,
@@ -1238,6 +1297,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "pt": "a mulher, a esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
@@ -1264,6 +1324,7 @@ window.SCENE = {
    ],
    "fr": "les lunettes",
    "en": "glasses",
+   "pt": "os óculos",
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
@@ -1294,6 +1355,7 @@ window.SCENE = {
    ],
    "fr": "la robe",
    "en": "the dress",
+   "pt": "o vestido",
    "ar": "فستان",
    "pl": "sukienka",
    "ru": "платье",
@@ -1320,6 +1382,7 @@ window.SCENE = {
    ],
    "fr": "la chaussure",
    "en": "the shoe",
+   "pt": "o sapato",
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
@@ -1346,6 +1409,7 @@ window.SCENE = {
    ],
    "fr": "l'ordinateur portable",
    "en": "the laptop",
+   "pt": "o notebook, o laptop",
    "ar": "حاسوب محمول",
    "pl": "laptop",
    "ru": "ноутбук",
@@ -1376,6 +1440,7 @@ window.SCENE = {
    ],
    "fr": "le téléphone portable",
    "en": "the mobile phone",
+   "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
@@ -1406,6 +1471,7 @@ window.SCENE = {
    ],
    "fr": "la tasse",
    "en": "cup",
+   "pt": "a xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
@@ -1432,6 +1498,7 @@ window.SCENE = {
    ],
    "fr": "le câble",
    "en": "the cable",
+   "pt": "o cabo",
    "ar": "كابل، سلك",
    "pl": "kabel",
    "ru": "кабель",
@@ -1458,6 +1525,7 @@ window.SCENE = {
    ],
    "fr": "le bureau (meuble)",
    "en": "the desk",
+   "pt": "a escrivaninha, a mesa de trabalho",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
    "ru": "письменный стол",
@@ -1484,6 +1552,7 @@ window.SCENE = {
    ],
    "fr": "le mur",
    "en": "the wall",
+   "pt": "a parede",
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
@@ -2019,9 +2088,46 @@ window.SCENE = {
     "consigne": "Toque num objeto ou numa pessoa. Toque no rosto do professor para ver de perto os óculos e a barba dele."
    },
    "couches": {
-    "A1": "Substantivos e artigos"
+    "A1": "Substantivos e artigos",
+    "A2": "¿Dónde está? — estar e as preposições",
+    "B1": "Pronomes, ser e estar",
+    "B2": "Relativas e passiva",
+    "C1": "Hipóteses e probabilidade"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La mochila está debajo de la mesa.": "<b>¿Dónde?</b> → <b>estar</b> + o lugar: la mochila <b>está</b> debajo de la mesa.",
+    "A2 | El reloj está encima del pizarrón.": "<b>encima de</b> = em cima de. de + el = <b>del</b>: encima <b>del</b> pizarrón.",
+    "A2 | El reloj está encima de la pizarra.": "<b>encima de</b> = em cima de. O lugar se diz sempre com <b>estar</b>.",
+    "A2 | Hay una planta en la estantería.": "Uma coisa nova, com <b>un / una</b> → <b>hay</b>. Com <b>la</b>, diríamos: la planta <b>está</b> en la estantería.",
+    "A2 | El abrigo está en la puerta.": "<b>en</b> = em, na, no: o casaco está pendurado <b>na</b> porta.",
+    "A2 | El profesor está delante del pizarrón.": "<b>delante de</b> = na frente de. de + el = <b>del</b>: delante <b>del</b> pizarrón.",
+    "A2 | El profesor está delante de la pizarra.": "<b>delante de</b> = na frente de. <b>detrás de</b> = atrás de.",
+    "A2 | El celular está al lado de la laptop.": "<b>la</b> laptop é feminino: <b>de la</b>, sem contração. Só <b>de + el</b> vira <b>del</b>.",
+    "A2 | El móvil está al lado del portátil.": "<b>de + el = del</b>: a contração é obrigatória, como “do”. (<b>de la</b> não se contrai — diferente de “da”.)",
+    "A2 | Anna está al lado de Mark.": "<b>al lado de</b> = ao lado de. Antes de um nome próprio, sem artigo: al lado <b>de</b> Mark.",
+    "A2 | El cuadro está entre la puerta y la ventana.": "<b>entre</b> … <b>y</b> … = entre … e ….",
+    "B1 | Anna la ha puesto debajo de la mesa.": "Objeto direto feminino (la mochila) → <b>la</b>. <b>le</b> é o objeto indireto (a ele, a ela).",
+    "B1 | Alguien lo ha colgado en la puerta.": "Objeto direto masculino (el abrigo) → <b>lo</b>.",
+    "B1 | El profesor está delante del pizarrón.": "Onde ele está → <b>estar</b>.",
+    "B1 | El profesor está delante de la pizarra.": "Onde ele está → <b>estar</b>.",
+    "B1 | El profesor es de Sevilla.": "A origem → <b>ser</b>: es de Sevilla.",
+    "B1 | La mesa es de madera.": "O material → <b>ser</b>: es de madera.",
+    "B1 | El cuaderno de Anna está abierto.": "Um estado que resulta de uma ação (alguém o abriu) → <b>estar</b>.",
+    "B1 | Anna está sentada al lado de Mark.": "<b>estar sentado</b> = estar sentado, um estado. O particípio concorda: Anna → sentad<b>a</b>.",
+    "B1 | Anna y Mark están sonriendo.": "Uma ação em andamento: <b>estar</b> + gerúndio (sonriendo).",
+    "B2 | La mujer que lleva un libro bajo el brazo todavía está de pie.": "Sujeito de uma relativa que diz de qual mulher se fala → <b>que</b>. <b>quien</b> só se usa aqui entre vírgulas.",
+    "B2 | El hombre cuyos lentes están sobre la nariz es el profesor.": "<b>cuyo</b> = cujo, cuja. Concorda com o que é possuído: los lentes → <b>cuyos</b>.",
+    "B2 | El hombre cuyas gafas están sobre la nariz es el profesor.": "<b>cuyo</b> = cujo, cuja. Concorda com o que é possuído: las gafas → <b>cuyas</b>.",
+    "B2 | La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.": "<b>cuyo</b> concorda com el cuaderno (masculino), não com Anna → <b>cuyo</b>.",
+    "B2 | La mesa debajo de la cual está la mochila es de madera.": "Depois de uma preposição como <b>debajo de</b>: <b>la cual</b> (ou la que). <b>que</b> sozinho não basta.",
+    "B2 | El pizarrón ya está limpio.": "O resultado de uma ação (alguém a apagou) → <b>estar</b>.",
+    "B2 | La pizarra ya está limpia.": "O resultado de uma ação (alguém a apagou) → <b>estar</b>.",
+    "B2 | En esta clase se enseña español.": "A passiva com <b>se</b>: o verbo concorda com o que se ensina (español, singular) → <b>se enseña</b>.",
+    "C1 | Mark y Anna deben de conocerse: se sonríen.": "<b>deber de</b> + infinitivo = uma dedução: é quase certo.",
+    "C1 | La mujer del vestido habrá llegado tarde.": "O <b>futuro composto</b> expressa uma suposição sobre o passado: habrá llegado = ela deve ter chegado.",
+    "C1 | El profesor tendrá unos cincuenta años.": "O <b>futuro</b> expressa uma suposição sobre o presente: tendrá = ele deve ter.",
+    "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "Hipótese contrária à realidade: <b>si</b> + subjuntivo imperfeito, depois o condicional."
+   }
   },
   "pl": {
    "champs": {

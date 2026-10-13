@@ -17,7 +17,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_casa",
      "fr": "la maison",
-     "en": "the house"
+     "en": "the house",
+     "pt": "a casa"
     }
    ],
    "sur": null,
@@ -32,6 +33,7 @@ window.SCENE = {
    ],
    "fr": "l'immeuble, le bâtiment",
    "en": "the building",
+   "pt": "o prédio, o edifício",
    "ar": "مبنى",
    "pl": "budynek",
    "ru": "здание",
@@ -52,7 +54,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "orientarse",
      "fr": "le carrefour",
-     "en": "the crossroads"
+     "en": "the crossroads",
+     "pt": "o cruzamento"
     }
    ],
    "sur": null,
@@ -67,6 +70,7 @@ window.SCENE = {
    ],
    "fr": "la rue",
    "en": "the street",
+   "pt": "a rua",
    "ar": "شارع",
    "pl": "ulica",
    "ru": "улица",
@@ -93,6 +97,7 @@ window.SCENE = {
    ],
    "fr": "le trottoir",
    "en": "the pavement",
+   "pt": "a calçada",
    "ar": "رصيف المشاة",
    "pl": "chodnik",
    "ru": "тротуар",
@@ -118,6 +123,7 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la vitrine",
      "en": "the shop window",
+     "pt": "a vitrine",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -137,6 +143,7 @@ window.SCENE = {
    ],
    "fr": "la boulangerie",
    "en": "the bakery",
+   "pt": "a padaria",
    "ar": "مخبز",
    "pl": "piekarnia",
    "ru": "булочная, пекарня",
@@ -157,7 +164,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le bretzel",
-     "en": "the pretzel"
+     "en": "the pretzel",
+     "pt": "o pretzel"
     },
     {
      "mot": "escaparate",
@@ -166,6 +174,7 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la vitrine",
      "en": "the shop window",
+     "pt": "a vitrine",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -185,6 +194,7 @@ window.SCENE = {
    ],
    "fr": "le pain",
    "en": "bread",
+   "pt": "o pão",
    "ar": "خبز",
    "pl": "chleb",
    "ru": "хлеб",
@@ -211,6 +221,7 @@ window.SCENE = {
    ],
    "fr": "la pharmacie",
    "en": "the chemist's",
+   "pt": "a farmácia",
    "ar": "صيدلية",
    "pl": "apteka",
    "ru": "аптека",
@@ -237,6 +248,7 @@ window.SCENE = {
    ],
    "fr": "le bureau de poste",
    "en": "the post office",
+   "pt": "a agência dos correios",
    "ar": "بريد، مكتب البريد",
    "pl": "poczta",
    "ru": "почта",
@@ -263,6 +275,7 @@ window.SCENE = {
    ],
    "fr": "la boîte aux lettres",
    "en": "the letterbox",
+   "pt": "a caixa de correio",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
    "ru": "почтовый ящик",
@@ -283,7 +296,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_casa",
      "fr": "la table",
-     "en": "the table"
+     "en": "the table",
+     "pt": "a mesa"
     },
     {
      "mot": "silla",
@@ -291,7 +305,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_casa",
      "fr": "la chaise",
-     "en": "the chair"
+     "en": "the chair",
+     "pt": "a cadeira"
     }
    ],
    "sur": null,
@@ -306,6 +321,7 @@ window.SCENE = {
    ],
    "fr": "le café (l'établissement)",
    "en": "the café",
+   "pt": "a cafeteria, o café",
    "ar": "مقهى",
    "pl": "kawiarnia",
    "ru": "кафе",
@@ -332,6 +348,7 @@ window.SCENE = {
    ],
    "fr": "le store (auvent)",
    "en": "the awning",
+   "pt": "o toldo",
    "ar": "مظلّة (قماشية)",
    "pl": "markiza",
    "ru": "маркиза, навес",
@@ -358,6 +375,7 @@ window.SCENE = {
    ],
    "fr": "l'autobus",
    "en": "the bus",
+   "pt": "o ônibus",
    "ar": "حافلة",
    "pl": "autobus",
    "ru": "автобус",
@@ -384,6 +402,7 @@ window.SCENE = {
    ],
    "fr": "l'abribus",
    "en": "the bus shelter",
+   "pt": "o abrigo de ônibus",
    "ar": "مظلّة موقف الحافلة",
    "pl": "wiata przystankowa",
    "ru": "павильон остановки",
@@ -404,7 +423,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "orientarse",
      "fr": "le panneau",
-     "en": "the sign"
+     "en": "the sign",
+     "pt": "a placa, o sinal"
     }
    ],
    "sur": null,
@@ -419,6 +439,7 @@ window.SCENE = {
    ],
    "fr": "l'arrêt",
    "en": "the stop",
+   "pt": "o ponto, a parada",
    "ar": "موقف (حافلات)",
    "pl": "przystanek",
    "ru": "остановка",
@@ -445,6 +466,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "pt": "a mulher, a esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
@@ -466,6 +488,7 @@ window.SCENE = {
      "theme": "la_ciudad",
      "fr": "la place de stationnement",
      "en": "the parking space",
+     "pt": "a vaga (de estacionamento)",
      "latam": {
       "mot": "estacionamiento",
       "genre": "el",
@@ -485,6 +508,7 @@ window.SCENE = {
    ],
    "fr": "la voiture",
    "en": "the car",
+   "pt": "o carro",
    "ar": "سيارة",
    "pl": "samochód",
    "ru": "машина, автомобиль",
@@ -510,6 +534,7 @@ window.SCENE = {
      "theme": "la_ciudad",
      "fr": "la place de stationnement",
      "en": "the parking space",
+     "pt": "a vaga (de estacionamento)",
      "latam": {
       "mot": "estacionamiento",
       "genre": "el",
@@ -529,6 +554,7 @@ window.SCENE = {
    ],
    "fr": "la voiture",
    "en": "the car",
+   "pt": "o carro",
    "ar": "سيارة",
    "pl": "samochód",
    "ru": "машина, автомобиль",
@@ -559,6 +585,7 @@ window.SCENE = {
    ],
    "fr": "le parcmètre",
    "en": "the parking meter",
+   "pt": "o parquímetro",
    "ar": "عدّاد الوقوف",
    "pl": "parkometr",
    "ru": "паркомат",
@@ -585,6 +612,7 @@ window.SCENE = {
    ],
    "fr": "le panneau",
    "en": "the sign",
+   "pt": "a placa, o sinal",
    "ar": "إشارة مرور (لافتة)",
    "pl": "znak drogowy",
    "ru": "дорожный знак",
@@ -611,6 +639,7 @@ window.SCENE = {
    ],
    "fr": "le panneau",
    "en": "the sign",
+   "pt": "a placa, o sinal",
    "ar": "إشارة مرور (لافتة)",
    "pl": "znak drogowy",
    "ru": "дорожный знак",
@@ -637,6 +666,7 @@ window.SCENE = {
    ],
    "fr": "le feu de circulation",
    "en": "the traffic light",
+   "pt": "o semáforo, o sinal",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
    "ru": "светофор",
@@ -663,6 +693,7 @@ window.SCENE = {
    ],
    "fr": "le feu de circulation",
    "en": "the traffic light",
+   "pt": "o semáforo, o sinal",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
    "ru": "светофор",
@@ -683,7 +714,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "el_transporte",
      "fr": "le camion",
-     "en": "the lorry, the truck"
+     "en": "the lorry, the truck",
+     "pt": "o caminhão"
     }
    ],
    "sur": null,
@@ -698,6 +730,7 @@ window.SCENE = {
    ],
    "fr": "la camionnette",
    "en": "the van",
+   "pt": "a van, a caminhonete",
    "ar": "شاحنة توصيل صغيرة",
    "pl": "samochód dostawczy",
    "ru": "фургон для доставки",
@@ -728,6 +761,7 @@ window.SCENE = {
    ],
    "fr": "le passage piéton",
    "en": "the zebra crossing",
+   "pt": "a faixa de pedestres",
    "ar": "ممرّ المشاة",
    "pl": "przejście dla pieszych, zebra",
    "ru": "пешеходный переход, «зебра»",
@@ -758,6 +792,7 @@ window.SCENE = {
    ],
    "fr": "le passage piéton",
    "en": "the zebra crossing",
+   "pt": "a faixa de pedestres",
    "ar": "ممرّ المشاة",
    "pl": "przejście dla pieszych, zebra",
    "ru": "пешеходный переход, «зебра»",
@@ -782,7 +817,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_familia",
      "fr": "l'homme",
-     "en": "the man"
+     "en": "the man",
+     "pt": "o homem"
     },
     {
      "mot": "mochila",
@@ -790,7 +826,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "le sac à dos",
-     "en": "the backpack"
+     "en": "the backpack",
+     "pt": "a mochila"
     }
    ],
    "sur": null,
@@ -805,6 +842,7 @@ window.SCENE = {
    ],
    "fr": "le piéton",
    "en": "the pedestrian",
+   "pt": "o pedestre",
    "ar": "راجل، ماشٍ",
    "pl": "pieszy",
    "ru": "пешеход",
@@ -825,7 +863,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "le sac",
-     "en": "the bag"
+     "en": "the bag",
+     "pt": "a sacola"
     }
    ],
    "sur": null,
@@ -840,6 +879,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "pt": "a mulher, a esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
@@ -861,6 +901,7 @@ window.SCENE = {
      "theme": "la_ciudad",
      "fr": "la voiture",
      "en": "the car",
+     "pt": "o carro",
      "latam": {
       "mot": "carro",
       "genre": "el",
@@ -880,6 +921,7 @@ window.SCENE = {
    ],
    "fr": "le taxi",
    "en": "the taxi",
+   "pt": "o táxi",
    "ar": "سيارة أجرة",
    "pl": "taksówka",
    "ru": "такси",
@@ -906,6 +948,7 @@ window.SCENE = {
    ],
    "fr": "le tramway",
    "en": "the tram",
+   "pt": "o bonde",
    "ar": "ترام",
    "pl": "tramwaj",
    "ru": "трамвай",
@@ -932,6 +975,7 @@ window.SCENE = {
    ],
    "fr": "la moto",
    "en": "the motorbike",
+   "pt": "a moto",
    "ar": "درّاجة نارية",
    "pl": "motocykl",
    "ru": "мотоцикл",
@@ -958,6 +1002,7 @@ window.SCENE = {
    ],
    "fr": "la piste cyclable",
    "en": "the cycle lane",
+   "pt": "a ciclovia",
    "ar": "مسار الدرّاجات",
    "pl": "ścieżka rowerowa",
    "ru": "велосипедная дорожка",
@@ -982,7 +1027,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ciudad",
      "fr": "le vélo",
-     "en": "the bicycle"
+     "en": "the bicycle",
+     "pt": "a bicicleta"
     },
     {
      "mot": "chaqueta",
@@ -990,7 +1036,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la veste",
-     "en": "the jacket"
+     "en": "the jacket",
+     "pt": "a jaqueta, o casaco"
     }
    ],
    "sur": null,
@@ -1005,6 +1052,7 @@ window.SCENE = {
    ],
    "fr": "le cycliste",
    "en": "the cyclist",
+   "pt": "o/a ciclista",
    "ar": "راكب دراجة",
    "pl": "rowerzysta",
    "ru": "велосипедист",
@@ -1031,6 +1079,7 @@ window.SCENE = {
    ],
    "fr": "le casque",
    "en": "the helmet",
+   "pt": "o capacete",
    "ar": "خوذة",
    "pl": "kask",
    "ru": "шлем",
@@ -1057,6 +1106,7 @@ window.SCENE = {
    ],
    "fr": "le kiosque",
    "en": "the newsstand",
+   "pt": "a banca (de jornal)",
    "ar": "كشك",
    "pl": "kiosk",
    "ru": "киоск",
@@ -1083,6 +1133,7 @@ window.SCENE = {
    ],
    "fr": "la bouteille",
    "en": "bottle",
+   "pt": "a garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
@@ -1109,6 +1160,7 @@ window.SCENE = {
    ],
    "fr": "la boîte aux lettres",
    "en": "the letterbox",
+   "pt": "a caixa de correio",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
    "ru": "почтовый ящик",
@@ -1135,6 +1187,7 @@ window.SCENE = {
    ],
    "fr": "le réverbère",
    "en": "the street lamp",
+   "pt": "o poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
@@ -1160,6 +1213,7 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "le téléphone portable",
      "en": "the mobile phone",
+     "pt": "o celular",
      "latam": {
       "mot": "celular",
       "genre": "el",
@@ -1172,7 +1226,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la veste",
-     "en": "the jacket"
+     "en": "the jacket",
+     "pt": "a jaqueta, o casaco"
     }
    ],
    "sur": null,
@@ -1187,6 +1242,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "pt": "a mulher, a esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
@@ -1213,6 +1269,7 @@ window.SCENE = {
    ],
    "fr": "le feu de circulation",
    "en": "the traffic light",
+   "pt": "o semáforo, o sinal",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
    "ru": "светофор",
@@ -1233,7 +1290,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ciudad",
      "fr": "le vélo",
-     "en": "the bicycle"
+     "en": "the bicycle",
+     "pt": "a bicicleta"
     }
    ],
    "sur": null,
@@ -1248,6 +1306,7 @@ window.SCENE = {
    ],
    "fr": "le support à vélos",
    "en": "the bike rack",
+   "pt": "o bicicletário",
    "ar": "حامل الدرّاجات",
    "pl": "stojak na rowery",
    "ru": "велопарковка",
@@ -1785,9 +1844,51 @@ window.SCENE = {
     "consigne": "Anna procura o caminho em Berlim. Toque num prédio, num veículo ou numa pessoa."
    },
    "couches": {
-    "A1": "Substantivos e artigos"
+    "A1": "Substantivos e artigos",
+    "A2": "¿Dónde está? — na cidade",
+    "B1": "Indicar o caminho — o imperativo de usted",
+    "B2": "Relativas e se",
+    "C1": "Hipóteses e probabilidade"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La farmacia está entre la panadería y la oficina de correos.": "<b>entre</b> = entre, sem « de »: entre la panadería y la oficina de correos.",
+    "A2 | La cafetería está en la esquina.": "Na esquina: <b>en la esquina</b>. O lugar se diz com <b>estar</b>.",
+    "A2 | La panadería está enfrente del quiosco.": "<b>enfrente de</b> = em frente a. de + el = <b>del</b>: enfrente <b>del</b> quiosco.",
+    "A2 | Delante de la oficina de correos hay un buzón.": "Para dizer o que há, sem artigo definido → <b>hay</b> + un / una.",
+    "A2 | La mujer del abrigo rojo espera en la parada.": "<b>en</b> = em, no, na: o lugar onde se está (en la parada).",
+    "A2 | El ciclista va por la ciclovía.": "<b>por</b> = ao longo de, por onde se passa: va <b>por</b> el carril bici.",
+    "A2 | El ciclista va por el carril bici.": "<b>por</b> = ao longo de, por onde se passa: va <b>por</b> el carril bici.",
+    "A2 | Anna está entre el farol y el semáforo.": "<b>entre</b> … <b>y</b> …: entre o poste de luz e o semáforo.",
+    "A2 | Anna está entre la farola y el semáforo.": "<b>entre</b> … <b>y</b> …: entre o poste de luz e o semáforo.",
+    "A2 | Las bicicletas están en el bicicletero.": "Plural → <b>están</b>.",
+    "A2 | Las bicicletas están en el aparcabicis.": "Plural → <b>están</b>.",
+    "A2 | Los peatones están en el paso peatonal.": "Plural → <b>están</b>. El paso de cebra = a faixa de pedestres.",
+    "A2 | Los peatones están en el paso de cebra.": "Plural → <b>están</b>. El paso de cebra = a faixa de pedestres.",
+    "A2 | El quiosco está en la banqueta.": "La acera = a calçada; la calle = a rua.",
+    "A2 | El quiosco está en la acera.": "La acera = a calçada; la calle = a rua.",
+    "B1 | Perdone, ¿cómo llego a la farmacia?": "Para perguntar o caminho: <b>¿Cómo llego a…?</b> (llegar, eu).",
+    "B1 | Cruce la calle por el paso peatonal.": "Imperativo de <b>usted</b> = subjuntivo presente: cruzar → <b>cruce</b> (z → c antes de e).",
+    "B1 | Cruce la calle por el paso de cebra.": "Imperativo de <b>usted</b> = subjuntivo presente: cruzar → <b>cruce</b> (z → c antes de e).",
+    "B1 | Espere hasta que el semáforo se ponga verde.": "Usted → <b>espere</b>. E <b>hasta que</b> + futuro leva o subjuntivo: se ponga.",
+    "B1 | Siga todo recto hasta la esquina.": "<b>hasta</b> = até. <b>Siga todo recto</b> = siga reto.",
+    "B1 | La farmacia está justo delante de usted, entre la panadería y correos.": "<b>delante de</b> = na frente de.",
+    "B1 | Para ir a correos, pase por delante de la farmacia.": "Usted → <b>pase</b>. <b>pasar por delante de</b> = passar na frente de.",
+    "B1 | La camioneta sale de la calle lateral.": "DESCREVE-SE o que ela faz → indicativo: <b>sale</b>. <b>salga</b> seria uma ordem (usted).",
+    "B1 | La furgoneta sale de la calle lateral.": "DESCREVE-SE o que ela faz → indicativo: <b>sale</b>. <b>salga</b> seria uma ordem (usted).",
+    "B1 | No cruce la calle con el semáforo en rojo.": "Na forma negativa, usted continua no subjuntivo: <b>no cruce</b>.",
+    "B2 | La cafetería, cuyo toldo es rojo, tiene mesas fuera.": "<b>cuyo</b> concorda com o que é possuído: el toldo → <b>cuyo</b>.",
+    "B2 | La mujer que espera en la parada lleva un abrigo rojo.": "Sujeito de uma relativa que diz de qual mulher se trata → <b>que</b>.",
+    "B2 | La farmacia a la que quiere ir Anna está enfrente.": "Preposição + relativo: a <b>la que</b> (la farmacia).",
+    "B2 | A lo largo de la banqueta hay una ciclovía roja.": "Uma coisa que se apresenta (un carril) → <b>hay</b>.",
+    "B2 | A lo largo de la acera hay un carril bici rojo.": "Uma coisa que se apresenta (un carril) → <b>hay</b>.",
+    "B2 | En la panadería se vende pan.": "Passiva com <b>se</b>: o verbo concorda com o que é vendido (el pan, singular) → <b>se vende</b>.",
+    "B2 | En el quiosco se venden bebidas.": "Plural (bebidas) → <b>se venden</b>.",
+    "C1 | Debe de haberse perdido.": "<b>deber de</b> + infinitivo = uma dedução: é provável.",
+    "C1 | Habrá llovido hace poco.": "Futuro composto de probabilidade: <b>habrá</b> llovido = deve ter chovido.",
+    "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "Condição irreal (estuviera), ação já feita → condicional composto: <b>habría cruzado</b>.",
+    "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjuntivo: uma possibilidade → <b>lleve</b>.",
+    "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjuntivo: uma possibilidade → <b>lleve</b>."
+   }
   },
   "pl": {
    "champs": {

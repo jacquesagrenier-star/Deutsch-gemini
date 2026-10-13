@@ -8500,3 +8500,19 @@ Bandeau « ouvre-le dans Chrome » prevu en v783.
   « Gardes » -> « Mis de cote », dans les 9 langues.
 Parcours : 31 ecarts, tous attendus (Garder/Gardes) -- nouvelles references de-v783.json et
 es-v783.json, CLAUDE.md mis a jour.
+
+## 13 octobre 2026 -- v784 : l'espagnol en portugais du Bresil, et gustar explique mot a mot
+
+- **L'espagnol est complet pour les lusophones** (chantier Fable) : traduction_pt + exemple_pt
+  sur les 3 854 entrees du corpus espagnol, 1 041 exercices, les 7 fiches de grammaire
+  reecrites contre le portugais (faux amis exquisito, embarazada, polvo...), prononciation,
+  scenes (titres et notes), bloc I18N_ESPAGNOL.pt (125 cles). LANGUES_UI_AVEC_ESPAGNOL =
+  fr, en, pt : le bouton Espagnol reapparait en portugais. Reste : relecture par un natif
+  bresilien, et la voix pt de la visite guidee (payante).
+- **gustar** (« le verbe s'accorde avec ce qui plait... ce n'est pas tres clair », Jacques) :
+  57 exercices reecrits en fr/en/pt -- « mot a mot : le chocolat me plait ; une chose aimee ->
+  gusta, plusieurs -> gustan ».
+- Vu en chemin, a faire : le panneau des verbes espagnols montre l'exercice allemand « wissen ou
+  kennen ? » ; la carte de verbe espagnole n'a que 4 temps, sans exemple par temps (chantier
+  confie a Fable, avant l'arabe). Noms de themes espagnols affiches en anglais partout.
+Parcours : allemand 0 ecart ; espagnol 3 ecarts, tous gustar (reference es-v783.json renouvelee).

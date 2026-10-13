@@ -23,6 +23,7 @@ window.SCENE = {
    ],
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
+   "pt": "o teto, o telhado",
    "ar": "بطانية",
    "pl": "koc",
    "ru": "одеяло, плед",
@@ -49,6 +50,7 @@ window.SCENE = {
    ],
    "fr": "le mur",
    "en": "the wall",
+   "pt": "a parede",
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
@@ -75,6 +77,7 @@ window.SCENE = {
    ],
    "fr": "le sol",
    "en": "the floor",
+   "pt": "o chão, o piso",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
@@ -99,7 +102,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "nom_casa",
      "fr": "l'abat-jour",
-     "en": "the lampshade"
+     "en": "the lampshade",
+     "pt": "a cúpula (do abajur)"
     }
    ],
    "sur": null,
@@ -114,6 +118,7 @@ window.SCENE = {
    ],
    "fr": "la lampe",
    "en": "the lamp",
+   "pt": "a lâmpada, o abajur",
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
@@ -140,6 +145,7 @@ window.SCENE = {
    ],
    "fr": "le parapluie",
    "en": "the umbrella",
+   "pt": "o guarda-chuva",
    "ar": "مظلّة",
    "pl": "parasol",
    "ru": "зонт",
@@ -166,6 +172,7 @@ window.SCENE = {
    ],
    "fr": "l'armoire, le placard",
    "en": "the wardrobe",
+   "pt": "o armário, o guarda-roupa",
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
@@ -190,7 +197,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "el_deporte",
      "fr": "le ballon",
-     "en": "the ball (football)"
+     "en": "the ball (football)",
+     "pt": "a bola (de futebol)"
     }
    ],
    "sur": "schrank",
@@ -205,6 +213,7 @@ window.SCENE = {
    ],
    "fr": "le ballon, la balle",
    "en": "the ball",
+   "pt": "a bola",
    "ar": "كرة",
    "pl": "piłka",
    "ru": "мяч",
@@ -231,6 +240,7 @@ window.SCENE = {
    ],
    "fr": "le tableau",
    "en": "the picture",
+   "pt": "o quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
@@ -257,6 +267,7 @@ window.SCENE = {
    ],
    "fr": "la fenêtre",
    "en": "the window",
+   "pt": "a janela",
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
@@ -283,6 +294,7 @@ window.SCENE = {
    ],
    "fr": "le radiateur",
    "en": "the radiator",
+   "pt": "o radiador",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
@@ -303,7 +315,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "nom_casa",
      "fr": "la guirlande lumineuse",
-     "en": "the string of fairy lights"
+     "en": "the string of fairy lights",
+     "pt": "o pisca-pisca, a guirlanda de luzes"
     }
    ],
    "sur": null,
@@ -318,6 +331,7 @@ window.SCENE = {
    ],
    "fr": "la plante",
    "en": "the plant",
+   "pt": "a planta",
    "ar": "نبات",
    "pl": "roślina",
    "ru": "растение",
@@ -338,7 +352,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_casa",
      "fr": "la lampe",
-     "en": "the lamp"
+     "en": "the lamp",
+     "pt": "a lâmpada, o abajur"
     },
     {
      "mot": "pantalla",
@@ -346,7 +361,8 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "nom_casa",
      "fr": "l'abat-jour",
-     "en": "the lampshade"
+     "en": "the lampshade",
+     "pt": "a cúpula (do abajur)"
     }
    ],
    "sur": null,
@@ -361,6 +377,7 @@ window.SCENE = {
    ],
    "fr": "le lampadaire",
    "en": "the floor lamp",
+   "pt": "a luminária de chão",
    "ar": "مصباح أرضي",
    "pl": "lampa stojąca",
    "ru": "торшер",
@@ -387,6 +404,7 @@ window.SCENE = {
    ],
    "fr": "la chaussette",
    "en": "the sock",
+   "pt": "a meia",
    "ar": "جورب",
    "pl": "skarpetka",
    "ru": "носок",
@@ -413,6 +431,7 @@ window.SCENE = {
    ],
    "fr": "l'étagère",
    "en": "the shelf unit",
+   "pt": "a estante",
    "ar": "رفّ",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
@@ -433,7 +452,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "los_animales",
      "fr": "le poisson (vivant)",
-     "en": "the fish (alive)"
+     "en": "the fish (alive)",
+     "pt": "o peixe (vivo)"
     }
    ],
    "sur": "regal",
@@ -448,6 +468,7 @@ window.SCENE = {
    ],
    "fr": "le poisson rouge",
    "en": "the goldfish",
+   "pt": "o peixinho dourado",
    "ar": "سمكة ذهبية",
    "pl": "złota rybka",
    "ru": "золотая рыбка",
@@ -478,6 +499,7 @@ window.SCENE = {
    ],
    "fr": "le vélo",
    "en": "the bicycle",
+   "pt": "a bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
@@ -504,6 +526,7 @@ window.SCENE = {
    ],
    "fr": "la porte",
    "en": "the door",
+   "pt": "a porta",
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
@@ -530,6 +553,7 @@ window.SCENE = {
    ],
    "fr": "le canapé",
    "en": "the sofa",
+   "pt": "o sofá",
    "ar": "أريكة، كنبة",
    "pl": "kanapa",
    "ru": "диван",
@@ -556,6 +580,7 @@ window.SCENE = {
    ],
    "fr": "le livre",
    "en": "the book",
+   "pt": "o livro",
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
@@ -582,6 +607,7 @@ window.SCENE = {
    ],
    "fr": "la guitare",
    "en": "the guitar",
+   "pt": "o violão, a guitarra",
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
@@ -602,7 +628,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_ropa",
      "fr": "la chaussure",
-     "en": "the shoe"
+     "en": "the shoe",
+     "pt": "o sapato"
     }
    ],
    "sur": null,
@@ -617,6 +644,7 @@ window.SCENE = {
    ],
    "fr": "la basket",
    "en": "the trainer",
+   "pt": "o tênis",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды",
@@ -647,6 +675,7 @@ window.SCENE = {
    ],
    "fr": "la télévision",
    "en": "the television",
+   "pt": "a televisão",
    "ar": "تلفاز",
    "pl": "telewizor",
    "ru": "телевизор",
@@ -667,7 +696,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "l'assiette, le plat",
-     "en": "plate, dish"
+     "en": "plate, dish",
+     "pt": "o prato"
     }
    ],
    "sur": null,
@@ -682,6 +712,7 @@ window.SCENE = {
    ],
    "fr": "la pizza",
    "en": "the pizza",
+   "pt": "a pizza",
    "ar": "بيتزا",
    "pl": "pizza",
    "ru": "пицца",
@@ -702,7 +733,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_casa",
      "fr": "la table",
-     "en": "the table"
+     "en": "the table",
+     "pt": "a mesa"
     }
    ],
    "sur": null,
@@ -717,6 +749,7 @@ window.SCENE = {
    ],
    "fr": "la table basse",
    "en": "the coffee table",
+   "pt": "a mesa de centro",
    "ar": "طاولة القهوة",
    "pl": "stolik kawowy, ława",
    "ru": "журнальный столик",
@@ -747,6 +780,7 @@ window.SCENE = {
    ],
    "fr": "la tasse",
    "en": "cup",
+   "pt": "a xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
@@ -767,7 +801,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "la pizza",
-     "en": "the pizza"
+     "en": "the pizza",
+     "pt": "a pizza"
     }
    ],
    "sur": "couchtisch",
@@ -782,6 +817,7 @@ window.SCENE = {
    ],
    "fr": "le carton",
    "en": "the cardboard box",
+   "pt": "a caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
@@ -808,6 +844,7 @@ window.SCENE = {
    ],
    "fr": "le chien",
    "en": "the dog",
+   "pt": "o cachorro, o cão",
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
@@ -834,6 +871,7 @@ window.SCENE = {
    ],
    "fr": "le seau",
    "en": "the bucket",
+   "pt": "o balde",
    "ar": "دلو",
    "pl": "wiadro",
    "ru": "ведро",
@@ -864,6 +902,7 @@ window.SCENE = {
    ],
    "fr": "la bouteille",
    "en": "bottle",
+   "pt": "a garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
@@ -890,6 +929,7 @@ window.SCENE = {
    ],
    "fr": "le carton",
    "en": "the cardboard box",
+   "pt": "a caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
@@ -916,6 +956,7 @@ window.SCENE = {
    ],
    "fr": "le chat",
    "en": "the cat",
+   "pt": "o gato",
    "ar": "قطة",
    "pl": "kot",
    "ru": "кошка",
@@ -942,6 +983,7 @@ window.SCENE = {
    ],
    "fr": "le ballon de baudruche",
    "en": "the balloon",
+   "pt": "o balão, a bexiga",
    "ar": "بالون",
    "pl": "balon, balonik",
    "ru": "воздушный шарик",
@@ -968,6 +1010,7 @@ window.SCENE = {
    ],
    "fr": "le ballon de baudruche",
    "en": "the balloon",
+   "pt": "o balão, a bexiga",
    "ar": "بالون",
    "pl": "balon, balonik",
    "ru": "воздушный шарик",
@@ -994,6 +1037,7 @@ window.SCENE = {
    ],
    "fr": "la valise",
    "en": "the suitcase",
+   "pt": "a mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
@@ -1514,9 +1558,50 @@ window.SCENE = {
     "consigne": "Mark volta de viagem… e os colegas de apartamento fizeram festa. Toque num objeto."
    },
    "couches": {
-    "A1": "Substantivos e artigos"
+    "A1": "Substantivos e artigos",
+    "A2": "¿Dónde está? — estar e as preposições",
+    "B1": "hay, estar, ser e os pronomes",
+    "B2": "Relativas e passiva",
+    "C1": "Hipóteses e probabilidade"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El balón está encima del clóset.": "<b>encima de</b> = em cima de. de + el = <b>del</b>: encima <b>del</b> armario.",
+    "A2 | El balón está encima del armario.": "<b>encima de</b> = em cima de. de + el = <b>del</b>: encima <b>del</b> armario.",
+    "A2 | El perro está debajo de la mesa de centro.": "<b>debajo de</b> = embaixo de. O lugar se diz com <b>estar</b>.",
+    "A2 | El perro está debajo de la mesa baja.": "<b>debajo de</b> = embaixo de. O lugar se diz com <b>estar</b>.",
+    "A2 | El gato está en la caja de cartón.": "<b>en</b> = em, dentro de: o lugar onde se está. Também se diz <b>dentro de</b>.",
+    "A2 | El paraguas está colgado de la lámpara.": "<b>colgado de</b> = pendurado em. Concorda: el paraguas → colgad<b>o</b>.",
+    "A2 | La bicicleta está delante de la estantería.": "<b>delante de</b> = na frente de; <b>detrás de</b> = atrás de.",
+    "A2 | La guitarra está entre el clóset y el sofá.": "<b>entre</b> = entre, sem « de »: entre el armario y el sofá.",
+    "A2 | La guitarra está entre el armario y el sofá.": "<b>entre</b> = entre, sem « de »: entre el armario y el sofá.",
+    "A2 | Los tenis están debajo del sofá.": "Plural → <b>están</b>. de + el = <b>del</b>: debajo <b>del</b> sofá.",
+    "A2 | Las zapatillas están debajo del sofá.": "Plural → <b>están</b>. de + el = <b>del</b>: debajo <b>del</b> sofá.",
+    "A2 | El radiador está debajo de la ventana.": "<b>debajo de</b> = embaixo de.",
+    "A2 | El calcetín está colgado de la lámpara de pie.": "<b>colgado de</b> = pendurado em: el calcetín → colgad<b>o</b>.",
+    "A2 | La pecera con el pez dorado está encima de la estantería.": "<b>encima de</b> = em cima de. La pecera = o aquário.",
+    "A2 | La pecera con el pez de colores está encima de la estantería.": "<b>encima de</b> = em cima de. La pecera = o aquário.",
+    "B1 | En el piso hay muchos globos.": "Para dizer que há algo, sem defini-lo → <b>hay</b> (invariável, como “há”).",
+    "B1 | En el suelo hay muchos globos.": "Para dizer que há algo, sem defini-lo → <b>hay</b> (invariável, como “há”).",
+    "B1 | Los globos están en el piso.": "Com o artigo definido (<b>los</b> globos) → <b>estar</b>, não hay.",
+    "B1 | Los globos están en el suelo.": "Com o artigo definido (<b>los</b> globos) → <b>estar</b>, não hay.",
+    "B1 | Mark la pone en la estantería.": "Objeto direto feminino (la taza) → <b>la</b>.",
+    "B1 | Mark lo cuelga detrás de la puerta.": "Objeto direto masculino (el paraguas) → <b>lo</b>.",
+    "B1 | Mark las tira a la basura.": "Objeto direto feminino plural (las botellas) → <b>las</b>.",
+    "B1 | El sofá es gris.": "Uma característica (a cor) → <b>ser</b>.",
+    "B1 | El perro está dormido debajo de la mesa.": "Um estado (dormido) e um lugar → <b>estar</b>.",
+    "B1 | La puerta está abierta.": "Um resultado, um estado → <b>estar</b> + particípio concordado: abiert<b>a</b>.",
+    "B2 | La lámpara de la que cuelga el paraguas es redonda.": "Preposição + relativo: de <b>la que</b> (la lámpara). Sem o artigo, « de que » seria errado.",
+    "B2 | El perro, que duerme debajo de la mesa, no oyó la fiesta.": "Sujeito da relativa → <b>que</b>. <b>quien</b> só se refere a uma pessoa.",
+    "B2 | El gato, cuya cabeza sale de la caja, parece tranquilo.": "<b>cuyo</b> = cujo, cuja. Concorda com o que é possuído: la cabeza → <b>cuya</b>.",
+    "B2 | La estantería delante de la cual está la bicicleta está llena de libros.": "Depois de uma preposição de várias palavras (delante de), usa-se <b>la cual</b>.",
+    "B2 | Los globos fueron inflados por los invitados.": "Passiva com <b>ser</b>: ser + particípio concordado (los globos → inflad<b>os</b>).",
+    "B2 | La puerta está abierta desde anoche.": "Passiva de estado: <b>estar</b> + particípio concordado. O resultado dura.",
+    "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + infinitivo = uma dedução: é quase certo, pelos balões.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = é possível, sem prova. <b>debe</b> seria uma certeza.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Condição irreal no passado (hubiera viajado), consequência no presente → condicional: <b>estaría</b>.",
+    "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "Uma previsão → futuro: <b>se enfadará</b>. E <b>cuando</b> + futuro leva o subjuntivo: vea.",
+    "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "Uma previsão → futuro: <b>se enfadará</b>. E <b>cuando</b> + futuro leva o subjuntivo: vea."
+   }
   },
   "pl": {
    "champs": {

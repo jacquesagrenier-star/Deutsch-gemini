@@ -17,7 +17,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -25,7 +26,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -40,6 +42,7 @@ window.SCENE = {
    ],
    "fr": "la pastèque",
    "en": "the watermelon",
+   "pt": "a melancia",
    "ar": "بطّيخ",
    "pl": "arbuz",
    "ru": "арбуз",
@@ -60,7 +63,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -68,7 +72,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -83,6 +88,7 @@ window.SCENE = {
    ],
    "fr": "l'ananas",
    "en": "the pineapple",
+   "pt": "o abacaxi",
    "ar": "أناناس",
    "pl": "ananas",
    "ru": "ананас",
@@ -103,7 +109,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -111,7 +118,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -126,6 +134,7 @@ window.SCENE = {
    ],
    "fr": "la noix de coco",
    "en": "the coconut",
+   "pt": "o coco",
    "ar": "جوز الهند",
    "pl": "kokos",
    "ru": "кокосовый орех",
@@ -146,7 +155,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -154,7 +164,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -169,6 +180,7 @@ window.SCENE = {
    ],
    "fr": "le melon",
    "en": "the melon",
+   "pt": "o melão",
    "ar": "شمّام",
    "pl": "melon",
    "ru": "дыня",
@@ -189,7 +201,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -197,7 +210,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -212,6 +226,7 @@ window.SCENE = {
    ],
    "fr": "l'orange",
    "en": "orange",
+   "pt": "a laranja",
    "ar": "برتقالة",
    "pl": "pomarańcza",
    "ru": "апельсин",
@@ -232,7 +247,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -240,7 +256,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -255,6 +272,7 @@ window.SCENE = {
    ],
    "fr": "l'avocat (fruit)",
    "en": "the avocado",
+   "pt": "o abacate",
    "ar": "أفوكادو",
    "pl": "awokado",
    "ru": "авокадо",
@@ -275,7 +293,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -283,7 +302,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -298,6 +318,7 @@ window.SCENE = {
    ],
    "fr": "la papaye",
    "en": "the papaya",
+   "pt": "o mamão, a papaia",
    "ar": "بابايا",
    "pl": "papaja",
    "ru": "папайя",
@@ -318,7 +339,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -326,7 +348,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -341,6 +364,7 @@ window.SCENE = {
    ],
    "fr": "le citron",
    "en": "the lemon",
+   "pt": "o limão",
    "ar": "ليمون",
    "pl": "cytryna",
    "ru": "лимон",
@@ -361,7 +385,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -369,7 +394,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -384,6 +410,7 @@ window.SCENE = {
    ],
    "fr": "le kiwi",
    "en": "the kiwi",
+   "pt": "o kiwi",
    "ar": "كيوي",
    "pl": "kiwi",
    "ru": "киви",
@@ -404,7 +431,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -412,7 +440,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -427,6 +456,7 @@ window.SCENE = {
    ],
    "fr": "la mandarine",
    "en": "the tangerine",
+   "pt": "a tangerina, a mexerica",
    "ar": "يوسفي، مندرين",
    "pl": "mandarynka",
    "ru": "мандарин",
@@ -447,7 +477,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -455,7 +486,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -470,6 +502,7 @@ window.SCENE = {
    ],
    "fr": "la figue",
    "en": "the fig",
+   "pt": "o figo",
    "ar": "تين",
    "pl": "figa",
    "ru": "инжир",
@@ -490,7 +523,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -498,7 +532,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -513,6 +548,7 @@ window.SCENE = {
    ],
    "fr": "le citron vert",
    "en": "the lime",
+   "pt": "o limão (verde)",
    "ar": "ليمون أخضر (ليم)",
    "pl": "limonka",
    "ru": "лайм",
@@ -533,7 +569,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -541,7 +578,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -556,6 +594,7 @@ window.SCENE = {
    ],
    "fr": "le pamplemousse",
    "en": "the grapefruit",
+   "pt": "a toranja",
    "ar": "جريب فروت",
    "pl": "grejpfrut",
    "ru": "грейпфрут",
@@ -580,7 +619,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -588,7 +628,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -603,6 +644,7 @@ window.SCENE = {
    ],
    "fr": "la mangue",
    "en": "the mango",
+   "pt": "a manga",
    "ar": "مانجو",
    "pl": "mango",
    "ru": "манго",
@@ -623,7 +665,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -631,7 +674,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -646,6 +690,7 @@ window.SCENE = {
    ],
    "fr": "la banane",
    "en": "banana",
+   "pt": "a banana",
    "ar": "موزة",
    "pl": "banan",
    "ru": "банан",
@@ -666,7 +711,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "las_compras",
      "fr": "la caisse",
-     "en": "the checkout"
+     "en": "the checkout",
+     "pt": "o caixa"
     },
     {
      "mot": "fruta",
@@ -674,7 +720,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "la_comida",
      "fr": "le fruit",
-     "en": "fruit"
+     "en": "fruit",
+     "pt": "a fruta"
     }
    ],
    "sur": null,
@@ -689,6 +736,7 @@ window.SCENE = {
    ],
    "fr": "la grenade (fruit)",
    "en": "the pomegranate",
+   "pt": "a romã",
    "ar": "رمّان",
    "pl": "granat (owoc)",
    "ru": "гранат",
@@ -721,6 +769,7 @@ window.SCENE = {
    ],
    "fr": "la femme, l'épouse",
    "en": "the wife, the woman",
+   "pt": "a mulher, a esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
@@ -1115,9 +1164,35 @@ window.SCENE = {
     "autre_vue": "→ Legumes"
    },
    "couches": {
-    "A1": "Na feira"
+    "A1": "Na feira",
+    "A2": "¿Dónde está? — no mercado",
+    "B1": "Fazer compras: quantidades e preços",
+    "B2": "Passiva, relativas e concordância",
+    "C1": "Hipóteses, cuanto más, concessões"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Los aguacates están entre las naranjas y las papayas.": "<b>entre</b> … <b>y</b> … = entre … e ….",
+    "A2 | Anna toma unos plátanos.": "<b>unos</b> = uns, alguns. el plátano → unos plátanos.",
+    "A2 | Las limas están al lado de los higos.": "<b>al lado de</b> = ao lado de.",
+    "A2 | Los mangos están entre las toronjas y los plátanos.": "<b>entre</b> … <b>y</b> … = entre … e ….",
+    "A2 | Los mangos están entre los pomelos y los plátanos.": "<b>entre</b> … <b>y</b> … = entre … e ….",
+    "A2 | La media sandía está encima de las otras sandías.": "<b>encima de</b> = em cima de, por cima de.",
+    "B1 | ¿Cuánto cuesta una piña?": "<b>la</b> piña é feminino → <b>una</b>.",
+    "B1 | Quería un trozo de sandía, por favor.": "<b>un trozo</b> = um pedaço.",
+    "B1 | La sandía es más grande que el melón.": "<b>más</b> … <b>que</b> = mais … que.",
+    "B1 | ¿Ya están maduros los mangos?": "<b>estar maduro</b> = estar maduro (um estado). <b>ser maduro</b> = ser maduro (uma pessoa).",
+    "B1 | Quería tres limones, por favor.": "el limón → los <b>limones</b>: no plural, o acento escrito desaparece.",
+    "B2 | La fruta tropical se transporta casi siempre en barco.": "A passiva com <b>se</b>: se transporta.",
+    "B2 | El mango, cuya piel es roja y verde, ya está maduro.": "<b>cuyo</b> concorda com o que é possuído: la piel → <b>cuya</b>.",
+    "B2 | Encima de las otras hay una papaya abierta.": "O particípio-adjetivo concorda: una papaya → <b>abierta</b>.",
+    "B2 | Los plátanos que Anna se lleva vienen de Ecuador.": "Objeto direto da relativa → <b>que</b>. <b>quienes</b> só designa pessoas.",
+    "B2 | El coco ya está abierto.": "O resultado de uma ação → <b>estar</b> + particípio.",
+    "C1 | A pesar del largo viaje, los mangos son bastante baratos aquí.": "<b>a pesar de</b> = apesar de. Antes de el: a pesar <b>del</b>.",
+    "C1 | Cuanto más oscuros son los higos, más dulces son.": "<b>cuanto más</b> …, <b>más</b> … = quanto mais …, mais ….",
+    "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "Hipótese irreal: <b>si</b> + subjuntivo imperfeito (tuviera), depois o condicional.",
+    "C1 | Es mejor que los aguacates no estén en el frío.": "<b>es mejor que</b> (um conselho) → <b>subjuntivo</b>.",
+    "C1 | El coco debe de haber sido abierto con un martillo.": "<b>deber de</b> + infinitivo composto = uma dedução sobre o passado."
+   }
   },
   "pl": {
    "champs": {

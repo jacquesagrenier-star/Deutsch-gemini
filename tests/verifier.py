@@ -640,9 +640,13 @@ def verifier_libelles_espagnol(r, source):
     fr, en = set(couche.get("fr", {})), set(couche.get("en", {}))
     for k in sorted(fr ^ en):
         r.echec("i18n", "I18N_ESPAGNOL : %s n'existe qu'en %s" % (k, "francais" if k in fr else "anglais"))
-    r.controle(len(fr | en))
-    print("   libelles espagnol: %d cles (fr et en)" % len(fr & en))
-    return fr | en
+    # Le portugais du Bresil (13 oct. 2026) : meme jeu de cles que le francais.
+    pt = set(couche.get("pt", {}))
+    for k in sorted(fr ^ pt):
+        r.echec("i18n", "I18N_ESPAGNOL : %s %s en portugais" % (k, "manque" if k in fr else "en trop"))
+    r.controle(len(fr | en | pt))
+    print("   libelles espagnol: %d cles (fr, en et pt)" % len(fr & en & pt))
+    return fr | en | pt
 
 
 def verifier_scenes_espagnol(r):
@@ -890,7 +894,7 @@ def verifier_prononciation(r):
     total = 0
     for fichier, script, langues in (
             ("prononciation.json", "prononciation.py", ("fr", "en", "tr", "uk", "fa", "ar")),
-            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en"))):
+            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en", "pt"))):
         chemin = os.path.join(RACINE, fichier)
         if not os.path.exists(chemin):
             r.echec("prononciation", fichier + " absent")
