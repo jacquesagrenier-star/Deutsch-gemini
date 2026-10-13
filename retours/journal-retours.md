@@ -8412,3 +8412,14 @@ interface en russe) : accueil, carte de nom (светофор, exemple russe), c
 francais ou anglais de repli, aucune erreur JS ; parcours allemand et espagnol a 0 ecart.
 Point a trancher : « Vocabulaire » est rendu « Словарь », le mot du dictionnaire integre
 (alternative : « Лексика »). Non relu par un natif.
+
+## 13 octobre 2026 -- Jacques : Play Console, suppression partielle des donnees « plus solide »
+
+Fiche « Securite des donnees » : a la question facultative (supprimer tout ou partie de ses
+donnees SANS supprimer son compte), Jacques veut repondre Oui et que ce soit defendable.
+Fait : confidentialite.html (fr + en, section 5) dit maintenant noir sur blanc ce qu'on
+efface sur demande ecrite -- progression (une langue ou toutes), mots cherches, messages
+« Signaler un probleme » -- sous trente jours, avec confirmation, compte intact. Date de mise
+a jour : 13 octobre 2026. A faire plus tard : un bouton « Recommencer a zero » dans l'app,
+pour que personne n'ait a ecrire. Aussi declare : identifiant publicitaire = Non (le projet
+Android ne contient que Capacitor).
