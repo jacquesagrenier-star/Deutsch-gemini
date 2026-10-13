@@ -8484,3 +8484,19 @@ Vu en cherchant, NON corrige : une carte de nombre espagnole (« setecientos »)
 Meme jour : elle ouvrait Wortando depuis Messenger (navigateur integre : un X qui ferme tout,
 Retour qui quitte). Conseil donne : ouvrir dans Chrome puis « Installer et creer un raccourci ».
 Bandeau « ouvre-le dans Chrome » prevu en v783.
+
+## 13 octobre 2026 -- v783 : lien d'invitation avec code, bandeau « ouvre-le dans Chrome », « Mettre de cote »
+
+- **Le haut-parleur (v782) : CONFIRME par Jacques** sur l'Android de sa soeur : il parle.
+- **Lien d'invitation** (« pour qu'il arrive au bon endroit », pour tout testeur) :
+  wortando.com/?code=XXXX (et &apprendre=es) ouvre « Creer un compte », code deja rempli,
+  garde pour l'onglet (sessionStorage). Dans le tableau de bord, chaque code libre a deux
+  boutons : LIEN ALLEMAND / LIEN ESPAGNOL (copient le lien sur wortando.com).
+- **Bandeau du navigateur integre** (Messenger, Facebook, Instagram) : la soeur de Jacques
+  avait un X qui fermait tout et un Retour qui quittait. Un bandeau orange le dit et, sur
+  Android, ouvre Chrome en un toucher (lien intent:, code et langue conserves) ; sur iPhone,
+  il dit ou toucher. Verifie avec l'agent de Messenger simule.
+- **« Garder » -> « Mettre de cote / pour le retravailler »** (« pas assez clair ») et
+  « Gardes » -> « Mis de cote », dans les 9 langues.
+Parcours : 31 ecarts, tous attendus (Garder/Gardes) -- nouvelles references de-v783.json et
+es-v783.json, CLAUDE.md mis a jour.

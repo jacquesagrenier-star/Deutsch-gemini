@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v782</span>
+    <span class="subtitle-version">v783</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9250,7 +9250,11 @@ body[data-theme="dark"] #decouverte > button.primary{
                     <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
                     <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
                 </svg>
-                <span class="judge-titre" id="gardeBtnTexte" data-i18n="garder_action">Garder</span>
+                <span class="judge-titre" id="gardeBtnTexte" data-i18n="garder_action">Mettre de côté</span>
+                <!-- v783, Jacques : « Garder » ne disait ni ou va le mot ni
+                     pourquoi. Les trois autres boutons ont leur petite ligne ;
+                     celui-ci a la sienne. -->
+                <small class="judge-echeance" data-i18n="garder_sous">pour le retravailler</small>
             </button>
             <!-- ⚠️ LE TROISIEME BOUTON DU PAQUET DES GARDES. Il prend la place
                  de « Je le sais par coeur » ET du coffre : on n'ouvre pas son
@@ -10248,7 +10252,8 @@ onAuthStateChanged(auth, (user) => {
         userProfile.textContent = "CM";
         authContent.classList.remove("hidden");
         if(authModeToggle) authModeToggle.classList.remove("hidden");
-        if(typeof setAuthMode === "function") setAuthMode("login");
+        if(typeof setAuthMode === "function")
+            setAuthMode(typeof modeAuthParDefaut === "function" ? modeAuthParDefaut() : "login");
         userAccountInfo.classList.add("hidden");
         userEmailDisplay.textContent = "";
         if(typeof vhsKapitelAccess !== "undefined") vhsKapitelAccess = false;
@@ -10631,15 +10636,19 @@ const I18N = {
         seance_par_theme: "Par thème",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
-        garder_action: "Garder",
-        garder_fait: "Gardé",
-        gardes_titre: "Gardés",
+        garder_action: "Mettre de côté",
+        garder_sous: "pour le retravailler",
+        garder_fait: "Mis de côté",
+        gardes_titre: "Mis de côté",
+        navint_texte: "Pour que Wortando fonctionne bien, ouvre-le dans Chrome.",
+        navint_bouton: "Ouvrir dans Chrome",
+        navint_ios: "Pour que Wortando fonctionne bien, ouvre-le dans Safari : touche ⋯ puis « Ouvrir dans Safari ».",
         garde_sortir: "Sortir du coffre",
         settings_vider_coffre: "VIDER LE COFFRE",
         settings_vider_coffre_desc: "Retire tous les mots de ton coffre. Ta progression n'est pas touchée : seule la marque « gardé » disparaît.",
         confirm_vider_coffre: "Retirer les {n} mots de ton coffre ? Ta progression, tes échéances et ton pourcentage ne bougent pas — seule la marque « gardé » disparaît.",
         vider_coffre_fait: "Coffre vidé : {n} mots retirés.",
-        gardes_vide: "Le coffre est vide. Sous une carte, « Garder » y met un mot à retravailler à part : il reste dans tes séances, et tu le retrouves ici quand tu veux.",
+        gardes_vide: "Le coffre est vide. Sous une carte, « Mettre de côté » y met un mot à retravailler à part : il reste dans tes séances, et tu le retrouves ici quand tu veux.",
         myvocab_empty: "Tes mots gardés",
         myvocab_count: "{n} mots mis de côté",
         myvocab_count_one: "1 mot mis de côté",
@@ -11740,15 +11749,19 @@ const I18N = {
         seance_par_theme: "By theme",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
-        garder_action: "Keep",
-        garder_fait: "Kept",
-        gardes_titre: "Kept",
+        garder_action: "Set aside",
+        garder_sous: "to work on it",
+        garder_fait: "Set aside",
+        gardes_titre: "Set aside",
+        navint_texte: "For Wortando to work properly, open it in Chrome.",
+        navint_bouton: "Open in Chrome",
+        navint_ios: "For Wortando to work properly, open it in Safari: tap ⋯ then “Open in Safari”.",
         garde_sortir: "Take out of the chest",
         settings_vider_coffre: "EMPTY THE CHEST",
         settings_vider_coffre_desc: "Removes every word from your chest. Your progress is untouched: only the “kept” mark goes.",
         confirm_vider_coffre: "Remove the {n} words from your chest? Your progress, your due dates and your percentage stay as they are — only the “kept” mark goes.",
         vider_coffre_fait: "Chest emptied: {n} words removed.",
-        gardes_vide: "The chest is empty. Under a card, “Keep” puts a word aside to work on again: it stays in your sessions, and you find it here whenever you like.",
+        gardes_vide: "The chest is empty. Under a card, “Set aside” puts a word aside to work on again: it stays in your sessions, and you find it here whenever you like.",
         myvocab_empty: "Your saved words",
         myvocab_count: "{n} words saved",
         myvocab_count_one: "1 word saved",
@@ -12851,15 +12864,19 @@ const I18N = {
         seance_par_theme: "Temaya göre",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
-        garder_action: "Sakla",
-        garder_fait: "Saklandı",
-        gardes_titre: "Saklananlar",
+        garder_action: "Kenara ayır",
+        garder_sous: "üzerinde çalışmak için",
+        garder_fait: "Kenara ayrıldı",
+        gardes_titre: "Kenara ayrılanlar",
+        navint_texte: "Wortando'nun düzgün çalışması için onu Chrome'da aç.",
+        navint_bouton: "Chrome'da aç",
+        navint_ios: "Wortando'nun düzgün çalışması için onu Safari'de aç: ⋯ simgesine, ardından “Safari'de Aç”a dokun.",
         garde_sortir: "Sandıktan çıkar",
         settings_vider_coffre: "SANDIĞI BOŞALT",
         settings_vider_coffre_desc: "Sandığındaki tüm kelimeleri çıkarır. İlerlemene dokunulmaz: yalnızca “saklandı” işareti kalkar.",
         confirm_vider_coffre: "Sandığındaki {n} kelime çıkarılsın mı? İlerlemen, tarihlerin ve yüzden öyle kalır — yalnızca “saklandı” işareti kalkar.",
         vider_coffre_fait: "Sandık boşaltıldı: {n} kelime çıkarıldı.",
-        gardes_vide: "Sandık boş. Bir kartın altındaki “Sakla”, üzerinde yeniden çalışmak istediğin bir kelimeyi içine koyar: kelime seanslarında kalır, istediğin zaman burada bulursun.",
+        gardes_vide: "Sandık boş. Bir kartın altındaki “Kenara ayır”, üzerinde yeniden çalışmak istediğin bir kelimeyi içine koyar: kelime seanslarında kalır, istediğin zaman burada bulursun.",
         myvocab_empty: "Kaydettiğin kelimeler",
         myvocab_count: "{n} kelime kaydedildi",
         myvocab_count_one: "1 kelime kaydedildi",
@@ -14294,15 +14311,19 @@ const I18N = {
         seance_par_theme: "За темою",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
-        garder_action: "Зберегти",
-        garder_fait: "Збережено",
-        gardes_titre: "Збережені",
+        garder_action: "Відкласти",
+        garder_sous: "щоб попрацювати над ним",
+        garder_fait: "Відкладено",
+        gardes_titre: "Відкладені",
+        navint_texte: "Щоб Wortando працював як слід, відкрий його в Chrome.",
+        navint_bouton: "Відкрити в Chrome",
+        navint_ios: "Щоб Wortando працював як слід, відкрий його в Safari: торкнися ⋯, потім «Відкрити в Safari».",
         garde_sortir: "Вийняти зі скрині",
         settings_vider_coffre: "СПОРОЖНИТИ СКРИНЮ",
         settings_vider_coffre_desc: "Виймає зі скрині всі слова. Твій поступ не змінюється: зникає лише позначка «збережено».",
         confirm_vider_coffre: "Вийняти {n} слів зі скрині? Твій поступ, терміни й відсоток лишаються як є — зникає лише позначка «збережено».",
         vider_coffre_fait: "Скриню спорожнено: вийнято {n} слів.",
-        gardes_vide: "Скриня порожня. Під карткою «Зберегти» кладе сюди слово, яке хочеш опрацювати окремо: воно лишається у твоїх заняттях, і ти знайдеш його тут будь-коли.",
+        gardes_vide: "Скриня порожня. Під карткою «Відкласти» кладе сюди слово, яке хочеш опрацювати окремо: воно лишається у твоїх заняттях, і ти знайдеш його тут будь-коли.",
         myvocab_empty: "Твої збережені слова",
         myvocab_count: "{n} відкладених слів",
         myvocab_count_one: "1 відкладене слово",
@@ -16105,15 +16126,19 @@ const I18N = {
         seance_par_theme: "بر پایهٔ موضوع",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
-        garder_action: "نگه‌داشتن",
-        garder_fait: "نگه داشته شد",
-        gardes_titre: "نگه‌داشته‌ها",
+        garder_action: "کنار گذاشتن",
+        garder_sous: "برای تمرین بیشتر",
+        garder_fait: "کنار گذاشته شد",
+        gardes_titre: "کنارگذاشته‌ها",
+        navint_texte: "برای اینکه Wortando درست کار کند، آن را در Chrome باز کنید.",
+        navint_bouton: "باز کردن در Chrome",
+        navint_ios: "برای اینکه Wortando درست کار کند، آن را در Safari باز کنید: روی ⋯ و سپس «باز کردن در Safari» بزنید.",
         garde_sortir: "برداشتن از صندوق",
         settings_vider_coffre: "خالی کردن صندوق",
         settings_vider_coffre_desc: "همهٔ واژه‌ها را از صندوق برمی‌دارد. پیشرفتت دست‌نخورده می‌ماند: فقط نشانهٔ «نگه‌داشته» برداشته می‌شود.",
         confirm_vider_coffre: "{n} واژه از صندوق برداشته شود؟ پیشرفت، سررسیدها و درصد تو تغییر نمی‌کند — فقط نشانهٔ «نگه‌داشته» برداشته می‌شود.",
         vider_coffre_fait: "صندوق خالی شد: {n} واژه برداشته شد.",
-        gardes_vide: "صندوق خالی است. زیر هر کارت، «نگه‌داشتن» واژه‌ای را که می‌خواهی جداگانه رویش کار کنی در آن می‌گذارد: در جلسه‌هایت می‌ماند و هر وقت بخواهی اینجا پیدایش می‌کنی.",
+        gardes_vide: "صندوق خالی است. زیر هر کارت، «کنار گذاشتن» واژه‌ای را که می‌خواهی جداگانه رویش کار کنی در آن می‌گذارد: در جلسه‌هایت می‌ماند و هر وقت بخواهی اینجا پیدایش می‌کنی.",
         myvocab_empty: "واژه‌های نگه‌داشتهٔ تو",
         myvocab_count: "{n} واژهٔ کنارگذاشته",
         myvocab_count_one: "۱ واژهٔ کنارگذاشته",
@@ -16234,7 +16259,7 @@ const I18N = {
         orb_en_pitfalls_sub: "actually ≠ حالياً",
         myvocab_vide_explication: "<strong>قاموسي ما زال فارغاً.</strong><br>هذا مخزونك الشخصي: الكلمات التي تصادفها في مكان آخر — في الدرس، أو في نصّ، أو في محادثة — والتي ليست في التطبيق.<br><br>ابحث عن واحدة منها أعلاه، ثم المس <strong>+</strong> بجانب نتيجة القاموس. عندها تصير بطاقة تراجعها كسائر البطاقات.",
         confirm_vider_coffre: "أتريد إزالة {n} كلمة من خزانتك؟ تقدّمك ومواعيدك ونسبتك لا تتغيّر — ولا تختفي إلا علامة «محفوظة».",
-        gardes_vide: "الخزانة فارغة. تحت أي بطاقة، «احتفظ» يضع الكلمة هنا لتعمل عليها على حدة: وتبقى في جلساتك، وتجدها هنا متى شئت.",
+        gardes_vide: "الخزانة فارغة. تحت أي بطاقة، «ضعها جانبًا» يضع الكلمة هنا لتعمل عليها على حدة: وتبقى في جلساتك، وتجدها هنا متى شئت.",
         myvocab_sans_genre: "«{mot}» بلا أداة تعريف في القاموس. لا يمكن صنع بطاقة موثوقة منها، لكن طلبك مسجَّل.",
         carte_nouveau_mot: "كلمة جديدة",
         carte_type_particule: "أداة",
@@ -17347,9 +17372,13 @@ const I18N = {
         seance_par_theme: "حسب الموضوع",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
-        garder_action: "احتفظ",
-        garder_fait: "محفوظة",
-        gardes_titre: "المحفوظات",
+        garder_action: "ضعها جانبًا",
+        garder_sous: "لتتمرّن عليها",
+        garder_fait: "وُضعت جانبًا",
+        gardes_titre: "الموضوعة جانبًا",
+        navint_texte: "لكي يعمل Wortando جيدًا، افتحه في Chrome.",
+        navint_bouton: "افتح في Chrome",
+        navint_ios: "لكي يعمل Wortando جيدًا، افتحه في Safari: المس ⋯ ثم «فتح في Safari».",
         garde_sortir: "أخرِجها من الخزانة",
         settings_vider_coffre: "إفراغ الخزانة",
         settings_vider_coffre_desc: "يزيل كل الكلمات من خزانتك. تقدّمك لا يتأثّر: تختفي علامة «محفوظة» وحدها.",
@@ -17467,15 +17496,19 @@ const I18N = {
         seance_par_theme: "Por tema",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
-        garder_action: "Guardar",
-        garder_fait: "Guardada",
-        gardes_titre: "Guardadas",
+        garder_action: "Separar",
+        garder_sous: "para revisar depois",
+        garder_fait: "Separada",
+        gardes_titre: "Separadas",
+        navint_texte: "Para o Wortando funcionar bem, abra-o no Chrome.",
+        navint_bouton: "Abrir no Chrome",
+        navint_ios: "Para o Wortando funcionar bem, abra-o no Safari: toque em ⋯ e depois em “Abrir no Safari”.",
         garde_sortir: "Tirar do baú",
         settings_vider_coffre: "ESVAZIAR O BAÚ",
         settings_vider_coffre_desc: "Tira todas as palavras do seu baú. Seu progresso não muda: só a marca “guardada” desaparece.",
         confirm_vider_coffre: "Tirar as {n} palavras do seu baú? Seu progresso, suas datas de revisão e sua porcentagem não mudam — só a marca “guardada” desaparece.",
         vider_coffre_fait: "Baú esvaziado: {n} palavras retiradas.",
-        gardes_vide: "O baú está vazio. Embaixo de uma carta, “Guardar” coloca uma palavra de lado para trabalhar de novo: ela continua nas suas sessões, e você a encontra aqui quando quiser.",
+        gardes_vide: "O baú está vazio. Embaixo de uma carta, “Separar” coloca uma palavra de lado para trabalhar de novo: ela continua nas suas sessões, e você a encontra aqui quando quiser.",
         myvocab_empty: "Suas palavras guardadas",
         myvocab_count: "{n} palavras guardadas",
         myvocab_count_one: "1 palavra guardada",
@@ -18641,15 +18674,19 @@ const I18N = {
         seance_par_theme: "Według tematu",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
-        garder_action: "Zachowaj",
-        garder_fait: "Zachowane",
-        gardes_titre: "Zachowane",
+        garder_action: "Odłóż",
+        garder_sous: "żeby nad nim popracować",
+        garder_fait: "Odłożone",
+        gardes_titre: "Odłożone",
+        navint_texte: "Aby Wortando działało dobrze, otwórz je w Chrome.",
+        navint_bouton: "Otwórz w Chrome",
+        navint_ios: "Aby Wortando działało dobrze, otwórz je w Safari: dotknij ⋯, a potem „Otwórz w Safari”.",
         garde_sortir: "Wyjmij ze skrzyni",
         settings_vider_coffre: "OPRÓŻNIJ SKRZYNIĘ",
         settings_vider_coffre_desc: "Usuwa wszystkie słowa ze skrzyni. Twoje postępy zostają bez zmian: znika tylko znacznik „zachowane”.",
         confirm_vider_coffre: "Usunąć słowa ze skrzyni ({n})? Twoje postępy, terminy powtórek i procent się nie zmienią — znika tylko znacznik „zachowane”.",
         vider_coffre_fait: "Skrzynia opróżniona: usunięto słowa ({n}).",
-        gardes_vide: "Skrzynia jest pusta. Pod kartą przycisk „Zachowaj” odkłada słowo do osobnego powtórzenia: zostaje w twoich sesjach, a tutaj znajdziesz je, kiedy zechcesz.",
+        gardes_vide: "Skrzynia jest pusta. Pod kartą przycisk „Odłóż” odkłada słowo do osobnego powtórzenia: zostaje w twoich sesjach, a tutaj znajdziesz je, kiedy zechcesz.",
         myvocab_empty: "Twoje zachowane słowa",
         myvocab_count: "Odłożone słowa: {n}",
         myvocab_count_one: "1 odłożone słowo",
@@ -19814,8 +19851,12 @@ const I18N = {
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
+        garder_sous: "чтобы поработать над ним",
         garder_fait: "Отложено",
         gardes_titre: "Отложенные",
+        navint_texte: "Чтобы Wortando работал как следует, открой его в Chrome.",
+        navint_bouton: "Открыть в Chrome",
+        navint_ios: "Чтобы Wortando работал как следует, открой его в Safari: нажми ⋯, затем «Открыть в Safari».",
         garde_sortir: "Убрать из копилки",
         settings_vider_coffre: "ОЧИСТИТЬ КОПИЛКУ",
         settings_vider_coffre_desc: "Убирает все слова из копилки. Твой прогресс не меняется: исчезает только отметка «отложено».",
@@ -22847,7 +22888,33 @@ function openAuth() {
     // On revient toujours sur l'onglet « Se connecter » à l'ouverture, pour
     // ne pas laisser l'écran sur un onglet « Créer un compte » resté ouvert
     // d'une visite précédente.
-    if(!window.firebaseAuth || !window.firebaseAuth.currentUser){ setAuthMode('login'); }
+    if(!window.firebaseAuth || !window.firebaseAuth.currentUser){ setAuthMode(modeAuthParDefaut()); }
+}
+
+// LE LIEN D'INVITATION (v783). Demande de Jacques, le 13 oct. 2026 : un
+// testeur doit « arriver au bon endroit ». Le lien du tableau de bord porte le
+// code (wortando.com/?code=XXXX, avec &apprendre=es pour l'espagnol) : celui
+// qui le touche tombe sur « Creer un compte », code deja rempli -- rien a
+// recopier depuis un message. Le code est garde pour l'onglet (sessionStorage) :
+// le rechargement de mise a jour (?v=) ou un retour en arriere ne le perdent pas.
+const CLE_CODE_INVITATION = "wortando_codeInvitation";
+const CODE_INVITATION = (() => {
+    let code = "";
+    try{ code = (new URLSearchParams(location.search).get("code") || "").trim().toUpperCase().slice(0, 40); }catch(e){}
+    try{
+        if(code) sessionStorage.setItem(CLE_CODE_INVITATION, code);
+        else code = sessionStorage.getItem(CLE_CODE_INVITATION) || "";
+    }catch(e){}
+    return code;
+})();
+// L'onglet a montrer a quelqu'un qui n'est pas connecte : « Creer un compte »
+// s'il arrive par un lien d'invitation (et le code est pose), sinon
+// « Se connecter ».
+function modeAuthParDefaut(){
+    if(!CODE_INVITATION) return "login";
+    const champ = document.getElementById("authInviteCode");
+    if(champ && !champ.value) champ.value = CODE_INVITATION;
+    return "signup";
 }
 
 // Bascule entre les deux cartes « Se connecter » et « Créer un compte » de
@@ -32269,6 +32336,10 @@ async function renderAdminCodesList(){
                     <div style="font-weight:800; letter-spacing:1px;">${c.id}</div>
                     <small style="color:#576177;">${c.used ? t('admin_code_used') : t('admin_code_available')}</small>
                     <input type="text" class="admin-code-note" placeholder="${t('admin_code_note_placeholder')}" value="${(c.note || "").replace(/"/g, "&quot;")}" onblur="updateInviteCodeNote('${c.id}', this.value)" style="display:block; width:100%; margin-top:6px; padding:8px 10px; font-size:16px; border:1px solid rgba(30,41,59,.15); border-radius:8px; background:transparent; color:inherit; min-height:36px;">
+                    ${c.used ? "" : `<div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+                        <button class="secondary" style="width:auto; padding:7px 12px; font-size:12px;" onclick="copierLienInvitation('${c.id}', 'de', this)">LIEN ALLEMAND</button>
+                        <button class="secondary" style="width:auto; padding:7px 12px; font-size:12px;" onclick="copierLienInvitation('${c.id}', 'es', this)">LIEN ESPAGNOL</button>
+                    </div>`}
                 </div>
                 <button class="secondary danger" style="width:auto; padding:8px 14px; font-size:12px; flex:none;" onclick="deleteInviteCode('${c.id}')" data-i18n="admin_delete_code_btn">SUPPRIMER</button>
             </div>
@@ -32277,6 +32348,71 @@ async function renderAdminCodesList(){
         adminEtatErreur(container, renderAdminCodesList);
     }
 }
+
+// LE LIEN D'INVITATION A ENVOYER (v783) : le code est dans le lien, voir
+// CODE_INVITATION. Toujours l'adresse publique, meme si l'admin regarde le
+// tableau depuis deutsch-gemini.pages.dev ou en local : c'est wortando.com
+// que les testeurs doivent garder.
+function copierLienInvitation(code, langue, bouton){
+    const lien = "https://wortando.com/?" + (langue === "es" ? "apprendre=es&" : "") + "code=" + encodeURIComponent(code);
+    const confirmer = () => {
+        if(!bouton) return;
+        const avant = bouton.textContent;
+        bouton.textContent = "COPIÉ ✓";
+        setTimeout(() => { bouton.textContent = avant; }, 2000);
+    };
+    try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(lien).then(confirmer, () => window.prompt("Lien d'invitation :", lien));
+            return;
+        }
+    }catch(e){}
+    window.prompt("Lien d'invitation :", lien);
+}
+
+// OUVERT DANS MESSENGER, FACEBOOK OU INSTAGRAM (v783). Constate le 13 oct.
+// 2026 sur l'Android de la soeur de Jacques : un lien touche dans Messenger
+// s'ouvre dans le petit navigateur de Messenger. Un X en haut ferme tout, et
+// le Retour du telephone quitte la page au lieu de revenir a l'ecran
+// precedent (l'historique de la v710 n'y sert a rien). Les annonces de
+// recrutement passent par Facebook : beaucoup de testeurs y arriveront.
+// Un bandeau le dit et, sur Android, ouvre Chrome en un toucher (lien
+// intent:, que ces navigateurs integres transmettent au systeme). Sur iPhone,
+// aucun lien ne peut ouvrir Safari : le bandeau dit ou toucher.
+(function bandeauNavigateurIntegre(){
+    let ua = "";
+    try{ ua = navigator.userAgent || ""; }catch(e){}
+    if(!/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|MicroMessenger|Line\//i.test(ua)) return;
+    const android = /Android/i.test(ua);
+    const poser = () => {
+        if(!document.body || document.getElementById("bandeauNavIntegre")) return;
+        const b = document.createElement("div");
+        b.id = "bandeauNavIntegre";
+        b.setAttribute("role", "status");
+        b.style.cssText = "display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px;"
+            + " padding:10px 14px; background:#E8A23A; color:#1C2430; font-size:14px;"
+            + " font-weight:600; line-height:1.35;";
+        const texte = document.createElement("span");
+        texte.style.flex = "1 1 200px";
+        const cle = android ? "navint_texte" : "navint_ios";
+        texte.setAttribute("data-i18n", cle);
+        texte.textContent = t(cle);
+        b.appendChild(texte);
+        if(android){
+            const lien = document.createElement("a");
+            lien.href = "intent://" + location.host + location.pathname + location.search
+                + "#Intent;scheme=https;package=com.android.chrome;end";
+            lien.setAttribute("data-i18n", "navint_bouton");
+            lien.textContent = t("navint_bouton");
+            lien.style.cssText = "background:#1C2430; color:#fff; padding:8px 14px;"
+                + " border-radius:10px; text-decoration:none; font-weight:700; white-space:nowrap;";
+            b.appendChild(lien);
+        }
+        document.body.insertBefore(b, document.body.firstChild);
+    };
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", poser);
+    else poser();
+})();
 
 // Agrege les mots demandes par tous les testeurs. Un mot reclame par
 // plusieurs personnes passe devant : c'est la file d'attente d'ecriture.
@@ -36656,7 +36792,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 782;
+const APP_VERSION = 783;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
