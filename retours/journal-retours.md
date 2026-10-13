@@ -8423,3 +8423,14 @@ efface sur demande ecrite -- progression (une langue ou toutes), mots cherches, 
 a jour : 13 octobre 2026. A faire plus tard : un bouton « Recommencer a zero » dans l'app,
 pour que personne n'ait a ecrire. Aussi declare : identifiant publicitaire = Non (le projet
 Android ne contient que Capacitor).
+
+## 13 octobre 2026 -- Jacques : le tableau d'administration s'ouvre au milieu (iPhone)
+
+« Lorsqu'on clique sur administration, il faut remonter » : sur iPhone, le tableau de bord
+admin s'ouvrait defile vers le bas. Jamais reproduit sur ordinateur (Chromium, reglages
+defiles jusqu'en bas : le tableau s'ouvre bien en haut). Cause probable : l'inertie du
+defilement des reglages sur iOS, qui reprend apres le scrollTo(0,0) de showScreen().
+v780 : garderEcranEnHaut() -- pendant 1,5 s apres l'ouverture, tout defilement que la
+personne n'a pas fait elle-meme est annule ; un toucher, la molette ou le clavier rendent
+la main aussitot. Verifie en navigateur automatise (defilement fantome annule, geste
+respecte, defilement libre ensuite). A confirmer sur l'iPhone de Jacques.

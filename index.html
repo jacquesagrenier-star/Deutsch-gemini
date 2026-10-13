@@ -7326,7 +7326,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v779</span>
+    <span class="subtitle-version">v780</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -32029,9 +32029,35 @@ function adminEtatErreur(container, relance){
     container.appendChild(bouton);
 }
 
+// Sur iPhone, le tableau s'ouvrait au milieu (13 oct. 2026), jamais reproduit
+// sur ordinateur : l'inertie d'un defilement des reglages, ou une liste qui
+// arrive de Firestore, prenait le relais du scrollTo(0,0) de showScreen().
+// Plutot que de deviner laquelle, on garde l'ecran en haut pendant un court
+// moment -- sauf si la personne touche l'ecran ou la molette : son geste a
+// elle passe toujours avant.
+function garderEcranEnHaut(id, duree){
+    let fini = false;
+    const arreter = () => {
+        if(fini) return;
+        fini = true;
+        removeEventListener("scroll", remonter);
+        ["touchstart", "wheel", "keydown", "mousedown"].forEach(e => removeEventListener(e, arreter, true));
+    };
+    const remonter = () => {
+        const ecran = document.querySelector(".screen.active");
+        if(!ecran || ecran.id !== id){ arreter(); return; }
+        if(window.scrollY > 0) window.scrollTo(0, 0);
+    };
+    ["touchstart", "wheel", "keydown", "mousedown"].forEach(e => addEventListener(e, arreter, { capture: true, passive: true }));
+    addEventListener("scroll", remonter, { passive: true });
+    afterNextPaint(remonter);
+    setTimeout(arreter, duree);
+}
+
 function openAdminDashboard(){
     if(!isAdminUser()){ goHome(); return; }
     showScreen("adminDashboard");
+    garderEcranEnHaut("adminDashboard", 1500);
     afficherEtatApercuGratuit();
     afficherEssais();
     renderAdminDeployStatus();
@@ -36539,7 +36565,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 779;
+const APP_VERSION = 780;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
