@@ -42,6 +42,7 @@ window.SCENE = {
    "en": "the watermelon",
    "ar": "بطّيخ",
    "pl": "arbuz",
+   "ru": "арбуз",
    "latam": null
   },
   {
@@ -84,6 +85,7 @@ window.SCENE = {
    "en": "the pineapple",
    "ar": "أناناس",
    "pl": "ananas",
+   "ru": "ананас",
    "latam": null
   },
   {
@@ -126,6 +128,7 @@ window.SCENE = {
    "en": "the coconut",
    "ar": "جوز الهند",
    "pl": "kokos",
+   "ru": "кокосовый орех",
    "latam": null
   },
   {
@@ -168,6 +171,7 @@ window.SCENE = {
    "en": "the melon",
    "ar": "شمّام",
    "pl": "melon",
+   "ru": "дыня",
    "latam": null
   },
   {
@@ -210,6 +214,7 @@ window.SCENE = {
    "en": "orange",
    "ar": "برتقالة",
    "pl": "pomarańcza",
+   "ru": "апельсин",
    "latam": null
   },
   {
@@ -252,6 +257,7 @@ window.SCENE = {
    "en": "the avocado",
    "ar": "أفوكادو",
    "pl": "awokado",
+   "ru": "авокадо",
    "latam": null
   },
   {
@@ -294,6 +300,7 @@ window.SCENE = {
    "en": "the papaya",
    "ar": "بابايا",
    "pl": "papaja",
+   "ru": "папайя",
    "latam": null
   },
   {
@@ -336,6 +343,7 @@ window.SCENE = {
    "en": "the lemon",
    "ar": "ليمون",
    "pl": "cytryna",
+   "ru": "лимон",
    "latam": null
   },
   {
@@ -378,6 +386,7 @@ window.SCENE = {
    "en": "the kiwi",
    "ar": "كيوي",
    "pl": "kiwi",
+   "ru": "киви",
    "latam": null
   },
   {
@@ -420,6 +429,7 @@ window.SCENE = {
    "en": "the tangerine",
    "ar": "يوسفي، مندرين",
    "pl": "mandarynka",
+   "ru": "мандарин",
    "latam": null
   },
   {
@@ -462,6 +472,7 @@ window.SCENE = {
    "en": "the fig",
    "ar": "تين",
    "pl": "figa",
+   "ru": "инжир",
    "latam": null
   },
   {
@@ -504,6 +515,7 @@ window.SCENE = {
    "en": "the lime",
    "ar": "ليمون أخضر (ليم)",
    "pl": "limonka",
+   "ru": "лайм",
    "latam": null
   },
   {
@@ -546,6 +558,7 @@ window.SCENE = {
    "en": "the grapefruit",
    "ar": "جريب فروت",
    "pl": "grejpfrut",
+   "ru": "грейпфрут",
    "latam": {
     "mot": "toronja",
     "genre": "la",
@@ -592,6 +605,7 @@ window.SCENE = {
    "en": "the mango",
    "ar": "مانجو",
    "pl": "mango",
+   "ru": "манго",
    "latam": null
   },
   {
@@ -634,6 +648,7 @@ window.SCENE = {
    "en": "banana",
    "ar": "موزة",
    "pl": "banan",
+   "ru": "банан",
    "latam": null
   },
   {
@@ -676,6 +691,7 @@ window.SCENE = {
    "en": "the pomegranate",
    "ar": "رمّان",
    "pl": "granat (owoc)",
+   "ru": "гранат",
    "latam": null
   },
   {
@@ -707,6 +723,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   }
  ],
@@ -1111,6 +1128,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na targu"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Анна берёт бананы у прилавка с южными фруктами: арбузы, ананасы, кокосы, дыни, апельсины, авокадо, папайя, лимоны, киви, мандарины, инжир, лаймы, грейпфруты, манго, бананы и гранаты.",
+    "consigne": "Нажми на фрукт, овощ или ящик.",
+    "nom_vue": "Южные фрукты",
+    "autre_vue": "→ Овощи"
+   },
+   "couches": {
+    "A1": "На рынке"
    },
    "questions": {}
   }

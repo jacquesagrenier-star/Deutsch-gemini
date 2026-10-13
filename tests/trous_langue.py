@@ -20,7 +20,7 @@ import json
 import os
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGUES = ["tr", "uk", "fa", "pt", "ar", "pl"]
+LANGUES = ["tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 
 # Les bases traduisibles, quel que soit le fichier. « traduction » et
 # « exemple » couvrent le vocabulaire ; les autres viennent des verbes, des
@@ -34,9 +34,9 @@ BASES = ["traduction", "exemple", "perfekt", "praeteritum", "konjunktiv2",
 # Chercher options_tr ne trouve donc jamais rien et fait crier le script sur
 # 965 champs qui sont la.
 CHAMEAU = {"options": {"tr": "optionsTr", "uk": "optionsUk", "fa": "optionsFa",
-                       "pt": "optionsPt", "ar": "optionsAr", "pl": "optionsPl", "en": "optionsEn"},
+                       "pt": "optionsPt", "ar": "optionsAr", "pl": "optionsPl", "ru": "optionsRu", "en": "optionsEn"},
            "correct": {"tr": "correctTr", "uk": "correctUk", "fa": "correctFa",
-                       "pt": "correctPt", "ar": "correctAr", "pl": "correctPl", "en": "correctEn"}}
+                       "pt": "correctPt", "ar": "correctAr", "pl": "correctPl", "ru": "correctRu", "en": "correctEn"}}
 
 # Le francais de ces bases-la n'a PAS de suffixe : « traduction » est deja le
 # francais, « exemple » est l'ALLEMAND et son francais est « exemple_fr ».

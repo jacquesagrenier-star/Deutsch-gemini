@@ -25,6 +25,7 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "ar": "بطانية",
    "pl": "koc",
+   "ru": "одеяло, плед",
    "latam": null
   },
   {
@@ -50,6 +51,7 @@ window.SCENE = {
    "en": "the wall",
    "ar": "جدار",
    "pl": "ściana",
+   "ru": "стена",
    "latam": null
   },
   {
@@ -75,6 +77,7 @@ window.SCENE = {
    "en": "the floor",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
+   "ru": "почва, пол",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -113,6 +116,7 @@ window.SCENE = {
    "en": "the lamp",
    "ar": "مصباح",
    "pl": "lampa",
+   "ru": "лампа",
    "latam": null
   },
   {
@@ -138,6 +142,7 @@ window.SCENE = {
    "en": "the umbrella",
    "ar": "مظلّة",
    "pl": "parasol",
+   "ru": "зонт",
    "latam": null
   },
   {
@@ -163,6 +168,7 @@ window.SCENE = {
    "en": "the wardrobe",
    "ar": "خزانة",
    "pl": "szafa",
+   "ru": "шкаф",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -201,6 +207,7 @@ window.SCENE = {
    "en": "the ball",
    "ar": "كرة",
    "pl": "piłka",
+   "ru": "мяч",
    "latam": null
   },
   {
@@ -226,6 +233,7 @@ window.SCENE = {
    "en": "the picture",
    "ar": "صورة، لوحة",
    "pl": "obraz",
+   "ru": "картина, изображение",
    "latam": null
   },
   {
@@ -251,6 +259,7 @@ window.SCENE = {
    "en": "the window",
    "ar": "نافذة",
    "pl": "okno",
+   "ru": "окно",
    "latam": null
   },
   {
@@ -276,6 +285,7 @@ window.SCENE = {
    "en": "the radiator",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
+   "ru": "батарея (отопления)",
    "latam": null
   },
   {
@@ -310,6 +320,7 @@ window.SCENE = {
    "en": "the plant",
    "ar": "نبات",
    "pl": "roślina",
+   "ru": "растение",
    "latam": null
   },
   {
@@ -352,6 +363,7 @@ window.SCENE = {
    "en": "the floor lamp",
    "ar": "مصباح أرضي",
    "pl": "lampa stojąca",
+   "ru": "торшер",
    "latam": null
   },
   {
@@ -377,6 +389,7 @@ window.SCENE = {
    "en": "the sock",
    "ar": "جورب",
    "pl": "skarpetka",
+   "ru": "носок",
    "latam": null
   },
   {
@@ -402,6 +415,7 @@ window.SCENE = {
    "en": "the shelf unit",
    "ar": "رفّ",
    "pl": "regał, półka",
+   "ru": "полка, стеллаж",
    "latam": null
   },
   {
@@ -436,6 +450,7 @@ window.SCENE = {
    "en": "the goldfish",
    "ar": "سمكة ذهبية",
    "pl": "złota rybka",
+   "ru": "золотая рыбка",
    "latam": {
     "mot": "pez dorado",
     "genre": "el",
@@ -465,6 +480,7 @@ window.SCENE = {
    "en": "the bicycle",
    "ar": "درّاجة",
    "pl": "rower",
+   "ru": "велосипед",
    "latam": null
   },
   {
@@ -490,6 +506,7 @@ window.SCENE = {
    "en": "the door",
    "ar": "باب",
    "pl": "drzwi",
+   "ru": "дверь",
    "latam": null
   },
   {
@@ -515,6 +532,7 @@ window.SCENE = {
    "en": "the sofa",
    "ar": "أريكة، كنبة",
    "pl": "kanapa",
+   "ru": "диван",
    "latam": null
   },
   {
@@ -540,6 +558,7 @@ window.SCENE = {
    "en": "the book",
    "ar": "كتاب",
    "pl": "książka",
+   "ru": "книга",
    "latam": null
   },
   {
@@ -565,6 +584,7 @@ window.SCENE = {
    "en": "the guitar",
    "ar": "غيتار",
    "pl": "gitara",
+   "ru": "гитара",
    "latam": null
   },
   {
@@ -599,6 +619,7 @@ window.SCENE = {
    "en": "the trainer",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
+   "ru": "кроссовки, кеды",
    "latam": {
     "mot": "tenis",
     "genre": "el",
@@ -628,6 +649,7 @@ window.SCENE = {
    "en": "the television",
    "ar": "تلفاز",
    "pl": "telewizor",
+   "ru": "телевизор",
    "latam": null
   },
   {
@@ -662,6 +684,7 @@ window.SCENE = {
    "en": "the pizza",
    "ar": "بيتزا",
    "pl": "pizza",
+   "ru": "пицца",
    "latam": null
   },
   {
@@ -696,6 +719,7 @@ window.SCENE = {
    "en": "the coffee table",
    "ar": "طاولة القهوة",
    "pl": "stolik kawowy, ława",
+   "ru": "журнальный столик",
    "latam": {
     "mot": "mesa de centro",
     "genre": "la",
@@ -725,6 +749,7 @@ window.SCENE = {
    "en": "cup",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
+   "ru": "чашка",
    "latam": null
   },
   {
@@ -759,6 +784,7 @@ window.SCENE = {
    "en": "the cardboard box",
    "ar": "صندوق كرتون",
    "pl": "karton",
+   "ru": "картонная коробка",
    "latam": null
   },
   {
@@ -784,6 +810,7 @@ window.SCENE = {
    "en": "the dog",
    "ar": "كلب",
    "pl": "pies",
+   "ru": "собака",
    "latam": null
   },
   {
@@ -809,6 +836,7 @@ window.SCENE = {
    "en": "the bucket",
    "ar": "دلو",
    "pl": "wiadro",
+   "ru": "ведро",
    "latam": {
     "mot": "cubeta",
     "genre": "la",
@@ -838,6 +866,7 @@ window.SCENE = {
    "en": "bottle",
    "ar": "زجاجة",
    "pl": "butelka",
+   "ru": "бутылка",
    "latam": null
   },
   {
@@ -863,6 +892,7 @@ window.SCENE = {
    "en": "the cardboard box",
    "ar": "صندوق كرتون",
    "pl": "karton",
+   "ru": "картонная коробка",
    "latam": null
   },
   {
@@ -888,6 +918,7 @@ window.SCENE = {
    "en": "the cat",
    "ar": "قطة",
    "pl": "kot",
+   "ru": "кошка",
    "latam": null
   },
   {
@@ -913,6 +944,7 @@ window.SCENE = {
    "en": "the balloon",
    "ar": "بالون",
    "pl": "balon, balonik",
+   "ru": "воздушный шарик",
    "latam": null
   },
   {
@@ -938,6 +970,7 @@ window.SCENE = {
    "en": "the balloon",
    "ar": "بالون",
    "pl": "balon, balonik",
+   "ru": "воздушный шарик",
    "latam": null
   },
   {
@@ -963,6 +996,7 @@ window.SCENE = {
    "en": "the suitcase",
    "ar": "حقيبة سفر",
    "pl": "walizka",
+   "ru": "чемодан",
    "latam": null
   }
  ],
@@ -1491,6 +1525,16 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Гостиная в квартире, которую Марк снимает с соседями, наутро после вечеринки: мяч на шкафу, зонт висит на лампе, носок на торшере, кошка в коробке, собака под журнальным столиком, а чемодан Марка — на пороге.",
+    "consigne": "Марк вернулся из поездки… а его соседи устроили вечеринку. Нажми на предмет."
+   },
+   "couches": {
+    "A1": "Существительные и артикли"
    },
    "questions": {}
   }

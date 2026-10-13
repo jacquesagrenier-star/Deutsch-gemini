@@ -23,7 +23,8 @@ window.SCENE = {
      "fa": "مرد، شوهر",
      "pt": "homem / marido",
      "ar": "رجل، زوج",
-     "pl": "mężczyzna / mąż"
+     "pl": "mężczyzna / mąż",
+     "ru": "мужчина, муж"
     },
     {
      "mot": "Körper",
@@ -37,7 +38,8 @@ window.SCENE = {
      "fa": "بدن",
      "pt": "corpo",
      "ar": "جسم",
-     "pl": "ciało"
+     "pl": "ciało",
+     "ru": "тело"
     }
    ],
    "sur": null,
@@ -69,7 +71,8 @@ window.SCENE = {
    "fa": "بیمار (مرد)",
    "pt": "paciente",
    "ar": "مريض",
-   "pl": "pacjent"
+   "pl": "pacjent",
+   "ru": "пациент, больной"
   },
   {
    "id": "kopf",
@@ -97,7 +100,8 @@ window.SCENE = {
    "fa": "سر",
    "pt": "cabeça",
    "ar": "رأس",
-   "pl": "głowa"
+   "pl": "głowa",
+   "ru": "голова"
   },
   {
    "id": "hals",
@@ -125,7 +129,8 @@ window.SCENE = {
    "fa": "گلو، گردن",
    "pt": "pescoço, garganta",
    "ar": "رقبة، حلق",
-   "pl": "szyja, gardło"
+   "pl": "szyja, gardło",
+   "ru": "шея, горло"
   },
   {
    "id": "schulter",
@@ -159,7 +164,8 @@ window.SCENE = {
    "fa": "شانه",
    "pt": "ombro",
    "ar": "كتف",
-   "pl": "ramię, bark"
+   "pl": "ramię, bark",
+   "ru": "плечо"
   },
   {
    "id": "brust",
@@ -187,7 +193,8 @@ window.SCENE = {
    "fa": "سینه",
    "pt": "peito",
    "ar": "صدر",
-   "pl": "klatka piersiowa, pierś"
+   "pl": "klatka piersiowa, pierś",
+   "ru": "грудь"
   },
   {
    "id": "bauch",
@@ -215,7 +222,8 @@ window.SCENE = {
    "fa": "شکم",
    "pt": "barriga",
    "ar": "بطن",
-   "pl": "brzuch"
+   "pl": "brzuch",
+   "ru": "живот"
   },
   {
    "id": "bauchnabel",
@@ -243,7 +251,8 @@ window.SCENE = {
    "fa": "ناف",
    "pt": "umbigo",
    "ar": "سُرّة",
-   "pl": "pępek"
+   "pl": "pępek",
+   "ru": "пупок"
   },
   {
    "id": "arm-l",
@@ -277,7 +286,8 @@ window.SCENE = {
    "fa": "بازو",
    "pt": "braço",
    "ar": "ذراع",
-   "pl": "ręka, ramię"
+   "pl": "ręka, ramię",
+   "ru": "рука"
   },
   {
    "id": "arm-r",
@@ -311,7 +321,8 @@ window.SCENE = {
    "fa": "بازو",
    "pt": "braço",
    "ar": "ذراع",
-   "pl": "ręka, ramię"
+   "pl": "ręka, ramię",
+   "ru": "рука"
   },
   {
    "id": "ellbogen",
@@ -345,7 +356,8 @@ window.SCENE = {
    "fa": "آرنج",
    "pt": "cotovelo",
    "ar": "مرفق، كوع",
-   "pl": "łokieć"
+   "pl": "łokieć",
+   "ru": "локоть"
   },
   {
    "id": "handgelenk",
@@ -379,7 +391,8 @@ window.SCENE = {
    "fa": "مچ دست",
    "pt": "pulso",
    "ar": "معصم",
-   "pl": "nadgarstek"
+   "pl": "nadgarstek",
+   "ru": "запястье"
   },
   {
    "id": "hand-l",
@@ -407,7 +420,8 @@ window.SCENE = {
    "fa": "دست",
    "pt": "mão",
    "ar": "يد",
-   "pl": "ręka, dłoń"
+   "pl": "ręka, dłoń",
+   "ru": "рука (кисть)"
   },
   {
    "id": "hand-r",
@@ -435,7 +449,8 @@ window.SCENE = {
    "fa": "دست",
    "pt": "mão",
    "ar": "يد",
-   "pl": "ręka, dłoń"
+   "pl": "ręka, dłoń",
+   "ru": "рука (кисть)"
   },
   {
    "id": "oberschenkel",
@@ -469,7 +484,8 @@ window.SCENE = {
    "fa": "ران",
    "pt": "coxa",
    "ar": "فخذ",
-   "pl": "udo"
+   "pl": "udo",
+   "ru": "бедро"
   },
   {
    "id": "unterhose",
@@ -515,7 +531,8 @@ window.SCENE = {
    "fa": "شورت",
    "pt": "cueca, calcinha",
    "ar": "سروال داخلي",
-   "pl": "majtki, slipy"
+   "pl": "majtki, slipy",
+   "ru": "трусы"
   },
   {
    "id": "knie",
@@ -549,7 +566,8 @@ window.SCENE = {
    "fa": "زانو",
    "pt": "joelho",
    "ar": "ركبة",
-   "pl": "kolano"
+   "pl": "kolano",
+   "ru": "колено"
   },
   {
    "id": "bein-l",
@@ -577,7 +595,8 @@ window.SCENE = {
    "fa": "ساق پا",
    "pt": "perna",
    "ar": "ساق",
-   "pl": "noga"
+   "pl": "noga",
+   "ru": "нога"
   },
   {
    "id": "bein-r",
@@ -605,7 +624,8 @@ window.SCENE = {
    "fa": "ساق پا",
    "pt": "perna",
    "ar": "ساق",
-   "pl": "noga"
+   "pl": "noga",
+   "ru": "нога"
   },
   {
    "id": "fuss-l",
@@ -633,7 +653,8 @@ window.SCENE = {
    "fa": "پا",
    "pt": "pé",
    "ar": "قدم",
-   "pl": "stopa"
+   "pl": "stopa",
+   "ru": "нога (ступня)"
   },
   {
    "id": "fuss-r",
@@ -661,7 +682,8 @@ window.SCENE = {
    "fa": "پا",
    "pt": "pé",
    "ar": "قدم",
-   "pl": "stopa"
+   "pl": "stopa",
+   "ru": "нога (ступня)"
   },
   {
    "id": "aerztin",
@@ -684,7 +706,8 @@ window.SCENE = {
      "fa": "زن، همسر",
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
-     "pl": "kobieta / żona"
+     "pl": "kobieta / żona",
+     "ru": "женщина, жена"
     }
    ],
    "sur": null,
@@ -716,7 +739,8 @@ window.SCENE = {
    "fa": "پزشک (زن)",
    "pt": "médica",
    "ar": "طبيبة",
-   "pl": "lekarka"
+   "pl": "lekarka",
+   "ru": "врач (женщина)"
   },
   {
    "id": "hand-aerztin-haut",
@@ -744,7 +768,8 @@ window.SCENE = {
    "fa": "دست",
    "pt": "mão",
    "ar": "يد",
-   "pl": "ręka, dłoń"
+   "pl": "ręka, dłoń",
+   "ru": "рука (кисть)"
   },
   {
    "id": "hand-aerztin-bas",
@@ -772,7 +797,8 @@ window.SCENE = {
    "fa": "دست",
    "pt": "mão",
    "ar": "يد",
-   "pl": "ręka, dłoń"
+   "pl": "ręka, dłoń",
+   "ru": "рука (кисть)"
   },
   {
    "id": "stethoskop",
@@ -806,7 +832,8 @@ window.SCENE = {
    "fa": "گوشی پزشکی",
    "pt": "estetoscópio",
    "ar": "سمّاعة الطبيب",
-   "pl": "stetoskop"
+   "pl": "stetoskop",
+   "ru": "стетоскоп"
   },
   {
    "id": "waage",
@@ -846,7 +873,8 @@ window.SCENE = {
    "fa": "ترازو",
    "pt": "balança",
    "ar": "ميزان",
-   "pl": "waga (kuchenna)"
+   "pl": "waga (kuchenna)",
+   "ru": "весы"
   },
   {
    "id": "wand",
@@ -874,7 +902,8 @@ window.SCENE = {
    "fa": "دیوار",
    "pt": "parede",
    "ar": "جدار",
-   "pl": "ściana"
+   "pl": "ściana",
+   "ru": "стена"
   },
   {
    "id": "boden",
@@ -902,7 +931,8 @@ window.SCENE = {
    "fa": "زمین، کف",
    "pt": "chão, solo",
    "ar": "أرض، تربة",
-   "pl": "ziemia, podłoże"
+   "pl": "ziemia, podłoże",
+   "ru": "почва, пол"
   },
   {
    "id": "haar",
@@ -931,7 +961,8 @@ window.SCENE = {
    "fa": "مو",
    "pt": "cabelo",
    "ar": "شعر",
-   "pl": "włos, włosy"
+   "pl": "włos, włosy",
+   "ru": "волосы"
   },
   {
    "id": "haar-l",
@@ -960,7 +991,8 @@ window.SCENE = {
    "fa": "مو",
    "pt": "cabelo",
    "ar": "شعر",
-   "pl": "włos, włosy"
+   "pl": "włos, włosy",
+   "ru": "волосы"
   },
   {
    "id": "gesicht",
@@ -989,7 +1021,8 @@ window.SCENE = {
    "fa": "چهره",
    "pt": "rosto",
    "ar": "وجه",
-   "pl": "twarz"
+   "pl": "twarz",
+   "ru": "лицо"
   },
   {
    "id": "stirn",
@@ -1018,7 +1051,8 @@ window.SCENE = {
    "fa": "پیشانی",
    "pt": "testa",
    "ar": "جبهة",
-   "pl": "czoło"
+   "pl": "czoło",
+   "ru": "лоб"
   },
   {
    "id": "augenbraue-l",
@@ -1047,7 +1081,8 @@ window.SCENE = {
    "fa": "ابرو",
    "pt": "sobrancelha",
    "ar": "حاجب",
-   "pl": "brew"
+   "pl": "brew",
+   "ru": "бровь"
   },
   {
    "id": "augenbraue-r",
@@ -1076,7 +1111,8 @@ window.SCENE = {
    "fa": "ابرو",
    "pt": "sobrancelha",
    "ar": "حاجب",
-   "pl": "brew"
+   "pl": "brew",
+   "ru": "бровь"
   },
   {
    "id": "auge-l",
@@ -1105,7 +1141,8 @@ window.SCENE = {
    "fa": "چشم",
    "pt": "olho",
    "ar": "عين",
-   "pl": "oko"
+   "pl": "oko",
+   "ru": "глаз"
   },
   {
    "id": "auge-r",
@@ -1134,7 +1171,8 @@ window.SCENE = {
    "fa": "چشم",
    "pt": "olho",
    "ar": "عين",
-   "pl": "oko"
+   "pl": "oko",
+   "ru": "глаз"
   },
   {
    "id": "ohr",
@@ -1163,7 +1201,8 @@ window.SCENE = {
    "fa": "گوش",
    "pt": "orelha, ouvido",
    "ar": "أذن",
-   "pl": "ucho"
+   "pl": "ucho",
+   "ru": "ухо"
   },
   {
    "id": "nase",
@@ -1192,7 +1231,8 @@ window.SCENE = {
    "fa": "بینی",
    "pt": "nariz",
    "ar": "أنف",
-   "pl": "nos"
+   "pl": "nos",
+   "ru": "нос"
   },
   {
    "id": "wange-l",
@@ -1221,7 +1261,8 @@ window.SCENE = {
    "fa": "گونه",
    "pt": "bochecha",
    "ar": "خدّ",
-   "pl": "policzek"
+   "pl": "policzek",
+   "ru": "щека"
   },
   {
    "id": "wange-r",
@@ -1250,7 +1291,8 @@ window.SCENE = {
    "fa": "گونه",
    "pt": "bochecha",
    "ar": "خدّ",
-   "pl": "policzek"
+   "pl": "policzek",
+   "ru": "щека"
   },
   {
    "id": "mund",
@@ -1279,7 +1321,8 @@ window.SCENE = {
    "fa": "دهان",
    "pt": "boca",
    "ar": "فم",
-   "pl": "usta"
+   "pl": "usta",
+   "ru": "рот"
   },
   {
    "id": "zahn",
@@ -1308,7 +1351,8 @@ window.SCENE = {
    "fa": "دندان",
    "pt": "dente",
    "ar": "سنّ",
-   "pl": "ząb"
+   "pl": "ząb",
+   "ru": "зуб"
   },
   {
    "id": "lippe",
@@ -1337,7 +1381,8 @@ window.SCENE = {
    "fa": "لب",
    "pt": "lábio",
    "ar": "شفة",
-   "pl": "warga"
+   "pl": "warga",
+   "ru": "губа"
   },
   {
    "id": "kinn",
@@ -1366,7 +1411,8 @@ window.SCENE = {
    "fa": "چانه",
    "pt": "queixo",
    "ar": "ذقن",
-   "pl": "podbródek, broda"
+   "pl": "podbródek, broda",
+   "ru": "подбородок"
   },
   {
    "id": "finger-main",
@@ -1395,7 +1441,8 @@ window.SCENE = {
    "fa": "انگشت",
    "pt": "dedo",
    "ar": "إصبع",
-   "pl": "palec"
+   "pl": "palec",
+   "ru": "палец"
   },
   {
    "id": "finger-daumen",
@@ -1424,7 +1471,8 @@ window.SCENE = {
    "fa": "انگشت",
    "pt": "dedo",
    "ar": "إصبع",
-   "pl": "palec"
+   "pl": "palec",
+   "ru": "палец"
   },
   {
    "id": "nagel-daumen",
@@ -1453,7 +1501,8 @@ window.SCENE = {
    "fa": "ناخن، میخ",
    "pt": "unha",
    "ar": "ظفر",
-   "pl": "paznokieć"
+   "pl": "paznokieć",
+   "ru": "ноготь"
   },
   {
    "id": "knoechel-l",
@@ -1482,7 +1531,8 @@ window.SCENE = {
    "fa": "قوزک پا",
    "pt": "tornozelo",
    "ar": "كاحل",
-   "pl": "kostka (u nogi)"
+   "pl": "kostka (u nogi)",
+   "ru": "лодыжка"
   },
   {
    "id": "knoechel-r",
@@ -1511,7 +1561,8 @@ window.SCENE = {
    "fa": "قوزک پا",
    "pt": "tornozelo",
    "ar": "كاحل",
-   "pl": "kostka (u nogi)"
+   "pl": "kostka (u nogi)",
+   "ru": "лодыжка"
   },
   {
    "id": "zehe-l",
@@ -1540,7 +1591,8 @@ window.SCENE = {
    "fa": "انگشت پا",
    "pt": "dedo do pé",
    "ar": "إصبع القدم",
-   "pl": "palec u nogi"
+   "pl": "palec u nogi",
+   "ru": "палец ноги"
   },
   {
    "id": "zehe-r",
@@ -1569,7 +1621,8 @@ window.SCENE = {
    "fa": "انگشت پا",
    "pt": "dedo do pé",
    "ar": "إصبع القدم",
-   "pl": "palec u nogi"
+   "pl": "palec u nogi",
+   "ru": "палец ноги"
   },
   {
    "id": "fussnagel-l",
@@ -1598,7 +1651,8 @@ window.SCENE = {
    "fa": "ناخن، میخ",
    "pt": "unha",
    "ar": "ظفر",
-   "pl": "paznokieć"
+   "pl": "paznokieć",
+   "ru": "ноготь"
   },
   {
    "id": "fussnagel-r",
@@ -1627,7 +1681,8 @@ window.SCENE = {
    "fa": "ناخن، میخ",
    "pt": "unha",
    "ar": "ظفر",
-   "pl": "paznokieć"
+   "pl": "paznokieć",
+   "ru": "ноготь"
   }
  ],
  "grosPlans": [
@@ -2503,6 +2558,47 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Warunek bez <b>wenn</b>: czasownik na początku (<b>Wäre</b>…), potem <b>würde</b> + bezokolicznik.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Warunek nierzeczywisty w przeszłości z czasownikiem modalnym: <b>hätte</b> + podwójny bezokolicznik (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + rzeczownik zastępuje warunek: Konjunktiv II <b>könnte</b>."
+   }
+  },
+  "ru": {
+   "champs": {
+    "alt": "Марк стоит в тёмно-синих трусах-боксерах, босиком; врач слушает ему грудь; у зелёной стены — весы с ростомером.",
+    "consigne": "Нажми на часть тела Марка. Нажми на лицо, руку или ступни, чтобы рассмотреть их поближе.",
+    "nom_vue": "Марк спереди",
+    "autre_vue": "↻ Повернуть Марка"
+   },
+   "couches": {
+    "A1": "Тело человека",
+    "A2": "Wo? — предлоги и тело",
+    "B1": "Указания врача",
+    "B2": "Пассив и относительные придаточные",
+    "C1": "Предположения и Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = у вертикальной поверхности. die Wand → an <b>der</b> Wand (Dativ).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + Dativ. der Patient получает <b>-en</b>: dem Patient<b>en</b>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = перед. die Waage → vor <b>der</b> Waage. Он ещё не встал на них.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Dativ с притяжательным: die Brust → auf <b>seiner</b> Brust.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Dativ множественного числа: <b>an seinen</b> Oberschenkel<b>n</b> — существительное получает -n.",
+    "A2 | Seine Füße sind auf dem Boden.": "der Boden → auf <b>dem</b> Boden. Босиком, на сером полу.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = прослушивать (стетоскопом). Отделяемый глагол: приставка <b>ab</b> уходит в конец.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = вдыхать, <b>ausatmen</b> = выдыхать. Вежливый повелительный: глагол впереди, приставка в конце.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = раздеваться; <b>sich anziehen</b> = одеваться; <b>sich umziehen</b> = переодеваться.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = ставить, прикладывать (движение) → auf <b>die</b> Brust (Akkusativ). <b>sitzen</b> = сидеть.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Движение, Wohin? → <b>sich stellen</b> + Akkusativ: auf <b>die</b> Waage (встать на весы).",
+    "B1 | Danach steht er still auf der Waage.": "Состояние, Wo? → <b>stehen</b> + Dativ: auf <b>der</b> Waage (стоять на весах).",
+    "B2 | Seine Lunge wird gerade abgehört.": "Пассив действия, которое идёт сейчас: <b>werden</b> + Partizip II.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Принадлежность, существительное мужского рода → <b>dessen</b> (грудь которого).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Подлежащее придаточного, женский род → <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + Akkusativ (движение) → auf <b>die</b>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Пассив: <b>wird</b> … gemessen. Ростомер на весах измеряет рост.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Пассив в придаточном: Partizip II + <b>wird</b> в конце.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = почти уверенный вывод из того, что видно.",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = вероятно, без уверенности.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = говорят; я передаю это, не ручаясь.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Предположение без <b>wenn</b>: глагол впереди (<b>Wäre</b>…), потом <b>würde</b> + инфинитив.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Нереальное прошлое с модальным глаголом: <b>hätte</b> + двойной инфинитив (abhören können).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + существительное заменяет условие: Konjunktiv II <b>könnte</b>."
    }
   }
  }

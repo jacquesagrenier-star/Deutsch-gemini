@@ -23,7 +23,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -37,7 +38,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -57,7 +59,8 @@ window.SCENE = {
    "fa": "چغندر قرمز",
    "pt": "beterraba",
    "ar": "شمندر",
-   "pl": "burak ćwikłowy"
+   "pl": "burak ćwikłowy",
+   "ru": "свёкла"
   },
   {
    "id": "blumenkohl",
@@ -80,7 +83,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -94,7 +98,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -114,7 +119,8 @@ window.SCENE = {
    "fa": "گل کلم",
    "pt": "couve-flor",
    "ar": "قرنبيط",
-   "pl": "kalafior"
+   "pl": "kalafior",
+   "ru": "цветная капуста"
   },
   {
    "id": "sellerie",
@@ -137,7 +143,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -151,7 +158,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -171,7 +179,8 @@ window.SCENE = {
    "fa": "کرفس",
    "pt": "aipo, salsão",
    "ar": "كرفس",
-   "pl": "seler"
+   "pl": "seler",
+   "ru": "сельдерей"
   },
   {
    "id": "kartoffel",
@@ -194,7 +203,8 @@ window.SCENE = {
      "fa": "سیب‌زمینی (واژهٔ اتریشی)",
      "pt": "batata (Áustria)",
      "ar": "بطاطس (نمساوية)",
-     "pl": "ziemniak (Austria)"
+     "pl": "ziemniak (Austria)",
+     "ru": "картофель (австр.)"
     },
     {
      "mot": "Kiste",
@@ -208,7 +218,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -222,7 +233,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -242,7 +254,8 @@ window.SCENE = {
    "fa": "سیب‌زمینی",
    "pt": "batata",
    "ar": "بطاطس",
-   "pl": "ziemniak"
+   "pl": "ziemniak",
+   "ru": "картофель"
   },
   {
    "id": "kohlrabi",
@@ -265,7 +278,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -279,7 +293,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -299,7 +314,8 @@ window.SCENE = {
    "fa": "کلم قمری",
    "pt": "couve-rábano",
    "ar": "كرنب أبو ركبة (كولرابي)",
-   "pl": "kalarepa"
+   "pl": "kalarepa",
+   "ru": "кольраби"
   },
   {
    "id": "zwiebel",
@@ -322,7 +338,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -336,7 +353,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -356,7 +374,8 @@ window.SCENE = {
    "fa": "پیاز",
    "pt": "cebola",
    "ar": "بصل",
-   "pl": "cebula"
+   "pl": "cebula",
+   "ru": "лук"
   },
   {
    "id": "kohl",
@@ -379,7 +398,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -393,7 +413,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -413,7 +434,8 @@ window.SCENE = {
    "fa": "کلم",
    "pt": "repolho, couve",
    "ar": "ملفوف",
-   "pl": "kapusta"
+   "pl": "kapusta",
+   "ru": "капуста"
   },
   {
    "id": "lauch",
@@ -436,7 +458,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -450,7 +473,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -470,7 +494,8 @@ window.SCENE = {
    "fa": "تره‌فرنگی",
    "pt": "alho-poró",
    "ar": "كرّاث",
-   "pl": "por"
+   "pl": "por",
+   "ru": "лук-порей"
   },
   {
    "id": "karotte",
@@ -493,7 +518,8 @@ window.SCENE = {
      "fa": "هویج (واژهٔ سوئیسی)",
      "pt": "cenoura (Suíça)",
      "ar": "جزر (سويسرية)",
-     "pl": "marchewka (Szwajcaria)"
+     "pl": "marchewka (Szwajcaria)",
+     "ru": "морковь (швейц.)"
     },
     {
      "mot": "Kiste",
@@ -507,7 +533,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -521,7 +548,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -541,7 +569,8 @@ window.SCENE = {
    "fa": "هویج",
    "pt": "cenoura",
    "ar": "جزر",
-   "pl": "marchewka"
+   "pl": "marchewka",
+   "ru": "морковь"
   },
   {
    "id": "rosenkohl",
@@ -564,7 +593,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -578,7 +608,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -598,7 +629,8 @@ window.SCENE = {
    "fa": "کلم بروکسل",
    "pt": "couve-de-bruxelas",
    "ar": "كرنب بروكسل",
-   "pl": "brukselka"
+   "pl": "brukselka",
+   "ru": "брюссельская капуста"
   },
   {
    "id": "fenchel",
@@ -621,7 +653,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -635,7 +668,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -655,7 +689,8 @@ window.SCENE = {
    "fa": "رازیانه",
    "pt": "erva-doce (bulbo), funcho",
    "ar": "شمر",
-   "pl": "koper włoski, fenkuł"
+   "pl": "koper włoski, fenkuł",
+   "ru": "фенхель"
   },
   {
    "id": "brokkoli",
@@ -678,7 +713,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -692,7 +728,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -712,7 +749,8 @@ window.SCENE = {
    "fa": "کلم بروکلی",
    "pt": "brócolis",
    "ar": "بروكلي",
-   "pl": "brokuł"
+   "pl": "brokuł",
+   "ru": "брокколи"
   },
   {
    "id": "knoblauch",
@@ -735,7 +773,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -749,7 +788,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -769,7 +809,8 @@ window.SCENE = {
    "fa": "سیر",
    "pt": "alho",
    "ar": "ثوم",
-   "pl": "czosnek"
+   "pl": "czosnek",
+   "ru": "чеснок"
   },
   {
    "id": "radieschen",
@@ -792,7 +833,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -806,7 +848,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -826,7 +869,8 @@ window.SCENE = {
    "fa": "تربچه",
    "pt": "rabanete",
    "ar": "فجل أحمر",
-   "pl": "rzodkiewka"
+   "pl": "rzodkiewka",
+   "ru": "редиска"
   },
   {
    "id": "suesskartoffel",
@@ -849,7 +893,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Gemüse",
@@ -863,7 +908,8 @@ window.SCENE = {
      "fa": "سبزیجات",
      "pt": "legumes, verduras",
      "ar": "خضار",
-     "pl": "warzywa"
+     "pl": "warzywa",
+     "ru": "овощи"
     }
    ],
    "sur": null,
@@ -883,7 +929,8 @@ window.SCENE = {
    "fa": "سیب‌زمینی شیرین",
    "pt": "batata-doce",
    "ar": "بطاطا حلوة",
-   "pl": "batat"
+   "pl": "batat",
+   "ru": "батат, сладкий картофель"
   },
   {
    "id": "anna",
@@ -923,7 +970,8 @@ window.SCENE = {
    "fa": "زن، همسر",
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
-   "pl": "kobieta / żona"
+   "pl": "kobieta / żona",
+   "ru": "женщина, жена"
   },
   {
    "id": "radieschen-main",
@@ -951,7 +999,8 @@ window.SCENE = {
    "fa": "تربچه",
    "pt": "rabanete",
    "ar": "فجل أحمر",
-   "pl": "rzodkiewka"
+   "pl": "rzodkiewka",
+   "ru": "редиска"
   }
  ],
  "grosPlans": [],
@@ -1494,6 +1543,43 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Warunek nierzeczywisty w przeszłości: <b>hätte</b> + imiesłów II w obu częściach.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + bezokolicznik przeszły strony biernej: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + bezokolicznik przeszły = to prawdopodobne (przypuszczenie)."
+   }
+  },
+  "ru": {
+   "champs": {
+    "alt": "Анна берёт пучок редиски на овощном прилавке: свёкла, цветная капуста, сельдерей, картофель, кольраби, лук, капуста, лук-порей, морковь, брюссельская капуста, фенхель, брокколи, чеснок, редиска и батат.",
+    "consigne": "Нажми на фрукт, овощ или ящик.",
+    "nom_vue": "Корнеплоды и капуста",
+    "autre_vue": "→ Другие овощи"
+   },
+   "couches": {
+    "A1": "На рынке",
+    "A2": "Wo? — предлоги на рынке",
+    "B1": "Покупки: количество и цены",
+    "B2": "Пассив, относительные придаточные и прилагательные",
+    "C1": "Предположения, je … desto, Genitiv"
+   },
+   "questions": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "<b>zwischen</b> + Dativ: der Kohl → <b>dem</b> Kohl.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "<b>das</b> Bund (пучок) среднего рода: в Akkusativ <b>ein</b> Bund не меняется. (der Bund — это федерация.)",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "die Radieschen (мн. ч.) → Dativ <b>den</b> Radieschen.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "der Sellerie → Dativ <b>dem</b> Sellerie.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "<b>rechts neben</b> + Dativ: <b>dem</b> Kohl.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Морковь с ботвой продают пучками: <b>ein Bund</b> Karotten (das Bund, средний род).",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "После количества — множественное число без артикля: zwei Kilo <b>Kartoffeln</b> (а по-русски — «два кило картошки», родительный).",
+    "B1 | Was kostet der Blumenkohl?": "<b>der</b> Blumenkohl, как der Kohl: род сложного слова даёт последняя часть.",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "Сравнительная степень: <b>größer</b> … <b>als</b> (больше, чем).",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "<b>eine Knolle</b> Knoblauch = головка чеснока; <b>eine Zehe</b> = зубчик.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Пассив в Präteritum: <b>wurden</b> + Partizip II.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "Принадлежность, существительное мужского рода → <b>dessen</b>.",
+    "B2 | Anna kauft frische Radieschen.": "Akkusativ множественного числа без артикля → <b>-e</b>: frisch<b>e</b> Radieschen.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Подлежащее придаточного, средний род → <b>das</b>.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Пассив с модальным глаголом: Partizip II + <b>werden</b> в конце.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "<b>aufgrund</b> + Genitiv = из-за, по причине.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "<b>je</b> …, <b>desto</b> …: чем …, тем …",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Нереальное прошлое: <b>hätte</b> + Partizip II в обеих частях. По-русски: «Если бы я знал, я бы не купил…»",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + инфинитив прошедшего в пассиве: geerntet <b>worden zu</b> sein.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + инфинитив прошедшего = вероятно (предположение)."
    }
   }
  }

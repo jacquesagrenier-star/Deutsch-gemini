@@ -42,6 +42,7 @@ window.SCENE = {
    "en": "the beetroot",
    "ar": "شمندر",
    "pl": "burak ćwikłowy",
+   "ru": "свёкла",
    "latam": {
     "mot": "betabel",
     "genre": "el",
@@ -88,6 +89,7 @@ window.SCENE = {
    "en": "the cauliflower",
    "ar": "قرنبيط",
    "pl": "kalafior",
+   "ru": "цветная капуста",
    "latam": null
   },
   {
@@ -130,6 +132,7 @@ window.SCENE = {
    "en": "the celery",
    "ar": "كرفس",
    "pl": "seler",
+   "ru": "сельдерей",
    "latam": null
   },
   {
@@ -172,6 +175,7 @@ window.SCENE = {
    "en": "potato",
    "ar": "بطاطس",
    "pl": "ziemniak",
+   "ru": "картофель",
    "latam": {
     "mot": "papa",
     "genre": "la",
@@ -218,6 +222,7 @@ window.SCENE = {
    "en": "the kohlrabi",
    "ar": "كرنب أبو ركبة (كولرابي)",
    "pl": "kalarepa",
+   "ru": "кольраби",
    "latam": null
   },
   {
@@ -260,6 +265,7 @@ window.SCENE = {
    "en": "onion",
    "ar": "بصل",
    "pl": "cebula",
+   "ru": "лук",
    "latam": null
   },
   {
@@ -302,6 +308,7 @@ window.SCENE = {
    "en": "the cabbage",
    "ar": "ملفوف",
    "pl": "kapusta",
+   "ru": "капуста",
    "latam": null
   },
   {
@@ -344,6 +351,7 @@ window.SCENE = {
    "en": "the leek",
    "ar": "كرّاث",
    "pl": "por",
+   "ru": "лук-порей",
    "latam": null
   },
   {
@@ -386,6 +394,7 @@ window.SCENE = {
    "en": "the carrot",
    "ar": "جزر",
    "pl": "marchewka",
+   "ru": "морковь",
    "latam": null
   },
   {
@@ -428,6 +437,7 @@ window.SCENE = {
    "en": "the Brussels sprout",
    "ar": "كرنب بروكسل",
    "pl": "brukselka",
+   "ru": "брюссельская капуста",
    "latam": null
   },
   {
@@ -470,6 +480,7 @@ window.SCENE = {
    "en": "the fennel",
    "ar": "شمر",
    "pl": "koper włoski, fenkuł",
+   "ru": "фенхель",
    "latam": null
   },
   {
@@ -512,6 +523,7 @@ window.SCENE = {
    "en": "the broccoli",
    "ar": "بروكلي",
    "pl": "brokuł",
+   "ru": "брокколи",
    "latam": null
   },
   {
@@ -554,6 +566,7 @@ window.SCENE = {
    "en": "the garlic",
    "ar": "ثوم",
    "pl": "czosnek",
+   "ru": "чеснок",
    "latam": null
   },
   {
@@ -596,6 +609,7 @@ window.SCENE = {
    "en": "the radish",
    "ar": "فجل أحمر",
    "pl": "rzodkiewka",
+   "ru": "редиска",
    "latam": null
   },
   {
@@ -638,6 +652,7 @@ window.SCENE = {
    "en": "the sweet potato",
    "ar": "بطاطا حلوة",
    "pl": "batat",
+   "ru": "батат, сладкий картофель",
    "latam": {
     "mot": "camote",
     "genre": "el",
@@ -679,6 +694,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -704,6 +720,7 @@ window.SCENE = {
    "en": "the radish",
    "ar": "فجل أحمر",
    "pl": "rzodkiewka",
+   "ru": "редиска",
    "latam": null
   }
  ],
@@ -1134,6 +1151,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na targu"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Анна берёт пучок редиски на овощном прилавке: свёкла, цветная капуста, сельдерей, картофель, кольраби, лук, капуста, лук-порей, морковь, брюссельская капуста, фенхель, брокколи, чеснок, редиска и батат.",
+    "consigne": "Нажми на фрукт, овощ или ящик.",
+    "nom_vue": "Корнеплоды и капуста",
+    "autre_vue": "→ Другие овощи"
+   },
+   "couches": {
+    "A1": "На рынке"
    },
    "questions": {}
   }

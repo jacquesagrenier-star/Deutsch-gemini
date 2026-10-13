@@ -23,7 +23,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -37,7 +38,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -57,7 +59,8 @@ window.SCENE = {
    "fa": "هندوانه",
    "pt": "melancia",
    "ar": "بطّيخ",
-   "pl": "arbuz"
+   "pl": "arbuz",
+   "ru": "арбуз"
   },
   {
    "id": "ananas",
@@ -80,7 +83,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -94,7 +98,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -114,7 +119,8 @@ window.SCENE = {
    "fa": "آناناس",
    "pt": "abacaxi",
    "ar": "أناناس",
-   "pl": "ananas"
+   "pl": "ananas",
+   "ru": "ананас"
   },
   {
    "id": "kokosnuss",
@@ -137,7 +143,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -151,7 +158,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -171,7 +179,8 @@ window.SCENE = {
    "fa": "نارگیل",
    "pt": "coco",
    "ar": "جوز الهند",
-   "pl": "kokos"
+   "pl": "kokos",
+   "ru": "кокосовый орех"
   },
   {
    "id": "melone",
@@ -194,7 +203,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -208,7 +218,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -228,7 +239,8 @@ window.SCENE = {
    "fa": "خربزه",
    "pt": "melão",
    "ar": "شمّام",
-   "pl": "melon"
+   "pl": "melon",
+   "ru": "дыня"
   },
   {
    "id": "orange",
@@ -251,7 +263,8 @@ window.SCENE = {
      "fa": "پرتقال (واژهٔ شمال آلمان)",
      "pt": "laranja (no norte da Alemanha)",
      "ar": "برتقال",
-     "pl": "pomarańcza"
+     "pl": "pomarańcza",
+     "ru": "апельсин"
     },
     {
      "mot": "Kiste",
@@ -265,7 +278,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -279,7 +293,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -299,7 +314,8 @@ window.SCENE = {
    "fa": "پرتقال",
    "pt": "laranja",
    "ar": "برتقالة",
-   "pl": "pomarańcza"
+   "pl": "pomarańcza",
+   "ru": "апельсин"
   },
   {
    "id": "avocado",
@@ -322,7 +338,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -336,7 +353,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -356,7 +374,8 @@ window.SCENE = {
    "fa": "آووکادو",
    "pt": "abacate",
    "ar": "أفوكادو",
-   "pl": "awokado"
+   "pl": "awokado",
+   "ru": "авокадо"
   },
   {
    "id": "papaya",
@@ -379,7 +398,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -393,7 +413,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -413,7 +434,8 @@ window.SCENE = {
    "fa": "پاپایا",
    "pt": "mamão papaia",
    "ar": "بابايا",
-   "pl": "papaja"
+   "pl": "papaja",
+   "ru": "папайя"
   },
   {
    "id": "zitrone",
@@ -436,7 +458,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -450,7 +473,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -470,7 +494,8 @@ window.SCENE = {
    "fa": "لیمو",
    "pt": "limão",
    "ar": "ليمون",
-   "pl": "cytryna"
+   "pl": "cytryna",
+   "ru": "лимон"
   },
   {
    "id": "kiwi",
@@ -493,7 +518,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -507,7 +533,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -527,7 +554,8 @@ window.SCENE = {
    "fa": "کیوی",
    "pt": "kiwi",
    "ar": "كيوي",
-   "pl": "kiwi"
+   "pl": "kiwi",
+   "ru": "киви"
   },
   {
    "id": "mandarine",
@@ -550,7 +578,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -564,7 +593,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -584,7 +614,8 @@ window.SCENE = {
    "fa": "نارنگی",
    "pt": "tangerina, mexerica",
    "ar": "يوسفي، مندرين",
-   "pl": "mandarynka"
+   "pl": "mandarynka",
+   "ru": "мандарин"
   },
   {
    "id": "feige",
@@ -607,7 +638,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -621,7 +653,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -641,7 +674,8 @@ window.SCENE = {
    "fa": "انجیر",
    "pt": "figo",
    "ar": "تين",
-   "pl": "figa"
+   "pl": "figa",
+   "ru": "инжир"
   },
   {
    "id": "limette",
@@ -664,7 +698,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -678,7 +713,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -698,7 +734,8 @@ window.SCENE = {
    "fa": "لیموی سبز",
    "pt": "limão (taiti)",
    "ar": "ليمون أخضر (ليم)",
-   "pl": "limonka"
+   "pl": "limonka",
+   "ru": "лайм"
   },
   {
    "id": "grapefruit",
@@ -721,7 +758,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -735,7 +773,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -755,7 +794,8 @@ window.SCENE = {
    "fa": "گریپ‌فروت",
    "pt": "toranja",
    "ar": "جريب فروت",
-   "pl": "grejpfrut"
+   "pl": "grejpfrut",
+   "ru": "грейпфрут"
   },
   {
    "id": "mango",
@@ -778,7 +818,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -792,7 +833,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -812,7 +854,8 @@ window.SCENE = {
    "fa": "انبه",
    "pt": "manga",
    "ar": "مانجو",
-   "pl": "mango"
+   "pl": "mango",
+   "ru": "манго"
   },
   {
    "id": "banane",
@@ -835,7 +878,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -849,7 +893,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -869,7 +914,8 @@ window.SCENE = {
    "fa": "موز",
    "pt": "banana",
    "ar": "موزة",
-   "pl": "banan"
+   "pl": "banan",
+   "ru": "банан"
   },
   {
    "id": "granatapfel",
@@ -892,7 +938,8 @@ window.SCENE = {
      "fa": "جعبهٔ چوبی",
      "pt": "caixote",
      "ar": "صندوق",
-     "pl": "skrzynia, skrzynka"
+     "pl": "skrzynia, skrzynka",
+     "ru": "ящик"
     },
     {
      "mot": "Obst",
@@ -906,7 +953,8 @@ window.SCENE = {
      "fa": "میوه",
      "pt": "frutas",
      "ar": "فواكه",
-     "pl": "owoce"
+     "pl": "owoce",
+     "ru": "фрукты"
     }
    ],
    "sur": null,
@@ -926,7 +974,8 @@ window.SCENE = {
    "fa": "انار",
    "pt": "romã",
    "ar": "رمّان",
-   "pl": "granat (owoc)"
+   "pl": "granat (owoc)",
+   "ru": "гранат"
   },
   {
    "id": "anna",
@@ -960,7 +1009,8 @@ window.SCENE = {
    "fa": "زن، همسر",
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
-   "pl": "kobieta / żona"
+   "pl": "kobieta / żona",
+   "ru": "женщина, жена"
   }
  ],
  "grosPlans": [],
@@ -1506,6 +1556,43 @@ window.SCENE = {
     "C1 | Hätte Anna mehr Zeit, würde sie eine Ananas kaufen und schälen.": "Warunek nierzeczywisty w teraźniejszości: <b>hätte</b> na początku, potem <b>würde</b> + bezokolicznik.",
     "C1 | Avocados sollte man nicht im Kühlschrank aufbewahren.": "<b>sollte</b> = rada (powinno się).",
     "C1 | Die Kokosnuss muss mit einem Hammer geöffnet worden sein.": "Wniosek o przeszłości w stronie biernej: imiesłów II + <b>worden sein</b>."
+   }
+  },
+  "ru": {
+   "champs": {
+    "alt": "Анна берёт бананы у прилавка с южными фруктами: арбузы, ананасы, кокосы, дыни, апельсины, авокадо, папайя, лимоны, киви, мандарины, инжир, лаймы, грейпфруты, манго, бананы и гранаты.",
+    "consigne": "Нажми на фрукт, овощ или ящик.",
+    "nom_vue": "Южные фрукты",
+    "autre_vue": "→ Овощи"
+   },
+   "couches": {
+    "A1": "На рынке",
+    "A2": "Wo? — предлоги на рынке",
+    "B1": "Покупки: количество и цены",
+    "B2": "Пассив, относительные придаточные и прилагательные",
+    "C1": "Предположения, je … desto, Genitiv"
+   },
+   "questions": {
+    "A2 | Die Avocados liegen zwischen den Orangen und den Papayas.": "<b>zwischen</b> + Dativ множественного числа: <b>den</b> Orange<b>n</b>, <b>den</b> Papayas.",
+    "A2 | Anna nimmt ein paar Bananen.": "<b>ein paar</b> = несколько. Akkusativ множественного числа, без артикля.",
+    "A2 | Die Limetten liegen neben den Feigen.": "die Feige → множественное die Feigen → Dativ <b>den Feigen</b>.",
+    "A2 | Die Mangos liegen zwischen den Grapefruits und den Bananen.": "Формы множественного числа на <b>-s</b> не получают -n в Dativ: den Grapefruit<b>s</b>.",
+    "A2 | Die halbe Wassermelone liegt auf den anderen Wassermelonen.": "<b>auf</b> + Dativ (Wo?): auf <b>den anderen</b> Wassermelonen.",
+    "B1 | Was kostet eine Ananas?": "die Ananas → <b>eine</b> Ananas. Во множественном числе тоже «die Ananas».",
+    "B1 | Ich nehme ein Stück Wassermelone, bitte.": "<b>ein Stück</b> = кусок. После количества артикля нет.",
+    "B1 | Die Wassermelone ist größer als die Melone.": "Сравнительная степень: groß → <b>größer</b> … <b>als</b>.",
+    "B1 | Sind die Mangos schon reif?": "Прилагательное после sein не согласуется → <b>reif</b> (спелые).",
+    "B1 | Ich hätte gern drei Zitronen.": "die Zitrone → множественное die <b>Zitronen</b>.",
+    "B2 | Südfrüchte werden meistens mit dem Schiff importiert.": "Пассив: <b>werden</b> + Partizip II (importiert = импортируются).",
+    "B2 | Die Mango, deren Schale rot und grün ist, ist schon reif.": "Принадлежность, существительное женского рода → <b>deren</b> (кожура которого).",
+    "B2 | Eine aufgeschnittene Papaya liegt oben auf den anderen.": "После <b>eine</b>, Nominativ женского рода: <b>-e</b>.",
+    "B2 | Die Bananen, die Anna nimmt, kommen aus Ecuador.": "Дополнение глагола nehmen → Akkusativ множественного числа <b>die</b>.",
+    "B2 | Die Kokosnuss ist schon geöffnet.": "Пассив состояния: <b>sein</b> + Partizip II — он УЖЕ открыт, дело сделано.",
+    "C1 | Trotz ihres langen Transportweges sind Mangos hier recht günstig.": "<b>trotz</b> + Genitiv = несмотря на.",
+    "C1 | Je dunkler die Feigen sind, desto süßer schmecken sie.": "<b>je</b> …, <b>desto</b> …: чем …, тем …",
+    "C1 | Hätte Anna mehr Zeit, würde sie eine Ananas kaufen und schälen.": "Нереальное настоящее: <b>hätte</b> впереди, потом <b>würde</b> + инфинитив. По-русски: «Будь у Анны больше времени…»",
+    "C1 | Avocados sollte man nicht im Kühlschrank aufbewahren.": "<b>sollte</b> = совет (не следует).",
+    "C1 | Die Kokosnuss muss mit einem Hammer geöffnet worden sein.": "Вывод о прошлом, в пассиве: Partizip II + <b>worden sein</b>."
    }
   }
  }

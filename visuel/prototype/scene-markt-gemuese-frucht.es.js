@@ -42,6 +42,7 @@ window.SCENE = {
    "en": "the pea",
    "ar": "بازلاء",
    "pl": "groszek",
+   "ru": "горошек",
    "latam": {
     "mot": "chícharo",
     "genre": "el",
@@ -88,6 +89,7 @@ window.SCENE = {
    "en": "the lettuce",
    "ar": "خس، سلطة",
    "pl": "sałata, sałatka",
+   "ru": "салат",
    "latam": null
   },
   {
@@ -130,6 +132,7 @@ window.SCENE = {
    "en": "the asparagus",
    "ar": "هليون",
    "pl": "szparag",
+   "ru": "спаржа",
    "latam": null
   },
   {
@@ -172,6 +175,7 @@ window.SCENE = {
    "en": "the pumpkin",
    "ar": "يقطين",
    "pl": "dynia",
+   "ru": "тыква",
    "latam": null
   },
   {
@@ -214,6 +218,7 @@ window.SCENE = {
    "en": "the pepper",
    "ar": "فلفل حلو",
    "pl": "papryka",
+   "ru": "болгарский перец",
    "latam": null
   },
   {
@@ -256,6 +261,7 @@ window.SCENE = {
    "en": "the corn",
    "ar": "ذرة",
    "pl": "kukurydza",
+   "ru": "кукуруза",
    "latam": null
   },
   {
@@ -306,6 +312,7 @@ window.SCENE = {
    "en": "the mushroom",
    "ar": "فطر",
    "pl": "grzyb",
+   "ru": "гриб",
    "latam": null
   },
   {
@@ -348,6 +355,7 @@ window.SCENE = {
    "en": "the bean",
    "ar": "فاصوليا",
    "pl": "fasola",
+   "ru": "фасоль, боб",
    "latam": {
     "mot": "frijol",
     "genre": "el",
@@ -394,6 +402,7 @@ window.SCENE = {
    "en": "the chard",
    "ar": "سلق",
    "pl": "boćwina, burak liściowy",
+   "ru": "мангольд",
    "latam": null
   },
   {
@@ -436,6 +445,7 @@ window.SCENE = {
    "en": "the artichoke",
    "ar": "خرشوف",
    "pl": "karczoch",
+   "ru": "артишок",
    "latam": null
   },
   {
@@ -478,6 +488,7 @@ window.SCENE = {
    "en": "the aubergine, the eggplant",
    "ar": "باذنجان",
    "pl": "bakłażan",
+   "ru": "баклажан",
    "latam": null
   },
   {
@@ -520,6 +531,7 @@ window.SCENE = {
    "en": "the cucumber",
    "ar": "خيار",
    "pl": "ogórek",
+   "ru": "огурец",
    "latam": null
   },
   {
@@ -562,6 +574,7 @@ window.SCENE = {
    "en": "the courgette, the zucchini",
    "ar": "كوسة",
    "pl": "cukinia",
+   "ru": "кабачок, цукини",
    "latam": {
     "mot": "calabacita",
     "genre": "la",
@@ -608,6 +621,7 @@ window.SCENE = {
    "en": "tomato",
    "ar": "طماطم",
    "pl": "pomidor",
+   "ru": "помидор",
    "latam": null
   },
   {
@@ -650,6 +664,7 @@ window.SCENE = {
    "en": "the spinach",
    "ar": "سبانخ",
    "pl": "szpinak",
+   "ru": "шпинат",
    "latam": null
   },
   {
@@ -687,6 +702,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -712,6 +728,7 @@ window.SCENE = {
    "en": "tomato",
    "ar": "طماطم",
    "pl": "pomidor",
+   "ru": "помидор",
    "latam": null
   }
  ],
@@ -1130,6 +1147,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na targu"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Анна берёт кисть помидоров на овощном прилавке: горошек, салат, спаржа, тыквы, перцы, кукуруза, грибы, фасоль, мангольд, артишоки, баклажаны, огурцы, кабачки, помидоры и шпинат.",
+    "consigne": "Нажми на фрукт, овощ или ящик.",
+    "nom_vue": "Плодовые овощи и зелень",
+    "autre_vue": "→ Местные фрукты"
+   },
+   "couches": {
+    "A1": "На рынке"
    },
    "questions": {}
   }

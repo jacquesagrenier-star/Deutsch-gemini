@@ -28,7 +28,8 @@ window.SCENE = {
    "fa": "پتو",
    "pt": "cobertor",
    "ar": "بطانية",
-   "pl": "koc"
+   "pl": "koc",
+   "ru": "одеяло, плед"
   },
   {
    "id": "wand",
@@ -56,7 +57,8 @@ window.SCENE = {
    "fa": "دیوار",
    "pt": "parede",
    "ar": "جدار",
-   "pl": "ściana"
+   "pl": "ściana",
+   "ru": "стена"
   },
   {
    "id": "boden",
@@ -84,7 +86,8 @@ window.SCENE = {
    "fa": "زمین، کف",
    "pt": "chão, solo",
    "ar": "أرض، تربة",
-   "pl": "ziemia, podłoże"
+   "pl": "ziemia, podłoże",
+   "ru": "почва, пол"
   },
   {
    "id": "lampe",
@@ -107,7 +110,8 @@ window.SCENE = {
      "fa": "آباژور",
      "pt": "cúpula (de abajur)",
      "ar": "غطاء المصباح",
-     "pl": "abażur"
+     "pl": "abażur",
+     "ru": "абажур"
     }
    ],
    "sur": null,
@@ -127,7 +131,8 @@ window.SCENE = {
    "fa": "چراغ",
    "pt": "luminária",
    "ar": "مصباح",
-   "pl": "lampa"
+   "pl": "lampa",
+   "ru": "лампа"
   },
   {
    "id": "regenschirm",
@@ -155,7 +160,8 @@ window.SCENE = {
    "fa": "چتر",
    "pt": "guarda-chuva",
    "ar": "مظلّة",
-   "pl": "parasol"
+   "pl": "parasol",
+   "ru": "зонт"
   },
   {
    "id": "schrank",
@@ -183,7 +189,8 @@ window.SCENE = {
    "fa": "کمد",
    "pt": "armário",
    "ar": "خزانة",
-   "pl": "szafa"
+   "pl": "szafa",
+   "ru": "шкаф"
   },
   {
    "id": "ball",
@@ -206,7 +213,8 @@ window.SCENE = {
      "fa": "فوتبال",
      "pt": "futebol",
      "ar": "كرة القدم",
-     "pl": "piłka nożna"
+     "pl": "piłka nożna",
+     "ru": "футбол"
     }
    ],
    "sur": "schrank",
@@ -226,7 +234,8 @@ window.SCENE = {
    "fa": "توپ",
    "pt": "bola",
    "ar": "كرة",
-   "pl": "piłka"
+   "pl": "piłka",
+   "ru": "мяч"
   },
   {
    "id": "bild",
@@ -249,7 +258,8 @@ window.SCENE = {
      "fa": "تابلوی نقاشی",
      "pt": "pintura, quadro",
      "ar": "لوحة زيتية",
-     "pl": "obraz (malowany)"
+     "pl": "obraz (malowany)",
+     "ru": "картина (живопись)"
     }
    ],
    "sur": "wand",
@@ -269,7 +279,8 @@ window.SCENE = {
    "fa": "تابلو، عکس",
    "pt": "quadro",
    "ar": "صورة، لوحة",
-   "pl": "obraz"
+   "pl": "obraz",
+   "ru": "картина, изображение"
   },
   {
    "id": "fenster",
@@ -297,7 +308,8 @@ window.SCENE = {
    "fa": "پنجره",
    "pt": "janela",
    "ar": "نافذة",
-   "pl": "okno"
+   "pl": "okno",
+   "ru": "окно"
   },
   {
    "id": "heizkoerper",
@@ -325,7 +337,8 @@ window.SCENE = {
    "fa": "رادیاتور",
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
-   "pl": "grzejnik, kaloryfer"
+   "pl": "grzejnik, kaloryfer",
+   "ru": "батарея (отопления)"
   },
   {
    "id": "pflanze",
@@ -348,7 +361,8 @@ window.SCENE = {
      "fa": "ریسهٔ چراغ",
      "pt": "pisca-pisca, cordão de luzes",
      "ar": "سلسلة أضواء",
-     "pl": "girlanda świetlna, lampki"
+     "pl": "girlanda świetlna, lampki",
+     "ru": "гирлянда"
     }
    ],
    "sur": null,
@@ -368,7 +382,8 @@ window.SCENE = {
    "fa": "گیاه",
    "pt": "planta",
    "ar": "نبات",
-   "pl": "roślina"
+   "pl": "roślina",
+   "ru": "растение"
   },
   {
    "id": "stehlampe",
@@ -391,7 +406,8 @@ window.SCENE = {
      "fa": "چراغ",
      "pt": "luminária",
      "ar": "مصباح",
-     "pl": "lampa"
+     "pl": "lampa",
+     "ru": "лампа"
     },
     {
      "mot": "Lampenschirm",
@@ -405,7 +421,8 @@ window.SCENE = {
      "fa": "آباژور",
      "pt": "cúpula (de abajur)",
      "ar": "غطاء المصباح",
-     "pl": "abażur"
+     "pl": "abażur",
+     "ru": "абажур"
     }
    ],
    "sur": null,
@@ -425,7 +442,8 @@ window.SCENE = {
    "fa": "چراغ پایه‌بلند",
    "pt": "luminária de chão",
    "ar": "مصباح أرضي",
-   "pl": "lampa stojąca"
+   "pl": "lampa stojąca",
+   "ru": "торшер"
   },
   {
    "id": "socke",
@@ -453,7 +471,8 @@ window.SCENE = {
    "fa": "جوراب",
    "pt": "meia",
    "ar": "جورب",
-   "pl": "skarpetka"
+   "pl": "skarpetka",
+   "ru": "носок"
   },
   {
    "id": "regal",
@@ -481,7 +500,8 @@ window.SCENE = {
    "fa": "قفسه",
    "pt": "estante",
    "ar": "رفّ",
-   "pl": "regał, półka"
+   "pl": "regał, półka",
+   "ru": "полка, стеллаж"
   },
   {
    "id": "goldfisch",
@@ -504,7 +524,8 @@ window.SCENE = {
      "fa": "ماهی",
      "pt": "peixe",
      "ar": "سمكة",
-     "pl": "ryba"
+     "pl": "ryba",
+     "ru": "рыба"
     }
    ],
    "sur": "regal",
@@ -524,7 +545,8 @@ window.SCENE = {
    "fa": "ماهی قرمز",
    "pt": "peixinho dourado",
    "ar": "سمكة ذهبية",
-   "pl": "złota rybka"
+   "pl": "złota rybka",
+   "ru": "золотая рыбка"
   },
   {
    "id": "fahrrad",
@@ -552,7 +574,8 @@ window.SCENE = {
    "fa": "دوچرخه",
    "pt": "bicicleta",
    "ar": "درّاجة",
-   "pl": "rower"
+   "pl": "rower",
+   "ru": "велосипед"
   },
   {
    "id": "tuer",
@@ -580,7 +603,8 @@ window.SCENE = {
    "fa": "در",
    "pt": "porta",
    "ar": "باب",
-   "pl": "drzwi"
+   "pl": "drzwi",
+   "ru": "дверь"
   },
   {
    "id": "sofa",
@@ -608,7 +632,8 @@ window.SCENE = {
    "fa": "مبل",
    "pt": "sofá",
    "ar": "أريكة، كنبة",
-   "pl": "kanapa"
+   "pl": "kanapa",
+   "ru": "диван"
   },
   {
    "id": "buch",
@@ -636,7 +661,8 @@ window.SCENE = {
    "fa": "کتاب",
    "pt": "livro",
    "ar": "كتاب",
-   "pl": "książka"
+   "pl": "książka",
+   "ru": "книга"
   },
   {
    "id": "gitarre",
@@ -664,7 +690,8 @@ window.SCENE = {
    "fa": "گیتار",
    "pt": "violão, guitarra",
    "ar": "غيتار",
-   "pl": "gitara"
+   "pl": "gitara",
+   "ru": "гитара"
   },
   {
    "id": "turnschuh",
@@ -687,7 +714,8 @@ window.SCENE = {
      "fa": "کفش",
      "pt": "sapato",
      "ar": "حذاء",
-     "pl": "but"
+     "pl": "but",
+     "ru": "ботинок, туфля"
     }
    ],
    "sur": null,
@@ -707,7 +735,8 @@ window.SCENE = {
    "fa": "کفش ورزشی",
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
-   "pl": "trampek, but sportowy"
+   "pl": "trampek, but sportowy",
+   "ru": "кроссовки, кеды"
   },
   {
    "id": "fernseher",
@@ -735,7 +764,8 @@ window.SCENE = {
    "fa": "تلویزیون",
    "pt": "televisão, TV",
    "ar": "تلفاز",
-   "pl": "telewizor"
+   "pl": "telewizor",
+   "ru": "телевизор"
   },
   {
    "id": "pizza",
@@ -758,7 +788,8 @@ window.SCENE = {
      "fa": "بشقاب",
      "pt": "prato",
      "ar": "صحن",
-     "pl": "talerz"
+     "pl": "talerz",
+     "ru": "тарелка"
     }
    ],
    "sur": null,
@@ -778,7 +809,8 @@ window.SCENE = {
    "fa": "پیتزا",
    "pt": "pizza",
    "ar": "بيتزا",
-   "pl": "pizza"
+   "pl": "pizza",
+   "ru": "пицца"
   },
   {
    "id": "couchtisch",
@@ -801,7 +833,8 @@ window.SCENE = {
      "fa": "میز",
      "pt": "mesa",
      "ar": "طاولة",
-     "pl": "stół"
+     "pl": "stół",
+     "ru": "стол"
     }
    ],
    "sur": null,
@@ -821,7 +854,8 @@ window.SCENE = {
    "fa": "میز جلومبلی",
    "pt": "mesa de centro",
    "ar": "طاولة القهوة",
-   "pl": "stolik kawowy, ława"
+   "pl": "stolik kawowy, ława",
+   "ru": "журнальный столик"
   },
   {
    "id": "tasse",
@@ -849,7 +883,8 @@ window.SCENE = {
    "fa": "فنجان",
    "pt": "xícara",
    "ar": "فنجان",
-   "pl": "filiżanka, kubek"
+   "pl": "filiżanka, kubek",
+   "ru": "чашка"
   },
   {
    "id": "pizzakarton",
@@ -872,7 +907,8 @@ window.SCENE = {
      "fa": "پیتزا",
      "pt": "pizza",
      "ar": "بيتزا",
-     "pl": "pizza"
+     "pl": "pizza",
+     "ru": "пицца"
     }
    ],
    "sur": "couchtisch",
@@ -892,7 +928,8 @@ window.SCENE = {
    "fa": "جعبهٔ مقوایی",
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
-   "pl": "karton"
+   "pl": "karton",
+   "ru": "картонная коробка"
   },
   {
    "id": "hund",
@@ -920,7 +957,8 @@ window.SCENE = {
    "fa": "سگ",
    "pt": "cachorro",
    "ar": "كلب",
-   "pl": "pies"
+   "pl": "pies",
+   "ru": "собака"
   },
   {
    "id": "eimer",
@@ -948,7 +986,8 @@ window.SCENE = {
    "fa": "سطل",
    "pt": "balde",
    "ar": "دلو",
-   "pl": "wiadro"
+   "pl": "wiadro",
+   "ru": "ведро"
   },
   {
    "id": "flasche",
@@ -976,7 +1015,8 @@ window.SCENE = {
    "fa": "بطری",
    "pt": "garrafa",
    "ar": "زجاجة",
-   "pl": "butelka"
+   "pl": "butelka",
+   "ru": "бутылка"
   },
   {
    "id": "karton",
@@ -1004,7 +1044,8 @@ window.SCENE = {
    "fa": "جعبهٔ مقوایی",
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
-   "pl": "karton"
+   "pl": "karton",
+   "ru": "картонная коробка"
   },
   {
    "id": "katze",
@@ -1032,7 +1073,8 @@ window.SCENE = {
    "fa": "گربه",
    "pt": "gato",
    "ar": "قطة",
-   "pl": "kot"
+   "pl": "kot",
+   "ru": "кошка"
   },
   {
    "id": "luftballon",
@@ -1060,7 +1102,8 @@ window.SCENE = {
    "fa": "بادکنک",
    "pt": "bexiga, balão",
    "ar": "بالون",
-   "pl": "balon, balonik"
+   "pl": "balon, balonik",
+   "ru": "воздушный шарик"
   },
   {
    "id": "luftballon-links",
@@ -1088,7 +1131,8 @@ window.SCENE = {
    "fa": "بادکنک",
    "pt": "bexiga, balão",
    "ar": "بالون",
-   "pl": "balon, balonik"
+   "pl": "balon, balonik",
+   "ru": "воздушный шарик"
   },
   {
    "id": "koffer",
@@ -1116,7 +1160,8 @@ window.SCENE = {
    "fa": "چمدان",
    "pt": "mala",
    "ar": "حقيبة سفر",
-   "pl": "walizka"
+   "pl": "walizka",
+   "ru": "чемодан"
   }
  ],
  "grosPlans": [],
@@ -1849,6 +1894,51 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + bezokolicznik przeszły = prawdopodobnie: ostrożne przypuszczenie.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = to możliwe, ale nic tego nie dowodzi. <b>muss</b> oznaczałoby pewność.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Warunek nierzeczywisty (hätte … verpasst), skutek w teraźniejszości → Konjunktiv II: <b>wäre</b>."
+   }
+  },
+  "ru": {
+   "champs": {
+    "alt": "Гостиная в квартире, которую Марк снимает с соседями, наутро после вечеринки: мяч на шкафу, зонт висит на лампе, носок на торшере, кошка в коробке, собака под журнальным столиком, а чемодан Марка — на пороге.",
+    "consigne": "Марк вернулся из поездки… а его соседи устроили вечеринку. Нажми на предмет."
+   },
+   "couches": {
+    "A1": "Существительные и артикли",
+    "A2": "Wo? — предлоги",
+    "B1": "Wo? или Wohin? — Марк наводит порядок",
+    "B2": "Относительные придаточные и пассив состояния",
+    "C1": "Предположения"
+   },
+   "questions": {
+    "A2 | Der Ball liegt auf dem Schrank.": "<b>Wo?</b> (где?) → Dativ: der Schrank → auf <b>dem</b> Schrank.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "<b>unter</b> = под. Dativ: der Couchtisch → unter <b>dem</b> Couchtisch.",
+    "A2 | Die Katze sitzt im Karton.": "<b>im</b> = in + dem. Dativ: der Karton → in <b>dem</b> (im) Karton.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Висит: <b>an</b> + Dativ. die Lampe → an <b>der</b> Lampe.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "<b>vor</b> = перед. Dativ: das Regal → vor <b>dem</b> Regal.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "<b>zwischen</b> = между, Dativ для обоих: zwischen <b>dem</b> Schrank und <b>dem</b> Sofa.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Множественное число: die Turnschuhe <b>liegen</b>. Dativ: unter <b>dem</b> Sofa.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "<b>auf</b> + Dativ: auf <b>dem</b> Regal. А после <b>mit</b> всегда Dativ: mit <b>dem</b> Goldfisch.",
+    "A2 | Die Socke hängt an der Stehlampe.": "<b>an</b> + Dativ: die Stehlampe → an <b>der</b> Stehlampe.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + Dativ: das Fenster → unter <b>dem</b> Fenster.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Состояние (<b>liegen</b>, Wo?) → Dativ: auf <b>dem</b> Schrank.",
+    "B1 | Mark legt den Ball in den Schrank.": "<b>legen</b> = класть, действие (Wohin?) → Akkusativ: in <b>den</b> Schrank. <b>liegen</b> = лежать, состояние. Как «в шкафу / в шкаф».",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Состояние → <b>stehen</b> + Dativ: auf <b>dem</b> Couchtisch.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = ставить, действие (Wohin?) → Akkusativ: das Regal → auf <b>das</b> Regal (aufs Regal).",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> для состояния (Wo?) → Dativ: an <b>der</b> Lampe.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Тот же глагол <b>hängen</b>, но действие (Wohin?) → Akkusativ: an <b>die</b> Tür. Есть ли движение, показывает падеж.",
+    "B1 | Mark legt das Buch ins Regal.": "Wohin? → Akkusativ: in + das = <b>ins</b>. <b>im</b> (in dem) отвечало бы на Wo?",
+    "B1 | Die Flaschen stehen im Eimer.": "Состояние (<b>stehen</b>) → Dativ: in dem = <b>im</b> Eimer.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Движение к месту (Wohin?) → Akkusativ: auf <b>das</b> Sofa (aufs Sofa).",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Состояние → Dativ: der Boden → auf <b>dem</b> Boden.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Предлог + относительное местоимение: <b>an der</b> (die Lampe, Dativ женского рода).",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Подлежащее придаточного, мужской род → <b>der</b>.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Принадлежность, существительное женского рода (die Katze) → <b>deren</b> (голова которой).",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "<b>vor</b> + относительное местоимение, состояние (Wo?) → Dativ: das Regal → <b>vor dem</b>.",
+    "B2 | Die Tür ist geöffnet.": "Пассив состояния: <b>sein</b> + причастие, как «дверь открыта». Её открыли, и она так и осталась.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Пассив состояния: <b>ist</b> + причастие. И <b>um</b> всегда требует Akkusativ: um <b>die</b> Pflanze.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "<b>müssen</b> + инфинитив прошедшего = почти наверняка, вывод из того, что видно: повсюду шарики.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + инфинитив прошедшего = вероятно: осторожная гипотеза.",
+    "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = это возможно, но ничто этого не доказывает. <b>muss</b> было бы уверенностью.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Нереальное условие (hätte … verpasst), следствие в настоящем → Konjunktiv II: <b>wäre</b>. По-русски: «Не пропусти Марк вечеринку, он бы сейчас тоже был уставшим»."
    }
   }
  }

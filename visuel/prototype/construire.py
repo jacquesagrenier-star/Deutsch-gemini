@@ -70,11 +70,12 @@ def corpus_cat(fichier, cle):
     return {e[cle] for niv in d.values() for e in niv if e.get(cle)}
 
 
-LANGUES = ["en", "tr", "uk", "fa", "ar", "pt", "pl"]
+LANGUES = ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
 # Les traductions d'un mot dans le corpus : traduction (fr), traduction_en...
 CHAMPS_MOT = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr",
               "uk": "traduction_uk", "fa": "traduction_fa",
-              "pt": "traduction_pt", "ar": "traduction_ar", "pl": "traduction_pl"}
+              "pt": "traduction_pt", "ar": "traduction_ar", "pl": "traduction_pl",
+              "ru": "traduction_ru"}
 
 
 def sens(m):

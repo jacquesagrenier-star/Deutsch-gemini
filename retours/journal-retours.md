@@ -8389,3 +8389,26 @@ controle aussi pl : 0. Relecture d'un echantillon de 315 textes par Fable : 94,6
 dont « przyimek dwuprzypadkowy » pour les 9 Wechselpraepositionen). Verifie : les dix
 fichiers de donnees identiques a main hors champs pl ; verifier.py, syntaxe.js,
 voix_couverture.py ; parcours allemand et espagnol a 0 ecart. Non relu par un natif.
+
+Suite (v779) : le russe, 9e langue d'interface, au niveau des autres (PR #14 fusionnee :
+tout etait prepare dans russe/ sans toucher au depot, pose a la fusion par
+russe/outils/poser_tout.py, rangs des cartes deduits apres le polonais, drapeau neutre
+choisi par Jacques). Interface 1 172 cles (deux ajoutees a la fusion : « Passage a
+l'allemand / a l'espagnol... »), grammaire 235 textes, corpus 8 052/8 052 (55 lots A1-C1),
+examen 720 champs, exercices de grammaire 2 317/2 317 (40 jeux ; 132 entrees de 4 jeux
+etaient incompletes dans les lots, completees a la fusion), exercices d'articles 219 textes,
+prononciation 25 regles (73 exemples), dix scenes reconstruites avec traduction_ru et les
+30 textes de leur page. Les 324 champs d'exercices traduits en v777 poses en russe
+(trous-traduction, 85 reecrits + 239 deja en place) ; trous_francais.py controle aussi
+ru : 0. Relecture d'un echantillon de 250 textes par Fable AVANT la pose : 96,4 % bon,
+1 faux (« в цокольном этаже » -> « на ») et 8 a ameliorer, tous corriges dans russe/ ;
+explications de grammaire bien ecrites contre le russe (Dativ = datif + prepositionnel +
+instrumental, « ohne » + Akkusativ contre « без » + genitif, pas de « свой », pas de
+preposition devant l'annee). Libelle des Konnektoren harmonise (« связка », comme la tuile
+de l'accueil). Verifie : les dix fichiers de donnees identiques a main hors champs ru ;
+verifier.py (35 213 controles), syntaxe.js, voix_couverture.py ; a l'ecran (Playwright,
+interface en russe) : accueil, carte de nom (светофор, exemple russe), carte de verbe
+(temps russes), examen (lire, ecouter, ecrire), six exercices, fiches -- aucun texte
+francais ou anglais de repli, aucune erreur JS ; parcours allemand et espagnol a 0 ecart.
+Point a trancher : « Vocabulaire » est rendu « Словарь », le mot du dictionnaire integre
+(alternative : « Лексика »). Non relu par un natif.

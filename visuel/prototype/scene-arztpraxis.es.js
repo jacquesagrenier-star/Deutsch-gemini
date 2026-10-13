@@ -25,6 +25,7 @@ window.SCENE = {
    "en": "the watch, the clock",
    "ar": "ساعة حائط",
    "pl": "zegar",
+   "ru": "часы",
    "latam": null
   },
   {
@@ -59,6 +60,7 @@ window.SCENE = {
    "en": "the poster",
    "ar": "ملصق، بوستر",
    "pl": "plakat",
+   "ru": "постер, плакат",
    "latam": null
   },
   {
@@ -84,6 +86,7 @@ window.SCENE = {
    "en": "the window",
    "ar": "نافذة",
    "pl": "okno",
+   "ru": "окно",
    "latam": null
   },
   {
@@ -109,6 +112,7 @@ window.SCENE = {
    "en": "the plant",
    "ar": "نبات",
    "pl": "roślina",
+   "ru": "растение",
    "latam": null
   },
   {
@@ -134,6 +138,7 @@ window.SCENE = {
    "en": "the door",
    "ar": "باب",
    "pl": "drzwi",
+   "ru": "дверь",
    "latam": null
   },
   {
@@ -159,6 +164,7 @@ window.SCENE = {
    "en": "the jacket",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
+   "ru": "куртка",
    "latam": null
   },
   {
@@ -205,6 +211,7 @@ window.SCENE = {
    "en": "the patient",
    "ar": "مريض",
    "pl": "pacjent",
+   "ru": "пациент, больной",
    "latam": null
   },
   {
@@ -230,6 +237,7 @@ window.SCENE = {
    "en": "the T-shirt",
    "ar": "قميص قصير الأكمام (تي شيرت)",
    "pl": "T-shirt, koszulka",
+   "ru": "футболка",
    "latam": null
   },
   {
@@ -255,6 +263,7 @@ window.SCENE = {
    "en": "the trousers",
    "ar": "بنطال",
    "pl": "spodnie",
+   "ru": "брюки",
    "latam": null
   },
   {
@@ -280,6 +289,7 @@ window.SCENE = {
    "en": "the plaster",
    "ar": "لصقة جروح",
    "pl": "plaster",
+   "ru": "пластырь",
    "latam": {
     "mot": "curita",
     "genre": "la",
@@ -315,6 +325,7 @@ window.SCENE = {
    "en": "the knee",
    "ar": "ركبة",
    "pl": "kolano",
+   "ru": "колено",
    "latam": null
   },
   {
@@ -346,6 +357,7 @@ window.SCENE = {
    "en": "the shoulder",
    "ar": "كتف",
    "pl": "ramię, bark",
+   "ru": "плечо",
    "latam": null
   },
   {
@@ -377,6 +389,7 @@ window.SCENE = {
    "en": "the elbow",
    "ar": "مرفق، كوع",
    "pl": "łokieć",
+   "ru": "локоть",
    "latam": null
   },
   {
@@ -402,6 +415,7 @@ window.SCENE = {
    "en": "the chest",
    "ar": "صدر",
    "pl": "klatka piersiowa, pierś",
+   "ru": "грудь",
    "latam": null
   },
   {
@@ -427,6 +441,7 @@ window.SCENE = {
    "en": "the belly, the tummy",
    "ar": "بطن",
    "pl": "brzuch",
+   "ru": "живот",
    "latam": null
   },
   {
@@ -458,6 +473,7 @@ window.SCENE = {
    "en": "the arm",
    "ar": "ذراع",
    "pl": "ręka, ramię",
+   "ru": "рука",
    "latam": null
   },
   {
@@ -489,6 +505,7 @@ window.SCENE = {
    "en": "the arm",
    "ar": "ذراع",
    "pl": "ręka, ramię",
+   "ru": "рука",
    "latam": null
   },
   {
@@ -514,6 +531,7 @@ window.SCENE = {
    "en": "the hand",
    "ar": "يد",
    "pl": "ręka, dłoń",
+   "ru": "рука (кисть)",
    "latam": null
   },
   {
@@ -539,6 +557,7 @@ window.SCENE = {
    "en": "the hand",
    "ar": "يد",
    "pl": "ręka, dłoń",
+   "ru": "рука (кисть)",
    "latam": null
   },
   {
@@ -564,6 +583,7 @@ window.SCENE = {
    "en": "the leg",
    "ar": "ساق",
    "pl": "noga",
+   "ru": "нога",
    "latam": null
   },
   {
@@ -589,6 +609,7 @@ window.SCENE = {
    "en": "the leg",
    "ar": "ساق",
    "pl": "noga",
+   "ru": "нога",
    "latam": null
   },
   {
@@ -614,6 +635,7 @@ window.SCENE = {
    "en": "the foot",
    "ar": "قدم",
    "pl": "stopa",
+   "ru": "нога (ступня)",
    "latam": null
   },
   {
@@ -639,6 +661,7 @@ window.SCENE = {
    "en": "the foot",
    "ar": "قدم",
    "pl": "stopa",
+   "ru": "нога (ступня)",
    "latam": null
   },
   {
@@ -691,6 +714,7 @@ window.SCENE = {
    "en": "the doctor (woman)",
    "ar": "طبيبة",
    "pl": "lekarka",
+   "ru": "врач (женщина)",
    "latam": null
   },
   {
@@ -716,6 +740,7 @@ window.SCENE = {
    "en": "the trousers",
    "ar": "بنطال",
    "pl": "spodnie",
+   "ru": "брюки",
    "latam": null
   },
   {
@@ -741,6 +766,7 @@ window.SCENE = {
    "en": "the shoe",
    "ar": "حذاء",
    "pl": "but",
+   "ru": "ботинок, туфля",
    "latam": null
   },
   {
@@ -766,6 +792,7 @@ window.SCENE = {
    "en": "the bandage",
    "ar": "ضمادة؛ اتحاد، جمعية",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
+   "ru": "повязка; союз, объединение",
    "latam": null
   },
   {
@@ -803,6 +830,7 @@ window.SCENE = {
    "en": "the stethoscope",
    "ar": "سمّاعة الطبيب",
    "pl": "stetoskop",
+   "ru": "стетоскоп",
    "latam": null
   },
   {
@@ -828,6 +856,7 @@ window.SCENE = {
    "en": "the hand",
    "ar": "يد",
    "pl": "ręka, dłoń",
+   "ru": "рука (кисть)",
    "latam": null
   },
   {
@@ -853,6 +882,7 @@ window.SCENE = {
    "en": "the hand",
    "ar": "يد",
    "pl": "ręka, dłoń",
+   "ru": "рука (кисть)",
    "latam": null
   },
   {
@@ -878,6 +908,7 @@ window.SCENE = {
    "en": "the stool",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
+   "ru": "табурет",
    "latam": null
   },
   {
@@ -903,6 +934,7 @@ window.SCENE = {
    "en": "the syringe",
    "ar": "حقنة",
    "pl": "zastrzyk, strzykawka",
+   "ru": "укол; шприц",
    "latam": null
   },
   {
@@ -928,6 +960,7 @@ window.SCENE = {
    "en": "the medicine",
    "ar": "دواء",
    "pl": "lek",
+   "ru": "лекарство",
    "latam": null
   },
   {
@@ -953,6 +986,7 @@ window.SCENE = {
    "en": "the checkout",
    "ar": "علبة",
    "pl": "pudełko",
+   "ru": "коробка, коробочка",
    "latam": null
   },
   {
@@ -978,6 +1012,7 @@ window.SCENE = {
    "en": "the glove",
    "ar": "قفاز",
    "pl": "rękawiczka",
+   "ru": "перчатка",
    "latam": null
   },
   {
@@ -1003,6 +1038,7 @@ window.SCENE = {
    "en": "the desk",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
+   "ru": "письменный стол",
    "latam": null
   },
   {
@@ -1042,6 +1078,7 @@ window.SCENE = {
    "en": "the screen",
    "ar": "شاشة",
    "pl": "ekran",
+   "ru": "экран",
    "latam": null
   },
   {
@@ -1067,6 +1104,7 @@ window.SCENE = {
    "en": "the handkerchief, the tissue",
    "ar": "منديل",
    "pl": "chusteczka",
+   "ru": "носовой платок",
    "latam": null
   },
   {
@@ -1101,6 +1139,7 @@ window.SCENE = {
    "en": "glass",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
+   "ru": "стакан",
    "latam": null
   },
   {
@@ -1126,6 +1165,7 @@ window.SCENE = {
    "en": "the keyboard",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
+   "ru": "клавиатура",
    "latam": null
   },
   {
@@ -1151,6 +1191,7 @@ window.SCENE = {
    "en": "the mouse",
    "ar": "فأر",
    "pl": "mysz",
+   "ru": "мышь",
    "latam": null
   },
   {
@@ -1176,6 +1217,7 @@ window.SCENE = {
    "en": "the medicine",
    "ar": "دواء",
    "pl": "lek",
+   "ru": "лекарство",
    "latam": null
   },
   {
@@ -1201,6 +1243,7 @@ window.SCENE = {
    "en": "the pill",
    "ar": "قرص دواء",
    "pl": "tabletka",
+   "ru": "таблетка",
    "latam": null
   },
   {
@@ -1226,6 +1269,7 @@ window.SCENE = {
    "en": "the pen",
    "ar": "قلم",
    "pl": "długopis, ołówek",
+   "ru": "ручка, карандаш",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -1264,6 +1308,7 @@ window.SCENE = {
    "en": "the health card",
    "ar": "بطاقة التأمين الصحي",
    "pl": "karta ubezpieczenia zdrowotnego",
+   "ru": "карточка медицинского страхования",
    "latam": null
   },
   {
@@ -1289,6 +1334,7 @@ window.SCENE = {
    "en": "the wastepaper bin",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
+   "ru": "мусорное ведро",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1327,6 +1373,7 @@ window.SCENE = {
    "en": "the bag",
    "ar": "حقيبة",
    "pl": "torba, torebka",
+   "ru": "сумка",
    "latam": null
   },
   {
@@ -1361,6 +1408,7 @@ window.SCENE = {
    "en": "the ball",
    "ar": "كرة",
    "pl": "piłka",
+   "ru": "мяч",
    "latam": null
   },
   {
@@ -1386,6 +1434,7 @@ window.SCENE = {
    "en": "the shoe",
    "ar": "حذاء",
    "pl": "but",
+   "ru": "ботинок, туфля",
    "latam": null
   },
   {
@@ -1411,6 +1460,7 @@ window.SCENE = {
    "en": "the sock",
    "ar": "جورب",
    "pl": "skarpetka",
+   "ru": "носок",
    "latam": null
   },
   {
@@ -1436,6 +1486,7 @@ window.SCENE = {
    "en": "the wall",
    "ar": "جدار",
    "pl": "ściana",
+   "ru": "стена",
    "latam": null
   },
   {
@@ -1461,6 +1512,7 @@ window.SCENE = {
    "en": "the floor",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
+   "ru": "почва, пол",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -1491,6 +1543,7 @@ window.SCENE = {
    "en": "the rib",
    "ar": "ضلع",
    "pl": "żebro",
+   "ru": "ребро",
    "latam": null
   },
   {
@@ -1517,6 +1570,7 @@ window.SCENE = {
    "en": "the rib",
    "ar": "ضلع",
    "pl": "żebro",
+   "ru": "ребро",
    "latam": null
   },
   {
@@ -1543,6 +1597,7 @@ window.SCENE = {
    "en": "the spine",
    "ar": "العمود الفقري",
    "pl": "kręgosłup",
+   "ru": "позвоночник",
    "latam": null
   },
   {
@@ -1569,6 +1624,7 @@ window.SCENE = {
    "en": "the lung",
    "ar": "رئة",
    "pl": "płuco",
+   "ru": "лёгкое",
    "latam": null
   },
   {
@@ -1595,6 +1651,7 @@ window.SCENE = {
    "en": "the bone",
    "ar": "عظم",
    "pl": "kość",
+   "ru": "кость",
    "latam": null
   }
  ],
@@ -2134,6 +2191,16 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Ciało i przedmioty"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Марк у врача: сидит босиком на кушетке, на колене пластырь; врач сидит рядом с ним и держит бинт.",
+    "consigne": "Нажми на предмет, на Марка или на врача. Нажми на плакат, чтобы рассмотреть его поближе."
+   },
+   "couches": {
+    "A1": "Тело и предметы"
    },
    "questions": {}
   }

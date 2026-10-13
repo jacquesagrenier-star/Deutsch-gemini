@@ -26,7 +26,7 @@ import hashlib, io, json, os, re, sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt", "pl")
+LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru")
 
 
 def guillemets(t):
@@ -389,6 +389,63 @@ PL = {
                  "Na końcu słowa b, d i g tracą dźwięczność i brzmią jak p, t, k: Kind ≈ „kint”, Tag ≈ „tak”, gelb ≈ „gelp”. Tu polski ci pomaga: to dokładnie to samo co w „chleb” czy „ogród”."),
 }
 
+# LE RUSSE : a part, (court, explication) par regle.
+# Ecrit CONTRE le russe : ю/ё ne sont pas ü/ö, pas de consonne molle devant
+# e et i, h n'est ni « х » ni « г », et l'assourdissement final existe deja
+# en russe (дуб = « дуп »). Non relu par un natif.
+RU = {
+ "u-trema": ("«и» с округлёнными губами",
+             "В русском такого звука нет: скажи «и» и, не двигая языком, вытяни губы трубочкой, как для свиста. Это не «ю»: müde — не «мюде», в ü нет «й»."),
+ "o-trema": ("«э» с округлёнными губами",
+             "В русском такого звука нет: скажи «э» и, не двигая языком, округли губы. Это не «ё»: schön — не «шён», в ö нет «й»."),
+ "a-trema": ("как «э»",
+             "ä звучит как русское «э» в словах «это», «эхо»: Käse ≈ «кэзе», spät ≈ «шпэт»."),
+ "u": ("как «у»",
+       "u — это русское «у»: gut ≈ «гут», Buch ≈ «бух». Трудный звук — ü, а не u."),
+ "ei": ("как «ай»",
+        "ei читается «ай», как в слове «чай»: Wein ≈ «вайн», klein ≈ «клайн». Никогда не «эй»."),
+ "ie": ("долгое «и»",
+        "ie — это долгое «и», e не произносится: Liebe ≈ «лиибе». И не смягчай согласный перед i и e: в немецком они всегда твёрдые — die звучит «ди» без мягкости, Tee — «тээ», а не «тье»."),
+ "eu": ("как «ой»",
+        "eu и äu читаются «ой»: neu ≈ «ной», heute ≈ «хойте»."),
+ "au": ("как «ау» в одном слоге",
+        "au — это «ау» в одном слоге, как в слове «пауза»: Haus ≈ «хаус», Frau ≈ «фрау»."),
+ "longueur": ("долгий или краткий",
+              "Гласный долгий перед h или когда он удвоен (Tee, Sohn), краткий перед удвоенным согласным (Bett, kommen). В русском долготы нет, а в немецком она меняет слово. И не «акай»: безударное o остаётся «о»."),
+ "sch": ("как «ш»",
+         "sch — это русское «ш»: Schule ≈ «шуле», Fisch ≈ «фиш»."),
+ "sp-st": ("в начале слова: «шп», «шт»",
+           "В начале слова (или его части) sp и st читаются «шп» и «шт»: Straße ≈ «штрасе», sprechen ≈ «шпрехен»."),
+ "ch-doux": ("мягкое «хь»",
+             "После e, i, ä, ö, ü, ei, eu, l, n и r звук ch мягкий: почти как «х» в слове «хитрый», только ещё легче, язык у нёба: Milch, leicht. Не заменяй его на «ш»."),
+ "ch-dur": ("как «х»",
+            "После a, o, u и au ch — это русское «х», как в словах «хата», «дух»: Nacht ≈ «нахт», Buch ≈ «бух», Bauch ≈ «баух»."),
+ "z": ("как «ц»",
+       "z (и tz) всегда читается «ц»: Zeit ≈ «цайт», Katze ≈ «катце». Никогда не «з»."),
+ "v": ("почти всегда «ф»",
+       "v почти всегда читается «ф»: Vater ≈ «фатер», viel ≈ «филь». Несколько заимствованных слов сохраняют «в» (Vase, Klavier)."),
+ "w": ("как «в»",
+       "w читается как русское «в»: Wasser ≈ «вассер», wo ≈ «во»."),
+ "s": ("«з» перед гласным",
+       "Перед гласным s читается как «з»: Sonne ≈ «зоне», Hose ≈ «хозе»."),
+ "eszett": ("как «с»",
+            "ß и ss — это твёрдое «с». ß стоит после долгого гласного (groß), ss — после краткого (essen)."),
+ "j": ("как «й»",
+       "j читается как «й»: Jahr ≈ «яр», jung ≈ «юнг». Никогда не «дж» и не «ж»."),
+ "h": ("в начале — выдох, после гласного — немое",
+       "В русском такого звука нет. В начале слова или слога h — лёгкий выдох, как когда дышишь на стекло: не грубое «х» и не «г». Hund. После гласного h не читается и удлиняет гласный: gehen, Uhr."),
+ "r": ("горловое",
+       "Немецкое r обычно произносят в горле, как французское, без раскатов: rot, Brot. Русское раскатистое «р» поймут, но оно звучит с акцентом."),
+ "pf": ("«п» + «ф» вместе",
+        "pf: «п» и «ф» вместе, слышны оба: Apfel ≈ «апфель», Kopf ≈ «копф». Не упрощай до «ф»."),
+ "er-final": ("лёгкое «а»",
+              "В конце слова -er звучит как лёгкое «а», без «р»: Vater ≈ «фата», Mutter ≈ «мута»."),
+ "ig-final": ("«-ихь» с мягким «х»",
+              "В конце слова -ig читается «-ихь», с мягким ch, как в Milch: richtig, billig."),
+ "b-d-g-final": ("«п», «т», «к»",
+                 "В конце слова b, d и g оглушаются и звучат как «п», «т», «к» — точно как в русском, где «дуб» звучит «дуп», а «год» — «гот»: Kind ≈ «кинт», Tag ≈ «так», gelb ≈ «гельп»."),
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("fins", FINS)]
 
 
@@ -420,6 +477,9 @@ def construire():
             if rid in PT:
                 court = dict(court, pt=PT[rid][0])
                 expl = dict(expl, pt=PT[rid][1])
+            if rid in RU:
+                court = dict(court, ru=RU[rid][0])
+                expl = dict(expl, ru=RU[rid][1])
             if rid in PL:
                 court = dict(court, pl=PL[rid][0])
                 expl = dict(expl, pl=PL[rid][1])
@@ -437,7 +497,7 @@ def construire():
                 if not os.path.exists(os.path.join(RACINE, "audio", "mp3", h + ".mp3")):
                     fautes.append("%s : « %s » sans voix d'Aurora" % (rid, mot))
                 ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_tr",
-                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar", "traduction_pl") if e.get(c)}})
+                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar", "traduction_pl", "traduction_ru") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             g["regles"].append({"id": rid, "graphie": graphie, "api": api, "court": court,

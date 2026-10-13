@@ -25,6 +25,7 @@ window.SCENE = {
    "en": "the watch, the clock",
    "ar": "ساعة حائط",
    "pl": "zegar",
+   "ru": "часы",
    "latam": null
   },
   {
@@ -50,6 +51,7 @@ window.SCENE = {
    "en": "the blackboard",
    "ar": "سبّورة",
    "pl": "tablica",
+   "ru": "доска",
    "latam": {
     "mot": "pizarrón",
     "genre": "el",
@@ -123,6 +125,7 @@ window.SCENE = {
    "en": "the teacher",
    "ar": "معلّم",
    "pl": "nauczyciel",
+   "ru": "учитель",
    "latam": null
   },
   {
@@ -148,6 +151,7 @@ window.SCENE = {
    "en": "glasses",
    "ar": "نظّارة",
    "pl": "okulary",
+   "ru": "очки",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -177,6 +181,7 @@ window.SCENE = {
    "en": "the beard",
    "ar": "لحية",
    "pl": "broda, zarost",
+   "ru": "борода",
    "latam": null
   },
   {
@@ -202,6 +207,7 @@ window.SCENE = {
    "en": "the chalk",
    "ar": "طبشور",
    "pl": "kreda",
+   "ru": "мел",
    "latam": {
     "mot": "gis",
     "genre": "el",
@@ -231,6 +237,7 @@ window.SCENE = {
    "en": "the door",
    "ar": "باب",
    "pl": "drzwi",
+   "ru": "дверь",
    "latam": null
   },
   {
@@ -256,6 +263,7 @@ window.SCENE = {
    "en": "the hook",
    "ar": "علّاقة، خطّاف",
    "pl": "wieszak, hak",
+   "ru": "крючок",
    "latam": null
   },
   {
@@ -281,6 +289,7 @@ window.SCENE = {
    "en": "the coat",
    "ar": "معطف",
    "pl": "płaszcz",
+   "ru": "пальто",
    "latam": null
   },
   {
@@ -306,6 +315,7 @@ window.SCENE = {
    "en": "the jacket",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
+   "ru": "куртка",
    "latam": null
   },
   {
@@ -331,6 +341,7 @@ window.SCENE = {
    "en": "the picture",
    "ar": "صورة، لوحة",
    "pl": "obraz",
+   "ru": "картина, изображение",
    "latam": null
   },
   {
@@ -356,6 +367,7 @@ window.SCENE = {
    "en": "the lamp",
    "ar": "مصباح",
    "pl": "lampa",
+   "ru": "лампа",
    "latam": null
   },
   {
@@ -381,6 +393,7 @@ window.SCENE = {
    "en": "the window",
    "ar": "نافذة",
    "pl": "okno",
+   "ru": "окно",
    "latam": null
   },
   {
@@ -406,6 +419,7 @@ window.SCENE = {
    "en": "the shelf unit",
    "ar": "رفّ",
    "pl": "regał, półka",
+   "ru": "полка, стеллаж",
    "latam": null
   },
   {
@@ -431,6 +445,7 @@ window.SCENE = {
    "en": "the plant",
    "ar": "نبات",
    "pl": "roślina",
+   "ru": "растение",
    "latam": null
   },
   {
@@ -511,6 +526,7 @@ window.SCENE = {
    "en": "the participant",
    "ar": "مشارك",
    "pl": "uczestnik",
+   "ru": "участник",
    "latam": null
   },
   {
@@ -536,6 +552,7 @@ window.SCENE = {
    "en": "the jumper",
    "ar": "كنزة صوف",
    "pl": "sweter",
+   "ru": "свитер",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -628,6 +645,7 @@ window.SCENE = {
    "en": "the participant",
    "ar": "مشاركة",
    "pl": "uczestniczka",
+   "ru": "участница",
    "latam": null
   },
   {
@@ -653,6 +671,7 @@ window.SCENE = {
    "en": "the skirt",
    "ar": "تنورة",
    "pl": "spódnica",
+   "ru": "юбка",
    "latam": null
   },
   {
@@ -678,6 +697,7 @@ window.SCENE = {
    "en": "the notebook",
    "ar": "دفتر",
    "pl": "zeszyt",
+   "ru": "тетрадь",
    "latam": null
   },
   {
@@ -703,6 +723,7 @@ window.SCENE = {
    "en": "the notebook",
    "ar": "دفتر",
    "pl": "zeszyt",
+   "ru": "тетрадь",
    "latam": null
   },
   {
@@ -728,6 +749,7 @@ window.SCENE = {
    "en": "the notebook",
    "ar": "دفتر",
    "pl": "zeszyt",
+   "ru": "тетрадь",
    "latam": null
   },
   {
@@ -753,6 +775,7 @@ window.SCENE = {
    "en": "the notebook",
    "ar": "دفتر",
    "pl": "zeszyt",
+   "ru": "тетрадь",
    "latam": null
   },
   {
@@ -778,6 +801,7 @@ window.SCENE = {
    "en": "the pen",
    "ar": "قلم",
    "pl": "długopis, ołówek",
+   "ru": "ручка, карандаш",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -807,6 +831,7 @@ window.SCENE = {
    "en": "the pen",
    "ar": "قلم",
    "pl": "długopis, ołówek",
+   "ru": "ручка, карандаш",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -836,6 +861,7 @@ window.SCENE = {
    "en": "the pen",
    "ar": "قلم",
    "pl": "długopis, ołówek",
+   "ru": "ручка, карандаш",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -865,6 +891,7 @@ window.SCENE = {
    "en": "the pen",
    "ar": "قلم",
    "pl": "długopis, ołówek",
+   "ru": "ручка, карандаш",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -894,6 +921,7 @@ window.SCENE = {
    "en": "the pen",
    "ar": "قلم",
    "pl": "długopis, ołówek",
+   "ru": "ручка, карандаш",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -923,6 +951,7 @@ window.SCENE = {
    "en": "the notebook",
    "ar": "دفتر",
    "pl": "zeszyt",
+   "ru": "тетрадь",
    "latam": null
   },
   {
@@ -948,6 +977,7 @@ window.SCENE = {
    "en": "the table",
    "ar": "طاولة",
    "pl": "stół",
+   "ru": "стол",
    "latam": null
   },
   {
@@ -973,6 +1003,7 @@ window.SCENE = {
    "en": "the chair",
    "ar": "كرسي",
    "pl": "krzesło",
+   "ru": "стул",
    "latam": null
   },
   {
@@ -998,6 +1029,7 @@ window.SCENE = {
    "en": "the chair",
    "ar": "كرسي",
    "pl": "krzesło",
+   "ru": "стул",
    "latam": null
   },
   {
@@ -1023,6 +1055,7 @@ window.SCENE = {
    "en": "the backpack",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
+   "ru": "рюкзак",
    "latam": null
   },
   {
@@ -1087,6 +1120,7 @@ window.SCENE = {
    "en": "the man",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
+   "ru": "мужчина, муж",
    "latam": null
   },
   {
@@ -1142,6 +1176,7 @@ window.SCENE = {
    "en": "the student",
    "ar": "طالبة جامعية",
    "pl": "studentka",
+   "ru": "студентка",
    "latam": null
   },
   {
@@ -1205,6 +1240,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -1230,6 +1266,7 @@ window.SCENE = {
    "en": "glasses",
    "ar": "نظّارة",
    "pl": "okulary",
+   "ru": "очки",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -1259,6 +1296,7 @@ window.SCENE = {
    "en": "the dress",
    "ar": "فستان",
    "pl": "sukienka",
+   "ru": "платье",
    "latam": null
   },
   {
@@ -1284,6 +1322,7 @@ window.SCENE = {
    "en": "the shoe",
    "ar": "حذاء",
    "pl": "but",
+   "ru": "ботинок, туфля",
    "latam": null
   },
   {
@@ -1309,6 +1348,7 @@ window.SCENE = {
    "en": "the laptop",
    "ar": "حاسوب محمول",
    "pl": "laptop",
+   "ru": "ноутбук",
    "latam": {
     "mot": "laptop",
     "genre": "la",
@@ -1338,6 +1378,7 @@ window.SCENE = {
    "en": "the mobile phone",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
+   "ru": "мобильный телефон",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -1367,6 +1408,7 @@ window.SCENE = {
    "en": "cup",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
+   "ru": "чашка",
    "latam": null
   },
   {
@@ -1392,6 +1434,7 @@ window.SCENE = {
    "en": "the cable",
    "ar": "كابل، سلك",
    "pl": "kabel",
+   "ru": "кабель",
    "latam": null
   },
   {
@@ -1417,6 +1460,7 @@ window.SCENE = {
    "en": "the desk",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
+   "ru": "письменный стол",
    "latam": null
   },
   {
@@ -1442,6 +1486,7 @@ window.SCENE = {
    "en": "the wall",
    "ar": "جدار",
    "pl": "ściana",
+   "ru": "стена",
    "latam": null
   }
  ],
@@ -1985,6 +2030,16 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Вечерний урок испанского в Берлине: преподаватель у доски, Марк и Анна сидят рядом, ещё трое учеников.",
+    "consigne": "Нажми на предмет или на человека. Нажми на лицо преподавателя, чтобы рассмотреть поближе его очки и бороду."
+   },
+   "couches": {
+    "A1": "Существительные и артикли"
    },
    "questions": {}
   }

@@ -42,6 +42,7 @@ window.SCENE = {
    "en": "the raspberry",
    "ar": "توت العليق",
    "pl": "malina",
+   "ru": "малина",
    "latam": null
   },
   {
@@ -84,6 +85,7 @@ window.SCENE = {
    "en": "the blueberry",
    "ar": "توت أزرق",
    "pl": "borówka, jagoda",
+   "ru": "черника",
    "latam": null
   },
   {
@@ -126,6 +128,7 @@ window.SCENE = {
    "en": "the grape",
    "ar": "عنب",
    "pl": "winogrono",
+   "ru": "виноград",
    "latam": null
   },
   {
@@ -168,6 +171,7 @@ window.SCENE = {
    "en": "the plum",
    "ar": "برقوق",
    "pl": "śliwka",
+   "ru": "слива",
    "latam": null
   },
   {
@@ -210,6 +214,7 @@ window.SCENE = {
    "en": "the rhubarb",
    "ar": "راوند",
    "pl": "rabarbar",
+   "ru": "ревень",
    "latam": null
   },
   {
@@ -252,6 +257,7 @@ window.SCENE = {
    "en": "the walnut",
    "ar": "جوز، مكسّرات",
    "pl": "orzech",
+   "ru": "орех",
    "latam": null
   },
   {
@@ -294,6 +300,7 @@ window.SCENE = {
    "en": "the pear",
    "ar": "كمثرى",
    "pl": "gruszka",
+   "ru": "груша",
    "latam": null
   },
   {
@@ -336,6 +343,7 @@ window.SCENE = {
    "en": "the redcurrant",
    "ar": "كشمش",
    "pl": "porzeczka",
+   "ru": "смородина",
    "latam": null
   },
   {
@@ -378,6 +386,7 @@ window.SCENE = {
    "en": "the gooseberry",
    "ar": "عنب الثعلب",
    "pl": "agrest",
+   "ru": "крыжовник",
    "latam": null
   },
   {
@@ -420,6 +429,7 @@ window.SCENE = {
    "en": "the cherry",
    "ar": "كرز",
    "pl": "wiśnia, czereśnia",
+   "ru": "вишня, черешня",
    "latam": null
   },
   {
@@ -462,6 +472,7 @@ window.SCENE = {
    "en": "the blackberry",
    "ar": "توت العلّيق الأسود",
    "pl": "jeżyna",
+   "ru": "ежевика",
    "latam": null
   },
   {
@@ -504,6 +515,7 @@ window.SCENE = {
    "en": "the apricot",
    "ar": "مشمش",
    "pl": "morela",
+   "ru": "абрикос",
    "latam": {
     "mot": "chabacano",
     "genre": "el",
@@ -550,6 +562,7 @@ window.SCENE = {
    "en": "strawberry",
    "ar": "فراولة",
    "pl": "truskawka",
+   "ru": "клубника",
    "latam": null
   },
   {
@@ -592,6 +605,7 @@ window.SCENE = {
    "en": "the peach",
    "ar": "خوخ",
    "pl": "brzoskwinia",
+   "ru": "персик",
    "latam": {
     "mot": "durazno",
     "genre": "el",
@@ -638,6 +652,7 @@ window.SCENE = {
    "en": "apple",
    "ar": "تفاحة",
    "pl": "jabłko",
+   "ru": "яблоко",
    "latam": null
   },
   {
@@ -669,6 +684,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -694,6 +710,7 @@ window.SCENE = {
    "en": "apple",
    "ar": "تفاحة",
    "pl": "jabłko",
+   "ru": "яблоко",
    "latam": null
   }
  ],
@@ -1104,6 +1121,18 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Na targu"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Анна берёт яблоко у прилавка с местными фруктами: малина, черника, виноград, сливы, ревень, орехи, груши, крыжовник, вишня, ежевика, абрикосы, клубника, персики и яблоки — каждые в своём ящике.",
+    "consigne": "Нажми на фрукт, овощ или ящик.",
+    "nom_vue": "Местные фрукты",
+    "autre_vue": "→ Южные фрукты"
+   },
+   "couches": {
+    "A1": "На рынке"
    },
    "questions": {}
   }

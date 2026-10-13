@@ -253,7 +253,9 @@ def prononciation():
     nl = nl_de(src)
     if re.search(r"^RU = \{", src, re.M):
         sys.exit("ARRET : tests/prononciation.py a deja RU")
-    module = lire(os.path.join(RUSSE, "prononciation_ru.py"))
+    # Le module peut etre en CRLF (core.autocrlf sur le PC) : on normalise
+    # avant de chercher le bloc, puis on reprend les fins de ligne de la cible.
+    module = lire(os.path.join(RUSSE, "prononciation_ru.py")).replace("\r\n", "\n")
     a = module.index("# LE RUSSE")
     b = module.index("\n}\n", a) + 3
     bloc = module[a:b].replace("\n", nl)

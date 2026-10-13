@@ -34,6 +34,7 @@ window.SCENE = {
    "en": "the building",
    "ar": "مبنى",
    "pl": "budynek",
+   "ru": "здание",
    "latam": null
   },
   {
@@ -68,6 +69,7 @@ window.SCENE = {
    "en": "the street",
    "ar": "شارع",
    "pl": "ulica",
+   "ru": "улица",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "en": "the pavement",
    "ar": "رصيف المشاة",
    "pl": "chodnik",
+   "ru": "тротуар",
    "latam": {
     "mot": "banqueta",
     "genre": "la",
@@ -136,6 +139,7 @@ window.SCENE = {
    "en": "the bakery",
    "ar": "مخبز",
    "pl": "piekarnia",
+   "ru": "булочная, пекарня",
    "latam": null
   },
   {
@@ -183,6 +187,7 @@ window.SCENE = {
    "en": "bread",
    "ar": "خبز",
    "pl": "chleb",
+   "ru": "хлеб",
    "latam": null
   },
   {
@@ -208,6 +213,7 @@ window.SCENE = {
    "en": "the chemist's",
    "ar": "صيدلية",
    "pl": "apteka",
+   "ru": "аптека",
    "latam": null
   },
   {
@@ -233,6 +239,7 @@ window.SCENE = {
    "en": "the post office",
    "ar": "بريد، مكتب البريد",
    "pl": "poczta",
+   "ru": "почта",
    "latam": null
   },
   {
@@ -258,6 +265,7 @@ window.SCENE = {
    "en": "the letterbox",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
+   "ru": "почтовый ящик",
    "latam": null
   },
   {
@@ -300,6 +308,7 @@ window.SCENE = {
    "en": "the café",
    "ar": "مقهى",
    "pl": "kawiarnia",
+   "ru": "кафе",
    "latam": null
   },
   {
@@ -325,6 +334,7 @@ window.SCENE = {
    "en": "the awning",
    "ar": "مظلّة (قماشية)",
    "pl": "markiza",
+   "ru": "маркиза, навес",
    "latam": null
   },
   {
@@ -350,6 +360,7 @@ window.SCENE = {
    "en": "the bus",
    "ar": "حافلة",
    "pl": "autobus",
+   "ru": "автобус",
    "latam": null
   },
   {
@@ -375,6 +386,7 @@ window.SCENE = {
    "en": "the bus shelter",
    "ar": "مظلّة موقف الحافلة",
    "pl": "wiata przystankowa",
+   "ru": "павильон остановки",
    "latam": null
   },
   {
@@ -409,6 +421,7 @@ window.SCENE = {
    "en": "the stop",
    "ar": "موقف (حافلات)",
    "pl": "przystanek",
+   "ru": "остановка",
    "latam": null
   },
   {
@@ -434,6 +447,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -473,6 +487,7 @@ window.SCENE = {
    "en": "the car",
    "ar": "سيارة",
    "pl": "samochód",
+   "ru": "машина, автомобиль",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -516,6 +531,7 @@ window.SCENE = {
    "en": "the car",
    "ar": "سيارة",
    "pl": "samochód",
+   "ru": "машина, автомобиль",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -545,6 +561,7 @@ window.SCENE = {
    "en": "the parking meter",
    "ar": "عدّاد الوقوف",
    "pl": "parkometr",
+   "ru": "паркомат",
    "latam": null
   },
   {
@@ -570,6 +587,7 @@ window.SCENE = {
    "en": "the sign",
    "ar": "إشارة مرور (لافتة)",
    "pl": "znak drogowy",
+   "ru": "дорожный знак",
    "latam": null
   },
   {
@@ -595,6 +613,7 @@ window.SCENE = {
    "en": "the sign",
    "ar": "إشارة مرور (لافتة)",
    "pl": "znak drogowy",
+   "ru": "дорожный знак",
    "latam": null
   },
   {
@@ -620,6 +639,7 @@ window.SCENE = {
    "en": "the traffic light",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
+   "ru": "светофор",
    "latam": null
   },
   {
@@ -645,6 +665,7 @@ window.SCENE = {
    "en": "the traffic light",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
+   "ru": "светофор",
    "latam": null
   },
   {
@@ -679,6 +700,7 @@ window.SCENE = {
    "en": "the van",
    "ar": "شاحنة توصيل صغيرة",
    "pl": "samochód dostawczy",
+   "ru": "фургон для доставки",
    "latam": {
     "mot": "camioneta",
     "genre": "la",
@@ -708,6 +730,7 @@ window.SCENE = {
    "en": "the zebra crossing",
    "ar": "ممرّ المشاة",
    "pl": "przejście dla pieszych, zebra",
+   "ru": "пешеходный переход, «зебра»",
    "latam": {
     "mot": "paso peatonal",
     "genre": "el",
@@ -737,6 +760,7 @@ window.SCENE = {
    "en": "the zebra crossing",
    "ar": "ممرّ المشاة",
    "pl": "przejście dla pieszych, zebra",
+   "ru": "пешеходный переход, «зебра»",
    "latam": {
     "mot": "paso peatonal",
     "genre": "el",
@@ -783,6 +807,7 @@ window.SCENE = {
    "en": "the pedestrian",
    "ar": "راجل، ماشٍ",
    "pl": "pieszy",
+   "ru": "пешеход",
    "latam": null
   },
   {
@@ -817,6 +842,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -856,6 +882,7 @@ window.SCENE = {
    "en": "the taxi",
    "ar": "سيارة أجرة",
    "pl": "taksówka",
+   "ru": "такси",
    "latam": null
   },
   {
@@ -881,6 +908,7 @@ window.SCENE = {
    "en": "the tram",
    "ar": "ترام",
    "pl": "tramwaj",
+   "ru": "трамвай",
    "latam": null
   },
   {
@@ -906,6 +934,7 @@ window.SCENE = {
    "en": "the motorbike",
    "ar": "درّاجة نارية",
    "pl": "motocykl",
+   "ru": "мотоцикл",
    "latam": null
   },
   {
@@ -931,6 +960,7 @@ window.SCENE = {
    "en": "the cycle lane",
    "ar": "مسار الدرّاجات",
    "pl": "ścieżka rowerowa",
+   "ru": "велосипедная дорожка",
    "latam": {
     "mot": "ciclovía",
     "genre": "la",
@@ -977,6 +1007,7 @@ window.SCENE = {
    "en": "the cyclist",
    "ar": "راكب دراجة",
    "pl": "rowerzysta",
+   "ru": "велосипедист",
    "latam": null
   },
   {
@@ -1002,6 +1033,7 @@ window.SCENE = {
    "en": "the helmet",
    "ar": "خوذة",
    "pl": "kask",
+   "ru": "шлем",
    "latam": null
   },
   {
@@ -1027,6 +1059,7 @@ window.SCENE = {
    "en": "the newsstand",
    "ar": "كشك",
    "pl": "kiosk",
+   "ru": "киоск",
    "latam": null
   },
   {
@@ -1052,6 +1085,7 @@ window.SCENE = {
    "en": "bottle",
    "ar": "زجاجة",
    "pl": "butelka",
+   "ru": "бутылка",
    "latam": null
   },
   {
@@ -1077,6 +1111,7 @@ window.SCENE = {
    "en": "the letterbox",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
+   "ru": "почтовый ящик",
    "latam": null
   },
   {
@@ -1102,6 +1137,7 @@ window.SCENE = {
    "en": "the street lamp",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
+   "ru": "фонарь",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -1153,6 +1189,7 @@ window.SCENE = {
    "en": "the wife, the woman",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
+   "ru": "женщина, жена",
    "latam": null
   },
   {
@@ -1178,6 +1215,7 @@ window.SCENE = {
    "en": "the traffic light",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
+   "ru": "светофор",
    "latam": null
   },
   {
@@ -1212,6 +1250,7 @@ window.SCENE = {
    "en": "the bike rack",
    "ar": "حامل الدرّاجات",
    "pl": "stojak na rowery",
+   "ru": "велопарковка",
    "latam": {
     "mot": "bicicletero",
     "genre": "el",
@@ -1757,6 +1796,16 @@ window.SCENE = {
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
+   },
+   "questions": {}
+  },
+  "ru": {
+   "champs": {
+    "alt": "Берлинский перекрёсток, вид со второго этажа: булочная, аптека, почта и кафе, автобусная остановка, трамвай, такси, пешеходы на переходе, велосипедист на красной велодорожке; на переднем плане Анна ищет дорогу в телефоне — между киоском, почтовым ящиком и велосипедами.",
+    "consigne": "Анна ищет дорогу в Берлине. Нажми на здание, транспорт или человека."
+   },
+   "couches": {
+    "A1": "Существительные и артикли"
    },
    "questions": {}
   }
