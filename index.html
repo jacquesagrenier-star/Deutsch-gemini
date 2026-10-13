@@ -1092,7 +1092,12 @@ body[data-theme="dark"] .subtitle-version{
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    /* minmax(0, 1fr) et non 1fr : « 1fr » vaut minmax(auto, 1fr), et « auto »
+       interdit a une colonne de descendre sous son mot le plus long. En russe,
+       « Существительные » elargissait les trois colonnes au-dela de l'ecran :
+       la grille entiere, carte de seance comprise, sortait a droite (13 oct.
+       2026, captures Google Play a 360 px). */
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:14px;
     margin-top:20px;
 }
@@ -1216,6 +1221,7 @@ body[data-theme="dark"] .orb-section{
 
 .orb{
     position:relative;
+    min-width:0;
     aspect-ratio:1;
     border-radius:20px;
     display:flex;
@@ -1529,6 +1535,13 @@ body[data-theme="dark"] .home-greeting{
        deux, et toutes les tuiles ont la meme forme. */
     font-size:12px;
     min-height:2.3em;
+    /* Un mot plus large que la tuile se coupe au lieu d'en sortir. Sans effet
+       tant que chaque mot tient (francais, allemand) : la coupure n'arrive
+       qu'en dernier recours, jamais avant une espace ni avant un trait
+       conditionnel (U+00AD, pose dans les libelles russes trop longs). Pas de
+       hyphens:auto : il couperait aussi des mots qui tiennent, et depend d'un
+       dictionnaire que tous les navigateurs n'ont pas. */
+    overflow-wrap:break-word;
     color:#1e2433;
 }
 
@@ -4939,7 +4952,14 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* L'action principale : un bloc BLANC sur le bleu. Le bandeau reste le seul
    bloc plein de l'accueil (v531), et a l'interieur c'est l'inverse qui marque
    -- le blanc ressort sur le bleu comme le bleu ressort sur le papier. */
-.seance-actions{display:flex; align-items:flex-end; justify-content:space-between;
+/* ⚠️ flex-wrap + flex-end (13 oct. 2026). Quand les pastilles de niveau et la
+   colonne de droite ne tiennent pas ensemble (« Отложенные » a 360 px, tout
+   le monde a 320 px), la colonne descend SOUS les pastilles, calee a droite,
+   au lieu de les recouvrir. Le pli ne se decide que sur les pastilles : voir
+   .seance-bas, qui ne compte pas dans la largeur demandee par la colonne de
+   gauche. Quand tout tient, rien ne bouge : la gauche s'etire comme avant, et
+   flex-end vaut space-between sans espace libre. */
+.seance-actions{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:flex-end;
     gap:10px; margin-top:5px;}
 /* ⚠️ `max-content` EST TOUTE L'ASTUCE : la colonne se regle sur le plus
    large des deux enfants -- la rangee de pastilles -- et le bouton, en
@@ -4952,6 +4972,13 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .seance-gauche{
     display:flex; flex-direction:column; align-items:flex-start;
     gap:6px; flex:1 1 auto; min-width:0;
+    /* La marge negative rend l'espace de 10 px COMPRESSIBLE : la colonne de
+       droite ne descend que si les pastilles et elle manquent de plus de 10 px
+       (le russe), pas quand elles se contentent de resserrer l'espace de
+       quelques pixels (turc, ukrainien, portugais, arabe, polonais : c'etait
+       deja leur cas, invisible). La boite de gauche deborde de 10 px sous
+       l'espace, et .seance-bas en tient compte. */
+    margin-inline-end:-10px;
 }
 .seance-pile{
     display:inline-grid; grid-template-columns:minmax(0,max-content);
@@ -4971,10 +4998,19 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
     font-variant-numeric:tabular-nums; flex:0 0 auto; line-height:1.35;
 }
 .seance-compte.atteint{background:rgba(255,255,255,.34);}
-.orb-seance strong{font-size:15px; line-height:1.2; flex:0 0 auto; color:#fff;}
+/* flex:0 1 auto et non 0 0 auto : quand le titre, le compte et le ⓘ ne tiennent
+   pas sur la ligne (« Моё занятие на сегодня » a 320 px), c'est le titre qui
+   se replie sur deux lignes, et le ⓘ reste dans la carte. Sans effet tant que
+   la ligne tient. */
+.orb-seance strong{font-size:15px; line-height:1.2; flex:0 1 auto; min-width:0; color:#fff;}
 .seance-sub{font-size:12.5px; color:rgba(255,255,255,.82); flex:1 1 auto; min-width:0;}
 .seance-fleche{flex:0 0 auto; color:#fff; align-self:center;}
-.seance-bas{display:flex; align-items:center; gap:5px; flex-wrap:wrap; max-width:100%;}
+/* width:0 + min-width : l'etiquette prend toute la colonne a l'affichage (moins
+   les 10 px que la marge negative de .seance-gauche lui prete), mais ne compte
+   pour RIEN dans la largeur que la colonne reclame -- sinon « Nouveau
+   vocabulaire en provenance du niveau : » ferait descendre la colonne de
+   droite a toutes les largeurs. */
+.seance-bas{display:flex; align-items:center; gap:5px; flex-wrap:wrap; width:0; min-width:calc(100% - 10px);}
 .seance-etiq{font-size:11px; color:rgba(255,255,255,.78); flex:0 1 auto; line-height:1.3;}
 .seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
 .seance-niveau{
@@ -5720,6 +5756,15 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
 .orb[data-orbid="wortstellung"] strong,
 .orb[data-orbid="vhskapitel"] strong{max-width:5.6em; margin:0 auto;}
 .orb small{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.25;}
+/* Sous 340 px (iPhone SE de 2016, petits Android), une tuile fait 72 px : a
+   12 px, « Prononciation », « Substantivos » ou « Przymiotniki » n'y tiennent
+   plus d'un bloc et se couperaient au milieu. A 10,5 px ils tiennent. Sans
+   effet a 360 px et au-dela (13 oct. 2026). */
+@media (max-width:339px){
+    /* :not(.orb-seance) : le titre de la carte de seance est aussi un
+       « .orb strong », et il garde ses 15 px. */
+    .orb:not(.orb-seance) strong{font-size:10.5px;}
+}
 
 /* ============ SUR UN ECRAN D'ORDINATEUR (v646) ============
    Demande de Jacques, le 21 septembre 2026 : << est-ce qu'on devrait avoir un
@@ -5757,7 +5802,7 @@ body[data-theme="dark"] .home-stat-val{color:#e9ecf1;}
        Les entetes de section portent grid-column:1 / -1, donc elles suivent
        sans rien savoir du nombre de colonnes ; et .orb-ring est en position
        absolue a 44 px, donc elle ne depend pas non plus de la forme. */
-    .grid{grid-template-columns:repeat(6,1fr);}
+    .grid{grid-template-columns:repeat(6,minmax(0,1fr));}
     .orb{aspect-ratio:auto; min-height:124px;}
 
     /* ⚠️ LA CARTE SE CENTRE PAR MARGE AUTO VERTICALE, JAMAIS PAR
@@ -6029,6 +6074,28 @@ body[data-theme="dark"] .carte-genre.cas-nom{color:#E9E6DF; background:rgba(242,
    -- la gauche. Ouvert, il pointe vers le bas dans les deux sens. */
 html[dir="rtl"] .reglages-groupe:not([open]) > summary::after,
 html[dir="rtl"] .reglage-langue:not([open]) > summary::after{transform:scaleX(-1);}
+
+/* --- LA LANGUE APPRISE GARDE SON SENS DE LECTURE EN PERSAN ET EN ARABE (13 oct.
+   2026). Dans un conteneur de droite a gauche, une phrase allemande voyait son
+   point final passer a gauche (« .Die Mütze hält den Kopf warm ») et un texte
+   d'examen qui commence par un chiffre se melangeait. `plaintext` donne a
+   CHAQUE paragraphe (chaque ligne separee par un <br> ou un saut de ligne) le
+   sens de son premier caractere fort : l'allemand ou l'espagnol court de gauche
+   a droite, la traduction persane ou arabe de droite a gauche -- la phrase et
+   sa traduction cohabitent dans le meme bloc, et chacune lit dans son sens.
+   `text-align:start` suit le sens du paragraphe. Sans effet hors RTL.
+   ⚠️ unicode-bidi ne s'herite pas : les blocs enfants (.verb-core, .verb-extra
+   de la carte de verbe) doivent etre nommes eux aussi. */
+html[dir="rtl"] .verb-details,
+html[dir="rtl"] .verb-core,
+html[dir="rtl"] .verb-extra,
+html[dir="rtl"] .question,
+html[dir="rtl"] .option-pill,
+html[dir="rtl"] .chunk-pill,
+html[dir="rtl"] .search-word,
+html[dir="rtl"] .dict-word,
+html[dir="rtl"] .dict-trans,
+html[dir="rtl"] .dict-plural{ unicode-bidi:plaintext; text-align:start; }
 .reglage-langue > summary #reglageLangueActuelle{margin-inline-start:auto; opacity:.75;}
 .reglage-langue > summary::after{margin-inline-start:0;}
 .reglage-langue[open] > summary{margin-bottom:6px;}
@@ -6411,7 +6478,7 @@ body[data-theme="dark"] #decouverte > button.primary{
         <input id="authSignupFirstName" class="answer" type="text" placeholder="Prénom" style="margin-bottom:12px;" data-i18n-placeholder="auth_first_name_placeholder">
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
         <div class="password-field-wrap" style="margin-bottom:10px;">
-            <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (6 caractères min.)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
+            <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (au moins 6 caractères)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
             <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authSignupPassword', this)" title="Afficher/masquer le mot de passe">👁</button>
         </div>
         <div class="password-field-wrap" style="margin-bottom:6px;">
@@ -6449,7 +6516,7 @@ body[data-theme="dark"] #decouverte > button.primary{
         <p style="color:#576177"><span data-i18n="reset_for">Pour le compte :</span> <strong id="resetEmailDisplay" style="color:#1e2433;"></strong></p>
         <div class="spacer"></div>
         <div class="password-field-wrap" style="margin-bottom:10px;">
-            <input id="resetPasswordA" class="answer" type="password" placeholder="Mot de passe (6 caractères min.)" oninput="verifierAccordReinit()" data-i18n-placeholder="auth_signup_password_placeholder">
+            <input id="resetPasswordA" class="answer" type="password" placeholder="Mot de passe (au moins 6 caractères)" oninput="verifierAccordReinit()" data-i18n-placeholder="auth_signup_password_placeholder">
             <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('resetPasswordA', this)" title="Afficher/masquer le mot de passe">👁</button>
         </div>
         <div class="password-field-wrap" style="margin-bottom:6px;">
@@ -7326,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v780</span>
+    <span class="subtitle-version">v781</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11059,7 +11126,7 @@ const I18N = {
         auth_gender_male: "Masculin",
         auth_email_placeholder: "E-mail",
         auth_password_placeholder: "Mot de passe",
-        auth_signup_password_placeholder: "Mot de passe (6 caractères min.)",
+        auth_signup_password_placeholder: "Mot de passe (au moins 6 caractères)",
         auth_signup_password_confirm_placeholder: "Confirme le mot de passe",
         auth_password_match_ok: "✓ Les mots de passe correspondent",
         auth_password_match_fail: "✕ Les mots de passe ne correspondent pas",
@@ -13696,7 +13763,7 @@ const I18N = {
         kicker_blocs_connecteurs: "Kur · Bağlayıcılar",
         kicker_transformation_connecteurs: "Dönüştür · Bağlayıcılar",
         kicker_ordre_inverse: "Ters çevir · Bağlayıcılar",
-        op_verben_o5_t: "wissen mi kennen mi?", op_verben_o5_d: "Fransızcada tek fiil, Almancada iki",
+        op_verben_o5_t: "wissen mi kennen mi?", op_verben_o5_d: "Türkçedeki gibi: bilmek (bir şeyi), tanımak (birini, bir yeri)",
         op_praep_o6_t: "legen mi liegen mi?", op_praep_o6_d: "Wohin → -i hali · Wo → -e hali",
         op_pronomen_o7_t: "der- mi ein- kelimeleri mi?", op_pronomen_o7_d: "dieser der'i, kein ein'i izler",
         kicker_der_ein: "der-kelimeleri mi ein-kelimeleri mi?",
@@ -14829,8 +14896,8 @@ const I18N = {
         home_week_positive: "+{n} цього тижня",
         search_launch: "Словник — шукати слово",
         search_kicker: "Картки та словник",
-        search_title: "Шукати слово",
-        search_placeholder: "Слово німецькою…",
+        search_title: "Шукати німецьке або українське слово",
+        search_placeholder: "Німецькою або українською…",
         search_count: "Картки: {n}",
         search_count_one: "Картки: 1",
         search_count_none: "Жодної картки",
@@ -16209,7 +16276,7 @@ const I18N = {
         kicker_transformation_connecteurs: "التحويل · أدوات الربط",
         kicker_ordre_inverse: "القلب · أدوات الربط",
         op_verben_o5_t: "wissen أم kennen؟",
-        op_verben_o5_d: "فعل واحد بالفرنسية، اثنان بالألمانية",
+        op_verben_o5_d: "فعل واحد بالعربية، اثنان بالألمانية",
         op_praep_o6_t: "legen أم liegen؟",
         op_praep_o6_d: "Wohin ← المفعول به · Wo ← المفعول غير المباشر",
         op_pronomen_o7_t: "der-Wörter أم ein-Wörter؟",
@@ -16228,11 +16295,11 @@ const I18N = {
         op_konjunktionen_o8_t: "deshalb أم trotzdem؟",
         op_konjunktionen_o8_d: "النتيجة، أو العقبة المتجاوَزة",
         op_konjunktionen_o9_t: "wenn أم ob؟",
-        op_konjunktionen_o9_d: "«إن» واحدة بالفرنسية — كلمتان بالألمانية",
+        op_konjunktionen_o9_d: "«إن» واحدة بالعربية — كلمتان بالألمانية",
         op_konjunktionen_o10_t: "wenn أم wann؟",
-        op_konjunktionen_o10_d: "«متى» واحدة بالفرنسية — كلمتان بالألمانية",
+        op_konjunktionen_o10_d: "«متى» واحدة بالعربية — كلمتان بالألمانية",
         op_konjunktionen_o11_t: "aber أم sondern؟",
-        op_konjunktionen_o11_d: "«لكن» واحدة بالفرنسية — وشرطان يجب التحقّق منهما",
+        op_konjunktionen_o11_d: "«لكن» واحدة بالعربية — وشرطان يجب التحقّق منهما",
         op_konjunktionen_o12_t: "Seitdem ich hier wohne, …",
         op_konjunktionen_o12_d: "ما يتقدّم يدفع الفعل — والفاعل إلى الخلف",
         op_konjunktionen_o13_t: "بناء الجملة",
@@ -16421,7 +16488,7 @@ const I18N = {
         op_tuiles_t: "بناء الجملة",
         op_tuiles_d: "بلمس الكلمات، بلا لوحة مفاتيح",
         tuiles_menu_title: "بناء الجملة",
-        tuiles_menu_desc: "تُعطى لك الجملة بالفرنسية والكلمات الألمانية مبعثرة. المسها بالترتيب الصحيح — بلا لوحة مفاتيح. ويحوي المصفّ كلمة أو كلمتين زائدتين، مختارتين من عائلة كلمات الجملة نفسها: وهناك يكمن التمرين.",
+        tuiles_menu_desc: "تُعطى لك الجملة بالعربية والكلمات الألمانية مبعثرة. المسها بالترتيب الصحيح — بلا لوحة مفاتيح. ويحوي المصفّ كلمة أو كلمتين زائدتين، مختارتين من عائلة كلمات الجملة نفسها: وهناك يكمن التمرين.",
         tuiles_level_title: "اختر مستوى",
         tuiles_level_all: "كل المستويات",
         tuiles_hint: "المس الكلمات بالترتيب. وإن وضعتَ كلمة خطأً، المسها لإعادتها.",
@@ -16429,7 +16496,7 @@ const I18N = {
         rattrapage_intro: "أعد بناءها بالكلمات أدناه.",
         rattrapage_hint: "المس الكلمات بالترتيب. وإن وضعتَ كلمة خطأً، المسها لإعادتها.",
         rattrapage_reussi: "بناء جيد. لكن الجملة تبقى محسوبة خطأً — فالمقيَّم هو الكتابة.",
-        voice_lang_fr: "الصوت الفرنسي (ترجمات وضع الاستماع)",
+        voice_lang_fr: "الصوت العربي (ترجمات وضع الاستماع)",
         tuiles_level_sub: "{n} جملة من أصل {total}",
         chunks_manque_un: "ما زالت تنقص كلمة واحدة.",
         chunks_manque_n: "ما زالت تنقص {n} كلمات.",
@@ -16585,7 +16652,7 @@ const I18N = {
         auth_gender_male: "ذكر",
         auth_email_placeholder: "البريد الإلكتروني",
         auth_password_placeholder: "كلمة المرور",
-        auth_signup_password_placeholder: "كلمة المرور (6 محارف على الأقل)",
+        auth_signup_password_placeholder: "كلمة المرور (لا تقل عن 6 محارف)",
         auth_signup_password_confirm_placeholder: "أكّد كلمة المرور",
         auth_password_match_ok: "✓ كلمتا المرور متطابقتان",
         auth_password_match_fail: "✕ كلمتا المرور غير متطابقتين",
@@ -17046,9 +17113,9 @@ const I18N = {
         progress_info_apres: "«لم أكن أعرفها» يسحب منها الإتقان، فتنزل النسبة.\n\nوالكلمة المتقَنة تعود بعد 16 يوماً للتحقّق، ثم على فترات أطول فأطول، دون أن تخرج من الحساب.",
         search_launch: "القاموس — ابحث عن كلمة",
         search_kicker: "البطاقات والقاموس",
-        search_title: "ابحث عن كلمة ألمانية أو فرنسية",
-        search_placeholder: "بالألمانية أو الفرنسية…",
-        search_hint: "اكتب حرفين على الأقل، <strong>بالألمانية أو الفرنسية</strong> — كلاهما يعمل. يبحث النظام في بطاقاتك الـ{n}، ثم في القاموس — أكثر من 250 000 كلمة.",
+        search_title: "ابحث عن كلمة ألمانية أو عربية",
+        search_placeholder: "بالألمانية أو العربية…",
+        search_hint: "اكتب حرفين على الأقل، <strong>بالألمانية أو العربية</strong> — كلاهما يعمل. يبحث النظام في بطاقاتك الـ{n}، ثم في القاموس — أكثر من 250 000 كلمة.",
         search_count: "البطاقات: {n}",
         search_count_one: "بطاقة واحدة",
         search_count_none: "لا بطاقات",
@@ -20016,11 +20083,14 @@ const I18N = {
         kicker_english_vocab: "Встроенный английский словарь",
         nomen_title_en: "Wortschatz и темы",
         verbenniveau_title_en: "Verben по уровням",
-        orb_nomen_title: "Существительные",
+        // ­ (trait conditionnel) : invisible tant que le mot tient dans sa
+        // tuile ; a 360 px et moins, il se coupe la avec un trait, au lieu
+        // d'etre tronche n'importe ou par overflow-wrap (13 oct. 2026).
+        orb_nomen_title: "Существи­тельные",
         orb_nomen_sub: "диктант · артикли · род",
         orb_kasus_title: "Падежи и артикли",
         orb_kasus_sub: "der · den · dem · ein · kein",
-        orb_adjektive_title: "Прилагательные",
+        orb_adjektive_title: "Прилага­тельные",
         orb_adjektive_sub: "повторение · склонение",
         orb_praep_title: "Предлоги",
         orb_praep_sub: "Dativ · Akkusativ",
@@ -20518,7 +20588,7 @@ const I18N = {
         kicker_relativ_gen_order: "Относительные местоимения · Genitiv · Порядок слов",
         orb_adverbien_title: "Наречия",
         orb_redewendungen_title: "Выражения",
-        orb_pronomen_title: "Местоимения",
+        orb_pronomen_title: "Место­имения",
         orb_schreiben_title: "Писать",
         orb_schreiben_sub: "перевести предложение",
         op_schreiben_title: "Писать по-немецки",
@@ -20530,7 +20600,7 @@ const I18N = {
         schreiben_hint: "Напиши предложение по-немецки. Умлауты и знаки препинания не учитываются.",
         orb_pronomen_sub: "ich · mich · mir",
         orb_zahlen_title: "Числа",
-        orb_prononciation: "Произношение",
+        orb_prononciation: "Произно­шение",
         pron_kicker: "Читать по-немецки",
         pron_intro: "По-немецки почти всегда читают так, как пишут: этих правил достаточно, чтобы прочитать любое слово. Нажми на слово, чтобы его услышать.",
         pron_voyelles: "Гласные",
@@ -21457,6 +21527,7 @@ function applyUiLang(){
 // configuration (selectUiLangChoice).
 function applyUiLangSideEffects(){
     applyUiLang();
+    masquerEspagnolSelonLangueUi();
     updateGlobalProgress(); // rafraîchit les libellés générés en JS (qualitatif, semaine, objectif)
     renderFlipToggleButtons();
     refreshHomeHeroText();
@@ -21487,6 +21558,20 @@ const ANGLAIS_EN_RETRAIT = true;
 // retenue (bascule, v736). Avant, « Espagnol » ouvrait l'app generee par
 // fork.py, dans espanol/.
 const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./?apprendre=de" : "./?apprendre=es";
+// L'ESPAGNOL N'EST PROPOSE QUE DANS LES LANGUES OU SON CONTENU EST TRADUIT
+// (13 oct. 2026, decide par Jacques). Les themes, verbes, exercices
+// (espanol/datos) et I18N_ESPAGNOL n'existent qu'en francais et en anglais :
+// un usager en turc, ukrainien, persan, portugais, arabe, polonais ou russe
+// qui choisirait l'espagnol se retrouverait avec des traductions anglaises.
+// Ajouter ici une langue le jour ou le contenu espagnol y est traduit.
+// Sans effet pour qui est DEJA en espagnol : il garde le bouton de retour.
+const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en"];
+function masquerEspagnolSelonLangueUi(){
+    if(LANGUE_APPRISE === "es") return;
+    const cache = !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang());
+    document.querySelectorAll('.setup-choice[onclick*="ouvrirAutreLangueApprise"]')
+        .forEach(btn => btn.classList.toggle("hidden", cache));
+}
 // CHANGER DE LANGUE APPRISE DEPUIS LES REGLAGES Y RAMENE (v773). La bascule
 // recharge la page -- c'est un autre jeu de donnees et un autre stockage --
 // et l'on se retrouvait a l'accueil. Constate par Jacques le 12 oct. 2026 :
@@ -21611,6 +21696,7 @@ function adapterChoixALaLangueApprise(){
 
 function refreshSetupChoiceActiveStates(){
     adapterChoixALaLangueApprise();
+    masquerEspagnolSelonLangueUi();
     const dir = getLearningDirection();
     const lang = getUiLang();
     document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice"]').forEach(btn => {
@@ -31485,7 +31571,12 @@ function openSettings(){
     // Un retour commence et pas envoye : son groupe s'ouvre, sinon le
     // brouillon dormirait dans un pli que personne ne rouvre.
     const brouillon = document.getElementById("retourTexte");
-    if(brouillon && brouillon.value.trim()) ouvrirGroupeReglages("groupeCompte");
+    // 13 oct. 2026 : le brouillon ouvrait le pli ET y amenait l'ecran a chaque
+    // visite des reglages. On ouvre le pli sans defiler : la page part du haut.
+    if(brouillon && brouillon.value.trim()){
+        const groupeCompte = document.getElementById("groupeCompte");
+        if(groupeCompte) groupeCompte.open = true;
+    }
     showScreen("settings");
 }
 
@@ -36565,7 +36656,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 780;
+const APP_VERSION = 781;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42809,7 +42900,9 @@ function checkAnswer(){
         // occupait la place de ce qui manque vraiment. Sans tuiles (frappe
         // libre, remise en ordre), rien d'autre ne la montre : on la garde.
         if(!usingOptions && correctDisplay){
-            html += `<div class="explanation"><strong>${t("correct_answer_label")}</strong> ${correctDisplay}</div>`;
+            // <bdi> : la bonne reponse garde son sens de lecture derriere une
+            // etiquette persane ou arabe (sinon son point final passait a gauche).
+            html += `<div class="explanation"><strong>${t("correct_answer_label")}</strong> <bdi>${correctDisplay}</bdi></div>`;
         }
         // L'explication n'apparaissait qu'en cas de BONNE reponse -- soit
         // exactement a l'envers du besoin. Celui qui se trompe est celui a qui

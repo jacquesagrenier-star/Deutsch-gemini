@@ -8434,3 +8434,26 @@ v780 : garderEcranEnHaut() -- pendant 1,5 s apres l'ouverture, tout defilement q
 personne n'a pas fait elle-meme est annule ; un toucher, la molette ou le clavier rendent
 la main aussitot. Verifie en navigateur automatise (defilement fantome annule, geste
 respecte, defilement libre ensuite). A confirmer sur l'iPhone de Jacques.
+
+## 13 octobre 2026 -- v781 : reglages en haut, espagnol seulement en fr/en, ru/ar/fa, mot de passe
+
+- **Reglages qui s'ouvraient trop bas (Jacques, iPhone).** La v780 visait le mauvais ecran
+  (le tableau admin) : la vraie cause etait un brouillon de « Signaler un probleme » jamais
+  envoye -- openSettings() ouvrait le pli Compte ET y faisait defiler l'ecran a chaque visite.
+  Confirme par Jacques (« j'avais un texte que je ne devais pas envoyer »). Le pli s'ouvre
+  maintenant sans defiler. garderEcranEnHaut() (v780) reste, inoffensif.
+- **L'espagnol n'est propose qu'en francais et en anglais** (decide par Jacques) : son contenu
+  (espanol/datos, I18N_ESPAGNOL) n'existe que dans ces deux langues. Constante
+  LANGUES_UI_AVEC_ESPAGNOL ; le bouton Espagnol est masque pour tr, uk, fa, pt, ar, pl, ru.
+  Les fiches Google Play de ces 7 langues ne parlent plus que de l'allemand. Prochain chantier
+  decide : l'espagnol en portugais du Bresil.
+- **Russe** : la grille de l'accueil debordait a 360 px (« Существительные ») -- colonnes
+  minmax(0,1fr), traits conditionnels, carte de seance qui se replie.
+- **Arabe et persan** : la phrase allemande perdait son point final a gauche -- unicode-bidi
+  plaintext sur les textes de la langue apprise, <bdi> sur la bonne reponse. Titre du
+  dictionnaire arabe qui disait « ... ou francaise », et quelques autres « francais » restes
+  en arabe et en turc.
+- **Mot de passe (la soeur de Jacques)** : « Mot de passe (6 caracteres min.) » se coupait sur
+  telephone en « 6 caracteres » -- elle croyait qu'il en fallait exactement six. « au moins »
+  passe AVANT le chiffre (fr, et ar qui avait le meme ordre).
+Verifie : verifier.py, syntaxe.js, trous_francais.py ; parcours allemand et espagnol a 0 ecart.
