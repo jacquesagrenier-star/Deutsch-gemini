@@ -8457,3 +8457,15 @@ respecte, defilement libre ensuite). A confirmer sur l'iPhone de Jacques.
   telephone en « 6 caracteres » -- elle croyait qu'il en fallait exactement six. « au moins »
   passe AVANT le chiffre (fr, et ar qui avait le meme ordre).
 Verifie : verifier.py, syntaxe.js, trous_francais.py ; parcours allemand et espagnol a 0 ecart.
+
+## 13 octobre 2026 -- Jacques : l'indice de gustar, et des « premiers pas » pour les debutants
+
+- « Le verbe s'accorde avec ce qui plait » (exercices gustar, espagnol) : juste mais abstrait.
+  Confie a Fable (chantier espagnol-portugais, meme fichier) : expliquer mot a mot,
+  « le chocolat me plait » -> une chose aimee : gusta, plusieurs : gustan (fr, en, pt).
+- « Pour un debutant qui commence l'espagnol, il ne sait meme pas combien il y a de genres »,
+  puis « on devrait avoir la meme chose pour l'allemand (3 genres) ». Les fiches existent
+  (17 en espagnol, dont le genre) mais rien n'y mene le debutant, et il n'y a pas de fiche
+  gustar. Propose : un parcours « Premiers pas » par langue (5 mini-fiches dans l'ordre +
+  un petit exercice chacune), un lien « Comprendre d'abord » en tete de chaque serie
+  d'exercices, des indices sans jargon. A faire apres le chantier portugais (memes fichiers).
