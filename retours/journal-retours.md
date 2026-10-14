@@ -8590,3 +8590,13 @@ COMME UN DEBUTANT (ZERO) et COMME QUELQU'UN QUI EN CONNAIT UN PEU (lancerDecouve
 le niveau declare du compte n'est pas modifie. Verifie avec un compte declare A2 : les deux
 boutons montrent bien les textes zero / peu, en allemand et en espagnol.
 Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- Nicole : la visite ESPAGNOLE parle d'« Ajaccio, d'Anton Faistauer »
+
+Jacques : pendant la visite en espagnol, sa soeur Nicole a vu le tableau Ajaccio d'un peintre
+de langue allemande. Constat : ce n'est pas un defaut de code, c'est la meme collection pour les
+deux langues. Les 65 tableaux de la mosaique (branding/mosaique/, choisis le 11-12 sept.) sont
+tous de peintres de langue allemande (Liebermann, Macke, Marc, Schiele, Faistauer -- autrichien) ;
+l'etape 4 de la visite les montre, et le texte dec_t4_d5 n'a pas de version espagnole.
+Propose : une collection espagnole et latino-americaine (domaine public, peintres morts avant
+1956), choisie par Jacques comme la premiere. En attente de sa decision.
