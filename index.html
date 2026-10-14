@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v785</span>
+    <span class="subtitle-version">v786</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24099,7 +24099,10 @@ async function loadThemesJson() {
         const order = [];
 
         rawThemesData.forEach((t, idx) => {
-            const name = t.name || t.nom_theme || `Thème ${idx + 1}`;
+            // Le nom s'affiche dans la langue apprise, comme « Familie » en
+            // allemand. En espagnol, nom_theme est en ANGLAIS (« The house ») :
+            // le nom espagnol est dans nom_theme_es (« La casa »).
+            const name = t.name || (LANGUE_APPRISE === "es" && t.nom_theme_es) || t.nom_theme || `Thème ${idx + 1}`;
             const niveau = (t.niveau || "A1").toUpperCase();
             const svg = t.svg || DEFAULT_SVG;
             const entryId = t.id || `theme_${idx}`;
@@ -37371,7 +37374,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 785;
+const APP_VERSION = 786;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

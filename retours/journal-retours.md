@@ -8538,3 +8538,13 @@ Lolita (es-es) 6 059 fichiers, 228 019 credits ; Monica (es-419) 6 059 fichiers,
 total 447 740 credits, 0 refus. Normalises (0 echec), deposes sur Firebase Hosting, verifies
 en ligne (futuro, perfecto, dans les deux voix). Les phrases de temps et les lignes
 d'imperatif ne passent plus par la voix du telephone.
+
+## 14 octobre 2026 -- v786 : les themes espagnols s'appellent en espagnol
+
+Note le 13 oct. : les noms de themes espagnols s'affichaient en anglais partout (« The house »).
+Cause : dans espanol/datos/temas.json, nom_theme est en ANGLAIS et le nom espagnol est dans
+nom_theme_es, que le moteur ne lisait pas. En mode espagnol, le moteur lit maintenant
+nom_theme_es (« La casa », « La familia »), comme l'allemand affiche « Familie ». Le nom ne sert
+qu'a l'affichage : la progression est rangee par identifiant, rien n'est perdu.
+Parcours : allemand 0 ecart ; espagnol 3 ecarts voulus, 268 lignes, toutes des paires anglais ->
+espagnol tirees des donnees (reference es-v786.json).
