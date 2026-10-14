@@ -8728,3 +8728,13 @@ sandales (die Sandale / la sandalia) deviennent des zones, les jeans sont die Je
 vaqueros ; la vendeuse est la dependienta, la serveuse du cafe la camarera. 44/44 zones au
 doigt, toutes les couches rejouees en 5 langues : 0 erreur. Parcours espagnol : 8 ecarts, tous
 dus aux 6 mots (compteurs, et les tirages au hasard qui en dependent) -> reference es-v796.
+
+## 14 octobre 2026 -- v797 : le cafe et la boutique dans la seance
+
+Jacques : « Mets les deux scenes dans la seance ». Le cafe (« Le petit-dejeuner de Mark ») et la
+boutique (« Anna fait les boutiques ») entrent dans la rotation de la scene du jour (8 scenes) et
+dans le panneau « Scenes », titres et descriptions dans les 9 langues. Parcours : allemand 3
+ecarts, espagnol 3 ecarts, tous la meme chose voulue (les deux lignes du panneau) -> references
+de-v797 et es-v797.
+Puis : « creer deux autres scenes, une avec Mark, une avec Anna » (en cours : la cuisine de la
+coloc, et le parc) ; et apres, deux autres encore, sur d'autres themes.
