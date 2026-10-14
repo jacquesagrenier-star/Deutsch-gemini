@@ -12,8 +12,9 @@ ce que l'app recalcule a l'execution.
 
 CE QUI DIFFERE DE L'ALLEMAND
   - Le pluriel se dit avec SON article (los / las), pas « die ».
-  - La carte de verbe espagnole n'a qu'un haut-parleur : la phrase d'exemple.
-    Les tableaux des temps ne se lisent pas a voix haute.
+  - La carte de verbe espagnole lit sa phrase d'exemple, et depuis le 13 oct.
+    2026 la phrase de chacun de ses six autres temps, plus l'imperatif (ses
+    formes a la suite). Les tableaux des temps ne se lisent pas a voix haute.
   - Les listes ecrites dans le code (prepositions, connecteurs, marqueurs du
     discours) et les exemples des sept fiches de grammaire, ranges en A1.
   - Les exercices n'ont pas de niveau : ranges a part (« EX »).
@@ -76,6 +77,19 @@ def recolter(variante):
             for x in liste:
                 prendre(x.get(cle), fichier, niv)
                 prendre(x.get("exemple"), fichier, niv)
+                if fichier != "verbos.json":
+                    continue
+                # LA CARTE DE VERBE DEPUIS LE 13 OCT. 2026 : une phrase par
+                # temps, chacune avec son haut-parleur (blocTempsEspagnol), et
+                # l'imperatif lu comme l'app l'affiche (texteImperativoEspagnol :
+                # tu, usted, vosotros, ustedes separes par des virgules --
+                # vosotros absent en Amerique latine).
+                for temps in ("preterito", "imperfecto", "perfecto", "futuro", "condicional", "subjuntivo"):
+                    prendre(x.get("exemple_" + temps), "verbos.temps", niv)
+                imp = x.get("imperativo")
+                if imp:
+                    cles = ("tu", "usted", "ustedes") if variante == "latam" else ("tu", "usted", "vosotros", "ustedes")
+                    prendre(", ".join(imp[k] for k in cles if imp.get(k)), "verbos.imperativo", niv)
     # Les exercices : la phrase complete, comme l'app la dit apres la reponse.
     for nom, jeu in charger("ejercicios.json").get("jeux", {}).items():
         for e in jeu:

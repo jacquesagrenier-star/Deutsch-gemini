@@ -8516,3 +8516,17 @@ es-v783.json, CLAUDE.md mis a jour.
   kennen ? » ; la carte de verbe espagnole n'a que 4 temps, sans exemple par temps (chantier
   confie a Fable, avant l'arabe). Noms de themes espagnols affiches en anglais partout.
 Parcours : allemand 0 ecart ; espagnol 3 ecarts, tous gustar (reference es-v783.json renouvelee).
+
+## 13 octobre 2026 -- v785 : la carte de verbe espagnole a tous ses temps
+
+Jacques : « quand je clique sur verbe [espagnol], je ne vois pas tous les temps de verbe a
+pratiquer, chose qu'on a avec l'allemand ». La carte n'avait que 4 temps, sans exemple.
+Fait (Fable) : pretérito perfecto, futuro, condicional et imperativo (tú/usted/vosotros/ustedes,
+vosotros cache en Amerique latine) ajoutes aux 873 verbes ; une phrase d'exemple pour CHAQUE
+temps (5 235 phrases) avec traduction fr/en/pt ; affichage identique a la carte allemande.
+140 irreguliers verifies a la main (tiempos.py refuse d'ecrire si l'un est faux) ; 6 verbes a
+diphtongue mal classes corriges (renovar, rodar, atender, soltar, sembrar, acordar).
+Retire du mode espagnol : l'exercice allemand « wissen ou kennen ? ».
+En attente de Jacques : les voix des 6 059 nouveaux textes par accent (~448 000 credits
+ElevenLabs pour les deux) ; d'ici la, voix du telephone. A faire : relecture par un natif.
+Parcours : allemand 0 ecart ; espagnol 4 ecarts voulus (reference es-v783.json renouvelee).

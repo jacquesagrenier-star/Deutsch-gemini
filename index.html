@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v784</span>
+    <span class="subtitle-version">v785</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10482,12 +10482,38 @@ function personneCachee(i){
 }
 // Les temps espagnols arrivent en LISTE ordonnee (yo ... ellos), pas en objet
 // a cles allemandes : ce sont des champs propres a l'espagnol.
-function blocTempsEspagnol(titre, aide, formes){
+// LA PHRASE DU TEMPS (13 oct. 2026), comme l'allemand sous chacun de ses
+// temps : la phrase, son haut-parleur, sa traduction entre parentheses.
+// Rien quand le verbe n'en a pas encore : le tableau seul, comme avant.
+function blocTempsEspagnol(titre, aide, formes, phrase, phraseTr){
     if(!Array.isArray(formes) || !formes.length) return "";
     const ligne = formes.map((f, i) => personneCachee(i) ? null : PERSONNES_CONJUGAISON[i] + " " + f)
         .filter(x => x !== null).join(" \u00b7 ");
+    const exemple = phrase
+        ? "<br>" + phrase + sentenceSpeakBtnHtml(phrase, "de") + "<br>(" + (phraseTr || "") + ")"
+        : "";
     return '<div class="verb-sep"></div><strong>' + titre + '</strong> '
-        + '<span style="font-weight:400; color:#767f8f;">&mdash; ' + aide + '</span><br>' + ligne;
+        + '<span style="font-weight:400; color:#767f8f;">&mdash; ' + aide + '</span><br>' + ligne + exemple;
+}
+// L'imperatif espagnol : tu, usted, vosotros, ustedes -- vosotros cache en
+// Amerique latine, comme dans les tableaux. Le haut-parleur lit les formes
+// affichees, separees par des virgules (audio/manifest_es.py fabrique la
+// meme chaine : la changer ici, c'est la changer la-bas).
+function formesImperativoEspagnol(imp){
+    if(!imp) return [];
+    return [["t\u00fa", imp.tu], ["usted", imp.usted], ["vosotros", imp.vosotros], ["ustedes", imp.ustedes]]
+        .filter((x, i) => x[1] && !(i === 2 && VARIANTE_ESPAGNOL === "latam"));
+}
+function texteImperativoEspagnol(imp){
+    return formesImperativoEspagnol(imp).map(x => x[1]).join(", ");
+}
+function blocImperativoEspagnol(imp){
+    const formes = formesImperativoEspagnol(imp);
+    if(!formes.length) return "";
+    return '<div class="verb-sep"></div><strong>IMPERATIVO</strong> '
+        + '<span style="font-weight:400; color:#767f8f;">&mdash; ' + t("temps_es_imperativo") + '</span><br>'
+        + formes.map(x => x[0] + " &rarr; " + x[1]).join(" \u00b7 ")
+        + sentenceSpeakBtnHtml(texteImperativoEspagnol(imp), "de");
 }
 
 // LES RESSOURCES DE L'APPLICATION, QUI NE SONT PAS DE L'ALLEMAND.
@@ -21042,6 +21068,10 @@ const I18N_ESPAGNOL = {
         "temps_es_imperfecto": "un décor, une habitude, un âge — <em>antes, siempre, mientras</em>",
         "temps_es_subjuntivo": "après <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
         "verbe_es_exemple": "En contexte :",
+        "temps_es_perfecto": "un passé encore lié au présent — <em>hoy, esta semana, ya, todavía no</em>",
+        "temps_es_futuro": "l'avenir, une promesse, une supposition — <em>mañana, el año que viene</em>",
+        "temps_es_condicional": "politesse, conseil, hypothèse — <em>podrías, me gustaría, yo que tú</em>",
+        "temps_es_imperativo": "tú : la forme de él ; usted, ustedes : le subjonctif",
         "op_kasus_sub": "ser · estar",
         "variante_titre": "Quel espagnol ?",
         "variante_choix_espagne": "Espagne",
@@ -21170,6 +21200,10 @@ const I18N_ESPAGNOL = {
         "temps_es_imperfecto": "a scene, a habit, an age — <em>antes, siempre, mientras</em>",
         "temps_es_subjuntivo": "after <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
         "verbe_es_exemple": "In use:",
+        "temps_es_perfecto": "a past still tied to the present — <em>hoy, esta semana, ya, todavía no</em>",
+        "temps_es_futuro": "the future, a promise, a guess — <em>mañana, el año que viene</em>",
+        "temps_es_condicional": "politeness, advice, hypothesis — <em>podrías, me gustaría, yo que tú</em>",
+        "temps_es_imperativo": "tú: the él form; usted, ustedes: the subjunctive",
         "variante_titre": "Which Spanish?",
         "variante_choix_espagne": "Spain",
         "variante_choix_amerique": "Latin America",
@@ -21296,6 +21330,10 @@ const I18N_ESPAGNOL = {
         "temps_es_imperfecto": "um cenário, um hábito, uma idade — <em>antes, siempre, mientras</em>",
         "temps_es_subjuntivo": "depois de <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
         "verbe_es_exemple": "Em contexto:",
+        "temps_es_perfecto": "um passado ainda ligado ao presente — <em>hoy, esta semana, ya, todavía no</em>",
+        "temps_es_futuro": "o futuro, uma promessa, uma suposição — <em>mañana, el año que viene</em>",
+        "temps_es_condicional": "cortesia, conselho, hipótese — <em>podrías, me gustaría, yo que tú</em>",
+        "temps_es_imperativo": "tú: a forma de él; usted, ustedes: o subjuntivo",
         "op_kasus_sub": "ser · estar",
         "variante_titre": "Qual espanhol?",
         "variante_choix_espagne": "Espanha",
@@ -23607,6 +23645,15 @@ async function loadVerbeJson() {
                     // particuliere, et ses trois temps en liste ordonnee.
                     registro: v.registro || "", construccion: v.construccion || "",
                     preterito: v.preterito || null, imperfecto: v.imperfecto || null, subjuntivo: v.subjuntivo || null,
+                    // Les temps ajoutes le 13 oct. 2026 (fusion-espagnol/tiempos.py),
+                    // et la phrase de chaque temps avec ses trois traductions.
+                    perfecto: v.perfecto || null, futuro: v.futuro || null, condicional: v.condicional || null, imperativo: v.imperativo || null,
+                    exemple_preterito: v.exemple_preterito || "", exemple_preterito_fr: v.exemple_preterito_fr || "", exemple_preterito_en: v.exemple_preterito_en || "", exemple_preterito_pt: v.exemple_preterito_pt || "",
+                    exemple_imperfecto: v.exemple_imperfecto || "", exemple_imperfecto_fr: v.exemple_imperfecto_fr || "", exemple_imperfecto_en: v.exemple_imperfecto_en || "", exemple_imperfecto_pt: v.exemple_imperfecto_pt || "",
+                    exemple_perfecto: v.exemple_perfecto || "", exemple_perfecto_fr: v.exemple_perfecto_fr || "", exemple_perfecto_en: v.exemple_perfecto_en || "", exemple_perfecto_pt: v.exemple_perfecto_pt || "",
+                    exemple_futuro: v.exemple_futuro || "", exemple_futuro_fr: v.exemple_futuro_fr || "", exemple_futuro_en: v.exemple_futuro_en || "", exemple_futuro_pt: v.exemple_futuro_pt || "",
+                    exemple_condicional: v.exemple_condicional || "", exemple_condicional_fr: v.exemple_condicional_fr || "", exemple_condicional_en: v.exemple_condicional_en || "", exemple_condicional_pt: v.exemple_condicional_pt || "",
+                    exemple_subjuntivo: v.exemple_subjuntivo || "", exemple_subjuntivo_fr: v.exemple_subjuntivo_fr || "", exemple_subjuntivo_en: v.exemple_subjuntivo_en || "", exemple_subjuntivo_pt: v.exemple_subjuntivo_pt || "",
                     praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
                     // Les examens ou ce verbe figure, ["a2","b1","dtz"]. Ce
                     // chargeur recopie champ par champ : sans cette ligne, la
@@ -29253,14 +29300,18 @@ function orbPanelData(id){
                 { icon:"dossier", title:t("op_by_level"), desc:listeNiveaux(), action:"openVerbenNiveau", section:"mots" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeVerbes", section:"pratique" },
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix", section:"pratique" },
-                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo", section:"pratique" },
+                { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo", section:"pratique" }
+            ].concat(LANGUE_APPRISE === "es" ? [
+                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" }
+            ] : [
                 // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
                 // la frontiere est nette : kennen une personne ou un lieu,
                 // wissen un fait. Aucune carte ne peut l'enseigner seule.
+                // Allemand seulement (13 oct. 2026) : en espagnol, l'option
+                // etait cachee par CSS mais existait toujours dans le panneau,
+                // et le parcours la voyait comme un quatrieme chemin sans titre.
                 { icon:"exercice", title:t("op_verben_o5_t"), desc:t("op_verben_o5_d"), action:"startWissenKennenUebung", section:"pratique" }
-            ].concat(LANGUE_APPRISE === "es" ? [
-                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" }
-            ] : [])
+            ])
         };
     }
     if(id === "zuinfinitiv"){
@@ -34840,12 +34891,21 @@ function loadFlashcard(){
             const praeteritumNote = praeteritumEstEcrit(card.infinitif)
                 ? `<div class="registre-note">${t('praeteritum_ecrit')}</div>` : "";
             // L'espagnol : les deux passes d'abord, et dans cet ordre -- c'est
-            // leur opposition qui est difficile, pas chacun pris a part.
+            // leur opposition qui est difficile, pas chacun pris a part. Puis
+            // (13 oct. 2026, demande de Jacques : « je ne vois pas tous les
+            // temps, chose qu'on a avec l'allemand ») le preterito perfecto,
+            // le futur, le conditionnel, le subjonctif et l'imperatif, chacun
+            // avec sa phrase traduite, comme la carte allemande.
+            const blocEs = (titre, cle, formes) => blocTempsEspagnol(titre, t("temps_es_" + cle), formes,
+                card["exemple_" + cle], texteTraduit(card, "exemple_" + cle));
             const extraHtml = LANGUE_APPRISE === "es"
-                ? blocTempsEspagnol("PRETÉRITO", t("temps_es_preterito"), card.preterito)
-                  + blocTempsEspagnol("IMPERFECTO", t("temps_es_imperfecto"), card.imperfecto)
-                  + blocTempsEspagnol("SUBJUNTIVO", t("temps_es_subjuntivo"), card.subjuntivo)
-                  + impHtml
+                ? blocEs("PRETÉRITO", "preterito", card.preterito)
+                  + blocEs("IMPERFECTO", "imperfecto", card.imperfecto)
+                  + blocEs("PRETÉRITO PERFECTO", "perfecto", card.perfecto)
+                  + blocEs("FUTURO", "futuro", card.futuro)
+                  + blocEs("CONDICIONAL", "condicional", card.condicional)
+                  + blocEs("SUBJUNTIVO", "subjuntivo", card.subjuntivo)
+                  + blocImperativoEspagnol(card.imperativo)
                 : `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})${praeteritumNote}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Konjunktiv II :</strong> ${konjunktiv2Display}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
@@ -37311,7 +37371,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 784;
+const APP_VERSION = 785;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
