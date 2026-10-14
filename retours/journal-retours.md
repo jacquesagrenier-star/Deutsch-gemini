@@ -8600,3 +8600,20 @@ tous de peintres de langue allemande (Liebermann, Macke, Marc, Schiele, Faistaue
 l'etape 4 de la visite les montre, et le texte dec_t4_d5 n'a pas de version espagnole.
 Propose : une collection espagnole et latino-americaine (domaine public, peintres morts avant
 1956), choisie par Jacques comme la premiere. En attente de sa decision.
+
+## 14 octobre 2026 -- v791 : la mosaique espagnole a ses propres tableaux
+
+Retour de Nicole (via Jacques) : la visite en espagnol parlait d'« Ajaccio, d'Anton Faistauer ».
+L'espagnol montrait la collection allemande. Une collection espagnole avait ete proposee le
+15 sept. puis oubliee. Decide avec Jacques le 14 oct. : une seule serie, Espagne + Amerique
+latine, peintres morts avant 1926 (le Mexique protege 100 ans), rien de religieux,
+impressionnistes et modernes de preference, tableaux a l'horizontale, aussi colores que
+l'allemand (mesure d'« eclat », 36 pour l'allemand). Recolte Wikidata + Commons, planches,
+puis page de choix (artefact « Tableaux espagnols ») : Jacques garde 83 tableaux et en ordonne 66.
+Cinq images trop petites ont ete remplacees, avec son accord ; les titres sont en espagnol.
+Une notice par peintre (22) en fr/en/pt, d'apres Wikipedia.
+Heritage : un compte espagnol d'avant la v791 TERMINE son tableau allemand en cours et garde
+ses tableaux allemands gagnes dans sa galerie ; ensuite vient la serie espagnole. Verifie en
+navigateur (allemand inchange ; espagnol neuf ; cas de Nicole ; 10 carreaux offerts).
+Visite, etape 4 en espagnol : plus de Faistauer ; la demonstration 30 -> 700 cartes n'y passe
+plus (elle vise un tableau allemand). Parcours : allemand 0, espagnol 0 ecart.

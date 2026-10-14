@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v790</span>
+    <span class="subtitle-version">v791</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -22769,7 +22769,7 @@ function montrerTableauDecouverte(){
         if(ailleurs()) return;
         const m = mosaiqueCourante();
         const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU_RANG && /Faistauer/.test(x.peintre || ""));
-        const charger = (x) => x ? imageMosaique(x.fichier).catch(() => null) : Promise.resolve(null);
+        const charger = (x) => x ? imageMosaique(x).catch(() => null) : Promise.resolve(null);
         return Promise.all([charger(m), charger(demo)]).then(([img, imgDemo]) => {
             if(ailleurs()) return;
             const v = etatMosaique();
@@ -37418,7 +37418,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 790;
+const APP_VERSION = 791;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -39733,7 +39733,13 @@ const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de JOURS D'ACTIVITE l'image finie
 // on croit que la carte a fige.
 const MOSAIQUE_RESOLUTION_MS = 900;
 const MOSAIQUE_CLE = PREFIXE_STOCKAGE + "mosaique";
-const MOSAIQUE_BASE = RACINE_DEPOT + "branding/mosaique/";
+// L'ESPAGNOL A SA PROPRE COLLECTION (v791). Nicole, le 13 oct. : la visite en
+// espagnol parlait d'« Ajaccio, d'Anton Faistauer ». 66 tableaux de peintres
+// d'Espagne et d'Amerique latine morts avant 1926, choisis et ordonnes par
+// Jacques (espanol/mosaique/). La collection allemande reste lue pour
+// l'HERITAGE : voir migrerMosaiqueEspagnole().
+const MOSAIQUE_BASE_DE = RACINE_DEPOT + "branding/mosaique/";
+const MOSAIQUE_BASE = LANGUE_APPRISE === "es" ? RACINE_DEPOT + "espanol/mosaique/" : MOSAIQUE_BASE_DE;
 let MOSAIQUES = null;
 let chargementMosaiques = null;
 // Une notice par PEINTRE, pas par tableau : vingt-deux textes au lieu de
@@ -39747,10 +39753,16 @@ function chargerPeintres(){
     // vide pour le reste de la session, et les notices ne revenaient plus
     // jamais. Un cache qui memorise un echec est pire que pas de cache.
     if(PEINTRES && Object.keys(PEINTRES).length) return Promise.resolve(PEINTRES);
-    return fetch(MOSAIQUE_BASE + "peintres.json", { cache: "no-cache" })
-        .then(r => r.json())
-        .then(d => { PEINTRES = (d && d.peintres) || {}; return PEINTRES; })
-        .catch(() => (PEINTRES || {}));
+    const urls = LANGUE_APPRISE === "es"
+        ? [MOSAIQUE_BASE_DE + "peintres.json", MOSAIQUE_BASE + "peintres.json"]
+        : [MOSAIQUE_BASE + "peintres.json"];
+    return Promise.all(urls.map(u => fetch(u, { cache: "no-cache" })
+            .then(r => r.json()).then(d => (d && d.peintres) || {}).catch(() => ({}))))
+        .then(listes => {
+            const tout = Object.assign({}, ...listes);
+            if(Object.keys(tout).length) PEINTRES = tout;
+            return PEINTRES || {};
+        });
 }
 
 // ⚠️ LES NOTICES N'EXISTENT QU'EN FRANCAIS POUR L'INSTANT, et l'app parle cinq
@@ -39767,9 +39779,23 @@ function noticePeintre(nom){
 function chargerMosaiques(){
     if(MOSAIQUES) return Promise.resolve(MOSAIQUES);
     if(chargementMosaiques) return chargementMosaiques;
-    chargementMosaiques = fetch(MOSAIQUE_BASE + "mosaiques.json", { cache: "no-cache" })
-        .then(r => r.json())
-        .then(d => { MOSAIQUES = (d && d.images) || []; return MOSAIQUES; })
+    const lire = (base) => fetch(base + "mosaiques.json", { cache: "no-cache" })
+        .then(r => r.json()).then(d => (d && d.images) || []);
+    chargementMosaiques = lire(MOSAIQUE_BASE)
+        .then(liste => {
+            const h = LANGUE_APPRISE === "es" ? etatMosaique().h : [];
+            if(!h.length) return liste;
+            // ⚠️ UNE PLACE PAR RANG HERITE, MEME SI LE FICHIER ALLEMAND NE REPOND
+            // PAS : un trou decalerait tous les rangs, et le tableau en cours
+            // changerait d'image sous les yeux de la personne.
+            return lire(MOSAIQUE_BASE_DE).catch(() => []).then(de => h.map(r => {
+                const m = de.length ? de[(r - 1) % de.length] : null;
+                return Object.assign({ fichier: "m" + String(r).padStart(2, "0") + ".jpg", l: 900, h: 700,
+                                       titre: "", peintre: "", annee: "" }, m || {},
+                                     { base: MOSAIQUE_BASE_DE, graine: r });
+            }).concat(liste));
+        })
+        .then(l => { MOSAIQUES = l; return MOSAIQUES; })
         .catch(() => { MOSAIQUES = []; return MOSAIQUES; });
     return chargementMosaiques;
 }
@@ -39786,7 +39812,8 @@ const MOSAIQUE_AVANCE = 10;
 function etatMosaique(){
     let v = null;
     try{ v = JSON.parse(localStorage.getItem(MOSAIQUE_CLE) || "null"); }catch(e){}
-    if(!v || typeof v !== "object") v = { c: MOSAIQUE_AVANCE };
+    const existait = !!(v && typeof v === "object");
+    if(!existait) v = { c: MOSAIQUE_AVANCE };
     // ⚠️ `taille` A DISPARU EN v629, AVEC LE REPORT QU'ELLE SERVAIT. Un etat
     // deja ecrit peut encore la porter : elle est simplement ignoree, et elle
     // s'efface a la premiere ecriture. Rien a migrer.
@@ -39794,8 +39821,39 @@ function etatMosaique(){
     // fait qu'une journee compte pour une, quel que soit le nombre de visites.
     // `x` : LE RATTRAPAGE A EU LIEU (v672). Il voyage avec l'image -- sans ca,
     // un deuxieme appareil le referait.
-    return { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
-             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "", x: v.x || 0 };
+    // `s` : LA SERIE de l'etat ("es" une fois migre). `h` : les rangs ALLEMANDS
+    // herites, dans leur ordre ; ils occupent les premieres places de la liste
+    // espagnole (v791). Les deux voyagent avec la sauvegarde, comme le reste.
+    const etat = { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
+             g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "", x: v.x || 0,
+             s: v.s || "", h: Array.isArray(v.h) ? v.h : [] };
+    if(LANGUE_APPRISE === "es" && etat.s !== "es") return migrerMosaiqueEspagnole(etat, existait);
+    return etat;
+}
+
+// L'HERITAGE (v791). Jusqu'a la v790, l'espagnol montrait la collection
+// allemande ; ses rangs designaient des tableaux allemands. Decide avec Jacques
+// le 14 oct. 2026 : la personne TERMINE le tableau allemand en cours, garde ses
+// tableaux allemands gagnes dans sa galerie, puis la serie espagnole commence au
+// numero 1. Les rangs herites passent en tete de la liste (chargerMosaiques) et
+// l'etat est renumerote une fois pour toutes. Dix carreaux ou moins sur le
+// tableau en cours, ce sont les carreaux offerts du premier jour : il n'y a rien
+// a terminer, la personne commence directement la serie espagnole.
+// ⚠️ ECRIT AVANT LE CHARGEMENT DE LA LISTE : chargerMosaiques() lit `h`.
+function migrerMosaiqueEspagnole(v, existait){
+    const h = [];
+    if(existait){
+        v.g.forEach(r => { if(h.indexOf(r) < 0) h.push(r); });
+        const enCours = v.g.indexOf(v.r) >= 0 || v.c > MOSAIQUE_AVANCE;
+        if(enCours && h.indexOf(v.r) < 0) h.push(v.r);
+    }
+    const nouveau = (r) => h.indexOf(r) + 1;
+    v.g = v.g.map(nouveau).filter(r => r > 0);
+    v.r = h.indexOf(v.r) >= 0 ? nouveau(v.r) : h.length + 1;
+    v.h = h;
+    v.s = "es";
+    ecrireMosaique(v);
+    return v;
 }
 
 // ============ LES CARREAUX RENDUS (v672) ============
@@ -40075,7 +40133,7 @@ function dessinerMosaique(canvas, img, poses, total, fini){
     const c0 = MOSAIQUE_COLONNES;
     const r0 = Math.max(2, Math.round(c0 * H / L));
     const py = pyramideMosaique(img, c0, r0);
-    const t = tessellesMosaique(etatMosaique().r, c0, r0, Math.max(0, poses));
+    const t = tessellesMosaique(graineMosaique(etatMosaique().r), c0, r0, Math.max(0, poses));
     // ⚠️ LISSAGE COUPE, ET C'EST CE QUI REND LA COULEUR PLATE. Avec le lissage,
     // un pixel source etale sur 150 px revient a un degrade entre voisins : on
     // retrouve un flou, pas une mosaique.
@@ -40184,17 +40242,32 @@ function tailleToileMosaique(canvas, m){
     canvas.height = Math.round(L * (m.h || 1) / (m.l || 1));
 }
 
-function imageMosaique(fichier){
-    if(imagesMosaique[fichier]) return imagesMosaique[fichier];
+// Un tableau herite vient de la collection allemande (`base`), les autres de
+// MOSAIQUE_BASE. On passe le tableau, ou un nom de fichier de MOSAIQUE_BASE.
+function urlImageMosaique(m){
+    if(typeof m === "string") return MOSAIQUE_BASE + "img/" + m;
+    return (m.base || MOSAIQUE_BASE) + "img/" + m.fichier;
+}
+
+// L'ordre des carreaux est tire d'une graine : celle du rang D'ORIGINE pour un
+// tableau herite, sinon le carreau ouvert hier changerait de place aujourd'hui.
+function graineMosaique(r){
+    const m = MOSAIQUES && MOSAIQUES.length ? MOSAIQUES[(r - 1) % MOSAIQUES.length] : null;
+    return (m && m.graine) || r;
+}
+
+function imageMosaique(m){
+    const url = urlImageMosaique(m);
+    if(imagesMosaique[url]) return imagesMosaique[url];
     const p = new Promise((ok, non) => {
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = () => ok(img);
         img.onerror = non;
-        img.src = MOSAIQUE_BASE + "img/" + fichier;
+        img.src = url;
     });
-    p.catch(() => { delete imagesMosaique[fichier]; });
-    imagesMosaique[fichier] = p;
+    p.catch(() => { delete imagesMosaique[url]; });
+    imagesMosaique[url] = p;
     return p;
 }
 
@@ -40237,7 +40310,7 @@ function majMosaiqueAccueil(){
         // se joue qu'une fois.
         const vientDeGagner = fini && v.t === 0 && v.g.indexOf(v.r) < 0;
         const canvas = document.getElementById("mosaiqueToile");
-        imageMosaique(m.fichier).then(img => {
+        imageMosaique(m).then(img => {
             // MARQUE : c'est le travail le plus lourd de l'accueil, et il etait
             // anonyme au journal. S'il gele encore, il le dira par son nom.
             marquerGel("mosaique -> canvas");
@@ -40437,7 +40510,7 @@ function ouvrirMosaiquePleinEcran(rang){
                     + '</div>';
             }
         };
-        img.src = MOSAIQUE_BASE + "img/" + m.fichier;
+        img.src = urlImageMosaique(m);
         vue.classList.remove("hidden");
         synchroniserHistorique();
     });
@@ -40465,7 +40538,7 @@ function ouvrirGalerieMosaiques(){
                 const m = MOSAIQUES[(r - 1) % MOSAIQUES.length];
                 if(!m) return "";
                 return '<figure class="galerie-item" onclick="ouvrirMosaiquePleinEcran(' + r + ')">'
-                     + '<img loading="lazy" src="' + MOSAIQUE_BASE + "img/" + m.fichier
+                     + '<img loading="lazy" src="' + urlImageMosaique(m)
                      + '" alt="' + m.titre.replace(/"/g, "") + '">'
                      + '<figcaption><b>' + m.titre + '</b><br>' + m.peintre
                      + ' · ' + (m.annee || "") + '</figcaption></figure>';

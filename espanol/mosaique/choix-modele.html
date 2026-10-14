@@ -1,0 +1,294 @@
+<title>Tableaux espagnols</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Meme habit que les planches allemandes du 11 sept. : papier, encre, vert = garde.
+   Deux temps : CHOISIR (toucher garde ou retire) puis ORDONNER (toucher pose le rang). */
+:root{
+  --encre:#1C2430; --papier:#EEF1F7; --carte:#FFFFFF; --trait:#DDE3EE;
+  --sourdine:#5C677D; --bleu:#2F62D6; --ambre:#B9761A; --rouge:#A33B3B;
+  --vert:#2C6B4E; --vert-pale:#DFF0E6; --badge:rgba(28,36,48,.74); --badge-texte:#FFFFFF;
+  --f-titre:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-texte:"Literata",Georgia,serif;
+  --f-chiffre:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --encre:#E7EBF2; --papier:#12161D; --carte:#1A202A; --trait:#2B3442;
+  --sourdine:#97A1B4; --bleu:#7FA2F0; --ambre:#E8A23A; --rouge:#E08585;
+  --vert:#7FC8A0; --vert-pale:#172E22; --badge:rgba(0,0,0,.72); --badge-texte:#FFFFFF; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --encre:#E7EBF2; --papier:#12161D; --carte:#1A202A; --trait:#2B3442;
+  --sourdine:#97A1B4; --bleu:#7FA2F0; --ambre:#E8A23A; --rouge:#E08585;
+  --vert:#7FC8A0; --vert-pale:#172E22; --badge:rgba(0,0,0,.72); --badge-texte:#FFFFFF; color-scheme:dark; }
+*{box-sizing:border-box}
+body{background:var(--papier); color:var(--encre); margin:0; font-family:var(--f-texte); font-size:16px; line-height:1.55}
+.page{max-width:1180px; margin:0 auto; padding-inline:16px; padding-block:36px 80px}
+h1{font-family:var(--f-titre); font-size:clamp(1.9rem,4.4vw,2.7rem); line-height:1.05; font-weight:800; letter-spacing:-.025em; margin:0 0 12px; text-wrap:balance}
+.oeil{font-family:var(--f-titre); font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--bleu); margin:0 0 10px}
+.chapeau{color:var(--sourdine); max-width:64ch; margin:0 0 8px}
+.regle{font-size:.88rem; color:var(--sourdine); max-width:64ch; margin:0}
+header{border-bottom:2px solid var(--encre); padding-bottom:22px}
+
+.barre{position:sticky; top:env(safe-area-inset-top,0px); z-index:5; background:var(--papier);
+  padding-block:12px; border-bottom:1px solid var(--trait); margin-bottom:18px;
+  display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center}
+.modes{display:flex; gap:0; border:1px solid var(--encre); border-radius:9px; overflow:hidden}
+.modes button{border:0; border-radius:0; padding:8px 14px; font-size:.85rem}
+.compte{font-family:var(--f-chiffre); font-variant-numeric:tabular-nums; font-size:1.05rem; font-weight:600; min-width:5.5ch}
+.compte.plein{color:var(--vert)}
+.compte.trop{color:var(--rouge)}
+.compte small{font-weight:400; color:var(--sourdine); font-size:.8rem}
+.filtres{display:flex; gap:6px; flex-wrap:wrap}
+button{font-family:var(--f-titre); font-size:.8rem; font-weight:600; padding:7px 12px; border-radius:8px;
+  border:1px solid var(--trait); background:var(--carte); color:var(--encre); cursor:pointer}
+button:hover{border-color:var(--bleu)}
+button:focus-visible,.vig:focus-visible{outline:2px solid var(--bleu); outline-offset:2px}
+button[aria-pressed="true"]{background:var(--encre); color:var(--papier); border-color:var(--encre)}
+.actions{display:flex; gap:6px; margin-inline-start:auto; flex-wrap:wrap}
+.aide{font-size:.86rem; color:var(--sourdine); width:100%; margin:0}
+.etat{font-family:var(--f-chiffre); font-size:.72rem; color:var(--sourdine); width:100%}
+.etat.ok{color:var(--vert)}
+.sortie{width:100%; font-family:var(--f-chiffre); font-size:.78rem; padding:8px 10px; border-radius:8px;
+  border:1px solid var(--trait); background:var(--carte); color:var(--encre); min-height:36px; resize:vertical}
+
+.grille{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px}
+.vig{background:var(--carte); border:1px solid var(--trait); border-radius:9px; overflow:hidden;
+  position:relative; display:flex; flex-direction:column}
+.vig.gardee{border:2px solid var(--vert); background:var(--vert-pale)}
+.vig .toucher{all:unset; cursor:pointer; display:flex; flex-direction:column; width:100%}
+.vig .toucher:focus-visible{outline:2px solid var(--bleu); outline-offset:-2px}
+.vig:hover{border-color:var(--bleu)}
+.vig img{display:block; width:100%; aspect-ratio:3/2; object-fit:cover; background:var(--trait)}
+.vig .i{padding:7px 9px 9px; display:flex; flex-direction:column; gap:2px; min-width:0}
+.vig .pe{font-family:var(--f-titre); font-size:.78rem; font-weight:600; line-height:1.25}
+.vig .ti{font-size:.74rem; color:var(--sourdine); line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.vig .pa{font-family:var(--f-chiffre); font-size:.66rem; color:var(--ambre); letter-spacing:.02em}
+.vig .nu{position:absolute; top:6px; inset-inline-start:6px; background:var(--badge); color:var(--badge-texte);
+  font-family:var(--f-chiffre); font-size:.68rem; font-weight:600; padding:2px 6px; border-radius:5px; pointer-events:none}
+.vig .marque{position:absolute; top:6px; inset-inline-end:6px; min-width:26px; height:26px; padding-inline:6px; border-radius:13px;
+  background:var(--vert); color:var(--carte); font-size:.85rem; display:grid; place-items:center; font-family:var(--f-titre); font-weight:800; pointer-events:none}
+.vig .marque[hidden]{display:none}
+.vig .retirer{margin:0 9px 9px; padding:5px 8px; font-size:.74rem; color:var(--rouge); border-color:var(--trait)}
+.vig .retirer[hidden]{display:none}
+.vig.horsrang{opacity:.55}
+.vig.horsrang:hover{opacity:.8}
+.vide{color:var(--sourdine); font-size:.9rem; padding-block:20px}
+@media (prefers-reduced-motion: no-preference){ .vig{transition:border-color .12s, background-color .12s} }
+</style>
+
+<div class="page">
+<header>
+  <p class="oeil">Wortando · mosaïque espagnole</p>
+  <h1>Tableaux espagnols</h1>
+  <p class="chapeau"><b>Mes tableaux</b> montre seulement ceux que tu as gardés. Touche-les par ordre de priorité : le premier touché sera la première mosaïque que l'apprenant découvre. Ceux que tu ne touches pas sont laissés de côté. <b>Tous les tableaux</b> sert à en ajouter d'autres.</p>
+  <p class="regle">Tous à l'horizontale, du domaine public, de peintres d'Espagne et d'Amérique latine morts avant 1926. Les numéros sont ceux des planches du 14 octobre 2026, classées du plus coloré au moins coloré.</p>
+</header>
+
+<div class="barre">
+  <div class="modes" role="group" aria-label="Étape">
+    <button type="button" data-m="choisir" aria-pressed="true">Tous les tableaux</button>
+    <button type="button" data-m="ordonner" aria-pressed="false">Mes tableaux</button>
+  </div>
+  <span class="compte" id="cpt">0 <small>/ 65</small></span>
+  <div class="filtres" id="filtres" role="group" aria-label="Filtrer">
+    <button type="button" data-f="tous" aria-pressed="true">Tous</button>
+    <button type="button" data-f="es" aria-pressed="false">Espagne</button>
+    <button type="button" data-f="al" aria-pressed="false">Amérique latine</button>
+    <button type="button" data-f="g" aria-pressed="false">Gardés</button>
+  </div>
+  <div class="actions">
+    <button type="button" id="copier">Copier la liste</button>
+    <button type="button" id="effacer">Tout effacer</button>
+  </div>
+  <p class="aide" id="aide"></p>
+  <span class="etat" id="etat">Chargement de ton choix…</span>
+  <textarea class="sortie" id="out" readonly aria-label="Liste" placeholder="La liste apparaîtra ici."></textarea>
+</div>
+
+<div class="grille" id="grille"></div>
+<p class="vide" id="vide" hidden></p>
+</div>
+
+<script>
+const T = /*DONNEES*/[];
+const CIBLE = 65;
+let gardes = new Set();
+let ordre = [];            // rangs poses en mode Ordonner, du premier au dernier
+let mode = "choisir";
+let modeChoisiALaMain = false;
+let filtre = "tous";
+let doc = null;
+let attente = null;
+let ecritureEnCours = Promise.resolve();
+let modifLocale = 0;
+
+const grille = document.getElementById("grille");
+const etat = document.getElementById("etat");
+const parNum = new Map(T.map(t => [t.n, t]));
+
+function rendreCarte(t){
+  const v = document.createElement("div"); v.className = "vig";
+  const b = document.createElement("button"); b.type = "button"; b.className = "toucher";
+  b.setAttribute("aria-label", "Tableau " + t.n + ", " + t.p + ", " + t.t);
+  const img = document.createElement("img"); img.src = t.i; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+  const i = document.createElement("span"); i.className = "i";
+  const pe = document.createElement("span"); pe.className = "pe"; pe.textContent = t.p;
+  const ti = document.createElement("span"); ti.className = "ti"; ti.textContent = t.t + (t.a ? " · " + t.a : "");
+  const pa = document.createElement("span"); pa.className = "pa"; pa.textContent = t.c;
+  i.append(pe, ti, pa); b.append(img, i);
+  const nu = document.createElement("span"); nu.className = "nu"; nu.textContent = t.n;
+  const marque = document.createElement("span"); marque.className = "marque"; marque.setAttribute("aria-hidden", "true");
+  const retirer = document.createElement("button"); retirer.type = "button"; retirer.className = "retirer"; retirer.textContent = "Retirer de la sélection";
+  v.append(b, nu, marque, retirer);
+  b.addEventListener("click", () => toucher(t.n));
+  retirer.addEventListener("click", () => retirerTableau(t.n));
+  return v;
+}
+const cartes = new Map();
+T.forEach(t => { const c = rendreCarte(t); cartes.set(t.n, c); grille.appendChild(c); });
+
+function liste(){ return Array.from(gardes).sort((a, b) => a - b); }
+// L'ordre complet : les rangs poses, puis les gardes sans rang, du plus colore au moins colore.
+function ordreComplet(){
+  const reste = liste().filter(n => !ordre.includes(n));
+  return ordre.concat(reste);
+}
+
+function afficher(){
+  const enOrdre = mode === "ordonner";
+  document.getElementById("filtres").hidden = enOrdre;
+  // En mode Ordonner : seulement les gardes, dans l'ordre choisi.
+  if(enOrdre){ ordreComplet().forEach(n => grille.appendChild(cartes.get(n))); }
+  else { T.forEach(t => grille.appendChild(cartes.get(t.n))); }
+  cartes.forEach((c, n) => {
+    const g = gardes.has(n), t = parNum.get(n);
+    const rang = ordre.indexOf(n);
+    c.classList.toggle("gardee", enOrdre ? rang >= 0 : g);
+    c.classList.toggle("horsrang", enOrdre && rang < 0);
+    const m = c.querySelector(".marque");
+    if(enOrdre){ m.hidden = rang < 0; m.textContent = rang + 1; }
+    else { m.hidden = !g; m.textContent = "✓"; }
+    c.querySelector(".retirer").hidden = true;
+    c.querySelector(".toucher").setAttribute("aria-pressed", (enOrdre ? rang >= 0 : g) ? "true" : "false");
+    const vis = enOrdre ? g : (filtre === "tous" || (filtre === "g" && g)
+      || (filtre === "es" && t.c === "Espagne") || (filtre === "al" && t.c !== "Espagne"));
+    c.hidden = !vis;
+  });
+  const n = gardes.size;
+  const cpt = document.getElementById("cpt");
+  if(enOrdre){ const r = ordre.length; cpt.innerHTML = r + " <small>/ " + CIBLE + " retenus, sur " + n + "</small>"; cpt.className = "compte" + (r === CIBLE ? " plein" : r > CIBLE ? " trop" : ""); }
+  else { cpt.innerHTML = n + " <small>/ " + CIBLE + "</small>"; cpt.className = "compte" + (n === CIBLE ? " plein" : n > CIBLE ? " trop" : ""); }
+  document.getElementById("aide").textContent = enOrdre
+    ? "Touche tes tableaux par ordre de priorité : le premier touché reçoit le rang 1. Touche encore pour enlever le rang. Ceux sans rang, en pâle, sont laissés de côté."
+    : "Touche un tableau pour l'ajouter à « Mes tableaux », touche-le encore pour l'enlever.";
+  document.getElementById("out").value = enOrdre ? ordre.join(", ") : liste().join(", ");
+  const vide = document.getElementById("vide");
+  vide.hidden = !((enOrdre && n === 0) || (!enOrdre && filtre === "g" && n === 0));
+  vide.textContent = "Aucun tableau gardé pour l'instant.";
+}
+
+function memoLocale(){ try{ localStorage.setItem("choixTableauxEs", JSON.stringify({nums: liste(), ordre})); }catch(e){} }
+function changer(){ modifLocale = Date.now(); afficher(); memoLocale(); programmerEcriture(); }
+
+function toucher(n){
+  if(mode === "ordonner"){
+    const i = ordre.indexOf(n);
+    if(i >= 0) ordre.splice(i, 1); else ordre.push(n);
+  } else {
+    if(gardes.has(n)){ gardes.delete(n); ordre = ordre.filter(x => x !== n); } else gardes.add(n);
+  }
+  changer();
+}
+function retirerTableau(n){ gardes.delete(n); ordre = ordre.filter(x => x !== n); changer(); }
+
+function programmerEcriture(){
+  if(!doc) return;
+  etat.textContent = "Enregistrement…"; etat.classList.remove("ok");
+  clearTimeout(attente);
+  attente = setTimeout(() => {
+    const corps = { nums: liste(), ordre: ordre.slice(), maj: new Date().toISOString() };
+    ecritureEnCours = ecritureEnCours.then(() => doc.set(corps)).then(() => {
+      etat.textContent = "Enregistré : Claude lit ton choix et ton ordre directement."; etat.classList.add("ok");
+    }).catch(() => {
+      etat.textContent = "Pas enregistré en ligne : utilise « Copier la liste » et colle-la à Claude."; etat.classList.remove("ok");
+    });
+  }, 700);
+}
+
+function poserMode(m){
+  mode = m;
+  document.querySelectorAll("[data-m]").forEach(x => x.setAttribute("aria-pressed", x.dataset.m === m ? "true" : "false"));
+}
+function modeDeDepart(){ if(!modeChoisiALaMain && gardes.size) poserMode("ordonner"); }
+document.querySelectorAll("[data-m]").forEach(b => b.addEventListener("click", () => {
+  modeChoisiALaMain = true;
+  mode = b.dataset.m;
+  document.querySelectorAll("[data-m]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  afficher();
+}));
+document.querySelectorAll("[data-f]").forEach(b => b.addEventListener("click", () => {
+  filtre = b.dataset.f;
+  document.querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  afficher();
+}));
+document.getElementById("effacer").addEventListener("click", () => {
+  const b = document.getElementById("effacer");
+  const quoi = mode === "ordonner" ? "les rangs" : "la sélection";
+  if(b.dataset.sur !== "1"){ b.dataset.sur = "1"; b.textContent = "Effacer " + quoi + " ?"; setTimeout(() => { b.dataset.sur = ""; b.textContent = "Tout effacer"; }, 4000); return; }
+  b.dataset.sur = ""; b.textContent = "Tout effacer";
+  if(mode === "ordonner") ordre = []; else { gardes = new Set(); ordre = []; }
+  changer();
+});
+document.getElementById("copier").addEventListener("click", () => {
+  const txt = document.getElementById("out").value;
+  const b = document.getElementById("copier");
+  const fini = () => { b.textContent = "Copié"; setTimeout(() => b.textContent = "Copier la liste", 1600); };
+  const secours = () => {
+    const o = document.getElementById("out");
+    o.removeAttribute("readonly"); o.focus(); o.select(); o.setSelectionRange(0, o.value.length);
+    let ok = false;
+    try{ ok = document.execCommand("copy"); }catch(e){}
+    o.setAttribute("readonly", "");
+    if(ok){ fini(); return; }
+    b.textContent = "Copie refusée ici";
+    etat.textContent = doc ? "Pas besoin de copier : tout est enregistré, Claude le lit directement."
+                           : "Copie refusée ici : sélectionne les numéros dans la case et copie-les à la main.";
+    setTimeout(() => b.textContent = "Copier la liste", 2500);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(fini).catch(secours); }
+  else secours();
+});
+
+function appliquer(d){
+  if(Array.isArray(d.nums)) gardes = new Set(d.nums.filter(n => cartes.has(n)));
+  ordre = Array.isArray(d.ordre) ? d.ordre.filter(n => gardes.has(n)) : [];
+}
+try{
+  const l = JSON.parse(localStorage.getItem("choixTableauxEs") || "null");
+  if(Array.isArray(l)) appliquer({nums: l}); else if(l) appliquer(l);
+}catch(e){}
+modeDeDepart();
+afficher();
+
+(async () => {
+  const db = window.claude && window.claude.use ? await window.claude.use("db") : null;
+  if(!db){ etat.textContent = "Choix gardé sur cet appareil seulement : utilise « Copier la liste » pour l'envoyer à Claude."; return; }
+  doc = db.doc("choix/selection");
+  let premier = true;
+  doc.onSnapshot(s => {
+    if(s.metadata.hasPendingWrites) return;
+    const d = s.exists ? s.data() : null;
+    if(premier){
+      premier = false;
+      if(d && Array.isArray(d.nums)){
+        if(!modifLocale){ appliquer(d); modeDeDepart(); afficher(); memoLocale(); }
+        etat.textContent = "Enregistré : Claude lit ton choix et ton ordre directement."; etat.classList.add("ok");
+      } else if(gardes.size){ programmerEcriture(); }
+      else { etat.textContent = "Rien de gardé encore. Chaque toucher s'enregistre."; }
+      return;
+    }
+    if(d && Date.now() - modifLocale > 3000){ appliquer(d); afficher(); memoLocale(); }
+  }, () => { etat.textContent = "Stockage en ligne interrompu : utilise « Copier la liste »."; etat.classList.remove("ok"); });
+})();
+</script>
