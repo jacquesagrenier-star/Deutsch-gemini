@@ -8639,3 +8639,17 @@ pas trop ou se situer ». La visite guidee montre un mot, un verbe, de la gramma
 tableau et la seance, mais pas l'ecran d'accueil lui-meme. Propose : un tour de l'accueil
 en quelques bulles, apres la visite ; et les « premiers pas » dans la seance du jour.
 En attente de sa decision.
+
+## 14 octobre 2026 -- v793 : les points de decouverte sur l'accueil (ESSAI, admin seul)
+
+Suite du constat de Jacques (le tour d'horizon de l'accueil). Plutot qu'un tour impose, son
+idee : « des bulles temporaires, qui disparaissent une fois qu'on a clique dessus ». Fait en
+essai « reperes » (Jacques seul, coupable depuis le tableau admin) : un point ambre sur
+7 zones de l'accueil (Commencer, le niveau, par theme, Travailler les mots, Pratiquer, le
+dictionnaire, les reglages). On le touche : une bulle explique la zone, le point disparait.
+Se servir de la zone le fait disparaitre aussi. La bulle de « Commencer » s'ouvre seule a la
+sortie de la visite. « Revoir les points de decouverte » dans la carte admin de la visite.
+Textes en francais seulement tant que c'est un essai. Verifie en navigateur (pas de point
+sans admin ; toucher le point n'ouvre pas la seance ; sortie de visite ; revoir).
+Parcours : allemand 0, espagnol 0 ecart. Production : sur decision de Jacques (traduire,
+passer a « tous », mettre « Revoir » dans les reglages).

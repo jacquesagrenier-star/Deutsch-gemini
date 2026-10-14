@@ -4909,6 +4909,21 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .home-greeting-row .search-launch{margin-inline-start:auto !important; min-width:0;}
 .home-greeting-row .search-launch input{min-width:0; width:100%;}
 .home-greeting-row .home-greeting{margin:0;}
+/* Points de decouverte (essai « reperes », v793). Ambre de la marque, bulle a
+   l'encre : lisibles sur les deux themes sans jeu de couleurs a part. */
+.repere-ancre{position:relative;}
+.pt-decouverte{position:absolute; top:-5px; inset-inline-end:-5px; width:14px; height:14px; border-radius:50%;
+  background:#E8A23A; border:2px solid #FFFFFF; cursor:pointer; z-index:3; box-sizing:border-box;}
+.pt-decouverte:focus-visible{outline:2px solid #2F62D6; outline-offset:2px;}
+@media (prefers-reduced-motion: no-preference){
+  .pt-decouverte{animation:pt-pouls 1.8s ease-out infinite;}
+}
+@keyframes pt-pouls{0%{box-shadow:0 0 0 0 rgba(232,162,58,.65);} 70%{box-shadow:0 0 0 10px rgba(232,162,58,0);} 100%{box-shadow:0 0 0 0 rgba(232,162,58,0);}}
+.bulle-repere{position:fixed; z-index:9000; background:#1C2430; color:#FFFFFF; border-radius:12px; padding:12px 14px 10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.30); font-size:14px; line-height:1.45;}
+.bulle-repere p{margin:0 0 8px;}
+.bulle-repere button{display:block; margin-inline-start:auto; background:#E8A23A; color:#1C2430; border:0; border-radius:8px;
+  padding:6px 16px; font-weight:700; cursor:pointer;}
 /* La version se loge dans le coin de la carte de progression : elle ne coute
    plus une ligne sous le logo.
    COIN GAUCHE (v515) : a droite elle tombait sous le compteur de l'objectif
@@ -7393,7 +7408,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v792</span>
+    <span class="subtitle-version">v793</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10087,6 +10102,9 @@ body[data-theme="dark"] #decouverte > button.primary{
         <button class="secondary" onclick="revoirDecouverte('zero')" data-i18n="dec_admin_btn_zero">COMME UN DÉBUTANT (ZÉRO) →</button>
         <div class="spacer"></div>
         <button class="secondary" onclick="revoirDecouverte('peu')" data-i18n="dec_admin_btn_peu">COMME QUELQU'UN QUI EN CONNAÎT UN PEU →</button>
+        <!-- v793, essai « reperes » : faire revenir les points de decouverte de l'accueil. -->
+        <div class="spacer"></div>
+        <button class="secondary" onclick="reafficherReperes()">REVOIR LES POINTS DE DÉCOUVERTE →</button>
     </div>
 
     <div class="card">
@@ -22878,6 +22896,7 @@ function passerDecouverte(){
     ecrireDecouverte({ fin: "passee", etapePassee: n });
     fermerDecouverte();
     goHome();
+    repereApresVisite();
 }
 
 // L'ETAPE 5, LA SEANCE DU JOUR (v702). Demandee par Jacques : la visite
@@ -22937,6 +22956,7 @@ function terminerDecouverte(){
     // L'accueil d'abord : « Plus tard » et la croix y ramenent tous les deux,
     // puisque fermerAbonnement() revient a l'ecran d'ou l'offre a ete ouverte.
     if(abonnementApresDecouverte()) ouvrirAbonnement(true);
+    else repereApresVisite();
 }
 
 // LE BRANCHEMENT DE L'APRES-SORTIE. Tant que ACCES.actif est false, personne
@@ -32190,7 +32210,7 @@ if(!VIDEO_ACCUEIL_ACTIVE){
     });
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -32700,6 +32720,14 @@ const ESSAIS = {
         etat: "tous",
         titre: "Scènes dans la séance du jour",
         desc: "Au début de la séance : la scène du jour ou les cartes, au choix. Trois questions au niveau de la séance, puis les cartes."
+    },
+    // EN ESSAI depuis le 14 oct. 2026 (v793) -- Jacques : « pour eviter que les
+    // gens se sentent perdus lorsqu'ils entrent dans l'application ». Voir
+    // installerReperes(). Textes en francais seulement tant que c'est un essai.
+    reperes: {
+        etat: "admin",
+        titre: "Points de découverte sur l'accueil",
+        desc: "Un point ambre sur chaque zone de l'accueil ; on le touche, une bulle explique la zone, puis il disparaît. La bulle de « Commencer » s'ouvre seule à la sortie de la visite."
     }
 };
 const ESSAIS_COUPES_KEY = PREFIXE_STOCKAGE + "essaisCoupes";
@@ -32723,7 +32751,147 @@ function basculerEssai(nom){
     if(k < 0) coupes.push(nom); else coupes.splice(k, 1);
     try{ localStorage.setItem(ESSAIS_COUPES_KEY, JSON.stringify(coupes)); }catch(e){}
     afficherEssais();
+    installerReperes();
     showInfoToast((essaiActif(nom) ? "Essai allumé : " : "Essai coupé : ") + ESSAIS[nom].titre);
+}
+
+// ============ LES POINTS DE DECOUVERTE (essai « reperes », v793) ============
+// Jacques, 14 oct. 2026 : en montrant l'app a une utilisatrice, il lui a fait
+// faire le tour de l'accueil -- les tuiles, « Commencer » ou « par theme », le
+// niveau de A1 a C1 -- et « ce tour d'horizon a ete important, parce que les
+// gens ne savent pas trop ou se situer ». La visite guidee montre ce que l'app
+// fait, pas OU se trouve chaque chose.
+// Pas un tour impose : Jacques voulait des bulles qui disparaissent une fois
+// vues. Un point ambre sur chaque zone ; on le touche, la bulle s'ouvre, le
+// point disparait. Utiliser la zone elle-meme le fait disparaitre aussi : la
+// personne l'a trouvee seule. Seule la bulle de « Commencer » s'ouvre d'elle-
+// meme, a la sortie de la visite : c'est la seule chose indispensable le premier
+// jour. Rien ne bloque l'ecran. « Revoir les points de decouverte » (tableau
+// admin pendant l'essai, reglages en production) les fait tous revenir.
+const REPERES = [
+    { id: "seance", sel: "#home .orb-seance .seance-go",
+      texte: "Ta séance du jour : chaque jour, touche « Commencer ». Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser." },
+    { id: "niveau", sel: "#home .orb-seance .seance-etiq",
+      texte: "Ton niveau : les nouveaux mots viennent du niveau choisi ici, de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux." },
+    { id: "themes", sel: "#home .orb-seance .seance-themes",
+      texte: "Par thème : tu préfères un sujet précis ? La famille, la maison, la nourriture… Les mots que tu mets de côté t'attendent juste au-dessus." },
+    { id: "mots", sel: '#home .orb-section[data-section="mots"]',
+      texte: "Chaque tuile ouvre des cartes et des exercices : les noms, les verbes, la grammaire de la phrase… Descends pour tout voir." },
+    { id: "pratique", sel: '#home .orb-section[data-section="pratique"]',
+      texte: "Pour t'en servir : écouter, les scènes, écrire, les expressions." },
+    { id: "dico", sel: "#home .search-launch",
+      texte: "Le dictionnaire : un mot inconnu ? Cherche-le ici." },
+    { id: "reglages", sel: "#settingsToggleBtn",
+      texte: "Les réglages : ta langue, ton niveau, et tout le reste." }
+];
+const REPERES_VUS_KEY = PREFIXE_STOCKAGE + "reperesVus";
+let bulleRepere = null;
+
+function reperesVus(){
+    try{ return JSON.parse(localStorage.getItem(REPERES_VUS_KEY) || "[]") || []; }catch(e){ return []; }
+}
+
+function marquerRepere(id){
+    const vus = reperesVus();
+    if(vus.indexOf(id) < 0){
+        vus.push(id);
+        try{ localStorage.setItem(REPERES_VUS_KEY, JSON.stringify(vus)); }catch(e){}
+    }
+    document.querySelectorAll('.pt-decouverte[data-repere="' + id + '"]').forEach(x => x.remove());
+}
+
+function installerReperes(){
+    if(!essaiActif("reperes")){
+        document.querySelectorAll(".pt-decouverte").forEach(x => x.remove());
+        fermerRepere();
+        return;
+    }
+    const vus = reperesVus();
+    REPERES.forEach(r => {
+        if(vus.indexOf(r.id) >= 0) return;
+        const ancre = document.querySelector(r.sel);
+        if(!ancre || ancre.querySelector(".pt-decouverte")) return;
+        if(getComputedStyle(ancre).position === "static") ancre.classList.add("repere-ancre");
+        const pt = document.createElement("span");
+        pt.className = "pt-decouverte";
+        pt.dataset.repere = r.id;
+        pt.setAttribute("role", "button");
+        pt.tabIndex = 0;
+        pt.setAttribute("aria-label", "Découvrir cette zone");
+        // ⚠️ preventDefault ET stopPropagation : le point vit DANS des zones
+        // cliquables (le bouton Commencer, la tuile de la seance, l'etiquette
+        // du dictionnaire). Sans eux, toucher le point lancerait la seance.
+        const ouvrir = (e) => { e.preventDefault(); e.stopPropagation(); ouvrirRepere(r.id); };
+        pt.addEventListener("click", ouvrir);
+        pt.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " ") ouvrir(e); });
+        ancre.appendChild(pt);
+        if(!ancre.dataset.repereEcoute){
+            ancre.dataset.repereEcoute = "1";
+            ancre.addEventListener("click", () => marquerRepere(r.id));
+        }
+    });
+}
+
+function clicHorsBulle(e){ if(bulleRepere && !bulleRepere.contains(e.target)) fermerRepere(); }
+
+function fermerRepere(){
+    if(!bulleRepere) return;
+    bulleRepere.remove();
+    bulleRepere = null;
+    document.removeEventListener("click", clicHorsBulle, true);
+    window.removeEventListener("scroll", fermerRepere, true);
+}
+
+function ouvrirRepere(id){
+    fermerRepere();
+    const r = REPERES.find(x => x.id === id);
+    const ancre = r && document.querySelector(r.sel);
+    marquerRepere(id);
+    if(!ancre) return;
+    const haut0 = ancre.getBoundingClientRect();
+    if(haut0.top < 0 || haut0.bottom > innerHeight) ancre.scrollIntoView({ block: "center" });
+    const b = document.createElement("div");
+    b.className = "bulle-repere";
+    b.setAttribute("role", "dialog");
+    b.setAttribute("aria-live", "polite");
+    const texte = document.createElement("p");
+    texte.textContent = r.texte;
+    const ok = document.createElement("button");
+    ok.type = "button";
+    ok.textContent = "OK";
+    ok.addEventListener("click", fermerRepere);
+    b.append(texte, ok);
+    document.body.appendChild(b);
+    bulleRepere = b;
+    const L = Math.min(300, innerWidth - 32);
+    b.style.width = L + "px";
+    const ra = ancre.getBoundingClientRect();
+    const x = Math.max(16, Math.min(ra.left + ra.width / 2 - L / 2, innerWidth - 16 - L));
+    const h = b.offsetHeight;
+    const y = (ra.bottom + 10 + h < innerHeight - 10 || ra.top < h + 20) ? ra.bottom + 10 : ra.top - h - 10;
+    b.style.left = x + "px";
+    b.style.top = y + "px";
+    // Le prochain clic n'importe ou referme : on attend la fin de celui-ci.
+    setTimeout(() => {
+        document.addEventListener("click", clicHorsBulle, true);
+        window.addEventListener("scroll", fermerRepere, true);
+    }, 0);
+    try{ ok.focus({ preventScroll: true }); }catch(e){}
+}
+
+// A la sortie de la visite : la bulle de « Commencer », une fois l'accueil dessine.
+function repereApresVisite(){
+    if(!essaiActif("reperes")) return;
+    setTimeout(() => {
+        installerReperes();
+        if(reperesVus().indexOf("seance") < 0) ouvrirRepere("seance");
+    }, 700);
+}
+
+function reafficherReperes(){
+    try{ localStorage.removeItem(REPERES_VUS_KEY); }catch(e){}
+    goHome();
+    showInfoToast("Points de découverte réaffichés sur l'accueil.");
 }
 
 function afficherEssais(){
@@ -37425,7 +37593,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 792;
+const APP_VERSION = 793;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
