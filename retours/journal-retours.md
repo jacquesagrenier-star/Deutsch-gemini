@@ -8617,3 +8617,15 @@ ses tableaux allemands gagnes dans sa galerie ; ensuite vient la serie espagnole
 navigateur (allemand inchange ; espagnol neuf ; cas de Nicole ; 10 carreaux offerts).
 Visite, etape 4 en espagnol : plus de Faistauer ; la demonstration 30 -> 700 cartes n'y passe
 plus (elle vise un tableau allemand). Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- v792 : la demonstration de la visite, en espagnol
+
+Jacques : « oui, fais la demonstration en espagnol ». A l'etape 4 de la visite, la
+demonstration 30 -> 700 cartes visait Ajaccio de Faistauer et ne passait plus en espagnol
+depuis la v791. Elle utilise maintenant le 65e tableau de la serie espagnole, Los pescadores
+valencianos, de Sorolla (1895), vers la fin de la serie, comme Ajaccio (61e) pour l'allemand.
+Texte dec_t4_d5 dans I18N_ESPAGNOL (fr, en, pt) ; voix « d5 » de la visite espagnole en fr et
+en (170 caracteres ElevenLabs, voix Charlotte) ; VOIX_VISITE.revision 6. audio/voix_visite.py
+lisait 7 blocs de langue au lieu de 9 (le polonais et le russe n'ont pas de voix de visite) :
+corrige. Verifie en navigateur : etiquettes et voix espagnoles, allemand inchange (Ajaccio).
+Parcours : allemand 0, espagnol 0 ecart.

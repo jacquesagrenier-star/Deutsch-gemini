@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v791</span>
+    <span class="subtitle-version">v792</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -21158,6 +21158,7 @@ const I18N_ESPAGNOL = {
         "dec_t1_texte_plusieurs": "En espagnol, chaque nom est masculin ou féminin, et son article le dit : el ou la. Pas toujours comme en français : la leche, le lait.",
         "dec_t1_texte_peu": "Rappel : le petit mot devant le nom, l'article, dit son genre : el (masculin) ou la (féminin). La couleur le montre. Écoute le mot, puis dis si tu le savais.",
         "dec_t4_texte": "Chaque carte travaillée ouvre un carreau. Sous les carreaux se cache l'œuvre d'un grand peintre : tu ne sauras laquelle qu'en la dévoilant. Chaque tableau terminé rejoint ta galerie.",
+        "dec_t4_d5": "700 cartes : le tableau complet ! Los pescadores valencianos, de Joaquín Sorolla, 1895.",
         "seance_choix_allemand": "Espagnol"
     },
     "en": {
@@ -21290,6 +21291,7 @@ const I18N_ESPAGNOL = {
         "dec_t1_texte_plusieurs": "In Spanish, every noun is masculine or feminine, and its article tells you which: el or la. Always learn a word with its article.",
         "dec_t1_texte_peu": "Reminder: the little word in front of the noun, the article, gives its gender: el (masculine) or la (feminine). The colour shows it. Listen, then say whether you knew the word.",
         "dec_t4_texte": "Every card you work on opens a tile. Beneath the tiles hides the work of a great painter: you'll only know which one by revealing it. Every finished painting joins your gallery.",
+        "dec_t4_d5": "700 cards: the full painting! Los pescadores valencianos, by Joaquín Sorolla, 1895.",
         "seance_choix_allemand": "Spanish"
     },
     "pt": {
@@ -21422,6 +21424,7 @@ const I18N_ESPAGNOL = {
         "dec_t1_texte_plusieurs": "Em espanhol, todo substantivo é masculino ou feminino, e o artigo diz qual: el ou la. Nem sempre como em português: el viaje, a viagem.",
         "dec_t1_texte_peu": "Lembrete: a palavrinha antes do substantivo, o artigo, indica o gênero: el (masculino) ou la (feminino). A cor mostra isso. Ouça e depois diga se você sabia.",
         "dec_t4_texte": "Cada cartão trabalhado abre um ladrilho. Sob os ladrilhos se esconde a obra de um grande pintor: você só saberá qual ao revelá-la. Cada quadro terminado entra na sua galeria.",
+        "dec_t4_d5": "700 cartas: o quadro completo! Los pescadores valencianos, de Joaquín Sorolla, 1895.",
         "seance_choix_allemand": "Espanhol"
     }
 };
@@ -22495,12 +22498,12 @@ function revoirDecouverte(reponse){
 // relancer le script et monter VOIX_VISITE.revision.
 // ⚠️ LE MEME LECTEUR QUE LA VOIX ALLEMANDE (obtenirLecteur) : sur iOS, c'est
 // l'element deja debloque qui peut jouer sans nouveau geste.
-const VOIX_VISITE = { revision: "5", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
+const VOIX_VISITE = { revision: "6", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
 const CLIPS_DE_PAGE = { 0: "intro", 4: "t4", 5: "t5", 6: "t6" };
 // LA VISITE ESPAGNOLE (v759) n'a a elle que les clips dont le texte differe
 // (I18N_ESPAGNOL) : voix-visite/es/<langue>/. Les autres -- la seance, la
 // fin, les paliers du tableau -- disent le meme texte : ceux de l'allemand.
-const CLIPS_PROPRES_ES = ["intro", "t4"];
+const CLIPS_PROPRES_ES = ["intro", "t4", "d5"];
 // ⚠️ UN CLIP DONT LE TEXTE A CHANGE SE TAIT jusqu'a son nouvel
 // enregistrement (audio/voix_visite.py) : la voix dit le texte affiche, mot
 // pour mot, ou ne dit rien. Vider la liste une fois les clips deposes.
@@ -22743,7 +22746,11 @@ function decouverteExercicesFaits(){
 // tableau, tel qu'il est, sans demonstration.
 // ⚠️ RIEN N'EST INVENTE SUR LE TABLEAU DE LA PERSONNE : a la fin, il revient
 // avec son vrai compte de carreaux.
-const DEMO_TABLEAU_RANG = 61;
+// L'ESPAGNOL A LE SIEN (v792) : Los pescadores valencianos, de Sorolla, 65e de
+// sa serie -- vers la fin, comme Ajaccio pour l'allemand. Son nom est dans
+// dec_t4_d5 de I18N_ESPAGNOL (et dans la voix, voix-visite/es/).
+// `!x.base` : un tableau herite de la collection allemande ne compte pas.
+const DEMO_TABLEAU = LANGUE_APPRISE === "es" ? { rang: 65, peintre: /Sorolla/ } : { rang: 61, peintre: /Faistauer/ };
 
 function montrerTableauDecouverte(){
     const zone = document.getElementById("decouverteMosaique");
@@ -22768,7 +22775,7 @@ function montrerTableauDecouverte(){
     chargerMosaiques().then(() => {
         if(ailleurs()) return;
         const m = mosaiqueCourante();
-        const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU_RANG && /Faistauer/.test(x.peintre || ""));
+        const demo = (MOSAIQUES || []).find(x => x.rang === DEMO_TABLEAU.rang && !x.base && DEMO_TABLEAU.peintre.test(x.peintre || ""));
         const charger = (x) => x ? imageMosaique(x).catch(() => null) : Promise.resolve(null);
         return Promise.all([charger(m), charger(demo)]).then(([img, imgDemo]) => {
             if(ailleurs()) return;
@@ -37418,7 +37425,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 791;
+const APP_VERSION = 792;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

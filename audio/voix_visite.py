@@ -22,7 +22,10 @@ import hashlib, json, pathlib, re, subprocess, sys, tempfile, urllib.request
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "voix-visite"
 VOIX = "XB0fDUnXU5powFXDhCwa"   # Charlotte
-LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt"]   # ordre des blocs de I18N
+LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt"]   # celles qui ont une voix
+# L'ordre des blocs de I18N, toutes langues : le polonais et le russe (v778,
+# v779) ont leurs textes mais pas encore de voix de visite.
+BLOCS = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
 MODELE = {"fa": "eleven_v3"}
 MODELE_DEFAUT = "eleven_multilingual_v2"
 
@@ -46,9 +49,11 @@ def textes_de_l_app():
     par_langue = {l: {} for l in LANGUES}
     for cle in {c for cles in CLIPS.values() for c in cles}:
         valeurs = re.findall(r'^        ' + re.escape(cle) + r': (".*"),$', html, re.M)
-        if len(valeurs) != len(LANGUES):
-            sys.exit(f"{cle} : {len(valeurs)} valeurs au lieu de {len(LANGUES)}")
-        for l, v in zip(LANGUES, valeurs):
+        if len(valeurs) != len(BLOCS):
+            sys.exit(f"{cle} : {len(valeurs)} valeurs au lieu de {len(BLOCS)}")
+        for l, v in zip(BLOCS, valeurs):
+            if l not in par_langue:
+                continue
             par_langue[l][cle] = json.loads(v)
     return par_langue
 
@@ -90,7 +95,7 @@ def normaliser(brut, cible):
 # leurs, dans voix-visite/es/<langue>/ -- les autres sont ceux de l'allemand,
 # qui disent le meme texte. Langues de l'interface espagnole : fr et en.
 # Doit suivre CLIPS_PROPRES_ES dans index.html.
-CLIPS_PROPRES_ES = ["intro", "t4"]
+CLIPS_PROPRES_ES = ["intro", "t4", "d5"]
 LANGUES_ES = ["fr", "en"]
 
 
