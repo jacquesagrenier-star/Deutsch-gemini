@@ -8557,3 +8557,17 @@ themes mettait « der » par defaut ; la carte prenait aussi le liseré bleu du 
 espagnol, le defaut est maintenant vide : pas d'etiquette d'article, pas de liseré, et la voix
 lit le fichier « setecientos » (deja genere). L'allemand garde « der » par defaut (aucun de ses
 noms n'en a besoin). Parcours : allemand 0 ecart, espagnol 0 ecart.
+
+## 14 octobre 2026 -- v788 : la visite explique le genre avant de montrer les mots
+
+Jacques : sa soeur bloquait des l'entree de la visite guidee (espagnol, « zero ») : l'etape 1
+disait « La couleur dit l'article : el ou la » a quelqu'un qui ne savait pas que les noms ont
+un genre ; et l'etape 3 enchainait sur ser/estar et gustar. Decide avec lui (« fais les deux ») :
+- Etape 1, reponse « zero » : le genre explique d'abord (allemand : masculin, feminin, neutre,
+  der/die/das, souvent pas le genre du francais ; espagnol : el/la, « la leche, le lait »).
+  Reponse « un peu » : un rappel d'une phrase (cle dec_t1_texte_peu). 9 langues pour
+  l'allemand, fr/en/pt pour l'espagnol. Ces textes ne sont pas narres : aucune voix a refaire.
+- Etape 3, espagnol « zero » : deux questions « el ou la ? » (gato, casa) au lieu de
+  ser/estar et gustar, comme l'allemand (die Katze, das Haus).
+Verifie a 390x844 et 375x667 : sur un iPhone SE, les boutons de la carte passent sous le bas
+de l'ecran a l'etape 1 (il faut defiler un peu). Parcours : allemand 0, espagnol 0 ecart.
