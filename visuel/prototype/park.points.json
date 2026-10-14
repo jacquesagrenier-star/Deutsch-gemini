@@ -1,0 +1,715 @@
+{
+ "_lisez_moi": [
+  "Le parc (14 oct. 2026) : un dimanche de printemps, Anna pique-nique au bord du lac et lance la balle au chien ; un garcon passe a velo, un monsieur lit sur un banc. Theme : la nature, le parc, les loisirs. Scene creee a la demande de Jacques (« crée deux autres scènes, une avec Mark, une avec Anna »).",
+  "Image : visuel/scenes/park.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png), puis park-propre.png : le pictogramme de la poubelle efface (park-effacer.json).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "La couverture de pique-nique est die Decke : mots.json la traduit « el techo » (le plafond, autre sens de Decke) ; espanol/park.json la remplace par « la manta ». Le lac, le ciel, le chemin et l'herbe sont pleins (des aplats que SAM ne sait pas borner).",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "park.webp",
+ "source": "../scenes/park-propre.png",
+ "titre": "Im Park",
+ "alt": "Un dimanche au parc à Berlin : Anna, assise sur une couverture de pique-nique, lance une balle à un chien ; derrière elle, un garçon à vélo sur le chemin, un monsieur qui lit sur un banc, un lac avec une barque, un pont et une fontaine.",
+ "consigne": "Anna pique-nique au parc. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo sitzt der Mann?",
+     "c": [
+      "auf der Bank",
+      "unter dem Baum",
+      "im Boot"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "Der Mann sitzt auf der Bank.",
+     "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo ist das Boot?",
+     "c": [
+      "auf dem See",
+      "unter der Brücke",
+      "neben dem Brunnen"
+     ],
+     "f": "boot",
+     "r": "see",
+     "phrase": "Das Boot ist auf dem See.",
+     "n": "der See → auf <b>dem</b> See. (die See, au féminin, c'est la mer !)"
+    },
+    {
+     "q": "Wo fährt der Junge?",
+     "c": [
+      "auf dem Weg",
+      "im See",
+      "auf der Decke"
+     ],
+     "f": "junge",
+     "r": "weg",
+     "phrase": "Der Junge fährt auf dem Weg.",
+     "n": "der Weg → auf <b>dem</b> Weg."
+    },
+    {
+     "q": "Wo steht der Korb?",
+     "c": [
+      "auf der Decke",
+      "unter der Bank",
+      "neben dem Brunnen"
+     ],
+     "f": "korb",
+     "r": "decke",
+     "phrase": "Der Korb steht auf der Decke.",
+     "n": "die Decke → auf <b>der</b> Decke."
+    },
+    {
+     "q": "Wo liegt das Handy?",
+     "c": [
+      "neben dem Rucksack",
+      "im Korb",
+      "unter dem Buch"
+     ],
+     "f": "handy",
+     "r": "rucksack",
+     "phrase": "Das Handy liegt neben dem Rucksack.",
+     "n": "<b>neben</b> = à côté de. der Rucksack → neben <b>dem</b> Rucksack."
+    },
+    {
+     "q": "Wo ist der Ball?",
+     "c": [
+      "über dem Gras",
+      "im Korb",
+      "unter der Decke"
+     ],
+     "f": "ball",
+     "r": "gras",
+     "phrase": "Der Ball ist über dem Gras.",
+     "n": "<b>über</b> = au-dessus de, sans toucher. das Gras → über <b>dem</b> Gras."
+    },
+    {
+     "q": "Wo steht die Laterne?",
+     "c": [
+      "neben dem Mülleimer",
+      "auf der Brücke",
+      "im See"
+     ],
+     "f": "laterne",
+     "r": "muelleimer",
+     "phrase": "Die Laterne steht neben dem Mülleimer.",
+     "n": "der Mülleimer → neben <b>dem</b> Mülleimer."
+    },
+    {
+     "q": "Wo sitzt der Vogel?",
+     "c": [
+      "auf der Bank",
+      "auf dem Boot",
+      "im Korb"
+     ],
+     "f": "vogel",
+     "r": "bank",
+     "phrase": "Der Vogel sitzt auf der Bank.",
+     "n": "<b>Wo?</b> → datif : auf <b>der</b> Bank."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Wo? ou Wohin?",
+   "qs": [
+    {
+     "q": "Anna wirft dem Hund ___ Ball.",
+     "c": [
+      "den",
+      "dem",
+      "der"
+     ],
+     "f": "ball",
+     "r": "hund",
+     "phrase": "Anna wirft dem Hund den Ball.",
+     "n": "À qui ? → datif (<b>dem</b> Hund). Quoi ? → accusatif (<b>den</b> Ball).",
+     "revise": "werfen"
+    },
+    {
+     "q": "Der Hund läuft über ___ Gras.",
+     "c": [
+      "das",
+      "dem",
+      "der"
+     ],
+     "f": "hund",
+     "r": "gras",
+     "phrase": "Der Hund läuft über das Gras.",
+     "n": "<b>Wohin?</b> Il traverse : <b>über</b> + accusatif → <b>das</b> Gras.",
+     "revise": "laufen"
+    },
+    {
+     "q": "Der Junge fährt mit ___ Fahrrad.",
+     "c": [
+      "dem",
+      "den",
+      "das"
+     ],
+     "f": "fahrrad",
+     "r": "junge",
+     "phrase": "Der Junge fährt mit dem Fahrrad.",
+     "n": "<b>mit</b> veut toujours le datif : das Fahrrad → mit <b>dem</b> Fahrrad.",
+     "revise": "fahren"
+    },
+    {
+     "q": "Anna hat ihr Buch auf ___ Decke gelegt.",
+     "c": [
+      "die",
+      "der",
+      "den"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "Anna hat ihr Buch auf die Decke gelegt.",
+     "n": "<b>legen</b> = mouvement, <b>Wohin?</b> → accusatif : auf <b>die</b> Decke.",
+     "revise": "legen"
+    },
+    {
+     "q": "Jetzt liegt das Buch auf ___ Decke.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "Jetzt liegt das Buch auf der Decke.",
+     "n": "<b>liegen</b> = état, <b>Wo?</b> → datif : auf <b>der</b> Decke.",
+     "revise": "liegen"
+    },
+    {
+     "q": "Der Vogel hat sich auf ___ Bank gesetzt.",
+     "c": [
+      "die",
+      "der",
+      "dem"
+     ],
+     "f": "vogel",
+     "r": "bank",
+     "phrase": "Der Vogel hat sich auf die Bank gesetzt.",
+     "n": "<b>sich setzen</b> = mouvement → accusatif : auf <b>die</b> Bank.",
+     "revise": "setzen"
+    },
+    {
+     "q": "Der Mann sitzt auf ___ Bank und liest.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "Der Mann sitzt auf der Bank und liest.",
+     "n": "<b>sitzen</b> = état → datif : auf <b>der</b> Bank.",
+     "revise": "sitzen"
+    },
+    {
+     "q": "Zwei Leute rudern auf ___ See.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "boot",
+     "r": "see",
+     "phrase": "Zwei Leute rudern auf dem See.",
+     "n": "Ils restent sur le lac (<b>Wo?</b>) → datif : auf <b>dem</b> See."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et participes",
+   "qs": [
+    {
+     "q": "Die Frau, ___ dem Hund den Ball wirft, heißt Anna.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "anna",
+     "r": "ball",
+     "phrase": "Die Frau, die dem Hund den Ball wirft, heißt Anna.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Der Junge, ___ Helm blau ist, fährt Fahrrad.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "junge",
+     "r": "helm",
+     "phrase": "Der Junge, dessen Helm blau ist, fährt Fahrrad.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont le casque)."
+    },
+    {
+     "q": "Die Bank, auf ___ der Mann sitzt, ist grün.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "bank",
+     "r": "monsieur",
+     "phrase": "Die Bank, auf der der Mann sitzt, ist grün.",
+     "n": "<b>auf</b> + Wo? → datif, féminin → <b>der</b>."
+    },
+    {
+     "q": "Der ___ Hund will den Ball fangen.",
+     "c": [
+      "laufende",
+      "gelaufene",
+      "laufend"
+     ],
+     "f": "hund",
+     "r": "ball",
+     "phrase": "Der laufende Hund will den Ball fangen.",
+     "n": "Participe présent (Partizip I) comme adjectif : laufen + <b>d</b> + terminaison → <b>laufende</b> (qui court)."
+    },
+    {
+     "q": "Auf der Decke liegt ein ___ Buch.",
+     "c": [
+      "aufgeschlagenes",
+      "aufschlagendes",
+      "aufgeschlagen"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "Auf der Decke liegt ein aufgeschlagenes Buch.",
+     "n": "Partizip II comme adjectif = le résultat (ouvert). Après <b>ein</b>, neutre → <b>-es</b>."
+    },
+    {
+     "q": "Die Decke ist auf dem Gras ___.",
+     "c": [
+      "ausgebreitet",
+      "ausbreitet",
+      "ausgebreiten"
+     ],
+     "f": "decke",
+     "r": "gras",
+     "phrase": "Die Decke ist auf dem Gras ausgebreitet.",
+     "n": "Passif d'état : <b>sein</b> + participe. Verbe séparable : aus<b>ge</b>breitet."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lacht — sie ___ den Hund kennen.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "anna",
+     "r": "hund",
+     "phrase": "Sie muss den Hund kennen.",
+     "n": "<b>müssen</b> = déduction presque certaine : elle joue avec lui."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Hund ___ den Ball gleich fangen.",
+     "c": [
+      "könnte",
+      "muss",
+      "soll"
+     ],
+     "f": "hund",
+     "r": "ball",
+     "phrase": "Der Hund könnte den Ball gleich fangen.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Mann auf der Bank ___ jeden Sonntag hierherkommen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "Der Mann dürfte jeden Sonntag hierherkommen.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man erzählt es im Viertel: Im See ___ es riesige Fische geben.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "see",
+     "phrase": "Im See soll es riesige Fische geben.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    53,
+    0,
+    31,
+    14
+   ]
+  },
+  {
+   "id": "wolke",
+   "mot": "Wolke",
+   "boite": [
+    65.5,
+    8,
+    17.5,
+    4.5
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "boite": [
+    0,
+    0,
+    52,
+    40
+   ]
+  },
+  {
+   "id": "brunnen",
+   "mot": "Brunnen",
+   "boite": [
+    15,
+    27,
+    11.5,
+    9
+   ]
+  },
+  {
+   "id": "see",
+   "mot": "See",
+   "plein": true,
+   "boite": [
+    26,
+    34.5,
+    74,
+    7
+   ]
+  },
+  {
+   "id": "boot",
+   "mot": "Boot",
+   "sur": "see",
+   "boite": [
+    50.5,
+    35.5,
+    12.5,
+    2.8
+   ]
+  },
+  {
+   "id": "bruecke",
+   "mot": "Brücke",
+   "boite": [
+    71,
+    30.5,
+    18,
+    4.3
+   ]
+  },
+  {
+   "id": "stein",
+   "mot": "Stein",
+   "boite": [
+    0.5,
+    37.8,
+    21.5,
+    7
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    71,
+    16.5,
+    8,
+    32.5
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    80,
+    41.3,
+    8.5,
+    7.5
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "boite": [
+    12.5,
+    43.3,
+    34,
+    7
+   ]
+  },
+  {
+   "id": "monsieur",
+   "mot": "Mann",
+   "sur": "bank",
+   "boite": [
+    21.5,
+    39.3,
+    16.5,
+    12
+   ]
+  },
+  {
+   "id": "vogel",
+   "mot": "Vogel",
+   "sur": "bank",
+   "boite": [
+    37.3,
+    41.3,
+    3.5,
+    2
+   ]
+  },
+  {
+   "id": "junge",
+   "mot": "Junge",
+   "boite": [
+    54,
+    39,
+    13,
+    12
+   ]
+  },
+  {
+   "id": "helm",
+   "mot": "Helm",
+   "boite": [
+    58.5,
+    38.9,
+    6,
+    2.2
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    50.5,
+    45,
+    21.5,
+    9.2
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "boite": [
+    0,
+    43.8,
+    14,
+    4.5
+   ]
+  },
+  {
+   "id": "blume-droite",
+   "mot": "Blume",
+   "boite": [
+    88,
+    41.8,
+    12,
+    5.5
+   ]
+  },
+  {
+   "id": "weg",
+   "mot": "Weg",
+   "plein": true,
+   "boite": [
+    0,
+    51.3,
+    45,
+    4.7
+   ]
+  },
+  {
+   "id": "gras",
+   "mot": "Gras",
+   "plein": true,
+   "boite": [
+    0,
+    90.5,
+    60,
+    9.5
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    18,
+    56.5,
+    19,
+    10
+   ]
+  },
+  {
+   "id": "ball",
+   "mot": "Ball",
+   "boite": [
+    39,
+    55.4,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    51,
+    53.3,
+    46,
+    28.5
+   ]
+  },
+  {
+   "id": "korb",
+   "mot": "Korb",
+   "sur": "decke",
+   "boite": [
+    6,
+    65,
+    32,
+    14.5
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "decke",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    19.3,
+    71.5,
+    5,
+    10.2
+   ]
+  },
+  {
+   "id": "apfel",
+   "mot": "Apfel",
+   "sur": "decke",
+   "boite": [
+    27,
+    77.3,
+    10,
+    4.5
+   ]
+  },
+  {
+   "id": "kuchen",
+   "mot": "Kuchen",
+   "sur": "teller",
+   "boite": [
+    40.5,
+    78,
+    8,
+    3
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "decke",
+   "boite": [
+    38,
+    79.5,
+    12,
+    2.4
+   ]
+  },
+  {
+   "id": "buch",
+   "mot": "Buch",
+   "sur": "decke",
+   "boite": [
+    47.5,
+    80.5,
+    20,
+    5.7
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "boite": [
+    0,
+    72,
+    90,
+    17.5
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    73,
+    82.5,
+    27,
+    10.5
+   ]
+  },
+  {
+   "id": "handy",
+   "mot": "Handy",
+   "boite": [
+    64.5,
+    86,
+    9.5,
+    3.5
+   ]
+  },
+  {
+   "id": "schuhe-anna",
+   "mot": "Schuh",
+   "boites": [
+    [
+     86,
+     77,
+     11.5,
+     4
+    ],
+    [
+     74,
+     79.5,
+     6,
+     3
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

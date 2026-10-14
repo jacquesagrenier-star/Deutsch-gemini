@@ -1,0 +1,826 @@
+{
+ "_lisez_moi": [
+  "La cuisine de la coloc (14 oct. 2026) : Mark coupe une carotte pour sa soupe, la marmite fume sur la cuisiniere, le chat attend sur sa chaise. Theme : la cuisine, les ustensiles, les aliments. Scene creee a la demande de Jacques (« crée deux autres scènes, une avec Mark, une avec Anna »).",
+  "Image : visuel/scenes/kueche.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), puis kueche-propre.png : les lignes grises facon texte de la page droite du livre de cuisine repeintes en page blanche (kueche-effacer.json).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "PAS de zone der Herd : le corpus espagnol n'a que « la cocina », qui y veut dire la cuisine (la piece). Le four (der Backofen / el horno), la marmite et la poele couvrent ce coin. Pas de zone pour l'evier ni pour la planche : ni Spüle ni Brett au corpus allemand.",
+  "Deux Flasche : l'huile (das Öl) et le lait (die Milch), chacune nommee par son contenu, aussi die Flasche.",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "kueche.webp",
+ "source": "../scenes/kueche-propre.png",
+ "titre": "In der Küche",
+ "alt": "Mark dans la cuisine de sa colocation à Berlin : il coupe une carotte sur la table, une marmite rouge fume sur la cuisinière, une poêle avec deux œufs à côté ; sur la table, des pommes de terre, des tomates, des pommes, des bananes, du pain, du lait, et un chat gris assis sur une chaise.",
+ "consigne": "Mark prépare une soupe. Touche un objet.",
+ "exclus": [
+  "Wand",
+  "Boden"
+ ],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo steht der Topf?",
+     "c": [
+      "neben der Pfanne",
+      "im Kühlschrank",
+      "unter dem Tisch"
+     ],
+     "f": "topf",
+     "r": "pfanne",
+     "phrase": "Der Topf steht neben der Pfanne.",
+     "n": "die Pfanne → neben <b>der</b> Pfanne : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "über dem Regal",
+      "unter dem Regal",
+      "neben der Tür"
+     ],
+     "f": "uhr",
+     "r": "regal",
+     "phrase": "Die Uhr hängt über dem Regal.",
+     "n": "<b>über</b> = au-dessus de. das Regal → über <b>dem</b> Regal."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "auf dem Kühlschrank",
+      "im Backofen",
+      "unter dem Tisch"
+     ],
+     "f": "pflanze",
+     "r": "kuehlschrank",
+     "phrase": "Die Pflanze steht auf dem Kühlschrank.",
+     "n": "der Kühlschrank → auf <b>dem</b> Kühlschrank."
+    },
+    {
+     "q": "Wo sitzt die Katze?",
+     "c": [
+      "auf dem Stuhl",
+      "auf dem Tisch",
+      "im Korb"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "Die Katze sitzt auf dem Stuhl.",
+     "n": "<b>Wo?</b> → datif : der Stuhl → auf <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo liegen die Kartoffeln?",
+     "c": [
+      "auf dem Tisch",
+      "im Topf",
+      "im Kühlschrank"
+     ],
+     "f": "kartoffel",
+     "r": "tisch",
+     "phrase": "Die Kartoffeln liegen auf dem Tisch.",
+     "n": "der Tisch → auf <b>dem</b> Tisch. Au pluriel, le verbe aussi : <b>liegen</b>."
+    },
+    {
+     "q": "Wo hängt das Handtuch?",
+     "c": [
+      "am Backofen",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "handtuch",
+     "r": "backofen",
+     "phrase": "Das Handtuch hängt am Backofen.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Backofen → am Backofen."
+    },
+    {
+     "q": "Wo steht der Mülleimer?",
+     "c": [
+      "neben dem Kühlschrank",
+      "auf dem Regal",
+      "unter dem Fenster"
+     ],
+     "f": "muelleimer",
+     "r": "kuehlschrank",
+     "phrase": "Der Mülleimer steht neben dem Kühlschrank.",
+     "n": "<b>neben</b> = à côté de. der Kühlschrank → neben <b>dem</b> Kühlschrank."
+    },
+    {
+     "q": "Wo steht die Milch?",
+     "c": [
+      "neben dem Brot",
+      "im Kühlschrank",
+      "im Topf"
+     ],
+     "f": "milch",
+     "r": "brot",
+     "phrase": "Die Milch steht neben dem Brot.",
+     "n": "das Brot est neutre : au datif, comme le masculin → neben <b>dem</b> Brot."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le Perfekt",
+   "qs": [
+    {
+     "q": "Mark hat die Karotte ___.",
+     "c": [
+      "geschnitten",
+      "geschneidet",
+      "schneidet"
+     ],
+     "f": "karotte",
+     "r": "mark",
+     "phrase": "Mark hat die Karotte geschnitten.",
+     "n": "<b>schneiden</b> est irrégulier → <b>geschnitten</b>.",
+     "revise": "schneiden"
+    },
+    {
+     "q": "Er hat zwei Eier ___.",
+     "c": [
+      "gebraten",
+      "gebratet",
+      "gebrät"
+     ],
+     "f": "ei",
+     "r": "pfanne",
+     "phrase": "Er hat zwei Eier gebraten.",
+     "n": "<b>braten</b> → <b>gebraten</b>, avec <b>-en</b>, comme un verbe fort.",
+     "revise": "braten"
+    },
+    {
+     "q": "Die Suppe hat schon eine Stunde ___.",
+     "c": [
+      "gekocht",
+      "gekochen",
+      "kochte"
+     ],
+     "f": "topf",
+     "phrase": "Die Suppe hat schon eine Stunde gekocht.",
+     "n": "<b>kochen</b> est régulier → <b>ge</b>koch<b>t</b>.",
+     "revise": "kochen"
+    },
+    {
+     "q": "Mark ___ das Brot auf den Tisch gelegt.",
+     "c": [
+      "hat",
+      "ist",
+      "wird"
+     ],
+     "f": "brot",
+     "r": "tisch",
+     "phrase": "Mark hat das Brot auf den Tisch gelegt.",
+     "n": "<b>legen</b> a un complément (das Brot) → Perfekt avec <b>haben</b>.",
+     "revise": "legen"
+    },
+    {
+     "q": "Die Katze ___ auf den Stuhl gesprungen.",
+     "c": [
+      "ist",
+      "hat",
+      "wird"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "Die Katze ist auf den Stuhl gesprungen.",
+     "n": "Un déplacement d'un lieu à un autre → Perfekt avec <b>sein</b>."
+    },
+    {
+     "q": "Mark hat die Milch auf den Tisch ___.",
+     "c": [
+      "gestellt",
+      "gestanden",
+      "gestellen"
+     ],
+     "f": "milch",
+     "r": "tisch",
+     "phrase": "Mark hat die Milch auf den Tisch gestellt.",
+     "n": "<b>stellen</b> (poser debout) → gestellt. <b>stehen</b> (être debout) → gestanden.",
+     "revise": "stellen"
+    },
+    {
+     "q": "Mark hat das Handtuch an den Backofen ___.",
+     "c": [
+      "gehängt",
+      "gehangen",
+      "hängte"
+     ],
+     "f": "handtuch",
+     "r": "backofen",
+     "phrase": "Mark hat das Handtuch an den Backofen gehängt.",
+     "n": "<b>hängen</b> + complément (accrocher) → <b>gehängt</b>. Sans complément (être accroché) → gehangen.",
+     "revise": "hängen"
+    },
+    {
+     "q": "Heute Abend ___ Mark für seine Mitbewohner gekocht.",
+     "c": [
+      "hat",
+      "ist",
+      "wird"
+     ],
+     "f": "mark",
+     "phrase": "Heute Abend hat Mark für seine Mitbewohner gekocht.",
+     "n": "<b>kochen</b> → Perfekt avec <b>haben</b>. Le verbe conjugué reste en 2e position.",
+     "revise": "kochen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "Die Karotte ___ gerade geschnitten.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "karotte",
+     "r": "messer",
+     "phrase": "Die Karotte wird gerade geschnitten.",
+     "n": "L'action en cours → passif avec <b>werden</b>."
+    },
+    {
+     "q": "Der Tisch, auf ___ das Gemüse liegt, ist aus Holz.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "tisch",
+     "r": "kartoffel",
+     "phrase": "Der Tisch, auf dem das Gemüse liegt, ist aus Holz.",
+     "n": "<b>auf</b> + Wo? → datif, masculin → <b>dem</b>."
+    },
+    {
+     "q": "Die Katze, ___ auf dem Stuhl sitzt, schaut auf den Tisch.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Das Buch, ___ Seiten voller Bilder sind, liegt auf dem Tisch.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "buch",
+     "r": "tisch",
+     "phrase": "Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.",
+     "n": "Possession, antécédent neutre → <b>dessen</b> (dont les pages)."
+    },
+    {
+     "q": "Die Eier in der Pfanne sind schon ___.",
+     "c": [
+      "gebraten",
+      "gebratet",
+      "braten"
+     ],
+     "f": "ei",
+     "r": "pfanne",
+     "phrase": "Die Eier in der Pfanne sind schon gebraten.",
+     "n": "<b>sein</b> + participe = passif d'état : le résultat.",
+     "revise": "braten"
+    },
+    {
+     "q": "Die Suppe muss noch zehn Minuten gekocht ___.",
+     "c": [
+      "werden",
+      "sein",
+      "haben"
+     ],
+     "f": "topf",
+     "phrase": "Die Suppe muss noch zehn Minuten gekocht werden.",
+     "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark lächelt — die Suppe ___ gut riechen.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "topf",
+     "r": "mark",
+     "phrase": "Die Suppe muss gut riechen.",
+     "n": "<b>müssen</b> = déduction presque certaine : il sourit."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die Katze ___ auf ein Stück Karotte hoffen.",
+     "c": [
+      "könnte",
+      "muss",
+      "soll"
+     ],
+     "f": "katze",
+     "r": "karotte",
+     "phrase": "Die Katze könnte auf ein Stück Karotte hoffen.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Mark ___ Gäste erwarten — der Topf ist sehr groß.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "topf",
+     "r": "mark",
+     "phrase": "Mark dürfte Gäste erwarten.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Seine Mitbewohner sagen es: Mark ___ die beste Suppe der WG kochen.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "mark",
+     "phrase": "Mark soll die beste Suppe der WG kochen.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    3,
+    4,
+    33,
+    9
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boite": [
+    36,
+    84,
+    20,
+    16
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    89,
+    8,
+    11,
+    31
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    39,
+    14.5,
+    20.5,
+    6.5
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    67.5,
+    18.5,
+    10,
+    6.3
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "sur": "kuehlschrank",
+   "boite": [
+    15,
+    20.5,
+    19,
+    8.8
+   ]
+  },
+  {
+   "id": "pflanze-fenster",
+   "mot": "Pflanze",
+   "boite": [
+    85.5,
+    39,
+    10,
+    6.3
+   ]
+  },
+  {
+   "id": "kuehlschrank",
+   "mot": "Kühlschrank",
+   "boite": [
+    5,
+    29,
+    26,
+    39
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "regal",
+   "boite": [
+    44,
+    26.8,
+    18,
+    5.5
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "sur": "regal",
+   "boite": [
+    65,
+    28.3,
+    5.5,
+    3.8
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "sur": "regal",
+   "boite": [
+    75,
+    29.5,
+    5,
+    2.8
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    43,
+    31.8,
+    40,
+    1.4
+   ]
+  },
+  {
+   "id": "topf",
+   "mot": "Topf",
+   "boite": [
+    50,
+    43.3,
+    11,
+    4.4
+   ]
+  },
+  {
+   "id": "deckel",
+   "mot": "Deckel",
+   "boite": [
+    64.8,
+    41.8,
+    7,
+    3.8
+   ]
+  },
+  {
+   "id": "pfanne",
+   "mot": "Pfanne",
+   "boite": [
+    60,
+    45.2,
+    16,
+    2.4
+   ]
+  },
+  {
+   "id": "ei",
+   "mot": "Ei",
+   "sur": "pfanne",
+   "boite": [
+    62.3,
+    45.6,
+    5.6,
+    1.4
+   ]
+  },
+  {
+   "id": "backofen",
+   "mot": "Backofen",
+   "boite": [
+    55,
+    50.3,
+    17,
+    8
+   ]
+  },
+  {
+   "id": "handtuch",
+   "mot": "Handtuch",
+   "boite": [
+    58,
+    50.5,
+    9.5,
+    7
+   ]
+  },
+  {
+   "id": "spuelmaschine",
+   "mot": "Spülmaschine",
+   "boite": [
+    73,
+    49.5,
+    17,
+    7
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    20.5,
+    29.5,
+    30,
+    33
+   ]
+  },
+  {
+   "id": "messer",
+   "mot": "Messer",
+   "boite": [
+    37,
+    57.5,
+    9,
+    3.5
+   ]
+  },
+  {
+   "id": "karotte",
+   "mot": "Karotte",
+   "sur": "tisch",
+   "boite": [
+    37,
+    59.5,
+    13,
+    3.6
+   ]
+  },
+  {
+   "id": "zwiebel",
+   "mot": "Zwiebel",
+   "sur": "tisch",
+   "boite": [
+    49.8,
+    59.3,
+    4,
+    2.8
+   ]
+  },
+  {
+   "id": "oel",
+   "mot": "Öl",
+   "sur": "tisch",
+   "aussi": [
+    "Flasche"
+   ],
+   "boite": [
+    53.5,
+    55.5,
+    4.5,
+    10
+   ]
+  },
+  {
+   "id": "loeffel",
+   "mot": "Löffel",
+   "sur": "tisch",
+   "boite": [
+    58.5,
+    60.5,
+    5.5,
+    2.5
+   ]
+  },
+  {
+   "id": "milch",
+   "mot": "Milch",
+   "sur": "tisch",
+   "aussi": [
+    "Flasche"
+   ],
+   "boite": [
+    64.5,
+    55,
+    5.5,
+    8.5
+   ]
+  },
+  {
+   "id": "brot",
+   "mot": "Brot",
+   "sur": "tisch",
+   "boite": [
+    70.5,
+    58.5,
+    12.5,
+    4.3
+   ]
+  },
+  {
+   "id": "salz",
+   "mot": "Salz",
+   "sur": "tisch",
+   "boite": [
+    84.8,
+    60,
+    4,
+    5
+   ]
+  },
+  {
+   "id": "pfeffer",
+   "mot": "Pfeffer",
+   "sur": "tisch",
+   "boite": [
+    88.5,
+    58.5,
+    4.5,
+    8
+   ]
+  },
+  {
+   "id": "kartoffel",
+   "mot": "Kartoffel",
+   "sur": "tisch",
+   "boite": [
+    34.5,
+    64,
+    11.5,
+    4.6
+   ]
+  },
+  {
+   "id": "tomate",
+   "mot": "Tomate",
+   "sur": "tisch",
+   "boite": [
+    47,
+    63.8,
+    8.7,
+    4
+   ]
+  },
+  {
+   "id": "butter",
+   "mot": "Butter",
+   "sur": "tisch",
+   "boite": [
+    57.5,
+    64.5,
+    9,
+    3.3
+   ]
+  },
+  {
+   "id": "apfel",
+   "mot": "Apfel",
+   "sur": "tisch",
+   "boite": [
+    50,
+    67.8,
+    12,
+    4
+   ]
+  },
+  {
+   "id": "banane",
+   "mot": "Banane",
+   "sur": "tisch",
+   "boite": [
+    52.5,
+    66.3,
+    12,
+    3.8
+   ]
+  },
+  {
+   "id": "buch",
+   "mot": "Buch",
+   "sur": "tisch",
+   "boite": [
+    65.5,
+    64,
+    27.5,
+    8.5
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "rigide": "table",
+   "boite": [
+    23.5,
+    61,
+    70,
+    39
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    5,
+    62,
+    10.5,
+    10.5
+   ]
+  },
+  {
+   "id": "katze",
+   "mot": "Katze",
+   "sur": "stuhl",
+   "boite": [
+    14,
+    68,
+    19,
+    27
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    10,
+    83,
+    30,
+    17
+   ]
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "Stuhl",
+   "boite": [
+    58,
+    74,
+    34,
+    26
+   ]
+  },
+  {
+   "id": "handtuch-stuhl",
+   "mot": "Handtuch",
+   "sur": "stuhl-2",
+   "boite": [
+    84.5,
+    75.5,
+    8,
+    16
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    40,
+    78,
+    12,
+    3.5
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "rigide": "rectangle",
+   "boite": [
+    0,
+    40,
+    6,
+    60
+   ]
+  }
+ ],
+ "gros_plans": []
+}

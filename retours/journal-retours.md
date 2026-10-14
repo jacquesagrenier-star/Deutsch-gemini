@@ -8738,3 +8738,27 @@ ecarts, espagnol 3 ecarts, tous la meme chose voulue (les deux lignes du panneau
 de-v797 et es-v797.
 Puis : « creer deux autres scenes, une avec Mark, une avec Anna » (en cours : la cuisine de la
 coloc, et le parc) ; et apres, deux autres encore, sur d'autres themes.
+
+## 14 octobre 2026 -- Annonce testeurs : « sans engagement »
+
+Jacques veut qu'il soit clair que les 4 mois offerts n'engagent pas a prendre un abonnement de
+12 mois. Phrase ajoutee a l'annonce de Francais a Berlin (.claude/recrutement-testeurs.md, section 0) :
+« C'est un cadeau, sans engagement : aucun abonnement d'un an a prendre ensuite. A la fin des
+4 mois, tu continues si tu veux, sinon ca s'arrete la. »
+
+## 14 octobre 2026 -- Deux scenes de plus : la cuisine (Mark) et le parc (Anna)
+
+Jacques : « creer deux autres scenes une avec Marc une avec Anna ».
+- « In der Kueche » : Mark coupe une carotte pour sa soupe dans la cuisine de la coloc, la
+  marmite fume, deux oeufs dans la poele, le chat attend sur sa chaise. 43 zones ; couches A2
+  (Wo?), B1 (le Perfekt), B2 (relatives et passif), C1 (hypotheses) ; espagnol : estar et
+  prepositions, pretérito perfecto, relatives et passif en se, probabilite. Pas de zone der Herd :
+  le corpus espagnol n'a que « la cocina », qui y veut dire la cuisine (la piece).
+- « Im Park » : un dimanche, Anna pique-nique au bord du lac et lance la balle au chien ; un
+  garcon a velo, un monsieur qui lit sur un banc, une barque, un pont, une fontaine. 33 zones ;
+  couches A2 (Wo?), B1 (Wo? ou Wohin?), B2 (relatives et participes), C1 (hypotheses) ; espagnol :
+  prepositions, indefinido et imparfait, relatives, probabilite. Die Decke y est « la manta »
+  (mots.json dit « el techo », le plafond).
+Images 0,30 $ en tout ; retouches gratuites (page du livre de cuisine, pictogramme de la poubelle).
+Toutes les zones joignables au doigt en de et es ; toutes les couches jouees en 5 langues : 0 erreur.
+Traductions dans les 8 langues, NON relues. Pas encore dans la seance.
