@@ -8661,3 +8661,14 @@ suite, la bulle de « Commencer » (celle qui s'ouvre seule a la sortie de la vi
 « Les autres points ambre t'expliquent le reste de l'accueil : touche-les quand tu veux, ils
 disparaissent ensuite. » ; a la mise en production seulement, une phrase dans la derniere page
 de la visite (texte narre : voix a refaire dans 7 langues + la visite espagnole).
+
+## 14 octobre 2026 -- v795 : points de decouverte, premiers retours de Jacques (essai)
+
+Jacques, sur son telephone : « lorsqu'on clique sur le point du dictionnaire, il ouvre tout
+simplement le dictionnaire au lieu de donner l'explication ». Cause : le point etait DANS
+l'icone, minuscule ; au doigt, on touchait l'icone. Le point est maintenant a cote, et chaque
+point a une zone de toucher de 34 px. Verifie avec un toucher a 6 px du centre : la bulle
+s'ouvre. Autres demandes faites : un point sur « Mis de cote » (la bulle « Par theme » n'en
+parle plus) ; un pouls plus rapide (1 s au lieu de 1,8 s) ; les points des sections colles au
+titre au lieu du bord droit ; un point aussi pour « Travailler la phrase ».
+Parcours : allemand 0, espagnol 0 ecart.
