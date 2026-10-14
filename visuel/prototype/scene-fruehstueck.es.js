@@ -540,7 +540,22 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "la_familia",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "camarera",
+     "genre": "la",
+     "niveau": "A1",
+     "theme": "la_comida",
+     "fr": "la serveuse",
+     "en": "the waitress",
+     "pt": "a garçonete",
+     "latam": {
+      "mot": "mesera",
+      "genre": "la",
+      "pluriel": "las meseras"
+     }
+    }
+   ],
    "sur": null,
    "devant": 0,
    "boites": [

@@ -177,6 +177,35 @@ window.SCENE = {
    "ru": "шляпа"
   },
   {
+   "id": "muetze",
+   "mot": "Mütze",
+   "genre": "die",
+   "pluriel": "Mützen",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     11,
+     26,
+     7.5,
+     6.5
+    ]
+   ],
+   "fr": "bonnet",
+   "en": "cap, hat",
+   "tr": "bere",
+   "uk": "шапка",
+   "fa": "کلاه بافتنی",
+   "pt": "gorro",
+   "ar": "قبعة صوفية",
+   "pl": "czapka",
+   "ru": "шапка"
+  },
+  {
    "id": "tasche-noire",
    "mot": "Tasche",
    "genre": "die",
@@ -330,13 +359,29 @@ window.SCENE = {
   },
   {
    "id": "hosen-stapel",
-   "mot": "Hose",
+   "mot": "Jeans",
    "genre": "die",
-   "pluriel": "Hosen",
-   "niveau": "A1",
-   "theme": "kleidung_a1",
+   "pluriel": "Jeans",
+   "niveau": "A2",
+   "theme": "kleidung_a2",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "Hose",
+     "genre": "die",
+     "niveau": "A1",
+     "theme": "kleidung_a1",
+     "fr": "pantalon",
+     "en": "pants",
+     "tr": "pantolon",
+     "uk": "штани",
+     "fa": "شلوار",
+     "pt": "calça",
+     "ar": "بنطال",
+     "pl": "spodnie",
+     "ru": "брюки"
+    }
+   ],
    "sur": "regal",
    "devant": 0,
    "boites": [
@@ -347,15 +392,15 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "pantalon",
-   "en": "pants",
-   "tr": "pantolon",
-   "uk": "штани",
-   "fa": "شلوار",
-   "pt": "calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки"
+   "fr": "jean",
+   "en": "jeans",
+   "tr": "kot pantolon",
+   "uk": "джинси",
+   "fa": "شلوار جین",
+   "pt": "calça jeans",
+   "ar": "جينز",
+   "pl": "dżinsy",
+   "ru": "джинсы"
   },
   {
    "id": "kleid",
@@ -443,6 +488,35 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка"
+  },
+  {
+   "id": "bluse",
+   "mot": "Bluse",
+   "genre": "die",
+   "pluriel": "Blusen",
+   "niveau": "B1",
+   "theme": "kleidung_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     31.3,
+     37.5,
+     4.3,
+     15
+    ]
+   ],
+   "fr": "chemisier",
+   "en": "blouse",
+   "tr": "bluz",
+   "uk": "блузка",
+   "fa": "بلوز زنانه",
+   "pt": "blusa",
+   "ar": "بلوزة",
+   "pl": "bluzka",
+   "ru": "блузка"
   },
   {
    "id": "anzug",
@@ -839,13 +913,29 @@ window.SCENE = {
   },
   {
    "id": "hose-anna",
-   "mot": "Hose",
+   "mot": "Jeans",
    "genre": "die",
-   "pluriel": "Hosen",
-   "niveau": "A1",
-   "theme": "kleidung_a1",
+   "pluriel": "Jeans",
+   "niveau": "A2",
+   "theme": "kleidung_a2",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "Hose",
+     "genre": "die",
+     "niveau": "A1",
+     "theme": "kleidung_a1",
+     "fr": "pantalon",
+     "en": "pants",
+     "tr": "pantolon",
+     "uk": "штани",
+     "fa": "شلوار",
+     "pt": "calça",
+     "ar": "بنطال",
+     "pl": "spodnie",
+     "ru": "брюки"
+    }
+   ],
    "sur": null,
    "devant": 0,
    "boites": [
@@ -856,15 +946,15 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "pantalon",
-   "en": "pants",
-   "tr": "pantolon",
-   "uk": "штани",
-   "fa": "شلوار",
-   "pt": "calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки"
+   "fr": "jean",
+   "en": "jeans",
+   "tr": "kot pantolon",
+   "uk": "джинси",
+   "fa": "شلوار جین",
+   "pt": "calça jeans",
+   "ar": "جينز",
+   "pl": "dżinsy",
+   "ru": "джинсы"
   },
   {
    "id": "schuhe-anna",
@@ -958,6 +1048,35 @@ window.SCENE = {
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды"
+  },
+  {
+   "id": "sandale",
+   "mot": "Sandale",
+   "genre": "die",
+   "pluriel": "Sandalen",
+   "niveau": "A2",
+   "theme": "kleidung_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     27,
+     64,
+     8,
+     3.8
+    ]
+   ],
+   "fr": "sandale",
+   "en": "sandal",
+   "tr": "sandalet",
+   "uk": "сандалія",
+   "fa": "صندل",
+   "pt": "sandália",
+   "ar": "صندل",
+   "pl": "sandał",
+   "ru": "сандалия"
   },
   {
    "id": "schuhe-regal",

@@ -169,6 +169,33 @@ window.SCENE = {
    "latam": null
   },
   {
+   "id": "muetze",
+   "mot": "gorro",
+   "genre": "el",
+   "pluriel": "los gorros",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     11,
+     26,
+     7.5,
+     6.5
+    ]
+   ],
+   "fr": "le bonnet (la tuque)",
+   "en": "the woolly hat",
+   "pt": "o gorro",
+   "ar": "قبعة صوفية",
+   "pl": "czapka",
+   "ru": "шапка",
+   "latam": null
+  },
+  {
    "id": "tasche-noire",
    "mot": "bolso",
    "genre": "el",
@@ -318,13 +345,23 @@ window.SCENE = {
   },
   {
    "id": "hosen-stapel",
-   "mot": "pantalón",
-   "genre": "el",
-   "pluriel": "los pantalones",
+   "mot": "vaqueros",
+   "genre": "los",
+   "pluriel": null,
    "niveau": "A1",
    "theme": "la_ropa",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "pantalón",
+     "genre": "el",
+     "niveau": "A1",
+     "theme": "la_ropa",
+     "fr": "le pantalon",
+     "en": "the trousers",
+     "pt": "a calça"
+    }
+   ],
    "sur": "regal",
    "devant": 0,
    "boites": [
@@ -335,13 +372,17 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "le pantalon",
-   "en": "the trousers",
-   "pt": "a calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки",
-   "latam": null
+   "fr": "le jean",
+   "en": "the jeans",
+   "pt": "a calça jeans",
+   "ar": "جينز",
+   "pl": "dżinsy",
+   "ru": "джинсы",
+   "latam": {
+    "mot": "jeans",
+    "genre": "los",
+    "pluriel": null
+   }
   },
   {
    "id": "kleid",
@@ -422,6 +463,33 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "latam": null
+  },
+  {
+   "id": "bluse",
+   "mot": "blusa",
+   "genre": "la",
+   "pluriel": "las blusas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     31.3,
+     37.5,
+     4.3,
+     15
+    ]
+   ],
+   "fr": "le chemisier",
+   "en": "the blouse",
+   "pt": "a blusa",
+   "ar": "بلوزة",
+   "pl": "bluzka",
+   "ru": "блузка",
    "latam": null
   },
   {
@@ -791,13 +859,23 @@ window.SCENE = {
   },
   {
    "id": "hose-anna",
-   "mot": "pantalón",
-   "genre": "el",
-   "pluriel": "los pantalones",
+   "mot": "vaqueros",
+   "genre": "los",
+   "pluriel": null,
    "niveau": "A1",
    "theme": "la_ropa",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "pantalón",
+     "genre": "el",
+     "niveau": "A1",
+     "theme": "la_ropa",
+     "fr": "le pantalon",
+     "en": "the trousers",
+     "pt": "a calça"
+    }
+   ],
    "sur": null,
    "devant": 0,
    "boites": [
@@ -808,13 +886,17 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "le pantalon",
-   "en": "the trousers",
-   "pt": "a calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки",
-   "latam": null
+   "fr": "le jean",
+   "en": "the jeans",
+   "pt": "a calça jeans",
+   "ar": "جينز",
+   "pl": "dżinsy",
+   "ru": "джинсы",
+   "latam": {
+    "mot": "jeans",
+    "genre": "los",
+    "pluriel": null
+   }
   },
   {
    "id": "schuhe-anna",
@@ -908,6 +990,33 @@ window.SCENE = {
    }
   },
   {
+   "id": "sandale",
+   "mot": "sandalia",
+   "genre": "la",
+   "pluriel": "las sandalias",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     27,
+     64,
+     8,
+     3.8
+    ]
+   ],
+   "fr": "la sandale",
+   "en": "the sandal",
+   "pt": "a sandália",
+   "ar": "صندل",
+   "pl": "sandał",
+   "ru": "сандалия",
+   "latam": null
+  },
+  {
    "id": "schuhe-regal",
    "mot": "zapato",
    "genre": "el",
@@ -942,7 +1051,22 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "la_familia",
    "personne": null,
-   "aussi": [],
+   "aussi": [
+    {
+     "mot": "dependienta",
+     "genre": "la",
+     "niveau": "A1",
+     "theme": "las_compras",
+     "fr": "la vendeuse",
+     "en": "the shop assistant",
+     "pt": "a vendedora",
+     "latam": {
+      "mot": "vendedora",
+      "genre": "la",
+      "pluriel": "las vendedoras"
+     }
+    }
+   ],
    "sur": null,
    "devant": 0,
    "boites": [

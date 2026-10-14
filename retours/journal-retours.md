@@ -8715,3 +8715,16 @@ espagnol arrete le verificateur. Meme cas : le chemisier (la blusa), les sandale
 Les six mots sont PRETS (espanol/ajouts/scene-kleidergeschaeft.json, avec el gorro, la blusa, la
 sandalia, los vaqueros, la dependienta, la camarera), mais temas.json porte le travail arabe de
 Fable, non publie : je n'y ecris pas sans l'accord de Jacques.
+
+## 14 octobre 2026 -- La tuque rouge est dans la scene
+
+Jacques : « Oui, ajoute les 6 mots, je t'autorise ». Ajoutes au corpus espagnol (avec fr, en, pt
+et l'Amerique latine) : el gorro, la blusa, la sandalia, los vaqueros (jeans), la dependienta
+(vendedora), la camarera (mesera). Le fichier temas.json porte aussi le travail arabe de Fable,
+non publie : SEULS les 6 mots sont publies (77 lignes ajoutees, aucune retiree) ; le travail de
+Fable reste en local, intact, avec les 6 mots en plus (copie de sauvegarde dans ~/.wortando).
+Dans la boutique : la tuque (die Muetze / el gorro), le chemisier (die Bluse / la blusa), les
+sandales (die Sandale / la sandalia) deviennent des zones, les jeans sont die Jeans / los
+vaqueros ; la vendeuse est la dependienta, la serveuse du cafe la camarera. 44/44 zones au
+doigt, toutes les couches rejouees en 5 langues : 0 erreur. Parcours espagnol : 8 ecarts, tous
+dus aux 6 mots (compteurs, et les tirages au hasard qui en dependent) -> reference es-v796.

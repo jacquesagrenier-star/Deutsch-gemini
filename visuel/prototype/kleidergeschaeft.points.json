@@ -3,8 +3,8 @@
   "La boutique de vetements (14 oct. 2026) : Anna choisit un pull jaune dans une petite boutique de Berlin ; la vendeuse plie une echarpe au comptoir, un monsieur essaie une chaussure sur un banc. Theme : les vetements, les chaussures, les accessoires. Scene creee sans Jacques, a sa demande (« je te fais confiance »).",
   "Image : visuel/scenes/kleidergeschaeft.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Aucun texte dans l'image, rien a effacer.",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
-  "Pas de zone (le mot espagnol manque au corpus, a ajouter quand espanol/datos sera libre) : die Mütze (el gorro), die Bluse (la blusa), die Sandale (la sandalia), die Jeans (los vaqueros). Le comptoir non plus : ni Theke ni Tresen dans le corpus allemand.",
-  "Deux Frau : Anna et la vendeuse (aussi die Verkäuferin, en espagnol « la mujer » : la dependienta manque au corpus). Le monsieur est der Mann, aussi der Kunde.",
+  "La tuque, le chemisier, les sandales et le jean sont entres le 14 oct. avec leurs mots espagnols (espanol/ajouts/scene-kleidergeschaeft.json : el gorro, la blusa, la sandalia, los vaqueros). Pas de zone pour le comptoir : ni Theke ni Tresen dans le corpus allemand.",
+  "Deux Frau : Anna et la vendeuse (aussi die Verkäuferin, en espagnol la dependienta). Le monsieur est der Mann, aussi der Kunde.",
   "La cabine d'essayage est die Umkleidekabine, aussi der Vorhang (le rideau vert en est la partie visible).",
   "Mesures relues sur la grille en % du 14 oct. 2026."
  ],
@@ -419,6 +419,17 @@
    ]
   },
   {
+   "id": "muetze",
+   "mot": "Mütze",
+   "sur": "regal",
+   "boite": [
+    11,
+    26,
+    7.5,
+    6.5
+   ]
+  },
+  {
    "id": "tasche-noire",
    "mot": "Tasche",
    "sur": "regal",
@@ -505,8 +516,11 @@
   },
   {
    "id": "hosen-stapel",
-   "mot": "Hose",
+   "mot": "Jeans",
    "sur": "regal",
+   "aussi": [
+    "Hose"
+   ],
    "boite": [
     3,
     55.5,
@@ -542,6 +556,16 @@
     37.5,
     6,
     15.3
+   ]
+  },
+  {
+   "id": "bluse",
+   "mot": "Bluse",
+   "boite": [
+    31.3,
+    37.5,
+    4.3,
+    15
    ]
   },
   {
@@ -679,7 +703,10 @@
   },
   {
    "id": "hose-anna",
-   "mot": "Hose",
+   "mot": "Jeans",
+   "aussi": [
+    "Hose"
+   ],
    "ellipses": [
     [
      51,
@@ -745,6 +772,17 @@
     64.5,
     8.5,
     4.5
+   ]
+  },
+  {
+   "id": "sandale",
+   "mot": "Sandale",
+   "sur": "regal",
+   "boite": [
+    27,
+    64,
+    8,
+    3.8
    ]
   },
   {
