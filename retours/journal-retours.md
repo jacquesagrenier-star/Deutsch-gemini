@@ -8581,3 +8581,12 @@ der (masculin), die (feminin) ou das (neutre). Apprends-le avec le mot. » Espag
 « ... et son article le dit : el ou la. Pas toujours comme en francais : la leche, le lait. »
 Verifie a 375x667 : les boutons sont visibles, en allemand comme en espagnol.
 Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- v790 : revoir la visite comme un debutant (tableau admin)
+
+Jacques veut voir la nouvelle etape 1 sur son iPhone. « Revoir la decouverte guidee » rejoue la
+visite au niveau declare du compte, et le sien n'est pas « zero ». Ajoute dans le tableau admin :
+COMME UN DEBUTANT (ZERO) et COMME QUELQU'UN QUI EN CONNAIT UN PEU (lancerDecouverte(reponse)) ;
+le niveau declare du compte n'est pas modifie. Verifie avec un compte declare A2 : les deux
+boutons montrent bien les textes zero / peu, en allemand et en espagnol.
+Parcours : allemand 0, espagnol 0 ecart.

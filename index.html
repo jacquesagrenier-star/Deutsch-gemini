@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v789</span>
+    <span class="subtitle-version">v790</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10082,6 +10082,11 @@ body[data-theme="dark"] #decouverte > button.primary{
         <div class="info-box" data-i18n="dec_admin_desc">Les cinq étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.</div>
         <div class="spacer"></div>
         <button class="secondary" onclick="revoirDecouverte()" data-i18n="dec_admin_btn">REVOIR LA DÉCOUVERTE GUIDÉE →</button>
+        <!-- v790 : la revoir comme un debutant, quel que soit le niveau de ce compte. -->
+        <div class="spacer"></div>
+        <button class="secondary" onclick="revoirDecouverte('zero')" data-i18n="dec_admin_btn_zero">COMME UN DÉBUTANT (ZÉRO) →</button>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="revoirDecouverte('peu')" data-i18n="dec_admin_btn_peu">COMME QUELQU'UN QUI EN CONNAÎT UN PEU →</button>
     </div>
 
     <div class="card">
@@ -11235,6 +11240,8 @@ const I18N = {
         dec_admin_titre: "Découverte guidée",
         dec_admin_desc: "Les cinq étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.",
         dec_admin_btn: "REVOIR LA DÉCOUVERTE GUIDÉE →",
+        dec_admin_btn_zero: "COMME UN DÉBUTANT (ZÉRO) →",
+        dec_admin_btn_peu: "COMME QUELQU'UN QUI EN CONNAÎT UN PEU →",
         abo_plus_tard: "Plus tard",
         setup_settings_title: "Configuration",
         abo_titre: "Apprends l'allemand sans limite",
@@ -12347,6 +12354,8 @@ const I18N = {
         dec_admin_titre: "Guided tour",
         dec_admin_desc: "The five steps a new account sees after the welcome screen. Answers count as real answers.",
         dec_admin_btn: "REPLAY THE GUIDED TOUR →",
+        dec_admin_btn_zero: "AS A COMPLETE BEGINNER →",
+        dec_admin_btn_peu: "AS SOMEONE WHO KNOWS A LITTLE →",
         abo_plus_tard: "Later",
         setup_settings_title: "Configuration",
         abo_titre: "Learn German without limits",
@@ -13463,6 +13472,8 @@ const I18N = {
         dec_admin_titre: "Rehberli keşif",
         dec_admin_desc: "Yeni bir hesabın karşılama ekranından sonra gördüğü beş adım. Cevaplar gerçek cevap sayılır.",
         dec_admin_btn: "REHBERLİ KEŞFİ YENİDEN GÖR →",
+        dec_admin_btn_zero: "HİÇ BİLMEYEN BİRİ GİBİ →",
+        dec_admin_btn_peu: "BİRAZ BİLEN BİRİ GİBİ →",
         abo_plus_tard: "Daha sonra",
         setup_settings_title: "Yapılandırma",
         abo_titre: "Almancayı sınırsız öğren",
@@ -14244,6 +14255,8 @@ const I18N = {
         dec_admin_titre: "Знайомство із застосунком",
         dec_admin_desc: "П'ять кроків, які бачить новий обліковий запис після екрана привітання. Відповіді зараховуються як справжні.",
         dec_admin_btn: "ПЕРЕГЛЯНУТИ ЗНАЙОМСТВО ЩЕ РАЗ →",
+        dec_admin_btn_zero: "ЯК ПОВНИЙ ПОЧАТКІВЕЦЬ →",
+        dec_admin_btn_peu: "ЯК ТОЙ, ХТО ТРОХИ ЗНАЄ →",
         abo_plus_tard: "Пізніше",
         setup_settings_title: "Налаштування",
         abo_titre: "Вивчай німецьку без обмежень",
@@ -15765,6 +15778,8 @@ const I18N = {
         dec_admin_titre: "آشنایی راهنما",
         dec_admin_desc: "پنج گامی که یک حساب تازه پس از صفحهٔ خوشامد می‌بیند. پاسخ‌ها پاسخ واقعی به شمار می‌آیند.",
         dec_admin_btn: "دیدن دوبارهٔ آشنایی راهنما →",
+        dec_admin_btn_zero: "مثل یک مبتدی کامل →",
+        dec_admin_btn_peu: "مثل کسی که کمی بلد است →",
         abo_plus_tard: "بعداً",
         setup_settings_title: "پیکربندی",
         abo_titre: "آلمانی را بی‌محدودیت یاد بگیر",
@@ -16782,6 +16797,8 @@ const I18N = {
         dec_admin_titre: "الجولة التعريفية",
         dec_admin_desc: "الخطوات الخمس التي يراها حساب جديد بعد شاشة الترحيب. تُحتسب الإجابات إجابات حقيقية.",
         dec_admin_btn: "إعادة الجولة التعريفية ←",
+        dec_admin_btn_zero: "كمبتدئ تمامًا ←",
+        dec_admin_btn_peu: "كمن يعرف القليل ←",
         abo_plus_tard: "لاحقاً",
         setup_settings_title: "الإعداد",
         abo_titre: "تعلّم الألمانية بلا حدود",
@@ -18089,6 +18106,8 @@ const I18N = {
         dec_admin_titre: "Visita guiada",
         dec_admin_desc: "As cinco etapas que uma conta nova vê depois da tela de boas-vindas. As respostas contam como respostas de verdade.",
         dec_admin_btn: "REVER A VISITA GUIADA →",
+        dec_admin_btn_zero: "COMO INICIANTE TOTAL →",
+        dec_admin_btn_peu: "COMO QUEM JÁ SABE UM POUCO →",
         abo_plus_tard: "Mais tarde",
         setup_settings_title: "Configuração",
         abo_titre: "Aprenda alemão sem limites",
@@ -19266,6 +19285,8 @@ const I18N = {
         dec_admin_titre: "Wycieczka z przewodnikiem",
         dec_admin_desc: "Pięć kroków, które widzi nowe konto po ekranie powitalnym. Odpowiedzi liczą się jak prawdziwe.",
         dec_admin_btn: "POWTÓRZ WYCIECZKĘ →",
+        dec_admin_btn_zero: "JAK ZUPEŁNY POCZĄTKUJĄCY →",
+        dec_admin_btn_peu: "JAK KTOŚ, KTO TROCHĘ ZNA →",
         abo_plus_tard: "Później",
         setup_settings_title: "Konfiguracja",
         abo_titre: "Ucz się niemieckiego bez ograniczeń",
@@ -20448,6 +20469,8 @@ const I18N = {
         dec_admin_titre: "Ознакомительная экскурсия",
         dec_admin_desc: "Пять шагов, которые видит новый аккаунт после экрана приветствия. Ответы засчитываются как настоящие.",
         dec_admin_btn: "ПОВТОРИТЬ ЭКСКУРСИЮ →",
+        dec_admin_btn_zero: "КАК ПОЛНЫЙ НОВИЧОК →",
+        dec_admin_btn_peu: "КАК ТОТ, КТО НЕМНОГО ЗНАЕТ →",
         abo_plus_tard: "Позже",
         setup_settings_title: "Настройка",
         abo_titre: "Учи немецкий без ограничений",
@@ -22363,12 +22386,12 @@ async function attendreDonneesDecouverte(){
 
 // Le point d'entree : completeInitialSetup() pour un nouveau compte, le bouton
 // du tableau admin pour la revoir. Faux si elle n'a pas de sens ici.
-async function lancerDecouverte(){
+async function lancerDecouverte(reponseForcee){
     // Le contenu est allemand : le module anglais n'a rien a y montrer.
     if(getLearningDirection() === "en") return false;
     // L'espagnol a la sienne depuis la v759 (DECOUVERTE_CONTENU_ES).
     if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es") return false;
-    const reponse = reponseDecouverte();
+    const reponse = (reponseForcee && contenuDecouverte()[reponseForcee]) ? reponseForcee : reponseDecouverte();
     // Cree l'etat du tableau s'il n'existe pas encore (les carreaux offerts).
     etatMosaique();
     const moi = { reponse: reponse, contenu: contenuDecouverte()[reponse], etape: 0,
@@ -22449,8 +22472,10 @@ function commencerVisiteDecouverte(){
 }
 
 // Le tableau de bord admin : la revoir, quel que soit l'etat enregistre.
-function revoirDecouverte(){
-    lancerDecouverte();
+// `reponse` (v790) : la rejouer comme « zero » ou « peu », sans toucher au
+// niveau declare de ce compte.
+function revoirDecouverte(reponse){
+    lancerDecouverte(reponse);
 }
 
 // ============ LA VOIX DE LA VISITE (v702) ============
@@ -37393,7 +37418,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 789;
+const APP_VERSION = 790;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
