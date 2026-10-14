@@ -8548,3 +8548,12 @@ nom_theme_es (« La casa », « La familia »), comme l'allemand affiche « Fami
 qu'a l'affichage : la progression est rangee par identifiant, rien n'est perdu.
 Parcours : allemand 0 ecart ; espagnol 3 ecarts voulus, 268 lignes, toutes des paires anglais ->
 espagnol tirees des donnees (reference es-v786.json).
+
+## 14 octobre 2026 -- v787 : les nombres espagnols sans « der »
+
+Note le 13 oct. (vu en cherchant le haut-parleur) : la carte « setecientos » se prononcait
+« der setecientos ». Cause : les 45 nombres espagnols n'ont pas de genre, et le chargement des
+themes mettait « der » par defaut ; la carte prenait aussi le liseré bleu du masculin. En
+espagnol, le defaut est maintenant vide : pas d'etiquette d'article, pas de liseré, et la voix
+lit le fichier « setecientos » (deja genere). L'allemand garde « der » par defaut (aucun de ses
+noms n'en a besoin). Parcours : allemand 0 ecart, espagnol 0 ecart.

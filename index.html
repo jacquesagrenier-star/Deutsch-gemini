@@ -7393,7 +7393,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v786</span>
+    <span class="subtitle-version">v787</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -24113,7 +24113,10 @@ async function loadThemesJson() {
                 if (Array.isArray(w)) return w;
                 return [
                     w.mot || w.word || "",
-                    w.genre || w.article || "der",
+                    // « der » par defaut n'a de sens qu'en allemand : les 45
+                    // nombres espagnols n'ont pas de genre, et la voix disait
+                    // « der setecientos ». Vide, la carte dit « setecientos ».
+                    w.genre || w.article || (LANGUE_APPRISE === "es" ? "" : "der"),
                     w.pluriel || w.plural || "—",
                     w.traduction || w.fr || "",
                     w.traduction_en || w.en || "",
@@ -35218,7 +35221,8 @@ function loadFlashcard(){
         } else {
             articleEl.textContent = card[1];
             articleEl.className = `article ${articleText}`;
-            articleEl.classList.remove("hidden");
+            // Un mot sans genre (les nombres espagnols) : pas d'etiquette vide.
+            articleEl.classList.toggle("hidden", !articleText);
             // Le genre en toutes lettres, dans la couleur de l'article : la
             // couleur s'apprend en meme temps que le mot qu'elle nomme.
             if(genreCarteEl && ['der','die','das','el','la'].includes(articleText)){
@@ -37374,7 +37378,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 786;
+const APP_VERSION = 787;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
