@@ -8653,3 +8653,11 @@ Textes en francais seulement tant que c'est un essai. Verifie en navigateur (pas
 sans admin ; toucher le point n'ouvre pas la seance ; sortie de visite ; revoir).
 Parcours : allemand 0, espagnol 0 ecart. Production : sur decision de Jacques (traduire,
 passer a « tous », mettre « Revoir » dans les reglages).
+
+## 14 octobre 2026 -- v794 : la bulle « Commencer » annonce les autres points (essai)
+
+Jacques : faut-il parler des points de decouverte dans la visite narree ? Decide : tout de
+suite, la bulle de « Commencer » (celle qui s'ouvre seule a la sortie de la visite) ajoute
+« Les autres points ambre t'expliquent le reste de l'accueil : touche-les quand tu veux, ils
+disparaissent ensuite. » ; a la mise en production seulement, une phrase dans la derniere page
+de la visite (texte narre : voix a refaire dans 7 langues + la visite espagnole).
