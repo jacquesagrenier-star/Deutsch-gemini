@@ -8683,3 +8683,20 @@ touche-les quand tu veux » (9 langues ; voix refaite en fr, en, tr, uk, fa, ar,
 caracteres ElevenLabs ; VOIX_VISITE.revision 7). Les comptes deja inscrits voient aussi les
 points, une fois. Verifie : visibles sans compte admin, en fr, en, pt (espagnol) et ar.
 Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- Deux nouvelles scenes, « sans me demander mon avis »
+
+Jacques, en partant au marche : « J'aimerais qu'entre-temps, tu travailles a creer deux
+nouvelles scenes [...] une scene avec Mark, puis l'autre avec Anna. Crée la scene complete
+avec le decoupage [...] sans me demander mon avis. »
+- Mark : « Fruehstueck im Cafe » (le petit-dejeuner au cafe du coin, la serveuse lui apporte
+  un gateau). Image fal 0,15 $, etiquette du pot de confiture effacee ; 43 zones decoupees
+  (SAM), toutes joignables au doigt en allemand et en espagnol ; couches A2 (Wo? + datif,
+  8 q.), B1 (le datif : a qui ?, 8), B2 (relatives et passif d'etat, 6), C1 (hypotheses, 4) ;
+  l'espagnol a ses propres couches (estar et prepositions, pronoms le/la/lo, relatives et
+  participe, probabilite), variante Amerique latine comprise ; traduit dans les 8 langues
+  (NON relu par des natifs). Jouee de bout en bout en de, es, es-latam, en, ar : 0 erreur.
+  Pas encore dans la seance : a Jacques de l'essayer d'abord (?scene=fruehstueck).
+- Anna : « Im Kleidergeschaeft » (la boutique de vetements), prompt ecrit et verifie.
+  BLOQUEE : le compte fal est a sec (« User is locked. Reason: Exhausted balance »), rien n'a
+  ete facture. A recharger par Jacques sur fal.ai/dashboard/billing, puis je la genere.

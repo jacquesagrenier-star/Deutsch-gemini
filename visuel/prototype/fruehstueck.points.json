@@ -1,0 +1,897 @@
+{
+ "_lisez_moi": [
+  "Le petit-dejeuner au cafe (14 oct. 2026) : Mark prend son petit-dejeuner dans un cafe de quartier, la serveuse lui apporte une part de gateau aux pommes. Theme : manger et boire, la table, le cafe. Scene creee sans Jacques, a sa demande (« je te fais confiance »).",
+  "Image : visuel/scenes/fruehstueck.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), puis fruehstueck-propre.png : l'etiquette du pot de confiture repeinte avec la confiture du bas du pot (scratchpad confiture.py).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "La serveuse est die Frau (aussi die Kellnerin) : l'espagnol n'a que « el camarero » dans son corpus, pas « la camarera ». Le pot de confiture n'est PAS une zone : « la mermelada » manque au corpus espagnol. A ajouter (avec la camarera et el florero) quand le corpus espagnol sera libre.",
+  "Deux Mann : Mark et le vieux monsieur du fond ; tous deux sont aussi der Gast. Deux tasses a Mark (celle qu'il tient, celle du premier plan) et les tasses empilees sur la machine : une seule zone die Tasse.",
+  "Mesures relues au pixel sur l'image de controle (construire.py --grille), 14 oct. 2026.",
+  "SAM cherche dans le rectangle ENGLOBANT d'une zone a plusieurs boites : lampes, gateaux et tasses, trop eloignes, sont des zones separees (14 oct. 2026). Les fenetres sont pleines (SAM ne prenait que les montants)."
+ ],
+ "image": "fruehstueck.webp",
+ "source": "../scenes/fruehstueck-propre.png",
+ "titre": "Frühstück im Café",
+ "alt": "Mark prend son petit-déjeuner dans un café de quartier à Berlin : sur la table, une tasse de café, un petit pain, du fromage, du jambon, un œuf, un jus d'orange, un verre d'eau ; la serveuse lui apporte une part de gâteau aux pommes.",
+ "consigne": "Mark prend son petit-déjeuner au café du coin. Touche un objet.",
+ "exclus": [
+  "Wand",
+  "Boden"
+ ],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo liegt das Handy?",
+     "c": [
+      "auf dem Tisch",
+      "unter dem Tisch",
+      "neben dem Rucksack"
+     ],
+     "f": "handy",
+     "r": "tisch",
+     "phrase": "Das Handy liegt auf dem Tisch.",
+     "n": "<b>Wo?</b> → datif : der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo hängt die Jacke?",
+     "c": [
+      "über dem Stuhl",
+      "unter dem Stuhl",
+      "an der Tür"
+     ],
+     "f": "jacke",
+     "r": "stuhl",
+     "phrase": "Die Jacke hängt über dem Stuhl.",
+     "n": "<b>über</b> = par-dessus. der Stuhl → über <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo hängt der Schal?",
+     "c": [
+      "neben der Tür",
+      "über dem Tisch",
+      "am Fenster"
+     ],
+     "f": "schal",
+     "r": "tuer",
+     "phrase": "Der Schal hängt neben der Tür.",
+     "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "am Fenster",
+      "auf dem Tisch",
+      "neben der Tür"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "Die Pflanze steht am Fenster.",
+     "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
+    },
+    {
+     "q": "Wo steht der Rucksack?",
+     "c": [
+      "neben dem Tisch",
+      "auf dem Tisch",
+      "unter dem Stuhl"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "Der Rucksack steht neben dem Tisch.",
+     "n": "<b>neben</b> = à côté de. der Tisch → neben <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo liegt das Brötchen?",
+     "c": [
+      "auf dem Teller",
+      "neben dem Teller",
+      "unter der Serviette"
+     ],
+     "f": "broetchen",
+     "r": "teller",
+     "phrase": "Das Brötchen liegt auf dem Teller.",
+     "n": "der Teller → auf <b>dem</b> Teller."
+    },
+    {
+     "q": "Wo liegt die Gabel?",
+     "c": [
+      "vor dem Teller",
+      "auf dem Teller",
+      "hinter dem Teller"
+     ],
+     "f": "gabel",
+     "r": "teller",
+     "phrase": "Die Gabel liegt vor dem Teller.",
+     "n": "<b>vor</b> = devant. Toujours <b>dem</b> : der Teller → vor <b>dem</b> Teller."
+    },
+    {
+     "q": "Wo steht der Saft?",
+     "c": [
+      "neben dem Ei",
+      "auf dem Teller",
+      "unter dem Tisch"
+     ],
+     "f": "saft",
+     "r": "ei",
+     "phrase": "Der Saft steht neben dem Ei.",
+     "n": "das Ei est neutre : au datif, comme le masculin → neben <b>dem</b> Ei."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le datif : à qui ?",
+   "qs": [
+    {
+     "q": "Die Kellnerin bringt ___ einen Kuchen.",
+     "c": [
+      "ihm",
+      "ihn",
+      "er"
+     ],
+     "f": "kuchen-mark",
+     "r": "mark",
+     "phrase": "Die Kellnerin bringt ihm einen Kuchen.",
+     "revise": "bringen",
+     "n": "On apporte quelque chose <b>à quelqu'un</b> : la personne est au datif. er → <b>ihm</b>."
+    },
+    {
+     "q": "Der Kaffee schmeckt ___ gut.",
+     "c": [
+      "ihm",
+      "ihn",
+      "sein"
+     ],
+     "f": "tasse",
+     "r": "mark",
+     "phrase": "Der Kaffee schmeckt ihm gut.",
+     "revise": "schmecken",
+     "n": "<b>schmecken</b> + datif : le café plaît <b>à lui</b> → ihm."
+    },
+    {
+     "q": "Mark hat ___ Kellnerin einen Kuchen bestellt.",
+     "c": [
+      "bei der",
+      "bei die",
+      "mit der"
+     ],
+     "f": "serveuse",
+     "r": "kuchen-mark",
+     "phrase": "Mark hat bei der Kellnerin einen Kuchen bestellt.",
+     "revise": "bestellen",
+     "n": "On commande <b>bei</b> quelqu'un, et <b>bei</b> veut toujours le datif : die Kellnerin → bei <b>der</b> Kellnerin."
+    },
+    {
+     "q": "Kannst du ___ bitte das Salz geben?",
+     "c": [
+      "mir",
+      "mich",
+      "ich"
+     ],
+     "f": "salz",
+     "phrase": "Kannst du mir bitte das Salz geben?",
+     "revise": "geben",
+     "n": "<b>geben</b> : la personne au datif (<b>mir</b>, à moi), la chose à l'accusatif (das Salz)."
+    },
+    {
+     "q": "Gehört die Jacke ___ Mann dort hinten?",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "jacke",
+     "r": "monsieur",
+     "phrase": "Gehört die Jacke dem Mann dort hinten?",
+     "revise": "gehören",
+     "n": "<b>gehören</b> + datif : der Mann → <b>dem</b> Mann."
+    },
+    {
+     "q": "Die Kellnerin reicht ___ Gast den Teller.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "teller",
+     "r": "mark",
+     "phrase": "Die Kellnerin reicht dem Gast den Teller.",
+     "revise": "reichen",
+     "n": "Celui qui reçoit → datif (<b>dem</b> Gast) ; la chose donnée → accusatif (<b>den</b> Teller)."
+    },
+    {
+     "q": "Mark schneidet das Brötchen ___ dem Messer.",
+     "c": [
+      "mit",
+      "von",
+      "bei"
+     ],
+     "f": "messer",
+     "r": "broetchen",
+     "phrase": "Mark schneidet das Brötchen mit dem Messer.",
+     "revise": "schneiden",
+     "n": "L'outil → <b>mit</b> + datif : das Messer → mit <b>dem</b> Messer."
+    },
+    {
+     "q": "Mark dankt ___ für den Kuchen.",
+     "c": [
+      "ihr",
+      "sie",
+      "ihm"
+     ],
+     "f": "serveuse",
+     "r": "mark",
+     "phrase": "Mark dankt ihr für den Kuchen.",
+     "revise": "danken",
+     "n": "<b>danken</b> + datif : on remercie <b>à</b> quelqu'un, en allemand. sie → <b>ihr</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "Der Gast, ___ die Kellnerin den Kuchen bringt, heißt Mark.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "mark",
+     "r": "kuchen-mark",
+     "phrase": "Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.",
+     "n": "On apporte le gâteau <b>à</b> lui : datif, masculin → <b>dem</b>."
+    },
+    {
+     "q": "Die Kellnerin, ___ eine Brille trägt, bringt den Kuchen.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "serveuse",
+     "r": "kuchen-mark",
+     "phrase": "Die Kellnerin, die eine Brille trägt, bringt den Kuchen.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Der Tisch, an ___ Mark sitzt, steht am Fenster.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "tisch",
+     "r": "mark",
+     "phrase": "Der Tisch, an dem Mark sitzt, steht am Fenster.",
+     "n": "<b>an</b> + Wo? → datif : der Tisch → an <b>dem</b>."
+    },
+    {
+     "q": "Der Tisch ist schon ___.",
+     "c": [
+      "gedeckt",
+      "gedeckten",
+      "deckt"
+     ],
+     "f": "tisch",
+     "phrase": "Der Tisch ist schon gedeckt.",
+     "revise": "decken",
+     "n": "<b>sein</b> + participe = passif d'état : le résultat, pas l'action (la table est mise)."
+    },
+    {
+     "q": "Das Brötchen ist schon ___.",
+     "c": [
+      "aufgeschnitten",
+      "aufgeschneidet",
+      "aufschneidet"
+     ],
+     "f": "broetchen",
+     "r": "teller",
+     "phrase": "Das Brötchen ist schon aufgeschnitten.",
+     "revise": "schneiden",
+     "n": "Passif d'état. <b>schneiden</b> est irrégulier → geschnitten, ici <b>aufgeschnitten</b> (coupé en deux)."
+    },
+    {
+     "q": "Die Tür ist ___.",
+     "c": [
+      "geöffnet",
+      "geöffnen",
+      "öffnet"
+     ],
+     "f": "tuer",
+     "phrase": "Die Tür ist geöffnet.",
+     "revise": "öffnen",
+     "n": "Passif d'état : <b>ist geöffnet</b> = elle est ouverte. Le passif d'action serait <b>wird</b> geöffnet."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Ich bin mir fast sicher: Mark ___ großen Hunger haben.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "kuchen-mark",
+     "r": "mark",
+     "phrase": "Mark muss großen Hunger haben.",
+     "n": "<b>müssen</b> = presque certain : un petit pain, un œuf, et maintenant un gâteau…"
+    },
+    {
+     "q": "Vielleicht, ich weiß es nicht: Die Jacke ___ dem Mann dort hinten gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "jacke",
+     "r": "monsieur",
+     "phrase": "Die Jacke könnte dem Mann dort hinten gehören.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Mark ___ hier Stammgast sein — die Kellnerin kennt ihn.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "r": "serveuse",
+     "phrase": "Mark dürfte hier Stammgast sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr. Un <b>Stammgast</b> = un habitué."
+    },
+    {
+     "q": "Man sagt es im Viertel: Der Apfelkuchen hier ___ der beste in Berlin sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "kuchen",
+     "phrase": "Der Apfelkuchen hier soll der beste in Berlin sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "boite": [
+    41,
+    1,
+    48,
+    15
+   ],
+   "plein": true
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "boite": [
+    0,
+    88,
+    100,
+    12
+   ],
+   "plein": true
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boites": [
+    [
+     0,
+     0,
+     9.5,
+     46
+    ],
+    [
+     35.5,
+     5,
+     5,
+     28
+    ]
+   ],
+   "plein": true
+  },
+  {
+   "id": "vorhang",
+   "mot": "Vorhang",
+   "boite": [
+    21,
+    0,
+    15,
+    41
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    23.8,
+    9.2,
+    12,
+    7.4
+   ]
+  },
+  {
+   "id": "lampe-haut",
+   "mot": "Lampe",
+   "boite": [
+    90,
+    0,
+    10,
+    9
+   ]
+  },
+  {
+   "id": "lampe-bas",
+   "mot": "Lampe",
+   "boite": [
+    90,
+    10.9,
+    10,
+    7.5
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "rigide": "rectangle",
+   "boite": [
+    40,
+    16.2,
+    21,
+    30
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "boite": [
+    61,
+    21.5,
+    6.5,
+    17.5
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    0,
+    26.5,
+    24,
+    21.5
+   ]
+  },
+  {
+   "id": "kuchen",
+   "mot": "Kuchen",
+   "boite": [
+    11.5,
+    40.8,
+    23,
+    4.7
+   ]
+  },
+  {
+   "id": "kuchen-assiette",
+   "mot": "Kuchen",
+   "boite": [
+    25.5,
+    45.5,
+    9.5,
+    2.5
+   ]
+  },
+  {
+   "id": "kuchen-mark",
+   "mot": "Kuchen",
+   "boite": [
+    54.5,
+    59.9,
+    10,
+    3
+   ],
+   "sur": "teller"
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    40.5,
+    53.8,
+    8,
+    3.8
+   ]
+  },
+  {
+   "id": "tasse-devant",
+   "mot": "Tasse",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    21.8,
+    70.7,
+    16,
+    7.2
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasses-machine",
+   "mot": "Tasse",
+   "boite": [
+    35,
+    29.3,
+    13,
+    3.1
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "aussi": [
+    "Gast"
+   ],
+   "boite": [
+    34,
+    35,
+    16,
+    12
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "boite": [
+    25.5,
+    46.5,
+    40,
+    13.5
+   ]
+  },
+  {
+   "id": "serveuse",
+   "mot": "Frau",
+   "aussi": [
+    "Kellnerin"
+   ],
+   "boites": [
+    [
+     67,
+     24,
+     27,
+     26
+    ],
+    [
+     65,
+     50,
+     29,
+     40
+    ]
+   ]
+  },
+  {
+   "id": "monsieur",
+   "mot": "Mann",
+   "aussi": [
+    "Gast"
+   ],
+   "boite": [
+    89,
+    31.5,
+    11,
+    15
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    0,
+    51.7,
+    15,
+    17.3
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "sur": "tisch",
+   "boite": [
+    13,
+    57,
+    7,
+    9
+   ]
+  },
+  {
+   "id": "salz",
+   "mot": "Salz",
+   "sur": "tisch",
+   "boite": [
+    12.5,
+    64.2,
+    4.2,
+    4.6
+   ]
+  },
+  {
+   "id": "pfeffer",
+   "mot": "Pfeffer",
+   "sur": "tisch",
+   "boite": [
+    16.8,
+    63.4,
+    4.2,
+    4.5
+   ]
+  },
+  {
+   "id": "handy",
+   "mot": "Handy",
+   "sur": "tisch",
+   "boite": [
+    19.3,
+    60.2,
+    9,
+    3.1
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "aussi": [
+    "Wasser"
+   ],
+   "sur": "tisch",
+   "boite": [
+    25.8,
+    61,
+    6,
+    5.3
+   ]
+  },
+  {
+   "id": "kanne",
+   "mot": "Kanne",
+   "aussi": [
+    "Milch"
+   ],
+   "sur": "tisch",
+   "boite": [
+    21.2,
+    64.2,
+    6.8,
+    5.4
+   ]
+  },
+  {
+   "id": "zucker",
+   "mot": "Zucker",
+   "sur": "tisch",
+   "boite": [
+    30,
+    63.6,
+    5.5,
+    4.8
+   ]
+  },
+  {
+   "id": "saft",
+   "mot": "Saft",
+   "aussi": [
+    "Glas"
+   ],
+   "sur": "tisch",
+   "boite": [
+    37.5,
+    65.4,
+    6.3,
+    7.5
+   ]
+  },
+  {
+   "id": "ei",
+   "mot": "Ei",
+   "sur": "tisch",
+   "boite": [
+    43.3,
+    63.6,
+    4.2,
+    4.8
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "tisch",
+   "boites": [
+    [
+     46.2,
+     66.5,
+     20.3,
+     5.9
+    ],
+    [
+     37.2,
+     60.6,
+     11.8,
+     3.1
+    ],
+    [
+     51.5,
+     60.6,
+     15.3,
+     3.2
+    ]
+   ]
+  },
+  {
+   "id": "broetchen",
+   "mot": "Brötchen",
+   "aussi": [
+    "Brot"
+   ],
+   "sur": "teller",
+   "boite": [
+    55,
+    66.1,
+    8.2,
+    5.4
+   ]
+  },
+  {
+   "id": "kaese",
+   "mot": "Käse",
+   "sur": "teller",
+   "boite": [
+    46.5,
+    68.7,
+    8.3,
+    2.3
+   ]
+  },
+  {
+   "id": "schinken",
+   "mot": "Schinken",
+   "sur": "teller",
+   "boite": [
+    48.7,
+    67,
+    6.3,
+    2.3
+   ]
+  },
+  {
+   "id": "messer",
+   "mot": "Messer",
+   "sur": "teller",
+   "boite": [
+    49.5,
+    66,
+    17.7,
+    1.8
+   ]
+  },
+  {
+   "id": "gabel",
+   "mot": "Gabel",
+   "sur": "tisch",
+   "boite": [
+    46.2,
+    71.5,
+    17.8,
+    2.9
+   ]
+  },
+  {
+   "id": "loeffel",
+   "mot": "Löffel",
+   "sur": "teller",
+   "boite": [
+    38.5,
+    61.4,
+    4.5,
+    2
+   ]
+  },
+  {
+   "id": "serviette",
+   "mot": "Serviette",
+   "sur": "tisch",
+   "boite": [
+    37.5,
+    72.9,
+    15,
+    7.9
+   ]
+  },
+  {
+   "id": "speisekarte",
+   "mot": "Speisekarte",
+   "sur": "tisch",
+   "rigide": "rectangle",
+   "boite": [
+    0,
+    69.3,
+    21.5,
+    8.6
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    0,
+    59,
+    70,
+    41
+   ],
+   "rigide": "table"
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boites": [
+    [
+     57,
+     76,
+     30,
+     16
+    ],
+    [
+     4,
+     92,
+     41,
+     8
+    ]
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "sur": "stuhl",
+   "boite": [
+    82,
+    63.5,
+    18,
+    36.5
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boites": [
+    [
+     33,
+     84,
+     8.5,
+     4.5
+    ],
+    [
+     50,
+     86,
+     4.5,
+     3
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}
