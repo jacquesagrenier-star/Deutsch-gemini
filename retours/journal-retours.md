@@ -8530,3 +8530,11 @@ Retire du mode espagnol : l'exercice allemand « wissen ou kennen ? ».
 En attente de Jacques : les voix des 6 059 nouveaux textes par accent (~448 000 credits
 ElevenLabs pour les deux) ; d'ici la, voix du telephone. A faire : relecture par un natif.
 Parcours : allemand 0 ecart ; espagnol 4 ecarts voulus (reference es-v783.json renouvelee).
+
+## 14 octobre 2026 -- les voix des nouvelles phrases espagnoles (v785) sont en ligne
+
+Decision de Jacques (13 oct.) : « les deux voix ». Genere avec eleven_multilingual_v2 :
+Lolita (es-es) 6 059 fichiers, 228 019 credits ; Monica (es-419) 6 059 fichiers, 219 721 credits ;
+total 447 740 credits, 0 refus. Normalises (0 echec), deposes sur Firebase Hosting, verifies
+en ligne (futuro, perfecto, dans les deux voix). Les phrases de temps et les lignes
+d'imperatif ne passent plus par la voix du telephone.
