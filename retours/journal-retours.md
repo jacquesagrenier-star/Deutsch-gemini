@@ -8629,3 +8629,13 @@ en (170 caracteres ElevenLabs, voix Charlotte) ; VOIX_VISITE.revision 6. audio/v
 lisait 7 blocs de langue au lieu de 9 (le polonais et le russe n'ont pas de voix de visite) :
 corrige. Verifie en navigateur : etiquettes et voix espagnoles, allemand inchange (Ajaccio).
 Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- Jacques : le tour d'horizon de l'app compte plus qu'on ne croit
+
+En montrant l'app a une utilisatrice, Jacques lui a fait faire le tour : les tuiles et ce
+qu'elles contiennent, le bloc « Commencer » par la seance ou par theme, le choix du niveau
+(A1 a C1). Son constat : « ce tour d'horizon a ete important, parce que les gens ne savent
+pas trop ou se situer ». La visite guidee montre un mot, un verbe, de la grammaire, le
+tableau et la seance, mais pas l'ecran d'accueil lui-meme. Propose : un tour de l'accueil
+en quelques bulles, apres la visite ; et les « premiers pas » dans la seance du jour.
+En attente de sa decision.
