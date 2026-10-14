@@ -8571,3 +8571,13 @@ un genre ; et l'etape 3 enchainait sur ser/estar et gustar. Decide avec lui (« 
   ser/estar et gustar, comme l'allemand (die Katze, das Haus).
 Verifie a 390x844 et 375x667 : sur un iPhone SE, les boutons de la carte passent sous le bas
 de l'ecran a l'etape 1 (il faut defiler un peu). Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- v789 : le texte de l'etape 1 raccourci pour les petits ecrans
+
+Jacques : « raccourcis le texte pour les petits ecrans ». Le texte « zero » de l'etape 1
+faisait 7 lignes sur un iPhone SE (375x667) et poussait les boutons de la carte sous l'ecran.
+Allemand (9 langues) : « Chaque nom allemand a un genre, souvent different du francais :
+der (masculin), die (feminin) ou das (neutre). Apprends-le avec le mot. » Espagnol (fr/en/pt) :
+« ... et son article le dit : el ou la. Pas toujours comme en francais : la leche, le lait. »
+Verifie a 375x667 : les boutons sont visibles, en allemand comme en espagnol.
+Parcours : allemand 0, espagnol 0 ecart.
