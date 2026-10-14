@@ -8700,3 +8700,18 @@ avec le decoupage [...] sans me demander mon avis. »
 - Anna : « Im Kleidergeschaeft » (la boutique de vetements), prompt ecrit et verifie.
   BLOQUEE : le compte fal est a sec (« User is locked. Reason: Exhausted balance »), rien n'a
   ete facture. A recharger par Jacques sur fal.ai/dashboard/billing, puis je la genere.
+
+## 14 octobre 2026 -- La scene d'Anna, et la tuque rouge
+
+Jacques a recharge fal : « Im Kleidergeschaeft » est faite (image 0,15 $, aucun texte a effacer).
+41 zones, toutes joignables au doigt en allemand et en espagnol ; couches A2 (Wo?, 8 q.), B1 (les
+adjectifs apres l'article, 8), B2 (relatives et passif, 6), C1 (hypotheses, 4) ; l'espagnol a ses
+couches (estar, accord de l'adjectif, relatives et passif en se, probabilite), Amerique latine
+comprise ; traduit dans les 8 langues (NON relu). Jouee de bout en bout en 5 langues : 0 erreur.
+Pas dans la seance (?scene=kleidergeschaeft), comme le cafe.
+Jacques : « Est-ce possible que tu aies oublie la tuque rouge? » -- Non, mise de cote : die Muetze
+est au corpus allemand, mais « el gorro » manque au corpus espagnol, et une zone sans son mot
+espagnol arrete le verificateur. Meme cas : le chemisier (la blusa), les sandales (la sandalia).
+Les six mots sont PRETS (espanol/ajouts/scene-kleidergeschaeft.json, avec el gorro, la blusa, la
+sandalia, los vaqueros, la dependienta, la camarera), mais temas.json porte le travail arabe de
+Fable, non publie : je n'y ecris pas sans l'accord de Jacques.
