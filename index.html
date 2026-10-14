@@ -7416,7 +7416,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v795</span>
+    <span class="subtitle-version">v796</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9684,6 +9684,14 @@ body[data-theme="dark"] #decouverte > button.primary{
         <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
     </div>
 
+    <!-- v796 : les points de decouverte de l'accueil (installerReperes), a revoir. -->
+    <div class="card">
+        <strong data-i18n="reperes_titre">Points de découverte</strong>
+        <div class="info-box" data-i18n="reperes_desc">Les points ambre de l'accueil, qui expliquent chaque zone.</div>
+        <div class="spacer"></div>
+        <button class="secondary" onclick="reafficherReperes()" data-i18n="reperes_revoir">REVOIR LES POINTS DE DÉCOUVERTE</button>
+    </div>
+
     <div class="card">
         <strong data-i18n="notif_title">Rappels quotidiens</strong>
         <p style="color:#576177" data-i18n="notif_desc">Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.</p>
@@ -10756,6 +10764,20 @@ const I18N = {
         sec_mots: "Travailler les mots",
         sec_phrase: "Travailler la phrase",
         sec_pratique: "Pratiquer",
+        reperes_seance: "Ta séance du jour : chaque jour, touche « Commencer ». Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser. Les autres points ambre t'expliquent le reste de l'accueil : touche-les quand tu veux, ils disparaissent ensuite.",
+        reperes_niveau: "Ton niveau : les nouveaux mots viennent du niveau choisi ici, de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux.",
+        reperes_gardes: "Mis de côté : les mots que tu mets de côté pour les retravailler t'attendent ici.",
+        reperes_themes: "Par thème : tu préfères un sujet précis ? La famille, la maison, la nourriture…",
+        reperes_mots: "Chaque tuile ouvre des cartes et des exercices : les noms, les verbes, les adjectifs… Descends pour tout voir.",
+        reperes_phrase: "La grammaire de la phrase : chaque tuile explique une règle, puis la fait pratiquer.",
+        reperes_pratique: "Pour t'en servir : écouter, les scènes, écrire, les expressions.",
+        reperes_dico: "Le dictionnaire : un mot inconnu ? Cherche-le ici.",
+        reperes_reglages: "Les réglages : ta langue, ton niveau, et tout le reste.",
+        reperes_titre: "Points de découverte",
+        reperes_desc: "Les points ambre de l'accueil, qui expliquent chaque zone.",
+        reperes_revoir: "REVOIR LES POINTS DE DÉCOUVERTE",
+        reperes_toast: "Les points de découverte sont de retour sur l'accueil.",
+        reperes_aria: "Découvrir cette zone",
         sec_parcours: "Mon parcours",
         examen_essentiel: "Essentiel",
         examen_aide_titre: "Les mots que les programmes officiels retiennent en premier.",
@@ -11240,7 +11262,7 @@ const I18N = {
         dec_t5_titre: "Ta séance du jour",
         dec_t5_texte: "Chaque jour, ta séance commence par un choix : la scène — une image où tu touches les objets pour les entendre, puis quelques questions — ou tes cartes : quelques mots nouveaux et les révisions qui reviennent au bon moment. C'est la séance qui fait avancer ton tableau. Tu peux y changer de niveau à tout moment.",
         dec_t6_titre: "La visite est terminée !",
-        dec_t6_texte: "Tu as vu un peu de chaque partie, et il reste bien plus à découvrir. Ta séance du jour t'attend sur l'accueil. Bon apprentissage !",
+        dec_t6_texte: "Tu as vu un peu de chaque partie, et il reste bien plus à découvrir. Ta séance du jour t'attend sur l'accueil. Des points ambre t'y expliquent chaque zone : touche-les quand tu veux. Bon apprentissage !",
         dec_t6_bouton: "COMMENCER",
         dec_t1_titre: "Ton premier mot",
         dec_t1_titre_plusieurs: "Tes premiers mots",
@@ -11872,6 +11894,20 @@ const I18N = {
         sec_mots: "Work on words",
         sec_phrase: "Work on sentences",
         sec_pratique: "Practise",
+        reperes_seance: "Today's session: every day, tap “Start”. A few new words, and reviews that come back at the right moment. It's the easiest way to make progress. The other amber dots explain the rest of the home screen: tap them whenever you like, then they disappear.",
+        reperes_niveau: "Your level: new words come from the level chosen here, from A1 (beginner) to C1 (advanced). You can change it whenever you like.",
+        reperes_gardes: "Set aside: the words you set aside to work on again are waiting for you here.",
+        reperes_themes: "By theme: prefer a specific topic? Family, home, food…",
+        reperes_mots: "Each tile opens cards and exercises: nouns, verbs, adjectives… Scroll down to see everything.",
+        reperes_phrase: "Sentence grammar: each tile explains a rule, then lets you practise it.",
+        reperes_pratique: "To put it to use: listening, scenes, writing, expressions.",
+        reperes_dico: "The dictionary: an unknown word? Look it up here.",
+        reperes_reglages: "Settings: your language, your level, and everything else.",
+        reperes_titre: "Discovery dots",
+        reperes_desc: "The amber dots on the home screen that explain each area.",
+        reperes_revoir: "SHOW THE DISCOVERY DOTS AGAIN",
+        reperes_toast: "The discovery dots are back on the home screen.",
+        reperes_aria: "Discover this area",
         sec_parcours: "My path",
         examen_essentiel: "Essential",
         examen_aide_titre: "The words the official syllabuses list first.",
@@ -12354,7 +12390,7 @@ const I18N = {
         dec_t5_titre: "Today's session",
         dec_t5_texte: "Every day, your session starts with a choice: the scene — a picture where you tap things to hear them, then a few questions — or your cards: a few new words and the reviews that come back at just the right moment. The session is what makes your painting grow. You can change your level there at any time.",
         dec_t6_titre: "The tour is over!",
-        dec_t6_texte: "You've seen a bit of each part, and there's much more to discover. Today's session is waiting for you on the home screen. Happy learning!",
+        dec_t6_texte: "You've seen a bit of each part, and there's much more to discover. Today's session is waiting for you on the home screen. There, amber dots explain each area: tap them whenever you like. Happy learning!",
         dec_t6_bouton: "LET'S START",
         dec_t1_titre: "Your first word",
         dec_t1_titre_plusieurs: "Your first words",
@@ -12990,6 +13026,20 @@ const I18N = {
         sec_mots: "Kelime çalışması",
         sec_phrase: "Cümle çalışması",
         sec_pratique: "Alıştırma",
+        reperes_seance: "Bugünkü oturumun: her gün «Başla»ya dokun. Birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. İlerlemenin en kolay yolu bu. Diğer turuncu noktalar ana ekranın geri kalanını açıklar: istediğin zaman onlara dokun, sonra kaybolurlar.",
+        reperes_niveau: "Seviyen: yeni kelimeler burada seçtiğin seviyeden gelir, A1'den (başlangıç) C1'e (ileri) kadar. İstediğin zaman değiştirebilirsin.",
+        reperes_gardes: "Kenara ayrılanlar: yeniden çalışmak için kenara ayırdığın kelimeler seni burada bekliyor.",
+        reperes_themes: "Temaya göre: belirli bir konu mu istiyorsun? Aile, ev, yiyecek…",
+        reperes_mots: "Her kutucuk kartlar ve alıştırmalar açar: isimler, fiiller, sıfatlar… Hepsini görmek için aşağı kaydır.",
+        reperes_phrase: "Cümle dilbilgisi: her kutucuk bir kuralı açıklar, sonra alıştırmasını yaptırır.",
+        reperes_pratique: "Öğrendiklerini kullanmak için: dinleme, sahneler, yazma, deyimler.",
+        reperes_dico: "Sözlük: bilmediğin bir kelime mi var? Burada ara.",
+        reperes_reglages: "Ayarlar: dilin, seviyen ve geri kalan her şey.",
+        reperes_titre: "Keşif noktaları",
+        reperes_desc: "Ana ekranda her bölümü açıklayan turuncu noktalar.",
+        reperes_revoir: "KEŞİF NOKTALARINI YENİDEN GÖSTER",
+        reperes_toast: "Keşif noktaları ana ekrana geri döndü.",
+        reperes_aria: "Bu bölümü keşfet",
         sec_parcours: "Benim yolum",
         examen_essentiel: "Temel",
         examen_aide_titre: "Resmi programların ilk sıraya koyduğu kelimeler.",
@@ -13472,7 +13522,7 @@ const I18N = {
         dec_t5_titre: "Bugünkü oturumun",
         dec_t5_texte: "Her gün oturumun bir seçimle başlar: sahne — nesnelere dokunup adlarını duyduğun bir resim, ardından birkaç soru — ya da kartların: birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. Tablonu ilerleten bu oturumdur. Seviyeni orada istediğin zaman değiştirebilirsin.",
         dec_t6_titre: "Tur bitti!",
-        dec_t6_texte: "Her bölümden biraz gördün ve keşfedecek çok daha fazlası var. Bugünkü oturumun ana ekranda seni bekliyor. İyi çalışmalar!",
+        dec_t6_texte: "Her bölümden biraz gördün ve keşfedecek çok daha fazlası var. Bugünkü oturumun ana ekranda seni bekliyor. Orada turuncu noktalar her bölümü açıklar: istediğin zaman onlara dokun. İyi çalışmalar!",
         dec_t6_bouton: "BAŞLA",
         dec_t1_titre: "İlk kelimen",
         dec_t1_titre_plusieurs: "İlk kelimelerin",
@@ -14255,7 +14305,7 @@ const I18N = {
         dec_t5_titre: "Твій сеанс на сьогодні",
         dec_t5_texte: "Щодня твій сеанс починається з вибору: сцена — картинка, де ти торкаєшся предметів, щоб почути їхні назви, а потім кілька запитань, — або твої картки: кілька нових слів і повторення, які повертаються в потрібний момент. Саме сеанс рухає вперед твою картину. Рівень тут можна змінити будь-коли.",
         dec_t6_titre: "Екскурсію завершено!",
-        dec_t6_texte: "Ось потроху з кожної частини, а відкрити можна ще набагато більше. Твій сеанс на сьогодні чекає на головному екрані. Успіхів у навчанні!",
+        dec_t6_texte: "Ось потроху з кожної частини, а відкрити можна ще набагато більше. Твій сеанс на сьогодні чекає на головному екрані. Там бурштинові точки пояснюють кожну частину: торкайся їх, коли захочеш. Успіхів у навчанні!",
         dec_t6_bouton: "ПОЧАТИ",
         dec_t1_titre: "Твоє перше слово",
         dec_t1_titre_plusieurs: "Твої перші слова",
@@ -14431,6 +14481,20 @@ const I18N = {
         sec_mots: "Робота зі словами",
         sec_phrase: "Робота з реченням",
         sec_pratique: "Практика",
+        reperes_seance: "Твій сеанс на сьогодні: щодня торкайся «Почати». Кілька нових слів і повторення, що повертаються в потрібний момент. Це найпростіший спосіб просуватися. Інші бурштинові точки пояснюють решту головного екрана: торкайся їх, коли захочеш, і вони зникнуть.",
+        reperes_niveau: "Твій рівень: нові слова беруться з рівня, обраного тут, від A1 (початковий) до C1 (просунутий). Його можна змінити будь-коли.",
+        reperes_gardes: "Відкладені: слова, які ти відкладаєш, щоб попрацювати з ними знову, чекають тут.",
+        reperes_themes: "За темою: хочеш конкретну тему? Сім'я, дім, їжа…",
+        reperes_mots: "Кожна плитка відкриває картки й вправи: іменники, дієслова, прикметники… Прогорни вниз, щоб побачити все.",
+        reperes_phrase: "Граматика речення: кожна плитка пояснює правило, а потім дає його потренувати.",
+        reperes_pratique: "Щоб використати вивчене: слухання, сцени, письмо, вирази.",
+        reperes_dico: "Словник: незнайоме слово? Шукай його тут.",
+        reperes_reglages: "Налаштування: твоя мова, твій рівень і все інше.",
+        reperes_titre: "Точки-підказки",
+        reperes_desc: "Бурштинові точки на головному екрані, що пояснюють кожну частину.",
+        reperes_revoir: "ПОКАЗАТИ ТОЧКИ-ПІДКАЗКИ ЗНОВУ",
+        reperes_toast: "Точки-підказки знову на головному екрані.",
+        reperes_aria: "Дізнатися про цю частину",
         sec_parcours: "Мій шлях",
         examen_essentiel: "Головне",
         examen_aide_titre: "Слова, які офіційні програми ставлять на перше місце.",
@@ -15778,7 +15842,7 @@ const I18N = {
         dec_t5_titre: "جلسهٔ امروزت",
         dec_t5_texte: "هر روز جلسه‌ات با یک انتخاب شروع می‌شود: صحنه — تصویری که در آن چیزها را لمس می‌کنی تا نامشان را بشنوی، و بعد چند پرسش — یا کارت‌هایت: چند واژهٔ تازه و مرورهایی که درست به‌موقع برمی‌گردند. همین جلسه است که تابلویت را پیش می‌برد. هر وقت بخواهی می‌توانی سطحت را همان‌جا عوض کنی.",
         dec_t6_titre: "گشت تمام شد!",
-        dec_t6_texte: "از هر بخش کمی دیدی و هنوز خیلی چیزها برای کشف کردن مانده است. جلسهٔ امروزت در صفحهٔ اصلی منتظر توست. یادگیری خوبی داشته باشی!",
+        dec_t6_texte: "از هر بخش کمی دیدی و هنوز خیلی چیزها برای کشف کردن مانده است. جلسهٔ امروزت در صفحهٔ اصلی منتظر توست. آن‌جا نقطه‌های کهربایی هر بخش را توضیح می‌دهند: هر وقت خواستی رویشان بزن. یادگیری خوبی داشته باشی!",
         dec_t6_bouton: "شروع کنیم",
         dec_t1_titre: "نخستین واژه‌ات",
         dec_t1_titre_plusieurs: "نخستین واژه‌هایت",
@@ -16259,6 +16323,20 @@ const I18N = {
         sec_mots: "کار روی واژه‌ها",
         sec_phrase: "کار روی جمله",
         sec_pratique: "تمرین",
+        reperes_seance: "جلسهٔ امروزت: هر روز «شروع» را بزن. چند واژهٔ تازه، و مرورهایی که درست به‌موقع برمی‌گردند. ساده‌ترین راه پیشرفت همین است. نقطه‌های کهربایی دیگر بقیهٔ صفحهٔ اصلی را توضیح می‌دهند: هر وقت خواستی رویشان بزن؛ بعد ناپدید می‌شوند.",
+        reperes_niveau: "سطح تو: واژه‌های تازه از سطحی می‌آیند که این‌جا انتخاب می‌کنی، از A1 (مبتدی) تا C1 (پیشرفته). هر وقت خواستی می‌توانی عوضش کنی.",
+        reperes_gardes: "کنارگذاشته‌ها: واژه‌هایی که برای کار دوباره کنار می‌گذاری این‌جا منتظرت هستند.",
+        reperes_themes: "بر پایهٔ موضوع: موضوع خاصی را ترجیح می‌دهی؟ خانواده، خانه، غذا…",
+        reperes_mots: "هر کاشی کارت‌ها و تمرین‌هایی را باز می‌کند: اسم‌ها، فعل‌ها، صفت‌ها… برای دیدن همه، پایین برو.",
+        reperes_phrase: "دستور جمله: هر کاشی یک قاعده را توضیح می‌دهد و بعد تمرینش را می‌دهد.",
+        reperes_pratique: "برای به‌کار بستن آموخته‌ها: شنیدن، صحنه‌ها، نوشتن، اصطلاح‌ها.",
+        reperes_dico: "فرهنگ لغت: واژه‌ای ناآشنا؟ این‌جا جست‌وجویش کن.",
+        reperes_reglages: "تنظیمات: زبانت، سطحت و همهٔ چیزهای دیگر.",
+        reperes_titre: "نقطه‌های راهنما",
+        reperes_desc: "نقطه‌های کهربایی صفحهٔ اصلی که هر بخش را توضیح می‌دهند.",
+        reperes_revoir: "نمایش دوبارهٔ نقطه‌های راهنما",
+        reperes_toast: "نقطه‌های راهنما دوباره در صفحهٔ اصلی هستند.",
+        reperes_aria: "آشنایی با این بخش",
         sec_parcours: "مسیر من",
         examen_essentiel: "کلیدی",
         examen_aide_titre: "واژه‌هایی که برنامه‌های رسمی پیش از همه برمی‌گزینند.",
@@ -16797,7 +16875,7 @@ const I18N = {
         dec_t5_titre: "جلستك اليوم",
         dec_t5_texte: "كل يوم تبدأ جلستك باختيار: المشهد — صورة تلمس فيها الأشياء لتسمع أسماءها، ثم بضعة أسئلة — أو بطاقاتك: بضع كلمات جديدة والمراجعات التي تعود في الوقت المناسب. الجلسة هي التي تجعل لوحتك تتقدّم. ويمكنك تغيير مستواك منها في أي وقت.",
         dec_t6_titre: "انتهت الجولة!",
-        dec_t6_texte: "رأيت لمحة من كل جزء، وما زال هناك الكثير لتكتشفه. جلستك اليوم تنتظرك في الشاشة الرئيسية. تعلّمًا موفّقًا!",
+        dec_t6_texte: "رأيت لمحة من كل جزء، وما زال هناك الكثير لتكتشفه. جلستك اليوم تنتظرك في الشاشة الرئيسية. وهناك تشرح النقاط الكهرمانية كل قسم: المسها متى شئت. تعلّمًا موفّقًا!",
         dec_t6_bouton: "لنبدأ",
         dec_t1_titre: "كلمتك الأولى",
         dec_t1_titre_plusieurs: "كلماتك الأولى",
@@ -17499,6 +17577,20 @@ const I18N = {
         sec_mots: "العمل على الكلمات",
         sec_phrase: "العمل على الجملة",
         sec_pratique: "التدرّب",
+        reperes_seance: "جلستك اليوم: كل يوم، المس «ابدأ». بضع كلمات جديدة، ومراجعات تعود في الوقت المناسب. هذه أسهل طريقة للتقدّم. النقاط الكهرمانية الأخرى تشرح بقية الشاشة الرئيسية: المسها متى شئت، ثم تختفي.",
+        reperes_niveau: "مستواك: تأتي الكلمات الجديدة من المستوى الذي تختاره هنا، من A1 (مبتدئ) إلى C1 (متقدّم). يمكنك تغييره متى شئت.",
+        reperes_gardes: "الموضوعة جانبًا: الكلمات التي تضعها جانبًا لتعيد العمل عليها تنتظرك هنا.",
+        reperes_themes: "حسب الموضوع: تفضّل موضوعًا محددًا؟ العائلة، البيت، الطعام…",
+        reperes_mots: "كل مربّع يفتح بطاقات وتمارين: الأسماء، الأفعال، الصفات… مرّر إلى الأسفل لترى كل شيء.",
+        reperes_phrase: "قواعد الجملة: كل مربّع يشرح قاعدة، ثم يدعك تتدرّب عليها.",
+        reperes_pratique: "لتستعمل ما تعلّمته: الاستماع، المشاهد، الكتابة، التعابير.",
+        reperes_dico: "القاموس: كلمة لا تعرفها؟ ابحث عنها هنا.",
+        reperes_reglages: "الإعدادات: لغتك، مستواك، وكل ما تبقّى.",
+        reperes_titre: "نقاط الاكتشاف",
+        reperes_desc: "النقاط الكهرمانية في الشاشة الرئيسية التي تشرح كل قسم.",
+        reperes_revoir: "إظهار نقاط الاكتشاف من جديد",
+        reperes_toast: "عادت نقاط الاكتشاف إلى الشاشة الرئيسية.",
+        reperes_aria: "اكتشف هذا القسم",
     },
     pt: {
         onboarding_home_button: "Como começar? (menos de um minuto)",
@@ -17634,6 +17726,20 @@ const I18N = {
         sec_mots: "Trabalhar as palavras",
         sec_phrase: "Trabalhar a frase",
         sec_pratique: "Praticar",
+        reperes_seance: "A sua sessão do dia: todos os dias, toque em «Começar». Algumas palavras novas e as revisões que voltam na hora certa. É o jeito mais simples de progredir. Os outros pontos âmbar explicam o resto da tela inicial: toque neles quando quiser, depois eles somem.",
+        reperes_niveau: "O seu nível: as palavras novas vêm do nível escolhido aqui, de A1 (iniciante) a C1 (avançado). Você pode mudar quando quiser.",
+        reperes_gardes: "Separadas: as palavras que você separa para trabalhar de novo esperam por você aqui.",
+        reperes_themes: "Por tema: prefere um assunto específico? A família, a casa, a comida…",
+        reperes_mots: "Cada bloco abre cartões e exercícios: substantivos, verbos, adjetivos… Role para baixo para ver tudo.",
+        reperes_phrase: "A gramática da frase: cada bloco explica uma regra e depois a faz praticar.",
+        reperes_pratique: "Para usar o que aprendeu: ouvir, as cenas, escrever, as expressões.",
+        reperes_dico: "O dicionário: uma palavra desconhecida? Procure aqui.",
+        reperes_reglages: "Configurações: o seu idioma, o seu nível e todo o resto.",
+        reperes_titre: "Pontos de descoberta",
+        reperes_desc: "Os pontos âmbar da tela inicial, que explicam cada área.",
+        reperes_revoir: "MOSTRAR DE NOVO OS PONTOS DE DESCOBERTA",
+        reperes_toast: "Os pontos de descoberta voltaram à tela inicial.",
+        reperes_aria: "Descobrir esta área",
         sec_parcours: "Meu percurso",
         examen_essentiel: "Essencial",
         examen_aide_titre: "As palavras que os programas oficiais colocam em primeiro lugar.",
@@ -18106,7 +18212,7 @@ const I18N = {
         dec_t5_titre: "A sua sessão do dia",
         dec_t5_texte: "Todo dia, a sua sessão começa com uma escolha: a cena — uma imagem em que você toca os objetos para ouvi-los, depois algumas perguntas — ou as suas cartas: algumas palavras novas e as revisões que voltam no momento certo. É a sessão que faz o seu quadro avançar. Você pode mudar de nível nela a qualquer momento.",
         dec_t6_titre: "A visita terminou!",
-        dec_t6_texte: "Você viu um pouco de cada parte, e ainda há muito mais para descobrir. A sua sessão do dia está esperando na tela inicial. Bons estudos!",
+        dec_t6_texte: "Você viu um pouco de cada parte, e ainda há muito mais para descobrir. A sua sessão do dia está esperando na tela inicial. Lá, pontos âmbar explicam cada área: toque neles quando quiser. Bons estudos!",
         dec_t6_bouton: "COMEÇAR",
         dec_t1_titre: "Sua primeira palavra",
         dec_t1_titre_plusieurs: "Suas primeiras palavras",
@@ -18815,6 +18921,20 @@ const I18N = {
         sec_mots: "Praca nad słowami",
         sec_phrase: "Praca nad zdaniem",
         sec_pratique: "Ćwiczenia",
+        reperes_seance: "Twoja dzisiejsza sesja: codziennie dotknij „Zacznij”. Kilka nowych słów i powtórki, które wracają we właściwym momencie. To najprostszy sposób na postępy. Pozostałe bursztynowe kropki objaśniają resztę ekranu głównego: dotknij ich, kiedy chcesz, potem znikną.",
+        reperes_niveau: "Twój poziom: nowe słowa pochodzą z poziomu wybranego tutaj, od A1 (początkujący) do C1 (zaawansowany). Możesz go zmienić w dowolnej chwili.",
+        reperes_gardes: "Odłożone: słowa, które odkładasz, żeby do nich wrócić, czekają tutaj.",
+        reperes_themes: "Według tematu: wolisz konkretny temat? Rodzina, dom, jedzenie…",
+        reperes_mots: "Każdy kafelek otwiera fiszki i ćwiczenia: rzeczowniki, czasowniki, przymiotniki… Przewiń w dół, żeby zobaczyć wszystko.",
+        reperes_phrase: "Gramatyka zdania: każdy kafelek wyjaśnia regułę, a potem pozwala ją przećwiczyć.",
+        reperes_pratique: "Żeby z tego korzystać: słuchanie, sceny, pisanie, wyrażenia.",
+        reperes_dico: "Słownik: nieznane słowo? Wyszukaj je tutaj.",
+        reperes_reglages: "Ustawienia: twój język, twój poziom i cała reszta.",
+        reperes_titre: "Kropki z podpowiedziami",
+        reperes_desc: "Bursztynowe kropki na ekranie głównym, które objaśniają każdą część.",
+        reperes_revoir: "POKAŻ KROPKI Z PODPOWIEDZIAMI PONOWNIE",
+        reperes_toast: "Kropki z podpowiedziami wróciły na ekran główny.",
+        reperes_aria: "Poznaj tę część",
         sec_parcours: "Moja droga",
         examen_essentiel: "Podstawa",
         examen_aide_titre: "Słowa, które oficjalne programy wymieniają w pierwszej kolejności.",
@@ -19285,7 +19405,7 @@ const I18N = {
         dec_t5_titre: "Twoja dzisiejsza sesja",
         dec_t5_texte: "Każdego dnia sesja zaczyna się od wyboru: scena — obraz, na którym dotykasz przedmiotów, żeby je usłyszeć, a potem kilka pytań — albo twoje karty: kilka nowych słów i powtórki, które wracają we właściwym momencie. To sesja sprawia, że twój obraz się odsłania. Poziom możesz w niej zmienić w każdej chwili.",
         dec_t6_titre: "Wycieczka skończona!",
-        dec_t6_texte: "Zobaczyłeś(-aś) po trochu z każdej części, a do odkrycia zostało jeszcze dużo więcej. Twoja dzisiejsza sesja czeka na ekranie głównym. Owocnej nauki!",
+        dec_t6_texte: "Zobaczyłeś(-aś) po trochu z każdej części, a do odkrycia zostało jeszcze dużo więcej. Twoja dzisiejsza sesja czeka na ekranie głównym. Tam bursztynowe kropki objaśniają każdą część: dotknij ich, kiedy chcesz. Owocnej nauki!",
         dec_t6_bouton: "ZACZYNAMY",
         dec_t1_titre: "Twoje pierwsze słowo",
         dec_t1_titre_plusieurs: "Twoje pierwsze słowa",
@@ -19994,6 +20114,20 @@ const I18N = {
         sec_mots: "Работа со словами",
         sec_phrase: "Работа с предложением",
         sec_pratique: "Практика",
+        reperes_seance: "Твоё занятие на сегодня: каждый день нажимай «Начать». Несколько новых слов и повторения, которые возвращаются в нужный момент. Это самый простой способ двигаться вперёд. Другие янтарные точки объясняют остальную часть главного экрана: нажимай на них, когда захочешь, потом они исчезнут.",
+        reperes_niveau: "Твой уровень: новые слова берутся с уровня, выбранного здесь, от A1 (начальный) до C1 (продвинутый). Его можно сменить в любой момент.",
+        reperes_gardes: "Отложенные: слова, которые ты откладываешь, чтобы поработать над ними снова, ждут тебя здесь.",
+        reperes_themes: "По темам: хочешь конкретную тему? Семья, дом, еда…",
+        reperes_mots: "Каждая плитка открывает карточки и упражнения: существительные, глаголы, прилагательные… Прокрути вниз, чтобы увидеть всё.",
+        reperes_phrase: "Грамматика предложения: каждая плитка объясняет правило, а потом даёт его отработать.",
+        reperes_pratique: "Чтобы применять выученное: слушание, сцены, письмо, выражения.",
+        reperes_dico: "Словарь: незнакомое слово? Ищи его здесь.",
+        reperes_reglages: "Настройки: твой язык, твой уровень и всё остальное.",
+        reperes_titre: "Точки-подсказки",
+        reperes_desc: "Янтарные точки на главном экране, которые объясняют каждый раздел.",
+        reperes_revoir: "ПОКАЗАТЬ ТОЧКИ-ПОДСКАЗКИ СНОВА",
+        reperes_toast: "Точки-подсказки снова на главном экране.",
+        reperes_aria: "Узнать об этом разделе",
         sec_parcours: "Мой путь",
         examen_essentiel: "Основное",
         examen_aide_titre: "Слова, которые официальные программы ставят на первое место.",
@@ -20469,7 +20603,7 @@ const I18N = {
         dec_t5_titre: "Твоё занятие на сегодня",
         dec_t5_texte: "Каждый день занятие начинается с выбора: сцена — картинка, где ты нажимаешь на предметы, чтобы их услышать, а потом несколько вопросов, — или твои карточки: несколько новых слов и повторения, которые возвращаются в нужный момент. Именно занятие двигает твою картину. Уровень там можно сменить в любой момент.",
         dec_t6_titre: "Экскурсия окончена!",
-        dec_t6_texte: "Ты увидел(а) понемногу от каждой части, а открыть предстоит гораздо больше. Твоё занятие на сегодня ждёт тебя на главном экране. Удачи в учёбе!",
+        dec_t6_texte: "Ты увидел(а) понемногу от каждой части, а открыть предстоит гораздо больше. Твоё занятие на сегодня ждёт тебя на главном экране. Там янтарные точки объясняют каждый раздел: нажимай на них, когда захочешь. Удачи в учёбе!",
         dec_t6_bouton: "НАЧАТЬ",
         dec_t1_titre: "Твоё первое слово",
         dec_t1_titre_plusieurs: "Твои первые слова",
@@ -22524,7 +22658,7 @@ function revoirDecouverte(reponse){
 // relancer le script et monter VOIX_VISITE.revision.
 // ⚠️ LE MEME LECTEUR QUE LA VOIX ALLEMANDE (obtenirLecteur) : sur iOS, c'est
 // l'element deja debloque qui peut jouer sans nouveau geste.
-const VOIX_VISITE = { revision: "6", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
+const VOIX_VISITE = { revision: "7", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
 const CLIPS_DE_PAGE = { 0: "intro", 4: "t4", 5: "t5", 6: "t6" };
 // LA VISITE ESPAGNOLE (v759) n'a a elle que les clips dont le texte differe
 // (I18N_ESPAGNOL) : voix-visite/es/<langue>/. Les autres -- la seance, la
@@ -32729,11 +32863,12 @@ const ESSAIS = {
         titre: "Scènes dans la séance du jour",
         desc: "Au début de la séance : la scène du jour ou les cartes, au choix. Trois questions au niveau de la séance, puis les cartes."
     },
-    // EN ESSAI depuis le 14 oct. 2026 (v793) -- Jacques : « pour eviter que les
-    // gens se sentent perdus lorsqu'ils entrent dans l'application ». Voir
-    // installerReperes(). Textes en francais seulement tant que c'est un essai.
+    // EN ESSAI le 14 oct. 2026 (v793), EN PRODUCTION le meme soir (v796) --
+    // Jacques : « mets les points de decouverte en production pour tout le
+    // monde ». Voir installerReperes(). Les comptes deja inscrits les voient
+    // aussi, une fois. Textes dans les 9 langues (cles reperes_*).
     reperes: {
-        etat: "admin",
+        etat: "tous",
         titre: "Points de découverte sur l'accueil",
         desc: "Un point ambre sur chaque zone de l'accueil ; on le touche, une bulle explique la zone, puis il disparaît. La bulle de « Commencer » s'ouvre seule à la sortie de la visite."
     }
@@ -32778,25 +32913,25 @@ function basculerEssai(nom){
 // admin pendant l'essai, reglages en production) les fait tous revenir.
 const REPERES = [
     { id: "seance", sel: "#home .orb-seance .seance-go",
-      texte: "Ta séance du jour : chaque jour, touche « Commencer ». Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser. Les autres points ambre t'expliquent le reste de l'accueil : touche-les quand tu veux, ils disparaissent ensuite." },
+      cle: "reperes_seance" },
     { id: "niveau", sel: "#home .orb-seance .seance-etiq",
-      texte: "Ton niveau : les nouveaux mots viennent du niveau choisi ici, de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux." },
+      cle: "reperes_niveau" },
     // « Mis de cote » n'apparait qu'une fois un mot mis de cote : son point
     // aussi, donc, et c'est le bon moment pour le decouvrir. (Jacques, v795.)
     { id: "gardes", sel: "#home .orb-seance #seanceGardes",
-      texte: "Mis de côté : les mots que tu mets de côté pour les retravailler t'attendent ici." },
+      cle: "reperes_gardes" },
     { id: "themes", sel: "#home .orb-seance .seance-themes",
-      texte: "Par thème : tu préfères un sujet précis ? La famille, la maison, la nourriture…" },
+      cle: "reperes_themes" },
     { id: "mots", sel: '#home .orb-section[data-section="mots"] [data-i18n]', apres: true,
-      texte: "Chaque tuile ouvre des cartes et des exercices : les noms, les verbes, les adjectifs… Descends pour tout voir." },
+      cle: "reperes_mots" },
     { id: "phrase", sel: '#home .orb-section[data-section="phrase"] [data-i18n]', apres: true,
-      texte: "La grammaire de la phrase : chaque tuile explique une règle, puis la fait pratiquer." },
+      cle: "reperes_phrase" },
     { id: "pratique", sel: '#home .orb-section[data-section="pratique"] [data-i18n]', apres: true,
-      texte: "Pour t'en servir : écouter, les scènes, écrire, les expressions." },
+      cle: "reperes_pratique" },
     { id: "dico", sel: "#home .search-launch", avant: true,
-      texte: "Le dictionnaire : un mot inconnu ? Cherche-le ici." },
+      cle: "reperes_dico" },
     { id: "reglages", sel: "#settingsToggleBtn",
-      texte: "Les réglages : ta langue, ton niveau, et tout le reste." }
+      cle: "reperes_reglages" }
 ];
 const REPERES_VUS_KEY = PREFIXE_STOCKAGE + "reperesVus";
 let bulleRepere = null;
@@ -32831,7 +32966,7 @@ function installerReperes(){
         pt.dataset.repere = r.id;
         pt.setAttribute("role", "button");
         pt.tabIndex = 0;
-        pt.setAttribute("aria-label", "Découvrir cette zone");
+        pt.setAttribute("aria-label", t("reperes_aria"));
         // ⚠️ preventDefault ET stopPropagation : le point vit DANS des zones
         // cliquables (le bouton Commencer, la tuile de la seance, l'etiquette
         // du dictionnaire). Sans eux, toucher le point lancerait la seance.
@@ -32873,7 +33008,7 @@ function ouvrirRepere(id){
     b.setAttribute("role", "dialog");
     b.setAttribute("aria-live", "polite");
     const texte = document.createElement("p");
-    texte.textContent = r.texte;
+    texte.textContent = t(r.cle);
     const ok = document.createElement("button");
     ok.type = "button";
     ok.textContent = "OK";
@@ -32909,7 +33044,7 @@ function repereApresVisite(){
 function reafficherReperes(){
     try{ localStorage.removeItem(REPERES_VUS_KEY); }catch(e){}
     goHome();
-    showInfoToast("Points de découverte réaffichés sur l'accueil.");
+    showInfoToast(t("reperes_toast"));
 }
 
 function afficherEssais(){
@@ -37611,7 +37746,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 795;
+const APP_VERSION = 796;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

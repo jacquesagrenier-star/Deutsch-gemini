@@ -8672,3 +8672,14 @@ s'ouvre. Autres demandes faites : un point sur « Mis de cote » (la bulle « Pa
 parle plus) ; un pouls plus rapide (1 s au lieu de 1,8 s) ; les points des sections colles au
 titre au lieu du bord droit ; un point aussi pour « Travailler la phrase ».
 Parcours : allemand 0, espagnol 0 ecart.
+
+## 14 octobre 2026 -- v796 : les points de decouverte EN PRODUCTION, pour tout le monde
+
+Jacques : « mets les points de decouverte en production pour tout le monde ». Les 9 bulles,
+le titre, le bouton et le message sont traduits dans les 9 langues (cles reperes_*) ; une carte
+« Points de decouverte » dans les reglages, avec « Revoir les points de decouverte » ; la
+derniere page de la visite dit maintenant « Des points ambre t'y expliquent chaque zone :
+touche-les quand tu veux » (9 langues ; voix refaite en fr, en, tr, uk, fa, ar, pt : 1 485
+caracteres ElevenLabs ; VOIX_VISITE.revision 7). Les comptes deja inscrits voient aussi les
+points, une fois. Verifie : visibles sans compte admin, en fr, en, pt (espagnol) et ar.
+Parcours : allemand 0, espagnol 0 ecart.
