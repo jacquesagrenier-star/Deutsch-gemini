@@ -1,0 +1,659 @@
+{
+ "_lisez_moi": [
+  "Le terrain de foot (14 oct. 2026) : un samedi matin, dans un parc de Berlin, Mark vient de marquer un but ; le gardien rit, assis dans l'herbe, deux coequipiers accourent, l'entraineuse applaudit. Theme : le sport, le football, les loisirs. Scene creee a la demande de Jacques (« quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes », 14 oct. 2026).",
+  "Image : visuel/scenes/sportplatz.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png). Aucun texte dans l'image (maillots sans numero).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Mots absents du corpus ESPAGNOL, donc sans zone pour l'instant (on n'ajoute au corpus qu'avec l'accord de Jacques) : le but (la porteria), le drapeau de coin (la bandera), la poussette (el cochecito). Le but se touche par son filet : das Netz. Les plots orange n'ont pas de mot au corpus.",
+  "Mark, le gardien et les deux coequipiers sont der Spieler ; l'entraineuse est die Frau (die Trainerin manque au corpus allemand), comme la jeune femme du banc ; le vieux monsieur est der Mann. Deux Ball (dans le filet, et au premier plan).",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "sportplatz.webp",
+ "source": "../scenes/sportplatz.png",
+ "titre": "Auf dem Sportplatz",
+ "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le poing levé ; le ballon est dans le filet, le gardien rit assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
+ "consigne": "Mark joue au foot avec son équipe. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo ist der Ball?",
+     "c": [
+      "im Netz",
+      "auf der Bank",
+      "in der Tasche"
+     ],
+     "f": "ball",
+     "r": "netz",
+     "phrase": "Der Ball ist im Netz.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Netz → im Netz."
+    },
+    {
+     "q": "Wo sitzt der Spieler im gelben Trikot?",
+     "c": [
+      "vor dem Netz",
+      "auf der Bank",
+      "hinter dem Baum"
+     ],
+     "f": "torwart",
+     "r": "netz",
+     "phrase": "Der Spieler im gelben Trikot sitzt vor dem Netz.",
+     "n": "<b>vor</b> = devant. das Netz → vor <b>dem</b> Netz."
+    },
+    {
+     "q": "Wo sitzt der alte Mann?",
+     "c": [
+      "auf der Bank",
+      "im Gras",
+      "neben dem Ball"
+     ],
+     "f": "mann",
+     "r": "bank",
+     "phrase": "Der alte Mann sitzt auf der Bank.",
+     "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo ist das Handtuch?",
+     "c": [
+      "in der Tasche",
+      "im Netz",
+      "auf der Bank"
+     ],
+     "f": "handtuch",
+     "r": "tasche",
+     "phrase": "Das Handtuch ist in der Tasche.",
+     "n": "die Tasche → in <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegt der Ball?",
+     "c": [
+      "neben der Tasche",
+      "im Netz",
+      "unter der Bank"
+     ],
+     "f": "ball-2",
+     "r": "tasche",
+     "phrase": "Der Ball liegt neben der Tasche.",
+     "n": "die Tasche → neben <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht das Fahrrad?",
+     "c": [
+      "hinter dem Netz",
+      "auf der Bank",
+      "neben dem Ball"
+     ],
+     "f": "fahrrad",
+     "r": "netz",
+     "phrase": "Das Fahrrad steht hinter dem Netz.",
+     "n": "<b>hinter</b> = derrière. das Netz → hinter <b>dem</b> Netz."
+    },
+    {
+     "q": "Wo ist die Flasche?",
+     "c": [
+      "in der Tasche",
+      "im Netz",
+      "auf der Bank"
+     ],
+     "f": "flasche",
+     "r": "tasche",
+     "phrase": "Die Flasche ist in der Tasche.",
+     "n": "die Tasche → in <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo sind die Wolken?",
+     "c": [
+      "am Himmel",
+      "im Baum",
+      "über dem Netz"
+     ],
+     "f": "wolke",
+     "r": "himmel",
+     "phrase": "Die Wolken sind am Himmel.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Raconter : le Präteritum",
+   "qs": [
+    {
+     "q": "Mark ___ den Ball ins Tor.",
+     "c": [
+      "schoss",
+      "schießte",
+      "schießt"
+     ],
+     "f": "mark",
+     "r": "ball",
+     "phrase": "Mark schoss den Ball ins Tor.",
+     "n": "<b>schießen</b> → Präteritum <b>schoss</b> (irrégulier).",
+     "revise": "schießen"
+    },
+    {
+     "q": "Der Torwart ___ ins Gras.",
+     "c": [
+      "fiel",
+      "fallte",
+      "fällt"
+     ],
+     "f": "torwart",
+     "phrase": "Der Torwart fiel ins Gras.",
+     "n": "<b>fallen</b> → <b>fiel</b>.",
+     "revise": "fallen"
+    },
+    {
+     "q": "Die Spieler ___ zu Mark.",
+     "c": [
+      "liefen",
+      "lauften",
+      "laufen"
+     ],
+     "f": "spieler-2",
+     "r": "mark",
+     "phrase": "Die Spieler liefen zu Mark.",
+     "n": "<b>laufen</b> → <b>lief</b>, au pluriel <b>liefen</b>.",
+     "revise": "laufen"
+    },
+    {
+     "q": "Die Trainerin ___ in die Hände.",
+     "c": [
+      "klatschte",
+      "klatsch",
+      "klatschten"
+     ],
+     "f": "trainerin",
+     "phrase": "Die Trainerin klatschte in die Hände.",
+     "n": "Verbe régulier : radical + <b>-te</b> → klatschte."
+    },
+    {
+     "q": "Mark ___ vor Freude.",
+     "c": [
+      "schrie",
+      "schreite",
+      "schreit"
+     ],
+     "f": "mark",
+     "phrase": "Mark schrie vor Freude.",
+     "n": "<b>schreien</b> → <b>schrie</b>.",
+     "revise": "schreien"
+    },
+    {
+     "q": "Das Spiel ___ um zehn Uhr.",
+     "c": [
+      "begann",
+      "beginnte",
+      "beginnt"
+     ],
+     "f": "uhr",
+     "phrase": "Das Spiel begann um zehn Uhr.",
+     "n": "<b>beginnen</b> → <b>begann</b>.",
+     "revise": "beginnen"
+    },
+    {
+     "q": "Die Zuschauer ___ auf der Bank.",
+     "c": [
+      "saßen",
+      "sitzten",
+      "sitzen"
+     ],
+     "f": "bank",
+     "r": "mann",
+     "phrase": "Die Zuschauer saßen auf der Bank.",
+     "n": "<b>sitzen</b> → <b>saß</b>, au pluriel <b>saßen</b>.",
+     "revise": "sitzen"
+    },
+    {
+     "q": "Am Ende ___ Marks Mannschaft.",
+     "c": [
+      "gewann",
+      "gewinnte",
+      "gewinnt"
+     ],
+     "f": "mark",
+     "phrase": "Am Ende gewann Marks Mannschaft.",
+     "n": "<b>gewinnen</b> → <b>gewann</b>.",
+     "revise": "gewinnen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les subordonnées : weil, obwohl, als…",
+   "qs": [
+    {
+     "q": "Mark jubelt, ___ er ein Tor geschossen hat.",
+     "c": [
+      "weil",
+      "obwohl",
+      "damit"
+     ],
+     "f": "mark",
+     "phrase": "Mark jubelt, weil er ein Tor geschossen hat.",
+     "n": "<b>weil</b> = parce que ; le verbe conjugué va à la fin."
+    },
+    {
+     "q": "Der Torwart lacht, ___ er den Ball nicht gehalten hat.",
+     "c": [
+      "obwohl",
+      "weil",
+      "damit"
+     ],
+     "f": "torwart",
+     "phrase": "Der Torwart lacht, obwohl er den Ball nicht gehalten hat.",
+     "n": "<b>obwohl</b> = bien que : une opposition."
+    },
+    {
+     "q": "___ Mark das Tor schoss, klatschte die Trainerin.",
+     "c": [
+      "Als",
+      "Wenn",
+      "Wann"
+     ],
+     "f": "trainerin",
+     "r": "mark",
+     "phrase": "Als Mark das Tor schoss, klatschte die Trainerin.",
+     "n": "Un fait unique dans le passé → <b>als</b> (pas wenn)."
+    },
+    {
+     "q": "Mark trinkt Wasser, ___ das Spiel vorbei ist.",
+     "c": [
+      "sobald",
+      "obwohl",
+      "damit"
+     ],
+     "f": "flasche",
+     "r": "mark",
+     "phrase": "Mark trinkt Wasser, sobald das Spiel vorbei ist.",
+     "n": "<b>sobald</b> = dès que."
+    },
+    {
+     "q": "Die Zuschauer sitzen auf der Bank, ___ die Spieler laufen.",
+     "c": [
+      "während",
+      "weil",
+      "damit"
+     ],
+     "f": "bank",
+     "phrase": "Die Zuschauer sitzen auf der Bank, während die Spieler laufen.",
+     "n": "<b>während</b> = pendant que."
+    },
+    {
+     "q": "Sie trainieren jeden Samstag, ___ sie fit bleiben.",
+     "c": [
+      "damit",
+      "weil",
+      "obwohl"
+     ],
+     "f": "trainerin",
+     "phrase": "Sie trainieren jeden Samstag, damit sie fit bleiben.",
+     "n": "<b>damit</b> = pour que : un but."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark schreit vor Freude — das ___ sein erstes Tor sein.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "phrase": "Das muss sein erstes Tor sein.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der alte Mann ___ Marks Opa sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "mann",
+     "phrase": "Der alte Mann könnte Marks Opa sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Das Spiel ___ bald vorbei sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "uhr",
+     "phrase": "Das Spiel dürfte bald vorbei sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Die Trainerin ___ früher Profi gewesen sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "trainerin",
+     "phrase": "Die Trainerin soll früher Profi gewesen sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    13
+   ]
+  },
+  {
+   "id": "wolke",
+   "mot": "Wolke",
+   "boite": [
+    3,
+    4,
+    22,
+    7
+   ]
+  },
+  {
+   "id": "wolke-2",
+   "mot": "Wolke",
+   "boite": [
+    72,
+    8.5,
+    10,
+    3.5
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "plein": true,
+   "boites": [
+    [
+     28,
+     0,
+     30,
+     33
+    ],
+    [
+     55,
+     11,
+     45,
+     30
+    ],
+    [
+     0,
+     13,
+     28,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    30.5,
+    30.8,
+    6.5,
+    3.5
+   ]
+  },
+  {
+   "id": "ball",
+   "mot": "Ball",
+   "boite": [
+    3,
+    41,
+    6,
+    3.5
+   ]
+  },
+  {
+   "id": "netz",
+   "mot": "Netz",
+   "plein": true,
+   "boite": [
+    0,
+    31.5,
+    28,
+    24.5
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    1.5,
+    43.5,
+    13.5,
+    6.5
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "boite": [
+    15,
+    46,
+    10,
+    4
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "boite": [
+    20,
+    43,
+    6,
+    6.5
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    27.5,
+    42.8,
+    5,
+    7
+   ]
+  },
+  {
+   "id": "spieler-2",
+   "mot": "Spieler",
+   "boite": [
+    56,
+    38,
+    7,
+    17.5
+   ]
+  },
+  {
+   "id": "spieler-3",
+   "mot": "Spieler",
+   "boite": [
+    62,
+    39.5,
+    10.5,
+    16.5
+   ]
+  },
+  {
+   "id": "trikot",
+   "mot": "Trikot",
+   "boite": [
+    37,
+    40,
+    26,
+    15
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Spieler",
+   "aussi": [
+    "Mann"
+   ],
+   "boite": [
+    32,
+    35,
+    34,
+    42
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "boite": [
+    42,
+    55,
+    18,
+    8
+   ]
+  },
+  {
+   "id": "socke",
+   "mot": "Socke",
+   "boite": [
+    44,
+    63,
+    16,
+    6
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    45,
+    69,
+    15,
+    8
+   ]
+  },
+  {
+   "id": "handschuh",
+   "mot": "Handschuh",
+   "boite": [
+    15.5,
+    54,
+    9.5,
+    2.5
+   ]
+  },
+  {
+   "id": "torwart",
+   "mot": "Spieler",
+   "boite": [
+    11,
+    50,
+    29,
+    10.5
+   ]
+  },
+  {
+   "id": "pfeife",
+   "mot": "Pfeife",
+   "boite": [
+    89.5,
+    44,
+    3,
+    3.5
+   ]
+  },
+  {
+   "id": "trainerin",
+   "mot": "Frau",
+   "boite": [
+    84,
+    40,
+    13,
+    25.5
+   ]
+  },
+  {
+   "id": "ball-2",
+   "mot": "Ball",
+   "boite": [
+    7,
+    83,
+    13,
+    8
+   ]
+  },
+  {
+   "id": "handtuch",
+   "mot": "Handtuch",
+   "sur": "tasche",
+   "boite": [
+    34.5,
+    83,
+    11.5,
+    10.5
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "tasche",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    45.5,
+    80.5,
+    4.5,
+    5
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    24,
+    80.5,
+    32,
+    12.5
+   ]
+  },
+  {
+   "id": "turnschuh",
+   "mot": "Turnschuh",
+   "boite": [
+    56.5,
+    84.5,
+    16.5,
+    6.5
+   ]
+  },
+  {
+   "id": "gras",
+   "mot": "Gras",
+   "plein": true,
+   "aussi": [
+    "Sportplatz"
+   ],
+   "boite": [
+    0,
+    93,
+    100,
+    7
+   ]
+  }
+ ],
+ "gros_plans": []
+}

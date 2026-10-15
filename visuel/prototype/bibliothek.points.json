@@ -1,0 +1,606 @@
+{
+ "_lisez_moi": [
+  "La bibliotheque (14 oct. 2026) : Anna etudie dans la salle de lecture d'une bibliotheque universitaire de Berlin, un jour d'hiver ; elle tourne la page d'un gros livre, le menton dans la main ; un etudiant lit a la table du fond. Theme : l'universite, les etudes, les livres. Scene creee a la demande de Jacques (« quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes », 14 oct. 2026).",
+  "Image : visuel/scenes/bibliothek.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Les pages ouvertes portent des lignes grises illisibles, comme le journal du train : gardees.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Mots absents du corpus ESPAGNOL, donc sans zone pour l'instant (on n'ajoute au corpus qu'avec l'accord de Jacques) : le casque audio (los auriculares). Le globe : der Globus manque au corpus allemand.",
+  "Anna est die Studentin, le garcon du fond der Student. Trois Lampe (les lampes vertes), trois Buch (la pile, le gros livre, le livre de droite).",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "bibliothek.webp",
+ "source": "../scenes/bibliothek.png",
+ "titre": "In der Bibliothek",
+ "alt": "Anna étudie dans la salle de lecture d'une bibliothèque universitaire, un jour d'hiver : elle tourne la page d'un gros livre, le menton dans la main ; sur la table, une pile de livres, un ordinateur portable, un cahier et un crayon, une bouteille d'eau et des lunettes ; au fond, un étudiant lit, sous une horloge et un escalier.",
+ "consigne": "Anna étudie à la bibliothèque de l'université. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo liegt der Bleistift?",
+     "c": [
+      "auf dem Heft",
+      "unter dem Laptop",
+      "im Rucksack"
+     ],
+     "f": "bleistift",
+     "r": "heft",
+     "phrase": "Der Bleistift liegt auf dem Heft.",
+     "n": "das Heft → auf <b>dem</b> Heft."
+    },
+    {
+     "q": "Wo liegt die Brille?",
+     "c": [
+      "auf dem Buch",
+      "neben dem Heft",
+      "im Rucksack"
+     ],
+     "f": "brille",
+     "r": "buch-3",
+     "phrase": "Die Brille liegt auf dem Buch.",
+     "n": "das Buch → auf <b>dem</b> Buch."
+    },
+    {
+     "q": "Wo hängt der Rucksack?",
+     "c": [
+      "am Stuhl",
+      "am Fenster",
+      "an der Lampe"
+     ],
+     "f": "rucksack",
+     "r": "stuhl",
+     "phrase": "Der Rucksack hängt am Stuhl.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Stuhl → am Stuhl."
+    },
+    {
+     "q": "Wo steht die Lampe?",
+     "c": [
+      "neben den Büchern",
+      "auf dem Stuhl",
+      "im Regal"
+     ],
+     "f": "lampe",
+     "r": "buch-2",
+     "phrase": "Die Lampe steht neben den Büchern.",
+     "n": "Datif pluriel : <b>den</b> + nom en <b>-n</b> → neben den Büchern."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "vor dem Regal",
+      "auf dem Tisch",
+      "unter der Treppe"
+     ],
+     "f": "pflanze",
+     "r": "regal",
+     "phrase": "Die Pflanze steht vor dem Regal.",
+     "n": "<b>vor</b> = devant. das Regal → vor <b>dem</b> Regal."
+    },
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über dem Tisch"
+     ],
+     "f": "uhr",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Leiter?",
+     "c": [
+      "am Regal",
+      "am Fenster",
+      "an der Treppe"
+     ],
+     "f": "leiter",
+     "r": "regal",
+     "phrase": "Die Leiter steht am Regal.",
+     "n": "<b>am</b> = an + <b>dem</b> : das Regal → am Regal."
+    },
+    {
+     "q": "Wo liegt der Zettel?",
+     "c": [
+      "neben dem Heft",
+      "unter dem Laptop",
+      "auf der Brille"
+     ],
+     "f": "zettel",
+     "r": "heft",
+     "phrase": "Der Zettel liegt neben dem Heft.",
+     "n": "<b>neben</b> = à côté de. das Heft → neben <b>dem</b> Heft."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les verbes à préposition",
+   "qs": [
+    {
+     "q": "Anna interessiert sich ___ Geschichte.",
+     "c": [
+      "für",
+      "an",
+      "auf"
+     ],
+     "f": "anna",
+     "r": "buch",
+     "phrase": "Anna interessiert sich für Geschichte.",
+     "n": "<b>sich interessieren für</b> + accusatif.",
+     "revise": "interessieren"
+    },
+    {
+     "q": "Sie denkt ___ ihre Prüfung.",
+     "c": [
+      "an",
+      "für",
+      "über"
+     ],
+     "f": "anna",
+     "phrase": "Sie denkt an ihre Prüfung.",
+     "n": "<b>denken an</b> + accusatif = penser à.",
+     "revise": "denken"
+    },
+    {
+     "q": "Sie wartet ___ ihre Freundin.",
+     "c": [
+      "auf",
+      "für",
+      "an"
+     ],
+     "f": "anna",
+     "phrase": "Sie wartet auf ihre Freundin.",
+     "n": "<b>warten auf</b> + accusatif = attendre.",
+     "revise": "warten"
+    },
+    {
+     "q": "Der Student träumt ___ den Ferien.",
+     "c": [
+      "von",
+      "an",
+      "über"
+     ],
+     "f": "student",
+     "phrase": "Der Student träumt von den Ferien.",
+     "n": "<b>träumen von</b> + datif = rêver de.",
+     "revise": "träumen"
+    },
+    {
+     "q": "Anna schreibt eine Arbeit ___ die Berliner Mauer.",
+     "c": [
+      "über",
+      "von",
+      "an"
+     ],
+     "f": "heft",
+     "r": "anna",
+     "phrase": "Anna schreibt eine Arbeit über die Berliner Mauer.",
+     "n": "<b>schreiben über</b> + accusatif = écrire sur.",
+     "revise": "schreiben"
+    },
+    {
+     "q": "Sie freut sich schon ___ das Wochenende.",
+     "c": [
+      "auf",
+      "über",
+      "an"
+     ],
+     "f": "anna",
+     "phrase": "Sie freut sich schon auf das Wochenende.",
+     "n": "<b>sich freuen auf</b> = se réjouir d'une chose à venir.",
+     "revise": "freuen"
+    },
+    {
+     "q": "___ wartest du? — Auf meine Freundin.",
+     "c": [
+      "Worauf",
+      "Wofür",
+      "Woran"
+     ],
+     "f": "student",
+     "phrase": "Worauf wartest du? — Auf meine Freundin.",
+     "n": "Question sur une chose : <b>wo(r)</b> + préposition → wor<b>auf</b>."
+    },
+    {
+     "q": "Der Student konzentriert sich ___ sein Buch.",
+     "c": [
+      "auf",
+      "an",
+      "für"
+     ],
+     "f": "student",
+     "phrase": "Der Student konzentriert sich auf sein Buch.",
+     "n": "<b>sich konzentrieren auf</b> + accusatif."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives, passif et participes",
+   "qs": [
+    {
+     "q": "Die Studentin, ___ das Buch liest, heißt Anna.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "anna",
+     "r": "buch",
+     "phrase": "Die Studentin, die das Buch liest, heißt Anna.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Der Student, ___ Haare lockig sind, liest am anderen Tisch.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "student",
+     "phrase": "Der Student, dessen Haare lockig sind, liest am anderen Tisch.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont les cheveux)."
+    },
+    {
+     "q": "Das Regal, an ___ die Leiter steht, ist sehr hoch.",
+     "c": [
+      "dem",
+      "das",
+      "der"
+     ],
+     "f": "regal",
+     "r": "leiter",
+     "phrase": "Das Regal, an dem die Leiter steht, ist sehr hoch.",
+     "n": "<b>an</b> + Wo? → datif, neutre → <b>dem</b>."
+    },
+    {
+     "q": "Hier ___ nicht laut gesprochen.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "student",
+     "phrase": "Hier wird nicht laut gesprochen.",
+     "n": "Passif impersonnel avec <b>werden</b> : « ici, on ne parle pas fort »."
+    },
+    {
+     "q": "Das Buch ist schon zur Hälfte ___.",
+     "c": [
+      "gelesen",
+      "gelest",
+      "lesen"
+     ],
+     "f": "buch",
+     "phrase": "Das Buch ist schon zur Hälfte gelesen.",
+     "n": "Passif d'état : <b>sein</b> + participe. <b>lesen</b> → gelesen.",
+     "revise": "lesen"
+    },
+    {
+     "q": "Die ___ Lampe steht neben den Büchern.",
+     "c": [
+      "leuchtende",
+      "geleuchtete",
+      "leuchtend"
+     ],
+     "f": "lampe",
+     "r": "buch-2",
+     "phrase": "Die leuchtende Lampe steht neben den Büchern.",
+     "n": "Participe présent (Partizip I) comme adjectif : leuchten + <b>d</b> + terminaison → <b>leuchtende</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna liest seit Stunden — sie ___ bald eine Prüfung haben.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "anna",
+     "phrase": "Sie muss bald eine Prüfung haben.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Student ___ in Annas Kurs sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "student",
+     "phrase": "Der Student könnte in Annas Kurs sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Draußen ___ es ziemlich kalt sein — auf den Dächern liegt Schnee.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "fenster",
+     "phrase": "Draußen dürfte es ziemlich kalt sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Diese Bibliothek ___ über eine Million Bücher haben.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "regal",
+     "phrase": "Diese Bibliothek soll über eine Million Bücher haben.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     0,
+     24,
+     43
+    ],
+    [
+     42,
+     5,
+     15,
+     35
+    ]
+   ]
+  },
+  {
+   "id": "treppe",
+   "mot": "Treppe",
+   "boite": [
+    80,
+    10,
+    12,
+    13
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    70,
+    18.3,
+    7.5,
+    4.8
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boites": [
+    [
+     25,
+     24,
+     21,
+     28
+    ],
+    [
+     87,
+     27,
+     13,
+     20
+    ],
+    [
+     91,
+     4,
+     9,
+     19
+    ]
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    19,
+    21,
+    21,
+    32
+   ]
+  },
+  {
+   "id": "leiter",
+   "mot": "Leiter",
+   "boite": [
+    40,
+    31,
+    11,
+    11
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    1,
+    46.3,
+    19,
+    11
+   ]
+  },
+  {
+   "id": "lampe-2",
+   "mot": "Lampe",
+   "boite": [
+    68.5,
+    41.5,
+    10,
+    8.5
+   ]
+  },
+  {
+   "id": "student",
+   "mot": "Student",
+   "boite": [
+    77,
+    39,
+    22,
+    11
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Studentin",
+   "boite": [
+    40,
+    39,
+    28,
+    19
+   ]
+  },
+  {
+   "id": "buch",
+   "mot": "Buch",
+   "sur": "tisch",
+   "boite": [
+    23,
+    54,
+    27,
+    10
+   ]
+  },
+  {
+   "id": "buch-2",
+   "mot": "Buch",
+   "sur": "tisch",
+   "boite": [
+    1,
+    58,
+    27,
+    10.5
+   ]
+  },
+  {
+   "id": "buch-3",
+   "mot": "Buch",
+   "sur": "tisch",
+   "boite": [
+    76,
+    61,
+    24,
+    6
+   ]
+  },
+  {
+   "id": "laptop",
+   "mot": "Laptop",
+   "sur": "tisch",
+   "boite": [
+    49,
+    57.5,
+    27,
+    14.5
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "sur": "buch-3",
+   "boite": [
+    81,
+    60.5,
+    9,
+    3
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "tisch",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    87.5,
+    57.5,
+    8,
+    13.5
+   ]
+  },
+  {
+   "id": "heft",
+   "mot": "Heft",
+   "sur": "tisch",
+   "boite": [
+    35.5,
+    69.5,
+    37.5,
+    8.5
+   ]
+  },
+  {
+   "id": "bleistift",
+   "mot": "Bleistift",
+   "sur": "heft",
+   "boite": [
+    52.5,
+    70,
+    5,
+    6
+   ]
+  },
+  {
+   "id": "zettel",
+   "mot": "Zettel",
+   "sur": "tisch",
+   "boite": [
+    76,
+    72,
+    13,
+    4.5
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "plein": true,
+   "boite": [
+    0,
+    56,
+    100,
+    25
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    6,
+    74,
+    26,
+    26
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    15,
+    76,
+    51,
+    24
+   ]
+  }
+ ],
+ "gros_plans": []
+}

@@ -1,0 +1,643 @@
+{
+ "_lisez_moi": [
+  "L'etagere (14 oct. 2026) : Mark vient d'emmenager dans un vieil appartement de Berlin ; a genoux sur le parquet, une planche dans une main, un tournevis dans l'autre, il regarde la notice d'un air perplexe ; un mur a moitie repeint en bleu, des cartons, le chat sur le rebord de la fenetre. Theme : bricoler, les outils, le logement. Scene creee a la demande de Jacques (« quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes », 14 oct. 2026).",
+  "Image : visuel/scenes/heimwerken.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png). La notice n'a que des dessins.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Mots absents du corpus ESPAGNOL, donc sans zone pour l'instant (on n'ajoute au corpus qu'avec l'accord de Jacques) : la perceuse (el taladro), la pince (los alicates). La notice est das Papier (las instrucciones manque). Le tournevis : der Schraubenzieher manque au corpus allemand.",
+  "La caisse a outils est das Werkzeug ; les clous de la soucoupe der Nagel (el clavo : mots.json dit la una, le sens du corps, d'ou la surcharge dans espanol/heimwerken.json) ; le pot de peinture der Eimer, la tache bleue die Farbe ; les planches das Holz ; les cartons der Karton.",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "heimwerken.webp",
+ "source": "../scenes/heimwerken.png",
+ "titre": "Das neue Regal",
+ "alt": "Mark vient d'emménager : à genoux sur le parquet, une planche dans une main, un tournevis dans l'autre, il regarde la notice d'une étagère d'un air perplexe ; autour de lui, une caisse à outils rouge, une perceuse, des clous, un mètre pliant, des cartons ; un mur à moitié repeint en bleu, une échelle, une armoire, et le chat sur le rebord de la fenêtre.",
+ "consigne": "Mark monte une étagère dans son nouvel appartement. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo sitzt die Katze?",
+     "c": [
+      "am Fenster",
+      "auf dem Schrank",
+      "im Karton"
+     ],
+     "f": "katze",
+     "r": "fenster",
+     "phrase": "Die Katze sitzt am Fenster.",
+     "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
+    },
+    {
+     "q": "Wo steht der Eimer?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Schrank",
+      "im Regal"
+     ],
+     "f": "eimer",
+     "r": "boden",
+     "phrase": "Der Eimer steht auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo liegt der Pinsel?",
+     "c": [
+      "auf dem Eimer",
+      "im Karton",
+      "neben der Katze"
+     ],
+     "f": "pinsel",
+     "r": "eimer",
+     "phrase": "Der Pinsel liegt auf dem Eimer.",
+     "n": "der Eimer → auf <b>dem</b> Eimer."
+    },
+    {
+     "q": "Wo steht die Leiter?",
+     "c": [
+      "neben dem Regal",
+      "vor dem Fenster",
+      "auf dem Schrank"
+     ],
+     "f": "leiter",
+     "r": "regal",
+     "phrase": "Die Leiter steht neben dem Regal.",
+     "n": "<b>neben</b> = à côté de. das Regal → neben <b>dem</b> Regal."
+    },
+    {
+     "q": "Wo hängt die Lampe?",
+     "c": [
+      "an der Decke",
+      "an der Wand",
+      "am Fenster"
+     ],
+     "f": "lampe",
+     "phrase": "Die Lampe hängt an der Decke.",
+     "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo stehen die Kartons?",
+     "c": [
+      "neben dem Schrank",
+      "im Regal",
+      "auf der Leiter"
+     ],
+     "f": "karton",
+     "r": "schrank",
+     "phrase": "Die Kartons stehen neben dem Schrank.",
+     "n": "<b>neben</b> = à côté de. der Schrank → neben <b>dem</b> Schrank."
+    },
+    {
+     "q": "Wo liegen die Handschuhe?",
+     "c": [
+      "neben dem Karton",
+      "im Eimer",
+      "auf dem Schrank"
+     ],
+     "f": "handschuh",
+     "r": "karton-2",
+     "phrase": "Die Handschuhe liegen neben dem Karton.",
+     "n": "<b>neben</b> = à côté de. der Karton → neben <b>dem</b> Karton."
+    },
+    {
+     "q": "Wo ist das Holz?",
+     "c": [
+      "im Karton",
+      "im Schrank",
+      "auf der Leiter"
+     ],
+     "f": "holz-2",
+     "r": "karton-2",
+     "phrase": "Das Holz ist im Karton.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Karton → im Karton."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'impératif",
+   "qs": [
+    {
+     "q": "Mark, ___ mir bitte den Hammer!",
+     "c": [
+      "gib",
+      "gibst",
+      "geben"
+     ],
+     "f": "hammer",
+     "r": "mark",
+     "phrase": "Mark, gib mir bitte den Hammer!",
+     "n": "Impératif (du) : <b>geben</b> → <b>gib</b> (e → i).",
+     "revise": "geben"
+    },
+    {
+     "q": "___ die Anleitung genau!",
+     "c": [
+      "Lies",
+      "Liest",
+      "Lesen"
+     ],
+     "f": "papier",
+     "phrase": "Lies die Anleitung genau!",
+     "n": "<b>lesen</b> → <b>lies</b> (e → ie).",
+     "revise": "lesen"
+    },
+    {
+     "q": "___ den Pinsel auf den Eimer!",
+     "c": [
+      "Leg",
+      "Legst",
+      "Legen"
+     ],
+     "f": "pinsel",
+     "r": "eimer",
+     "phrase": "Leg den Pinsel auf den Eimer!",
+     "n": "Impératif (du) : le radical seul → <b>leg</b>.",
+     "revise": "legen"
+    },
+    {
+     "q": "Zieh die Handschuhe ___!",
+     "c": [
+      "an",
+      "aus",
+      "ab"
+     ],
+     "f": "handschuh",
+     "phrase": "Zieh die Handschuhe an!",
+     "n": "<b>anziehen</b> : impératif <b>zieh … an</b>, la particule à la fin.",
+     "revise": "anziehen"
+    },
+    {
+     "q": "Mark, ___ nicht von der Leiter!",
+     "c": [
+      "fall",
+      "fällst",
+      "fallen"
+     ],
+     "f": "leiter",
+     "phrase": "Mark, fall nicht von der Leiter!",
+     "n": "<b>fallen</b> → <b>fall</b> : pas d'Umlaut à l'impératif.",
+     "revise": "fallen"
+    },
+    {
+     "q": "___ uns eine Pause machen!",
+     "c": [
+      "Lass",
+      "Lässt",
+      "Lassen"
+     ],
+     "f": "mark",
+     "phrase": "Lass uns eine Pause machen!",
+     "n": "<b>Lass uns…</b> = faisons…",
+     "revise": "lassen"
+    },
+    {
+     "q": "Katze, ___ vom Fenster herunter!",
+     "c": [
+      "komm",
+      "kommst",
+      "kommen"
+     ],
+     "f": "katze",
+     "r": "fenster",
+     "phrase": "Katze, komm vom Fenster herunter!",
+     "n": "Impératif (du) : <b>komm</b>.",
+     "revise": "kommen"
+    },
+    {
+     "q": "Herr Nachbar, ___ Sie mir bitte die Leiter!",
+     "c": [
+      "halten",
+      "haltet",
+      "halt"
+     ],
+     "f": "leiter",
+     "phrase": "Herr Nachbar, halten Sie mir bitte die Leiter!",
+     "n": "Impératif poli : <b>verbe + Sie</b> → halten Sie.",
+     "revise": "halten"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le but : um … zu, damit",
+   "qs": [
+    {
+     "q": "Mark hat Farbe gekauft, ___ die Wand blau zu streichen.",
+     "c": [
+      "um",
+      "damit",
+      "weil"
+     ],
+     "f": "farbe",
+     "phrase": "Mark hat Farbe gekauft, um die Wand blau zu streichen.",
+     "n": "<b>um … zu</b> + infinitif : un but, même sujet.",
+     "revise": "streichen"
+    },
+    {
+     "q": "Er liest die Anleitung, damit das Regal nicht ___.",
+     "c": [
+      "umfällt",
+      "umfallen",
+      "umzufallen"
+     ],
+     "f": "regal",
+     "r": "papier",
+     "phrase": "Er liest die Anleitung, damit das Regal nicht umfällt.",
+     "n": "<b>damit</b> : sujet différent, le verbe conjugué à la fin."
+    },
+    {
+     "q": "Er hat vergessen, die Handschuhe ___.",
+     "c": [
+      "anzuziehen",
+      "zu anziehen",
+      "anziehen"
+     ],
+     "f": "handschuh",
+     "phrase": "Er hat vergessen, die Handschuhe anzuziehen.",
+     "n": "Verbe séparable : <b>zu</b> entre la particule et le verbe → an<b>zu</b>ziehen.",
+     "revise": "anziehen"
+    },
+    {
+     "q": "Es ist nicht leicht, ein Regal allein ___.",
+     "c": [
+      "aufzubauen",
+      "zu aufbauen",
+      "aufbauen"
+     ],
+     "f": "regal",
+     "r": "mark",
+     "phrase": "Es ist nicht leicht, ein Regal allein aufzubauen.",
+     "n": "<b>aufbauen</b> → auf<b>zu</b>bauen.",
+     "revise": "aufbauen"
+    },
+    {
+     "q": "Die Wand ist schon halb ___.",
+     "c": [
+      "gestrichen",
+      "gestreicht",
+      "streichen"
+     ],
+     "f": "farbe",
+     "phrase": "Die Wand ist schon halb gestrichen.",
+     "n": "Passif d'état : <b>sein</b> + participe. <b>streichen</b> → gestrichen.",
+     "revise": "streichen"
+    },
+    {
+     "q": "Ohne die Anleitung ___ lesen, baut man kein Regal.",
+     "c": [
+      "zu",
+      "um",
+      "damit"
+     ],
+     "f": "papier",
+     "phrase": "Ohne die Anleitung zu lesen, baut man kein Regal.",
+     "n": "<b>ohne … zu</b> + infinitif = sans + infinitif."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark schaut verwirrt — die Anleitung ___ schwer zu verstehen sein.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "papier",
+     "r": "mark",
+     "phrase": "Die Anleitung muss schwer zu verstehen sein.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die Katze ___ dem Nachbarn gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "katze",
+     "phrase": "Die Katze könnte dem Nachbarn gehören.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Das Regal ___ heute Abend fertig sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "regal",
+     "phrase": "Das Regal dürfte heute Abend fertig sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: In der Wohnung ___ früher ein Maler gewohnt haben.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "farbe",
+     "phrase": "In der Wohnung soll früher ein Maler gewohnt haben.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    49.5,
+    0,
+    6,
+    12.3
+   ]
+  },
+  {
+   "id": "farbe",
+   "mot": "Farbe",
+   "boite": [
+    9,
+    14,
+    33,
+    28.5
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    88,
+    52
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    88,
+    7,
+    12,
+    30
+   ]
+  },
+  {
+   "id": "katze",
+   "mot": "Katze",
+   "boite": [
+    90,
+    36.8,
+    10,
+    7
+   ]
+  },
+  {
+   "id": "steckdose",
+   "mot": "Steckdose",
+   "boite": [
+    39.8,
+    35,
+    3,
+    3.5
+   ]
+  },
+  {
+   "id": "kabel",
+   "mot": "Kabel",
+   "boite": [
+    41,
+    38.5,
+    3.5,
+    16.5
+   ]
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "boite": [
+    51,
+    23,
+    34,
+    23
+   ]
+  },
+  {
+   "id": "karton",
+   "mot": "Karton",
+   "boite": [
+    75,
+    39,
+    22.5,
+    21
+   ]
+  },
+  {
+   "id": "leiter",
+   "mot": "Leiter",
+   "boites": [
+    [
+     0,
+     26,
+     9,
+     9.5
+    ],
+    [
+     9,
+     27,
+     7,
+     24
+    ],
+    [
+     12,
+     50,
+     9,
+     11
+    ]
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "boite": [
+    0,
+    36,
+    12.5,
+    34
+   ]
+  },
+  {
+   "id": "eimer",
+   "mot": "Eimer",
+   "boite": [
+    27.5,
+    54,
+    7.5,
+    6
+   ]
+  },
+  {
+   "id": "pinsel",
+   "mot": "Pinsel",
+   "boite": [
+    29,
+    53.3,
+    8,
+    2
+   ]
+  },
+  {
+   "id": "t-shirt",
+   "mot": "T-Shirt",
+   "boite": [
+    44,
+    42,
+    30,
+    12
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "boite": [
+    47,
+    54,
+    30,
+    15
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    44,
+    34,
+    41,
+    38
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    65,
+    66,
+    10,
+    5.5
+   ]
+  },
+  {
+   "id": "holz",
+   "mot": "Holz",
+   "boite": [
+    76,
+    53,
+    9,
+    21.5
+   ]
+  },
+  {
+   "id": "handschuh",
+   "mot": "Handschuh",
+   "boite": [
+    83.5,
+    66.5,
+    14,
+    4.5
+   ]
+  },
+  {
+   "id": "werkzeug",
+   "mot": "Werkzeug",
+   "boite": [
+    0,
+    73,
+    36,
+    27
+   ]
+  },
+  {
+   "id": "hammer",
+   "mot": "Hammer",
+   "sur": "werkzeug",
+   "boite": [
+    16,
+    76.5,
+    7,
+    6.5
+   ]
+  },
+  {
+   "id": "papier",
+   "mot": "Papier",
+   "boite": [
+    43,
+    72,
+    35,
+    7.5
+   ]
+  },
+  {
+   "id": "nagel",
+   "mot": "Nagel",
+   "boite": [
+    38.5,
+    80,
+    13.5,
+    4.5
+   ]
+  },
+  {
+   "id": "zollstock",
+   "mot": "Zollstock",
+   "boite": [
+    57,
+    82,
+    11,
+    10.5
+   ]
+  },
+  {
+   "id": "holz-2",
+   "mot": "Holz",
+   "boite": [
+    77,
+    74,
+    23,
+    16
+   ]
+  },
+  {
+   "id": "karton-2",
+   "mot": "Karton",
+   "boite": [
+    67,
+    72,
+    33,
+    22
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boite": [
+    0,
+    93,
+    67,
+    7
+   ]
+  }
+ ],
+ "gros_plans": []
+}

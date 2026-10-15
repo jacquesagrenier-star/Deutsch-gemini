@@ -8849,3 +8849,18 @@ d'elle-meme. Parcours : 0 ecart en allemand.
 Puis : « quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes » -> en
 cours : Anna au supermarche, Anna a la bibliotheque de l'universite, Mark au foot, Mark qui monte
 une etagere (bricolage).
+
+## 14 octobre 2026 -- quatre scenes de plus : le supermarche, la bibliotheque, le foot, l'etagere
+
+Demande : « quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes ». Faites :
+Anna au supermarche (supermarkt : le comparatif, puis la politesse -- Konjunktiv II / conditionnel),
+Anna a la bibliotheque de l'universite (bibliothek : les verbes a preposition), Mark au foot
+(sportplatz : le recit au passe, puis les subordonnees), Mark qui monte une etagere dans son nouvel
+appartement (heimwerken : l'imperatif, puis le but -- um ... zu / para que). 22 a 28 objets, cinq
+couches A1-C1 en allemand et en espagnol (variantes d'Amerique latine : piso, departamento,
+cubeta, laptop), 8 langues d'interface. 21 mots espagnols ajoutes a la table des scenes. Teste :
+tous les objets touchables, toutes les couches jouees en de/es/lat/en/ar, 0 erreur. Hors seance.
+Mots absents du corpus espagnol, donc sans zone (a ajouter seulement si Jacques le veut) : el
+chocolate, el yogur, la salchicha, la porteria, la bandera, el cochecito, el taladro, los
+alicates, las instrucciones, los auriculares.
+Puis : « quatre autres scenes, quatre autres themes complets, jusqu'a la publication » -> en cours.
