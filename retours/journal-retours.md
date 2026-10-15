@@ -8827,3 +8827,25 @@ Et : « que les cinq soient sur la page d'accueil, qui changent a chaque seance,
 toujours les memes » -> le ruban montre 5 vignettes : la scene du jour, puis 4 autres a tour de
 role (toutes vues en trois jours) ; « 12 › » les montre toutes.
 Parcours : 3 ecarts (de et es), le ruban seul -> references de-v800 et es-v800.
+
+## 14 octobre 2026 -- quatre scenes nouvelles : la plage, le train, l'hiver, le bureau
+
+Demande : « tu creeras quatre nouvelles scenes, sur des themes differents ». Faites : Anna a la
+plage en Espagne (strand : le Perfekt avec sein ou haben), Mark dans le train regional (zug : Wo? ou
+Wohin?), Anna et le bonhomme de neige a Berlin (winter : le datif, mir ist kalt), Mark en stage au
+bureau (buero : les verbes separables). Chacune : 25 a 30 objets, cinq couches A1-C1 en allemand et
+en espagnol (variantes d'Amerique latine : cubeta, pluma, boleto, carro...), 8 langues
+d'interface. 34 mots espagnols ajoutes a la table des scenes (espanol/mots.json). Teste : tous les
+objets touchables, toutes les couches jouees en de/es/lat/en/ar, 0 erreur. Pas encore dans la
+seance ni dans le ruban (pas demande) : elles s'ouvrent par le prototype.
+
+## 14 octobre 2026 -- v801 : l'image de la scene dans le panneau des scenes
+
+Jacques : « quand on clique pour voir les scenes supplementaires, au lieu de la petite pastille au
+debut, je mettrais l'image, comme la classe de Mark et Anna. Ce serait plus visuel. » Fait : dans
+le panneau « Les scenes » (« 12 › »), la petite icone carree de chaque ligne est remplacee par la
+vignette de la scene, en portrait. Toute option qui ouvre une scene de la seance prend son image
+d'elle-meme. Parcours : 0 ecart en allemand.
+Puis : « quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes » -> en
+cours : Anna au supermarche, Anna a la bibliotheque de l'universite, Mark au foot, Mark qui monte
+une etagere (bricolage).

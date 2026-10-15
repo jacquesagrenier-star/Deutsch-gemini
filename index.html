@@ -1663,6 +1663,10 @@ body[data-theme="dark"] .home-greeting{
     justify-content:center;
     flex-shrink:0;
 }
+.orb-opt-icon.orb-opt-vignette{
+    width:44px; height:56px; border-radius:8px; overflow:hidden; background:rgba(var(--wt-action-rgb),.14);
+}
+.orb-opt-vignette img{width:100%; height:100%; object-fit:cover; display:block;}
 .orb-opt-icon svg{
     width:16px;
     height:16px;
@@ -7419,7 +7423,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v800</span>
+    <span class="subtitle-version">v801</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -30413,10 +30417,20 @@ function renderOrbPanel(){
         return o;
     });
 
+    // v801 : une option qui ouvre une scene montre l'IMAGE de la scene a la
+    // place de l'icone (Jacques : « ce serait plus visuel »). On la retrouve par
+    // son action dans SCENES_SEANCE : une scene ajoutee la-bas a son image ici
+    // sans rien toucher d'autre.
+    const icone = o => {
+        const sc = typeof SCENES_SEANCE !== "undefined" && SCENES_SEANCE.find(x => x.ouvrir === o.action);
+        return sc
+            ? `<div class="orb-opt-icon orb-opt-vignette"><img src="${vignetteScene(sc.nom)}" alt="" loading="lazy"></div>`
+            : `<div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>`;
+    };
     const ligne = o => `
         <div class="orb-opt ${o.primary ? "primary" : ""}${o.verrou ? " verrou" : ""}" onclick="orbAction('${o.action}')">
             <div class="orb-opt-left">
-                <div class="orb-opt-icon">${ORB_ICONS[o.icon]}</div>
+                ${icone(o)}
                 <div>
                     <div class="orb-opt-title">${o.title}</div>
                     <div class="orb-opt-desc">${o.desc}</div>
@@ -37936,7 +37950,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 800;
+const APP_VERSION = 801;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

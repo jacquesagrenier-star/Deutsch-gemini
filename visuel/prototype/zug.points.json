@@ -1,0 +1,647 @@
+{
+ "_lisez_moi": [
+  "Le train (14 oct. 2026) : Mark voyage dans un train regional, un cafe a la main ; par la fenetre, la campagne au printemps : des vaches, un cheval, un champ de colza, une riviere et son pont, un village et son eglise, les montagnes. Theme : le voyage en train, la campagne. Scene creee a la demande de Jacques (« tu creeras quatre nouvelles scenes sur des themes differents », 14 oct. 2026).",
+  "Image : visuel/scenes/zug.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png). Le journal porte des colonnes de traits gris illisibles : une retouche les rendait pires, l'image est gardee telle quelle.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Le porte-bagages n'est pas une zone (die Gepaeckablage manque au corpus allemand). Deux Koffer (le bleu en haut, le gris a roulettes en bas), deux Sitz.",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "zug.webp",
+ "source": "../scenes/zug.png",
+ "titre": "Im Zug",
+ "alt": "Mark dans un train régional, un café à la main, regarde par la fenêtre : des vaches, un cheval, un champ de colza, une rivière et son pont, un village et son église, les montagnes ; sur la tablette, un ordinateur, un journal, un petit pain, un téléphone et un billet.",
+ "consigne": "Mark voyage en train. Touche un objet, ou regarde par la fenêtre.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo steht der Laptop?",
+     "c": [
+      "auf dem Tisch",
+      "unter dem Sitz",
+      "im Koffer"
+     ],
+     "f": "laptop",
+     "r": "tisch",
+     "phrase": "Der Laptop steht auf dem Tisch.",
+     "n": "<b>Wo?</b> → datif : der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo liegt der blaue Koffer?",
+     "c": [
+      "über dem Fenster",
+      "unter dem Tisch",
+      "neben dem Sitz"
+     ],
+     "f": "koffer",
+     "r": "fenster",
+     "phrase": "Der blaue Koffer liegt über dem Fenster.",
+     "n": "<b>über</b> = au-dessus de. das Fenster → über <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo liegt der Schal?",
+     "c": [
+      "auf dem Sitz",
+      "im Koffer",
+      "unter dem Tisch"
+     ],
+     "f": "schal",
+     "r": "sitz-2",
+     "phrase": "Der Schal liegt auf dem Sitz.",
+     "n": "der Sitz → auf <b>dem</b> Sitz."
+    },
+    {
+     "q": "Wo sind die Kühe?",
+     "c": [
+      "auf der Wiese",
+      "im Fluss",
+      "im Dorf"
+     ],
+     "f": "kuh",
+     "r": "wiese",
+     "phrase": "Die Kühe sind auf der Wiese.",
+     "n": "die Wiese → auf <b>der</b> Wiese : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Kirche?",
+     "c": [
+      "im Dorf",
+      "auf dem Berg",
+      "am Fluss"
+     ],
+     "f": "kirche",
+     "r": "dorf",
+     "phrase": "Die Kirche steht im Dorf.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Dorf → im Dorf."
+    },
+    {
+     "q": "Wo liegt das Handy?",
+     "c": [
+      "neben dem Brötchen",
+      "unter der Zeitung",
+      "im Rucksack"
+     ],
+     "f": "handy",
+     "r": "broetchen",
+     "phrase": "Das Handy liegt neben dem Brötchen.",
+     "n": "das Brötchen est neutre : au datif → neben <b>dem</b> Brötchen."
+    },
+    {
+     "q": "Wo ist der Rucksack?",
+     "c": [
+      "neben dem Koffer",
+      "unter dem Tisch",
+      "am Fenster"
+     ],
+     "f": "rucksack",
+     "r": "koffer",
+     "phrase": "Der Rucksack ist neben dem Koffer.",
+     "n": "<b>neben</b> = à côté de. der Koffer → neben <b>dem</b> Koffer."
+    },
+    {
+     "q": "Wo steht der graue Koffer?",
+     "c": [
+      "neben dem Sitz",
+      "auf dem Tisch",
+      "über dem Fenster"
+     ],
+     "f": "koffer-2",
+     "r": "sitz",
+     "phrase": "Der graue Koffer steht neben dem Sitz.",
+     "n": "der Sitz → neben <b>dem</b> Sitz."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Wo? ou Wohin? en voyage",
+   "qs": [
+    {
+     "q": "Mark fährt mit ___ Zug.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "mark",
+     "phrase": "Mark fährt mit dem Zug.",
+     "n": "<b>mit</b> veut toujours le datif : der Zug → mit <b>dem</b> Zug.",
+     "revise": "fahren"
+    },
+    {
+     "q": "Er fährt in ___ Berge.",
+     "c": [
+      "die",
+      "den",
+      "der"
+     ],
+     "f": "berg",
+     "r": "mark",
+     "phrase": "Er fährt in die Berge.",
+     "n": "<b>Wohin?</b> → accusatif ; au pluriel : in <b>die</b> Berge."
+    },
+    {
+     "q": "Er schaut aus ___ Fenster.",
+     "c": [
+      "dem",
+      "das",
+      "den"
+     ],
+     "f": "fenster",
+     "r": "mark",
+     "phrase": "Er schaut aus dem Fenster.",
+     "n": "<b>aus</b> veut toujours le datif : das Fenster → aus <b>dem</b> Fenster."
+    },
+    {
+     "q": "Er hat seinen Koffer auf ___ Gepäckablage gelegt.",
+     "c": [
+      "die",
+      "der",
+      "den"
+     ],
+     "f": "koffer",
+     "r": "mark",
+     "phrase": "Er hat seinen Koffer auf die Gepäckablage gelegt.",
+     "n": "<b>legen</b> = mouvement, <b>Wohin?</b> → accusatif : auf <b>die</b> Gepäckablage.",
+     "revise": "legen"
+    },
+    {
+     "q": "Jetzt liegt der Koffer auf ___ Gepäckablage.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "koffer",
+     "phrase": "Jetzt liegt der Koffer auf der Gepäckablage.",
+     "n": "<b>liegen</b> = état, <b>Wo?</b> → datif : auf <b>der</b> Gepäckablage.",
+     "revise": "liegen"
+    },
+    {
+     "q": "Die Kühe stehen auf ___ Wiese.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "kuh",
+     "r": "wiese",
+     "phrase": "Die Kühe stehen auf der Wiese.",
+     "n": "<b>stehen</b> = état → datif : auf <b>der</b> Wiese.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Der Zug fährt über ___ Fluss.",
+     "c": [
+      "den",
+      "dem",
+      "die"
+     ],
+     "f": "fluss",
+     "r": "bruecke",
+     "phrase": "Der Zug fährt über den Fluss.",
+     "n": "Il le traverse : <b>über</b> + accusatif → <b>den</b> Fluss."
+    },
+    {
+     "q": "Mark hat die Fahrkarte auf ___ Tisch gelegt.",
+     "c": [
+      "den",
+      "dem",
+      "der"
+     ],
+     "f": "fahrkarte",
+     "r": "tisch",
+     "phrase": "Mark hat die Fahrkarte auf den Tisch gelegt.",
+     "n": "<b>Wohin?</b> → accusatif : auf <b>den</b> Tisch.",
+     "revise": "legen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "Der Mann, ___ aus dem Fenster schaut, heißt Mark.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "mark",
+     "r": "fenster",
+     "phrase": "Der Mann, der aus dem Fenster schaut, heißt Mark.",
+     "n": "Sujet de la relative, masculin → <b>der</b>."
+    },
+    {
+     "q": "Das Dorf, ___ Kirche einen spitzen Turm hat, liegt im Tal.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "dorf",
+     "r": "kirche",
+     "phrase": "Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.",
+     "n": "Possession, antécédent neutre → <b>dessen</b> (dont l'église)."
+    },
+    {
+     "q": "Der Tisch, auf ___ der Laptop steht, ist grau.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "tisch",
+     "r": "laptop",
+     "phrase": "Der Tisch, auf dem der Laptop steht, ist grau.",
+     "n": "<b>auf</b> + Wo? → datif, masculin → <b>dem</b>."
+    },
+    {
+     "q": "Die Fahrkarte muss im Zug kontrolliert ___.",
+     "c": [
+      "werden",
+      "sein",
+      "haben"
+     ],
+     "f": "fahrkarte",
+     "phrase": "Die Fahrkarte muss im Zug kontrolliert werden.",
+     "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
+    },
+    {
+     "q": "Der Kaffee ist noch nicht ___.",
+     "c": [
+      "getrunken",
+      "getrinkt",
+      "trinkt"
+     ],
+     "f": "kaffee",
+     "phrase": "Der Kaffee ist noch nicht getrunken.",
+     "n": "Passif d'état. <b>trinken</b> → getrunken.",
+     "revise": "trinken"
+    },
+    {
+     "q": "Die Zeitung, ___ Fotos Wälder zeigen, liegt auf dem Tisch.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "zeitung",
+     "r": "tisch",
+     "phrase": "Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.",
+     "n": "Possession, antécédent féminin → <b>deren</b> (dont les photos)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark lächelt — die Landschaft ___ ihm gefallen.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "fenster",
+     "r": "mark",
+     "phrase": "Die Landschaft muss ihm gefallen.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der rote Schal ___ jemandem gehören, der gleich zurückkommt.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "schal",
+     "phrase": "Der rote Schal könnte jemandem gehören, der gleich zurückkommt.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Zug ___ in einer Stunde in München ankommen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "uhr",
+     "phrase": "Der Zug dürfte in einer Stunde in München ankommen.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: In diesem Dorf ___ es den besten Käse der Gegend geben.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "dorf",
+     "phrase": "In diesem Dorf soll es den besten Käse der Gegend geben.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    0,
+    0,
+    40,
+    15
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    40,
+    9,
+    18.5,
+    11
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    87,
+    22.3,
+    10,
+    5.5
+   ]
+  },
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    0,
+    23.5,
+    30,
+    7
+   ]
+  },
+  {
+   "id": "berg",
+   "mot": "Berg",
+   "boite": [
+    0,
+    31,
+    37,
+    4
+   ]
+  },
+  {
+   "id": "kirche",
+   "mot": "Kirche",
+   "sur": "dorf",
+   "boite": [
+    19.3,
+    33.3,
+    3,
+    3.8
+   ]
+  },
+  {
+   "id": "dorf",
+   "mot": "Dorf",
+   "boite": [
+    1,
+    35,
+    36,
+    3.5
+   ]
+  },
+  {
+   "id": "feld",
+   "mot": "Feld",
+   "boite": [
+    0,
+    38.8,
+    37,
+    3
+   ]
+  },
+  {
+   "id": "bruecke",
+   "mot": "Brücke",
+   "sur": "fluss",
+   "boite": [
+    19,
+    41.8,
+    18,
+    2.8
+   ]
+  },
+  {
+   "id": "fluss",
+   "mot": "Fluss",
+   "boite": [
+    0,
+    43.8,
+    30,
+    2.4
+   ]
+  },
+  {
+   "id": "kuh",
+   "mot": "Kuh",
+   "sur": "wiese",
+   "boites": [
+    [
+     2.5,
+     46.5,
+     10,
+     5
+    ],
+    [
+     13,
+     46.3,
+     7,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "pferd",
+   "mot": "Pferd",
+   "sur": "wiese",
+   "boite": [
+    28.5,
+    46.3,
+    8,
+    3.8
+   ]
+  },
+  {
+   "id": "wiese",
+   "mot": "Wiese",
+   "plein": true,
+   "boite": [
+    20,
+    47,
+    8,
+    4
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    0,
+    22,
+    39,
+    30
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    44,
+    35.5,
+    31,
+    40
+   ]
+  },
+  {
+   "id": "kaffee",
+   "mot": "Kaffee",
+   "sur": "tisch",
+   "boite": [
+    38.5,
+    53.8,
+    6.5,
+    6
+   ]
+  },
+  {
+   "id": "laptop",
+   "mot": "Laptop",
+   "sur": "tisch",
+   "boite": [
+    12,
+    51,
+    32,
+    12.7
+   ]
+  },
+  {
+   "id": "broetchen",
+   "mot": "Brötchen",
+   "sur": "tisch",
+   "boite": [
+    47.5,
+    57.8,
+    7,
+    3.4
+   ]
+  },
+  {
+   "id": "handy",
+   "mot": "Handy",
+   "sur": "tisch",
+   "boite": [
+    57.3,
+    61.3,
+    8.7,
+    2.8
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "sur": "tisch",
+   "boite": [
+    30.5,
+    62,
+    25.5,
+    6.7
+   ]
+  },
+  {
+   "id": "fahrkarte",
+   "mot": "Fahrkarte",
+   "sur": "tisch",
+   "boite": [
+    54.3,
+    63.8,
+    8.7,
+    2.8
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    5,
+    59.5,
+    63,
+    13
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "sur": "sitz-2",
+   "boite": [
+    75,
+    51.5,
+    22,
+    15
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "sur": "sitz-2",
+   "boite": [
+    85.5,
+    56.8,
+    14.5,
+    14.5
+   ]
+  },
+  {
+   "id": "sitz-2",
+   "mot": "Sitz",
+   "boite": [
+    66,
+    62,
+    31,
+    15
+   ]
+  },
+  {
+   "id": "koffer-2",
+   "mot": "Koffer",
+   "boite": [
+    58,
+    80.5,
+    37,
+    19.5
+   ]
+  },
+  {
+   "id": "sitz",
+   "mot": "Sitz",
+   "boite": [
+    0,
+    74,
+    50,
+    26
+   ]
+  }
+ ],
+ "gros_plans": []
+}

@@ -1,0 +1,669 @@
+{
+ "_lisez_moi": [
+  "L'hiver (14 oct. 2026) : un matin de neige a Berlin, Anna finit un bonhomme de neige devant sa maison ; un petit chien en manteau rouge renifle la neige, un velo et une voiture sont couverts de neige, une bougie brille a une fenetre. Theme : l'hiver, la meteo, les vetements chauds. Scene creee a la demande de Jacques (« tu creeras quatre nouvelles scenes sur des themes differents », 14 oct. 2026).",
+  "Image : visuel/scenes/winter.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Aucun texte dans l'image.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Le bonhomme de neige n'a pas de nom au corpus (der Schneemann manque) : son corps est der Schnee, et ses parties sont des zones -- der Hut, die Karotte, der Schal, der Knopf. Pas de zone pour la cheminee (der Schornstein manque au corpus allemand) : la fumee est der Rauch.",
+  "Deux Schal : celui du bonhomme, celui d'Anna. Deux Baum, deux Vogel, deux Fenster.",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "winter.webp",
+ "source": "../scenes/winter.png",
+ "titre": "Im Winter",
+ "alt": "Un matin de neige à Berlin : Anna, en manteau, bonnet, écharpe et gants, finit un bonhomme de neige devant une maison jaune ; un petit chien en manteau rouge renifle la neige ; un vélo, un banc et une voiture rouge sont couverts de neige.",
+ "consigne": "Il a neigé cette nuit. Anna fait un bonhomme de neige. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo steht das Fahrrad?",
+     "c": [
+      "an der Laterne",
+      "auf dem Auto",
+      "im Haus"
+     ],
+     "f": "fahrrad",
+     "r": "laterne",
+     "phrase": "Das Fahrrad steht an der Laterne.",
+     "n": "<b>an</b> = contre. die Laterne → an <b>der</b> Laterne."
+    },
+    {
+     "q": "Wo ist die Kerze?",
+     "c": [
+      "im Fenster",
+      "auf dem Dach",
+      "im Schnee"
+     ],
+     "f": "kerze",
+     "r": "fenster-2",
+     "phrase": "Die Kerze ist im Fenster.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Fenster → im Fenster."
+    },
+    {
+     "q": "Wo steht das Auto?",
+     "c": [
+      "vor dem Haus",
+      "auf dem Dach",
+      "hinter der Bank"
+     ],
+     "f": "auto",
+     "r": "haus",
+     "phrase": "Das Auto steht vor dem Haus.",
+     "n": "<b>vor</b> = devant. das Haus → vor <b>dem</b> Haus."
+    },
+    {
+     "q": "Wo sitzt der Vogel?",
+     "c": [
+      "auf dem Baum",
+      "auf dem Dach",
+      "im Schnee"
+     ],
+     "f": "vogel",
+     "r": "baum",
+     "phrase": "Der Vogel sitzt auf dem Baum.",
+     "n": "der Baum → auf <b>dem</b> Baum."
+    },
+    {
+     "q": "Wo steht der Hund?",
+     "c": [
+      "im Schnee",
+      "auf der Bank",
+      "im Haus"
+     ],
+     "f": "hund",
+     "r": "schnee",
+     "phrase": "Der Hund steht im Schnee.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Schnee → im Schnee."
+    },
+    {
+     "q": "Wo ist der Rauch?",
+     "c": [
+      "über dem Dach",
+      "im Fenster",
+      "unter dem Auto"
+     ],
+     "f": "rauch",
+     "r": "dach",
+     "phrase": "Der Rauch ist über dem Dach.",
+     "n": "<b>über</b> = au-dessus de. das Dach → über <b>dem</b> Dach."
+    },
+    {
+     "q": "Wo steht die Bank?",
+     "c": [
+      "neben dem Fahrrad",
+      "auf dem Dach",
+      "im Haus"
+     ],
+     "f": "bank",
+     "r": "fahrrad",
+     "phrase": "Die Bank steht neben dem Fahrrad.",
+     "n": "das Fahrrad → neben <b>dem</b> Fahrrad."
+    },
+    {
+     "q": "Wo ist der Hut?",
+     "c": [
+      "auf dem Schneemann",
+      "auf dem Auto",
+      "im Haus"
+     ],
+     "f": "hut",
+     "r": "schneemann",
+     "phrase": "Der Hut ist auf dem Schneemann.",
+     "n": "der Schneemann → auf <b>dem</b> Schneemann."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le datif : mir ist kalt",
+   "qs": [
+    {
+     "q": "Es ist minus fünf Grad. ___ ist kalt.",
+     "c": [
+      "Ihr",
+      "Sie",
+      "Ihre"
+     ],
+     "f": "anna",
+     "phrase": "Ihr ist kalt.",
+     "n": "Avoir froid → datif : <b>mir</b>, <b>dir</b>, <b>ihm</b>, <b>ihr</b> ist kalt."
+    },
+    {
+     "q": "Die Mütze steht ___ gut.",
+     "c": [
+      "ihr",
+      "sie",
+      "ihre"
+     ],
+     "f": "muetze",
+     "r": "anna",
+     "phrase": "Die Mütze steht ihr gut.",
+     "n": "<b>stehen</b> (aller bien) + datif : sie → <b>ihr</b>.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Anna hat ___ Schneemann einen Schal umgebunden.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "schal",
+     "r": "schneemann",
+     "phrase": "Anna hat dem Schneemann einen Schal umgebunden.",
+     "n": "À qui ? → datif : <b>dem</b> Schneemann."
+    },
+    {
+     "q": "Sie hat ___ Handschuhe angezogen.",
+     "c": [
+      "die",
+      "den",
+      "der"
+     ],
+     "f": "handschuh",
+     "phrase": "Sie hat die Handschuhe angezogen.",
+     "n": "Quoi ? → accusatif pluriel : <b>die</b> Handschuhe."
+    },
+    {
+     "q": "Der Hund trägt einen Mantel, damit ___ nicht kalt ist.",
+     "c": [
+      "ihm",
+      "ihn",
+      "er"
+     ],
+     "f": "hund",
+     "phrase": "Der Hund trägt einen Mantel, damit ihm nicht kalt ist.",
+     "n": "Avoir froid → datif : er → <b>ihm</b>.",
+     "revise": "tragen"
+    },
+    {
+     "q": "Die Stiefel gehören ___.",
+     "c": [
+      "ihr",
+      "sie",
+      "ihre"
+     ],
+     "f": "stiefel",
+     "r": "anna",
+     "phrase": "Die Stiefel gehören ihr.",
+     "n": "<b>gehören</b> + datif : sie → <b>ihr</b>.",
+     "revise": "gehören"
+    },
+    {
+     "q": "Anna gibt ___ Schneemann eine Karotte als Nase.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "karotte",
+     "r": "schneemann",
+     "phrase": "Anna gibt dem Schneemann eine Karotte als Nase.",
+     "n": "<b>geben</b> : la personne (ici le bonhomme) au datif → <b>dem</b>.",
+     "revise": "geben"
+    },
+    {
+     "q": "Mit ___ Besen macht sie den Weg frei.",
+     "c": [
+      "dem",
+      "den",
+      "der"
+     ],
+     "f": "besen",
+     "phrase": "Mit dem Besen macht sie den Weg frei.",
+     "n": "<b>mit</b> + datif : der Besen → mit <b>dem</b> Besen."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "Die Frau, ___ einen Schneemann baut, heißt Anna.",
+     "c": [
+      "die",
+      "der",
+      "deren"
+     ],
+     "f": "anna",
+     "r": "schneemann",
+     "phrase": "Die Frau, die einen Schneemann baut, heißt Anna.",
+     "n": "Sujet de la relative, féminin → <b>die</b>."
+    },
+    {
+     "q": "Der Hund, ___ Mantel rot ist, schnuppert am Schnee.",
+     "c": [
+      "dessen",
+      "deren",
+      "dem"
+     ],
+     "f": "hund",
+     "phrase": "Der Hund, dessen Mantel rot ist, schnuppert am Schnee.",
+     "n": "Possession, antécédent masculin → <b>dessen</b> (dont le manteau)."
+    },
+    {
+     "q": "Das Haus, vor ___ das Auto steht, ist gelb.",
+     "c": [
+      "dem",
+      "den",
+      "das"
+     ],
+     "f": "haus",
+     "r": "auto",
+     "phrase": "Das Haus, vor dem das Auto steht, ist gelb.",
+     "n": "<b>vor</b> + Wo? → datif, neutre → <b>dem</b>."
+    },
+    {
+     "q": "Das Auto ist mit Schnee ___.",
+     "c": [
+      "bedeckt",
+      "bedecken",
+      "bedeckte"
+     ],
+     "f": "auto",
+     "phrase": "Das Auto ist mit Schnee bedeckt.",
+     "n": "Passif d'état : <b>sein</b> + participe (couvert)."
+    },
+    {
+     "q": "Der Weg muss noch gefegt ___.",
+     "c": [
+      "werden",
+      "sein",
+      "haben"
+     ],
+     "f": "besen",
+     "phrase": "Der Weg muss noch gefegt werden.",
+     "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
+    },
+    {
+     "q": "Die ___ Kerze steht im Fenster.",
+     "c": [
+      "brennende",
+      "gebrannte",
+      "brennend"
+     ],
+     "f": "kerze",
+     "r": "fenster-2",
+     "phrase": "Die brennende Kerze steht im Fenster.",
+     "n": "Participe présent (Partizip I) comme adjectif : brennen + <b>d</b> + terminaison → <b>brennende</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lacht — der Schneemann ___ ihr gut gefallen.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "schneemann",
+     "r": "anna",
+     "phrase": "Der Schneemann muss ihr gut gefallen.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Das Fahrrad ___ seit gestern Abend dort stehen.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "fahrrad",
+     "phrase": "Das Fahrrad könnte seit gestern Abend dort stehen.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Schnee ___ bis morgen liegen bleiben — es ist sehr kalt.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "schnee",
+     "phrase": "Der Schnee dürfte bis morgen liegen bleiben.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es im Radio: Es ___ der kälteste Winter seit zehn Jahren werden.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "himmel",
+     "phrase": "Es soll der kälteste Winter seit zehn Jahren werden.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    44,
+    0,
+    18,
+    8
+   ]
+  },
+  {
+   "id": "rauch",
+   "mot": "Rauch",
+   "boite": [
+    62,
+    1,
+    9,
+    9
+   ]
+  },
+  {
+   "id": "dach",
+   "mot": "Dach",
+   "boite": [
+    40,
+    11.5,
+    57,
+    5.5
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "sur": "haus",
+   "boite": [
+    46,
+    20.3,
+    7,
+    7.3
+   ]
+  },
+  {
+   "id": "fenster-2",
+   "mot": "Fenster",
+   "sur": "haus",
+   "boite": [
+    61.5,
+    31.5,
+    7,
+    8
+   ]
+  },
+  {
+   "id": "kerze",
+   "mot": "Kerze",
+   "sur": "fenster-2",
+   "boite": [
+    62.8,
+    36.8,
+    2.2,
+    2
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "rigide": "rectangle",
+   "boite": [
+    46,
+    43.3,
+    7.5,
+    9
+   ]
+  },
+  {
+   "id": "haus",
+   "mot": "Haus",
+   "boite": [
+    38,
+    12,
+    62,
+    40
+   ]
+  },
+  {
+   "id": "vogel",
+   "mot": "Vogel",
+   "sur": "baum",
+   "boite": [
+    22.8,
+    18.8,
+    2.4,
+    2
+   ]
+  },
+  {
+   "id": "vogel-2",
+   "mot": "Vogel",
+   "boite": [
+    42.3,
+    22.3,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "boite": [
+    0,
+    0,
+    40,
+    48
+   ]
+  },
+  {
+   "id": "baum-2",
+   "mot": "Baum",
+   "boite": [
+    80,
+    8,
+    20,
+    42
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    69,
+    21.5,
+    11,
+    42
+   ]
+  },
+  {
+   "id": "auto",
+   "mot": "Auto",
+   "boite": [
+    63,
+    50,
+    34,
+    7.3
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    65.5,
+    54.8,
+    10.5,
+    11
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "boite": [
+    77,
+    57,
+    23,
+    18.5
+   ]
+  },
+  {
+   "id": "hut",
+   "mot": "Hut",
+   "sur": "schneemann",
+   "boite": [
+    22,
+    53.8,
+    12,
+    4
+   ]
+  },
+  {
+   "id": "karotte",
+   "mot": "Karotte",
+   "sur": "schneemann",
+   "boite": [
+    32.8,
+    56.3,
+    3.5,
+    1.6
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "sur": "schneemann",
+   "boite": [
+    21,
+    59.3,
+    13,
+    10
+   ]
+  },
+  {
+   "id": "knopf",
+   "mot": "Knopf",
+   "sur": "schneemann",
+   "boite": [
+    34.3,
+    60.8,
+    2.8,
+    5.5
+   ]
+  },
+  {
+   "id": "schneemann",
+   "mot": "Schnee",
+   "boite": [
+    15,
+    54,
+    26,
+    30
+   ]
+  },
+  {
+   "id": "besen",
+   "mot": "Besen",
+   "boites": [
+    [
+     7,
+     80.5,
+     14.5,
+     6.5
+    ],
+    [
+     0,
+     51,
+     13,
+     30
+    ]
+   ]
+  },
+  {
+   "id": "muetze",
+   "mot": "Mütze",
+   "boite": [
+    48,
+    55.8,
+    9.5,
+    5
+   ]
+  },
+  {
+   "id": "schal-anna",
+   "mot": "Schal",
+   "boite": [
+    44,
+    59.5,
+    13,
+    10
+   ]
+  },
+  {
+   "id": "handschuh",
+   "mot": "Handschuh",
+   "boite": [
+    34,
+    60.3,
+    8.5,
+    8.3
+   ]
+  },
+  {
+   "id": "stiefel",
+   "mot": "Stiefel",
+   "boite": [
+    49.5,
+    72.3,
+    12.5,
+    9
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "boite": [
+    40,
+    62,
+    25,
+    12
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    34,
+    55,
+    31,
+    25.5
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    57,
+    75.8,
+    32,
+    11
+   ]
+  },
+  {
+   "id": "schnee",
+   "mot": "Schnee",
+   "plein": true,
+   "boite": [
+    30,
+    88,
+    70,
+    12
+   ]
+  }
+ ],
+ "gros_plans": []
+}
